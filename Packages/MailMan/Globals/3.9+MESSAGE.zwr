@@ -1,3 +1,10 @@
 OSEHRA ZGO Export: MESSAGE
 ZWR
-^XMB(3.9,0)="MESSAGE^3.9s"
+^XMB(3.9,0)="MESSAGE^3.9s^1^1"
+^XMB(3.9,1,0)="Install of PXRM*2.0*45^PXRM*2.0*45 Install@FOIA.DOMAIN.EXT^3200710.211918^"
+^XMB(3.9,1,.6)=3200710
+^XMB(3.9,1,2,0)="^3.92^2^2^3200710"
+^XMB(3.9,1,2,1,0)="PXRM*2.0*45 was installed."
+^XMB(3.9,1,2,2,0)="System is FOIA.DOMAIN.EXT"
+^XMB(3.9,"B","Install of PXRM*2.0*45",1)=""
+^XMB(3.9,"C",3200710,1)=""

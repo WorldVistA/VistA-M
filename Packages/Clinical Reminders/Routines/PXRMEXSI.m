@@ -1,5 +1,5 @@
-PXRMEXSI ;SLC/PKR/PJH - Silent Exchange entry install. ;04/19/2012
- ;;2.0;CLINICAL REMINDERS;**6,12,17,18,24**;Feb 04, 2005;Build 193
+PXRMEXSI ;SLC/PKR/PJH - Silent Exchange entry install. ;10/10/2019
+ ;;2.0;CLINICAL REMINDERS;**6,12,17,18,24,45**;Feb 04, 2005;Build 566
  ;
  ;=======================================
 DELEXE(ENTRY,ROUTINE) ;If the Exchange File entry already exists delete it.
@@ -102,7 +102,10 @@ INSDLG(PXRMRIEN,IND120,JND120,ACTION) ;Install dialog components directly
 INSTALL(PXRMRIEN,ACTION,NOCF,NOR) ;Install all components in a repository entry.
  ;If NOCF is true do not install computed findings, if NOR is true
  ;do not install routines.
- N CLOK,DNAME,FILENUM,IND,PXRMDONE,PXRMNMCH,REMNAME,TEMP,RNAME
+ N CLOK,DNAME,FILENUM,IND,PXRMDONE,PXRMNAT,PXRMNMCH,REMNAME,TEMP,RNAME
+ ;Get the Exchange entry's class.
+ S PXRMNAT=$$EXCLASS^PXRMEXU2(PXRMRIEN)
+ S PXRMNAT=1
  S PXRMDONE=0
  S NOCF=$G(NOCF),NOR=$G(NOR)
  ;Initialize ^TMP globals.
@@ -140,15 +143,16 @@ INSTALL(PXRMRIEN,ACTION,NOCF,NOR) ;Install all components in a repository entry.
  . F  S RNAME=$O(^TMP("PXRMEXDL",$J,DNAME,RNAME)) Q:RNAME=""  D
  ..;Link the dialog if it exists
  .. N DIEN,RIEN
- ..;Get the dialog ien.
+ ..;Get the dialog IEN.
  .. S DIEN=$$EXISTS^PXRMEXIU(801.41,DNAME) Q:'DIEN
- ..;Get the reminder ien.
+ ..;Get the reminder IEN.
  .. S RIEN=+$$EXISTS^PXRMEXIU(811.9,$G(RNAME)) Q:'RIEN
  .. N DA,DIE,DIK,DR
  ..;Set reminder to dialog pointer.
  .. S DR="51///^S X=DNAME",DIE="^PXD(811.9,",DA=RIEN
  .. D ^DIE
  ;
+ I $D(^TMP("PXRM DIALOG LINK FILE",$J))>0 D DLINKSET^PXRMEXU5
  ;Save the install history.
  D SAVHIST^PXRMEXU1
  ;If any components were skipped send the message.

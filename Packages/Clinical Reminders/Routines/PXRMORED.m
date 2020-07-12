@@ -1,5 +1,5 @@
-PXRMORED ; SLC/AGP - Reminder Order Checks Editor ;04/26/2012
- ;;2.0;CLINICAL REMINDERS;**22**;Feb 04, 2005;Build 160
+PXRMORED ;SLC/AGP - Reminder Order Checks Editor ;10/17/2018
+ ;;2.0;CLINICAL REMINDERS;**22,45**;Feb 04, 2005;Build 566
  ;
  Q
  ;
@@ -98,7 +98,9 @@ EN1 ;
  I FILENUM=801 S CNT=CNT+1,HTEXT(CNT)="\\Select 'C' to select an "_TYPE_" by Drug Class"
  I FILENUM=801 S CNT=CNT+1,HTEXT(CNT)="\\Select 'D' to select an "_TYPE_" by Drug"
  I FILENUM=801 S CNT=CNT+1,HTEXT(CNT)="\\Select 'G' to select an "_TYPE_" by VA Generic"
+ I FILENUM=801 S CNT=CNT+1,HTEXT(CNT)="\\Select 'I' to select an "_TYPE_" by an Imaging Type"
  I FILENUM=801 S CNT=CNT+1,HTEXT(CNT)="\\Select 'O' to select an "_TYPE_" by an Orderable Item"
+ I FILENUM=801 S CNT=CNT+1,HTEXT(CNT)="\\Select 'P' to select an "_TYPE_" by an VA Product"
  I FILENUM=801 S CNT=CNT+1,HTEXT(CNT)="\\Select 'R' to select an "_TYPE_" by an Order Check Rule"
  I FILENUM=801.1 S CNT=CNT+1,HTEXT(CNT)="\\Select 'R' to select an "_TYPE_" by a Reminder Definition."
  I FILENUM=801.1 S CNT=CNT+1,HTEXT(CNT)="\\Select 'T' to select an "_TYPE_" by a Reminder Term."
@@ -111,13 +113,15 @@ EN1 ;
  I FILENUM=801 S CNT=CNT+1,DIR("A",CNT)="     C:  VA DRUG CLASS"
  I FILENUM=801 S CNT=CNT+1,DIR("A",CNT)="     D:  DRUG"
  I FILENUM=801 S CNT=CNT+1,DIR("A",CNT)="     G:  VA GENERIC"
+ I FILENUM=801 S CNT=CNT+1,DIR("A",CNT)="     I:  IMAGING TYPE"
  I FILENUM=801 S CNT=CNT+1,DIR("A",CNT)="     O:  ORDERABLE ITEM"
+ I FILENUM=801 S CNT=CNT+1,DIR("A",CNT)="     P:  VA Product"
  I FILENUM=801 S CNT=CNT+1,DIR("A",CNT)="     R:  ORDER CHECK RULE"
  I FILENUM=801.1 S CNT=CNT+1,DIR("A",CNT)="     R:  REMINDER DEFINITION"
  I FILENUM=801.1 S CNT=CNT+1,DIR("A",CNT)="     T:  REMINDER TERM"
  S CNT=CNT+1,DIR("A",CNT)="     Q:  QUIT"
  S CNT=CNT+1,DIR("A",CNT)=" "
- I FILENUM=801 S DIR(0)=DIR(0)_"N:ORDER CHECK ITEM GROUP NAME;C:VA DRUG CLASS;D:DRUG;G:VA GENERIC;O:ORDERABLE ITEM;R:ORDER CHECK RULE;Q:QUIT"
+ I FILENUM=801 S DIR(0)=DIR(0)_"N:ORDER CHECK ITEM GROUP NAME;C:VA DRUG CLASS;D:DRUG;G:VA GENERIC;I:IMAGING TYPE;O:ORDERABLE ITEM;P:VA PRODUCT;R:ORDER CHECK RULE;Q:QUIT"
  I FILENUM=801.1 S DIR(0)=DIR(0)_"N:ORDER CHECK RULE NAME;R:REMINDER DEFINITION;T:REMINDER TERM;Q:QUIT"
  ;
  S DIR("B")="N"
@@ -140,7 +144,9 @@ FIND1 ;
  I TYPE="C" S ROOT="^PS(50.605,"
  I TYPE="D" S ROOT="^PSDRUG("
  I TYPE="G" S ROOT="^PSNDF(50.6,"
+ I TYPE="I" S ROOT="^RA(79.2,"
  I TYPE="O" S ROOT="^ORD(101.43,"
+ I TYPE="P" S ROOT="^PSNDF(50.68,"
  I TYPE="T" S ROOT="^PXRMD(811.5,"
  I TYPE="R" S ROOT=$S(FILENUM=801.1:"^PXD(811.9,",1:"^PXD(801.1,")
  S DIC=ROOT
@@ -172,6 +178,16 @@ HELP(TYPE) ;
  .S CNT=CNT+1 W !,TEXT(LC)
  Q
  ;
+INVALDIS(VALUE) ;
+ ;is DISPLAY NAME field value in REMINDER ORDER CHECK RULES file invalid?
+ ;1 = invalid display name, 0 = valid display name
+ I $G(PXRMINST)=1!($G(PXRMEXCH)=1) Q 0
+ N RETURN
+ S RETURN=1,VALUE=$G(VALUE)
+ I $L(VALUE)>=3,$L(VALUE)<=64 D
+ .I '$D(^PXD(801.1,"D",VALUE))!($D(^PXD(801.1,"D",VALUE))&($G(DIUTIL)="VERIFY FIELDS")) S RETURN=0
+ Q RETURN
+ ;
 NAT(DA,FILENUM) ;
  ;used by the input template to control editing of fields
  I $G(DIUTIL)="VERIFY FIELDS" Q 1
@@ -192,11 +208,11 @@ RULEIUSE(RULE) ;
  I $D(^PXD(801,"R",RULE)) Q 0
  Q 1
  ;
-PHARMINQ ;
+ITEMINQ ;
  N DIEW,DIWF,DIWL,NAME,PAD,X
  S DIWF="C80",DIWL=2
  S NAME="",PAD="   "
- F  S NAME=$O(^PXD(801,D0,1.5,"PIDO",NAME)) Q:NAME=""  D
+ F  S NAME=$O(^PXD(801,D0,1.5,"OCIO",NAME)) Q:NAME=""  D
  .S X=PAD_NAME
  .D ^DIWP
  Q
@@ -231,7 +247,7 @@ RULEINQ(FILENUM) ;
  I $P(NODE100,U,3)>0 S X=X_" "_$$FMTE^XLFDT($P(NODE100,U,3))
  D ^DIWP
  S X=$$RJ^XLFSTR("Status:",RJC,PAD)
- S X=X_" "_$S($P(NODE,U,3)="I":"Inactive",$P(NODE,U,3)="P":"Production",$P(NODE,U,3)="T":"Testing")
+ S X=X_" "_$S($P(NODE,U,3)="I":"Inactive",$P(NODE,U,3)="P":"Production",$P(NODE,U,3)="T":"Testing",$P(NODE,U,3)="N":"Notification")
  D ^DIWP
  S X=$$RJ^XLFSTR("Severity:",RJC,PAD)
  S X=X_" "_$S($P(NODE,U,5)=1:"High",$P(NODE,U,5)=2:"Medium",1:"Low")
@@ -275,9 +291,12 @@ SELECT(REF,INPUT,ITEM,FILENUM) ;
  ;term this line tag is used
  ;
  N ALPHA,CNT,DIROUT,DIRUT,DIR,DONE,MATCH,NAME
- I REF="C"!(REF="D")!(REF="G") D
- .S ITEM=ITEM_$S(REF="D":";PSDRUG(",REF="C":";PS(50.605,",REF="G":";PSNDF(50.6,",1:"")
- .S REF="P"
+ ;I REF="C"!(REF="D")!(REF="G") D
+ ;.S ITEM=ITEM_$S(REF="D":";PSDRUG(",REF="C":";PS(50.605,",REF="G":";PSNDF(50.6,",1:"")
+ ;.S REF="P"
+ I REF="C"!(REF="D")!(REF="G")!(REF="I")!(REF="O")!(REF="P") D
+ .S ITEM=ITEM_$S(REF="D":";PSDRUG(",REF="C":";PS(50.605,",REF="G":";PSNDF(50.6,",REF="O":";ORD(101.43,",REF="I":";RA(79.2,",REF="P":";PSNDF(50.68,",1:"")
+ .S REF="O"
  ;build array by name of rules containing ITEM
  D BUILD(FILENUM,REF,INPUT,ITEM,.CNT,.ALPHA,.MATCH)
  ;
@@ -310,6 +329,11 @@ SNOCTL(DA) ;
  I PIPECNT>0 S NOLC=NOLC_"T"
  S ^PXD(801.1,DA,5)=NOLC
  Q
+ ;
+ ;STATUS(Y) ;
+ ;I $D(PXRMINST) Q 1
+ ;I Y="N" Q 0
+ ;Q 1
  ;
 WPFORMAT(RIEN,SUB) ;
  ;use for inquiry, build word-processing fields to be used later

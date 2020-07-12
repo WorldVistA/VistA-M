@@ -1,5 +1,5 @@
-GMRADPT ;HIRMFO/RM,WAA - UTILITY TO GATHER PATIENT DATA ;06/01/2016  12:54
- ;;4.0;Adverse Reaction Tracking;**2,10,46,52**;Mar 29, 1996;Build 7
+GMRADPT ;HIRMFO/RM,WAA - UTILITY TO GATHER PATIENT DATA ;Mar 20, 2019@12:38
+ ;;4.0;Adverse Reaction Tracking;**2,10,46,52,53**;Mar 29, 1996;Build 306
 EN1 ; ENTRY TO GATHER PATIENT A/AR DATA
  ;CONTROLLED BY SUPPORTED INTEGRATION AGREEMENT #10099
  ;*BD
@@ -16,7 +16,7 @@ EN2 ; ENTRY TO GATHER PATIENT A/AR DATA
  ;INPUT VARIABLES:
  ;
  ; DFN             Pointer to Patient file.
- ; GMRA (OPTIONAL) A^B^C^D   DEFAULT="0^0^111^0"
+ ; GMRA (OPTIONAL) A^B^C^D^E   DEFAULT="0^0^111^0^0"
  ;    where  A = 0 return all reactions (allergic/non-allergic).
  ;               1 return allergies only.
  ;               2 return non-allergies only.
@@ -35,6 +35,8 @@ EN2 ; ENTRY TO GATHER PATIENT A/AR DATA
  ;               and 010 (returns food only).
  ;           D = 0 return local allergies only
  ;               1 return local and remote allergies
+ ;           E = 0 exclude entered in error entries
+ ;               1 include entered in error entries
  ;OUTPUT VARIABLES:
  ; GMRAL = 1 if patient has Adverse Reaction
  ;         0 if patient has no known Adverse Reaction
@@ -81,6 +83,11 @@ EN2 ; ENTRY TO GATHER PATIENT A/AR DATA
  ;                  External format;Internal format
  ;              D = date/time of observation in the format:
  ;                  External format;Internal format
+ ; GMRAL(PTR,"ERROR") = D
+ ;    where D = date/time entry marked entered in error in the format:
+ ;              External format;Internal format
+ ;              Note: This will only exist for local reactions
+ ;              
  ; GMRAL(PTR,"SITE") = SITE
  ;    where SITE = reporting institution in the format:
  ;                 Institution File (#4) Pointer^Station Name^Station Number
@@ -109,7 +116,7 @@ DPT2 ;DO NOT CALL THIS ENTRY POINT AS IT WILL BE DELETED IN THE FUTURE. USE EN2 
  ;*ED
  N GMRAOTH,REMOTE,MECH,IDX,GMRANODE,GMRAOSOF,GMRAREC,GMRATCNT
  Q:'$D(DFN)
- I '$D(GMRA)#2 S GMRA="0^0^111^0"
+ I '$D(GMRA)#2 S GMRA="0^0^111^0^0"
  K GMRAL
  S GMRAOTH=$O(^GMRD(120.83,"B","OTHER REACTION",0))
  S REMOTE=$S(+$P(GMRA,U,4):$$HDRDATA^GMRAHDR,1:0)
@@ -154,16 +161,18 @@ INTERNAL(FILE,FIELD,VALUE) ;RETURN INTERNAL VALUE OF VUID
 SETAL(REMOTE) ;DETERMINE WHETHER TO RETURN CURRENT ALLERGY
  ;PARAMETER: REMOTE => 0 IF ALLERGY IS LOCAL, 1 IF IT IS REMOTE
  N %,GMRAI,GMRASIGN
- I 'REMOTE,(+$G(^GMR(120.8,GMRAREC,"ER"))) Q  ;IF LOCAL AND ENTERED IN ERROR QUIT (REMOTE ENTERED IN ERROR ALREADY FILTERED)
+ ;IF LOCAL, EXCLUDE ENTERED IN ERROR AND ENTRY IS ENTERED IN ERROR, THEN QUIT
+ ;(REMOTE ENTERED IN ERROR ALREADY FILTERED)
+ I 'REMOTE,'$P(GMRA,U,5),(+$G(^GMR(120.8,GMRAREC,"ER"))) Q
  I GMRAL'=1 S GMRAL=1 ; PATIENT HAS ALLERGIES
  S GMRAI=0 ; BEGIN CHECK FOR ADR/ALL CRITERIA
- I '$P(GMRA,"^") S GMRAI=1
- E  I $P(GMRA,"^")=1 S:$F("AU",$P(GMRANODE,"^",14))>1 GMRAI=1
- E  S:$F("P",$P(GMRANODE,"^",14))>1 GMRAI=1
+ I '$P(GMRA,U) S GMRAI=1
+ E  I $P(GMRA,U)=1 S:$F("AU",$P(GMRANODE,U,14))>1 GMRAI=1
+ E  S:$F("P",$P(GMRANODE,U,14))>1 GMRAI=1
  Q:'GMRAI  ; QUIT IF ADR/ALL CRITERIA NOT MET
- Q:2-$P(GMRA,"^",2)=(1-$P(GMRANODE,"^",16))  ;QUIT IF VER/NON VER CRITERIA NOT MET
+ Q:2-$P(GMRA,U,2)=(1-$P(GMRANODE,U,16))  ;QUIT IF VER/NON VER CRITERIA NOT MET
  S GMRAI=0 ; BEGIN CHECK FOR ALLERGY TYPE CRITERIA
- F %=1:1:3 I $E($P(GMRA,"^",3),%),$P(GMRANODE,"^",20)[$E("OFD",%) S GMRAI=1 Q
+ F %=1:1:3 I $E($P(GMRA,U,3),%),$P(GMRANODE,U,20)[$E("OFD",%) S GMRAI=1 Q
  Q:'GMRAI  ; QUIT IF ALLERGY TYPE CRITERIA NOT MET
  D DATA(.GMRAREC,.GMRAL)
  Q
@@ -197,6 +206,9 @@ PASS(GMRAREC,GMRAL) ;RETRIEVE LOCAL DATA
  ...S GMRAL(GMRAREC,"O",IDX)=$$EXTERNAL^DILFD(120.85,14.5,,%)_";"_%_U
  ...S %=$P($G(^GMR(120.85,IEN,0)),U)
  ...S GMRAL(GMRAREC,"O",IDX)=GMRAL(GMRAREC,"O",IDX)_$$EXTERNAL^DILFD(120.85,.01,,%)_";"_%
+ .I $P($G(^GMR(120.8,GMRAREC,"ER")),U)=1 D
+ ..S %=$P($G(^GMR(120.8,GMRAREC,"ER")),U,2)
+ ..S GMRAL(GMRAREC,"ERROR")=$$EXTERNAL^DILFD(120.8,23,,%)_";"_%
  I $O(^GMR(120.8,GMRAREC,10,0)) D
  .S GMRAX=0,GMRAY=1 F  S GMRAX=$O(^GMR(120.8,GMRAREC,10,GMRAX)) Q:GMRAX<1  D
  ..S GMRAZ=$G(^GMR(120.8,GMRAREC,10,GMRAX,0))

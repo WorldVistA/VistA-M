@@ -1,6 +1,6 @@
 OSEHRA ZGO Export: DEVICE
 ZWR
-^%ZIS(1,0)="DEVICE^3.5Is^53^53"
+^%ZIS(1,0)="DEVICE^3.5Is^54^54"
 ^%ZIS(1,1,0)="TIS51^51^1^1^^^^^^^1"
 ^%ZIS(1,1,"SUBTYPE")=9
 ^%ZIS(1,1,"TYPE")="TRM"
@@ -33,7 +33,7 @@ ZWR
 ^%ZIS(1,9,"TYPE")="TRM"
 ^%ZIS(1,10,0)="HFS^/tmp/hfs.dat^^^^^^^^^"
 ^%ZIS(1,10,1)="Host File Device^^^^1^"
-^%ZIS(1,10,5)=2828
+^%ZIS(1,10,5)=4
 ^%ZIS(1,10,"IOPAR")="""NWS"""
 ^%ZIS(1,10,"SUBTYPE")=172
 ^%ZIS(1,10,"TYPE")="HFS"
@@ -186,7 +186,7 @@ ZWR
 ^%ZIS(1,38,"TYPE")="RES"
 ^%ZIS(1,39,0)="ZZNULL^/dev/null^^^^^^^^^"
 ^%ZIS(1,39,1)="BIT BUCKET"
-^%ZIS(1,39,5)=""
+^%ZIS(1,39,5)=3
 ^%ZIS(1,39,"MN",0)="^3.501^2^2"
 ^%ZIS(1,39,"MN",1,0)="GTM-LINUX-NULL"
 ^%ZIS(1,39,"MN",2,0)="NULL"
@@ -194,7 +194,7 @@ ZWR
 ^%ZIS(1,39,"TYPE")="TRM"
 ^%ZIS(1,40,0)="VIRTUAL TERMINAL^/dev/pts^1^^^^^^^^1^0"
 ^%ZIS(1,40,1)="Virtual Terminal^^^^1"
-^%ZIS(1,40,5)=74238
+^%ZIS(1,40,5)=79
 ^%ZIS(1,40,"MN",0)="^3.501^2^2"
 ^%ZIS(1,40,"MN",1,0)="GTM-LINUX-TELNET"
 ^%ZIS(1,40,"MN",2,0)="TELNET"
@@ -261,6 +261,10 @@ ZWR
 ^%ZIS(1,53,1)="Controls the number of HMP extract jobs that run simultaneously.^^^^^^^^^10"
 ^%ZIS(1,53,"SUBTYPE")=16
 ^%ZIS(1,53,"TYPE")="RES"
+^%ZIS(1,54,0)="TIU ACTIONS RESOURCE^TIU ACTIONS RESOURCE"
+^%ZIS(1,54,1)="Document actions notifier^^^^^^^^^1"
+^%ZIS(1,54,"SUBTYPE")=16
+^%ZIS(1,54,"TYPE")="RES"
 ^%ZIS(1,"B","BROWSER (CIRN)",27)=""
 ^%ZIS(1,"B","BROWSER CACHE/NT",29)=""
 ^%ZIS(1,"B","BROWSER DSM/VMS",12)=""
@@ -314,6 +318,7 @@ ZWR
 ^%ZIS(1,"B","TIS52",2)=""
 ^%ZIS(1,"B","TIS53",3)=""
 ^%ZIS(1,"B","TIS54",4)=""
+^%ZIS(1,"B","TIU ACTIONS RESOURCE",54)=""
 ^%ZIS(1,"B","TIU/PXAPI RESOURCE",21)=""
 ^%ZIS(1,"B","TRM",49)=""
 ^%ZIS(1,"B","VIC CARD",19)=""
@@ -364,6 +369,7 @@ ZWR
 ^%ZIS(1,"C","RTA",47)=""
 ^%ZIS(1,"C","SCCV RESOURCE",32)=""
 ^%ZIS(1,"C","SYS$INPUT:",46)=""
+^%ZIS(1,"C","TIU ACTIONS RESOURCE",54)=""
 ^%ZIS(1,"C","TIU/PXAPI RESOURCE",21)=""
 ^%ZIS(1,"C","TNA",22)=""
 ^%ZIS(1,"C","TRM",49)=""
@@ -418,6 +424,7 @@ ZWR
 ^%ZIS(1,"CPU",".RTA",47)=""
 ^%ZIS(1,"CPU",".SCCV RESOURCE",32)=""
 ^%ZIS(1,"CPU",".SYS$INPUT:",46)=""
+^%ZIS(1,"CPU",".TIU ACTIONS RESOURCE",54)=""
 ^%ZIS(1,"CPU",".TIU/PXAPI RESOURCE",21)=""
 ^%ZIS(1,"CPU",".TNA",22)=""
 ^%ZIS(1,"CPU",".TRM",49)=""
@@ -443,6 +450,7 @@ ZWR
 ^%ZIS(1,"G","SYS..TNA",22)=""
 ^%ZIS(1,"G","SYS..TRM",49)=""
 ^%ZIS(1,"G","SYS..|TCP|",7)=""
+^%ZIS(1,"G","SYS..|TNT|",22)=""
 ^%ZIS(1,"G","SYS.PLA.|TNT|",22)=""
 ^%ZIS(1,"G","SYS.PLA.|TRM|",48)=""
 ^%ZIS(1,"G","SYS.VISTA.|TNT|",22)=""

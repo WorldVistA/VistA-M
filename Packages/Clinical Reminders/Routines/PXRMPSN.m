@@ -1,5 +1,5 @@
-PXRMPSN ;SLC/PKR - Process PSN protocol events. ;02/10/2011
- ;;2.0;CLINICAL REMINDERS;**12,17,16,18,22**;Feb 04, 2005;Build 160
+PXRMPSN ;SLC/PKR - Process PSN protocol events. ;04/21/2016  15:14
+ ;;2.0;CLINICAL REMINDERS;**12,17,16,18,22,45**;Feb 04, 2005;Build 566
  ;==============================
 DEF(FILENUM,GBL,FIEN,NL) ;Write out the list of definintions using this
  ;finding.
@@ -105,9 +105,9 @@ ROC(FILENUM,GBL,FIEN,NL) ;Search all reminder order checks for any
  N IEN,NAME,START
  S NL=NL+1,^TMP("PXRMXMZ",$J,NL,0)=""
  S NL=NL+1,^TMP("PXRMXMZ",$J,NL,0)="and the following reminder order check groups:"
- I '$D(^PXD(801,"P",FIEN_";PSNDF(50.605,")) S NL=NL+1,^TMP("PXRMXMZ",$J,NL,0)="  None" Q
+ I '$D(^PXD(801,"OCI",FIEN_";PSNDF(50.605,")) S NL=NL+1,^TMP("PXRMXMZ",$J,NL,0)="  None" Q
  S (IEN,START)=0
- F  S IEN=$O(^PXD(801,"P",FIEN_";PSNDF(50.605,",IEN)) Q:IEN'>0  D
+ F  S IEN=$O(^PXD(801,"OCI",FIEN_";PSNDF(50.605,",IEN)) Q:IEN'>0  D
  . S NAME=$P($G(^PXD(801,IEN,0)),U) I NAME="" Q
  . I START>0 S NL=NL+1,^TMP("PXRMXMZ",$J,NL,0)=""
  . S NL=NL+1,^TMP("PXRMXMZ",$J,NL,0)="  "_NAME_" (IEN="_IEN_")"

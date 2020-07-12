@@ -1,5 +1,5 @@
-PSOUTL ;BHAM ISC/SAB - PSO utility routine ;4/28/09 4:14pm
- ;;7.0;OUTPATIENT PHARMACY;**1,21,126,174,218,259,324,390,313,411,466**;DEC 1997;Build 2
+PSOUTL ;BHAM ISC/SAB - PSO utility routine ;Jun 22, 2018@08:18
+ ;;7.0;OUTPATIENT PHARMACY;**1,21,126,174,218,259,324,390,313,411,466,477**;DEC 1997;Build 187
  ;External reference to $$SERV^IBARX1 supported by DBIA 2245
  ;External reference to ^PS(55 supported by DBIA 2228
  ;External reference to ^PSSDIUTL supported by DBIA 5737
@@ -335,3 +335,13 @@ LTHEN(RX) ; Looks for a THEN anywhere in the Complex Order.
  . I PSOTHEN="T" S FNDTHEN=1 Q
  I $G(FNDTHEN)="" Q 0
  Q 1
+ ;
+CONJ(PSOCRX) ;Looks for EXCEPT conjunction;  EXCEPT conjunction disabled with PSO*7*477
+ ;Returns 1 if EXCEPT conjunction found or 0 (zero) if not found
+ Q:'$D(^PSRX(+$G(PSOCRX),0))
+ N DOSEIEN,DOSE1,EXCEPT
+ F DOSEIEN=0:0 S DOSEIEN=$O(^PSRX(PSOCRX,6,DOSEIEN)) Q:'DOSEIEN  D
+ . S DOSE1=^PSRX(PSOCRX,6,DOSEIEN,0)
+ . I $P(DOSE1,"^",6)="X" S EXCEPT=1
+ Q:$G(EXCEPT) 1
+ Q 0

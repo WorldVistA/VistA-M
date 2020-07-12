@@ -1,0 +1,267 @@
+WVRPCGF1 ;ISP/AGP - APIs for Clinical Reminders ;10/22/2019
+ ;;1.0;WOMEN'S HEALTH;**24**;Sep 30, 1998;Build 582
+ ;
+ ;
+ACOPY(REF,OUTPUT) ;Copy all the descendants of the array reference into a linear
+ ;array. REF is the starting array reference, for example A or
+ ;^TMP("PXRM",$J). OUTPUT is the linear array for the output. It
+ ;should be in the form of a closed root, i.e., A() or ^TMP($J,).
+ ;Note OUTPUT cannot be used as the name of the output array.
+ N DONE,IND,LEN,NL,OROOT,OUT,PROOT,ROOT,START,TEMP
+ I REF="" Q
+ S NL=0
+ S OROOT=$P(OUTPUT,")",1)
+ S PROOT=$P(REF,")",1)
+ ;Build the root so we can tell when we are done.
+ S TEMP=$NA(@REF)
+ S ROOT=$P(TEMP,")",1)
+ S REF=$Q(@REF)
+ I REF'[ROOT Q
+ S DONE=0
+ F  Q:(REF="")!(DONE)  D
+ . S START=$F(REF,ROOT)
+ . S LEN=$L(REF)
+ . S IND=$E(REF,START,LEN)
+ . S NL=NL+1
+ . S OUT=OROOT_NL_")"
+ . S @OUT=PROOT_IND_"="_@REF
+ . S REF=$Q(@REF)
+ . I REF'[ROOT S DONE=1
+ Q
+ ;
+ ;build error message array
+BLDMSG(PAT,SUBJ,NUM) ;
+ N CNT,ERR,XMDUZ,XMSUB,XMTEXT,Y
+ K ^TMP("WV MSG",$J),XMY
+ S CNT=0,XMDUZ=DUZ,XMSUB=SUBJ,XMTEXT="^TMP(""WV MSG"",$J,",XMY(DUZ)="",XMY("G.OR CACS")=""
+ S NUM=NUM+1,^TMP("WV MSG",$J,NUM,0)="Patient DFN: "_PAT
+ S NUM=NUM+1,^TMP("WV MSG",$J,NUM,0)="ERROR:"
+ D ACOPY("WVERR","ERR()")
+ S CNT=0 F  S CNT=$O(ERR(CNT)) Q:CNT'>0  S NUM=NUM+1,^TMP("WV MSG",$J,NUM,0)=ERR(CNT)
+ S NUM=NUM+1,^TMP("WV MSG",$J,NUM,0)=""
+ S NUM=NUM+1,^TMP("WV MSG",$J,NUM,0)="INPUTS:"
+ K ERR
+ D ACOPY("INPUTS","ERR()")
+ D ^XMD
+ Q
+ ;
+MKWSDEV ;Make the WV WORKSTATION device.
+ N FDA,FDAIEN,MSG
+ ;Make sure that the device does not get created more than once.
+ I +$$FIND1^DIC(3.5,"","MX","WV WORKSTATION")>0 Q
+ S FDA(3.5,"+1,",.01)="WV WORKSTATION" ;NAME
+ S FDA(3.5,"+1,",.02)="WV Workstation HFS Device" ;LOCATION OF TERMINAL
+ S FDA(3.5,"+1,",1)="WVWSD.DAT" ;$I
+ S FDA(3.5,"+1,",1.95)=0 ;SIGN-ON/SYSTEM DEVICE
+ S FDA(3.5,"+1,",2)="HFS" ;TYPE
+ S FDA(3.5,"+1,",3)=$$FIND1^DIC(3.2,"","MX","P-OTHER") ;SUBTYPE
+ S FDA(3.5,"+1,",4)=0 ;ASK DEVICE
+ S FDA(3.5,"+1,",5)=0 ;ASK PARAMETERS
+ S FDA(3.5,"+1,",5.1)=0 ;ASK HOST FILE
+ S FDA(3.5,"+1,",5.2)=0 ;ASK HFS I/O OPERATION
+ D UPDATE^DIE("","FDA","FDAIEN","MSG")
+ Q
+ ;
+ ;print api for CPRS view/print RPC
+PRINT(RESULT,WVDFN,WVPURPTX) ;
+ N BY,DIWF
+ N %ZIS,BY,DC,DHD,DONE,FF,FILENAME,FILESPEC,FLDS,FR,GBL,HFNAME
+ N IND,IOP,NOW,PATH,VAR,WVPURP,SUCCESS,TO,UNIQN
+ S WVPURP=$O(^WV(790.404,"B",WVPURPTX,"")) I WVPURP'>0 Q
+ ;D MKWSDEV^PXRMHOST
+ D MKWSDEV
+ ;Set up the output file before DIP is called.
+ S PATH=$$PWD^%ZISH
+ S NOW=$$NOW^XLFDT
+ S NOW=$TR(NOW,".","")
+ S UNIQN=$J_NOW
+ S FILENAME="WVLETTER"_UNIQN_".DAT"
+ S HFNAME=PATH_FILENAME
+ S IOP="WV WORKSTATION;80"
+ S %ZIS("HFSMODE")="W"
+ S %ZIS("HFSNAME")=HFNAME
+ S DIWF="^WV(790.404,WVPURP,1,"
+ S DIWF(1)=790
+ S BY="INTERNAL(#.01)="_WVDFN
+ D EN2^DIWF
+ S GBL="^TMP(""WVLETTER"",$J,1,0)"
+ S GBL=$NA(@GBL)
+ K ^TMP("WVLETTER",$J)
+ S SUCCESS=$$FTG^%ZISH(PATH,FILENAME,GBL,3)
+ ;Look for a form feed, remove it and all subsequent lines.
+ S FF=$C(12)
+ I $G(VAR)["^" D
+ . S VAR=$NA(@VAR)
+ . S VAR=$P(VAR,")",1)
+ . S VAR=VAR_",IND,0)"
+ . S (DONE,IND)=0
+ . F  Q:DONE  S IND=$O(^TMP("WVLETTER",$J,IND)) Q:+IND=0  D
+ .. I ^TMP("WVLETTER",$J,IND,0)=FF S DONE=1 Q
+ .. S @VAR=^TMP("WVLETTER",$J,IND,0)
+ E  D
+ . S (DONE,IND)=0
+ . F  Q:DONE  S IND=$O(^TMP("WVLETTER",$J,IND)) Q:+IND=0  D
+ .. S VAR(IND)=^TMP("WVLETTER",$J,IND,0)
+ .. I VAR(IND)=FF S DONE=1
+ S IND=0 F  S IND=$O(^TMP("WVLETTER",$J,IND)) Q:IND'>0  D
+ .S RESULT(IND)=$G(^TMP("WVLETTER",$J,IND,0))
+ S RESULT(0)=1_U_WVPURPTX_" letter"
+ K ^TMP("WVLETTER",$J)
+ ;Delete the host file.
+ S FILESPEC(FILENAME)=""
+ S SUCCESS=$$DEL^%ZISH(PATH,$NA(FILESPEC))
+ Q
+ ;
+NEXTPROC(DFN,TYPE) ;
+ N NAME,NODE
+ I TYPE="BR" S NODE=$P($G(^WV(790,DFN,0)),U,18,19)
+ I TYPE="CX" S NODE=$P($G(^WV(790,DFN,0)),U,11,12)
+ I +$P(NODE,U)'>0 Q ""
+ I +$P(NODE,U,2)'>0 Q ""
+ I TYPE="BR" S NAME=$P($G(^WV(790.51,$P(NODE,U),0)),U)
+ I TYPE="CX" S NAME=$P($G(^WV(790.5,$P(NODE,U),0)),U)
+ I NAME="" Q ""
+ Q NAME_U_$P(NODE,U,2)
+ ;
+VIEWDATA(RESULT,DATA,PAT,FINDVAL) ;
+ ;FINDINGS("WOMEN'S HEALTH",FILE,CNT)=SUBSCRIPT_U_VALUE_U_PROMPT TYPE IEN_U_PROMPT SUBSCRIPT
+ N CNT,PKG,FILE,NODE,SUB,VALUE
+ S PKG="WOMEN'S HEALTH"
+ I '$D(DATA(PKG,790.4)),'$D(DATA(PKG,790.1)) Q
+ I $D(DATA(PKG,790.4)) D V7904(.RESULT,.DATA,PAT,FINDVAL)
+ I $D(DATA(PKG,790.1)) D V7901(.RESULT,.DATA,PAT,FINDVAL)
+ Q
+ ;
+V7904(RESULT,DATA,PAT,FINDVAL) ;
+ N INC,NODE,SUB,SUB1,VALUE
+ S PKG="WOMEN'S HEALTH"
+ S INC=0 F  S INC=$O(DATA(PKG,790.4,INC)) Q:INC'>0  D
+ .S NODE=$G(DATA(PKG,790.4,INC))
+ .S SUB=$P(NODE,U),VALUE=$P(NODE,U,2),SUB1=$P(NODE,U,4)
+ .I SUB=".04" D PRINT^WVRPCGF1(.RESULT,PAT,VALUE) Q
+ .;I SUB="No Notifications" D
+ .;.S RESULT(0)=0_U_"Procedure(s) with no documented notification"
+ .;.D FNDWDATA^PXRMRPCG(.RESULT,PAT,IEN,FINDVAL,VALUE)
+ Q
+ ;
+V7901(RESULT,DATA,PAT,FINDVAL) ;
+ N CNT,DIR,DIAG,I,INC,NODE,SUB,SUB1,TCNT,TEXT,VALUE,X
+ S PKG="WOMEN'S HEALTH"
+ S INC=0 F  S INC=$O(DATA(PKG,790.1,INC)) Q:INC'>0  D
+ .S NODE=$G(DATA(PKG,790.1,INC))
+ .S SUB=$P(NODE,U),VALUE=$P(NODE,U,2),SUB1=$P(NODE,U,4)
+ .I SUB="LAST THREE TRMTS" D  Q
+ ..K ^TMP("PXRMRPCG REPORT",$J)
+ ..S DIR=1
+ ..I $$LAST3^WVHS("PXRMRPCG REPORT",PAT,3,DIR)="" Q
+ ..S RESULT(0)=1_U_"Last Three Breast Imaging Reports "_$S(DIR=1:"(Most Recent to Oldest)",1:"(Oldest to Most Recent)")
+ ..S CNT=0,I=0 F  S I=$O(^TMP("PXRMRPCG REPORT",$J,I)) Q:I'>0  D
+ ...S CNT=CNT+1,RESULT(CNT)=$G(^TMP("PXRMRPCG REPORT",$J,I,0))
+ .I SUB=.01 D  Q
+ ..S CNT=0
+ ..;S RESULT(0)=1_U
+ ..S RESULT(0)=1_U_"Open Breast Imaging (Oldest to Most Recent)"
+ ..F X=1:1:$L(FINDVAL,":") D
+ ...K TEXT
+ ...;S TCNT=0
+ ...D GETTEST(+$P(FINDVAL,":",X),.TEXT,.DIAG)
+ ...I X>1 S CNT=CNT+1,RESULT(CNT)="",CNT=CNT+1,RESULT(CNT)="----------------------------------------------------------",CNT=CNT+1,RESULT(CNT)=""
+ ...S TCNT=0 F  S TCNT=$O(TEXT(TCNT)) Q:TCNT'>0  S CNT=CNT+1,RESULT(CNT)=TEXT(TCNT)
+ ...S CNT=CNT+1,RESULT(CNT)=""
+ Q
+ ;
+GETWVP(DFN,ITEM,TEXT) ;
+ N ACCESS,CNT,DATE,ID,NODE,TCNT,TEMP,WVNTXT,X
+ S NODE=$G(^WV(790.1,+ITEM,0))
+ S TCNT=0
+ S ACCESS=$P(NODE,U),TCNT=TCNT+1,TEXT(TCNT)="Accession #: "_ACCESS
+ S TEMP=$P(NODE,U,4) I TEMP'="" D
+ .S TCNT=TCNT+1,TEXT(TCNT)="Procedure: "_$P($G(^WV(790.2,TEMP,0)),U)
+ S TEMP=$P(NODE,U,12) I TEMP'="" D
+ .S TCNT=TCNT+1,TEXT(TCNT)="Date of Procedure: "_$$FMTE^XLFDT(TEMP)
+ S TEMP=$P(NODE,U,5) I TEMP'="" D
+ .S TCNT=TCNT+1,TEXT(TCNT)="Primary Result: "_$P($G(^WV(790.31,TEMP,0)),U)
+ S TEMP=$P(NODE,U,6) I TEMP'="" D
+ .S TCNT=TCNT+1,TEXT(TCNT)="Secondary Result: "_$P($G(^WV(790.31,TEMP,0)),U)
+ I +$P(NODE,U,36)=1 S TCNT=TCNT+1,TEXT(TCNT)="Outside Report: True"
+ I +$P(NODE,U,36)'=1 D
+ .S TCNT=TCNT+1,TEXT(TCNT)="Radiology Case#: "_$P(NODE,U,15)
+ .S TCNT=TCNT+1,TEXT(TCNT)="Provider: "_$S($P(NODE,U,7)>0:$$GET1^DIQ(200,$P(NODE,U,7),.01),1:"None define")
+ I $G(^WV(790.1,+ITEM,3))'="" S TCNT=TCNT+1,TEXT(TCNT)="Procedure Comments: "_$G(^WV(790.1,+ITEM,3))
+ ;
+ I $D(^WV(790.1,+ITEM,10,"DATE")) D
+ .S TCNT=TCNT+1,TEXT(TCNT)=""
+ .S DATE=0 F  S DATE=$O(^WV(790.1,+ITEM,10,"DATE",DATE)) Q:DATE'>0  D
+ ..S TCNT=TCNT+1,TEXT(TCNT)="Review of recommendations done on "_$$FMTE^XLFDT(DATE)
+ ..S TEMP="" F  S TEMP=$O(^WV(790.1,+ITEM,10,"DATE",DATE,TEMP)) Q:TEMP=""  D
+ ...S TCNT=TCNT+1,TEXT(TCNT)=TEMP
+ ...S ID=$O(^WV(790.1,+ITEM,10,"DATE",DATE,TEMP,"")) Q:ID=""
+ ...I $G(^WV(790.1,+ITEM,10,ID,1))'="" S TCNT=TCNT+1,TEXT(TCNT)="Comment: "_$G(^WV(790.1,+ITEM,10,ID,1))
+ ;
+ D GETWVN(DFN,ACCESS,.WVNTXT)
+ S TCNT=TCNT+1,TEXT(TCNT)=""
+ S CNT=0 F  S CNT=$O(WVNTXT(CNT)) Q:CNT'>0  S TCNT=TCNT+1,TEXT(TCNT)=WVNTXT(CNT)
+ Q
+ ;
+GETWVN(DFN,ITEM,TEXT) ;
+ N DATE,IEN,FIRST,METHOD,NAME,NODE,PURIEN,PUR,TCNT,TEMP,WHO
+ S TCNT=0,FIRST=1
+ S TCNT=TCNT+1,TEXT(TCNT)="Patient communication on file:"
+ S IEN=0 F  S IEN=$O(^WV(790.4,"C",ITEM,IEN)) Q:IEN'>0  D
+ .S NODE=$G(^WV(790.4,IEN,0))
+ .S PURIEN=$P(NODE,U,4) Q:PURIEN'>0
+ .S PUR=$P($G(^WV(790.404,PURIEN,0)),U)
+ .I PUR'="" D
+ .. I FIRST=1 S TCNT=TCNT+1,TEXT(TCNT)=$$RJ^XLFSTR("Communication content: ",23)_PUR,FIRST=0 Q
+ .. S TCNT=TCNT+1,TEXT(TCNT)=$$RJ^XLFSTR(" ",23)_PUR
+ .;S TEMP=$P(NODE,U,3) I TEMP="" S TCNT=TCNT+1,TEXT(TCNT)="Communication method: Unable to contact the patient." Q
+ .S TEMP=$P(NODE,U,3) I TEMP="" Q
+ .;I TEMP'="" S TCNT=TCNT+1,TEXT(TCNT)="Communication method: "_$P($G(^WV(790.403,TEMP,0)),U)
+ .I TEMP'="" S NAME=$P($G(^WV(790.403,TEMP,0)),U),METHOD(NAME)=""
+ .I $P($G(^WV(790.4,IEN,1)),U)="" D  Q
+ ..S DATE=+$P(NODE,U,8)
+ ..;I +DATE>0 S TEXT(TCNT)=TEXT(TCNT)_" on "_$$FMTE^XLFDT(DATE) Q
+ ..I +DATE>0 S METHOD(NAME)=U_$$FMTE^XLFDT(DATE) Q
+ .;S NODE=$G(^WV(790.4,IEN,1)) I NODE'=U S TCNT=TCNT+1,TEXT(TCNT)="Communication detail: Spoke to "_$P(NODE,U)_" on "_$$FMTE^XLFDT($P(NODE,U,2))
+ .S NODE=$G(^WV(790.4,IEN,1)) I NODE'=U S METHOD(NAME)=$P(NODE,U)_U_$$FMTE^XLFDT($P(NODE,U,2))
+ I TCNT>1,$D(METHOD) D  Q
+ .S NAME=$O(METHOD("")) S TCNT=TCNT+1,TEXT(TCNT)="Communication method: "_$P($G(^WV(790.403,TEMP,0)),U)
+ .S WHO=$P(METHOD(NAME),U),DATE=$P(METHOD(NAME),U,2)
+ .I DATE'="",WHO="" S TEXT(TCNT)=TEXT(TCNT)_" on "_$$FMTE^XLFDT(DATE) Q
+ .I WHO'="" S TCNT=TCNT+1,TEXT(TCNT)="Communication detail: Spoke to "_WHO_" on "_DATE Q
+ I TCNT>1,'$D(METHOD) S TCNT=TCNT+1,TEXT(TCNT)="Communication method: Unable to contact the patient." Q 
+ I TCNT=1 S TCNT=TCNT+1,TEXT(TCNT)="None on file"
+ Q
+ ;
+BRNEEDS(RESULT,BDT,EDT,TEST) ;
+ N DATE,END,PAT,PROC
+ S PROC=$O(^WV(790.51,"B",TEST,"")) Q:PROC'>0
+ S DATE=$S(BDT>0:BDT,1:0)
+ S END=$S(EDT>0:EDT,1:DT)
+ F  S DATE=$O(^WV(790,"BRNEEDS",PROC,DATE)) Q:DATE'>0!(DATE'<END)  D
+ .S PAT="" F  S PAT=$O(^WV(790,"BRNEEDS",PROC,DATE,PAT)) Q:PAT'>0  S RESULT(PAT)=DATE
+ Q
+ ;
+GETTEST(WVIEN,TEXT,DIAG) ;
+ N Y
+ K ^TMP("WV RPT",$J)
+ D EN^WVALERTR(+WVIEN,.DIAG)
+ I '$D(^TMP("WV RPT",$J)) S TEXT(1)="No Imaging found in Radiology Package" Q
+ S Y=0 F  S Y=$O(^TMP("WV RPT",$J,Y)) Q:Y'>0  S INC=INC+1,TEXT(INC)=$G(^TMP("WV RPT",$J,Y,0))
+ K ^TMP("WV RPT",$J)
+ Q
+ ;
+SETOPEN(DA,VALUES) ;
+ I +VALUES(1)'>0 Q 0
+ I VALUES(2)="" Q 0
+ I VALUES(3)="" Q 0
+ I VALUES(4)'="o" Q 0
+ Q 1
+ ;
+KILLOPEN(DA,VALUES) ;
+ I +VALUES(1)'>0 Q 1
+ I VALUES(2)="" Q 1
+ I VALUES(3)="" Q 1
+ I VALUES(4)'="o" Q 1
+ Q 0
+ ;

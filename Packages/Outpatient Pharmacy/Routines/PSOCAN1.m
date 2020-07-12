@@ -1,5 +1,5 @@
-PSOCAN1 ;BIR/BHW - modular rx cancel with speed cancel ability ;2/22/93
- ;;7.0;OUTPATIENT PHARMACY;**8,20,24,27,32,131,163,185,238,372,442,508**;DEC 1997;Build 295
+PSOCAN1 ;BIR/BHW - modular rx cancel with speed cancel ability ;12/03/18  11:04
+ ;;7.0;OUTPATIENT PHARMACY;**8,20,24,27,32,131,163,185,238,372,442,508,477**;DEC 1997;Build 187
  ;External reference to File #55 supported by DBIA 2228
  ;External reference to ^PSDRUG supported by DBIA 221
  ;External reference to ^DPT supported by DBIA 10035
@@ -54,6 +54,7 @@ SHOW1 ;S LC=LC+3 I LC>20 R !,"Press return to continue",X:DTIME G:X'="" SHOW1 S 
  Q
 SPEED1 S PSPOP=0 I $G(PSODIV),+$P($G(^PSRX(DA,2)),"^",9)'=$G(PSOSITE) D:'$G(SPEED) DIV^PSOCAN
  K STAT S STAT=+$P(^PSRX(DA,"STA"),"^"),REA=$E("C00CCCCCCCCCR000C",STAT+1)
+ I $$CONJ^PSOUTL(DA) S PSINV(RX)="" Q
  Q:$G(SPEED)&(REA="R")
  I REA="R",$P($G(^PSRX(DA,"PKI")),"^") S PKI=1 S PSINV(RX)="" Q
  I REA=0!(PSPOP)!($P(^PSRX(+YY,"STA"),"^")>12),$P(^("STA"),"^")<16 S PSINV(RX)="" Q
@@ -65,10 +66,12 @@ AREC S:'$G(DEAD) REA=$S($G(REA)="L":"L",1:$P(PSCAN($P(^PSRX(DA,0),"^")),"^",2)) 
  I $D(PKIR) N J S J=ACNT+2 D ADR^PSOPKIV1
  D EXP^PSOHELP1
  Q
-SPEED D COM Q:'$D(INCOM)!($D(DIRUT))  N PKI K PSINV,PSCAN F II=1:1 S DA=$P(IN,",",II) Q:'$P(IN,",",II)  D
+SPEED ;
+ D COM Q:'$D(INCOM)!($D(DIRUT))  N PKI K PSINV,PSCAN F II=1:1 S DA=$P(IN,",",II) Q:'$P(IN,",",II)  D
  .I $P(DA,"^",2)="P" S DA=+DA D  Q
  ..D PSOL^PSSLOCK(DA_"S") I $G(PSOMSG) D PEN D PSOUL^PSSLOCK(DA_"S")
  .I $D(^PSRX(DA,0)) S YY=DA,RX=$P(^(0),"^") S:DA<0 PSINV(RX)="" D:DA>0 SPEED1
+ G:ALL="S"&($D(PSINV(RX))) INVALD
  G:'$D(PSCAN) INVALD S II="",RXCNT=0 F  S II=$O(PSCAN(II)) Q:II=""  S DA=+PSCAN(II),REA=$P(PSCAN(II),"^",2),RXCNT=RXCNT+1  D SHOW
  ;
 ASK G:'$D(PSCAN) INVALD W ! S DIR("A")="OK to "_$S($G(RXCNT)>1:"Change Status",REA="C":"Discontinue",1:"Reinstate"),DIR(0)="Y",DIR("B")="N" D ^DIR K DIR I $D(DIRUT) S:$O(PSOSDX(0)) PSOSDXY=1 Q
@@ -78,12 +81,12 @@ ASK G:'$D(PSCAN) INVALD W ! S DIR("A")="OK to "_$S($G(RXCNT)>1:"Change Status",R
 ACT S DA=+PSCAN(RX),REA=$P(PSCAN(RX),"^",2),II=RX,PSODFN=$P(^PSRX(DA,0),"^",2) I REA="R" D REINS^PSOCAN2 I '$G(PSORX("DFLG")) D DCORD^PSONEW2 Q  ;*442
  D CAN^PSOCAN Q
 INVALD K PSCAN Q:'$D(PSINV)  W !! F I=1:1:80 W "="
- W $C(7),!!,"The Following Rx Number(s) Are Invalid Choices, Expired, "_$S($G(PKI):"Digitally Signed",1:""),!,"Discontinued by Provider, or Marked As Deleted:" S II="" F  S II=$O(PSINV(II)) Q:II=""  W !?10,II
+ W $C(7),!!,"The Following Rx Number(s) Are Invalid Choices, Expired, "_$S($G(PKI):"Digitally Signed",1:""),!,"Discontinued by Provider, invalid except conjunction or Marked As Deleted:" S II="" F  S II=$O(PSINV(II)) Q:II=""  W !?10,II
  K PSINV I $G(PSOERR)!($G(SPEED)) K DIR,DUOUT,DTOUT,DIRUT S DIR(0)="E",DIR("A")="Press Return to Continue" D ^DIR K DIR,DTOUT,DIRUT,DUOUT
  G KILL Q
 LISTPAT S X="?",DIC(0)="EMQ",DIC="^DPT(" D ^DIC K DIC Q
  ;
-COM ; 
+COM ;
  ; PSO*7*508 - if this is an eRx, set the comments and nature of order and quit - no user interaction
  I $G(ERXDCIEN) D  Q
  .S INCOM=$$GET1^DIQ(52.49,ERXDCIEN,52.2,"E")

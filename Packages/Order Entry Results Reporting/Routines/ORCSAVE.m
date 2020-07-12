@@ -1,5 +1,5 @@
-ORCSAVE ;SLC/MKB/JDL-Save ;Mar 06, 2018@10:27
- ;;3.0;ORDER ENTRY/RESULTS REPORTING;**7,56,70,73,92,94,116,141,163,187,190,195,243,303,293,280,306,286,269,423,421,382,397**;Dec 17, 1997;Build 22
+ORCSAVE ;SLC/MKB/JDL-Save ;10/08/19  17:01
+ ;;3.0;ORDER ENTRY/RESULTS REPORTING;**7,56,70,73,92,94,116,141,163,187,190,195,243,303,293,280,306,286,269,423,421,382,397,377**;Dec 17, 1997;Build 582
  ;Per VA Directive 6402, this routine should not be modified.
  ;
  ; DBIA 10103   ^XLFDT
@@ -13,6 +13,7 @@ XX ; -- save new/unreleased edited order into Orders file
  ;    Requires: ORDIALOG() = array of dialog values
  ;              ORIFN      = IFN of original order that was edited
  ;
+ D ORCAN^ORNORC(+ORIFN,"CH") ; ajb *377
  N OLDIFN S ORIFN=+ORIFN,OLDIFN=0
  I $S($P(^OR(100,ORIFN,3),U,3)=11:0,$P(^(3),U,3)'=10:1,$P(^(8,1,0),U,4)=2:0,1:1) S OLDIFN=ORIFN K ORIFN ; create new order if released or delayed&signed
  D EN Q:'ORIFN  S:'$G(ORDA) ORDA=1
@@ -52,7 +53,7 @@ EN ; -- save new/unreleased order in ORDIALOG() into Orders file
  ;    If defined: ORCAT,ORPKG,ORDG,ORLOG,ORDUZ,OREVENT,ORDCNTRL,ORSRC
  ;     (else use values from ORDIALOG and current state)
  ;
- N PKG,NOW,NODE,CNT,CDL,I,X,STS,SIGNREQD,LOC,TRSPEC,NATR,CATG,DG,LOG,USR,TYPE,ORK
+ N PKG,NOW,NODE,CNT,CDL,I,X,STS,SIGNREQD,LOC,TRSPEC,NATR,CATG,DG,LOG,USR,TYPE,ORK,ORCSORD
  Q:'$G(ORVP)  Q:'$G(ORDIALOG)  Q:'$D(^ORD(101.41,+ORDIALOG,0))
  S NOW=$$NOW^XLFDT,SIGNREQD=+$P(^ORD(101.41,+ORDIALOG,0),U,6)
  S CATG=$S($L($G(ORCAT)):ORCAT,1:$S($$INPT^ORCD:"I",1:"O"))
@@ -73,14 +74,6 @@ EN1 S ^OR(100,ORIFN,0)=ORIFN_U_ORVP_U_U_$G(ORNP)_U_+ORDIALOG_";ORD(101.41,^"_USR
  S ^OR(100,"C",+ORDIALOG_";ORD(101.41,",ORIFN)=""  ;patch 423
  S:+$G(ORIT) ^OR(100,"D",+ORIT_";ORD(101.41,",ORIFN)=""  ;patch 423
  S ^OR(100,"ACT",ORVP,9999999-LOG,+DG,ORIFN,1)=""
- ;US10045 - PB - Nov 19, 2015 modification to capture the order create date/time with seconds in HMP(800000 orders multiple to track seconds
- D:$P(ORVP,";",2)="DPT("
- . N RSLT,VALS
- . S VALS(.02)=$$NOW^XLFDT
- . D ADDORDR^HMPOR(.RSLT,.VALS,ORIFN,+ORVP)  ;ORVP is variable pointer
- . Q:RSLT<0  ; sub-file entry not created
- . D COMP^ORMBLDOR(+$G(ORIFN)) ;Nov 12, 2015 - PB - trigger unsolicited sync action when order is saved
- ;
  S:STS'=10 ^OR(100,"AC",ORVP,9999999-LOG,ORIFN,1)=""
  S:SIGNREQD ^OR(100,"AS",ORVP,9999999-LOG,ORIFN,1)=""
  S:$G(OREVENT) ^OR(100,"AEVNT",ORVP,OREVENT,ORIFN)=""
@@ -111,6 +104,12 @@ EN2 S ORIFN=+ORIFN D RESPONSE ; save responses
  . S I=$O(^OR(100,ORIFN,4.5,"ID","CLASS",0))
  . I I S X=$G(^OR(100,ORIFN,4.5,+I,1)) S:"^I^O^"[(U_X_U) $P(NODE,U,12)=X
  S $P(^OR(100,ORIFN,3),U)=NOW
+ ;
+ ;Audit certain fields for CS ePCS Order so that we have an audit of changes to unsigned CS orders.
+ S ORCSORD=""
+ D CSVALUE^ORDEA(.ORCSORD,ORIFN)
+ I ORCSORD D AUDORDXX^ORDEA(ORIFN)
+ ;
  D DELOCC^OROCAPI1(ORIFN,"ACCEPTANCE_CPRS")
  I $G(ORCHECK) D  ; save order checks
  . N ORCROC
@@ -220,20 +219,6 @@ ACTION(CODE,DA,PROV,REASON,WHEN,WHO) ; -- save new action
  I SIG S ^OR(100,"AS",PAT,9999999-WHEN,DA,NEXT)=""
  S:$L($G(REASON)) ^OR(100,DA,8,NEXT,1)=REASON
  S $P(HDR,U,3,4)=NEXT_U_TOTAL,^OR(100,DA,8,0)=HDR
- ;
- D   ; DE3504 - Jan 19, 2016 ,US10045 - PB capture the DC of an order not signed in HMP(800000)
- . N FLD,HMDFN,HMORIS,JDSNOW,RSLT,SRVRNUM,VALS,ORIFN
- . S ORIFN=DA,HMDFN=+$P(^OR(100,+ORIFN,0),U,2),SRVRNUM=$$SRVRNO^HMPOR(HMDFN)
- . Q:'SRVRNUM  ; patient not in the HMP(800000 file
- . S HMORIS=$$ORDRCHK^HMPOR(+ORIFN,HMDFN)  ; does order exist?  ; Jan 26, 2016 - DE3584
- . S JDSNOW=$$NOW^XLFDT
- . ;^(#.03)SIGNED BY^(#.04)SIGNED DATE/TIME^(#.14)ORDER ACTION^(#.15)ACTION DATE/TIME
- . S VALS(.03)=$G(WHO),VALS(.14)=$G(CODE),VALS(.15)=JDSNOW  ; SIGNED BY updated to reflect action user
- . S:$G(SIG)'=2 VALS(.04)=JDSNOW  ; SIG=2 means NOT SIGNED, don't update SIGNED DATE/TIME
- . D:HMORIS UPDTORDR^HMPOR(.RSLT,.VALS,+ORIFN,HMDFN)  ; order exists update it
- . D:'HMORIS ADDORDR^HMPOR(.RSLT,.VALS,+ORIFN,HMDFN)  ; create new order in HMP(800000)
- . D COMP^ORMBLDOR(+$G(ORIFN))  ; send message for completed orders
- ; end DE3504
  Q NEXT
  ;
 SET(DLG) ; -- Create new parent for order set ORDIALOG

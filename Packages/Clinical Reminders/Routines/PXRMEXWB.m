@@ -1,4 +1,4 @@
-PXRMEXWB ;SLC/PKR - Reminder Exchange Web routines. ;02/19/2015
+PXRMEXWB ;SLC/PKR - Reminder Exchange Web routines. ;Jul 10, 2020@20:33
  ;;2.0;CLINICAL REMINDERS;**26,47**;Feb 04, 2005;Build 291
  ;==========================================
 LWEB(URL) ;Load a prd file from a web site into ^TMP, then into the
@@ -10,9 +10,9 @@ LWEB(URL) ;Load a prd file from a web site into ^TMP, then into the
  S URL=Y
  I (Y="")!(Y="^") S URL="" Q 0
  S Y=$$LOW^XLFSTR(Y)
- I $E(Y,1,5)="https" D  Q 0
- . D EN^DDIOL("The https protocol is not supported.")
- . H 2
+ ;I $E(Y,1,5)="https" D  Q 0
+ ;. D EN^DDIOL("The https protocol is not supported.")
+ ;. H 2
  ;Load the file contents into ^TMP.
  S NODE="EXHF"
  K ^TMP($J,NODE),^TMP($J,"WEBPRD")

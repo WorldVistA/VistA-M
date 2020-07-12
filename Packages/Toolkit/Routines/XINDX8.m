@@ -1,7 +1,6 @@
-XINDX8 ;ISC/GRK - STRUCTURED INDEX ;2018-02-22  12:56 PM
- ;;7.3;TOOLKIT;**20,27,61,10001**;Apr 25, 1995;Build 4
- ; Originally authored by the Department of Veterans Affairs
- ; CD+1 new,EE+3,SET+1,DGX+4 Modified by David Whitten 2018
+XINDX8 ;ISC/GRK - STRUCTURED INDEX ;01/04/2000  14:29
+ ;;7.3;TOOLKIT;**20,27,61,140**;Apr 25, 1995;Build 40
+ ; Per VHA Directive 2004-038, this routine should not be modified.
  S Q="""",(DDOT,LO)=0,PG=+$G(PG) D HDR
  F LC=1:1 Q:'$D(^UTILITY($J,1,RTN,0,LC))  S LIN=^(LC,0),ML=0,IDT=10 D CD
  K AGR,EOC,IDT,JJ,LO,ML,OLD,SAV,TY

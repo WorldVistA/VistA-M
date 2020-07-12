@@ -1,5 +1,5 @@
-WVUTL7 ;HCIOFO/FT,JR-UTIL: HEADERS & TRAILERS; ;4/2/01  11:23
- ;;1.0;WOMEN'S HEALTH;**5,7,10,14**;Sep 30, 1998
+WVUTL7 ;HCIOFO/FT,JR - UTIL: HEADERS & TRAILERS ;05/25/2017  15:30
+ ;;1.0;WOMEN'S HEALTH;**5,7,10,14,24**;Sep 30, 1998;Build 582
  ;;  Original routine created by IHS/ANMC/MWR
  ;;* MICHAEL REMILLARD, DDS * ALASKA NATIVE MEDICAL CENTER *
  ;;  UTILITY: HEADERS AND TRAILERS.
@@ -14,7 +14,7 @@ S(S) ;EP
  ;
 TOPHEAD ;EP
  ;---> CODE TO SET VARIABLES FOR HEADER.
- N X
+ N X,%
  D NOW^%DTC S WVNOW=$$SLDT1^WVUTL5(%)
  S WVLINE=$$REPEAT^XLFSTR("-",80)
  S WVPAGE=1
@@ -26,7 +26,7 @@ TOPHEAD ;EP
  ;
 TOPHEAD1 ;EP
  ;---> CODE TO SET VARIABLES FOR HEADER.
- N X
+ N X,%
  D NOW^%DTC S WVNOW=$$SLDT1^WVUTL5(%)
  S WVLINE=$$REPEAT^XLFSTR("-",80)
  S WVPAGE=$G(WVPAGE)+1
@@ -83,8 +83,9 @@ HEADER2 ;EP
  W ?51,"Veteran: ",$$VET^WVUTL1A(WVDFN)
  W !,"MST         : ",$$MST^WVUTL1A(WVDFN)
  W ?55,"CST: ",$$CST^WVUTL1A(WVDFN)
+ W !,"Maternity Care Coordinator: ",$$MCMGR^WVUTL1(WVDFN)
  W !,$$REPEAT^XLFSTR("=",49)
- W $S(WVEDC]"":WVEDC_"======",1:"===============================")
+ W $S(WVEDC]""&(WVEDC'="UNKNOWN"):WVEDC_"======",1:"===============================")
  I $D(WVSUBH) D @WVSUBH
  Q
  ;
@@ -128,6 +129,7 @@ HEADER41 ;EP
  W ?52,"Veteran: ",$$VET^WVUTL1A(WVDFN)
  W !,"MST         : ",$$MST^WVUTL1A(WVDFN)
  W ?56,"CST: ",$$CST^WVUTL1A(WVDFN)
+ W !,"Maternity Care Coordinator: ",$$MCMGR^WVUTL1(WVDFN)
  S WVDES=$$DES^WVUTL1(WVDFN)
  W !,$S(WVDES="YES":"*DES DAUGHTER*",1:"--------------")
  W $$REPEAT^XLFSTR("-",37)

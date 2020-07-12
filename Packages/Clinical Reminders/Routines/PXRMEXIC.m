@@ -1,5 +1,5 @@
-PXRMEXIC ;SLC/PKR/PJH - Routines to install repository entry components. ;04/01/2015
- ;;2.0;CLINICAL REMINDERS;**6,12,17,16,18,22,24,26,47**;Feb 04, 2005;Build 291
+PXRMEXIC ;SLC/PKR,PJH - Routines to install repository entry components. ;09/27/2018
+ ;;2.0;CLINICAL REMINDERS;**6,12,17,16,18,22,24,26,47,45**;Feb 04, 2005;Build 566
  ;=================================================
 FILE(PXRMRIEN,SITEIEN,IND120,JND120,ACTION,ATTR,NAMECHG) ;Read and process a
  ;file entry in repository entry PXRMRIEN. IND120 and JND120 are the
@@ -14,8 +14,7 @@ FILE(PXRMRIEN,SITEIEN,IND120,JND120,ACTION,ATTR,NAMECHG) ;Read and process a
  ;Set PXRMEDOK so files pointing to sponsors can be installed.
  ;Set PXRMEXCH so national entries can be installed and prevent
  ;execution of the input transform for custom logic fields.
- ;Set PXNAT to allow installation of national (those starting with VA-)
- ;PCE items.
+ ;Set PXNAT to allow installation of national PCE data types.
  S (PXNAT,PXRMEDOK,PXRMEXCH)=1
  S TEMP=^PXD(811.8,PXRMRIEN,120,IND120,1,JND120,0)
  S FDASTART=+$P(TEMP,U,2)
@@ -37,32 +36,22 @@ FILE(PXRMRIEN,SITEIEN,IND120,JND120,ACTION,ATTR,NAMECHG) ;Read and process a
  . I (IND=FDASTART)&((FIELD=.01)!(FIELD=.001)) D
  ..;Save the top level file number.
  .. S TOPFNUM=FILENUM
- ..;If the action is copy put it in the first open spot. PCE files go
- ..;in the site number space.
- .. I ACTION="C" D
- ... S START=$S($$ISPCEFIL^PXRMEXU0(TOPFNUM):$P($$SITE^VASITE,U,3)_"000",1:0)
- ... S IENROOT(SRCIEN)=$$LOIEN^PXRMEXU5(TOPFNUM,START)
+ ..;If the action is copy put it in the first open spot.
+ .. I ACTION="C" S IENROOT(SRCIEN)=$$LOIEN^PXRMEXU5(TOPFNUM,0)
  ..;
  ..;If the entry does not exist and the action is not copy set the
  ..;action to install.
  .. I SITEIEN=0 S ACTION="I"
  ..;
- ..;If the action is install try to install at the source ien. If
- ..;an entry already exists at the source ien put it in the first
- ..;open spot. For PCE entries install at source ien unless they
- ..;are national.
+ ..;If the action is install try to install at the source IEN. If
+ ..;an entry already exists at the source IEN put it in the first
+ ..;open spot. 
  .. I ACTION="I" D
  ... S IENUSED=+$$FIND1^DIC(FILENUM,"","QU","`"_SRCIEN)
  ... S IENROOT(SRCIEN)=$S(IENUSED=0:SRCIEN,1:$$LOIEN^PXRMEXU5(FILENUM))
- ... I $$ISPCEFIL^PXRMEXU0(TOPFNUM) D
- .... I IENUSED=0 S IENROOT(SRCIEN)=SRCIEN
- .... I IENUSED>0 D
- ..... S START=$S(IENUSED>100000:$E(IENUSED,1,3)_"000",1:0)
- ..... S IENROOT(SRCIEN)=$$LOIEN^PXRMEXU5(TOPFNUM,START)
- .... I $G(PXRMMNAT) S IENROOT(SRCIEN)=$$LOIEN^PXRMEXU5(TOPFNUM)
  ..;
  ..;If the action is merge, overwrite,or update install at the site's
- ..;ien.
+ ..;IEN.
  .. I (ACTION="M")!(ACTION="O")!(ACTION="U") S IENROOT(SRCIEN)=SITEIEN
  .;
  .;This line is use to convert pre-patch 12 disable text to the new
@@ -90,12 +79,13 @@ FILE(PXRMRIEN,SITEIEN,IND120,JND120,ACTION,ATTR,NAMECHG) ;Read and process a
  ;Special handling for file 801
  I TOPFNUM=801 D  Q:PXRMDONE
  . D SFMVPI^PXRMEXIU(.FDA,.NAMECHG,801.015)
- . D ROC^PXRMEXU5(.FDA)
+ . D ROC^PXRMEXU5(.FDA,.IENROOT)
  ;
  ;Special handling for file 801.1
  I TOPFNUM=801.1 D  Q:PXRMDONE
  . D ROCR^PXRMEXU5(.FDA)
  ;
+ I TOPFNUM=801.48 D DLINKSAV^PXRMEXU5(.FDA) Q:PXRMDONE
  ;Special handling for file 801.41
  I TOPFNUM=801.41 D  Q:PXRMDONE
  . I ACTION="M" D MOU^PXRMEXU5(801.41,SITEIEN,"18*",.FDA,.IENROOT,ACTION,.WPTMP)
@@ -106,6 +96,8 @@ FILE(PXRMRIEN,SITEIEN,IND120,JND120,ACTION,ATTR,NAMECHG) ;Read and process a
  ;
  ;Special handling for file 811.2
  I TOPFNUM=811.2 D TAX^PXRMEXU0(.FDA,"CFR")
+ ;
+ I TOPFNUM=801.46 D DIALOGGF^PXRMEXU5(.FDA,.IENROOT)
  ;
  ;If the file number is 811.4 the user must have programmer
  ;access to install it.
@@ -124,19 +116,20 @@ FILE(PXRMRIEN,SITEIEN,IND120,JND120,ACTION,ATTR,NAMECHG) ;Read and process a
  . S PXRMEXCH=1
  . D DEF^PXRMEXIU(.FDA,.NAMECHG)
  ;
- ;Special handling for file 9999999.09, EDUCATION TOPICS.
- I TOPFNUM=9999999.09 D
- . S IENS=$O(FDA(TOPFNUM,""))
- . S EDULIST(FDA(TOPFNUM,IENS,.01))=""
- ;
  ;Special handling for file 8925.1
  I TOPFNUM=8925.1 D
  . S TIUFPRIV=1
  . D TIUOBJ^PXRMEXIU(.FDA)
  ;
- ;Special handling for file 9999999.64.
- I TOPFNUM=9999999.64 D
- . D HF^PXRMEXIU(.FDA,.NAMECHG)
+ ;Special handling for file 9999999.09: Education Topics.
+ I TOPFNUM=9999999.09 D EDU^PXRMEXIU(.FDA,.EDULIST)
+ ;
+ ;Special handling for file 9999999.15: Exams.
+ I TOPFNUM=9999999.15 D EXAM^PXRMEXIU(.FDA)
+ ;
+ ;Special handling for file 9999999.64: Health Factors.
+ I TOPFNUM=9999999.64 D HF^PXRMEXIU(.FDA)
+ ;
  ;
  ;If FDA is not defined at this point the user has opted to abort
  ;the install.
@@ -170,7 +163,16 @@ FILE(PXRMRIEN,SITEIEN,IND120,JND120,ACTION,ATTR,NAMECHG) ;Read and process a
  .;If the original update worked put the entry at its original ien.
  .;Delete the existing entry.
  . D DELETE^PXRMEXFI(TOPFNUM,SITEIEN)
- D UPDATE^DIE("E","FDA","IENROOT","MSG")
+ D UPDATE^DIE("ES","FDA","IENROOT","MSG")
+ I '$D(MSG),ATTR("FILE NUMBER")=9999999.64 D
+ . ;Build a list of health factor categories that need the [C] appended
+ . N IENS
+ . S IENS=$O(FDA(9999999.64,""))
+ . I FDA(9999999.64,IENS,.1)'="CATEGORY" Q
+ . N L3C,LEN,NAME
+ . S NAME=ATTR("NAME")
+ . S LEN=$L(NAME),L3C=$E(NAME,(LEN-2),LEN)
+ . I L3C'="[C]" S ^TMP($J,"HFCAT",NAME)=""
  I $D(MSG) D
  . S TEXT(1)=ATTR("FILE NAME")_" entry "_$G(ATTR("PT01"))_" did not get installed!"
  . S TEXT(2)="Examine the following error message for the reason."
@@ -207,7 +209,7 @@ FILE(PXRMRIEN,SITEIEN,IND120,JND120,ACTION,ATTR,NAMECHG) ;Read and process a
  . D BLDALL^PXRMLOGX(IEN,"","")
  ;If there are national education topics rename them so they start
  ;with VA-
- I $D(EDULIST),$G(PXRMMNAT) D
+ I $D(EDULIST),$G(PXRMNAT) D
  .;Get the length of the .01 field
  . D FIELD^DID(TOPFNUM,.01,"","FIELD LENGTH","ATTR")
  . S NAME=""

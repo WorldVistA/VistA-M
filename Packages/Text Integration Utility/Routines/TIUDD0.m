@@ -1,5 +1,5 @@
 TIUDD0 ; SLC/JER,AJB - Cross-references on 8925
- ;;1.0;TEXT INTEGRATION UTILITIES;**65,153**;Jun 20, 1997
+ ;;1.0;TEXT INTEGRATION UTILITIES;**65,153,290**;Jun 20, 1997;Build 548
 SACLPT(FLD,X) ; SET Logic for ACLPT
  ;"ACLPT" On .01 CLASS, .02 PT, 1301 INV RDT
  N TIUD0,TIUD13
@@ -130,6 +130,25 @@ SAPTLD(FLD,X) ; SET Logic for "APTLD"
  . . ; TIUVS="Hosp Loc;Visit/Adm Date/time;Visit Type"
  . . S TIUVS=$P(TIUD12,U,11)_";"_$P(TIUD0,U,7)_";"_$P(TIUD0,U,13)
  . . S ^TIU(8925,"AVSTRV",+$P(TIUD0,U,2),TIUVS,+X,DA)=""
+ Q
+ ;
+SAADT(X) ; SET LOGIC FOR AADT
+ ; "AADT" X-REF ON 1202 AUTHOR (or 1302 ENTERED BY if AUTHOR not exist),
+ ; and 1301 REFERENCE DATE:
+ N TIUPROV
+ ;S TIUD0=$G(^TIU(8925,+DA,0)),TIUD12=$G(^(12)),TIUD13=$G(^(13))
+ ;I FLD=1302,+$P(TIUD12,U,2) Q
+ I +X(3)>0,((+X(1)>0)!(+X(2)>0)) D
+ . S TIUPROV=$S(+X(1)>0:+X(1),1:+X(2))
+ . S ^TIU(8925,"AADT",TIUPROV,+X(3),DA)=""
+ . ;I +X(2)>0,+X(1)>0 D KAADT^TIUDD01(2,.X)
+ ;I FLD=1302 D  ;,$G(TIUSIGFL) D
+ ;. I +$P(TIUD13,U) S ^TIU(8925,"AADT",+X,$P(TIUD13,U),DA)=""
+ ;I FLD=1301 D  ;,$G(TIUSIGFL) D
+ ;. I ((+$P(TIUD12,U,2))!(+$P(TIUD13,U,2))) D
+ ;.. S TIUPROV=$S(+$P(TIUD12,U,2)'=0:+$P(TIUD12,U,2),1:+$P(TIUD13,U,2))
+ ;.. I TIUPROV=0 Q
+ ;.. S ^TIU(8925,"AADT",TIUPROV,+X,DA)=""
  Q
  ;
 INVDATE(DATE) ; Inverts date

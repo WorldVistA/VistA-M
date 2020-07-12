@@ -1,5 +1,5 @@
-PXRMDLG3 ; SLC/PJH - Reminder Dialog Edit/Inquiry ;07/29/2004
- ;;2.0;CLINICAL REMINDERS;;Feb 04, 2005
+PXRMDLG3 ;SLC/PJH - Reminder Dialog Edit/Inquiry ;03/27/2015  08:40
+ ;;2.0;CLINICAL REMINDERS;**45**;Feb 04, 2005;Build 566
  ;
  ;
  ;Display national dialog
@@ -117,6 +117,9 @@ FDESC(FIEN) ;
  I FGLOB["ORD(101.41" D  Q
  .S FTYP="QUICK ORDER",FGLOB=U_FGLOB_FITEM_",0)"
  .S FNAME=$P($G(@FGLOB),U,2)
+ I FGLOB["PXRMD(801.46" D  Q
+ .S FTYP="GENERAL FINDING",FGLOB=U_FGLOB_FITEM_",0)"
+ .S FNAME=$P($G(@FGLOB),U)
  ;Short name for finding type
  S FTYP=$G(DEF1(FGLOB)) Q:FTYP=""
  ;Long name

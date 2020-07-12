@@ -1,19 +1,23 @@
-PXRMDLG5 ; SLC/PJH - Reminder Dialog Edit/Inquiry ;06/08/2009
- ;;2.0;CLINICAL REMINDERS;**4,6,12**;Feb 04, 2005;Build 73
+PXRMDLG5 ;SLC/PJH - Reminder Dialog Edit/Inquiry ;05/02/2017
+ ;;2.0;CLINICAL REMINDERS;**4,6,12,45**;Feb 04, 2005;Build 566
  ;
 ALT(DIEN,LEV,DSEQ,NODE,VIEW,NLINE,CNT,ALTLEN) ;
  ;Display branching logic text in dialog summary view
- N DATA,DNAM,DTYP,IEN,TERM,TNAME,TSTAT,TEMP
- S DATA=$G(^PXRMD(801.41,DIEN,49))
- I '+$P(DATA,U)!($P($G(DATA),U,2)="") Q
- S TNAME=$P($G(^PXRMD(811.5,$P(DATA,U),0)),U)
- S TSTAT=$S($P(DATA,U,2)="1":"TRUE",1:"FALSE")
- I +$P(DATA,U,3)>0 D
- .S IEN=$P(DATA,U,3),DNAM=$P($G(^PXRMD(801.41,IEN,0)),U)
- .S DTYP=$S($P($G(^PXRMD(801.41,IEN,0)),U,4)="E":"Element",$P($G(^PXRMD(801.41,IEN,0)),U,4)="G":"Group")
- I $G(DNAM)="" S TEMP="Suppressed if Reminder Term "_TNAME_" evaluates as "_TSTAT
- I $G(DNAM)'="" S TEMP="Replaced by "_DNAM_" if Reminder Term "_TNAME_" evaluates as "_TSTAT
- D TEXT(.NLINES,CNT,ALTLEN,TEMP,NODE)
+ N ACT,IEN,DNAME,ESTATUS,EVNAME,LINK,NAME,SEQ,STAT,X0
+ S SEQ=0 F  S SEQ=$O(^PXRMD(801.41,DIEN,"BL","B",SEQ)) Q:SEQ'>0  D
+ .S IEN=$O(^PXRMD(801.41,DIEN,"BL","B",SEQ,"")) Q:IEN'>0
+ .S X0=$G(^PXRMD(801.41,DIEN,"BL",IEN,0))
+ .S ACT=$S($P(X0,U,4)="H":"Hide if",$P(X0,U,4)="R":"Replaced by",$P(X0,U,4)="C":"Check checkbox for item",$P(X0,U,4)="S":"Suppress checkbox for item",$P(X0,U,4)="L":"Perform Link",1:"") Q:ACT=""
+ .S LINK=$S($P(X0,U,4)="L":$P($G(^PXRMD(801.48,$P(X0,U,7),0)),U),1:"")
+ .S STAT=$P(X0,U,3)
+ .S ESTATUS=$S(STAT="D":"Due",STAT="A":"Applicable",STAT="N":"N/A",STAT="F":"False",STAT="T":"True",1:"")
+ .S DNAME="" I $P(X0,U,5)>0 S DNAME=$P($G(^PXRMD(801.41,$P(X0,U,5),0)),U)
+ .I $P(X0,U,4)="C"!($P(X0,U,4)="S") S DNAME=$P(^PXRMD(801.41,DIEN,0),U)
+ .S IEN=+$P(X0,U,2)
+ .I $P(X0,U,2)["811.9" S NAME=$P($G(^PXD(811.9,IEN,0)),U) Q:NAME=""  S EVNAME="Reminder Definition "_NAME
+ .I $P(X0,U,2)["811.5" S NAME=$P($G(^PXRMD(811.5,IEN,0)),U) Q:NAME=""  S EVNAME="Reminder Term "_NAME
+ .S TEMP="Sequence "_SEQ_" "_ACT_$S(DNAME'="":" "_DNAME_" if ",LINK'="":" "_LINK_" if ",1:" ")_EVNAME_" evaluates as "_ESTATUS
+ .D TEXT(.NLINES,CNT,ALTLEN,TEMP,NODE)
  Q
  ;
 ASK(YESNO,PIEN) ;Confirm

@@ -1,5 +1,5 @@
-ORQPTQ6 ; SLC/PKS [8/27/03 11:20am]
- ;;3.0;ORDER ENTRY/RESULTS REPORTING;**82,85,187,320**;Dec 17, 1997;Build 16
+ORQPTQ6 ; SLC/PKS [8/27/03 11:20am];05/21/14  20:20
+ ;;3.0;ORDER ENTRY/RESULTS REPORTING;**82,85,187,320,377**;Dec 17, 1997;Build 582
  ;
  ; Called by BUILD^ORQPT (LM) and DEFLIST^ORQPTQ11 (GUI).
  ;
@@ -8,13 +8,13 @@ ORQPTQ6 ; SLC/PKS [8/27/03 11:20am]
 COMBPTS(ORQLM,ORQCPTR,ORBDATE,OREDATE) ; Build "Combination" pt. list.
  ; SLC/PKS.
  ;
- ; NOTE: Any calls to this tag need to deal with ORQLM passed 
- ;       variable appropriately.  Notice where it is evaluated 
- ;       and make sure code specifies the setting of ORQLM (a 
+ ; NOTE: Any calls to this tag need to deal with ORQLM passed
+ ;       variable appropriately.  Notice where it is evaluated
+ ;       and make sure code specifies the setting of ORQLM (a
  ;       boolean variable) properly for the call.
  ;
  ; Variables used:
- ; 
+ ;
  ;    MSG      = Holds error message, if any.
  ;    ORBDATE  = PASSED: Beginning date for clinic appointments.
  ;    OREDATE  = PASSED: End date for clinic appointments.
@@ -103,6 +103,10 @@ COMBPTS(ORQLM,ORQCPTR,ORBDATE,OREDATE) ; Build "Combination" pt. list.
  ..N APPTBGN,APPTEND S (APPTBGN,APPTEND)=""
  ..D CLINPTS^ORQPTQ2(.ORY,ORQPTR,ORBDATE,OREDATE,MAXAPPTS,.APPTBGN,.APPTEND)
  ..I $D(ORY) D PTSCOMBO^ORQPTQ5("C",ORQPTR,APPTEND)     ; Process ORY array.
+ .; TDP 5/21/2014 - Added PCMM Team List
+ .I ORQFILE="^SCTM(404.51," D  Q                  ; PCMM Team Lists.
+ ..D PTEAMPTS^ORQPTQ1(.ORY,ORQPTR)
+ ..I $D(ORY) D PTSCOMBO^ORQPTQ5("E",ORQPTR) ; Process ORY array.
  ;
  ; Order thru ^TMP file "B" node entries returned by previous calls:
  S ORQCNT=0                                     ; Reset for final use.

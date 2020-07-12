@@ -1,5 +1,5 @@
-ORQPTQ1 ; SLC/CLA - Functs which return OR patient lists and sources pt 1 ;07/18/17  13:39
- ;;3.0;ORDER ENTRY/RESULTS REPORTING;**9,74,63,91,85,139,243,449**;Dec 17, 1997;Build 3
+ORQPTQ1 ; SLC/CLA - Functs which return OR patient lists and sources pt 1 ;Mar 13, 2018@12:21
+ ;;3.0;ORDER ENTRY/RESULTS REPORTING;**9,74,63,91,85,139,243,449,377**;Dec 17, 1997;Build 582
  ;
  ;
 VAMCPTS(Y) ; RETURN LIST OF PATIENTS IN VAMC: DFN^NAME
@@ -24,11 +24,14 @@ DEFTM(ORY) ; return current user's default team list
  Q
 TEAMS(ORY) ; return list of teams for a system
  ; Also called under DBIA # 2692.
- N ORTM,I,ORTMN
+ N LAST,N12,ORTM,I,ORTMN
  S ORTMN="",I=1
  F  S ORTMN=$O(^OR(100.21,"B",ORTMN)) Q:ORTMN=""  D
  .S ORTM="",ORTM=$O(^OR(100.21,"B",ORTMN,ORTM)) Q:ORTM=""
- .I $P($G(^OR(100.21,ORTM,11)),U)'=0!($D(^OR(100.21,ORTM,1,$G(DUZ,0)))) S ORY(I)=ORTM_U_ORTMN,I=I+1
+ .S N12=$G(^OR(100.21,ORTM,12))
+ .I $P(N12,U,2)'="",+$P(N12,U)>0 S LAST=$$FMTE^XLFDT($P(N12,U))
+ .I $P(N12,U,2)=""!(+$P(N12,U)=0) S LAST=""
+ .I $P($G(^OR(100.21,ORTM,11)),U)'=0!($D(^OR(100.21,ORTM,1,$G(DUZ,0)))) S ORY(I)=ORTM_U_ORTMN_U_LAST,I=I+1
  S:+$G(ORY(1))<1 ORY(1)="^No teams found."
  Q
 TEAMPTS(ORY,TEAM,TMPFLAG) ; RETURN LIST OF PATIENTS IN A TEAM
@@ -54,6 +57,38 @@ TEAMPTS(ORY,TEAM,TMPFLAG) ; RETURN LIST OF PATIENTS IN A TEAM
  I DOTMP S:I<1 NEWTMP=ORY_1_")",@NEWTMP="^No patients found."
  I 'DOTMP S:I<1 ORY(1)="^No patients found."
  Q
+PTEAMPTS(ORY,TEAM,TMPFLAG) ; RETURN LIST OF PATIENTS ASSIGNED TO A PCMM TEAM
+ ; This tag section added by TDP on 5/21/2014
+ ; If TMPFLAG passed and = TRUE, code expects a "^TMP(xxx"
+ ;    global root string passed in ORY, and builds the returned
+ ;    list in that global instead of to a memory array.
+ N DOTMP,NEWTMP
+ S DOTMP=0
+ I $G(TMPFLAG) D             ; Was value passed?
+ .I TMPFLAG S DOTMP=1        ; Is value TRUE?
+ I +$G(TEAM)<1 D
+ .I DOTMP S NEWTMP=ORY_1_")",@NEWTMP="^No PCMM team identified" Q
+ .I 'DOTMP S ORY(1)="^No PCMM team identified" Q
+ N I,ORERR,ORI,ORLST,ORPT,ORRSLT
+ K ^TMP("ORPCMMPT",$J),^TMP("SCERR",$J)
+ S ORRSLT=$$PTTM^SCAPMC(+TEAM,,"^TMP(""ORPCMMPT"",$J)",)
+ I $D(^TMP("ORPCMMPT",$J)) D
+ . S I=0
+ . S ORI=0
+ . F  S ORI=$O(^TMP("ORPCMMPT",$J,ORI)) Q:ORI<1  D
+ .. S I=I+1
+ .. S ORPT=$G(^TMP("ORPCMMPT",$J,ORI))
+ .. I DOTMP D
+ ... S NEWTMP=ORY_+I_")"
+ ... S @NEWTMP=$P(ORPT,U,1,2)
+ .. I 'DOTMP S ORY(I)=$P(ORPT,U,1,2)
+ I '$D(^TMP("ORPCMMPT",$J)) D
+ . I DOTMP D
+ .. S NEWTMP=ORY_1_")"
+ .. S @NEWTMP="^No patients found."
+ . I 'DOTMP S ORY(1)="^No patients found."
+ K ^TMP("ORPCMMPT",$J),^TMP("SCERR",$J)
+ Q
 TEAMPR(ORY,PROV) ; return list of teams linked to a provider
  I +$G(PROV)<1 S ORY(1)="^No provider identified" Q
  N ORTM,I,ORTMN
@@ -62,6 +97,23 @@ TEAMPR(ORY,PROV) ; return list of teams linked to a provider
  .S ORTMN=$P(^OR(100.21,ORTM,0),U)
  .S ORY(I)=ORTM_U_ORTMN,I=I+1
  S:+$G(ORY(1))<1 ORY(1)="^No teams found."
+ Q
+PTEAMPR(ORY,PROV) ; return list of PCMM teams for a provider
+ ; This tag section added by TDP on 5/21/2014
+ N I,ORI,ORRSLT,ORTM,ORTMN
+ I +$G(PROV)'>0 S PROV=DUZ
+ K ^TMP("ORPCMMPTM",$J),^TMP("SCERR",$J)
+ S ORRSLT=$$TMPR^SCAPMC(+PROV,,,"^TMP(""ORPCMMPTM"",$J)",)
+ I $D(^TMP("ORPCMMPTM",$J)) D
+ . S ORTM=""
+ . S I=0
+ . S ORI=0
+ . F  S ORI=$O(^TMP("ORPCMMPTM",$J,ORI)) Q:+ORI<1  D
+ .. S I=I+1
+ .. S ORTM=$G(^TMP("ORPCMMPTM",$J,ORI))
+ .. S ORY(I)=$P(ORTM,U,1,2)_"^PCMM"
+ S:+$G(ORY(1))<1 ORY(1)="^No PCMM teams found."
+ K ^TMP("ORPCMMPTM",$J),^TMP("SCERR",$J)
  Q
 TEAMPR2(ORY,PROV) ; return list of teams linked to a provider
  ; This tag added by PKS/slc - 8/1999.

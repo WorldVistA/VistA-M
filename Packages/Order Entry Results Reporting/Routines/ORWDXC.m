@@ -1,5 +1,5 @@
-ORWDXC ; SLC/KCM - Utilities for Order Checking ;01/04/18  13:10
- ;;3.0;ORDER ENTRY/RESULTS REPORTING;**10,141,221,243,280,346,345,311,395,269,469**;Dec 17, 1997;Build 3
+ORWDXC ; SLC/KCM - Utilities for Order Checking ;May 08, 2018@06:47
+ ;;3.0;ORDER ENTRY/RESULTS REPORTING;**10,141,221,243,280,346,345,311,395,269,469,377**;Dec 17, 1997;Build 582
  ;
 ON(VAL) ; returns E if order checking enabled, otherwise D
  S VAL=$$GET^XPAR("DIV^SYS^PKG","ORK SYSTEM ENABLE/DISABLE")
@@ -54,6 +54,7 @@ ACCEPT(LST,DFN,FID,STRT,ORL,OIL,ORIFN,ORREN)    ; Return list of Order Checks on
  D CHK2LST
  D CHECKIT(.LST)
  K ^TMP($J,"OROCOUTO;"),^TMP($J,"OROCOUTI;"),^TMP($J,"DD"),^TMP($J,"ORDSGCHK_CACHE")
+ D CANCEL^ORNORC(.LST,DFN,FID,ORL,.OIL,STRT) ; ajb add order check data to 100.3
  Q
 DELAY(LST,DFN,FID,STRT,ORL,OIL) ; Return list of Order Checks on Accept Delayed
  K ^TMP($J,"OROCOUTO;"),^TMP($J,"OROCOUTI;"),^TMP($J,"DD"),^TMP($J,"ORDSGCHK_CACHE")
@@ -94,18 +95,10 @@ SAVECHK(OK,ORVP,RSN,LST)    ; Save order checks for session
  I $L(RSN)>0 S ORCHECK("OK")=RSN
  S ORIFN=0 F  S ORIFN=$O(ORCHECK(ORIFN)) Q:'ORIFN  D OC^ORCSAVE2
  Q
-DELORD(OK,ORIFN)      ; Delete order
- N STS,DIK,DA
- S STS=$P(^OR(100,+ORIFN,8,1,0),U,15),OK=0
- I (STS=10)!(STS=11) D  Q  ; makes sure it's an unreleased order
- . ;*400 - Delete unused replacement order
- . N OLDIFN,DA,DIE,DR S OLDIFN=$P(^OR(100,+ORIFN,3),U,5) I $G(OLDIFN) D
- . . S DA=+OLDIFN,DIE="^OR(100,",DR="9.1///@"
- . . D ^DIE K DA,DIE,DR
- . S DA=+ORIFN,DIK="^OR(100," Q:'DA
- . D ^DIK
- . S OK=1
- . D DELETE^OROCAPI1(+ORIFN)
+DELORD(OK,ORIFN)      ; ACTUALLY only cancel the order
+ S OK=1
+ D ORCAN^ORNORC(+ORIFN,"AC") ; ajb add order data to #100.3
+ D CANCEL^ORCSAVE2(ORIFN)
  Q
 USID(ORITMX) ; Return universal svc ID for an orderable item
  ; ORITMX = OI^NMSP^PKGINFO

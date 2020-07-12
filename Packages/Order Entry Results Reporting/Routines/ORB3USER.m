@@ -1,5 +1,5 @@
-ORB3USER ; slc/CLA - Alert recipient algorithms for OE/RR 3 notifications; 1/19/00 14:45 [8/16/05 9:53am]
- ;;3.0;ORDER ENTRY/RESULTS REPORTING;**74,91,105,139,200,220,458**;Dec 17, 1997;Build 3
+ORB3USER ;SLC/CLA - Alert Recipient Algorithms for OE/RR 3 Notifications;08/31/2017  11:36
+ ;;3.0;ORDER ENTRY/RESULTS REPORTING;**74,91,105,139,200,220,458,377**;Dec 17, 1997;Build 582
 USER(XQA,ORBDUZ,ORN,ORBU,ORBUI,ORBDFN,ORNUM) ;called from ORB3
  ;check to see if potential recip (ORBDUZ) should be an alert recip
  ;XQA     array of alert recips passed to Kernel Alert Utility
@@ -47,6 +47,7 @@ USER(XQA,ORBDUZ,ORN,ORBU,ORBUI,ORBDFN,ORNUM) ;called from ORB3
 PREALERT(ORBDUZ,ORN,ORBDFN) ;if user (ORBDUZ) has an undeleted previous
  ;version of this alert (ORN) for patient (ORBDFN), delete it
  ;
+ Q:$P(^ORD(100.9,ORN,0),U,6)="SMART"  ;quit if a SMART alert
  Q:$P(^ORD(100.9,ORN,0),U,4)'="NOT"  ;quit if not a "NOT" notif/alert
  N XQAID,XQAKILL,XQAUSER,ORBDT
  S XQAID="OR,"_ORBDFN_","_ORN

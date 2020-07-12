@@ -1,5 +1,5 @@
-TIUSRVD ; SLC/JER - RPC's for document definition ; 09/12/2003 [6/8/05 8:07am]
- ;;1.0;TEXT INTEGRATION UTILITIES;**1,7,22,47,103,100,115,164,112,186,201,276**;Jun 20, 1997;Build 3
+TIUSRVD ;SLC/JER - RPC's for Document Definition ;04/13/17  13:52
+ ;;1.0;TEXT INTEGRATION UTILITIES;**1,7,22,47,103,100,115,164,112,186,201,276,290**;Jun 20, 1997;Build 548
 NOTES(TIUY) ; Get list of PN Titles
  D LIST(.TIUY,3)
  Q
@@ -103,10 +103,12 @@ BOIL(LINE,COUNT) ; Execute Boilerplates
  . . I X["~@" D
  . . . I X'["^" D
  . . . . S TIUOLDR=$P(X,"~@",2),TIUNEWR=TIUOLDR_TIUI
+ . . . . K @TIUNEWR
  . . . . M @TIUNEWR=@TIUOLDR K @TIUOLDR
  . . . . S $P(X,"~@",2)=TIUNEWR
  . . . I X["^" D
  . . . . S TIUOLDG=$P(X,"~@",2),TIUNEWG="^TMP("_"""TIU201"""_","_$J_","_TIUI_")"
+ . . . . K @TIUNEWG
  . . . . M @TIUNEWG=@TIUOLDG K @TIUOLDG
  . . . . S $P(X,"~@",2)=TIUNEWG
  . S LINE=$$REPLACE(LINE,X,TIUI)
@@ -175,7 +177,7 @@ LONGLIST(Y,CLASS,FROM,DIR,IDNOTE) ; long list of titles for a class
 CNSLCLAS(Y) ; RPC to identify class CONSULTS
  S Y=$$CLASS^TIUCNSLT
  Q
-SURGCLAS(Y,CLNAME) ; RPC to identify class 
+SURGCLAS(Y,CLNAME) ; RPC to identify class
  ; CLNAME = "SURGICAL REPORTS" or "PROCEDURE REPORTS (NON-O.R.)"
  S CLNAME=$G(CLNAME,"SURGICAL REPORTS")
  S Y=$$CLASS^TIUSROI(CLNAME)

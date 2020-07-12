@@ -1,6 +1,6 @@
-ORIMO ;SLC/JDL - Inpatient medication on outpatient. ;01/13/16  15:15
- ;;3.0;ORDER ENTRY/RESULTS REPORTING;**187,190,195,215,243,350,424**;Dec 17, 1997;Build 8
-IMOLOC(ORY,ORLOC,ORDFN) ;ORY>=0: LOC is an IMO authorized location
+ORIMO ;SLC/JDL - Inpatient medication on outpatient. ;02/23/16  10:15
+ ;;3.0;ORDER ENTRY/RESULTS REPORTING;**187,190,195,215,243,350,424,377**;Dec 17, 1997;Build 582
+IMOLOC(ORY,ORLOC,ORDFN,ORDLL) ;ORY>=0: LOC is an IMO authorized location
  S ORY=-1
  N PACH,A
  K ^TMP($J,"ORIMO")
@@ -14,7 +14,7 @@ IMOLOC(ORY,ORLOC,ORDFN) ;ORY>=0: LOC is an IMO authorized location
  . .I $P($G(^SC(ORLOC,0)),U,3)'="C" Q
  . .I $D(^SC("AE",1,ORLOC))=1 S ORY=1
  . K SDIMO(1)
- I $D(^TMP($J,"OR MOB APP1")) K ^("OR MOB APP1") D ALL^PSJ53P46(+ORLOC,"ORIMO") S A=$G(^TMP($J,"ORIMO",0)) I A'>0!(+$G(^TMP($J,"ORIMO",A,3))=0) S ORY=-1
+ I $G(ORDLL) D ALL^PSJ53P46(+ORLOC,"ORIMO") S A=$G(^TMP($J,"ORIMO",0)) I A'>0!(+$G(^TMP($J,"ORIMO",A,3))=0) S ORY=-1
  Q
  ;
 IMOOD(ORY,ORDERID) ;Is it an IMO order?

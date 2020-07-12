@@ -1,5 +1,5 @@
-PSOORCPY ;BIR/SAB-copy orders from backdoor ;10/17/96
- ;;7.0;OUTPATIENT PHARMACY;**10,21,27,32,46,100,117,148,313,411,444,468,504**;DEC 1997;Build 15
+PSOORCPY ;BIR/SAB-copy orders from backdoor ;Jun 26, 2018@08:23
+ ;;7.0;OUTPATIENT PHARMACY;**10,21,27,32,46,100,117,148,313,411,444,468,504,477**;DEC 1997;Build 187
  ;External reference to LK^ORX2 supported by DBIA 867
  ;External reference to ULK^ORX2 supported by DBIA 867
  ;External reference to ^PSDRUG( supported by DBIA 221
@@ -11,7 +11,7 @@ PSOORCPY ;BIR/SAB-copy orders from backdoor ;10/17/96
  ; Cleaning up Titration/Maintenance variables (they shouldn't be defined - just to be safe)
  K PSOMTFLG,PSOTITRX,PSOSIGFL
 COPY ; Rx Copy Functionality
- N PSORXIEN,PSOCHECK
+ N PSORXIEN,PSOCHECK,PSOGOOUT
  S PSORXIEN=+$P($G(PSOLST(ORN)),"^",2)
  ; Checking whether the Provider still qualifies as prescriber for the renewed Rx
  S PSOCHECK=$$CHKRXPRV^PSOUTIL(PSORXIEN)
@@ -32,7 +32,7 @@ COPY ; Rx Copy Functionality
  I $G(^PSRX(PSORXED("IRXN"),"TN"))]"" S PSODRUG("TRADE NAME")=^PSRX(PSORXED("IRXN"),"TN")
  ;
  ; - This call copies the dosage into the new order and also split the Maintenance dose (if the case)
- D BLDDOSE(.PSORXED,$G(PSOMTFLG))
+ D BLDDOSE(.PSORXED,$G(PSOMTFLG)) G OUT:$G(PSOGOOUT)
  ;
  I $G(^PSDRUG($P(PSORXED("RX0"),"^",6),"I"))]"",^("I")<DT S VALMSG=$S('$G(PSOMTFLG):"Cannot COPY. ",1:"")_"This drug has been inactivated!" S VALMBCK="R" G OUT
  I $P(^PSDRUG($P(PSORXED("RX0"),"^",6),2),"^",3)'["O" S VALMSG=$S('$G(PSOMTFLG):"Cannot COPY. ",1:"")_"Drug no longer used by Outpatient!",VALMBCK="R" G OUT
@@ -84,20 +84,24 @@ BLDDOSE(PSORXED,MAINTRXF) ; Copies the Dose from Original Rx into Copied/Mainten
  I $G(MAINTRXF) D  Q
  . D LASTTHEN
  . S PSORXED("ENT")=0
- . F  S DOSEIEN=$O(^PSRX(PSORXED("IRXN"),6,DOSEIEN))  Q:'DOSEIEN  D
- . . S DOSE=^PSRX(PSORXED("IRXN"),6,DOSEIEN,0) D
+ . F  S DOSEIEN=$O(^PSRX(PSORXED("IRXN"),6,DOSEIEN))  Q:'DOSEIEN!($G(PSOGOOUT))  D
+ . . S DOSE=^PSRX(PSORXED("IRXN"),6,DOSEIEN,0)
+ . . I $P(DOSE,"^",6)="X" S PSOGOOUT=1,VALMSG="Cannot COPY.  Invalid 'except' conjunction!" S VALMBCK="R" Q
  . . Q:$P(DOSE,"^")']""!($P(DOSE,"^",8)']"")
  . . S PSORXED("ENT")=PSORXED("ENT")+1
  . . D SETDOSE(.PSORXED,DOSEIEN,PSORXED("ENT"))
  . . D EN^PSOFSIG(.PSORXED)
+ G OUT:$G(PSOGOOUT)
  ;
  ; - Copying dose for Regular Rx Copy
  S PSORXED("ENT")=0
  F DOSEIEN=0:0 S DOSEIEN=$O(^PSRX(PSORXED("IRXN"),6,DOSEIEN)) Q:'DOSEIEN  D
  . S DOSE=^PSRX(PSORXED("IRXN"),6,DOSEIEN,0) D
+ . I $P(DOSE,"^",6)="X" S PSOGOOUT=1,VALMSG="Cannot COPY. Invalid 'except' conjunction!" S VALMBCK="R" Q
  . Q:$P(DOSE,"^")']""!($P(DOSE,"^",8)']"")
  . S PSORXED("ENT")=PSORXED("ENT")+1
  . D SETDOSE(.PSORXED,DOSEIEN,PSORXED("ENT"))
+ G OUT:$G(PSOGOOUT)
  Q
  ;
 SETDOSE(PSORXED,DOSEIEN,DOSESEQ) ; Sets the Dose in the PSORXED array
@@ -126,3 +130,20 @@ LASTTHEN ; Determine the IEN of the last THEN conjunction on this prescription a
  . S LAST=^PSRX(PSORXED("IRXN"),6,LASTTHEN,0)
  . I $P(LAST,"^",6)="T" S DOSEIEN=LASTTHEN Q
  Q
+ ;
+ORCOPY(PLACER) ; Checks if an Outpatient Pharmacy order can be copied by CPRS or not
+ ; Input: (r) PLACER - PRESCRIPTION (#52) IEN or PENDING OUTPATIENT ORDERS (#52.31) IEN_"S"
+ ;Output: p1: -1: Error (unable to find order) / 0: Not allowed to copy / 1: OK to copy
+ ;        p2: Error message (p1 = -1 or 0)
+ N PSODRG,PSOINACT,RXN,PSOGOOUT,DOSEIEN
+ ;
+ I PLACER["S",'$D(^PS(52.41,+$G(PLACER),0)) Q "-1^Not a Valid Outpatient Medication Pending Order."
+ I PLACER'["S",'$D(^PSRX(+$G(PLACER),0)) Q "-1^Not a Valid Outpatient Medication Order."
+ ;
+ I PLACER["S" S PSODRG=+$$GET1^DIQ(52.41,+$G(PLACER),11,"I") I 'PSODRG Q 1  ; No Dispense Drug
+ I PLACER'["S" S PSODRG=+$$GET1^DIQ(52,+$G(PLACER),6,"I")
+ I $$GET1^DIQ(50,PSODRG,63)'["O" Q "0^Drug is no longer used by Outpatient Pharmacy."
+ S PSOINACT=$$GET1^DIQ(50,PSODRG,100,"I") I PSOINACT,DT>PSOINACT Q "0^This Drug has been Inactivated."
+ I PLACER'["S",$D(^PSRX(+$G(PLACER),0)),$$CONJ^PSOUTL(+$G(PLACER)) Q "0^Cannot COPY - invalid Except conjunction"
+ ;
+ Q 1

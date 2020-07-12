@@ -1,10 +1,10 @@
-PXRMORHL ; SLC/AGP - Reminder Order Checks HL7 updates;10/20/2009
- ;;2.0;CLINICAL REMINDERS;**16**;Feb 04, 2005;Build 119
+PXRMORHL ; SLC/AGP - Reminder Order Checks HL7 updates;11/13/2017
+ ;;2.0;CLINICAL REMINDERS;**16,45**;Feb 04, 2005;Build 566
  ;
  Q
 ADDMSG(OI,ACT,NL) ;
  N ACTION,GIEN,OINAME
- I '$D(^PXD(801,"O",OI)),ACT'=1 Q
+ I '$D(^PXD(801,"O",OI_";ORD(101.43,")),ACT'=1 Q
  S OINAME=$P($G(^ORD(101.43,OI,0)),U)
  S ACTION=$S(ACT=1:"added",ACT=2:"inactivated",ACT=3:"changed",ACT=4:"reactivated",1:"unknown")
  ;only build message for new OI and OI contains within a group
@@ -13,9 +13,9 @@ ADDMSG(OI,ACT,NL) ;
  S NL=NL+1,^TMP("PXRMXMZ",$J,NL,0)="  it is used in the following Orderable Item Groups"
  ;build OI message for each OI
  ;add specific OI group to the message
- I '$D(^PXD(801,"O",OI)) D  Q
+ I '$D(^PXD(801,"O",OI_";ORD(101.43,")) D  Q
  .S NL=NL+1,^TMP("PXRMXMZ",$J,NL,0)="   None" Q
- S GIEN=0 F  S GIEN=$O(^PXD(801,"O",OI,GIEN)) Q:GIEN'>0  D
+ S GIEN=0 F  S GIEN=$O(^PXD(801,"O",OI_";ORD(101.43,",GIEN)) Q:GIEN'>0  D
  .S NL=NL+1
  .S ^TMP("PXRMXMZ",$J,NL,0)="   "_$P($G(^PXD(801,GIEN,0)),U)
  Q

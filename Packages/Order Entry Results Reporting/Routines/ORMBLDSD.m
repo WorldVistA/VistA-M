@@ -1,5 +1,5 @@
 ORMBLDSD ; SLC/MKB - Build outgoing SCHEDULING ORM msgs ;01/09/18
- ;;3.0;ORDER ENTRY/RESULTS REPORTING;**434,475**;Dec 17, 1997;Build 40
+ ;;3.0;ORDER ENTRY/RESULTS REPORTING;**434,475,377**;Dec 17, 1997;Build 582
  ;
  ;
  ;
@@ -47,6 +47,7 @@ EN(CODE) ; -- Segments for new Scheduling order
  S ORMSG(SEGCNT)="ARQ|"_ORIFN_"^OR|"_PKGREF_"|||^followup^^^^|"_$S(CODE="DC":"S05",1:"S01")_"||"
  S $P(ORMSG(1),"|",9)="SRM|"_ORIFN_U_$S(CODE="DC":"S05",CODE="XX":"S03",1:"S01")
  S A=$G(ORDIALOG($$PTR("CLINICALLY INDICATED DATE"),1))
+ I A="T" S ORNOW=$$NOW^XLFDT() S A=$P(ORNOW,".")
  I A["+" D
  . S ORNOW=$$NOW^XLFDT()
  . S OFFSET=$$UP^XLFSTR($P(A,"+",2)) S DAYS=$S(OFFSET["W":+OFFSET*7,OFFSET["M":+OFFSET*30,1:+OFFSET)

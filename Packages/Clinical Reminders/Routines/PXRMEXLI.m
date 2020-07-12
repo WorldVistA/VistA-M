@@ -1,5 +1,5 @@
-PXRMEXLI ; SLC/PKR - List Manager routines for repository entry install. ;03/30/2009
- ;;2.0;CLINICAL REMINDERS;**6,12**;Feb 04, 2005;Build 73
+PXRMEXLI ; SLC/PKR - List Manager routines for repository entry install. ;10/16/2019
+ ;;2.0;CLINICAL REMINDERS;**6,12,45**;Feb 04, 2005;Build 566
  ;
  ;================================================
 EXIT ;Cleanup ^TMP arrays.
@@ -117,6 +117,8 @@ INSTALL ;Install the repository entry PXRMRIEN.
  S CLOK=1
  I '$D(^PXD(811.8,PXRMRIEN,120)) D CLIST^PXRMEXCO(PXRMRIEN,.CLOK)
  I 'CLOK Q
+ ;Look for packing attributes and build the list if it does not exist.
+ I '$D(^PXD(811.8,PXRMRIEN,140)) D PATTR^PXRMEXU1(PXRMRIEN)
  ;Format the component list for display.
  D CDISP^PXRMEXLC(PXRMRIEN)
  S VALMCNT=$O(^TMP("PXRMEXLC",$J,"IDX"),-1)

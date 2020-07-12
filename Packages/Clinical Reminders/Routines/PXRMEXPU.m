@@ -1,5 +1,5 @@
-PXRMEXPU ;SLC/PKR - Utilities for packing and unpacking repository entries. ;12/07/2011
- ;;2.0;CLINICAL REMINDERS;**6,12,22**;Feb 04, 2005;Build 160
+PXRMEXPU ;SLC/PKR - Utilities for packing and unpacking repository entries. ;10/24/2018
+ ;;2.0;CLINICAL REMINDERS;**6,12,22,45**;Feb 04, 2005;Build 566
  ;==================================================
 BTTABLE(DIQOUT,IENROOT,TTABLE) ;Build the DIQOUT to FDA iens translation table.
  N FILENUM,IENS,IENT,IND,UP
@@ -89,6 +89,17 @@ CONTOFDA(DIQOUT,IENROOT) ;Convert the iens from the form
  .. K DIQOUT(FILENUM,IENS)
  Q
  ;
+DIALOGGF(FILENUM,IEN,ARRAY) ;
+ N ERROR,IENS,NAME,OUTPUT,PKGIEN,PREFIX,VALUE
+ S IENS="+"_IEN_","
+ S VALUE=$G(ARRAY(FILENUM,IENS,2)) I VALUE="" Q
+ S PKGIEN=$P($G(^PXRMD(801.46,IEN,0)),U,2) I PKGIEN'>0 Q
+ D GETS^DIQ(9.4,PKGIEN_",",".01;1","I","OUTPUT","ERROR")
+ S NAME=$G(OUTPUT(9.4,PKGIEN_",",.01,"I")) I NAME="" Q
+ S PREFIX=$G(OUTPUT(9.4,PKGIEN_",",1,"I")) I PREFIX="" Q
+ S ARRAY(FILENUM,IENS,2)=NAME_U_PREFIX
+ Q
+ ;
  ;==================================================
 PTROK(PTR) ;Return true if items associated with this pointer are
  ;ok to transport. Note the form of the pointer is that returned
@@ -117,6 +128,24 @@ RMEH(FILENUM,DIQOUT,NOSTUB) ;Clear the edit history from all reminder files.
  S DIQOUT(SFN,IENS,1)=$$GET1^DIQ(200,DUZ,.01)
  S DIQOUT(SFN,IENS,2)="DIQOUT("_SFN_","_IENS_"2)"
  S DIQOUT(SFN,IENS,2,1)="Exchange Stub"
+ Q
+ ;
+ ;==========================
+TIUCONV(FILENUM,IEN,ARRAY) ;Convert health summary object to external.
+ N HSO,IENS,NAME
+ S IENS="+"_IEN_","
+ ;Allows non-objects to be packed up
+ I ARRAY(FILENUM,IENS,.04)'="OBJECT" Q
+ ;
+ I $G(ARRAY(FILENUM,IENS,9))'["$$TIU^GMTSOBJ" D  Q
+ . S ARRAY(FILENUM,IENS,9)="NOT A HS OBJECT"
+ S HSO=$P(ARRAY(FILENUM,IENS,9),",",2)
+ S HSO=$P(HSO,")")
+ ;Handle corrupted health summary object names.
+ I +HSO>0 S NAME=$P($G(^GMT(142.5,HSO,0)),U,1)
+ E  S NAME="MISSING"
+ S ARRAY(FILENUM,IENS,9)="S X=$$TIU^GMTSOBJ(DFN,"_NAME_")"
+ S ARRAY(FILENUM,IENS,99)=""
  Q
  ;
  ;==================================================

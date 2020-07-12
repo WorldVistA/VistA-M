@@ -1,22 +1,28 @@
-TIUPEVNT ; SLC/JER - Event logger for upload/filer ;3/30/05
- ;;1.0;TEXT INTEGRATION UTILITIES;**3,21,81,131,113,184**;Jun 20, 1997
+TIUPEVNT ; SLC/JER - Event logger for upload/filer ;07/12/16  13:04
+ ;;1.0;TEXT INTEGRATION UTILITIES;**3,21,81,131,113,184,290**;Jun 20, 1997;Build 548
 MAIN(BUFDA,ETYPE,ECODE,TIUTYPE,FDA,MSG) ; ---- Controls branching
- N EVNTDA
+ N TIUEVTDA,TIUFDA,TIUMSG,EVNTDA
+ M TIUFDA=FDA M TIUMSG=MSG
  ; ---- ETYPE = 1: Filing error event
  ; ---- ETYPE = 2: Missing/incorrect field error event
  ; ---- ETYPE = 0: Other event (no errors)
- D LOG(BUFDA,ETYPE,$G(ECODE),$G(TIUTYPE),.EVNTDA,.FDA,.MSG)
- I ETYPE=2 D FIELDS^TIUPEVN1(EVNTDA,.MSG)
+ D LOG(BUFDA,ETYPE,$G(ECODE),$G(TIUTYPE),.TIUEVTDA,.TIUFDA,.TIUMSG)
+ S EVNTDA=TIUEVTDA M FDA=TIUFDA
+ I ETYPE=2 D FIELDS^TIUPEVN1(EVNTDA,.TIUMSG)
+ M MSG=TIUMSG
  Q
-LOG(BUFDA,ETYPE,ECODE,TIUTYPE,EVNTDA,FDA,MSG) ; ---- Register event in 
+LOG(BUFDA,ETYPE,ECODE,TIUTYPE,EVNTDA,FDA,MSG) ; ---- Register event in
  ;                                              TIU UPLOAD LOG file
  ;                                              (#8925.4)
  N BUFREC,ERRMSG,NEWBUF,DIC,DLAYGO,DIE,DA,DR,TIUK,TIUL,X,Y
+ N TIUEVTDA,TIUFDA,TIUMSG,TIUERMSG
  S BUFREC=$G(^TIU(8925.2,+BUFDA,0))
  S (DIC,DLAYGO)=8925.4,DIC(0)="MLX",X=""""_$$NOW^TIULC_"""" D ^DIC
  Q:+Y'>0
  ; ---- File upload log record
- S DIE=DIC,(EVNTDA,DA)=+Y,ERRMSG=$$ERRMSG(ETYPE,ECODE,TIUTYPE,.FDA,.MSG)
+ M TIUFDA=FDA M TIUMSG=MSG
+ S DIE=DIC,(EVNTDA,DA)=+Y,ERRMSG=$$ERRMSG(ETYPE,ECODE,TIUTYPE,.TIUFDA,.TIUMSG)
+ M FDA=TIUFDA M MSG=TIUMSG
  S DR=".02////"_$P(BUFREC,U,2)_";.03////"_TIUTYPE_";.04////"_ERRMSG_";.06////"_$S(+ETYPE:0,1:"")_";.08////"_ETYPE_";.09////"_$S($G(TIUINST):TIUINST,1:DUZ(2))
  D ^DIE K DA
  I ETYPE'=1 Q
@@ -46,7 +52,9 @@ LOG(BUFDA,ETYPE,ECODE,TIUTYPE,EVNTDA,FDA,MSG) ; ---- Register event in
  . D ^DIC
  . K DIC,DLAYGO
  . ; ---- Send filing error alerts
- . D ALERT(+NEWBUF,.ERRMSG,.EVNTDA)
+ . S TIUEVTDA=EVNTDA M TIUERMSG=ERRMSG
+ . D ALERT(+NEWBUF,.TIUERMSG,.TIUEVTDA)
+ . S EVNTDA=TIUEVTDA M ERRMSG=TIUERMSG
  Q
 ERRMSG(ETYPE,ECODE,TIUTYPE,FDA,MSG) ; ---- Set error messages
  N DIC,DIE,DA,X,Y
@@ -68,12 +76,13 @@ ERRMSG(ETYPE,ECODE,TIUTYPE,FDA,MSG) ; ---- Set error messages
 ERRMSX Q Y
 ALERT(BUFDA,ERRMSG,EVNTDA) ; ---- Send alerts for filing errors
  N BUFREC,XQA,XQAID,XQADATA,XQAMSG,XQAKILL,XQAROU,TIUI,TIUSUB,TYPE
+ N TIUXQA
  S BUFREC=$G(^TIU(8925.2,+BUFDA,0))
  ; ---- TIU*1*81 TIUHDR is newed in MAIN+11^TIUPUTC, set in
  ;      GETREC^TIUPUTC1, so it exists for file errs.
  S TYPE=+$$WHATITLE^TIUPUTU($G(TIUHDR("TIUTITLE")))
  I TYPE'>0 S TYPE=+$G(TIUREC("TYPE"))
- I TYPE N TIUDAD D WHOGETS^TIUPEVN1(.XQA,TYPE) ;TIU*1*81 New TIUDAD here, not in WHOGETS
+ I TYPE N TIUDAD M TIUXQA=XQA D WHOGETS^TIUPEVN1(.TIUXQA,TYPE) M XQA=TIUXQA ;TIU*1*81 New TIUDAD here, not in WHOGETS
  ;  ---- If no 8925.95 (Document Parameter) recipients, get 8925.99
  ;       (Site Parameter) recipients
  I $D(XQA)'>9 D
@@ -90,7 +99,7 @@ ALERT(BUFDA,ERRMSG,EVNTDA) ; ---- Send alerts for filing errors
  Q
 DISPLAY ; ---- Alert followup action for filing errors
  N DIC,INQUIRE,RETRY,DWPK,EVNTDA,TIU K XQAKILL,RESCODE,TIUTYPE,TIUDONE
- N TIUEVNT,TIUSKIP,TIUBUF,PRFILERR
+ N TIUEVNT,TIUSKIP,TIUBUF,PRFILERR,TIUINQ
  I '$D(TIUPRM0)!'$D(TIUPRM1) D SETPARM^TIULE
  ; Set EVNTDA for backward compatibility, TIUEVNT for PN resolve code
  S (EVNTDA,TIUEVNT)=+$P(XQADATA,";",3)
@@ -98,8 +107,10 @@ DISPLAY ; ---- Alert followup action for filing errors
  ; old code interprets that as set by TIURE only:
  S TIUBUF=+XQADATA
  I TIUEVNT D  I +$G(TIUDONE)!$G(TIUSKIP) G DISPX
- . D WRITEHDR(TIUEVNT)
  . S TIUTYPE=+$P(XQADATA,";",4)
+ . ; If no author or dict dt, can't evaluate if auth requires EC so force refile until they are included.
+ . ;(Inquire does not refile.) TIU*1*273:
+ . S TIUINQ=1 D WRITEHDR(TIUEVNT,TIUTYPE,.TIUINQ) I 'TIUINQ Q
  . I TIUTYPE>0 S RESCODE=$$FIXCODE^TIULC1(TIUTYPE)
  . ;E  S RESCODE="D GETPAT^TIUCHLP"
  . I $G(RESCODE)]"" D  Q
@@ -121,15 +132,30 @@ DISPLAY ; ---- Alert followup action for filing errors
  I +RETRY D FILE^TIUUPLD(TIUBUF)
 DISPX K XQX1
  Q
-WRITEHDR(EVNTDA) ; ---- Write header to screen
+ ;
+WRITEHDR(EVNTDA,TIUTYPE,TIUINQ) ; ---- Write header to screen
  ;Write header, as stored in Upload Log event (NOT buffer record,
  ;which can be edited w/o refiling)
- N TIUI
+ ; TIUINQ - See TIUPUTC1.  Patch 273
+ N TIUI,TIULINE,TIUVALID,TIUFLD
+ S TIUVALID="YES"
  S TIUI=0
  W !!,"The header of the original, failed record looks like this:",!
  F  S TIUI=$O(^TIU(8925.4,+EVNTDA,"HEAD",TIUI)) Q:+TIUI'>0  D
- . W !,$G(^TIU(8925.4,+EVNTDA,"HEAD",TIUI,0))
+ . S TIULINE=$G(^TIU(8925.4,+EVNTDA,"HEAD",TIUI,0)) W !,TIULINE
+ . I (TIUTYPE=3),(TIULINE["AUTHOR")!(TIULINE["DATE/TIME OF DICT")!(TIULINE["TITLE")  D
+ . . Q:TIUVALID="NO"
+ . . S TIUFLD=$S(TIULINE["AUTHOR":"1202",1:"1307")
+ . . D VALID(TIULINE,TIUFLD,.TIUVALID)
+ I TIUVALID="NO" S TIUINQ=0
  Q
+ ;
+VALID(TIULINE,TIUFLD,TIUVALID) ;Is header missing valid Author or DDT?
+ S TIULINE=$$STRIP^TIULS($P(TIULINE,":",2,99))
+ D CHK^DIE(8925,TIUFLD,,TIULINE,.TIUVALID)
+ I TIUVALID["^" S TIUVALID="NO"
+ Q
+ ;
 ALERTDEL(DA) ; ---- Delete alerts associated with a given record
  N XQA,XQAID,XQAKILL S XQAID="TIUERR"_+DA
  F  D DELETEA^XQALERT S XQAID="TIUERR"_+DA Q:'$D(^VA(200,"AXQAN",XQAID))

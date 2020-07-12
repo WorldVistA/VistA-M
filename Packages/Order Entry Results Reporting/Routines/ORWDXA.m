@@ -1,6 +1,7 @@
-ORWDXA ; SLC/KCM/JLI - Utilites for Order Actions ;12/21/17  07:23
- ;;3.0;ORDER ENTRY/RESULTS REPORTING;**10,85,116,132,148,141,149,187,213,195,215,243,280,306,390,421,436,434,397**;Dec 17, 1997;Build 22
+ORWDXA ; SLC/KCM/JLI - Utilites for Order Actions ;02/17/20  12:21
+ ;;3.0;ORDER ENTRY/RESULTS REPORTING;**10,85,116,132,148,141,149,187,213,195,215,243,280,306,390,421,436,434,397,377**;Dec 17, 1997;Build 582
  ;Per VA Directive 6402, this routine should not be modified.
+ ;
  ;
  ;
 VALID(VAL,ORID,ACTION,ORNP,ORWNAT) ; Is action valid for order?
@@ -65,6 +66,7 @@ DC(REC,ORID,ORNP,ORL,REASON,DCORIG,ISNEWORD) ; Discontinue/Cancel/Delete order
  N NATURE,CREATE,PRINT,STATUS,ACTDA,SIGSTS
  N X3,X8,CURRACT
  Q:'+ORID
+ D ORCAN^ORNORC(+ORID,"RT") ; ajb add order number to 100.3
  I $G(DCORIG)="" S DCORIG=0
  S CURRACT=0
  S ORL(2)=ORL_";SC(",ORL=ORL(2),NATURE=""
@@ -94,29 +96,14 @@ DC(REC,ORID,ORNP,ORL,REASON,DCORIG,ISNEWORD) ; Discontinue/Cancel/Delete order
  . . I REASON D SET^ORCACT2(+ORID,NATURE,REASON,,DCORIG)
  . . I 'REASON D SET^ORCACT2(+ORID,"M","","Delayed Order Cancelled",DCORIG)
  . . D STATUS^ORCSAVE2(+ORID,13) S $P(^OR(100,+ORID,8,1,0),U,15)=13
- . . ;D COMP^ORMBLDOR(+$G(ORID)) ;  modified to trigger an unsolicited sync action when a signed order is discontinued
  . E  D                           ; CANCEL OR DELETE unsigned, unreleased
  . . I $P(X8,U,2)="DC" K ^OR(100,+ORID,6)
  . . ; delete fwd ptr to order about to be deleted
  . . I RPLORD,$P(X8,U,2)="NW" S $P(^OR(100,RPLORD,3),U,6)=""
  . . ; delete ptr to order in Patient Event file #100.2
  . . N EVT S EVT=$P($G(^OR(100,+ORID,0)),U,17) I EVT,EVT=+$O(^ORE(100.2,"AO",+ORID,0)) S $P(^ORE(100.2,EVT,0),U,4)="" K ^ORE(100.2,"AO",+ORID,EVT)
- . . I $G(ISNEWORD) D POST^HMPEVNT(+$P(^OR(100,+ORID,0),U,2),"order",+ORID,"@") D
- . . . ; Delete the discontinued order in HMP(800000, if the order is discontinued before it is signed it is deleted in OR(100,
- . . . ; we need to delete in HMP(800000 as since the order number can be reused by OR(100
- . . . N HDFN S HDFN=+$P(^OR(100,+ORID,0),U,2) I $D(^HMP(800000,$$SRVRNO^HMPOR(HDFN),1,HDFN,1,+ORID,0)) D DELORDR^HMPOR(+HDFN,+ORID)
  . . I $G(ISNEWORD) D DELETE^ORCSAVE2(ORID)
- . . I '$G(ISNEWORD) D
- . . . ; Update action date/time in hmp orders subfile
- . . . N RSLT,VALS,HDFN
- . . . S HDFN=+$P(^OR(100,+ORID,0),U,2)
- . . . S VALS(.15)=$$NOW^XLFDT
- . . . D UPDTORDR^HMPOR(.RSLT,.VALS,+ORID,HDFN)
- . . . ; handle errors from UPDTORDR, Can't just quit here
- . . . ; Trigger unsolicited update
- . . . D POST^HMPEVNT(+$P(^OR(100,+ORID,0),U,2),"order",+ORID)
- . . . ; Now cancel the order
- . . . D CANCEL^ORCSAVE2(ORID)
+ . . I '$G(ISNEWORD) D CANCEL^ORCSAVE2(ORID)
  . I RPLORD,'(SIGSTS=1) S ORID=RPLORD  ; for Renews & Changes, show replaced order
  . I '$D(^OR(100,+ORID)) D
  . . S $P(REC(1),U)="~0",REC(2)="tDELETED: "_$E(REC(2),2,245)
@@ -181,8 +168,6 @@ FLAG(REC,ORIFN,OREASON,ORNP) ; Flag order
  I +$G(ORNP)<1 S ORNP=+$P($G(^OR(100,+ORIFN,8,DA,0)),U,3)
  S ORB=+ORVP_U_+ORIFN_U_ORNP_"^1" D EN^OCXOERR(ORB) ; notification
  D GETBYIFN^ORWORR(.REC,ORIFN)
- D HMPFLAG(+ORIFN,ORVP,ORNOW,DUZ,"F",OREASON,DA)
- ;
  Q
 BULLETIN ; flagged order bulletin
  ;variables OREASON and ORIFN are assumed to be defined by the calling process and
@@ -214,7 +199,6 @@ UNFLAG(REC,ORIFN,OREASON) ; Unflag order
  S ORNP=+$P($G(^OR(100,+ORIFN,8,DA,0)),U,3)
  S ORB=+ORVP_U_+ORIFN_U_ORNP_"^0" D EN^OCXOERR(ORB) ; notification
  D GETBYIFN^ORWORR(.REC,ORIFN)
- D HMPFLAG(+ORIFN,ORVP,ORNOW,DUZ,"U",OREASON,DA)
  Q
 FLAGTXT(LST,ORID) ; flag reason
  N FLAG
@@ -268,14 +252,3 @@ UPCTCHK(ORID) ;
  I PIID S WPCNT=0 F  S WPCNT=$O(^OR(100,+ORID,4.5,PIID,2,WPCNT)) Q:'WPCNT!(RET)  D
  .I $G(^OR(100,+ORID,4.5,PIID,2,WPCNT,0))["^" S RET=1
  Q RET
-HMPFLAG(ORIFN,HMDFN,WHEN,USR,FLGACTN,RSN,ORACLVL) ;
- ; ORACLVL = ^OR(100,ORIFN,8,level)
- ;
- N RSLT,VAL  ; result, FileMan values
- S VAL(.01)=$G(WHEN)  ; date/time of activity
- S VAL(.02)=$G(FLGACTN)  ; flag or unflag
- S VAL(.03)=$G(USR)  ; DUZ
- S VAL(.04)=$G(RSN)  ; flag/unflag reason
- D ADDFLAG^HMPOR(.RSLT,.VAL,+$G(ORIFN),$G(HMDFN),ORACLVL_";"_$G(FLGACTN))
- Q:RSLT<0  D COMP^ORMBLDOR(+$G(ORIFN))  ;trigger unsolicited synch for flag/unflag
- Q

@@ -1,5 +1,9 @@
-ORWTPT ; SLC/STAFF Personal Preference - Teams ;5/4/01  15:55
- ;;3.0;ORDER ENTRY/RESULTS REPORTING;**85,243**;Oct 24, 2000;Build 242
+ORWTPT ; SLC/STAFF Personal Preference - Teams ;05/27/14  18:31
+ ;;3.0;ORDER ENTRY/RESULTS REPORTING;**85,243,377**;Oct 24, 2000;Build 582
+ ;
+ ; External Reference
+ ;   DBIA 1917  $$TPTM^SCAPMC
+ ;   DBIA 1917  $$PRTP^SCAPMC
  ;
 GETTEAM(USERS,TEAM) ; RPC
  ; returns members of a team
@@ -10,6 +14,35 @@ GETTEAM(USERS,TEAM) ; RPC
  .I '$L(NAME) Q
  .S CNT=CNT+1
  .S USERS(CNT)=USER_U_NAME
+ Q
+ ;
+GETPTEAM(MEMBERS,TEAM) ; RPC
+ ; TDP - Added 5/21/2014
+ ; returns members of a team\
+ ; (Should be using $$PRTM^SCAPMC to return team members for a
+ ;  specific team. However, it does not work correctly. So, we
+ ;  improvised a work around solution.)
+ N CNT,DATA,NAME,NUM,ORRSLT,POSIEN,SUB,USER
+ K MEMBERS,^TMP("ORPCMMPOS",$J),^TMP("SCERR",$J)
+ S TEAM=+$G(TEAM)
+ ; Get list of team positions for specified team
+ S ORRSLT=$$TPTM^SCAPMC(TEAM,,,,"^TMP(""ORPCMMPOS"",$J)",)
+ I '$D(^TMP("ORPCMMPOS",$J)) Q
+ S CNT=0
+ S NUM=0
+ F  S NUM=$O(^TMP("ORPCMMPOS",$J,NUM)) Q:NUM<1  D
+ . K ^TMP("ORPCMMBRS",$J),^TMP("SCERR",$J)
+ . S POSIEN=+$G(^TMP("ORPCMMPOS",$J,NUM))
+ . ; Get list of team members occupying team positions
+ . S ORRSLT=$$PRTP^SCAPMC(POSIEN,,"^TMP(""ORPCMMBRS"",$J)",,0,0)
+ . I ORRSLT=0 Q
+ . S SUB=0
+ . F  S SUB=$O(^TMP("ORPCMMBRS",$J,SUB)) Q:SUB<1  D
+ .. S DATA=$P(^TMP("ORPCMMBRS",$J,SUB),U,1,2)
+ .. I $P(DATA,U,2)="" Q  ;No name, so quit
+ .. S CNT=CNT+1
+ .. S MEMBERS(CNT)=DATA
+ K ^TMP("ORPCMMBRS",$J),^TMP("ORPCMMPOS",$J),^TMP("SCERR",$J)
  Q
  ;
 TEAMS(TEAMS,USER) ; from ORWTPP
@@ -44,6 +77,19 @@ PLTEAMS(TEAMS,USER) ; from ORWTPP
  .S ZERO=$G(^OR(100.21,NUM,0))
  .S CNT=CNT+1
  .S TEAMS(CNT)=NUM_U_ZERO
+ Q
+ ;
+PCMTEAMS(TEAMS,USER) ; from ORWTPP
+ ; TDP - Added 5/21/2014
+ ; returns all PCMM teams for a user
+ N CNT,DATA,NUM,UNAME K TEAMS
+ S USER=+$G(USER),CNT=0
+ D PTEAMPR^ORQPTQ1(.TEAMS,USER)
+ I TEAMS(1)="^No PCMM teams found." Q
+ S NUM=0 F  S NUM=$O(TEAMS(NUM)) Q:NUM=""  D
+ . S DATA=$P(TEAMS(NUM),U,1,2)
+ . S UNAME=$$UP^XLFSTR($P(DATA,U,2))
+ . S TEAMS(NUM)=DATA_"^E^"_UNAME_"^^^^"
  Q
  ;
 ATEAMS(TEAMS) ; RPC
@@ -103,7 +149,14 @@ GETCOMBO(VALUES,USER) ; from ORWTPP
  ..I SOURCE="DIC(45.7," S SOURCE="SPECIALTY",NAME=$P($G(^DIC(45.7,IEN,0)),U) Q
  ..I SOURCE="OR(100.21," S SOURCE="LIST",NAME=$P($G(^OR(100.21,IEN,0)),U) Q
  ..I SOURCE="SC(" S SOURCE="CLINIC",NAME=$P($G(^SC(IEN,0)),U) Q
- ..I SOURCE="DIC(42," S SOURCE="WARD",NAME=$P($G(^DIC(42,IEN,0)),U) Q
+ ..I SOURCE="SCTM(404.51," D
+ ...S SOURCE="PCMM"
+ ...N DIC,DLAYGO,X,Y
+ ...S DIC="^SCTM(404.51,"
+ ...S DIC(0)=""
+ ...S X="`"_IEN
+ ...D ^DIC
+ ...S NAME=$P(Y,U,2)
  .I '$L(NAME) Q
  .S CNT=CNT+1
  .S VALUES(CNT)=SOURCE_U_NAME_U_IEN
@@ -121,6 +174,7 @@ SETCOMBO(OK,VALUES,USER) ; from ORWTPP
  .I SOURCENM="PROVIDER" S SOURCE=";VA(200,"
  .I SOURCENM="SPECIALTY" S SOURCE=";DIC(45.7,"
  .I SOURCENM="LIST" S SOURCE=";OR(100.21,"
+ .I SOURCENM="PCMM" S SOURCE=";SCTM(404.51,"
  .I SOURCENM="CLINIC" S SOURCE=";SC("
  .I '$L(SOURCE) Q
  .S NVALUES(NUM)=IEN_SOURCE

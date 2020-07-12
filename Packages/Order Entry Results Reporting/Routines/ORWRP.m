@@ -1,5 +1,5 @@
 ORWRP ; ALB/MJK,dcm Report Calls ; 12/05/02 11:03
- ;;3.0;ORDER ENTRY/RESULTS REPORTING;**1,10,85,109,132,160,194,227,215,262,243,280**;Dec 17, 1997;Build 85
+ ;;3.0;ORDER ENTRY/RESULTS REPORTING;**1,10,85,109,132,160,194,227,215,262,243,280,377**;Dec 17, 1997;Build 582
  ;
 LABLIST(LST) ; -- report list for labs tab
  ;  RPC: ORWRP LAB REPORT LIST
@@ -77,7 +77,7 @@ DTLIST ; -- list of date ranges
  ;;180^Six Months
  ;;365^One Year
  ;;732^Two Year
- ;;50000^All Results
+ ;;40000^All Results
  ;;$$END
  ;
 SETITEM(ROOT,X) ; -- set item in list

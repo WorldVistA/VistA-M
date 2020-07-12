@@ -1,5 +1,5 @@
-ORCSAVE2 ;SLC/MKB-Utilities to update an order ;01/05/17  14:00
- ;;3.0;ORDER ENTRY/RESULTS REPORTING;**4,27,56,70,94,116,190,157,215,265,243,293,280,346,269,421,382**;Dec 17, 1997;Build 15
+ORCSAVE2 ;SLC/MKB-Utilities to update an order ;02/19/2020
+ ;;3.0;ORDER ENTRY/RESULTS REPORTING;**4,27,56,70,94,116,190,157,215,265,243,293,280,346,269,421,382,377**;Dec 17, 1997;Build 582
  ;Per VA Directive 6402, this routine should not be modified.
  ;
  ;Nov 12, 2015 PB - modified to do a sync for a saved order
@@ -43,9 +43,30 @@ RELEASE(ORDER,ACTION,WHEN,WHO,NATURE) ; -- Mark order as released to service
  ;S $P(OR0,U,16,17)=WHEN_U_WHO,^OR(100,"AR",ORVP,9999999-WHEN,ORDER,ACTION)=""
  S $P(OR0,U,16,17)=WHEN_U_WHO
  S ^OR(100,ORDER,8,ACTION,0)=OR0
+ D FIXRAD(ORDER,$P(OR0,U,2))
  I $P(OR0,U,2)="NW",'$P(^OR(100,ORDER,0),U,8) D STARTDT(ORDER)
  ;Set the "AR" index.
  D RS^ORDD100(ORDER,ACTION,ORVP,WHEN)
+ Q
+ ;
+FIXRAD(DA,TYPE) ; -- Fix Radiology Orders with start dates that are no longer valid
+ Q:'$G(DA)!('$D(^OR(100,DA,0)))
+ I $P($G(^OR(100,DA,4)),U)'="" Q
+ N TODAY,START,ORDG,ORDLGS,RADINFO,I,STARTFM,TODAYEXT
+ D IMTYPSEL^ORWDRA32(.RADINFO)
+ S ORDLGS="^XRAY^",I=0
+ F  S I=$O(RADINFO(I)) Q:'I  S ORDLGS=ORDLGS_$P(RADINFO(I),U,3)_U
+ S ORDG=$P($G(^ORD(100.98,+$P(^OR(100,DA,0),U,11),0)),U,3)
+ Q:'(ORDLGS[(U_ORDG_U))  ; Not a radiology order
+ S START=$$VALUE(DA,"START"),TODAY=$$DT^XLFDT
+ D DT^ORWU(.STARTFM,START) S STARTFM=$P(STARTFM,".")
+ Q:STARTFM'<TODAY
+ S TODAYEXT=$$FMTE^XLFDT(TODAY)
+ D RESP(DA,"OR GTX START DATE",TODAYEXT)
+ I TYPE="NW",$P(^OR(100,DA,0),U,8)=STARTFM D
+ . N FDA,ERROR
+ . S FDA(100,DA_",",21)=TODAY
+ . D FILE^DIE("","FDA","ERROR")
  Q
  ;
 STARTDT(DA) ; -- resolve Start and Stop dates from Responses
@@ -104,17 +125,6 @@ SIGN(DA,WHO,WHEN,HOW,WHAT) ; -- affix ES to order
  S $P(X,U,4,7)=$G(HOW)_U_$G(WHO)_U_$E($G(WHEN),1,12)_U_$S(HOW=0:DUZ,1:"")
  ; S:$G(WHO) $P(X,U,3)=WHO ; reset provider to signer
  S ^OR(100,DA,8,WHAT,0)=X
- D  ; DE3504 Jan 19, 2016, US10045 - PB - Nov 2, 2015 modification to capture order create date/time with seconds in HMP(800000 orders multiple
- . N HMDFN,HMORIFN,HMORIS,HMSTATUS,NOW,RSLT,VALS
- . S HMDFN=+$P(^OR(100,DA,0),U,2),HMORIFN=+DA
- . S HMSTATUS=$P($G(^OR(100,DA,8,WHAT,0)),U,2),NOW=$$NOW^XLFDT
- . S:$G(WHO)]"" VALS(.03)=WHO
- . S:HMSTATUS'=2 VALS(.04)=NOW  ; if=2 order not signed  ; SIGNED DATE/TIME only updated when order is signed
- . S:$L(HMSTATUS) VALS(.14)=HMSTATUS,VALS(.15)=NOW
- . S HMORIS=$$ORDRCHK^HMPOR(HMORIFN,HMDFN)  ; does order exist?  ; Jan 26, 2016 - DE3584
- . D:HMORIS UPDTORDR^HMPOR(.RSLT,.VALS,HMORIFN,HMDFN)  ; order exists update it
- . D:'HMORIS ADDORDR^HMPOR(.RSLT,.VALS,HMORIFN,HMDFN)  ; create new order in HMP(800000)
- ;
  D:$G(HOW)=2 S1^ORDD100(DA,WHAT) ; reset AS xref
  Q
  ;
@@ -132,11 +142,8 @@ UNVEIL(IFN) ; -- unveil new order
  Q
  ;
 DELETE(ORDER) ; -- delete order [action]
- N DIK,DA,DAD
- I $P(ORDER,";",2)>1 S DA=+$P(ORDER,";",2),DA(1)=+ORDER,DIK="^OR(100,"_DA(1)_",8," D:DA ^DIK Q
- S DAD=+$P($G(^OR(100,+ORDER,3)),U,9) I DAD S DIK="^OR(100,"_DAD_",2,",DA(1)=DAD,DA=+ORDER D ^DIK ; remove link to child from parent
- K DA S DA=+ORDER,DIK="^OR(100," D ^DIK ;remove order, text
- D DELETE^OROCAPI1(+ORDER)
+ ;no longer delete, only cancel
+ D CANCEL^ORCSAVE2(ORDER)
  Q
  ;
 VERIFY(IFN,DA,TYPE,WHO,WHEN) ; -- order verified
@@ -145,13 +152,6 @@ VERIFY(IFN,DA,TYPE,WHO,WHEN) ; -- order verified
  N FLD S FLD=$S(TYPE="N":8,TYPE="C":10,1:18)
  S:'$G(WHO) WHO=DUZ S:'$G(WHEN) WHEN=+$E($$NOW^XLFDT,1,12)
  S $P(^OR(100,IFN,8,DA,0),U,FLD,FLD+1)=WHO_U_WHEN
- D  ; US10045 - PB - Jan 7, 2016 capture the order verify or review date/time with seconds in HMP(800000 orders multiple
- . N FLD,ORDFN,SRVRNUM,RSLT,VALS
- . S ORDFN=+$P(^OR(100,+ORIFN,0),U,2),SRVRNUM=$$SRVRNO^HMPOR(ORDFN)
- . Q:'SRVRNUM  ; patient not in the HMP(800000 file
- . S FLD=$S(TYPE="N":.05,TYPE="C":.07,1:.09)
- . ;^(#.05)VERIFYING NURSE^(#.06)NURSE VERIFY DATE/TIME^(#.07)VERIFYING CLERK^(#.08)CLERK VERIFY DATE/TIME^(#.09)REVIEWED BY^(#.1)REVIEWED DATE/TIME
- . S VALS(FLD)=$G(WHO),VALS(FLD+.01)=$$NOW^XLFDT D UPDTORDR^HMPOR(.RSLT,.VALS,+ORIFN,ORDFN) Q:RSLT<0  ; quit if order not found
  D:$L($T(VER^EDPFMON)) VER^EDPFMON(IFN)
  Q
  ;

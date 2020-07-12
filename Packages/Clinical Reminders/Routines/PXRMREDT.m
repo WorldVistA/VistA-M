@@ -1,12 +1,23 @@
-PXRMREDT ;SLC/PKR,PJH - Edit PXRM reminder definition. ;09/19/2016
- ;;2.0;CLINICAL REMINDERS;**4,6,12,18,26,47**;Feb 04, 2005;Build 291
+PXRMREDT ;SLC/PKR,PJH - Edit PXRM reminder definition. ;08/29/2018
+ ;;2.0;CLINICAL REMINDERS;**4,6,12,18,26,47,45**;Feb 04, 2005;Build 566
  ;
- ;=======================================================
+ ;---------------
 EEDIT ;Entry point for PXRM DEFINITION EDIT option.
  ;Build list of finding file definitions.
- N DEF,DEF1,DEF2,NEW
+ N DA,DEF,DEF1,DEF2,DIC,NEW,Y
  D DEF^PXRMRUTL("811.902",.DEF,.DEF1,.DEF2)
+ S DIC="^PXD(811.9,"
+LOOP ;
+ S Y=$$GETDEF
+ I Y=-1 Q
+ S DA=$P(Y,U,1)
+ S NEW=$P(Y,U,3)
+ D ALL(DIC,DA,.DEF1,NEW)
+ G LOOP
+ Q
  ;
+ ;---------------
+GETDEF() ;Let a user select a definition and return the IEN.
  N DA,DIC,DLAYGO,DTOUT,DUOUT,Y
  S DIC="^PXD(811.9,"
  S DIC(0)="AEMQL"
@@ -18,16 +29,10 @@ GETNAME ;Get the name of the reminder definition to edit.
  W !
  S DIC("W")="W $$LUDISP^PXRMREDT(Y)"
  D ^DIC
- I ($D(DTOUT))!($D(DUOUT)) Q
- I Y=-1 G END
- S DA=$P(Y,U,1)
- S NEW=$P(Y,U,3)
- D ALL(DIC,DA,.DEF1,NEW)
- G GETNAME
-END ;
- Q
+ I ($D(DTOUT))!($D(DUOUT)) Q -1
+ Q Y
  ;
- ;=======================================================
+ ;---------------
  ;Select section of reminder to edit, also called at ALL by PXRMEDIT.
  ;----------------------------------
  ;ALL(DIC,DA,DEF1,NEW) ;
@@ -96,15 +101,16 @@ STRTEDIT S BLDLOGIC=0
  . I '$D(^PXD(811.9,DA)) Q
  . I OPTION="^" G STRTEDIT
  . W !,"Checking integrity of the definition ...",#
- . I '$$DEF^PXRMICHK(DA) G STRTEDIT
+ . N OUTPUT
+ . I '$$DEF^PXRMICHK(DA,.OUTPUT,1) G STRTEDIT
  .;If it passes the integrity check save the edit history.
  . D SEHIST^PXRMUTIL(811.9,ROOT,DA)
  Q
  ;
  ;Reminder Edit
- ;-------------
+ ;---------------
 EDIT(ROOT,DA) ;
- N DIC,DIDEL,DIE,DR,RESULT
+ N DIC,DIDEL,DIE,DR,OUTPUT,RESULT
  S DIE=ROOT,DIDEL=811.9
  ;Edit the fields in the same order they are printed by a reminder
  ;inquiry.
@@ -126,7 +132,7 @@ EDIT(ROOT,DA) ;
  D WEB Q:$D(Y)
  W #
  I '$D(^PXD(811.9,DA)) Q
- I '$$DEF^PXRMICHK(DA) G STRTEDIT
+ I '$$DEF^PXRMICHK(DA,.OUTPUT,1) G STRTEDIT
  ;If it passes the integrity check save the edit history.
  D SEHIST^PXRMUTIL(811.9,DIC,DA)
  Q
@@ -171,7 +177,7 @@ CLASS ;
  D ^DIE
  I $D(Y) Q
  ;
- ;Recision Date
+ ;Rescission Date
  S DR="69"
  D ^DIE
  I $D(Y) Q
@@ -247,7 +253,7 @@ WEB W !!,"Web Addresses for Reminder Information"
  Q
  ;
  ;Get full list of findings
- ;-------------------------
+ ;---------------
 LIST(GBL,DA,DEF1,ARRAY) ;
  N CNT,DATA,GLOB,IEN,NAME,NODE,SUB,TYPE
  ;Clear passed arrays
@@ -257,7 +263,7 @@ LIST(GBL,DA,DEF1,ARRAY) ;
  ;Get each finding
  S SUB=0 F  S SUB=$O(@GBL@(DA,20,SUB)) Q:'SUB  D
  .S DATA=$G(@GBL@(DA,20,SUB,0)) I DATA="" Q
- .;Determine global and global ien
+ .;Determine global and global IEN
  .S NODE=$P(DATA,U),GLOB=$P(NODE,";",2),IEN=$P(NODE,";")
  .;Ignore null entries
  .I (GLOB="")!(IEN="") Q
@@ -269,8 +275,8 @@ LIST(GBL,DA,DEF1,ARRAY) ;
  .E  S NAME=$P($G(@(U_GLOB_IEN_",0)")),U) S ARRAY(TYPE,NAME,SUB)=IEN
  Q
  ;
+ ;---------------
  ;Choose which part of Reminder to edit
- ;-------------------------------------
 OPTION() ;
  N DIR,X,Y
  ;Display warning message if un-mapped terms exist
@@ -293,7 +299,7 @@ OPTION() ;
  I (Y="")!(Y="^") S DUOUT=1
  Q Y
  ;
- ;-------------------------------------
+ ;---------------
 LUDISP(IEN) ;Use for DIC("W") to augment look-up display.
  N CLASS,EM,INACTIVE,TEXT
  S INACTIVE=$P(^PXD(811.9,IEN,0),U,6)
@@ -303,7 +309,34 @@ LUDISP(IEN) ;Use for DIC("W") to augment look-up display.
  S TEXT="  "_CLASS_" "_INACTIVE
  Q TEXT
  ;
- ;-------------------------------------
+ ;---------------
+PNEDIT ;Allow for editing the print name of national reminders.
+ N DA,DDSFILE,DR,EDITDT,FDA,MSG,NPNAME,OPNAME,WPTMP,Y
+ S DDSFILE=811.9
+ S DR="[PXRM DEF PRINT NAME EDIT]"
+NXT1 S Y=$$GETDEF
+ I Y=-1 Q
+ S DA=$P(Y,U,1)
+ S OPNAME=$P(^PXD(811.9,DA,0),U,3)
+ D ^DDS
+ S NPNAME=$P(^PXD(811.9,DA,0),U,3)
+ I NPNAME'=OPNAME D
+ . S EDITDT=$$NOW^XLFDT
+ . S WPTMP(1)="The Print Name was edited\\"
+ . S WPTMP(2)=" by: "_$P(^VA(200,DUZ,0),U,1)_"\\"
+ . S WPTMP(3)=" on: "_$$FMTE^XLFDT(EDITDT,"5Z")_"\\"
+ . S WPTMP(4)=" "
+ . S WPTMP(5)="Original: "_OPNAME_"\\"
+ . S WPTMP(6)="New:      "_NPNAME_"\\"
+ . S IENS="+1,"_DA_","
+ . S FDA(811.9001,IENS,.01)=EDITDT
+ . S FDA(811.9001,IENS,1)=DUZ
+ . S FDA(811.9001,IENS,2)="WPTMP"
+ . D UPDATE^DIE("","FDA","","MSG")
+ G NXT1
+ Q
+ ;
+ ;---------------
 TFIND(DA,LIST) ;Allow edit of term findings for national reminders.
  N DIR,IENLIST,IND,JND,NAME,NAMELIST,SUB,X,Y
  S IND=0,NAME=""

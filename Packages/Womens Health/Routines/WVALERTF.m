@@ -1,5 +1,5 @@
-WVALERTF ;HIOFO/FT-WV APIs ;9/29/04  14:29
- ;;1.0;WOMEN'S HEALTH;**16**;Sep 30, 1998
+WVALERTF ;HIOFO/FT - WV APIs ;10/05/2016  19:17
+ ;;1.0;WOMEN'S HEALTH;**16,24**;Sep 30, 1998;Build 582
  ;
  ; This routine uses the following IAs:
  ;  #2770 - ^GMTSLRPE calls and ^TMP("LRCY" references  (controlled)
@@ -17,7 +17,7 @@ RESULTS(RESULT,WVIEN) ; Returns the most recent unprocessed entry
  ; Output: RESULT=^TMP("WV RPT",$J)
  ;  where: ^TMP("WV RPT",$J,n,0)=report text
  ;
- N WVDATE,WVDFN,WVFLAG,WVMSG,WVNODE,WVPTYPE,WVX,X,Y
+ N WVDATE,WVDFN,WVDX,WVFLAG,WVMSG,WVNODE,WVPTYPE,WVX,X,Y
  K ^TMP("WV RPT",$J)
  S WVFLAG=0,WVMSG=""
  I '+$G(WVIEN) S ^TMP("WV RPT",$J,1,0)="-1^^Entry not defined." G EXIT
@@ -37,7 +37,7 @@ RESULTS(RESULT,WVIEN) ; Returns the most recent unprocessed entry
  I WVFLAG D  G EXIT
  .S ^TMP("WV RPT",$J,1,0)="-1^^"_WVMSG
  .Q
- I WVPTYPE="M"!(WVPTYPE="U") D EN^WVALERTR G EXIT  ;mammogram/ultrasound
+ I WVPTYPE="M"!(WVPTYPE="U") D EN^WVALERTR(WVIEN,.WVDX) G EXIT  ;mammogram/ultrasound
  ;handle pap smear
  N LRDFN,LRSS,WVLABACC,WVNODE2
  S WVNODE=$G(^WV(790.1,WVIEN,0))

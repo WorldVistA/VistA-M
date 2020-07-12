@@ -1,5 +1,5 @@
-ORWU ;SLC/KCM - GENERAL UTILITIES FOR WINDOWS CALLS ;01/04/16  09:24
- ;;3.0;ORDER ENTRY/RESULTS REPORTING;**10,85,132,148,149,187,195,215,243,350,424**;Dec 17, 1997;Build 8
+ORWU ;SLC/KCM - GENERAL UTILITIES FOR WINDOWS CALLS ;04/15/2020
+ ;;3.0;ORDER ENTRY/RESULTS REPORTING;**10,85,132,148,149,187,195,215,243,350,424,377**;Dec 17, 1997;Build 582
  ;
 DT(Y,X,%DT) ; Internal Fileman Date/Time
  ; change the '00:00' that could be passed so Fileman doesn't reject
@@ -13,7 +13,7 @@ USERINFO(REC) ; Relevant info for current user
  ; return DUZ^NAME^USRCLS^CANSIGN^ISPROVIDER^ORDERROLE^NOORDER^DTIME^
  ;        COUNTDOWN^ENABLEVERIFY^NOTIFYAPPS^MSGHANG^DOMAIN^SERVICE^
  ;        AUTOSAVE^INITTAB^LASTTAB^WEBACCESS^ALLOWHOLD^ISRPL^RPLLIST^
- ;        CORTABS^RPTTAB^STANUM^GECSTATUS^PRODACCT
+ ;        CORTABS^RPTTAB^STANUM^GECSTATUS^PRODACCT^^JOB NUMBER^EVALREMONDIALOG
  N X,ORRPL,ORRPL1,ORRPL2,ORTAB,CORTABS,RPTTAB,ORDT,OREFF,OREXP,ORDATEOK
  S REC=DUZ_U_$P(^VA(200,DUZ,0),U)
  S $P(REC,U,3)=$S($D(^XUSEC("ORES",DUZ)):3,$D(^XUSEC("ORELSE",DUZ)):2,$D(^XUSEC("OREMAS",DUZ)):1,1:0)
@@ -78,6 +78,9 @@ USERINFO(REC) ; Relevant info for current user
  S $P(REC,U,24)=$P($$SITE^VASITE,U,3)
  S $P(REC,U,25)=$$GET^XPAR("USR^TEA","PXRM GEC STATUS CHECK",1,"I")
  S $P(REC,U,26)=$$PROD^XUPROD
+ S $P(REC,U,27)=$$GET^XPAR("ALL","OR ONE STEP CLINIC ADMIN OFF",1,"I")
+ S $P(REC,U,28)=$J
+ S $P(REC,U,29)=+$$GET^XPAR("USR^SYS","PXRM DIALOG EVAL DEFINITION",1,"I")
  Q
  ;
 HASKEY(VAL,KEY) ; returns TRUE if the user possesses the security key
@@ -106,9 +109,15 @@ VALIDSIG(ESOK,X) ; returns TRUE if valid electronic signature
  I X=$P($G(^VA(200,+DUZ,20)),U,4) S ESOK=1
  Q
 TOOLMENU(ORLST) ; returns a list of items for the Tools menu
- N ANENT
- S ANENT="ALL^"_$S($G(^VA(200,DUZ,5)):"^SRV.`"_+$G(^(5)),1:"")
+ N ANENT,ORTLST,ORT,ORCNT
+ S ANENT="PKG"
  D GETLST^XPAR(.ORLST,ANENT,"ORWT TOOLS MENU","N")
+ S ANENT="ALL^"_$S($G(^VA(200,DUZ,5)):"^SRV.`"_+$G(^(5)),1:"")
+ S ORCNT=$O(ORLST(""),-1)
+ D GETLST^XPAR(.ORTLST,ANENT,"ORWT TOOLS MENU","N")
+ S ORT=0 F  S ORT=$O(ORTLST(ORT)) Q:'ORT  D
+ . S ORCNT=ORCNT+1
+ . S ORLST(ORCNT)=ORTLST(ORT)
  Q
 ACTLOC(LOC) ; Function: returns TRUE if active hospital location
  ; IA# 10040.
@@ -224,4 +233,50 @@ OVERDL(VAL) ;Return parameter value of ORPARAM OVER DATELINE
 MOBAPP(VAL,ORAPP) ;set ^TMP($J,"OR MOB APP")
  S ^TMP($J,"OR MOB APP")=ORAPP
  S VAL=1
+ Q
+ ;
+JSYSPARM(RESULTS,USER) ;
+ N TEMP
+ S RESULTS=$NA(^TMP($J,"ORWU SYSPARAM"))
+ S TEMP("reEvaluateReminders")=+$$GET^XPAR("USR^SYS","PXRM DIALOG EVAL DEFINITION",1,"I")
+ D  ;Copy/Paste Words to Count as a Copy
+ . N X
+ . D WRDCOPY^ORWTIU(.X,DUZ(2))
+ . S TEMP("cpWordCopy")=X
+ D  ;Copy/Paste Percent to Identify a Paste Source
+ . N X
+ . D PCTCOPY^ORWTIU(.X,DUZ(2))
+ . S TEMP("cpPercentCopy")=X
+ D  ;Copy/Paste Allowed to View Paste Information
+ . N X
+ . D VIEWCOPY^ORWTIU(.X,DUZ,0,DUZ(2))
+ . S TEMP("cpViewCopy")=X
+ D  ;Copy/Paste Paste Identifiers
+ . N X
+ . D LDCPIDNT^ORWTIU(.X)
+ . S TEMP("cpIdentifiers")=X
+ D  ;Copy/Paste Apps to Exclude
+ . N CNT2,ORLIST
+ . D GETLST^XPAR(.ORLIST,"ALL","ORQQTIU COPY/PASTE EXCLUDE APP","Q")
+ . S CNT2=""
+ . F  S CNT2=$O(ORLIST(CNT2)) Q:CNT2=""  D
+ . . S TEMP("cpExcludeApps",CNT2,"Name")=$P($G(ORLIST(CNT2)),U,1)
+ D  ;Copy/Paste Notes to Exclude
+ . N CNT2,ORLIST
+ . D EXCPLST^ORWTIU(.ORLIST)
+ . S CNT2=""
+ . F  S CNT2=$O(ORLIST(CNT2)) Q:CNT2=""  D
+ . . S TEMP("cpExcludeNotes",CNT2,"Note")=$P($G(ORLIST(CNT2)),U,1)
+ S TEMP("cpCopyBufferDisable")=+$$GET^XPAR("PKG","ORQQTIU COPY BUFFER DISABLE",1,"I")
+ S TEMP("orCPRSExceptionPurge")=+$$GET^XPAR("ALL","OR CPRS EXCEPTION PURGE",1,"I")
+ S TEMP("orCPRSExceptionLogger")=+$$GET^XPAR("ALL","OR CPRS EXCEPTION LOGGER",1,"I")
+ D  ;CPRS Exception Email
+ . N CNT2,ORLIST
+ . D GETLST^XPAR(.ORLIST,"ALL","OR CPRS EXCEPTION EMAIL","Q")
+ . S CNT2=""
+ . F  S CNT2=$O(ORLIST(CNT2)) Q:CNT2=""  D
+ . . S TEMP("orCPRSExceptionEmail",CNT2,"Email")=$P($G(ORLIST(CNT2)),U,2)
+ D SHWOTHER^ORWOTHER(.TEMP,USER)
+ ;D ENCODE^VPRJSON("TEMP","RESULTS","ERROR")
+ D ENCODE^XLFJSON("TEMP",$NA(^TMP($J,"ORWU SYSPARAM")),"ERROR")
  Q

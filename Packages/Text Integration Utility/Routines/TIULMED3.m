@@ -1,5 +1,5 @@
-TIULMED3 ; SLC/MAM - Cont. of Active/Recent Med Objects Routine ;1/30/07
- ;;1.0;TEXT INTEGRATION UTILITIES;**198,213**;Jun 20, 1997;Build 3
+TIULMED3 ; SLC/MAM - Cont. of Active/Recent Med Objects Routine ;03/22/17  07:22
+ ;;1.0;TEXT INTEGRATION UTILITIES;**198,213,290**;Jun 20, 1997;Build 548
 GETCLASS ; Get Drug Class, filter out supplies  BP/ELR
  I +DRUGIDX D
  .N TEMPNODE
@@ -31,9 +31,8 @@ SORTSAVE ;Sort & save Meds Data in TARGET
  .D ADD^TIULMED1(" ")
  ;
  ; *** Sort Meds in "C" temp xref - sort by Med Type, Status
- ;     Med Name, and reverse issue date, followed by a counter 
+ ;     Med Name, and reverse issue date, followed by a counter
  ;     to avoid erasing meds issued on the same day
- ;
  N MED,CNT,XSTR,TIUXSTAT
  N DATA,NODE
  S MED="",CNT=1000000
@@ -43,6 +42,14 @@ SORTSAVE ;Sort & save Meds Data in TARGET
  .. F  S TIUXSTAT=$O(@TARGET@("B",MED,XSTR,TIUXSTAT)) Q:TIUXSTAT=""  D
  ...S NODE=@TARGET@("B",MED,XSTR,TIUXSTAT)
  ...S DATA=$P(NODE,U,3)_U_$P(NODE,U,5)_U_MED,CNT=CNT+1
+ ...; ajb 290
+ ... D
+ .... N CLINORD,NODE0,ORDNUM
+ .... S CLINORD=0,NODE0=^TMP("PS",$J,$P(NODE,U,2),0)
+ .... S ORDNUM=$P(NODE0,U,8)
+ .... D ISCLORD^ORUTL(.CLINORD,ORDNUM)
+ .... I +CLINORD S $E(DATA)=0
+ ...; ajb 290
  ...S @TARGET@("C",DATA,(9999999-$P(NODE,U))_CNT)=$P(NODE,U,2)_U_$P(NODE,U,4)
  ;
  ; Read sorted data and save final version to TARGET
@@ -53,6 +60,7 @@ SORTSAVE ;Sort & save Meds Data in TARGET
  S (DATA,LASTCLAS)="",(LASTMEDT,LASTSTS,COUNT,TOTAL)=0
  D WARNING^TIULMED1
  F  S DATA=$O(@TARGET@("C",DATA)) Q:DATA=""  D
+ .N CLINORD S CLINORD=$S($E(DATA)=0:1,1:0)
  .S MEDTYPE=$E(DATA),STATIDX=$E(DATA,2)
  .S DRUGCLAS=$P(DATA,U,2),MED=$P(DATA,U,3),CNT=""
  .F  S CNT=$O(@TARGET@("C",DATA,CNT)) Q:CNT=""  D
@@ -75,17 +83,17 @@ SORTSAVE ;Sort & save Meds Data in TARGET
  ...I 'ONELIST D
  ....S TEMP=$S(STATIDX=1:"Active",STATIDX=2:"Pending",1:"Inactive")_" "
  ...E  S TEMP=""
- ...S TEMP=TEMP_$S(MEDTYPE=INPTYPE:"Inpatient",MEDTYPE=NVATYPE:"Non-VA",1:"Outpatient")
- ...S TEMP="     "_TEMP_" Medications"
+ ...S TEMP=TEMP_$S(+CLINORD:"Clinic",MEDTYPE=INPTYPE:"Inpatient",MEDTYPE=NVATYPE:"Non-VA",1:"Outpatient") ; ajb 290
+ ...S TEMP="     "_TEMP_" Medications" I ALLMEDS=4 S TEMP=TEMP_" and Infusions"
  ...I CLASSORT D
  ....I DETAILED S TEMP=TEMP_" (By Class)"
  ....E  S TEMP=TEMP_" (By Drug Class)"
  ...I DETAILED D  I 1
  ....S TEMP=$E(TEMP_SPACE60,1,47)
- ....I MEDTYPE=INPTYPE S TEMP=TEMP_"Status"
+ ....I MEDTYPE=INPTYPE!(+CLINORD) S TEMP=TEMP_"Status" ; ajb 290
  ....E  S TEMP=TEMP_"Refills"
  ....S TEMP=$E(TEMP_SPACE60,1,60)
- ....I MEDTYPE=INPTYPE S TEMP=TEMP_"Stop Date"
+ ....I MEDTYPE=INPTYPE!(+CLINORD) S TEMP=TEMP_"Stop Date" ; ajb 290
  ....E  S TEMP=TEMP_"Expiration"
  ...E  D
  ....S TEMP=$E(TEMP_SPACE60,1,60)_"Status"
@@ -109,4 +117,3 @@ SORTSAVE ;Sort & save Meds Data in TARGET
  .D ADD^TIULMED1(TOTAL_" Total Medications")
 SORTX ;
  Q
- ;

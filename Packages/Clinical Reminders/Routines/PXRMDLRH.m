@@ -1,5 +1,5 @@
-PXRMDLRH ; SLC/AGP - Dialog Report Help Routine; 01/13/2015
- ;;2.0;CLINICAL REMINDERS;**53**;Feb 04, 2005;Build 225
+PXRMDLRH ;SLC/AGP - Dialog Report Help Routine;09/08/2015  09:30
+ ;;2.0;CLINICAL REMINDERS;**53,45**;Feb 04, 2005;Build 566
  ; 
  ; Called from PXRM PATIENT LIST CREATE protocol
  ;
@@ -24,7 +24,8 @@ HELP(CALL) ;General help text routine
  .S HTEXT(2)="This list will be used to find parent dialog(s) in which they are contained. Enter 'N' to not look for dialog items."
  ;
  I CALL=10 D
- .S HTEXT(1)="Enter 'Y' to search for dialogs used on a CPRS CoverSheet by User(s) and dialogs assigned as a TIU Template. Enter 'N' to search all dialog."
+ .S HTEXT(1)="Enter 'Y' to search for dialogs used on a CPRS CoverSheet parameter such as by"
+ .S HTEXT(2)="Division, Location, Service, System, User or User Class and dialogs assigned as a TIU Template. Enter 'N' to search all dialog."
  ;
  I CALL=11 D
  .S HTEXT(1)="Enter 'Y' to search for specific CPRS CoverSheet List."

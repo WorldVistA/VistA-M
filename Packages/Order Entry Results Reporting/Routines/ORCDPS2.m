@@ -1,5 +1,5 @@
-ORCDPS2 ;SLC/MKB-Pharmacy dialog utilities ;03/22/2013  06:51
- ;;3.0;ORDER ENTRY/RESULTS REPORTING;**94,116,125,131,243,311,350**;Dec 17, 1997;Build 77
+ORCDPS2 ;SLC/MKB-Pharmacy dialog utilities ; 5/17/18 3:00pm
+ ;;3.0;ORDER ENTRY/RESULTS REPORTING;**94,116,125,131,243,311,350,377**;Dec 17, 1997;Build 582
  ;
 COMPLEX() ; -- Single or complex?
  N X,Y,DIR,DUOUT,DTOUT,COMPLX
@@ -46,7 +46,8 @@ CHDOSE ; -- Kill dependent values if inst ORI of dose changes
  N X,PROMPTS,P,NAME,DOSE,DD S X=$G(ORDIALOG(PROMPT,ORI))
  ;S X=$$UP^XLFSTR(X),ORDIALOG(PROMPT,ORI)=X ;force uppercase
  I X,X'?1.N.E1.A.E K DONE W $C(7),!,"Enter the amount of this drug that the patient is to receive as a dose,",!,"NOT as the number of units per dose." Q
- I $L(X)>60,'$D(ORDIALOG(PROMPT,"LIST","B",X)) K DONE W $C(7),!,"Instructions may not be longer than 60 characters." Q
+ ; OR*377 djh use "D" index, the DOSE instructions w/out any pricing
+ I $L(X)>60,'$D(ORDIALOG(PROMPT,"LIST","D",X)) K DONE W $C(7),!,"Instructions may not be longer than 60 characters." Q
  I $G(ORESET)'=X D  ;kill dependent values if new/changed dose
  . S PROMPTS="STRENGTH^DRUG NAME^DOSE^DISPENSE DRUG^DAYS SUPPLY^QUANTITY^REFILLS"
  . F P=1:1:$L(PROMPTS,U) S NAME=$P(PROMPTS,U,P) K ORDIALOG($$PTR(NAME),ORI)

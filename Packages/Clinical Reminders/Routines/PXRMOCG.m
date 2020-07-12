@@ -1,8 +1,8 @@
-PXRMOCG ;SLC/PKR - Routines for editing order check groups ;02/17/2012
- ;;2.0;CLINICAL REMINDERS;**22**;Feb 04, 2005;Build 160
+PXRMOCG ;SLC/PKR - Routines for editing order check groups ;04/21/2016  13:20
+ ;;2.0;CLINICAL REMINDERS;**22,45**;Feb 04, 2005;Build 566
  ;Also contains routines used by the DD for file #801.
  ;=============================================
-GETPINM(VP) ;Given the variable pointer VP get the pharmacy item name.
+GETOCINM(VP) ;Given the variable pointer VP get the order check item name.
  N FNUM,IEN,NAME,PREFIX,ROOT,VPL
  S IEN=$P(VP,";",1)
  S ROOT=U_$P(VP,";",2)
@@ -13,12 +13,25 @@ GETPINM(VP) ;Given the variable pointer VP get the pharmacy item name.
  Q PREFIX_NAME
  ;
  ;=============================================
-KPID(DA,X) ;Kill logic for Pharmacy Item PID cross-reference.
+KOCII(DA,X) ;Kill logic for order check item indexes.
  N NAME
- S NAME=$$PIOT^PXRMOCG(.DA,X)
- K ^PXD(801,DA(1),1.5,"PIDO",NAME,DA)
- K ^PXD(801,DA(1),1.5,"PIDN",DA)
+ S NAME=$$OCIOT^PXRMOCG(.DA,X)
+ K ^PXD(801,DA(1),1.5,"OCIO",NAME,DA)
+ K ^PXD(801,DA(1),1.5,"OCIN",DA)
  Q
+ ;
+ ;=============================================
+OCICAP(IEN) ;Executable caption for order check items.
+ N NUM
+ S NUM=+$P($G(^PXD(801,IEN,1.5,0)),U,4)
+ Q "ORDER CHECK ITEM LIST ("_NUM_" "_$S(NUM=1:"entry",1:"entries")_")"
+ ;
+ ;=============================================
+OCIOT(DA,PI) ;Output transform for order check items.
+ I '$D(DDS) Q $$GETOCINM^PXRMOCG(PI)
+ I DA=0 Q $$GETOCINM^PXRMOCG(PI)
+ ;Q ^PXD(801,DA(1),1.5,"PIDN",DA)
+ Q ^PXD(801,DA(1),1.5,"OCIN",DA)
  ;
  ;=============================================
 OICAP(IEN) ;Executable caption for the orderable item selection.
@@ -34,23 +47,11 @@ OCRCAP(IEN) ;Executable caption for the reminder order checks rules list
  Q "REMINDER ORDER CHECKS RULES LIST ("_NUM_" "_$S(NUM=1:"entry",1:"entries")_")"
  ;
  ;=============================================
-PICAP(IEN) ;Executable caption for the pharmacy item selection.
- N NUM
- S NUM=+$P($G(^PXD(801,IEN,1.5,0)),U,4)
- Q "PHARMACY ITEM LIST ("_NUM_" "_$S(NUM=1:"entry",1:"entries")_")"
- ;
- ;=============================================
-PIOT(DA,PI) ;Output transform for pharmacy items.
- I '$D(DDS) Q $$GETPINM^PXRMOCG(PI)
- I DA=0 Q $$GETPINM^PXRMOCG(PI)
- Q ^PXD(801,DA(1),1.5,"PIDN",DA)
- ;
- ;=============================================
-SPID(DA,X) ;Set logic for Pharmacy Item PID cross-reference.
+SOCII(DA,X) ;Set logic for order check items indexes.
  N FNUM,IEN,NAME,PREFIX,ROOT,VPL
- S NAME=$$GETPINM^PXRMOCG(X)
- S ^PXD(801,DA(1),1.5,"PIDO",NAME,DA)=""
- S ^PXD(801,DA(1),1.5,"PIDN",DA)=NAME
+ S NAME=$$GETOCINM^PXRMOCG(X)
+ S ^PXD(801,DA(1),1.5,"OCIO",NAME,DA)=""
+ S ^PXD(801,DA(1),1.5,"OCIN",DA)=NAME
  Q
  ;
  ;=============================================

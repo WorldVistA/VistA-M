@@ -1,5 +1,5 @@
 ORWDXM2 ; SLC/KCM - Quick Orders ; 11/1/11 11:30am
- ;;3.0;ORDER ENTRY/RESULTS REPORTING;**10,85,109,116,132,158,187,195,215,243,280,356**;Dec 17, 1997;Build 6
+ ;;3.0;ORDER ENTRY/RESULTS REPORTING;**10,85,109,116,132,158,187,195,215,243,280,356,377**;Dec 17, 1997;Build 582
  ;
 ADMTIME(ORDLOC,PATLOC,ENCLOC,DELAY,ISIMO) ;
  N ADMLOC,INST,SCHLOC,SCHTYPE
@@ -55,7 +55,7 @@ VERTXT ; set verify text for order
 RA ; setup environment for radiology
  ; -- get imaging types based on display group of quick order and
  ;    setup list of imaging locations based on imaging type
- N ORY,ITYPE,IFN,CNT,ORIMLOC,PROMPT
+ N ISPREG,ORY,ITYPE,IFN,CNT,ORIMLOC,PROMPT
  S ORDIV=$$DIV^ORCDRA1,ITYPE=$P($G(^ORD(100.98,+ORDG,0)),U,3)
  S ORIMTYPE=$O(^RA(79.2,"C",ITYPE,0))
  D EN4^RAO7PC1(ITYPE,"ORY")
@@ -128,6 +128,8 @@ DO ; setup environment for diet order
  S ORNPO=($P($G(^ORD(101.43,OI,0)),U)="NPO")
  S PROMPT=$O(^ORD(101.41,"B","OR GTX START DATE/TIME",0))
  S X=$G(ORDIALOG(PROMPT,1)) I $L(X) D CNV^ORCDFH1 S ORDIALOG(PROMPT,1)=$G(X)
+ ;AGP TEST FOR ACTIVE TUBEFEEDING ORDERS
+ I $$CURRENT^ORCDFH("TF")>0 S AUTOACK=0
  Q
 EL ; setup environment for early/late tray
  D EN^FHWOR8(+ORVP,.ORPARAM)          ; set FH ordering parameters
@@ -138,6 +140,8 @@ EL ; setup environment for early/late tray
  I $D(ORDIALOG(PROMPT,1)) S ORMEAL=ORDIALOG(PROMPT,1)
  S PROMPT=$O(^ORD(101.41,"B","OR GTX ORDERABLE ITEM",0))
  I $D(ORDIALOG(PROMPT,1)) S ORTRAY=ORDIALOG(PROMPT,1)
+ ;AGP TEST FOR ACTIVE TUBEFEEDING ORDERS
+ I $$CURRENT^ORCDFH("TF")>0 S AUTOACK=0
  Q
 UD ; setup environment for unit dose med
  I $G(ORWP94) G PS^ORWDPS3  ; if patch 94 installed

@@ -1,6 +1,8 @@
-ORQPTQ5 ; SLC/PKS - Functions for Patient Selection Lists. [4/23/04 4:49pm]
- ;;3.0;ORDER ENTRY/RESULTS REPORTING;**82,85,187,190,320**;Dec 17, 1997;Build 16
+ORQPTQ5 ; SLC/PKS - Functions for Patient Selection Lists. [4/23/04 4:49pm];05/27/14  18:25
+ ;;3.0;ORDER ENTRY/RESULTS REPORTING;**82,85,187,190,320,377**;Dec 17, 1997;Build 582
  ;
+ ; External Reference
+ ;   DBIA #2936  File 404.51 Read w/ FileMan
  Q
  ;
 COMBDISP(ORQDUZ,ORQPTR) ; Display user's "Combination" pt selection sources.
@@ -51,7 +53,7 @@ COMBNM(ORQVAL) ; Returns name of "Combination" source entry, ^OR(100.24 file.
  ;
  ; Returned string is "X_Name^String" where X is letter of type,
  ;    Name is name of entity, and String resembles examples below:
- ; 
+ ;
  ;       W_1W^Ward:       1W  SURGERY WEST
  ;       P_JONES,WILMA MD^Provider:   JONES,WILMA MD
  ;       T_SURGERYLIST2^Team List:  SURGERYLIST2
@@ -95,7 +97,7 @@ COMBNM(ORQVAL) ; Returns name of "Combination" source entry, ^OR(100.24 file.
  Q ORQRTN
  ;
 PTSCOMBO(ORQTYP,ORQPTR,APPTEND) ; Write ^TMP("OR",$J,"PATIENTS","B") patient entries.
- ;
+ ; TDP 5/21/2014 - Added PCMM Team (E) code
  ; Called from COMBPTS^ORQPTQ6.
  ; (ORQCNT,ORQPDAT,ORQPIEN,ORQPNM,ORQPSTAT,SORT,ORQLM,ORY,ORBDATE,OREDATE new'd in calling tag.)
  ;
@@ -116,6 +118,7 @@ PTSCOMBO(ORQTYP,ORQPTR,APPTEND) ; Write ^TMP("OR",$J,"PATIENTS","B") patient ent
  ;                S = Specialty
  ;                T = Team List
  ;                C = Clinic
+ ;                E = PCMM Team List
  ;
  N ORQDOB,ORQDONE,ORQIDT,ORQMORE,ORQSNM,ORQSNM4,ORQSSN,OLDAPPTEND,DATEDIF
  ;
@@ -129,6 +132,13 @@ PTSCOMBO(ORQTYP,ORQPTR,APPTEND) ; Write ^TMP("OR",$J,"PATIENTS","B") patient ent
  I ORQTYP="P" S ORQSNM4=$G(^VA(200,ORQPTR,0))     ; Providers.
  I ORQTYP="S" S ORQSNM4=$G(^DIC(45.7,ORQPTR,0))   ; Specialties.
  I ORQTYP="T" S ORQSNM4=$G(^OR(100.21,ORQPTR,0))  ; Team Lists.
+ I ORQTYP="E" D                                   ; PCMM Team Lists.
+ .N DIC,DLAYGO,X,Y
+ .S DIC="^SCTM(404.51,"
+ .S DIC(0)=""
+ .S X="`"_ORQPTR
+ .D ^DIC
+ .S ORQSNM4=$P(Y,U,2)
  I ORQTYP="C" D                                   ; Clinics.
  .S ORQSNM4=$G(^SC(ORQPTR,0))
  .I ($O(ORY(""),-1)'<200),'ORQLM,(ORBDATE'=OREDATE) D
@@ -138,7 +148,7 @@ PTSCOMBO(ORQTYP,ORQPTR,APPTEND) ; Write ^TMP("OR",$J,"PATIENTS","B") patient ent
  ..S OLDAPPTEND=$S($D(^TMP("OR",$J,"PATIENTS",-2)):$O(^(-2,"")),1:9999999)
  ..I APPTEND<OLDAPPTEND D
  ...K ^TMP("OR",$J,"PATIENTS",-2)
- ...S DATEDIF=$S(APPTEND=$H:"T",APPTEND<$H:"T-"_($H-APPTEND),APPTEND>$H:"T+"_(APPTEND-$H))
+ ...S DATEDIF=$S(APPTEND=+$H:"T",APPTEND<$H:"T-"_($H-APPTEND),APPTEND>$H:"T+"_(APPTEND-$H))
  ...S ^TMP("OR",$J,"PATIENTS",-2,APPTEND)=" ^"_$C(160)_" Reduce the date range by changing the stop date of the Patient Selection Defaults to "_DATEDIF_".^ ^ ^ "
  ..S ^TMP("OR",$J,"PATIENTS",-3)=" ^"_$C(160)_$C(160)_$C(160)_$C(160)_" ^ ^ ^ " ;add blank line
  ..S ^TMP("OR",$J,"PATIENTS",$O(^TMP("OR",$J,"PATIENTS",""))-1)=" ^ Showing only the first 200 appointments from "_$P(ORQSNM4,U)_"^ ^ ^ "
@@ -149,7 +159,7 @@ PTSCOMBO(ORQTYP,ORQPTR,APPTEND) ; Write ^TMP("OR",$J,"PATIENTS","B") patient ent
  ;
  ; Add label prefix to source name:
  S ORQSNM=""                                      ; Default setting.
- S ORQSNM=$S(ORQTYP="W":"Wd ",ORQTYP="P":"Pr ",ORQTYP="S":"Sp ",ORQTYP="T":"Tm ",ORQTYP="C":"Cl ",1:"     ")           ; Get correct name.
+ S ORQSNM=$S(ORQTYP="W":"Wd ",ORQTYP="P":"Pr ",ORQTYP="S":"Sp ",ORQTYP="T":"Tm ",ORQTYP="C":"Cl ",ORQTYP="E":"Pm ",1:"     ")           ; Get correct name.
  S ORQSNM=ORQSNM_ORQSNM4                          ; Prepend label.
  ;
  ; Order thru ORY array created by calls in calling routine:
@@ -200,7 +210,7 @@ PTSCOMBO(ORQTYP,ORQPTR,APPTEND) ; Write ^TMP("OR",$J,"PATIENTS","B") patient ent
  ..;    if "P" (app't) sort and not a clinic:
  ..I ((SORT="S")!((SORT="P")&(ORQTYP'="C"))) D  Q
  ...S ^TMP("OR",$J,"PATIENTS","B",ORQSNM_" "_ORQPNM_" "_ORQPIEN_" "_ORQIDT)=ORQPIEN_U_ORQPNM_U_ORQSSN_U_ORQDOB_U_ORQSNM_U_ORQMORE_U_ORQPTR_U_ORQIDT_U_ORQPSTAT
- ..; 
+ ..;
  ..; Use source source+app't first if "P" (app't) sort, and a clinic:
  ..I ((ORQTYP="C")&(SORT="P")) D  Q
  ...S ^TMP("OR",$J,"PATIENTS","B",ORQSNM_" "_ORQIDT_" "_ORQPNM_" "_ORQPIEN)=ORQPIEN_U_ORQPNM_U_ORQSSN_U_ORQDOB_U_ORQSNM_U_ORQMORE_U_ORQPTR_U_ORQIDT_U_ORQPSTAT

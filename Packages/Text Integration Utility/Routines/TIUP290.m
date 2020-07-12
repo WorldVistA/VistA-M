@@ -1,0 +1,370 @@
+TIUP290 ;SLC/WAT - Install SMART Titles ;05/04/20  06:49
+ ;;1.0;TEXT INTEGRATION UTILITIES;**290**;Jun 20, 1997;Build 548
+ ;ICR
+ ;10141-^XPDUTL 2051-$$FIND1^DIC ;2053-^DIE   ;2340-EN^DIK     ;10103-$$FMTE^XLFDT   ;4440-$$PROD^XUPROD
+ Q
+MKOBJS ; install objects manually into 8925.1
+ N TIUFPRIV,X,Y S TIUFPRIV=1 F X=1:1 S Y=$P($T(OBJECTS+X),";;",2) Q:Y=""  D
+ . N DA,TIU,TIUDA,ERR
+ . S DA=+$$LU(8925.1,$P(Y,U)) I +DA D  ; delete object if already exists
+ . . N DIK,X,Y S DIK="^TIU(8925.1," D ^DIK
+ . S TIU(8925.1,"+1,",.01)=$P(Y,U)
+ . S TIU(8925.1,"+1,",.02)=$P(Y,U,2)
+ . S TIU(8925.1,"+1,",.03)=$P($P(Y,U,3),";")
+ . S TIU(8925.1,"+1,",.04)="O"
+ . S TIU(8925.1,"+1,",.06)=$$LU(8930,"CLINICAL COORDINATOR")
+ . S TIU(8925.1,"+1,",.07)=11
+ . S TIU(8925.1,"+1,",.13)=1
+ . S TIU(8925.1,"+1,",3.02)=1
+ . S TIU(8925.1,"+1,",9)=$P(Y,";",2)
+ . S TIU(8925.1,"+1,",99)=$H
+ . D UPDATE^DIE("","TIU","TIUDA","ERR")
+ Q
+OBJECTS ; install objects manually instead of via DD w/data screen - ajb
+ ;;VA-REMINDER TEXT FOR REMINDER ORDER CHECK^^VA-REMINDER TEXT FOR REMINDER ORDER CHECK;S X=$$ROCTEXT^PXRMCWH1(DFN)
+ ;;VA-SMART TEXT FOR ALERT^^VA-SMART TEXT FOR ALERT;S X=$$ALTOBJ^PXRMCALT(DFN)
+ ;;VA-WH POTENTIAL TERATOGENIC ORDERS^PTO^POTENTIAL TERATOGENIC ORDERS;S X=$$GETORDRS^WVRPCPT1(DFN,"P")
+ ;;VA-WH POTENTIAL UNSAFE ORDERS^PUO^POTENTIAL UNSAFE ORDERS;S X=$$GETORDRS^WVRPCPT1(DFN,"L")
+ ;;VA-WH RECENT LABORATORY PREGNANCY TEST^^VA-WH RECENT LABORATORY PREGNANCY TEST;S X=$$GETPREGT^PXRMCWH1(DFN)
+ ;;VA-WH RECENT LACTATION STATUS^^VA-WH RECENT LACTATION STATUS;S X=$$GETMRST^WVRPCPT1(DFN,"L")
+ ;;VA-WH RECENT PREGNANT STATUS^^VA-WH RECENT PREGNANT STATUS;S X=$$GETMRST^WVRPCPT1(DFN,"P")
+ ;;VA-WH SRN TEXT LACTATION^^LACTATION STATUS REVIEW NOTIFICATION TEXT;S X=$$GETSRND^WVRPCPT1(DFN,"L")
+ ;;VA-WH SRN TEXT PREGNANCY^^PREGNANCY STATUS REVIEW NOTIFICATION TEXT;S X=$$GETSRND^WVRPCPT1(DFN,"P")
+ ;;
+ Q
+PRE ;pre-init
+ D PREPARE,RMVOLD
+ D MKOBJS
+ Q
+ ;
+POST ;post-init
+ N TIUPGNTS,TIUSMTDC,TIUCLCOR,TIUSCMSG,TIUWHNDC,TIUSMTDC,TIUFPRIV,TIURET
+ S TIUFPRIV=1
+ S TIUPGNTS=$$LU(8925.1,"PROGRESS NOTES","X","I $P(^TIU(8925.1,+Y,0),U,4)=""CL""")
+ S TIUCLCOR=$$LU(8930,"CLINICAL COORDINATOR","X")
+ S TIUSCMSG=$$LU(8925.1,"SECURE MESSAGING DOCUMENTS","X","I $P(^TIU(8925.1,+Y,0),U,4)=""DC""")
+ S TIUWHNDC=$$LU(8925.1,"WOMEN'S HEALTH NOTES","X","I $P(^TIU(8925.1,+Y,0),U,4)=""DC""")
+ S TIUSMTDC=$$LU(8925.1,"SMART NOTES","X","I $P(^TIU(8925.1,+Y,0),U,4)=""DC""")
+ D CRE8DC,CRE8TITL,MAP,REINDEX
+ D BMES^XPDUTL("   Adding TIU ACTIONS RESOURCE device...")
+ S TIURET=$$RES^XUDHSET("TIU ACTIONS RESOURCE",,,"Document actions notifier")
+ I $P(TIURET,U)=-1 D
+ . I $P(TIURET,U,2)["Device name in use" D MES^XPDUTL("   Device already exists") Q
+ . D MES^XPDUTL("   FAILED: "_$P(TIURET,U,2))
+ I $P(TIURET,U)>0 D MES^XPDUTL("   Device successfully added")
+ D BMES^XPDUTL("   Tasking creation of new indices in file #8925 ...")
+ D EN^TIUP290A
+ D BMES^XPDUTL("   Tasking the indexing of new indices in file #8925 completed")
+ D SETCNLK,TEMPLATE^TIUP290A
+ Q
+ ;
+PREPARE ; disable items from previous installs
+ N TIUDA,TIUI,TITLESTR,TIUD0,TIUDC,TIUFPRIV,TIUFWHO,TIUTTL0,TTL0DA
+ S TIUFPRIV=1,TIUFWHO="N"
+ D BMES^XPDUTL(" Preparing TIU*1*290 Document Class & Titles for Update...")
+ ;find and disable doc classes
+ F TIUI=1:1 S TITLESTR=$P($T(DOCCLASS+TIUI),";",3) Q:TITLESTR="EOL"  D
+ .S TIUDC=$P(TITLESTR,U)
+ .S TIUDA=$$LU(8925.1,TIUDC,"X","I $P(^TIU(8925.1,+Y,0),U,4)=""DC""")
+ .D:+$G(TIUDA) DISABLE(TIUDA,TIUDC)
+ ;find and disable titles
+ F TIUI=1:1 S TITLESTR=$P($T(TITLES+TIUI),";",3) Q:TITLESTR="EOL"  D
+ .S TIUTTL0=$P(TITLESTR,U) Q:TIUTTL0']""
+ .S TTL0DA=$O(^TIU(8925.1,"B",TIUTTL0,""))
+ .D:$$LU(8925.1,TIUTTL0,"X","I $P(^TIU(8925.1,+Y,0),U,4)=""DOC""") DISABLE(TTL0DA,TIUTTL0)
+ D BMES^XPDUTL("")
+ Q
+RMVOLD ;Remove any old Copy/Paste related components which are no longer used
+ N DA,DIK,ENT,IEN,INS,TIUIEN,TIUNMIEN,TIUP0
+ D BMES^XPDUTL("REMOVING INVALID COPY/PASTE FUNCTION COMPONENTS ...")
+ ;Loop through file 8925.99 and clear any field 4.3 entries
+ D BMES^XPDUTL("   REMOVING FILE 8925.99 COMPONENTS ...")
+ S TIUIEN=""
+ F  S TIUIEN=$O(^TIU(8925.99,TIUIEN)) Q:TIUIEN=""  D
+ . I $P($G(^TIU(8925.99,TIUIEN,4)),U,3)="" Q
+ . S $P(^TIU(8925.99,TIUIEN,4),U,3)=""
+ ;Now delete field 4.3 from the Data Dictionary for file 8925.99
+ S DIK="^DD(8925.99,"
+ S DA=4.3
+ S DA(1)=8925.99
+ D ^DIK
+ K DA,DIK
+ D MES^XPDUTL("   REMOVING FILE 8928 COMPONENTS ...")
+ I $P($G(^TIUP(8928,0)),U,4)<501 D RMV8928
+ I $P($G(^TIUP(8928,0)),U,4)'<501 D RMVTSK
+ F DA=.13,.14 D
+ . S DIK="^DD(8928,"
+ . S DA(1)=8928
+ . D ^DIK
+ K DA,DIK
+ ; Remove the parameter ORQQTIU COPY/PASTE FIND LIMIT definition and data
+ S TIUNMIEN=$$FIND1^DIC(8989.51,"","X","ORQQTIU COPY/PASTE FIND LIMIT","B","","TIUERR")
+ I +TIUNMIEN>0 D
+ . D MES^XPDUTL("   REMOVING PARAMETER COMPONENTS ...")
+ . S ENT=""
+ . F  S ENT=$O(^XTV(8989.5,"AC",TIUNMIEN,ENT)) Q:ENT=""  D
+ .. S INS=""
+ .. F  S INS=$O(^XTV(8989.5,"AC",TIUNMIEN,ENT,INS)) Q:INS=""  D
+ ... S DA=""
+ ... F  S DA=$O(^XTV(8989.5,"AC",TIUNMIEN,ENT,INS,DA)) Q:DA=""  D
+ .... S DIK="^XTV(8989.5,"
+ .... D ^DIK
+ . S DIK="^XTV(8989.51,"
+ . S DA=TIUNMIEN
+ . D ^DIK
+ D BMES^XPDUTL("COMPLETED REMOVING INVALID COPY/PASTE FUNCTION COMPONENTS!")
+ Q
+DISABLE(TIUDA,TIUNM) ; Disable a document definition
+ N TIUREC,TIUERR
+ D MES^XPDUTL(" Inactivating "_TIUNM_".")
+ S TIUREC(.07)="INACTIVE"
+ D UPDATE(TIUDA,.TIUREC,.TIUERR)
+ I $D(TIUERR) D  Q
+ . D MES^XPDUTL(" Unable to Inactivate "_TIUNM_".")
+ . D MES^XPDUTL("  "_$G(TIUERR("DIERR",1,"TEXT",1)))
+ Q
+LU(FILE,NAME,FLAGS,SCREEN,INDEXES) ; call FileMan Finder to look up file entry
+ N MSGERR
+ Q $$FIND1^DIC(FILE,"",$G(FLAGS),NAME,$G(INDEXES),$G(SCREEN),"MSGERR")
+CRE8DC ;create doc class if not already on system
+ N TIUI,TITLESTR,TIUDC,TIUDA,TIUERR,TIUINMSG,TIUVNAME
+ F TIUI=1:1 S TITLESTR=$P($T(DOCCLASS+TIUI),";",3) Q:TITLESTR="EOL"!($D(TIUERR))  D
+ .S TIUDC=$P(TITLESTR,U),TIUVNAME=$P(TITLESTR,U,2)
+ .S TIUDA=$$CREATE(TIUDC,"",TIUDC,"DC","11",.TIUERR)
+ .I $D(TIUERR) D  Q
+ ..N TIUJ
+ ..D BMES^XPDUTL(" The following error message was returned:")
+ ..S TIUJ="" F  S TIUJ=$O(TIUERR("DIERR",1,"TEXT",TIUJ)) Q:TIUJ=""  D MES^XPDUTL("  "_$G(TIUMSG("DIERR",1,"TEXT",TIUJ)))
+ .S TIUINMSG=$$INSTALL(TIUDA,+$G(TIUPGNTS))
+ .I +$G(TIUINMSG)'>0 D BMES^XPDUTL("Error adding "_TIUDC_" to PROGRESS NOTES") Q
+ .X "S "_TIUVNAME_"=TIUDA"
+ Q
+CRE8TITL(DOCLAS) ;will loop thru TITLES to Create and Install new titles
+ N TIUI,TITLESTR,TIUX290,TIU01,TIU04,TIU07,TIUERR,TIU3,TIU4
+ S TIU04="DOC",TIU07=13 ;titles are activated in MAP
+ F TIUI=1:1 S TITLESTR=$P($T(TITLES+TIUI),";",3) Q:TITLESTR="EOL"  D
+ .S TIU01=$P(TITLESTR,U),TIU3=$P(TITLESTR,U,3),TIU4=$P(TITLESTR,U,4)
+ .S TIUX290=$$CREATE(TIU01,"",TIU01,TIU04,TIU07,.TIUERR)
+ .I $D(TIUERR) D
+ ..N TIUI
+ ..D BMES^XPDUTL("The following error message was returned:")
+ ..S TIUI="" F  S TIUI=$O(TIUERR("DIERR",1,"TEXT",TIUI)) Q:TIUI=""  D MES^XPDUTL("  "_$G(TIUMSG("DIERR",1,"TEXT",TIUI)))
+ .I +$G(TIUX290) D
+ ..S:$G(TIU4)="R" TIUX290=$$INSTALL(+$G(TIUX290),$G(TIUSCMSG),$G(TIU3))
+ ..S:$G(TIU4)="T" TIUX290=$$INSTALL(+$G(TIUX290),$G(TIUWHNDC),$G(TIU3))
+ ..S:$G(TIU4)="S" TIUX290=$$INSTALL(+$G(TIUX290),$G(TIUSMTDC),$G(TIU3))
+ ..D BMES^XPDUTL(TIU01_" successfully installed")
+ .E  D BMES^XPDUTL("Error: "_TIU01_" was not added to the document class")
+ Q
+ ;
+CREATE(TIUNAME,TIUABB,TIUPNAME,TIUTYPE,TIUSTAT,TIUERR) ;creates/update entry; returns IEN of entry
+ N TIUREC,TIUDA,TIUFPRIV,TIUFWHO,TIUNATTL
+ S TIUNATTL=1
+ S TIUFPRIV=1,TIUFWHO="N"
+ S TIUREC(8925.1,"?+1,",.01)=$G(TIUNAME) ;NAME
+ S TIUREC(8925.1,"?+1,",.02)=$G(TIUABB) ;ABBREVIATION
+ S TIUREC(8925.1,"?+1,",.03)=$G(TIUPNAME) ;PRINT NAME
+ S TIUREC(8925.1,"?+1,",.04)=$G(TIUTYPE) ;TYPE
+ S TIUREC(8925.1,"?+1,",.06)=$G(TIUCLCOR) ;CLASS OWNER
+ S TIUREC(8925.1,"?+1,",.07)=$G(TIUSTAT) ;STATUS 11=ACTIVE, 13=INACTIVE
+ S TIUREC(8925.1,"?+1,",.13)=$G(TIUNATTL) ;NAT'L STD 1=YES
+ S TIUREC(8925.1,"?+1,",3.02)=1 ;OK TO DISTR=YES
+ S TIUREC(8925.1,"?+1,",99)=$H ;TIMESTAMP
+ D UPDATE^DIE("","TIUREC","TIUDA","TIUERR")
+ Q +$G(TIUDA(1))
+ ;
+INSTALL(TIUDNM,TIUPRNT,TIUMNTXT) ; Install document definition
+ ;TIUDNM - title IEN, TIUPRNT - parent IEN, TIUMNTXT - menu text
+ N TIU,TIUIEN,TIUMSG,TIUJ
+ S TIU(8925.14,"?+1,"_TIUPRNT_",",.01)=TIUDNM
+ S TIU(8925.14,"?+1,"_TIUPRNT_",",4)=$G(TIUMNTXT) ;$G b/c menu text not defined for Doc Class
+ D UPDATE^DIE("","TIU","TIUIEN","TIUMSG")
+ I $D(TIUMSG) D
+ . D BMES^XPDUTL("The following error message was returned:")
+ . S TIUJ="" F  S TIUJ=$O(TIUMSG("DIERR",1,"TEXT",TIUJ)) Q:TIUJ=""  D MES^XPDUTL("  "_$G(TIUMSG("DIERR",1,"TEXT",TIUJ)))
+ Q +$G(TIUIEN(1))
+UPDATE(TIUDA,TIUREC,TIUERR) ; call FileMan Filer to update record
+ N TIUIENS,TIUFLAGS,TIUFDA,TIUFPRIV,TIUFWHO,TIUFI
+ S TIUFPRIV=1,TIUFWHO="N",TIUIENS=TIUDA_",",TIUFI=0
+ F  S TIUFI=$O(TIUREC(TIUFI)) Q:+TIUFI'>0  D
+ . S TIUFDA(8925.1,TIUIENS,TIUFI)=$G(TIUREC(TIUFI))
+ S TIUFLAGS="ET" ;External, Transaction (all or nothing)
+ D FILE^DIE(TIUFLAGS,"TIUFDA","TIUERR")
+ Q
+MAP ; Map HT Titles to appropriate VHA Enterprise Standard Titles
+ N TIUERR,TIUIENS,TIUFLAGS,TIUFDA,TIUFPRIV,TIUFWHO,TIUPROD,TIUI,TITLESTR
+ D BMES^XPDUTL("Attempting to map TIU*1*290 titles to VHA Enterprise Standard Titles...")
+ S TIUPROD=$$PROD^XUPROD(1),TIUFPRIV=1,TIUFWHO="N"
+ F TIUI=1:1 S TITLESTR=$P($T(TITLES+TIUI),";",3) Q:TITLESTR="EOL"  D
+ . N TIUDA,TIUTTL1,TIUETTL,TIUREC,TIUERR
+ . S TIUTTL1=$P(TITLESTR,U) Q:TIUTTL1']""
+ . S TIUDA=$$LU(8925.1,TIUTTL1,"X","I $P(^TIU(8925.1,+Y,0),U,4)=""DOC""")
+ . I +TIUDA'>0 D BMES^XPDUTL(" "_TIUTTL1_" title not installed.") Q
+ . S TIUIENS=TIUDA_",",TIUETTL=$P(TITLESTR,U,2)
+ . S TIUFDA(8925.1,TIUIENS,1501)=TIUETTL
+ . S TIUFDA(8925.1,TIUIENS,1502)=$$FMTE^XLFDT($$NOW^XLFDT)
+ . S TIUFDA(8925.1,TIUIENS,1503)="`"_DUZ
+ . S TIUFLAGS="ET"
+ . D FILE^DIE(TIUFLAGS,"TIUFDA","TIUERR")
+ . ; if filing error occurs, write message to install log & quit
+ . I $D(TIUERR) D  Q
+ . . D:TIUPROD BMES^XPDUTL(" Unable to map "_TIUTTL1_" title") I 1
+ . . D:TIUPROD MES^XPDUTL("  to "_TIUETTL_". You'll have to manually map the title.")
+ . . D:TIUPROD MES^XPDUTL("  "_$G(TIUERR("DIERR",1,"TEXT",1)))
+ . . K TIUFDA(8925.1,TIUIENS)
+ . ; otherwise activate title
+ . S TIUFDA(8925.1,TIUIENS,".07")="ACTIVE"
+ . D FILE^DIE(TIUFLAGS,"TIUFDA","TIUERR")
+ . ; if filing error occurs, write message to install log
+ . I $D(TIUERR),TIUPROD D  Q
+ . . D BMES^XPDUTL(" Unable to Activate "_TIUTTL1_" TITLE.")
+ . . D MES^XPDUTL("  "_$G(TIUERR("DIERR",1,"TEXT",1)))
+ . . K TIUFDA(8925.1,TIUIENS)
+ . ; finally, check for entry in "ACL" cross-reference and if missing, call EN^DIK
+ . I +$O(^TIU(8925.1,"ACL",3,TIUTTL1,0))'>0 D
+ . . N DIK,DA S DIK="^TIU(8925.1,",DIK(1)=".07^ACL07",DA=TIUDA D EN^DIK
+ Q
+REINDEX ; Re-index entries
+ N DIK
+ D BMES^XPDUTL(" Reindexing TIU Titles")
+ S DIK="^TIU(8925.1,",DIK(1)=".07^AS"
+ D ENALL2^DIK
+ S DIK="^TIU(8925.1,",DIK(1)=".07^AS"
+ D ENALL^DIK
+ Q
+RMVTSK ;Task clean-up of 8928 file if greater than 500 entries
+ N ZTRTN,ZTDESC,ZTDTH,ZTIO,ZTSK
+ S ZTRTN="RMV8928^TIUP290"
+ S ZTDESC="TIU PATCH 290 COPY/PASTE 8928 CLEAN-UP"
+ S ZTDTH=$H
+ S ZTIO=""
+ D ^%ZTLOAD
+ I '$D(ZTSK) D MES^XPDUTL("      Failed to task off Copy/Paste removal of bad data in file 8928!")
+ I $D(ZTSK) D MES^XPDUTL("      Task #"_ZTSK_" created to clean-up data in file 8928!!")
+ Q
+RMV8928 ;Clean-up 8928 file entries in contain fields .13 or .14 data
+ N TIUIEN,TIUP0
+ S TIUIEN=""
+ F  S TIUIEN=$O(^TIUP(8928,TIUIEN)) Q:TIUIEN=""  D
+ . S TIUP0=$G(^TIUP(8928,TIUIEN,0))
+ . I $P(TIUP0,U,13)="",$P(TIUP0,U,14)="" Q
+ . S $P(^TIUP(8928,TIUIEN,0),U,12,14)=$P(TIUP0,U,12)
+ Q
+ ;
+SETCNLK ;set TIU TEMPLATE CONSULT LOCK param vals on post-init
+ N TIUERR,SRVCNT,INDEX,TIUIEN,TIUOUT,TIU0,TIU01
+ D FIND^DIC(8927,"","@;.01;IX","","NON VA CARE HCPS ","*","B","","","TIUOUT") ;get templates beginning with "NON VA CARE HCPS "
+ I +$G(TIUOUT("DILIST",0))=0 D  Q
+ . D BMES^XPDUTL("No TIU TEMPLATES beginning with ""NON VA CARE HCPS "" were found.")
+ . D MES^XPDUTL("No values have been added to the TIU TEMPLATE CONSULT LOCK parameter.")
+ . D MES^XPDUTL("No consult templates have been locked as read-only.")
+ . D MES^XPDUTL("Please enter a help desk ticket for assistance with TIU*1*290.")
+ . D MES^XPDUTL("The ticket should request assistance with locking TIU Templates that are")
+ . D MES^XPDUTL("used in NON VA CARE HCPS consults which are transmitted to RAS.")
+ S SRVCNT=$P(TIUOUT("DILIST",0),U),INDEX=""
+ D BMES^XPDUTL("Checking TIU TEMPLATE CONSULT LOCK parameter for existing values.")
+ F  S INDEX=$O(TIUOUT("DILIST",2,INDEX)) Q:INDEX=""  D
+ . S TIUIEN=TIUOUT("DILIST",2,INDEX)
+ . S TIU0=^TIU(8927,TIUIEN,0)
+ . Q:$P(TIU0,U,19)'["GMR(123.5"
+ . S TIU01=$P(TIU0,U)
+ . I '$$CHEKPAR(TIU01) D
+ . . D BMES^XPDUTL("Setting parameter value for "_TIU01)
+ . . D SETPAR(TIU01,INDEX)
+ . . D SETTLOCK(TIUIEN)
+ . . D SETFLOCK(TIUIEN)
+ . . D BMES^XPDUTL("....done")
+ . E  D MES^XPDUTL("Parameter already set for "_TIU01)
+ Q
+ ;
+SETPAR(TIUNAME,TIUINST) ;set it
+ N TIUERR
+ D EN^XPAR("SYS","TIU TEMPLATE CONSULT LOCK",TIUINST,TIUNAME,.TIUERR)
+ I $G(TIUERR)>0 D BMES^XPDUTL("Error setting parameter value for "_TIUNAME),ERROR Q
+ Q
+ ;
+ERROR ; show it
+ D BMES^XPDUTL("ERROR #"_$P(TIUERR,U))
+ D MES^XPDUTL("TEXT: "_$P(TIUERR,U,2))
+ Q
+ ;
+CHEKPAR(TIUNAME) ;check for param value
+ ;return ISPAR: 1 if value exists, 0 if not
+ N TIUY,TIUERR,IDX,ISPAR
+ S ISPAR=0,IDX=""
+ D GETLST^XPAR(.TIUY,"SYS","TIU TEMPLATE CONSULT LOCK","N")
+ Q:+$G(TIUY)=0 ISPAR
+ F  S IDX=$O(TIUY(IDX)) Q:IDX=""!(ISPAR=1)  D
+ .S:$P(TIUY(IDX),U,2)=$G(TIUNAME) ISPAR=1
+ Q ISPAR
+ ;
+SETTLOCK(IEN) ;set template lock
+ N TIUARY,TIUCNT
+ D BLD(IEN,.TIUARY)
+ N DIE,DA,DR S DIE="^TIU(8927,",DR=".2///YES"
+ F TIUCNT=1:1 Q:'$D(TIUARY(TIUCNT))  D
+ .S DA=TIUARY(TIUCNT)
+ .L +^TIU(8927,DA):DILOCKTM
+ .I $T D:+$G(DA)>0 ^DIE L -^TIU(8927,DA)
+ Q
+ ;
+SETFLOCK(IEN) ;set template field lock
+ N DIE,DA,DR,TIUARY,TIUCNT
+ K ^TMP("TIU F",$J)
+ D BLD(IEN,.TIUARY)
+ D FLD ;populates ^TMP("TIU F",$J
+ S TIUCNT="",DIE="^TIU(8927.1,",DR=".17///YES"
+ F  S TIUCNT=$O(^TMP("TIU F",$J,TIUCNT)) Q:TIUCNT=""  D
+ . S DA=$O(^TIU(8927.1,"B",^TMP("TIU F",$J,TIUCNT),""))
+ . L +^TIU(8927.1,DA):DILOCKTM
+ . I $T D:+$G(DA)>0 ^DIE L -^TIU(8927.1,DA)
+ K ^TMP("TIU F",$J)
+ Q
+ ;
+FLD ;build list of template fields
+ ;TIUARY set in call to BLD
+ K ^TMP("TIU FIELDS",$J)
+ N TIUY,TIUFLD,CNT,CNT2,CNT3 S (CNT,CNT2)="",CNT3=1
+ F  S CNT=$O(TIUARY(CNT)) Q:CNT=""  D
+ . D GETBOIL^TIUSRVT(.TIUY,(TIUARY(CNT))) ;TIUY = name of ^TMP(TIU TEMPLATE,$J)
+ . F  S CNT2=$O(@TIUY@(CNT2)) Q:CNT2=""  D
+ .. S ^TMP("TIU FIELDS",$J,CNT3)=@TIUY@(CNT2),CNT3=CNT3+1 ;get every line; possible to have remnant of a wrapped field e.g. "40x2}"
+ N BEG,END,FIELD,LINE,LNCNT,I,OK,LNWRAP K ^TMP("TIU F",$J) S LNCNT=1,OK=1,I="",LNWRAP=""
+ F  S CNT=$O(^TMP("TIU FIELDS",$J,CNT)) Q:CNT=""  D
+ . S LINE=^TMP("TIU FIELDS",$J,CNT)
+ . I $L(LNWRAP)>0 S LINE=LNWRAP_LINE,LNWRAP="" ;if length, may need to finish building FLD from previous line of text
+ . F  D  Q:END=0
+ . . S BEG=$FIND(LINE,"{FLD:") I BEG=0 S END=0 Q  ;didn't find {FLD:, possible fragmented line
+ . . S END=$FIND(LINE,"}",BEG)
+ . . S:END=0 LNWRAP=LINE ; assume a fragment of a FLD, concatenate and check next LINE in template.
+ . . Q:END=0
+ . . S FIELD=$E(LINE,BEG,(END-2))
+ . . S OK=1,I=""
+ . . F  S I=$O(^TMP("TIU F",$J,I)) Q:I=""!(OK=0)  D  ;prevent dups in ^TMP("TIU F"
+ . . . S:(FIELD["{FLD")!(FIELD?.E1"}") OK=0 Q  ;keep out some junk that GUI editor allows
+ . . . S:^TMP("TIU F",$J,I)=FIELD OK=0
+ . . S:OK ^TMP("TIU F",$J,LNCNT)=FIELD,LNCNT=LNCNT+1
+ . . S LINE=$E(LINE,(END),999)
+ K ^TMP("TIU FIELDS",$J)
+ Q
+BLD(TIUIEN,TIUARY) ; Build array of templates.
+ N TIUIDX
+ S TIUIDX=$O(TIUARY(" "),-1)+1
+ S TIUARY(TIUIDX)=TIUIEN
+ S TIUIDX=0
+ F  S TIUIDX=$O(^TIU(8927,TIUIEN,10,TIUIDX))  Q:'TIUIDX  D
+ .D BLD($P(^TIU(8927,TIUIEN,10,TIUIDX,0),U,2),.TIUARY)
+ Q
+ ;
+TITLES ;TITLE ^ VHA ENT STD TITLE ^ MENU TEXT ^ PARENT DOC CLASS TYPE
+ ;;HEALTHELIVING ASSESSMENT SUMMARY^RISK ASSESSMENT SCREENING NOTE^Healthelvg Asmnt Sum^R
+ ;;PREGNANCY STATUS UPDATE REVIEW^WOMENS HEALTH NOTE^Preg Status Upd Rev^T
+ ;;LACTATION STATUS UPDATE REVIEW^WOMENS HEALTH NOTE^Lact Status Upd Rev^T
+ ;;SMART BREAST IMAGING FOLLOW-UP^WOMENS HEALTH NOTE^Smart Brst Img F/u^S
+ ;;SMART PATIENT NOTIFICATION^WOMENS HEALTH NOTE^Smart Patient Notif^S
+ ;;SMART OUTSIDE BREAST IMAGE RESULTS^WOMENS HEALTH NOTE^Smrt Out Brst Img Rs^S
+ ;;EOL
+DOCCLASS ;CLASS NAME ^ IEN VARIABLE NAME
+ ;;SMART NOTES^TIUSMTDC
+ ;;WOMEN'S HEALTH NOTES^TIUWHNDC
+ ;;EOL

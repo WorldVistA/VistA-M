@@ -1,5 +1,5 @@
-ORQPT2 ; HIRMFO/DAD-Patient Look-Up Security Check and Notification ;1/31/97  07:57
- ;;3.0;ORDER ENTRY/RESULTS REPORTING;;Dec 17, 1997
+ORQPT2 ;HIRMFO/DAD - Patient Look-Up Security Check and Notification ;Jun 13, 2019@11:43
+ ;;3.0;ORDER ENTRY/RESULTS REPORTING;**377**;Dec 17, 1997;Build 582
  ;
 EN1(ORDFN) ;
  ; Sensitive Patient record check
@@ -67,8 +67,6 @@ EN2(ORDFN) ;
  ;
  L -^DGSL(38.1,ORDFN)
  ;
- S X="MPRCHK" X ^%ZOSF("TEST") I $T D EN^MPRCHK(ORDFN)
- ;
  Q
  ;
 CWAD(DFN) ;
@@ -76,8 +74,8 @@ CWAD(DFN) ;
  ;  Input:
  ;   DFN = A Patient file (#2) IEN
  ;  Output:
- ;   A string of 0-4 nonrepeating characters consisting
- ;   of the letters C,W,A,D.  The string will be returned
+ ;   A string of 0-6 nonrepeating characters consisting
+ ;   of the letters C,W,A,D,P,L.  The string will be returned
  ;   with the letters in the order shown.
  ;
  I $G(DFN)'>0 Q ""
@@ -97,4 +95,5 @@ CWAD(DFN) ;
  K ^TMP("TIUPPCV",$J)
  ; Remove any remaining lower case items
  S ORLST=$TR(ORLST,"cwad")
+ S ORLST=ORLST_$$POSTSHRT^WVRPCOR(DFN)
  Q ORLST

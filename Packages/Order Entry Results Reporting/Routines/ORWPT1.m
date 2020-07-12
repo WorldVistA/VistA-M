@@ -1,5 +1,5 @@
-ORWPT1 ; SLC/KCM/ALB/ART - Patient Lookup Functions (cont) ;09/11/2014
- ;;3.0;ORDER ENTRY/RESULTS REPORTING;**10,109,280,340,306,387**;Dec 17, 1997;Build 19
+ORWPT1 ;SLC/KCM,ART - Patient Lookup Functions (cont) ;11/30/2015  07:09
+ ;;3.0;ORDER ENTRY/RESULTS REPORTING;**10,109,280,340,306,387,377**;Dec 17, 1997;Build 582
  ;
 SAVDFLT ; continued from ORWPT, save new default patient list
  N DAY,HOLDX S OK=1
@@ -9,6 +9,9 @@ SAVDFLT ; continued from ORWPT, save new default patient list
  I $P(X,U)="T" D
  . D EN^XPAR(DUZ_";VA(200,","ORLP DEFAULT LIST SOURCE",1,"T")
  . D EN^XPAR(DUZ_";VA(200,","ORLP DEFAULT TEAM",1,"`"_$P(X,U,2))
+ I $P(X,U)="E" D
+ . D EN^XPAR(DUZ_";VA(200,","ORLP DEFAULT LIST SOURCE",1,"E")
+ . D EN^XPAR(DUZ_";VA(200,","ORLP DEFAULT PCMM TEAM",1,"`"_$P(X,U,2))
  I $P(X,U)="S" D
  . D EN^XPAR(DUZ_";VA(200,","ORLP DEFAULT LIST SOURCE",1,"S")
  . D EN^XPAR(DUZ_";VA(200,","ORLP DEFAULT SPECIALTY",1,"`"_$P(X,U,2))
@@ -47,7 +50,7 @@ PRCARE(VAL,PATIENT) ; return Primary Care info for CPRS Header
  ;RPC Broker sets XQCY0 to the caller's context
  IF $GET(XQCY0)["CPRSChart" DO  ;check calling source
  . S PCT=$$CPRSHEAD^SCMCWSUT(PATIENT) ;387
- ELSE  DO
+ IF $GET(XQCY0)'["CPRSChart" DO
  . S PCT=$P($$OUTPTTM^SDUTL3(PATIENT,DT),U,2)
  . S PCP=$P($$OUTPTPR^SDUTL3(PATIENT,DT),U,2)
  . S ASS=$P($$OUTPTAP^SDUTL3(PATIENT,DT),U,2)

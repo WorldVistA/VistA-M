@@ -1,10 +1,10 @@
-PXRMEXU5 ;SLC/PKR - Reminder exchange KIDS utilities, #5. ;06/03/2012
- ;;2.0;CLINICAL REMINDERS;**12,16,18,22**;Feb 04, 2005;Build 160
+PXRMEXU5 ;SLC/PKR - Reminder exchange KIDS utilities, #5. ;May 30, 2018@10:11
+ ;;2.0;CLINICAL REMINDERS;**12,16,18,22,45**;Feb 04, 2005;Build 566
  ;==================================================
 BMTABLE(MTABLE,IENROOT,DIQOUT,FDA) ;Build the table for merging
  ;GETS^DIQOUT indexes into the FDA. The merge table has the form:
- ;MTABLE(IENSD)=IENSF. IENSD is the DIQOUT iens and IENSF is the
- ;FDA iens. MTABLE provides a direct replacement of IENSD to IENSF.
+ ;MTABLE(IENSD)=IENSF. IENSD is the DIQOUT IENs and IENSF is the
+ ;FDA IENs. MTABLE provides a direct replacement of IENSD to IENSF.
  N FILENUM,IEN,IENS,IENSD,IENRF,IENSF,IND,LAST,LEN,NULLF,TOPFN
  S FILENUM=$O(FDA(""),-1),IENS=$O(FDA(FILENUM,""),-1)
  S LAST=+$P(IENS,",",1)
@@ -49,6 +49,60 @@ BMTABLE(MTABLE,IENROOT,DIQOUT,FDA) ;Build the table for merging
  .. I MTABLE(FILENUM,IENSD)'="" Q
  .. D MMTAB(.MTABLE,.IENROOT,.LAST,FILENUM,IENSD,.IENRF)
  Q
+ ;
+ ;==================================================
+DIALOGGF(FDA,IENROOT) ;
+ N FOUND,IEN,LIEN,NAME,PKGIEN,PREFIX,TEMP
+ S IENS="" F  S IENS=$O(FDA(801.46,IENS)) Q:IENS=""  D
+ .S TEMP=$G(FDA(801.46,IENS,2)) I TEMP="" Q
+ .S NAME=$P(TEMP,U),PREFIX=$P(TEMP,U,2)
+ .I NAME=""!(PREFIX="") Q
+ .S FOUND=0,LIEN=0
+ .S IEN=0 F  S IEN=$O(^DIC(9.4,"B",NAME,IEN)) Q:IEN'>0!(FOUND=1)  D
+ ..I $D(^DIC(9.4,"C",PREFIX,IEN)) S LIEN=IEN,FOUND=1 Q
+ .I LIEN'>0 Q
+ .S FDA(801.46,IENS,2)="`"_LIEN
+ Q
+ ;
+ ;==================================================
+DLINKSAV(FDA) ; save dialog entry to temp global to prevent recurrisve install.
+ N EXIST,IENS,DIAL,NAME
+ S IENS="" F  S IENS=$O(FDA(801.48,IENS)) Q:IENS=""  D
+ .S NAME=FDA(801.48,IENS,.01)
+ .S DIAL=FDA(801.48,IENS,1)
+ .S EXIST=$$EXISTS^PXRMEXIU(801.41,DIAL,"") I +EXIST>0 Q
+ .S ^TMP("PXRM DIALOG LINK FILE",$J,NAME)=DIAL
+ .K FDA(801.48,IENS,1)
+ Q
+ ;
+ ;==================================================
+DLINKSET ; reset file dialog entry to link file
+ N DA,DIE,DIEN,DIK,DNAME,DR,LIEN,LNAME
+ S LNAME="" F  S LNAME=$O(^TMP("PXRM DIALOG LINK FILE",$J,LNAME)) Q:LNAME=""  D
+ .S LIEN=$$EXISTS^PXRMEXIU(801.48,LNAME,"") I +LIEN'>0 Q
+ .S DNAME=$G(^TMP("PXRM DIALOG LINK FILE",$J,LNAME)) I DNAME="" Q
+ .S DIEN=$$EXISTS^PXRMEXIU(801.41,DNAME,"") I +DIEN'>0 Q
+ .;Set link type to dialog pointer.
+ .S DR="1///^S X=DNAME",DIE="^PXRMD(801.48,",DA=LIEN
+ .D ^DIE
+ Q
+ ;
+ ;==================================================
+EXCHINCK(EXNAME,DPACKED) ;Given the name and the date packed of an Exchange
+ ;entry return:
+ ; -1 if the entry does not exist
+ ;  0 if it has never been installed
+ ;  1^installation date/time 
+ I $G(EXNAME)="" Q -1
+ I $G(DPACKED)="" Q -1
+ N DTP,IEN,IND,LASTINDT
+ D DT^DILF("ST",DPACKED,.DTP)
+ S IEN=+$O(^PXD(811.8,"B",EXNAME,DTP,""))
+ I IEN=0 Q -1
+ S IND=+$O(^PXD(811.8,IEN,130,"B"),-1)
+ I IND=0 Q 0
+ S LASTINDT=$P(^PXD(811.8,IEN,130,IND,0),U,1)
+ Q 1_U_LASTINDT
  ;
  ;==================================================
 LOIEN(FILENUM,START) ;Find the first open IEN in a global. If the optional
@@ -135,12 +189,14 @@ REPCHAR(PXRMRIEN,CHAR1,CHAR2) ;Replace CHAR1 with CHAR2 for all lines in node
  Q
  ;
  ;==================================================
-ROC(FDA) ;For Reminder Order Checks.
- N ACTION,IEN,IENS,OI,OOI,TEXT
+ROC(FDA,IENROOT) ;For Reminder Order Checks.
+ N ACTION,IEN,IENS,NODE,OI,OOI,TEXT
  S ACTION="",IENS=""
- F  S IENS=$O(FDA(801.02,IENS)) Q:IENS=""  D  I ACTION="Q" K FDA S PXRMDONE=1
+ I $D(FDA(801.02)) D ROCCONV(.FDA,.IENROOT) K FDA(801.02)
+ F  S IENS=$O(FDA(801.015,IENS)) Q:IENS=""  D  I ACTION="Q" K FDA S PXRMDONE=1
+ .S NODE=FDA(801.015,IENS,.01) I NODE'["OI" Q
  .S TEXT=""
- .S (OI,OOI)=FDA(801.02,IENS,.01)
+ .S (OI,OOI)=$P(NODE,".",2)
  .S IEN=$$EXISTS^PXRMEXIU(101.43,OI)
  .I IEN>0,$G(^ORD(101.43,IEN,.1))'="" D
  ..S IEN=0
@@ -154,7 +210,7 @@ ROC(FDA) ;For Reminder Order Checks.
  ..D MES^XPDUTL(.MSG)
  ..S ACTION=$$GETACT^PXRMEXIU("DPQ",.DIR) I ACTION="S" S ACTION="Q"
  ..I ACTION="Q" Q
- ..I ACTION="D" K FDA(801.02,IENS,.01) Q
+ ..I ACTION="D" K FDA(801.015,IENS,.01) Q
  ..S DIC=101.43
  ..S DIC(0)="AEMNQ"
  ..S Y=-1
@@ -167,8 +223,39 @@ ROC(FDA) ;For Reminder Order Checks.
  ...I $D(DUOUT) S Y="" Q
  ...I Y=-1 D BMES^XPDUTL("You must input a replacement!")
  ..I Y="" S ACTION="Q" Q
- ..S OI=$P(Y,U,2)
- ..S FDA(801.02,IENS,.01)=OI
+ ..S OI=$P(Y,U,2) K IEN
+ ..S FDA(801.015,IENS,.01)=$P(NODE,"`")_"`"_OI
+ .I IEN>0 S FDA(801.015,IENS,.01)="OI.`"_IEN
+ Q
+ ;
+ ;==================================================
+ROCCONV(FDA,IENROOT) ;handle converting pre-patch 45 packed file to new structure
+ N CNT,IEN,IENS,IEN1,IENL,LIST,OI,OIIEN
+ ;build list of orderable items
+ S IEN1=0
+ S IENS="",IENL="" F  S IENS=$O(FDA(801.02,IENS)) Q:IENS=""  D
+ .I $G(FDA(801.02,IENS,.01))="" Q
+ .S OI=FDA(801.02,IENS,.01)
+ .S OIIEN=$$FIND1^DIC(101.43,"","BXU",OI)
+ .I +OIIEN'>0 D BMES^XPDUTL("Error mapping Orderable Item: "_OI_" to new file structure.") Q
+ .S FDA(801.015,IENS,.01)="OI."_OI
+ S IENS="",CNT=0 F  S IENS=$O(FDA(801.015,IENS)) Q:IENS=""  D
+ .S CNT=CNT+1
+ .I $G(FDA(801.015,IENS,.01))'["OI" Q
+ .S IEN=+$P(IENS,",")
+ .S IENROOT(IEN)=CNT
+ ;S LIST(FDA(801.02,IENS,.01))="",IENL=IENS
+ ;find last Item List IENS
+ ;S IEN=$P(IENL,",",2)
+ ;I $D(FDA(801.015)) D
+ ;.S IENL=$O(FDA(801.015,""),-1) I IENL="" Q
+ ;.S IEN1=+$P(IENS,","),IEN=$P(IENS,",",2)
+ ;;add Orderable Items to ITEMLIST FDA
+ ;S OI="" F  S OI=$O(LIST(OI)) Q:OI=""  D
+ ;.S OIIEN=$$FIND1^DIC(101.43,"","BXU",OI)
+ ;.I +OIIEN'>0 D BMES^XPDUTL("Error mapping Orderable Item: "_OI_" to new file structure.") Q
+ ;.S IEN1=IEN+1
+ ;.S FDA(801.02,"+"_IEN1_",+"_IEN_",",.01)="OI.`"_OIIEN
  Q
  ;
  ;==================================================

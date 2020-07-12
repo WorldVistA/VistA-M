@@ -1,57 +1,11 @@
-PXRMCVRL ; SLC/JM/AGP - Reminder CPRS Code ;01/12/15
- ;;2.0;CLINICAL REMINDERS;**53**;Feb 04, 2005;Build 225
+PXRMCVRL ; SLC/JM/AGP - Reminder CPRS Code ;04/08/2019
+ ;;2.0;CLINICAL REMINDERS;**53,45**;Feb 04, 2005;Build 566
  Q
-REMIND(ORY,ORPT) ;return pt's currently due PCE clinical reminders
- ; in the format file 811.9 ien^reminder print name^date due^last occur.
- N ORTMPLST,ORI,ORJ,ORIEN,ORTXT,ORX,ORLASTDT,ORDUEDT,ORLOC
- S ORJ=0
  ;
- ;get patient's location flag (INPATIENT ONLY - outpt locations cannot be
- ;reliably determined, and many simultaneous outpt locations can occur):
- I +$G(ORPT)>0 D
- .N DFN S DFN=ORPT,VA200="" D OERR^VADPT
- .I +$G(VAIN(4))>0 S ORLOC=+$G(^DIC(42,+$G(VAIN(4)),44))
- .K VA200,VAIN
- ;
- D REMLIST(.ORTMPLST,$G(ORLOC))
- ;D GETLST^XPAR(.ORTMPLST,"USR^LOC.`"_$G(ORLOC)_"^SRV.`"_+$G(ORSRV)_"^DIV^SYS^PKG","ORQQPX SEARCH ITEMS","Q",.ORERR)
- ;I ORERR>0 S ORY(1)=U_"Error: "_$P(ORERR,U,2) Q
- S ORI=0 F  S ORI=$O(ORTMPLST(ORI)) Q:'ORI  D
- .S ORIEN=$P(ORTMPLST(ORI),U,2)
- .K ^TMP("PXRHM",$J)
- .N ORPRI,ORDUE,ORSTA
- .D MAIN^PXRM(ORPT,ORIEN,0)
- .S ORTXT="",ORTXT=$O(^TMP("PXRHM",$J,ORIEN,ORTXT)) Q:ORTXT=""  D
- ..S ORX=^TMP("PXRHM",$J,ORIEN,ORTXT)
- ..S ORSTA=$P(ORX,U)
- ..S ORDUEDT=$P(ORX,U,2),ORLASTDT=$P(ORX,U,3)
- ..S ORLASTDT=$S(+$G(ORLASTDT)>0:ORLASTDT,1:"")  ;null if not a date
- ..S ORJ=ORJ+1
- ..S ORDUE=$S(ORSTA["DUE":1,ORSTA["ERROR":3,ORSTA["CNBD":4,1:2)
- ..I ORDUE'=2 D
- ...S ORPRI=$P($G(^PXD(811.9,ORIEN,0)),U,10) I ORPRI="" S ORPRI=2
- ...S ORY(ORJ)=ORIEN_U_ORTXT_U_ORDUEDT_U_ORLASTDT_U_ORPRI_U_ORDUE_U_$$DLG^PXRMRPCA(ORIEN)_U_U_U_U_$$DLGWIPE^PXRMRPCA(ORIEN)
- ..I ORDUE=2 D
- ...S ORY(ORJ)=ORIEN_U_ORTXT_U_U_U_U_ORDUE_U_$$DLG^PXRMRPCA(ORIEN)_U_U_U_U_$$DLGWIPE^PXRMRPCA(ORIEN)
- .K ^TMP("PXRHM",$J)
- Q
-REMDET(ORY,ORPT,ORIEN) ;return detail for a pt's clinical reminder
- ; ORY - return array
- ; ORPT - patient DFN
- ; ORIEN - clinical reminder (811.9 ien)
- K ^TMP("PXRHM",$J)
- D MAIN^PXRM(ORPT,ORIEN,5)     ; 5 returns all reminder info
- N CR,I,J,ORTXT S I=1
- S ORTXT="",ORTXT=$O(^TMP("PXRHM",$J,ORIEN,ORTXT)) Q:ORTXT=""  D
- .S J=0 F  S J=$O(^TMP("PXRHM",$J,ORIEN,ORTXT,"TXT",J)) Q:J=""  D
- ..S ORY(I)=^TMP("PXRHM",$J,ORIEN,ORTXT,"TXT",J),I=I+1
- K ^TMP("PXRHM",$J)
- Q
 NEWACTIV(ORY) ;Return true if Interactive Reminders are active
  S ORY=0
  I $T(APPL^PXRMRPCA)'="",+$G(DUZ) D
  . N SRV
- . ;S SRV=$P($G(^VA(200,DUZ,5)),U)
  . S SRV=$$GET1^DIQ(200,DUZ,29,"I")
  . S ORY=$$GET^XPAR(DUZ_";VA(200,^SRV.`"_+$G(SRV)_"^DIV^SYS","PXRM GUI REMINDERS ACTIVE",1,"Q")
  . I +ORY S ORY=1
@@ -60,11 +14,11 @@ NEWACTIV(ORY) ;Return true if Interactive Reminders are active
  ;
 NEWCVOK(RESULT,USER) ; Returns status of 
  N SRV,ERR,TMP
- ;S ORY=0,SRV=$P($G(^VA(200,DUZ,5)),U)
  S RESULT=0,SRV=$$GET1^DIQ(200,USER,29,"I")
  D GETLST^XPAR(.TMP,"USR.`"_USER_"^SRV.`"_+$G(SRV)_"^DIV^SYS^PKG","ORQQPX NEW REMINDER PARAMS","Q",.ERR)
  I +TMP S RESULT=$P($G(TMP(1)),U,2)
  Q
+ ;
 ADDNAME(ORX) ; Add Reminder or Category Name as 3rd piece
  N CAT,IEN
  S CAT=$E($P(ORX,U,2),2)
@@ -74,7 +28,7 @@ ADDNAME(ORX) ; Add Reminder or Category Name as 3rd piece
  .I CAT="C" S $P(ORX,U,3)=$P($G(^PXRMD(811.7,IEN,0)),U)
  Q ORX
  ;
-REMACCUM(RESULT,LVL,TYP,SORT,CLASS) ; Accumulates ORTMP into ORY
+REMACCUM(RESULT,LVL,TYP,SORT,CLASS,USER) ; Accumulates ORTMP into ORY
  ; Format of entries in ORQQPX COVER SHEET REMINDERS:
  ;   L:Lock;R:Remove;N:Normal / C:Category;R:Reminder / Cat or Rem IEN
  N IDX,I,J,K,M,FOUND,ORERR,ORTMP,FLAG,IEN
@@ -87,7 +41,7 @@ REMACCUM(RESULT,LVL,TYP,SORT,CLASS) ; Accumulates ORTMP into ORY
  .F  S I=$O(ORLST(I)) Q:'I  D
  ..S ORCLS=$P(ORLST(I),U,1)
  ..I +CLASS S ADD=(ORCLS=+CLASS) I 1
- ..E  S ADD=$$ISA^USRLM(DUZ,ORCLS,.ORERR)
+ ..E  S ADD=$$ISA^USRLM(USER,ORCLS,.ORERR)
  ..I +ADD D
  ...D GETWP^XPAR(.ORWP,"SYS",ORCLSPRM,ORCLS,.ORERR)
  ...S K=0
@@ -118,16 +72,22 @@ REMACCUM(RESULT,LVL,TYP,SORT,CLASS) ; Accumulates ORTMP into ORY
  ..S IDX=IDX+1
  M RESULT=OUT
  Q
+ ;
 ADDREM(RESULT,IDX,IEN) ; Add Reminder to RESULT list
  I $D(RESULT("B",IEN)) Q               ; See if it's in the list
  I '$D(^PXD(811.9,IEN)) Q           ; Check if Exists
  I $P($G(^PXD(811.9,IEN,0)),U,6)'="" Q  ; Check if Active
- ;check to see if the reminder is assigned to CPRS
- I $P($G(^PXD(811.9,IEN,100)),U,4)["L" Q
- I $P($G(^PXD(811.9,IEN,100)),U,4)'["C",$P($G(^PXD(811.9,IEN,100)),U,4)'="*" Q
+ ;Check to see if the reminder is assigned to CPRS
+ N USAGE
+ S USAGE=$P($G(^PXD(811.9,IEN,100)),U,4)
+ ;If the Usage is List or Order Check skip it.
+ I (USAGE["L")!(USAGE["O") Q
+ ;If the Usage is not C or * skip it.
+ I USAGE'["C",USAGE'="*" Q
  S RESULT(IDX)=IDX_U_IEN
  S RESULT("B",IEN)=""
  Q
+ ;
 ADDCAT(RESULT,IDX,IEN) ; Add Category Reminders to ORY list
  N REM,I,IDX2,NREM
  D CATREM^PXRMAPI0(IEN,.REM)
@@ -137,19 +97,29 @@ ADDCAT(RESULT,IDX,IEN) ; Add Category Reminders to ORY list
  . S IDX2=$E(IDX2,$L(IDX2)-5,99)
  . D ADDREM(.RESULT,+(IDX_"."_IDX2),$P(REM(I),U,1))
  Q
+ ;
 REMLIST(RESULT,PERSON,LOC) ;Returns a list of all cover sheet reminders
  N SRV,I,J,LST,CODE,IDX,IEN,NEWP,USER
- ;S SRV=$P($G(^VA(200,DUZ,5)),U)
  S USER=$S(+$G(PERSON)>0:+$G(PERSON),1:DUZ)
- S SRV=$$GET1^DIQ(200,DUZ,29,"I")
+ S SRV=$$GET1^DIQ(200,USER,29,"I")
  D NEWCVOK(.NEWP,USER)
- I 'NEWP D GETLST^XPAR(.RESULT,"USR.`"_USER_"^LOC.`"_$G(LOC)_"^SRV.`"_+$G(SRV)_"^DIV^SYS^PKG","ORQQPX SEARCH ITEMS","Q",.ORERR) Q
+ I 'NEWP D  Q
+ . N OLDLIST
+ . D GETLST^XPAR(.OLDLIST,"USR.`"_USER_"^LOC.`"_$G(LOC)_"^SRV.`"_+$G(SRV)_"^DIV^SYS^PKG","ORQQPX SEARCH ITEMS","Q",.ORERR)
+ . S I=0
+ . F  S I=$O(OLDLIST(I)) Q:'I  D
+ .. S IDX=$P(OLDLIST(I),U,1)
+ .. F  Q:'$D(RESULT(IDX))  S IDX=IDX+1
+ .. S IEN=$P(OLDLIST(I),U,2)
+ .. D ADDREM(.RESULT,IDX,IEN)
+ . K RESULT("B")
+ ;
  D REMACCUM(.LST,"PKG","Q",1000)
  D REMACCUM(.LST,"SYS","Q",2000)
  D REMACCUM(.LST,"DIV","Q",3000)
  I +SRV D REMACCUM(.LST,"SRV.`"_+$G(SRV),"Q",4000)
  I +LOC D REMACCUM(.LST,"LOC.`"_+$G(LOC),"Q",5000)
- D REMACCUM(.LST,"CLASS","Q",6000)
+ D REMACCUM(.LST,"CLASS","Q",6000,"",USER)
  D REMACCUM(.LST,"USR.`"_USER,"Q",7000)
  S I=0
  F  S I=$O(LST(I)) Q:'I  D
@@ -194,12 +164,13 @@ GETDLIST(RESULT,USER,LOC) ;
  Q
  ;
 GETTDLST(RESULT) ;
- ;get coversheet reminders list.
+ ;get TIU template reminder dialogs list.
  N IEN,NODE,NUM,REMLIST
  S IEN=0 F  S IEN=$O(^TIU(8927,IEN)) Q:IEN'>0  D
  .S NODE=$G(^TIU(8927,IEN,0))
  .I $P(NODE,U,15)>0  S RESULT("TEMPLATE",$P(NODE,U,15))=""
  Q
+ ;
 GETLIST(RESULT,USER,LOC) ;Returns a list of all cover sheet reminders
  N I
  D REMLIST(.RESULT,USER,$G(LOC))
@@ -213,3 +184,4 @@ EVALCOVR(RESULT,PT,LOC) ; Evaluate Cover Sheet Reminders
  D GETLIST(.ORTMP,$G(LOC))
  D ALIST^ORQQPXRM(.RESULT,PT,.ORTMP)
  Q
+ ;

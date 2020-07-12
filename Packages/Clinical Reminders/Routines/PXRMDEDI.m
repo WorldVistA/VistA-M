@@ -1,5 +1,5 @@
-PXRMDEDI ; SLC/PJH - Edit PXRM reminder dialog. ;04/02/2013
- ;;2.0;CLINICAL REMINDERS;**4,26**;Feb 04, 2005;Build 404
+PXRMDEDI ;SLC/PJH - Edit PXRM reminder dialog. ;04/07/2016  13:49
+ ;;2.0;CLINICAL REMINDERS;**4,26,45**;Feb 04, 2005;Build 566
  ;
  ;Used by protocol PXRM DIALOG SELECTION ITEM
  ;
@@ -35,7 +35,7 @@ DEL(SEQ,PXRMDIEN) ;Delete individual element from dialog or group
  ;
 IND(DIEN,SEL) ;Edit individual element
  W IORESET
- N DIC,DIDEL,DR,DTOUT,DTYP,DUOUT,DINUSE,HED,LFIND,LOCK,NATIONAL,OIEN,PLOCK,Y
+ N DIC,DIDEL,DR,DTOUT,DTYP,DUOUT,DINUSE,FAIL,HED,LFIND,LOCK,NATIONAL,OIEN,PLOCK,Y
  ;
  S OIEN=0
  ;Check for Uneditable flag
@@ -80,7 +80,24 @@ IND(DIEN,SEL) ;Edit individual element
  I ANS="C" D SEL^PXRMDCPY(.DIEN,PIEN) Q:$D(DTOUT)!$D(DUOUT) 
  ;Determine if a taxonomy dialog
  N FIND
- I ANS="R" S OIEN=DIEN,(IEN,DIEN)=$P($G(^PXRMD(801.41,DIEN,49)),U,3)
+ S FAIL=0
+ I ANS="R",$D(^PXRMD(801.41,DIEN,"BL")) D
+ .N ARRAY,CNT,DIR,SEQ,IDX,DNAME,REPIEN,Y
+ .S DIR(0)="S"_U,CNT=0,DIR("A")="Replacement Dialog"
+ .S SEQ=0 F  S SEQ=$O(^PXRMD(801.41,IEN,"BL","B",SEQ)) Q:SEQ'>0  D
+ ..S IDX=$O(^PXRMD(801.41,IEN,"BL","B",SEQ,"")) Q:IDX'>0
+ ..S REPIEN=$P($G(^PXRMD(801.41,IEN,"BL",IDX,0)),U,5) Q:REPIEN'>0
+ ..S ARRAY(SEQ)=REPIEN
+ ..S DNAME=$P($G(^PXRMD(801.41,REPIEN,0)),U)
+ ..S CNT=CNT+1,DIR(0)=DIR(0)_SEQ_":"_DNAME_";"
+ .I CNT=1,REPIEN>0 S OIEN=DIEN,(IEN,DIEN)=REPIEN Q
+ .D ^DIR
+ .I $D(DIROUT) S DTOUT=1
+ .I $D(DTOUT)!($D(DUOUT)) S FAIL=1 Q
+ .S REPIEN=ARRAY(Y)
+ .I REPIEN>0 S OIEN=DIEN,(IEN,DIEN)=REPIEN
+ I FAIL=1 Q
+ ;S OIEN=DIEN,(IEN,DIEN)=$P($G(^PXRMD(801.41,DIEN,49)),U,3)
  S FIND=$P($G(^PXRMD(801.41,IEN,1)),U,5),VALMBCK="R"
  ;Option to change an element to a group
  I DTYP="E",'NATIONAL D NTYP^PXRMDEDT(.DTYP) Q:$D(DUOUT)!$D(DTOUT)  D:DTYP="G"
@@ -102,9 +119,7 @@ PROMPT(ANS,DIEN) ;Select Dialog Element Action
  S DIR(0)="S"_U_"E:Edit;"
  S DIR(0)=DIR(0)_"C:Copy and Replace current element;"
  S DIR(0)=DIR(0)_"D:Delete element from this dialog;"
- I $P($G(^PXRMD(801.41,DIEN,49)),U,3)>0 D
- .S NAME=$P($G(^PXRMD(801.41,$P($G(^PXRMD(801.41,DIEN,49)),U,3),0)),U)
- .S DIR(0)=DIR(0)_"R:Edit Replacement Element/Group "_NAME_";"
+ I $D(^PXRMD(801.41,DIEN,"BL")) S DIR(0)=DIR(0)_"R:Edit Replacement Element/Group;"
  S DIR("A")="Select Dialog Element Action"
  S DIR("B")="E"
  S DIR("?")="Select from the codes displayed. For detailed help type ??"
