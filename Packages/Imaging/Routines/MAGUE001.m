@@ -1,5 +1,5 @@
-MAGUE001 ;WOIFO/MLH/BT - database encapsulation - study description for DICOM ; 01 Mar 2012 9:03 AM
- ;;3.0;IMAGING;**54,118**;Mar 19, 2002;Build 4525;May 01, 2013
+MAGUE001 ;WOIFO/MLH/BT/DAC - database encapsulation - study description for DICOM ; May 28, 2020@09:02:05
+ ;;3.0;IMAGING;**54,118,263**;Mar 19, 2002;Build 17
  ;; Per VHA Directive 2004-038, this routine should not be modified.
  ;; +---------------------------------------------------------------+
  ;; | Property of the US Government.                                |
@@ -52,16 +52,18 @@ STYDESC(IMAGE,ERR) ;FUNCTION - return study description for an image
  . Q
  Q STYDESC
  ;
-STYDESC2(TYPE,IMAGE,ERR) ; UPDATED FUNCTION - return study description for an image
+STYDESC2(TYPE,IMAGE,ERR,IENTYPE) ; UPDATED FUNCTION - return study description for an image
  ; input:    TYPE      R or C (old database) or N (new database)
  ;           IMAGE     IEN of the image on ^MAG(2005)
+ ;           IENTYPE   P263 DAC - Default/Null for SOP (#2005.64) file, "IMAGE" for Image (#2005.65) file
  ; function return:    p1   study description of the image
  ;   (^-pieces)        p2   descriptive error message if any
  ; 
  N STYDESC ; ------- study description
  I TYPE="N" D
  . N STUDYIX ; study index
- . S STUDYIX=$$STUDYIX^MAGUE004(IMAGE) Q:'STUDYIX
+ . ; P263 DAC - Added parameter so that STUDYIX function can accept SOP or IMAGE IENs
+ . S STUDYIX=$$STUDYIX^MAGUE004(IMAGE,$G(IENTYPE)) Q:'STUDYIX
  . S STYDESC=$P($G(^MAGV(2005.62,STUDYIX,3)),"^",1)
  . Q
  I (TYPE="R")!(TYPE="C") D

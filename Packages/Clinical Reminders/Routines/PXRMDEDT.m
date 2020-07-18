@@ -1,5 +1,5 @@
-PXRMDEDT ; SLC/PJH - Edit PXRM reminder dialog. ;01/28/2013
- ;;2.0;CLINICAL REMINDERS;**4,6,12,17,16,24,26**;Feb 04, 2005;Build 404
+PXRMDEDT ;SLC/PJH - Edit PXRM reminder dialog. ;08/31/2017
+ ;;2.0;CLINICAL REMINDERS;**4,6,12,17,16,24,26,45**;Feb 04, 2005;Build 566
  ;
  ;Used by protocol PXRM SELECTION ADD/PXRM GENERAL ADD
  ;
@@ -33,6 +33,27 @@ ADD N DA,DIC,Y,DTOUT,DUOUT,DTYP,DLAYGO,HED
  .D EDIT(DTYP,DA,0)
  Q
  ;
+EDITD(ROOT,IENN) ;
+ N DA,DIE,DR,TYPE
+ S TYPE=$P($G(^PXRMD(801.41,IENN,0)),U,4) I TYPE="" Q
+ I "PF"[TYPE D
+ .;Get original process ID
+ .N SUB S SUB=$P($G(^PXRMD(801.41,IENO,46)),U)
+ .;Update GUI process in 801.41
+ .I SUB S DR="46///"_SUB,DIE=ROOT,DA=IENN D ^DIE
+ .;check if a prompt
+ .I $P(@(ROOT_IENN_",0)"),U,4)="P" D
+ ..;Allow PXRM prompts to be changed into forced values
+ ..N ANS,TEXT
+ ..S TEXT="Change the new prompt into a forced value :"
+ ..D ASK^PXRMDCPY(.ANS,TEXT,4,"N") Q:$D(DUOUT)!$D(DTOUT)  Q:ANS'="Y"
+ ..;Store the dialog type
+ ..S DR="4///F",DIE=ROOT,DA=IENN
+ ..D ^DIE
+ .Q
+ ;
+ D EDIT(TYPE,IENN)
+ Q
  ;called by protocol PXRM DIALOG EDIT
  ;-----------------------------------
 EDIT(TYP,DA,OIEN) ;
@@ -64,10 +85,11 @@ EDIT(TYP,DA,OIEN) ;
  I $P($G(^PXRMD(801.41,DA,100)),U)="N" D
  .I TYP="T",+$P($G(^PXMRD(801.41,DA,100)),U,4)=0 Q
  .I $G(PXRMINST)=1,DUZ(0)="@" Q
- .S DR="[PXRM EDIT NATIONAL DIALOG]",DINUSE=1
+ .I TYP'="R" S DR="[PXRM EDIT NATIONAL DIALOG]",DINUSE=1 Q
+ .S DR="[PXRM NATIONAL DIALOG EDIT]",DINUSE=1
  ;
  I "GEPFS"[TYP D
- .I '$D(^PXRMD(801.41,"AD",DA)),'$D(^PXRMD(801.41,"R",DA)),'$D(^PXRMD(801.41,"RG",DA)) W !,"Not used by any other dialog",! Q
+ .I '$D(^PXRMD(801.41,"AD",DA)),'$D(^PXRMD(801.41,"BLR",DA)),'$D(^PXRMD(801.41,"RG",DA)) W !,"Not used by any other dialog",! Q
  .I PXRMGTYP'="DLG" S DINUSE=1 Q
  .I PXRMGTYP="DLG" D  Q
  ..N SUB
@@ -79,18 +101,18 @@ EDIT(TYP,DA,OIEN) ;
  .I TYP="S" W !,"Used by:" D USE^PXRMDLST(DA,10,PXRMDIEN,"RG") Q
  .I PXRMGTYP="DLGE" D
  ..W !,"Used by:" D USE^PXRMDLST(DA,10,"","AD")
- ..I $D(^PXRMD(801.41,"R",DA))'>0 Q
- ..W !,"Used as a Replacement Element/Group for: " D USE^PXRMDLST(DA,10,"","R")
+ ..I $D(^PXRMD(801.41,"BLR",DA))'>0 Q
+ ..W !,"Used as a Replacement Element/Group for: " D USE^PXRMDLST(DA,10,"","BLR")
  .I PXRMGTYP'="DLGE" D
  ..W !,"Used by:" D USE^PXRMDLST(DA,10,PXRMDIEN,"AD")
- ..I $D(^PXRMD(801.41,"R",DA))'>0 Q
- ..W !,"Used as a Replacement Element/Group for: " D USE^PXRMDLST(DA,10,PXRMDIEN,"R")
+ ..I $D(^PXRMD(801.41,"BLR",DA))'>0 Q
+ ..W !,"Used as a Replacement Element/Group for: " D USE^PXRMDLST(DA,10,PXRMDIEN,"BLR")
  ;
  ;Save list of components
  N COMP D COMP^PXRMDEDX(DA,.COMP)
  ;Edit dialog then unlock
  I TYP'="P" D ^DIE D UNLOCK(ODA) I $G(DA)="",$G(OIEN)>0 D
- .S DA=OIEN,DR="118////@" D ^DIE K DA
+ .;S DA=OIEN,DR="118////@" D ^DIE K DA
  I TYP="P" D PROMPT(DA) D UNLOCK(ODA)
  ;I '$D(DUOUT)&($G(D1)'="") D  Q
  I $G(D1)'="" D
@@ -107,6 +129,9 @@ EDIT(TYP,DA,OIEN) ;
  .I $D(COMP) D DELETE^PXRMDEDX(.COMP)
  .S VALMBCK="R"
  ;
+ I $D(DA) D
+ .W !,"Checking reminder dialog for errors.." H 1
+ .D WRITE^PXRMDLRP(ODA)
  ;Update edit history
  I (TYP'="R") D
  .S CS2=$$FILE^PXRMEXCS(801.41,DA) Q:CS2=CS1  Q:+CS2=0
@@ -279,6 +304,7 @@ LOCK(DA) ;Lock the record
  .I DTYP="G",$G(PXRMGTYP)="DLGE" Q
  .;Allow edit of element findings
  .I DTYP="E" Q
+ .I DTYP="R",$$HASPRMPT^PXRMDLG6("GF_PRINT")>0 Q
  .S OK=0
  .W !!,?5,"VA- and national class reminder dialogs may not be edited" H 2
  I 'OK Q 0

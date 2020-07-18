@@ -1,0 +1,102 @@
+PXRMDLG7 ;SLC/AGP - Reminder Dialog TESTER List Manager;07/31/2018
+ ;;2.0;CLINICAL REMINDERS;**45**;Feb 04, 2005;Build 566
+ ;
+ ;
+BLFAIL(ARRAY) ;
+ N CNT,TEMP
+ S CNT=$O(ARRAY(""),-1)
+ I CNT>2 Q 0
+ S TEMP=1_U_U_"1"_U_"D"_U_"1"_U_U_U_"0"_U_U
+ I $G(ARRAY(1))'=TEMP Q 0
+ S TEMP=2_U_U_"1"_U_"Clinical Reminder evaluation error; this reminder dialog cannot be processed.<br>Please contact the reminder manager for assistance."
+ I ARRAY(CNT)'=TEMP Q 0
+ W !,"Clinical Reminder evaluation error; this reminder dialog cannot be processed."
+ W !,"Please contact the reminder manager for assistance."
+ H 2
+ Q 1
+ ;
+EN ;
+ N ARRAY,VIEW
+ S VALMBCK="R"
+ D TESTER(.ARRAY,PXRMDIEN,.VIEW)
+ I '$D(ARRAY) D BUILD^PXRMDLG(0) Q
+ I $$BLFAIL(.ARRAY) D BUILD^PXRMDLG(0) Q
+ D START
+ Q
+ ;Display national dialog
+START N NLINE,NSEL
+ S NLINE=0,NSEL=0
+ ;
+ S PXRMDTST=1
+ K ^TMP("PXRMDLG",$J)
+ D BUILD
+ ;Create headings
+ D CHGCAP^VALM("HEADER1","Item  Seq.")
+ I VIEW=1 D CHGCAP^VALM("HEADER2","Tester Dialog Details")
+ I VIEW=2 D CHGCAP^VALM("HEADER2","Tester Dialog Text")
+ I VIEW=3 D CHGCAP^VALM("HEADER2","Tester Progress Note Text")
+ I VIEW=1 D CHGCAP^VALM("HEADER3","Type")
+ S VALMCNT=NLINE
+ S ^TMP("PXRMDLG",$J,"VALMCNT")=VALMCNT
+ D XQORM^PXRMDLG
+EXIT Q
+ ;
+BUILD ;
+ N I,IEN,OUTPUT,PIECES,SEQ,SEQLAST,SEQS,TESTDATA
+ S I=0 F  S I=$O(ARRAY(I)) Q:I'>0  D
+ .S OUTPUT=$G(ARRAY(I)) Q:OUTPUT=""  Q:$P(OUTPUT,U)=2
+ .S IEN=$P(OUTPUT,U,2),SEQ=$P(OUTPUT,U,3)
+ .;break out seq to mimic going through the DD entry
+ .S PIECES=$L(SEQ,".")
+ .I PIECES=1 S SEQS="",SEQLAST=SEQ
+ .I PIECES>1 D
+ ..S ^TMP("PXRMDLG",$J,"SEQ",SEQ)=IEN
+ ..S SEQS=$P(SEQ,".",1,PIECES-1)_"."
+ ..S SEQLAST=$P(SEQ,".",PIECES)
+ .I VIEW=1 D DLINE^PXRMDLG3(IEN,SEQS,SEQLAST)
+ .I VIEW>1 S TESTDATA=$$TESTDATA(IEN,OUTPUT) D DLINE^PXRMDLG4(IEN,SEQS,SEQLAST,"PXRMDLG")
+ .S ^TMP("PXRMDLG",$J,"IEN",NSEL)=IEN_U_SEQLAST
+ Q
+ ;
+ISTEST() ;
+ Q +$G(PXRMDTST)
+ ;
+TESTDATA(IEN,NODE) ;
+ N RESULT
+ S RESULT=$G(^PXRMD(801.41,IEN,0))
+ S $P(RESULT,U,11)=$S($P(NODE,U,4)="D":1,$P(NODE,U,4)="C":"C",1:"")
+ S $P(RESULT,U,14)=$P(NODE,U,10)
+ S $P(RESULT,U,10)=$P(NODE,U,15)
+ S $P(RESULT,U,7)=$P(NODE,U,16)
+ S $P(RESULT,U,8)=$P(NODE,U,17)
+ S $P(RESULT,U,9)=$P(NODE,U,18)
+ S $P(RESULT,U,6)=$S($P(NODE,U,19)=1:"Y",1:"N")
+ S $P(RESULT,U,5)=$P(NODE,U,20)
+ S $P(RESULT,U,12)=$P(NODE,U,21)
+ Q RESULT
+ ;
+TESTER(ARRAY,PXRMDIEN,VIEW) ;
+ ;Prompt for patient and dialog.
+ N DATE,DIR,DFN,DIC,DIR,DIROUT,DIRUT,DTOUT,DUOUT,HASFF,HASTERM,IND
+ N PXRHM,PXRMFFSS,PXRMITEM,PXRMTDEB,OCNT,ORY,X,Y
+ S VIEW=-1
+GVIEW ;
+ S DIR(0)="SB^DD:DETAILED DISPLAY;DP:DIALOG PROGRESS NOTE;DT:DIALOG TEXT"
+ S DIR("A")="Select View:"
+ S DIR("B")="DD"
+ D ^DIR
+ I Y=U G GVIEW
+ I Y=U_U Q
+ S VIEW=$S(Y="DD":1,Y="DP":3,Y="DT":2,1:-1)
+ I VIEW=-1 Q
+ S DIC=2,DIC("A")="Select Patient: "
+ S DIC(0)="AEQMZ"
+GPAT1 D ^DIC
+ I $D(DIROUT)!$D(DIRUT) Q
+ I $D(DTOUT)!$D(DUOUT) Q
+ S DFN=+$P(Y,U,1)
+ I DFN=-1 G GPAT1
+ D LOAD^PXRMDLL(PXRMDIEN,DFN)
+ M ARRAY=ORY
+ Q
+ ;

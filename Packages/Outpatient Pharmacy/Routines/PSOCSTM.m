@@ -1,5 +1,5 @@
 PSOCSTM ;BHAM ISC/SAB - monthly rx cost compilation ;7/10/06 4:36pm
- ;;7.0;OUTPATIENT PHARMACY;**4,17,19,28,89,212,246**;DEC 1997;Build 12
+ ;;7.0;OUTPATIENT PHARMACY;**4,17,19,28,89,212,246,584**;DEC 1997;Build 3
  ;External Ref. to ^PS(55 DBIA# 2228
  ;External Ref. to ^DPT DBIA# 10035
  ;External Ref. to ^PSDRUG DBIA# 221
@@ -64,13 +64,15 @@ CHK I '$D(^PSRX(RXN,0)) K ^PSRX("AL",PSDT,RXN,RXF) Q
  .I $P(^PSRX(RXN,"P",RXF,0),"^",19) D
  ..S RX1=^PSRX(RXN,"P",RXF,0),DIV=$S($P(RX1,"^",9):$P(RX1,"^",9),1:$P(RX2,"^",9))
  ..S PHYS=$S($P(RX1,"^",17):$P(RX1,"^",17),1:$P(RX0,"^",4))
- ..S OR=0,RF=1,QTY=+$P(RX1,"^",4),ML=$S($P(RX1,"^",2)="M":1,1:0),WD=$S($P(RX1,"^",2)="W":1,1:0) S COST=QTY*COST D SET,SF
+ ..S OR=0,RF=1,QTY=+$P(RX1,"^",4),ML=$S($P(RX1,"^",2)="M":1,1:0),WD=$S($P(RX1,"^",2)="W":1,1:0) ;p584 S COST=QTY*COST D SET,SF
+ ..S COST=$S(+$P(RX1,"^",11):+$P(RX1,"^",11),$D(^PSDRUG(DRG,660)):+$P(^(660),"^",6),1:0) S COST=QTY*COST D SET,SF ;p584
  I $P(RX2,"^",13),'RXF D  Q
  .S OR=1,RF=0,QTY=+$P(RX0,"^",7),ML=$S($P(RX0,"^",11)="M":1,1:0),WD=$S($P(RX0,"^",11)="W":1,1:0),COST=QTY*COST D SET,SF
  D:RXF 
  .I '$D(^PSRX(RXN,1,RXF,0)) K ^PSRX("AL",PSDT,RXN,RXF) Q
  .Q:'$P(^PSRX(RXN,1,RXF,0),"^",18)  S RX1=^PSRX(RXN,1,RXF,0)
- .S OR=0,RF=1,QTY=+$P(RX1,"^",4),ML=$S($P(RX1,"^",2)="M":1,1:0),WD=$S($P(RX1,"^",2)="W":1,1:0) S COST=QTY*COST
+ .S OR=0,RF=1,QTY=+$P(RX1,"^",4),ML=$S($P(RX1,"^",2)="M":1,1:0),WD=$S($P(RX1,"^",2)="W":1,1:0) ;p584 S COST=QTY*COST
+ .S COST=$S(+$P(RX1,"^",11):+$P(RX1,"^",11),$D(^PSDRUG(DRG,660)):+$P(^(660),"^",6),1:0) S COST=QTY*COST ;p584
  .S PHYS=$S($P(RX1,"^",17):$P(RX1,"^",17),1:$P(RX0,"^",4)),DIV=$S($P(RX1,"^",9):$P(RX1,"^",9),1:$P(RX2,"^",9))
  .D SET,SF
  Q

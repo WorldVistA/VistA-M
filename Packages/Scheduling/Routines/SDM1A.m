@@ -1,5 +1,5 @@
 SDM1A ;SF/GFT,ALB/TMP,MS/PB - MAKE APPOINTMENT ;JUN 21, 2017
- ;;5.3;Scheduling;**26,94,155,206,168,223,241,263,327,478,446,544,621,622,627,658,665,650,704**;Aug 13, 1993;Build 64
+ ;;5.3;Scheduling;**26,94,155,206,168,223,241,263,327,478,446,544,621,622,627,658,665,650,704,694**;Aug 13, 1993;Build 61
  ;
 OK I $D(SDMLT) D ^SDM4 Q:X="^"!(SDMADE=2)
  S ^SC(SC,"ST",$P(SD,"."),1)=S,^DPT(DFN,"S",SD,0)=SC,^SC(SC,"S",SD,0)=SD S:'$D(^DPT(DFN,"S",0)) ^(0)="^2.98P^^" S:'$D(^SC(SC,"S",0)) ^(0)="^44.001DA^^" L
@@ -280,21 +280,21 @@ SDWLA(DFN,SD,SDSC,SDDATE,SDAPTYP,SDECANS)  ;add SDEC APPT REQUEST entry  ;alb/sa
  K ^TMP("SDEC50",$J,"PCSTGET")
  ;set appt request entry
  S SDECINP(1)=""
- S SDECINP(2)=DFN                 ;patient
- S SDECINP(3)=$E($$NOW^XLFDT,1,12)  ;originating date/time
- S SDECINP(4)=DUZ(2)              ;institution
- S SDECINP(5)="APPOINTMENT"   ;wait list type - specific clinic
- S SDECINP(6)=SDSC               ;clinic
- S SDECINP(7)=DUZ                ;originating user
- S SDECINP(8)="ASAP"             ;priority
- S SDECINP(9)="PATIENT"          ;requested by
- S SDECINP(11)=SDDATE             ;desired date of appointment
+ S SDECINP(2)=DFN                                     ;patient
+ S X=$E($$NOW^XLFDT,1,12),SDECINP(3)=$$FMTE^XLFDT(X)  ;originating date/time in external format  PWC SD*5.3*694 VSE
+ S SDECINP(4)=DUZ(2)                                  ;institution
+ S SDECINP(5)="APPOINTMENT"                           ;wait list type - specific clinic
+ S SDECINP(6)=SDSC                                    ;clinic
+ S SDECINP(7)=DUZ                                     ;originating user
+ S SDECINP(8)="ASAP"                                  ;priority
+ S SDECINP(9)="PATIENT"                               ;requested by
+ S SDECINP(11)=SDDATE                                 ;desired date of appointment
  ;S SDECINP(16)=$S(SDWLSTAT="YES":"ESTABLISHED",1:"NEW")
- S SDECINP(14)="NO"               ;multiple appointment RTC
+ S SDECINP(14)="NO"                                   ;multiple appointment RTC
  S SDECINP(15)=0
  S SDECINP(16)=0
  S:SDECANS'="" SDECINP(18)=$S(SDECANS="Y":"YES",1:0)  ;alb/sat 665
- S:+SDAPTYP SDECINP(22)=+SDAPTYP  ;appointment type
+ S:+SDAPTYP SDECINP(22)=+SDAPTYP                      ;appointment type
  K SDWLRET
  S SDWLRET=""
  D ARSET1^SDEC(.SDWLRET,.SDECINP)

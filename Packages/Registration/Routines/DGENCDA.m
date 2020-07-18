@@ -1,5 +1,5 @@
 DGENCDA ;ALB/CJM,Zoltan,JAN,BRM,TDM,DJS - Catastrophic Disability API - Retrieve Data;May 24, 1999;Nov 14, 2001 ; 9/19/05 11:35am
- ;;5.3;Registration;**121,147,232,387,451,653,894**;Aug 13,1993;Build 48
+ ;;5.3;Registration;**121,147,232,387,451,653,894,992**;Aug 13,1993;Build 5
  ;
  ; DG*5.3*894 - Enhance Catastrophic Disability to use Descriptors rather than Diagnoses/Procedures/Conditions.
  ;
@@ -95,8 +95,12 @@ CHKSITE(DFN) ;is this the facility that made the CD determination?
  ;     site, otherwise 0^SITE #
  ;
  Q:'$G(DFN) 0
- N SITE
- S SITE=$$SITE^VASITE
+ N SITE,DGDIV,DGSITE,DGSDIV
+ S DGSITE=DUZ(2)
+ S (DGDIV,DGSDIV)=0
+ F  S DGDIV=$O(^DG(40.8,DGDIV)) D  Q:DGSDIV
+ . I $P(^DG(40.8,DGDIV,0),"^",7)=DGSITE S DGSDIV=DGDIV
+ S SITE=$$SITE^VASITE(,DGSDIV)
  Q:$P($G(^DPT(DFN,.39)),"^",3)=$P(SITE,"^") 1
  Q "0^"_$P($G(^DPT(DFN,.39)),"^",3)
  ;

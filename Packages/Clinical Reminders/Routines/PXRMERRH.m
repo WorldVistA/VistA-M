@@ -1,5 +1,50 @@
-PXRMERRH ;SLC/PKR - Error handling routines. ;05/09/2016
- ;;2.0;CLINICAL REMINDERS;**4,17,18,47**;Feb 04, 2005;Build 291
+PXRMERRH ;SLC/PKR - Error handling routines. ;07/06/2016  13:05
+ ;;2.0;CLINICAL REMINDERS;**4,17,18,47,45**;Feb 04, 2005;Build 566
+ ;
+ ;=================================================================
+DERRHRLR ;PXRM error handler. Send a MailMan message to the mail group defined
+ ;by the site and put the error in the error trap.
+ ;References to %ZTER covered by DBIA #1621.
+ N CNT,ERR,ERROR,INDEX,MGIEN,MGROUP,NL,XMDUZ,XMSUB,XMY,XMZ
+ S ERROR=$$EC^%ZOSV
+ ;Ignore the "errors" the unwinder creates.
+ I ERROR["ZTER" D UNWIND^%ZTER
+ ;If it is a framestack error do not try to send the message
+ I ERROR["FRAMESTACK" Q
+ ;Make sure we don't loop if there is an error during procesing of
+ ;the error handler.
+ N $ET S $ET="D ^%ZTER,DCLEAN^PXRMERRH,UNWIND^%ZTER"
+ ;
+ ;Save the error then put it in the error trap, this saves the correct
+ ;last global reference.
+ D ^%ZTER
+ ;
+ ;If this is a test run write out the error.
+ ;I $G(PXRMDEBG) W !,ERROR
+ ;
+ K ^TMP("PXRMXMZ",$J)
+ S CNT=0
+ S CNT=CNT+1,^TMP("PXRMXMZ",$J,CNT,0)="The following error occurred while saving general findings:"
+ S CNT=CNT+1,^TMP("PXRMXMZ",$J,CNT,0)=ERROR
+ S CNT=CNT+1,^TMP("PXRMXMZ",$J,CNT,0)="Please contact the help desk for assistance."
+ S CNT=CNT+1,^TMP("PXRMXMZ",$J,CNT,0)=" "
+ S CNT=CNT+1,^TMP("PXRMXMZ",$J,CNT,0)="See below for the data that was not saved:"
+ D ACOPY^PXRMUTIL("DATA","ERR()")
+ S INDEX=0 F  S INDEX=$O(ERR(INDEX)) Q:INDEX'>0  S CNT=CNT+1,^TMP("PXRMXMZ",$J,CNT,0)=ERR(INDEX)
+ ;
+ S MGIEN=$G(^PXRM(800,1,"MGFE"))
+ ;If the mail group has not been defined tell the user.
+ I MGIEN="" D
+ . S CNT=CNT+1,^TMP("PXRMXMZ",$J,CNT,0)=" "
+ . S CNT=CNT+1,^TMP("PXRMXMZ",$J,CNT,0)="You received this message because your IRM has not set up a mailgroup"
+ . S CNT=CNT+1,^TMP("PXRMXMZ",$J,CNT,0)="to receive Clinical Reminder errors; please notify them."
+ ;
+ D SEND^PXRMMSG("PXRMXMZ","ERROR SAVING DATA","",DUZ)
+ ;
+ ;I '$G(PXRMDEBG) D DCLEAN
+ S RETURN(0)="-1^A Mumps error occurred while saving data."
+ D UNWIND^%ZTER
+ Q
  ;
  ;=================================================================
 ERRHDLR ;PXRM error handler. Send a MailMan message to the mail group defined
@@ -9,7 +54,7 @@ ERRHDLR ;PXRM error handler. Send a MailMan message to the mail group defined
  S ERROR=$$EC^%ZOSV
  ;Ignore the "errors" the unwinder creates.
  I ERROR["ZTER" D UNWIND^%ZTER
- ;If it is a framestack error do not try to send the message.
+ ;If it is a framestack error do not try to send the message
  I ERROR["FRAMESTACK" Q
  ;Make sure we don't loop if there is an error during procesing of
  ;the error handler.
@@ -70,6 +115,9 @@ ERRHDLR ;PXRM error handler. Send a MailMan message to the mail group defined
 CLEAN ;Clean-up scratch arrays
  K ^TMP("PXRM",$J)
  I $D(PXRMPID) K ^TMP(PXRMPID,$J)
+ Q
+ ;
+DCLEAN ;
  Q
  ;
  ;=================================================================

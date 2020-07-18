@@ -1,5 +1,5 @@
-SDEC34 ;ALB/SAT - VISTA SCHEDULING RPCS ;JAN 15, 2016
- ;;5.3;Scheduling;**627**;Aug 13, 1993;Build 249
+SDEC34 ;ALB/SAT,WTC - VISTA SCHEDULING RPCS ;Feb 12, 2020@15:22
+ ;;5.3;Scheduling;**627,694**;Aug 13, 1993;Build 61
  ;
  Q
  ;
@@ -57,10 +57,19 @@ REBKCLIN(SDECY,SDECCLST,SDECBEG,SDECEND) ;Return recordset of rebooked patient a
  N %DT,X,Y,SDECJ,SDECCID,SDECCLN,SDECSTRT,SDECAID,SDECNOD,SDECLIST,SDEC,BSDY
  ;Convert beginning and ending dates
  ;
- S X=SDECBEG,%DT="XT" D ^%DT S SDECBEG=$P(Y,"."),SDECBEG=SDECBEG-1,SDECBEG=SDECBEG_".9999"
- I Y=-1 D RBERR(1) Q
- S X=SDECEND,%DT="XT" D ^%DT S SDECEND=$P(Y,"."),SDECEND=SDECEND_".9999"
- I Y=-1 D RBERR(1) Q
+ ;
+ ;  Change date/time conversion so midnight is handled properly.  wtc 694 4/24/18
+ ;
+ ;S X=SDECBEG,%DT="XT" D ^%DT S SDECBEG=$P(Y,"."),SDECBEG=SDECBEG-1,SDECBEG=SDECBEG_".9999"
+ ;I Y=-1 D RBERR(1) Q
+ S SDECBEG=$$NETTOFM^SDECDATE(SDECBEG,"Y"),SDECBEG=$P(Y,".") ;
+ I SDECBEG=-1 D RBERR(1) Q  ;
+ S SDECBEG=$P(SDECBEG,".",1),SDECBEG=SDECBEG-1,SDECBEG=SDECBEG_".9999" ;
+ ;S X=SDECEND,%DT="XT" D ^%DT S SDECEND=$P(Y,"."),SDECEND=SDECEND_".9999"
+ ;I Y=-1 D RBERR(1) Q
+ S SDECEND=$$NETTOFM^SDECDATE(SDECEND,"Y") ;
+ I SDECEND=-1 D RBERR(1) Q  ;
+ S SDECEND=$P(Y,"."),SDECEND=SDECEND_".9999" ;
  I SDECCLST="" D RBERR(1) Q
  ;
  ;
@@ -111,15 +120,27 @@ REBKLIST(SDECY,SDECLIST) ;patient appointments used in listing REBOOKED appointm
  . D PINFO(SDECPAT)
  . S Y=$P(SDECNOD,U)
  . Q:'+Y
- . X ^DD("DD") S Y=$TR(Y,"@"," ")
- . S SDECAPT=Y ;Appointment date time
+ . ;
+ . ;  Change date/time conversion so midnight is handled properly.  wtc 694 5/17/18
+ . ;
+ . S SDECAPT=$$FMTONET^SDECDATE(Y,"Y") ;Appointment date time
+ . ;X ^DD("DD") S Y=$TR(Y,"@"," ")
+ . ;S SDECAPT=Y ;Appointment date time
  . S SDECREBK=""
  . S Y=$P(SDECNOD,U,11)
- . I +Y X ^DD("DD") S Y=$TR(Y,"@"," ") S SDECREBK=Y ;Rebook date time
+ . ;
+ . ;  Change date/time conversion so midnight is handled properly.  wtc 694 5/17/18
+ . ;
+ . I +Y S SDECREBK=$$FMTONET^SDECDATE(Y,"Y") ; Rebook date time
+ . ;I +Y X ^DD("DD") S Y=$TR(Y,"@"," ") S SDECREBK=Y ;Rebook date time
  . S SDECCLRK=$P(SDECNOD,U,8) ;Appointment made by
  . S:+SDECCLRK SDECCLRK=$G(^VA(200,SDECCLRK,0)),SDECCLRK=$P(SDECCLRK,U)
  . S Y=$P(SDECNOD,U,9) ;Date Appointment Made
- . I +Y X ^DD("DD") S Y=$TR(Y,"@"," ")
+ . ;
+ . ;  Change date/time conversion so midnight is handled properly.  wtc 694 5/17/18
+ . ;
+ . I +Y S Y=$$FMTONET^SDECDATE(Y,"Y") ;
+ . ;I +Y X ^DD("DD") S Y=$TR(Y,"@"," ")
  . S SDECMADE=Y
  . ;NOTE
  . S SDECNOT=""

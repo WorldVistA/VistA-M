@@ -1,5 +1,5 @@
-XQALBUTL ; ISC-SF/JLI - Utilities for OE/RR notifications ;07/13/12  13:24
- ;;8.0;KERNEL;**114,125,171,285,602**;Jul 10, 1995;Build 9
+XQALBUTL ; ISC-SF/JLI - Utilities for OE/RR notifications ;10/19/18  13:24
+ ;;8.0;KERNEL;**114,125,171,285,602,653**;Jul 10, 1995;Build 18
  ;Per VHA Directive 2004-038, this routine should not be modified
  ; PROVIDES FUNCTIONALITY USED BY ORBUTL
 EN ;
@@ -78,7 +78,17 @@ MAKELIST(ARRAY,FILE,IENS) ; Makes a list of fields as subscripts in ARRAY with t
  S ROOT=$NA(^TMP("XQALMAKELIST",$J))
  K @ROOT
  D GETS^DIQ(FILE,IENS,"*","IE",ROOT)
- F FIELD=0:0 S FIELD=$O(@ROOT@(FILE,IENS,FIELD)) Q:FIELD'>0  S X=^(FIELD,"I") S:X'=^("E") X=X_U_^("E") S @ARRAY@(FIELD)=X,@ARRAY@(FIELD,$$GET1^DID(FILE,FIELD,"","LABEL"))=""
+ F FIELD=0:0 S FIELD=$O(@ROOT@(FILE,IENS,FIELD)) Q:FIELD'>0  D
+ . ;patch 653 long infor text.
+ . I FIELD'=4 D
+ . . S X=^(FIELD,"I") S:X'=^("E") X=X_U_^("E")
+ . . S @ARRAY@(FIELD)=X
+ . I FIELD=4 D
+ . . N XQALX
+ . . S:'$D(@ARRAY@(FIELD)) @ARRAY@(FIELD)=""
+ . . S XQALX=0 F XQALX=0:0 S XQALX=$O(@ROOT@(FILE,IENS,FIELD,XQALX)) Q:'XQALX  S X=$G(@ROOT@(FILE,IENS,FIELD,XQALX)) S @ARRAY@(FIELD,XQALX)=X
+ . . Q 
+ . S @ARRAY@(FIELD,$$GET1^DID(FILE,FIELD,"","LABEL"))=""
  K @ROOT
  Q
  ;

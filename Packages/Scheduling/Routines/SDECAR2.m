@@ -1,5 +1,6 @@
-SDECAR2 ;ALB/SAT/JSM - VISTA SCHEDULING RPCS ;10:57 AM  3 Jul 2017
- ;;5.3;Scheduling;**627,642,658,671,686**;Aug 13, 1993;Build 53
+SDECAR2 ;ALB/SAT/JSM,WTC - VISTA SCHEDULING RPCS ;Feb 12, 2020@15:22
+ ;;5.3;Scheduling;**627,642,658,671,686,694**;Aug 13, 1993;Build 61
+ ;;Per VHA Directive 2004-038, this routine should not be modified
  ;
  Q
  ;
@@ -18,7 +19,7 @@ ARSET(RET,INP) ;Appointment Request Set
  ;  INP(9)  = (text)     Request By - 'PROVIDER' or 'PATIENT'
  ;  INP(10) = (text)     Provider name  - NAME field in NEW PERSON file200
  ;  INP(11) = (date)     Desired Date of appointment in external format.
- ;  INP(12) = (text)     comment must be 1-60 characters
+ ;  INP(12) = (text)     comment must be 1-60 characters.
  ;  INP(13) = (text)     ENROLLMENT PRIORITY - Valid Values are:
  ;                                             GROUP 1
  ;                                             GROUP 2
@@ -61,6 +62,7 @@ ARSET(RET,INP) ;Appointment Request Set
  ;  INP(27) = (optional) PREREQ (Prerequisites) [CPRS RTC REQUIREMENT]
  ;  INP(28) = (optional) ORDER IEN [CPRS RTC REQUIREMENT]
  ;  INP(29) = (optional) VAOS GUID  <== wtc patch 686 3/21/18 added for VAOS requests
+ ;
  N X,Y,%DT
  N DFN,MI,ARAPTYP,ARIEN,ARORIGDT,ARORIGDTI,ARINST,ARINSTI,ARTYPE,ARTEAM,ARPOS,ARSRVSP,ARCLIN
  N ARUSER,ARPRIO,ARREQBY,ARPROV,ARDAPTDT,ARCOMM,AREESTAT,AREDT,ARQUIT
@@ -77,9 +79,12 @@ ARSET(RET,INP) ;Appointment Request Set
  S DFN=$G(INP(2))
  I '+DFN S RET=RET_"-1^Invalid Patient ID."_$C(30,31) Q
  I '$D(^DPT(DFN,0)) S RET=RET_"-1^Invalid Patient ID"_$C(30,31) Q
+ ;
+ ;  Change date conversion to deal with midnight.  5/29/18 wtc patch 694
+ ;
  S AREDT=$P($G(INP(3)),":",1,2)
- S %DT="TX" S X=AREDT D ^%DT S AREDT=Y
- I Y=-1 S RET=RET_"-1^Invalid Origination date."_$C(30,31) Q
+ S AREDT=$$NETTOFM^SDECDATE(AREDT,$S(AREDT["@":"Y",1:"N")) ;
+ I AREDT=-1 S RET=RET_"-1^Invalid Origination date."_$C(30,31) Q
  S ARORIGDT=$P(AREDT,".",1)
  S ARINST=$G(INP(4)) I ARINST'="" D
  .I '+ARINST S ARINST=$O(^DIC(4,"B",ARINST,0))
@@ -88,7 +93,6 @@ ARSET(RET,INP) ;Appointment Request Set
  I ARCLIN'="" D
  .I +ARCLIN=ARCLIN D
  ..I '$D(^SC(+ARCLIN,0)) S RET=RET_"-1^"_ARCLIN_" is an invalid Clinic ID."_$C(30,31) S ARQUIT=1 Q
- ..;S ARCLIN=$$GET1^DIQ(44,ARCLIN_",",.01)
  .I '(+ARCLIN=ARCLIN) D
  ..S ARCLIN=$O(^SC("B",ARCLIN,0))
  ..I ARCLIN="" S RET=RET_"-1^"_ARCLIN_" is an invalid Clinic Name."_$C(30,31) S ARQUIT=1 Q
@@ -102,7 +106,7 @@ ARSET(RET,INP) ;Appointment Request Set
  S ARDAPTDT=INP(11)
  S %DT="" S X=$P($G(ARDAPTDT),"@",1) D ^%DT S ARPRIO=$S(Y=$P($$NOW^XLFDT,".",1):"A",1:"F")
  S ARDAPTDT=Y
- I Y=-1 S ARDAPTDT=""   ;S RET=RET_"-1^Invalid Desired Date."_$C(30,31)Q
+ I Y=-1 S ARDAPTDT=""
  S (INP(12),ARCOMM)=$TR($G(INP(12)),"^"," ")   ;alb/sat 658
  S ARENPRI=$G(INP(13)) D
  .S:ARENPRI'="" ARENPRI=$S(ARENPRI="GROUP 1":1,ARENPRI="GROUP 2":2,ARENPRI="GROUP3":3,ARENPRI="GROUP4":4,ARENPRI="GROUP 5":5,ARENPRI="GROUP 6":6,ARENPRI="GROUP 7":7,ARENPRI="GROUP 8":8,1:ARENPRI)
@@ -135,11 +139,14 @@ ARSET(RET,INP) ;Appointment Request Set
  I ARNEW D
  . S AUDF=1
  . S FDA=$NA(FDA(FNUM,"+1,"))
- . S @FDA@(.01)=+DFN   ;$S(+DFN:$P($G(^DPT(DFN,0)),U),1:DFN)
+ . S @FDA@(.01)=+DFN
  . ;This handles the date/time coming in as "8/27/2014 12:00:00 AM"
  . S:$G(ARORIGDT)'="" @FDA@(1)=ARORIGDT
  . S:$G(ARINST)'="" @FDA@(2)=+ARINST
- . S:$G(ARTYPE)'="" @FDA@(4)=$S(ARTYPE="APPOINTMENT":"APPT",ARTYPE="MOBILE":"MOBILE",1:ARTYPE)
+ . ;
+ . ;  Make request type consistent with data dictionary changes.  wtc 694  7/24/2018
+ . ;
+ . S:$G(ARTYPE)'="" @FDA@(4)=$S(ARTYPE="APPOINTMENT":"APPT",1:ARTYPE) ;
  . S:$G(VAOSGUID)'="" @FDA@(5)=VAOSGUID ;   <== wtc patch 686 3/21/18 added for VAOS requests
  . S:$G(ARCLIN)'="" @FDA@(8)=+ARCLIN
  . S:$G(ARSTOP)'="" @FDA@(8.5)=+ARSTOP
@@ -329,10 +336,13 @@ AR23(INP17,ARI) ;Patient Contacts
  F ARI1=1:1:$L(INP17,"::") D
  .S STR17=$P(INP17,"::",ARI1)
  .K FDA
- .S %DT="T" S X=$P($P(STR17,"~~",1),":",1,2) D ^%DT S ARASD=Y
+ . ;
+ . ;  Change date conversion to deal with midnight.  5/29/18 wtc patch 694
+ . ;
+ . S ARASD=$P($P(STR17,"~~",1),":",1,2),ARASD=$$NETTOFM^SDECDATE(ARASD,"Y") ;
  .I (ARASD=-1)!(ARASD="") Q
  .S ARDT=$P($P(STR17,"~~",1),":",1,2)
- .S ARASDH=""   ;$O(^SDEC(409.85,ARI,4,"B",ARASD,0))
+ .S ARASDH=""
  .S ARIENS1=$S(ARASDH'="":ARASDH,1:"+1")_","_ARIENS
  .S FDA=$NA(FDA(409.8544,ARIENS1))
  .I ARASDH'="" D
@@ -341,13 +351,11 @@ AR23(INP17,ARI) ;Patient Contacts
  ..I $P(STR17,"~~",2)'="" S ARUSR=$P(STR17,"~~",2) S @FDA@(2)=$S(ARUSR="":"@",+ARUSR:$P($G(^VA(200,ARUSR,0)),U,1),1:ARUSER)  ;PC ENTERED BY USER
  ..I $P(STR17,"~~",4)'="" S @FDA@(3)=$P(STR17,"~~",4)     ;ACTION  C=Called; M=Message Left; L=LETTER
  ..I $P(STR17,"~~",5)'="" S @FDA@(4)=$P(STR17,"~~",5)     ;PATIENT PHONE
- ..;I $P(STR17,"~~",6)'="" S @FDA@(5)=$E($P(STR17,"~~",6),1,160)     ;COMMENT
  .I ARASDH="" D
  ..I $P(STR17,"~~",1)'="" S @FDA@(.01)=ARDT ;DATE ENTERED external date/time
  ..I $P(STR17,"~~",2)'="" S ARUSR=$P(STR17,"~~",2) S @FDA@(2)=$S(ARUSR="":"@",+ARUSR:$P($G(^VA(200,ARUSR,0)),U,1),1:ARUSR)     ;PC ENTERED BY USER
  ..I $P(STR17,"~~",4)'="" S @FDA@(3)=$P(STR17,"~~",4)     ;ACTION  C=Called; M=Message Left; L=LETTER
  ..I $P(STR17,"~~",5)'="" S @FDA@(4)=$P(STR17,"~~",5)     ;PATIENT PHONE
- ..;I $P(STR17,"~~",6)'="" S @FDA@(5)=$E($P(STR17,"~~",6),1,160)     ;COMMENT
  .D:$D(@FDA) UPDATE^DIE("E","FDA","ARRET1","ARMSG1")
  Q
 UPDATE(ARIEN,APPDT,SDCL,SVCP,SVCPR,NOTE,SDAPPTYP) ;update REQ APPT REQUEST at apointment add

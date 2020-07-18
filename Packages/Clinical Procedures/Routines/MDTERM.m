@@ -1,5 +1,5 @@
 MDTERM ;HINES OIFO/DP - Terminology Utilities;04 Jan 2006
- ;;1.0;CLINICAL PROCEDURES;**16,23**;Apr 01, 2004;Build 281
+ ;;1.0;CLINICAL PROCEDURES;**16,23,76**;Apr 01, 2004;Build 6
  ;Per VHA Directive 2004-038, this routine should not be modified.
  ;
  ; This routine uses the following IAs:
@@ -80,7 +80,7 @@ MAP2DNP ; Insert a temporary mapping table entry to DNP for a vendor key
  S MDFDA(704.109,"+1,",.03)=$$GET1^DIQ(704.102,"1,",.01)
  S MDFDA(704.109,"+1,",.04)=MDTERM
  S MDFDA(704.109,"+1,",.1)=MDKEY
- D UPDATE^DIE("","MDFDA","MDIEN")
+ D UPDATE^DIE("E","MDFDA","MDIEN")
  I '$G(MDIEN(1)) W "Error, no record added." Q
  W "Done. New IEN: ",MDIEN(1)
  Q

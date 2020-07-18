@@ -1,5 +1,5 @@
 GMRCCCRA ;COG/PB/LB/MJ - Receive HL7 Message for HCP ;3/21/18 09:00
- ;;3.0;CONSULT/REQUEST TRACKING;**99,106,112,123,134,146**;JUN 1, 2018;Build 12
+ ;;3.0;CONSULT/REQUEST TRACKING;**99,106,112,123,134,146,158**;JUN 1, 2018;Build 16
  ;
  ;DBIA# Supported Reference
  ;----- --------------------------------
@@ -162,6 +162,9 @@ EN(MSG) ;Entry point to routine from GMRC CONSULTS TO CCRA protocol attached to 
  ; patch 106 - add in division value
  N GMRCDIV
  S GMRCDIV=$$NS^XUAF4(DUZ(2)),GMRCDIV=$P(GMRCDIV,"^",2)
+ N ORGDIV S ORGDIV=$$GET1^DIQ(123,GMRCDA_",",81,"I")
+ I $G(ORGDIV)'="" S:$G(ORGDIV)'=$G(GMRCDIV) GMRCDIV=$G(ORGDIV)
+ I $G(ORGDIV)="" N FDA S FDA(123,$G(GMRCDA)_",",81)=GMRCDIV D UPDATE^DIE(,"FDA",$G(GMRCDA)_",","SDERR")
  N A,B S A="&"_GMRCDIV,B=$P(GMRCM(ZCNT),"|",4),$P(B,"^",4)=A,$P(GMRCM(ZCNT),"|",4)=B K A,B
  K GMRCDIV
  ; end patch 106 mod

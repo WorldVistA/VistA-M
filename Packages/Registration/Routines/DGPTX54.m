@@ -1,84 +1,57 @@
-DGPTX54 ; ;09/16/15
- D DE G BEGIN
-DE S DIE="^DGPT(D0,""M"",",DIC=DIE,DP=45.02,DL=2,DIEL=1,DU="" K DG,DE,DB Q:$O(^DGPT(D0,"M",DA,""))=""
- I $D(^(0)) S %Z=^(0) S %=$P(%Z,U,29) S:%]"" DE(1)=% S %=$P(%Z,U,30) S:%]"" DE(4)=%,DE(8)=%
- K %Z Q
- ;
-W W !?DL+DL-2,DLB_": "
+DGPTX54 ; ;06/24/20
+ ;;
+1 N X,X1,X2 S DIXR=1177 D X1(U) K X2 M X2=X D X1("F") K X1 M X1=X
+ I $G(X(2))]"" D
+ . D KPTFMD^DGPTDDCR(.X,.DA,"M ICD1")
+ K X M X=X2 I $G(X(2))]"" D
+ . D SPTFMD^DGPTDDCR(.X,.DA,"M ICD1")
  Q
-O D W W Y W:$X>45 !?9
- I $L(Y)>19,'DV,DV'["I",(DV["F"!(DV["K")) G RW^DIR2
- W:Y]"" "// " I 'DV,DV["I",$D(DE(DQ))#2 S X="" W "  (No Editing)" Q
-TR R X:DTIME E  S (DTOUT,X)=U W $C(7)
+X1(DION) K X
+ S X(1)=$G(@DIEZTMP@("V",45.02,DIIENS,10,DION),$P($G(^DGPT(DA(1),"M",DA,0)),U,10))
+ S X(2)=$G(@DIEZTMP@("V",45.02,DIIENS,5,DION),$P($G(^DGPT(DA(1),"M",DA,0)),U,5))
+ S X=$G(X(1))
  Q
-A K DQ(DQ) S DQ=DQ+1
-B G @DQ
-RE G PR:$D(DE(DQ)) D W,TR
-N I X="" G NKEY:$D(^DD("KEY","F",DP,DIFLD)),A:DV'["R",X:'DV,X:D'>0,A
-RD G QS:X?."?" I X["^" D D G ^DIE17
- I X="@" D D G Z^DIE2
- I X=" ",DV["d",DV'["P",$D(^DISV(DUZ,"DIE",DLB)) S X=^(DLB) I DV'["D",DV'["S" W "  "_X
-T G M^DIE17:DV,^DIE3:DV["V",P:DV'["S" X:$D(^DD(DP,DIFLD,12.1)) ^(12.1) I X?.ANP D SET I 'DDER X:$D(DIC("S")) DIC("S") I  W:'$D(DB(DQ)) "  "_% G V
- K DDER G X
-P I DV["P" S DIC=U_DU,DIC(0)=$E("EN",$D(DB(DQ))+1)_"M"_$E("L",DV'["'") S:DIC(0)["L" DLAYGO=+$P(DV,"P",2) G:DV["*" AST^DIED D NOSCR^DIED S X=+Y,DIC=DIE G X:X<0
- G V:DV'["N" D D I $L($P(X,"."))>24 K X G Z
- I $P(DQ(DQ),U,5)'["$",X?.1"-".N.1".".N,$P(DQ(DQ),U,5,99)["+X'=X" S X=+X
-V D @("X"_DQ) K YS
-Z K DIC("S"),DLAYGO I $D(X),X'=U D:$G(DE(DW,"INDEX")) SAVEVALS G:'$$KEYCHK UNIQFERR^DIE17 S DG(DW)=X S:DV["d" ^DISV(DUZ,"DIE",DLB)=X G A
-X W:'$D(ZTQUEUED) $C(7),"??" I $D(DB(DQ)) G Z^DIE17
- S X="?BAD"
-QS S DZ=X D D,QQ^DIEQ G B
-D S D=DIFLD,DQ(DQ)=DLB_U_DV_U_DU_U_DW_U_$P($T(@("X"_DQ))," ",2,99) Q
-Y I '$D(DE(DQ)) D O G RD:"@"'[X,A:DV'["R"&(X="@"),X:X="@" S X=Y G N
-PR S DG=DV,Y=DE(DQ),X=DU I $D(DQ(DQ,2)) X DQ(DQ,2) G RP
-R I DG["P",@("$D(^"_X_"0))") S X=+$P(^(0),U,2) G RP:'$D(^(Y,0)) S Y=$P(^(0),U),X=$P(^DD(X,.01,0),U,3),DG=$P(^(0),U,2) G R
- I DG["V",+Y,$P(Y,";",2)["(",$D(@(U_$P(Y,";",2)_"0)")) S X=+$P(^(0),U,2) G RP:'$D(^(+Y,0)) S Y=$P(^(0),U) I $D(^DD(+X,.01,0)) S DG=$P(^(0),U,2),X=$P(^(0),U,3) G R
- X:DG["D" ^DD("DD") I DG["S" S %=$P($P(";"_X,";"_Y_":",2),";") S:%]"" Y=%
-RP D O I X="" S X=DE(DQ) G A:'DV,A:DC<2,N^DIE17
-I I DV'["I",DV'["#" G RD
- D E^DIE0 G RD:$D(X),PR
+2 N X,X1,X2 S DIXR=1179 D X2(U) K X2 M X2=X D X2("F") K X1 M X1=X
+ I $G(X(2))]"" D
+ . D KPTFMD^DGPTDDCR(.X,.DA,"M ICD2")
+ K X M X=X2 I $G(X(2))]"" D
+ . D SPTFMD^DGPTDDCR(.X,.DA,"M ICD2")
  Q
-SET N DIR S DIR(0)="SV"_$E("o",$D(DB(DQ)))_U_DU,DIR("V")=1
- I $D(DB(DQ)),'$D(DIQUIET) N DIQUIET S DIQUIET=1
- D ^DIR I 'DDER S %=Y(0),X=Y
+X2(DION) K X
+ S X(1)=$G(@DIEZTMP@("V",45.02,DIIENS,10,DION),$P($G(^DGPT(DA(1),"M",DA,0)),U,10))
+ S X(2)=$G(@DIEZTMP@("V",45.02,DIIENS,6,DION),$P($G(^DGPT(DA(1),"M",DA,0)),U,6))
+ S X=$G(X(1))
  Q
-SAVEVALS S @DIEZTMP@("V",DP,DIIENS,DIFLD,"O")=$G(DE(DQ)) S:$D(^("F"))[0 ^("F")=$G(DE(DQ))
- I $D(DE(DW,"4/")) S @DIEZTMP@("V",DP,DIIENS,DIFLD,"4/")=""
- E  K @DIEZTMP@("V",DP,DIIENS,DIFLD,"4/")
+3 N X,X1,X2 S DIXR=1180 D X3(U) K X2 M X2=X D X3("F") K X1 M X1=X
+ I $G(X(2))]"" D
+ . D KPTFMD^DGPTDDCR(.X,.DA,"M ICD3")
+ K X M X=X2 I $G(X(2))]"" D
+ . D SPTFMD^DGPTDDCR(.X,.DA,"M ICD3")
  Q
-NKEY W:'$D(ZTQUEUED) "??  Required key field" S X="?BAD" G QS
-KEYCHK() Q:$G(DE(DW,"KEY"))="" 1 Q @DE(DW,"KEY")
-BEGIN S DNM="DGPTX54",DQ=1
-1 S DW="0;29",DV="S",DU="",DLB="TREATMENT FOR MST",DIFLD=29
- S DU="Y:YES;N:NO;"
- S Y="@"
- S X=Y,DB(DQ)=1 G:X="" N^DIE17:DV,A I $D(DE(DQ)),DV["I"!(DV["#") D E^DIE0 G A:'$D(X)
- G RD
-X1 Q
-2 S DQ=3 ;@9550
-3 D:$D(DG)>9 F^DIE17,DE S Y=U,DQ=3 D X3 D:$D(DIEFIRE)#2 FIREREC^DIE17 G A:$D(Y)[0,A:Y=U S X=Y,DIC(0)="F",DW=DQ G OUT^DIE17
-X3 I '$D(DGEXQ(5)) S Y="@9600"
+X3(DION) K X
+ S X(1)=$G(@DIEZTMP@("V",45.02,DIIENS,10,DION),$P($G(^DGPT(DA(1),"M",DA,0)),U,10))
+ S X(2)=$G(@DIEZTMP@("V",45.02,DIIENS,7,DION),$P($G(^DGPT(DA(1),"M",DA,0)),U,7))
+ S X=$G(X(1))
  Q
-4 S DW="0;30",DV="S",DU="",DLB="WAS TREATMENT RELATED TO HEAD AND/OR NECK CANCER?",DIFLD=30
- S DU="Y:YES;N:NO;"
- G RE
-X4 Q
-5 D:$D(DG)>9 F^DIE17,DE S Y=U,DQ=5 D X5 D:$D(DIEFIRE)#2 FIREREC^DIE17 G A:$D(Y)[0,A:Y=U S X=Y,DIC(0)="F",DW=DQ G OUT^DIE17
-X5 I X["Y",$D(DFN),$$FILEHNC^DGNTAPI1(DFN)
+4 N X,X1,X2 S DIXR=1181 D X4(U) K X2 M X2=X D X4("F") K X1 M X1=X
+ I $G(X(2))]"" D
+ . D KPTFMD^DGPTDDCR(.X,.DA,"M ICD4")
+ K X M X=X2 I $G(X(2))]"" D
+ . D SPTFMD^DGPTDDCR(.X,.DA,"M ICD4")
  Q
-6 D:$D(DG)>9 F^DIE17,DE S Y=U,DQ=6 D X6 D:$D(DIEFIRE)#2 FIREREC^DIE17 G A:$D(Y)[0,A:Y=U S X=Y,DIC(0)="F",DW=DQ G OUT^DIE17
-X6 S Y="@9650"
+X4(DION) K X
+ S X(1)=$G(@DIEZTMP@("V",45.02,DIIENS,10,DION),$P($G(^DGPT(DA(1),"M",DA,0)),U,10))
+ S X(2)=$G(@DIEZTMP@("V",45.02,DIIENS,8,DION),$P($G(^DGPT(DA(1),"M",DA,0)),U,8))
+ S X=$G(X(1))
  Q
-7 S DQ=8 ;@9600
-8 S DW="0;30",DV="S",DU="",DLB="TREATMENT FOR HEAD/NECK CA",DIFLD=30
- S DU="Y:YES;N:NO;"
- S Y="@"
- S X=Y,DB(DQ)=1 G:X="" N^DIE17:DV,A I $D(DE(DQ)),DV["I"!(DV["#") D E^DIE0 G A:'$D(X)
- G RD
-X8 Q
-9 S DQ=10 ;@9650
-10 S DQ=11 ;@9999
-11 D:$D(DG)>9 F^DIE17,DE S Y=U,DQ=11 D X11 D:$D(DIEFIRE)#2 FIREREC^DIE17 G A:$D(Y)[0,A:Y=U S X=Y,DIC(0)="F",DW=DQ G OUT^DIE17
-X11 K DGEXQ S Y=DGNFLD
+5 N X,X1,X2 S DIXR=1182 D X5(U) K X2 M X2=X D X5("F") K X1 M X1=X
+ I $G(X(2))]"" D
+ . D KPTFMD^DGPTDDCR(.X,.DA,"M ICD5")
+ K X M X=X2 I $G(X(2))]"" D
+ . D SPTFMD^DGPTDDCR(.X,.DA,"M ICD5")
  Q
-12 G 1^DIE17
+X5(DION) K X
+ S X(1)=$G(@DIEZTMP@("V",45.02,DIIENS,10,DION),$P($G(^DGPT(DA(1),"M",DA,0)),U,10))
+ S X(2)=$G(@DIEZTMP@("V",45.02,DIIENS,9,DION),$P($G(^DGPT(DA(1),"M",DA,0)),U,9))
+ S X=$G(X(1))
+ Q

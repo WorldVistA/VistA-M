@@ -1,5 +1,5 @@
-ORQ1 ;slc/dcm-Get orders for a patient. ;12/14/16  13:10
- ;;3.0;ORDER ENTRY/RESULTS REPORTING;**27,72,78,141,190,215,444**;Dec 17, 1997;Build 48
+ORQ1 ;slc/dcm - Get orders for a patient. ;Apr 09, 2020@12:52:38
+ ;;3.0;ORDER ENTRY/RESULTS REPORTING;**27,72,78,141,190,215,444,515**;Dec 17, 1997;Build 8
  ;
  ;EPIP/RTW Modified for the Unified Action Profile 26 Oct 2016
 EN(PAT,GROUP,FLG,EXPAND,SDATE,EDATE,DETAIL,MULT,XREF,GETKID,EVENT) ;Get orders
@@ -45,6 +45,10 @@ EN(PAT,GROUP,FLG,EXPAND,SDATE,EDATE,DETAIL,MULT,XREF,GETKID,EVENT) ;Get orders
  ;27. Expired   =>     7
  ;28. Discontinued Entered in Error => code handles this in ORQ12
  ;         Orders in ^OR(100,"AEVNT",PAT,EVENT,IFN)
+ ;29. Unverified        => 1,  3,4,5,6,  29,30,     15
+ ;30. Unverified/Nurse  => 1,  3,4,5,6,  29,30,     15
+ ;31. Unverified/Clerk  => 1,  3,4,5,6,  29,30      15
+ ;32. Unverified/Chart  => 1,  3,4,5,6,  29,30      15
 EN0 ; where order status=#:
  ; 1 => Discontinued (dc) 6 => Active (a)   11 => Unreleased (u)
  ; 2 => Complete (c)      7 => Expired (e)  12 => DC/Edit (dce)
@@ -60,8 +64,8 @@ EN0 ; where order status=#:
  ;     1 => ^TMP("ORR",$J,ORLIST,i) = order #^display group^when entered^
  ;    start d/t^stop d/t^status^sts abbrv
  ;  ^TMP("ORR",$J,ORLIST,i,"TX",j) = order text
- ; MULT  =0:Don't allow multiple occurrances of order
- ;       =1:Allow multiple occurances
+ ; MULT  =0:Don't allow multiple occurrences of order
+ ;       =1:Allow multiple occurrences
  ; XREF  =cross reference to use instead of ACT (AW for completed orders)
  ; GETKID=includes children of multiple orders
  ; EVENT =ptr to Patient Event file #100.2, for orders tied to an event
@@ -82,7 +86,7 @@ EN1 ; -- start here
  I $$GET1^DIQ(100.98,GROUP,.01)="DISCHARGE MEDS" D LOOP^ORQ11 G ENQ
  I $$GET1^DIQ(100.98,GROUP,.01)="PHARMACY UAP" D LOOP^ORQ11 G ENQ
  ;RTW END UAP MODIFICATION
- D @($S(FLG=2:"CUR",FLG=5:"EXG","^6^8^9^10^20^"[(U_FLG_U):"ACT",FLG=11:"SIG",FLG=19:"NEW","^1^3^4^7^12^13^14^18^21^22^23^27^28^"[(U_FLG_U):"LOOP",1:"QUIT")_"^ORQ11")
+ D @($S(FLG=2:"CUR",FLG=5:"EXG","^6^8^9^10^20^29^30^31^32^"[(U_FLG_U):"ACT",FLG=11:"SIG",FLG=19:"NEW","^1^3^4^7^12^13^14^18^21^22^23^27^28^"[(U_FLG_U):"LOOP",1:"QUIT")_"^ORQ11")
 ENQ K ^TMP("ORGOTIT",$J)
  Q
  ;

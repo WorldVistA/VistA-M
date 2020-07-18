@@ -1,5 +1,6 @@
-SDECWL2 ;ALB/SAT - VISTA SCHEDULING RPCS ;JUN 21, 2017
- ;;5.3;Scheduling;**627,642,658,665**;Aug 13, 1993;Build 14
+SDECWL2 ;ALB/SAT,WTC - VISTA SCHEDULING RPCS ;Feb 12, 2020@15:22
+ ;;5.3;Scheduling;**627,642,658,665,694**;Aug 13, 1993;Build 61
+ ;;Per VHA Directive 2004-038, this routine should not be modified
  ;
  Q
  ;
@@ -76,8 +77,12 @@ WLSET(RET,INP) ;Waitlist Set
  I '+DFN S RET=RET_"-1^Invalid Patient ID."_$C(30,31) Q
  I '$D(^DPT(DFN,0)) S RET=RET_"-1^Invalid Patient ID"_$C(30,31) Q
  S WLEDT=$P($G(INP(3)),":",1,2)
- S %DT="TX" S X=WLEDT D ^%DT S WLEDT=Y
- I Y=-1 S RET=RET_"-1^Invalid Origination date."_$C(30,31) Q
+ ;
+ ;  Change date/time conversion so midnight is handled properly.  wtc 694 5/17/18
+ ;
+ S WLEDT=$$NETTOFM^SDECDATE(WLEDT,"Y","N") I WLEDT=-1 S RET=RET_"-1^Invalid Origination date."_$C(30,31) Q  ;
+ ;S %DT="TX" S X=WLEDT D ^%DT S WLEDT=Y
+ ;I Y=-1 S RET=RET_"-1^Invalid Origination date."_$C(30,31) Q
  S WLORIGDT=$P(WLEDT,".",1)
  S WLINST=$G(INP(4)) I WLINST'="" D
  .I '+WLINST S WLINST=$O(^DIC(4,"B",WLINST,0))
@@ -228,7 +233,11 @@ WL23(INP23,WLI) ;Patient Contacts
  F WLI1=1:1:$L(INP23,"::") D
  .S STR23=$P(INP23,"::",WLI1)
  .K FDA
- .S %DT="T" S X=$P($P(STR23,"~~",1),":",1,2) D ^%DT S WLASD=Y
+ . ;
+ . ;  Change date/time conversion so midnight is handled properly.  wtc 694 5/17/18
+ . ;
+ . S WLASD=$$NETTOFM^SDECDATE($P($P(STR23,"~~",1),":",1,2),"Y","N") ;
+ . ;S %DT="T" S X=$P($P(STR23,"~~",1),":",1,2) D ^%DT S WLASD=Y
  .I (WLASD=-1)!(WLASD="") Q
  .S WLASDH=""   ;$O(^SDWL(409.3,WLI,4,"B",WLASD,0))
  .S WLIENS1=$S(WLASDH'="":WLASDH,1:"+1")_","_WLIENS

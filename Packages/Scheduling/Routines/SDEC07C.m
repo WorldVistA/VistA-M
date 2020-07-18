@@ -1,8 +1,7 @@
-SDEC07C ;ALB/WTC/ZEB - VISTA SCHEDULING RPCS ; 17 Dec 2018  1:45 PM
- ;;5.3;Scheduling;**686**;Aug 13, 1993;Build 53
+SDEC07C ;ALB/WTC/ZEB - VISTA SCHEDULING RPCS ;DEC 18,2018@13:45
+ ;;5.3;Scheduling;**686,694**;Aug 13, 1993;Build 61
  ;;Per VHA Directive 2004-038, this routine should not be modified
  ;
- ;  Code removed from SDEC07 to make its size XINDEX-compliant.
  Q
  ;
 ADDEVT(DFN,SDECSTART,SDECSC,SDCLA) ;EP
@@ -32,4 +31,61 @@ ADDEVT(DFN,SDECSTART,SDECSC,SDCLA) ;EP
 ADDEVT3(SDECRES) ;
  ;Call RaiseEvent to notify GUI clients
  Q
+ ;
+ ;moved AVUPDT, DOW and DAY from SDEC07 because of XINDEX error for size  pwc / SD*5.3*694
+ ;
+AVUPDT(SDCL,SDECSTART,SDECLEN) ;Update Clinic availability
+ ;SEE SDM1
+ N %,ABORT,SDNOT,Y,DFN,SDVAL
+ N SL,STARTDAY,X,SC,SB,HSI,SI,STR,SDDIF,SDMAX,SDDATE,SDDMAX,SDSDATE,CCXN,MXOK,COV,SDPROG
+ N X1,SDEDT,X2,SD,SM,SS,S,SDLOCK,ST,I,SDECINC,SDPLUS
+ S Y=SDCL   ;,DFN=DFN  ;renamed SDECPATID to DFN
+ S SL=$G(^SC(+Y,"SL")),X=$P(SL,U,3),STARTDAY=$S($L(X):X,1:8),SC=Y,SB=STARTDAY-1/100,X=$P(SL,U,6),HSI=$S(X=1:X,X:X,1:4),SI=$S(X="":4,X<3:4,X:X,1:4),STR="#@!$* XXWVUTSRQPONMLKJIHGFEDCBA0123456789jklmnopqrstuvwxyz",SDDIF=$S(HSI<3:8/HSI,1:2) K Y
+ ;Determine maximum days for scheduling
+ S SDMAX(1)=$P($G(^SC(+SC,"SDP")),U,2) S:'SDMAX(1) SDMAX(1)=365
+ S (SDMAX,SDDMAX)=$$FMADD^XLFDT(DT,SDMAX(1))
+ S SDDATE=SDECSTART
+ S SDSDATE=SDDATE,SDDATE=SDDATE\1
+1 ;
+ S CCXN=0 K MXOK,COV,SDPROT Q:$G(DFN)<0  S SC=+SC
+ S X1=DT,SDEDT=365 S:$D(^SC(SC,"SDP")) SDEDT=$P(^SC(SC,"SDP"),"^",2)
+ S X2=SDEDT D C^%DTC S SDEDT=X
+ S Y=SDECSTART
+EN1 S (X,SD)=Y,SM=0 D DOW
+S I '$D(^SC(SC,"ST",$P(SD,"."),1)) S SS=+$O(^SC(+SC,"T"_Y,SD)) Q:SS'>0  Q:^(SS,1)=""  S ^SC(+SC,"ST",$P(SD,"."),1)=$E($P($T(DAY),U,Y+2),1,2)_" "_$E(SD,6,7)_$J("",SI+SI-6)_^(1),^(0)=$P(SD,".")
+ S S=SDECLEN
+ ;Check if SDECLEN evenly divisible by appointment length
+ S SDVAL=$P(SL,U)
+ I SDECLEN<SDVAL S SDECLEN=SDVAL
+ I SDECLEN#SDVAL'=0 D
+ . S SDECINC=SDECLEN\SDVAL
+ . S SDECINC=SDECINC+1
+ . S SDECLEN=SDVAL*SDECINC
+ S SL=S_U_$P(SL,U,2,99)
+SC S SDLOCK=$S('$D(SDLOCK):1,1:SDLOCK+1) Q:SDLOCK>9
+ L +^SC(SC,"ST",$P(SD,"."),1):5 G:'$T SC
+ S SDLOCK=0,S=^SC(SC,"ST",$P(SD,"."),1)
+ S I=SD#1-SB*100,ST=I#1*SI\.6+($P(I,".")*SI),SS=SL*HSI/60*SDDIF+ST+ST
+ I (I<1!'$F(S,"["))&(S'["CAN") L -^SC(SC,"ST",$P(SD,"."),1) Q
+ I SM<7 S %=$F(S,"[",SS-1) S:'%!($P(SL,"^",6)<3) %=999 I $F(S,"]",SS)'<%!(SDDIF=2&$E(S,ST+ST+1,SS-1)["[") S SM=7
+ ;
+SP I ST+ST>$L(S),$L(S)<80 S S=S_" " G SP
+ S SDNOT=1
+ S ABORT=0
+ F I=ST+ST:SDDIF:SS-SDDIF D  Q:ABORT
+ . S ST=$E(S,I+1) S:ST="" ST=" "
+ . S Y=$E(STR,$F(STR,ST)-2)
+ . I S["CAN"!(ST="X"&($D(^SC(+SC,"ST",$P(SD,"."),"CAN")))) S ABORT=1 Q
+ . I Y="" S ABORT=1 Q
+ . S:Y'?1NL&(SM<6) SM=6 S ST=$E(S,I+2,999) S:ST="" ST=" " S S=$E(S,1,I)_Y_ST
+ S ^SC(SC,"ST",$P(SD,"."),1)=S
+ L -^SC(SC,"ST",$P(SD,"."),1)
+ Q
+ ;
+DOW N SDTMP S SDTMP=$E(X,1,3),Y=$E(X,4,5),Y=Y>2&'(SDTMP#4)+$E("144025036146",Y)
+ F SDTMP=SDTMP:-1:281 S Y=SDTMP#4=1+1+Y
+ S Y=$E(X,6,7)+Y#7
+ Q
+ ;
+DAY ;;^SUN^MON^TUES^WEDNES^THURS^FRI^SATUR
  ;

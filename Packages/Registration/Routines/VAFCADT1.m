@@ -1,5 +1,5 @@
-VAFCADT1 ;ALB/RJS - HL7 PATIENT MOVEMENT EVENTS  - APRIL 13,1995
- ;;5.3;Registration;**91,179**;Jun 06, 1996
+VAFCADT1 ;ALB/RJS - HL7 PATIENT MOVEMENT EVENTS  - APRIL 13,1995 ; 7/12/04 1:49pm
+ ;;5.3;Registration;**91,179,992**;Aug 13, 1993;Build 5
  ;HL7v1.6
  ;This Routine is executed as an item protocol on the DGPM Patient
  ;Movement Event Driver. It's purpose is to determine what event
@@ -24,11 +24,13 @@ VAFCADT1 ;ALB/RJS - HL7 PATIENT MOVEMENT EVENTS  - APRIL 13,1995
  I '($G(DGQUIET)) D
  . W !,"Executing HL7 ADT Messaging"
  . I $D(^TMP("VAFCADT1",$J)) S VATRACE=1
- I $D(VATRACE) D  G EXIT
- . D INITIZE
- N ZTDESC,ZTRTN,ZTSAVE,ZTIO,ZTDTH
- S ZTDESC="HL7 ADT MESSAGE",ZTRTN="INITIZE^VAFCADT1",ZTSAVE("DGPMP")="",ZTSAVE("DGPMA")="",ZTIO="",ZTSAVE("DGPMDA")="",ZTSAVE("DFN")="",ZTDTH=$H,ZTSAVE("VAFH(")=""
- D ^%ZTLOAD
+ ; DG*5.3*992 - Call INITIZE directly instead of queuing to avoid timing issues when reinstating orders after readmission from observation ward
+ D INITIZE
+ ;I $D(VATRACE) D  G EXIT
+ ;. D INITIZE
+ ;N ZTDESC,ZTRTN,ZTSAVE,ZTIO,ZTDTH
+ ;S ZTDESC="HL7 ADT MESSAGE",ZTRTN="INITIZE^VAFCADT1",ZTSAVE("DGPMP")="",ZTSAVE("DGPMA")="",ZTIO="",ZTSAVE("DGPMDA")="",ZTSAVE("DFN")="",ZTDTH=$H,ZTSAVE("VAFH(")=""
+ ;D ^%ZTLOAD
 EXIT ;
  I $D(ZTQUEUED) S ZTREQ="@"
  D KILL^HLTRANS

@@ -1,5 +1,5 @@
-PXRMDLR1 ; SLC/AGP - DIALOG ORPHAN REPORT. ; 07/31/2009
- ;;2.0;CLINICAL REMINDERS;**6,12**;Feb 04, 2005;Build 73
+PXRMDLR1 ;SLC/AGP - DIALOG ORPHAN REPORT. ;10/02/2015  12:40
+ ;;2.0;CLINICAL REMINDERS;**6,12,45**;Feb 04, 2005;Build 566
  ;
  ;=======================================================================
 START(NUM) ;
@@ -19,7 +19,7 @@ ORPHAN ;
  . S IEN=$O(^PXRMD(801.41,"B",NAME,"")) Q:IEN'>0
  . S TYPE=$P($G(^PXRMD(801.41,IEN,0)),U,4)
  . I $G(TYPE)=""!($G(TYPE)="R") Q
- . I $D(^PXRMD(801.41,"R",IEN)) Q
+ . I $D(^PXRMD(801.41,"BLR",IEN)) Q
  . I $D(^PXRMD(801.41,"AD",IEN)) Q
  . I $D(^PXRMD(801.41,"RG",IEN)) Q
  . S TYPE=$S(TYPE="P":"VPROMPT",TYPE="E":"ELEMENT",TYPE="F":"VVALUE",TYPE="G":"GROUP",TYPE="S":"RGROUP",TYPE="T":"RELEMENT")

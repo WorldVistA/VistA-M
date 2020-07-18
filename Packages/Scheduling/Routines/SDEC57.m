@@ -1,5 +1,5 @@
-SDEC57 ;ALB/SAT/JSM - VISTA SCHEDULING RPCS ; 18 Jun 2018  4:21 PM
- ;;5.3;Scheduling;**627,642,658,665,701,686**;Aug 13, 1993;Build 53
+SDEC57 ;ALB/SAT/JSM,WTC - VISTA SCHEDULING RPCS ;Feb 12, 2020@15:22
+ ;;5.3;Scheduling;**627,642,658,665,701,686,694**;Aug 13, 1993;Build 61
  ;
  Q
  ;APPSLOTS - return appt slots and availability
@@ -20,10 +20,25 @@ APPSLOTS(SDECY,SDECRES,SDECSTART,SDECEND) ;GET Create Assigned Slot Schedule
  K @SDECY
  S SDECALO=0,SDECI=0
  S @SDECY@(SDECI)="T00030DATE^T00030START_TIME^T00030END_TIME^I00010AVAILABILITY"_$C(30)
- S %DT="T",X=$P($P(SDECSTART,"@",1),".",1) D ^%DT
- S SDECSTART=Y
- S %DT="T",X=$P($P(SDECEND,"@",1),".",1) D ^%DT
- S SDECEND=Y
+ ;
+ ;  Change date/time conversion so midnight is handled properly.  wtc 694 4/24/18
+ ;
+ ;S %DT="T",X=$P($P(SDECSTART,"@",1),".",1) D ^%DT
+ ;S SDECSTART=Y
+ S SDECSTART=$$NETTOFM^SDECDATE($P(SDECSTART,"@",1),"N") ;
+ ;
+ ;  Return error if date is invalid.  wtc 6/18/18
+ ;
+ I SDECSTART=-1 S @SDECY@(1)="-1^Invalid start date"_$C(30)_$C(31) Q  ;
+ ;
+ ;S %DT="T",X=$P($P(SDECEND,"@",1),".",1) D ^%DT
+ ;S SDECEND=Y
+ S SDECEND=$$NETTOFM^SDECDATE($P(SDECEND,"@",1),"N") ;
+ ;
+ ;  Return error if date is invalid.  wtc 6/18/18
+ ;
+ I SDECEND=-1 S @SDECY@(1)="-1^Invalid end date"_$C(30)_$C(31) Q  ;
+ ;
  ;validate SDECRES
  S SDECRES=$G(SDECRES)
  I SDECRES']"" S @SDECY@(1)="-1^Resource ID is required"_$C(30)_$C(31) Q
@@ -59,12 +74,17 @@ GETSLOTS(SDAB,SDECRES,SDECSTART,SDECEND)  ;load SDEC ACCESS BLOCKS from file 44
  I +SDECRES,'$D(^SDEC(409.831,+SDECRES,0)) Q
  I '+SDECRES S SDECRES=$O(^SDEC(409.831,"B",SDECRES,0))
  Q:'SDECRES
- S %DT="T",X=$P($P(SDECSTART,"@",1),".",1) D ^%DT
- Q:Y=-1
- S SDECSTART=Y
- S %DT="T",X=$P($P(SDECEND,"@",1),".",1) D ^%DT
- Q:Y=-1
- S SDECEND=Y
+ ;
+ ;  Change date/time conversion so midnight is handled properly.  wtc 694 4/24/18
+ ;
+ ;S %DT="T",X=$P($P(SDECSTART,"@",1),".",1) D ^%DT
+ ;Q:Y=-1
+ ;S SDECSTART=Y
+ S SDECSTART=$$NETTOFM^SDECDATE($P(SDECSTART,"@",1),"N") Q:SDECSTART=-1  ;
+ ;S %DT="T",X=$P($P(SDECEND,"@",1),".",1) D ^%DT
+ ;Q:Y=-1
+ ;S SDECEND=Y
+ S SDECEND=$$NETTOFM^SDECDATE($P(SDECEND,"@",1),"N") Q:SDECEND=-1  ;
  S SDCL=$$GET1^DIQ(409.831,SDECRES_",",.04,"I")
  Q:SDCL=""
  S SDI=$$FMADD^XLFDT(SDECSTART,-1)
@@ -202,9 +222,13 @@ OBM(RET,SDCL,SDT,MRTC,USR,SDW)  ;GET overbook status and message
  I SDCL="" S @RET@(1)="-1^Clinic ID is required."_$C(30,31) Q
  I '$D(^SC(SDCL,0)) S @RET@(1)="-1^Invalid Clinic ID."_$C(30,31) Q
  ;validate SDT
+ ;
+ ;  Change date/time conversion so midnight is handled properly.  wtc 694 4/24/18
+ ;
  S SDT=$G(SDT)
- S %DT="T",X=SDT D ^%DT I Y=-1 S @RET@(1)="-1^Invalid appointment date/time."_$C(30,31) Q
- S SDT=Y
+ ;S %DT="T",X=SDT D ^%DT I Y=-1 S @RET@(1)="-1^Invalid appointment date/time."_$C(30,31) Q
+ ;S SDT=Y
+ S SDT=$$NETTOFM^SDECDATE(SDT,$S(SDT["@":"Y",1:"N")) I SDT=-1 S @RET@(1)="-1^Invalid appointment date/time."_$C(30,31) Q  ;
  ;validate MRTC
  S MRTC=$G(MRTC)
  I MRTC'="","01"'[MRTC S @RET@(1)="-1^Invalid MRTC flag."_$C(30,31) Q
@@ -242,9 +266,21 @@ OBM1(SDCL,SDT,MRTC,USR,SDW)  ;return message and possible prompt for overbook   
  I USR="" S USR=DUZ
  Q:'$D(^VA(200,USR,0)) ""
  ;validate SDT
+ ;
+ ;  Change date/time conversion so midnight is handled properly.  wtc 694 4/24/18
+ ;
  S SDT=$G(SDT)
- S %DT="T",X=SDT D ^%DT I Y=-1 Q ""
- S SDT=Y
+ ;S %DT="T",X=SDT D ^%DT I Y=-1 Q ""
+ ;S SDT=Y
+ ;
+ ;  Convert date unless already in FileMan format.
+ ;
+ I SDT'?7N,SDT'?7N1".".N S SDT=$$NETTOFM^SDECDATE(SDT,$S(SDT["@":"Y",1:"N")) I SDT=-1 Q "" ;
+ ;
+ ;  If time is midnight, change to beginning of next day.  wtc 6/7/18 694
+ ;
+ I $P(SDT,".",2)=24 S SDT=$$FMADD^XLFDT($P(SDT,".",1),1) ;
+ ;
  S DATE=$$FMTE^XLFDT($P(SDT,".",1))
  ;validate SDW  walk-in flag
  S SDW=$G(SDW)

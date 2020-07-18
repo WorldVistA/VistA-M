@@ -1,5 +1,5 @@
-DGPTFCR ;ALB/JDS - CREATE IN PATIENT PTF RECORD ; 11 JAN 85
- ;;5.3;Registration;;Aug 13, 1993
+DGPTFCR ;ALB/JDS - CREATE IN PATIENT PTF RECORD ;12/22/2016  12:02
+ ;;5.3;Registration;**932**;Aug 13, 1993;Build 210
  ;
 EN D LO^DGUTL F DGDUMB=0:0 K DFN D SEL Q:'$D(DFN)
 Q K %,D0,DQ,T,Y,X,DGDUMB Q
@@ -22,7 +22,11 @@ SEL ; -- pt select
  D CREATE I +Y<0 W *7,"unable to create record." G SELQ
  S PTF=+Y,DR="[DG PTF ATTACH]",DIE="^DGPM(",DA=DGPMCA D ^DIE
  W !?5,"record #",PTF," created.",!
-SELQ K DR,X,DA,DIE,DIC,DGTY,DGRTY,DGRTY0,PTF,I,J,Y,DQ,DG Q
+SELQ ; -- clean-up
+ K ^TMP("DG PTF DRIVER",$J)
+ D NOTIFY^DGPTDD("","",.PTF,"")
+ K DR,X,DA,DIE,DIC,DGTY,DGRTY,DGRTY0,PTF,I,J,Y,DQ,DG
+ Q
  ;
 CREATE ; -- entry point to create a new PTF record
  ;    input:   DFN := pt number
@@ -33,6 +37,7 @@ CREATE ; -- entry point to create a new PTF record
  ;
  I $S('$D(DFN):1,'DFN:1,1:'Y) S Y=-1,Y(0)="" G CREATEQ
  S DGPTDATA=U_Y,DIC="^DGPT(",DIC("DR")="[DG PTF CREATE PTF ENTRY]"
+ S ^TMP("DG PTF DRIVER",$J)=""
  S DIC(0)="FLZ",X=DFN K DD,DO D FILE^DICN S Y=+Y
  I $S('$D(DGRTY):1,1:DGRTY=1) N PTF K DA S (PTF,DA)=Y,DIE="^DGPT(",DR="[DG PTF POST CREATE]" D ^DIE:DA>0 S Y=PTF
 CREATEQ K DA,DIC,DGPTDATA,DIE,DR Q

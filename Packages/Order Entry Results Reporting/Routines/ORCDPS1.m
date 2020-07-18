@@ -1,5 +1,5 @@
-ORCDPS1 ;SLC/MKB-Pharmacy dialog utilities ;11/12/14  15:03
- ;;3.0;ORDER ENTRY/RESULTS REPORTING;**94,117,141,149,195,215,243,280,337,311,350**;Dec 17, 1997;Build 77
+ORCDPS1 ;SLC/MKB-Pharmacy dialog utilities ;03/21/17  07:27
+ ;;3.0;ORDER ENTRY/RESULTS REPORTING;**94,117,141,149,195,215,243,280,337,311,350,377**;Dec 17, 1997;Build 582
  ;
  ; DBIA 2418   START^PSSJORDF   ^TMP("PSJMR",$J)
  ; DBIA 3166   EN^PSSDIN        ^TMP("PSSDIN",$J)
@@ -163,8 +163,8 @@ DEFCONJ ; -- Set default conjuction for previous instance [P-S Action]
 ENCONJ ; -- Get allowable values, if req'd for INST
  N P S P=$$PTR("INSTRUCTIONS")
  S:$G(ORTYPE)'="Z" REQD=$S($O(ORDIALOG(P,INST)):1,1:0) ;DJE/VM *350 quick orders should not require this field
- S ORDIALOG(PROMPT,"A")="And/then"_$S(ORCAT="O":"/except: ",1:": ")
- S $P(ORDIALOG(PROMPT,0),U,2)="A:AND;T:THEN;"_$S(ORCAT="O":"X:EXCEPT;",1:"")
+ S ORDIALOG(PROMPT,"A")="And/then:"
+ S $P(ORDIALOG(PROMPT,0),U,2)="A:AND;T:THEN;"
  Q
  ;
 INPCONJ ;

@@ -1,5 +1,5 @@
-PXRMORCH ;SLC/AGP - Reminder Order Checks API;07/27/2017
- ;;2.0;CLINICAL REMINDERS;**16,22,26,47**;Feb 04, 2005;Build 291
+PXRMORCH ;SLC/AGP - Reminder Order Checks API ;Nov 12, 2019@09:22
+ ;;2.0;CLINICAL REMINDERS;**16,22,26,47,45**;Feb 04, 2005;Build 566
  ;
  Q
  ;
@@ -23,7 +23,7 @@ GETOCTXT(DFN,IEN,OI,SEV,PNAME,SUB,CNT) ;Get the Order Check text from
 ADDRULES(TYPE,ITEM,LIST) ;
  I ITEM'>0 Q
  N IEN S IEN=0
- F  S IEN=$O(^PXD(801,"ADRUGR",TYPE,ITEM,IEN)) Q:IEN'>0  S LIST(IEN)=""
+ F  S IEN=$O(^PXD(801,"AITEM",TYPE,ITEM,IEN)) Q:IEN'>0  S LIST(IEN)=""
  Q
  ;
 GETDRUG(DRGIEN,OI,LIST) ;
@@ -36,33 +36,46 @@ GETDRUG(DRGIEN,OI,LIST) ;
  D ADDRULES("DG",$P($G(^TMP($J,"PXRM DRUG",DRGIEN,20)),U),.LIST)
  ;add rules assigned to VA Drug Class
  D ADDRULES("DC",$P($G(^TMP($J,"PXRM DRUG",DRGIEN,25)),U),.LIST)
+ ;add rules assigned to VA Product
+ D ADDRULES("DP",$P($G(^TMP($J,"PXRM DRUG",DRGIEN,22)),U),.LIST)
  I OI>0 Q
  ;get OI from DRUG
  N IEN,PSOI
  S PSOI=+$G(^TMP($J,"PXRM DRUG",DRGIEN,2.1)) I PSOI'>0 Q
  S OI=$$OITM^ORX8(PSOI,"99PSP") I OI'>0 Q
- S IEN=0 F  S IEN=$O(^PXD(801,"AOIR",OI,IEN)) Q:IEN'>0  S LIST(IEN)=""
+ S IEN=0 F  S IEN=$O(^PXD(801,"AITEM","OI",OI,IEN)) Q:IEN'>0  S LIST(IEN)=""
+ Q
+ ;
+GETRAD(OI,LIST) ;
+ N TYPE,TYPEIEN,RIEN,ERR
+ S TYPE=$$GET1^DIQ(101.43,OI,71.3) I TYPE="" Q
+ I TYPE="RADIOLOGY" S TYPE="GENERAL RADIOLOGY"
+ S TYPEIEN=$$FIND1^DIC(79.2,"","X",TYPE,"","","ERR")
+ S RIEN=0 F  S RIEN=$O(^PXD(801,"AITEM","RA",TYPEIEN,RIEN)) Q:RIEN=""  S LIST(RIEN)=""
  Q
  ;
 GETRULES(OI,DRUG,LIST) ;
  ;get rules for OI
  N DRGIEN,IEN,OIID
- I OI>0 S IEN=0 F  S IEN=$O(^PXD(801,"AOIR",OI,IEN)) Q:IEN'>0  S LIST(IEN)=""
+ S OIID=""
+ I OI>0 S IEN=0 F  S IEN=$O(^PXD(801,"AITEM","OI",OI,IEN)) Q:IEN'>0  S LIST(IEN)=""
  ;detemine if pharmacy OI
- I OI>0 S OIID=$P($G(^ORD(101.43,OI,0)),U,2) I OIID'["PSP" Q
+ I OI>0 S OIID=$P($G(^ORD(101.43,OI,0)),U,2) I OIID'["PSP",OIID'["RAP" Q
  K ^TMP($J,"PXRM DRUG LIST"),^TMP($J,"PXRM DRUG")
  I DRUG>0 D GETDRUG(DRUG,OI,.LIST) G GETRULEX
- ;get drug(s) assocaited with the OI DBIA 4662
- D DRGIEN^PSS50P7(+OIID,DT,"PXRM DRUG LIST")
- I $G(^TMP($J,"PXRM DRUG LIST",0))'>0 Q
- S DRGIEN=0
- F  S DRGIEN=$O(^TMP($J,"PXRM DRUG LIST",DRGIEN)) Q:DRGIEN'>0  D GETDRUG(DRGIEN,OI,.LIST)
+ I OIID["PSP" D
+ .;get drug(s) assocaited with the OI DBIA 4662
+ .D DRGIEN^PSS50P7(+OIID,DT,"PXRM DRUG LIST")
+ .I $G(^TMP($J,"PXRM DRUG LIST",0))'>0 Q
+ .S DRGIEN=0
+ .F  S DRGIEN=$O(^TMP($J,"PXRM DRUG LIST",DRGIEN)) Q:DRGIEN'>0  D GETDRUG(DRGIEN,OI,.LIST)
+ I OIID["RAP" D GETRAD(OI,.LIST)
 GETRULEX ;
  K ^TMP($J,"PXRM DRUG LIST"),^TMP($J,"PXRM DRUG")
  Q
  ;
 ORDERCHK(DFN,OI,TEST,DRUG,TESTER) ;
- ;main order check API
+ ;main order check API check for order checks for all Order Check Groups
  ;Input
  ;  OI=IEN of Orderable Item from file 101.43
  ;  DFN=Patient DFN
@@ -73,30 +86,90 @@ ORDERCHK(DFN,OI,TEST,DRUG,TESTER) ;
  ;  SEV=is the value assigned to the severity field
  ;  DISPLAY NAME=is the value assigned to the Display Field Name
  ;
- ;K ^TMP($J,OI)
- N CNT,FLAG,IEN,IENOI,IENR,NODE,NUM,OIREM,PNAME,RIEN,RNAME
- N RULES,REMEVLST,RSTAT,SEV,SUB,TEXTTYPE,TIEN,TNAME,TSTAT
+ N RULES,SUB
  ;
- ;loop through AOIR xref to find the group IEN and the corresponding
- ;Rules assigned to the orderable item
  ;
  S SUB=$S(DRUG>0:DRUG,1:OI)
+ I +SUB=0 Q
  K ^TMP($J,SUB)
  D GETRULES(OI,DRUG,.RULES)
+ D PROCESS(SUB,OI,TEST,TESTER,.RULES)
+ Q
+ ;
+ ; entry point used to look for groups for a specific orderable item
+GETGRPS(OI,GROUPS) ;
+ N OIID,DRGIEN,TYPE,TYPEIEN,ERR
+ I $G(OI)'?1.N Q
+ K GROUPS
+ ;add groups containing orderable item
+ D OLOOP(OI_";ORD(101.43,",.GROUPS)
+ ;determine type of item, quit if not pharmacy or radiology
+ S OIID=$P($G(^ORD(101.43,OI,0)),U,2) I OIID'["PSP",OIID'["RAP" Q
+ I OIID["PSP" D
+ .;get drug(s) associated with the OI DBIA 4662
+ .D DRGIEN^PSS50P7(+OIID,DT,"PXRM DRUG LIST")
+ .I $G(^TMP($J,"PXRM DRUG LIST",0))'>0 Q
+ .S DRGIEN=0
+ .F  S DRGIEN=$O(^TMP($J,"PXRM DRUG LIST",DRGIEN)) Q:DRGIEN'>0  D
+ ..;get drug information DBIA 4533
+ ..D DATA^PSS50(DRGIEN,,DT,,,"PXRM DRUG")
+ ..I $G(^TMP($J,"PXRM DRUG",0))'>0 Q
+ ..;add groups containing VA Generic
+ ..D OLOOP($P($G(^TMP($J,"PXRM DRUG",DRGIEN,20)),U)_";PSNDF(50.6,",.GROUPS)
+ ..;add groups containing VA Drug Class
+ ..D OLOOP($P($G(^TMP($J,"PXRM DRUG",DRGIEN,25)),U)_";PS(50.605,",.GROUPS)
+ ..;add groups containing VA Product
+ ..D OLOOP($P($G(^TMP($J,"PXRM DRUG",DRGIEN,22)),U)_";PSNDF(50.68,",.GROUPS)
+ .K ^TMP($J,"PXRM DRUG LIST"),^TMP($J,"PXRM DRUG")
+ I OIID["RAP" D
+ .S TYPE=$$GET1^DIQ(101.43,OI,71.3) I TYPE="" Q
+ .I TYPE="RADIOLOGY" S TYPE="GENERAL RADIOLOGY"
+ .S TYPEIEN=$$FIND1^DIC(79.2,"","X",TYPE,"","","ERR")
+ .;add groups containing radiology procedure
+ .D OLOOP(TYPEIEN_";RA(79.2,",.GROUPS)
+ Q
+ ;
+ ; entry point used to loop through O index
+OLOOP(VPOINTER,GROUPS) ;
+ N IEN,GNAME
+ S IEN=0 F  S IEN=$O(^PXD(801,"O",VPOINTER,IEN)) Q:'+IEN  D
+ .S GNAME=$P($G(^PXD(801,IEN,0)),U) Q:GNAME=""
+ .S GROUPS(GNAME)=""
+ Q
+ ;
+ ; entry point used to look for order checks for a specific list of groups.
+ ;INPUT and OUTPUT defined ORDERCHK
+ORDERGRP(DFN,OI,TEST,DRUG,GROUPS) ;
+ N GIEN,GROUP,GRULES,RULE,RULES,SUB
+ S SUB=$S(DRUG>0:DRUG,1:OI)
+ K ^TMP($J,SUB)
+ S GROUP="" F  S GROUP=$O(GROUPS(GROUP)) Q:GROUP=""  D
+ .I GROUP=+GROUP,($D(^PXD(801,GROUP,0))) S GIEN=GROUP
+ .E  S GIEN=+$O(^PXD(801,"B",GROUP,""))
+ .Q:GIEN=0
+ .S RULE=0 F  S RULE=$O(^PXD(801,GIEN,3,"B",RULE)) Q:RULE'>0  S GRULES(RULE,GROUP)=""
+ D GETRULES(OI,DRUG,.RULES)
+ S RULE=0 F  S RULE=$O(RULES(RULE)) Q:RULE'>0  I '$D(GRULES(RULE)) K RULES(RULE)
+ D PROCESS(SUB,OI,TEST,0,.RULES)
+ Q
+ ;
+PROCESS(SUB,OI,TEST,TESTER,RULES) ;
+ N CNT,FIEVAL,FLAG,IEN,IENOI,IENR,NODE,NUM,OIREM,PNAME,RIEN,RNAME
+ N REMEVLST,RSTAT,SEV,TEXTTYPE,TIEN,TNAME,TSTAT,PXRMSRCFF
+ S PXRMSRCFF=1
  S IEN=0 F  S IEN=$O(RULES(IEN)) Q:IEN'>0  D
  .S NODE=$G(^PXD(801.1,IEN,0))
  .S FLAG=$P(NODE,U,3)
  .I FLAG="I" Q
  .I TEST=1,FLAG="P" Q
  .I TEST=0,FLAG="T" Q
- .;S PNAME=IEN_U_$P(NODE,U,2)
  .S PNAME=$P(NODE,U,2)
  .S SEV=$P(NODE,U,5)
  .S TIEN=$P($G(^PXD(801.1,IEN,2)),U)
  .;
  .;Reminder Term defined used branching logic code
  .I TIEN>0 D  Q
- ..S TSTAT=$$TERM^PXRMDLLB(TIEN,DFN,IEN,"O")
+ ..S TSTAT=$$TERM^PXRMDLLB(TIEN,DFN,IEN,"O",.FIEVAL)
  ..S CNT=0
  ..I TSTAT=-1 D  Q
  ...S CNT=CNT+1,^TMP($J,SUB,3,PNAME,CNT)="Clinical Reminder evaluation error; this order check cannot be processed."
@@ -107,7 +180,7 @@ ORDERCHK(DFN,OI,TEST,DRUG,TESTER) ;
  ...S CNT=CNT+1,^TMP($J,SUB,SEV,PNAME,CNT)="be processed." Q
  ..I TESTER=1 D
  ...S TNAME=$P(^PXRMD(811.5,TIEN,0),U)
- ...S CNT=CNT+1,^TMP($J,SUB,3,PNAME,CNT)="INTERNAL: Reminder Term: "_TNAME_" Status: "_$S(TSTAT=1:"True",1:"False")
+ ...S CNT=CNT+1,^TMP($J,SUB,SEV,PNAME,CNT)="INTERNAL: Reminder Term: "_TNAME_" Status: "_$S(TSTAT=1:"True",1:"False")
  ...;S CNT=CNT+1,^TMP($J,SUB,SEV,PNAME,CNT)=" "
  ..I TSTAT'=$P(^PXD(801.1,IEN,2),U,2) D  Q
  ...I TESTER=1 D
@@ -115,6 +188,7 @@ ORDERCHK(DFN,OI,TEST,DRUG,TESTER) ;
  ....S CNT=CNT+1,^TMP($J,SUB,SEV,PNAME,CNT)=" "
  ..;load order check text needs to be converted
  ..D GETOCTXT(DFN,IEN,OI,SEV,PNAME,SUB,.CNT)
+ ..K ^TMP("PXRM BL DATA",$J)
  .;if not TERM do reminder evaluation
  .S NODE=$G(^PXD(801.1,IEN,3))
  .S RIEN=$P(NODE,U),RSTAT=$P(NODE,U,2),TEXTTYPE=$P(NODE,U,3)
@@ -125,11 +199,11 @@ ORDERCHK(DFN,OI,TEST,DRUG,TESTER) ;
  Q
  ;
  ;
-REMEVAL(DFN,OI,RIEN,PNAME,IEN,RNAME,TEXTTYE,RSTAT,SEV,SUB,TESTER) ;
+REMEVAL(DFN,OI,RIEN,PNAME,IEN,RNAME,TEXTTYPE,RSTAT,SEV,SUB,TESTER) ;
  ;used by ORDECHK this does the reminder evaluation and put the
  ;reminder text in the temp global
  K ^TMP("PXRHM",$J),^TMP("PXRMORTMP",$J)
- N CNT,NUM,STATUS
+ N CNT,NUM,STATUS,PXRMDEFS
  S CNT=0
  ;
  ;standard reminder evaluation results, final output like the
@@ -142,11 +216,12 @@ REMEVAL(DFN,OI,RIEN,PNAME,IEN,RNAME,TEXTTYE,RSTAT,SEV,SUB,TESTER) ;
  .S CNT=CNT+1,^TMP($J,SUB,3,PNAME,CNT)="Please contact the reminder manager for assistance."
  .I TESTER=0 D SENDMSG(DFN,"order check rule",PNAME,"definition",RIEN)
  I (STATUS="CNBD") D  Q
- .S CNT=CNT+1,^TMP($J,SUB,3,PNAME,CNT)="Clinical Reminder evaluation is currently disabled; this order check cannot"
- .S CNT=CNT+1,^TMP($J,SUB,3,PNAME,CNT)="be processed."
- ;
+ .S CNT=CNT+1,^TMP($J,SUB,SEV,PNAME,CNT)="Clinical Reminder evaluation is currently disabled; this order check cannot"
+ .S CNT=CNT+1,^TMP($J,SUB,SEV,PNAME,CNT)="be processed."
  I TESTER=1 D
  .S CNT=CNT+1,^TMP($J,SUB,SEV,PNAME,CNT)="INTERNAL: Reminder Definition: "_RNAME_" Status: "_STATUS
+ .;S CNT=CNT+1,^TMP($J,SUB,SEV,PNAME,CNT)=" "
+ ;if not valid status return error message
  ;if Reminder Status does not match status field quit.
  I $$STATMTCH(STATUS,RSTAT)=0 D  Q
  .I TESTER=1 D
@@ -173,17 +248,18 @@ STATMTCH(REMSTAT,RULESTAT) ;
  I RULESTAT="D",REMSTAT["DUE" Q 1
  I RULESTAT="A",REMSTAT'="N/A",REMSTAT'="NEVER" Q 1
  I RULESTAT="N",$E(REMSTAT,1)="N" Q 1
+ I RULESTAT="R",REMSTAT["RESOLVE" Q 1
  Q 0
  ;
 SENDMSG(PAT,TYPE,NAME,ITYPE,IIEN) ;
  K ^TMP("PXRMXMZ",$J)
- N CNT,ERRORTXT,GBL,HEADER,ITEM,NAME
- S NAME=$$GET1^DIQ(2,PAT,.01)
+ N CNT,ERRORTXT,GBL,HEADER,ITEM,PNAME
+ S PNAME=$$GET1^DIQ(2,PAT,.01)
  S HEADER="Evaluation error in a Reminder "_TYPE
  S GBL=$S(ITYPE["def":"^PXD(811.9)",ITYPE["dial":"^PXRMD(801.41)",ITYPE["order":"^PXD(801.1)",ITYPE["term":"^PXRMD(811.5)",1:"")
  S ITEM=$S(GBL'="":$P($G(@GBL@(IIEN,0)),U),1:"")
  S CNT=1,^TMP("PXRMXMZ",$J,CNT,0)="Error evaluating a reminder "_ITYPE_" "_ITEM
- S CNT=CNT+1,^TMP("PXRMXMZ",$J,CNT,0)="on patient "_NAME_" (DFN: "_PAT_")."
+ S CNT=CNT+1,^TMP("PXRMXMZ",$J,CNT,0)="on patient "_PNAME_" (DFN: "_PAT_")."
  S CNT=CNT+1,^TMP("PXRMXMZ",$J,CNT,0)="This error was found when processing a Reminder "_TYPE_" "_NAME_"."
  D SEND^PXRMMSG("PXRMXMZ",HEADER,"",DUZ)
  K ^TMP("PXRMXMZ",$J)

@@ -1,6 +1,9 @@
-SDEC49 ;ALB/SAT - VISTA SCHEDULING RPCS ;MAR 15, 2017
- ;;5.3;Scheduling;**627,658**;Aug 13, 1993;Build 23
+SDEC49 ;ALB/SAT,WTC - VISTA SCHEDULING RPCS ;Feb 12, 2020@15:22
+ ;;5.3;Scheduling;**627,658,694**;Aug 13, 1993;Build 61
  ;
+ ;  ICR
+ ;  ---
+ ;  10060 - #200 new person
  Q
  ;
 PREFSET(SDECY,DFN,PREF,REMARK) ; Set values to SDEC PREFERENCES AND SPECIAL NEEDS file  ;alb/sat add REMARK
@@ -105,7 +108,11 @@ PREFSET(SDECY,DFN,PREF,REMARK) ; Set values to SDEC PREFERENCES AND SPECIAL NEED
  ..K SDFDA,SDIEN,SDMSG
  ..S SDFDA=$NA(SDFDA(409.8451,"+1,"_PIEN_","))
  ..S @SDFDA@(.01)=SDPREF($P(SDINOD,"|",1))   ;preference code
- ..S %DT="TX" S X=$P(SDINOD,"|",2) D ^%DT S @SDFDA@(2)=$S(Y=-1:$$NOW^XLFDT,1:Y)  ;date/time added
+ .. ;
+ .. ;  Change date/time conversion so midnight is handled properly.  wtc 694 5/17/18
+ .. ;
+ .. S X=$P(SDINOD,"|",2),Y=$$NETTOFM^SDECDATE(X,"Y","N") S @SDFDA@(2)=$S(Y=-1:$$NOW^XLFDT,1:Y)  ;date/time added
+ .. ;S %DT="TX" S X=$P(SDINOD,"|",2) D ^%DT S @SDFDA@(2)=$S(Y=-1:$$NOW^XLFDT,1:Y)  ;date/time added
  ..S @SDFDA@(3)=$S(+$P(SDINOD,"|",3):+$P(SDINOD,"|",3),1:DUZ)     ;added by user
  ..S @SDFDA@(4)=$S($P(SDINOD,"|",7)=1:"",1:$$TIME($P(SDINOD,"|",4)))
  ..S @SDFDA@(5)=$S($P(SDINOD,"|",7)=1:"",1:$$USER($P(SDINOD,"|",5)))
@@ -189,8 +196,13 @@ PREFGET(SDECY,DFN,INAC) ; Get values from SDEC PREFERENCES AND SPECIAL NEEDS fil
  S PIEN1=0 F  S PIEN1=$O(^SDEC(409.845,PIEN,1,PIEN1)) Q:PIEN1'>0  D
  .S PIEN1NOD=^SDEC(409.845,PIEN,1,PIEN1,0)
  .I '+$G(INAC) Q:$P(PIEN1NOD,U,4)'=""
- .S SDTMP=DFN_U_SDPREF($P(PIEN1NOD,U,1))_U_$$FMTE^XLFDT($P(PIEN1NOD,U,2),8)_U_$P(PIEN1NOD,U,3)_U_$P($G(^VA(200,+$P(PIEN1NOD,U,3),0)),U,1)
- .S SDTMP=SDTMP_U_$S($P(PIEN1NOD,U,4)'="":$$FMTE^XLFDT($P(PIEN1NOD,U,4),8),1:"")_U_$P(PIEN1NOD,U,5)
+ . ;
+ . ;  Change date/time conversion so midnight is handled properly.  wtc 694 5/17/18
+ . ;
+ . ;S SDTMP=DFN_U_SDPREF($P(PIEN1NOD,U,1))_U_$$FMTE^XLFDT($P(PIEN1NOD,U,2),8)_U_$P(PIEN1NOD,U,3)_U_$P($G(^VA(200,+$P(PIEN1NOD,U,3),0)),U,1)
+ . S SDTMP=DFN_U_SDPREF($P(PIEN1NOD,U,1))_U_$$FMTONET^SDECDATE($P(PIEN1NOD,U,2))_U_$P(PIEN1NOD,U,3)_U_$$GET1^DIQ(200,+$P(PIEN1NOD,U,3)_",",.01)
+ . ;S SDTMP=SDTMP_U_$S($P(PIEN1NOD,U,4)'="":$$FMTE^XLFDT($P(PIEN1NOD,U,4),8),1:"")_U_$P(PIEN1NOD,U,5)
+ . S SDTMP=SDTMP_U_$S($P(PIEN1NOD,U,4)'="":$$FMTONET^SDECDATE($P(PIEN1NOD,U,4)),1:"")_U_$P(PIEN1NOD,U,5) ;
  .S SDTMP=SDTMP_U_$S($P(PIEN1NOD,U,5)'="":$P($G(^VA(200,+$P(PIEN1NOD,U,5),0)),U,1),1:"")
  .;get remark
  .K SDWP S X=$$GET1^DIQ(409.8451,PIEN1_","_PIEN_",",6,"","SDWP","SDMSG")

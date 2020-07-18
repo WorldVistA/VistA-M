@@ -1,6 +1,6 @@
-SDDPA ;MAN/GRR,ALB/TMP,GXT/SCM- DISPLAY APPOINTMENTS ; 23 JUL 2018 12:37 pm
- ;;5.3;Scheduling;**140,334,545,705**;Aug 13, 1993;Build 11
- ;;PER VHA DIRECTIVE 2004-038, DO NOT MODIFY THIS ROUTINE
+SDDPA ;MAN/GRR,ALB/TMP,GXT/SCM - DISPLAY APPOINTMENTS ;7/23/18
+ ;;5.3;Scheduling;**140,334,545,705,739**;Aug 13, 1993;Build 1
+ ;;Per VA Directive 6402, this routine should not be modified.
  ;;9/5/06KMP
  D:'$D(DT) DT^SDUTL K SDACS
 RD Q:$D(SDACS)  S HDT=DT,APL="",SDRG=0,SDEDT=""
@@ -10,7 +10,7 @@ RD1 ; If "Exclude Administrative Clinics" parameter (ADMIN API) is set to "YES"
  ; then user will be prompted if they want to exclude the administrative 
  ; clinics from the Appointment List. SD*5.3*705
  N SDEXCLUD S SDEXCLUD=""
- I $$ADMIN  D
+ I $$ADMIN  D  Q:'$G(DFN)  ;*739 quit if no pat exists
  . S %=2,DTOUT=0 W !,"Do you want to exclude Administrative Clinic appointments" D YN^DICN G:%<0!$T RD I '% W !,"Respond YES or NO" G RD1
  . S SDEXCLUD=%
 RD2 S %=1,DTOUT=0 W !,"Do you want to see only pending appointments" D YN^DICN G:%<0!$T RD I '% W !,"Respond YES or NO" G RD2

@@ -1,7 +1,6 @@
-XINDX2 ;ISC/REL,GRK,RWF - PROCESS "GRB" ;2018-02-28  10:30 AM
- ;;7.3;TOOLKIT;**20,27,48,110,121,133,140,10001**;Apr 25, 1995;Build 4
- ; Original routine authored by U.S. Department of Veterans Affairs
- ; OBJTEST+1:3 by Kitware/Jason Li
+XINDX2 ;ISC/REL,GRK,RWF - PROCESS "GRB" ;4/2/08  16:35
+ ;;7.3;TOOLKIT;**20,27,48,110,121,133,140**;Apr 25, 1995;Build 40
+ ; Per VHA Directive 2004-038, this routine should not be modified.
 % S LINE=GRB,(CM,COM)="" F I=0:0 S STR=$P(LINE,$C(9),1),LINE=$P(LINE,$C(9),2,999),NOA=0 D:STR]"" ARGG Q:LINE']""
  Q
  ;Process argument
@@ -159,9 +158,7 @@ OP(NEW) ;Sets or returns the current operator
  Q $G(LV(LV,"OP",W))
  ;
 OBJTST(OBJ) ;test if OBJ exists, returns 1 if exists
- ;; Begin Change (OSEHRA/JL) Return 1 for non-Cache system
  Q:^%ZOSF("OS")'["OpenM" 1
- ;; END Change (OSEHRA/JL)
  Q:$G(OBJ)="" 0
  Q ##class(%Dictionary.ClassDefinition).%ExistsId(""_OBJ_"")
  ;

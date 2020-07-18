@@ -1,6 +1,11 @@
-SDEC52A ;ALB/SAT - VISTA SCHEDULING RPCS ;MAR 15, 2017
- ;;5.3;Scheduling;**627,658**;Aug 13, 1993;Build 23
+SDEC52A ;ALB/SAT,PC - VISTA SCHEDULING RPCS ;Feb 12, 2020@15:22
+ ;;5.3;Scheduling;**627,658,694**;Aug 13, 1993;Build 61
+ ;;Per VHA Directive 2004-038, this routine should not be modified
  ;
+ ;  ICR
+ ;  ---
+ ;  1367 - XPDKEY
+ ;  3277 - XUSRB
  Q
  ;
 RECSET(SDECY,INP) ; SET/EDIT an entry to the RECALL REMINDERS file 403.5
@@ -71,7 +76,11 @@ RECSET(SDECY,INP) ; SET/EDIT an entry to the RECALL REMINDERS file 403.5
  I '+CLINIEN,RECALLIEN="+1" S SDECY=SDECY_"-1^Clinic ID is required."_$C(30,31) Q
  ;check Recall Date (required)
  S DATE=$G(INP(10))
- I DATE'="" S %DT="" S X=$P(DATE,"@",1) D ^%DT S DATE=Y I Y=-1 S SDECY=SDECY_"-1^Invalid Recall Date."_$C(30,31) Q
+ ;
+ ;  Change date/time conversion so midnight is handled properly.  wtc 694 5/17/18
+ ;
+ S DATE=$$NETTOFM^SDECDATE(DATE,"N","N") I DATE=-1 S SDECY=SDECY_"-1^Invalid Recall Date."_$C(30,31) Q
+ ;I DATE'="" S %DT="" S X=$P(DATE,"@",1) D ^%DT S DATE=Y I Y=-1 S SDECY=SDECY_"-1^Invalid Recall Date."_$C(30,31) Q
  I DATE="",RECALLIEN="+1" S SDECY=SDECY_"-1^Recall Date is required."_$C(30,31) Q
  ;
  ;check FAST/NON-FASTING (optional)
@@ -82,19 +91,35 @@ RECSET(SDECY,INP) ; SET/EDIT an entry to the RECALL REMINDERS file 403.5
  I APPTLEN'="" I APPTLEN<10,APPTLEN>120 S APPTLEN=""
  ;check Recall Date (per Patient) (optional)
  S DATE1=$G(INP(11))
- I DATE1'="" S %DT="" S X=$P(DATE1,"@",1) D ^%DT S DATE1=Y I Y=-1 S DATE1=""
+ ;
+ ;  Change date/time conversion so midnight is handled properly.  wtc 694 5/17/18
+ ;
+ S DATE1=$$NETTOFM^SDECDATE(DATE1,"N","N") I DATE1=-1 S DATE1="" ;
+ ;I DATE1'="" S %DT="" S X=$P(DATE1,"@",1) D ^%DT S DATE1=Y I Y=-1 S DATE1=""
  ;check date reminder sent (optional)
  S DAPTDT=$G(INP(12))
- I DAPTDT'="" S %DT="" S X=$P(DAPTDT,"@",1) D ^%DT S DAPTDT=Y I Y=-1 S ORGDT=""
+ ;
+ ;  Change date/time conversion so midnight is handled properly.  wtc 694 5/17/18
+ ;
+ S DAPTDT=$$NETTOFM^SDECDATE(DAPTDT,"N","N") I DAPTDT=-1 S DAPTDT="" ; changed ORGDT to DAPTDT  pwc/ *694
+ ;I DAPTDT'="" S %DT="" S X=$P(DAPTDT,"@",1) D ^%DT S DAPTDT=Y I Y=-1 S ORGDT=""
  ;check User Who Entered Recall (optional) default to current
  S PROVIEN=$G(INP(13))
  I (PROVIEN="")!('$D(^VA(200,+PROVIEN))) S PROVIEN=DUZ
  ;check Second Print date (optional)
  S DATE2=$G(INP(14))
- I DATE2="" S %DT="" S X=$P(DATE2,"@",1) D ^%DT S DATE2=Y I Y=-1 S DATE2=""
+  ;
+ ;  Change date/time conversion so midnight is handled properly.  wtc 694 5/17/18
+ ;
+ I DATE2'="" S DATE2=$$NETTOFM^SDECDATE(DATE2,"N","N") I DATE2=-1 S DATE2="" ;
+ ;I DATE2="" S %DT="" S X=$P(DATE2,"@",1) D ^%DT S DATE2=Y I Y=-1 S DATE2=""
  ;check DATE/TIME RECALL ADDED (optional)
  S DATE3=$G(INP(15))
- I DATE3'="" S %DT="" S X=$P(DATE3,"@",1) D ^%DT S DATE3=Y I Y=-1 S DATE3=""
+ ;
+ ;  Change date/time conversion so midnight is handled properly.  wtc 694 5/17/18
+ ;
+ I DATE3'="" S DATE3=$$NETTOFM^SDECDATE(DATE3,"N","N") I DATE3=-1 S DATE3="" ;  changed TIME requirement to NO in call to NETTOFM^SDECDATE  pwc/ *694
+ ;I DATE3'="" S %DT="" S X=$P(DATE3,"@",1) D ^%DT S DATE3=Y I Y=-1 S DATE3=""
  I DATE3'="",$G(RRNOD)'="",$P(RRNOD,U,14)'="" S DATE3=""   ;only add DATE/TIME RECALL ADDED if it is not already there
  ;check comment
  S (INP(4),SDCOMM)=$TR($G(INP(4)),"^"," ")   ;alb/sat 658

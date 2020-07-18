@@ -1,5 +1,5 @@
-ECEFPAT ;ALB/JAM-Enter Event Capture Data Patient Filer ;2/26/18  15:33
- ;;2.0;EVENT CAPTURE;**25,32,39,42,47,49,54,65,72,95,76,112,119,114,126,134,139**;8 May 96;Build 7
+ECEFPAT ;ALB/JAM-Enter Event Capture Data Patient Filer ;9/6/19  15:40
+ ;;2.0;EVENT CAPTURE;**25,32,39,42,47,49,54,65,72,95,76,112,119,114,126,134,139,148**;8 May 96;Build 4
  ;
  ; Reference to $$SINFO^ICDEX supported by ICR #5747
  ; Reference to $$ICDDX^ICDEX supported by ICR #5747
@@ -32,6 +32,7 @@ FILE ;Used by the RPC broker to file patient encounter in file #721
  ;       ECELIG  - Eligibility, optional
  ;       ECSOURCE- Indicates source of input (e.g. STATE HOME)
  ;       ECSSID  - Unique Spread Sheet ID (ddmmyyyyhhmmss_hash)
+ ;       ECSHNAME- Name of State Home from spread sheet upload
  ;
  ;     Variable return
  ;       ^TMP($J,"ECMSG",n)=Success or failure to file in #721^Message
@@ -98,7 +99,7 @@ FILE ;Used by the RPC broker to file patient encounter in file #721
  .N STATUS,IMPDT
  .S STATUS=$$STAT ;Determine if "late"
  .S IMPDT=($E(ECSSID,5,6)-17)_$E(ECSSID,7,8)_$E(ECSSID,1,4)_"."_$E(ECSSID,9,14) ;Convert date to intermal FM format
- .S DR=DR_";45////"_ECSOURCE_";46///"_STATUS_";47////"_IMPDT_";48////"_ECSSID ;139 Add source, status, import date/time and spreadsheet ID if state home entry
+ .S DR=DR_";45////"_ECSOURCE_";46///"_STATUS_";47////"_IMPDT_";48////"_ECSSID_";49////"_$G(ECSHNAME) ;139,148 Add source, status, import date/time and spreadsheet ID - 148, add state home name
  .Q
  D ^DIE I $D(DTOUT) D RECDEL,MSG Q
  I ECDX S ^DISV(DUZ,"^ICD9(")=ECDX  ;last ICD9 code

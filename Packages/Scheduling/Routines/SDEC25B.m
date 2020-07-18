@@ -1,5 +1,5 @@
-SDEC25B ;ALB/SAT - VISTA SCHEDULING RPCS ;JAN 15, 2016
- ;;5.3;Scheduling;**627**;Aug 13, 1993;Build 249
+SDEC25B ;ALB/SAT - VISTA SCHEDULING RPCS ;Apr 03, 2020@14:27
+ ;;5.3;Scheduling;**627,694**;Aug 13, 1993;Build 61
  ;
  Q
  ;
@@ -27,7 +27,7 @@ CO(SDOE,DFN,SDT,SDCL,SDCODT,SDECAPTID,SDQUIET,VPRV,APIERR) ;EP; called to ask ch
  . S APIERR=$G(APIERR)+1 S APIERR(APIERR)="SDEC25B: Patient not checked in"
  . Q
  ;
- S DR="303///"_$$FMTE^XLFDT(SDCODT)_";304///`"_DUZ_";306///"_$$NOW^XLFDT
+ S DR="303///"_SDCODT_";304///`"_DUZ_";306///"_$$NOW^XLFDT   ;PWC removed the $$FMTE^XLFDT for variable SDCODT SD*5.3*694
  D ^DIE
  ;
  ; if checked out and status not updated, do it now

@@ -1,5 +1,8 @@
-ORCHANG2 ;SLC/MKB-Change View status ; 08 May 2002  2:12 PM
- ;;3.0;ORDER ENTRY/RESULTS REPORTING;**27,72,68,141,215,243**;Dec 17, 1997;Build 242
+ORCHANG2 ;SLC/MKB - Change View status ;Feb 11, 2020@14:33:06
+ ;;3.0;ORDER ENTRY/RESULTS REPORTING;**27,72,68,141,215,243,515**;Dec 17, 1997;Build 8
+ ;
+ ;Reference to STATUS^TIUSRVL supported by IA #3039
+ ;
 ORDERS ; -- Select new order status
  N X,Y,HDR,I,DOMAIN,DEFAULT,PROMPT,HELP,STS
  S HDR=$P($G(^TMP("OR",$J,ORTAB,0)),U,3),DEFAULT=""
@@ -27,7 +30,7 @@ ORDERS ; -- Select new order status
  S $P(^TMP("OR",$J,ORTAB,0),U,3,4)=HDR_U
  Q
  ;
-STSLST(ORY)     ; -- Returns array of order views as 
+STSLST(ORY)     ; -- Returns array of order views as
  ;            ORY(n) = id ^ name ^ parent id [^+ if has members]
  N I,X,CNT S CNT=0
  F I=1:1 S X=$T(ORDSTS+I) Q:$P(X,";",4)="ZZZZ"  S CNT=CNT+1,ORY(CNT)=$TR($P(X,";",3,6),";","^")
@@ -46,10 +49,14 @@ ORDSTS ;;#;Name of Order Context
  ;;18;On Hold;1
  ;;19;New Orders;1
  ;;11;Unsigned;1
- ;;8;Unverified by anyone;1;+
- ;;9;Unverified by Nursing;8
- ;;10;Unverified by Clerk;8
- ;;20;Unverified/Chart Review;8
+ ;;8;Unverified Inpatient by anyone;1;+
+ ;;9;Unverified (IP) by Nursing;8
+ ;;10;Unverified (IP) by Clerk;8
+ ;;20;Unverified (IP) Chart Review;8
+ ;;29;Unverified Outpatient by anyone;1;+
+ ;;30;Unverified (OP) by Nursing;29
+ ;;31;Unverified (OP) by Clerk;29
+ ;;32;Unverified (OP) Chart Review;29
  ;;13;Verbal/Phoned;1;+
  ;;14;Verbal/Phoned unsigned;13
  ;;12;Flagged;1

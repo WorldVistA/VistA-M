@@ -1,12 +1,12 @@
-SDEC08 ;ALB/SAT/JSM - VISTA SCHEDULING RPCS ;JUN 21, 2017
- ;;5.3;Scheduling;**627,651,658,665,722,740,744**;Aug 13, 1993;Build 3
+SDEC08 ;ALB/SAT/JSM,WTC - VISTA SCHEDULING RPCS ;Feb 27, 2020@14:33
+ ;;5.3;Scheduling;**627,651,658,665,722,740,744,694**;Aug 13, 1993;Build 61
  ;;Per VHA Directive 2004-038, this routine should not be modified
  ;
  Q
  ;
 APPDEL(SDECY,SDECAPTID,SDECTYP,SDECCR,SDECNOT,SDECDATE,SDUSER) ;Cancels appointment
  ;APPDEL(SDECY,SDECAPTID,SDECTYP,SDECCR,SDECNOT,SDECDATE,SDUSER)  external parameter tag is in SDEC
- ;SDECAPTID - (required) pointer to SDEC APPOINTMENT file
+ ;SDECAPTID - (required) pointer to SDEC APPOINTMENT file #409.84
  ;SDECTYP   - (required) appointment Status valid values:
  ;                          C=CANCELLED BY CLINIC
  ;                         PC=CANCELLED BY PATIENT
@@ -41,7 +41,11 @@ APPDEL(SDECY,SDECAPTID,SDECTYP,SDECCR,SDECNOT,SDECDATE,SDUSER) ;Cancels appointm
  S SDECNOT=$TR($G(SDECNOT),"^"," ")  ;alb/sat 658 - strip out ^
  ;validate cancel date/time
  S SDECDATE=$G(SDECDATE)
- I SDECDATE'="" S %DT="T" S X=SDECDATE D ^%DT S SDECDATE=Y I Y=-1 S SDECDATE=""
+ ;
+ ;  Change date/time conversion so midnight is handled properly.  wtc 694 4/24/18
+ ;
+ ;I SDECDATE'="" S %DT="T" S X=SDECDATE D ^%DT S SDECDATE=Y I Y=-1 S SDECDATE=""
+ I SDECDATE'="" S SDECDATE=$$NETTOFM^SDECDATE(SDECDATE,"Y","N") I SDECDATE=-1 S SDECDATE="" ;  wtc 6/18/18
  I $G(SDECDATE)="" S SDECDATE=$$NOW^XLFDT
  ;validate user
  S SDUSER=$G(SDUSER)
@@ -54,7 +58,7 @@ APPDEL(SDECY,SDECAPTID,SDECTYP,SDECCR,SDECNOT,SDECDATE,SDUSER) ;Cancels appointm
  S SDECSTART=$P(SDECNOD,U)
  ;
  ;Lock SDEC node
- L +^SDEC(409.84,SDECPATID):5 I '$T D ADERR(SDECI+1,.SDECY,"Another user is working with this patient's record.  Please try again later",+SDECPATID,0) Q   ;BI/SD *5.3*740
+ L +^SDEC(409.84,SDECPATID):5 I '$T D ADERR(SDECI+1,.SDECY,"Another user is working with this patient's record.  Please try again later",+SDECPATID,0) Q  ;BI/SD *5.3*740
  ;cancel check-in if walk-in
  I $P(SDECNOD,U,13)="y" D
  .S SDRET=""
@@ -135,7 +139,6 @@ APCAN(SDECZ,SDECLOC,SDECDFN,SDECSD,SDECAPTID,SDECLEN) ;
  S SDECC("NOT")=SDECNOT
  S:+SDECCR SDECC("CR")=SDECCR
  S SDECC("USR")=SDUSER
- ;
  S SDECZ=$$CANCEL(.SDECC)
  Q
  ;
@@ -235,7 +238,6 @@ CANEVT1(SDECRES,SDECSTART,SDECPAT) ;
  ;
 CANEVT3(SDECRES) ;
  ;Call RaiseEvent to notify GUI clients
- ;
  Q
  N SDECRESN
  S SDECRESN=$G(^SDEC(409.831,SDECRES,0))
@@ -246,7 +248,6 @@ CANEVT3(SDECRES) ;
  Q
  ;
 CANCEL(BSDR) ;EP; called to cancel appt
- ;
  ; Make call using: S ERR=$$CANCEL^SDEC08(.ARRAY)
  ;
  ; Input Array -
@@ -266,10 +267,8 @@ CANCEL(BSDR) ;EP; called to cancel appt
  I '$D(^DPT(+$G(BSDR("PAT")),0)) Q 1_U_"Patient not on file: "_$G(BSDR("PAT"))
  I '$D(^SC(+$G(BSDR("CLN")),0)) Q 1_U_"Clinic not on file: "_$G(BSDR("CLN"))
  I ($G(BSDR("TYP"))'="C"),($G(BSDR("TYP"))'="PC") Q 1_U_"Cancel Status error: "_$G(BSDR("TYP"))
- I $G(BSDR("ADT")) S BSDR("ADT")=+$E(BSDR("ADT"),1,12)  ;remove seconds
- I $G(BSDR("ADT"))'?7N1".".4N Q 1_U_"Appt Date/Time error: "_$G(BSDR("ADT"))
- I $G(BSDR("CDT")) S BSDR("CDT")=+$E(BSDR("CDT"),1,12)  ;remove seconds
- I $G(BSDR("CDT"))'?7N1".".4N Q 1_U_"Cancel Date/Time error: "_$G(BSDR("CDT"))
+ I $G(BSDR("ADT"))'?7N1"."1N.N Q 1_U_"Appt Date/Time error: "_$G(BSDR("ADT"))  ;PWC  allow any time combination of numbers #694
+ I $G(BSDR("CDT"))'?7N1"."1N.N Q 1_U_"Appt Date/Time error: "_$G(BSDR("ADT"))  ;PWC  allow any time combination of numbers #694
  I '$D(^VA(200,+$G(BSDR("USR")),0)) Q 1_U_"User Who Canceled Appt Error: "_$G(BSDR("USR"))
  I '$D(^SD(409.2,+$G(BSDR("CR")))) Q 1_U_"Cancel Reason error: "_$G(BSDR("CR"))
  ;
@@ -394,7 +393,6 @@ APUCAN(SDECZ,SDECLOC,SDECPATID,SDECSTART,SDECDAM,SDECDEC,SDECLEN,SDECNOTE,SDECRE
  Q
  ;
 UNCANCEL(BSDR) ;PEP; called to un-cancel appt
- ;
  ; Make call using: S ERR=$$UNCANCEL(.ARRAY)
  ;
  ; Input Array -
@@ -414,8 +412,7 @@ UNCANCEL(BSDR) ;PEP; called to un-cancel appt
  N DPTNOD,DPTNODR
  I '$D(^DPT(+$G(BSDR("PAT")),0)) Q 1_U_"Patient not on file: "_$G(BSDR("PAT"))
  I '$D(^SC(+$G(BSDR("CLN")),0)) Q 1_U_"Clinic not on file: "_$G(BSDR("CLN"))
- I $G(BSDR("ADT")) S BSDR("ADT")=+$E(BSDR("ADT"),1,12)  ;remove seconds
- I $G(BSDR("ADT"))'?7N1".".4N Q 1_U_"Appt Date/Time error: "_$G(BSDR("ADT"))
+ I $G(BSDR("ADT"))'?7N1"."1N.N Q 1_U_"Appt Date/Time error: "_$G(BSDR("ADT"))  ;PWC  allow any time combination of numbers #694
  I '$D(^VA(200,+$G(BSDR("USR")),0)) Q 1_U_"User Who Canceled Appt Error: "_$G(BSDR("USR"))
  ;
  S SDECERR=$$APPVISTA^SDEC07B(BSDR("LEN"),BSDR("NOTE"),BSDR("PAT"),BSDR("RES"),BSDR("ADT"),BSDR("WKIN"),BSDR("CLN"),.SDECI)  ;alb/sat 665 APPVISTA moved to SDEC07B
@@ -424,7 +421,6 @@ UNCANCEL(BSDR) ;PEP; called to un-cancel appt
 ERR(SDECI,SDECERR,SDECPATID,LOCK) ;Error processing   BI/SD*5.3*740 added two parameters
  S SDECI=SDECI+1
  S SDECERR=$TR(SDECERR,"^","~")
- ;TROLLBACK
  S ^TMP("SDEC",$J,SDECI)=SDECERR_$C(30)
  S SDECI=SDECI+1
  S ^TMP("SDEC",$J,SDECI)=$C(31)

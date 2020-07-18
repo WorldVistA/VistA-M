@@ -1,5 +1,5 @@
-SDEC33 ;ALB/SAT - VISTA SCHEDULING RPCS ;JAN 15, 2016
- ;;5.3;Scheduling;**627**;Aug 13, 1993;Build 249
+SDEC33 ;ALB/SAT,WTC - VISTA SCHEDULING RPCS ;Feb 12, 2020@15:22
+ ;;5.3;Scheduling;**627,694**;Aug 13, 1993;Build 61
  ;
  Q
  ;
@@ -37,8 +37,12 @@ REBKNEXT(SDECY,SDECDATE,SDECRES,SDECTPID) ; find the next ACCESS BLOCK in resour
  .I SDECTPID=0!(SDECATID=SDECTPID) S SDECFND=$P(SDECNOD,U,2) Q
  ;
  I SDECFND=0 S SDECFND=""
- E  S Y=SDECFND X ^DD("DD") S SDECFND=Y
- S SDECFND=$TR(SDECFND,"@"," ")
+ ;
+ ;  Change date/time conversion so midnight is handled properly.  wtc 694 5/17/18
+ ;
+ E  S SDECFND=$$FMTONET^SDECDATE(SDECFND,"Y") ;
+ ;E  S Y=SDECFND X ^DD("DD") S SDECFND=Y
+ ;S SDECFND=$TR(SDECFND,"@"," ")
  S SDECI=SDECI+1
  S ^TMP("SDEC",$J,SDECI)="1^"_SDECFND_"^"_$C(30)_$C(31)
  Q
@@ -61,9 +65,13 @@ SETRBOOK(SDECY,SDECAPPT,SDECDATE) ;Sets rebook date into appointment
  ;
  I '+SDECAPPT
  I '$D(^SDEC(409.84,SDECAPPT,0)) D ERR(1,"SDEC REBOOK SET: Invalid appointment ID") Q
- S X=SDECDATE,%DT="XT" D ^%DT
- I Y=-1 D ERR(1,"SDEC REBOOK SET: Invalid rebook datetime") Q
- S SDECDATE=Y
+ ;
+ ;  Change date/time conversion so midnight is handled properly.  wtc 694 5/17/18
+ ;
+ S SDECDATE=$$NETTOFM^SDECDATE(SDECDATE,"Y","N") I SDECDATE=-1 D ERR(1,"SDEC REBOOK SET: Invalid rebook datetime") Q
+ ;S X=SDECDATE,%DT="XT" D ^%DT
+ ;I Y=-1 D ERR(1,"SDEC REBOOK SET: Invalid rebook datetime") Q
+ ;S SDECDATE=Y
  S SDECIENS=SDECAPPT_","
  S SDECFDA(409.84,SDECIENS,.11)=SDECDATE
  ;

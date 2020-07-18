@@ -1,5 +1,5 @@
-ORWSR ;SLC/REV-Surgery RPCs ; 3/15/11 8:08am
- ;;3.0;ORDER ENTRY/RESULTS REPORTING;**109,116,132,148,160,190,274,347**;Dec 17, 1997;Build 4
+ORWSR ;SLC/REV-Surgery RPCs ;10/03/19  15:19
+ ;;3.0;ORDER ENTRY/RESULTS REPORTING;**109,116,132,148,160,190,274,347,377**;Dec 17, 1997;Build 582
  ;
 SHOWSURG(ORY) ;is Surgery ES patch installed?
  S ORY=$$PATCH^XPDUTL("SR*3.0*100")
@@ -11,7 +11,7 @@ LIST(ORY,ORDFN,ORBDT,OREDT,ORCTXT,ORMAX,ORFHIE) ;RETURN LIST OF SURGERY CASES FO
  N I,J,X,SHOWADD,SHOWDOCS
  S ORY=$NA(^TMP("ORLIST",$J))
  Q:'+ORDFN
- S:'$G(ORCTXT) ORCTXT=1
+ S:'$G(ORCTXT) ORCTXT=-1
  S:'$G(ORBDT) ORBDT=""
  S:'$G(OREDT) OREDT=""
  S:'$G(ORMAX) ORMAX=""
@@ -26,7 +26,8 @@ LIST(ORY,ORDFN,ORBDT,OREDT,ORCTXT,ORMAX,ORFHIE) ;RETURN LIST OF SURGERY CASES FO
  . S @ORY@(I)=X
  . F  S J=$O(@ORY@(I,J)) Q:+J=0  D
  . . S X=@ORY@(I,J)
- . . S:(($P(X,U,14)=ORCTXT)!($P(X,U,14)="")) $P(X,U,14)=+$P(X,U,10)
+ . . ; S:(($P(X,U,14)=ORCTXT)!($P(X,U,14)="")) $P(X,U,14)=+$P(X,U,10)
+ . . S $P(X,U,14)=+$P(X,U,10)
  . . S @ORY@(I,J)=X
  Q
 CASELIST(ORY,ORDFN) ; retrieve list of cases, but no documents
@@ -58,10 +59,10 @@ ONECASE(ORY,ORTIUDA) ;Given a TIU document, return the case and related document
  I +ORCASE'>0 S ORY=ORCASE Q
  D GETONE(.ORY,+ORCASE)
  Q
-GETONE(ORY,ORCASE) ; called by ONECASE and RPTTEXT 
+GETONE(ORY,ORCASE) ; called by ONECASE and RPTTEXT
  ;Q:'$$PATCH^XPDUTL("SR*3.0*100")
- N ORTMP,J,SHOWADD,ORCTXT
- S SHOWADD=1,ORCTXT=1
+ N ORTMP,J,SHOWADD,ORCTXT,X ; *377 ajb added X
+ S SHOWADD=1,ORCTXT=-1
  D ONE^SROESTV("ORY",+ORCASE)
  S X=ORY(+ORCASE),J=0
  S $P(X,U,6)=$$NON^SROESTV(+X)
@@ -70,7 +71,8 @@ GETONE(ORY,ORCASE) ; called by ONECASE and RPTTEXT
  S ORTMP(0)=X
  F  S J=$O(ORY(+ORCASE,J)) Q:+J=0  D
  . S X=ORY(+ORCASE,J)
- . S:(($P(X,U,14)=ORCTXT)!($P(X,U,14)="")) $P(X,U,14)=+$P(X,U,10)
+ . ; S:(($P(X,U,14)=ORCTXT)!($P(X,U,14)="")) $P(X,U,14)=+$P(X,U,10)
+ . S $P(X,U,14)=+$P(X,U,10)
  . S ORTMP(J)=X
  K ORY M ORY=ORTMP
  Q
@@ -93,6 +95,7 @@ RPTLIST(ORY,ORDFN) ;Return list of surgery reports for reports tab
  D LIST^SROESTV(.ORY,ORDFN,ORBDT,OREDT,ORMAX,SHOWDOCS)
  S I=0
  F  S I=$O(@ORY@(I)) Q:+I=0  D
+ . N C ; *377 ajb NEW'd C
  . S X=$P(@ORY@(I),U,2),$P(@ORY@(I),U,2)=$P(@ORY@(I),U,3),$P(@ORY@(I),U,3)=X
  . S $P(@ORY@(I),U,4)=$P($P(@ORY@(I),U,4),";",2)
  . S GMN=$P(@ORY@(I),U)
@@ -100,7 +103,7 @@ RPTLIST(ORY,ORDFN) ;Return list of surgery reports for reports tab
  . K ORLW D GETS^DIQ(130,GMN,"49","","ORLW") S Z=$Q(ORLW) S:Z']"" Z="Z" S $P(@ORY@(I),U,6)="LAB WORK-"_$S($D(@Z)>1:"Yes",1:"No") ; Lab work
  . D STATUS^GMTSROB S:'$D(STATUS) STATUS="UNKNOWN"
  . S $P(@ORY@(I),U,7)="STATUS-"_STATUS ; op status
- . S Z=$$GET1^DIQ(130,GMN,.04,"I") I Z>0 S Y=Z,C=$P(^DD(130,.04,0),U,2) D Y^DIQ S SPEC=Y K Y
+ . S Z=$$GET1^DIQ(130,GMN,.04,"I") I Z>0 S Y=Z,C=$P(^DD(130,.04,0),U,2) D Y^DIQ S SPEC=Y K Y ; *377 ajb C not NEW'd see above
  . S $P(@ORY@(I),U,8)="SPEC-"_$G(SPEC) ; Surgical specialty
  . S Z=$$GET1^DIQ(130,GMN,15,"I") S:Z>0 DCTDTM=$$DATE^ORDVU(Z)
  . S $P(@ORY@(I),U,9)="DICT-"_$G(DCTDTM) ; Dictation Time

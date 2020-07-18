@@ -1,5 +1,5 @@
-PXRMEXID ;SLC/PJH - Reminder Dialog Exchange Install Routine. ;01/28/2013
- ;;2.0;CLINICAL REMINDERS;**6,12,24,26**;Feb 04, 2005;Build 404
+PXRMEXID ;SLC/PJH - Reminder Dialog Exchange Install Routine. ;09/08/2015  09:21
+ ;;2.0;CLINICAL REMINDERS;**6,12,24,26,45**;Feb 04, 2005;Build 566
  ;
  ;==================================================
  ;Install all dialog components in an exchange file entry
@@ -141,6 +141,7 @@ SETENTRY ;
  .S DNAME=PT01
  .I NEWPT01'="" S DNAME=NEWPT01
  .D INSLNK(DNAME)
+ .I $D(^TMP("PXRM DIALOG LINK FILE",$J))>0 D DLINKSET^PXRMEXU5
  Q
  ;
  ;Check for descendents (either elements or prompts)

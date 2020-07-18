@@ -1,5 +1,5 @@
-SDECEP ;SPFO/DMR SCHEDULING ENHANCEMENTS VSE EP API
- ;;5.3;Scheduling;**669**;Aug 13 1993;Build 16
+SDECEP ;SPFO/DMR,PC SCHEDULING ENHANCEMENTS VSE EP API ;Apr 02, 2020@14:27
+ ;;5.3;Scheduling;**669,694**;Aug 13 1993;Build 61
  ;
  ;The API provides Extended Profile Appt info the VS Gui.
  ;INPUT - DFN required
@@ -9,7 +9,6 @@ SDECEP ;SPFO/DMR SCHEDULING ENHANCEMENTS VSE EP API
 CLASS(RTT,DFN,APT) ;
  Q:'$G(DFN)
  Q:'$G(APT)
- S U="^"
  ;
  ; Each Clasification set to Not Applicable
  ; 1 Agent Orange Exposure: Not Applicable
@@ -19,6 +18,8 @@ CLASS(RTT,DFN,APT) ;
  ; 5 Military Sexual Trauma: Not Applicable
  ; 6 Head and/or Neck Cancer: Not Applicable
  ; 7 Combat Vet (Combat Related): Not Applicable
+ ;
+ S APT=+APT  ;strip off extra zeros on time  pwc SD*5.3*694
  ;
  S NA="Not Applicable"
  S RTT=NA_U_NA_U_NA_U_NA_U_NA_U_NA_U_NA_U_NA
@@ -37,6 +38,8 @@ DIAGN(REN,DFN,APP) ;
  Q:'$G(DFN)
  Q:'$G(APP)
  ;
+ S APP=+APP  ;strip off extra zeros on time  pwc SD*5.3*694
+ ;
  S (ENUM,CNT,CNT1,CC,NAME,REN)=""
  S ENUM=$P($G(^DPT(DFN,"S",APP,0)),"^",20)
  I ENUM'="" D SET^SDCO4(ENUM)
@@ -53,6 +56,8 @@ DIAGN(REN,DFN,APP) ;
 PROV(RET,DFN,APPT) ;
  Q:'$G(DFN)
  Q:'$G(APPT)
+ ;
+ S APPT=+APPT  ;strip off extra zeros on time  pwc SD*5.3*694
  ;
  S EN="" S EN=$P($G(^DPT(DFN,"S",APPT,0)),"^",20)
  Q:EN=""
@@ -73,6 +78,8 @@ PROV(RET,DFN,APPT) ;
 CPT(REC,DFN,APP) ;
  Q:'$G(APP)
  Q:'$G(DFN)
+ ;
+ S APP=+APP  ;strip off extra zeros on time  pwc SD*5.3*694
  ;
  S ENN="" S ENN=$P($G(^DPT(DFN,"S",APP,0)),"^",20)
  Q:ENN=""
@@ -101,6 +108,8 @@ CPT(REC,DFN,APP) ;
 SCODE(RTU,DFN,APP) ;
  Q:'$G(DFN)
  Q:'$G(APP)
+ ;
+ S APP=+APP  ;strip off extra zeros on time  pwc SD*5.3*694
  ;
  S ENU="" S ENU=$P($G(^DPT(DFN,"S",APP,0)),"^",20)
  Q:ENU=""
@@ -134,5 +143,8 @@ INP(REN,DFN) ;
 APPT(RET,DFN1,APP1) ;
  Q:'$G(DFN1)
  Q:'$G(APP1)
+ ;
+ S APP1=+APP1  ;strip off extra zeros on time  pwc SD*5.3*694
+ ;
  S RET=$P($G(^DPT(DFN1,"S",APP1,0)),"^",2)
  Q

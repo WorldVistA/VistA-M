@@ -1,5 +1,5 @@
-ORCMEDT1 ;SLC/MKB-QO,Set editor ; 7/18/11 10:46am
- ;;3.0;ORDER ENTRY/RESULTS REPORTING;**8,46,57,95,110,245,243,296,341**;Dec 17, 1997;Build 3
+ORCMEDT1 ;SLC/MKB-QO,Set editor ;08/10/15
+ ;;3.0;ORDER ENTRY/RESULTS REPORTING;**8,46,57,95,110,245,243,296,341,377**;Dec 17, 1997;Build 582
 OI ; -- Enter/edit generic orderable items
  N X,Y,DA,DR,DIE,DIC,ID,DLAYGO,ORDG
  F  S ORDG=$$DGRP Q:ORDG'>0  D  W !!
@@ -25,7 +25,9 @@ QCK0(ORQDLG) ; -- edit quick order ORQDLG
  Q:'$G(ORQDLG)  S DA=ORQDLG,(ORVP,ORL)=0,FIRST=1,ORTYPE="Z"
  S ORNAME=$$NAME^ORCMEDT4(ORQDLG) Q:(ORNAME="@")!(ORNAME="^")  ;deleted,^
  S BEFORCRC=$$RAWCRC^ORCMEDT8(ORQDLG)
- S DR=".01///^S X=ORNAME;2;8;20"_$S(DUZ(0)="@":";30",1:""),DIE="^ORD(101.41,"
+ I $$ISTUBEQO^ORWDXM3(ORQDLG)=1 S DR=".01///^S X=ORNAME;2;20"_$S(DUZ(0)="@":";30",1:"")
+ E  S DR=".01///^S X=ORNAME;2;8;20"_$S(DUZ(0)="@":";30",1:"")
+ S DIE="^ORD(101.41,"
  D ^DIE G:$D(Y)!$D(DTOUT) QR  D GETQDLG^ORCD(ORQDLG) G:'$G(ORDIALOG) QR
  I '$P($G(^ORD(101.41,ORQDLG,0)),U,7) S X=+$P($G(^ORD(101.41,+ORDIALOG,0)),U,7) S:X $P(^ORD(101.41,ORQDLG,0),U,7)=X,^ORD(101.41,"APKG",X,ORQDLG)=""
  W ! I $D(^ORD(101.41,+ORDIALOG,3.1)) X ^(3.1) G:$G(ORQUIT) QQ
@@ -50,11 +52,12 @@ AUTO(DLG) ; -- set AutoAccept flag for GUI
  N X,Y,DIR
  I $$VBQO^ORWDXM4(+DLG)=0 S $P(^ORD(101.41,+DLG,5),U,8)="" Q
  I $$VALQO^ORWDXM3(+DLG)=0 S $P(^ORD(101.41,+DLG,5),U,8)="" Q
+ I $$ISTUBEQO^ORWDXM3(+DLG)=1 S $P(^ORD(101.41,+DLG,5),U,8)="" Q
  S DIR(0)="YA",DIR("A")="Auto-accept this order? "
  S DIR("B")=$S($P($G(^ORD(101.41,+DLG,5)),U,8):"YES",1:"NO")
  S DIR("?")="Enter YES if this order can be placed simply by selecting it, or NO if the dialog should be presented to complete the order."
  D ^DIR S:Y=1!(Y=0) $P(^ORD(101.41,+DLG,5),U,8)=$S(Y:1,1:"")
- I $P($G(^ORD(101.41,+DLG,0)),"^",8)'=1&($P($G(^(0)),"^",9)=2)&(Y) D EXPLAIN S $P(^ORD(101.41,+DLG,5),"^",8)="" ;Reset auto-accept to no if explanation required. 
+ I $P($G(^ORD(101.41,+DLG,0)),"^",8)'=1&($P($G(^(0)),"^",9)=2)&(Y) D EXPLAIN S $P(^ORD(101.41,+DLG,5),"^",8)="" ;Reset auto-accept to no if explanation required.
  Q
  ;
 SET ; -- Order Sets

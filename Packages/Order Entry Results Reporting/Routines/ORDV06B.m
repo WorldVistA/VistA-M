@@ -1,5 +1,5 @@
-ORDV06B ; slc/dcm - OE/RR Report Extracts ; 6/15/17 1:35pm
- ;;3.0;ORDER ENTRY RESULTS REPORTING;**312,350,424,428**;Dec 17, 1997;Build 2
+ORDV06B ; slc/dcm - OE/RR Report Extracts ;11/26/19  15:26
+ ;;3.0;ORDER ENTRY RESULTS REPORTING;**312,350,424,428,377**;Dec 17, 1997;Build 582
  ;Pharmacy Extracts for VistaWeb and ALL Medication Report
 RXALL(ROOT,ORALPHA,OROMEGA,ORMAX,ORDBEG,ORDEND,OREXT) ;All Patient Meds
  ;Call to PSOORRL

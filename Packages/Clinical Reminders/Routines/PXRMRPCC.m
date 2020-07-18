@@ -1,5 +1,5 @@
-PXRMRPCC ;SLC/PJH - PXRM REMINDER DIALOG ;11/26/2007
- ;;2.0;CLINICAL REMINDERS;**6**;Feb 04, 2005;Build 123
+PXRMRPCC ;SLC/PJH - PXRM REMINDER DIALOG ;06/17/2019
+ ;;2.0;CLINICAL REMINDERS;**6,45**;Feb 04, 2005;Build 566
  ;
 ACTIVE(ORY,ORREM) ;Check if active dialog exist for reminders
  ;
@@ -52,17 +52,18 @@ HDR(ORY,ORLOC) ;Progress Note Header by location/service/user
  S ORY=$$GET^XPAR(PASS_"^DIV^SYS^PKG","PXRM PROGRESS NOTE HEADERS",1,"Q")
  Q
  ;
-PROMPT(ORY,ORDLG,ORDCUR,ORFTYP) ;Load additional prompts for a dialog element
+PROMPT(ORY,ORDLG,ORDCUR,ORFTYP,ORIEN,NDATA) ;Load additional prompts for a dialog element
  ;
  ; input parameters
  ;
  ; ORDLG  - dialog element ien [.01,#801.41]
  ; ORDCUR - 0 = current, 1 = Historical for taxonomies only
  ; ORFTYP - finding type (CPT/POV) for taxonomies only
+ ; ORIEN - dialog ien [.01,#801.41]
  ;
  ; These fields can be found in the output array of DIALOG^PXRMRPCC
  ;
- D LOAD^PXRMDLLA(ORDLG,ORDCUR,$G(ORFTYP))
+ D LOAD^PXRMDLLA(ORDLG,ORDCUR,$G(ORFTYP),$G(ORIEN),$G(NDATA))
  Q 
  ;
 RES(ORY,ORREM) ; Reminder Resources/Inquiry
@@ -113,6 +114,41 @@ MHS(ORY,YS) ; Mental Health save response
 MST(ORY,DFN,DGMSTDT,DGMSTSC,DGMSTPR,FTYP,FIEN,RESULT) ; File MST status
  ;This is obsolete and can be removed when the GUI is changed not
  ;to use it.
+ Q
+ ;
+PROMPTVL(ORY,VALUE,DIEN,OVALUE,PAT) ; Calculate prompt value
+ N ACT,DONE,FUNC,NODE,CNT,FUNC,INPUTS,LINK,NUM,RESULT,RTN,SUB,TEMP,VAL
+ S CNT=0,DONE=0 F  S CNT=$O(^PXRMD(801.41,DIEN,10,CNT)) Q:CNT'>0!(DONE=1)  D
+ .S LINK=$P($G(^PXRMD(801.41,DIEN,10,CNT,"LINK")),U) Q:LINK'>0
+ .S NODE=^PXRMD(801.48,LINK,0)
+ .S FUNC=$P($G(NODE),U,4) I FUNC'>0 Q
+ .S ACT=$P(NODE,U,5) I ACT="" Q
+ .;build additional inputs
+ .S NUM=0 F  S NUM=$O(^PXRMD(801.48,LINK,2,NUM)) Q:NUM'>0  D
+ ..S NODE=$G(^PXRMD(801.48,LINK,2,NUM,0)),SUB=$P(NODE,U),VAL=$P(NODE,U,2) Q:SUB=""  Q:VAL=""
+ ..S INPUTS(SUB)=VAL
+ .;AGP do we need to still check item and prompt value??
+ .;S RESULT="",FUNC=$P($G(NODE),U,4) I FUNC>0 D REMFUN(.RESULT,FUNC,PAT,VALUE,OVALUE)
+ .S RESULT="",RTN=$P($G(^PXRMD(801.47,FUNC,0)),U,2,3) Q:$P(RTN,U)=""  Q:$P(RTN,U,2)=""
+ .S TEMP="S RET=$$"_RTN_"(.RESULT,PAT,VALUE,OVALUE,.INPUTS)"
+ .X TEMP
+ .S DONE=1
+ .I FUNC>0,RESULT="" Q
+ .;S ACT=$P(NODE,U,5) I ACT="" Q
+ .S ORY=$S(ACT="C":"CHECKED",ACT="S":"SUPPRESS",ACT="R":"REQUIRED",ACT="V":RESULT,ACT="UC":"UNCHECKED",ACT="US":"UNSUPPRESS",1:"")
+ .;S NODE=$G(^PXRMD(801.41,DIEN,10,CNT,0)) Q:LITEM'=$P(NODE,U,10)  Q:LTYPE'=$P(NODE,U,11)
+ .;S FUNC=$G(^PXRMD(801.41,DIEN,10,CNT,1)) Q:FUNC=""
+ .;X FUNC S:$G(RESULT)'="" ORY=RESULT
+ Q
+ ;
+REMFUN(RESULT,IEN,PAT,VALUE,OVALUE) ;
+ N INPUTS,NODE,NUM,RTN,RET,SUB,VAL,TEMP
+ S RTN=$P($G(^PXRMD(801.47,IEN,0)),U,2,3) Q:$P(RTN,U)=""  Q:$P(RTN,U,2)=""
+ S NUM=0 F  S NUM=$O(^PXRMD(801.48,IEN,2,NUM)) Q:NUM'>0  D
+ .S NODE=$G(^PXRMD(801.48,IEN,2,NUM,0)),SUB=$P(NODE,U),VAL=$P(NODE,U,2) Q:SEQ=""  Q:VAL=""
+ .S INPUTS(SUB)=VAL
+ S TEMP="S RET=$$"_RTN_"(.RESULT,PAT,VALUE,OVALUE,.INPUTS)"
+ X TEMP
  Q
  ;
 WH(ORY,RESULT) ;

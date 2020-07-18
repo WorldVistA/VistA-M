@@ -1,5 +1,5 @@
-SDECCAP ;ALB/SAT - VISTA SCHEDULING RPCS ;APR 08, 2016
- ;;5.3;Scheduling;**642**;Aug 13, 1993;Build 23
+SDECCAP ;ALB/SAT,WTC - VISTA SCHEDULING RPCS ;Feb 12, 2020@15:22
+ ;;5.3;Scheduling;**642,694**;Aug 13, 1993;Build 61
  ;
  Q
  ;
@@ -111,8 +111,12 @@ EN1 ;** Link C&P appointment to 2507
  ...S $P(SDTMP,U,1)=DVBADA   ;2507 REQUEST id
  ...S $P(SDTMP,U,2)=DFN
  ...S $P(SDTMP,U,3)=$$GET1^DIQ(2,DFN_",",.01)
- ...S $P(SDTMP,U,4)=$$FMTE^XLFDT(SDJ)
- ...S $P(SDTMP,U,5)=+$E($D(^DVB(396.95,"AR",+DVBADA)),1)
+ ... ;
+ ... ;  Change date/time conversion so midnight is handled properly.  wtc 694 5/17/18
+ ... ;
+ ... S $P(SDTMP,U,4)=$$FMTONET^SDECDATE(SDJ) ;
+ ... ;S $P(SDTMP,U,4)=$$FMTE^XLFDT(SDJ)
+ ... S $P(SDTMP,U,5)=+$E($D(^DVB(396.95,"AR",+DVBADA)),1)
  ...D
  ....K TMP("DVBC LINK")
  ....S SDLINKS=""    ;SDLINKS |  ~
@@ -266,7 +270,12 @@ ENCAN   ;from DVBCCNNS
  ;
  ;** Appt not linked, enhnc dilog on, not processing in background
  I LNKCNT=0 D
- .N DVBACROT,Y S Y=DVBACURA X ^DD("DD") S DVBACROT=Y K Y
+ .N DVBACROT,Y
+ . ;
+ . ;  Change date/time conversion so midnight is handled properly.  wtc 694 5/17/18
+ . ;
+ . S DVBACROT=$$FMTONET^SDECDATE(DVBACURA) ;
+ . ;S Y=DVBACURA X ^DD("DD") S DVBACROT=Y K Y
  .S SDECI=SDECI+1 S @SDECY@(SDECI)="-2^Appointment "_DVBACROT_" was not linked to a 2507 request or was"
  .S SDECI=SDECI+1 S @SDECY@(SDECI)=" manually rebooked and linked to another appointment."
  .S SDECI=SDECI+1 S @SDECY@(SDECI)=" (If the appointment was manually rebooked, you do not want to auto-rebook.)"

@@ -1,13 +1,15 @@
-SDEC01 ;ALB/SAT/JSM - VISTA SCHEDULING RPCS ;MAR 15, 2017
- ;;5.3;Scheduling;**627,642,658**;Aug 13, 1993;Build 23
+SDEC01 ;ALB/SAT/JSM,WTC - VISTA SCHEDULING RPCS ;Feb 12, 2020@15:22
+ ;;5.3;Scheduling;**627,642,658,694**;Aug 13, 1993;Build 61
  ;
  Q
  ;
-SUSRINFO(SDECY,SDECDUZ) ;get SCHEDULING USER INFO
+SUSRINFO(SDECY,SDECDUZ,GUIVERS) ;get SCHEDULING USER INFO
  ;SUSRINFO(SDECY,SDECDUZ)  external parameter tag is in SDEC
  ;INPUT:
  ; SDECDUZ = (optional) user ID pointer to NEW PATIENT file
  ;                      Default to current user
+ ; GUIVERS = GUI version of the calling software.  ;  SD*5.3*694 wtc 8/24/2018
+ ;
  ; RETURN:
  ;   Successful Return:
  ;     Global Array containing 1 entry with following:
@@ -29,14 +31,44 @@ SUSRINFO(SDECY,SDECDUZ) ;get SCHEDULING USER INFO
  ;                  NO if not
  ;    9. SDECVW -   YES if the user has the SDECVIEW key
  ;                  NO if not
+ ;
+ ;    SD*5.3*694 wtc 8/24/2018
+ ;    If the calling software does not pass a GUI version and the current version field in the SDEC SETTINGS (#409.98) file is populated, return an error.
+ ;
+ ;    Unsuccessful Return:
+ ;
+ ;    10. Error message - text of error that occurred.
+ ;
+ ;    Global array containing 1 entry stating the current version number and that the user is not using it stored in the error field.
+ ;
  N SDECMENU,SDECMGR,SDECERR,SDECI,SDSUPER,SDWLMENU,SDECRMIC
  N SDOB,SDMOB,SDTMP,SDECVW   ;alb/jsm 658 added SDECVW
+ N SDECSTNG ;  SD*5.3*694 wtc 8/24/2018
  K ^TMP("SDEC",$J)
  S SDECY="^TMP(""SDEC"","_$J_")"
+ ;
+ ;  Compare version of software with current version deployed.  Version and effective date are stored in record 2 in file #409.98.  SD*5.3*694 wtc 8/24/2018
+ ;
+ S SDECSTNG=$G(^SDEC(409.98,2,0)) ;
+ ;
+ ;  GUI in use is too old to pass its version number.  SD*5.3*694 wtc 8/24/2018
+ ;
+ I $P(SDECSTNG,"^",2)'="",$G(GUIVERS)="" D  Q  ;
+ . S ^TMP("SDEC",$J,0)="T00010MANAGER^T00020USER_NAME^T00030MENU^T00030SUPER^T00030SDWLMENU^T00030SDECRMIC^T00030SDOB^T00030SDMOB^T00030SDECVW^T00100ERROR"_$C(30)_$C(31) ;
+ ;
+ ;  GUI in use is new enough to pass its version number.  Determine if it is current.  SD*5.3*694 wtc 8/24/2018
+ ;
+ I $P(SDECSTNG,"^",2)'="",$P(SDECSTNG,"^",2)'=$G(GUIVERS),$P(SDECSTNG,"^",3)'>$$NOW^XLFDT() D  Q  ;
+ . S ^TMP("SDEC",$J,0)="T00010MANAGER^T00020USER_NAME^T00030MENU^T00030SUPER^T00030SDWLMENU^T00030SDECRMIC^T00030SDOB^T00030SDMOB^T00030SDECVW^T00100ERROR"_$C(30) ;
+ . S ^TMP("SDEC",$J,1)="^^^^^^^^^The version of VS GUI that you are using is not current. Install version "_$P(SDECSTNG,"^",2)_" immediately."_$C(30)_$C(31) ;
+ ;
  S SDECI=0
  S SDECERR=""
+ ;
+ ;  Added ERROR message field to end.  SD*5.3*694 wtc 8/27/2018
+ ;
  S SDTMP="T00010MANAGER^T00020USER_NAME^T00030MENU^T00030SUPER^T00030SDWLMENU^T00030SDECRMIC"
- S SDTMP=SDTMP_"^T00030SDOB^T00030SDMOB^T00030SDECVW"
+ S SDTMP=SDTMP_"^T00030SDOB^T00030SDMOB^T00030SDECVW^T00100ERROR"
  S ^TMP("SDEC",$J,SDECI)=SDTMP_$C(30)
  ;Check SECURITY KEY file for SDECZMGR keys
  I '+$G(SDECDUZ) S SDECDUZ=DUZ

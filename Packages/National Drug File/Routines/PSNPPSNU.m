@@ -1,9 +1,10 @@
 PSNPPSNU ;HP/MJE-PPSN update NDF data ; 05 Mar 2014  1:20 PM
- ;;4.0;NATIONAL DRUG FILE;**513,563,566**; 30 Oct 98;Build 2
+ ;;4.0;NATIONAL DRUG FILE;**513,563,566,569**; 30 Oct 98;Build 3
  ;Reference to ^PSDRUG supported by DBIA #2192
  ;Reference to PSN^PSSHUIDG supported by DBIA #3621
  ;Reference to ^GMR(120.8) supported by DBIA #4606
  ;Reference to ^DD supported by DBIA #1258
+ ;Reference to ^PSSUTIL supported by DBIA #3107
  ;
  ; Note: this routine is an adapted version of the origional code by Dr. Dave Alexander
  ;
@@ -49,7 +50,7 @@ DRUGFILE ;
  .I $D(@ROOT2@(PR))!VAIN S X="" S:CMOP]"" X="    (CMOP "_CMOP_")" D
  ..S $E(X,30)=VAPN,$E(X,65)=$$FMTE^XLFDT(VAIN,5),INDX=$S(INA:"I",INV:"X",1:"A")
  ..S:IN=9999999 IN="" S ^TMP($J,INDX,NA_"^"_DA_"^"_IN,1)=X,^TMP($J,"^",DA)=""
- ..D UNMDRG
+ ..D UNMDRUG^PSSUTIL(DA)
  ..I PSN I $P($G(^PSDRUG(DA,"DOS")),"^")]""!$O(^("DOS1",0))!$O(^PSDRUG(DA,"DOS2",0)) D LOAD^PSNPPSNV K ^PSDRUG(DA,"DOS"),^("DOS1"),^("DOS2")
  ..I $P($G(^PSDRUG(DA,3)),"^") S DIE=50,DR="213////0;" D ^DIE D ERROR:$D(ERROR("DIERR")) K DIE,DR I PSN1 S IND=$O(^PSDRUG(DA,4," "),-1),$P(^(IND,0),"^",6)="NDF Update"
  .;check here if PR (50.68 IEN this local drug is matched to) exists in TMP rematch
@@ -124,11 +125,3 @@ STRIP(X) ; Strip control characters
  N I,Y
  S Y="" F I=1:1:$L(X) S:$A(X,I)>31 Y=Y_$E(X,I)
  Q Y
- ;
-UNMDRG ; Unmatch Drug File entry
- N PIECE,PRDNAM,ND,NDP10
- S ND=$G(^PSDRUG(DA,"ND")),PRDNAM=$E($P(ND,"^",2),1,30),NDP10=$P(ND,"^",10)
- F PIECE=1:1:5,10,11 S $P(^PSDRUG(DA,"ND"),"^",PIECE)=""
- I PRDNAM'="" K ^PSDRUG("VAPN",PRDNAM,DA)
- I NDP10'="" K ^PSDRUG("AQ1",NDP10,DA)
- Q

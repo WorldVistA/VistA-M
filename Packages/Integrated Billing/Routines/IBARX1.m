@@ -1,5 +1,5 @@
-IBARX1 ;ALB/AAS - INTEGRATED BILLING, PHARMACY COPAY INTERFACE (CONT.) ;21-FEB-91
- ;;2.0;INTEGRATED BILLING;**34,101,150,158,156,234,247,563,614,651**;21-MAR-94;Build 9
+IBARX1 ;ALB/AAS - INTEGRATED BILLING, PHARMACY COPAY INTERFACE (CONT.) ; 21-FEB-91
+ ;;2.0;INTEGRATED BILLING;**34,101,150,158,156,234,247,563,614,651,653**;21-MAR-94;Build 19
  ;;Per VA Directive 6402, this routine should not be modified.
  ;
  ;  - process 1 rx entry and accumulate totals
@@ -26,11 +26,10 @@ RX N IBAM,IBNOCH,IBTIER
  ;
  ; IB*2.0*614  Prorate rx's with less than 30 day supply if National HRfS flag is active
  ; Check for an original fill or a refill.
- N IBISDT,IBRXN,IBRFN,SHRPEDT,IBLIST,IBDATA,IBLSRF S IBRXN=+$P($P(IBX,"^"),":",2)  ;IBRXN = IEN of the Drug file
+ N IBISDT,IBRXN,IBRFN,IBLIST,IBDATA,IBLSRF S IBRXN=+$P($P(IBX,"^"),":",2)  ;IBRXN = IEN of the Drug file
  S IBLIST="IBARX1" K ^TMP($J,IBLIST)
  D RX^PSO52API(DFN,IBLIST,IBRXN,,"2,R,I") S IBDATA=$NA(^TMP($J,IBLIST,DFN,IBRXN))
  S IBISDT=+@IBDATA@(1)  ;Get original released date (field 31)
- S SHRPEDT=$$GET1^DIQ(350.9,1,70.02,"I")   ;Get SHRPE activation date
  ;
  S IBLSRF=$O(@IBDATA@("RF","A"),-1)  ;get last refill
  I IBLSRF D   ;If this is a refill use the refill date to prorate amount billed
@@ -38,9 +37,9 @@ RX N IBAM,IBNOCH,IBTIER
  . S IBISDT=+@IBDATA@("RF",IBLSRF,17)  ;Reset fill date to date of refill
  ;
  ; X1 - standard  calculated amount for this tier #
- I X1,$$CHKHRFS^IBAMTS3(DFN,IBISDT) D   ;X1 is above 0 and the Pt has a valid HRfS flag at the date of fill/refill
- . N IBDAYS S IBDAYS=@IBDATA@(8)  ;IBDAYS = the days supply, prorate if less than 30 days
- . I $G(IBDAYS)<30 S X1=$$PRORATE^IBAMTS3(.X1,IBDAYS)
+ ; IB*2.0*653  calculate flat rate Rx's copay amount if National HRfS flag is active
+ ; if rate is above 0, and the Pt has an active HRfS flag at the date of fill/refill, and # of days is greater than 0, then set rate to $2
+ I X1,$$CHKHRFS^IBAMTS3(DFN,IBISDT) S:@IBDATA@(8)>0 X1=2
  K ^TMP($J,"IBARX1")
  ;
  ; compute amount above cap

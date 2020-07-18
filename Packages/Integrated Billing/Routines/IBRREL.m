@@ -1,5 +1,5 @@
 IBRREL ;ALB/CPM - RELEASE MEANS TEST CHARGES 'ON HOLD' ; 03-MAR-92
- ;;2.0;INTEGRATED BILLING;**95,153,199,347,452,651,663**;21-MAR-94;Build 27
+ ;;2.0;INTEGRATED BILLING;**95,153,199,347,452,651,663,675**;21-MAR-94;Build 6
  ;;Per VA Directive 6402, this routine should not be modified.
  ;
 EN ; Entry point for stand-alone 'release' option
@@ -125,6 +125,7 @@ AR ; Accounts Receivable entry point to release charges.
  ;Start - IB*2.0*663
 UPDUCDB(IBN) ;Update the Visit Tracking DB with the bill Number
  N IBND,IBVSTIEN
+ Q:IBN=""
  S IBND=$G(^IB(IBN,0))
  ;IB*2.0*663 If charge successfully passed, extract the bill number and update the visit tracking database if this is a CC URGENT CARE Charge
  I $P(IBND,U,11)'="",$P($G(^IBE(350.1,+$P(IBND,"^",3),0)),"^")["CC URGENT CARE" D

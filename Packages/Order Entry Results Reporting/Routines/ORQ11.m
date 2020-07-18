@@ -1,5 +1,6 @@
-ORQ11 ;SLC/DCM - Get patient orders in context ;07/27/12  14:34
- ;;3.0;ORDER ENTRY/RESULTS REPORTING;**7,27,48,72,78,99,94,148,141,177,186,190,195,215,243,295,322,350,444**;Dec 17, 1997;Build 48
+ORQ11 ;SLC/DCM - Get patient orders in context ;May 13, 2020@10:30:45
+ ;;3.0;ORDER ENTRY/RESULTS REPORTING;**7,27,48,72,78,99,94,148,141,177,186,190,195,215,243,295,322,350,444,515**;Dec 17, 1997;Build 8
+ ;
  ;EPIP/RTW Modified for the Unified Action Profile 26 Oct 2016
 LOOP ; -- main loop through "ACT" x-ref
  I $G(XREF)="AW" D AW Q
@@ -38,9 +39,9 @@ LP1 ; -- main secondary loop
  ; original note for UAPM line "UAP MEDS"
  I $$GET1^DIQ(100.98,GROUP,.01)="DISCHARGE MEDS" D DM Q
  I $$GET1^DIQ(100.98,GROUP,.01)="PHARMACY UAP" D UAPM Q
- ;EPIP/RTW END ***UNIFIED ACTION PROFILE Modification*** 
+ ;EPIP/RTW END ***UNIFIED ACTION PROFILE Modification***
  S TAG=$S(FLG=2:"CUR1",FLG=4:"COM1",FLG=5:"EXG1",FLG=7:"PEN1",FLG=8:"UVR1",FLG=9:"UVN1",FLG=10:"UVC1",FLG=12:"FLG1",FLG=13:"VP1",FLG=14:"VPU1",FLG=18:"HLD1",FLG=20:"CHT1",FLG=21:"CHTSUM",FLG=22:"LPS1",FLG=23:"AVT1",1:"ALL1")
- I TAG="ALL1" S TAG=$S(FLG=3:"DC1",FLG=28:"DC1",1:"ALL1")
+ I TAG="ALL1" S TAG=$S(FLG=3:"DC1",FLG=28:"DC1",FLG=29:"UVR1",FLG=30:"UVN1",FLG=31:"UVC1",FLG=32:"CHT1",1:"ALL1")
  D @TAG
  Q
  ; ** FLG context specific loops:
@@ -115,25 +116,42 @@ PEN1 ; 7 -- secondary pass for Pending
  I STS=5 D GET^ORQ12(IFN,ORLIST,DETAIL,ACTOR)
  Q
  ;
-UVR1 ; 8 -- secondary pass for Unverified
+UVR1 ; 8 -- secondary pass for Unverified; 29 for Outpatient
  ;      Include if: unverified, released, inpt, not repl/canc/lapsed
- I '$P(X8,U,9),'$P(X8,U,11),$P(X8,U,15)="",$$INPT,"^12^13^14^"'[(U_STS_U) D GET^ORQ12(IFN,ORLIST,DETAIL,ACTOR)
+ I '$P(X8,U,9),'$P(X8,U,11),$P(X8,U,15)="",$S(FLG=8:$$INPT,FLG=29:$$OUTPT,1:0),"^12^13^14^"'[(U_STS_U) D GET^ORQ12(IFN,ORLIST,DETAIL,ACTOR)
  Q
  ;
-UVN1 ; 9 -- secondary pass for Unverified/Nurse
+UVN1 ; 9 -- secondary pass for Unverified/Nurse; 30 for Outpatient
  ;      Include if: unverified, released, inpt, not repl/canc/lapsed
- I '$P(X8,U,9),$P(X8,U,15)="",$$INPT,"^12^13^14^"'[(U_STS_U) D GET^ORQ12(IFN,ORLIST,DETAIL,ACTOR)
+ I '$P(X8,U,9),$P(X8,U,15)="",$S(FLG=9:$$INPT,FLG=30:$$OUTPT,1:0),"^12^13^14^"'[(U_STS_U) D GET^ORQ12(IFN,ORLIST,DETAIL,ACTOR)
  Q
  ;
-UVC1 ; 10 -- secondary pass for Unverified/Clerk
+UVC1 ; 10 -- secondary pass for Unverified/Clerk; 31 for Outpatient
  ;       Include if: unverified, released, inpt, not repl/canc/lapsed
- I '$P(X8,U,11),$P(X8,U,15)="",$$INPT,"^12^13^14^"'[(U_STS_U) D GET^ORQ12(IFN,ORLIST,DETAIL,ACTOR)
+ I '$P(X8,U,11),$P(X8,U,15)="",$S(FLG=10:$$INPT,FLG=31:$$OUTPT,1:0),"^12^13^14^"'[(U_STS_U) D GET^ORQ12(IFN,ORLIST,DETAIL,ACTOR)
  Q
  ;
 INPT() ; -- Returns 1 or 0, if inpt order using X0=^OR(100,IFN,0)
+ I $$CLNOR() Q 1  ;p*515
+ I $P(X0,U,12)="O" Q 0  ;p*515
+ I $P(X0,U,11)=$O(^ORD(100.98,"B","OUTPATIENT MEDICATIONS","")) Q 0  ;p*515
  I ($P(X0,U,12)="I")!($$TYPE^OREVNTX($P(X0,U,17))="D") Q 1
  I $P($G(^SC(+$P(X0,U,10),0)),U,3)="W" Q 1 ;UNCOMMENTED IN *295
  Q 0
+ ;
+OUTPT() ; -- Returns 1 or 0, if outpt order using X0=^OR(100,IFN,0) ;P*515
+ I $P(X0,U,11)=$O(^ORD(100.98,"B","OUTPATIENT MEDICATIONS","")) Q 0  ;exclude outpt meds
+ I $P(X0,U,11)=$O(^ORD(100.98,"B","NON-VA MEDICATIONS","")) Q 0  ;exclude non-va meds
+ I $P(X0,U,11)=$O(^ORD(100.98,"B","SUPPLIES/DEVICES","")) Q 0  ;exclude supplies
+ I $P(X0,U,12)="O" Q 1
+ I $$CLNOR() Q 1
+ Q 0
+ ;
+CLNOR() ; -- Returns 1 or 0, if IMO clinic order ;P*515
+ N ORY
+ I '$G(IFN) Q 0
+ D IMOOD^ORIMO(.ORY,IFN)
+ Q ORY
  ;
 SIG ; 11 -- Unsigned
  N TM,IFN,X0,X3,ACTOR S TM=SDATE
@@ -183,9 +201,9 @@ NEW ; 19 -- New Orders, plus other unsigned orders by current provider
 NW1 S ^TMP("ORR",$J,ORLIST,"TOT")=ORLST
  Q
  ;
-CHT1 ; 20 -- secondary pass for Chart Review
+CHT1 ; 20 -- secondary pass for Chart Review; 32 for Outpatient
  ;       Include if: unverified, released, inpt, not repl/canc/lapsed
- I '$P(X8,U,19),$P(X8,U,15)="",$$INPT,"^12^13^14^"'[(U_STS_U) D GET^ORQ12(IFN,ORLIST,DETAIL,ACTOR)
+ I '$P(X8,U,19),$P(X8,U,15)="",$S(FLG=20:$$INPT,FLG=32:$$OUTPT,1:0),"^12^13^14^"'[(U_STS_U) D GET^ORQ12(IFN,ORLIST,DETAIL,ACTOR)
  Q
  ;
 CHTSUM ; 21 -- secondary pass for Chart copy summary

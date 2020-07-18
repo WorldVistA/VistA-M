@@ -1,5 +1,5 @@
-DGPTF ;ALB/JDS/AS - PTF LOAD/EDIT DRIVER ;5/17/05 12:13pm
- ;;5.3;Registration;**26,58,164,195,397,565,664,850**;Aug 13, 1993;Build 171
+DGPTF ;ALB/JDS,AS - PTF LOAD/EDIT DRIVER ;12/21/2016  14:01
+ ;;5.3;Registration;**26,58,164,195,397,565,664,850,932**;Aug 13, 1993;Build 210
  ;
  D LO^DGUTL
  I $D(^DISV(DUZ,"^DPT(")),$D(^("^DGPT(")) S A=+^("^DGPT("),B=+^("^DPT(") I $D(^DGPT(A,0)),$D(^DPT(B,0)) S:(+^DGPT(A,0)'=B&$D(^DGPT("B",B))) ^DISV(DUZ,"^DGPT(")=""
@@ -9,6 +9,7 @@ ASK W !! K DIC S DIC="^DGPT(",DIC(0)="EQMZA",DGPR=0,DIC("S")="I '$P(^DGPT(+Y,0),
  N DGRELKEY D ^DIC G Q1:Y'>0 S PTF=+Y,(DGRELKEY,DGREL)=$S($D(^XUSEC("DG PTFREL",DUZ)):1,1:0)
  I '$D(^DGPT(PTF,"M",0))#2 S ^(0)="^45.02^^"
  K DIC S DFN=+Y(0),DGADM=+$P(Y(0),U,2),^DISV(DUZ,"^DPT(")=DFN,DGST=+$P(Y(0),U,6)
+ S ^TMP("DG PTF DRIVER",$J)=""
  N DGPMCA,DGPMAN D PM^DGPTUTL
  D:DGST=0 MT^DGPTUTL,INCOME^DGPTUTL1
  I DGST I 'DGREL!($D(DGQWK))!(DGST>1) W:$X>60 "   ???--Already ",$S(DGST=1:"Closed",DGST=2:"Released",1:"Transmitted") G ASK
@@ -44,6 +45,8 @@ Q I '$P(^DGPT(PTF,0),"^",4),'$P(^(0),U,6) W !,"  Updating TRANSFER DRGs" S DGADM
  ;
 Q1 ; -- housekeeping
  I $D(IOM) S X=IOM X ^%ZOSF("RM")
+ K ^TMP("DG PTF DRIVER",$J)
+ D NOTIFY^DGPTDD("","",.PTF,"")
  D KVAR^DGPTUTL1,KVAR^DGPTC1 K SDCLY
  Q
  ;

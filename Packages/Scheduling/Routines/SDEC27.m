@@ -1,5 +1,10 @@
-SDEC27 ;ALB/SAT - VISTA SCHEDULING RPCS ;JAN 15, 2016
- ;;5.3;Scheduling;**627**;Aug 13, 1993;Build 249
+SDEC27 ;ALB/SAT,WTC - VISTA SCHEDULING RPCS ;Feb 12, 2020@15:22
+ ;;5.3;Scheduling;**627,694**;Aug 13, 1993;Build 61
+ ;
+ ;  ICR
+ ;  ---
+ ;   7030 - #2 (appointment record)
+ ;  10061 - DEM^VADPT
  ;
  Q
  ;
@@ -69,13 +74,18 @@ PATAPPTD(SDECY,DFN) ;Return the Patient appointment display
  . Q:$P(SDECNOD,U,12)]""  ;CANCELLED
  . S Y=$P(SDECNOD,U)
  . Q:'+Y
- . X ^DD("DD") S Y=$TR(Y,"@"," ")
- . S SDECAPT=Y ;Appointment date time
+ .;
+ .;  Change date/time conversion so midnight is handled properly.  wtc 694 5/17/18
+ .;
+ . S SDECAPT=$$FMTONET^SDECDATE(Y,"Y") ;
+ . ;X ^DD("DD") S Y=$TR(Y,"@"," ")
+ . ;S SDECAPT=Y ;Appointment date time
  . S SDECCLRK=$P(SDECNOD,U,8) ;Appointment made by
  . S:+SDECCLRK SDECCLRK=$G(^VA(200,SDECCLRK,0)),SDECCLRK=$P(SDECCLRK,U)
  . S Y=$P(SDECNOD,U,9) ;Date Appointment Made
- . I +Y X ^DD("DD") S Y=$TR(Y,"@"," ")
- . S SDECMADE=Y
+ . S SDECMADE=$$FMTONET^SDECDATE(Y,"Y") ;
+ . ;I +Y X ^DD("DD") S Y=$TR(Y,"@"," ")
+ . ;S SDECMADE=Y
  . ;NOTE
  . S SDECNOT=""
  . I $D(^SDEC(409.84,SDECIEN,1,0)) S SDECNOT="",SDECQ=0 F  S SDECQ=$O(^SDEC(409.84,SDECIEN,1,SDECQ)) Q:'+SDECQ  D
@@ -109,15 +119,20 @@ PATAPPTD(SDECY,DFN) ;Return the Patient appointment display
  . . . S SDECDNOD=SDECDPT(SDEC44,SDECDT)
  . . . S Y=SDECDT
  . . . Q:'+Y
- . . . X ^DD("DD") S Y=$TR(Y,"@"," ")
- . . . S SDECAPT=Y
+ . . . ;
+ . . . ;  Change date/time conversion so midnight is handled properly.  wtc 694 5/17/18
+ . . . ;
+ . . . S SDECAPT=$$FMTONET^SDECDATE(Y,"Y") ;
+ . . . ;X ^DD("DD") S Y=$TR(Y,"@"," ")
+ . . . ;S SDECAPT=Y
  . . . S SDECTYPE=$$STATUS(DFN,SDECDT,SDECDNOD) ;IHS/OIT/HMW 20050208 Added
  . . . S SDECCLN=$P($G(^SC(SDEC44,0)),U)
  . . . S SDECCLRK=$P(SDECDNOD,U,18)
  . . . S:+SDECCLRK SDECCLRK=$G(^VA(200,SDECCLRK,0)),SDECCLRK=$P(SDECCLRK,U)
  . . . S Y=$P(SDECDNOD,U,19)
- . . . I +Y X ^DD("DD") S Y=$TR(Y,"@"," ")
- . . . S SDECMADE=Y
+ . . . S SDECMADE=$$FMTONET^SDECDATE(Y,"Y") ;
+ . . . ;I +Y X ^DD("DD") S Y=$TR(Y,"@"," ")
+ . . . ;S SDECMADE=Y
  . . . S SDECNOT=""
  . . . S SDECI=SDECI+1
  . . . S ^TMP("SDEC",$J,SDECI)=SDECNAM_"^"_SDECDOB_"^"_SDECSEX_"^"_SDECHRN_"^"_SDECAPT_"^"_SDECCLN_"^"_SDECTYPE_"^"_"^"_SDECCLRK_"^"_SDECMADE_"^"_SDECNOT_"^"_SDECSTRE_"^"_SDECCITY_"^"_SDECST_"^"_SDECZIP_"^"_SDECPHON_"^"_$C(30)
@@ -159,7 +174,11 @@ PATINFO(DFN) ;EP
  S SDECNAM=$P(SDECNOD,U) ;NAME
  S SDECSEX=$P(SDECNOD,U,2)
  S SDECSEX=$S(SDECSEX="F":"FEMALE",SDECSEX="M":"MALE",1:"")
- S Y=$P(SDECNOD,U,3) I Y]""  X ^DD("DD") S Y=$TR(Y,"@"," ")
+ ;
+ ;  Change date/time conversion so midnight is handled properly.  wtc 694 5/17/18
+ ;
+ S Y=$P(SDECNOD,U,3) ;I Y]""  X ^DD("DD") S Y=$TR(Y,"@"," ")
+ I Y]"" S Y=$$FMTONET^SDECDATE(Y,"Y") ;
  S SDECDOB=Y ;DOB
  S SDECHRN=""
  I $D(DUZ(2)) I DUZ(2)>0 S SDECHRN=$P($G(^AUPNPAT(DFN,41,DUZ(2),0)),U,2) ;HRN
@@ -236,8 +255,12 @@ CLINLET(SDECY,SDECCLST,SDECBEG,SDECEND,SDECWI) ;CLINIC LETTERS Appointment data
  . . . I $G(SDECWI),$P(SDECNOD,U,13)'="y" Q  ;ONLY ALLOW WALKIN
  . . . S Y=$P(SDECNOD,U)
  . . . Q:'+Y
- . . . X ^DD("DD") S Y=$TR(Y,"@"," ")
- . . . S SDECAPT=Y ;Appointment date time
+ . . . ;
+ . . . ;  Change date/time conversion so midnight is handled properly.  wtc 694 5/17/18
+ . . . ;
+ . . . S SDECAPT=$$FMTONET^SDECDATE(Y,"Y") ;
+ . . . ;X ^DD("DD") S Y=$TR(Y,"@"," ")
+ . . . ;S SDECAPT=Y ;Appointment date time
  . . . ;
  . . . ;NOTE
  . . . S SDECNOT=""
@@ -261,8 +284,12 @@ CLINLET(SDECY,SDECCLST,SDECBEG,SDECEND,SDECWI) ;CLINIC LETTERS Appointment data
  . . . S SDECCLRK=$P(SDECNOD,U,8)
  . . . S:+SDECCLRK SDECCLRK=$G(^VA(200,SDECCLRK,0)),SDECCLRK=$P(SDECCLRK,U)
  . . . S Y=$P(SDECNOD,U,9)
- . . . I +Y X ^DD("DD") S Y=$TR(Y,"@"," ")
- . . . S SDECMADE=Y
+  . . . ;
+ . . . ;  Change date/time conversion so midnight is handled properly.  wtc 694 5/17/18
+ . . . ;
+ . . . S SDECMADE=$$FMTONET^SDECDATE(Y,"Y") ;
+ . . . ;I +Y X ^DD("DD") S Y=$TR(Y,"@"," ")
+ . . . ;S SDECMADE=Y
  . . . S SDECI=SDECI+1
  . . . S ^TMP("SDEC",$J,SDECI)=SDECNAM_"^"_SDECDOB_"^"_SDECSEX_"^"_SDECHRN_"^"_SDECAPT_"^"_SDECCLN_"^"_SDECTYPE_"^"_SDECCID_"^"_SDECCLRK_"^"_SDECMADE_"^"_SDECNOT_"^"_SDECSTRE_"^"_SDECCITY_"^"_SDECST_"^"_SDECZIP_"^"_SDECPHON_$C(30)
  ;

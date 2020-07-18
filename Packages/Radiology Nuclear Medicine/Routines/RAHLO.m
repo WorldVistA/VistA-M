@@ -1,5 +1,5 @@
-RAHLO ;HIRMFO/GJC-Process data set from the bridge program ; Dec 13, 2019@11:14:22
- ;;5.0;Radiology/Nuclear Medicine;**4,8,27,55,66,84,94,106,144,162**;Mar 16, 1998;Build 2
+RAHLO ;HIRMFO/GJC-Process data set from the bridge program ; Jun 02, 2020@09:33:35
+ ;;5.0;Radiology/Nuclear Medicine;**4,8,27,55,66,84,94,106,144,162,165**;Mar 16, 1998;Build 3
  ; 09/07/2005 Remedy call 108405 - KAM Allow Radiology to accept dx codes from Talk Technology
  ;
  ;Integration Agreements
@@ -142,11 +142,14 @@ CHECK ; Check if our data is valid.
  ;
  ;new w/P162
  I $G(RARPT)>0 D  Q:$D(RAERR)#2
- .L +^RARPT(RARPT):60
+ .L +^RARPT(RARPT):5
  .I '$T S RAERR="Lock of report record: "_RARPT_" failed."
  .Q
+ ;p165 - Need to unlock the report if accession is locked.
  L +^RADPT(RADFN,"DT",RADTI):60
- I '$T S RAERR="Lock of study accession: "_$S(RALONGCN'="":RALONGCN,1:"N/A")_" failed." Q
+ I '$T S RAERR="Lock of study accession: "_$S(RALONGCN'="":RALONGCN,1:"N/A")_" failed." D  Q
+ .I $G(RARPT)>0 L -^RARPT(RARPT)
+ .Q
  D FILE^RAHLO1
  ;unlock the report & study unconditionally
  L -^RARPT(RARPT) L -^RADPT(RADFN,"DT",RADTI)

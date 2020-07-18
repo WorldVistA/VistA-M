@@ -1,5 +1,5 @@
-SDROUT0 ;BSN/GRR - ROUTING SLIPS BY CLINIC ;11/12/91  16:07
- ;;5.3;Scheduling;**343,377,509**;Aug 13, 1993;Build 37
+SDROUT0 ;BSN/GRR,PC - ROUTING SLIPS BY CLINIC ;Feb 12, 2020@15:22
+ ;;5.3;Scheduling;**343,377,509,694**;Aug 13, 1993;Build 61
 GO S SDCNT=0 D GO1 G:ORDER=2!(ORDER=3) CLIN
  F G=0:0 S I=$O(^UTILITY($J,I)) Q:I=""  F J=0:0 S J=$O(^UTILITY($J,I,J)) Q:J=""  S P=0 D HED^SDROUT2,HD^SDROUT2,CNT F K=0:0 S K=$O(^UTILITY($J,I,J,K)) D:K="" FUT Q:K=""  S L=0 F LL=0:0 S L=$O(^UTILITY($J,I,J,K,L)) Q:L=""  D LIN,X
  W:IOF]"" !,@IOF G END^SDROUT1
@@ -49,7 +49,8 @@ LIN2 D LIN2^SDROUT1
 HED2 W !!,?9,"**FUTURE APPOINTMENTS**"
  W !!,"  DATE",?11,"TIME",?21,"CLINIC",?55,"LOCATION",! Q
 TM I $P(X,".",2)']"" S X1=""
- S X=$E($P(X,".",2)_"0000",1,4),%=X>1159 S:X>1259 X=X-1200 S X=X\100_":"_$E(X#100+100,2,3)_" "_$E("AP",%+1)_"M" Q
+ ; pwc checked for midnight time of 2400 so it will display as AM instead of PM  SD*5.3*694 (VSE)
+ S X=$E($P(X,".",2)_"0000",1,4),%=X>1159 S:X=2400 %=0 S:X>1259 X=X-1200 S X=X\100_":"_$E(X#100+100,2,3)_" "_$E("AP",%+1)_"M" Q
 SETP S $P(^DPT(J,"S",K,0),"^",6)="Y" I $P(^(0),"^",13)']"" S $P(^(0),"^",13)=DT
  Q
 CLIN F G=0:0 S I=$O(^UTILITY($J,"A",I)) Q:I=""  S SDTD=0 F H=0:0 S SDTD=$O(^UTILITY($J,"A",I,SDTD)) Q:SDTD=""  F J=0:0 S J=$O(^UTILITY($J,"A",I,SDTD,J)) Q:J=""  I ^(J) S SC=+^(J),POP=1 D FIRST I 'POP S P=0 D HED^SDROUT2,HD^SDROUT2,CNT,TIME

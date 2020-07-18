@@ -1,5 +1,5 @@
 PSNHELP1 ;BIR/WRT-help text routine ; 02/08/00 8:39
- ;;4.0; NATIONAL DRUG FILE;**22,33**; 30 Oct 98
+ ;;4.0;NATIONAL DRUG FILE;**22,33,569**; 30 Oct 98;Build 3
  ;Reference to ^PSDRUG supported by DBIA #2352
  ;Reference to EN1^PSSUTIL supported by DBIA #3107
  ;
@@ -23,7 +23,5 @@ CONVN ; help prompt for conversion rematch option
 SETNULL K:$D(^PSNTRAN(+Y,0)) ^PSNTRAN(+Y,0)
  S PSNSAVEY=$G(Y) S X="PSSUTIL" X ^%ZOSF("TEST") I  D EN1^PSSUTIL(+$G(PSNSAVEY),0)
  S Y=$G(PSNSAVEY) K PSNSAVEY
- S ZXZX=$P(^PSDRUG(+Y,"ND"),"^",2),$P(^PSDRUG(+Y,"ND"),"^",1)="",$P(^PSDRUG(+Y,"ND"),"^",2)="",$P(^PSDRUG(+Y,"ND"),"^",3)="",$P(^PSDRUG(+Y,"ND"),"^",4)="",$P(^PSDRUG(+Y,"ND"),"^",5)="",$P(^PSDRUG(+Y,"ND"),"^",10)="" D NULL1
- Q
-NULL1 S $P(^PSDRUG(+Y,"ND"),"^",11)="" I ZXZX]"" S ZXZX=$E(ZXZX,1,30) I $D(^PSDRUG("VAPN",ZXZX,+Y)) K ^PSDRUG("VAPN",ZXZX,+Y) K ZXZX
+ D UNMDRUG^PSSUTIL(+Y)
  Q

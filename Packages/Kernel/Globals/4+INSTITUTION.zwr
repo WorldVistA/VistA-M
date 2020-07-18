@@ -66547,7 +66547,7 @@ ZWR
 ^DIC(4,"%D",1,0)="This file contains a listing of VA institutions.  It is cross-referenced"
 ^DIC(4,"%D",2,0)="by name and station number.  The Number field is no longer meaningful (it"
 ^DIC(4,"%D",3,0)="had previously referenced the station number)."
-^DIC(4,"%MSC")=3200220.141717
+^DIC(4,"%MSC")=3200623.141326
 ^DIC(4,"AC",1,2,132)=""
 ^DIC(4,"AC",1,2,133)=""
 ^DIC(4,"AC",1,2,134)=""

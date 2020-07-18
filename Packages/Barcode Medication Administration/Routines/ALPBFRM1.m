@@ -1,5 +1,5 @@
 ALPBFRM1 ;OIFO-DALLAS MW,SED,KC -STANDARD PRINT FORMATTING UTIL ;03/06/16 3:06pm
- ;;3.0;BAR CODE MED ADMIN;**8,48,69,59,73,87**;Mar 2004;Build 22
+ ;;3.0;BAR CODE MED ADMIN;**8,48,69,59,73,87,125**;Mar 2004;Build 9
  ;;Per VHA Directive 2004-038, this routine should not be modified.
  ;
  ;*69 move code to print Long Wp special istructions lines near end of
@@ -227,7 +227,7 @@ ADMTIM F I=1:1:ALPBADM D    ;build admin/remove times grid
  .S RESULTS(I+3)=$$PAD^ALPBUTL(RESULTS(I+3),74)_"|"
  .F J=1:1:DAYS D
  ..I ALPBADMT="    " S ALPBTSTART=$P($P($G(DATA(1)),"^",1),".",1),ALPBSTOP=$P($P($G(DATA(1)),"^",2),".",1)
- ..S ALPBDAY=ALPBDAYS(J)_"."_ALPBADMT
+ ..S ALPBDAY=+(ALPBDAYS(J)_"."_ALPBADMT)   ;125 - add + to trim insignificant trailing 0's   
  ..S ALPBPBOX=ALPBIBOX
 ASTER ..;prints asterisks in boxes if start date is in the future
  ..;and if the stop date has already expired

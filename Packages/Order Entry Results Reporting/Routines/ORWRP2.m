@@ -1,5 +1,5 @@
-ORWRP2 ; dcm/slc - Health Summary adhoc RPC's
- ;;3.0;ORDER ENTRY/RESULTS REPORTING;**10,109,212,309,332**Dec 17, 1997;;Build 44
+ORWRP2 ;SLC/DCM - Health Summary Adhoc RPC's ;08/30/2017  11:49
+ ;;3.0;ORDER ENTRY/RESULTS REPORTING;**10,109,212,309,332,377**;Dec 17, 1997;Build 582
 BB ;Continuation of Blood Bank Report
  N DFN,ORY,ORSBHEAD,GCNT,GIOM
  S DFN=ORDFN,GCNT=0,GIOM=80
@@ -19,20 +19,22 @@ COMP(ORY) ;Get ADHOC sub components (FILE 142.1)
  D COMP^GMTSADH5(.ORY)
  Q
  ;
-COMPABV(ORY) ;Get ADHOD sub components listed by Abbreviation
+COMPABV(ORY) ;Get ADHOC sub components listed by Abbreviation
  N I,X,X1,X2,X3
  D COMP^GMTSADH5(.ORY)
  S I=0
  F  S I=$O(ORY(I)) Q:'I  S X=ORY(I) D
  . S X1=$P($P(X,"^",2),"["),X1=$E(X1,1,$L(X1)-1),X2=$P($P(X,"^",2),"[",2),X2=$E(X2,1,$L(X2)-1)
+ . S:'$L(X2) X2="???" S:'$L($P(X,"^",5)) $P(X,"^",5)=$P($P(X,"^",2),"[") ;***
  . S X3=X2_"   - "_$P(X,"^",5)_" ",$P(ORY(I),"^",2)=X3
  Q
-COMPDISP(ORY) ;Get ADHOD sub components listed by Display Name
+COMPDISP(ORY) ;Get ADHOC sub components listed by Display Name
  N I,X,X1,X2,X3
  D COMP^GMTSADH5(.ORY)
  S I=0
  F  S I=$O(ORY(I)) Q:'I  S X=ORY(I) D
  . S X1=$P($P(X,"^",2),"["),X1=$E(X1,1,$L(X1)-1),X2=$P($P(X,"^",2),"[",2),X2=$E(X2,1,$L(X2)-1)
+ . S:'$L(X2) X2="???" S:'$L($P(X,"^",5)) $P(X,"^",5)=$P($P(X,"^",2),"[") ;***
  . S X3=$P(X,"^",5)_"   ["_X2_"]",$P(ORY(I),"^",2)=X3
  Q
 COMPSUB(ORY,ORSUB) ;Get subitems from a predefined Adhoc component

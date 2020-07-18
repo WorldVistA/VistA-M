@@ -1,5 +1,5 @@
-RAO7MFN ;HISC/GJC-Create MFN orderable item update msg ;24 Apr 2019 2:22 PM
- ;;5.0;Radiology/Nuclear Medicine;**1,6,10,18,45,158**;Mar 16, 1998;Build 2
+RAO7MFN ;HISC/GJC-Create MFN orderable item update msg ; May 28, 2020@08:01:53
+ ;;5.0;Radiology/Nuclear Medicine;**1,6,10,18,45,158,165**;Mar 16, 1998;Build 3
  ;Last midification by SS for P18 JUN 19, 2000
  ;Last modification: 12.16.03 patch 45 Contrast Media by CPT gjc
 PROC(RAENALL,RAFILE,RASTAT,RAY) ; Entry point to update a single procedure.
@@ -59,8 +59,8 @@ PROC(RAENALL,RAFILE,RASTAT,RAY) ; Entry point to update a single procedure.
  ; 'Update' to OE since procedure is already in their master file
  I RAFILE=71.3 S RAMFE="MUP"
  ;
- ; If parent with no descendents, send deactivate msg even if active
- I $P($G(RA71(0)),"^",6)="P",'$O(^RAMIS(71,$S(RAFILE=71.3:+$P(RAY,"^",2),1:+RAY),4,0)) S RAMFE="MDC"
+ ; If parent with no descendents, send deactivate msg even if active /p165 - Check RA165 flag
+ I $P($G(RA71(0)),"^",6)="P",'$O(^RAMIS(71,$S(RAFILE=71.3:+$P(RAY,"^",2),1:+RAY),4,0)),'$G(RA165) S RAMFE="MDC"
  ;
  ;* begin 1 * build the non-repeating message segments (MSH, MFI) once
  I 'RAENALL D

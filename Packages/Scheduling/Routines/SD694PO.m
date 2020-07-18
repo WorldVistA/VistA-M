@@ -1,0 +1,20 @@
+SD694PO ;ALB/WTC/ZEB - VISTA SCHEDULING RPCS ;JUL 09,2019@0:09 AM
+ ;;5.3;Scheduling;**694**;;Build 61
+ ;;Per VA Directive 6402, this routine should not be modified 
+ ;
+ D RUN ;
+ Q  ;
+ ;
+RUN ;
+ ;
+ ;Set up SDECSETTINGS mail group to trigger updates to SDEC SETTINGS file (#409.98).
+ ;
+ N DO,DD,DA,DLAYGO,DIC,X,RCSITE
+ S RCSITE=$G(^XMB("NETNAME"))  Q:RCSITE=""     ; SITE DOMAIN NAME
+ S X="S.SDEC SETTINGS REMOTE UPDATE@"_RCSITE   ; SERVER NAME WITH SITE DOMAIN NAME
+ S DA(1)=$O(^XMB(3.8,"B","SDECSETTINGS",0))    ; MAIL GROUP IEN
+ I $D(^XMB(3.8,DA(1),6,"B",$E(X,1,30))) Q      ; MAIL ADDRESS ALREADY EXISTS.
+ S DLAYGO=3.812,DIC(0)="L",DIC="^XMB(3.8,"_DA(1)_",6,"
+ D FILE^DICN ;
+ Q  ;
+ ;

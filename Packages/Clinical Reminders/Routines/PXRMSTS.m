@@ -1,5 +1,5 @@
-PXRMSTS ;SLC/PKR,AGP - Master File Server event handling routines. ;06/11/2013
- ;;2.0;CLINICAL REMINDERS;**12,17,18,26**;Feb 04, 2005;Build 404
+PXRMSTS ;SLC/PKR,AGP - Master File Server event handling routines. ;12/12/2018
+ ;;2.0;CLINICAL REMINDERS;**12,17,18,26,45**;Feb 04, 2005;Build 566
  ;==============================
 AERRMSG(EMSG,NL) ;Add the UPDATE^DIE error message.
  N ERRMSG,IND
@@ -41,7 +41,7 @@ BLDDLGEH(MSG,IEN,TEXT) ;
  ;
  ;==============================
 BLDDLGTM(SUB) ;Build an index of dialog finding usage.
- N AFIND,AIEN,FIELD,FIEN,FIND,GBL,IEN,MH,NODE,ORD,TYPE
+ N AFIND,AIEN,FIELD,FIEN,FIND,GBL,IDX,IEN,MH,NODE,ORD,SEQ,TYPE
  K ^TMP($J,SUB)
  S IEN=0 F  S IEN=$O(^PXRMD(801.41,IEN)) Q:IEN'>0  D
  .S TYPE=$P($G(^PXRMD(801.41,IEN,0)),U,4)
@@ -60,6 +60,12 @@ BLDDLGTM(SUB) ;Build an index of dialog finding usage.
  ..S AIEN=$O(^PXRMD(801.41,IEN,3,"B",AFIND,"")) Q:AIEN'>0
  ..S FIEN=$P(AFIND,";"),GBL=$P(AFIND,";",2)
  ..S ^TMP($J,SUB,GBL,FIEN,IEN,18,AIEN)=""
+ .;check branching logic sequences for reminder definition and reminder terms
+ .S IDX=0 F  S IDX=$O(^PXRMD(801.41,IEN,"BL",IDX)) Q:IDX'>0  D
+ ..S NODE=$G(^PXRMD(801.41,IEN,"BL",IDX,0))
+ ..S FIND=$P(NODE,U,2),SEQ=$P(NODE,U)
+ ..S GBL=$P(FIND,";",2),FIEN=$P(FIND,";")
+ ..S ^TMP($J,SUB,GBL,FIEN,IEN,"BL",SEQ)=""
  Q
  ;
  ;==============================
@@ -188,6 +194,14 @@ DIALUPD(OLDVALUE,NEWVALUE,GBL,FIELD,DIEN,FIEN,FILENUM,FIELDNAM,EDITHIST) ;
  D BLDDLGEH(.EDITHIST,DIEN,TEXT)
  Q
  ;
+BLDFINDS(FINDINGS) ;
+ N FILE,TFIND,TYPE
+ D RFIND^PXRMFRPT(.TFIND)
+ D DFIND^PXRMFRPT(.TFIND)
+ S TYPE="" F  S TYPE=$O(TFIND(TYPE)) Q:TYPE=""  D
+ .S FILE=$G(TFIND(TYPE)) Q:TYPE=""
+ .S FINDINGS(FILE)=""
+ Q
  ;==============================
 ERROR(EVENT,NL) ;Error
  N IND
@@ -200,11 +214,12 @@ ERROR(EVENT,NL) ;Error
  ;
  ;==============================
 EVDRVR ;Event driver for STS events.
- N DEFL,DIAL,DLGUNMP,FIEN,FIENS,FILENUM,FILES,FSTAT,GBL,MAPACT,NL
+ N DEFL,DIAL,DLGUNMP,FIEN,FIENS,FILENUM,FILES,FINDINGS,FSTAT,GBL,MAPACT,NL
  N REPA,REPB,STATUS,TYPE
  S ZTREQ="@"
  K ^TMP($J,"DLG FIND"),^TMP($J,"FDATA"),^TMP($J,"PXRM DIALOGS"),^TMP("PXRMXMZ",$J)
  D BLDDLGTM("DLG FIND")
+ D BLDFINDS(.FINDINGS)
  S NL=1,^TMP("PXRMXMZ",$J,NL,0)="Protocol event summary:"
  ;Check for error.
  I $D(^XTMP(EVENT,"ERROR")) D ERROR(EVENT,.NL) G SEND
@@ -213,6 +228,7 @@ EVDRVR ;Event driver for STS events.
  .;Skip the STANDARD TERMINOLOGY VERSION FILE, it is not relevant
  .;for Clinical Reminders.
  . I FILENUM=4.009 Q
+ . I '$D(FINDINGS(FILENUM)) Q
  . S FSTAT=$P($$GETSTAT^HDISVF01(FILENUM),U,1)
  . S GBL=$P($$GET1^DID(FILENUM,"","","GLOBAL NAME"),U,2)
  . S TYPE=""

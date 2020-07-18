@@ -1,5 +1,5 @@
-ORWDRA32 ; SLC/KCM/REV/JDL - Radiology calls to support windows [6/28/02] ;04/13/10  12:43
- ;;3.0;ORDER ENTRY/RESULTS REPORTING;**10,116,141,215,280**;Dec 17, 1997;Build 85
+ORWDRA32 ; SLC/KCM/REV/JDL - Radiology calls to support windows [6/28/02] ;02/21/19  11:47
+ ;;3.0;ORDER ENTRY/RESULTS REPORTING;**10,116,141,215,280,377**;Dec 17, 1997;Build 582
  ;
 DEF(LST,PATID,EVTDIV,IMGTYP) ; Get dialog data for radiology
  N ILST,I,ORX S ILST=0
@@ -34,8 +34,9 @@ COMMPRO ; Get the common procedures
 URGENCY ; Get the allowable urgencies and default
  S ORX="",I=0
  F  S ORX=$O(^ORD(101.42,"S.RA",ORX)) Q:ORX=""  D
- . S I=$O(^ORD(101.42,"S.RA",ORX,0))
- . S LST($$NXT)="i"_I_U_ORX
+ . I (ORX="ASAP")!(ORX="STAT")!(ORX="ROUTINE") D
+ . . S I=$O(^ORD(101.42,"S.RA",ORX,0))
+ . . S LST($$NXT)="i"_I_U_ORX
  S I=$O(^ORD(101.42,"B","ROUTINE",0))
  S LST($$NXT)="d"_I_U_"ROUTINE"
  Q
@@ -74,13 +75,26 @@ PROCMSG(ORY,IEN) ; return order message for a procedure
 NXT() ; Increment index of LST
  S ILST=ILST+1
  Q ILST
+RADCOUNT() ;Number of procedures in a long list
+ Q 80
+RADLONG(Y,IMGTYP) ; Returns true if the procedures list should be a long list
+ N XREF,CNT,IDX,IEN,MAX,REQ,ORX
+ S XREF="S."_$$IMTYPE(IMGTYP),CNT=0,Y=0,IDX="",MAX=$$RADCOUNT,REQ=$$REQDET
+ F  Q:CNT>MAX  S IDX=$O(^ORD(101.43,XREF,IDX)) Q:IDX=""  D
+ . S IEN=0 F  S IEN=$O(^ORD(101.43,XREF,IDX,IEN)) Q:'IEN  D
+ . . I REQ,$P($G(^ORD(101.43,IEN,"RA")),U,2)="B" Q
+ . . S ORX=^ORD(101.43,XREF,IDX,IEN)
+ . . I +$P(ORX,U,3),$P(ORX,U,3)<DT Q
+ . . S CNT=CNT+1
+ I CNT>MAX S Y=1
+ Q
 RAORDITM(Y,FROM,DIR,IMGTYP) ; Return a subset of orderable items
  ; .Return Array, Starting Text, Direction, Cross Reference (S.xxx)
- N I,IEN,CNT,ORX,DTXT,REQDET,REQAPPR,XREF S I=0,CNT=44
- S XREF="S."_$$IMTYPE(IMGTYP)
+ N I,IEN,CNT,ORX,DTXT,REQDET,REQAPPR,XREF,REQ
+ S XREF="S."_$$IMTYPE(IMGTYP),I=0,CNT=$$RADCOUNT,REQ=$$REQDET
  F  Q:I'<CNT  S FROM=$O(^ORD(101.43,XREF,FROM),DIR) Q:FROM=""  D
  . S IEN=0 F  S IEN=$O(^ORD(101.43,XREF,FROM,IEN)) Q:'IEN  D
- . . I $$REQDET,$P($G(^ORD(101.43,IEN,"RA")),U,2)="B" Q
+ . . I REQ,$P($G(^ORD(101.43,IEN,"RA")),U,2)="B" Q
  . . S ORX=^ORD(101.43,XREF,FROM,IEN)
  . . I +$P(ORX,U,3),$P(ORX,U,3)<DT Q
  . . S I=I+1

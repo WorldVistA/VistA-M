@@ -1,5 +1,5 @@
-MAGUE004 ;WOIFO/MLH - database encapsulation - find study instance IEN for an image instance (new DB) ; 24 Feb 2012 10:10 PM
- ;;3.0;IMAGING;**118**;Mar 19, 2002;Build 4525;May 01, 2013
+MAGUE004 ;WOIFO/MLH,DAC - database encapsulation - find study instance IEN for an image instance (new DB) ; May 27, 2020@09:36:15
+ ;;3.0;IMAGING;**118,263**;Mar 19, 2002;Build 17
  ;; Per VHA Directive 2004-038, this routine should not be modified.
  ;; +---------------------------------------------------------------+
  ;; | Property of the US Government.                                |
@@ -17,11 +17,16 @@ MAGUE004 ;WOIFO/MLH - database encapsulation - find study instance IEN for an im
  ;;
  Q
  ;
-STUDYIX(MAGIEN) ; Find study instance IEN for an image instance (new DB)
- N SERIESIX,STUDYIX
+STUDYIX(IEN,IENTYPE) ; Find study instance IEN for an image instance (new DB)
+ N SERIESIX,STUDYIX,SOPIX
  S STUDYIX=""
- D:MAGIEN
- . S SERIESIX=$P($G(^MAGV(2005.64,MAGIEN,6)),"^",1) Q:'SERIESIX
+ D:IEN
+ . ; P263 DAC - Default IEN parameter is SOP (#2005.64) file IEN
+ . S SOPIX=IEN
+ . ; P263 DAC - If IEN type is IMAGE then find SOP IEN from Image(#2005.65) file enrty
+ . I $G(IENTYPE)="IMAGE" S SOPIX=$P($G(^MAGV(2005.65,IEN,6)),"^",1) Q:'SOPIX
+ . ; P263 DAC - Fixed lookup to use Series IEN instead of Image IEN
+ . S SERIESIX=$P($G(^MAGV(2005.64,SOPIX,6)),"^",1) Q:'SERIESIX
  . S STUDYIX=$P($G(^MAGV(2005.63,SERIESIX,6)),"^",1) Q:'STUDYIX
  . Q
  Q $G(STUDYIX)

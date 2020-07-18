@@ -1,5 +1,5 @@
-TIULMED ; SLC/JM,JH,AJB - Active/Recent Med Objects Routine ; 12/18/07
- ;;1.0;TEXT INTEGRATION UTILITIES;**38,73,92,94,183,193,197,198,202,213,238**;Jun 20, 1997;Build 6
+TIULMED ; SLC/JM,JH,AJB - Active/Recent Med Objects Routine ;03/22/17  07:14
+ ;;1.0;TEXT INTEGRATION UTILITIES;**38,73,92,94,183,193,197,198,202,213,238,290**;Jun 20, 1997;Build 548
  Q
 LIST(DFN,TARGET,ACTVONLY,DETAILED,ALLMEDS,ONELIST,CLASSORT,SUPPLIES) ;
  ; This is the TIU Medication objects API.  Optional parameters not
@@ -16,9 +16,12 @@ LIST(DFN,TARGET,ACTVONLY,DETAILED,ALLMEDS,ONELIST,CLASSORT,SUPPLIES) ;
  ;  ALLMEDS   0 - Specifies Inpatient Meds if patient is an
  ;                Inpatient, or Outpatient Meds if patient
  ;                is an Outpatient
- ;            1 - Specifies both Inpatient and Outpatient
+ ;            1 - Specifies Inpatient, Outpatient, & Clinic
  ;            2 or "I" - Specifies Inpatient only
  ;            3 or "O" - Specifies Outpatient only
+ ;            4 or "C" - Specifies Clinic only
+ ;            5 or "CI" or "IC" - Specifies Clinic and Inpatient Only
+ ;            6 or "CO" or "OC" - Specifies Clinic and Outpatient Only
  ;  ONELIST   0 - Separates Active, Pending and Inactive
  ;                medications into separate lists
  ;            1 - Combines Active, Pending and Inactive
@@ -32,7 +35,7 @@ LIST(DFN,TARGET,ACTVONLY,DETAILED,ALLMEDS,ONELIST,CLASSORT,SUPPLIES) ;
  N NEXTLINE,EMPTY,INDEX,NODE,ISINP,KEEPMED,STATUS,ASTATS,PSTATS,OK
  N STATIDX,INPTYPE,OUTPTYPE,TYPE,MEDTYPE,MED,IDATE,XSTR,LLEN
  N SPACE60,DASH73,LINE,TAB,HEADER
- N DRUGCLAS,DRUGIDX,UNKNOWNS
+ N DRUGCLAS,DRUGIDX,UNKNOWNS,CLINORD
  N NVATYPE,NVAMED,NVASTR,TIUXSTAT
  N %,%H,STOP,LSTFD ;Clean up after external calls...
  S (NEXTLINE,TAB,HEADER,UNKNOWNS)=0,LLEN=47
@@ -45,6 +48,9 @@ LIST(DFN,TARGET,ACTVONLY,DETAILED,ALLMEDS,ONELIST,CLASSORT,SUPPLIES) ;
  I +$D(ALLMEDS) D
  .I ALLMEDS="I" S ALLMEDS=2
  .E  I ALLMEDS="O" S ALLMEDS=3
+ .E  I ALLMEDS="C" S ALLMEDS=4 ; ajb 290
+ .E  I ALLMEDS="CI"!(ALLMEDS="IC") S ALLMEDS=5 ; ajb 290
+ .E  I ALLMEDS="CO"!(ALLMEDS="OC") S ALLMEDS=6 ; ajb 290
  I '+$G(ALLMEDS) S ALLMEDS=0
  I '+$G(ONELIST) S ONELIST=0
  I '+$G(CLASSORT) S CLASSORT=0
@@ -71,6 +77,10 @@ LIST(DFN,TARGET,ACTVONLY,DETAILED,ALLMEDS,ONELIST,CLASSORT,SUPPLIES) ;
  .S NODE=$G(^TMP("PS",$J,INDEX,0))
  .S KEEPMED=($L($P(NODE,U,2))>0) ;Discard Blank Meds
  .I KEEPMED D
+ ..;ajb 290 check if clinic order
+ .. S CLINORD=0
+ .. D ISCLORD^ORUTL(.CLINORD,$P(NODE,U,8))
+ ..;ajb 290
  ..S STATUS=$P(NODE,U,9)
  ..I STATUS="ACTIVE/SUSP" S STATUS="ACTIVE (S)"
  ..I $F(ASTATS,"^"_STATUS_"^")>0 S STATIDX=1
@@ -97,8 +107,12 @@ LIST(DFN,TARGET,ACTVONLY,DETAILED,ALLMEDS,ONELIST,CLASSORT,SUPPLIES) ;
  ..I ALLMEDS=0 D  I 1
  ...I MEDTYPE=INPTYPE S KEEPMED=ISINP
  ...E  S KEEPMED='ISINP
- ..E  I ALLMEDS=2 S KEEPMED=(MEDTYPE=INPTYPE)
- ..E  I ALLMEDS=3 S KEEPMED=(MEDTYPE=OUTPTYPE!(MEDTYPE=NVATYPE))
+ ...I +CLINORD S KEEPMED=0 ; ajb 290 check to see if clinic meds
+ ..E  I ALLMEDS=2 S KEEPMED=(MEDTYPE=INPTYPE) I +CLINORD S KEEPMED=0 ; inpatient only
+ ..E  I ALLMEDS=3 S KEEPMED=(MEDTYPE=OUTPTYPE!(MEDTYPE=NVATYPE)) I +CLINORD S KEEPMED=0 ; outpatient only
+ ..E  I ALLMEDS=4,'+CLINORD S KEEPMED=0 ; clinic only
+ ..E  I ALLMEDS=5 S KEEPMED=0 I +CLINORD!(MEDTYPE=INPTYPE) S KEEPMED=1 ; clinic & inpatient
+ ..E  I ALLMEDS=6 S KEEPMED=0 I +CLINORD!(MEDTYPE=OUTPTYPE) S KEEPMED=1 ; clinic & outpatient
  .S DRUGCLAS=" "
  .S MED=$P(NODE,U,2)
  .I KEEPMED,(CLASSORT!('SUPPLIES)) D

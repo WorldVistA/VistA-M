@@ -1,5 +1,6 @@
-SDEC07B ;ALB/SAT - VISTA SCHEDULING RPCS ;MAY 15, 2017
- ;;5.3;Scheduling;**627,658,665,669,722,744**;Aug 13, 1993;Build 3
+SDEC07B ;ALB/SAT,PC - VISTA SCHEDULING RPCS ;Feb 27, 2020@14:33
+ ;;5.3;Scheduling;**627,658,665,669,717,722,744,694**;Aug 13, 1993;Build 61
+ ;;Per VHA Directive 2004-038, this routine should not be modified
  ;
  Q
  ;
@@ -35,11 +36,11 @@ MAKE(BSDR) ;PEP; call to store appt made
  I '$D(^DPT(+$G(BSDR("PAT")),0)) Q 1_U_"Patient not on file: "_$G(BSDR("PAT"))
  I '$D(^SC(+$G(BSDR("CLN")),0)) Q 1_U_"Clinic not on file: "_$G(BSDR("CLN"))
  I "1234"'[$G(BSDR("TYP")) Q 1_U_"Appt Type error: "_$G(BSDR("TYP"))
- I $G(BSDR("ADT")) S BSDR("ADT")=+$E(BSDR("ADT"),1,12)  ;remove seconds
- I $G(BSDR("ADT"))'?7N1".".4N Q 1_U_"Appt Date/Time error: "_$G(BSDR("ADT"))
+ I $G(BSDR("ADT"))'?7N1"."1N.N Q 1_U_"Appt Date/Time error: "_$G(BSDR("ADT"))  ;PWC  allow any time combination of numbers #694
  ;
  I ($G(BSDR("LEN"))<5)!($G(BSDR("LEN"))>240) Q 1_U_"Appt Length error: "_$G(BSDR("LEN"))
  I '$D(^VA(200,+$G(BSDR("USR")),0)) Q 1_U_"User Who Made Appt Error: "_$G(BSDR("USR"))
+ ; ICR #10035 wtc 715 5/30/2019
  I $D(^DPT(BSDR("PAT"),"S",BSDR("ADT"),0)),$P(^DPT(BSDR("PAT"),"S",BSDR("ADT"),0),U,2)'="C",$P(^DPT(BSDR("PAT"),"S",BSDR("ADT"),0),U,2)'="PC" Q 1_U_"Patient "_$$GET1^DIQ(2,BSDR("PAT")_",",.01)_" already has appt at "_$$FMTE^XLFDT(BSDR("ADT"))
  ;
  N DIC,DA,Y,X,DD,DO,DLAYGO
@@ -61,8 +62,8 @@ MAKE(BSDR) ;PEP; call to store appt made
  S SDFU=$S(SDFU="YES":1,1:0)
  K @SDRET
  ;store
- N SDECCOND
- S SDECCOND=0 I $D(^DPT(BSDR("PAT"),"S",BSDR("ADT"),0)),(($P(^DPT(BSDR("PAT"),"S",BSDR("ADT"),0),U,2)="C")!($P(^DPT(BSDR("PAT"),"S",BSDR("ADT"),0),U,2)="PC")) S SDECCOND=1
+ N SDECCOND ;  722/717 wtc 3/26/2019
+ S SDECCOND=0 I $D(^DPT(BSDR("PAT"),"S",BSDR("ADT"),0)),(($P(^DPT(BSDR("PAT"),"S",BSDR("ADT"),0),U,2)="C")!($P(^DPT(BSDR("PAT"),"S",BSDR("ADT"),0),U,2)="PC")) S SDECCOND=1 ; ICR #10035 wtc 715 5/30/2019
  I SDECCOND=1 D
  . ; "un-cancel" existing appt in file 2
  . N SDECFDA,SDECIENS,SDECMSG
@@ -78,7 +79,7 @@ MAKE(BSDR) ;PEP; call to store appt made
  . S SDECFDA(2.98,SDECIENS,"14")="@"
  . S SDECFDA(2.98,SDECIENS,"15")="@"
  . S SDECFDA(2.98,SDECIENS,"16")="@"
- . S SDECFDA(2.98,SDECIENS,"17")="@"   ;alb/sat 658
+ . S SDECFDA(2.98,SDECIENS,"17")="@"                      ;alb/sat 658
  . S SDECFDA(2.98,SDECIENS,"19")=$$NULLDEL(DUZ)           ;data entry clerk
  . S SDECFDA(2.98,SDECIENS,"20")=$$NOW^XLFDT
  . S SDECFDA(2.98,SDECIENS,"21")="@"                      ;outpatient encounter ;*zeb 722 2/26/19 clear to fix OE link issue if cancelled again
@@ -86,7 +87,7 @@ MAKE(BSDR) ;PEP; call to store appt made
  . S SDECFDA(2.98,SDECIENS,"26")=$$NULLDEL(SDNA)          ;next ava. appt. indicator
  . S SDECFDA(2.98,SDECIENS,"27")=$$NULLDEL(BSDR("DDT"))   ;desired date of appt
  . S SDECFDA(2.98,SDECIENS,"28")=$$NULLDEL(SDFU)          ;follow-up visit  yes/no
- . D FILE^DIE("","SDECFDA","SDECMSG")
+ . D FILE^DIE("","SDECFDA","SDECMSG")  ;ICR #7030 wtc 715 5/30/2019
  . N SDECTEMP S SDECTEMP=$$NULLDEL($G(SDECMSG))
  E  D  I $G(SDECERR(1)) Q 1_U_"FileMan add to DPT error: Patient="_BSDR("PAT")_" Appt="_BSDR("ADT")
  . ; add appt to file 2
@@ -104,21 +105,26 @@ MAKE(BSDR) ;PEP; call to store appt made
  . S SDECFDA(2.98,SDECIENS,"14")=""
  . S SDECFDA(2.98,SDECIENS,"15")=""
  . S SDECFDA(2.98,SDECIENS,"16")=""
- . S SDECFDA(2.98,SDECIENS,"17")=""   ;alb/sat 658
+ . S SDECFDA(2.98,SDECIENS,"17")=""            ;alb/sat 658
  . S SDECFDA(2.98,SDECIENS,"19")=DUZ           ;data entry clerk
  . S SDECFDA(2.98,SDECIENS,"20")=$$NOW^XLFDT
  . S SDECFDA(2.98,SDECIENS,"25")=SDSRT         ;scheduling request type
  . S SDECFDA(2.98,SDECIENS,"26")=SDNA          ;next ava. appt. indicator
  . S SDECFDA(2.98,SDECIENS,"27")=BSDR("DDT")   ;desired date of appt
  . S SDECFDA(2.98,SDECIENS,"28")=SDFU          ;follow-up visit  yes/no
- . D UPDATE^DIE("","SDECFDA","SDECIENS","SDECERR(1)")
+ . D UPDATE^DIE("","SDECFDA","SDECIENS","SDECERR(1)") ;ICR #7030 wtc 715 5/30/2019
+ ;
  ; add appt to file 44
  K DIC,DA,X,Y,DLAYGO,DD,DO
  I '$D(^SC(BSDR("CLN"),"S",0)) S ^SC(BSDR("CLN"),"S",0)="^44.001DA^^"
- I '$D(^SC(BSDR("CLN"),"S",BSDR("ADT"),0)) D  I Y<1 Q 1_U_"Error adding date to file 44: Clinic="_BSDR("CLN")_" Date="_BSDR("ADT")
- . S DIC="^SC("_BSDR("CLN")_",""S"",",DA(1)=BSDR("CLN"),(X,DINUM)=BSDR("ADT")
- . S DIC("P")="44.001DA",DIC(0)="L",DLAYGO=44.001
- . S Y=1 I '$D(@(DIC_X_")")) D FILE^DICN
+ I '$D(^SC(BSDR("CLN"),"S",BSDR("ADT"),0)) S ^SC(BSDR("CLN"),"S",BSDR("ADT"),0)=BSDR("ADT"),^(1,0)="^44.003PA^^" ;  replaced call to FileMan below - 715 wtc 4/5/19
+ ;
+ ;  Disabled code below because very occassionally it is failing.  wtc 715 4/5/19
+ ;
+ ;I '$D(^SC(BSDR("CLN"),"S",BSDR("ADT"),0)) D  I Y<1 Q 1_U_"Error adding date to file 44: Clinic="_BSDR("CLN")_" Date="_BSDR("ADT")
+ ;. S DIC="^SC("_BSDR("CLN")_",""S"",",DA(1)=BSDR("CLN"),(X,DINUM)=BSDR("ADT")
+ ;. S DIC("P")="44.001DA",DIC(0)="L",DLAYGO=44.001
+ ;. S Y=1 I '$D(@(DIC_X_")")) D FILE^DICN
  ;
  K DIC,DA,X,Y,DLAYGO,DD,DO,DINUM
  S DIC="^SC("_BSDR("CLN")_",""S"","_BSDR("ADT")_",1,"
@@ -133,6 +139,7 @@ MAKE(BSDR) ;PEP; call to store appt made
  .Q:SDIEN=-1
  .S SDFDA(44.003,SDIEN_","_BSDR("ADT")_","_BSDR("CLN")_",",688)=BSDR("CON")
  .D UPDATE^DIE("","SDFDA")
+ ;
  ; removed quit so event driver could be called pwc 2/26/20 SD*5.3*744
  ; call event driver
  NEW DFN,SDT,SDCL,SDDA,SDMODE
@@ -213,5 +220,6 @@ APPVISTA(SDECLEN,SDECNOTE,DFN,SDECRESD,SDECSTART,SDECWKIN,SDCL,SDECI) ;
  . S SDECC("USR")=DUZ
  . S SDECERR=$$MAKE^SDEC07B(.SDECC)
  . Q:SDECERR
- . D AVUPDT^SDEC07(SDCL,SDECSTART,SDECLEN)
+ . D AVUPDT^SDEC07C(SDCL,SDECSTART,SDECLEN) ; Code moved from SDEC07 to SDEC07C - 715 WTC 3/26/2019
  Q +SDECERR
+ ;

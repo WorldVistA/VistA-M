@@ -1,0 +1,531 @@
+TIUCOPR ; SLC/TDP - Copy/Paste Report ;02/13/20  13:59
+ ;;1.0;TEXT INTEGRATION UTILITIES;**290**;Jun 20, 1997;Build 548
+ ;
+ ;   DBIA 10003  ^%DT
+ ;   DBIA 10003  DD^%DT
+ ;   DBIA 10040  ^SC(
+ ;   DBIA 10086  ^%ZIS
+ ;   DBIA 10089  ^%ZISC
+ ;   DBIA 10063  ^%ZTLOAD
+ ;   DBIA 10006  ^DIC
+ ;   DBIA 10026  ^DIR
+ ;   DBIA 10060  ^VA(200,
+ ;
+ Q
+SUM ;Summary Report Entry
+ N CTHRESH,RPT,RTM
+ S RPT="S"
+ S RTM=80
+ D EN
+ Q
+ ;
+DET ;Detail Report Entry
+ N CTHRESH,RPT,RTM
+ S RPT="D"
+ S RTM=132
+ D EN
+ Q
+ ;
+EN ;Start of copy/paste reports
+ ;IOF is global variable
+ N CLIN,CLN,DFN,DIC,DIR,DIROUT,DIRUT,DIV1,DTOUT,DUOUT,DV,EDT,EXIT,ICNT,PAT
+ N PRV,PROV,PTNAME,SDT,SPRSTXT,SRT,STP,X,Y,%DT
+ I '$$VIEW^TIUCOP(DUZ,"",DUZ(2)) D  Q
+ . W !!,"YOU MUST BELONG TO A SPECIAL USERCLASS TO ACCESS THIS OPTION.",!!
+ . HANG 5
+ . W @IOF
+ S DIV1=""
+ I +$G(DIV)>0 S DIV1=DIV
+ N DIV ;DIV newed now after saving previous selection if it exists
+DV D DIV I DIV="" Q
+RPT D SCRNHDR^TIUCOPRU
+SDT ;Start Date Prompt
+ S (%DT,%DT("A"),%DT(0),DTOUT,SDT,X,Y)=""
+ S %DT="AEP"
+ S %DT("A")="START DATE: "
+ S %DT(0)="-NOW"
+ D ^%DT
+ I ($G(DTOUT))!(X="") G DV
+ I X["^" G EXIT
+ I Y=-1 G SDT
+ S SDT=Y
+EDT ;End Date Prompt
+ S (%DT,%DT("A"),%DT(0),DTOUT,EDT,X,Y)=""
+ S %DT="AEP"
+ S %DT("A")="END DATE: "
+ S %DT(0)="-NOW"
+ D ^%DT
+ I ($G(DTOUT))!(X="") G SDT
+ I X["^" G EXIT
+ I Y=-1 G EDT
+ S EDT=Y
+ I EDT<SDT D
+ . S EDT=SDT
+ . S SDT=Y
+SORT ;Sort Summary Report
+ K DIR
+ S (CLIN,CLN,DIR(0),DIR("A"),DIR("B"),DIROUT,DIRUT,DTOUT,DUOUT,PROV,PRV,SRT,STP,X,Y,Y(0))=""
+ S (EXIT,STP)=0
+ S DIR(0)="SOA^L:LOCATION;D:DATE;P:PROVIDER;M:MATCH %"
+ S DIR("A")="Sort by Date/Location/Provider/Match %: "
+ S DIR("B")="DATE"
+ D ^DIR I ($G(DIROUT))!($G(DTOUT)) G EDT
+ I $G(DUOUT) G EXIT
+ I Y(0)'="LOCATION",Y(0)'="DATE",Y(0)'="PROVIDER",Y(0)'="MATCH %" G SORT
+ I Y(0)="LOCATION" S SRT="C" K CLN S CLN=0 D CLINIC
+ I Y(0)="DATE" S SRT="D"
+ I Y(0)="PROVIDER" S SRT="P" K PRV S PRV=0 D PROVIDER
+ I Y(0)="MATCH %" S SRT="M"
+ I STP=1 G SORT
+ I EXIT=1 G EXIT
+PAT ;Select Patient Prompt
+ K DIR
+ S (DIR(0),DIR("A"),DIR("B"),DIROUT,DIRUT,DTOUT,DUOUT,PAT,X,Y,Y(0))=""
+ K PTNAME S PTNAME=0
+ S DIR(0)="SOA^A:ALL;I:INDIVIDUAL"
+ S DIR("A")="Run Report for All Patients or for Individual Patients: "
+ S DIR("B")="ALL"
+ D ^DIR I ($G(DIROUT))!($G(DTOUT)) G SORT
+ I $G(DUOUT) G EXIT
+ I Y(0)'="INDIVIDUAL",Y(0)'="ALL" G PAT
+ I Y(0)="ALL" S PAT="A",DFN="" G PCT ;G PRINT
+ S PAT="I"
+ S ICNT=0
+IND ;Select Individual Patient
+ W !!,"Enter ""^L"" at the Select Patient prompt to view previously selected patients."
+ K DIC S DIC=2,DIC("A")="Select Patient: ",DIC(0)="AEQM" D ^DIC K DIC
+ I X="^L" D PTLIST(.PTNAME) G IND
+ I ($G(DTOUT))!((X="")&(PTNAME=0)) G PAT
+ I $G(DUOUT) G EXIT
+ I ((X="")&(PTNAME>0)) G PCT ;G PRINT
+ I ((X="")&(PTNAME'>0)) G PAT
+ I (Y=-1)!(+Y<1) G IND
+ S PTNAME=PTNAME+1
+ S DFN=+$P(Y,U,1)
+ S PTNAME(DFN)=$P(Y,U,2)
+ S PTNAME("B",$G(PTNAME(DFN)),DFN)=""
+ G IND
+ Q
+ ;
+PTLIST(PTNAME) ;List selected patients
+ I PTNAME=0 D  Q
+ . W !!,"     No patients have been selected"
+ . HANG 2
+ . W !!
+ . Q
+ N PTCNT,HLPLN,PTNM,PTDFN
+ W !!,"Selected Patients ("_+PTNAME_"):"
+ S PTNM=""
+ F  S PTNM=$O(PTNAME("B",PTNM)) Q:PTNM=""  D
+ . S PTDFN=0
+ . F  S PTDFN=$O(PTNAME("B",PTNM,PTDFN)) Q:PTDFN=""  D
+ .. W !,"     "_PTDFN_$E("            ",1,(12-$L(PTDFN)))_PTNM
+ HANG 2
+ W !!
+ Q
+ ;
+DIV ;Select Division
+ ;DIV,DFN
+ N X,Y,DIR,DIROUT,DIRUT,DTOUT,DUOUT
+ S DIV=""
+ K DIR
+ S (DIR(0),DIR("A"),DIR("B"),DIROUT,DIRUT,DTOUT,DUOUT,DV,X,Y,Y(0))=""
+ S DIR(0)="SOA^A:ALL;I:INDIVIDUAL"
+ S DIR("A")="Run Report for All Divisions or for an Individual Division: "
+ S DIR("B")="ALL"
+ D ^DIR
+ I (($G(DTOUT))!($G(DIROUT))!($G(DUOUT))!($G(DIRUT))!($G(Y)="")) Q
+ I Y(0)'="INDIVIDUAL",Y(0)'="ALL" G DIV
+ I Y(0)="ALL" S DIV=0 Q
+ S DV="I"
+ S ICNT=0
+DIV1 N X,Y
+ K DIR
+ S (DIR(0),DIR("A"),DIR("B"),DIROUT,DTOUT,DUOUT,DFN,X,Y,Y(0))=""
+ S DIR(0)="PO^4:AENQV"
+ S DIR("A")="Select Division"
+ S DIR("?")="Select a division to include in this report."
+ S DIR("B")=$S(+$G(DIV1)>0:$P(DIV1,U,2),+$G(DUZ(2))>0:+$G(DUZ(2)),1:"")
+ D ^DIR I ($G(DIROUT))!($G(DTOUT))!(X="") G DIV
+ I $G(DUOUT) S EXIT=1 Q
+ I ((+$G(DIRUT))&(DIV>0)) Q
+ I +Y<1 G DIV1
+ S DIV=+$P(Y,U,1)_"^"_$P(Y,U,2)
+ Q
+ ;
+CLINIC ;Select clinic to return results
+ N X,Y,DIR,DIROUT,DIRUT,DTOUT,DUOUT
+ K CLIN S CLIN=0
+ K DIR
+ S (DIR(0),DIR("A"),DIR("B"),DIROUT,DIRUT,DTOUT,DUOUT,CLN,X,Y,Y(0))=""
+ S DIR(0)="SOA^A:ALL;I:INDIVIDUAL"
+ S DIR("A")="Run Report for All Locations or for Individual Locations: "
+ S DIR("B")="ALL"
+ D ^DIR I ($G(DIROUT))!($G(DTOUT)) S STP=1 Q
+ I $G(DUOUT) S EXIT=1 Q
+ I Y(0)'="INDIVIDUAL",Y(0)'="ALL" G CLINIC
+ I Y(0)="ALL" S CLN="A",DFN="" Q
+ S CLN="I"
+ S ICNT=0
+CLIN N X,Y
+ K DIR
+ S (DIR(0),DIR("A"),DIR("B"),DIROUT,DTOUT,DUOUT,DFN,X,Y,Y(0))=""
+ S DIR(0)="PO^44:AENQV"
+ S DIR("A")="Select Clinic"
+ S DIR("?")="Select a new clinic to include in this report"_$S(CLIN>0:".",1:"")
+ I CLIN>0 D
+ . N CLNCNT,HLPLN,CLNNM,CLNDFN
+ . S CLNNM=""
+ . S CLNCNT=CLIN+1
+ . S HLPLN=1
+ . S CLNNM=""
+ . F  S CLNNM=$O(CLIN("B",CLNNM)) Q:CLNNM=""  D
+ .. S CLNDFN=0
+ .. F  S CLNDFN=$O(CLIN("B",CLNNM,CLNDFN)) Q:CLNDFN=""  D
+ ... S DIR("?",HLPLN)="     "_CLNDFN_$E("            ",1,(12-$L(DFN)))_CLNNM
+ ... S HLPLN=HLPLN+1
+ . I HLPLN=CLNCNT S DIR("?",HLPLN)=" "
+ D ^DIR I ($G(DIROUT))!($G(DTOUT))!((X="")&(CLIN=0)) G CLINIC
+ I $G(DUOUT) S EXIT=1 Q
+ I ((+$G(DIRUT))&(CLIN>0)) Q
+ I Y=-1!+Y<1 G CLIN
+ S CLIN=CLIN+1
+ S DFN=+$P(Y,U,1)
+ S CLIN(DFN)=$P(Y,U,2)
+ S CLIN("B",$G(CLIN(DFN)),DFN)=""
+ G CLIN
+ Q
+PROVIDER ;Select provider to return results
+ N X,Y,DIR,DIROUT,DIRUT,DTOUT,DUOUT
+ K PROV S PROV=0
+ K DIR
+ S (DIR(0),DIR("A"),DIR("B"),DIROUT,DIRUT,DTOUT,DUOUT,PAT,X,Y,Y(0))=""
+ S DIR(0)="SOA^A:ALL;I:INDIVIDUAL"
+ S DIR("A")="Run Report for All Providers or for Individual Providers: "
+ S DIR("B")="ALL"
+ D ^DIR I ($G(DIROUT))!($G(DTOUT)) S STP=1 Q
+ I $G(DUOUT) S EXIT=1 Q
+ I Y(0)'="INDIVIDUAL",Y(0)'="ALL" G PROVIDER
+ I Y(0)="ALL" S PRV="A",DFN="" Q
+ S PRV="I"
+ S ICNT=0
+PROV N X,Y
+ K DIR
+ S (DIR(0),DIR("A"),DIR("B"),DIROUT,DTOUT,DUOUT,DFN,X,Y,Y(0))=""
+ S DIR(0)="PO^200:AENQV"
+ S DIR("A")="Select Provider"
+ S DIR("?")="Select a new provider to include in this report"_$S(PROV>0:".",1:"")
+ I PROV>0 D
+ . N PRVCNT,HLPLN,PRVNM,PRVDFN
+ . S PRVNM=""
+ . S PRVCNT=PROV+1
+ . S HLPLN=1
+ . S PRVNM=""
+ . F  S PRVNM=$O(PROV("B",PRVNM)) Q:PRVNM=""  D
+ .. S PRVDFN=0
+ .. F  S PRVDFN=$O(PROV("B",PRVNM,PRVDFN)) Q:PRVDFN=""  D
+ ... S DIR("?",HLPLN)="     "_PRVDFN_$E("            ",1,(12-$L(DFN)))_PRVNM
+ ... S HLPLN=HLPLN+1
+ . I HLPLN=PRVCNT S DIR("?",HLPLN)=" "
+ D ^DIR I ($G(DIROUT))!($G(DTOUT))!((X="")&(PROV=0)) G PROVIDER
+ I $G(DUOUT) S EXIT=1 Q
+ I ((+$G(DIRUT))&(PROV>0)) Q
+ I Y=-1!+Y<1 G PROV
+ S PROV=PROV+1
+ S DFN=+$P(Y,U,1)
+ S PROV(DFN)=$P(Y,U,2)
+ S PROV("B",$G(PROV(DFN)),DFN)=""
+ G PROV
+EXIT Q
+ ;
+PCT ;Select Percentage match to display
+ K DIR
+ S (DIR(0),DIR("A"),DIR("B"),DIROUT,DIRUT,DTOUT,DUOUT,X,Y,Y(0))=""
+ S DIR(0)="NOA^0:100"
+ S DIR("A")="Required percentage of match of paste to copy? "
+ S DIR("B")=$S($D(CTHRESH)>0:CTHRESH,1:"80")
+ D ^DIR I ($G(DUOUT))!($G(DTOUT)) G PAT
+ I $G(DIROUT) G EXIT
+ S CTHRESH=Y
+ I CTHRESH="" S CTHRESH=80
+ ;
+SUPRSS ;Suppress display of pasted text in Detail Report
+ I RPT="D" D
+ . K DIR
+ . S (DIR(0),DIR("A"),DIR("B"),DIROUT,DIRUT,DTOUT,DUOUT,SPRSTXT,X,Y,Y(0))=""
+ . S DIR(0)="YOA"
+ . S DIR("A")="Suppress Pasted Text Display? "
+ . S DIR("B")="YES"
+ . D ^DIR I (Y="")!($G(DTOUT)) G PCT
+ . I ($G(DUOUT))!($G(DIROUT)) G EXIT
+ . S SPRSTXT=Y
+ . I SPRSTXT'=0,SPRSTXT'=1 G SUPRSS
+ . Q
+ ;
+PRINT ;Print the selected report
+ N ZTRTN,%I,%T,%Y,POP
+ S ZTRTN=$S(RPT="S":"SUMMARY^TIUCOPR",1:"DETAIL^TIUCOPR1")
+DEVICE ; Device handling
+ ; Call with: ZTRTN
+ N %ZIS
+ S %ZIS="QM"
+ I RPT="D" W !!,"Recommend a Right Margin of 132"
+ D ^%ZIS Q:POP
+ G:$D(IO("Q")) QUE^TIUCOPRU
+NOQUE D @ZTRTN
+ W @IOF
+ D ^%ZISC
+ G EN
+ Q
+ ;
+SUMMARY ;Summary Report
+ ;IOF,IOM,IOSL,IOST
+ ;CLIN,CLN
+ N ABVTHRSH,CLNIEN,CLNLOC,CLNNM,CPYIEN,CPYPKG,DTRNG,ENDT,FNL
+ N IEN,LINE,LPDT,MIA,NTIEN,PARNT,PDIV,PG,PG1LN,PGHDR,PGLNG,PGSRT,PGTTL
+ N PRVIEN,PRVNM,PSTDFN,PSTNT,PSTNT0,QUIT,RM,STDT,STRTDT,TRM,TTLCLIN
+ N TTLCLN,TTLCNT,TTLNCLN,TTLNPRV,TTLNSEL,TTLNT,TTLPNCLN,TTLPNCNT
+ N TTLPNPRV,TTLPROV,TTLPRV,TTLTHACNT,TTLTHCNT,TTLTHRSH,Y,THRESH,THRSH
+ N APCT
+ ;S CTHRESH=-1
+ S QUIT=0
+ S PGLNG=+$G(IOSL)
+ I PGLNG=0 S PGLNG=24
+ S $P(LINE,"=",1000)=""
+ S RM=+$G(IOM)
+ I RM=0 S RM=80
+ S TRM=($E(IOST,1,1)="C")
+ S PG=0
+ S PGTTL="SUMMARY COPY/PASTE REPORT"_$S(+DIV>0:" FOR "_$P(DIV,U,2),1:"")
+ S PGHDR="FOR "_$S(PAT="A":"ALL",1:"SELECTED")_" PATIENT"_$S(PTNAME=1:"",1:"S")
+ S Y=SDT
+ D DD^%DT
+ S STDT=Y
+ S Y=EDT
+ D DD^%DT
+ S ENDT=Y
+ S DTRNG="FROM "_STDT_" TO "_ENDT
+ I SRT="C" S PGSRT="FOR "_$S(CLN="A":"ALL",1:"SELECTED")_" LOCATION"_$S(CLIN=1:"",1:"S")
+ I SRT="P" S PGSRT="FOR "_$S(PRV="A":"ALL",1:"SELECTED")_" PROVIDER"_$S(PROV=1:"",1:"S")
+ S (THRSH,THRESH)=""
+ ;I +DIV>0,PCTTHRESH=1 D
+ ;. S THRSH=$$PCT^TIUCOP(+DIV)*100
+ ;. S THRESH="(THRESHOLD PCT: "_THRSH_")"
+ S THRESH="(THRESHOLD PCT: "_CTHRESH_")"
+ S (TTLCLIN,TTLCNT,TTLNSEL,TTLPNCNT,TTLPROV,TTLTHACNT,TTLTHRSH)=0
+ I TRM W @IOF
+ D HDR^TIUCOPRU
+ S ENDT=EDT+.999999
+ S (STRTDT,STDT,LPDT)=SDT-.000001
+ S STRTDT=9999999-STRTDT
+ F  S LPDT=$O(^TIUP(8928,"B",LPDT)) Q:((LPDT="")!(LPDT>ENDT))  D
+ . S IEN=""
+ . F  S IEN=$O(^TIUP(8928,"B",LPDT,IEN)) Q:IEN=""  D
+ .. S PSTNT0=$G(^TIUP(8928,IEN,0))
+ .. S PRVIEN=$P(PSTNT0,U,2)
+ .. S PDIV=$P(PSTNT0,U,3)
+ .. I +DIV>0,PDIV'=+DIV Q
+ .. S APCT=$P(PSTNT0,U,8)
+ .. I APCT="" S APCT="TBD"
+ .. ;S CTHRESH=$S(THRSH="":$$PCT^TIUCOP(PDIV)*100,1:THRSH)
+ .. S ABVTHRSH=APCT'<CTHRESH
+ .. ;I PCTTHRESH,'ABVTHRSH Q
+ .. ;I 'ABVTHRSH Q
+ .. S PSTNT=+$P(PSTNT0,U,4)
+ .. I '$G(TTLPNCNT(PSTNT)) D
+ ... S TTLPNCNT(PSTNT)=1
+ ... S TTLPNCNT=$G(TTLPNCNT)+1
+ .. S MIA=0
+ .. I SRT="C" D
+ ... S CLNIEN=+$P(PSTNT0,U,4)
+ ... I '$D(^TIU(8925,CLNIEN,0)) D
+ .... S CLNLOC=0
+ .... S CLNNM="UNKNOWN LOCATION"
+ .... S MIA=1
+ ... I 'MIA D
+ .... S CLNLOC=+$P($G(^TIU(8925,CLNIEN,12)),U,5)
+ .... I CLNLOC=0 D
+ ..... S CLNLOC=0
+ ..... S CLNNM="UNKNOWN LOCATION"
+ ..... S MIA=1
+ .... I CLNLOC>0 S CLNNM=$P($G(^SC(CLNLOC,0)),U,1)
+ ... I '$G(TTLPNCLN(CLNLOC,PSTNT)) D
+ .... S TTLPNCLN(CLNLOC,PSTNT)=1
+ .... S TTLPNCLN(CLNLOC)=$G(TTLPNCLN(CLNLOC))+1
+ .. I SRT="P" D
+ ... I '$G(TTLPNPRV(PRVIEN,PSTNT)) D
+ .... S TTLPNPRV(PRVIEN,PSTNT)=1
+ .... S TTLPNPRV(PRVIEN)=$G(TTLPNPRV(PRVIEN))+1
+ .. I 'ABVTHRSH Q
+ .. S PARNT=$P(PSTNT0,U,11)
+ .. I PARNT'="",PARNT'=IEN Q
+ .. S CPYIEN=$P(PSTNT0,U,6)
+ .. S CPYPKG=$P(PSTNT0,U,7)
+ .. I CPYPKG="8925",'$D(^TIU(8925,+CPYIEN,0)) Q
+ .. ;S PSTNT=+$P(PSTNT0,U,4)
+ .. I '$D(^TIU(8925,+PSTNT,0)) Q
+ .. S PSTDFN=$P($G(^TIU(8925,+PSTNT,0)),U,2)
+ .. I +PSTDFN>0 S PSTDFN=+$G(^AUPNPAT(+PSTDFN,0))
+ .. I PTNAME>0,'$D(PTNAME(+PSTDFN)) Q
+ .. ;S MIA=0
+ .. I SRT="C" D
+ ...; S CLNIEN=+$P(PSTNT0,U,4)
+ ...; I '$D(^TIU(8925,CLNIEN,0)) D
+ ...;. S CLNLOC=0
+ ...;. S CLNNM="UNKNOWN LOCATION"
+ ...;. S MIA=1
+ ...; I 'MIA D
+ ...;. S CLNLOC=+$P($G(^TIU(8925,CLNIEN,12)),U,5)
+ ...;. I CLNLOC=0 D
+ ...;.. S CLNLOC=0
+ ...;.. S CLNNM="UNKNOWN LOCATION"
+ ...;.. S MIA=1
+ ...;. S CLNNM=$P($G(^SC(CLNLOC,0)),U,1)
+ ... I CLN="I",'$D(CLIN(CLNLOC)) Q
+ ... S TTLCLN(CLNNM,CLNLOC)=+$G(TTLCLN(CLNNM,CLNLOC))+1
+ ... S TTLCLIN=TTLCLIN+1
+ ... I ABVTHRSH,'$G(TTLTHACNT(CLNLOC,PSTNT)) D
+ .... S TTLTHACNT(CLNLOC,PSTNT)=1
+ .... S TTLTHACNT(CLNLOC)=$G(TTLTHACNT(CLNLOC))+1
+ ... ;I '$G(TTLPNCLN(CLNLOC,PSTNT)) D
+ ... ;. S TTLPNCLN(CLNLOC,PSTNT)=1
+ ... ;. S TTLPNCLN(CLNLOC)=$G(TTLPNCLN(CLNLOC))+1
+ ... I '$G(TTLNCLN(CLNLOC)) D
+ .... N NTIEN,RDT,STATUS,TYPE
+ .... S TYPE=""
+ .... F  S TYPE=$O(^TIU(8925,"ALOC",CLNLOC,TYPE)) Q:TYPE=""  D
+ ..... S STATUS=""
+ ..... F  S STATUS=$O(^TIU(8925,"ALOC",CLNLOC,TYPE,STATUS)) Q:STATUS=""  D
+ ...... S RDT=(9999999-ENDT)
+ ...... F  S RDT=$O(^TIU(8925,"ALOC",CLNLOC,TYPE,STATUS,RDT)) Q:((RDT="")!(RDT>STRTDT))  D
+ ....... S NTIEN=""
+ ....... F  S NTIEN=$O(^TIU(8925,"ALOC",CLNLOC,TYPE,STATUS,RDT,NTIEN)) Q:NTIEN=""  D
+ ........ S TTLNCLN(CLNLOC)=+$G(TTLNCLN(CLNLOC))+1
+ ........ I '$G(TTLNSEL(NTIEN)) D
+ ......... S TTLNSEL(NTIEN)=1
+ ......... S TTLNSEL=TTLNSEL+1
+ .. I SRT="P" D
+ ... I PRV="I",'$D(PROV(PRVIEN)) Q
+ ... S PRVNM=$P($G(^VA(200,PRVIEN,0)),U,1)
+ ... S TTLPRV(PRVNM,PRVIEN)=+$G(TTLPRV(PRVNM,PRVIEN))+1
+ ... S TTLPROV=TTLPROV+1
+ ... I ABVTHRSH,'$G(TTLTHACNT(PRVIEN,PSTNT)) D
+ .... S TTLTHACNT(PRVIEN,PSTNT)=1
+ .... S TTLTHACNT(PRVIEN)=$G(TTLTHACNT(PRVIEN))+1
+ ...; I '$G(TTLPNPRV(PRVIEN,PSTNT)) D
+ ...;. S TTLPNPRV(PRVIEN,PSTNT)=1
+ ...;. S TTLPNPRV(PRVIEN)=$G(TTLPNPRV(PRVIEN))+1
+ ... I $G(TTLNPRV(PRVIEN)) Q
+ ... N NTIEN,RDT
+ ... ;S NTIEN=""
+ ... ;I PRV="I" F  S NTIEN=$O(^TIU(8925,"CA",PRVIEN,NTIEN)) Q:NTIEN=""  D
+ ...;. S RDT=$P($G(^TIU(8925,NTIEN,13)),U,1)
+ ...;. I ((RDT<SDT)!(RDT>ENDT)) Q
+ ...;. S TTLNPRV(PRVIEN)=+$G(TTLNPRV(PRVIEN))+1
+ ...;. I '$G(TTLNSEL(NTIEN)) D
+ ...;.. S TTLNSEL(NTIEN)=1
+ ...;.. S TTLNSEL=TTLNSEL+1
+ ... ;I PRV'="I" S RDT=STDT F  S RDT=$O(^TIU(8925,"H",RDT)) Q:RDT=""  Q:RDT>ENDT  D
+ ...;. S NTIEN="" F  S NTIEN=$O(^TIU(8925,"H",RDT,NTIEN)) Q:NTIEN=""  D
+ ...;.. I PRVIEN'=$S($P($G(^TIU(8925,NTIEN,12)),U,2)'="":$P($G(^TIU(8925,NTIEN,12)),U,2),1:$P($G(^TIU(8925,NTIEN,13)),U,2)) Q
+ ...;.. S TTLNPRV(PRVIEN)=+$G(TTLNPRV(PRVIEN))+1
+ ...;.. I '$G(TTLNSEL(NTIEN)) D
+ ...;... S TTLNSEL(NTIEN)=1
+ ...;... S TTLNSEL=TTLNSEL+1
+ ... S RDT=STDT
+ ... F  S RDT=$O(^TIU(8925,"AADT",PRVIEN,RDT)) Q:RDT=""  Q:RDT>ENDT  D
+ .... S NTIEN=""
+ .... F  S NTIEN=$O(^TIU(8925,"AADT",PRVIEN,RDT,NTIEN)) Q:NTIEN=""  D
+ ..... S TTLNPRV(PRVIEN)=+$G(TTLNPRV(PRVIEN))+1
+ ..... I $G(TTLNSEL(NTIEN)) Q
+ ..... S TTLNSEL(NTIEN)=1
+ ..... S TTLNSEL=TTLNSEL+1
+ .. I (SRT="D")!(SRT="M") D
+ ... N NTIEN,RDT
+ ... S NTIEN=""
+ ... S RDT=STDT
+ ... F  S RDT=$O(^TIU(8925,"H",RDT)) Q:RDT=""  Q:RDT>ENDT  D
+ .... S NTIEN=""
+ .... F  S NTIEN=$O(^TIU(8925,"H",RDT,NTIEN)) Q:NTIEN=""  D
+ ..... I '$G(TTLNSEL(NTIEN)) D
+ ...... S TTLNSEL(NTIEN)=1
+ ...... S TTLNSEL=TTLNSEL+1
+ .. I '$G(TTLTHRSH(PSTNT)),ABVTHRSH D
+ ... S TTLTHRSH(PSTNT)=1
+ ... S TTLTHRSH=TTLTHRSH+1
+ .. S TTLCNT=TTLCNT+1
+ .. ;I '$G(TTLPNCNT(PSTNT)) D
+ .. ;. S TTLPNCNT(PSTNT)=1
+ .. ;. S TTLPNCNT=$G(TTLPNCNT)+1
+ I $D(TTLCLN) D  Q:QUIT
+ . N TLPST,TNPST,TPST
+ . S CLNNM=""
+ . F  S CLNNM=$O(TTLCLN(CLNNM)) Q:CLNNM=""  D  Q:QUIT
+ .. S CLNLOC=""
+ .. F  S CLNLOC=$O(TTLCLN(CLNNM,CLNLOC)) Q:CLNLOC=""  D  Q:QUIT
+ ... I (PG+7)'<PGLNG D  Q:QUIT
+ .... I TRM D EOP^TIUCOPRU
+ .... W @IOF
+ .... Q:QUIT
+ .... D HDR^TIUCOPRU
+ ... S TPST=+$G(TTLTHACNT(CLNLOC))
+ ... S TNPST=+$G(TTLPNCLN(CLNLOC))
+ ... S TLPST=$S(TNPST>0:(TPST/TNPST)*100,1:"UNDEFINED")
+ ... S PG=PG+7
+ ... W !!,"     SUB-TOTALS: "_CLNNM
+ ... W !,"          PASTES: "_+$G(TTLCLN(CLNNM,CLNLOC))
+ ... W !,"          NOTES W/PASTES > THRESHOLD: "_TPST
+ ... W !,"          NOTES W/PASTES: "_TNPST
+ ... W !,"          % OF NOTES W/PASTES > THRESHOLD: "_TPST_"/"_TNPST_" = "
+ ... I TLPST="UNDEFINED" W TLPST
+ ... I TLPST'="UNDEFINED" W $J(TLPST,5,2)_"%"
+ ... W !,"          NOTES: "_+$G(TTLNCLN(CLNLOC))
+ I $D(TTLPRV) D  Q:QUIT
+ . N TLPST,TNPST,TPST
+ . S PRVNM=""
+ . F  S PRVNM=$O(TTLPRV(PRVNM)) Q:PRVNM=""  D  Q:QUIT
+ .. S PRVIEN=""
+ .. F  S PRVIEN=$O(TTLPRV(PRVNM,PRVIEN)) Q:PRVIEN=""  D  Q:QUIT
+ ... I (PG+7)'<PGLNG D  Q:QUIT
+ .... I TRM D EOP^TIUCOPRU W @IOF
+ .... Q:QUIT
+ .... D HDR^TIUCOPRU
+ ... S PG=PG+7
+ ... S TPST=+$G(TTLTHACNT(PRVIEN))
+ ... S TNPST=+$G(TTLPNPRV(PRVIEN))
+ ... S TLPST=$S(TNPST>0:(TPST/TNPST)*100,1:"UNDEFINED")
+ ... W !!,"     SUB-TOTALS: "_PRVNM
+ ... W !,"          PASTES: "_+$G(TTLPRV(PRVNM,PRVIEN))
+ ... W !,"          NOTES W/PASTES > THRESHOLD: "_TPST
+ ... W !,"          NOTES W/PASTES: "_TNPST
+ ... W !,"          % OF NOTES W/PASTES > THRESHOLD: "_TPST_"/"_TNPST_" = "
+ ... I TLPST="UNDEFINED" W TLPST
+ ... I TLPST'="UNDEFINED" W $J(TLPST,5,2)_"%"
+ ... W !,"          NOTES: "_+$G(TTLNPRV(PRVIEN))
+ I ((((SRT="D")!(SRT="M"))&((PG+8)'<PGLNG))!(((SRT'="D")&(SRT'="M"))&((PG+7)'<PGLNG))) D  Q:QUIT
+ . I TRM D EOP^TIUCOPRU
+ . W @IOF
+ . Q:QUIT
+ . D HDR^TIUCOPRU
+ S PG=PG+9
+ S FNL="TOTALS: "_$S(((CLN="A")!(CLIN>0)):"RESULTED LOCATION(S)",((PRV="A")!(PROV>0)):"RESULTED PROVIDER(S)",1:"")
+ W !!!,FNL
+ W !,"     PASTES: "_$S(TTLCLIN>0:TTLCLIN,TTLPROV>0:TTLPROV,1:TTLCNT)
+ W !,"     NOTES W/PASTES > THRESHOLD: "_TTLTHRSH
+ W !,"     NOTES W/PASTES: "_TTLPNCNT
+ S TLPST=$S(TTLPNCNT>0:(TTLTHRSH/TTLPNCNT)*100,1:"UNDEFINED")
+ W !,"     % OF NOTES W/PASTES > THRESHOLD: "_TTLTHRSH_"/"_TTLPNCNT_" = "
+ I TLPST="UNDEFINED" W TLPST
+ I TLPST'="UNDEFINED" W $J(TLPST,5,2)_"%"
+ S PG=PG+1
+ W !,"     NOTES: "_+TTLNSEL
+TTLNT S TTLNT=0
+ S LPDT=SDT-.000001
+ F  S LPDT=$O(^TIU(8925,"D",LPDT)) Q:((LPDT="")!(LPDT>ENDT))  D
+ . S NTIEN=""
+ . F  S NTIEN=$O(^TIU(8925,"D",LPDT,NTIEN)) Q:NTIEN=""  D
+ .. I +DIV>0,+DIV'=$P($G(^TIU(8925,NTIEN,12)),U,12) Q
+ .. S TTLNT=TTLNT+1
+ W !!,"TOTAL NOTES FOR DATE RANGE: "_TTLNT
+ I TRM,'QUIT D EOP^TIUCOPRU W @IOF
+ Q

@@ -1,6 +1,9 @@
-SDEC47 ;ALB/SAT - VISTA SCHEDULING RPCS ;JAN 15, 2016
- ;;5.3;Scheduling;**627**;Aug 13, 1993;Build 249
+SDEC47 ;ALB/SAT,WTC - VISTA SCHEDULING RPCS ;Feb 12, 2020@15:22
+ ;;5.3;Scheduling;**627,694**;Aug 13, 1993;Build 61
  ;
+ ;  ICR
+ ;  ---
+ ;  10060 - #200 New Person
  Q
  ;
 CLINDIS(SDECY,SDECCLST,SDECBEG,SDECEND,SDECWI) ;Return formatted text output of the Clinic Schedules Report
@@ -22,12 +25,19 @@ CLINDIS(SDECY,SDECCLST,SDECBEG,SDECEND,SDECWI) ;Return formatted text output of 
  ;
  ;Convert beginning and ending dates
  ;
- S SDECBEG=$P(SDECBEG,"@",1)
- S X=SDECBEG,%DT="X" D ^%DT S SDECBEG=$P(Y,"."),SDECBEG=SDECBEG-1,SDECBEG=SDECBEG_".9999"
- I Y=-1 D ERR("0^Routine: SDEC47, Error: Invalid Date") Q
- S SDECEND=$P(SDECEND,"@",1)
- S X=SDECEND,%DT="X" D ^%DT S SDECEND=$P(Y,"."),SDECEND=SDECEND_".9999"
- I Y=-1 D ERR("0^Routine: SDEC47, Error: Invalid Date") Q
+ ;
+ ;  Change date/time conversion so midnight is handled properly.  wtc 694 4/24/18
+ ;
+ ;S SDECBEG=$P(SDECBEG,"@",1)
+ ;S X=SDECBEG,%DT="X" D ^%DT S SDECBEG=$P(Y,"."),SDECBEG=SDECBEG-1,SDECBEG=SDECBEG_".9999"
+ ;I Y=-1 D ERR("0^Routine: SDEC47, Error: Invalid Date") Q
+ S SDECBEG=$$NETTOFM^SDECDATE(SDECBEG) I SDECBEG=-1 D ERR("0^Routine: SDEC47, Error: Invalid Date") Q  ;
+ S SDECBEG=$P(SDECBEG,".",1),SDECBEG=SDECBEG-1,SDECBEG=SDECBEG_".9999" ;
+ ;S SDECEND=$P(SDECEND,"@",1)
+ ;S X=SDECEND,%DT="X" D ^%DT S SDECEND=$P(Y,"."),SDECEND=SDECEND_".9999"
+ ;I Y=-1 D ERR("0^Routine: SDEC47, Error: Invalid Date") Q
+ S SDECEND=$$NETTOFM^SDECDATE(SDECEND) I SDECEND=-1 D ERR("0^Routine: SDEC47, Error: Invalid Date") Q  ;
+ S SDECEND=$P(SDECEND,".",1),SDECEND=SDECEND_".9999" ;
  I SDECCLST="" D ERR("0^Routine: SDEC47, Error: Null clinic list") Q
  ;
  ;header
@@ -44,9 +54,13 @@ CLINDIS(SDECY,SDECCLST,SDECBEG,SDECEND,SDECWI) ;Return formatted text output of 
  . . . Q:$P(SDECNOD,U,12)]""  ;CANCELLED
  . . . I '$G(SDECWI),$P(SDECNOD,U,13)="y" Q  ;DO NOT ALLOW WALKIN
  . . . I $G(SDECWI),$P(SDECNOD,U,13)'="y" Q  ;ONLY ALLOW WALKIN
+ . . . ;
+ . . . ;  Change date/time conversion so midnight is handled properly.  wtc 694 4/24/18
+ . . . ;
  . . . S Y=$P(SDECNOD,U)
  . . . Q:'+Y
- . . . X ^DD("DD") S Y=$TR(Y,"@"," ")
+ . . . ;X ^DD("DD") S Y=$TR(Y,"@"," ")
+ . . . S Y=$$FMTONET^SDECDATE(Y,"Y") ;
  . . . S SDECAPT=Y ;Appointment date time
  . . . ;
  . . . ;NOTE
@@ -70,8 +84,12 @@ CLINDIS(SDECY,SDECCLST,SDECBEG,SDECEND,SDECWI) ;Return formatted text output of 
  . . . S SDECTYPE="" ;Type/status doesn't exist for SDEC APPT clinics and it's not needed for clinic letters
  . . . S SDECCLRK=$P(SDECNOD,U,8)
  . . . S:+SDECCLRK SDECCLRK=$G(^VA(200,SDECCLRK,0)),SDECCLRK=$P(SDECCLRK,U)
+ . . . ;
+ . . . ;  Change date/time conversion so midnight is handled properly.  wtc 694 4/24/18
+ . . . ;
  . . . S Y=$P(SDECNOD,U,9)
- . . . I +Y X ^DD("DD") S Y=$TR(Y,"@"," ")
+ . . . ;I +Y X ^DD("DD") S Y=$TR(Y,"@"," ")
+ . . . I +Y S Y=$$FMTONET^SDECDATE(Y,"Y") ;
  . . . S SDECMADE=Y
  . . . S SDECTMP=$E(SDECNAM,1,15)
  . . . S SDECTMP=SDECTMP_$$FILL^SDECU(17-$L(SDECTMP))_SDECDOB

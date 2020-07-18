@@ -1,7 +1,13 @@
-SDEC07A ;ALB/SAT - VISTA SCHEDULING RPCS ;JUL 19, 2016
- ;;5.3;Scheduling;**627,642,651,679,686**;Aug 13, 1993;Build 53
+SDEC07A ;ALB/SAT,PC - VISTA SCHEDULING RPCS ;Feb 12, 2020@15:22
+ ;;5.3;Scheduling;**627,642,651,679,686,694**;Aug 13, 1993;Build 61
  ;;Per VHA Directive 2004-038, this routine should not be modified
  ;References made to ICR #6185 and #4837
+ ;
+ ;  ICR
+ ;  ---
+ ;  4837 - #123 Request/Consultation
+ ;  7024 - #40.8 Medical Center Division 
+ ;
  Q
  ;
 OVBOOK(SDECY,SDCL,NSDT,SDECRES) ;RPC - OVERBOOK - Check if Overbook is allowed for given Clinic and Date.
@@ -28,10 +34,14 @@ OVBOOK(SDECY,SDCL,NSDT,SDECRES) ;RPC - OVERBOOK - Check if Overbook is allowed f
  I '+SDECRES D ERR1("Invalid Resource ID - Cannot determine if Overbook is allowed.") Q
  I '$D(^SDEC(409.831,SDECRES,0)) D ERR1("Invalid Resource ID - Cannot determine if Overbook is allowed.") Q
  ;check for valid DATE/TIME
- S %DT="T"
- S X=NSDT
- D ^%DT   ; GET FM FORMAT FOR APPOINTMENT DATE/TIME
- S NSDT=Y
+ ;
+ ;  Change date/time conversion so midnight is handled properly.  wtc 694 5/17/18
+ ;
+ ;S %DT="T"
+ ;S X=NSDT
+ ;D ^%DT   ; GET FM FORMAT FOR APPOINTMENT DATE/TIME
+ ;S NSDT=Y
+ S NSDT=$$NETTOFM^SDECDATE(NSDT,"Y","N") ;
  I NSDT=-1 D ERR1("Invalid Appointment Date.") Q
  S SDTD=$P(NSDT,".")
  ; data header
@@ -145,7 +155,7 @@ SLOTS(B,E,SDAB) ;find access block
  .S:ABF SLOTS=+$P(ABN,U,4)
  Q SLOTS
  ;
-REQSET(SDRIEN,SDPROV,SDUSR,SDACT,SDECTYP,SDECNOTE,SAVESTRT,SDECRES) ;add SCHEDULED activity to REQUEST/CONSULTATION file
+REQSET(SDRIEN,SDPROV,SDUSR,SDACT,SDECTYP,SDECNOTE,SAVESTRT,SDECRES,SDDFN) ;add SCHEDULED activity to REQUEST/CONSULTATION file
  ;INPUT:
  ; SDRIEN  - (required) pointer to RFEQUEST/CONSULTATION file 123
  ; SDPROV  - (required) Provider pointer to NEW PERSON
@@ -203,7 +213,11 @@ REQSET(SDRIEN,SDPROV,SDUSR,SDACT,SDECTYP,SDECNOTE,SAVESTRT,SDECRES) ;add SCHEDUL
  .;S SDTXT(1)=$P($G(^SDEC(409.831,+SDECRES,0)),U,1)_" Consult Appt. on "_SAVESTRT
  .;I SDECNOTE'="" S SDTXT(2)=SDECNOTE
  . N %DT,X,SD,TMPYCLNC ;
- . S X=SAVESTRT,%DT="T" D ^%DT S SD=Y ;
+ .;
+ .;  Change date/time conversion so midnight is handled properly.  wtc 694 5/17/18
+ .;
+ . S SD=$$NETTOFM^SDECDATE(SAVESTRT,"Y","N") ;
+ . ;S X=SAVESTRT,%DT="T" D ^%DT S SD=Y ;
  . S TMPYCLNC=$P($G(^SDEC(409.831,+SDECRES,0)),U,4) I TMPYCLNC'="" S TMPYCLNC=TMPYCLNC_U_$P(^SC(TMPYCLNC,0),U,1) ;
  . D EDITCS^SDCNSLT(SD,SDECNOTE,TMPYCLNC,SDRIEN) ; Changed "" to SDECNOTE - wtc 686 11/7/2018
  I SDACT=2 D
@@ -215,10 +229,16 @@ REQSET(SDRIEN,SDPROV,SDUSR,SDACT,SDECTYP,SDECNOTE,SAVESTRT,SDECRES) ;add SCHEDUL
  .;S SDTXT(1)=$P($G(^SDEC(409.831,+SDECRES,0)),U,1)_" Appt. on "_SAVESTRT_" was cancelled"_$S(SDECTYP["P":" by the Patient.",SDECTYP["C":" by the Clinic.",1:".")   ;alb/sat 651 include appt info
  .;I SDECNOTE'="" S SDTXT(2)="Remarks: "_SDECNOTE
  . N DFN,%DT,X,SDTTM,SDSC,SDPL ;
- . S DFN=$P($G(^GMR(123,SDRIEN,0)),U,2) ;
- . S X=SAVESTRT,%DT="T" D ^%DT S SDTTM=Y ;
+ . S DFN=$P($G(^GMR(123,SDRIEN,0)),U,2)
+ .;
+ .;  Change date/time conversion so midnight is handled properly.  wtc 694 5/17/18
+ .;
+ . ;Q:$G(SDRIEN)=""!($G(DFN)="")!(SDDFN'=DFN)!($G(SDRIEN)'=$G(SDRIEN1))  ; CLT, INC8706878, SD*5.3*694, 02/03/2020     PWC COMMENTED OUT FOR NOW UNTIL TESTED 2/3/2020 
+ . S SDTTM=$$NETTOFM^SDECDATE(SAVESTRT,"Y","N") ;
+ . ;S X=SAVESTRT,%DT="T" D ^%DT S SDTTM=Y ;
  . S SDSC=$P($G(^SDEC(409.831,+SDECRES,0)),U,4) ;
  . S SDPL=0 F  S SDPL=$O(^SC(SDSC,"S",SDTTM,1,SDPL)) Q:'SDPL  Q:$P(^(SDPL,0),U,1)=DFN  ;
+ . K TMPD ; prevent extra comments added to 2nd cancellation - wtc 694 7/24/2019
  . D SDECCAN^SDCNSLT(SDRIEN,DFN,SDTTM,SDSC,SDECTYP,SDPL,SDECNOTE) ;*zeb 686 10/30/18 send comments to consult
  Q  ;
  ;

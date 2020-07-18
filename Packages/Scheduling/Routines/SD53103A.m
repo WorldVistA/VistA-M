@@ -1,10 +1,23 @@
 SD53103A ;ALB/MJK - Unique Visit ID Clean Up ; March 10,1997
- ;;5.3;Scheduling;**103**;AUG 13, 1993
+ ;;5.3;Scheduling;**103,748**;AUG 13, 1993;Build 10
  ;
  Q
  ;
+ ; Reference to ^TIU(8925,"V" supported by ICR #7142
+ ; Reference to ^TIU(8925, supported by ICR #7142
+ ;
+EN ;Unique Visit ID Clean Up Option entry point
+ N DIR,Y,X,DIRUT
+ S DIR(0)="SO^1:One Entry;A:All Entries"
+ S DIR("A")="Enter '1' for a single entry or 'A' for All entries"
+ S DIR("?")="Enter '1' for a single entry or 'A' for all entries."
+ D ^DIR
+ Q:$D(DIRUT)
+ I Y=1 D ONE
+ I Y="A" D SCAN
+ Q
 ONE ; -- entry point to select a single -1 encounter and resync
- N DIC,Y,SDOE,SDPKG,SDTALK,SDEXIT
+ N DIC,Y,SDOE,SDPKG,SDTALK,SDEXIT,SDVST,SDTIU
  IF '$$INIT^SD53103B() G ONEQ
  S SDTALK=1,SDEXIT=0
  D HDR^SD53103B("Single") W !
@@ -13,13 +26,15 @@ ONE ; -- entry point to select a single -1 encounter and resync
  . IF +Y<1 S SDEXIT=1 Q
  . ; -- display record
  . S SDOE=+Y D OE^SD53103B(SDOE)
+ . S SDVST=$$VSIT(SDOE),SDTIU=$O(^TIU(8925,"V",SDVST,0)) ;SD*5.3*748 - Set TIU info
  . IF $$OK^SD53103B() D
  . . N SDX
  . . S SDX=$$MSG(SDOE,$$RESYNC(SDOE))
  . . IF $P(SDX,U)["RE-LINKED" D
  . . . W "Re-Linked successfully:"
  . . . D OE^SD53103B(SDOE)
- . . ELSE  D
+ . . . D:$G(SDTIU) TIU^SD53103B(SDTIU) ;SD*5.3*748 - Write TIU info
+ . . IF $P(SDX,U)'["RE-LINKED"  D  ;SD*5.3*748 - change else
  . . . W $C(7),"Error has occurred.",!,"Please make a note of the following: ",!?10,SDX,!
 ONEQ Q
  ;
@@ -107,14 +122,14 @@ RESYNC(SDOE) ; -- resync sd and pce data
  ;
  ; -- set oe visit field
  D OESET(SDOE,SDVST)
+ D TIUPD(SDVST)
  ;
  ; -- quit if child
  IF $P(SDOE0,U,6) D  G RESYNCQ
  . S SDOK=1
- ;
  ; -- set oe visit field for children of parent
  S SDOEC=0
- F  S SDOEC=$O(^SCE("APAR",SDOE,SDOEC)) Q:'SDOEC  D OESET(SDOEC,SDVST)
+ F  S SDOEC=$O(^SCE("APAR",SDOE,SDOEC)) Q:'SDOEC  D OESET(SDOEC,SDVST),TIUPD(SDVST)
  ;
  ; -- send data to pce for parent
  S SDOK=$$DATA2PCE(SDOE)
@@ -286,3 +301,7 @@ DOT ; -- write '.' if ok to talk
  . W "."
  Q
  ;
+TIUPD(SDVST) ;Correct TIU document if applicable, SD*5.3*748
+ N DA,DIK
+ S DA=$O(^TIU(8925,"V",SDVST,0)) Q:'DA  S DIK="^TIU(8925,",DIK(1)=".03^7" D EN1^DIK
+ Q

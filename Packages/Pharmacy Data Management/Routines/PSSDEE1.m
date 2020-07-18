@@ -1,6 +1,5 @@
 PSSDEE1 ;BIR/WRT - PDM match routine ;09/01/98
- ;;1.0;PHARMACY DATA MANAGEMENT;**15,20,34,38,68,90,208,220**;9/30/97;Build 4
- ;
+ ;;1.0;PHARMACY DATA MANAGEMENT;**15,20,34,38,68,90,208,220,243**;9/30/97;Build 3
  ;Reference to $$PSJDF^PSNAPIS(P1,P3) supported by DBIA #2531
  ;
 DSPY S FLGMTH=0 I $D(^PSDRUG(DA,"ND")) I $P(^PSDRUG(DA,"ND"),"^",2)]"" W !!,?5,"points to ",$P(^("ND"),"^",2)," in the National Drug file.",! S NDE=^PSDRUG(DA,"ND"),PC1=$P(NDE,"^",1),PC3=$P(NDE,"^",3),FLGMTH=1 D GETDF
@@ -15,14 +14,8 @@ MESSAGE ; REMATCH PROMPT
  Q
 RSET S:$D(^PSDRUG(DA,"ND")) PSNID=$P(^PSDRUG(DA,"ND"),"^",10)
  S PSNP=$G(^PSDRUG(DA,"I")) I PSNP,PSNP<DT W !,"This drug cannot be matched because it has an INACTIVE date.",! Q:$D(^PSDRUG(DA,"I"))
- S DA=DISPDRG D:$D(^PSDRUG(DA,"ND")) SETNULL  S:$D(^PSDRUG(DA,3)) $P(^PSDRUG(DA,3),"^",1)=0 K:$D(^PSDRUG("AQ",DA)) ^PSDRUG("AQ",DA) I $D(PSNID),PSNID]"" K ^PSDRUG("AQ1",PSNID,DA) K PSNID
- D ^PSSREF Q
-SETNULL  N PSSI
- S ZXZX=$P(^PSDRUG(DA,"ND"),"^",2)
- F PSSI=1:1:5,10,11 S $P(^PSDRUG(DA,"ND"),"^",PSSI)=""
- D NULL1
- Q
-NULL1 I ZXZX]"" S ZXZX=$E(ZXZX,1,30) I $D(^PSDRUG("VAPN",ZXZX,DA)) K ^PSDRUG("VAPN",ZXZX,DA) K ZXZX
+ S DA=DISPDRG D UNMDRUG^PSSUTIL(DA)  S:$D(^PSDRUG(DA,3)) $P(^PSDRUG(DA,3),"^",1)=0 K:$D(^PSDRUG("AQ",DA)) ^PSDRUG("AQ",DA) I $D(PSNID),PSNID]"" K PSNID
+ D ^PSSREF
  Q
 PART2 W:$P(^PSDRUG(DA,"ND"),"^",2)]"" " In addition, if the dosage form changes as a result of rematching,",!,"you will have to match/rematch to Orderable Item."
  Q

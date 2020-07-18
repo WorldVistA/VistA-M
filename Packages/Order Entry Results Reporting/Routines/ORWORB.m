@@ -1,5 +1,5 @@
-ORWORB ; slc/dee/REV/CLA,WAT - RPC functions which return user alert ;10:12 am JAN 31, 2001
- ;;3.0;ORDER ENTRY/RESULTS REPORTING;**10,85,116,148,173,190,215,243,296,329,334,410**;Dec 17, 1997;Build 1
+ORWORB ;SLC/DEE,REV,CLA,WAT - RPC functions which return user alert ;Nov 21, 2019@10:26
+ ;;3.0;ORDER ENTRY/RESULTS REPORTING;**10,85,116,148,173,190,215,243,296,329,334,410,377**;Dec 17, 1997;Build 582
  ;;Per VHA Directive 2004-038, this routine should not be modified
  ;
  ;DBIA reference section
@@ -14,6 +14,15 @@ ORWORB ; slc/dee/REV/CLA,WAT - RPC functions which return user alert ;10:12 am J
  ;2263  - XPAR
  ;4834  - XQALDATA
  ;10081 - XQALERT
+ ;2788  - XQALBUTL
+ ;
+GETLTXT(ORY,ORAID) ;get the long text for an alert
+ N ORDATA
+ D ALERTDAT^XQALBUTL(ORAID,"ORDATA")
+ S ORY(1)=""
+ I $D(ORDATA(4,1)) N ORI S ORI=0 F  S ORI=$O(ORDATA(4,ORI)) Q:'ORI  D
+ .S ORY(ORI)=ORDATA(4,ORI)
+ Q
  ;
 URGENLST(ORY) ;return array of the  urgency for the notification
  N ORSRV,ORERROR
@@ -21,18 +30,21 @@ URGENLST(ORY) ;return array of the  urgency for the notification
  D GETLST^XPAR(.ORY,"USR^SRV.`"_$G(ORSRV)_"^DIV^SYS^PKG","ORB URGENCY","I",.ORERROR)
  Q
  ;
-FASTUSER(ORY) ;return current user's notifications across all patients
+FASTUSER(ORY,ORDEFFLG) ;return current user's notifications across all patients
+ ; ORDEFFLG: setting this to 1 causes the alerts API to exclude deferred alerts for this user
+ ;  defaults to 1 if not passed in
  N STRTDATE,STOPDATE,ORTOT,I,ORURG,URG,ORN,SORT,ORN0,URGLIST,REMLIST,REM,NONORLST,NONOR
  N ALRT,ALRTDT,ALRTPT,ALRTMSG,ALRTI,ALRTLOC,ALRTXQA,J,FWDBY,PRE,ALRTDFN
  K ^TMP("ORBG",$J)
  S STRTDATE="",STOPDATE="",FWDBY="Forwarded by: "
- D GETUSER1^XQALDATA("^TMP(""ORB"",$J)",DUZ,STRTDATE,STOPDATE)
+ D GETUSER1^XQALDATA("^TMP(""ORB"",$J)",DUZ,STRTDATE,STOPDATE,$G(ORDEFFLG,1))
  S ORTOT=^TMP("ORB",$J)
  D URGLIST^ORQORB(.URGLIST)
  D REMLIST^ORQORB(.REMLIST)
  D REMNONOR^ORQORB(.NONORLST)
  S J=0
  F I=1:1:ORTOT D
+ .N ORPROV,ORBIRAD
  .S REM=""
  .S ALRTDFN=""
  .S ALRT=^TMP("ORB",$J,I)
@@ -48,15 +60,22 @@ FASTUSER(ORY) ;return current user's notifications across all patients
  ..S ALRTLOC=""
  ..I $E($P(ALRTXQA,";"),1,3)="TIU" S ORURG="Moderate"
  ..I $P(ALRTXQA,",")="OR" D
+ ...N ALRTIEN,ORIEN,P04,ORPOUT
+ ...S ALRTIEN=$O(^XTV(8992.1,"B",ALRTXQA,0)) Q:ALRTIEN'>0  ; direct read ICR #7063
+ ...S ORIEN=+$G(^XTV(8992.1,ALRTIEN,2)) ; Q:ORIEN'>0  ; direct read ICR #7063
+ ...S P04=$P($G(^OR(100,ORIEN,0)),U,4) I +P04 S ORPROV=$$GET1^DIQ(200,P04,.01)
  ...S ORN=$P($P(ALRTXQA,";"),",",3)
  ...S URG=$G(URGLIST(ORN))
  ...S ORURG=$S(URG=1:"HIGH",URG=2:"Moderate",1:"low")
  ...S REM=$G(REMLIST(ORN))
  ...S ORN0=^ORD(100.9,ORN,0)
- ...S ALRTI=$S($P(ORN0,U,6)="INFODEL":"I",1:"")
+ ...S ALRTI=$S(ORN=90:"L",$P(ORN0,U,6)="INFODEL":"I",1:"")
  ...S ALRTDFN=$P(ALRTXQA,",",2)
  ...S ALRTLOC=$G(^DPT(+$G(ALRTDFN),.1))
- ..S ALRTI=$S(ALRTI="I":"I",1:"")
+ ...I $$ISSMIEN^ORBSMART(ORN) D
+ ....D ALTDATA^PXRMCALT(.ORPOUT,ALRTDFN,ALRTXQA)
+ ....I $L($G(ORPOUT("DATA",1,"DIAGNOSIS")))>0 S ORBIRAD=$G(ORPOUT("DATA",1,"DIAGNOSIS"))
+ ..S ALRTI=$S(ALRTI="I":"I",ALRTI="L":"L",1:"")
  ..I (ALRT["): ")!($G(ORN)=27&(ALRT[") CV")) D  ;WAT
  ...S ALRTPT=$P(ALRT,": ")
  ...S ALRTPT=$E(ALRTPT,4,$L(ALRTPT))
@@ -69,31 +88,46 @@ FASTUSER(ORY) ;return current user's notifications across all patients
  ..S ALRTDT=$P(ALRTXQA,";",3)
  ..S ALRTDT=$P(ALRTDT,".")_"."_$E($P(ALRTDT,".",2)_"0000",1,4)
  ..S ALRTDT=$E(ALRTDT,4,5)_"/"_$E(ALRTDT,6,7)_"/"_($E(ALRTDT,1,3)+1700)_"@"_$E($P(ALRTDT,".",2),1,2)_":"_$E($P(ALRTDT,".",2),3,4)
- ..;S ALRTDT=($E(ALRTDT,1,3)+1700)_"/"_$E(ALRTDT,4,5)_"/"_$E(ALRTDT,6,7)_"@"_$E($P(ALRTDT,".",2),1,2)_":"_$E($P(ALRTDT,".",2),3,4)
+ ..;if SMART alert, append BIRAD results to ALRTMSG
+ ..I $G(ORBIRAD)'="" S ALRTMSG=ALRTMSG_" - RESULTS: "_ORBIRAD
  ..S J=J+1,^TMP("ORBG",$J,J)=ALRTI_U_ALRTPT_U_ALRTLOC_U_ORURG_U_ALRTDT_U
  ..S ^TMP("ORBG",$J,J)=^TMP("ORBG",$J,J)_ALRTMSG_U_U_ALRTXQA_U_$G(REM)_U
- .;
  .;if alert forward info/comment:
  .I $E(ALRTMSG,1,5)="-----" D
  ..S ALRTMSG=$P(ALRTMSG,"-----",2)
  ..I $E(ALRTMSG,1,14)=FWDBY D
  ...S J=J+1,^TMP("ORBG",$J,J)=FWDBY_U_$P($P(ALRTMSG,FWDBY,2),"Generated: ")_$P($P(ALRTMSG,FWDBY,2),"Generated: ",2)
  ..E  S ^TMP("ORBG",$J,J)=^TMP("ORBG",$J,J)_U_""""_ALRTMSG_""""
+ .I $G(ORPROV)'="" S ^TMP("ORBG",$J,J)=^TMP("ORBG",$J,J)_U_ORPROV ; ajb
  S ^TMP("ORBG",$J)=""
  S ORY=$NA(^TMP("ORBG",$J))
+ K ^TMP("ORB",$J)
  Q
  ;
-GETDATA(ORY,XQAID) ; return XQADATA for an alert
+GETDATA(ORY,XQAID,PFLAG) ; return XQADATA for an alert
  N SHOWADD
  S ORY=""
  Q:$G(XQAID)=""!('$D(^XTV(8992,"AXQA",XQAID)))
- D GETACT^XQALERT(XQAID)
+ I +$G(PFLAG) S XQADATA=$$GETACT2(XQAID) I 1
+ E  D GETACT^XQALERT(XQAID)
  S ORY=XQADATA
  I ($E(XQAID,1,3)="TIU"),(+ORY>0) D
  . S SHOWADD=1
  . S ORY=ORY_$$RESOLVE^TIUSRVLO(+ORY)
  K XQAID,XQADATA,XQAOPT,XQAROU
  Q
+ ;
+GETACT2(ALERTID) ; Returns first XQADATA found, for alerts for other users
+ N XQADATA,XDUZ,XQI,XQX,XQZ,DONE
+ S XQADATA="",XDUZ="",DONE=0
+ F  Q:DONE  S XDUZ=$O(^XTV(8992,"AXQA",ALERTID,XDUZ)) Q:'XDUZ  D
+ . S XQI=$O(^XTV(8992,"AXQA",ALERTID,XDUZ,0))
+ . Q:XQI'>0
+ . S XQX=$G(^XTV(8992,XDUZ,"XQA",XQI,0)) Q:XQX=""
+ . S XQZ=$G(^XTV(8992,XDUZ,"XQA",XQI,1))
+ . S XQADATA=$S(XQZ'="":XQZ,1:$P(XQX,U,9,99))
+ . I XQADATA'="" S DONE=1
+ Q XQADATA
  ;
 KILUNSNO(Y,ORVP) ; Delete unsigned order alerts if no unsigned orders remaining
  S ORVP=ORVP_";DPT("
@@ -121,7 +155,7 @@ UNFLORD(ORY,DFN,XQAID) ; -- auto-unflag orders?/delete alert
  ;;I (ORAUTO)!(+$G(ORBY(1))=0) D DELETE^XQALERT
  ;Q
 KILEXMED(Y,ORDFN)  ; -- Delete expiring meds notification if no expiring meds remaining
- N ORDG,ORLST S ORDG=$$DG^ORQOR1("RX")
+ N ORDG,ORLST,OROI S ORDG=$$DG^ORQOR1("RX")
  D AGET^ORWORR(.ORLST,ORDFN,5,ORDG)
  Q:+(@ORLST@(.1))  ;more left
  N XQAKILL,ORNIFN,ORVP,ORIO S OROI=""
@@ -143,7 +177,7 @@ KILEXOI(Y,ORDFN,ORNIFN)  ; -- Delete expiring flagged OI notification if no flag
  I '$D(XQAID) S XQAID=$P($G(^ORD(100.9,ORNIFN,0)),U,2)_","_+ORVP_","_ORNIFN D DELETEA^XQALERT K XQAID
  Q
 KILUNVOR(Y,ORDFN)  ; -- Delete UNVERIFIED ORDER notification if none remaining within current admission/30 days
- N DFN,ORDG,ORLST,ORBDT,OREDT,ORDDT S ORDG=$$DG^ORQOR1("ALL")
+ N DFN,ORDG,ORLST,ORBDT,OREDT,ORDDT,VAIN,VAERR,VA200 S ORDG=$$DG^ORQOR1("ALL")
  S OREDT=$$NOW^XLFDT
  S ORDDT=$$FMADD^XLFDT(OREDT,"-90")
  ;get current admission date/time:

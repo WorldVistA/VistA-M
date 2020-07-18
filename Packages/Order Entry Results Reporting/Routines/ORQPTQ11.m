@@ -1,8 +1,9 @@
-ORQPTQ11 ; SLC/CLA - Functs which return patient lists and sources pt 1B ;12/15/97 [ 08/04/97  3:32 PM ] [6/6/03 2:36pm]
- ;;3.0;ORDER ENTRY/RESULTS REPORTING;**82,85,109,132,173,253,320**;Dec 17, 1997;Build 16
+ORQPTQ11 ; SLC/CLA - Functs which return patient lists and sources pt 1B ;05/21/14  21:32
+ ;;3.0;ORDER ENTRY/RESULTS REPORTING;**82,85,109,132,173,253,320,377**;Dec 17, 1997;Build 582
  ;
  ; SLC/PKS - Modified to deal with "Combination" lists - 3/2000.
  ; SLC/PKS - Additions for "Restricted Pt. Lists" - 11/2001.
+ ; SLC/TDP - Additions for PCMM Teams - 5/2014.
  ;
 DEFSRC(Y) ; return current user's default list source
  Q:'$D(DUZ)
@@ -11,6 +12,8 @@ DEFSRC(Y) ; return current user's default list source
  S FROM=$$GET^XPAR("USR^SRV.`"_+$G(ORSRV),"ORLP DEFAULT LIST SOURCE",1,"Q")
  Q:'$L($G(FROM))
  I FROM="T" S Y=$$GET^XPAR("USR^SRV.`"_+$G(ORSRV),"ORLP DEFAULT TEAM",1,"B")_"^Team"
+ ; TDP - PCMM Team (E) added 5/21/2014
+ I FROM="E" S Y=$$GET^XPAR("USR^SRV.`"_+$G(ORSRV),"ORLP DEFAULT PCMM TEAM",1,"B")_"^PCMM Team"
  I FROM="W" S Y=$$GET^XPAR("USR^SRV.`"_+$G(ORSRV),"ORLP DEFAULT WARD",1,"B")_"^Ward"
  I FROM="P" S Y=$$GET^XPAR("USR^SRV.`"_+$G(ORSRV),"ORLP DEFAULT PROVIDER",1,"B")_"^Primary Provider"
  I FROM="S" S Y=$$GET^XPAR("USR^SRV.`"_+$G(ORSRV),"ORLP DEFAULT SPECIALTY",1,"B")_"^Specialty"
@@ -26,6 +29,7 @@ FDEFSRC(ORDUZ) ; extrinsic function return user's (ORDUZ) default list source
  S FROM=$$GET^XPAR("USR.`"_ORDUZ_"^SRV.`"_+$G(ORSRV),"ORLP DEFAULT LIST SOURCE",1,"Q")
  Q:'$L($G(FROM)) "^^No default list source specified"
  I FROM="T" S RESULT=$$GET^XPAR("USR.`"_ORDUZ_"^SRV.`"_+$G(ORSRV),"ORLP DEFAULT TEAM",1,"B")_"^Team"
+ I FROM="E" S RESULT=$$GET^XPAR("USR.`"_ORDUZ_"^SRV.`"_+$G(ORSRV),"ORLP DEFAULT PCMM TEAM",1,"B")_"^PCMM Team"
  I FROM="W" S RESULT=$$GET^XPAR("USR.`"_ORDUZ_"^SRV.`"_+$G(ORSRV),"ORLP DEFAULT WARD",1,"B")_"^Ward"
  I FROM="P" S RESULT=$$GET^XPAR("USR.`"_ORDUZ_"^SRV.`"_+$G(ORSRV),"ORLP DEFAULT PROVIDER",1,"B")_"^Primary Provider"
  I FROM="S" S RESULT=$$GET^XPAR("USR.`"_ORDUZ_"^SRV.`"_+$G(ORSRV),"ORLP DEFAULT SPECIALTY",1,"B")_"^Specialty"
@@ -41,6 +45,7 @@ LISTSRC(ORDUZ,TYPE) ; extrinsic function return user's (ORDUZ) list source
  N API,RESULT,ORSRV
  S ORSRV=$G(^VA(200,ORDUZ,5)) I +ORSRV>0 S ORSRV=$P(ORSRV,U)
  I TYPE="T" S RESULT=$$GET^XPAR("USR.`"_ORDUZ_"^SRV.`"_+$G(ORSRV),"ORLP DEFAULT TEAM",1,"B")_"^Team"
+ I TYPE="E" S RESULT=$$GET^XPAR("USR.`"_ORDUZ_"^SRV.`"_+$G(ORSRV),"ORLP DEFAULT PCMM TEAM",1,"B")_"^PCMM Team"
  I TYPE="W" S RESULT=$$GET^XPAR("USR.`"_ORDUZ_"^SRV.`"_+$G(ORSRV),"ORLP DEFAULT WARD",1,"B")_"^Ward"
  I TYPE="P" S RESULT=$$GET^XPAR("USR.`"_ORDUZ_"^SRV.`"_+$G(ORSRV),"ORLP DEFAULT PROVIDER",1,"B")_"^Primary Provider"
  I TYPE="S" S RESULT=$$GET^XPAR("USR.`"_ORDUZ_"^SRV.`"_+$G(ORSRV),"ORLP DEFAULT SPECIALTY",1,"B")_"^Specialty"
@@ -59,6 +64,7 @@ DEFLIST(Y) ; return current user's default patient list
  S FROM=$$GET^XPAR("USR^SRV.`"_+$G(ORSRV),"ORLP DEFAULT LIST SOURCE",1,"Q")
  Q:'$L($G(FROM))
  I FROM="T" S IEN=$$GET^XPAR("USR^SRV.`"_+$G(ORSRV),"ORLP DEFAULT TEAM",1,"Q") D:+$G(IEN)>0 TEAMPTS^ORQPTQ1(.Y,IEN)
+ I FROM="E" S IEN=$$GET^XPAR("USR^SRV.`"_+$G(ORSRV),"ORLP DEFAULT PCMM TEAM",1,"Q") D:+$G(IEN)>0 PTEAMPTS^ORQPTQ1(.Y,IEN) ;TDP(377) - Need complete patient retrieval code
  I FROM="W" S IEN=$$GET^XPAR("USR^SRV.`"_+$G(ORSRV),"ORLP DEFAULT WARD",1,"Q") D:+$G(IEN)>0 BYWARD^ORWPT(.Y,IEN)
  I FROM="P" S IEN=$$GET^XPAR("USR^SRV.`"_+$G(ORSRV),"ORLP DEFAULT PROVIDER",1,"Q") D:+$G(IEN)>0 PROVPTS^ORQPTQ2(.Y,IEN)
  I FROM="S" S IEN=$$GET^XPAR("USR^SRV.`"_+$G(ORSRV),"ORLP DEFAULT SPECIALTY",1,"Q") D:+$G(IEN)>0 SPECPTS^ORQPTQ2(.Y,IEN)

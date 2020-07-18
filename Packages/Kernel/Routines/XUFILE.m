@@ -1,9 +1,11 @@
-XUFILE ;SF/XAK-ASSIGN, DEL FILE ACCESS; ;7/21/95  08:38
- ;;8.0;KERNEL;**1**;Jul 05, 1995
+XUFILE ;SF/XAK-ASSIGN, DEL FILE ACCESS ;4/3/20 3:37pm
+ ;;8.0;KERNEL;**1,707**;Jul 05, 1995;Build 7
+ ;Per VHA Directive 2004-038, this routine should not be modified.
+ ;
  D KIL
 EN I DUZ(0)'="@",'$D(^VA(200,DUZ,"FOF")) G OUT
  D GETU G:X[U!'$D(XUSR) KIL S XUA=2 S:'$D(XUW) XUW="Add "
-RD K DIR S DIR(0)="LCOA^2::5",DIR("??")="^D H1^XUFILE"
+RD K DIR S DIR(0)="LCOA^1.1::5",DIR("??")="^D H1^XUFILE" ;p707 -include "1.1"
  S DIR("?",2)=$P($T(H0),";;",2),DIR("?")=" ",DIR("?",1)=$P($T(H),";;",2)
  S %=$P("^DICTIONARY^DELETE^LAYGO^READ^WRITE^AUDIT",U,XUA)
  S DIR("A")=$E("      ",1,(10-$L(%)))_XUW_%_" ACCESS to files: "
@@ -38,7 +40,8 @@ OUT W !?5,"You do not have the correct access to run this option."
  W !?5,"Please contact your site manager for help." Q
  ;
 H ;;Answer with a File Number, a List, or a Range of Files.
-H0 ;;For example:  2 or 50-59 or 33,42-61,88,220-240.
+ ;p707 -included "1.1"
+H0 ;;For example:  1.1 or 50-59 or 33,42-61,88,220-240.
  ;
 H1 I DUZ(0)'="@" S DIC="^VA(200,DUZ,""FOF"",",DIC(0)="NEQ",DIC("S")="I $P(^(0),U,XUA)"
  E  S DIC="^DIC(",DIC(0)="EQ",DIC("S")="I Y>.19"_$S(XUA=6:",Y-1,Y-1.1",XUA=5:"",1:",Y>1.1")

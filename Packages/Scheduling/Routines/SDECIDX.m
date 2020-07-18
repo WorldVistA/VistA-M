@@ -1,5 +1,5 @@
-SDECIDX ;ALB/SAT - VISTA SCHEDULING RPCS ;JUN 21, 2017
- ;;5.3;Scheduling;**627,642,658,665**;Aug 13, 1993;Build 14
+SDECIDX ;ALB/SAT,WTC - VISTA SCHEDULING RPCS ;Feb 12, 2020@15:22
+ ;;5.3;Scheduling;**627,642,658,665,694**;Aug 13, 1993;Build 61
  ;
  ; The following entry point causes the ^XTMP("SDEC","IDX" global
  ; to be rebuilt based on the scheduling of the SDEC BUILD IDX option.
@@ -215,12 +215,23 @@ GETREC(DATA,LASTREC,MAXREC,STYLE) ;EP-
  ..S CNT=CNT+1
  ..S @DATA@(CNT)=REC_$C(30)
  E  I STYLE="R" D
+ . ;
+ . ;  Set up to filter out VETERAN requests if user does not have the key.  wtc/mbs 694 7/24/2018
+ . ;
+ . N VAOSUSR ;
+ . D OWNSKEY^XUSRB(.VAOSUSR,"SDECZ REQUEST") ;
+ . ;
  .S @DATA@(0)="T00030TYPE^T00030IEN^T00030KEY"_$C(30)
  .S LP=LASTREC F  S LP=$O(^XTMP("SDEC","IDX","XREF2",LP)) Q:LP=""  D  Q:(CNT=MAXREC)
  ..I $$PC(LP,8,DLM)="R",'$D(^SD(403.5,$$PC(LP,7,DLM),0)) Q    ;record has been moved to RECALL REMINDERS REMOVED
  ..I $$PC(LP,8,DLM)="C",$$REQCHK^SDEC51("",$$PC(LP,7,DLM)) Q    ;record has an activity scheduled or has been cancelled
  ..I $$PC(LP,8,DLM)="E",$$GET1^DIQ(409.3,$$PC(LP,7,DLM),23,"I")="C" Q  ;alb/sat 665 - record is closed
  ..I $$PC(LP,8,DLM)="A",$$GET1^DIQ(409.85,$$PC(LP,7,DLM),23,"I")="C" Q  ;alb/sat 665 - record is closed
+ .. ;
+ .. ; Exclude VETERAN requests if user does not have the key.  wtc/mbs 694 7/24/2018
+ .. ;
+ .. I $$PC(LP,8,DLM)="A",$$GET1^DIQ(409.85,$$PC(LP,7,DLM),4,"I")="VETERAN",'$G(VAOSUSR(0)) Q  ;MBS - vaos record and user doesn't have key
+ .. ;
  ..S CNT=CNT+1
  ..S @DATA@(CNT)=$$PC(LP,8,DLM)_U_$$PC(LP,7,DLM)_U_LP_$C(30)
  S @DATA@(CNT)=$P(@DATA@(CNT),$C(30))_$C(30,31)

@@ -1,5 +1,5 @@
 SD53103B ;ALB/MJK - Unique Visit ID Clean Up ; March 10,1997
- ;;5.3;Scheduling;**103**;AUG 13, 1993
+ ;;5.3;Scheduling;**103,748**;AUG 13, 1993;Build 10
  ;
  Q
  ;
@@ -117,4 +117,12 @@ MODE() ; -- select update mode
  D ^DIR
  IF Y'=1,Y'=2 S Y=0
  Q Y
+ ;
+TIU(SDTIU) ; -- display TIU data - SD*5.3*748
+ N SDLINE
+ S $P(SDLINE,"=",80)=""
+ W !,SDLINE,!
+ W !,"TIU DOCUMENT #",SDTIU," VISIT ID FIELD HAS BEEN UPDATED."
+ W !,SDLINE,!
+ Q
  ;

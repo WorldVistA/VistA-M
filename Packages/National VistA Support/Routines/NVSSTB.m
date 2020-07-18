@@ -1,14 +1,15 @@
-NVSSTB ;MB/SLCOIFO  START BROKER,MAILMAN,TASKMAN             AUG 16, 2007 ; 8/10/12 11:23am
- ;;1.8;;NVSMENU;;Build 5
+NVSSTB ;MB/SLCOIFO  START BROKER,MAILMAN,TASKMAN
+ ;;2.0;;NVSMENU;;Build 19
  ; originally written by Mike Boggess SLCOIFO   4/28/03
+ ; bpn/hsp modified for IRIS 02/03/20	
  ; ------------------------------------------------------------------------
- ;V1.8.3
- ;V2.0 testing for Linux - BJS
  ; check for Cache
- I $ZV'["Cache" W !,"This routine is for Cache systems only." Q
- ;call NVSSTM if Cache 2011 or greater - 7/31/12 bjs
+ ;I $ZV'["Cache" W !,"This routine is for Cache systems only." Q
+ ;call NVSSTM if Cache 2011 or greater; added itanium 2/14/13 bjs
  I $$OS^%ZOSV="UNIX"&($E($P($ZV,"x86-64)",2),2,10)>2011) G ^NVSSTM
+ I $$OS^%ZOSV="UNIX"&($E($P($ZV,"x86-32)",2),2,10)>2011) G ^NVSSTM
  I $$OS^%ZOSV="VMS"&($E($P($ZV,"(Alpha)",2),2,10)>2011) G ^NVSSTM
+ I $$OS^%ZOSV="VMS"&($E($P($ZV,"(Itanium)",2),2,10)>2011) G ^NVSSTM
  ; VMS/Cache only...
  ;
  I $$OS^%ZOSV()'="VMS" W !,"This routine is for VMS/Cache systems only." Q

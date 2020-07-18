@@ -1,5 +1,5 @@
-PSOCSRL ;BIR/BHW - release interface for control substance pkg ;7/22/94
- ;;7.0;OUTPATIENT PHARMACY;**27,71,118,148,247,373,385**;DEC 1997;Build 27
+PSOCSRL ;BIR/BHW - release interface for control substance pkg ; 1/29/20 12:46pm
+ ;;7.0;OUTPATIENT PHARMACY;**27,71,118,148,247,373,385,596**;DEC 1997;Build 1
  ;External reference to ^PSDRUG supported by DBIA 221
  ;External reference to ^PS(55 supported by DBIA 2228
  ;External reference to ^PS(59.7 supported by DBIA 694
@@ -21,7 +21,7 @@ EN(RXP,XTYPE,PSRH) ;
  G:$G(XTYPE)]"" REF
 ORI ;orig
  K LBLP,ISUF I $P(^PSRX(RXP,2),"^",13) S Y=$P(^PSRX(RXP,2),"^",13) X ^DD("DD") W !!?7,$C(7),$C(7),"ORIGINAL PRESCRIPTION WAS LAST RELEASED ON "_Y,! G EX
- I $P(^PSRX(RXP,2),"^",15) S RESK=$P(^(2),"^",15)  W !,"Original Fill returned to stock on "_$E(RESK,4,5)_"/"_$E(RESK,6,7)_"/"_$E(RESK,2,3),! G EX
+ I $P(^PSRX(RXP,2),"^",15) S RESK=$P(^(2),"^",15)  W !,"Original Fill returned to stock on "_$E(RESK,4,5)_"/"_$E(RESK,6,7)_"/"_$E(RESK,2,3),!
  S PSOCPN=$P(^PSRX(RXP,0),"^",2),QTY=$P($G(^PSRX(RXP,0)),"^",7),QDRUG=$P(^PSRX(RXP,0),"^",6)
  I '$P($G(^PSRX(RXP,2)),"^",13),+$P($G(^(2)),"^",2)'<PSIN S RXFD=$P(^(2),"^",2) D  G:$G(PSOUT) EX D:$G(LBLP) UPDATE I $G(ISUF) D UPDATE
  .S SUPN=$O(^PS(52.5,"B",RXP,0)) I SUPN,$D(^PS(52.5,"C",RXFD,SUPN)),$G(^PS(52.5,SUPN,"P"))'=1 S ISUF=1 Q

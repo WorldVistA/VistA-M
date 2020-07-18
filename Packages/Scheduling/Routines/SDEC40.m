@@ -1,5 +1,15 @@
-SDEC40 ;ALB/SAT - VISTA SCHEDULING RPCS ;JUN 21, 2017
- ;;5.3;Scheduling;**627,665,680**;Aug 13, 1993;Build 2
+SDEC40 ;ALB/SAT,WTC - VISTA SCHEDULING RPCS ;Feb 12, 2020@15:22
+ ;;5.3;Scheduling;**627,665,694**;Aug 13, 1993;Build 61
+ ;
+ ;  ICR
+ ;  ---
+ ;   7024 - #40.8
+ ;   7025 - #43
+ ;   7030 - #2 (appointment record)
+ ;   7034 - DGNFUNC
+ ;  10035 - #2 (demographics)
+ ;  10060 - #200
+ ;  10061 - VAPDT
  ;
  Q
  ;
@@ -60,7 +70,7 @@ PRT(DFN,SDC,SD,LT,SDLET,SDFORM) ;
  ;
  S DPTNAME("FILE")=2,DPTNAME("FIELD")=".01",DPTNAME("IENS")=(+A)_","
  S X=$$NAMEFMT^XLFNAME(.DPTNAME,"G","M")
- S SDECI=SDECI+1 S ^TMP("SDEC",$J,SDECI)="Dear "_X_","_$C(13,10) ;SD*5.3*680 - Removed concatenation "Mr. "/"Ms. " before X .
+ S SDECI=SDECI+1 S ^TMP("SDEC",$J,SDECI)="Dear "_$S($P(^DPT(+A,0),"^",2)="M":"Mr. ",1:"Ms. ")_X_","_$C(13,10)
  S SDECI=SDECI+1 S ^TMP("SDEC",$J,SDECI)=$C(13,10)
  S SDECI=SDECI+1 S ^TMP("SDEC",$J,SDECI)=$C(13,10)
  ;loop and display initial section of Letter
@@ -78,7 +88,14 @@ WRAPP(DFN,SDC,SD,LT,SDLET) ;WRITE APPOINTMENT INFORMATION
  S SDECI=SDECI+1 S ^TMP("SDEC",$J,SDECI)=$C(13,10)  ;alb/sat 665
  S (SDX,X)=SDX1 Q
  ; SD*5.3*622 - add more detail for appointment and format it
-FORM S:$D(SDX) X=SDX S SDHX=X D DW^%DTC S DOW=X,X=SDHX X ^DD("FUNC",2,1) S SDT0=X,SDDAT=$P("JAN^FEB^MAR^APR^MAY^JUN^JUL^AUG^SEP^OCT^NOV^DEC","^",$E(SDHX,4,5))_" "_+$E(SDHX,6,7)_", "_(1700+$E(SDHX,1,3))
+FORM ;S:$D(SDX) X=SDX S SDHX=X D DW^%DTC S DOW=X,X=SDHX X ^DD("FUNC",2,1) S SDT0=X,SDDAT=$P("JAN^FEB^MAR^APR^MAY^JUN^JUL^AUG^SEP^OCT^NOV^DEC","^",$E(SDHX,4,5))_" "_+$E(SDHX,6,7)_", "_(1700+$E(SDHX,1,3)) ; See below wtc 6/7/18 694
+ ;
+ ;  Change display time for noon and midnight from 12:00 PM to 12:00 Noon and 12:00 Midnight
+ ;
+ S:$D(SDX) X=SDX S SDHX=X D DW^%DTC S DOW=X,X=SDHX ;
+ I $P(X,".",2)=12!($P(X,".",2)=24) S X="12:00 "_$S($P(X,".",2)=12:"N",1:"M") ;
+ E  X ^DD("FUNC",2,1) ;
+ S SDT0=X,SDDAT=$P("JAN^FEB^MAR^APR^MAY^JUN^JUL^AUG^SEP^OCT^NOV^DEC","^",$E(SDHX,4,5))_" "_+$E(SDHX,6,7)_", "_(1700+$E(SDHX,1,3))
  I '$D(B) S SDECI=SDECI+1 S ^TMP("SDEC",$J,SDECI)="     Date/Time: "_DOW_"  "_$J(SDDAT,12)_$S('$D(B)&$D(SDC):$J(SDT0,9),1:"")_$C(13,10)
  I '$D(B),$D(SDC) D
  .S SDECI=SDECI+1 S ^TMP("SDEC",$J,SDECI)="    "_SDCL_$C(13,10)
@@ -87,7 +104,8 @@ FORM S:$D(SDX) X=SDX S SDHX=X D DW^%DTC S DOW=X,X=SDHX X ^DD("FUNC",2,1) S SDT0=
  ; skip printing the provider label if the field is empty in file #44
  N J,SDLOC,SDPROV,SDPRNM,SDTEL,SDTELEXT
  S SDLOC=$P($G(^SC(+SDC,0)),"^",11) ; physical location of the clinic
- S SDTEL=$G(^SC(+SDC,99))        ; telephone number of clinic
+ ;ajf ;050918 ;R16969456FY18
+ S SDTEL=$P($G(^SC(+SDC,99)),"^",1)        ; telephone number of clinic
  S SDTELEXT="" I SDTEL]"",$G(^SC(+SDC,99.1))]"" D
  .S SDTELEXT=^SC(+SDC,99.1)  ; telephone ext of clinic
  ; get default provider, if any

@@ -1,5 +1,5 @@
-PSOHLDS ;BIR/PWC - HL7 V.2.4 AUTOMATED DISPENSE INTERFACE ;03/01/96 09:45
- ;;7.0;OUTPATIENT PHARMACY;**156,312,354,531**;DEC 1997;Build 4
+PSOHLDS ;BIR/PWC-HL7 V.2.4 AUTOMATED DISPENSE INTERFACE ;03/01/96 09:45
+ ;;7.0;OUTPATIENT PHARMACY;**156,312,354,531,603**;DEC 1997;Build 8
  ;External reference to GETAPP^HLCS2  supported by DBIA 2887
  ;External reference to INIT^HLFNC2   supported by DBIA 2161
  ;External reference to GENERATE^HLMA supported by DBIA 2164
@@ -9,7 +9,7 @@ PSOHLDS ;BIR/PWC - HL7 V.2.4 AUTOMATED DISPENSE INTERFACE ;03/01/96 09:45
  ;External reference to ^PSDRUG supported by DBIA 221
  ;
 INIT ;initialize variables and build outgoing message
- N DFLAG,HLRESLT,HLP,PSLINK,PSOHLSER,PSOHLCL,PSOHLINX,DDNS,PSOENH,PSOADD,ADDCAT,PSOMES,OPADD,OPNAM
+ N DFLAG,HLRESLT,HLP,PSLINK,PSOHLSER,PSOHLCL,PSOHLINX,DDNS,PSOENH,PSOADD,ADDCAT,PSOMES,OPADD,OPNAM,PSOFNHL7
  S PSOHLINX=$$GETAPP^HLCS2("PSO EXT SERVER") Q:$P($G(PSOHLINX),"^",2)="i"
  K ^TMP("PSO",$J),^TMP("PSOADD",$J)
  S PIEN=$O(^ORD(101,"B","PSO EXT SERVER",0)) G:'PIEN EXIT
@@ -102,10 +102,10 @@ ACK ;process MSA received from the dispense machine (client)
  S MTN=HL("MTN"),RAN=HL("RAN"),SAN=HL("SAN"),VER=HL("VER")
  S EID=HL("EID"),EIDS=HL("EIDS"),FS=HL("FS")
  I $G(VER)'="2.4" G EXT
- N PSOFTHL7,PSOFNHL7,ORC K PSOMSG F I=1:1 X HLNEXT Q:HLQUIT'>0  S PSOMSG(I)=HLNODE,J=0 D
+ N ORC K PSOMSG F I=1:1 X HLNEXT Q:HLQUIT'>0  S PSOMSG(I)=HLNODE,J=0 D
  .I $P(PSOMSG(I),"|")="MSA" S MSACDE=$P(PSOMSG(I),"|",2),SMID=$P(PSOMSG(I),"|",3) S:$P(PSOMSG(I),"|",4)]"" ERRMSG=$P(PSOMSG(I),"|",4)
- .I $P(PSOMSG(I),"|")="ORC" S ORC=1_"^"_+$P(PSOMSG(I),"|",3),PSOFTHL7=$P(PSOMSG(I),"|",17) ;*531
- .I $P(PSOMSG(I),"|")="RXD" S PSOFNHL7=$P(PSOMSG(I),"|",2) ;*531
+ .I $P(PSOMSG(I),"|")="ORC" S ORC="1^"_+$P(PSOMSG(I),"|",3)
+ .I $P(PSOMSG(I),"|")="RXD" S PSOFNHL7=$P(PSOMSG(I),"|",2)
  .F  S J=$O(HLNODE(J)) Q:'J  S PSOMSG(I,J)=HLNODE(J)
  ;
  S ^TMP("PSO1",$J,CMID)=CMID_"^"_AACK_"^"_DTM_"^"_ETN_"^"_MTN_"^"_RAN_"^"_SAN_"^"_VER_"^"_EID_"^"_EIDS
@@ -139,20 +139,29 @@ UDFILE ;updates from vendor
  .S DIE="^PS(52.51,",DR="7////"_SAN_";11////"_CMID_";13////"_FLD13_";14////2" D ^DIE
  Q
 FACK1 ;
- N PSO5251,PSOFILLT,PSOFILLN,RXNA,RXNAQ
+ N RX,RXNA,RXNAQ,RXDIV
  D:'$G(ORC) UDFILE
  I $G(ORC) D
- .S RXNA=$P(ORC,"^",2),RX="A" F  S RX=$O(^PS(52.51,"B",RXNA,RX),-1) Q:('RX)!($G(RXNAQ))  D
- ..S PSO5251=$G(^PS(52.51,RX,0)),PSOFILLT=$P(PSO5251,"^",8),PSOFILLN=$P(PSO5251,"^",9) ;*531
- ..I PSOFTHL7="PARTIAL",PSOFILLT'="P" Q   ;*531
- ..I PSOFTHL7="REFILL",PSOFILLT'="F" Q   ;*531
- ..I PSOFTHL7="NEW",PSOFILLT'="F" Q   ;*531
- ..I PSOFNHL7'=PSOFILLN Q   ;*531
- ..S (EIN,DA)=RX S RXNAQ=1
- .I $G(DA) D
- ..I $P($G(^PS(52.51,DA,1)),"^",4)="MEDICATION DISPENSED",$P(^PS(52.51,DA,0),"^",10)=2 S MDUP=1 D ^PSOHLDIS K EIN,MDUP Q
- ..S HLUSER=$P(^PS(52.51,DA,0),"^",4),HLRPT=$P(^(0),"^",5)
- ..S DIE="^PS(52.51,",DR="7////"_SAN_";11////"_CMID_";13////"_FLD13_";14////2" D ^DIE,^PSOHLDIS K EIN,HLUSER,HLRPT
+ . S RXNAQ=0,RXNA=$P(ORC,"^",2)
+ . ; Trying to match via MESSAGE SERVER ID (HL7) - Should always find a match
+ . I SMID'="" D
+ . . S RXDIV="" F  S RXDIV=$O(^PS(52.51,"AM",SMID,RXDIV)) Q:(('RXDIV)!(RXNAQ))  D
+ . . . S RX="" F  S RX=$O(^PS(52.51,"AM",SMID,RXDIV,RX)) Q:(('RX)!(RXNAQ))  D
+ . . . . I $$GET1^DIQ(52.51,RX,.01,"I")=RXNA S (EIN,DA)=RX,RXNAQ=1
+ . ; Trying to match with a REGULAR Fill (Non-Partials) - 'Fail Safe' matching logic
+ . I '$G(DA) D
+ . . S RX="" F  S RX=$O(^PS(52.51,"B",RXNA,RX),-1) Q:(('RX)!(RXNAQ))  D
+ . . . I $$GET1^DIQ(52.51,RX,8,"I")="P" Q       ; Partial Fill
+ . . . I $$GET1^DIQ(52.51,RX,9,"I")=PSOFNHL7 S (EIN,DA)=RX,RXNAQ=1
+ . ; Trying to match with a PARTIAL Fill (OPAI returns either 0 or 1 for Partial Fill #) - 'Fail Safe' matching logic
+ . I '$G(DA) D
+ . . S RX="" F  S RX=$O(^PS(52.51,"B",RXNA,RX),-1) Q:(('RX)!(RXNAQ))  D
+ . . . I $$GET1^DIQ(52.51,RX,8,"I")'="P" Q      ; Regular Fill
+ . . . S (EIN,DA)=RX,RXNAQ=1
+ . I $G(DA) D
+ . . I $P($G(^PS(52.51,DA,1)),"^",4)="MEDICATION DISPENSED",$P(^PS(52.51,DA,0),"^",10)=2 S MDUP=1 D ^PSOHLDIS K EIN,MDUP Q
+ . . S HLUSER=$P(^PS(52.51,DA,0),"^",4),HLRPT=$P(^(0),"^",5)
+ . . S DIE="^PS(52.51,",DR="7////"_SAN_";11////"_CMID_";13////"_FLD13_";14////2" D ^DIE,^PSOHLDIS K EIN,HLUSER,HLRPT
  Q
  ;
 FACK2 ;

@@ -1,5 +1,5 @@
-IBECEAU3 ;ALB/CPM-Cancel/Edit/Add... Add New IB Action;11-MAR-93
- ;;2.0;INTEGRATED BILLING;**132,150,167,183,341,563,618,656,663**;21-MAR-94;Build 27
+IBECEAU3 ;ALB/CPM - Cancel/Edit/Add... Add New IB Action; 11-MAR-93
+ ;;2.0;INTEGRATED BILLING;**132,150,167,183,341,563,618,656,663,653**;21-MAR-94;Build 19
  ;;Per VA Directive 6402, this routine should not be modified.
  ;
 ADD ; Add a new Integrated Billing Action entry.
@@ -42,7 +42,7 @@ ADD ; Add a new Integrated Billing Action entry.
  I $G(IBTIER) S $P(IBND,"^",21)=IBTIER
  S $P(^IB(IBN,0),"^",2,20)=IBND
  ; IB*2.0*618 Allow Event date to File for Community Care RX
- ; IB*2.0*656 Correct a potential Undefined error 
+ ; IB*2.0*656 Correct a potential Undefined error
  I IBDESC["RX COPAY",$G(IBEVDT) D
  . N DIE,DR,DTOUT
  . S DA=IBN,DIE="^IB("
@@ -60,6 +60,7 @@ ADDQ Q
 CTBB ; Charge to be billed
  ; Check Outpat. Fee Service less than 20% Outpat Co Pay
  D:$G(IBAFEE) FEE^IBECEAU5 Q:IBY<1
+ I $G(IBDESC)["RX COPAY",$$CHKHRFS^IBAMTS3(DFN,$G(IBEFDT)) S IBCHG=IBUNIT*2  ;IB*2.0*653 charge $2.00 per unit ( 1 Unit = 30 day supply), no Tier rates.
  W !!,"Charge to be billed --> $",$J(IBCHG,0,2)
  Q
  ;

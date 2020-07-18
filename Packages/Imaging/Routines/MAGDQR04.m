@@ -1,5 +1,5 @@
-MAGDQR04 ;WOIFO/EdM,MLH,JSL,SAF,DAC - Imaging RPCs for Query/Retrieve ; 12 Oct 2012 1:14 PM
- ;;3.0;IMAGING;**51,54,66,123,118**;Mar 19, 2002;Build 4525;May 01, 2013
+MAGDQR04 ;WOIFO/EdM,MLH,JSL,SAF,DAC - Imaging RPCs for Query/Retrieve ; May 28, 2020@09:01:51
+ ;;3.0;IMAGING;**51,54,66,123,118,263**;Mar 19, 2002;Build 17
  ;; Per VHA Directive 2004-038, this routine should not be modified.
  ;; +---------------------------------------------------------------+
  ;; | Property of the US Government.                                |
@@ -154,11 +154,13 @@ INFO(OUT,IMAGE,DBTYPE) ; RPC = MAG IMAGE CURRENT INFO
  . I "^OLD^NEW^"'[("^"_DBTYPE_"^") S OUT(1)="-3,Database type not specified." Q
  . I '$G(IMAGE) S OUT(1)="-1,No Image Specified." Q
  . I DBTYPE="OLD",'$D(^MAG(2005,IMAGE)) S OUT(1)="-2,No Such Image ("_IMAGE_")." Q
- . I DBTYPE="NEW",'$D(^MAGV(2005.64,IMAGE)) S OUT(1)="-2,No Such Image ("_IMAGE_")." Q
+ . ; P263 DAC - Fixed file reference. Changed 2005.64 (SOP) to 2005.65 (Image)
+ . I DBTYPE="NEW",'$D(^MAGV(2005.65,IMAGE)) S OUT(1)="-2,No Such Image ("_IMAGE_")." Q
  . Q
  ;
  S TYPE=$S(DBTYPE="OLD":"R",1:"N")
- S TAG("0008,1030")=$$STYDESC2^MAGUE001(TYPE,IMAGE,.ERR) ; Study Description
+ ; P263 DAC - Added IENTYPE or "IMAGE", so that the study lookup knows to start at the Image (#2005.65) file level
+ S TAG("0008,1030")=$$STYDESC2^MAGUE001(TYPE,IMAGE,.ERR,"IMAGE") ; Study Description
  D:DBTYPE="OLD"
  . S X=$G(^MAG(2005,IMAGE,0)),P=$P(X,"^",10)
  . S DFN=$P(X,"^",7)
@@ -173,7 +175,8 @@ INFO(OUT,IMAGE,DBTYPE) ; RPC = MAG IMAGE CURRENT INFO
  . I 'STYIX S OUT(1)="-5,Study not found for image IEN "_IMAGE_"." Q
  . S PROCIX=$P($G(^MAGV(2005.62,STYIX,6)),"^",1)
  . I 'PROCIX S OUT(1)="-6,Procedure reference not found for image IEN "_IMAGE_"." Q
- . S PATIX=$P($G(^MAGV(2005.61,STYIX,6)),"^",1)
+ . ; P263 DAC - Changed STYIX (Study Index) to PROCIX (Procedure Index)
+ . S PATIX=$P($G(^MAGV(2005.61,PROCIX,6)),"^",1)
  . I 'PATIX S OUT(1)="-7,Patient not found for image IEN "_IMAGE_"." Q
  . S PATDTA=$G(^MAGV(2005.6,PATIX,0))
  . I $P(PATDTA,"^",3)'="D" S OUT(1)="-8,Patient ID is not a VA DFN for image IEN "_IMAGE_"." Q

@@ -1,5 +1,5 @@
 GMRCCCR1 ;MJ - Receive HL7 Message for HCP ;3/21/18 09:00
- ;;3.0;CONSULT/REQUEST TRACKING;**99,106,112,123,134,146**;JUN 1, 2018;Build 12
+ ;;3.0;CONSULT/REQUEST TRACKING;**99,106,112,123,134,146,158**;JUN 1, 2018;Build 16
  ;
  ;DBIA# Supported Reference
  ;----- --------------------------------
@@ -136,6 +136,7 @@ TIUC(X) ; Check each segment of the TIU notes for HL7 control characters
  I $G(X)[$C(6) S X=$TR(X,$C(6),"") ; ACK
  I $G(X)[$C(21) S X=$TR(X,$C(21),"") ; NAK
  I $G(X)[$C(23) S X=$TR(X,$C(23),"") ; ETB
+ I $G(X)[$C(11) S X=$TR(X,$C(11)," ") ; TAB with space
  Q X
 ADDEND ; moved from ADDEND^GMRCCCRA routine for space ; patch 146 ; MJ
  ; returns 0 if value not found

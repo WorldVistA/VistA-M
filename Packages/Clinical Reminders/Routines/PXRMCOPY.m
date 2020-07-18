@@ -1,5 +1,5 @@
-PXRMCOPY ; SLC/PKR,PJH - Copy various reminder files. ;01/28/2013
- ;;2.0;CLINICAL REMINDERS;**6,12,26**;Feb 04, 2005;Build 404
+PXRMCOPY ;SLC/PKR,PJH - Copy various reminder files. ;12/09/2019
+ ;;2.0;CLINICAL REMINDERS;**6,12,26,45**;Feb 04, 2005;Build 566
  ;
  ;=====================================================
 COPY(PROMPT,ROOT,WHAT) ;Copy an entry of ROOT into a new entry.
@@ -9,15 +9,37 @@ COPY(PROMPT,ROOT,WHAT) ;Copy an entry of ROOT into a new entry.
  ;
  ;=====================================================
 GETORGR ;Look-up logic to get and copy source entry to destination.
- N DA,DIE,DIC,DIK,DIR,DIRUT,FDA,FIELDLEN,FILE
- N IENN,IENO,IENS,MSG,NAME,ORGNAME,X,Y
+ N DIC,IENN,IENO,Y
  S DIC=ROOT,DIC(0)="AEMQ",DIC("A")=PROMPT
  W !
  D ^DIC
  I $D(DUOUT)!$D(DTOUT) S DIROUT="" Q
  S IENO=$P(Y,U,1)
  I IENO=-1 S DIROUT="" Q
+ D GETORGRC(IENO,.IENN,ROOT,WHAT,0)
+ Q
  ;
+GETORGRC(IENO,IENN,ROOT,WHAT,SKIP) ;
+ N DA,DIC,DIE,DIK,DIR,DIRUT,FAIL,FDA,FIELDLEN,FILE
+ N HASGF,IENS,MSG,NAME,ORGNAME,X,Y
+ ; reminder dialog checks
+ S DIC=ROOT,FAIL=0
+ N DTYP,LFIND,LOCK
+ I ROOT="^PXRMD(801.41," D
+ .;Check for Uneditable flag
+ .S LOCK=$P($G(^PXRMD(801.41,IENO,100)),U,4)
+ .S LFIND=$P($G(^PXRMD(801.41,IENO,1)),U,5)
+ .S DTYP=$P($G(^PXRMD(801.41,IENO,0)),U,4)
+ .S HASGF=$$HASGF(IENO)
+ .I HASGF D
+ ..I $P($G(^PXRMD(801.41,IENO,0)),U)="VA-TICKLER ELEMENT" Q
+ ..W !,"This item cannot be copied." S FAIL=1 H 2 Q
+ .I LOCK=1,'$G(PXRMINST),DTYP="G" D  Q
+ ..W !,"This item cannot be copied." S FAIL=1 H 2
+ .I LOCK=1,$G(LFIND)'="",$G(LFIND)'["ORD",'$G(PXRMINST),DTYP'="G" D  Q
+ ..W !,"This item cannot be copied." S FAIL=1 H 2
+ ;
+ I FAIL=1 Q
  ;Set the starting place for additions.
  D SETSTART^PXRMCOPY(DIC)
  S IENN=$$GETFOIEN(ROOT)
@@ -52,8 +74,21 @@ GETNAM D ^DIR
  ;Reindex the cross-references.
  S DIK=ROOT,DA=IENN
  D IX^DIK
+ I $G(PXRMDANY)=1 D  Q
+ .W !!,"Completed copy of '"_ORGNAME_"'"
+ .W !,"into '"_NAME_"'",! H 2
+ .I $P(@(ROOT_IENN_",0)"),U,4)="P" D
+ ..;Allow PXRM prompts to be changed into forced values
+ ..N ANS,TEXT
+ ..S TEXT="Change the new prompt into a forced value :"
+ ..D ASK^PXRMDCPY(.ANS,TEXT,4,"N") Q:$D(DUOUT)!$D(DTOUT)  Q:ANS'="Y"
+ ..;Store the dialog type
+ ..S DR="4///F",DIE=ROOT,DA=IENN
+ ..D ^DIE
+ .S DTOUT=1,PXRMDANY=0
  W !
  ;
+ I SKIP=1 W !,"The original "_WHAT_" "_ORGNAME_" has been copied into "_NAME_"." H 1 Q
  ;Tell the user what has happened and allow for editing of the new item.
  S DIR(0)="Y"
  S DIR("A")="Do you want to edit it now"
@@ -113,6 +148,26 @@ GETFOIEN(ROOT) ;Return the first open IEN in ROOT. This should be called
  S ENTRY=ROOT_OIEN_")"
  F  S NIEN=$O(@ENTRY) Q:+(NIEN-OIEN)>1  Q:+NIEN'>0  S OIEN=NIEN,ENTRY=ROOT_NIEN_")"
  Q OIEN+1
+ ;
+ ;
+HASGF(IEN) ;
+ N ARRAY,CNT,DIEN,DARRAY,RESULT
+ S CNT=0,RESULT=0
+ I $G(PXRMINST)=1 Q RESULT
+ S RESULT=$$ITEMHSGF(IEN) I RESULT=1 Q RESULT
+ I '$D(^PXRMD(801.41,IEN,10)) Q RESULT
+ D DITEMAR^PXRMDUTL(IEN,.ARRAY,.DARRAY,.CNT)
+ S DIEN=0 F  S DIEN=$O(DARRAY(DIEN)) Q:DIEN'>0!(RESULT=1)  D
+ .S RESULT=$$ITEMHSGF(DIEN)
+ Q RESULT
+ ;
+ITEMHSGF(IEN) ;
+ N FIND,FOUND
+ I $G(PXRMINST)=1 Q 0
+ I $P($G(^PXRMD(801.41,IEN,1)),U,5)[801.46 Q 1
+ S FOUND=0,FIND="" F  S FIND=$O(^PXRMD(801.41,IEN,3,"B",FIND)) Q:FIND=""!(FOUND=1)  D
+ .I FIND[801.46 S FOUND=1
+ Q 0
  ;
  ;=====================================================
 INIEH(FILENUM,ROOT,IENN,IENO) ;Initialize the edit history after a copy.

@@ -1,5 +1,5 @@
 SDM1 ;SF/GFT - MAKE APPOINTMENT ; 3/29/05 12:35pm [5/5/05 9:41am]  ; Compiled March 8, 2007 14:55:24  ; Compiled May 9, 2007 13:19:18  ; Compiled August 28, 2007 12:19:08
- ;;5.3;Scheduling;**32,167,168,80,223,263,273,408,327,478,490,446,547,611,674**;Aug 13, 1993;Build 18
+ ;;5.3;Scheduling;**32,167,168,80,223,263,273,408,327,478,490,446,547,611,674,739**;Aug 13, 1993;Build 1
 1 L  Q:$D(SDXXX)  S CCXN=0 K MXOK,COV,SDPROT Q:DFN<0  S SC=+SC
  S X1=DT,SDEDT=365 S:$D(^SC(SC,"SDP")) SDEDT=$P(^SC(SC,"SDP"),"^",2)
  S X2=SDEDT D C^%DTC S SDEDT=X D WRT
@@ -83,11 +83,13 @@ SC S SDLOCK=$S('$D(SDLOCK):1,1:SDLOCK+1) G:SDLOCK>9 LOCK
  ;
 SP I ST+ST>$L(S),$L(S)<80 S S=S_" " G SP
  S SDNOT=1   ;SD*5.3*490 naked Do added below
- F I=ST+ST:SDDIF:SS-SDDIF S ST=$E(S,I+1) S:ST="" ST=" " S Y=$E(STR,$F(STR,ST)-2) G C:S["CAN"!(ST="X"&($D(^SC(+SC,"ST",$P(SD,"."),"CAN")))),X:Y="" S:Y'?1NL&(SM<6) SM=6 S ST=$E(S,I+2,999) D  S:ST="" ST=" " S S=$E(S,1,I)_Y_ST
- .Q:ST'=""
- .Q:+SL'>+^SC(SC,"SL")
- .S ST="   "
- .Q
+ ;SD*5.3*739 adds check for SDCAN node as CAN node is deleted when clinic is remapped 
+ F I=ST+ST:SDDIF:SS-SDDIF S ST=$E(S,I+1) S:ST="" ST=" " S Y=$E(STR,$F(STR,ST)-2) G C:S["CAN"!(ST="X"&(($D(^SC(+SC,"ST",$P(SD,"."),"CAN")))!($O(^SC(+SC,"SDCAN",$P(SD,".")))<($P(SD,".")+1)))),X:Y="" D 
+ .S:Y'?1NL&(SM<6) SM=6 S ST=$E(S,I+2,999) D  S:ST="" ST=" " S S=$E(S,1,I)_Y_ST
+ ..Q:ST'=""
+ ..Q:+SL'>+^SC(SC,"SL")
+ ..S ST="   "
+ ..Q
  Q:SDMM  G OK^SDM1A:SM#9=0,^SDM3:$P(SL,U,7)]""&('$D(MXOK))
  ;
 E G:'$D(^XUSEC("SDOB",DUZ)) NOOB

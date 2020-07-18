@@ -1,5 +1,5 @@
-SDECEPT ;SPFO/RT SCHEDULING ENHANCEMENTS VSE EP API
- ;;5.3;Scheduling;**669,671,731**;Aug 13 1993;Build 7
+SDECEPT ;SPFO/RT,WTC SCHEDULING ENHANCEMENTS VSE EP API ;Feb 12, 2020@15:22
+ ;;5.3;Scheduling;**669,671,694**;Aug 13 1993;Build 61
  ;
  ;The API provides Extended Profile Appt info the VS Gui.
  ;INPUT - DFN required
@@ -17,7 +17,6 @@ INIT ;
  ; HLAP0=Global location 0 from Hospital Appointment Multiple
  ;
  ; SET HELPERS
- S U="^"
  ;
  S PAT0=$G(^DPT(DFN,0))
  S PAM0=$G(^DPT(DFN,"S",ADT,0)) I PAM0'="" D
@@ -32,12 +31,13 @@ GETDEM(RET,DFN,ADT) ;
  Q:'$G(DFN)
  Q:'$G(ADT)
  ;
+ S ADT=+ADT   ;strip off extra zeros on time  pwc SD*5.3*694
  D INIT
  ;
  ; INITIALIZE VARIABLES
  S (PATN,RSSN,SSN,LAB,XRAY,EKG,PCODE,POV,ATIEN)=""
  S (PAMAT,CCODE,COLL,CLN,LOA,OTH,ECODE,EGIL,PAMSC)=""
- S (ENROLC,STAT)=""
+ S (ENROLC,STAT,OCODE)=""
  ;
  ;PATN=Patient Name - Patient File [0,1]
  ;RSSN=Raw Social Securty Number  - Patient File [0,9]
@@ -96,7 +96,7 @@ GETDEM(RET,DFN,ADT) ;
  .I ECODE="" S EGIL=$P($G(^DIC(8,+$G(^DPT(DFN,.36)),0)),U)
  ;
  ; -HOSPITAL LOCATION/APPOINTMENT/PATIENT MULTIPLE GLOBAL LOCATION OB
- S OCODE=$G(^SC(CLIEN,"S",ADT,1,HLAPIEN,"OB"))
+ I HLAPIEN'="" S OCODE=$G(^SC(CLIEN,"S",ADT,1,HLAPIEN,"OB"))   ; pwc added check for HLAPIEN SD*5.3*694
  S OVB="" I OCODE="O" S OVB="OVERBOOK"
  ;
  ; -PATIENT FILE ENROLLMENT CLINIC MULTIPLE
@@ -109,10 +109,17 @@ GETDEM(RET,DFN,ADT) ;
  ..Q
  ;
  ; -CONVERT DATES TO EXTERNAL
- S Y=ADT D D^DIQ S ADT=Y
- I LAB'="" S Y=LAB D D^DIQ S LAB=Y
- I XRAY'="" S Y=XRAY D D^DIQ S XRAY=Y
- I EKG'="" S Y=EKG D D^DIQ S EKG=Y
+ ;
+ ;  Change date/time conversion so midnight is handled properly.  wtc 694 5/7/18
+ ;
+ ;S Y=ADT D D^DIQ S ADT=Y
+ S ADT=$$FMTONET^SDECDATE(ADT) ;
+ ;I LAB'="" S Y=LAB D D^DIQ S LAB=Y
+ I LAB'="" S LAB=$$FMTONET^SDECDATE(LAB) ;
+ ;I XRAY'="" S Y=XRAY D D^DIQ S XRAY=Y
+ I XRAY'="" S XRAY=$$FMTONET^SDECDATE(XRAY) ;
+ ;I EKG'="" S Y=EKG D D^DIQ S EKG=Y
+ I EKG'="" S EKG=$$FMTONET^SDECDATE(EKG) ;
  ;
  S RET=PATN_U_CLN_U_SSN_U_ADT_U_STAT_U_POV_U_LOA_U_PAMAT_U_LAB_U_EGIL_U_XRAY_U_OVB_U_EKG_U_COLL_U_OTH_U_ENROLC
  ;
@@ -124,11 +131,12 @@ GETEVT(RET,DFN,ADT) ;
  Q:'$G(DFN)
  Q:'$G(ADT)
  ;
+ S ADT=+ADT  ;strip off extra zeros on time  pwc SD*5.3*694
  D INIT
  ;
  ; INITIALIZE VARIABLES
  S (AMUIEN,AMU,AMD,HLAPC,CID,CIUIEN,CIUN,COD,COUIEN,CREAC)=""
- S (COUN,COED,NCD,NCUIEN,NCUN,CANREA,RBD,CANREM,AMUN)=""
+ S (COUN,COED,NCD,NCUIEN,NCUN,CANREA,RBD,CANREM,AMUN,HLPAC)=""
  ;
  ;AMUIEN=Appointment Made User IEN - Hospital Location Appointment Multiple [0,6]
  ;AMUN=Appointment Made User Name - New Person File Field .01
@@ -156,7 +164,7 @@ GETEVT(RET,DFN,ADT) ;
  .S AMD=$P($G(HLAP0),U,7)
  ;
  ; -HOSPITAL LOCATION/APPOINTMENT/PATIENT MULTIPLE GLOBAL LOCATION C
- S HLAPC=$G(^SC(CLIEN,"S",ADT,1,HLAPIEN,"C")) I HLAPC'="" D
+ I HLAPIEN'="" S HLAPC=$G(^SC(CLIEN,"S",ADT,1,HLAPIEN,"C")) I HLAPC'="" D
  .S CID=$P($G(HLAPC),U,1) I CID'="" D
  ..S CIUIEN=$P($G(HLAPC),U,2) I CIUIEN'="" D
  ...S CIUN=$$GET1^DIQ(200,CIUIEN,.01,"E")
@@ -184,11 +192,19 @@ GETEVT(RET,DFN,ADT) ;
  .S CANREM=$P($G(PAMR),U,1)
  ;
  ; -CONVERT DATES TO EXTERNAL
- I AMD'="" S Y=AMD D D^DIQ S AMD=Y
- I CID'="" S Y=CID D D^DIQ S CID=Y
- I COD'="" S Y=COD D D^DIQ S COD=Y
- I COED'="" S Y=COED D D^DIQ S COED=Y
- I NCD'="" S Y=NCD D D^DIQ S NCD=Y
+ ;
+ ;  Change date/time conversion so midnight is handled properly.  wtc 694 5/7/18
+ ;
+ ;I AMD'="" S Y=AMD D D^DIQ S AMD=Y
+ I AMD'="" S AMD=$$FMTONET^SDECDATE(AMD) ;
+ ;I CID'="" S Y=CID D D^DIQ S CID=Y
+ I CID'="" S CID=$$FMTONET^SDECDATE(CID) ;
+ ;I COD'="" S Y=COD D D^DIQ S COD=Y
+ I COD'="" S COD=$$FMTONET^SDECDATE(COD) ;
+ ;I COED'="" S Y=COED D D^DIQ S COED=Y
+ I COED'="" S COED=$$FMTONET^SDECDATE(COED) ;
+ ;I NCD'="" S Y=NCD D D^DIQ S NCD=Y
+ I NCD'="" S NCD=$$FMTONET^SDECDATE(NCD) ;
  ;
  S RET=AMD_U_AMUN_U_CID_U_CIUN_U_COD_U_COUN_U_COED_U_NCD_U_NCUN_U_CANREA_U_CANREM_U_RBD
  ;
@@ -200,6 +216,7 @@ GETWT(RET,DFN,ADT) ;
  Q:'$G(DFN)
  Q:'$G(ADT)
  ;
+ S ADT=+ADT   ;strip off extra zeros on time  pwc SD*5.3*694
  D INIT
  ;
  S (REQTC,REQT,NATCODE,NAT,AMD,PAM1,CID,FUVCODE,FUV,CWT1,CWT2)=""
@@ -247,7 +264,11 @@ GETWT(RET,DFN,ADT) ;
  .S X1=ADT S X2=CID D ^%DTC S CWT2=X
  ;
  ; -CONVERT DATES TO EXTERNAL
- I CID'="" S Y=$S(CID[".":$P(CID,".",1),1:CID) D D^DIQ S CID=Y ; WTC SD*5.3*731 9/19/2019 - Strip off time from CID if improperly filed in patient file
+ ;
+ ;  Change date/time conversion so midnight is handled properly.  wtc 694 5/7/18
+ ;
+ ;I CID'="" S Y=CID D D^DIQ S CID=Y
+ I CID'="" S CID=$$FMTONET^SDECDATE(CID) ;
  ;
  S RET=REQT_U_NAT_U_CID_U_FUV_U_CWT1_U_CWT2
  ;
@@ -273,6 +294,7 @@ GETPTIN(RET,DFN,ADT) ;
  Q:'$G(DFN)
  Q:'$G(ADT)
  ;
+ S ADT=+ADT  ;strip off extra zeros on time  pwc SD*5.3*694
  D INIT
  ;
  S (DOB,RSSN,SSN,SEX,MARSIEN,MARS,RELGP,PAT36,PELIG,POS,SADDR1,SWASIAC)=""

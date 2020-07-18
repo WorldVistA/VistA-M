@@ -1,5 +1,11 @@
-SDEC02 ;ALB/SAT - VISTA SCHEDULING RPCS ;MAR 15, 2017
- ;;5.3;Scheduling;**627,642,658,672,722**;Aug 13, 1993;Build 26
+SDEC02 ;ALB/SAT,PC - VISTA SCHEDULING RPCS ;Feb 12, 2020@15:22
+ ;;5.3;Scheduling;**627,642,658,672,722,694**;Aug 13, 1993;Build 61
+ ;;Per VHA Directive 2004-038, this routine should not be modified
+ ;
+ ;  ICR
+ ;  ---
+ ;  10035 - #2
+ ;  10061 - DEM^VADPT
  ;
  Q
  ;
@@ -61,11 +67,18 @@ CRSCHED(SDECY,SDECRES,SDECSTART,SDECEND,SDECWKIN,MAXREC,LASTSUB) ;Create Resourc
  S SDECTMP=SDECTMP_"T00030DIEDON^T00030EESTAT^T00250MULT^T00030SDPARENT^T00050SDLAST^T00030SSN^T00030DOB^T00100SENSITIVE"
  S ^TMP("SDEC02",$J,0)=SDECTMP_$C(30)
  ;
- S:SDECSTART["@0000" SDECSTART=$P(SDECSTART,"@")
- S:SDECEND["@0000" SDECEND=$P(SDECEND,"@")
- S %DT="T",X=SDECSTART D ^%DT S SDECSTART=Y
+ ;
+ ;  Change date/time conversion so midnight is handled properly.  wtc 694 4/24/18
+ ;
+ ;S:SDECSTART["@0000" SDECSTART=$P(SDECSTART,"@")
+ ;S:SDECEND["@0000" SDECEND=$P(SDECEND,"@")
+ ;S %DT="T",X=SDECSTART D ^%DT S SDECSTART=Y
+ S SDECSTART=$$NETTOFM^SDECDATE(SDECSTART,"N") ;
  I SDECSTART=-1 S ^TMP("SDEC02",$J,0)=^TMP("SDEC02",$J,0)_$C(31) Q
- S %DT="T",X=SDECEND D ^%DT S SDECEND=Y
+ ; need to set the start date back to midnight if no time is sent to us from VSE
+ I $P(SDECSTART,".",2)="" S SDECSTART=$$FMADD^XLFDT(SDECSTART,-1)_".24"   ;pwc *694  1/13/2020
+ ;S %DT="T",X=SDECEND D ^%DT S SDECEND=Y
+ S SDECEND=$$NETTOFM^SDECDATE(SDECEND,"Y") ;
  I SDECEND=-1 S ^TMP("SDEC02",$J,0)=^TMP("SDEC02",$J,0)_$C(31) Q
  S MAXREC=$G(MAXREC) S:'MAXREC MAXREC=9999999   ;alb/sat 672
  S LASTSUB=$G(LASTSUB)   ;alb/sat 672
@@ -78,7 +91,7 @@ CRSCHED(SDECY,SDECRES,SDECSTART,SDECEND,SDECWKIN,MAXREC,LASTSUB) ;Create Resourc
  ;
 STRES ;
  S SDI=$S($P(LASTSUB,"|",1)'="":$P(LASTSUB,"|",1),1:1)   ;alb/sat 672
- N SDECRESA,SDECRSND,SDECREST,SDCL,NEWRES,SDRSLTS ;*zeb+34 722 1/17/19 include appts for resources that share clinics
+ N SDECRESA,SDECRSND,SDECRST,SDCL,NEWRES,SDRSLTS ;*zeb+34 722 1/17/19 include appts for resources that share clinics
  I SDECRES["|" D  I 1
  . S SDECRESA=SDECRES
  E  D
@@ -132,7 +145,12 @@ STCOMM(SDECAD,SDECRESN,SDRES)      ;
  S SDECZ=SDECAD_"^"
  F SDECQ=1:1:4 D
  . S Y=$P(SDECNOD,U,SDECQ)
- . X ^DD("DD") S Y=$TR(Y,"@"," ")
+ . ;
+ . ;  Change date/time conversion so midnight is handled properly.  wtc 694 4/24/18
+ . ;
+ . ;X ^DD("DD") S Y=$TR(Y,"@"," ")
+ . S Y=$$FMTONET^SDECDATE(Y,"Y") ;
+ . S Y=$TR(Y,"@"," ")   ;remove the @ and replace with a space between date/time  pwc *694  1/13/2020
  . S SDECZ=SDECZ_Y_"^"
  S SDECPATD=$P(SDECNOD,U,5)
  D PDEMO^SDECU3(.SDDEMO,SDECPATD)
@@ -196,10 +214,15 @@ CHECKIN(SDRES,SDT,DFN,APPT)  ;alb/sat 642 - if no checkin, check appointment che
  ..S:CHECKIN'="" SDFDA(409.84,APPT_",",.03)=CHECKIN
  ..S:ENTERED'="" SDFDA(409.84,APPT_",",.04)=ENTERED
  ..D:$D(SDFDA) UPDATE^DIE("","SDFDA")
- ..S Y=CHECKIN
- ..X ^DD("DD") S CHECKIN=$TR(Y,"@"," ")
- ..S Y=ENTERED
- ..X ^DD("DD") S ENTERED=$TR(Y,"@"," ")
+ .. S Y=CHECKIN
+ .. ;
+ .. ;  Change date/time conversion so midnight is handled properly.  wtc 694 4/24/18
+ .. ;
+ .. ;X ^DD("DD") S CHECKIN=$TR(Y,"@"," ")
+ .. S CHECKIN=$$FMTONET^SDECDATE(CHECKIN,"Y") ;
+ .. ;S Y=ENTERED
+ .. ;X ^DD("DD") S ENTERED=$TR(Y,"@"," ")
+ .. S ENTERED=$$FMTONET^SDECDATE(ENTERED,"Y") ;
  Q CHECKIN_U_ENTERED
 MULT(SDAPTYP)  ;get data from MULT APPTS MADE field of SDEC APPT REQUEST file   ;alb/sat 642
  N ARIEN,SDI,MULT1,MULTL

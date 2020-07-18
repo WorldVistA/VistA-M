@@ -1,5 +1,5 @@
 PSOSIG ;BIR/RTR-Utility to create SIG ; 11 Nov 2019  3:04 PM
- ;;7.0;OUTPATIENT PHARMACY;**46,99,114,391,313,282,455,446,402,500,515,514,574**;DEC 1997;Build 53
+ ;;7.0;OUTPATIENT PHARMACY;**46,99,114,391,313,282,455,446,402,500,515,514,574,584**;DEC 1997;Build 3
  ;External reference to PS(51 supported by DBIA 2224
  ;External reference to PS(51.1 supported by DBIA 2225
  ;External reference to PSDRUG( supported by DBIA 221
@@ -153,6 +153,7 @@ QEND ;
  Q
 ROUND ;
  Q:'$G(PSOQRND)
+ Q:$$PRN()  ;584 - Do not create a default quantity for a PRN prescription
  I PSOQRND'["." S PSOQX("QTY")=PSOQRND Q
  S PSOQX("QTY")=$P(PSOQRND,".")+1
  Q

@@ -1,6 +1,6 @@
-TIUDD01 ; SLC/JER,AJB - KILL LOGIC for Cross-references on 8925 ; 5/4/2016 12:42am
- ;;1.0;TEXT INTEGRATION UTILITIES;**65,153,299**;Jun 20, 1997;Build 3
- ;Per VHA Directive 2004-038, this routine should not be modified.
+TIUDD01 ; SLC/JER,AJB - KILL LOGIC for Cross-references on 8925 ;Apr 16, 2018@06:58
+ ;;1.0;TEXT INTEGRATION UTILITIES;**65,153,299,290**;Jun 20, 1997;Build 548
+ ;Per VA Directive 6402, this routine should not be modified.
 KACLPT(FLD,X) ; KILL Logic for ACLPT
  N TIUD0,TIUD13
  S TIUD0=$G(^TIU(8925,+DA,0)),TIUD13=$G(^(13))
@@ -123,6 +123,24 @@ KAPTLD(FLD,X) ; KILL Logic for "APTLD"
  . . ; TIUVS="Hosp Loc;Visit/Adm Date/time;Visit Type"
  . . S TIUVS=$P(TIUD12,U,11)_";"_$P(TIUD0,U,7)_";"_$P(TIUD0,U,13)
  . . K ^TIU(8925,"AVSTRV",+$P(TIUD0,U,2),TIUVS,+X,DA)
+ Q
+ ;
+KAADT(X) ; KILL Logic for AADT
+ ;N TIUD0,TIUD13,TIUD12,TIUPROV
+ I +X(3)>0 D
+ . I +X(1)>0 K ^TIU(8925,"AADT",+X(1),+X(3),DA)
+ . I +X(2)>0 K ^TIU(8925,"AADT",+X(2),+X(3),DA)
+ ;I ((+X(1))!(+X(2))) D
+ ;. S TIUPROV=$S(+X(1)>0:+X(1),1:+X(2))
+ ;. I +X(3) D
+ ;.. K ^TIU(8925,"AADT",TIUPROV,+X(3),DA)
+ ;I FLD=2,+X(2)'=+X(1) D
+ ;. I +X(3) K ^TIU(8925,"AADT",+X(2),+X(3),DA)
+ ;I FLD=1301 D
+ ;. I ((+$P(TIUD12,U,2))!(+$P(TIUD13,U,2))) D
+ ;.. S TIUPROV=$S(+$P(TIUD12,U,2)'=0:+$P(TIUD12,U,2),1:+$P(TIUD13,U,2))
+ ;.. I TIUPROV=0 Q
+ ;.. K ^TIU(8925,"AADT",TIUPROV,+X,DA)
  Q
  ;
 INVDATE(DATE) ; Inverts date

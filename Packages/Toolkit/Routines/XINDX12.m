@@ -1,5 +1,6 @@
-XINDX12 ;OSEHRA/CJE - Create phantom routines for build components ;2018-03-01  8:37 AM
- ;;7.3;TOOLKIT;**10001**;Apr 25, 1995;Build 4
+XINDX12 ;OSE/CJE - Create phantom routines for build components ;03/01/2018  8:37 AM
+ ;;7.3;TOOLKIT;**140,147**;Apr 25, 1995;Build 1
+ ; Per VHA Directive 2004-038, this routine should not be modified.
  ; Entire routine authored by Chirstopher Edwards
  ;
  ; Variables passed through the stack:
@@ -29,47 +30,47 @@ SORT ;Process Sort Templates
  ; .4011624  4      DISPAR(0,n,OUT)                  ^DIBT(D0,BY0D,D1,2)                  Part of Sort Range Data For BY(0)
  ; ========  =====  ===============================  ===================================  =============================================
  W !,"Processing Sort Templates",!
- S INDX=$S($L($P($G(^DIBT(B,"ROU")),U,1)):"D ^"_$P($G(^DIBT(B,"ROU")),U,1),1:";")
+ S INDX=$S($L($G(^DIBT(B,"ROU"))):"D "_$G(^DIBT(B,"ROU")),1:";")
  S INDC=B_" ; "_INDL_" - ROUTINE INVOKED (#1815)"
  D ADD^XINDX11
  ;
- S INDX=$S($L($P($G(^DIBT(B,"ROUOLD")),U,1)):"D ^"_$P($G(^DIBT(B,"ROUOLD")),U,1),1:";")
+ S INDX=$S($L($G(^DIBT(B,"ROUOLD"))):"D ^"_$G(^DIBT(B,"ROUOLD")),1:";")
  S INDC=" ; "_INDL_" - PREVIOUS ROUTINE INVOKED (#1816)"
  D ADD^XINDX11
  ;
  N SUB,SUB2
  S (SUB,SUB2)=""
  F  S SUB=$O(^DIBT(B,2,SUB)) Q:SUB=""  Q:SUB'=+SUB  D
- . S INDX=$S($L($P($G(^DIBT(B,2,SUB,"GET")),U,1)):$G(^DIBT(B,2,SUB,"GET")),1:";")
+ . S INDX=$S($L($G(^DIBT(B,2,SUB,"GET"))):$G(^DIBT(B,2,SUB,"GET")),1:";")
  . S INDC=B_"P"_SUB_" ; "_INDL_" - GET CODE (#10) - "_SUB
  . D ADD^XINDX11
  . ;
- . S INDX=$S($L($P($G(^DIBT(B,2,SUB,"QCON")),U,1)):$G(^DIBT(B,2,SUB,"QCON")),1:";")
+ . S INDX=$S($L($G(^DIBT(B,2,SUB,"QCON"))):$G(^DIBT(B,2,SUB,"QCON")),1:";")
  . S INDC=" ; "_INDL_" - QUERY CONDITION (#11) - "_SUB
  . D ADD^XINDX11
  . ;
- . S INDX=$S($L($P($G(^DIBT(B,2,SUB,"CM")),U,1)):$G(^DIBT(B,2,SUB,"CM")),1:";")
+ . S INDX=$S($L($G(^DIBT(B,2,SUB,"CM"))):$G(^DIBT(B,2,SUB,"CM")),1:";")
  . S INDC=" ; "_INDL_" - COMPUTED FIELD CODE (#16) - "_SUB
  . D ADD^XINDX11
  . ;
- . S INDX=$S($L($P($G(^DIBT(B,2,SUB,"OUT")),U,1)):$G(^DIBT(B,2,SUB,"OUT")),1:";")
+ . S INDX=$S($L($G(^DIBT(B,2,SUB,"OUT"))):$G(^DIBT(B,2,SUB,"OUT")),1:";")
  . S INDC=" ; "_INDL_" - SUBHEADER OUTPUT (#20) - "_SUB
  . D ADD^XINDX11
  . ;
  . F  S SUB2=$O(^DIBT(B,2,SUB,2,SUB2)) Q:SUB2=""  Q:SUB2'=+SUB2  D
- . . S INDX=$S($L($P($G(^DIBT(B,2,SUB,2,SUB2,"RCOD")),U,1)):$G(^DIBT(B,2,SUB,2,SUB2,"RCOD")),1:";")
+ . . S INDX=$S($L($G(^DIBT(B,2,SUB,2,SUB2,"RCOD"))):$G(^DIBT(B,2,SUB,2,SUB2,"RCOD")),1:";")
  . . S INDC=B_"RCOD"_SUB_"P"_SUB2_" ; "_INDL_" - RELATIONAL CODE (#5) - "_SUB_" - "_SUB2
  . . D ADD^XINDX11
  . ;
  . S SUB2=""
  . F  S SUB2=$O(^DIBT(B,2,SUB,3,SUB2)) Q:SUB2=""  Q:SUB2'=+SUB2  D
- . . S INDX=$S($L($P($G(^DIBT(B,2,SUB,3,SUB2,"OVF0")),U,1)):$G(^DIBT(B,2,SUB,3,SUB2,"OVF0")),1:";")
+ . . S INDX=$S($L($G(^DIBT(B,2,SUB,3,SUB2,"OVF0"))):$G(^DIBT(B,2,SUB,3,SUB2,"OVF0")),1:";")
  . . S INDC=B_"OVF0"_SUB_"P"_SUB2_" ; "_INDL_" - OVERFLOW CODE (#2) - "_SUB_" - "_SUB2
  . . D ADD^XINDX11
  ;
  S SUB=""
  F  S SUB=$O(^DIBT(B,"BY0D",SUB)) Q:SUB=""  Q:SUB'=+SUB  D
- . S INDX=$S($L($P($G(^DIBT(B,"BY0D",SUB,2)),U,1)):$G(^DIBT(B,"BY0D",SUB,2)),1:";")
+ . S INDX=$S($L($G(^DIBT(B,"BY0D",SUB,2))):$G(^DIBT(B,"BY0D",SUB,2)),1:";")
  . S INDC=B_"BY0D"_SUB_" ; "_INDL_" - DISPAR (#4) - "_SUB
  . D ADD^XINDX11
  Q
@@ -104,43 +105,43 @@ FORM ;Process Forms
  ; .4032     98     COMPUTED MULTIPLE                ^DIST(.403,D0,40,D1,40,D2,COMP MUL)
  ; ========  =====  ===============================  ===================================  =============================================
  W !,"Processing Forms",!
- S INDX=$S($L($P($G(^DIST(.403,B,11)),U,1)):$P($G(^DIST(.403,B,11)),U,1),1:";")
+ S INDX=$S($L($G(^DIST(.403,B,11))):$G(^DIST(.403,B,11)),1:";")
  S INDC=B_" ; "_INDL_" - PRE ACTION (#11)"
  D ADD^XINDX11
  ;
- S INDX=$S($L($P($G(^DIST(.403,B,12)),U,1)):$P($G(^DIST(.403,B,12)),U,1),1:";")
+ S INDX=$S($L($G(^DIST(.403,B,12))):$G(^DIST(.403,B,12)),1:";")
  S INDC=" ; "_INDL_" - POST ACTION (#12)"
  D ADD^XINDX11
  ;
- S INDX=$S($L($P($G(^DIST(.403,B,14)),U,1)):$P($G(^DIST(.403,B,14)),U,1),1:";")
+ S INDX=$S($L($G(^DIST(.403,B,14))):$G(^DIST(.403,B,14)),1:";")
  S INDC=" ; "_INDL_" - POST SAVE (#14)"
  D ADD^XINDX11
  ;
- S INDX=$S($L($P($G(^DIST(.403,B,20)),U,1)):$P($G(^DIST(.403,B,20)),U,1),1:";")
+ S INDX=$S($L($G(^DIST(.403,B,20))):$G(^DIST(.403,B,20)),1:";")
  S INDC=" ; "_INDL_" - DATA VALIDATION (#20)"
  D ADD^XINDX11
  ;
  N SUB,SUB2
  S (SUB,SUB2)=""
  F  S SUB=$O(^DIST(.403,B,40,SUB)) Q:SUB=""  Q:SUB'=+SUB  D
- . S INDX=$S($L($P($G(^DIST(.403,B,40,SUB,11)),U,1)):$P($G(^DIST(.403,B,40,SUB,11)),U,1),1:";")
+ . S INDX=$S($L($G(^DIST(.403,B,40,SUB,11))):$G(^DIST(.403,B,40,SUB,11)),1:";")
  . S INDC=B_"P"_SUB_" ; "_INDL_" - PRE ACTION FILE (#.4031) FIELD (#11) - "_SUB
  . D ADD^XINDX11
  . ;
- . S INDX=$S($L($P($G(^DIST(.403,B,40,SUB,12)),U,1)):$P($G(^DIST(.403,B,40,SUB,12)),U,1),1:";")
+ . S INDX=$S($L($G(^DIST(.403,B,40,SUB,12))):$G(^DIST(.403,B,40,SUB,12)),1:";")
  . S INDC=" ; "_INDL_" - POST ACTION FILE (#.4031) FIELD (#12) - "_SUB
  . D ADD^XINDX11
  . ;
  . F  S SUB2=$O(^DIST(.403,B,40,SUB,40,SUB2)) Q:SUB2=""  Q:SUB2'=+SUB2  D
- . . S INDX=$S($L($P($G(^DIST(.403,B,40,SUB,40,SUB2,11)),U,1)):$P($G(^DIST(.403,B,40,SUB,40,SUB2,11)),U,1),1:";")
+ . . S INDX=$S($L($G(^DIST(.403,B,40,SUB,40,SUB2,11))):$G(^DIST(.403,B,40,SUB,40,SUB2,11)),1:";")
  . . S INDC=B_"P"_SUB_"P"_SUB2_" ; "_INDL_" - PRE ACTION FILE (#.4032) FIELD (#11) - "_SUB_" - "_SUB2
  . . D ADD^XINDX11
  . . ;
- . . S INDX=$S($L($P($G(^DIST(.403,B,40,SUB,40,SUB2,12)),U,1)):$P($G(^DIST(.403,B,40,SUB,40,SUB2,12)),U,1),1:";")
+ . . S INDX=$S($L($G(^DIST(.403,B,40,SUB,40,SUB2,12))):$G(^DIST(.403,B,40,SUB,40,SUB2,12)),1:";")
  . . S INDC=" ; "_INDL_" - POST ACTION FILE (#.4032) FIELD (#12) - "_SUB_" - "_SUB2
  . . D ADD^XINDX11
  . . ;
- . . S INDX=$S($L($P($G(^DIST(.403,B,40,SUB,40,SUB2,"COMP MUL")),U,1)):$P($G(^DIST(.403,B,40,SUB,40,SUB2,"COMP MUL")),U,1),1:";")
+ . . S INDX=$S($L($G(^DIST(.403,B,40,SUB,40,SUB2,"COMP MUL"))):$G(^DIST(.403,B,40,SUB,40,SUB2,"COMP MUL")),1:";")
  . . S INDC=" ; "_INDL_" - COMPUTED MULTIPLE FILE (#.4032) FIELD (#98) - "_SUB_" - "_SUB2
  . . D ADD^XINDX11
  Q
@@ -151,7 +152,7 @@ DIALOG ;Process Dialogs
  ; .84       6      POST MESSAGE ACTION              ^DI(.84,D0,6)
  ; ========  =====  ===============================  ===================================  =============================================
  W !,"Processing Dialogs",!
- S INDX=$S($L($P($G(^DI(.84,B,6)),U,1)):$P($G(^DI(.84,B,6)),U,1),1:";")
+ S INDX=$S($L($G(^DI(.84,B,6))):$G(^DI(.84,B,6)),1:";")
  S INDC=B_" ; "_INDL_" - POST MESSAGE ACTION (#6)"
  D ADD^XINDX11
  Q
@@ -163,11 +164,11 @@ HELP ;Process Help Frames
  ; 9.2       10.2   EXIT EXECUTE STATEMENT           ^DIC(9.2,D0,10.2)
  ; ========  =====  ===============================  ===================================  =============================================
  W !,"Processing Help Frames",!
- S INDX=$S($L($P($G(^DIC(9.2,B,10.1)),U,1)):$P($G(^DIC(9.2,B,10.1)),U,1),1:";")
+ S INDX=$S($L($G(^DIC(9.2,B,10.1))):$G(^DIC(9.2,B,10.1)),1:";")
  S INDC=B_" ; "_INDL_" - ENTRY EXECUTE STATEMENT (#10.1)"
  D ADD^XINDX11
  ;
- S INDX=$S($L($P($G(^DIC(9.2,B,10.2)),U,1)):$P($G(^DIC(9.2,B,10.2)),U,1),1:";")
+ S INDX=$S($L($G(^DIC(9.2,B,10.2))):$G(^DIC(9.2,B,10.2)),1:";")
  S INDC=" ; "_INDL_" - EXIT EXECUTE STATEMENT (#10.2)"
  D ADD^XINDX11
  Q
@@ -178,7 +179,7 @@ KEY ;Process Security Keys
  ; 19.1      4      GRANTING CONDITION               ^DIC(19.1,D0,4)
  ; ========  =====  ===============================  ===================================  =============================================
  W !,"Processing Security Keys",!
- S INDX=$S($L($P($G(^DIC(19.1,B,4)),U,1)):$P($G(^DIC(19.1,B,4)),U,1),1:";")
+ S INDX=$S($L($G(^DIC(19.1,B,4))):$G(^DIC(19.1,B,4)),1:";")
  S INDC=B_" ; "_INDL_" - GRANTING CONDITION (#4)"
  D ADD^XINDX11
  Q
@@ -214,7 +215,9 @@ LIST ;Process List Templates
  S INDC=" ; "_INDL_" - ENTRY CODE (#106)"
  D ADD^XINDX11
  ;
- S INDX=$S($L($G(^SD(409.61,B,"ARRAY"))):"I $L("_$P($G(^SD(409.61,B,"ARRAY"))," ",2,99)_") Q",1:";")
+ N INDX1 ;p147 - remove space preceding ARRAY NAME
+ S INDX1=$G(^SD(409.61,B,"ARRAY"))
+ S INDX=$S($L(INDX1):"I $L("_$S($E(INDX1)=" ":$E(INDX1,2,50),1:INDX1)_") Q",1:";")
  S INDC=" ; "_INDL_" - ARRAY NAME (#107)"
  D ADD^XINDX11
  Q
@@ -239,61 +242,62 @@ PROTOCOL ;Process Protocols
  W !,"Processing Protocols",!
  K INDN
  S INDN=$P($G(^ORD(101,B,0)),U,1)
- S INDX=$S($L($E($G(^ORD(101,B,15)),1,245)):$E($G(^ORD(101,B,15)),1,245),1:";")
+ S INDX=$S($L($G(^ORD(101,B,15))):$G(^ORD(101,B,15)),1:";")
  S INDC=B_" ; "_INDN_" - EXIT ACTION (#15)"
  D ADD^XINDX11
  ;
- S INDX=$S($L($E($G(^ORD(101,B,20)),1,245)):$E($G(^ORD(101,B,20)),1,245),1:";")
+ S INDX=$S($L($G(^ORD(101,B,20))):$G(^ORD(101,B,20)),1:";")
  S INDC=" ; "_INDN_" - ENTRY ACTION (#20)"
  D ADD^XINDX11
  ;
- S INDX=$S($L($E($G(^ORD(101,B,24)),1,245)):$E($G(^ORD(101,B,24)),1,245),1:";")
+ S INDX=$S($L($G(^ORD(101,B,24))):$G(^ORD(101,B,24)),1:";")
  S INDC=" ; "_INDN_" - SCREEN (#24)"
  D ADD^XINDX11
  ;
- S INDX=$S($L($E($G(^ORD(101,B,26)),1,245)):$E($G(^ORD(101,B,26)),1,245),1:";")
+ S INDX=$S($L($G(^ORD(101,B,26))):$G(^ORD(101,B,26)),1:";")
  S INDC=" ; "_INDN_" - HEADER (#26)"
  D ADD^XINDX11
  ;
- S INDX=$S($L($E($G(^ORD(101,B,27)),1,245)):$E($G(^ORD(101,B,27)),1,245),1:";")
+ S INDX=$S($L($G(^ORD(101,B,27))):$G(^ORD(101,B,27)),1:";")
  S INDC=" ; "_INDN_" - MENU HELP (#27)"
  D ADD^XINDX11
  ;
- S INDX=$S($L($E($G(^ORD(101,B,100)),1,245)):$E($G(^ORD(101,B,100)),1,245),1:";")
+ S INDX=$S($L($G(^ORD(101,B,100))):$G(^ORD(101,B,100)),1:";")
  S INDC=" ; "_INDN_" - ORDER PRINT ACTION (#100)"
  D ADD^XINDX11
  ;
- S INDX=$S($L($E($G(^ORD(101,B,100.1)),1,245)):$E($G(^ORD(101,B,100.1)),1,245),1:";")
+ S INDX=$S($L($G(^ORD(101,B,100.1))):$G(^ORD(101,B,100.1)),1:";")
  S INDC=" ; "_INDN_" - ORDER CANCEL ACTION (#100.1)"
  D ADD^XINDX11
  ;
- S INDX=$S($L($E($G(^ORD(101,B,100.2)),1,245)):$E($G(^ORD(101,B,100.2)),1,245),1:";")
+ S INDX=$S($L($G(^ORD(101,B,100.2))):$G(^ORD(101,B,100.2)),1:";")
  S INDC=" ; "_INDN_" - ORDER PURGE ACTION (#100.2)"
  D ADD^XINDX11
  ;
- S INDX=$S($L($E($G(^ORD(101,B,771)),1,245)):$E($G(^ORD(101,B,771)),1,245),1:";")
+ S INDX=$S($L($G(^ORD(101,B,771))):$G(^ORD(101,B,771)),1:";")
  S INDC=" ; "_INDN_" - PROCESSING ROUTINE (#771)"
  D ADD^XINDX11
  ;
- S INDX=$S($L($E($G(^ORD(101,B,772)),1,245)):$E($G(^ORD(101,B,772)),1,245),1:";")
+ S INDX=$S($L($G(^ORD(101,B,772))):$G(^ORD(101,B,772)),1:";")
  S INDC=" ; "_INDN_" - ORDER PURGE ACTION (#772)"
  D ADD^XINDX11
  ;
- S INDX=$S($L($E($G(^ORD(101,B,774)),1,245)):$E($G(^ORD(101,B,774)),1,245),1:";")
+ S INDX=$S($L($G(^ORD(101,B,774))):$G(^ORD(101,B,774)),1:";")
  S INDC=" ; "_INDN_" - ROUTING LOGIC (#774)"
  D ADD^XINDX11
  ;
  N SUB
  S SUB=""
- F  S SUB=$O(^ORD(101,B,21,SUB)) Q:SUB=""  Q:SUB'=+SUB  D
- . S INDX=$S($L($E($G(^ORD(101,B,21,SUB,0)),1,17)):"$G("_$E($G(^HL(771,B,"MSG",SUB,"R")),1,17)_")",1:";")
- . I INDX="D Q" S INDX=";"
- . S INDC=B_"R"_SUB_" ; "_INDN_" - REQUIRED VARIABLES SUB FILE (#101.021) REQUIRED VARIABLES (#1) - "_SUB
- . D ADD^XINDX11
+ ;F  S SUB=$O(^ORD(101,B,21,SUB)) Q:SUB=""  Q:SUB'=+SUB  D
+ ;why does a list of required variable needs to check the HL7 MESSAGE (#6) field, which is no longer used  rsd
+ ;. S INDX=$S($L($E($G(^ORD(101,B,21,SUB,0)),1,17)):"$G("_$E($G(^HL(771,B,"MSG",SUB,"R")),1,17)_")",1:";")
+ ;. I INDX="D Q" S INDX=";"
+ ;. S INDC=B_"R"_SUB_" ; "_INDN_" - REQUIRED VARIABLES SUB FILE (#101.021) REQUIRED VARIABLES (#1) - "_SUB
+ ;. D ADD^XINDX11
  ;
  S SUB=""
  F  S SUB=$O(^ORD(101,B,101.05,SUB)) Q:SUB=""  Q:SUB'=+SUB  D
- . S INDX=$S($L($E($G(^ORD(101,B,101.05,SUB,1)),1,245)):$E($G(^ORD(101,B,101.05,SUB,1)),1,245),1:";")
+ . S INDX=$S($L($G(^ORD(101,B,101.05,SUB,1))):$G(^ORD(101,B,101.05,SUB,1)),1:";")
  . I INDX="D Q" S INDX=";"
  . S INDC=B_"M"_SUB_" ; "_INDN_" - METHOD SUB FILE (#101.05) METHOD ACTION (#.02) - "_SUB
  . D ADD^XINDX11
@@ -309,7 +313,7 @@ HL7AP ; Process HL7 Application Parameters
  N SUB
  S SUB=""
  F  S SUB=$O(^HL(771,B,"MSG",SUB)) Q:SUB=""  Q:SUB'=+SUB  D
- . S INDX=$S($L($E($G(^HL(771,B,"MSG",SUB,"R")),1,17)):"D "_$E($G(^HL(771,B,"MSG",SUB,"R")),1,17),1:";")
+ . S INDX=$S($L($G(^HL(771,B,"MSG",SUB,"R"))):"D "_$G(^HL(771,B,"MSG",SUB,"R")),1:";")
  . I INDX="D Q" S INDX=";"
  . S INDC=B_"P"_SUB_" ; "_INDL_" - HL7 MESSAGE SUB FILE (#771.06) PROCESSING ROUTINE (#1) - "_SUB
  . D ADD^XINDX11

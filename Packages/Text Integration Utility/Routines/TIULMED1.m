@@ -1,5 +1,5 @@
-TIULMED1 ; SLC/JM - Active/Recent Med Objects Routine ;2/7/2000
- ;;1.0;TEXT INTEGRATION UTILITIES;**38,73,92,94,202,226**;Jun 20, 1997;Build 1
+TIULMED1 ; SLC/JM - Active/Recent Med Objects Routine ;03/23/17  10:53
+ ;;1.0;TEXT INTEGRATION UTILITIES;**38,73,92,94,202,226,290**;Jun 20, 1997;Build 548
  ;
  ; All routines here are part of the LIST entry point of TIULMED
  ;
@@ -38,6 +38,7 @@ ADDMED(XMODE) ; if XMODE creates XSTR, if not add med to TARGET
  .D ADDM("MDR"),ADDM("SCH")
  .I DETAILED D FLUSH
  .D ADDM("SIO")
+ .;I 'XMODE,+CLINORD D FLUSH,ADD("Location: "_$$GET1^DIQ(100,+$P(NODE,U,8)_",",6)) ; ajb 290
  E  I TYPE="OP" D  I 1 ; Outpatient Meds
  .I 'XMODE,DETAILED D
  ..I $$PL(12) D
@@ -66,6 +67,7 @@ ADDMED(XMODE) ; if XMODE creates XSTR, if not add med to TARGET
  .I 'XMODE D
  ..N I
  ..F I=TOPLINE:1:NEXTLINE S @TARGET@(I,0)=$TR(@TARGET@(I,0),U," ")
+ ..;I +CLINORD D FLUSH,ADD("Location: "_$$GET1^DIQ(100,+$P(NODE,U,8)_",",6)) ; ajb 290
  I XMODE D  I 1
  .I XSTR="" S XSTR="_"
  .E  I $L(XSTR)>80 S XSTR=$E(XCOUNT_"_"_XSUM_"_"_XSTR,1,80)
@@ -174,6 +176,13 @@ ML(SUB) ;Returns true if multiple exists and contains data
  .I $L(^TMP("PS",$J,INDEX,SUB,IDX,0)) S ML=1
  Q ML
 ADDTITLE ;Adds a title line indicating which meds are in the list
+ ;  ALLMEDS   0 - Specifies Inpatient Meds if patient is an
+ ;                Inpatient, or Outpatient Meds if patient
+ ;                is an Outpatient
+ ;            1 - Specifies both Inpatient, Outpatient, & Clinic
+ ;            2 or "I" - Specifies Inpatient only
+ ;            3 or "O" - Specifies Outpatient only
+ ;            4 or "C" - Specifies Clinic only
  N MSG,ALL,SUP,SUPFX
  I ACTVONLY<2 S MSG="Active"
  E  S MSG=""
@@ -184,10 +193,18 @@ ADDTITLE ;Adds a title line indicating which meds are in the list
  .I ISINP S ALL=2
  .E  S ALL=3
  S MSG=MSG_" "
- I ALL'=3 S MSG=MSG_"Inpatient"
- I ALL=1 S MSG=MSG_" and "
- I ALL'=2 S MSG=MSG_"Outpatient"
- S MSG=MSG_" Medications"
+ ; ajb 290 add clinic order meds to title and allows for clinic only
+ I ALL=1 S MSG=MSG_"Inpatient, Outpatient and Clinic"
+ I ALL=2 S MSG=MSG_"Inpatient"
+ I ALL=3 S MSG=MSG_"Outpatient"
+ I ALL=4 S MSG=MSG_"Clinic"
+ I ALL=5 S MSG=MSG_"Inpatient and Clinic"
+ I ALL=6 S MSG=MSG_"Outpatient and Clinic"
+ ;I ALL'=3 S MSG=MSG_"Clinic"
+ ;I ALL=2 S MSG=MSG_" and Inpatient"
+ ;I ALL=1 S MSG=MSG_", Inpatient and "
+ ;I ALL'=2,ALL'=4 S MSG=MSG_"Outpatient"
+ S MSG=MSG_" Medications" ;I ALL=4 S MSG=MSG_" and Infusions"
  I SUPPLIES S SUPFX="in"
  E  S SUPFX="ex"
  S SUPFX="("_SUPFX_"cluding Supplies):"

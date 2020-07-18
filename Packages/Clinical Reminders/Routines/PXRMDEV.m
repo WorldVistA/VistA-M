@@ -1,7 +1,7 @@
-PXRMDEV ;SLC/PKR - This is a driver for testing Clinical Reminders. ;05/13/2016
- ;;2.0;CLINICAL REMINDERS;**4,6,11,16,18,24,26,47**;Feb 04, 2005;Build 291
+PXRMDEV ;SLC/PKR - This is a driver for testing Clinical Reminders. ;08/23/2019
+ ;;2.0;CLINICAL REMINDERS;**4,6,11,16,18,24,26,47,45**;Feb 04, 2005;Build 566
  ;
- ;==================================================
+ ;===============
 DEB ;Prompt for patient and reminder by name input component.
  N DATE,DFN,DIC,DIR,DIROUT,DTOUT,DUOUT,HASFF,HASTERM,IND
  N PXRHM,PXRMFFSS,PXRMITEM,PXRMTDEB,X,Y
@@ -46,7 +46,7 @@ GREM1 D ^DIC
  D DOREM(DFN,PXRMITEM,PXRHM,DATE)
  Q
  ;
- ;==================================================
+ ;===============
 DEV ;Prompt for patient and reminder by name and evaluation date.
  N DATE,DFN,DIC,DIROUT,DIRUT,DTOUT,DUOUT,HASFF,HASTERM,IND
  N PXRHM,PXRMFFSS,PXRMITEM,PXRMTDEB,REF,X,Y
@@ -85,16 +85,36 @@ GREM2 D ^DIC
  D DOREM(DFN,PXRMITEM,PXRHM,DATE)
  Q
  ;
- ;==================================================
+ ;===============
+DISP01(FIEVAL) ;For Eduction Topics, Exams, and Health Factors the Print Name
+ ;is displayed in the Clinical Maintenance Output. Since Print Names
+ ;are not unique it can be difficult to determine what the actual
+ ;finding is so display the .01.
+ N IEN,IND
+ S IND=0
+ F  S IND=+$O(FIEVAL(IND)) Q:IND=0  D
+ . I FIEVAL(IND)=0 Q
+ . S IEN=$P(FIEVAL(IND,"FINDING"),";",1)
+ . I FIEVAL(IND,"FILE NUMBER")=9000010.16 S FIEVAL(IND,"NAME")=$P(^AUTTEDT(IEN,0),U,1)
+ . I FIEVAL(IND,"FILE NUMBER")=9000010.13 S FIEVAL(IND,"NAME")=$P(^AUTTEXAM(IEN,0),U,1)
+ . I FIEVAL(IND,"FILE NUMBER")=9000010.23 S FIEVAL(IND,"FACTOR")=$P(^AUTTHF(IEN,0),U,1)
+ Q
+ ;
+ ;===============
 DOREM(DFN,PXRMITEM,PXRHM,DATE) ;Do the reminder
- N BOP,DEFARR,FIEVAL,FINDING,IND,JND,NL,NOUT,OUTPUT,PNAME
- N PXRMDEBG,PXRMID
- N REF,RIEN,RNAME,STATUS,TEXT,TEXTOUT,TFIEVAL,TTEXT,X
+ ;Reference to XLFSHAN ICR #6157
+ N BOP,DEFARR,END,FIEVAL,FINDING,IND,JND,NL,NOUT,OUTPUT,PNAME
+ N PXRMDEBG,PXRMID,REF,RIEN,RNAME,START,STATUS
+ N TEXT,TEXTOUT,TFIEVAL,TTEXT,WSTART,WEND,X
  ;This is a debugging run so set PXRMDEBG.
  S NL=0,PXRMDEBG=1
+ S WSTART=$H
+ S START=$$CPUTIME^XLFSHAN
  D DEF^PXRMLDR(PXRMITEM,.DEFARR)
  I +$G(DATE)=0 D EVAL^PXRM(DFN,.DEFARR,PXRHM,1,.FIEVAL)
  I +$G(DATE)>0 D EVAL^PXRM(DFN,.DEFARR,PXRHM,1,.FIEVAL,DATE)
+ S END=$$CPUTIME^XLFSHAN
+ S WEND=$H
  ;
  I $D(^TMP(PXRMID,$J,"FFDEB")) M FIEVAL=^TMP(PXRMID,$J,"FFDEB") K ^TMP(PXRMID,$J,"FFDEB")
  ;
@@ -103,8 +123,11 @@ DOREM(DFN,PXRMITEM,PXRHM,DATE) ;Do the reminder
  I PNAME="" S PNAME=$P(TTEXT,U,1)
  S NL=NL+1,OUTPUT(NL)="Reminder: "_PNAME
  S NL=NL+1,OUTPUT(NL)="Patient: "_$$GET1^DIQ(2,DFN,.01)
+ S NL=NL+1,OUTPUT(NL)="Reminder evaluation cpu time: "_$$ETIMEMS^XLFSHAN(START,END)
+ S NL=NL+1,OUTPUT(NL)="Reminder evaluation clock time: "_$$HDIFF^XLFDT(WEND,WSTART,2)_" seconds"
  S NL=NL+1,OUTPUT(NL)=" "
  S NL=NL+1,OUTPUT(NL)="The elements of the FIEVAL array are:"
+ D DISP01(.FIEVAL)
  S REF="FIEVAL"
  D ACOPY^PXRMUTIL(REF,"TTEXT()")
  S IND=0
@@ -143,6 +166,16 @@ DOREM(DFN,PXRMITEM,PXRHM,DATE) ;Do the reminder
  .. F  S IND=$O(TTEXT(IND)) Q:IND=""  S NL=NL+1,OUTPUT(NL)=TTEXT(IND)
  . K ^TMP("PXRMTDEB",$J)
  ;
+ ;Display the demographic variables.
+ S NL=NL+1,OUTPUT(NL)="",NL=NL+1,OUTPUT(NL)=""
+ S NL=NL+1,OUTPUT(NL)="The demographic variables are:"
+ S IND=""
+ F  S IND=$O(^TMP("PXRMDEM",$J,IND)) Q:IND=""  D
+ . S TEXT=^TMP("PXRMDEM",$J,IND)
+ . I (IND="DOB")!(IND="DOD")!(IND="LAD") S TEXT=$$FMTE^XLFDT(TEXT,"5Z")
+ . S NL=NL+1,OUTPUT(NL)=IND_"="_TEXT
+ K ^TMP("PXRMDEM",$J)
+ ;
  I $D(^TMP(PXRMID,$J)) D
  . S NL=NL+1,OUTPUT(NL)="",NL=NL+1,OUTPUT(NL)=""
  . S NL=NL+1,OUTPUT(NL)="The elements of the ^TMP(PXRMID,$J) array are:"
@@ -174,13 +207,13 @@ DOREM(DFN,PXRMITEM,PXRHM,DATE) ;Do the reminder
  . S RNAME=$O(^TMP("PXRHM",$J,RIEN,""))
  . S STATUS=$P($G(^TMP("PXRHM",$J,RIEN,RNAME)),U,1)
  . I STATUS="" S STATUS="UNKNOWN"
- . M ^TMP("PXRMHV",$J,STATUS,RNAME,RIEN)=^TMP("PXRHM",$J,RIEN,RNAME)
- . D MHVOUT^PXRMFMTO("PXRMHV",STATUS,RNAME,RIEN,.NL,.OUTPUT)
+ . M ^TMP("PXRMMHV",$J,STATUS,RNAME,RIEN)=^TMP("PXRHM",$J,RIEN,RNAME)
+ . D MHVOUT^PXRMFMTO("PXRMMHV",STATUS,RNAME,RIEN,.NL,.OUTPUT)
  I PXRHM=12 D
  . S NL=NL+1,OUTPUT(NL)="",NL=NL+1,OUTPUT(NL)=""
  . S NL=NL+1,OUTPUT(NL)="MHV Combined Output:"
  . D MHVCOUT^PXRMFMTO("PXRMMHVC",.NL,.OUTPUT)
- K ^TMP("PXRM",$J),^TMP("PXRHM",$J),^TMP("PXRMMHVC",$J)
+ K ^TMP("PXRM",$J),^TMP("PXRHM",$J),^TMP("PXRMMHV",$J),^TMP("PXRMMHVC",$J)
  S BOP=$$BORP^PXRMUTIL("P")
  I BOP="B" D
  . S X="IORESET"
@@ -189,5 +222,36 @@ DOREM(DFN,PXRMITEM,PXRHM,DATE) ;Do the reminder
  . W IORESET
  . D KILL^%ZISS
  I BOP="P" D GPRINT^PXRMUTIL("OUTPUT")
+ Q
+ ;
+ ;===============
+TERM ;
+ N DFN,DIC,DIROUT,DIRUT,DTOUT,DUOUT
+ N FIEVAL,FINDPA,IND,MAXOCC,OCC,TERMIEN,TERMARR
+ S DIC=2,DIC("A")="Select Patient: "
+ S DIC(0)="AEQMZ"
+TPAT D ^DIC
+ I $D(DIROUT)!$D(DIRUT) Q
+ I $D(DTOUT)!$D(DUOUT) Q
+ S DFN=+$P(Y,U,1)
+ I DFN=-1 G TPAT
+ S DIC=811.5,DIC("A")="Select Reminder Term: "
+TTERM D ^DIC
+ I $D(DIROUT)!$D(DIRUT) Q
+ I $D(DTOUT)!$D(DUOUT) Q
+ S TERMIEN=+$P(Y,U,1)
+ I TERMIEN=-1 G TTERM
+ D TERM^PXRMLDR(TERMIEN,.TERMARR)
+ S IND=0,MAXOCC=1
+ F  S IND=+$O(TERMARR(20,IND)) Q:IND=0  D
+ . I $P(TERMARR(20,IND,3),U,3)=1 S MAXOCC=50 Q
+ . S OCC=+$P(TERMARR(20,IND,0),U,14)
+ . I OCC>MAXOCC S MAXOCC=OCC
+ S $P(FINDPA(0),U,14)=MAXOCC
+ D IEVALTER^PXRMTERM(DFN,.FINDPA,.TERMARR,1,.FIEVAL)
+ D DISP01(.FIEVAL)
+ W !,"The term is "_$S($G(FIEVAL(1))=1:"True",1:"False")
+ W !,"FIEVAL:"
+ D AWRITE^PXRMUTIL("FIEVAL")
  Q
  ;

@@ -1,5 +1,10 @@
-SDEC25 ;ALB/SAT - VISTA SCHEDULING RPCS ;MAY 15, 2017
- ;;5.3;Scheduling;**627,665,671,717**;Aug 13, 1993;Build 12
+SDEC25 ;ALB/SAT,WTC - VISTA SCHEDULING RPCS ;Feb 12, 2020@15:22
+ ;;5.3;Scheduling;**627,665,671,717,694**;Aug 13, 1993;Build 61
+ ;
+ ;  ICR
+ ;  ---
+ ;  2309 - #9000010 ^AUPNVSIT
+ ;  7030 - #2 (APPT record)
  ;
  Q
  ;
@@ -10,17 +15,17 @@ CHECKIN(SDECY,SDECAPTID,SDECCDT,SDECCC,SDECPRV,SDECROU,SDECVCL,SDECVFM,SDECOG,SD
  ; INPUT: SDECAPTID - (required) Appointment ID
  ;        SDECCDT   - (optional) Check-in date/time
  ;                               "@" - indicates delete check-in
- ;        SDECCC    - (????????) Clinic Stop pointer to CLINIC STOP file
+ ;        SDECCC    - (optional) Clinic Stop pointer to CLINIC STOP file
  ;        SDECPRV   - (optional) Provider pointer to NEW PERSON file
  ;                               default to current user
  ;        SDECROU   - (optional) Print Routing Slip flag, valid values:
  ;                                 0=false   1=true
- ;        SDECVCL   - (????????) Clinic pointer to HOSPITAL LOCATION
- ;        SDECVFM   - FORM
- ;        SDECOG    - OUTGUIDE FLAG
- ;        SDECCR    - Generate Chart request upon check-in? (1-Yes, otherwise no)
- ;        SDECPCC   - ien of PWH Type in HEALTH SUMMARY PWH TYPE file ^APCHPWHT
- ;        SDECWHF   - Print Patient Wellness Handout flag
+ ;        SDECVCL   - (unused) Clinic pointer to HOSPITAL LOCATION
+ ;        SDECVFM   - (unused) FORM
+ ;        SDECOG    - (unused) OUTGUIDE FLAG
+ ;        SDECCR    - (unused) Generate Chart request upon check-in? (1-Yes, otherwise no)
+ ;        SDECPCC   - (unused) ien of PWH Type in HEALTH SUMMARY PWH TYPE file ^APCHPWHT
+ ;        SDECWHF   - (unused) Print Patient Wellness Handout flag
  ;
 ENDBG ;
  N BSDVSTN,EMSG
@@ -39,7 +44,11 @@ ENDBG ;
  ;validate checkin date/time (required)
  S SDECCDT=$G(SDECCDT)
  S:SDECCDT="@" SDECCAN=1
- I 'SDECCAN,SDECCDT'="" S %DT="T" S X=SDECCDT D ^%DT S SDECCDT=Y I Y=-1 S SDECCDT=""
+ ;
+ ;  Change date/time conversion so midnight is handled properly.  wtc 694 4/24/18
+ ;
+ ;I 'SDECCAN,SDECCDT'="" S %DT="T" S X=SDECCDT D ^%DT S SDECCDT=Y I Y=-1 S SDECCDT=""
+ I 'SDECCAN,SDECCDT'="" S SDECCDT=$$NETTOFM^SDECDATE(SDECCDT,"Y") I SDECCDT=-1 S SDECCDT="" ;
  I SDECCDT="" D ERR("SDEC25: Invalid Check-In Time") Q
  ;validate clinic stop code
  S SDECCC=$G(SDECCC)
@@ -98,7 +107,7 @@ ENDBG ;
  . ;
  . ;  Execute event driver.  4=check in (see #409.66), 2=non-interactive - wtc SD*5.3*717 10/25/18
  . ;
- . ;*zeb+1 717 3/19/19 prevent extra cancel check-in when canceling a checked-in appointment
+ . ;*zeb+1 717 3/19/19 prevent extra cancel check-in when canceling a checked-in walkin
  . I '((SDECCDT="@")&($G(SDECTYP)]"")) D EVT^SDAMEVT(.SDATA,4,2,SDCIHDL) ;assumes SDECTYP, which is defined if coming from APPDEL^SDEC08
  ;
  S SDECI=SDECI+1
@@ -216,7 +225,8 @@ CHKEVT1(SDECRES,SDECSTART,SDECPAT,SDECSTAT) ;
  S SDECAPPT=0 F  S SDECAPPT=$O(^SDEC(409.84,"ARSRC",SDECRES,SDECSTART,SDECAPPT)) Q:'+SDECAPPT  D  Q:SDECFOUND
  . S SDECNOD=$G(^SDEC(409.84,SDECAPPT,0)) Q:SDECNOD=""
  . I $P(SDECNOD,U,5)=SDECPAT,$P(SDECNOD,U,12)="" S SDECFOUND=1 Q
- I SDECFOUND,+$G(SDECAPPT) D SDECCHK(SDECAPPT,SDECSTAT)
+ I SDECFOUND,+$G(SDECAPPT) D  ;
+ . D SDECCHK(SDECAPPT,SDECSTAT)
  Q SDECFOUND
  ;
 CHKEVT3(SDECRES) ;
@@ -271,14 +281,19 @@ CHECKOUT(SDECY,DFN,SDT,SDCODT,SDECAPTID,VPRV) ;Check Out appointment
  I '+SDECAPTID D ERR("Invalid Appointment ID.") Q
  I '$D(^SDEC(409.84,SDECAPTID,0)) D ERR("Invalid Appointment ID.") Q
  ;INITIALIZE VARIABLES
- S %DT="T"
- S X=SDT
- D ^%DT   ; GET FM FORMAT FOR APPOINTMENT DATE/TIME
- S SDT=Y
- S X=SDCODT
- D ^%DT   ; GET FM FORMAT FOR CHECKOUT DATE/TIME
+ ;
+ ;  Change date/time conversion so midnight is handled properly.  wtc 694 4/24/18
+ ; 
+ ;S %DT="T"
+ ;S X=SDT
+ ;D ^%DT   ; GET FM FORMAT FOR APPOINTMENT DATE/TIME
+ ;S SDT=Y
+ S SDT=$$NETTOFM^SDECDATE(SDT,"Y") ;
+ ;S X=SDCODT
+ ;D ^%DT   ; GET FM FORMAT FOR CHECKOUT DATE/TIME
+ S SDCODT=$$NETTOFM^SDECDATE(SDCODT,"Y") ;
  ;ChecOut time cannot be in the future
- S SDCODT=Y
+ ;S SDCODT=Y
  I SDCODT>$$HTFM^XLFDT($H) D ERR("Check Out time cannot be in the future.") Q
  ;
  ;appointment record

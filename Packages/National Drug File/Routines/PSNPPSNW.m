@@ -1,5 +1,5 @@
 PSNPPSNW ;HP/MJE-PPSN update NDF data additional update code ; 05 Mar 2014  1:20 PM
- ;;4.0;NATIONAL DRUG FILE;**513,563**; 30 Oct 98;Build 5
+ ;;4.0;NATIONAL DRUG FILE;**513,563,569**; 30 Oct 98;Build 3
  ;
  ;Reference to ^PSSREF supported by DBIA #6371
  ;Reference to ^PSDRUG supported by DBIA #221
@@ -34,15 +34,9 @@ ASKND ;
 RSET ;
  S:$D(^PSDRUG(DA,"ND")) PSNID=$P(^PSDRUG(DA,"ND"),"^",10)
  S PSNP=$G(^PSDRUG(DA,"I")) I PSNP,PSNP<DT Q:$D(^PSDRUG(DA,"I"))
- S DA=DISPDRG D:$D(^PSDRUG(DA,"ND")) SETNULL  S:$D(^PSDRUG(DA,3)) $P(^PSDRUG(DA,3),"^",1)=0 K:$D(^PSDRUG("AQ",DA)) ^PSDRUG("AQ",DA)
- I $D(PSNID),PSNID]"" K ^PSDRUG("AQ1",PSNID,DA) K PSNID
+ S DA=DISPDRG D UNMDRUG^PSSUTIL(DA) S:$D(^PSDRUG(DA,3)) $P(^PSDRUG(DA,3),"^",1)=0 K:$D(^PSDRUG("AQ",DA)) ^PSDRUG("AQ",DA)
+ I $D(PSNID),PSNID]"" K PSNID
  D ^PSSREF ; *OK
- Q
- ;
-SETNULL ;
- S ZXZX=$P(^PSDRUG(DA,"ND"),"^",2),$P(^PSDRUG(DA,"ND"),"^",1)="",$P(^PSDRUG(DA,"ND"),"^",2)="",$P(^PSDRUG(DA,"ND"),"^",3)=""
- S $P(^PSDRUG(DA,"ND"),"^",4)="",$P(^PSDRUG(DA,"ND"),"^",5)="",$P(^PSDRUG(DA,"ND"),"^",10)=""
- I ZXZX]"" S ZXZX=$E(ZXZX,1,30) I $D(^PSDRUG("VAPN",ZXZX,DA)) K ^PSDRUG("VAPN",ZXZX,DA) K ZXZX
  Q
  ;
  ;-vvvvvvvvv- from PSSUTIL -vvvvvvvvv-

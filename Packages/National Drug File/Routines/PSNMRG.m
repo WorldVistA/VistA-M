@@ -1,5 +1,5 @@
 PSNMRG ;BIR/CCH&WRT-merges NDF fields into PSDRUG ; 04/18/01 14:56
- ;;4.0; NATIONAL DRUG FILE;**2,22,27,51,55,59,60,65,84**; 30 Oct 98
+ ;;4.0;NATIONAL DRUG FILE;**2,22,27,51,55,59,60,65,84,569**; 30 Oct 98;Build 3
  ;
  ;Reference to ^PS(50.3 supported by DBIA #2612
  ;Reference to ^PSDRUG supported by DBIA #2352,#221
@@ -36,8 +36,12 @@ SET I $D(PSNFL) Q:PSNFL
  Q:'$D(^PSNTRAN(PSNB,0))  Q:$P(^PSNTRAN(PSNB,0),"^",9)'="Y"  I '$D(^PSDRUG(PSNB)) S FRMNAM=$P(^PSNDF(50.68,$P(^PSNTRAN(PSNB,0),"^",2),0),"^"),^TMP($J,"PSN",PSNB,FRMNAM)="" Q
  I $D(^PSDRUG("VAC")) F VADC=0:0 S VADC=$O(^PSDRUG("VAC",VADC)) Q:'VADC  I $D(^PSDRUG("VAC",VADC,PSNB)) K ^PSDRUG("VAC",VADC,PSNB)
  S PSNNODE=^PSNTRAN(PSNB,0)
- S ^PSDRUG(PSNB,"ND")=$P(PSNNODE,"^")_"^"_$P(^PSNDF(50.68,$P(PSNNODE,"^",2),0),"^")_"^"_$P(PSNNODE,"^",2)_"^"_$P(PSNNODE,"^",5)_"^"_$P(PSNNODE,"^",7)_"^"_$P(PSNNODE,"^",3),^PSDRUG("VAC",$P(PSNNODE,"^",3),PSNB)="",^PSDRUG("AND",+PSNNODE,PSNB)=""
- S PSNEX=$E($P(^PSDRUG(PSNB,"ND"),"^",2),1,30),^PSDRUG("VAPN",PSNEX,PSNB)="" K PSNEX
+ S ^PSDRUG(PSNB,"ND")=$P(PSNNODE,"^")_"^"_$P(^PSNDF(50.68,$P(PSNNODE,"^",2),0),"^")_"^"_$P(PSNNODE,"^",2)_"^"_$P(PSNNODE,"^",5)_"^"_$P(PSNNODE,"^",7)_"^"_$P(PSNNODE,"^",3)
+ S:$P(PSNNODE,"^",3)'="" ^PSDRUG("VAC",$P(PSNNODE,"^",3),PSNB)=""
+ S PSNEX=$E($P(^PSDRUG(PSNB,"ND"),"^",2),1,30) S:PSNEX'="" ^PSDRUG("VAPN",PSNEX,PSNB)="" K PSNEX
+ I $P(PSNNODE,"^",1) S ^PSDRUG("AND",$P(PSNNODE,"^",1),PSNB)=""
+ I $P(PSNNODE,"^",2) S ^PSDRUG("APR",$P(PSNNODE,"^",2),PSNB)=""
+ I $P($G(^PSDRUG(PSNB,2)),"^",6),$P(PSNNODE,"^",1),$P(PSNNODE,"^",2) S ^PSDRUG("APN",$P($G(^PSDRUG(PSNB,2)),"^",6),$P(PSNNODE,"^",1)_"A"_$P(PSNNODE,"^",2),PSNB)=""
  S MMM=$P(^PSDRUG(PSNB,"ND"),"^",1),NNN=$P(^PSDRUG(PSNB,"ND"),"^",3),DA=MMM,K=NNN,X=$$PROD2^PSNAPIS(DA,K) I X]"",$P(X,"^")]"" S $P(^PSDRUG(PSNB,"ND"),"^",10)=$P(X,"^",2),^PSDRUG("AQ1",$P(X,"^",2),PSNB)=""
  S FORMI=$P($G(^PSNDF(50.68,NNN,5)),"^") I FORMI]"" S $P(^PSDRUG(PSNB,"ND"),"^",11)=FORMI
  I $P(^PSDRUG(PSNB,0),"^",3)="",$P($G(^PSNDF(50.68,NNN,7)),"^") N CS S CS=$P($G(^PSNDF(50.68,NNN,7)),"^"),$P(^PSDRUG(PSNB,0),"^",3)=$S(CS?1(1"2n",1"3n"):+CS_"C",+CS=2!(+CS=3)&(CS'["C"):+CS_"A",1:CS) K CS

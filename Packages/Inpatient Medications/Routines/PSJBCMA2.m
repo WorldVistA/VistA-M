@@ -1,5 +1,5 @@
 PSJBCMA2 ;BIR/MV - RETURN INPATIENT ACTIVITY LOG ;16 Mar 99 / 11:43 AM
- ;;5.0;INPATIENT MEDICATIONS;**32,41,54,56,81,267,370**;16 DEC 97;Build 6
+ ;;5.0;INPATIENT MEDICATIONS;**32,41,54,56,81,267,370,397**;16 DEC 97;Build 7
  ;
  ;Reference to ^PS(55 is supported by DBIA 2191
  ;
@@ -60,6 +60,8 @@ GETFLD  ;
 FILESI(DFN,PSJORD) ; File special instructions
  I PSJORD["U" S LN=0 D
  .I $G(PSGOEENO)&($G(PSGORD)=$G(PSJORD)) Q
+ .;Resetting Nurse Verification Info After Special Instructions Edit
+ .D RESETNV(DFN,+PSJORD)
  .K ^PS(55,DFN,5,+PSJORD,15) I ($G(^PS(53.45,+$G(PSJSYSP),5,0))<0) S ^PS(55,DFN,5,+PSJORD,6)="" Q
  .I '$D(^PS(55,DFN,5,+PSJORD,15,1,0)),($O(^PS(53.45,+$G(PSJSYSP),5," "),-1)=1) Q:($TR(^PS(53.45,PSJSYSP,5,1,0)," ")="")
  .S LNCNT=0,LN=9999 F  S LN=$O(^PS(53.45,+$G(PSJSYSP),5,LN),-1) Q:'LN  D
@@ -124,4 +126,15 @@ FILEOPI(DFN,ORDER) ; File other print info
  ...S:($L(PSJTMPTX)+$L($G(^PS(53.1,+PSJORD,16,TMPLIN,0))))>60 PSJOVRMX=1 Q:$G(PSJOVRMX)  S PSJTMPTX=$G(PSJTMPTX)_$S($G(PSJTMPTX)]"":" ",1:"")_$G(^PS(53.1,+PSJORD,16,TMPLIN,0))
  ..S TXT=$S($G(PSJOVRMX):OPIMSG,1:$G(PSJTMPTX))
  ..S $P(^PS(53.1,+PSJORD,9),"^",2)=TXT,$P(^PS(53.1,+PSJORD,9),"^",3)=$P($G(P("OPI")),"^",2)
+ Q
+ ;
+RESETNV(DFN,ORD) ; Resets Nurse Verification Information to Non-Verified if Special Instructions field was edited
+ N I,CHANGE,DIE,DR,DA
+ ; Checking whether the Special Instructions content was modified
+ S CHANGE=0
+ F I=1:1 Q:('$D(^PS(55,DFN,5,ORD,15,I,0))&'$D(^PS(53.45,PSJSYSP,5,I,0)))  D  I CHANGE Q
+ . I $G(^PS(55,DFN,5,ORD,15,I,0))'=$G(^PS(53.45,PSJSYSP,5,I,0)) S CHANGE=1
+ ; Only resets Nurse Verification information in BCMA if Special Instructions field was modified
+ I CHANGE D
+ . S DIE="^PS(55,"_DFN_",5,",DA(1)=DFN,DA=ORD,DR="16////@;17////@;51////0" D ^DIE
  Q

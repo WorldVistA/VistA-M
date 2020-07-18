@@ -1,5 +1,5 @@
-SDEC55A ;ALB/SAT - VISTA SCHEDULING RPCS ; 18 Jun 2018  4:04 PM
- ;;5.3;Scheduling;**627,671,701,722,734**;Aug 13, 1993;Build 3
+SDEC55A ;ALB/SAT,WTC - VISTA SCHEDULING RPCS ;Feb 12, 2020@15:22
+ ;;5.3;Scheduling;**627,671,701,722,734,694**;Aug 13, 1993;Build 61
  ;;Per VHA Directive 2004-038, this routine should not be modified
  ;
  Q
@@ -117,26 +117,29 @@ APPSDGET(SDECY,MAXREC,LASTSUB,SDBEG,SDEND,NOTEFLG,SDRES,DFN,SDID,SDIEN)  ;GET ap
  S LASTSUB=$G(LASTSUB)
  S SD1=$P(LASTSUB,"|",1),SD2=$P(LASTSUB,"|",2)
  I SD2'="" I SDID="" S SD1=SD1-.0001
+ ;
+ ;  Change date/time conversion so midnight is handled properly.  wtc 694 4/24/18
+ ;
  ;validate SDBEG - optional
  S SDBEG=$G(SDBEG)
- I $G(SDBEG)'="" S %DT="" S X=$P($G(SDBEG),"@",1) D ^%DT S SDBEG=Y I Y=-1 D ERR1^SDECERR(-1,"Invalid begin date/time.",SDECI,SDECY) Q
- I SDBEG'="",SDBEG<$$FMADD^XLFDT($$NOW^XLFDT(),-10*365) D ERR1^SDECERR(-1,"Invalid begin date/time.",SDECI,SDECY) Q  ;
+ ;I $G(SDBEG)'="" S %DT="" S X=$P($G(SDBEG),"@",1) D ^%DT S SDBEG=Y I Y=-1 D ERR1^SDECERR(-1,"Invalid begin date/time.",SDECI,SDECY) Q
+ I SDBEG'="" S SDBEG=$$NETTOFM^SDECDATE(SDBEG,"Y") I SDBEG=-1 D ERR1^SDECERR(-1,"Invalid begin date/time.",SDECI,SDECY) Q  ;
+ I SDBEG'="",SDBEG<$$FMADD^XLFDT($$NOW^XLFDT(),-10*365) D ERR1^SDECERR(-1,"Invalid begin date/time.",SDECI,SDECY) Q  ;  WTC 701
  ;
- ;  Limit search to start 10 years ago.  wtc 6/18/18 SD*5.3*701
+ ;  Limit search to start 10 years ago.  wtc 6/18/18  SD*5.3*701
  ;
  I SDBEG="" S SDBEG=$$FMADD^XLFDT($$NOW^XLFDT(),-10*365) ;
  ;
- ;I SDBEG="" S SDBEG=1000101
  ;validate SDEND - optional
  S SDEND=$G(SDEND)
- I $G(SDEND)'="" S %DT="" S X=$P($G(SDEND),"@",1) D ^%DT S SDEND=Y_".2359" I Y=-1 D ERR1^SDECERR(-1,"Invalid end date/time.",SDECI,SDECY) Q
- I SDEND'="",SDEND>$$FMADD^XLFDT($$NOW^XLFDT(),390) D ERR1^SDECERR(-1,"Invalid end date/time.",SDECI,SDECY) Q  ;
+ ;I $G(SDEND)'="" S %DT="" S X=$P($G(SDEND),"@",1) D ^%DT S SDEND=Y_".2359" I Y=-1 D ERR1^SDECERR(-1,"Invalid end date/time.",SDECI,SDECY) Q
+ I SDEND'="" S SDEND=$$NETTOFM^SDECDATE(SDEND) S:SDEND>0 SDEND=SDEND_".2359" I SDEND=-1 D ERR1^SDECERR(-1,"Invalid end date/time.",SDECI,SDECY) Q  ; 
+ I SDEND'="",SDEND>$$FMADD^XLFDT($$NOW^XLFDT(),390) D ERR1^SDECERR(-1,"Invalid end date/time.",SDECI,SDECY) Q  ;  WTC 701
  ;
  ;  Limit search to no later than 390 days in the future.  wtc 6/18/18 SD*5.3*701
  ;
  I SDEND="" S SDEND=$P($$FMADD^XLFDT($$NOW^XLFDT(),390),".",1)_".2359" ;
  ;
- ;I SDEND="" S SDEND=9991231.2359
  ;validate NOTEFLG - optional
  S NOTEFLG=$S($G(NOTEFLG)=1:1,1:0)
  ;validate SDRES -optional
@@ -189,12 +192,19 @@ GET1(SDAPP,SDBEG,SDEND,NOTEFLG,SDRES,DFN,SDID,SDECI,SDECY) ;get 1 appointment re
  D GETS^DIQ(409.84,SDAPP_",",".01:.23","IE","SDDATA")
  S SDA="SDDATA(409.84,"""_SDAPP_","")"
  S $P(SDRET,U,1)=SDAPP           ;ien
- S $P(SDRET,U,2)=@SDA@(.01,"E")  ;start time
+ ;
+ ;  Change date/time conversion so midnight is handled properly.  wtc 694 5/30/18
+ ;
+ ; S $P(SDRET,U,2)=@SDA@(.01,"E")  ;start time
+ S $P(SDRET,U,2)=$$FMTONET^SDECDATE($P(^SDEC(409.84,SDAPP,0),U,1)) ; wtc 694 5/30/18
  Q:(SDBEG'="")&($P(@SDA@(.01,"I"),".",1)<$P(SDBEG,".",1))
- S $P(SDRET,U,3)=@SDA@(.02,"E")  ;end time
+ ; S $P(SDRET,U,3)=@SDA@(.02,"E")  ;end time
+ S $P(SDRET,U,3)=$$FMTONET^SDECDATE($P(^SDEC(409.84,SDAPP,0),U,2)) ; wtc 694 5/30/18
  Q:(SDEND'="")&($P(@SDA@(.02,"I"),".",1)>$P(SDEND,".",1))
- S $P(SDRET,U,4)=@SDA@(.03,"E")  ;check in time
- S $P(SDRET,U,5)=@SDA@(.04,"E")  ;check in time entered
+ ; S $P(SDRET,U,4)=@SDA@(.03,"E")  ;check in time
+ S $P(SDRET,U,4)=$$FMTONET^SDECDATE($P(^SDEC(409.84,SDAPP,0),U,3)) ; wtc 694 5/30/18
+ ; S $P(SDRET,U,5)=@SDA@(.04,"E")  ;check in time entered
+ S $P(SDRET,U,5)=$$FMTONET^SDECDATE($P(^SDEC(409.84,SDAPP,0),U,4)) ; wtc 694 5/30/18
  S $P(SDRET,U,6)=@SDA@(.05,"I")  ;patient ID
  Q:(DFN'="")&($P(SDRET,U,6)'=DFN)
  S $P(SDRET,U,7)=@SDA@(.05,"E")  ;patient NAME
@@ -207,17 +217,21 @@ GET1(SDAPP,SDBEG,SDEND,NOTEFLG,SDRES,DFN,SDID,SDECI,SDECY) ;get 1 appointment re
  S $P(SDRET,U,13)=@SDA@(.08,"E")  ;data entry clerk NAME
  S $P(SDRET,U,14)=@SDA@(.09,"E")  ;date appointment made
  S $P(SDRET,U,15)=@SDA@(.1,"E")   ;noshow flag
- S $P(SDRET,U,16)=@SDA@(.101,"E") ;no show date time
+ ; S $P(SDRET,U,16)=@SDA@(.101,"E") ;no show date time
+ S $P(SDRET,U,16)=$$FMTONET^SDECDATE($P(^SDEC(409.84,SDAPP,0),U,23)) ; wtc 694 5/30/18
  S $P(SDRET,U,17)=@SDA@(.102,"I") ;no show by user ID
  S $P(SDRET,U,18)=@SDA@(.102,"E") ;no show by user NAME
- S $P(SDRET,U,19)=@SDA@(.11,"E") ;rebook date time
- S $P(SDRET,U,20)=@SDA@(.12,"E") ;cancel date time
+ ; S $P(SDRET,U,19)=@SDA@(.11,"E") ;rebook date time
+ S $P(SDRET,U,19)=$$FMTONET^SDECDATE($P(^SDEC(409.84,SDAPP,0),U,11)) ; wtc 694 5/30/18
+ ; S $P(SDRET,U,20)=@SDA@(.12,"E") ;cancel date time
+ S $P(SDRET,U,20)=$$FMTONET^SDECDATE($P(^SDEC(409.84,SDAPP,0),U,12)) ; wtc 694 5/30/18
  S $P(SDRET,U,21)=@SDA@(.121,"I") ;cancelled by user ID
  S $P(SDRET,U,22)=@SDA@(.121,"E") ;cancelled by user NAME
  S $P(SDRET,U,23)=@SDA@(.122,"I") ;cancellation reason ID
  S $P(SDRET,U,24)=@SDA@(.122,"E") ;cancellation reason NAME
  S $P(SDRET,U,25)=@SDA@(.13,"E")  ;walk-in
- S $P(SDRET,U,26)=@SDA@(.14,"E")  ;check-out date/time
+ ; S $P(SDRET,U,26)=@SDA@(.14,"E")  ;check-out date/time
+ S $P(SDRET,U,26)=$$FMTONET^SDECDATE($P(^SDEC(409.84,SDAPP,0),U,14)) ; wtc 694 5/30/18
  S $P(SDRET,U,27)=@SDA@(.15,"I")  ;v provider ID
  S $P(SDRET,U,28)=@SDA@(.15,"E")  ;v provider NAME
  S $P(SDRET,U,29)=@SDA@(.16,"I")  ;provider ID
@@ -226,7 +240,7 @@ GET1(SDAPP,SDBEG,SDEND,NOTEFLG,SDRES,DFN,SDID,SDECI,SDECY) ;get 1 appointment re
  S $P(SDRET,U,32)=@SDA@(.18,"E")  ;length of appt
  S $P(SDRET,U,33)=@SDA@(.19,"I")  ;prev appt status ID
  S $P(SDRET,U,34)=@SDA@(.19,"E")  ;prev appt status NAME
- S $P(SDRET,U,35)=$P(@SDA@(.2,"E"),"@",1) ;desired date of appointment ; wtc 734 10/7/2019 - strip off time that VAOS puts on CID
+ S $P(SDRET,U,35)=$P(@SDA@(.2,"E"),"@",1) ;desired date of appointment ;wtc 734 10/7/2019 - strip off time that VAOS puts on CID
  S $P(SDRET,U,36)=@SDA@(.21,"E")  ;external id
  Q:(SDID'="")&($P(SDRET,U,36)'=SDID)
  S SDX=@SDA@(.22,"I") S SDY=$P(SDX,";",2)

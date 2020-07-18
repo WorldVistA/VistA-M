@@ -1,5 +1,5 @@
-WVRALINK ;HCIOFO/FT-RAD/NM-WOMEN'S HEALTH LINK  ;6/10/04  14:51
- ;;1.0;WOMEN'S HEALTH;**3,5,7,9,10,16,18,23,25**;Sep 30, 1998;Build 1
+WVRALINK ;HCIOFO/FT - RAD/NM-WOMEN'S HEALTH LINK  ;10/29/2019
+ ;;1.0;WOMEN'S HEALTH;**3,5,7,9,10,16,18,23,25,24**;Sep 30, 1998;Build 582
  ;
  ; This routine uses the following IAs:
  ; #2480  - FILE 70         (private)
@@ -53,8 +53,9 @@ CREATEH(DFN,DATE,CASE,STATUS) ; Entry from ^WVEXPTRA which looks for exams
  Q:($G(DFN)']"")!($G(DATE)']"")!($G(CASE)']"")!($G(STATUS)']"")
  ; 
 CREATEQ ; Queue data entry creation. Called from CREATE above
+ N CODES,ERROR,MATCH,TERMIEN
  N WVPROC,WVLOC,WVDATE,WVDR,WVPROV,WVMOD,WVDX,WVBWDX,WVLEFT,WVRIGHT
- N WVCASE,WVCPT,WVERR,WVCREDIT,WVEXAM0,WVZSTAT
+ N WVCASE,WVCPT,WVERR,WVCREDIT,WVEXAM0,WVTERM,WVZSTAT
  ;---> QUIT IF RADIOLOGY DATA IS NOT DEFINED OR ="".
  I $D(ZTQUEUED) S ZTREQ="@"
  Q:'$D(^RADPT(DFN,"DT",DATE,"P",CASE,0))
@@ -63,9 +64,22 @@ CREATEQ ; Queue data entry creation. Called from CREATE above
  ;---> QUIT IF THIS PROCEDURE DOES NOT HAVE AN ULTRASOUND CPT CODE.
  ;---> WVEXAM0=ZERO NODE OF RADIOLOGY EXAM.
  S WVEXAM0=^RADPT(DFN,"DT",DATE,"P",CASE,0)
- S WVCPT=$$GET1^DIQ(71,$P(WVEXAM0,U,2),9,"I") Q:WVCPT=""
- S WVPROC=$O(^WV(790.2,"AC",WVCPT,0)) ;cpt code x-ref to get 790.2 ien
- Q:'WVPROC  ;cpt code is not tracked in 790.2
+ S WVCPT=$$GET1^DIQ(71,$P(WVEXAM0,U,2),9,"") Q:WVCPT=""
+ ;check reminder terms
+ S MATCH=0
+ S TERMIEN=0 F  S TERMIEN=$O(^WV(790.2,"RT",TERMIEN)) Q:TERMIEN'>0!($G(WVPROC)'="")  D
+ .K CODES
+ .D GETTRMCD^PXRMPRAD(TERMIEN,.CODES,.WVTERM,.ERROR)
+ .I $G(ERROR)'="" Q
+ .I $D(CODES(WVCPT)) S MATCH=1
+ .;S WVPROC=$O(^WV(790.2,"RT",TERMIEN,""))
+ .I MATCH=0,$D(WVTERM("E","RAMIS(71,",$P(WVEXAM0,U,2))) S MATCH=1
+ .I MATCH=1 S WVPROC=$O(^WV(790.2,"RT",TERMIEN,""))
+ ;check old style of specific CPT code
+ I +$G(WVPROC)'>0 D
+ .S WVCPT=$$GET1^DIQ(71,$P(WVEXAM0,U,2),9,"I") Q:WVCPT=""
+ .S WVPROC=$O(^WV(790.2,"AC",WVCPT,0)) ;cpt code x-ref to get 790.2 ien
+ Q:+$G(WVPROC)'>0  ;cpt code is not tracked in 790.2
  Q:$P($G(^WV(790.2,+WVPROC,0)),U,5)'="R"  ;cpt is not rad/nm procedure
  Q:$P($G(^DPT(DFN,0)),U,2)'="F"  ;not female
  ;
@@ -97,7 +111,7 @@ COPY(Y) ;EP
  ;---> VARIABLE DFN=PATIENT
  ;---> LOCATION=DUZ(2)
  ;---> WARD/CLINIC/LOCATION
- N X
+ N X,WVIEN
  S WVLOC=$P(Y,U,8)
  ;
  ;---> WVDATE=DATE OF THE PROCEDURE.
@@ -156,6 +170,13 @@ PROC ;---> CREATE MAMMOGRAM PROCEDURE IN WV PROCEDURE FILE #790.1.
  I $D(WVMCNT) S:WVERR>-1 WVMCNT=WVMCNT+1
  Q:WVERR<0  ;procedure not added
  Q:$D(WVMCNT)  ;mass import of Rad/NM exams
+ I +$G(Y)>0 D
+ .K WVERR
+ .D ADD^PXRMEOC(DFN,$$NOW^XLFDT(),+Y_";WV(790.1,",1,0,"BREAST CARE",.WVERR)
+ .I '$D(WVERR) Q
+ .N NUM S NUM=0
+ .S NUM=NUM+1,^TMP("PXRMXMZ",$J,NUM,0)="Error adding Women's Health Procedure to the patient episode file."
+ .D BLDMSG^WVRPCGF1(DFN,"ERROR Updating Episode of Care File.",.NUM)
  ;Q:$P($G(^WV(790.02,+DUZ(2),0)),U,23)="c"  ;Status=closed
  I (WVCPT=76856)!(WVCPT=76830)!(WVCPT=76645) D  Q  ;not breast related
  .D MAIL^WVRADWP(DFN,+Y,WVPROC,WVPROV) ;iens for patient, accession, procedure, provider/requestor
