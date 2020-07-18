@@ -1,5 +1,5 @@
-PXRMREDF ; SLC/PJH - Edit PXRM reminder findings. ;07/21/2015
- ;;2.0;CLINICAL REMINDERS;**4,6,12,26,47**;Feb 04, 2005;Build 291
+PXRMREDF ; SLC/PJH - Edit PXRM reminder findings. ;04/28/2020
+ ;;2.0;CLINICAL REMINDERS;**4,6,12,26,47,46**;Feb 04, 2005;Build 236
  ;
  ; Called by PXRMREDT which newes and initializes DEF, DEF1, DEF2.
  ;
@@ -60,9 +60,10 @@ FEDIT(IEN) ;
  .I TERMSTAT'=0 S DR=DR_";10",STATUS=1
  I TYPE="RT" D
  .S TERMTYPE=$$TERMTYPE(TIEN)
- .I TERMTYPE["H" S DR=DR_";11"
+ .;I TERMTYPE["H" S DR=DR_";11"
+ .I TERMTYPE["H" S DR=DR_";11//0"
  ;Health Factor - within category rank
- I TYPE="HF" S DR=DR_";11"
+ I TYPE="HF" S DR=DR_";11//0"
  ;If V file INCLUDE VISIT DATA
  S VF=$S(TYPE="ED":1,TYPE="EX":1,TYPE="HF":1,TYPE="IM":1,TYPE="ST":1,TYPE="TX":1,1:0)
  I TYPE="RT",$P(TERMTYPE,U,2)="VF" S VF=1
@@ -76,8 +77,8 @@ FEDIT(IEN) ;
  I TYPE="OI" S DR=DR_";27",STATUS=1
  ;Rx Type
  I (TYPE="DC")!(TYPE="DG")!(TYPE="DR") S DR=DR_";16;27",STATUS=1
- ;Condition
- S DR=DR_";14;15;18"
+ ;Condition, make the default for Condition Case Sensitive NO
+ S DR=DR_";14;15//NO;18"
  I TYPE="CF" S DR=DR_";26"
  ;Found/not found text
  S DR=DR_";4;5"
@@ -127,7 +128,7 @@ FFEDIT(IEN) ;
  I '$D(DA) Q
  ;If the function string is null don't do the rest of the fields.
  I $G(^PXD(811.9,IEN,25,DA,3))="" Q
- S DR="1;2;11;12;15;I X=""0Y"" S Y=16;13;14;16"
+ S DR="20;1;2;11;12;15;I X=""0Y"" S Y=16;13;14;16"
  D ^DIE
  I $D(Y) S DTOUT=1 Q
  I '$D(DA) Q
@@ -209,7 +210,7 @@ TDSP(DA) ;
  ;List Reminders using this term
  ;------------------------------
 TERMS(TIEN,RIEN) ;
- ;RIEN will be the reminder ien if called from reminder edit
+ ;RIEN will be the reminder IEN if called from reminder edit
  ;or zero if called from term edit
  N ARRAY,FIND,IEN,SUB,TCNT,RNAME
  ;Scan all reminders in file #811.9
