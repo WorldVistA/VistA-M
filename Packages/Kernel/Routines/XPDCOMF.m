@@ -1,6 +1,8 @@
-XPDCOMF ;SFISC/GFT/MSC - COMPARE FILES ;08/14/2008
- ;;8.0;KERNEL;**506,539,559**;Jul 10, 1995;Build 4
- ; Per VHA Directive 2004-038, this routine should not be modified.
+XPDCOMF ;SFISC/GFT/MSC - COMPARE FILES ;2019-12-27  2:27 PM
+ ;;8.0;KERNEL;**506,539,559,10006**;Jul 10, 1995;Build 6
+ ; 
+ ; *10006* Changed by David Whitten
+ ;
  ;DI1 & DI2 are left & right roots
  ;DIFLAG[1 -->compare files   [2-->compare entries   ["L" --> IGNORE EXTRA ENTRIES ON RIGHT SIDE
  ;DITCPT is array of TITLES, called by reference
@@ -78,7 +80,10 @@ BIX I $P($G(@DI2@(DIN1,0)),U)=X S DIN2=DIN1 G OLD:$$MATCH,NEW:DIV
  ;if no "B" x-ref, then check entire file for match
  S DIN2=0 I '$D(^DD(DIDD,0,"IX","B",DIDD,.01)) F  S DIN2=$O(@DI2@(DIN2)) G NEW:DIN2'>0 I $P($G(^(DIN2,0)),U)=X G OLD:$$MATCH
 BI S DIN2=$O(@DI2@("B",$E(X,1,30),DIN2)) I 'DIN2 S:$L(X)>30 DIN2=$O(@DI2@("B",X,DIN2)) G NEW:'DIN2
- I $D(@DI2@(DIN2,0)),$P(^(0),X)="" G OLD:$$MATCH ;COMPARE BY NAME
+ ;;BEGIN WorldVistA change DJW 4/23/2018 remove very rare infinite loop *10003*
+ ;was; I $D(@DI2@(DIN2,0)),$P(^(0),X)="" G OLD:$$MATCH ;COMPARE BY NAME
+ I $D(@DI2@(DIN2,0)),$P(^(0),X)="" G OLD:$$MATCH,NEW ;COMPARE BY NAME
+ ;END WorldVistA change 4/23/2018 
  G BI
  ;
 NEW S ^UTILITY("DITCP",$J,"X1",DIDD,DIN1)=X ;WILL SHOW EXTRA ENTRY ON LEFT SIDE

@@ -1,5 +1,5 @@
-PXRMDEV ;SLC/PKR - This is a driver for testing Clinical Reminders. ;06/23/2020
- ;;2.0;CLINICAL REMINDERS;**4,6,11,16,18,24,26,47,45,46**;Feb 04, 2005;Build 236
+PXRMDEV ;SLC/PKR - This is a driver for testing Clinical Reminders. ;08/23/2019
+ ;;2.0;CLINICAL REMINDERS;**4,6,11,16,18,24,26,47,45**;Feb 04, 2005;Build 566
  ;
  ;===============
 DEB ;Prompt for patient and reminder by name input component.
@@ -86,7 +86,7 @@ GREM2 D ^DIC
  Q
  ;
  ;===============
-DISP01(FIEVAL) ;For Education Topics, Exams, and Health Factors the Print Name
+DISP01(FIEVAL) ;For Eduction Topics, Exams, and Health Factors the Print Name
  ;is displayed in the Clinical Maintenance Output. Since Print Names
  ;are not unique it can be difficult to determine what the actual
  ;finding is so display the .01.
@@ -103,8 +103,8 @@ DISP01(FIEVAL) ;For Education Topics, Exams, and Health Factors the Print Name
  ;===============
 DOREM(DFN,PXRMITEM,PXRHM,DATE) ;Do the reminder
  ;Reference to XLFSHAN ICR #6157
- N BOP,DEFARR,END,FFN,FFNUMBER,FIEVAL,FINDING,IND,JND,NL,NOUT,OUTPUT
- N PNAME,PXRMDEBG,PXRMID,REF,RIEN,RNAME,START,STATUS
+ N BOP,DEFARR,END,FIEVAL,FINDING,IND,JND,NL,NOUT,OUTPUT,PNAME
+ N PXRMDEBG,PXRMID,REF,RIEN,RNAME,START,STATUS
  N TEXT,TEXTOUT,TFIEVAL,TTEXT,WSTART,WEND,X
  ;This is a debugging run so set PXRMDEBG.
  S NL=0,PXRMDEBG=1
@@ -127,11 +127,6 @@ DOREM(DFN,PXRMITEM,PXRHM,DATE) ;Do the reminder
  S NL=NL+1,OUTPUT(NL)="Reminder evaluation clock time: "_$$HDIFF^XLFDT(WEND,WSTART,2)_" seconds"
  S NL=NL+1,OUTPUT(NL)=" "
  S NL=NL+1,OUTPUT(NL)="The elements of the FIEVAL array are:"
- S FFN="FF"
- F  S FFN=$O(FIEVAL(FFN)) Q:FFN'["FF"  D
- . S FFNUMBER=$P(FFN,"FF",2)
- . M FIEVAL("FF",FFNUMBER)=FIEVAL(FFN)
- . K FIEVAL(FFN)
  D DISP01(.FIEVAL)
  S REF="FIEVAL"
  D ACOPY^PXRMUTIL(REF,"TTEXT()")
@@ -145,12 +140,11 @@ DOREM(DFN,PXRMITEM,PXRHM,DATE) ;Do the reminder
  . N FFN,STEP
  . S NL=NL+1,OUTPUT(NL)="",NL=NL+1,OUTPUT(NL)=""
  . S NL=NL+1,OUTPUT(NL)="Step-by-step function finding evaluation:"
- . S FFNUMBER=0
- . F  S FFNUMBER=+$O(FIEVAL("FF",FFNUMBER)) Q:FFNUMBER=0  D
+ . S FFN=""
+ . F  S FFN=$O(^TMP("PXRMFFSS",$J,FFN)) Q:FFN=""  D
  .. S NL=NL+1,OUTPUT(NL)=""
- .. S NL=NL+1,OUTPUT(NL)=" Function finding "_FFNUMBER_"="_FIEVAL("FF",FFNUMBER)
- .. D FORMATS^PXRMTEXT(1,79,$P(FIEVAL("FF",FFNUMBER,"DETAIL"),U,2),.NOUT,.TEXTOUT)
- .. S FFN="FF"_FFNUMBER
+ .. S NL=NL+1,OUTPUT(NL)=" Function finding "_FFN_"="_FIEVAL(FFN)
+ .. D FORMATS^PXRMTEXT(1,79,$P(FIEVAL(FFN,"DETAIL"),U,2),.NOUT,.TEXTOUT)
  .. F JND=1:1:NOUT S NL=NL+1,OUTPUT(NL)=TEXTOUT(JND)
  .. S NL=NL+1,OUTPUT(NL)=" = "_^TMP("PXRMFFSS",$J,FFN,0)
  .. S NL=NL+1,OUTPUT(NL)="Step  Result"
@@ -158,7 +152,6 @@ DOREM(DFN,PXRMITEM,PXRHM,DATE) ;Do the reminder
  .. F  S STEP=$O(^TMP("PXRMFFSS",$J,FFN,STEP)) Q:STEP=""  D
  ... S NL=NL+1,OUTPUT(NL)=$$RJ^XLFSTR(STEP_".",4," ")_"  "_^TMP("PXRMFFSS",$J,FFN,STEP)
  . K ^TMP("PXRMFFSS",$J)
- .;
  I $G(PXRMTDEB) D
  . S NL=NL+1,OUTPUT(NL)="",NL=NL+1,OUTPUT(NL)=""
  . S NL=NL+1,OUTPUT(NL)="Term findings:"
@@ -173,26 +166,15 @@ DOREM(DFN,PXRMITEM,PXRHM,DATE) ;Do the reminder
  .. F  S IND=$O(TTEXT(IND)) Q:IND=""  S NL=NL+1,OUTPUT(NL)=TTEXT(IND)
  . K ^TMP("PXRMTDEB",$J)
  ;
- ;If CF.VA-ELIGIBILITY has been used as a finding display the VAEL array.
- I $D(^TMP("PXRMELIG",$J)) D
- . N VAEL
- . M VAEL=^TMP("PXRMELIG",$J)
- . K ^TMP("PXRMELIG",$J),TTEXT
- . D ACOPY^PXRMUTIL("VAEL","TTEXT()")
- . S NL=NL+1,OUTPUT(NL)=""
- . S NL=NL+1,OUTPUT(NL)="VAEL array returned by ELIG^VADPT:"
- . S IND=0
- . F  S IND=$O(TTEXT(IND)) Q:IND=""  S NL=NL+1,OUTPUT(NL)=TTEXT(IND)
- ;
  ;Display the demographic variables.
- ;S NL=NL+1,OUTPUT(NL)="",NL=NL+1,OUTPUT(NL)=""
- ;S NL=NL+1,OUTPUT(NL)="The demographic variables are:"
- ;S IND=""
- ;F  S IND=$O(^TMP("PXRMDEM",$J,IND)) Q:IND=""  D
- ;. S TEXT=^TMP("PXRMDEM",$J,IND)
- ;. I (IND="DOB")!(IND="DOD")!(IND="LAD") S TEXT=$$FMTE^XLFDT(TEXT,"5Z")
- ;. S NL=NL+1,OUTPUT(NL)=IND_"="_TEXT
- ;K ^TMP("PXRMDEM",$J)
+ S NL=NL+1,OUTPUT(NL)="",NL=NL+1,OUTPUT(NL)=""
+ S NL=NL+1,OUTPUT(NL)="The demographic variables are:"
+ S IND=""
+ F  S IND=$O(^TMP("PXRMDEM",$J,IND)) Q:IND=""  D
+ . S TEXT=^TMP("PXRMDEM",$J,IND)
+ . I (IND="DOB")!(IND="DOD")!(IND="LAD") S TEXT=$$FMTE^XLFDT(TEXT,"5Z")
+ . S NL=NL+1,OUTPUT(NL)=IND_"="_TEXT
+ K ^TMP("PXRMDEM",$J)
  ;
  I $D(^TMP(PXRMID,$J)) D
  . S NL=NL+1,OUTPUT(NL)="",NL=NL+1,OUTPUT(NL)=""
@@ -214,7 +196,7 @@ DOREM(DFN,PXRMITEM,PXRHM,DATE) ;Do the reminder
  . F  S IND=$O(TTEXT(IND)) Q:IND=""  S NL=NL+1,OUTPUT(NL)=TTEXT(IND)
  ;
  I (PXRHM=0)!(PXRHM=1)!(PXRHM=5)!(PXRHM=55) D
- . S TEXT=$S(PXRHM=0:"Due Now ",PXRHM=1:"Summary ",PXRHM=5:"Clinical Maintenance ",PXRHM=55:"Order Check ",1:"")
+ . S TEXT=$S(PXRHM=0:"Due Now ",PXRHM=1:"Summary ",PXRHM=5:"Maintenance ",PXRHM=55:"Order Check ",1:"")
  . S NL=NL+1,OUTPUT(NL)="",NL=NL+1,OUTPUT(NL)=""
  . S NL=NL+1,OUTPUT(NL)=TEXT_"Output:"
  . D FMTOUT^PXRMFMTO("PXRHM",.NL,.OUTPUT)

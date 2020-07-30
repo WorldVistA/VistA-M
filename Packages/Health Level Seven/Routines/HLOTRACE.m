@@ -1,6 +1,9 @@
-HLOTRACE ;;OIFO-OAK/PIJ/CJM ;03/07/2011
- ;;1.6;HEALTH LEVEL SEVEN;**146,147,153** ;Oct 13, 1995;Build 11
- ;Per VHA Directive 2004-038, this routine should not be modified.
+HLOTRACE ;ALB/CJM - Client Trace ;Apr 03, 2020@14:48
+ ;;1.6;HEALTH LEVEL SEVEN;**146,147,153,10001** ;Oct 13, 1995;Build 3
+ ; Original code in the public domain by Dept of Veterans Affairs.
+ ; Changes **10001** by Sam Habiel (c) 2020.
+ ; Changes indicated inline.
+ ; Licensed under Apache 2.0.
  ;;
  ;; HLO CLIENT TRACE Tool
  ;; *** For troubleshooting HLO client issues ***
@@ -13,9 +16,13 @@ START ;
  D OWNSKEY^XUSRB(.CONF,"XUPROG",DUZ)
  I 'CONF(0) D  Q
  . W !!,"   Sorry, you are not authorized to use this tool.",!!
- ;I $P($$VERSION^%ZOSV(1),"/",1)'="Cache for OpenVMS" D  Q
- I $P($$VERSION^%ZOSV(1),"/",1)'["Cache" D  Q
- . W !!,"   Sorry, this tool can only be used under Cache",!!
+ ; *10001*
+ N CACHE,GTM
+ S CACHE=^%ZOSF("OS")["OpenM"
+ S GTM=^%ZOSF("OS")["GT.M"
+ I 'CACHE,'GTM D  Q
+ .W !!,"   Sorry, this tool can only be used under Cache or GT.M",!!
+ ; *10001*
  N LINK,PORT,QUE,SUB,WORK,HLMSTATE,HLCSTATE,OLD,MAXTRACE,TRACECNT
  S LINK=$$ASKLINK^HLOUSR
  Q:LINK=""
@@ -24,7 +31,7 @@ START ;
  S SUB=LINK_":"_PORT
  S QUE=$$ASKQUE(SUB)
  Q:QUE=""
- ZB /INTERRUPT:NORMAL ;disable CTRL-C breaks
+ ; ZB /INTERRUPT:NORMAL ;disable CTRL-C breaks ; 10001 don't need this
  L +^HLB("QUEUE","OUT",SUB,QUE):20
  ;
  I '$T W !,"That queue is currently being processed. You need to either stop that link,",!,"stop that queue, or totally stop HLO so that this tool can be used." Q
@@ -39,67 +46,71 @@ START ;
  ;
  U $PRINCIPAL
  L -^HLB("QUEUE","OUT",SUB,QUE)
- ZB /CLEAR
  W !,"DONE!"
  ;
  Q
-SETBREAKS ;
- ZB /CLEAR
+ ;
+SBREAK(EP,ACTION) ; *10001*
+ I ^%ZOSF("OS")["OpenM" ZB @EP:"N":1:ACTION
+ I ^%ZOSF("OS")["GT.M"  ZB @(EP_":"""_$$CONVQQ^DILIBF(ACTION)_"""")
+ QUIT
+ ;
+SETBREAKS ; *10001* refactored to not use ZB but call SBREAK
  ;
  ;set break in $$STOPPED^HLOQUE to circumvent shutdown of the queue
- ZB ZB0^HLOQUE:"N":1:"S RET=0"
+ D SBREAK("ZB0^HLOQUE","S RET=0")
  ;set break in $$IFSHUT^HLOTLNK to circumvent shutdown of the link
- ZB ZB0^HLOTLNK:"N":1:"S RET=0"
+ D SBREAK("ZB0^HLOTLNK","S RET=0")
  ;set break at ZB0 in client (start of DOWORK)
- ZB ZB0^HLOCLNT:"N":1:"D WRITE^HLOTRACE(""Launching the client process..."")"
+ D SBREAK("ZB0^HLOCLNT","D WRITE^HLOTRACE(""Launching the client process..."")")
  ;set break at ZB1 in client ($$CONNECT)
- ZB ZB1^HLOCLNT1:"N":1:"D WRITE^HLOTRACE(""Trying to connect..."")"
+ D SBREAK("ZB1^HLOCLNT1","D WRITE^HLOTRACE(""Trying to connect..."")")
  ;set break at ZB2 in client (end of $$CONNECT)
- ZB ZB2^HLOCLNT1:"N":1:"D ZB2^HLOTRACE"
+ D SBREAK("ZB2^HLOCLNT1","D ZB2^HLOTRACE")
  ;set break at ZB3 in client (ERROR TRAP)
- ZB ZB3^HLOCLNT:"N":1:"D ZB3^HLOTRACE"
+ D SBREAK("ZB3^HLOCLNT","D ZB3^HLOTRACE")
  ;set break at ZB4 in client (FOR loop on the outgoing queue)
- ZB ZB4^HLOCLNT:"N":1:"D ZB4^HLOTRACE"
+ D SBREAK("ZB4^HLOCLNT","D ZB4^HLOTRACE")
  ;set break at ZB5 in client (end of DOWORK, with just cleanup left)
- ZB ZB5^HLOCLNT:"N":1:"D WRITE3^HLOTRACE(""Cleaning up...."")"
+ D SBREAK("ZB5^HLOCLNT","D WRITE3^HLOTRACE(""Cleaning up...."")")
  ;set break at ZB6 in client (start of $$TRANSMIT^HLOCLNT1)
- ZB ZB6^HLOCLNT1:"N":1:"D WRITE^HLOTRACE(""Beginning to transmit message...."")"
+ D SBREAK("ZB6^HLOCLNT1","D WRITE^HLOTRACE(""Beginning to transmit message...."")")
  ;set break at ZB7 in client (end of $$TRANSMIT^HLOCLNT1)
- ZB ZB7^HLOCLNT1:"N":1:"D WRITE^HLOTRACE(""Message transmitted!"")"
+ D SBREAK("ZB7^HLOCLNT1","D WRITE^HLOTRACE(""Message transmitted!"")")
  ;set break at ZB8 in client (start of $$READACK^HLOCLNT1)
  ;ZB ZB8^HLOCLNT1:"N":1:"D WRITE^HLOTRACE(""Beginning to read commit acknowledgment...."")"
- ZB ZB8^HLOCLNT1:"N":1:"D ZB8^HLOTRACE"
+ D SBREAK("ZB8^HLOCLNT1","D ZB8^HLOTRACE")
  ;set break at ZB9 in client (end of $$READACK^HLOCLNT1)
  ;ZB ZB9^HLOCLNT1:"N":1:"D WRITE^HLOTRACE(""Commit acknowledgment received!"")"
- ZB ZB9^HLOCLNT1:"N":1:"D ZB9^HLOTRACE"
+ D SBREAK("ZB9^HLOCLNT1","D ZB9^HLOTRACE")
  ;set break ZB10 in the client(start of $$READHDR^HLOT)
- ZB ZB10^HLOT:"N":1:"D ZB10^HLOTRACE"
+ D SBREAK("ZB10^HLOT","D ZB10^HLOTRACE")
  ;set break ZB11 in the client(end of $$READHDR^HLOT)
- ZB ZB11^HLOT:"N":1:"D ZB11^HLOTRACE"
+ D SBREAK("ZB11^HLOT","D ZB11^HLOTRACE")
  ;set break ZB12 in the client(start of $$READSEG^HLOT)
- ZB ZB12^HLOT:"N":1:"D ZB12^HLOTRACE"
+ D SBREAK("ZB12^HLOT","D ZB12^HLOTRACE")
  ;set break ZB13 in the client(end of $$READSEG^HLOT)
- ZB ZB13^HLOT:"N":1:"D ZB13^HLOTRACE"
+ D SBREAK("ZB13^HLOT","D ZB13^HLOTRACE")
  ;set break ZB14 in the client(start of $$WRITESEG^HLOT)
- ZB ZB14^HLOT:"N":1:"D ZB14^HLOTRACE"
+ D SBREAK("ZB14^HLOT","D ZB14^HLOTRACE")
  ;set break ZB15 in the client(end of $$WRITESEG^HLOT)
- ZB ZB15^HLOT:"N":1:"D ZB15^HLOTRACE"
+ D SBREAK("ZB15^HLOT","D ZB15^HLOTRACE")
  ;set break ZB16 in the client(start of $$WRITEHDR^HLOT)
- ZB ZB16^HLOT:"N":1:"D ZB16^HLOTRACE"
+ D SBREAK("ZB16^HLOT","D ZB16^HLOTRACE")
  ;set break ZB17 in the client(end of $$WRITEHDR^HLOT)
- ZB ZB17^HLOT:"N":1:"D ZB17^HLOTRACE"
+ D SBREAK("ZB17^HLOT","D ZB17^HLOTRACE")
  ;set break ZB18 in the client(start of $$ENDMSG^HLOT)
- ZB ZB18^HLOT:"N":1:"D ZB18^HLOTRACE"
+ D SBREAK("ZB18^HLOT","D ZB18^HLOTRACE")
  ;set break ZB19 in the client(end of $$ENDMSG^HLOT)
- ZB ZB19^HLOT:"N":1:"D ZB19^HLOTRACE"
- ZB ZB20^HLOCLNT:"N":1:"D ZB20^HLOTRACE"
- ZB ZB21^HLOCLNT:"N":1:"D ZB21^HLOTRACE"
- ZB ZB22^HLOCLNT:"N":1:"D ZB22^HLOTRACE"
- ZB ZB23^HLOCLNT:"N":1:"D ZB23^HLOTRACE"
- ZB ZB24^HLOCLNT1:"N":1:"D ZB24^HLOTRACE"
- ZB ZB25^HLOCLNT:"N":1:"D WRITE^HLOTRACE(""Calling DEQUE..."")"
- ZB ZB31^HLOTCP:"N":1:"D WRITE^HLOTRACE(""Beginning READ over TCP..."")"
- ZB ZB32^HLOTCP:"N":1:"D ZB32^HLOTRACE"
+ D SBREAK("ZB19^HLOT","D ZB19^HLOTRACE")
+ D SBREAK("ZB20^HLOCLNT","D ZB20^HLOTRACE")
+ D SBREAK("ZB21^HLOCLNT","D ZB21^HLOTRACE")
+ D SBREAK("ZB22^HLOCLNT","D ZB22^HLOTRACE")
+ D SBREAK("ZB23^HLOCLNT","D ZB23^HLOTRACE")
+ D SBREAK("ZB24^HLOCLNT1","D ZB24^HLOTRACE")
+ D SBREAK("ZB25^HLOCLNT","D WRITE^HLOTRACE(""Calling DEQUE..."")")
+ D SBREAK("ZB31^HLOTCP","D WRITE^HLOTRACE(""Beginning READ over TCP..."")")
+ D SBREAK("ZB32^HLOTCP","D ZB32^HLOTRACE")
  Q
 WRITE(MSG) ;
  N OLD
@@ -128,7 +139,8 @@ WRITE3(MSG) ;
  ;
 ZB3 ;
  N CON,MSG
- S CON=($ZA\8192#2)
+ I ^%ZOSF("OS")["OpenM" S CON=($ZA\8192#2) ; *10001*
+ I ^%ZOSF("OS")["GT.M"  S CON=$KEY["ESTABLISHED" ; *10001*
  S MSG="Error encountered, $ECODE="_$ECODE
  D WRITE^HLOTRACE(MSG)
  S MSG=$S(CON:"           TCP connection still active",1:"          TCP connection was dropped")

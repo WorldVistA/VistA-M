@@ -1,7 +1,10 @@
-HLOSITE ;ALB/CJM/OAK/PIJ-HL7 - API for getting site parameters ;03/26/2012
- ;;1.6;HEALTH LEVEL SEVEN;**126,138,147,153,158**;Oct 13, 1995;Build 14
- ;Per VHA Directive 2004-038, this routine should not be modified.
+HLOSITE ;ALB/CJM/OAK/PIJ-HL7 - API for getting site parameters ;Apr 03, 2020@14:44
+ ;;1.6;HEALTH LEVEL SEVEN;**126,138,147,153,158,10001**;Oct 13, 1995;Build 3
  ;
+ ; Original code in the public domain by Dept of Veterans Affairs.
+ ; Changes **10001** by Sam Habiel (c) 2020.
+ ; Changes indicated inline.
+ ; Licensed under Apache 2.0.
 SYSPARMS(SYSTEM) ;Gets system parameters from file 779.1
  ;Input: none
  ;Output:  SYSTEM array (pass by reference)
@@ -14,7 +17,7 @@ SYSPARMS(SYSTEM) ;Gets system parameters from file 779.1
  S SYSTEM("MAXSTRING")=$P(NODE,"^",4)
  I ('SYSTEM("MAXSTRING"))!(SYSTEM("MAXSTRING")<256) D
  .N OS S OS=^%ZOSF("OS")
- .S SYSTEM("MAXSTRING")=$S(OS["OpenM":512,OS["DSM":512,1:256)
+ .S SYSTEM("MAXSTRING")=$S(OS["OpenM":512,OS["DSM":512,OS["GT.M":2**20-1,1:256) ; *10001 GT.M
  S SYSTEM("HL7 BUFFER")=$P(NODE,"^",5)
  S:'SYSTEM("HL7 BUFFER") SYSTEM("HL7 BUFFER")=15000
  S SYSTEM("USER BUFFER")=$P(NODE,"^",6)
@@ -56,7 +59,7 @@ INC(VARIABLE,AMOUNT) ;
  E  D
  .S OS=^%ZOSF("OS")
  I '$G(AMOUNT) S AMOUNT=1
- I (OS["OpenM")!(OS["DSM")!(OS["CACHE") Q $I(@VARIABLE,AMOUNT)
+ I (OS["OpenM")!(OS["DSM")!(OS["CACHE")!(OS["GT.M") Q $I(@VARIABLE,AMOUNT) ; *10001 GT.M
  L +VARIABLE:100
  S @VARIABLE=@VARIABLE+AMOUNT
  L -VARIABLE
@@ -90,7 +93,7 @@ RCNT(ST) ;This section sets or reads the recount flag.
  ;; When ST="U" Flag is unset
  I $G(ST)="S" S $P(^HLD(779.1,1,0),"^",11)=1
  I $G(ST)="U" S $P(^HLD(779.1,1,0),"^",11)=0
- Q $P($G(^HLD(779.1,1,0)),"^",11)
+ Q:$Q $P($G(^HLD(779.1,1,0)),"^",11) Q  ; *10001
  ;;HL*1.6*138 end
 OLDPURGE() ;returns the retention time in days for unsent messages
  N TIME

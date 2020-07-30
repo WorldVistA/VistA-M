@@ -1,6 +1,9 @@
-HLOSRVR ;ALB/CJM - Server for receiving messages - 10/4/94 1pm ;06/25/2012
- ;;1.6;HEALTH LEVEL SEVEN;**126,130,131,134,137,138,139,143,147,157,158**;Oct 13, 1995;Build 14
- ;Per VHA Directive 2004-038, this routine should not be modified.
+HLOSRVR ;ALB/CJM - Server for receiving messages;Apr 03, 2020@14:46
+ ;;1.6;HEALTH LEVEL SEVEN;**126,130,131,134,137,138,139,143,147,157,158,10001**;Oct 13, 1995;Build 3
+ ; Original code in the public domain by Dept of Veterans Affairs.
+ ; Changes **10001** by Sam Habiel (c) 2018 & Lloyd Milligan (c) 2011.
+ ; Changes indicated inline.
+ ; Licensed under Apache 2.0.
  ;
 GETWORK(WORK) ;
  ;GET WORK function for a single server or a Taskman multi-server
@@ -15,7 +18,7 @@ DOWORKS(WORK) ;
  D SERVER(WORK("LINK"))
  Q
 DOWORKM(WORK) ;
- ;DO WORK rtn for a Taskman multi-server (Cache systems only)
+ ;DO WORK rtn for a Taskman multi-server (Cache/GT.M) ; *10001 comment update*
  D LISTEN^%ZISTCPS(WORK("PORT"),"SERVER^HLOSRVR("""_WORK("LINK")_""")")
  Q
  ;
@@ -34,17 +37,18 @@ VMS ;Called from VMS TCP Service once a connection request has been received. Th
  .N PROC,NODE
  .S PROC=$O(^HLD(779.3,"B","VMS TCP LISTENER",0))
  .I PROC S LINKNAME=$P($G(^HLD(779.3,PROC,0)),"^",14) Q:$L(LINKNAME)
- .S NODE=$G(^HLD(779.1,1,0)) I $P(NODE,"^",10) S LINKNAME=$P($G(^HLCS(870,$P(NODE,"^",10),0)),"^") Q:$L(LINKNAME) 
+ .S NODE=$G(^HLD(779.1,1,0)) I $P(NODE,"^",10) S LINKNAME=$P($G(^HLCS(870,$P(NODE,"^",10),0)),"^") Q:$L(LINKNAME)
  .S LINKNAME="HLO DEFAULT LISTENER"
  ;
  D SERVER(LINKNAME,"SYS$NET")
  Q
+GTMLNX  ;SIS/LM, MS/SMH - Called from Linux TCP Service when a connect request has been received.
 LINUX1 ;The listener entry point on Linux systems.  The HL LOGICAL LINK should
  ;be specified in the xinetd configuration file as the variable
  ;HLOLINK or otherwise in the HLO SYSTEM PARAMETERS file 
  ;
  N LINKNAME,NODE
- S LINKNAME=$System.Util.GetEnviron("HLOLINK")
+ S LINKNAME=$$ENV^%ZOSV("HLOLINK")
  I '$L(LINKNAME) S NODE=$G(^HLD(779.1,1,0)) I $P(NODE,"^",10) S LINKNAME=$P($G(^HLCS(870,$P(NODE,"^",10),0)),"^")
  S:'$L(LINKNAME) LINKNAME="HLO DEFAULT LISTENER"
  D LINUX(LINKNAME)
@@ -57,7 +61,8 @@ LINUX(LINKNAME) ;Listener for Linux systems running under Xinetd.
  Q:'$L($G(LINKNAME))
  Q:$$CHKSTOP^HLOPROC
  ;
- D $ZU(68,15,1) ;need error on disconnect
+ I ^%ZOSF("OS")["OpenM" D $ZU(68,15,1) ;need error on disconnect
+ I ^%ZOSF("OS")["GT.M" U $P:IOERROR="TRAP" ; ditto for GT.M
  D SERVER(LINKNAME,$PRINCIPAL)
  Q
  ;
@@ -115,7 +120,7 @@ ZB999 ;
  S HLCSTATE("MESSAGE STARTED")=0 ;start of message flag
  S HLCSTATE("MESSAGE ENDED")=0 ;end of message flag
  S NODE=^%ZOSF("OS")
- S HLCSTATE("SYSTEM","OS")=$S(NODE["DSM":"DSM",NODE["OpenM":"CACHE",NODE["G.TM":"G.TM",1:"")
+ S HLCSTATE("SYSTEM","OS")=$S(NODE["DSM":"DSM",NODE["OpenM":"CACHE",NODE["GT.M":"GT.M",1:"") ; *10001 GT.M misspeltt
  Q:HLCSTATE("SYSTEM","OS")="" 0
  D  ;get necessary system parameters
  .N SYS,SUB

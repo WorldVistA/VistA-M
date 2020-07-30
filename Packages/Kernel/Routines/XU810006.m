@@ -1,0 +1,6 @@
+XU810006 ; OSE/SMH - Patch XU*8.0*10006 post install ;2019-12-27  11:41 AM
+ ;;8.0;KERNEL;**10006**;;Build 6
+ ;
+POST ;
+ D PATCH^ZTMGRSET(10006)
+ QUIT

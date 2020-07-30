@@ -1,6 +1,9 @@
-%ZOSV ;SFISC/AC - $View commands for Open M for NT.  ;09/15/08  12:12
- ;;8.0;KERNEL;**34,94,107,118,136,215,293,284,385,425,440,499**;Jul 10, 1995;Build 14
- ;Per VHA Directive 2004-038, this routine should not be modified
+%ZOSV ;SFISC/AC - $View commands for Open M for NT.  ;Jan 08, 2019@08:49
+ ;;8.0;KERNEL;**34,94,107,118,136,215,293,284,385,425,440,499,10002,10005**;Jul 10, 1995;Build 11
+ ;
+ ; *10002,*10005 changes (c) 2018 Sam Habiel
+ ; Licensed under Apache 2
+ ;
 ACTJ() ;# Active jobs
  N %,V,Y S V=$$VERSION()
  I V<5 D  Q Y
@@ -21,7 +24,7 @@ AVJ() ;# available jobs
  . S T=+LMFLIM+$P(LMFLIM,"|",2) ;Check the license total
  . S AVJ=$S(T<MAXPID:X,1:MAXPID-$$ACTJ) ;Return the smaller of license or pid
  ;To get available jobs from Cache 5.0 up
- I V'<5 D  Q AVJ
+ I V'<5 D  Q:AVJ>5 AVJ  ; *10005* Support for Cache w/o license; was Q AVJ
  . X "S AVJ=$system.License.LUAvailable()"
  ;Return fixed value not known version
  Q 15
@@ -168,3 +171,38 @@ T0 ; start RT clock, obsolete
 T1 ; store RT datum, obsolete
  ;S ^%ZRTL(3,XRTL,+$H,XRTN,$P($H,",",2))=XRT0 K XRT0
  Q
+RETURN(%COMMAND,JUSTSTATUS) ; [Public] execute a shell command - *10002* OSE/SMH
+ ; - return the last line; or just the status of the command.
+ ; %COMMAND is the string value of the Linux/Windows command
+ ;
+ ; OSE/SMH: Cache implementation notes:
+ ;
+ ; - I don't see a way for Cache to suppress output of $ZF or
+ ; alternately to return the status of "QR" open. That's why
+ ; we have two different implentations for status vs no status.
+ ;
+ ; "QR" open note: The default timeout for close is 30 seconds. If the
+ ; process is long-lived, we will not close. I don't know if that's
+ ; the best way to do things right now.
+ ;
+ I $G(JUSTSTATUS) Q $ZF(-1,%COMMAND)
+ ;
+ N OLDIO S OLDIO=$IO
+ O %COMMAND:"QR":2
+ E  Q -1
+ N % S %=$System.Process.SetZEOF(1) ; Prevent Cache from throwing an error at EOF
+ U %COMMAND
+ N OUT R OUT:2
+ U OLDIO C %COMMAND
+ Q OUT
+ ;
+ ; *10005* Plan VI Calls for VistA Internationalization
+BL(X) ; Byte Length of X in UTF-8 encoding
+ Q $L($ZCONVERT(X,"O","UTF8"))
+ ;
+BE(X,S,E) ; Byte Extract of X in UTF-8 encoding
+ Q $E($ZCONVERT(X,"O","UTF8"),S,E)
+ ;
+ENV(X) ; Get Environment Variable from Operating System
+ Q $SYSTEM.Util.GetEnviron(X)
+ ; /*10005*

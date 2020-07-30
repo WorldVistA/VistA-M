@@ -71,8 +71,8 @@ ZWR
 ^DIC(19.2,37,0)="12039^3200604.02^^^^D@2AM"
 ^DIC(19.2,37,1)=1230712
 ^DIC(19.2,37,1.1)=70
-^DIC(19.2,38,0)="12060^3200712.0019^^^^900S"
-^DIC(19.2,38,1)=1393
+^DIC(19.2,38,0)="12060^3200728.2034^^^^900S"
+^DIC(19.2,38,1)=2257
 ^DIC(19.2,"%D",0)="^^6^6^2941121^^"
 ^DIC(19.2,"%D",1,0)="This file hold records that relate to the scheduling of options"
 ^DIC(19.2,"%D",2,0)="to run on a one time basis or more likely on a schedule."
