@@ -1,5 +1,5 @@
-ORDV02A ; slc/dcm - OE/RR Report Extracts ; 10/8/03 11:18
- ;;3.0;ORDER ENTRY/RESULTS REPORTING;**243**;Dec 17, 1997;Build 242
+ORDV02A ; slc/dcm - OE/RR Report Extracts ;03/19/15  09:34
+ ;;3.0;ORDER ENTRY/RESULTS REPORTING;**243,377**;Dec 17, 1997;Build 582
  ;LAB Components
 EM(ROOT,ORALPHA,OROMEGA,ORMAX,ORDBEG,ORDEND,OREXT)      ;Electron Microscopy
  ;External references to ^DPT(DFN,"LR"), ^ORDVX1,
@@ -39,7 +39,7 @@ SP(ROOT,ORALPHA,OROMEGA,ORMAX,ORDBEG,ORDEND,OREXT)      ;Surgical Pathology
  Q
  ;
 GET ;Get data
- N ORDT,ORX0,ORCNT,GMI,LRDFN,IX,X,IX0,ORSITE,ORSS,SITE,GO
+ N ORDT,ORX0,ORCNT,GMI,LRDFN,IX,X,IX0,ORSITE,ORSS,SITE,GO,ORIMGCNT
  Q:'$L(OREXT)
  S GO=$P(OREXT,";")_"^"_$P(OREXT,";",2)
  Q:'$L($T(@GO))
@@ -54,13 +54,16 @@ GET ;Get data
  S ORDT=OROMEGA,ORCNT=0
  F  S ORDT=$O(^TMP("OROOT",$J,ORDT)) Q:(ORDT'>0)!(ORDT>ORALPHA)!(ORCNT>ORMAX)  D
  . S ORSS="" F  S ORSS=$O(^TMP("OROOT",$J,ORDT,ORSS)) Q:ORSS=""!(ORCNT>ORMAX)  S ORX0=^(ORSS,0) D
+ .. S ORIMGCNT=$S($D(^TMP("OROOT",$J,ORDT,ORSS,.05)):$$IMGCNT^TIUSRVLO($G(^TMP("OROOT",$J,ORDT,ORSS,.05))),1:0)
  .. S SITE=$S($L($G(^TMP("OROOT",$J,ORDT,ORSS,"facility"))):^("facility"),1:ORSITE)
  .. S ^TMP("ORDATA",$J,ORDT_ORSS,"WP",1)="1^"_SITE ;Station ID
  .. S ^TMP("ORDATA",$J,ORDT_ORSS,"WP",2)="2^"_$P(ORX0,U) ;collection date
  .. S ^TMP("ORDATA",$J,ORDT_ORSS,"WP",4)="4^"_$P(ORX0,U,2) ;accession number
  .. D SPMRG^ORDVU("^TMP(""OROOT"","_$J_","_ORDT_","_""""_ORSS_""""_",.1)","^TMP(""ORDATA"","_$J_","_""""_ORDT_ORSS_""""_",""WP"",3)",3) ;specimen
  .. D SPMRG^ORDVU("^TMP(""OROOT"","_$J_","_ORDT_","_""""_ORSS_""""_",.2)","^TMP(""ORDATA"","_$J_","_""""_ORDT_ORSS_""""_",""WP"",5)",5) ;report text
- .. S ^TMP("ORDATA",$J,ORDT_ORSS,"WP",6)="6^[+]",ORCNT=ORCNT+1 ;flag for detail
+ .. S ^TMP("ORDATA",$J,ORDT_ORSS,"WP",6)="6^[+]" ;flag for detail
+ .. S ^TMP("ORDATA",$J,ORDT_ORSS,"WP",7)="7^"_ORIMGCNT ;image indicator flag
+ .. S ^TMP("ORDATA",$J,ORDT_ORSS,"WP",8)="8^"_$G(^TMP("OROOT",$J,ORDT,ORSS,.05)),ORCNT=ORCNT+1 ; TIU IEN for image
  K ^TMP("OROOT",$J)
  S ROOT=$NA(^TMP("ORDATA",$J))
  Q

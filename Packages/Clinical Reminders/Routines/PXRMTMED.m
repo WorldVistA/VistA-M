@@ -1,10 +1,10 @@
-PXRMTMED ; SLC/PKR/PJH - Edit a reminder term. ;05/27/2014
- ;;2.0;CLINICAL REMINDERS;**1,4,6,12,26**;Feb 04, 2005;Build 404
+PXRMTMED ; SLC/PKR/PJH - Edit a reminder term. ;08/29/2018
+ ;;2.0;CLINICAL REMINDERS;**1,4,6,12,26,45**;Feb 04, 2005;Build 566
  ;
  ;=======================================================
- N CS1,CS2,DA,DIC,DLAYGO,DTOUT,DUOUT,Y
+ N CS1,CS2,DA,DIC,DLAYGO,DTOUT,DUOUT,OUTPUT,Y
 GETNAME ;Get the name of the term to edit.
- K DA,DIC,DLAYGO,DTOUT,DUOUT,Y
+ K DA,DIC,DLAYGO,DTOUT,DUOUT,OUTPUT,Y
  S DIC="^PXRMD(811.5,"
  S DIC(0)="AEMQL"
  S DIC("A")="Select Reminder Term: "
@@ -21,7 +21,10 @@ GETNAME ;Get the name of the term to edit.
  I $G(DA)="" G GETNAME
  S CS2=$$FILE^PXRMEXCS(811.5,DA)
  I CS2=0 G GETNAME
- I CS2'=CS1 D SEHIST^PXRMUTIL(811.5,DIC,DA)
+ I CS2=CS1 G GETNAME
+ W !!,"Checking integrity of the term ...",!
+ I '$$TERM^PXRMICHK(DA,.OUTPUT,1) G GETNAME
+ D SEHIST^PXRMUTIL(811.5,DIC,DA)
  G GETNAME
 END ;
  Q

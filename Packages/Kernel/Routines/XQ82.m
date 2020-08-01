@@ -1,6 +1,8 @@
-XQ82 ;SF-ISC.SEA/JLI - CLEAN OLD $JOB DATA OUT OF XUTL("XQ", & OTHERS ;12/03/14  08:32
- ;;8.0;KERNEL;**59,67,157,258,312,353,542,554,638**;Jul 10, 1995;Build 15
- ;Per VA Directive 6402, this routine should not be modified.
+XQ82 ;SF-ISC.SEA/JLI - CLEAN OLD $JOB DATA OUT OF XUTL("XQ", & OTHERS ;2017-01-09  3:27 PM
+ ;;8.0;KERNEL;**59,67,157,258,312,353,542,554,638,10001**;Jul 10, 1995;Build 21
+ ; Submitted to OSEHRA in 2017 by Sam Habiel for OSEHRA
+ ; Original Routine authored by Department of Veterans Affairs
+ ; EPs DEAD and CHECK GT.M support by Sam Habiel 2016.
  ;
  ;Make sure that can run from a DCL script
  N A,X,%DT,Y,J,K,DDATE,HDATE,HJOB,HPID3,XQOS,XQVND
@@ -101,12 +103,13 @@ DEAD(X1) ;Check if X1 is a PID and DEAD
  I XQOS="VMS",$E($$CNV^XLFUTL(X1,16),1,3)'=$E(HPID3,1,3) Q 0
  ;We should only come here
  ;is X1 a PID on this node and is PID active?..
+ I $ZV["GT.M" Q $ZGETJPI(X1,"ISPROCALIVE") ; OSEHRA/SMH - GT.M replacement for ^$J
  I $D(^$JOB(X1))=0 Q 1 ; Job is DEAD
  Q 0
  ;
 CHECK() ;Check that we have the right enviroment to do pass 2
  ;GTM must be on one big box.
- I XQVND["GT.M" Q 0
+ I XQVND["GT.M" Q 1 ; OSEHRA/SMH - GT.M allows you to check if a job exists.
  ;Are we on Cache, ^$JOB is supported.
  ;Get value of LOCAL TMP (.07) to see if ^TMP, ^UTILITY and ^XUTL("XQ" are local.
  I XQVND["OpenM" Q +$P($G(^XTV(8989.3,1,0)),"^",7) ;p554

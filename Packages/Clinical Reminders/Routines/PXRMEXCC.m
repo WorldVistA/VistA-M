@@ -1,10 +1,10 @@
-PXRMEXCC ; SLC/PKR - Exchange component check. ;10/28/2016
- ;;2.0;CLINICAL REMINDERS;**47**;Feb 04, 2005;Build 291
+PXRMEXCC ; SLC/PKR - Exchange component check. ;04/24/2018
+ ;;2.0;CLINICAL REMINDERS;**47,42**;Feb 04, 2005;Build 103
  ;Used to find corrupted components, the indicator is when the Index
  ;is not at the proper line in the Exchange file.
  ;======================================================
 COMPCHK(IEN) ;Check the components for the Exchange entry.
- N BADIND,CSTART,DONE,END,FILENAME,FILENUM,IND,INDEXAT,JND,LINE
+ N BADIND,CSTART,END,FILENAME,FILENUM,IND,INDEXAT,JND,LINE
  N LNUM,NCMPNT,START,SUB,TAG,TEXT,TYPE
  ;Find the Index
  S (IND,INDEXAT)=0
@@ -18,7 +18,7 @@ COMPCHK(IEN) ;Check the components for the Exchange entry.
  K ^TMP($J,"CMPNT")
  F IND=1:1:NCMPNT D
  . K END,START
- . F  S JND=JND+1,LINE=^PXD(811.8,IEN,100,JND,0) Q:LINE="</COMPONENT>"  D
+ . F  S JND=JND+1,LINE=$G(^PXD(811.8,IEN,100,JND,0)) Q:(LINE="</COMPONENT>")!(LINE="")  D
  .. S TAG=$$GETTAG^PXRMEXU3(LINE)
  .. I TAG["START" S START(TAG)=+$$GETTAGV^PXRMEXU3(LINE,TAG)
  .. I TAG["END" S END(TAG)=+$$GETTAGV^PXRMEXU3(LINE,TAG)
@@ -47,22 +47,27 @@ COMPCHK(IEN) ;Check the components for the Exchange entry.
  .. S ^TMP($J,"CMPNT",IND,"IEN_ROOT_START")=$G(START("<IEN_ROOT_START>"))
  .. S ^TMP($J,"CMPNT",IND,"IEN_ROOT_END")=$G(END("<IEN_ROOT_END>"))
  ;Look for missing TYPE, this is an indicator of an issue.
+ S TEXT(1)="Component check for Exchange Entry IEN="_IEN_"."
  S BADIND=0,IND=1
  I $G(^TMP($J,"CMPNT",1,"TYPE"))="" S BADIND=1
  F  S IND=$O(^TMP($J,"CMPNT",IND)) Q:(BADIND)!(IND="")  D
  . S TYPE=$G(^TMP($J,"CMPNT",IND,"TYPE"))
- . I TYPE="" S BADIND=IND-1
- S TEXT(1)="Component check for Exchange Entry IEN="_IEN_"."
- S TEXT(2)="Component number "_BADIND_" appears to have a problem, the component information is:"
- S LNUM=2,SUB=""
- F  S SUB=$O(^TMP($J,"CMPNT",BADIND,SUB)) Q:SUB=""  D
- . S LNUM=LNUM+1,TEXT(LNUM)=" "_SUB_"="_^TMP($J,"CMPNT",BADIND,SUB)
- S LNUM=LNUM+1,TEXT(LNUM)=""
- S LNUM=LNUM+1,TEXT(LNUM)="The component details are:"
- S IND=^TMP($J,"CMPNT",BADIND,"FDA_START")-2,DONE=0
- F  Q:DONE  D
- . S IND=IND+1,LNUM=LNUM+1,TEXT(LNUM)=^PXD(811.8,IEN,100,IND,0)
- . I TEXT(LNUM)="]]>" S DONE=1
+ . I TYPE="" S BADIND=IND
+ I BADIND=0 S TEXT(2)="Cannot determine the problem."
+ I BADIND>0 D
+ . S TEXT(2)="There appears to be a problem in this component area."
+ . S LNUM=2
+ . F IND=(BADIND-1):1:(BADIND+1) D
+ .. S LNUM=LNUM+1,TEXT(LNUM)=""
+ .. S LNUM=LNUM+1,TEXT(LNUM)="Component number "_IND
+ .. S SUB=""
+ .. F  S SUB=$O(^TMP($J,"CMPNT",IND,SUB)) Q:SUB=""  D
+ ... S LNUM=LNUM+1,TEXT(LNUM)=" "_SUB_"="_^TMP($J,"CMPNT",IND,SUB)
+ .. S LNUM=LNUM+1,TEXT(LNUM)=""
+ .. S LNUM=LNUM+1,TEXT(LNUM)="The component details are:"
+ .. S START=^TMP($J,"CMPNT",IND,"FDA_START")-2
+ .. S END=^TMP($J,"CMPNT",IND,"FDA_END")+2
+ .. F JND=START:1:END S LNUM=LNUM+1,TEXT(LNUM)=^PXD(811.8,IEN,100,JND,0)
  S LNUM=LNUM+1,TEXT(LNUM)=""
  S LNUM=LNUM+1,TEXT(LNUM)="If you need assistance with this, call the National Help Desk and have them"
  S LNUM=LNUM+1,TEXT(LNUM)="enter a ticket."

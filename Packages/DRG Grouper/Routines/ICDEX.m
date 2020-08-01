@@ -1,5 +1,7 @@
-ICDEX ;SLC/KER - ICD Extractor - Main Entry Points ;12/19/2014
- ;;18.0;DRG Grouper;**57,67**;Oct 20, 2000;Build 1
+ICDEX ;SLC/KER - ICD Extractor - Main Entry Points ;Jan 15, 2019@11:35
+ ;;18.0;DRG Grouper;**57,67,OSEHRA**;Oct 20, 2000;Build 1
+ ;
+ ; *OSEHRA change: add missing QUIT in MD to prevent fallthrough error ,M11,
  ;
  ; Global Variables
  ;    None
@@ -227,7 +229,7 @@ EXIST(IEN,FIELD) ; Does a condition Exist (ICDDRGX)
 GETDRG(FILE,IEN,CDT,MDC) ; DRGs for an Fiscal Year (ICDGTDRG)
  Q $$GETDRG^ICDEXD($G(FILE),$G(IEN),$P($G(CDT),".",1),$G(MDC))
 MD(FILE,IEN,CDT,ARY,FLAG) ; MDC DRGs
- D MD^ICDEXD2($G(FILE),$G(IEN),$P($G(CDT),".",1),.ARY,$G(FLAG))
+ D MD^ICDEXD2($G(FILE),$G(IEN),$P($G(CDT),".",1),.ARY,$G(FLAG)) Q  ; *OSEHRA add Q
 EFM(EDT) ; Convert External Date to FM (ICDGTDRG)
  Q $$EFM^ICDEXD6($G(EDT))
 FY(CDT) ; FY 4 digit year (ICDGTDRG)

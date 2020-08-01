@@ -1,5 +1,5 @@
-PXRMFMTO ;SLC/PKR - Produce the formatted output for reminder evaluation. ;08/04/2016
- ;;2.0;CLINICAL REMINDERS;**47**;Feb 04, 2005;Build 291
+PXRMFMTO ;SLC/PKR - Produce the formatted output for reminder evaluation. ;08/24/2017
+ ;;2.0;CLINICAL REMINDERS;**47,42**;Feb 04, 2005;Build 103
  ;
  ;===================
 FMTOUT(TMPSUB,NL,OUTPUT) ;Produce the formatted output.
@@ -43,9 +43,7 @@ MHVCOUT(TMPSUB,NL,OUTPUT) ;MHV combined output.
  . S NL=NL+1,OUTPUT(NL)=^TMP(TMPSUB,$J,RIEN,"DETAIL",LNUM)
  S NL=NL+1,OUTPUT(NL)="",NL=NL+1,OUTPUT(NL)=""
  S NL=NL+1,OUTPUT(NL)="---------- Summary Output ----------"
- S LNUM=0
- F  S LNUM=$O(^TMP(TMPSUB,$J,RIEN,"SUMMARY",LNUM)) Q:LNUM=""  D
- . S NL=NL+1,OUTPUT(NL)=^TMP(TMPSUB,$J,RIEN,"SUMMARY",LNUM)
+ D STATUS(FREQ,RNAME,TEMP,.NL,.OUTPUT)
  Q
  ;
  ;===================

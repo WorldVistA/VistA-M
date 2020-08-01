@@ -1,5 +1,5 @@
-ORCACT0 ;SLC/MKB-Validate order action ;06/13/17
- ;;3.0;ORDER ENTRY/RESULTS REPORTING;**7,27,48,72,86,92,94,141,165,177,173,190,215,243,289,204,306,350,425,434**;Dec 17, 1997;Build 35
+ORCACT0 ;SLC/MKB-Validate order action ;10/29/19  14:32
+ ;;3.0;ORDER ENTRY/RESULTS REPORTING;**7,27,48,72,86,92,94,141,165,177,173,190,215,243,289,204,306,350,425,434,377**;Dec 17, 1997;Build 582
  ;
  ;Reference to REFILL^PSOREF supported by IA #2399
  ;
@@ -72,7 +72,8 @@ DC2 I ACTION="DC",ACTSTS="" D  G VQ ; DC released order
  .. I $$COLLECTD S ERROR="Lab orders that have been collected may not be discontinued!" Q
  .. I $G(NATR)="A","^12^38^"'[(U_$P($G(DGPMA),U,18)_U),$$VALUE^ORX8(+IFN,"COLLECT")="SP",$P(OR0,U,8)'<DT S ERROR="Future Send Patient orders may not be auto-discontinued!" Q
  . I PKG="GMRC",ORDSTS=9 S ERROR="Consults orders with partial results cannot be discontinued!" Q
- . I DG="DO",$G(DGPMT)'=3,ORDSTS=6,'$$NPO(+IFN) S ERROR="Active Diets cannot be discontinued; please order a new diet!" Q
+ .I DG="DO",$G(DGPMT)'=3,ORDSTS=6 S ERROR="Active Diets cannot be discontinued; please order a new diet!" Q
+ . ;I DG="DO",$G(DGPMT)'=3,ORDSTS=6,'$$NPO(+IFN) S ERROR="Active Diets cannot be discontinued; please order a new diet!" Q
 RL I ACTION="RL" D  G VQ  ; release hold
  . I ORDSTS'=3 D  Q
  ..I $P(ORA0,U,4)=2 S ERROR="Providers has not yet signed the hold order and therefor it cannot yet be released" Q
@@ -121,7 +122,7 @@ NPO(ORIFN) ; -- Returns 1 or 0, if order ORIFN is for NPO
  Q Y
  ;
 COLLECTD() ; -- Lab order collected/active (incl all children)?
- I (ORDSTS=11)!(ORDSTS=10) Q 0 ; unreleased
+ I "^1^10^11^12^13^"[(U_ORDSTS_U) Q 0 ; unreleased or discontinued
  I '$O(^OR(100,+IFN,2,0)) Q (ORDSTS'=5)
  ;I ORDSTS'=6 Q 1 ; Parent -> active instead of pending
  N Y,Z S Y=1,Z=0

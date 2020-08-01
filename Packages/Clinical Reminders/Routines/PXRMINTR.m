@@ -1,5 +1,5 @@
-PXRMINTR ;SLC/PKR/PJH - Input transforms for Clinical Reminders. ;11/04/2013
- ;;2.0;CLINICAL REMINDERS;**4,12,16,18,26**;Feb 04, 2005;Build 404
+PXRMINTR ;SLC/PKR,PJH - Input transforms for Clinical Reminders. ;04/07/2016  13:53
+ ;;2.0;CLINICAL REMINDERS;**4,12,16,18,26,45**;Feb 04, 2005;Build 566
  ;=======================================================
 VASP(DA,X) ;Check for valid associate sponsor in file 811.6.
  ;Do not execute as part of a verify fields.
@@ -235,6 +235,7 @@ VTAX(X) ;Make sure the taxonomy is active.
 VUSAGE(X) ;Check X to see if it contains valid USAGE codes.
  ;This is part of the input transform for this field. The length of the
  ;USAGE field is 10 characters. The valid codes are:
+ ;   A - Action
  ;   C - CPRS
  ;   L - Reminder Patient List
  ;   O - Reminder Order Checks
@@ -248,6 +249,7 @@ VUSAGE(X) ;Check X to see if it contains valid USAGE codes.
  ;
  N TEMP,TEXT
  S TEMP=$$UP^XLFSTR(X)
+ S TEMP=$TR(TEMP,"A","")
  S TEMP=$TR(TEMP,"C","")
  S TEMP=$TR(TEMP,"L","")
  S TEMP=$TR(TEMP,"O","")

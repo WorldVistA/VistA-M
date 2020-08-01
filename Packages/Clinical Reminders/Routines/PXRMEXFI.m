@@ -1,5 +1,5 @@
-PXRMEXFI ;SLC/PKR/PJH - Exchange utilities for file entries. ;09/08/2015
- ;;2.0;CLINICAL REMINDERS;**6,12,18,24,26,47**;Feb 04, 2005;Build 291
+PXRMEXFI ;SLC/PKR/PJH - Exchange utilities for file entries. ;07/21/2017
+ ;;2.0;CLINICAL REMINDERS;**6,12,18,24,26,47,42**;Feb 04, 2005;Build 103
  ;==============================================
 DELALL(FILENUM,NAME) ;Delete all file entries named NAME.
  N IEN,IND,LIST,MSG
@@ -23,11 +23,7 @@ FEIMSG(SAME,ATTR) ;Output the general file exists install message.
  N IND,NOUT,TEXT,TEXTO
  S TEXT(1)=ATTR("FILE NAME")_" entry named "_ATTR("NAME")_" already exists"
  I SAME D
- . S TEXT(2)="and the packed component is identical, skipping."
- . S TEXT(3)=" "
- . D FORMAT^PXRMTEXT(1,70,3,.TEXT,.NOUT,.TEXTO)
- . F IND=1:1:NOUT W !,TEXTO(IND)
- . H 1
+ . W "."
  I 'SAME D
  . S TEXT(2)="but the packed component is different, what do you want to do?"
  . D FORMAT^PXRMTEXT(1,70,2,.TEXT,.NOUT,.TEXTO)

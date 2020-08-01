@@ -1,10 +1,11 @@
-TIUPUTC ; SLC/JER - Document filer - captioned header ; 2/15/13 9:05am
- ;;1.0;TEXT INTEGRATION UTILITIES;**3,21,81,100,113,112,173,184,277**;Jun 20, 1997;Build 6
+TIUPUTC ; SLC/JER - Document filer - captioned header ;07/12/16  13:04
+ ;;1.0;TEXT INTEGRATION UTILITIES;**3,21,81,100,113,112,173,184,277,290**;Jun 20, 1997;Build 548
  ;
 MAIN ; ---- Controls branching.
  ;      Attempts to file upload documents in the target file.
  ;      Requires DA = IEN of 8925.2 upload buffer entry.
- N TIUDA,TIUBGN,TIUI,TIUHSIG,TIULIM,TIULCNT,TIULINE,TIUREC,TIUPOST
+ N TIUDA,TIUBGN,TIUI,TIUHSIG,TIULIM,TIULCNT,TIULINE,TIUREC,TIUPOST,TIUFDT
+ N TIUDONE
  N TIUTYPE,TIUINST K ^TMP("TIUPUTC",$J)
  I '$D(TIUPRM0)!'$D(TIUPRM1) D SETPARM^TIULE
  S TIUHSIG=$P(TIUPRM0,U,10),TIUBGN=$P(TIUPRM0,U,12)
@@ -12,15 +13,19 @@ MAIN ; ---- Controls branching.
  I TIUBGN']"" D MAIN^TIUPEVNT(DA,1,7) Q
  ; ---- Strip controls when kermit:
  I $P(TIUPRM0,U,17)="k" D PREPROC(DA)
- S TIUI=0 F  S TIUI=$O(^TIU(8925.2,+DA,"TEXT",TIUI)) Q:+TIUI'>0  D
+ S TIUI=0,TIUFDT=0
+ F  S TIUI=$O(^TIU(8925.2,+DA,"TEXT",TIUI)) Q:+TIUI'>0  D
  . S TIULINE=$G(^TIU(8925.2,+DA,"TEXT",TIUI,0))
+ . ; - Skip to next note if future DS dictation date found
+ . I (TIUFDT=1),(TIULINE'[TIUHSIG) Q
+ . S TIUFDT=0
  . I TIULINE[TIUHSIG D  Q
  . . ; ---- Hdr signal line.  GETREC^TIUPUTC1 resets TIUI to $TXT line:
  . . N TIUHDR,TIUFRST,TIUJ S TIUFRST=TIUI
  . . ; ---- If after first hdr signal, finish previous docmt
  . . ;      before going on w/ current docmt:
  . . I +$G(TIULCNT),$D(TIUREC("TROOT")),$D(@(TIUREC("TROOT")_"0)")) D FINISH
- . . K TIUREC D GETREC^TIUPUTC1(TIULINE,.TIUREC,.TIUHDR)
+ . . K TIUREC D GETREC^TIUPUTC1(TIULINE,.TIUREC,.TIUHDR) Q:TIUFDT=1
  . . I +$G(TIUREC("#"))'>0!($G(TIUREC("ROOT"))']"") Q
  . . D STUFREC(.TIUHDR,.TIUREC)
  . . S TIUREC("TROOT")=TIUREC("ROOT")_TIUREC("#")_","_TIUREC("TEXT")_","
@@ -31,7 +36,7 @@ MAIN ; ---- Controls branching.
  . . . ;      (TIUI was reset in GETREC^TIUPUTC1 to $TXT line):
  . . . K ^TIU(8925.2,+DA,"TEXT",TIUJ,0)
  . . I TIUREC("FILE")=8925,+$G(TIUREC("#")),+$G(TIUREC("BOILON")) D BOILRPLT(.TIUREC)
- . I TIULINE'[TIUHSIG,(TIULINE'[TIUBGN),(+$G(TIUREC("FILE"))=8925),+$G(TIUREC("BOILON")) D
+ . Q:TIUFDT=1  I TIULINE'[TIUHSIG,(TIULINE'[TIUBGN),(+$G(TIUREC("FILE"))=8925),+$G(TIUREC("BOILON")) D
  . . I TIULINE]"",$D(^TIU(8925.1,"B",$P(TIULINE,":"))) D  I 1
  . . . S TIULCNT=$$LOCATE(TIULINE,TIUREC("#"))
  . . E  S TIULCNT=+$G(TIULCNT)+.01
@@ -63,27 +68,46 @@ LOCATE(LINE,REC) ; ---- Locate line in boilerplate text
  . I BTXT[$P(LINE,":")_":" S HIT=1
  Q +$G(TIUJ)
  ;
-STUFREC(HEADER,RECORD) ; ---- Stuffs record with known fixed fields;
+STUFREC(HEADER,TIURECD) ; ---- Stuffs record with known fixed fields;
  ;                      Checks for missing fields.
- N FDA,FDARR,IENS,FLAGS,TIUI,TIUMSG,TIUPC
- S IENS=""""_+RECORD("#")_","""
- S FDARR="FDA("_+RECORD("FILE")_","_IENS_")",FLAGS="KE"
- ; ---- Set up FDA Array:
+ N TIUFDA,FDARR,IENS,FLAGS,TIUI,TIUMSG,TIUECMSG,TIUPC,NEWMISS
+ S IENS=""""_+TIURECD("#")_","""
+ S FDARR="TIUFDA("_+TIURECD("FILE")_","_IENS_")",FLAGS="KE"
+ ; ---- Set up TIUFDA Array:
  S TIUI=0
  F  S TIUI=$O(HEADER(TIUI)) Q:+TIUI'>0  D
  . ; if field is Author/Dictator and title is OPERATION REPORT, ignore uploaded data *173
  . ; *277 VMP/DJH Allow 1202/1209 to file if addendum
- . I '+$$ISADDNDM^TIULC1(+RECORD("#")),(TIUI=1202!(TIUI=1209)),TIUREC("TYPE")=$$CHKFILE^TIUADCL(8925.1,"OPERATION REPORT","I $P(^(0),U,4)=""DOC""") S @FDARR@(1303)="U" Q
- . S:TIUI'=.001 @FDARR@(TIUI)=$$TRNSFRM^TIULX(.RECORD,TIUI,HEADER(TIUI))
- I $D(FDA) D FILE^DIE(FLAGS,"FDA","TIUMSG")
+  . I '+$$ISADDNDM^TIULC1(+TIURECD("#")),(TIUI=1202!(TIUI=1209)),TIURECD("TYPE")=$$CHKFILE^TIUADCL(8925.1,"OPERATION REPORT","I $P(^(0),U,4)=""DOC""") S @FDARR@(1303)="U" Q
+ . S:TIUI'=.001 @FDARR@(TIUI)=$$TRNSFRM^TIULX(.TIURECD,TIUI,HEADER(TIUI))
+ I $D(TIUFDA) D FILE^DIE(FLAGS,"TIUFDA","TIUMSG")
+ S NEWMISS=0
  I $D(TIUMSG) D
  . ; ---- If FILE^DIC fails, log 8925.4 error w/ hdr info.  Create new
  . ;      8925.2 buffer entry with hdr, text, & 8925.4 log #.
  . ;      Kill most of old buffer. Send missing field alerts:
- . D MAIN^TIUPEVNT(DA,2,"",$P($G(^TIU(8925.1,+RECORD("TYPE"),0)),U),.FDA,.TIUMSG)
- . S ^TMP("TIUPUTC",$J,"MISS")=+$G(^TMP("TIUPUTC",$J,"MISS"))+1
- I '$D(TIUMSG) D
+ . D MAIN^TIUPEVNT(DA,2,"",$P($G(^TIU(8925.1,+TIURECD("TYPE"),0)),U),.TIUFDA,.TIUMSG)
+ . S ^TMP("TIUPUTC",$J,"MISS")=+$G(^TMP("TIUPUTC",$J,"MISS"))+1,NEWMISS=1
+ D CKEXPCOS(NEWMISS)
+ I '$D(TIUMSG),'$D(TIUECMSG) D
  . S ^TMP("TIUPUTC",$J,"SUCC")=+$G(^TMP("TIUPUTC",$J,"SUCC"))+1
+ Q
+CKEXPCOS(NEWMISS) ; check if Exp Cos is a missing field. Requires some vars from STUFREC
+ N TIUFDA,TIUTITL,TIUD0,TIU12,TIU13,TIUEC,TIUAUTH,TIUDTDIC,TIUI,HEADER,TIUDAD
+ S TIUTITL=+^TIU(8925,TIURECD("#"),0)
+ I +$$ISADDNDM^TIULC1(TIURECD("#")) S TIUTITL=+$$DADTYPE^TIUPUTC(TIURECD("#"))
+ I TIUTITL=81 S TIUD0=^TIU(8925,TIURECD("#"),0),TIUDAD=$P(TIUD0,U,6),TIUTITL=+^TIU(8925,TIUDAD,0)
+ S TIU12=$G(^TIU(8925,TIURECD("#"),12)),TIU13=$G(^TIU(8925,TIURECD("#"),13))
+ S TIUEC=$P(TIU12,U,8),TIUAUTH=$P(TIU12,U,2),TIUDTDIC=$P(TIU13,U,7) I TIUEC>0!(TIUAUTH'>0)!(TIUDTDIC'>0) Q
+ I '$$REQCOSIG^TIULP(TIUTITL,,TIUAUTH,$P(TIUDTDIC,".")) Q
+ S TIUI=1208,HEADER(TIUI)="** EXPECTED COSIGNER MISSING FROM UPLOAD **"
+ ; If EC not there or not valid, set miss fld error.
+ S @FDARR@(TIUI)=$$TRNSFRM^TIULX(.TIURECD,TIUI,HEADER(TIUI))
+ D FILE^DIE(FLAGS,"TIUFDA","TIUECMSG")
+ I $D(TIUECMSG) D
+ . D MAIN^TIUPEVNT(DA,2,"",$P($G(^TIU(8925.1,+TIURECD("TYPE"),0)),U),.TIUFDA,.TIUECMSG)
+ . ; Don't raise # of missing-fld docmts if it has already been raised for this docmt:
+ . I 'NEWMISS S ^TMP("TIUPUTC",$J,"MISS")=+$G(^TMP("TIUPUTC",$J,"MISS"))+1
  Q
 BOILRPLT(TIUREC) ; ---- Execute/Interleave Boilerplates w/uploaded text
  N TIU

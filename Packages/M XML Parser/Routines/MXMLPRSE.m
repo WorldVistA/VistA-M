@@ -1,6 +1,7 @@
-MXMLPRSE ;SAIC/DKM - XML Parser ;09/08/08  11:50
- ;;7.3;TOOLKIT;**58,67,89,116,136**;Apr 25, 1995;Build 5
- ;Per VHA Directive 6402, this routine should not be modified
+MXMLPRSE ;SAIC/DKM - XML Parser ;2015-05-25  11:41 AM
+ ;;2.4;XML PROCESSING UTILITIES;;June 15, 2015;Build 14
+ ; @Author Dr. Douglas Martin, SAIC.
+ ; Sam Habiel made various fixes in 2014. Copyright disclaimed.
  ;=================================================================
  ; Main entry point.
  ; DOC = Closed reference to global array containing document
@@ -142,6 +143,7 @@ DOPARAM F  D WS() Q:EOD!'$$NEXT("%")  I $$ENTITY(1)
 ENTITY(PARAM) ;
  N NAME,APND
  S PARAM=+$G(PARAM)
+ I CPOS+10>LLEN D READ  ; VEN/SMH v2.1 - Read ahead for Entity if not enough in XML buffer.
  I 'PARAM,$$NEXT("#") Q $$CHENTITY
  S NAME=$S(PARAM:"%",1:"")_$$NAME(2)
  Q:'$$NEXT(";",3) ""
@@ -250,8 +252,11 @@ EXTRNL(SYS,PUB,GBL) ;
  .S Y=$E(PUB,1,30),X=0
  .F  S X=$O(^MXML(950,"B",Y,X)) Q:'X  Q:$G(^MXML(950,X,0))=PUB
  S:'$L(GBL) GBL=$$TMPGBL
- S:$$PATH(SYS)="" SYS=PATH_SYS
- S X=$S($$FTG^%ZISH(SYS,"",$NA(@GBL@(1)),$QL(GBL)+1):GBL,1:"")
+ ; S:$$PATH(SYS)="" SYS=PATH_SYS /VEN/SMH 2.1 commented out
+ N FILENAME
+ I $L(PATH) S FILENAME=$P(SYS,PATH,2,99) ; VEN/SMH 2.1 (path supplied)
+ E  S FILENAME=SYS ; VEN/SMH 2.1 (no path supplied)
+ S X=$S($$FTG^%ZISH(PATH,FILENAME,$NA(@GBL@(1)),$QL(GBL)+1):GBL,1:"") ; VEN/SMH 2.1
  D:'$L(X) ERROR(30,$S($L(SYS):SYS,1:PUB))
  Q X
  ; Return a unique scratch global reference

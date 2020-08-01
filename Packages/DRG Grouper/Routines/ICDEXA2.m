@@ -1,5 +1,8 @@
-ICDEXA2 ;SLC/KER - ICD Extractor - APIs/Utilities (cont) ;04/21/2014
- ;;18.0;DRG Grouper;**57**;Oct 20, 2000;Build 1
+ICDEXA2 ;SLC/KER - ICD Extractor - APIs/Utilities (cont) ;2018-06-21  3:57 PM
+ ;;18.0;DRG Grouper;**57,WVEHR**;Oct 20, 2000;Build 1
+ ; * WVEHR change (c) George Lilly and David Whitten 2015
+ ;                (c) Sam Habiel 2018 (bug fixes to $$PREV)
+ ; Licensed under Apache 2
  ;               
  ; Global Variables
  ;    ^ICD0("AVA"         N/A
@@ -46,15 +49,22 @@ NEXT(CODE,SYS,CDT) ; Next ICD Code (active or inactive)
  Q:+ICDS'>0 ""  S ICDR=$$ROOT^ICDEX(ICDS) Q:'$L(ICDR) ""
  S ICDO=$$NUM^ICDEX(ICDC) Q:$L(ICDC)&(+ICDO'>0) ""
  I 'ICDB S ICDC="" D  Q $S(ICDC="":"",1:ICDC)
- . S ICDN=$O(@(ICDR_"""AN"","_+ICDS_","_+ICDO_")"))
- . S ICDC=$S(+ICDN>0:$$COD^ICDEX(+ICDN),1:"")
+ . ;;Begin WorldVistA Change 8/2015 DJW - treat code as string
+ . ;was; S ICDN=$O(@(ICDR_"""AN"","_+ICDS_","_+ICDO_")"))
+ . S ICDN=$O(@(ICDR_"""AN"","_+ICDS_","""_ICDO_""")"))
+ . ;was; S ICDC=$S(+ICDN>0:$$COD^ICDEX(+ICDN),1:"")
+ . S ICDC=$S($L(ICDN):$$COD^ICDEX(ICDN),1:"")
  I ICDB S ICDC="" D  Q $S(ICDC="":"",1:ICDC)
- . N ICDA S ICDA="" F  S ICDO=$O(@(ICDR_"""AN"","_+ICDS_","_+ICDO_")")) Q:+ICDO'>0  D  Q:$L(ICDC)
- . . N ICDI S ICDI=0 F  S ICDI=$O(@(ICDR_"""AN"","_+ICDS_","_+ICDO_","_+ICDI_")")) Q:+ICDI'>0  D  Q:$L(ICDC)
+ . ;WAS ; N ICDA S ICDA="" F  S ICDO=$O(@(ICDR_"""AN"","_+ICDS_","_+ICDO_")")) Q:+ICDO'>0  D  Q:$L(ICDC)
+ . N ICDA S ICDA="" F  S ICDO=$O(@(ICDR_"""AN"","_+ICDS_","""_ICDO_""")")) Q:+ICDO'>0  D  Q:$L(ICDC)
+ . . ;WAS; N ICDI S ICDI=0 F  S ICDI=$O(@(ICDR_"""AN"","_+ICDS_","_+ICDO_","_+ICDI_")")) Q:+ICDI'>0  D  Q:$L(ICDC)
+ . . N ICDI S ICDI=0 F  S ICDI=$O(@(ICDR_"""AN"","_+ICDS_","""_ICDO_""","_+ICDI_")")) Q:+ICDI'>0  D  Q:$L(ICDC)
  . . . N ICDE,ICDH S ICDE=$O(@(ICDR_+ICDI_",66,""B"","_(ICDD+.001)_")"),-1) Q:ICDE'?7N
  . . . S ICDH=$O(@(ICDR_+ICDI_",66,""B"","_ICDE_","" "")"),-1) Q:+ICDH'>0
  . . . S ICDA=$G(@(ICDR_+ICDI_",66,"_ICDH_",0)")),ICDA=+($P(ICDA,"^",2))
- . . . S:+ICDA>0 ICDC=ICDO S ICDC=$S(+($G(ICDC))>0:$$COD^ICDEX(+ICDC),1:"")
+ . . . ;WAS; S:+ICDA>0 ICDC=ICDO S ICDC=$S(+($G(ICDC))>0:$$COD^ICDEX(+ICDC),1:"")
+ . . . S:+ICDA>0 ICDC=ICDO S ICDC=$S($L(ICDC):$$COD^ICDEX(ICDC),1:"")
+ . ; End WorldVistA Change 8/2015
  Q $S(ICDC="":"",1:ICDC)
 PREV(CODE,SYS,CDT) ; Previous ICD Code (active or inactive)
  ;
@@ -94,18 +104,26 @@ PREV(CODE,SYS,CDT) ; Previous ICD Code (active or inactive)
  S ICDR=$$ROOT^ICDEX(ICDS) Q:'$L(ICDR) ""
  S ICDO=$$NUM^ICDEX(ICDC) Q:$L(ICDC)&(+ICDO'>0) ""
  I 'ICDB D  Q $S(ICDC="":"",1:ICDC)
- . S:+ICDO'>0 ICDO=$O(@(ICDR_"""AN"","_+ICDS_","" "")"),-1)+1
+ . ;;Begin WorldVistA Change 8/2015 DJW - treat code as string
+ . ;WAS; S:+ICDO'>0 ICDO=$O(@(ICDR_"""AN"","_+ICDS_","" "")"),-1)+1
+ . S:+ICDO'>0 ICDO="" ; **OSE/SMH - this line is different**
  . S ICDN=0,ICDC=""
- . S ICDN=$O(@(ICDR_"""AN"","_+ICDS_","_+ICDO_")"),-1)
- . S ICDC=$S(+ICDN>0:$$COD^ICDEX(+ICDN),1:"")
+ . ;WAS; S ICDN=$O(@(ICDR_"""AN"","_+ICDS_","_+ICDO_")"),-1)
+ . S ICDN=$O(@(ICDR_"""AN"","_+ICDS_","""_ICDO_""")"),-1)
+ . ;WAS; S ICDC=$S(+ICDN>0:$$COD^ICDEX(+ICDN),1:"")
+ . S ICDC=$S($L(ICDN):$$COD^ICDEX(ICDN),1:"")
  I ICDB S ICDC="" D  Q $S(ICDC="":"",1:ICDC)
- . N ICDA S ICDA="" S:+ICDO'>0 ICDO=$O(@(ICDR_"""AN"","_+ICDS_","" "")"),-1)+1
- . F  S ICDO=$O(@(ICDR_"""AN"","_+ICDS_","_+ICDO_")"),-1) Q:+ICDO'>0  D  Q:$L(ICDC)
- . . N ICDI S ICDI=0 F  S ICDI=$O(@(ICDR_"""AN"","_+ICDS_","_+ICDO_","_+ICDI_")")) Q:+ICDI'>0  D  Q:$L(ICDC)
+ . N ICDA S ICDA="" S:+ICDO'>0 ICDO="" ; **OSE/SMH - this line is different**
+ . ;WAS; F  S ICDO=$O(@(ICDR_"""AN"","_+ICDS_","_+ICDO_")"),-1) Q:+ICDO'>0  D  Q:$L(ICDC)
+ . F  S ICDO=$O(@(ICDR_"""AN"","_+ICDS_","""_ICDO_""")"),-1) Q:+ICDO'>0  D  Q:$L(ICDC)
+ . . ;WAS; N ICDI S ICDI=0 F  S ICDI=$O(@(ICDR_"""AN"","_+ICDS_","_+ICDO_","_+ICDI_")")) Q:+ICDI'>0  D  Q:$L(ICDC)
+ . . N ICDI S ICDI=0 F  S ICDI=$O(@(ICDR_"""AN"","_+ICDS_","""_ICDO_""","_+ICDI_")")) Q:+ICDI'>0  D  Q:$L(ICDC)
  . . . N ICDE,ICDH S ICDE=$O(@(ICDR_+ICDI_",66,""B"","_(ICDD+.001)_")"),-1) Q:ICDE'?7N
  . . . S ICDH=$O(@(ICDR_+ICDI_",66,""B"","_ICDE_","" "")"),-1) Q:+ICDH'>0
  . . . S ICDA=$G(@(ICDR_+ICDI_",66,"_ICDH_",0)")),ICDA=+($P(ICDA,"^",2))
- . . . S:+ICDA>0 ICDC=ICDO S ICDC=$S(+($G(ICDC))>0:$$COD^ICDEX(+ICDC),1:"")
+ . . . ;WAS ;S:+ICDA>0 ICDC=ICDO S ICDC=$S(+($G(ICDC))>0:$$COD^ICDEX(+ICDC),1:"")
+ . . . S:+ICDA>0 ICDC=ICDO S ICDC=$S($L(ICDC):$$COD^ICDEX(ICDC),1:"")
+ . ; End WorldVistA Change 8/2015
  Q $S(ICDC="":"",1:ICDC)
 HIST(CODE,ARY,SYS)  ; Activation History
  ;

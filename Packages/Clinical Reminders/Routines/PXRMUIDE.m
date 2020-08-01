@@ -1,11 +1,12 @@
-PXRMUIDE ;SLC/PKR - List Manager routines for taxonomy UID edit. ;03/06/2015
- ;;2.0;CLINICAL REMINDERS;**26,47**;Feb 04, 2005;Build 291
+PXRMUIDE ;SLC/PKR - List Manager routines for taxonomy UID edit. ;05/22/2017
+ ;;2.0;CLINICAL REMINDERS;**26,47,42**;Feb 04, 2005;Build 103
  ;
  ;=========================================
 ENTRY ;Entry code
  N TAXIEN
  S TAXIEN=^TMP("PXRMTAX",$J,"TAXIEN")
  D INITMPG^PXRMTXLS
+ K ^TMP("PXRMCODES",$J)
  D HDR^PXRMUIDE
  D CODELIST^PXRMTXSM(TAXIEN)
  D BLDLIST^PXRMTXLS
@@ -15,6 +16,7 @@ ENTRY ;Entry code
  ;=========================================
 EXIT ;Exit code
  D INITMPG^PXRMTXLS
+ K ^TMP("PXRMCODES",$J)
  D FULL^VALM1
  D CLEAN^VALM10
  D KILL^VALM10

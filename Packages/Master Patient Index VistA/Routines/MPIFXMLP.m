@@ -1,8 +1,10 @@
-MPIFXMLP ;OAK/ELZ - MPIF PROBLISTIC SEARCH ; 5/21/15 4:22pm
- ;;1.0;MASTER PATIENT INDEX VISTA;**61,67**;30 Apr 99;Build 2
+MPIFXMLP ;OAK/ELZ - MPIF PROBLISTIC SEARCH ;2019-05-09  11:10 AM
+ ;;1.0;MASTER PATIENT INDEX VISTA;**61,67,OSEHRA**;30 Apr 99;Build 3
  ;
+ ; *OSEHRA changes by Sam Habiel (c) 2018.
+ ; To test: DG REGISTER PATIENT; there should be no MPI lookup.
  ;
-PATIENT(RETURN,MPIARR) ; - query for patients based on traits
+ZPATIENT(RETURN,MPIARR) ; - query for patients based on traits *OSEHRA rename PATIENT -> ZPATIENT to prevent MPI lookup
  ;  MPIARR("")=""
  ;
  ;

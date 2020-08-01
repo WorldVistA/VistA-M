@@ -1,7 +1,8 @@
-MXMLPRS0 ;SAIC/DKM - XML Parser ;03/09/2005  12:57
- ;;7.3;TOOLKIT;**58,89,136**;Apr 25, 1995;Build 5
- ;Per VHA Directive 6402, this routine should not be modified
+MXMLPRS0 ;SAIC/DKM - XML Parser ;2015-05-25  11:39 AM
+ ;;2.4;XML PROCESSING UTILITIES;;June 15, 2015;Build 14
  ;=================================================================
+ ; @Author Dr. Douglas Martin, SAIC.
+ ;
  ; State 0: Prolog
 0 N ATTR
  S ST=1

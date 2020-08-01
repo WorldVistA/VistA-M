@@ -78,6 +78,8 @@ HDR I '$D(IOF) S IOP="HOME" D ^%ZIS K IOP
  F DGLN=1:1:DGCNT S DGLINE=$TR(^UTILITY($J,"W",0,DGLN,0),"_"," ") W !,DGLINE  ;replaced "_" for display
  S X="",$P(X,"=",78)="" W !,X,!
  K ^UTILITY($J,"W")
+ ; Prevent fallthrough J.Snyder/OSEHRA Feb 13,2020
+ Q
 OKLINE(DGLINE) ;DOES PAUSE/HEADER IF $Y EXCEEDS DGLINE
  ;
  ;IN:   DGLINE --MAX LINE COUNT W/O PAUSE

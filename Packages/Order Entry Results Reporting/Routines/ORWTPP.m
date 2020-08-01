@@ -1,5 +1,5 @@
-ORWTPP ; SLC/STAFF Personal Preference - Personal ; 3/11/08 6:34am
- ;;3.0;ORDER ENTRY/RESULTS REPORTING;**85,149,243**;Oct 24, 2000;Build 242
+ORWTPP ; SLC/STAFF Personal Preference - Personal ;05/21/14  22:07
+ ;;3.0;ORDER ENTRY/RESULTS REPORTING;**85,149,243,377**;Oct 24, 2000;Build 582
  ;
 NEWLIST(VAL,LISTNAME,ORVIZ) ; RPC
  ; set current user's new personal list
@@ -190,6 +190,12 @@ PLISTS(VALUES) ; RPC
 PLTEAMS(VALUES) ; RPC
  ; get current user's teams and personal lists
  D PLTEAMS^ORWTPT(.VALUES,DUZ)
+ Q
+ ;
+PCMTEAMS(VALUES) ; RPC
+ ; TDP - Added 5/21/2014
+ ; get current user's PCMM teams
+ D PCMTEAMS^ORWTPT(.VALUES,DUZ)
  Q
  ;
 TEAMS(VALUES) ; RPC

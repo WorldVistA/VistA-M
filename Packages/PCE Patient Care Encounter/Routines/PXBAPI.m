@@ -1,9 +1,10 @@
-PXBAPI ;ISL/JVS,ISA/KWP - PCE's API interview questions - encounter ;04/26/99
- ;;1.0;PCE PATIENT CARE ENCOUNTER;**19,67,173**;Aug 12, 1996
+PXBAPI ;ISL/JVS,ISA/KWP - PCE's API interview questions - encounter ;03/29/2018
+ ;;1.0;PCE PATIENT CARE ENCOUNTER;**19,67,173,211**;Aug 12, 1996;Build 302
  Q
  ;
 INTV(WHAT,PACKAGE,SOURCE,PXBVST,PXBHLOC,PXBPAT,PXBAPPT,PXLIMDT,PXALHLOC) ;
- ;+This api will prompt the user for Visit and related V-file data used to document an encounter.
+ ;+This api will prompt the user for Visit and related V-file data used
+ ;to document an encounter.
  ;+Interview Questions
  ;+Parameters
  ;+  WHAT  Required, defines the series of prompts. Valid values are:
@@ -19,7 +20,7 @@ INTV(WHAT,PACKAGE,SOURCE,PXBVST,PXBHLOC,PXBPAT,PXBAPPT,PXLIMDT,PXALHLOC) ;
  ;+----------
  ;+  PACKAGE  Required, text string of the package name space
  ;+             or a pointer to the Package file (#9.4)
- ;+  SOURCE   Required, text string that discribes the source of the data.
+ ;+  SOURCE   Required, text string that describes the source of the data.
  ;+             This will be added to the PCE Data Source file (#839.7) if
  ;+             it is not already in the file.
  ;+  PXBVST   Required except for on "INTV" and "ADQ".
@@ -31,11 +32,11 @@ INTV(WHAT,PACKAGE,SOURCE,PXBVST,PXBHLOC,PXBPAT,PXBAPPT,PXLIMDT,PXALHLOC) ;
  ;+             otherwise it is Optional (passed if known) 
  ;+  PXBAPPT  Optional (passed if known) pointer to the Apointment 
  ;+             subfile (#2.98) of the Patient file (#2)
- ;+  PXLIMDT  Optional if passed then user can not create an encounter
+ ;+  PXLIMDT  Optional if passed then user cannot create an encounter
  ;+             (Visit file entry) before this date.
  ;+  PXALHLOC  Optional if is not passed, 0, or null then only clinics
  ;+             can be entered for hospital locations otherwise
- ;+             any non disposition hospital location can be entered.
+ ;+             any non-disposition hospital location can be entered.
  ;+
  ;+ Returns:
  ;+  1   if no errors and process completely
@@ -102,16 +103,12 @@ INTV(WHAT,PACKAGE,SOURCE,PXBVST,PXBHLOC,PXBPAT,PXBAPPT,PXLIMDT,PXALHLOC) ;
  . I PXBHLOC'>0,+$G(^DPT(PXBPAT,"S",PXBAPPT,0)) S PXBHLOC=+^DPT(PXBPAT,"S",PXBAPPT,0)
  S DFN=PXBPAT
  S PXBPRBON=$L($T(^GMPLUTL)) ;see if Problem List exists
- ;+ If visit has been passed lock ^PXLCKUSR(VISIEN)
- ;+ and create XTMP("PXLCKUSR",VISIEN)=DUZ
+ ;If a visit has been passed lock the encounter.
  N PXRESVAL,PXVISIEN
  I PXBVST>0 S PXVISIEN=PXBVST D  I 'PXRESVAL Q -2
- .N PXMSG,PXUSR
- .S PXMSG=""
- .I $D(^XTMP("PXLCKUSR",PXVISIEN)) S PXUSR=$G(^VA(200,^XTMP("PXLCKUSR",PXVISIEN),0)),PXUSR=$S(PXUSR="":"Unknown",1:$P(PXUSR,"^")),PXMSG="Encounter Locked by "_PXUSR
- .S PXRESVAL=$$LOCK^PXUALOCK("^PXLCKUSR("_PXVISIEN_")",5,0,PXMSG,0)
- .I 'PXRESVAL Q
- .S PXRESVAL=$$CREATE^PXUAXTMP("PXLCKUSR",PXVISIEN,365,"PCE Encounter Lock",DUZ) I 'PXRESVAL D UNLOCK^PXUALOCK("^PXLCKUSR("_PXVISIEN_")")
+ . N PXMSG
+ . S PXRESVAL=$$LOCK^PXLOCK(PXVISIEN,DUZ,2,.PXMSG,"PXBAPI")
+ . I PXRESVAL=0 W !,PXMSG("LOCK")
  D PROCESS^PXBAPI1(.PXBEXIT)
  W !,"  - - - - S o r r y   A b o u t   T h e   W a i t - - - -"
  W !,"This information is being stored or monitored by Scheduling"
@@ -119,6 +116,6 @@ INTV(WHAT,PACKAGE,SOURCE,PXBVST,PXBHLOC,PXBPAT,PXBAPPT,PXLIMDT,PXALHLOC) ;
  W !,"PCE/Visit Tracking and Automated Med Information Exchange."
  D EVENT^PXKMAIN
  K PXVDR
- I $G(PXVISIEN)>0 D UNLOCK^PXUALOCK("^PXLCKUSR("_PXVISIEN_")"),DELETE^PXUAXTMP("PXLCKUSR",PXVISIEN)
+ I $G(PXVISIEN)>0 D UNLOCK^PXLOCK(PXVISIEN,DUZ,"PXBAPI")
  Q PXBEXIT
  ;

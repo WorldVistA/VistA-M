@@ -1,12 +1,19 @@
 OSEHRA ZGO Export: WARD LOCATION
 ZWR
-^DIC(42,0)="WARD LOCATION^42I^"
+^DIC(42,0)="WARD LOCATION^42I^1^1"
 ^DIC(42,0,"DD")="@"
 ^DIC(42,0,"DEL")="@"
 ^DIC(42,0,"GL")="^DIC(42,"
 ^DIC(42,0,"LAYGO")="D"
 ^DIC(42,0,"RD")="d"
 ^DIC(42,0,"WR")="D"
+^DIC(42,1,0)="TESTWARD1^bedselect^S^Y^^^^^^^2^48^^1^north^1"
+^DIC(42,1,44)=7
+^DIC(42,1,"AUTH",0)="^42.09D^1^1"
+^DIC(42,1,"AUTH",1,0)="3200718^20"
+^DIC(42,1,"AUTH","AINV",6799281,1)=""
+^DIC(42,1,"AUTH","B",3200718,1)=""
+^DIC(42,1,"ORDER")=1
 ^DIC(42,"%",0)="^1.005^^0"
 ^DIC(42,"%D",0)="^^3^3^2920406^^^^"
 ^DIC(42,"%D",1,0)="This file contains all the facility ward locations and their"
@@ -15,3 +22,6 @@ ZWR
 ^DIC(42,"%D",4,0)="WARD DEFINITION option of the ADT module."
 ^DIC(42,"%D",5,0)="contains all statistical data, by date, necessary for the"
 ^DIC(42,"%D",6,0)="computation of the daily Bed Status report."
+^DIC(42,"AGL",1,1)=""
+^DIC(42,"B","TESTWARD1",1)=""
+^DIC(42,"D","S",1)=""

@@ -1,5 +1,5 @@
-TIURB2 ; SLC/JER,AJB - More Review Screen Actions ; 1/18/05
- ;;1.0;TEXT INTEGRATION UTILITIES;**100,109,154,112,184,232**;Jun 20, 1997;Build 19
+TIURB2 ;SLC/JER,AJB - More Review Screen Actions ;04/18/17  07:26
+ ;;1.0;TEXT INTEGRATION UTILITIES;**100,109,154,112,184,232,290**;Jun 20, 1997;Build 548
  ; 2/3: Update TEXTEDIT from TIUEDIT to TIUEDI4
  ; 9/28 Moved DELETE, DEL, DELTEXT, DIK to new rtn TIURB2
  ; 8/2/02 DELTEXT logic to bypass user-response if called by GUI TIU*1*154
@@ -35,6 +35,7 @@ DEL(DA) ; We don't hand out pencils, without erasers
 GODEL ; -- Called from DEL^TIURB
  N CANDEL,TIUDA,TIUD0,TIUI,TIUDFLT,TIUPT,TIUVDT,TIUTYP,PROMPT,TIUAUDIT
  N TIUMSG,TIURSN,TIUVTYP,TIUABORT,ADDMPRNT,IDPRNT,TIUAUTH,TIUD12,STATUS
+ N TIURTRCK
  L +^TIU(8925,+DA):1
  E  D  Q
  . W !?5,$C(7),"Another user is editing this entry."
@@ -77,6 +78,7 @@ GODEL ; -- Called from DEL^TIURB
  . D DELIRT^TIUDIRT(TIUDA),DIK(TIUDA) H 2
  . S TIUCHNG=2,TIUCHNG("DELETE")=1
  . D ALERTDEL^TIUALRT(TIUDA),DELSGNR^TIURB1(TIUDA)
+ . D NOTIFY^TIUUTL("DELETE",+$P(TIUD0,U,2),,.TIU,TIUDA)
  S PROMPT="Reason for DELETION (Privacy Act or Administrative): "
  S TIURSN=$P($$READ^TIUU("SA^P:privacy act;A:administrative",PROMPT,"PRIVACY ACT"),U)
  I '$L(TIURSN) D  G DELX
@@ -85,11 +87,12 @@ GODEL ; -- Called from DEL^TIURB
  . I $$READ^TIUU("EA","Press RETURN to continue...") ; pause
  D ALERTDEL^TIUALRT(TIUDA),DELSGNR^TIURB1(TIUDA)
  D DELTEXT(TIUDA,TIURSN),AUDEL^TIURB1(TIUDA,TIURSN) S TIUCHNG=1
+ D:'$G(TIURTRCK) NOTIFY^TIUUTL("DELETE",+$P(TIUD0,U,2),,.TIU,TIUDA)
 DELX L -^TIU(8925,+DA)
  Q
 DELTEXT(DA,TIURSN) ; After signature, only retraction possible
  N DR,DIE,TIUDA,TIUY I '$D(ZTQUEUED) D FULL^VALM1
- S TIUDA=DA
+ S TIUDA=DA,TIURTRCK=1
  W !!?5,$C(7),"***********************************************************************"
  W !?5,"*  This document will now be RETRACTED. As such, it has been removed  *"
  W !?5,"*    from public view, and from typical Releases of Information,      *"
@@ -124,6 +127,7 @@ DIK(DA,SUPPACT) ; Call ^DIK to delete the record
  D DELSGNR^TIURB1(DA)
  D DELIMG(DA)
  D ALERTDEL^TIUALRT(DA)
+ D DELPST^TIUCOP(DA) ;Delete associated pastes in file 8928
  ; **52** Disable call to $$DELVFILE^PXAPI 'til further notice
  ; I +TIUVSIT,$D(^AUPNVSIT(+TIUVSIT)) S TIUVKILL=$$DELVFILE^PXAPI("ALL",TIUVSIT,"","TEXT INTEGRATION UTILITIES")
  Q

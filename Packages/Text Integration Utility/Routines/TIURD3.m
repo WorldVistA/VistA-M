@@ -1,8 +1,8 @@
-TIURD3  ; SLC/JER - Reassign actions ;11/01/03
- ;;1.0;TEXT INTEGRATION UTILITIES;**61,124,113,112,295**;Jun 20, 1997;Build 3
+TIURD3 ;SLC/JER - Reassign actions ;04/18/17  07:42
+ ;;1.0;TEXT INTEGRATION UTILITIES;**61,124,113,112,295,290**;Jun 20, 1997;Build 548
  ;Per VHA Directive 2004-038, this routine should not be modified
 REASSIGO ; Reassign an original Document
- N TIU,TIUASK,TIUDPRM,TIUREASS
+ N TIU,TIUASK,TIUDPRM,TIUREASS,TIUVMETH,TIULMETH,TIUODA
  W !!,"Please choose the correct PATIENT and CARE EPISODE:",!
  ; --- Get a patient ---
  S DFN=+$$PATIENT^TIULA
@@ -16,9 +16,10 @@ REASSIGO ; Reassign an original Document
  ; --- If moving to another pt keep retracted original ---
  I +$G(DFN)'=$P(TIUD0(0),U,2),(+$P(TIUD0(0),U,5)>5) D
  . W !!,"Moving signed document to another Patient...A RETRACTED copy will be retained.",!
- . S TIUODA=TIUDA,TIUDA=+$$RETRACT^TIURD2(TIUDA)
+ . S TIUODA=TIUDA,TIUDA=+$$RETRACT^TIURD2(TIUDA,,,,,1)
  I TIUDA'>0 D  Q
  . S TIUOUT=1
+ . D NOTIFY^TIUUTL("SEND")
  . W !!,"Creation of a new Copy of the RETRACTED record failed...Contact IRM.",!
  . I $$READ^TIUU("EA","Press RETURN to continue...") ; pause
  ; --- Get Document Parameters for TIUTYPE
@@ -27,30 +28,35 @@ REASSIGO ; Reassign an original Document
  S TIULMETH=$$GETLMETH^TIUEDI1(TIUTYPE)
  I '$L(TIULMETH) D  Q
  . S TIUOUT=1
+ . D NOTIFY^TIUUTL("SEND")
  . W !!,$C(7),"No Visit Linkage Method defined for "
  . W $$PNAME^TIULC1(TIUTYPE),".",!,"Please contact IRM...",!
  . I $$READ^TIUU("EA","Press RETURN to continue...") ; pause
  X TIULMETH
  I '$D(TIU) D  Q
  . S TIUOUT=1
+ . D NOTIFY^TIUUTL("SEND")
  . W !!,$C(7),"Patient & Visit required: Aborting Transaction...No Harm Done.",!
  . I $$READ^TIUU("EA","Press RETURN to continue...") ; pause
  ; --- Validate Selection ---
  S TIUVMETH=$$GETVMETH^TIUEDI1(TIUTYPE)
  I '$L(TIUVMETH) D  Q
  . S TIUOUT=1
+ . D NOTIFY^TIUUTL("SEND")
  . W !!,$C(7),"No Validation Method defined for "
  . W $$PNAME^TIULC1(TIUTYPE),".",!,"Please contact IRM...",!
  . I $$READ^TIUU("EA","Press RETURN to continue...") ; pause
  X TIUVMETH
  I +$G(TIUASK)'>0 D  Q
  . S TIUOUT=1
+ . D NOTIFY^TIUUTL("SEND")
  . W !!,$C(7),"Okay, No Harm Done.",!
  . I $$READ^TIUU("EA","Press RETURN to continue...") W ""
  ; --- If same Pt & Visit, abort transaction ---
  I +$G(TIU("VISIT"))=$P(TIUD0(0),U,3) D  Q:+$G(TIUOUT)
  . I +$G(TIUADD0),+$P($G(TIUDPRM(0)),U,10) Q
  . S TIUOUT=1
+ . D NOTIFY^TIUUTL("CLEAR")
  . W !!,$C(7),$C(7),$C(7),"This ",$$PNAME^TIULC1(TIUTYPE)," is already associated with the selected visit...",!
  . W !,"No action taken.",!
  . I $$READ^TIUU("EA","Press RETURN to continue...") ; pause
@@ -64,6 +70,7 @@ REASSIGO ; Reassign an original Document
  . I +TIUORIG,(+$P(TIUDPRM(0),U,10)'>0),(+$P(TIUOLD0,U,5)'>13) D  Q
  . . N TIUATT
  . . I TIUORIG=TIUDA D  Q
+ . . . D NOTIFY^TIUUTL("CLEAR")
  . . . W !,$C(7),$C(7),$C(7),"This ",$$PNAME^TIULC1(TIUTYPE)," is already associated with the selected visit...",!
  . . . W !,"No action taken.",!
  . . . I $$READ^TIUU("EA","Press RETURN to continue...") ; pause
@@ -74,9 +81,11 @@ REASSIGO ; Reassign an original Document
  . . I +TIUATT'>0 D  Q
  . . . W !!,"All right. No harm done.",!
  . . . S TIUOUT=1
+ . . . D NOTIFY^TIUUTL("CLEAR")
  . . . I $$READ^TIUU("EA","Press RETURN to continue...") ; pause
  . . D DELIRT^TIUDIRT($S(+$G(TIUODA):+TIUODA,1:+TIUDA))
  . . D ATTACH^TIURD2(+TIUORIG,TIUDA),SEND^TIUALRT(TIUDA) S TIUCHNG=1
+ . . D NOTIFY^TIUUTL("REASSIGN",+$P(TIUOLD0,U,2),DFN,.TIU,TIUDA)
  . ; --- Roll back old IRT data ---
  . D DELIRT^TIUDIRT($S(+$G(TIUODA):+TIUODA,1:+TIUDA))
  . ; --- Set up the ^DIE Call ---
@@ -130,6 +139,7 @@ REASSIGO ; Reassign an original Document
  . . . ;need workload? if yes enter
  . . . I $$CHKWKL^TIUPXAP2(+TIUDA,.TIUDPRM) D EDTENC^TIUPXAP2(TIUDA)
  . S TIUCHNG=1 S:+$G(TIUODA) TIUCHNG=TIUCHNG_U_TIUDA
+ . D NOTIFY^TIUUTL("REASSIGN",+$P(TIUD0(0),U,2),DFN,.TIU,TIUDA,0,$P(TIUD0(0),U,3))
  . W ! I $$READ^TIUU("EA","Press RETURN to continue...") ; pause
  Q
  ;
@@ -151,7 +161,7 @@ WKLD(TIUD0,TIUD12) ; Allow user to clean up workload for visit from which docume
  ;I +TIUERR<0 D  I 1
  ;. W ! I $$READ^TIUU("EA","Press RETURN to continue...") ; pause
  ;E  I +$G(TIUVSIT),(+$G(TIUVSIT)'=$P($G(^TIU(8925,+TIUDA,0)),U,3)) D
- ;.  
+ ;.
  Q
 PKGACT(TIUDA,TIUD0,TIUD12,TIUD13,TIUD14,TIUOUT) ; Get/Execute Package Reassign Action
  N TIUREASX,TIUPOP

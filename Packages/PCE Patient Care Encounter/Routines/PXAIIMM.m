@@ -1,5 +1,5 @@
-PXAIIMM ;ISL/PKR - Set the IMMUNIZATION nodes. ;02/04/16  09:21
- ;;1.0;PCE PATIENT CARE ENCOUNTER;**45,124,209,210,215**;Aug 12, 1996;Build 10
+PXAIIMM ;ISL/PKR - Set the IMMUNIZATION nodes. ;04/03/2018
+ ;;1.0;PCE PATIENT CARE ENCOUNTER;**45,124,209,210,215,211**;Aug 12, 1996;Build 302
  ;
 IMM ;Main entry point.
  ;
@@ -33,8 +33,8 @@ SETVARA ;Set the after visit variables.
  S $P(AFTER811,U,1)=$G(PXAA("COMMENT"))
  ;
  ;--PACKAGE AND SOURCE
- S $P(AFTER812,"^",2)=$G(PXAPKG)
- S $P(AFTER812,"^",3)=$G(PXASOURC)
+ S $P(AFTER812,"^",2)=$S($G(PXAA("PKG"))'="":PXAA("PKG"),1:$G(PXAPKG))
+ S $P(AFTER812,"^",3)=$S($G(PXAA("SOURCE"))'="":PXAA("SOURCE"),1:$G(PXASOURC))
  ;
  ;--Add new fields for VIMM 2.0 - PX*1*209/210/215
  S $P(AFTER12,U,2)=$G(PXAA("ORD PROVIDER"))
@@ -43,7 +43,8 @@ SETVARA ;Set the after visit variables.
  S $P(AFTER13,U)=$G(PXAA("INFO SOURCE"))
  S $P(AFTER13,U,2)=$G(PXAA("ADMIN ROUTE"))
  S $P(AFTER13,U,3)=$G(PXAA("ANATOMIC LOC"))
- S $P(AFTER13,U,4)=$G(PXAA("DIAGNOSIS"))
+ ;Do not store diagnosis as of PX*1*211
+ ;S $P(AFTER13,U,4)=$G(PXAA("DIAGNOSIS"))
  S $P(AFTER13,U,12)=$G(PXAA("DOSE"))
  S $P(AFTER13,U,13)=$G(PXAA("DOSE UNITS"))
  S $P(AFTER16,U,1)=$G(PXAA("OVERRIDE REASON"))
@@ -71,15 +72,14 @@ SETVARA ;Set the after visit variables.
  . . S ^TMP("PXK",$J,"IMM",PXAK,SUB,SEQ,"AFTER")=$G(PXAA(FLD,SEQ,0))
  ;
  ; Add DIAGNOSIS 2 thru 8 to OTHER DIAGNOSIS multiple
- N DIAGNUM,DIAGSTR
- ;
- S SEQ=0
- ;
- F DIAGNUM=2:1:8 D
- . S DIAGSTR="DIAGNOSIS "_DIAGNUM
- . I $G(PXAA(DIAGSTR))'="" D
- . . S SEQ=SEQ+1
- . . S ^TMP("PXK",$J,"IMM",PXAK,3,SEQ,"AFTER")=PXAA(DIAGSTR)
+ ;Do not store diagnosis as of PX*1*211
+ ;N DIAGNUM,DIAGSTR
+ ;S SEQ=0
+ ;F DIAGNUM=2:1:8 D
+ ;. S DIAGSTR="DIAGNOSIS "_DIAGNUM
+ ;. I $G(PXAA(DIAGSTR))'="" D
+ ;. . S SEQ=SEQ+1
+ ;. . S ^TMP("PXK",$J,"IMM",PXAK,3,SEQ,"AFTER")=PXAA(DIAGSTR)
  ;
 SETVARB ;Set the before variables.
  N BEFOR0,BEFOR12,BEFOR13,BEFOR16,BEFOR811,BEFOR812
@@ -106,6 +106,14 @@ SETVARB ;Set the before variables.
  S ^TMP("PXK",$J,"IMM",PXAK,811,"BEFORE")=BEFOR811
  S ^TMP("PXK",$J,"IMM",PXAK,812,"BEFORE")=BEFOR812
  S ^TMP("PXK",$J,"IMM",PXAK,"IEN")=IENB
+ ;
+ ;Package and Data Source cannot be edited.
+ S BEFOR812=^TMP("PXK",$J,"IMM",PXAK,812,"BEFORE")
+ I BEFOR812'="" D
+ . I AFTER812=BEFOR812 Q
+ . I $P(BEFOR812,U,2)'="" S $P(AFTER812,U,2)=$P(BEFOR812,U,2)
+ . I $P(BEFOR812,U,3)'="" S $P(AFTER812,U,3)=$P(BEFOR812,U,3)
+ . S ^TMP("PXK",$J,"IMM",PXAK,812,"AFTER")=AFTER812
  ;
  ; Add multiple data to PXK BEFORE
  I $G(IENB) D

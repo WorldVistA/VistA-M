@@ -1,7 +1,7 @@
-ORCACT01 ;SLC/MKB-Validate order actions cont ;Aug 24, 2018@08:17
- ;;3.0;ORDER ENTRY/RESULTS REPORTING;**94,116,134,141,163,187,190,213,243,306,374,350,397**;Dec 17, 1997;Build 22
+ORCACT01 ;SLC/MKB-Validate order actions cont ;10/08/19  15:48
+ ;;3.0;ORDER ENTRY/RESULTS REPORTING;**94,116,134,141,163,187,190,213,243,306,374,350,397,377**;Dec 17, 1997;Build 582
  ;
- ;
+ ;External reference to $$ORCOPY^PSOORCPY supported by ICR 6719
  ;
 ES ; -- sign [on chart]
  I ORDSTS=11,VER<3,PKG'="OR" S ERROR="This order cannot be released and must be discontinued!" Q
@@ -33,6 +33,13 @@ ES ; -- sign [on chart]
  . I 'ORALLOWED S ERROR="Supplies may not be released with this action."
  ;
  I ACTION="OC" S:MEDPARM<2 ERROR="You are not authorized to release med orders!" Q
+ ;
+ ; Don't allow DC of lab order to be signed/released if its already been accessioned 
+ I PKG="LR",$P(ORA0,U,2)="DC",$$COLLECTD^ORCACT0 D  Q:$D(ERROR)
+ . S ERROR="This order may not be discontinued.                                                                                "
+ . S ERROR=ERROR_"Cancel the discontinue to remove it from the patient's record.                                    "
+ . S ERROR=ERROR_$$GET^XPAR("ALL","OR LAB CANCEL ERROR MESSAGE",1,"I")
+ ;
  I ACTION="RS" D  Q:$D(ERROR)  Q:$G(NATR)'="I"
  . Q:ACTSTS=11  Q:ACTSTS=10  ;unreleased - ok
  . S ERROR="This order has already been released!"
@@ -105,7 +112,15 @@ RW ; -- rewrite/copy
  I DG="UD RX",$$NTBG^ORCACT03(+IFN) S ERROR="This order has been marked 'Not to be Given' and may not be rewritten!" Q
  I $$INACTIVE^ORCACT03 S ERROR="Orders for inactive orderables may not be copied; please enter a new order!" Q
  I PKG="PS",'$$MEDOK^ORCACT03 S ERROR="This drug may not be ordered!" Q
- I DG="O RX",$O(^OR(100,+IFN,4.5,"ID","MISC",0)) D DOSES^ORCACT02(+IFN) ;old form
+ I DG="O RX" D
+ . N ORX,PSIFN
+ . I $O(^OR(100,+IFN,4.5,"ID","MISC",0)) D DOSES^ORCACT02(+IFN) ;old form
+ . ;
+ . ;p377 LMT - check with pharmacy that order can be copied
+ . S PSIFN=$G(^OR(100,+IFN,4))
+ . I PSIFN<1 S ERROR="Missing or invalid order number!" Q
+ . S ORX=$$ORCOPY^PSOORCPY(PSIFN)  ;ICR #6719
+ . I ORX<1 S ERROR=$P(ORX,U,2) Q
  Q
  ;
 RN ; -- renew

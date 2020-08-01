@@ -1,14 +1,23 @@
-HLOPING ;alb/cjm HLO PING UTILITY - 10/4/94 1pm ;07/12/2012
- ;;1.6;HEALTH LEVEL SEVEN;**147,155,158**;Oct 13, 1995;Build 14
- ;Per VHA Directive 2004-038, this routine should not be modified.
+HLOPING ;alb/cjm HLO PING UTILITY;Apr 03, 2020@14:49
+ ;;1.6;HEALTH LEVEL SEVEN;**147,155,158,10001**;Oct 13, 1995;Build 3
+ ; Original code in the public domain by Dept of Veterans Affairs.
+ ; Changes **10001** by Sam Habiel (c) 2020.
+ ; Changes indicated inline.
+ ; Licensed under Apache 2.0.
  ;
  ;
 PING ;
  I '$G(DUZ) W !,"Your DUZ must be set!" Q
  N LINK,CONF,HLCSTATE,PORT,LINK,HLODONE
  S HLODONE=0
- I $P($$VERSION^%ZOSV(1),"/",1)'["Cache" D  Q
- .W !!,"   Sorry, this tool can only be used under Cache",!!
+ ; *10001*
+ N CACHE,GTM
+ S CACHE=^%ZOSF("OS")["OpenM"
+ S GTM=^%ZOSF("OS")["GT.M"
+ I 'CACHE,'GTM D  Q
+ .W !!,"   Sorry, this tool can only be used under Cache or GT.M",!!
+ ; *10001*
+ ;
  W !,"What HL Logical Link do you want to test?"
  S LINK=$$ASKLINK^HLOUSR
  Q:LINK=""
@@ -20,17 +29,27 @@ PING ;
  D BREAKS
  D CHECKAPP
  I $$ADDMSG(LINK) D
- .ZB /INTERRUPT:NORMAL ;disable CTRL-C breaks
+ .; ZB /INTERRUPT:NORMAL ;disable CTRL-C breaks ; 10001 don't need this
  .S WORK("QUEUE")="HLOPING"_$J,WORK("LINK")=LINK_":"_PORT
  .D DOWORK^HLOCLNT(.WORK)
  .D:$G(HLCSTATE("CONNECTED")) CLOSE^HLOT(.HLCSTATE)
  .;
  .U $PRINCIPAL
  D PURGE(LINK_":"_PORT)
- ZB /CLEAR
+ D CBREAK ; *10001*
  L -^HLB("QUEUE","OUT",LINK_":"_PORT,"HLOPING"_$J)
  D STARTQUE^HLOQUE("OUT","HLOPING"_$J)
  Q
+ ;
+SBREAK(EP,ACTION) ; *10001*
+ I ^%ZOSF("OS")["OpenM" ZB @EP:"N":1:ACTION
+ I ^%ZOSF("OS")["GT.M"  ZB @(EP_":"""_$$CONVQQ^DILIBF(ACTION)_"""")
+ QUIT
+ ;
+CBREAK ; Clear Breaks *10001*
+ I ^%ZOSF("OS")["OpenM" ZB /CLEAR
+ I ^%ZOSF("OS")["GT.M"  ZB -*
+ QUIT
  ;
 NOPING(LINK) ;
  N IEN,RETURN
@@ -78,44 +97,43 @@ PURGE(LINK) ;
  F  S IEN=$O(^HLB("QUEUE","OUT",LINK,"HLOPING"_$J,IEN)) Q:'IEN  D DEQUE^HLOQUE(LINK,"HLOPING"_$J,"OUT",IEN),SETPURGE^HLOUSR7(IEN)
  Q
  ;
-BREAKS ;
- ZB /CLEAR
- ;
- ZB SEND^HLOAPI1:"N":1:"S HLMSTATE(""STATUS"",""PORT"")="_PORT
- ZB CHECKWHO^HLOASUB1:"N":1:"S WHO(""PORT"")="_PORT
- ZB ZB25^HLOASUB1:"N":1:"D ZB25^HLOPING"
+BREAKS ; *10001* refactored to not use ZB but call SBREAK
+ D CBREAK
+ D SBREAK("SEND^HLOAPI1","S HLMSTATE(""STATUS"",""PORT"")="_PORT)
+ D SBREAK("CHECKWHO^HLOASUB1","S WHO(""PORT"")="_PORT)
+ D SBREAK("ZB25^HLOASUB1","D ZB25^HLOPING")
  ;set break in $$STOPPED^HLOQUE to circumvent shutdown of the queue
- ZB ZB0^HLOQUE:"N":1:"S RET=0"
+ D SBREAK("ZB0^HLOQUE","S RET=0")
  ;set break in $$IFSHUT^HLOTLNK to circumvent shutdown of the link
- ZB ZB0^HLOTLNK:"N":1:"S RET=0"
+ D SBREAK("ZB0^HLOTLNK","S RET=0")
  ;set break at ZB1 in client ($$CONNECT)
  ;
- ZB ZB1^HLOCLNT1:"N":1:"D WRITE^HLOPING(""Trying to connect..."")"
+ D SBREAK("ZB1^HLOCLNT1","D WRITE^HLOPING(""Trying to connect..."")")
  ;
  ;set break at ZB2 in client (end of $$CONNECT)
- ZB ZB2^HLOCLNT1:"N":1:"D ZB2^HLOPING"
+ D SBREAK("ZB2^HLOCLNT1","D ZB2^HLOPING")
  ;
  ;set break at ZB6 in client (start of $$TRANSMIT^HLOCLNT1)
- ZB ZB6^HLOCLNT1:"N":1:"D WRITE^HLOPING(""Sending PING ..."")"
+ D SBREAK("ZB6^HLOCLNT1","D WRITE^HLOPING(""Sending PING ..."")")
  ;set break at ZB7 in client (end of $$TRANSMIT^HLOCLNT1)
- ZB ZB7^HLOCLNT1:"N":1:"D WRITE^HLOPING(""PING sent!"")"
+ D SBREAK("ZB7^HLOCLNT1","D WRITE^HLOPING(""PING sent!"")")
  ;set break at ZB8 in client (start of $$READACK^HLOCLNT1)
- ZB ZB8^HLOCLNT1:"N":1:"D WRITE^HLOPING(""Reading acknowledgment...."")"
+ D SBREAK("ZB8^HLOCLNT1","D WRITE^HLOPING(""Reading acknowledgment...."")")
  ;set break at ZB9 in client (end of $$READACK^HLOCLNT1)
  ;
- ZB ZB9^HLOCLNT1:"N":1:"D ZB9^HLOPING"
+ D SBREAK("ZB9^HLOCLNT1","D ZB9^HLOPING")
  ;
  ;set break at ZB4 in client (FOR loop on the outgoing queue)
- ZB ZB4^HLOCLNT:"N":1:"S SUCCESS=0 I 'HLODONE S (SUCCESS,HLODONE)=1"
+ D SBREAK("ZB4^HLOCLNT","S SUCCESS=0 I 'HLODONE S (SUCCESS,HLODONE)=1")
  ;
  ;set status to SU so that the PING doesn't appear on the error report
- ZB ZB22^HLOCLNT:"N":1:"S $P(UPDATE,""^"",3)=""SU"",$P(UPDATE,""^"",4)=1"
+ D SBREAK("ZB22^HLOCLNT","S $P(UPDATE,""^"",3)=""SU"",$P(UPDATE,""^"",4)=1")
  ;
- ZB ZB24^HLOCLNT1:"N":1:"D ZB24^HLOPING"
- ZB ZB27^HLOT:"N":1:"D ZB27^HLOPING"
+ D SBREAK("ZB24^HLOCLNT1","D ZB24^HLOPING")
+ D SBREAK("ZB27^HLOT","D ZB27^HLOPING")
  ;
  ;set break at ZB3 in client (ERROR TRAP)
- ZB ZB3^HLOCLNT:"N":1:"D ZB3^HLOPING"
+ D SBREAK("ZB3^HLOCLNT","D ZB3^HLOPING")
  Q
  ;
 CHECKAPP ;
@@ -138,7 +156,8 @@ ZB2 ;
  Q
 ZB3 ;
  N CON,MSG
- S CON=($ZA\8192#2)
+ I ^%ZOSF("OS")["OpenM" S CON=($ZA\8192#2) ; *10001*
+ I ^%ZOSF("OS")["GT.M"  S CON=$KEY["ESTABLISHED" ; *10001*
  S MSG="Error encountered, $ECODE="_$ECODE
  D WRITE(MSG)
  S MSG=$S(CON:"           TCP connection still active",1:"          TCP connection was dropped")

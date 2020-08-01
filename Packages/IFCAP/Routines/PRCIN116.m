@@ -19,7 +19,7 @@ A S DIC="^PRC(441.2,",X=5331
  .S (DIC,Y)=""
  .S DIE="^PRC(441.2,",DA=MREC,DR="1///O-RINGS;2///^S X=THISDESC;3///53;4///General;5///DLA/DASS"
  .D ^DIE
- N DIC,Y,MREC	
+ N DIC,Y,MREC   
 B S DIC="^PRC(441.2,",X=4235
  D ^DIC
  I Y=-1 D

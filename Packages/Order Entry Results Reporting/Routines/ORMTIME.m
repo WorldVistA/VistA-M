@@ -1,5 +1,5 @@
-ORMTIME ; SLC/RJS - PROCESS TIME BASED EVENT ;9/29/99  09:35 [2/1/00 9:30am]
- ;;3.0;ORDER ENTRY/RESULTS REPORTING;**40,253,243**;Dec 17, 1997;Build 242
+ORMTIME ; SLC/RJS - PROCESS TIME BASED EVENT ;09/26/16  09:25
+ ;;3.0;ORDER ENTRY/RESULTS REPORTING;**40,253,243,377**;Dec 17, 1997;Build 582
  ;
 EN ; Main entry tag.
  ;
@@ -25,6 +25,9 @@ SCAN ; Call ORMTIM01 for order checking, etc.  ORMTIM02 for misc time based task
  D SCAN^ORMTIM01
  D MISC^ORMTIM02
  D TASK^ORTSKLPS
+ D GENERATE^ORBSMART
+ D GENALRTS^ORB3UTL
+ D CLEAN^ORWTIU ;Clean-up copy/paste ^XTMP entries that have expired
  Q
  ;
 EDATE(Y) X ^DD("DD") S:(Y["@") Y=$P(Y,"@",1)_" at "_$P(Y,"@",2) Q Y
@@ -39,7 +42,7 @@ REQUEUE(ORMQT) ; Code formerly queued ORMTIME tasks in Taskman.
  ;
  Q
  ;
-STATUS ; Check status of last ORMTIME run. 
+STATUS ; Check status of last ORMTIME run.
  ;
  N ORMLAST
  ;

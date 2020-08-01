@@ -1,5 +1,5 @@
-PXRMRUL1 ; SLC/AGP,PKR - Patient list routines. ; 01/13/2017
- ;;2.0;CLINICAL REMINDERS;**4,6,26,47**;Feb 04, 2005;Build 291
+PXRMRUL1 ;SLC/AGP,PKR - Patient list routines. ;01/25/2017  11:31
+ ;;2.0;CLINICAL REMINDERS;**4,6,26,47,45**;Feb 04, 2005;Build 566
  ; 
  ;
 ASK(PLIEN,OPT) ;Verify patient list name
@@ -141,7 +141,9 @@ INSERT(FROUT,DFN,TNAME,TFIEV,RSTOP) ;Save patient data.
  . S DATA(TNAME_IND)=@REF
  . S REF=$Q(@REF)
  . I REF'[ROOT S DONE=1
- I $D(DATA) M ^TMP($J,FROUT,DFN,"DATA")=DATA
+ I $D(DATA) D
+ .M ^TMP($J,FROUT,DFN,"DATA")=DATA
+ .I $G(TFIEV(1,"DAS"))'="" S ^TMP($J,FROUT,DFN,"DATA",""_TNAME_",""DAS""")=TFIEV(1,"DAS")
  Q
  ;
 INST(DFN) ;Get the PCMM Institution.

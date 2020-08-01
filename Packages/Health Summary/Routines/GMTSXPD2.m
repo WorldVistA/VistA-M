@@ -1,5 +1,5 @@
-GMTSXPD2 ; SLC/KER - Health Summary Dist (Component)     ; 08/27/2002
- ;;2.7;Health Summary;**35,56**;Oct 20, 1995
+GMTSXPD2 ;SLC/KER - Health Summary Dist (Component)     ;Jul 18, 2019@11:46
+ ;;2.7;Health Summary;**35,56,67**;Oct 20, 1995;Build 538
  ;
  ; External References
  ;   DBIA  1340  ^DIC(19.1,
@@ -42,7 +42,7 @@ CPTM(X) ;   Check CPT Modifier Flag
  S X=$G(X) N GMTS S GMTS=$$GET1^DID(142.1,14,,"LABEL") Q:'$L(GMTS) ""
  Q:X="1"!(X="Y") "Y" Q ""
 DAF(X) ;   Check Disable Flag
- S X=$G(X) Q:X="T" "T" Q:X="T" "P" Q ""
+ S X=$G(X) Q:X="T" "T" Q:X="P" "P" Q ""
 OOM(X) ;   Check Out of Order Message
  S X=$G(X) Q:$L(X)<3 "" Q:$L(X)>78 "" Q X
  Q

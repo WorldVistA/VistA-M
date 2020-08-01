@@ -1,5 +1,5 @@
-TIUSRVT ; SLC/JM - Server functions for templates 8/23/2001 [8/19/04 1:57pm]
- ;;1.0;TEXT INTEGRATION UTILITIES;**76,80,102,105,119,125,166**;Jun 20, 1997
+TIUSRVT ; SLC/JM - Server functions for templates 8/23/2001 [8/19/04 1:57pm];05/31/17  13:19
+ ;;1.0;TEXT INTEGRATION UTILITIES;**76,80,102,105,119,125,166,290**;Jun 20, 1997;Build 548
  ;
  ; Nodes Returned by GETROOTS and GETITEMS
  ;
@@ -27,6 +27,7 @@ TIUSRVT ; SLC/JM - Server functions for templates 8/23/2001 [8/19/04 1:57pm]
  ;  20    COM OBJECT PARAMETER
  ;  21    LINK POINTER
  ;  22    REMINDER DIALOG PATIENT SPECIFIC VALUE
+ ;  23    CONSULT LOCK (0=NO, 1=YES)
 GETROOTS(TIUY,USER) ;Get template root info
  N IDX,TYPE
  I +$G(USER) D ADDNODE(.IDX,$O(^TIU(8927,"AROOT",USER,0)),1)
@@ -116,6 +117,7 @@ NODEDATA(TIUDA) ;Returns template node data
  ...S $P(DATA,U,16)=RDIEN_U_$P(RDN,U,1)
  ...S $P(DATA,U,22)=$S($P($G(RDN),U,17)=1:1,1:0)
  .S $P(DATA,U,18)=$P(NODE,U,16,19)
+ .S $P(DATA,U,23)=$P(NODE,U,20)
  Q DATA
  ;
 NP(PNUM) ;Returns the piece of the node

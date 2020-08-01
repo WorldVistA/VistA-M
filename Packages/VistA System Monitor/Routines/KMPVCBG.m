@@ -226,19 +226,19 @@ KMPVTSK(KMPVNSP) ; CHECK CREATE OR RESUME KMPVRUN TASK IN CACHE TASKMGR
  D DisplayError^%apiOBJ(KMPVSTAT)
  while KMPVTSKS.Next() {
  if (KMPVTSKS.GetDataByName("Task Name")=KMPVTSK) {
- 	set KMPVTID=KMPVTSKS.GetDataByName("ID")
- 	set KMPVTRUN=KMPVTSKS.GetDataByName("Next Scheduled Date")_" at "_KMPVTSKS.GetDataByName("Next Scheduled Time")
- 	if KMPVTSKS.GetDataByName("Suspended")'="" {
- 		do ##class(%SYS.Task).Resume(KMPVTID)
- 		S KMPVMSG=KMPVTSK_" Task #"_KMPVTID_" Exists and Resumed to Run at "_KMPVTRUN
- 	} Else {
- 		S KMPVMSG=KMPVTSK_" Task #"_KMPVTID_" Exists and Scheduled to Run at "_KMPVTRUN
- 		}
- 	set KMPVTFLG=1
- 	W !,KMPVMSG
- 	DO ##class(%SYS.System).WriteToConsoleLog("ZSTU: "_KMPVMSG,0,0)
- 	quit
- 		}
+        set KMPVTID=KMPVTSKS.GetDataByName("ID")
+        set KMPVTRUN=KMPVTSKS.GetDataByName("Next Scheduled Date")_" at "_KMPVTSKS.GetDataByName("Next Scheduled Time")
+        if KMPVTSKS.GetDataByName("Suspended")'="" {
+                do ##class(%SYS.Task).Resume(KMPVTID)
+                S KMPVMSG=KMPVTSK_" Task #"_KMPVTID_" Exists and Resumed to Run at "_KMPVTRUN
+        } Else {
+                S KMPVMSG=KMPVTSK_" Task #"_KMPVTID_" Exists and Scheduled to Run at "_KMPVTRUN
+                }
+        set KMPVTFLG=1
+        W !,KMPVMSG
+        DO ##class(%SYS.System).WriteToConsoleLog("ZSTU: "_KMPVMSG,0,0)
+        quit
+                }
  }
  ;
  ;create task if it doesn't exist

@@ -1,17 +1,20 @@
-ORWPCE3 ; SLC/KCM/REV/JM/TC - Get a PCE encounter for a TIU document ;02/07/14  13:02
- ;;3.0;ORDER ENTRY/RESULTS REPORTING;**10,85,116,190,280,306,371,361,385**;Dec 17, 1997;Build 12
+ORWPCE3 ; SLC/KCM/REV/JM/TC - Get a PCE encounter for a TIU document ;04/12/17  08:53
+ ;;3.0;ORDER ENTRY/RESULTS REPORTING;**10,85,116,190,280,306,371,361,385,377**;Dec 17, 1997;Build 582
  ;
 PCE4NOTE(LST,IEN,DFN,VSITSTR) ; Return encounter for an associated note
  ; LST(1)=HDR^AllowEdit^CPTRequired^VStr^Author^hasCPT
  ; LST(n)=TYP+^CODE^CAT^NARR^QUAL1^QUAL2 (QUAL1=Primary!Qty, QUAL2=Prv)
  N VISIT,VSTR,ILST,LOC,CODE,PRIM,QTY,CAT,NARR,PRV,X0,X12,X802,X811,VTYP
  N IPOV,ICPT,IPRV,IIMM,ISK,IPED,IHF,IXAM,ITRT,ICOM,MIDX,MIEN,MCNT,MODS
+ N GFINDS,GCNT
  I +$G(IEN)<1 D  I 1 ; Get PCE Data on a new note not yet saved
  . S (X0,X12)=""
  . S VISIT=$$GETENC^PXAPI(DFN,$P(VSITSTR,";",2),$P(VSITSTR,";"))
  . S VSTR=VSITSTR
  E  D
  . S X0=^TIU(8925,IEN,0),X12=$G(^(12))
+ . ;make sure DFN is defined for Reminder call at the end of the routine.
+ . I +$G(DFN)=0 S DFN=$P(X0,U,2)
  . S VISIT=$P(X12,U,7)
  . I 'VISIT S VISIT=$P(X0,U,3)
  . D NOTEVSTR^ORWPCE(.VSTR,IEN)
@@ -45,6 +48,8 @@ PCE4NOTE(LST,IEN,DFN,VSITSTR) ; Return encounter for an associated note
  .S ILST=ILST+1,LST(ILST)="VST^HNC^"_$P($P(VAL,";",6),U,2)
  I $P(VAL,";",7)'="" D
  .S ILST=ILST+1,LST(ILST)="VST^CV^"_$P($P(VAL,";",7),U,2)
+ I $P(VAL,";",8)'="" D
+ .S ILST=ILST+1,LST(ILST)="VST^SHAD^"_$P($P(VAL,";",8),U,2)
  ;for provider
  ; LST(n)="PRV"^ien^^^name^primary/secondary flag
  S IPRV=0 F  S IPRV=$O(^TMP("PXKENC",$J,VISIT,"PRV",IPRV)) Q:'IPRV  D
@@ -192,6 +197,10 @@ PCE4NOTE(LST,IEN,DFN,VSITSTR) ; Return encounter for an associated note
  .. S $P(LST(ILST),U,10)=ICOM
  .. S ILST=ILST+1
  .. S LST(ILST)="COM"_U_ICOM_U_X811
+ D GETFIND^PXRMRPCG(.GFINDS,DFN,VISIT)
+ S GCNT=0 F  S GCNT=$O(GFINDS(GCNT)) Q:GCNT'>0  D
+ .S ILST=ILST+1
+ .S LST(ILST)=GFINDS(GCNT)
  Q
 GETDXTXT(ORY,NARR,CODE) ; RPC to resolve Dx Text for PCE view
  S ORY=$$SETNARR(NARR,CODE)

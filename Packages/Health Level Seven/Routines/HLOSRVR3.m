@@ -1,6 +1,9 @@
-HLOSRVR3 ;IRMFO/OAK/CJM - Reading messages, sending acks;03/24/2004  14:43 ;08/16/2011
- ;;1.6;HEALTH LEVEL SEVEN;**138,147,157**;Oct 13, 1995;Build 8
- ;Per VHA Directive 2004-038, this routine should not be modified.
+HLOSRVR3 ;IRMFO/OAK/CJM - Reading messages, sending acks;Apr 03, 2020@14:50
+ ;;1.6;HEALTH LEVEL SEVEN;**138,147,157,10001**;Oct 13, 1995;Build 3
+ ; Original code in the public domain by Dept of Veterans Affairs.
+ ; Changes **10001** by Sam Habiel (c) 2020.
+ ; Changes indicated inline.
+ ; Licensed under Apache 2.0.
  ;
 ERROR ;error trap
  ;
@@ -14,6 +17,7 @@ ERROR ;error trap
  .;don't log these errors unless logging is turned on
  .I $G(^HLTMP("LOG ALL ERRORS")) D ^%ZTER Q
  .I ($ECODE["READ")!($ECODE["NOTOPEN")!($ECODE["DEVNOTOPN")!($ECODE["WRITE")!($ECODE["OPENERR")!($ECODE["DSCON") Q
+ .I ($ECODE["150373082")!($ECODE["150381546")!($ECODE["150373090") Q  ; *10001* for GT.M
  .D ^%ZTER
  .Q
  ;

@@ -1,5 +1,5 @@
-PXRMPTDF ; SLC/PKR/PJH - Reminder Inquiry print template routines. ;03/16/2009
- ;;2.0;CLINICAL REMINDERS;**4,6,12**;Feb 04, 2005;Build 73
+PXRMPTDF ;SLC/PKR/PJH - Reminder Inquiry print template routines. ;04/20/2020
+ ;;2.0;CLINICAL REMINDERS;**4,6,12,46**;Feb 04, 2005;Build 236
  ;
  ;================================================
 PFIND ;Print the reminder definition finding multiple.
@@ -25,6 +25,7 @@ PFIND ;Print the reminder definition finding multiple.
  F  S FINDING=$O(^PXD(811.9,D0,25,FINDING)) Q:+FINDING=0  D
  . D WPFORMAT(FINDING,25,RJC,1)
  . D WPFORMAT(FINDING,25,RJC,2)
+ . D WPFORMAT(FINDING,25,RJC,20)
  S DIWF="C80",DIWL=2
  K ^UTILITY($J,"W")
  S FINDING=0
@@ -125,6 +126,7 @@ PFIND ;Print the reminder definition finding multiple.
  .. S INT=0
  .. F  S INT=$O(PARRAY(INT)) Q:'INT  D
  ... S X=$J("",6)_PARRAY(INT) D ^DIWP
+ .. D WPOUT(FINDING,25,"Description:",RJC,PAD,PADS,20)
  ..;
  .. S FIELD=$P(FIND0,U,4)
  .. I $L(FIELD)>0 D
@@ -158,9 +160,9 @@ RTERM ;Reminder Term
  .S TERM=$G(^PXRMD(811.5,IEN1,20,TERMS,0))
  .S TERM3=$G(^PXRMD(811.5,IEN1,20,TERMS,3))
  .D SFDISP(TERM,1,.01,"Mapped Finding Item:",RJT,PAD,TERMNUM,CNT)
- .D SFDISP(TERM,8,9,"Beginning Date/Time:",RJT,PAD,TERMNUM)
+ .D DATE^PXRMPTD2(TERM,8,9,"Beginning Date/Time:",RJT,PAD,TERMNUM)
  .D SFDISP(TERM,9,10,"Use Inactive Problems:",RJT,PAD,TERMNUM)
- .D SFDISP(TERM,11,12,"Ending Date/Time:",RJT,PAD,TERMNUM)
+ .D DATE^PXRMPTD2(TERM,11,12,"Ending Date/Time:",RJT,PAD,TERMNUM)
  .D SFDISP(TERM,10,11,"Within Category Rank:",RJT,PAD,TERMNUM)
  .D SFDISP(TERM,12,13,"MH Scale:",RJT,PAD,TERMNUM)
  .D SFDISP(TERM,13,16,"RX Type:",RJT,PAD,TERMNUM)
@@ -235,7 +237,7 @@ STATUS(STAT0,TITLE,SPACE) ;
  Q
  ;
  ;================================================
-WPFORMAT(FINDING,NODE,RJC,INDEX) ;Format found/not found word processing text.
+WPFORMAT(FINDING,NODE,RJC,INDEX) ;Format found/not found word, description word processing text.
  I '$D(^PXD(811.9,D0,NODE,FINDING,INDEX,1,0)) Q
  ;Save the title using the current format for DIWP.
  N DIWF,DIWL,DIWR,IND,NLINES,SC,X
@@ -256,7 +258,7 @@ WPFORMAT(FINDING,NODE,RJC,INDEX) ;Format found/not found word processing text.
  Q
  ;
  ;================================================
-WPOUT(FINDING,NODE,TITLE,RJC,PAD,PADS,INDEX) ;Output found/not found word processing
+WPOUT(FINDING,NODE,TITLE,RJC,PAD,PADS,INDEX) ;Output found/not found, description word processing
  ;text.
  I $D(^TMP($J,"W",FINDING,NODE,INDEX)) D
  .N IND,X

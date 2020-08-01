@@ -1,5 +1,5 @@
-PXRMDLG6 ; SLC/AGP - Reminder Dialog Edit/Inquiry ;07/24/2013
- ;;2.0;CLINICAL REMINDERS;**12,26,66**;Feb 04, 2005;Build 226
+PXRMDLG6 ;SLC/AGP - Reminder Dialog Edit/Inquiry;10/26/2017
+ ;;2.0;CLINICAL REMINDERS;**12,26,66,45**;Feb 04, 2005;Build 566
  ;
 ISACTDLG(DIEN) ;
  ;this returns a 1 if the dialog can be used in a TIU Template
@@ -104,18 +104,44 @@ FILESCR(IEN,FILENUM,DA) ;
  I FILENUM=811.2 D
  .I '$D(^PXD(811.2,IEN,20,"AUID")) S RESULT=-1
  .I $P($G(^PXD(811.2,IEN,0)),U,6)=1 S RESULT=0
+ I FILENUM=801.46 D
+ .I $P($G(^PXRMD(801.46,IEN,0)),U)="VIEW PROGRESS NOTE TEXT" S RESULT=1 Q
+ .I '$G(PXRMEXCH) S RESULT=0
  Q +RESULT
+ ;
+CONPRMPT(DA) ;
+ N DIEN,RESULT
+ S RESULT=0
+ S DIEN=0 F  S DIEN=$O(^PXRMD(801.41,DA,10,"D",DIEN)) Q:DIEN'>0!(RESULT=1)  D
+ .I "PF"[$P($G(^PXRMD(801.41,DIEN,0)),U,4) S RESULT=1
+ Q RESULT
+ ;
+HASPRMPT(GUI) ;
+ N DIEN,HASPRINT,ID
+ S HASPRINT=0
+ I '$D(^TMP("PXRMDLG PROMPTS",$J)) Q 0
+ S DIEN=0 F  S DIEN=$O(^TMP("PXRMDLG PROMPTS",$J,DIEN)) Q:DIEN'>0!(HASPRINT)  D
+ .S ID=$P($G(^PXRMD(801.41,DIEN,46)),U) I ID'>0 Q
+ .I GUI=$P($G(^PXRMD(801.42,ID,0)),U) S HASPRINT=1
+ Q HASPRINT
+ ;
+ISPROMPT(DA) ;
+ N DIEN
+ S DIEN=$P($G(^PXRMD(801.41,DA(1),10,DA,0)),U,2)
+ I DIEN'>0 Q 0
+ I "PF"[$P($G(^PXRMD(801.41,DIEN,0)),U,4) Q 1
+ Q 0
  ;
 OKTODEL(DIEN) ;
  ;this checks to see if an entry is okay to delete. the entry
  ;cannot be used anywhere else.
  ;"AD" for component multiple
- ;"R" for replacement element/groups
+ ;"BLR" for replacement element/groups
  ;"RG" for result groups
  ;
  I $G(PXRMEXCH)=1 Q 1
  I $D(^PXRMD(801.41,"AD",DIEN)) Q 0
- I $D(^PXRMD(801.41,"R",DIEN)) Q 0
+ I $D(^PXRMD(801.41,"BLR",DIEN)) Q 0
  I $D(^PXRMD(801.41,"RG",DIEN)) Q 0
  Q 1
  ;
@@ -134,3 +160,21 @@ PIPECHK(DIEN) ;
  ..D TIUOBJW^PXRMFNFT(FLDNAM,CNT)
  Q
  ;
+TYPEKILL(DA,OLD) ;
+ N NODE,TYPE
+ I +$G(OLD)'>0 Q
+ S TYPE=$P($G(^PXRMD(801.41,OLD,0)),U,4) Q:TYPE=""
+ I $D(^PXRMD(801.41,DA(1),10,"TYPE",TYPE,OLD)) K ^PXRMD(801.41,DA(1),10,"TYPE",TYPE,OLD)
+ Q
+ ;
+TYPESET(DA,NEW) ;
+ N NODE,TYPE
+ I +$G(NEW)'>0 Q
+ S TYPE=$P($G(^PXRMD(801.41,NEW,0)),U,4) Q:TYPE=""
+ I $D(^PXRMD(801.41,DA(1),10,"TYPE",TYPE,NEW)) Q
+ S ^PXRMD(801.41,DA(1),10,"TYPE",TYPE,NEW)=""
+ Q
+ ;
+VGROUP(IENS,X) ;
+ I '$$VGROUP^PXRMDEDT(DA(1),X) Q 1
+ Q 0

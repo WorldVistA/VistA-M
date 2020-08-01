@@ -1,6 +1,9 @@
-HLOSTRAC ;;OIFO-OAK/RBN/CJM ;02/22/2011
- ;;1.6;HEALTH LEVEL SEVEN;**146,147,153**;Oct 13, 1995;Build 11
- ;Per VHA Directive 2004-038, this routine should not be modified.
+HLOSTRAC ;OIFO-OAK/RBN/CJM - Server Trace ;Apr 03, 2020@14:49
+ ;;1.6;HEALTH LEVEL SEVEN;**146,147,153,10001**;Oct 13, 1995;Build 3
+ ; Original code in the public domain by Dept of Veterans Affairs.
+ ; Changes **10001** by Sam Habiel (c) 2020.
+ ; Changes indicated inline.
+ ; Licensed under Apache 2.0.
  ;;
  ;; HLO SERVER TRACE Tool
  ;; *** For troubleshooting HLO server issues ***
@@ -15,8 +18,13 @@ TRACE    ;
  D OWNSKEY^XUSRB(.CONF,"XUPROG",DUZ)
  I 'CONF(0) D  Q
  . W !!,"   Sorry, you are not authorized to use this tool.",!!
- I $P($$VERSION^%ZOSV(1),"/",1)'["Cache" D  Q
- . W !!,"   Sorry, this tool can only be used under Cache",!!
+ ; *10001*
+ N CACHE,GTM
+ S CACHE=^%ZOSF("OS")["OpenM"
+ S GTM=^%ZOSF("OS")["GT.M"
+ I 'CACHE,'GTM D  Q
+ .W !!,"   Sorry, this tool can only be used under Cache or GT.M",!!
+ ; *10001*
  N IEN,LINK,PORT
  S IEN=+$O(^HLD(779.1,0))
  D:IEN
@@ -30,7 +38,7 @@ TRACE    ;
  Q:'PORT
  D SETBREAKS
  ;
- ZB ZB999^HLOSRVR:"N":1:"S LINK(""PORT"")=PORT,LINK(""SERVER"")=""1^S"",LINK(""LLP"")=""TCP"""
+ D SBREAK("ZB999^HLOSRVR","S LINK(""PORT"")=PORT,LINK(""SERVER"")=""1^S"",LINK(""LLP"")=""TCP""")
  ;
  W !!,"Starting the server, hit the CTRL-C key to stop the server...",!!
 READ D
@@ -39,12 +47,18 @@ READ D
  .D SERVER^HLOSRVR(LINK)
  .U $PRINCIPAL
  .W !,"DONE!"
- ZB /CLEAR
+ ; ZB /CLEAR ;*10001
  Q
  ;
+SBREAK(EP,ACTION) ; *10001*
+ I ^%ZOSF("OS")["OpenM" ZB @EP:"N":1:ACTION
+ I ^%ZOSF("OS")["GT.M"  ZB @(EP_":"""_$$CONVQQ^DILIBF(ACTION)_"""")
+ QUIT
+ ;
+ ;
 SETBREAKS ;
- ZB /CLEAR
- ZB /INTERRUPT:NORMAL
+ ; ZB /CLEAR ; *10001
+ ; ZB /INTERRUPT:NORMAL ; *10001
  ;
  ;!!!! for debuggng only
  ;ZB ERROR^HLOSTRAC
@@ -52,46 +66,46 @@ SETBREAKS ;
  ;
  ;
  ;report errors
- ZB ZB1^HLOSRVR:"N":1:"S $ETRAP=""G ZB3^HLOSTRAC"""
+ D SBREAK("ZB1^HLOSRVR","S $ETRAP=""G ZB3^HLOSTRAC""")
  ;
  ;allow Server Trace tool to run even if HLO is shut down
- ZB ZB25^HLOPROC:"N":1:"S RET=0"
- ZB READMSG^HLOSRVR1:"N":1:"D READMSG^HLOSTRAC"
- ZB PARSEHDR^HLOPRS:"N":1:"D PARSEHDR^HLOSTRAC"
- ZB DUP^HLOSRVR1:"N":1:"D DUP^HLOSTRAC"
- ZB CLOSE^HLOT:"N":1:"D CLOSE^HLOSTRAC"
+ D SBREAK("ZB25^HLOPROC","S RET=0")
+ D SBREAK("READMSG^HLOSRVR1","D READMSG^HLOSTRAC")
+ D SBREAK("PARSEHDR^HLOPRS","D PARSEHDR^HLOSTRAC")
+ D SBREAK("DUP^HLOSRVR1","D DUP^HLOSTRAC")
+ D SBREAK("CLOSE^HLOT","D CLOSE^HLOSTRAC")
  ;set break ZB10 in the client(start of $$READHDR^HLOT)
- ZB ZB10^HLOT:"N":1:"D ZB10^HLOSTRAC"
+ D SBREAK("ZB10^HLOT","D ZB10^HLOSTRAC")
  ;set break ZB11 in the client(end of $$READHDR^HLOT)
- ZB ZB11^HLOT:"N":1:"D ZB11^HLOSTRAC"
+ D SBREAK("ZB11^HLOT","D ZB11^HLOSTRAC")
  ;set break ZB12 in the client(start of $$READSEG^HLOT)
- ZB ZB12^HLOT:"N":1:"D ZB12^HLOSTRAC"
+ D SBREAK("ZB12^HLOT","D ZB12^HLOSTRAC")
  ;set break ZB13 in the client(end of $$READSEG^HLOT)
- ZB ZB13^HLOT:"N":1:"D ZB13^HLOSTRAC"
+ D SBREAK("ZB13^HLOT","D ZB13^HLOSTRAC")
  ;set break ZB14 in the client(start of $$WRITESEG^HLOT)
- ZB ZB14^HLOT:"N":1:"D ZB14^HLOSTRAC"
+ D SBREAK("ZB14^HLOT","D ZB14^HLOSTRAC")
  ;set break ZB15 in the client(end of $$WRITESEG^HLOT)
- ZB ZB15^HLOT:"N":1:"D ZB15^HLOSTRAC"
+ D SBREAK("ZB15^HLOT","D ZB15^HLOSTRAC")
  ;set break ZB16 in the client(start of $$WRITEHDR^HLOT)
- ZB ZB16^HLOT:"N":1:"D ZB16^HLOSTRAC"
+ D SBREAK("ZB16^HLOT","D ZB16^HLOSTRAC")
  ;set break ZB17 in the client(end of $$WRITEHDR^HLOT)
- ZB ZB17^HLOT:"N":1:"D ZB17^HLOSTRAC"
+ D SBREAK("ZB17^HLOT","D ZB17^HLOSTRAC")
  ;set break ZB18 in the client(start of $$ENDMSG^HLOT)
- ZB ZB18^HLOT:"N":1:"D ZB18^HLOSTRAC"
+ D SBREAK("ZB18^HLOT","D ZB18^HLOSTRAC")
  ;set break ZB19 in the server(end of $$ENDMSG^HLOT)
- ZB ZB19^HLOT:"N":1:"D ZB19^HLOSTRAC"
- ZB ZB25^HLOTCP:"N":1:"D ZB25^HLOSTRAC"
- ZB ZB26^HLOTCP:"N":1:"D ZB26^HLOSTRAC"
+ D SBREAK("ZB19^HLOT","D ZB19^HLOSTRAC")
+ D SBREAK("ZB25^HLOTCP","D ZB25^HLOSTRAC")
+ D SBREAK("ZB26^HLOTCP","D ZB26^HLOSTRAC")
  ;
- ZB ZB27^HLOTCP:"N":1:"D ZB27^HLOSTRAC"
+ D SBREAK("ZB27^HLOTCP","D ZB27^HLOSTRAC")
  ;
- ZB ZB28^HLOTCP:"N":1:"D ZB28^HLOSTRAC"
+ D SBREAK("ZB28^HLOTCP","D ZB28^HLOSTRAC")
  ;set break ZB29 in the server(after parsing the message header)
- ZB ZB29^HLOSRVR1:"N":1:"D ZB29^HLOSTRAC"
+ D SBREAK("ZB29^HLOSRVR1","D ZB29^HLOSTRAC")
  ;set break ZB30 in the server(afterchecking if duplicate)
- ZB ZB30^HLOSRVR1:"N":1:"D ZB30^HLOSTRAC"
- ZB ZB31^HLOTCP:"N":1:"D WRITE^HLOTRACE(""Beginning READ over TCP..."")"
- ZB ZB32^HLOTCP:"N":1:"D ZB32^HLOTRACE"
+ D SBREAK("ZB30^HLOSRVR1","D ZB30^HLOSTRAC")
+ D SBREAK("ZB31^HLOTCP","D WRITE^HLOTRACE(""Beginning READ over TCP..."")")
+ D SBREAK("ZB32^HLOTCP","D ZB32^HLOTRACE")
  Q
  ;
 WRITE(MSG) ;
@@ -146,6 +160,7 @@ CLOSE ;
 ERROR ;
  I ($ECODE["EDITED") Q:$QUIT "" Q
  I ($ECODE["ZINTERRUPT") Q:$QUIT "" Q
+ I ($ECODE["Z150372498") Q:$QUIT "" Q  ; CTRL-C for GT.M
  D WRITE^HLOSTRAC("*** ERROR *** : "_$ECODE)
  S HLOTRACE("ERRORS")=HLOTRACE("ERRORS")+1
  I HLOTRACE("ERRORS")>5 Q:$QUIT "" Q
@@ -199,7 +214,8 @@ ZB3 ;
  S $ETRAP="Q:$QUIT """" Q"
  D END^HLOSRVR
  N CON,MSG
- S CON=($ZA\8192#2)
+ I ^%ZOSF("OS")["OpenM" S CON=($ZA\8192#2)
+ I ^%ZOSF("OS")["GT.M"  S CON=$KEY["ESTABLISHED"
  S MSG="Error encountered, $ECODE="_$ECODE
  D WRITE^HLOTRACE(MSG)
  S MSG=$S(CON:"           TCP connection still active",1:"          TCP connection was dropped")

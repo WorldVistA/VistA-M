@@ -60,9 +60,9 @@ PKG ;Check other packages required for this version of PIMS
  N X S X="IBARXEU" X ^%ZOSF("TEST") I '$T D
  .W !!,">>> Copay-Exemption patches must be installed before running"
  .W !,"    this installation. Patches: IB*1.5*9"
- .W !,"			     DG*5.2*22"
- .W !,"			     SD*5.2*9"
- .W !,"			     PRCA*3.7*8"
+ .W !,"                      DG*5.2*22"
+ .W !,"                      SD*5.2*9"
+ .W !,"                      PRCA*3.7*8"
  .K DIFQ
  ;
  I '$D(^HL(770,0)) D

@@ -1,5 +1,5 @@
-PXRMXD ; SLC/PJH - Reminder Due reports DRIVER ;07/30/2009
- ;;2.0;CLINICAL REMINDERS;**4,6,12**;Feb 04, 2005;Build 73
+PXRMXD ;SLC/PJH - Reminder Due reports DRIVER ;08/16/2018
+ ;;2.0;CLINICAL REMINDERS;**4,6,12,42**;Feb 04, 2005;Build 103
  ;
 START ; Arrays and strings
  N PX,PXRMDEV,PXRMHFIO,PXRMIOP,PXRMXST,PXRMOPT,PXRMQUE,PXRMXTMP,PXRMSEL
@@ -29,7 +29,7 @@ START ; Arrays and strings
  S PXRMXTMP=PXRMRT_PXRMXST
  S PXRMXCCS=PXRMRT_"SEPCLINIC"_PXRMXST
  S ^XTMP(PXRMXTMP,0)=$$FMADD^XLFDT(DT,7)_U_DT_U_"PXRM Reminder Due Report"
- S ^XTMP(PXRMXCCS,0)=$$FMADD^XLFDT(DT,7)_U_DT_U_"PXRM Reminder Due Report Seperate Clinic Stop"
+ S ^XTMP(PXRMXCCS,0)=$$FMADD^XLFDT(DT,7)_U_DT_U_"PXRM Reminder Due Report Separate Clinic Stop"
  ;
  ;Check for existing report templates
 REP ;
@@ -58,7 +58,7 @@ OPT ;Variable prompts
  I PXRMSEL="I" K PXRMPAT D PAT^PXRMXSU(.PXRMPAT)
  ;Get Patient list #810.5
  I PXRMSEL="R" K PXRMLIST D LIST^PXRMXSU(.PXRMLIST)
- ;Get OE/RRteam list
+ ;Get OE/RR team list
  I PXRMSEL="O" K PXRMOTM D OERR^PXRMXSU(.PXRMOTM)
  ;Get PCMM team
  I PXRMSEL="T" K PXRMPCM D PCMM^PXRMXSU(.PXRMPCM)
@@ -164,7 +164,7 @@ MLOC ;Print Locations empty location at the end of the report
  S DIR(0)="Y",DIR("B")="YES",DIR("A")="Print locations with no patients"
  D ^DIR
  I Y="^^" G EXIT
- I Y=U G:$P(PXRMLCSC,U)="CS" SEPCS G:PXRMREP="D" SSN G TOT
+ I Y=U G:$P($G(PXRMLCSC),U)="CS" SEPCS G:PXRMREP="D" SSN G TOT
  S PXRMPML=Y
  ;
 DPER ;Print percentage with the report outut
@@ -179,7 +179,6 @@ DPER ;Print percentage with the report outut
  ;Reminder Category/Individual Reminder Selection
 RCAT ;
  D RCAT^PXRMXSU(.PXRMRCAT,.PXRMREM) I $D(DTOUT) G EXIT
- ;I $D(DUOUT) G:PXRMREP="D" SSN G TOT
  I $D(DUOUT) G MLOC
  ;
  ;Create combined reminder list
@@ -191,7 +190,7 @@ SAV ;Option to create a new report template
  ;Option to print delimiter separated output
 TABS D  G:$D(DTOUT) EXIT I $D(DUOUT) G SAV
  .D TABS^PXRMXSD(.PXRMTABS)
- ;Select chracter
+ ;Select character
 TCHAR I PXRMTABS="Y" D  G:$D(DTOUT) EXIT G:$D(DUOUT) TABS
  .S PXRMTABC=$$DELIMSEL^PXRMXSD
  ;

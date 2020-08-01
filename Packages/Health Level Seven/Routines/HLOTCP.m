@@ -1,6 +1,9 @@
-HLOTCP ;ALB/CJM- TCP/IP I/O - 10/4/94 1pm ;03/01/2011
- ;;1.6;HEALTH LEVEL SEVEN;**126,131,134,137,138,139,146,153**;Oct 13, 1995;Build 11
- ;Per VHA Directive 2004-038, this routine should not be modified.
+HLOTCP ;ALB/CJM- TCP/IP I/O ;Apr 03, 2020@14:47
+ ;;1.6;HEALTH LEVEL SEVEN;**126,131,134,137,138,139,146,153,10001**;Oct 13, 1995;Build 3
+ ; Original code in the public domain by Dept of Veterans Affairs.
+ ; Changes **10001** by Sam Habiel (c) 2020 and Lloyd Milligan (c) 2011.
+ ; Changes indicated inline.
+ ; Licensed under Apache 2.0.
  ;
 OPEN(HLCSTATE,LOGICAL) ;
  ;This may be called either in the context of a client or a server.
@@ -84,7 +87,35 @@ ZB28 ....;
  ..O HLCSTATE("DEVICE"):(IP:PORT:"-S":::):HLCSTATE("OPEN TIMEOUT")
  ..I $T D
  ...S HLCSTATE("CONNECTED")=1
- E  D  ;any other system but Cache or DSM
+ ;SIS/LM & MS/SMH - Insert the following for GT.M / Linux OS Server
+ E  I HLCSTATE("SYSTEM","OS")="GT.M" D
+ .S HLCSTATE("TCP BUFFER SIZE")=2**20-1
+ .S HLCSTATE("FLUSH")="!"
+ .I $G(HLCSTATE("SERVER")) D  
+ ..I HLCSTATE("SERVER")="1^S" D  ; GT.M Single threaded server (for debugging only)
+ ...S HLCSTATE("DEVICE")="SCK$"_PORT
+ ...O HLCSTATE("DEVICE"):(LISTEN=PORT_":TCP":ATTACH="server"):HLCSTATE("OPEN TIMEOUT"):"SOCKET" E  S HLCSTATE("CONNECTED")=0 Q
+ ...S HLCSTATE("CONNECTED")=1
+ ...U HLCSTATE("DEVICE"):(nowrap:nodelimiter:IOERROR="TRAP")
+ ...S HLCSTATE("GTM","$KEY",0)=$KEY
+ ...W /LISTEN(1)
+ ...S HLCSTATE("GTM","$KEY",1)=$KEY
+ ...F  W /WAIT(5)  I $KEY'="" S HLCSTATE("GTM","$KEY",2)=$KEY QUIT
+ ...N CHILD S CHILD=$P(HLCSTATE("GTM","$KEY",2),"|",2)
+ ...C HLCSTATE("DEVICE"):(SOCKET="server")
+ ...U HLCSTATE("DEVICE"):(SOCKET=CHILD)
+ ..E  D  ; xinetd server
+ ...S HLCSTATE("DEVICE")=$P
+ ...U HLCSTATE("DEVICE"):(nowrap:nodelimiter:IOERROR="TRAP")
+ ...S HLCSTATE("CONNECTED")=1
+ .E  D  ; Client
+ ..D CALL^%ZISTCP(IP,PORT,HLCSTATE("OPEN TIMEOUT"))
+ ..S HLCSTATE("CONNECTED")='POP
+ ..I POP QUIT
+ ..I HLCSTATE("CONNECTED") S HLCSTATE("DEVICE")=IO
+ ..U HLCSTATE("DEVICE"):(NOWRAP:NODELIMITER)
+ ;SIS/LM & MS/SMH - End inserted block
+ E  D  ;any other system but Cache or DSM or GTM
  .S HLCSTATE("TCP BUFFER SIZE")=256
  .D CALL^%ZISTCP(IP,PORT,HLCSTATE("OPEN TIMEOUT"))
  .S HLCSTATE("CONNECTED")='POP

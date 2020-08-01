@@ -1,0 +1,50 @@
+TIUE290 ;SLC/WAT - Environment check for TIU*1.0*290 ;Oct 22, 2019@11:16
+ ;;1.0;TEXT INTEGRATION UTILITIES;**290**;Jun 20, 1997;Build 548
+ ;check for items with same name
+ N TIU290IN
+ N TIUI,TITLESTR,TITLES,TIUTLDA
+ S TIU290IN=$$PATCH^XPDUTL("TIU*1.0*290") Q:+$G(TIU290IN)
+ W !,"This patch installs new document classes and titles."
+ W !,"I am checking to see if you already have document classes"
+ W !,"or titles of the same name.",!
+ N TIUDCDA,TIUDCNAM
+ F TIUDCNAM="SMART NOTES","WOMEN'S HEALTH NOTES"  D
+ . S TIUDCDA=$$FIND(TIUDCNAM,"DC")
+ . I +TIUDCDA>0 S XPDABORT=2 W !,"Doc Class match found for """_TIUDCNAM_"""",!
+ F TIUI=1:1 S TITLESTR=$P($T(TITLES+TIUI),";",3) Q:TITLESTR="EOL"  D
+ . S TITLESTR=$P(TITLESTR,U) Q:$L(TITLESTR)'>0
+ . S TIUTLDA=$$FIND(TITLESTR,"DOC")
+ . I +TIUTLDA>0 S XPDABORT=2 W !,"Title match found for """_TITLESTR_"""",!
+ I $G(XPDABORT)=2 D
+ . W !!,"Installation cannot continue until these issues are resolved.",!
+ . W !,"Please review the ""How to Resolve Duplicate Document Classes or Titles""",!,"section of the CPRS v31b Set up and Configuration Guide.",!!
+ . N X,Y,DIR
+ . S DIR(0)="EA",DIR("A")="     Press return to continue  "
+ . D ^DIR
+ Q
+ ;
+FIND(TIUNM,TYPE) ; Find IEN of Document Definition
+ N TIUY,TIUPOP S (TIUPOP,TIUY)=0
+ F  S TIUY=$O(^TIU(8925.1,"B",TIUNM,TIUY)) Q:+TIUY'>0  D  Q:TIUPOP
+ . I $P($G(^TIU(8925.1,+TIUY,0)),U,4)=TYPE S TIUPOP=1
+ Q TIUY
+ ;
+TITLES ; list of titles NAME
+ ;;HEALTHELIVING ASSESSMENT SUMMARY
+ ;;LACTATION STATUS UPDATE REVIEW
+ ;;PREGNANCY STATUS UPDATE REVIEW
+ ;;SMART BREAST IMAGING FOLLOW-UP
+ ;;SMART PATIENT NOTIFICATION
+ ;;SMART OUTSIDE BREAST IMAGE RESULTS
+ ;;EOL
+INCOBJ(TIUNAME) ;Include TIU DOCUMENT DEFINITION in build?
+ I TIUNAME="VA-WH POTENTIAL TERATOGENIC ORDERS" Q 1
+ I TIUNAME="VA-WH POTENTIAL UNSAFE ORDERS" Q 1
+ I TIUNAME="VA-WH RECENT PREGNANT STATUS" Q 1
+ I TIUNAME="VA-WH RECENT LACTATION STATUS" Q 1
+ I TIUNAME="VA-WH SRN TEXT LACTATION" Q 1
+ I TIUNAME="VA-WH SRN TEXT PREGNANCY" Q 1
+ I TIUNAME="VA-WH RECENT LABORATORY PREGNANCY TEST" Q 1
+ I TIUNAME="VA-REMINDER TEXT FOR REMINDER ORDER CHECK" Q 1
+ I TIUNAME="VA-SMART TEXT FOR ALERT" Q 1
+ Q 0

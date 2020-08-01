@@ -1,5 +1,5 @@
-ORB3U1 ; slc/CLA - Utilities which support OE/RR 3 Notifications ;12/15/97
- ;;3.0;ORDER ENTRY/RESULTS REPORTING;**9,74,88,91,105,179,220,250,379**;Dec 17, 1997;Build 13
+ORB3U1 ;SLC/CLA - Utilities which support OE/RR 3 Notifications ;01/18/2017  07:20
+ ;;3.0;ORDER ENTRY/RESULTS REPORTING;**9,74,88,91,105,179,220,250,379,377**;Dec 17, 1997;Build 582
  Q
 LIST(Y) ;return list of notifications from Notification File [#100.9]
  ; RETURN IEN^NAME^URGENCY
@@ -20,7 +20,7 @@ ALRTHX ;report the recipients for an alert, when received, action taken
  I Y<1 K %DT,Y Q
  S ORBSDT=Y
  ;
- S %DT="AET",%DT("A")="End Date/Time (req'd): ",%DT("B")="NOW" D ^%DT
+ S %DT="AERS",%DT("A")="End Date/Time (req'd): ",%DT("B")="NOW" D ^%DT
  I Y<1 K %DT,Y Q
  S ORBEDT=Y
  ;
@@ -31,7 +31,7 @@ ALRTHX ;report the recipients for an alert, when received, action taken
  D EN^VALM("OR PATIENT ALERTS")
  Q
 SELECT ;if one or more alerts selected, display/print recipient data:
- N ORN,ORNUMS,ORI,ORJ,ORBAL,ORBAID,ORBSMSG,ORY,DESC,HDR
+ N ORN,ORNUMS,ORI,ORJ,ORBAL,ORBAID,ORY,DESC,HDR,ORLINES,ORLINE
  S ORNUMS=$P(XQORNOD(0),"=",2)
  Q:'$L(ORNUMS)
  D FULL^VALM1
@@ -41,12 +41,13 @@ SELECT ;if one or more alerts selected, display/print recipient data:
  .S ORN=$P(ORNUMS,",",ORI)
  .S ORBAL=$G(^TMP("OR",$J,"ALERTS","IDX",ORN)) I $L(ORBAL) D
  ..S ORBAID=$P(ORBAL,U)
- ..S ORBSMSG=$P(ORBAL,U,2)
- ..S ORY(ORJ)="RECIPIENTS OF ALERT: "_ORBSMSG,ORJ=ORJ+1
+ ..D WRAP^ORUTL("RECIPIENTS OF ALERT: "_$P(ORBAL,U,2),"ORLINES")
+ ..F ORLINE=1:1:ORLINES  I $G(ORLINES(ORLINE))'="" S ORY(ORJ)=ORLINES(ORLINE),ORJ=ORJ+1
+ ..K ORLINES
  ..D GETRECS(ORBAID)  ;get recipient data
  ..S ORJ=ORJ+1,ORY(ORJ)="",ORJ=ORJ+1,ORY(ORJ)="",ORJ=ORJ+1
  S DESC="Recipients of a Kernel Alert"
- S HDR="RECIPIENTS OF ALERTS FOR PATIENT: "_ORBPT
+ S HDR="RECIPIENTS OF ALERT FOR PATIENT: "_ORBPT
  D OUTPUT(.ORY,DESC,HDR)
  S VALMBCK="R"
  Q
@@ -70,7 +71,7 @@ LMALT ; alternative selection code
  Q
 LMENTRY ; entry code for List Mgr display
  N ORBA,ORBAID,ORBDT,ORBMSG,ORBX,ORNUM,ORDATA,ORAD,LCNT,NUM
- N ORX,ORY,ORBMSGP1,ORBMSGP2
+ N ORX,ORY,ORLINE,ORLINES
  ;
  D CLEAN^VALM10
  ;
@@ -89,13 +90,8 @@ LMENTRY ; entry code for List Mgr display
  ...I ORDATA["@" S ORNUM=$P(ORDATA,"@")
  ...S ORNUM=$S(+$G(ORNUM)>0:"["_+ORNUM_"]",1:"")
  ...S ORBMSG=$S($F(ORBMSG,": "):$E(ORBMSG,$F(ORBMSG,": "),$L(ORBMSG)),1:"") ;p379
- ...S ORBMSGP1=$P(ORBMSG,":",1) ;jeh
- ...S ORBMSGP2=$P(ORBMSG,":",2,3)   ;jeh 
- ...I $G(ORBMSGP1)="Order(s) needing clarification" D    ;jeh Shorten output to make room for OR IEN 
- ....S ORBMSGP1="Order needs clarifying"  ;jeh
- ....S ORBMSG=ORBMSGP1_":"_ORBMSGP2   ;jeh
- ...S ORBMSG=$E(ORBMSG_$S($L(ORNUM):" "_$G(ORNUM),1:"")_U_"                                                            ",1,60)
- ...S ^TMP("OR",$J,"ALERTS","B",9999999-ORBDT_ORBAID)=ORBAID_U_$P(ORBMSG,U)_U_$$FMTE^XLFDT($E(ORBDT,1,12),"2")
+ ...S ORBMSG=ORBMSG_$S($L(ORNUM):" "_$G(ORNUM),1:"")
+ ...S ^TMP("OR",$J,"ALERTS","B",9999999-ORBDT_ORBAID)=ORBAID_U_ORBMSG_U_$$FMTE^XLFDT($E(ORBDT,1,12),"2")
  ;
  S (LCNT,NUM)=0
  S ORX="" F  S ORX=$O(^TMP("OR",$J,"ALERTS","B",ORX)) Q:ORX=""  D
@@ -104,8 +100,16 @@ LMENTRY ; entry code for List Mgr display
  .S ORBDT=$P(ORY,U,3)
  .S LCNT=LCNT+1,NUM=NUM+1
  .S ^TMP("OR",$J,"ALERTS","IDX",NUM)=ORY   ;alert id^text^date/time
- .S ^TMP("OR",$J,"ALERTS",LCNT,0)=$$LJ^XLFSTR(NUM,4)_$$LJ^XLFSTR(ORBMSG,61)_$$LJ^XLFSTR(ORBDT,15)
- .D CNTRL^VALM10(LCNT,1,5,IOINHI,IOINORM)
+ .D WRAP^ORUTL(ORBMSG,"ORLINES",0,0,,,60)
+ .F ORLINE=1:1:ORLINES  D
+ ..Q:$G(ORLINES(ORLINE))=""
+ ..I ORLINE=1 D
+ ...S ^TMP("OR",$J,"ALERTS",LCNT,0)=$$LJ^XLFSTR(NUM,4)_$$LJ^XLFSTR(ORLINES(ORLINE),61)_$$LJ^XLFSTR(ORBDT,15)
+ ...D CNTRL^VALM10(LCNT,1,4,IOINHI,IOINORM)
+ ..I ORLINE>1 D
+ ...S LCNT=LCNT+1
+ ...S ^TMP("OR",$J,"ALERTS",LCNT,0)=$$REPEAT^XLFSTR(" ",4)_$$LJ^XLFSTR(ORLINES(ORLINE),61)
+ .K ORLINES
  ;
  S ^TMP("OR",$J,"ALERTS",0)=LCNT_U_NUM_U_"Patient Alerts"
  S ^TMP("OR",$J,"ALERTS","#")=$O(^ORD(101,"B","OR SELECT ALERTS",0))_"^1:"_NUM
@@ -222,6 +226,6 @@ HDR ;print header of report
  .R X:DTIME S END='$T!(X="^")
  Q:END=1
 HDR1 W:'($E(IOST,1,2)='"C-"&'PAGE) @IOF
-HDR2 S PAGE=PAGE+1 W ?20,ORBHDR
+HDR2 S PAGE=PAGE+1 W ?10,$E(ORBHDR,1,(IOM-20))
  W ?(IOM-10),"Page: ",$J(PAGE,3),!!
  Q

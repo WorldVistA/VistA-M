@@ -1,5 +1,5 @@
-PXAPIDEL ;ISL/dee - PCE's code for the DELVFILE api ;06/02/2016
- ;;1.0;PCE PATIENT CARE ENCOUNTER;**1,9,22,130,168,197,216**;Aug 12, 1996;Build 11
+PXAPIDEL ;ISL/dee - PCE's code for the DELVFILE api ;03/29/2018
+ ;;1.0;PCE PATIENT CARE ENCOUNTER;**1,9,22,130,168,197,216,211**;Aug 12, 1996;Build 302
  Q
  ;
 DELVFILE(PXAWHICH,PXAVISIT,PXAPKG,PXASOURC,PXAASK,PXAECHO,PXAUSER) ;Deletes the requested data related to the visit.
@@ -31,10 +31,11 @@ DELVFILE(PXAWHICH,PXAVISIT,PXAPKG,PXASOURC,PXAASK,PXAECHO,PXAUSER) ;Deletes the 
  ;      or try to delete something that was now allowed to delete
  ;      but deletion processed completely as possible
  ;  -1  if user said not to delete or user up arrows out
- ;        or errors out. In any case nothing was delete.
+ ;        or errors out. In any case nothing was deleted.
  ;  -2  if could not get a visit
  ;  -3  if called incorrectly
- ;  -4  if dependent entry count is still greater than zer0
+ ;  -4  if dependent entry count is still greater than zero
+ ;  -5  if encounter cannot be locked
  ;
  ;Good visit?
  Q:'$G(PXAVISIT) -2
@@ -55,14 +56,14 @@ DELVFILE(PXAWHICH,PXAVISIT,PXAPKG,PXASOURC,PXAASK,PXAECHO,PXAUSER) ;Deletes the 
  I +PXASOURC=-1 W:'$D(ZTQUEUED) !,"Procedure ""DELVFILE^PXAPI"" was called incorrectly without a valid ""SOURCE"", contact IRM." Q -3
  ;
  K ^TMP("PXK",$J)
- N PXACOUNT,PXAINDX,PXAVFILE,PXAFILE,PXARET,PXAWFLAG
+ N INDEX,PXACOUNT,PXAINDX,PXAVFILE,PXAFILE,PXARET,PXAWFLAG
  N PXALEN,PXAIEN,PXAPIECE,PXAMYSOR
  S PXARET=1
- I PXAWHICH="ALL" S PXAWHICH="VISIT^STOP^CPT^IMM^PED^POV^PRV^SK^TRT^HF^XAM^ICR" ; PX*1*216
+ I PXAWHICH="ALL" S PXAWHICH="VISIT^STOP^CPT^IMM^PED^POV^PRV^SK^TRT^HF^XAM^ICR^SC" ; PX*1*216
  S PXALEN=$L(PXAWHICH,"^")
  Q:PXALEN<1 -3
  E  F PXACOUNT=1:1:PXALEN S PXAVFILE=$P(PXAWHICH,"^",PXACOUNT) D  Q:PXARET<0
- . I "~VISIT~STOP~CPT~IMM~PED~POV~PRV~SK~TRT~HF~XAM~ICR~"'[("~"_PXAVFILE_"~") S PXARET=-3 ; PX*1*216
+ . I "~VISIT~STOP~CPT~IMM~PED~POV~PRV~SK~TRT~HF~XAM~ICR~SC~"'[("~"_PXAVFILE_"~") S PXARET=-3 ; PX*1*216
  Q:PXARET<0 PXARET
  I PXAASK D  Q:PXARET<0 PXARET
  . N DIR,X,Y
@@ -72,9 +73,15 @@ DELVFILE(PXAWHICH,PXAVISIT,PXAPKG,PXASOURC,PXAASK,PXAECHO,PXAUSER) ;Deletes the 
  . S DIR("B")="NO"
  . D ^DIR
  . I Y'=1 S PXARET=-1 Q
+ I PXARET-1 Q -1
+ S PXAWFLAG=PXAECHO&'$D(ZTQUEUED)
+ ;Lock the encounter before doing any deletions.
+ N ERROR,LOCK
+ S LOCK=$$LOCK^PXLOCK(PXAVISIT,DUZ,2,.ERROR,"PXAPIDEL")
+ I LOCK=0 D  Q -5
+ . I PXAWFLAG W !,ERROR("LOCK")
  S PXAMYSOR=$$SOURCE^PXAPIUTL("PCE DELETE V-FILES API")
-STOP  ;Do Stop Codes first
-  S PXAWFLAG=PXAECHO&'$D(ZTQUEUED)
+STOP ;Do Stop Codes first
   I "^"_PXAWHICH_"^"["^STOP^" D
  . S PXAIEN=0
  . F PXACOUNT=0:1 S PXAIEN=$O(^AUPNVSIT("AD",PXAVISIT,PXAIEN)) Q:'PXAIEN  D
@@ -114,8 +121,8 @@ STOP  ;Do Stop Codes first
  .... W !,"   ...deleting "
  .... W $S("CPT"=PXAVFILE:"Procedure","IMM"=PXAVFILE:"Immunizations","PED"=PXAVFILE:"Patient Education","ICR"=PXAVFILE:"Contra/Refusal Event",1:"") ; PX*1*216
  .... W $S("POV"=PXAVFILE:"Diagnoses","PRV"=PXAVFILE:"Providers","SK"=PXAVFILE:"Skin Test","TRT"=PXAVFILE:"Treatments","HF"=PXAVFILE:"Health Factors","XAM"=PXAVFILE:"Exams",1:"")
+ .... W $S("SC"=PXAVFILE:"Standard Codes",1:"")
  ;now process all the data except the stop codes which have already been done
- ;
  ;
  N PXKERROR
  I $D(^TMP("PXK",$J)) D
@@ -148,8 +155,8 @@ DELCR ;Do CREDIT Stop Code if it is the only entry except OE entry, not assoc. w
  ....I PXAWFLAG W !!,$C(7),"Cannot edit/delete at this time, try again later." D PAUSE^PXCEHELP
  ;
  N PXAKILL
- I "^"_PXAWHICH_"^"["^VISIT^" D
- . S PXAKILL=$$KILL^VSITKIL(PXAVISIT)
+ I "^"_PXAWHICH_"^"["^VISIT^" S PXAKILL=$$KILL^VSITKIL(PXAVISIT)
+ D UNLOCK^PXLOCK(PXAVISIT,DUZ,"PXAPIDEL")
  Q $S(PXARET=0!$D(PXKERROR):0,$G(PXAKILL):-4,1:1)
  ;
 VERAPT(PXAVISIT,SCDXPOV) ;FUNCTION CALLED TO VERIFY IF VISIT IS ASSOCIATED WITH APPOINTMENT

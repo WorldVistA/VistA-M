@@ -1,5 +1,5 @@
-WVLABADD ;HCIOFO/FT-SAVE A LAB TEST AS A WH PROCEDURE ;5/10/99  12:10
- ;;1.0;WOMEN'S HEALTH;**6**;Sep 30, 1998
+WVLABADD ;HCIOFO/FT - SAVE A LAB TEST AS A WH PROCEDURE ;07/28/2017  11:27
+ ;;1.0;WOMEN'S HEALTH;**6,24**;Sep 30, 1998;Build 582
  ;
 EN ; Entry point from [WV SAVE LAB TEST] option.
  ; Converts a lab test stored in the WV LAB TESTS file (#790.08) 
@@ -111,7 +111,7 @@ CONVERT ; Add the lab test data to the WV PROCEDURE file (#790.1)
  I Y D EDIT
  Q
 KILL ; Kill variables
- K WVIEN,WVPOP,X,Y
+ D KILLALL^WVUTL8
  K ^TMP("WVLAB",$J)
  Q
 DELETE(WVIEN) ; Delete an entry from File 790.08

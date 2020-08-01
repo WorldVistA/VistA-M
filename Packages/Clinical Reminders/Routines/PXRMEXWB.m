@@ -1,5 +1,5 @@
-PXRMEXWB ;SLC/PKR - Reminder Exchange Web routines. ;02/19/2015
- ;;2.0;CLINICAL REMINDERS;**26,47**;Feb 04, 2005;Build 291
+PXRMEXWB ;SLC/PKR - Reminder Exchange Web routines. ;07/26/2018
+ ;;2.0;CLINICAL REMINDERS;**26,47,42**;Feb 04, 2005;Build 103
  ;==========================================
 LWEB(URL) ;Load a prd file from a web site into ^TMP, then into the
  ;Exchange file.
@@ -23,6 +23,12 @@ LWEB(URL) ;Load a prd file from a web site into ^TMP, then into the
  . S TEXT=TEXT_"Error "_$P(RESULT,U,1)_" "_$P(RESULT,U,2)
  . D EN^DDIOL(.TEXT) H 2
  . K ^TMP($J,"WEBPRD")
+ ;Work around for bug in GETURL^XTHC10
+ N DONE,IND
+ S (DONE,IND)=0
+ F  S IND=$O(^TMP($J,"WEBPRD",IND)) Q:DONE  D
+ . I ^TMP($J,"WEBPRD",IND)="<?xml version=""1.0"" standalone=""yes""?>" S DONE=1 Q
+ . K ^TMP($J,"WEBPRD",IND)
  D RBLCKWEB^PXRMTXIM("WEBPRD",NODE)
  K ^TMP($J,"WEBPRD")
  ;Load the ^TMP into the Exchange file.

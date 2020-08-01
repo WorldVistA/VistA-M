@@ -1,11 +1,14 @@
-XLFNSLK ;ISF/RWF,ISD/HGW - Calling a DNS server for name lookup ;12/08/15  12:44
- ;;8.0;KERNEL;**142,151,425,638,659**;Jul 10, 1995;Build 22
+XLFNSLK ;ISF/RWF,ISD/HGW - Calling a DNS server for name lookup ;2017-01-09  3:28 PM
+ ;;8.0;KERNEL;**142,151,425,638,659,10001**;Jul 10, 1995;Build 21
  ;Per VA Directive 6402, this routine should not be modified.
+ ; Submitted to OSEHRA in 2017 by Sam Habiel for OSEHRA
+ ; Original Routine authored by Department of Veterans Affairs
+ ; EPs HOST and ADDRESS GT.M Support by Christopher Edwards 2016.
  ;
  Q
 TEST ;Test entry
  N XNAME
- R !,"Enter an IP address to lookup: www.domain.ext//",XNAME:DTIME S:XNAME="" XNAME="www.domain.ext" Q:XNAME["^"
+ R !,"Enter an IP address to lookup: www.domain//",XNAME:DTIME S:XNAME="" XNAME="www.domain" Q:XNAME["^"
  W !!,"Looking up IPv4 address: ",XNAME
  W !,?5,XNAME,". > ",$$ADDRESS(XNAME,"A")
  W !!,"Looking up IPv6 address: ",XNAME
@@ -20,6 +23,9 @@ HOST(IP) ;Get a host name from an IP address
  . S X=$SYSTEM.INetInfo.TextAddrToBinary(IP)
  . S Y=$SYSTEM.INetInfo.AddrToHostName(X)
  ;Enter code for non-Cache systems here:
+ I +$SY=47 N RESULT D  Q RESULT
+ . S RESULT=$$RETURN^%ZOSV("dig -x "_IP_" +noall +answer +short") ; reverse DNS. MUST HAVE A REVERSE DNS RECORD
+ . S $E(RESULT,$L(RESULT))="" ; Strip Last Character
  Q ""
  ;
 ADDRESS(N,T) ;Get a IP address from a name
@@ -32,7 +38,10 @@ ADDRESS(N,T) ;Get a IP address from a name
  . . S X=$SYSTEM.INetInfo.HostNameToAddr(N,2,0) ;Get IPv6 address
  . . S Y=$$FORCEIP6^XLFIPV(X) ;Format IPv6 address
  . I ($P(Y,":")="0000")!(T="A") S Y=$SYSTEM.INetInfo.HostNameToAddr(N,1,0) ;Get IPv4 address
- ;Non-cache systems and lookups other than "A" or "AAAA"
+ I +$SY=47 D  Q Y
+ . I (T="AAAA") S Y=$$FORCEIP6^XLFIPV($$RETURN^%ZOSV("dig "_T_" "_N_" +noall +answer +short")) QUIT  ; return the last ip address in the list
+ . I (T="A") S Y=$$FORCEIP4^XLFIPV($$RETURN^%ZOSV("dig "_T_" "_N_" +noall +answer +short")) QUIT  ; return the last ip address in the list
+ ;Non-cache/GT.M systems and lookups other than "A" or "AAAA"
  D NS(.XLF,N,T)
  S Y="" F I=1:1:XLF("ANCOUNT") S:$D(XLF("AN"_I_"DATA")) Y=Y_XLF("AN"_I_"DATA")_","
  Q $E(Y,1,$L(Y)-1)

@@ -1,5 +1,5 @@
-PXCEVFIL ;ISL/dee - Main routine to edit a visit or v-file entry ;11/18/2015
- ;;1.0;PCE PATIENT CARE ENCOUNTER;**9,30,22,73,88,89,104,147,124,169,210,215**;Aug 12, 1996;Build 10
+PXCEVFIL ;ISL/dee - Main routine to edit a visit or v-file entry ;10/06/2017
+ ;;1.0;PCE PATIENT CARE ENCOUNTER;**9,30,22,73,88,89,104,147,124,169,210,215,211**;Aug 12, 1996;Build 302
  ;
  Q
 EN(PXCECAT) ; -- main entry point for PXCE pxcecat EDIT
@@ -38,9 +38,10 @@ EN(PXCECAT) ; -- main entry point for PXCE pxcecat EDIT
  Q
  ;
 DOONE ;
- N PXCEUP,PXELAP
- N PXCEAFTR
+ N PXCEAFTR,PXCEUP,PXCEVFIN,PXELAP
  D INIT
+ ;Save the initial V-file contents.
+ M PXCEVFIN=PXCEAFTR
  Q:PXCEQUIT
 DOONE2 ;
  K PXKERROR
@@ -73,12 +74,10 @@ INIT ; -- init variables and list array
  S ^TMP("PXK",$J,"SOR")=PXCESOR
  S ^TMP("PXK",$J,"VST",1,"IEN")=PXCEVIEN
  I PXCECAT="SIT"!(PXCECAT="APPM")!(PXCECAT="HIST") D
- . I PXCEVIEN>0 L +@(PXCEAUPN_"(PXCEVIEN)"):5 E  W !!,$C(7),"Cannot edit at this time, try again later." D PAUSE^PXCEHELP S PXCEQUIT=1 Q
  . F PXCENODE=0,21,150,800,811,812 D
  .. S PXCEAFTR(PXCENODE)=$S(PXCEVIEN>0:$G(^AUPNVSIT(PXCEVIEN,PXCENODE)),1:"")
  .. S ^TMP("PXK",$J,"VST",1,PXCENODE,"BEFORE")=PXCEAFTR(PXCENODE)
  E  D
- . I PXCEFIEN>0 L +@(PXCEAUPN_"(PXCEFIEN)"):5 E  W !!,$C(7),"Cannot edit at this time, try again later." D PAUSE^PXCEHELP S PXCEQUIT=1 Q
  . F PXCENODE=0,21,150,800,811,812 D
  .. S ^TMP("PXK",$J,"VST",1,PXCENODE,"BEFORE")=$G(^AUPNVSIT(+PXCEVIEN,PXCENODE))
  .. S ^TMP("PXK",$J,"VST",1,PXCENODE,"AFTER")=^TMP("PXK",$J,"VST",1,PXCENODE,"BEFORE")

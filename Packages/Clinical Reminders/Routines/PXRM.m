@@ -1,5 +1,5 @@
-PXRM ;SLC/PKR - Clinical Reminders entry points. ;10/25/2016
- ;;2.0;CLINICAL REMINDERS;**4,11,12,16,18,24,26,47**;Feb 04, 2005;Build 291
+PXRM ;SLC/PKR - Clinical Reminders entry points. ;08/16/2018
+ ;;2.0;CLINICAL REMINDERS;**4,11,12,16,18,24,26,47,42**;Feb 04, 2005;Build 103
  ;Entry points in this routine are listed in DBIA #2182.
  ;==========================================================
 MAIN(DFN,PXRMITEM,OUTTYPE,DISC) ;Main driver for clinical reminders.
@@ -83,11 +83,11 @@ DISABLE(PXRMITEM,RNAME) ;
 EVAL(DFN,DEFARR,OUTTYPE,NODISC,FIEVAL,DATE) ;Reminder evaluation entry
  ;point. This entry point uses the local array DEFARR for the reminder
  ;definition and returns the Finding Evaluation Array, FIEVAL.
- ;PXRM namespaced variables are the reminder evaluation "global"
+ ;PXRM name spaced variables are the reminder evaluation "global"
  ;variables. If date is specified then the reminder will be evaluated
  ;as if the current date is DATE.
  N LAST,PXRMAGE,PXRMDATE,PXRMDOB,PXRMDOD,PXRMLAD,PXRMPDEM,PXRMPID
- N PXRMITEM,PXRMRM,PXRMRNAM,PXRMSEX,PXRMXTLK
+ N PXRMITEM,PXRMRM,PXRMRNAM,PXRMSEX,PXRMSIG,PXRMXTLK
  ;Make sure the reminder exists.
  I $D(DEFARR("DNE")) D NODEF^PXRMERRH(DEFARR("IEN")) Q
  ;PXRMRM is the right margin for output.
@@ -138,7 +138,7 @@ EVAL(DFN,DEFARR,OUTTYPE,NODISC,FIEVAL,DATE) ;Reminder evaluation entry
  ;
  ;Load the local demographic variables for use in condition.
  S PXRMAGE=PXRMPDEM("AGE"),PXRMDOB=PXRMPDEM("DOB"),PXRMDOD=PXRMPDEM("DOD")
- S PXRMLAD=PXRMPDEM("LAD"),PXRMSEX=PXRMPDEM("SEX")
+ S PXRMLAD=PXRMPDEM("LAD"),PXRMSEX=PXRMPDEM("SEX"),PXRMSIG=PXRMPDEM("SIG")
  ;
  ;Check for a date of death.
  I PXRMPDEM("DOD")'="" D
@@ -162,7 +162,7 @@ EVAL(DFN,DEFARR,OUTTYPE,NODISC,FIEVAL,DATE) ;Reminder evaluation entry
  S PXRMXTLK=""
  D EVAL^PXRMEVFI(DFN,.DEFARR,.FIEVAL)
  I +PXRMXTLK>0 D  G OUTPUT
- . S ^TMP(PXRMPID,$J,PXRMITEM,"FERROR","EXPANDED TAXONOMY","NO LOCK")="NO LOCK for ien "_+PXRMXTLK
+ . S ^TMP(PXRMPID,$J,PXRMITEM,"FERROR","EXPANDED TAXONOMY","NO LOCK")="NO LOCK for IEN "_+PXRMXTLK
  . S PCLOGIC=0
  ;
  ;Check for missing index.

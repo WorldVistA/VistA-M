@@ -1,5 +1,5 @@
-XQALDEL ;ISC-SF.SEA/JLI - DELETE ALERTS ;07/16/12  11:40
- ;;8.0;KERNEL;**6,24,65,114,174,285,443,602**;Jul 10, 1995;Build 9
+XQALDEL ;ISC-SF.SEA/JLI - DELETE ALERTS ;10/19/18  11:40
+ ;;8.0;KERNEL;**6,24,65,114,174,285,443,602,653**;Jul 10, 1995;Build 18
  ;Per VHA Directive 2004-038, this routine should not be modified
  ;;
  Q
@@ -77,6 +77,7 @@ OLDDEL1 ;Loop thru the Alert (XQDEL2) level
  S XQAGLOB=$NA(^XTV(8992,XQDEL1,"XQA")),XQAUSER=XQDEL1
  F XQDEL2=0:0 S XQDEL2=$O(@XQAGLOB@(XQDEL2)) Q:XQDEL2'>0  S XQAZERO=^(XQDEL2,0) D
  . ; CHECK FOR BACKUP REVIEWER TO FORWARD ALERTS NEEDING ACTION -- P174
+ . I $P($G(XQAZERO),"^",6)]""&($P($G(XQAZERO),"^",6)>XQDAT) Q  ;For CPRS XU*8.0*653 Quit if the alert was deferred and the deferred date is greater than the purge date.
  . I $P(XQAZERO,U,15)>0 I $$FMADD^XLFDT(+XQAZERO,+$P(XQAZERO,U,15))\1=DT D  Q:$D(KILLOLD)  ; changed '>DT to =DT so only send once without killing
  . . N XQA D GETBKUP(.XQA,XQDEL1)
  . . I $D(XQA) S XQALTYPE="BACKUP REVIEWER" D FORWARD^XQALFWD($P(XQAZERO,U,2),.XQA,"A","ALERT NOT PROCESSED BY "_$$GET1^DIQ(200,XQDEL1_",",.01)) S KILLOLD=1
@@ -124,6 +125,8 @@ USERDEL ; Delete undesired alerts for a user
  K XQALDELE S XQAUSERD=1
  I $D(XQX1),XQX1>0 D
  . F  Q:XQX1=""  S DA=+XQX1,XQX1=$P(XQX1,",",2,99) D  I XQX1="" S Y=$O(XQX1(0)) I Y>0 S XQX1=XQX1(Y) K XQX1(Y)
+ . . I $P(^TMP("XQ",$J,"XQA1",DA),U,6)]"" N XQADAT S XQADAT=$$NOW^XLFDT() I $P(^TMP("XQ",$J,"XQA1",DA),U,6)>XQADAT D  Q  ;For CPRS P653
+ . . . N Y S Y=$P(^TMP("XQ",$J,"XQA1",DA),U,1) D DD^%DT W !!,?10,"Alert Deferred - Alert "_Y_" Not Deleted!" Q
  . . S XQAID=$P(^TMP("XQ",$J,"XQA1",DA),U,2),XQAKILL=1
  . . I XQAID="" K ^XTV(8992,XQAUSER,"XQA",+^TMP("XQ",$J,"XQA1",DA,1))
  . . I XQAID'="" D DELETE

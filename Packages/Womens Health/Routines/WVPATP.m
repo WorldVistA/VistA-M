@@ -1,5 +1,5 @@
-WVPATP ;HCIOFO/FT,JR-Print WH Patient Case Data ;4/2/01  09:24
- ;;1.0;WOMEN'S HEALTH;**10,14**;Sep 30, 1998
+WVPATP ;HCIOFO/FT,JR - PRINT WH PATIENT CASE DATA;May 30, 2018@11:49
+ ;;1.0;WOMEN'S HEALTH;**10,14,24**;Sep 30, 1998;Build 582
  ;;  Original routine created by IHS/ANMC/MWR
  ;;* MICHAEL REMILLARD, DDS * ALASKA NATIVE MEDICAL CENTER *
  ;;  PRINT A PATIENT'S CASE DATA.
@@ -65,6 +65,11 @@ DATA(WVDFN) ;EP
  S WVNODE=$$S(10)_"Case Manager: "_A_$$S(29-$L(A))
  S WVNODE=WVNODE_"Inactive Date: "_$$SLDT2^WVUTL5($$INACT^WVUTL1(WVDFN))
  D NODE
+ S WVNODE=$$S(8)_"Maternity Care"
+ D NODE
+ S A=$E($$MCMGR^WVUTL1(WVDFN),1,28)
+ S WVNODE=$$S(11)_"Coordinator: "_A
+ D NODE
  S WVNODE=$$S(8)_"Breast Tx Need: "_WVBNEED
  D NODE
  S A="" I WVDFN>0 S A=$P($G(^WV(790,WVDFN,0)),U,25),A=$S(A'="":A,1:"NOT ENTERED") S:A>0 A=$$INSTTX^WVUTL6(A)
@@ -79,9 +84,8 @@ DATA(WVDFN) ;EP
  D NODE S WVNODE=" " D NODE
  S WVNODE=$$S(0)_"Family Hx of Breast CA: "_$$FAMHX^WVUTL1(WVDFN)
  D NODE
- S A=$$EDC^WVUTL1(WVDFN)
- I A="",$P(^WV(790,WVDFN,0),U,13)=0 S A="NO"
- S WVNODE=$$S(3)_"Currently  Pregnant: "_A_$$S(32-$L(A))
+ S A=$$EDC^WVUTL1(WVDFN,1)
+ S WVNODE=$$S(4)_"Currently Pregnant: "_A_$$S(32-$L(A))
  S WVNODE=WVNODE_"DES Daughter: "_$$DES^WVUTL1(WVDFN)
  D NODE
  S A=$$MST^WVUTL1A(WVDFN)

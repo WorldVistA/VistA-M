@@ -1,11 +1,11 @@
-PXKENC ;ISL/dee,ESW - Builds the array of all encounter data for the event point ;11/09/15  11:17
- ;;1.0;PCE PATIENT CARE ENCOUNTER;**15,22,73,108,143,183,210,215**;Aug 12, 1996;Build 10
+PXKENC ;ISL/dee,ESW - Builds the array of all encounter data for the event point ;10/05/2016
+ ;;1.0;PCE PATIENT CARE ENCOUNTER;**15,22,73,108,143,183,210,215,211**;Aug 12, 1996;Build 302
  Q
  ;
 GETENC(DFN,ENCDT,HLOC) ;Get all of the encounter data
  ;Parameters:
  ;  DFN    Pointer to the patient (#9000001)
- ;  ENCDT  Date/Time of the encounter in Fileman format
+ ;  ENCDT  Date/Time of the encounter in FileMan format
  ;  HLOC   Pointer to Hospital Location (#44)
  ;
  ;Returns:
@@ -47,7 +47,7 @@ ENCEVENT(VISITIEN,DONTKILL) ;Create the ^TMP("PXKENC",$J, array of all the
  S PXKROOT=$NA(@("^TMP(""PXKENC"",$J,"_VISITIEN_")"))
  ;
  N IEN,FILE,VFILE,FILESTR,PXKNODE
- F FILE="SIT","CSTP","PRV","POV","CPT","TRT","IMM","PED","SK","HF","XAM","ICR" D
+ F FILE="SIT","CSTP","PRV","POV","CPT","TRT","IMM","PED","SK","HF","XAM","ICR","SC" D
  . S FILESTR=$S(FILE="SIT":"VST",1:FILE)
  . S VFILE=$P($T(GLOBAL^@("PXKF"_$S(FILE="SIT":"VST",FILE="CSTP":"VST",1:FILE))),";;",2)
  . I FILE="SIT" D
@@ -61,7 +61,7 @@ ENCEVENT(VISITIEN,DONTKILL) ;Create the ^TMP("PXKENC",$J, array of all the
  ... I FILE="CSTP","SC"'[$P($G(@VFILE@(IEN,150)),"^",3) Q
  ... S PXKNODE=""
  ... F  S PXKNODE=$O(@VFILE@(IEN,PXKNODE)) Q:PXKNODE=""  D:PXKNODE'=801
- .... ;for cpt modifiers
+ .... ;for CPT modifiers
  .... I FILE="CPT",PXKNODE=1 D  Q
  ..... S @PXKROOT@(FILESTR,IEN,PXKNODE,0)=$G(@VFILE@(IEN,PXKNODE,0))
  ..... N SUBIEN
@@ -109,7 +109,7 @@ COEVENT(VISITIEN) ;Add to the ^TMP("PXKCO",$J, array all of the
  S PXKROOT=$NA(@("^TMP(""PXKCO"",$J,"_VISITIEN_")"))
  ;
  N IEN,FILE,VFILE,PXKNODE
- F FILE="CSTP","PRV","POV","CPT","TRT","IMM","PED","SK","HF","XAM","ICR" D
+ F FILE="CSTP","PRV","POV","CPT","TRT","IMM","PED","SK","HF","XAM","ICR","SC" D
  . S VFILE=$P($T(GLOBAL^@("PXKF"_$S(FILE="CSTP":"VST",1:FILE))),";;",2)
  . I FILE="PRV" D EVALD(VISITIEN,PXKROOT,VFILE,FILE)
  . I FILE'="PRV" S IEN="" F  S IEN=$O(@VFILE@("AD",VISITIEN,IEN)) Q:'IEN  D

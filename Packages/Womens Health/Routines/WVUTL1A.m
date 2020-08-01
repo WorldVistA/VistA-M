@@ -1,5 +1,5 @@
-WVUTL1A ;HCIOFO/JR,FT-Continuation of ^WVUTL1 (Utilities) ;4/10/01  11:29
- ;;1.0;WOMEN'S HEALTH;**4,7,14**;Sep 30, 1998
+WVUTL1A ;HCIOFO/JR,FT - Continuation of ^WVUTL1 (Utilities) ;07/20/2015  11:12
+ ;;1.0;WOMEN'S HEALTH;**4,7,14,24**;Sep 30, 1998;Build 582
  ;
  ; This routine uses the following IAs:
  ;  #1252 - $$OUTPTPR^SDUTL3     (supported)
@@ -115,6 +115,7 @@ FAC N X,Y
  S:WVJCFAC>0 WVJCFAC=$E($$GET1^DIQ(4,WVJCFAC,.01,"E"),1,18)
  Q
 RAXS(DA) ; 
+ N WVJJ0
  I $G(DA)'>0 Q 0
  S WVJJ0=$G(^WV(790.1,DA,0))
  I '$D(WVJJ0) Q 0
@@ -138,11 +139,11 @@ MST(WVDFN) ;Gets Military Sexual Trauma
  I $E($$VET(WVDFN))'="Y" S WVMST="<N/A Not a Veteran>"
  Q WVMST
  ;
-SC(WVJ) ;Screen called from File 790.02 to elim. inactive from selectable
+SC(WVJ,WVFN) ;Screen called from File 790.02 to elim. inactive from selectable
  I $G(XQY0)["WV ADD/EDIT CASE MANAGERS" Q 1
  I $G(WVJOPEN)>0 Q 1
  N WVINACT
- S WVINACT=$P($G(^WV(790.01,+WVJ,0)),U,2) ;date inactivated
+ S WVINACT=$P($G(^WV(WVFN,+WVJ,0)),U,2) ;date inactivated
  I WVINACT>0,WVINACT<$G(DT) Q 0
  Q 1
 LOOK(WVJ) ;Display select fields with lookup on 790, not file#2 Identif.
@@ -154,7 +155,7 @@ LOOK(WVJ) ;Display select fields with lookup on 790, not file#2 Identif.
  K WVJAR
  Q WVJ
 LOOKL(WVJ) ;
- N Y,WVX,WVP,WVY,WVDT,WVP,X,WVDTS,WVMARK
+ N Y,WVX,WVP,WVY,WVDT,WVP,X,WVDTS,WVMARK,X1,X2
  S X1=DT,X2=-30 D C^%DTC S WVDTS=X
  S WVX="" F  S WVX=$O(^WV(790.3,"C",+WVJ,WVX)) Q:WVX'>0  D
  .S WVY=$G(^WV(790.3,WVX,0)),WVDT=+WVY,WVP=$P(WVY,U,3)
@@ -167,7 +168,7 @@ LOOKL(WVJ) ;
  Q
 RUNDT(WVY) ;Get and format run date for various reports 
  ; Center when WVY="C"
- N Y,WVJ
+ N Y,WVJ,%
  I $D(WVJRNOW) Q WVJRNOW
  D NOW^%DTC S Y=% D DD^%DT
  S Y=$E(Y,1,12)_"  "_$E(Y,14,18)

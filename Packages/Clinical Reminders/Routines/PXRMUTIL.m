@@ -1,5 +1,5 @@
-PXRMUTIL ;SLC/PKR/PJH - Utility routines for use by PXRM. ;08/12/2016
- ;;2.0;CLINICAL REMINDERS;**4,6,11,12,17,18,24,26,47**;Feb 04, 2005;Build 291
+PXRMUTIL ;SLC/PKR/PJH - Utility routines for use by PXRM. ;08/16/2018
+ ;;2.0;CLINICAL REMINDERS;**4,6,11,12,17,18,24,26,47,42**;Feb 04, 2005;Build 103
  ;
  ;=================================
 ATTVALUE(STRING,ATTR,SEP,AVSEP) ;STRING contains a list of attribute value
@@ -45,7 +45,7 @@ ACOPY(REF,OUTPUT) ;Copy all the descendants of the array reference into a linear
 APRINT(REF) ;Write all the descendants of the array reference.
  ;REF is the starting array reference, for example A or
  ;^TMP("PXRM",$J).
- N DONE,IND,LEN,LN,PROOT,ROOT,START,TEMP,TEXT
+ N APTEXT,DONE,IND,LEN,LN,PROOT,ROOT,START,TEMP
  I REF="" Q
  S LN=0
  S PROOT=$P(REF,")",1)
@@ -59,17 +59,18 @@ APRINT(REF) ;Write all the descendants of the array reference.
  . S START=$F(REF,ROOT)
  . S LEN=$L(REF)
  . S IND=$E(REF,START,LEN)
- . S LN=LN+1,TEXT(LN)=@REF
+ . S LN=LN+1,APTEXT(LN)=@REF
  . S REF=$Q(@REF)
  . I REF'[ROOT S DONE=1
- D MES^XPDUTL(.TEXT)
+ I $D(XPDNM) D MES^XPDUTL(.APTEXT)
+ E  D EN^DDIOL(.APTEXT)
  Q
  ;
  ;=================================
 AWRITE(REF) ;Write all the descendants of the array reference, including the
  ;array. REF is the starting array reference, for example A or
  ;^TMP("PXRM",$J).
- N DONE,IND,LEN,LN,PROOT,ROOT,START,TEMP,TEXT
+ N AWTEXT,DONE,IND,LEN,LN,PROOT,ROOT,START,TEMP
  I REF="" Q
  S LN=0
  S PROOT=$P(REF,")",1)
@@ -83,10 +84,11 @@ AWRITE(REF) ;Write all the descendants of the array reference, including the
  . S START=$F(REF,ROOT)
  . S LEN=$L(REF)
  . S IND=$E(REF,START,LEN)
- . S LN=LN+1,TEXT(LN)=PROOT_IND_"="_@REF
+ . S LN=LN+1,AWTEXT(LN)=PROOT_IND_"="_@REF
  . S REF=$Q(@REF)
  . I REF'[ROOT S DONE=1
- D MES^XPDUTL(.TEXT)
+ I $D(XPDNM) D MES^XPDUTL(.AWTEXT)
+ E  D EN^DDIOL(.AWTEXT)
  Q
  ;
  ;=================================
@@ -146,7 +148,7 @@ DIP(VAR,IEN,PXRMROOT,FLDS) ;Do general inquiry for IEN return formatted
  ;output in VAR. VAR can be either a local variable or a global.
  ;If it is a local it is indexed for the broker. If it is a global
  ;it should be passed in closed form i.e., ^TMP("PXRMTEST",$J).
- ;It will be returned formatted for ListMan i.e.,
+ ;It will be returned formatted for List Manager i.e.,
  ;^TMP("PXRMTEST",$J,N,0).
  N %ZIS,ARRAY,BY,DC,DHD,DIC,DONE,FF,FILENAME,FILESPEC,FR,GBL,HFNAME
  N IND,IOP,L,NOW,PATH,SUCCESS,TO,UNIQN
@@ -190,23 +192,6 @@ DIP(VAR,IEN,PXRMROOT,FLDS) ;Do general inquiry for IEN return formatted
  S FILESPEC(FILENAME)=""
  S SUCCESS=$$DEL^%ZISH(PATH,$NA(FILESPEC))
  Q
- ;
- ;=================================
-EXCHINCK(EXNAME,DPACKED) ;Given the name and the date packed of an Exchange
- ;entry return:
- ; -1 if the entry does not exist
- ;  0 if it has never been installed
- ;  1^installation date/time 
- I $G(EXNAME)="" Q -1
- I $G(DPACKED)="" Q -1
- N DTP,IEN,IND,LASTINDT
- D DT^DILF("ST",DPACKED,.DTP)
- S IEN=+$O(^PXD(811.8,"B",EXNAME,DTP,""))
- I IEN=0 Q -1
- S IND=+$O(^PXD(811.8,IEN,130,"B"),-1)
- I IND=0 Q 0
- S LASTINDT=$P(^PXD(811.8,IEN,130,IND,0),U,1)
- Q 1_U_LASTINDT
  ;
  ;=================================
 FNFR(ROOT) ;Given the root of a file return the file number.

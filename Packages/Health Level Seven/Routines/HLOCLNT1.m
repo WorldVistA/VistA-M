@@ -1,6 +1,9 @@
-HLOCLNT1 ;IRMFO-ALB/CJM/RBN - Writing messages, reading acks;03/24/2004  14:43 ;02/27/2012
- ;;1.6;HEALTH LEVEL SEVEN;**126,130,131,134,137,139,146,155,158**;Oct 13, 1995;Build 14
- ;Per VHA Directive 2004-038, this routine should not be modified.
+HLOCLNT1 ;IRMFO-ALB/CJM/RBN - Writing messages, reading acks ;Apr 03, 2020@14:45
+ ;;1.6;HEALTH LEVEL SEVEN;**126,130,131,134,137,139,146,155,158,10001**;Oct 13, 1995;Build 3
+ ; Original code in the public domain by Dept of Veterans Affairs.
+ ; Changes **10001** by Lloyd Milligan (c) 2011.
+ ; Changes indicated inline.
+ ; Licensed under Apache 2.0.
  ;
  ;
 WRITEMSG(HLCSTATE,HLMSTATE) ;
@@ -105,7 +108,7 @@ ZB24 ;
  S HLCSTATE("MESSAGE ENDED")=0 ;end of message flag
  S NODE=^%ZOSF("OS")
  S HLCSTATE("SERVER")=0
- S HLCSTATE("SYSTEM","OS")=$S(NODE["DSM":"DSM",NODE["OpenM":"CACHE",NODE["G.TM":"G.TM",1:"")
+ S HLCSTATE("SYSTEM","OS")=$S(NODE["DSM":"DSM",NODE["OpenM":"CACHE",NODE["GT.M":"GT.M",1:"") ; *10001*
  I HLCSTATE("SYSTEM","OS")="" D LINKDOWN^HLOCLNT(.HLCSTATE) G ZB2
  D
  .N SYS

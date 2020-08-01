@@ -1,6 +1,8 @@
-PXUTL1 ;ISL/dee - Utility routines used by PCE ;4/3/97
- ;;1.0;PCE PATIENT CARE ENCOUNTER;**25,134,149,199**;Aug 12, 1996;Build 51
- ;; ;
+PXUTL1 ;ISL/dee - Utility routines used by PCE ;06/14/2018
+ ;;1.0;PCE PATIENT CARE ENCOUNTER;**25,134,149,199,211**;Aug 12, 1996;Build 302
+ ;
+ ;Reference to ICDEX supported by ICR #5747.
+ ;
  Q
  ;
 EXTTEXT(IEN,REQUIRED,FILE,FIELD1,FIELD2) ;Returns the external form.
@@ -12,7 +14,7 @@ EXTTEXT(IEN,REQUIRED,FILE,FIELD1,FIELD2) ;Returns the external form.
  ;* for 'flat' fields and not multiples.
  ;
  ;Parameters:
- ;  IEN       the ien in the file that the text is wanted for.
+ ;  IEN       the IEN in the file that the text is wanted for.
  ;  REQUIRED  if this is not zero and no text is found
  ;              then "UNKNOWN" is returned.
  ;  FILE      the file number
@@ -48,7 +50,7 @@ PRIMVPOV(PXUTVST) ;Returns the primary diagnosis if there is one
  S PXCATEMP=$$PRIMSEC(PXUTVST,"^AUPNVPOV",0,12)
  Q $S(PXCATEMP>0:$P(^AUPNVPOV(PXCATEMP,0),"^"),1:0)
  ;
-PRIMSEC(PXUTVST,PXUTAUPN,PXUTNODE,PXUPIECE) ;Returns ien of the primary one
+PRIMSEC(PXUTVST,PXUTAUPN,PXUTNODE,PXUPIECE) ;Returns IEN of the primary one
  ;         if there is one for the passed visit otherwise returns 0.
  ; Parameters:
  ;   PXUTVST   Pointer to the visit
@@ -85,16 +87,16 @@ VSTAPPT(PXUTLPAT,PXUTLDT,PXUTLLOC,PXUTLVST) ;Returns 1 if the visit is being poi
  I PXUTLLOC]"",PXUTLLOC=+$G(^DPT(+PXUTLPAT,"S",+PXUTLDT,0)),PXUTLVST=+$P($G(^SCE(+$P($G(^DPT(PXUTLPAT,"S",PXUTLDT,0)),"^",20),0)),"^",5) Q 1
  Q 0
  ;
-APPT2VST(PXUTLPAT,PXUTLDT,HLOC) ;Returns ien of visit that the related
+APPT2VST(PXUTLPAT,PXUTLDT,HLOC) ;Returns IEN of visit that the related
  ;appointment points to at PXUTLDT for clinic HLOC otherwise 0.
  I HLOC=+$G(^DPT(+PXUTLPAT,"S",+PXUTLDT,0)) Q +$P($G(^SCE(+$P($G(^DPT(PXUTLPAT,"S",PXUTLDT,0)),"^",20),0)),"^",5)
  Q 0
  ;
-DXNARR(PXDXCDE,PXUTLDT) ;Returns the versioned full text from file #80, field #68
- N PXLDX,PXNO,PXCOD
- I $G(PXDXCDE)="" Q ""
+DXNARR(CODEIEN,PXUTLDT) ;Returns the versioned full text from file #80,
+ ;field #68
+ N NARR,PXLDX,PXNO,PXCOD
+ I $G(CODEIEN)="" Q ""
  S:$G(PXUTLDT)="" PXUTLDT=DT
- S PXCOD=$P($$ICDDATA^ICDXCODE("DIAG",PXDXCDE,PXUTLDT,"I"),U,2)
- S PXNO=$$ICDDESC^ICDXCODE("DIAG",PXCOD,PXUTLDT,.PXLDX)
- Q $S(PXNO>0:PXLDX(1),1:"")
+ S NARR=$$LD^ICDEX(80,CODEIEN,PXUTLDT,.NARR)
+ Q $S($P(NARR,U,1)=-1:"",1:NARR)
  ;

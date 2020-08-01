@@ -1,3 +1,11 @@
 OSEHRA ZGO Export: ROOM-BED DESCRIPTION
 ZWR
-^DG(405.6,0)="ROOM-BED DESCRIPTION^405.6^^"
+^DG(405.6,0)="ROOM-BED DESCRIPTION^405.6^4^4"
+^DG(405.6,1,0)="bed1"
+^DG(405.6,2,0)="bed2"
+^DG(405.6,3,0)="bed3"
+^DG(405.6,4,0)="bed4"
+^DG(405.6,"B","bed1",1)=""
+^DG(405.6,"B","bed2",2)=""
+^DG(405.6,"B","bed3",3)=""
+^DG(405.6,"B","bed4",4)=""

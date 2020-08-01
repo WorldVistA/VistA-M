@@ -1,39 +1,46 @@
-PXRMOCR ;SLC/PKR - Routines for editing order check rules ;05/30/2012
- ;;2.0;CLINICAL REMINDERS;**22**;Feb 04, 2005;Build 160
+PXRMOCR ;SLC/PKR - Routines for editing order check rules ;03/17/2016  11:37
+ ;;2.0;CLINICAL REMINDERS;**22,45**;Feb 04, 2005;Build 566
  ;Also contains routines used by the DD for file #801.1.
  ;=============================================
 CHECK(IEN,DDSBR,DDSERROR) ;Check a rule for errors, called by DATA 
  ;VALIDATION on form.
- N DEF,OCTEXT,TERM,TEXT
+ N CHKTXT,DEF,DEFOUT,OCTEXT,TERM,TEXT
  ;Either a term or definition must be defined.
  S TERM=$$GET^DDSVAL(801.1,IEN,20)
  S DEF=$$GET^DDSVAL(801.1,IEN,30)
+ S CHKTXT=1
  I TERM="",DEF="" D  Q
+ . S CHKTXT=0
  . S TEXT="Either a term or defintion must be defined."
  . S DDSERROR=1
  . S DDSBR="TERM^PXRM OCR MAIN BLOCK^1"
  . I $D(DDS) D HLP^DDSUTL(TEXT)
  . E  D EN^DDIOL(TEXT)
  I (TERM'=""),($$GET^DDSVAL(801.1,IEN,21)="") D  Q
+ . S CHKTXT=0
  . S TEXT="The TERM EVALUATION STATUS is missing."
  . S DDSERROR=1
  . S DDSBR="TERM EVALUATION STATUS^PXRM OCR TERM^20"
  . I $D(DDS) D MSG^DDSUTL(TEXT)
  . E  D EN^DDIOL(TEXT)
  I (DEF'=""),($$GET^DDSVAL(801.1,IEN,31)="") D  Q
+ . S CHKTXT=0
  . S TEXT="The DEFINITION EVALUATION STATUS is missing."
  . S DDSERROR=1
  . S DDSBR="DEFINITION EVALUATION STATUS^PXRM OCR DEFINITION^30"
  . I $D(DDS) D MSG^DDSUTL(TEXT)
  . E  D EN^DDIOL(TEXT)
- I (DEF'=""),($$GET^DDSVAL(801.1,IEN,32)="") D  Q
+ S DEFOUT=$$GET^DDSVAL(801.1,IEN,32)
+ I (DEF'=""),(DEFOUT="") D  Q
+ . S CHKTXT=0
  . S TEXT="The OUTPUT TEXT is missing."
  . S DDSERROR=1
  . S DDSBR="OUTPUT TEXT^PXRM OCR DEFINITION^30"
  . I $D(DDS) D MSG^DDSUTL(TEXT)
  . E  D EN^DDIOL(TEXT)
+ I TERM=""&(DEF=""&(DEFOUT="D")) Q
  S OCTEXT=$$GET^DDSVAL(801.1,IEN,"ORDER CHECK TEXT")
- I $$WPNCHAR^PXRMSMAN(OCTEXT)=0 D  Q
+ I CHKTXT=1,$$WPNCHAR^PXRMSMAN(OCTEXT)=0 D  Q
  . S TEXT="There is no ORDER CHECK TEXT."
  . S DDSERROR=1
  . S DDSBR="ORDER CHECK TEXT^PXRM OCR MAIN BLOCK^1"

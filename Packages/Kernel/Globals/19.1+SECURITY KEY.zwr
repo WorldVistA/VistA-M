@@ -1,6 +1,6 @@
 OSEHRA ZGO Export: SECURITY KEY
 ZWR
-^DIC(19.1,0)="SECURITY KEY^19.1^642^593"
+^DIC(19.1,0)="SECURITY KEY^19.1^643^594"
 ^DIC(19.1,0,"DD")="#"
 ^DIC(19.1,0,"DEL")="#"
 ^DIC(19.1,0,"GL")="^DIC(19.1,"
@@ -2647,6 +2647,10 @@ ZWR
 ^DIC(19.1,642,1,0)="^^2^2^3190730^"
 ^DIC(19.1,642,1,1,0)="Allows user to back date the ""Addition Period"" start date for "
 ^DIC(19.1,642,1,2,0)="OTH patients. This key is for Manager's only."
+^DIC(19.1,643,0)="PX CODE MAPPING"
+^DIC(19.1,643,1,0)="^19.11^2^2^3170405^^"
+^DIC(19.1,643,1,1,0)="Holders of this key are allowed to edit PCE Code Mappings."
+^DIC(19.1,643,1,2,0)=""
 ^DIC(19.1,"%",0)="^1.005^2^2"
 ^DIC(19.1,"%",1,0)="XU"
 ^DIC(19.1,"%",2,0)="XQ"
@@ -3077,6 +3081,7 @@ ZWR
 ^DIC(19.1,"B","PSXRESUB",282)=""
 ^DIC(19.1,"B","PSXRPH",147)=""
 ^DIC(19.1,"B","PSXRTRAN",145)=""
+^DIC(19.1,"B","PX CODE MAPPING",643)=""
 ^DIC(19.1,"B","PXRM MANAGER",440)=""
 ^DIC(19.1,"B","PXV IMM INVENTORY MGR",598)=""
 ^DIC(19.1,"B","QAC CONTACT",226)=""

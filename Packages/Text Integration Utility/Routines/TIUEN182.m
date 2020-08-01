@@ -52,7 +52,7 @@ LISTDUPS(TIUDUPS,TMPCNT,OPTFLG) ; List duplicates by name
  ; TIUDUPS = array as set in TIUDUPS. Required.
  ; TMPCNT = Count at which to start message array ^TMP("TIU182MSG",$J,TMPCNT); Received by reference. (Array already has some nodes if called from option.) Optional.
  ; OPTFLG = 1 if called from option;
- ;	 0 if called from env check. Optional.
+ ;       0 if called from env check. Optional.
  N NUM
  S OPTFLG=+$G(OPTFLG)
  S TMPCNT=$S($G(TMPCNT):TMPCNT,1:0)

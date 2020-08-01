@@ -20,7 +20,7 @@ SETDATA ; Set more data for DDEFS
  F NUM=2:1:13 S ^TMP("TIU182",$J,"FILEDATA",NUM,.04)="TITLE"
  ; -- Set Parent and Menu Text into DATA nodes of ^TMP("TIU182":
  ; -- Set PIEN node = IEN of parent if known, or if not,
- ;    set PNUM node = DDEF# of parent		 
+ ;    set PNUM node = DDEF# of parent            
  ;    Set Parent of Document Class to CLINICAL PROCEDURES Class:
  S ^TMP("TIU182",$J,"DATA",1,"PIEN")=$$CLASS^TIUCP
  N NUM

@@ -59,7 +59,7 @@ S ;
  .S SEQ=$P(REC,"^",5)
  .S PNAME=$P(REC,"^",8)
  .Q:$G(^TMP($J,"PLIST",PNAME))
- .S RELEASE=$P(REC,"^",2)	
+ .S RELEASE=$P(REC,"^",2)       
  .S INSTALL=$P(REC,"^",11,12)
  .Q:INSTALL
  .S INSTALL=$O(^TMP($J,"INSTALL",PNAME,RELEASE))

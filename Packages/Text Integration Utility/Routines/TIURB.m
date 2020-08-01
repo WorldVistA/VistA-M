@@ -1,6 +1,7 @@
-TIURB ; SLC/JER - More Review Screen Actions ;12/11/07
- ;;1.0;TEXT INTEGRATION UTILITIES;**4,32,52,78,58,100,109,155,184,234,232**;Jun 20, 1997;Build 19
- ; DBIA 3473 TIU use of GMRCTIU
+TIURB ; SLC/JER - More Review Screen Actions ;07/12/16  13:05
+ ;;1.0;TEXT INTEGRATION UTILITIES;**4,32,52,78,58,100,109,155,184,234,232,290**;Jun 20, 1997;Build 548
+ ; ICR 3473 TIU use of GMRCTIU
+ ; ICR 1544 TIU use of $$ISA^USRLM
 AMEND ; Amendment action
  N TIUDA,DFN,DIE,DR,TIU,TIUDATA,TIUI,TIUSIG,TIUY,X,X1,Y
  N DIROUT,TIUCHNG,TIUDAARY,TIULST
@@ -40,7 +41,7 @@ AMEND1 ; Single record amend
  . W !?5,$C(7),"Another user is editing this entry." H 3
  . S TIUCHNG("REFRESH")=1
  I +$P($G(^TIU(8925,+TIUDA,0)),U,5)'>6 D  Q
- . W !?5,$C(7),"Only SIGNED Documents may be amended."
+ . W !?5,$C(7),"Only COMPLETED Documents may be amended."
  . I $$READ^TIUU("EA","Press RETURN to continue...") ; pause
  . S TIUCHNG("REFRESH")=1
  I '$$ISA^USRLM(+$G(DUZ),"PRIVACY ACT OFFICER"),'$$ISA^USRLM(+$G(DUZ),"CHIEF, MIS"),'$$ISA^USRLM(+$G(DUZ),"CHIEF, HIM") D  Q
@@ -140,7 +141,8 @@ SENDBACK ; Send back a Document to transcription
 SENDX ; Revise list and cycle back as appropriate
  I $G(TIUCHNG("ADDM"))!$G(TIUCHNG("DELETE")) S TIUCHNG("RBLD")=1
  E  S TIUCHNG("UPDATE")=1
- D UPRBLD^TIURL(.TIUCHNG,.VALMY) K VALMY
+ N TIUVALMY M TIUVALMY=VALMY
+ D UPRBLD^TIURL(.TIUCHNG,.TIUVALMY) K VALMY
  S VALMBCK="R"
  D VMSG^TIURS1($G(TIULST),.TIUDAARY,"sent back")
  Q
@@ -169,7 +171,8 @@ LINK ; Link to problem(s)
  . I +$G(TIUCHNG) S TIULST=$G(TIULST)_$S($G(TIULST)]"":",",1:"")_TIUI
 LINKX ; Revise list and cycle back as appropriate
  S TIUCHNG("REFRESH")=1
- D UPRBLD^TIURL(.TIUCHNG,.VALMY) K VALMY
+ N TIUVALMY M TIUVALMY=VALMY
+ D UPRBLD^TIURL(.TIUCHNG,.TIUVALMY) K VALMY
  S VALMBCK="R"
  D VMSG^TIURS1($G(TIULST),.TIUDAARY,"linked to problems")
  Q

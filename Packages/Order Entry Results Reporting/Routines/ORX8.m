@@ -1,5 +1,5 @@
-ORX8 ; slc/dcm,MKB - OE/RR Orders file extracts ;12/16/10  11:18
- ;;3.0;ORDER ENTRY/RESULTS REPORTING;**13,21,48,68,92,141,163,272**;Dec 17, 1997;Build 53
+ORX8 ;SLC/DCM,MKB - OE/RR Orders file extracts ;12/10/2015  12:32
+ ;;3.0;ORDER ENTRY/RESULTS REPORTING;**13,21,48,68,92,141,163,272,377**;Dec 17, 1997;Build 582
  ;
 EN(ORIFN) ;Returns data from file 100 in the ORUPCHUK array [DBIA#871]
  Q:'$D(ORIFN)  Q:'$D(^OR(100,+ORIFN,0))  K ORUPCHUK
@@ -30,6 +30,14 @@ OI(IFN) ; -- Returns [first] orderable item for order IFN in the format
  N I,X,Y S I=$O(^OR(100,+IFN,.1,0)),X=$G(^(+I,0)),Y=""
  I X,$D(^ORD(101.43,+X,0)) S Y=+X_U_$P(^(0),U,1,2)
  Q Y
+ ;
+OIS(RESULT,IFN) ; -- Returns array of orderable items for order IFN
+ N OI,POS
+ S POS=0 F  S POS=$O(^OR(100,+IFN,4.5,"ID","ORDERABLE",POS)) Q:POS'>0  D
+ .S OI=+$G(^OR(100,+IFN,4.5,POS,1)) I OI'>0 Q
+ .I '$D(^ORD(101.43,OI)) Q
+ .S RESULT(OI)=$P($G(^ORD(101.43,OI,0)),U,1,2)
+ Q
  ;
 LATEST(ORPAT,ORIT,ORY) ; -- Return most recent orders for ORPAT,ORIT as
  ;        ORY = total number of orders found (or 0 if none found)

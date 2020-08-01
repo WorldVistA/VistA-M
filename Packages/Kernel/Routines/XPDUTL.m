@@ -1,6 +1,6 @@
-XPDUTL ;SFISC/RSD - KIDS utilities ;10/15/2008
- ;;8.0;KERNEL;**21,28,39,81,100,108,137,181,275,491,511,559,672**;Jul 10, 1995;Build 28
- ;Per VHA Directive 2004-038, this routine should not be modified.
+XPDUTL ;SFISC/RSD - KIDS utilities ;Jan 07, 2019@09:47
+ ;;8.0;KERNEL;**21,28,39,81,100,108,137,181,275,491,511,559,672,10004,10005**;Jul 10, 1995;Build 11
+ ; *10004/10005* changes (c) Sam Habiel 2018
  Q
 VERSION(X) ;Get current version from Package file, X=package name or
  ;package namespace
@@ -33,7 +33,7 @@ LAST(PKG,VER,REL) ;returns last patch applied for a Package, PATCH^DATE
  Q PATCH_U_LATEST
  ;
 PATCH(X) ;return 1 if patch X was installed, X=aaaa*nn.nn*nnnn ; p672 change 1.3N to 1.4N
- Q:X'?1.4UN1"*"1.2N1"."1.2N.1(1"V",1"T").2N1"*"1.4N 0
+ Q:X'?1.4UN1"*"1.2N1"."1.2N.1(1"V",1"T").2N1"*"1.10N 0 ; *10004/10005* Support up to 10 digits in the patch number
  N %,I,J
  S I=$$LKPKG($P(X,"*")) Q:'I 0
  S J=$O(^DIC(9.4,I,22,"B",$P(X,"*",2),0)),X=$P(X,"*",3) Q:'J 0

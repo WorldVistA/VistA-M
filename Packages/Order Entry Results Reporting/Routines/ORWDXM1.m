@@ -1,6 +1,5 @@
-ORWDXM1 ;SLC/KCM - Order Dialogs, Menus ;Apr 16, 2019@14:14
- ;;3.0;ORDER ENTRY/RESULTS REPORTING;**10,85,131,132,141,178,185,187,215,243,280,331,388,350,423,434,494,397**;Dec 17, 1997;Build 22
- ;
+ORWDXM1 ;SLC/KCM - Order Dialogs, Menus ;10/08/19  17:09
+ ;;3.0;ORDER ENTRY/RESULTS REPORTING;**10,85,131,132,141,178,185,187,215,243,280,331,388,350,423,434,494,397,377**;Dec 17, 1997;Build 582
  ;
 BLDQRSP(LST,ORIT,FLDS,ISIMO,ENCLOC) ; Build responses for an order
  ; LST=QuickLevel^ResponseID(ORIT;$H)^Dialog^Type^FormID^DGrp
@@ -10,7 +9,6 @@ BLDQRSP(LST,ORIT,FLDS,ISIMO,ENCLOC) ; Build responses for an order
  ; FLDS=DFN^LOC^ORNP^INPT^SEX^AGE^EVENT^SC%^^^Key Variables...
  ; ORIT=+ORIT: ptr to 101.41, $E(ORIT)=C: copy $E(ORIT)=X: change
  ; !! SHOULD CHECK for PRE-CPRS ORDERS (treat as text?)
- K ^TMP($J,"ORWDX LOADRSP","QO SAVE")
  K ^TMP("ORWDXMQ",$J)
  N ORWMODE ; 0:Dlg,Quick 1:copy 2:change
  N TEMPCAT ; pt cat from DPT
@@ -84,7 +82,11 @@ BLDQRSP(LST,ORIT,FLDS,ISIMO,ENCLOC) ; Build responses for an order
  N SEQ,DA,XCODE,MUSTASK,PROMPT,INST,KEY,IVFID,CLIVFID
  S IVFID=$O(^ORD(101.41,"B","PSJI OR PAT FLUID OE",0))
  S CLIVFID=$O(^ORD(101.41,"B","CLINIC OR PAT FLUID OE",0))
- S AUTOACK=$S($D(ORWPSWRG):0,1:1)
+ ;AGP CPRS 31 changes for 31. Diet order with active tubefeeding orders cannot be autoaccept
+ ;tubefeeding orders cannot be autoaccept either.
+ ;S AUTOACK=$S($D(ORWPSWRG):0,1:1)
+ I ORDIALOG=$O(^ORD(101.41,"B","FHW8",0)) S AUTOACK=0
+ S AUTOACK=$S($D(ORWPSWRG):0,$G(AUTOACK)'="":AUTOACK,1:1)
  ; If copying, clear bad dates. Later, SETITEM will fill dates with default values. ;DJE-VM *331
  I ORWMODE=1 D  ;
  . I $L($$VAL^ORCD("START DATE")) D  ;
@@ -167,7 +169,7 @@ BLDQRSP(LST,ORIT,FLDS,ISIMO,ENCLOC) ; Build responses for an order
  ;I ($$ISMED(ORIT)),'($$VALQO^ORWDXM3(ORIT)) S AUTOACK=0
  I ORIMO,ORWMODE S AUTOACK=2
  ; accept Herbal/OTC/NonVA Med quick orders
- I $L($G(^ORD(101.41,+ORIT,0))),($P(^ORD(100.98,$P(^ORD(101.41,+ORIT,0),U,5),0),U,3)="NV RX"),($P($G(^ORD(101.41,+ORIT,5)),U,8)) S AUTOACK=1
+ I 'ORWMODE,$L($G(^ORD(101.41,+ORIT,0))),($P(^ORD(100.98,$P(^ORD(101.41,+ORIT,0),U,5),0),U,3)="NV RX"),($P($G(^ORD(101.41,+ORIT,5)),U,8)) S AUTOACK=1
  ;I AUTOACK=2,$$ISMED(ORIT),(ORDIALOG=IVDLG),$$VERORD^ORWDXM3=0 S AUTOACK=0
  I AUTOACK=2,$$ISMED(ORIT),$$VERORD^ORWDXM3(ORIT)=0 S AUTOACK=0
  I AUTOACK=2 D VERTXT^ORWDXM2

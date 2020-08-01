@@ -1,5 +1,5 @@
-PXRMDLG4 ; SLC/PJH - Reminder Dialog Edit/Inquiry ;08/20/2012
- ;;2.0;CLINICAL REMINDERS;**4,6,12,16,26**;Feb 04, 2005;Build 404
+PXRMDLG4 ; SLC/PJH - Reminder Dialog Edit/Inquiry ;08/16/2018
+ ;;2.0;CLINICAL REMINDERS;**4,6,12,16,26,42**;Feb 04, 2005;Build 103
  ;
 WP(SUB,SUB1,WIDTH,SEQ,VALMCNT) ;Format WP text
  N DIWF,DIWL,DIWR,IC,TEXT,X,TXTCNT,DTXT,CNT,SUB2
@@ -52,7 +52,7 @@ FADD(DIEN,FTAB,VIEW,NLINE) ;Additional Findings
  .I VIEW=2,FIND["PXD(811.2," D TAXDISP^PXRMDTAX(FIND,"",DIEN,.NLINE,NODE,1,0)
  Q
  ;
-DETAIL(DIEN,LEV,VIEW,NODE) ;;Build listman global for all components
+DETAIL(DIEN,LEV,VIEW,NODE) ;;Build List Manager global for all components
  N DDATA,DDLG,DEND,DCIEN,DNAM,DSEQ,DSTRT,IND,JND,DSUB
  S DSEQ=0
  ;
@@ -60,7 +60,7 @@ DETAIL(DIEN,LEV,VIEW,NODE) ;;Build listman global for all components
  F  S DSEQ=$O(^PXRMD(801.41,DIEN,10,"B",DSEQ)) Q:'DSEQ  D
  .;Determine subscript
  .S DSUB=$O(^PXRMD(801.41,DIEN,10,"B",DSEQ,"")) Q:'DSUB
- .;Get ien of prompt/component
+ .;Get IEN of prompt/component
  .S DCIEN=$P($G(^PXRMD(801.41,DIEN,10,DSUB,0)),U,2) Q:'DCIEN
  .I "PF"[$P($G(^PXRMD(801.41,DCIEN,0)),U,4) D  Q
  ..S ^TMP("PXRMDLG4",$J,"IEN",NSEL)=DIEN_U_DSEQ
@@ -194,12 +194,14 @@ FDESC(FIEN) ;Finding description
  Q
  ;
 FSAVE(DSUB,FNAME,FTYP,FTAB,FIEN) ;Save finding details
- N IND,FMTSTR,NL,OUTPUT,TEMP,TEXT
+ N DCOL,IND,FMTSTR,NL,OUTPUT,TEMP,TEXT
  I DSUB>1 D
- . S FMTSTR=FTAB_"R^13L1^"_(65-FTAB)_"L"
+ . S DCOL=65-FTAB I DCOL<10 S DCOL=10
+ . S FMTSTR=FTAB_"R^13L1^"_DCOL_"L"
  . S TEXT=U_"Add. Finding:"
  I DSUB=1 D
- . S FMTSTR=FTAB_"R^8L1^"_(70-FTAB)_"L"
+ . S DCOL=70-FTAB I DCOL<1 S DCOL=10
+ . S FMTSTR=FTAB_"R^8L1^"_DCOL_"L"
  . S TEXT=U_"Finding:"
  S TEXT=TEXT_U_FNAME_" ("_FTYP_")"
  D COLFMT^PXRMTEXT(FMTSTR,TEXT," ",.NL,.OUTPUT)

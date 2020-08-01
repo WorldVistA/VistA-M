@@ -47,20 +47,20 @@ TXT     ;
         ;;   findings:
         ;; 
         ;;       1.      Inspection: spine, limbs, posture and gait, position of the
-        ;;	       head, curvatures of the spine, symmetry in appearance, symmetry
-        ;;	       and rhythm of spinal motion.
+        ;;             head, curvatures of the spine, symmetry in appearance, symmetry
+        ;;             and rhythm of spinal motion.
         ;;
         ;;       2.      Range of motion
         ;;
         ;;       a.      Cervical Spine 
         ;;
         ;;               The reproducibility of an individual's range of motion is one
-        ;;	       indicator of optimum effort. Pain, fear of injury, disuse or
-        ;;	       neuromuscular inhibition may limit mobility by decreasing the
-        ;;	       individual's effort. If range of motion measurements fail to
-        ;;	       match known pathology, please repeat the measurements.
-        ;;	       (Reference: Guides to the Evaluation of Permanent Impairment,
-        ;;	       Fifth Edition, 2001, page 399).
+        ;;             indicator of optimum effort. Pain, fear of injury, disuse or
+        ;;             neuromuscular inhibition may limit mobility by decreasing the
+        ;;             individual's effort. If range of motion measurements fail to
+        ;;             match known pathology, please repeat the measurements.
+        ;;             (Reference: Guides to the Evaluation of Permanent Impairment,
+        ;;             Fifth Edition, 2001, page 399).
         ;; 
         ;;           i. Using a goniometer, measure and report the range of motion in
         ;;              degrees of forward flexion, extension, left lateral flexion,
@@ -134,12 +134,12 @@ TXT     ;
         ;;              and right lateral rotation. Generally, the normal ranges of 
         ;;              motion for the thoracolumbar spine as a unit are as follows:
         ;;
-        ;;		-Forward flexion: 0 to 90 degrees 
-        ;;		-Extension: 0 to 30 degrees 
-        ;;		-Left Lateral Flexion: 0 to 30 degrees 
-        ;;		-Right Lateral Flexion: 0 to 30 degrees 
-        ;;		-Left Lateral Rotation: 0 to 30 degrees 
-        ;;		-Right Lateral Rotation: 0 to 30 degrees
+        ;;              -Forward flexion: 0 to 90 degrees 
+        ;;              -Extension: 0 to 30 degrees 
+        ;;              -Left Lateral Flexion: 0 to 30 degrees 
+        ;;              -Right Lateral Flexion: 0 to 30 degrees 
+        ;;              -Left Lateral Rotation: 0 to 30 degrees 
+        ;;              -Right Lateral Rotation: 0 to 30 degrees
         ;; 
         ;;There may be a situation where an individual's range of motion is reduced, but 
         ;;"normal" (in the examiner's opinion) based on the individual's age, body 

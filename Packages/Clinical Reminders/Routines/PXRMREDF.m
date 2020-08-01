@@ -1,5 +1,5 @@
-PXRMREDF ; SLC/PJH - Edit PXRM reminder findings. ;07/21/2015
- ;;2.0;CLINICAL REMINDERS;**4,6,12,26,47**;Feb 04, 2005;Build 291
+PXRMREDF ; SLC/PJH - Edit PXRM reminder findings. ;08/16/2018
+ ;;2.0;CLINICAL REMINDERS;**4,6,12,26,47,42**;Feb 04, 2005;Build 103
  ;
  ; Called by PXRMREDT which newes and initializes DEF, DEF1, DEF2.
  ;
@@ -77,7 +77,8 @@ FEDIT(IEN) ;
  ;Rx Type
  I (TYPE="DC")!(TYPE="DG")!(TYPE="DR") S DR=DR_";16;27",STATUS=1
  ;Condition
- S DR=DR_";14;15;18"
+ ;S DR=DR_";14;15;18"
+ S DR=DR_";14;15//YES;18"
  I TYPE="CF" S DR=DR_";26"
  ;Found/not found text
  S DR=DR_";4;5"
@@ -209,7 +210,7 @@ TDSP(DA) ;
  ;List Reminders using this term
  ;------------------------------
 TERMS(TIEN,RIEN) ;
- ;RIEN will be the reminder ien if called from reminder edit
+ ;RIEN will be the reminder IEN if called from reminder edit
  ;or zero if called from term edit
  N ARRAY,FIND,IEN,SUB,TCNT,RNAME
  ;Scan all reminders in file #811.9

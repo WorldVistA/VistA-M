@@ -1,5 +1,5 @@
-PXRMFRPT ;SLC/PKR - Finding usage report. ;10/7/2014
- ;;2.0;CLINICAL REMINDERS;**12,17,16,18,22,26,53**;Feb 04, 2005;Build 225
+PXRMFRPT ;SLC/PKR - Finding usage report. ;03/26/2015  13:12
+ ;;2.0;CLINICAL REMINDERS;**12,17,16,18,22,26,53,45**;Feb 04, 2005;Build 566
  ;==============================
 BLDLIST(FILENUM,GBL,FIEN,SUB) ;
  I FILENUM'=811.9 D DEFLIST(FILENUM,GBL,FIEN,SUB)
@@ -36,6 +36,10 @@ DFIND(TLIST) ;
  S IND=0
  F  S IND=+$O(^DD(801.41,15,"V",IND)) Q:IND=0  D
  . S TEMP=^DD(801.41,15,"V",IND,0)
+ . S TLIST($P(TEMP,U,2))=$P(TEMP,U,1)
+ ;check branching logic sequence
+ S IND=0 F  S IND=+$O(^DD(801.41143,1,"V",IND)) Q:IND=0  D
+ . S TEMP=^DD(801.41143,1,"V",IND,0)
  . S TLIST($P(TEMP,U,2))=$P(TEMP,U,1)
  Q
  ;==============================
@@ -281,9 +285,9 @@ REPORT ;Generate the report.
  ..... S TEXT=TEXT_", used in the"
  ..... D FORMATS^PXRMTEXT(6,72,TEXT,.NOUT,.TEXTOUT)
  ..... F IND=1:1:NOUT S NL=NL+1,^TMP("PXRMXMZ",$J,NL,0)=TEXTOUT(IND)
- ..... S FI=0
+ ..... S FI=""
  ..... F  S FI=$O(^TMP($J,"FDATA",FILENUM,FIEN,TYPE,IEN,FI)) Q:FI=""  D
- ...... S TEXT=$S(FI=15:"Finding Item field",FI=17:"Orderable Item field",FI=18:"Additional Finding field",FI=119:"MH Test field",1:"")
+ ...... S TEXT=$S(FI=15:"Finding Item field",FI=17:"Orderable Item field",FI=18:"Additional Finding field",FI=119:"MH Test field",FI="BL":"Branching Logic Evaluation Item field",1:"")
  ...... D FORMATS^PXRMTEXT(8,72,TEXT,.NOUT,.TEXTOUT)
  ...... F IND=1:1:NOUT S NL=NL+1,^TMP("PXRMXMZ",$J,NL,0)=TEXTOUT(IND)
  ....;

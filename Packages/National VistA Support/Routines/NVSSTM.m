@@ -68,7 +68,7 @@ CHKNSP ;if default NSP wasn't selected, check to make sure namespace entered is 
  ;
  I '##Class(%SYS.Namespace).Exists(NVSTMNSP) W !!,"The namespace "_NVSTMNSP_" does not exist!",!! G NSP
  ;Namespace exists - so drop through to START
- ;	
+ ;      
 START ;start Taskman in the identified namespace
  S DIR(0)="Y",DIR("A")="Are you ready to start Task Manager in "_NVSTMNSP,DIR("B")="Yes" D ^DIR I Y=1 G START1
  Q

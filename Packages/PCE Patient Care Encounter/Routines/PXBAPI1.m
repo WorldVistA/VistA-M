@@ -1,5 +1,5 @@
-PXBAPI1 ;ISL/JVS,dee - PCE's API - interview questions ;5/6/05 2:59pm
- ;;1.0;PCE PATIENT CARE ENCOUNTER;**1,9,23,56,104,111,113,122,116,130,147,151,124,164,182,168**;Aug 12, 1996;Build 14
+PXBAPI1 ;ISL/JVS,dee - PCE's API - interview questions ;06/13/2018
+ ;;1.0;PCE PATIENT CARE ENCOUNTER;**1,9,23,56,104,111,113,122,116,130,147,151,124,164,182,168,211**;Aug 12, 1996;Build 302
  ;;
  Q
  ;
@@ -16,7 +16,7 @@ PROCESS(PXBEXIT) ;
  E  I WHAT="ADDEDIT" D
  . D ADDEDIT
  E  I WHAT="ADQ" D
- . ;-- Adminstrative questions
+ . ;-- Administrative questions
  . D ADQ(.PXBEXIT)
  E  I WHAT="CODT" D
  . ;-- Check out Date/Time
@@ -182,9 +182,8 @@ SCC(PXBEXIT) ;Ask the user the Service connected conditions
  S PXB800(8)=$P($G(PXBDATA(8)),"^",2)
  Q
  ;
-VISIT(PXBEXIT) ;Creat or edit the Visit
+VISIT(PXBEXIT) ;Create or edit the Visit
  ;Set up ^TMP("PXK",$J and call PXK
- I PXBVST>0 L +^AUPNVSIT(PXBVST):10 E  W !!,$C(7),"Cannot edit at this time, try again later." D WAIT^PXCEHELP S PXBEXIT=-2 Q
  K ^TMP("PXK",$J)
  N PXBNODE,PXBAFTER,PXKERROR
  F PXBNODE=0,21,150,800,811,812 D
@@ -204,7 +203,7 @@ VISIT(PXBEXIT) ;Creat or edit the Visit
  S $P(PXBAFTER(800),"^",2)=$G(PXB800(2))
  S $P(PXBAFTER(800),"^",3)=$G(PXB800(3))
  S $P(PXBAFTER(800),"^",4)=$G(PXB800(4))
- S $P(PXBAFTER(800),"^",5)=$G(PXB800(5)) ;added 6/17/98 for MST emhancement
+ S $P(PXBAFTER(800),"^",5)=$G(PXB800(5)) ;added 6/17/98 for MST enhancement
  ;PX*1*111 - Add HNC
  S $P(PXBAFTER(800),"^",6)=$G(PXB800(6))
  S $P(PXBAFTER(800),"^",7)=$G(PXB800(7))
@@ -216,7 +215,6 @@ VISIT(PXBEXIT) ;Creat or edit the Visit
  S ^TMP("PXK",$J,"VST",1,"IEN")=$S(PXBVST>0:PXBVST,1:"")
  S ^TMP("PXK",$J,"SOR")=PXBSOURC
  D EN1^PXKMAIN
- I PXBVST>0 L -^AUPNVSIT(PXBVST):5
  S PXBVST=$G(^TMP("PXK",$J,"VST",1,"IEN"))
  Q
  ;
