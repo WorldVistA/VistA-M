@@ -1,5 +1,5 @@
-XQALSURO ;ISC-SF.SEA/JLI,ISD/HGW - SURROGATES FOR ALERTS ;07/24/12  10:24
- ;;8.0;KERNEL;**114,125,173,285,366,443,513,602**;Jul 10, 1995;Build 9
+XQALSURO ;ISC-SF.SEA/JLI,ISD/HGW - SURROGATES FOR ALERTS ; May 15, 2020@11:57
+ ;;8.0;KERNEL;**114,125,173,285,366,443,513,602,730**;Jul 10, 1995;Build 1
  ;Per VHA Directive 2004-038, this routine should not be modified
  Q
 OTHRSURO ; OPT:- XQALERT SURROGATE SET/REMOVE -- OTHERS SPECIFY SURROGATE FOR SELECTED USER
@@ -88,15 +88,23 @@ SETSURO1(XQAUSER,XQALSURO,XQALSTRT,XQALEND) ;EXTRINSIC. ICR #3213 (supported)
  Q XQALSURO
  ;
 CHKREMV ;
- N DIR,XQAI,XQASLIST,XQAVAL,YVAL,Y
+ N DIR,XQAI,XQAQUIT,XQASLIST,XQAVAL,YVAL,Y
  ; ZEXCEPT: XQAUSER    (EXTERNAL VALUE)
- D SUROLIST^XQALSUR1(XQAUSER,.XQASLIST)
- W !,"Current Surrogate(s):",?35,"START DATE",?60,"END DATE"
- F XQAI=0:0 S XQAI=$O(XQASLIST(XQAI)) Q:XQAI'>0  W !,XQAI,"  ",$P(XQASLIST(XQAI),U,2),?35,$$FMTE^XLFDT($P(XQASLIST(XQAI),U,3)),?60,$$FMTE^XLFDT($P(XQASLIST(XQAI),U,4))
- W ! I XQASLIST'>0 W !,"  No current surrogates",! Q
- S DIR(0)="Y",DIR("A")="Do you want to REMOVE "_$S(XQASLIST>1:"a",1:"THIS")_" surrogate recipient",DIR("?")="A surrogate will receive your alerts until they are removed as surrogate." D ^DIR K DIR Q:Y'>0
- S Y=1 I XQASLIST>1 S DIR(0)="L^1:"_XQASLIST,DIR("A")="Enter a list (comma separated, e.g., 1,2) of the surrogate(s) to remove" D ^DIR K DIR
- I Y>0 S YVAL=Y F XQAI=1:1 S XQAVAL=+$P(YVAL,",",XQAI) Q:XQAVAL'>0  D REMVSURO(XQAUSER,$P(XQASLIST(XQAVAL),U),$P(XQASLIST(XQAVAL),U,3))
+ ; p730
+ ;D SUROLIST^XQALSUR1(XQAUSER,.XQASLIST)
+ ; Display list and allow user to remove surrogate periods until satisfied
+ S XQAQUIT=0 F  D  Q:$G(XQASLIST)<1!XQAQUIT
+ . D DISPSUR^XQALSUR2(XQAUSER,.XQASLIST)
+ . Q:$G(XQASLIST)<=0
+ . S DIR(0)="Y",DIR("B")="NO"
+ . S DIR("A")="Do you want to REMOVE "_$S(XQASLIST>1:"a",1:"THIS")_" surrogate recipient"
+ . S DIR("?")="A surrogate will receive your alerts until they are removed as surrogate."
+ . D ^DIR K DIR S XQAQUIT='+Y
+ . Q:XQAQUIT
+ . S DIR("A")="Enter a list (comma separated, e.g., 1,2) of the surrogate(s) to remove"
+ . S Y=1 I XQASLIST>1 S DIR(0)="L^1:"_XQASLIST D ^DIR K DIR
+ . I Y>0 S YVAL=Y F XQAI=1:1 S XQAVAL=+$P(YVAL,",",XQAI) Q:XQAVAL'>0  D REMVSURO(XQAUSER,$P(XQASLIST(XQAVAL),U),$P(XQASLIST(XQAVAL),U,3))
+ . W !
  Q
  ;
  ; P366 - added OPTIONAL second and third arguments to permit deletion of a specific pending surrogate and start date
@@ -144,7 +152,8 @@ CURRSURO(XQAUSER,XQASTRT,XQAEND) ;SR. ICR #2790 (supported)
  . ; begin changes in P513
  . S XQASURO1=XQAUSER
  . F  S XQASURO=$P($G(^XTV(8992,XQASURO1,0)),U,2) Q:XQASURO'>0  Q:'$$ISACTIVE(XQASURO)  S DATE=$P(^XTV(8992,XQASURO,0),U,3) Q:DATE>XQANOW  D  S XQASURO1=XQASURO ; JLI 100504
- . . I $D(XQALLIST(XQASURO1)) D
+ . . ;I $D(XQALLIST(XQASURO1)) D
+ . . I $D(XQALLIST(XQASURO)) D  ; p730 check on NEXT surrogate and not on XQAUSER for first pass
  . . . N DATE1 S DATE1=$O(XQALLIST(XQASURO1,""))
  . . . ; remove the surrogate relationship that started earliest
  . . . I DATE<DATE1 D REMVSURO(XQASURO)

@@ -1,5 +1,5 @@
-DGPFUT2 ;ALB/KCL - PRF UTILITIES CONTINUED ; 12/17/03 2:56pm
- ;;5.3;Registration;**425,554,650**;Aug 13, 1993;Build 3
+DGPFUT2 ;ALB/KCL - PRF UTILITIES CONTINUED ; 2/12/2020
+ ;;5.3;Registration;**425,554,650,1005**;Aug 13, 1993;Build 57
  ;
  ; This routine contains generic calls for use throughout DGPF*.
  ;
@@ -216,6 +216,7 @@ BLDTFL(DGDFN,DGTFL) ;build array of Treating Facilities
  N DGFAC   ;TFL API results array
  N DGI     ;generic counter
  N DGINST  ;pointer to INSTITUTION (#4) file
+ N DGTYPE  ;type of institution
  ;
  Q:$G(DGDFN)'>0 0  ;validate input parameter
  ;
@@ -224,9 +225,12 @@ BLDTFL(DGDFN,DGTFL) ;build array of Treating Facilities
  S DGI=0
  F  S DGI=$O(DGFAC(DGI)) Q:'DGI  D
  . S DGINST=$$IEN^XUAF4($P(DGFAC(DGI),U))
+ . S DGTYPE=$P(DGFAC(DGI),U,5)
  . Q:DGINST'>0
  . Q:DGINST=DGLOC  ;filter local facility
  . Q:'$$TF^XUAF4(DGINST)  ;facility must be active treating facility
+ . ;patch 1005 - Facility type must not be "OTHER"
+ . Q:DGTYPE="OTHER"
  . S DGDLT=+$P(DGFAC(DGI),U,3)
  . S DGTFL(DGINST)=DGDLT
  ;

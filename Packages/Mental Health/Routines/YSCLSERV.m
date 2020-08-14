@@ -1,5 +1,5 @@
-YSCLSERV ;DALOI/RLM,HEC/hrubovcak - Clozapine data server ;8 Nov 2019 15:21:58
- ;;5.01;MENTAL HEALTH;**18,22,26,47,61,69,74,90,92,122,154**;Dec 30, 1994;Build 48
+YSCLSERV ;DALOI/hrubovcak - Clozapine data server ; 8 Nov 2019 15:21:58
+ ;;5.01;MENTAL HEALTH;**18,22,26,47,61,69,74,90,92,122,154,165**;Dec 30, 1994;Build 2
  ; Reference to ^%ZOSF supported by IA #10096
  ; Reference to ^DPT supported by IA #10035
  ; Reference to ^DD("DD" supported by IA #10017
@@ -77,7 +77,7 @@ START ;
  . D MIX^DIC1 S YSCLPT=+Y I Y=-1 S YSCLER=" could not be added at " D OUT Q
  . ;Add the data and report any errors to the Roll-Up group at Forum.
  . K DD S DIC="^YSCL(603.01,",YSFREQ=$P(XMRG,",",3) S:YSFREQ="" YSFREQ="W"  ; default to weekly
- . S X=$P(XMRG,","),DIC("DR")="1///"_YSCLPT_";2///"_$S("BMW"[YSFREQ:YSFREQ,1:"W") K DO D FILE^DICN
+ . S X=$P(XMRG,","),DIC("DR")="1////"_YSCLPT_";2////"_$S("BMW"[YSFREQ:YSFREQ,1:"W"),DIC(0)="Z" K DO D FILE^DICN
  . K YSFMARRY D LIST^DIC(603.01,,".01E;1E;2E",,,,$P(XMRG,","),,,,"YSFMARRY")
  . I $D(YSFMARRY("DILIST","ID",1,1)) D
  . S YSCLER=" assigned to "_YSFMARRY("DILIST","ID",1,1)_" at " D OUT

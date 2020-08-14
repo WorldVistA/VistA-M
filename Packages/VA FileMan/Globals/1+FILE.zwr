@@ -563,7 +563,7 @@ ZWR
 ^DIC(2,"%D",14,0)="in the file you will note that many are preceeded by an asterisk."
 ^DIC(2,"%D",15,0)="Those fields are scheduled to be removed from the file due to either"
 ^DIC(2,"%D",16,0)="lack of use or replacement by another field/file in the next release."
-^DIC(2,"%MSC")=3200601.164354
+^DIC(2,"%MSC")=3200713.172407
 ^DIC("3.05",0)="FAILED ACCESS ATTEMPTS LOG^3.05"
 ^DIC("3.05",0,"DD")="@"
 ^DIC("3.05",0,"DEL")="@"
@@ -17031,6 +17031,7 @@ ZWR
 ^DIC("396.17","%D",4,0)="reports in AMIE and TIU when the user has finished the documentation "
 ^DIC("396.17","%D",5,0)="process.  This file serves to track documents in progress as well as "
 ^DIC("396.17","%D",6,0)="documents that have been already completed and sent to TIU and AMIE."
+^DIC("396.17","%MSC")=3200730.151802
 ^DIC("396.18",0)="CAPRI TEMPLATE DEFINITIONS^396.18"
 ^DIC("396.18",0,"AUDIT")="@"
 ^DIC("396.18",0,"DD")="@"
@@ -22262,6 +22263,7 @@ ZWR
 ^DIC(665,"%D",1,0)="This file holds vital 10-2319 patient information.  Included is PSC,"
 ^DIC(665,"%D",2,0)="Auto Adaptive Equipment, Clothing Allowance, Hearing Aid,"
 ^DIC(665,"%D",3,0)="Returned Status and other critical patient data."
+^DIC(665,"%MSC")=3200721.121906
 ^DIC("665.1",0)="PROSTHETIC HOME/LIAISON VISITS^665.1D"
 ^DIC("665.1",0,"DD")="@"
 ^DIC("665.1",0,"GL")="^RMPR(665.1,"
@@ -27856,7 +27858,7 @@ ZWR
 ^DIC("811.9","%D",7,0)="entries. Any local entries are assigned an internal entry number"
 ^DIC("811.9","%D",8,0)="prefixed with your site number. Nationally distributed entries have"
 ^DIC("811.9","%D",9,0)="their name prefixed with VA-. Local entry names cannot start with VA-."
-^DIC("811.9","%MSC")=3200624.121408
+^DIC("811.9","%MSC")=3200713.17113
 ^DIC(812,0)="PCE CUSTOMIZE REPORT^812"
 ^DIC(812,0,"GL")="^PXD(812,"
 ^DIC(812,"%D",0)="^^3^3^2961029^"

@@ -1,8 +1,9 @@
 PSOCPF1 ;BIR/BAA - Pharmacy CO-PAY Application Utilities for IB ;02/06/92
- ;;7.0;OUTPATIENT PHARMACY;**463,572**;DEC 1997;Build 1
+ ;;7.0;OUTPATIENT PHARMACY;**463,572,592**;DEC 1997;Build 4
  ;
 SORT ; get the data
- K ^TMP($J,"PSOCPF"),^TMP($J,"PSOCPFX"),^TMP($J,"PSOCPFC"),^TMP($J,"PSOCPFE")
+ H 5  ;592 - Allow IB background job to finish
+ K ^TMP($J,"PSOCPF"),^TMP($J,"PSOCPFX"),^TMP($J,"PSOCPFE")
  ; compile data to display here
  N BDATE,EDATE,RXS,PAT,FILDT,END,RIEN,RSX,RFL,DFN,VADM,VAEL,RFDT
  S BDATE=$P(FILTERS(0),U,1),EDATE=$P(FILTERS(0),U,2)
@@ -72,6 +73,7 @@ CANCEL ; CANCEL COPAY STATUS
  .. S PSORXN=$P(^PSRX(PSODA,0),"^"),PREA="R"
  .. S PCOPAY=$G(^PSRX(PSODA,"IB"))
  .. D ASKCAN
+ D SORT ;592 - Reload data after update
  D BLD^PSOCPF
  S VALMBCK="R"
  Q
@@ -87,6 +89,7 @@ RESET ; RESET/CANCEL COPAY STATUS
  .. S RC=$G(^TMP($J,"PSOCPFX",IBXX)),CNT=CNT+1
  .. S NAME=$P(RC,U,1),PSODA=$P(RC,U,4),MED=$P(RC,U,3),RX=$P(RC,U,8),RFL=$P(RC,U,7)
  .. D STATUS(PSODA,RFL)
+ D SORT ;592 - Reload data after update
  D BLD^PSOCPF
  S VALMBCK="R"
  Q
@@ -123,15 +126,10 @@ STATUS(PSODA,RFL) ; PROCESS STATUS CHANGE
  . S PSI=0,PSOCOMM="Copay status of this Rx has been reset to NO COPAY." D SETSUMM^PSOCPC
  . S $P(^PSRX(PSODA,"IB"),"^")="" ;Reset flag to NO COPAY
 ASKCAN D ASKCAN^PSOCPD
- I $$FLAG(.PSOSUMM) S ^TMP($J,"PSOCPFC",NAME,PSODA,RFL)="Cancelled"
+ ;I $$FLAG(.PSOSUMM) S ^TMP($J,"PSOCPFC",NAME,PSODA,RFL)="Cancelled" ;592 - Removed this logic, all data is reloaded
  D PRTSUMM^PSOCPB
 RESETE K PSODA,PSORXN,PSORSN,PSOREF,X,Y,PCOPAY,PREA,PSOCOMM,PSI
- ;
-FLAG(PSOSUMM) ; CHECK FOR CANCELLED CHARGE
- N FLAG,CNT
- S (CNT,FLAG)=0
- F  S CNT=$O(PSOSUMM(CNT)) Q:CNT=""  I PSOSUMM(CNT)["copay charge cancelled" S FLAG=1 Q
- Q FLAG
+ Q
  ;
 EXPORT ; -- print excel spreadsheet.
  I '$D(^TMP($J,"PSOCPF")) D BLD^PSOCPF S VALMBCK="R" Q

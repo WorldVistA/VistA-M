@@ -1,5 +1,5 @@
 PSOCPF ;BIR/BAA - Pharmacy CO-PAY Application Utilities for IB ;02/06/92
- ;;7.0;OUTPATIENT PHARMACY;**463**;DEC 1997;Build 36
+ ;;7.0;OUTPATIENT PHARMACY;**463,592**;DEC 1997;Build 4
  ;
 EN ; -- main entry point for HELD CHARGES LIST
  ;
@@ -63,7 +63,6 @@ BLD ; build data to display
  ... S MED=$P(REC,U,3),RX=$P(REC,U,7),BLN=$P(REC,U,9),FILDT=$P(REC,U,8),DFN=$P(REC,U,15)
  ... S PRIEN=$P(REC,U,18),CPY=$P(REC,U,20),DEBTOR=$P(REC,U,21)
  ... S ^TMP($J,"PSOCPFX",VCNT)=NAME_U_DFN_U_MED_U_RIEN_U_BLN_U_PRIEN_U_RFL_U_RX_U_DEBTOR
- ... I $D(^TMP($J,"PSOCPFC",NAME,RIEN,RFL)) S ARST1="CANCELLED CHARGE"
  ... S RXO="Rx#:"_RX_"-"_RFL
  ... S BLNO="BIL#:"_BLN
  ... S SC=$P(REC,U,11),SCO=$S(SC=1:"YES",1:"NO"),SCOO="SC:"_SCO
@@ -114,7 +113,6 @@ EXIT ; -- exit code
  K ^TMP($J,"PSOCPF")
  K ^TMP($J,"PSOCPFX")
  K ^TMP($J,"PSOCPFE")
- K ^TMP($J,"PSOCPFC")
  ;
  D CLEAR^VALM1,CLEAN^VALM10
  D ^%ZISC

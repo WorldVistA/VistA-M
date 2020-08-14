@@ -194,7 +194,7 @@ ZWR
 ^%ZIS(1,39,"TYPE")="TRM"
 ^%ZIS(1,40,0)="GTM-UNIX-TELNET^/dev/pts/^1^^^^^^^^1^0"
 ^%ZIS(1,40,1)="TELNET^^^^1"
-^%ZIS(1,40,5)=102
+^%ZIS(1,40,5)=219
 ^%ZIS(1,40,"MN",0)="^3.501^2^2"
 ^%ZIS(1,40,"MN",1,0)="GTM-LINUX-TELNET"
 ^%ZIS(1,40,"MN",2,0)="TELNET"
@@ -235,7 +235,7 @@ ZWR
 ^%ZIS(1,47,"TYPE")="VTRM"
 ^%ZIS(1,48,0)="CACHE-WINDOWS-CONSOLE^/dev/tty^1^1^^^^^"
 ^%ZIS(1,48,1)="Console (Cache' on Windows)"
-^%ZIS(1,48,5)=5
+^%ZIS(1,48,5)=9
 ^%ZIS(1,48,"MN",0)="^3.501^1^1"
 ^%ZIS(1,48,"MN",1,0)="CONSOLE"
 ^%ZIS(1,48,"SUBTYPE")=9
@@ -394,6 +394,7 @@ ZWR
 ^%ZIS(1,"C","XMHFS.DAT",16)=""
 ^%ZIS(1,"C","|TCP|",7)=""
 ^%ZIS(1,"C","|TNT|",22)=""
+^%ZIS(1,"C","|TRM|",48)=""
 ^%ZIS(1,"CPU",.51,1)=""
 ^%ZIS(1,"CPU",.51,13)=""
 ^%ZIS(1,"CPU",.51,14)=""
@@ -466,5 +467,7 @@ ZWR
 ^%ZIS(1,"G","SYS..|TCP|",7)=""
 ^%ZIS(1,"G","SYS.PLA.|TNT|",22)=""
 ^%ZIS(1,"G","SYS.PLA.|TRM|",48)=""
+^%ZIS(1,"G","SYS.VISTA.|TNT|",22)=""
+^%ZIS(1,"G","SYS.VISTA.|TRM|",48)=""
 ^%ZIS(1,"LSYN","P-BROWSER",14)=""
 ^%ZIS(1,"LSYN","P-BROWSER",29)=""

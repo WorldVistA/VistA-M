@@ -5335,7 +5335,7 @@ ZWR
 ^DIST(.403,13,"AY","X",1,4,3)="INITIATE AUDIT:                        TERMINATE AUDIT:"
 ^DIST(.403,13,"AY","X",1,6,3)="Option to audit                        Namespace to audit"
 ^DIST(.403,13,"AY","X",1,11,3)="User to audit                          Device to audit"
-^DIST(.403,14,0)="XUREACT USER^^@^^2950327.1641^3191008.1139^^200^0^0^1"
+^DIST(.403,14,0)="XUREACT USER^^@^^2950327.1641^3200715.1016^^200^0^0^1"
 ^DIST(.403,14,11)="S XUNOTRIG=1 D CHKPTR^XLFNAME2,REQ^XUSER2()"
 ^DIST(.403,14,12)="K XUNOTRIG,XUITNAME"
 ^DIST(.403,14,40,0)="^.4031I^8^8"

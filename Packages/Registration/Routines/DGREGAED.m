@@ -1,5 +1,5 @@
-DGREGAED ;ALB/DW/PHH,BAJ,TDM,JAM - Address Edit API ;02 May 2017  8:33 AM
- ;;5.3;Registration;**522,560,658,730,688,808,915,941**;Aug 13, 1993;Build 73
+DGREGAED ;ALB/DW/PHH,BAJ,TDM,JAM - Address Edit API ; 02 May 2017  8:33 AM
+ ;;5.3;Registration;**522,560,658,730,688,808,915,941,1010**;Aug 13, 1993;Build 2
  ;;
  ;; **688** Modifications for Country and Foreign address
  ;; **915** Make DFN optional in case one is not established yet
@@ -111,7 +111,8 @@ DISPFGN(DGCMP,DGM,FLG) ;tag to display Foreign data
  W ?16,$P($G(DGCMP(DGM,.111)),U)
  I $P($G(DGCMP(DGM,.112)),U)'="" W !,?16,$P($G(DGCMP(DGM,.112)),U)
  I $P($G(DGCMP(DGM,.113)),U)'="" W !,?16,$P($G(DGCMP(DGM,.113)),U)
- W !,?16,$P($G(DGCMP(DGM,.1172)),U)_" "_$P($G(DGCMP(DGM,.114)),U)_" "_$P($G(DGCMP(DGM,.1171)),U)
+ ;W !,?16,$P($G(DGCMP(DGM,.1172)),U)_" "_$P($G(DGCMP(DGM,.114)),U)_" "_$P($G(DGCMP(DGM,.1171)),U) ;DG*1010 comment out
+ W !,?16,$P($G(DGCMP(DGM,.114)),U)_" "_$P($G(DGCMP(DGM,.1171)),U)_" "_$P($G(DGCMP(DGM,.1172)),U) ; DG*1010 - display postal code last
  S DGCNTRY=$$CNTRYI^DGADDUTL($P($G(DGCMP(DGM,.1173)),U,2))
  S DGCNTRY=$S(DGCNTRY="":"UNSPECIFIED COUNTRY",DGCNTRY=-1:"UNKNOWN COUNTRY",1:DGCNTRY)
  I DGCNTRY]"" W !?16,DGCNTRY

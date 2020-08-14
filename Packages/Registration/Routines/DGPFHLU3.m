@@ -1,5 +1,5 @@
 DGPFHLU3 ;ALB/RPM - PRF HL7 BUILD MSA/ERR SEGMENTS ; 3/03/03
- ;;5.3;Registration;**425,650,951**;Aug 13, 1993;Build 135
+ ;;5.3;Registration;**425,650,951,1005**;Aug 13, 1993;Build 57
  ;;Per VA Directive 6402, this routine should not be modified.
  ;
  Q
@@ -24,7 +24,8 @@ MSA(DGACK,DGID,DGERR,DGFLD,DGHL) ;MSA Segment API
  ;
  S HLECH=DGHL("ECH"),HLFS=DGHL("FS")
  S DGMSA=""
- I $G(DGACK)]"",+$G(DGID) D
+ ;DG*5.3*1005 - DGID may be alphanumeric
+ I $G(DGACK)]"",$G(DGID)'="" D
  . S DGERR=$G(DGERR)
  . S DGFLD=$$CKSTR^DGPFHLUT("1,2",DGFLD)  ;validate field string
  . I DGERR]"" S DGFLD=DGFLD_",6"
@@ -54,7 +55,8 @@ MSAVAL(DGFLD,DGACK,DGID,DGTEXT,DGESN,DGDAT,DGERR,DGVAL) ;build MSA value array
  N DGCOD     ;ACK code string
  ;
  S DGRSLT=0
- I $G(DGFLD)]"",$G(DGACK)]"",+$G(DGID) D
+ ;DG*5.3*1005 - DGID may be alphanumeric
+ I $G(DGFLD)]"",$G(DGACK)]"",$G(DGID)'="" D
  .F DGCOD="AA","AE","AR","CA","CE","CR" S DGACKS(DGCOD)=""
  .; seq 1 Acknowledgment Code
  .I DGFLD[",1," S DGVAL(1)=$S($D(DGACKS(DGACK)):DGACK,1:"")

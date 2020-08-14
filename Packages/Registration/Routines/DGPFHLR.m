@@ -1,5 +1,5 @@
 DGPFHLR ;ALB/RPM - PRF HL7 RECEIVE DRIVERS ; 8/14/06 12:01pm
- ;;5.3;Registration;**425,650,951**;Aug 13, 1993;Build 135
+ ;;5.3;Registration;**425,650,951,1005**;Aug 13, 1993;Build 57
  ;;Per VA Directive 6402, this routine should not be modified.
  ;
 RCV ;Receive all message types and route to message specific receiver
@@ -70,19 +70,21 @@ RCVORU(DGWRK,DGMIEN,DGHL) ;Receive ORU Message Types (ORU~R01)
  ;    none
  ;
  N DGORU
- N DGSEGERR
+ N DGSEGERR   ;segment error array
  N DGSTOERR   ;store error array
  N DGACKTYP
  ;
  S DGORU=$NA(^TMP("DGPF",$J))
  K @DGORU
  D PARSORU^DGPFHLU(DGWRK,.DGHL,DGORU,.DGSEGERR)
+ I $D(DGSEGERR) D SDORUERR(DGMIEN,.DGSEGERR,.DGSTOERR,"P") ;parse error
  ;
  I '$D(DGSEGERR),$$STOORU(DGORU,.DGSTOERR) D
  . S DGACKTYP="AA"
  E  D
  . S DGACKTYP="AE"
  ;
+ I $D(DGSTOERR) D SDORUERR(DGMIEN,.DGSEGERR,.DGSTOERR,"S") ;store error
  D SNDACK^DGPFHLS(DGACKTYP,DGMIEN,.DGHL,.DGSEGERR,.DGSTOERR)
  ;
  ;cleanup
@@ -334,3 +336,37 @@ STOORF(DGDFN,DGORF,DGERR) ;store ORF data
  ..Q
  .Q
  Q '$D(DGERR)
+ ;
+ ;call to $$PROD^XUPROD supported by ICR #4440
+ ;
+SDORUERR(DGMIEN,DGSEGERR,DGSTOERR,DGETYP) ;
+ N XMDUZ,XMSUB,XMTEXT,XMY,XMZ ;MailMan variables
+ N DGTXT,DGSTAT,DGCODE
+ S DGSTAT=$P($$SITE^VASITE,U,3)
+ S XMDUZ="PRF Error Processor"
+ S XMSUB="PRF Application Error (station #"_DGSTAT_")"
+ S XMSUB=XMSUB_" ["_$S($$PROD^XUPROD:"P",1:"T")_"]" ;production or test?
+ S XMY("G.DG PRF APPLICATION ERRORS")=""
+ I DGETYP="P" D
+ .D ERRMSGP(DGMIEN,.DGSEGERR,.DGTXT)
+ I DGETYP="S" D
+ .S DGTXT(1)="A store error occurred."
+ .S DGCODE=$G(DGSTOERR("DIERR",1))
+ .S:$L(DGCODE)>0 DGTXT(2)="The error code is "_DGCODE_"."
+ S XMTEXT="DGTXT("
+ D ^XMD
+ Q
+ ;
+ERRMSGP(DGMIEN,DGERR,DGTXT) ;
+ N DGLC,DGSEG,DGFLD,DGE,DGI,DGJ,DGK,DGEMSG
+ S DGLC=1
+ S DGTXT(DGLC)="One or more parse errors occurred in message #"_DGMIEN_"."
+ S DGI="" F  S DGI=$O(DGERR(DGI)) Q:DGI=""  D
+ .S DGSEG=DGI ;segment name
+ .S DGJ="" F  S DGJ=$O(DGERR(DGI,DGJ)) Q:DGJ=""  D
+ ..S DGK="" F  S DGK=$O(DGERR(DGI,DGJ,DGK)) Q:DGK=""  D
+ ...S DGFLD=DGK
+ ...S DGE=$G(DGERR(DGI,DGJ,DGK))
+ ...S DGEMSG="Error #"_DGE_" occurred in "_DGSEG_"-"_DGFLD
+ ...S DGLC=DGLC+1,DGTXT(DGLC)=DGEMSG_"."
+ Q

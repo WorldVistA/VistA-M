@@ -1,6 +1,11 @@
 RMPRSTK ;PHX/RFM,RVD-ISSUE FROM STOCK ;8/29/1994
- ;;3.0;PROSTHETICS;**12,13,16,19,21,26,28,33,41,45,178**;Feb 09, 1996;Build 14
+ ;;3.0;PROSTHETICS;**12,13,16,19,21,26,28,33,41,45,178,202**;Feb 09, 1996;Build 2
+ ;;Per VA Directive 6402, this routine should not be modified.
  ;JAH-p178-add caution msg to user if selected site not GIP flagged
+ ;
+ ;RMPR*3.0*202 Added line to ensure the brief description
+ ;             field is populated for GIP issue processing.
+ ;
  S (RMPRG,RMPRF)=""
  D HOME^%ZIS W @IOF
  I '$D(RMPR) D DIV4^RMPRSIT G:$D(X) EXIT^RMPRSTL
@@ -133,6 +138,7 @@ V I $P(^PRCP(445,PRCP("I"),0),U,3)="P",+$P(^PRCP(445,PRCP("I"),1,PRCP("ITEM"),0)
  I $P(^PRCP(445,PRCP("I"),0),U,3)="S" D
  .I $P(R1(0),U,9)="" K DIC S DIC="^PRCP(445,",DIC(0)="N",X=+$P(^PRCP(445,PRCP("I"),1,PRCP("ITEM"),0),U,12) D ^DIC Q:+Y<0  I $D(^PRCP(445,+Y,1,PRCP("ITEM"),0)) D
  ..S RMPRVEN=+$P(^PRCP(445,+$P(^PRCP(445,PRCP("I"),1,PRCP("ITEM"),0),U,12),1,PRCP("ITEM"),0),U,12) I $D(^PRC(440,+RMPRVEN,0)) S $P(R1(0),U,9)=RMPRVEN
+ S $P(R1(1),U,2)=$P(^PRC(441,PRCP("ITEM"),0),U,2)   ;RMPR*3.0*202
  ;
 DEF S X=" ",DIC=440,DIC(0)="ZM" D ^DIC S:+Y>0 DIC("B")=$P(^PRC(440,+Y,0),U,1)
  G VEN

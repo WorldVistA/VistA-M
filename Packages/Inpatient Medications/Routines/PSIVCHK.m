@@ -1,5 +1,5 @@
-PSIVCHK ;BIR/PR,MLM-CHECK ORDER FOR INTEGRITY ;10/1/10 8:48am
- ;;5.0;INPATIENT MEDICATIONS ;**54,58,81,111,213,113,179,248,366**;16 DEC 97;Build 7
+PSIVCHK ;BIR/PR,MLM-CHECK ORDER FOR INTEGRITY ; 2/4/20 8:47am
+ ;;5.0;INPATIENT MEDICATIONS ;**54,58,81,111,213,113,179,248,366,385**;16 DEC 97;Build 3
  ;
  ; Reference to ^PS(51.1 supported by DBIA# 2177.
  ; Reference to ^DIE supported by DBIA# 2053.
@@ -47,7 +47,7 @@ AH ;
  I P(6)]"" N PDA,PND,TXT S PDA=+P(6),TXT="" D  I ERR W !,TXT
  . S PND=$G(^VA(200,PDA,0)) I PND="" S ERR=1 S TXT="*** Physician entered does not exist" Q
  . I +$P(PND,U,11),($P(PND,U,11)<DT) S ERR=1 S TXT="*** Physician entered is terminated." Q
- . I '$D(^XUSEC("PROVIDER",PDA)) S ERR=1 S TXT="*** Physician entered does not hold PROVIDER key." Q
+ . I '$D(^XUSEC("PROVIDER",PDA))&'$D(^XUSEC("ORELSE",PDA)) S ERR=1 S TXT="*** Physician entered does not hold PROVIDER key." Q
  . N PPS S PPS=$G(^VA(200,PDA,"PS")) I PPS=""!('PPS) S ERR=1 S TXT="*** Physician entered is not authorized to write medication orders." Q
  . I +$P(PPS,U,4),$P(PPS,U,4)<DT S ERR=1 S TXT="*** Physician entered is no longer active."
  D ^PSIVCHK1

@@ -1,5 +1,5 @@
 IBDF18A ;ALB/CJM/AAS - ENCOUNTER FORM - utilities for PCE ;04/12/94
- ;;3.0;AUTOMATED INFO COLLECTION SYS;**34,38,51,63**;APR 24, 1997;Build 80
+ ;;3.0;AUTOMATED INFO COLLECTION SYS;**34,38,51,63,69**;APR 24, 1997;Build 2
  ;
  ;                                       
 GLL(CLINIC,INTRFACE,ARY,FILTER,PAR5,PAR6,ENCDATE) ; -- get lots of lists in one call
@@ -30,6 +30,7 @@ GETLST(CLINIC,INTRFACE,ARY,FILTER,COUNT,MODIFIER,ENCDATE) ; -- returns any speci
  ;         @ARY@(1) = ^group header
  ;         @ARY@(2) = P1 := cpt or icd code / ien of other items
  ;                    P2 := user defined text
+ ;                    p3 := quantity (number of occurrences)
  ;                    p6 := user defined expanded text to send to PCE
  ;                    p7 := second code or item defined for line item
  ;                    p8 := third code or item defined for line item

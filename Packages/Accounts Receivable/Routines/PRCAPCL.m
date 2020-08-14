@@ -1,5 +1,9 @@
 PRCAPCL ;WASH-ISC@ALTOONA,PA/NYB-Print Bill Status Report ;8/19/94  10:21 AM
-V ;;4.5;Accounts Receivable;**72,63,143,154,315,342**;Mar 20, 1995;Build 7
+V ;;4.5;Accounts Receivable;**72,63,143,154,315,342,368**;Mar 20, 1995;Build 7
+ ;
+ ;PRCA*4.5*368 Instead of relying on the suspended tx for a bill
+ ;             loop in reverse until the newest suspended tx is found
+ ;
  ;;Per VA Directive 6402, this routine should not be modified.
  N BAL,BN,CAT,DEAD,DEBT,DIR,DIROUT,DUOUT,DP,DP2,HDR,IOP,N430
  N PAGE,POP,PRCAE,PRCATOT,PRCATOT2,PRCAT,PRCAT2,PRCY,RCDOJ,TDT,ST,STT
@@ -45,7 +49,7 @@ PRNTL ;
  S X=$S($D(^PRCA(430,PRCAE,0)):^(0),1:"") G:X="" PQ
  S BN=$P($G(X),U),DP=$P($G(X),U,14),PRCY=$P($G(X),U,2) G:BN="" PQ
  S BEG=+DAT-1,END=+$P(DAT,U,2)
- S ST=999 I STAT=40 D SUST ;PRCA*4.5*315/DRF Find suspended type
+ S ST=12 I STAT=40 D SUST ;PRCA*4.5*315/DRF Find suspended type
  I BEG,DP'>BEG Q
  I END,DP>END Q
  I STAT=40,$G(PRSELST)'="",PRSELST'[(","_ST_",") Q  ;PRCA*4.5*315/DRF Quit if suspended type is not selected
@@ -106,20 +110,26 @@ ST N DIC,X,Y
  Q
 SUSTYP ;If SUSPENDED is chosen, prompt for which suspended bills to display PRCA*4.5*315/DRF
  N X,CH,LAST,PRPRT
- S LAST=$O(PRSUS(""),-1),PRSUS(LAST+1)="NONE"
- S PRSUS(LAST+2)="ALL OF THE ABOVE"
+ S LAST=$O(PRSUS(""),-1) I PRSUS(LAST)'["ALL OF" D
+ . S PRSUS(LAST+1)="NONE"
+ . S PRSUS(LAST+2)="ALL OF THE ABOVE"
+ . S XX=XX_"12:NONE;13:ALL OF ABOVE"
  S PRPRT="Choose from SUSPENDED TYPE:"
  S PRSELST=$$MLTP0(PRPRT,.PRSUS,1)
  Q
 SUST ;Look for suspended type for a suspended bill PRCA*4.5*315/DRF
- N TRANS
- S TRANS=$O(^PRCA(433,"C",PRCAE,""),-1) I TRANS="" S ST=12 Q  ;Quit if no transactions for this entry, PRCA*4.5*342
- S ST=$P($G(^PRCA(433,TRANS,1)),U,11)
+ ;Look for suspended type for suspended bill even if not last bill tx   ;PRCA*4.5*368
+ N PRCATX S PRCATX="A",ST=""
+ F  S PRCATX=$O(^PRCA(433,"C",PRCAE,PRCATX),-1) Q:PRCATX=""  D  Q:ST  ;Quit if no transactions for this entry, PRCA*4.5*342
+ . I '$D(^PRCA(433,PRCATX,1)) Q
+ . I $P(^PRCA(433,PRCATX,1),U,2)'=47 Q
+ . S ST=$P($G(^PRCA(433,PRCATX,1)),U,11)
+ . I ST="" S ST=12
  I ST="" S ST=12
  Q
 STHDR ;Display Suspended Type PRCA*4.5*315/DRF
  I 'HDR W !
- W ?30,"Suspend Type: ",PRSUS(ST),!!
+ W ?30,"Suspend Type: ",$G(PRSUS(ST)),!!
  S HDR=0
  Q
 TSK ;

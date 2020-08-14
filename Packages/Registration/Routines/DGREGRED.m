@@ -1,5 +1,5 @@
-DGREGRED ;ALB/JAM - Residential Address Edit API ;23 Feb 2018  1:33 PM
- ;;5.3;Registration;**941**;Aug 13, 1993;Build 73
+DGREGRED ;ALB/JAM - Residential Address Edit API ; 23 Feb 2018  1:33 PM
+ ;;5.3;Registration;**941,1010**;Aug 13, 1993;Build 2
  ;;
  ;
 EN(DFN,FLG) ;Entry point
@@ -122,7 +122,8 @@ DISPFGN(DGCMP,DGM) ;tag to display Foreign data
  W !?16,$P($G(DGCMP(DGM,.1151)),U)
  I $P($G(DGCMP(DGM,.1152)),U)'="" W !,?16,$P($G(DGCMP(DGM,.1152)),U)
  I $P($G(DGCMP(DGM,.1153)),U)'="" W !,?16,$P($G(DGCMP(DGM,.1153)),U)
- W !,?16,$P($G(DGCMP(DGM,.11572)),U)_" "_$P($G(DGCMP(DGM,.1154)),U)_" "_$P($G(DGCMP(DGM,.11571)),U)
+ ;W !,?16,$P($G(DGCMP(DGM,.11572)),U)_" "_$P($G(DGCMP(DGM,.1154)),U)_" "_$P($G(DGCMP(DGM,.11571)),U) ;DG*1010 comment out
+ W !,?16,$P($G(DGCMP(DGM,.1154)),U)_" "_$P($G(DGCMP(DGM,.11571)),U)_" "_$P($G(DGCMP(DGM,.11572)),U) ;DG*1010 - display postal code last
  S DGCNTRY=$$CNTRYI^DGADDUTL($P($G(DGCMP(DGM,.11573)),U,2))
  S DGCNTRY=$S(DGCNTRY="":"UNSPECIFIED COUNTRY",DGCNTRY=-1:"UNKNOWN COUNTRY",1:DGCNTRY)
  I DGCNTRY]"" W !?16,DGCNTRY

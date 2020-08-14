@@ -1,5 +1,5 @@
-DGREGCP1 ;ALB/CLT - ADDRESS COPY UTILITIES ;18 May 2017  2:54 PM
- ;;5.3;Registration;**941**;Aug 13, 1993;Build 73
+DGREGCP1 ;ALB/CLT - ADDRESS COPY UTILITIES ; 18 May 2017  2:54 PM
+ ;;5.3;Registration;**941,1010**;Aug 13, 1993;Build 2
  ;
 RESDISP(DFN) ;DISPLAY THE RESIDENTIAL ADDRESS
  N DGA1,DGA2,DGA3,DGA4,DGA9,DGA10,DGA1315,DGZIP
@@ -25,7 +25,8 @@ RESDISP(DFN) ;DISPLAY THE RESIDENTIAL ADDRESS
  E  D
  . W ?43,"Province: "
  . W $S($P(DGXX,U,8)'="":$P(DGXX,U,8),1:"UNKNOWN")
- I DGFORGN W !?3,DGA9_" "_DGA4
+ ;I DGFORGN W !?3,DGA9_" "_DGA4 ;DG*1010 comment out
+ I DGFORGN W !?3,DGA4_" "_DGA9 ;DG*1010 - display postal code last
  I 'DGFORGN W !?3,DGA4 D
  . I $D(^DIC(5,+$P(^DPT(DFN,.115),"^",5),0)) W ",",$P(^DIC(5,+$P(^DPT(DFN,.115),"^",5),0),"^",2)
  . S DGZIP=$P(^DPT(DFN,.115),"^",6) I $L(DGZIP)>5 S DGZIP=$E(DGZIP,1,5)_"-"_$E(DGZIP,6,12)
@@ -57,7 +58,8 @@ PERMDISP(DFN) ;DISPLAY PERMANENT MAILING ADDRESS
  E  D
  . W ?43,"Province: "
  . W $S($P(DGXX,U,8)'="":$P(DGXX,U,8),1:"UNKNOWN")
- I DGFORGN W !?3,DGA9_" "_DGA4
+ ;I DGFORGN W !?3,DGA9_" "_DGA4 ;DG*1010 comment out
+ I DGFORGN W !?3,DGA4_" "_DGA9 ;DG*1010 - display postal code last
  I 'DGFORGN W !?3,DGA4 D
  . I $D(^DIC(5,+$P(^DPT(DFN,.11),"^",5),0)) W ",",$P(^DIC(5,+$P(^DPT(DFN,.11),"^",5),0),"^",2)
  . S DGZIP=$P(^DPT(DFN,.11),"^",6) I $L(DGZIP)>5 S DGZIP=$E(DGZIP,1,5)_"-"_$E(DGZIP,6,12)

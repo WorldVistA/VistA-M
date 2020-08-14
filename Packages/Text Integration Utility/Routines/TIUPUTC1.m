@@ -1,5 +1,5 @@
-TIUPUTC1 ; SLC/JER - Document filer Cont'd - captioned header ;07/12/16  13:05
- ;;1.0;TEXT INTEGRATION UTILITIES;**81,290**;Jun 20, 1997;Build 548
+TIUPUTC1 ; SLC/JER,AJB - Document filer Cont'd - captioned header ;Jul 09, 2020@12:06:28
+ ;;1.0;TEXT INTEGRATION UTILITIES;**81,290,335**;Jun 20, 1997;Build 3
  ;
 GETREC(HEADER,RECORD,TIUHDR) ; ---- Look-up/create record (if LAYGO allowed)
  N DIC,DLAYGO,TIUD1,TIUD4,TIUKEY,X,Y,TIUDSFTR
@@ -47,8 +47,9 @@ GETREC(HEADER,RECORD,TIUHDR) ; ---- Look-up/create record (if LAYGO allowed)
  ; Can't check if author Requires EC w/o Dict dt & AUTHOR so if not valid set FILING ERROR:
  N TIUVALID S TIUVALID="YES"
  I RECORD("TYPE")=3 D  S TIUVALID=$S(TIUVALID["^":"NO",1:"YES") I TIUVALID="NO" D FAIL Q
- . D CHK^DIE(8925,1307,,TIUHDR("TIUDDT"),.TIUVALID) I TIUVALID["^" Q
- . D CHK^DIE(8925,1202,,TIUHDR(1202),.TIUVALID)
+ . ; added $G to CHK below ; *335 ajb
+ . D CHK^DIE(8925,1307,,$G(TIUHDR("TIUDDT")),.TIUVALID) I TIUVALID["^" Q
+ . D CHK^DIE(8925,1202,,$G(TIUHDR(1202)),.TIUVALID)
  ; ---- If a LOOKUP METHOD is defined for a given document type,
  ;      then set lookup variables and call it:
  I $G(TIUD4)]"",TIUVALID="YES" D  Q

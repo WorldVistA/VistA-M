@@ -1,5 +1,5 @@
 IBDF18A1 ;ALB/CJM/AAS - ENCOUNTER FORM - utilities for PCE ;12-AUG-94
- ;;3.0;AUTOMATED INFO COLLECTION SYS;**34,38**;APR 24, 1997
+ ;;3.0;AUTOMATED INFO COLLECTION SYS;**34,38,69**;APR 24, 1997;Build 2
  ;
 COPYLIST(LIST,ARY,COUNT) ;
  ; -- copies the entries from LIST to @ARY, starting subscript at COUNT+1
@@ -26,8 +26,8 @@ COPYLIST(LIST,ARY,COUNT) ;
  .... ;    is yes and quit
  .... I $P(NODE,"^",2),$P(NODE,"^",7)=1 D  Q
  ..... S COUNT=COUNT+1,@ARY@(COUNT)="^"_$P(NODE,"^",6)
- .... ;
- .... I $P(NODE1,"^")=TSUBCOL,$L($P(NODE1,"^",2)) S COUNT=COUNT+1,@ARY@(COUNT)=$P(NODE,"^")_"^"_$P(NODE1,"^",2)_"^^^^"_$P(NODE2,"^")_"^"_$P(NODE2,"^",3)_"^"_$P(NODE2,"^",4)_"^"_$P(NODE2,"^",2)
+ .... ;IBD*3*69 - Add Quantity to 3rd piece of array
+ .... I $P(NODE1,"^")=TSUBCOL,$L($P(NODE1,"^",2)) S COUNT=COUNT+1,@ARY@(COUNT)=$P(NODE,"^")_"^"_$P(NODE1,"^",2)_"^"_$P(NODE,"^",9)_"^^^"_$P(NODE2,"^")_"^"_$P(NODE2,"^",3)_"^"_$P(NODE2,"^",4)_"^"_$P(NODE2,"^",2)
  .... D MODLIST
  Q
  ;

@@ -1,5 +1,5 @@
 DGPFHLS ;ALB/RPM - PRF HL7 SEND DRIVERS ; 7/31/06 10:10am
- ;;5.3;Registration;**425,650**;Aug 13, 1993;Build 3
+ ;;5.3;Registration;**425,650,1005**;Aug 13, 1993;Build 57
  ;
 SNDORU(DGPFIEN,DGPFHARR,DGFAC) ;Send ORU Message Types (ORU~R01)
  ;This function builds and transmits a single ORU message to all sites
@@ -10,6 +10,7 @@ SNDORU(DGPFIEN,DGPFHARR,DGFAC) ;Send ORU Message Types (ORU~R01)
  ;  Supported DBIA #2990:  This supported DBIA is used to access the
  ;                         Registration API to generate a list of
  ;                         treating facilities for a given patient.
+ ;  Supported by ICR #2263 This ICR permits use of $$GET^XPAR().
  ;  Input:
  ;    DGPFIEN - (required) IEN of assignment in PRF ASSIGNMENT (#26.13)
  ;                         file to transmit
@@ -26,13 +27,16 @@ SNDORU(DGPFIEN,DGPFHARR,DGFAC) ;Send ORU Message Types (ORU~R01)
  ;  Output:
  ;   Function value - 1 on success, 0 on failure
  ;
- N DGHLEID     ;event protocol ID
+ N DGHLEID   ;event protocol ID
  N DGHL      ;VistA HL7 environment array
  N DGHLROOT  ;message array location
  N DGPFA     ;assignment data array
  N DGPFAH    ;assignment history data array
  N DGPFHIEN  ;assignment history IEN
  N DGRSLT    ;function value
+ N DGI       ;counter
+ N DGCRNR    ;flag indicating that a converted facility was found
+ N DGSTAT,DGSTAT2    ;status retuned when sending message
  ;
  S DGRSLT=0
  S DGHLROOT=$NA(^TMP("PRFORU",$J))
@@ -64,8 +68,16 @@ SNDORU(DGPFIEN,DGPFHARR,DGFAC) ;Send ORU Message Types (ORU~R01)
  . Q:'DGPFHIEN
  . ;
  . ;transmit and log messages
- . Q:'$$XMIT^DGPFHLU6(DGPFHIEN,DGHLEID,.DGFAC,DGHLROOT,.DGHL)
+ . S DGSTAT=0,DGSTAT2=0
+ . S DGSTAT=$$XMIT^DGPFHLU6(DGPFHIEN,DGHLEID,.DGFAC,DGHLROOT,.DGHL)
  . ;
+ . ;Should a copy be sent to the regional HC router?
+ . S DGCRNR=$$CERNER2(DGPFIEN)
+ . D:DGCRNR
+ . . S DGSTAT2=$$XMIT1^DGPFHLU6(DGPFHIEN,DGHLEID,DGHLROOT,.DGHL)
+ . ;
+ . Q:'$G(DGSTAT)
+ . I DGCRNR,'$G(DGSTAT2) Q
  . ;success
  . S DGRSLT=1
  ;
@@ -99,7 +111,8 @@ SNDACK(DGACKTYP,DGMIEN,DGHL,DGSEGERR,DGSTOERR) ;Send ACK Message Type (ACK~R01)
  ;
  ;build ACK segments array
  I $$BLDACK^DGPFHLU4(DGACKTYP,DGHLROOT,.DGHL,.DGSEGERR,.DGSTOERR) D
- . ;
+ . ;send MailMan message on AE or AR
+ . D SNDMAIL(DGMIEN,.DGHL,$NA(^TMP("HLA",$J)))
  . ;generate the message
  . D GENACK^HLMA1(DGHL("EID"),DGMIEN,DGHL("EIDS"),"GM",1,.DGHLERR)
  ;
@@ -135,6 +148,7 @@ SNDQRY(DGDFN,DGMODE,DGFAC) ;Send QRY Message Types (QRY~R02)
  N HLL
  N DGHLEID
  N DGHLRSLT
+ N DGHLP
  ;
  ;the following HL* variables are created by DIRECT^HLMA
  N HL,HLCS,HLDOM,HLECH,HLFS,HLINST,HLINSTN
@@ -174,6 +188,7 @@ SNDQRY(DGDFN,DGMODE,DGFAC) ;Send QRY Message Types (QRY~R02)
  . S DGHLLNK=$$GETLINK^DGPFHLUT(DGFAC)
  . Q:(DGHLLNK=0)
  . S HLL("LINKS",1)="DGPF PRF ORF/R04 SUBSC"_U_DGHLLNK
+ . ;S:$$CERNER(DGDFN) HLL("LINKS",1)="DGPF PRF ORF/R04 SUBSC"_U_"VACRNR"
  . ;
  . ;initialize VistA HL7 environment
  . S DGHLEID=$$INIT^DGPFHLUT("DGPF PRF QRY/R02 EVENT",.DGHL)
@@ -186,12 +201,13 @@ SNDQRY(DGDFN,DGMODE,DGFAC) ;Send QRY Message Types (QRY~R02)
  . I DGMODE=1!(DGMODE=3),$E($G(IOST),1,2)="C-" D
  . . S DGMSG(1)="Attempting to connect to "_$P($$NS^XUAF4(DGFAC),U)
  . . S DGMSG(2)="to search for Patient Record Flag Assignments."
- . . S DGMSG(3)="This request may take sometime, please be patient ..."
+ . . S DGMSG(3)="This request may take some time, please be patient ..."
  . . D EN^DDIOL(.DGMSG)
  . ;
  . ;generate HL7 message
  . I DGMODE=1!(DGMODE=3) D    ;generate direct-connect HL7 message
- . . D DIRECT^HLMA(DGHLEID,"GM",1,.DGHLRSLT,"","")
+ . . S $P(DGHLP("SUBSCRIBER"),U,5)=$$STA^XUAF4(DGFAC)
+ . . D DIRECT^HLMA(DGHLEID,"GM",1,.DGHLRSLT,"",.DGHLP)
  . . ;The DIRECT^HLMA API contains a bug that causes the message ID
  . . ;returned to be based on the HL7 MESSAGE TEXT (#772) file IEN and
  . . ;not the HL7 MESSAGE ADMINISTRATION (#773) file IEN.  Therefore,
@@ -205,7 +221,8 @@ SNDQRY(DGDFN,DGMODE,DGFAC) ;Send QRY Message Types (QRY~R02)
  . . I '+$P(DGHLRSLT,U,2) S DGRSLT=1
  . ;
  . E  D              ;generate deferred HL7 message
- . . D GENERATE^HLMA(DGHLEID,"GM",1,.DGHLRSLT,"","")
+ . . S $P(DGHLP("SUBSCRIBER"),U,5)=$$STA^XUAF4(DGFAC)
+ . . D GENERATE^HLMA(DGHLEID,"GM",1,.DGHLRSLT,"",.DGHLP)
  . . I $P(DGHLRSLT,U)>0 D STOQXMIT^DGPFHLL(DGEVNT,$P(DGHLRSLT,U),DGFAC)
  . . ;success
  . . I '+$P(DGHLRSLT,U,2) S DGRSLT=1
@@ -241,10 +258,72 @@ SNDORF(DGQRY,DGMIEN,DGHL,DGDFN,DGSEGERR,DGQRYERR) ;Send ORF Message Type (ORF~R0
  ;
  ;build ORF segments array
  I $$BLDORF^DGPFHLQ(DGHLROOT,.DGHL,DGDFN,.DGQRY,.DGSEGERR,.DGQRYERR) D
- . ;
+ . ;send MailMan message on AE or AR
+ . D SNDMAIL(DGMIEN,.DGHL,$NA(^TMP("HLA",$J)))
  . ;generate the message
  . D GENACK^HLMA1(DGHL("EID"),DGMIEN,DGHL("EIDS"),"GM",1,.DGHLERR)
  ;
  ;cleanup
  K @DGHLROOT
+ Q
+ ;
+ ;patch 1005
+CERNER(DGDFN) ;
+ ;Is this a Cerner patient (i.e., is 200CRNR in the TFL)?
+ ;input variables
+ ;DGDFN - pointer to PATIENT (#2) file
+ ;return value: 
+ ; 1 - yes, 0 - no
+ ;
+ N DGRES,DGOUT,DGSITE,DGKEY,DGI
+ S DGRES=0
+ S DGSITE=$P($$SITE^VASITE,U,3)
+ S DGKEY=DGDFN_U_"PI"_U_"USVHA"_U_DGSITE
+ D TFL^VAFCTFU2(.DGOUT,DGKEY)
+ S DGI=0
+ F  S DGI=$O(DGOUT(DGI)) Q:DGI=""  D
+ .I $P(DGOUT(DGI),U,4)="200CRNR",$P(DGOUT(DGI),U,2)="PI" S DGRES=1
+ Q DGRES
+ ;
+CERNER2(DGIEN) ;
+ ;This is a convenience routine that accepts a patient record flag
+ ;assignment as input parameter.
+ ;input variables:
+ ;DGIEN - pointer to PRF ASSIGNMENT (#26.13) file
+ ;return value:
+ ; 1 - yes, 0 - no
+ ;
+ N DGDFN,DGPFA
+ D GETASGN^DGPFAA(DGIEN,.DGPFA)
+ S DGDFN=$P(DGPFA("DFN"),U)
+ Q $$CERNER(DGDFN)
+ ;
+SNDMAIL(DGMIEN,DGHL,DGROOT) ;
+ ;This entry point sends a MailMan message reporting that an AE or
+ ;AR was generated.
+ ;input variables:
+ ;DGMIEN (required) - IEN of offending message in file #773
+ ;DGHL (required)   - The "HL" array
+ ;DGROOT (required) - root for the application ack passed to GENACK^HLMA1
+ ;
+ ;call to $$PROD^XUPROD supported by ICR #4440
+ ;
+ N XMDUZ,XMSUB,XMTEXT,XMY,XMZ ;MailMan variables
+ N DGTXT,DGSTAT,DGMSA,DGTYP,DGFS,DGI
+ S DGFS=DGHL("FS")
+ S DGMSA=$G(@DGROOT@(1))
+ S DGTYP=$P(DGMSA,DGFS,2)
+ Q:DGTYP="AA"  ;Don't send mail messages for succesful AAs.
+ S DGSTAT=$P($$SITE^VASITE,U,3)
+ S XMDUZ="PRF Error Processor"
+ S XMSUB="PRF Application Error (station #"_DGSTAT_")"
+ S XMSUB=XMSUB_" ["_$S($$PROD^XUPROD:"P",1:"T")_"]" ;production or test?
+ S XMY("G.DGPF APPLICATION ERRORS")=""
+ S XMTEXT="DGTXT("
+ S DGTXT(1)="An error occurred processing message #"_DGMIEN
+ S DGTXT(2)=""
+ S DGTXT(3)="MESSAGE TEXT (ACK):"
+ S DGI=""  F  S DGI=$O(@DGROOT@(DGI)) Q:DGI=""  D
+ . S DGTXT(DGI+3)=$G(@DGROOT@(DGI))
+ D ^XMD
  Q

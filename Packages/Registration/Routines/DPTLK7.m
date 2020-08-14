@@ -1,5 +1,5 @@
-DPTLK7 ;OAK/ELZ - MAS PATIENT LOOKUP ENTERPRISE SEARCH ;13 Feb 2020  1:08 PM
- ;;5.3;Registration;**915,919,926,967,981,1000**;Aug 13, 1993;Build 2
+DPTLK7 ;OAK/ELZ - MAS PATIENT LOOKUP ENTERPRISE SEARCH ;15 May 2020  2:31 PM
+ ;;5.3;Registration;**915,919,926,967,981,1000,1024**;Aug 13, 1993;Build 1
  ;
 SEARCH(DGX,DGXOLD) ; do a search, pass in what the user entered
  ; DGX is what the user originally entered, name is assumed unless it
@@ -77,7 +77,9 @@ PROMPT I DGX?9N S DGFLDS(.09)=DGX,DGX=""
  . S DGMPIR("mcid")=DGMCID
  .;**981 - Story 841885 (ckn)
  . I $G(DGMPIR(1,"ICN"))'="" S DGMPIR("SelIdentifier")=DGMPIR(1,"ICN")_"^NI^200M^USVHA"
- . I $G(DGMPIR(1,"IDS",1,"ID"))'="" S DGMPIR("SelIdentifier")=DGMPIR(1,"IDS",1,"ID")_"^NI^200DOD^USDOD"
+ . ;**1024,Story 1258907 (mko): The TFs are now also returned in "IDS"; Look for the DoD record, but only if ICN is not set
+ . ;I $G(DGMPIR(1,"IDS",1,"ID"))'="" S DGMPIR("SelIdentifier")=DGMPIR(1,"IDS",1,"ID")_"^NI^200DOD^USDOD"
+ . E  N I S I="" F  S I=$O(DGMPIR(1,"IDS",I)) Q:I=""  I $G(DGMPIR(1,"IDS",I,"ID"))]"",$G(DGMPIR(1,"IDS",I,"ISSUER"))="USDOD",$G(DGMPIR(1,"IDS",I,"SOURCE"))="200DOD" S DGMPIR("SelIdentifier")=DGMPIR(1,"IDS",I,"ID")_"^NI^200DOD^USDOD" Q
  . D MPIADD(.DGMPIR)
  . W !
  . ;
@@ -121,7 +123,10 @@ QUIT Q $S(DGDFN:DGDFN,1:0)
  ;
 MPIADD(DGMPIR) ; - call to add patient to the MPI and store ICN locally
  ; - web service call for adding and getting new ICN
+ ;**1024,Story 1258907 (mko): Add a flag to indicate a new ICN needs to be added.
+ N DGNEWICN
  I '$G(DGMPIR(+$O(DGMPIR(0)),"ICN")) D
+ . S DGNEWICN=1
  . W !,"Adding patient to the MVI..."
  . N DGMPIICN
  . I '$D(DGMPIR("AddType")) S DGMPIR("AddType")="Implicit"
@@ -137,6 +142,12 @@ MPIADD(DGMPIR) ; - call to add patient to the MPI and store ICN locally
  S ^XTMP("DPTLK7 A24 IN-PROCESS",0)=$$FMADD^XLFDT(DT,10)_"^"_DT_"^TRACK PROCESSING OF A24 MESSAGES"
  S ^XTMP("DPTLK7 A24 IN-PROCESS",DGDFN)=DT
  I $G(DGMPIR(+$O(DGMPIR(0)),"ICN")) D VIC40^MPIFAPI(DGDFN,DGMPIR(+$O(DGMPIR(0)),"ICN"))
+ ;
+ ;**1024,Story 1258907 (mko): Add the TFs returned from the Enterprise Search in case MFN-MF0 hasn't been received and processed by this point
+ D:'$G(DGNEWICN)
+ . N DGTFARR
+ . M DGTFARR=DGMPIR(+$O(DGMPIR(0)),"IDS")
+ . D ADDTF^DPTLK7A(DGDFN,.DGTFARR)
  Q
  ;
 NAME(DGX,DG20NAME,DGOUT) ;- ask for name components
@@ -239,7 +250,8 @@ FLDS(DGFLDS,DGNAME,DGOUT) ;- prompt for the various FM fields
  ;K DIR
  F DGFLD=.03,.02,"ASKREQID",.2403,.092,.093,994,.131 D  Q:$D(DTOUT)!($D(DUOUT))
  . ;**1000,Story 1171329 (mko): Use ASKREQID as an indicator to prompt for three additional fields at this point
- . I DGFLD="ASKREQID" N DPTIDS D ASKREQID(.DGNAME,.DPTIDS) M:'$D(DUOUT) DGFLDS=DPTIDS Q
+ . ;**1024,Story 1258907 (mko): Merge DPTIDS=DGFLDS. The input transform for VETERAN (Y/N)? looks at DOB response in DPTIDS(.03)
+ . I DGFLD="ASKREQID" N DPTIDS M DPTIDS=DGFLDS D ASKREQID(.DGNAME,.DPTIDS) M:'$D(DUOUT) DGFLDS=DPTIDS Q
  . S DIR(0)="2,"_DGFLD_$S(DGFLD=.03:"",DGFLD=.02:"",1:"O")
  . D ^DIR
  . Q:$D(DIRUT)
@@ -401,6 +413,8 @@ ADD(DGF,DG20NAME) ; - stuff in patient
  S X=DGF(.01),DIC="^DPT(",DIC(0)="L",DLAYGO=2,VAFCNO=1
  D FILE^DICN
  S SAVY=+Y
+ ;**1024
+ S DGNEWP=$P(Y,U,3) ; TO ENSURE WE HAVE 3RD PIECE OF Y WHEN WE COME OUT OF ADD OF NEW PATIENT
  ;
  ; alias
  S X=0 F  S X=$O(DGF("ALIAS",X)) Q:'X  D

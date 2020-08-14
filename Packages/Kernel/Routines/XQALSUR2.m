@@ -1,5 +1,5 @@
-XQALSUR2 ;FO-OAK.SEA/JLI-Continuation of alert surrogate processing ;07/12/12  11:30
- ;;8.0;KERNEL;**366,513,602,690**;Jul 10, 1995;Build 18
+XQALSUR2 ;FO-OAK.SEA/JLI-Continuation of alert surrogate processing ;May 18, 2020@16:32
+ ;;8.0;KERNEL;**366,513,602,690,730**;Jul 10, 1995;Build 1
  ;Per VHA VA Directive 6402, this routine should not be modified
  Q
  ; added to handle adjustment for manual or Fileman editing of surrogate on top zero node
@@ -43,3 +43,15 @@ CLEANUP(XQAUSER) ;SR. - clean up expired surrogate info
  . . . N XQAIEN S XQAIEN=XQAI_","_XQAUSER_","
  . . . N XQAFDA S XQAFDA(8992.02,XQAIEN,.01)="@" D FILE^DIE("","XQAFDA")
  Q
+ ; p730
+DISPSUR(XQAUSER,XQASLIST)   ; Prints and returns current list of surrogate periods for a user 
+ ; usage: N LIST D DISPSUR^XQAUSER(DUZ,.LIST)
+ N XQAI
+ D SUROLIST^XQALSUR1(XQAUSER,.XQASLIST)
+ I $G(XQASLIST)<1 W !!,"  No current surrogates",! Q
+ W !!,"Current Surrogate(s):",?35,"START DATE",?60,"END DATE"
+ F XQAI=0:0 S XQAI=$O(XQASLIST(XQAI)) Q:XQAI'>0  D 
+ . W !,XQAI,"  ",$P(XQASLIST(XQAI),U,2),?35,$$FMTE^XLFDT($P(XQASLIST(XQAI),U,3)),?60,$$FMTE^XLFDT($P(XQASLIST(XQAI),U,4))
+ W !
+ Q
+ ;

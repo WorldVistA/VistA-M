@@ -1,5 +1,5 @@
-PSGOE1 ;BIR/CML3-ACTION ON INPATIENT ORDERS ;10 Mar 99 10:54 AM
- ;;5.0;INPATIENT MEDICATIONS;**7,19,26,39,58,85,80,110,127,133,134,315,366**;16 DEC 97;Build 7
+PSGOE1 ;BIR/CML3-ACTION ON INPATIENT ORDERS ; 2/4/20 8:01am
+ ;;5.0;INPATIENT MEDICATIONS;**7,19,26,39,58,85,80,110,127,133,134,315,366,385**;16 DEC 97;Build 3
  ;
  ;;Per VHA Directive 2004-038, this routine should not be modified.
  ; Reference to ^PS(55 is supported by DBIA #2191.
@@ -110,7 +110,7 @@ ACTPRO(PSJDA) ;*366 - check provider credentials
  ;check for DISUSER
  Q:$P(X1,U,7)=1 "0^DISUSER"
  ;check for provider key
- Q:'$D(^XUSEC("PROVIDER",PSJDA)) "0^NO PROVIDER KEY"
+ Q:'$D(^XUSEC("PROVIDER",PSJDA))&'$D(^XUSEC("ORELSE",PSJDA)) "0^NO PROVIDER KEY"
  ;check termination date is <today's date
  S %=+$P(X1,U,11) I %>0,%<DT Q "0^TERMINATED^"_%
  ;check inactivation date is <today's date

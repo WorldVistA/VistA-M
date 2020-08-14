@@ -1,5 +1,5 @@
-DGREGARP ;ALB/DW,ERC-Address audit reports ; 8/1/08 1:21pm
- ;;5.3;Registration;**522,560,688**;Aug 13, 1993;Build 29
+DGREGARP ;ALB/DW,ERC - Address audit reports ; 8/1/08 1:21pm
+ ;;5.3;Registration;**522,560,688,1010**;Aug 13, 1993;Build 2
 EN(TYPE) ;Entry point
  N DGRNG,XMY,XMSUB,XMDUZ,XMTEXT,DGSRT,DGTOTAL
  K ^TMP($J,"DG ADD CHNG")
@@ -121,7 +121,8 @@ DISP(DGA) ;
  I DGFOR D
  . I (DGA("CITY")'="")!(DGA("PROV")'="") D
  .. D LNPLUS
- .. S ^TMP($J,"DG ADD CHNG",DGLINE)="            "_$S(DGA("PCODE")]"":DGA("PCODE")_" ",1:"")_DGA("CITY")_","_DGA("PROV")
+ .. ;S ^TMP($J,"DG ADD CHNG",DGLINE)="            "_$S(DGA("PCODE")]"":DGA("PCODE")_" ",1:"")_DGA("CITY")_","_DGA("PROV") ;DG*1010 comment out
+ .. S ^TMP($J,"DG ADD CHNG",DGLINE)="            "_DGA("CITY")_","_DGA("PROV")_" "_$S(DGA("PCODE")]"":DGA("PCODE")_" ",1:"") ;DG*1010 - display postal code last
  I DGA("CNTRY")]"" D
  . D LNPLUS
  . S ^TMP($J,"DG ADD CHNG",DGLINE)="            "_DGA("CNTRY")

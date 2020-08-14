@@ -1,5 +1,5 @@
 DGPFAA ;ALB/RPM,ASMR/JD - PRF ASSIGNMENT API'S ; 11/16/16 6:47pm
- ;;5.3;Registration;**425,921,951**;Aug 13, 1993;Build 135
+ ;;5.3;Registration;**425,921,951,1005**;Aug 13, 1993;Build 57
  ;    Last edited: SHRPE/SGM - Sep 26, 2018 17:06
  ;
  ;   DE2813 - JD - 10/28/15
@@ -214,7 +214,7 @@ STOASGN(DGPFA,DGPFERR,DGPFUV) ;
  . . D FILE^DIE("","DGFDA","DGERR")
  . . I $D(DGERR) S DGIEN=0
  . . ;DG*5.3*921 - Trigger an unsolicited update if a patient flag is updated
- . . I '$D(DGERR) D UU(.DGPFA)
+ . . ;I '$D(DGERR) D UU(.DGPFA)
  . . Q
  . E  D
  . . N DGERR,DIERR
@@ -279,15 +279,21 @@ STOALL(DGPFA,DGPFAH,DGPFERR,DGPFUV) ;
  . . I 'DGOIEN,'$D(DGPFOA) S DGPFOA("DFN")="@"
  . . I $$ROLLBACK^DGPFAA2(DGAIEN,.DGPFOA) S DGAIEN=0
  . . Q
+ . ;
+ . ;post protocol event
+ . I DGAIEN D UU(DGAIEN,.DGPFA)
  . Q
  Q $S(+$G(DGAHIEN)=0:0,1:DGAIEN_"^"_DGAHIEN)
  ;
-UU(ARRY) ;Fire off "DGPF ASSIGN FLAG" protocol for UPDATED flags
- ;ARRY("DFN")=DFN
+UU(DGIEN,DGPRF) ;Fire off event protocol
+ ;    DGIEN - (required) Pointer to patient record flag assignment in
+ ;              PRF ASSIGNMENT (#26.13) file
+ ;    DGPRF - (required) array of assignment values to be filed (see
+ ;            $$GETASGN for array structure)
  N DGDFN,X
- S DGDFN=+ARRY("DFN")
- S X=+$O(^ORD(101,"B","DGPF ASSIGN FLAG",0))_";ORD(101,"
- D:X EN1^XQOR
+ S DGDFN=+$G(DGPRF("DFN"))
+ S X=+$O(^ORD(101,"B","DGPF PRF EVENT",0))_";ORD(101,"
+ D:X EN^XQOR
  Q
  ;
 DBRS ; DG*5.3*951
@@ -315,6 +321,7 @@ UV() ;  return edited value for DGPFUV
  ;   also called from ^DGPFUT62
  N Y,RET
  S RET=-1
+ I '$D(DGPFUV) S DGPFUV=-1  ;DG*991
  S Y=DGPFUV I $D(DGPFUV)#2 D
  . I $L(Y)<2 S RET=$S("dD"[Y:Y,1:"") Q
  . I Y["d" S RET="d" Q

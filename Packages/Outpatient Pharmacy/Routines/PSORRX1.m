@@ -1,5 +1,5 @@
 PSORRX1 ;AITC/BWF - Remote RX driver ;8/30/16 12:00am
- ;;7.0;OUTPATIENT PHARMACY;**454,499,509,519,532**;DEC 1997;Build 4
+ ;;7.0;OUTPATIENT PHARMACY;**454,499,509,519,532,594**;DEC 1997;Build 1
  ;
  ;Reference ^PSDRUG( supported by DBIA 221
  Q
@@ -236,8 +236,9 @@ DRUGMTCH(DRGNM,VAPID) ;
  .S PSODRGL0=$G(^PSDRUG(PSODRGLI,0)),PSODRGID=$G(^PSDRUG(PSODRGLI,"I"))
  .Q:$TR(PSODRGL0,"^")=""  S PSODRGC=$G(PSODRGC)+1
  .S DIR(0)=DIR(0)_$S(DIR(0)]"":";",1:"")
- .S DIR(0)=DIR(0)_$G(PSODRGC)_":"_PSODRGLI_"  "_$E($P(PSODRGL0,"^"),1,30)_"  "_$J($P(PSODRGL0,"^",2),7)_"  "_$S(PSODRGID:$E(PSODRGID,4,5)_"-"_$E(PSODRGID,6,7)_"-"_$E(PSODRGID,2,3)_"  ",1:"")_$P(PSODRGL0,"^",10)
- .S DIR("L",PSODRGC)=PSODRGC_".  "_PSODRGLI_"  "_$E($P(PSODRGL0,"^"),1,30)_"  "_$J($P(PSODRGL0,"^",2),7)_"  "_$S(PSODRGID:$E(PSODRGID,4,5)_"-"_$E(PSODRGID,6,7)_"-"_$E(PSODRGID,2,3)_"  ",1:"")_$P(PSODRGL0,"^",10)
+ .; Increased drug name length from 30 to 40 - PSO*7*594
+ .S DIR(0)=DIR(0)_$G(PSODRGC)_":"_PSODRGLI_"  "_$E($P(PSODRGL0,"^"),1,40)_"  "_$J($P(PSODRGL0,"^",2),7)_"  "_$S(PSODRGID:$E(PSODRGID,4,5)_"-"_$E(PSODRGID,6,7)_"-"_$E(PSODRGID,2,3)_"  ",1:"")_$P(PSODRGL0,"^",10)
+ .S DIR("L",PSODRGC)=PSODRGC_".  "_PSODRGLI_"  "_$E($P(PSODRGL0,"^"),1,40)_"  "_$J($P(PSODRGL0,"^",2),7)_"  "_$S(PSODRGID:$E(PSODRGID,4,5)_"-"_$E(PSODRGID,6,7)_"-"_$E(PSODRGID,2,3)_"  ",1:"")_$P(PSODRGL0,"^",10)
  S DIR(0)="SO^"_DIR(0),DIR("L")=""  ;1:$G(PSODRGC)"
  S DIR("A")="Select matching local drug"
  D ^DIR K DIR

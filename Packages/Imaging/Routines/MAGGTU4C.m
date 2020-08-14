@@ -1,5 +1,5 @@
-MAGGTU4C ;WOIFO/GEK/SG/NST/JSL/DAC - VERSION CONTROL (CLINICAL CAPTURE) ; 23 Aug 2019 10:52 PM
- ;;3.0;IMAGING;**93,94,106,117,122,129,140,151,178,189,211,215,223,233,226**;Mar 19, 2002;Build 7
+MAGGTU4C ;WOIFO/GEK/SG/NST/JSL/DAC - VERSION CONTROL (CLINICAL CAPTURE) ; Jun 09, 2020@09:22:16
+ ;;3.0;IMAGING;**93,94,106,117,122,129,140,151,178,189,211,215,223,233,226,264**;Mar 19, 2002;Build 9
  ;; Per VHA Directive 2004-038, this routine should not be modified.
  ;; +---------------------------------------------------------------+
  ;; | Property of the US Government.                                |
@@ -24,9 +24,9 @@ CLVERCT ;***** VERSION CONTROL TABLE FOR THE CLINICAL CAPTURE CLIENTS
  ;;==================================================================
  ;;| Version |Build|Seq #|                Comment                   |
  ;;|---------+-----+------------------------------------------------|
- ;;| 3.0.226 |   2 |  ?? | Sep 2019                                 |
+ ;;| 3.0.264 |   1 |  ?? | Jun 2020                                 |
+ ;;| 3.0.226 |   2 |  84 | Sep 2019                                 |
  ;;| 3.0.233 |   1 |  83 | Apr 2019                                 |
- ;;| 3.0.223 |   1 |  82 | Oct 2018                                 |
  ;;==================================================================
  ;
  ; Each row of the version control table contains the version and
@@ -35,8 +35,12 @@ CLVERCT ;***** VERSION CONTROL TABLE FOR THE CLINICAL CAPTURE CLIENTS
  ; Sort order of the rows does not matter. However, the reversed
  ; order of patch sequential numbers is recommended.
  ; NOTE:
+ ;  Patch 264 removed support for
+ ;     3.0.233 |   1 |  83 | Sep 2019
+ ;  Patch 251 removed support for
+ ;     3.0.223 |   1 |  82 | Oct 2018
  ;  Patch 226 removed support for
- ;     3.0.215 |   1 |  81 | Jun 2018                                 |
+ ;     3.0.215 |   1 |  81 | Jun 2018
  ;     3.0.211 |   1 |  80 | Jun 2018
  ;     3.0.189 |   2 |  79 | Sep 2017
  ;     3.0.178 |   3 |  78 | May 2017

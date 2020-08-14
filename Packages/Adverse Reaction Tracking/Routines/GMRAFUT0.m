@@ -1,5 +1,5 @@
 GMRAFUT0 ;HIRMFO/YMP,RFM,WAA-ALLERGY/ADVERSE REACTION FILE UTILITIES ;3/14/05  12:21
- ;;4.0;Adverse Reaction Tracking;**23**;Mar 29, 1996
+ ;;4.0;Adverse Reaction Tracking;**23,62**;Mar 29, 1996;Build 2
 EN1 ; Entry for GMRA LOCAL ALLERGIES EDIT option
  D PROCESS Q  ;23
  K DR,DIC,DLAYGO,X,Y,DA,GMRAIEN
@@ -70,8 +70,25 @@ Q4 K %DT,GMRA
  Q
  ;PROCESS section added with patch 23
 PROCESS ;Additions to 120.82 and 120.83 are no longer allowed
- I $L($T(NTRTMSG^HDISVAP)) D NTRTMSG^HDISVAP() Q
- W !!,"The addition of local reactants and sign/symptoms are no longer"
- W !,"allowed.  Requests for new terms/concepts should be made through"
- W !,"the New Term Rapid Turn-around (NTRT) process.",!
+ ;GMRA*4.0*62 Put NTRT message in this routine for display instead
+ ;of calling the HDI routine
+ ;I $L($T(NTRTMSG^HDISVAP)) D NTRTMSG^HDISVAP() Q
+ ;New Term Rapid Turnaround (NTRT) Message
+ N HDISLNE,HDISTXT
+ F HDISLNE=1:1 S HDISTXT=$P($T(MSG+HDISLNE),";;",2) Q:HDISTXT="END"  W !?3,HDISTXT
  Q
+ ;GMRA*4.0*62 comment out unnecessary code - NTRT message will always display now
+ ;W !!,"The addition of local reactants and sign/symptoms are no longer"
+ ;W !,"allowed.  Requests for new terms/concepts should be made through"
+ ;W !,"the New Term Rapid Turn-around (NTRT) process.",!
+ Q
+MSG ;NTRT message text
+ ;;
+ ;;In support of national standardization of the contents of this file,
+ ;;local site addition and modification functions are no longer available.
+ ;;If you wish to contact Standards & Terminology Services (STS), request
+ ;;a new term, or modify an existing term, please refer to the New
+ ;;Term Rapid Turnaround (NTRT) web site located at
+ ;;https://vaww.vashare.domain.ext/sites/ntrt/SitePages/Home.aspx
+ ;;
+ ;;END

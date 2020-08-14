@@ -1,5 +1,5 @@
-DGADDUTL ;ALB/PHH,EG,BAJ,ERC,CKN,TDM,LBD,JAM - PATIENT ADDRESS ;19 Jul 2017  3:03 PM
- ;;5.3;Registration;**658,695,730,688,808,851,872,915,925,941**;Aug 13, 1993;Build 73
+DGADDUTL ;ALB/PHH,EG,BAJ,ERC,CKN,TDM,LBD,JAM - PATIENT ADDRESS ; 19 Jul 2017  3:03 PM
+ ;;5.3;Registration;**658,695,730,688,808,851,872,915,925,941,1010**;Aug 13, 1993;Build 2
  Q
 ADDR ; validate/edit Patient address (entry for DG ADDRESS UPDATE option)
  N %,QUIT,DIC,Y,DFN,USERSEL
@@ -196,7 +196,8 @@ DISPTADR(DFN,DGARRY) ; Display Temporary Address
  .W:DGADR3'="" !?9,DGADR3
  .I DGFORN=0 D
  ..W !?9,$S(DGCITY'="":DGCITY,1:"")_$S(DGCITY'="":",",1:" ")_$S(DGSTATE'="":DGSTATE,1:"")_" "_$S(DGZIP'="":DGZIP,1:"")
- .I DGFORN W !?8,$S(DGPCODE'="":DGPCODE,1:"")_" "_$S(DGCITY'="":DGCITY,1:"")_$S(DGCITY'="":",",1:" ")_$S(DGPROV'="":DGPROV,1:"")
+ .;I DGFORN W !?8,$S(DGPCODE'="":DGPCODE,1:"")_" "_$S(DGCITY'="":DGCITY,1:"")_$S(DGCITY'="":",",1:" ")_$S(DGPROV'="":DGPROV,1:"") ;DG*1010 comment out
+ .I DGFORN W !?8,$S(DGCITY'="":DGCITY,1:"")_$S(DGCITY'="":",",1:" ")_$S(DGPROV'="":DGPROV,1:"")_" "_$S(DGPCODE'="":DGPCODE,1:"") ;DG*1010 - display postal code last
  ;commenting out, causes address to print 2x. Patch 872
  ;W !?9,$S(DGCITY'="":DGCITY,1:"")_","_$S(DGSTATE'="":DGSTATE,1:"")_" "_$S(DGZIP'="":DGZIP,1:"")
  ;Removing lines from dot structure Patch 872
