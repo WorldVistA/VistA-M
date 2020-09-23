@@ -1,9 +1,11 @@
 IBECEA3 ;ALB/CPM - Cancel/Edit/Add... Add a Charge ;30-MAR-93
- ;;2.0;INTEGRATED BILLING;**7,57,52,132,150,153,166,156,167,176,198,188,183,202,240,312,402,454,563,614,618,646,651,656,663**;21-MAR-94;Build 27
+ ;;2.0;INTEGRATED BILLING;**7,57,52,132,150,153,166,156,167,176,198,188,183,202,240,312,402,454,563,614,618,646,651,656,663,677**;21-MAR-94;Build 17
  ;;Per VA Directive 6402, this routine should not be modified.
  ;
 ADD ; Add a Charge protocol
  N IBGMT,IBGMTR,IBUSNM,IBUC    ;IB*2.0*618 Add IBUSNM IB*2.0*646 Add IBUC
+ ; Check for IB EDIT key.  If not present
+ I '$$IBEDIT^IBECEA36 Q
  S (IBGMT,IBGMTR,IBUC)=0
  S IBCOMMIT=0,IBEXSTAT=$$RXST^IBARXEU(DFN,DT),IBCATC=$$BILST^DGMTUB(DFN),IBCVAEL=$$CVA^IBAUTL5(DFN),IBLTCST=$$LTCST^IBAECU(DFN,DT,1)
  ;I 'IBCVAEL,'IBCATC,'$G(IBRX),+IBEXSTAT<1 W !!,"This patient has never been Means Test billable." S VALMBCK="" D PAUSE^VALM1 G ADDQ1
@@ -128,9 +130,7 @@ UCPAY ;IB*2.0*646 Added to allow for skip of clock checks - required for Urgent 
  I ((IBXA=4)!(IBXA=8)),$$BFCHK^IBECEAU(DFN,IBFR) D PRTWRN G ADDQ
  ;end IB*2.0*651
  ;
- ;IB*2.0*646 If urgent care, process using UC criteria and go to process
- ;I IBXA=4,IBUC D UCCHRG^IBECEA36 G ADDQ:IBY<0,PROC
- ;IB*2.0*TBD Added changes for Urgent Care Visit Tracking
+ ;IB*2.0*663 Added changes for Urgent Care Visit Tracking
  I IBXA=4,IBUC D UCCHRG2^IBECEA36(DFN,IBFR) G ADDQ:IBY<0,PROC
  ;end IB*2.0*646
  ;

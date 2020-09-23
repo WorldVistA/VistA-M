@@ -1,5 +1,7 @@
-DGENA3 ;ALB/CJM,ISA/KWP,RTK,TDM,LBD,PHH,PJR,TDM - Enrollment API - Consistency check 05/05/99 ; 4/10/09 1:27pm
- ;;5.3;Registration;**232,306,327,367,417,454,456,491,514,451,808**;Aug 13,1993;Build 4
+DGENA3 ;ALB/CJM,ISA/KWP,RTK,TDM,LBD,PHH,PJR,TDM,KUM - Enrollment API - Consistency check ;03/23/20 12:41pm
+ ;;5.3;Registration;**232,306,327,367,417,454,456,491,514,451,808,993**;Aug 13,1993;Build 92
+ ;Per VHA Directive 2004-038, this routine should not be modified.
+ ;
  ;CHECKand TESTVAL moved from DGENA1
 CHECK(DGENR,DGPAT,ERRMSG) ;
  ;Phase II consistency checks do not include INACTIVE(3),REJECTED(4),SUSPENDED(5),EXPIRED(8),PENDING(9) enrollment statuses.  References to these statuses have been removed.

@@ -1,5 +1,5 @@
-VAFHLZCT ;ALB/ESD,TDM - Creation of ZCT segment ; 12/9/09 2:10pm
- ;;5.3;Registration;**68,653,754**;Aug 13, 1993;Build 46
+VAFHLZCT ;ALB/ESD,TDM,JAM - Creation of ZCT segment ;12/9/09 2:10pm
+ ;;5.3;Registration;**68,653,754,997**;Aug 13, 1993;Build 42
  ;
  ; This generic extrinsic function transfers information pertaining to
  ; a patient's next of kin through the Emergency Contact (ZCT) segment.
@@ -39,7 +39,8 @@ EN(DFN,VAFSTR,VAFNUM,VAFTYPE,VAFNAMFT) ;function returns ZCT segment containing 
  I VAFSTR[",4," S X=$P(VAFCNODE,"^",2),$P(VAFY,HLFS,4)=$S(X]"":X,1:HLQ) ; Relationship to Patient
  I VAFSTR[",5," D
  . S X1=$G(^DPT(DFN,.22))
- . S X=$$ADDR^VAFHLFNC($P(VAFCNODE,"^",3,7)_"^"_$P(X1,"^",$P($T(TYPE+VAFTYPE),";;",3)))
+ . ; DG*5.3*997; JAM; Add Country, Province and Postal Code to address build (pieces 12-14)
+ . S X=$$ADDR^VAFHLFNC($P(VAFCNODE,"^",3,7)_"^"_$P(X1,"^",$P($T(TYPE+VAFTYPE),";;",3))_"^"_$P(VAFCNODE,"^",12,14))
  . S $P(VAFY,HLFS,5)=$S(X]"":$P(X,HLFS,1),1:HLQ) ; Next of Kin address
  ;
  I VAFSTR[",6," S X=$$HLPHONE^HLFNC($P(VAFCNODE,"^",9)),$P(VAFY,HLFS,6)=$S(X]"":X,1:HLQ) ; Home Phone

@@ -1,8 +1,10 @@
-DGDDDTTM ;ALB/MRL,BAJ,TDM,JAM - TRIGGER DT/TM CROSS REFERENCES [PATIENT] ;18 Sept 2017  12:54 PM
- ;;5.3;Registration;**665,653,688,754,941**;Aug 13, 1993;Build 73
+DGDDDTTM ;ALB/MRL,BAJ,TDM,JAM,JAM - TRIGGER DT/TM CROSS REFERENCES [PATIENT] ;18 Sept 2017  12:54 PM
+ ;;5.3;Registration;**665,653,688,754,941,997**;Aug 13, 1993;Build 42
  ;
  ; This routine contains the code for new style cross-reference record
  ; triggers for the PATIENT File #2.
+ ;
+ ; DG*5.3*997;JAM; Added Country, Province and Postal Code fields in comments for NOK/E-Contact/Designee fields
  ;
 TEMP ; PATIENT File #2 Record Index: ADTTM1
  ; 
@@ -73,6 +75,9 @@ PNOK ; PATIENT File #2 Record Index: ADTTM3
  ;    K-ZIP+4                      (#.2207)
  ;    K-PHONE NUMBER               (#.219)
  ;    K-WORK PHONE NUMBER          (#.21011)
+ ;    K-COUNTRY                    (#.221)
+ ;    K-PROVINCE                   (#.222)
+ ;    K-POSTAL CODE                (#.223)
  ;
  N DGIEN,DATA S DATA(.21012)=$$NOW^XLFDT(),DGIEN=DA
  I $$UPD^DGENDBS(2,.DGIEN,.DATA)
@@ -96,6 +101,9 @@ SNOK ; PATIENT File #2 Record Index: ADTTM4
  ;    K2-ZIP+4                      (#.2203)
  ;    K2-PHONE NUMBER               (#.2199)
  ;    K2-WORK PHONE NUMBER          (#.211011)
+ ;    K2-COUNTRY                    (#.2101)
+ ;    K2-PROVINCE                   (#.2102)
+ ;    K2-POSTAL CODE                (#.2103)
  ;
  N DGIEN,DATA S DATA(.211012)=$$NOW^XLFDT(),DGIEN=DA
  I $$UPD^DGENDBS(2,.DGIEN,.DATA)
@@ -119,6 +127,9 @@ ECON ; PATIENT File #2 Record Index: ADTTM5
  ;    E-ZIP+4                      (#.2201)
  ;    E-PHONE NUMBER               (#.339)
  ;    E-WORK PHONE NUMBER          (#.33011)
+ ;    E-COUNTRY                    (#.3306)
+ ;    E-PROVINCE                   (#.3307)
+ ;    E-POSTAL CODE                (#.3308)
  ;
  N DGIEN,DATA S DATA(.33012)=$$NOW^XLFDT(),DGIEN=DA
  I $$UPD^DGENDBS(2,.DGIEN,.DATA)
@@ -141,6 +152,9 @@ ECON2 ; PATIENT File #2 Record Index: ADTTM6
  ;    E2-ZIP+4                     (#.2204)
  ;    E2-PHONE NUMBER              (#.3319)
  ;    E2-WORK PHONE NUMBER         (#.331011)
+ ;    E2-COUNTRY                   (#.331012)
+ ;    E2-PROVINCE                  (#.331013)
+ ;    E2-POSTAL CODE               (#.331014)
  ;
  N DGIEN,DATA S DATA(.33112)=$$NOW^XLFDT(),DGIEN=DA
  I $$UPD^DGENDBS(2,.DGIEN,.DATA)
@@ -163,6 +177,9 @@ DESIG ; PATIENT File #2 Record Index: ADTTM7
  ;    D-ZIP+4                   (#.2202)
  ;    D-PHONE NUMBER            (#.349)
  ;    D-WORK PHONE NUMBER       (#.34011)
+ ;    D-COUNTRY                 (#.34012)
+ ;    D-PROVINCE                (#.34013)
+ ;    D-POSTAL CODE             (#.34014)
  ;
  N DGIEN,DATA S DATA(.3412)=$$NOW^XLFDT(),DGIEN=DA
  I $$UPD^DGENDBS(2,.DGIEN,.DATA)

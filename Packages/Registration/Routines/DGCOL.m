@@ -1,5 +1,5 @@
 DGCOL ;ALB/MRL - COLLATERAL PATIENT ENTRY-EDIT ; 04 MAY 87
- ;;5.3;Registration;**2,23,32**;Aug 13, 1993
+ ;;5.3;Registration;**2,23,32,993**;Aug 13, 1993;Build 92
 1 K DFN W !! S DGDIR=$S($D(DGDIR):DGDIR,1:1),DIC="^DPT(",DIC(0)="AEQML",DIC("DR")=".03;.09;.02;.3601;1901///^S X=""N"";391///^S X=""COLLATERAL"";.361///^S X=""COLLATERAL OF VET."";.323///^S X=""OTHER NON-VETERANS"";"
  S DLAYGO=2 D ^DIC I Y'>0 S DGDIR=0 K DLAYGO G Q
  S DFN=+Y,DGVET=$S('$D(^DPT(DFN,"VET")):0,^("VET")="Y":1,1:0) I '$P(Y,"^",3),DGVET,'DGDIR G Q
@@ -12,6 +12,7 @@ EN S DGDIR=$S($D(DGDIR):DGDIR,1:0) G Q:'$D(DFN),VET:DGVET
  S DGPHON=$S($D(^DPT(DFN,.13)):$P(^(.13),"^",1),1:""),$P(DGPHON,"^",2)=$S($D(^DPT(DGCOLV,.13)):$P(^(.13),"^",1),1:"")
  W !!,"Phone:  ",$S($P(DGPHON,"^",1)]"":$P(DGPHON,"^",1),1:"UNKNOWN"),?45,"Phone:  ",$S($P(DGPHON,"^",2)]"":$P(DGPHON,"^",2),1:"UNKNOWN")
  W !!,"SPONSOR:  ",$P(^DPT(DGCOLV,0),"^",1),", ",$E($P(^(0),"^",9),1,3),"-",$E($P(^(0),"^",9),4,5),"-",$E($P(^(0),"^",9),6,10)
+ D ENRRO ;DG*5.3*993 - Ask for SELF-SUPPORTED REGISTRATION ONLY REASON
 ASK W !!,"DO YOU WISH TO EDIT COLLATERAL INFORMATION" S %=2 D YN^DICN G Q:%=2!(%=-1) I %=0 W !,"ENTER 'Y'ES OR 'N'O" G ASK
 H W !!,"SHOULD COLLATERAL PATIENT ADDRESS DATA BE SAME AS SPONSOR'S" S %=2 D YN^DICN I %>0 S DGADED=(%-1) G ED
  G Q:%=-1 W !!,"Y - To stuff in sponsor's address data.",!,"N - To edit collateral address data",!,"^ - To QUIT." G H
@@ -22,6 +23,14 @@ AD F I=1:1:5,12,7 I $P(X,"^",I)]"" D
  .S:(I=12)&($L(D)>5) D=$E(D,1,5)_"-"_$E(D,6,20)
  .S $P(AD(C),"^",P)=D S:I=5 $P(AD(C),"^",P)=$S($D(^DIC(5,+D,0)):$P(^(0),"^",1),1:"STATE UNKNOWN") I I=7 S $P(AD(C),"^",P)=$S($D(^DIC(5,+$P(X,"^",5),1,+D,0)):$P(^(0),"^",1),1:"UNKNOWN")
  Q
+ENRRO ;DG*5.3*993 - Ask for SELF-SUPPORTED REGISTRATION ONLY REASON
+ N DGENRODT,DGENRRSN,DGENSRCE,DGNOW,DIR,DTOUT,DUOUT
+ W !!,"SELF-REPORTED REGISTRATION ONLY REASON"
+ S DGENRRSN="" F  D  Q:DGENRRSN'=""
+ . K DIR S DIR(0)=$$SETSET^DGREG(2),DIR("A")="SELF-REPORTED REGISTRATION ONLY REASON" D ^DIR S:$D(Y(0)) DGENRRSN=$$GETSET^DGREG(Y(0))
+ I DGENRRSN S DGNOW=$$NOW^XLFDT(),DGENRODT=DGNOW,DGENSRCE=1 D REGONLY^DGEN(DFN)
+ Q
+ ;DG*5.3*993 End of mods
 VET W !!,*7,"Patient is a veteran and therefore should not be classified utilizing this",!,"option.  If this veteran has Other Entitled Eligibilities please insure that "
  W !,"the appropriate APPOINTMENT TYPE is selected at the time you make the",!,"appointment." G Q
 ECPS K DGELG,DGPS W !!,*7,"Patient already has an eligibility code or period of service on file and",!,"therefore should not be classified using this option.  If this veteran",!,"has Other Entitled Eligibilities, please insure that the"

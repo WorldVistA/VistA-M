@@ -1,5 +1,5 @@
-DPTLK ;ALB/RMO,RTK - MAS Patient Look-up Main Routine ; 3/22/05 4:19pm
- ;;5.3;Registration;**32,72,93,73,136,157,197,232,265,277,223,327,244,513,528,541,576,600,485,633,629,647,769,857,876,915,919**;Aug 13, 1993;Build 4
+DPTLK ;ALB/RMO,RTK,ARF - MAS Patient Look-up Main Routine ; 3/22/05 4:19pm
+ ;;5.3;Registration;**32,72,93,73,136,157,197,232,265,277,223,327,244,513,528,541,576,600,485,633,629,647,769,857,876,915,919,993**;Aug 13, 1993;Build 92
  ;
  ; mods made for magstripe read 12/96 - JFP
  ; mods made for VIC 4.0 (barcode and magstripe) read 4/2012 - ELZ (*857)
@@ -67,7 +67,7 @@ CHKPAT1 .S X=DPTX
  ; -- Puts input in correct format
  G CHKDFN:DPTX=""
  ; -- Force new entry
- I $E(DPTX)="""",$E(DPTX,$L(DPTX))="""" G NOPAT
+ I $E(DPTX)="""",$E(DPTX,$L(DPTX))="""" D STOP G ASKPAT ;DG*5.3*993
  ; -- Check for EDIPI lookup
  I DPTX?10N,DIC(0)["M" D  G:$G(DPTDFN)>0 CHKDFN
  .N DGEDIPI
@@ -77,8 +77,11 @@ CHKPAT1 .S X=DPTX
  .D SETDPT^DPTLK1:Y>0
  .S DPTDFN=$S($D(DPTS(Y)):Y,1:-1)
  ; -- Check for index lookups
- I '$G(DGVIC40)!(DPTX?9N) D ^DPTLK1  D  G QK:$D(DTOUT)!($D(DUOUT)&(DIC(0)'["A")),ASKPAT:$D(DUOUT),CHKPAT:DPTDFN<0,CHKDFN:DPTDFN>0 I DIC(0)["N",$D(^DPT(DPTX,0)) S Y=X D SETDPT^DPTLK1 S DPTDFN=$S($D(DPTS(Y)):Y,1:-1) G CHKDFN
- . I DPTDFN<1,$P($G(XQY0),"^",2)="Register a Patient",$T(PATIENT^MPIFXMLP)'="",'MAG D
+ N DGSTOP S DGSTOP=0
+ I '$G(DGVIC40)!(DPTX?9N) D ^DPTLK1  D  G QK:$D(DTOUT)!($D(DUOUT)&(DIC(0)'["A")),ASKPAT:$D(DUOUT)!(DGSTOP=1),CHKPAT:DPTDFN<0,CHKDFN:DPTDFN>0 I DIC(0)["N",$D(^DPT(DPTX,0)) S Y=X D SETDPT^DPTLK1 S DPTDFN=$S($D(DPTS(Y)):Y,1:-1) G CHKDFN
+ . ;Next lines inclusively stop creation of a patient if Load/Edit Patient Data or Admit A Patient  DG*5.3*993
+ . I DPTDFN=0,$P($G(XQY0),"^",1)="DG LOAD PATIENT DATA"!($P($G(XQY0),"^",1)="DG ADMIT PATIENT") I $G(DIVDIC)'["IBA" I '$T!(X'="^")&(X'="") W:DIC(0)["Q" *7," ??" D STOP Q  ;adding sponsor
+ . I DPTDFN<1,$P($G(XQY0),"^",1)="DG REGISTER PATIENT",$T(PATIENT^MPIFXMLP)'="",'MAG D
  .. S DPTDFN=$$SEARCH^DPTLK7(DPTX,$G(DPTXX))
  .. I DPTDFN<1 K DO,D,DIC("W"),DPTCNT,DPTS,DPTSEL,DPTSZ S DPTDFN=-1,Y=-1,(DPTX,DPTXX)=""
  .. S DPTSZ=1000 I $D(^DD("OS"))#2 S DPTSZ=$S(+$P(^DD("OS",^("OS"),0),U,2):$P(^(0),U,2),1:DPTSZ)
@@ -108,6 +111,13 @@ MAG ; -- No patient found, check for mag stripe input, create stub
  S Y=$$FILE^DPTLK4(DGFLDS,$G(DGVIC40))
  I $P(Y,"^",3)'=1 W !,"Could not add patient to patient file" D QK1 Q
  D QK1
+ Q
+ ;
+STOP ;
+ I $E(DPTX)="""",$E(DPTX,$L(DPTX))="""" W:DIC(0)["Q" *7," ??" ;DG*5.3*993
+ W !!?5,"Use Register A Patient option to add a new person."  ;DG*5.3*993
+ W !!?5,"Press RETURN to continue..." R X:DTIME  ;DG*5.3*993
+ S DGSTOP=1
  Q
  ;
 NOPAT ; -- No patient found, ask to add new
@@ -156,7 +166,7 @@ Q ; --
  ..H 2
  ;
 Q1 ; -- Clean up variables
- K D,DIC("W"),DO,DPTCNT,DPTDFN,DPTIFNS,DPTIX,DPTS
+ K D,DIC("W"),DO,DPTCNT,G,DPTIFNS,DPTIX,DPTS
  K:'$G(DICR) DPTBTDT  ; IF DICR LEAVE FOR DGSEC TO HANDLE
  K DPTSAVX,DPTSEL,DPTSZ,DPTX
  ;

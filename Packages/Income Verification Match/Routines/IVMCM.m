@@ -1,6 +1,11 @@
-IVMCM ;ALB/SEK,KCL,RTK,AEG,BRM,AEG,HM - PROCESS INCOME TEST (Z10) TRANSMISSIONS ;1/8/20 1:48pm
- ;;2.0;INCOME VERIFICATION MATCH;**12,17,28,41,44,53,34,49,59,55,63,77,74,123,115,183,190**;21-OCT-94;Build 47
+IVMCM ;ALB/SEK,KCL,RTK,AEG,BRM,AEG,HM,KUM - PROCESS INCOME TEST (Z10) TRANSMISSIONS ;3/30/20 1:48pm
+ ;;2.0;INCOME VERIFICATION MATCH;**12,17,28,41,44,53,34,49,59,55,63,77,74,123,115,183,190,162**;21-OCT-94;Build 44
+ ;Per VHA Directive 2004-038, this routine should not be modified. 
  ;
+ ;Supported ICRs
+ ; #3812  - $$FINDCUR^DGENA()
+ ; #2056  - $$GET1^DIQ(}
+ ; #2462  - Reference to file #27.11 
  ;
 ORF ; Handler for ORF type HL7 messages received from HEC
  ;
@@ -94,7 +99,7 @@ ENQ ;
  ;
 PROC ; Process each HL7 message from (#772) file
  ;
- N IVMFUTR,TMSTAMP,SOURCE,NODE,HSDATE,IVMZ10,DGMTP,DGMTACT,DGMTI,DGMTA,SRCTST ;IVM*2.0*190
+ N IVMFUTR,TMSTAMP,SOURCE,NODE,HSDATE,IVMZ10,DGMTP,DGMTACT,DGMTI,DGMTA,SRCTST,IVMREGO ;IVM*2.0*190
  S DGMTACT="ADD"
  D PRIOR^DGMTEVT
  S IVMZ10="UPLOAD IN PROGRESS"
@@ -120,6 +125,19 @@ PROC ; Process each HL7 message from (#772) file
  I IVMTYPE,$P($G(^TMP($J,"IVMCM","ZMT2")),HLFS,2) D PROB^IVMCMC("Patient  can not have both a Means Test and Copay Test") Q
  I $P($G(^TMP($J,"IVMCM","ZMT2")),HLFS,2) S IVMTYPE=2 ; CT trans
  ;
+ ; IVM*2.0*162 - BEGIN
+ S IVMREGO=""
+ I (IVMTYPE=1)!(IVMTYPE=2) D
+ .;Find patient's current enrollment record
+ .N IVMENIEN,IVMENRC
+ .S IVMENIEN=""
+ .S IVMENRC=""
+ .; $$FINDCUR^DGENA(DFN) is supported by ICR #3812
+ .S IVMENIEN=$$FINDCUR^DGENA(DFN)
+ .I IVMENIEN S IVMENRC=$$GET1^DIQ(27.11,IVMENIEN_",",.04,"I")
+ .I $G(IVMENRC)=25 S IVMREGO="Y"
+ I IVMREGO="Y" D PROB^IVMCMC("Enrollment Status is Registration Only - not subject to Means Test or RX Copay Test") Q
+ ; IVM*2.0*162 - END
  ; - if no MT or CT or LTC then Income Screening
  I 'IVMTYPE,'$P($G(^TMP($J,"IVMCM","ZMT4")),HLFS,2) S IVMTYPE=3 ; IS trans
  ;

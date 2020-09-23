@@ -1,9 +1,12 @@
-DGRPU ;ALB/MRL,TMK,BAJ,DJE,JAM - REGISTRATION UTILITY ROUTINE ;12/20/2005  5:37PM
- ;;5.3;Registration;**33,114,489,624,672,689,688,935,941**;Aug 13, 1993;Build 73
+DGRPU ;ALB/MRL,TMK,BAJ,DJE,JAM,JAM - REGISTRATION UTILITY ROUTINE ;12/20/2005  5:37PM
+ ;;5.3;Registration;**33,114,489,624,672,689,688,935,941,997**;Aug 13, 1993;Build 42
  ;
 H ;Screen Header
- I DGRPS'=1.1 W @IOF S Z=$P($T(H1+DGRPS),";;",2)_", SCREEN <"_DGRPS_">"_$S($D(DGRPH):" HELP",1:""),X=79-$L(Z)\2 D W
+ ;I DGRPS'=1.1 W @IOF S Z=$P($T(H1+DGRPS),";;",2)_", SCREEN <"_DGRPS_">"_$S($D(DGRPH):" HELP",1:""),X=79-$L(Z)\2 D W
+ I DGRPS'=1.1,DGRPS'?1"11.5" W @IOF S Z=$P($T(H1+DGRPS),";;",2)_", SCREEN <"_DGRPS_">"_$S($D(DGRPH):" HELP",1:""),X=79-$L(Z)\2 D W ; LEG; DG*5.3*997; excluded 11.5
  I DGRPS=1.1 W @IOF S Z="ADDITIONAL PATIENT DEMOGRAPHIC DATA, SCREEN <"_DGRPS_">"_$S($D(DGRPH):" HELP",1:""),X=79-$L(Z)\2 D W
+ ;ASF; DG*5.3*997; add 11.5 screen
+ I DGRPS?1"11.5" W @IOF S Z="ADDITIONAL ELIGIBILITY VERIFICATION DATA, SCREEN <"_DGRPS_">"_$S($D(DGRPH):" HELP",1:""),X=79-$L(Z)\2 D W
  S X=$$SSNNM(DFN)
  I '$D(DGRPH) W !,X S X=$S($D(DGRPTYPE):$P(DGRPTYPE,"^",1),1:"PATIENT TYPE UNKNOWN"),X1=79-$L(X) W ?X1,X
  S X="",$P(X,"=",80)="" W !,X Q
@@ -14,14 +17,19 @@ A ;Format address(es)
  I '$D(DGLEN) N DGLEN S DGLEN=29
  N I,DGX,FILE,IEN,CNTRY,TMP,FNODE,FPCE,ROU
  ; set up variables
- S FNODE=$S(DGAD=.121:.122,1:DGAD),FPCE=$S(DGAD=.121:3,DGAD=.141:16,1:10)
+ ; jam; DG*5.3*997; foreign address code for NOK/e-contact addresses .21, .211, .33, .331, .34 - country code is in piece 12
+ ;S FNODE=$S(DGAD=.121:.122,1:DGAD),FPCE=$S(DGAD=.121:3,DGAD=.141:16,1:10)
+ S FNODE=$S(DGAD=.121:.122,1:DGAD),FPCE=$S(DGAD=.121:3,DGAD=.141:16,DGAD=.21:12,DGAD=.211:12,DGAD=.33:12,DGAD=.331:12,DGAD=.34:12,1:10)
  ; collect Street Address info
  F I=DGA1:1:DGA1+2 I $P(DGRP(DGAD),U,I)]"" S TMP(DGA2)=$P(DGRP(DGAD),U,I),DGA2=DGA2+2
  I DGA2=1 S TMP(1)="STREET ADDRESS UNKNOWN",DGA2=DGA2+2
  ; retrieve country info -- PERM country is piece 10 of node .11
  S FOR=0
- I DGA1=1 D
- . S FILE=779.004,IEN=$P(DGRP(FNODE),U,FPCE),CNTRY=$E($$CNTRYI^DGADDUTL(IEN),1,25) I CNTRY=-1 S CNTRY="UNKNOWN COUNTRY"
+ ; jam; DG*5.3*997; add the country retrieval for screen 3 - NOK/e-contact/designee addresses
+ ;I DGA1=1 D
+ I DGA1=1!(DGAD=.21)!(DGAD=.211)!(DGAD=.33)!(DGAD=.331)!(DGAD=.34) D
+ . ; JAM; DG*5.3*997 - in the $E below, change the length of the CNTRY from 25 chars to DGLEN chars 
+ . S FILE=779.004,IEN=$P(DGRP(FNODE),U,FPCE),CNTRY=$E($$CNTRYI^DGADDUTL(IEN),1,DGLEN) I CNTRY=-1 S CNTRY="UNKNOWN COUNTRY"
  . ; assemble (US) CITY, STATE ZIP or (FOREIGN) CITY PROVINCE POSTAL CODE
  . S FOR=$$FORIEN^DGADDUTL(IEN) I FOR=-1 S FOR=1
  S ROU=$S(FOR=1:"FOREIGN",1:"US")_"(DGAD,.TMP,DGA1,.DGA2)" D @ROU
@@ -56,9 +64,14 @@ FOREIGN(DGAD,TMP,DGA1,DGA2) ;process FOREIGN addresses and format in DGA array
  N I,J,CITY,PRVNCE,PSTCD,FNODE
  F I=1:1 S J=$P($T(FNPCS+I),";;",3) Q:J="QUIT"  D
  . I DGAD=$P(J,";",1) S FNODE=$P(J,";",2),CITY=$P(J,";",3),PRVNCE=$P(J,";",4),PSTCD=$P(J,";",5)
- ; assemble CITY PROVINCE and POSTAL CODE on the same line
+ ; Assemble CITY PROVINCE and POSTAL CODE on the same line
  ; NOTE CITY is sometimes on a different node than the PROVINCE & POSTAL CODE
- S TMP(DGA2)=$P(DGRP(FNODE),U,PSTCD)_" "_$P(DGRP(DGAD),U,CITY)_" "_$P(DGRP(FNODE),U,PRVNCE)
+ ; DG*5.3*997; jam; For screen 3 put Province and Postal Code to a separate line
+ ;   - for other screens, rearrange output so City is followed by Province and then Postal code
+ I $G(DGRPS)=3 D
+ . S TMP(DGA2)=$P(DGRP(DGAD),U,CITY)
+ . S DGA2=DGA2+2 S TMP(DGA2)=$P(DGRP(FNODE),U,PRVNCE)_" "_$P(DGRP(FNODE),U,PSTCD)
+ E  S TMP(DGA2)=$P(DGRP(DGAD),U,CITY)_" "_$P(DGRP(FNODE),U,PRVNCE)_" "_$P(DGRP(FNODE),U,PSTCD)
  F I=0:0 S I=$O(TMP(I)) Q:'I  S TMP(I)=$E(TMP(I),1,DGLEN)
  Q
  ;
@@ -67,11 +80,17 @@ W I IOST="C-QUME",$L(DGVI)'=2 W ?X,Z Q
  Q
  ;
  ; JAM - Patch DG*5.3*941, Add Residential address type
+ ; JAM - Patch DG*5.3*997, Add NOK/e-contact address types
 FNPCS ; Foreign data pieces. Structure-->Description;;Main Node;Data Node;City;Province;Postal code.
  ;;Permanent;;.11;.11;4;8;9
  ;;Temporary;;.121;.122;4;1;2
  ;;Confidential;;.141;.141;4;14;15
  ;;Residential;;.115;.115;4;8;9
+ ;;NOK;;.21;.21;6;13;14
+ ;;NOK2;;.211;.211;6;13;14
+ ;;E;;.33;.33;6;13;14
+ ;;E2;;.331;.331;6;13;14
+ ;;D;;.34;.34;6;13;14
  ;;QUIT;;QUIT
  ;
 H1 ;

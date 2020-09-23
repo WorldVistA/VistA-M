@@ -1,5 +1,5 @@
-DVBCCNCL ;ALB/GTS - 557/THM-2507 CANCEL REQUESTS, EXAMS ; 9/23/91  9:25 AM
- ;;2.7;AMIE;**102,184,193,194**;Apr 10, 1995;Build 84
+DVBCCNCL ;ALB/GTS,LAB - 557/THM-2507 CANCEL REQUESTS, EXAMS ;05/09/2019
+ ;;2.7;AMIE;**102,184,193,194,214**;Apr 10, 1995;Build 1
  ;
  G EN
 LOOK1 S EXAM=$S($D(^DVB(396.6,$P(^DVB(396.4,JZ,0),U,3),0)):$P(^(0),U,1),1:"Unknown")
@@ -53,7 +53,8 @@ EXMSEL S REQDA=DA(1),Y=$$EXSRH^DVBCUTL4("Select EXAM TO CANCEL: ","I $D(^DVB(396
  F  D ^DIC Q:X'=""  W " ??",!,"     Enter the response which best describes the reason for the cancellation."
  I +Y<0 G EXIT
  S DVBACR=+Y
- S DR="52////"_DVBACR_";.04////"_CCODE_";51////^S X=DUZ;50///NOW",DIE="^DVB(396.4,"
+ ;DVBA*2.7*214 VSR change four slashes to three slashes for validation
+ S DR="52///"_DVBACR_";.04///"_CCODE_";51////^S X=DUZ;50///NOW",DIE="^DVB(396.4,"
  S DA=EXMPTR D ^DIE K DR,DIE G:($D(Y))!($D(DTOUT)) EXIT
  S STAT=$P(^DVB(396.4,DA,0),U,4),REASON=+$P(^DVB(396.4,DA,"CAN"),U,3)
  G:REASON=0 LOOK S $P(^TMP($J,EXMNM),U,1)=STAT

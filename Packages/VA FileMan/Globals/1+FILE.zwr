@@ -1,6 +1,6 @@
 OSEHRA ZGO Export: FILE
 ZWR
-^DIC(0)="FILE^1^9999999.64^2829"
+^DIC(0)="FILE^1^9999999.64^2830"
 ^DIC(".11",0)="INDEX^.11"
 ^DIC(".11",0,"DD")="^"
 ^DIC(".11",0,"DEL")="^"
@@ -563,7 +563,7 @@ ZWR
 ^DIC(2,"%D",14,0)="in the file you will note that many are preceeded by an asterisk."
 ^DIC(2,"%D",15,0)="Those fields are scheduled to be removed from the file due to either"
 ^DIC(2,"%D",16,0)="lack of use or replacement by another field/file in the next release."
-^DIC(2,"%MSC")=3200713.172407
+^DIC(2,"%MSC")=3200824.161748
 ^DIC("3.05",0)="FAILED ACCESS ATTEMPTS LOG^3.05"
 ^DIC("3.05",0,"DD")="@"
 ^DIC("3.05",0,"DEL")="@"
@@ -1824,7 +1824,7 @@ ZWR
 ^DIC("27.11","%D",2,0)="not be added, edited, or deleted except through the use of the enrollment"
 ^DIC("27.11","%D",3,0)="software that is part of Registration.  Doing so would likely cause the"
 ^DIC("27.11","%D",4,0)="enrollment database to become corrupted."
-^DIC("27.11","%MSC")=3200601.164356
+^DIC("27.11","%MSC")=3200824.161748
 ^DIC("27.12",0)="ENROLLMENT QUERY LOG^27.12"
 ^DIC("27.12",0,"GL")="^DGEN(27.12,"
 ^DIC("27.12","%D",0)="^^2^2^2971027^"
@@ -1839,7 +1839,7 @@ ZWR
 ^DIC("27.15",0,"GL")="^DGEN(27.15,"
 ^DIC("27.15","%D",0)="^^1^1^2990621^^^"
 ^DIC("27.15","%D",1,0)="This file will contain the statuses associated with an enrollment application."
-^DIC("27.15","%MSC")=3171227.133355
+^DIC("27.15","%MSC")=3200824.161748
 ^DIC("27.16",0)="ENROLLMENT GROUP THRESHOLD^27.16"
 ^DIC("27.16",0,"GL")="^DGEN(27.16,"
 ^DIC("27.16","%D",0)="^^1^1^2990628^^^^"
@@ -2886,8 +2886,9 @@ ZWR
 ^DIC("50.7","%","B","GMTS",1)=""
 ^DIC("50.7","%D",0)="^^1^1^2941026^"
 ^DIC("50.7","%D",1,0)="Order Entry name for items that can be ordered in the Pharmacy package."
-^DIC("50.7","%MSC")=3190708.16395
+^DIC("50.7","%MSC")=3200810.125253
 ^DIC("50.713","%MSC")=3180403.154905
+^DIC("50.714","%MSC")=3200810.125253
 ^DIC("50.8",0)="IV STATS^50.8P"
 ^DIC("50.8",0,"DD")="@"
 ^DIC("50.8",0,"DEL")="^"
@@ -11985,6 +11986,7 @@ ZWR
 ^DIC("301.92","%D",7,0)="should not be altered in any way."
 ^DIC("301.92","%D",8,0)=" "
 ^DIC("301.92","%D",9,0)="Per VHA Directive 10-93-142, this file definition should not be modified."
+^DIC("301.92","%MSC")=3200810.125927
 ^DIC("301.93",0)="IVM CASE CLOSURE REASON^301.93"
 ^DIC("301.93",0,"GL")="^IVM(301.93,"
 ^DIC("301.93","%D",0)="^^5^5^2940825^^^"
@@ -18105,7 +18107,7 @@ ZWR
 ^DIC("408.31",0,"WR")="@"
 ^DIC("408.31","%D",0)="^^1^1^2940316^^^^"
 ^DIC("408.31","%D",1,0)="This file contains the annual financial tests for a veteran."
-^DIC("408.31","%MSC")=3200515.0934
+^DIC("408.31","%MSC")=3200810.125927
 ^DIC("408.32",0)="MEANS TEST STATUS^408.32I"
 ^DIC("408.32",0,"DD")="@"
 ^DIC("408.32",0,"DEL")="@"
@@ -18173,6 +18175,20 @@ ZWR
 ^DIC("408.42","%D",2,0)="can be made to a means test.  This is a table file.  The types of changes"
 ^DIC("408.42","%D",3,0)="within this file are selectable only if active."
 ^DIC("408.42","%D",4,0)=" The MEANS TEST CHANGES file points to this file."
+^DIC("408.43",0)="PATIENT REGISTRATION ONLY REASON^408.43"
+^DIC("408.43",0,"AUDIT")="@"
+^DIC("408.43",0,"DD")="@"
+^DIC("408.43",0,"DEL")="@"
+^DIC("408.43",0,"GL")="^DG(408.43,"
+^DIC("408.43",0,"LAYGO")="@"
+^DIC("408.43",0,"RD")="@"
+^DIC("408.43",0,"WR")="@"
+^DIC("408.43","%",0)="^1.005^^0"
+^DIC("408.43","%D",0)="^^3^3^3200204^"
+^DIC("408.43","%D",1,0)="This file contains a list of reasons that can be selected when a user is "
+^DIC("408.43","%D",2,0)="creating a patient that either does not want to be enrolled for VA care "
+^DIC("408.43","%D",3,0)="(Registration only) or is a Collateral patient."
+^DIC("408.43","%MSC")=3200824.161748
 ^DIC("409.1",0)="APPOINTMENT TYPE^409.1"
 ^DIC("409.1",0,"DD")="@"
 ^DIC("409.1",0,"DEL")="@"
@@ -40608,6 +40624,7 @@ ZWR
 ^DIC("B","PATIENT MOOD ","135.3")=""
 ^DIC("B","PATIENT MOVEMENT",405)=""
 ^DIC("B","PATIENT NOTIFICATION (Rx READY","52.11")=""
+^DIC("B","PATIENT REGISTRATION ONLY REAS","408.43")=""
 ^DIC("B","PATIENT RELATION","408.12")=""
 ^DIC("B","PATIENT TASK","102.3")=""
 ^DIC("B","PATIENT TEAM ASSIGNMENT","404.42")=""

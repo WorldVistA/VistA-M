@@ -1,5 +1,5 @@
-DGMTR1 ;ALB/CJM,SCG,LBD,BDB,HM - Check Means Test Requirements Cont'd;3/25/92  09:51
- ;;5.3;Registration;**182,344,433,456,564,688,840,858,972**;Aug 13, 1993;Build 80
+DGMTR1 ;ALB/CJM,SCG,LBD,BDB,HM,DSB - Check Means Test Requirements Cont'd;3/25/92  09:51
+ ;;5.3;Registration;**182,344,433,456,564,688,840,858,972,993**;Aug 13, 1993;Build 92
  ;
 COPYRX(DFN,MTIEN) ;
  ;Creates a Pharmacy Copay test based on the means test if the vet is
@@ -102,6 +102,10 @@ CHK(DFN) ;
  ;
  I $P($G(^DPT(DFN,"VET")),U,1)'="Y" S DGMTCOR=0 G CHKQ ;NON-VET
  S DGI=$P($G(^DPT(DFN,.36)),U) I 'DGI S DGMTCOR=0 G CHKQ ;NO PRIM ELIG
+ ;Begin DG*5.3*993 Registration only
+ I $G(DGENRYN)=0 S DGMTCOR=0 G CHKQ
+ I '$G(DGENRYN) N STATUS S STATUS=$$STATUS^DGENA(DFN) I STATUS=25 S DGMTCOR=0 G CHKQ
+ ;End DG*5.3*993
  S DGELIG=U_$P($G(^DIC(8,+DGI,0)),U,9)_U
  S DGI=0 F  S DGI=$O(^DPT(DFN,"E",DGI)) Q:'DGI  S DGE=$P($G(^DPT(DFN,"E",DGI,0)),U),DGELIG=DGELIG_$P($G(^DIC(8,+DGE,0)),U,9)_U
  I (DGELIG["^1^") S DGMTCOR=0 G CHKQ  ;SC 50-100%

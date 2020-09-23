@@ -1,10 +1,18 @@
 VIABRPC3 ;AAC/PB - VIA RPCs ;10/06/2016
- ;;1.0;VISTA INTEGRATION ADAPTER;**9**;06-FEB-2014;Build 1
- ;
- ; DBIA 10040   ^SC(
- ; DBIA 2263    XPAR APIS
- ; DBIA 4546    PSSP51P
- ; DBIA 2388    ^LAB(61
+ ;;1.0;VISTA INTEGRATION ADAPTER;**9,20**;06-FEB-2014;Build 5
+ ;Per VA Directive 6402, this routine should not be modified.
+ ;Reference to ^SC( supported by IA 10040
+ ;Reference to XPAR APIS supported by IA 2263
+ ;Reference to PSSP51P supported by IA 4546
+ ;Reference to ^LAB(61 supported by IA 2388
+ ;Reference to $$VALID^LR7OV4 supported by IA 2429#
+ ; supported ICRs below.
+ ;Reference to ^%DTC supported by IA # 10003
+ ;Reference to $$FIND1^DIC supported by IA #2051
+ ;Reference to GETS^DIQ supported by IA 2056#
+ ;Reference to ^XLFDT supported by IA #10103
+ ;Reference to ^XPAR supported by IA #2263
+ ;Reference to DEM^VADPT supported by IA #10061
  ;
  ; This is routine contains several OR RPCs that have been cloned into the VIAB namespace
  Q
@@ -118,3 +126,36 @@ DEATEXT(RESULT) ;returns the mandatory dea text to show when a user checks a con
  D GETWP^XPAR(.VIAY,"SYS","OR DEA TEXT")
  S I=0 F  S I=$O(VIAY(I)) Q:'I  S RESULT(I)=VIAY(I,0)
  Q
+ ;
+GETDEM(RESULT,DFN) ; GET PATIENT DEMOGRAPHICS (Supported (#10061) DEM^VADPT API Call, PIMS Technical manual)
+ ;INPUT DFN (REQUIRED)
+ ;RETURNS RESULT ARRAY IN FORMAT OF:
+ ;RESULT(1) The NAME of the patient. (e.g., ADTPATIENT,ONE)
+ ;RESULT(2) The SSN of the patient in internal^external format.
+ ;RESULT(3) The DOB of the patient in internal^external format.
+ ;RESULT(4) The AGE of the patient as of today, unless a date of death exists, in which case the age returned will be as of that date. (e.g., 36)
+ ;RESULT(5) The SEX of the patient in internal^external format. (e.g., M^MALE)
+ ;RESULT(6) The DT Of Death of the patient, should one exist, in internal^external format.
+ ;RESULT(7) Any REMARKS concerning this patient which may be on file. (e.g., Need to obtain dependent info.)
+ ;RESULT(8) (Deprecated - see RESULT(12))
+ ;RESULT(9) The RELIGION of the patient in internal^external format. (e.g., 99^CATHOLIC)
+ ;RESULT(10) The MARITAL STATUS of the patient in internal^external format. (e.g., 1^MARRIED)
+ ;RESULT(11) Number of entries found in the ETHNICITY INFORMATION multiple. (e.g., 1) 
+ ;  "," Nth repetition of ETHNICITY INFORMATION for the patient in internal^external format. (e.g., 1^HISPANIC OR LATINO)
+ ;    "," METHOD OF COLLECTION for the Nth repetition of ETHNICITY
+ ;RESULT(12) Number of entries found in the RACE INFORMATION multiple.
+ ;  "," Nth repetition of RACE INFORMATION for the patient in internal^external format. (e.g., 11^WHITE)
+ ;    "," METHOD OF COLLECTION for the Nth repetition of RACE INFORMATION for the patient in internal^external format. (e.g., 2^PROXY))
+ ;RESULT(13) Patients' current pt preferred language (FM version^human readable)
+ ;  "," Pointer^human readable
+ ;RESULT("BID") The PRIMARY SHORT ID for a patient. The format of this variable will depend on the type of patient if VAPTYP is set. (e.g., 6789)
+ ;RESULT("PID") The PRIMARY LONG ID for a patient. The format of this variable will depend on the type of patient if VAPTYP is set. (e.g., 000-45-6789)
+ ;Global Array will send data to webservice without array subscripts
+ ;
+ I $G(DFN)="" S RESULT(0)="DFN REQUIRED - NOT RECEIVED" Q
+ S RESULT=$NA(^TMP("VIABDEM",$J))
+ D DEM^VADPT
+ M ^TMP("VIABDEM",$J)=VADM K VADM
+ M ^TMP("VIABDEM",$J)=VA K VA
+ Q
+ ;

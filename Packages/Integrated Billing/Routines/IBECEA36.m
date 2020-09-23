@@ -1,17 +1,17 @@
 IBECEA36 ;ALB/CPM-Cancel/Edit/Add... Urgent Care Add Utilities ; 23-APR-93
- ;;2.0;INTEGRATED BILLING;**646,663,671**;21-MAR-94;Build 13
+ ;;2.0;INTEGRATED BILLING;**646,663,671,677**;21-MAR-94;Build 17
  ;;Per VA Directive 6402, this routine should not be modified.
  ;
  ;File 27.11 call - DBIA 5158
- ;
+ ;File, 2, #3014 call - DBIA 7182
  ;
 PRTUCVST(DFN,IBDT,IBDUPFLG) ; Print the UC visits for a calendar year
  ;
- N IBCT,IBDATA,IBFRCT,IBI,IBLDT
+ N IBCT,IBDATA,IBFRCT,IBI,IBLDT,IBDCT
  K ^TMP($J,"IBUCVST")  ;clear previous lookup if any
  S IBCT=$$GETVST(DFN,IBDT)
- S IBFRCT=$P(IBCT,U,2),IBCT=$P(IBCT,U)
- W !!,"This patient has had ",IBCT," Urgent Care "_$S(IBCT=1:"visit",1:"visits")," this calendar year:",!
+ S IBFRCT=$P(IBCT,U,2),IBDCT=$P(IBCT,U,3),IBCT=$P(IBCT,U)
+ W !!,"This patient has had ",IBDCT," Urgent Care "_$S(IBCT=1:"visit",1:"visits")," this calendar year:",!
  ;
  ;Display the visits...
  I IBCT>0 D
@@ -33,8 +33,13 @@ PRTUCVST(DFN,IBDT,IBDUPFLG) ; Print the UC visits for a calendar year
  ;
 GETVST(DFN,IBDT) ;Retrieve the UC visits as recorded in VistA during the calendar year being
  ; being billed
- N IBCAL,IBCT,IBI,IBSITE,IBSTAT,IBCMT,IBBILL,IBBLCMT,IBSITECD,IBSITENM,IBVDT
- S (IBCT,IBFRCT,IBI)=0,(IBBILL,IBCMT)=""
+ ;
+ ; Returns:
+ ;          Total Count of visits ^ Total Free Count of Visits ^ Total Display Count (no REMOVED) visits
+ ;
+ N IBCAL,IBCT,IBI,IBSITE,IBSTAT,IBCMT,IBBILL,IBBLCMT,IBSITECD,IBSITENM,IBVDT,IBDCT
+ ;
+ S (IBDCT,IBCT,IBFRCT,IBI)=0,(IBBILL,IBCMT)=""
  ;determine calendar year(ADD 1700 to first three digits in the FileMan date
  S IBCAL=+$E(IBDT,1,3)
  ;Loop through the tracking DB to find all of the visits for that calendar year.
@@ -43,13 +48,14 @@ GETVST(DFN,IBDT) ;Retrieve the UC visits as recorded in VistA during the calenda
  .  S IBVDT=$P(IBDATA,U,3)
  .  ; Only retrieve the visits from the calendar year being billed
  .  Q:$E(IBVDT,1,3)'=IBCAL
- .  S IBCT=IBCT+1
  .  I $P(IBDATA,U,2)'="" D
  .  .  S IBSITE=$$GET1^DIQ(351.82,IBI_",",.02,"I")
  .  .  S IBSITECD=$$GET1^DIQ(4,IBSITE_",",99,"I")
  .  .  S IBSITENM=$$GET1^DIQ(4,IBSITE_",",.01,"E")
  .  .  S IBSITE=$E(IBSITECD_"-"_IBSITENM,1,20)
  .  S IBSTAT=$$GET1^DIQ(351.82,IBI_",",.04)
+ .  S:IBSTAT'="REMOVED" IBDCT=IBDCT+1   ; Moved from above and prevented REMOVED visits from counting
+ .  S IBCT=IBCT+1   ; Moved from above and prevented REMOVED visits from counting
  .  S:IBSTAT="FREE" IBFRCT=IBFRCT+1
  .  S IBBILL=$P(IBDATA,U,5)
  .  S IBBLCMT=""
@@ -57,7 +63,7 @@ GETVST(DFN,IBDT) ;Retrieve the UC visits as recorded in VistA during the calenda
  .  S IBCMT=$$GET1^DIQ(351.82,IBI_",",.06)
  .  ; Still need to add comments, convert date to external, and convert site to display
  .  S ^TMP($J,"IBUCVST",IBVDT,IBCT)=$$FMTE^XLFDT(IBVDT)_U_$G(IBSITE)_U_IBSTAT_U_IBBLCMT_U_IBCMT
- Q IBCT_U_IBFRCT
+ Q IBCT_U_IBFRCT_U_IBDCT
  ;
 PRTMSSN ; Print the Mission Act Exemption Message (May get moved to IB ERROR File to use IB ERROR functionality)
  ;
@@ -165,6 +171,8 @@ ADDVST(DFN,IBDT,IBN,IBSTATUS,IBREAS,IBSITE) ; Update the Visit Tracking DB
  ;              1 - FREE
  ;              2 - BILLED (i.e. copay was created)
  ;              3 - Not Counted (i.e. UC visit was cancelled at the site)
+ ;              4 - Visit Only (Visit counted, but no bill produced)
+ ;   IBREAS   - Code # for the comment
  ;   IBCMT    - Add SC/SA/SV (1) comment if adding a visit for a PG6.
  ;   IBSITE   - (Optional) Site where the copay was charged.  Defaults to IBFAC if not passed in.
  ;
@@ -248,7 +256,7 @@ GETELGP(IBDFN,IBDOS) ; Function to return a patient's Enrollment Priority Group 
  ;                            or
  ;                   -1^<error message> if Error occurred during Enrollment Lookup
  ;
- N IBOUT,IBCHK,I,IBDATA,IBELIG,IBEFDT
+ N IBOUT,IBCHK,I,IBDATA,IBELIG,IBEFDT,IBELKUP,IBOLD,IBSCEFDT
  ;
  S IBOUT=""  ;initialize the Enrollment groupt array
  S IBCHK=$$GETELIG(IBDFN,.IBOUT)
@@ -276,4 +284,26 @@ GETELGP(IBDFN,IBDOS) ; Function to return a patient's Enrollment Priority Group 
  I IBLKDT="" Q 8            ; No Enrollment for that date found, assume PG 8
  S IBELKUP=$G(IBOUT("SDATE",IBLKDT))
  ;
+ Q:IBELKUP<7 IBELKUP    ; If Priority Group is <7, then don't perform a retro lookup and quit
+ ;
+ ; Retro award lookup for PG 7's and 8's 
+ S IBSCEFDT=$$GET1^DIQ(2,IBDFN_",",.3014,"I")  ; effective SC % date  DBIA 7182
+ ;
+ ; If no SC % Effective Date, then quit with previously found PG.
+ Q:$G(IBSCEFDT)="" IBELKUP
+ ;
+ ;Check to see of there is a Retro award. Effective SC % date < EG Effective Date
+ I IBSCEFDT'<IBLKDT Q IBELKUP
+ ;
+ ;perform a new lookup using the SC % Effective Date
+ S:IBSCEFDT'="" IBELKUP=$G(IBOUT("SDATE",IBSCEFDT))
+ ;
  Q +IBELKUP
+ ;
+IBEDIT()  ;Check to see if the user has the IB EDIT Key to allow the user to add a copay
+ ;
+ I '$D(^XUSEC("IB EDIT",DUZ)) D  Q 0
+ . W !!,"IB EDIT Key Required to Add a Charge"  ; Write the message
+ . R !!,?10,"Press any key to continue.    ",IBX:DTIME
+ ;
+ Q 1

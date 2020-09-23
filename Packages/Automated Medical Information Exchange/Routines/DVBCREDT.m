@@ -1,5 +1,5 @@
-DVBCREDT ;ALB/GTS-557/THM-EDIT STATIC C&P INFO ; 11/20/90  6:29 AM
- ;;2.7;AMIE;**193**;Apr 10, 1995;Build 84
+DVBCREDT ;ALB/GTS/THM/LAB - EDIT STATIS C&P INFO ;Sep 23, 2019@16:41
+ ;;2.7;AMIE;**193,214**;Apr 10, 1995;Build 1
  ;
  ;**Note:  Priority E is Insufficient
  ;         Priority 'E is not insufficient
@@ -96,7 +96,8 @@ RESTORE ;** Remove insufficient info from 2507
  K DIE,DA,DR
  D CLINSF^DVBCLOG2 ;**Clear 2507 info
  I $D(RESET) DO  ;**Reset Priority
- .S DA=REQDA,DR="9////^S X=DVBARQST",DIE="^DVB(396.3,"
+ .; lab dvba*2.7*214 changed //// to /// to add validation
+ .S DA=REQDA,DR="9///^S X=DVBARQST",DIE="^DVB(396.3,"
  .D ^DIE K DA,DR,DIE
  I $D(EXMCLR) DO  ;**Clear exam info
  .F XMDA=0:0 S XMDA=$O(^DVB(396.4,"C",REQDA,XMDA)) Q:(XMDA="")  DO

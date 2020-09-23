@@ -1,5 +1,5 @@
 IBECEA37 ;EDE/WCJ-Multi-site maintain UC VISIT TRACKING FILE (#351.82) - CALLER/REQUESTOR ; 2-DEC-19
- ;;2.0;INTEGRATED BILLING;**663,671,669**;21-MAR-94;Build 20
+ ;;2.0;INTEGRATED BILLING;**663,671,669,677**;21-MAR-94;Build 17
  ;;Per VA Directive 6402, this routine should not be modified.
  ;; DBIA#1621 %ZTER (ERROR RECORDING)
  ;; DBIA#2729 MESSAGE ACTION API
@@ -81,6 +81,7 @@ MULTI(IBINDEX,IBLOOKUP) ;
  . I IBOSITEIN'=IBFAC D REMOVE(IBIEN) Q  ; if treatment is not for the current site, don't push out - it was pushed here.  Only originating sites should push.
  . S IBOSITEEX=$$GET1^DIQ(4,IBOSITEIN,99)   ; turn external site # into internal one
  . ;
+ . K IBTFL
  . S IBT=$$TFL(IBDFN,IBOSITEEX,.IBTFL)
  . I 'IBT D REMOVE(IBIEN) Q   ; not seen at other treating facilites so no where to send - done with entry
  . ; 

@@ -18937,7 +18937,7 @@ ZWR
 ^DIE(1697,0)="RMPR ENTER CONTRACT^3050203.1529^@^660^^@^3050203"
 ^DIE(1697,"DR",1,660)="D SERIAL^RMPRUTL4;W !,""Patient Name: ""_RMPRX(660,DA_"","",.02,""E"");W !,""Form: ""_RMPRX(660,DA_"","",11,""E"");W !,""Transaction #: ""_RMPRX(660,DA_"","",23,""E"");W !,""Brief Desc: ""_RMPRX(660,DA_"","",24,""E"");"
 ^DIE(1697,"DR",1,660,1)="W !,""PSAS HCPCS: ""_RMPRX(660,DA_"","",4.5,""E"");W !,""Item: ""_RMPRX(660,DA_"","",89,""E"");W !,""Vendor: ""_RMPRX(660,DA_"","",7,""E"");W !,""Initiator: ""_RMPRX(660,DA_"","",27,""E"");38.7;"
-^DIE(1698,0)="XTPM COMPLETE NON-KIDS PATCH^3050721.0643^@^9.9^^@^3200730"
+^DIE(1698,0)="XTPM COMPLETE NON-KIDS PATCH^3050721.0643^@^9.9^^@^3200827"
 ^DIE(1698,"DIAB",1,0,9.9,0)="12;""DATE COMPLETED"""
 ^DIE(1698,"DIAB",1,0,9.9,1)="13//USER(""N"")"
 ^DIE(1698,"DR",1,9.9)="12DATE COMPLETED~;I X']"""" S Y=""@1"";Q;"

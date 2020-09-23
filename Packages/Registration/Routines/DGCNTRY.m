@@ -1,5 +1,5 @@
-DGCNTRY ;BAJ,JAM - REGISTRATION SCREEN 7/CROSS REFERENCE CLEANUP ;15 Feb 2018  4:03 PM
- ;;5.3;Registration;**688,941**;Aug 13, 1993;Build 73
+DGCNTRY ;BAJ,JAM,JAM - REGISTRATION SCREEN 7/CROSS REFERENCE CLEANUP ;15 Feb 2018  4:03 PM
+ ;;5.3;Registration;**688,941,997**;Aug 13, 1993;Build 42
  ;
  ; This routine is called by a New style MUMPS index named AXCNTRY
  ; The purpose of this routine is to clear certain fields when the Country field is changed
@@ -7,6 +7,7 @@ DGCNTRY ;BAJ,JAM - REGISTRATION SCREEN 7/CROSS REFERENCE CLEANUP ;15 Feb 2018  4
  ;                       X2(#) contains the NEW values
  ;               
  ; DG*5.3*941 - JAM - Updated for Residential Address fields - see tag DTABLE. Related to index AXRCNTRY.
+ ; DG*5.3*997 - JAM - Updated for NOK/E-Contact Address fields - see tag DTABLE. Related to indexes AXNCNTRY, AXN2CNTRY, AXECNTRY, AXE2CNTRY, AXDCNTRY.
  ;
 EN(FILE,ATYPE,FIELD) ; entry point
  ;
@@ -49,4 +50,24 @@ DTABLE ;TABLE of Foreign and Domestic fields: structure -->>;;DESCRIPTION;;(F)OR
  ;;STATE;;D;RESI;2;.11573;.1155
  ;;COUNTY;;D;RESI;2;.11573;.1157
  ;;ZIP+4;;D;RESI;2;.11573;.1156
+ ;;PROVINCE;;F;NOK;2;.221;.222
+ ;;POSTAL CODE;;F;NOK;2;.221;.223
+ ;;STATE;;D;NOK;2;.221;.217
+ ;;ZIP+4;;D;NOK;2;.221;.2207
+ ;;PROVINCE;;F;NOK2;2;.2101;.2102
+ ;;POSTAL CODE;;F;NOK2;2;.2101;.2103
+ ;;STATE;;D;NOK2;2;.2101;.2197
+ ;;ZIP+4;;D;NOK2;2;.2101;.2203
+ ;;PROVINCE;;F;EC;2;.3306;.3307
+ ;;POSTAL CODE;;F;EC;2;.3306;.3308
+ ;;STATE;;D;EC;2;.3306;.337
+ ;;ZIP+4;;D;EC;2;.3306;.2201
+ ;;PROVINCE;;F;EC2;2;.331012;.331013
+ ;;POSTAL CODE;;F;EC2;2;.331012;.331014
+ ;;STATE;;D;EC2;2;.331012;.3317
+ ;;ZIP+4;;D;EC2;2;.331012;.2204
+ ;;PROVINCE;;F;DES;2;.34012;.34013
+ ;;POSTAL CODE;;F;DES;2;.34012;.34014
+ ;;STATE;;D;DES;2;.34012;.347
+ ;;ZIP+4;;D;DES;2;.34012;.2202
  ;;QUIT;;QUIT

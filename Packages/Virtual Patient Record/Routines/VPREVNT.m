@@ -1,5 +1,5 @@
 VPREVNT ;SLC/MKB -- VistA event listeners ;10/25/18  15:29
- ;;1.0;VIRTUAL PATIENT RECORD;**8,10,15,17,19,21**;Sep 01, 2011;Build 1
+ ;;1.0;VIRTUAL PATIENT RECORD;**8,10,15,17,19,21,20**;Sep 01, 2011;Build 9
  ;;Per VA Directive 6402, this routine should not be modified.
  ;
  ; External References          DBIA#
@@ -72,20 +72,17 @@ FLD(X) ; -- Return 1 or 0, if X is a field tracked by VPR
 DGPM ; -- DGPM MOVEMENT EVENTS protocol listener
  ;    [expects DFN,DGPM* variables]
  I $$NEWINPT,$$ON^VPRHS,'$$SUBS^VPRHS(DFN) D NEW^VPRHS(DFN) Q
- N ADM S ADM=DGPMDA
- I DGPMT'=1 S ADM=$S(DGPMA:$P(DGPMA,U,14),1:$P(DGPMP,U,14)) Q:ADM<1
+ N ADM,ADM0,VAINDT,X,VPRI,PTF
+ ; Quit if admission is deleted (still has Visit#)
+ I DGPMT=1 Q:'$G(DGPMA)  S ADM=DGPMDA,ADM0=DGPMA
+ I DGPMT'=1 S ADM=+$P(DGPMA,U,14),ADM0=$G(^DGPM(ADM,0))
  ; loop to find all Visits (have seen >1 per admission)
  ; if no visit# yet, will be updated when assigned in PCE section
- N ADM0,VAINDT,X,VPRI,PTF,DXLS
- S ADM0=$G(^DGPM(+$G(ADM),0)),X=+ADM0
+ Q:ADM<1  S X=+ADM0,PTF=$P(ADM0,U,16)
  S VAINDT=(9999999-$P(X,"."))_"."_$P(X,".",2)
  S VPRI=0 F  S VPRI=$O(^AUPNVSIT("AAH",DFN,VAINDT,VPRI)) Q:VPRI<1  D
- . ; If Admission is deleted, update as Visit; else update as Admission
- . I DGPMT=1,'DGPMA D POST^VPRHS(DFN,"Encounter",VPRI_";9000010") Q
  . D POST^VPRHS(DFN,"Encounter",ADM_"~"_VPRI_";405")
- . S PTF=$P(ADM0,U,16) Q:PTF<1
- . ;S DXLS=$$GET1^DIQ(45,PTF,79,"I") Q:'DXLS
- . ;D POST^VPRHS(DFN,"Diagnosis",PTF_U_DXLS_";45",,VPRI)
+ . Q:PTF<1  Q:'$$GET1^DIQ(45,PTF,79,"I")  ;no record or DXLS
  . D POST^VPRHS(DFN,"Diagnosis",PTF_";45",,VPRI)
  Q
  ;
@@ -203,7 +200,7 @@ RAD ; -- Radiology documents
  . Q:STS'="V"&(STS'="EF")&(STS'="X")  I STS="X" S ACT="@"
  . S:'$D(RPT(X)) RPT(X)=IDT_"-"_I ;S:VST VST(X)=VST
  ; update Document container
- S X=0 F  S X=$O(RPT(X)) Q:X<1  D POST^VPRHS(DFN,"Document",X_"~"_RPT(X)_";74",ACT)
+ S X=0 F  S X=$O(RPT(X)) Q:X<1  D POST^VPRHS(DFN,"Document",X_";74",ACT) ;X_"~"_RPT(X)
  Q
  ;
 LRAP(MSG) ; -- LR7O AP EVSEND OR protocol listener
@@ -321,7 +318,7 @@ IBCN ; -- IBCN NEW INSURANCE EVENTS listener
 PCMMT ; -- SCMC PATIENT TEAM CHANGES protocol listener
  I '$G(SCPCTM) Q  ;not pc change
  N DFN S DFN=$S($G(SCPTTMAF):+SCPTTMAF,1:+$G(SCPTTMB4)) Q:'DFN
- D POST^VPRHS(DFN,"Patient",DFN_";2")
+ D QUE^VPRHS(DFN) ;POST^VPRHS(DFN,"Patient",DFN_";2")
  Q
  ;
 PCMMTP ; -- SCMC PATIENT TEAM POSITION CHANGES protocol listener
@@ -329,7 +326,7 @@ PCMMTP ; -- SCMC PATIENT TEAM POSITION CHANGES protocol listener
  N TM,DFN
  S TM=$S($G(SCPTTPAF):+SCPTTPAF,1:+$G(SCPTTPB4)) Q:'TM
  S DFN=+$$GET1^DIQ(404.42,TM_",",.01,"I")
- D POST^VPRHS(DFN,"Patient",DFN_";2")
+ D QUE^VPRHS(DFN) ;POST^VPRHS(DFN,"Patient",DFN_";2")
  Q
  ;
  ; Deprecated calls:

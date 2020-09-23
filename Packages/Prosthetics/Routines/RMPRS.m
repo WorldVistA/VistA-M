@@ -1,5 +1,5 @@
-RMPRS ;PHX/HNC/RFM,RVD-ADD SUSPENSE RECORD ;8/29/1994
- ;;3.0;PROSTHETICS;**26,28,30,45,52,62,120**;Feb 09, 1996
+RMPRS ;PHX/HNC/RFM,RN,RVD,ATG/JPN-ADD SUSPENSE RECORD ;July 29, 2020@10:00
+ ;;3.0;PROSTHETICS;**26,28,30,45,52,62,120,200**;Feb 09, 1996;Build 2
  ;
  ;  HNC - patch 52 - 9/22/00 Modify INQ - sub.
  ;                           Add KILL^XUSCLEAN on exit to kill
@@ -7,13 +7,14 @@ RMPRS ;PHX/HNC/RFM,RVD-ADD SUSPENSE RECORD ;8/29/1994
  ;  HNC - patch 52 - 10/5/00 New RMPR,RMPRNAM,RMPRDOB,RMPRSSN,RMPRSSNE
  ;                           RMPRCNUM before appt mgt
  ;  RVD - patch 62 - 10/13/01 remove link to Patient Management
- ;                            call rotine RMPREOL
+ ;                            call routine RMPREOL
  ;                            suspense print message
  ;
 EN ;ADD SUSPENSE RECORD
+ ; VSR (RN) patch RMPR*3.0*200 change four slashes to three slashes for validation before filing adding back tic to station
  D DIV4^RMPRSIT G:$D(X) EXIT
  S DIC="^DPT(",DIC(0)="AEQM" D ^DIC G:Y'>0 EXIT S RMPRDFN=+Y
- S X=DT,DIC="^RMPR(668,",DIC(0)="AEQLM",DLAYGO=668,DIC("DR")="1////^S X=RMPRDFN;8////^S X=DUZ;2////^S X=RMPR(""STA"")" K DINUM,D0,DD,DO D FILE^DICN K DLAYGO G:Y'>0 EX S (RDA,DA)=+Y
+ S X=DT,DIC="^RMPR(668,",DIC(0)="AEQLM",DLAYGO=668,DIC("DR")="1////^S X=RMPRDFN;8////^S X=DUZ;2///^S X=""`""_RMPR(""STA"")" K DINUM,D0,DD,DO D FILE^DICN K DLAYGO G:Y'>0 EX S (RDA,DA)=+Y
  S DIE="^RMPR(668,",DR="3;4"
  L +^RMPR(668,RDA,0):1 I $T=0 W $C(7),?5,!,"Someone else is editing this record" G EX
  D ^DIE L -^RMPR(668,RDA,0)

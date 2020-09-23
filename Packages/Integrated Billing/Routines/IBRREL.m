@@ -1,5 +1,5 @@
 IBRREL ;ALB/CPM - RELEASE MEANS TEST CHARGES 'ON HOLD' ; 03-MAR-92
- ;;2.0;INTEGRATED BILLING;**95,153,199,347,452,651,663,675**;21-MAR-94;Build 6
+ ;;2.0;INTEGRATED BILLING;**95,153,199,347,452,651,663,675,677**;21-MAR-94;Build 17
  ;;Per VA Directive 6402, this routine should not be modified.
  ;
 EN ; Entry point for stand-alone 'release' option
@@ -56,7 +56,7 @@ RESUME ; - display header and list charges
  ;
  ; - pass charges to Accounts Receivable
  W !!,"Passing charges to Accounts Receivable...",! D HDR
- F IBCTR=1:1 S IBNUM=$P(IBRANGE,",",IBCTR) Q:'IBNUM  I $D(IBA(IBNUM)) S IBNOS=IBA(IBNUM) D ^IBR,ERR:Y<1 I Y>0 S IBN=IBA(IBNUM) D UPDUCDB(IBNOS) D LST
+ F IBCTR=1:1 S IBNUM=$P(IBRANGE,",",IBCTR) Q:'IBNUM  I $D(IBA(IBNUM)) S IBNOS=IBA(IBNUM) D ^IBR,ERR:Y<1 I Y>0 S IBN=IBA(IBNUM) D UPDUCDB(IBN) D LST
  W !!,"The charge"_$E("s",$P(IBRANGE,",",2)>0)_" listed above "_$S($P(IBRANGE,",",2):"have",1:"has")_" been passed to Accounts Receivable.",!
  ;
  I $G(IBNCPDPR) W !! S DIR(0)="E" D ^DIR K DIR G END   ; exit for ECME

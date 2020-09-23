@@ -1,10 +1,12 @@
-PRCB2A ;WISC/(SKR@LBVAMC),PLT,DGL-ROUTINE TO PRINT RECEIVING REPORT PENDING ACTION [7/20/98 2:18pm]
-V ;;5.1;IFCAP;**126,186**;Oct 20, 2000;Build 10
+PRCB2A ;WISC/(SKR@LBVAMC) - PLT,DGL-ROUTINE TO PRINT RECEIVING REPORT PENDING ACTION; 7/20/98 2:18pm
+V ;;5.1;IFCAP;**126,186,217**;Oct 20, 2000;Build 4
  ;Per VA Directive 6402, this routine should not be modified.
  ;
  ;PRC*5.1*186 Added new reporting for all approved amendments
  ;            to insure fiscal is aware of any dangling 
  ;            amendments waiting fiscal processing.
+ ;PRC*5.1*217 Fixed display issues in header
+ ;            User terminated message
  ;
  QUIT  ;invalid entry point
  ;
@@ -42,8 +44,10 @@ START ;Loop picks up only specific entries
   . . . I $P(A1,U,3)=""&($P(A2,U,7)=10) D PRINT2(0) Q  ; No PO#
  I B=0 W !!,"NO 2237s or 1358s to print"
  E  W !!,"(Note:  '*' indicates transaction is a 1358.  All others are 2237s.)",!
- I PRCQ="" D EN^DDIOL("END OF REPORT")
-EXIT K ZSTAT,IEN,L1,POP,ZTDTH,ZTRTN,ZTSAVE,TRM,LINE,PAGE,PRCQ,PRCTT,A,A0,A1,A2,B,C,D
+EXIT ;PRC*5.1*217 ADDS USER TERMINTED REPORT
+ I PRCQ=1 D EN^DDIOL("USER TERMINATED REPORT")
+ I PRCQ'=1 D EN^DDIOL("END OF REPORT")
+ K ZSTAT,IEN,L1,POP,ZTDTH,ZTRTN,ZTSAVE,TRM,LINE,PAGE,PRCQ,PRCTT,A,A0,A1,A2,B,C,D
  D ^%ZISC
  Q
 HDR ; 
@@ -84,7 +88,7 @@ PRINT1 ;PRC*5.1*186
  I $P(PRCAMD1,U,3)]"" S X1=DT,X2=$P($P(PRCAMD1,U,3),".") D ^%DTC W ?51,X
  Q
 PRINT2(X) ;
- I $Y+8>IOSL D ASK Q:PRCQ  D HDR2
+ I $Y+8>IOSL D ASK Q:PRCQ  D HDR,HDR2 ;PRC*5.1*217 HEADER PRINT FIX
  W !,$P(A0,U,1)
  I X=1 W "*"
  W ?22,$P($P(^PRCS(410,IEN,3),U,1)," "),?28

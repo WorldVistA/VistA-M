@@ -1,5 +1,5 @@
-DVBCCNC1 ;ALB ISC/THM-CANCEL ENTIRE REQUEST ; 9/22/91  4:14 PM
- ;;2.7;AMIE;**193,194**;Apr 10, 1995;Build 84
+DVBCCNC1 ;ALB ISC/THM,LAB - CANCEL ENTIRE REQUEST ;05/10/2019
+ ;;2.7;AMIE;**193,194,214**;Apr 10, 1995;Build 1
  ;
 ALL K NONE W ! S ALLCANC=1,DIC="^DVB(396.5,",DIC(0)="AEQM",DIC("S")="I $P(^(0),U,3)=1",DIC("A")="Enter REASON FOR CANCELLATION: " D ^DIC G:X=""!(X=U)!(+Y'>0) EXIT^DVBCCNCL S REAS=+Y
  ;
@@ -22,9 +22,11 @@ BY1 W *7,!!,"Cancelled by ",$S(BY="":"MAS",BY="M":"MAS",BY="R":"RO",1:"Unknown s
  G LOOK^DVBCCNCL
  ;
 ALL1 S EXMPTR=$P(^DVB(396.4,JJZ,0),U,3),EXMNM=$S($D(^DVB(396.6,+EXMPTR,0)):$P(^(0),U,1),1:"Unknown exam"_" ("_+EXMPTR_")") K EXMPTR ;show deleted exam
- S DR=".04////"_BY_";52////"_REAS_";51////^S X=DUZ;50///NOW",DA=JJZ
+ ;DVBA*2.7*214 changed //// to /// to allow for validation of data
+ S DR=".04///"_BY_";52///"_REAS_";51////^S X=DUZ;50///NOW",DA=JJZ
  S (DIC,DIE)="^DVB(396.4," D ^DIE
  I '$D(Y) W:$X>50 ! W:$L(EXMNM)>25&($X>45) ! W EXMNM," cancelled, " S CANC(EXMNM)=BY_U_REAS
+ I $D(Y) W !!!,"Y = ",Y
  I $D(Y) W *7,!,"Cancellation error on ",EXMNM," exam !" H 2
  Q
  ;

@@ -1,17 +1,23 @@
 IVMPREC9 ;ALB/KCL,BRM,CKN,TDM,KUM,JAM - PROCESS INCOMING (Z05 EVENT TYPE) HL7 MESSAGES (CON'T) ;09-05-2017 10:03am
- ;;2.0;INCOME VERIFICATION MATCH;**34,58,115,121,151,159,167,192**;21-OCT-94;Build 14
+ ;;2.0;INCOME VERIFICATION MATCH;**34,58,115,121,151,159,167,192,193**;21-OCT-94;Build 37
  ;Per VA Directive 6402, this routine should not be modified.
  ;
 ZCT ; - compare ZCT with DHCP ; IVM*2.0*192;JAM ; Tag ZCT moved from IVMPREC8
- N ZCTTYP,IVMADDR,IVMPIECE,IVMADFLG,IVMFLD,IVMDHCP
+ N ZCTTYP,IVMFORAD,IVMFOR,IVMCNTRY,IVMDHCP,IVMFLD,IVMPIECE,IVMADDR,IVMADFLG
  S IVMADFLG=0
- ; IVM*2.0*192;JAM; flag for Foreign address
- N IVMFORAD
  S IVMPIECE=$E(IVMXREF,4,8)
+ ; PATCH IVM*2.0*193; jam;  Capture if IVMXREF is for a foreign address  
+ ;   IVMXREF may have a 9th char - Foreign address eg ZCT054K1F
+ S IVMFOR=$E(IVMXREF,9)
  ;IVM*2.0*188-COMMENT BELOW TO ALLOW QUOTES
  ;S IVMSEG=$$CLEARF^IVMPRECA(IVMSEG,HLFS)
  S ZCTTYP=$E(IVMPIECE,$L(IVMPIECE)-1,$L(IVMPIECE))
  Q:$P(IVMSEG,HLFS,2)'=$S(ZCTTYP="K1":1,ZCTTYP="K2":2,ZCTTYP="E1":3,ZCTTYP="E2":4,ZCTTYP="D1":5,1:"")
+ ;
+ ; IVM*2.0*192 - Get country field - if it has a value and if not "USA", quit entire ZCT processing
+ ; IVM*2.0*193; patch 192 code removed - process foreign addresses 
+ ; S ADDR=$P(IVMSEG,"^",5),COUNTRY=$P(ADDR,"~",6) I COUNTRY'=""&(COUNTRY'="USA") QUIT
+ ;
  I $P(IVMSEG,HLFS,$E(IVMPIECE,1,2))]"" D
  .;
  .; -set var IVMFLD to incoming HL7 field
@@ -23,22 +29,24 @@ ZCT ; - compare ZCT with DHCP ; IVM*2.0*192;JAM ; Tag ZCT moved from IVMPREC8
  .I IVMXREF["ZCT03" S IVMFLD=$$FMNAME^HLFNC(IVMFLD)
  .;
  .I IVMFLD="@," S IVMFLD="@" ;IVM*2.0*188
- .; - ZCT05 as the ZCT address field is 5 pieces seperated by HLECH (~)
+ .; - ZCT05 as the ZCT address field is 6 pieces separated by HLECH (~)
  .I IVMXREF["ZCT05" D
- ..S IVMADDR=$P(IVMSEG,HLFS,$E(IVMPIECE,1,2)),IVMPIECE=$E(IVMPIECE,3)
- ..; IVM*2.0*192; jam; 6th piece added in z05 - Country - default to USA 
- ..;  - Set flag and quit if not USA 
- ..I $S($P(IVMADDR,$E(HLECH),6)'="":$P(IVMADDR,$E(HLECH),6),1:"USA")'="USA" S IVMFORAD=1 Q
- ..; 
+ ..; IVM*2.0*193; jam; Concatenate IVMFOR to piece
+ ..S IVMADDR=$P(IVMSEG,HLFS,$E(IVMPIECE,1,2)),IVMPIECE=$E(IVMPIECE,3)_IVMFOR
  ..S IVMFLD=$P(IVMADDR,$E(HLECH),IVMPIECE),IVMADFLG=1
+ ..; IVM*2.0*193; jam; 6th piece added - Country - default to USA
+ ..S IVMCNTRY=$S($P(IVMADDR,$E(HLECH),6)'="":$P(IVMADDR,$E(HLECH),6),1:"USA")
+ ..; IVM*2.0*193; jam; Set flag if this is a foreign country
+ ..S IVMFORAD=$S(IVMCNTRY="USA":0,1:1)
  ..;IVM*2.0*188-convert "" to @
  ..I IVMFLD="""""" S IVMFLD="@" Q
- ..I IVMFLD]"",IVMPIECE=4 S IVMFLD=$O(^DIC(5,"C",IVMFLD,0))
- ..I IVMFLD]"",IVMPIECE=5 S X=IVMFLD D ZIPIN^VAFADDR S IVMFLD=$G(X)
- .;
- .; IVM*2.0*192;jam; Prevent storing of foreign address
- .I $G(IVMFORAD) Q
- .;
+ ..; IVM*2.0*193; jam; foreign address added
+ ..I (IVMPIECE=4)!(IVMPIECE=5) S IVMFLD=$S('IVMFORAD:IVMFLD,1:"") Q:IVMFLD=""
+ ..I IVMPIECE=4 S IVMFLD=$O(^DIC(5,"C",IVMFLD,0))
+ ..I IVMPIECE=5 S X=IVMFLD D ZIPIN^VAFADDR S IVMFLD=$G(X)
+ ..I IVMPIECE="4F" S IVMFLD=$S(IVMFORAD:IVMFLD,1:"")  ;PROVINCE
+ ..I IVMPIECE="5F" S IVMFLD=$S(IVMFORAD:IVMFLD,1:"")  ;POSTAL CODE
+ ..I IVMPIECE=6 S IVMFLD=$$CNTRCONV^IVMPREC8(IVMCNTRY) ;COUNTRY
  .I IVMADFLG D STORE Q
  .; - if HL7 date convert to FM date
  .I IVMXREF["ZCT10" S IVMFLD=$$FMDATE^HLFNC(IVMFLD)

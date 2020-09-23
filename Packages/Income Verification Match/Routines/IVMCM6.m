@@ -1,5 +1,5 @@
-IVMCM6 ;ALB/SEK,JAN,RTK,CKN,TDM,GN,HM - COMPLETE DCD INCOME TEST ;7/21/03 1:13pm
- ;;2.0;INCOME VERIFICATION MATCH;**17,25,39,44,50,53,49,58,62,67,84,115,136,190**;21-OCT-94;Build 47
+IVMCM6 ;ALB/SEK,JAN,RTK,CKN,TDM,GN,HM - COMPLETE DCD INCOME TEST ;4/10/20 11:41am
+ ;;2.0;INCOME VERIFICATION MATCH;**17,25,39,44,50,53,49,58,62,67,84,115,136,190,193**;21-OCT-94;Build 37
  ;;Per VHA Directive 10-93-142, this routine should not be modified.
  ;
  ;IVM*2*84 - insure DGMTP is defined by LTC test prior to calling
@@ -24,7 +24,7 @@ EN ; This routine will update annual means test file (#408.31):
  ; - setup variables for (#408.31) file
  ;get the ZMT segment, translate HLQ's to NULLS
  S IVMSEG=$G(^TMP($J,"IVMCM","ZMT"_IVMTYPE)) ; get mt/copay ZMT segment
- F FIELD=4:1:30 I FIELD'=24,$P(IVMSEG,HLFS,FIELD)=HLQ S $P(IVMSEG,HLFS,FIELD)=""
+ F FIELD=4:1:32 I FIELD'=24,$P(IVMSEG,HLFS,FIELD)=HLQ S $P(IVMSEG,HLFS,FIELD)="" ;IVM*2.0*193
  ;
  S IVM1=$$FMDATE^HLFNC($P(IVMSEG,"^",10)) ; dt/time completed
  S IVM2=$P(IVMSEG,"^",7) ; agree to pay deductible
@@ -53,6 +53,13 @@ EN ; This routine will update annual means test file (#408.31):
  S IVM23=$P(IVMSEG,"^",29) ; hardship reason
  S IVM24=+$P(IVMSEG,"^",30) ; Means Test Version
  S IVM25=$$FMDATE^HLFNC($P(IVMSEG,"^",2)) ;Means Test Date ;IVM*2.0*190
+ S IVM26=$$FMDATE^HLFNC($P(IVMSEG,"^",32)) ;Hardship Expiration Date ;IVM*2.0*193
+ S DATA(2.13)=IVM26  ; IVM*2.0*193
+ ;IVM*2.0*193;HM; when Hardship Expiration Date is after effective date and not a future date
+ ;  - set Hardship to "NO" and Hardship Expired to "YES"
+ I IVM26'="",(IVM12<=IVM26)&(IVM26<=DT) D
+ .S IVM7=0,DATA(.2)=IVM7
+ .S DATA(2.12)=1
  ;
  ;old tests may not have the field Test-Determined Status
  I IVM14="" D
@@ -90,7 +97,7 @@ EN ; This routine will update annual means test file (#408.31):
  . S NODE0=$G(^DGMT(408.31,IVMMTIEN,0))
  . S NODE2=$G(^DGMT(408.31,IVMMTIEN,2))
  . ;
- . ; If Site Conducting Test is the same, get Completed By from record.
+ . ; If Site Conducting Test is the same, get Completed By from record.t
  . I $P(NODE2,"^",5)=IVM8 S DATA(.06)=$P(NODE0,"^",6)
  . ;
  . ; If there are Comments, copy them into new record
@@ -102,7 +109,7 @@ EN ; This routine will update annual means test file (#408.31):
  . . I IVM7,$P(NODE0,"^",20),IVM9=$P($$SITE^VASITE,"^",3) S DATA(.21)=$P(NODE0,"^",21),DATA(.22)=$P(NODE0,"^",22),DATA(.08)=$P(NODE0,"^",8),DATA(.09)=$P(NODE0,"^",9)
  . . ;
  . . ;hardship effective date should always be what is coming in in the ZMT segment
- . . S DATA(2.01)=IVM12 ; IVM*2.0*190
+ . . S DATA(2.01)=IVM12 ; IVM*2.0*193
  . . ;
  . . ; Hardship is YES in msg and record, and the Site Granting Hardship
  . . ; is NOT the same in both the msg and record, keep the message data
@@ -113,6 +120,9 @@ EN ; This routine will update annual means test file (#408.31):
  . . ;
  . . ; Hardship is set to delete in msg, delete the Hardship
  . . I IVM12=HLQ!('IVM7&($P(NODE0,"^",20))) D
+ . . . ; DG*5.3*997;HM;  If hardship expr date (IVM26) not null, and if hardship eff date (IVM12) <= hardship expr date (IVM26) 
+ . . . ;  and hardship expr date (IVM26) is less than or equal to now (DT) then it is an expiration record, quit (do not clear data values)
+ . . . I IVM26'="",(IVM12<=IVM26)&(IVM26<=DT) Q
  . . . S (DATA(.08),DATA(.09),DATA(.2),DATA(.21),DATA(.22),DATA(2.01),DATA(2.04),DATA(2.09))=""
  . . . I $P(NODE0,"^",20) D BULL2^IVMCMB(DFN,$P(NODE2,"^"),$P(NODE2,"^",4))
  . . ;
@@ -198,7 +208,7 @@ MTBULL ; Build results array
 CLEANUP ; cleanup
  K DGCAT,DGCOMF,DGMTACT,DGMTI,DGMTINF,DGMTPAR,DGTHB,IVMBU45,IVMOP,IVMOP1
  K IVM1,IVM2,IVM3,IVM4,IVM5,IVM6,IVM7,IVM8,IVM9,IVM10,IVM11,IVM12,IVM13,IVM14,IVMCAT,IVMCEA,IVMCEB,IVMMTA,IVM15,IVM16,IVM17,IVM18,IVM19,IVM20,IVM21
- K IVM22,IVM23,IVM24,IVM25 ;IVM*2.0*190
+ K IVM22,IVM23,IVM24,IVM25,IVM26 ;IVM*2.0*190 IVM*2.0*193
  Q
  ;
 CHKCMT(MTIEN) ; CHECK FOR HARDSHIP COMMENT IVM*2.0*190

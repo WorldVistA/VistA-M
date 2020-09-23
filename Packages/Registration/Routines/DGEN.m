@@ -1,5 +1,5 @@
 DGEN ;ALB/RMO/CJM - Patient Enrollment Option; 11/17/00 12:12pm ; 12/6/00 5:32pm
- ;;5.3;Registration;**121,122,165,147,232,314,624**;Aug 13,1993
+ ;;5.3;Registration;**121,122,165,147,232,314,624,993**;Aug 13,1993;Build 92
  ;
 EN ;Entry point for stand-alone enrollment option
  ; Input  -- None
@@ -14,24 +14,32 @@ EN ;Entry point for stand-alone enrollment option
 ENQ Q
  ;
 EN1(DFN) ;Entry point for enrollment from registration and disposition
- ; Input  -- DFN      Patient IEN
+ ; Input  -- DFN Patient IEN
  ; Output -- None
- N DGENOUT
+ N DGDISP,DGENOUT,DGX,DGSTS,DGNOPMT
  ;
  ;Check if patient should be asked to enroll
- I $$CHK(DFN) D
- . ;Enroll patient
- . I $$ENRPAT(DFN,.DGENOUT)
+ ;Begin DG*5.3*993
+ S DGDISP=$P(XQY0,U,1)="DG DISPOSITION APPLICATION"
+ S DGSTS=$$STATUS^DGENA(DFN)
+ I DGDISP,$G(DGENRYN)=0 S DGDISP=0  ; coming from DG DISPOSITION DGENRYN is 0 DB
+ I $G(DGENRYN)=1 S DGNOPMT=0   ; Added condition for Yes
+ I $G(DGENRYN)="" D
+ . I DGSTS=25 S DGDISP=0
+ ;END DG*5.3*993
+ N DGCHK S DGCHK=$$CHK(DFN)
+ I (DGCHK)!(DGDISP) D
+ . I $$ENRPAT(DFN,.DGENOUT,$G(DGENRYN))
+ I '$$VET^DGENPTA(DFN) D REGONLY(DFN)   ; DG*5.3*993 NON-VETERANS 
  ;
  ;If user did not timeout or '^' and
  ;patient is an eligible veteran or has an enrollment status
  I '$G(DGENOUT),($$VET^DGENPTA(DFN)!($$STATUS^DGENA(DFN))) D
- . ;Display enrollment
- . D DISPLAY^DGENU(DFN)
+ . D DISPLAY^DGENU(DFN)  ;Display enrollment
 EN1Q Q
  ;
 CHK(DFN) ;Check if patient should be asked to enroll
- ; Input  -- DFN      Patient IEN
+ ; Input  -- DFN Patient IEN
  ; Output -- 1=Yes and 0=No
  N Y,STATUS
  S Y=1
@@ -41,43 +49,31 @@ CHK(DFN) ;Check if patient should be asked to enroll
  ;Is patient already enrolled or pending enrollment
  S STATUS=$$STATUS^DGENA(DFN)
  ; Purple Heart added status 21
- I Y,(STATUS=9)!(STATUS=1)!(STATUS=2)!(STATUS=14)!(STATUS=15)!(STATUS=16)!(STATUS=17)!(STATUS=18)!(STATUS=21) S Y=0
+ I Y,(STATUS=9)!(STATUS=1)!(STATUS=2)!(STATUS=14)!(STATUS=15)!(STATUS=16)!(STATUS=17)!(STATUS=18)!(STATUS=21) S Y=0 ;DG*5.3*993
  Q +$G(Y)
  ;
-ENRPAT(DFN,DGENOUT) ;Enroll patient
+CHK3(DFN) ;Check to restrict Register Only Patients to enroll from Patient Enrollment EP protocol
+ ; Input  -- DFN Patient IEN
+ ; Output -- 1=Yes and 0=No
+ N Y,STATUS
+ S Y=1
+ S Y=$$VET^DGENPTA(DFN)
+ S STATUS=$$STATUS^DGENA(DFN)
+ I Y,(STATUS=9)!(STATUS=1)!(STATUS=2)!(STATUS=14)!(STATUS=15)!(STATUS=16)!(STATUS=17)!(STATUS=18)!(STATUS=21)!(STATUS=25) S Y=0 ;DG*5.3*993 To Disable EP protocol
+ Q +$G(Y)
+ ;End DG*5.3*993
+ENRPAT(DFN,DGENOUT,DGENRYN) ;Enroll patient DG*5.3*993 Added third parameter 
  ; Input  -- DFN      Patient IEN
+ ;        -- DGENRYN  (Optional) ENROLL Y/N question for registration 0=NO 1=YES
  ; Output -- 1=Successful and 0=Failure
  ;           DGENOUT  1=Timeout or up-arrow
- N DGOKF
- ;Ask patient if s/he would like to enroll
- I $$ASK("enroll",.DGENOUT) D
- . ;If 'Yes' enroll patient
- . S DGOKF=$$ENROLL(DFN)
- ELSE  D
- . ;Quit if timeout or '^'
- . Q:$G(DGENOUT)
- . ;Otherwise patient declined enrollment
- . ;Cancel/decline functionality disabled by DG*5.3*232
- . ;S DGOKF=$$DECLINE(DFN,DT)
- . S DGOKF=0
- . ;* Prompt for requested appt. (DG*5.3*624)
- . I $P($G(^DPT(DFN,1010.15)),"^",9)="" DO
- . . N DGSXS,DGAPPTAN
- . . S DGSXS=$$PROMPT^DGENU(2,1010.159,1,.DGAPPTAN,"",1)
- . . I DGSXS DO
- . . . N DA,DR,DIE
- . . . S DA=DFN
- . . . S DIE="^DPT("
- . . . S DR="1010.159////^S X=DGAPPTAN"
- . . . D ^DIE
- . . . K DA,DR,DIE
- . . . ;*Set Appointment Request Date to current date
- . . . N DA,DR,DIE
- . . . S DIE="^DPT("
- . . . S DA=DFN
- . . . S DR="1010.1511////^S X=DT"
- . . . D ^DIE
- . . . K DA,DR,DIE
+ ;DG*5.3*993 - DO YOU WISH TO ENROLL now in initial registration questions DGENRYN=0 if NO to enroll
+ N Y
+ I $G(DGDISP),$G(DGNOPMT) S Y=$$ASK("enroll",.DGENOUT) S:Y DGENRYN=1 ;DG*5.3*993 If option used is Disposition an Application
+ S DGENRYN=$G(DGENRYN)
+ D  G ENRPATQ
+ . S DGOKF=$$ENROLL(DFN,DGENRYN) ;DG*5.3*993 Added second parameter DGENRYN
+ ;End of DG*5.3*993 mods
 ENRPATQ Q +$G(DGOKF)
  ;
 ASK(ACTION,DGENOUT) ;Ask patient if s/he would like to enroll or cease enrollment
@@ -91,60 +87,53 @@ ASK(ACTION,DGENOUT) ;Ask patient if s/he would like to enroll or cease enrollmen
  I $D(DTOUT)!($D(DUOUT)) S DGENOUT=1
  Q +$G(Y)
  ;
-ENROLL(DFN) ;Create new local unverified enrollment
- ; Input  -- DFN      Patient IEN
+ENROLL(DFN,DGENRYN) ;Create new local unverified enrollment  DG*5.3*993 Added 2nd parameter DGENRYN
+ ; Input -- DFN Patient IEN
+ ;       -- DGENRYN  (Optional) ENROLL Y/N question for registration 0=NO 1=YES
  ; Output -- 1=Successful and 0=Failure
- N DGENR,DGOKF,DGREQF,APPDATE
+ N DGENR,DGOKF,DGREQF,APPDATE,DGNOW,STATUS,DGDSPM,DGENRP,DGMNU,DGEIEN,DGAPDT,DGEXST,DGAD,DGPT,DGREGO
+ S DGEXST=0
+ S DGMNU=0
+ S DGAD=0
+ S DGREGO=0
+ S DGNOW=$$NOW^XLFDT()
+ S STATUS=$$STATUS^DGENA(DFN)
  ;Lock enrollment record
  I '$$LOCK^DGENA1(DFN) D  G ENROLLQ
  . W !,">>> Another user is editing, try later ..."
  . D PAUSE^VALM1
  ;
+ S DGDSPM=$P(XQY0,U,1)="DG DISPOSITION APPLICATION"
+ S DGENRP=$P(XQY0,U,1)="DGEN PATIENT ENROLLMENT"
+ I (DGDSPM)!(DGENRP) S DGMNU=1
+ I DGENRP G ENROLLQ
  ;now that the enrollment history is locked, need to check again whether or not patient may be enrolled (query reply may have been received)
- G:'$$CHK^DGEN(DFN) ENROLLQ
+ G:'$$CHK^DGEN(DFN)&($G(DGDSPM)) ENROLLQ
  ;
- ;Ask Application Date
- W !
- I $$PROMPT^DGENU(27.11,.01,DT,.APPDATE) D
+ I $G(DGENRYN)=0,$G(DGENRODT)="" S DGENRODT=DGNOW   ;
+ S DGEIEN=$$FINDCUR^DGENA(DFN)
+ I DGEIEN S DGAPDT=$$GET1^DIQ(27.11,DGEIEN_",",.01,"I"),DGPT=$$GET1^DIQ(27.11,DGEIEN_",",.14,"I")
+ I $G(DGAPDT) S DGEXST=1
+ I ($G(DGENRYN)=0)!($G(DGPT)=0)!($G(STATUS)=25) S DGREGO=1
+ I ($G(DGENRYN)=0)!($G(STATUS)=25),'DGEXST S APPDATE=DT S DGAD=1
+ ;Ask Application Date if not already entered at beginning of registration DG*5.3*993
+ I ($G(DGENRYN)=1)!($G(DGPT)=1) D
+ . I $G(DGENRDT)?1.N.E S APPDATE=DGENRDT
+ ;. E  I 'DGREGO,'DGMNU W ! I $$PROMPT^DGENU(27.11,.01,DT,.APPDATE,,1)
+ ;
+ ;
+ D
  . ;Does patient require a Means Test?
  . D EN^DGMTR
  . ;Create local enrollment array
- . I $$CREATE^DGENA6(DFN,APPDATE,,,,.DGENR) D
+ . I $$CREATE^DGENA6(DFN,$G(APPDATE),,,,.DGENR,,,$G(DGENRYN)) D  ;DG*5.3*993 Added 9th parameter DGENRYN
  . . ;Store local enrollment as current
  . . I $$STORECUR^DGENA1(.DGENR) D
  . . . S DGOKF=1
  . . . ;Ask preferred facility
- . . . D PREFER^DGENPT(DFN)
+ . . . I $G(DGENRYN)'=0 D PREFER^DGENPT(DFN)
  . . . ;If patient's means test status is required, send bulletin
  . . . I $$MTREQ(DFN) D MTBULL(DFN,.DGENR)
- I $P($G(^DPT(DFN,1010.15)),"^",11)="" DO
- . N DGSXS,DGAPPTAN,DGDFLT
- . S DGDFLT=$P($G(^DPT(DFN,1010.15)),"^",9)
- . S:DGDFLT="" DGDFLT=1
- . S DGSXS=$$PROMPT^DGENU(2,1010.159,DGDFLT,.DGAPPTAN,"",1)
- . I DGSXS DO
- . . N DA,DR,DIE
- . . S DA=DFN
- . . S DIE="^DPT("
- . . S DR="1010.159////^S X=DGAPPTAN"
- . . D ^DIE
- . . K DA,DR,DIE
- . . ;*If patient answered NO to "Do you want an appt" question
- . . I $P($G(^DPT(DFN,1010.15)),"^",9)=0 DO
- . . . N DA,DR,DIE
- . . . S DIE="^DPT("
- . . . S DA=DFN
- . . . S DR="1010.1511////^S X=DT"
- . . . D ^DIE
- . . . K DA,DR,DIE
- . . ;*If patient answered YES to "Do you want an appt" question
- . . I $P($G(^DPT(DFN,1010.15)),"^",9)=1 DO
- . . . N DA,DR,DIE
- . . . S DIE="^DPT("
- . . . S DA=DFN
- . . . S DR="1010.1511////^S X=APPDATE"
- . . . D ^DIE
- . . . K DA,DR,DIE
 ENROLLQ D UNLOCK^DGENA1(DFN)
  Q +$G(DGOKF)
  ;
@@ -309,3 +298,31 @@ VIEWDATE(FMDATE) ;
  S Y=$G(FMDATE)
  D DD^%DT
  Q Y
+ ;
+REGONLY(DFN) ;
+ N DGENR,DGFDA,DGIENS,DGINELIG
+ I $$GET^DGENPTA(DFN,.DGENPTA) S DGINELIG=$G(DGENPTA("INELDATE"))
+ ;Lock enrollment record
+ I '$$LOCK^DGENA1(DFN) D  Q
+ . W !,">>> Another user is editing, try later ..."
+ . D PAUSE^VALM1
+ Q:$$FINDCUR^DGENA(DFN)
+ S DGFDA(27.11,"+1,",.01)=DT
+ S DGFDA(27.11,"+1,",.02)=DFN
+ S DGFDA(27.11,"+1,",.03)=1
+ S DGFDA(27.11,"+1,",.04)=25
+ S DGFDA(27.11,"+1,",.06)=$$INST^DGENU()
+ S DGFDA(27.11,"+1,",.07)=""
+ S DGFDA(27.11,"+1,",.08)=DT
+ S DGFDA(27.11,"+1,",.14)=0
+ I $G(DGENRYN)=1,$G(DGINELIG)'="" S DGFDA(27.11,"+1,",.14)=$G(DGENRYN)
+ S DGFDA(27.11,"+1,",.15)=$G(DGENRRSN)
+ S DGFDA(27.11,"+1,",.16)=$G(DGENRODT)
+ S DGFDA(27.11,"+1,",.17)=$G(DGENSRCE)
+ S DGFDA(27.11,"+1,",50.01)=$$NATCODE^DGENELA($$GET1^DIQ(2,DFN_",",".361","I"))
+ S DGFDA(27.11,"+1,",75.01)=$$NOW^XLFDT()
+ S DGFDA(27.11,"+1,",75.02)=$G(DUZ)
+ D UPDATE^DIE("","DGFDA","DGIENS")
+ I $D(DGIENS(1)) K DGFDA S DGFDA(2,DFN_",",27.01)=DGIENS(1) D FILE^DIE("","DGFDA")
+ D UNLOCK^DGENA1(DFN)
+ Q

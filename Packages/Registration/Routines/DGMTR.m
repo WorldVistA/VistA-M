@@ -1,5 +1,5 @@
-DGMTR ;ALB/RMO,CAW,SCG,AEG,SCG,AEG,LBD,BDB,HM - Check Means Test Requirements;7/8/05 2:30pm
- ;;5.3;Registration;**45,93,114,137,141,147,177,182,146,305,326,314,344,402,426,456,495,672,688,773,840,841,858,972**;Aug 13, 1993;Build 80
+DGMTR ;ALB/RMO,CAW,SCG,AEG,SCG,AEG,LBD,BDB,HM,DSB - Check Means Test Requirements;7/8/05 2:30pm ; 18 Jan 2020  12:52 PM
+ ;;5.3;Registration;**45,93,114,137,141,147,177,182,146,305,326,314,344,402,426,456,495,672,688,773,840,841,858,972,993**;Aug 13, 1993;Build 92
  ;A patient requires a means test under the following conditions:
  ;  - Primary Eligibility is NSC OR patient is SC 0% non-compensable
  ;  - who is NOT receiving disability retirement from the military
@@ -9,6 +9,7 @@ DGMTR ;ALB/RMO,CAW,SCG,AEG,SCG,AEG,LBD,BDB,HM - Check Means Test Requirements;7/
  ;  - who is NOT a Purple Heart recipient
  ;  - who is NOT Catastrophically Disabled
  ;  - who is NOT Medal of Honor recipient
+ ;  - who is NOT Registration only
  ; 
  ; Input  -- DFN     Patient IEN
  ;           DGADDF  Means Test Add Flag  (Optional- default none)
@@ -65,6 +66,10 @@ EN N DGCS,DGDOM,DGMT0,DGMTI,DGMTYPT,OLD,DGRGAUTO,DGQSENT,DGMTLTD,DGMDOD,DGMTDT
  I $P($G(^DPT(DFN,.39)),U,6)="Y" S DGREQF=0 ;DG*5.3*840
  ;Medal of Honor DG*5.3*840.  Functionality removed with DG*5.3*841
  I $P($G(^DPT(DFN,.54)),U)="Y" S DGREQF=0 ;Line uncommented so if MOH ="Y", update Means Test to No Longer Required - DG*5.3*972 HM
+ ;Begin DG*5.3*993 Means test Not required for Registration only
+ I ($G(DGENRYN)=0) S DGREQF=0
+ I '$D(DGENRYN)!($G(DGENRYN)="") N STATUS S STATUS=$$STATUS^DGENA($G(DFN)) I STATUS=25 S DGREQF=0
+ ;End DG*5.3*993
  D
  .;DG*5.3*858 for 1 yr old nol means tests, if not nol, set a mt required stub  
  .I DGREQF,DGCS=3,$$OLD^DGMTU4(+DGMT0) D ADD Q
@@ -112,6 +117,11 @@ SC(DFN) ;Check if patient is SC 0% non-compensable
  I $P($G(^DPT(DFN,.52)),"^",5)="Y" S Y=0 G SCQ
  ;Purple Heart Indicator
  I $P($G(^DPT(DFN,.53)),"^")="Y" S Y=0 G SCQ
+ ;Begin DG*5.3*993 Means test Not required for Registration only
+ I ($G(DGENRYN)=0) S Y=0 G SCQ
+ I '$D(DGENRYN)!($G(DGENRYN)="") D
+ . S STATUS=$$STATUS^DGENA($G(DFN)) I STATUS=25 S Y=0 G SCQ
+ ;End DG*5.3*993
  ;Secondary Eligibility
  F DG=2,4,15:1:18 S DGE(DG)=""
  S DG=0 F  S DG=$O(^DPT(DFN,"E","B",DG)) Q:'DG  D SELIG I DGF,$D(DGE(+DGF)) S Y=0 Q

@@ -1,5 +1,5 @@
-DGRPV ;ALB/MRL,RTK,PJR,BRM,TMK,AMA,LBD,TDM,PWC,JAM,JAM - REGISTRATION DEFINE VARIABLES ON ENTRY ;19 Jul 2017  3:03 PM
- ;;5.3;Registration;**109,114,247,190,327,365,343,397,415,489,546,545,451,624,677,672,689,716,688,797,842,871,887,941,985**;Aug 13, 1993;Build 15
+DGRPV ;ALB/MRL,RTK,PJR,BRM,TMK,AMA,LBD,TDM,PWC,JAM,JAM,ASF - REGISTRATION DEFINE VARIABLES ON ENTRY ;Apr 05, 2020@19:00
+ ;;5.3;Registration;**109,114,247,190,327,365,343,397,415,489,546,545,451,624,677,672,689,716,688,797,842,871,887,941,985,997**;Aug 13, 1993;Build 42
  ;
  ;
  ;set up variables for registration screen processing
@@ -36,6 +36,8 @@ SC7 S X=$S('$D(^DPT(DFN,"TYPE")):0,1:+^("TYPE")) S:'$D(DGELVER) DGELVER=0
  ;JAM - patch DG*5.3*941 - Screen 1.1 reformat - 4 groups
  S DGRPVV(1.1)="0000"
  S DGRPVV(2)="00010"
+ ; DG*5.3*997; ASF; Allowing selection for screen 11.5, group 1 (allows user to see sub-screen 11.5.1)
+ S DGRPVV(11.5)=0
  I $P($G(^DPT(DFN,.52)),U,9)'="" S $E(DGRPVV(6),4)=1  ;POW status verified, no editing (DG*5.3*688)
  I $G(DGPH)]"" S $E(DGRPVV(6),8)=1
  S $E(DGRPVV(6),9,10)="11"
@@ -77,11 +79,13 @@ ELVER ;set up variables for eligibility verification
  I $P($G(DGRP(.361)),U)="V",($P(DGRP(.361),U,3)="H") S DGRPVV(6)=$E(DGRPVV(6),1,5)_1_$E(DGRPVV(6),7,99),DGRPVV(11)=10000
  S:'DGELVER DGRPLAST=$S($G(DGPRFLG)=1:5,1:15)
  I DGELVER S DGRPVV="00111"_$E(DGRPVV,6,11)_"1111" F I=1:1:11 S J=$E(DGRPVV,I) I 'J S DGRPLAST=I
+ S:DGRPLAST=11 DGRPLAST=11.5  ; ASF; DG*5.3*997 - show screen 11.5 in DG Eligibility Verification options
 Q K DGRPSC,DGRPSCE
  Q
  ;
 WW ;Write number on screens for display and/or edit (Z=number)
- W:DGRPW ! S Z=$S(DGRPCM:Z,DGRPV:"<"_Z_">",$E(DGRPVV(DGRPS),Z):"<"_Z_">",1:"["_Z_"]")
+ W:DGRPW !
+ S Z=$S(DGRPCM:Z,DGRPV:"<"_Z_">",$E(DGRPVV(DGRPS),Z):"<"_Z_">",1:"["_Z_"]")
  I DGRPCM!($E(Z)="[") W @DGVI,Z,@DGVO
  I 'DGRPCM&($E(Z)'="[") W Z
  Q

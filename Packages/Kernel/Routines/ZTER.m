@@ -1,6 +1,6 @@
-%ZTER ; ISC-SF.SEA/JLI - KERNEL ERROR TRAP TO LOG ERRORS ;08/02/2011
- ;;8.0;KERNEL;**8,18,32,24,36,63,73,79,86,112,118,162,275,392,455,431,582**;JUL 10, 1995;Build 6
- ;Per VHA Directive 2004-038, this routine should not be modified.
+%ZTER ; ISC-SF.SEA/JLI - KERNEL ERROR TRAP TO LOG ERRORS ;09/06/2017
+ ;;8.0;KERNEL;**8,18,32,24,36,63,73,79,86,112,118,162,275,392,455,431,582,685**;JUL 10, 1995;Build 2
+ ;Per VA Directive 6402, this routine should not be modified.
  S ^TMP("$ZE",$J,1)=$$LGR^%ZOSV
  S ^TMP("$ZE",$J,0)=$$EC^%ZOSV
  S ^TMP("$ZE",$J,2)=$ETRAP,$ETRAP="D ERR^%ZTER"
@@ -160,7 +160,7 @@ SCREEN(ERR,%ZT3) ;Screen out certain errors.
  ;Set error text format
  S %ZTH=+$H,%ZTE=$$FMT(ERR)
  ;Find error in summary
- S %ZTI=$O(^%ZTER(3.077,"B",%ZTE,0)),%ZTR=$G(^%ZTER(3.077,+%ZTI,4,%ZTH,0)),%ZTJ=0
+ S %ZTI=$O(^%ZTER(3.077,"B",$E(%ZTE,1,30),0)),%ZTR=$G(^%ZTER(3.077,+%ZTI,4,%ZTH,0)),%ZTJ=0 ; edit form %ZTE to $E(%ZTE,1,30) p685
  F %ZTA=1:1:24 S %ZTJ=%ZTJ+$P(%ZTR,"~",%ZTA)
  ;Check the limit on the number of errors to record.
  I $P($G(^XTV(8989.3,1,"ZTER")),"^",1)'="",%ZTJ'<(+$P($G(^XTV(8989.3,1,"ZTER"),"10"),"^",1)) Q 1 ;Don't record

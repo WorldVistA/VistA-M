@@ -1,10 +1,11 @@
-RMPREOSA ;HINES-IOFO/HNC - Clone, Auto Adaptive, Clothing Allowance ;10/31/03  14:17
- ;;3.0;PROSTHETICS;**80,75**;Feb 09, 1996;Build 25
+RMPREOSA ;HINES-IOFO/HNC,RN,ATG/JPN - Clone, Auto Adaptive, Clothing Allowance ;July 29, 2020@10:00
+ ;;3.0;PROSTHETICS;**80,75,200**;Feb 09, 1996;Build 2
 EN ;Add Auto Adaptive Suspense
- ;
+ ; 
+ ; VSR (RN) patch RMPR*3.0*200 change four slashes to three slashes for validation before filing adding back tic to station
  D NOW^%DTC S X=%
  S DIC="^RMPR(668,",DIC(0)="AEQLM",DLAYGO=668
- S DIC("DR")="1////^S X=RMPRDFN;22R;14////^S X=""O"";8////^S X=DUZ;9////^S X=8;3////^S X=9;2////^S X=RMPR(""STA"")"
+ S DIC("DR")="1////^S X=RMPRDFN;22R;14////^S X=""O"";8////^S X=DUZ;9////^S X=8;3////^S X=9;2///^S X=""`""_RMPR(""STA"")"
  K DINUM,D0,DD,DO D FILE^DICN K DLAYGO G:Y'>0 EX S (RDA,DA)=+Y
  S DIE="^RMPR(668,",DR="13;4"
  L +^RMPR(668,RDA,0):1 I $T=0 W $C(7),?5,!,"Someone else is editing this record" G EX
@@ -15,9 +16,10 @@ EX K X,DIC,DIE,DR,Y
  ;
 EN1 ;Add Clothing Allowance Suspense
  ;
+ ; VSR (RN) patch RMPR*3.0*200 change four slashes to three slashes for validation before filing adding back tic to station
  D NOW^%DTC S X=%
  S DIC="^RMPR(668,",DIC(0)="AEQLM",DLAYGO=668
- S DIC("DR")="1////^S X=RMPRDFN;22R;14////^S X=""O"";8////^S X=DUZ;9////^ S X=6;3////^S X=9;2////^S X=RMPR(""STA"")"
+ S DIC("DR")="1////^S X=RMPRDFN;22R;14////^S X=""O"";8////^S X=DUZ;9////^ S X=6;3////^S X=9;2///^S X=""`""_RMPR(""STA"")"
  K DINUM,D0,DD,DO D FILE^DICN K DLAYGO G:Y'>0 EX S (RDA,DA)=+Y
  S DIE="^RMPR(668,",DR="13;4"
  L +^RMPR(668,RDA,0):1 I $T=0 W $C(7),?5,!,"Someone else is editing this  record" G EX

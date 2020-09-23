@@ -1,5 +1,5 @@
-DGRPE ;ALB/MRL,LBD,BRM,TMK,BAJ,PWC,JAM,JAM - REGISTRATIONS EDITS ;23 May 2017  1:51 PM
- ;;5.3;Registration;**32,114,139,169,175,247,190,343,397,342,454,415,489,506,244,547,522,528,555,508,451,626,638,624,677,672,702,689,735,688,797,842,865,871,887,941,985**;Aug 13, 1993;Build 15
+DGRPE ;ALB/MRL,LBD,BRM,TMK,BAJ,PWC,JAM,JAM,JAM - REGISTRATIONS EDITS ;23 May 2017  1:51 PM
+ ;;5.3;Registration;**32,114,139,169,175,247,190,343,397,342,454,415,489,506,244,547,522,528,555,508,451,626,638,624,677,672,702,689,735,688,797,842,865,871,887,941,985,997**;Aug 13, 1993;Build 42
  ;
  ;DGDR contains a string of edits; edit=screen*10+item #
  ;
@@ -24,6 +24,8 @@ DGRPE ;ALB/MRL,LBD,BRM,TMK,BAJ,PWC,JAM,JAM - REGISTRATIONS EDITS ;23 May 2017  1
  . I DGDR["603," D EN^DGRP6EF(DFN,.QUIT)  Q:QUIT  ; Exposures
  I DGRPS=7,(DGDR["702,") D EN^DGRP7CP(DFN,.QUIT) I QUIT D Q Q  ;DG*5.3*842 screen 7 cp subscreen
  I DGRPS=11,(DGDR["1105,") D EN^DGR111(DFN) ;DG*5.3*871 screen 11 HBP subscreen
+ ; DG*5.3*997; jam; Screen 11.5 Caregiver subscreen
+ I DGRPS=11.5,(DGDR["1151,") D EN^DGRP11B(DFN)
  ;-- Tricare screen #15
  I DGRPS=15 D EDIT^DGRP15,Q Q
  ;
@@ -84,18 +86,35 @@ SETFLDS(DGDR) ; Set up fields to edit
 203 ;;D DR203^DGRPE;6ETHNICITY;2RACE;K DR(2,2.02),DR(2,2.06);
 205 ;;.181;
  ; patch DG*5.3*985 - NOK - Tags 301 and 302 for Primary and Secondary NOK: phone number no longer copied when copying patient address - phone number entered on its own
-301 ;;.211;S:X']"" Y="@31";.212;D DR301^DGRPE S:DG4=1 Y=.213;.2125//NO;I X="Y" S DGADD=".21" D AD^DGRPE S Y="@30";.213;K DG4;S:X']"" Y=.216;.214;S:X']"" Y=.216;.215:.217;.2207;@30;.219;.21011;@31;
-302 ;;.2191;S:X']"" Y="@32";.2192;D DR301^DGRPE S:DG4=1 Y=.2193;.21925//NO;I X="Y" S DGADD=".211" D AD^DGRPE S Y="@30";
-302000 ;;.2193;S:X']"" Y=.2196;.2194;S:X']"" Y=.2196;.2195:.2197;.2203;@30;.2199;.211011;@32;
+ ; patch DG*5.3*997; jam; Tags 301-305 modified to allow for copy or entry of Country/foreign addresses
+ ;301 ;;.211;S:X']"" Y="@31";.212;D DR301^DGRPE S:DG4=1 Y=.213;.2125//NO;I X="Y" S DGADD=".21" D AD^DGRPE S Y="@30";.213;K DG4;S:X']"" Y=.216;.214;S:X']"" Y=.216;.215:.217;.2207;@30;.219;.21011;@31;
+ ;
+301 ;;.211;S:X']"" Y="@31";.212;.2125//NO;I X="Y" S DGADD=".21" D AD^DGRPE S Y="@30";.221//USA;.213;S:X']"" Y=.216;.214;S:X']"" Y=.216;.215;.216;S DGADD=".21" D DR301^DGRPE S:DG4=1 Y=.222;.217;.2207;S Y="@30";.222;.223;@30;K DG4;.219;.21011;@31;
+ ;302 ;;.2191;S:X']"" Y="@32";.2192;D DR301^DGRPE S:DG4=1 Y=.2193;.21925//NO;I X="Y" S DGADD=".211" D AD^DGRPE S Y="@30";
+ ;302000 ;;.2193;S:X']"" Y=.2196;.2194;S:X']"" Y=.2196;.2195:.2197;.2203;@30;.2199;.211011;@32;
+302 ;;.2191;S:X']"" Y="@32";.2192;.21925//NO;I X="Y" S DGADD=".211" D AD^DGRPE S Y="@301";
+302000 ;;.2101//USA;.2193;S:X']"" Y=.2196;.2194;S:X']"" Y=.2196;.2195;.2196;S DGADD=".211" D DR301^DGRPE S:DG4=1 Y=.2102;.2197;.2203;S Y="@301";.2102;.2103;@301;K DG4;.2199;.211011;@32;
+ ;
 303 ;;N DGX1,DGX2;I '$L($P($G(^DPT(DFN,.21)),U)) S Y="@33";.3305//NO;I X="Y" S Y="@34",DGX1=1 S:$D(^DPT(DFN,.22)) $P(^(.22),U,1)=$P(^(.22),U,7);@33;.331;S:X']"" DGX1=2,Y="@34";.332;@34;
-303000 ;;S:$G(DGX1) Y="@341";.333;S:X']"" Y=.336;.334;S:X']"" Y=.336;.335:.337;.2201;.339;.33011;S DGX1=2;@341;
-303001 ;;S:$G(DGX1)=2 Y="@35";S DGX2=$G(^DPT(DA,.21));.331///^S X=$P(DGX2,U);.332///^S X=$P(DGX2,U,2);.333////^S X=$P(DGX2,U,3);.334///^S X=$P(DGX2,U,4);@35;
+ ;303000 ;;S:$G(DGX1) Y="@341";.333;S:X']"" Y=.336;.334;S:X']"" Y=.336;.335:.337;.2201;.339;.33011;S DGX1=2;@341;
+ ;303001 ;;S:$G(DGX1)=2 Y="@35";S DGX2=$G(^DPT(DA,.21));.331///^S X=$P(DGX2,U);.332///^S X=$P(DGX2,U,2);.333////^S X=$P(DGX2,U,3);.334///^S X=$P(DGX2,U,4);@35;
+ ;303002 ;;S:$G(DGX1)=2 Y="@351";.335///^S X=$P(DGX2,U,5);.336///^S X=$P(DGX2,U,6);.337///^S X=$P(DGX2,U,7);.338///^S X=$P(DGX2,U,8);.339///^S X=$P(DGX2,U,9);.33011///^S X=$P(DGX2,U,11);@351;K DGX1,DGX2;
+ ;
+303000 ;;S:$G(DGX1) Y="@341";.3306//USA;.333;S:X']"" Y=.336;.334;S:X']"" Y=.336;.335;.336; S DGADD=".33" D DR301^DGRPE S:DG4=1 Y=.3307;.337;.2201;S Y="@361";.3307;.3308;@361;K DG4;.339;.33011;S DGX1=2;@341; 
+303001 ;;S:$G(DGX1)=2 Y="@35";S DGX2=$G(^DPT(DA,.21));.331///^S X=$P(DGX2,U);.332///^S X=$P(DGX2,U,2);.333////^S X=$P(DGX2,U,3);.334///^S X=$P(DGX2,U,4);.3306///^S X=$P(DGX2,U,12);.3307///^S X=$P(DGX2,U,13);.3308///^S X=$P(DGX2,U,14);@35;
 303002 ;;S:$G(DGX1)=2 Y="@351";.335///^S X=$P(DGX2,U,5);.336///^S X=$P(DGX2,U,6);.337///^S X=$P(DGX2,U,7);.338///^S X=$P(DGX2,U,8);.339///^S X=$P(DGX2,U,9);.33011///^S X=$P(DGX2,U,11);@351;K DGX1,DGX2;
-304 ;;.3311;S:X']"" Y="@36";.3312;.3313;S:X']"" Y=.3316;.3314;S:X']"" Y=.3316;.3315:.3317;.2204;.3319;.331011;@36;        
-305 ;;N DGX1,DGX2;I '$L($P($G(^DPT(DFN,.21)),U)) S Y="@37";.3405//NO;I X="Y" S DGX1=1,Y="@371" S:$D(^DPT(DFN,.22)) $P(^(.22),U,2)=$P(^(.22),U,7);@37;.341;S:X']"" DGX1=2,Y="@371";.342;@371;
-305000 ;;S:$G(DGX1) Y="@38";.343;S:X']"" Y=.346;.344;S:X']"" Y=.346;.345:.347;.2202;.349;.34011;S DGX1=2;@38;
-305001 ;;S:$G(DGX1)=2 Y="@381";S DGX2=$G(^DPT(DA,.21));.341///^S X=$P(DGX2,U);.342///^S X=$P(DGX2,U,2);.343///^S X=$P(DGX2,U,3);.344///^S X=$P(DGX2,U,4);@381
+ ;
+ ;304 ;;.3311;S:X']"" Y="@36";.3312;.3313;S:X']"" Y=.3316;.3314;S:X']"" Y=.3316;.3315:.3317;.2204;.3319;.331011;@36;        
+304 ;;.3311;S:X']"" Y="@36";.3312;.331012//USA;.3313;S:X']"" Y=.3316;.3314;S:X']"" Y=.3316;.3315;.3316; S DGADD=".331" D DR301^DGRPE S:DG4=1 Y=.331013;.3317;.2204;S Y="@37";.331013;.331014;@37;K DG4;.3319;.331011;@36; 
+ ;
+305 ;;N DGX1,DGX2;I '$L($P($G(^DPT(DFN,.21)),U)) S Y="@372";.3405//NO;I X="Y" S DGX1=1,Y="@371" S:$D(^DPT(DFN,.22)) $P(^(.22),U,2)=$P(^(.22),U,7);@372;.341;S:X']"" DGX1=2,Y="@371";.342;@371;
+ ;305000 ;;S:$G(DGX1) Y="@38";.343;S:X']"" Y=.346;.344;S:X']"" Y=.346;.345:.347;.2202;.349;.34011;S DGX1=2;@38;
+ ;305001 ;;S:$G(DGX1)=2 Y="@381";S DGX2=$G(^DPT(DA,.21));.341///^S X=$P(DGX2,U);.342///^S X=$P(DGX2,U,2);.343///^S X=$P(DGX2,U,3);.344///^S X=$P(DGX2,U,4);@381
+ ;305002 ;;S:$G(DGX1)=2 Y="@39";.345///^S X=$P(DGX2,U,5);.346///^S X=$P(DGX2,U,6);.347///^S X=$P(DGX2,U,7);.348///^S X=$P(DGX2,U,8);.349///^S X=$P(DGX2,U,9);.34011///^S X=$P(DGX2,U,11);@39;K DGX1,DGX2;
+305000 ;;S:$G(DGX1) Y="@38";.34012//USA;.343;S:X']"" Y=.346;.344;S:X']"" Y=.346;.345;.346; S DGADD=".34" D DR301^DGRPE S:DG4=1 Y=.34013;.347;.2202;S Y="@391";.34013;.34014;@391;K DG4;.349;.34011;S DGX1=2;@38;
+305001 ;;S:$G(DGX1)=2 Y="@381";S DGX2=$G(^DPT(DA,.21));.341///^S X=$P(DGX2,U);.342///^S X=$P(DGX2,U,2);.343///^S X=$P(DGX2,U,3);.344///^S X=$P(DGX2,U,4);.34012///^S X=$P(DGX2,U,12);.34013///^S X=$P(DGX2,U,13);.34014///^S X=$P(DGX2,U,14);@381
 305002 ;;S:$G(DGX1)=2 Y="@39";.345///^S X=$P(DGX2,U,5);.346///^S X=$P(DGX2,U,6);.347///^S X=$P(DGX2,U,7);.348///^S X=$P(DGX2,U,8);.349///^S X=$P(DGX2,U,9);.34011///^S X=$P(DGX2,U,11);@39;K DGX1,DGX2;
+ ;
 401 ;;.01;.31115;S:($S(X']"":1,X=3:1,X=9:1,1:0)) Y="@41" S:(X'=5) Y=.3111;.31116;.3111;S:X']"" Y="@41";.3113;S:X']"" Y=.3116;.3114;S:X']"" Y=.3116;.3115:.3117;.2205;.3119;@41;
 402 ;;.2514;.2515;S:($S(X']"":1,X=3:1,X=9:1,1:0)) Y="@42" S:(X'=5) Y=.251;.2516;.251;S:X']"" Y="@42";.252;S:X']"" Y=.255;.253;S:X']"" Y=.255;.254:.256;.2206;.258;@42;
 501 ;;
@@ -111,8 +130,9 @@ SETFLDS(DGDR) ; Set up fields to edit
 608 ;;S DGPHFLG=0;.531;S:X'="Y" DGX=X,Y="@616";.532///^S X="PENDING";S Y="@6161";@616;S:DGX'="N" Y="@6162";.533///^S X="VAMC";@6161;S DGPHFLG=1;.535///^S X=$$DIV^DGRPLE();@6162;
 AD N DGZ4,DGPC
  ; patch DG*5.3*985; jam - NOK - do not copy phone number when copying patient address.
+ ; patch DG*5.3*997; jam - copy country/province/postal code
  ;S X=$S($D(^DPT(DA,.11)):^(.11),1:""),DGZ4=$P(X,U,12),DGPHONE=$S($D(^(.13)):$P(^(.13),U,1),1:""),Y=$S($D(^(DGADD)):^(DGADD),1:""),^(DGADD)=$P(Y,U,1)_U_$P(Y,U,2)_U_$P(X,U,1,6)_U_DGPHONE_U_$P(Y,U,10)
- S X=$S($D(^DPT(DA,.11)):^(.11),1:""),DGZ4=$P(X,U,12),Y=$S($D(^(DGADD)):^(DGADD),1:""),^(DGADD)=$P(Y,U,1)_U_$P(Y,U,2)_U_$P(X,U,1,6)_U_$P(Y,U,9,11)
+ S X=$S($D(^DPT(DA,.11)):^(.11),1:""),DGZ4=$P(X,U,12),Y=$S($D(^(DGADD)):^(DGADD),1:""),^(DGADD)=$P(Y,U,1)_U_$P(Y,U,2)_U_$P(X,U,1,6)_U_$P(Y,U,9)_U_$P(Y,U,10)_U_$P(Y,U,11)_U_$P(X,U,10)_U_$P(X,U,8)_U_$P(X,U,9)
  I DGZ4 S DGPC=$S((DGADD=.33):1,(DGADD=.34):2,(DGADD=.211):3,(DGADD=.331):4,(DGADD=.311):5,(DGADD=.25):6,(DGADD=.21):7,1:0) S:DGPC $P(^DPT(DFN,.22),U,DGPC)=DGZ4
  ;K DGADD,DGPHONE Q
  K DGADD Q
@@ -133,13 +153,22 @@ DR111 ; Set DR string for Confidential Address categories
 DR207 ; DR string for preferred language ;*///*
  S DR(2,2.07)=".01;.02//ENGLISH;D LANGDEL^DGRPE"
  Q
-DR301 ; set up variables for foreign address
+ ;DR301 ; set up variables for foreign address - REMOVE FOR PATCH 997 - REPLACED BELOW
  N DG3,DG33
  S DG4=0
  S DG3=$P($G(^DPT(DFN,.11)),U,10)
  S DG33=$O(^HL(779.004,"B","USA",""))
  I $G(DG3)]"",(DG3'=$G(DG33)) S DG4=1
  Q
+ ;
+DR301 ; jam; DG*5.3*997 - check for foreign address
+ N DG3,DG33
+ S DG4=0
+ S DG3=$P($G(^DPT(DFN,DGADD)),U,12)
+ S DG33=$O(^HL(779.004,"B","USA",""))
+ I $G(DG3)]"",(DG3'=$G(DG33)) S DG4=1
+ Q
+ ;
 PRF ; Write Proof needed for FV
  W !?4,$C(7),"Proof is required for Filipino vet."
  Q

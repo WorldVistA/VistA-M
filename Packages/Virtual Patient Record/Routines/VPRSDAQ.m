@@ -1,5 +1,5 @@
-VPRSDAQ ;SLC/MKB -- SDA queries ;3/28/19  14:09
- ;;1.0;VIRTUAL PATIENT RECORD;**8,10**;Sep 01, 2011;Build 16
+VPRSDAQ ;SLC/MKB -- SDA queries ;11/8/18  14:11
+ ;;1.0;VIRTUAL PATIENT RECORD;**8,10,20**;Sep 01, 2011;Build 9
  ;;Per VHA Directive 6402, this routine should not be modified.
  ;
  ; External References          DBIA#
@@ -7,12 +7,10 @@ VPRSDAQ ;SLC/MKB -- SDA queries ;3/28/19  14:09
  ; ^AUPNVSIT                     2028
  ; ^AUTTHF                       4295
  ; ^DGS(41.1                     3796
- ; ^DIC(9.4                     10048
  ; ^LR                            525
  ; ^OR(100                       5771
  ; ^ORD(100.98                   6982
  ; ^PXRMINDX                     4290
- ; ^SC                          10040
  ; ^WV(790.05                    5772
  ; %DT                          10003
  ; DGPFAPI                       3860
@@ -23,7 +21,6 @@ VPRSDAQ ;SLC/MKB -- SDA queries ;3/28/19  14:09
  ; GMRCSLM1, ^TMP("GMRCR",$J)    2740
  ; GMRVUT0, ^UTILITY($J)         1446
  ; IBBAPI                        4419
- ; ICDEX                         5747
  ; LR7OR1, ^TMP("LRRR",$J)       2503
  ; MDPS1,^TMP("MDHSP",$J)        4230
  ; ORQ1, ^TM("ORR",$J)           3154
@@ -64,7 +61,7 @@ VISITS ; -- Visits
  . S ID=0 F  S ID=$O(^AUPNVSIT("AA",DFN,IDT,ID)) Q:ID<1  D
  .. I $P($G(^AUPNVSIT(ID,0)),U,7)="H" D  Q:$G(VADMVT)
  ... S VAINDT=(9999999-$P(IDT,"."))_"."_$P(IDT,".",2)
- ... D ADM^VADPT2
+ ... K VADMVT D ADM^VADPT2
  .. S VPRN=VPRN+1,DLIST(VPRN)=ID
  Q
  ;
@@ -107,7 +104,7 @@ ADVDIR ; -- Adv Directive (alerts)
  . S NXT=$P(AD,U,5)
  Q
  ;
-CW ; -- Crisis/Warning notes (alerts)
+CW ; -- Crisis/Warning notes (alerts) [replaced by CWQ^VPRSDAF in *23]
  N I,X,CNT
  D:$G(DFN) ENCOVER^TIUPP3(DFN)
  S (I,CNT)=0
@@ -198,16 +195,20 @@ CPROCS ; -- Clinical Procedures
  N VPRN,VPRX,I,ID S VPRN=0
  D MDPS1^VPRDJ03(DFN,DSTRT,DSTOP,DMAX) ;gets ^TMP("MDHSP",$J)
  S I=0 F  S I=$O(^TMP("MDHSP",$J,I)) Q:I<1  S VPRX=$G(^(I)) I $P(VPRX,U,3)="PR702" D  Q:VPRN'<DMAX
+ . Q:'$P(VPRX,U,14)  ;no document yet (so no enc#)
  . S ^TMP("MDHSP",$J,"IEN",+$P(VPRX,U,2))=I
  . S VPRN=VPRN+1,DLIST(VPRN)=+$P(VPRX,U,2)
  ;K ^TMP("MDHSP",$J)
  Q
  ;
 SURGERYS ; -- Surgeries
- N VPRY,VPRN
+ N VPRY,VPRN,I,X
  D LIST^SROESTV(.VPRY,DFN,DSTRT,DSTOP,DMAX,1)
- S VPRN=0 F  S VPRN=$O(@VPRY@(VPRN)) Q:VPRN<1  D
- . Q:'$O(@VPRY@(VPRN,0))  ;no documents yet (so no enc#)
+ S VPRN=0 F  S VPRN=$O(@VPRY@(VPRN)) Q:VPRN<1  I $G(@VPRY@(VPRN)) D
+ . S I=+$O(@VPRY@(VPRN,0)) Q:I<1
+ . S X=$G(@VPRY@(VPRN,I)) ;TIU ien ^ $$RESOLVE^TIUSRVLO data string
+ . I $P(X,U,7)'="completed",$P(X,U,7)'="amended" Q
+ . I $P(X,U,2)["Addendum to " Q
  . S DLIST(VPRN)=+$G(@VPRY@(VPRN))
  K @VPRY
  Q
@@ -224,14 +225,16 @@ CPT ; -- V CPT (Procedures)
 POV ; -- V POV (Diagnosis)
  N FNUM S FNUM=9000010.07 G PXRM
  ;
+IMMS ; -- Immunizations
+ N FNUM S FNUM=9000010.11 G PXRM
+ ;
 PXRM ; -- Search PXRM index
  N VPRSTART,VPRSTOP,VPRIDT,VPRN,ID
  S VPRSTART=DSTRT,VPRSTOP=DSTOP,VPRN=0
  D SORT^VPRDJ09 ;sort ^PXRMINDX into ^TMP("VPRPX",$J,IDT)
  S VPRIDT=0 F  S VPRIDT=$O(^TMP("VPRPX",$J,VPRIDT)) Q:VPRIDT<1  D  Q:VPRN'<DMAX
  . S ID=0 F  S ID=$O(^TMP("VPRPX",$J,VPRIDT,ID)) Q:ID<1  D  Q:VPRN'<DMAX
- .. S VPRN=VPRN+1,DLIST(VPRN)=ID_U_$G(^TMP("VPRPX",$J,VPRIDT,ID))
- .. ; DLIST(#) = ien ^ .01 ^ date ^ [coding system]
+ .. S VPRN=VPRN+1,DLIST(VPRN)=ID
  K ^TMP("VPRPX",$J)
  Q
  ;
@@ -265,16 +268,6 @@ WVPL ; -- Women's Health Pregnancy Log, for Social History
  I $P(X0,U,3),$P(X0,U,4)'<$$FMADD^XLFDT(DT,-14) S DLIST(1)=DA
  Q
  ;
-IMMS ; -- Immunizations
- N FNUM,VPRSTART,VPRSTOP,VPRIDT,VPRN,ID
- S FNUM=9000010.11,VPRSTART=DSTRT,VPRSTOP=DSTOP,VPRN=0
- D SORT^VPRDJ09 ;sort ^PXRMINDX into ^TMP("VPRPX",$J,IDT)
- S VPRIDT=0 F  S VPRIDT=$O(^TMP("VPRPX",$J,VPRIDT)) Q:VPRIDT<1  D  Q:VPRN'<DMAX
- . S ID=0 F  S ID=$O(^TMP("VPRPX",$J,VPRIDT,ID)) Q:ID<1  D    Q:VPRN'<DMAX
- .. S VPRN=VPRN+1,DLIST(VPRN)=ID
- K ^TMP("VPRPX",$J)
- Q
- ;
 VITALS ; -- GMR Vital Measurements
  N GMRVSTR,VPRIDT,VPRTYP,ID,VPRN
  S GMRVSTR="BP;T;R;P;HT;WT;CVP;CG;PO2;PN"
@@ -291,7 +284,7 @@ VITALS ; -- GMR Vital Measurements
 APPTS ; -- Appointments
  N VPRX,VPRNUM,VPRDT,VPRN
  S VPRX(1)=DSTRT_";"_DSTOP,VPRX(4)=DFN
- S VPRX("FLDS")="1;2;3;10;11",VPRX("SORT")="P"
+ S VPRX("FLDS")="1;2;3;10;11;12;22",VPRX("SORT")="P"
  ; appointments
  S VPRX(3)="R;I;NS;NSR;NT" ;no cancelled appt's
  S VPRNUM=$$SDAPI^SDAMA301(.VPRX),(VPRDT,VPRN)=0
@@ -318,7 +311,7 @@ INS ; -- Insurance
  M VPRINS=VPRX("IBBAPI","INSUR")
  Q
  ;
-PRF ; -- Patient Record Flags
+PRF ; -- Patient Record Flags [replaced by PRFQ^VPRSDAF]
  N NUM,I,IEN
  S:$G(DFN) NUM=$$GETACT^DGPFAPI(DFN,"VPRF")
  S I=0 F  S I=$O(VPRF(I)) Q:I<1  I $G(VPRF(I,"CATEGORY"))["NATIONAL" D
@@ -332,9 +325,7 @@ PTF ; -- PTF DXLS via ^PXRMINDX(45,"ICD","PNI",DFN,"DXLS",ICD,DATE,DA)
  D PTF^VPRDJ09 ;sort ^PXRMINDX into ^TMP("VPRPX",$J,IDT)
  S VPRIDT=0 F  S VPRIDT=$O(^TMP("VPRPX",$J,VPRIDT)) Q:VPRIDT<1  D  Q:VPRN'<DMAX
  . S ID=0 F  S ID=$O(^TMP("VPRPX",$J,VPRIDT,ID)) Q:ID<1  I ID["DXLS" D  Q:VPRN'<DMAX
- .. S X=$G(^TMP("VPRPX",$J,VPRIDT,ID)),P80=$$CODEBA^ICDEX($P(X,U),80)
- .. S:P80>0 VPRN=VPRN+1,DLIST(VPRN)=+ID_U_P80_U_$P(X,U,2,3)
- .. ; DLIST(#) = ien ^ ICD ptr ^ date ^ [coding system]
+ .. S VPRN=VPRN+1,DLIST(VPRN)=+ID
  K ^TMP("VPRPX",$J)
  Q
  ;
@@ -355,3 +346,6 @@ DATE(X) ; -- Return internal form of date X
  N %DT,Y
  S %DT="" D ^%DT S:Y<1 Y=X
  Q Y
+ ;
+NOQ ; -- tag for Entities that should not execute a query
+ Q

@@ -1,0 +1,184 @@
+IB20P673 ;ALB/CXW - MCCR UTILITY/REVENUE/RNB UPDATES FOR 2020 ;04/20/2020
+ ;;2.0;INTEGRATED BILLING;**673**;21-MAR-94;Build 10
+ ;;Per VA Directive 6402, this routine should not be modified.
+ Q
+POST ; 
+ ; Update value/condition/revenue/RNB for 2020 in files 399.1/399.2/356.8
+ N IBZ,U S U="^"
+ D BMSG("    IB*2.0*673 Post-Install starts .....")
+ D MCR,RVC,RNB
+ D BMSG("    IB*2.0*673 Post-Install is complete.")
+ Q
+ ;
+MCR ; Two types of codes
+ N IBCNT,IBPE,IBFD,IBI,IBX
+ ; value code flag in field #.18/piece 11
+ S IBCNT=0,IBPE=11,IBFD=.18
+ D BMSG(" >> Adding Value Code")
+ F IBI=1:1 S IBX=$P($T(VALU+IBI),";;",2) Q:IBX="Q"  D MFILE
+ ; condition code flag in field #.22/piece 15
+ S IBPE=15,IBFD=.22
+ D BMSG(" >> Adding Condition Code")
+ F IBI=1:1 S IBX=$P($T(CONU+IBI),";;",2) Q:IBX="Q"  D MFILE
+ ; 
+ D MSG("Total "_IBCNT_" code"_$S(IBCNT'=1:"s",1:"")_" added to MCCR UTILITY (#399.1) file")
+ Q
+ ;
+MFILE ; Store in fields
+ N IBA,IBB,IBC,IBFN,IBMS,IBX3,IBY,DLAYGO,DIC,DIE,DA,DD,DO,DR,X,Y
+ S IBA=$P(IBX,U),IBB=$P(IBX,U,2)
+ S IBY="    "_IBA_"  "_IBB
+ S IBFN=+$$EXCODE(IBA,IBPE)
+ I IBFN D  Q:'IBFN
+ . S IBX3=$G(^DGCR(399.1,IBFN,0)),IBC=IBB_U_IBA
+ . I $P(IBX3,U,1,2)=IBC S IBFN=0 D MSG(IBY_" not re-added") Q
+ . ; if new code already exists
+ . S DA=IBFN,IBMS="updated"
+ I 'IBFN D  Q:Y<1
+ . S DLAYGO=399.1,DIC="^DGCR(399.1,",DIC(0)="L",X=IBB D FILE^DICN
+ . I Y<1 D MSG(" >> ERROR when adding "_$S(IBPE=11:"Value",1:"Condition")_" Code #"_IBA_" to the #399.1 file, Log a ticket!") Q
+ . S DA=+Y,IBMS=""
+ S DIE="^DGCR(399.1,",DR=".01///"_IBB_";.02///"_IBA_";"_IBFD_"///1" D ^DIE
+ S IBCNT=IBCNT+1 D MSG(IBY_$S(IBMS'="":" "_IBMS,1:""))
+ Q
+ ;
+EXCODE(IBCOD,IBPE) ; Returns IEN if code found in the IBPE piece
+ N IBX,IBY S IBY=""
+ I $G(IBCOD)'="" S IBX=0 F  S IBX=$O(^DGCR(399.1,"C",IBCOD,IBX)) Q:'IBX  I $P($G(^DGCR(399.1,IBX,0)),U,+$G(IBPE)) S IBY=IBX
+ Q IBY
+ ;
+RVC ; Revenue code in fields #1/piece 2, #2/piece 3, #3/piece 4
+ N IBA,IBB,IBC,IBCNT,IBD,IBF,IBI,IBMS,IBX,IBY,IBX3,DA,DIE,DR,X,Y
+ S IBCNT=0
+ D BMSG(" >> Activating Revenue Code")
+ F IBI=1:1 S IBX=$P($T(RVCU+IBI),";;",2) Q:IBX="Q"  D
+ . S IBA=$P(IBX,U),IBB=$P(IBX,U,2),IBC=$P(IBX,U,3)
+ . S IBY="    "_IBA_"  "_IBC,IBD=IBA_U_IBB_U_1_U_IBC
+ . S IBF=+$O(^DGCR(399.2,"B",IBA,0)) Q:'IBF
+ . S IBX3=$G(^DGCR(399.2,IBF,0))
+ . I $P(IBX3,U,1,4)=IBD D MSG(IBY_" not re-activated") Q
+ . S IBMS=$S($P(IBX3,U,2)="*RESERVED":"added",$P(IBX3,U,4)="*RESERVED":"added",1:"updated")
+ . ;4 slashes to override the letter if '*' exists
+ . S DR="1////"_IBB_";3////"_IBC_";2///1"
+ . S DIE="^DGCR(399.2,",DA=+IBF D ^DIE
+ . S IBCNT=IBCNT+1 D MSG(IBY)
+ D MSG("Total "_IBCNT_" code"_$S(IBCNT'=1:"s",1:"")_" updated in REVENUE CODE(#399.2) file")
+ Q
+ ;
+RNB ; RNB in fields #.01/piece 1, #.02/piece 2, #.03/piece 3, #.04/piece 4, #.05/piece 5
+ N IBA,IBB,IBC,IBCNT,IBD,IBE,IBF,IBI,IBX,IBY,IBX3,DA,DLAYGO,DIC,DIE,DINUM,DR,X,Y
+ S IBCNT=0
+ D BMSG(" >> Adding Reason Not Billable (RNB)")
+ F IBI=1:1 S IBX=$P($T(NRNB+IBI),";;",2) Q:IBX="Q"  D
+ . S IBA=$P(IBX,U),IBB=$P(IBX,U,2),IBC=$P(IBX,U,3),IBD=$P(IBX,U,4)
+ . S IBY="    "_IBA_"  "_IBB
+ . S IBE=IBB_U_IBC_U_IBD_U_IBA
+ . S IBF=+$O(^IBE(356.8,"B",IBB,0))
+ . I IBF D  Q:'IBF
+ .. ; if new code already exists
+ .. S IBX3=$G(^IBE(356.8,IBF,0)),DA=IBF,IBMS="updated"
+ .. I $P(IBX3,U,1,4)=IBE S IBF=0 D MSG(IBY_" not re-added") Q
+ . I 'IBF D  Q:Y<1
+ .. F IBF=100:1 S IBX3=$G(^IBE(356.8,IBF,0)) I IBX3="" S DINUM=IBF Q 
+ .. S DLAYGO=356.8,DIC="^IBE(356.8,",DIC(0)="L",X=IBB D FILE^DICN
+ .. I Y<1 D MSG(" >> ERROR when adding "_IBY_" to the #356.8 file, log a ticket!") Q
+ .. S DA=+Y,IBMS=""
+ . S DIE="^IBE(356.8,",DR=".02///"_IBC_";.03///"_IBD_";.04///"_IBA D ^DIE
+ . S IBCNT=IBCNT+1 D MSG(IBY_$S(IBMS'="":" "_IBMS,1:""))
+ ;
+ D BMSG(" >> Inactivating Reason Not Billable (RNB)")
+ F IBI=1:1 S IBX=$P($T(IRNB+IBI),";;",2) Q:IBX="Q"  D
+ . S IBA=$P(IBX,U),IBB=$P(IBX,U,2)
+ . S IBC="    "_IBA_"  "_IBB
+ . S IBD=+$O(^IBE(356.8,"B",IBB,0))
+ . I 'IBD D MSG(IBC_" not found") Q
+ . S IBE=$G(^IBE(356.8,IBD,0)) Q:IBE=""
+ . I $P(IBE,U,5) D MSG(IBC_" not re-inactivated") Q
+ . S DA=IBD,DIE="^IBE(356.8,",DR=".05///1" D ^DIE
+ . S IBCNT=IBCNT+1 D MSG(IBC)
+ D MSG("Total "_IBCNT_" code"_$S(IBCNT'=1:"s",1:"")_" updated in CLAIMS TRACKING NON-BILLABLE REASONS (#356.8) file")
+ Q
+ ;
+BMSG(IBZ) ;
+ D BMES^XPDUTL(IBZ)
+ Q
+ ;
+MSG(IBZ) ;
+ D MES^XPDUTL(IBZ)
+ Q
+ ;
+VALU ; Value code^name (2)
+ ;;87^GENE THERAPY INVOICE COST
+ ;;90^CELL THERAPY INVOICE COST
+ ;;Q
+CONU ; Condition code^name^update (1)
+ ;;A7^HOSP SVCS PRVD IN A MBL FAC OR W PORT UNTS
+ ;;Q
+RVCU ; Revenue code^standard abbreviation^description (1)
+ ;;892^SPECIAL PROCESSED DRUGS^SPECIAL PROCESSED DRUGS
+ ;;Q
+NRNB ; RNB code^name^ecme flag^ecme paper flag (7)
+ ;;BL10^BILLING LIMITATIONS^0^0
+ ;;CV30^NO COVERAGE^1^0
+ ;;CV31^POLICY LIMITATIONS^1^0
+ ;;DC20^DOCUMENTATION DOES NOT SUPPORT^0^0
+ ;;MC30^NON-BILLABLE SERVICE^0^0
+ ;;MN05^MEDICAL NECESSITY^1^0
+ ;;RX20^RX LIMITATIONS^1^0
+ ;;Q
+IRNB ; RNB code^name (54)
+ ;;BL01^CHARGES SPLIT
+ ;;BL08^COMBINED CHARGES
+ ;;CV02^COVERAGE CANCELED
+ ;;CV03^HMO POLICY
+ ;;CV04^OUT OF NETWORK (PPO)
+ ;;CV11^CONCURRENT CARE
+ ;;CV12^CUSTODIAL/RESIDENTIAL CARE
+ ;;CV13^NO OUTPATIENT COVERAGE
+ ;;CV14^NO INPATIENT COVERAGE
+ ;;CV15^NO PHARMACY COVERAGE
+ ;;CV16^NO DENTAL COVERAGE
+ ;;CV17^NO MENTAL HEALTH COVERAGE
+ ;;CV18^NO LTC COVERAGE
+ ;;CV21^NO VISION COVERAGE
+ ;;CV22^NO PROSTHETIC COVERAGE
+ ;;DC01^NO DOCUMENTATION
+ ;;DC02^NO TX PROVIDED/ADVICE ONLY
+ ;;DC03^UNSIGNED DOCUMENT
+ ;;DC04^NO DIAGNOSIS/SYMPTOMS IN NOTE
+ ;;DC05^NO CHIEF COMPLAINT
+ ;;DC06^NOTE NOT WRITTEN TIMELY
+ ;;DC07^NO PHYSICIAN ORDER
+ ;;DC08^NO PLAN OF CARE
+ ;;DC09^STUDENT NOTE ONLY
+ ;;DC10^NEW PT/NO HX
+ ;;DC11^NEW PT/NO EXAM
+ ;;DC12^NEW PT/NO COMPLEXITY
+ ;;DC13^EST PT/NO HX/NO EXAM
+ ;;DC14^EST PT/NO HX/NO COMPLEXITY
+ ;;DC15^EST PT/NO EXAM/NO COMPLEXITY
+ ;;MC01^NON-BILLABLE APPOINTMENT TYPE
+ ;;MC02^REFUSES TO SIGN RELEASE (ROI)
+ ;;MC03^NON-BILLABLE STOP CODE
+ ;;MC04^RESEARCH VISIT
+ ;;MC05^NON-BILLABLE CLINIC
+ ;;MC08^GLOBAL SURGERY
+ ;;MC10^DUPLICATE ENCOUNTER
+ ;;MC11^TELEPHONE ENCOUNTER
+ ;;MC13^72 HOUR RULE
+ ;;MC14^RESIDENT SUPERVISION NOT MET
+ ;;MC15^ANCILLARY PROVIDER AT CBOC
+ ;;MC20^APPT CANCELLED/PT NOT SEEN
+ ;;MC21^SEEN BY PROVIDER ON SAME DAY
+ ;;MC22^NON-BILLABLE DME/PROSTHETIC
+ ;;MC23^NON-BILLABLE PROCEDURE
+ ;;MC25^ENCOUNTER DURING INPT STAY
+ ;;MN01^MED NEC-DX NOT COVERED
+ ;;MN02^MED NEC-CPT NOT COVERED
+ ;;MN03^MED NEC-LCD EDIT
+ ;;MN04^MED NEC-OTHER
+ ;;RX02^REFILL ON VISIT DATE
+ ;;RX08^INVALID MULTIPLES PER DAY SUPP
+ ;;RX14^RX MEDICARE PART D
+ ;;RX15^RX DISCOUNT CARD
+ ;;Q

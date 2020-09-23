@@ -1,5 +1,7 @@
 VIABMS4 ;AAC/JMC,AFS/PB - VIA BMS RPCs ;10/31/17  14:34
- ;;1.0;VISTA INTEGRATION ADAPTER;**15**;06-FEB-2014;Build 5
+ ;;1.0;VISTA INTEGRATION ADAPTER;**15,20**;06-FEB-2014;Build 5
+ ;Per VA Directive 6402, this routine should not be modified.
+ ;Reference to ^OR(100 supported by IA 6475
  ;
  ; OLD 'AF' CODE modified.  Evalute DTO between queue start/end times.  Also, use only CURRENT ACTION item.
  ;
@@ -71,7 +73,7 @@ ORDACT ; Returns a list of order actions from the ORDER file #100.008
  . D LDIC^VIABMS
  . S X=0 F  S X=$O(RESULT(X)) Q:'X  D
  . . Q:(RESULT(X)["[Data]")&(DATAFLG)  I RESULT(X)["[Data]" S DATAFLG=1 ;list [Data] only once
- . . S:(RESULT(X)'["[")&($P(RESULT(X),"^")) $P(RESULT(X),"^")=IEN
+ . . S:($L(RESULT(X),U)>6)&($P(RESULT(X),"^")) $P(RESULT(X),"^")=IEN ;avoid length<6, i.e. [Data],[Misc],[Errors] headers/error/misc results.  Replaces (RESULT(X)'["[")
  . . S N=N+1,TRESULT(N)=RESULT(X)
  . K RESULT
  I N=0 S TRESULT(1)="[Data]"

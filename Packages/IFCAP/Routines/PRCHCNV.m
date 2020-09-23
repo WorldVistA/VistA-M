@@ -1,6 +1,6 @@
-PRCHCNV ; Covert purchase card orders to delivery orders and vice versa ;7/24/00  23:29
- ;;5.1;IFCAP;;Oct 20, 2000
- ;Per VHA Directive 10-93-142, this routine should not be modified.
+PRCHCNV ;ALB/TXH - Convert purchase card orders to delivery orders and vice versa ;7/24/00  23:29
+ ;;5.1;IFCAP;**217**;Oct 20, 2000;Build 4
+ ;Per VA Directive 6402, this routine should not be modified.
  ;
  QUIT
 PCDO ;Convert a purchase card order to a delivery order
@@ -15,7 +15,7 @@ PCDO ;Convert a purchase card order to a delivery order
  S PRCHNPO=$P(^PRC(442,PRCHNEW,0),U)
  S %X="^PRC(442,PRCHOLD,",%Y="^PRC(442,PRCHNEW," D %XY^%RCR K %X,%Y
  S DIE="^PRC(442,"
- S DR=".01///^S X=PRCHNPO;48///^S X=""D"";.02///^S X=1;27///^S X=PRCHOLD"
+ S DR=".01///^S X=PRCHNPO;48///^S X=""D"";.02///^S X=1;27///^S X=PRCHOLD;63///@"   ;PRC*5.1*217
  D ^DIE K DIE,DA,DR
  F I=8,15,16,17,20,21,22 S $P(^PRC(442,PRCHNEW,23),U,I)=""
  S PRCHCARD=$P(^PRC(442,PRCHOLD,23),U,8),PRCHHLDR=$P(^(23),U,22)

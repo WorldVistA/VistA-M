@@ -1,11 +1,13 @@
-XUPROD ;ISF/RWF - Is this a PROD account. ;04/12/10  14:04
- ;;8.0;KERNEL;**284,440,542**;Jul 10, 1995;Build 5
+XUPROD ;ISF/RWF - Is this a PROD account. ;18/06/20
+ ;;8.0;KERNEL;**284,440,542,717**;Jul 10, 1995;Build 10
+ ;;Per VHA Directive 6402, this routine should not be modified.
  ;
  ;IA# 4440
 PROD(FORCE) ;Return 1 if this is a production account
  ;A non-zero flag will force a real check
  ;This call just checks a flag in the KSP, Other code will compair
  ;with registered ID.
+ I $$CFG("PRO") Q 1
  N LC,SID
  S SID=$G(^XTV(8989.3,1,"SID"))
  I '$L($P(SID,"^",3))!($P(SID,"^",3)'=$G(DT))!$G(FORCE) D
@@ -56,3 +58,29 @@ EDIT ;Edit Logical - Physical fields
  S DA=1,DIE="^XTV(8989.3,",DR="504;505" D ^DIE
  L -^XTV(8989.3,1,"SID")
  Q
+ ;
+CFG(CFG) ; RETURN BOOLEAN CHECK FOR CONFIGURATION TYPE
+ ;I $G(^|"%SYS"|SYS("ZCFG"))[CFG Q $S(^|"%SYS"|SYS("ZCFG")[("-"_CFG):0,1:1)
+ N X,Y S X=$$INSTNM("U"),Y=1972
+ I CFG="PRO" I Y>19700!(($E(X,6)="P")&("PS0^PAD^PRD^PSH"'[$E(X,6,8))) Q 1
+ I CFG="TST" I Y=1975!($E(Y,1,3)=195)!($E(X,6)="T")!($L(X)=7&($E(X)="T")) Q:"TAD^TRD"[$E(X,6,8) 0 Q 1
+ I CFG="BE",$E(X,7,9)="SVR" Q 1
+ I CFG="FE",$E(X,7,8)="A0"!($E(X,7,8)="TM") Q 1
+ I CFG="MS" I $E(X,6,9)="SHMS"!($E(X,6,8)="SSM") Q 1
+ I CFG="LS" I $E(X,7,9)="LDR"!($E(X,6,8)="SSL") Q 1
+ I CFG="VRO" I $E(X,6,9)="SHDW"!($E(X,6,8)="SS0")!($E(X,6,8)="SS1") Q 1
+ I CFG="DR" I $E(X,7,9)="SHD"!($E(X,6,8)="PS0")!($E(X,6,8)="DR0") Q 1
+ I CFG="MDR" I $E(X,6,8)="MDR" Q 1
+ I CFG="HC" I $E(X,4,5)="HC" Q 1
+ I CFG="PM" Q $SYSTEM.Mirror.IsPrimary()
+ I CFG="BM" Q $SYSTEM.Mirror.IsBackup()
+ I CFG="AM" Q $SYSTEM.Mirror.IsAsyncMember()
+ I CFG="MM" Q $SYSTEM.Mirror.IsMember() ;Returns 1 for Failover members, 2 for Async members
+ I CFG="CDW" I 0 Q 1
+ I CFG="HS" I $SYSTEM.Version.GetMajor()>2016,$SYSTEM.Version.GetISCProduct()=3 Q 1 ; 1 = Cache, 2 = Ensemble, 3 = Healthshare, 4 = Iris
+ Q 0
+ ;
+INSTNM(CASE) ; RETURNS INSTANCE NAME
+ N XUCASE S XUCASE=$G(CASE,"U") ; PASS L for lowercase, U for UPPERCASE (DEFAULT)
+ Q $ZCVT(##Class(%SYS.System).GetInstanceName(),XUCASE)
+ ;

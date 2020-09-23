@@ -1,5 +1,5 @@
 IBECEA33 ;ALB/CPM-Cancel/Edit/Add... More Add Utilities ; 23-APR-93
- ;;2.0;INTEGRATED BILLING;**57,52,132,153,167,176,188,618,646,656**;21-MAR-94;Build 17
+ ;;2.0;INTEGRATED BILLING;**57,52,132,153,167,176,188,618,646,656,677**;21-MAR-94;Build 17
  ;;Per VA Directive 6402, this routine should not be modified.
  ;
 NOCL ; Find the correct clock from the 'bill from' date.
@@ -39,7 +39,7 @@ CHTYP ; Ask for the Charge Type
  D IX^DIC K DIC S IBATYP=+Y I Y<0 S IBY=-1 W !!,"No CHARGE TYPE entered - transaction cannot be completed." G CHTYPQ
  ;
  ; - perform charge type edits
- S IBSEQNO=$P(Y(0),"^",5),IBXA=$P(Y(0),"^",11),IBNH=$S(IBXA=1:2,IBXA=9&(Y(0)["FEE"):2,1:$P(Y(0),"^",8)["NHCU")
+ S IBSEQNO=$P(Y(0),"^",5),IBXA=$P(Y(0),"^",11),IBNH=$S(IBXA=1:2,IBXA=9&$$CHKLTCCC:2,1:$P(Y(0),"^",8)["NHCU")
  ;
  ;IB*2.0*646/656 Start
  ;If the action type is DG FEE SERVICE (OPT) its an urgent care visit now and all eligibility checks and clocks can be skipped. 
@@ -72,3 +72,14 @@ CLMSG ; Check the Medicare Deductible and Billing Clock
  .W !?5,"for his current 90 days of care.  If you know this not to be the case,"
  .W !?5,"please adjust the billing clock before proceeding."
 CLMSGQ Q
+ ;
+CHKLTCCC() ; Check to see if the selected Charge Type is an LTC Inpatient CC
+ ;
+ ; Undeclared input: Y(0) - 0 Node of Charge Type entry in file 350.1
+ ; Returns   - 0 if not an Community Care LTC type., 1 if it is.
+ ;
+ Q:Y(0)'["LTC" 0   ; Exit if not an LTC Charge Type
+ Q:Y(0)["FEE" 1  ; Existing functionality if an old Fee Basis Charge
+ Q:Y(0)["LTC CC" 1   ; Inpatient LTC CC, LTC CCN, and LTC CC MTF Action Types
+ Q:Y(0)["LTC CHOICE" 1   ; Inpatient LTC CC, LTC CCN, and LTC CC MTF Action Types
+ Q 0

@@ -1,5 +1,5 @@
-RMPREOS ;HINES-CIOFO/HNC -Suspense Processing ; 2/25/04 10:26am
- ;;3.0;PROSTHETICS;**45,50,52,55,57,62,80,85,97,135**;Feb 09, 1996;Build 12
+RMPREOS ;HINES-CIOFO/HNC,RN,ATG/JPN -Suspense Processing ;July 29, 2020@10:00
+ ;;3.0;PROSTHETICS;**45,50,52,55,57,62,80,85,97,135,200**;Feb 09, 1996;Build 2
  ;
  ;  HNC - patch 52 - 9/22/00 Modify EN2 not to check for RMPRFLAG
  ;                           RMPRCLOS, or FLAG.
@@ -26,9 +26,10 @@ RMPREOS ;HINES-CIOFO/HNC -Suspense Processing ; 2/25/04 10:26am
  ;
 EN ;Add Manual Suspense
  ;
+ ; VSR (RN) patch RMPR*3.0*200 change four slashes to three slashes for validation before filing adding back tic to station
  D NOW^%DTC S X=%
  S DIC="^RMPR(668,",DIC(0)="AEQLM",DLAYGO=668
- S DIC("DR")="1////^S X=RMPRDFN;22R;14////^S X=""O"";8////^S X=DUZ;9////^S X=5;3////^S X=9;2////^S X=RMPR(""STA"")"
+ S DIC("DR")="1////^S X=RMPRDFN;22R;14////^S X=""O"";8////^S X=DUZ;9////^S X=5;3////^S X=9;2///^S X=""`""_RMPR(""STA"")"
  K DINUM,D0,DD,DO D FILE^DICN K DLAYGO G:Y'>0 EX S (RDA,DA)=+Y
  S DIE="^RMPR(668,",DR="13;4"
  L +^RMPR(668,RDA,0):1 I $T=0 W $C(7),?5,!,"Someone else is editing this record" G EX

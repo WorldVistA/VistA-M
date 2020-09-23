@@ -1,5 +1,5 @@
 DGPMV ;ALB/MRL/MIR - PATIENT MOVEMENT DRIVER; 10 MAR 89
- ;;5.3;Registration;**60,200,268**;Aug 13, 1993
+ ;;5.3;Registration;**60,200,268,993**;Aug 13, 1993;Build 92
  ;
  ;OPTION         VALUE OF DGPMT
  ;------         --------------
@@ -14,7 +14,9 @@ PAT K ORACTION,ORMENU
  D LO^DGUTL I '$D(IOF) S IOP=$S($D(ION):ION,1:"HOME") D ^%ZIS K IOP
 PAT1 W ! I DGPMT=5 S DGPMN=0 D SPCLU^DGPMV0 G OREN:'DGER,Q
  S DIC="^DPT(",DIC(0)="AEQMZ",DIC("A")=$S('$D(DGPMPC):$P("Admit^Transfer^Discharge^Check-in^Check-out^Specialty Change for","^",DGPMT),1:"Provider Change for")_" PATIENT: "
- S:DGPMT=1 DIC(0)=DIC(0)_"L",DLAYGO=2 S:"^1^4^"'[("^"_DGPMT_"^") DIC("S")="I $D(^DGPM($S(DGPMT'=5:""APTT1"",1:""APTT4""),+Y))" D ^DIC K DIC,DLAYGO G Q:Y'>0 S DFN=+Y,DGPMN=$P(Y,"^",3)
+ ;DG*5.3*993; Remove the DLAYGO variable and the "L" from DIC(0) since adding records to the PATIENT file is not allowed for DG ADMIT PATIENT option
+ ;S:DGPMT=1 DIC(0)=DIC(0)_"L",DLAYGO=2 S:"^1^4^"'[("^"_DGPMT_"^") DIC("S")="I $D(^DGPM($S(DGPMT'=5:""APTT1"",1:""APTT4""),+Y))" D ^DIC K DIC,DLAYGO G Q:Y'>0 S DFN=+Y,DGPMN=$P(Y,"^",3)
+ S:"^1^4^"'[("^"_DGPMT_"^") DIC("S")="I $D(^DGPM($S(DGPMT'=5:""APTT1"",1:""APTT4""),+Y))" D ^DIC K DIC G Q:Y'>0 S DFN=+Y,DGPMN=$P(Y,"^",3)
 OREN S DGUSEOR=$$USINGOR()
  I DGUSEOR Q:'$D(ORVP)  S DFN=+ORVP,DGPMN="",Y(0)=$G(^DPT(DFN,0))
  I $$LODGER(DFN)&(DGPMT=1) D  Q

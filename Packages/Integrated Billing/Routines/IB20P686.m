@@ -1,0 +1,48 @@
+IB20P686 ;ALB/CXW - REACTIVATE 11 REASONS NOT BILLABLE; 08/12/2020
+ ;;2.0;INTEGRATED BILLING;**686**;21-MAR-94;Build 12
+ ;;Per VA Directive 6402, this routine should not be modified.
+ Q
+POST ; Reactivate 11 RNBs that were requested to be deactivated with IB*2.0*673. 
+ N IBZ,U S U="^"
+ D BMSG("    IB*2.0*686 Post-Install starts .....")
+ D RNB
+ D BMSG("    IB*2.0*686 Post-Install is complete.")
+ Q
+ ;
+RNB ; RNB in INACTIVE fields #.05/piece 5
+ N IBA,IBB,IBC,IBCNT,IBD,IBE,IBI,IBX,IBY,DA,DIE,DR,X,Y
+ S IBCNT=0
+ D BMSG(" >> Reactivating Reason Not Billable (RNB)")
+ F IBI=1:1 S IBX=$P($T(RARNB+IBI),";;",2) Q:IBX="Q"  D
+ . S IBA=$P(IBX,U),IBB=$P(IBX,U,2)
+ . S IBC="    "_IBA_"  "_IBB
+ . S IBD=+$O(^IBE(356.8,"B",IBB,0))
+ . I 'IBD D MSG(IBC_" not found") Q
+ . S IBE=$G(^IBE(356.8,IBD,0)) Q:IBE=""
+ . I '$P(IBE,U,5) D MSG(IBC_" not reactivated") Q
+ . S DA=IBD,DIE="^IBE(356.8,",DR=".05///@" D ^DIE
+ . S IBCNT=IBCNT+1 D MSG(IBC)
+ D MSG("Total "_IBCNT_" code"_$S(IBCNT'=1:"s",1:"")_" updated in CLAIMS TRACKING NON-BILLABLE REASONS (#356.8) file")
+ Q
+ ;
+BMSG(IBZ) ;
+ D BMES^XPDUTL(IBZ)
+ Q
+ ;
+MSG(IBZ) ;
+ D MES^XPDUTL(IBZ)
+ Q
+ ;
+RARNB ; RNB code^name (11)
+ ;;CV13^NO OUTPATIENT COVERAGE
+ ;;CV14^NO INPATIENT COVERAGE
+ ;;CV15^NO PHARMACY COVERAGE
+ ;;CV16^NO DENTAL COVERAGE
+ ;;CV17^NO MENTAL HEALTH COVERAGE
+ ;;CV18^NO LTC COVERAGE
+ ;;CV21^NO VISION COVERAGE
+ ;;CV22^NO PROSTHETIC COVERAGE
+ ;;MC01^NON-BILLABLE APPOINTMENT TYPE
+ ;;MC03^NON-BILLABLE STOP CODE
+ ;;MC05^NON-BILLABLE CLINIC
+ ;;Q

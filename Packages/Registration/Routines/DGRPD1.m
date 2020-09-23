@@ -1,10 +1,12 @@
-DGRPD1 ;BPFO/JRC,BAJ,DJE,ARF - PATIENT INQUIRY (NEW) ;Sep 28, 2017  5:35PM
- ;;5.3;Registration;**703,730,688,863,935,985**;Aug 13, 1993;Build 15
+DGRPD1 ;BPFO/JRC,BAJ,DJE,ARF,JAM - PATIENT INQUIRY (NEW) ;Sep 28, 2017  5:35PM
+ ;;5.3;Registration;**703,730,688,863,935,985,997**;Aug 13, 1993;Build 42
  ; DG*5.3*688 BAJ
  ; tags HDR & OKLINE moved as is from DGRPD for size considerations
  Q
 EC ;display emergency contact information
  N DGEC1,DGEC2
+ ; DG*5.3*997;jam; new variables for displaying foreign addresses
+ N DGCNTRY1,DGCNTRY2,DGFOR1,DGFOR2
  Q:'$G(DFN)
  S VAOA("A")=1,VAROOT="DGEC1"  D OAD^VADPT ; Get Primary EC
  S VAOA("A")=4,VAROOT="DGEC2"  D OAD^VADPT ; Get Secondary EC
@@ -25,18 +27,38 @@ EC ;display emergency contact information
  . I DGEC1(3)]"" W !?14,DGEC1(3)
  . I DGEC1(3)']"",DGEC2(3)]"" W !
  . I DGEC2(3)]"" W ?50,DGEC2(3)
+ . ; DG*5.3*997;jam; allow for Foreign addresses
+ . ; - get the EC Countries and flags for foreign address
+ . S DGCNTRY1=$$GET1^DIQ(2,DFN_",",.3306,"I")
+ . S DGCNTRY2=$$GET1^DIQ(2,DFN_",",.331012,"I")
+ . S DGFOR1=$$FORIEN^DGADDUTL(DGCNTRY1) I DGFOR1=-1 S DGFOR1=1
+ . S DGFOR2=$$FORIEN^DGADDUTL(DGCNTRY2) I DGFOR2=-1 S DGFOR2=1
+ . S DGCNTRY1=$$CNTRYI^DGADDUTL(DGCNTRY1)
+ . S DGCNTRY2=$$CNTRYI^DGADDUTL(DGCNTRY2)
  . ;Emergency Contact 1 City, State an Zip+4
  . I DGEC1(4)]"" D
  . . W !?14,DGEC1(4)
- . . I DGEC1(5)]"" W ", "_$$GET1^DIQ(5,+DGEC1(5),1)
- . . W "  ",$P(DGEC1(11),"^",2)
+ . . ; DG*5.3*997;jam; check for EC1 foreign address. If foreign, Province and Postal Code follow the city
+ . . I 'DGFOR1 D
+ . . . I DGEC1(5)]"" W ", "_$$GET1^DIQ(5,+DGEC1(5),1)
+ . . . W "  ",$P(DGEC1(11),"^",2)
+ . . I DGFOR1 D
+ . . . W " "_$$GET1^DIQ(2,DFN_",",.3307)_" "_$$GET1^DIQ(2,DFN_",",.3308)
  . ;Emergency Contact 2 City State and Zip+4
  . I DGEC2(4)]"" D
  . . I DGEC1(4)']"" W !
  . . W ?50,DGEC2(4)
- . . I DGEC2(5)]"" W ", "_$$GET1^DIQ(5,+DGEC2(5),1)
- . . W "  ",$P(DGEC2(11),"^",2)
- .;Home and work phones
+ . . ; DG*5.3*997;jam; check for EC2 foreign address. If foreign, Province and Postal Code follow the city
+ . . I 'DGFOR2 D
+ . . . I DGEC2(5)]"" W ", "_$$GET1^DIQ(5,+DGEC2(5),1)
+ . . . W "  ",$P(DGEC2(11),"^",2)
+ . . I DGFOR2 D
+ . . . W " "_$$GET1^DIQ(2,DFN_",",.331013)_" "_$$GET1^DIQ(2,DFN_",",.331014)
+ . ; DG*5.3*997;jam; ECs Country
+ . I DGCNTRY1]"" W !?14,$E(DGCNTRY1,1,30)
+ . I DGCNTRY1']"" W !
+ . W ?50,$E(DGCNTRY2,1,30)
+ . ;Home and work phones
  . W !,?7,"Phone: ",$S(DGEC1(8)]"":DGEC1(8),1:"UNSPECIFIED")
  . I DGEC2(9)]"" W ?43,"Phone: ",$S(DGEC2(8)]"":DGEC2(8),1:"UNSPECIFIED")
  . W !?2,"Work Phone: ",$S($P(^DPT(DFN,.33),U,11)]"":$P(^DPT(DFN,.33),U,11),1:"UNSPECIFIED")

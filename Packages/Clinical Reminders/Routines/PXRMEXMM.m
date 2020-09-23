@@ -1,10 +1,23 @@
-PXRMEXMM ; SLC/PKR - Routines to select and deal with MailMan messages ;01/22/2013
- ;;2.0;CLINICAL REMINDERS;**12,26**;Feb 04, 2005;Build 404
- ;=============================================================
+PXRMEXMM ; SLC/PKR - Routines to select and deal with MailMan messages ;07/20/2020
+ ;;2.0;CLINICAL REMINDERS;**12,26,74**;Feb 04, 2005;Build 5
+ ;===============
+CHECKOVF(TMPSUB,LINE,LNUM) ;Check for overflow lines.
+ N DONE,LN,TEMP
+ S DONE=0,LN=LNUM
+ F  Q:DONE  D
+ . S LN=LN+1
+ . S TEMP=$G(^TMP(TMPSUB,$J,LN))
+ . I $P(TEMP,U,1)'="OVF" S DONE=1 Q
+ . S LINE=LINE_$P(TEMP,U,2)
+ . S LNUM=LN
+ Q
+ ;
+ ;===============
 CMM(SUCCESS,LIST) ;Create a MailMan message containing the repository
  ;entries in LIST.
  ;Get a new MailMan message number.
- N IC,IND,LC,LEN,LNUM,RIEN,TEMP,TLC,XMSUB
+ N EXCHIEN,ENTRY,IC,IND,JND,LC,LEN,LINE,LNUM,NENTRIES,NLINES,TEMP
+ N TLC,XMSUB
  S TEMP=$$GETSUB
  I (TEMP["^")!(TEMP="") Q
  S XMSUB="CREX: "_TEMP
@@ -17,15 +30,17 @@ RETRY ;
  S SUCCESS("SUB")=XMSUB
  ;
  S (IC,TLC)=0
- S LEN=$L(LIST,",")-1
- F IND=1:1:LEN D
- . S LNUM=$P(LIST,",",IND)
- . S RIEN=$$RIEN^PXRMEXU1(LNUM)
- . S LC=$O(^PXD(811.8,RIEN,100,""),-1)
+ S NENTRIES=$L(LIST,",")-1
+ F IND=1:1:NENTRIES D
+ . S ENTRY=$P(LIST,",",IND)
+ . S EXCHIEN=$$RIEN^PXRMEXU1(ENTRY)
+ . S LC=$O(^PXD(811.8,EXCHIEN,100,""),-1)
  . S TLC=TLC+LC
- . F IND=1:1:LC D
- .. S IC=IC+1
- .. S ^XMB(3.9,XMZ,2,IC,0)=^PXD(811.8,RIEN,100,IND,0)
+ . F JND=1:1:LC D
+ .. S LINE=^PXD(811.8,EXCHIEN,100,JND,0)
+ .. S LEN=$L(LINE)
+ .. I LEN>250 D OVERFLOW(XMZ,.IC,LEN,LINE) Q
+ .. S IC=IC+1,^XMB(3.9,XMZ,2,IC,0)=^PXD(811.8,EXCHIEN,100,JND,0)
  S ^XMB(3.9,XMZ,2,0)="^3.92^"_TLC_"^"_TLC_"^"_DT
  ;
  ;Make the message information only.
@@ -35,7 +50,7 @@ RETRY ;
  D ENT2^XMD
  Q
  ;
- ;=============================================================
+ ;===============
 GETMESSN() ;Get the message number.
  N BSKT,DIC,DIROUT,DIRUT,DTOUT,DUOUT,X,Y,ZN
  S DIC("A")="Select a MailMan message: "
@@ -67,7 +82,7 @@ GETMESSN() ;Get the message number.
  I $D(DTOUT)!$D(DUOUT) Q ""
  Q $P(Y,U,1)
  ;
- ;=============================================================
+ ;===============
 GETSUB() ;Prompt the user for a subject.
  N DIR,DIROUT,DIRUT,DTOUT,DUOUT,X,Y
  S DIR(0)="FAU"_U_"1:59"
@@ -77,10 +92,11 @@ GETSUB() ;Prompt the user for a subject.
  I $D(DTOUT)!$D(DUOUT) Q ""
  Q Y
  ;
- ;=============================================================
+ ;===============
 LMM(SUCCESS,XMZ) ;Load repository entries from a MailMan message.
- N CSUM,DATEP,EXTYPE,FDA,FDAIEN,IENROOT,IND,LINE,MSG,NENTRY,NLINES,RETMP
- N RNAME,SITE,SOURCE,SSOURCE,TEMP,US,USER,VRSN,XMER,XMPOS,XMRG,XMVAR
+ N CSUM,DATEP,EXIEN,EXTYPE,FDA,FDAIEN,IENROOT,IND,LINE,LNUM,MSG
+ N NENTRY,NLINES,RESULT,RETMP,RNAME,SITE,SOURCE,SSOURCE,TEMP
+ N US,USER,VRSN,XMER
  ;Get the message information
  ;DBIA #1144
  S TEMP=$$HDR^XMGAPI2(XMZ,.XMVAR,0)
@@ -90,40 +106,50 @@ LMM(SUCCESS,XMZ) ;Load repository entries from a MailMan message.
  . H 2
  ;Load the message
  W !,"Loading MailMan message number ",XMZ
- K ^TMP("PXRMEXLMM",$J)
+ K ^TMP("PXRMEXMM",$J),^TMP("PXRMEXLMM",$J)
+ S RESULT=$$GET1^DIQ(3.9,XMZ_",",3,"","^TMP(""PXRMEXMM"",$J)","MSG")
+ I RESULT="" W !,"Could not load the message." Q
  S RETMP="^TMP(""PXRMEXLMM"",$J)"
  S (NENTRY,NLINES,SSOURCE)=0
- S XMPOS=$$STARTPOS(XMZ)
- F  D REC^XMS3 Q:+$G(XMER)=-1  D
+ S LNUM=$$STARTLINE("PXRMEXMM")
+ I LNUM=-1 D  Q
+ . W !,"Could not locate the XML header."
+ . K ^TMP("PXRMEXMM",$J),^TMP("PXRMEXLMM",$J)
+ F  S LNUM=$O(^TMP("PXRMEXMM",$J,LNUM)) Q:LNUM=""  D
+ . S LINE=^TMP("PXRMEXMM",$J,LNUM)
+ .;Check for overflow lines.
+ . D CHECKOVF("PXRMEXMM",.LINE,.LNUM)
  . S NLINES=NLINES+1
- . S ^TMP("PXRMEXLMM",$J,NLINES,0)=XMRG
- . I XMRG["<PACKAGE_VERSION>" S VRSN=$$GETTAGV^PXRMEXU3(XMRG,"<PACKAGE_VERSION>")
- . I XMRG["<EXCHANGE_TYPE>" S EXTYPE=$$GETTAGV^PXRMEXU3(XMRG,"<EXCHANGE_TYPE>",1)
- . I XMRG="<SOURCE>" S SSOURCE=1
+ . S ^TMP("PXRMEXLMM",$J,NLINES,0)=LINE
+ . I LINE["<PACKAGE_VERSION>" S VRSN=$$GETTAGV^PXRMEXU3(LINE,"<PACKAGE_VERSION>")
+ . I LINE["<EXCHANGE_TYPE>" S EXTYPE=$$GETTAGV^PXRMEXU3(LINE,"<EXCHANGE_TYPE>",1)
+ . I LINE="<SOURCE>" S SSOURCE=1
  . I SSOURCE D
- .. I XMRG["<NAME>" S RNAME=$$GETTAGV^PXRMEXU3(XMRG,"<NAME>",1)
- .. I XMRG["<USER>" S USER=$$GETTAGV^PXRMEXU3(XMRG,"<USER>",1)
- .. I XMRG["<SITE>" S SITE=$$GETTAGV^PXRMEXU3(XMRG,"<SITE>",1)
- .. I XMRG["<DATE_PACKED>" S DATEP=$$GETTAGV^PXRMEXU3(XMRG,"<DATE_PACKED>")
- . I XMRG="</SOURCE>" D
+ .. I LINE["<NAME>" S RNAME=$$GETTAGV^PXRMEXU3(LINE,"<NAME>",1)
+ .. I LINE["<USER>" S USER=$$GETTAGV^PXRMEXU3(LINE,"<USER>",1)
+ .. I LINE["<SITE>" S SITE=$$GETTAGV^PXRMEXU3(LINE,"<SITE>",1)
+ .. I LINE["<DATE_PACKED>" S DATEP=$$GETTAGV^PXRMEXU3(LINE,"<DATE_PACKED>")
+ . I LINE="</SOURCE>" D
  .. S SSOURCE=0
  .. S SOURCE=USER_" at "_SITE
  .;See if the entry is loaded into the temporary storage.
- . I XMRG="</REMINDER_EXCHANGE_FILE_ENTRY>" D
+ . I LINE="</REMINDER_EXCHANGE_FILE_ENTRY>" D
  .. S NLINES=0
  .. S NENTRY=NENTRY+1
  ..;Make sure it has the correct format.
  .. I (^TMP("PXRMEXLMM",$J,1,0)'["xml")!(^TMP("PXRMEXLMM",$J,2,0)'="<REMINDER_EXCHANGE_FILE_ENTRY>") D  Q
  ... W !,"There is a problem reading this MailMan message for entry ",NENTRY,", try it again."
  ... W !,"If it fails twice it is not in the proper reminder exchange format."
- ... S SUCCESS=0
- ... H 2
- ... S XMER=-1
- ..;Make sure this entry does not already exist.
- .. I $$REXISTS^PXRMEXIU(RNAME,DATEP) D
- ... W !,RNAME," with a date packed of ",DATEP
- ... W !,"is already in the Exchange File, it will not be added again."
  ... S SUCCESS(NENTRY)=0
+ ... H 2
+ ..;Make sure this entry does not already exist.
+ .. S EXIEN=$$REXISTS^PXRMEXIU(RNAME,DATEP) D
+ .. I EXIEN>0 D
+ ... W !,RNAME
+ ... W !,"with a date packed of ",DATEP
+ ... W !,"is already in the Exchange File, it will not be added again."
+ ... ;S SUCCESS(NENTRY)=0
+ ... S SUCCESS(NENTRY)=EXIEN_"A"
  ... H 2
  .. E  D
  ... K FDA,IENROOT
@@ -140,22 +166,37 @@ LMM(SUCCESS,XMZ) ;Load repository entries from a MailMan message.
  ... S DESL("VRSN")=VRSN
  ... D DESC^PXRMEXU1(IENROOT(1),.DESL,"DESCT","KEYWORDT")
  ... M ^PXD(811.8,IENROOT(1),100)=^TMP("PXRMEXLMM",$J)
- ... W !,"Added Exchange entry ",RNAME H 2
+ ... W !,"Added Reminder Exchange entry ",RNAME H 2
  .. K ^TMP("PXRMEXLMM",$J)
  ;Check the success of the entry installs.
+ K ^TMP("PXRMEXMM",$J),^TMP("PXRMEXLMM",$J)
  S SUCCESS=1
  S IND=""
  F  S IND=$O(SUCCESS(IND)) Q:+IND=0  D
  . I 'SUCCESS(IND) S SUCCESS=0 Q
  Q
  ;
- ;=============================================================
-STARTPOS(XMZ) ;Find the starting position by looking for the xml header.
+ ;===============
+OVERFLOW(XMZ,IC,LEN,LINE) ;MailMan does not allow lines longer than 255;
+ ;to be safe, for lines longer than 250 break it into overflow segments.
+ N CHUNK,END,N250,START
+ S IC=IC+1,^XMB(3.9,XMZ,2,IC,0)=$E(LINE,1,250)
+ S N250=((LEN-250)\246)+1
+ S START=251,END=250+246
+ F CHUNK=1:1:N250 D
+ . S IC=IC+1,^XMB(3.9,XMZ,2,IC,0)="OVF^"_$E(LINE,START,END)
+ . S START=START+246,END=END+246
+ Q
+ ;
+ ;===============
+STARTLINE(TMPSUB) ;Find the starting line by looking for the XML header.
  ;This will skip over extra header information created by things like
- ;copying or using p-message.
- N XMPOS,XMER,XMRG
- S XMPOS=.99
- F  D REC^XMS3 Q:(XMRG="<?xml version=""1.0"" standalone=""yes""?>")!(+$G(XMER)=-1)
- S XMPOS=$S($G(XMER)=-1:-1,1:XMPOS-1)
- Q XMPOS
+ ;copying, forwarding, or using p-message. Return the line previous
+ ;to the header line so the first $O will be the header line.
+ N DONE,LNUM,STARTLINE
+ S DONE=0,LNUM=""
+ F  S LNUM=$O(^TMP(TMPSUB,$J,LNUM)) Q:(DONE)!(LNUM="")  D
+ . I ^TMP(TMPSUB,$J,LNUM)="<?xml version=""1.0"" standalone=""yes""?>" S DONE=1,STARTLINE=LNUM
+ S STARTLINE=$S(LNUM="":-1,1:$O(^TMP(TMPSUB,$J,STARTLINE),-1))
+ Q STARTLINE
  ;

@@ -1,5 +1,5 @@
 PSOORED7 ;ISC-BHAM/MFR - edit orders from backdoor con't ;03/06/95 10:24
- ;;7.0;OUTPATIENT PHARMACY;**148,247,281,289,358,385,584**;DEC 1997;Build 3
+ ;;7.0;OUTPATIENT PHARMACY;**148,247,281,289,358,385,584,611**;DEC 1997;Build 6
  ;called from psooredt. cmop edit checks.
  ;Reference to file #50 supported by IA 221
  ;Reference to $$ECMEON^BPSUTIL supported by IA 4410
@@ -14,6 +14,9 @@ NOCHG S CMRL=1 D CHK1^PSOORED2 I '$G(CMRL) W !,"No editing allowed of "_$S(FLN=9
  I FLN=9 D  Q
  .D DAYS^PSODIR1(.PSORXED) I $G(PSORXED("DFLG")) K PSORXED("FLD",8) Q
  .S PSORXED("FLD",8)=PSORXED("DAYS SUPPLY")
+ .;PSO*7*611 Prompt the user for the Refills # so it will stay in sync with the Days Supply
+ .D REFILL^PSODIR1(.PSORXED) I $G(PSORXED("DFLG")) K PSORXED("FLD",9) Q
+ .S PSORXED("FLD",9)=PSORXED("# OF REFILLS")
  I FLN=10 D  Q
  .D QTY^PSODIR1(.PSORXED) I $G(PSORXED("DFLG")) K PSORXED("FLD",7) Q
  .S:$G(PSORXED("QTY")) PSORXED("FLD",7)=PSORXED("QTY")

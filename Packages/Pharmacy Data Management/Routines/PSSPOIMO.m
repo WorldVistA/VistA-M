@@ -1,5 +1,5 @@
-PSSPOIMO ;BIR/RTR/WRT - Edit Orderable Item Name and Inactive date ;7/3/18 9:09am
- ;;1.0;PHARMACY DATA MANAGEMENT;**29,32,38,47,68,102,125,141,153,159,166,172,191,189,204,210,225**;9/30/97;Build 18
+PSSPOIMO ;BIR/RTR/WRT - Edit Orderable Item Name and Inactive date ;Jun 23, 2020@13:14
+ ;;1.0;PHARMACY DATA MANAGEMENT;**29,32,38,47,68,102,125,141,153,159,166,172,191,189,204,210,225,242**;9/30/97;Build 19
  S PSSITE=+$O(^PS(59.7,0)) I +$P($G(^PS(59.7,PSSITE,80)),"^",2)<2 W !!?3,"Orderable Item Auto-Create has not been completed yet!",! K PSSITE K DIR S DIR("A")="Press RETURN to continue",DIR(0)="E" D ^DIR K DIR Q
  K PSSITE W !!,"This option enables you to edit Orderable Item names, Formulary status,",!,"drug text, Inactive Dates, Indications for Use, and Synonyms."
 EN I $D(PSOIEN) L -^PS(50.7,PSOIEN)
@@ -52,8 +52,8 @@ DIR K DIR S DIR(0)="F^3:40",DIR("B")=PSOINAME,DIR("A")="Orderable Item Name" D ^
  I $G(PSINORDE)="I" I $O(PSSDACT(0))!($O(PSSSACT(0)))!($O(PSSAACT(0))) D REST^PSSPOIDT(PSOIEN)
  S DIK="^PS(50.7,",DA=PSOIEN,DIK(1)=.04 D EN^DIK K DIK
  K PSBEFORE,PSAFTER,PSINORDE,PSSDTENT,PSSDACT,PSSDACTI,PSSSACT,PSSSACTI,PSSAACT,PSSAACTI
- N DIE,DA,DR  ; Indications for Use fields PSS*1*204
- S DIE="^PS(50.7,",DA=PSOIEN,DR="14;13" D ^DIE K DIE
+ N DIE,DA,DR  ; Indications for Use fields PSS*1*204, *242 - Other lang
+ S DIE="^PS(50.7,",DA=PSOIEN,DR="D LIND^PSSPOIMO;14;13;14.1T;14.2" D ^DIE K DIE
 IMMUN ;PSS*1*141 FOR 'IMMUNIZATIONS DOCUMENTATION BY BCMA'
  I $O(^PSDRUG("AOC",PSOIEN,"IM000"))'["IM" G SYN ;ASK WHEN APPROPRIATE
  W ! S DIE="^PS(50.7,",DA=PSOIEN,DR=9 D ^DIE K DIE
@@ -221,3 +221,19 @@ MRSEL ;
  W ! S PSSOU=1
  Q
  ;
+LIND ;*242
+ N X,Y,C,I,J,K,L,M S C=0,Y=$P($G(^PS(50.7,DA,4)),"^",2),L="     *MOST COMMON",M="<OTHER LANGUAGE>"
+ S:Y]"" X(1)=Y_L,C=1
+ S I="" F  S I=$O(^PS(50.7,DA,"IND","B",I)) Q:I=""  D
+ .S J=$O(^PS(50.7,DA,"IND","B",I,0)) Q:'J  S K=$P($G(^PS(50.7,DA,"IND",J,0)),U)
+ .S:K]"" C=C+1,X(C)=K
+ S Y=$P($G(^PS(50.7,DA,4)),"^",4)
+ S:Y]"" C=C+1,X(C)=Y_L_" "_M
+ S I="" F  S I=$O(^PS(50.7,DA,"INDO","B",I)) Q:I=""  D
+ .S J=$O(^PS(50.7,DA,"INDO","B",I,0)) Q:'J  S K=$P($G(^PS(50.7,DA,"INDO",J,0)),U)
+ .S:K]"" C=C+1,X(C)=K_"     "_M
+ Q:'C
+ W !!,"Existing INDICATIONS FOR USE:"
+ F I=1:1:C W !,X(I)
+ W !
+ Q

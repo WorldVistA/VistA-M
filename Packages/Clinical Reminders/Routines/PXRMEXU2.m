@@ -1,5 +1,5 @@
-PXRMEXU2 ; SLC/PKR/PJH - Reminder exchange repository utilities, #2.;08/16/2018
- ;;2.0;CLINICAL REMINDERS;**6,12,26,45**;Feb 04, 2005;Build 566
+PXRMEXU2 ; SLC/PKR/PJH - Reminder exchange repository utilities, #2.;07/02/2020
+ ;;2.0;CLINICAL REMINDERS;**6,12,26,45,74**;Feb 04, 2005;Build 5
  ;=================================
 EXCLASS(IEN) ;Return the class of the Exchange entry.
  N ENV,TEMP
@@ -226,9 +226,9 @@ STOREPR(SUCCESS,EFNAME,TMPIND,SELLIST) ;^TMP(TMPIND,$J contains data to be
  .. I LINE["<FILE_NAME>" S FILENAME=$$GETTAGV^PXRMEXU3(LINE,"<FILE_NAME>",1)
  .. I LINE["<POINT_01>" S PT01=$$GETTAGV^PXRMEXU3(LINE,"<POINT_01>",1)
  .. I LINE["<INTERNAL_ENTRY_NUMBER>" S IEN=$$GETTAGV^PXRMEXU3(LINE,"<INTERNAL_ENTRY_NUMBER>",1)
- ..;Use 245 to be conservative.
- .. I $L(LINE)<246 Q
- .. D MLWARN(FILENAME,PT01,IEN,LINE,245)
+ ..;Use 1024 to be conservative.
+ .. I $L(LINE)<1025 Q
+ .. D MLWARN(FILENAME,PT01,IEN,LINE,1024)
  K ^TMP($J,"CIND"),^TMP("PXRMEXRS",$J)
  K ^TMP(TMPIND,$J),^TMP("PXRMEXCS",$J)
  Q

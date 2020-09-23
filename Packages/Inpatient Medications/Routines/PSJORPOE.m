@@ -1,5 +1,5 @@
-PSJORPOE ;BIR/MLM,LDT - MISC. PROCEDURE CALLS FOR OE/RR 3.0 ; 4/16/12 11:25am
- ;;5.0;INPATIENT MEDICATIONS;**50,56,92,80,110,127,133,134,113,277,330**;16 DEC 97;Build 10
+PSJORPOE ;BIR/MLM,LDT - MISC. PROCEDURE CALLS FOR OE/RR 3.0 ;Jul 01, 2020@14:27:10
+ ;;5.0;INPATIENT MEDICATIONS;**50,56,92,80,110,127,133,134,113,277,330,388**;16 DEC 97;Build 9
  ;
  ; Reference to ^PS(50.7 is supported by DBIA# 2180.
  ; Reference to ^PS(51.2 is supported by DBIA# 2178.
@@ -9,12 +9,13 @@ PSJORPOE ;BIR/MLM,LDT - MISC. PROCEDURE CALLS FOR OE/RR 3.0 ; 4/16/12 11:25am
  ; Reference to ^PS(52.7 is supported by DBIA# 2173.
  ; Reference to ^PSDRUG is supported by DBIA# 2192.
  ;
-STARTSTP(PSGP,SCH,OI,PSJPWD,PSGORD,PSJADM) ;
+STARTSTP(PSGP,SCH,OI,PSJPWD,PSGORD,PSJADM,PSGORST) ;
  ; PSGP=Patient IEN
  ; SCH=Schedule
- ; OI=Orderable Item        
+ ; OI=Orderable Item
  ; PSJPWD=Ward Location (Optional)
  ; PSGORD=Pharmacy Order Number if the order being placed is a Renewal (Optional)
+ ; PSGORST=Order Start Date instead of NOW (Optional)
  ;
  Q:+PSGP'>0 ""
  Q:SCH']"" ""
@@ -27,6 +28,7 @@ STARTSTP(PSGP,SCH,OI,PSJPWD,PSGORD,PSJADM) ;
  S RESULT=$S($P(PSJSYSW0,"^",5)=0:"CLOSEST",$P(PSJSYSW0,"^",5)=1:"NEXT",1:"NOW")
  I OI]"" S PSGST=$S($P($G(^PS(50.7,OI,0)),"^",7)]"":$P($G(^PS(50.7,OI,0)),"^",7),1:"C")
  N %,PSGXSCH D NOW^%DTC S PSGDT=%,DFN=PSGP,(PSGSCH,PSGXSCH)=SCH
+ I $G(PSGORST)'="" S PSGDT=PSGORST ;Use Order Start Date if known instead of current date
  S X=PSGSCH,PSGS0Y="" D ADMIN
  I $G(PSGORD)]"" D
  .S PSGNESD=$$DSTART^PSJDCU(PSGP,PSGORD) I PSGNESD]"" S $P(RESULT,"^",2)=PSGNESD Q
@@ -113,7 +115,7 @@ ADMIN ; Get admin times associated with schedule
 ONE(SCH) ;
  ; SCH=Admin Schedule
  ; Returns 0 = (zero) Not a one time schedule.
- ;         1 =  One time schedule. 
+ ;         1 =  One time schedule.
  Q:$G(SCH)="" 0
  N X
  I $D(^PS(51.1,"AC","PSJ",SCH)) S X=$O(^(SCH,"")) S X=$P(^PS(51.1,X,0),"^",5) Q $S(X="O":1,1:0)

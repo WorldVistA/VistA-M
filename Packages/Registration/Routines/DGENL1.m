@@ -1,5 +1,5 @@
-DGENL1 ;ALB/RMO,ISA/KWP,Zoltan,ALB/BRM,LBD,ERC,EG,CKN,BAJ,JLS,HM - Patient Enrollment - Build List Area ;5/12/11 3:53pm
- ;;5.3;Registration;**121,147,232,266,343,564,672,659,653,688,838,841,909,940,972**;Aug 13,1993;Build 80
+DGENL1 ;ALB/RMO,ISA/KWP,Zoltan,ALB/BRM,LBD,ERC,EG,CKN,BAJ,JLS,HM,RN - Patient Enrollment - Build List Area ;5/12/11 3:53pm
+ ;;5.3;Registration;**121,147,232,266,343,564,672,659,653,688,838,841,909,940,972,993**;Aug 13,1993;Build 92
  ;
 EN(DGARY,DFN,DGENRIEN,DGCNT) ;Entry point to build list area
  ; for patient enrollment and patient enrollment history
@@ -23,19 +23,25 @@ ENR(DGARY,DFN,DGENR,DGLINE,DGCNT) ;Enrollment
  ;           DGENR    Enrollment array
  ;           DGLINE   Line number
  ; Output -- DGCNT    Number of lines in the list
- N DGSTART
+ N DGSTART,DGSTUS,DGCHK
+ S DGCHK=0
+ S DGSTUS=$$STATUS^DGENA($G(DFN)) I DGSTUS=25 S DGCHK=1 ; If DGSTUS=25 patient is Register Only DG*5.3*993
+ I $G(DGENR("STATUS"))=25 S DGCHK=1 ; If DGSTUS=25 patient is Register Only DG*5.3*993
  ;
  S DGSTART=DGLINE ; starting line number
  D SET(DGARY,DGLINE,"Enrollment",31,IORVON,IORVOFF,,,,.DGCNT)
  ;
  ;Enrollment Date
  S DGLINE=DGLINE+1
- D SET(DGARY,DGLINE,"Enrollment Date: "_$S($G(DGENR("DATE")):$$EXT^DGENU("DATE",DGENR("DATE")),1:""),11,,,,,,.DGCNT)
+ ; If DGSTUS=25 patient is Register Only, dont display Enrollment Date DG*5.3*993
+ I DGCHK=0 D SET(DGARY,DGLINE,"Enrollment Date: "_$S($G(DGENR("DATE")):$$EXT^DGENU("DATE",DGENR("DATE")),1:""),11,,,,,,.DGCNT)
  ;
  ;
  ;Enrollment End Date
  S DGLINE=DGLINE+1
- D SET(DGARY,DGLINE,"Enrollment End Date: "_$S($G(DGENR("END")):$$EXT^DGENU("END",DGENR("END")),1:""),7,,,,,,.DGCNT)
+ ; If DGSTUS=25 patient is Register Only, dont display Enrollment End Date DG*5.3*993
+ I DGCHK=0 D SET(DGARY,DGLINE,"Enrollment End Date: "_$S($G(DGENR("END")):$$EXT^DGENU("END",DGENR("END")),1:""),7,,,,,,.DGCNT)
+ ;
  ;
  ;Enrollment Application Date
  S DGLINE=DGLINE+1

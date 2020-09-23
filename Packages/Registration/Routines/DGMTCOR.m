@@ -1,5 +1,5 @@
-DGMTCOR ;ALB/CAW,SCG,LBD,TMK,HM - Check Copay Test Requirements;07/28/08
- ;;5.3;Registration;**21,45,182,290,305,330,344,495,564,773,840,858,972**;Aug 13, 1993;Build 80
+DGMTCOR ;ALB/CAW,SCG,LBD,TMK,HM,DSB - Check Copay Test Requirements;07/28/08
+ ;;5.3;Registration;**21,45,182,290,305,330,344,495,564,773,840,858,972,993**;Aug 13, 1993;Build 92
  ;
  ;A patient may apply for a copay test under the following conditions:
  ;  - Applicant is a veteran
@@ -23,7 +23,8 @@ DGMTCOR ;ALB/CAW,SCG,LBD,TMK,HM - Check Copay Test Requirements;07/28/08
  ;  - Applicants who do not have POW eligibility (DG*5.3*564 - HVE III)
  ;  - Applicants who do not meet criteria for Unemployable: 
  ;      Unemployable="Y", SC%>0, not receiving A&A, HB or Pension, and
- ;      Total VA Check Amount>0  (DG*5.3*564 - HVE III) 
+ ;      Total VA Check Amount>0  (DG*5.3*564 - HVE III)
+ ;  - Applicant is not Registration only DG*5.3*993 
  ;
  ; Input  -- DFN     Patient IEN
  ;           DGADDF  Means Test Add Flag (optional)
@@ -68,6 +69,10 @@ CHK N STATUS,DGELIG,DGE,DGI,DGNODE,DGMDOD,DGMTDT,DGMTI,DGMTL
  S DGI=$P($G(^DPT(DFN,.36)),"^"),DGELIG=U_$P($G(^DIC(8,+DGI,0)),U,9)_U
  S DGI=0 F  S DGI=$O(^DPT(DFN,"E",DGI)) Q:'DGI  S DGE=$P($G(^DPT(DFN,"E",DGI,0)),U),DGELIG=DGELIG_$P($G(^DIC(8,+DGE,0)),U,9)_U
  I (DGELIG["^1^") S DGMTCOR=0,DGWRT=3 G CHKQ  ;SC 50-100%
+ ;Begin DG*5.3*993 Registration only
+ I $G(DGENRYN)=0 S DGMTCOR=0,DGWRT=14 G CHKQ
+ I '$G(DGENRYN) S STATUS=$$STATUS^DGENA(DFN) I STATUS=25 S DGMTCOR=0,DGWRT=14  G CHKQ
+ ;End DG*5.3*993
  F DGI=.3,.362,.39,.52,.54 S DGNODE(DGI)=$G(^DPT(DFN,DGI)) ;DG*5.3*840; added MOH indicator field on loop DG*5.3*972 HM
  I $P(DGNODE(.362),U,12)["Y"!(DGELIG["^2^") S DGMTCOR=0,DGWRT=5 G CHKQ ;A&A
  I $P(DGNODE(.362),U,13)["Y"!(DGELIG["^15^") S DGMTCOR=0,DGWRT=6 G CHKQ ;HB

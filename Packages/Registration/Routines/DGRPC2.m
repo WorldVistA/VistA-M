@@ -1,5 +1,5 @@
 DGRPC2 ;ALB/MRL/SCK/PJR/BAJ/LBD/BDB - CHECK CONSISTENCY OF PATIENT DATA (CONT) ; 10/14/10 9:56am
- ;;5.3;Registration;**45,69,108,121,205,218,342,387,470,467,489,505,507,528,451,564,570,657,688,780,797,858,895**;Aug 13, 1993;Build 11
+ ;;5.3;Registration;**45,69,108,121,205,218,342,387,470,467,489,505,507,528,451,564,570,657,688,780,797,858,895,993**;Aug 13, 1993;Build 92
  ;
 43 ;off
 44 ;off
@@ -35,6 +35,13 @@ DGRPC2 ;ALB/MRL/SCK/PJR/BAJ/LBD/BDB - CHECK CONSISTENCY OF PATIENT DATA (CONT) ;
  I $G(^DPT(DFN,.35)),(^(.35)<+($E(DT,1,3)_"0000")) D NEXT G @DGLST ; patient died before current year
  N DGE S DGE=+$O(^DIC(8.1,"B","SERVICE CONNECTED 50% to 100%",0))
  I $P($G(^DPT(DFN,.3)),U,2)'<50!($P($G(^DIC(8,+$G(^DPT(DFN,.36)),0)),U,9)=DGE) D NEXT G @DGLST ;50-100% SC
+ ;Begin DG*5.3*993 Registration Only or enroll before patch does not require Income Analysis
+ N DGQUIT,DRGFLG S DGQUIT=0 I DGLST=55 D  I DGQUIT D NEXT G @DGLST
+ . I ($G(DGENRYN)=0) S DRGFLG=1 S DGQUIT=1
+ . I '$D(DGENRYN)!($G(DGENRYN)="")  D  Q:DGQUIT
+ . . N DGEXST S DGEXST=$$PREEXIST^DGREG(DFN) I DGEXST=1 S DGQUIT=1
+ . . N STATUS S STATUS=$$STATUS^DGENA($G(DFN)) I STATUS=25 S DGQUIT=1
+ ;End changes for for DG*5.3*993
  S DGPTYP=$G(^DG(391,+DGP("TYPE"),"S")),DGISYR=$E(DT,1,3)-1_"0000" I '$P(DGPTYP,"^",8)&('$P(DGPTYP,"^",9)) K DGPTYP,DGISYR D NEXT G @DGLST ; screens 8 and 9 off
  ; If current/not outdated means test exits, pass to income retrieval
  ; Patch 780

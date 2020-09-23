@@ -1,5 +1,5 @@
 DGENA1A ;ALB/CJM,ISA/KWP,Zoltan,LBD,EG,CKN,ERC,TDM,JLS,HM - Enrollment API - File Data Continued ;5/10/11 12:03pm
- ;;5.3;Registration;**121,147,232,314,564,672,659,653,688,841,909,940,972,952**;Aug 13,1993;Build 160
+ ;;5.3;Registration;**121,147,232,314,564,672,659,653,688,841,909,940,972,952,993**;Aug 13,1993;Build 92
  ;
 KILLALL(DGENRIEN) ;
  ;kills all x-refs on the record in the Patient Enrollment file
@@ -22,8 +22,8 @@ KILLALL(DGENRIEN) ;
 SETALL(DGENRIEN,DGENR) ;
  ;Sets all x-refs on the record in the Patient Enrollment file.
  ;Inputs:
- ;  DGENRIEN - pointer to PATIENT ENROLLMENT file
- ;  DGENR - array containing the record, pass by reference
+ ; DGENRIEN - pointer to PATIENT ENROLLMENT file
+ ; DGENR - array containing the record, pass by reference
  ;
  N SUB,VALUE
  Q:'$G(DGENRIEN)
@@ -60,15 +60,15 @@ SET(FILE,IEN,FIELD,VALUE) ;
  ;
 EDIT(DA,DGENR) ;
  ;Description: Overlays a currently existing record, ien=DA, with values
- ;     from DGENR array
+ ; from DGENR array
  ;Input -
- ;  DA - ien of record in Patient Enrollment file
- ;  DGENR - array containing an enrollment, pass by reference
+ ; DA - ien of record in Patient Enrollment file
+ ; DGENR - array containing an enrollment, pass by reference
  ;Output - 1 on success, 0 on failure
  ;
- ; *** NOTE: This is called from within FM.  There is a problem in ***
- ; *** that ^DIE cannot be used.  Instead, the fields              ***
- ; *** are hard-set and cross-referenced.                          ***
+ ; *** NOTE: This is called from within FM. There is a problem in ***
+ ; *** that ^DIE cannot be used. Instead, the fields ***
+ ; *** are hard-set and cross-referenced. ***
  ;
  N NODE
  Q:'$G(DA) 0
@@ -80,7 +80,16 @@ EDIT(DA,DGENR) ;
  ;
  ;now hand-set all the fields
  ;Phase II Add subgroup to the 12 piece (SRS 6.4)
- S NODE=DGENR("APP")_U_DGENR("DFN")_U_DGENR("SOURCE")_U_DGENR("STATUS")_U_DGENR("REASON")_U_DGENR("FACREC")  ;DJE field added with DG*5.3*940 - Closed Application (line split) - RM#867186
+ ;DG*5.3*993 Status being set for a Register Only Patients
+ N DGEIEN
+ S DGEIEN=$$FINDCUR^DGENA(DFN)
+ I DGEIEN S DGENRYN=$$GET1^DIQ(27.11,DGEIEN_",",.14,"I")
+ I $G(DGENRYN)=0,DGENR("STATUS")'=6,DGENR("STATUS")'=20,DGENR("SOURCE")'=2 S DGENR("STATUS")=25
+ I $G(DGENR("PTAPPLIED"))=0,DGENR("STATUS")'=6,DGENR("STATUS")'=20,DGENR("SOURCE")'=2 S DGENR("STATUS")=25    ;  DG*5.3*993
+ I $G(DGENR("REGREA"))="",DGENR("SOURCE")'=2 S DGENR("REGREA")=$$GET1^DIQ(27.11,DGEIEN_",",.15,"I")
+ I $G(DGENR("REGDATE"))="",DGENR("SOURCE")'=2 S DGENR("REGDATE")=$$GET1^DIQ(27.11,DGEIEN_",",.16,"I")
+ I $G(DGENR("REGSRC"))="",DGENR("SOURCE")'=2 S DGENR("REGSRC")=$$GET1^DIQ(27.11,DGEIEN_",",.17,"I")
+ S NODE=DGENR("APP")_U_DGENR("DFN")_U_DGENR("SOURCE")_U_DGENR("STATUS")_U_DGENR("REASON")_U_DGENR("FACREC") ;DJE field added with DG*5.3*940 - Closed Application (line split) - RM#867186
  S NODE=NODE_U_DGENR("PRIORITY")_U_DGENR("EFFDATE")_U_DGENR("PRIORREC")_U_DGENR("DATE")_U_DGENR("END")_U_DGENR("SUBGRP")_U_DGENR("RCODE") ;DJE field added with DG*5.3*940 - Closed Application - RM#867186
  S ^DGEN(27.11,DA,0)=NODE
  S ^DGEN(27.11,DA,"R")=DGENR("REMARKS")
@@ -96,7 +105,7 @@ EDIT(DA,DGENR) ;
  S NODE=NODE_U_DGENR("ELIG","MEDICAID")
  S NODE=NODE_U_DGENR("ELIG","AO")
  S NODE=NODE_U_DGENR("ELIG","IR")
- S NODE=NODE_U_DGENR("ELIG","EC")  ;changed to SW Asia Cond - DG*5.3*688
+ S NODE=NODE_U_DGENR("ELIG","EC") ;changed to SW Asia Cond - DG*5.3*688
  S NODE=NODE_U_DGENR("ELIG","MTSTA")
  S NODE=NODE_U_DGENR("ELIG","VCD")
  S NODE=NODE_U_DGENR("ELIG","PH")
@@ -107,16 +116,23 @@ EDIT(DA,DGENR) ;
  S NODE=NODE_U_DGENR("ELIG","RADEXPM")
  S NODE=NODE_U_DGENR("ELIG","AOEXPLOC") ;field added with DG*5.3*688
  S NODE=NODE_U_DGENR("ELIG","MOH") ;field added with DG*5.3*841
- S NODE=NODE_U_DGENR("ELIG","CLE")     ;field added with DG*5.3*909
- S NODE=NODE_U_DGENR("ELIG","CLEDT")   ;field added with DG*5.3*909
- S NODE=NODE_U_DGENR("ELIG","CLEST")   ;field added with DG*5.3*909
- S NODE=NODE_U_DGENR("ELIG","CLESOR")  ;field added with DG*5.3*909
- S NODE=NODE_U_DGENR("ELIG","MOHAWRDDATE")  ;field added with DG*5.3*972 HM
- S NODE=NODE_U_DGENR("ELIG","MOHSTATDATE")  ;field added with DG*5.3*972 HM
- S NODE=NODE_U_DGENR("ELIG","MOHEXEMPDATE")  ;field added with DG*5.3*972 HM
+ S NODE=NODE_U_DGENR("ELIG","CLE") ;field added with DG*5.3*909
+ S NODE=NODE_U_DGENR("ELIG","CLEDT") ;field added with DG*5.3*909
+ S NODE=NODE_U_DGENR("ELIG","CLEST") ;field added with DG*5.3*909
+ S NODE=NODE_U_DGENR("ELIG","CLESOR") ;field added with DG*5.3*909
+ S NODE=NODE_U_DGENR("ELIG","MOHAWRDDATE") ;field added with DG*5.3*972 HM
+ S NODE=NODE_U_DGENR("ELIG","MOHSTATDATE") ;field added with DG*5.3*972 HM
+ S NODE=NODE_U_DGENR("ELIG","MOHEXEMPDATE") ;field added with DG*5.3*972 HM
  S NODE=NODE_U_$G(DGENR("ELIG","OTHTYPE")) ; DG*5.3*952
  S ^DGEN(27.11,DA,"E")=NODE
  S ^DGEN(27.11,DA,"U")=DGENR("DATETIME")_U_DGENR("USER")
+ ;
+ ;DG*5.3*993 New fields for decoupling mods - update using FileMan for Auditing
+ D 
+ . N DGFDA S DGFDA(27.11,DA_",",.14)=$G(DGENR("PTAPPLIED")),DGFDA(27.11,DA_",",.15)=$G(DGENR("REGREA"))
+ . S DGFDA(27.11,DA_",",.16)=$G(DGENR("REGDATE")),DGFDA(27.11,DA_",",.17)=$G(DGENR("REGSRC"))
+ . D FILE^DIE("","DGFDA")
+ ;DG*5.3*993 End of decoupling mods
  ;
  ;set the x-refs
  D SETALL(DA,.DGENR)

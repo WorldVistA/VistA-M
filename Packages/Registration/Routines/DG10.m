@@ -1,5 +1,5 @@
 DG10 ;ALB/MRL,DAK,AEG,PHH,TMK,ASMR/JD-LOAD/EDIT PATIENT DATA ; 09/30/15 @ 08:34
- ;;5.3;Registration;**32,109,139,149,182,326,513,425,574,642,658,773,864,921**;Aug 13, 1993;Build 14
+ ;;5.3;Registration;**32,109,139,149,182,326,513,425,574,642,658,773,864,921,993**;Aug 13, 1993;Build 92
  ;Per VHA Directive 2004-038, this routine should not be modified.
  ;
  ;Done for eHMP project: DG*5.3*921
@@ -14,7 +14,9 @@ START ;
  . D REG^IVMCQ($G(DFN))
  . D HINQ
  ;
-A W !! K VET,DIE,DIC,CARD S DIC=2,DLAYGO=2,DIC(0)="ALEQM" K DIC("S") D ^DIC G Q:Y<0 S (DFN,DA)=+Y,DGNEW=$P(Y,"^",3) K DLAYGO
+ ; DG*5.3*993; Remove the DLAYGO variable and the "L" from DIC(0) since adding records to the PATIENT file is not allowed in DG LOAD PATIENT DATA
+A ;W !! K VET,DIE,DIC,CARD S DIC=2,DLAYGO=2,DIC(0)="ALEQM" K DIC("S") D ^DIC G Q:Y<0 S (DFN,DA)=+Y,DGNEW=$P(Y,"^",3) K DLAYGO
+ W !! K VET,DIE,DIC,CARD S DIC=2,DIC(0)="AEQM" K DIC("S") D ^DIC G Q:Y<0 S (DFN,DA)=+Y,DGNEW=$P(Y,"^",3) K DLAYGO
  ;DG*5.3*921 Invoke eHMP demographic change checking
  I DGNEW']"" D T59(DFN,"BEFORE")  ;Get a snapshot of the demographics before changes
  N Y D PAUSE I DGNEW D NEW^DGRP S DA=DFN,VET=$S($D(^DPT(DFN,"VET")):^("VET")'="Y",1:0)

@@ -1,6 +1,6 @@
-PXRMEXHF ;SLC/PKR - Routines to select and deal with host files. ;09/27/2013
- ;;2.0;CLINICAL REMINDERS;**12,17,18,26**;Feb 04, 2005;Build 404
- ;============================================
+PXRMEXHF ;SLC/PKR - Routines to select and deal with host files. ;07/08/2020
+ ;;2.0;CLINICAL REMINDERS;**12,17,18,26,74**;Feb 04, 2005;Build 5
+ ;================
 CHF(SUCCESS,LIST,PATH,FILE) ;Put the repository entries in LIST into the
  ;host file specified by PATH and FILE.
  N IND,GBL,LEN,LNUM,RIEN
@@ -22,7 +22,7 @@ CHF(SUCCESS,LIST,PATH,FILE) ;Put the repository entries in LIST into the
  . S SUCCESS(LNUM)=$$GATF^%ZISH(GBL,4,PATH,FILE)
  Q
  ;
- ;============================================
+ ;================
 GETEHF(EXT,DPATH) ;Get an existing host file.
  ;Build a list of all .EXT files in the current directory.
  N DEXT,DIR,DIROUT,DIRUT,DTOUT,DUOUT,FILESPEC,FILELIST,PATH,X,Y
@@ -67,7 +67,7 @@ GETEHF(EXT,DPATH) ;Get an existing host file.
  I FILE'["." S FILE=FILE_"."_EXT
  Q PATH_U_FILE
  ;
- ;============================================
+ ;================
 GETHFN(EXT) ;Get the name of a host file to store repository entries in.
  N DIR,DIROUT,DIRUT,DTOUT,DUOUT,FILE,HFNAME,PATH,X,Y
 GETHF ;As a default set the path to the current directory.
@@ -109,7 +109,7 @@ GETHF ;As a default set the path to the current directory.
  I 'Y G GETHF
  Q PATH_U_FILE
  ;
- ;============================================
+ ;================
 LHF(SUCCESS,PATH,FILE) ;Load a host file containing exchange entries into
  ;the Exchange file.
  N GBL
@@ -128,10 +128,10 @@ LHF(SUCCESS,PATH,FILE) ;Load a host file containing exchange entries into
  D LTMP(.SUCCESS,"EXHF")
  Q
  ;
- ;============================================
+ ;================
 LTMP(SUCCESS,NODE) ;Load the contents of ^TMP($J,NODE) into the Exchange
  ;file. The format is ^TMP($J,NODE,NUM,1)=data
- N CURRL,CSUM,DATEP,DONE,EXTYPE,FDA,IENROOT,IND,LINE
+ N CURRL,CSUM,DATEP,DONE,EXIEN,EXTYPE,FDA,IENROOT,IND,LINE
  N MSG,NENTRY,NLINES,RETMP,RNAME,SITE,SOURCE,SSOURCE,US,USER,VRSN
  S RETMP="^TMP($J,""EXLHF"")"
  S (CURRL,DONE,NENTRY,NLINES,SSOURCE)=0
@@ -139,6 +139,9 @@ LTMP(SUCCESS,NODE) ;Load the contents of ^TMP($J,NODE) into the Exchange
  . S CURRL=CURRL+1
  . I '$D(^TMP($J,NODE,CURRL,1)) S DONE=1 Q
  . S LINE=^TMP($J,NODE,CURRL,1)
+ .;Look for overflow lines.
+ . S IND=0
+ . F  S IND=$O(^TMP($J,NODE,CURRL,"OVF",IND)) Q:IND=""  S LINE=LINE_^TMP($J,NODE,CURRL,"OVF",IND)
  . S NLINES=NLINES+1
  . S ^TMP($J,"EXLHF",NLINES,0)=LINE
  . I LINE["<PACKAGE_VERSION>" S VRSN=$$GETTAGV^PXRMEXU3(LINE,"<PACKAGE_VERSION>")
@@ -162,10 +165,12 @@ LTMP(SUCCESS,NODE) ;Load the contents of ^TMP($J,NODE) into the Exchange
  ... S SUCCESS=0
  ... H 2
  ..;Make sure this entry does not already exist.
- .. I $$REXISTS^PXRMEXIU(RNAME,DATEP) D
- ... W !,RNAME," with a date packed of ",DATEP
- ... W !,"is already in the Exchange File."
- ... S SUCCESS(NENTRY)=0
+ .. S EXIEN=$$REXISTS^PXRMEXIU(RNAME,DATEP)
+ .. I EXIEN>0 D
+ ... W !,RNAME
+ ... W !,"with a date packed of ",DATEP
+ ... W !,"is already in the Exchange File, it will not be added again."
+ ... S SUCCESS(NENTRY)=EXIEN_"A"
  ... H 2
  .. E  D
  ... K FDA,IENROOT
@@ -182,13 +187,16 @@ LTMP(SUCCESS,NODE) ;Load the contents of ^TMP($J,NODE) into the Exchange
  ... S DESL("VRSN")=VRSN
  ... D DESC^PXRMEXU1(IENROOT(1),.DESL,"DESCT","KEYWORDT")
  ... M ^PXD(811.8,IENROOT(1),100)=^TMP($J,"EXLHF")
+ ... W !,"Added Reminder Exchange entry ",RNAME H 2
  .. K ^TMP($J,"EXLHF")
  ;
  ;Check the success of the entry installs.
+ K ^TMP($J,NODE),^TMP($J,"EXLHF")
+ ;If no entries were created there was a problem.
+ I NENTRY=0 S SUCCESS=0 Q
  S SUCCESS=1
  S IND=""
  F  S IND=$O(SUCCESS(IND)) Q:+IND=0  D
  . I 'SUCCESS(IND) S SUCCESS=0 Q
- K ^TMP($J,NODE),^TMP($J,"EXLHF")
  Q
  ;

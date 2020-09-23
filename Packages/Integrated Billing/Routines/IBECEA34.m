@@ -1,5 +1,5 @@
 IBECEA34 ;ALB/CPM - Cancel/Edit/Add... Fee Support ; 12-FEB-96
- ;;Version 2.0 ; INTEGRATED BILLING ;**57**; 21-MAR-94
+ ;;2.0;INTEGRATED BILLING;**57,677**;21-MAR-94;Build 17
  ;;Per VHA Directive 10-93-142, this routine should not be modified.
  ;
 NOEVT ; No event in Integrated Billing - ask user to select a fee ptf
@@ -21,7 +21,7 @@ ADSEL(DFN) ; Select a Fee PTF as an admission to use to build an event.
  ;             -1   --   user decided to quit.
  I '$D(^DGPT("AFEE",+$G(DFN))) Q 0
  N ARR,PTF,IBD,IBQ,J,SEL,X S IBQ=0,IBD=""
- F J=1:1 S IBD=$O(^DGPT("AFEE",DFN,IBD)) Q:'IBD  S PTF=+$O(^(IBD,0)) I $D(^DGPT(PTF,0)) W:J=1 !!," Please select one of the following admissions:" S ARR(J)=PTF_"^"_(IBD\1) W !?3,J D DISEL,ASKAD:'(J#5) G:IBQ!($D(SEL)) ADSELQ
+ F J=1:1 S IBD=$O(^DGPT("AFEE",DFN,IBD)) Q:'IBD  S PTF=+$O(^(IBD,0)) I $D(^DGPT(PTF,0)) W:J=1 !!," Please select one of the following Fee PTF entries:" S ARR(J)=PTF_"^"_(IBD\1) W !?3,J D DISEL,ASKAD:'(J#5) G:IBQ!($D(SEL)) ADSELQ
  I '$D(ARR) G ADSELQ
  I '((J-1)#5) W !!?3,"End of list.",!
  S J=J-1 D ASKAD

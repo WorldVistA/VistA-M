@@ -1,6 +1,6 @@
-ORCSEND1 ;SLC/MKB-Release cont ; 12/8/10 10:17am [3/1/17 7:04am]
- ;;3.0;ORDER ENTRY/RESULTS REPORTING;**4,29,45,61,79,94,116,138,158,149,187,215,243,282,323,394,435**;Dec 17, 1997;Build 29
- ;Per VHA Directive 2004-038, this routine should not be modified.
+ORCSEND1 ;SLC/MKB - Release cont ;Jul 02, 2020@14:48:44
+ ;;3.0;ORDER ENTRY/RESULTS REPORTING;**4,29,45,61,79,94,116,138,158,149,187,215,243,282,323,394,435,507**;Dec 17, 1997;Build 9
+ ;Per VHA Directive 2004-038, this routine should not  be modified.
  ;
  ;Reference to PSJEEU supported by IA #486
  ;Reference to PSJORPOE supported by IA #3167
@@ -44,7 +44,7 @@ LR1 N ORLASTC  S ORS1=0 F  S ORS1=$O(ORX(ORS1)) Q:ORS1'>0  D
 SCHEDULE(IFN,PKG,ORY,STRT) ; Returns list of start time(s) from schedule
  N I,X,PSJSD,PSJFD,PSJW,PSJNE,PSJPP,PSJX,PSJAT,PSJM,PSJTS,PSJY,PSJAX,PSJSCH,PSJOSD,PSJOFD,PSJC,ORDUR
  S PSJSD=$S(+$G(STRT):STRT,1:$P($G(^OR(100,+IFN,0)),U,8)) I 'PSJSD S ORY=-1 Q
- S ORY=1,ORY(PSJSD)="" ;1st occurrance
+ S ORY=1,ORY(PSJSD)="" ;1st occurrence
  S I=$O(^OR(100,+IFN,4.5,"ID","SCHEDULE",0)) Q:'I  Q:'$L($G(PKG))
  S X=$G(^OR(100,+IFN,4.5,I,1)),PSJX=$S(X:$$GET1^DIQ(51.1,+X_",",.01),1:X)
  S PSJW=+$G(ORL),PSJNE="",PSJPP=PKG D ENSV^PSJEEU Q:'$L($G(PSJX))
@@ -171,23 +171,53 @@ SIG ; Build text of instructions
  . S:ITM'[STR ORDIALOG(ORSTR,1)=STR
  Q
 STRT ; Build ORSTRT(inst)=date.time array of start times by dose
- N OI,PSOI,XD,XH,XM,XS,ORWD,ORI,SCH,ORSD,X,ORD K ORSTRT
+ N OI,PSOI,XD,XH,XM,XS,ORWD,ORI,SCH,ORSD,X,ORNOW,ORSP,ORSTP,ORCNJ,ORCNJA,ADMTMN,ADMTM,DURA K ORSTRT
  S OI=$G(ORX(1,$$PTR^ORCD("OR GTX ORDERABLE ITEM")))
  S PSOI=+$P($G(^ORD(101.43,+OI,0)),U,2),(XD,XH,XM,XS)=0
  S ORWD=+$G(^SC(+$G(ORL),42)) ;ward
+ S ORNOW=$$NOW^XLFDT
+ S ADMTMN=$$PTR("ADMIN TIMES")
  S ORI=0 F  S ORI=$O(ORX(ORI)) Q:ORI<1  D
- . S SCH=$G(ORX(ORI,ORSCH)),ORSD="" S:'$L(SCH) X=$$NOW^XLFDT
- . S:$L(SCH) ORSD=$$STARTSTP^PSJORPOE(+ORVP,SCH,PSOI,ORWD),X=$P(ORSD,U,4)
- . S ORSTRT(ORI)=$$FMADD^XLFDT(X,XD,XH,XM,XS) ;START+OFFSET
- . ; update OFFSET for next THEN dose
- . D DUR(ORI) I $G(ORX(ORI,ORCONJ))="T" D
- .. I $G(ORD("XD"))<1,$G(ORD("XH"))<1,$G(ORD("XM"))<1,$G(ORD("XS"))<1 S ORD("XD")=+$P(ORSD,U,3) ;default duration
- .. N I,Y F I="XD","XH","XM","XS" S Y=@I,@I=Y+$G(ORD(I))
- .. K ORD
+ . S SCH=$G(ORX(ORI,ORSCH)),ORSD="" S:'$L(SCH) X=ORNOW
+ . S ORCNJ=$G(ORX(ORI-1,ORCONJ)),ORCNJA=$$CNJCHK(ORI),ADMTM=$G(ORX(ORI,ADMTMN))
+ . I ORCNJA!($L(SCH)&(ORI=1)) D
+ . . S ORSD=$$STARTSTP^PSJORPOE(+ORVP,SCH,PSOI,ORWD,"",ADMTM,ORNOW),X=$P(ORSD,U,4)
+ . ;Start Date calculation=1st Start Date: Use Current time or SCH; Subsequent Start Date: T CONJ/Stop Date, A CONJ/Start Date; p*507
+ . S ORSTRT(ORI)=$S(ORI=1:X,ORCNJA:X,ORCNJ="T":$G(ORSTP(ORI-1)),1:ORSTRT(ORI-1))
+ . S DURA=$$FMDUR^ORCDPS3($G(ORX(ORI,ORDUR)))
+ . I DURA["M" S DURA=$TR(DURA,"M","L")  ;convert month
+ . S ORSTP=$$STOP(ORI,$G(ORSTRT(ORI))),ORSP=$S((DURA["H")&'(+DURA#24):$$STPADM(SCH,ADMTM,ORSTP),"MH'"[$P(DURA,+DURA,2):ORSTP,1:$$STPADM(SCH,ADMTM,ORSTP)),ORSTP(ORI)=ORSP
  ; find beginning date.time for parent
  S ORI=0,X=9999999 F  S ORI=$O(ORSTRT(ORI)) Q:ORI<1  I ORSTRT(ORI)<X S X=ORSTRT(ORI)
  S ORSTRT("BEG")=X
  Q
+STOP(I,ORST) ; calculate STOP DATE; similar to PSJHL9; p*507
+ N DURA,STOP
+ S DURA=$$FMDUR^ORCDPS3($G(ORX(I,ORDUR))),DURA=$P(DURA,+DURA,2)_+DURA
+ I DURA["M" S DURA=$TR(DURA,"M","L") D  Q STOP
+ . S STOP=$P($$SCH^XLFDT($P(DURA,"L",2)_"M",$P(ORST,".")),".")_"."_$P(ORST,".",2) ;convert month
+ I DURA["W",DURA["." S DURA="H"_(($P(DURA,"W",2)*7)*24)
+ I DURA["D",DURA["." S DURA="H"_($P(DURA,"D",2)*24)
+ I +DURA=DURA,DURA["." S DURA="H"_(DURA*24)
+ I DURA["'" S DURA="M"_$P(DURA,"'",2)
+ S STOP=$$FMADD^XLFDT(ORST,$S(DURA["W":$P(DURA,"W",2)*7,DURA["D":$P(DURA,"D",2),+DURA=DURA:+DURA,1:""),$S(DURA["H":$P(DURA,"H",2),1:""),$S(DURA["M":$P(DURA,"M",2),1:""),$S(DURA["S":$P(DURA,"S",2),1:""))
+ Q STOP
+STPADM(SCH,AT,STP) ; calculate STOP DATE based on admin schedule; similar to PSJHL9; p*507
+ ;SCH - Schedule, AT - Admin times, STP - Stop Date
+ N X,Y,ORTM,OND,ND,AT1
+ S STP=+$FN(STP,"",4) S:SCH["PRN" AT=""
+ I AT="" Q STP
+ I AT?.N D  Q AT1
+ . S AT1=STP\1_"."_AT I $$FMDIFF^XLFDT(AT1,STP,2)<0 S AT1=$$FMADD^XLFDT(AT1,1) Q
+ F Y=1:1 S AT1=$P(AT,"-",Y) Q:'AT1  S ND=STP\1_"."_AT1,ORTM(+ND)=""
+ S ND="" F  S ND=$O(ORTM(ND)) Q:'ND  S X=$$FMDIFF^XLFDT(STP,ND,2) I X<1 S OND=ND Q
+ I $D(ORTM),$G(OND)="" Q $O(ORTM(9999999),-1)
+ Q $S($G(OND):OND,1:STP)
+CNJCHK(I) ;Check for A conjuction; p*507
+ N OI,ORA
+ S ORA=1
+ F OI=1:1:I I $G(ORX(OI,ORCONJ))="T" S ORA=0 Q
+ Q ORA
 DUR(I) ; Accumulate duration in ORD("Xt") for offsetting next THEN dose
  N X,Y S X=$$FMDUR^ORCDPS3($G(ORX(I,ORDUR)))
  I X["S",+X>$G(ORD("XS")) S ORD("XS")=+X

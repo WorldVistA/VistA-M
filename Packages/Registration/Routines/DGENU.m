@@ -1,12 +1,12 @@
 DGENU ;ALB/CJM,ISA/KWP,Zoltan,LBD,EG,CKN,ERC,TMK,PWC,TDM,JLS,HM - Enrollment Utilities ;04/24/2006 9:20 AM
- ;;5.3;Registration;**121,122,147,232,314,564,624,672,659,653,688,536,838,841,909,940,972,952**;Aug 13,1993;Build 160
+ ;;5.3;Registration;**121,122,147,232,314,564,624,672,659,653,688,536,838,841,909,940,972,952,993**;Aug 13,1993;Build 92
  ;
 DISPLAY(DFN) ;
  ;Description: Display status message, current enrollment and
- ;     preferred facility information
+ ; preferred facility information
  ;Input:
- ;  DFN - Patient IEN
- ;  Output:     none
+ ; DFN - Patient IEN
+ ; Output: none
  ;
  N STATUS
  S STATUS=$$STATUS^DGENA(DFN)
@@ -23,7 +23,7 @@ DISPLAY(DFN) ;
  ;
 CUR(DFN) ;
  ;Description - displays current enrollment, category, enrollment
- ;  group threshold, preferred facility and source designation
+ ; group threshold, preferred facility and source designation
  ;
  N FACNAME,PREFAC,PFSRC,DGEGT,DGEGTIEN,DGENCAT,DGENR,IORVON,IORVOFF
  I $$GET^DGENA($$FINDCUR^DGENA(DFN),.DGENR)
@@ -39,7 +39,7 @@ CUR(DFN) ;
  ;Source Designation
  S PFSRC=$$GET1^DIQ(2,DFN_",",27.03)
  W !?3,"Enrollment Date",?35,": ",$S('$G(DGENR("DATE")):"-none-",1:$$EXT^DGENU("DATE",DGENR("DATE")))
- W !?3,"Enrollment Application Date",?35,": ",$S('$G(DGENR("APP")):"-none-",1:$$EXT^DGENU("DATE",DGENR("APP")))
+ W !?3,"Application Date",?35,": ",$S('$G(DGENR("APP")):"-none-",1:$$EXT^DGENU("DATE",DGENR("APP")))
  W !?3,IORVON,"Enrollment Category             : ",$S($G(DGENCAT)="":"-none-",1:$$EXTERNAL^DILFD(27.15,.02,"",DGENCAT)),IORVOFF
  W !?3,"Enrollment Status",?35,": ",$S($G(DGENR("STATUS"))="":"-none-",1:$$EXT^DGENU("STATUS",DGENR("STATUS")))
  W !?3,"Enrollment Priority",?35,": ",$S($G(DGENR("PRIORITY"))="":"-none-",1:DGENR("PRIORITY")),$S($G(DGENR("SUBGRP"))="":"",1:$$EXT("SUBGRP",DGENR("SUBGRP")))
@@ -58,13 +58,13 @@ PATID(DFN) ;
  ;Displays current enrollment status, priority, and preferred facility.
  ;
  ;Input:
- ;  DFN - ien to Patient file
+ ; DFN - ien to Patient file
  ;
  N PREFAC,DGENR,OUTPUT
  I '$$GET^DGENA($$FINDCUR^DGENA(DFN),.DGENR) D
  .S OUTPUT="NO ENROLLMENT APPLICATION ON FILE "
  E  D
- .S OUTPUT=$E("PRIORITY:"_DGENR("PRIORITY")_"   ",1,12)_$E("STATUS:"_$$EXT^DGENU("STATUS",DGENR("STATUS"))_"         ",1,26)
+ .S OUTPUT=$E("PRIORITY:"_DGENR("PRIORITY")_" ",1,12)_$E("STATUS:"_$$EXT^DGENU("STATUS",DGENR("STATUS"))_" ",1,26)
  S PREFAC=$$PREF^DGENPTA(DFN)
  S:PREFAC OUTPUT=OUTPUT_"PREFERRED FACILITY:"_$P($G(^DIC(4,PREFAC,99)),"^")
  I $G(IOM) I ($X#$G(IOM))<6 D
@@ -75,15 +75,15 @@ PATID(DFN) ;
  ;
 EXT(SUB,VAL) ;
  ;Description: Given the subscript used in the PATIENT ENROLLMENT array,
- ;     and a field value, returns the external representation of the
- ;     value, as defined in the fields output transform of the PATIENT
- ;     ENROLLMENT file.
+ ; and a field value, returns the external representation of the
+ ; value, as defined in the fields output transform of the PATIENT
+ ; ENROLLMENT file.
  ;Input: 
- ;  SUB - subscript in the array defined by the PATIENT ENROLLMENT object
- ;  VAL - value of the PATIENT ENROLLMENT object attribute named by SUB
+ ; SUB - subscript in the array defined by the PATIENT ENROLLMENT object
+ ; VAL - value of the PATIENT ENROLLMENT object attribute named by SUB
  ;Output:
- ;  Function Value - returns the external value of the attribute as
- ;     defined by the PATIENT ENROLLMENT file
+ ; Function Value - returns the external value of the attribute as
+ ; defined by the PATIENT ENROLLMENT file
  ;
  Q:(($G(SUB)="")!($G(VAL)="")) ""
  ;
@@ -95,7 +95,7 @@ EXT(SUB,VAL) ;
  ;
 FIELD(SUB) ;
  ;Description: given a subscript in the enrollment array, returns the
- ;     corresponding field number
+ ; corresponding field number
  N FLD S FLD=""
  D  ;drops out of block once SUB is determined
  .I SUB="APP" S FLD=.01 Q
@@ -112,6 +112,12 @@ FIELD(SUB) ;
  .I SUB="PRIORREC" S FLD=.09 Q
  .I SUB="SUBGRP" S FLD=.12 Q
  .I SUB="RCODE" S FLD=.13 Q  ;DJE field added with DG*5.3*940 - Closed Application - RM#867186
+ .;DG*5.3*993 Four new fields for decoupling
+ .I SUB="PTAPPLIED" S FLD=.14 Q
+ .I SUB="REGREA" S FLD=.15 Q
+ .I SUB="REGDATE" S FLD=.16 Q
+ .I SUB="REGSRC" S FLD=.17 Q
+ .;End of DG*5.3*993 mods
  .I SUB="CODE" S FLD=50.01 Q
  .I SUB="SC" S FLD=50.02 Q
  .I SUB="SCPER" S FLD=50.03 Q
@@ -150,17 +156,17 @@ FIELD(SUB) ;
 PROMPT(FILE,FIELD,DEFAULT,RESPONSE,REQUIRE,PRMPTNM) ;
  ;Description: requests user to enter a single field value.
  ;Input:
- ;  FILE - the file #
- ;  FIELD - the field #
- ;  DEFAULT - default value, internal form
- ;  REQUIRE - a flag, (+value)'=0 means to require a value to be
- ;            entered and to return failure otherwise (optional)
- ;  PRMPTNM - Optional
- ;             0 - display field LABEL
- ;             1 - Prompt field TITLE
+ ; FILE - the file #
+ ; FIELD - the field #
+ ; DEFAULT - default value, internal form
+ ; REQUIRE - a flag, (+value)'=0 means to require a value to be
+ ; entered and to return failure otherwise (optional)
+ ; PRMPTNM - Optional
+ ; 0 - display field LABEL
+ ; 1 - Prompt field TITLE
  ;Output:
- ;  Function Value - 0 on failure, 1 on success
- ;  RESPONSE - value entered by user, pass by reference
+ ; Function Value - 0 on failure, 1 on success
+ ; RESPONSE - value entered by user, pass by reference
  ;
  Q:(('$G(FILE))!('$G(FIELD))) 0
  S REQUIRE=$G(REQUIRE)
@@ -177,7 +183,7 @@ PROMPT(FILE,FIELD,DEFAULT,RESPONSE,REQUIRE,PRMPTNM) ;
  . I $D(DTOUT)!$D(DUOUT) S QUIT=1 Q
  . I X="@" D  Q:AGAIN
  . . S AGAIN=0
- . . I 'REQUIRE,"Yy"'[$E($$YN^DGENCD1("  Are you sure")_"X") S AGAIN=1 Q
+ . . I 'REQUIRE,"Yy"'[$E($$YN^DGENCD1(" Are you sure")_"X") S AGAIN=1 Q
  . . S RESPONSE="" ; This might trigger the "required" message below.
  . E  I X="" S RESPONSE=$G(DEFAULT)
  . E  S RESPONSE=$P(Y,"^")
@@ -191,28 +197,28 @@ PROMPT(FILE,FIELD,DEFAULT,RESPONSE,REQUIRE,PRMPTNM) ;
  ;
 INST(VADUZ,VACHK) ;
  ; Description: Determine the institution affiliation associated with a
- ;              user.
+ ; user.
  ;
- ;  Input:
- ;     VADUZ =  array if passed by reference:
- ;           VADUZ = DUZ
- ;           VADUZ(2) =  
- ;              o  if this value is null: DUZ(2) (institution affiliated
- ;                    with user, prompted at Kernel sign-on)
- ;              o  if value is not null: site to check as valid for the
- ;                    user (Pointer to INSTITUTION (#4) file)
+ ; Input:
+ ; VADUZ = array if passed by reference:
+ ; VADUZ = DUZ
+ ; VADUZ(2) = 
+ ; o if this value is null: DUZ(2) (institution affiliated
+ ; with user, prompted at Kernel sign-on)
+ ; o if value is not null: site to check as valid for the
+ ; user (Pointer to INSTITUTION (#4) file)
  ; Output:
- ;   Function Value - Returns pointer to the INSTITUTION (#4) file
- ;    entry that is associated with the user, otherwise the pointer
- ;    to the INSTITUTION (#4) file entry of the primary VA Medical
- ;    Center division is returned.
+ ; Function Value - Returns pointer to the INSTITUTION (#4) file
+ ; entry that is associated with the user, otherwise the pointer
+ ; to the INSTITUTION (#4) file entry of the primary VA Medical
+ ; Center division is returned.
  ;
- ;    VACHK = passed by reference, returned as:
- ;         null if the value in VADUZ(2) is null
- ;            0 if the value in VADUZ(2) is not null and is not a valid
- ;              site for the user
- ;            1 if the value in VADUZ(2) is not null and is a valid site
- ;              for the user
+ ; VACHK = passed by reference, returned as:
+ ; null if the value in VADUZ(2) is null
+ ; 0 if the value in VADUZ(2) is not null and is not a valid
+ ; site for the user
+ ; 1 if the value in VADUZ(2) is not null and is a valid site
+ ; for the user
  ;
  S VACHK=$S($G(VADUZ(2))="":"",1:0)
  I $G(VADUZ(2)) D
@@ -224,9 +230,9 @@ INST(VADUZ,VACHK) ;
  Q $S($G(VADUZ(2)):VADUZ(2),1:$P($$SITE^VASITE(),"^"))
  ;
 GETINST(DGPREFAC,DGINST) ;Get Institution file data
- ; Input  -- DGPREFAC Institution file IEN
+ ; Input -- DGPREFAC Institution file IEN
  ; Output -- 1=Successful and 0=Failure
- ;           DGINST - Institution file Array
+ ; DGINST - Institution file Array
  N DGINST0,DGINST99,DGOKF
  S DGINST0=$G(^DIC(4,DGPREFAC,0)) G GETQ:DGINST0=""
  S DGINST("NAME")=$P(DGINST0,U)

@@ -1,5 +1,5 @@
-ORWU2 ;SLC/JEH - General Utilities for Windows Calls [2/25/04 11:10am]
- ;;3.0;ORDER ENTRY/RESULTS REPORTING;**243**;Dec 17, 1997;Build 242
+ORWU2 ;SLC/JEH,AJB - General Utilities for Windows Calls ;Jul 15, 2020@10:11:45
+ ;;3.0;ORDER ENTRY/RESULTS REPORTING;**243,533**;Dec 17, 1997;Build 11
  ;
  Q
  ;
@@ -10,15 +10,15 @@ COSIGNER(ORY,ORFROM,ORDIR,ORDATE,ORTIUTYP,ORTIUDA) ;
  ;
  ; PARAMS from ORWU2 COSIGNER RPC call:
  ;  .ORY=returned list.
- ;  ORFROM=Starting name for this set.  
- ;  ORDIR=Direction to move through the x-ref with $O.  
+ ;  ORFROM=Starting name for this set.
+ ;  ORDIR=Direction to move through the x-ref with $O.
  ;  ORDATE=Checks for an USR PROVIDER on this date (optional).
- ;  ORTIUTYP is + of the 0 node of the 8925 docmt.  
+ ;  ORTIUTYP is + of the 0 node of the 8925 docmt.
  ;  ORTIUDA is the docmt IEN,
- ;  
- ;  
- ;  
- N ORDD,ORDIV,ORDUP,ORGOOD,ORI,ORIEN1,ORIEN2,ORLAST,ORMAX,ORMRK,ORMULTI,ORPREV,ORSRV,ORTTL,ORERR
+ ;
+ ;
+ ;
+ N ORDD,ORDIV,ORDUP,ORGOOD,ORI,ORIEN1,ORIEN2,ORLAST,ORMAX,ORMRK,ORMULTI,ORNPI,ORPREV,ORSRV,ORTTL,ORERR
  ;
  S ORI=0,ORMAX=44,(ORLAST,ORPREV)="",ORDATE=$G(ORDATE) ;ORKEY=$G(ORKEY)
  I +$G(ORTIUDA) S ORTIUTYP=+$G(^TIU(8925,+$G(ORTIUDA),0))
@@ -28,11 +28,11 @@ COSIGNER(ORY,ORFROM,ORDIR,ORDATE,ORTIUTYP,ORTIUDA) ;
  .S ORIEN1=""
  .F  S ORIEN1=$O(^VA(200,"AUSER",ORFROM,ORIEN1),ORDIR) Q:'ORIEN1  D
  ..;
- ..I '$$PROVIDER^XUSER(ORIEN1,1) Q   ; Terminated? 
+ ..I '$$PROVIDER^XUSER(ORIEN1,1) Q   ; Terminated?
  ..I '$$ISA^USRLM(+ORIEN1,"PROVIDER",.ORERR,ORDATE) Q  ;(USR PROVIDER CLASS CHECK?)
-TIU .. I $$REQCOSIG^TIULP(ORTIUTYP,ORTIUDA,ORIEN1,ORDATE) Q  ; User requiers cosigner 
+TIU .. I $$REQCOSIG^TIULP(ORTIUTYP,ORTIUDA,ORIEN1,ORDATE) Q  ; User requiers cosigner
  ..;I ($L(ORKEY)),(ORKEY'="COSIGNER"),('$D(^XUSEC(ORKEY,+ORIEN1))) Q       ; Check for key?
- ..;I ORDATE>0,$$GET^XUA4A72(ORIEN1,ORDATE)<1 Q    ; Check date? 
+ ..;I ORDATE>0,$$GET^XUA4A72(ORIEN1,ORDATE)<1 Q    ; Check date?
  ..S ORI=ORI+1,ORY(ORI)=ORIEN1_"^"_$$NAMEFMT^XLFNAME(ORFROM,"F","DcMPC")
  ..S ORDUP=0                            ; Init flag, check dupe.
  ..I ($P(ORPREV_" "," ")=$P(ORFROM_" "," ")) S ORDUP=1
@@ -40,7 +40,10 @@ TIU .. I $$REQCOSIG^TIULP(ORTIUTYP,ORTIUDA,ORIEN1,ORDATE) Q  ; User requiers cos
  ..; Append Title if not duplicated:
  ..I 'ORDUP D
  ...S ORIEN2=ORIEN1
- ...D COS4(0)                            ; Get Title. 
+ ...D COS4(0)                            ; Get Title. *533 & NPI
+ ...; add NPI data *533 ; ajb
+ ...I ORTTL="" S ORY(ORI)=ORY(ORI)_U_ORNPI Q
+ ...S ORY(ORI)=ORY(ORI)_U_"- "_ORTTL_ORNPI
  ...I ORTTL="" Q
  ...S ORY(ORI)=ORY(ORI)_U_"- "_ORTTL
  ..;
@@ -85,11 +88,12 @@ COS2 ; Retrieve subset of data for dupes in COSIGNER.
  ;
  ; Append new pieces to array string:
  S ORMRK=""
- I (ORTTL="")&(ORSRV="")&(ORDIV="")  Q  ; Nothing to append.
+ I (ORTTL="")&(ORSRV="")&(ORDIV="")&(ORNPI="")  Q  ; Nothing to append.
  S ORY(ORI)=ORY(ORI)_U_"- "             ; At least something exists.
  I (ORTTL'="") S ORY(ORI)=ORY(ORI)_ORTTL,ORMRK=", "       ; Title.
  I (ORSRV'="") S ORY(ORI)=ORY(ORI)_ORMRK_ORSRV,ORMRK=", " ; Service.
  I (ORDIV'="") S ORY(ORI)=ORY(ORI)_ORMRK_ORDIV            ; Division.
+ I (ORNPI'="") S ORY(ORI)=ORY(ORI)_ORNPI                  ; NPI *533
  ;
  Q
  ;
@@ -99,19 +103,21 @@ COS4(ORSS) ; Retrieve Title or Title and Service/Section.
  ;
  ; Passed variable ORSS: If true, get Service/Section also.
  ;
- S (ORTTL,ORSRV)=""                            ; Init each time.
+ S (ORNPI,ORTTL,ORSRV)=""                            ; Init each time.
  ; DBIA# 4329:
  S ORTTL=$P($G(^VA(200,ORIEN2,0)),U,9)         ; Get Title pointer.
+ S ORNPI=+$$NPI^XUSNPI("Individual_ID",ORIEN2) ; Get NPI. *533 ICR#4532
+ S ORNPI=$S(ORNPI>0:" [NPI:"_ORNPI_"]",1:"")
  I ORTTL<1 S ORTTL=""                          ; Reset var if none.
  ; DBIA# 1234:
- I ORTTL>0 S ORTTL=$G(^DIC(3.1,ORTTL,0))       ; Actual Title value.
+ I ORTTL>0 S ORTTL=$$TITLE^XLFSTR($G(^DIC(3.1,ORTTL,0)))       ; Actual Title value.
  S ORSS=$G(ORSS)
  I ORSS D                                      ; Get Service/Section?
  .; DBIA# 4329:
  .S ORSRV=$P($G(^VA(200,ORIEN2,5)),U,1)        ; Get S/S pointer.
  .I ORSRV<1 S ORSRV=""                         ; Reset var if none.
  .; DBIA# 4330:
- .I ORSRV>0 S ORSRV=$P($G(^DIC(49,ORSRV,0)),U) ; Actual S/S value.
+ .I ORSRV>0 S ORSRV=$$TITLE^XLFSTR($P($G(^DIC(49,ORSRV,0)),U)) ; Actual S/S value.
  ;
  Q
  ;

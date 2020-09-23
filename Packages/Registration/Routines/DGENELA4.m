@@ -1,27 +1,28 @@
 DGENELA4 ;ALB/CJM,KCL,RTK,LBD,EG,CKN,DLF,TDM,JLS,HM - Patient Eligibility API ;5/10/11 12:03pm
- ;;5.3;Registration;**232,275,306,327,314,367,417,437,456,491,451,564,672,659,653,688,803,754,841,909,972,952**;Aug 13,1993;Build 160
+ ;;5.3;Registration;**232,275,306,327,314,367,417,437,456,491,451,564,672,659,653,688,803,754,841,909,972,952,993**;Aug 13,1993;Build 92
  ;
  ;
-PRIORITY(DFN,DGELG,DGELGSUB,ENRDATE,APPDATE) ;
+PRIORITY(DFN,DGELG,DGELGSUB,ENRDATE,APPDATE,DGENRYN) ; DG*5.3*993 Added 6th parameter DGENRYN
  ; Description: Used to compute the priority group and subgroup for a
  ; patient, also returning the subset of the eligibility data on which 
  ; the priority subgroup is based.
  ;
  ;Input:
- ;      DFN - ien of patient
- ;    DGELG - ELIGIBILITY object array (optional, pass by reference)
- ;  ENRDATE - The Enrollment Date. This date is used in the priority
- ;            determination only if the application date is not passed.
- ;  APPDATE - The Enrollment Application Date.  This date is used
- ;            to determine the priority. If the application date
- ;            is not passed then the enrollment date (ENRDATE) is used.
+ ; DFN - ien of patient
+ ; DGELG - ELIGIBILITY object array (optional, pass by reference)
+ ; ENRDATE - The Enrollment Date. This date is used in the priority
+ ; determination only if the application date is not passed.
+ ; APPDATE - The Enrollment Application Date. This date is used
+ ; to determine the priority. If the application date
+ ; is not passed then the enrollment date (ENRDATE) is used.
+ ; DGENRYN - (Optinal) ENROLL Y/N question for registration 0=NO 1=YES DG*5.3*993
  ;
  ;Output:
- ;  Function Value - returns the priority and subgroup computed by the
- ;    function as a 2 piece string 'PRIORITY^SUBGROUP'
- ;  DGELGSUB - this local array will contain the eligibility data on
- ;    which the priority determination was based, pass by reference
- ;    if needed.
+ ; Function Value - returns the priority and subgroup computed by the
+ ; function as a 2 piece string 'PRIORITY^SUBGROUP'
+ ; DGELGSUB - this local array will contain the eligibility data on
+ ; which the priority determination was based, pass by reference
+ ; if needed.
  ;
  N CODE,HICODE,PRI,HIPRI,PRIORITY,SUBGRP,HISUB,SUB,DGPAT
  K DGELGSUB S DGELGSUB=""
@@ -33,13 +34,13 @@ PRIORITY(DFN,DGELG,DGELGSUB,ENRDATE,APPDATE) ;
  .I $$GET^DGENPTA(DFN,.DGPAT)
  .; determine priority/subgroup based on primary eligibility
  .S HICODE=$$NATCODE^DGENELA(DGELG("ELIG","CODE"))
- .S PRIORITY=$$PRI(HICODE,.DGELG,$G(ENRDATE),$G(APPDATE))
+ .S PRIORITY=$$PRI(HICODE,.DGELG,$G(ENRDATE),$G(APPDATE),$G(DGENRYN)) ; DG*5.3*993 Added 5th parameter DGENRYN
  .S HIPRI=$P(PRIORITY,"^"),HISUB=$P(PRIORITY,"^",2)
  .S CODE=""
  .;
  .; determine if other eligibilities result in higher priority/subgroup
  .F  S CODE=$O(DGELG("ELIG","CODE",CODE)) Q:('CODE!(HIPRI=1))  D
- ..S PRIORITY=$$PRI($$NATCODE^DGENELA(CODE),.DGELG,$G(ENRDATE),$G(APPDATE))
+ ..S PRIORITY=$$PRI($$NATCODE^DGENELA(CODE),.DGELG,$G(ENRDATE),$G(APPDATE),$G(DGENRYN)) ; DG*5.3*993 Added 5th parameter DGENRYN
  ..S PRI=$P(PRIORITY,"^"),SUB=$P(PRIORITY,"^",2)
  ..S:((PRI>0)&((PRI<HIPRI)!(HIPRI=""))) HIPRI=PRI,HICODE=$$NATCODE^DGENELA(CODE),HISUB=SUB
  ..S:((PRI=HIPRI)&((SUB>0)&(SUB<HISUB))) HIPRI=PRI,HICODE=$$NATCODE^DGENELA(CODE),HISUB=SUB
@@ -60,35 +61,42 @@ PRIORITY(DFN,DGELG,DGELGSUB,ENRDATE,APPDATE) ;
  .S DGELGSUB("MOHAWRDDATE")=DGELG("MOHAWRDDATE") ;added with DG*5.3*972 HM
  .S DGELGSUB("MOHSTATDATE")=DGELG("MOHSTATDATE") ;added with DG*5.3*972 HM
  .S DGELGSUB("MOHEXEMPDATE")=DGELG("MOHEXEMPDATE") ;added with DG*5.3*972 HM
- .S DGELGSUB("CLE")=DGELG("CLE")         ;added with DG*5.3*909
- .S DGELGSUB("CLEDT")=DGELG("CLEDT")     ;added with DG*5.3*909
- .S DGELGSUB("CLEST")=DGELG("CLEST")     ;added with DG*5.3*909
- .S DGELGSUB("CLESOR")=DGELG("CLESOR")   ;added with DG*5.3*909
+ .S DGELGSUB("CLE")=DGELG("CLE") ;added with DG*5.3*909
+ .S DGELGSUB("CLEDT")=DGELG("CLEDT") ;added with DG*5.3*909
+ .S DGELGSUB("CLEST")=DGELG("CLEST") ;added with DG*5.3*909
+ .S DGELGSUB("CLESOR")=DGELG("CLESOR") ;added with DG*5.3*909
  .S DGELGSUB("OTHTYPE")=DGELG("OTHTYPE") ; DG*5.3*952
  .I $G(DGPAT("INELDATE"))'="" S (HIPRI,HISUB)=""
  ;
  Q HIPRI_$S(HIPRI:"^"_HISUB,1:"")
  ;
  ;
-PRI(CODE,DGELG,ENRDATE,APPDATE) ;
+PRI(CODE,DGELG,ENRDATE,APPDATE,DGENRYN) ; DG*5.3*993 Added 5th parameter DGENRYN
  ; Description: Returns the priority group and subgroup based on a
  ; single eligibility code.
  ;Input -
- ;  CODE - pointer to file #8.1, MAS Eligibility Code
- ;  DGELG - local array obtained by calling $$GET, pass by reference
- ;  ENRDATE - The Enrollment Date. This date is used in the priority
- ;            determination only if the application date is not passed.
- ;  APPDATE - The Enrollment Application Date.  This date is used
- ;            to determine the priority. If the application date
- ;            is not passed then the enrollment date (ENRDATE) is used.
+ ; CODE - pointer to file #8.1, MAS Eligibility Code
+ ; DGELG - local array obtained by calling $$GET, pass by reference
+ ; ENRDATE - The Enrollment Date. This date is used in the priority
+ ; determination only if the application date is not passed.
+ ; APPDATE - The Enrollment Application Date. This date is used
+ ; to determine the priority. If the application date
+ ; is not passed then the enrollment date (ENRDATE) is used.
+ ; DGENRYN (Optional) ENROLL Y/N question for registration 0=NO 1=YES
  ;
  ;Output -
- ;  Function Value - returns the priority and subgroup computed by the
- ;   function as a 2 piece string 'PRIORITY^SUBGROUP'
+ ; Function Value - returns the priority and subgroup computed by the
+ ; function as a 2 piece string 'PRIORITY^SUBGROUP'
  ;
  N CODENAME,PRIORITY,MTSTA,SUBGRP,DGEGT,PRISUB,DGMTI,MTTHR,GMTTHR,STAEXP
- N NODE2,DGNCM,DGNETW,DGMEDEX,DGEDEX,DGASSTS,DGMTYR,MTTEST1,MTTEST2,DGAICM
+ N NODE2,DGNCM,DGNETW,DGMEDEX,DGEDEX,DGASSTS,DGMTYR,MTTEST1,MTTEST2,DGAICM,DGENRIEN
  S SUBGRP=""
+ ;DG*5.3*993 If parameter DGENRYN is blank (null) or does not exist, populate it using the 
+ ; PT APPLIED FOR ENROLLMENT? field (#.14) in the PATIENT ENROLLMENT file (#27.11)
+ ; if a record exists in file #27.11 for this patient.
+ S DGENRYN=$G(DGENRYN) I DGENRYN="" S DGENRIEN=$$FINDCUR^DGENA(DFN) I DGENRIEN S DGENRYN=$$GET1^DIQ(27.11,DGENRIEN_",",.14,"I")
+ I DGENRYN=0,$$GET1^DIQ(2,DFN_",",.351)="" Q ""  ;If ENROLL is NO, and patient is not deceased return null
+ ;End of DG*5.3*993 mods
  ;
  ; use the Application Date when determining the priority, otherwise use
  ; the Enrollment Date (ESP DG*5,3*491)
@@ -112,7 +120,7 @@ PRI(CODE,DGELG,ENRDATE,APPDATE) ;
  S:$G(DGINC("V")) DGAICM=+DGINC("V")
  S (DGMEDEX,DGEDEX,DGASSTS)=0
  S DGMTYR=$$GET1^DIQ(408.21,+DGAICM,.01,"E")
- I $D(^DGMT(408.21,DGAICM,2))  D
+ I $D(^DGMT(408.21,DGAICM,2)) D
  .S NODE2=^DGMT(408.21,DGAICM,2)
  .S DGASSTS=DGASSTS+$P(NODE2,U,1)+$P(NODE2,U,2)+$P(NODE2,U,3)+$P(NODE2,U,4)-$P(NODE2,U,5)
  .S DGASSTS=DGASSTS+$P(NODE2,U,6)+$P(NODE2,U,7)+$P(NODE2,U,8)+$P(NODE2,U,9)
@@ -179,7 +187,7 @@ SUBPRI(DFN,PRIORITY,SUBGRP) ;calculate sub-priority if under EGT
  .I 'DGENRIEN S DONE=2 Q
  .I '$$GET^DGENA(DGENRIEN,.DGENRC) S DONE=2 Q
  .S DGENRIEN=$$FINDPRI^DGENA(DGENRIEN)
- .Q:DGENRC("STATUS")=6   ;deceased
+ .Q:DGENRC("STATUS")=6  ;deceased
  .I $P($G(^DGEN(27.15,+DGENRC("STATUS"),0)),"^",2)="N" S DONE=2 Q
  .S ENRDT=$G(DGENRC("APP")) S:'ENRDT ENRDT=$G(DGENRC("EFFDATE"))
  .I ENRDT,ENRDT<EGT("EFFDATE") S DONE=1 Q
@@ -195,12 +203,12 @@ SUBCNV(SUBGRP) ;return new subgrp
  ;
 STAEXP(STATYP) ;return expiration date for Special Treatment Authority (STA)
  ;Input -
- ;  STATYP - STA Type (Only AO & EC (SWAC) currently supported)
+ ; STATYP - STA Type (Only AO & EC (SWAC) currently supported)
  ;
  ;Output -
- ;  Function Value - returns the requested expiration date from the
- ;                   MAS PARAMETERS file (#43), otherwise returns 0
+ ; Function Value - returns the requested expiration date from the
+ ; MAS PARAMETERS file (#43), otherwise returns 0
  ;
- I STATYP="AO" Q +$P($G(^DG(43,1,"ENR")),U,1)  ;AO Exp Dt
- I STATYP="EC" Q +$P($G(^DG(43,1,"ENR")),U,2)  ;EC (SWAC) Exp Dt
+ I STATYP="AO" Q +$P($G(^DG(43,1,"ENR")),U,1) ;AO Exp Dt
+ I STATYP="EC" Q +$P($G(^DG(43,1,"ENR")),U,2) ;EC (SWAC) Exp Dt
  Q 0

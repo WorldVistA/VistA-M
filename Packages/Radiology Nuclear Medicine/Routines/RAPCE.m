@@ -1,5 +1,5 @@
-RAPCE ;HIRMFO/GJC-Interface with PCE APIs for wrkload, visits ;27 Nov 2018 11:42 AM
- ;;5.0;Radiology/Nuclear Medicine;**10,17,21,26,41,57,56,153**;Mar 16, 1998;Build 1
+RAPCE ;HIRMFO/GJC-Interface with PCE APIs for wrkload, visits ; Jun 26, 2020@13:03:09
+ ;;5.0;Radiology/Nuclear Medicine;**10,17,21,26,41,57,56,153,172**;Mar 16, 1998;Build 1
  ;Supported IA #2053 FILE^DIE
  ;Supported IA #4663 SWSTAT^IBBAPI
  ;Controlled IA #1889 DATA2PCE^PXAPI
@@ -79,7 +79,8 @@ PCE(RADFN,RADTI,RACNI) ; Pass on the information to the PCE software
  . ; PFSS Requirement 6, 11
  . S RASULT=$$DATA2PCE^PXAPI("^TMP(""RAPXAPI"",$J)",RAPKG,"RAD/NUC MED",.RAVSIT,"","","","",.@RAEARRY,.RACCOUNT)
  . Q
- I (RASULT=1)!(RASULT=-1) D  ;Visit file pointer, set 'Credit recorded' to yes. 
+ ;KLM/p172 - PX211 adds new result values that create visits.  We'll check for visit IEN instead.
+ I $G(RAVSIT)>0 D  ;Visit file pointer, set 'Credit recorded' to yes. 
  . W:'$D(ZTQUEUED)&('$D(RARECMPL)) !?5,"Visit credited.",!
  . D:'RAXAMSET VISIT(RADFN,RADTI,RACNI,RAVSIT)
  . D:'RAXAMSET RECDCS(RADFN,RADTI,RACNI) ; only one exam, not a set
@@ -120,6 +121,9 @@ PROC(X) ; Set up the other '"RAPXAPI",$J,"PROCEDURE"' nodes for this case
  S ^TMP("RAPXAPI",$J,"PROCEDURE",X,"ENC PROVIDER")=$S(RA7003(15)]"":RA7003(15),1:RA7003(12)) ; Pri. Int Staff if exists, else Pri Int Resident
  S ^TMP("RAPXAPI",$J,"PROCEDURE",X,"ORD PROVIDER")=RA7003(14) ; Requesting Physician.
  S ^TMP("RAPXAPI",$J,"PROCEDURE",X,"EVENT D/T")=$$FMADD^XLFDT(RADTE,0,0,0,RACNI) ;For unique entry in V CPT post PX*1.0*211
+ ;KLM/p172 - Pass the radiologist as 'Primary' for the encounter.
+ S ^TMP("RAPXAPI",$J,"PROVIDER",X,"NAME")=$S(RA7003(15)]"":RA7003(15),1:RA7003(12)) ; Pri. Int Staff if exists, else Pri Int Resident
+ S ^TMP("RAPXAPI",$J,"PROVIDER",X,"PRIMARY")=X
  ; if the PFSS switch is active Get both Dept. Code and Account Reference Number (RACCOUNT)
  I RAPFSW D GETDEPT^RABWIBB ; Requirement 9
  D CPTMOD(X)

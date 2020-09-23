@@ -1,5 +1,5 @@
-ORWU1 ;SLC/GRE - General Utilities for Windows Calls [2/25/04 11:10am]
- ;;3.0;ORDER ENTRY/RESULTS REPORTING;**149,187,195,215,394**;Dec 17, 1997;Build 5
+ORWU1 ;SLC/GRE - General Utilities for Windows Calls [2/25/04 11:10am];Jul 15, 2020@08:35:03
+ ;;3.0;ORDER ENTRY/RESULTS REPORTING;**149,187,195,215,394,533**;Dec 17, 1997;Build 11
  ;
  Q
  ;
@@ -10,12 +10,12 @@ NP1 ; Return a set of names from the NEW PERSON file.
  ; PARAMS from NEWPERS^ORWU call:
  ;  .ORY=returned list.
  ;  ORDATE=Checks for an active person class on this date (optional).
- ;  ORDIR=Direction to move through the x-ref with $O.  
+ ;  ORDIR=Direction to move through the x-ref with $O.
  ;  ORFROM=Starting name for this set.
  ;  ORKEY=Screen users by security key (optional).
  ;  ORVIZ=If true, includes RDV users; otherwise not (optional).
- ;  
- N ORDD,ORDIV,ORDUP,ORGOOD,ORI,ORIEN1,ORIEN2,ORLAST,ORMAX,ORMRK,ORMULTI,ORPREV,ORSRV,ORTTL
+ ;
+ N ORDD,ORDIV,ORDUP,ORGOOD,ORI,ORIEN1,ORIEN2,ORLAST,ORMAX,ORMRK,ORMULTI,ORNPI,ORPREV,ORSRV,ORTTL
  ;
  S ORI=0,ORMAX=44,(ORLAST,ORPREV)="",ORKEY=$G(ORKEY),ORDATE=$G(ORDATE)
  S ORMULTI=$$ALL^VASITE ; IA# 10112.  Do once at beginning of call.
@@ -38,9 +38,10 @@ NP1 ; Return a set of names from the NEW PERSON file.
  ..; Append Title if not duplicated:
  ..I 'ORDUP D
  ...S ORIEN2=ORIEN1
- ...D NP4(0)                            ; Get Title. 
- ...I ORTTL="" Q
- ...S ORY(ORI)=ORY(ORI)_U_"- "_ORTTL
+ ...D NP4(0)                            ; Get Title. *533 & NPI
+ ...; add NPI data *533 ; ajb
+ ...I ORTTL="" S ORY(ORI)=ORY(ORI)_U_ORNPI Q
+ ...S ORY(ORI)=ORY(ORI)_U_"- "_ORTTL_ORNPI
  ..;
  ..; Get data in case of dupes:
  ..I ORDUP D
@@ -81,13 +82,15 @@ NP2 ; Retrieve subset of data for dupes in NP1.
  ..; See if current entry being processed is "Default" (done if so):
  ..I $P(ORZ("DILIST",ORDD,0),U,3)["Y" S ORDIV=$P(ORZ("DILIST",ORDD,0),U,2),ORGOOD=1  Q                       ; Division text.
  ;
+ ; add NPI information *533 ; ajb
  ; Append new pieces to array string:
  S ORMRK=""
- I (ORTTL="")&(ORSRV="")&(ORDIV="")  Q  ; Nothing to append.
+ I (ORTTL="")&(ORSRV="")&(ORDIV="")&(ORNPI="") Q  ; Nothing to append. add check for NPI
  S ORY(ORI)=ORY(ORI)_U_"- "             ; At least something exists.
  I (ORTTL'="") S ORY(ORI)=ORY(ORI)_ORTTL,ORMRK=", "       ; Title.
  I (ORSRV'="") S ORY(ORI)=ORY(ORI)_ORMRK_ORSRV,ORMRK=", " ; Service.
  I (ORDIV'="") S ORY(ORI)=ORY(ORI)_ORMRK_ORDIV            ; Division.
+ I (ORNPI'="") S ORY(ORI)=ORY(ORI)_ORNPI                  ; NPI *533
  ;
  Q
  ;
@@ -121,9 +124,10 @@ NP3(COSFLAG) ; Retrieve diff. data when all users are involved, using "B" x-ref.
  ..; Append Title if not duplicated:
  ..I 'ORDUP D
  ...S ORIEN2=ORIEN1
- ...D NP4(0)                           ; Get Title. 
- ...I ORTTL="" Q
- ...S ORY(ORI)=ORY(ORI)_U_"- "_ORTTL
+ ...D NP4(0)                           ; Get Title.
+ ...; add NPI data *533 ; ajb
+ ...I ORTTL="" S ORY(ORI)=ORY(ORI)_U_ORNPI Q
+ ...S ORY(ORI)=ORY(ORI)_U_"- "_ORTTL_ORNPI
  ..;
  ..; Get data in case of dupes:
  ..I ORDUP D
@@ -143,19 +147,21 @@ NP4(ORSS) ; Retrieve Title or Title and Service/Section.
  ;
  ; Passed variable ORSS: If true, get Service/Section also.
  ;
- S (ORTTL,ORSRV)=""                            ; Init each time.
+ S (ORNPI,ORTTL,ORSRV)=""                            ; Init each time. *533
  ; DBIA# 4329:
  S ORTTL=$P($G(^VA(200,ORIEN2,0)),U,9)         ; Get Title pointer.
+ S ORNPI=+$$NPI^XUSNPI("Individual_ID",ORIEN2)  ; Get NPI. *533 ICR#4532
+ S ORNPI=$S(ORNPI>0:" [NPI:"_ORNPI_"]",1:"")
  I ORTTL<1 S ORTTL=""                          ; Reset var if none.
  ; DBIA# 1234:
- I ORTTL>0 S ORTTL=$G(^DIC(3.1,ORTTL,0))       ; Actual Title value.
+ I ORTTL>0 S ORTTL=$$TITLE^XLFSTR($G(^DIC(3.1,ORTTL,0)))       ; Actual Title value. *533 title case
  S ORSS=$G(ORSS)
  I ORSS D                                      ; Get Service/Section?
  .; DBIA# 4329:
  .S ORSRV=$P($G(^VA(200,ORIEN2,5)),U,1)        ; Get S/S pointer.
  .I ORSRV<1 S ORSRV=""                         ; Reset var if none.
  .; DBIA# 4330:
- .I ORSRV>0 S ORSRV=$P($G(^DIC(49,ORSRV,0)),U) ; Actual S/S value.
+ .I ORSRV>0 S ORSRV=$$TITLE^XLFSTR($P($G(^DIC(49,ORSRV,0)),U)) ; Actual S/S value. *533 title case
  ;
  Q
  ;

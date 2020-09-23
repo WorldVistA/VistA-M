@@ -1,5 +1,5 @@
 SDCCRSEN ;CCRA/LB,PB - Appointment retrieval API;APR 4, 2019
- ;;5.3;Scheduling;**707,730,735**;APR 4, 2019;Build 21
+ ;;5.3;Scheduling;**707,730,735,764**;APR 4, 2019;Build 22
  ;;Per VA directive 6402, this routine should not be modified.
  Q
  ; Documented API's and Integration Agreements
@@ -9,15 +9,17 @@ SDCCRSEN ;CCRA/LB,PB - Appointment retrieval API;APR 4, 2019
  ; 2701   $$GETICN^MPIF001
  ; 3535   MAKEADD^TIUSRVP2
  ; 10103  $$HL7TFM^XLFDT
+ ; 10141  $$PATCH^XPDUTL
+ ; Patch 764 changed the SDECEND and SDECSTART times to send them in external format
 EN() ;Primary entry routine for HL7 based CCRA scheduling processing.
  ;Will take all scheduling messages through this one point.
- N FS,CS,RS,ES,SS,MID,HLQUIT,HLNODE,USER,USERMAIL,NAKMSG,ICN
- N MSG,HDR,SEG,SEGTYPE,MSGARY,LASTSEG,HDRTIME,ABORT,BASEDT,CLINARY,COUNT,PROVDTL,RESULTS
+ N FS,CS,RS,ES,SS,MID,HLQUIT,HLNODE,USER,USERMAIL,NAKMSG,ICN,MSH
+ N MSG,HDR,SEG,SEGTYPE,MSGARY,LASTSEG,HDRTIME,ABORT,BASEDT,CLINARY,COUNT,PROVDTL,RESULTS,P694
  D INT^SDCCRCOR
  D COPYMSG^SDCCRCOR(.MSG)
  Q:$$CHKMSG^SDCCRCOR(.MSG)
  Q:$$PROCMSG(.MSG)
- D ACK^SDCCRCOR("CA",MID)
+ D:+$G(ABORT)'>0 ACK^SDCCRCOR("CA",MID) ;PB - Patch 764
  Q
 PROCMSG(MSG1) ; Process message
  N QUIT,I,SEGTYPE,ERR1
@@ -31,6 +33,7 @@ PROCMSG(MSG1) ; Process message
  . S SEGTYPE=$E(MSG1(XX),1,3),RAWSEG=$G(MSG1(XX))
  . I SEGTYPE'="NTE" S LASTSEG=SEGTYPE
  . S SEG=$G(MSG1(XX))
+ . I SEGTYPE="MSH" D MSH(SEG,.MSGARY)
  . I SEGTYPE="SCH" D SCH(SEG,.MSGARY,.ABORT,.BASEDT) ;SCH MUST BE PROCESSED FIRST SOME VALIDATION DEPENDS ON APPOINTMENT STATUS IN SCH-25
  . I SEGTYPE="NTE" D NTE(SEG,.MSGARY,LASTSEG,.CLINARY,.ABORT,.PROVDTL)
  . I SEGTYPE="PID" D PID(SEG,.MSGARY,.ABORT)
@@ -77,19 +80,21 @@ CANCEL ;CANCEL APPOINTMENT: "S15"="CANCEL"
  ;check if appointment exists
  ;Retrieve SDECAPTID pointer to SDEC APPOINTMENT file
  S:$G(SDDFN)>0 SDECAPTID=$$APPTGET^SDECUTL(SDDFN,BASEDT,SDCL,SDECRES)
- S SDECSTART=$P(SDECSTART,".",1)_"."_$E($P(SDECSTART,".",2),1,4)
- S SDECSTART=$$FMTE^XLFDT(SDECSTART,2)
- I $G(SDECAPTID)=0 D
- .D ACK^SDCCRCOR("CE",MID,"","","","","NO APPOINTMENT Found to CANCEL for requested PATIENT,DATE/TIME,and CLINIC",1)
+ ;S SDECSTART=$P(SDECSTART,".",1)_"."_$E($P(SDECSTART,".",2),1,4)
+ ;S SDECSTART=$$FMTE^XLFDT(SDECSTART,2)
+ I $G(SDECAPTID)'>0 D
+ .;D ACK^SDCCRCOR("CE",MID,"","","","","NO APPOINTMENT Found to CANCEL for requested PATIENT,DATE/TIME,and CLINIC",1)
  .S ABORT="1^NO APPOINTMENT was found to mark as CANCELED for the PATIENT on "_$G(SDECSTART)_" for consult, "_CONSULTID
  .S QUIT=1
  I +$G(ABORT)=1 D MESSAGE^SDCCRCOR(MID,ABORT) Q
  S:$G(MSGARY("CANCEL CODE"))="" MSGARY("CANCEL CODE")="C"
  S:$G(MSGARY("CANCEL REASON"))="" MSGARY("CANCEL REASON")=11
  D:QUIT=0 APPDEL^SDEC08(.SDECY,SDECAPTID,$G(MSGARY("CANCEL CODE")),$G(MSGARY("CANCEL REASON")),$G(MSGARY("COMMENT")),$G(SDECDATE),$G(MSGARY("USER"))) ;CANCEL APPOINTMENT
- ;735 - PB Check to see if the appointment was made.
- I +$G(^TMP("SDEC07",$J,2))>0 Q
- I $P($G(^TMP("SDEC07",$J,3)),"^",2)'="" S ABORT="1^"_$P($G(^TMP("SDEC07",$J,3)),"^",2) D
+ ;735 - PB Check to see if the appointment was canceled.
+ M ^ZZPHIL("SDEC08",$J)=^TMP("SDEC08",$J,"APPDEL")
+ D APPERROR^%ZTER("SDCCRSEN 94")
+ I +$G(^TMP("SDEC08",$J,"APPDEL",2))>0 Q
+ I $G(^TMP("SDEC08",$J,"APPDEL",2))'="" S ABORT="1^"_$G(^TMP("SDEC08",$J,2)) D
  .D MESSAGE^SDCCRCOR(MID,.ABORT)
  .D ANAK^SDCCRCOR($P($G(ABORT),"^",2),$G(USERMAIL),$G(ICN),$G(DFN),$G(APTTM),$G(CONID))
  Q
@@ -99,18 +104,18 @@ NOSHOW ;NOSHOW APPOINTMENT: "S26"="NOSHOW"
  S:$G(SDECLEN)'>0 SDECLEN=15
  ;check if appointment exists
  ;Retrieve SDECAPTID pointer to SDEC APPOINTMENT file
- S SDECSTART=$P(SDECSTART,".",1)_"."_$E($P(SDECSTART,".",2),1,4)
- S SDECSTART=$$FMTE^XLFDT(SDECSTART,2)
+ ;S SDECSTART=$P(SDECSTART,".",1)_"."_$E($P(SDECSTART,".",2),1,4)
+ ;S SDECSTART=$$FMTE^XLFDT(SDECSTART,2)
  S SDECAPTID=$$APPTGET^SDECUTL(SDDFN,BASEDT,SDCL,SDECRES)
  I $G(SDECAPTID)'>0 D
- .D ACK^SDCCRCOR("CE",MID,"","","","","NO APPOINTMENT Found to NOSHOW for requested PATIENT,DATE/TIME,and CLINIC",1)
+ .;D ACK^SDCCRCOR("CE",MID,"","","","","NO APPOINTMENT Found to NOSHOW for requested PATIENT,DATE/TIME,and CLINIC",1)
  .S ABORT="1^NO APPOINTMENT was found to mark as NO SHOW for the PATIENT on "_$G(SDECSTART)_" for consult, "_CONSULTID
  .S QUIT=1
  I +$G(ABORT)=1 D MESSAGE^SDCCRCOR(MID,ABORT) Q
  D:QUIT=0 NOSHOW^SDEC31(.SDECY,SDECAPTID,1,$G(MSGARY("USER")),$G(SDECDATE))
  ;735 - PB Check to see if the appointment was made.
- I +$G(^TMP("SDEC07",$J,2))>0 Q
- I $P($G(^TMP("SDEC07",$J,3)),"^",2)'="" S ABORT="1^"_$P($G(^TMP("SDEC07",$J,3)),"^",2) D
+ I +$G(^TMP("SDEC",$J,2))>0 Q
+ I $P($G(^TMP("SDEC",$J,3)),"^",2)'="" S ABORT="1^"_$P($G(^TMP("SDEC07",$J,3)),"^",2) D
  .D MESSAGE^SDCCRCOR(MID,.ABORT)
  .D ANAK^SDCCRCOR($P($G(ABORT),"^",2),$G(USERMAIL),$G(ICN),$G(DFN),$G(APTTM),$G(CONID))
  Q
@@ -122,6 +127,10 @@ SETEVENT(EVENT,MSGARY) ;Takes the scheduling event and sets a message event to p
  I EVENT="S15" S MSGARY("EVENT")="CANCEL" Q 1
  I EVENT="S26" S MSGARY("EVENT")="NOSHOW" Q 1
  Q 0
+MSH(MSH,MSGARY) ; RGS segment
+ D PARSESEG^SDCCRSCU(MSH,.MSH)
+ S SITECODE=$G(MSH(5,1,1))
+ Q
 SCH(SCH,MSGARY,ABORT,BASEDT) ;SCH segment processing.:
  ;SEG (I/REQ) - SCH message segment data
  ;MSGARY (I/O,REQ) message array structure with unformatted and translated data ready for filing. See PARSEMSG for details.
@@ -137,10 +146,12 @@ SCH(SCH,MSGARY,ABORT,BASEDT) ;SCH segment processing.:
  ;Duration
  S (SDECLEN,MSGARY("DURATION"))=$G(SCH(9)) ;SCH-9,10
  ;Appointment Date
- N Y
- S (SDECSTART,BASEDT)=$$HL7TFM^XLFDT($G(SCH(11,1,4)),"L") ;SCH-11.3
- S APTTM=$G(SCH(11,1,4))
- N Y S SDECEND=$$HL7TFM^XLFDT($G(SCH(11,1,5)),"L") ;SCH-11.3
+ S P694=0 S P694=$$PATCH^XPDUTL("SD*5.3*694")
+ S BASEDT=$$HL7TFM^XLFDT($G(SCH(11,1,4)),"L")
+ ;I $G(P694)'=1 N Y S SDECSTART=$$HL7TFM^XLFDT($G(SCH(11,1,4)),"L") N Y S SDECEND=$$HL7TFM^XLFDT($G(SCH(11,1,5)),"L") ;SCH-11.3 Patch 764 - PB
+ ;I $G(P694)=1 S APTTM=$G(SCH(11,1,4)),SDECSTART=$$TIMES^SDCCRCOR($G(SCH(11,1,4)),SITECODE),SDECEND=$$TIMES^SDCCRCOR($G(SCH(11,1,5)),SITECODE)
+ ;I $G(P694)'=1 N Y S SDECSTART=$$HL7TFM^XLFDT($G(SCH(11,1,4)),"L") N Y S SDECEND=$$HL7TFM^XLFDT($G(SCH(11,1,5)),"L") ;SCH-11.3 Patch 764 - PB
+ S APTTM=$G(SCH(11,1,4)),SDECSTART=$$TIMES^SDCCRCOR($G(SCH(11,1,4)),SITECODE),SDECEND=$$TIMES^SDCCRCOR($G(SCH(11,1,5)),SITECODE)
  I $G(BASEDT)="" S ERR1="NO APPOINTMENT DATE AND TIME" D ACK^SDCCRCOR("CE",MID,"SCH","",11,305,ERR1,1) S ABORT="1^"_ERR1 Q
  ;User
  S (MSGARY("USER"))=$$GETUSER($G(SCH(20,1,1))) ;SCH-20
@@ -169,15 +180,15 @@ NTE(NTE,MSGARY,LASTSEG,CLINARY,ABORT,PROVDTL) ;NTE segment processing.
  . I ($G(MSGARY("COMMENT"))'=""),(NOTE'="") S MSGARY("COMMENT")=$G(MSGARY("COMMENT"))_" "
  . S MSGARY("COMMENT")=NOTE
  Q
-PID(PID,MSGARY,ABORT) ;PID segment processing.
- ;PID (I/REQ) - PID message segment data
+PID(PID,MSGARY,ABORT) ;PID segment
+ ;PID (I/REQ) - PID message segment
  ;MSGARY (I/O,REQ) message array structure with unformatted and translated data ready for filing. See PARSEMSG for details.
  ;ABORT (O,OPT) - Error parameter if we failed to find a valid patient. Fatal case to this message.
  N IDENTIFIERS,IENCHECK,OK
  D PARSESEG^SDCCRSCU(PID,.PID)
  S ICN=$G(PID(3,1,1)),(SDDFN,DFN)=$$GETDFN^MPIF001($P(ICN,"V"))
  Q
-PV1(PV1,MSGARY,HDRTIME,ABORT) ;PV1 segment processing.
+PV1(PV1,MSGARY,HDRTIME,ABORT) ;PV1 segment
  ;PV1 (I/REQ) - PV1 message segment data
  ;MSGARY (I/O,REQ) message array structure with unformatted and translated data ready for filing. See PARSEMSG for details.
  ;HDRTIME (I,OPT) - TIME FROM MSH-7, USED AS A DEFAULTING OPTION
@@ -197,22 +208,15 @@ PV1(PV1,MSGARY,HDRTIME,ABORT) ;PV1 segment processing.
  N SDRES S SDRES=$O(^SDEC(409.831,"B",$G(SRVNAMEX),"")) S:$G(SDRES)>0 SDECRES=$G(SDRES)
  I $G(SDECRES)="" S (NAKMSG,ERROR)="NO CLINIC RESOURCE MATCH FOR "_SRVNAMEX,ERR1=ERROR D ACK^SDCCRCOR("CE",MID,"PV1","",19,305,ERR1) S ABORT="1^"_ERR1 Q
  ;Need to check to see if the clinic is inactive - is there an SDEC API for this?
- ;I $$INACTIVE^SDEC32(SDCL) S (NAKMSG,ERR1)="Clinic "_$P(^SC(SDCL,0),"^")_" is inactive" D ACK^SDCCRCOR("CE",MID,"PV1","",19,305,ERR1,1) S ABORT="1^"_ERR1 Q
  S MSGARY("CHECKINDT")=$$DETTIME($$GET^SDCCRSCU(.PV1,44,1),$G(HDRTIME),.ERROR)   ;PV1-44.1
  I ($G(ERROR)'=""),($G(MSGARY("STATUS"))="CHECKED IN") D ACK^SDCCRCOR("CE",MID,"PV1","",44,306,"NO CHECK IN TIME IN PV1-44 "_ERROR,1) S ABORT="1^NO CHECK IN TIME IN PV1-44 "_ERROR Q
  ;CHECK OUT DATE/TIME
  S MSGARY("CHECKOUTDT")=$$DETTIME($$GET^SDCCRSCU(.PV1,45,1),$G(HDRTIME),.ERROR)   ;PV1-45.1
  I ($G(ERROR)'=""),($G(MSGARY("STATUS"))="CHECKED OUT") D ACK^SDCCRCOR("CE",MID,"PV1","",45,307,"NO CHECK IN TIME IN PV1-45 "_ERROR,1) S ABORT="1^NO CHECK IN TIME IN PV1-44 "_ERROR Q
  Q
-RGS(RGS,MSGARY) ; RGS segment processing.
- ;Per HL7 this segment repeats and has multiple AIS/AIG/AIP segments underneath.
- ;RGS (I/REQ) - RGS message segment data
- ; MSGARY (I/O,REQ) message array structure with unformatted and translated data ready for filing. See PARSEMSG for details.
+RGS(RGS,MSGARY) ; RGS segment
  Q
-AIS(AIS,MSGARY) ;AIS segment processing.
- ;Per HL7 this field can repeat within each RGS group.
- ;AIS (I/REQ) - AIS message segment data
- ;MSGARY (I/O,REQ) message array structure with unformatted and translated data ready for filing. See PARSEMSG for details.
+AIS(AIS,MSGARY) ;AIS segment
  Q
 AIP(AIP,MSGARY,PROVDTL,BASEDTE) ;AIP segment processing.
  ;Per HL7 this field can repeat within each RGS group.
@@ -222,14 +226,9 @@ AIP(AIP,MSGARY,PROVDTL,BASEDTE) ;AIP segment processing.
  ;BASEDTE (I,REQ) - Appt D/T from SCH
  D PARSESEG^SDCCRSCU(AIP,.AIP)
  S PROV=$G(AIP(3,1,2))_" "_$G(AIP(3,1,3))
- ;I $$HL7TFM^XLFDT($$GET^SDCCRSCU(.AIP,6,1),"L")'="" S PROVDTL("DT")=$$HL7TFM^XLFDT($$GET^SDCCRSCU(.AIP,6,1),"L")  ;AIP-6
- ;E  S PROVDTL("DT")=BASEDTE
- ;S PROVDTL("LN")=MSGARY("DURATION")
  Q
  ;
 AIL(AIL,RETVAL) ; Process AIL Segment
- ;D PARSESEG^SDCCRSCU(AIP,.AIP)
- ;S LOC=$G(AIP(4,1,2))
  Q
 AIG(AIG,MSGARY,PROVDTL,BASEDTE) ;AIG segment processing.
  ;Per HL7 this field can repeat within each RGS group.
@@ -246,7 +245,6 @@ AIG(AIG,MSGARY,PROVDTL,BASEDTE) ;AIG segment processing.
 GETRSN(SCH) ; Collects appointment reason and translates into internal format.
  ;Tries using the Title to lookup the reason. If that fails uses the ID to lookup
  ;the reason against the title. If that fails tries using the ID against the ID.
- ;SCH (I/REQ) - SCH message segment data
  Q $$DATALKUP^SDCCRCOR(.SCH,"409.2","^SD(409.2,",6,302,"APPOINTMENT REASON MAPPING ERROR")
 GETTYPE(OBX) ;translates appointment type into internal format
  ;OBX (I/REQ) - OBX message segment data
@@ -263,7 +261,6 @@ GETUSER(SCH) ;collects appointment entered by user and confirms they are a user 
  Q USER
 GETSTAT(SCH) ; Translates status into appropriate scheduling statuses
  ;Options: (SCHEDULED,CHECKED IN,CHECKED OUT,CANCELLED,NO SHOW)
- ;SCH (I/REQ) - SCH message segment data
  N STATUS,ID,TITLE
  S ID=$$GET^SDCCRSCU(.SCH,25,1)
  S TITLE=$$GET^SDCCRSCU(.SCH,25,2)
@@ -273,7 +270,6 @@ GETSTAT(SCH) ; Translates status into appropriate scheduling statuses
  Q "NA"
 GETIDS(PID,IDENTIFIERS) ;Loops over PID-3 and extracts all IDs out into an array. Currently will identify ICN and IEN identifiers only
  ;PID (I,REQ) - PID message segment data
- ;IDENTIFIERS (O,REQ) - Identifier array to return
  K IDS    ;force output parameter
  N REP,ID,ASSIGN,IDTYPE
  S ID=PID(3,1,5)
@@ -301,7 +297,6 @@ CHECKLST(SRVNAME) ;
  F I=0:1:LEN I $E(SRVNAME,I)="-" S XC=XC+1
  S CONTITLE=SRVNAME
  S (RSNAME,SRVNAME)="COM CARE-"_$P(SRVNAME,"-",2,XC),SRVNAME=$E(SRVNAME,1,30) S:$E(SRVNAME,30)=" " SRVNAME=$E(SRVNAME,1,29)
- ;S (RSNAME,SRVNAME)="COM CARE-"_$P($P(SRVNAME,"COMMUNITY CARE",2),"-",2),SRVNAME=$E(SRVNAME,1,30) S:$E(SRVNAME,30)=" " SRVNAME=$E(SRVNAME,1,29)
  S:$E($P(RSNAME,"-",2),1,3)="DOD" (RSNAME,SRVNAME)="CC-"_$P(RSNAME,"-",2,XC)
  S CLINID=$O(^SC("B",$E($G(SRVNAME),1,30),""))
  I $G(CLINID)'>0 D

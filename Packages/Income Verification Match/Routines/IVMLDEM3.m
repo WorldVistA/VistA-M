@@ -1,5 +1,5 @@
-IVMLDEM3 ;ALB/KCL - IVM DEMOGRAPHIC NON-UPLOADABLE FIELDS ; 15-APR-94
- ;;Version 2.0 ; INCOME VERIFICATION MATCH ;**5**; 21-OCT-94
+IVMLDEM3 ;ALB/KCL,JAM - IVM DEMOGRAPHIC NON-UPLOADABLE FIELDS ;15-APR-94
+ ;;2.0;INCOME VERIFICATION MATCH;**5,193**;21-OCT-94;Build 37
  ;;Per VHA Directive 10-93-142, this routine should not be modified.
  ;
  ;
@@ -50,7 +50,8 @@ INIT ; - init variables and list array
  .S:$P(IVMDEMO,"^")=27 IVM27=IVM27+1
  .;
  .; - extract DHCP value in displayable format
- .S IVMDHCP="" X:$D(^IVM(301.92,$P(IVMDEMO,"^"),2)) ^(2) S IVMDHCP=Y
+ .; Patch IVM*2.0*193; JAM; If Y is not defined, quit
+ .S IVMDHCP="" X:$D(^IVM(301.92,$P(IVMDEMO,"^"),2)) ^(2) Q:$G(Y)=""  S IVMDHCP=Y
  .;
  .; - build index record to use for processing as
  .;   ctr is line # and ctr1 is entry #
