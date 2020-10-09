@@ -1,7 +1,8 @@
-ORCACT0 ;SLC/MKB-Validate order action ;10/29/19  14:32
- ;;3.0;ORDER ENTRY/RESULTS REPORTING;**7,27,48,72,86,92,94,141,165,177,173,190,215,243,289,204,306,350,425,434,377**;Dec 17, 1997;Build 582
+ORCACT0 ;SLC/MKB - Validate order action ;06/08/20  08:29
+ ;;3.0;ORDER ENTRY/RESULTS REPORTING;**7,27,48,72,86,92,94,141,165,177,173,190,215,243,289,204,306,350,425,434,377,413**;Dec 17, 1997;Build 32
  ;
  ;Reference to REFILL^PSOREF supported by IA #2399
+ ;Reference to OEL^PSOORRL supported by IA 2400
  ;
 VALID(IFN,ACTION,ERROR,NATR) ; -- Determines if action is valid for order IFN
  N OR0,OR3,ORA0,AIFN,PKG,DG,ORDSTS,ACTSTS,VER,X,Y,MEDPARM,CSORD,ORDLG,ORENVIR K ERROR
@@ -35,6 +36,23 @@ DC1 I ACTION="DC",ACTSTS D  G VQ ; discontinue/cancel unrel or canc order
 ES I (ACTION="ES")!(ACTION="OC")!(ACTION="RS")!(ACTION="DS") D ES^ORCACT01 G VQ ; sign
 VR I ACTION="VR" D  G VQ ; verify
  . I $G(ORVER)="N",$P(ORA0,U,9) S ERROR="This order has been verified!" Q
+ . ; OR*3*413 rbd - prevent nurse verify of Pending order
+ . ;                Also, prevent nurse verify of Non-Verified
+ . ;                order where not FINISHed by Nurse.
+ . I $G(ORVER)="N" D  Q:$D(ERROR)
+ .. N ORARR,ORFIN,ORNUM,ORXIFN,OSTYPE,ORSTATUS
+ .. S ORXIFN=$G(^OR(100,+IFN,4))
+ .. S OSTYPE=$P(OR0,U,12) K ^TMP("PS",$J)
+ .. D OEL^PSOORRL(+$P(OR0,U,2),ORXIFN_";"_OSTYPE)   ; IA 2400
+ .. S ORSTATUS=$P($G(^TMP("PS",$J,0)),U,6)
+ .. I ORSTATUS="PENDING" D
+ ... S ERROR="Still in PENDING status on Pharmacy side."
+ .. I ORSTATUS="NON-VERIFIED" D
+ ...S ORFIN=0 M ORARR=^TMP("PS",$J,"ALOG")
+ ...S ORNUM="" F  S ORNUM=$O(ORARR(ORNUM),-1) Q:+ORNUM=0  D
+ ....I $P(ORARR(ORNUM,0),U,3)=22000 S ORFIN=1
+ ...I 'ORFIN D
+ ....S ERROR="NON-VERIFIED status not Finished by Nurse with Authorized Key."
  . I $G(ORVER)="C",$P(ORA0,U,11) S ERROR="This order has been verified!" Q
  . I $G(ORVER)="R",$P(ORA0,U,19) S ERROR="This order has been reviewed!" Q
  . I (ACTSTS=11)!(ACTSTS=10) S ERROR="This order has not been released to the service." Q
@@ -73,7 +91,6 @@ DC2 I ACTION="DC",ACTSTS="" D  G VQ ; DC released order
  .. I $G(NATR)="A","^12^38^"'[(U_$P($G(DGPMA),U,18)_U),$$VALUE^ORX8(+IFN,"COLLECT")="SP",$P(OR0,U,8)'<DT S ERROR="Future Send Patient orders may not be auto-discontinued!" Q
  . I PKG="GMRC",ORDSTS=9 S ERROR="Consults orders with partial results cannot be discontinued!" Q
  .I DG="DO",$G(DGPMT)'=3,ORDSTS=6 S ERROR="Active Diets cannot be discontinued; please order a new diet!" Q
- . ;I DG="DO",$G(DGPMT)'=3,ORDSTS=6,'$$NPO(+IFN) S ERROR="Active Diets cannot be discontinued; please order a new diet!" Q
 RL I ACTION="RL" D  G VQ  ; release hold
  . I ORDSTS'=3 D  Q
  ..I $P(ORA0,U,4)=2 S ERROR="Providers has not yet signed the hold order and therefor it cannot yet be released" Q

@@ -1,5 +1,5 @@
 ONCSGA8C ;Hines OIFO/RTK - AJCC 8th Ed Automatic Staging Tables ;01/17/19
- ;;2.2;ONCOLOGY;**10**;Jul 31, 2013;Build 20
+ ;;2.2;ONCOLOGY;**10,12**;Jul 31, 2013;Build 8
  ;
  ;
 60 ;KIDNEY
@@ -33,6 +33,7 @@ ONCSGA8C ;Hines OIFO/RTK - AJCC 8th Ed Automatic Staging Tables ;01/17/19
  I T="Ta",N="N0",M="M0" S SG="0a" Q
  I T="Tis",N="N0",M="M0" S SG="0is" Q
  I T="T1",N="N0",M="M0" S SG=1 Q
+ I T="T2",N="N0",M="M0" S SG=2 Q
  I T="T2a",N="N0",M="M0" S SG=2 Q
  I T="T2b",N="N0",M="M0" S SG=2 Q
  I ((T="T3a")!(T="T3b")!(T="T4a")),N="N0",M="M0" S SG="3A" Q
@@ -109,10 +110,10 @@ ONCSGA8C ;Hines OIFO/RTK - AJCC 8th Ed Automatic Staging Tables ;01/17/19
  N X D AGE^ONCOCOM Q:X=""  I X<55 D  Q
  .I M="M0" S SG=1
  .I M="M1" S SG=2
- I T["T1",((N="N0")!(N="NX")),M="M0" S SG=1 Q
- I T["T1",N="N1",M="M0" S SG=2 Q
- I T="T2",((N="N0")!(N="NX")),M="M0" S SG=1 Q
- I T="T2",N="N1",M="M0" S SG=2 Q
+ I T["T1",((N["N0")!(N="NX")),M="M0" S SG=1 Q
+ I T["T1",N["N1",M="M0" S SG=2 Q
+ I T="T2",((N["N0")!(N="NX")),M="M0" S SG=1 Q
+ I T="T2",N["N1",M="M0" S SG=2 Q
  I ((T="T3a")!(T="T3b")),M="M0" S SG=2 Q
  I T="T4a",M="M0" S SG=3 Q
  I T="T4b",M="M0" S SG="4A" Q
@@ -120,17 +121,17 @@ ONCSGA8C ;Hines OIFO/RTK - AJCC 8th Ed Automatic Staging Tables ;01/17/19
  Q
 732 ;THYROID
  S M=$E(M,2,5)
- I ((T["T1")!(T["T2")!(T["T3")),T'="T3b",((N="N0")!(N="NX")),M="M0" S SG="4A" Q
- I ((T["T1")!(T["T2")!(T["T3")),T'="T3b",N="N1",M="M0" S SG="4B" Q
+ I ((T["T1")!(T["T2")!(T["T3")),T'="T3b",((N["N0")!(N="NX")),M="M0" S SG="4A" Q
+ I ((T["T1")!(T["T2")!(T["T3")),T'="T3b",N["N1",M="M0" S SG="4B" Q
  I T="T3b",M="M0" S SG="4B" Q
  I T="T4",M="M0" S SG="4B" Q
  I M="M1" S SG="4C"
  Q
 74 ;THYROID
  S M=$E(M,2,5)
- I T="T1",N="N0",M="M0" S SG=1 Q
- I T="T2",N="N0",M="M0" S SG=2 Q
- I T="T3",N="N0",M="M0" S SG=2 Q
+ I T["T1",N["N0",M="M0" S SG=1 Q
+ I T["T2",N["N0",M="M0" S SG=2 Q
+ I T["T3",N["N0",M="M0" S SG=2 Q
  I ((T["T1")!(T["T2")!(T["T3")),N="N1a",M="M0" S SG=3 Q
  I T="T4a",M="M0" S SG="4A" Q
  I ((T["T1")!(T["T2")!(T["T3")),N="N1b",M="M0" S SG="4A" Q

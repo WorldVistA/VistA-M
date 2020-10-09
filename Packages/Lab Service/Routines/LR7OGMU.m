@@ -1,5 +1,5 @@
-LR7OGMU ;DALOI/STAFF- Interim report rpc memo utility ;11/19/09  13:37
- ;;5.2;LAB SERVICE;**187,312,395,350**;Sep 27, 1994;Build 230
+LR7OGMU ;DALOI/STAFF- Interim report rpc memo utility ;July 29, 2019@10:00
+ ;;5.2;LAB SERVICE;**187,312,395,350,527**;Sep 27, 1994;Build 16
  ;
 NEWOLD(Y,DFN) ; from ORWLRR
  N LRDFN
@@ -16,13 +16,18 @@ NEWEST(LRDFN) ;
  . I $P(ZERO,U,3) S FIRSTCH=9999999-IDT Q
  . I UID'="" S UID=$$CHECKUID^LRWU4(UID) Q:'UID
  . I 'UID,$P(ZERO,U,3) Q
- . S GOTNP=0 D GETNP^LR7OGMC Q:GOTNP
+ . ;LR*5.2*527: commenting out line below so that tests marked as
+ . ;            "not performed" will be eligible as "newest" in the
+ . ;            range
+ . ;S GOTNP=0 D GETNP^LR7OGMC Q:GOTNP
  . S AREA=$P(UID,"^",2),ACDT=$P(UID,"^",3),NUM=$P(UID,"^",4)
  . I '$D(^LRO(68,+AREA,1,+ACDT,1,+NUM)) Q
  . S (TESTNUM,CHKTYP,ACOMP)=0
  . F  S TESTNUM=$O(^LRO(68,+AREA,1,+ACDT,1,+NUM,4,TESTNUM)) Q:'TESTNUM  S ANODE=^(TESTNUM,0) D
  . . Q:'$D(^LAB(60,TESTNUM,0))  I ("BO"[$P($G(^(0)),U,3)) S CHKTYP=1
  . . I '$P(ANODE,"^",5) S ACOMP=1
+ . . ;LR*5.2*527: adding line below for same reason noted above
+ . . I $P(ANODE,"^",6)["*Not Performed" S ACOMP=1
  . Q:'CHKTYP
  . Q:'ACOMP
  . S FIRSTCH=9999999-IDT
@@ -42,13 +47,18 @@ OLDEST(LRDFN) ;
  . I $P(ZERO,U,3) S FIRSTCH=9999999-IDT Q
  . I UID'="" S UID=$$CHECKUID^LRWU4(UID)
  . I 'UID,$P(ZERO,U,3) Q
- . S GOTNP=0 D GETNP^LR7OGMC Q:GOTNP
+ . ;LR*5.2*527: commenting out line below so that tests marked as
+ . ;            "not performed" will be eligible as "oldest" in the
+ . ;            range
+ . ;S GOTNP=0 D GETNP^LR7OGMC Q:GOTNP
  . S AREA=$P(UID,"^",2),ACDT=$P(UID,"^",3),NUM=$P(UID,"^",4)
  . I '$D(^LRO(68,+AREA,1,+ACDT,1,+NUM)) Q
  . S (TESTNUM,CHKTYP,ACOMP)=0
  . F  S TESTNUM=$O(^LRO(68,+AREA,1,+ACDT,1,+NUM,4,TESTNUM)) Q:'TESTNUM  S ANODE=^(TESTNUM,0) D
  . . Q:'$D(^LAB(60,TESTNUM,0))  I ("BO"[$P($G(^(0)),U,3)) S CHKTYP=1
  . . I '$P(ANODE,"^",5) S ACOMP=1
+ . . ;LR*5.2*527: adding line below for same reason noted above
+ . . I $P(ANODE,"^",6)["*Not Performed" S ACOMP=1
  . Q:'CHKTYP
  . Q:'ACOMP
  . S FIRSTCH=9999999-IDT

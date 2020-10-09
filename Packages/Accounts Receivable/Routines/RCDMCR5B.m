@@ -1,6 +1,12 @@
-RCDMCR5B ;ALB/YG - First Party Charge IB Cancellation Reconciliation Report - Collect Data; Apr 9, 2019@21:06
- ;;4.5;Accounts Receivable;**347**;Mar 20, 1995;Build 47
+RCDMCR5B ;HAF/ASF - First Party Charge IB Cancellation Reconciliation Report - Collect Data; Apr 9, 2019@21:06
+ ;;4.5;Accounts Receivable;**347,361**;Mar 20, 1995;Build 6
  ;;Per VA Directive 6402, this routine should not be modified.
+ ;
+ ; DBIA 4858 - GET1^PSOSI routine calls
+ ; DBIA 4538 - Action Type File (350.1) lookup
+ ; DBIA 4541 - Integrated Billing Action File lookups
+ ; DBIA 5040 - Outpatient event date lookup for file 409.68
+ ; DBIA 4434 - Action Status lookup
  ;
  ; See RCDMCR5A for detailed description
  ;
@@ -11,11 +17,12 @@ COLLECT(STOPIT,CANBEGDT,CANENDDT,BILLPAYS) ; Get the report data
  ;   CANENDDT - Cancellation End Date
  ;Output
  ;   STOPIT - Passed Variable set to 1 if process is to be terminated
- ;   ^TMP($J,"RCDMCR5") with report data and summary data
+ ;   ^TMP($J,"RCDMCR5B") with report data and summary data
  N DFN,IBIEN,IB0,IB1,CTR,ARIEN,ACTTYPE,BILGROUP,RESULT,IBDATA
  N SERVDT,RXDT,NAME,SSN,RXDT,CHGAMT,BILLFRDT,PAID,TRIEN
  N BILLNO,RXNUM,RXNAM,CANCDT,CANCUSER,CANCREAS,PARENTE
  N VAERR,VADM,VAIP
+ N APPR,RSC
  ;Quit if passed parameter variables not populated
  I $G(CANBEGDT)'>0,$G(CANENDDT)'>0 Q
  S CANCDT=CANBEGDT-.000001
@@ -32,8 +39,16 @@ COLLECT(STOPIT,CANBEGDT,CANENDDT,BILLPAYS) ; Get the report data
  . . I CTR#500=0 S STOPIT=$$STOPIT^RCDMCUT2() Q:STOPIT
  . . S BILLNO=$P(IB0,U,11)
  . . I BILLNO="" Q
+  . . ; ASF 8/10/19
  . . S ARIEN=$O(^PRCA(430,"B",BILLNO,""))
  . . I ARIEN'>0 Q
+ . . ;Grab the existing Fund.  If it doesn't exist, calculate it.
+ . . S APPR=$$GET1^DIQ(430,ARIEN_",",203)
+ . . I APPR="" S APPR=$$GETFUNDB^RCXFMSUF(ARIEN,1)
+ . . ;Grab the existing RSC.  If it doesn't exist, calculate it.
+ . . S RSC=$$GET1^DIQ(430,ARIEN_",",255.1)       ;Check for accrued RSC
+ . . S:RSC="" RSC=$$GET1^DIQ(430,ARIEN_",",255)  ;if no accrued RSC, check for non-accrued.
+ . . S:RSC="" RSC=$$CALCRSC^RCXFMSUR(ARIEN)      ;if neither present, calculate
  . . ; only look at 1st party bills
  . . I '$$FIRSTPAR^RCDMCUT1(ARIEN) Q
  . . ; BILLPAYS of 1 means only bills with an IB Bill Status of Cancelled and an AR status of Closed/Collected
@@ -51,15 +66,15 @@ COLLECT(STOPIT,CANBEGDT,CANENDDT,BILLPAYS) ; Get the report data
  . . I SSN']"" Q
  . . S SERVDT="",RXDT="",RXNUM="",RXNAM="",CANCREAS="",CANCUSER="" K IBDATA
  . . S IENS=IBIEN_","
- . . D GETS^DIQ(350,IENS,".1;11","E","IBDATA")
+ . . D GETS^DIQ(350,IENS,".1;11","E","IBDATA")   ;dbia 4541
  . . S BILLFRDT=$P(IB0,U,14)
  . . S CANCREAS=$G(IBDATA(350,IENS,.1,"E"))
  . . S CANCUSER=$G(IBDATA(350,IENS,11,"E"))
  . . I CANCUSER="" S CANCUSER="/"_$P(IB1,U)
- . . S BILGROUP=$$GET1^DIQ(350.1,+ACTTYPE_",",.11,"I")
+ . . S BILGROUP=$$GET1^DIQ(350.1,+ACTTYPE_",",.11,"I")  ;dbia 4538
  . . S RESULT=$P(IB0,U,4)
- . . S CHGAMT=$$GET1^DIQ(350,$$PARENTC(IBIEN)_",",.07)
- . . S PARENTE=$$PARENTE(IBIEN),RESULT=$$GET1^DIQ(350,PARENTE_",",.04,"I"),IENS=PARENTE_","
+ . . S CHGAMT=$$GET1^DIQ(350,$$PARENTC(IBIEN)_",",.07)  ;dbia 4541
+ . . S PARENTE=$$PARENTE(IBIEN),RESULT=$$GET1^DIQ(350,PARENTE_",",.04,"I"),IENS=PARENTE_","    ;dbia 4541
  . . S SERVDT=""
  . . ;Inpatient Event
  . . I $P(RESULT,":",1)=405!($P(RESULT,":",1)=45) D
@@ -72,33 +87,34 @@ COLLECT(STOPIT,CANBEGDT,CANENDDT,BILLPAYS) ; Get the report data
  . . ;Outpatient Event
  . . I BILGROUP=4!($P(RESULT,":",1)=44)!($P(RESULT,":",1)=409.68) D
  . . . I $P(RESULT,":",1)=44 S SERVDT=$P($P(RESULT,";",2),":",2)
- . . . I $P(RESULT,":",1)=409.68 S SERVDT=$$GET1^DIQ(409.68,+$P(RESULT,":",2)_",",.01,"I")
+ . . . I $P(RESULT,":",1)=409.68 S SERVDT=$$GET1^DIQ(409.68,+$P(RESULT,":",2)_",",.01,"I")  ;dbia 5040
  . . . I $G(SERVDT)'>0 S SERVDT=BILLFRDT
- . . I SERVDT="" S SERVDT=$$GET1^DIQ(350,IENS,.17,"I")
+ . . I SERVDT="" S SERVDT=$$GET1^DIQ(350,IENS,.17,"I")   ;dbia 4538
  . . ;RX Event
  . . I $P(RESULT,":",1)=52 D
  . . . N IENS
  . . . ;Set up for RX Refills
  . . . I $P(RESULT,";",2)]"" D
  . . . . S IENS=+$P($P(RESULT,";",2),":",2)_","_+$P($P(RESULT,";",1),":",2)_","
- . . . . S RXDT=$$GET1^PSODI(52.1,IENS,17,"I")
- . . . . S:$P(RXDT,U,2)'?7N.E RXDT=$$GET1^PSODI(52.1,IENS,.01,"I")
+ . . . . S RXDT=$$GET1^PSODI(52.1,IENS,17,"I")   ;dbia 4858
+ . . . . S:$P(RXDT,U,2)'?7N.E RXDT=$$GET1^PSODI(52.1,IENS,.01,"I")   ;dbia 4858
  . . . . I 'RXDT S RXDT="^"
- . . . . S RXNUM=$$GET1^PSODI(52,$P($P(RESULT,";",1),":",2)_",",.01,"I")
+ . . . . S RXNUM=$$GET1^PSODI(52,$P($P(RESULT,";",1),":",2)_",",.01,"I")   ;dbia 4858
  . . . . I 'RXNUM S RXNUM="^"
- . . . . S RXNAM=$$GET1^PSODI(52,$P($P(RESULT,";",1),":",2)_",",6,"E")
+ . . . . S RXNAM=$$GET1^PSODI(52,$P($P(RESULT,";",1),":",2)_",",6,"E")   ;dbia 4858
  . . . . I 'RXNAM S RXNAM="^"
  . . . ;Set up for RX Data (No refill)
  . . . I $P(RESULT,";",2)']"" D
  . . . . S IENS=+$P($P(RESULT,";",1),":",2)_","
  . . . . S RXDT=$$GET1^PSODI(52,IENS,31,"I")
- . . . . S:$P(RXDT,U,2)'?7N.E RXDT=$$GET1^PSODI(52,IENS,22,"I")
+ . . . . S:$P(RXDT,U,2)'?7N.E RXDT=$$GET1^PSODI(52,IENS,22,"I")   ;dbia 4858
  . . . . I 'RXDT S RXDT="^"
- . . . . S RXNUM=$$GET1^PSODI(52,IENS,.01,"I")
+ . . . . S RXNUM=$$GET1^PSODI(52,IENS,.01,"I")   ;dbia 4858
  . . . . I 'RXNUM S RXNUM="^"
- . . . . S RXNAM=$$GET1^PSODI(52,IENS,6,"E")
+ . . . . S RXNAM=$$GET1^PSODI(52,IENS,6,"E")   ;dbia 4858
  . . . . I 'RXNAM S RXNAM="^"
- . . S ^TMP($J,"RCDMCR5","DETAIL",NAME,SSN,BILLNO,IBIEN)=SERVDT_U_$P(RXDT,U,2)_U_CHGAMT_U_$P(RXNUM,U,2)_U_$P(RXNAM,U,2)_U_CANCDT_U_CANCREAS_U_CANCUSER
+ . . ; ASF 8/10/19 
+ . . S ^TMP($J,"RCDMCR5B","DETAIL",NAME,SSN,BILLNO,IBIEN)=SERVDT_U_$P(RXDT,U,2)_U_CHGAMT_U_$P(RXNUM,U,2)_U_$P(RXNAM,U,2)_U_CANCDT_U_CANCREAS_U_CANCUSER_U_APPR_U_RSC
  Q
 PARENTE(IBIEN) ; Go up the parenting event chain of IBIEN and return the original "parent" 
  N NZ

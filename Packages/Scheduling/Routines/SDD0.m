@@ -1,5 +1,5 @@
 SDD0 ;SF/GFT,ALB/BOK,JSH,LDB - REMAP A CLINIC ;26 JAN 84  3:00 pm
- ;;5.3;Scheduling;**167,401,529,674,726**;Aug 13, 1993;Build 36
+ ;;5.3;Scheduling;**167,401,529,674,726,753**;Aug 13, 1993;Build 3
 SETX ;
  N SDDIV
  S SDDIV=$P($G(SD0),"^",15) Q:SDDIV=""
@@ -28,7 +28,7 @@ Z S MSG=$S($D(SDHOL)&SDAPPT:"- Appts!",'SDSOH&$D(SDHOL):"- Inserted",1:"") I MSG
  Q
 END K %,%DT,DATE,DAY,DH,DOW,DR,DR1,HSI,I,P,POP,S,SB,SC,SDAPPT,SDAPPT1,SDBD,SDNM,SDED,SDHOL,SD0,SDIN,SDRE,SDRE1,SDSAVX,SDSL,SDSOH,SI,SM,SS,SD,SCI,SCC,ST,STARTDAY,STR,X,MSG,Y,YP,PG,DGVAR,DGPGM,VAUTD,VAUTC,SDU,BEGDATE,ENDDATE D CLOSE^DGUTQ Q
 FIX ;DH=PATTERN  X=DATE
- D SM G:'SDAPPT OVR
+ D SM G:('SDAPPT&('$D(^SC(SC,"S",DR,"MES")))) OVR ;SD*5.3*753, add check for canceled appointments
 I S I=DR#1-SB*100,I=I#1*SI\.6+(I\1*SI)*2,S=$E(SM,I,999),SM=$E(SM,1,I-1)
  I $D(^SC(SC,"S",DR,"MES")) D CAN S X=SDSAVX K SDSAVX S DR=+$O(^SC(SC,"S",DR)) G:DR\1=X I G OVR
  F Y=0:0 S Y=$O(^SC(SC,"S",DR,1,Y)) Q:Y'>0  I $P(^(Y,0),"^",9)'["C",((+$E($P(DR,".",2)_"000",1,4)>=($S($P($G(^SC(SC,"SL")),U,3)>0:+$P(^SC(SC,"SL"),U,3)_"00",1:800)))) D  ;Ignore appts prior to Begin time, SD*5.3*726
@@ -38,10 +38,11 @@ OVR I $L(SM)>SM,(X>=$O(SDDOW($$DOW^XLFDT(X,1),(X+1)),-1)&($O(SDDOW($$DOW^XLFDT(X
  G Z
 SM S SM=$P("SU^MO^TU^WE^TH^FR^SA",U,DOW+1)_" "_$E(X,6,7)_$J("",SI+SI-6)_DH_$J("",64-$L(DH)) Q
 APPT S DR=+$O(^SC(SC,"S",DATE)),SDAPPT=0 I DR>(DATE_.9) S DR=DATE Q
- F DR1=DATE:0 S DR1=$O(^SC(SC,"S",DR1)) Q:DR1'>0!(DR1>(DATE+1))!(SDAPPT)  S:$D(^(DR1,"MES")) SDAPPT=1 F SDAPPT1=0:0 S SDAPPT1=$O(^SC(SC,"S",DR1,1,SDAPPT1)) Q:SDAPPT1'>0  I $D(^(SDAPPT1,0)) S SDAPPT=$S($P(^(0),"^",9)="C":0,1:1)
+ F DR1=DATE:0 S DR1=$O(^SC(SC,"S",DR1)) Q:DR1'>0!(DR1>(DATE+1))!(SDAPPT)  S:$D(^(DR1,"MES")) SDAPPT=1 F SDAPPT1=0:0 S SDAPPT1=$O(^SC(SC,"S",DR1,1,SDAPPT1)) Q:SDAPPT1'>0  I $D(^(SDAPPT1,0)) S SDAPPT=$S($P(^(0),"^",9)="C":0,1:1) Q:SDAPPT
  Q
 CAN S SDSAVX=X Q:'$D(^SC(SC,"SDCAN",DR,0))  S X=$E($P(DR,".",2)_"0000",1,4),I=SM_S D TT S ST=%,X=$P(^SC(SC,"SDCAN",DR,0),"^",2) D TT S I=I_$J("",%-$L(I)),Y=""
  F X=0:2:% S S=$E(I,X+SI+SI),P=$S(X<ST:S_$E(I,X+1+SI+SI),X=%:$S(Y="[":Y,1:S)_$E(I,X+1+SI+SI),1:$S(Y="["&(X=ST):"]",1:"X")_"X"),Y=$S(S="]":"",S="[":S,1:Y),I=$E(I,1,X-1+SI+SI)_P_$E(I,X+2+SI+SI,999)
+ N SDIF S:'$F(I,"[") SDIF=$F(I,"X"),I=$E(I,1,(SDIF-2))_"["_$E(I,SDIF,999) ;SD*5.3*753 - Ensure "[" if all appointments canceled
  S SM=I Q
 TT S %=$E(X,3,4),%=X\100-STARTDAY*SI+(%*SI\60)*2 Q
 PRNT U IO S YP=YP+1 D:YP>(IOSL-4) ESC^SDD W !,$E(SDNM,1,25),?27,$E(DAY,1,3)_" " S Y=DATE D DT^DIO2 W ?45,MSG Q

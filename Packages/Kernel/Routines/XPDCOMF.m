@@ -1,6 +1,6 @@
 XPDCOMF ;SFISC/GFT/MSC - COMPARE FILES ;08/14/2008
- ;;8.0;KERNEL;**506,539,559**;Jul 10, 1995;Build 4
- ; Per VHA Directive 2004-038, this routine should not be modified.
+ ;;8.0;KERNEL;**506,539,559,713**;Jul 10, 1995;Build 15
+ ;Per VHA Directive 2004-038, this routine should not be modified.
  ;DI1 & DI2 are left & right roots
  ;DIFLAG[1 -->compare files   [2-->compare entries   ["L" --> IGNORE EXTRA ENTRIES ON RIGHT SIDE
  ;DITCPT is array of TITLES, called by reference
@@ -62,6 +62,8 @@ WPD D SUBHD W !?IOM-$L(X)\2,X,"..."
 ENTRY S DIGL=0,DIN=1 G NEXTENT:'$D(@DI1@(+DIN1,0)) S X=$P(^(0),U)
  ;check if we are comparing to KIDS
  I $E(DI1,1,12)="^XTMP(""XPDI""" D  G NEXTENT:Y
+ .;if pointer, reset X to value stored on "^" node ;p713
+ .I X,$G(@DI1@(+DIN1,"^"))]"" S X=^("^")
  .;check KIDS action; 0=send, 3=merge. Only these send the full record
  .S Y=+$G(@DI1@(+DIN1,-1)) I Y=3!'Y S Y=0 Q
  .;delete: save & goto next entry
@@ -71,14 +73,14 @@ ENTRY S DIGL=0,DIN=1 G NEXTENT:'$D(@DI1@(+DIN1,0)) S X=$P(^(0),U)
  I DIDD=.4032 D  D BLOCK(X) G NEXTENT
  .N V S V=$$EXT(X,.01,1) I V]"" S V=$O(@($$NS(2)_"DIST(.404,""B"",V,0)")) I V S X=V
  .S ^UTILITY("DITCP",$J,DIL,X)=""
- S DIV=$D(^DD(DIDD,.001)) G UP:DIDD=.4032!(DIDD=19.01)!(DIDD=101.01) ;for now, give up matching BLOCKs,MENUs, or ITEMs
+ S DIV=$D(^DD(DIDD,.001)) G UP:DIDD=.4032!(DIDD=19.01)!(DIDD=101.01)!(DIDD=101.0775) ;for now, give up matching BLOCKs,MENUs,ITEMs, or SUBSCRIBERS ;p713
  I DIDD=.1 S DIN2=+DIN1,X=@DI1@(DIN1,0) G NEW:'$D(@DI2@(DIN2,0)),NEW:^(0)'=X,OLD ;CROSS-REFERENCE matches on entire 0 node
 BIX I $P($G(@DI2@(DIN1,0)),U)=X S DIN2=DIN1 G OLD:$$MATCH,NEW:DIV
  I $P(^DD(DIDD,.01,0),U,2)["P" S MSCP=$$EXT(X,.01,1) F DIN2=0:0 S DIN2=$O(@DI2@(DIN2)) G NEW:DIN2'>0  I $$EXT($P($G(^(DIN2,0)),U),2)=MSCP G OLD:$$MATCH
  ;if no "B" x-ref, then check entire file for match
  S DIN2=0 I '$D(^DD(DIDD,0,"IX","B",DIDD,.01)) F  S DIN2=$O(@DI2@(DIN2)) G NEW:DIN2'>0 I $P($G(^(DIN2,0)),U)=X G OLD:$$MATCH
-BI S DIN2=$O(@DI2@("B",$E(X,1,30),DIN2)) I 'DIN2 S:$L(X)>30 DIN2=$O(@DI2@("B",X,DIN2)) G NEW:'DIN2
- I $D(@DI2@(DIN2,0)),$P(^(0),X)="" G OLD:$$MATCH ;COMPARE BY NAME
+BI S DIN2=$O(@DI2@("B",X,DIN2)) G NMATCH:DIN2,NEW:$L(X)<31 F  S DIN2=$O(@DI2@("B",$E(X,1,30),DIN2)) G NEW:'DIN2 I $D(@DI2@(DIN2,0)),$P(^(0),X)="",$$MATCH G OLD ;p713
+NMATCH I $D(@DI2@(DIN2,0)),$P(^(0),X)="" G OLD:$$MATCH ;COMPARE BY NAME
  G BI
  ;
 NEW S ^UTILITY("DITCP",$J,"X1",DIDD,DIN1)=X ;WILL SHOW EXTRA ENTRY ON LEFT SIDE
@@ -114,7 +116,8 @@ ID S DITM=$O(^DD(DIDD,0,"ID",DITM)) I DITM="" Q 1
  S I=DITM S:I?1"W"1.NP I=$E(I,2,99) I $$MISMATCH(I) Q 0 ;MATCH EACH NON-NULL IDENTIFIER
  G ID
  ;
-MISMATCH(I) K B S A=$P($G(^DD(DIDD,I,0)),U,2) I A=""!(A["P")!(A["V") Q 0 ;DON'T TRY TO MATCH POINTERS
+MISMATCH(I) K B S A=$P($G(^DD(DIDD,I,0)),U,2) I A=""!(A["V") Q 0 ;DON'T TRY TO MATCH POINTERS
+ I A["P" S A=+$P(A,"P",2) I '$D(^DD(A,.001)) Q 0  ;p713
  D  Q:W="" 0 S B=W Q:'$D(^DD(DIDD,I,0)) 0 D  Q:W="" 0 Q W'=B ;If two non-null values aren't equal it's a mismatch
  .S A=$P(^(0),U,4),%=$P(A,";",2),W=$P(A,";"),A=$S($D(B):DI2,1:DI1) I W?." " S W="" Q
  .I $D(@A@($S($D(B):DIN2,1:DIN1),W))[0 S W="" Q

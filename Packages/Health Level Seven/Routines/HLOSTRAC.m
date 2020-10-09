@@ -1,6 +1,6 @@
-HLOSTRAC ;;OIFO-OAK/RBN/CJM ;02/22/2011
- ;;1.6;HEALTH LEVEL SEVEN;**146,147,153**;Oct 13, 1995;Build 11
- ;Per VHA Directive 2004-038, this routine should not be modified.
+HLOSTRAC ;OIFO-OAK/RBN/CJM - HLO SERVER TRACE Tool ; 02/22/2011
+ ;;1.6;HEALTH LEVEL SEVEN;**146,147,153,172**;Oct 13, 1995;Build 11
+ ;Per VA Directive 6402, this routine should not be modified.
  ;;
  ;; HLO SERVER TRACE Tool
  ;; *** For troubleshooting HLO server issues ***
@@ -15,8 +15,8 @@ TRACE    ;
  D OWNSKEY^XUSRB(.CONF,"XUPROG",DUZ)
  I 'CONF(0) D  Q
  . W !!,"   Sorry, you are not authorized to use this tool.",!!
- I $P($$VERSION^%ZOSV(1),"/",1)'["Cache" D  Q
- . W !!,"   Sorry, this tool can only be used under Cache",!!
+ I '(($P($$VERSION^%ZOSV(1),"/",1)[("Cache"))!($$VERSION^%ZOSV(1)["IRIS")) D  Q D  Q
+ .W !!,"   Sorry, this tool can only be used under Cache or IRIS",!!
  N IEN,LINK,PORT
  S IEN=+$O(^HLD(779.1,0))
  D:IEN

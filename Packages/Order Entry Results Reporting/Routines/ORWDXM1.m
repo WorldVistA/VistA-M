@@ -1,5 +1,5 @@
-ORWDXM1 ;SLC/KCM - Order Dialogs, Menus ;10/08/19  17:09
- ;;3.0;ORDER ENTRY/RESULTS REPORTING;**10,85,131,132,141,178,185,187,215,243,280,331,388,350,423,434,494,397,377**;Dec 17, 1997;Build 582
+ORWDXM1 ;SLC/KCM - Order Dialogs, Menus ; 6/18/20 4:58pm
+ ;;3.0;ORDER ENTRY/RESULTS REPORTING;**10,85,131,132,141,178,185,187,215,243,280,331,388,350,423,434,494,397,377,512**;Dec 17, 1997;Build 2
  ;
 BLDQRSP(LST,ORIT,FLDS,ISIMO,ENCLOC) ; Build responses for an order
  ; LST=QuickLevel^ResponseID(ORIT;$H)^Dialog^Type^FormID^DGrp
@@ -102,7 +102,10 @@ BLDQRSP(LST,ORIT,FLDS,ISIMO,ENCLOC) ; Build responses for an order
  . . K ORDIALOG($P(ORDIALOG("B","EXPIRATION DATE/TIME"),U,2),1)
  . ; check date desired field found in imaging orders
  . I $L($$VAL^ORCD("DATE DESIRED")) D  ;
- . . S X=$$VAL^ORCD("DATE DESIRED"),%DT="TX" D ^%DT
+ . . S X=$$VAL^ORCD("DATE DESIRED")
+ . . ;OR 512 Erase future date if in +## or +##M format
+ . . I X["+" K ORDIALOG($P(ORDIALOG("B","DATE DESIRED"),U,2),1) Q
+ . . S %DT="TX" D ^%DT
  . . I Y'<$$DT^XLFDT Q  ;quit if not a past date
  . . K ORDIALOG($P(ORDIALOG("B","DATE DESIRED"),U,2),1) ;erase bad date
  . ; check collection date field found in lab orders

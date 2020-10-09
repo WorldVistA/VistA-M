@@ -1,5 +1,5 @@
-DGENDD ;ALB/CJM,JAN,LBD,AMA,ERC - Enrollment Data Dictionary Functions; 13 JUN 1997;6-28-01 ; 5/8/07 11:28am
- ;;5.3;Registration;**121,351,503,733,754**;Aug 13,1993;Build 46
+DGENDD ;ALB/CJM,JAN,LBD,AMA,ERC,JAM - Enrollment Data Dictionary Functions; 13 JUN 1997;6-28-01 ;5/8/07 11:28am
+ ;;5.3;Registration;**121,351,503,733,754,1015**;Aug 13,1993;Build 7
  ;
 SET1(DFN,DGENRIEN) ;
  ;Description: sets the "AENRC" X-ref on the patient file
@@ -116,6 +116,8 @@ ENRAPP ;check to see if the Enrollment Application Date (.01 of file 27.11)
  N DGFLD
  S DGFLD=$P(^DD(27.11,.01,0),U)
  I $G(X)<2961001 D EN^DDIOL(DGFLD_" must not be before 10/1/1996.",,"!!!") K X Q
+ ; DG*5.3*1015;jam ; quit if DFN not defined
+ Q:'$G(DFN)
  I $G(X)<$P(^DPT(DFN,0),U,3) D EN^DDIOL(DGFLD_" cannot be before Date of Birth.") K X Q
  I $P($G(^DPT(DFN,.35)),U)>0,($G(X)>$P(^DPT(DFN,.35),U)) D
  . D EN^DDIOL(DGFLD_" cannot be after Date of Death.") K X

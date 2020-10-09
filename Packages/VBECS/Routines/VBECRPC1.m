@@ -1,5 +1,5 @@
 VBECRPC1 ;HINES OIFO/BNT - RPC Server Listener Code ;12/28/03  11:20
- ;;2.0;VBEC;;Jun 05, 2015;Build 4
+ ;;2.0;VBEC;**8**;Jun 05, 2015;Build 27
  ;
  ; Note: This routine supports data exchange with an FDA registered
  ; medical device. As such, it may not be changed in any way without
@@ -25,7 +25,6 @@ PARSE(VBECPRMS,VBECY) ; -- parse legacy rpc results ; uses SAX parser
  I $D(@VBECY@("ERROR")) D
  . D BLDERMSG^VBECRPC(.VBECPRMS,VBECY,VBMT)
  . D SENDMSG^VBECRPC(VBMT,"VBECS VistALink Client","G.VBECS INTERFACE ADMIN","VBECS VistALink Error")
- . M ^TMP("ZBNT_ERROR",$J)=@VBMT
  . K @VBMT
  Q
  ;

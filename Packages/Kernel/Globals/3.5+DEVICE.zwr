@@ -25,7 +25,7 @@ ZWR
 ^%ZIS(1,7,"TYPE")="VTRM"
 ^%ZIS(1,8,0)="ZZNULL^/dev/null^0^0^^^^^^^1"
 ^%ZIS(1,8,1)="NT SYSTEM"
-^%ZIS(1,8,5)=91052
+^%ZIS(1,8,5)=91140
 ^%ZIS(1,8,"SUBTYPE")=12
 ^%ZIS(1,8,"TYPE")="TRM"
 ^%ZIS(1,9,0)="LMINIOUT0^64^^^^^^^"
@@ -194,7 +194,7 @@ ZWR
 ^%ZIS(1,39,"TYPE")="TRM"
 ^%ZIS(1,40,0)="GTM-UNIX-TELNET^/dev/pts/^1^^^^^^^^1^0"
 ^%ZIS(1,40,1)="TELNET^^^^1"
-^%ZIS(1,40,5)=386
+^%ZIS(1,40,5)=479
 ^%ZIS(1,40,"MN",0)="^3.501^2^2"
 ^%ZIS(1,40,"MN",1,0)="GTM-LINUX-TELNET"
 ^%ZIS(1,40,"MN",2,0)="TELNET"
@@ -235,7 +235,7 @@ ZWR
 ^%ZIS(1,47,"TYPE")="VTRM"
 ^%ZIS(1,48,0)="CACHE-WINDOWS-CONSOLE^/dev/tty^1^1^^^^^"
 ^%ZIS(1,48,1)="Console (Cache' on Windows)"
-^%ZIS(1,48,5)=7
+^%ZIS(1,48,5)=6
 ^%ZIS(1,48,"MN",0)="^3.501^1^1"
 ^%ZIS(1,48,"MN",1,0)="CONSOLE"
 ^%ZIS(1,48,"SUBTYPE")=9

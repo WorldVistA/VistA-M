@@ -1,6 +1,11 @@
-RAO7PC4 ;HISC/SWM-utilities ;23 Apr 2019 7:07 AM
- ;;5.0;Radiology/Nuclear Medicine;**28,32,31,45,77,157**;Mar 16, 1998;Build 2
+RAO7PC4 ;HISC/SWM-utilities ; Apr 28, 2020@14:47:40
+ ;;5.0;Radiology/Nuclear Medicine;**28,32,31,45,77,157,169**;Mar 16, 1998;Build 2
  ;08/10/2006 BAY/KAM Remedy Call 134839 Subscript Error
+ ;
+ ;IA          Type    File         Routine     Tag   
+ ;------------------------------------------------
+ ;1362        (C)                  ORB3        EN                   
+ ;
  Q
 EN1 ; api for CPRS notification alert #67
  Q:'$D(XQADATA)
@@ -135,11 +140,15 @@ SETNOTIF(RAIEN751) ; called by RAO7XX if patch OR*3.0*112 is installed
  Q:'$D(RASTRING)
  ;RASTRING is : dfn^invdt^caseien^befproc^aftproc^befphy^aftphy
  ;              ^befpmodA,pmodF,etc^aftpmodF,pmodH,etc
- N RAREQPHY
+ ;RAIEN751 - IEN file 75.1 RA5P169
+ ;Notification: #67 - IMAGING REQUEST CHANGED
+ N RAREQPHY,RAOIFN,RAORIFN
  S:+$P(RASTRING,"/",6) RAREQPHY(+$P(RASTRING,"/",6))=""
  S:+$P(RASTRING,"/",7) RAREQPHY(+$P(RASTRING,"/",7))=""
  S RAMSG="Imaging Exam Changed: "_$S($P(RASTRING,"/",5):"Proc., ",1:"")_$S($P(RASTRING,"/",7):"Rqstr, ",1:"")_$S($L($P(RASTRING,"/",8,9))>1:"Proc Mod",1:"")
  S:$E(RAMSG,$L(RAMSG)-1)="," RAMSG=$E(RAMSG,1,($L(RAMSG)-2))
- D EN^ORB3(67,+RASTRING,RAIEN751,.RAREQPHY,RAMSG,RASTRING)
- ;ORN mustbe 67,dfn,ienfile75.1,reqphys,messagetitle,string for api
+ S RAOIFN(0)=$G(^RAO(75.1,RAIEN751,0)),RAORIFN=$P(RAOIFN(0),"^",7) ;CPRS order IFN
+ D EN^ORB3(67,+RASTRING,RAORIFN,.RAREQPHY,RAMSG,RASTRING)
+ ;ORN mustbe 67,dfn,IFN #100,reqphys,messagetitle,string for api
  Q
+ ;

@@ -1,5 +1,5 @@
-RADEM1 ;HISC/GJC-Display Patient Demographics ;4/19/96  08:17
- ;;5.0;Radiology/Nuclear Medicine;**45,47**;Mar 16, 1998;Build 21
+RADEM1 ;HISC/GJC-Display Patient Demographics ; May 21, 2020@10:38:36
+ ;;5.0;Radiology/Nuclear Medicine;**45,47,169**;Mar 16, 1998;Build 2
 EXAM D HDR S RAXIT=0
  S X1=DT,X2=-7 D C^%DTC S RACHKDT=X,X1=DT,X2=-3 D C^%DTC S RACHKDT1=X
  S (RADTE,RASEQ)=0 F RADTI=0:0 Q:(RASEQ>4)&(RADTE<RACHKDT)!RAXIT  S RADTI=$O(^RADPT(RADFN,"DT",RADTI)) Q:RADTI'>0!RAXIT  I $D(^(RADTI,0)) S Y=^(0),RALOC=+$P(Y,"^",4),(RADTE,Y)=+Y Q:(RASEQ>4)&(RADTE<RACHKDT)  D D^RAUTL S RADATE=Y D RACN
@@ -53,11 +53,14 @@ ORDER ; Check for pat rad orders before registering a patient in rad
  ; Created by GJC@1/3/94
  N RALP,RA751,DIROUT,DIRUT,DTOUT,DUOUT S (RALP,RAXIT)=0
  F  S RALP=$O(^RAO(75.1,"B",RADFN,RALP)) Q:RALP'>0!(RAXIT)  D
- . Q:$D(^RADPT("AO",RALP,RADFN))\10  ;Check for entry in file 70.
- . Q:+$P($G(^RAO(75.1,RALP,0)),U,5)<3
- . S RA751(0)=$G(^RAO(75.1,RALP,0)),RA751(2)=$P(RA751(0),U,2)
- . S RA751(16)=$P(RA751(0),U,16),RA751(20)=$P(RA751(0),U,20)
- . S RA751(5)=+$P(RA751(0),U,5) Q:RA751(5)=1  ;GJC@4/4/94 Cancelled xam
+ . ;check if the order for this patient has been registered
+ . Q:$D(^RADPT("AO",RALP,RADFN))\10
+ . ;if the order status is discontinued (1), complete (2) or
+ . ;cancelled (13) quit gjc RA5P169
+ . S RA751(0)=$G(^RAO(75.1,RALP,0)),RA751(5)=+$P(RA751(0),U,5)
+ . I RA751(5)<3!(RA751(5)=13) QUIT
+ . S RA751(2)=$P(RA751(0),U,2),RA751(16)=$P(RA751(0),U,16)
+ . S RA751(20)=$P(RA751(0),U,20)
  . S Y=RA751(2),C=$P($G(^DD(75.1,2,0)),U,2) D:Y]"" Y^DIQ S RA751(2)=Y
  . S Y=RA751(20),C=$P($G(^DD(75.1,20,0)),U,2) D:Y]"" Y^DIQ S RA751(20)=Y
  . I $$USESSAN^RAHLRU1() W !?18,$E(RA751(2),1,28),?56,"Ord "

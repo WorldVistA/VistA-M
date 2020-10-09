@@ -1,5 +1,5 @@
 LR7OSBR ;slc/dcm - Silent BB report ;8/11/97
- ;;5.2;LAB SERVICE;**121,230,387**;Sep 27, 1994;Build 10
+ ;;5.2;LAB SERVICE;**121,230,387,535**;Sep 27, 1994;Build 16
 EN ;
  I '$D(DFN) S DFN=$P(^LR(LRDFN,0),"^",3)
  I $$GET^XPAR("DIV^SYS^PKG","OR VBECS ON",1,"Q"),$L($T(EN^ORWLR1)),$L($T(CPRS^VBECA3B)) D  Q
@@ -28,7 +28,8 @@ LEGACY ;VISTA Legacy Blood Bank Report
 VBECS ;;Gets Blood Bank Report from VBECS
  N CNT,LRI
  K ^TMP("ORLRC",$J)
- D EN^ORWLR1(DFN),LN
+ ;D EN^ORWLR1(DFN),LN
+ D EN^VBECRPT,LN
  I '$O(^TMP("ORLRC",$J,0)) S ^TMP("ORLRC",$J,1,0)="",^TMP("ORLRC",$J,2,0)="No Blood Bank report available..."
  S CNT=$O(^TMP("LRC",$J,9999999999),-1),LRI="",^TMP("LRH",$J,"BLOOD BANK")=$S(CNT>0:CNT,1:1)
  F  S LRI=$O(^TMP("ORLRC",$J,LRI)) Q:LRI=""  S X=^(LRI,0),CNT=CNT+1,^TMP("LRC",$J,CNT,0)=X

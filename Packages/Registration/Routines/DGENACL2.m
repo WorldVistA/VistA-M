@@ -1,5 +1,5 @@
-DGENACL2 ;ALB/MRY,ARF - NEW ENROLLEE APPOINTMENT CALL LIST - UPDATE ;08/14/2008
- ;;5.3;Registration;**788,893,982**;08/13/93;Build 5
+DGENACL2 ;ALB/MRY,ARF,ARF - NEW ENROLLEE APPOINTMENT CALL LIST - UPDATE ;08/14/2008
+ ;;5.3;Registration;**788,893,982,1015**;08/13/93;Build 7
  ;
 EXTRACT ;
  N DGNAM,DGSSN,DGENRIEN,DGENR,DGENCAT,DGENSTA,DGSTA1,DGENPRI,DGENCV,DGENCVDT,DGENCVEL,DGCOM,DGPFSITE
@@ -24,7 +24,7 @@ EXTRACT ;
  ;if call list, quit if request status 'filled' or 'cancelled'.
  ; jam - dg*5.3*982 - remove (SDCNT>0) condition (number of appts) - The number of appointments is irrelevant to whether or not a patient is on the call list
  ;I DGRPT=1 Q:(SDCNT>0)!(DGSTA="C")!(DGSTA="F")
- I DGRPT=1 Q:(DGSTA="C")!(DGSTA="F") 
+ I DGRPT=1 Q:(DGSTA="C")!(DGSTA="F")
  S SDADT=$G(SDADT)
  S DGNAM=$$GET1^DIQ(2,DFNIEN,.01),DGSSN=$E($$GET1^DIQ(2,DFNIEN,.09),6,9)
  S DGENCV=$$CVEDT^DGCV(DFNIEN),DGENCVDT=$P($G(DGENCV),"^",2),DGENCVEL=$P($G(DGENCV),"^",3)
@@ -57,30 +57,33 @@ APPTCK ;
  ;Check appointments (scheduled/kept, inpatient, no action)
  S SDARRY(1)=DGRDTI_";" ;look out from 'notify of request date' to future.
  S SDARRY(3)="R;I;NT"
- S SDARRY(4)=DFNIEN
+ S SDARRY(4)=DFNIEN,SDARRY("FLDS")=1 ;arf - DG*5.3*1015 - added SDARRY("FLDS") 
  ; jam; DG*5.3*982; add fields 13, 14 and 15 (Primary Stop Code and IEN and Credit Stop Code and IEN and Non-Count Clinic indicator)
- S SDARRY("FLDS")="13;14;15"
+ ;S SDARRY("FLDS")="13;14;15" ;arf - DG*5.3*1015 - line commented out
  K SDARRY("MAX") ;DG*5.3*893 LLS - added
  ;jam DG*5.3*982 - add check for error returned from API
  ;  call to API ($$SDAPI^SDAMA301) is supported by ICR #4433
  S SDCNT=$$SDAPI^SDAMA301(.SDARRY) I SDCNT<0 S DGERROR=$$ERR() Q
  Q:(SDCNT'>0)
  ;
- N DGSTOP,DGCREDIT,DGAPPT  ;DG*5.3*982 - arf - added new variables
+ ;N DGSTOP,DGCREDIT,DGAPPT  ;DG*5.3*982 - arf - added new variables ;arf - DG*5.3*1015 line commented out
  ;DG*5.3*893 - LLS - This is the begin of the modified section.
  K ^TMP("DGEN",$J,"BY_APPT_DT")
  S SDCL=0 F  S SDCL=$O(^TMP($J,"SDAMA301",DFNIEN,SDCL)) Q:'SDCL  D  ;re-sort by appt dt/tm
+ . I $$GET1^DIQ(44,SDCL,2502,"I")="Y" Q  ;don't include no-count clinic appointment
  . S SDADT="" F  S SDADT=$O(^TMP($J,"SDAMA301",DFNIEN,SDCL,SDADT)) Q:'SDADT  D
- . . S DGAPPT=^TMP($J,"SDAMA301",DFNIEN,SDCL,SDADT)
- . . I $P(DGAPPT,U,15)="Y" Q                  ; - do not include non-count clinic appointments - DG*5.3*982 - modified - use p15 instead of global reference
- . . ; DG*5.3*982 Check for Primary Care Appointments:
- . . S DGCREDIT=$P($P(DGAPPT,U,14),";",2)   ; - Set the appointment's Credit Stop Code
- . . S DGSTOP=$P($P(DGAPPT,U,13),";",2)     ; - Set the appointment's Stop Code Number
- . . I '$$PCACHK(DGSTOP,DGCREDIT) Q         ; - Check for a Primary Care Appointment match - quit if not
- . . S ^TMP("DGEN",$J,"BY_APPT_DT",SDADT)=^TMP($J,"SDAMA301",DFNIEN,SDCL,SDADT)  ; - Only Primary Care Appointments
+ . . S ^TMP("DGEN",$J,"BY_APPT_DT",SDADT)=^TMP($J,"SDAMA301",DFNIEN,SDCL,SDADT)
+ ;. S SDADT="" F  S SDADT=$O(^TMP($J,"SDAMA301",DFNIEN,SDCL,SDADT)) Q:'SDADT  D  ;arf - DG*5.3*1015 next 8 lines commented to remove functionality
+ ;. . S DGAPPT=^TMP($J,"SDAMA301",DFNIEN,SDCL,SDADT)
+ ;. . I $P(DGAPPT,U,15)="Y" Q                  ; - do not include non-count clinic appointments - DG*5.3*982 - modified - use p15 instead of global reference
+ ;. . ; DG*5.3*982 Check for Primary Care Appointments:
+ ;. . S DGCREDIT=$P($P(DGAPPT,U,14),";",2)   ; - Set the appointment's Credit Stop Code
+ ;. . S DGSTOP=$P($P(DGAPPT,U,13),";",2)     ; - Set the appointment's Stop Code Number
+ ;. . I '$$PCACHK(DGSTOP,DGCREDIT) Q         ; - Check for a Primary Care Appointment match - quit if not
+ ;. . S ^TMP("DGEN",$J,"BY_APPT_DT",SDADT)=^TMP($J,"SDAMA301",DFNIEN,SDCL,SDADT)  ; - Only Primary Care Appointments ;arf - DG*5.3*1015 end
  ;
  S SDADT=$O(^TMP("DGEN",$J,"BY_APPT_DT",""))
- I SDADT="" Q  ;no primary care appointments found for 'count' clinics, so keep on call list
+ I SDADT="" Q  ;no appointments found for 'count' clinics, so keep on call list
  ;DG*5.3*893 - LLS - This is the end of the modified section.
  ;
  ;if appointment found and status '="filled", set status to 'filled'

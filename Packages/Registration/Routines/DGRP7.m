@@ -1,6 +1,5 @@
-DGRP7 ;ALB/MRL,CKN,ERC - REGISTRATION SCREEN 7/ELIGIBILITY INFORMATION ;7/25/06 12:06pm
- ;;5.3;Registration;**528,653,688,842,952,977**;Aug 13, 1993;Build 177
- ;;Per VA Directive 6402, this routine should not be modified.
+DGRP7 ;ALB/MRL,CKN,ERC - REGISTRATION SCREEN 7/ELIGIBILITY INFORMATION ; 7/25/06 12:06pm
+ ;;5.3;Registration;**528,653,688,842,952,977,1016**;Aug 13, 1993;Build 6
  ;
  N DGCASH,DGMBCK,DGEMHCNVT,DGPRVSPE
  ;DG*5.3*952 add .55 into DRPG array
@@ -33,7 +32,7 @@ DGRP7 ;ALB/MRL,CKN,ERC - REGISTRATION SCREEN 7/ELIGIBILITY INFORMATION ;7/25/06 
  ;concatenate expanded mental healthcare type when displaying the primary eligibility code
  ;Vista Registration screen 7
  S DGPRVSPE=$$GET1^DIQ(2,DFN_",",.361,"I")
- I $P($G(XQY0),U)'="DG REGISTRATION VIEW",$D(^DIC(8,+DGRPE,0)),$$GET1^DIQ(8,+DGRPE_",",8)="EXPANDED MH CARE NON-ENROLLEE",$G(DGRP(.55))'="" S Z=Z_" - "_$E($$OTHSOC^DGOTHD1($G(DGRP(.55))),1,24)
+ I $P($G(XQY0),U)'="DG REGISTRATION VIEW",$D(^DIC(8,+DGRPE,0)),$$GET1^DIQ(8,+DGRPE_",",8)="EXPANDED MH CARE NON-ENROLLEE",$P($G(DGRP(.55)),U)'="" S Z=Z_" - "_$E($$OTHSOC^DGOTHD1($P($G(DGRP(.55)),U)),1,24)  ; DG*5.3*1016
  W "  Primary Elig Code: ",Z D AAC1^DGLOCK2 I DGAAC(1)]"" W !?8,"Agency/Country: ",$S($D(^DIC(35,+$P(DGRP(.3),"^",9),0)):$P(^(0),"^",1),1:DGRPU)
  W !?4,"Other Elig Code(s): " S I1="" F I=0:0 S I=$O(^DPT("AEL",DFN,I)) Q:'I  I $D(^DIC(8,+I,0)),I'=DGRPE S I1=I1+1 W:I1>1 !?24 W $P(^(0),"^",1)
  W:'I1 "NO ADDITIONAL ELIGIBILITIES IDENTIFIED"

@@ -1,5 +1,5 @@
 DGRPECE ;ALB/MRY,ERC,BAJ,NCA - REGISTRATION CATASTROPHIC EDITS ; 10/4/06 3:27pm
- ;;5.3;Registration;**638,682,700,720,653,688,750,831,907,965**;Aug 13, 1993;Build 7
+ ;;5.3;Registration;**638,682,700,720,653,688,750,831,907,965,1007**;Aug 13, 1993;Build 3
  ;
 CEDITS(DFN) ;catastrophic edits  - buffer values, save after check
  ;Input;
@@ -83,7 +83,7 @@ SIGI ;buffer - get Self-Identified Gender Identity    ; DG*5.3*907
  S DIR("?")="their gender identity, if they choose to provide it."
  S DIR("A")="SELF-IDENTIFIED GENDER IDENTITY: " S:$G(BEFORE("SIGI"))'="" DIR("B")=$$GET1^DIQ(2,+DFN_",",.024)
  D ^DIR
- K DIR("A"),DIR("B")
+ K DIR("A"),DIR("B"),DIR("?")
  I $D(DIRUT) S BUFFER("SIGI")=BEFORE("SIGI") D CECHECK Q
  S BUFFER("SIGI")=Y
  ; DG*5.3*907 - end-section of SIGI 

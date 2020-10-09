@@ -1,14 +1,14 @@
-HLOPING ;alb/cjm HLO PING UTILITY - 10/4/94 1pm ;07/12/2012
- ;;1.6;HEALTH LEVEL SEVEN;**147,155,158**;Oct 13, 1995;Build 14
- ;Per VHA Directive 2004-038, this routine should not be modified.
+HLOPING ;ALB/CJM - HLO PING UTILITY 10/4/94 1pm ; 07/12/2012
+ ;;1.6;HEALTH LEVEL SEVEN;**147,155,158,172**;Oct 13, 1995;Build 11
+ ;Per VA Directive 6402, this routine should not be modified.
  ;
  ;
 PING ;
  I '$G(DUZ) W !,"Your DUZ must be set!" Q
  N LINK,CONF,HLCSTATE,PORT,LINK,HLODONE
  S HLODONE=0
- I $P($$VERSION^%ZOSV(1),"/",1)'["Cache" D  Q
- .W !!,"   Sorry, this tool can only be used under Cache",!!
+ I '(($P($$VERSION^%ZOSV(1),"/",1)[("Cache"))!($$VERSION^%ZOSV(1)["IRIS")) D  Q
+ .W !!,"   Sorry, this tool can only be used under Cache or IRIS",!!
  W !,"What HL Logical Link do you want to test?"
  S LINK=$$ASKLINK^HLOUSR
  Q:LINK=""

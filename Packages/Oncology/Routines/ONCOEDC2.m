@@ -1,15 +1,14 @@
 ONCOEDC2 ;Hines OIFO/RTK - ABSTRACT STATUS (165.5,91) Input Transform ;4/29/19
- ;;2.2;ONCOLOGY;**10**;Jul 31, 2013;Build 20
+ ;;2.2;ONCOLOGY;**10,12**;Jul 31, 2013;Build 8
  ;
 OBS2018 ;Remove data in fields that are obsolete for 2018+ cases
  K OBSLIST S ONCOBSO=0 D FLDS I ONCOBSO=0 Q
- W !!,"This abstract has data in the following fields which are obsolete"
- W !,"for 2018+ cases and which could result in EDITS errors:",!
- D DSPLST
- K DIR S DIR(0)="YA"
- S DIR("A")=" Do you wish to delete the data in the obsolete fields? "
- S DIR("B")="No" D ^DIR K DIR
- I Y=1 W ! D DELETE
+ W !!,"  This abstract has data in fields which are obsolete for 2018+ cases."
+ ;D DSPLST
+ ;K DIR S DIR(0)="YA"
+ ;S DIR("A")=" Do you wish to delete the data in the obsolete fields? "
+ ;S DIR("B")="No" D ^DIR K DIR
+ W ! D DELETE
  K ONCOBSO,OBSLIST,CNT,EX,LINE,FN
  Q
  ;
@@ -36,7 +35,7 @@ PCHK ;Enter RETURN to continue or '^' to exit:
  .W @IOF Q
  Q
 DELETE ;
- W "Deleting obsolete data..."
+ W "  Deleting obsolete data...",!!
  S $P(^ONCO(165.5,PRM,"BLA2"),"^",18)=""
  S $P(^ONCO(165.5,PRM,24),"^",9)=""
  S $P(^ONCO(165.5,PRM,"THY1"),"^",43)=""

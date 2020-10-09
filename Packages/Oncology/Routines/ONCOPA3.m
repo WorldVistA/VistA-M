@@ -1,5 +1,5 @@
 ONCOPA3 ;Hines OIFO/GWB - [PA Print Complete Abstract (132c)] continued ;10/07/11
- ;;2.2;ONCOLOGY;**1**;Jul 31, 2013;Build 8
+ ;;2.2;ONCOLOGY;**1,12**;Jul 31, 2013;Build 8
  ;
  N ALHS,ALTP,ALZN,CFH,CHST,NOK,OC,OCCP,RCDT,TBHS,TBTP,TBZN,TX,Y
  S NAME="PERSONAL DATA" D FORMAT^ONCOPA1
@@ -41,16 +41,26 @@ ONCOPA3 ;Hines OIFO/GWB - [PA Print Complete Abstract (132c)] continued ;10/07/1
  W !?1,"         Iraq (OIF) Service:  ",ONCAB(160,PTIEN,66) D P Q:EX=U
  W !?1,"          Branch of Service:  ",ONCAB(160,PTIEN,68) D P Q:EX=U
  W !!?1,"         Source Comorbidity:  ",ONCAB(160,PTIEN,1006) D P Q:EX=U
- W !?1,"Comorbidity/Complication  1:  ",ONCAB(160,PTIEN,25) D P Q:EX=U
- W !?1,"Comorbidity/Complication  2:  ",ONCAB(160,PTIEN,25.1) D P Q:EX=U
- W !?1,"Comorbidity/Complication  3:  ",ONCAB(160,PTIEN,25.2) D P Q:EX=U
- W !?1,"Comorbidity/Complication  4:  ",ONCAB(160,PTIEN,25.3) D P Q:EX=U
- W !?1,"Comorbidity/Complication  5:  ",ONCAB(160,PTIEN,25.4) D P Q:EX=U
- W !?1,"Comorbidity/Complication  6:  ",ONCAB(160,PTIEN,25.5) D P Q:EX=U
- W !?1,"Comorbidity/Complication  7:  ",ONCAB(160,PTIEN,25.6) D P Q:EX=U
- W !?1,"Comorbidity/Complication  8:  ",ONCAB(160,PTIEN,25.7) D P Q:EX=U
- W !?1,"Comorbidity/Complication  9:  ",ONCAB(160,PTIEN,25.8) D P Q:EX=U
- W !?1,"Comorbidity/Complication 10:  ",ONCAB(160,PTIEN,25.9) D P Q:EX=U
+ I DATEDX<3160000 W !?1,"Comorbidity/Complication  1:  ",ONCAB(160,PTIEN,25) D P Q:EX=U
+ I DATEDX<3160000 W !?1,"Comorbidity/Complication  2:  ",ONCAB(160,PTIEN,25.1) D P Q:EX=U
+ I DATEDX<3160000 W !?1,"Comorbidity/Complication  3:  ",ONCAB(160,PTIEN,25.2) D P Q:EX=U
+ I DATEDX<3160000 W !?1,"Comorbidity/Complication  4:  ",ONCAB(160,PTIEN,25.3) D P Q:EX=U
+ I DATEDX<3160000 W !?1,"Comorbidity/Complication  5:  ",ONCAB(160,PTIEN,25.4) D P Q:EX=U
+ I DATEDX<3160000 W !?1,"Comorbidity/Complication  6:  ",ONCAB(160,PTIEN,25.5) D P Q:EX=U
+ I DATEDX<3160000 W !?1,"Comorbidity/Complication  7:  ",ONCAB(160,PTIEN,25.6) D P Q:EX=U
+ I DATEDX<3160000 W !?1,"Comorbidity/Complication  8:  ",ONCAB(160,PTIEN,25.7) D P Q:EX=U
+ I DATEDX<3160000 W !?1,"Comorbidity/Complication  9:  ",ONCAB(160,PTIEN,25.8) D P Q:EX=U
+ I DATEDX<3160000 W !?1,"Comorbidity/Complication 10:  ",ONCAB(160,PTIEN,25.9) D P Q:EX=U
+ I DATEDX>3151231 W !?1,"     Secondary Diagnosis #1:  ",ONCAB(160,PTIEN,25.91) D P Q:EX=U
+ I DATEDX>3151231 W !?1,"     Secondary Diagnosis #2:  ",ONCAB(160,PTIEN,25.92) D P Q:EX=U
+ I DATEDX>3151231 W !?1,"     Secondary Diagnosis #3:  ",ONCAB(160,PTIEN,25.93) D P Q:EX=U
+ I DATEDX>3151231 W !?1,"     Secondary Diagnosis #4:  ",ONCAB(160,PTIEN,25.94) D P Q:EX=U
+ I DATEDX>3151231 W !?1,"     Secondary Diagnosis #5:  ",ONCAB(160,PTIEN,25.95) D P Q:EX=U
+ I DATEDX>3151231 W !?1,"     Secondary Diagnosis #6:  ",ONCAB(160,PTIEN,25.96) D P Q:EX=U
+ I DATEDX>3151231 W !?1,"     Secondary Diagnosis #7:  ",ONCAB(160,PTIEN,25.97) D P Q:EX=U
+ I DATEDX>3151231 W !?1,"     Secondary Diagnosis #8:  ",ONCAB(160,PTIEN,25.98) D P Q:EX=U
+ I DATEDX>3151231 W !?1,"     Secondary Diagnosis #9:  ",ONCAB(160,PTIEN,25.99) D P Q:EX=U
+ I DATEDX>3151231 W !?1,"    Secondary Diagnosis #10:  ",ONCAB(160,PTIEN,25.9901) D P Q:EX=U
  S NAME="EMPLOYMENT HISTORY" D FORMAT^ONCOPA1
  W !!,TITLE,!
  I $D(^ONCO(160,PTIEN,7,0)) F OC=0:0 S OC=$O(^ONCO(160,PTIEN,7,OC)) Q:OC'>0  D

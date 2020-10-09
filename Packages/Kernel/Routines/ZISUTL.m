@@ -1,5 +1,5 @@
-%ZISUTL ;ISD/HGW - Device Handler Utility routine ;05/22/12  10:22
- ;;8.0;KERNEL;**18,24,34,69,118,127,199,275,425,599**;JUL 10, 1995;Build 8
+%ZISUTL ;ISD/HGW - Device Handler Utility routine ; 8/19/20 10:51am
+ ;;8.0;KERNEL;**18,24,34,69,118,127,199,275,425,599,736**;JUL 10, 1995;Build 12
  ;Per VHA Directive 2004-038, this routine should not be modified
  ; Unit test routine ^ZZUTZI00
  Q  ;No entry from top
@@ -120,7 +120,7 @@ UNIQUE(ZISNA) ;Build a unique number to add to a device name
 ENDOFILE() ;p599 Set Cache end-of-file to work like DSM
  ;Return 1 if mode was changed, 0 if unchanged
  N %
- I $$VERSION^%ZOSV(1)["Cache" D  Q 1
+ I ($$VERSION^%ZOSV(1)["Cache")!($$VERSION^%ZOSV(1)["IRIS") D  Q 1
  .I +$$VERSION^%ZOSV>2010 X "D $SYSTEM.Process.SetZEOF(1)"
  .I +$$VERSION^%ZOSV'>2010 S %=$ZUTIL(68,40,1)
  Q 0

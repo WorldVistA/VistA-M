@@ -1,5 +1,5 @@
 ONCOPA1 ;Hines OIFO/GWB - [PA Print Complete Abstract (132c)] ;09/22/11
- ;;2.2;ONCOLOGY;**1,5,6,9,10**;Jul 31, 2013;Build 20
+ ;;2.2;ONCOLOGY;**1,5,6,9,10,12**;Jul 31, 2013;Build 8
  ;
  ;Replaces print templates ONCOX1-X11.
  ;
@@ -19,10 +19,10 @@ PRINT ;Print
  S DR=".111:.131;2;7:10;13;18.9:21;22.9:29;38:44;48;50;51;52;61;55;56;62;63;64;65;66;67;68;1006"
  S DA=PTIEN,DIQ="ONCAB" D EN^DIQ1
  K DIQ S DIC="^ONCO(165.5,",DIQ(0)="C"
- S DR=".01:.07;1.2;2:2.4;3;3.5:19;20.1;22:35.1;37:40.2;41;49:59;62:67;70:71.3;74:79;83;85:92;95;100;101;108;117:146;200;346;363;363.1;442;443;560;787;50.2;361;623;684;1010;153:153.3;435;149;151;154:156;170;171:192;711:713;809;5501:5527"
+ S DR=".01:.07;1.2;2:2.4;3;3.5:19;20.1;22:35.1;37:40.2;41;49:59;62:67;70:71.3;74:79;83;85:92;95;100;101;108;117:146;200;346;363;363.1;442;443;560;787;50.2;361;623;684;1010;153:153.3;435;149;151;154:156;170;171:192;711:713;809;1764;5501:5527"
  S DA=ONCOIEN,DIQ="ONCAB" D EN^DIQ1
  K DIQ S DIC="^ONCO(165.5,",DIQ(0)="IE"
- S DR="29.2;30.2;29.1;31.1;32.1;32;33;34.3;34.4;44.1:44.9;160:168;148:148.4;15;21;25;44;46;47;96;102;159;193;194;195;196;2.2;227:235;1423:1423.4;157.1;24.1:24.5;237;34.31:34.6;241;242;245;250;279:281;5501:5527"
+ S DR="29.2;30.2;29.1;31.1;32.1;32;33:35;44.1:44.9;160:168;148:148.4;15;21;25;44;46;47;96;102;159;193;194;195;196;2.2;227:235;1423:1423.4;157.1;24.1:24.5;237;237.1;34.31:34.6;241;242;245;250;279:281;1764;5501:5527;7013:7026"
  S DA=ONCOIEN,DIQ="ONCAB" D EN^DIQ1
  K DIQ S DIC="^ONCO(165.5,",DIQ(0)="C"
  S DR="72",DA=ONCOIEN,DR(165.572)=".01;.02;.03;.031;.032",DIQ="ONCAB"
@@ -69,7 +69,7 @@ CI ;Cancer Identification
  S COC=$E($$GET1^DIQ(165.5,IEN,.04),1,2)
  W !!,"       Accession Number: ",ONCAB(165.5,IEN,.05),?38,"Accession Year:  ",ONCAB(165.5,IEN,.07),?76,"Sequence Number:  ",ONCAB(165.5,IEN,.06) D P Q:EX=U
  W !,"                    Date Dx: ",ONCAB(165.5,IEN,3) D P Q:EX=U
- I DATEDX>3061231 D
+ I (DATEDX>3061231)&(DATEDX<3180000) D
  .W !,"   Ambiguous Terminology Dx: ",ONCAB(165.5,IEN,159,"E") D P Q:EX=U
  .W !,"      Date of Conclusive Dx: ",ONCAB(165.5,IEN,193,"E") D P Q:EX=U
  W !,"                Dx Facility: ",ONCAB(165.5,IEN,5) D P Q:EX=U
@@ -85,13 +85,13 @@ CI ;Cancer Identification
  W !,"          Primary Site Code: ",ONCAB(165.5,IEN,20.1),"  "
  S TOP=$P(NODE2,U,1) I TOP'="" W $P(^ONCO(164,TOP,0),U,1) D P Q:EX=U
  W !,"    Text-Primary Site Title: ",ONCAB(165.5,IEN,100) D P Q:EX=U
- I DATEDX>3061231 D
+ I (DATEDX>3061231)&(DATEDX<3130000) D
  .W !,"   Mult Tum Rpt as One Prim: ",ONCAB(165.5,IEN,194,"E") D P Q:EX=U
  .W !,"    Date of Multiple Tumors: ",ONCAB(165.5,IEN,195,"E") D P Q:EX=U
  .W !,"       Multiplicity Counter: ",ONCAB(165.5,IEN,196,"E") D P Q:EX=U
  W !,"                 Laterality: ",ONCAB(165.5,IEN,28) D P Q:EX=U
  S HIST=$$HIST^ONCFUNC(IEN,.HSTFLD)
- W !,"                  Histology: ",ONCAB(165.5,IEN,HSTFLD) D P Q:EX=U
+ W !,"                  Histology: ",$G(HIST),"  ",ONCAB(165.5,IEN,HSTFLD) D P Q:EX=U
  W !,"       Text-Histology Title: ",ONCAB(165.5,IEN,101) D P Q:EX=U
  W:TOP=67619 !,"       Gleason Score (Clin): ",ONCAB(165.5,IEN,623)
  W:TOP=67619 !,"       Gleason Score (Path): ",ONCAB(165.5,IEN,250,"E")
@@ -99,9 +99,9 @@ CI ;Cancer Identification
  W:TOP=67619 !,"                   PSA Date: ",ONCAB(165.5,IEN,96,"E")
  W:TOP=67619 !,"                    DRE +/-: ",ONCAB(165.5,IEN,102,"E")
  W:TOP=67619 !,"                   DRE Date: ",ONCAB(165.5,IEN,156)
- W !,"      Grade/Differentiation: ",ONCAB(165.5,IEN,24),"  "
+ I DATEDX<3180000 W !,"      Grade/Differentiation: ",ONCAB(165.5,IEN,24),"  "
  S GR=$P(NODE2,U,5) I GR'="" W $P(^ONCO(164.43,GR,0),U,2) D P Q:EX=U
- I DATEDX>3091231 D
+ I (DATEDX>3091231)&(DATEDX<3160000) D
  .W !,"          Grade Path System: ",ONCAB(165.5,IEN,24.1,"E") D P Q:EX=U
  .W !,"           Grade Path Value: ",ONCAB(165.5,IEN,24.2,"E") D P Q:EX=U
  I DATEDX>3171231 D
@@ -111,18 +111,20 @@ CI ;Cancer Identification
  W !,"        AFIP/JPC Submission: ",ONCAB(165.5,IEN,83) D P Q:EX=U
  W !,"    Diagnostic Confirmation: ",ONCAB(165.5,IEN,26) D P Q:EX=U
  W:TOP=67220 !,"                Hepatitis C: ",ONCAB(165.5,IEN,1010)
- S TM1=$$PRINT^ONCOTM(IEN,1)
- I TM1["UMOR" S $E(TM1,2,5)="umor" I TM1["ARKER" S $E(TM1,8,12)="arker"
- S TM2=$$PRINT^ONCOTM(IEN,2)
- I TM2["UMOR" S $E(TM2,2,5)="umor" I TM2["ARKER" S $E(TM2,8,12)="arker"
- S TM3=$$PRINT^ONCOTM(IEN,3)
- I TM3["UMOR" S $E(TM3,2,5)="umor" I TM3["ARKER" S $E(TM3,8,12)="arker"
- S LEN=$L(TM1) W !?(27-LEN),TM1,": ",ONCAB(165.5,IEN,25.1) D P Q:EX=U
- S LEN=$L(TM2) W !?(27-LEN),TM2,": ",ONCAB(165.5,IEN,25.2) D P Q:EX=U
- S LEN=$L(TM3) W !?(27-LEN),TM3,": ",ONCAB(165.5,IEN,25.3) D P Q:EX=U
+ I DATEDX<3040000 D
+ .S TM1=$$PRINT^ONCOTM(IEN,1)
+ .I TM1["UMOR" S $E(TM1,2,5)="umor" I TM1["ARKER" S $E(TM1,8,12)="arker"
+ .S TM2=$$PRINT^ONCOTM(IEN,2)
+ .I TM2["UMOR" S $E(TM2,2,5)="umor" I TM2["ARKER" S $E(TM2,8,12)="arker"
+ .S TM3=$$PRINT^ONCOTM(IEN,3)
+ .I TM3["UMOR" S $E(TM3,2,5)="umor" I TM3["ARKER" S $E(TM3,8,12)="arker"
+ .S LEN=$L(TM1) W !?(27-LEN),TM1,": ",ONCAB(165.5,IEN,25.1) D P Q:EX=U
+ .S LEN=$L(TM2) W !?(27-LEN),TM2,": ",ONCAB(165.5,IEN,25.2) D P Q:EX=U
+ .S LEN=$L(TM3) W !?(27-LEN),TM3,": ",ONCAB(165.5,IEN,25.3) D P Q:EX=U
  W !,"     Facility Referred From: ",ONCAB(165.5,IEN,6) D P Q:EX=U
  W !,"       Facility Referred To: ",ONCAB(165.5,IEN,7) D P Q:EX=U
  W !,"                  Fee Basis: ",ONCAB(165.5,IEN,237,"E") D P Q:EX=U
+ W !,"         Fee Basis Location: ",ONCAB(165.5,IEN,237.1,"E") D P Q:EX=U
  W !,"Presentation at Cancer Conf: ",ONCAB(165.5,IEN,120) D P Q:EX=U
  W !,"  Date of Cancer Conference: ",ONCAB(165.5,IEN,121) D P Q:EX=U
  W !,"         Casefinding Source: ",ONCAB(165.5,IEN,21,"E")

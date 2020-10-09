@@ -1,5 +1,5 @@
-MAGVIM01 ;WOIFO/DAC/NST/BT - Utilities for RPC calls for DICOM file processing ;  NOV 01,2018@2:13PM
- ;;3.0;IMAGING;**118,138,221**;Mar 19, 2002;Build 5380;Sep 03, 2013
+MAGVIM01 ;WOIFO/DAC/NST/BT - Utilities for RPC calls for DICOM file processing ; Feb 12, 2020@23:41:39
+ ;;3.0;IMAGING;**118,138,221,250**;Mar 19, 2002;Build 8
  ;; Per VHA Directive 2004-038, this routine should not be modified.
  ;; +---------------------------------------------------------------+
  ;; | Property of the US Government.                                |
@@ -34,7 +34,7 @@ GETLIST(OUT) ; Returns all worklist names and statuses
  Q
  ; RPC: MAGV CREATE WORK ITEM
 CRTITEM(OUT,TYPE,SUBTYPE,STATUS,PLACEID,PRIORITY,MSGTAGS,CRTUSR,CRTAPP) ; Creates an entry in the work item file and the work history file
- N FDA,ERR,SMIEN,ISEP,SSEP,MSG,APPIEN
+ N FDA,FDA2,ERR,ERR2,SMIEN,ISEP,SSEP,MSG,APPIEN,LOCIEN
  N I,CRTDAT
  S SSEP=$$STATSEP,ISEP=$$INPUTSEP
  S CRTDAT=$$NOW^XLFDT ; CREATED DATE/TIME
@@ -45,11 +45,15 @@ CRTITEM(OUT,TYPE,SUBTYPE,STATUS,PLACEID,PRIORITY,MSGTAGS,CRTUSR,CRTAPP) ; Create
  I $G(PLACEID)="" S OUT=-9_SSEP_"No work item LOCATION provided" Q
  I $G(PRIORITY)="" S OUT=-10_SSEP_"No work item PRIORITY provided" Q
  I ($G(CRTUSR)="")&($G(CRTAPP)="") S OUT=-11_SSEP_"No work item USER/APPLICATION provided" Q
+ ; P250 DAC - Removed P142 LOCATION screen and handle both STATION and LOCATION IENS as inputs
+ I PLACEID?1N.N S LOCIEN=$$STA^XUAF4(PLACEID) ; If PLACEID is an integer it should be a LOCATION IEN
+ I '$G(LOCIEN) S LOCIEN=$$IEN^XUAF4(PLACEID) ; If it wasn't a LOCATION IEN, it should be a STATION NUMBER
+ I '$G(LOCIEN) S OUT=-11_SSEP_"Invalid LOCATION provided" Q  ; If it was a LOCATION IEN or a STATION NUMBER
  S FDA(2006.941,"+1,",.01)=CRTDAT
  S FDA(2006.941,"+1,",1)=TYPE
  S FDA(2006.941,"+1,",2)=SUBTYPE
  S FDA(2006.941,"+1,",3)=STATUS
- S FDA(2006.941,"+1,",4)=PLACEID
+ ; P252 DAC - Removed PLACEID from initial FDA array
  S FDA(2006.941,"+1,",5)=PRIORITY
  S FDA(2006.941,"+1,",9)=CRTDAT
  S:$G(CRTUSR)'="" (FDA(2006.941,"+1,",8),FDA(2006.941,"+1,",10))="`"_CRTUSR  ; user DUZ is passed
@@ -72,6 +76,9 @@ CRTITEM(OUT,TYPE,SUBTYPE,STATUS,PLACEID,PRIORITY,MSGTAGS,CRTUSR,CRTAPP) ; Create
  ;
  L +^MAGV(2006.941,0):5 I $T D
  . D UPDATE^DIE("E","FDA","SMIEN","ERR")
+ . S FDA2(2006.941,SMIEN(1)_",",4)=LOCIEN
+ . D FILE^DIE("I","FDA2","ERR2") ; P250 DAC - Update LOCATION separately with the internal value
+ . I '$D(ERR) S ERR=$G(ERR2) ; P250 DAC - If there was no error on the first UPDATE set the ERR to the 2nd update
  . D
  . . ; Quit if error during saving
  . . I $D(ERR("DIERR",1,"TEXT",1)) S OUT="-1"_SSEP_$G(ERR("DIERR",1,"TEXT",1)) Q

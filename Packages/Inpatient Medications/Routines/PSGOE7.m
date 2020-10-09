@@ -1,5 +1,5 @@
-PSGOE7 ;BIR/CML3-SELECT DRUG ; 8/6/18 11:56am
- ;;5.0;INPATIENT MEDICATIONS;**9,26,34,52,55,50,87,111,181,254,267,260,288,281,317,355,327**;16 DEC 97;Build 114
+PSGOE7 ;BIR/CML3 - SELECT DRUG ;Mar 25, 2020@13:21:35
+ ;;5.0;INPATIENT MEDICATIONS;**9,26,34,52,55,50,87,111,181,254,267,260,288,281,317,355,327,319**;16 DEC 97;Build 31
  ;
  ; Reference to ^PS(50.7 is supported by DBIA 2180
  ; Reference to ^PS(59.7 is supported by DBIA 2181
@@ -9,8 +9,7 @@ PSGOE7 ;BIR/CML3-SELECT DRUG ; 8/6/18 11:56am
  ; Reference to ^VADPT is supported by DBIA 10061
  ; Reference to ^TMP("PSODAOC",$J supported by DBIA 6071
  ; NFI-UD chgs for FR#: 1
- ; 
- ;S PSGDICS="U"_$S($D(PSJOERR):",I",1:"")
+ ;
  S PSGDICS="U"
  ;
 AD ; Ask Drug
@@ -37,11 +36,13 @@ AD1 ;
  G:X?1"S."1.E DONE
  I X?1."?" W !!?2,"Select the medication you wish the patient to receive." W:PSJSYSU<3 "  You should consult",!,"with your pharmacy before ordering any non-formulary medication." W !
  ; PSJ*5*317 - PADE - Define PADE identifier for lookups if kernel parameter turned on
- I $$GET^XPAR("SYS","PSJ PADE OE BALANCES") N PSJTABS N:'$G(VAIN(4))&$G(PSGP) VAIN,DFN,PSJTABS D
+ I $$GET^XPAR("SYS","PSJ PADE OE BALANCES") N PSJTABS,DFN N:'$G(VAIN(4))&$G(PSGP) VAIN D
  .N PSJORCL,PSJCLNK K DIC("W")
- .I '$G(VAIN(4)),$G(PSGP) S DFN=PSGP D INP^VADPT
+ .S DFN=$G(PSGP)
+ .I $P(PSJPCAF,"^",2),'$G(VAIN(4)),$G(DFN) D INP^VADPT
  .; If clinic order, quit if clinic location is not linked to PADE
- .S PSJORCL="" I $G(PSGORD)["P" S PSJORCL=$$GET1^DIQ(53.1,+$G(PSGORD),113,"I")_"^"_$$GET1^DIQ(53.1,+$G(PSGORD),126,"I") I 1
+ .S PSJORCL="" I $G(PSJCLAPP) S PSJORCL=PSJCLAPP I 1 ;p319 - Clinic order
+ .E  I $G(PSGORD)["P" S PSJORCL=$$GET1^DIQ(53.1,+$G(PSGORD),113,"I")_"^"_$$GET1^DIQ(53.1,+$G(PSGORD),126,"I") I 1
  .E  I $G(PSGORD)["U" S PSJORCL=$$GET1^DIQ(55.06,+$G(PSGORD)_","_+$G(PSGP),130,"I")_"^"_$$GET1^DIQ(55.06,+$G(PSGORD)_","_+$G(PSGP),131,"I") I 1
  .E  I $G(PSGORD)["V" S PSJORCL=$$GET1^DIQ(55.01,+$G(PSGORD)_","_+$G(PSGP),136,"I")_"^"_$$GET1^DIQ(55.01,+$G(PSGORD)_","_+$G(PSGP),139,"I")
  .I PSJORCL,$P(PSJORCL,"^",2) S PSJCLNK=$$PADECL^PSJPAD50(+$G(PSJORCL)) Q:'PSJCLNK

@@ -1,5 +1,5 @@
 IBECEA39 ;EDE/WCJ-Multi-site maintain UC VISIT TRACKING FILE (#351.82) - PULL; 2-DEC-19
- ;;2.0;INTEGRATED BILLING;**669**;21-MAR-94;Build 20
+ ;;2.0;INTEGRATED BILLING;**669,678**;21-MAR-94;Build 7
  ;;Per VA Directive 6402, this routine should not be modified.
  ;; DBIA#1621 %ZTER (ERROR RECORDING)
  ;; DBIA#2729 MESSAGE ACTION API
@@ -74,6 +74,7 @@ PATIENTPULL(IBDFN,IBERR) ; This does a lot of the same stuff the push does only 
  . ; if done get data.
  . I $G(IBR(0))["Done" D
  .. K IBR,IBHERE
+ .. W !,"Query to site "_+IBTFL(IBX)_" completed."
  .. D RTNDATA^XWBDRPC(.IBHERE,$P(IBTFL(IBX),"^",3))
  .. I $D(IBHERE)>10 D   ; not sure if was success or failure so save for now
  ... S IBERR=IBERR+1

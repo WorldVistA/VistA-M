@@ -1,5 +1,5 @@
-LRCENDEL ;SLC/CJS/DALOI/FHS - ORDER CANCELING NO TEST DELETE ;04/12/12  13:14
- ;;5.2;LAB SERVICE;**100,121,202,221,263,350,439**;Sep 27, 1994;Build 2
+LRCENDEL ;SLC/CJS/DALOI/FHS - ORDER CANCELING NO TEST DELETE ;July 29, 2019@10:00
+ ;;5.2;LAB SERVICE;**100,121,202,221,263,350,439,527**;Sep 27, 1994;Build 16
  ;
  W @IOF N LRCANK,LRTN
 FIND S LREND=0 D ^LRPARAM I $G(LREND) G END
@@ -49,10 +49,36 @@ ONE R !,"Change status of which entry: ",LRJ:DTIME W:LRJ["?" !,"Pick one of the 
  D FX2^LRTSTOUT I $G(LREND) D UNL69,UNL63,END Q
  K LRTSTI,LRMSTATI,LROTA
  D EN1
+ ;LR*5.2*527: check whether other tests on order are components
+ ;            of the selected test which were exploded out
+ ;            during accessioning
+ I $O(^LAB(60,$P(LRT(LRJ),U,3),2,0)) D PANEL
  I $D(LROTA) D LEDISET^LRTSTOUT(.LROTA) ;ccr_6164n
  D UNL69,UNL63
  G LOOK
  Q
+ ;
+PANEL ;
+ N LRJZ,LRJX,LRORX,LRJSAV
+ ;get all components of panel - there is no cross reference
+ ;to check against in file 60
+ S LRJX=0,LRJZ=$P(LRT(LRJ),U,3)
+ F  S LRJX=$O(^LAB(60,LRJZ,2,LRJX)) Q:'LRJX  D
+ . S LRJZ(+$G(^LAB(60,LRJZ,2,LRJX,0)))=""
+ S LRJX=0,LRORX=$P(LRT(LRJ),U,10)
+ F  S LRJX=$O(LRT(LRJX)) Q:'LRJX  I LRJX'=LRJ D
+ . ;check to make sure the CPRS order number for
+ . ;the test being canceled is the same as this test
+ . I $P(LRT(LRJX),U,10)'=LRORX Q
+ . ;is this test a component of the panel
+ . ;being deleted
+ . I '$D(LRJZ($P(LRT(LRJX),U,3))) Q
+ . ;saving LRJ since used downstream
+ . S LRJSAV=LRJ,LRJ=LRJX
+ . D EN1
+ . S LRJ=LRJSAV
+ Q
+ ;
 EN1 S LREND=0,LRSN=+LRT(LRJ),LRTSTI=+$P(LRT(LRJ),U,2),LRTSTS=+$P(LRT(LRJ),U,3)
  I '$D(^LRO(69,LRODT,1,LRSN,2,LRTSTI,0))#2 W !,"Does not exist ",! Q
  S LRX=^LRO(69,LRODT,1,LRSN,2,LRTSTI,0),LRAD=+$P(LRX,U,3),LRAA=+$P(LRX,U,4),LRAN=+$P(LRX,U,5),LRNOP=0,LRONE="",LRACC=0,ORIFN=$P(LRX,U,7)
@@ -65,6 +91,9 @@ EN1 S LREND=0,LRSN=+LRT(LRJ),LRTSTI=+$P(LRT(LRJ),U,2),LRTSTS=+$P(LRT(LRJ),U,3)
  D LEDICHK^LRTSTOUT ; If LEDI test, add test to LROTA array - ccr_6164n
  D UNL69
  Q
+ ;LR*5.2*527 note: unknown why the lines below remained in the past;
+ ;                 since a quit is in the line above; keeping in case 
+ ;                 they are needed in the future
  D CEN1^LRCENDE1 K LRONE Q:LRACC&'$D(^XUSEC("LRLAB",DUZ))
  I LRTSTI,'$G(LRNOP) D
  . N LRI S LRI(LRTSN)=""

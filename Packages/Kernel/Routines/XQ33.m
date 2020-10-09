@@ -1,5 +1,5 @@
 XQ33 ;SEA/AMF/JLI/MJM,ISD/HGW - REMOVE UNREFERENCED OPTIONS ;02/07/13  08:04
- ;;8.0;KERNEL;**49,73,46,614**;Jul 10, 1995;Build 11
+ ;;8.0;KERNEL;**49,73,46,614,635**;Jul 10, 1995;Build 6
  ;Per VHA Directive 2004-038, this routine should not be modified.
  ;
 DUO ; Entry point to delete unreferenced options from the option file.
@@ -16,11 +16,11 @@ DUO1 ;
  W !!,"Want to delete this option" S %=2,XQSTOP=0 D YN^DICN S:%<0 XQSTOP=1 Q:%<0!(%=2)  I '% W !,"Enter a 'Y' if you want to remove this option from the option file" G DUO1
  S DIK="^DIC(19," D ^DIK
  Q
-LP S XQUI=0,XQJ=XQS F  S XQJ=$O(^DIC(19,"B",XQJ)) Q:XQJ=""!XQUI!(XQJ]XQE)  D LP1
+LP S XQUI=0 S XQJ=$S(XQS'="@z":XQS,1:"") F  S XQJ=$O(^DIC(19,"B",XQJ)) Q:XQJ=""!XQUI!(XQJ]XQE)  D LP1
  Q
 LP1 S XQI=0 F  S XQI=$O(^DIC(19,"B",XQJ,XQI)) Q:XQI'>0!XQUI  D LP2
  Q
-LP2 I "BOQSX"[$P(^DIC(19,XQI,0),U,4) K XQFL Q  ;Special options
+LP2 I "BOQSX"[$P($G(^DIC(19,XQI,0)),U,4) K XQFL Q  ;Special options
  S XQFL="" W:XQENT !,XQJ,?31 I '$D(^DIC(19,"AD",XQI)) W:XQENT "** no parents **" G PRI
  K XQFL S (XQK,XQLEN,XQNM)=0
  I XQENT F  S XQK=$O(^DIC(19,"AD",XQI,XQK)) Q:XQK'>0  I $D(^DIC(19,XQK,0)) S L=$P(^DIC(19,XQK,0),U,1) S:XQLEN+$L(L)+2>34 XQLEN=0 W:'XQLEN&XQNM !?31 W:XQNM&XQLEN ", " W $P(^DIC(19,XQK,0),U,1) S XQLEN=XQLEN+$L(L)+2,XQNM=XQNM+1
@@ -64,7 +64,8 @@ GETO ; Gets the unreferenced option
  ; ZEXCEPT: XUAFLAG,XUAIEN,XUANAME,XUAXQS ;global within this routine
  W !,"Getting the list of unreferenced options..."
  ; Build the list
- S XUANAME=XUAXQS
+ ;S XUANAME=XUAXQS
+ S XUANAME=$S(XUAXQS'="@z":XUAXQS,1:"")
  F  S XUANAME=$O(^DIC(19,"B",XUANAME)) Q:XUANAME=""!(XUANAME]XUAXQE)  D
  .S XUAIEN=0
  .F  S XUAIEN=$O(^DIC(19,"B",XUANAME,XUAIEN)) Q:XUAIEN'>0  D

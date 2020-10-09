@@ -1,9 +1,9 @@
 IBECEA4 ;ALB/CPM - Cancel/Edit/Add... Cancel a Charge ;11-MAR-93
- ;;2.0;INTEGRATED BILLING;**27,52,150,240,663,671,669**;21-MAR-94;Build 20
+ ;;2.0;INTEGRATED BILLING;**27,52,150,240,663,671,669,678**;21-MAR-94;Build 7
  ;;Per VHA Directive 6402, this routine should not be modified.
  ;
 ONE ; Cancel a single charge.
- D HDR^IBECEAU("C A N C E L")
+ D:'+$G(IBAPI) HDR^IBECEAU("C A N C E L")
  ;
  ; - perform up-front edits
  D CED^IBECEAU4(IBN) G:IBY<0 ONEQ
@@ -14,7 +14,10 @@ ONE ; Cancel a single charge.
  ;
 REAS ; - ask for the cancellation reason
  ;
- D REAS^IBECEAU2("C") G:IBCRES<0 ONEQ
+ D REAS^IBECEAU2("C")
+ ;IB*2.0*678 - Correct error or no reason functionality
+ I IBCRES<0 D  G ONEQ
+ . S IBY=-1
  ;
  ;IB*2.0*669
  ; Temporary inactive flag check until IB*2.0*653 is released.  Then need to move the inactive check to
@@ -58,7 +61,9 @@ REAS ; - ask for the cancellation reason
  D CLSTR^IBECEAU1(DFN,IBFR) I 'IBCLDA W !!,"Please note that there is no billing clock which would cover this charge.",!,"Be sure that this patient's billing clock is correct." G ONEQ
  D CLOCK^IBECEAU(-IBCHG,+$P(IBCLST,"^",9),-IBUNIT)
  ;
-ONEQ D ERR^IBECEAU4:IBY<0,PAUSE^IBECEAU
+ONEQ ;Exit utility
+ I $G(IBAPI) S IBCNRSLT=IBY
+ D ERR^IBECEAU4:IBY<0,PAUSE^IBECEAU
  K IBCHG,IBCRES,IBDESC,IBIL,IBND,IBSEQNO,IBTOTL,IBUNIT,IBATYP,IBIDX,IBCC
  K IBN,IBREB,IBY,IBEVDA,IBPARNT,IBH,IBCANTR,IBXA,IBSL,IBFR,IBTO,IBNOS,IBCANC,IBAMC
  Q
@@ -150,3 +155,21 @@ UCVSTDB ; Update the UC Visit Tracking DB if the Cancellation Reason is usable o
  D UPDVST(2)
  ;
  Q
+ ;IB*2.0*678 - Create API entry point for cancelling a copay
+CANCAPI(IBN) ;Cancel a copay given a Copay IEN.
+ ;
+ ;INPUT - IEN of the copay to cancel
+ ;OUTPUT -
+ ;        -1 - Error (Error handled within cancel but still part of the return) 
+ ;         0 - Not cancelled
+ ;         1 - Cancelled
+ ;
+ N IBND,IBPARNT,IBCANC,IBH,IBCANTR,IBXA,IBATYP,IBSEQNO,IBIL,IBUNIT,IBCHG,IBFR,IBJOB,IBCRES
+ N IBDESC,IBIL,IBSEQNO,IBTOTL,IBIDX,IBCC,IBREB,IBY,IBEVDA,IBPARNT,IBH,IBSL,IBTO,IBNOS,IBCANC,IBAMC
+ N IBAPI,IBCNRSLT
+ ;
+ ;Initialize the job type.
+ S IBJOB=4,IBAPI=1,IBY=""
+ ;
+ D ONE
+ Q IBCNRSLT

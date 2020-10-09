@@ -1,5 +1,5 @@
 SD53103A ;ALB/MJK - Unique Visit ID Clean Up ; March 10,1997
- ;;5.3;Scheduling;**103,748**;AUG 13, 1993;Build 10
+ ;;5.3;Scheduling;**103,748,766**;AUG 13, 1993;Build 3
  ;
  Q
  ;
@@ -17,7 +17,7 @@ EN ;Unique Visit ID Clean Up Option entry point
  I Y="A" D SCAN
  Q
 ONE ; -- entry point to select a single -1 encounter and resync
- N DIC,Y,SDOE,SDPKG,SDTALK,SDEXIT,SDVST,SDTIU
+ N DIC,Y,SDOE,SDPKG,SDTALK,SDEXIT,SDVST,SDTIU,SDTIU1
  IF '$$INIT^SD53103B() G ONEQ
  S SDTALK=1,SDEXIT=0
  D HDR^SD53103B("Single") W !
@@ -33,7 +33,7 @@ ONE ; -- entry point to select a single -1 encounter and resync
  . . IF $P(SDX,U)["RE-LINKED" D
  . . . W "Re-Linked successfully:"
  . . . D OE^SD53103B(SDOE)
- . . . D:$G(SDTIU) TIU^SD53103B(SDTIU) ;SD*5.3*748 - Write TIU info
+ . . . S SDTIU1=0 F  S SDTIU1=$O(^TIU(8925,"V",SDVST,SDTIU1)) Q:SDTIU1=""  D TIU^SD53103B(SDTIU1) ;SD*5.3*766 - Write TIU info for all linked notes
  . . IF $P(SDX,U)'["RE-LINKED"  D  ;SD*5.3*748 - change else
  . . . W $C(7),"Error has occurred.",!,"Please make a note of the following: ",!?10,SDX,!
 ONEQ Q
@@ -99,7 +99,7 @@ SCREEN(SDOE0) ; -- process screen for -1's and null ID's
  Q 0
  ;
 MSG(SDOE,STATUS) ; -- build display text
- N SDOE0,SDMSG
+ N SDOE0,SDMSG,SDVT,SDTI,SDTIU
  S SDOE0=$G(^SCE(+$G(SDOE),0))
  IF SDOE0="" S SDMSG="Bad encounter entry passed"_U_+$G(SDOE)_U G MSGQ
  S SDMSG=$S(STATUS["ERROR":">> ",1:"   ")_STATUS
@@ -107,6 +107,8 @@ MSG(SDOE,STATUS) ; -- build display text
  S SDMSG=SDMSG_U_$P($G(^DPT(+$P(SDOE0,U,2),0),"Unknown Patient"),U)
  S SDMSG=SDMSG_U_$$FMTE^XLFDT(+SDOE0)
  S SDMSG=SDMSG_U_$P($G(^SC(+$P(SDOE0,U,4),0),"Unknown Clinic"),U)
+ S SDVT=$P(SDOE0,U,5) I SDVT S SDTI=0,SDTIU="" F  S SDTI=$O(^TIU(8925,"V",SDVT,SDTI)) Q:'SDTI  S SDTIU=SDTIU_SDTI_", " ;SD*5.3*766 - Include All TIU Documents
+ S:$G(SDTIU)'="" SDMSG=SDMSG_U_$P(SDTIU,",",1,($L(SDTIU,",")-1)) ;SD*5.3*766 - Include TIU Documents in mailman message
 MSGQ Q SDMSG
  ;
 RESYNC(SDOE) ; -- resync sd and pce data
@@ -128,8 +130,9 @@ RESYNC(SDOE) ; -- resync sd and pce data
  IF $P(SDOE0,U,6) D  G RESYNCQ
  . S SDOK=1
  ; -- set oe visit field for children of parent
- S SDOEC=0
- F  S SDOEC=$O(^SCE("APAR",SDOE,SDOEC)) Q:'SDOEC  D OESET(SDOEC,SDVST),TIUPD(SDVST)
+ ;SD*5.3*766 - Remove code that updates Child Visits
+ ;S SDOEC=0
+ ;F  S SDOEC=$O(^SCE("APAR",SDOE,SDOEC)) Q:'SDOEC  D OESET(SDOEC,SDVST),TIUPD(SDVST)
  ;
  ; -- send data to pce for parent
  S SDOK=$$DATA2PCE(SDOE)
@@ -140,7 +143,7 @@ OESET(SDOE,SDVST) ; -- set oe visit field
  N DA,DR,DIE
  ;
  ; -- if id = -1 reset id
- IF $P($G(^AUPNVSIT(+SDVST,150)),U)=-1 D
+ IF $P($G(^AUPNVSIT(+SDVST,150)),U)="-1"!($P($G(^AUPNVSIT(+SDVST,150)),U)="") D  ;SD*5.3*766 - include null values
  . N ID
  . S ID=$$GETVID^VSITVID()
  . K ^AUPNVSIT("VID",-1,+SDVST)
@@ -161,9 +164,10 @@ VSIT(SDOE) ; -- get/find visit
  IF $P(SDOE0,U,5) S SDVST=$P(SDOE0,U,5) G VSITQ
  ;
  ; -- if parent has pointer to visit, use it
- S SDOEP=$P(SDOE0,U,6)
- IF SDOEP D  IF SDVST G VSITQ
- . S SDVST=$P($G(^SCE(SDOEP,0)),U,5)
+ ;Remove Parent Check; use Unique ID tied to Visit
+ ;S SDOEP=$P(SDOE0,U,6)
+ ;IF SDOEP D  IF SDVST G VSITQ
+ ;. S SDVST=$P($G(^SCE(SDOEP,0)),U,5)
  ;
  ; -- call api to get visit entry
  S VSIT(0)="ENMD1"
@@ -200,9 +204,10 @@ VSIT(SDOE) ; -- get/find visit
  . . IF +$G(VSIT("IEN"))>0,VSIT("LOC") D
  . . . S $P(^SCE(SDOE,0),U,4)=VSIT("LOC")
  . . .; -- re-set children oe location field
- . . . N SDOEC S SDOEC=0
- . . . F  S SDOEC=$O(^SCE("APAR",SDOE,SDOEC)) Q:'SDOEC  D
- . . . . S $P(^SCE(SDOEC,0),U,4)=VSIT("LOC")
+ . . .; SD*5.3*766 - Remove code that updates Child Visits
+ . . .;N SDOEC S SDOEC=0
+ . . .;F  S SDOEC=$O(^SCE("APAR",SDOE,SDOEC)) Q:'SDOEC  D
+ . . .; S $P(^SCE(SDOEC,0),U,4)=VSIT("LOC")
  ;
  IF $P(SDOE0,U,8)'=3 D
  .; -- quit if parent is a disposition and bad location; parent will fix
@@ -303,5 +308,5 @@ DOT ; -- write '.' if ok to talk
  ;
 TIUPD(SDVST) ;Correct TIU document if applicable, SD*5.3*748
  N DA,DIK
- S DA=$O(^TIU(8925,"V",SDVST,0)) Q:'DA  S DIK="^TIU(8925,",DIK(1)=".03^7" D EN1^DIK
+ S DA=0 F  S DA=$O(^TIU(8925,"V",SDVST,DA)) Q:'DA  S DIK="^TIU(8925,",DIK(1)=".03^7" D EN1^DIK ;SD*5.3*766 - Loop to get all entries tied to Visit
  Q

@@ -1,5 +1,5 @@
 ONCACD0 ;Hines OIFO/GWB - NAACCR extract driver ;09/22/11
- ;;2.2;ONCOLOGY;**1,4,5,8,6,10**;Jul 31, 2013;Build 20
+ ;;2.2;ONCOLOGY;**1,4,5,8,6,10,12**;Jul 31, 2013;Build 8
  ;P6 V16
  ;P10 V18
 EN1(DEVICE,STEXT) ;Entry point
@@ -10,14 +10,16 @@ EN2 N ACO,BDT,DATE,DIAGYR,EDT,EXTRACT,NCDB,ONCSPIEN,QUEUE,SDT,STAT,STAT1,STAT2,Y
  S (EDT,EXTRACT,DATE,OUT,QUEUE,SDT,STAT,ONCDT)=0
  ;P2.2*4
  W !
- S DIR("A")=" Exclude PHI COMORBIDITY codes: "
- S DIR("B")="YES",DIR(0)="Y"
- S DIR("?")=" "
- S DIR("?",1)=" Answer 'YES' if you want to exclude PHI COMORBIDITY codes."
- S DIR("?",2)=" Answer 'NO' if you want to include PHI COMORBIDITY codes."
- D ^DIR
- I $D(DIRUT) S OUT=1 K DIRUT Q
- S ONCPHI=Y
+ W !,"Protected Health Information codes are excluded in NCDB, State and SEER reports!",!
+ S ONCPHI=1
+ ;S DIR("A")=" Exclude PHI COMORBIDITY codes: "
+ ;S DIR("B")="YES",DIR(0)="Y"
+ ;S DIR("?")=" "
+ ;S DIR("?",1)=" Answer 'YES' if you want to exclude PHI COMORBIDITY codes."
+ ;S DIR("?",2)=" Answer 'NO' if you want to include PHI COMORBIDITY codes."
+ ;D ^DIR
+ ;I $D(DIRUT) S OUT=1 K DIRUT Q
+ ;S ONCPHI=Y
  ;
  I (STEXT=0)!(STEXT=2)!(STEXT=3) S EXTRACT=$O(^ONCO(160.16,"B","NCDB EXTRACT V18.0",0))
  I STEXT=1 D GETREC(.EXTRACT,.OUT)
@@ -34,7 +36,7 @@ EN2 N ACO,BDT,DATE,DIAGYR,EDT,EXTRACT,NCDB,ONCSPIEN,QUEUE,SDT,STAT,STAT1,STAT2,Y
  D EXIT
  Q
  ;
-GETREC(EXTRACT,OUT) ;Select VACCR or STATE record layout
+GETREC(EXTRACT,OUT) ;Select VACCR, STATE or SEER record layout
  W !!," Available record layouts:",!
  W !,"  1) VACCR Record Layout v18.0 (VA Registry)"
  W !,"  2) NAACCR State Record Layout v18.0"
@@ -51,6 +53,15 @@ GETREC(EXTRACT,OUT) ;Select VACCR or STATE record layout
  I Y=2 S EXT="STATE",EXTRACT=$O(^ONCO(160.16,"B","STATE EXTRACT V18.0",0))
  I Y=3 S EXT="STATE",EXTRACT=$O(^ONCO(160.16,"B","SEER EXTRACT V18.0",0))
  S ONCRCL=Y
+ I ONCRCL=1 D
+ .S DIR("A")=" Exclude PHI COMORBIDITY codes: "
+ .S DIR("B")="YES",DIR(0)="Y"
+ .S DIR("?")=" "
+ .S DIR("?",1)=" Answer 'YES' if you want to exclude PHI COMORBIDITY codes."
+ .S DIR("?",2)=" Answer 'NO' if you want to include PHI COMORBIDITY codes."
+ .D ^DIR
+ .I $D(DIRUT) S OUT=1 K DIRUT Q
+ .S ONCPHI=Y
  Q
  ;
 GETHOSP() ;Facility Identification Number (FIN)

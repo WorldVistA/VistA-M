@@ -1,5 +1,5 @@
-DGENA2 ;ALB/CJM,RTK,TDM,JAM - Enrollment API - Automatic Update; 9/19/2002 ;1/31/03 11:54am
- ;;5.3;Registration;**121,122,147,232,327,469,491,779,788,824,982,993**;Aug 13,1993;Build 92
+DGENA2 ;ALB/CJM,RTK,TDM,JAM,ASF - Enrollment API - Automatic Update; 9/19/2002 ;1/31/03 11:54am
+ ;;5.3;Registration;**121,122,147,232,327,469,491,779,788,824,982,993,1015**;Aug 13,1993;Build 7
  ;
 AUTOUPD(DFN,EVENT) ;
  ;Description: If the patient meets the criteria for transmission to HEC,
@@ -183,7 +183,8 @@ REQUST(SDAMEVT,SDATA) ;
  . . N DGSCODE,DGCRCODE
  . . S DGSCODE=$$GET1^DIQ(44,DGCLN,8,"I"),DGCRCODE=$$GET1^DIQ(44,DGCLN,2503,"I")
  . . S DGSCODE=$$GET1^DIQ(40.7,DGSCODE,1),DGCRCODE=$$GET1^DIQ(40.7,DGCRCODE,1)
- . . I '$$PCACHK^DGENACL2(DGSCODE,DGCRCODE) Q
+ . . ; ASF DG*5.3*1015 - remove primary clinic requirement
+ . . ;I '$$PCACHK^DGENACL2(DGSCODE,DGCRCODE) Q 
  . . ;set fields
  . . N FDATA
  . . S FDATA(2,DFN_",",1010.161)="F"
@@ -217,7 +218,9 @@ CANNS ;If appointment cancelled or no-show, no appts made, put back on call list
  . . . ; DG*5.3*982 - code below added to check for Primary Care appt
  . . . S DGCREDIT=$P($P(DGAPPT,U,14),";",2)   ;-Set the appointment's Credit Stop Code
  . . . S DGSTOP=$P($P(DGAPPT,U,13),";",2)     ;-Set the appointment's Stop Code Number
- . . . I $$PCACHK^DGENACL2(DGSTOP,DGCREDIT) S DGCOUNT=DGCOUNT+1    ;-Check for a Primary Care Appointment match
+ . . . ; ASF DG*5.3*1015 - remove primary clinic requirement
+ . . . S DGCOUNT=DGCOUNT+1
+ . . . ;I $$PCACHK^DGENACL2(DGSTOP,DGCREDIT) S DGCOUNT=DGCOUNT+1    ;-Check for a Primary Care Appointment match
  . I DGCOUNT=0 S SDCNT=0  ;if only non-count clinic appts. (DG*5.3*982 - or no Prim Care appt), put on call list
  I SDCNT=0 D
  . S FDATA(2,DFN_",",1010.161)="@" ;delete status

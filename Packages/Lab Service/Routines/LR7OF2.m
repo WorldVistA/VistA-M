@@ -1,5 +1,5 @@
 LR7OF2 ;slc/dcm - Process messages from OE/RR ;8/11/97
- ;;5.2;LAB SERVICE;**121,187,440**;Sep 27, 1994;Build 2
+ ;;5.2;LAB SERVICE;**121,187,440,538**;Sep 27, 1994;Build 9
  ;
 NEW ;Process New orders from OE/RR
  ;LRXMSG=Message with linking identifiers
@@ -60,10 +60,16 @@ NUM ;Process Return of OE/RR Order number
  I LRVERZ,$D(^LRO(69,LRODT,1,LRSN,0)) S $P(^(0),"^",11)=ORIFN
  Q
 NA ;Set ORIFN at test level
- N I,X,LRODT,LRSN,LRORD,ORIFN,STARTDT,LRDUZ,PROV,REASON,QUANT
+ N I,X,LRODT,LRSN,LRORD,ORIFN,STARTDT,LRDUZ,PROV,REASON,QUANT,LRTXI
  D GET(.LRXORC,LRXORC) Q:LREND
  S I=0
- S X=$P($P(LRXMSG,"|",5),"^",4) I X S I=$O(^LRO(69,LRODT,1,LRSN,2,"B",X,0)) I I S $P(^LRO(69,LRODT,1,LRSN,2,I,0),"^",7)=ORIFN
+ S X=$P($P(LRXMSG,"|",5),"^",4),LRTXI=0
+NA1 ;
+ ;LR*5.2*538 - allow for the fact that a test might exist on more than
+ ;             one subscript
+ I X S I=$O(^LRO(69,LRODT,1,LRSN,2,"B",X,LRTXI))
+ I I,$P($G(^LRO(69,LRODT,1,LRSN,2,I,0)),"^",9)="CA" S LRTXI=I G NA1
+ I I S $P(^LRO(69,LRODT,1,LRSN,2,I,0),"^",7)=ORIFN
  Q
 GET(XMSG,XORC) ;Get identification data from message
  ;ORIFN= OE/RR order number

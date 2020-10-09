@@ -1,5 +1,5 @@
-PSIVORE1 ;BIR/RGY,PR,MLM-ACT,NEW ORDER ;07 AUG 97 / 2:45 PM
- ;;5.0;INPATIENT MEDICATIONS;**58,110,127,133,279,305**;16 DEC 97;Build 3
+PSIVORE1 ;BIR/RGY,PR,MLM - ACT,NEW ORDER ;Sep 16, 2019@16:06:07
+ ;;5.0;INPATIENT MEDICATIONS;**58,110,127,133,279,305,319**;16 DEC 97;Build 31
  ;
  ; Reference to ^PS(55 is supported by DBIA 2191.
  ;
@@ -54,5 +54,6 @@ SS ;
 GSTRING ; Setup edit "^" string.
  S PSIVOK="57^58^59^10^3^25^26^39^1^64^63"_$S($E(P("OT"))="I":"^101",1:"")
  S EDIT="57^58^59^10^3^25^26^39^1^"_$S(P("OT")="I":"101^",1:"")_"64^63"
- ;* S EDIT="57^58^59^10^3^25^26^39^1^"_$S(P("DTYP")=1:"101^",1:"")_"64^63"
+ ;*p319 fields 113/126 added
+ I $G(P("CLIN")),$G(P("APPT")) S $P(PSIVOK,"^",13,14)="113^126",$P(EDIT,"^",13,14)="113^126"
  Q

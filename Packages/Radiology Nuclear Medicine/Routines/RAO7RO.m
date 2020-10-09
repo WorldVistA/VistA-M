@@ -1,5 +1,5 @@
-RAO7RO ;HISC/GJC,FPT-Request message from OE/RR. ;9/11/98  11:56
- ;;5.0;Radiology/Nuclear Medicine;**1,2,13,15,75,145**;Mar 16, 1998;Build 5
+RAO7RO ;HISC/GJC,FPT-Request message from OE/RR. ; Apr 24, 2020@08:45:37
+ ;;5.0;Radiology/Nuclear Medicine;**1,2,13,15,75,145,169**;Mar 16, 1998;Build 2
  ;
  ;------------------------- Variable List -------------------------------
  ; RAFLG=flag indicates ORC reached     RAHLFS="|"
@@ -129,8 +129,11 @@ EN1(RAMSG) ; Pass in the message from OE/RR.  Decipher information.
  . S:$D(XQY0)#2 RAVAR("XQY0")="" S RAVAR("RAERR")=""
  . D ERR^RAO7UTL(RATXT,.RAMSG,.RAVAR)
  . Q
- ;if order control of 'DE', CPRS files data into their OE/RR Errors file
- ;I RAORD="DE"
+ ;
+ ;an order control of 'DE' means that CPRS rejected the backdoor order. the
+ ;RIS must update the radiology order correctly (REQUEST STATUS = 'CANCELLED')
+ ;RA5P169
+ I RAORD="DE" DO EN1^RAO7ROCN(.RAMSG)
  ;purge DBS specific variables before exiting
  ;
 PURGE ; kill & quit

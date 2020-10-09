@@ -1,11 +1,13 @@
-SDECWL2 ;ALB/SAT,WTC - VISTA SCHEDULING RPCS ;Feb 12, 2020@15:22
- ;;5.3;Scheduling;**627,642,658,665,694**;Aug 13, 1993;Build 61
+SDECWL2 ;ALB/SAT,WTC,LAB - VISTA SCHEDULING RPCS ;Apr 10, 2020@15:22
+ ;;5.3;Scheduling;**627,642,658,665,694,745**;Aug 13, 1993;Build 40
  ;;Per VHA Directive 2004-038, this routine should not be modified
  ;
  Q
  ;
 WLSET(RET,INP) ;Waitlist Set
- ;WLSET(RET,INP...)  external parameter tag in SDEC
+ ;SD*5.3*745 replace external 'INP...' due to XINDEX issue.  Parameters are then rolled into the INP array
+ ;WLSET(RET,S1,S2,S3,S4,S5,S6,S7,S8,S9,S10,S11,S12,S13,S14,S15,S16,S17,S18,S19,S20,S21,S22,S23,S24,S25,S26,SD27) external parameter tag in SDEC
+ ; INP - Input parameters array
  ;  INP(1)  = (integer)  Wait List IEN point to
  ;                       SD WAIT LIST file 409.3.
  ;                       If null, a new entry will be added

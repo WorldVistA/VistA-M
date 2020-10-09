@@ -1,5 +1,5 @@
 IBOMTP1 ;ALB/CPM-MEANS TEST BILLING PROFILE (CON'T);10-DEC-91
- ;;2.0;INTEGRATED BILLING;**15,153,176,183,651,656**;21-MAR-94;Build 17
+ ;;2.0;INTEGRATED BILLING;**15,153,176,183,651,656,678**;21-MAR-94;Build 7
  ;; Per VHA Directive 10-93-142, this routine should not be modified
  ;
  N IBLEG,IBCHK
@@ -14,14 +14,15 @@ IBOMTP1 ;ALB/CPM-MEANS TEST BILLING PROFILE (CON'T);10-DEC-91
  . S IBDA=0 F  S IBDA=$O(^DGCR(399,"AOPV",IBDFN,Y,IBDA)) Q:'IBDA  D
  ..  I $D(^DGCR(399,+IBDA,0)),'$P($G(^("S")),U,16),$P($G(^DGCR(399.3,+$P(^(0),U,7),0)),U)["MEANS" S ^TMP($J,"IBOMTP",Y,"M"_IBDA)=""
  ;
+ ;IB*2.0*678 - add seconds to IBEDT (IBEDTP1) and use that for the End Date range
+ S IBEDTP1=IBEDT+.999999
  ; Get the rest of the charges from file #350.
- S Y="" F  S Y=$O(^IB("AFDT",IBDFN,Y)) Q:'Y  I -Y'>IBEDT S Y1=0 F  S Y1=$O(^IB("AFDT",IBDFN,Y,Y1)) Q:'Y1  D
+ S Y="" F  S Y=$O(^IB("AFDT",IBDFN,Y)) Q:'Y  I -Y'>IBEDTP1 S Y1=0 F  S Y1=$O(^IB("AFDT",IBDFN,Y,Y1)) Q:'Y1  D
  . S (IBDA,IBCHK)=0 F  S IBDA=$O(^IB("AF",Y1,IBDA)) Q:'IBDA  D
- ..  ;Q:'$D(^IB(IBDA,0))  S IBX=^(0)
  ..  Q:'$D(^IB(IBDA,0))
  ..  S IBX=^IB(IBDA,0)
  ..  Q:$P(IBX,U,8)["ADMISSION"
- ..  I $P(IBX,U,15)<IBBDT!($P(IBX,U,14)>IBEDT) Q
+ ..  I $P(IBX,U,15)<IBBDT!($P(IBX,U,14)>IBEDTP1) Q
  ..  N Y,Y1
  ..  ; Action type. We don't include LTC actions to the report
  ..  I $P(IBX,U,3) I $$ACTNM^IBOUTL(+$P(IBX,U,3))["LTC " Q  ; Exclude LTC action type
@@ -30,7 +31,7 @@ IBOMTP1 ;ALB/CPM-MEANS TEST BILLING PROFILE (CON'T);10-DEC-91
  . S IBX=$G(^IB(Y1,0))
  . S IBATYP=$P(IBX,U,3),IBBLG=$$GET1^DIQ(350.1,IBATYP_",",.11,"I")
  . I IBBLG=5 D             ;Is this an RX copay
- ..  I $P(IBX,U,15)<IBBDT!($P(IBX,U,14)>IBEDT) Q      ;Check to ensure the visit is in the correct search range
+ ..  I $P(IBX,U,15)<IBBDT!($P(IBX,U,14)>IBEDTP1) Q      ;Check to ensure the visit is in the correct search range
  ..  S ^TMP($J,"IBOMTP",+$P(IBX,U,14),"I"_Y1)=""      ;Store in reporting array.
  ;
  ; Print report.

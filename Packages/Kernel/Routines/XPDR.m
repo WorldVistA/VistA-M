@@ -1,10 +1,10 @@
 XPDR ;SFISC/RSD - Routine File Edit ;09/17/96  10:05
- ;;8.0;KERNEL;**1,2,44,393,547**;Jul 10, 1995;Build 15
+ ;;8.0;KERNEL;**1,2,44,393,547,713**;Jul 10, 1995;Build 15
  ;Per VHA Directive 2004-038, this routine should not be modified.
  Q
 UPDT ;update routine file
  N DIR,DIRUT,XPD,XPDI,XPDJ,XPDN,XPDGTM,X,X1,Y,Y1,% W !
- W ! S DIR(0)="FO^1:9^K:X'?.1""-""1U.7UNP X",DIR("A")="Routine Namespace",DIR("?")="Enter 1 to 8 characters, preceed with ""-"" to exclude namespace"
+ W ! S DIR(0)="FO^1:9^K:X'?.1""-""1U.7UNP X",DIR("A")="Routine Namespace",DIR("?")="Enter 1 to 8 characters, precede with ""-"" to exclude namespace"
  ;XPDN(0=excluded names or 1=include names, namespace)=""
  F  D ^DIR Q:$D(DIRUT)  S X=$E(Y,$L(Y))="*",%=$E(Y)="-",XPDN('%,$E(Y,%+1,$L(Y)-X))=""
  Q:'$D(XPDN)!$D(DTOUT)!$D(DUOUT)
@@ -14,7 +14,7 @@ UPDT ;update routine file
  .S:X1 X=$O(XPDN(1,X)),X1=X]"" S:Y1 Y=$O(XPDN(0,Y)),Y1=Y]""
  K DIR S DIR(0)="Y",DIR("A")="OK to continue",DIR("B")="YES" D ^DIR
  Q:'Y!$D(DIRUT)  W !
- S DIR(0)="Y",DIR("A")="Want me to clean up the Routine File before updating",DIR("?")="YES means you want to go throught the Routine file and delete any routine name that no longer exists on the system."
+ S DIR(0)="Y",DIR("A")="Want me to clean up the Routine File before updating",DIR("?")="YES means you want to go through the Routine file and delete any routine name that no longer exists on the system."
  D ^DIR Q:$D(DIRUT)
  D WAIT^DICD,DELRTN:Y
  ;if GTM, create temporary list in %ZR
@@ -46,10 +46,12 @@ VER ;verify Routine file
  W "    ...Done.",!
  Q
 DELRTN ;delete routine file entries
- N DA,DIK,Y
+ N DA,DIK,X,Y
  W !,"Routines listed as National will not be deleted!"
  S DIK="^DIC(9.8,",DA=0
- F  S DA=$O(^DIC(9.8,DA)) Q:'DA  S Y=$G(^(DA,0)) I "R"=$P(Y,U,2),$G(^DIC(9.8,DA,6))<2,$T(^@$P(Y,U))="" D ^DIK
+ F  S DA=$O(^DIC(9.8,DA)) Q:'DA  S Y=$G(^(DA,0)) D  ;p713
+ . I $P(Y,U,2)="R",$G(^DIC(9.8,DA,6))<2 S X=$P(Y,U) X ^%ZOSF("TEST") E  D ^DIK
+ . Q
  Q
 PURGE ;purge file
  N DA,DIK,DIR,DIRUT,X,XPD,XPDF,XPDI,XPDJ,XPDL,XPDN,XPDPG,XPDS,XPDUL,Y,Z

@@ -1,10 +1,12 @@
-SDECAR ;ALB/SAT - VISTA SCHEDULING RPCS ;3:43 PM  19 Jun 2017
- ;;5.3;Scheduling;**627,642,671**;Aug 13, 1993;Build 25
+SDECAR ;ALB/SAT,LAB - VISTA SCHEDULING RPCS ;Apr 10, 2020@15:22
+ ;;5.3;Scheduling;**627,642,671,745**;Aug 13, 1993;Build 40
  ;
  Q
  ;
 ARCLOSE(RET,INP) ;Appointment Request Close
- ;ARCLOSE(RET,INP...)  external parameter tag in SDEC
+ ;SD*5.3*745 replace external 'INP...' due to XINDEX issue.  Parameters are then rolled into the INP
+ ;           array.  Allow EA as new disposition code.
+ ;ARCLOSE(RET,S1,S2,S3,S4) external parameter tag in SDEC
  ; INP - Input parameters array
  ;     INP(1) - Request ID - Pointer to SDEC APPT REQUEST file
  ;     INP(2) - Disposition
@@ -17,7 +19,7 @@ ARCLOSE(RET,INP) ;Appointment Request Close
  ;validate DISPOSITION
  S ARDISP=$G(INP(2))
  ;MC:MRTC PARENT CLOSED
- I (ARDISP'="D"),(ARDISP'="NC"),(ARDISP'="SA"),(ARDISP'="CC"),(ARDISP'="NN"),(ARDISP'="ER"),(ARDISP'="TR"),(ARDISP'="CL"),(ARDISP'="MC") D
+ I (ARDISP'="EA"),(ARDISP'="D"),(ARDISP'="NC"),(ARDISP'="SA"),(ARDISP'="CC"),(ARDISP'="NN"),(ARDISP'="ER"),(ARDISP'="TR"),(ARDISP'="CL"),(ARDISP'="MC") D
  .S:ARDISP="DEATH" ARDISP="D"
  .S:ARDISP="REMOVED/NON-VA CARE" ARDISP="NC"
  .S:ARDISP="REMOVED/SCHEDULED-ASSIGNED" ARDISP="SA"
@@ -27,8 +29,9 @@ ARCLOSE(RET,INP) ;Appointment Request Close
  .S:ARDISP="TRANSFERRED TO EWL" ARDISP="TR"
  .S:ARDISP="CHANGED CLINIC" ARDISP="CL"
  .S:ARDISP="MRTC PARENT CLOSED" ARDISP="MC"
+ .S:ARDISP="REMOVED/EXTERNAL APP" ARDISP="EA" ;* 745
  I ARDISP="" S RET=RET_"-1^Missing value for DISPOSITION"_$C(30,31) Q
- I (ARDISP'="D"),(ARDISP'="NC"),(ARDISP'="SA"),(ARDISP'="CC"),(ARDISP'="NN"),(ARDISP'="ER"),(ARDISP'="TR"),(ARDISP'="CL"),(ARDISP'="MC") D
+ I (ARDISP'="EA"),(ARDISP'="D"),(ARDISP'="NC"),(ARDISP'="SA"),(ARDISP'="CC"),(ARDISP'="NN"),(ARDISP'="ER"),(ARDISP'="TR"),(ARDISP'="CL"),(ARDISP'="MC") D
  .S RET=RET_"-1^Invalid value for DISPOSITION"_$C(30,31) Q
  ;validate DISPOSITIONED BY
  S ARDISPBY=$G(INP(3),DUZ)

@@ -1,5 +1,5 @@
-PSGOEE0 ;BIR/CML3-ORDER EDIT UTILITIES ; 10/7/08 11:08am
- ;;5.0;INPATIENT MEDICATIONS;**58,95,179,216,315**;16 DEC 97;Build 73
+PSGOEE0 ;BIR/CML3 - ORDER EDIT UTILITIES ;Sep 16, 2019@15:44:38
+ ;;5.0;INPATIENT MEDICATIONS;**58,95,179,216,315,319**;16 DEC 97;Build 31
  ;;Per VHA Directive 2004-038, this routine should not be modified.
  ; Reference to ^DICN is supported by DBIA 10009.
  ; Reference to ^DIR is supported by DBIA 10026.
@@ -8,8 +8,10 @@ ENSFE(PSGP,PSGORD) ; Determine editable fields, and fields that cause new order.
  D @$S(PSGORD["P":"ENSFE3^PSGOEE0",1:"ENSFE5^PSGOEE0")
  Q
 ENSFE3 ; set-up fields to edit for 53.1
- I PSGSTAT="PENDING" S PSGEFN="1:13" F X=1:1:13 S PSGEFN(+X)=$P($T(@(3_X)),";",7),PSGOEEF(+$P($T(@(3_X)),";",3))="",PSGOEEF=PSGOEEF+1
- E  S PSGEFN="1:13" F X=1,2,3,4,5,6,7,8,9,10,11,12 S Y=$T(@(3_X)),@("PSGEFN("_+X_")="_$S($D(PSGOETOF):0,1:$P(Y,";",7))),PSGOEEF(+$P(Y,";",3))="",PSGOEEF=PSGOEEF+1
+ N PSJCMOF
+ S PSJCMOF=$S($D(PSJCMO):1,$D(PSJCM01):1,1:0)
+ I PSGSTAT="PENDING" S PSGEFN=$S(PSJCMOF:"1:16",1:"1:13") F X=1:1:13,$S(PSJCMOF:15,1:""),$S(PSJCMOF:16,1:"") S:X PSGEFN(+X)=$P($T(@(3_X)),";",7),PSGOEEF(+$P($T(@(3_X)),";",3))="",PSGOEEF=PSGOEEF+1
+ E  S PSGEFN=$S(PSJCMOF:"1:16",1:"1:13") F X=1:1:12,$S(PSJCMOF:15,1:""),$S(PSJCMOF:16,1:"") S:X Y=$T(@(3_X)),@("PSGEFN("_+X_")="_$S($D(PSGOETOF):0,1:$P(Y,";",7))),PSGOEEF(+$P(Y,";",3))="",PSGOEEF=PSGOEEF+1
  E  S:$P(PSJSYSU,";",3)>1 PSGEFN(9)=0,PSGOEEF(+$P($T(39),";",3))="",PSGOEEF=PSGOEEF+1
  E  I PSGEB'=PSGOPR F X=10,13 S Y=$T(@(3_X)),@("PSGEFN("_X_")="_$S($D(PSGOETOF):0,1:$P(Y,";",7))),PSGOEEF(+$P(Y,";",3))="",PSGOEEF=PSGOEEF+1
  ;*216 highlight if DOSECHK fails
@@ -17,8 +19,10 @@ ENSFE3 ; set-up fields to edit for 53.1
  K PSGOEEND S PSGOEEG=3,PSGPDRG=PSGOPD,PSGPDRGN=PSGOPDN Q
  ;
 ENSFE5 ; set-up fields to edit for 55
- S PSGEFN="1:13"
- F X=1:1:13 S Y=$T(@(5_X)),@("PSGEFN("_+X_")="_$S($D(PSGOETO):0,1:$P(Y,";",7))),PSGOEEF(+$P(Y,";",3))="",PSGOEEF=PSGOEEF+1
+ N PSJCMOF
+ S PSJCMOF=$S($D(PSJCMO):1,$D(PSJCM01):1,1:0)
+ S PSGEFN=$S($D(PSJCMO):"1:16",1:"1:13")
+ F X=1:1:13,$S(PSJCMOF:15,1:""),$S(PSJCMOF:16,1:"") S:X Y=$T(@(5_X)),@("PSGEFN("_+X_")="_$S($D(PSGOETO):0,1:$P(Y,";",7))),PSGOEEF(+$P(Y,";",3))="",PSGOEEF=PSGOEEF+1
  I $P(PSJSYSU,";",3)>1 S PSGEFN(9)=0,PSGOEEF(+$P($T(59),";",3))="",PSGOEEF=PSGOEEF+1
  S PSGPDRG=PSGPD,PSGPDRGN=PSGPDN,PSGOEEND=1,PSGOEEG=5
  ;*216 highlight if DOSECHK fails
@@ -48,7 +52,7 @@ ENNOU ; create new order or update old order
  ; PSJ*5*95 quick fix to prevent long string error; true fix in PSJ*5*91 (upd^psgoee)
  I PSGSI]"" S DR=DR_122_"////^S X="_+$P(PSGSI,"^",2)_";" I '$G(PSJLMFIN),'$G(PSGOEENO),$L($G(PSGOSI),"^")>20 S PSGSI=$P(PSGSI,"^")
  I PSGSM,PSGOHSM'=PSGHSM S DR=DR_"6////"_PSGHSM_";W ""."";"
- I +$G(PSGRF)]"" D 
+ I +$G(PSGRF)]"" D
  . S DR=DR_"137////"_$G(PSGDUR)_";138////"_$G(PSGRMVT)_";139////"_$G(PSGRMV)_";140////"_$G(PSGRF) ;*315
  . I $G(PSGAT) N FLD S FLD=$S(PSGORD["P":39,1:41),DR=DR_";"_FLD_"////"_$G(PSGAT) ;If DOA was edited then update the admin time.
  .Q
@@ -65,7 +69,7 @@ ENF ; finish order from edit
  I %=1 S PSGOEFF=0 D UPD^PSGOEF1 K PSGOEFF,PSGND,PSGSD
  Q
  ;
-FIELDS ;
+FIELDS ;;linetag^routine for fied edit;variable used for before value;variable used for after value;associated field number in File; 1 - edit will create a new entry (field is starred) or 0 - edit will not create a new entry
 31 ;;108^PSGOE8;PSGOPD;PSGPD;108;1
 32 ;;109^PSGOE8;PSGODO;PSGDO;109;1
 33 ;;10^PSGOE81;PSGOSD;PSGSD;10;0
@@ -80,6 +84,8 @@ FIELDS ;
 312 ;;2^PSGOE82;;;2;0
 313 ;;66^PSGOE82;;;66;0
 314 ;;40^PSGOE82;;;40;0
+315 ;;50^PSGOE82;P("CLINO");P("CLIN");113;0
+316 ;;51^PSGOE82;P("APPTO");P("APPT");126;0
 51 ;;108^PSGOE9;PSGOPD;PSGPD;108;1
 52 ;;109^PSGOE9;PSGODO;PSGDO;109;1
 53 ;;10^PSGOE91;PSGOSD;PSGSD;10;1
@@ -94,3 +100,5 @@ FIELDS ;
 512 ;;2^PSGOE92;;;2;0
 513 ;;15^PSGOE92;;;15;0
 514 ;;72^PSGOE92;;;72;1
+515 ;;50^PSGOE82;P("CLINO");P("CLIN");130;0
+516 ;;51^PSGOE82;P("APPTO");P("APPT");131;0

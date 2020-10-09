@@ -1,16 +1,19 @@
 PSOCLUTL ;BHAM ISC/DMA - utilities for clozapine reporting system ;4 Oct 2019 12:29:40
- ;;7.0;OUTPATIENT PHARMACY;**28,56,122,222,268,457,574**;DEC 1997;Build 53
+ ;;7.0;OUTPATIENT PHARMACY;**28,56,122,222,268,457,574,612**;DEC 1997;Build 23
  ;External reference ^YSCL(603.01 supported by DBIA 2697
  ;External reference ^PS(55 supported by DBIA 2228
  ;
 REG ; Register Clozapine Patient
- N DIC,DIR
+ N DIC,DIR,PSOCZPTS,PSOERR
  ; Added "M" to the DIC(0)  ; PSO*7.0*574
  S DIC=55,DLAYGO=55,DIC(0)="AEQLM",DIC("A")="Select patient to register: " D ^DIC K DIC,DLAYGO G END:Y<0
  S PSO1=+Y,PSONAME=$$GET1^DIQ(2,PSO1,.01)
  D:$$GET1^DIQ(55,PSO1,52.1,"I")'=2 EN^PSOHLUP(PSO1) N ANQX
+ ; BEGIN: JCH - PSO*7*612
+ D FIND^DIC(603.01,"","","QX",PSO1,"","C","","","PSOCZPTS","PSOERR")  ; Look for all NCC authorizations in 603.01
  ; PSO*7.0*574
- I '$$FIND1^DIC(603.01,,"Q",PSO1,"C") D  Q
+ ;I '$$FIND1^DIC(603.01,,"Q",PSO1,"C") D  Q
+ I '$G(PSOCZPTS("DILIST",0)) D  Q  ; No NCC authorizations on file
  . N DIR,X,Y
  . W !!,PSONAME_" has not been authorized for Clozapine"
  . W !,"by the NCCC (National Clozapine Coordinating Center)."
@@ -19,6 +22,7 @@ REG ; Register Clozapine Patient
  . W !,"override situation, use the VistA Patient Prescription Processing option."
  . W !,"Contact the NCCC during regular business hours for registration.",!
  . S DIR(0)="E",DIR("A")="Press enter" D ^DIR
+ ; END: JCH - PSO*7*612
  ;W !!,PSONAME_" has not been authorized for Clozapine",!,"by the NCCC in Dallas.  Contact the NCCC in Dallas for authorization." D OVER G:'$G(%) REG S JADOVER=""
  S PSO4=$$GET1^DIQ(55,PSO1,53) I PSO4]"" W !!,PSONAME_" is already registered with number "_PSO4,!!,"Use the edit option to change registration data, or",!,"contact your supervisor",! G REG
 NUMBER ;
@@ -58,6 +62,9 @@ SAVE ;
  L +^PS(55,DA):DILOCKTM E  W !!,$C(7),"Patient "_PSONAME_" is being edited by another user!  Try Later." S ANQX=1 D END G END1
  D ^DIE L -^PS(55,DA)
  S:PSO2?1U6N $P(^XTMP("PSJ CLOZ",0),U,4)=PSO2  ; save last temp reg#
+ ; BEGIN: JCH-PSO*7*612
+ I PSO2?2U5N K ^XTMP("PSJ4D-"_PSO1),^XTMP("PSO4D-"_PSO1)  ; Registering new NCCC clozapine authorization makes previous local overrides obsolete
+ ; END: JCH-PSO*7*612
 END ;
  K %,%Y,C,D,D0,DA,DI,DQ,DIC,DIE,DR,PSO,PSO1,PSO2,PSO3,PSO4,PSOC,PSOLN,PSONAME,PSONO,PSOT,R,SSNVAERR,XMDUZ,XMSUB,XMTEXT,Y
  I '$G(PSCLOZ) K ^TMP($J),^TMP("PSO",$J)
@@ -77,7 +84,12 @@ FACILITY ;Enter facility DEA number to set up clozapine system
 AGAIN ; re-enter patient - new number, status and provider
  S DIC=55,DIC(0)="AEQM",DIC("A")="Select clozapine patient : " D ^DIC K DIC G END:Y<0 S (DA,PSO1)=+Y,PSONAME=$$GET1^DIQ(2,DA,.01)
  I $$GET1^DIQ(55,DA,53)="" W !,PSONAME_" is not registered.  Use the register option." G AGAIN
- I '$$FIND1^DIC(603.01,,"Q",PSO1,"C") W !!,PSONAME_" has not been authorized for Clozapine",!,"by the NCCC in Dallas.  Contact the NCCC in Dallas for authorization." D OVER G:'$G(%) AGAIN S JADOVER=""
+ ; BEGIN: JCH - PSO*7*612
+ ;I '$$FIND1^DIC(603.01,,"Q",PSO1,"C") W !!,PSONAME_" has not been authorized for Clozapine",!,"by the NCCC in Dallas.  Contact the NCCC in Dallas for authorization." D OVER G:'$G(%) AGAIN S JADOVER=""
+ N PSOCZPTS,PSOERR
+ D FIND^DIC(603.01,"","","QX",PSO1,"","C","","","PSOCZPTS","PSOERR")  ; Look for all NCC authorizations in 603.01
+ I '$G(PSOCZPTS("DILIST",0)) W !!,PSONAME_" has not been authorized for Clozapine",!,"by the NCCC in Dallas.  Contact the NCCC in Dallas for authorization." D OVER G:'$G(%) AGAIN S JADOVER=""
+ ; END: JCH - PSO*7*612
  S DIR(0)="55,53" D ^DIR G END:$D(DIRUT) S PSO2=Y
  N PSOEX S PSOEX=$$FIND1^DIC(55,,"X",PSO2,"ASAND1")
  I PSOEX,PSOEX'=PSO1 W !,PSO2," already assigned to ",$$GET1^DIQ(2,PSOEX,.01) G END
@@ -203,3 +215,21 @@ CRXTMPI(DFN,PSOYS) ; track IP 4 day supply
 CLKEYWRN() ; uniform message to users - PSO*7*457
  Q "Provider must hold YSCL AUTHORIZED key to write medication orders for clozapine."
  ;
+GETREGYS(PSODFN)   ; Get file 603.01 IEN currently registered to patient in file 55
+ ;JCH - PSO*7*612
+ N PSOCLZN,PSOYSIEN,PSOCLODT
+ S PSOCLZN=$$GET1^DIQ(55,PSODFN,53)
+ S PSOYSIEN=$$FIND1^DIC(603.01,,"Q",PSOCLZN,"B")
+ Q PSOYSIEN
+ ;
+QTYCHK(PSORXARY,NUMDAYS) ; check/adjust quantity, PSORXARY passed by ref., NUMDAYS is # of days
+ Q:'($G(NUMDAYS)>0)  ; required
+ N J,SCHED,NMIN,QTY,TMSDLY
+ S J=0,QTY=0 F  S J=$O(PSORXARY("SCHEDULE",J))  Q:'J  D
+ . S SCHED=PSORXARY("SCHEDULE",J)
+ . S NMIN=$$QTSCH^PSOSIG(SCHED) Q:'NMIN   ;number of minutes between meds
+ . S TMSDLY=1440/NMIN  ;times daily
+ . S QTY=QTY+(NUMDAYS*TMSDLY*$G(PSORXARY("DOSE ORDERED",J)))
+ ;
+ S:QTY PSORXARY("QTY")=QTY,$P(PSORXARY("RX0"),U,7)=QTY
+ Q

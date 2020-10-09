@@ -1,5 +1,5 @@
-ORMPS3 ;SLC/MKB - Process Pharmacy ORM msgs cont ;05/08/2008  10:32
- ;;3.0;ORDER ENTRY/RESULTS REPORTING;**213,243**;Dec 17, 1997;Build 242
+ORMPS3 ;SLC/MKB - Process Pharmacy ORM msgs cont ;Mar 28, 2019@17:00:22
+ ;;3.0;ORDER ENTRY/RESULTS REPORTING;**213,243,413**;Dec 17, 1997;Build 32
  ;
 PTR(X) ; -- Return ptr to prompt OR GTX X
  Q +$O(^ORD(101.41,"AB","OR GTX "_X,0))
@@ -77,6 +77,8 @@ UPD ; -- Compare ORMSG to order, update responses [from SC^ORMPS]
  S X=+$P($G(^OR(100,+ORIFN,8,I,0)),U,3) S:X'=ORNP $P(^(0),U,3)=ORNP
  S X=+$P($P(RXE,"|",3),U,4)
  I X,X'=+$$VALUE(ORDER,"DRUG") D RESP^ORCSAVE2(ORDER,"OR GTX DISPENSE DRUG",X)
+ ;P*413
+ D CLNUPD
  I $G(ORCAT)="I" D  Q
  . S X=$P($P($P(RXE,"|",2),U,2),"&",2)
  . I X'=$$VALUE(ORDER,"ADMIN") D RESP^ORCSAVE2(ORDER,"OR GTX ADMIN TIMES",X)
@@ -96,6 +98,17 @@ UPD ; -- Compare ORMSG to order, update responses [from SC^ORMPS]
  .. S I=0 F  S I=$O(@ORMSG@(NTE,I)) Q:I<1  S CNT=CNT+1,^OR(100,ORDER,4.5,PI,2,CNT,0)=$$UNESC^ORMPS2(@ORMSG@(NTE,I))
  .. S ^OR(100,ORDER,4.5,PI,2,0)="^^"_CNT_U_CNT_U_DT_U
  S ZSC=$$ZSC I ZSC,$P(ZSC,"|",2)'?2.3U S ^OR(100,ORDER,5)=$TR($P(ZSC,"|",2,7),"|","^") ;1 or 0 instead of [N]SC
+ Q
+ ;
+CLNUPD ;-- Update, if Clinic order ;p413
+ N ORDIALOG,DIALOG,DA,DR,DIE
+ S ORDIALOG=$P(^OR(100,+ORIFN,0),U,5) I ORDIALOG="" Q
+ S DIALOG="^"_$P(ORDIALOG,";",2)_+ORDIALOG_",0)"
+ I $P($G(@DIALOG),U)="PSJ OR CLINIC OE" D
+ . S DA=+ORIFN,DR="",DIE="^OR(100,"
+ . I +$G(ORL)'=+$P(^OR(100,+ORIFN,0),U,10) S $P(^OR(100,+ORIFN,0),U,10)=ORL
+ . I $G(ORAPPT)'=+$P(^OR(100,+ORIFN,0),U,18) S DR="16////"_ORAPPT
+ . I DR'="" D ^DIE
  Q
  ;
 VALUE(IFN,ID,INST) ; -- Returns value of prompt by identifier ID

@@ -1,5 +1,5 @@
 IBECEAU4 ;ALB/CPM - Cancel/Edit/Add... Cancel Utilities ; 23-APR-93
- ;;2.0;INTEGRATED BILLING;**52,167,183,341,563**;21-MAR-94;Build 12
+ ;;2.0;INTEGRATED BILLING;**52,167,183,341,563,678**;21-MAR-94;Build 7
  ;;Per VA Directive 6402, this routine should not be modified.
  ;
 CANCH(IBN,IBCRES,IBIND,IBCV) ; Cancel last transaction for a specific charge.

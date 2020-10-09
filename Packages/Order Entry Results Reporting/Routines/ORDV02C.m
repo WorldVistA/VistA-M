@@ -1,5 +1,5 @@
-ORDV02C ;SLC/DCM - OE/RR REPORT EXTRACTS ;12/04/19  10:58
- ;;3.0;ORDER ENTRY/RESULTS REPORTING;**350,423,377**;Dec 17, 1997;Build 582
+ORDV02C ;SLC/DCM - OE/RR REPORT EXTRACTS ;Jul 10, 2020@17:54
+ ;;3.0;ORDER ENTRY/RESULTS REPORTING;**350,423,377,534**;Dec 17, 1997;Build 1
  ; copy of ORDV02C from CPRS31 account
 OV(ROOT,ORALPHA,OROMEGA,ORMAX,ORDBEG,ORDEND,OREXT) ;Lab Overview
  S (ORDEND,OROMEGA)=9999999 ; Get all future orders
@@ -68,14 +68,13 @@ OV(ROOT,ORALPHA,OROMEGA,ORMAX,ORDBEG,ORDEND,OREXT) ;Lab Overview
  S ROOT=$NA(^TMP("ORDATA",$J))
  Q
 PANEL(TEST) ;Check sub-panels for a match
- N T,TT,TSTNM,X,I,Z,Y
+ ;OR*3.0*534 - modified this section so that comment lines containing
+ ;an L* and/or H* wouldn't flag as critical
+ N T,TT,TSTNM,X,I
  S T=0
- F  S T=$O(^LAB(60,TEST,2,T)) Q:'T  S TT=+$G(^(T,0)) D
+ F  S T=$O(^LAB(60,TEST,2,T)) Q:'T  Q:FLAG="H* L*"  S TT=+$G(^(T,0)) D
  . I $O(^LAB(60,TT,2,0)) D PANEL(TT) Q:GOTIT
- . S Y="",I=0,TSTNM=$S($L($P(^LAB(60,+TT,0),U))>25:$S($L($P($G(^(.1)),U)):$P(^(.1),U),1:$E($P(^(0),U),1,25)),1:$E($P(^(0),U),1,25))
- . F  S I=$O(^TMP("ORXPND",$J,I)) Q:'I  S X=^(I,0) I X["H*"!(X["L*") D  Q:FLAG="H* L*"
- .. S Z="*",^TMP("ORDATA",$J,D,S,SN,"WP",5)="5^"_Z
- .. I $L(Y) S Z=$S(Y["H*"&(Y["L*"):"H* L*",Y="H*"&(X["H*"):"H*",Y="H*"&(X["L*"):"H* L*",Y="L*"&(X["L*"):"L*",Y="L*"&(X["H*"):"H* L*",1:"*")
- .. I '$L(Y) S Z=$S(X["H*":"H*",X["L*":"L*",1:"*")
- .. S Y=Z,FLAG=Z
+ . S I=0,TSTNM=$S($L($P(^LAB(60,+TT,0),U))>25:$S($L($P($G(^(.1)),U)):$P(^(.1),U),1:$E($P(^(0),U),1,25)),1:$E($P(^(0),U),1,25))
+ . F  S I=$O(^TMP("ORXPND",$J,I)) Q:'I  S X=^(I,0) I $P(X,"    ")=TSTNM&(X["H*"!(X["L*")) D
+ .. S FLAG=$S(FLAG="H*"&(X["L*"):"H* L*",FLAG="L*"&(X["H*"):"H* L*",X["H*":"H*",X["L*":"L*",1:"*")
  Q

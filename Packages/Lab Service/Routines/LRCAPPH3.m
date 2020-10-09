@@ -1,5 +1,5 @@
 LRCAPPH3 ;DALOI/FHS/PC - CHECK CPT CODE AND FILE POINTERS ;Apr 20,2018@12:12pm
- ;;5.2;LAB SERVICE;**263,291,505**;Sep 27, 1994;Build 4
+ ;;5.2;LAB SERVICE;**263,291,505,527**;Sep 27, 1994;Build 16
  ;Called from LRCAPPH,LRCAPPH4
 EN ;
  K ^TMP("LRCAPPH",$J),LRSEP S LRSEP(1)="==================="
@@ -11,10 +11,13 @@ EN ;
  S LRINADTX=Y K %DT
 AA  ;Look for CPT processing errors
  D
- . N LRAAN,LRCE,LRTXT,LRX
+ . N LRAAN,LRCE,LRTXT,LRX,LR69ORD
  . S LRAAN="^LRO(69,""AA"")"
  . F  S LRAAN=$Q(@LRAAN) Q:$QS(LRAAN,2)'="AA"  D
  . . S LRX=@LRAAN Q:'LRX  S LRCE=$QS(LRAAN,3)
+ . . ;LR*5.2*527 check if order has been purged and left orphan "AA" entry
+ . . S LR69ORD=$QS(LRAAN,4)
+ . . I '$D(^LRO(69,+$P(LR69ORD,"|"),1,+$P(LR69ORD,"|",2),0)) Q
  . . K LRTXT
  . . S LRTXT="Lab Order Number "_LRCE_" "
  . . I LRX<1 D
@@ -50,8 +53,12 @@ LAB ;Look for inactive Codes in ^LAB
  . ;
  . I '$D(^LAB(60,LRJ,0)) D  Q
  .. N XMSUB,XMY,XMTEST,XMDUZ,EDITUSER
+ .. ;LR*5.2*527 - allow for null value of EDITUSER
+ .. S EDITUSER="UNKNOWN"
  .. I $D(^LAB(60,LRJ,15,1,0)) D
  ... S EDITUSER=$P($G(^LAB(60,LRJ,15,1,0)),"^",2)
+ ... I EDITUSER]"" S EDITUSER=$P($G(^VA(200,EDITUSER,0)),"^",1)
+ ... I EDITUSER="" S EDITUSER="UNKNOWN"
  .. S XMSUB="Lab Test IN FILE 60 is missing data "_$$FMTE^XLFDT($$NOW^XLFDT,"1S")
  .. S XMY(DUZ)=""
  .. S XMY("G.HPS T3 Clinical DEV@DOMAIN.EXT")=""
@@ -59,7 +66,7 @@ LAB ;Look for inactive Codes in ^LAB
  .. S ^TMP($J,"LABERR",1)="Lab Test "_LRJ_" Does Not Have a Zero Node"
  .. S ^TMP($J,"LABERR",2)="and Will Cause an UNDEF Error"
  .. S ^TMP($J,"LABERR",3)="Record Skipped and Needs Attention"
- .. I $D(EDITUSER) S ^TMP($J,"LABERR",4)="Test edited by - "_$P(^VA(200,EDITUSER,0),"^",1)
+ .. S ^TMP($J,"LABERR",4)="Test edited by - "_EDITUSER
  .. S ^TMP($J,"LABERR",5)="Site Generating the email is "_$P($$SITE^VASITE,"^",2)
  .. S ^TMP($J,"LABERR",6)="     "
  .. S ^TMP($J,"LABERR",7)="Notes for HPS T3 Clinical DEV:"

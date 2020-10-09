@@ -1,5 +1,5 @@
-RAREG1 ;HISC/CAH,FPT,DAD AISC/MJK,RMO-Register Patient ;14 Dec 2018 2:03 PM
- ;;5.0;Radiology/Nuclear Medicine;**7,21,93,137,144,124,153**;Mar 16, 1998;Build 1
+RAREG1 ;HISC/CAH,FPT,DAD AISC/MJK,RMO-Register Patient ; Apr 23, 2020@12:44
+ ;;5.0;Radiology/Nuclear Medicine;**7,21,93,137,144,124,153,169**;Mar 16, 1998;Build 2
  ; 07/15/2008 BAY/KAM rem call 249750 RA*5*93 Correct DIK Calls
  ;
 ASKORD I $D(RAVSTFLG),$G(YY)]"",$P(YY,U,5) D ASET G PACS
@@ -9,6 +9,11 @@ ASKORD I $D(RAVSTFLG),$G(YY)]"",$P(YY,U,5) D ASET G PACS
  S RAOLP=0,RAOVSTS="3;5;8" W ! D ^RAORDS G Q1:$D(RAOUT) G EXAM:$D(RAORDS)
  S RARD("A")="Do you want to Request an Exam for "_RANME_"? ",RARD(0)="S",RARD(1)="Yes^enter a request.",RARD(2)="No^not enter a request.",RARD("B")=2 D SET^RARD K RARD G Q1:$E(X)'="Y"
  W !!?3,"...requesting an exam for ",RANME,"...",! D ^RAORD1
+ ;quit if the RAORDS array does not exist (no pending RIS orders filed for this event)
+ ;RIS orders will exist but will they be ibn a 'canceled' REQUEST STATUS?
+ D CHKORDS(.RAORDS) ;pass in RAORDS array
+ QUIT:($D(RAORDS)\10)=0
+ ;
 EXAM ;
  ; block mixture of single proc with parent procedures
  N RA6,RA7,RA8 S RA6="",RA7=0,RA8=0
@@ -137,3 +142,19 @@ P124 ;begin RA5P124 update
  .Q
  ;end RA5P124 update
  G PS1
+ ;
+CHKORDS(RARY) ;check all the RIS orders on file.
+ ;If that order does not have a REQUEST STATUS of
+ ;PENDING do not register & kill RARY(n). RA5P169
+ ;Input: RARY by reference
+ ;       RARY(n) = RAOIFN (IEN file 75.1)
+ NEW N,RAOIFN S N=0
+ F  S N=$O(RARY(N)) Q:N'>0  D
+ .S RAOIFN=RARY(N),RAOIFN(0)=$G(^RAO(75.1,RAOIFN,0))
+ .;If the REQUEST STATUS is not pending (piece five) -or-
+ .;the CPRS ORDER (#100) file pointer piece seven is
+ .;missing do not register the order.
+ .I $P(RAOIFN(0),U,5)'=5!($P(RAOIFN(0),U,7)="") K RARY(N)
+ .Q
+ Q
+ ;

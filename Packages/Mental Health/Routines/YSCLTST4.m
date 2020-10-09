@@ -1,5 +1,5 @@
 YSCLTST4 ;DALOI/LB/RLM-TRANSMIT RX AND lAB DATA FOR CLOZAPINE ; 11/27/18 5:15pm
- ;;5.01;MENTAL HEALTH;**92,122**;Dec 30, 1994;Build 112
+ ;;5.01;MENTAL HEALTH;**92,122,166**;Dec 30, 1994;Build 19
  ; Reference to ^LAB(60 supported by IA #333
  ; Reference to ^LR7OR1 supported by IA #2503
  ; Reference to ^DIC supported by DBIA #2051
@@ -11,7 +11,15 @@ CL1 ;(DFN,DAYS) ;
  Q:'DFN
  S:'$G(DAYS) DAYS=90
  N ARRAY D LIST^DIC(603.01,,1,"I",,,DFN,"C",,,"ARRAY")
- S YSCLIEN=$G(ARRAY("DILIST",2,1)),YSCLFRQ="" I YSCLIEN S YSCLFRQ=$$GET1^DIQ(603.01,YSCLIEN,2,"I")
+ ;BEGIN: JCH - YS*5.01*166
+ N YSCLPSN,PSOCZPTS,PSOERR
+ ;S YSCLPSN=$$GET1^DIQ(55,DFN,53,"I") Q:YSCLPSN="" 0  ; Get current Clozapine number associated with patient's Clozapine registration
+ D GET55^YSCLTST2(DFN,.YSCLPSN) S YSCLPSN=$G(YSCLPSN(DFN,53)) Q:YSCLPSN="" 0  ; Get current Clozapine number associated with patient's Clozapine registration
+ D FIND^DIC(603.01,"","","QX",DFN,"","C","I $P($G(^(0)),""^"")=$G(YSCLPSN)","","PSOCZPTS","PSOERR")
+ S YSCLIEN=$G(PSOCZPTS("DILIST",2,1))
+ ;END: JCH - YS*5.01*166
+ ;S YSCLIEN=$G(ARRAY("DILIST",2,1)),YSCLFRQ="" I YSCLIEN S YSCLFRQ=$$GET1^DIQ(603.01,YSCLIEN,2,"I")
+ S YSCLFRQ="" I YSCLIEN S YSCLFRQ=$$GET1^DIQ(603.01,YSCLIEN,2,"I")
  I $$GET1^DIQ(603.03,1,7,"I")=1  Q "-1^0^0^0^0^0^"_YSCLFRQ
  S X1=DT,X2="-"_DAYS D C^%DTC S YSCLSD=X
  K ARRAY D LIST^DIC(603.41,",1,","1;2","I",,,,,,,"ARRAY")

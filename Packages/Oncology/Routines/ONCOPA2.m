@@ -1,5 +1,5 @@
 ONCOPA2 ;Hines OIFO/GWB [PA Print Complete Abstract (132c)] continued ;10/05/11
- ;;2.2;ONCOLOGY;**1,5,10**;Jul 31, 2013;Build 20
+ ;;2.2;ONCOLOGY;**1,5,10,12**;Jul 31, 2013;Build 8
  ;
  N TX
  S NAME="FIRST COURSE OF TREATMENT" D FORMAT^ONCOPA1
@@ -76,13 +76,16 @@ ONCOPA2 ;Hines OIFO/GWB [PA Print Complete Abstract (132c)] continued ;10/05/11
  .W !,"   Phase III dose per fraction............: ",ONCAB(165.5,IEN,5521) D P Q:EX=U
  .W !,"   Phase III number of fractions..........: ",ONCAB(165.5,IEN,5523) D P Q:EX=U
  .W !,"   Phase III total dose...................: ",ONCAB(165.5,IEN,5527) D P Q:EX=U
+ .W !,"   Number of phases rad TX................: ",ONCAB(165.5,IEN,7024,"E") D P Q:EX=U
+ .W !,"   Radiation treatment discontinued early.: ",ONCAB(165.5,IEN,7025,"E") D P Q:EX=U
+ .W !,"   Total dose.............................: ",ONCAB(165.5,IEN,7026,"E") D P Q:EX=U
  W !,"   Date Radiation Ended:           ",ONCAB(165.5,IEN,361) D P Q:EX=U
  W !,"   Radiation @Fac:                 ",ONCAB(165.5,IEN,51.4) D P Q:EX=U
  W !,"   Radiation @Fac Date:            ",ONCAB(165.5,IEN,51.5) D P Q:EX=U
  W !,"   Radiation/Surgery Sequence:     ",ONCAB(165.5,IEN,51.3) D P Q:EX=U
  W !,"   Reason for No Radiation:        ",ONCAB(165.5,IEN,75) D P Q:EX=U
  W !!,"   RX Text-Radiation (Beam):  " F TX=0:0 S TX=$O(^ONCO(165.5,IEN,15,TX)) Q:TX'>0  W !?6,^ONCO(165.5,IEN,15,TX,0) D P Q:EX=U
- W !,"   RX Text-Radiation Other:  " F TX=0:0 S TX=$O(^ONCO(165.5,IEN,16,TX)) Q:TX'>0  W !?6,^ONCO(165.5,IEN,16,TX,0) D P Q:EX=U
+ ;W !,"   RX Text-Radiation Other:  " F TX=0:0 S TX=$O(^ONCO(165.5,IEN,16,TX)) Q:TX'>0  W !?6,^ONCO(165.5,IEN,16,TX,0) D P Q:EX=U
 CHEM W !!,"   Chemotherapy:  ",ONCAB(165.5,IEN,53.2) D P Q:EX=U
  W !,"   Chemotherapy Date:  ",ONCAB(165.5,IEN,53) D P Q:EX=U
  W !,"   Chemotherapy @Fac:  ",ONCAB(165.5,IEN,53.3) D P Q:EX=U

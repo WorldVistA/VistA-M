@@ -1,5 +1,5 @@
 ORCXPND1 ; SLC/MKB - Expanded Display cont ;Jul 30, 2019@14:21:22
- ;;3.0;ORDER ENTRY/RESULTS REPORTING;**26,67,75,89,92,94,148,159,188,172,215,243,280,340,306,350,423,514**;Dec 17, 1997;Build 2
+ ;;3.0;ORDER ENTRY/RESULTS REPORTING;**26,67,75,89,92,94,148,159,188,172,215,243,280,340,306,350,423,514,527**;Dec 17, 1997;Build 19
  ;
  ; External References
  ;   DBIA  2387  ^LAB(60
@@ -66,7 +66,8 @@ LABS ; -- Laboratory [RESULTS ONLY for ID=OE order #]
  . I SS="BB" D
  .. I $$GET^XPAR("DIV^SYS^PKG","OR VBECS ON",1,"Q"),$L($T(EN^ORWLR1)),$L($T(CPRS^VBECA3B)) D  Q  ;Transition to VBEC's interface
  ... K ^TMP("ORLRC",$J)
- ... D EN^ORWLR1(DFN)
+ ... ;D EN^ORWLR1(DFN) ;RLM
+ ... D EN^VBECRPT(DFN) ;RLM
  ... I '$O(^TMP("ORLRC",$J,0)) S ^TMP("ORLRC",$J,1,0)="",^TMP("ORLRC",$J,2,0)="No Blood Bank report available..."
  ... N I S I=0 F  S I=$O(^TMP("ORLRC",$J,I)) Q:I<1  S X=^(I,0),LCNT=LCNT+1,^TMP("ORXPND",$J,LCNT,0)=X
  ... K ^TMP("ORLRC",$J)

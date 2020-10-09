@@ -1,9 +1,9 @@
 RCTCSPD5 ;ALB/LMH-CROSS-SERVICING NON-FINANCIAL TRANSACTIONS ;03/15/14 3:34 PM
- ;;4.5;Accounts Receivable;**315,339,366**;Mar 20, 1995;Build 3
+ ;;4.5;Accounts Receivable;**315,339,366,369**;Mar 20, 1995;Build 15
  ;;Per VA Directive 6402, this routine should not be modified.
  ;
  ;PRCA*4.5*366 Modify .03 pointer stuff to '////' in DR string
- ;
+ ;PRCA*4.5*369 Add text transaction for auto recall <$25
  Q
  ;
 CSATRY ; Cross-Servicing Admin Adj Treasury Rev? Yes non-financial tx
@@ -105,4 +105,20 @@ CSRCLPL ; CS RECALL placed non-financial tx
  S DR=DR_";4///2" ;Transaction status (complete)
  S DR=DR_";5.02///CS RECALL PLACED" D ^DIE
  Q
- ; End of RCTCSPD5
+CSAUTORC ; Recall from Cross-Servicing non-financial tx    ;PRCA*4.5*369
+ N PRCAEN,PRCAA1,DR,DIE,DA,D0,PRCAD,RCASK,PRCAA2,PRCA,PRCATY,RCUSER,DUZ
+ ;DUZ is reserved, but in this case DUZ may be undefined due to batch background job
+ S PRCABN=BILL,DUZ=.5,DUZ(0)="@",DUZ(2)=1 ; Server has no DUZ, use Postmaster
+ D SETTR^PRCAUTL,PATTR^PRCAUTL Q:'$D(PRCAEN)
+ S PRCAA1=$S($D(^PRCA(433,PRCAEN,4,0)):+$P(^(0),U,4),1:0)
+ Q:PRCAA1'>0  S PRCAA2=$P(^(0),U,3)
+ S DIE="^PRCA(433,",DA=PRCAEN
+ S DR=".03////"_PRCABN ;Bill Number
+ S DR=DR_";3///0" ;Calm Code Done
+ S DR=DR_";12///"_$O(^PRCA(430.3,"AC",66,0)) ;Transaction Type
+ S DR=DR_";15///0" ;Transaction Amount
+ S DR=DR_";42///"_DUZ ;Processed by user
+ S DR=DR_";11///"_DT ;Transaction date
+ S DR=DR_";4///2" ;Transaction status (complete)
+ S DR=DR_";5.02///CS AUTO RECALL BILL <$25" D ^DIE
+ Q

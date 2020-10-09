@@ -1,5 +1,5 @@
 PSXRSUS ;BIR/WPB,BAB,HTW-CMOP Transmission Handler ;15 Dec 2001
- ;;2.0;CMOP;**2,3,24,23,26,28,41,57,48,70,75**;11 Apr 97;Build 5
+ ;;2.0;CMOP;**2,3,24,23,26,28,41,57,48,70,75,90**;11 Apr 97;Build 1
  ;Reference to ^PS(52.5 supported by DBIA #1978
  ;Reference to ^PS(59   supported by DBIA #1976
  ;Reference to routine DEV1^PSOSULB1 supported by DBIA #2478
@@ -29,6 +29,7 @@ QRY W ! K DIR
  S REPLY=X K Y,X
  K DIRUT,DTOUT,DUOUT,DIROUT,DIR
 DIRECT ;Set PSXCS, PSXTRANS & PSXFLAG as per user choice
+ N PSXCS ;p90
  I REPLY="5" G DEV1^PSOSULB1
  I "24"[REPLY S PSXCS=1
  I "12"[REPLY S (PSXTRANS,PSXFLAG)=1

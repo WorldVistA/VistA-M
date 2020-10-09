@@ -1,11 +1,12 @@
-SDEC53 ;ALB/SAT - VISTA SCHEDULING RPCS ;MAR 15, 2017
- ;;5.3;Scheduling;**627,658,679**;Aug 13, 1993;Build 17
+SDEC53 ;ALB/SAT,LAB - VISTA SCHEDULING RPCS ;Apr 10, 2020@15:22
+ ;;5.3;Scheduling;**627,658,679,745**;Aug 13, 1993;Build 40
  ;;Per VHA Directive 2004-038, this routine should not be modified
  ;
  Q
  ;
 PTSET(SDECY,INP) ;SET patient demographics
- ;PTSET(SDECY,INP...)  external parameter tag is in SDEC
+ ;SD*5.3*745 replace external 'INP...' due to XINDEX issue.  Parameters are then rolled into the INP array
+ ;PTSET(SDECY,S1,S2,S3,S4,S5,S6,S7,S8,S9,S10,S11,S12,S13,S14,S15,S16,S17,S18,S19,S20,S21,S22,S23,S24,S25,S26,S27,S28,S29,S30,S31,S32) external parameter tag is in SDEC
  ;INPUT:
  ;  all input except DFN is optional
  ;  INP(1)  = DFN       - (required) pointer to PATIENT file

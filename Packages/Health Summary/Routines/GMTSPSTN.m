@@ -1,5 +1,5 @@
 GMTSPSTN ;BIR/RMS - MED RECON TOOL #1 NO GLOSSARY (MED REC PROFILE) ; 12/5/19 2:57pm
- ;;2.7;Health Summary;**94,127,131,132**;Oct 20, 1995;Build 1
+ ;;2.7;Health Summary;**94,127,131,132,135**;Oct 20, 1995;Build 2
  ;Reference to COVER^ORWPS supported by IA 4926
  ;References to ^ORRDI1 supported by IA 4659
  ;Reference to ^XTMP("ORRDI","PSOO" supported by IA 4660
@@ -66,7 +66,8 @@ ADDREM ;USES RDI - REMOTE DATA INTEROPERABILITY TO INCORPORATE OUTSIDE MEDS
  . S STAT=$G(^XTMP("ORRDI","PSOO",DFN,MED,5,0))
  . Q:STAT']""
  . Q:"ACTIVE^SUSPENDED^HOLD"'[STAT
- . Q:$G(^XTMP("ORRDI","PSOO",DFN,MED,7,0))']""  ;DoD:quit if there is no exp. date
+ . ; GMTS*2.7*135 Commented out the next line
+ . ;Q:$G(^XTMP("ORRDI","PSOO",DFN,MED,7,0))']""  ;DoD:quit if there is no exp. date
  . D  Q:ISSUE<$$FMADD^XLFDT(DT,-366)  ;DoD: quit if ISSUE DATE > 1Y ago
  .. N %DT,X,Y
  .. S X=$G(^XTMP("ORRDI","PSOO",DFN,MED,8,0))

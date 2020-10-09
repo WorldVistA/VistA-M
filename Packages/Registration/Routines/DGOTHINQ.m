@@ -1,6 +1,6 @@
-DGOTHINQ ;SLC/RM,RED - OTHD (OTHER THAN HONORABLE DISCHARGE) APIs ;August 03,2018@13:16
- ;;5.3;Registration;**952**;4/2/19;Build 160
- ;;Per VA Directive 6402, this routine should not be modified.
+DGOTHINQ ;SLC/RM,RED - OTHD (OTHER THAN HONORABLE DISCHARGE) APIs ; August 03,2018@13:16
+ ;;5.3;Registration;**952,1016**;Aug 13, 1993;Build 6
+ ;
  ;
  ;     Last Edited: SHRPE/RED - May 2,2019
  ;
@@ -85,7 +85,7 @@ HEADER(DFN,DGSTAT) ;
  W !,"Patient Name: ",DGNAME," (",DGSSN,") ",?57,"DOB: ",$$FMTE^XLFDT(DGDOB)
  S $P(DDASH,"=",81)="" W !,DDASH ;write dash lines
  W !?12,"OTHER THAN HONORABLE STATUS: ",$S(DGSTAT=1:"ACTIVE",DGSTAT=2:"**PENDING**",DGSTAT=3:" **INACTIVE**",1:"")," "
- W !?20,"CURRENT ELIGIBILITY: ",$S($P(OTH90,U,2)["OTH":"Expanded MH/"_$P(OTH90,U,2),1:$P(OTH90,U,2)),!
+ W !?20,"CURRENT ELIGIBILITY: ",$S($$OTHTYP($P(OTH90,U,2)):"Expanded MH/"_$P(OTH90,U,2),1:$P(OTH90,U,2)),!
  Q
  ;
 RESULT(DGARR,DG90A,DGIEN33) ;get the result for OTH patient
@@ -156,20 +156,24 @@ HIST ; display the history of the PE/EXP changes
  N J S J="" F  S J=$O(DGOTHIST(DGIEN33,J)) Q:J=""  D
  . S DGLINE=DGOTHIST(DGIEN33,J)
  . Q:$P(DGLINE,U)=""  ;!($P(DGLINE,U)["EXPANDED")
- . W !,$S($P(DGLINE,U)="":"N/A",$P(DGLINE,U)["OTH":"EXPANDED MH CARE NON-ENROLLEE",1:$P(DGLINE,U)),?35,$S(($P(DGLINE,U)=""!($P(DGLINE,U)'["OTH")):"N/A",1:$P(DGLINE,U))
+ . W !,$S($P(DGLINE,U)="":"N/A",$$OTHTYP($P(DGLINE,U)):"EXPANDED MH CARE NON-ENROLLEE",1:$P(DGLINE,U))
+ . W ?35,$S(($P(DGLINE,U)=""!('$$OTHTYP($P(DGLINE,U)))):"N/A",1:$P(DGLINE,U))
  . W ?50,$$FMTE^XLFDT($P(DGLINE,U,2),"5Z"),?65,$$STA^XUAF4($P(DGLINE,U,3))
  S HISFLAG=1  ;History has been displayed
  Q
-STATUS(DGARR) ;display OTH patient status if no clock exists
+STATUS(DGARR) ; return OTH patient status  DG*5.3*1016
  N DGPSTAT
  S DGPSTAT=0
  D
- . ;ACTIVE
- . I $G(DGARR(33,DGIEN33_",",.02,"I"))=1,$G(DGARR(33,DGIEN33_",",.05,"I"))="" S DGPSTAT=1 Q
- . ;PENDING AUTHORIZATION
- . I $G(DGARR(33,DGIEN33_",",.05,"I"))'="" S DGPSTAT=2 Q
- . ;INACTIVE
- . I '$G(DGARR(33,DGIEN33_",",.02,"I")) S DGPSTAT=3 Q
+ .;ACTIVE
+ .I $G(DGARR(33,DGIEN33_",",.02,"I"))=1 D
+ ..I $G(DGARR(33,DGIEN33_",",.05,"I"))=""!($P(OTH90,U,2)="OTH-EXT") S DGPSTAT=1 Q
+ ..;PENDING AUTHORIZATION
+ ..I $G(DGARR(33,DGIEN33_",",.05,"I"))'="" S DGPSTAT=2
+ ..Q
+ .;INACTIVE
+ .I '$G(DGARR(33,DGIEN33_",",.02,"I")) S DGPSTAT=3
+ .Q
  Q DGPSTAT
  ;
 CLOCK(DGIEN33) ;
@@ -218,4 +222,16 @@ CROSS(DGIEN33,DGOTHIST) ;
  . Q
  I $D(DGVAL) Q DGVAL
  Q 0
+ ;
+OTHTYP(OTHCTYP) ;Extract OTHER THAN HONORABLE set of codes
+ ;
+ ; Input : None
+ ; Output: The internal set of code value
+ ;
+ N DGERR,I,DGOTHSOC,YY,TRUE
+ S TRUE=0
+ S DGOTHSOC=$$GET1^DID(2,.5501,,"SET OF CODES",,"DGERR")
+ Q:$D(DGERR)
+ F I=1:1:$L(DGOTHSOC,";") S YY=$P($P(DGOTHSOC,";",I),":") Q:YY=""  I YY=OTHCTYP S TRUE=1
+ Q TRUE
  ;end of routine DGOTHINQ

@@ -1,5 +1,5 @@
 YSCLTST2 ;DALOI/LB/RLM-TRANSMIT RX AND lAB DATA FOR CLOZAPINE ; 11/28/18 3:34am
- ;;5.01;MENTAL HEALTH;**18,22,26,47,61,69,74,90,92,122**;Dec 30, 1994;Build 112
+ ;;5.01;MENTAL HEALTH;**18,22,26,47,61,69,74,90,92,122,166**;Dec 30, 1994;Build 19
  ; Reference to ^LAB(60 supported by IA #333
  ; Reference to ^PSDRUG supported by IA #25
  ; Reference to ^PS(55 supported by IA #787
@@ -15,6 +15,7 @@ YSCLTST2 ;DALOI/LB/RLM-TRANSMIT RX AND lAB DATA FOR CLOZAPINE ; 11/28/18 3:34am
  ; Reference to ^%ZTLOAD supported by DBIA #10063
  ; Reference to ^%DTC supported by DBIA #10000
  ; Reference to ^%DT supported by DBIA #10003
+ ; Reference to PSS^PSS781 supported by DBIA #4480
  ; 
 TRANSMIT ; send remote and local, kill and quit
  K XMZ S %DT="T",X="NOW" D ^%DT S YSCLNOW=$P(Y,".",2),YSCLSITE=$P($$SITE^VASITE,"^",2)
@@ -90,15 +91,23 @@ CL1(DFN,DAYS) ;The routine was split due to size
  G CL1^YSCLTST4
  Q
  ;
-CL(DFN) ; patient must be in both file #55 and #603.01 to get lab results
+ ;BEGIN: JCH - PSO*7*612
+CL(DFN,PSORCLOZ) ; patient must be in both file #55 and #603.01 to get lab results
+ ;END: JCH - PSO*7*612
  K ^TMP("LRRR",$J) N RESULTS,YSCLYWBC,YSCLRANC,YSCLYANC,YSCLXANC,YSCLXWBC,YSCLRWBC,YSCLFRQ,YSCLIEN
  I 'DFN Q "-1^-1^-1^-1^-1^-1^-1"
  N ARRAY D LIST^DIC(603.01,,1,"I",,,DFN,"C",,,"ARRAY")
  I '$D(ARRAY("DILIST","ID")) Q "-1^-1^-1^-1^-1^-1^-1"
- S YSCLIEN=ARRAY("DILIST",2,1),YSCLFRQ="" ;$O(^YSCL(603.01,"C",DFN,"")),YSCLFRQ=""
+ ;BEGIN: JCH - YS*5.01*166 Use frequency from registered cloz auth number, otherwise most recently assigned cloz number
+ S YSCLIEN=$$GETREGYS^PSOCLUTL(DFN),YSCLFRQ=""
+ I YSCLIEN>0 S YSCLIEN=$O(^YSCL(603.01,"C",DFN,""),-1)
+ ;END: JCH - YS*5.01*166
  I YSCLIEN S YSCLFRQ=$$GET1^DIQ(603.01,YSCLIEN,2,"I")
  I $$GET1^DIQ(603.03,1,7,"I")=1!(YSCLFRQ="")  Q "-1^0^0^0^0^0^"_YSCLFRQ
  I $$GET1^DIQ(55,DFN,54,"I")'="A"  Q "-1^0^0^0^0^0^"_YSCLFRQ
+ ; BEGIN: JCH - PSO*7*612. If coming from CPRS, no cloz ordering if local override number currently registered 
+ I $G(PSORCLOZ) N ORYSIEN S ORYSIEN=$$GET1^DIQ(603.01,YSCLIEN,.01,"I") I ORYSIEN?1U6N Q "-1^0^0^0^0^0"
+ ; END: JCH - PSO*7*612
  S X1=DT,X2="-7" D C^%DTC S YSCLSD=X
  K ARRAY D LIST^DIC(603.41,",1,",,"I",,,,,,,"ARRAY")
  F I=1:1 Q:'$D(ARRAY("DILIST",2,I))  S YSCLA=ARRAY("DILIST",2,I) D
@@ -180,9 +189,22 @@ KILL ;
  ;
 OVERRIDE(DFN) ;Check for an over-ride.   SEE RQ12.11
  N YSCLIEN,YSCLOVRD,ARRAY ;S YSCLIEN=$O(^YSCL(603.01,"C",DFN,0)) Q:YSCLIEN="" 0
- S YSCLIEN=$$FIND1^DIC(603.01,,"Q",DFN,"C") Q:YSCLIEN="" 0
+ ;BEGIN: JCH - YS*5.01*166
+ N YSCLPSN,PSOCZPTS,PSOERR,Y,X
+ D GET55(DFN,.YSCLPSN) S YSCLPSN=$G(YSCLPSN(DFN,53)) Q:YSCLPSN="" 0  ; Get current Clozapine number associated with patient's Clozapine registration
+ D FIND^DIC(603.01,"","","QX",DFN,"","C","I $P($G(^(0)),""^"")=$G(YSCLPSN)","","PSOCZPTS","PSOERR")
+ S YSCLIEN=$G(PSOCZPTS("DILIST",2,1)) Q:YSCLPSN="" 0
+ ;END: JCH - YS*5.01*166
  S YSCLOVRD=$$GET1^DIQ(603.01,YSCLIEN,3,"I")
  S:YSCLOVRD'=DT ANQRE=""
  I '$G(PSGCFLG),$G(YSCLOVRD),DT>YSCLOVRD S X=YSCLOVRD,YSCXDATE=$$FMTE^XLFDT(X,"D") W !,"National Override expired at midnight on "_YSCXDATE
  Q YSCLOVRD=DT
 ZEOR ;YSCLTST2
+ Q
+ ;
+GET55(DFN,CLOZ55) ; JCH - PSO*7*612 - Get Clozapine "SAND" node from file 55 via PDM API
+ Q:'$G(DFN) ""
+ K CLOZ55
+ D PSS^PSS781(+DFN,"","SAND")
+ M CLOZ55(DFN)=^TMP($J,"SAND",DFN)
+ Q

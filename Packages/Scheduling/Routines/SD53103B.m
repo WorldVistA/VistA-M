@@ -1,5 +1,5 @@
 SD53103B ;ALB/MJK - Unique Visit ID Clean Up ; March 10,1997
- ;;5.3;Scheduling;**103,748**;AUG 13, 1993;Build 10
+ ;;5.3;Scheduling;**103,748,766**;AUG 13, 1993;Build 3
  ;
  Q
  ;
@@ -50,11 +50,12 @@ RESULTS(SDMODE,SDBEG,SDEND,SDRT,SDCNT) ; generate an e-mail bulletin when done
  ;
  D LINE("Total number of Outpatient Encounter entries "_$S(SDMODE=1:"that will be ",1:"")_"processed: "_SDCNT),LINE(""),LINE("")
  ;
- IF SDMODE=2 D
- . D LINE("Note: Child encounters re-linked as part of parent")
- . D LINE("      re-linking process are not listed below nor")
- . D LINE("      counted in the total above.")
- . D LINE("")
+ ;SD*5.3*766 - Remove the message regarding Child Encounters being Re-linked
+ ;IF SDMODE=2 D
+ ;. D LINE("Note: Child encounters re-linked as part of parent")
+ ;. D LINE("      re-linking process are not listed below nor")
+ ;. D LINE("      counted in the total above.")
+ ;. D LINE("")
  ;
  ; -- layout of line
  D LINE("Message Format:")
@@ -67,6 +68,7 @@ RESULTS(SDMODE,SDBEG,SDEND,SDRT,SDCNT) ; generate an e-mail bulletin when done
  D LINE("   5      Patient Name")
  D LINE("   6      Encounter Date/Time")
  D LINE("   7      Hospital Location")
+ D LINE("   8      TIU Document IEN")  ;SD*5.3*766 - Include TIU Documents header
  D LINE("")
  ;
  ; --scan tmp records

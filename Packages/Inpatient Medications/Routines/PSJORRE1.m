@@ -1,5 +1,5 @@
-PSJORRE1 ;BIR/MV-RETURN INPATIENT ACTIVE MEDS (EXPANDED) ; 2/28/11 3:11pm
- ;;5.0;INPATIENT MEDICATIONS;**22,51,50,58,81,91,110,111,134,225,275,315**;16 DEC 97;Build 73
+PSJORRE1 ;BIR/MV - RETURN INPATIENT ACTIVE MEDS (EXPANDED) ;Jan 11, 2019@13:10:25
+ ;;5.0;INPATIENT MEDICATIONS;**22,51,50,58,81,91,110,111,134,225,275,315,319**;16 DEC 97;Build 31
  ;;Per VHA Directive 2004-038, this routine should not be modified.
  ; Reference to ^PS(51.2 is supported by DBIA 2178.
  ; Reference to ^PS(52.6 is supported by DBIA 1231.
@@ -14,6 +14,9 @@ OEL(DFN,ON)         ; return list of expanded inpat meds
  S F=$S(ON["P":"^PS(53.1,",ON["U":"^PS(55,DFN,5,",1:"^PS(55,"_DFN_",""IV"",")
  I ON'["P",'$D(@(F_+ON_")")) Q
  I ON["P" S X=$G(^PS(53.1,+ON,0)) Q:$P(X,U,15)'=DFN  S TYP=$P(X,U,4) D @$S(TYP="U":"UDTMP",1:"IVTMP")
+ I ON["P" D   ;*319
+ . M ^TMP("PS",$J,"ALOG")=^PS(53.1,+ON,"A")
+ . S ^TMP("PS",$J,"ALOG",0)=+$O(^TMP("PS",$J,"ALOG",""),-1)
  D:ON'["P" @$S(ON["U":"UDTMP",1:"IVTMP")
  S Y=$S(ON["V":5,1:12),CNT=0
  I $O(@(F_+ON_","_Y_",0)")) D

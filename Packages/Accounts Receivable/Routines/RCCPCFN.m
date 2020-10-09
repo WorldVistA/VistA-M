@@ -1,6 +1,9 @@
 RCCPCFN ;WASH-ISC@ALTOONA,PA/NYB-Function calls for CCPC ;12/31/96  9:27 AM
-V ;;4.5;Accounts Receivable;**34,104,140**;Mar 20, 1995
- ;;Per VHA Directive 10-93-142, this routine should not be modified.
+V ;;4.5;Accounts Receivable;**34,104,140,369**;Mar 20, 1995;Build 15
+ ;;Per VA Directive 6402, this routine should not be modified.
+ ;
+ ;PRCA*4.5*369 Ensured name handler for statements would handle
+ ;
 FP() ;Returns facility phone number
  N GRP,TYP
  S TYP=$O(^RC(342.2,"B","AGENT CASHIER",0))
@@ -12,16 +15,15 @@ DAT(DAT) ;Changes date from FM to DDMMYYYY format for CCPC
  S YR=$E(($E(DAT,1,3)+1700),1,2)
  Q $E(DAT,4,5)_$E(DAT,6,7)_$G(YR)_$E(DAT,2,3)
 QDAT Q ""
-NM(I340) ;Returns first, middle, and last name in 3 different variables
- N FN,LN,MN,NM,XN
+NM(I340) ;Returns first, middle, and last name in 3 different variables   ;PRCA*4.5*369
+NM1 N FN,LN,MN,NM,XN,RCMN1,RCMN2 S XN=""
  I '$D(I340) G QNM
  S NM=$P($G(^RCPS(349.2,I340,0)),"^",3)
- S LN=$P($G(NM),","),MN=$P($P($G(NM),",",2)," ",2)
- I ($E(MN,1,2)="SR")!($E(MN,1,2)="JR")!(MN?2.3"I")!(MN?0.1"I"1"V"1.3"I") S XN=MN,MN=""
- I $G(XN)="" S XN=$P($G(NM),",",3)
- I $G(XN)="" S XN=$P($P($G(NM),",",2)," ",3)
- S FN=$P($P($G(NM),",",2)," ")
- Q LN_" "_$G(XN)_"^"_FN_"^"_MN
+ S LN=$P($G(NM),","),FN=$P($P($G(NM),",",2)," "),RCMN1=$P($P($G(NM),",",2)," ",2)
+ I ($E(RCMN1,1,2)="SR")!($E(RCMN1,1,2)="JR")!(RCMN1?2.3"I")!(RCMN1?0.1"I"1"V"1.3"I")!(RCMN1="IV") S XN=RCMN1,RCMN1=""
+ S RCMN2=$P($P($G(NM),",",2)," ",3)
+ I RCMN2]"",$G(XN)="" I ($E(RCMN2,1,2)="SR")!($E(RCMN2,1,2)="JR")!(RCMN2?2.3"I")!(RCMN2?0.1"I"1"V"1.3"I")!(RCMN2="IV") S XN=RCMN2,RCMN2=""
+ Q LN_" "_$G(XN)_"^"_FN_"^"_RCMN1_" "_RCMN2
 QNM Q ""
 STDY() ;Returns Site's Statement Day
  N STDY

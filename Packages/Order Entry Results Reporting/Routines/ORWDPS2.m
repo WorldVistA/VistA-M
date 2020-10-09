@@ -1,5 +1,5 @@
-ORWDPS2 ; SLC/KCM/JLI - Pharmacy Calls for Windows Dialog;May 15, 2018@13:12;10/12/17  09:35
- ;;3.0;ORDER ENTRY/RESULTS REPORTING;**85,116,125,131,132,148,141,195,215,258,243,424,420,454,452,377**;Dec 17, 1997;Build 582
+ORWDPS2 ; SLC/KCM/JLI - Pharmacy Calls for Windows Dialog ;06/08/20  10:08
+ ;;3.0;ORDER ENTRY/RESULTS REPORTING;**85,116,125,131,132,148,141,195,215,258,243,424,420,454,452,377,413**;Dec 17, 1997;Build 32
  ;
 OISLCT(LST,OI,PSTYPE,ORVP,NEEDPI,PKIACTIV) ; return for defaults for pharmacy orderable item
  I $D(NEEDPI),(NEEDPI="Y"),$G(^TMP($J,"ORWDX LOADRSP","QO SAVE")) D  ;check if bug for Supply, Clin Med/IV for NEEDPI
@@ -103,8 +103,7 @@ BLDDOSE(X) ; build dose info where X is ORDOSE node
  I '$L($P(X,U)),'$L($P(DRUG,U,5)) S TEXT=TEXT_CONJ_$P(DRUG,U)
  S UD=$P(X,U,3),COST=$P(X,U,7),NF=$S($P(DRUG,U,3):"NF",1:"")
  S A=$P($$CPTIER^PSNAPIS("",$P(ORNOW,"."),DD,1),"^")
- I UD S COST="$"_$J(UD*$P(DRUG,U,2),1,3)_"      Tier "_A ;_" per "_UD_" "_$P(X,U,4)
- ;I UD S COST="$"_$J(UD*$P(DRUG,U,2),1,3) ;_" per "_UD_" "_$P(X,U,4)
+ S COST=$S(UD:$J(UD*$P(DRUG,U,2),1,3),1:COST) S:COST'="" COST="$"_COST S COST=COST_$E("               ",1,(15-$L(COST)))_"Tier "_A
  S Y="i"_DDNM_U_STREN_U_NF_U_$TR(ID,U,"&")_U_TEXT_U_COST_U_$P(DRUG,U,8)_U_$P(DRUG,U,4)
  Q Y
 ROUTE ; from OISLCT, get list of routes for the drug form

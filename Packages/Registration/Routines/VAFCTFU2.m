@@ -1,5 +1,5 @@
 VAFCTFU2 ;BHM/CMC,CKN-Utilities for the Treating Facility file 391.91, CONTINUED ; 5/23/12 6:25pm
- ;;5.3;Registration;**821,856,863,981**;Aug 13, 1993;Build 1
+ ;;5.3;Registration;**821,856,863,981,1026**;Aug 13, 1993;Build 3
 TFL(LIST,PT) ;for this PT [patient] (either DFN, ICN or EDIPI) return the list of treating facilities
  ; CALLED FROM RPC VAFC LOCAL GET CORRESPONDINGIDS
  ; PT values -->
@@ -18,7 +18,7 @@ TFL(LIST,PT) ;for this PT [patient] (either DFN, ICN or EDIPI) return the list o
  ;   RESULT(2)="7168937^PI^USVHA^500^A"
  ;   RESULT(3)="852043888^NI^USDOD^200DOD^A"
  ;
- N X,ICN,DA,DR,VAFCTFU1,DIC,DIQ,VAFC,DFN,EDIPI,ASSIGN,ID,SITE,TYPE
+ N X,ICN,DA,DR,VAFCTFU1,DIC,DIQ,VAFC,DFN,EDIPI,ASSIGN,ID,SITE,TYPE,IEN,SITEIEN
  S X="MPIF001" X ^%ZOSF("TEST") I '$T S LIST(1)="-1^MPI Not Installed" Q
  ; clear "return" variable
  K LIST
@@ -26,48 +26,57 @@ TFL(LIST,PT) ;for this PT [patient] (either DFN, ICN or EDIPI) return the list o
  S TYPE=$P(PT,"^",2),SITE=$P(PT,"^",4),ID=$P(PT,"^"),ASSIGN=$P(PT,"^",3)
  ; check input data
  I ID']"" S LIST(1)="-1^Id is not defined." Q
- I TYPE'="NI",TYPE'="PI" S LIST(1)="-1^Invalid Id Type." Q
- I ASSIGN'="USVHA",ASSIGN'="USDOD" S LIST(1)="-1^Invalid Assigning Authority." Q
+ ;**126 ANY ID IS ALLOWED
+ ;I TYPE'="NI",TYPE'="PI" S LIST(1)="-1^Invalid Id Type." Q
+ ;I ASSIGN'="USVHA",ASSIGN'="USDOD" S LIST(1)="-1^Invalid Assigning Authority." Q
  I SITE']"" S LIST(1)="-1^Missing Assigning Facility." Q
  ; find the ien for the station number
  S SITEIEN=$O(^DIC(4,"D",SITE,0))
  I 'SITEIEN S LIST(1)="-1^Assigning Facility is not defined in database." Q
- ;
- I TYPE="PI",ASSIGN="USVHA" S DFN=ID
- I TYPE="NI",ASSIGN="USVHA",SITE="200M" S ICN=ID
- I TYPE="NI",ASSIGN="USDOD",SITE="200DOD" S EDIPI=ID
- I $D(ICN) S DFN=$$GETDFN^MPIF001(ICN) D  Q:$D(LIST(1))
- . I +DFN<0 S LIST(1)="-1^ICN is not known" Q
- . S SITEIEN=$$IEN^XUAF4($P($$SITE^VASITE,"^",3))
- ;
- I $D(DFN) S ICN=$$GETICN^MPIF001(DFN)
- ; DFN should be defined, but ICN may not.
- ; I $D(EDIPI) S ICN=$$GETICN(EDIPI)
- ; check EDIPI
- ;I $D(EDIPI),'$D(^DGCN(391.91,"ASCR",EDIPI,SITEIEN)) D  Q
- ;. S LIST(1)="-1^EDIPI Record is unknown at this facility"
- ;I $D(EDIPI),$D(^DGCN(391.91,"ASCR",EDIPI,SITEIEN)) D
- ;.S EN=$O(^DGCN(391.91,"ASCR",EDIPI,SITEIEN,0))
- ;.S DFN=$P($G(^DGCN(391.91,EN,0)),"^")
- ;**856 MVI 1371 (ckn)
- ;Use new xref AISS appropriately to retrieve DFN from EDIPI
- I $D(EDIPI)=""!(ASSIGN="")!(TYPE="")!(SITEIEN="") S LIST(1)="-1^Insufficient data" Q
- I $D(EDIPI),'$D(^DGCN(391.91,"AISS",EDIPI,ASSIGN,TYPE,SITEIEN)) D  Q
- . S LIST(1)="-1^EDIPI Record is unknown at this facility"
- I $D(EDIPI),$D(^DGCN(391.91,"AISS",EDIPI,ASSIGN,TYPE,SITEIEN)) D
- .S EN=$O(^DGCN(391.91,"AISS",EDIPI,ASSIGN,TYPE,SITEIEN,0))
- .S DFN=$P($G(^DGCN(391.91,EN,0)),"^")
- ;
- ; if ICN is not defined, it is OK, but DFN should be defined
- ; I $G(ICN)<0 S LIST(1)=ICN Q
- ; bad input, such as Id^NI^USVHA^123
- I '$G(DFN) S LIST(1)="-1^Invalid input" Q
- ; check DFN and Site to be matching an entry in file #391.91
- I '$O(^DGCN(391.91,"APAT",DFN,SITEIEN,0)) D  Q
- . S LIST(1)="-1^Id as '"_ID_"'"_" is not in database"
- ; DFN should be defined, but ICN may not.
+ ;*1026 ALLOW ANY ID TO BE USED FOR LOOKUP IN TF LIST TO FIND THE FULL ID LIST
+ I ID["V",TYPE="NI",ASSIGN="USVHA",SITE="200M" S ICN=ID ;ICN is lookup value
+ S IEN=$O(^DGCN(391.91,"AISS",ID,ASSIGN,TYPE,SITEIEN,0))
+ I IEN="",$G(ICN)="" S LIST(1)="-1^Id as '"_ID_"'"_" is not in database" Q
+ I IEN'="" S DFN=$P(^DGCN(391.91,IEN,0),"^")
+ I $G(ICN)="" S ICN=$$GETICN^MPIF001(DFN)
+ I $G(ICN)'="" S DFN=$$GETDFN^MPIF001(ICN)
  S X=$$QUERYTF($P($G(ICN),"V"),"LIST")
- I $P(X,U)="1" S LIST(1)="-1"_U_$P(X,U,2) Q
+ ;**1026 ANY ID IS ALLOWED, INCLUDING ONE THAT ISN'T THE DFN LOCALLY
+ ;I TYPE="PI",ASSIGN="USVHA" S DFN=ID
+ ;I TYPE="NI",ASSIGN="USVHA",SITE="200M" S ICN=ID
+ ;I TYPE="NI",ASSIGN="USDOD",SITE="200DOD" S EDIPI=ID
+ ;I $D(ICN) S DFN=$$GETDFN^MPIF001(ICN) D  Q:$D(LIST(1))
+ ;. I +DFN<0 S LIST(1)="-1^ICN is not known" Q
+ ;. S SITEIEN=$$IEN^XUAF4($P($$SITE^VASITE,"^",3))
+ ;;
+ ;I $D(DFN) S ICN=$$GETICN^MPIF001(DFN)
+ ;; DFN should be defined, but ICN may not.
+ ;; I $D(EDIPI) S ICN=$$GETICN(EDIPI)
+ ;; check EDIPI
+ ;;I $D(EDIPI),'$D(^DGCN(391.91,"ASCR",EDIPI,SITEIEN)) D  Q
+ ;;. S LIST(1)="-1^EDIPI Record is unknown at this facility"
+ ;;I $D(EDIPI),$D(^DGCN(391.91,"ASCR",EDIPI,SITEIEN)) D
+ ;;.S EN=$O(^DGCN(391.91,"ASCR",EDIPI,SITEIEN,0))
+ ;;.S DFN=$P($G(^DGCN(391.91,EN,0)),"^")
+ ;;**856 MVI 1371 (ckn)
+ ;Use new xref AISS appropriately to retrieve DFN from EDIPI
+ ;I $D(EDIPI)=""!(ASSIGN="")!(TYPE="")!(SITEIEN="") S LIST(1)="-1^Insufficient data" Q
+ ;I $D(EDIPI),'$D(^DGCN(391.91,"AISS",EDIPI,ASSIGN,TYPE,SITEIEN)) D  Q
+ ;. S LIST(1)="-1^EDIPI Record is unknown at this facility"
+ ;I $D(EDIPI),$D(^DGCN(391.91,"AISS",EDIPI,ASSIGN,TYPE,SITEIEN)) D
+ ;.S EN=$O(^DGCN(391.91,"AISS",EDIPI,ASSIGN,TYPE,SITEIEN,0))
+ ;.S DFN=$P($G(^DGCN(391.91,EN,0)),"^")
+ ;;
+ ;; if ICN is not defined, it is OK, but DFN should be defined
+ ;; I $G(ICN)<0 S LIST(1)=ICN Q
+ ;; bad input, such as Id^NI^USVHA^123
+ ;I '$G(DFN) S LIST(1)="-1^Invalid input" Q
+ ;; check DFN and Site to be matching an entry in file #391.91
+ ;I '$O(^DGCN(391.91,"APAT",DFN,SITEIEN,0)) D  Q
+ ;. S LIST(1)="-1^Id as '"_ID_"'"_" is not in database"
+ ;; DFN should be defined, but ICN may not.
+ ;S X=$$QUERYTF($P($G(ICN),"V"),"LIST")
+ ;I $P(X,U)="1" S LIST(1)="-1"_U_$P(X,U,2) Q
  ;S DR=".01;13;99",DIC=4,DIQ(0)="E",DIQ="VAFCTFU2"
  ;F VAFC=0:0 S VAFC=$O(LIST(VAFC)) Q:VAFC=""  D
  ;.K VAFCTFU2
@@ -179,9 +188,9 @@ NEWTF(RESULT,DFN,EDIPI) ;
  ;        example of DFN="7168937"
  ;
  ;   EDIPI: The DOD Identifier will be EDIPI data with the
- ;          following format:
- ;          Id^IdType^AssigningAuthority^AssigningFacility
- ;          example:  852043888^NI^USDOD^200DOD
+ ; following format:
+ ; Id^IdType^AssigningAuthority^AssigningFacility
+ ; example:  852043888^NI^USDOD^200DOD
  ;
  ; Return:
  ; This will return a list of treating facilities in the following.

@@ -1,5 +1,5 @@
 XPDTC ;SFISC/RSD - Transport calls ;10/15/2008
- ;;8.0;KERNEL;**10,15,21,39,41,44,58,83,92,95,100,108,124,131,463,511,517,559,672**;Jul 10, 1995;Build 28
+ ;;8.0;KERNEL;**10,15,21,39,41,44,58,83,92,95,100,108,124,131,463,511,517,559,672,713**;Jul 10, 1995;Build 15
  ;Per VHA Directive 2004-038, this routine should not be modified.
  Q
  ;^XTMP("XPDT",XPDA,data type,file #,
@@ -70,13 +70,18 @@ QUES ;build from Install Questions multiple
  F I=1:2 S X=$P($T(QUESTION+I),";;",2,99) Q:X=""  S Y=$P($T(QUESTION+I+1),";;",2) D
  .S ^XTMP("XPDT",XPDA,"QUES",$P(X,";"),0)=$P(X,";",2),^("A")=$P(X,";",3),^("B")=$S($L($P(K,U,I)):$P(K,U,I),1:$P(X,";",4)),^("??")=$P(X,";",5) S:Y]"" ^("M")=Y
  Q
-INT ;build pre,post, & enviroment init routines
+INT ;build pre,post,enviroment, and restore routines
  N %,I,R,X,Z
- F I="PRE","INI","INIT" I $G(^XPD(9.6,XPDA,I))]"" S X=^(I) D
+ F I="PRE","INI","INIT","REST" I $G(^XPD(9.6,XPDA,I))]"" S X=^(I) D
  .;remove parameters and seperate routine name from tag^routine
  .S ^XTMP("XPDT",XPDA,I)=X,X=$P(X,"("),R=$P(X,U,$L(X,U)) Q:$D(^("RTN",R))
  .I '$$RTN^XPDV(X,.Z) W !,"Routine ",X,Z S XPDERR=1 Q
- .S %=$$LOAD^XPDTA(R,"0^")
+ .I I'="REST" S %=$$LOAD^XPDTA(R,"0^") Q
+ .;Restore routine, save in "REST" node, not stored at install site ;p713
+ .N DIF,XCNP
+ .S DIF="^XTMP(""XPDT"",XPDA,""REST"",X,",XCNP=0,X=R
+ .X ^%ZOSF("LOAD")
+ .S $P(^XTMP("XPDT",XPDA,"REST",X,2,0),";",7)="Build "_(+^XPD(9.6,XPDA,6.3))
  Q
 BLD ;build Build file, Package file and Order Parameter file
  N %,DIC,X,XPD,XPDI,XPDV,Y

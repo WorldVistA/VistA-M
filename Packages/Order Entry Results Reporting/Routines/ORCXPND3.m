@@ -1,5 +1,5 @@
 ORCXPND3 ; SLC/MKB,dcm - Expanded display of Reports ;08/31/09  09:35
- ;;3.0;ORDER ENTRY/RESULTS REPORTING;**25,30,43,85,172,243,280**;Dec 17, 1997;Build 85
+ ;;3.0;ORDER ENTRY/RESULTS REPORTING;**25,30,43,85,172,243,280,527**;Dec 17, 1997;Build 19
  ;
 AP ; -- Retrieve AP results for a specific date/time specimen taken
  ; [alert follow-up, from LABS^ORCXPND1]
@@ -50,7 +50,8 @@ LRB ; -- A better Blood Bank Report
  D PREP^ORCXPNDR
  I $$GET^XPAR("DIV^SYS^PKG","OR VBECS ON",1,"Q"),$L($T(EN^ORWLR1)),$L($T(CPRS^VBECA3B)) D  Q  ;Transition to VBEC's interface
  . K ^TMP("ORLRC",$J)
- . D EN^ORWLR1(DFN)
+ . ;D EN^ORWLR1(DFN) ;RLM
+ . D EN^VBECRPT ;RLM
  . I '$O(^TMP("ORLRC",$J,0)) S ^TMP("ORLRC",$J,1,0)="",^TMP("ORLRC",$J,2,0)="No Blood Bank report available..."
  . D ITEM^ORCXPND("Blood Bank Report"),BLANK^ORCXPND
  . S I=0 F  S I=$O(^TMP("ORLRC",$J,I)) Q:I'>0  S LCNT=LCNT+1,^TMP("ORXPND",$J,LCNT,0)=^TMP("ORLRC",$J,I,0)

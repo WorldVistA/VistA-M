@@ -1,6 +1,6 @@
 SDM1 ;SF/GFT - MAKE APPOINTMENT ; 3/29/05 12:35pm [5/5/05 9:41am]  ; Compiled March 8, 2007 14:55:24  ; Compiled May 9, 2007 13:19:18  ; Compiled August 28, 2007 12:19:08
- ;;5.3;Scheduling;**32,167,168,80,223,263,273,408,327,478,490,446,547,611,674,739**;Aug 13, 1993;Build 1
-1 L  Q:$D(SDXXX)  S CCXN=0 K MXOK,COV,SDPROT Q:DFN<0  S SC=+SC
+ ;;5.3;Scheduling;**32,167,168,80,223,263,273,408,327,478,490,446,547,611,674,739,753**;Aug 13, 1993;Build 3
+1 Q:$D(SDXXX)  S CCXN=0 K MXOK,COV,SDPROT Q:DFN<0  S SC=+SC ;SD*5.3*753 - Remove unlock all
  S X1=DT,SDEDT=365 S:$D(^SC(SC,"SDP")) SDEDT=$P(^SC(SC,"SDP"),"^",2)
  S X2=SDEDT D C^%DTC S SDEDT=X D WRT
  I $D(^SC(SC,"SI")),$O(^("SI",0))>0 W !,*7,?8,"**** SPECIAL INSTRUCTIONS ****",! S %I=0 F %=0:1 S %I=$O(^SC(SC,"SI",%I)) Q:%I'>0  W ^(%I,0) W:% ! I '%,$O(^SC(SC,"SI",%I))>0 S POP=0 D SPIN Q:POP
@@ -83,8 +83,9 @@ SC S SDLOCK=$S('$D(SDLOCK):1,1:SDLOCK+1) G:SDLOCK>9 LOCK
  ;
 SP I ST+ST>$L(S),$L(S)<80 S S=S_" " G SP
  S SDNOT=1   ;SD*5.3*490 naked Do added below
- ;SD*5.3*739 adds check for SDCAN node as CAN node is deleted when clinic is remapped 
- F I=ST+ST:SDDIF:SS-SDDIF S ST=$E(S,I+1) S:ST="" ST=" " S Y=$E(STR,$F(STR,ST)-2) G C:S["CAN"!(ST="X"&(($D(^SC(+SC,"ST",$P(SD,"."),"CAN")))!($O(^SC(+SC,"SDCAN",$P(SD,".")))<($P(SD,".")+1)))),X:Y="" D 
+ ;SD*5.3*739 adds check for SDCAN node as CAN node is deleted when clinic is remapped
+ ;SD*5.3*753 allows unlimited overbooks on nonscheduled availabilities in SDMULTIBOOK option, as is allowed in VSE and single appointment Vista
+ F I=ST+ST:SDDIF:SS-SDDIF S ST=$E(S,I+1) S:ST="" ST=" " S Y=$S("{}&%?#"[ST:ST,1:$E(STR,$F(STR,ST)-2)) G C:S["CAN"!(ST="X"&(($D(^SC(+SC,"ST",$P(SD,"."),"CAN")))!($O(^SC(+SC,"SDCAN",$P(SD,".")))<($P(SD,".")+1)))),X:Y="" D
  .S:Y'?1NL&(SM<6) SM=6 S ST=$E(S,I+2,999) D  S:ST="" ST=" " S S=$E(S,1,I)_Y_ST
  ..Q:ST'=""
  ..Q:+SL'>+^SC(SC,"SL")

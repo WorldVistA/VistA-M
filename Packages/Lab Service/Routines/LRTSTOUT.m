@@ -1,5 +1,5 @@
-LRTSTOUT ;DALOI/STAFF - JAM TESTS OFF ACCESSIONS ;10/12/11  11:54
- ;;5.2;LAB SERVICE;**100,121,153,202,221,337,350,445**;Sep 27, 1994;Build 6
+LRTSTOUT ;DALOI/STAFF - JAM TESTS OFF ACCESSIONS ;July 29, 2019@10:00
+ ;;5.2;LAB SERVICE;**100,121,153,202,221,337,350,445,527**;Sep 27, 1994;Build 16
  ;
  ; Cancel tests - Test are no longer deleted, instead the status is changed to Not Performed.
  ;
@@ -83,6 +83,8 @@ CHG ;
  S LRTSTS=0
  F  S LRTSTS=$O(LRCTST(LRTSTS)) Q:LRTSTS<1  D
  . Q:'($D(^LAB(60,LRTSTS,0))#2)  S LRTNM=$P(^(0),U)
+ . ;The test being canceled might be a component of a panel which was ordered.
+ . ;If not a panel (i.e. "atomic test"), LRORDTST=LRTSTS
  . S LRORDTST=$P(^LRO(68,LRAA,1,LRAD,1,LRAN,4,LRTSTS,0),U,9) D SET,CLNPENDG
  . D LEDICHK  ; ccr_6164n
  . W:'$G(LREND) !?5,"[ "_LRTNM_" ] ",$S('$D(LRLABKY):" Marked Canceled by Floor",1:" Marked Not Performed"),!
@@ -119,13 +121,31 @@ SET ;
  S LRNOW=$$NOW^XLFDT
  S LRLLOC=$P(^LRO(69,LRODT,1,LRSN,0),U,7)
  ;
- N II,X,LRI,LRSTATUS,OCXTRACE,ORIFN,ORSTS,LRMERGSO
+ N II,X,LRI,LRSTATUS,OCXTRACE,ORIFN,ORSTS,LRMERGSO,LRORSTAT,LR7DONE
  S:$G(LRDBUG) OCXTRACE=1
+ ;LR*5.2*527: SET^LRTSTOUT might be called from other routines
+ ;            adding lines below:
+ I '$G(LRORDTST),$G(LRAA)]"",$G(LRAD)]"",$G(LRAN)]"" D
+ . Q:'$D(^LRO(68,LRAA,1,LRAD,1,LRAN,0))
+ . ;make sure this is the same patient if called from another routine
+ . Q:+^LRO(68,LRAA,1,LRAD,1,LRAN,0)'=+^LRO(69,LRODT,1,LRSN,0)
+ . ;LRORDTST=ordered test
+ . S LRORDTST=$P($G(^LRO(68,LRAA,1,LRAD,1,LRAN,4,LRTSTS,0)),U,9)
+ ;LR*5.2*527 end of added lines
  S LRI=0
- F  S LRI=$O(^LRO(69,LRODT,1,LRSN,2,LRI)) Q:LRI<1  I $D(^(LRI,0))#2,LRTSTS=+^(0) D
- . Q:$P(^LRO(69,LRODT,1,LRSN,2,LRI,0),U,11)  S ORIFN=$P(^(0),U,7)
+ F  S LRI=$O(^LRO(69,LRODT,1,LRSN,2,LRI)) Q:LRI<1  I $D(^(LRI,0))#2 D
+ . ;LR*5.2*527: if don't have ordered test for some reason, make sure
+ . ;            current test being evaluated is broken out in file 69.
+ . I '$G(LRORDTST),LRTSTS'=+^LRO(69,LRODT,1,LRSN,2,LRI,0) Q
+ . ;checking for ordered test or possibly component of ordered test (i.e. panel)
+ . I $G(LRORDTST),LRTSTS'=+^LRO(69,LRODT,1,LRSN,2,LRI,0),LRORDTST'=+^LRO(69,LRODT,1,LRSN,2,LRI,0) Q
+ . ;Already canceled = if 11th piece is not null
+ . Q:$P(^LRO(69,LRODT,1,LRSN,2,LRI,0),U,11)  S ORIFN=$P(^(0),U,7),(LRORSTAT,LR7DONE)=0
  . S (LRSTATUS,II(LRTSTS))=""
  . S X=1+$O(^LRO(69,LRODT,1,LRSN,2,LRI,1.1,"A"),-1),X(1)=$P($G(^(0)),U,4)
+ . ;LR*5.2*527 note: If a panel component is being canceled, the cancel comments
+ . ;                 will be filed at both the panel and component levels so that
+ . ;                 the comments will display as expected in various reports.
  . S ^LRO(69,LRODT,1,LRSN,2,LRI,1.1,X,0)=$P($G(LRNATURE),U,5)_": "_LRCCOM,X=X+1,X(1)=X(1)+1
  . S ^LRO(69,LRODT,1,LRSN,2,LRI,1.1,X,0)=$S($G(LRMERG):"*Merged:",'$D(LRLABKY):"*Cancel by Floor: ",1:"*NP Action: ")_$$FMTE^XLFDT(LRNOW,"1FMZ")
  . S ^LRO(69,LRODT,1,LRSN,2,LRI,1.1,0)="^^"_X_"^"_X(1)_"^"_DT
@@ -135,9 +155,30 @@ SET ;
  . . S ^LRO(69,LRODT,1,LRSN,2,LRI,1.1,X,0)="*Merge from: "_$G(^LRO(68,+$G(LR1AA),1,+$G(LR1AD),1,+$G(LR1AN),.2),"Unknown")
  . . S ^LRO(69,LRODT,1,LRSN,2,LRI,1.1,0)="^^"_X_"^"_X(1)_"^"_DT
  . . S LRMERGSO=1,LRMSTATI=6 ;indicate that a same order merge occurred & we want to keep #100 order
- . I $G(ORIFN),$D(II) D NEW^LR7OB1(LRODT,LRSN,$S($G(LRMSTATI)=""!($G(LRMSTATI)=1):"OC",1:"SC"),$G(LRNATURE),.II,LRSTATUS)
+ . ;LR*5.2*527: only check overall order status if deleting a test
+ . ;            (i.e., not merging) and if the ordered test is a panel
+ . ;LR*5.2*527 adding lines below:
+ . I '$G(LRMERG),$G(LRORDTST),LRTSTS'=LRORDTST D
+ . . S LR7DONE=1
+ . . S LRORSTAT=$$OR(LRORDTST,LRTSTS,ORIFN)
+ . . ;don't update status if any pending tests
+ . . Q:'LRORSTAT
+ . . I '$G(ORIFN),'$D(II) Q
+ . . D NEW^LR7OB1(LRODT,LRSN,$S(LRORSTAT=1:"SC",1:"OC"),$G(LRNATURE),.II,LRSTATUS)
+ . . K ^TMP("LR",$J,"PANEL")
+ . . ;LR*5.2*527 end of added lines
+ . I 'LR7DONE,$G(ORIFN),$D(II) D NEW^LR7OB1(LRODT,LRSN,$S($G(LRMSTATI)=""!($G(LRMSTATI)=1):"OC",1:"SC"),$G(LRNATURE),.II,LRSTATUS)
  . ;Keep ^LR7OB1 call before ^^ update to status/DUZ in File #69 (below); see warning in 69^LR7OB69:
- . I '$D(LRMERGSO) S $P(^LRO(69,LRODT,1,LRSN,2,LRI,0),"^",9)="CA",$P(^(0),U,10)="L",$P(^(0),U,11)=DUZ
+ . ;LR*5.2*527 added lines below:
+ . I LR7DONE D
+ . . ;only set canceled status in file 69 if everything on ordered test is canceled
+ . . I LRORSTAT=2 D  Q
+ . . . S $P(^LRO(69,LRODT,1,LRSN,2,LRI,0),"^",9)="CA",$P(^(0),U,10)="L",$P(^(0),U,11)=DUZ
+ . . ;if a panel and components broken out, set canceled status for each canceled component
+ . . I +^LRO(69,LRODT,1,LRSN,2,LRI,0)=LRTSTS D
+ . . . S $P(^LRO(69,LRODT,1,LRSN,2,LRI,0),"^",9)="CA",$P(^(0),U,10)="L",$P(^(0),U,11)=DUZ
+ . ;LR*5.2*527 end of added lines
+ . I 'LR7DONE,'$D(LRMERGSO) S $P(^LRO(69,LRODT,1,LRSN,2,LRI,0),"^",9)="CA",$P(^(0),U,10)="L",$P(^(0),U,11)=DUZ
  . S:$D(^LRO(69,LRODT,1,LRSN,"PCE")) ^LRO(69,"AE",DUZ,LRODT,LRSN,LRI)=""
  . K II,LRMERGSO,LRSOF
  ;
@@ -165,6 +206,51 @@ SET ;
  ;
  Q
  ;
+OR(LRORDTST,LRTSTS,ORIFN) ;evaluate overall status of order
+ ;LR*5.2*527 added this section
+ N LRXSN,LRXSTR,LRXPEND,LRXRESULT,LRXSTATUS
+ ;AX8^LR7OB3 is called downstream from NEW^LR7OB1 and
+ ;refers to ^TMP("LR",$J,"PANEL" to determine whether a panel
+ ;is canceled.
+ ;The kill below is not necessary, but adding as a safeguard.
+ K ^TMP("LR",$J,"PANEL")
+ ;Check all tests for this CPRS order number
+ S (LRXSN,LRXPEND,LRXRESULT,LRXSTATUS)=0
+ ;if any pending components within panel, stop evaluating
+ F  S LRXSN=$O(^LRO(69,LRODT,1,LRSN,2,LRXSN)) Q:'LRXSN  Q:LRXPEND  D
+ . S LRXSTR=$G(^LRO(69,LRODT,1,LRSN,2,LRXSN,0))
+ . ;This test has a different CPRS order number.
+ . Q:$P(LRXSTR,U,7)'=ORIFN
+ . ;don't evaluate test currently being deleted
+ . ;The file 68 status will be updated later.
+ . Q:+LRXSTR=LRTSTS
+ . N LRXAA,LRXAD,LRXAN
+ . S LRXAA=$P(LRXSTR,U,4),LRXAD=$P(LRXSTR,U,3),LRXAN=$P(LRXSTR,U,5)
+ . ;This test has not been accessioned, possibly because 
+ . ;the components have been.
+ . Q:LRXAA=""
+ . ;Panels which "explode" into other panels might not be subscripted
+ . ;in file 68.
+ . Q:'$D(^LRO(68,LRXAA,1,LRXAD,1,LRXAN,4,+LRXSTR,0))
+ . I $P($G(^LRO(68,LRXAA,1,LRXAD,1,LRXAN,4,+LRXSTR,0)),U,5)="" S LRXPEND=1 Q
+ . ;Continue to check for pending panel components
+ . ;Due to site requests, panel is marked as complete if any components are verified
+ . ;so that the panel will not display on the "Incomplete Test Status Report".
+ . N LRX68TST
+ . S LRX68TST=0
+ . F  S LRX68TST=$O(^LRO(68,LRXAA,1,LRXAD,1,LRXAN,4,LRX68TST)) Q:'LRX68TST  Q:LRXPEND  D
+ . . S LRXSTR=$G(^LRO(68,LRXAA,1,LRXAD,1,LRXAN,4,LRX68TST,0))
+ . . Q:$P(LRXSTR,U,9)'=LRORDTST
+ . . Q:LRX68TST=LRTSTS
+ . . I $P(LRXSTR,U,5)="" S LRXPEND=1 Q
+ . . ;This test contains a result.
+ . . I $P(LRXSTR,U,6)="" S LRXRESULT=1
+ ;If there are any pending tests left on the order, do not call LR7OB1
+ ;If no pending tests and any results, update to complete
+ ;If no pending tests and no results, update to discontinued.
+ S LRXSTATUS=$S(LRXPEND:0,LRXRESULT:1,1:2)
+ S ^TMP("LR",$J,"PANEL",ORIFN)=LRXSTATUS
+ Q LRXSTATUS
  ;
 ROL ;
  Q:+$G(^LRO(68,LRAA,1,LROWDT,1,LRAN,0))'=LRDFN  Q:'($D(^(4,LRTSTS,0))#2)

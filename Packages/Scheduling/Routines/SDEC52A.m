@@ -1,5 +1,5 @@
-SDEC52A ;ALB/SAT,PC - VISTA SCHEDULING RPCS ;Feb 12, 2020@15:22
- ;;5.3;Scheduling;**627,658,694**;Aug 13, 1993;Build 61
+SDEC52A ;ALB/SAT,PC,LAB - VISTA SCHEDULING RPCS ;Apr 10, 2020@15:22
+ ;;5.3;Scheduling;**627,658,694,745**;Aug 13, 1993;Build 40
  ;;Per VHA Directive 2004-038, this routine should not be modified
  ;
  ;  ICR
@@ -9,7 +9,8 @@ SDEC52A ;ALB/SAT,PC - VISTA SCHEDULING RPCS ;Feb 12, 2020@15:22
  Q
  ;
 RECSET(SDECY,INP) ; SET/EDIT an entry to the RECALL REMINDERS file 403.5
- ;RECSET(SDECY,INP...)  external parameter tag is in SDEC
+ ;SD*5.3*745 replace external 'INP...' due to XINDEX issue.  Parameters are then rolled into the INP array
+ ;RECSET(SDECY,S1,S2,S3,S4,S5,S6,S7,S8,S9,S10,S11,S12,S13,S14,S15) external parameter tag is in SDEC
  ;INPUT:
  ;  INP - Input array
  ;   INP(1) - (optional) IEN pointer to RECALL REMINDERS

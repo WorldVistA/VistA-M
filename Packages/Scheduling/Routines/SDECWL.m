@@ -1,5 +1,5 @@
-SDECWL ;ALB/SAT,WTC - VISTA SCHEDULING RPCS ;Feb 12, 2020@15:22
- ;;5.3;Scheduling;**627,642,665,672,694**;Aug 13, 1993;Build 61
+SDECWL ;ALB/SAT,WTC,LAB - VISTA SCHEDULING RPCS ;Apr 10, 2020@15:22
+ ;;5.3;Scheduling;**627,642,665,672,694,745**;Aug 13, 1993;Build 40
  ;
  Q
  ;
@@ -15,6 +15,8 @@ DEL(RET,INP)  ;not used
  Q
  ;
 WLCLOSE(RET,INP) ;Waitlist Close
+ ;SD*5.3*745 replace external 'INP...' due to XINDEX issue.  Parameters are then rolled into the INP array
+ ;WLCLOSE(RET,SD1,SD2,SD3,SD4) external parameter tag is in SDEC
  ; INP - Input parameters array
  ;     INP(1) - Waitlist ID - Pointer to SD WAIT LIST file
  ;     INP(2) - Disposition
@@ -25,8 +27,9 @@ WLCLOSE(RET,INP) ;Waitlist Close
  ;validate IEN
  S WLIEN=$G(INP(1)) I WLIEN="" S RET=RET_"-1^Missing IEN"_$C(30,31) Q
  ;validate DISPOSITION
+ ;*745 added Disposition of EA
  S WLDISP=$G(INP(2))
- I (WLDISP'="D"),(WLDISP'="NC"),(WLDISP'="SA"),(WLDISP'="CC"),(WLDISP'="NN"),(WLDISP'="ER"),(WLDISP'="TR"),(WLDISP'="CL") D
+ I (WLDISP'="EA"),(WLDISP'="D"),(WLDISP'="NC"),(WLDISP'="SA"),(WLDISP'="CC"),(WLDISP'="NN"),(WLDISP'="ER"),(WLDISP'="TR"),(WLDISP'="CL") D
  .S:WLDISP="DEATH" WLDISP="D"
  .S:WLDISP="REMOVED/NON-VA CARE" WLDISP="NC"
  .S:WLDISP="REMOVED/SCHEDULED-ASSIGNED" WLDISP="SA"
@@ -35,8 +38,9 @@ WLCLOSE(RET,INP) ;Waitlist Close
  .S:WLDISP="ENTERED IN ERROR" WLDISP="ER"
  .S:WLDISP="TRANSFERRED" WLDISP="TR"
  .S:WLDISP="CHANGED CLINIC" WLDISP="CL"
+ .S:WLDISP="REMOVED/EXTERNAL APP" WLDISP="EA" ;* 745
  I WLDISP="" S RET=RET_"-1^Missing value for DISPOSITION"_$C(30,31) Q
- I (WLDISP'="D"),(WLDISP'="NC"),(WLDISP'="SA"),(WLDISP'="CC"),(WLDISP'="NN"),(WLDISP'="ER"),(WLDISP'="TR"),(WLDISP'="CL") D
+ I (WLDISP'="EA"),(WLDISP'="D"),(WLDISP'="NC"),(WLDISP'="SA"),(WLDISP'="CC"),(WLDISP'="NN"),(WLDISP'="ER"),(WLDISP'="TR"),(WLDISP'="CL") D
  .S RET=RET_"-1^Invalid value for DISPOSITION"_$C(30,31) Q
  ;validate DISPOSITIONED BY
  S WLDISPBY=$G(INP(3),DUZ)

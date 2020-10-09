@@ -1,5 +1,5 @@
 ONCOPA1A ;Hines OIFO/GWB - PRINT COMPLETE ABSTRACT continued ;10/05/11
- ;;2.2;ONCOLOGY;**1,6,10**;Jul 31, 2013;Build 20
+ ;;2.2;ONCOLOGY;**1,6,10,12**;Jul 31, 2013;Build 8
  ;
  I (COC=10)!(COC=11)!(COC=12)!(COC=13)!(COC=14),$E(TOP,3,4)=34 D
  .W !,"     Blood in Sputum Per Pt: ",ONCAB(165.5,IEN,174.1)," ",ONCAB(165.5,IEN,174) D P Q:EX=U
@@ -40,40 +40,61 @@ ONCOPA1A ;Hines OIFO/GWB - PRINT COMPLETE ABSTRACT continued ;10/05/11
  .W !,"   Stage Group Clinical:  ",ONCAB(165.5,IEN,38),$P(ONCAB(165.5,IEN,241,"E"),"(",1),?67,"Stage Group Pathologic:  ",ONCAB(165.5,IEN,88),$P(ONCAB(165.5,IEN,242,"E"),"(",1) D P Q:EX=U
  I DATEDX>3171231 D
  .W !," Extent of Disease (EOD) Data",!," ----------------------------"
- .W !?1,"Primary Tumor: ",$P($G(^ONCO(165.5,D0,"EOD")),"^",1),?22,"Regional Nodes: ",$P($G(^ONCO(165.5,D0,"EOD")),"^",2),?44,"METS: ",$P($G(^ONCO(165.5,D0,"EOD")),"^",3),!
- .W !," Clinical Staging",?22,"TNM edition: ",$$TNMED^ONCOU55(D0),?41,"Pathologic Staging"
- .W !," ----------------" I $P($G(^ONCO(165.5,D0,0)),"^",16)>3171231 W ?22,"AJCC ID:    ",$P($G(^ONCO(165.5,D0,"AJCC8")),"^",1)
+ .W !?1,"Primary Tumor: ",$P($G(^ONCO(165.5,IEN,"EOD")),"^",1),?22,"Regional Nodes: ",$P($G(^ONCO(165.5,IEN,"EOD")),"^",2),?44,"METS: ",$P($G(^ONCO(165.5,IEN,"EOD")),"^",3),!
+ .W !," Clinical Staging",?22,"TNM edition: ",$$TNMED^ONCOU55(IEN),?41,"Pathologic Staging"
+ .W !," ----------------" I $P($G(^ONCO(165.5,IEN,0)),"^",16)>3171231 W ?22,"AJCC ID:    ",$P($G(^ONCO(165.5,IEN,"AJCC8")),"^",1)
  .W ?41,"------------------"
  .W !," TNM........: " S STGIND="C" D TNMDSP^ONCSGA8U W ?41,"TNM........: " S STGIND="P" D TNMDSP^ONCSGA8U
- .W !," Stage Group: ",$P($G(^ONCO(165.5,D0,"AJCC8")),"^",5),?41,"Stage Group: ",$P($G(^ONCO(165.5,D0,"AJCC8")),"^",9)
+ .W !," Stage Group: ",$P($G(^ONCO(165.5,IEN,"AJCC8")),"^",5),?41,"Stage Group: ",$P($G(^ONCO(165.5,IEN,"AJCC8")),"^",9)
  .W !?22,"Post-Therapy Staging",!?22,"--------------------"
  .W !?22,"TNM........: " S STGIND="T" D TNMDSP^ONCSGA8U
- .W !?22,"Stage Group: ",$P($G(^ONCO(165.5,D0,"AJCC8")),"^",13)
- W !,"   Staged By (Clin):  ",ONCAB(165.5,IEN,19),?67,"Staged By (Path):  ",ONCAB(165.5,IEN,89) D P Q:EX=U
+ .W !?22,"Stage Group: ",$P($G(^ONCO(165.5,IEN,"AJCC8")),"^",13)
+ I DATEDX<3180000 W !,"   Staged By (Clin):  ",ONCAB(165.5,IEN,19),?67,"Staged By (Path):  ",ONCAB(165.5,IEN,89) D P Q:EX=U
  W !,"   Lymph-Vascular Invasion (L):  ",ONCAB(165.5,IEN,149) D P Q:EX=U
  ;W !,"   Venous Invasion (V):  ",ONCAB(165.5,IEN,151) D P Q:EX=U
  W !,"   Other Staging System:  ",ONCAB(165.5,IEN,39) D P Q:EX=U
  W !,"   Physician's Stage:  ",ONCAB(165.5,IEN,65),?67,"Physician Staging:  ",ONCAB(165.5,IEN,66) D P Q:EX=U
  W !,"   TNM Form Assigned:  ",ONCAB(165.5,IEN,25,"E"),?67,"TNM Form Completed:  ",ONCAB(165.5,IEN,44,"E") D P Q:EX=U
- W !!,"   Performance Status at Dx: ",ONCAB(165.5,IEN,227,"E") D P Q:EX=U
+ W !!,"  Performance Status at Dx:  ",ONCAB(165.5,IEN,227,"E") D P Q:EX=U
  I $P($G(^ONCO(165.5,IEN,0)),U,16)<3160000 W !,"   Tumor Size:  ",ONCAB(165.5,IEN,29) D P Q:EX=U
  I $P($G(^ONCO(165.5,IEN,0)),U,16)>3151231 D
- .W !,"   Tumor Size Clin:  ",ONCAB(165.5,IEN,29.4) D P Q:EX=U
- .W !,"   Tumor Size Path:  ",ONCAB(165.5,IEN,29.5) D P Q:EX=U
- .W !,"   Tumor Size Summ:  ",ONCAB(165.5,IEN,29.3) D P Q:EX=U
+ .W !,"           Tumor Size Clin:  " D
+ ..I ($P($G(^ONCO(165.5,IEN,2.1)),"^",21)="000")!($P($G(^ONCO(165.5,IEN,2.1)),"^",21)>988) W $P($G(^ONCO(165.5,IEN,2.1)),"^",21),"-"
+ ..W ONCAB(165.5,IEN,29.4) D P Q:EX=U
+ .W !,"           Tumor Size Path:  " D
+ ..I ($P($G(^ONCO(165.5,IEN,2.1)),"^",22)="000")!($P($G(^ONCO(165.5,IEN,2.1)),"^",22)>988) W $P($G(^ONCO(165.5,IEN,2.1)),"^",21),"-"
+ ..W ONCAB(165.5,IEN,29.5) D P Q:EX=U
+ .W !,"           Tumor Size Summ:  " D
+ ..I ($P($G(^ONCO(165.5,IEN,2.1)),"^",20)="000")!($P($G(^ONCO(165.5,IEN,2.1)),"^",20)>988) W $P($G(^ONCO(165.5,IEN,2.1)),"^",21),"-"
+ ..W ONCAB(165.5,IEN,29.3) D P Q:EX=U
  .Q
  I $P($G(^ONCO(165.5,IEN,0)),U,16)<3180000 W !,"   Extension:   ",ONCAB(165.5,IEN,30) D P Q:EX=U
  I $P($G(^ONCO(165.5,IEN,0)),U,16)>2971231 D
  .S TPX=$P($G(^ONCO(165.5,IEN,2)),U,1) I TPX'=67619 Q
  .W !,"   Pathologic Extension:  ",ONCAB(165.5,IEN,30.1) D P Q:EX=U
- I $P($G(^ONCO(165.5,IEN,0)),U,16)<3180000 W !,"   Lymph Nodes: ",ONCAB(165.5,IEN,31),?67,"Metastasis 1:  ",ONCAB(165.5,IEN,34) D P Q:EX=U
- W !,"   Regional Nodes Examined:  ",$E(ONCAB(165.5,IEN,33),1,34),?67,"Metastasis 2:  ",ONCAB(165.5,IEN,34.1) D P Q:EX=U
- W !,"   Regional Nodes Positive:  ",$E(ONCAB(165.5,IEN,32),1,34),?67,"Metastasis 3:  ",ONCAB(165.5,IEN,34.2) D P Q:EX=U
- W !,"   General Summary Stage:  ",ONCAB(165.5,IEN,35) D P Q:EX=U
- W !,"   Peripheral Blood Involvement:  ",ONCAB(165.5,IEN,30.5) D P Q:EX=U
- W !,"   Associated With HIV:  ",ONCAB(165.5,IEN,41) D P Q:EX=U
+ I $P($G(^ONCO(165.5,IEN,0)),U,16)<3180000 W !,"   Lymph Nodes: ",ONCAB(165.5,IEN,31) I DATEDX<3160000 W ?67,"Metastasis 1:  ",ONCAB(165.5,IEN,34) D P Q:EX=U
+ W !,"   Regional Nodes Examined:  ",$E(ONCAB(165.5,IEN,33),1,34) W:DATEDX<3160000 ?67,"Metastasis 2:  ",ONCAB(165.5,IEN,34.1) D P Q:EX=U
+ W !,"   Regional Nodes Positive:  ",$E(ONCAB(165.5,IEN,32),1,34) W:DATEDX<3160000 ?67,"Metastasis 3:  ",ONCAB(165.5,IEN,34.2) D P Q:EX=U
+ W !,"     Date Regional LN Disx:  ",ONCAB(165.5,IEN,7013,"E") D P Q:EX=U
+ W !,"Date Regional LN Disx Flag:  ",ONCAB(165.5,IEN,7014,"E") D P Q:EX=U
+ I $P($G(^ONCO(165.5,IEN,0)),U,16)<3180000 W !,"   General Summary Stage:  ",ONCAB(165.5,IEN,35) D P Q:EX=U
+ I $P($G(^ONCO(165.5,IEN,0)),U,16)>3171231 W !,"        Summary Stage 2018:  ",ONCAB(165.5,IEN,1764) D P Q:EX=U
+ ;W !,"   Peripheral Blood Involvement:  ",ONCAB(165.5,IEN,30.5) D P Q:EX=U
+ ;W !,"   Associated With HIV:  ",ONCAB(165.5,IEN,41) D P Q:EX=U
+ I (DATEDX>3171231)&(($P($G(^ONCO(165.5,IEN,"SSD1")),U,1)="00480")!($$MELANOMA^ONCOU55(IEN))) D  D P Q:EX=U
+ .W !!,"      Date of Sentinel LN Biopsy:  ",ONCAB(165.5,IEN,7017,"E") D P Q:EX=U
+ .W !," Date of Sentinel LN Biopsy Flag:  ",ONCAB(165.5,IEN,7018,"E") D P Q:EX=U
+ .W !,"   Sentinel Lymph Nodes Examined:  ",ONCAB(165.5,IEN,7016,"E") D P Q:EX=U
+ .W !,"   Sentinel Lymph Nodes Positive:  ",ONCAB(165.5,IEN,7015,"E"),! D P Q:EX=U
+ I DATEDX>3151231 W !,"           Mets at DX-Bone: ",ONCAB(165.5,IEN,34.31) D P Q:EX=U
+ I DATEDX>3151231 W !,"          Mets at DX-Brain: ",ONCAB(165.5,IEN,34.32) D P Q:EX=U
+ I DATEDX>3151231 W !,"          Mets at DX-Liver: ",ONCAB(165.5,IEN,34.33) D P Q:EX=U
+ I DATEDX>3151231 W !,"           Mets at DX-Lung: ",ONCAB(165.5,IEN,34.34) D P Q:EX=U
+ I DATEDX>3151231 W !,"     Mets at DX-Distant LN: ",ONCAB(165.5,IEN,34.35) D P Q:EX=U
+ I DATEDX>3151231 W !,"          Mets at DX-Other: ",ONCAB(165.5,IEN,34.36) D P Q:EX=U
  ;
- I $P($G(^ONCO(165.5,IEN,0)),U,16)<3040000 G FCT
+ I $P($G(^ONCO(165.5,IEN,0)),U,16)>3171231 S NAME="SITE SPECIFIC DATA ITEMS" D FORMAT^ONCOPA1 W !!,TITLE D SSDI^ONCOPA4
+ I ($P($G(^ONCO(165.5,IEN,0)),U,16)<3040000)!($P($G(^ONCO(165.5,IEN,0)),U,16)>3171231) G FCT
  S NAME="COLLABORATIVE STAGING" D FORMAT^ONCOPA1
  W !!,TITLE
  I $L(ONCAB(165.5,IEN,32,"I"))=1 S ONCAB(165.5,IEN,32,"I")="0"_ONCAB(165.5,IEN,32,"I") D P Q:EX=U

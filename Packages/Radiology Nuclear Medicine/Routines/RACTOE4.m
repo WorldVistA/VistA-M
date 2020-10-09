@@ -1,3 +1,0 @@
-RACTOE4 ; ;01/03/19
- S X=DG(DQ),DIC=DIE
- S ^RAO(75.1,"AO",$E(X,1,30),DA)=""

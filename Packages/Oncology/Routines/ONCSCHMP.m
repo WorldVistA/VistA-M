@@ -1,5 +1,5 @@
 ONCSCHMP ;Hines OIFO/RTK - PROGNOSTIC STAGE GROUP CALCULATIONS ;01/09/19
- ;;2.2;ONCOLOGY;**10**;Jul 31, 2013;Build 20
+ ;;2.2;ONCOLOGY;**10,12**;Jul 31, 2013;Build 8
  ;
 STAGE ;AJCC 8TH EDITION AUTO CALCULATION OF STAGE GROUPS
  ;
@@ -28,8 +28,15 @@ STAGE ;AJCC 8TH EDITION AUTO CALCULATION OF STAGE GROUPS
  I ONCAJCHP<6 Q
  I (ONCAJCHP>77)&(ONCAJCHP'=81.1) Q
  S ONCHP=$P(ONCAJCHP,".",1)_$P(ONCAJCHP,".",2)
+ I ONCHP=181,$P($G(^ONCO(165.5,D0,"AJCC8")),U,1)="18.2" S ONCHP=182
  D @ONCHP
- I SG="" S SG=99 I STGIND="PT",$P($G(^ONCO(165.5,D0,"AJCC8")),U,9)'="" S SG=""
+ I SG="" D
+ .S SG=99
+ .I STGIND="P",$P($G(^ONCO(165.5,D0,"AJCC8")),U,13)'="" S SG=""
+ .I STGIND="PT",$P($G(^ONCO(165.5,D0,"AJCC8")),U,9)'="" S SG=""
+ I SG=88 D
+ .I STGIND="P",$P($G(^ONCO(165.5,D0,"AJCC8")),U,13)'="" S SG=""
+ .I STGIND="PT",$P($G(^ONCO(165.5,D0,"AJCC8")),U,9)'="" S SG=""
  I STGIND="C" I $P(^ONCO(165.5,D0,"AJCC8"),U,5)=SG Q
  I STGIND="P" I $P(^ONCO(165.5,D0,"AJCC8"),U,9)=SG Q
  I STGIND="PT" I $P(^ONCO(165.5,D0,"AJCC8"),U,13)=SG Q
@@ -73,7 +80,7 @@ STRPCPTN ;
 131 D 131^ONCSGA8A Q
 132 D 132^ONCSGA8A Q
 133 D 133^ONCSGA8A Q
-14 Q  ;no stage grouping
+14 S SG=88 Q  ;no stage grouping
 15 D 15^ONCSGA8A Q
 161 N G I STGIND="C" S G=$P($G(^ONCO(165.5,D0,2.3)),U,12)  ; Grade Clinical
  I STGIND="P" S G=$P($G(^ONCO(165.5,D0,2.3)),U,13)  ; Grade Pathologic
@@ -84,10 +91,10 @@ STRPCPTN ;
  I STGIND="P" S G=$P($G(^ONCO(165.5,D0,2.3)),U,13)  ; Grade Pathologic
  I STGIND="PT" S G=$P($G(^ONCO(165.5,D0,2.3)),U,14)  ; Grade Post-Therapy
  D 162^ONCSGA8A Q
-163 Q  ;no stage grouping
+163 S SG=88 Q  ;no stage grouping
 17 D 17^ONCSGA8A Q
 181 D 181^ONCSGA8A Q
-182 Q  ;no stage grouping
+182 S SG=88 Q  ;no stage grouping
 19 N G I STGIND="C" S G=$P($G(^ONCO(165.5,D0,2.3)),U,12)  ; Grade Clinical
  I STGIND="P" S G=$P($G(^ONCO(165.5,D0,2.3)),U,13)  ; Grade Pathologic
  I STGIND="PT" S G=$P($G(^ONCO(165.5,D0,2.3)),U,14)  ; Grade Post-Therapy
@@ -116,8 +123,8 @@ STRPCPTN ;
  I STGIND="P" S G=$P($G(^ONCO(165.5,D0,2.3)),U,13)  ; Grade Pathologic
  I STGIND="PT" S G=$P($G(^ONCO(165.5,D0,2.3)),U,14)  ; Grade Post-Therapy
  D 381^ONCSGA8B Q
-382 Q  ;no stage grouping
-383 Q  ;no stage grouping
+382 S SG=88 Q  ;no stage grouping
+383 S SG=88 Q  ;no stage grouping
 40 S SG=88 Q  ;no stage grouping
 41 N G I STGIND="C" S G=$P($G(^ONCO(165.5,D0,2.3)),U,12)  ; Grade Clinical
  I STGIND="P" S G=$P($G(^ONCO(165.5,D0,2.3)),U,13)  ; Grade Pathologic
@@ -167,6 +174,7 @@ STRPCPTN ;
 59 N SCAT
  I STGIND="C" S SCAT=$P($G(^ONCO(165.5,D0,"SSD4")),U,18)  ; S Category Clin
  I STGIND="P" S SCAT=$P($G(^ONCO(165.5,D0,"SSD4")),U,19)  ; S Category Path
+ I STGIND="PT" S SCAT=0  ; No post-therapy S Category field
  D 59^ONCSGA8B Q
 60 D 60^ONCSGA8C Q
 611 D 611^ONCSGA8C Q
@@ -178,19 +186,19 @@ STRPCPTN ;
 633 D 633^ONCSGA8C Q
 634 D 634^ONCSGA8C Q
 64 D 64^ONCSGA8C Q
-65 Q  ;no stage grouping
-66 Q  ;no stage grouping
-671 Q  ;no stage grouping
+65 S SG=88 Q  ;no stage grouping
+66 S SG=88 Q  ;no stage grouping
+671 S SG=88 Q  ;no stage grouping
 672 D 672^ONCSGA8C Q
 68 D 68^ONCSGA8C Q
-69 Q  ;no stage grouping
-70 Q  ;no stage grouping
-71 Q  ;no stage grouping
+69 S SG=88 Q  ;no stage grouping
+70 S SG=88 Q  ;no stage grouping
+71 S SG=88 Q  ;no stage grouping
 72 Q  ;no TNM codes or stage grouping
 731 D 731^ONCSGA8C Q
 732 D 732^ONCSGA8C Q
 74 D 74^ONCSGA8C Q
-75 Q  ;no stage grouping
+75 S SG=88 Q  ;no stage grouping
 76 D 76^ONCSGA8C Q
 77 D 77^ONCSGA8C Q
 811 N PBI18 S PBI18=$P($G(^ONCO(165.5,D0,"SSD4")),U,6)  ;Prph Bl Inv (3910)

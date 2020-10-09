@@ -1,5 +1,5 @@
 ONCOPA2A ;Hines OIFO/RTK [PA Print Complete Abstract (132c)]; 09/05/97
- ;;2.2;ONCOLOGY;**1,11**;Jul 31, 2013;Build 1
+ ;;2.2;ONCOLOGY;**1,11,12**;Jul 31, 2013;Build 8
  ; ONCO PRINT ABSTRACT CONTINUED
  W !!,"   Text-Remarks:  " F TX=0:0 S TX=$O(^ONCO(165.5,IEN,19,TX)) Q:TX'>0  W !?6,^ONCO(165.5,IEN,19,TX,0) D P Q:EX=U
  W !,"   Text Dx Proc-Phys.Exam:  " F TX=0:0 S TX=$O(^ONCO(165.5,IEN,10,TX)) Q:TX'>0  W !?6,^ONCO(165.5,IEN,10,TX,0) D P Q:EX=U
@@ -15,9 +15,15 @@ ONCOPA2A ;Hines OIFO/RTK [PA Print Complete Abstract (132c)]; 09/05/97
  W !!,TITLE
  W !!,"   Date of First Recurrence:  ",ONCAB(165.5,IEN,70)
  W ?50,"   Type of First Recurrence:  ",ONCAB(165.5,IEN,71) D P Q:EX=U
- W !,"   Distant Site 1:  ",ONCAB(165.5,IEN,71.1) D P Q:EX=U
- W !,"   Distant Site 2:  ",ONCAB(165.5,IEN,71.2) D P Q:EX=U
- W !,"   Distant Site 3:  ",ONCAB(165.5,IEN,71.3) D P Q:EX=U
+ I DATEDX<3160000 W !,"   Distant Site 1:  ",ONCAB(165.5,IEN,71.1) D P Q:EX=U
+ I DATEDX<3160000 W !,"   Distant Site 2:  ",ONCAB(165.5,IEN,71.2) D P Q:EX=U
+ I DATEDX<3160000 W !,"   Distant Site 3:  ",ONCAB(165.5,IEN,71.3) D P Q:EX=U
+ ;I DATEDX>3151231 W !,"      Mets at DX-Bone: ",ONCAB(165.5,IEN,34.31) D P Q:EX=U
+ ;I DATEDX>3151231 W !,"     Mets at DX-Brain: ",ONCAB(165.5,IEN,34.32) D P Q:EX=U
+ ;I DATEDX>3151231 W !,"     Mets at DX-Liver: ",ONCAB(165.5,IEN,34.33) D P Q:EX=U
+ ;I DATEDX>3151231 W !,"      Mets at DX-Lung: ",ONCAB(165.5,IEN,34.34) D P Q:EX=U
+ ;I DATEDX>3151231 W !,"Mets at DX-Distant LN: ",ONCAB(165.5,IEN,34.35) D P Q:EX=U
+ ;I DATEDX>3151231 W !,"     Mets at DX-Other: ",ONCAB(165.5,IEN,34.36) D P Q:EX=U
  F SR=0:0 S SR=$O(ONCAB(165.572,SR)) Q:SR'>0  D
  .W !!,"   Subsequent Recurrence Date:  ",ONCAB(165.572,SR,.01)
  .W ?50,"   Type of Subsequent Recurrence:  ",ONCAB(165.572,SR,.02) D P Q:EX=U

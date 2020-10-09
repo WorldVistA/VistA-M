@@ -1,9 +1,11 @@
-XUMVINPU ;MVI/DRI - Master Veteran Index New Person Utilities ;6/15/20  16:02
- ;;8.0;KERNEL;**691,711,710,732**;Jul 10, 1995;Build 3
+XUMVINPU ;MVI/DRI - Master Veteran Index New Person Utilities ;7/31/20  15:04
+ ;;8.0;KERNEL;**691,711,710,732,733**;Jul 10, 1995;Build 1
  ;Per VA Directive 6402, this routine should not be modified.
  ;
- ;**711, Story 977780 (jfw)
- ;**732,Story 1204309 (mko)
+ ;**711, Story  977780 (jfw)
+ ;**732, Story 1204309 (mko)
+ ;**733, Story 1291666 (dri)
+ ;
 GET(XURET,XUDUZ,SECID,NPI,SSN) ;rpc to retrieve new person file data
  ; called from rpc: XUS MVI NEW PERSON GET
  ; Input (ONE of the following):
@@ -35,10 +37,13 @@ GET(XURET,XUDUZ,SECID,NPI,SSN) ;rpc to retrieve new person file data
  ;    @XURET@(#)="200;31^CREATOR^^^"
  ;    @XURET@(#)="200;41.98^NPI ENTRY STATUS^^"
  ;    @XURET@(#)="200;41.99^NPI^^^"
+ ;    @XURET@(#)="200;9^SSN^^^"
  ;    @XURET@(#)="200;42;.01^EFFECTIVE DATE/TIME^<#>^^"
  ;    @XURET@(#)="200;42;.02^STATUS^<#>^^"
  ;    @XURET@(#)="200;42;.03^NPI^<#>^^"
- ;    @XURET@(#)="200;9^SSN^^^"
+ ;    @XURET@(#)="200;101.13;.01^CPRS TAB^<#>^^"
+ ;    @XURET@(#)="200;101.13;.02^EFFECTIVE DATE^<#>^^"
+ ;    @XURET@(#)="200;101.13;.03^EXPIRATION DATE^<#>^^"
  ;    @XURET@(#)="200;202^LAST SIGN-ON DATE/TIME^^^"
  ;    @XURET@(#)="200;202.02^XUS Logon Attempt Count^^^"
  ;    @XURET@(#)="200;202.03^XUS Active User^^^"
@@ -139,7 +144,7 @@ GET(XURET,XUDUZ,SECID,NPI,SSN) ;rpc to retrieve new person file data
  I $G(XUDUZ)="" S @XUGBL@(CNT)="-1^Invalid User" S XURET=$NA(@XUGBL) Q
  I '$D(^VA(FILE,XUDUZ)) S @XUGBL@(CNT)="-1^No Data for User: "_XUDUZ S XURET=$NA(@XUGBL) Q
  S @XUGBL@(CNT)=FILE_";IEN^DUZ^^"_XUDUZ_"^"_XUDUZ S CNT=CNT+1
- S FLDS=".01;4;5;8;7;9.2;9.4;15;11.2;.111;.112;.113;.114;.115;.116;.132;.136;.151;30;31;41.98;41.99;9;42*;202;202.02;202.03;"
+ S FLDS=".01;4;5;8;7;9.2;9.4;15;11.2;.111;.112;.113;.114;.115;.116;.132;.136;.151;30;31;41.98;41.99;9;42*;101.13*;202;202.02;202.03;"
  S FLDS=FLDS_"202.04;202.05;16*;10.1;29;201;203*;51*;205.1;205.2;205.3;205.4;205.5;501.1;8932.1*;53.1;53.11;53.2;"
  S FLDS=FLDS_"747.44;53.4;53.5;53.6;53.9;53.91;53.92;55.1;55.2;55.3;55.4;55.5;55.6"
  S:($$PATCH^XPDUTL("XU*8.0*688")) FLDS=FLDS_";9001;53.21*"  ;NEW DETOX CALCULATED and DEA #'S multiple | DBIA #10141 (Supported)
@@ -186,6 +191,15 @@ GET(XURET,XUDUZ,SECID,NPI,SSN) ;rpc to retrieve new person file data
  ...F I=1:1:DEAFLDCNT D
  ....S DEAFLD=$P(DEAFLDS,";",I) D FIELD^DID(DEAFILE,DEAFLD,"","LABEL","FLDNM")
  ....S @XUGBL@(CNT)=DEAFILE_";"_DEAFLD_"^"_(FLDNM("LABEL"))_"^"_MCNT_"^"_$G(DEAARR(DEAFILE,IEN_",",DEAFLD,"I"))_"^"_$G(DEAARR(DEAFILE,IEN_",",DEAFLD,"E")),CNT=CNT+1
+ ...S MCNT=MCNT+1
+ .I FLD=101.13 D  Q  ;CPRS TAB multiple ;**733 - STORY 1291666 (dri) add field 101.13
+ ..N IENS,MCNT,SUBFILE,SUBFLD S MCNT=1,SUBFILE=200.010113 I '$D(XUARR(SUBFILE)) D  Q  ;No CPRS TAB
+ ...F SUBFLD=.01,.03,.03  D
+ ....D FIELD^DID(SUBFILE,SUBFLD,"","LABEL","FLDNM") S @XUGBL@(CNT)=FILE_";"_FLD_";"_SUBFLD_"^"_(FLDNM("LABEL"))_"^"_MCNT_"^^",CNT=CNT+1
+ ..S IENS="" F  S IENS=$O(XUARR(SUBFILE,IENS)) Q:IENS=""  D
+ ...F SUBFLD=.01,.02,.03  D
+ ....D FIELD^DID(SUBFILE,SUBFLD,"","LABEL","FLDNM")
+ ....S @XUGBL@(CNT)=FILE_";"_FLD_";"_SUBFLD_"^"_(FLDNM("LABEL"))_"^"_MCNT_"^"_$G(XUARR(SUBFILE,IENS,SUBFLD,"I"))_"^"_$G(XUARR(SUBFILE,IENS,SUBFLD,"E")),CNT=CNT+1
  ...S MCNT=MCNT+1
  .I FLD=203 D  Q  ;secondary menu options multiple
  ..N IENS,MCNT,SUBFILE,SUBFLD S MCNT=1,SUBFILE=200.03,SUBFLD=.01 D FIELD^DID(SUBFILE,SUBFLD,"","LABEL","FLDNM")

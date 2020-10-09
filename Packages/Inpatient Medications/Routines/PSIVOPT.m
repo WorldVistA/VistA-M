@@ -1,8 +1,8 @@
-PSIVOPT ;BIR/PR,MLM - OPTION DRIVER ; 1/4/12 7:36am
- ;;5.0;INPATIENT MEDICATIONS;**17,27,58,88,104,110,155,181,271,252,346**;16 DEC 97;Build 10
+PSIVOPT ;BIR/PR,MLM - OPTION DRIVER ;Mar 04, 2019@16:30:34
+ ;;5.0;INPATIENT MEDICATIONS;**17,27,58,88,104,110,155,181,271,252,346,319**;16 DEC 97;Build 31
  ;
  ; Reference to ^PS(55 is supported by DBIA# 2191
- ; Reference to ^PSDRUG is supported by DBIA# 2192        
+ ; Reference to ^PSDRUG is supported by DBIA# 2192
  ; Reference to ^PS(52.6 is supported by DBIA# 1231
  ; Reference to ^PS(52.7 is supported by DBIA# 2173
  ;
@@ -21,7 +21,7 @@ UNLOCK ; Unlock order.
  I ON["V" L -^PS(55,DFN,"IV",+ON55)
  ;
 K ; Kill variables. *271
- K %,DA,DIE,DIK,DLAYGO,DNE,DR,DRG,DRGI,DRGT,ERR,HELP,J,OD,P,P16,PSIVAL,PSIVC,PSIVLOG,PSIVNOL,PSIVOK,PSIVOPT,PSIVREA,SCRNPRO,TEX,XED,ZZND
+ K %,DA,DIE,DIK,DLAYGO,DNE,DR,DRG,DRGI,DRGT,ERR,HELP,J,OD,P,P16,PSIVAL,PSIVC,PSIVLOG,PSIVNOL,PSIVOK,PSIVOPT,PSIVREA,SCRNPRO,TEX,XED,ZZND,PSJCLAPP
  Q
 ACT ; Prompt for order action.
  K PSJIVBD NEW PSGFDX,PSGSDX S (PSJORD,ON)=ON55
@@ -150,7 +150,7 @@ IVDUPADD(PSGP,ORDERNUM) ;
  ...;Loop through additives for the existing order
  ...I PSJCOM>0 Q:+$P($G(^PS(55,+PSGP,"IV",EXISTORD,.2)),"^",8)
  ...S EXISTADD=0
- ...F  S EXISTADD=$O(^PS(55,PSGP,"IV",EXISTORD,"AD",EXISTADD)) Q:((EXISTADD="")!(DUPFOUND))  D 
+ ...F  S EXISTADD=$O(^PS(55,PSGP,"IV",EXISTORD,"AD",EXISTADD)) Q:((EXISTADD="")!(DUPFOUND))  D
  ....;Extract the Additive Code number for the Order
  ....S MATCHADD=$P(^PS(55,PSGP,"IV",EXISTORD,"AD",EXISTADD,0),"^",1)
  ....;If the existing order and the order to be reinstated have the same additive code then return FOUND=TRUE

@@ -1,14 +1,14 @@
 XPDET ;SFISC/RSD - Input transforms & help for file 9.6 & 9.7 ;10/19/2002
- ;;8.0;KERNEL;**15,39,41,44,51,58,66,137,229,393,539,672**;Jul 10, 1995;Build 28
+ ;;8.0;KERNEL;**15,39,41,44,51,58,66,137,229,393,539,672,713**;Jul 10, 1995;Build 15
  ;Per VHA Directive 2004-038, this routine should not be modified.
  Q
 INPUTB(X) ;input transform for NAME in BUILD file
  ;X=user input
  ;name must be unique
  I $L(X)>50!($L(X)<3)!$D(^XPD(9.6,"B",X)) K X Q
- I X["*" K:$P(X,"*",2,3)'?1.2N1"."1.2N.1(1"V",1"T").2N1"*"1.6N X Q
+ I X["*" K:$P(X,"*",2,3)'?1.2N1"."1.2N.1(1"V",1"T").2N1"*"1.6N.1"b" X Q  ;p713
  S %=$L(X," ") I %<2 K X Q
- S %=$P(X," ",%) K:%'?1.2N1"."1.2N.1(1"V",1"T",1"B").2N X
+ S %=$P(X," ",%) K:%'?1.2N1"."1.2N.1(1"V",1"T",1"B").2N.1"b" X ;p172 add "b"
  Q
 INPUTE(X) ;input transform for ENTRIES in KERNEL FILES multiple
  ;X=user input

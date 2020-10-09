@@ -1,6 +1,6 @@
-XPDDP1 ;SFISC/RSD - Continue Display a package ;
- ;;8.0;KERNEL;**525**;Jul 10, 1995;Build 10
- ; Per VHA Directive 2004-038, this routine should not be modified.
+XPDDP1 ;SFISC/RSD - Continue Display a package ;06/24/2008
+ ;;8.0;KERNEL;**525,713**;Jul 10, 1995;Build 15
+ ;Per VHA Directive 2004-038, this routine should not be modified.
 PNT(XPDGR) ; Print a package, XPDGR=global root
  ;XPDFL=0 - Build   - ^XPD(9.7 global root
  ;      1 - Install - ^XTMP global root
@@ -24,13 +24,14 @@ PNT(XPDGR) ; Print a package, XPDGR=global root
 ID ; Identify the package
  S XPDPG=1,XPDFL=$S($E(XPDGR,1,5)="^TMP(":2,1:$E(XPDGR,1,5)="^XTMP"),$P(XPDUL,"-",IOM)="",XPDDT=$$HTE^XLFDT($H,"1PM"),XPDTYPE=+$P(XPD0,U,3),XPDTRACK=$P(XPD0,U,5)
  W:$E(IOST,1,2)="C-" @IOF D HDR W !,XPDUL
- W !,"TYPE: ",$$EXTERNAL^DILFD(9.6,2,"",XPDTYPE)
+ W !?12,"TYPE: ",$$EXTERNAL^DILFD(9.6,2,"",XPDTYPE)
  W ?51,"TRACK NATIONALLY: ",$$EXTERNAL^DILFD(9.6,5,"",XPDTRACK)
  W !,"NATIONAL PACKAGE: ",$P($G(^DIC(9.4,+$P(XPD0,U,2),0),$P(XPD0,U,2)),U)
  W ?49,"ALPHA/BETA TESTING: ",$S($P($G(@XPDGR@("ABPKG")),U)="y":"YES",1:"NO")
+ W !,"DATE DISTRIBUTED: ",$$FMTE^XLFDT($P(XPD0,U,4))
  Q
 DESCR ; Show patch description
- W !!,"DESCRIPTION:"
+ W !!?5,"DESCRIPTION:"
  S XPDI=0
  F  S XPDI=$O(@XPDGR@(1,XPDI)) Q:'XPDI  S XPDTXT=$G(^(XPDI,0)) D  Q:$D(DIRUT)
  . I $L(XPDTXT)'<IOM,$E(XPDTXT,$L(XPDTXT))=" " F  S XPDTXT=$E(XPDTXT,1,$L(XPDTXT)-1) Q:$E(XPDTXT,$L(XPDTXT))'=" "
@@ -50,6 +51,7 @@ PREPOST ; Environment check and pre/post routines
  W !,"POST-INIT ROUTINE: ",$G(@XPDGR@("INIT"))
  W ?43,"DELETE POST-INIT ROUTINE: " I $G(@XPDGR@("INIT"))]"" W $S($P($G(@XPDGR@("INID")),U,2)="y":"Yes",1:"No")
  I 'XPDTYPE Q:$$CHK(2)  W !,"PRE-TRANSPORT RTN: ",$G(@XPDGR@("PRET"))
+ I 'XPDTYPE Q:$$CHK(2)  W !,"  RESTORE ROUTINE: ",$G(@XPDGR@("REST")) ;p713
  Q
 FILES ; Show files/DDs
  Q:'$O(@XPDGR@(4,0))  ; Quit if no files

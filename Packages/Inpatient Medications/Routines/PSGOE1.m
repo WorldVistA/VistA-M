@@ -1,12 +1,12 @@
-PSGOE1 ;BIR/CML3-ACTION ON INPATIENT ORDERS ; 2/4/20 8:01am
- ;;5.0;INPATIENT MEDICATIONS;**7,19,26,39,58,85,80,110,127,133,134,315,366,385**;16 DEC 97;Build 3
+PSGOE1 ;BIR/CML3-ACTION ON INPATIENT ORDERS ;Jul 22, 2020@10:37:11
+ ;;5.0;INPATIENT MEDICATIONS;**7,19,26,39,58,85,80,110,127,133,134,315,366,385,319**;16 DEC 97;Build 31
  ;
  ;;Per VHA Directive 2004-038, this routine should not be modified.
  ; Reference to ^PS(55 is supported by DBIA #2191.
  ; Reference to ^PSDRUG( is supported by DBIA #2192.
  ; Reference to EN1^ORCFLAG is supported by DBIA #3620.
  ; Reference to AND^ORX8 is supported by DBIA #3632.
-EN ;       
+EN ;
  K PSGDFLG,PSGPFLG S PSGOEA="^",PSGACT="",(PSGDI,PSGOENG,PSGPI,PSGRRF)=0
  Q:'$G(DUZ)
  D @$S(PSGORD["P":"NON",1:"ACT")
@@ -90,11 +90,19 @@ NON ;
  I $P(XND,U,9)="P" S PSGACT=$S(+PSJSYSU=3:"BDEF",$G(PSJRNF):"BDEF",1:"") S:(+PSJSYSU=3)&($L($T(EN1^ORCFLAG))) PSGACT=PSGACT_"G" Q
  ;*366 - check provider credentials
  I '$D(PSGOETOF) S PSGPI=$P(XND,"^",2) I PSGPI S PSGPI='$$ACTPRO^PSGOE1(PSGPI)
- S PSGACT="DEI" I PSJSYSU,'PSGPI,$P(XND,"^",9)'="I" S PSGACT=PSGACT_"V"
+ S PSGACT="DEI" I PSJSYSU,'PSGPI,$P(XND,"^",9)'="I",$$FNP(+PSGORD) S PSGACT=PSGACT_"V"
  S XND2=$G(^PS(53.1,+PSGORD,.2)) I $P(XND2,"^",8),$P(XND,"^",9)="P" S PSGACT=$TR(PSGACT,"V")
  I +PSJSYSU=3,$L($T(EN1^ORCFLAG)) S PSGACT=PSGACT_"G"
  I $P($G(PSGRDTX),U,2)]"",'$P($G(^PS(53.1,+PSGORD,2.5)),"^",2) S $P(^PS(53.1,+PSGORD,2.5),U,2)=$P(PSGRDTX,U,2)
  Q
+ ;
+FNP(PSGDA) ;*319 - check if order finished by a pharmacist, when user is a nurse
+ N IEN,VAL,ND
+ S VAL=1
+ I (+PSJSYSU'=1)!($P($G(^PS(53.1,+PSGDA,0)),"^",9)'="N") Q VAL
+ S IEN=0 F  S IEN=$O(^PS(53.1,+PSGDA,"A",IEN)) Q:'IEN  S ND=$G(^(IEN,0)) I $P($G(^PS(53.3,+$P(ND,"^",3),0)),"^",2)="FP" S VAL=0 Q
+ Q VAL
+ ;
 ACTO ;
  S PSGACTO="" I $G(PSGACT)]"" F X=1:1:$L(PSGACT) S PSGACTO=PSGACTO_$S($E(PSGACT,X)="D":"DC",1:$E(PSGACT,X))_" "
  S:PSGACTO]"" PSGACTO=$E(PSGACTO,1,$L(PSGACTO)-1) Q

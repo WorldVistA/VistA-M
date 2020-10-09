@@ -1,11 +1,24 @@
 IBECEAU2 ;ALB/CPM - Cancel/Edit/Add... User Prompts ; 19-APR-93
- ;;2.0;INTEGRATED BILLING;**7,52,153,176,545,563,614,618,646,663,671,669,653**;21-MAR-94;Build 19
+ ;;2.0;INTEGRATED BILLING;**7,52,153,176,545,563,614,618,646,663,671,669,653,678**;21-MAR-94;Build 7
  ;;Per VA Directive 6402, this routine should not be modified.
  ;
 REAS(IBX) ; Ask for the cancellation reason.
  ; Input:   IBX  --  "C" (Cancel a charge), "E" (Edit a Charge)
+ N IBUC
+ ;
+ ;start IB*2.0*678
+ ;Check the Brief Description field of the copay being cancelled to see if it is an Urgent Care Copay 
+ S IBUC=""
+ S:$P(IBND,U,8)["URGENT" IBUC=1
+ ;end IB*2.0*678
+ ;
  S DIC="^IBE(350.3,",DIC(0)="AEMQZ",DIC("A")="Select "_$S(IBX="E":"EDIT",1:"CANCELLATION")_" REASON: "
- S DIC("S")=$S(IBXA=7:"I 1",IBXA=6:"I $P(^(0),U,3)=3",IBXA=5:"I ($P(^(0),U,3)=1)!($P(^(0),U,3)=3)",1:"I ($P(^(0),U,3)=2)!($P(^(0),U,3)=3)")
+ ;
+ ;IB*2.0*678 added an Inactive screen to most of the Copays.  Built a new Screen for the UC copays.
+ S:'IBUC DIC("S")=$S(IBXA=7:"I 1",IBXA=6:"I $P(^(0),U,3)=3",IBXA=5:"I ($P(^(0),U,3)=1)!($P(^(0),U,3)=3)",1:"I ($P(^(0),U,3)=2)!($P(^(0),U,3)=3)")_",(+($P(^(0),U,6))=0)"
+ S:IBUC DIC("S")="I ($P(^(0),U,4)=1),(+($P(^(0),U,6))=0)"
+ ;end IB*2.0*678
+ ;
  D ^DIC K DIC
  S IBCRES=+Y
  ;
@@ -30,7 +43,8 @@ FRA S:$G(DEF) DIR("B")=$$DAT2^IBOUTL(DEF)
  I IBXA=7 G FRQ
  I IBXA'=8,IBXA'=9,IBXA'=5,'IBUC,'$$BIL^DGMTUB(DFN,IBFR+.24) D CATC G FRA    ;IB*2.0*646 - added UC check.
  I IBXA>7,IBXA<10,$$LTCST^IBAECU(DFN,IBFR,1)<2 W !,"This patient is not LTC billable on this date.",! G FRA
- I IBXA=4,$$BFO^IBECEAU(DFN,IBFR) W !!,"This patient has already been billed the outpatient copay charge for ",$$DAT1^IBOUTL(IBFR),".",! G FRA
+ ;IB*2.0*678 Moved Dup check to IBECEA3 because of additional functionality for Dup checks.
+ ;I IBXA=4,$$BFO^IBECEAU(DFN,IBFR) W !!,"This patient has already been billed the outpatient copay charge for ",$$DAT1^IBOUTL(IBFR),".",! G FRA
 FRQ Q
  ;
 TO(DEF) ; Ask Bill To Date

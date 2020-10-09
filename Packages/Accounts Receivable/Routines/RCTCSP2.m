@@ -1,10 +1,11 @@
 RCTCSP2 ;ALBANY/BDB - CROSS-SERVICING TRANSMISSION ;03/15/14 3:34 PM
- ;;4.5;Accounts Receivable;**301,315,339,340,344,350**;Mar 20, 1995;Build 66
+ ;;4.5;Accounts Receivable;**301,315,339,340,344,350,369**;Mar 20, 1995;Build 15
  ;;Per VA Directive 6402, this routine should not be modified.
  ;
  ;PRCA*4.5*344 Added total record control (>50) to 5B transaction
  ;             handler to insure mail messages stay within a
  ;             record count of 50 transactions.
+ ;PRCA*4.5*369 Add proper text transaction for batch auto recall <$25
  ;
  Q
  ;
@@ -86,7 +87,7 @@ RCLLCHK(BILL) ;
  ..S $P(^PRCA(430,BILL,15),U,9)="O" ;set the stop date
  ..S $P(^PRCA(430,BILL,15),U,10)="AUTORECALL <$25" ;set the stop reason
  ..S B15=^PRCA(430,BILL,15)
- ..D REC1^RCTCSPD,RCLL^RCTCSPD4 ; set CS Bill Recall transaction PRCA*4.5*315
+ ..D REC1^RCTCSPD,CSAUTORC^RCTCSPD5 ; set CS Bill Auto Recall transaction PRCA*4.5*315/369
  ..K ^PRCA(430,"TCSP",BILL) ;set the bill to not sent to cross-servicing
  ..S $P(^PRCA(430,BILL,19),U,10)=1 ;stop interest admin calc
  ..S B19=$G(^PRCA(430,BILL,19))
@@ -250,8 +251,7 @@ REC3 ;
  N REC,KNUM,DEBTNR,DEBTORNB
  S REC="C3 "_ACTION_"3636001200"_"DM1D "
  S KNUM=$P($P(B0,U,1),"-",2)
- ;S DEBTNR=$E(SITE,1,3)_$$LJZF(KNUM,7)_$TR($J(BILL,20)," ",0),REC=REC_DEBTNR
- S DEBTNR=$$AGDEBTID^RCTCSPD,REC=REC_DEBTNR ; PRCA*4.5*350
+ S DEBTNR=$E(SITE,1,3)_$$LJZF(KNUM,7)_$TR($J(BILL,20)," ",0),REC=REC_DEBTNR
  S DEBTORNB=$E(SITE,1,3)_$TR($J(DEBTOR,12)," ",0)
  S REC=REC_DEBTORNB
  S REC=REC_$S(ACTION="L":"15",1:"  ")

@@ -1,6 +1,6 @@
-IVMCM3 ;ALB/SEK - ADD NEW DCD DEPENDENT TO PATIENT RELATION FILE ; 25-APR-95
- ;;2.0;INCOME VERIFICATION MATCH;**17,101**;21-OCT-94;Build 5
- ;;Per VHA Directive 10-93-142, this routine should not be modified.
+IVMCM3 ;ALB/SEK - ADD NEW DCD DEPENDENT TO PATIENT RELATION FILE ; Jun 24, 2020@16:57
+ ;;2.0;INCOME VERIFICATION MATCH;**17,101,195**;21-OCT-94;Build 1
+ ;Per VA Directive 6402, this routine should not be modified
  ;
 EN ; this routine will add entries for new dependents to PATIENT
  ; RELATION file-408.12 (including 408.1275) or will add new entries
@@ -40,7 +40,7 @@ EN ; this routine will add entries for new dependents to PATIENT
  N DGFIVM ;IVM*2*101
  S DGFIVM=$$SRCOFMT(DGMTI) ;IVM*2*101
  ;
- L +^DGPR(408.12,+DGPRI) S $P(^DGPR(408.12,DA(1),"E",DA,0),"^",2,4)=1_"^"_DGFIVM_$S(IVMTYPE=3:"",1:"^"_DGMTI) D IX1^DIK L -^DGPR(408.12,+DGPRI)
+ L +^DGPR(408.12,+DGPRI):$G(DILOCKTM,3) S $P(^DGPR(408.12,DA(1),"E",DA,0),"^",2,4)=1_"^"_DGFIVM_$S(IVMTYPE=3:"",1:"^"_DGMTI) D IX1^DIK L -^DGPR(408.12,+DGPRI)
  K IVMEFFDT,DA,DIC,DIK
  ;
  ; replace relationship in 408.12 with DCD relationship if different
@@ -80,7 +80,7 @@ NEWPR ;Add entry to file #408.12
  S DGFIVM=$$SRCOFMT(DGMTI)
  ;
  ;Create Patient Relation record : GTS - IVM*2*101 (DGFIVM replaces default of 1)
- L +^DGPR(408.12,+DGPRI) S ^DGPR(408.12,+DGPRI,0)=DGRP0ND,^DGPR(408.12,+DGPRI,"E",0)="^408.1275D^1^1",^(1,0)=IVMEFFDT_"^1^"_DGFIVM_$S(IVMTYPE=3:"",1:"^"_DGMTI) D IX1^DIK L -^DGPR(408.12,+DGPRI)
+ L +^DGPR(408.12,+DGPRI):$G(DILOCKTM,3) S ^DGPR(408.12,+DGPRI,0)=DGRP0ND,^DGPR(408.12,+DGPRI,"E",0)="^408.1275D^1^1",^(1,0)=IVMEFFDT_"^1^"_DGFIVM_$S(IVMTYPE=3:"",1:"^"_DGMTI) D IX1^DIK L -^DGPR(408.12,+DGPRI)
  K IVMEFFDT,DA,DIC,DIK
  ;
  ; to prevent the logic in IVMCM2 from matching a dependent sent from
@@ -103,7 +103,7 @@ NEWVET ; if no entry in file #408.12 for vet add
  ..D PROB^IVMCMC(IVMTEXT(6))
  ..D ERRBULL^IVMPREC7,MAIL^IVMUFNC("DGMT MT/CT UPLOAD ALERTS")
  ..S IVMFERR=""
- .L +^DGPR(408.12,+DGPRI) S ^DGPR(408.12,+DGPRI,0)=DGRP0ND,^DGPR(408.12,+DGPRI,"E",0)="^408.1275D^1^1",^(1,0)=DGRPDOB_"^1^1"_$S(IVMTYPE=3:"",1:"^"_DGMTI) D IX1^DIK L -^DGPR(408.12,+DGPRI)
+ .L +^DGPR(408.12,+DGPRI):$G(DILOCKTM,3) S ^DGPR(408.12,+DGPRI,0)=DGRP0ND,^DGPR(408.12,+DGPRI,"E",0)="^408.1275D^1^1",^(1,0)=DGRPDOB_"^1^1"_$S(IVMTYPE=3:"",1:"^"_DGMTI) D IX1^DIK L -^DGPR(408.12,+DGPRI)
  ;
  Q
  ;
@@ -111,12 +111,14 @@ SRCOFMT(DGMTI) ;Define value of FILED BY IVM field : GTS - IVM*2*101
  ;
  ; Input:   DGMTI - IEN for related Annual Means Test record (408.31)
  ; Output:  DGFIVM - Null when Source of Means Test is Other Facility or VAMC
- ;                 - 1 when source of Means Test is DCD or IVM
+ ;                 - 1 when source of Means Test is all Non VA Facility sources
  N DGFIVM
  S:(+$G(DGMTI)'>0) DGFIVM=""
  I +$G(DGMTI)>0 DO
  . N DGSOURCE
  . S DGSOURCE=$P($G(^DGMT(408.31,DGMTI,0)),"^",23)
- . I (DGSOURCE=1)!(DGSOURCE=4) S DGFIVM=""
- . I (DGSOURCE=2)!(DGSOURCE=3) S DGFIVM=1
+ . ;IVM*2.0*195 - Comment out original sets
+ . ;I (DGSOURCE=1)!(DGSOURCE=4) S DGFIVM=""
+ . ;I (DGSOURCE=2)!(DGSOURCE=3) S DGFIVM=1
+ . S DGFIVM=$S((DGSOURCE=1)!(DGSOURCE=4):"",1:1) ;IVM*2.0*195 - Set DGFIVM to null for VAMC or Other Facility, 1 for all other sources
  Q DGFIVM

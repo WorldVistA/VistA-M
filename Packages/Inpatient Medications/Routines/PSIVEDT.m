@@ -1,5 +1,5 @@
-PSIVEDT ;BIR/MLM - EDIT IV ORDER ;2/10/98 3:23 PM
- ;;5.0;INPATIENT MEDICATIONS;**4,110,127,133,134,181,252,281,366**;16 DEC 97;Build 7
+PSIVEDT ;BIR/MLM - EDIT IV ORDER ;Jan 08, 2019@15:45:40
+ ;;5.0;INPATIENT MEDICATIONS;**4,110,127,133,134,181,252,281,366,319**;16 DEC 97;Build 31
  ;
  ; Reference to ^PS(53.1 is supported by DBIA 2256.
  ; Reference to ^PS(52.7 is supported by DBIA 2173.
@@ -65,7 +65,7 @@ N1 ;
  I X["???",($E(P("OT"))="I"),(PSIVAC["C") D ORFLDS^PSIVEDT1 G 3
  I X="?",$G(OIZ) D MRSL G:X=U 3 G CNT
  D:$G(OIZ) CKMRSL K ^TMP(MRTFN,$J),OIZ,MRTFN
-CNT ; 
+CNT ;
  I X]"" K DIC S DIC=51.2,DIC(0)="EQMZX",DIC("S")="I $P(^(0),U,4)" D ^DIC K DIC I Y>0 S P("MR")=+Y_U_$P(Y(0),U,3) S:$E($G(PSJOCFG),1,2)="FN" PSJFNDS=1 Q  ;366
  S F1=53.1,F2=3 D ENHLP^PSIVORC1 W $C(7),!!,"A Med Route must be entered." G 3
  Q
@@ -162,6 +162,14 @@ DKILL ; Kill for drug edit.
  I X="???" D ORFLDS^PSIVEDT1 G 109
  D:X]"" CHK^DIE(53.1,109,"",X,.X) I $G(X)="^" W $C(7),!!,"Enter the dosage in which the Orderable Item entered should be dispensed.",! W "Answer must be 1-20 characters in length." G 109
  S P("DO")=X
+ Q
+ ;
+113 ; Clinic appointment. ;*p319
+ D 50^PSGOE82
+ Q
+ ;
+126 ; Clinic date. ;*p319
+ D 51^PSGOE82
  Q
  ;
 FF ; up-arrow to another field.

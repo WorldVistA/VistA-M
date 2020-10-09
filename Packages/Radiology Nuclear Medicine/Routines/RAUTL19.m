@@ -1,5 +1,9 @@
-RAUTL19 ;HISC/GJC-Utility Routine ;11/13/97  15:18
- ;;5.0;Radiology/Nuclear Medicine;**1,31**;Mar 16, 1998
+RAUTL19 ;HISC/GJC-Utility Routine ; Apr 28, 2020@14:47:46
+ ;;5.0;Radiology/Nuclear Medicine;**1,31,169**;Mar 16, 1998;Build 2
+ ;
+ ;IA          Type    File         Routine     Tag   
+ ;------------------------------------------------
+ ;1362        (C)                  ORB3        EN                   
  ;
 PRELIM(RAIMG) ; Called from '1^RAMAIN1'
  W !!?(IOM-$L(RAHDR)\2),RAHDR K %ZIS S %ZIS="MQ" W !
@@ -94,8 +98,10 @@ DEV(X) ; Lookup an entry in the Device (3.5) file.
  Q ""
 OENO(X) ; OE/RR notifications, called from: RAORR1, RAORD1 & RAO7RO
  ; Input: 'X' ->  ien of the Rad/Nuc Med Orders file (75.1)
- N I,RA751,RADFN,RADUZ,RALOC,RAMSG,RANOTY
+ ; Notification: #51 - STAT IMAGING REQUEST &  #52 - URGENT IMAGING REQUEST
+ N I,RA751,RADFN,RADUZ,RALOC,RAMSG,RANOTY,RAORIFN
  S RA751=$G(^RAO(75.1,X,0)),RADFN=+$P(RA751,"^"),RANOTY=$P(RA751,"^",6)
+ S RAORIFN=$P(RA751,"^",7) ;CPRS order IFN RA5P169
  S RANOTY=$S(RANOTY=1:51,RANOTY=2:52,1:"") Q:RANOTY=""
  S RALOC=$P(RA751,"^",20) Q:RALOC']""  ; no i-loc, no alert
  S I=0 F  S I=$O(^RA(79.1,RALOC,"REC","B",I)) Q:I'>0  D
@@ -104,7 +110,7 @@ OENO(X) ; OE/RR notifications, called from: RAORR1, RAORD1 & RAO7RO
  S:($D(RADUZ)\10)=0 RADUZ="" ; NOTE: if no rad/nuc med recipients, check
  ; oe/rr to see if they have any recipients for this particular alert
  S RAMSG="Imaging Request Urgency: "_$$XTERNAL^RAUTL5($P(RA751,"^",6),$P($G(^DD(75.1,6,0)),"^",2))
- D EN^ORB3(RANOTY,RADFN,X,.RADUZ,RAMSG)
+ D EN^ORB3(RANOTY,RADFN,RAORIFN,.RADUZ,RAMSG)
  Q
 VRADE ;VistaRad Category data entry
  I '$$IMAGE^RARIC1() W !!,"Current system is not running Vista Imaging -- nothing done.",! Q

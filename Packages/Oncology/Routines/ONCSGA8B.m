@@ -1,5 +1,5 @@
 ONCSGA8B ;Hines OIFO/RTK - AJCC 8th Ed Automatic Staging Tables ;01/15/19
- ;;2.2;ONCOLOGY;**10**;Jul 31, 2013;Build 20
+ ;;2.2;ONCOLOGY;**10,12**;Jul 31, 2013;Build 8
  ;
  ;
 30 ;NET
@@ -90,8 +90,8 @@ ONCSGA8B ;Hines OIFO/RTK - AJCC 8th Ed Automatic Staging Tables ;01/15/19
  I T="T3",N="N2",M="M0" S SG="3B" Q
  I T="T3",N="N3",M="M0" S SG="3C" Q
  I T="T4",N="N0",M="M0" S SG="3A" Q
- I T="T4",N="N1",M="M0" S SG="3B" Q
- I T="T4",N="N2",M="M0" S SG="3C" Q
+ I T="T4",N="N1",M="M0" S SG="3A" Q
+ I T="T4",N="N2",M="M0" S SG="3B" Q
  I T="T4",N="N3",M="M0" S SG="3C" Q
  I M="M1" S SG="4A" Q
  I M="M1a" S SG="4A" Q
@@ -111,9 +111,9 @@ ONCSGA8B ;Hines OIFO/RTK - AJCC 8th Ed Automatic Staging Tables ;01/15/19
  Q
 381 ;BONE
  S M=$E(M,2,5)
- I T="T1",N="N0",M="M0",((G=1)!(G="X")) S SG="1A" Q
- I T="T2",N="N0",M="M0",((G=1)!(G="X")) S SG="1B" Q
- I T="T3",N="N0",M="M0",((G=1)!(G="X")) S SG="1B" Q
+ I T="T1",N="N0",M="M0",((G=1)!(G=9)) S SG="1A" Q
+ I T="T2",N="N0",M="M0",((G=1)!(G=9)) S SG="1B" Q
+ I T="T3",N="N0",M="M0",((G=1)!(G=9)) S SG="1B" Q
  I T="T1",N="N0",M="M0",((G=2)!(G=3)) S SG="2A" Q
  I T="T2",N="N0",M="M0",((G=2)!(G=3)) S SG="2B" Q
  I T="T3",N="N0",M="M0",((G=2)!(G=3)) S SG=3 Q
@@ -123,8 +123,8 @@ ONCSGA8B ;Hines OIFO/RTK - AJCC 8th Ed Automatic Staging Tables ;01/15/19
  Q
 41 ;SOFT TISSUE
  S M=$E(M,2,5)
- I T="T1",N="N0",M="M0",((G=1)!(G="X")) S SG="1A" Q
- I ((T="T2")!(T="T3")!(T="T4")),N="N0",M="M0",((G=1)!(G="X")) S SG="1B" Q
+ I T="T1",N="N0",M="M0",((G=1)!(G=9)) S SG="1A" Q
+ I ((T="T2")!(T="T3")!(T="T4")),N="N0",M="M0",((G=1)!(G=9)) S SG="1B" Q
  I T="T1",N="N0",M="M0",((G=2)!(G=3)) S SG=2 Q
  I T="T2",N="N0",M="M0",((G=2)!(G=3)) S SG="3A" Q
  I ((T="T3")!(T="T4")),N="N0",M="M0",((G=2)!(G=3)) S SG="3B" Q
@@ -157,8 +157,8 @@ ONCSGA8B ;Hines OIFO/RTK - AJCC 8th Ed Automatic Staging Tables ;01/15/19
  Q
 44 ;SOFT TISSUE
  S M=$E(M,2,5)
- I T="T1",N="N0",M="M0",((G=1)!(G="X")) S SG="1A" Q
- I ((T="T2")!(T="T3")!(T="T4")),N="N0",M="M0",((G=1)!(G="X")) S SG="1B" Q
+ I T="T1",N="N0",M="M0",((G=1)!(G=9)) S SG="1A" Q
+ I ((T="T2")!(T="T3")!(T="T4")),N="N0",M="M0",((G=1)!(G=9)) S SG="1B" Q
  I T="T1",N="N0",M="M0",((G=2)!(G=3)) S SG=2 Q
  I T="T2",N="N0",M="M0",((G=2)!(G=3)) S SG="3A" Q
  I ((T="T3")!(T="T4")),N="N0",M="M0",((G=2)!(G=3)) S SG="3B" Q

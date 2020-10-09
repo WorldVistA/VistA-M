@@ -1,5 +1,5 @@
-PSIVORAL ;BIR/MLM-ACTIVITY LOGGER FOR PHARMACY EDITS ;16 DEC 97 / 1:40 PM 
- ;;5.0;INPATIENT MEDICATIONS;**58,135,267,279**;16 DEC 97;Build 150
+PSIVORAL ;BIR/MLM - ACTIVITY LOGGER FOR PHARMACY EDITS ;May 09, 2019@11:20:16
+ ;;5.0;INPATIENT MEDICATIONS;**58,135,267,279,319**;16 DEC 97;Build 31
  ;
  ; Reference to ^PS(52.7 is supported by DBIA 2173.
  ; Reference to ^PS(55 is supported by DBIA 2191.
@@ -21,6 +21,13 @@ INFUS ; Record changes to infusion rate.
 STOP ; Record changes to stop date.
  I $P(^PS(55,DFN,"IV",+ON55,0),U,3)'=P(3) S P("FC")="STOP DATE/TIME^",Y=$P(^(0),U,3) X ^DD("DD") S $P(P("FC"),U,3)=$P(Y,"@")_" "_$P(Y,"@",2),Y=P(3) X ^DD("DD") S $P(P("FC"),U,2)=$P(Y,"@")_" "_$P(Y,"@",2) D GTFC
  K DRGI,DRGN,TDRG,P("AGE"),P("FC")
+ ;
+CLNAPT ; Record changes to clinic and appointment date
+ N OLCLN
+ S OLCLN=$G(^PS(55,DFN,"IV",+ON55,"DSS"))
+ I $P(OLCLN,"^")'="",$P(OLCLN,"^")'=$G(P("CLIN")) S P("FC")="CLINIC^"_$P($G(^SC(+$P(OLCLN,"^"),0)),"^")_U_$P($G(^SC(+$G(P("CLIN")),0)),"^") D GTFC
+ I $P(OLCLN,"^",2)'="",$P(OLCLN,"^",2)'=$G(P("APPT")) S P("FC")="APPOINTMENT DATE/TIME^"_$P(OLCLN,"^",2)_U_$G(P("APPT")) D GTFC
+ K P("FC")
  Q
  ;
 SOL ; Record changes to Solutions.

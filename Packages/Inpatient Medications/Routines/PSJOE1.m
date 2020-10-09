@@ -1,13 +1,63 @@
-PSJOE1 ;BIR/CML3-UD OE FOR COMBINED OE ;12 June 2019 09:31:53
- ;;5.0;INPATIENT MEDICATIONS;**2,7,25,30,47,56,64,179,181,252,281,315,338,373,353,327**;16 DEC 97;Build 114
+PSJOE1 ;BIR/CML3 - UD OE FOR COMBINED OE ;Mar 10, 2020@17:11:08
+ ;;5.0;INPATIENT MEDICATIONS;**2,7,25,30,47,56,64,179,181,252,281,315,338,373,353,327,319**;16 DEC 97;Build 31
  ;Per VHA Directive 2004-038, this routine should not be modified.
  ; Reference to ^DICN via DBIA 10009
  ; Reference to ^VALM via DBIA 10118
  ; Reference to ^TMP("PSODAOC",$J) via DBIA 6071
+ ; Reference to ^SC via DBIA 10040
  ;
  ;*353 Haz Meds cleanup var
  ;
  S PC=0 G AD
+ ;
+CM ; Ask Clinic - Clinic Medication Order ;*p319
+ K DIRUT,PSJCLAPP,DIR,X,Y
+ D FULL^VALM1
+ W !
+ S DIR(0)="PO^44:EMZ",DIR("A")="Visit Location"
+ I $G(P("CLIN")) S DIR("B")=$P(^SC(+P("CLIN"),0),"^"),PSJCLAPP=P("CLIN")
+ S DIR("S")="I $P($G(^SC(Y,0)),U,3)=""C"",$$ACTLOC^PSJOE1(Y),$$IMOLOC^PSJOE1(Y,$G(PSGOP))>-1"
+ D ^DIR K DIR
+ I +Y<1 S PSJCM01=-1 Q
+ S PSJCLAPP=+Y
+ D SVST Q:$P(PSJCLAPP,"^",2)  Q:$G(PSGORQF)
+ ; Ask for Visit Date/Time ;*p319
+ K %DT
+ I $G(P("APPT")) S Y=P("APPT") D DD^%DT I Y'="" S %DT("B")=Y
+ S %DT("A")="Date/Time of Visit: ",%DT="RAE",%DT("B")=$S($G(%DT("B"))'="":%DT("B"),1:"NOW")
+ D ^%DT I Y<0!($D(DTOUT)) S PSJCM01=-1 Q
+ S $P(PSJCLAPP,"^",2)=+Y
+ K %DT
+ Q
+SVST ;get scheduled/new visits ;*p319
+ N PSJVST,XX,YY,C,DIR,X,Y,X1,X2,APTMIN,APTMAX,STDT,ENDT,PVST,VST
+ S APTMIN=$$GET1^DIQ(53.46,+PSJCLAPP,8,"I")
+ S APTMAX=$$GET1^DIQ(53.46,+PSJCLAPP,9,"I")
+ S X1=DT,X2=$S(APTMIN:-APTMIN,1:-90) D C^%DTC S STDT=X
+ S X1=DT,X2=$S(APTMAX:APTMAX,1:365) D C^%DTC S ENDT=X
+ D VST^ORWCV(.PSJVST,$G(PSGOP),STDT,ENDT,1)
+ Q:'$D(PSJVST)
+ S (XX,C)=0 F  S XX=$O(PSJVST(XX)) Q:'XX  S YY=PSJVST(XX) I $P($P(YY,"^"),";",3)=+PSJCLAPP D
+ .S C=C+1,PSJVIS(C)=$P(YY,"^",3)_"^"_$$FMTE^XLFDT($P(YY,"^",2))_"^"_$P(YY,"^",4)_"^"_$P(YY,"^",2)
+ Q:C<1
+ S C=C+1,PSJVIS(C)="New Visit"
+V1 W !!?4,"Scheduled Clinic Appointment (",$$FMTE^XLFDT(STDT)," thru ",$$FMTE^XLFDT(ENDT),")"
+ F I=1:1 S XX=$O(PSJVIS(XX)) Q:'XX  S YY=PSJVIS(XX) W !,I,".  ",$P(YY,"^"),?35,$$FMTE^XLFDT($P(YY,"^",2)),?55,$P(YY,"^",3)
+ K DIR S DIR(0)="N^1:"_C
+ S DIR("A")="Select Visit" D ^DIR
+ I $D(DIRUT) S PSGORQF=1,PSJCM01=-1 Q
+ Q:Y=C
+ S VST=Y
+ I $$FMDIFF^XLFDT($P(PSJVIS(Y),"^",4),DT,1)<0 S PVST=$$PVST() Q:PVST=-1  G:PVST V1
+ S $P(PSJCLAPP,"^",2)=$P(PSJVIS(VST),"^",4) W !,"Date/Time of Visit: ",$P(PSJVIS(VST),"^",2)
+ Q
+PVST() ;ask about past visit
+ N DIR
+ S DIR(0)="Y"
+ S DIR("A")="You currently have a past date selected for this visit. Do you want to select a current date"
+ D ^DIR
+ I $D(DIRUT) S PSGORQF=1,PSJCM01=-1 Q -1
+ Q Y
  ;
 EN ;
  S PC=0
@@ -18,12 +68,15 @@ AD ; Ask Drug
  K PSGDRG,PSGDRGN    ;*353
  N PSJNORD,PSGORQF,PSGSDX,PSGFDX,PSGNEFDO,PSGEDTOI,PSJOCFG,PSGDREQ S PSJOCFG="NEW UD" S PSJNORD=1 I $D(VALM("TM")) S IOTM=VALM("TM"),IOBM=IOSL W IOSC,@IOSTBM,IORC
  K PSGORQF
+ I $D(PSJCMO)!$D(PSJCM01),$G(PSJCMF) D CM I $G(PSJCM01)=-1 G DONE ;*p319
  D ^PSGOE7
+ I +$G(PSJCLAPP) S PSJCMF=1 ;p319 Clinic Order - Flag to display
  I $G(PSGORQF) S PSJORQF=1 G DONE
  S PC=1,PSJORQF=0 I X?1"S."1.E D ^PSGOES G AD
  D ^PSGOE4:'$P(PSJSYSP0,"^",12),^PSGOE3:$P(PSJSYSP0,"^",12)
  G:$G(PSGOROE1)=1 AD
  K PSGEFN,PSGOEEF,PSGOEE,PSGOEOS S PSGEFN="1:13" F X=1:1:13 S PSGEFN(X)=""
+ I $G(PSJCMO)!$G(PSJCM01) S PSGEFN="1:16" F X=15,16 S PSGEFN(X)="" ;p319
  S PSGPDN=$$OINAME^PSJLMUTL(PSGPDRG),PSGPD=PSGPDRG,PSGOINST="",PSGSDN=$$ENDD^PSGMI(PSGNESD)_U_$$ENDTC^PSGMI(PSGNESD),PSGFDN=$$ENDD^PSGMI(PSGNEFD)_U_$$ENDTC^PSGMI(PSGNEFD)
  S:$D(PSJOCFG) PSGSDN=$$ENDD^PSGMI(PSGNESD)_U_$$ENDTC2^PSGMI(PSGNESD),PSGFDN=$$ENDD^PSGMI(PSGNEFD)_U_$$ENDTC2^PSGMI(PSGNEFD) ;#373
  S PSGAT=PSGS0Y,PSGLIN=$$ENDD^PSGMI(PSGDT)_U_$$ENDTC^PSGMI(PSGDT),PSGLI=PSGDT,PSGEBN=$$ENNPN^PSGMI(DUZ),PSGSTAT=$S(PSGOEAV:"ACTIVE",1:"NON-VERIFIED")
@@ -36,9 +89,9 @@ AD ; Ask Drug
  ;If intervention is not log then quit
  I $G(PSGORQF)=1 S PSJACEPT=0
  S PSJNOO=-1 I $G(PSJACEPT)=1 S PSJNOO=$$ENNOO^PSJUTL5("N")
- I $G(PSJNOO)<0 D 
+ I $G(PSJNOO)<0 D
  . I $$ISCLOZ^PSJCLOZ(,PSGPD) K ^XTMP("PSJ4D-"_$G(DFN)) ;p327
- I $G(PSJNOO)<0 K PSJACEPT W !,"No order created." G AD
+ I $G(PSJNOO)<0 K PSJACEPT,PSJCLAPP W !,"No order created." G AD
  K PSGOEE D ^PSGOETO S PSJORD=PSGORD
  S ^TMP("PSODAOC",$J,"IP IEN")=PSGORD
  I $G(PSODAND) S ^TMP("PSJCOM",$J,+PSGORD,"SAND")=PSODAND
@@ -114,3 +167,20 @@ FTD ;
 TAM ; Try Again Message
  W !!,"  Enter a 'Y' to try again to find the drug ordered from the Formulary.  (The",!,"order cannot become active until a Formulary drug has been entered.)  Enter 'N'",!,"to enter the drug ordered as free text for later reference."
  W "  Enter '^' to exit.",! Q
+ACTLOC(LOC) ; Function: returns TRUE if active hospital location; p319
+ ; IA# 10040.
+ N D0,X I +$G(^SC(LOC,"OOS")) Q 0                ; screen out OOS entry
+ S D0=+$G(^SC(LOC,42)) I D0 D WIN^DGPMDDCF Q 'X  ; chk out of svc wards
+ S X=$G(^SC(LOC,"I")) I +X=0 Q 1                 ; no inactivate date
+ I DT>$P(X,U)&($P(X,U,2)=""!(DT<$P(X,U,2))) Q 0  ; chk reactivate date
+ Q 1                                             ; must still be active
+ ;
+IMOLOC(LOC,PSGOP) ; Is it an IMO location; p319
+ N PSJY
+ I $G(LOC)=""!('+$G(PSGOP)) Q -1
+ S PSJY=$$SDIMO^SDAMA203(LOC,PSGOP)
+ I PSJY=-3 D
+ .I $P($G(^SC(LOC,0)),U,3)'="C" Q
+ .I $D(^SC("AE",1,LOC))=1 S PSJY=1
+ .K SDIMO(1)
+ Q PSJY

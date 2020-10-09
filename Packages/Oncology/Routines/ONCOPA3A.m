@@ -1,5 +1,5 @@
 ONCOPA3A ;Hines OIFO/RTK - [PA Print Complete Abstract (132c) ;03/11/11
- ;;2.2;ONCOLOGY;**1**;Jul 31, 2013;Build 8
+ ;;2.2;ONCOLOGY;**1,12**;Jul 31, 2013;Build 8
  ;[PA Print Complete Abstract (132c)] continued
  S NAME="FOLLOW-UP HISTORY" D FORMAT^ONCOPA1
  W !!,TITLE,!
@@ -39,9 +39,12 @@ FH ; Do the Follow-Up History display (#160,#400 multiple "F" node)
  ..I DXDT=""!(DXDT>FHDT) Q
  ..S ST=$P(PRZN,U,1),TOP=$P($G(^ONCO(165.5,OTHPRI,2)),U,1)
  ..S SITE=$S(TOP'="":$P($G(^ONCO(164,TOP,0)),U,1),1:$P($G(^ONCO(164.2,ST,0)),U,1))
- ..S TSTAT="",TSIEN=$O(^ONCO(165.5,OTHPRI,"TS","B",FHDT,""))
- ..I TSIEN'="" S TSTAT=$P($G(^ONCO(165.5,OTHPRI,"TS",TSIEN,0)),U,2)
- ..W !?3,SITE,":  " I TSTAT'="" W $P($G(^ONCO(164.42,TSTAT,0)),U,1) D P Q:EX=U
+ ..S TSTAT="",TSDLC="",TSDLCFG="",TSIEN=$O(^ONCO(165.5,OTHPRI,"TS","B",FHDT,""))
+ ..I TSIEN'="" S TSTAT=$P($G(^ONCO(165.5,OTHPRI,"TS",TSIEN,0)),U,2),TSDLC=$P($G(^ONCO(165.5,OTHPRI,"TS",TSIEN,0)),U,3),TSDLCFG=$P($G(^ONCO(165.5,OTHPRI,"TS",TSIEN,0)),U,4)
+ ..W !?3,SITE,":  " I TSTAT'="" W $P($G(^ONCO(164.42,TSTAT,0)),U,1) D P Q:EX=U  D
+ ...W !?3,"Date of Last Cancer Status     : " I $G(TSDLC)'="" W $E(TSDLC,4,5)_"/"_$E(TSDLC,6,7)_"/"_($E(TSDLC,1,3)+1700)
+ ...W !?3,"Date of Last Cancer Status Flag: ",$G(TSDLCFG)
+ ...Q
  ..Q
  .W !!,"   Last Contact:  " S Y=FHDT D DD^%DT W Y
  .W ?70,"  Follow-up Method:  " S FM=$P(FHZN,U,4)

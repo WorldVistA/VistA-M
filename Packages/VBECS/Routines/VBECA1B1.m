@@ -1,5 +1,5 @@
 VBECA1B1 ;HIOFO/BNT - VBECS Patient Data API continued ;04/12/2005 03:10
- ;;2.0;VBECS;;Jun 05, 2015;Build 4
+ ;;2.0;VBECS;**8**;Jun 05, 2015;Build 27
  ;
  ; Note: This routine supports data exchange with an FDA registered
  ; medical device. As such, it may not be changed in any way without
@@ -29,16 +29,25 @@ TRSTELE(ELE,ATR) ; -- element start event handler for Patient Transfusion Reacti
   . I $G(ATR("unitId"))]"" S @VBECRES@(VBECLN)=@VBECRES@(VBECLN)_"^"_$G(ATR("unitId"))_"^"_$G(ATR("productTypeName"))_"^"_$G(ATR("productTypePrintName"))
  Q
  ;
-BLDCMT(STR) ; Build comment text paragraph
+BLDCMT(STR) ; Build comment text paragraph for Antibodies Identified
  N CNT
 P1 I $L(STR)<80 S CNT=$G(CNT)+1,@VBECRES@(VBECLN,CNT)=STR Q
  F L=80:-1:1 Q:$E(STR,L)=" "
  S CNT=$G(CNT)+1,@VBECRES@(VBECLN,CNT)=$E(STR,1,L-1),STR=$E(STR,L+1,99999) G P1
+ Q
+BLDCMTTR(STR) ; Build comment text paragraph for Transfusion Requirements RLM 011620
+ N CNT
+P1T I $L(STR)<80 S CNT=$G(CNT)+1,@VBECRES@("TR",VBECLNTR,CNT)=STR Q
+ F L=80:-1:1 Q:$E(STR,L)=" "
+ S CNT=$G(CNT)+1,@VBECRES@("TR",VBECLNTR,CNT)=$E(STR,1,L-1),STR=$E(STR,L+1,99999) G P1T
  ;
 ABSTELE(ELE,ATR) ; -- element start event handler Patient Antibodies Identified API
  I ELE="Antibody" D
   . S VBECLN=VBECLN+1,@VBECRES@(VBECLN)=$G(ATR("name"))
   . D:$L($G(ATR("comment"))) BLDCMT(ATR("comment"))
+ I ELE="TransfusionRequirement" D  ;RLM 011620
+  . S VBECLNTR=$G(VBECLNTR)+1,@VBECRES@("TR",VBECLNTR)=$G(ATR("name"))
+  . D:$L($G(ATR("comment"))) BLDCMTTR(ATR("comment"))
  Q
  ;
 AVUSTELE(ELE,ATR) ; -- element start event handler Patient Available Units API
@@ -52,9 +61,9 @@ AVUSTELE(ELE,ATR) ; -- element start event handler Patient Available Units API
   . ; Added $$STRIP to support 035 VistA MR 030407
   . I $G(ATR("divisionCode")) D F4^XUAF4($$STRIP^XLFSTR(ATR("divisionCode")," "),.DIVARR,"","")
   . S UDIV=$S($G(DIVARR("NAME"))]"":$G(DIVARR("NAME")),1:"Unknown")
-  . F  Q:'$D(@VBECRES@("UNIT",$J,IDT))  S IDT=IDT+.0001
+  . F  Q:'$D(@VBECRES@("UNIT",$J,IDT))  S IDT=IDT+.000001 ;RLM use 6 decimals instead of 4
   . S @VBECRES@("UNIT",$J,IDT)=EFLG_U_EDT_" "_U_$$TRIM^XLFSTR($G(ATR("id")),"LR"," ")_U_$G(ATR("product"))_U_$G(ATR("volume"))_U_$G(ATR("abo"))_U_$G(ATR("rh"))_U_DTYP_U_UDIV_U
-  . S @VBECRES@("UNIT",$J,IDT)=@VBECRES@("UNIT",$J,IDT)_$S($G(ATR("location"))]"":ATR("location"),1:"BLOOD BANK")_U_$G(ATR("productCode"))_U_$G(ATR("labelid"))
+  . S @VBECRES@("UNIT",$J,IDT)=@VBECRES@("UNIT",$J,IDT)_$S($G(ATR("location"))]"":ATR("location"),1:"BLOOD BANK")_U_$G(ATR("productCode"))_U_$G(ATR("labelid"))_U_$G(ATR("productName"))_U_$G(ATR("issueDate"))
   . ;RLM Added the labelid
  Q
  ;
@@ -66,19 +75,19 @@ TRANSTEL(ELE,ATR) ; -- element start event handler for Transfusion History API
   . S TDT=9999999-IDT
   . S UNITS=+$G(ATR("unitsPooled")) S:UNITS'>0 UNITS=1
   . ; 038 VistA MR 031407 - Increment date counter for multiple records
-  . F  Q:'$D(@VBECRES@("TRAN",IDT))  S IDT=IDT+.0001
-  . S @VBECRES@("TRAN",IDT)=TDT_"^"_UNITS_"\"_$G(ATR("productTypePrintName"))_";"
+  . F  Q:'$D(@VBECRES@("TRAN",IDT))  S IDT=IDT+.000001 ;RLM 6 decimal instead of 4
+  . S @VBECRES@("TRAN",IDT)=TDT_"^"_UNITS_"\"_$G(ATR("productTypePrintName"))_";"_"^"_$G(ATR("abo"))_"^"_$G(ATR("rh"))_"^"_$G(ATR("productCode"))_"^"_$G(ATR("unitid"))_"^"_$G(ATR("productName"))
   . S @VBECRES@("TRAN",$G(ATR("productTypePrintName")))=$G(ATR("productTypeName"))
  Q
  ;
 RPTSTELE(ELE,ATR) ; -- element start event handler
  I ELE="SpecimenTest" D
  . S VBECSTC=VBECSTC+1 D
- . . I ATR("printTestName")="DAT Poly CC" Q
- . . I ATR("printTestName")="DAT IgG CC" Q
- . . I $G(ATR("orderableTestName"))="TRW" Q
+ . . ;I ATR("printTestName")="DAT Poly CC" Q  ;Removed per defect 434646
+ . . ;I ATR("printTestName")="DAT IgG CC" Q  ;Removed per defect 434646
+ . . ;I $G(ATR("orderableTestName"))="TRW" Q  ;Removed per defect 434646
  . . S @VBECRES@("SPECIMEN",VBECSTC)=$G(ATR("cprsOrderId"))_"^"_$G(ATR("divisionCode"))_"^"_$G(ATR("enteringTechId"))_"^"_$G(ATR("orderableTestName"))_"^"_$G(ATR("printTestName"))_"^"_$G(ATR("requestorId"))
- . . S @VBECRES@("SPECIMEN",VBECSTC)=@VBECRES@("SPECIMEN",VBECSTC)_"^"_$G(ATR("result"))_"^"_$G(ATR("testDate"))
+ . . S @VBECRES@("SPECIMEN",VBECSTC)=@VBECRES@("SPECIMEN",VBECSTC)_"^"_$G(ATR("result"))_"^"_$G(ATR("testDate"))_"^"_$G(ATR("specimenuid"))_"^"_$G(ATR("specimencollectiondate"))
  . . I $G(ATR("comment"))]"" D
  . . . S @VBECRES@("SPECIMEN",VBECSTC,1)=$E($G(ATR("comment")),1,245)
  . . . S @VBECRES@("SPECIMEN",VBECSTC,2)=$E($G(ATR("comment")),246,490)
@@ -89,6 +98,10 @@ RPTSTELE(ELE,ATR) ; -- element start event handler
  . . . S @VBECRES@("SPECIMEN",VBECSTC,4)=$E($G(ATR("cannedComment")),1,245)
  . . . S @VBECRES@("SPECIMEN",VBECSTC,5)=$E($G(ATR("cannedComment")),246,490)
  . . . S @VBECRES@("SPECIMEN",VBECSTC,6)=$E($G(ATR("cannedComment")),491,999)
+ . . D  ;I $G(ATR("result"))="Neg" D
+ . . . S VBECSTN("Antibody Screen Interp")="",VBECSTN("DAT Poly Interp")="",VBECSTN("DAT IgG Interp")="",VBECSTN("DAT Comp Interp")=""
+ . . . I $G(ATR("printTestName"))]"",'$D(VBECSTN(ATR("printTestName"))) Q
+ . . . S @VBECRES@("SPECIMEN",VBECSTC,7)="Reference range for antibody screen and DAT is Neg"
  I ELE="ComponentRequest" D
  . S VBECCRC=VBECCRC+1 D
  . . S @VBECRES@("COMPONENT REQUEST",VBECCRC)=$G(ATR("componentClassName"))_"^"_ATR("unitsRequested")_"^"_$G(ATR("dateRequested"))_"^"_$G(ATR("dateWanted"))_"^"_$G(ATR("requestorId"))_"^"_$G(ATR("enteredById"))_"^"_$G(ATR("cprsOrderId"))

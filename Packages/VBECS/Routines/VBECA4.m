@@ -1,5 +1,5 @@
 VBECA4 ;HINES OI/REL-APIs for Health Summary ;10/12/00  14:02
- ;;2.0;VBEC;;Jun 05, 2015;Build 4
+ ;;2.0;VBEC;**8**;Jun 05, 2015;Build 27
  ;
  ; Note: This routine supports data exchange with an FDA registered
  ; medical device. As such, it may not be changed in any way without
@@ -35,7 +35,6 @@ TRAN(DFN,TMPLOC,GMTS1,GMTS2) ; Get Transfusion Data for Health Summary
  S IDT=GMTS1-1 F  S IDT=$O(ARR(IDT)) Q:+IDT'>0!(IDT>GMTS2)  D
  . S ^TMP(TMPLOC,$J,IDT)=ARR(IDT)
  . S ^TMP(TMPLOC,$J,$P($P(ARR(IDT),"\",2),";"))=ARR($P($P(ARR(IDT),"\",2),";"))
- M ^TMP("ZBNT",$J)=^TMP(TMPLOC,$J)
  Q
  ;
  S LRDFN=$$LRDFN^LR7OR1(DFN) Q:'LRDFN

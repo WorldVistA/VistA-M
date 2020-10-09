@@ -1,5 +1,5 @@
 VADPT4 ;ALB/MRL,MJK,ERC,DIC,PWC - PATIENT VARIABLES ;12 DEC 1988 ;10/13/10 4:43pm
- ;;5.3;Registration;**343,342,528,689,688,790,797,935,952**;Aug 13, 1993;Build 160
+ ;;5.3;Registration;**343,342,528,689,688,790,797,935,952,1007**;Aug 13, 1993;Build 3
 7 ;Eligibility [ELIG]
  F I=.15,.3,.31,.32,.36,.361,"INE","TYPE","VET" S VAX(I)=$S($D(^DPT(DFN,I)):^(I),1:"")
  S VAZ=$P(VAX(.36),"^",1) S:$D(^DIC(8,+VAZ,0)) VAZ=VAZ_"^"_$P(^(0),"^",1) S @VAV@($P(VAS,"^",1))=VAZ
@@ -78,11 +78,17 @@ VADPT4 ;ALB/MRL,MJK,ERC,DIC,PWC - PATIENT VARIABLES ;12 DEC 1988 ;10/13/10 4:43p
  . E  S @VAV@($P(VAS,U,VAX(3)),VAI)=$G(VAARR(VAFILE,VAIENS,VAFLDS(VAI),"I"))_"^"_$G(VAARR(VAFILE,VAIENS,VAFLDS(VAI),"E"))
  Q
 94 ;more military service
- N VAARR,VAIENS,VAFLDS
- S VAIENS=DFN_",",VAFLDS=".3291"_VAX(1)
- D GETS^DIQ(2,VAIENS,VAFLDS,"IEN","VAARR")
- I $G(VAARR(2,VAIENS,VAFLDS,"I"))'="" D
- . S @VAV@($P(VAS,"^",VAX(3)),VAX(4))=$G(VAARR(2,VAIENS,VAFLDS,"I"))_"^"_$G(VAARR(2,VAIENS,VAFLDS,"E"))
+ N VASVCI,VASVCE
+ ;DG*5.3*1007 No longer using Fileman lookup to get Military Service Component 
+ ;S VAIENS=DFN_",",VAFLDS=".3291"_VAX(1)
+ ;D GETS^DIQ(2,VAIENS,VAFLDS,"IEN","VAARR")
+ ;I $G(VAARR(2,VAIENS,VAFLDS,"I"))'="" D
+ ;. S @VAV@($P(VAS,"^",VAX(3)),VAX(4))=$G(VAARR(2,VAIENS,VAFLDS,"I"))_"^"_$G(VAARR(2,VAIENS,VAFLDS,"E"))
+ ;DG*5.3*1007 Using Military Service Component data extracted from the .3291 field or .3216 sub-file
+ I $G(VAX(.3291))'="" D
+ . S VASVCI=$S(VAX(3)=6:$P(VAX(.3291),"^",1),VAX(3)=7:$P(VAX(.3291),"^",2),VAX(3)=8:$P(VAX(.3291),"^",3),1:0)
+ . S VASVCE=$S(VASVCI="R":"REGULAR",VASVCI="V":"ACTIVATED RESERVE",VASVCI="G":"ACTIVATED NG",1:0)
+ . S @VAV@($P(VAS,"^",VAX(3)),VAX(4))=VASVCI_"^"_VASVCE
  Q
  ;
 95 ;OEF/OIF

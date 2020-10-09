@@ -1,7 +1,8 @@
 PSOORFI2 ;BIR/BHW-finish cprs orders cont. ;07/29/96
- ;;7.0;OUTPATIENT PHARMACY;**7,15,23,27,46,130,146,177,222,225,338,313,408**;DEC 1997;Build 100
+ ;;7.0;OUTPATIENT PHARMACY;**7,15,23,27,46,130,146,177,222,225,338,313,408,612**;DEC 1997;Build 23
  ;External reference ^YSCL(603.01 supported by DBIA 2697
  ;External references PSOL and PSOUL^PSSLOCK supported by DBIA 2789
+ ;External reference to EN1^ORCFLAG is supported by DBIA 3620
 HLP W !,"Enter 'S' to process orders with a priority of STAT",!,"      'E' to process orders with an Emergency priority,",!,"      'R' to process Routine orders.",! Q
 HELP ;
  W !,"Please enter a minimum of two (2) characters.",!,"Enter Patient's name whose med orders are to be completed.",!
@@ -139,7 +140,10 @@ INST1 ;
  F PSIR=0:0 S PSIR=$O(^PS(59,PSOSITE,"INI1",PSIR)) Q:'PSIR!($G(PSOPINST))  I $P($G(^PS(59,PSOSITE,"INI1",PSIR,0)),"^") S PSOPINST=$P($G(^(0)),"^")
  Q
 CLOZ ;checks clozapine status of patient 
- S CLOZPAT=$O(^YSCL(603.01,"C",PSODFN,0))
+ ; BEGIN - JCH: PSO*7*612
+ ;S CLOZPAT=$O(^YSCL(603.01,"C",PSODFN,0))
+ S CLOZPAT=$$GETREGYS^PSOCLUTL(PSODFN)
+ ; END - JCH: PSO*7*612
  S CLOZPAT=$P($G(^YSCL(603.01,+CLOZPAT,0)),"^",3)
  S CLOZPAT=$S(CLOZPAT="M":2,CLOZPAT="B":1,1:0)
  S:'$D(PSONEW("# OF REFILLS")) (PSONEW("# OF REFILLS"),PSONEW("N# REF"))=0

@@ -1,5 +1,5 @@
-SDEC50 ;ALB/SAT/JSM,WTC - VISTA SCHEDULING RPCS ;NOV 01,2019@11:42
- ;;5.3;Scheduling;**627,658,665,672,722,723,737,694**;Aug 13, 1993;Build 61
+SDEC50 ;ALB/SAT/JSM,WTC - VISTA SCHEDULING RPCS ;APR 30,2020@12:54
+ ;;5.3;Scheduling;**627,658,665,672,722,723,737,694,745**;Aug 13, 1993;Build 40
  ;;Per VHA Directive 2004-038, this routine should not be modified
  ;
  ;  ICR
@@ -14,52 +14,53 @@ SDEC50 ;ALB/SAT/JSM,WTC - VISTA SCHEDULING RPCS ;NOV 01,2019@11:42
 FAPPTGET(SDECY,DFN,SDBEG,SDEND,SDANC) ; GET Future appointments for given patient and date range
  ;FAPPTGET(SDECY,DFN,SDBEG,SDEND,SDANC)  external parameter tag is in SDEC
  ;INPUT:
- ;  DFN   = (required) Patient ID - Pointer to the PATIENT file 2  (lookup by name is not accurate if duplicates)
- ;  SDBEG = (required) Begin of date range to search for appointments in external format
- ;  SDEND = (required) End of date range to search for appointments in external format
- ;  SDANC = (optional) ancillary flag  0=all appointments; 1=only ancillary appointments
+ ; DFN   = (required) Patient ID - Pointer to the PATIENT file 2  (lookup by name is not accurate if duplicates)
+ ; SDBEG = (required) Begin of date range to search for appointments in external format
+ ; SDEND = (required) End of date range to search for appointments in external format
+ ; SDANC = (optional) ancillary flag  0=all appointments; 1=only ancillary appointments
  ;RETURN:
  ; Successful Return:
- ;   Global Array in which each array entry contains Appointment Data from the PATIENT file
- ;   Data is separated by ^:
- ;     1. DFN
- ;     2. CLINIC_IEN  - Clinic IEN
- ;     3. CLINIC_NAME - Clinic Name
- ;     4. APPT_DATE - Appointment Date in external format
- ;     5. STATUS    - Status text
- ;     6. ANCTXT    - Ancillary Text
- ;     7. CONS      -Consult Link pointer to REQUEST/CONSULTATION file 123
- ;   "T00020DFN^T00020CLINIC_IEN^T00030CLINIC_NAME^T00020APPT_DATE^T00020STATUS^T00100ANCTXT^T00030CONS"
+ ;  Global Array in which each array entry contains Appointment Data from the PATIENT file
+ ;  Data is separated by ^:
+ ;  1. DFN
+ ;  2. CLINIC_IEN  - Clinic IEN
+ ;  3. CLINIC_NAME - Clinic Name
+ ;  4. APPT_DATE - Appointment Date in external format
+ ;  5. STATUS - Status text
+ ;  6. ANCTXT - Ancillary Text
+ ;  7. SDLNK - Pointer found in REQUEST file node 2(#123,#409.84,#403.5 or #409.3) pwc 745
+ ;  8. Appointment request IEN 
+ ;  9. Appointment type IEN
+ ; 10. Appointment type Name
+ ; 11. Cancel/noshow date 
+ ;"T00020DFN^T00020CLINIC_IEN^T00030CLINIC_NAME^T00020APPT_DATE^T00020STATUS^T00100ANCTXT^T00030SDLNK^T00030IEN^T00030APPTYPE_IEN^T00030APPTYPE_NAME^T00030CANDATE"   ;sat 658 IEN ;sat 672 APPTYPE ;pwc/lab 745 SDLNK/CANDATE
  ; Caught Exception Return:
- ;   A single entry in the Global Array in the format "-1^<error text>"
- ;   "T00020RETURNCODE^T00100TEXT"
+ ;  A single entry in the Global Array in the format "-1^<error text>"
+ ;  "T00020RETURNCODE^T00100TEXT"
  ; Unexpected Exception Return:
- ;     Handled by the RPC Broker.
- ;     M errors are trapped by the use of M and Kernel error handling.
- ;     The RPC execution stops and the RPC Broker sends the error generated
- ;     text back to the client.
+ ;  Handled by the RPC Broker.
+ ;  M errors are trapped by the use of M and Kernel error handling.
+ ;  The RPC execution stops and the RPC Broker sends the error generated text back to the client.
  ;
- N IEN,SDANCT,SDCL,SDCLN,SDCONS,SDATA,SDDT,SDST,SDT,X,Y,%DT
- N SDTMP,SDTYP,SDTYPN,SDNOD,SDRES,SDNOD2,SDLNK ;alb/sat 672 ;*zeb 723 5/2/19 added SDNOD2,SDLNK
+ N IEN,SDANCT,SDCL,SDCLN,SDCONS,SDATA,SDDT,SDST,SDT,X,Y,%DT,SDSTDT,SDSTSTR ;745 lab
+ N SDTMP,SDTYP,SDTYPN,SDNOD,SDRES,SDNOD2,SDLNK ;alb/sat 672 ;*zeb 723 5/2/19 
  S SDECI=0
  K ^TMP("SDEC50",$J)
  S SDECY="^TMP(""SDEC50"","_$J_")"
  ; data header
  S SDTMP="T00020DFN^T00020CLINIC_IEN^T00030CLINIC_NAME^T00020APPT_DATE^T00020STATUS^T00100ANCTXT"
- S SDTMP=SDTMP_"^T00030CONS^T00030IEN^T00030APPTYPE_IEN^T00030APPTYPE_NAME"   ;alb/sat 658 add IEN ;alb/sat 672 add APPTYPE
+ S SDTMP=SDTMP_"^T00030SDLNK^T00030IEN^T00030APPTYPE_IEN^T00030APPTYPE_NAME^T00030CANDATE"   ;sat 658 IEN ;sat 672 APPTYPE ;pwc/lab 745 SDLNK/CANDATE
  S @SDECY@(0)=SDTMP_$C(30)
  ;validate Patient (required)
  I '+DFN D ERR1^SDECERR(-1,"Invalid Patient ID.",.SDECI,SDECY) Q
  I '$D(^DPT(DFN,0)) D ERR1^SDECERR(-1,"Invalid Patient ID.",.SDECI,SDECY) Q
  ;validate begin date/time (required)
  S:$G(SDBEG)="" SDBEG=$P($$NOW^XLFDT,".",1)
- ;  Change date/time conversion so midnight is handled properly.  wtc 694 5/17/18
- ;S %DT="" S X=$P(SDBEG,"@",1) D ^%DT S SDBEG=Y
+ ;Change date/time conversion so midnight is handled properly.  wtc 694 5/17/18
  S SDBEG=$$NETTOFM^SDECDATE(SDBEG,"N","N")
  I SDBEG=-1 D ERR1^SDECERR(-1,"Invalid Begin Time.",.SDECI,SDECY) Q
  ;validate end date/time (required)
  S:$G(SDEND)="" SDEND=1000000
- ;S %DT="" S X=$P(SDEND,"@",1) D ^%DT S SDEND=Y
  S SDEND=$$NETTOFM^SDECDATE(SDEND,"N","N")
  I SDEND=-1 D ERR1^SDECERR(-1,"Invalid End Time.",.SDECI,SDECY) Q
  ;validate ancillary flag (optional)
@@ -80,41 +81,42 @@ FAPPTGET(SDECY,DFN,SDBEG,SDEND,SDANC) ; GET Future appointments for given patien
  .. S SDCL="",SDCLN="*CORRUPT DATA" ;*zeb+8 723 5/2/19 support appointments with no resource
  .. I SDRES]"" S SDCL=$$GET1^DIQ(409.831,SDRES_",",.04,"I") S SDCLN=$$GET1^DIQ(409.831,SDRES_",",.04) ;clinic IEN/clinic name
  .. S SDDT=$$GET1^DIQ(409.84,IEN_",",.01,"I") ;appointment start date/time ;used GET1 instead of ^DD("DD") because GUI needs leading zeroes
- .. ;  Change date/time cOnversion so midnight is handled properly.  694 wtc/pwc 1/7/2020
+ .. ;  Change date/time conversion so midnight is handled properly.  694 wtc/pwc 1/7/2020
  .. S SDDT=$$FMTONET^SDECDATE(SDDT,"N")
- .. S SDST=$$APPTSTS(IEN,SDNOD,SDCL) ;current status
+ .. S SDSTSTR=$$APPTSTS(IEN,SDNOD,SDCL) ;current status ;745 lab
+ .. S SDST=$P(SDSTSTR,"^",1) ;745 lab
+ .. S SDSTDT=$$FMTONET^SDECDATE($P(SDSTSTR,"^",2),"Y") ;745 lab
  .. S SDTYP=$P(SDNOD,U,6) ;appt type id
  .. I SDTYP S SDTYPN=$P($G(^SD(409.1,SDTYP,0)),U,1) ;appt type name
- .. E  S SDTYPN="REGULAR",SDTYP=$O(^SD(409.1,"B",SDTYPN,0)) ; Handle missing appt type 737 WTC 11/19/2019
+ .. E  S SDTYPN="REGULAR",SDTYP=$O(^SD(409.1,"B",SDTYPN,0)) ; 737 WTC 11/19/2019
  .. S SDNOD2=$G(^SDEC(409.84,IEN,2)),SDLNK=""
- .. S SDLNK=$S(SDNOD2="":"",1:$P(SDNOD2,U,1))
- .. S CONS=$S(SDLNK="":"",$P(SDLNK,";",2)["GMR":$P(SDLNK,";",1),1:"")
- .. S SDECI=SDECI+1 S @SDECY@(SDECI)=DFN_U_SDCL_U_SDCLN_U_SDDT_U_SDST_U_SDANCT_U_CONS_U_IEN_U_SDTYP_U_SDTYPN_$C(30)
+ .. S SDLNK=$S(SDNOD2="":"",1:$P(SDNOD2,U,1))  ;pwc *745 ptr link files
+ .. S SDECI=SDECI+1 S @SDECY@(SDECI)=DFN_U_SDCL_U_SDCLN_U_SDDT_U_SDST_U_SDANCT_U_SDLNK_U_IEN_U_SDTYP_U_SDTYPN_U_SDSTDT_$C(30) ; pwc/lab *745 SDLNK/SDSTDT
  S @SDECY@(SDECI)=@SDECY@(SDECI)_$C(31)
  Q
  ;
  ;*zeb+tag 722 2/19/19 added to get appointment status for pending appointments from appointment file
 APPTSTS(APPTIEN,APPTNOD,CLINIEN) ;Get current status for an entry in the SDEC APPOINTMENT file in the style of STATUS^SDAM1
- ;APPTIEN (R) - IEN of entry in the SDEC APPOINTMENT file (#409.84)
- ;APPTNOD (O) - 0 node of appointment entry (will be read if not passed in)
- ;CLINIEN (O) - IEN of entry in the HOSPITAL LOCATION file (#44); non-count will not be checked via clinic if not passed in (can check via OE)
- N STS,OEIEN,DFN,SDT,VAINDT,VADMVT,CHKIO,RET,OESTS,CXLRSN,CXLRSNTP,CXLSTS ; Added variables to list wtc 8/27/19
+ ;APPTIEN (R)- IEN of entry in the SDEC APPOINTMENT file (#409.84)
+ ;APPTNOD (O)- 0 node of appointment entry (will be read if not passed in)
+ ;CLINIEN (O)- IEN of entry in the HOSPITAL LOCATION file (#44); non-count will not be checked via clinic if not passed in (can check via OE)
+ N STS,OEIEN,DFN,SDT,VAINDT,VADMVT,CHKIO,RET,OESTS,CXLRSN,CXLRSNTP,CXLSTS,STSDT ;wtc 8/27/19;745
  I $G(APPTNOD)="" S APPTNOD=$G(^SDEC(409.84,APPTIEN,0))
  S SDT=$P(APPTNOD,U,1)
  S DFN=$P(APPTNOD,U,5)
  S OEIEN=$P($G(^DPT(DFN,"S",SDT,0)),U,20)
  S CHKIO=""
- ; -- set initial status value ; non-count clinic?
+ ;set initial status value ; non-count clinic?
  S STS=$P(APPTNOD,U,17)
+ S STSDT=$P(APPTNOD,U,12) ;745
  I STS]"" S STS=$P($P($P(^DD(409.84,.17,0),"^",3),STS_":",2),";",1) I 1 ;name for status code
  E  I CLINIEN]"" S:$P($G(^SC(CLINIEN,0)),U,17)="Y" STS="NON-COUNT" ;check for non-count clinic ;*zeb+1 723 5/2/19 don't crash if resource/clinic not available
  I CLINIEN'="",STS="NO ACTION TAKEN",OEIEN'="" S STS="" ; wtc 723 8/20/2019
- ; -- no show?
+ ;no show?
  I $P(APPTNOD,U,10)=1 D
- . I $P(APPTNOD,U,12)]"" D  Q  ;handle cancel after no-show -- appt sts doesn't get updated with cxl but pt status does
+ . I STSDT]"" D  Q  ;handle cancel after no-show -- appt sts doesn't get updated with cxl but pt status does; 745 STSDT
  . . S CXLRSN=$P(APPTNOD,U,22)
  . . ; Line below revised to use appointment status (field .17) to calculate status when reason is missing (e.g., SDCANCEL).  wtc  694 7/12/2019
- . . ; I CXLRSN="" S STS="CANCELLED" Q  ;cancel reason is required, this should not happen
  . . I CXLRSN="" S STS=$S($P(APPTNOD,U,17)="C":"CANCELLED BY CLINIC",$P(APPTNOD,U,17)="PC":"CANCELLED BY PATIENT",1:"CANCELLED") Q
  . . S CXLRSNTP=$P($G(^SD(409.2,CXLRSN,0)),U,2)
  . . I CXLRSNTP="C" S STS="CANCELLED BY CLINIC" Q
@@ -123,9 +125,9 @@ APPTSTS(APPTIEN,APPTNOD,CLINIEN) ;Get current status for an entry in the SDEC AP
  . . S CXLSTS=$$GET1^DIQ(2.98,SDT_","_DFN_",",100)
  . . I CXLSTS["CANCELLED" S STS=CXLSTS Q
  . . S STS="CANCELLED BY CLINIC" ;must specify clinic or patient, default to clinic if information is lost
- . S STS="NO-SHOW"
+ . S STS="NO-SHOW",STSDT=$P(APPTNOD,U,23) ;745 lab STSDT
  ; -- inpatient?
- ; WTC 722 3/22/19 ; I STS="" S:$$INP^SDAM2(DFN,SDT)="I" STS="INPATIENT"
+ ; WTC 722 3/22/19
  I STS=""!($P(APPTNOD,U,17)="I"),$$INP^SDAM2(DFN,SDT)="I" S STS=$S($P(APPTNOD,U,12)="":"INPATIENT",$P($G(^DPT(DFN,"S",SDT,0)),U,2)="PC":"CANCELLED BY PATIENT",1:"CANCELLED BY CLINIC") ; WTC 722 3/27/2019
  S VAINDT=SDT D ADM^VADPT2 ;ADM^VADPT2 assumes VAINDT and returns in VADMVT
  I STS["INPATIENT",$S('VADMVT:1,'$P(^DG(43,1,0),U,21):0,1:$P($G(^DIC(42,+$P($G(^DGPM(VADMVT,0)),U,6),0)),U,3)="D") S STS=""
@@ -135,16 +137,15 @@ APPTSTS(APPTIEN,APPTNOD,CLINIEN) ;Get current status for an entry in the SDEC AP
  I CHKIO="NO ACTION TAKEN",CLINIEN'="" D  ;
  . N SDECD2 S SDECD2=$$FIND^SDAM2(DFN,SDT,CLINIEN) I SDECD2,$P($G(^SC(CLINIEN,"S",SDT,1,SDECD2,"C")),U,1)'="" S CHKIO="CHECKED IN" ;
  S:STS="" STS=CHKIO
- ;  If status is NO ACTION TAKEN, check if cancelled in Patient file (by SDCANCEL),  wtc 11/4/2019 737
- ;  Changed to if status not cancelled, check if cancelled in Patient file.  wtc 1/17/2020 737
- ;
+ ;If status is NO ACTION TAKEN, check if cancelled in Patient file (by SDCANCEL),  wtc 11/4/2019 737
+ ;Changed to if status not cancelled, check if cancelled in Patient file.  wtc 1/17/2020 737
  I STS'["CANCELLED" D  ;
  . I $P($G(^DPT(DFN,"S",SDT,0)),U,1)'=CLINIEN Q  ;  If appointment does not match, leave status alone.
  . S STS=$S($P($G(^DPT(DFN,"S",SDT,0)),U,2)="PC":"CANCELLED BY PATIENT",$P($G(^DPT(DFN,"S",SDT,0)),U,2)="C":"CANCELLED BY CLINIC",1:STS) ;
  ;
  I (STS="NO ACTION TAKEN"),($P(SDT,".")=DT),(CHKIO'["CHECKED") S CHKIO="TODAY"
  ; -- determine print status
- I STS["CANCELLED" Q STS
+ I STS["CANCELLED" Q STS_"^"_STSDT  ;745 lab include stsdt
  S RET=$S(STS=CHKIO!(CHKIO=""):STS,1:"")
  I RET="" D
  . I STS["INPATIENT",$P(SDT,".",1)>DT S RET=$P(STS," ",1)_"/FUTURE" Q  ; WTC 3/26/19 722
@@ -158,7 +159,7 @@ APPTSTS(APPTIEN,APPTNOD,CLINIEN) ;Get current status for an entry in the SDEC AP
  . I SDT>(DT+.2359) S RET=$P(STS," ")_"/FUTURE" Q
  . S RET=$P(STS," ")_"/NO ACT TAKN"
  I STS["INPATIENT" Q RET
- I STS["NO-SHOW" Q RET
+ I STS["NO-SHOW" Q RET_"^"_STSDT ;745
  I ($G(OEIEN)),($D(^SCE(OEIEN,0))) D
  . S OESTS=$P($G(^SCE(OEIEN,0)),U,12)
  . S:OESTS]"" OESTS=$P($G(^SD(409.63,OESTS,0)),U,1)
@@ -184,9 +185,9 @@ GETIEN(DFN,SDCLN,SDDT)  ;get SDEC APPOINTMENT id
  Q $S(SDI'="":SDI,1:"")
  ;
 CONS(SDCL,DFN,SDDT) ;check for consult in file 44
- ; SDCL = (required) clinic IEN
- ; DFN  = (required) patient IEN
- ; SDDT = (required) appointment time in FM format
+ ;SDCL = (required) clinic IEN
+ ;DFN  = (required) patient IEN
+ ;SDDT = (required) appointment time in FM format
  N CONS,CSTAT,SDI,SDJ
  S CONS=""
  S SDI=0 F  S SDI=$O(^SC(SDCL,"S",SDDT,1,SDI)) Q:SDI'>0  D  Q:CONS'=""
@@ -200,24 +201,22 @@ CONS(SDCL,DFN,SDDT) ;check for consult in file 44
 PCSTGET(SDECY,DFN,SDCL,SDBEG,SDEND)  ;GET patient clinic status for a clinic for a given time frame - has the patient been seen by the given Clinic in the past 24 months
  ;PCSTGET(SDECY,DFN,SDCL,SDBEG,SDEND)  external parameter tag is in SDEC
  ;INPUT:
- ;  DFN   = (required) Patient ID - Pointer to the PATIENT file 2  (lookup by name is not accurate if duplicates)
- ;  SDCL  = (required) Clinic code - Pointer to HOSPITAL LOCATION file
- ;  SDBEG = (optional)  Begin date in external format; defaults to 730 days previous (24 months)
- ;  SDEND = (optional)  End date in external format; defaults to today
+ ;DFN   = (required) Patient ID - Pointer to the PATIENT file 2  (lookup by name is not accurate if duplicates)
+ ;SDCL  = (required) Clinic code - Pointer to HOSPITAL LOCATION file
+ ;SDBEG = (optional)  Begin date in external format; defaults to 730 days previous (24 months)
+ ;SDEND = (optional)  End date in external format; defaults to today
  ;RETURN:
  ; Successful Return:
- ;   a single entry in the global array indicating that patient has or has
- ;   not been seen.
- ;   "T00020RETURNCODE^T00100TEXT"
+ ;  a single entry in the global array indicating that patient has or has not been seen.
+ ;  "T00020RETURNCODE^T00100TEXT"
  ; Caught Exception Return:
- ;   A single entry in the Global Array in the format "-1^<error text>"
- ;   "T00020RETURNCODE^T00100TEXT"
+ ;  A single entry in the Global Array in the format "-1^<error text>"
+ ;  "T00020RETURNCODE^T00100TEXT"
  ; Unexpected Exception Return:
- ;     Handled by the RPC Broker.
- ;     M errors are trapped by the use of M and Kernel error handling.
- ;     The RPC execution stops and the RPC Broker sends the error generated
- ;     text back to the client.
- ;
+ ;  Handled by the RPC Broker.
+ ;  M errors are trapped by the use of M and Kernel error handling.
+ ;  The RPC execution stops and the RPC Broker sends the error generated
+ ;  text back to the client.
  N SDASD,SDECI,SDS,STOP,SDYN,SDSCL
  ;N SDSNOD,SDSD,SDSTP,SDT,SDVSP,SDWL,SDYN  alb/jsm 658 commented out since variables not used here
  N X,Y,%DT,APIEN
@@ -248,7 +247,7 @@ CLSTOP(CLINIC)  ;Return clinic stop code for clinic
  Q:$G(CLINIC)="" 0 ;Verify clinic is passed in
  Q $P($G(^SC(CLINIC,0)),U,7) ;Return the stop code for the clinic
  ;
-CHKPT  ; alb/jsm 658 added to be used by PCSTGET and PCST2GET
+CHKPT  ;alb/jsm 658 added to be used by PCSTGET and PCST2GET
  N SDSCO
  S SDS=0 F  S SDS=$O(^DPT(DFN,"S",SDS)) Q:SDS=""  D  Q:SDYN="YES"   ;alb/sat 665 - start with SDS=0 instead of ""
  .S SDSCL=$P($G(^DPT(DFN,"S",SDS,0)),U,1)
@@ -262,32 +261,30 @@ CHKPT  ; alb/jsm 658 added to be used by PCSTGET and PCST2GET
 PCST2GET(SDECY,DFN,STOP,SDBEG,SDEND)  ;GET patient clinic status for a service/specialty (clinic stop) for a given time frame - has the patient been seen any clinics with the given service/specialty (clinic stop) in the past 24 months
  ;PCST2GET(SDECY,DFN,STOP,SDBEG,SDEND)  external parameter tag is in SDEC
  ;INPUT:
- ;  DFN     = (required) Patient ID - Pointer to the PATIENT file 2  (lookup by name is not accurate if duplicates)
- ;  STOP    = (required) CLINIC STOP or Service/Specialty name - NAME from the SD WL SERVICE/SPECIALTY file - looks for 1st active
- ;                       OR - Pointer to the CLINIC STOP file
- ;  SDBEG   = (optional)  Begin date in external format; defaults to 730 days previous (24 months)
- ;  SDEND   = (optional)  End date in external format; defaults to today
+ ; DFN     = (required) Patient ID - Pointer to the PATIENT file 2  (lookup by name is not accurate if duplicates)
+ ; STOP    = (required) CLINIC STOP or Service/Specialty name - NAME from the SD WL SERVICE/SPECIALTY file - looks for 1st active
+ ;                      OR - Pointer to the CLINIC STOP file
+ ; SDBEG   = (optional)  Begin date in external format; defaults to 730 days previous (24 months)
+ ; SDEND   = (optional)  End date in external format; defaults to today
  ;RETURN:
  ; Successful Return:
- ;   a single entry in the global array indicating that patient has or has
- ;   not been seen.
- ;   "T00020RETURNCODE^T00100TEXT"
+ ;  a single entry in the global array indicating that patient has or has not been seen.
+ ;  "T00020RETURNCODE^T00100TEXT"
  ; Caught Exception Return:
- ;   A single entry in the Global Array in the format "-1^<error text>"
- ;   "T00020RETURNCODE^T00100TEXT"
+ ;  A single entry in the Global Array in the format "-1^<error text>"
+ ;  "T00020RETURNCODE^T00100TEXT"
  ; Unexpected Exception Return:
- ;     Handled by the RPC Broker.
- ;     M errors are trapped by the use of M and Kernel error handling.
- ;     The RPC execution stops and the RPC Broker sends the error generated
- ;     text back to the client.
- ;
+ ;  Handled by the RPC Broker.
+ ;  M errors are trapped by the use of M and Kernel error handling.
+ ;  The RPC execution stops and the RPC Broker sends the error generated
+ ;  text back to the client.
  N SDASD,SDF,SDSCN,SDECI,SDSNOD,SDSD,SDSTP,SDT,SDVSP,SDWL,SDYN
  N H,WLSRVSP,X,Y,%DT
  S WLSRVSP=""
  S (SDF,SDECI,SDSCN)=0
  S SDECY="^TMP(""SDEC50"","_$J_",""PCST2GET"")"
  K @SDECY
- ; data header
+ ;data header
  S @SDECY@(0)="T00020RETURNCODE^T00100TEXT"_$C(30)
  ;check for valid Patient
  I '+DFN D ERR1^SDECERR(-1,"Invalid Patient ID.",SDECI,SDECY) Q
@@ -341,22 +338,22 @@ LOOKWL ;
 PCSGET(SDECY,SDSVSP,SDCL)  ;GET clinics for a service/specialty (clinic stop)  ;alb/sat 658 add SDCL
  ;PCSGET(SDECY,SDSVSP)  external parameter tag is in SDEC
  ;INPUT:
- ;  SDSVSP  = (required) Service/Specialty name - NAME from the SD WL SERVICE/SPECIALTY file - looks for 1st active
+ ; SDSVSP  = (required) Service/Specialty name - NAME from the SD WL SERVICE/SPECIALTY file - looks for 1st active
  ;                       OR - Pointer to the SD WL SERVICE/SPECIALTY file
  ;RETURN:
  ; Successful Return:
- ;   global array containing Clinic IEN and Name of matching Hospital Locations
- ;   CLINSTOP  - pointer to CLINIC STOP file 40.7
- ;   CLINIEN   - pointer to the HOSPITAL LOCATION file 44
- ;   CLINNAME  - NAME from the HOSPITAL LOCATION file
+ ;  global array containing Clinic IEN and Name of matching Hospital Locations
+ ;  CLINSTOP - pointer to CLINIC STOP file 40.7
+ ;  CLINIEN  - pointer to the HOSPITAL LOCATION file 44
+ ;  CLINNAME - NAME from the HOSPITAL LOCATION file
  ; Caught Exception Return:
- ;   A single entry in the Global Array in the format "-1^<error text>"
- ;   "T00020RETURNCODE^T00100TEXT"
+ ;  A single entry in the Global Array in the format "-1^<error text>"
+ ;  "T00020RETURNCODE^T00100TEXT"
  ; Unexpected Exception Return:
- ;     Handled by the RPC Broker.
- ;     M errors are trapped by the use of M and Kernel error handling.
- ;     The RPC execution stops and the RPC Broker sends the error generated
- ;     text back to the client.
+ ;  Handled by the RPC Broker.
+ ;  M errors are trapped by the use of M and Kernel error handling.
+ ;  The RPC execution stops and the RPC Broker sends the error generated
+ ;  text back to the client.
  ;
  N SDASD,SDSCN,SDECI,SDSNOD,SDSD,SDSTP,SDT,SDVSP,SDWL
  N H,WLSRVSP,X,Y
@@ -364,7 +361,7 @@ PCSGET(SDECY,SDSVSP,SDCL)  ;GET clinics for a service/specialty (clinic stop)  ;
  S (SDECI,SDSCN)=0
  S SDECY="^TMP(""SDEC50"","_$J_",""PCSGET"")"
  K @SDECY
- ; data header
+ ;data header
  S @SDECY@(0)="T00030CLINSTOP^T00030CLINIEN^T00030CLINNAME"_$C(30)
  ;check clinic   ;alb/sat 658
  S SDCL=$G(SDCL)

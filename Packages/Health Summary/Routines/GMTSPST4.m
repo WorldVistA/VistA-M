@@ -1,5 +1,5 @@
 GMTSPST4 ;BHAM/RMS - TIU OBJECT FOR REMOTE MEDS VIA RDI ;06/28/17  10:31
- ;;2.7;Health Summary;**94**;Oct 20, 1995;Build 41
+ ;;2.7;Health Summary;**94,135**;Oct 20, 1995;Build 2
  ;
  ;Reference to ORRDI1 supported by DBIA 4659
  ;Reference to ^XTMP("ORRDI","PSOO" supported by DBIA 4660
@@ -29,7 +29,8 @@ OBJ S GMTSLINE=5
  S GMTSMED=0 F  S GMTSMED=$O(^XTMP("ORRDI","PSOO",DFN,GMTSMED)) Q:'+GMTSMED  D
  . S GMTSSTAT=$G(^XTMP("ORRDI","PSOO",DFN,GMTSMED,5,0))
  . Q:"ACTIVE^SUSPENDED^HOLD"'[GMTSSTAT
- . Q:$G(^XTMP("ORRDI","PSOO",DFN,GMTSMED,7,0))']""  ;Special case #1 for DoD data, quit if there is no expiration date listed
+ . ; GMTS*2.7*135 Commented out the next line
+ . ;Q:$G(^XTMP("ORRDI","PSOO",DFN,GMTSMED,7,0))']""  ;Special case #1 for DoD data, quit if there is no expiration date listed
  . D  Q:GMTSISSU<$$FMADD^XLFDT(DT,-366)  ;Special case #2 for DoD data; quit if the ISSUE DATE is more than a year ago.  (May still show beyond expiration for Controlled Substances)
  .. N %DT,X,Y
  .. S X=$G(^XTMP("ORRDI","PSOO",DFN,GMTSMED,8,0))

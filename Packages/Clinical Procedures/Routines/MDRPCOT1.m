@@ -1,6 +1,7 @@
-MDRPCOT1 ; HOIFO/NCA/DP,WOIFO/PMK - Object RPCs (TMDTransaction) - Continued ;03 Jul 2018 9:09 AM
- ;;1.0;CLINICAL PROCEDURES;**5,11,21,41,60**;Apr 01, 2004;Build 1
+MDRPCOT1 ;HOIFO/NCA/DP,WOIFO/PMK - Object RPCs (TMDTransaction) - Continued ;03 Jul 2018 9:09 AM
+ ;;1.0;CLINICAL PROCEDURES;**5,11,21,41,60,78**;Apr 01, 2004;Build 7
  ; Integration Agreements:
+ ; IA# 10000 [Supported] calls to NOW^%DTC
  ; IA# 2053 [Supported] calls to FILE^DIE
  ; IA# 10013 [Supported] calls to DIK
  ; IA# 2056 [Supported] calls to $$GET1^DIQ
@@ -148,7 +149,10 @@ NEWIORD(MDIEN) ; [Function] Generate & return new unique instrument order number
  . Q
  I $E($G(^MDS(702.09,DEVIEN,0)),1,4)="Muse" D
  . ; Due to current limitation to the Muse can only except 9
- . S X=$E($TR($H,",",""),2,10) ; Using $E($H) only for the MUSE
+ . ;MD*1.0*78 MUST RETURN EXACTLY 9 DIGITS 24 hours a day
+ . ;S X=$E($TR($H,",",""),2,10) ; Using $E($H) only for the MUSE
+ . ;MD*1.0*78 Add leading zeros to time to always create 9 digit order number
+ . S X=$E($P($H,","),2,5)_$E("00000",1,5-$L($P($H,",",2)))_$P($H,",",2)
  . I '$D(^MDD(702,"AION",X)) Q  ; It is unique and quit
  . N I,FLG ; Not unique
  . S FLG=0

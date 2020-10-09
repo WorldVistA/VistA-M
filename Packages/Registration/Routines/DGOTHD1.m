@@ -1,6 +1,5 @@
-DGOTHD1 ;SLC/SS,RM,MKN - OTHD (OTHER THAN HONORABLE DISCHARGE) APIs ;12/27/17
- ;;5.3;Registration;**952,977**;Aug 13, 1993;Build 177
- ;;Per VA Directive 6402, this routine should not be modified.
+DGOTHD1 ;SLC/SS,RM,MKN - OTHD (OTHER THAN HONORABLE DISCHARGE) APIs ; 12/27/17
+ ;;5.3;Registration;**952,977,1016**;Aug 13, 1993;Build 6
  ;
  Q
  ;
@@ -197,8 +196,10 @@ EMHCT(DGDFN) ;EXPANDED MH CARE TYPE 'OTH' in Patient file #2
  ; Output:
  ;  Remove EXPANDED MH CARE TYPE entry in field #.5501 node #.55 in Patient File (#2)
  Q:'$G(DGDFN)
- N DGFDART,DGOTHERR
- S DGFDART($J,2,DGDFN_",",.5501)=""
+ N DGFDART,DGOTHERR,IENS
+ S IENS=DGDFN_","  ; DG*5.3*1016
+ S DGFDART($J,2,IENS,.5501)=""  ; DG*5.3*1016
+ S DGFDART($J,2,IENS,.5502)=""  ; DG*5.3*1016
  D FILE^DIE("U","DGFDART($J)","DGOTHERR")
  I $D(DGOTHERR) W !!,"An error occurred during filing."
  Q

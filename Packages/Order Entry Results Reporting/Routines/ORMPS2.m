@@ -1,5 +1,5 @@
-ORMPS2 ;SLC/MKB - Process Pharmacy ORM msgs cont ; 2/22/18 9:00am
- ;;3.0;ORDER ENTRY/RESULTS REPORTING;**94,116,129,134,186,190,195,215,265,243,280,363,350,462**;Dec 17, 1997;Build 6
+ORMPS2 ;SLC/MKB - Process Pharmacy ORM msgs cont ;May 31, 2018@18:26
+ ;;3.0;ORDER ENTRY/RESULTS REPORTING;**94,116,129,134,186,190,195,215,265,243,280,363,350,462,413**;Dec 17, 1997;Build 32
  ;;Per VA Directive 6402, this routine should not be modified.
  ;
  ; External References:
@@ -123,6 +123,7 @@ RO1 ; -Update sts of order to active, last action to dc/edit:
  S ORX=ORDA F  S ORX=+$O(^OR(100,ORIFN,8,ORX),-1) Q:ORX'>0  I $D(^(ORX,0)),$P(^(0),U,15)="" Q  ;ORX=last released action
  S:ORX $P(^OR(100,ORIFN,8,ORX,0),U,15)=12 ;dc/edit
  S $P(^OR(100,ORIFN,3),U,7)=ORDA,NEWSTS=$S('$G(ORSTS):0,ORSTS=$P(^(3),U,3):0,1:1) K ^(6)
+ D CLNUPD ;OR*413
  D STATUS^ORCSAVE2(ORIFN,ORSTS):NEWSTS,SETALL^ORDD100(ORIFN):'NEWSTS
  D DATES^ORCSAVE2(ORIFN,ORSTRT,ORSTOP)
  D RELEASE^ORCSAVE2(ORIFN,ORDA,ORNOW,ORWHO,ORNATR)
@@ -167,4 +168,14 @@ PCOMM ; -- Get Provider Comments from previous order, when changed
  M ^TMP("ORWORD",$J,PC,1)=^OR(100,OLD,4.5,I,2)
  S ORDIALOG(PC,1)="^TMP(""ORWORD"",$J,"_PC_",1)"
  S ORDIALOG(PC,"FORMAT")="@" ;text in Sig already
+ Q
+CLNUPD ;-- Update, if Clinic order ;p413
+ N ORDIALOG,DIALOG,DA,DR,DIE
+ S ORDIALOG=$P(^OR(100,+ORIFN,0),U,5) I ORDIALOG="" Q
+ S DIALOG="^"_$P(ORDIALOG,";",2)_+ORDIALOG_",0)"
+ I $P($G(@DIALOG),U)="CLINIC OR PAT FLUID OE" D
+ . S DA=+ORIFN,DR="",DIE="^OR(100,"
+ . I +ORL'=+$P(^OR(100,+ORIFN,0),U,10) S $P(^OR(100,+ORIFN,0),U,10)=ORL
+ . I ORAPPT'=+$P(^OR(100,+ORIFN,0),U,18) S DR="16////"_ORAPPT
+ . I DR'="" D ^DIE
  Q

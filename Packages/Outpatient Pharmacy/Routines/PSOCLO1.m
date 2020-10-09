@@ -1,5 +1,5 @@
 PSOCLO1 ;BHAM ISC/SAB, HEC/hrubovcak - Clozapine Rx lockout logic ;24 Feb 2020 14:00:01
- ;;7.0;OUTPATIENT PHARMACY;**1,23,37,222,457,574**;DEC 1997;Build 53
+ ;;7.0;OUTPATIENT PHARMACY;**1,23,37,222,457,574,612**;DEC 1997;Build 23
  ; YSCLTST2 - DBIA 4556
  ;Reference to ^YSCL(603.01 - DBIA 2697
  ;MH package will authorize dispensing of the Clozapine drugs
@@ -12,8 +12,10 @@ PSOCLO1 ;BHAM ISC/SAB, HEC/hrubovcak - Clozapine Rx lockout logic ;24 Feb 2020 1
  ;
  ; PSO*7.0*574 ; set PSODFN if coming from IP OE
  I '($G(PSODFN)>0) S:$G(DFN) PSODFN=DFN Q:'($G(PSODFN)>0)  ; must have DFN
- S J=+$O(^YSCL(603.01,"C",PSODFN,0)) I J>0 S D=$P($G(^YSCL(603.01,J,0)),U,3),CLOZPAT=$S(D="M":2,D="B":1,1:0)
- S CLOZPAT=+$G(CLOZPAT)  ; must be defined
+ ;Begin: JCH - PSO*7*612
+ N PSOYSIEN S PSOYSIEN=$$GETREGYS^PSOCLUTL(PSODFN)
+ S D=$P($G(^YSCL(603.01,+$G(PSOYSIEN),0)),U,3),CLOZPAT=$S(D="M":2,D="B":1,1:0)
+ ;End: JCH - PSO*7*612
  I $D(PSONEW),$G(PSONEW("IRXN")) D EXPDT(.PSONEW,.CLOZPT)  ; expiration date for new order
  I $D(PSORXED),$G(PSORXED("IRXN")) D EXPDT(.PSORXED,.CLOZPT)  ; determine expiration date for edited order
  S CLOZFLG=0 ; Used to force start/stop dates to four days only
@@ -23,7 +25,6 @@ PSOCLO1 ;BHAM ISC/SAB, HEC/hrubovcak - Clozapine Rx lockout logic ;24 Feb 2020 1
  I PSCLZREG=""!(PSCLZREG("status")="D") D  D NOREG Q:'CLOZFLG  S PSCLZREG=$$GET1^DIQ(55,DFN,53)
  . W !!,"*** This patient has no clozapine registration number ***",!
  I PSCLZREG?1U6N S ^TMP($J,"CLOZFLG",DFN)=1
- ;
  ;
  S PSLAST7="" ; ** NCC REMEDIATION ** 457/RTW
  S PSOYS=$$CL^YSCLTST2(DFN)
@@ -35,7 +36,10 @@ PSOCLO1 ;BHAM ISC/SAB, HEC/hrubovcak - Clozapine Rx lockout logic ;24 Feb 2020 1
  I +PSOYS=1 D
  .I '$G(CLOZFLG),$G(^TMP($J,"CLOZFLG",DFN)) S CLOZFLG=1  Q
  .D DSP
- I PSOYS("rWBC")>0,PSOYS("rANC")>1499,'$G(CLOZFLG) D:'$G(PSTYPE) GDOSE Q
+ ; Begin: JCH - PSO*7*612 - Kill ^XTMP's if patient has Active NCCC registration and valid labs
+ I PSOYS("rWBC")>0,PSOYS("rANC")>1499,'$G(CLOZFLG) D:'$G(PSTYPE) GDOSE D  Q
+ .I PSCLZREG("status")="A",PSCLZREG?2U5N K ^XTMP("PSO4D-"_DFN) K ^XTMP("PSJ4D-"_DFN)
+ ; End - PSO*7*612
  I $G(ANQRE)'=7,$$OVERRIDE^YSCLTST2(DFN) S ANQRE=7,ANQX=0 W !!,"Permission to dispense clozapine has been authorized by NCCC",!
  I $G(CLOZFLG),+PSOYS=1 S ANQRE=8
  S X=$S(CLOZPAT=2:84,CLOZPAT=1:42,1:21)
@@ -374,13 +378,5 @@ EXPDT(PSORXARY,CLOZPT) ; PSORXARY,CLOZPAT passed by ref., determine expiration d
  ;
 QTYCHK(PSORXARY,NUMDAYS) ; check/adjust quantity, PSORXARY passed by ref., NUMDAYS is # of days
  Q:'($G(NUMDAYS)>0)  ; required
- N J,SCHED,NMIN,QTY,TMSDLY
- S J=0,QTY=0 F  S J=$O(PSORXARY("SCHEDULE",J))  Q:'J  D
- . S SCHED=PSORXARY("SCHEDULE",J)
- . S NMIN=$$QTSCH^PSOSIG(SCHED) Q:'NMIN   ;number of minutes between meds
- . S TMSDLY=1440/NMIN  ;times daily
- . S QTY=QTY+(NUMDAYS*TMSDLY*$G(PSORXARY("DOSE ORDERED",J)))
- ;
- S:QTY PSORXARY("QTY")=QTY,$P(PSORXARY("RX0"),U,7)=QTY
+ D QTYCHK^PSOCLUTL(.PSORXARY,NUMDAYS)
  Q
- ;

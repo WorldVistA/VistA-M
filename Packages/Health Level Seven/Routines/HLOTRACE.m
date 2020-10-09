@@ -1,6 +1,6 @@
-HLOTRACE ;;OIFO-OAK/PIJ/CJM ;03/07/2011
- ;;1.6;HEALTH LEVEL SEVEN;**146,147,153** ;Oct 13, 1995;Build 11
- ;Per VHA Directive 2004-038, this routine should not be modified.
+HLOTRACE ;OIFO-OAK/PIJ/CJM - HLO CLIENT TRACE Tool ; 03/07/2011
+ ;;1.6;HEALTH LEVEL SEVEN;**146,147,153,172** ;Oct 13, 1995;Build 11
+ ;Per VA Directive 6402, this routine should not be modified.
  ;;
  ;; HLO CLIENT TRACE Tool
  ;; *** For troubleshooting HLO client issues ***
@@ -14,8 +14,8 @@ START ;
  I 'CONF(0) D  Q
  . W !!,"   Sorry, you are not authorized to use this tool.",!!
  ;I $P($$VERSION^%ZOSV(1),"/",1)'="Cache for OpenVMS" D  Q
- I $P($$VERSION^%ZOSV(1),"/",1)'["Cache" D  Q
- . W !!,"   Sorry, this tool can only be used under Cache",!!
+ I '(($P($$VERSION^%ZOSV(1),"/",1)[("Cache"))!($$VERSION^%ZOSV(1)["IRIS")) D  Q
+ .W !!,"   Sorry, this tool can only be used under Cache or IRIS",!!
  N LINK,PORT,QUE,SUB,WORK,HLMSTATE,HLCSTATE,OLD,MAXTRACE,TRACECNT
  S LINK=$$ASKLINK^HLOUSR
  Q:LINK=""
@@ -197,7 +197,7 @@ ZB20 ;
  D WRITE^HLOTRACE("Message on queue was already transmitted, will be deleted from queue...")
  Q
 ZB21 ;
- D WRITE^HLOTRACE("MSA segment shows this is not a commmit ack to the message transmitted...")
+ D WRITE^HLOTRACE("MSA segment shows this is not a commit ack to the message transmitted...")
  Q
 ZB22 ;
  D WRITE^HLOTRACE("Commit ack not CA, message status set to error...")
@@ -228,7 +228,7 @@ ASKQUE(SUB) ;
  .S DIR("B")=Q1
  S DIR(0)="F^1:20"
  S DIR("A")="What is the name of the queue"
- S DIR("?",1)="To use this tool, there must be messages aleady pending transmission."
+ S DIR("?",1)="To use this tool, there must be messages already pending transmission."
  S DIR("?")="Enter the name of the queue, or '^' to exit."
  D ^DIR
  I $D(DIRUT)!(Y="") Q ""

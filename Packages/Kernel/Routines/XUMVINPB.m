@@ -1,10 +1,11 @@
-XUMVINPB ;MVI/DRI - Master Veteran Index New Person Bulk Pull RPC ;5/4/20  15:03
- ;;8.0;KERNEL;**710,725**;Jul 10, 1995;Build 2
+XUMVINPB ;MVI/DRI - Master Veteran Index New Person Bulk Pull RPC ;7/29/20  13:59
+ ;;8.0;KERNEL;**710,725,733**;Jul 10, 1995;Build 1
  ;Per VA Directive 6402, this routine should not be modified.
  ;
  ;**710 - STORY_952862  (dri) new routine
  ;**725 - STORY_1238392 (dri) add fields 7, 8, 9.2, 29, 205.1, 205.5, 8910
  ;                      sort by Active, Disuser/Terminate, Visitor or All
+ ;**733 - STORY 1291666 (dri) add field 101.13
  ;
  ;Reference to ^XWB2HL7 supported by IA #3144
  ;
@@ -25,6 +26,7 @@ BULKGET(XURET,XUDUZ,XUTYPE) ;rpc to retrieve bulk pull of new person file data
  ;   XURET = ^TMP("XUMVINPB",$J)
  ;    @XURET@(#) = FILE #;FIELD #<;SUBFIELD #><;FILE POINTER>^FIELD NAME^<COUNTER #>^INTERNAL VALUE^EXTERNAL VALUE
  ;      If Counter populated, denotes multiple value <1 to n>.
+ ;      If multiple Subfield's, Internal and External Values will be sub-delimited by '~'.
  ;    @XURET@(#)="200;IEN^DUZ^^^"
  ;    @XURET@(#)="200;.01^NAME^^^"
  ;    @XURET@(#)="200;.111^STREET ADDRESS 1^^^"
@@ -64,6 +66,7 @@ BULKGET(XURET,XUDUZ,XUTYPE) ;rpc to retrieve bulk pull of new person file data
  ;    @XURET@(#)="200;51;.01^KEY^<1 to n>^^"
  ;    @XURET@(#)="200;8910;.01~2^KEY^<1 to n>^~^~"
  ;    @XURET@(#)="200;8910;.01~2^VISITED FROM~DUZ AT HOME SITE^<1 to n)^~^~1"
+ ;    @XURET@(#)="200;101.13;.01~.02~.03^CPRS TAB~EFFECTIVE DATE~EXPIRATION DATE^<1 to n>^~~^~~"
  ;
  ;    @XURET@(#)="200;EOF^EOF^" - if end of new person file reached
  ;
@@ -98,12 +101,13 @@ BULKGET(XURET,XUDUZ,XUTYPE) ;rpc to retrieve bulk pull of new person file data
  ;
  ;lets only get the labels once per bulk run
  S FILE=200
- S FLDS=".01;.111;.112;.113;.114;.115;.116;.132;.151;4;5;7;8;9;9.2;16*;10.1;29;205.1;205.2;205.3;205.4;205.5;501.1;41.99;53.2;747.44;201;203*;51*;8910*"
+ S FLDS=".01;.111;.112;.113;.114;.115;.116;.132;.151;4;5;7;8;9;9.2;16*;10.1;29;205.1;205.2;205.3;205.4;205.5;501.1;41.99;53.2;747.44;201;203*;51*;8910*;101.13*"
  F I=1:1:$L(FLDS,";") S FLD=$P($P(FLDS,";",I),"*") D
  .D FIELD^DID(FILE,FLD,"","LABEL","FLDNM(FILE,FLD)")
  .I FLD=16 S SFILE=200.02,SFLD=.01 D FIELD^DID(SFILE,SFLD,"","LABEL","FLDNM(SFILE,SFLD)") ;division multiple
  .I FLD=10.1 S SFILE=20 F SFLD=1,2,3,4,5,6 D FIELD^DID(SFILE,SFLD,"","LABEL","FLDNM(SFILE,SFLD)") ;name components
  .I FLD=51 S SFILE=200.051,SFLD=.01 D FIELD^DID(SFILE,SFLD,"","LABEL","FLDNM(SFILE,SFLD)") ;keys
+ .I FLD=101.13 S SFILE=200.010113 F SFLD=.01,.02,.03 D FIELD^DID(SFILE,SFLD,"","LABEL","FLDNM(SFILE,SFLD)") ;cprs tab multiple
  .I FLD=203 S SFILE=200.03,SFLD=.01 D FIELD^DID(SFILE,SFLD,"","LABEL","FLDNM(SFILE,SFLD)") ;secondary menu options multiple
  .I FLD=8910 S SFILE=200.06 F SFLD=.01,2 D FIELD^DID(SFILE,SFLD,"","LABEL","FLDNM(SFILE,SFLD)") ;visited from multiple
  ;
@@ -128,6 +132,15 @@ BULKGET(XURET,XUDUZ,XUTYPE) ;rpc to retrieve bulk pull of new person file data
  ...D GETS^DIQ(NCFILE,+$G(XUARR(FILE,XUDUZ_",",FLD,"I"))_",","1;2;3;4;5;6","EI","XUARR") ;retrieve name component data
  ...F NCFLD=1,2,3,4,5,6 D
  ....S @XUGBL@(CNT)=NCFILE_";"_NCFLD_"^"_$G(FLDNM(NCFILE,NCFLD,"LABEL"))_"^^"_$G(XUARR(NCFILE,+$G(XUARR(FILE,XUDUZ_",",FLD,"I"))_",",NCFLD,"I"))_"^"_$G(XUARR(NCFILE,+$G(XUARR(FILE,XUDUZ_",",FLD,"I"))_",",NCFLD,"E")) S CNT=CNT+1
+ ..;
+ ..I FLD=101.13 D  Q  ;cprs tab multiple
+ ...N IENS,MCNT,SFILE,SFLD,SFLD2,SFLD3
+ ...S MCNT=1,SFILE=200.010113,SFLD=.01,SFLD2=.02,SFLD3=.03
+ ...I '$D(XUARR(SFILE)) S @XUGBL@(CNT)=FILE_";"_FLD_";"_SFLD_"~"_SFLD2_"~"_SFLD3_"^"_$G(FLDNM(SFILE,SFLD,"LABEL"))_"~"_$G(FLDNM(SFILE,SFLD2,"LABEL"))_"~"_$G(FLDNM(SFILE,SFLD3,"LABEL"))_"^"_MCNT_"^~~^~~",CNT=CNT+1 Q
+ ...S IENS="" F  S IENS=$O(XUARR(SFILE,IENS)) Q:IENS=""  D
+ ....S @XUGBL@(CNT)=FILE_";"_FLD_";"_SFLD_"~"_SFLD2_"~"_SFLD3_"^"_$G(FLDNM(SFILE,SFLD,"LABEL"))_"~"_$G(FLDNM(SFILE,SFLD2,"LABEL"))_"~"_$G(FLDNM(SFILE,SFLD3,"LABEL"))
+ ....S @XUGBL@(CNT)=@XUGBL@(CNT)_"^"_MCNT_"^"_$G(XUARR(SFILE,IENS,SFLD,"I"))_"~"_$G(XUARR(SFILE,IENS,SFLD2,"I"))_"~"_$G(XUARR(SFILE,IENS,SFLD3,"I"))
+ ....S @XUGBL@(CNT)=@XUGBL@(CNT)_"^"_$G(XUARR(SFILE,IENS,SFLD,"E"))_"~"_$G(XUARR(SFILE,IENS,SFLD2,"E"))_"~"_$G(XUARR(SFILE,IENS,SFLD3,"E")),MCNT=MCNT+1,CNT=CNT+1
  ..;
  ..I FLD=8910 D  Q  ;visited from multiple
  ...N IENS,MCNT,SFILE,SFLD,SFLD2

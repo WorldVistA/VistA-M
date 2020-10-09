@@ -1,5 +1,5 @@
-XLFIPV ;ISD/HGW - IPv4 and IPv6 Utilities ;06/17/14  08:20
- ;;8.0;KERNEL;**605,638**;Aug 6, 2012;Build 15
+XLFIPV ;ISD/HGW - IPv4 and IPv6 Utilities ; 8/19/20 10:57am
+ ;;8.0;KERNEL;**605,638,736**;Aug 6, 2012;Build 12
  ;Per VA Directive 6402, this routine should not be modified.
  Q
  ;
@@ -111,7 +111,7 @@ VERSION() ; EXTRINSIC. ICR #5844 (supported)
  ;
  N %
  S %=0
- I $$VERSION^%ZOSV(1)["Cache" I +$$VERSION^%ZOSV()>2009 S %=$SYSTEM.Process.IPv6Format()
+ I ($$VERSION^%ZOSV(1)["Cache")!($$VERSION^%ZOSV(1)["IRIS") I +$$VERSION^%ZOSV()>2009 S %=$SYSTEM.Process.IPv6Format()
  Q %
  ;
 VAL ; OPTION. "Validate IPv4 and IPv6 address" [XLFIPV VALIDATE]
@@ -181,7 +181,7 @@ VER ; OPTION. "Show system settings for IPv6" [XLFIPV VERSION]
  S X=$$VERSION,XLSYS=$$VERSION^%ZOSV(1),XLVER=+$$VERSION^%ZOSV()
  W !!,?3,XLSYS," ",XLVER
  I X=0 D  Q
- . I XLSYS["Cache" D  Q
+ . I (XLSYS["Cache")!(XLSYS["IRIS") D  Q
  . . I XLVER>2009 W !!,"   IPv6 is available but is disabled on this system." Q
  . . W !!,"   IPv6 is not available on this version of Cache."
  . W !!,"   IPv6 is not available on this system."

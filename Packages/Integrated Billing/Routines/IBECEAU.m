@@ -1,5 +1,5 @@
 IBECEAU ;ALB/CPM - Cancel/Edit/Add... Utilities ;11-MAR-93
- ;;2.0;INTEGRATED BILLING;**91,249,402,651,663**;21-MAR-94;Build 27
+ ;;2.0;INTEGRATED BILLING;**91,249,402,651,663,678**;21-MAR-94;Build 7
  ;;Per VHA Directive 6402, this routine should not be modified.
  ;
 CHECK(TALK) ; Retrieve the institution and MAS Service pointer.
@@ -95,7 +95,8 @@ BFCHK(DFN,DATE,EDATE) ;
  ; Output:     0  --  Not billed the OPT copay on the visit date
  ;            >0  --  Pointer to charge in file #350 that was billed
  ;
- N IBATYP,IBATYPN,IBL,IBND,IBN,Y,SDATE,IBFLG,EDATEH,DATEH,IBLPDT,IBSTAT,IBSEQNM,IBAT,IBATBG
+ N IBATYP,IBATYPN,IBL,IBND,IBN,Y,SDATE,IBFLG,EDATEH,DATEH,IBLPDT,IBSTAT,IBSEQNM,IBAT,IBATBG,DATEL
+ N IBFDT,IBTDT,IBJ,IBDATA,IBTO
  I '$G(DFN)!'$G(DATE) G BFCHKQ
  S EDATE=$G(EDATE)          ; ensuring optional end date is initialized.
  S:EDATE="" EDATE=$G(IBTO)  ; use the To date
@@ -118,11 +119,15 @@ BFCHK(DFN,DATE,EDATE) ;
  .. S IBFLG=0
  .. S IBL=$$LAST(+$P($G(^IB(IBN,0)),"^",9)),IBND=$G(^IB(IBL,0)),IBFDT=$P(IBND,U,14),IBTDT=$P(IBND,U,15)
  .. S DATEL=-SDATE
+ .. I (IBFDT=""),(IBTDT="") S IBFLG=1 Q      ;This is a parent Admission (VA/CC/LTC Record.  Does not Dup check.
  .. I EDATE<IBFDT S IBFLG=1 Q               ;The end date of the bill is prior to the start date of the copay being entered.
  .. I DATE>IBTDT S IBFLG=1 Q               ;The start date of the copay being entered is before the end date of the copay being checked.
  .. S IBATYP=$G(^IBE(350.1,+$P(IBND,"^",3),0))      ;Grab the action type for the Copay
  .. S IBATYPN=$G(^IBE(350.1,+$P(IBATYP,"^",9),0))   ;Grab the associated new Action Type for the Copay
  .. I IBXA=3,$P(IBATYPN,U,11)<3 S IBFLG=1 Q    ;Allow Inpatient Per Diem on an Inpatient Copay
+ ;
+ ;If the copay being charged is an Inpatient Copay (Bill groups 1 and 2) then skip the Per Diem check, no dup found
+ I +IBXA<3,+IBXA>0 Q 0
  ;
  ;IB*2.0*663
  ;Check for an existing duplicate Inpatient Per Diem separately.

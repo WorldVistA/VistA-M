@@ -1,5 +1,5 @@
 YSCLSRV2 ;DALOI/RLM,HEC/hrubovcak - Clozapine data server ;16 Oct 2019 19:31:54
- ;;5.01;MENTAL HEALTH;**69,90,92,154**;Dec 30, 1994;Build 48
+ ;;5.01;MENTAL HEALTH;**69,90,92,154,166**;Dec 30, 1994;Build 19
  ; Reference to ^%ZOSF supported by IA #10096
  ; Reference to ^DPT supported by IA #10035
  ; Reference to ^DD("DD" supported by IA #10017
@@ -52,6 +52,7 @@ REBUILD ;
   . S YSCLX=$O(^YSCL(603.01,"B",YSCLA,"")) S:YSCLX]"" YSCLX=$P(^YSCL(603.01,YSCLX,0),U,2),YSCLER=","_YSCLSSN_" assigned to "_$P($G(^DPT(YSCLX,0)),U)_" at " D OUT
  Q
 OVRRID ;Update record with Monthly, Weekly or Bi-weekly status
+ N YSPTMUOK S YSPTMUOK=1
  F  X XMREC Q:XMER<0  S XMRG=$TR(XMRG,"- ","") D
   . I XMRG'?2U5N1","9N1",".E S YSCLER=" is in error and was not added at " D OUT Q
   . I $P(XMRG,",")'?2U5N S YSCLER=" is not a valid Clozapine number format " D OUT Q
@@ -64,10 +65,16 @@ OVRRID ;Update record with Monthly, Weekly or Bi-weekly status
   . I YSCLDA="" S YSCLER=" SSN does not exist at " D OUT Q
   . I $O(^YSCL(603.01,"B",YSCLNM,0))="" S YSCLER=" SSN not in Clozapine file " D OUT Q
   . I $O(^DPT("SSN",YSCLSSN,YSCLDA)) S YSCLER=" SSN has more than one owner " D OUT Q
-  . I $O(^YSCL(603.01,"B",YSCLNM,0))'=$O(^YSCL(603.01,"C",YSCLDA,0)) S YSCLER=" SSN ("_YSCLSSN_","_$P(^DPT(YSCLDA,0),U)_") has multiple Clozapine Numbers at " D OUT
-  . I $O(^YSCL(603.01,"B",YSCLNM,0))=$O(^YSCL(603.01,"C",YSCLDA,0)) D
+  . ; JCH - Begin PSO*7*612 Handle multiple Clozapine Numbers for the same patient
+  . S YSCLDA1=$O(^YSCL(603.01,"B",YSCLNM,0))  ; IEN from B x-ref for NCCC number
+  . ; Check all Clozapine Numbers associated with patient in 603.01, not just the first/oldest entry
+  . I YSCLDA1'=$O(^YSCL(603.01,"C",YSCLDA,0)) S YSPTMUOK=0 N YSPTNUM S YSPTNUM=0 F  S YSPTNUM=$O(^YSCL(603.01,"C",YSCLDA,YSPTNUM)) Q:'YSPTNUM!$G(YSPTNUOK)  I YSCLDA1=YSPTNUM S YSPTMUOK=1
+  . I '$G(YSPTMUOK) S YSCLER=YSCLNM_" is not assigned to "_" SSN ("_YSCLSSN_","_$P(^DPT(YSCLDA,0),U)_") at " D OUT
+  . I YSPTMUOK!($O(^YSCL(603.01,"B",YSCLNM,0))=$O(^YSCL(603.01,"C",YSCLDA,0))) D
+  . . ; JCH - End PSO*7*612
   . . S YSCLDA1=$O(^YSCL(603.01,"B",YSCLNM,0)) S $P(^YSCL(603.01,YSCLDA1,0),U,4)=YSCLOVR
   . . S Y=YSCLOVR D DD^%DT S YSCLER=" "_YSCLNM_" ("_$P(^DPT(YSCLDA,0),U)_") authorized for over-ride on "_Y_" at " D OUT
+  . . K ^XTMP("PSJ4D-"_+$G(YSCLDA)),^XTMP("PSO4D-"_+$G(YSCLDA))    ; JCH - PSO*7*612. Local Overrides are now obsolete, replaced by NCCC Override.
  G EXIT^YSCLSERV
  ;
 CLAPI ;

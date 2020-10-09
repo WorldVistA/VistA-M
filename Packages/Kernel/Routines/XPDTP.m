@@ -1,13 +1,14 @@
 XPDTP ;SFISC/RSD - Transport using a Packman Message ;09/23/96  13:54
- ;;8.0;KERNEL;**21,40,44**;Jul 05, 1995
+ ;;8.0;KERNEL;**21,40,44,713**;Jul 05, 1995;Build 15
+ ;Per VHA Directive 2004-038, this routine should not be modified.
  N DIFROM,DIR,DIRUT,DWPK,DWLW,DIC,I,J,XCN,XCNP,XMDISPI,XMDUN,XMDUZ,XMKEY,XMSCR,XMSUB,XMY,XMZ,X,Y,%
- S DIFROM=1,DIR(0)="F^3:65",DIR("A")="Subject",DIR("?")="Enter the subject for this Packman Message"
+ S DIFROM=1,DIR(0)="F^3:65",DIR("A")="Subject",DIR("?")="Enter the subject for this Packman Message",DIR("B")=XPDH
  D ^DIR Q:$D(DIRUT)
  S XMSUB=Y,XMDUZ=+DUZ
  K ^TMP("XMP",$J)
  W !,"Please enter description of Packman Message",!
  S DWPK=1,DWLW=75,DIC="^TMP(""XMP"",$J," D EN^DIWE
- D KIDS^XMP
+KD D KIDS^XMP ;p713
  S XCNP=XCNP+1,^XMB(3.9,XMZ,2,XCNP,0)="$KID "_XPDNM,XCNP=XCNP+1
  ;for multiple packages, this would be a for loop
  D GS K:'$G(^XTMP("XPDT",XPDA)) ^(XPDA)

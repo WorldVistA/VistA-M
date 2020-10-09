@@ -1,64 +1,62 @@
 XPDT ;SFISC/RSD - Transport a package ;02/12/2009
- ;;8.0;KERNEL;**2,10,28,41,44,51,58,66,68,85,100,108,393,511,539,547,672**;Jul 10, 1995;Build 28
+ ;;8.0;KERNEL;**2,10,28,41,44,51,58,66,68,85,100,108,393,511,539,547,672,713**;Jul 10, 1995;Build 15
  ;Per VHA Directive 2004-038, this routine should not be modified.
 EN ;build XTMP("XPDT",ien, XPDA=ien,XPDNM=name
- ;XPDT(seq #)=ien^name^1=use current transport global on system
- ;XPDT("DA",ien)=seq #
+ ;XPDT(seq #)=ien^name^1=use current transport global^required in multi-package^don't send PAH^Version#
+ ;XPDT("DA",ien)=seq #^build type
  ;XPDVER=version number^package name
  ;XPDGP=flag;global^flag;global^...  flag=1 replace global at site
- N DIR,DIRUT,I,POP,XPD,XPDA,XPDERR,XPDGP,XPDGREF,XPDH,XPDH1,XPDHD,XPDI,XPDNM,XPDSEQ,XPDSIZ,XPDSIZA,XPDT,XPDTP,XPDVER
+ N DIR,DIRUT,I,POP,XPD,XPDA,XPDA0,XPDERR,XPDGP,XPDGREF,XPDH,XPDH1,XPDHD,XPDI,XPDNM,XPDSEQ,XPDSIZ,XPDSIZA,XPDT,XPDTP,XPDVER
  N DUOUT,DTOUT,XPDFMSG,X,Y,Z,Z1
  K ^TMP($J,"XPD")
  S XPD="First Package Name: ",DIR(0)="Y",DIR("A")="   Use this Transport Global",DIR("?")="Yes, will use the current Transport Global on your system. No, will create a new one.",XPDT=0
  W !!,"Enter the Package Names to be transported. The order in which",!,"they are entered will be the order in which they are installed.",!!
  F  S XPDA=$$DIC^XPDE("AEMQZ",XPD) Q:'XPDA  D  Q:$D(DIRUT)!$D(XPDERR)
+ .S XPDA0=Y(0)
  .S:'XPDT XPD="Another Package Name: "
  .;XPDI=name^1=use current transport global
- .S XPDI=$P(Y(0),U)_"^"
- .I $D(XPDT("DA",XPDA)) W "   ",$P(Y(0),U)," already listed",! Q
+ .S XPDI=$P(XPDA0,U)_"^"
+ .I $D(XPDT("DA",XPDA)) W "   ",$P(XPDI,U)," already listed",! Q
  .;if type is Global Package, set DIRUT if there is other packages
- .I $P(Y(0),U,3)=2 W "   GLOBAL PACKAGE" D  Q
+ .I $P(XPDA0,U,3)=2 W "   GLOBAL PACKAGE" D  Q
  ..;if there is already a package in distribution, abort
  ..I XPDT S DIRUT=1 W !,"A GLOBAL PACKAGE cannot be sent with any other packages" Q
  ..I $D(^XTMP("XPDT",XPDA)) W "  **Cannot have a pre-existing Transport Global**" S DIRUT=1 Q
  ..W !?10,"will transport the following globals:",! S X=0,XPDGP=""
  ..F  S X=$O(^XPD(9.6,XPDA,"GLO",X)) Q:'X  S Z=$G(^(X,0)) I $P(Z,U)]"" S XPDGP=XPDGP_($P(Z,U,2)="y")_";"_$P(Z,U)_"^" W ?12,$P(Z,U),!
  ..;XPDERR is set to quit loop, so no other packages can be added
- ..S XPDERR=1,XPDT=XPDT+1,XPDT(XPDT)=XPDA_U_XPDI,XPDT("DA",XPDA)=XPDT
+ ..S XPDERR=1,XPDT=XPDT+1,XPDT(XPDT)=XPDA_U_XPDI,XPDT("DA",XPDA)=XPDT_U_2
  .Q:$D(XPDERR)
- .D PCK(XPDA,XPDI)
+ .D PCK(XPDA,XPDI,,XPDA0)
  .;multi-package
- .Q:$P(Y(0),U,3)'=1
+ .Q:$P(XPDA0,U,3)'=1
  .W "   (Multi-Package)" S X=0
  .I XPDT>1 S DIRUT=1 W !,"A Master Build must be the first/only package in a transport" Q
  .F  S X=$O(^XPD(9.6,XPDA,10,X)) Q:'X  S Z=$P($G(^(X,0)),U),Z1=$P($G(^(0)),U,2) D:Z]""
- ..N XPDA,X
- ..W !?3,Z S XPDA=$O(^XPD(9.6,"B",Z,0))
- ..I 'XPDA W "  **Can't find definition in Build file**" Q
+ ..N XPDA,XPDA0,X
+ ..W !?3,Z S XPDA=$O(^XPD(9.6,"B",Z,0)),XPDA0=$G(^XPD(9.6,XPDA,0))
+ ..I 'XPDA!(XPDA0="") W "  **Can't find definition in Build file**" Q
  ..I $D(XPDT("DA",XPDA)) W "  already listed" Q
- ..D PCK(XPDA,Z,Z1)
+ ..D PCK(XPDA,Z,Z1,XPDA0)
  .S XPDERR=1 ;XPDERR is set to quit loop, so no other packages can be added
  .Q
- G:'XPDT!$D(DIRUT) QUIT K XPDERR
- W !!,"ORDER   PACKAGE",!
- F XPDT=1:1:XPDT S Y=$P(XPDT(XPDT),U,2) W ?2,XPDT,?7,Y D  W !
- .W:$P(XPDT(XPDT),U,3) "     **will use current Transport Global**"
- .;check if New Version and single package, has Package File Link, Package App. History
- .Q:Y["*"!'$$PAH(+XPDT(XPDT))
- .S DIR(0)="Y",DIR("A")="Send the PATCH APPLICATION HISTORY from the PACKAGE file",DIR("B")="YES"
- .W !! D ^DIR I 'Y S $P(XPDT(XPDT),U,5)=1
- S DIR(0)="Y",DIR("A")="OK to continue",DIR("B")="YES",XPDH=""
- W !! D ^DIR G:$D(DIRUT)!'Y QUIT K DIR
- I $G(XPDTP),XPDT>1 W !!,"You cannot send multiple Builds through PackMan."
- S DIR(0)="SAO^HF:Host File"_$S(XPDT=1:";PM:PackMan",1:"")
- S DIR("A")="Transport through (HF)Host File"_$S(XPDT=1:" or (PM)PackMan: ",1:": ")
- S DIR("?")="Enter the method of transport for the package(s)."
- D ^DIR G:$D(DTOUT)!$D(DUOUT) QUIT K DIR
- I Y="" W !,"No Transport Method selected, will only write Transport Global to ^XTMP." S XPDH=""
- ;XPDTP = transports using Packman
- S:Y="PM" XPDTP=1
- I $D(XPDGP),Y'="HF" W !,"**Global Package can only be sent with a Host File, Transport ABORTED**" Q
- I Y="HF" D DEV G:POP QUIT
+ G:'XPDT!$D(DUOUT) QUIT K XPDERR
+ ;XPDH=Header comment, XPDTP=transport method: 1=PM, 0=HF
+ S (XPDH,XPDTP)=""
+ ;XPDH=header comment, will be return from DISP ;p713
+ F  D DISP Q:$D(DIRUT)
+ G:$D(DUOUT) QUIT
+ ;XPDT>1 (more than one package) or $P(XPDA0,U,3) multi-package) can only use HF 
+ I XPDT=1,'$P(XPDA0,U,3) D  G:$D(DTOUT)!$D(DUOUT) QUIT
+ .S DIR(0)="SAO^HF:Host File;PM:PackMan",DIR("A")="Transport through (HF)Host File or (PM)PackMan: "
+ .S DIR("?")="Enter the method of transport for the package(s)."
+ .D ^DIR S:Y="PM" XPDTP=1 S:Y="" XPDH=""
+ .K DIR
+ .Q
+ ;single package, no transport method, no header comment
+ I XPDT=1,'XPDTP,XPDH="" W !,"No Transport Method selected, will only write Transport Global to ^XTMP."
+ ;XPDTP = 1-transports using Packman, can't be GP or multiple builds
+ I 'XPDTP,XPDH]"" D DEV G:POP QUIT
  W !!
  F XPDT=1:1:XPDT S XPDA=XPDT(XPDT),XPDNM=$P(XPDA,U,2) D  G:$D(XPDERR) ABORT
  .W !?5,XPDNM,"..." S XPDGREF="^XTMP(""XPDT"","_+XPDA_",""TEMP"")"
@@ -66,8 +64,8 @@ EN ;build XTMP("XPDT",ien, XPDA=ien,XPDNM=name
  .I $P(XPDA,U,3) S XPDA=+XPDA D PRET Q
  .;if package file link then set XPDVER=version number^package name
  .S XPDA=+XPDA,XPDVER=$S($P(^XPD(9.6,XPDA,0),U,2):$$VER^XPDUTL(XPDNM)_U_$$PKG^XPDUTL(XPDNM),1:"")
- .;Inc the Build number
- .S $P(^XPD(9.6,XPDA,6.3),U)=$G(^XPD(9.6,XPDA,6.3))+1
+ .;Increment and set the Build number and set Build version #
+ .S $P(^XPD(9.6,XPDA,6.3),U)=$G(^XPD(9.6,XPDA,6.3))+1,$P(^XPD(9.6,XPDA,6),U)=$P(XPDT(XPDT),U,6)
  .K ^XTMP("XPDT",XPDA)
  .;GLOBAL PACKAGE
  .I $D(XPDGP) D  S XPDT=1 Q
@@ -93,7 +91,7 @@ DEV N FIL,DIR,IOP,X,Y,%ZIS W !
  D ^DIR I $D(DTOUT)!$D(DUOUT) S POP=1 Q
  ;if no file, then quit
  Q:Y=""  S FIL=Y
- S DIR(0)="F^3:80",DIR("A")="Header Comment",DIR("?")="Enter a comment between 3 and 80 characters."
+ S DIR(0)="F^3:200",DIR("A")="Header Comment",DIR("?")="Enter a comment between 3 and 200 characters.",DIR("B")=XPDH
  D ^DIR I $D(DIRUT) S POP=1 Q
  S XPDH=Y,%ZIS="",%ZIS("HFSNAME")=FIL,%ZIS("HFSMODE")="W",IOP="HFS",(XPDSIZ,XPDSIZA)=0,XPDSEQ=1
  D ^%ZIS I POP W !!,"**Incorrect Host File name**",!,$C(7) Q
@@ -173,9 +171,11 @@ ABORT W !!,"**TRANSPORT ABORTED**",*7
  I $L(XPDH),$$DEL1^%ZISH(XPDH) W !,"File:  ",XPDH,"  (Deleted)"
  Q
  ;
-PCK(XPDA,XPDNM,XPDREQ) ;XPDA=Build ien, XPDNM=Build name, XPDREQ=Required
- N Y
- S XPDT=XPDT+1,XPDT(XPDT)=XPDA_U_XPDNM,XPDT("DA",XPDA)=XPDT
+PCK(XPDA,XPDNM,XPDREQ,XPDA0) ;XPDA=Build ien, XPDNM=Build name, XPDREQ=Required, XPDA0=Y(0) ^XPD(9.6,XPDA,0)
+ N Y,Z
+ S XPDT=XPDT+1,XPDT(XPDT)=XPDA_U_XPDNM,XPDT("DA",XPDA)=XPDT_"^"_$P(XPDA0,U,3)
+ ;get TEST# and increment ;p713
+ S Z=+$G(^XPD(9.6,XPDA,6)),Z=Z+1,$P(XPDT(XPDT),U,6)=Z
  S:'$G(XPDREQ) XPDREQ=0
  S $P(XPDT(XPDT),U,4)=XPDREQ
  Q:'$D(^XTMP("XPDT",XPDA))  S Y=$G(^(XPDA))
@@ -204,3 +204,33 @@ PRET ;Pre-Transport Routine
  S Y=$S(Y["^":Y,1:"^"_Y) W !,"Running Pre-Transportation Routine ",Y
  D @Y
  Q
+ ;
+DISP ;display packages, RETURN: DIRUT  ;p713
+ N DIR,X,Y
+ W !!,"ORDER    PACKAGE",?25,"VERSION #",!
+ F XPDT=1:1:XPDT W ?2,XPDT,?9,$P(XPDT(XPDT),U,2),?28,$P(XPDT(XPDT),U,6) D  W !
+ .W:$P(XPDT(XPDT),U,3) ?25,"       **will use current Transport Global**"
+ .;check if New and single package, has Package File Link, Package App. History
+ .I $P(XPDT(XPDT),U,2)["*"!'$$PAH(+XPDT(XPDT))!($P(XPDT(XPDT),U,5)) Q
+ .S DIR(0)="Y",DIR("A")="Send the PATCH APPLICATION HISTORY from the PACKAGE file",DIR("B")="YES"
+ .W !! D ^DIR I 'Y S $P(XPDT(XPDT),U,5)=1
+ .Q
+ S DIR(0)="SA^C:Continue;E:Edit Version #;Q:Quit",DIR("A")="Do you want to (C)ontinue, (E)dit Version #, (Q)uit: ",DIR("B")="C"
+ W ! D ^DIR
+ I Y="C" D  S DIRUT=1 Q
+ .N DIC,I,J,Y
+ .S I=XPDT,J=""
+ .F I=1:1:XPDT S J=J_$P(XPDT(I),U,2)_" v"_$P(XPDT(I),U,6)_$S(I<XPDT:", ",1:"")
+ .S XPDH=J
+ .Q
+ I $D(DIRUT)!(Y="Q") S DIRUT=1,DUOUT=1 Q
+ ;edit of Version # ;p713
+ F  D  I $D(DIRUT) K DIRUT Q
+ .K DIR
+ .S DIR(0)="NOA^1:"_XPDT,DIR("A")="Enter the ORDER number or <CR> when done: "
+ .W ! D ^DIR I $D(DIRUT)!(Y="") Q
+ .S Z=Y,DIR("B")=$P(XPDT(Z),U,6),DIR(0)="NA^1:9999",DIR("A")="Version #: "
+ .D ^DIR I Y S $P(XPDT(Z),U,6)=Y
+ .Q
+ Q
+ ;

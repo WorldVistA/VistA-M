@@ -1,5 +1,5 @@
 GMRAFA ;ISP/RFR - CORRECT ASSESSMENTS ;06/21/2016  15:04
- ;;4.0;Adverse Reaction Tracking;**48,53**;Mar 29, 1996;Build 306
+ ;;4.0;Adverse Reaction Tracking;**48,53,61**;Mar 29, 1996;Build 3
 EN ; -- main entry point for GMRA ASSESS FIX
  N DIR,X,Y,DTOUT,DUOUT,DIRUT,DIROUT
  I '$D(^XTMP("GMRAFAL")) D  Q
@@ -10,21 +10,21 @@ EN ; -- main entry point for GMRA ASSESS FIX
  .S DIR(0)="Y"_U_"A",DIR("A")="Shall I notify anyone else when the list is built"
  .S DIR("B")="NO",DIR("?")="Enter YES to add other recipients or NO to not add other recipients."
  .D ^DIR
- .Q:$D(DIRUT)
+ .I $D(DIRUT) K ^XTMP("GMRAFAL") Q  ; p61 kill global if exiting before job is created
  .I +Y S XMDF=1 D DES^XMA21 I X="",'$D(XMOUT),$D(XMY) M ^XTMP("GMRAFAL","B","RECIPS")=XMY
  .K X,Y,DTOUT,DUOUT,DIRUT,DIROUT
  .S DIR(0)="Y"_U_"A",DIR("A")="Do you want to include deceased patients in the list"
  .S DIR("B")="NO",DIR("?",1)="Enter YES to include deceased patients in the list or NO to exclude deceased"
  .S DIR("?")="patients from the list."
  .D ^DIR
- .Q:$D(DIRUT)
+ .I $D(DIRUT) K ^XTMP("GMRAFAL") Q  ; p61 kill global if exiting before job is created
  .S ^XTMP("GMRAFAL","Q","INC_DEAD")=+Y
  .N ZTRTN,ZTDESC,ZTIO,ZTSK
  .S ZTRTN="LISTBLD^GMRAFA",ZTDESC="GMRA ASSESSMENT LIST BUILDER",ZTIO=""
  .W !!,"Enter the date and time below when the assessment list builder should start.",!
  .D ^%ZTLOAD
  .I $D(ZTSK) S ^XTMP("GMRAFAL","B")=ZTSK W !!,"Successfully queued the assessment list builder; task #"_ZTSK_".",!!
- .E  W !!,"The assessment list builder was not scheduled.",!!
+ .E  W !!,"The assessment list builder was not scheduled.",!! K ^XTMP("GMRAFAL") Q  ; p61 kill global if exiting before job is created
  .S:$D(^XTMP("GMRAFAL")) ^XTMP("GMRAFAL",0)=$$FMADD^XLFDT(DT,30,0,0,0)_U_DT_U_"GMRA ASSESSMENT LIST"
  I $G(^XTMP("GMRAFAL","B"))>0 D  Q
  .N ZTSK S ZTSK=+$G(^XTMP("GMRAFAL","B"))

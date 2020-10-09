@@ -1,9 +1,10 @@
 IBECEA3 ;ALB/CPM - Cancel/Edit/Add... Add a Charge ;30-MAR-93
- ;;2.0;INTEGRATED BILLING;**7,57,52,132,150,153,166,156,167,176,198,188,183,202,240,312,402,454,563,614,618,646,651,656,663,677**;21-MAR-94;Build 17
+ ;;2.0;INTEGRATED BILLING;**7,57,52,132,150,153,166,156,167,176,198,188,183,202,240,312,402,454,563,614,618,646,651,656,663,677,678**;21-MAR-94;Build 7
  ;;Per VA Directive 6402, this routine should not be modified.
  ;
 ADD ; Add a Charge protocol
  N IBGMT,IBGMTR,IBUSNM,IBUC    ;IB*2.0*618 Add IBUSNM IB*2.0*646 Add IBUC
+ N IBDUPIEN,IBDPDATA,IBDPXA,IBDPAMT,IBCONT,IBVST ; IB*2.0*678 added
  ; Check for IB EDIT key.  If not present
  I '$$IBEDIT^IBECEA36 Q
  S (IBGMT,IBGMTR,IBUC)=0
@@ -60,7 +61,8 @@ ADD ; Add a Charge protocol
  . S (IBTO,IBEFDT)=IBFR
  . ;
  . ;PRCA*4.5*338 - if Community Care RX copay, set event date
- . I (IBXA=5),(IBUSNM["RX"),((IBUSNM["CC")!(IBUSNM["CHOICE")) S IBEVDA="*",IBEVDT=IBEFDT
+ . S IBEVDA="*",IBEVDT=IBEFDT
+ . ;I (IBXA=5),(IBUSNM["RX"),((IBUSNM["CC")!(IBUSNM["CHOICE")) S IBEVDA="*",IBEVDT=IBEFDT
  . ;
  . ; ask tier if needed
  . S IBTIER=$$TIER^IBECEAU2(IBATYP,IBEFDT) Q:IBY<0
@@ -85,7 +87,7 @@ ADD ; Add a Charge protocol
  S IBLIM=$S(IBXA=4!(IBXA=3):DT,1:$$FMADD^XLFDT(DT,-1))
  ;
 FR ; - ask 'bill from' date
- D FR^IBECEAU2(0) G:IBY<0 ADDQ
+ D FR^IBECEAU2(0)
  ;
  ;IB*2.0*646/656
  ; If Urgent Care copay, skip clock checks, go to prompt for copay amount.
@@ -94,6 +96,8 @@ FR ; - ask 'bill from' date
  . W !,"Dates of service prior to this date will need to be billed using other ",!,"outpatient copayment charges."
  G:$G(IBUC) UCPAY
  ; end IB*2.0*646/656
+ ;
+ ;
  S IBGMT=$$ISGMTPT^IBAGMT(DFN,IBFR),IBGMTR=0 ;GMT Copayment Status
  I IBGMT>0,IBXA>0,IBXA<4 W !,"The patient has GMT Copayment Status."
  ; - check the MT billing clock
@@ -127,28 +131,76 @@ UCPAY ;IB*2.0*646 Added to allow for skip of clock checks - required for Urgent 
  ;Start- IB*2.0*651
  ;Check to see if there is another medical copay (inpatient or outpatient) on that same day for this patient.
  ;If there is, print warning message to user and abort copay entry.
- I ((IBXA=4)!(IBXA=8)),$$BFCHK^IBECEAU(DFN,IBFR) D PRTWRN G ADDQ
+ ;I ((IBXA=4)!(IBXA=8)),$$BFCHK^IBECEAU(DFN,IBFR) D  G ADDQ
+ ;. S IBVST=0
+ ;. D PRTWRN  ;Print warning message
+ ;. I IBUC D
+ ;. . S IBVST=$$VSTCHK()
+ ;. . I IBVST D ADDVST^IBECEA36(DFN,IBFR,"",4,5)
  ;end IB*2.0*651
  ;
+ ;
+ ;IB*2.0*678 Modified entire section to allow Dup Check to cancel existing lower copays or tell users they can't add a copay
  ;IB*2.0*663 Added changes for Urgent Care Visit Tracking
- I IBXA=4,IBUC D UCCHRG2^IBECEA36(DFN,IBFR) G ADDQ:IBY<0,PROC
+ I IBXA=4,IBUC D UCCHRG2^IBECEA36(DFN,IBFR) G ADDQ:IBY<0
  ;end IB*2.0*646
  ;
- I IBXA=4,$$CHKHRFS^IBAMTS3(DFN,IBFR,IBFR) W !!,"This patient is 'Exempt' from Outpatient Visit charges on that date of service.",! G ADDQ  ;IB*2.0*614 (no copayment if HRfS flag)
- I IBXA=4 D  G ADDQ:IBY<0,PROC
+ I IBXA=4,'IBUC,$$CHKHRFS^IBAMTS3(DFN,IBFR,IBFR) W !!,"This patient is 'Exempt' from Outpatient Visit charges on that date of service.",! G ADDQ  ;IB*2.0*614 (no copayment if HRfS flag)
+ I IBXA=4,'IBUC D  G ADDQ:IBY<0
  .   ;  for visits prior to 12/6/01 or FEE
  .   I IBFR<3011206!($G(IBAFEE)) D OPT^IBECEA33 Q
  .   ;  for visits on or after 12/5/01
  .   D OPT^IBEMTSCU
  ;
+ S IBDUPIEN=0
+ S IBDUPIEN=$$BFCHK^IBECEAU(DFN,IBFR)
+ I (IBXA=4),IBDUPIEN D  G ADDQ:'IBCONT
+ . S IBDPDATA=$$DUPINFO(IBDUPIEN),IBDPXA=$P(IBDPDATA,U,2),IBDPAMT=$P(IBDPDATA,U)
+ . S IBCONT=0
+ . I (IBDPXA'=4),(IBDPXA'=8) D PRTWRN Q
+ . S IBVST=0
+ . D PRTWRN  ;Print warning message
+ . I IBCHG>IBDPAMT D  Q    ; The new Outpatient charge is greater than existing charge.
+ . . S IBCONT=1
+ . . I '$$CANDUP(IBDUPIEN) S IBCONT=0 Q
+ . I IBUC D
+ . . S IBVST=$$VSTCHK()
+ . . I IBVST D ADDVST^IBECEA36(DFN,IBFR,"",4,5)
+ ;
+ ;If outpatient copay and has passed all other checks, go to PROC
+ G:IBXA=4 PROC
+ ;
+ ;end IB*2.0*678
+ ;
  ; - if LTC outpatient calculate the charge
- I IBXA=8 D  G:IBY<0 ADDQ S (IBDT,IBTO,IBEVDT)=IBFR,IBDESC=$P(^IBE(350.1,IBATYP,0),"^",8),IBUNIT=1,IBEVDA="*" D COST^IBAUTL2,CALC^IBAECO,CTBB^IBECEAU3 G @$S(IBCHG:"PROC",1:"ADDQ")
+ ;I IBXA=8 D  G:IBY<0 ADDQ S (IBDT,IBTO,IBEVDT)=IBFR,IBDESC=$P(^IBE(350.1,IBATYP,0),"^",8),IBUNIT=1,IBEVDA="*" D COST^IBAUTL2,CALC^IBAECO,CTBB^IBECEAU3 G @$S(IBCHG:"PROC",1:"ADDQ")
+ I IBXA=8 D  G:IBY<0 ADDQ S (IBDT,IBTO,IBEVDT)=IBFR,IBDESC=$P(^IBE(350.1,IBATYP,0),"^",8),IBUNIT=1,IBEVDA="*" D COST^IBAUTL2,CALC^IBAECO,CTBB^IBECEAU3 G:'IBCHG ADDQ
  . ;
  . ; is this day already a free day
  . I $D(^IBA(351.81,IBCLDA,1,"AC",IBFR)) W !!,"This day is already marked as a Free Day." S IBY=-1
  . ;
- . ; have we already billed for this day
- . I $$BFO^IBECEAU(DFN,IBFR) W !!,"This patient has already been billed for this date." S IBY=-1
+ . ; have we already billed for this day  IB*2.0*678 - moved below.
+ . ;I $$BFO^IBECEAU(DFN,IBFR) W !!,"This patient has already been billed for this date." S IBY=-1
+ ;
+ S IBCONT=0
+ I IBXA=8 D  G:IBY<1 ADDQ
+ . S IBY=1  ; assume no duplicate
+ . S IBDUPIEN=$$BFCHK^IBECEAU(DFN,IBFR)
+ . ; If so, either allow removal of duplicate or prevent user from continuing to bill
+ . I IBDUPIEN D
+ . . S IBY=0   ;Duplicate found
+ . . ; Print Warning message
+ . . D PRTWRN
+ . . ; get Duplicate Bill info
+ . . S IBDPDATA=$$DUPINFO(IBDUPIEN),IBDPXA=$P(IBDPDATA,U,2),IBDPAMT=$P(IBDPDATA,U)
+ . . ; If an Inpatient Med, warn user and prevent further billing
+ . . I (IBDPXA'=4),(IBDPXA'=8) S IBY=-1 Q
+ . . ; If potential charge is greater than the amount already billed
+ . . I IBCHG>IBDPAMT D
+ . . . I '$$CANDUP(IBDUPIEN) S IBCONT=0 Q
+ . . . S IBCONT=1
+ ;
+ G:IBXA=8 PROC
  ;
  ; - find per diem charge and description
  I IBXA=3 D  I 'IBCHG W !!,"Unable to determine the per diem rate.  Please check your rate table." G ADDQ
@@ -165,8 +217,22 @@ TO ; - ask 'bill to' date
  ;Start- IB*2.0*651
  ;Check to see if there is another medical copay (inpatient or outpatient) on that same day for this patient.
  ;If there is, print warning message to user and abort copay entry.
- I ((IBXA<4)!(IBXA=9)),$$BFCHK^IBECEAU(DFN,IBFR) D PRTWRN G ADDQ
+ I ((IBXA<4)!(IBXA=9)) D  G:IBY<1 ADDQ
+ . S IBDUPIEN=$$BFCHK^IBECEAU(DFN,IBFR)
+ . ; If so, either allow removal of duplicate or prevent user from continuing to bill
+ . S IBY=1
+ . I IBDUPIEN D
+ . . S IBY=0   ;Duplicate found
+ . . ; Print Warning message
+ . . D PRTWRN
+ . . ; get Duplicate Bill info
+ . . S IBDPDATA=$$DUPINFO(IBDUPIEN),IBDPXA=$P(IBDPDATA,U,2),IBDPAMT=$P(IBDPDATA,U)
+ . . ; If an Inpatient Med, warn user and prevent further billing
+ . . I (IBDPXA'=4),(IBDPXA'=8) S IBY=-1 Q
+ . . ; Inpatient automatically forces outpatient copays to cancel
+ . . I $$CANDUP(IBDUPIEN) S IBY=1 Q
  ;end IB*2.0*651
+ ;end IB*2.0*678
  ;
  I IBXA>0,IBXA<4,IBGMT'=$$ISGMTPT^IBAGMT(DFN,IBTO) W !!,"The patient's GMT Copayment status changed within the specified period!",! G ADDQ
  ;
@@ -180,7 +246,6 @@ TO ; - ask 'bill to' date
  . D NOEV^IBECEA31 I '$G(IBDG)!(IBY<0) S IBY=-1 Q
  . ; - build the event record
  . N IBNHLTC S IBNHLTC=1 D ADEV^IBECEA31
- ;
  ;
  ; - calculate units and total charge
  S IBUNIT=$$FMDIFF^XLFDT(IBTO,IBFR) S:IBXA'=3!(IBFR=IBTO) IBUNIT=IBUNIT+1
@@ -252,3 +317,73 @@ PRTWRN ; Print warning message about medical copayment already applied
  W !!!,"This patient has already been billed a medical copayment for this date."
  W !,"Please review the associated dates and charges for this patient.",!
  Q
+ ;
+ ;IB*2.0*678
+VSTCHK()  ; Ask the user to see if they wish to update the UC Visit Tracking DB
+ ;
+ N DIR,DIRUT,DUOUT,X,Y,IBY
+ W !
+ S IBY=-1   ; Default exit value
+ S DIR(0)="YA",DIR("A")="Do you want this Urgent Care visit added to the Visit Tracking Database?  : "
+ D ^DIR
+ W !     ;force a line feed between the messages
+ Q:$D(DIRUT) IBY
+ Q:$D(DUOUT) IBY
+ Q:'Y Y       ; user selected No
+ Q 1          ;Otherwise, the answer was yes
+ ;
+DUPINFO(IBIEN) ;Retrieve the needed information from the duplicate bill 
+ ;Input - IEN of the Bill already charged on that date
+ ;Output - Amount ^ Billing Group
+ N IBDATA0,IBDPIEN,IBDPXA
+ S IBDATA0=$G(^IB(IBIEN,0))
+ S IBDPIEN=$P(IBDATA0,U,3)
+ S IBDPXA=$$GET1^DIQ(350.1,IBDPIEN_",",.11,"I")
+ Q $P(IBDATA0,U,7)_U_IBDPXA
+ ;
+CANDUP(IBN) ;Cancel the duplicate copay if the user wishes to.
+ ;
+ ;INPUT -   IBN - IEN for the Copay to be cancelled (File 350)
+ ;OUTPUT -  0   - Didn't Cancel the copay
+ ;          1   - Cancelled the Copay
+ ;
+ ;Display Duplicate Copay
+ ;Get the info
+ N IBFRDT,IBTODT,IBACTY,IBSTCD,IBBLNM,IBSTAT,IBCHRG,IBI
+ N DIR,DIRUT,DUOUT,X,Y,IBY
+ S IBFRDT=$$GET1^DIQ(350,IBN_",",.14,"I")
+ S IBFRDT=$$FMTE^XLFDT(IBFRDT,"2Z")
+ S IBTODT=$$GET1^DIQ(350,IBN_",",.15,"I")
+ S IBTODT=$$FMTE^XLFDT(IBTODT,"2Z")
+ S IBACTY=$$GET1^DIQ(350,IBN_",",.03,"E")
+ S IBSTCD=$$GET1^DIQ(350,IBN_",",.2,"E")
+ S IBBLNM=$$GET1^DIQ(350,IBN_",",.11,"E")
+ S IBSTAT=$$GET1^DIQ(350,IBN_",",.05,"E")
+ S IBCHRG=$$GET1^DIQ(350,IBN_",",.07,"E")
+ W !,"BILL",?10,"BILL",?40,"STOP",?45,"BILL",!
+ W "FROM",?10," TO",?21,"CHARGE TYPE",?40,"CODE",?45,"NUMBER",?60,"STATUS",?70,"CHARGE",!
+ F IBI=1:1:80 W "-"
+ W !,IBFRDT,?10,IBTODT,?21,$E(IBACTY,1,17),?40,IBSTCD,?45,IBBLNM,?60,IBSTAT,?70,IBCHRG,!
+ ;
+ N DIR,DIRUT,DUOUT,X,Y,IBY
+ W !     ;force a line feed between the messages
+ S IBY=-1   ; Default exit value
+ S DIR(0)="YA",DIR("A",1)="Do you wish to cancel this existing copayment and continue billing the current",DIR("A")="copayment?  : "
+ D ^DIR
+ S IBY=+Y
+ W !     ;force a line feed between the messages
+ ;
+ ;Quit if user does not answer yes.
+ I +IBY<1 D  Q 0
+ .  W !,"The existing copayment was not cancelled.  This charge will not be added.",!
+ ;
+ ;remove local variables before calling IBECEA4
+ ;
+ ;Otherwise, cancel the copay.
+ S IBCNRSLT=$$CANCAPI^IBECEA4(IBN)
+ I +$G(IBCNRSLT)<0 D  Q 0
+ . W !!,"The copayment was not cancelled."
+ W !!,"The copayment was cancelled.  Please continue adding the new copay."
+ R !!,?10,"Press any key to continue.    ",IBX:DTIME
+ ;
+ Q 1
