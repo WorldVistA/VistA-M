@@ -1,124 +1,126 @@
-IBDEI163 ; ; 04-FEB-2020
- ;;3.0;IB ENCOUNTER FORM IMP/EXP;;FEB 04, 2020
+IBDEI163 ; ; 01-FEB-2022
+ ;;3.0;IB ENCOUNTER FORM IMP/EXP;;FEB 01, 2022
  Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,999) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
- ;;^UTILITY(U,$J,358.3,18764,0)
- ;;=F16.959^^91^960^9
- ;;^UTILITY(U,$J,358.3,18764,1,0)
+ ;;^UTILITY(U,$J,358.3,18944,1,3,0)
+ ;;=3^Paraplegia,Complete
+ ;;^UTILITY(U,$J,358.3,18944,1,4,0)
+ ;;=4^G82.21
+ ;;^UTILITY(U,$J,358.3,18944,2)
+ ;;=^5004126
+ ;;^UTILITY(U,$J,358.3,18945,0)
+ ;;=G82.22^^64^842^23
+ ;;^UTILITY(U,$J,358.3,18945,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,18764,1,3,0)
- ;;=3^Hallucinogen Induced Psychotic D/O w/o Use D/O
- ;;^UTILITY(U,$J,358.3,18764,1,4,0)
- ;;=4^F16.959
- ;;^UTILITY(U,$J,358.3,18764,2)
- ;;=^5003356
- ;;^UTILITY(U,$J,358.3,18765,0)
- ;;=F16.99^^91^960^17
- ;;^UTILITY(U,$J,358.3,18765,1,0)
+ ;;^UTILITY(U,$J,358.3,18945,1,3,0)
+ ;;=3^Paraplegia,Incomplete
+ ;;^UTILITY(U,$J,358.3,18945,1,4,0)
+ ;;=4^G82.22
+ ;;^UTILITY(U,$J,358.3,18945,2)
+ ;;=^5004127
+ ;;^UTILITY(U,$J,358.3,18946,0)
+ ;;=G82.20^^64^842^24
+ ;;^UTILITY(U,$J,358.3,18946,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,18765,1,3,0)
- ;;=3^Hallucinogen Related D/O,Unspec
- ;;^UTILITY(U,$J,358.3,18765,1,4,0)
- ;;=4^F16.99
- ;;^UTILITY(U,$J,358.3,18765,2)
- ;;=^5133359
- ;;^UTILITY(U,$J,358.3,18766,0)
- ;;=F16.983^^91^960^16
- ;;^UTILITY(U,$J,358.3,18766,1,0)
+ ;;^UTILITY(U,$J,358.3,18946,1,3,0)
+ ;;=3^Paraplegia,Unspec
+ ;;^UTILITY(U,$J,358.3,18946,1,4,0)
+ ;;=4^G82.20
+ ;;^UTILITY(U,$J,358.3,18946,2)
+ ;;=^5004125
+ ;;^UTILITY(U,$J,358.3,18947,0)
+ ;;=M15.9^^64^842^25
+ ;;^UTILITY(U,$J,358.3,18947,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,18766,1,3,0)
- ;;=3^Hallucinogen Persisting Perception D/O
- ;;^UTILITY(U,$J,358.3,18766,1,4,0)
- ;;=4^F16.983
- ;;^UTILITY(U,$J,358.3,18766,2)
- ;;=^5003358
- ;;^UTILITY(U,$J,358.3,18767,0)
- ;;=F16.21^^91^960^20
- ;;^UTILITY(U,$J,358.3,18767,1,0)
+ ;;^UTILITY(U,$J,358.3,18947,1,3,0)
+ ;;=3^Polyosteoarthritis,Unspec
+ ;;^UTILITY(U,$J,358.3,18947,1,4,0)
+ ;;=4^M15.9
+ ;;^UTILITY(U,$J,358.3,18947,2)
+ ;;=^5010768
+ ;;^UTILITY(U,$J,358.3,18948,0)
+ ;;=G71.9^^64^842^26
+ ;;^UTILITY(U,$J,358.3,18948,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,18767,1,3,0)
- ;;=3^Hallucinogen Use DO,Mod/Sev,In Remiss
- ;;^UTILITY(U,$J,358.3,18767,1,4,0)
- ;;=4^F16.21
- ;;^UTILITY(U,$J,358.3,18767,2)
- ;;=^5003337
- ;;^UTILITY(U,$J,358.3,18768,0)
- ;;=F16.11^^91^960^18
- ;;^UTILITY(U,$J,358.3,18768,1,0)
+ ;;^UTILITY(U,$J,358.3,18948,1,3,0)
+ ;;=3^Primary Muscle Disorder,Unspec
+ ;;^UTILITY(U,$J,358.3,18948,1,4,0)
+ ;;=4^G71.9
+ ;;^UTILITY(U,$J,358.3,18948,2)
+ ;;=^5004094
+ ;;^UTILITY(U,$J,358.3,18949,0)
+ ;;=M05.9^^64^842^60
+ ;;^UTILITY(U,$J,358.3,18949,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,18768,1,3,0)
- ;;=3^Hallucinogen Use DO,Mild,In Remiss
- ;;^UTILITY(U,$J,358.3,18768,1,4,0)
- ;;=4^F16.11
- ;;^UTILITY(U,$J,358.3,18768,2)
- ;;=^268239
- ;;^UTILITY(U,$J,358.3,18769,0)
- ;;=F11.10^^91^961^25
- ;;^UTILITY(U,$J,358.3,18769,1,0)
+ ;;^UTILITY(U,$J,358.3,18949,1,3,0)
+ ;;=3^Rheum Arthritis w/ Rheum Factor,Unspec
+ ;;^UTILITY(U,$J,358.3,18949,1,4,0)
+ ;;=4^M05.9
+ ;;^UTILITY(U,$J,358.3,18949,2)
+ ;;=^5010046
+ ;;^UTILITY(U,$J,358.3,18950,0)
+ ;;=M06.072^^64^842^43
+ ;;^UTILITY(U,$J,358.3,18950,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,18769,1,3,0)
- ;;=3^Opioid Use DO,Mild,Uncomp
- ;;^UTILITY(U,$J,358.3,18769,1,4,0)
- ;;=4^F11.10
- ;;^UTILITY(U,$J,358.3,18769,2)
- ;;=^5003114
- ;;^UTILITY(U,$J,358.3,18770,0)
- ;;=F11.129^^91^961^22
- ;;^UTILITY(U,$J,358.3,18770,1,0)
+ ;;^UTILITY(U,$J,358.3,18950,1,3,0)
+ ;;=3^Rheum Arth w/o Rheum Factor Left Ankle/Foot
+ ;;^UTILITY(U,$J,358.3,18950,1,4,0)
+ ;;=4^M06.072
+ ;;^UTILITY(U,$J,358.3,18950,2)
+ ;;=^5010067
+ ;;^UTILITY(U,$J,358.3,18951,0)
+ ;;=M06.022^^64^842^44
+ ;;^UTILITY(U,$J,358.3,18951,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,18770,1,3,0)
- ;;=3^Opioid Intox w/o Perceptual Dists w/ Mild Use D/O
- ;;^UTILITY(U,$J,358.3,18770,1,4,0)
- ;;=4^F11.129
- ;;^UTILITY(U,$J,358.3,18770,2)
- ;;=^5003118
- ;;^UTILITY(U,$J,358.3,18771,0)
- ;;=F11.14^^91^961^5
- ;;^UTILITY(U,$J,358.3,18771,1,0)
+ ;;^UTILITY(U,$J,358.3,18951,1,3,0)
+ ;;=3^Rheum Arth w/o Rheum Factor Left Elbow
+ ;;^UTILITY(U,$J,358.3,18951,1,4,0)
+ ;;=4^M06.022
+ ;;^UTILITY(U,$J,358.3,18951,2)
+ ;;=^5010052
+ ;;^UTILITY(U,$J,358.3,18952,0)
+ ;;=M06.042^^64^842^45
+ ;;^UTILITY(U,$J,358.3,18952,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,18771,1,3,0)
- ;;=3^Opioid Induced Depressive D/O w/ Mild Use D/O
- ;;^UTILITY(U,$J,358.3,18771,1,4,0)
- ;;=4^F11.14
- ;;^UTILITY(U,$J,358.3,18771,2)
- ;;=^5003119
- ;;^UTILITY(U,$J,358.3,18772,0)
- ;;=F11.182^^91^961^11
- ;;^UTILITY(U,$J,358.3,18772,1,0)
+ ;;^UTILITY(U,$J,358.3,18952,1,3,0)
+ ;;=3^Rheum Arth w/o Rheum Factor Left Hand
+ ;;^UTILITY(U,$J,358.3,18952,1,4,0)
+ ;;=4^M06.042
+ ;;^UTILITY(U,$J,358.3,18952,2)
+ ;;=^5010058
+ ;;^UTILITY(U,$J,358.3,18953,0)
+ ;;=M06.052^^64^842^46
+ ;;^UTILITY(U,$J,358.3,18953,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,18772,1,3,0)
- ;;=3^Opioid Induced Sleep D/O w/ Mild Use D/O
- ;;^UTILITY(U,$J,358.3,18772,1,4,0)
- ;;=4^F11.182
- ;;^UTILITY(U,$J,358.3,18772,2)
- ;;=^5003124
- ;;^UTILITY(U,$J,358.3,18773,0)
- ;;=F11.20^^91^961^28
- ;;^UTILITY(U,$J,358.3,18773,1,0)
+ ;;^UTILITY(U,$J,358.3,18953,1,3,0)
+ ;;=3^Rheum Arth w/o Rheum Factor Left Hip
+ ;;^UTILITY(U,$J,358.3,18953,1,4,0)
+ ;;=4^M06.052
+ ;;^UTILITY(U,$J,358.3,18953,2)
+ ;;=^5010061
+ ;;^UTILITY(U,$J,358.3,18954,0)
+ ;;=M06.062^^64^842^47
+ ;;^UTILITY(U,$J,358.3,18954,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,18773,1,3,0)
- ;;=3^Opioid Use DO,Mod/Sev,Uncomp
- ;;^UTILITY(U,$J,358.3,18773,1,4,0)
- ;;=4^F11.20
- ;;^UTILITY(U,$J,358.3,18773,2)
- ;;=^5003127
- ;;^UTILITY(U,$J,358.3,18774,0)
- ;;=F11.23^^91^961^26
- ;;^UTILITY(U,$J,358.3,18774,1,0)
+ ;;^UTILITY(U,$J,358.3,18954,1,3,0)
+ ;;=3^Rheum Arth w/o Rheum Factor Left Knee
+ ;;^UTILITY(U,$J,358.3,18954,1,4,0)
+ ;;=4^M06.062
+ ;;^UTILITY(U,$J,358.3,18954,2)
+ ;;=^5010064
+ ;;^UTILITY(U,$J,358.3,18955,0)
+ ;;=M06.012^^64^842^48
+ ;;^UTILITY(U,$J,358.3,18955,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,18774,1,3,0)
- ;;=3^Opioid Use DO,Mod/Sev w/ Withdrawal
- ;;^UTILITY(U,$J,358.3,18774,1,4,0)
- ;;=4^F11.23
- ;;^UTILITY(U,$J,358.3,18774,2)
- ;;=^5003133
- ;;^UTILITY(U,$J,358.3,18775,0)
- ;;=F11.24^^91^961^6
- ;;^UTILITY(U,$J,358.3,18775,1,0)
+ ;;^UTILITY(U,$J,358.3,18955,1,3,0)
+ ;;=3^Rheum Arth w/o Rheum Factor Left Shldr
+ ;;^UTILITY(U,$J,358.3,18955,1,4,0)
+ ;;=4^M06.012
+ ;;^UTILITY(U,$J,358.3,18955,2)
+ ;;=^5010049
+ ;;^UTILITY(U,$J,358.3,18956,0)
+ ;;=M06.032^^64^842^49
+ ;;^UTILITY(U,$J,358.3,18956,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,18775,1,3,0)
- ;;=3^Opioid Induced Depressive D/O w/ Mod/Sev Use D/O
- ;;^UTILITY(U,$J,358.3,18775,1,4,0)
- ;;=4^F11.24
- ;;^UTILITY(U,$J,358.3,18775,2)
- ;;=^5003134
+ ;;^UTILITY(U,$J,358.3,18956,1,3,0)
+ ;;=3^Rheum Arth w/o Rheum Factor Left Wrist

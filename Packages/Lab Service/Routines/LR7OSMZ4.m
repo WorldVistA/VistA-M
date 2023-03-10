@@ -1,5 +1,5 @@
-LR7OSMZ4 ;DALOI/STAFF - Silent Micro rpt - AFB, FUNGUS ;09/02/10  15:32
- ;;5.2;LAB SERVICE;**121,244,350**;Sep 27, 1994;Build 230
+LR7OSMZ4 ;DALOI/STAFF - Silent Micro rpt - AFB, FUNGUS ;Jul 15, 2021@13:33
+ ;;5.2;LAB SERVICE;**121,244,350,547**;Sep 27, 1994;Build 10
  ;
  ;
 TB ; from LR7OSMZ1
@@ -7,7 +7,12 @@ TB ; from LR7OSMZ1
  N LRTA,LRX
  ;
  S LRX=^LR(LRDFN,"MI",LRIDT,11)
- I $P(LRX,U)="" Q:'$D(LRWRDVEW)  Q:LRSB'=11
+ I $P(LRX,U)="" D  Q:'$D(LRWRDVEW)  Q:LRSB'=11
+ . Q:'$D(^XTMP("LRMICRO EDIT",LRDFN,LRIDT,11))
+ . ;LR*5.2*547: Display informational message if accession/test is currently being edited
+ . ;            and results had previously been verified.
+ . N LR7SB S LR7SB=11
+ . D MES^LR7OSMZ2
  ;
  S LRTUS=$P(LRX,U,2),DZ=$P(LRX,U,5),LRAFS=$P(LRX,U,3),LRAMT=$P(LRX,U,4),Y=$P(LRX,U)
  D D^LRU,LINE^LR7OSUM4
@@ -93,7 +98,12 @@ SEN ;
  ;
 FUNG ;from LR7OSMZ1
  S X=^LR(LRDFN,"MI",LRIDT,8)
- I '$L($P(X,U)) Q:'$D(LRWRDVEW)  Q:LRSB'=8
+ I '$L($P(X,U)) D  Q:'$D(LRWRDVEW)  Q:LRSB'=8
+ . Q:'$D(^XTMP("LRMICRO EDIT",LRDFN,LRIDT,8))
+ . ;LR*5.2*547: Display informational message if accession/test is currently being edited
+ . ;            and results had previously been verified.
+ . N LR7SB S LR7SB=8
+ . D MES^LR7OSMZ2
  S LRTUS=$P(X,U,2),DZ=$P(X,U,3),Y=$P(X,U)
  D D^LRU,LINE^LR7OSUM4
  S ^TMP("LRC",$J,GCNT,0)=$$S^LR7OS(1,CCNT,"* MYCOLOGY "_$S(LRTUS="F":"FINAL",LRTUS="P":"PRELIMINARY",1:"")_" REPORT => "_Y_"   TECH CODE: "_DZ)

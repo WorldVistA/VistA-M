@@ -1,5 +1,5 @@
-SDEC26 ;ALB/SAT - VISTA SCHEDULING RPCS ;MAR 15, 2017
- ;;5.3;Scheduling;**627,658,722**;Aug 13, 1993;Build 26
+SDEC26 ;ALB/SAT - VISTA SCHEDULING RPCS ;DEC 12,2022
+ ;;5.3;Scheduling;**627,658,722,831**;Aug 13, 1993;Build 4
  ;
  Q
  ;
@@ -7,7 +7,7 @@ EDITAPPT(SDECY,SDECAPTID,SDECNOTE,SDECLEN) ;Edit appointment (only 'note text' a
  ;EDITAPPT(SDECY,SDECAPTID,SDECNOTE,SDECLEN)  external parameter tag is in SDEC
  ; SDECAPTID - Appointment ID - Pointer to SDEC APPOINTMENT
  ; SDECNOTE  - Note
- ; SDECLEN   - If there is a change in the length of appointment, this is the new value (in minutes) for length
+ ; SDECLEN   - no longer allowed If there is a change in the length of appointment, this is the new value (in minutes) for length
  ;
  N SDECAP,SDECCL,SDECNEND,SDECNOD,SDECOLEN,SDECPAT,SDECPATID,SDECRES,SDECSTART
  N DIK,DA,INP,SDECID,SDECI,SDECZ,SDECIENS,SDECEND
@@ -43,22 +43,14 @@ EDITAPPT(SDECY,SDECAPTID,SDECNOTE,SDECLEN) ;Edit appointment (only 'note text' a
  D:SDECNOTE'="" SETNOTE(SDECAPTID,SDECNOTE)
  ;alb/sat 658 end
  ;
- ;Edit appointment length
+ ;Edit appointment length - no longer permitted.
+ N POP
+ S POP=0
  I $G(SDECLEN),$G(SDECLEN)>0 D
- . S SDECSTART=$$GET1^DIQ(409.84,SDECAPTID,.01,"I"),SDECEND=$$GET1^DIQ(409.84,SDECAPTID,.02,"I")
- . S SDECOLEN=$$FMDIFF^XLFDT(SDECEND,SDECSTART,2),SDECOLEN=SDECOLEN/60
- . Q:SDECOLEN=SDECLEN
- . S SDECRES=$$GET1^DIQ(409.84,SDECAPTID,.07,"I") Q:'SDECRES
- . S SDECPAT=$$GET1^DIQ(409.84,SDECAPTID,.05,"I") Q:'SDECPAT
- . S SDECCL=$$GET1^DIQ(409.831,SDECRES,.04,"I") Q:'SDECCL
- . S SDECAP=0 F  S SDECAP=$O(^SC(SDECCL,"S",SDECSTART,1,SDECAP)) Q:'SDECAP  D
- . . S SDECIENS=SDECAP_","_SDECSTART_","_SDECCL_","
- . . I $$GET1^DIQ(44.003,SDECIENS,.01,"I")=SDECPAT,$$GET1^DIQ(44.003,SDECIENS,1,"I")=SDECOLEN D
- . . . S FDA(44.003,SDECIENS,1)=SDECLEN D FILE^DIE(,"FDA") K FDA
- . . . S SDECNEND=$$FMADD^XLFDT(SDECSTART,,,SDECLEN)
- . . . S FDA(409.84,SDECAPTID_",",.02)=SDECNEND
- . . . S FDA(409.84,SDECAPTID_",",.18)=SDECLEN
- . . . D FILE^DIE(,"FDA") K FDA
+ . I $G(SDECLEN)'=$$GET1^DIQ(409.84,SDECAPTID_",",.18,"I") D
+ . . D ERR(SDECI,"SDEC26: Appointment Length cannot be modified. Cancel appointment and recreate.")
+ . . S POP=1
+ Q:POP
  ;
  ;Return Recordset
  S SDECI=SDECI+1

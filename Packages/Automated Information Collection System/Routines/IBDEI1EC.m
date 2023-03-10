@@ -1,128 +1,126 @@
-IBDEI1EC ; ; 04-FEB-2020
- ;;3.0;IB ENCOUNTER FORM IMP/EXP;;FEB 04, 2020
+IBDEI1EC ; ; 01-FEB-2022
+ ;;3.0;IB ENCOUNTER FORM IMP/EXP;;FEB 01, 2022
  Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,999) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
- ;;^UTILITY(U,$J,358.3,22333,1,0)
+ ;;^UTILITY(U,$J,358.3,22588,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,22333,1,3,0)
- ;;=3^Gastritis w/o bleeding,Unspec
- ;;^UTILITY(U,$J,358.3,22333,1,4,0)
- ;;=4^K29.70
- ;;^UTILITY(U,$J,358.3,22333,2)
- ;;=^5008552
- ;;^UTILITY(U,$J,358.3,22334,0)
- ;;=K52.9^^102^1141^99
- ;;^UTILITY(U,$J,358.3,22334,1,0)
+ ;;^UTILITY(U,$J,358.3,22588,1,3,0)
+ ;;=3^Malig Melanoma of Right Ear/External Auricular Canal
+ ;;^UTILITY(U,$J,358.3,22588,1,4,0)
+ ;;=4^C43.21
+ ;;^UTILITY(U,$J,358.3,22588,2)
+ ;;=^5000999
+ ;;^UTILITY(U,$J,358.3,22589,0)
+ ;;=C43.22^^76^974^3
+ ;;^UTILITY(U,$J,358.3,22589,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,22334,1,3,0)
- ;;=3^Gastroenteritis and colitis, unspecified
- ;;^UTILITY(U,$J,358.3,22334,1,4,0)
- ;;=4^K52.9
- ;;^UTILITY(U,$J,358.3,22334,2)
- ;;=^5008704
- ;;^UTILITY(U,$J,358.3,22335,0)
- ;;=A60.00^^102^1141^101
- ;;^UTILITY(U,$J,358.3,22335,1,0)
+ ;;^UTILITY(U,$J,358.3,22589,1,3,0)
+ ;;=3^Malig Melanoma of Left Ear/External Auricular Canal
+ ;;^UTILITY(U,$J,358.3,22589,1,4,0)
+ ;;=4^C43.22
+ ;;^UTILITY(U,$J,358.3,22589,2)
+ ;;=^5001000
+ ;;^UTILITY(U,$J,358.3,22590,0)
+ ;;=C43.31^^76^974^9
+ ;;^UTILITY(U,$J,358.3,22590,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,22335,1,3,0)
- ;;=3^General Herpes, unsp
- ;;^UTILITY(U,$J,358.3,22335,1,4,0)
- ;;=4^A60.00
- ;;^UTILITY(U,$J,358.3,22335,2)
- ;;=^5000352
- ;;^UTILITY(U,$J,358.3,22336,0)
- ;;=A07.1^^102^1141^102
- ;;^UTILITY(U,$J,358.3,22336,1,0)
+ ;;^UTILITY(U,$J,358.3,22590,1,3,0)
+ ;;=3^Malig Melanoma of Nose
+ ;;^UTILITY(U,$J,358.3,22590,1,4,0)
+ ;;=4^C43.31
+ ;;^UTILITY(U,$J,358.3,22590,2)
+ ;;=^5001002
+ ;;^UTILITY(U,$J,358.3,22591,0)
+ ;;=C43.39^^76^974^2
+ ;;^UTILITY(U,$J,358.3,22591,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,22336,1,3,0)
- ;;=3^Giardiasis
- ;;^UTILITY(U,$J,358.3,22336,1,4,0)
- ;;=4^A07.1
- ;;^UTILITY(U,$J,358.3,22336,2)
- ;;=^5000049
- ;;^UTILITY(U,$J,358.3,22337,0)
- ;;=B15.9^^102^1141^107
- ;;^UTILITY(U,$J,358.3,22337,1,0)
+ ;;^UTILITY(U,$J,358.3,22591,1,3,0)
+ ;;=3^Malig Melanoma of Face,Other Parts
+ ;;^UTILITY(U,$J,358.3,22591,1,4,0)
+ ;;=4^C43.39
+ ;;^UTILITY(U,$J,358.3,22591,2)
+ ;;=^5001003
+ ;;^UTILITY(U,$J,358.3,22592,0)
+ ;;=C43.4^^76^974^16
+ ;;^UTILITY(U,$J,358.3,22592,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,22337,1,3,0)
- ;;=3^Hepatitis A w/o Hepatic Coma
- ;;^UTILITY(U,$J,358.3,22337,1,4,0)
- ;;=4^B15.9
- ;;^UTILITY(U,$J,358.3,22337,2)
- ;;=^5000536
- ;;^UTILITY(U,$J,358.3,22338,0)
- ;;=B19.10^^102^1141^108
- ;;^UTILITY(U,$J,358.3,22338,1,0)
+ ;;^UTILITY(U,$J,358.3,22592,1,3,0)
+ ;;=3^Malig Melanoma of Scalp/Neck
+ ;;^UTILITY(U,$J,358.3,22592,1,4,0)
+ ;;=4^C43.4
+ ;;^UTILITY(U,$J,358.3,22592,2)
+ ;;=^5001004
+ ;;^UTILITY(U,$J,358.3,22593,0)
+ ;;=C43.59^^76^974^18
+ ;;^UTILITY(U,$J,358.3,22593,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,22338,1,3,0)
- ;;=3^Hepatitis B w/o Hepatic Coma
- ;;^UTILITY(U,$J,358.3,22338,1,4,0)
- ;;=4^B19.10
- ;;^UTILITY(U,$J,358.3,22338,2)
- ;;=^5000552
- ;;^UTILITY(U,$J,358.3,22339,0)
- ;;=B19.20^^102^1141^111
- ;;^UTILITY(U,$J,358.3,22339,1,0)
+ ;;^UTILITY(U,$J,358.3,22593,1,3,0)
+ ;;=3^Malig Melanoma of Trunk,Other Part
+ ;;^UTILITY(U,$J,358.3,22593,1,4,0)
+ ;;=4^C43.59
+ ;;^UTILITY(U,$J,358.3,22593,2)
+ ;;=^5001007
+ ;;^UTILITY(U,$J,358.3,22594,0)
+ ;;=C43.51^^76^974^1
+ ;;^UTILITY(U,$J,358.3,22594,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,22339,1,3,0)
- ;;=3^Hepatitis C w/o Hepatic Coma
- ;;^UTILITY(U,$J,358.3,22339,1,4,0)
- ;;=4^B19.20
- ;;^UTILITY(U,$J,358.3,22339,2)
- ;;=^331436
- ;;^UTILITY(U,$J,358.3,22340,0)
- ;;=B19.9^^102^1141^115
- ;;^UTILITY(U,$J,358.3,22340,1,0)
+ ;;^UTILITY(U,$J,358.3,22594,1,3,0)
+ ;;=3^Malig Melanoma of Anal Skin
+ ;;^UTILITY(U,$J,358.3,22594,1,4,0)
+ ;;=4^C43.51
+ ;;^UTILITY(U,$J,358.3,22594,2)
+ ;;=^5001005
+ ;;^UTILITY(U,$J,358.3,22595,0)
+ ;;=C43.52^^76^974^17
+ ;;^UTILITY(U,$J,358.3,22595,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,22340,1,3,0)
- ;;=3^Hepatitis w/o Hepatic Coma,Unspec
- ;;^UTILITY(U,$J,358.3,22340,1,4,0)
- ;;=4^B19.9
- ;;^UTILITY(U,$J,358.3,22340,2)
- ;;=^5000554
- ;;^UTILITY(U,$J,358.3,22341,0)
- ;;=K75.89^^102^1141^114
- ;;^UTILITY(U,$J,358.3,22341,1,0)
+ ;;^UTILITY(U,$J,358.3,22595,1,3,0)
+ ;;=3^Malig Melanoma of Skin of Breast
+ ;;^UTILITY(U,$J,358.3,22595,1,4,0)
+ ;;=4^C43.52
+ ;;^UTILITY(U,$J,358.3,22595,2)
+ ;;=^5001006
+ ;;^UTILITY(U,$J,358.3,22596,0)
+ ;;=C43.61^^76^974^15
+ ;;^UTILITY(U,$J,358.3,22596,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,22341,1,3,0)
- ;;=3^Hepatitis NEC
- ;;^UTILITY(U,$J,358.3,22341,1,4,0)
- ;;=4^K75.89
- ;;^UTILITY(U,$J,358.3,22341,2)
- ;;=^5008829
- ;;^UTILITY(U,$J,358.3,22342,0)
- ;;=B00.1^^102^1141^117
- ;;^UTILITY(U,$J,358.3,22342,1,0)
+ ;;^UTILITY(U,$J,358.3,22596,1,3,0)
+ ;;=3^Malig Melanoma of Right Upper Limb
+ ;;^UTILITY(U,$J,358.3,22596,1,4,0)
+ ;;=4^C43.61
+ ;;^UTILITY(U,$J,358.3,22596,2)
+ ;;=^5001009
+ ;;^UTILITY(U,$J,358.3,22597,0)
+ ;;=C43.62^^76^974^7
+ ;;^UTILITY(U,$J,358.3,22597,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,22342,1,3,0)
- ;;=3^Herpes Simplex, Lip
- ;;^UTILITY(U,$J,358.3,22342,1,4,0)
- ;;=4^B00.1
- ;;^UTILITY(U,$J,358.3,22342,2)
- ;;=^5000468
- ;;^UTILITY(U,$J,358.3,22343,0)
- ;;=B00.2^^102^1141^121
- ;;^UTILITY(U,$J,358.3,22343,1,0)
+ ;;^UTILITY(U,$J,358.3,22597,1,3,0)
+ ;;=3^Malig Melanoma of Left Upper Limb
+ ;;^UTILITY(U,$J,358.3,22597,1,4,0)
+ ;;=4^C43.62
+ ;;^UTILITY(U,$J,358.3,22597,2)
+ ;;=^5001010
+ ;;^UTILITY(U,$J,358.3,22598,0)
+ ;;=C43.71^^76^974^13
+ ;;^UTILITY(U,$J,358.3,22598,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,22343,1,3,0)
- ;;=3^Herpesvirial gingivostomatitis and pharyngotonsillitis
- ;;^UTILITY(U,$J,358.3,22343,1,4,0)
- ;;=4^B00.2
- ;;^UTILITY(U,$J,358.3,22343,2)
- ;;=^5000469
- ;;^UTILITY(U,$J,358.3,22344,0)
- ;;=B02.9^^102^1141^118
- ;;^UTILITY(U,$J,358.3,22344,1,0)
+ ;;^UTILITY(U,$J,358.3,22598,1,3,0)
+ ;;=3^Malig Melanoma of Right Lower Limb
+ ;;^UTILITY(U,$J,358.3,22598,1,4,0)
+ ;;=4^C43.71
+ ;;^UTILITY(U,$J,358.3,22598,2)
+ ;;=^5001012
+ ;;^UTILITY(U,$J,358.3,22599,0)
+ ;;=C43.72^^76^974^5
+ ;;^UTILITY(U,$J,358.3,22599,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,22344,1,3,0)
- ;;=3^Herpes Zoster NOS
- ;;^UTILITY(U,$J,358.3,22344,1,4,0)
- ;;=4^B02.9
- ;;^UTILITY(U,$J,358.3,22344,2)
- ;;=^5000501
- ;;^UTILITY(U,$J,358.3,22345,0)
- ;;=A60.01^^102^1141^122
- ;;^UTILITY(U,$J,358.3,22345,1,0)
+ ;;^UTILITY(U,$J,358.3,22599,1,3,0)
+ ;;=3^Malig Melanoma of Left Lower Limb
+ ;;^UTILITY(U,$J,358.3,22599,1,4,0)
+ ;;=4^C43.72
+ ;;^UTILITY(U,$J,358.3,22599,2)
+ ;;=^5001013
+ ;;^UTILITY(U,$J,358.3,22600,0)
+ ;;=C43.8^^76^974^10
+ ;;^UTILITY(U,$J,358.3,22600,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,22345,1,3,0)
- ;;=3^Herpetic Infect of Penis

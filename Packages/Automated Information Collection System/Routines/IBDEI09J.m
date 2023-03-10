@@ -1,656 +1,642 @@
-IBDEI09J ; ; 01-MAY-2020
- ;;3.0;IB ENCOUNTER FORM IMP/EXP;;MAY 01, 2020
+IBDEI09J ; ; 01-AUG-2022
+ ;;3.0;IB ENCOUNTER FORM IMP/EXP;;AUG 01, 2022
  Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,999) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
+ ;;^UTILITY(U,$J,358.3,23312,2)
+ ;;=^5031622
+ ;;^UTILITY(U,$J,358.3,23313,0)
+ ;;=S56.114A^^71^927^33
+ ;;^UTILITY(U,$J,358.3,23313,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,23313,1,3,0)
+ ;;=3^Strain of Left Middle Finger at Forearm Level Flexor Muscle/Fasc/Tendon
+ ;;^UTILITY(U,$J,358.3,23313,1,4,0)
+ ;;=4^S56.114A
+ ;;^UTILITY(U,$J,358.3,23313,2)
+ ;;=^5031625
+ ;;^UTILITY(U,$J,358.3,23314,0)
+ ;;=S56.115A^^71^927^54
+ ;;^UTILITY(U,$J,358.3,23314,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,23314,1,3,0)
+ ;;=3^Strain of Right Ring Finger at Forearm Level Flexor Muscle/Fasc/Tendon
+ ;;^UTILITY(U,$J,358.3,23314,1,4,0)
+ ;;=4^S56.115A
+ ;;^UTILITY(U,$J,358.3,23314,2)
+ ;;=^5031628
+ ;;^UTILITY(U,$J,358.3,23315,0)
+ ;;=S56.417A^^71^927^46
+ ;;^UTILITY(U,$J,358.3,23315,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,23315,1,3,0)
+ ;;=3^Strain of Right Little Finger at Forearm Level Extn Musc/Fasc/Tendon
+ ;;^UTILITY(U,$J,358.3,23315,1,4,0)
+ ;;=4^S56.417A
+ ;;^UTILITY(U,$J,358.3,23315,2)
+ ;;=^5031781
+ ;;^UTILITY(U,$J,358.3,23316,0)
+ ;;=S56.418A^^71^927^27
+ ;;^UTILITY(U,$J,358.3,23316,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,23316,1,3,0)
+ ;;=3^Strain of Left Little Finger at Forearm Level Extn Muscle/Fasc/Tendon
+ ;;^UTILITY(U,$J,358.3,23316,1,4,0)
+ ;;=4^S56.418A
+ ;;^UTILITY(U,$J,358.3,23316,2)
+ ;;=^5031784
+ ;;^UTILITY(U,$J,358.3,23317,0)
+ ;;=S56.811A^^71^927^42
+ ;;^UTILITY(U,$J,358.3,23317,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,23317,1,3,0)
+ ;;=3^Strain of Right Forearm Muscle/Fasc/Tendon
+ ;;^UTILITY(U,$J,358.3,23317,1,4,0)
+ ;;=4^S56.811A
+ ;;^UTILITY(U,$J,358.3,23317,2)
+ ;;=^5031862
+ ;;^UTILITY(U,$J,358.3,23318,0)
+ ;;=S56.812A^^71^927^23
+ ;;^UTILITY(U,$J,358.3,23318,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,23318,1,3,0)
+ ;;=3^Strain of Left Forearm Muscle/Fasc/Tendon
+ ;;^UTILITY(U,$J,358.3,23318,1,4,0)
+ ;;=4^S56.812A
+ ;;^UTILITY(U,$J,358.3,23318,2)
+ ;;=^5031865
+ ;;^UTILITY(U,$J,358.3,23319,0)
+ ;;=S56.116A^^71^927^35
+ ;;^UTILITY(U,$J,358.3,23319,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,23319,1,3,0)
+ ;;=3^Strain of Left Ring Finger at Forearm Level Flexor Muscle/Fasc/Tendon
+ ;;^UTILITY(U,$J,358.3,23319,1,4,0)
+ ;;=4^S56.116A
+ ;;^UTILITY(U,$J,358.3,23319,2)
+ ;;=^5031631
+ ;;^UTILITY(U,$J,358.3,23320,0)
+ ;;=S56.117A^^71^927^47
+ ;;^UTILITY(U,$J,358.3,23320,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,23320,1,3,0)
+ ;;=3^Strain of Right Little Finger at Forearm Level Flexor Muscle/Fasc/Tendon
+ ;;^UTILITY(U,$J,358.3,23320,1,4,0)
+ ;;=4^S56.117A
+ ;;^UTILITY(U,$J,358.3,23320,2)
+ ;;=^5031634
+ ;;^UTILITY(U,$J,358.3,23321,0)
+ ;;=S56.118A^^71^927^28
+ ;;^UTILITY(U,$J,358.3,23321,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,23321,1,3,0)
+ ;;=3^Strain of Left Little Finger at Forearm Level Flexor Muscle/Fasc/Tendon
+ ;;^UTILITY(U,$J,358.3,23321,1,4,0)
+ ;;=4^S56.118A
+ ;;^UTILITY(U,$J,358.3,23321,2)
+ ;;=^5031637
+ ;;^UTILITY(U,$J,358.3,23322,0)
+ ;;=S56.211A^^71^927^41
+ ;;^UTILITY(U,$J,358.3,23322,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,23322,1,3,0)
+ ;;=3^Strain of Right Forearm Flexor Muscle/Fasc/Tendon
+ ;;^UTILITY(U,$J,358.3,23322,1,4,0)
+ ;;=4^S56.211A
+ ;;^UTILITY(U,$J,358.3,23322,2)
+ ;;=^5031691
+ ;;^UTILITY(U,$J,358.3,23323,0)
+ ;;=S56.212A^^71^927^22
+ ;;^UTILITY(U,$J,358.3,23323,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,23323,1,3,0)
+ ;;=3^Strain of Left Forearm Flexor Muscle/Fasc/Tendon
+ ;;^UTILITY(U,$J,358.3,23323,1,4,0)
+ ;;=4^S56.212A
+ ;;^UTILITY(U,$J,358.3,23323,2)
+ ;;=^5031694
+ ;;^UTILITY(U,$J,358.3,23324,0)
+ ;;=S56.311A^^71^927^57
+ ;;^UTILITY(U,$J,358.3,23324,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,23324,1,3,0)
+ ;;=3^Strain of Right Thumb at Forearm Level Extn/Abdr Muscle/Fasc/Tendon
+ ;;^UTILITY(U,$J,358.3,23324,1,4,0)
+ ;;=4^S56.311A
+ ;;^UTILITY(U,$J,358.3,23324,2)
+ ;;=^5031715
+ ;;^UTILITY(U,$J,358.3,23325,0)
+ ;;=S56.312A^^71^927^37
+ ;;^UTILITY(U,$J,358.3,23325,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,23325,1,3,0)
+ ;;=3^Strain of Left Thumb at Forearm Level Extn/Abdr Muscle/Fasc/Tendon
+ ;;^UTILITY(U,$J,358.3,23325,1,4,0)
+ ;;=4^S56.312A
+ ;;^UTILITY(U,$J,358.3,23325,2)
+ ;;=^5031718
+ ;;^UTILITY(U,$J,358.3,23326,0)
+ ;;=S56.411A^^71^927^45
+ ;;^UTILITY(U,$J,358.3,23326,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,23326,1,3,0)
+ ;;=3^Strain of Right Index Finger at Forearm Level Extensor Muscle/Fasc/Tendon
+ ;;^UTILITY(U,$J,358.3,23326,1,4,0)
+ ;;=4^S56.411A
+ ;;^UTILITY(U,$J,358.3,23326,2)
+ ;;=^5031763
+ ;;^UTILITY(U,$J,358.3,23327,0)
+ ;;=S56.412A^^71^927^26
+ ;;^UTILITY(U,$J,358.3,23327,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,23327,1,3,0)
+ ;;=3^Strain of Left Index Finger at Forearm Level Extensor Muscle/Fasc/Tendon
+ ;;^UTILITY(U,$J,358.3,23327,1,4,0)
+ ;;=4^S56.412A
+ ;;^UTILITY(U,$J,358.3,23327,2)
+ ;;=^5031766
+ ;;^UTILITY(U,$J,358.3,23328,0)
+ ;;=S56.413A^^71^927^53
+ ;;^UTILITY(U,$J,358.3,23328,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,23328,1,3,0)
+ ;;=3^Strain of Right Middle Finger at Forearm Level Extensor Muscle/Fasc/Tendon
+ ;;^UTILITY(U,$J,358.3,23328,1,4,0)
+ ;;=4^S56.413A
+ ;;^UTILITY(U,$J,358.3,23328,2)
+ ;;=^5031769
+ ;;^UTILITY(U,$J,358.3,23329,0)
+ ;;=S56.414A^^71^927^34
+ ;;^UTILITY(U,$J,358.3,23329,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,23329,1,3,0)
+ ;;=3^Strain of Left Middle Finger at Forearm Levle Extensor Muscle/Fasc/Tendon
+ ;;^UTILITY(U,$J,358.3,23329,1,4,0)
+ ;;=4^S56.414A
+ ;;^UTILITY(U,$J,358.3,23329,2)
+ ;;=^5031772
+ ;;^UTILITY(U,$J,358.3,23330,0)
+ ;;=S56.415A^^71^927^55
+ ;;^UTILITY(U,$J,358.3,23330,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,23330,1,3,0)
+ ;;=3^Strain of Right Ring Finger at Forearm Level Extensor Muscle/Fasc/Tendon
+ ;;^UTILITY(U,$J,358.3,23330,1,4,0)
+ ;;=4^S56.415A
+ ;;^UTILITY(U,$J,358.3,23330,2)
+ ;;=^5031775
+ ;;^UTILITY(U,$J,358.3,23331,0)
+ ;;=S56.416A^^71^927^36
+ ;;^UTILITY(U,$J,358.3,23331,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,23331,1,3,0)
+ ;;=3^Strain of Left Ring Finger at Forearm Level Extensor Muscle/Fasc/Tendon
+ ;;^UTILITY(U,$J,358.3,23331,1,4,0)
+ ;;=4^S56.416A
+ ;;^UTILITY(U,$J,358.3,23331,2)
+ ;;=^5031778
+ ;;^UTILITY(U,$J,358.3,23332,0)
+ ;;=S66.912A^^71^927^24
+ ;;^UTILITY(U,$J,358.3,23332,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,23332,1,3,0)
+ ;;=3^Strain of Left Hand Muscle/Fasc/Tendon,Unspec
+ ;;^UTILITY(U,$J,358.3,23332,1,4,0)
+ ;;=4^S66.912A
+ ;;^UTILITY(U,$J,358.3,23332,2)
+ ;;=^5036534
+ ;;^UTILITY(U,$J,358.3,23333,0)
+ ;;=S66.911A^^71^927^43
+ ;;^UTILITY(U,$J,358.3,23333,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,23333,1,3,0)
+ ;;=3^Strain of Right Hand Muscle/Fasc/Tendon,Unspec
+ ;;^UTILITY(U,$J,358.3,23333,1,4,0)
+ ;;=4^S66.911A
+ ;;^UTILITY(U,$J,358.3,23333,2)
+ ;;=^5036531
+ ;;^UTILITY(U,$J,358.3,23334,0)
+ ;;=S63.501A^^71^927^20
+ ;;^UTILITY(U,$J,358.3,23334,1,0)
+ ;;=^358.31IA^4^2
  ;;^UTILITY(U,$J,358.3,23334,1,3,0)
- ;;=3^Open Wound,Left Foot,Unspec
+ ;;=3^Sprain of Right Wrist
  ;;^UTILITY(U,$J,358.3,23334,1,4,0)
- ;;=4^S91.302A
+ ;;=4^S63.501A
  ;;^UTILITY(U,$J,358.3,23334,2)
- ;;=^5044317
+ ;;=^5035583
  ;;^UTILITY(U,$J,358.3,23335,0)
- ;;=S51.802A^^73^957^6
+ ;;=S63.502A^^71^927^11
  ;;^UTILITY(U,$J,358.3,23335,1,0)
  ;;=^358.31IA^4^2
  ;;^UTILITY(U,$J,358.3,23335,1,3,0)
- ;;=3^Open Wound,Left Forearm,Unspec
+ ;;=3^Sprain of Left Wrist
  ;;^UTILITY(U,$J,358.3,23335,1,4,0)
- ;;=4^S51.802A
+ ;;=4^S63.502A
  ;;^UTILITY(U,$J,358.3,23335,2)
- ;;=^5028662
+ ;;=^5035586
  ;;^UTILITY(U,$J,358.3,23336,0)
- ;;=S91.102A^^73^957^7
+ ;;=S83.8X1A^^71^927^18
  ;;^UTILITY(U,$J,358.3,23336,1,0)
  ;;=^358.31IA^4^2
  ;;^UTILITY(U,$J,358.3,23336,1,3,0)
- ;;=3^Open Wound,Left Great Toe w/o Damage to Nail,Unspec
+ ;;=3^Sprain of Right Knee,Oth Spec Parts
  ;;^UTILITY(U,$J,358.3,23336,1,4,0)
- ;;=4^S91.102A
+ ;;=4^S83.8X1A
  ;;^UTILITY(U,$J,358.3,23336,2)
- ;;=^5044171
+ ;;=^5043160
  ;;^UTILITY(U,$J,358.3,23337,0)
- ;;=S61.402A^^73^957^8
+ ;;=S83.8X2A^^71^927^9
  ;;^UTILITY(U,$J,358.3,23337,1,0)
  ;;=^358.31IA^4^2
  ;;^UTILITY(U,$J,358.3,23337,1,3,0)
- ;;=3^Open Wound,Left Hand,Unspec
+ ;;=3^Sprain of Left Knee,Oth Spec Parts
  ;;^UTILITY(U,$J,358.3,23337,1,4,0)
- ;;=4^S61.402A
+ ;;=4^S83.8X2A
  ;;^UTILITY(U,$J,358.3,23337,2)
- ;;=^5032984
+ ;;=^5043163
  ;;^UTILITY(U,$J,358.3,23338,0)
- ;;=S71.002A^^73^957^9
+ ;;=S86.211A^^71^927^48
  ;;^UTILITY(U,$J,358.3,23338,1,0)
  ;;=^358.31IA^4^2
  ;;^UTILITY(U,$J,358.3,23338,1,3,0)
- ;;=3^Open Wound,Left Hip,Unspec
+ ;;=3^Strain of Right Lower Leg Anterior Muscle/Tendon
  ;;^UTILITY(U,$J,358.3,23338,1,4,0)
- ;;=4^S71.002A
+ ;;=4^S86.211A
  ;;^UTILITY(U,$J,358.3,23338,2)
- ;;=^5036972
+ ;;=^5043484
  ;;^UTILITY(U,$J,358.3,23339,0)
- ;;=S91.104A^^73^957^20
+ ;;=S86.212A^^71^927^29
  ;;^UTILITY(U,$J,358.3,23339,1,0)
  ;;=^358.31IA^4^2
  ;;^UTILITY(U,$J,358.3,23339,1,3,0)
- ;;=3^Open Wound,Right Lesser Toe(s) w/o Damage to nail,Unspec
+ ;;=3^Strain of Left Lower Leg Anterior Muscle/Tendon
  ;;^UTILITY(U,$J,358.3,23339,1,4,0)
- ;;=4^S91.104A
+ ;;=4^S86.212A
  ;;^UTILITY(U,$J,358.3,23339,2)
- ;;=^5044174
+ ;;=^5043487
  ;;^UTILITY(U,$J,358.3,23340,0)
- ;;=S81.802A^^73^957^11
+ ;;=S86.311A^^71^927^50
  ;;^UTILITY(U,$J,358.3,23340,1,0)
  ;;=^358.31IA^4^2
  ;;^UTILITY(U,$J,358.3,23340,1,3,0)
- ;;=3^Open Wound,Left Lower Leg,Unspec
+ ;;=3^Strain of Right Lower Leg Peroneal Muscle/Tendon
  ;;^UTILITY(U,$J,358.3,23340,1,4,0)
- ;;=4^S81.802A
+ ;;=4^S86.311A
  ;;^UTILITY(U,$J,358.3,23340,2)
- ;;=^5040068
+ ;;=^5043511
  ;;^UTILITY(U,$J,358.3,23341,0)
- ;;=S41.102A^^73^957^13
+ ;;=S86.312A^^71^927^31
  ;;^UTILITY(U,$J,358.3,23341,1,0)
  ;;=^358.31IA^4^2
  ;;^UTILITY(U,$J,358.3,23341,1,3,0)
- ;;=3^Open Wound,Left Upper Arm,Unspec
+ ;;=3^Strain of Left Lower Leg Peroneal Muscle/Tendon
  ;;^UTILITY(U,$J,358.3,23341,1,4,0)
- ;;=4^S41.102A
+ ;;=4^S86.312A
  ;;^UTILITY(U,$J,358.3,23341,2)
- ;;=^5026333
+ ;;=^5043514
  ;;^UTILITY(U,$J,358.3,23342,0)
- ;;=S91.001A^^73^957^14
+ ;;=S86.811A^^71^927^49
  ;;^UTILITY(U,$J,358.3,23342,1,0)
  ;;=^358.31IA^4^2
  ;;^UTILITY(U,$J,358.3,23342,1,3,0)
- ;;=3^Open Wound,Right Ankle,Unspec
+ ;;=3^Strain of Right Lower Leg Muscle/Tendon NEC
  ;;^UTILITY(U,$J,358.3,23342,1,4,0)
- ;;=4^S91.001A
+ ;;=4^S86.811A
  ;;^UTILITY(U,$J,358.3,23342,2)
- ;;=^5044129
+ ;;=^5043538
  ;;^UTILITY(U,$J,358.3,23343,0)
- ;;=S91.301A^^73^957^15
+ ;;=S86.812A^^71^927^30
  ;;^UTILITY(U,$J,358.3,23343,1,0)
  ;;=^358.31IA^4^2
  ;;^UTILITY(U,$J,358.3,23343,1,3,0)
- ;;=3^Open Wound,Right Foot,Unspec
+ ;;=3^Strain of Left Lower Leg Muscle/Tendon NEC
  ;;^UTILITY(U,$J,358.3,23343,1,4,0)
- ;;=4^S91.301A
+ ;;=4^S86.812A
  ;;^UTILITY(U,$J,358.3,23343,2)
- ;;=^5044314
+ ;;=^5043541
  ;;^UTILITY(U,$J,358.3,23344,0)
- ;;=S51.801A^^73^957^16
+ ;;=S86.111A^^71^927^51
  ;;^UTILITY(U,$J,358.3,23344,1,0)
  ;;=^358.31IA^4^2
  ;;^UTILITY(U,$J,358.3,23344,1,3,0)
- ;;=3^Open Wound,Right Forearm,Unspec
+ ;;=3^Strain of Right Lower Leg Posterior Muscle/Tendon
  ;;^UTILITY(U,$J,358.3,23344,1,4,0)
- ;;=4^S51.801A
+ ;;=4^S86.111A
  ;;^UTILITY(U,$J,358.3,23344,2)
- ;;=^5028659
+ ;;=^5043460
  ;;^UTILITY(U,$J,358.3,23345,0)
- ;;=S91.101A^^73^957^17
+ ;;=S86.112A^^71^927^32
  ;;^UTILITY(U,$J,358.3,23345,1,0)
  ;;=^358.31IA^4^2
  ;;^UTILITY(U,$J,358.3,23345,1,3,0)
- ;;=3^Open Wound,Right Great Toe w/o Damage to Nail,Unspec
+ ;;=3^Strain of Left Lower Leg Posterior Muscle/Tendon
  ;;^UTILITY(U,$J,358.3,23345,1,4,0)
- ;;=4^S91.101A
+ ;;=4^S86.112A
  ;;^UTILITY(U,$J,358.3,23345,2)
- ;;=^5044168
+ ;;=^5043463
  ;;^UTILITY(U,$J,358.3,23346,0)
- ;;=S61.401A^^73^957^18
+ ;;=S83.401A^^71^927^17
  ;;^UTILITY(U,$J,358.3,23346,1,0)
  ;;=^358.31IA^4^2
  ;;^UTILITY(U,$J,358.3,23346,1,3,0)
- ;;=3^Open Wound,Right Hand,Unspec
+ ;;=3^Sprain of Right Knee Collateral Ligament
  ;;^UTILITY(U,$J,358.3,23346,1,4,0)
- ;;=4^S61.401A
+ ;;=4^S83.401A
  ;;^UTILITY(U,$J,358.3,23346,2)
- ;;=^5032981
+ ;;=^5043103
  ;;^UTILITY(U,$J,358.3,23347,0)
- ;;=S71.001A^^73^957^19
+ ;;=S83.402A^^71^927^8
  ;;^UTILITY(U,$J,358.3,23347,1,0)
  ;;=^358.31IA^4^2
  ;;^UTILITY(U,$J,358.3,23347,1,3,0)
- ;;=3^Open Wound,Right Hip,Unspec
+ ;;=3^Sprain of Left Knee Collateral Ligament
  ;;^UTILITY(U,$J,358.3,23347,1,4,0)
- ;;=4^S71.001A
+ ;;=4^S83.402A
  ;;^UTILITY(U,$J,358.3,23347,2)
- ;;=^5036969
+ ;;=^5043106
  ;;^UTILITY(U,$J,358.3,23348,0)
- ;;=S91.105A^^73^957^10
+ ;;=S93.402A^^71^927^6
  ;;^UTILITY(U,$J,358.3,23348,1,0)
  ;;=^358.31IA^4^2
  ;;^UTILITY(U,$J,358.3,23348,1,3,0)
- ;;=3^Open Wound,Left Lesser Toe(s) w/o Damage to Nail,Unspec
+ ;;=3^Sprain of Left Ankle Ligament
  ;;^UTILITY(U,$J,358.3,23348,1,4,0)
- ;;=4^S91.105A
+ ;;=4^S93.402A
  ;;^UTILITY(U,$J,358.3,23348,2)
- ;;=^5044177
+ ;;=^5045777
  ;;^UTILITY(U,$J,358.3,23349,0)
- ;;=S81.801A^^73^957^21
+ ;;=S93.401A^^71^927^15
  ;;^UTILITY(U,$J,358.3,23349,1,0)
  ;;=^358.31IA^4^2
  ;;^UTILITY(U,$J,358.3,23349,1,3,0)
- ;;=3^Open Wound,Right Lower Leg,Unspec
+ ;;=3^Sprain of Right Ankle Ligament
  ;;^UTILITY(U,$J,358.3,23349,1,4,0)
- ;;=4^S81.801A
+ ;;=4^S93.401A
  ;;^UTILITY(U,$J,358.3,23349,2)
- ;;=^5040065
+ ;;=^5045774
  ;;^UTILITY(U,$J,358.3,23350,0)
- ;;=S71.102A^^73^957^12
+ ;;=S56.511A^^71^927^40
  ;;^UTILITY(U,$J,358.3,23350,1,0)
  ;;=^358.31IA^4^2
  ;;^UTILITY(U,$J,358.3,23350,1,3,0)
- ;;=3^Open Wound,Left Thigh,Unspec
+ ;;=3^Strain of Right Forearm Extn Musc/Fasc/Tend
  ;;^UTILITY(U,$J,358.3,23350,1,4,0)
- ;;=4^S71.102A
+ ;;=4^S56.511A
  ;;^UTILITY(U,$J,358.3,23350,2)
- ;;=^5037011
+ ;;=^5031838
  ;;^UTILITY(U,$J,358.3,23351,0)
- ;;=S71.101A^^73^957^22
+ ;;=S56.512A^^71^927^21
  ;;^UTILITY(U,$J,358.3,23351,1,0)
  ;;=^358.31IA^4^2
  ;;^UTILITY(U,$J,358.3,23351,1,3,0)
- ;;=3^Open Wound,Right Thigh,Unspec
+ ;;=3^Strain of Left Forearm Extn Musc/Fasc/Tend
  ;;^UTILITY(U,$J,358.3,23351,1,4,0)
- ;;=4^S71.101A
+ ;;=4^S56.512A
  ;;^UTILITY(U,$J,358.3,23351,2)
- ;;=^5037008
+ ;;=^5031841
  ;;^UTILITY(U,$J,358.3,23352,0)
- ;;=S41.101A^^73^957^23
+ ;;=S13.8XXA^^71^927^13
  ;;^UTILITY(U,$J,358.3,23352,1,0)
  ;;=^358.31IA^4^2
  ;;^UTILITY(U,$J,358.3,23352,1,3,0)
- ;;=3^Open Wound,Right Upper Arm,Unspec
+ ;;=3^Sprain of Neck Joints/Ligaments,Init Encntr
  ;;^UTILITY(U,$J,358.3,23352,1,4,0)
- ;;=4^S41.101A
+ ;;=4^S13.8XXA
  ;;^UTILITY(U,$J,358.3,23352,2)
- ;;=^5026330
+ ;;=^5022034
  ;;^UTILITY(U,$J,358.3,23353,0)
- ;;=E03.5^^73^958^37
+ ;;=S16.1XXA^^71^927^39
  ;;^UTILITY(U,$J,358.3,23353,1,0)
  ;;=^358.31IA^4^2
  ;;^UTILITY(U,$J,358.3,23353,1,3,0)
- ;;=3^Myxedema Coma
+ ;;=3^Strain of Neck Muscle/Fasc/Tendon,Init Encntr
  ;;^UTILITY(U,$J,358.3,23353,1,4,0)
- ;;=4^E03.5
+ ;;=4^S16.1XXA
  ;;^UTILITY(U,$J,358.3,23353,2)
- ;;=^5002474
+ ;;=^5022358
  ;;^UTILITY(U,$J,358.3,23354,0)
- ;;=R40.2121^^73^958^33
+ ;;=S33.5XXA^^71^927^12
  ;;^UTILITY(U,$J,358.3,23354,1,0)
  ;;=^358.31IA^4^2
  ;;^UTILITY(U,$J,358.3,23354,1,3,0)
- ;;=3^Coma Scale,Eyes Open,to Pain,In the Field
+ ;;=3^Sprain of Lumbar Spine Ligaments,Init Encntr
  ;;^UTILITY(U,$J,358.3,23354,1,4,0)
- ;;=4^R40.2121
+ ;;=4^S33.5XXA
  ;;^UTILITY(U,$J,358.3,23354,2)
- ;;=^5019361
+ ;;=^5025172
  ;;^UTILITY(U,$J,358.3,23355,0)
- ;;=R40.2120^^73^958^34
+ ;;=S20.221A^^71^927^4
  ;;^UTILITY(U,$J,358.3,23355,1,0)
  ;;=^358.31IA^4^2
  ;;^UTILITY(U,$J,358.3,23355,1,3,0)
- ;;=3^Coma Scale,Eyes Open,to Pain,Unspec Time
+ ;;=3^Contusion,Rt Back Wall of Thorax
  ;;^UTILITY(U,$J,358.3,23355,1,4,0)
- ;;=4^R40.2120
+ ;;=4^S20.221A
  ;;^UTILITY(U,$J,358.3,23355,2)
- ;;=^5019360
+ ;;=^5022484
  ;;^UTILITY(U,$J,358.3,23356,0)
- ;;=R40.2114^^73^958^26
+ ;;=S20.222A^^71^927^2
  ;;^UTILITY(U,$J,358.3,23356,1,0)
  ;;=^358.31IA^4^2
  ;;^UTILITY(U,$J,358.3,23356,1,3,0)
- ;;=3^Coma Scale,Eyes Open,Never,24+ hrs
+ ;;=3^Contusion,Lt Back Wall of Thorax
  ;;^UTILITY(U,$J,358.3,23356,1,4,0)
- ;;=4^R40.2114
+ ;;=4^S20.222A
  ;;^UTILITY(U,$J,358.3,23356,2)
- ;;=^5019359
+ ;;=^5022487
  ;;^UTILITY(U,$J,358.3,23357,0)
- ;;=R40.2113^^73^958^30
+ ;;=S20.223A^^71^927^1
  ;;^UTILITY(U,$J,358.3,23357,1,0)
  ;;=^358.31IA^4^2
  ;;^UTILITY(U,$J,358.3,23357,1,3,0)
- ;;=3^Coma Scale,Eyes Open,Never,at Hospital Admission
+ ;;=3^Contusion,Bilateral Back Wall of Thorax
  ;;^UTILITY(U,$J,358.3,23357,1,4,0)
- ;;=4^R40.2113
+ ;;=4^S20.223A
  ;;^UTILITY(U,$J,358.3,23357,2)
- ;;=^5019358
+ ;;=^5159315
  ;;^UTILITY(U,$J,358.3,23358,0)
- ;;=R40.2112^^73^958^27
+ ;;=S20.224A^^71^927^3
  ;;^UTILITY(U,$J,358.3,23358,1,0)
  ;;=^358.31IA^4^2
  ;;^UTILITY(U,$J,358.3,23358,1,3,0)
- ;;=3^Coma Scale,Eyes Open,Never,Emerg Dept
+ ;;=3^Contusion,Middle Back Wall of Thorax
  ;;^UTILITY(U,$J,358.3,23358,1,4,0)
- ;;=4^R40.2112
+ ;;=4^S20.224A
  ;;^UTILITY(U,$J,358.3,23358,2)
- ;;=^5019357
+ ;;=^5159318
  ;;^UTILITY(U,$J,358.3,23359,0)
- ;;=R40.2111^^73^958^28
+ ;;=F10.20^^71^928^9
  ;;^UTILITY(U,$J,358.3,23359,1,0)
  ;;=^358.31IA^4^2
  ;;^UTILITY(U,$J,358.3,23359,1,3,0)
- ;;=3^Coma Scale,Eyes Open,Never,In the Field
+ ;;=3^Alcohol Dependence,Uncomplicated
  ;;^UTILITY(U,$J,358.3,23359,1,4,0)
- ;;=4^R40.2111
+ ;;=4^F10.20
  ;;^UTILITY(U,$J,358.3,23359,2)
- ;;=^5019356
+ ;;=^5003081
  ;;^UTILITY(U,$J,358.3,23360,0)
- ;;=R40.2110^^73^958^29
+ ;;=F11.29^^71^928^61
  ;;^UTILITY(U,$J,358.3,23360,1,0)
  ;;=^358.31IA^4^2
  ;;^UTILITY(U,$J,358.3,23360,1,3,0)
- ;;=3^Coma Scale,Eyes Open,Never,Unspec Time
+ ;;=3^Opioid Dependence w/ Unspec Opioid-Induced Disorder
  ;;^UTILITY(U,$J,358.3,23360,1,4,0)
- ;;=4^R40.2110
+ ;;=4^F11.29
  ;;^UTILITY(U,$J,358.3,23360,2)
- ;;=^5019355
+ ;;=^5003141
  ;;^UTILITY(U,$J,358.3,23361,0)
- ;;=R40.20^^73^958^36
+ ;;=F11.288^^71^928^60
  ;;^UTILITY(U,$J,358.3,23361,1,0)
  ;;=^358.31IA^4^2
  ;;^UTILITY(U,$J,358.3,23361,1,3,0)
- ;;=3^Coma,Unspec
+ ;;=3^Opioid Dependence w/ Other Opioid-Induced Disorder
  ;;^UTILITY(U,$J,358.3,23361,1,4,0)
- ;;=4^R40.20
+ ;;=4^F11.288
  ;;^UTILITY(U,$J,358.3,23361,2)
- ;;=^5019354
+ ;;=^5003140
  ;;^UTILITY(U,$J,358.3,23362,0)
- ;;=R40.2123^^73^958^35
+ ;;=F11.282^^71^928^59
  ;;^UTILITY(U,$J,358.3,23362,1,0)
  ;;=^358.31IA^4^2
  ;;^UTILITY(U,$J,358.3,23362,1,3,0)
- ;;=3^Coma Scale,Eyes Open,to Pain,at Hospital Admission
+ ;;=3^Opioid Dependence w/ Opioid-Induced Sleep Disorder
  ;;^UTILITY(U,$J,358.3,23362,1,4,0)
- ;;=4^R40.2123
+ ;;=4^F11.282
  ;;^UTILITY(U,$J,358.3,23362,2)
- ;;=^5019363
+ ;;=^5003139
  ;;^UTILITY(U,$J,358.3,23363,0)
- ;;=R40.2122^^73^958^32
+ ;;=F11.281^^71^928^58
  ;;^UTILITY(U,$J,358.3,23363,1,0)
  ;;=^358.31IA^4^2
  ;;^UTILITY(U,$J,358.3,23363,1,3,0)
- ;;=3^Coma Scale,Eyes Open,to Pain,Emger Dept
+ ;;=3^Opioid Dependence w/ Opioid-Induced Sexual Dysfunction
  ;;^UTILITY(U,$J,358.3,23363,1,4,0)
- ;;=4^R40.2122
+ ;;=4^F11.281
  ;;^UTILITY(U,$J,358.3,23363,2)
- ;;=^5019362
+ ;;=^5003138
  ;;^UTILITY(U,$J,358.3,23364,0)
- ;;=R40.2124^^73^958^31
+ ;;=F11.259^^71^928^57
  ;;^UTILITY(U,$J,358.3,23364,1,0)
  ;;=^358.31IA^4^2
  ;;^UTILITY(U,$J,358.3,23364,1,3,0)
- ;;=3^Coma Scale,Eyes Open,to Pain,24+ Hrs
+ ;;=3^Opioid Dependence w/ Opioid-Induced Psychotic Disorder,Unspec
  ;;^UTILITY(U,$J,358.3,23364,1,4,0)
- ;;=4^R40.2124
+ ;;=4^F11.259
  ;;^UTILITY(U,$J,358.3,23364,2)
- ;;=^5019364
+ ;;=^5003137
  ;;^UTILITY(U,$J,358.3,23365,0)
- ;;=R40.2211^^73^958^17
+ ;;=F11.251^^71^928^50
  ;;^UTILITY(U,$J,358.3,23365,1,0)
  ;;=^358.31IA^4^2
  ;;^UTILITY(U,$J,358.3,23365,1,3,0)
- ;;=3^Coma Scale,Best Verbal Response,None,in the Field
+ ;;=3^Opioid Depend w/ Opioid-Induc Psychotic Disorder w/ Hallucin
  ;;^UTILITY(U,$J,358.3,23365,1,4,0)
- ;;=4^R40.2211
+ ;;=4^F11.251
  ;;^UTILITY(U,$J,358.3,23365,2)
- ;;=^5019376
+ ;;=^5003136
  ;;^UTILITY(U,$J,358.3,23366,0)
- ;;=R40.2210^^73^958^16
+ ;;=F11.250^^71^928^51
  ;;^UTILITY(U,$J,358.3,23366,1,0)
  ;;=^358.31IA^4^2
  ;;^UTILITY(U,$J,358.3,23366,1,3,0)
- ;;=3^Coma Scale,Best Verbal Response,None,Unspec Time
+ ;;=3^Opioid Depend w/ Opioid-Induc Psychotic Disorder w/ Delusions
  ;;^UTILITY(U,$J,358.3,23366,1,4,0)
- ;;=4^R40.2210
+ ;;=4^F11.250
  ;;^UTILITY(U,$J,358.3,23366,2)
- ;;=^5019375
+ ;;=^5003135
  ;;^UTILITY(U,$J,358.3,23367,0)
- ;;=R40.2224^^73^958^18
+ ;;=F11.24^^71^928^56
  ;;^UTILITY(U,$J,358.3,23367,1,0)
  ;;=^358.31IA^4^2
  ;;^UTILITY(U,$J,358.3,23367,1,3,0)
- ;;=3^Coma Scale,Best Verbal,Incomprehensible Words,24+ Hrs
+ ;;=3^Opioid Dependence w/ Opioid-Induced Mood Disorder
  ;;^UTILITY(U,$J,358.3,23367,1,4,0)
- ;;=4^R40.2224
+ ;;=4^F11.24
  ;;^UTILITY(U,$J,358.3,23367,2)
- ;;=^5019384
+ ;;=^5003134
  ;;^UTILITY(U,$J,358.3,23368,0)
- ;;=R40.2223^^73^958^19
+ ;;=F11.23^^71^928^62
  ;;^UTILITY(U,$J,358.3,23368,1,0)
  ;;=^358.31IA^4^2
  ;;^UTILITY(U,$J,358.3,23368,1,3,0)
- ;;=3^Coma Scale,Best Verbal,Incomprehensible Words,at Hospital Admission
+ ;;=3^Opioid Dependence w/ Withdrawal
  ;;^UTILITY(U,$J,358.3,23368,1,4,0)
- ;;=4^R40.2223
+ ;;=4^F11.23
  ;;^UTILITY(U,$J,358.3,23368,2)
- ;;=^5019383
+ ;;=^5003133
  ;;^UTILITY(U,$J,358.3,23369,0)
- ;;=R40.2222^^73^958^20
+ ;;=F11.20^^71^928^63
  ;;^UTILITY(U,$J,358.3,23369,1,0)
  ;;=^358.31IA^4^2
  ;;^UTILITY(U,$J,358.3,23369,1,3,0)
- ;;=3^Coma Scale,Best Verbal,Incomprehensible Words,Emger Dept
+ ;;=3^Opioid Dependence,Uncomplicated
  ;;^UTILITY(U,$J,358.3,23369,1,4,0)
- ;;=4^R40.2222
+ ;;=4^F11.20
  ;;^UTILITY(U,$J,358.3,23369,2)
- ;;=^5019382
+ ;;=^5003127
  ;;^UTILITY(U,$J,358.3,23370,0)
- ;;=R40.2221^^73^958^21
+ ;;=F11.229^^71^928^55
  ;;^UTILITY(U,$J,358.3,23370,1,0)
  ;;=^358.31IA^4^2
  ;;^UTILITY(U,$J,358.3,23370,1,3,0)
- ;;=3^Coma Scale,Best Verbal,Incomprehensible Words,in the Field
+ ;;=3^Opioid Dependence w/ Intoxication,Unspec
  ;;^UTILITY(U,$J,358.3,23370,1,4,0)
- ;;=4^R40.2221
+ ;;=4^F11.229
  ;;^UTILITY(U,$J,358.3,23370,2)
- ;;=^5019381
+ ;;=^5003132
  ;;^UTILITY(U,$J,358.3,23371,0)
- ;;=R40.2220^^73^958^22
+ ;;=F11.222^^71^928^53
  ;;^UTILITY(U,$J,358.3,23371,1,0)
  ;;=^358.31IA^4^2
  ;;^UTILITY(U,$J,358.3,23371,1,3,0)
- ;;=3^Coma Scale,Best Verbal,Incomprehensible Words,Unspec Time
+ ;;=3^Opioid Dependence w/ Intoxication w/ Perceptual Disturbance
  ;;^UTILITY(U,$J,358.3,23371,1,4,0)
- ;;=4^R40.2220
+ ;;=4^F11.222
  ;;^UTILITY(U,$J,358.3,23371,2)
- ;;=^5019380
+ ;;=^5003131
  ;;^UTILITY(U,$J,358.3,23372,0)
- ;;=R40.2214^^73^958^23
+ ;;=F11.221^^71^928^52
  ;;^UTILITY(U,$J,358.3,23372,1,0)
  ;;=^358.31IA^4^2
  ;;^UTILITY(U,$J,358.3,23372,1,3,0)
- ;;=3^Coma Scale,Best Verbal,None,24+ Hrs
+ ;;=3^Opioid Dependence w/ Intoxication Delirium
  ;;^UTILITY(U,$J,358.3,23372,1,4,0)
- ;;=4^R40.2214
+ ;;=4^F11.221
  ;;^UTILITY(U,$J,358.3,23372,2)
- ;;=^5019379
+ ;;=^5003130
  ;;^UTILITY(U,$J,358.3,23373,0)
- ;;=R40.2213^^73^958^25
+ ;;=F11.220^^71^928^54
  ;;^UTILITY(U,$J,358.3,23373,1,0)
  ;;=^358.31IA^4^2
  ;;^UTILITY(U,$J,358.3,23373,1,3,0)
- ;;=3^Coma Scale,Best Verbal,None,at Hospital Admission
+ ;;=3^Opioid Dependence w/ Intoxication,Uncomplicated
  ;;^UTILITY(U,$J,358.3,23373,1,4,0)
- ;;=4^R40.2213
+ ;;=4^F11.220
  ;;^UTILITY(U,$J,358.3,23373,2)
- ;;=^5019378
+ ;;=^5003129
  ;;^UTILITY(U,$J,358.3,23374,0)
- ;;=R40.2212^^73^958^24
+ ;;=F14.29^^71^928^34
  ;;^UTILITY(U,$J,358.3,23374,1,0)
  ;;=^358.31IA^4^2
  ;;^UTILITY(U,$J,358.3,23374,1,3,0)
- ;;=3^Coma Scale,Best Verbal,None,Emger Dept
+ ;;=3^Cocaine Dependence w/ Unspec Cocaine-Induced Disorder
  ;;^UTILITY(U,$J,358.3,23374,1,4,0)
- ;;=4^R40.2212
+ ;;=4^F14.29
  ;;^UTILITY(U,$J,358.3,23374,2)
- ;;=^5019377
+ ;;=^5003268
  ;;^UTILITY(U,$J,358.3,23375,0)
- ;;=R40.2344^^73^958^6
+ ;;=F14.288^^71^928^33
  ;;^UTILITY(U,$J,358.3,23375,1,0)
  ;;=^358.31IA^4^2
  ;;^UTILITY(U,$J,358.3,23375,1,3,0)
- ;;=3^Coma Scale,Best Motor Resp,Flexion Withdrawal,24+ Hrs
+ ;;=3^Cocaine Dependence w/ Other Cocaine-Induced Disorder
  ;;^UTILITY(U,$J,358.3,23375,1,4,0)
- ;;=4^R40.2344
+ ;;=4^F14.288
  ;;^UTILITY(U,$J,358.3,23375,2)
- ;;=^5019419
+ ;;=^5003267
  ;;^UTILITY(U,$J,358.3,23376,0)
- ;;=R40.2343^^73^958^7
+ ;;=F14.282^^71^928^27
  ;;^UTILITY(U,$J,358.3,23376,1,0)
  ;;=^358.31IA^4^2
  ;;^UTILITY(U,$J,358.3,23376,1,3,0)
- ;;=3^Coma Scale,Best Motor Resp,Flexion Withdrawal,at Hospital Admission
- ;;^UTILITY(U,$J,358.3,23376,1,4,0)
- ;;=4^R40.2343
- ;;^UTILITY(U,$J,358.3,23376,2)
- ;;=^5019418
- ;;^UTILITY(U,$J,358.3,23377,0)
- ;;=R40.2342^^73^958^8
- ;;^UTILITY(U,$J,358.3,23377,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,23377,1,3,0)
- ;;=3^Coma Scale,Best Motor Resp,Flexion Withdrawal,Emger Dept
- ;;^UTILITY(U,$J,358.3,23377,1,4,0)
- ;;=4^R40.2342
- ;;^UTILITY(U,$J,358.3,23377,2)
- ;;=^5019417
- ;;^UTILITY(U,$J,358.3,23378,0)
- ;;=R40.2341^^73^958^9
- ;;^UTILITY(U,$J,358.3,23378,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,23378,1,3,0)
- ;;=3^Coma Scale,Best Motor Resp,Flexion Withdrawal,in the Field
- ;;^UTILITY(U,$J,358.3,23378,1,4,0)
- ;;=4^R40.2341
- ;;^UTILITY(U,$J,358.3,23378,2)
- ;;=^5019416
- ;;^UTILITY(U,$J,358.3,23379,0)
- ;;=R40.2340^^73^958^10
- ;;^UTILITY(U,$J,358.3,23379,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,23379,1,3,0)
- ;;=3^Coma Scale,Best Motor Resp,Flexion Withdrawal,Unspec Time
- ;;^UTILITY(U,$J,358.3,23379,1,4,0)
- ;;=4^R40.2340
- ;;^UTILITY(U,$J,358.3,23379,2)
- ;;=^5019415
- ;;^UTILITY(U,$J,358.3,23380,0)
- ;;=R40.2324^^73^958^1
- ;;^UTILITY(U,$J,358.3,23380,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,23380,1,3,0)
- ;;=3^Coma Scale,Best Motor Resp,Extension,24+ Hrs
- ;;^UTILITY(U,$J,358.3,23380,1,4,0)
- ;;=4^R40.2324
- ;;^UTILITY(U,$J,358.3,23380,2)
- ;;=^5019409
- ;;^UTILITY(U,$J,358.3,23381,0)
- ;;=R40.2323^^73^958^4
- ;;^UTILITY(U,$J,358.3,23381,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,23381,1,3,0)
- ;;=3^Coma Scale,Best Motor Resp,Extension,at Hospital Admission
- ;;^UTILITY(U,$J,358.3,23381,1,4,0)
- ;;=4^R40.2323
- ;;^UTILITY(U,$J,358.3,23381,2)
- ;;=^5019408
- ;;^UTILITY(U,$J,358.3,23382,0)
- ;;=R40.2322^^73^958^2
- ;;^UTILITY(U,$J,358.3,23382,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,23382,1,3,0)
- ;;=3^Coma Scale,Best Motor Resp,Extension,Emger Dept
- ;;^UTILITY(U,$J,358.3,23382,1,4,0)
- ;;=4^R40.2322
- ;;^UTILITY(U,$J,358.3,23382,2)
- ;;=^5019407
- ;;^UTILITY(U,$J,358.3,23383,0)
- ;;=R40.2321^^73^958^5
- ;;^UTILITY(U,$J,358.3,23383,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,23383,1,3,0)
- ;;=3^Coma Scale,Best Motor Resp,Extension,in the Field
- ;;^UTILITY(U,$J,358.3,23383,1,4,0)
- ;;=4^R40.2321
- ;;^UTILITY(U,$J,358.3,23383,2)
- ;;=^5019406
- ;;^UTILITY(U,$J,358.3,23384,0)
- ;;=R40.2320^^73^958^3
- ;;^UTILITY(U,$J,358.3,23384,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,23384,1,3,0)
- ;;=3^Coma Scale,Best Motor Resp,Extension,Unspec Time
- ;;^UTILITY(U,$J,358.3,23384,1,4,0)
- ;;=4^R40.2320
- ;;^UTILITY(U,$J,358.3,23384,2)
- ;;=^5019405
- ;;^UTILITY(U,$J,358.3,23385,0)
- ;;=R40.2314^^73^958^11
- ;;^UTILITY(U,$J,358.3,23385,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,23385,1,3,0)
- ;;=3^Coma Scale,Best Motor Resp,None,24+ Hrs
- ;;^UTILITY(U,$J,358.3,23385,1,4,0)
- ;;=4^R40.2314
- ;;^UTILITY(U,$J,358.3,23385,2)
- ;;=^5019404
- ;;^UTILITY(U,$J,358.3,23386,0)
- ;;=R40.2313^^73^958^14
- ;;^UTILITY(U,$J,358.3,23386,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,23386,1,3,0)
- ;;=3^Coma Scale,Best Motor Resp,None,at Hospital Admission
- ;;^UTILITY(U,$J,358.3,23386,1,4,0)
- ;;=4^R40.2313
- ;;^UTILITY(U,$J,358.3,23386,2)
- ;;=^5019403
- ;;^UTILITY(U,$J,358.3,23387,0)
- ;;=R40.2312^^73^958^12
- ;;^UTILITY(U,$J,358.3,23387,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,23387,1,3,0)
- ;;=3^Coma Scale,Best Motor Resp,None,Emerg Dept
- ;;^UTILITY(U,$J,358.3,23387,1,4,0)
- ;;=4^R40.2312
- ;;^UTILITY(U,$J,358.3,23387,2)
- ;;=^5019402
- ;;^UTILITY(U,$J,358.3,23388,0)
- ;;=R40.2311^^73^958^15
- ;;^UTILITY(U,$J,358.3,23388,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,23388,1,3,0)
- ;;=3^Coma Scale,Best Motor Resp,None,in the Field
- ;;^UTILITY(U,$J,358.3,23388,1,4,0)
- ;;=4^R40.2311
- ;;^UTILITY(U,$J,358.3,23388,2)
- ;;=^5019401
- ;;^UTILITY(U,$J,358.3,23389,0)
- ;;=R40.2310^^73^958^13
- ;;^UTILITY(U,$J,358.3,23389,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,23389,1,3,0)
- ;;=3^Coma Scale,Best Motor Resp,None,Unspec Time
- ;;^UTILITY(U,$J,358.3,23389,1,4,0)
- ;;=4^R40.2310
- ;;^UTILITY(U,$J,358.3,23389,2)
- ;;=^5019400
- ;;^UTILITY(U,$J,358.3,23390,0)
- ;;=R40.4^^73^958^38
- ;;^UTILITY(U,$J,358.3,23390,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,23390,1,3,0)
- ;;=3^Transient Alteration of Awareness
- ;;^UTILITY(U,$J,358.3,23390,1,4,0)
- ;;=4^R40.4
- ;;^UTILITY(U,$J,358.3,23390,2)
- ;;=^5019435
- ;;^UTILITY(U,$J,358.3,23391,0)
- ;;=V00.811A^^73^959^50
- ;;^UTILITY(U,$J,358.3,23391,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,23391,1,3,0)
- ;;=3^Fall from Moving Wheelchair (pwered),Init Encntr
- ;;^UTILITY(U,$J,358.3,23391,1,4,0)
- ;;=4^V00.811A
- ;;^UTILITY(U,$J,358.3,23391,2)
- ;;=^5055937
- ;;^UTILITY(U,$J,358.3,23392,0)
- ;;=V00.811D^^73^959^51
- ;;^UTILITY(U,$J,358.3,23392,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,23392,1,3,0)
- ;;=3^Fall from Moving Wheelchair (pwered),Subs Encntr
- ;;^UTILITY(U,$J,358.3,23392,1,4,0)
- ;;=4^V00.811D
- ;;^UTILITY(U,$J,358.3,23392,2)
- ;;=^5055938
- ;;^UTILITY(U,$J,358.3,23393,0)
- ;;=V00.812A^^73^959^142
- ;;^UTILITY(U,$J,358.3,23393,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,23393,1,3,0)
- ;;=3^Wheelchair Colliding w/ Stationary Obj,Init Encntr
- ;;^UTILITY(U,$J,358.3,23393,1,4,0)
- ;;=4^V00.812A
- ;;^UTILITY(U,$J,358.3,23393,2)
- ;;=^5055940
- ;;^UTILITY(U,$J,358.3,23394,0)
- ;;=V00.812D^^73^959^143
- ;;^UTILITY(U,$J,358.3,23394,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,23394,1,3,0)
- ;;=3^Wheelchair Colliding w/ Stationary Obj,Subs Encntr
- ;;^UTILITY(U,$J,358.3,23394,1,4,0)
- ;;=4^V00.812D
- ;;^UTILITY(U,$J,358.3,23394,2)
- ;;=^5055941
- ;;^UTILITY(U,$J,358.3,23395,0)
- ;;=V00.818A^^73^959^140
- ;;^UTILITY(U,$J,358.3,23395,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,23395,1,3,0)
- ;;=3^Wheelchair Accident NEC,Init Encntr
- ;;^UTILITY(U,$J,358.3,23395,1,4,0)
- ;;=4^V00.818A
- ;;^UTILITY(U,$J,358.3,23395,2)
- ;;=^5055943
- ;;^UTILITY(U,$J,358.3,23396,0)
- ;;=V00.818D^^73^959^141
- ;;^UTILITY(U,$J,358.3,23396,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,23396,1,3,0)
- ;;=3^Wheelchair Accident NEC,Subs Encntr
- ;;^UTILITY(U,$J,358.3,23396,1,4,0)
- ;;=4^V00.818D
- ;;^UTILITY(U,$J,358.3,23396,2)
- ;;=^5055944
- ;;^UTILITY(U,$J,358.3,23397,0)
- ;;=V00.831A^^73^959^48
- ;;^UTILITY(U,$J,358.3,23397,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,23397,1,3,0)
- ;;=3^Fall from Mobility Scooter,Init Encntr
- ;;^UTILITY(U,$J,358.3,23397,1,4,0)
- ;;=4^V00.831A
- ;;^UTILITY(U,$J,358.3,23397,2)
- ;;=^5055955
- ;;^UTILITY(U,$J,358.3,23398,0)
- ;;=V00.831D^^73^959^49
- ;;^UTILITY(U,$J,358.3,23398,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,23398,1,3,0)
- ;;=3^Fall from Mobility Scooter,Subs Encntr
- ;;^UTILITY(U,$J,358.3,23398,1,4,0)
- ;;=4^V00.831D
- ;;^UTILITY(U,$J,358.3,23398,2)
- ;;=^5055956
- ;;^UTILITY(U,$J,358.3,23399,0)
- ;;=V00.832A^^73^959^100
- ;;^UTILITY(U,$J,358.3,23399,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,23399,1,3,0)
- ;;=3^Mobility Scooter Colliding w/ Stationary Obj,Init Encntr
+ ;;=3^Cocaine Dependence w/ Cocaine-Induced Sleep Disorder

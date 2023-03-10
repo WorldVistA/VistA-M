@@ -1,134 +1,120 @@
-IBDEI0QZ ; ; 04-FEB-2020
- ;;3.0;IB ENCOUNTER FORM IMP/EXP;;FEB 04, 2020
+IBDEI0QZ ; ; 01-FEB-2022
+ ;;3.0;IB ENCOUNTER FORM IMP/EXP;;FEB 01, 2022
  Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,999) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
- ;;^UTILITY(U,$J,358.3,12044,0)
- ;;=R44.0^^80^769^16
- ;;^UTILITY(U,$J,358.3,12044,1,0)
+ ;;^UTILITY(U,$J,358.3,12156,0)
+ ;;=L89.91^^49^595^109
+ ;;^UTILITY(U,$J,358.3,12156,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,12044,1,3,0)
- ;;=3^Auditory Hallucinations
- ;;^UTILITY(U,$J,358.3,12044,1,4,0)
- ;;=4^R44.0
- ;;^UTILITY(U,$J,358.3,12044,2)
- ;;=^5019455
- ;;^UTILITY(U,$J,358.3,12045,0)
- ;;=R44.2^^80^769^50
- ;;^UTILITY(U,$J,358.3,12045,1,0)
+ ;;^UTILITY(U,$J,358.3,12156,1,3,0)
+ ;;=3^Pressure Ulcer Site Unspec,Stage 1
+ ;;^UTILITY(U,$J,358.3,12156,1,4,0)
+ ;;=4^L89.91
+ ;;^UTILITY(U,$J,358.3,12156,2)
+ ;;=^5133664
+ ;;^UTILITY(U,$J,358.3,12157,0)
+ ;;=L89.92^^49^595^110
+ ;;^UTILITY(U,$J,358.3,12157,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,12045,1,3,0)
- ;;=3^Hallucinations NEC
- ;;^UTILITY(U,$J,358.3,12045,1,4,0)
- ;;=4^R44.2
- ;;^UTILITY(U,$J,358.3,12045,2)
- ;;=^5019457
- ;;^UTILITY(U,$J,358.3,12046,0)
- ;;=R44.3^^80^769^51
- ;;^UTILITY(U,$J,358.3,12046,1,0)
+ ;;^UTILITY(U,$J,358.3,12157,1,3,0)
+ ;;=3^Pressure Ulcer Site Unspec,Stage 2
+ ;;^UTILITY(U,$J,358.3,12157,1,4,0)
+ ;;=4^L89.92
+ ;;^UTILITY(U,$J,358.3,12157,2)
+ ;;=^5133667
+ ;;^UTILITY(U,$J,358.3,12158,0)
+ ;;=L89.93^^49^595^111
+ ;;^UTILITY(U,$J,358.3,12158,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,12046,1,3,0)
- ;;=3^Hallucinations,Unspec
- ;;^UTILITY(U,$J,358.3,12046,1,4,0)
- ;;=4^R44.3
- ;;^UTILITY(U,$J,358.3,12046,2)
- ;;=^5019458
- ;;^UTILITY(U,$J,358.3,12047,0)
- ;;=R50.2^^80^769^39
- ;;^UTILITY(U,$J,358.3,12047,1,0)
+ ;;^UTILITY(U,$J,358.3,12158,1,3,0)
+ ;;=3^Pressure Ulcer Site Unspec,Stage 3
+ ;;^UTILITY(U,$J,358.3,12158,1,4,0)
+ ;;=4^L89.93
+ ;;^UTILITY(U,$J,358.3,12158,2)
+ ;;=^5133668
+ ;;^UTILITY(U,$J,358.3,12159,0)
+ ;;=L89.94^^49^595^112
+ ;;^UTILITY(U,$J,358.3,12159,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,12047,1,3,0)
- ;;=3^Drug Induced Fever
- ;;^UTILITY(U,$J,358.3,12047,1,4,0)
- ;;=4^R50.2
- ;;^UTILITY(U,$J,358.3,12047,2)
- ;;=^5019507
- ;;^UTILITY(U,$J,358.3,12048,0)
- ;;=R50.9^^80^769^45
- ;;^UTILITY(U,$J,358.3,12048,1,0)
+ ;;^UTILITY(U,$J,358.3,12159,1,3,0)
+ ;;=3^Pressure Ulcer Site Unspec,Stage 4
+ ;;^UTILITY(U,$J,358.3,12159,1,4,0)
+ ;;=4^L89.94
+ ;;^UTILITY(U,$J,358.3,12159,2)
+ ;;=^5133669
+ ;;^UTILITY(U,$J,358.3,12160,0)
+ ;;=L89.95^^49^595^113
+ ;;^UTILITY(U,$J,358.3,12160,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,12048,1,3,0)
- ;;=3^Fever,Unspec
- ;;^UTILITY(U,$J,358.3,12048,1,4,0)
- ;;=4^R50.9
- ;;^UTILITY(U,$J,358.3,12048,2)
- ;;=^5019512
- ;;^UTILITY(U,$J,358.3,12049,0)
- ;;=R53.0^^80^769^63
- ;;^UTILITY(U,$J,358.3,12049,1,0)
+ ;;^UTILITY(U,$J,358.3,12160,1,3,0)
+ ;;=3^Pressure Ulcer Site Unspec,Unstageable
+ ;;^UTILITY(U,$J,358.3,12160,1,4,0)
+ ;;=4^L89.95
+ ;;^UTILITY(U,$J,358.3,12160,2)
+ ;;=^5133660
+ ;;^UTILITY(U,$J,358.3,12161,0)
+ ;;=L89.46^^49^595^114
+ ;;^UTILITY(U,$J,358.3,12161,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,12049,1,3,0)
- ;;=3^Neoplastic Related Fatigue
- ;;^UTILITY(U,$J,358.3,12049,1,4,0)
- ;;=4^R53.0
- ;;^UTILITY(U,$J,358.3,12049,2)
- ;;=^5019515
- ;;^UTILITY(U,$J,358.3,12050,0)
- ;;=R53.1^^80^769^82
- ;;^UTILITY(U,$J,358.3,12050,1,0)
+ ;;^UTILITY(U,$J,358.3,12161,1,3,0)
+ ;;=3^Pressure-Induced Deep Tiss Damag of Contig Site of Back/Buttock/Hip
+ ;;^UTILITY(U,$J,358.3,12161,1,4,0)
+ ;;=4^L89.46
+ ;;^UTILITY(U,$J,358.3,12161,2)
+ ;;=^5158091
+ ;;^UTILITY(U,$J,358.3,12162,0)
+ ;;=L89.816^^49^595^115
+ ;;^UTILITY(U,$J,358.3,12162,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,12050,1,3,0)
- ;;=3^Weakness
- ;;^UTILITY(U,$J,358.3,12050,1,4,0)
- ;;=4^R53.1
- ;;^UTILITY(U,$J,358.3,12050,2)
- ;;=^5019516
- ;;^UTILITY(U,$J,358.3,12051,0)
- ;;=R53.81^^80^769^60
- ;;^UTILITY(U,$J,358.3,12051,1,0)
+ ;;^UTILITY(U,$J,358.3,12162,1,3,0)
+ ;;=3^Pressure-Induced Deep Tissue Damage of Head
+ ;;^UTILITY(U,$J,358.3,12162,1,4,0)
+ ;;=4^L89.816
+ ;;^UTILITY(U,$J,358.3,12162,2)
+ ;;=^5158098
+ ;;^UTILITY(U,$J,358.3,12163,0)
+ ;;=L89.526^^49^595^116
+ ;;^UTILITY(U,$J,358.3,12163,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,12051,1,3,0)
- ;;=3^Malaise NEC
- ;;^UTILITY(U,$J,358.3,12051,1,4,0)
- ;;=4^R53.81
- ;;^UTILITY(U,$J,358.3,12051,2)
- ;;=^5019518
- ;;^UTILITY(U,$J,358.3,12052,0)
- ;;=R53.82^^80^769^25
- ;;^UTILITY(U,$J,358.3,12052,1,0)
+ ;;^UTILITY(U,$J,358.3,12163,1,3,0)
+ ;;=3^Pressure-Induced Deep Tissue Damage of Left Ankle
+ ;;^UTILITY(U,$J,358.3,12163,1,4,0)
+ ;;=4^L89.526
+ ;;^UTILITY(U,$J,358.3,12163,2)
+ ;;=^5158094
+ ;;^UTILITY(U,$J,358.3,12164,0)
+ ;;=L89.326^^49^595^117
+ ;;^UTILITY(U,$J,358.3,12164,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,12052,1,3,0)
- ;;=3^Chronic Fatigue,Unspec
- ;;^UTILITY(U,$J,358.3,12052,1,4,0)
- ;;=4^R53.82
- ;;^UTILITY(U,$J,358.3,12052,2)
- ;;=^5019519
- ;;^UTILITY(U,$J,358.3,12053,0)
- ;;=R53.83^^80^769^44
- ;;^UTILITY(U,$J,358.3,12053,1,0)
+ ;;^UTILITY(U,$J,358.3,12164,1,3,0)
+ ;;=3^Pressure-Induced Deep Tissue Damage of Left Buttock
+ ;;^UTILITY(U,$J,358.3,12164,1,4,0)
+ ;;=4^L89.326
+ ;;^UTILITY(U,$J,358.3,12164,2)
+ ;;=^5158090
+ ;;^UTILITY(U,$J,358.3,12165,0)
+ ;;=L89.026^^49^595^118
+ ;;^UTILITY(U,$J,358.3,12165,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,12053,1,3,0)
- ;;=3^Fatigue NEC
- ;;^UTILITY(U,$J,358.3,12053,1,4,0)
- ;;=4^R53.83
- ;;^UTILITY(U,$J,358.3,12053,2)
- ;;=^5019520
- ;;^UTILITY(U,$J,358.3,12054,0)
- ;;=R55.^^80^769^76
- ;;^UTILITY(U,$J,358.3,12054,1,0)
+ ;;^UTILITY(U,$J,358.3,12165,1,3,0)
+ ;;=3^Pressure-Induced Deep Tissue Damage of Left Elbow
+ ;;^UTILITY(U,$J,358.3,12165,1,4,0)
+ ;;=4^L89.026
+ ;;^UTILITY(U,$J,358.3,12165,2)
+ ;;=^5158078
+ ;;^UTILITY(U,$J,358.3,12166,0)
+ ;;=L89.626^^49^595^119
+ ;;^UTILITY(U,$J,358.3,12166,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,12054,1,3,0)
- ;;=3^Syncope and Collapse
- ;;^UTILITY(U,$J,358.3,12054,1,4,0)
- ;;=4^R55.
- ;;^UTILITY(U,$J,358.3,12054,2)
- ;;=^116707
- ;;^UTILITY(U,$J,358.3,12055,0)
- ;;=R56.9^^80^769^27
- ;;^UTILITY(U,$J,358.3,12055,1,0)
+ ;;^UTILITY(U,$J,358.3,12166,1,3,0)
+ ;;=3^Pressure-Induced Deep Tissue Damage of Left Heel
+ ;;^UTILITY(U,$J,358.3,12166,1,4,0)
+ ;;=4^L89.626
+ ;;^UTILITY(U,$J,358.3,12166,2)
+ ;;=^5158097
+ ;;^UTILITY(U,$J,358.3,12167,0)
+ ;;=L89.226^^49^595^120
+ ;;^UTILITY(U,$J,358.3,12167,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,12055,1,3,0)
- ;;=3^Convulsions,Unspec
- ;;^UTILITY(U,$J,358.3,12055,1,4,0)
- ;;=4^R56.9
- ;;^UTILITY(U,$J,358.3,12055,2)
- ;;=^5019524
- ;;^UTILITY(U,$J,358.3,12056,0)
- ;;=R68.83^^80^769^24
- ;;^UTILITY(U,$J,358.3,12056,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,12056,1,3,0)
- ;;=3^Chills w/o Fever
- ;;^UTILITY(U,$J,358.3,12056,1,4,0)
- ;;=4^R68.83
- ;;^UTILITY(U,$J,358.3,12056,2)
- ;;=^5019555
+ ;;^UTILITY(U,$J,358.3,12167,1,3,0)
+ ;;=3^Pressure-Induced Deep Tissue Damage of Left Hip

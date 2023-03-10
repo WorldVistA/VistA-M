@@ -1,0 +1,300 @@
+KMPUTLW ;SP/JML - Manage REST interfaces for VSM Monitors ;6/1/2020
+ ;;4.0;CAPACITY MANAGEMENT;**1**;3/1/2018;Build 27
+ ;
+ ; Integration Agreements
+ ;  Reference to GETENV^%ZOSV supported by ICR #10097
+ ;  Reference to $$SITE^VASITE supported by ICR #10112
+ ;
+POST(KMPJSON,KMPRLOC,KMPFFLAG,KMPMKEY) ;
+ N KMPAKEY,KMPFILE,KMPFN,KMPFQDN,KMPPORT,KMPRESP,KMPREQ,KMPRJSON,KMPSCODE,KMPSTAGE,KMPSTAT
+ ;
+ I $G(KMPMKEY)="" S KMPMKEY="VTCM"
+ I KMPJSON.Site="" D SITE(KMPJSON)
+ S KMPREQ=##class(%Net.HttpRequest).%New()
+ S KMPREQ.ContentType="application/json"
+ D KMPREQ.SetHeader("Accept","application/json")
+ ;   Send SSL
+ I $$GETVAL^KMPVCCFG(KMPMKEY,"ENCRYPT",8969,"I")=1 D
+ .S KMPREQ.SSLConfiguration="KMPHttpsClient"
+ .S KMPREQ.Https=1
+ ;   Server/Resource/Port/Key
+ S KMPREQ.Location="vsm"_$$PROD^KMPVCCFG()_KMPRLOC
+ S KMPFQDN=$$GETVAL^KMPVCCFG(KMPMKEY,"NATIONAL FQDN",8969)
+ I KMPFQDN="" D
+ .S KMPREQ.Server=$$GETVAL^KMPVCCFG(KMPMKEY,"NATIONAL IP",8969)
+ .S KMPREQ.Port=$$GETVAL^KMPVCCFG(KMPMKEY,"NATIONAL PORT",8969)
+ I KMPFQDN'="" S KMPREQ.Server=KMPFQDN
+ ; only set NATIONAL PORT if other than 80/443
+ S KMPPORT=$$GETVAL^KMPVCCFG(KMPMKEY,"NATIONAL PORT",8969)
+ I KMPPORT'="" S KMPREQ.Port=KMPPORT
+ S KMPAKEY=$$GETVAL^KMPVCCFG(KMPMKEY,"APIKEY",8969)
+ I KMPAKEY'="" D KMPREQ.SetHeader("x-api-key",KMPAKEY)
+ ;   Add JSON String to EntityBody from Object/File and send
+ I $G(KMPFFLAG)=1 D
+ .S KMPFN=$$DEFDIR^%ZISH()_$P(KMPRLOC,"/",2)_$J_".txt"
+ .S KMPFILE=##class(%File).%New(KMPFN)
+ .D KMPFILE.Open("WSN")
+ .D KMPJSON.%ToJSON(KMPFILE)
+ .D KMPFILE.Close()
+ .D KMPFILE.Open("RS")
+ .D KMPREQ.EntityBody.CopyFrom(KMPFILE)
+ .D KMPFILE.Close()
+ .S KMPSTAT=##class(%File).Delete(KMPFN)
+ E  D KMPREQ.EntityBody.Write(KMPJSON.%ToJSON())
+ I $D(KMPTEST) W !,KMPJSON.%ToJSON(),!
+ S KMPSTAT=KMPREQ.Post(,$G(KMPTEST))
+ S KMPSCODE=KMPREQ.HttpResponse.StatusCode
+ I $D(KMPTEST) W !,"Http Response Status Code: ",KMPSCODE,!
+ K KMPTEST
+ Q KMPSCODE
+ ;
+INFOMSG(KMPVTEXT) ;  Send text POST
+ N KMPEMAIL,KMPMSG,KMPI,KMPSERV,KMPSTAT
+ S KMPSINF=$$SITEINFO^KMPVCCFG()
+ S KMPMSG=##class(%Net.MailMessage).%New()
+ S KMPMSG.From="VSM@"_$P(KMPSINF,"^",3)
+ S KMPEMAIL=$$GETVAL^KMPVCCFG("VTCM","NATIONAL SUPPORT EMAIL ADDRESS",8969)
+ D KMPMSG.To.Insert(KMPEMAIL)
+ S KMPMSG.Subject=$G(KMPVTEXT("SUBJECT"))
+ S KMPMSG.IsBinary=0
+ S KMPMSG.IsHTML=0
+ D KMPMSG.TextData.WriteLine("Do Not Reply - Informational Only")
+ D KMPMSG.TextData.Write(" "_$c(13))
+ S KMPI=0
+ F  S KMPI=$o(KMPVTEXT(KMPI)) q:+KMPI=0  D
+ .D KMPMSG.TextData.WriteLine(KMPVTEXT(KMPI)_$C(13))
+ D KMPMSG.TextData.Write(" "_$c(13))
+ D KMPMSG.TextData.WriteLine("Site Name: "_$P(KMPSINF,"^",1)_$C(13))
+ D KMPMSG.TextData.WriteLine("Site Number: "_$P(KMPSINF,"^",2)_$C(13))
+ D KMPMSG.TextData.WriteLine("Site Domain: "_$P(KMPSINF,"^",3)_$C(13))
+ D KMPMSG.TextData.WriteLine("Prod/Test: "_$P(KMPSINF,"^",4)_$C(13))
+ D KMPMSG.TextData.WriteLine("Site Code: "_$P(KMPSINF,"^",5)_$C(13))
+ S KMPSERV=##class(%Net.SMTP).%New()
+ S KMPSERV.smtpserver="smtp.domain.ext"
+ S KMPSTAT=KMPSERV.Send(KMPMSG)
+ Q
+ ;
+CANMSG(MTYPE,KMPMKEY,KMPSITE,KMPD) ; Repeatable, configured informational mail messages
+ N KMPPROD,KMPTEXT
+ S KMPPROD=$$PROD^KMPVCCFG()
+ ;
+ I MTYPE="JOBLATE" D
+ .S KMPTEXT("SUBJECT")="VSM ALERT: "_KMPMKEY_" DAILY JOB NOT RUN: "_$P(KMPSITE,"^",2)
+ .S KMPTEXT(1)="Daily "_KMPMKEY_" job behind "_KMPD_" days"
+ .S KMPTEXT(2)=$$SITEINFO^KMPVCCFG()
+ .D INFOMSG(.KMPTEXT)
+ I MTYPE="DELETE" D
+ .S KMPTEXT("SUBJECT")="VSM ALERT: Purging "_KMPMKEY_" data for "_$P(KMPSITE,"^",2)
+ .S KMPTEXT(1)="Data purged for: "_KMPD
+ .S KMPTEXT(2)=$$SITEINFO^KMPVCCFG()
+ .D INFOMSG(.KMPTEXT)
+ I MTYPE="TRANWARN" D
+ .S KMPTEXT("SUBJECT")="VSM ALERT: Data transmissions of "_KMPMKEY_" data late for "_$P(KMPSITE,"^",2)
+ .S KMPTEXT(1)=$$SITEINFO^KMPVCCFG()
+ .D INFOMSG(.KMPTEXT)
+ I MTYPE="FAILTRAN" D
+ .S KMPTEXT("SUBJECT")="VSM ALERT: Failed transmission for "_$P(KMPSITE,"^",2)
+ .S KMPTEXT(1)="Collection date: "_KMPD
+ .S KMPTEXT(2)=$$SITEINFO^KMPVCCFG()
+ .D INFOMSG(.KMPTEXT)
+ I MTYPE="KILL" D
+ .S KMPTEXT("SUBJECT")="VSM ALERT: All data deleted at "_$P(KMPSITE,"^",2)_" for "_KMPMKEY
+ .S KMPTEXT(1)="Username: "_$$USERNAME^KMPVCCFG(DUZ)
+ .S KMPTEXT(2)=$$SITEINFO^KMPVCCFG()
+ .D INFOMSG(.KMPTEXT)
+ Q
+ ;
+CFGMSG(KMPRQNAM) ;  Send configuration data to update Location Table at National VSM Database
+ N KMPCFG,KMPJSON,KMPMARR,KMPMKEY,KMPMON,KMPSCODE
+ I $G(KMPRQNAM)="" S KMPRQNAM=$$USERNAME^KMPVCCFG($G(DUZ))
+ ;
+ S KMPJSON=##class(%DynamicObject).%New()
+ S KMPJSON.Function="KMP CFG"
+ S KMPJSON.Requestor=KMPRQNAM
+ D SITE(KMPJSON)
+ I "%All%Manager"[$ROLES D CPF(KMPJSON)
+ D MON(KMPJSON)
+ S KMPSCODE=$$POST(KMPJSON,"/configuration")
+ Q
+ ;
+RETRY(KMPMON) ;
+ N KMPMKEY,KMPVER,ZTDESC,ZTDTH,ZTRTN
+ I KMPMON.Function'="Retry" Q "Incorrect Function Type"
+ S KMPMKEY=KMPMON.Monitor
+ I $$GETVAL^KMPVCCFG(KMPMKEY,"VERSION",8969)<3 Q KMPMKEY_" is not a real time monitor"
+ S ZTDTH=$H
+ I KMPMKEY="VTCM" S ZTRTN="RETRY^KMPTCMRT",ZTDESC="VTCM RETRY"
+ I KMPMKEY="VSTM" S ZTRTN="RETRY^KMPSTMRT",ZTDESC="VSTM RETRY"
+ I KMPMKEY="VBEM" S ZTRTN="RETRY^KMPBEMRT",ZTDESC="VBEM RETRY"
+ I KMPMKEY="VMCM" S ZTRTN="RETRY^KMPMCMRT",ZTDESC="VMCM RETRY"
+ I KMPMKEY="VHLM" S ZTRTN="RETRY^KMPHLMRT",ZTDESC="VHLM RETRY"
+ I KMPMKEY="VCSM" S ZTRTN="RETRY^KMPCSMRT",ZTDESC="VCSM RETRY"
+ I KMPMKEY="VETM" S ZTRTN="RETRY^KMPETMRT",ZTDESC="VETM RETRY"
+ D ^ZTLOAD
+ Q "OK"
+ ;
+CTMLOG(KMPJSON) ; Return run history recorded in the VSM CACHE TASK LOG file
+ N KMPD,KMPDATA,KMPIEN,KMPMARR
+ ;
+ S KMPMARR=##class(%DynamicArray).%New()
+ S KMPIEN=0
+ F  S KMPIEN=$O(^KMPV(8969.03,KMPIEN)) Q:+KMPIEN=0  D
+ .S KMPDATA=$G(^KMPV(8969.03,KMPIEN,0))
+ .S KMPD=##class(%DynamicObject).%New()
+ .S KMPD.Date=$$SHORTDAT($P(KMPDATA,"^",1),"HOROLOG"),KMPD.Node=$P(KMPDATA,"^",2)
+ .s KMPD.Time=$$TSTAMP($P(KMPDATA,"^",3),"FILEMAN",1)
+ .D KMPMARR.%Push(KMPD)
+ S KMPJSON.Ctm=KMPMARR
+ Q
+ ;
+PACKAGES(KMPJSON) ; Get data from PACKAGE file
+ N KMPIEN,KMPPACK,KMPPARR,KMPPNAM,KMPPRE
+ ;
+ S KMPPARR=##class(%DynamicArray).%New()
+ S KMPPRE=""
+ F  S KMPPRE=$O(^DIC(9.4,"C",KMPPRE)) Q:KMPPRE=""  D
+ .S KMPPACK=##class(%DynamicObject).%New()
+ .S KMPIEN=""
+ .; NO WAY TO DECIDE WHICH IS CORRECT SO TAKE FIRST - DON'T LOOP
+ .S KMPIEN=$O(^DIC(9.4,"C",KMPPRE,KMPIEN)) Q:KMPIEN=""  D
+ ..S KMPPNAM=$P($G(^DIC(9.4,KMPIEN,0)),"^")
+ ..S KMPPACK.Name=KMPPNAM,KMPPACK.Prefix=KMPPRE
+ ..D KMPPARR.%Push(KMPPACK)
+ S KMPJSON.Packages=KMPPARR
+ Q
+ ;
+SITE(KMPJSON) ;
+ N KMPINST,KMPNDTYP,KMPNODE,KMPSINF,KMPSITE,KMPSYS,%,Y
+ D NOW^%DTC
+ S KMPSITE=$$SITE^VASITE($P(%,".")) ;IA 10112
+ S KMPSINF=$$SITEINFO^KMPVCCFG()
+ S KMPSYS=$$SYSCFG^KMPVCCFG()
+ S KMPSITE=##class(%DynamicObject).%New()
+ S KMPSITE.SiteName=$P(KMPSINF,"^"),KMPSITE.SiteNum=$P(KMPSINF,"^",2),KMPSITE.SiteDomain=$P(KMPSINF,"^",3)
+ S KMPSITE.SiteCode=$P(KMPSINF,"^",5),KMPSITE.Production=$P(KMPSINF,"^",4) ; ,KMPSITE.Date=$P($$TSTAMP($H,"HOROLOG",1),"^")
+ S KMPSITE.Cache=$P(KMPSYS,"^",1),KMPSITE.OS=$P(KMPSYS,"^",2),KMPSITE.CacheVersion=$P(KMPSYS,"^",3)
+ D GETENV^%ZOSV S KMPNODE=$P(Y,U,3)_":"_$P($P(Y,U,4),":",2) ;  IA 10097
+ S KMPINST=$P(KMPNODE,":",2),KMPNDTYP=$$NODETYPE^KMPUTLW(KMPINST)
+ I KMPNDTYP="BE" S KMPSITE.BackendNode=$p(KMPNODE,":")
+ S KMPIEN=$O(^KMPV(8969,"B","VTCM",""))
+ S KMPSITE.StartPerfmon=$$GETVAL^KMPVCCFG("VTCM","START PERFMON",8969)
+ S KMPJSON.Site=KMPSITE
+ Q
+ ;
+CPF(KMPJSON) ;
+ N KMPCONFIG,KMPCFG,KMPCPF,KMPMIRROR,KMPPROP,KMPRNS,KMPSTART,KMPTNS
+ N KMPCSTAT,KMPMSTAT,KMPSSTAT,KMPCPROP,KMPMPROP,KMPSPROP
+ S KMPCPF=##class(%DynamicObject).%New()
+ S KMPSTART=##class(%DynamicObject).%New()
+ S KMPMIRROR=##class(%DynamicObject).%New()
+ S KMPCONFIG=##class(%DynamicObject).%New()
+ ; get current namespace, switch to %SYS
+ S KMPRNS=$NAMESPACE,$NAMESPACE="%SYS"
+ D ##class("Config.Startup").Get(.KMPSPROP)
+ D ##class("Config.MirrorMember").Get(.KMPMPROP)
+ D ##class("Config.config").Get(.KMPCPROP)
+ M KMPCFG("Startup")=KMPSPROP
+ M KMPCFG("Mirror")=KMPMPROP
+ M KMPCFG("Config")=KMPCPROP
+ S $NAMESPACE=KMPRNS
+ ; Record Startup Properties
+ M KMPSPROP=KMPCFG("Startup")
+ S KMPPROP=""
+ F  S KMPPROP=$O(KMPSPROP(KMPPROP)) Q:KMPPROP=""  D
+ .D KMPSTART.%Set(KMPPROP,KMPSPROP(KMPPROP))
+ S KMPCPF.Startup=KMPSTART
+ ; Record MirrorMember Properties
+ M KMPMPROP=KMPCFG("Mirror")
+ S KMPPROP=""
+ F  S KMPPROP=$O(KMPMPROP(KMPPROP)) Q:KMPPROP=""  D
+ .D KMPMIRROR.%Set(KMPPROP,KMPMPROP(KMPPROP))
+ S KMPCPF.MirrorMember=KMPMIRROR
+ ; Record Config Properties
+ M KMPCPROP=KMPCFG("Config")
+ S KMPPROP=""
+ F  S KMPPROP=$O(KMPCPROP(KMPPROP)) Q:KMPPROP=""  D
+ .D KMPCONFIG.%Set(KMPPROP,KMPCPROP(KMPPROP))
+ S KMPCPF.Config=KMPCONFIG
+ S KMPJSON.CPF=KMPCPF
+ Q
+ ;
+MON(KMPJSON) ;
+ ; Monitor Information
+ N KMP3,KMP4,KMPFILE,KMPFN
+ S KMPMARR=##class(%DynamicArray).%New()
+ S KMPMKEY=""
+ F  S KMPMKEY=$O(^KMPV(8969,"B",KMPMKEY)) Q:KMPMKEY=""  D
+ .S KMPIEN=$O(^KMPV(8969,"B",KMPMKEY,""))
+ .S KMPMON=##CLASS(%DynamicObject).%New()
+ .S KMPCFG=$$CFGSTR^KMPVCCFG(KMPMKEY)
+ .S KMP3=$G(^KMPV(8969,KMPIEN,3))
+ .S KMP4=$G(^KMPV(8969,KMPIEN,4))
+ .S KMPMON.AllowTestSystem=$P(KMPCFG,"^",9)
+ .S KMPMON.ApiKey=$P(KMP4,"^",4)
+ .S KMPMON.CacheDailyTask=$P(KMPCFG,"^",10)
+ .S KMPMON.CollectionInterval=$P(KMPCFG,"^",6)
+ .S KMPMON.DaysToKeepData=$P(KMPCFG,"^",5)
+ .S KMPMON.Encrypt=$P(KMPCFG,"^",14)
+ .S KMPMON.Monitor=KMPMKEY
+ .S KMPMON.NationalDataEmailAddress=$P(KMP3,"^")
+ .S KMPMON.NationalFqdn=$P(KMP4,"^",2)
+ .S KMPMON.NationalIpAddress=$P(KMP4,"^")
+ .S KMPMON.NationalPort=$P(KMP4,"^",3)
+ .S KMPMON.NationalSupportEmailAddress=$P(KMP3,"^",2)
+ .S KMPMON.OnOff=$P(KMPCFG,"^",2)
+ .S KMPMON.Realtime=$P(KMPCFG,"^",12)
+ .S KMPMON.ScheduleFrequency=$P(KMPCFG,"^",7)
+ .S KMPMON.ScheduleStart=$P(KMPCFG,"^",8)
+ .S KMPMON.StartPerfmon=$P(KMPCFG,"^",13)
+ .S KMPMON.TaskmanOption=$P(KMPCFG,"^",11)
+ .S KMPMON.Version=$P(KMPCFG,"^",3)
+ .S KMPMON.VersionInstallDate=$$SHORTDAT($P(KMPCFG,"^",4),"FILEMAN")
+ .S KMPMON.VsmCfgEmailAddress=$P(KMP3,"^",3)
+ .D KMPMARR.%Push(KMPMON)
+ S KMPJSON.MonCFG=KMPMARR
+ Q
+ ;
+TSTAMP(KMPDAY,KMPFORMAT,KMPTZ) ;
+ ; variables passed must be 1st and 2nd piece in $H format
+ N KMPRTS,KMPTZONE,KMPUTC,X,%H,%T
+ I KMPFORMAT="" Q ""
+ I KMPDAY="" Q ""
+ S KMPRTS=""
+ S KMPTZONE=$ZTIMEZONE/60
+ I KMPFORMAT="FILEMAN" D
+ .S X=KMPDAY D H^%DTC
+ .S $P(KMPDAY,",")=%H,$P(KMPDAY,",",2)=%T
+ I $P(KMPDAY,",",2)>86399 S $P(KMPDAY,",",2)=""
+ S KMPRTS=$ZDATE(+KMPDAY,3)_" "_$ZTIME($P(KMPDAY,",",2))
+ S KMPRTS=$ZDATETIME(KMPDAY,3)
+ I $G(KMPTZ)=1 S KMPRTS=KMPRTS_"Z"_KMPTZONE
+ S KMPUTC=$SYSTEM.Util.LocalWithZTIMEZONEtoUTC(KMPDAY)
+ S $P(KMPRTS,"^",2)=$ZDATETIME(KMPUTC,3)
+ S $P(KMPRTS,"^",3)=(KMPUTC - 47117 * 86400 + $P($P(KMPUTC,",",2),"."))
+ S $P(KMPRTS,"^",4)=$SYSTEM.Util.IsDST()
+ Q KMPRTS
+ ;
+SHORTDAT(KMPDAY,KMPFORMAT) ; convert $h or fileman to external date
+ ; passing $H whole or first piece
+ N X
+ I KMPDAY="" Q ""
+ I KMPFORMAT="HOROLOG" Q $ZDATE(+KMPDAY,3)
+ I KMPFORMAT="FILEMAN" D  Q $ZDATE(%H,3)
+ .S X=KMPDAY D H^%DTC
+ Q
+ ;
+UTC(KMPZTS) ; Requres $ZTIMSTAMP to convert to Linux Epoch format
+ S KMPZTS=$G(KMPZTS) I KMPZTS="" S KMPZTS=$ZTIMESTAMP
+ ; get delta from $h start to Epoch start -- then convert to seconds
+ Q (KMPZTS - 47117 * 86400 + $P($P(KMPZTS,",",2),"."))
+ ;
+NODETYPE(INSTANCE) ; 
+ ;  from ZSTU
+ N X
+ S X=INSTANCE ;,Y=SSPORT
+ I $E(X,7,9)="SVR" Q "BE"
+ I $E(X,7,8)="A0"!($E(X,7,8)="TM") Q "FE"
+ I $E(X,6,9)="SHMS"!($E(X,6,8)="SSM") Q "MS"
+ I $E(X,7,9)="LDR"!($E(X,6,8)="SSL") Q "LS"
+ I $E(X,6,9)="SHDW"!($E(X,6,8)="SS0")!($E(X,6,8)="SS1") Q "VRO"
+ Q "UK"

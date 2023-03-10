@@ -1,5 +1,5 @@
 RCBEUTR2 ;WISC/RFJ - create an exempt transaction                      ;1 Jun 00
- ;;4.5;Accounts Receivable;**153,169,353**;Mar 20, 1995;Build 15
+ ;;4.5;Accounts Receivable;**153,169,353,377**;Mar 20, 1995;Build 45
  ;;Per VA Directive 6402, this routine should not be modified.
  Q
  ;
@@ -46,6 +46,9 @@ EXEMPT(RCBILLDA,RCVALUE,RCCOMMNT,RCDATE,RCVALL) ;  exempt an intererst/admin cha
  ;
  ;  mark the transaction as processed
  D PROCESS^RCBEUTRA(RCTRANDA)
+ ;
+ ;PRCA*4.5*377 - update Repayment Plan with Exemption amount
+ D UPDBAL^RCRPU1(RCBILLDA,RCTRANDA)
  ;
  ;  update the bill file with the balance of the transaction
  D SETBAL^RCBEUBIL(RCTRANDA)

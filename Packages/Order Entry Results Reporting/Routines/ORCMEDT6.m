@@ -1,5 +1,5 @@
 ORCMEDT6 ;SLC/MKB-QO editor utilities ;12/18/02  13:33
- ;;3.0;ORDER ENTRY/RESULTS REPORTING;**164,297**;Dec 17, 1997;Build 14
+ ;;3.0;ORDER ENTRY/RESULTS REPORTING;**164,297,548**;Dec 17, 1997;Build 3
  ;
 QO ; -- Enter/edit QO restriction on orderable items
  N X,Y,DA,DR,DIE,ORIT,OLDVAL,OREBLD
@@ -54,14 +54,29 @@ OI(IDX,CAPTION) ; -- Returns selected OI from file #101.43 using IDX xrefs
  N X,Y,D,DIC,DTOUT,DUOUT,DIRUT,DIROUT,ORDIC
  S DIC="^ORD(101.43,",DIC(0)="AEQS" S:$L($G(CAPTION)) DIC("A")=CAPTION
  S DIC("W")="W:$S('$D(%):0,'$D(DIY):0,%=DIY:0,1:1) $G(DIY)"
+ ;OR*3*548 Indicate inactive OIs
+ S DIC("W")=DIC("W")_" D INACT^ORCMEDT6"
  S D=IDX,ORDIC="IX^DIC" S:$L(D,U)>1 ORDIC="MIX^DIC1",DIC(0)=DIC(0)_"M"
  D @ORDIC
  Q Y
+ ;
+INACT ;is OI inactive
+ ;TO DO: is OI called by other routines, protocols, etc.
+ ;       other than the Enter/edit QO restriction option?
+ N ORINACT
+ S ORINACT=""
+ I $G(Y) S ORINACT=$P($G(^ORD(101.43,Y,.1)),"^") ;OR*3*548 Add $G
+ ;OR 548 Do not display future inactive dates
+ I ORINACT]"",ORINACT'>DT W "*** INACTIVE AS OF ",$$FMTE^XLFDT(ORINACT)," ***"
+ Q
  ;
 OIB(CAPTION) ; -- Returns selected OI from file #101.43 using B xref
  N X,Y,DIC,DTOUT,DUOUT,DIRUT,DIROUT
  S DIC="^ORD(101.43,",DIC(0)="AEQ"
  S:$L($G(CAPTION)) DIC("A")=CAPTION
+ ;OR*3*548 Indicate inactive OIs
+ S DIC("W")="W:$S('$D(%):0,'$D(DIY):0,%=DIY:0,1:1) $G(DIY)"
+ S DIC("W")=DIC("W")_" D INACT^ORCMEDT6"
  D ^DIC
  Q Y
  ;

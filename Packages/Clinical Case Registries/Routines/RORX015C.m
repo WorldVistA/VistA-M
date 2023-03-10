@@ -1,5 +1,5 @@
 RORX015C ;HCIOFO/SG - OUTPATIENT PROCEDURES (STORE) ;6/27/06 10:54am
- ;;1.5;CLINICAL CASE REGISTRIES;**1,19,21,31,34**;Feb 17, 2006;Build 45
+ ;;1.5;CLINICAL CASE REGISTRIES;**1,19,21,31,34,39**;Feb 17, 2006;Build 4
  ;
  ; This routine uses the following IAs:
  ;
@@ -18,6 +18,7 @@ RORX015C ;HCIOFO/SG - OUTPATIENT PROCEDURES (STORE) ;6/27/06 10:54am
  ;ROR*1.5*31   MAY 2017  M FERRARESE  Adding PACT, PCP, and AGE/DOB as additional
  ;                                    identifiers.
  ;ROR*1.5*34   SEP 2018  F TRAXLER   Adding FUT_APPT and FUT_CLIN
+ ;ROR*1.5*39   JUL 2021    M FERRARESE  Setting SSN and LAST4 to zeros
  ;******************************************************************************
  ;******************************************************************************
  Q
@@ -89,7 +90,7 @@ PATIENTS(PTAG,NODE) ;
  S AGETYPE=$$PARAM^RORTSK01("AGE_RANGE","TYPE")
  F  S PTIEN=$O(@NODE@("PAT",PTIEN))  Q:PTIEN'>0  D
  . S TMP=@NODE@("PAT",PTIEN)
- . S LAST4=$P(TMP,U),PTNAME=$P(TMP,U,2),DOD=$P(TMP,U,3),ICN=$P(TMP,U,4),PACT=$P(TMP,U,5),PCP=$P(TMP,U,6),AGE=$P(TMP,U,7),RORAPPT=$P(TMP,U,8),RORCLIN=$P(TMP,U,9)
+ . S LAST4="0000",PTNAME=$P(TMP,U,2),DOD=$P(TMP,U,3),ICN=$P(TMP,U,4),PACT=$P(TMP,U,5),PCP=$P(TMP,U,6),AGE=$P(TMP,U,7),RORAPPT=$P(TMP,U,8),RORCLIN=$P(TMP,U,9)
  . ;--- Patient list
  . I RORPROC<0  D  Q
  . . S ITEM=$$ADDVAL^RORTSK11(RORTSK,"PATIENT",,PTLST,,PTIEN)

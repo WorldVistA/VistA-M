@@ -1,5 +1,5 @@
-XUMF04H ;BP/RAM - INSTITUTION Handler ;12/02/2019
- ;;8.0;KERNEL;**549,678,698,723**;Jul 10, 1995;Build 3
+XUMF04H ;BP/RAM - INSTITUTION Handler ;May 03, 2022@07:45:35
+ ;;8.0;KERNEL;**549,678,698,723,735,769,662**;Jul 10, 1995;Build 49
  ;;Per VA Directive 6402, this routine should not be modified
  ; This routine handles Institution Master File HL7 messages.
  ;
@@ -135,6 +135,10 @@ ZIN ; -- VHA Institution segment
  S FDA(4,IENS,1.03)=CITY
  S FDA(4,IENS,1.04)=ZIP
  S FDA(4,IENS,.02)=STATE
+ ;
+ ; -- check for changes to physical address
+ D PADDCK
+ ;
  S FDA(4,IENS,4.01)=STRT1
  S FDA(4,IENS,4.02)=STRT2
  S FDA(4,IENS,4.03)=CITY1
@@ -176,7 +180,7 @@ ZIN ; -- VHA Institution segment
  .D EM("error updating PARENT",.ERR)
  .K ERR
  ;
- I $G(NPIDT)'="" D
+ I $G(NPIDT)'="",NPI'="" D
  .K FDA
  .S IENS="?+2,"_IEN_","
  .S FDA(4.042,IENS,.01)=NPIDT
@@ -187,7 +191,11 @@ ZIN ; -- VHA Institution segment
  .D EM("error updating NPI",.ERR)
  .K ERR
  ;
- I $G(TAX)'="" D
+ I $G(NPIDT)'="",NPI="" D
+ . N XUIENEFF S XUIENEFF=$O(^DIC(4,IEN,"NPISTATUS","B",NPIDT,0))
+ . I XUIENEFF>0 N DIK,DA S DA(1)=IEN,DA=XUIENEFF,DIK="^DIC(4,"_DA(1)_",""NPISTATUS""," D ^DIK
+ ;
+ I $G(TAX)'="",TAXSTAT'="" D
  .K FDA,ROOT,IDX
  .N IENS
  .S IENS="?+2,"_IEN_","
@@ -198,6 +206,12 @@ ZIN ; -- VHA Institution segment
  I $D(ERR) D
  .D EM("error updating TAXANOMY",.ERR)
  .K ERR
+ ;
+ I $G(TAX)'="",TAXSTAT="" D
+ . N TAX1 S TAX1=$O(^USC(8932.1,"G",TAX,0))
+ . I TAX1'>0 Q
+ . N XUIENTAX S XUIENTAX=$O(^DIC(4,IEN,"TAXONOMY","B",TAX1,0))
+ . I XUIENTAX>0 N DIK,DA S DA(1)=IEN,DA=XUIENTAX,DIK="^DIC(4,"_DA(1)_",""TAXONOMY""," D ^DIK
  ;
  I $G(CLIA)'="" D
  .S IENS="?+2,"_IEN_","
@@ -231,18 +245,57 @@ ZIN ; -- VHA Institution segment
  ;
  Q
  ;
+PADDCK ; -- check for changes to physical address
+ ;
+ N XSTREET,XSTREET2,XCITY,XZIP,XSTATE
+ N XHPADD,XIENS S XHPADD=0
+ ;
+ ; -- retrieve current physical address fields
+ S XSTREET=$$GET1^DIQ(4,IENS,1.01)
+ S XSTREET2=$$GET1^DIQ(4,IENS,1.02)
+ S XCITY=$$GET1^DIQ(4,IENS,1.03)
+ S XZIP=$$GET1^DIQ(4,IENS,1.04)
+ S XSTATE=$$GET1^DIQ(4,IENS,.02)
+ ;
+ ; -- compare against fields in master file update
+ I STREET'=XSTREET S XHPADD=1
+ I STREET2'=XSTREET2 S XHPADD=1
+ I CITY'=XCITY S XHPADD=1
+ I ZIP'=XZIP S XHPADD=1
+ I STATE'=XSTATE S XHPADD=1
+ ;
+ ; -- if differences, create historical address array
+ I XHPADD D
+ . K XUADD,XUEFFDT
+ . S XUEFFDT(1)=DT
+ . S XIENS="+1,"_IENS
+ . S XUADD(4.999,XIENS,.01)=XUEFFDT(1)
+ . S XUADD(4.999,XIENS,1)=XSTREET
+ . S XUADD(4.999,XIENS,1.1)=XSTREET2
+ . S XUADD(4.999,XIENS,1.2)=XCITY
+ . S XUADD(4.999,XIENS,1.3)=XSTATE
+ . S XUADD(4.999,XIENS,1.4)=XZIP
+ . D UPDATE^DIE("E","XUADD","XUEFFDT")
+ . K XUADD,XUEFFDT
+ K XSTREET,XSTREET2,XCITY,XZIP,XSTATE,XHPADD,XIENS
+ Q
+ ;
 REPLY ; -- master file response
  ;
  Q:HL("MTN")="MFR"
  Q:HL("MTN")="MFK"
  Q:HL("MTN")="ACK"
+ S HLFS=$G(HLFS)
+ S HL("MID")=$G(HL("MID"))
+ S HL("EIDS")=$G(HL("EIDS"))
+ S HL("EID")=$G(HL("EID"))
  ;
  N X
  S X="MSA"_HLFS_$S(ERROR:"AE",1:"AA")_HLFS_HL("MID")_HLFS_$P(ERROR,U,2)
  S ^TMP("HLA",$J,1)=X
  ;
  S HLP("PRIORITY")="I"
- D GENACK^HLMA1(HL("EID"),HLMTIENS,HL("EIDS"),"GM",1,.HLRESLT)
+ D GENACK^HLMA1(HL("EID"),$G(HLMTIENS),HL("EIDS"),"GM",1,.HLRESLT)
  ;
  ; check for error
  I ($P($G(HLRESLT),U,3)'="") D  Q

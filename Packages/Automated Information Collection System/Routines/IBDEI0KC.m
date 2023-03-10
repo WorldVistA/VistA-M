@@ -1,132 +1,130 @@
-IBDEI0KC ; ; 04-FEB-2020
- ;;3.0;IB ENCOUNTER FORM IMP/EXP;;FEB 04, 2020
+IBDEI0KC ; ; 01-FEB-2022
+ ;;3.0;IB ENCOUNTER FORM IMP/EXP;;FEB 01, 2022
  Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,999) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
- ;;^UTILITY(U,$J,358.3,8975,1,0)
+ ;;^UTILITY(U,$J,358.3,9150,1,4,0)
+ ;;=4^M87.150
+ ;;^UTILITY(U,$J,358.3,9150,2)
+ ;;=^5014722
+ ;;^UTILITY(U,$J,358.3,9151,0)
+ ;;=M87.151^^39^407^77
+ ;;^UTILITY(U,$J,358.3,9151,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,8975,1,3,0)
- ;;=3^Kidney Failure,Unspec
- ;;^UTILITY(U,$J,358.3,8975,1,4,0)
- ;;=4^N19.
- ;;^UTILITY(U,$J,358.3,8975,2)
- ;;=^5015607
- ;;^UTILITY(U,$J,358.3,8976,0)
- ;;=N10.^^69^615^5
- ;;^UTILITY(U,$J,358.3,8976,1,0)
+ ;;^UTILITY(U,$J,358.3,9151,1,3,0)
+ ;;=3^Osteonecrosis d/t Drugs,Right Femur
+ ;;^UTILITY(U,$J,358.3,9151,1,4,0)
+ ;;=4^M87.151
+ ;;^UTILITY(U,$J,358.3,9151,2)
+ ;;=^5014723
+ ;;^UTILITY(U,$J,358.3,9152,0)
+ ;;=M87.152^^39^407^74
+ ;;^UTILITY(U,$J,358.3,9152,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,8976,1,3,0)
- ;;=3^Acute Tubulo-Interstitial Nephritis
- ;;^UTILITY(U,$J,358.3,8976,1,4,0)
- ;;=4^N10.
- ;;^UTILITY(U,$J,358.3,8976,2)
- ;;=^5015570
- ;;^UTILITY(U,$J,358.3,8977,0)
- ;;=N17.1^^69^615^1
- ;;^UTILITY(U,$J,358.3,8977,1,0)
+ ;;^UTILITY(U,$J,358.3,9152,1,3,0)
+ ;;=3^Osteonecrosis d/t Drugs,Left Femur
+ ;;^UTILITY(U,$J,358.3,9152,1,4,0)
+ ;;=4^M87.152
+ ;;^UTILITY(U,$J,358.3,9152,2)
+ ;;=^5014724
+ ;;^UTILITY(U,$J,358.3,9153,0)
+ ;;=M87.180^^39^407^73
+ ;;^UTILITY(U,$J,358.3,9153,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,8977,1,3,0)
- ;;=3^AKI w/ Acute Cortical Necrosis
- ;;^UTILITY(U,$J,358.3,8977,1,4,0)
- ;;=4^N17.1
- ;;^UTILITY(U,$J,358.3,8977,2)
- ;;=^5015599
- ;;^UTILITY(U,$J,358.3,8978,0)
- ;;=N17.0^^69^615^3
- ;;^UTILITY(U,$J,358.3,8978,1,0)
+ ;;^UTILITY(U,$J,358.3,9153,1,3,0)
+ ;;=3^Osteonecrosis d/t Drugs,Jaw
+ ;;^UTILITY(U,$J,358.3,9153,1,4,0)
+ ;;=4^M87.180
+ ;;^UTILITY(U,$J,358.3,9153,2)
+ ;;=^5014741
+ ;;^UTILITY(U,$J,358.3,9154,0)
+ ;;=M87.311^^39^407^174
+ ;;^UTILITY(U,$J,358.3,9154,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,8978,1,3,0)
- ;;=3^AKI w/ Tubular Necrosis
- ;;^UTILITY(U,$J,358.3,8978,1,4,0)
- ;;=4^N17.0
- ;;^UTILITY(U,$J,358.3,8978,2)
- ;;=^5015598
- ;;^UTILITY(U,$J,358.3,8979,0)
- ;;=N17.2^^69^615^2
- ;;^UTILITY(U,$J,358.3,8979,1,0)
+ ;;^UTILITY(U,$J,358.3,9154,1,3,0)
+ ;;=3^Secondary Osteonecrosis,Right Shoulder
+ ;;^UTILITY(U,$J,358.3,9154,1,4,0)
+ ;;=4^M87.311
+ ;;^UTILITY(U,$J,358.3,9154,2)
+ ;;=^5014788
+ ;;^UTILITY(U,$J,358.3,9155,0)
+ ;;=M87.312^^39^407^171
+ ;;^UTILITY(U,$J,358.3,9155,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,8979,1,3,0)
- ;;=3^AKI w/ Medullary Necrosis
- ;;^UTILITY(U,$J,358.3,8979,1,4,0)
- ;;=4^N17.2
- ;;^UTILITY(U,$J,358.3,8979,2)
- ;;=^5015600
- ;;^UTILITY(U,$J,358.3,8980,0)
- ;;=N17.9^^69^615^4
- ;;^UTILITY(U,$J,358.3,8980,1,0)
+ ;;^UTILITY(U,$J,358.3,9155,1,3,0)
+ ;;=3^Secondary Osteonecrosis,Left Shoulder
+ ;;^UTILITY(U,$J,358.3,9155,1,4,0)
+ ;;=4^M87.312
+ ;;^UTILITY(U,$J,358.3,9155,2)
+ ;;=^5014789
+ ;;^UTILITY(U,$J,358.3,9156,0)
+ ;;=M87.350^^39^407^172
+ ;;^UTILITY(U,$J,358.3,9156,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,8980,1,3,0)
- ;;=3^AKI,Unspec
- ;;^UTILITY(U,$J,358.3,8980,1,4,0)
- ;;=4^N17.9
- ;;^UTILITY(U,$J,358.3,8980,2)
- ;;=^338532
- ;;^UTILITY(U,$J,358.3,8981,0)
- ;;=K76.7^^69^615^10
- ;;^UTILITY(U,$J,358.3,8981,1,0)
+ ;;^UTILITY(U,$J,358.3,9156,1,3,0)
+ ;;=3^Secondary Osteonecrosis,Pelvis
+ ;;^UTILITY(U,$J,358.3,9156,1,4,0)
+ ;;=4^M87.350
+ ;;^UTILITY(U,$J,358.3,9156,2)
+ ;;=^5014809
+ ;;^UTILITY(U,$J,358.3,9157,0)
+ ;;=M87.351^^39^407^173
+ ;;^UTILITY(U,$J,358.3,9157,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,8981,1,3,0)
- ;;=3^Hepatorenal Syndrome
- ;;^UTILITY(U,$J,358.3,8981,1,4,0)
- ;;=4^K76.7
- ;;^UTILITY(U,$J,358.3,8981,2)
- ;;=^56497
- ;;^UTILITY(U,$J,358.3,8982,0)
- ;;=Z99.2^^69^615^7
- ;;^UTILITY(U,$J,358.3,8982,1,0)
+ ;;^UTILITY(U,$J,358.3,9157,1,3,0)
+ ;;=3^Secondary Osteonecrosis,Right Femur
+ ;;^UTILITY(U,$J,358.3,9157,1,4,0)
+ ;;=4^M87.351
+ ;;^UTILITY(U,$J,358.3,9157,2)
+ ;;=^5014810
+ ;;^UTILITY(U,$J,358.3,9158,0)
+ ;;=M87.352^^39^407^170
+ ;;^UTILITY(U,$J,358.3,9158,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,8982,1,3,0)
- ;;=3^Dependence on Renal Dialysis
- ;;^UTILITY(U,$J,358.3,8982,1,4,0)
- ;;=4^Z99.2
- ;;^UTILITY(U,$J,358.3,8982,2)
- ;;=^5063758
- ;;^UTILITY(U,$J,358.3,8983,0)
- ;;=Z49.31^^69^615^8
- ;;^UTILITY(U,$J,358.3,8983,1,0)
+ ;;^UTILITY(U,$J,358.3,9158,1,3,0)
+ ;;=3^Secondary Osteonecrosis,Left Femur
+ ;;^UTILITY(U,$J,358.3,9158,1,4,0)
+ ;;=4^M87.352
+ ;;^UTILITY(U,$J,358.3,9158,2)
+ ;;=^5014811
+ ;;^UTILITY(U,$J,358.3,9159,0)
+ ;;=M87.811^^39^407^83
+ ;;^UTILITY(U,$J,358.3,9159,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,8983,1,3,0)
- ;;=3^Encounter for Adequacy Testing for Hemodialysis
- ;;^UTILITY(U,$J,358.3,8983,1,4,0)
- ;;=4^Z49.31
- ;;^UTILITY(U,$J,358.3,8983,2)
- ;;=^5063058
- ;;^UTILITY(U,$J,358.3,8984,0)
- ;;=Z49.01^^69^615^9
- ;;^UTILITY(U,$J,358.3,8984,1,0)
+ ;;^UTILITY(U,$J,358.3,9159,1,3,0)
+ ;;=3^Osteonecrosis,Right Shoulder
+ ;;^UTILITY(U,$J,358.3,9159,1,4,0)
+ ;;=4^M87.811
+ ;;^UTILITY(U,$J,358.3,9159,2)
+ ;;=^5014831
+ ;;^UTILITY(U,$J,358.3,9160,0)
+ ;;=M87.812^^39^407^80
+ ;;^UTILITY(U,$J,358.3,9160,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,8984,1,3,0)
- ;;=3^Fitting/Adjustment of Extracorporeal Dialysis Catheter
- ;;^UTILITY(U,$J,358.3,8984,1,4,0)
- ;;=4^Z49.01
- ;;^UTILITY(U,$J,358.3,8984,2)
- ;;=^5063056
- ;;^UTILITY(U,$J,358.3,8985,0)
- ;;=Z48.00^^69^615^6
- ;;^UTILITY(U,$J,358.3,8985,1,0)
+ ;;^UTILITY(U,$J,358.3,9160,1,3,0)
+ ;;=3^Osteonecrosis,Left Shoulder
+ ;;^UTILITY(U,$J,358.3,9160,1,4,0)
+ ;;=4^M87.812
+ ;;^UTILITY(U,$J,358.3,9160,2)
+ ;;=^5014832
+ ;;^UTILITY(U,$J,358.3,9161,0)
+ ;;=M87.850^^39^407^81
+ ;;^UTILITY(U,$J,358.3,9161,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,8985,1,3,0)
- ;;=3^Change/Removal of Nonsurgical Wound Dressing
- ;;^UTILITY(U,$J,358.3,8985,1,4,0)
- ;;=4^Z48.00
- ;;^UTILITY(U,$J,358.3,8985,2)
- ;;=^5063033
- ;;^UTILITY(U,$J,358.3,8986,0)
- ;;=N17.0^^69^616^3
- ;;^UTILITY(U,$J,358.3,8986,1,0)
+ ;;^UTILITY(U,$J,358.3,9161,1,3,0)
+ ;;=3^Osteonecrosis,Pelvis
+ ;;^UTILITY(U,$J,358.3,9161,1,4,0)
+ ;;=4^M87.850
+ ;;^UTILITY(U,$J,358.3,9161,2)
+ ;;=^5014852
+ ;;^UTILITY(U,$J,358.3,9162,0)
+ ;;=M87.851^^39^407^82
+ ;;^UTILITY(U,$J,358.3,9162,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,8986,1,3,0)
- ;;=3^AKI w/ Tubular Necrosis
- ;;^UTILITY(U,$J,358.3,8986,1,4,0)
- ;;=4^N17.0
- ;;^UTILITY(U,$J,358.3,8986,2)
- ;;=^5015598
- ;;^UTILITY(U,$J,358.3,8987,0)
- ;;=N17.1^^69^616^1
- ;;^UTILITY(U,$J,358.3,8987,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,8987,1,3,0)
- ;;=3^AKI w/ Acute Cortical Necrosis
- ;;^UTILITY(U,$J,358.3,8987,1,4,0)
- ;;=4^N17.1
- ;;^UTILITY(U,$J,358.3,8987,2)
- ;;=^5015599
+ ;;^UTILITY(U,$J,358.3,9162,1,3,0)
+ ;;=3^Osteonecrosis,Right Femur
+ ;;^UTILITY(U,$J,358.3,9162,1,4,0)
+ ;;=4^M87.851
+ ;;^UTILITY(U,$J,358.3,9162,2)
+ ;;=^5014853
+ ;;^UTILITY(U,$J,358.3,9163,0)
+ ;;=M87.852^^39^407^79

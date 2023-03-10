@@ -1,5 +1,5 @@
 BPSOSCF ;BHAM ISC/FCS/DRS/DLF - Low-level format of .02 ;06/01/2004
- ;;1.0;E CLAIMS MGMT ENGINE;**1,5,8,10,15,19,23**;JUN 2004;Build 44
+ ;;1.0;E CLAIMS MGMT ENGINE;**1,5,8,10,15,19,23,28**;JUN 2004;Build 22
  ;;Per VA Directive 6402, this routine should not be modified.
  ;
  ; 100  (Transaction Header Segment)
@@ -93,6 +93,16 @@ XLOOP(FORMAT,NODE,MEDN) ; format claim record
  . ; Call XFLDCODE to do processing based on FLAG setting
  . D XFLDCODE(NODE,FLDIEN,FLAG)
  ;
+ ; If the current segment is 130/Claim, populate field 460-ET
+ ; QUANTITY PRESCRIBED if it's not already populated.
+ ;
+ I NODE=130 D
+ . I $$GET1^DIQ(9002313.0201,BPS(9002313.0201)_","_BPS(9002313.02),460,"I")'="" Q
+ . S FLDIEN=$O(^BPSF(9002313.91,"B",460,""))
+ . I FLDIEN="" Q
+ . D XFLDCODE(NODE,FLDIEN,"GFS")
+ . Q
+ ; 
  ; The user has the ability, via the action RED / Resubmit with
  ; Edits, to add to the claim fields not on the payer sheet.
  ; Any fields to be added to the claim are stored in the file

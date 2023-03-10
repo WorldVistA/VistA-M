@@ -1,5 +1,5 @@
-PSOORNEW ;BIR/SAB - display orders from oerr ; 8/14/18 1:29pm
- ;;7.0;OUTPATIENT PHARMACY;**11,23,27,32,55,46,71,90,94,106,131,133,143,237,222,258,206,225,251,386,390,391,372,416,431,313,408,436,411,444,486,446,505,517,508,457**;DEC 1997;Build 116
+PSOORNEW ;BIR/SAB - display orders from oerr ;Dec 13, 2021@08:01:18
+ ;;7.0;OUTPATIENT PHARMACY;**11,23,27,32,55,46,71,90,94,106,131,133,143,237,222,258,206,225,251,386,390,391,372,416,431,313,408,436,411,444,486,446,505,517,508,457,581,617,441,651**;DEC 1997;Build 30
  ;External reference to ^PS(50.7 supported by DBIA 2223
  ;External reference to ^PSDRUG supported by DBIA 221
  ;External reference to ^PS(50.606 supported by DBIA 2174
@@ -29,7 +29,11 @@ OI I '$G(PSODRUG("OI")) D
 PT D DOSE2^PSOORFI4
  S IEN=IEN+1,^TMP("PSOPO",$J,IEN,0)=" (4)   Pat Instruct:" D:$O(PSONEW("SIG",0)) INST^PSOORFI4
  S IEN=IEN+1,^TMP("PSOPO",$J,IEN,0)="  Provider Comments:" S TY=3 D INST^PSOORFI1
- S IEN=IEN+1,^TMP("PSOPO",$J,IEN,0)="       Instructions:" S TY=2 D INST^PSOORFI1
+ S IEN=IEN+1,^TMP("PSOPO",$J,IEN,0)="        Indications: "_$G(PSONEW("IND")) ;*441-IND
+ I $P($G(^PS(55,PSODFN,"LAN")),"^"),$G(PSONEW("INDO"))]"" D
+ . S IEN=IEN+1,^TMP("PSOPO",$J,IEN,0)="  Other Indications: "_PSONEW("INDO")
+ I $$ERXIEN^PSOERXUT(ORD_"P") S IEN=IEN+1,^TMP("PSOPO",$J,IEN,0)="           eRx Drug: "_$$GET1^DIQ(52.49,$$ERXIEN^PSOERXUT(ORD_"P"),3.1)
+ S IEN=IEN+1,^TMP("PSOPO",$J,IEN,0)="   "_$S($$ERXIEN^PSOERXUT(ORD_"P"):"eRx",1:"   ")_" Instructions: " S TY=2 D INST^PSOORFI1
  K PSOELSE S IEN=IEN+1,^TMP("PSOPO",$J,IEN,0)="                SIG:"
  F I=0:0 S I=$O(SIG(I)) Q:'I  S SIG=SIG(I) D
  .F SG=1:1:$L(SIG) S:$L(^TMP("PSOPO",$J,IEN,0)_" "_$P(SIG," ",SG))>80 IEN=IEN+1,$P(^TMP("PSOPO",$J,IEN,0)," ",20)=" " S:$P(SIG," ",SG)'="" ^TMP("PSOPO",$J,IEN,0)=$G(^TMP("PSOPO",$J,IEN,0))_" "_$P(SIG," ",SG)
@@ -51,7 +55,8 @@ PT D DOSE2^PSOORFI4
  I $P(OR0,"^",24) S ^TMP("PSOPO",$J,IEN,0)="   Provider ordered: days supply "_+$P(OR0,"^",22)_", quantity "_+$P(OR0,"^",10)_" & refills "_+$P(OR0,"^",11)
  E  S ^TMP("PSOPO",$J,IEN,0)="       Provider ordered "_+$P(OR0,"^",11)_" refills"
  D:$D(CLOZPAT) PQTY^PSOORFI4
- S IEN=IEN+1,^TMP("PSOPO",$J,IEN,0)="(10)   # of Refills: "_$S($G(PSONEW("# OF REFILLS"))]"":PSONEW("# OF REFILLS"),1:$P(OR0,"^",11))_"               (11)   Routing: "_$S($G(PSONEW("MAIL/WINDOW"))="M":"MAIL",1:"WINDOW")
+ N PSOMWP S PSOMWP=$G(PSONEW("MAIL/WINDOW"))  ;PAPI 441
+ S IEN=IEN+1,^TMP("PSOPO",$J,IEN,0)="(10)   # of Refills: "_$S($G(PSONEW("# OF REFILLS"))]"":PSONEW("# OF REFILLS"),1:$P(OR0,"^",11))_"               (11)   Routing: "_$S(PSOMWP="M":"MAIL",PSOMWP="P":"PARK",1:"WINDOW")  ;PAPI 441
  S IEN=IEN+1,^TMP("PSOPO",$J,IEN,0)="(12)         Clinic: "_PSORX("CLINIC")
  S IEN=IEN+1,^TMP("PSOPO",$J,IEN,0)="(13)       Provider: "_PSONEW("PROVIDER NAME")
  D:$P(OR0,"^",24)!((+$G(PSODRUG("DEA"))>1)&(+$G(PSODRUG("DEA"))<6)) PRV^PSOORFI5($G(PSONEW("PROVIDER")),$G(PSODRUG("IEN")),$P(OR0,"^"))
@@ -71,10 +76,15 @@ PT D DOSE2^PSOORFI4
  I PSOLMC<2 D ^PSOLMPO1 S VALMBCK="Q",PSOLMC=0
  S:PSOLMC>1 VALMBCK="R"
  Q
-ORCHK D PROVCOM^PSOORFI4,ORCHK^PSOORFI4
+ORCHK D PROVCOM^PSOORFI4,IND^PSOORFI4,ORCHK^PSOORFI4
  Q
-EDT D KV S DIR("A",1)="* Indicates which fields will create an new Order",DIR("A")="Select Field to Edit by number",DIR(0)="LO^1:15" D ^DIR Q:$D(DTOUT)!($D(DUOUT))
-EDTSEL N LST,FLD,OUT,CHECK,CSDRG D KV S (OUT,CSDRG)=0 ;/BLB/ PSO*7.0*505/517 MODIFIED EDIT FUNCTIONALITY TO BLOCK CERTAIN FIELDS FOR CONTROLLED SUBSTANCE RX
+EDT ; Entry point for ED Action in the OP Pending Queue
+ I $$CSERX(ORD) Q  ; Not allowed to edit CS eRx orders
+ ;
+ D KV S DIR("A",1)="* Indicates which fields will create an new Order",DIR("A")="Select Field to Edit by number",DIR(0)="LO^1:15" D ^DIR Q:$D(DTOUT)!($D(DUOUT))
+EDTSEL ; Entry point for individual field editing
+ I $$CSERX(ORD) Q  ; Not allowed to edit CS eRx orders
+ N LST,FLD,OUT,CHECK,CSDRG D KV S (OUT,CSDRG)=0
  I '$D(PSODRG) S PSODRG=$G(PSODRUG("IEN"))
  I PSODRG,$$NDF(PSODRG)!($$CSDRG(PSODRG)) S CSDRG=1
  I +Y S LST=Y D FULL^VALM1 N PSODOSE M PSODOSE=PSONEW D  G DSPL
@@ -140,9 +150,15 @@ ACP ;
  .D DAOC^PSONEW
  D NPSOSD^PSOUTIL(.PSONEW),FULL^VALM1 K PSORX("MAIL/WINDOW")
  ; PSO*7*508 - link the erx to the outpatient prescription
- N ERXIEN
+ ; PSO*7*581 - if this is a renewal response replace message, update the request and the response values to RRC.
+ N ERXIEN,EMTYPE,ERXREQ,RESTYPE
  S ERXIEN=$$CHKERX^PSOERXU1(OR0) I ERXIEN D
  .S ERXFDA(52.49,ERXIEN_",",.13)=PSONEW("IRXN") D FILE^DIE(,"ERXFDA") K ERXFDA
+ .S EMTYPE=$$GET1^DIQ(52.49,ERXIEN,.08,"I") I EMTYPE'="RE",EMTYPE'="CX" Q
+ .S RESTYPE=$$GET1^DIQ(52.49,ERXIEN,52.1,"I") I RESTYPE'="R",EMTYPE'="CX" Q
+ .S ERXREQ=$$GETREQ^PSOERXU2(ERXIEN)
+ .I EMTYPE="RE" D UPDSTAT^PSOERXU1(ERXIEN,"RXC"),UPDSTAT^PSOERXU1(ERXREQ,"RRC")
+ .I EMTYPE="CX" D UPDSTAT^PSOERXU1(ERXIEN,"CXC"),UPDSTAT^PSOERXU1(ERXREQ,"CRC")
  ; PSO*7*508 - end eRx enhancement
  D EOJ^PSONEW
 ABORT S VALMBCK="Q",DIR(0)="E",DIR("?")="Press Return to continue",DIR("A")="Press Return to Continue" D ^DIR,CLEAN^PSOVER1,KV
@@ -163,7 +179,7 @@ REF ;
  ;
 4 D INS^PSOORNW2 Q
  ;
-3 I $G(LST)["3,",$P(OR0,"^",24) D  Q 
+3 I $G(LST)["3,",$P(OR0,"^",24) D  Q
  . W !!,"Digitally Signed Order - Dose cannot be changed",! D PZ
  N PSOEDDOS S PSOEDDOS=1 D DOSE^PSOORED4(.PSONEW) Q
  ;
@@ -208,7 +224,7 @@ PZ ;
  N DIR S DIR(0)="E",DIR("A")="Press Return to Continue" D ^DIR W !
  Q
 CSDRG(DRGIEN) ;/BLB/ Patch PSO*7*505/517 Controlled Substance drug?
- ; Input: DRGIEN - DRUG file (#50) pointer 
+ ; Input: DRGIEN - DRUG file (#50) pointer
  ;Output: $$CS - 1:YES / 0:NO
  N DEA
  Q:'DRGIEN 0
@@ -226,4 +242,9 @@ CSBLOCK(DFN,DIEN) ;
  D ADD^VADPT
  I DIEN,$$CSDRG(DIEN)!($$NDF(DIEN)),($$UP^XLFSTR($P(VAPA(25),U,2))'="UNITED STATES") Q 0
  I DIEN,$$CSDRG(DIEN)!($$NDF(DIEN)),('$L(VAPA(6))),('$L(VAPA(11))) Q 1
+ Q 0
+ ;
+CSERX(ORD) ; Check whether a Pending Order is for a CS eRx
+ I $$ERXIEN^PSOERXUT(ORD_"P"),$$CSDRG(+$$GET1^DIQ(52.41,+ORD,11,"I")) D  Q 1
+ . S VALMSG="CS eRx prescriptions cannot be edited",VALMBCK="R" W $C(7)
  Q 0

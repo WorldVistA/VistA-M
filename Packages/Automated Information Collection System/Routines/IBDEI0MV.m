@@ -1,128 +1,128 @@
-IBDEI0MV ; ; 04-FEB-2020
- ;;3.0;IB ENCOUNTER FORM IMP/EXP;;FEB 04, 2020
+IBDEI0MV ; ; 01-FEB-2022
+ ;;3.0;IB ENCOUNTER FORM IMP/EXP;;FEB 01, 2022
  Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,999) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
- ;;^UTILITY(U,$J,358.3,10180,1,0)
+ ;;^UTILITY(U,$J,358.3,10276,1,4,0)
+ ;;=4^J15.3
+ ;;^UTILITY(U,$J,358.3,10276,2)
+ ;;=^5008173
+ ;;^UTILITY(U,$J,358.3,10277,0)
+ ;;=J15.4^^39^434^15
+ ;;^UTILITY(U,$J,358.3,10277,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,10180,1,3,0)
- ;;=3^Retinal Artery Occlusion,Transient,Right Eye
- ;;^UTILITY(U,$J,358.3,10180,1,4,0)
- ;;=4^H34.01
- ;;^UTILITY(U,$J,358.3,10180,2)
- ;;=^5005553
- ;;^UTILITY(U,$J,358.3,10181,0)
- ;;=H34.02^^74^672^12
- ;;^UTILITY(U,$J,358.3,10181,1,0)
+ ;;^UTILITY(U,$J,358.3,10277,1,3,0)
+ ;;=3^Pneumonia d/t Other Streptococci
+ ;;^UTILITY(U,$J,358.3,10277,1,4,0)
+ ;;=4^J15.4
+ ;;^UTILITY(U,$J,358.3,10277,2)
+ ;;=^5008174
+ ;;^UTILITY(U,$J,358.3,10278,0)
+ ;;=J15.5^^39^434^5
+ ;;^UTILITY(U,$J,358.3,10278,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,10181,1,3,0)
- ;;=3^Retinal Artery Occlusion,Transient,Left Eye
- ;;^UTILITY(U,$J,358.3,10181,1,4,0)
- ;;=4^H34.02
- ;;^UTILITY(U,$J,358.3,10181,2)
- ;;=^5005554
- ;;^UTILITY(U,$J,358.3,10182,0)
- ;;=G45.3^^74^672^10
- ;;^UTILITY(U,$J,358.3,10182,1,0)
+ ;;^UTILITY(U,$J,358.3,10278,1,3,0)
+ ;;=3^Pneumonia d/t Escherichia Coli
+ ;;^UTILITY(U,$J,358.3,10278,1,4,0)
+ ;;=4^J15.5
+ ;;^UTILITY(U,$J,358.3,10278,2)
+ ;;=^5008175
+ ;;^UTILITY(U,$J,358.3,10279,0)
+ ;;=J15.6^^39^434^12
+ ;;^UTILITY(U,$J,358.3,10279,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,10182,1,3,0)
- ;;=3^Amaurosis Fugax
- ;;^UTILITY(U,$J,358.3,10182,1,4,0)
- ;;=4^G45.3
- ;;^UTILITY(U,$J,358.3,10182,2)
- ;;=^304129
- ;;^UTILITY(U,$J,358.3,10183,0)
- ;;=H53.2^^74^672^13
- ;;^UTILITY(U,$J,358.3,10183,1,0)
+ ;;^UTILITY(U,$J,358.3,10279,1,3,0)
+ ;;=3^Pneumonia d/t Other Aerobic Gram-Neg Bacteria
+ ;;^UTILITY(U,$J,358.3,10279,1,4,0)
+ ;;=4^J15.6
+ ;;^UTILITY(U,$J,358.3,10279,2)
+ ;;=^5008176
+ ;;^UTILITY(U,$J,358.3,10280,0)
+ ;;=J15.7^^39^434^10
+ ;;^UTILITY(U,$J,358.3,10280,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,10183,1,3,0)
- ;;=3^Diplopia
- ;;^UTILITY(U,$J,358.3,10183,1,4,0)
- ;;=4^H53.2
- ;;^UTILITY(U,$J,358.3,10183,2)
- ;;=^35208
- ;;^UTILITY(U,$J,358.3,10184,0)
- ;;=H47.11^^74^672^6
- ;;^UTILITY(U,$J,358.3,10184,1,0)
+ ;;^UTILITY(U,$J,358.3,10280,1,3,0)
+ ;;=3^Pneumonia d/t Mycoplasma Pneumoniae
+ ;;^UTILITY(U,$J,358.3,10280,1,4,0)
+ ;;=4^J15.7
+ ;;^UTILITY(U,$J,358.3,10280,2)
+ ;;=^5008177
+ ;;^UTILITY(U,$J,358.3,10281,0)
+ ;;=J15.8^^39^434^13
+ ;;^UTILITY(U,$J,358.3,10281,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,10184,1,3,0)
- ;;=3^Papilledema w/ High Intracranial Pressure
- ;;^UTILITY(U,$J,358.3,10184,1,4,0)
- ;;=4^H47.11
- ;;^UTILITY(U,$J,358.3,10184,2)
- ;;=^269212
- ;;^UTILITY(U,$J,358.3,10185,0)
- ;;=H47.20^^74^672^4
- ;;^UTILITY(U,$J,358.3,10185,1,0)
+ ;;^UTILITY(U,$J,358.3,10281,1,3,0)
+ ;;=3^Pneumonia d/t Other Spec Bacteria
+ ;;^UTILITY(U,$J,358.3,10281,1,4,0)
+ ;;=4^J15.8
+ ;;^UTILITY(U,$J,358.3,10281,2)
+ ;;=^95571
+ ;;^UTILITY(U,$J,358.3,10282,0)
+ ;;=J15.9^^39^434^22
+ ;;^UTILITY(U,$J,358.3,10282,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,10185,1,3,0)
- ;;=3^Optic Atrophy,Unspec
- ;;^UTILITY(U,$J,358.3,10185,1,4,0)
- ;;=4^H47.20
- ;;^UTILITY(U,$J,358.3,10185,2)
- ;;=^5006126
- ;;^UTILITY(U,$J,358.3,10186,0)
- ;;=H47.323^^74^672^8
- ;;^UTILITY(U,$J,358.3,10186,1,0)
+ ;;^UTILITY(U,$J,358.3,10282,1,3,0)
+ ;;=3^Pneumonia,Bacterial,Unspec
+ ;;^UTILITY(U,$J,358.3,10282,1,4,0)
+ ;;=4^J15.9
+ ;;^UTILITY(U,$J,358.3,10282,2)
+ ;;=^5008178
+ ;;^UTILITY(U,$J,358.3,10283,0)
+ ;;=J16.0^^39^434^23
+ ;;^UTILITY(U,$J,358.3,10283,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,10186,1,3,0)
- ;;=3^Optic Nerve Drusen,Bilateral
- ;;^UTILITY(U,$J,358.3,10186,1,4,0)
- ;;=4^H47.323
- ;;^UTILITY(U,$J,358.3,10186,2)
- ;;=^5006143
- ;;^UTILITY(U,$J,358.3,10187,0)
- ;;=H47.333^^74^672^7
- ;;^UTILITY(U,$J,358.3,10187,1,0)
+ ;;^UTILITY(U,$J,358.3,10283,1,3,0)
+ ;;=3^Pneumonia,Chlamydial
+ ;;^UTILITY(U,$J,358.3,10283,1,4,0)
+ ;;=4^J16.0
+ ;;^UTILITY(U,$J,358.3,10283,2)
+ ;;=^5008179
+ ;;^UTILITY(U,$J,358.3,10284,0)
+ ;;=J16.8^^39^434^14
+ ;;^UTILITY(U,$J,358.3,10284,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,10187,1,3,0)
- ;;=3^Pseudopapilledema of Optic Disc,Bilateral
- ;;^UTILITY(U,$J,358.3,10187,1,4,0)
- ;;=4^H47.333
- ;;^UTILITY(U,$J,358.3,10187,2)
- ;;=^5006147
- ;;^UTILITY(U,$J,358.3,10188,0)
- ;;=H46.9^^74^672^5
- ;;^UTILITY(U,$J,358.3,10188,1,0)
+ ;;^UTILITY(U,$J,358.3,10284,1,3,0)
+ ;;=3^Pneumonia d/t Other Spec Infectious Organisms
+ ;;^UTILITY(U,$J,358.3,10284,1,4,0)
+ ;;=4^J16.8
+ ;;^UTILITY(U,$J,358.3,10284,2)
+ ;;=^5008180
+ ;;^UTILITY(U,$J,358.3,10285,0)
+ ;;=J17.^^39^434^21
+ ;;^UTILITY(U,$J,358.3,10285,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,10188,1,3,0)
- ;;=3^Optic Neuritis,Unspec
- ;;^UTILITY(U,$J,358.3,10188,1,4,0)
- ;;=4^H46.9
- ;;^UTILITY(U,$J,358.3,10188,2)
- ;;=^5006104
- ;;^UTILITY(U,$J,358.3,10189,0)
- ;;=H47.011^^74^672^2
- ;;^UTILITY(U,$J,358.3,10189,1,0)
+ ;;^UTILITY(U,$J,358.3,10285,1,3,0)
+ ;;=3^Pneumonia in Diseases Classified Elsewhere
+ ;;^UTILITY(U,$J,358.3,10285,1,4,0)
+ ;;=4^J17.
+ ;;^UTILITY(U,$J,358.3,10285,2)
+ ;;=^5008181
+ ;;^UTILITY(U,$J,358.3,10286,0)
+ ;;=J18.0^^39^434^2
+ ;;^UTILITY(U,$J,358.3,10286,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,10189,1,3,0)
- ;;=3^Ischemic Optic Neuropathy,Right Eye
- ;;^UTILITY(U,$J,358.3,10189,1,4,0)
- ;;=4^H47.011
- ;;^UTILITY(U,$J,358.3,10189,2)
- ;;=^5006105
- ;;^UTILITY(U,$J,358.3,10190,0)
- ;;=H47.012^^74^672^3
- ;;^UTILITY(U,$J,358.3,10190,1,0)
+ ;;^UTILITY(U,$J,358.3,10286,1,3,0)
+ ;;=3^Bronchopneumonia,Unspec Organism
+ ;;^UTILITY(U,$J,358.3,10286,1,4,0)
+ ;;=4^J18.0
+ ;;^UTILITY(U,$J,358.3,10286,2)
+ ;;=^5008182
+ ;;^UTILITY(U,$J,358.3,10287,0)
+ ;;=J18.1^^39^434^25
+ ;;^UTILITY(U,$J,358.3,10287,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,10190,1,3,0)
- ;;=3^Ischemic Optic Neuropathy,Left Eye
- ;;^UTILITY(U,$J,358.3,10190,1,4,0)
- ;;=4^H47.012
- ;;^UTILITY(U,$J,358.3,10190,2)
- ;;=^5006106
- ;;^UTILITY(U,$J,358.3,10191,0)
- ;;=H49.01^^74^672^14
- ;;^UTILITY(U,$J,358.3,10191,1,0)
+ ;;^UTILITY(U,$J,358.3,10287,1,3,0)
+ ;;=3^Pneumonia,Lobar,Unspec Organism
+ ;;^UTILITY(U,$J,358.3,10287,1,4,0)
+ ;;=4^J18.1
+ ;;^UTILITY(U,$J,358.3,10287,2)
+ ;;=^5008183
+ ;;^UTILITY(U,$J,358.3,10288,0)
+ ;;=J18.2^^39^434^24
+ ;;^UTILITY(U,$J,358.3,10288,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,10191,1,3,0)
- ;;=3^CN3-Oculomotor Nerve Palsy,Right Eye
- ;;^UTILITY(U,$J,358.3,10191,1,4,0)
- ;;=4^H49.01
- ;;^UTILITY(U,$J,358.3,10191,2)
- ;;=^5006180
- ;;^UTILITY(U,$J,358.3,10192,0)
- ;;=H49.02^^74^672^15
- ;;^UTILITY(U,$J,358.3,10192,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,10192,1,3,0)
- ;;=3^CN3-Oculomotor Nerve Palsy,Left Eye
+ ;;^UTILITY(U,$J,358.3,10288,1,3,0)
+ ;;=3^Pneumonia,Hypostatic,Unspec Organism
+ ;;^UTILITY(U,$J,358.3,10288,1,4,0)
+ ;;=4^J18.2
+ ;;^UTILITY(U,$J,358.3,10288,2)
+ ;;=^5008184

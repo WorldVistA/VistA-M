@@ -1,118 +1,128 @@
-IBDEI1FH ; ; 04-FEB-2020
- ;;3.0;IB ENCOUNTER FORM IMP/EXP;;FEB 04, 2020
+IBDEI1FH ; ; 01-FEB-2022
+ ;;3.0;IB ENCOUNTER FORM IMP/EXP;;FEB 01, 2022
  Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,999) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
- ;;^UTILITY(U,$J,358.3,22857,1,0)
+ ;;^UTILITY(U,$J,358.3,23099,2)
+ ;;=^336608
+ ;;^UTILITY(U,$J,358.3,23100,0)
+ ;;=K20.90^^78^999^11
+ ;;^UTILITY(U,$J,358.3,23100,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,22857,1,3,0)
- ;;=3^Mech Compl of Femoral Arterial Graft,NEC,Init Encntr
- ;;^UTILITY(U,$J,358.3,22857,1,4,0)
- ;;=4^T82.392A
- ;;^UTILITY(U,$J,358.3,22857,2)
- ;;=^5054791
- ;;^UTILITY(U,$J,358.3,22858,0)
- ;;=T82.399A^^105^1166^165
- ;;^UTILITY(U,$J,358.3,22858,1,0)
+ ;;^UTILITY(U,$J,358.3,23100,1,3,0)
+ ;;=3^Esophagitis,Unspec w/o Bleeding
+ ;;^UTILITY(U,$J,358.3,23100,1,4,0)
+ ;;=4^K20.90
+ ;;^UTILITY(U,$J,358.3,23100,2)
+ ;;=^5159212
+ ;;^UTILITY(U,$J,358.3,23101,0)
+ ;;=K20.91^^78^999^10
+ ;;^UTILITY(U,$J,358.3,23101,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,22858,1,3,0)
- ;;=3^Mech Compl of Vascular Graft,Unspec,NEC,Init Encntr
- ;;^UTILITY(U,$J,358.3,22858,1,4,0)
- ;;=4^T82.399A
- ;;^UTILITY(U,$J,358.3,22858,2)
- ;;=^5054797
- ;;^UTILITY(U,$J,358.3,22859,0)
- ;;=T82.41XA^^105^1166^16
- ;;^UTILITY(U,$J,358.3,22859,1,0)
+ ;;^UTILITY(U,$J,358.3,23101,1,3,0)
+ ;;=3^Esophagitis,Unspec w/ Bleeding
+ ;;^UTILITY(U,$J,358.3,23101,1,4,0)
+ ;;=4^K20.91
+ ;;^UTILITY(U,$J,358.3,23101,2)
+ ;;=^5159213
+ ;;^UTILITY(U,$J,358.3,23102,0)
+ ;;=K21.00^^78^999^15
+ ;;^UTILITY(U,$J,358.3,23102,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,22859,1,3,0)
- ;;=3^Breakdown,Vasc Dialysis Cath,Init Encntr
- ;;^UTILITY(U,$J,358.3,22859,1,4,0)
- ;;=4^T82.41XA
- ;;^UTILITY(U,$J,358.3,22859,2)
- ;;=^5054800
- ;;^UTILITY(U,$J,358.3,22860,0)
- ;;=T82.42XA^^105^1166^44
- ;;^UTILITY(U,$J,358.3,22860,1,0)
+ ;;^UTILITY(U,$J,358.3,23102,1,3,0)
+ ;;=3^GERD w/ Esophagitis w/o Bleed
+ ;;^UTILITY(U,$J,358.3,23102,1,4,0)
+ ;;=4^K21.00
+ ;;^UTILITY(U,$J,358.3,23102,2)
+ ;;=^5159214
+ ;;^UTILITY(U,$J,358.3,23103,0)
+ ;;=K21.01^^78^999^14
+ ;;^UTILITY(U,$J,358.3,23103,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,22860,1,3,0)
- ;;=3^Dsplcmnt of Vascular Dialysis Catheter,Init Encntr
- ;;^UTILITY(U,$J,358.3,22860,1,4,0)
- ;;=4^T82.42XA
- ;;^UTILITY(U,$J,358.3,22860,2)
- ;;=^5054803
- ;;^UTILITY(U,$J,358.3,22861,0)
- ;;=T82.43XA^^105^1166^143
- ;;^UTILITY(U,$J,358.3,22861,1,0)
+ ;;^UTILITY(U,$J,358.3,23103,1,3,0)
+ ;;=3^GERD w/ Esophagitis w/ Bleed
+ ;;^UTILITY(U,$J,358.3,23103,1,4,0)
+ ;;=4^K21.01
+ ;;^UTILITY(U,$J,358.3,23103,2)
+ ;;=^5159215
+ ;;^UTILITY(U,$J,358.3,23104,0)
+ ;;=I69.959^^78^1000^13
+ ;;^UTILITY(U,$J,358.3,23104,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,22861,1,3,0)
- ;;=3^Leakage of Vascular Dialysis Catheter,Init Encntr
- ;;^UTILITY(U,$J,358.3,22861,1,4,0)
- ;;=4^T82.43XA
- ;;^UTILITY(U,$J,358.3,22861,2)
- ;;=^5054806
- ;;^UTILITY(U,$J,358.3,22862,0)
- ;;=T82.49XA^^105^1166^27
- ;;^UTILITY(U,$J,358.3,22862,1,0)
+ ;;^UTILITY(U,$J,358.3,23104,1,3,0)
+ ;;=3^Hemiplegia/Hemiparesis Following Unspec Cerebrovascular Disease
+ ;;^UTILITY(U,$J,358.3,23104,1,4,0)
+ ;;=4^I69.959
+ ;;^UTILITY(U,$J,358.3,23104,2)
+ ;;=^5007563
+ ;;^UTILITY(U,$J,358.3,23105,0)
+ ;;=I10.^^78^1000^12
+ ;;^UTILITY(U,$J,358.3,23105,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,22862,1,3,0)
- ;;=3^Complic,Vasc Dialysis Cath NEC,Init Encntr
- ;;^UTILITY(U,$J,358.3,22862,1,4,0)
- ;;=4^T82.49XA
- ;;^UTILITY(U,$J,358.3,22862,2)
- ;;=^5054809
- ;;^UTILITY(U,$J,358.3,22863,0)
- ;;=T82.510A^^105^1166^13
- ;;^UTILITY(U,$J,358.3,22863,1,0)
+ ;;^UTILITY(U,$J,358.3,23105,1,3,0)
+ ;;=3^HTN,Essential
+ ;;^UTILITY(U,$J,358.3,23105,1,4,0)
+ ;;=4^I10.
+ ;;^UTILITY(U,$J,358.3,23105,2)
+ ;;=^5007062
+ ;;^UTILITY(U,$J,358.3,23106,0)
+ ;;=I20.9^^78^1000^1
+ ;;^UTILITY(U,$J,358.3,23106,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,22863,1,3,0)
- ;;=3^Breakdown,Surg Created AV Fist,Init Encntr
- ;;^UTILITY(U,$J,358.3,22863,1,4,0)
- ;;=4^T82.510A
- ;;^UTILITY(U,$J,358.3,22863,2)
- ;;=^5054812
- ;;^UTILITY(U,$J,358.3,22864,0)
- ;;=T82.511A^^105^1166^14
- ;;^UTILITY(U,$J,358.3,22864,1,0)
+ ;;^UTILITY(U,$J,358.3,23106,1,3,0)
+ ;;=3^Angina pectoris, unspecified
+ ;;^UTILITY(U,$J,358.3,23106,1,4,0)
+ ;;=4^I20.9
+ ;;^UTILITY(U,$J,358.3,23106,2)
+ ;;=^5007079
+ ;;^UTILITY(U,$J,358.3,23107,0)
+ ;;=I21.3^^78^1000^16
+ ;;^UTILITY(U,$J,358.3,23107,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,22864,1,3,0)
- ;;=3^Breakdown,Surg Created AV Shunt,Init Encntr
- ;;^UTILITY(U,$J,358.3,22864,1,4,0)
- ;;=4^T82.511A
- ;;^UTILITY(U,$J,358.3,22864,2)
- ;;=^5054815
- ;;^UTILITY(U,$J,358.3,22865,0)
- ;;=T82.513A^^105^1166^3
- ;;^UTILITY(U,$J,358.3,22865,1,0)
+ ;;^UTILITY(U,$J,358.3,23107,1,3,0)
+ ;;=3^Myocardial infarctions (STEMI), unspec site
+ ;;^UTILITY(U,$J,358.3,23107,1,4,0)
+ ;;=4^I21.3
+ ;;^UTILITY(U,$J,358.3,23107,2)
+ ;;=^5007087
+ ;;^UTILITY(U,$J,358.3,23108,0)
+ ;;=I25.10^^78^1000^2
+ ;;^UTILITY(U,$J,358.3,23108,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,22865,1,3,0)
- ;;=3^Breakdown,Balloon Device,Init Encntr
- ;;^UTILITY(U,$J,358.3,22865,1,4,0)
- ;;=4^T82.513A
- ;;^UTILITY(U,$J,358.3,22865,2)
- ;;=^5054821
- ;;^UTILITY(U,$J,358.3,22866,0)
- ;;=T82.515A^^105^1166^15
- ;;^UTILITY(U,$J,358.3,22866,1,0)
+ ;;^UTILITY(U,$J,358.3,23108,1,3,0)
+ ;;=3^Athscl hrt disease w/o angina pectoris
+ ;;^UTILITY(U,$J,358.3,23108,1,4,0)
+ ;;=4^I25.10
+ ;;^UTILITY(U,$J,358.3,23108,2)
+ ;;=^5007107
+ ;;^UTILITY(U,$J,358.3,23109,0)
+ ;;=I25.2^^78^1000^20
+ ;;^UTILITY(U,$J,358.3,23109,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,22866,1,3,0)
- ;;=3^Breakdown,Umbrella Device,Init Encntr
- ;;^UTILITY(U,$J,358.3,22866,1,4,0)
- ;;=4^T82.515A
- ;;^UTILITY(U,$J,358.3,22866,2)
- ;;=^5054827
- ;;^UTILITY(U,$J,358.3,22867,0)
- ;;=T82.519A^^105^1166^4
- ;;^UTILITY(U,$J,358.3,22867,1,0)
+ ;;^UTILITY(U,$J,358.3,23109,1,3,0)
+ ;;=3^Old myocardial infarction
+ ;;^UTILITY(U,$J,358.3,23109,1,4,0)
+ ;;=4^I25.2
+ ;;^UTILITY(U,$J,358.3,23109,2)
+ ;;=^259884
+ ;;^UTILITY(U,$J,358.3,23110,0)
+ ;;=I30.0^^78^1000^14
+ ;;^UTILITY(U,$J,358.3,23110,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,22867,1,3,0)
- ;;=3^Breakdown,Card/Vasc Devices/Implants,Unspec,Init Encntr
- ;;^UTILITY(U,$J,358.3,22867,1,4,0)
- ;;=4^T82.519A
- ;;^UTILITY(U,$J,358.3,22867,2)
- ;;=^5054833
- ;;^UTILITY(U,$J,358.3,22868,0)
- ;;=T82.520A^^105^1166^41
- ;;^UTILITY(U,$J,358.3,22868,1,0)
+ ;;^UTILITY(U,$J,358.3,23110,1,3,0)
+ ;;=3^Idiopathic pericarditis, acute
+ ;;^UTILITY(U,$J,358.3,23110,1,4,0)
+ ;;=4^I30.0
+ ;;^UTILITY(U,$J,358.3,23110,2)
+ ;;=^5007157
+ ;;^UTILITY(U,$J,358.3,23111,0)
+ ;;=I34.1^^78^1000^19
+ ;;^UTILITY(U,$J,358.3,23111,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,22868,1,3,0)
- ;;=3^Dsplcmnt of Surgically Created AV Fistula,Init Encntr
+ ;;^UTILITY(U,$J,358.3,23111,1,3,0)
+ ;;=3^Nonrheumatic mitral valve prolapse
+ ;;^UTILITY(U,$J,358.3,23111,1,4,0)
+ ;;=4^I34.1
+ ;;^UTILITY(U,$J,358.3,23111,2)
+ ;;=^5007170
+ ;;^UTILITY(U,$J,358.3,23112,0)
+ ;;=I35.0^^78^1000^17

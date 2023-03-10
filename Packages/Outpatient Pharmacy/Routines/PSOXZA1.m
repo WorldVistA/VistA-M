@@ -1,4 +1,4 @@
-PSOXZA1 ; COMPILED XREF FOR FILE #52 ; 09/23/20
+PSOXZA1 ; COMPILED XREF FOR FILE #52 ; 12/28/22
  ; 
  S DIKZK=2
  S DIKZ(0)=$G(^PSRX(DA,0))
@@ -53,6 +53,9 @@ PSOXZA1 ; COMPILED XREF FOR FILE #52 ; 09/23/20
  I X'="" K ^PSRX("AH",$E(X,1,30),DA)
  S X=$P($G(DIKZ(3)),U,3)
  I X'="" I $D(^VA(200,+$P(^PSRX(DA,0),"^",4),"PS")),$P(^("PS"),"^",7) S ^PSRX("ANCO",DA)=""
+ S DIKZ("PARK")=$G(^PSRX(DA,"PARK"))
+ S X=$P($G(DIKZ("PARK")),U,1)
+ I X'="" K ^PSRX("APARK",$E(X,1,30),DA)
  S X=$P($G(DIKZ(0)),U,1)
  I X'="" K ^PSRX("B",$E(X,1,30),DA)
 CR1 S DIXR=175

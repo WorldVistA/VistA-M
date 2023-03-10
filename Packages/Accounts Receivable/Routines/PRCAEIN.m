@@ -1,6 +1,7 @@
 PRCAEIN ;SF-ISC/YJK-EDIT INCOMPLETE ACCOUNTS RECEIVABLE ;10/17/96  1:07 PM
-V ;;4.5;Accounts Receivable;**57,67,153**;Mar 20, 1995
- ;;Per VHA Directive 10-93-142, this routine should not be modified. ;This edits incomplete accounts receivable. The account is classified
+V ;;4.5;Accounts Receivable;**57,67,153,371**;Mar 20, 1995;Build 29
+ ;;Per VHA Directive 6402, this routine should not be modified.
+ ;This edits incomplete accounts receivable. The account is classified
  ;with category.
  ;
  ;===================== EDIT INCOMPLETE AR ===========================
@@ -60,7 +61,7 @@ DELETE ;delete new AR without category and debtor field.
 ORAMT ;Update original amount.
  Q:'$D(^PRCA(430,PRCABN,2))  S PRCAMT=0,PRCAORA=0
  F Z0=0:0 S PRCAORA=$O(^PRCA(430,PRCABN,2,PRCAORA)) Q:+PRCAORA'>0  S PRCAMT=PRCAMT+$P(^(PRCAORA,0),U,2)
- S $P(^PRCA(430,PRCABN,0),U,3)=PRCAMT,$P(^PRCA(430,PRCABN,7),U,1)=PRCAMT
+ N PRCFDA S $P(^PRCA(430,PRCABN,0),U,3)=PRCAMT,PRCFDA(430,PRCABN_",",71)=PRCAMT D FILE^DIE(,"PRCFDA") ; PRCA*4.5*371 - Replace direct global sets in 7 node with FileMan calls so indexes get updated
  K Z0,PRCAORA,PRCAMT Q
 RESULT Q:'$D(PRCABN)
  I $P(^PRCA(430,PRCABN,0),U,5)>0,$D(^PRCA(430.6,+$P(^(0),U,5),0)) W !!,"BILL RESULTING FROM: ",$P(^(0),U,2) Q

@@ -1,5 +1,5 @@
-RAORDC1 ;HISC/GJC-Continuation of the RAORDC routine. ;6/19/97  08:28
- ;;5.0;Radiology/Nuclear Medicine;;Mar 16, 1998
+RAORDC1 ;HISC/GJC-Continuation of the RAORDC routine. ; Jul 05, 2022@11:08:24
+ ;;5.0;Radiology/Nuclear Medicine;**192**;Mar 16, 1998;Build 1
  ;
 EXMCOM ; Called from EXMCOM^RAORDC, for updating request statuses for
  ; complete exams.
@@ -27,11 +27,20 @@ SETU ; above code is skipped if procedure is parent
  .I $P(RAORD0,"^",19)]"" S X=$P(RAORD0,"^",19),ORETURN("ORTX",3)=ORETURN("ORTX",3)_" Transport: "_$S(X="a":"AMBULATORY",X="p":"PORTABLE",X="s":"STRETCHER",1:"WHEELCHAIR")_","
  .I $P($G(^DPT(+RADFN,0)),"^",2)'="M" S ORETURN("ORTX",3)=ORETURN("ORTX",3)_" Pregnant: "_$S(RAPRGST="n":"NO",RAPRGST="y":"YES",RAPRGST="u":"UNKNOWN",1:"")
  .S ORETURN("ORIT")=$P(^RAO(75.1,+RAOIFN,0),"^",2)_";RAMIS(71,"
- I '$D(RAF1),('$P(RAEXM0,"^",25)) D  ; if orphan, display text now
+ I '$D(RAF1),('$P(RAEXM0,"^",25)),($$CICHO()=1) D  ; if orphan, display text now (p192)
  . W !?3,"...will now designate request status as 'COMPLETE'..."
  . Q
  D ^RAORDU ; Update the request status
- I '$D(RAF1),('$P(RAEXM0,"^",25)) D  ; if orphan, display text now
+ I '$D(RAF1),('$P(RAEXM0,"^",25)),($$CICHO()=1) D  ; if orphan, display text now (p192)
  . W !?10,"...request status successfully updated."
  . Q
  Q
+CICHO() ;quiet - suppress output to screen? p192
+ ; return: 0 if $D(ZTQUEUED)#2
+ ;         0 if $G(RAQUIET,0)=1
+ ;         1 if '$D(ZTQUEUED)#2 & $G(RAQUIET)'=1
+ ; Note: check if RAQUIET set in EN1^RAHLO
+ Q:$D(ZTQUEUED)#2 0
+ Q:$G(RAQUIET,0)=1 0
+ Q 1  ;don't suppress
+ ;

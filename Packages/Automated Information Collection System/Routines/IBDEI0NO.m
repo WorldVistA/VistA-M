@@ -1,124 +1,126 @@
-IBDEI0NO ; ; 04-FEB-2020
- ;;3.0;IB ENCOUNTER FORM IMP/EXP;;FEB 04, 2020
+IBDEI0NO ; ; 01-FEB-2022
+ ;;3.0;IB ENCOUNTER FORM IMP/EXP;;FEB 01, 2022
  Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,999) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
- ;;^UTILITY(U,$J,358.3,10535,1,4,0)
- ;;=4^H40.1112
- ;;^UTILITY(U,$J,358.3,10535,2)
- ;;=^5138538
- ;;^UTILITY(U,$J,358.3,10536,0)
- ;;=H40.1122^^74^682^10
- ;;^UTILITY(U,$J,358.3,10536,1,0)
+ ;;^UTILITY(U,$J,358.3,10655,1,4,0)
+ ;;=4^F32.3
+ ;;^UTILITY(U,$J,358.3,10655,2)
+ ;;=^5003524
+ ;;^UTILITY(U,$J,358.3,10656,0)
+ ;;=F33.9^^42^473^12
+ ;;^UTILITY(U,$J,358.3,10656,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,10536,1,3,0)
- ;;=3^Primary Open-Angle Glaucoma,Mod Stage,Left Eye
- ;;^UTILITY(U,$J,358.3,10536,1,4,0)
- ;;=4^H40.1122
- ;;^UTILITY(U,$J,358.3,10536,2)
- ;;=^5138543
- ;;^UTILITY(U,$J,358.3,10537,0)
- ;;=H40.1114^^74^682^14
- ;;^UTILITY(U,$J,358.3,10537,1,0)
+ ;;^UTILITY(U,$J,358.3,10656,1,3,0)
+ ;;=3^MDD,Recurrent Episode,Unspec
+ ;;^UTILITY(U,$J,358.3,10656,1,4,0)
+ ;;=4^F33.9
+ ;;^UTILITY(U,$J,358.3,10656,2)
+ ;;=^5003537
+ ;;^UTILITY(U,$J,358.3,10657,0)
+ ;;=F33.0^^42^473^9
+ ;;^UTILITY(U,$J,358.3,10657,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,10537,1,3,0)
- ;;=3^Primary Open-Angle Glaucoma,Indeterminate,Right Eye
- ;;^UTILITY(U,$J,358.3,10537,1,4,0)
- ;;=4^H40.1114
- ;;^UTILITY(U,$J,358.3,10537,2)
- ;;=^5138540
- ;;^UTILITY(U,$J,358.3,10538,0)
- ;;=H40.1124^^74^682^15
- ;;^UTILITY(U,$J,358.3,10538,1,0)
+ ;;^UTILITY(U,$J,358.3,10657,1,3,0)
+ ;;=3^MDD,Recurrent Episode,Mild
+ ;;^UTILITY(U,$J,358.3,10657,1,4,0)
+ ;;=4^F33.0
+ ;;^UTILITY(U,$J,358.3,10657,2)
+ ;;=^5003529
+ ;;^UTILITY(U,$J,358.3,10658,0)
+ ;;=F33.1^^42^473^10
+ ;;^UTILITY(U,$J,358.3,10658,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,10538,1,3,0)
- ;;=3^Primary Open-Angle Glaucoma,Indeterminate,Left Eye
- ;;^UTILITY(U,$J,358.3,10538,1,4,0)
- ;;=4^H40.1124
- ;;^UTILITY(U,$J,358.3,10538,2)
- ;;=^5138545
- ;;^UTILITY(U,$J,358.3,10539,0)
- ;;=Z83.511^^74^682^26
- ;;^UTILITY(U,$J,358.3,10539,1,0)
+ ;;^UTILITY(U,$J,358.3,10658,1,3,0)
+ ;;=3^MDD,Recurrent Episode,Moderate
+ ;;^UTILITY(U,$J,358.3,10658,1,4,0)
+ ;;=4^F33.1
+ ;;^UTILITY(U,$J,358.3,10658,2)
+ ;;=^5003530
+ ;;^UTILITY(U,$J,358.3,10659,0)
+ ;;=F33.2^^42^473^11
+ ;;^UTILITY(U,$J,358.3,10659,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,10539,1,3,0)
- ;;=3^Family Hx of Glaucoma
- ;;^UTILITY(U,$J,358.3,10539,1,4,0)
- ;;=4^Z83.511
- ;;^UTILITY(U,$J,358.3,10539,2)
- ;;=^5063382
- ;;^UTILITY(U,$J,358.3,10540,0)
- ;;=H40.031^^74^683^1
- ;;^UTILITY(U,$J,358.3,10540,1,0)
+ ;;^UTILITY(U,$J,358.3,10659,1,3,0)
+ ;;=3^MDD,Recurrent Episode,Severe
+ ;;^UTILITY(U,$J,358.3,10659,1,4,0)
+ ;;=4^F33.2
+ ;;^UTILITY(U,$J,358.3,10659,2)
+ ;;=^5003531
+ ;;^UTILITY(U,$J,358.3,10660,0)
+ ;;=F33.3^^42^473^6
+ ;;^UTILITY(U,$J,358.3,10660,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,10540,1,3,0)
- ;;=3^Anatomical Narrow Angle,Right Eye
- ;;^UTILITY(U,$J,358.3,10540,1,4,0)
- ;;=4^H40.031
- ;;^UTILITY(U,$J,358.3,10540,2)
- ;;=^5005732
- ;;^UTILITY(U,$J,358.3,10541,0)
- ;;=H40.032^^74^683^2
- ;;^UTILITY(U,$J,358.3,10541,1,0)
+ ;;^UTILITY(U,$J,358.3,10660,1,3,0)
+ ;;=3^MDD,Recurrent Episode w/ Psychotic Features
+ ;;^UTILITY(U,$J,358.3,10660,1,4,0)
+ ;;=4^F33.3
+ ;;^UTILITY(U,$J,358.3,10660,2)
+ ;;=^5003532
+ ;;^UTILITY(U,$J,358.3,10661,0)
+ ;;=F33.41^^42^473^8
+ ;;^UTILITY(U,$J,358.3,10661,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,10541,1,3,0)
- ;;=3^Anatomical Narrow Angle,Left Eye
- ;;^UTILITY(U,$J,358.3,10541,1,4,0)
- ;;=4^H40.032
- ;;^UTILITY(U,$J,358.3,10541,2)
- ;;=^5005733
- ;;^UTILITY(U,$J,358.3,10542,0)
- ;;=H40.033^^74^683^3
- ;;^UTILITY(U,$J,358.3,10542,1,0)
+ ;;^UTILITY(U,$J,358.3,10661,1,3,0)
+ ;;=3^MDD,Recurrent Episode,In Partial Remission
+ ;;^UTILITY(U,$J,358.3,10661,1,4,0)
+ ;;=4^F33.41
+ ;;^UTILITY(U,$J,358.3,10661,2)
+ ;;=^5003534
+ ;;^UTILITY(U,$J,358.3,10662,0)
+ ;;=F33.42^^42^473^7
+ ;;^UTILITY(U,$J,358.3,10662,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,10542,1,3,0)
- ;;=3^Anatomical Narrow Angle,Bilateral
- ;;^UTILITY(U,$J,358.3,10542,1,4,0)
- ;;=4^H40.033
- ;;^UTILITY(U,$J,358.3,10542,2)
- ;;=^5005734
- ;;^UTILITY(U,$J,358.3,10543,0)
- ;;=H40.061^^74^683^4
- ;;^UTILITY(U,$J,358.3,10543,1,0)
+ ;;^UTILITY(U,$J,358.3,10662,1,3,0)
+ ;;=3^MDD,Recurrent Episode,In Full Remission
+ ;;^UTILITY(U,$J,358.3,10662,1,4,0)
+ ;;=4^F33.42
+ ;;^UTILITY(U,$J,358.3,10662,2)
+ ;;=^5003535
+ ;;^UTILITY(U,$J,358.3,10663,0)
+ ;;=F34.1^^42^473^19
+ ;;^UTILITY(U,$J,358.3,10663,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,10543,1,3,0)
- ;;=3^Primary Angle Closure w/o Damage,Right Eye
- ;;^UTILITY(U,$J,358.3,10543,1,4,0)
- ;;=4^H40.061
- ;;^UTILITY(U,$J,358.3,10543,2)
- ;;=^5005744
- ;;^UTILITY(U,$J,358.3,10544,0)
- ;;=H40.062^^74^683^5
- ;;^UTILITY(U,$J,358.3,10544,1,0)
+ ;;^UTILITY(U,$J,358.3,10663,1,3,0)
+ ;;=3^Persistent Depressive Disorder (Dysthmia)
+ ;;^UTILITY(U,$J,358.3,10663,1,4,0)
+ ;;=4^F34.1
+ ;;^UTILITY(U,$J,358.3,10663,2)
+ ;;=^331913
+ ;;^UTILITY(U,$J,358.3,10664,0)
+ ;;=N94.3^^42^473^20
+ ;;^UTILITY(U,$J,358.3,10664,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,10544,1,3,0)
- ;;=3^Primary Angle Closure w/o Damage,Left Eye
- ;;^UTILITY(U,$J,358.3,10544,1,4,0)
- ;;=4^H40.062
- ;;^UTILITY(U,$J,358.3,10544,2)
- ;;=^5005745
- ;;^UTILITY(U,$J,358.3,10545,0)
- ;;=H40.063^^74^683^6
- ;;^UTILITY(U,$J,358.3,10545,1,0)
+ ;;^UTILITY(U,$J,358.3,10664,1,3,0)
+ ;;=3^Premenstrual Dysphoric Disorder
+ ;;^UTILITY(U,$J,358.3,10664,1,4,0)
+ ;;=4^N94.3
+ ;;^UTILITY(U,$J,358.3,10664,2)
+ ;;=^5015919
+ ;;^UTILITY(U,$J,358.3,10665,0)
+ ;;=F06.34^^42^473^3
+ ;;^UTILITY(U,$J,358.3,10665,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,10545,1,3,0)
- ;;=3^Primary Angle Closure w/o Damage,Bilateral
- ;;^UTILITY(U,$J,358.3,10545,1,4,0)
- ;;=4^H40.063
- ;;^UTILITY(U,$J,358.3,10545,2)
- ;;=^5005746
- ;;^UTILITY(U,$J,358.3,10546,0)
- ;;=H40.20X1^^74^683^7
- ;;^UTILITY(U,$J,358.3,10546,1,0)
+ ;;^UTILITY(U,$J,358.3,10665,1,3,0)
+ ;;=3^Depressive Disorder d/t Another Med Cond w/ Mixed Features,Unsp
+ ;;^UTILITY(U,$J,358.3,10665,1,4,0)
+ ;;=4^F06.34
+ ;;^UTILITY(U,$J,358.3,10665,2)
+ ;;=^5003060
+ ;;^UTILITY(U,$J,358.3,10666,0)
+ ;;=F32.89^^42^473^4
+ ;;^UTILITY(U,$J,358.3,10666,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,10546,1,3,0)
- ;;=3^Angle-Closure Glaucoma,Primary,Mild Stage
- ;;^UTILITY(U,$J,358.3,10546,1,4,0)
- ;;=4^H40.20X1
- ;;^UTILITY(U,$J,358.3,10546,2)
- ;;=^5005814
- ;;^UTILITY(U,$J,358.3,10547,0)
- ;;=H40.20X2^^74^683^8
- ;;^UTILITY(U,$J,358.3,10547,1,0)
+ ;;^UTILITY(U,$J,358.3,10666,1,3,0)
+ ;;=3^Depressive Disorder,Other Specified
+ ;;^UTILITY(U,$J,358.3,10666,1,4,0)
+ ;;=4^F32.89
+ ;;^UTILITY(U,$J,358.3,10666,2)
+ ;;=^5138442
+ ;;^UTILITY(U,$J,358.3,10667,0)
+ ;;=F34.81^^42^473^5
+ ;;^UTILITY(U,$J,358.3,10667,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,10547,1,3,0)
- ;;=3^Angle-Closure Glaucoma,Primary,Moderate Stage
+ ;;^UTILITY(U,$J,358.3,10667,1,3,0)
+ ;;=3^Disruptive Mood Dysregulation Disorder
+ ;;^UTILITY(U,$J,358.3,10667,1,4,0)
+ ;;=4^F34.81

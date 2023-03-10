@@ -1,5 +1,5 @@
 IVMPTRNA ;ALB/CKN,BRM,TDM,LBD,KUM - HL7 FULL DATA TRANSMISSION (Z07) BUILDER(CONTINUED) ;15 Dec 2017  9:13 AM
- ;;2.0;INCOME VERIFICATION MATCH;**46,58,76,105,152,164**;21-OCT-94;Build 98
+ ;;2.0;INCOME VERIFICATION MATCH;**46,58,76,105,152,164,201**;21-OCT-94;Build 17
  ;Per VHA Directive 2004-038, this routine should not be modified.
  ;
  Q
@@ -74,6 +74,42 @@ RF1(DFN,RF1TYP) ; create RF1 segment
  ; quit with completed RF1 segment
  Q RETURN
  ;
+ZUD(DFN,IVMZTYP,IVMZCNT) ; create ZUD segment
+ ; IVM*2.0*201 - Send Originating Source and User information to ES
+ ;  Input:
+ ;        DFN - Patient IEN
+ ;    IVMZTYP - ZUD Type
+ ;              SAD = Street Address Change (Default)
+ ;              CAD = Confidential Address Change
+ ;              CPH = Cell Phone Number Change
+ ;              EAD = E-Mail Address Change
+ ;              PHH = Home Phone Number Change
+ ;              RAD   Residential Address Change
+ ;              PHB   Business Phone Number Change
+ ;              PHC   Confidential Phone Number Change
+ ;    IVMZCNT - Sequence number of ZUD segment
+ ;
+ ;  Output: ZUD segment (ZUD^IVMZCNT^ZUD Type^Change Dt/Tm^Username^DUZ)
+ ;
+ N IVMADDT,IVMRTN,IVMERR,IVMADIEN,IVMADUSR
+ I $G(HLECH)'="~|\&" N HLECH S HLECH="~|\&"
+ I $G(HLFS)'="^" N HLFS S HLFS="^"
+ S:$G(IVMZTYP)="" IVMZTYP="SAD"   ;Set type to 'SAD' if no value passed
+ ; initialize the IVMRTN variable with ZUD^ZUD Type
+ S IVMRTN="ZUD",$P(IVMRTN,HLFS,2)=$G(IVMZCNT),$P(IVMRTN,HLFS,3)=IVMZTYP
+ Q:'$G(DFN) IVMRTN
+ S IVMERR=""
+ D ZUDLOAD(IVMZTYP,.IVMERR) Q:IVMERR'="" IVMRTN
+ ; If no date, do not send ZUD segment
+ I $G(IVMADDT)="" Q ""
+ ; If no IVMADUSR, do not send ZUD segment
+ I $G(IVMADUSR)="" Q ""
+ S $P(IVMRTN,HLFS,4)=$G(IVMADDT)
+ S $P(IVMRTN,HLFS,5)=$G(IVMADUSR)
+ S $P(IVMRTN,HLFS,6)=$G(IVMADIEN)
+ ; IVMRTN variable will contain ZUD^IVMZCNT^ZUD Type^Change Dt/Tm^Username^DUZ
+ Q IVMRTN
+ ;
 ADDRCNV(ADDRSRC) ;convert Address Source to HL7 format
  Q:$G(ADDRSRC)']"" ""
  Q:ADDRSRC="HEC" "USVAHEC"
@@ -91,7 +127,7 @@ RF1LOAD(RF1TYP) ;
  N RFDT,RFSRC,RFSIT,GETFLDS,RFDAT,ERR
  K ADRDT,ADRSRC,ADRSIT
  I RF1TYP="SAD" S RFDT=.118,RFSRC=.119,RFSIT=.12
- I RF1TYP="CAD" S RFDT=.14112,RFSRC="",RFSIT=.14113
+ I RF1TYP="CAD" S RFDT=.14112,RFSRC="",RFSIT=.14118
  I RF1TYP="CPH" S RFDT=.139,RFSRC=.1311,RFSIT=.13111
  I RF1TYP="PNO" S RFDT=.1312,RFSRC=.1313,RFSIT=.1314
  I RF1TYP="EAD" S RFDT=.136,RFSRC=.137,RFSIT=.138
@@ -107,4 +143,32 @@ RF1LOAD(RF1TYP) ;
  . S ADRSIT=$G(RFDAT(2,DFN_",",RFSIT,"I"))
  . S:ADRSIT]"" ADRSIT=$$GET1^DIQ(4,ADRSIT_",",99)
  S ADRSRC=$$ADDRCNV($G(ADRSRC))  ;convert source to HL7 format
+ Q
+ZUDLOAD(IVMZTYP,IVMERR) ;
+ ; IVM*2.0*201 - Create ZUD segment
+ ; Input
+ ; IVMZTYP - ZUD Type
+ ; IVMERR  - Error message on failure (optional, pass by reference)
+ ;
+ N IVMZDT,IVMZUSR,IVMGFLDS,IVMZDAT
+ S IVMADDT="",IVMADIEN="",IVMADUSR=""
+ I IVMZTYP="SAD" S IVMZDT=.118,IVMZUSR=.122
+ I IVMZTYP="CAD" S IVMZDT=.14112,IVMZUSR=.14118
+ I IVMZTYP="RAD" S IVMZDT=.1158,IVMZUSR=.11583
+ I IVMZTYP="CPH" S IVMZDT=.139,IVMZUSR=.1319
+ I IVMZTYP="EAD" S IVMZDT=.136,IVMZUSR=.1318
+ I IVMZTYP="PHH" S IVMZDT=.1321,IVMZUSR=.1324
+ I IVMZTYP="PHB" S IVMZDT=.1326,IVMZUSR=.1325
+ I IVMZTYP="PHC" S IVMZDT=.14112,IVMZUSR=.14119
+ S IVMGFLDS=IVMZDT S IVMGFLDS=IVMGFLDS_";"_IVMZUSR
+ D GETS^DIQ(2,DFN_",",IVMGFLDS,"IE","IVMZDAT","IVMERR") Q:IVMERR'=""
+ S IVMADDT=$$FMTHL7^XLFDT($G(IVMZDAT(2,DFN_",",IVMZDT,"I")))
+ S IVMADIEN=$G(IVMZDAT(2,DFN_",",IVMZUSR,"I"))
+ S IVMADUSR=$$EXTERNAL^DILFD(2,IVMZUSR,"",IVMADIEN)
+ ; If no username, or for some specific user names, blank out the username and DUZ
+ I ((IVMADUSR="")!(IVMADUSR="POSTMASTER")!(IVMADUSR="PSUSER,APPLICATION PROXY")!(IVMADUSR="PSOAPPLICATIONPROXY,PSO")) D
+ . S IVMADUSR="",IVMADIEN=""
+ E  D
+ . S IVMADUSR=$P(IVMADUSR,",")_"~"_$P(IVMADUSR,",",2)
+ . S IVMADUSR=$P(IVMADUSR," ")_"~"_$P(IVMADUSR," ",2)_"~"_$P(IVMADUSR," ",3)
  Q

@@ -1,5 +1,5 @@
 BPSOSUC ;BHAM ISC/FCS/DRS/FLS - ECME utilities ;06/01/2004
- ;;1.0;E CLAIMS MGMT ENGINE;**1,5,7,10,11,14,20**;JUN 2004;Build 27
+ ;;1.0;E CLAIMS MGMT ENGINE;**1,5,7,10,11,14,20,27**;JUN 2004;Build 15
  ;;Per VA Directive 6402, this routine should not be modified.
  Q
  ; CATEG returns the status of a Transaction or Log of Transaction
@@ -80,7 +80,7 @@ CATEG(N,WANTREV) ;
  S:'POS POS=1
  S X=$$RESP1000^BPSOSQ4(RESP,POS,"I")
  I X="P"!(X="DP") Q "E PAYABLE"
- I X="D" Q "E DUPLICATE" ; SHOULD NEVER HAPPEN as of 02/06/2001
+ I X="D"!(X="S")!(X="Q") Q "E DUPLICATE"
  I X="R" Q "E REJECTED"
  I X="C"!(X="DC") Q "E CAPTURED"
  ; 1000 indefinite, fall back to 500

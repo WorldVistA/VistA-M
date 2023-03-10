@@ -1,5 +1,5 @@
 PSGOEV ;BIR/CML3 - VERIFY (MAKE ACTIVE) ORDERS ; 12/9/18 4:26am
- ;;5.0;INPATIENT MEDICATIONS;**5,7,15,28,33,50,64,58,77,78,80,110,111,133,171,207,241,267,268,260,288,199,281,256,347,327**;16 DEC 97;Build 114
+ ;;5.0;INPATIENT MEDICATIONS;**5,7,15,28,33,50,64,58,77,78,80,110,111,133,171,207,241,267,268,260,288,199,281,256,347,327,414**;16 DEC 97;Build 4
  ;
  ; Reference to ^ORD(101 supported by DBIA #872.
  ; Reference to ^PS(50.7 supported by DBIA #2180.
@@ -90,8 +90,6 @@ VFY ; change status, move to 55, and change label record **ENHANCEMENTS MADE IN 
  I '$P(VND4,U,10) S ^PS(55,"ANV",PSGP,+PSGORD)=""
  I $P(VND4,U,9) K ^PS(55,"APV",PSGP,+PSGORD)
  I $P(VND4,U,10) K ^PS(55,"ANV",PSGP,+PSGORD)
- W:'$D(PSJSPEED) ! W !,"ORDER VERIFIED.",!
- I '$D(PSJSPEED) K DIR S DIR(0)="E" D ^DIR K DIR
  S:+PSJSYSU=3 ^PS(55,"AUE",PSGP,+PSGORD)="" S PSGACT="C"_$S('$D(^PS(55,PSGP,5,+PSGORD,4)):"E",$P(^(4),"^",16):"",1:"E")_"RS",PSGCANFL=2
  ;; START NCC REMEDIATION >> 327*RJS
  N CLOZFLG S CLOZFLG=$$ISCLOZ^PSJCLOZ(,,PSGP,+PSGORD)
@@ -102,6 +100,8 @@ VFY ; change status, move to 55, and change label record **ENHANCEMENTS MADE IN 
  ;; END NCC REMEDIATION >> 327*RJS
  S VALMBCK="Q" D EN1^PSJHL2(PSGP,$S(+PSJSYSU=3:"SC",+PSJSYSU=1:"SC",1:"XX"),+PSGORD_"U")     ; allow status change to be sent for pharmacists & nurses
  S ^TMP("PSODAOC",$J,"IP IEN")=$G(PSJORD),^TMP("PSODAOC",$J,"IP NEW IEN")=$G(PSGORD)
+ W:'$D(PSJSPEED) ! W !,"ORDER VERIFIED.",!   ;@414 moved these 2 lines from VFY+61,62 to here
+ I '$D(PSJSPEED) K DIR S DIR(0)="E" D ^DIR K DIR
  ; -- RTC 198753 - clean-up variable - K PSJAGYSV
  D SETOC^PSJNEWOC(PSGORD) K PSJAGYSV
   ; **This is where the Automated Dispensing Machine hook is called. Do NOT DELETE or change this location **

@@ -1,13 +1,13 @@
-DGBTEE2 ;ALB/SCK BENEFICIARY TRAVEL ENTER/EDIT CONT; 03/23/93
- ;;1.0;Beneficiary Travel;**17,20**;September 25, 2001;Build 185
+DGBTEE2 ;ALB/SCK - BENEFICIARY TRAVEL ENTER/EDIT CONT ; 03/23/93
+ ;;1.0;Beneficiary Travel;**17,20,39**;September 25, 2001;Build 6
 START ;
  Q
 STUFF ;  stuff departure=home address, destination=division(ins) address, and attendant/payee=patient        
- S DGBTFR1=$S($G(CHZFLG):$P(DGBTVAR("D"),"^",1),1:VAPA(1)),DGBTFR2=$S($G(CHZFLG):$P(DGBTVAR("D"),"^",2),1:VAPA(2)),DGBTFR3=$S($G(CHZFLG):$P(DGBTVAR("D"),"^",3),1:VAPA(3)),DGBTAP=VADM(1)
+ S DGBTFR1=$S($G(CHZFLG):$P(DGBTVAR("D"),"^",1),1:DGBTADDR(1)),DGBTFR2=$S($G(CHZFLG):$P(DGBTVAR("D"),"^",2),1:DGBTADDR(2)),DGBTFR3=$S($G(CHZFLG):$P(DGBTVAR("D"),"^",3),1:DGBTADDR(3)),DGBTAP=VADM(1) ;*39 - updated to use residential address
  ;S DGBTFR1=$S('$G(CHZFLG):VAPA(1),1:$P(DGBTVAR("D"),"^",1)),DGBTFR2=$S('$G(CHZFLG):VAPA(2),1:$P(DGBTVAR("D"),"^",2)),DGBTFR3=$S('$G(CHZFLG):VAPA(3),1:$P(DGBTVAR("D"),"^",3)),DGBTAP=VADM(1)
  ; function call $$DEPCTY passes the zip code from the patient data, and returns with the departure city name or a null.
  ; if a null for the city is returned, the city name in the patient data is defaulted to.
- I '$G(CHZFLG) S XX=$$DEPCTY^DGBTUTL($P(VAPA(11),U,1)) S X=$S(+XX>0:$P(XX,U,2),1:VAPA(4))
+ I '$G(CHZFLG) S XX=$$DEPCTY^DGBTUTL($P(DGBTADDR(6),U)) S X=$S(+XX>0:$P(XX,U,2),1:DGBTADDR(4)) ;*39 - updated to use residential address
  I $G(CHZFLG) S XX=$$DEPCTY^DGBTUTL($P(DGBTVAR("D"),"^",6)) S X=$S(+XX>0:$P(XX,U,2),1:$P(DGBTVAR("D"),"^",4))
  D UP^DGBTHELP S DGBTFR4=X
  K DGBTVAR(0) S DGBTVAR(0)=$S($D(^DGBT(392,DGBTDT,0)):^(0),1:"")

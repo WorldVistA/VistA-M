@@ -1,132 +1,134 @@
-IBDEI0LJ ; ; 04-FEB-2020
- ;;3.0;IB ENCOUNTER FORM IMP/EXP;;FEB 04, 2020
+IBDEI0LJ ; ; 01-FEB-2022
+ ;;3.0;IB ENCOUNTER FORM IMP/EXP;;FEB 01, 2022
  Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,999) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
- ;;^UTILITY(U,$J,358.3,9554,1,4,0)
- ;;=4^K56.609
- ;;^UTILITY(U,$J,358.3,9554,2)
- ;;=^5151423
- ;;^UTILITY(U,$J,358.3,9555,0)
- ;;=K56.601^^72^646^41
- ;;^UTILITY(U,$J,358.3,9555,1,0)
+ ;;^UTILITY(U,$J,358.3,9688,1,4,0)
+ ;;=4^N64.4
+ ;;^UTILITY(U,$J,358.3,9688,2)
+ ;;=^5015794
+ ;;^UTILITY(U,$J,358.3,9689,0)
+ ;;=N64.51^^39^417^60
+ ;;^UTILITY(U,$J,358.3,9689,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,9555,1,3,0)
- ;;=3^Intestinal Obstruction,Complete,Unspec Cause
- ;;^UTILITY(U,$J,358.3,9555,1,4,0)
- ;;=4^K56.601
- ;;^UTILITY(U,$J,358.3,9555,2)
- ;;=^5151422
- ;;^UTILITY(U,$J,358.3,9556,0)
- ;;=K56.600^^72^646^42
- ;;^UTILITY(U,$J,358.3,9556,1,0)
+ ;;^UTILITY(U,$J,358.3,9689,1,3,0)
+ ;;=3^Induration of Breast
+ ;;^UTILITY(U,$J,358.3,9689,1,4,0)
+ ;;=4^N64.51
+ ;;^UTILITY(U,$J,358.3,9689,2)
+ ;;=^5015795
+ ;;^UTILITY(U,$J,358.3,9690,0)
+ ;;=N64.59^^39^417^105
+ ;;^UTILITY(U,$J,358.3,9690,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,9556,1,3,0)
- ;;=3^Intestinal Obstruction,Partial,Unspec Cause
- ;;^UTILITY(U,$J,358.3,9556,1,4,0)
- ;;=4^K56.600
- ;;^UTILITY(U,$J,358.3,9556,2)
- ;;=^5151421
- ;;^UTILITY(U,$J,358.3,9557,0)
- ;;=K35.20^^72^646^7
- ;;^UTILITY(U,$J,358.3,9557,1,0)
+ ;;^UTILITY(U,$J,358.3,9690,1,3,0)
+ ;;=3^Signs and Symptoms in Breast,Other
+ ;;^UTILITY(U,$J,358.3,9690,1,4,0)
+ ;;=4^N64.59
+ ;;^UTILITY(U,$J,358.3,9690,2)
+ ;;=^5015797
+ ;;^UTILITY(U,$J,358.3,9691,0)
+ ;;=N64.52^^39^417^71
+ ;;^UTILITY(U,$J,358.3,9691,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,9557,1,3,0)
- ;;=3^Acute Appenditis w/ Generalized Peritonitis NOS
- ;;^UTILITY(U,$J,358.3,9557,1,4,0)
- ;;=4^K35.20
- ;;^UTILITY(U,$J,358.3,9557,2)
- ;;=^5157376
- ;;^UTILITY(U,$J,358.3,9558,0)
- ;;=K35.30^^72^646^8
- ;;^UTILITY(U,$J,358.3,9558,1,0)
+ ;;^UTILITY(U,$J,358.3,9691,1,3,0)
+ ;;=3^Nipple Discharge
+ ;;^UTILITY(U,$J,358.3,9691,1,4,0)
+ ;;=4^N64.52
+ ;;^UTILITY(U,$J,358.3,9691,2)
+ ;;=^259531
+ ;;^UTILITY(U,$J,358.3,9692,0)
+ ;;=N64.53^^39^417^99
+ ;;^UTILITY(U,$J,358.3,9692,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,9558,1,3,0)
- ;;=3^Acute Appendicitis w/ Localized Peritonitis NOS
- ;;^UTILITY(U,$J,358.3,9558,1,4,0)
- ;;=4^K35.30
- ;;^UTILITY(U,$J,358.3,9558,2)
- ;;=^5157378
- ;;^UTILITY(U,$J,358.3,9559,0)
- ;;=K51.919^^72^646^45
- ;;^UTILITY(U,$J,358.3,9559,1,0)
+ ;;^UTILITY(U,$J,358.3,9692,1,3,0)
+ ;;=3^Retraction of Nipple
+ ;;^UTILITY(U,$J,358.3,9692,1,4,0)
+ ;;=4^N64.53
+ ;;^UTILITY(U,$J,358.3,9692,2)
+ ;;=^5015796
+ ;;^UTILITY(U,$J,358.3,9693,0)
+ ;;=N75.1^^39^417^8
+ ;;^UTILITY(U,$J,358.3,9693,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,9559,1,3,0)
- ;;=3^Ulcerative Colitis/Flare
- ;;^UTILITY(U,$J,358.3,9559,1,4,0)
- ;;=4^K51.919
- ;;^UTILITY(U,$J,358.3,9559,2)
- ;;=^5008700
- ;;^UTILITY(U,$J,358.3,9560,0)
- ;;=K50.919^^72^646^46
- ;;^UTILITY(U,$J,358.3,9560,1,0)
+ ;;^UTILITY(U,$J,358.3,9693,1,3,0)
+ ;;=3^Abscess of Bartholin's Gland
+ ;;^UTILITY(U,$J,358.3,9693,1,4,0)
+ ;;=4^N75.1
+ ;;^UTILITY(U,$J,358.3,9693,2)
+ ;;=^5015823
+ ;;^UTILITY(U,$J,358.3,9694,0)
+ ;;=N80.9^^39^417^37
+ ;;^UTILITY(U,$J,358.3,9694,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,9560,1,3,0)
- ;;=3^Crohns Disease/Flare
- ;;^UTILITY(U,$J,358.3,9560,1,4,0)
- ;;=4^K50.919
- ;;^UTILITY(U,$J,358.3,9560,2)
- ;;=^5008651
- ;;^UTILITY(U,$J,358.3,9561,0)
- ;;=K61.2^^72^646^47
- ;;^UTILITY(U,$J,358.3,9561,1,0)
+ ;;^UTILITY(U,$J,358.3,9694,1,3,0)
+ ;;=3^Endometriosis,Unspec
+ ;;^UTILITY(U,$J,358.3,9694,1,4,0)
+ ;;=4^N80.9
+ ;;^UTILITY(U,$J,358.3,9694,2)
+ ;;=^5015837
+ ;;^UTILITY(U,$J,358.3,9695,0)
+ ;;=N81.4^^39^417^112
+ ;;^UTILITY(U,$J,358.3,9695,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,9561,1,3,0)
- ;;=3^Anorectal Abscess
- ;;^UTILITY(U,$J,358.3,9561,1,4,0)
- ;;=4^K61.2
- ;;^UTILITY(U,$J,358.3,9561,2)
- ;;=^5008750
- ;;^UTILITY(U,$J,358.3,9562,0)
- ;;=K94.20^^72^646^48
- ;;^UTILITY(U,$J,358.3,9562,1,0)
+ ;;^UTILITY(U,$J,358.3,9695,1,3,0)
+ ;;=3^Uterovaginal Prolapse,Unspec
+ ;;^UTILITY(U,$J,358.3,9695,1,4,0)
+ ;;=4^N81.4
+ ;;^UTILITY(U,$J,358.3,9695,2)
+ ;;=^5015841
+ ;;^UTILITY(U,$J,358.3,9696,0)
+ ;;=N84.8^^39^417^87
+ ;;^UTILITY(U,$J,358.3,9696,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,9562,1,3,0)
- ;;=3^Gastrostomy Tube Malfunction,Unspec
- ;;^UTILITY(U,$J,358.3,9562,1,4,0)
- ;;=4^K94.20
- ;;^UTILITY(U,$J,358.3,9562,2)
- ;;=^5008928
- ;;^UTILITY(U,$J,358.3,9563,0)
- ;;=F31.9^^72^647^34
- ;;^UTILITY(U,$J,358.3,9563,1,0)
+ ;;^UTILITY(U,$J,358.3,9696,1,3,0)
+ ;;=3^Polyp of Other Parts of Female Genital Tract
+ ;;^UTILITY(U,$J,358.3,9696,1,4,0)
+ ;;=4^N84.8
+ ;;^UTILITY(U,$J,358.3,9696,2)
+ ;;=^5015868
+ ;;^UTILITY(U,$J,358.3,9697,0)
+ ;;=N84.0^^39^417^85
+ ;;^UTILITY(U,$J,358.3,9697,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,9563,1,3,0)
- ;;=3^Bipolar Disorder,Unspec
- ;;^UTILITY(U,$J,358.3,9563,1,4,0)
- ;;=4^F31.9
- ;;^UTILITY(U,$J,358.3,9563,2)
- ;;=^331892
- ;;^UTILITY(U,$J,358.3,9564,0)
- ;;=F32.9^^72^647^28
- ;;^UTILITY(U,$J,358.3,9564,1,0)
+ ;;^UTILITY(U,$J,358.3,9697,1,3,0)
+ ;;=3^Polyp of Corpus Uteri
+ ;;^UTILITY(U,$J,358.3,9697,1,4,0)
+ ;;=4^N84.0
+ ;;^UTILITY(U,$J,358.3,9697,2)
+ ;;=^270517
+ ;;^UTILITY(U,$J,358.3,9698,0)
+ ;;=N84.9^^39^417^86
+ ;;^UTILITY(U,$J,358.3,9698,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,9564,1,3,0)
- ;;=3^Major Depressive Disorder,Single Episode
- ;;^UTILITY(U,$J,358.3,9564,1,4,0)
- ;;=4^F32.9
- ;;^UTILITY(U,$J,358.3,9564,2)
- ;;=^5003528
- ;;^UTILITY(U,$J,358.3,9565,0)
- ;;=F43.10^^72^647^16
- ;;^UTILITY(U,$J,358.3,9565,1,0)
+ ;;^UTILITY(U,$J,358.3,9698,1,3,0)
+ ;;=3^Polyp of Female Genital Tract,Unspec
+ ;;^UTILITY(U,$J,358.3,9698,1,4,0)
+ ;;=4^N84.9
+ ;;^UTILITY(U,$J,358.3,9698,2)
+ ;;=^5015869
+ ;;^UTILITY(U,$J,358.3,9699,0)
+ ;;=N84.1^^39^417^84
+ ;;^UTILITY(U,$J,358.3,9699,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,9565,1,3,0)
- ;;=3^PTSD,Unspec
- ;;^UTILITY(U,$J,358.3,9565,1,4,0)
- ;;=4^F43.10
- ;;^UTILITY(U,$J,358.3,9565,2)
- ;;=^5003570
- ;;^UTILITY(U,$J,358.3,9566,0)
- ;;=Z59.0^^72^647^1
- ;;^UTILITY(U,$J,358.3,9566,1,0)
+ ;;^UTILITY(U,$J,358.3,9699,1,3,0)
+ ;;=3^Polyp of Cervix Uteri
+ ;;^UTILITY(U,$J,358.3,9699,1,4,0)
+ ;;=4^N84.1
+ ;;^UTILITY(U,$J,358.3,9699,2)
+ ;;=^5015866
+ ;;^UTILITY(U,$J,358.3,9700,0)
+ ;;=N89.1^^39^417^114
+ ;;^UTILITY(U,$J,358.3,9700,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,9566,1,3,0)
- ;;=3^Homelessness
- ;;^UTILITY(U,$J,358.3,9566,1,4,0)
- ;;=4^Z59.0
- ;;^UTILITY(U,$J,358.3,9566,2)
- ;;=^5063129
- ;;^UTILITY(U,$J,358.3,9567,0)
- ;;=F10.129^^72^647^2
- ;;^UTILITY(U,$J,358.3,9567,1,0)
+ ;;^UTILITY(U,$J,358.3,9700,1,3,0)
+ ;;=3^Vaginal Dysplasia,Moderate
+ ;;^UTILITY(U,$J,358.3,9700,1,4,0)
+ ;;=4^N89.1
+ ;;^UTILITY(U,$J,358.3,9700,2)
+ ;;=^5015886
+ ;;^UTILITY(U,$J,358.3,9701,0)
+ ;;=N89.0^^39^417^113
+ ;;^UTILITY(U,$J,358.3,9701,1,0)
  ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,9701,1,3,0)
+ ;;=3^Vaginal Dysplasia,Mild

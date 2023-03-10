@@ -1,5 +1,6 @@
 VIABRPC ;AAC/JMC - VIA RPCs ;04/05/2016
- ;;1.0;VISTA INTEGRATION ADAPTER;**7,8,9,12**;06-FEB-2014;Build 28
+ ;;1.0;VISTA INTEGRATION ADAPTER;**7,8,9,12,22,21**;06-FEB-2014;Build 1
+ ;Per VA Directive 6402, this routine should not be modified.
  ; ICR 10090    INSTITUTION FILE (supported)
  ; ICR 10048    PACKAGE FILE (#9.4) (supported)
  ; ICR 10141    XPDUTL (supported)
@@ -37,7 +38,7 @@ GETSURR(RESULT,USER) ; surrogate info.
  ;RPC VIAB GETSURR
  ; get user's surrogate info
  I $G(USER)="" S RESULT="" Q
- S RESULT=$$GETSURO^XQALSURO(USER) ;ICR(DBIA) #3213 
+ S RESULT=$$GETSURO^XQALSURO(USER) ;ICR(DBIA) #3213
  I +RESULT<1 S RESULT=""
  Q
 SNAME(RET,SID) ; get station/site name
@@ -62,7 +63,7 @@ USERDIV(RESULT,VIADUZ) ; station IEN^station number^station name^default divisio
  .S VIADC=VIADC+1
  .S RESULT(VIADC)=VIADX_"^"_$$GET1^DIQ(4,+VIADX,99)_"^"_$$GET1^DIQ(4,+VIADX,.01)_"^0"
  Q
- ; 
+ ;
 DEFRFREQ(RESULT,VIAIEN,VIADFN,RESOLVE) ;Return default reason for request for service - ICR #3119
  ;RPC VIAB DEFAULT REQUEST REASON
  ; VIAIEN=pointer to file 123.5
@@ -151,7 +152,7 @@ ISPROSVC(RESULT,GMRCIEN) ; Is this service part of the consults-prosthetics inte
  ;This RPC is a similar to ORQQCN ISPROSVC
  ;GMRCIEN - IEN of selected service
  I $$GET1^DIQ(123.5,+$G(GMRCIEN),131,"I")=1 S RESULT=1
- Q 
+ Q
  ;
 SECVST(RESULT,NOTEIEN,VIADFN,VIAENCDT,VIAHLOC) ; save secondary visit in TIU, if inpatient; ICR#1894,#3540
  ;RPC VIAB TIU SECVST
@@ -322,13 +323,48 @@ DEVICE(RESULT,FROM,DIR,MARGIN) ; Return a subset of printer entries from the Dev
  Q
  ;
 SAVE(OK,PCELIST,NOTEIEN,VIALOC) ; save PCE information
+ ;INPUTS:
+ ; PCELIST - LIST OF ENCOUNTER DATA
+ ; NOTEIEN - TIU NOTE INTERNAL ENTRY NUMBER [Optional]
+ ; VIALOC  - INPATIENT STATION [Optional]
+ ;OUTPUT:
+ ; ARRAY with success or error code followed by problems encountered on data elements
+ ;  The array may contain the following values:
+ ;
+ ;  1 Indicates success - no errors and processed completely.
+ ;
+ ; -1 An error occurred.  Data may or may not have been processed depending on nature of data.
+ ;
+ ; -2 Indicates that the routine PXAI found an issue with the visit.
+ ;
+ ; -3 Indicates that the input parameters were not properly defined.
+ ;
+ ; -4 If cannot get a lock on the encounter
+ ;
+ ; -5 If there were only warnings
+ ;
+ ; Subsequent values will vary depending on findings from DATA2PCE^PXAPI.
+ ; the following is an example:
+ ;
+ ;Example:
+ ; OK(0)="-1^Missing Required Fields"
+ ; OK(1)="AO^No error"
+ ; OK(2)="CV^NULL"
+ ; OK(3)="EC^No error"
+ ; OK(4)="HNC"^No error"
+ ; OK(5)="IR^No error"
+ ; OK(6)="MST"^No error"
+ ; OK(7)="SC^Value must be NULL"
+ ; OK(8)="SHAD^1"
+ ;
  S:$G(VIALOC)="" VIALOC="VISTA INTEGRATION ADAPTER"
- N VSTR,GMPLUSER
+ N VSTR,GMPLUSER,VOK ;*21 added VOK
  N ZTIO,ZTRTN,ZTDTH,ZTSAVE,ZTDESC,ZTSYNC,ZTSK
  S VSTR=$P(PCELIST(1),U,4) K ^TMP("VIAPCE",$J,VSTR)
  M ^TMP("VIAPCE",$J,VSTR)=PCELIST
  S GMPLUSER=$$CLINUSER(DUZ),NOTEIEN=+$G(NOTEIEN)
  D DQSAVE^VIABRPC7
+ M OK=VOK ;*21 changed return to array
  Q
  ;
 CLINUSER(VIADUZ) ;is this a clinical user?
@@ -350,3 +386,7 @@ GETVSIT(VSTR,DFN) ; lookup a visit
  S VIAPXAPI("ENCOUNTER",1,"ENCOUNTER TYPE")="P"
  S OK=$$DATA2PCE^PXAPI("VIAPXAPI",PKG,SRC,.VIAVISIT)
  Q VIAVISIT
+ ;
+PATCH(VAL,X) ; Return 1 if patch X is installed *22
+ S VAL=$$PATCH^XPDUTL(X)
+ Q

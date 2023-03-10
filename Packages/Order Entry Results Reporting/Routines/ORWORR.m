@@ -1,5 +1,5 @@
-ORWORR ; SLC/KCM/JLI - Retrieve Orders for Broker ;Nov 25, 2019@16:14:23
- ;;3.0;ORDER ENTRY/RESULTS REPORTING;**10,92,116,110,132,141,163,189,195,215,243,280,306,471,444,515**;Dec 17, 1997;Build 8
+ORWORR ; SLC/KCM/JLI - Retrieve Orders for Broker ;Oct 26, 2021@10:21:57
+ ;;3.0;ORDER ENTRY/RESULTS REPORTING;**10,92,116,110,132,141,163,189,195,215,243,280,306,471,444,515,405**;Dec 17, 1997;Build 211
  ;
  ;DBIA/ICR section
  ;10035 ^DPT(
@@ -8,6 +8,7 @@ ORWORR ; SLC/KCM/JLI - Retrieve Orders for Broker ;Nov 25, 2019@16:14:23
  ;10000 %DTC
  ; 2263 XPAR
  ; 2343 XUSER
+ ; 4902 PSO52EX
  ;
 GET(LST,DFN,FILTER,GROUPS) ; procedure
  Q  ; don't call until using same treating specialty logic as AGET
@@ -130,7 +131,7 @@ ACKILL ; called only from DOCUR - kill AC xref
 GET4V11(LST,TXTVW,ORYD,IFNLST) ; get order fields TEMP
  G GET41
 GET4LST(LST,IFNLST) ; get order fields for list of orders
-GET41 N ACT,ACTID,IDX,X0,X3,X8,PRV,ID,LN,TXT,STRT,STOP,CSTS,IFN,IFNIDX,ORIGVIEW,DEA ;PKI
+GET41 N ACT,ACTID,IDX,X0,X3,X8,PRV,ID,LN,TXT,STRT,STOP,CSTS,IFN,IFNIDX,ORIGVIEW,DEA,ORIND ;PKI;*405-IND
  N LOC ;IMO
  S (IDX,LST,IFNIDX)=0
  F  S IFNIDX=$O(IFNLST(IFNIDX)) Q:'IFNIDX  S IFN=IFNLST(IFNIDX) D
@@ -150,7 +151,7 @@ GETBYIFN(LST,IFN) ; procedure
  S IFN=+IFN,X8=$G(^OR(100,IFN,8,ACT,0))
 GETFLDS ; used by entry points to place order fields into list
  ; expects IDX=sequence #, IFN=order, X0=node 0, X3=node 3, LST=results
- ; LST(IDX)=~IFN^Grp^OrdTm^StrtTm^StopTm^Sts^Sig^Nrs^Clk^PrvID^PrvNam^Act^Flagged[^DCType]^ChartRev^DEA#^^DigSig^LOC^[DCORIGNAL]^IsPendingDCorder^IsDelayOrder
+ ; LST(IDX)=~IFN^Grp^OrdTm^StrtTm^StopTm^Sts^Sig^Nrs^Clk^PrvID^PrvNam^Act^Flagged[^DCType]^ChartRev^DEA#^^DigSig^LOC^[DCORIGNAL]^IsPendingDCorder^IsDelayOrder^ParkedStatus^^PackagePrefix
  S PRV=$P(X8,U,5) S:'PRV PRV=$P(X8,U,3) S PRV=PRV_U
  I PRV S PRV=PRV_$P(^VA(200,+PRV,0),U)
  S DEA=$$DEA^XUSER(,+PRV) ; get user DEA info - PKI
@@ -161,6 +162,8 @@ GETFLDS ; used by entry points to place order fields into list
  S STOP=$S($P(X3,U,3)=11:$$RSTOP,ACTID="HD":$P($G(^OR(100,+IFN,8,ACT,2)),U),1:$P(X0,U,9))
  S LST(IDX)="~"_ID_U_$P(X0,U,11)_U_$P(X8,U)_U_STRT_U_STOP_U_CSTS_U_$P(X8,U,4)_U_$P(X8,U,8)_U_$P(X8,U,10)_U_PRV
  I '$D(ORUGROUP) S ORUGROUP="" ;RTW Pharmacist modify indication removal for UAP, first time entering CPRS all services view
+ I $$PARK^PSO52EX(+IFN),ACT=$P(X3,U,7) S $P(LST(IDX),U,25)="active/parked"  ;405 set status of prescription tied to current action if it is "PARKED"
+ I $$SUSP^PSO52EX(+IFN),ACT=$P(X3,U,7) S $P(LST(IDX),U,25)="active/susp"  ;405 set status of prescription tied to current action if it is "Suspended"
  S $P(LST(IDX),U,13)=+$G(^OR(100,IFN,8,ACT,3))    ; flagged
  I +$P(X8,U,8) S $P(LST(IDX),U,8)=$$INITIALS^ORCHTAB2(+$P(X8,U,8))    ;nurse
  I +$P(X8,U,10) S $P(LST(IDX),U,9)=$$INITIALS^ORCHTAB2(+$P(X8,U,10))  ;clerk
@@ -205,13 +208,28 @@ GETFLDS ; used by entry points to place order fields into list
  . S $P(LST(IDX),U,23)=$P(ORCONSUB,U)
  . S $P(LST(IDX),U,24)=$P(ORCONSUB,U,2)
  ;
+ D
+ . N PKGID
+ . S PKGID=$P(X0,U,14)
+ . I PKGID>0 S $P(LST(IDX),U,26)=$P($G(^DIC(9.4,PKGID,0)),U,2)
  S ORIGVIEW=$S($G(TXTVW)=0:0,$G(TXTVW)=1:1,ORYD=-1:1,'ORYD:1,$P(X8,U)'<ORYD:0,1:1)
  K TXT D TEXT^ORQ12(.TXT,ID,255,ORUGROUP) ; optimize later ;RTW PASSING ORUGROUP
  I $O(^OR(100,+IFN,2,0)) S LN=$O(TXT(0)),TXT(LN)="+"_TXT(LN)
  I $O(^OR(100,+IFN,8,"C","XX",0)),'$G(ORUGROUP) S LN=$O(TXT(0)),TXT(LN)="*"_TXT(LN) ;RTW ORUGROUP
- S LN=0 F  S LN=$O(TXT(LN)) Q:'LN  S IDX=IDX+1,LST(IDX)="t"_TXT(LN)
+ S (LN,ORIND)=0 F  S LN=$O(TXT(LN)) Q:'LN  S IDX=IDX+1,LST(IDX)="t"_TXT(LN) S:LST(IDX)["Indication" ORIND=IDX  ;*405-IND
+ I $$ISTITR^ORUTL3(+IFN) D
+ . S ORX="** This Rx contains a separate titration and maintenance component to its schedule and instructions **"
+ . S IDX=IDX+1
+ . S LST(IDX)="t"_ORX
  I $O(^OR(100,+IFN,8,1,.2,0)) S IDX=IDX+1,LST(IDX)="|" D  ;PKI XMLText
  . S I=0 F  S I=$O(^OR(100,+IFN,8,1,.2,I)) Q:'I  S IDX=IDX+1,LST(IDX)="x"_^(I,0)
+ ;*405-IND
+ D:$O(^OR(100,IFN,4.5,"ID","INDICATION",0))
+ . N Z S Z=$O(^OR(100,IFN,4.5,"ID","INDICATION",0))
+ . S Z=$P($G(^OR(100,IFN,4.5,Z,1)),"^")
+ . I Z]"" S Z="tIndication: "_Z D
+ . . I $G(ORIND) S LST(ORIND)=Z
+ . . E  S IDX=IDX+1,LST(IDX)=Z
  Q
 RSTRT() ; return start date from responses
  Q $G(^OR(100,IFN,4.5,+$O(^OR(100,IFN,4.5,"ID","START",0)),1))

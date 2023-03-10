@@ -1,122 +1,126 @@
-IBDEI0UX ; ; 04-FEB-2020
- ;;3.0;IB ENCOUNTER FORM IMP/EXP;;FEB 04, 2020
+IBDEI0UX ; ; 01-FEB-2022
+ ;;3.0;IB ENCOUNTER FORM IMP/EXP;;FEB 01, 2022
  Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,999) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
- ;;^UTILITY(U,$J,358.3,13767,2)
- ;;=^5138522
- ;;^UTILITY(U,$J,358.3,13768,0)
- ;;=H35.3213^^83^816^28
- ;;^UTILITY(U,$J,358.3,13768,1,0)
+ ;;^UTILITY(U,$J,358.3,13958,0)
+ ;;=M20.21^^55^666^8
+ ;;^UTILITY(U,$J,358.3,13958,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,13768,1,3,0)
- ;;=3^Exudative Age-Related Mclr Degn,Right Eye,w/ Inactive Scar
- ;;^UTILITY(U,$J,358.3,13768,1,4,0)
- ;;=4^H35.3213
- ;;^UTILITY(U,$J,358.3,13768,2)
- ;;=^5138523
- ;;^UTILITY(U,$J,358.3,13769,0)
- ;;=H35.3220^^83^816^21
- ;;^UTILITY(U,$J,358.3,13769,1,0)
+ ;;^UTILITY(U,$J,358.3,13958,1,3,0)
+ ;;=3^Hallux rigidus, right foot
+ ;;^UTILITY(U,$J,358.3,13958,1,4,0)
+ ;;=4^M20.21
+ ;;^UTILITY(U,$J,358.3,13958,2)
+ ;;=^5011045
+ ;;^UTILITY(U,$J,358.3,13959,0)
+ ;;=M20.12^^55^666^9
+ ;;^UTILITY(U,$J,358.3,13959,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,13769,1,3,0)
- ;;=3^Exudative Age-Related Mclr Degn,Left Eye,Stage Unspec
- ;;^UTILITY(U,$J,358.3,13769,1,4,0)
- ;;=4^H35.3220
- ;;^UTILITY(U,$J,358.3,13769,2)
- ;;=^5138524
- ;;^UTILITY(U,$J,358.3,13770,0)
- ;;=H35.3221^^83^816^22
- ;;^UTILITY(U,$J,358.3,13770,1,0)
+ ;;^UTILITY(U,$J,358.3,13959,1,3,0)
+ ;;=3^Hallux valgus (acquired), left foot
+ ;;^UTILITY(U,$J,358.3,13959,1,4,0)
+ ;;=4^M20.12
+ ;;^UTILITY(U,$J,358.3,13959,2)
+ ;;=^5011043
+ ;;^UTILITY(U,$J,358.3,13960,0)
+ ;;=M20.11^^55^666^10
+ ;;^UTILITY(U,$J,358.3,13960,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,13770,1,3,0)
- ;;=3^Exudative Age-Related Mclr Degn,Left Eye,w/ Actv Chrdl Neovas
- ;;^UTILITY(U,$J,358.3,13770,1,4,0)
- ;;=4^H35.3221
- ;;^UTILITY(U,$J,358.3,13770,2)
- ;;=^5138525
- ;;^UTILITY(U,$J,358.3,13771,0)
- ;;=H35.3222^^83^816^23
- ;;^UTILITY(U,$J,358.3,13771,1,0)
+ ;;^UTILITY(U,$J,358.3,13960,1,3,0)
+ ;;=3^Hallux valgus (acquired), right foot
+ ;;^UTILITY(U,$J,358.3,13960,1,4,0)
+ ;;=4^M20.11
+ ;;^UTILITY(U,$J,358.3,13960,2)
+ ;;=^5011042
+ ;;^UTILITY(U,$J,358.3,13961,0)
+ ;;=M10.072^^55^666^11
+ ;;^UTILITY(U,$J,358.3,13961,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,13771,1,3,0)
- ;;=3^Exudative Age-Related Mclr Degn,Left Eye,w/ Inact Chrdl Neovas
- ;;^UTILITY(U,$J,358.3,13771,1,4,0)
- ;;=4^H35.3222
- ;;^UTILITY(U,$J,358.3,13771,2)
- ;;=^5138526
- ;;^UTILITY(U,$J,358.3,13772,0)
- ;;=H35.3223^^83^816^24
- ;;^UTILITY(U,$J,358.3,13772,1,0)
+ ;;^UTILITY(U,$J,358.3,13961,1,3,0)
+ ;;=3^Idiopathic gout, left ankle and foot
+ ;;^UTILITY(U,$J,358.3,13961,1,4,0)
+ ;;=4^M10.072
+ ;;^UTILITY(U,$J,358.3,13961,2)
+ ;;=^5010304
+ ;;^UTILITY(U,$J,358.3,13962,0)
+ ;;=M10.071^^55^666^12
+ ;;^UTILITY(U,$J,358.3,13962,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,13772,1,3,0)
- ;;=3^Exudative Age-Related Mclr Degn,Left Eye,w/ Inactive Scar
- ;;^UTILITY(U,$J,358.3,13772,1,4,0)
- ;;=4^H35.3223
- ;;^UTILITY(U,$J,358.3,13772,2)
- ;;=^5138527
- ;;^UTILITY(U,$J,358.3,13773,0)
- ;;=W10.9XXA^^83^817^22
- ;;^UTILITY(U,$J,358.3,13773,1,0)
+ ;;^UTILITY(U,$J,358.3,13962,1,3,0)
+ ;;=3^Idiopathic gout, right ankle and foot
+ ;;^UTILITY(U,$J,358.3,13962,1,4,0)
+ ;;=4^M10.071
+ ;;^UTILITY(U,$J,358.3,13962,2)
+ ;;=^5010303
+ ;;^UTILITY(U,$J,358.3,13963,0)
+ ;;=M77.42^^55^666^13
+ ;;^UTILITY(U,$J,358.3,13963,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,13773,1,3,0)
- ;;=3^Fall,Stairs/Steps,Init Encntr,Unspec
- ;;^UTILITY(U,$J,358.3,13773,1,4,0)
- ;;=4^W10.9XXA
- ;;^UTILITY(U,$J,358.3,13773,2)
- ;;=^5059592
- ;;^UTILITY(U,$J,358.3,13774,0)
- ;;=W10.0XXA^^83^817^19
- ;;^UTILITY(U,$J,358.3,13774,1,0)
+ ;;^UTILITY(U,$J,358.3,13963,1,3,0)
+ ;;=3^Metatarsalgia, left foot
+ ;;^UTILITY(U,$J,358.3,13963,1,4,0)
+ ;;=4^M77.42
+ ;;^UTILITY(U,$J,358.3,13963,2)
+ ;;=^5013314
+ ;;^UTILITY(U,$J,358.3,13964,0)
+ ;;=M77.41^^55^666^14
+ ;;^UTILITY(U,$J,358.3,13964,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,13774,1,3,0)
- ;;=3^Fall,Escalator,Init Encntr
- ;;^UTILITY(U,$J,358.3,13774,1,4,0)
- ;;=4^W10.0XXA
- ;;^UTILITY(U,$J,358.3,13774,2)
- ;;=^5059580
- ;;^UTILITY(U,$J,358.3,13775,0)
- ;;=W10.2XXA^^83^817^20
- ;;^UTILITY(U,$J,358.3,13775,1,0)
+ ;;^UTILITY(U,$J,358.3,13964,1,3,0)
+ ;;=3^Metatarsalgia, right foot
+ ;;^UTILITY(U,$J,358.3,13964,1,4,0)
+ ;;=4^M77.41
+ ;;^UTILITY(U,$J,358.3,13964,2)
+ ;;=^5013313
+ ;;^UTILITY(U,$J,358.3,13965,0)
+ ;;=M77.52^^55^666^5
+ ;;^UTILITY(U,$J,358.3,13965,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,13775,1,3,0)
- ;;=3^Fall,Incline,Init Encntr
- ;;^UTILITY(U,$J,358.3,13775,1,4,0)
- ;;=4^W10.2XXA
- ;;^UTILITY(U,$J,358.3,13775,2)
- ;;=^5059586
- ;;^UTILITY(U,$J,358.3,13776,0)
- ;;=W10.1XXA^^83^817^21
- ;;^UTILITY(U,$J,358.3,13776,1,0)
+ ;;^UTILITY(U,$J,358.3,13965,1,3,0)
+ ;;=3^Enthesopathy of left foot NEC
+ ;;^UTILITY(U,$J,358.3,13965,1,4,0)
+ ;;=4^M77.52
+ ;;^UTILITY(U,$J,358.3,13965,2)
+ ;;=^5013317
+ ;;^UTILITY(U,$J,358.3,13966,0)
+ ;;=M77.51^^55^666^6
+ ;;^UTILITY(U,$J,358.3,13966,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,13776,1,3,0)
- ;;=3^Fall,Sidewalk/Curb,Init Encntr
- ;;^UTILITY(U,$J,358.3,13776,1,4,0)
- ;;=4^W10.1XXA
- ;;^UTILITY(U,$J,358.3,13776,2)
- ;;=^5059583
- ;;^UTILITY(U,$J,358.3,13777,0)
- ;;=W06.XXXA^^83^817^7
- ;;^UTILITY(U,$J,358.3,13777,1,0)
+ ;;^UTILITY(U,$J,358.3,13966,1,3,0)
+ ;;=3^Enthesopathy of right foot NEC
+ ;;^UTILITY(U,$J,358.3,13966,1,4,0)
+ ;;=4^M77.51
+ ;;^UTILITY(U,$J,358.3,13966,2)
+ ;;=^5013316
+ ;;^UTILITY(U,$J,358.3,13967,0)
+ ;;=M65.872^^55^666^26
+ ;;^UTILITY(U,$J,358.3,13967,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,13777,1,3,0)
- ;;=3^Fall from Bed,Init Encntr
- ;;^UTILITY(U,$J,358.3,13777,1,4,0)
- ;;=4^W06.XXXA
- ;;^UTILITY(U,$J,358.3,13777,2)
- ;;=^5059559
- ;;^UTILITY(U,$J,358.3,13778,0)
- ;;=W07.XXXA^^83^817^8
- ;;^UTILITY(U,$J,358.3,13778,1,0)
+ ;;^UTILITY(U,$J,358.3,13967,1,3,0)
+ ;;=3^Synovitis and tenosynovitis, left ankle and foot NEC
+ ;;^UTILITY(U,$J,358.3,13967,1,4,0)
+ ;;=4^M65.872
+ ;;^UTILITY(U,$J,358.3,13967,2)
+ ;;=^5012813
+ ;;^UTILITY(U,$J,358.3,13968,0)
+ ;;=M65.871^^55^666^27
+ ;;^UTILITY(U,$J,358.3,13968,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,13778,1,3,0)
- ;;=3^Fall from Chair,Init Encntr
- ;;^UTILITY(U,$J,358.3,13778,1,4,0)
- ;;=4^W07.XXXA
- ;;^UTILITY(U,$J,358.3,13778,2)
- ;;=^5059562
- ;;^UTILITY(U,$J,358.3,13779,0)
- ;;=W05.2XXA^^83^817^11
- ;;^UTILITY(U,$J,358.3,13779,1,0)
+ ;;^UTILITY(U,$J,358.3,13968,1,3,0)
+ ;;=3^Synovitis and tenosynovitis, right ankle and foot NEC
+ ;;^UTILITY(U,$J,358.3,13968,1,4,0)
+ ;;=4^M65.871
+ ;;^UTILITY(U,$J,358.3,13968,2)
+ ;;=^5012812
+ ;;^UTILITY(U,$J,358.3,13969,0)
+ ;;=M79.672^^55^666^15
+ ;;^UTILITY(U,$J,358.3,13969,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,13779,1,3,0)
- ;;=3^Fall from Non-Moving Motorized Scooter,Init Encntr
+ ;;^UTILITY(U,$J,358.3,13969,1,3,0)
+ ;;=3^Pain in left foot
+ ;;^UTILITY(U,$J,358.3,13969,1,4,0)
+ ;;=4^M79.672
+ ;;^UTILITY(U,$J,358.3,13969,2)
+ ;;=^5013351
+ ;;^UTILITY(U,$J,358.3,13970,0)
+ ;;=M79.671^^55^666^16

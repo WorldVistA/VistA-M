@@ -1,11 +1,13 @@
-XQALSUR1 ;ISC-SF.SEA/JLI - SURROGATES FOR ALERTS ; May 12, 2020@15:45
- ;;8.0;KERNEL;**366,443,602,730**;Jul 10, 1995;Build 1
+XQALSUR1 ;ISC-SF.SEA/JLI - SURROGATES FOR ALERTS ; Jul 13, 2021@11:01
+ ;;8.0;KERNEL;**366,443,602,730,754**;Jul 10, 1995;Build 1
  ;Per VHA Directive 2004-038, this routine should not be modified
  Q
 RETURN(XQAUSER) ; P366 - return alerts to the user
  N XQAI,X0,XQASTRT,XQASURO,XQAEND
  ; identify periods in the surrogate multiple that haven't been returned
- F XQAI=0:0 S XQAI=$O(^XTV(8992,XQAUSER,2,"AC",1,XQAI)) Q:XQAI'>0  S X0=^XTV(8992,XQAUSER,2,XQAI,0) I $P(X0,U,4)=1 D
+ F XQAI=0:0 S XQAI=$O(^XTV(8992,XQAUSER,2,"AC",1,XQAI)) Q:XQAI'>0  D
+ . I '$D(^XTV(8992,XQAUSER,2,XQAI,0)) K ^XTV(8992,XQAUSER,2,"AC",1,XQAI) Q  ;p754 somebody removed surr by gbl kill, cleanup
+ . S X0=$G(^XTV(8992,XQAUSER,2,XQAI,0)) Q:$P(X0,U,4)'=1  ; P754
  . S XQASTRT=$P(X0,U) S XQAEND=$P(X0,U,3)
  . ; and clear the flag indicating we need to restore these alerts
  . N XQAFDA S XQAFDA(8992.02,XQAI_","_XQAUSER_",",.04)="@" D FILE^DIE("","XQAFDA")
@@ -58,7 +60,7 @@ SUROLIST(XQAUSER,XQALIST) ; returns for XQAUSER a list of current and/or future 
  S XQALCNT=$$CURRSURO^XQALSURO(XQAUSER)
  S XQANOW=$$NOW^XLFDT(),XQALCNT=0
  S XQADATE="" F  S XQADATE=$O(^XTV(8992,XQAUSER,2,"B",XQADATE)) Q:XQADATE'>0  S XQAIEN="" F  S XQAIEN=$O(^XTV(8992,XQAUSER,2,"B",XQADATE,XQAIEN)) Q:XQAIEN'>0  D
- . S XQA0=^XTV(8992,XQAUSER,2,XQAIEN,0),XQASTART=$P(XQA0,U),XQASURO=$P(XQA0,U,2),XQALEND=$P(XQA0,U,3) I XQALEND>0,XQALEND'>XQANOW Q
+ . S XQA0=$G(^XTV(8992,XQAUSER,2,XQAIEN,0)) Q:XQA0=""  S XQASTART=$P(XQA0,U),XQASURO=$P(XQA0,U,2),XQALEND=$P(XQA0,U,3) I XQALEND>0,XQALEND'>XQANOW Q
  . S XQALCNT=XQALCNT+1,XQAVALU=$$GET1^DIQ(200,XQASURO_",",.01),XQAL(XQALCNT)=XQASURO_U_XQAVALU_U_XQASTART_U_XQALEND
  . Q
  ; now rearrange by earliest to last
@@ -71,18 +73,55 @@ SUROLIST(XQAUSER,XQALIST) ; returns for XQAUSER a list of current and/or future 
  Q
  ;
 DCYCLIC(XQALSURO,XQAUSER,XQALSTRT,XQALEND) ; code added to prevent cyclical surrogates - use dates for surrogacy
- N XQALNEXT,XQALIST,I,XQALAST
+ Q $$DCYCLIC2(XQALSURO,XQAUSER,XQALSTRT,XQALEND)
+ ; p754 replaced with DCYCLIC2
+ ;N XQALNEXT,XQALIST,I,XQALAST
+ ;I XQALSURO=XQAUSER Q "This forms a circle which leads back to this user during this period - can't do it!"
+ ;S XQALNEXT=$$CURRSURO^XQALSURO(XQALSURO,XQALSTRT,XQALEND) I XQALNEXT>0 D
+ ;. F I=1:1 Q:$P(XQALNEXT,U,I)=""  S XQALAST=$$DCYCLIC($P(XQALNEXT,U,I),XQAUSER,XQALSTRT,XQALEND) I XQALAST'>0 S XQALSURO=XQALAST Q
+ ;. Q
+ ;Q XQALSURO
+ ;
+DCYCLIC2(XQALSURO,XQAUSER,XQALSTRT,XQALEND) ; p754 uses overlapped dates for surrogacy
+ ; XQALSURO is intended surrogate for XQAUSER but cannot be the same
+ ; returns last actual surrogate (good) or the error string (cyclic)
+ N I,END,GOODSURO,OVERLAP,START,SURO,SUROLIST
  I XQALSURO=XQAUSER Q "This forms a circle which leads back to this user during this period - can't do it!"
- S XQALNEXT=$$CURRSURO^XQALSURO(XQALSURO,XQALSTRT,XQALEND) I XQALNEXT>0 D
- . F I=1:1 Q:$P(XQALNEXT,U,I)=""  S XQALAST=$$DCYCLIC($P(XQALNEXT,U,I),XQAUSER,XQALSTRT,XQALEND) I XQALAST'>0 S XQALSURO=XQALAST Q
- . Q
- Q XQALSURO
+ S GOODSURO=XQALSURO
+ ; but recursively check the same for surrogates of XQALSURO for
+ ; SUROLIST(I)=suro^name^start^end
+ D SUROLIST^XQALSURO(XQALSURO,.SUROLIST) I SUROLIST>0 D
+ . F I=1:1:SUROLIST D  Q:'GOODSURO  ; quit when cyclic
+ . . S SURO=$P(SUROLIST(I),U),START=$P(SUROLIST(I),U,3),END=$P(SUROLIST(I),U,4)
+ . . S OVERLAP=$$OVERLAP(XQALSTRT,XQALEND,START,END) I OVERLAP>0 D
+ . . . S START=$P(OVERLAP,U),END=$P(OVERLAP,U,2)
+ . . . S GOODSURO=$$DCYCLIC2(SURO,XQAUSER,START,END)
+ . . . I 'GOODSURO D
+ . . . . S SURO=SUROLIST(I)
+ . . . . S GOODSURO="Can't do it. Cyclic with existing surrogacy: "_$C(10,13)
+ . . . . S GOODSURO=GOODSURO_$$GET1^DIQ(200,XQALSURO_",",.01)_" has surrogate: "_$P(SURO,U,2)_$C(10,13)
+ . . . . S GOODSURO=GOODSURO_"From "_$$FMTE^XLFDT($P(SURO,U,3),"2")_" To "_$$FMTE^XLFDT($P(SURO,U,4),"2")
+ Q GOODSURO ; int or string
+ ;
+OVERLAP(STR1,END1,STR2,END2) ; returns time intersection (overlap) p754
+ ; STR1---------END1
+ ;      STR2----------END2
+ ;       STR    END
+ N END,NOVERLAP,NOW,STR
+ S NOVERLAP="^",STR1=$G(STR1),STR2=$G(STR2),END1=$G(END1),END2=$G(END2)
+ S NOW=$$NOW^XLFDT
+ I $G(STR1)'>0 S STR1=NOW
+ I $G(STR2)'>0 S STR2=NOW
+ I $G(END1)>0,END1<=STR2 Q NOVERLAP
+ I $G(END2)>0,END2<=STR1 Q NOVERLAP
+ S STR=$S(STR1>STR2:STR1,1:STR2),END=$S(END1>0&(END1<END2):END1,1:END2)
+ Q STR_"^"_END
  ;
 DATESURO(XQAUSER,XQALSTRT,XQALEND) ; returns surrogate(s) for XQAUSER in date range XQALSTRT to XQALEND, may be multiple values ^-separated
  N XQALY,XQA0,XQALIEN,XQALS
  S XQALY="" I XQALEND'>0 S XQALEND=4000101
  F XQALS=0:0 S XQALS=$O(^XTV(8992,XQAUSER,2,"B",XQALS)) Q:XQALS'>0  Q:XQALS'<XQALEND  D
- . F XQALIEN=0:0 S XQALIEN=$O(^XTV(8992,XQAUSER,2,"B",XQALS,XQALIEN)) Q:XQALIEN'>0  S XQA0=^XTV(8992,XQAUSER,2,XQALIEN,0) Q:$P(XQA0,U,3)'>XQALSTRT  S XQALY=XQALY_$S(XQALY="":"",1:U)_$P(XQA0,U,2)
+ . F XQALIEN=0:0 S XQALIEN=$O(^XTV(8992,XQAUSER,2,"B",XQALS,XQALIEN)) Q:XQALIEN'>0  S XQA0=$G(^XTV(8992,XQAUSER,2,XQALIEN,0)) Q:$P(XQA0,U,3)'>XQALSTRT  S XQALY=XQALY_$S(XQALY="":"",1:U)_$P(XQA0,U,2)
  . Q
  Q XQALY
  ;
@@ -95,7 +134,8 @@ SURRO11 ;
  S XQALSTRT=+$$STRTDLG() I XQALSTRT<0 Q
  S XQALEND=+$$ENDDLG() I XQALEND<0 Q
  ; p602 check again for cyclical surrogates
- I $$DCYCLIC(XQALSURO,XQAUSER,XQALSTRT,XQALEND)'>0 W $C(7),!,$$DCYCLIC(XQALSURO,XQAUSER,XQALSTRT,XQALEND),! G SURRO11
+ S:XQALSTRT'>0 XQALSTRT=$$NOW^XLFDT ; p754  
+ I $$DCYCLIC(XQALSURO,XQAUSER,XQALSTRT,XQALEND)'>0 W $C(7),!!,$$DCYCLIC(XQALSURO,XQAUSER,XQALSTRT,XQALEND),! G SURRO11
  D SETSURO^XQALSURO(XQAUSER,XQALSURO,XQALSTRT,XQALEND)
  D DISPSUR^XQALSUR2(XQAUSER,.XQASLIST) ; p730
  G SURRO11 ;
@@ -110,7 +150,7 @@ REMVSURO(XQAUSER,XQALSURO,XQALSTRT) ; SR - ends the currently active surrogate r
  S XQALSUR1=+$P($G(^XTV(8992,XQAUSER,0)),U,2) S:XQALSURO'>0 XQALSURO=XQALSUR1
  S XQALSTR1=$P($G(^XTV(8992,XQAUSER,0)),U,3) S:XQALSTRT'>0 XQALSTRT=XQALSTR1
  S XQALEND=$P($G(^XTV(8992,XQAUSER,0)),U,4)
- S XQALXREF=0 I XQALSTRT>0 F  S XQALXREF=$O(^XTV(8992,XQAUSER,2,"B",XQALSTRT,XQALXREF)) Q:XQALXREF'>0  I $P(^XTV(8992,XQAUSER,2,XQALXREF,0),U,2)=XQALSURO D
+ S XQALXREF=0 I XQALSTRT>0 F  S XQALXREF=$O(^XTV(8992,XQAUSER,2,"B",XQALSTRT,XQALXREF)) Q:XQALXREF'>0  I $P($G(^XTV(8992,XQAUSER,2,XQALXREF,0)),U,2)=XQALSURO D
  . S XQALEND=$P(^XTV(8992,XQAUSER,2,XQALXREF,0),U,3) D DELETENT(XQAUSER,XQALXREF,XQALSURO,XQALSTRT,XQALSUR1,XQALSTR1,XQALEND)
  . Q
  S XQALSURO=$$CURRSURO^XQALSURO(XQAUSER) ; make sure current surrogate is updated if necessary.
@@ -151,24 +191,24 @@ NEWDLG() ; new surrogate dialog
  Q +Y
  ;
 STRTDLG() ; new surrogate start date/time dialog
- N DIR
- S DIR(0)="DO^NOW::AEFRX",DIR("A")="Enter Date/Time SURROGATE is to start" ; BRX-1000-10427
+ N DIR ; p754 shortened prompt
+ S DIR(0)="DAO^NOW::AEFRX",DIR("A")="Enter Date/Time SURROGATE is to start: " ; BRX-1000-10427
  S DIR("A",1)="",DIR("A",2)=""
  S DIR("A",3)=" - If no date/time is entered, new alerts will start going to"
  S DIR("A",4)="   the SURROGATE immediately."
  S DIR("A",5)=" - A past date/time (earlier than NOW) is not permitted."
- S DIR("A",6)=" - If a date is entered, then a time is also required."
+ S DIR("A",6)=" - A time is also required. Ex: T+1@1pm, 5/15@12am, 12/12/2021@12am"
  S DIR("A",7)=""
  Q +$$ASKDIR(.DIR)
  ;
 ENDDLG() ; new surrogate end date/time dialog
- N DIR
- S DIR(0)="DO^NOW::AEFRX",DIR("A")="Enter Date/Time SURROGATE is to end" ; BRX-1000-10427
+ N DIR ; p754 shortened prompt
+ S DIR(0)="DAO^NOW::AEFRX",DIR("A")="Enter Date/Time SURROGATE is to end: " ; BRX-1000-10427
  S DIR("A",1)="",DIR("A",2)=""
  S DIR("A",3)=" - If no date/time is entered, YOU must remove the SURROGATE"
  S DIR("A",4)="   to terminate the surrogacy."
  S DIR("A",5)=" - A past date/time (earlier than NOW) is not permitted."
- S DIR("A",6)=" - If a date is entered, then a time is also required."
+ S DIR("A",6)=" - A time is also required. Ex: T+1@1pm, 5/15@12am, 12/12/2021@12am"
  S DIR("A",7)=""
  Q +$$ASKDIR(.DIR)
  ;

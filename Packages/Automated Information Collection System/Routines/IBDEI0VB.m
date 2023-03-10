@@ -1,130 +1,118 @@
-IBDEI0VB ; ; 04-FEB-2020
- ;;3.0;IB ENCOUNTER FORM IMP/EXP;;FEB 04, 2020
+IBDEI0VB ; ; 01-FEB-2022
+ ;;3.0;IB ENCOUNTER FORM IMP/EXP;;FEB 01, 2022
  Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,999) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
- ;;^UTILITY(U,$J,358.3,13940,2)
- ;;=^5000560
- ;;^UTILITY(U,$J,358.3,13941,0)
- ;;=B35.9^^83^819^6
- ;;^UTILITY(U,$J,358.3,13941,1,0)
+ ;;^UTILITY(U,$J,358.3,14125,1,4,0)
+ ;;=4^S83.134A
+ ;;^UTILITY(U,$J,358.3,14125,2)
+ ;;=^5042992
+ ;;^UTILITY(U,$J,358.3,14126,0)
+ ;;=S83.134D^^55^670^50
+ ;;^UTILITY(U,$J,358.3,14126,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,13941,1,3,0)
- ;;=3^Infection,Dermatophytosis,Unspec
- ;;^UTILITY(U,$J,358.3,13941,1,4,0)
- ;;=4^B35.9
- ;;^UTILITY(U,$J,358.3,13941,2)
- ;;=^5000607
- ;;^UTILITY(U,$J,358.3,13942,0)
- ;;=A49.2^^83^819^8
- ;;^UTILITY(U,$J,358.3,13942,1,0)
+ ;;^UTILITY(U,$J,358.3,14126,1,3,0)
+ ;;=3^Dislocation Med Proximal End of Tibia,Right Knee,Subs Encntr
+ ;;^UTILITY(U,$J,358.3,14126,1,4,0)
+ ;;=4^S83.134D
+ ;;^UTILITY(U,$J,358.3,14126,2)
+ ;;=^5042993
+ ;;^UTILITY(U,$J,358.3,14127,0)
+ ;;=S83.135A^^55^670^47
+ ;;^UTILITY(U,$J,358.3,14127,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,13942,1,3,0)
- ;;=3^Infection,Hemophilus Influenzae
- ;;^UTILITY(U,$J,358.3,13942,1,4,0)
- ;;=4^A49.2
- ;;^UTILITY(U,$J,358.3,13942,2)
- ;;=^5000238
- ;;^UTILITY(U,$J,358.3,13943,0)
- ;;=B00.9^^83^819^9
- ;;^UTILITY(U,$J,358.3,13943,1,0)
+ ;;^UTILITY(U,$J,358.3,14127,1,3,0)
+ ;;=3^Dislocation Med Proximal End of Tibia,Left Knee,Init Encntr
+ ;;^UTILITY(U,$J,358.3,14127,1,4,0)
+ ;;=4^S83.135A
+ ;;^UTILITY(U,$J,358.3,14127,2)
+ ;;=^5042995
+ ;;^UTILITY(U,$J,358.3,14128,0)
+ ;;=S83.135D^^55^670^48
+ ;;^UTILITY(U,$J,358.3,14128,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,13943,1,3,0)
- ;;=3^Infection,Herpesviral,Unspec
- ;;^UTILITY(U,$J,358.3,13943,1,4,0)
- ;;=4^B00.9
- ;;^UTILITY(U,$J,358.3,13943,2)
- ;;=^5000480
- ;;^UTILITY(U,$J,358.3,13944,0)
- ;;=B20.^^83^819^7
- ;;^UTILITY(U,$J,358.3,13944,1,0)
+ ;;^UTILITY(U,$J,358.3,14128,1,3,0)
+ ;;=3^Dislocation Med Proximal End of Tibia,Left Knee,Subs Encntr
+ ;;^UTILITY(U,$J,358.3,14128,1,4,0)
+ ;;=4^S83.135D
+ ;;^UTILITY(U,$J,358.3,14128,2)
+ ;;=^5042996
+ ;;^UTILITY(U,$J,358.3,14129,0)
+ ;;=S83.144A^^55^670^43
+ ;;^UTILITY(U,$J,358.3,14129,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,13944,1,3,0)
- ;;=3^Infection,HIV
- ;;^UTILITY(U,$J,358.3,13944,1,4,0)
- ;;=4^B20.
- ;;^UTILITY(U,$J,358.3,13944,2)
- ;;=^5000555
- ;;^UTILITY(U,$J,358.3,13945,0)
- ;;=B82.9^^83^819^10
- ;;^UTILITY(U,$J,358.3,13945,1,0)
+ ;;^UTILITY(U,$J,358.3,14129,1,3,0)
+ ;;=3^Dislocation Lat Proximal End of Tibia,Right Knee,Init Encntr
+ ;;^UTILITY(U,$J,358.3,14129,1,4,0)
+ ;;=4^S83.144A
+ ;;^UTILITY(U,$J,358.3,14129,2)
+ ;;=^5043010
+ ;;^UTILITY(U,$J,358.3,14130,0)
+ ;;=S83.144D^^55^670^44
+ ;;^UTILITY(U,$J,358.3,14130,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,13945,1,3,0)
- ;;=3^Infection,Intestinal Parasitism,Unspec
- ;;^UTILITY(U,$J,358.3,13945,1,4,0)
- ;;=4^B82.9
- ;;^UTILITY(U,$J,358.3,13945,2)
- ;;=^5000798
- ;;^UTILITY(U,$J,358.3,13946,0)
- ;;=A49.02^^83^819^11
- ;;^UTILITY(U,$J,358.3,13946,1,0)
+ ;;^UTILITY(U,$J,358.3,14130,1,3,0)
+ ;;=3^Dislocation Lat Proximal End of Tibia,Right Knee,Subs Encntr
+ ;;^UTILITY(U,$J,358.3,14130,1,4,0)
+ ;;=4^S83.144D
+ ;;^UTILITY(U,$J,358.3,14130,2)
+ ;;=^5043011
+ ;;^UTILITY(U,$J,358.3,14131,0)
+ ;;=S83.145A^^55^670^41
+ ;;^UTILITY(U,$J,358.3,14131,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,13946,1,3,0)
- ;;=3^Infection,MRSA,Unspec Site
- ;;^UTILITY(U,$J,358.3,13946,1,4,0)
- ;;=4^A49.02
- ;;^UTILITY(U,$J,358.3,13946,2)
- ;;=^5000236
- ;;^UTILITY(U,$J,358.3,13947,0)
- ;;=A49.3^^83^819^12
- ;;^UTILITY(U,$J,358.3,13947,1,0)
+ ;;^UTILITY(U,$J,358.3,14131,1,3,0)
+ ;;=3^Dislocation Lat Proximal End of Tibia,Left Knee,Init Encntr
+ ;;^UTILITY(U,$J,358.3,14131,1,4,0)
+ ;;=4^S83.145A
+ ;;^UTILITY(U,$J,358.3,14131,2)
+ ;;=^5043013
+ ;;^UTILITY(U,$J,358.3,14132,0)
+ ;;=S83.145D^^55^670^42
+ ;;^UTILITY(U,$J,358.3,14132,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,13947,1,3,0)
- ;;=3^Infection,Mycoplasma,Unspec Site
- ;;^UTILITY(U,$J,358.3,13947,1,4,0)
- ;;=4^A49.3
- ;;^UTILITY(U,$J,358.3,13947,2)
- ;;=^5000239
- ;;^UTILITY(U,$J,358.3,13948,0)
- ;;=B49.^^83^819^13
- ;;^UTILITY(U,$J,358.3,13948,1,0)
+ ;;^UTILITY(U,$J,358.3,14132,1,3,0)
+ ;;=3^Dislocation Lat Proximal End of Tibia,Left Knee,Subs Encntr
+ ;;^UTILITY(U,$J,358.3,14132,1,4,0)
+ ;;=4^S83.145D
+ ;;^UTILITY(U,$J,358.3,14132,2)
+ ;;=^5043014
+ ;;^UTILITY(U,$J,358.3,14133,0)
+ ;;=M81.0^^55^671^1
+ ;;^UTILITY(U,$J,358.3,14133,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,13948,1,3,0)
- ;;=3^Infection,Mycoses,Unspec
- ;;^UTILITY(U,$J,358.3,13948,1,4,0)
- ;;=4^B49.
- ;;^UTILITY(U,$J,358.3,13948,2)
- ;;=^5000690
- ;;^UTILITY(U,$J,358.3,13949,0)
- ;;=B89.^^83^819^14
- ;;^UTILITY(U,$J,358.3,13949,1,0)
+ ;;^UTILITY(U,$J,358.3,14133,1,3,0)
+ ;;=3^Age-related osteoporosis w/o current pathological fracture
+ ;;^UTILITY(U,$J,358.3,14133,1,4,0)
+ ;;=4^M81.0
+ ;;^UTILITY(U,$J,358.3,14133,2)
+ ;;=^5013555
+ ;;^UTILITY(U,$J,358.3,14134,0)
+ ;;=L40.50^^55^671^3
+ ;;^UTILITY(U,$J,358.3,14134,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,13949,1,3,0)
- ;;=3^Infection,Parasitic Disease,Unspec
- ;;^UTILITY(U,$J,358.3,13949,1,4,0)
- ;;=4^B89.
- ;;^UTILITY(U,$J,358.3,13949,2)
- ;;=^5000822
- ;;^UTILITY(U,$J,358.3,13950,0)
- ;;=B64.^^83^819^15
- ;;^UTILITY(U,$J,358.3,13950,1,0)
+ ;;^UTILITY(U,$J,358.3,14134,1,3,0)
+ ;;=3^Arthropathic psoriasis, unspecified
+ ;;^UTILITY(U,$J,358.3,14134,1,4,0)
+ ;;=4^L40.50
+ ;;^UTILITY(U,$J,358.3,14134,2)
+ ;;=^5009165
+ ;;^UTILITY(U,$J,358.3,14135,0)
+ ;;=G90.522^^55^671^14
+ ;;^UTILITY(U,$J,358.3,14135,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,13950,1,3,0)
- ;;=3^Infection,Protozoal Disease,Unspec
- ;;^UTILITY(U,$J,358.3,13950,1,4,0)
- ;;=4^B64.
- ;;^UTILITY(U,$J,358.3,13950,2)
- ;;=^5000742
- ;;^UTILITY(U,$J,358.3,13951,0)
- ;;=A77.9^^83^819^17
- ;;^UTILITY(U,$J,358.3,13951,1,0)
+ ;;^UTILITY(U,$J,358.3,14135,1,3,0)
+ ;;=3^Complex regional pain syndrome I of left lower limb
+ ;;^UTILITY(U,$J,358.3,14135,1,4,0)
+ ;;=4^G90.522
+ ;;^UTILITY(U,$J,358.3,14135,2)
+ ;;=^5133371
+ ;;^UTILITY(U,$J,358.3,14136,0)
+ ;;=G90.512^^55^671^15
+ ;;^UTILITY(U,$J,358.3,14136,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,13951,1,3,0)
- ;;=3^Infection,Spotted Fever,Unspec
- ;;^UTILITY(U,$J,358.3,13951,1,4,0)
- ;;=4^A77.9
- ;;^UTILITY(U,$J,358.3,13951,2)
- ;;=^5000399
- ;;^UTILITY(U,$J,358.3,13952,0)
- ;;=A64.^^83^819^16
- ;;^UTILITY(U,$J,358.3,13952,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,13952,1,3,0)
- ;;=3^Infection,Sexually Transmitted Disease,Unspec
- ;;^UTILITY(U,$J,358.3,13952,1,4,0)
- ;;=4^A64.
- ;;^UTILITY(U,$J,358.3,13952,2)
- ;;=^5000362
- ;;^UTILITY(U,$J,358.3,13953,0)
- ;;=A49.1^^83^819^18
- ;;^UTILITY(U,$J,358.3,13953,1,0)
- ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,14136,1,3,0)
+ ;;=3^Complex regional pain syndrome I of left upper limb
+ ;;^UTILITY(U,$J,358.3,14136,1,4,0)
+ ;;=4^G90.512
+ ;;^UTILITY(U,$J,358.3,14136,2)
+ ;;=^5004165

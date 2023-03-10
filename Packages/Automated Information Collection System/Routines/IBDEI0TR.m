@@ -1,128 +1,130 @@
-IBDEI0TR ; ; 04-FEB-2020
- ;;3.0;IB ENCOUNTER FORM IMP/EXP;;FEB 04, 2020
+IBDEI0TR ; ; 01-FEB-2022
+ ;;3.0;IB ENCOUNTER FORM IMP/EXP;;FEB 01, 2022
  Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,999) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
- ;;^UTILITY(U,$J,358.3,13246,1,0)
+ ;;^UTILITY(U,$J,358.3,13389,1,3,0)
+ ;;=3^Retinal Break,Unspec,OD
+ ;;^UTILITY(U,$J,358.3,13389,1,4,0)
+ ;;=4^H33.301
+ ;;^UTILITY(U,$J,358.3,13389,2)
+ ;;=^5005532
+ ;;^UTILITY(U,$J,358.3,13390,0)
+ ;;=H33.302^^51^634^66
+ ;;^UTILITY(U,$J,358.3,13390,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,13246,1,3,0)
- ;;=3^Hemorrhoids,Perianal Venous Thrombosis
- ;;^UTILITY(U,$J,358.3,13246,1,4,0)
- ;;=4^K64.5
- ;;^UTILITY(U,$J,358.3,13246,2)
- ;;=^5008773
- ;;^UTILITY(U,$J,358.3,13247,0)
- ;;=K70.9^^83^808^46
- ;;^UTILITY(U,$J,358.3,13247,1,0)
+ ;;^UTILITY(U,$J,358.3,13390,1,3,0)
+ ;;=3^Retinal Break,Unspec,OS
+ ;;^UTILITY(U,$J,358.3,13390,1,4,0)
+ ;;=4^H33.302
+ ;;^UTILITY(U,$J,358.3,13390,2)
+ ;;=^5005533
+ ;;^UTILITY(U,$J,358.3,13391,0)
+ ;;=H35.50^^51^634^82
+ ;;^UTILITY(U,$J,358.3,13391,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,13247,1,3,0)
- ;;=3^Hepatic Liver Disease,Alcoholic,Unspec
- ;;^UTILITY(U,$J,358.3,13247,1,4,0)
- ;;=4^K70.9
- ;;^UTILITY(U,$J,358.3,13247,2)
- ;;=^5008792
- ;;^UTILITY(U,$J,358.3,13248,0)
- ;;=K75.9^^83^808^47
- ;;^UTILITY(U,$J,358.3,13248,1,0)
+ ;;^UTILITY(U,$J,358.3,13391,1,3,0)
+ ;;=3^Hereditary Retinal Dystrophy,Unspec
+ ;;^UTILITY(U,$J,358.3,13391,1,4,0)
+ ;;=4^H35.50
+ ;;^UTILITY(U,$J,358.3,13391,2)
+ ;;=^5005695
+ ;;^UTILITY(U,$J,358.3,13392,0)
+ ;;=H35.40^^51^634^80
+ ;;^UTILITY(U,$J,358.3,13392,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,13248,1,3,0)
- ;;=3^Hepatic Liver Disease,Inflammatory,Unspec
- ;;^UTILITY(U,$J,358.3,13248,1,4,0)
- ;;=4^K75.9
- ;;^UTILITY(U,$J,358.3,13248,2)
- ;;=^5008830
- ;;^UTILITY(U,$J,358.3,13249,0)
- ;;=K71.9^^83^808^48
- ;;^UTILITY(U,$J,358.3,13249,1,0)
+ ;;^UTILITY(U,$J,358.3,13392,1,3,0)
+ ;;=3^Peripheral Retinal Degeneration,Unspec
+ ;;^UTILITY(U,$J,358.3,13392,1,4,0)
+ ;;=4^H35.40
+ ;;^UTILITY(U,$J,358.3,13392,2)
+ ;;=^5005670
+ ;;^UTILITY(U,$J,358.3,13393,0)
+ ;;=H35.9^^51^634^78
+ ;;^UTILITY(U,$J,358.3,13393,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,13249,1,3,0)
- ;;=3^Hepatic Liver Disease,Toxic,Unspec
- ;;^UTILITY(U,$J,358.3,13249,1,4,0)
- ;;=4^K71.9
- ;;^UTILITY(U,$J,358.3,13249,2)
- ;;=^5008804
- ;;^UTILITY(U,$J,358.3,13250,0)
- ;;=K76.9^^83^808^49
- ;;^UTILITY(U,$J,358.3,13250,1,0)
+ ;;^UTILITY(U,$J,358.3,13393,1,3,0)
+ ;;=3^Retinal Disorder,Unspec
+ ;;^UTILITY(U,$J,358.3,13393,1,4,0)
+ ;;=4^H35.9
+ ;;^UTILITY(U,$J,358.3,13393,2)
+ ;;=^5005718
+ ;;^UTILITY(U,$J,358.3,13394,0)
+ ;;=H35.70^^51^634^79
+ ;;^UTILITY(U,$J,358.3,13394,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,13250,1,3,0)
- ;;=3^Hepatic Liver Disease,Unspec
- ;;^UTILITY(U,$J,358.3,13250,1,4,0)
- ;;=4^K76.9
- ;;^UTILITY(U,$J,358.3,13250,2)
- ;;=^5008836
- ;;^UTILITY(U,$J,358.3,13251,0)
- ;;=K74.60^^83^808^39
- ;;^UTILITY(U,$J,358.3,13251,1,0)
+ ;;^UTILITY(U,$J,358.3,13394,1,3,0)
+ ;;=3^Retinal Layer Separation,Unspec
+ ;;^UTILITY(U,$J,358.3,13394,1,4,0)
+ ;;=4^H35.70
+ ;;^UTILITY(U,$J,358.3,13394,2)
+ ;;=^5005702
+ ;;^UTILITY(U,$J,358.3,13395,0)
+ ;;=H35.51^^51^634^81
+ ;;^UTILITY(U,$J,358.3,13395,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,13251,1,3,0)
- ;;=3^Hepatic Cirrhosis,Unspec
- ;;^UTILITY(U,$J,358.3,13251,1,4,0)
- ;;=4^K74.60
- ;;^UTILITY(U,$J,358.3,13251,2)
- ;;=^5008822
- ;;^UTILITY(U,$J,358.3,13252,0)
- ;;=K72.01^^83^808^40
- ;;^UTILITY(U,$J,358.3,13252,1,0)
+ ;;^UTILITY(U,$J,358.3,13395,1,3,0)
+ ;;=3^Vitreoretinal Dystrophy
+ ;;^UTILITY(U,$J,358.3,13395,1,4,0)
+ ;;=4^H35.51
+ ;;^UTILITY(U,$J,358.3,13395,2)
+ ;;=^5005696
+ ;;^UTILITY(U,$J,358.3,13396,0)
+ ;;=H43.23^^51^635^9
+ ;;^UTILITY(U,$J,358.3,13396,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,13252,1,3,0)
- ;;=3^Hepatic Failure,Acute/Subacute w/ Coma
- ;;^UTILITY(U,$J,358.3,13252,1,4,0)
- ;;=4^K72.01
- ;;^UTILITY(U,$J,358.3,13252,2)
- ;;=^5008806
- ;;^UTILITY(U,$J,358.3,13253,0)
- ;;=K72.00^^83^808^41
- ;;^UTILITY(U,$J,358.3,13253,1,0)
+ ;;^UTILITY(U,$J,358.3,13396,1,3,0)
+ ;;=3^Asteroid Hyalosis,OU
+ ;;^UTILITY(U,$J,358.3,13396,1,4,0)
+ ;;=4^H43.23
+ ;;^UTILITY(U,$J,358.3,13396,2)
+ ;;=^5005944
+ ;;^UTILITY(U,$J,358.3,13397,0)
+ ;;=H43.21^^51^635^7
+ ;;^UTILITY(U,$J,358.3,13397,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,13253,1,3,0)
- ;;=3^Hepatic Failure,Acute/Subacute w/o Coma
- ;;^UTILITY(U,$J,358.3,13253,1,4,0)
- ;;=4^K72.00
- ;;^UTILITY(U,$J,358.3,13253,2)
- ;;=^5008805
- ;;^UTILITY(U,$J,358.3,13254,0)
- ;;=K72.11^^83^808^42
- ;;^UTILITY(U,$J,358.3,13254,1,0)
+ ;;^UTILITY(U,$J,358.3,13397,1,3,0)
+ ;;=3^Asteroid Hyalosis,OD
+ ;;^UTILITY(U,$J,358.3,13397,1,4,0)
+ ;;=4^H43.21
+ ;;^UTILITY(U,$J,358.3,13397,2)
+ ;;=^5005942
+ ;;^UTILITY(U,$J,358.3,13398,0)
+ ;;=H43.22^^51^635^8
+ ;;^UTILITY(U,$J,358.3,13398,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,13254,1,3,0)
- ;;=3^Hepatic Failure,Chronic w/ Coma
- ;;^UTILITY(U,$J,358.3,13254,1,4,0)
- ;;=4^K72.11
- ;;^UTILITY(U,$J,358.3,13254,2)
- ;;=^5008808
- ;;^UTILITY(U,$J,358.3,13255,0)
- ;;=K72.10^^83^808^43
- ;;^UTILITY(U,$J,358.3,13255,1,0)
+ ;;^UTILITY(U,$J,358.3,13398,1,3,0)
+ ;;=3^Asteroid Hyalosis,OS
+ ;;^UTILITY(U,$J,358.3,13398,1,4,0)
+ ;;=4^H43.22
+ ;;^UTILITY(U,$J,358.3,13398,2)
+ ;;=^5005943
+ ;;^UTILITY(U,$J,358.3,13399,0)
+ ;;=H43.89^^51^635^22
+ ;;^UTILITY(U,$J,358.3,13399,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,13255,1,3,0)
- ;;=3^Hepatic Failure,Chronic w/o Coma
- ;;^UTILITY(U,$J,358.3,13255,1,4,0)
- ;;=4^K72.10
- ;;^UTILITY(U,$J,358.3,13255,2)
- ;;=^5008807
- ;;^UTILITY(U,$J,358.3,13256,0)
- ;;=K72.91^^83^808^44
- ;;^UTILITY(U,$J,358.3,13256,1,0)
+ ;;^UTILITY(U,$J,358.3,13399,1,3,0)
+ ;;=3^Vitreous Body Disorders,Other
+ ;;^UTILITY(U,$J,358.3,13399,1,4,0)
+ ;;=4^H43.89
+ ;;^UTILITY(U,$J,358.3,13399,2)
+ ;;=^5005961
+ ;;^UTILITY(U,$J,358.3,13400,0)
+ ;;=H43.393^^51^635^18
+ ;;^UTILITY(U,$J,358.3,13400,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,13256,1,3,0)
- ;;=3^Hepatic Failure,Unspec w/ Coma
- ;;^UTILITY(U,$J,358.3,13256,1,4,0)
- ;;=4^K72.91
- ;;^UTILITY(U,$J,358.3,13256,2)
- ;;=^5008810
- ;;^UTILITY(U,$J,358.3,13257,0)
- ;;=K72.90^^83^808^45
- ;;^UTILITY(U,$J,358.3,13257,1,0)
+ ;;^UTILITY(U,$J,358.3,13400,1,3,0)
+ ;;=3^Vitreous Opacities,Other,OU
+ ;;^UTILITY(U,$J,358.3,13400,1,4,0)
+ ;;=4^H43.393
+ ;;^UTILITY(U,$J,358.3,13400,2)
+ ;;=^5005951
+ ;;^UTILITY(U,$J,358.3,13401,0)
+ ;;=H43.391^^51^635^16
+ ;;^UTILITY(U,$J,358.3,13401,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,13257,1,3,0)
- ;;=3^Hepatic Failure,Unspec w/o Coma
- ;;^UTILITY(U,$J,358.3,13257,1,4,0)
- ;;=4^K72.90
- ;;^UTILITY(U,$J,358.3,13257,2)
- ;;=^5008809
- ;;^UTILITY(U,$J,358.3,13258,0)
- ;;=K73.9^^83^808^50
- ;;^UTILITY(U,$J,358.3,13258,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,13258,1,3,0)
- ;;=3^Hepatitis,Chronic,Unspec
+ ;;^UTILITY(U,$J,358.3,13401,1,3,0)
+ ;;=3^Vitreous Opacities,Other,OD
+ ;;^UTILITY(U,$J,358.3,13401,1,4,0)
+ ;;=4^H43.391
+ ;;^UTILITY(U,$J,358.3,13401,2)
+ ;;=^5005949

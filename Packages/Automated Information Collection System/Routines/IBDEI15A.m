@@ -1,132 +1,120 @@
-IBDEI15A ; ; 04-FEB-2020
- ;;3.0;IB ENCOUNTER FORM IMP/EXP;;FEB 04, 2020
+IBDEI15A ; ; 01-FEB-2022
+ ;;3.0;IB ENCOUNTER FORM IMP/EXP;;FEB 01, 2022
  Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,999) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
- ;;^UTILITY(U,$J,358.3,18408,1,4,0)
- ;;=4^F40.218
- ;;^UTILITY(U,$J,358.3,18408,2)
- ;;=^5003547
- ;;^UTILITY(U,$J,358.3,18409,0)
- ;;=F40.228^^91^936^11
- ;;^UTILITY(U,$J,358.3,18409,1,0)
+ ;;^UTILITY(U,$J,358.3,18588,1,4,0)
+ ;;=4^I25.768
+ ;;^UTILITY(U,$J,358.3,18588,2)
+ ;;=^5007137
+ ;;^UTILITY(U,$J,358.3,18589,0)
+ ;;=I25.769^^64^833^21
+ ;;^UTILITY(U,$J,358.3,18589,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,18409,1,3,0)
- ;;=3^Natural Environment Phobia
- ;;^UTILITY(U,$J,358.3,18409,1,4,0)
- ;;=4^F40.228
- ;;^UTILITY(U,$J,358.3,18409,2)
- ;;=^5003549
- ;;^UTILITY(U,$J,358.3,18410,0)
- ;;=F40.230^^91^936^6
- ;;^UTILITY(U,$J,358.3,18410,1,0)
+ ;;^UTILITY(U,$J,358.3,18589,1,3,0)
+ ;;=3^Athscl Bypass Cor Art Transplt Hrt w/ Ang Pctrs,Unspec
+ ;;^UTILITY(U,$J,358.3,18589,1,4,0)
+ ;;=4^I25.769
+ ;;^UTILITY(U,$J,358.3,18589,2)
+ ;;=^5007138
+ ;;^UTILITY(U,$J,358.3,18590,0)
+ ;;=I25.760^^64^833^22
+ ;;^UTILITY(U,$J,358.3,18590,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,18410,1,3,0)
- ;;=3^Fear of Blood
- ;;^UTILITY(U,$J,358.3,18410,1,4,0)
- ;;=4^F40.230
- ;;^UTILITY(U,$J,358.3,18410,2)
- ;;=^5003550
- ;;^UTILITY(U,$J,358.3,18411,0)
- ;;=F40.231^^91^936^7
- ;;^UTILITY(U,$J,358.3,18411,1,0)
+ ;;^UTILITY(U,$J,358.3,18590,1,3,0)
+ ;;=3^Athscl Bypass Cor Art Transplt Hrt w/ Unstable Angina
+ ;;^UTILITY(U,$J,358.3,18590,1,4,0)
+ ;;=4^I25.760
+ ;;^UTILITY(U,$J,358.3,18590,2)
+ ;;=^5007135
+ ;;^UTILITY(U,$J,358.3,18591,0)
+ ;;=I25.701^^64^833^25
+ ;;^UTILITY(U,$J,358.3,18591,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,18411,1,3,0)
- ;;=3^Fear of Injections & Transfusions
- ;;^UTILITY(U,$J,358.3,18411,1,4,0)
- ;;=4^F40.231
- ;;^UTILITY(U,$J,358.3,18411,2)
- ;;=^5003551
- ;;^UTILITY(U,$J,358.3,18412,0)
- ;;=F40.232^^91^936^9
- ;;^UTILITY(U,$J,358.3,18412,1,0)
+ ;;^UTILITY(U,$J,358.3,18591,1,3,0)
+ ;;=3^Athscl CABG w/ Ang Pctrs w/ Documented Spasm
+ ;;^UTILITY(U,$J,358.3,18591,1,4,0)
+ ;;=4^I25.701
+ ;;^UTILITY(U,$J,358.3,18591,2)
+ ;;=^5007118
+ ;;^UTILITY(U,$J,358.3,18592,0)
+ ;;=I25.708^^64^833^23
+ ;;^UTILITY(U,$J,358.3,18592,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,18412,1,3,0)
- ;;=3^Fear of Other Medical Care
- ;;^UTILITY(U,$J,358.3,18412,1,4,0)
- ;;=4^F40.232
- ;;^UTILITY(U,$J,358.3,18412,2)
- ;;=^5003552
- ;;^UTILITY(U,$J,358.3,18413,0)
- ;;=F40.233^^91^936^8
- ;;^UTILITY(U,$J,358.3,18413,1,0)
+ ;;^UTILITY(U,$J,358.3,18592,1,3,0)
+ ;;=3^Athscl CABG w/ Ang Pctrs NEC
+ ;;^UTILITY(U,$J,358.3,18592,1,4,0)
+ ;;=4^I25.708
+ ;;^UTILITY(U,$J,358.3,18592,2)
+ ;;=^5007119
+ ;;^UTILITY(U,$J,358.3,18593,0)
+ ;;=I25.709^^64^833^27
+ ;;^UTILITY(U,$J,358.3,18593,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,18413,1,3,0)
- ;;=3^Fear of Injury
- ;;^UTILITY(U,$J,358.3,18413,1,4,0)
- ;;=4^F40.233
- ;;^UTILITY(U,$J,358.3,18413,2)
- ;;=^5003553
- ;;^UTILITY(U,$J,358.3,18414,0)
- ;;=F40.248^^91^936^16
- ;;^UTILITY(U,$J,358.3,18414,1,0)
+ ;;^UTILITY(U,$J,358.3,18593,1,3,0)
+ ;;=3^Athscl CABG w/ Ang Pctrs,Unspec
+ ;;^UTILITY(U,$J,358.3,18593,1,4,0)
+ ;;=4^I25.709
+ ;;^UTILITY(U,$J,358.3,18593,2)
+ ;;=^5007120
+ ;;^UTILITY(U,$J,358.3,18594,0)
+ ;;=I25.700^^64^833^29
+ ;;^UTILITY(U,$J,358.3,18594,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,18414,1,3,0)
- ;;=3^Situational Phobia 
- ;;^UTILITY(U,$J,358.3,18414,1,4,0)
- ;;=4^F40.248
- ;;^UTILITY(U,$J,358.3,18414,2)
- ;;=^5003558
- ;;^UTILITY(U,$J,358.3,18415,0)
- ;;=F93.0^^91^936^15
- ;;^UTILITY(U,$J,358.3,18415,1,0)
+ ;;^UTILITY(U,$J,358.3,18594,1,3,0)
+ ;;=3^Athscl CABG w/ Unstable Angina
+ ;;^UTILITY(U,$J,358.3,18594,1,4,0)
+ ;;=4^I25.700
+ ;;^UTILITY(U,$J,358.3,18594,2)
+ ;;=^5007117
+ ;;^UTILITY(U,$J,358.3,18595,0)
+ ;;=I25.751^^64^833^36
+ ;;^UTILITY(U,$J,358.3,18595,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,18415,1,3,0)
- ;;=3^Separation Anxiety Disorder
- ;;^UTILITY(U,$J,358.3,18415,1,4,0)
- ;;=4^F93.0
- ;;^UTILITY(U,$J,358.3,18415,2)
- ;;=^5003702
- ;;^UTILITY(U,$J,358.3,18416,0)
- ;;=F40.00^^91^936^1
- ;;^UTILITY(U,$J,358.3,18416,1,0)
+ ;;^UTILITY(U,$J,358.3,18595,1,3,0)
+ ;;=3^Athscl Native Cor Art of Transplt Hrt w/ Ang Pctrs w/ Documented Spasm
+ ;;^UTILITY(U,$J,358.3,18595,1,4,0)
+ ;;=4^I25.751
+ ;;^UTILITY(U,$J,358.3,18595,2)
+ ;;=^5007132
+ ;;^UTILITY(U,$J,358.3,18596,0)
+ ;;=I25.758^^64^833^37
+ ;;^UTILITY(U,$J,358.3,18596,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,18416,1,3,0)
- ;;=3^Agrophobia
- ;;^UTILITY(U,$J,358.3,18416,1,4,0)
- ;;=4^F40.00
- ;;^UTILITY(U,$J,358.3,18416,2)
- ;;=^5003542
- ;;^UTILITY(U,$J,358.3,18417,0)
- ;;=F41.8^^91^936^4
- ;;^UTILITY(U,$J,358.3,18417,1,0)
+ ;;^UTILITY(U,$J,358.3,18596,1,3,0)
+ ;;=3^Athscl Native Cor Art of Transplt Hrt w/ Ang Pctrs NEC
+ ;;^UTILITY(U,$J,358.3,18596,1,4,0)
+ ;;=4^I25.758
+ ;;^UTILITY(U,$J,358.3,18596,2)
+ ;;=^5007133
+ ;;^UTILITY(U,$J,358.3,18597,0)
+ ;;=I25.759^^64^833^38
+ ;;^UTILITY(U,$J,358.3,18597,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,18417,1,3,0)
- ;;=3^Anxiety Disorder,Other Specified
- ;;^UTILITY(U,$J,358.3,18417,1,4,0)
- ;;=4^F41.8
- ;;^UTILITY(U,$J,358.3,18417,2)
- ;;=^5003566
- ;;^UTILITY(U,$J,358.3,18418,0)
- ;;=F40.298^^91^936^13
- ;;^UTILITY(U,$J,358.3,18418,1,0)
+ ;;^UTILITY(U,$J,358.3,18597,1,3,0)
+ ;;=3^Athscl Native Cor Art of Transplt Hrt w/ Ang Pctrs,Unspec
+ ;;^UTILITY(U,$J,358.3,18597,1,4,0)
+ ;;=4^I25.759
+ ;;^UTILITY(U,$J,358.3,18597,2)
+ ;;=^5007134
+ ;;^UTILITY(U,$J,358.3,18598,0)
+ ;;=I25.750^^64^833^39
+ ;;^UTILITY(U,$J,358.3,18598,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,18418,1,3,0)
- ;;=3^Phobia,Other Specified
- ;;^UTILITY(U,$J,358.3,18418,1,4,0)
- ;;=4^F40.298
- ;;^UTILITY(U,$J,358.3,18418,2)
- ;;=^5003561
- ;;^UTILITY(U,$J,358.3,18419,0)
- ;;=F41.9^^91^936^5
- ;;^UTILITY(U,$J,358.3,18419,1,0)
+ ;;^UTILITY(U,$J,358.3,18598,1,3,0)
+ ;;=3^Athscl Native Cor Art of Transplt Hrt w/ Unstable Angina
+ ;;^UTILITY(U,$J,358.3,18598,1,4,0)
+ ;;=4^I25.750
+ ;;^UTILITY(U,$J,358.3,18598,2)
+ ;;=^5007131
+ ;;^UTILITY(U,$J,358.3,18599,0)
+ ;;=I25.731^^64^833^41
+ ;;^UTILITY(U,$J,358.3,18599,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,18419,1,3,0)
- ;;=3^Anxiety Disorder,Unsp
- ;;^UTILITY(U,$J,358.3,18419,1,4,0)
- ;;=4^F41.9
- ;;^UTILITY(U,$J,358.3,18419,2)
- ;;=^5003567
- ;;^UTILITY(U,$J,358.3,18420,0)
- ;;=F94.0^^91^936^14
- ;;^UTILITY(U,$J,358.3,18420,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,18420,1,3,0)
- ;;=3^Selective Mutism
- ;;^UTILITY(U,$J,358.3,18420,1,4,0)
- ;;=4^F94.0
- ;;^UTILITY(U,$J,358.3,18420,2)
- ;;=^331954
- ;;^UTILITY(U,$J,358.3,18421,0)
- ;;=F06.33^^91^937^1
- ;;^UTILITY(U,$J,358.3,18421,1,0)
- ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,18599,1,3,0)
+ ;;=3^Athscl Nonaut Bio CABG w/ Ang Pctrs w/ Documented Spasm
+ ;;^UTILITY(U,$J,358.3,18599,1,4,0)
+ ;;=4^I25.731
+ ;;^UTILITY(U,$J,358.3,18599,2)
+ ;;=^5007128
+ ;;^UTILITY(U,$J,358.3,18600,0)
+ ;;=I25.738^^64^833^40

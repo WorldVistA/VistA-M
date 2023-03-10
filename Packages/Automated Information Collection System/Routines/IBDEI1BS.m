@@ -1,120 +1,128 @@
-IBDEI1BS ; ; 04-FEB-2020
- ;;3.0;IB ENCOUNTER FORM IMP/EXP;;FEB 04, 2020
+IBDEI1BS ; ; 01-FEB-2022
+ ;;3.0;IB ENCOUNTER FORM IMP/EXP;;FEB 01, 2022
  Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,999) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
- ;;^UTILITY(U,$J,358.3,21179,1,3,0)
- ;;=3^Inhalant Induced Major Neurocog Disorder w/o Use Disorder
- ;;^UTILITY(U,$J,358.3,21179,1,4,0)
- ;;=4^F18.97
- ;;^UTILITY(U,$J,358.3,21179,2)
- ;;=^5003413
- ;;^UTILITY(U,$J,358.3,21180,0)
- ;;=F18.188^^95^1050^12
- ;;^UTILITY(U,$J,358.3,21180,1,0)
+ ;;^UTILITY(U,$J,358.3,21426,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,21180,1,3,0)
- ;;=3^Inhalant Induced Mild Neurocog Disorder w/ Mild Use Disorder
- ;;^UTILITY(U,$J,358.3,21180,1,4,0)
- ;;=4^F18.188
- ;;^UTILITY(U,$J,358.3,21180,2)
- ;;=^5003390
- ;;^UTILITY(U,$J,358.3,21181,0)
- ;;=F18.288^^95^1050^13
- ;;^UTILITY(U,$J,358.3,21181,1,0)
+ ;;^UTILITY(U,$J,358.3,21426,1,3,0)
+ ;;=3^Cirrhosis of Liver,Unspec
+ ;;^UTILITY(U,$J,358.3,21426,1,4,0)
+ ;;=4^K74.60
+ ;;^UTILITY(U,$J,358.3,21426,2)
+ ;;=^5008822
+ ;;^UTILITY(U,$J,358.3,21427,0)
+ ;;=K74.00^^70^919^9
+ ;;^UTILITY(U,$J,358.3,21427,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,21181,1,3,0)
- ;;=3^Inhalant Induced Mild Neurocog Disorder w/ Mod/Severe Use Disorder
- ;;^UTILITY(U,$J,358.3,21181,1,4,0)
- ;;=4^F18.288
- ;;^UTILITY(U,$J,358.3,21181,2)
- ;;=^5003403
- ;;^UTILITY(U,$J,358.3,21182,0)
- ;;=F18.988^^95^1050^14
- ;;^UTILITY(U,$J,358.3,21182,1,0)
+ ;;^UTILITY(U,$J,358.3,21427,1,3,0)
+ ;;=3^Hepatic Fibrosis,Unspec
+ ;;^UTILITY(U,$J,358.3,21427,1,4,0)
+ ;;=4^K74.00
+ ;;^UTILITY(U,$J,358.3,21427,2)
+ ;;=^5159218
+ ;;^UTILITY(U,$J,358.3,21428,0)
+ ;;=K74.01^^70^919^8
+ ;;^UTILITY(U,$J,358.3,21428,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,21182,1,3,0)
- ;;=3^Inhalant Induced Mild Neurocog Disorder w/o Use Disorder
- ;;^UTILITY(U,$J,358.3,21182,1,4,0)
- ;;=4^F18.988
- ;;^UTILITY(U,$J,358.3,21182,2)
- ;;=^5003415
- ;;^UTILITY(U,$J,358.3,21183,0)
- ;;=F18.159^^95^1050^15
- ;;^UTILITY(U,$J,358.3,21183,1,0)
+ ;;^UTILITY(U,$J,358.3,21428,1,3,0)
+ ;;=3^Hepatic Fibrosis,Early Fibrosis
+ ;;^UTILITY(U,$J,358.3,21428,1,4,0)
+ ;;=4^K74.01
+ ;;^UTILITY(U,$J,358.3,21428,2)
+ ;;=^5159219
+ ;;^UTILITY(U,$J,358.3,21429,0)
+ ;;=K74.02^^70^919^7
+ ;;^UTILITY(U,$J,358.3,21429,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,21183,1,3,0)
- ;;=3^Inhalant Induced Psychotic Disorder w/ Mild Use Disorder
- ;;^UTILITY(U,$J,358.3,21183,1,4,0)
- ;;=4^F18.159
- ;;^UTILITY(U,$J,358.3,21183,2)
- ;;=^5003387
- ;;^UTILITY(U,$J,358.3,21184,0)
- ;;=F18.259^^95^1050^16
- ;;^UTILITY(U,$J,358.3,21184,1,0)
+ ;;^UTILITY(U,$J,358.3,21429,1,3,0)
+ ;;=3^Hepatic Fibrosis,Advanced Fibrosis
+ ;;^UTILITY(U,$J,358.3,21429,1,4,0)
+ ;;=4^K74.02
+ ;;^UTILITY(U,$J,358.3,21429,2)
+ ;;=^5159220
+ ;;^UTILITY(U,$J,358.3,21430,0)
+ ;;=J85.1^^70^920^41
+ ;;^UTILITY(U,$J,358.3,21430,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,21184,1,3,0)
- ;;=3^Inhalant Induced Psychotic Disorder w/ Mod/Severe Use Disorder
- ;;^UTILITY(U,$J,358.3,21184,1,4,0)
- ;;=4^F18.259
- ;;^UTILITY(U,$J,358.3,21184,2)
- ;;=^5003400
- ;;^UTILITY(U,$J,358.3,21185,0)
- ;;=F18.959^^95^1050^17
- ;;^UTILITY(U,$J,358.3,21185,1,0)
+ ;;^UTILITY(U,$J,358.3,21430,1,3,0)
+ ;;=3^Abscess of Lung w/ Pneumonia
+ ;;^UTILITY(U,$J,358.3,21430,1,4,0)
+ ;;=4^J85.1
+ ;;^UTILITY(U,$J,358.3,21430,2)
+ ;;=^5008306
+ ;;^UTILITY(U,$J,358.3,21431,0)
+ ;;=J85.2^^70^920^42
+ ;;^UTILITY(U,$J,358.3,21431,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,21185,1,3,0)
- ;;=3^Inhalant Induced Psychotic Disorder w/o Use Disorder
- ;;^UTILITY(U,$J,358.3,21185,1,4,0)
- ;;=4^F18.959
- ;;^UTILITY(U,$J,358.3,21185,2)
- ;;=^5003412
- ;;^UTILITY(U,$J,358.3,21186,0)
- ;;=F18.99^^95^1050^24
- ;;^UTILITY(U,$J,358.3,21186,1,0)
+ ;;^UTILITY(U,$J,358.3,21431,1,3,0)
+ ;;=3^Abscess of Lung w/o Pneumonia
+ ;;^UTILITY(U,$J,358.3,21431,1,4,0)
+ ;;=4^J85.2
+ ;;^UTILITY(U,$J,358.3,21431,2)
+ ;;=^5008307
+ ;;^UTILITY(U,$J,358.3,21432,0)
+ ;;=H60.513^^70^920^1
+ ;;^UTILITY(U,$J,358.3,21432,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,21186,1,3,0)
- ;;=3^Inhalant Related Disorder,Unspec
- ;;^UTILITY(U,$J,358.3,21186,1,4,0)
- ;;=4^F18.99
- ;;^UTILITY(U,$J,358.3,21186,2)
- ;;=^5133360
- ;;^UTILITY(U,$J,358.3,21187,0)
- ;;=F18.11^^95^1050^1
- ;;^UTILITY(U,$J,358.3,21187,1,0)
+ ;;^UTILITY(U,$J,358.3,21432,1,3,0)
+ ;;=3^AC Actinic Otitis Externa,Bilateral
+ ;;^UTILITY(U,$J,358.3,21432,1,4,0)
+ ;;=4^H60.513
+ ;;^UTILITY(U,$J,358.3,21432,2)
+ ;;=^5006472
+ ;;^UTILITY(U,$J,358.3,21433,0)
+ ;;=H60.512^^70^920^2
+ ;;^UTILITY(U,$J,358.3,21433,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,21187,1,3,0)
- ;;=3^Inhalant Abuse,In Remission
- ;;^UTILITY(U,$J,358.3,21187,1,4,0)
- ;;=4^F18.11
- ;;^UTILITY(U,$J,358.3,21187,2)
- ;;=^5151305
- ;;^UTILITY(U,$J,358.3,21188,0)
- ;;=Z00.6^^95^1051^1
- ;;^UTILITY(U,$J,358.3,21188,1,0)
+ ;;^UTILITY(U,$J,358.3,21433,1,3,0)
+ ;;=3^AC Actinic Otitis Externa,Left Ear
+ ;;^UTILITY(U,$J,358.3,21433,1,4,0)
+ ;;=4^H60.512
+ ;;^UTILITY(U,$J,358.3,21433,2)
+ ;;=^5006471
+ ;;^UTILITY(U,$J,358.3,21434,0)
+ ;;=H60.511^^70^920^3
+ ;;^UTILITY(U,$J,358.3,21434,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,21188,1,3,0)
- ;;=3^Exam of Participant of Control in Clinical Research Program
- ;;^UTILITY(U,$J,358.3,21188,1,4,0)
- ;;=4^Z00.6
- ;;^UTILITY(U,$J,358.3,21188,2)
- ;;=^5062608
- ;;^UTILITY(U,$J,358.3,21189,0)
- ;;=F45.22^^95^1052^1
- ;;^UTILITY(U,$J,358.3,21189,1,0)
+ ;;^UTILITY(U,$J,358.3,21434,1,3,0)
+ ;;=3^AC Actinic Otitis Externa,Right Ear
+ ;;^UTILITY(U,$J,358.3,21434,1,4,0)
+ ;;=4^H60.511
+ ;;^UTILITY(U,$J,358.3,21434,2)
+ ;;=^5006470
+ ;;^UTILITY(U,$J,358.3,21435,0)
+ ;;=J21.1^^70^920^5
+ ;;^UTILITY(U,$J,358.3,21435,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,21189,1,3,0)
- ;;=3^Body Dysmorphic Disorder
- ;;^UTILITY(U,$J,358.3,21189,1,4,0)
- ;;=4^F45.22
- ;;^UTILITY(U,$J,358.3,21189,2)
- ;;=^5003588
- ;;^UTILITY(U,$J,358.3,21190,0)
- ;;=F45.8^^95^1052^16
- ;;^UTILITY(U,$J,358.3,21190,1,0)
+ ;;^UTILITY(U,$J,358.3,21435,1,3,0)
+ ;;=3^AC Bronchiolitis d/t Human Metapneumovirus
+ ;;^UTILITY(U,$J,358.3,21435,1,4,0)
+ ;;=4^J21.1
+ ;;^UTILITY(U,$J,358.3,21435,2)
+ ;;=^5008197
+ ;;^UTILITY(U,$J,358.3,21436,0)
+ ;;=J21.8^^70^920^6
+ ;;^UTILITY(U,$J,358.3,21436,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,21190,1,3,0)
- ;;=3^Somatoform Disorders,Other Specified
- ;;^UTILITY(U,$J,358.3,21190,1,4,0)
- ;;=4^F45.8
- ;;^UTILITY(U,$J,358.3,21190,2)
- ;;=^331915
+ ;;^UTILITY(U,$J,358.3,21436,1,3,0)
+ ;;=3^AC Bronchiolitis d/t Specified Organisms
+ ;;^UTILITY(U,$J,358.3,21436,1,4,0)
+ ;;=4^J21.8
+ ;;^UTILITY(U,$J,358.3,21436,2)
+ ;;=^5008198
+ ;;^UTILITY(U,$J,358.3,21437,0)
+ ;;=J21.9^^70^920^4
+ ;;^UTILITY(U,$J,358.3,21437,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,21437,1,3,0)
+ ;;=3^AC Bronchilitis,Unspec
+ ;;^UTILITY(U,$J,358.3,21437,1,4,0)
+ ;;=4^J21.9
+ ;;^UTILITY(U,$J,358.3,21437,2)
+ ;;=^5008199
+ ;;^UTILITY(U,$J,358.3,21438,0)
+ ;;=J20.3^^70^920^7
+ ;;^UTILITY(U,$J,358.3,21438,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,21438,1,3,0)
+ ;;=3^AC Bronchitis d/t Coxsackievirus

@@ -1,5 +1,5 @@
-RCDPESR6 ;ALB/TMK/DWA - Server auto-update file 344.4 - EDI Lockbox ;8 Aug 2018 21:44:13
- ;;4.5;Accounts Receivable;**173,214,208,230,252,269,271,298,321,332**;Mar 20, 1995;Build 40
+RCDPESR6 ;ALB/TMK/DWA - Server auto-update file 344.4 - EDI Lockbox ;20 Dec 2018 14:47:23
+ ;;4.5;Accounts Receivable;**173,214,208,230,252,269,271,298,321,332,345**;Mar 20, 1995;Build 34
  ;Per VA Directive 6402, this routine should not be modified.
  ;
  ;Reference to $$VALECME^BPSUTIL2 supported by IA# 6139
@@ -38,6 +38,8 @@ UPD3444(RCRTOT) ; Add EOB detail to list in 344.41 for file 344.4 entry RCRTOT
  . I RCCT<0 D  Q
  .. S DA=RCRTOT,DIK="^RCY(344.4," D ^DIK
  .. S RCRTOT=0
+ . ; PRCA*4.5*345 - Update file 361.1 with era detail pointer
+ . I RCEOB D ERADET^IBCEOB(RCEOB,RCCT_","_RCRTOT_",")
  . ; If there is no IB EOB record, store the raw data in 344.411
  . I RC1'>0!(RCEOB'>0) D
  .. N RCDATA,RCC,RCDA
@@ -91,7 +93,7 @@ ERATOT(RC3445DA,RCERR) ;function, File ERA TOTAL rec in 344.4 from entry RC3445D
  . ; loop until no entry found
  . F RCX=RCX:1 L +^RCY(344.4,RCX,0):1 D:$T  Q:X        ; PRCA*4.5*332 Fix duplicate number issue
  . . I $D(^RCY(344.4,RCX)) L -^RCY(344.4,RCX,0) Q      ; Lock first then check for existance
- . .  S X=RCX  ; new entry #
+ . . S X=RCX  ; new entry #
  . ; X from above will be new .01 field value
  . S DIC(0)="L",DIC="^RCY(344.4,",DLAYGO=344.4
  . S DIC("DR")=".02////"_RCTRACE_";.03////"_RCRAW("InsID")_";.04////"_RCRAW("Date")_";.05////"_RCRAW("Amount")_";.06////"_$P(RCRAW(0),U,6)_";.09////0;.12////"_$P($G(^RCY(344.5,RC3445DA,0)),U,11)_";.07////"_$$NOW^XLFDT()_";.1////1"

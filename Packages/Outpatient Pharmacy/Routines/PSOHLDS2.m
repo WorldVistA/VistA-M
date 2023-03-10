@@ -1,5 +1,5 @@
-PSOHLDS2 ;BHAM ISC/PWC,SAB - Build HL7 Segments for automated interface ;11/22/06 3:24pm
- ;;7.0;OUTPATIENT PHARMACY;**156,198,255,200,268,305,336,434,282,531**;DEC 1997;Build 4
+PSOHLDS2 ;BHAM ISC/PWC,SAB-Build HL7 Segments for automated interface ;11/22/06 3:24pm
+ ;;7.0;OUTPATIENT PHARMACY;**156,198,255,200,268,305,336,434,282,531,524**;DEC 1997;Build 28
  ;DIWP supported by DBIA 10011
  ;^PS(50.606 supported by DBIA 2174
  ;^PS(50.7 supported by DBIA #2223
@@ -13,7 +13,8 @@ PSOHLDS2 ;BHAM ISC/PWC,SAB - Build HL7 Segments for automated interface ;11/22/0
  ;*198 add check to insert spaces into PMI segments
  ;*255 add 2 new fields to RXE.21 (label name & VA PRINT NAME)
  ;     and move NTEPMI tag to PSOHLDS4
- ; *305 send  Notice of Privacy Practices in NTE9 - Modified to NTE9 as NTE8 already exist
+ ;*305 send  Notice of Privacy Practices in NTE9 - Modified to NTE9 as NTE8 already exist
+ ;*524 add ZZZ segment for HAZ info to OPAI
  ;
 RXE(PSI) ;pharmacy encoded order segment
  Q:'$D(DFN)  N RXE S RXE="" S $P(RXE,"|",1)=""""""
@@ -190,5 +191,16 @@ NTE9(PSI) ;Privacy Notification
  . S ^TMP("PSO",$J,PSI,1)="La Notificacion relacionada con las Politicas de Privacidad del Departamento de Asuntos del Veterano, IB 10-163, contiene los detalles acerca de sus derechos de privacidad y esta disponsible electronicamente"
  . S ^TMP("PSO",$J,PSI,2)=" en la siguiente direccion: http://www1.domain.ext/Health/.  Usted tambien puede conseguir una copia escribiendo a la Oficina de Privacidad del Departamento de Asuntos de Salud del Veterano, (19F2),"
  . S ^TMP("PSO",$J,PSI,3)="810 Vermont Avenue NW, Washington, DC 20420."_FS_"Privacy Notification"
+ S PSI=PSI+1
+ Q
+ZZZ(PSI) ;ZZZ segment for HL7 hazardous text ;*524
+ N DRIEN,HAZD,HAZH,VAR
+ S DRIEN=$P(^PSRX(IRXN,0),"^",6)
+ S VAR=$$HAZ^PSSUTIL(DRIEN)
+ S HAZH=$P(VAR,"^",1)
+ S HAZH=$S(HAZH:"Y",1:"N")
+ S HAZD=$P(VAR,"^",2)
+ S HAZD=$S(HAZD:"Y",1:"N")
+ S ^TMP("PSO",$J,PSI)="ZZZ"_FS_FS_FS_FS_HAZH_FS_HAZD
  S PSI=PSI+1
  Q

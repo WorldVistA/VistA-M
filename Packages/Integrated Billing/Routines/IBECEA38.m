@@ -1,7 +1,8 @@
 IBECEA38 ;EDE/WCJ-Multi-site maintain UC VISIT TRACKING FILE (#351.82) - RPC RETURN ; 2-DEC-19
- ;;2.0;INTEGRATED BILLING;**663,671,669**;21-MAR-94;Build 20
+ ;;2.0;INTEGRATED BILLING;**663,671,669,696**;21-MAR-94;Build 3
  ;;Per VA Directive 6402, this routine should not be modified.
  ;; DBIA#1621 %ZTER (ERROR RECORDING)
+ ;; DBIA#10053 grab field .097 from file 2
  G AWAY
  ;
 AWAY Q  ;thought I was being figurative??? Guess again!
@@ -39,7 +40,7 @@ RETURN(IBR,IBICN,IBOSITEEX,IBVISDT,IBSTAT,IBBILL,IBCOMM,IBUNIQ,IBELGRP) ;
  I '$D(IBR) S IBR=$NA(^TMP("IBECEA37",$J)) ; didn't think I would need, but...
  ;
  N IBDFN,IBSCREEN,IBIEN4,IBDATA,IBIEN351P82,IBADDED,IBUPDATED,IBRETURN,IBMISS,IBFAC,IBSITE
- D SITE^IBAUTL  ; returns IBSITE (external) and IBFAC (internal)
+ D SITE^IBAUTL  ; returns IBSITE (external) and IBFAC (internal may not be VAMC)
  ;
  ; see if it's a pull for specific patient.  It will only have the patient's ICN and the site it's pulling to
  I '$D(IBVISDT),'$D(IBSTAT),'$D(IBBILL),'$D(IBCOMM),'$D(IBUNIQ),$G(IBICN),$G(IBOSITEEX) D  Q
@@ -60,7 +61,10 @@ RETURN(IBR,IBICN,IBOSITEEX,IBVISDT,IBSTAT,IBBILL,IBCOMM,IBUNIQ,IBELGRP) ;
  S IBDFN=+$$DFN^IBARXMU($G(IBICN))
  I 'IBDFN S @IBR@(1)="-1^Patient ICN: "_IBICN_" not found at site# "_IBSITE Q
  ;
- I $$GETELGP^IBECEA36(IBDFN,IBVISDT)'=IBELGRP D  Q
+ ;WCJ;IB696,if the visit date is before the patient was added to this system don't care about the eligibility group check
+ ;DBIA#10035-support ICR to read this patient file field 
+ ;I $$GETELGP^IBECEA36(IBDFN,IBVISDT)'=IBELGRP D  Q
+ I $$GETELGP^IBECEA36(IBDFN,IBVISDT)'=IBELGRP,$S('$$GET1^DIQ(2,IBDFN,.097,"I"):1,IBVISDT<$$GET1^DIQ(2,IBDFN,.097,"I"):0,1:1) D  Q
  . N Y S Y=IBVISDT X ^DD("DD")
  . S @IBR@(1)="-1^Patient's eligibility group differs between sites for date of service "_Y_"."
  . S @IBR@(2)="-1^Site# "_IBSITE_" = "_$$GETELGP^IBECEA36(IBDFN,IBVISDT)
@@ -208,8 +212,14 @@ PULL(RETURN,IBFAC,IBSITE,IBICN,IBOSITEEX) ; Pull all records that originated at 
  I 'IBDFN S @RETURN@(1)="-1^Patient ICN: "_IBICN_" not found at site# "_IBSITE Q
  ;
  ; Get all/only the records for the patient which originated at this site.
- S IBSCREEN="I $P(^(0),U,2)=IBFAC"
- D FIND^DIC(351.82,"",".01;.02:99;.03I;.04I;.05;.06I;.07I;1.01I;.01:991.1;.08","QEP",IBDFN,"","B",IBSCREEN)
+ ;WCJ;IB696
+ ;S IBSCREEN="I $P(^(0),U,2)=IBFAC"
+ S IBSCREEN="I $P(^(0),U,2)="_$$IEN^XUAF4(IBSITE)
+ ;
+ ;WCJ;IB696;add the date patient added to the patient file
+ ;DBIA#10053-allows IB to read this field in patient File with FileMan
+ ;D FIND^DIC(351.82,"",".01;.02:99;.03I;.04I;.05;.06I;.07I;1.01I;.01:991.1;.08","QEP",IBDFN,"","B",IBSCREEN)
+ D FIND^DIC(351.82,"",".01;.02:99;.03I;.04I;.05;.06I;.07I;1.01I;.01:991.1;.08;.01:.097","QEP",IBDFN,"","B",IBSCREEN)
  ;
  I '+$G(^TMP("DILIST",$J,0)) D  Q
  . N IBLN,IBL4

@@ -1,5 +1,5 @@
-DGRRPSKN ; ALB/SGG - rtnDGRR PatientServices Contact Information ;09/30/03  ; Compiled October 21, 2003 14:54:28
- ;;5.3;Registration;**557**;Aug 13, 1993
+DGRRPSKN ; ALB/SGG,JAM - rtnDGRR PatientServices Contact Information ;09/30/03  ; Compiled October 21, 2003 14:54:28
+ ;;5.3;Registration;**557,1067**;Aug 13, 1993;Build 23
  ;
 DOC ;<DataSet Name='NextOfKinAddress'
  ;
@@ -17,6 +17,7 @@ DOC ;<DataSet Name='NextOfKinAddress'
  ;.218      K-ZIP CODE (FX),                     [.21;8]
  ;.219      K-PHONE NUMBER (FXa),                [.21;9]
  ;.21011    K-WORK PHONE NUMBER (F),             [.21;11]
+ ;.224      K-RELATIONSHIP TYPE                  [.21;15]
  ;
  ;=======================================================
  ;SECONDARY NEXT OF KIN
@@ -31,6 +32,7 @@ DOC ;<DataSet Name='NextOfKinAddress'
  ;       .2203     K2-ZIP+4 (FOX),        [.22;3]
  ;.2199     K2-PHONE NUMBER (FX),                [.211;9]
  ;.211011   K2-WORK PHONE NUMBER (F),            [.211;11]
+ ;.2104     K2-RELATIONSHIP TYPE                 [.211;15]
  ;
  ;=======================================================
  ; DESIGNEE
@@ -45,6 +47,7 @@ DOC ;<DataSet Name='NextOfKinAddress'
  ;       .2202     D-ZIP+4 (FOX),        [.22;2]
  ;.349      D-PHONE NUMBER (FX),                 [.34;9]
  ;.34011    D-WORK PHONE NUMBER (F),             [.34;11]
+ ;.34015    D-RELATIONSHIP TYPE                  [.34;15]
  ;
  ;=======================================================
  ; EMERGENCY CONTACT
@@ -59,6 +62,7 @@ DOC ;<DataSet Name='NextOfKinAddress'
  ;       .2201     E-ZIP+4 (FOX),        [.22;1]
  ;.339      E-PHONE NUMBER (FX),                 [.33;9]
  ;.33011    E-WORK PHONE NUMBER (F),             [.33;11]
+ ;.3309     E-RELATIONSHIP TYPE                  [.33;15]
  ;
  ;=======================================================
  ; SECONDARY EMERGENCY CONTACT
@@ -73,6 +77,7 @@ DOC ;<DataSet Name='NextOfKinAddress'
  ;       .2204     E2-ZIP+4 (FOX),        [.22;4]
  ;.3319     E2-PHONE NUMBER (FX),                [.331;9]
  ;.331011   E2-WORK PHONE NUMBER (F),            [.331;11]
+ ;.331015   E2-RELATIONSHIP TYPE                 [.331;15]
  ;
  ;=======================================================
  ;
@@ -97,6 +102,8 @@ ADDRESS(DATASET,ADGLOB,ZIP4) ;
  SET CNT=$G(CNT)+1,PSARRAY(CNT)="^NameOfContact^"_$P(ADGLOB,"^",1)
  SET CNT=$G(CNT)+1,PSARRAY(CNT)="^RelationshipToPatient^"_$P(ADGLOB,"^",2)
  SET CNT=$G(CNT)+1,PSARRAY(CNT)="^WorkPhoneNumber^"_$P(ADGLOB,"^",11)
+ ; Patch DG*5.3*1067; Add RELATIONSHIP TYPE field - Return NAME (#.02) field from the PATIENT CONTACT RELATION file #12.11
+ SET CNT=$G(CNT)+1,PSARRAY(CNT)="^RelationshipType^"_$$GET1^DIQ(12.11,$P(ADGLOB,"^",15),.02)
  SET CNT=$G(CNT)+1,PSARRAY(CNT)="></DataSet>"_"^^^1"
  QUIT
  ;

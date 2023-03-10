@@ -1,0 +1,67 @@
+SDES01C ;ALB/ANU,TAW - VISTA SCHEDULING RPCS ;FEB 03, 2022
+ ;;5.3;Scheduling;**790,807**;Aug 13, 1993;Build 5
+ ;;Per VHA Directive 2004-038, this routine should not be modified
+ ;
+ Q
+ ;
+CLINICRSC(CLINICLIST,SEARCHSTRING) ;Returns first 50 matching RESOURCE names
+ ;   SEARCHSTRING  - (Required) Partial name text of at least 3 characters
+ ;RETURN:
+ ;  Successful Return:
+ ;   a JSON formatted string that contains data from the
+ ;      HOSPITAL LOCATION file
+ ;  1. CLINIC IEN - Pointer to the HOSPITAL LOCATION file 44
+ ;  2. CLINIC NAME - Clinic Name from HOSPITAL LOCATION file 44
+ ;
+ N SDTYPE,MAXREC,SDACT,CLINICINFO,SDX,SDXT,SDECI,SDECRES,SDRT,SDF,SDECRNOD,SDTYPE,SDHL,SDCN,POP
+ D SDINIT
+ D LOOKUP
+ ;JSON format
+ D ENCODE^SDESJSON(.CLINICINFO,.CLINICLIST)
+ Q
+ ;
+LOOKUP ;
+ I $L(SEARCHSTRING)<3!($L(SEARCHSTRING)>30) S SEARCHSTRING="",POP=1 D ERRLOG^SDESJSON(.CLINICINFO,52,"Search string must be between 3 and 30 chars") Q
+ ;partial name lookup
+ I SEARCHSTRING'="" D
+ .S SDX=$$GETSUB^SDEC56(SEARCHSTRING)
+ .F  S SDX=$O(^SDEC(409.831,"B",SDX)) Q:SDX=""  Q:SDX'[SEARCHSTRING  D  Q:(+MAXREC)&(SDECI'<MAXREC)
+ ..S SDECRES=0
+ ..F  S SDECRES=$O(^SDEC(409.831,"B",SDX,SDECRES)) Q:'+SDECRES  D SDRES1  Q:(+MAXREC)&(SDECI'<MAXREC)
+ I 'SDECI,'POP S CLINICINFO("Resource")=""
+ Q
+ ;
+SDINIT ; Initialize
+ S (SDF,SDRT,SDX,POP)=""
+ S SDECI=0
+ S SDTYPE="SC("
+ S MAXREC=50
+ S SDACT=1
+ S SEARCHSTRING=$G(SEARCHSTRING)
+ S SDF="FULL"
+ Q
+SDRES1 ; get data for 1 resource
+ N FND,SDH
+ S FND=0
+ Q:'$D(^SDEC(409.831,SDECRES,0))
+ I SDF="FULL",SEARCHSTRING'="" S FND=$$SDCHK(SEARCHSTRING,SDECRES) Q:+FND   ;Stop if 'this' record found in abbreviations
+ I SEARCHSTRING'="" S SDH=0 F  S SDH=$O(^SDEC(409.831,"C",SEARCHSTRING,SDH)) Q:SDH=""  S FND=SDH=SDECRES  Q:FND
+ S SDECRNOD=^SDEC(409.831,SDECRES,0)
+ I SDTYPE'="" Q:$P(SDECRNOD,U,11)'[SDTYPE
+ I +SDACT,$$GET1^DIQ(409.831,SDECRES_",",.02)="YES" Q   ;Do not include inactive entries
+ S SDHL=$P(SDECRNOD,U,4)
+ S SDCN=$$GET1^DIQ(44,SDHL_",",.01)  ;clinic name
+ I SDCN="" S SDCN="Clinic name not found for location:"_SDHL
+ Q:+$$GET1^DIQ(44,SDHL_",",50.01,"I")=1  ;OOS?
+ S SDECI=SDECI+1
+ S CLINICINFO("Resource",SDECI,"IEN")=SDHL
+ S CLINICINFO("Resource",SDECI,"Name")=SDCN
+ Q
+ ;
+SDCHK(SEARCHSTRING,SDECRES)  ;Stop if 'this' record found in abbreviations
+ N FND,SDR,SDX
+ S FND=0
+ S SDX=$$GETSUB^SDEC56(SEARCHSTRING)
+ F  S SDX=$O(^SDEC(409.831,"C",SDX)) Q:SDX=""  Q:SDX'[SEARCHSTRING  D  Q:+FND
+ .S SDR=0 F  S SDR=$O(^SDEC(409.831,"C",SDX,SDR)) Q:'+SDR  S FND=SDR=SDECRES  Q:+FND
+ Q FND

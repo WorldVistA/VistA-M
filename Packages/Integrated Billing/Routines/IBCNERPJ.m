@@ -1,5 +1,5 @@
 IBCNERPJ ;IB/BAA/AWC - IBCNE EIV HL7 RESPONSE REPORT;25 Feb 2015
- ;;2.0;INTEGRATED BILLING;**528**;21-MAR-94;Build 163
+ ;;2.0;INTEGRATED BILLING;**528,668**;21-MAR-94;Build 28
  ;;Per VA Directive 6402, this routine should not be modified.
  ;
  ; Variables:
@@ -46,7 +46,8 @@ PAYER ;
  S DIC(0)="ABEQ"
  S DIC("A")="Select Payer(s): "
  ; Do not allow selection of '~NO PAYER' and non-eIV payers
- S DIC("S")="I ($P(^(0),U,1)'=""~NO PAYER""),$$PYRAPP^IBCNEUT5(""IIV"",$G(Y))'="""""
+ ;IB*668/TAZ - Changed Payer Application from IIV to EIV
+ S DIC("S")="I ($P(^(0),U,1)'=""~NO PAYER""),$$PYRAPP^IBCNEUT5(""EIV"",$G(Y))'="""""
  S DIC="^IBE(365.12,"
 PAYER1 ;
  D ^DIC

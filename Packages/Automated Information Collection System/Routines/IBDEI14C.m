@@ -1,126 +1,126 @@
-IBDEI14C ; ; 04-FEB-2020
- ;;3.0;IB ENCOUNTER FORM IMP/EXP;;FEB 04, 2020
+IBDEI14C ; ; 01-FEB-2022
+ ;;3.0;IB ENCOUNTER FORM IMP/EXP;;FEB 01, 2022
  Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,999) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
- ;;^UTILITY(U,$J,358.3,17962,2)
- ;;=^5063596
- ;;^UTILITY(U,$J,358.3,17963,0)
- ;;=Z90.722^^88^901^27
- ;;^UTILITY(U,$J,358.3,17963,1,0)
+ ;;^UTILITY(U,$J,358.3,18148,1,3,0)
+ ;;=3^DM Type 1 w/ Diab Foot Ulcer
+ ;;^UTILITY(U,$J,358.3,18148,1,4,0)
+ ;;=4^E10.621
+ ;;^UTILITY(U,$J,358.3,18148,2)
+ ;;=^5002616
+ ;;^UTILITY(U,$J,358.3,18149,0)
+ ;;=E10.622^^61^804^28
+ ;;^UTILITY(U,$J,358.3,18149,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,17963,1,3,0)
- ;;=3^Acquired Absence of Ovaries,Bilateral
- ;;^UTILITY(U,$J,358.3,17963,1,4,0)
- ;;=4^Z90.722
- ;;^UTILITY(U,$J,358.3,17963,2)
- ;;=^5063595
- ;;^UTILITY(U,$J,358.3,17964,0)
- ;;=Z90.721^^88^901^28
- ;;^UTILITY(U,$J,358.3,17964,1,0)
+ ;;^UTILITY(U,$J,358.3,18149,1,3,0)
+ ;;=3^DM Type 1 w/ Oth Skin Ulcer
+ ;;^UTILITY(U,$J,358.3,18149,1,4,0)
+ ;;=4^E10.622
+ ;;^UTILITY(U,$J,358.3,18149,2)
+ ;;=^5002617
+ ;;^UTILITY(U,$J,358.3,18150,0)
+ ;;=E10.51^^61^804^32
+ ;;^UTILITY(U,$J,358.3,18150,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,17964,1,3,0)
- ;;=3^Acquired Absence of Ovaries,Unilateral
- ;;^UTILITY(U,$J,358.3,17964,1,4,0)
- ;;=4^Z90.721
- ;;^UTILITY(U,$J,358.3,17964,2)
- ;;=^5063594
- ;;^UTILITY(U,$J,358.3,17965,0)
- ;;=Z90.411^^88^901^29
- ;;^UTILITY(U,$J,358.3,17965,1,0)
+ ;;^UTILITY(U,$J,358.3,18150,1,3,0)
+ ;;=3^DM Type 1 w/ Periph Angiopathy w/o Gangrene
+ ;;^UTILITY(U,$J,358.3,18150,1,4,0)
+ ;;=4^E10.51
+ ;;^UTILITY(U,$J,358.3,18150,2)
+ ;;=^5002610
+ ;;^UTILITY(U,$J,358.3,18151,0)
+ ;;=E10.52^^61^804^31
+ ;;^UTILITY(U,$J,358.3,18151,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,17965,1,3,0)
- ;;=3^Acquired Absence of Pancreas,Partial
- ;;^UTILITY(U,$J,358.3,17965,1,4,0)
- ;;=4^Z90.411
- ;;^UTILITY(U,$J,358.3,17965,2)
- ;;=^5063588
- ;;^UTILITY(U,$J,358.3,17966,0)
- ;;=Z90.410^^88^901^30
- ;;^UTILITY(U,$J,358.3,17966,1,0)
+ ;;^UTILITY(U,$J,358.3,18151,1,3,0)
+ ;;=3^DM Type 1 w/ Periph Angiopathy w/ Gangrene
+ ;;^UTILITY(U,$J,358.3,18151,1,4,0)
+ ;;=4^E10.52
+ ;;^UTILITY(U,$J,358.3,18151,2)
+ ;;=^5002611
+ ;;^UTILITY(U,$J,358.3,18152,0)
+ ;;=E11.00^^61^805^19
+ ;;^UTILITY(U,$J,358.3,18152,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,17966,1,3,0)
- ;;=3^Acquired Absence of Pancreas,Total
- ;;^UTILITY(U,$J,358.3,17966,1,4,0)
- ;;=4^Z90.410
- ;;^UTILITY(U,$J,358.3,17966,2)
- ;;=^5063587
- ;;^UTILITY(U,$J,358.3,17967,0)
- ;;=Z89.441^^88^901^2
- ;;^UTILITY(U,$J,358.3,17967,1,0)
+ ;;^UTILITY(U,$J,358.3,18152,1,3,0)
+ ;;=3^DM Type 2 w/ Hyperosmolarity w/o NKHHC
+ ;;^UTILITY(U,$J,358.3,18152,1,4,0)
+ ;;=4^E11.00
+ ;;^UTILITY(U,$J,358.3,18152,2)
+ ;;=^5002627
+ ;;^UTILITY(U,$J,358.3,18153,0)
+ ;;=E11.01^^61^805^18
+ ;;^UTILITY(U,$J,358.3,18153,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,17967,1,3,0)
- ;;=3^Acquired Absence of Ankle,Right
- ;;^UTILITY(U,$J,358.3,17967,1,4,0)
- ;;=4^Z89.441
- ;;^UTILITY(U,$J,358.3,17967,2)
- ;;=^5063563
- ;;^UTILITY(U,$J,358.3,17968,0)
- ;;=Z90.11^^88^901^4
- ;;^UTILITY(U,$J,358.3,17968,1,0)
+ ;;^UTILITY(U,$J,358.3,18153,1,3,0)
+ ;;=3^DM Type 2 w/ Hyperosmolarity w/ Coma
+ ;;^UTILITY(U,$J,358.3,18153,1,4,0)
+ ;;=4^E11.01
+ ;;^UTILITY(U,$J,358.3,18153,2)
+ ;;=^5002628
+ ;;^UTILITY(U,$J,358.3,18154,0)
+ ;;=E11.21^^61^805^7
+ ;;^UTILITY(U,$J,358.3,18154,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,17968,1,3,0)
- ;;=3^Acquired Absence of Breast & Nipple,Right
- ;;^UTILITY(U,$J,358.3,17968,1,4,0)
- ;;=4^Z90.11
- ;;^UTILITY(U,$J,358.3,17968,2)
- ;;=^5063582
- ;;^UTILITY(U,$J,358.3,17969,0)
- ;;=Z89.021^^88^901^9
- ;;^UTILITY(U,$J,358.3,17969,1,0)
+ ;;^UTILITY(U,$J,358.3,18154,1,3,0)
+ ;;=3^DM Type 2 w/ Diab Nephropathy
+ ;;^UTILITY(U,$J,358.3,18154,1,4,0)
+ ;;=4^E11.21
+ ;;^UTILITY(U,$J,358.3,18154,2)
+ ;;=^5002629
+ ;;^UTILITY(U,$J,358.3,18155,0)
+ ;;=E11.22^^61^805^3
+ ;;^UTILITY(U,$J,358.3,18155,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,17969,1,3,0)
- ;;=3^Acquired Absence of Finger(s),Right
- ;;^UTILITY(U,$J,358.3,17969,1,4,0)
- ;;=4^Z89.021
- ;;^UTILITY(U,$J,358.3,17969,2)
- ;;=^5063534
- ;;^UTILITY(U,$J,358.3,17970,0)
- ;;=Z89.431^^88^901^11
- ;;^UTILITY(U,$J,358.3,17970,1,0)
+ ;;^UTILITY(U,$J,358.3,18155,1,3,0)
+ ;;=3^DM Type 2 w/ Diab CKD
+ ;;^UTILITY(U,$J,358.3,18155,1,4,0)
+ ;;=4^E11.22
+ ;;^UTILITY(U,$J,358.3,18155,2)
+ ;;=^5002630
+ ;;^UTILITY(U,$J,358.3,18156,0)
+ ;;=E11.39^^61^805^28
+ ;;^UTILITY(U,$J,358.3,18156,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,17970,1,3,0)
- ;;=3^Acquired Absence of Foot,Right
- ;;^UTILITY(U,$J,358.3,17970,1,4,0)
- ;;=4^Z89.431
- ;;^UTILITY(U,$J,358.3,17970,2)
- ;;=^5063560
- ;;^UTILITY(U,$J,358.3,17971,0)
- ;;=Z89.411^^88^901^13
- ;;^UTILITY(U,$J,358.3,17971,1,0)
+ ;;^UTILITY(U,$J,358.3,18156,1,3,0)
+ ;;=3^DM Type 2 w/ Oth Diab Ophth Compl
+ ;;^UTILITY(U,$J,358.3,18156,1,4,0)
+ ;;=4^E11.39
+ ;;^UTILITY(U,$J,358.3,18156,2)
+ ;;=^5002643
+ ;;^UTILITY(U,$J,358.3,18157,0)
+ ;;=E11.41^^61^805^6
+ ;;^UTILITY(U,$J,358.3,18157,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,17971,1,3,0)
- ;;=3^Acquired Absence of Great Toe,Right
- ;;^UTILITY(U,$J,358.3,17971,1,4,0)
- ;;=4^Z89.411
- ;;^UTILITY(U,$J,358.3,17971,2)
- ;;=^5063554
- ;;^UTILITY(U,$J,358.3,17972,0)
- ;;=Z89.111^^88^901^15
- ;;^UTILITY(U,$J,358.3,17972,1,0)
+ ;;^UTILITY(U,$J,358.3,18157,1,3,0)
+ ;;=3^DM Type 2 w/ Diab Mononeuropathy
+ ;;^UTILITY(U,$J,358.3,18157,1,4,0)
+ ;;=4^E11.41
+ ;;^UTILITY(U,$J,358.3,18157,2)
+ ;;=^5002645
+ ;;^UTILITY(U,$J,358.3,18158,0)
+ ;;=E11.42^^61^805^13
+ ;;^UTILITY(U,$J,358.3,18158,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,17972,1,3,0)
- ;;=3^Acquired Absence of Hand,Right
- ;;^UTILITY(U,$J,358.3,17972,1,4,0)
- ;;=4^Z89.111
- ;;^UTILITY(U,$J,358.3,17972,2)
- ;;=^5063537
- ;;^UTILITY(U,$J,358.3,17973,0)
- ;;=Z89.621^^88^901^17
- ;;^UTILITY(U,$J,358.3,17973,1,0)
+ ;;^UTILITY(U,$J,358.3,18158,1,3,0)
+ ;;=3^DM Type 2 w/ Diab Polyneuropathy
+ ;;^UTILITY(U,$J,358.3,18158,1,4,0)
+ ;;=4^E11.42
+ ;;^UTILITY(U,$J,358.3,18158,2)
+ ;;=^5002646
+ ;;^UTILITY(U,$J,358.3,18159,0)
+ ;;=E11.43^^61^805^2
+ ;;^UTILITY(U,$J,358.3,18159,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,17973,1,3,0)
- ;;=3^Acquired Absence of Hip Joint,Right
- ;;^UTILITY(U,$J,358.3,17973,1,4,0)
- ;;=4^Z89.621
- ;;^UTILITY(U,$J,358.3,17973,2)
- ;;=^5063575
- ;;^UTILITY(U,$J,358.3,17974,0)
- ;;=Z89.611^^88^901^21
- ;;^UTILITY(U,$J,358.3,17974,1,0)
+ ;;^UTILITY(U,$J,358.3,18159,1,3,0)
+ ;;=3^DM Type 2 w/ Diab Autonomic Polyneuropathy
+ ;;^UTILITY(U,$J,358.3,18159,1,4,0)
+ ;;=4^E11.43
+ ;;^UTILITY(U,$J,358.3,18159,2)
+ ;;=^5002647
+ ;;^UTILITY(U,$J,358.3,18160,0)
+ ;;=E11.44^^61^805^1
+ ;;^UTILITY(U,$J,358.3,18160,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,17974,1,3,0)
- ;;=3^Acquired Absence of Leg Above Knee,Right
- ;;^UTILITY(U,$J,358.3,17974,1,4,0)
- ;;=4^Z89.611
- ;;^UTILITY(U,$J,358.3,17974,2)
- ;;=^5063572
+ ;;^UTILITY(U,$J,358.3,18160,1,3,0)
+ ;;=3^DM Type 2 w/ Diab Amyotrophy

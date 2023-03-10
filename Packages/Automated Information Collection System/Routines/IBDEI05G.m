@@ -1,686 +1,642 @@
-IBDEI05G ; ; 01-MAY-2020
- ;;3.0;IB ENCOUNTER FORM IMP/EXP;;MAY 01, 2020
+IBDEI05G ; ; 01-AUG-2022
+ ;;3.0;IB ENCOUNTER FORM IMP/EXP;;AUG 01, 2022
  Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,999) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
+ ;;^UTILITY(U,$J,358.3,13174,2)
+ ;;=^5008336
+ ;;^UTILITY(U,$J,358.3,13175,0)
+ ;;=T82.110A^^53^582^5
+ ;;^UTILITY(U,$J,358.3,13175,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,13175,1,3,0)
+ ;;=3^Breakdown,Cardiac Electrode,Init Encntr
+ ;;^UTILITY(U,$J,358.3,13175,1,4,0)
+ ;;=4^T82.110A
+ ;;^UTILITY(U,$J,358.3,13175,2)
+ ;;=^5054680
+ ;;^UTILITY(U,$J,358.3,13176,0)
+ ;;=T82.191A^^53^582^148
+ ;;^UTILITY(U,$J,358.3,13176,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,13176,1,3,0)
+ ;;=3^Mech Compl of Cardiac Pulse Generator,Init Encntr
+ ;;^UTILITY(U,$J,358.3,13176,1,4,0)
+ ;;=4^T82.191A
+ ;;^UTILITY(U,$J,358.3,13176,2)
+ ;;=^5054707
+ ;;^UTILITY(U,$J,358.3,13177,0)
+ ;;=T82.111A^^53^582^6
+ ;;^UTILITY(U,$J,358.3,13177,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,13177,1,3,0)
+ ;;=3^Breakdown,Cardiac Pulse Generator,Init Encntr
+ ;;^UTILITY(U,$J,358.3,13177,1,4,0)
+ ;;=4^T82.111A
+ ;;^UTILITY(U,$J,358.3,13177,2)
+ ;;=^5054683
+ ;;^UTILITY(U,$J,358.3,13178,0)
+ ;;=T82.120A^^53^582^32
+ ;;^UTILITY(U,$J,358.3,13178,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,13178,1,3,0)
+ ;;=3^Dsplcmnt of Cardiac Electrode,Init Encntr
+ ;;^UTILITY(U,$J,358.3,13178,1,4,0)
+ ;;=4^T82.120A
+ ;;^UTILITY(U,$J,358.3,13178,2)
+ ;;=^5054692
+ ;;^UTILITY(U,$J,358.3,13179,0)
+ ;;=T82.121A^^53^582^33
+ ;;^UTILITY(U,$J,358.3,13179,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,13179,1,3,0)
+ ;;=3^Dsplcmnt of Cardiac Pulse Generator,Init Encntr
+ ;;^UTILITY(U,$J,358.3,13179,1,4,0)
+ ;;=4^T82.121A
+ ;;^UTILITY(U,$J,358.3,13179,2)
+ ;;=^5054695
+ ;;^UTILITY(U,$J,358.3,13180,0)
+ ;;=T82.190A^^53^582^150
+ ;;^UTILITY(U,$J,358.3,13180,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,13180,1,3,0)
+ ;;=3^Mech Compl of Cardiact Electrode,Init Encntr
+ ;;^UTILITY(U,$J,358.3,13180,1,4,0)
+ ;;=4^T82.190A
+ ;;^UTILITY(U,$J,358.3,13180,2)
+ ;;=^5054704
+ ;;^UTILITY(U,$J,358.3,13181,0)
+ ;;=T82.310A^^53^582^2
+ ;;^UTILITY(U,$J,358.3,13181,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,13181,1,3,0)
+ ;;=3^Breakdown,Aortic Grft,Init Encntr
+ ;;^UTILITY(U,$J,358.3,13181,1,4,0)
+ ;;=4^T82.310A
+ ;;^UTILITY(U,$J,358.3,13181,2)
+ ;;=^5054740
+ ;;^UTILITY(U,$J,358.3,13182,0)
+ ;;=T82.311A^^53^582^7
+ ;;^UTILITY(U,$J,358.3,13182,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,13182,1,3,0)
+ ;;=3^Breakdown,Carotid Arterial Grft,Init Encntr
+ ;;^UTILITY(U,$J,358.3,13182,1,4,0)
+ ;;=4^T82.311A
+ ;;^UTILITY(U,$J,358.3,13182,2)
+ ;;=^5054743
+ ;;^UTILITY(U,$J,358.3,13183,0)
+ ;;=T82.312A^^53^582^8
+ ;;^UTILITY(U,$J,358.3,13183,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,13183,1,3,0)
+ ;;=3^Breakdown,Femoral Arterial Grft,Init Encntr
+ ;;^UTILITY(U,$J,358.3,13183,1,4,0)
+ ;;=4^T82.312A
+ ;;^UTILITY(U,$J,358.3,13183,2)
+ ;;=^5054746
+ ;;^UTILITY(U,$J,358.3,13184,0)
+ ;;=T82.318A^^53^582^17
+ ;;^UTILITY(U,$J,358.3,13184,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,13184,1,3,0)
+ ;;=3^Breakdown,Vasc Grfts,Init Encntr
+ ;;^UTILITY(U,$J,358.3,13184,1,4,0)
+ ;;=4^T82.318A
+ ;;^UTILITY(U,$J,358.3,13184,2)
+ ;;=^5054749
+ ;;^UTILITY(U,$J,358.3,13185,0)
+ ;;=T82.319A^^53^582^18
+ ;;^UTILITY(U,$J,358.3,13185,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,13185,1,3,0)
+ ;;=3^Breakdown,Vasc Grfts,Unspec,Init Encntr
+ ;;^UTILITY(U,$J,358.3,13185,1,4,0)
+ ;;=4^T82.319A
+ ;;^UTILITY(U,$J,358.3,13185,2)
+ ;;=^5054752
+ ;;^UTILITY(U,$J,358.3,13186,0)
+ ;;=T82.320A^^53^582^30
+ ;;^UTILITY(U,$J,358.3,13186,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,13186,1,3,0)
+ ;;=3^Dsplcmnt of Aortic Graft,Init Encntr
+ ;;^UTILITY(U,$J,358.3,13186,1,4,0)
+ ;;=4^T82.320A
+ ;;^UTILITY(U,$J,358.3,13186,2)
+ ;;=^5054755
+ ;;^UTILITY(U,$J,358.3,13187,0)
+ ;;=T82.321A^^53^582^35
+ ;;^UTILITY(U,$J,358.3,13187,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,13187,1,3,0)
+ ;;=3^Dsplcmnt of Carotid Arterial Graft,Init Encntr
+ ;;^UTILITY(U,$J,358.3,13187,1,4,0)
+ ;;=4^T82.321A
+ ;;^UTILITY(U,$J,358.3,13187,2)
+ ;;=^5054758
+ ;;^UTILITY(U,$J,358.3,13188,0)
+ ;;=T82.322A^^53^582^36
+ ;;^UTILITY(U,$J,358.3,13188,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,13188,1,3,0)
+ ;;=3^Dsplcmnt of Femoral Arterial Graft,Init Encntr
+ ;;^UTILITY(U,$J,358.3,13188,1,4,0)
+ ;;=4^T82.322A
+ ;;^UTILITY(U,$J,358.3,13188,2)
+ ;;=^5054761
+ ;;^UTILITY(U,$J,358.3,13189,0)
+ ;;=T82.329A^^53^582^45
+ ;;^UTILITY(U,$J,358.3,13189,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,13189,1,3,0)
+ ;;=3^Dsplcmnt of Vascular Grafts,Unspec,Init Encntr
+ ;;^UTILITY(U,$J,358.3,13189,1,4,0)
+ ;;=4^T82.329A
+ ;;^UTILITY(U,$J,358.3,13189,2)
+ ;;=^5054767
+ ;;^UTILITY(U,$J,358.3,13190,0)
+ ;;=T82.330A^^53^582^135
+ ;;^UTILITY(U,$J,358.3,13190,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,13190,1,3,0)
+ ;;=3^Leakage of Aortic Graft,Init Encntr
+ ;;^UTILITY(U,$J,358.3,13190,1,4,0)
+ ;;=4^T82.330A
+ ;;^UTILITY(U,$J,358.3,13190,2)
+ ;;=^5054770
+ ;;^UTILITY(U,$J,358.3,13191,0)
+ ;;=T82.331A^^53^582^138
+ ;;^UTILITY(U,$J,358.3,13191,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,13191,1,3,0)
+ ;;=3^Leakage of Carotid Arterial Graft,Init Encntr
+ ;;^UTILITY(U,$J,358.3,13191,1,4,0)
+ ;;=4^T82.331A
+ ;;^UTILITY(U,$J,358.3,13191,2)
+ ;;=^5054773
+ ;;^UTILITY(U,$J,358.3,13192,0)
+ ;;=T82.332A^^53^582^139
+ ;;^UTILITY(U,$J,358.3,13192,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,13192,1,3,0)
+ ;;=3^Leakage of Femoral Arterial Graft,Init Encntr
+ ;;^UTILITY(U,$J,358.3,13192,1,4,0)
+ ;;=4^T82.332A
+ ;;^UTILITY(U,$J,358.3,13192,2)
+ ;;=^5054776
+ ;;^UTILITY(U,$J,358.3,13193,0)
+ ;;=T82.339A^^53^582^144
  ;;^UTILITY(U,$J,358.3,13193,1,0)
  ;;=^358.31IA^4^2
  ;;^UTILITY(U,$J,358.3,13193,1,3,0)
- ;;=3^Thombophlb & Phlbts Deep Vessels Right Lower Extrem
+ ;;=3^Leakage of Vascular Graft,Unspec,Init Encntr
  ;;^UTILITY(U,$J,358.3,13193,1,4,0)
- ;;=4^I80.201
+ ;;=4^T82.339A
  ;;^UTILITY(U,$J,358.3,13193,2)
- ;;=^5007828
+ ;;=^5054782
  ;;^UTILITY(U,$J,358.3,13194,0)
- ;;=I80.202^^57^653^4
+ ;;=T82.390A^^53^582^146
  ;;^UTILITY(U,$J,358.3,13194,1,0)
  ;;=^358.31IA^4^2
  ;;^UTILITY(U,$J,358.3,13194,1,3,0)
- ;;=3^Thombophlb & Phlbts Deep Vessels Left Lower Extrem
+ ;;=3^Mech Compl of Aortic Graft,NEC,Init Encntr
  ;;^UTILITY(U,$J,358.3,13194,1,4,0)
- ;;=4^I80.202
+ ;;=4^T82.390A
  ;;^UTILITY(U,$J,358.3,13194,2)
- ;;=^5007829
+ ;;=^5054785
  ;;^UTILITY(U,$J,358.3,13195,0)
- ;;=I80.203^^57^653^3
+ ;;=T82.391A^^53^582^151
  ;;^UTILITY(U,$J,358.3,13195,1,0)
  ;;=^358.31IA^4^2
  ;;^UTILITY(U,$J,358.3,13195,1,3,0)
- ;;=3^Thombophlb & Phlbts Deep Vessels Bilateral Lower Extrem
+ ;;=3^Mech Compl of Carotid Arterial Graft,NEC,Init Encntr
  ;;^UTILITY(U,$J,358.3,13195,1,4,0)
- ;;=4^I80.203
+ ;;=4^T82.391A
  ;;^UTILITY(U,$J,358.3,13195,2)
- ;;=^5007830
+ ;;=^5054788
  ;;^UTILITY(U,$J,358.3,13196,0)
- ;;=J06.9^^57^653^14
+ ;;=T82.392A^^53^582^152
  ;;^UTILITY(U,$J,358.3,13196,1,0)
  ;;=^358.31IA^4^2
  ;;^UTILITY(U,$J,358.3,13196,1,3,0)
- ;;=3^Upper resp infect, acute, unspec
+ ;;=3^Mech Compl of Femoral Arterial Graft,NEC,Init Encntr
  ;;^UTILITY(U,$J,358.3,13196,1,4,0)
- ;;=4^J06.9
+ ;;=4^T82.392A
  ;;^UTILITY(U,$J,358.3,13196,2)
- ;;=^5008143
+ ;;=^5054791
  ;;^UTILITY(U,$J,358.3,13197,0)
- ;;=B35.3^^57^653^7
+ ;;=T82.399A^^53^582^165
  ;;^UTILITY(U,$J,358.3,13197,1,0)
  ;;=^358.31IA^4^2
  ;;^UTILITY(U,$J,358.3,13197,1,3,0)
- ;;=3^Tinea pedis
+ ;;=3^Mech Compl of Vascular Graft,Unspec,NEC,Init Encntr
  ;;^UTILITY(U,$J,358.3,13197,1,4,0)
- ;;=4^B35.3
+ ;;=4^T82.399A
  ;;^UTILITY(U,$J,358.3,13197,2)
- ;;=^119732
+ ;;=^5054797
  ;;^UTILITY(U,$J,358.3,13198,0)
- ;;=H93.11^^57^653^10
+ ;;=T82.41XA^^53^582^16
  ;;^UTILITY(U,$J,358.3,13198,1,0)
  ;;=^358.31IA^4^2
  ;;^UTILITY(U,$J,358.3,13198,1,3,0)
- ;;=3^Tinnitus, right ear
+ ;;=3^Breakdown,Vasc Dialysis Cath,Init Encntr
  ;;^UTILITY(U,$J,358.3,13198,1,4,0)
- ;;=4^H93.11
+ ;;=4^T82.41XA
  ;;^UTILITY(U,$J,358.3,13198,2)
- ;;=^5006964
+ ;;=^5054800
  ;;^UTILITY(U,$J,358.3,13199,0)
- ;;=H93.12^^57^653^9
+ ;;=T82.42XA^^53^582^44
  ;;^UTILITY(U,$J,358.3,13199,1,0)
  ;;=^358.31IA^4^2
  ;;^UTILITY(U,$J,358.3,13199,1,3,0)
- ;;=3^Tinnitus, left ear
+ ;;=3^Dsplcmnt of Vascular Dialysis Catheter,Init Encntr
  ;;^UTILITY(U,$J,358.3,13199,1,4,0)
- ;;=4^H93.12
+ ;;=4^T82.42XA
  ;;^UTILITY(U,$J,358.3,13199,2)
- ;;=^5006965
+ ;;=^5054803
  ;;^UTILITY(U,$J,358.3,13200,0)
- ;;=H93.13^^57^653^8
+ ;;=T82.43XA^^53^582^143
  ;;^UTILITY(U,$J,358.3,13200,1,0)
  ;;=^358.31IA^4^2
  ;;^UTILITY(U,$J,358.3,13200,1,3,0)
- ;;=3^Tinnitus, bilateral
+ ;;=3^Leakage of Vascular Dialysis Catheter,Init Encntr
  ;;^UTILITY(U,$J,358.3,13200,1,4,0)
- ;;=4^H93.13
+ ;;=4^T82.43XA
  ;;^UTILITY(U,$J,358.3,13200,2)
- ;;=^5006966
+ ;;=^5054806
  ;;^UTILITY(U,$J,358.3,13201,0)
- ;;=K26.9^^57^653^11
+ ;;=T82.49XA^^53^582^27
  ;;^UTILITY(U,$J,358.3,13201,1,0)
  ;;=^358.31IA^4^2
  ;;^UTILITY(U,$J,358.3,13201,1,3,0)
- ;;=3^Ulcer,Duodenal w/o Hemorrhage/Perforation
+ ;;=3^Complic,Vasc Dialysis Cath NEC,Init Encntr
  ;;^UTILITY(U,$J,358.3,13201,1,4,0)
- ;;=4^K26.9
+ ;;=4^T82.49XA
  ;;^UTILITY(U,$J,358.3,13201,2)
- ;;=^5008527
+ ;;=^5054809
  ;;^UTILITY(U,$J,358.3,13202,0)
- ;;=K25.9^^57^653^12
+ ;;=T82.510A^^53^582^13
  ;;^UTILITY(U,$J,358.3,13202,1,0)
  ;;=^358.31IA^4^2
  ;;^UTILITY(U,$J,358.3,13202,1,3,0)
- ;;=3^Ulcer,Gastric w/o Hemorrhage/Perforation
+ ;;=3^Breakdown,Surg Created AV Fist,Init Encntr
  ;;^UTILITY(U,$J,358.3,13202,1,4,0)
- ;;=4^K25.9
+ ;;=4^T82.510A
  ;;^UTILITY(U,$J,358.3,13202,2)
- ;;=^5008522
+ ;;=^5054812
  ;;^UTILITY(U,$J,358.3,13203,0)
- ;;=K27.9^^57^653^13
+ ;;=T82.511A^^53^582^14
  ;;^UTILITY(U,$J,358.3,13203,1,0)
  ;;=^358.31IA^4^2
  ;;^UTILITY(U,$J,358.3,13203,1,3,0)
- ;;=3^Ulcer,Peptic w/o Hemorrhage/Perforation
+ ;;=3^Breakdown,Surg Created AV Shunt,Init Encntr
  ;;^UTILITY(U,$J,358.3,13203,1,4,0)
- ;;=4^K27.9
+ ;;=4^T82.511A
  ;;^UTILITY(U,$J,358.3,13203,2)
- ;;=^5008536
+ ;;=^5054815
  ;;^UTILITY(U,$J,358.3,13204,0)
- ;;=N34.1^^57^653^15
+ ;;=T82.513A^^53^582^3
  ;;^UTILITY(U,$J,358.3,13204,1,0)
  ;;=^358.31IA^4^2
  ;;^UTILITY(U,$J,358.3,13204,1,3,0)
- ;;=3^Urethritis, nonspec
+ ;;=3^Breakdown,Balloon Device,Init Encntr
  ;;^UTILITY(U,$J,358.3,13204,1,4,0)
- ;;=4^N34.1
+ ;;=4^T82.513A
  ;;^UTILITY(U,$J,358.3,13204,2)
- ;;=^5015655
+ ;;=^5054821
  ;;^UTILITY(U,$J,358.3,13205,0)
- ;;=R33.9^^57^653^17
+ ;;=T82.515A^^53^582^15
  ;;^UTILITY(U,$J,358.3,13205,1,0)
  ;;=^358.31IA^4^2
  ;;^UTILITY(U,$J,358.3,13205,1,3,0)
- ;;=3^Urinary Retention,Unspec
+ ;;=3^Breakdown,Umbrella Device,Init Encntr
  ;;^UTILITY(U,$J,358.3,13205,1,4,0)
- ;;=4^R33.9
+ ;;=4^T82.515A
  ;;^UTILITY(U,$J,358.3,13205,2)
- ;;=^5019332
+ ;;=^5054827
  ;;^UTILITY(U,$J,358.3,13206,0)
- ;;=N34.2^^57^653^16
+ ;;=T82.519A^^53^582^4
  ;;^UTILITY(U,$J,358.3,13206,1,0)
  ;;=^358.31IA^4^2
  ;;^UTILITY(U,$J,358.3,13206,1,3,0)
- ;;=3^Urethritis, other
+ ;;=3^Breakdown,Card/Vasc Devices/Implants,Unspec,Init Encntr
  ;;^UTILITY(U,$J,358.3,13206,1,4,0)
- ;;=4^N34.2
+ ;;=4^T82.519A
  ;;^UTILITY(U,$J,358.3,13206,2)
- ;;=^88231
+ ;;=^5054833
  ;;^UTILITY(U,$J,358.3,13207,0)
- ;;=R32.^^57^653^18
+ ;;=T82.520A^^53^582^41
  ;;^UTILITY(U,$J,358.3,13207,1,0)
  ;;=^358.31IA^4^2
  ;;^UTILITY(U,$J,358.3,13207,1,3,0)
- ;;=3^Urinary incontinence, unspec
+ ;;=3^Dsplcmnt of Surgically Created AV Fistula,Init Encntr
  ;;^UTILITY(U,$J,358.3,13207,1,4,0)
- ;;=4^R32.
+ ;;=4^T82.520A
  ;;^UTILITY(U,$J,358.3,13207,2)
- ;;=^5019329
+ ;;=^5054836
  ;;^UTILITY(U,$J,358.3,13208,0)
- ;;=N39.0^^57^653^19
+ ;;=T82.521A^^53^582^42
  ;;^UTILITY(U,$J,358.3,13208,1,0)
  ;;=^358.31IA^4^2
  ;;^UTILITY(U,$J,358.3,13208,1,3,0)
- ;;=3^Urinary tract infect, site not specified
+ ;;=3^Dsplcmnt of Surgically Created AV Shunt,Init Encntr
  ;;^UTILITY(U,$J,358.3,13208,1,4,0)
- ;;=4^N39.0
+ ;;=4^T82.521A
  ;;^UTILITY(U,$J,358.3,13208,2)
- ;;=^124436
+ ;;=^5054839
  ;;^UTILITY(U,$J,358.3,13209,0)
- ;;=B35.6^^57^653^6
+ ;;=T82.523A^^53^582^31
  ;;^UTILITY(U,$J,358.3,13209,1,0)
  ;;=^358.31IA^4^2
  ;;^UTILITY(U,$J,358.3,13209,1,3,0)
- ;;=3^Tinea Cruris
+ ;;=3^Dsplcmnt of Balloon Device,Init Encntr
  ;;^UTILITY(U,$J,358.3,13209,1,4,0)
- ;;=4^B35.6
+ ;;=4^T82.523A
  ;;^UTILITY(U,$J,358.3,13209,2)
- ;;=^119711
+ ;;=^5054845
  ;;^UTILITY(U,$J,358.3,13210,0)
- ;;=R00.0^^57^653^1
+ ;;=T82.525A^^53^582^43
  ;;^UTILITY(U,$J,358.3,13210,1,0)
  ;;=^358.31IA^4^2
  ;;^UTILITY(U,$J,358.3,13210,1,3,0)
- ;;=3^Tachycardia,Unspec
+ ;;=3^Dsplcmnt of Umbrella Device,Init Encntr
  ;;^UTILITY(U,$J,358.3,13210,1,4,0)
- ;;=4^R00.0
+ ;;=4^T82.525A
  ;;^UTILITY(U,$J,358.3,13210,2)
- ;;=^5019163
+ ;;=^5054851
  ;;^UTILITY(U,$J,358.3,13211,0)
- ;;=K08.89^^57^653^2
+ ;;=T82.529A^^53^582^34
  ;;^UTILITY(U,$J,358.3,13211,1,0)
  ;;=^358.31IA^4^2
  ;;^UTILITY(U,$J,358.3,13211,1,3,0)
- ;;=3^Teeth & Supporting Structure Disorders (Toothache)
+ ;;=3^Dsplcmnt of Cardiac/Vascular Devices/Implants Unspec,Init Encntr
  ;;^UTILITY(U,$J,358.3,13211,1,4,0)
- ;;=4^K08.89
+ ;;=4^T82.529A
  ;;^UTILITY(U,$J,358.3,13211,2)
- ;;=^5008467
+ ;;=^5054857
  ;;^UTILITY(U,$J,358.3,13212,0)
- ;;=I83.91^^57^654^5
+ ;;=T82.530A^^53^582^140
  ;;^UTILITY(U,$J,358.3,13212,1,0)
  ;;=^358.31IA^4^2
  ;;^UTILITY(U,$J,358.3,13212,1,3,0)
- ;;=3^Varicose veins, asympt, of rt lwr extr
+ ;;=3^Leakage of Surgically Created AV Fistula,Init Encntr
  ;;^UTILITY(U,$J,358.3,13212,1,4,0)
- ;;=4^I83.91
+ ;;=4^T82.530A
  ;;^UTILITY(U,$J,358.3,13212,2)
- ;;=^5008020
+ ;;=^5054860
  ;;^UTILITY(U,$J,358.3,13213,0)
- ;;=I83.92^^57^654^4
+ ;;=T82.531A^^53^582^141
  ;;^UTILITY(U,$J,358.3,13213,1,0)
  ;;=^358.31IA^4^2
  ;;^UTILITY(U,$J,358.3,13213,1,3,0)
- ;;=3^Varicose veins, asympt, of lft lwr extr
+ ;;=3^Leakage of Surgically Created AV Shunt,Init Encntr
  ;;^UTILITY(U,$J,358.3,13213,1,4,0)
- ;;=4^I83.92
+ ;;=4^T82.531A
  ;;^UTILITY(U,$J,358.3,13213,2)
- ;;=^5008021
+ ;;=^5054863
  ;;^UTILITY(U,$J,358.3,13214,0)
- ;;=I83.93^^57^654^3
+ ;;=T82.533A^^53^582^136
  ;;^UTILITY(U,$J,358.3,13214,1,0)
  ;;=^358.31IA^4^2
  ;;^UTILITY(U,$J,358.3,13214,1,3,0)
- ;;=3^Varicose veins, asympt, of biltrl lwr extre
+ ;;=3^Leakage of Balloon Device,Init Encntr
  ;;^UTILITY(U,$J,358.3,13214,1,4,0)
- ;;=4^I83.93
+ ;;=4^T82.533A
  ;;^UTILITY(U,$J,358.3,13214,2)
- ;;=^5008022
+ ;;=^5054869
  ;;^UTILITY(U,$J,358.3,13215,0)
- ;;=H54.7^^57^654^7
+ ;;=T82.535A^^53^582^142
  ;;^UTILITY(U,$J,358.3,13215,1,0)
  ;;=^358.31IA^4^2
  ;;^UTILITY(U,$J,358.3,13215,1,3,0)
- ;;=3^Visual loss, unspec
+ ;;=3^Leakage of Umbrella Device,Init Encntr
  ;;^UTILITY(U,$J,358.3,13215,1,4,0)
- ;;=4^H54.7
+ ;;=4^T82.535A
  ;;^UTILITY(U,$J,358.3,13215,2)
- ;;=^5006368
+ ;;=^5054875
  ;;^UTILITY(U,$J,358.3,13216,0)
- ;;=R53.1^^57^654^8
+ ;;=T82.539A^^53^582^137
  ;;^UTILITY(U,$J,358.3,13216,1,0)
  ;;=^358.31IA^4^2
  ;;^UTILITY(U,$J,358.3,13216,1,3,0)
- ;;=3^Weakness
+ ;;=3^Leakage of Cardiac/Vascular Device/Implant Unspec,Init Encntr
  ;;^UTILITY(U,$J,358.3,13216,1,4,0)
- ;;=4^R53.1
+ ;;=4^T82.539A
  ;;^UTILITY(U,$J,358.3,13216,2)
- ;;=^5019516
+ ;;=^5054881
  ;;^UTILITY(U,$J,358.3,13217,0)
- ;;=R63.4^^57^654^10
+ ;;=T82.590A^^53^582^162
  ;;^UTILITY(U,$J,358.3,13217,1,0)
  ;;=^358.31IA^4^2
  ;;^UTILITY(U,$J,358.3,13217,1,3,0)
- ;;=3^Weight loss, abnl
+ ;;=3^Mech Compl of Surgically Created AV Fistula,Init Encntr
  ;;^UTILITY(U,$J,358.3,13217,1,4,0)
- ;;=4^R63.4
+ ;;=4^T82.590A
  ;;^UTILITY(U,$J,358.3,13217,2)
- ;;=^5019542
+ ;;=^5054884
  ;;^UTILITY(U,$J,358.3,13218,0)
- ;;=B97.89^^57^654^6
+ ;;=T82.591A^^53^582^163
  ;;^UTILITY(U,$J,358.3,13218,1,0)
  ;;=^358.31IA^4^2
  ;;^UTILITY(U,$J,358.3,13218,1,3,0)
- ;;=3^Viral agents as cause of disease, oth, classd elswhr
+ ;;=3^Mech Compl of Surgically Created AV Shunt,Init Encntr
  ;;^UTILITY(U,$J,358.3,13218,1,4,0)
- ;;=4^B97.89
+ ;;=4^T82.591A
  ;;^UTILITY(U,$J,358.3,13218,2)
- ;;=^5000879
+ ;;=^5054887
  ;;^UTILITY(U,$J,358.3,13219,0)
- ;;=I83.029^^57^654^1
+ ;;=T82.593A^^53^582^147
  ;;^UTILITY(U,$J,358.3,13219,1,0)
  ;;=^358.31IA^4^2
  ;;^UTILITY(U,$J,358.3,13219,1,3,0)
- ;;=3^Varicose Veins Left Lower Extremity w/ Ulcer,Site Unspec
+ ;;=3^Mech Compl of Balloon Device,Init Encntr
  ;;^UTILITY(U,$J,358.3,13219,1,4,0)
- ;;=4^I83.029
+ ;;=4^T82.593A
  ;;^UTILITY(U,$J,358.3,13219,2)
- ;;=^5007986
+ ;;=^5054893
  ;;^UTILITY(U,$J,358.3,13220,0)
- ;;=I83.019^^57^654^2
+ ;;=T82.595A^^53^582^164
  ;;^UTILITY(U,$J,358.3,13220,1,0)
  ;;=^358.31IA^4^2
  ;;^UTILITY(U,$J,358.3,13220,1,3,0)
- ;;=3^Varicose Veins Right Lower Extremity w/ Ulcer,Site Unspec
+ ;;=3^Mech Compl of Umbrella Device,Init Encntr
  ;;^UTILITY(U,$J,358.3,13220,1,4,0)
- ;;=4^I83.019
+ ;;=4^T82.595A
  ;;^UTILITY(U,$J,358.3,13220,2)
- ;;=^5007979
+ ;;=^5054899
  ;;^UTILITY(U,$J,358.3,13221,0)
- ;;=R63.5^^57^654^9
+ ;;=T82.599A^^53^582^149
  ;;^UTILITY(U,$J,358.3,13221,1,0)
  ;;=^358.31IA^4^2
  ;;^UTILITY(U,$J,358.3,13221,1,3,0)
- ;;=3^Weight Gain,Abnormal
+ ;;=3^Mech Compl of Cardiac/Vascular Device/Implant Unspec,Init Encntr
  ;;^UTILITY(U,$J,358.3,13221,1,4,0)
- ;;=4^R63.5
+ ;;=4^T82.599A
  ;;^UTILITY(U,$J,358.3,13221,2)
- ;;=^5019543
+ ;;=^5054905
  ;;^UTILITY(U,$J,358.3,13222,0)
- ;;=F50.02^^57^655^1
+ ;;=T85.01XA^^53^582^19
  ;;^UTILITY(U,$J,358.3,13222,1,0)
  ;;=^358.31IA^4^2
  ;;^UTILITY(U,$J,358.3,13222,1,3,0)
- ;;=3^Anorexia nervosa, binge eating/purging type
+ ;;=3^Breakdown,Ventricular Intracranial Shunt,Init Encntr
  ;;^UTILITY(U,$J,358.3,13222,1,4,0)
- ;;=4^F50.02
+ ;;=4^T85.01XA
  ;;^UTILITY(U,$J,358.3,13222,2)
- ;;=^5003599
+ ;;=^5055478
  ;;^UTILITY(U,$J,358.3,13223,0)
- ;;=F50.01^^57^655^2
+ ;;=T85.02XA^^53^582^46
  ;;^UTILITY(U,$J,358.3,13223,1,0)
  ;;=^358.31IA^4^2
  ;;^UTILITY(U,$J,358.3,13223,1,3,0)
- ;;=3^Anorexia nervosa, restricting type
+ ;;=3^Dsplcmnt of Ventricular Intracranial Shunt,Init Encntr
  ;;^UTILITY(U,$J,358.3,13223,1,4,0)
- ;;=4^F50.01
+ ;;=4^T85.02XA
  ;;^UTILITY(U,$J,358.3,13223,2)
- ;;=^5003598
+ ;;=^5055481
  ;;^UTILITY(U,$J,358.3,13224,0)
- ;;=F50.00^^57^655^3
+ ;;=T85.03XA^^53^582^145
  ;;^UTILITY(U,$J,358.3,13224,1,0)
  ;;=^358.31IA^4^2
  ;;^UTILITY(U,$J,358.3,13224,1,3,0)
- ;;=3^Anorexia nervosa, unspec
+ ;;=3^Leakage of Ventricular Intracranial Shunt,Init Encntr
  ;;^UTILITY(U,$J,358.3,13224,1,4,0)
- ;;=4^F50.00
+ ;;=4^T85.03XA
  ;;^UTILITY(U,$J,358.3,13224,2)
- ;;=^5003597
+ ;;=^5055484
  ;;^UTILITY(U,$J,358.3,13225,0)
- ;;=F90.9^^57^655^4
+ ;;=T85.09XA^^53^582^166
  ;;^UTILITY(U,$J,358.3,13225,1,0)
  ;;=^358.31IA^4^2
  ;;^UTILITY(U,$J,358.3,13225,1,3,0)
- ;;=3^Attention-deficit hyperact dsordr, unspec type
+ ;;=3^Mech Compl of Ventricular Intracranial Shunt,Init Encntr
  ;;^UTILITY(U,$J,358.3,13225,1,4,0)
- ;;=4^F90.9
+ ;;=4^T85.09XA
  ;;^UTILITY(U,$J,358.3,13225,2)
- ;;=^5003696
+ ;;=^5055487
  ;;^UTILITY(U,$J,358.3,13226,0)
- ;;=F50.2^^57^655^5
+ ;;=T85.110A^^53^582^9
  ;;^UTILITY(U,$J,358.3,13226,1,0)
  ;;=^358.31IA^4^2
  ;;^UTILITY(U,$J,358.3,13226,1,3,0)
- ;;=3^Bulimia nervosa
+ ;;=3^Breakdown,Implnt Elect Neurostim,Brain,Init Encntr
  ;;^UTILITY(U,$J,358.3,13226,1,4,0)
- ;;=4^F50.2
+ ;;=4^T85.110A
  ;;^UTILITY(U,$J,358.3,13226,2)
- ;;=^5003600
+ ;;=^5055490
  ;;^UTILITY(U,$J,358.3,13227,0)
- ;;=F44.9^^57^655^6
+ ;;=T85.111A^^53^582^11
  ;;^UTILITY(U,$J,358.3,13227,1,0)
  ;;=^358.31IA^4^2
  ;;^UTILITY(U,$J,358.3,13227,1,3,0)
- ;;=3^Dissociative & conversion disorder, unspec
+ ;;=3^Breakdown,Implnt Elect Neurostim,Periph Nrv,Init Encntr
  ;;^UTILITY(U,$J,358.3,13227,1,4,0)
- ;;=4^F44.9
+ ;;=4^T85.111A
  ;;^UTILITY(U,$J,358.3,13227,2)
- ;;=^5003584
+ ;;=^5055493
  ;;^UTILITY(U,$J,358.3,13228,0)
- ;;=F50.9^^57^655^7
+ ;;=T85.112A^^53^582^12
  ;;^UTILITY(U,$J,358.3,13228,1,0)
  ;;=^358.31IA^4^2
  ;;^UTILITY(U,$J,358.3,13228,1,3,0)
- ;;=3^Eating disorder, unspec
+ ;;=3^Breakdown,Implnt Elect Neurostim,Spinal Cord,Init Encntr
  ;;^UTILITY(U,$J,358.3,13228,1,4,0)
- ;;=4^F50.9
+ ;;=4^T85.112A
  ;;^UTILITY(U,$J,358.3,13228,2)
- ;;=^5003602
+ ;;=^5055496
  ;;^UTILITY(U,$J,358.3,13229,0)
- ;;=F64.1^^57^655^9
+ ;;=T85.118A^^53^582^10
  ;;^UTILITY(U,$J,358.3,13229,1,0)
  ;;=^358.31IA^4^2
  ;;^UTILITY(U,$J,358.3,13229,1,3,0)
- ;;=3^Gender ident disorder in adlscnc & adlthd
+ ;;=3^Breakdown,Implnt Elect Neurostim,Nerv Sys,Init Encntr
  ;;^UTILITY(U,$J,358.3,13229,1,4,0)
- ;;=4^F64.1
+ ;;=4^T85.118A
  ;;^UTILITY(U,$J,358.3,13229,2)
- ;;=^5003647
+ ;;=^5055499
  ;;^UTILITY(U,$J,358.3,13230,0)
- ;;=F06.30^^57^655^11
+ ;;=T85.120A^^53^582^37
  ;;^UTILITY(U,$J,358.3,13230,1,0)
  ;;=^358.31IA^4^2
  ;;^UTILITY(U,$J,358.3,13230,1,3,0)
- ;;=3^Mood disorder d/t known physiol cond, unsp
+ ;;=3^Dsplcmnt of Implnt Elect Neurostim,Brain,Init Encntr
  ;;^UTILITY(U,$J,358.3,13230,1,4,0)
- ;;=4^F06.30
+ ;;=4^T85.120A
  ;;^UTILITY(U,$J,358.3,13230,2)
- ;;=^5003056
+ ;;=^5055502
  ;;^UTILITY(U,$J,358.3,13231,0)
- ;;=F23.^^57^655^15
+ ;;=T85.121A^^53^582^38
  ;;^UTILITY(U,$J,358.3,13231,1,0)
  ;;=^358.31IA^4^2
  ;;^UTILITY(U,$J,358.3,13231,1,3,0)
- ;;=3^Psychotic disorder, brief
+ ;;=3^Dsplcmnt of Implnt Elect Neurostim,Periph Nrv,Init Encntr
  ;;^UTILITY(U,$J,358.3,13231,1,4,0)
- ;;=4^F23.
+ ;;=4^T85.121A
  ;;^UTILITY(U,$J,358.3,13231,2)
- ;;=^5003479
+ ;;=^5055505
  ;;^UTILITY(U,$J,358.3,13232,0)
- ;;=F06.2^^57^655^14
+ ;;=T85.122A^^53^582^39
  ;;^UTILITY(U,$J,358.3,13232,1,0)
  ;;=^358.31IA^4^2
  ;;^UTILITY(U,$J,358.3,13232,1,3,0)
- ;;=3^Psychotic disorder w/ delusns d/t known physiol cond
+ ;;=3^Dsplcmnt of Implnt Elect Neurostim,Spinal Cord,Init Encntr
  ;;^UTILITY(U,$J,358.3,13232,1,4,0)
- ;;=4^F06.2
+ ;;=4^T85.122A
  ;;^UTILITY(U,$J,358.3,13232,2)
- ;;=^5003055
+ ;;=^5055508
  ;;^UTILITY(U,$J,358.3,13233,0)
- ;;=F29.^^57^655^13
+ ;;=T85.128A^^53^582^40
  ;;^UTILITY(U,$J,358.3,13233,1,0)
  ;;=^358.31IA^4^2
  ;;^UTILITY(U,$J,358.3,13233,1,3,0)
- ;;=3^Psychosis not d/t a subst or known physiol cond, unsp
+ ;;=3^Dsplcmnt of Implnt Elect Stim,Nrv Sys,Init Encntr
  ;;^UTILITY(U,$J,358.3,13233,1,4,0)
- ;;=4^F29.
+ ;;=4^T85.128A
  ;;^UTILITY(U,$J,358.3,13233,2)
- ;;=^5003484
+ ;;=^5055511
  ;;^UTILITY(U,$J,358.3,13234,0)
- ;;=F45.9^^57^655^16
+ ;;=T85.190A^^53^582^153
  ;;^UTILITY(U,$J,358.3,13234,1,0)
  ;;=^358.31IA^4^2
  ;;^UTILITY(U,$J,358.3,13234,1,3,0)
- ;;=3^Somatoform disorder, unspec
+ ;;=3^Mech Compl of Implanted Electronic Neurostim of Brain,Init Encntr
  ;;^UTILITY(U,$J,358.3,13234,1,4,0)
- ;;=4^F45.9
+ ;;=4^T85.190A
  ;;^UTILITY(U,$J,358.3,13234,2)
- ;;=^5003592
+ ;;=^5055514
  ;;^UTILITY(U,$J,358.3,13235,0)
- ;;=Z00.00^^57^655^10
+ ;;=T85.191A^^53^582^154
  ;;^UTILITY(U,$J,358.3,13235,1,0)
  ;;=^358.31IA^4^2
  ;;^UTILITY(U,$J,358.3,13235,1,3,0)
- ;;=3^General Adult Med Exam w/o Abnl Fndgs
+ ;;=3^Mech Compl of Implanted Electronic Neurostim of Periph Nrv,Init Encntr
  ;;^UTILITY(U,$J,358.3,13235,1,4,0)
- ;;=4^Z00.00
+ ;;=4^T85.191A
  ;;^UTILITY(U,$J,358.3,13235,2)
- ;;=^5062599
+ ;;=^5055517
  ;;^UTILITY(U,$J,358.3,13236,0)
- ;;=Z51.5^^57^655^12
+ ;;=T85.192A^^53^582^155
  ;;^UTILITY(U,$J,358.3,13236,1,0)
  ;;=^358.31IA^4^2
  ;;^UTILITY(U,$J,358.3,13236,1,3,0)
- ;;=3^Palliative care 
+ ;;=3^Mech Compl of Implanted Electronic Neurostim of Spinal Cord,Init Encntr
  ;;^UTILITY(U,$J,358.3,13236,1,4,0)
- ;;=4^Z51.5
+ ;;=4^T85.192A
  ;;^UTILITY(U,$J,358.3,13236,2)
- ;;=^5063063
+ ;;=^5055520
  ;;^UTILITY(U,$J,358.3,13237,0)
- ;;=Z09.^^57^655^8
+ ;;=T85.199A^^53^582^156
  ;;^UTILITY(U,$J,358.3,13237,1,0)
  ;;=^358.31IA^4^2
  ;;^UTILITY(U,$J,358.3,13237,1,3,0)
- ;;=3^Follow-up Exam,Compltd TX,Oth Than Cancer
+ ;;=3^Mech Compl of Implanted Electronic Stim of Nervous Sys,Init Encntr
  ;;^UTILITY(U,$J,358.3,13237,1,4,0)
- ;;=4^Z09.
+ ;;=4^T85.199A
  ;;^UTILITY(U,$J,358.3,13237,2)
- ;;=^5062668
+ ;;=^5055523
  ;;^UTILITY(U,$J,358.3,13238,0)
- ;;=Z63.32^^57^656^2
+ ;;=T83.498A^^53^582^159
  ;;^UTILITY(U,$J,358.3,13238,1,0)
  ;;=^358.31IA^4^2
  ;;^UTILITY(U,$J,358.3,13238,1,3,0)
- ;;=3^Absence of family member, oth
- ;;^UTILITY(U,$J,358.3,13238,1,4,0)
- ;;=4^Z63.32
- ;;^UTILITY(U,$J,358.3,13238,2)
- ;;=^5063167
- ;;^UTILITY(U,$J,358.3,13239,0)
- ;;=Z71.41^^57^656^3
- ;;^UTILITY(U,$J,358.3,13239,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,13239,1,3,0)
- ;;=3^Alcohol abuse counslng & surveil of alcoholic
- ;;^UTILITY(U,$J,358.3,13239,1,4,0)
- ;;=4^Z71.41
- ;;^UTILITY(U,$J,358.3,13239,2)
- ;;=^5063246
- ;;^UTILITY(U,$J,358.3,13240,0)
- ;;=Z71.89^^57^656^4
- ;;^UTILITY(U,$J,358.3,13240,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,13240,1,3,0)
- ;;=3^Counseling, oth, spec
- ;;^UTILITY(U,$J,358.3,13240,1,4,0)
- ;;=4^Z71.89
- ;;^UTILITY(U,$J,358.3,13240,2)
- ;;=^5063253
- ;;^UTILITY(U,$J,358.3,13241,0)
- ;;=Z71.9^^57^656^5
- ;;^UTILITY(U,$J,358.3,13241,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,13241,1,3,0)
- ;;=3^Counseling, unspec
- ;;^UTILITY(U,$J,358.3,13241,1,4,0)
- ;;=4^Z71.9
- ;;^UTILITY(U,$J,358.3,13241,2)
- ;;=^5063254
- ;;^UTILITY(U,$J,358.3,13242,0)
- ;;=Z63.4^^57^656^8
- ;;^UTILITY(U,$J,358.3,13242,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,13242,1,3,0)
- ;;=3^Disappearance & death of family member
- ;;^UTILITY(U,$J,358.3,13242,1,4,0)
- ;;=4^Z63.4
- ;;^UTILITY(U,$J,358.3,13242,2)
- ;;=^5063168
- ;;^UTILITY(U,$J,358.3,13243,0)
- ;;=Z73.82^^57^656^9
- ;;^UTILITY(U,$J,358.3,13243,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,13243,1,3,0)
- ;;=3^Dual sensory impairment
- ;;^UTILITY(U,$J,358.3,13243,1,4,0)
- ;;=4^Z73.82
- ;;^UTILITY(U,$J,358.3,13243,2)
- ;;=^5063279
- ;;^UTILITY(U,$J,358.3,13244,0)
- ;;=Z04.41^^57^656^10
- ;;^UTILITY(U,$J,358.3,13244,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,13244,1,3,0)
- ;;=3^Encntr for exam & obs folwng alleged adlt rape
- ;;^UTILITY(U,$J,358.3,13244,1,4,0)
- ;;=4^Z04.41
- ;;^UTILITY(U,$J,358.3,13244,2)
- ;;=^5062660
- ;;^UTILITY(U,$J,358.3,13245,0)
- ;;=Z76.0^^57^656^11
- ;;^UTILITY(U,$J,358.3,13245,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,13245,1,3,0)
- ;;=3^Encntr for issue of repeat prescription
- ;;^UTILITY(U,$J,358.3,13245,1,4,0)
- ;;=4^Z76.0
- ;;^UTILITY(U,$J,358.3,13245,2)
- ;;=^5063297
- ;;^UTILITY(U,$J,358.3,13246,0)
- ;;=Z69.12^^57^656^13
- ;;^UTILITY(U,$J,358.3,13246,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,13246,1,3,0)
- ;;=3^Encntr for mntl hlth serv for perp of spous or prtnr abuse
- ;;^UTILITY(U,$J,358.3,13246,1,4,0)
- ;;=4^Z69.12
- ;;^UTILITY(U,$J,358.3,13246,2)
- ;;=^5063233
- ;;^UTILITY(U,$J,358.3,13247,0)
- ;;=Z69.010^^57^656^14
- ;;^UTILITY(U,$J,358.3,13247,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,13247,1,3,0)
- ;;=3^Encntr for mntl hlth serv for vctm of prntl child abuse
- ;;^UTILITY(U,$J,358.3,13247,1,4,0)
- ;;=4^Z69.010
- ;;^UTILITY(U,$J,358.3,13247,2)
- ;;=^5063228
- ;;^UTILITY(U,$J,358.3,13248,0)
- ;;=Z69.11^^57^656^15
- ;;^UTILITY(U,$J,358.3,13248,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,13248,1,3,0)
- ;;=3^Encntr for mntl hlth serv for vctm of spous or prtnr abuse
- ;;^UTILITY(U,$J,358.3,13248,1,4,0)
- ;;=4^Z69.11
- ;;^UTILITY(U,$J,358.3,13248,2)
- ;;=^5063232
- ;;^UTILITY(U,$J,358.3,13249,0)
- ;;=Z65.5^^57^656^16
- ;;^UTILITY(U,$J,358.3,13249,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,13249,1,3,0)
- ;;=3^Expsr to disaster, war & oth hostilities
- ;;^UTILITY(U,$J,358.3,13249,1,4,0)
- ;;=4^Z65.5
- ;;^UTILITY(U,$J,358.3,13249,2)
- ;;=^5063184
- ;;^UTILITY(U,$J,358.3,13250,0)
- ;;=Z59.0^^57^656^18
- ;;^UTILITY(U,$J,358.3,13250,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,13250,1,3,0)
- ;;=3^Homelessness
- ;;^UTILITY(U,$J,358.3,13250,1,4,0)
- ;;=4^Z59.0
- ;;^UTILITY(U,$J,358.3,13250,2)
- ;;=^5063129
- ;;^UTILITY(U,$J,358.3,13251,0)
- ;;=Z59.5^^57^656^17
- ;;^UTILITY(U,$J,358.3,13251,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,13251,1,3,0)
- ;;=3^Extreme poverty
- ;;^UTILITY(U,$J,358.3,13251,1,4,0)
- ;;=4^Z59.5
- ;;^UTILITY(U,$J,358.3,13251,2)
- ;;=^5063134
- ;;^UTILITY(U,$J,358.3,13252,0)
- ;;=Z71.7^^57^656^19
- ;;^UTILITY(U,$J,358.3,13252,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,13252,1,3,0)
- ;;=3^Human immunodeficiency virus [HIV] counseling
- ;;^UTILITY(U,$J,358.3,13252,1,4,0)
- ;;=4^Z71.7
- ;;^UTILITY(U,$J,358.3,13252,2)
- ;;=^5063251
- ;;^UTILITY(U,$J,358.3,13253,0)
- ;;=Z73.4^^57^656^20
- ;;^UTILITY(U,$J,358.3,13253,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,13253,1,3,0)
- ;;=3^Inadqute social skills, not elswhr classified
- ;;^UTILITY(U,$J,358.3,13253,1,4,0)
- ;;=4^Z73.4
- ;;^UTILITY(U,$J,358.3,13253,2)
- ;;=^5063272
- ;;^UTILITY(U,$J,358.3,13254,0)
- ;;=Z79.2^^57^656^22
- ;;^UTILITY(U,$J,358.3,13254,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,13254,1,3,0)
- ;;=3^Long term (current) use of antibiotics
- ;;^UTILITY(U,$J,358.3,13254,1,4,0)
- ;;=4^Z79.2
- ;;^UTILITY(U,$J,358.3,13254,2)
- ;;=^321546
- ;;^UTILITY(U,$J,358.3,13255,0)
- ;;=Z79.01^^57^656^23
- ;;^UTILITY(U,$J,358.3,13255,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,13255,1,3,0)
- ;;=3^Long term (current) use of anticoagulants
- ;;^UTILITY(U,$J,358.3,13255,1,4,0)
- ;;=4^Z79.01
- ;;^UTILITY(U,$J,358.3,13255,2)
- ;;=^5063330
- ;;^UTILITY(U,$J,358.3,13256,0)
- ;;=Z79.02^^57^656^24
- ;;^UTILITY(U,$J,358.3,13256,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,13256,1,3,0)
- ;;=3^Long term (current) use of antithrombtc/antipltlts
- ;;^UTILITY(U,$J,358.3,13256,1,4,0)
- ;;=4^Z79.02
- ;;^UTILITY(U,$J,358.3,13256,2)
- ;;=^5063331
- ;;^UTILITY(U,$J,358.3,13257,0)
- ;;=Z79.82^^57^656^25
- ;;^UTILITY(U,$J,358.3,13257,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,13257,1,3,0)
- ;;=3^Long term (current) use of aspirin
- ;;^UTILITY(U,$J,358.3,13257,1,4,0)
- ;;=4^Z79.82
- ;;^UTILITY(U,$J,358.3,13257,2)
- ;;=^5063340
- ;;^UTILITY(U,$J,358.3,13258,0)
- ;;=Z79.899^^57^656^21
- ;;^UTILITY(U,$J,358.3,13258,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,13258,1,3,0)
- ;;=3^Long term (current) drug therapy, oth
- ;;^UTILITY(U,$J,358.3,13258,1,4,0)
- ;;=4^Z79.899
- ;;^UTILITY(U,$J,358.3,13258,2)
- ;;=^5063343
- ;;^UTILITY(U,$J,358.3,13259,0)
- ;;=Z79.51^^57^656^26
- ;;^UTILITY(U,$J,358.3,13259,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,13259,1,3,0)
- ;;=3^Long term (current) use of inhaled steroids
- ;;^UTILITY(U,$J,358.3,13259,1,4,0)
- ;;=4^Z79.51
- ;;^UTILITY(U,$J,358.3,13259,2)
- ;;=^5063335
- ;;^UTILITY(U,$J,358.3,13260,0)
- ;;=Z79.4^^57^656^27
- ;;^UTILITY(U,$J,358.3,13260,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,13260,1,3,0)
- ;;=3^Long term (current) use of insulin
- ;;^UTILITY(U,$J,358.3,13260,1,4,0)
- ;;=4^Z79.4
- ;;^UTILITY(U,$J,358.3,13260,2)
- ;;=^5063334
- ;;^UTILITY(U,$J,358.3,13261,0)
- ;;=Z79.1^^57^656^28
- ;;^UTILITY(U,$J,358.3,13261,1,0)
- ;;=^358.31IA^4^2
+ ;;=3^Mech Compl of Prosthetic Device/Implant/Graft of Genital Tract,Init Encntr

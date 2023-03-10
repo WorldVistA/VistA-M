@@ -1,5 +1,5 @@
-PRCSEB ;SF-ISC/LJP/SAW/DXH/DAP - CPA EDITS CON'T ;7.26.99
-V ;;5.1;IFCAP;**81,174,184,196,204,209**;Oct 20, 2000;Build 3
+PRCSEB ;SF-ISC/LJP/SAW/DXH/DAP - CPA EDITS CON'T ; 3/15/21@2:24pm
+V ;;5.1;IFCAP;**81,174,184,196,204,209,223**;Oct 20, 2000;Build 16
  ;Per VA Directive 6402, this routine should not be modified.
  ;
  ;PRC*5.1*184  Check for error message indicating no 2237 seq nos.
@@ -7,10 +7,13 @@ V ;;5.1;IFCAP;**81,174,184,196,204,209**;Oct 20, 2000;Build 3
  ;             for FCP FY-FQ.
  ;
  ;PRC*5.1*196  Check to move Date Required to Committed Date (MOP= 2,3 or 4)
- ;             to insure a later date is used for FMS document. Also,
+ ;             to insure a later date is used for FMS document. Also
  ;             added date check called from templates PRCSENR&NR1,
  ;             PRCSEN2237B & PRCSENPR to insure dates are in same 
  ;             FY/FQ defined.
+ ;
+ ;PRC*5.1*223  Use DIE set to save IP in file 410, field #4 in lieu of
+ ;             direct set that did not create the file index 'AO for field.
  ;
 ENRB ;ENTER CP CLERK REQUEST FROM OPTION PRCSENRB
  K PRCBBMY
@@ -25,14 +28,19 @@ ENRB ;ENTER CP CLERK REQUEST FROM OPTION PRCSENRB
 TYPE ;
  S PRCDAA=DA,DIC="^PRCS(410.5,",DIC(0)="AEQZ",DIC("A")="FORM TYPE: ",DIC("S")=PRCVX D ^DIC S TYPE=+Y,DA=PRCDAA
  I TYPE<2 W "??    EXIT NOT ALLOWED" G TYPE
- K PRCVX,PRCVY
- S $P(^PRCS(410,DA,0),"^",4)=TYPE S:$G(PRCSIP) $P(^PRCS(410,DA,0),"^",6)=PRCSIP S (DIE,DIC)="^PRCS(410,",X=TYPE
+ K PRCVX,PRCVY,PRCSIPT,PRCPPRIV   ;PRC*5.1*223
+ S $P(^PRCS(410,DA,0),"^",4)=TYPE   ;PRC*5.1*223
+ I $G(PRCSIP) D   ;PRC*5.1*223
+ . S PRCSIPT=$P(^PRCP(445,PRCSIP,0),U),PRCPPRIV=1    ;PRC*5.1*223
+ . S DIE="^PRCS(410,",DR="4///^S X=PRCSIPT" D ^DIE   ;PRC*5.1*223
+ . K PRCSIPT
+ S (DIE,DIC)="^PRCS(410,",X=TYPE
  ;NOTE THAT THE FOLLOWING LINE OVERWRITES THE USER'S SELECTION OF FORM
  ;TYPE IF THE FUND CONTROL POINT IS NOT 'AUTOMATED'
  S:'$D(PRCS2)&(X>2) $P(^PRCS(410,DA,0),"^",4)=2,X=2
  S PRCSTYP=X     ;PRC*5.1*196
  S (PRCSDR,DR)="["_$S(X=2:"PRCSEN2237B",X=3:"PRCSENPR",X=4:"PRCSENR&NR",1:"PRCSENIB")_"]"
-EN1 K DTOUT,DUOUT,Y S PRCSDAA=DA D ^DIE I $D(Y)!($D(DTOUT)) S DA=PRCSDAA L -^PRCS(410,DA) G EXIT
+EN1 K DTOUT,DUOUT,PRCSIPT,Y S PRCSDAA=DA D ^DIE I $D(Y)!($D(DTOUT)) S DA=PRCSDAA L -^PRCS(410,DA) G EXIT   ;PRC*5.1*223
  S DA=PRCSDAA D RL^PRCSUT1
 COMDT I PRCSTYP>1,PRCSTYP<5,$P($G(^PRCS(410,DA,4)),U,2)="" D          ;PRC*5.1*196, PRC*5.1*204 protect global with $G
  . S PRCOMDT=$S($P(^PRCS(410,DA,1),U,4)'=DT:$P(^PRCS(410,DA,1),U,4),1:DT)

@@ -1,5 +1,5 @@
 ORB3UTL ;SLC/JMH - OE/RR Notification Utilities ;Aug 20, 2019@09:43
- ;;3.0;ORDER ENTRY/RESULTS REPORTING;**377**;Dec 17, 1997;Build 582
+ ;;3.0;ORDER ENTRY/RESULTS REPORTING;**377,539**;Dec 17, 1997;Build 41
  ;
 GENALRTS ;fire off due alerts
  ;get unfired records
@@ -35,7 +35,7 @@ SCHALRT(ORDATA) ;Schedule a long text alert
  D UPDATE^DIE("","ORFDART","ORIENRT","ORMSGRT")
  I $D(ORIENRT(1)) S DA=ORIENRT(1)
  S DIC="^OR(100.97,",DIC(0)="F",DIE=DIC
- S DR="1////"_$$NOW^XLFDT()_";2////"_ORDATA("WHEN")_";3////"_ORDATA("WHO")_";5////"_ORDATA("TITLE")_";4////0;"
+ S DR="1////"_$$NOW^XLFDT()_";2////"_ORDATA("WHEN")_";3////"_ORDATA("WHO")_";5////"_ORDATA("TITLE")_";4////0"_";8////"_$G(ORDATA("IFN"))
  D ^DIE
  D WP^DIE(100.97,DA_",",6,,"ORDATA(""BODY"")","ERROR")
  Q

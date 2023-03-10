@@ -1,118 +1,118 @@
-IBDEI19M ; ; 04-FEB-2020
- ;;3.0;IB ENCOUNTER FORM IMP/EXP;;FEB 04, 2020
+IBDEI19M ; ; 01-FEB-2022
+ ;;3.0;IB ENCOUNTER FORM IMP/EXP;;FEB 01, 2022
  Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,999) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
- ;;^UTILITY(U,$J,358.3,20253,0)
- ;;=S89.211S^^93^1000^86
- ;;^UTILITY(U,$J,358.3,20253,1,0)
+ ;;^UTILITY(U,$J,358.3,20478,1,3,0)
+ ;;=3^Sltr-haris Type IV physl fx upper end humer, right arm, sqla
+ ;;^UTILITY(U,$J,358.3,20478,1,4,0)
+ ;;=4^S49.041S
+ ;;^UTILITY(U,$J,358.3,20478,2)
+ ;;=^5028412
+ ;;^UTILITY(U,$J,358.3,20479,0)
+ ;;=M84.322S^^67^887^123
+ ;;^UTILITY(U,$J,358.3,20479,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,20253,1,3,0)
- ;;=3^Sltr-haris Type I physeal fx upper end of r fibula, sequela
- ;;^UTILITY(U,$J,358.3,20253,1,4,0)
- ;;=4^S89.211S
- ;;^UTILITY(U,$J,358.3,20253,2)
- ;;=^5043774
- ;;^UTILITY(U,$J,358.3,20254,0)
- ;;=S89.322S^^93^1000^89
- ;;^UTILITY(U,$J,358.3,20254,1,0)
+ ;;^UTILITY(U,$J,358.3,20479,1,3,0)
+ ;;=3^Stress fracture, left humerus, sequela
+ ;;^UTILITY(U,$J,358.3,20479,1,4,0)
+ ;;=4^M84.322S
+ ;;^UTILITY(U,$J,358.3,20479,2)
+ ;;=^5013601
+ ;;^UTILITY(U,$J,358.3,20480,0)
+ ;;=M84.321S^^67^887^125
+ ;;^UTILITY(U,$J,358.3,20480,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,20254,1,3,0)
- ;;=3^Sltr-haris Type II physeal fx lower end of l fibula, sequela
- ;;^UTILITY(U,$J,358.3,20254,1,4,0)
- ;;=4^S89.322S
- ;;^UTILITY(U,$J,358.3,20254,2)
- ;;=^5137378
- ;;^UTILITY(U,$J,358.3,20255,0)
- ;;=S89.221S^^93^1000^93
- ;;^UTILITY(U,$J,358.3,20255,1,0)
+ ;;^UTILITY(U,$J,358.3,20480,1,3,0)
+ ;;=3^Stress fracture, right humerus, sequela
+ ;;^UTILITY(U,$J,358.3,20480,1,4,0)
+ ;;=4^M84.321S
+ ;;^UTILITY(U,$J,358.3,20480,2)
+ ;;=^5013595
+ ;;^UTILITY(U,$J,358.3,20481,0)
+ ;;=S42.482S^^67^887^127
+ ;;^UTILITY(U,$J,358.3,20481,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,20255,1,3,0)
- ;;=3^Sltr-haris Type II physeal fx upper end of r fibula, sequela
- ;;^UTILITY(U,$J,358.3,20255,1,4,0)
- ;;=4^S89.221S
- ;;^UTILITY(U,$J,358.3,20255,2)
- ;;=^5043792
- ;;^UTILITY(U,$J,358.3,20256,0)
- ;;=S89.321S^^93^1000^90
- ;;^UTILITY(U,$J,358.3,20256,1,0)
+ ;;^UTILITY(U,$J,358.3,20481,1,3,0)
+ ;;=3^Torus fracture of lower end of left humerus, sequela
+ ;;^UTILITY(U,$J,358.3,20481,1,4,0)
+ ;;=4^S42.482S
+ ;;^UTILITY(U,$J,358.3,20481,2)
+ ;;=^5134732
+ ;;^UTILITY(U,$J,358.3,20482,0)
+ ;;=S42.481S^^67^887^128
+ ;;^UTILITY(U,$J,358.3,20482,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,20256,1,3,0)
- ;;=3^Sltr-haris Type II physeal fx lower end of r fibula, sequela
- ;;^UTILITY(U,$J,358.3,20256,1,4,0)
- ;;=4^S89.321S
- ;;^UTILITY(U,$J,358.3,20256,2)
- ;;=^5043834
- ;;^UTILITY(U,$J,358.3,20257,0)
- ;;=S89.222S^^93^1000^94
- ;;^UTILITY(U,$J,358.3,20257,1,0)
+ ;;^UTILITY(U,$J,358.3,20482,1,3,0)
+ ;;=3^Torus fracture of lower end of right humerus, sequela
+ ;;^UTILITY(U,$J,358.3,20482,1,4,0)
+ ;;=4^S42.481S
+ ;;^UTILITY(U,$J,358.3,20482,2)
+ ;;=^5027621
+ ;;^UTILITY(U,$J,358.3,20483,0)
+ ;;=S42.272S^^67^887^129
+ ;;^UTILITY(U,$J,358.3,20483,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,20257,1,3,0)
- ;;=3^Sltr-haris Type II physeal fx upper end of l fibula, sequela
- ;;^UTILITY(U,$J,358.3,20257,1,4,0)
- ;;=4^S89.222S
- ;;^UTILITY(U,$J,358.3,20257,2)
- ;;=^5043798
- ;;^UTILITY(U,$J,358.3,20258,0)
- ;;=M84.364S^^93^1000^103
- ;;^UTILITY(U,$J,358.3,20258,1,0)
+ ;;^UTILITY(U,$J,358.3,20483,1,3,0)
+ ;;=3^Torus fracture of upper end of left humerus, sequela
+ ;;^UTILITY(U,$J,358.3,20483,1,4,0)
+ ;;=4^S42.272S
+ ;;^UTILITY(U,$J,358.3,20483,2)
+ ;;=^5026982
+ ;;^UTILITY(U,$J,358.3,20484,0)
+ ;;=S42.271S^^67^887^130
+ ;;^UTILITY(U,$J,358.3,20484,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,20258,1,3,0)
- ;;=3^Stress fracture, left fibula, sequela
- ;;^UTILITY(U,$J,358.3,20258,1,4,0)
- ;;=4^M84.364S
- ;;^UTILITY(U,$J,358.3,20258,2)
- ;;=^5013727
- ;;^UTILITY(U,$J,358.3,20259,0)
- ;;=M84.363S^^93^1000^105
- ;;^UTILITY(U,$J,358.3,20259,1,0)
+ ;;^UTILITY(U,$J,358.3,20484,1,3,0)
+ ;;=3^Torus fracture of upper end of right humerus, sequela
+ ;;^UTILITY(U,$J,358.3,20484,1,4,0)
+ ;;=4^S42.271S
+ ;;^UTILITY(U,$J,358.3,20484,2)
+ ;;=^5026976
+ ;;^UTILITY(U,$J,358.3,20485,0)
+ ;;=S42.122S^^67^887^8
+ ;;^UTILITY(U,$J,358.3,20485,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,20259,1,3,0)
- ;;=3^Stress fracture, right fibula, sequela
- ;;^UTILITY(U,$J,358.3,20259,1,4,0)
- ;;=4^M84.363S
- ;;^UTILITY(U,$J,358.3,20259,2)
- ;;=^5013721
- ;;^UTILITY(U,$J,358.3,20260,0)
- ;;=S82.822S^^93^1000^107
- ;;^UTILITY(U,$J,358.3,20260,1,0)
+ ;;^UTILITY(U,$J,358.3,20485,1,3,0)
+ ;;=3^Disp fx of acromial process, left shoulder, sequela
+ ;;^UTILITY(U,$J,358.3,20485,1,4,0)
+ ;;=4^S42.122S
+ ;;^UTILITY(U,$J,358.3,20485,2)
+ ;;=^5026599
+ ;;^UTILITY(U,$J,358.3,20486,0)
+ ;;=S42.121S^^67^887^9
+ ;;^UTILITY(U,$J,358.3,20486,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,20260,1,3,0)
- ;;=3^Torus fracture of lower end of left fibula, sequela
- ;;^UTILITY(U,$J,358.3,20260,1,4,0)
- ;;=4^S82.822S
- ;;^UTILITY(U,$J,358.3,20260,2)
- ;;=^5136943
- ;;^UTILITY(U,$J,358.3,20261,0)
- ;;=S82.821S^^93^1000^109
- ;;^UTILITY(U,$J,358.3,20261,1,0)
+ ;;^UTILITY(U,$J,358.3,20486,1,3,0)
+ ;;=3^Disp fx of acromial process, right shoulder, sequela
+ ;;^UTILITY(U,$J,358.3,20486,1,4,0)
+ ;;=4^S42.121S
+ ;;^UTILITY(U,$J,358.3,20486,2)
+ ;;=^5026592
+ ;;^UTILITY(U,$J,358.3,20487,0)
+ ;;=S42.112S^^67^887^12
+ ;;^UTILITY(U,$J,358.3,20487,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,20261,1,3,0)
- ;;=3^Torus fracture of lower end of right fibula, sequela
- ;;^UTILITY(U,$J,358.3,20261,1,4,0)
- ;;=4^S82.821S
- ;;^UTILITY(U,$J,358.3,20261,2)
- ;;=^5042430
- ;;^UTILITY(U,$J,358.3,20262,0)
- ;;=S82.812S^^93^1000^111
- ;;^UTILITY(U,$J,358.3,20262,1,0)
+ ;;^UTILITY(U,$J,358.3,20487,1,3,0)
+ ;;=3^Disp fx of body of scapula, left shoulder, sequela
+ ;;^UTILITY(U,$J,358.3,20487,1,4,0)
+ ;;=4^S42.112S
+ ;;^UTILITY(U,$J,358.3,20487,2)
+ ;;=^5026557
+ ;;^UTILITY(U,$J,358.3,20488,0)
+ ;;=S42.111S^^67^887^13
+ ;;^UTILITY(U,$J,358.3,20488,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,20262,1,3,0)
- ;;=3^Torus fracture of upper end of left fibula, sequela
- ;;^UTILITY(U,$J,358.3,20262,1,4,0)
- ;;=4^S82.812S
- ;;^UTILITY(U,$J,358.3,20262,2)
- ;;=^5042418
- ;;^UTILITY(U,$J,358.3,20263,0)
- ;;=S82.811S^^93^1000^113
- ;;^UTILITY(U,$J,358.3,20263,1,0)
+ ;;^UTILITY(U,$J,358.3,20488,1,3,0)
+ ;;=3^Disp fx of body of scapula, right shoulder, sequela
+ ;;^UTILITY(U,$J,358.3,20488,1,4,0)
+ ;;=4^S42.111S
+ ;;^UTILITY(U,$J,358.3,20488,2)
+ ;;=^5026550
+ ;;^UTILITY(U,$J,358.3,20489,0)
+ ;;=S42.132S^^67^887^18
+ ;;^UTILITY(U,$J,358.3,20489,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,20263,1,3,0)
- ;;=3^Torus fracture of upper end of right fibula, sequela
- ;;^UTILITY(U,$J,358.3,20263,1,4,0)
- ;;=4^S82.811S
- ;;^UTILITY(U,$J,358.3,20263,2)
- ;;=^5042412
- ;;^UTILITY(U,$J,358.3,20264,0)
- ;;=S82.865S^^93^1000^37
- ;;^UTILITY(U,$J,358.3,20264,1,0)
- ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,20489,1,3,0)
+ ;;=3^Disp fx of coracoid process, left shoulder, sequela
+ ;;^UTILITY(U,$J,358.3,20489,1,4,0)
+ ;;=4^S42.132S

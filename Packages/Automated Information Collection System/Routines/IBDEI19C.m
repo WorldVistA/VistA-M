@@ -1,120 +1,120 @@
-IBDEI19C ; ; 04-FEB-2020
- ;;3.0;IB ENCOUNTER FORM IMP/EXP;;FEB 04, 2020
+IBDEI19C ; ; 01-FEB-2022
+ ;;3.0;IB ENCOUNTER FORM IMP/EXP;;FEB 01, 2022
  Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,999) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
- ;;^UTILITY(U,$J,358.3,20139,0)
- ;;=S42.011S^^93^999^11
- ;;^UTILITY(U,$J,358.3,20139,1,0)
+ ;;^UTILITY(U,$J,358.3,20365,1,4,0)
+ ;;=4^S32.421S
+ ;;^UTILITY(U,$J,358.3,20365,2)
+ ;;=^5024742
+ ;;^UTILITY(U,$J,358.3,20366,0)
+ ;;=S32.452S^^67^886^19
+ ;;^UTILITY(U,$J,358.3,20366,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,20139,1,3,0)
- ;;=3^Disp fx of anterior sternal end of right clavicle, sequela
- ;;^UTILITY(U,$J,358.3,20139,1,4,0)
- ;;=4^S42.011S
- ;;^UTILITY(U,$J,358.3,20139,2)
- ;;=^5026389
- ;;^UTILITY(U,$J,358.3,20140,0)
- ;;=S42.032S^^93^999^26
- ;;^UTILITY(U,$J,358.3,20140,1,0)
+ ;;^UTILITY(U,$J,358.3,20366,1,3,0)
+ ;;=3^Disp fx of transverse of left acetabulum, sequela
+ ;;^UTILITY(U,$J,358.3,20366,1,4,0)
+ ;;=4^S32.452S
+ ;;^UTILITY(U,$J,358.3,20366,2)
+ ;;=^5024856
+ ;;^UTILITY(U,$J,358.3,20367,0)
+ ;;=S32.451S^^67^886^20
+ ;;^UTILITY(U,$J,358.3,20367,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,20140,1,3,0)
- ;;=3^Disp fx of lateral end of left clavicle, sequela
- ;;^UTILITY(U,$J,358.3,20140,1,4,0)
- ;;=4^S42.032S
- ;;^UTILITY(U,$J,358.3,20140,2)
- ;;=^5026501
- ;;^UTILITY(U,$J,358.3,20141,0)
- ;;=S42.031S^^93^999^27
- ;;^UTILITY(U,$J,358.3,20141,1,0)
+ ;;^UTILITY(U,$J,358.3,20367,1,3,0)
+ ;;=3^Disp fx of transverse of right acetabulum, sequela
+ ;;^UTILITY(U,$J,358.3,20367,1,4,0)
+ ;;=4^S32.451S
+ ;;^UTILITY(U,$J,358.3,20367,2)
+ ;;=^5024850
+ ;;^UTILITY(U,$J,358.3,20368,0)
+ ;;=S32.512S^^67^886^21
+ ;;^UTILITY(U,$J,358.3,20368,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,20141,1,3,0)
- ;;=3^Disp fx of lateral end of right clavicle, sequela 
- ;;^UTILITY(U,$J,358.3,20141,1,4,0)
- ;;=4^S42.031S
- ;;^UTILITY(U,$J,358.3,20141,2)
- ;;=^5026494
- ;;^UTILITY(U,$J,358.3,20142,0)
- ;;=S42.022S^^93^999^43
- ;;^UTILITY(U,$J,358.3,20142,1,0)
+ ;;^UTILITY(U,$J,358.3,20368,1,3,0)
+ ;;=3^Fx of superior rim of left pubis, sequela
+ ;;^UTILITY(U,$J,358.3,20368,1,4,0)
+ ;;=4^S32.512S
+ ;;^UTILITY(U,$J,358.3,20368,2)
+ ;;=^5025018
+ ;;^UTILITY(U,$J,358.3,20369,0)
+ ;;=S32.511S^^67^886^22
+ ;;^UTILITY(U,$J,358.3,20369,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,20142,1,3,0)
- ;;=3^Disp fx of shaft of left clavicle, sequela    
- ;;^UTILITY(U,$J,358.3,20142,1,4,0)
- ;;=4^S42.022S
- ;;^UTILITY(U,$J,358.3,20142,2)
- ;;=^5026459
- ;;^UTILITY(U,$J,358.3,20143,0)
- ;;=S42.021S^^93^999^44
- ;;^UTILITY(U,$J,358.3,20143,1,0)
+ ;;^UTILITY(U,$J,358.3,20369,1,3,0)
+ ;;=3^Fx of superior rim of right pubis, sequela
+ ;;^UTILITY(U,$J,358.3,20369,1,4,0)
+ ;;=4^S32.511S
+ ;;^UTILITY(U,$J,358.3,20369,2)
+ ;;=^5025012
+ ;;^UTILITY(U,$J,358.3,20370,0)
+ ;;=S32.810S^^67^886^23
+ ;;^UTILITY(U,$J,358.3,20370,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,20143,1,3,0)
- ;;=3^Disp fx of shaft of right clavicle, sequela   
- ;;^UTILITY(U,$J,358.3,20143,1,4,0)
- ;;=4^S42.021S
- ;;^UTILITY(U,$J,358.3,20143,2)
- ;;=^5026452
- ;;^UTILITY(U,$J,358.3,20144,0)
- ;;=S42.035S^^93^999^72
- ;;^UTILITY(U,$J,358.3,20144,1,0)
+ ;;^UTILITY(U,$J,358.3,20370,1,3,0)
+ ;;=3^Mult fx of pelvis w stable disrupt of pelvic ring, sequela
+ ;;^UTILITY(U,$J,358.3,20370,1,4,0)
+ ;;=4^S32.810S
+ ;;^UTILITY(U,$J,358.3,20370,2)
+ ;;=^5025102
+ ;;^UTILITY(U,$J,358.3,20371,0)
+ ;;=S32.811S^^67^886^24
+ ;;^UTILITY(U,$J,358.3,20371,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,20144,1,3,0)
- ;;=3^Nondisp fx of lateral end of left clavicle, sequela
- ;;^UTILITY(U,$J,358.3,20144,1,4,0)
- ;;=4^S42.035S
- ;;^UTILITY(U,$J,358.3,20144,2)
- ;;=^5026522
- ;;^UTILITY(U,$J,358.3,20145,0)
- ;;=S42.034S^^93^999^73
- ;;^UTILITY(U,$J,358.3,20145,1,0)
+ ;;^UTILITY(U,$J,358.3,20371,1,3,0)
+ ;;=3^Mult fx of pelvis w unstable disrupt of pelvic ring, sequela
+ ;;^UTILITY(U,$J,358.3,20371,1,4,0)
+ ;;=4^S32.811S
+ ;;^UTILITY(U,$J,358.3,20371,2)
+ ;;=^5025108
+ ;;^UTILITY(U,$J,358.3,20372,0)
+ ;;=S32.465S^^67^886^25
+ ;;^UTILITY(U,$J,358.3,20372,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,20145,1,3,0)
- ;;=3^Nondisp fx of lateral end of right clavicle, sequela
- ;;^UTILITY(U,$J,358.3,20145,1,4,0)
- ;;=4^S42.034S
- ;;^UTILITY(U,$J,358.3,20145,2)
- ;;=^5026515
- ;;^UTILITY(U,$J,358.3,20146,0)
- ;;=S42.025S^^93^999^89
- ;;^UTILITY(U,$J,358.3,20146,1,0)
+ ;;^UTILITY(U,$J,358.3,20372,1,3,0)
+ ;;=3^Nondisp associated transv/post fx left acetabulum, sequela
+ ;;^UTILITY(U,$J,358.3,20372,1,4,0)
+ ;;=4^S32.465S
+ ;;^UTILITY(U,$J,358.3,20372,2)
+ ;;=^5024910
+ ;;^UTILITY(U,$J,358.3,20373,0)
+ ;;=S32.464S^^67^886^26
+ ;;^UTILITY(U,$J,358.3,20373,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,20146,1,3,0)
- ;;=3^Nondisp fx of shaft of left clavicle, sequela 
- ;;^UTILITY(U,$J,358.3,20146,1,4,0)
- ;;=4^S42.025S
- ;;^UTILITY(U,$J,358.3,20146,2)
- ;;=^5026480
- ;;^UTILITY(U,$J,358.3,20147,0)
- ;;=S42.024S^^93^999^90
- ;;^UTILITY(U,$J,358.3,20147,1,0)
+ ;;^UTILITY(U,$J,358.3,20373,1,3,0)
+ ;;=3^Nondisp associated transv/post fx right acetabulum, sequela
+ ;;^UTILITY(U,$J,358.3,20373,1,4,0)
+ ;;=4^S32.464S
+ ;;^UTILITY(U,$J,358.3,20373,2)
+ ;;=^5024904
+ ;;^UTILITY(U,$J,358.3,20374,0)
+ ;;=S32.315S^^67^886^32
+ ;;^UTILITY(U,$J,358.3,20374,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,20147,1,3,0)
- ;;=3^Nondisp fx of shaft of right clavicle, sequela
- ;;^UTILITY(U,$J,358.3,20147,1,4,0)
- ;;=4^S42.024S
- ;;^UTILITY(U,$J,358.3,20147,2)
- ;;=^5026473
- ;;^UTILITY(U,$J,358.3,20148,0)
- ;;=S42.018S^^93^999^95
- ;;^UTILITY(U,$J,358.3,20148,1,0)
+ ;;^UTILITY(U,$J,358.3,20374,1,3,0)
+ ;;=3^Nondisp fx of avulsion of left ilium, sequela
+ ;;^UTILITY(U,$J,358.3,20374,1,4,0)
+ ;;=4^S32.315S
+ ;;^UTILITY(U,$J,358.3,20374,2)
+ ;;=^5024676
+ ;;^UTILITY(U,$J,358.3,20375,0)
+ ;;=S32.615S^^67^886^33
+ ;;^UTILITY(U,$J,358.3,20375,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,20148,1,3,0)
- ;;=3^Nondisp fx of sternal end of left clavicle, sequela
- ;;^UTILITY(U,$J,358.3,20148,1,4,0)
- ;;=4^S42.018S
- ;;^UTILITY(U,$J,358.3,20148,2)
- ;;=^5026438
- ;;^UTILITY(U,$J,358.3,20149,0)
- ;;=S42.017S^^93^999^96
- ;;^UTILITY(U,$J,358.3,20149,1,0)
+ ;;^UTILITY(U,$J,358.3,20375,1,3,0)
+ ;;=3^Nondisp fx of avulsion of left ischium, sequela
+ ;;^UTILITY(U,$J,358.3,20375,1,4,0)
+ ;;=4^S32.615S
+ ;;^UTILITY(U,$J,358.3,20375,2)
+ ;;=^5025084
+ ;;^UTILITY(U,$J,358.3,20376,0)
+ ;;=S32.314S^^67^886^34
+ ;;^UTILITY(U,$J,358.3,20376,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,20149,1,3,0)
- ;;=3^Nondisp fx of sternal end of right clavicle, sequela
- ;;^UTILITY(U,$J,358.3,20149,1,4,0)
- ;;=4^S42.017S
- ;;^UTILITY(U,$J,358.3,20149,2)
- ;;=^5026431
- ;;^UTILITY(U,$J,358.3,20150,0)
- ;;=S42.015S^^93^999^105
- ;;^UTILITY(U,$J,358.3,20150,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,20150,1,3,0)
- ;;=3^Posterior disp fx of sternal end of left clavicle, sequela
+ ;;^UTILITY(U,$J,358.3,20376,1,3,0)
+ ;;=3^Nondisp fx of avulsion of right ilium, sequela
+ ;;^UTILITY(U,$J,358.3,20376,1,4,0)
+ ;;=4^S32.314S
+ ;;^UTILITY(U,$J,358.3,20376,2)
+ ;;=^5024670
+ ;;^UTILITY(U,$J,358.3,20377,0)
+ ;;=S32.614S^^67^886^35

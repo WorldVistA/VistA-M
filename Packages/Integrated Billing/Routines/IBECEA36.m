@@ -1,5 +1,5 @@
 IBECEA36 ;ALB/CPM-Cancel/Edit/Add... Urgent Care Add Utilities ; 23-APR-93
- ;;2.0;INTEGRATED BILLING;**646,663,671,677**;21-MAR-94;Build 17
+ ;;2.0;INTEGRATED BILLING;**646,663,671,677,689,696**;21-MAR-94;Build 3
  ;;Per VA Directive 6402, this routine should not be modified.
  ;
  ;File 27.11 call - DBIA 5158
@@ -179,10 +179,15 @@ ADDVST(DFN,IBDT,IBN,IBSTATUS,IBREAS,IBSITE) ; Update the Visit Tracking DB
  N FDA,FDAIEN,IBSITE,IBBILL,IBERROR,IBBLSTAT
  ;
  ;check for a defined site in the copay file
- S:$G(IBSITE)="" IBSITE=$$GET1^DIQ(350,$G(IBN)_",",.13,"I")
+ ;WCJ;IB696
+ ;S:$G(IBSITE)="" IBSITE=$$GET1^DIQ(350,$G(IBN)_",",.13,"I")
+ I $G(IBSITE)="" S IBSITE=$$STA^XUAF4($$GET1^DIQ(350,$G(IBN)_",",.13,"I")) S:IBSITE]"" IBSITE=+IBSITE
  ;
  ;Otherwise, default to IBFAC
- S:$G(IBSITE)="" IBSITE=IBFAC
+ ;WCJ;IB696;IBFAC can be an IEN for a child and not the actual facility so it may not be the IEN for the actual site. Pretty sure IBSITE will already be defined
+ ;but if we need to use IBFAC, let's turn it into a site number
+ ;S:$G(IBSITE)="" IBSITE=IBFAC
+ S:$G(IBSITE)="" IBSITE=$$STA^XUAF4(IBFAC)
  ;
  S IBBILL=$$GET1^DIQ(350,$G(IBN)_",",.11,"E")
  S IBREAS=$G(IBREAS)
@@ -245,7 +250,8 @@ GETELIG(IBDFN,IBOUT) ; This function returns all of the Enrollment Priority Grou
  ;D FIND^DIC(file[,iens][,fields][,flags],[.]value[,number][,[.]indexes][,[.]screen][,identifier][,target_root][,msg_root])  ; this line is just for reference
  ;
  ; get all enrollment groups for the specified patient.
- D FIND^DIC(27.11,"","@;.07I;.08I","QEP",IBDFN,"","C","","","IBOUT","IBERR")
+ ; screen output to only get entries with "verified" enrollment status (field 27.11/.04)  IB*2.0*689
+ D FIND^DIC(27.11,"","@;.07I;.08I","QEP",IBDFN,"","C","I $P(^DGEN(27.11,Y,0),U,4)=2","","IBOUT","IBERR")
  Q +IBOUT("DILIST",0)
  ;
 GETELGP(IBDFN,IBDOS) ; Function to return a patient's Enrollment Priority Group For a specified Date of Service
@@ -296,7 +302,7 @@ GETELGP(IBDFN,IBDOS) ; Function to return a patient's Enrollment Priority Group 
  I IBSCEFDT'<IBLKDT Q IBELKUP
  ;
  ;perform a new lookup using the SC % Effective Date
- S:IBSCEFDT'="" IBELKUP=$G(IBOUT("SDATE",IBSCEFDT))
+ I IBSCEFDT'="",$D(IBOUT("SDATE",IBSCEFDT)) S IBELKUP=IBOUT("SDATE",IBSCEFDT)  ; IB*2.0*689
  ;
  Q +IBELKUP
  ;

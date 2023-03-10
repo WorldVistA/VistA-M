@@ -1,5 +1,5 @@
-RCTCSPD0 ;ALBANY/RGB-CROSS-SERVICING TRANSMISSION START ;06/15/17 3:34 PM
- ;;4.5;Accounts Receivable;**327,337,350**;Mar 20, 1995;Build 66
+RCTCSPD0 ;ALBANY/RGB - CROSS-SERVICING TRANSMISSION START ;06/15/17 3:34 PM
+ ;;4.5;Accounts Receivable;**327,337,350,343**;Mar 20, 1995;Build 59
  ;;Per VA Directive 6402, this routine should not be modified.
  ;
  ;PRCA*4.5*327 new setup/finish extraction from RCTCSPD and
@@ -29,7 +29,7 @@ RS1 S SITE=$E($$SITE^RCMSITE(),1,3),SITECD=$P(^RC(342,1,3),U,5)
  S:SITE=517 ACTDT=3150201 ;activation date for beckley
  S:SITE=528 ACTDT=3150201 ;activation date for upstate ny
  S SITE40=$O(^RC(342,1,40,"A"),-1) I SITE40?1.N S SITE40=$P($G(^RC(342,1,40,SITE40,0)),U)
- S X1=DT,X2=-150 D C^%DTC S P150DT=X
+ S X1=DT,X2=-151 D C^%DTC S RC151DT=X ; PRCA*4.5*343 - change from 150 to 151 days ago, namespace variable
  S X1=DT,X2=+60 D C^%DTC S F60DT=X
  S (CNTR(1),CNTR(2),CNTR("2A"),CNTR("2C"),CNTR(3),CNTR("5A"),CNTR("5B"))=0
  Q
@@ -112,8 +112,8 @@ RSBILCHK(BILL,NOCHK) ; PRCA*4.5*350
  I $P(B20,U,3)=1,(10000+$G(^RC(342,1,"CS")))>DT,$P(B20,U,4),$P(B20,U,5) D  I X<60,NOCHK'[",17," Q "0^17^Less than 60 days from DPN letter printed date "_$$FMTE^XLFDT($P(B20,U,5),"5D")
  .N X1,X2
  .S X1=DT,X2=$P(B20,U,5) D ^%DTC
- S BILLDT=$P(B6,U,21),PREPDT=$P(B0,U,10)
- I BILLDT>P150DT,NOCHK'[",18," Q "0^18^Must be 150 days or more after LETTER1 date "_$$FMTE^XLFDT($P(B6,U),"5D")
+ S BILLDT=$P(B6,U,1),PREPDT=$P(B0,U,10) ; PRCA*4.5*343 - change BILLDT from DATE ACCOUNT ACTIVATED (#60) to LETTER1(#61) field
+ I BILLDT>RC151DT,NOCHK'[",18," Q "0^18^Must be 151 days or more after LETTER1 date "_$$FMTE^XLFDT($P(B6,U),"5D") ; PRCA*4.5*343 - change to 151 days
  I $P(DEBTOR1,"^",9)=1,NOCHK'[",5," Q "0^5^Debtor address marked unknown"
  I $E($P(DEMCS,U,3),1,5)="00000",NOCHK'[",6," Q "0^6^SSN "_$P(DEMCS,U,3)_" is not valid"
  I $P(B0,U,8)'=16,NOCHK'[",19," Q "0^19^Bill is not set to ACTIVE"

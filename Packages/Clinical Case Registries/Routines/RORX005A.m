@@ -1,5 +1,5 @@
 RORX005A ;HOIFO/BH,SG - INPATIENT UTILIZATION (QUERY) ;4/21/09 2:20pm
- ;;1.5;CLINICAL CASE REGISTRIES;**1,8,10,13,19,21,31**;Feb 17, 2006;Build 62
+ ;;1.5;CLINICAL CASE REGISTRIES;**1,8,10,13,19,21,31,39**;Feb 17, 2006;Build 4
  ;
  ; This routine uses the following IAs:
  ;
@@ -22,6 +22,7 @@ RORX005A ;HOIFO/BH,SG - INPATIENT UTILIZATION (QUERY) ;4/21/09 2:20pm
  ;ROR*1.5*19   FEB  2012   K GUPTA      Support for ICD-10 Coding System
  ;ROR*1.5*31   MAY 2017    M FERRARESE  Adding PACT,PCP, and AGE/DOB as additional
  ;                                      identifiers.                           
+ ;ROR*1.5*39   JUL 2021    M FERRARESE  Setting SSN and LAST4 to zeros
  ;******************************************************************************
  ;******************************************************************************
  Q
@@ -177,7 +178,7 @@ QUERY(FLAGS) ;
  . ;
  . ;--- Get the patient's data
  . D VADEM^RORUTL05(PATIEN,1)
- . S RORPNAME=VADM(1),RORLAST4=VA("BID")
+ . S RORPNAME=VADM(1),RORLAST4="0000"
  . S RORICN=$S($$PARAM^RORTSK01("PATIENTS","ICN"):$$ICN^RORUTL02(PATIEN),1:"")
  . S RORPACT=$S($$PARAM^RORTSK01("PATIENTS","PACT"):$$PACT^RORUTL02(PATIEN),1:"")
  . S RORPCP=$S($$PARAM^RORTSK01("PATIENTS","PCP"):$$PCP^RORUTL02(PATIEN),1:"")

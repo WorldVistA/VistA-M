@@ -1,6 +1,6 @@
 RCXVFTP ;DAOU/ALA-FTP AR Data Extract Batch Files ;08-SEP-03
- ;;4.5;Accounts Receivable;**201,256,292**;Mar 20, 1995;Build 3
- ;Per VHA Directive 2004-038, this routine should not be modified.
+ ;;4.5;Accounts Receivable;**201,256,292,395**;Mar 20, 1995;Build 9
+ ;Per VA Directive 6402, this routine should not be modified.
  ;
  ;**Program Description**
  ;  This code will ftp a batch file
@@ -27,10 +27,17 @@ SYS ;  Get system type
  I RCXVSYS'="VMS" S RCXVNME=FILE
  ;
 ARC ;  Directly FTP to the Boston Allocation Resource Center
- I $$GET1^DIQ(342,"1,",20.06,"I")="P" D
- . S RCXVIP="MORPHEUS.ARC.DOMAIN.EXT"
- . S RCXVUSR="mccf"
- . S RCXVPAS="1qaz2wsx"
+ ; PRCA*4.5*395 updates receiving server location
+ ; get the SFTP gateway server information
+ I $$GET1^DIQ(342,"1,",20.06,"I")="P" D 
+ . D GETWP^XPAR(.RCXVIP,"PKG","PRCA SFTP","SFTP SERVER")
+ . D GETWP^XPAR(.RCXVUSR,"PKG","PRCA SFTP","SFTP USERNAME")
+ . Q
+ ;
+ ;. S RCXVIP="MORPHEUS.ARC.DOMAIN.EXT"
+ ;. S RCXVUSR="mccf"
+ ;. S RCXVPAS="1qaz2wsx" 
+ S RCXVPAS="1qaz2wsx" ;PRCA*4.5*395 old FTP password for previous receiving site !!!may move to CTXT^RCXVFTC where it is used if we do away with 'P statement!!!
  ;
  I $$GET1^DIQ(342,"1,",20.06,"I")'="P" D
  . S RCXVIP="MORPHEUS.ARC.DOMAIN.EXT"

@@ -1,5 +1,5 @@
 PSGWSC ;BHAM ISC/PTD,CML-Cost Report for Single Item for Selected Date Range ; 11 Aug 93 / 7:52 AM
- ;;2.3; Automatic Replenishment/Ward Stock ;;4 JAN 94
+ ;;2.3;Automatic Replenishment/Ward Stock ;**21**;4 JAN 94;Build 6
  W !?5,"Before printing this report, be sure accurate data exists for drug cost.",!?5,"Use ""Prepare AMIS Data"": ""Enter AMIS Data for All Drugs/All AOUs"".",!!
 BDT S %DT="AEX",%DT("A")="BEGINNING date for report: " D ^%DT K %DT G:Y<0 END^PSGWSC1 S BDT=Y
 EDT S %DT="AEX",%DT(0)=BDT,%DT("A")="ENDING date for report: " D ^%DT K %DT G:Y<0 END^PSGWSC1 S EDT=Y
@@ -49,7 +49,10 @@ CHKDTA ;DETERMINE TOTAL COST FOR DRGQD OF SELECTED DRUG
  E  S INC=1
  I $D(LOC1),($P(LOC1,"^",6)="") S INC=1
  I $D(LOC2),($P(LOC2,"^",3)="") S INC=1
-COST I INC=0 S DRGCST=DRGQD*($P(LOC1,"^",6))
+ ; PSGW*2.3*21 - USE AR/WS AMIS CONVERSION NUMBER
+ S PSGWCNM=$S($P($G(LOC2),"^",3)="":1,1:$P(LOC2,"^",3))
+ ;
+COST I INC=0 S DRGCST=DRGQD*($P(LOC1,"^",6))*PSGWCNM
  E  S DRGCST="NO DATA"
 SETGL S ^TMP("PSGWSC",$J,AOU)=DRGQD_"^"_DRGCST G AOU
  ;

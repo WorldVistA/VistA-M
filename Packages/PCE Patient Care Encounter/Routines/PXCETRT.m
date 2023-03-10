@@ -1,5 +1,5 @@
-PXCETRT ;ISL/dee - Used to edit and display V TREATMENT ;3/19/97
- ;;1.0;PCE PATIENT CARE ENCOUNTER;**27**;Aug 12, 1996
+PXCETRT ;ISL/dee - Used to edit and display V TREATMENT ;02/20/2019
+ ;;1.0;PCE PATIENT CARE ENCOUNTER;**27,211**;Aug 12, 1996;Build 454
  ;; ;
  Q
  ;
@@ -28,7 +28,7 @@ INTRFACE ;;PX SELECT TREATMENTS
  ;********************************
  ;Special cases for display.
  ;
-DNARRAT(PNAR) ;Provider Narrative for Treatments
+DNARRAT(PNAR,PXCEDT) ;Provider Narrative for Treatments
  N PXCEPNAR
  S PXCEPNAR=$P(^AUTNPOV(PNAR,0),"^")
  I $G(VIEW)="B",$D(ENTRY)>0 D

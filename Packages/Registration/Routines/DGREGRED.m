@@ -1,9 +1,9 @@
-DGREGRED ;ALB/JAM - Residential Address Edit API ; 23 Feb 2018  1:33 PM
- ;;5.3;Registration;**941,1010**;Aug 13, 1993;Build 2
+DGREGRED ;ALB/JAM - Residential Address Edit API ;1/6/21  10:30
+ ;;5.3;Registration;**941,1010,1014,1040**;Aug 13, 1993;Build 15
  ;;
  ;
 EN(DFN,FLG) ;Entry point
- ;Input: 
+ ;Input:
  ;  DFN (required) - Internal Entry # of Patient File (#2)
  ;  FLG (optional) - Flags of 1 or 0; if null, 0 is assumed. Details:
  ;    FLG(1) - if 1 let user edit phone numbers (field #.131 and #.132)
@@ -16,30 +16,75 @@ RETRY  ; Entry point if address must be re-entered
  D GETOLD(.DGCMP,DFN)
  S CNTRY="",ICNTRY=$S(DFN:$P($G(^DPT(DFN,.115)),"^",10),1:"")
  I ICNTRY="" S ICNTRY=1  ;default country is USA if NULL
- S OLDC=DGCMP("OLD",.11573),FORGN=$$FOREIGN^DGADDUTL(DFN,ICNTRY,2,.11573,.CNTRY) I FORGN=-1 Q
+ ; DG*5.3*1040 - Set variable DGTMOT to 1 to track timeout
+ S OLDC=DGCMP("OLD",.11573),FORGN=$$FOREIGN^DGADDUTL(DFN,ICNTRY,2,.11573,.CNTRY) I FORGN=-1 S DGTMOT=1 Q
  K FSTR,PSTR S FSTR=$$INPT1(FORGN,.PSTR)      ;set up field string of address prompts
  K DGINPUT S DGINPUT=1 D INPUT(.DGINPUT,DFN,FSTR,CNTRY) I $G(DGINPUT)=-1 Q
  ; initialize valid address flag
  S BAD=0
- ; if flag is set, show old and new address 
+ ;
+ ; **** DG*5.3*1014; jam;  Start changes ****
+ ;
+ ; DG*5.3*1014; jam; If required fields are missing, we can't call the validation service - force user to correct the address
+ I DGINPUT(.1151)=""!(DGINPUT(.1154)="")!(($G(DGINPUT(.1156))="")&('FORGN)) D  G RETRY
+ . I 'FORGN W !!?3,*7,"RESIDENTIAL ADDRESS [LINE 1], CITY, and ZIP CODE fields are required."
+ . I FORGN W !!?3,*7,"RESIDENTIAL ADDRESS [LINE 1] and CITY fields are required."
+ ; DG*5.3*1014; Display the address entered
+ N DGNEWADD
+ M DGNEWADD("NEW")=DGINPUT
+ W !
+ I FORGN D DISPFGN(.DGNEWADD,"NEW")
+ I 'FORGN D DISPUS(.DGNEWADD,"NEW")
+ K DGNEWADD
+CHK ; DG*5.3*1014; Prompt user and allow them to correct the address or continue to Validation service
+ N DIR
+ S DIR("A",1)="If address is ready for validation enter <RET> to continue, 'E' to Edit"
+ S DIR("A")=" or '^' to quit"
+ S DIR(0)="FO"
+ S DIR("?")="Enter 'E' to edit the address, <RET> to continue to address validation or '^' to exit and cancel the address entry/edit.."
+ D ^DIR K DIR
+ ; DG*5.3*1040 - Set variable DGTMOT=1, if timeout and QUIT
+ I $D(DTOUT) S DGTMOT=1 Q
+ ; DG*5.3*1040 - Remove the DTOUT check and Quit if EOP timeout
+ I $D(DUOUT) W !,"Address changes not saved." D EOP Q:+$G(DGTMOT)  G PHONE    ;Exiting - Not saving address - go to phone saving process
+ I X="E"!(X="e") G RETRY  ; re-enter address
+ I X'="" G CHK  ; at this point, any response but <RET> will not be accepted
+ ; DG*5.3*1014; jam; Add call to Address Validation service
+ N DGADVRET
+ S DGADVRET=$$EN^DGADDVAL(.DGINPUT,"R")
+ ; DG*5.3*1040; if return is -1 timeout occurred
+ I DGADVRET=-1 S DGTMOT=1 Q
+ ; if return is 0 - address was not validated
+ I 'DGADVRET W !!,"No Results - UAM Address Validation Service is unable to validate the address.",!,"Please verify the address entered. " D EOP Q:+$G(DGTMOT)  ; DG*5.3*1040 - Check EOP timeout and QUIT
+ ; DGINPUT array contains the address that is validated/accepted or what the user entered if the validation service failed
+ ;
+ ; **** DG*5.3*1014; jam; End changes ****
+ ;
+ ; if flag is set, show old and new address
  I FLG(2)=1 D COMPARE(.DGINPUT,.DGCMP)
- I '$$CONFIRM("ADDRESS") W !,"Address change aborted." G PHONE    ;Not saving address - go to phone saving process
+ ; DG*5.3*1040 - Use variable DGCONFIRM to hold value of $$CONFIRM("ADDRESS")
+ N DGCONFIRM S DGCONFIRM=$$CONFIRM("ADDRESS") I DGCONFIRM=-1 S DGTMOT=1 Q
+ ; DG*5.3*1040 - Check variable DGCONFIRM
+ I 'DGCONFIRM W !,"Address changes not saved." G PHONE    ;Not saving address - go to phone saving process
  ; Validate the address fields and set BAD=1 if not valid
- I DGINPUT(.1151)=""!(DGINPUT(.1154)="") D  S BAD=1
+ I DGINPUT(.1151)=""!(DGINPUT(.1154)="")!(($G(DGINPUT(.1156))="")&('FORGN)) D  S BAD=1 G PHONE
  . I 'FORGN W !!?3,*7,"RESIDENTIAL ADDRESS [LINE 1], ZIP CODE and CITY fields are required."
  . I FORGN W !!?3,*7,"RESIDENTIAL ADDRESS [LINE 1] and CITY fields are required."
  ; If address is valid, next check is for PO Box and General Delivery - 
  ;    Pass in LINE 1, State and Country codes
- I 'BAD I $$POBOXRES^DGREGCP2(DGINPUT(.1151),$P($G(DGINPUT(.1155)),"^",2),$P(DGINPUT(.11573),"^",2)) D  S BAD=1
+ I $$POBOXRES^DGREGCP2(DGINPUT(.1151),$P($G(DGINPUT(.1155)),"^",2),$P(DGINPUT(.11573),"^",2)) D  S BAD=1 G PHONE
  . W !!?3,*7,"You cannot enter 'P. O. Box' or 'General Delivery' for a Residential Address."
  ; If all Validations passed - save the address
- I 'BAD D SAVE(.DGINPUT,DFN,FSTR,FORGN)
+ D SAVE(.DGINPUT,DFN,FSTR,FORGN) Q:+$G(DGTMOT)
 PHONE ; Process the phone number changes IF FLG(1) = 1
  I $G(FLG(1))=1 D
  . ; if compare flag is set, display old/new values
  . I $G(FLG(2))=1 D COMPAREP(.DGINPUT,.DGCMP)
- . I '$$CONFIRM("PHONE") W !,"Phone changes aborted." D EOP
- . E  D SAVEPH(.DGINPUT,DFN)
+ . ; DG*5.3*1040 - Use variable DGCONFIRM to hold value of $$CONFIRM("PHONE")
+ . N DGCONFIRM S DGCONFIRM=$$CONFIRM("PHONE") I DGCONFIRM=-1 S DGTMOT=1 Q
+ . ; DG*5.3*1040 - Check variable DGCONFIRM and DGTMOT
+ . I 'DGCONFIRM W !,"Phone changes not saved." D EOP Q:+$G(DGTMOT)
+ . E  D SAVEPH(.DGINPUT,DFN) Q:+$G(DGTMOT)  ; DG*5.3*1040 - QUIT if timeout
  ; Phone number process is completed - go to RETRY if address validation failed
  I BAD G RETRY
  Q
@@ -48,8 +93,10 @@ INPUT(DGINPUT,DFN,FSTR,CNTRY) ;Let user input address changes
  N DIR,X,Y,DA,DGR,DTOUT,DUOUT,DIROUT,DGN,L
  F L=1:1:$L(FSTR,",") S DGN=$P(FSTR,",",L),DGINPUT(DGN)="" Q:DGINPUT=-1  D
  . I $$SKIP(DGN,.DGINPUT,.FLG) Q
- . I DGN=.1156 D ZIPINP(.DGINPUT,DFN) Q
- . I '$$READ(DFN,DGN,.Y) S DGINPUT=-1 Q
+ . ; DG*5.3*1040 - Set timeout variable DGTMOT to 1, if ZIP timeout
+ . I DGN=.1156 D ZIPINP(.DGINPUT,DFN) S:DGINPUT=-1 DGTMOT=1 Q
+ . ; DG*5.3*1040 - Include flag DGTMOUT to track timeout with DGTMOT set to 1
+ . I '$$READ(DFN,DGN,.Y) S DGINPUT=-1,DGTMOT=1 Q
  . S DGINPUT(DGN)=$G(Y)
  I DGINPUT'=-1 S DGINPUT(.11573)=CNTRY_"^"_$O(^HL(779.004,"B",CNTRY,""))
  Q
@@ -137,7 +184,9 @@ CONFIRM(TYPE) ;Confirm if user wants to save the changes
  S DIR("A")="Are you sure that you want to save the "_TYPE_" changes"
  S DIR("?")="Please answer Y for YES or N for NO."
  D ^DIR
- I $D(DTOUT)!($G(Y)=0) Q 0
+ ; DG*5.3*1040 - prompt timeout return -1
+ I $D(DTOUT) Q -1
+ I $G(Y)=0 Q 0
  I $D(DUOUT)!$D(DIROUT) Q 0
  Q 1
  ;
@@ -164,7 +213,8 @@ SAVE(DGINPUT,DFN,FSTR,FORGN) ;Save changes
  . ; Set the CASS IND field 
  . S DATA(.1159)="NC"
  . I $$UPD^DGENDBS(2,DFN,.DATA)
- D EOP
+ ; DG*5.3*1040 - If EOP timeout, QUIT if variable DGTMOT exists
+ D EOP Q:+$G(DGTMOT)
  Q
  ;
 SAVEPH(DGINPUT,DFN) ;Save phone changes
@@ -182,7 +232,8 @@ SAVEPH(DGINPUT,DFN) ;Save phone changes
  .. F  S DGM=$O(MSG("DIERR",1,"TEXT",DGM)) Q:DGM=""  D
  ... W $G(MSG("DIERR",1,"TEXT",DGM))
  I $G(DGER)=0 W !,"Change saved."
- D EOP
+ ; DG*5.3*1040 - If EOP timeout, QUIT if variable DGTMOT exists
+ D EOP Q:+$G(DGTMOT)
  Q
  ;
 READ(DFN,DGN,Y) ;Read input, return success
@@ -228,6 +279,8 @@ EOP ;End of page prompt
  S DIR(0)="E"
  S DIR("A")="Press ENTER to continue"
  D ^DIR
+ ; DG*5.3*1040 - Set variable DGTMOT=1, if timeout
+ S:$D(DTOUT) DGTMOT=1
  Q
 UPCT ;Indicate "^" or "^^" are unacceptable inputs.
  W !,"EXIT NOT ALLOWED"

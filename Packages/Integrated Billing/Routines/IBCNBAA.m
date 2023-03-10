@@ -1,8 +1,9 @@
 IBCNBAA ;ALB/ARH/AWC - Ins Buffer: process Accept set-up ;1 Jun 97
- ;;2.0;INTEGRATED BILLING;**82,184,246,416,506,528**;21-MAR-94;Build 163
+ ;;2.0;INTEGRATED BILLING;**82,184,246,416,506,528,668**;21-MAR-94;Build 28
  ;;Per VA Directive 6402, this routine should not be modified.
  ;
  ;
+ ;/vd-IB*2*668 - Removed the SSVI logic introduced with IB*2*528 in its entirety within VistA.
 ACCEPT(IBBUFDA,IBINSDA,IBGRPDA,IBPOLDA) ; process a buffer entry for acceptance then save in Insurance files
  ;    1) for Insurance Company, Group/Plan and Policy sets of data:
  ;        a) display the set of buffer data and corresponding existing selected ins data
@@ -150,14 +151,6 @@ PROCESS ; process all changes selected by user, add/edit insurance files based o
  ;
  D ACCEPT^IBCNBAR(IBBUFDA,DFN,IBINSDA,IBGRPDA,.IBPOLDA,IBMVINS,IBMVGRP,IBMVPOL,IBMVSUB,IBNEWINS,IBNEWGRP,IBNEWPOL,IBELIG,IBSEL,IBRIEN,.IBSIEN,IBFNAM,IBVAL,.IBHOLD,.IBXHOLD)
  S IBDONE=1
- ;
- ; IB*2.0*528 - AWC/  The following lines of code is commented-out because it will not be use now. The commented-out code could
- ; be used in a future project when the decision to enable the SSVI Consistency Checker utilities is confirmed.
- ;
- ; -- BAA/ - Call to Patient Insurance Consistency Checker
- ;S IBSOURCE=$P($G(^IBA(355.33,IBBUFDA,0)),U,3)
- ;S IBIIU=$O(^IBE(355.12,"C","INTERFACILITY INS UPDATE",0))
- ;I $P($G(^IBE(350.9,1,100)),U) I IBSOURCE'=IBIIU D EN^IBCNVCC(DFN,IBPOLDA)
  ;
 ACCPTQ ;
  Q IBDONE

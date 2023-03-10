@@ -1,74 +1,105 @@
 RCDPEM0 ;ALB/TMK - ERA MATCHING TO EFT (cont) ;Jun 11, 2014@13:04:03
- ;;4.5;Accounts Receivable;**173,208,220,298,304**;Mar 20, 1995;Build 104
+ ;;4.5;Accounts Receivable;**173,208,220,298,304,345,375,349**;Mar 20, 1995;Build 44
  ;Per VA Directive 6402, this routine should not be modified.
  Q
  ;
-MATCH(RCZ,RCPROC) ; Match EFT to ERA
- ; RCZ = ien of file 344.31
- ; RCPROC = 1 if called from EFT-EOB automatch, 0 if from manual match
- N RCER,RCRZ,RCMATCH,RCER,RC0,RC3444,RC34431,DIE,DA,DR,X,Y,Z,Z0,RCERATYP,RCXCLDE
+MATCH(RCZ,RCPROC) ;EP from RCDPEM
+ ; Match EFT to ERA
+ ; Input:   RCZ     - IEN of file 344.31
+ ;          RCPROC  - 1 if called from EFT-EOB automatch, 0 if from manual match
+ ;
+ ; PRCA*4.5*345 - Alphabetized and added MS1,TIN1,TR1,TTL0,TTL1,XX below
+ N DA,DIE,DR,MS1,NAM0,RCER,RCERATYP,RCMATCH,RCRZ,RCXCLDE,RC0,RC3444,RC34431
+ N TIN0,TIN1,TR1,TTL0,TTL1,X,XX,Y,Z,Z0
+ ;
  ; Find ERA to match to EFT by trace, date, amt
- S RC34431=$G(^RCY(344.31,RCZ,0)) Q:$P(RC34431,U,8)!$O(^RCY(344,"AEFT",RCZ,0))  ; Already matched
- I $P(RC34431,U,3)]"",$P(RC34431,U,4)]"" D   ;Must have Payor ID and Trace #
+ ; PRCA*4.5*345 Begin - Added lines
+ S TIN1=$$GET1^DIQ(344.31,RCZ_",",.03,"I")      ; EFT Payer TIN
+ S TR1=$$GET1^DIQ(344.31,RCZ_",",.04,"I")       ; EFT Trace Number
+ S TTL1=$$GET1^DIQ(344.31,RCZ_",",.07,"I")      ; EFT Amount of Payment
+ S MS1=$$GET1^DIQ(344.31,RCZ_",",.06,"I")       ; EFT Match Status
+ ; PRCA*4.5*345 End
+ S RC34431=$G(^RCY(344.31,RCZ,0))               ; EFT record 
+ Q:MS1!$O(^RCY(344,"AEFT",RCZ,0))               ; Already matched
+ I TIN1'="",TR1'="" D                           ; Must have Payor TIN and Trace #
+ . ;
+ . ; Loop through all of the ERAs that match the EFT on Trace Number and TIN
  . S RCRZ=0
- . F  S RCRZ=$O(^RCY(344.4,"ATRIDUP",$$UP^XLFSTR($P(RC34431,U,4)),$$UP^XLFSTR($P(RC34431,U,3)),RCRZ)) Q:'RCRZ  S RC3444=$G(^RCY(344.4,RCRZ,0)) I '$O(^RCY(344.31,"AERA",RCRZ,0)),'$P(RC3444,U,9) D  Q:$D(Z(1))
- .. S Z($S(+$P(RC34431,U,7)=+$P(RC3444,U,5):1,1:-1),RCRZ)="" ;Total match?
+ . F  S RCRZ=$O(^RCY(344.4,"ATRIDUP",$$UP^XLFSTR(TR1),$$UP^XLFSTR(TIN1),RCRZ)) Q:'RCRZ  S RC3444=$G(^RCY(344.4,RCRZ,0)) I '$O(^RCY(344.31,"AERA",RCRZ,0)),'$P(RC3444,U,9) D  Q:$D(Z(1))
+ . . S Z($S(+TTL1=+$P(RC3444,U,5):1,1:-1),RCRZ)="" ; Total Amount Paid match?
  ;
  S RCMATCH=+$O(Z(""),-1),RCRZ=+$O(Z(RCMATCH,0))
  S $P(^TMP($J,"RCDPETOT",344.31,RCZ),U)=RCMATCH
  ;
- I 'RCMATCH D  Q  ; Match failure
+ I 'RCMATCH D  Q                                ; Match failure
  . S ^TMP($J,"RCTOT","NO_MATCH")=$G(^TMP($J,"RCTOT","NO_MATCH"))+1
  ;
  I RCMATCH<0 D
+ . ;
  . ; Bulletin for totals don't match warning
  . S ^TMP($J,"RCTOT","TOTMIS")=$G(^TMP($J,"RCTOT","TOTMIS"))+1
- . N XMSUBJ,XMBODY,XMB,XMINSTR,XMTYPE,XMFULL,XMTO,XMZ,XMERR,RCER,RCT,RCM,RCLESS
+ . N RCER,RCLESS,RCM,RCT,XMB,XMBODY,XMERR,XMFULL,XMINSTR,XMSUBJ,XMTO,XMTYPE,XMZ
  . S RCT=0
  . D BLD^RCDPEM1("RCER",.RCT,344.31,RC34431)
  . S RCT=RCT+1,RCER(RCT)=""
- . K RCM S RCM=RCT
- . S RCLESS=($P(RC34431,U,7)<$P($G(^RCY(344.4,RCRZ,0)),U,5))
- . S RCT=RCT+1,RCER(RCT)="  TOTALS ON ERA AND EFT DON'T MATCH.",RCT=RCT+1,RCER(RCT)="  EFT TOTAL IS "_$S(RCLESS:"LESS",1:"GREATER")_" THAN ERA AMOUNT TOTAL"
+ . K RCM
+ . S RCM=RCT
+ . S TTL0=+$$GET1^DIQ(344.4,RCRZ_",",.05,"I")       ; ERA Total Amount Paid - PRCA*4.5*345
+ . S RCLESS=(TTL1<TTL0)
+ . S RCT=RCT+1,RCER(RCT)="  TOTALS ON ERA AND EFT DON'T MATCH."
+ . S RCT=RCT+1,RCER(RCT)="  EFT TOTAL IS "_$S(RCLESS:"LESS",1:"GREATER")_" THAN ERA AMOUNT TOTAL"
  . I RCLESS D
- .. S RCT=RCT+1,RCER(RCT)="  DECREASE ADJUSTMENT IS NEEDED BEFORE THE ERA RECEIPT CAN BE PROCESSED."
+ . . S RCT=RCT+1
+ . . S RCER(RCT)="  DECREASE ADJUSTMENT IS NEEDED BEFORE THE ERA RECEIPT CAN BE PROCESSED."
  . I 'RCLESS D
- .. S RCT=RCT+1,RCER(RCT)="  A SUSPENSE LINE IS NEEDED ON THE RECEIPT TO ACCOUNT FOR THE DIFFERENCE."
- . S RCT=RCT+1,RCER(RCT)="  IF YOU USE THE ERA WORKLIST SCRATCH PAD, THIS WILL BE GENERATED FOR YOU."
+ . . S RCT=RCT+1
+ . . S RCER(RCT)="  A SUSPENSE LINE IS NEEDED ON THE RECEIPT TO ACCOUNT FOR THE DIFFERENCE."
+ . S RCT=RCT+1
+ . S RCER(RCT)="  IF YOU USE THE ERA WORKLIST SCRATCH PAD, THIS WILL BE GENERATED FOR YOU."
  . ;
- . S RCT=RCT+1,RCER(RCT)="  EFT WAS MATCHED TO ERA ENTRY #: "_RCRZ_" ($"_$J(+$P($G(^RCY(344.4,RCRZ,0)),U,5),"",2)_")."
+ . S RCT=RCT+1,RCER(RCT)="  EFT WAS MATCHED TO ERA ENTRY #: "_RCRZ_" ($"_$J(TTL0,"",2)_")."
  . S XMTO("I:G.RCDPE PAYMENTS")=""
  . S XMBODY="RCER"
  . S XMSUBJ="EDI LBOX TOTALS MISMATCH ON EFT-ERA MATCH"
  . D
- .. N DUZ S DUZ=.5,DUZ(0)="@"
- .. D SENDMSG^XMXAPI(.5,XMSUBJ,XMBODY,.XMTO,,.XMZ)
+ . . N DUZ S DUZ=.5,DUZ(0)="@"
+ . . D SENDMSG^XMXAPI(.5,XMSUBJ,XMBODY,.XMTO,,.XMZ)
+ . ;
  . ; Update log
  . F  S RCM=$O(RCER(RCM)) Q:'RCM  S RCT=RCT+1,RCM(RCT)=RCER(RCM)
  . D STORERR(344.31,RCZ,.RCM)
  ;
- ;Many checks done by this are also done AUTOCHK2^RCDPEAP1 so if these are changed, AUTOCHK2 may also need to be changed
+ ; Many checks done by this are also done AUTOCHK2^RCDPEAP1 so if these are changed, 
+ ; AUTOCHK2 may also need to be changed
  I RCMATCH D
- . S DIE="^RCY(344.31,",DA=RCZ,DR=".08////"_RCMATCH_";.1////"_RCRZ D ^DIE
- . S DIE="^RCY(344.4,",DA=RCRZ,DR=".09////"_RCMATCH D ^DIE
+ . S DIE="^RCY(344.31,",DA=RCZ,DR=".08////"_RCMATCH_";.1////"_RCRZ
+ . D ^DIE
+ . S DIE="^RCY(344.4,",DA=RCRZ,DR=".09////"_RCMATCH
+ . D ^DIE
  . S ^TMP($J,"RCTOT","MATCH")=$G(^TMP($J,"RCTOT","MATCH"))+1
- . ;Lines below are added for Auto-posting - PRCA*4.5*298
- . ;Quit if this is not nightly job
+ . ;
+ . ; Lines below are added for Auto-posting - PRCA*4.5*298
+ . ; Quit if this is not nightly job
  . Q:'RCPROC
- . ;Quit if this is a zero value ERA
- . Q:+$P($G(^RCY(344.4,RCRZ,0)),U,5)=0
- . ;Determine if ERA should be excluded using the site parameters
- . S RCERATYP=$$PHARM^RCDPEAP1(RCRZ)
- . ;Quit if ERA payer is excluded from autopost
+ . Q:+$P($G(^RCY(344.4,RCRZ,0)),U,5)=0       ; Quit if this is a zero value ERA
+ . S NAM0=$$GET1^DIQ(344.4,RCRZ_",",.06,"E") ; PRCA*4.5*345 - Added line - Payer Name
+ . S TIN0=$$GET1^DIQ(344.4,RCRZ_",",.03,"E") ; PRCA*4.5*345 - Added line - Payer TIN
+ . S XX=$$GETPAY^RCDPEU1(NAM0,TIN0)          ; PRCA*4.5*345 - Get the IEN from 344.6
+ . ;
+ . ; Determine if ERA should be excluded using the site parameters
+ . I $$CHKTYPE^RCDPEU1(XX,"T") S RCERATYP=2  ; PRCA*4.5*349 - Check if this is TRICARE ERA
+ . E  S RCERATYP=$$PHARM^RCDPEAP1(RCRZ)      ; Else it must be a Medical or Rx ERA
  . S RCXCLDE=0
- . S:'RCERATYP RCXCLDE=$$EXCLUDE^RCDPEAP1(RCRZ)
- . S:RCERATYP RCXCLDE=$$EXCLDRX^RCDPEAP1(RCRZ)
- . Q:RCXCLDE
- . ;Ignore ERA with exceptions, zero balance, or ERA-level adjustments
+ . S:RCERATYP=0 RCXCLDE=$$EXCLUDE^RCDPEAP1(RCRZ)    ; PRCA*4.5*345 - Changed to =0 from 'RCERATYP
+ . S:RCERATYP=1 RCXCLDE=$$EXCLDRX^RCDPEAP1(RCRZ)    ; PRCA*4.5*345 - Changed to =1 from RCERATYP
+ . S:RCERATYP=2 RCXCLDE=$$EXCLDTR^RCDPEAP1(RCRZ)    ; PRCA*4.5*349 - Added Line
+ . Q:RCXCLDE                                 ; Quit if the Payer is excluded from Auto-Post
+ . ;
+ . ; Ignore ERA with exceptions, zero balance, or ERA-level adjustments
  . Q:'$$AUTOCHK^RCDPEAP1(RCRZ)
- . ;Set AUTO-POST STATUS = UNPOSTED this is trigger for auto-post (EN^RCDPEAP)
+ . ;
+ . ; Set AUTO-POST STATUS = UNPOSTED this is trigger for auto-post (EN^RCDPEAP)
  . D SETSTA^RCDPEAP(RCRZ,0,"Auto Matching: Marked as Auto-Post Candidate")
- ;
  Q
  ;
 ADDDEP(RCD,RCDDT,RCZ) ; Add deposit
@@ -138,10 +169,10 @@ ADDREC(RCDEP,RCZ) ; Add receipt, send CR to FUND 528704, Rev src cd 8NZZ
  .. ;
  .. S DR=DR_";1.02////Auto added EDI Lockbox deposit;.06////"_$P(RC00,U,12)_";.04////"_$J(+$P(RC00,U,7),"",2)_";.14////"_RCTRANDA
  .. N N S N=+$O(^VA(200,"B","EDILOCKBOX,AUTOMATIC",0)) S:N=0 N=.5
- .. S DR=DR_";.12////"_N
+ .. S DR=DR_";.12////"_N_";.29////"_$P(RC00,U,16) ;PRCA*4.5*375 - Add Debit/Credit Flag to Receipt Transactions
  .. S DA(1)=RECTDA,DA=RCTRANDA,DIE="^RCY(344,"_DA(1)_",1,"
  .. S:$E(DR)=";" DR=$P(DR,";",2,999) D ^DIE
- .. S DR=".14////"_RCTRANDA_";.09////"_RECTDA,DIE="^RCY(344.31,",DA=RCT D ^DIE
+ .. S DR=".14///"_RCTRANDA_";.09///"_RECTDA,DIE="^RCY(344.31,",DA=RCT D ^DIE
  .. ;
  . ;Post to FUND 528704/RSC 8NZZ
  . D PROCESS^RCDPURE1(RECTDA,2)
@@ -179,7 +210,7 @@ ADDREC(RCDEP,RCZ) ; Add receipt, send CR to FUND 528704, Rev src cd 8NZZ
  ;
 SETERR(RCPROC) ; Set up first line of error message to be stored
  ; RCPROC = 1 if called from EFT-EOB automatch, 0 if from manual match
- ;        =2 if called from EFT deposit creation
+ ;        = 2 if called from EFT deposit creation
  N LINE1
  I RCPROC S LINE1=$$FMTE^XLFDT($$NOW^XLFDT(),2)_" - PROCESS TO "_$S(RCPROC=1:"CREATE RECEIPT FROM ERA",1:"SEND EFT DEPOSIT TO FMS")
  Q LINE1

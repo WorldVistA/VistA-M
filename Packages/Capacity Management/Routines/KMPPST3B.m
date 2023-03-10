@@ -1,0 +1,108 @@
+KMPPST3B ;SP/JML - VSM VERSION 2 POST INSTALL ROUTINE ;6/1/2020
+ ;;4.0;CAPACITY MANAGEMENT;**1**;3/1/2018;Build 27
+ ;
+GETCFG(MDEF) ;
+ D MDEF.Implementation.WriteLine("    D RU^%ZOSVKR(""KMP GetConfigEvent"")")
+ D MDEF.Implementation.WriteLine("    N $ETRAP S $ETRAP=""D ^ZTER D RU^%ZOSVKR(""""KMP GetConfig"""") Q""")
+ D MDEF.Implementation.WriteLine("    I $P($$VERSION^%ZOSV(0),""."") < 2017 Q $$$ERROR(""Invalid Cache Version"")")
+ D MDEF.Implementation.WriteLine("    Do %response.SetHeader(""Access-Control-Allow-Origin"",""*"")")
+ D MDEF.Implementation.WriteLine("    Do %response.SetHeader(""Allow"",""HEAD,GET,POST,PUT,DELETE,OPTIONS"")")
+ D MDEF.Implementation.WriteLine("    S KMPRET=##class(%DynamicObject).%New()")
+ D MDEF.Implementation.WriteLine("    S KMPREQ=##class(%DynamicAbstractObject).%FromJSON(%request.Content)")
+ D MDEF.Implementation.WriteLine("    I KMPREQ.Function'=""GetConfig"" D  Quit $$$OK")
+ D MDEF.Implementation.WriteLine("    .S KMPRET.ResultText=""Incorrect Function Type""")
+ D MDEF.Implementation.WriteLine("    .W KMPRET.%ToJSON()")
+ D MDEF.Implementation.WriteLine("    D SITE^KMPUTLW(KMPRET)")
+ D MDEF.Implementation.WriteLine("    D CPF^KMPUTLW(KMPRET)")
+ D MDEF.Implementation.WriteLine("    D MON^KMPUTLW(KMPRET)")
+ D MDEF.Implementation.WriteLine("    S KMPRET.ResultText=""OK""")
+ D MDEF.Implementation.WriteLine("    S KMPRET.Function=KMPREQ.Function")
+ D MDEF.Implementation.WriteLine("    W KMPRET.%ToJSON()")
+ D MDEF.Implementation.WriteLine("    D RU^%ZOSVKR(""KMP GetConfigHandler"")")
+ D MDEF.Implementation.WriteLine("    Quit $$$OK")
+ Q
+ ;
+SETCFG(MDEF) ;
+ D MDEF.Implementation.WriteLine("    D RU^%ZOSVKR(""KMP SetConfigEvent"")")
+ D MDEF.Implementation.WriteLine("    N $ETRAP S $ETRAP=""D ^ZTER D RU^%ZOSVKR(""""KMP SetConfig"""") Q""")
+ D MDEF.Implementation.WriteLine("    I $P($$VERSION^%ZOSV(0),""."") < 2017 Q $$$ERROR(""Invalid Cache Version"")")
+ D MDEF.Implementation.WriteLine("    Do %response.SetHeader(""Access-Control-Allow-Origin"",""*"")")
+ D MDEF.Implementation.WriteLine("    Do %response.SetHeader(""Allow"",""HEAD,GET,POST,PUT,DELETE,OPTIONS"")")
+ D MDEF.Implementation.WriteLine("    S KMPRET=##class(%DynamicObject).%New()")
+ D MDEF.Implementation.WriteLine("    S KMPREQ=##class(%DynamicAbstractObject).%FromJSON(%request.Content)")
+ D MDEF.Implementation.WriteLine("    I KMPREQ.Function'=""SetConfig"" D  Quit $$$OK")
+ D MDEF.Implementation.WriteLine("    .S KMPRET.ResultText=""Incorrect Function Type""")
+ D MDEF.Implementation.WriteLine("    .W KMPRET.%ToJSON()")
+ D MDEF.Implementation.WriteLine("    S KMPRET.ResultText=$$SETCFG^KMPUTLW2(KMPREQ)")
+ D MDEF.Implementation.WriteLine("    D SITE^KMPUTLW(KMPRET)")
+ D MDEF.Implementation.WriteLine("    D CPF^KMPUTLW(KMPRET)")
+ D MDEF.Implementation.WriteLine("    D MON^KMPUTLW(KMPRET)")
+ D MDEF.Implementation.WriteLine("    S KMPRET.Function=KMPREQ.Function")
+ D MDEF.Implementation.WriteLine("    W KMPRET.%ToJSON()")
+ D MDEF.Implementation.WriteLine("    D RU^%ZOSVKR(""KMP SetConfigHandler"")")
+ D MDEF.Implementation.WriteLine("    Quit $$$OK")
+ Q
+ ;
+CTMLOG(MDEF) ;
+ D MDEF.Implementation.WriteLine("    D RU^%ZOSVKR(""KMP GetCtmLogEvent"")")
+ D MDEF.Implementation.WriteLine("    N $ETRAP S $ETRAP=""D ^ZTER D RU^%ZOSVKR(""""KMP GetCtmLog"""") Q""")
+ D MDEF.Implementation.WriteLine("    I $P($$VERSION^%ZOSV(0),""."") < 2017 Q $$$ERROR(""Invalid Cache Version"")")
+ D MDEF.Implementation.WriteLine("    Do %response.SetHeader(""Access-Control-Allow-Origin"",""*"")")
+ D MDEF.Implementation.WriteLine("    Do %response.SetHeader(""Allow"",""HEAD,GET,POST,PUT,DELETE,OPTIONS"")")
+ D MDEF.Implementation.WriteLine("    S KMPRET=##class(%DynamicObject).%New()")
+ D MDEF.Implementation.WriteLine("    S KMPREQ=##class(%DynamicAbstractObject).%FromJSON(%request.Content)")
+ D MDEF.Implementation.WriteLine("    I KMPREQ.Function'=""GetCtmLog"" D  Quit $$$OK")
+ D MDEF.Implementation.WriteLine("    .S KMPRET.ResultText=""Incorrect Function Type""")
+ D MDEF.Implementation.WriteLine("    .W KMPRET.%ToJSON()")
+ D MDEF.Implementation.WriteLine("    D SITE^KMPUTLW(KMPRET)")
+ D MDEF.Implementation.WriteLine("    D CTMLOG^KMPUTLW(KMPRET)")
+ D MDEF.Implementation.WriteLine("    S KMPRET.ResultText=""OK""")
+ D MDEF.Implementation.WriteLine("    S KMPRET.Function=KMPREQ.Function")
+ D MDEF.Implementation.WriteLine("    W KMPRET.%ToJSON()")
+ D MDEF.Implementation.WriteLine("    D RU^%ZOSVKR(""KMP GetCtmLogHandler"")")
+ D MDEF.Implementation.WriteLine("    Quit $$$OK")
+ Q
+ ;
+GETPACK(MDEF) ;
+ D MDEF.Implementation.WriteLine("    D RU^%ZOSVKR(""KMP GetPackagesEvent"")")
+ D MDEF.Implementation.WriteLine("    N $ETRAP S $ETRAP=""D ^ZTER D RU^%ZOSVKR(""""KMP GetPackages"""") Q""")
+ D MDEF.Implementation.WriteLine("    I $P($$VERSION^%ZOSV(0),""."") < 2017 Q $$$ERROR(""Invalid Cache Version"")")
+ D MDEF.Implementation.WriteLine("    Do %response.SetHeader(""Access-Control-Allow-Origin"",""*"")")
+ D MDEF.Implementation.WriteLine("    Do %response.SetHeader(""Allow"",""HEAD,GET,POST,PUT,DELETE,OPTIONS"")")
+ D MDEF.Implementation.WriteLine("    S KMPRET=##class(%DynamicObject).%New()")
+ D MDEF.Implementation.WriteLine("    S KMPREQ=##class(%DynamicAbstractObject).%FromJSON(%request.Content)")
+ D MDEF.Implementation.WriteLine("    I KMPREQ.Function'=""GetPackages"" D  Quit $$$OK")
+ D MDEF.Implementation.WriteLine("    .S KMPRET.ResultText=""Incorrect Function Type""")
+ D MDEF.Implementation.WriteLine("    .W KMPRET.%ToJSON()")
+ D MDEF.Implementation.WriteLine("    D SITE^KMPUTLW(KMPRET)")
+ D MDEF.Implementation.WriteLine("    D PACKAGES^KMPUTLW(KMPRET)")
+ D MDEF.Implementation.WriteLine("    S KMPRET.ResultText=""OK""")
+ D MDEF.Implementation.WriteLine("    S KMPRET.Function=KMPREQ.Function")
+ D MDEF.Implementation.WriteLine("    W KMPRET.%ToJSON()")
+ D MDEF.Implementation.WriteLine("    D RU^%ZOSVKR(""KMP GetPackagesHandler"")")
+ D MDEF.Implementation.WriteLine("    Quit $$$OK")
+ Q
+ ;
+RETRY(MDEF) ;
+ D MDEF.Implementation.WriteLine("    D RU^%ZOSVKR(""KMP RetryEvent"")")
+ D MDEF.Implementation.WriteLine("    N $ETRAP S $ETRAP=""D ^ZTER D RU^%ZOSVKR(""""KMP Retry"""") Q""")
+ D MDEF.Implementation.WriteLine("    I $P($$VERSION^%ZOSV(0),""."") < 2017 Q $$$ERROR(""Invalid Cache Version"")")
+ D MDEF.Implementation.WriteLine("    Do %response.SetHeader(""Access-Control-Allow-Origin"",""*"")")
+ D MDEF.Implementation.WriteLine("    Do %response.SetHeader(""Allow"",""HEAD,GET,POST,PUT,DELETE,OPTIONS"")")
+ D MDEF.Implementation.WriteLine("    S KMPRET=##class(%DynamicObject).%New()")
+ D MDEF.Implementation.WriteLine("    S KMPREQ=##class(%DynamicAbstractObject).%FromJSON(%request.Content)")
+ D MDEF.Implementation.WriteLine("    I KMPREQ.Function'=""Retry"" D  Quit $$$OK")
+ D MDEF.Implementation.WriteLine("    .S KMPRET.ResultText=""Incorrect Function Type""")
+ D MDEF.Implementation.WriteLine("    .W KMPRET.%ToJSON()")
+ D MDEF.Implementation.WriteLine("    S KMPRET.ResultText=$$RETRY^KMPUTLW(KMPREQ)")
+ D MDEF.Implementation.WriteLine("    D SITE^KMPUTLW(KMPRET)")
+ D MDEF.Implementation.WriteLine("    S KMPRET.Function=KMPREQ.Function")
+ D MDEF.Implementation.WriteLine("    W KMPRET.%ToJSON()")
+ D MDEF.Implementation.WriteLine("    D RU^%ZOSVKR(""KMP RetryHandler"")")
+ D MDEF.Implementation.WriteLine("    Quit $$$OK")
+ Q
+ ;
+GETNODE(MDEF) ;
+ D MDEF.Implementation.WriteLine("    W ""<H>""_##class(%SYS.System).GetNodeName(1)_""</H>""")
+ D MDEF.Implementation.WriteLine("    Quit $$$OK")
+ Q

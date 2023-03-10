@@ -1,5 +1,6 @@
-PSOBBC ;IHS/DSD/JCM-BATCH BARCODE DRIVER ;3/30/06 10:10am
- ;;7.0;OUTPATIENT PHARMACY;**11,22,27,34,46,130,146,185,242,264,300,337,313,473,504,570**;DEC 1997;Build 8
+PSOBBC ;IHS/DSD/JCM - BATCH BARCODE DRIVER ;Feb 03, 2022@11:08
+ ;;7.0;OUTPATIENT PHARMACY;**11,22,27,34,46,130,146,185,242,264,300,337,313,473,504,570,653,441**;DEC 1997;Build 208
+ ;
  ;External reference to ^IBE(350.1,"ANEW" supported by DBIA 592
  ;External references CHPUS^IBACUS and TRI^IBACUS supported by DBIA 2030
  ;External references LK^ORX2 and ULK^ORX2 supported by DBIA 867
@@ -37,11 +38,12 @@ FROMX K X,Y,DIR
  ;
 ASK ;
  K BINGCRT,BINGRTE,BBRX
- W !,"Please answer the following for this session of prescriptions",!
+ W !,"Please answer the following for this session of prescriptions:",!
  D EN^PSOREF2(.PSOBBC) I PSOBBC("DFLG") S PSOBBC("QFLG")=1 G ASKX
- D SUSP
- D INPT,CNH
- D:'$P($G(PSOPAR),"^",6) EARLY
+ D SUSP G:PSOBBC("QFLG") ASKX
+ D INPT G:PSOBBC("QFLG") ASKX
+ D CNH G:PSOBBC("QFLG") ASKX
+ D:'$P($G(PSOPAR),"^",6) EARLY G:PSOBBC("QFLG") ASKX
  D SET
  D:PSOBBC1("FROM")="NEW" NOORE^PSONEW(.PSOBBC) S:$G(PSOBBC("NOO"))'="" PSOBBCNO=$G(PSOBBC("NOO")) S:$G(PSOBBC("DFLG")) PSOBBC("QFLG")=1
 ASKX Q
@@ -56,17 +58,21 @@ SUSPX K X,Y,DIR
  Q
  ;
 INPT ;
+ N DIR,PSOINP
  S DIR(0)="YA"
- S DIR("A")="Allow refills for inpatient ? "
- S DIR("B")="N"
+ S DIR("A")="Allow refills for Inpatient ? "
+ S PSOINP=$$GET1^DIQ(59,PSOSITE,2030)
+ S DIR("B")=$S(PSOINP'="":PSOINP,1:"NO")
  D DIR G:PSOBBC("QFLG") INPTX
  S (PSOBBC1("INOK"),PSOBBC("INOK"))=Y
 INPTX K X,Y,DIR
  Q
 CNH ;
+ N DIR,PSOCNH
  S DIR(0)="YA"
  S DIR("A")="Allow refills for CNH ? "
- S DIR("B")="N"
+ S PSOCNH=$$GET1^DIQ(59,PSOSITE,2035)
+ S DIR("B")=$S(PSOCNH'="":PSOCNH,1:"NO")
  D DIR G:PSOBBC("QFLG") CNHX
  S (PSOBBC1("CNHOK"),PSOBBC("CNHOK"))=Y
 CNHX K X,Y,DIR
@@ -142,7 +148,7 @@ GETRXMX K X,Y,DIR,PSOOPT
  ;
 PT ;
  S PSOBBC("DFLG")=0
- W !,$C(7),"New Patient, please pause"
+ W !,$C(7),"New Patient, please pause",!
  I $G(PPL) D SETX,TRI,Q^PSORXL K PPL
  K RXFL
  S (DFN,PSODFN)=$P(^PSRX(PSOBBC("IRXN"),0),"^",2),PSORX("NAME")=$P(^DPT(PSODFN,0),"^")
@@ -162,14 +168,19 @@ PTC S (DFN,PSODFN)=$P(^PSRX(PSOBBC("IRXN"),0),"^",2)
  K PSORX("CNH")
  I $G(PSOPTPST(2,PSODFN,148))="YES" D:'PSOBBC("CNHOK") PID W !,$C(7),?10,"PATIENT IS IN A CONTRACT NURSING HOME !!" S:PSOBBC("CNHOK") PSORX("CNH")=1 I 'PSOBBC("CNHOK") S PSOBBC("DFLG")=1 G PTX
  D:PSOBBC1("FROM")="NEW" COPAY^PSOPTPST
-PTX K PSOPTPST W:PSOBBC("DFLG") !!,$C(7),"Rx not filled"
+PTX K PSOPTPST W:PSOBBC("DFLG") !!,$C(7),"Rx not filled" W:$G(PSOBBC("IRXN")) " RX IEN "_PSOBBC("IRXN") ;RTW NSR20160206
  Q
  ;
 REFILL ;
  ; Titration Rx refill request check from AudioFax/Internet
- N PSORXIEN
+ N PSORXIEN,PSOPARKED,PSOORIG
  S PSORXIEN=+$G(PSOBBC("IRXN"))
- I PSORXIEN,$D(^PSRX(PSORXIEN,0)),$$TITRX^PSOUTL(PSORXIEN)="t" D  Q
+ S PSOORIG=0
+ S PSOPARKED=($G(^PSRX(PSORXIEN,"STA"))=0)&($G(^PSRX(PSORXIEN,"PARK")))
+ I PSOPARKED S PSOORIG=$$CHKPRKORIG^PSOPRKA(PSORXIEN)  ;check if filling original or refill
+ ;
+ ; p441 PAPI - don't quit here if filling original parked titration
+ I PSORXIEN,$D(^PSRX(PSORXIEN,0)),$$TITRX^PSOUTL(PSORXIEN)="t",'PSOORIG D  Q
  . W !!,$C(7),"Rx# "_$$GET1^DIQ(52,PSORXIEN,.01)_" is marked as 'Titration Rx' and cannot be refilled.",!
  . D PAUSE^VALM1
  N PSOFROM S PSOFROM="REFILL",XFROM="BATCH"

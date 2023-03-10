@@ -1,5 +1,5 @@
-PXVEDIT ;BIR/CML3,ADM - LOT NUMBER EDIT ;04/22/2016
- ;;1.0;PCE PATIENT CARE ENCOUNTER;**210,216**;Aug 12, 1996;Build 11
+PXVEDIT ;BIR/CML3,ADM - LOT NUMBER EDIT ;Nov 30, 2018@14:03
+ ;;1.0;PCE PATIENT CARE ENCOUNTER;**210,216,217**;Aug 12, 1996;Build 134
  ;
 EN ; entry point for PXTT EDIT IMMUNIZATION LOT option
  N PXVDEF,PXVFAC,PXVFIEN,PXVI,PXVOUT,PXVSTN,PXVTITLE,PXVY,X,Y
@@ -7,12 +7,21 @@ EN ; entry point for PXTT EDIT IMMUNIZATION LOT option
  D PICK,LIST I PXVFAC="" D END Q
  D PICK1
 FUNC ; select function
- K DIR S DIR("A",1)="1. Enter/Edit Immunization Lot",DIR("A",2)="2. Display/Print Immunization Inventory Report",DIR("A",3)=""
- S DIR("A")="Enter a number",DIR("?",1)=" Enter '1' to update information for an existing immunization lot or"
- S DIR("?",2)=" to enter a new immunization lot. Enter '2' to display or print an",DIR("?")=" immunization inventory report."
- S DIR(0)="NO^1:2" D ^DIR K DIR I $D(DTOUT)!$D(DUOUT)!'Y S PXVOUT=1 D END Q
+ K DIR
+ S DIR("A",1)="1. Enter/Edit Immunization Lot"
+ S DIR("A",2)="2. Transfer Immunization Inventory Between Facilities"
+ S DIR("A",3)="3. Display/Print Immunization Inventory Report"
+ S DIR("A",4)=""
+ S DIR("A")="Enter a number"
+ S DIR("?",1)=" Enter '1' to update information for an existing immunization lot or"
+ S DIR("?",2)=" to enter a new immunization lot. Enter '2' to transfer vaccine inventory"
+ S DIR("?",3)=" from one facility to another. The number of doses to be moved is subtracted"
+ S DIR("?",4)=" from the transferring facility and added to the receiving facility."
+ S DIR("?")=" Enter '3' to display or print an immunization inventory report."
+ S DIR(0)="NO^1:3" D ^DIR K DIR I $D(DTOUT)!$D(DUOUT)!'Y S PXVOUT=1 D END Q
  I X["?" G PICK
- I Y=2 D ^PXVINV D END Q
+ I Y=2 D EN^PXVTRAN(PXVFIEN,PXVTITLE) D END Q
+ I Y=3 D ^PXVINV D END Q
 F1 ; entry point for lot number enter/edit
  N DA,DIE,DIC,DIDEL,DIR,DLAYGO,DR,DTOUT,DUOUT,PXVIEN,X,Y
  F  D LN Q:PXVOUT

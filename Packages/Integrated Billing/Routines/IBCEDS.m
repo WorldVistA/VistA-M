@@ -1,5 +1,5 @@
 IBCEDS ;ALB/ESG - EDI CLAIM STATUS REPORT - SELECTION ;13-DEC-2007
- ;;2.0;INTEGRATED BILLING;**377**;21-MAR-94;Build 23
+ ;;2.0;INTEGRATED BILLING;**377,641**;21-MAR-94;Build 61
  ;;Per VHA Directive 2004-038, this routine should not be modified.
  ;
  Q
@@ -18,8 +18,11 @@ DS30 D PAYER I STOP G:$$STOP EX G DS20
 DS40 D TXDATE I STOP G:$$STOP EX G DS30
 DS50 D EDISTAT I STOP G:$$STOP EX G DS40
 DS60 D CANCEL I STOP G:$$STOP EX G DS50
-DS70 D SORT I STOP G:$$STOP EX G:IBMETHOD="C" DS10 G DS60
-DS80 D DEVICE I STOP G:$$STOP EX G DS70
+ ;JWS;IB*2.0*641;add summary/detail option (summary - just totals, detail remains same)
+DS65 D SD I STOP G:$$STOP EX G DS60
+ I $G(^TMP($J,"IBCEDS","SD"))="S" G DS80
+DS70 D SORT I STOP G:$$STOP EX G:IBMETHOD="C" DS10 G DS65
+DS80 D DEVICE I STOP G:$$STOP EX G:$G(^TMP($J,"IBCEDS","SD"))="S" DS65 G DS70
  ;
 EX ; exit point
  Q
@@ -236,6 +239,21 @@ CANCEL ; Include cancelled claims?
 CANCELX ;
  Q
  ;
+SD ; Summary or Detail ; IB*2.0*641;JWS;
+ ;
+ W !
+ K ^TMP($J,"IBCEDS","SD")
+ S DIR(0)="SA^S:Summary;D:Detail"
+ S DIR("A")="Summary or Detail? "
+ S DIR("B")="Summary"
+ S DIR("?",1)="  Enter 'S' for a summary total of claims submitted from VistA."
+ S DIR("?")="  Enter 'D' for a detail list of claims submitted from VistA."
+ D ^DIR K DIR
+ I $D(DIRUT) S STOP=1 G SDX
+ S ^TMP($J,"IBCEDS","SD")=Y
+SDX ;
+ Q
+ ;
 SORT ; Gather the primary, secondary, and tert sorts
  W @IOF
  W !!,"SORT CRITERIA"
@@ -248,7 +266,8 @@ SORTX ;
  ;
 DEVICE ; Device selection
  NEW ZTRTN,ZTDESC,ZTSAVE,POP
- W !!!,"This report is 132 characters wide.  Please choose an appropriate device.",!
+ ;JWS;IB*2.0*641;display only if detail
+ I $G(^TMP($J,"IBCEDS","SD"))'="S" W !!!,"This report is 132 characters wide.  Please choose an appropriate device.",!
  S ZTRTN="EN^IBCEDC"
  S ZTDESC="COMPILE/PRINT EDI CLAIM STATUS DETAIL REPORT"
  S ZTSAVE("IBMETHOD")=""

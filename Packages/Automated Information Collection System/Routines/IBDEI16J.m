@@ -1,118 +1,130 @@
-IBDEI16J ; ; 04-FEB-2020
- ;;3.0;IB ENCOUNTER FORM IMP/EXP;;FEB 04, 2020
+IBDEI16J ; ; 01-FEB-2022
+ ;;3.0;IB ENCOUNTER FORM IMP/EXP;;FEB 01, 2022
  Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,999) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
- ;;^UTILITY(U,$J,358.3,18957,1,3,0)
- ;;=3^Suicide Attempt,Sequela
- ;;^UTILITY(U,$J,358.3,18957,1,4,0)
- ;;=4^T14.91XS
- ;;^UTILITY(U,$J,358.3,18957,2)
- ;;=^5151781
- ;;^UTILITY(U,$J,358.3,18958,0)
- ;;=F19.14^^91^975^1
- ;;^UTILITY(U,$J,358.3,18958,1,0)
+ ;;^UTILITY(U,$J,358.3,19141,0)
+ ;;=R76.11^^64^851^1
+ ;;^UTILITY(U,$J,358.3,19141,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,18958,1,3,0)
- ;;=3^Oth/Unk Substance Induced Dep D/O w/ Mild Use D/O
- ;;^UTILITY(U,$J,358.3,18958,1,4,0)
- ;;=4^F19.14
- ;;^UTILITY(U,$J,358.3,18958,2)
- ;;=^5003421
- ;;^UTILITY(U,$J,358.3,18959,0)
- ;;=F19.24^^91^975^2
- ;;^UTILITY(U,$J,358.3,18959,1,0)
+ ;;^UTILITY(U,$J,358.3,19141,1,3,0)
+ ;;=3^Abnormal Reaction to Tuberculin Test
+ ;;^UTILITY(U,$J,358.3,19141,1,4,0)
+ ;;=4^R76.11
+ ;;^UTILITY(U,$J,358.3,19141,2)
+ ;;=^5019570
+ ;;^UTILITY(U,$J,358.3,19142,0)
+ ;;=J47.1^^64^851^7
+ ;;^UTILITY(U,$J,358.3,19142,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,18959,1,3,0)
- ;;=3^Oth/Unk Substance Induced Dep D/O w/ Mod/Sev Use D/O
- ;;^UTILITY(U,$J,358.3,18959,1,4,0)
- ;;=4^F19.24
- ;;^UTILITY(U,$J,358.3,18959,2)
- ;;=^5003441
- ;;^UTILITY(U,$J,358.3,18960,0)
- ;;=F19.94^^91^975^3
- ;;^UTILITY(U,$J,358.3,18960,1,0)
+ ;;^UTILITY(U,$J,358.3,19142,1,3,0)
+ ;;=3^Bronchiectasis w/ Exacerbation
+ ;;^UTILITY(U,$J,358.3,19142,1,4,0)
+ ;;=4^J47.1
+ ;;^UTILITY(U,$J,358.3,19142,2)
+ ;;=^5008259
+ ;;^UTILITY(U,$J,358.3,19143,0)
+ ;;=J47.0^^64^851^6
+ ;;^UTILITY(U,$J,358.3,19143,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,18960,1,3,0)
- ;;=3^Oth/Unk Substance Induced Dep D/O w/o Use D/O
- ;;^UTILITY(U,$J,358.3,18960,1,4,0)
- ;;=4^F19.94
- ;;^UTILITY(U,$J,358.3,18960,2)
- ;;=^5003460
- ;;^UTILITY(U,$J,358.3,18961,0)
- ;;=F19.17^^91^975^4
- ;;^UTILITY(U,$J,358.3,18961,1,0)
+ ;;^UTILITY(U,$J,358.3,19143,1,3,0)
+ ;;=3^Bronchiectasis w/ Acute Lower Respiratory Infection
+ ;;^UTILITY(U,$J,358.3,19143,1,4,0)
+ ;;=4^J47.0
+ ;;^UTILITY(U,$J,358.3,19143,2)
+ ;;=^5008258
+ ;;^UTILITY(U,$J,358.3,19144,0)
+ ;;=J47.9^^64^851^8
+ ;;^UTILITY(U,$J,358.3,19144,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,18961,1,3,0)
- ;;=3^Oth/Unk Substance Induced Maj Neurocog D/O w/ Mild Use D/O
- ;;^UTILITY(U,$J,358.3,18961,1,4,0)
- ;;=4^F19.17
- ;;^UTILITY(U,$J,358.3,18961,2)
- ;;=^5003426
- ;;^UTILITY(U,$J,358.3,18962,0)
- ;;=F19.27^^91^975^5
- ;;^UTILITY(U,$J,358.3,18962,1,0)
+ ;;^UTILITY(U,$J,358.3,19144,1,3,0)
+ ;;=3^Bronchiectasis,Uncomplicated
+ ;;^UTILITY(U,$J,358.3,19144,1,4,0)
+ ;;=4^J47.9
+ ;;^UTILITY(U,$J,358.3,19144,2)
+ ;;=^5008260
+ ;;^UTILITY(U,$J,358.3,19145,0)
+ ;;=J43.2^^64^851^12
+ ;;^UTILITY(U,$J,358.3,19145,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,18962,1,3,0)
- ;;=3^Oth/Unk Substance Induced Maj Neurocog D/O w/ Mod/Sev Use D/O
- ;;^UTILITY(U,$J,358.3,18962,1,4,0)
- ;;=4^F19.27
- ;;^UTILITY(U,$J,358.3,18962,2)
- ;;=^5003446
- ;;^UTILITY(U,$J,358.3,18963,0)
- ;;=F19.97^^91^975^6
- ;;^UTILITY(U,$J,358.3,18963,1,0)
+ ;;^UTILITY(U,$J,358.3,19145,1,3,0)
+ ;;=3^Centrilobular Emphysema
+ ;;^UTILITY(U,$J,358.3,19145,1,4,0)
+ ;;=4^J43.2
+ ;;^UTILITY(U,$J,358.3,19145,2)
+ ;;=^5008237
+ ;;^UTILITY(U,$J,358.3,19146,0)
+ ;;=J44.1^^64^851^10
+ ;;^UTILITY(U,$J,358.3,19146,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,18963,1,3,0)
- ;;=3^Oth/Unk Substance Induced Maj Neurocog D/O w/o Use D/O
- ;;^UTILITY(U,$J,358.3,18963,1,4,0)
- ;;=4^F19.97
- ;;^UTILITY(U,$J,358.3,18963,2)
- ;;=^5003465
- ;;^UTILITY(U,$J,358.3,18964,0)
- ;;=F19.188^^91^975^7
- ;;^UTILITY(U,$J,358.3,18964,1,0)
+ ;;^UTILITY(U,$J,358.3,19146,1,3,0)
+ ;;=3^COPD w/ Exacerbation
+ ;;^UTILITY(U,$J,358.3,19146,1,4,0)
+ ;;=4^J44.1
+ ;;^UTILITY(U,$J,358.3,19146,2)
+ ;;=^5008240
+ ;;^UTILITY(U,$J,358.3,19147,0)
+ ;;=J44.0^^64^851^9
+ ;;^UTILITY(U,$J,358.3,19147,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,18964,1,3,0)
- ;;=3^Oth/Unk Substance Induced Mild Neurocog D/O w/ Mild Use D/O
- ;;^UTILITY(U,$J,358.3,18964,1,4,0)
- ;;=4^F19.188
- ;;^UTILITY(U,$J,358.3,18964,2)
- ;;=^5133361
- ;;^UTILITY(U,$J,358.3,18965,0)
- ;;=F19.288^^91^975^8
- ;;^UTILITY(U,$J,358.3,18965,1,0)
+ ;;^UTILITY(U,$J,358.3,19147,1,3,0)
+ ;;=3^COPD w/ Acute Lower Respiratory Infection
+ ;;^UTILITY(U,$J,358.3,19147,1,4,0)
+ ;;=4^J44.0
+ ;;^UTILITY(U,$J,358.3,19147,2)
+ ;;=^5008239
+ ;;^UTILITY(U,$J,358.3,19148,0)
+ ;;=J44.9^^64^851^11
+ ;;^UTILITY(U,$J,358.3,19148,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,18965,1,3,0)
- ;;=3^Oth/Unk Substance Induced Mild Neurocog D/O w/ Mod/Sev Use D/O
- ;;^UTILITY(U,$J,358.3,18965,1,4,0)
- ;;=4^F19.288
- ;;^UTILITY(U,$J,358.3,18965,2)
- ;;=^5133362
- ;;^UTILITY(U,$J,358.3,18966,0)
- ;;=F19.988^^91^975^9
- ;;^UTILITY(U,$J,358.3,18966,1,0)
+ ;;^UTILITY(U,$J,358.3,19148,1,3,0)
+ ;;=3^COPD,Unspec
+ ;;^UTILITY(U,$J,358.3,19148,1,4,0)
+ ;;=4^J44.9
+ ;;^UTILITY(U,$J,358.3,19148,2)
+ ;;=^5008241
+ ;;^UTILITY(U,$J,358.3,19149,0)
+ ;;=J45.991^^64^851^14
+ ;;^UTILITY(U,$J,358.3,19149,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,18966,1,3,0)
- ;;=3^Oth/Unk Substance Induced Mild Neurocog D/O w/o Use D/O
- ;;^UTILITY(U,$J,358.3,18966,1,4,0)
- ;;=4^F19.988
- ;;^UTILITY(U,$J,358.3,18966,2)
- ;;=^5133363
- ;;^UTILITY(U,$J,358.3,18967,0)
- ;;=F19.159^^91^975^10
- ;;^UTILITY(U,$J,358.3,18967,1,0)
+ ;;^UTILITY(U,$J,358.3,19149,1,3,0)
+ ;;=3^Cough Variant Asthma
+ ;;^UTILITY(U,$J,358.3,19149,1,4,0)
+ ;;=4^J45.991
+ ;;^UTILITY(U,$J,358.3,19149,2)
+ ;;=^329927
+ ;;^UTILITY(U,$J,358.3,19150,0)
+ ;;=J43.9^^64^851^16
+ ;;^UTILITY(U,$J,358.3,19150,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,18967,1,3,0)
- ;;=3^Oth/Unk Substance Induced Psychotic D/O w/ Mild Use D/O
- ;;^UTILITY(U,$J,358.3,18967,1,4,0)
- ;;=4^F19.159
- ;;^UTILITY(U,$J,358.3,18967,2)
- ;;=^5003424
- ;;^UTILITY(U,$J,358.3,18968,0)
- ;;=F19.259^^91^975^11
- ;;^UTILITY(U,$J,358.3,18968,1,0)
+ ;;^UTILITY(U,$J,358.3,19150,1,3,0)
+ ;;=3^Emphysema,Unspec
+ ;;^UTILITY(U,$J,358.3,19150,1,4,0)
+ ;;=4^J43.9
+ ;;^UTILITY(U,$J,358.3,19150,2)
+ ;;=^5008238
+ ;;^UTILITY(U,$J,358.3,19151,0)
+ ;;=J45.990^^64^851^17
+ ;;^UTILITY(U,$J,358.3,19151,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,18968,1,3,0)
- ;;=3^Oth/Unk Substance Induced Psychotic D/O w/ Mod/Sev Use D/O
- ;;^UTILITY(U,$J,358.3,18968,1,4,0)
- ;;=4^F19.259
+ ;;^UTILITY(U,$J,358.3,19151,1,3,0)
+ ;;=3^Exercise Induced Bronchospasm
+ ;;^UTILITY(U,$J,358.3,19151,1,4,0)
+ ;;=4^J45.990
+ ;;^UTILITY(U,$J,358.3,19151,2)
+ ;;=^329926
+ ;;^UTILITY(U,$J,358.3,19152,0)
+ ;;=J45.22^^64^851^19
+ ;;^UTILITY(U,$J,358.3,19152,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,19152,1,3,0)
+ ;;=3^Mild Intermittent Asthma w/ Status Asthmaticus
+ ;;^UTILITY(U,$J,358.3,19152,1,4,0)
+ ;;=4^J45.22
+ ;;^UTILITY(U,$J,358.3,19152,2)
+ ;;=^5008244
+ ;;^UTILITY(U,$J,358.3,19153,0)
+ ;;=J45.20^^64^851^20
+ ;;^UTILITY(U,$J,358.3,19153,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,19153,1,3,0)
+ ;;=3^Mild Intermittent Asthma,Uncomplicated

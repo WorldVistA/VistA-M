@@ -1,5 +1,5 @@
-PXRMEXU1 ; SLC/PKR/PJH - Reminder exchange repository utilities, #1.;10/16/2019
- ;;2.0;CLINICAL REMINDERS;**6,12,16,26,45**;Feb 04, 2005;Build 566
+PXRMEXU1 ; SLC/PKR/PJH - Reminder exchange repository utilities, #1.;10/23/2020
+ ;;2.0;CLINICAL REMINDERS;**6,12,16,26,45,42**;Feb 04, 2005;Build 245
  ;=====================================================
 DELETE(LIST) ;Delete the repository entries in LIST.
  N DA,DIK,IND,LNUM
@@ -153,15 +153,21 @@ SAVHIST ;Save the installation history in the repository.
  Q
  ;
  ;=====================================================
- ;Extract TIU Objects/Templates from any WP text
-TIUSRCH(GLOB,IEN,NODE,OLIST,TLIST) ;
- N OCNT,SUB,TCNT,TEXT
+TIUSRCH(GLOB,IEN,NODE,OLIST,TLIST) ;Extract TIU Objects/Templates
+ ;from any WP text.
+ N NIN,NOUT,OCNT,SUB,TCNT,TEXT,TEXTIN,TEXTOUT
  ;Add to existing arrays
+ S NIN=0
  S OCNT=+$O(OLIST(""),-1),TCNT=+$O(TLIST(""),-1),SUB=0
  ;Scan WP fields
  F  S SUB=$O(@(GLOB_IEN_","_NODE_","_SUB_")")) Q:'SUB  D
  .;Get individual line
  .S TEXT=$G(@(GLOB_IEN_","_NODE_","_SUB_",0)")) Q:TEXT=""
+ .S NIN=NIN+1
+ .S TEXTIN(NIN)=TEXT
+ D FORMAT^PXRMTEXT(0,80,NIN,.TEXTIN,.NOUT,.TEXTOUT)
+ F X=1:1:NOUT D
+ .S TEXT=TEXTOUT(X)
  .;Most text lines will have no TIU link so ignore them
  .I (TEXT'["|")&(TEXT'["{FLD:") Q
  .;Templates are in format {FLD:fldname} (only applies to dialogs)
@@ -170,14 +176,16 @@ TIUSRCH(GLOB,IEN,NODE,OLIST,TLIST) ;
  .D TIUXTR("|","|",TEXT,.OLIST,.OCNT)
  Q
  ;
+ ;=====================================================
 TIUXTR(SRCH,SRCH1,TEXT,OUTPUT,CNT) ;
- N EXIST,IC,TXT,ONAME
+ N EXIST,IC,ONAME,TMP,TXT
  S TXT=TEXT
  F  D  Q:TXT'[SRCH
  .S TXT=$E(TXT,$F(TXT,SRCH),$L(TXT)) Q:TXT'[SRCH1
  .S ONAME=$P(TXT,SRCH1) Q:ONAME=""
+ .I SRCH1="}" S TMP=$P(TXT,SRCH1,2) I $E(TMP,1,3)="FMT" Q
  .;
- .;remove the valid item from the text string. This prevent problems
+ .;Remove the valid item from the text string. This prevent problems
  .;with multiple objects on one line.
  .;
  .S TXT=$P(TXT,ONAME_SRCH1,2)

@@ -1,120 +1,124 @@
-IBDEI0QT ; ; 04-FEB-2020
- ;;3.0;IB ENCOUNTER FORM IMP/EXP;;FEB 04, 2020
+IBDEI0QT ; ; 01-FEB-2022
+ ;;3.0;IB ENCOUNTER FORM IMP/EXP;;FEB 01, 2022
  Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,999) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
- ;;^UTILITY(U,$J,358.3,11968,1,0)
+ ;;^UTILITY(U,$J,358.3,12083,1,3,0)
+ ;;=3^Pressure Ulcer Left Lower Back,Stage Unspec
+ ;;^UTILITY(U,$J,358.3,12083,1,4,0)
+ ;;=4^L89.149
+ ;;^UTILITY(U,$J,358.3,12083,2)
+ ;;=^5133654
+ ;;^UTILITY(U,$J,358.3,12084,0)
+ ;;=L89.150^^49^595^108
+ ;;^UTILITY(U,$J,358.3,12084,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,11968,1,3,0)
- ;;=3^Athscl of Bypass Graft,Right Leg w/ Gangrene
- ;;^UTILITY(U,$J,358.3,11968,1,4,0)
- ;;=4^I70.761
- ;;^UTILITY(U,$J,358.3,11968,2)
- ;;=^5007777
- ;;^UTILITY(U,$J,358.3,11969,0)
- ;;=I70.663^^80^768^10
- ;;^UTILITY(U,$J,358.3,11969,1,0)
+ ;;^UTILITY(U,$J,358.3,12084,1,3,0)
+ ;;=3^Pressure Ulcer Sacral Region,Unstageable
+ ;;^UTILITY(U,$J,358.3,12084,1,4,0)
+ ;;=4^L89.150
+ ;;^UTILITY(U,$J,358.3,12084,2)
+ ;;=^5009368
+ ;;^UTILITY(U,$J,358.3,12085,0)
+ ;;=L89.151^^49^595^103
+ ;;^UTILITY(U,$J,358.3,12085,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,11969,1,3,0)
- ;;=3^Athscl of Nonbiol Bypass,Bilateral Legs w/ Gangrene
- ;;^UTILITY(U,$J,358.3,11969,1,4,0)
- ;;=4^I70.663
- ;;^UTILITY(U,$J,358.3,11969,2)
- ;;=^5007757
- ;;^UTILITY(U,$J,358.3,11970,0)
- ;;=I70.662^^80^768^11
- ;;^UTILITY(U,$J,358.3,11970,1,0)
+ ;;^UTILITY(U,$J,358.3,12085,1,3,0)
+ ;;=3^Pressure Ulcer Sacral Region,Stage 1
+ ;;^UTILITY(U,$J,358.3,12085,1,4,0)
+ ;;=4^L89.151
+ ;;^UTILITY(U,$J,358.3,12085,2)
+ ;;=^5009369
+ ;;^UTILITY(U,$J,358.3,12086,0)
+ ;;=L89.152^^49^595^104
+ ;;^UTILITY(U,$J,358.3,12086,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,11970,1,3,0)
- ;;=3^Athscl of Nonbiol Bypass,Left Leg w/ Gangrene
- ;;^UTILITY(U,$J,358.3,11970,1,4,0)
- ;;=4^I70.662
- ;;^UTILITY(U,$J,358.3,11970,2)
- ;;=^5007756
- ;;^UTILITY(U,$J,358.3,11971,0)
- ;;=I70.661^^80^768^12
- ;;^UTILITY(U,$J,358.3,11971,1,0)
+ ;;^UTILITY(U,$J,358.3,12086,1,3,0)
+ ;;=3^Pressure Ulcer Sacral Region,Stage 2
+ ;;^UTILITY(U,$J,358.3,12086,1,4,0)
+ ;;=4^L89.152
+ ;;^UTILITY(U,$J,358.3,12086,2)
+ ;;=^5009370
+ ;;^UTILITY(U,$J,358.3,12087,0)
+ ;;=L89.153^^49^595^105
+ ;;^UTILITY(U,$J,358.3,12087,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,11971,1,3,0)
- ;;=3^Athscl of Nonbiol Bypass,Right Leg w/ Gangrene
- ;;^UTILITY(U,$J,358.3,11971,1,4,0)
- ;;=4^I70.661
- ;;^UTILITY(U,$J,358.3,11971,2)
- ;;=^5007755
- ;;^UTILITY(U,$J,358.3,11972,0)
- ;;=I70.561^^80^768^9
- ;;^UTILITY(U,$J,358.3,11972,1,0)
+ ;;^UTILITY(U,$J,358.3,12087,1,3,0)
+ ;;=3^Pressure Ulcer Sacral Region,Stage 3
+ ;;^UTILITY(U,$J,358.3,12087,1,4,0)
+ ;;=4^L89.153
+ ;;^UTILITY(U,$J,358.3,12087,2)
+ ;;=^5009371
+ ;;^UTILITY(U,$J,358.3,12088,0)
+ ;;=L89.154^^49^595^106
+ ;;^UTILITY(U,$J,358.3,12088,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,11972,1,3,0)
- ;;=3^Athscl of Nonaut Bio Bypass,Right Leg w/ Gangrene
- ;;^UTILITY(U,$J,358.3,11972,1,4,0)
- ;;=4^I70.561
- ;;^UTILITY(U,$J,358.3,11972,2)
- ;;=^5007717
- ;;^UTILITY(U,$J,358.3,11973,0)
- ;;=I70.562^^80^768^8
- ;;^UTILITY(U,$J,358.3,11973,1,0)
+ ;;^UTILITY(U,$J,358.3,12088,1,3,0)
+ ;;=3^Pressure Ulcer Sacral Region,Stage 4
+ ;;^UTILITY(U,$J,358.3,12088,1,4,0)
+ ;;=4^L89.154
+ ;;^UTILITY(U,$J,358.3,12088,2)
+ ;;=^5009372
+ ;;^UTILITY(U,$J,358.3,12089,0)
+ ;;=L89.159^^49^595^107
+ ;;^UTILITY(U,$J,358.3,12089,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,11973,1,3,0)
- ;;=3^Athscl of Nonaut Bio Bypass,Left Leg w/ Gangrene
- ;;^UTILITY(U,$J,358.3,11973,1,4,0)
- ;;=4^I70.562
- ;;^UTILITY(U,$J,358.3,11973,2)
- ;;=^5007718
- ;;^UTILITY(U,$J,358.3,11974,0)
- ;;=I70.563^^80^768^7
- ;;^UTILITY(U,$J,358.3,11974,1,0)
+ ;;^UTILITY(U,$J,358.3,12089,1,3,0)
+ ;;=3^Pressure Ulcer Sacral Region,Stage Unspec
+ ;;^UTILITY(U,$J,358.3,12089,1,4,0)
+ ;;=4^L89.159
+ ;;^UTILITY(U,$J,358.3,12089,2)
+ ;;=^5009373
+ ;;^UTILITY(U,$J,358.3,12090,0)
+ ;;=L89.210^^49^595^90
+ ;;^UTILITY(U,$J,358.3,12090,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,11974,1,3,0)
- ;;=3^Athscl of Nonaut Bio Bypass,Bilateral Legs w/ Gangrene
- ;;^UTILITY(U,$J,358.3,11974,1,4,0)
- ;;=4^I70.563
- ;;^UTILITY(U,$J,358.3,11974,2)
- ;;=^5007719
- ;;^UTILITY(U,$J,358.3,11975,0)
- ;;=I70.462^^80^768^2
- ;;^UTILITY(U,$J,358.3,11975,1,0)
+ ;;^UTILITY(U,$J,358.3,12090,1,3,0)
+ ;;=3^Pressure Ulcer Right Hip,Unstageable
+ ;;^UTILITY(U,$J,358.3,12090,1,4,0)
+ ;;=4^L89.210
+ ;;^UTILITY(U,$J,358.3,12090,2)
+ ;;=^5009379
+ ;;^UTILITY(U,$J,358.3,12091,0)
+ ;;=L89.211^^49^595^85
+ ;;^UTILITY(U,$J,358.3,12091,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,11975,1,3,0)
- ;;=3^Athscl Autol Vein Bypass,Left Leg w/ Gangrene
- ;;^UTILITY(U,$J,358.3,11975,1,4,0)
- ;;=4^I70.462
- ;;^UTILITY(U,$J,358.3,11975,2)
- ;;=^5007680
- ;;^UTILITY(U,$J,358.3,11976,0)
- ;;=I70.461^^80^768^3
- ;;^UTILITY(U,$J,358.3,11976,1,0)
+ ;;^UTILITY(U,$J,358.3,12091,1,3,0)
+ ;;=3^Pressure Ulcer Right Hip,Stage 1
+ ;;^UTILITY(U,$J,358.3,12091,1,4,0)
+ ;;=4^L89.211
+ ;;^UTILITY(U,$J,358.3,12091,2)
+ ;;=^5009380
+ ;;^UTILITY(U,$J,358.3,12092,0)
+ ;;=L89.212^^49^595^86
+ ;;^UTILITY(U,$J,358.3,12092,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,11976,1,3,0)
- ;;=3^Athscl Autol Vein Bypass,Right Leg w/ Gangrene
- ;;^UTILITY(U,$J,358.3,11976,1,4,0)
- ;;=4^I70.461
- ;;^UTILITY(U,$J,358.3,11976,2)
- ;;=^5007679
- ;;^UTILITY(U,$J,358.3,11977,0)
- ;;=I70.463^^80^768^1
- ;;^UTILITY(U,$J,358.3,11977,1,0)
+ ;;^UTILITY(U,$J,358.3,12092,1,3,0)
+ ;;=3^Pressure Ulcer Right Hip,Stage 2
+ ;;^UTILITY(U,$J,358.3,12092,1,4,0)
+ ;;=4^L89.212
+ ;;^UTILITY(U,$J,358.3,12092,2)
+ ;;=^5009381
+ ;;^UTILITY(U,$J,358.3,12093,0)
+ ;;=L89.213^^49^595^87
+ ;;^UTILITY(U,$J,358.3,12093,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,11977,1,3,0)
- ;;=3^Athscl Autol Vein Bypass,Bilateral Legs w/ Gangrene
- ;;^UTILITY(U,$J,358.3,11977,1,4,0)
- ;;=4^I70.463
- ;;^UTILITY(U,$J,358.3,11977,2)
- ;;=^5007681
- ;;^UTILITY(U,$J,358.3,11978,0)
- ;;=I70.361^^80^768^15
- ;;^UTILITY(U,$J,358.3,11978,1,0)
+ ;;^UTILITY(U,$J,358.3,12093,1,3,0)
+ ;;=3^Pressure Ulcer Right Hip,Stage 3
+ ;;^UTILITY(U,$J,358.3,12093,1,4,0)
+ ;;=4^L89.213
+ ;;^UTILITY(U,$J,358.3,12093,2)
+ ;;=^5009382
+ ;;^UTILITY(U,$J,358.3,12094,0)
+ ;;=L89.214^^49^595^88
+ ;;^UTILITY(U,$J,358.3,12094,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,11978,1,3,0)
- ;;=3^Athscl of Unspec Bypass,Right Leg w/ Gangrene
- ;;^UTILITY(U,$J,358.3,11978,1,4,0)
- ;;=4^I70.361
- ;;^UTILITY(U,$J,358.3,11978,2)
- ;;=^5007641
- ;;^UTILITY(U,$J,358.3,11979,0)
- ;;=I70.362^^80^768^14
- ;;^UTILITY(U,$J,358.3,11979,1,0)
+ ;;^UTILITY(U,$J,358.3,12094,1,3,0)
+ ;;=3^Pressure Ulcer Right Hip,Stage 4
+ ;;^UTILITY(U,$J,358.3,12094,1,4,0)
+ ;;=4^L89.214
+ ;;^UTILITY(U,$J,358.3,12094,2)
+ ;;=^5009383
+ ;;^UTILITY(U,$J,358.3,12095,0)
+ ;;=L89.219^^49^595^89
+ ;;^UTILITY(U,$J,358.3,12095,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,11979,1,3,0)
- ;;=3^Athscl of Unspec Bypass,Left Leg w/ Gangrene
- ;;^UTILITY(U,$J,358.3,11979,1,4,0)
- ;;=4^I70.362

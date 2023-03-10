@@ -1,5 +1,5 @@
 PSORXVW2 ;ISC-BIRM/PDW - view cmop activity logs ; 4/13/12 2:54pm
- ;;7.0;OUTPATIENT PHARMACY;**33,71,117,152,148,367,361**;DEC 1997;Build 8
+ ;;7.0;OUTPATIENT PHARMACY;**33,71,117,152,148,367,361,655**;DEC 1997;Build 2
  ; External Referrence to file # 550.2 granted by DBIA 2231
  ;External reference to ^PS(50.607 supported by DBIA 2221
  ;External reference to ^PS(51.2 supported by DBIA 2226
@@ -10,7 +10,7 @@ PSORXVW2 ;ISC-BIRM/PDW - view cmop activity logs ; 4/13/12 2:54pm
  S IEN=IEN+1,^TMP("PSOAL",$J,IEN,0)="CMOP Event Log:",IEN=IEN+1
  S ^TMP("PSOAL",$J,IEN,0)="Date/Time     Rx Ref  TRN-Order     Stat       Comments",IEN=IEN+1,$P(^TMP("PSOAL",$J,IEN,0),"=",79)="="
  F PSXA=0:0 S PSXA=$O(^PSRX(DA,4,PSXA)) Q:'PSXA  S PSX4=^(PSXA,0) D FIX D
- . S IEN=IEN+1,^TMP("PSOAL",$J,IEN,0)=$$DATE(DA,$P(PSX4,"^",3))_" "_$S('PSXFIL:"Orig",1:"Ref "_$G(PSXFIL))_"  "_$G(PSXBREF)
+ . S IEN=IEN+1,^TMP("PSOAL",$J,IEN,0)=$$DATE(DA,$P(PSX4,"^",3),PSXA)_" "_$S('PSXFIL:"Orig",1:"Ref "_$G(PSXFIL))_"  "_$G(PSXBREF)
  . S ^TMP("PSOAL",$J,IEN,0)=^TMP("PSOAL",$J,IEN,0)_"      "_$G(PSXT)_"  "_$S($G(PSXTST)=3:$E($P($G(PSXCAN),"^"),1,35),$G(PSXNDC)'="":"NDC: "_PSXNDC,1:"")
  . I PSXCAR'=""!(PSXID'="") D
  . . N X S X="Carrier: "_$E(PSXCAR,1,21)
@@ -111,9 +111,17 @@ DOSE1 ;
  I $P(DOSE,"^",6)]"" S IEN=IEN+1,^TMP("PSOAL",$J,IEN,0)="        *Conjunction: "_$S($P(DOSE,"^",6)="A":"AND",$P(DOSE,"^",6)="T":"THEN",$P(DOSE,"^",6)="X":"EXCEPT",1:"")
  Q
  ;
-DATE(RX,RFL) ;
+DATE(RX,RFL,PSXA) ;
+ N ZDT,ZD1,ZD2,PSXSDT S PSXSDT=0 ; ;p655 For dispensed status return shipping date
+ I $G(PSXTST)=1 D
+ . S ZDT=$P($G(^PSRX(RX,4,PSXA,1)),"^",2) K PSXA
+ . S ZD1=$P(ZDT,"."),ZD1=$E(ZD1,4,5)_"/"_$E(ZD1,6,7)_"/"_$E(ZD1,2,3)
+ . S ZD2=$E($P(ZDT,".",2),1,4)
+ . S PSXSDT=ZD1_"@"_ZD2
+ I +PSXSDT Q PSXSDT ;--p655 end
+ ;
  I $G(PSXTST)=3,$G(PSXTCAN)'="" Q PSXTCAN
- I $G(PSXTST)=1 Q $G(PSXRDT)
+ ;original code:  I $G(PSXTST)=1 Q $G(PSXRDT)
  I $G(PSXTST)=3,'RFL,$$GET1^DIQ(52,RX,32.1,"I") Q $$FMTE^XLFDT($$GET1^DIQ(52,RX,32.1,"I"),2)
  I $G(PSXTST)=3,RFL,$$GET1^DIQ(52.1,RFL_","_RX,5,"I") Q $$FMTE^XLFDT($$GET1^DIQ(52.1,RFL_","_RX,32.1,"I"),2)
  Q $G(PSXTRDT)

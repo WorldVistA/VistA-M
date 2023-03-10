@@ -1,5 +1,5 @@
-MAGVIM03 ;WOIFO/MAT,MLH,BT - RPCs for DICOM Importer II ; 3-Feb-2012 10:50 AM
- ;;3.0;IMAGING;**118**;Mar 19, 2002;Build 4525;May 01, 2013
+MAGVIM03 ;WOIFO/MAT,MLH,BT,DAC - RPCs for DICOM Importer II ; Nov 10, 2020@13:55:05
+ ;;3.0;IMAGING;**118,283**;Mar 19, 2002;Build 5;May 01, 2013
  ;; Per VHA Directive 2004-038, this routine should not be modified.
  ;; +---------------------------------------------------------------+
  ;; | Property of the US Government.                                |
@@ -56,7 +56,7 @@ IMPLOGIN(MAGVRET,MAGVDUZ,MAGVDUZ2,MAGVPDFN,MAGVSACN,MAGVSUID,MAGVSLOC,MAGVSTYP,M
  N MAGVERR,MAGVMSG S MAGVERR=0
  N FILE S FILE=2006.9421
  N SUBFILE S SUBFILE=2006.94211
- N SFIEN
+ N SFIEN,LOCIEN ; P283 DAC - Added Location/Instution IEN for Station # conversion
  ;
  ;--- Set FDA entries for literal parameters.
  S FDA(0,FILE,"+1,",3)=MAGVPDFN ;PAT_DFN
@@ -74,7 +74,8 @@ IMPLOGIN(MAGVRET,MAGVDUZ,MAGVDUZ2,MAGVPDFN,MAGVSACN,MAGVSUID,MAGVSLOC,MAGVSTYP,M
  . ;--- Set internal FDA entries for .01 field. IA #10103
  . S FDA(0,FILE,"+1,",.01)=$$NOW^XLFDT
  . S FDA(0,FILE,"+1,",1)=MAGVDUZ  ;USER_DUZ
- . S FDA(0,FILE,"+1,",2)=MAGVDUZ2 ;USER_DUZ(2)
+ . S LOCIEN=$$IEN^XUAF4(MAGVDUZ2) ; P283 DAC - Convert Station # to Institution IEN before filing
+ . S FDA(0,FILE,"+1,",2)=LOCIEN ; P283 DAC - File Institution IEN instead of Station #
  . ;
  . ;--- Post top-level transaction data. IA# 2053.
  . D UPDATE^DIE("","FDA(0)","SFIEN")

@@ -1,5 +1,5 @@
-DGENELA ;ALB/CJM,KCL,Zoltan/PJR,RGL,LBD,EG,TMK,CKN,ERC,TDM,JLS,HM - Patient Eligibility API ;3/3/11 3:40pm
- ;;5.3;Registration;**121,147,232,314,451,564,631,672,659,583,653,688,841,909,972,952**;Aug 13,1993;Build 160
+DGENELA ;ALB/CJM,KCL,Zoltan/PJR,RGL,LBD,EG,TMK,CKN,ERC,TDM,JLS,HM,RN - Patient Eligibility API ;3/3/11 3:40pm
+ ;;5.3;Registration;**121,147,232,314,451,564,631,672,659,583,653,688,841,909,972,952,1061**;Aug 13,1993;Build 22
  ;
 GET(DFN,DGELG) ;
  ;Description: Used to obtain the patient eligibility data.
@@ -237,3 +237,51 @@ ELIGSTAT(DFN,DGELG) ;
  .S DGELG("ELIGSTA")=$P(NODE,"^")
  .S DGELG("ELIGSTADATE")=$P(NODE,"^",2)
  Q SUCCESS
+ ;
+ ;
+CAI(DFN) ;DG*5.3*1061 - COMPACT Act Indicator
+ ;Description: Used to check if the patient is COMPACT ACT eligible. 
+ ;
+ ;Input:
+ ;  DFN - ien of patient record
+ ;
+ ;Output:
+ ;  Function Value - 1 for ELIGIBLE, (The patient is enrolled or has eligibility COMPACT ACT ELIGIBLE)
+ ;                   0 for Not Eligible 
+ ;
+ I '+$G(DFN) Q 0
+ N DGENCAT,DGSTATUS,DGVLE,DGELIGSTAT
+ S DGELIGSTAT=0
+ S DGSTATUS=$$STATUS^DGENA($G(DFN))
+ S DGENCAT=$$CATEGORY^DGENA4(DFN,$G(DGSTATUS))  ;enrollment category
+ S DGVLE=$$HASELIG(DFN,"COMPACT ACT ELIGIBLE")
+ I (DGVLE)!(DGENCAT="E") S DGELIGSTAT=1
+ Q DGELIGSTAT
+ ;
+HASELIG(DFN,DGELIG) ;DG*5.3*1061
+ ;Description: Checks if patient has a specific MAS eligibility in their record
+ ;ICR 10061     NAME: ELIG^VADPT
+ ;
+ ;Inputs:
+ ;    DFN - ien of patient record
+ ; DGELIG - MAS Name of the eligibility (from file MAS ELIGIBILITY CODE file #8.1)
+ ;
+ ; Return value:
+ ;   - 0 if DGELIG not in the record
+ ;   - 1 if DGELIG is the Primary eligibility in the patient record
+ ;   - 2 if DGELIG is a Secondary eligibility in the patient record
+ ;
+ N VAEL,DGX,DGRET,DGPE,DGSE
+ ; get array VAEL which contains patient's eligibilities
+ D ELIG^VADPT
+ S DGRET=0
+ ; get the Primary eligibility number
+ S DGPE=$P($G(VAEL(1)),"^",1)
+ ; Get the national name of that eligibility and if it matches, return 1
+ I $$NATNAME(DGPE)=DGELIG S DGRET=1
+ ; If not primary, loop over the array looking for DGELIG in list of secondary eligibilities
+ I 'DGRET S DGX="" F  S DGX=$O(VAEL(1,DGX)) Q:'DGX  D  Q:DGRET
+ . S DGSE=$P(VAEL(1,DGX),"^",1)
+ . ; Get the national name of that eligibility and if it matches, return 2
+ . I $$NATNAME(DGSE)=DGELIG S DGRET=2
+ Q DGRET

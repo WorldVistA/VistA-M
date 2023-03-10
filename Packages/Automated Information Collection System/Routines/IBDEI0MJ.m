@@ -1,130 +1,126 @@
-IBDEI0MJ ; ; 04-FEB-2020
- ;;3.0;IB ENCOUNTER FORM IMP/EXP;;FEB 04, 2020
+IBDEI0MJ ; ; 01-FEB-2022
+ ;;3.0;IB ENCOUNTER FORM IMP/EXP;;FEB 01, 2022
  Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,999) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
- ;;^UTILITY(U,$J,358.3,10022,1,3,0)
- ;;=3^Bicycle Nontraffic Accident Victim
- ;;^UTILITY(U,$J,358.3,10022,1,4,0)
- ;;=4^V19.3XXA
- ;;^UTILITY(U,$J,358.3,10022,2)
- ;;=^5056423
- ;;^UTILITY(U,$J,358.3,10023,0)
- ;;=V19.9XXA^^72^661^5
- ;;^UTILITY(U,$J,358.3,10023,1,0)
+ ;;^UTILITY(U,$J,358.3,10128,1,4,0)
+ ;;=4^J47.9
+ ;;^UTILITY(U,$J,358.3,10128,2)
+ ;;=^5008260
+ ;;^UTILITY(U,$J,358.3,10129,0)
+ ;;=J45.41^^39^427^8
+ ;;^UTILITY(U,$J,358.3,10129,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,10023,1,3,0)
- ;;=3^Bicycle Traffic Accident Victim
- ;;^UTILITY(U,$J,358.3,10023,1,4,0)
- ;;=4^V19.9XXA
- ;;^UTILITY(U,$J,358.3,10023,2)
- ;;=^5056450
- ;;^UTILITY(U,$J,358.3,10024,0)
- ;;=V09.20XA^^72^661^6
- ;;^UTILITY(U,$J,358.3,10024,1,0)
+ ;;^UTILITY(U,$J,358.3,10129,1,3,0)
+ ;;=3^Asthma,Moderate Persistent w/ Acute Exacerbation
+ ;;^UTILITY(U,$J,358.3,10129,1,4,0)
+ ;;=4^J45.41
+ ;;^UTILITY(U,$J,358.3,10129,2)
+ ;;=^5008249
+ ;;^UTILITY(U,$J,358.3,10130,0)
+ ;;=J45.42^^39^427^9
+ ;;^UTILITY(U,$J,358.3,10130,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,10024,1,3,0)
- ;;=3^Pedestrian Struck by Vehicle
- ;;^UTILITY(U,$J,358.3,10024,1,4,0)
- ;;=4^V09.20XA
- ;;^UTILITY(U,$J,358.3,10024,2)
- ;;=^5056201
- ;;^UTILITY(U,$J,358.3,10025,0)
- ;;=V00.831A^^72^661^7
- ;;^UTILITY(U,$J,358.3,10025,1,0)
+ ;;^UTILITY(U,$J,358.3,10130,1,3,0)
+ ;;=3^Asthma,Moderate Persistent w/ Status Asthmaticus
+ ;;^UTILITY(U,$J,358.3,10130,1,4,0)
+ ;;=4^J45.42
+ ;;^UTILITY(U,$J,358.3,10130,2)
+ ;;=^5008250
+ ;;^UTILITY(U,$J,358.3,10131,0)
+ ;;=J45.51^^39^427^12
+ ;;^UTILITY(U,$J,358.3,10131,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,10025,1,3,0)
- ;;=3^Motorized Scooter Fall
- ;;^UTILITY(U,$J,358.3,10025,1,4,0)
- ;;=4^V00.831A
- ;;^UTILITY(U,$J,358.3,10025,2)
- ;;=^5055955
- ;;^UTILITY(U,$J,358.3,10026,0)
- ;;=V00.838A^^72^661^8
- ;;^UTILITY(U,$J,358.3,10026,1,0)
+ ;;^UTILITY(U,$J,358.3,10131,1,3,0)
+ ;;=3^Asthma,Severe Persistent w/ Acute Exacerbation
+ ;;^UTILITY(U,$J,358.3,10131,1,4,0)
+ ;;=4^J45.51
+ ;;^UTILITY(U,$J,358.3,10131,2)
+ ;;=^5008252
+ ;;^UTILITY(U,$J,358.3,10132,0)
+ ;;=J45.52^^39^427^13
+ ;;^UTILITY(U,$J,358.3,10132,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,10026,1,3,0)
- ;;=3^Motorized Scooter Collision Victim
- ;;^UTILITY(U,$J,358.3,10026,1,4,0)
- ;;=4^V00.838A
- ;;^UTILITY(U,$J,358.3,10026,2)
- ;;=^5055961
- ;;^UTILITY(U,$J,358.3,10027,0)
- ;;=W54.0XXA^^72^662^1
- ;;^UTILITY(U,$J,358.3,10027,1,0)
+ ;;^UTILITY(U,$J,358.3,10132,1,3,0)
+ ;;=3^Asthma,Severe Persistent w/ Status Asthmaticus
+ ;;^UTILITY(U,$J,358.3,10132,1,4,0)
+ ;;=4^J45.52
+ ;;^UTILITY(U,$J,358.3,10132,2)
+ ;;=^5008253
+ ;;^UTILITY(U,$J,358.3,10133,0)
+ ;;=J45.901^^39^427^1
+ ;;^UTILITY(U,$J,358.3,10133,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,10027,1,3,0)
- ;;=3^Dog Bite
- ;;^UTILITY(U,$J,358.3,10027,1,4,0)
- ;;=4^W54.0XXA
- ;;^UTILITY(U,$J,358.3,10027,2)
- ;;=^5060256
- ;;^UTILITY(U,$J,358.3,10028,0)
- ;;=W55.01XA^^72^662^2
- ;;^UTILITY(U,$J,358.3,10028,1,0)
+ ;;^UTILITY(U,$J,358.3,10133,1,3,0)
+ ;;=3^Asthma w/ Acute Exacerbation,Unspec
+ ;;^UTILITY(U,$J,358.3,10133,1,4,0)
+ ;;=4^J45.901
+ ;;^UTILITY(U,$J,358.3,10133,2)
+ ;;=^5008254
+ ;;^UTILITY(U,$J,358.3,10134,0)
+ ;;=J45.902^^39^427^2
+ ;;^UTILITY(U,$J,358.3,10134,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,10028,1,3,0)
- ;;=3^Cat Bite
- ;;^UTILITY(U,$J,358.3,10028,1,4,0)
- ;;=4^W55.01XA
- ;;^UTILITY(U,$J,358.3,10028,2)
- ;;=^5060265
- ;;^UTILITY(U,$J,358.3,10029,0)
- ;;=W57.XXXA^^72^662^3
- ;;^UTILITY(U,$J,358.3,10029,1,0)
+ ;;^UTILITY(U,$J,358.3,10134,1,3,0)
+ ;;=3^Asthma w/ Status Asthmaticus,Unspec
+ ;;^UTILITY(U,$J,358.3,10134,1,4,0)
+ ;;=4^J45.902
+ ;;^UTILITY(U,$J,358.3,10134,2)
+ ;;=^5008255
+ ;;^UTILITY(U,$J,358.3,10135,0)
+ ;;=J45.990^^39^427^31
+ ;;^UTILITY(U,$J,358.3,10135,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,10029,1,3,0)
- ;;=3^Insect Bites or Stings
- ;;^UTILITY(U,$J,358.3,10029,1,4,0)
- ;;=4^W57.XXXA
- ;;^UTILITY(U,$J,358.3,10029,2)
- ;;=^5060391
- ;;^UTILITY(U,$J,358.3,10030,0)
- ;;=W53.89XA^^72^662^4
- ;;^UTILITY(U,$J,358.3,10030,1,0)
+ ;;^UTILITY(U,$J,358.3,10135,1,3,0)
+ ;;=3^Exercised Induced Bronchospasm
+ ;;^UTILITY(U,$J,358.3,10135,1,4,0)
+ ;;=4^J45.990
+ ;;^UTILITY(U,$J,358.3,10135,2)
+ ;;=^329926
+ ;;^UTILITY(U,$J,358.3,10136,0)
+ ;;=J45.998^^39^427^11
+ ;;^UTILITY(U,$J,358.3,10136,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,10030,1,3,0)
- ;;=3^Rodent Bite
- ;;^UTILITY(U,$J,358.3,10030,1,4,0)
- ;;=4^W53.89XA
- ;;^UTILITY(U,$J,358.3,10030,2)
- ;;=^5060253
- ;;^UTILITY(U,$J,358.3,10031,0)
- ;;=W61.91XA^^72^662^5
- ;;^UTILITY(U,$J,358.3,10031,1,0)
+ ;;^UTILITY(U,$J,358.3,10136,1,3,0)
+ ;;=3^Asthma,Other
+ ;;^UTILITY(U,$J,358.3,10136,1,4,0)
+ ;;=4^J45.998
+ ;;^UTILITY(U,$J,358.3,10136,2)
+ ;;=^5008257
+ ;;^UTILITY(U,$J,358.3,10137,0)
+ ;;=J45.991^^39^427^25
+ ;;^UTILITY(U,$J,358.3,10137,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,10031,1,3,0)
- ;;=3^Bird Bite
- ;;^UTILITY(U,$J,358.3,10031,1,4,0)
- ;;=4^W61.91XA
- ;;^UTILITY(U,$J,358.3,10031,2)
- ;;=^5060526
- ;;^UTILITY(U,$J,358.3,10032,0)
- ;;=W50.3XXA^^72^662^6
- ;;^UTILITY(U,$J,358.3,10032,1,0)
+ ;;^UTILITY(U,$J,358.3,10137,1,3,0)
+ ;;=3^Cough Variant Asthma
+ ;;^UTILITY(U,$J,358.3,10137,1,4,0)
+ ;;=4^J45.991
+ ;;^UTILITY(U,$J,358.3,10137,2)
+ ;;=^329927
+ ;;^UTILITY(U,$J,358.3,10138,0)
+ ;;=I50.1^^39^428^14
+ ;;^UTILITY(U,$J,358.3,10138,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,10032,1,3,0)
- ;;=3^Human Bite
- ;;^UTILITY(U,$J,358.3,10032,1,4,0)
- ;;=4^W50.3XXA
- ;;^UTILITY(U,$J,358.3,10032,2)
- ;;=^5060220
- ;;^UTILITY(U,$J,358.3,10033,0)
- ;;=W50.0XXA^^72^662^7
- ;;^UTILITY(U,$J,358.3,10033,1,0)
+ ;;^UTILITY(U,$J,358.3,10138,1,3,0)
+ ;;=3^Left Ventricular Failure
+ ;;^UTILITY(U,$J,358.3,10138,1,4,0)
+ ;;=4^I50.1
+ ;;^UTILITY(U,$J,358.3,10138,2)
+ ;;=^5007238
+ ;;^UTILITY(U,$J,358.3,10139,0)
+ ;;=I50.20^^39^428^12
+ ;;^UTILITY(U,$J,358.3,10139,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,10033,1,3,0)
- ;;=3^Struck or Punched by Another Person
- ;;^UTILITY(U,$J,358.3,10033,1,4,0)
- ;;=4^W50.0XXA
- ;;^UTILITY(U,$J,358.3,10033,2)
- ;;=^5060211
- ;;^UTILITY(U,$J,358.3,10034,0)
- ;;=W50.1XXA^^72^662^8
- ;;^UTILITY(U,$J,358.3,10034,1,0)
+ ;;^UTILITY(U,$J,358.3,10139,1,3,0)
+ ;;=3^Heart Failure,Systolic,Unspec
+ ;;^UTILITY(U,$J,358.3,10139,1,4,0)
+ ;;=4^I50.20
+ ;;^UTILITY(U,$J,358.3,10139,2)
+ ;;=^5007239
+ ;;^UTILITY(U,$J,358.3,10140,0)
+ ;;=I50.21^^39^428^9
+ ;;^UTILITY(U,$J,358.3,10140,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,10034,1,3,0)
- ;;=3^Kicked by Another Person
- ;;^UTILITY(U,$J,358.3,10034,1,4,0)
- ;;=4^W50.1XXA
- ;;^UTILITY(U,$J,358.3,10034,2)
- ;;=^5060214
+ ;;^UTILITY(U,$J,358.3,10140,1,3,0)
+ ;;=3^Heart Failure,Systolic,Acute
+ ;;^UTILITY(U,$J,358.3,10140,1,4,0)
+ ;;=4^I50.21

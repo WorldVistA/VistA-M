@@ -1,124 +1,124 @@
-IBDEI1KY ; ; 04-FEB-2020
- ;;3.0;IB ENCOUNTER FORM IMP/EXP;;FEB 04, 2020
+IBDEI1KY ; ; 01-FEB-2022
+ ;;3.0;IB ENCOUNTER FORM IMP/EXP;;FEB 01, 2022
  Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,999) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
- ;;^UTILITY(U,$J,358.3,25253,0)
- ;;=G90.59^^107^1217^35
- ;;^UTILITY(U,$J,358.3,25253,1,0)
+ ;;^UTILITY(U,$J,358.3,25616,1,4,0)
+ ;;=4^F10.282
+ ;;^UTILITY(U,$J,358.3,25616,2)
+ ;;=^5003098
+ ;;^UTILITY(U,$J,358.3,25617,0)
+ ;;=F10.982^^92^1170^21
+ ;;^UTILITY(U,$J,358.3,25617,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,25253,1,3,0)
- ;;=3^Complex Regional Pain Syndrome I,Unspec
- ;;^UTILITY(U,$J,358.3,25253,1,4,0)
- ;;=4^G90.59
- ;;^UTILITY(U,$J,358.3,25253,2)
- ;;=^5004171
- ;;^UTILITY(U,$J,358.3,25254,0)
- ;;=G56.01^^107^1217^13
- ;;^UTILITY(U,$J,358.3,25254,1,0)
+ ;;^UTILITY(U,$J,358.3,25617,1,3,0)
+ ;;=3^Alcohol Induced Sleep D/O w/o Use D/O
+ ;;^UTILITY(U,$J,358.3,25617,1,4,0)
+ ;;=4^F10.982
+ ;;^UTILITY(U,$J,358.3,25617,2)
+ ;;=^5003112
+ ;;^UTILITY(U,$J,358.3,25618,0)
+ ;;=F10.281^^92^1170^17
+ ;;^UTILITY(U,$J,358.3,25618,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,25254,1,3,0)
- ;;=3^Carpal Tunnel Syndrome,Right Upper Limb
- ;;^UTILITY(U,$J,358.3,25254,1,4,0)
- ;;=4^G56.01
- ;;^UTILITY(U,$J,358.3,25254,2)
- ;;=^5004018
- ;;^UTILITY(U,$J,358.3,25255,0)
- ;;=G56.02^^107^1217^12
- ;;^UTILITY(U,$J,358.3,25255,1,0)
+ ;;^UTILITY(U,$J,358.3,25618,1,3,0)
+ ;;=3^Alcohol Induced Sexual Dysf w/ Mod/Sev Use D/O
+ ;;^UTILITY(U,$J,358.3,25618,1,4,0)
+ ;;=4^F10.281
+ ;;^UTILITY(U,$J,358.3,25618,2)
+ ;;=^5003097
+ ;;^UTILITY(U,$J,358.3,25619,0)
+ ;;=F10.981^^92^1170^18
+ ;;^UTILITY(U,$J,358.3,25619,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,25255,1,3,0)
- ;;=3^Carpal Tunnel Syndrome,Left Upper Limb
- ;;^UTILITY(U,$J,358.3,25255,1,4,0)
- ;;=4^G56.02
- ;;^UTILITY(U,$J,358.3,25255,2)
- ;;=^5004019
- ;;^UTILITY(U,$J,358.3,25256,0)
- ;;=G56.21^^107^1217^60
- ;;^UTILITY(U,$J,358.3,25256,1,0)
+ ;;^UTILITY(U,$J,358.3,25619,1,3,0)
+ ;;=3^Alcohol Induced Sexual Dysf w/o Use D/O
+ ;;^UTILITY(U,$J,358.3,25619,1,4,0)
+ ;;=4^F10.981
+ ;;^UTILITY(U,$J,358.3,25619,2)
+ ;;=^5003111
+ ;;^UTILITY(U,$J,358.3,25620,0)
+ ;;=F10.182^^92^1170^19
+ ;;^UTILITY(U,$J,358.3,25620,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,25256,1,3,0)
- ;;=3^Lesion of Ulnar Nerve,Right Upper Limb
- ;;^UTILITY(U,$J,358.3,25256,1,4,0)
- ;;=4^G56.21
- ;;^UTILITY(U,$J,358.3,25256,2)
- ;;=^5004024
- ;;^UTILITY(U,$J,358.3,25257,0)
- ;;=G56.22^^107^1217^59
- ;;^UTILITY(U,$J,358.3,25257,1,0)
+ ;;^UTILITY(U,$J,358.3,25620,1,3,0)
+ ;;=3^Alcohol Induced Sleep D/O w/ Mild Use D/O
+ ;;^UTILITY(U,$J,358.3,25620,1,4,0)
+ ;;=4^F10.182
+ ;;^UTILITY(U,$J,358.3,25620,2)
+ ;;=^5003078
+ ;;^UTILITY(U,$J,358.3,25621,0)
+ ;;=F10.121^^92^1170^22
+ ;;^UTILITY(U,$J,358.3,25621,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,25257,1,3,0)
- ;;=3^Lesion of Ulnar Nerve,Left Upper Limb
- ;;^UTILITY(U,$J,358.3,25257,1,4,0)
- ;;=4^G56.22
- ;;^UTILITY(U,$J,358.3,25257,2)
- ;;=^5004025
- ;;^UTILITY(U,$J,358.3,25258,0)
- ;;=L40.52^^107^1217^143
- ;;^UTILITY(U,$J,358.3,25258,1,0)
+ ;;^UTILITY(U,$J,358.3,25621,1,3,0)
+ ;;=3^Alcohol Intoxication Delirium w/ Mild Use D/O
+ ;;^UTILITY(U,$J,358.3,25621,1,4,0)
+ ;;=4^F10.121
+ ;;^UTILITY(U,$J,358.3,25621,2)
+ ;;=^5003070
+ ;;^UTILITY(U,$J,358.3,25622,0)
+ ;;=F10.221^^92^1170^23
+ ;;^UTILITY(U,$J,358.3,25622,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,25258,1,3,0)
- ;;=3^Psoriatic Arthritis Mutilans
- ;;^UTILITY(U,$J,358.3,25258,1,4,0)
- ;;=4^L40.52
- ;;^UTILITY(U,$J,358.3,25258,2)
- ;;=^5009167
- ;;^UTILITY(U,$J,358.3,25259,0)
- ;;=L40.53^^107^1217^144
- ;;^UTILITY(U,$J,358.3,25259,1,0)
+ ;;^UTILITY(U,$J,358.3,25622,1,3,0)
+ ;;=3^Alcohol Intoxication Delirium w/ Mod/Sev Use D/O
+ ;;^UTILITY(U,$J,358.3,25622,1,4,0)
+ ;;=4^F10.221
+ ;;^UTILITY(U,$J,358.3,25622,2)
+ ;;=^5003084
+ ;;^UTILITY(U,$J,358.3,25623,0)
+ ;;=F10.921^^92^1170^24
+ ;;^UTILITY(U,$J,358.3,25623,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,25259,1,3,0)
- ;;=3^Psoriatic Spondylitis
- ;;^UTILITY(U,$J,358.3,25259,1,4,0)
- ;;=4^L40.53
- ;;^UTILITY(U,$J,358.3,25259,2)
- ;;=^5009168
- ;;^UTILITY(U,$J,358.3,25260,0)
- ;;=M32.9^^107^1217^187
- ;;^UTILITY(U,$J,358.3,25260,1,0)
+ ;;^UTILITY(U,$J,358.3,25623,1,3,0)
+ ;;=3^Alcohol Intoxication Delirium w/o Use D/O
+ ;;^UTILITY(U,$J,358.3,25623,1,4,0)
+ ;;=4^F10.921
+ ;;^UTILITY(U,$J,358.3,25623,2)
+ ;;=^5003102
+ ;;^UTILITY(U,$J,358.3,25624,0)
+ ;;=F10.129^^92^1170^25
+ ;;^UTILITY(U,$J,358.3,25624,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,25260,1,3,0)
- ;;=3^Systemic Lupus Erythematosus,Unspec
- ;;^UTILITY(U,$J,358.3,25260,1,4,0)
- ;;=4^M32.9
- ;;^UTILITY(U,$J,358.3,25260,2)
- ;;=^5011761
- ;;^UTILITY(U,$J,358.3,25261,0)
- ;;=M32.0^^107^1217^183
- ;;^UTILITY(U,$J,358.3,25261,1,0)
+ ;;^UTILITY(U,$J,358.3,25624,1,3,0)
+ ;;=3^Alcohol Intoxication w/ Mild Use D/O
+ ;;^UTILITY(U,$J,358.3,25624,1,4,0)
+ ;;=4^F10.129
+ ;;^UTILITY(U,$J,358.3,25624,2)
+ ;;=^5003071
+ ;;^UTILITY(U,$J,358.3,25625,0)
+ ;;=F10.229^^92^1170^26
+ ;;^UTILITY(U,$J,358.3,25625,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,25261,1,3,0)
- ;;=3^Systemic Lupus Erythematosus,Drug-Induced
- ;;^UTILITY(U,$J,358.3,25261,1,4,0)
- ;;=4^M32.0
- ;;^UTILITY(U,$J,358.3,25261,2)
- ;;=^5011752
- ;;^UTILITY(U,$J,358.3,25262,0)
- ;;=M32.13^^107^1217^185
- ;;^UTILITY(U,$J,358.3,25262,1,0)
+ ;;^UTILITY(U,$J,358.3,25625,1,3,0)
+ ;;=3^Alcohol Intoxication w/ Mod/Sev Use D/O
+ ;;^UTILITY(U,$J,358.3,25625,1,4,0)
+ ;;=4^F10.229
+ ;;^UTILITY(U,$J,358.3,25625,2)
+ ;;=^5003085
+ ;;^UTILITY(U,$J,358.3,25626,0)
+ ;;=F10.929^^92^1170^27
+ ;;^UTILITY(U,$J,358.3,25626,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,25262,1,3,0)
- ;;=3^Systemic Lupus Erythematosus,Lung Involvement
- ;;^UTILITY(U,$J,358.3,25262,1,4,0)
- ;;=4^M32.13
- ;;^UTILITY(U,$J,358.3,25262,2)
- ;;=^5011756
- ;;^UTILITY(U,$J,358.3,25263,0)
- ;;=M32.14^^107^1217^184
- ;;^UTILITY(U,$J,358.3,25263,1,0)
+ ;;^UTILITY(U,$J,358.3,25626,1,3,0)
+ ;;=3^Alcohol Intoxication w/o Use D/O
+ ;;^UTILITY(U,$J,358.3,25626,1,4,0)
+ ;;=4^F10.929
+ ;;^UTILITY(U,$J,358.3,25626,2)
+ ;;=^5003103
+ ;;^UTILITY(U,$J,358.3,25627,0)
+ ;;=F10.99^^92^1170^28
+ ;;^UTILITY(U,$J,358.3,25627,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,25263,1,3,0)
- ;;=3^Systemic Lupus Erythematosus,Glomerular Disease
- ;;^UTILITY(U,$J,358.3,25263,1,4,0)
- ;;=4^M32.14
- ;;^UTILITY(U,$J,358.3,25263,2)
- ;;=^5011757
- ;;^UTILITY(U,$J,358.3,25264,0)
- ;;=M32.12^^107^1217^186
- ;;^UTILITY(U,$J,358.3,25264,1,0)
+ ;;^UTILITY(U,$J,358.3,25627,1,3,0)
+ ;;=3^Alcohol Related D/O,Unspec
+ ;;^UTILITY(U,$J,358.3,25627,1,4,0)
+ ;;=4^F10.99
+ ;;^UTILITY(U,$J,358.3,25627,2)
+ ;;=^5133351
+ ;;^UTILITY(U,$J,358.3,25628,0)
+ ;;=F10.14^^92^1170^10
+ ;;^UTILITY(U,$J,358.3,25628,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,25264,1,3,0)
- ;;=3^Systemic Lupus Erythematosus,Pericarditis
- ;;^UTILITY(U,$J,358.3,25264,1,4,0)
- ;;=4^M32.12
- ;;^UTILITY(U,$J,358.3,25264,2)
- ;;=^5011755
+ ;;^UTILITY(U,$J,358.3,25628,1,3,0)
+ ;;=3^Alcohol Induced Mood D/O w/ Mild Use D/O

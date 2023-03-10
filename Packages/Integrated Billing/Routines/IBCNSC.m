@@ -1,5 +1,5 @@
 IBCNSC ;ALB/NLR - INSURANCE COMPANY EDIT ;6/1/05 9:42am
- ;;2.0;INTEGRATED BILLING;**46,137,184,276,320,371,400,488,547,592**;21-MAR-94;Build 58
+ ;;2.0;INTEGRATED BILLING;**46,137,184,276,320,371,400,488,547,592,668**;21-MAR-94;Build 28
  ;;Per VA Directive 6402, this routine should not be modified.
  ;
  ;also used for IA #4694
@@ -114,6 +114,9 @@ DENTALAD ; KDM US2487 IB*2.0*592  call in tag from IBCNSI
  D SET^IBCNSP(START+1+IBADD,OFFSET,"   City/State: "_$E($P(IBCNS19,"^",4),1,15)_$S($P(IBCNS19,"^",4)="":"",1:", ")_$P($G(^DIC(5,+$P(IBCNS19,"^",5),0)),"^",2)_" "_$E($P(IBCNS19,"^",6),1,5))
  D SET^IBCNSP(START+2+IBADD,OFFSET,"        Phone: "_$P(IBCNS19,"^",8))
  D SET^IBCNSP(START+3+IBADD,OFFSET,"          Fax: "_$P(IBCNS19,"^",9))
+ ;/vd-IB*2.0*668 The following 2 lines were added to fix pre-mature ending of display.
+ D BLANK(START+4+IBADD)
+ D BLANK(START+5+IBADD)
  Q
  ;
 HELP ; -- help code

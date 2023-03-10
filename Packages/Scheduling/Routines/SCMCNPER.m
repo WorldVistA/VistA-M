@@ -1,5 +1,5 @@
-SCMCNPER ;ALB/ART - PCMM Web Query New Person file ;03/13/2015
- ;;5.3;Scheduling;**603**;Aug 13, 1993;Build 79
+SCMCNPER ;ALB/ART - PCMM Web Query New Person file ; 03/13/2015
+ ;;5.3;Scheduling;**603,811**;Aug 13, 1993;Build 3
  ;
  QUIT
  ;
@@ -32,8 +32,8 @@ SCMCNPER ;ALB/ART - PCMM Web Query New Person file ;03/13/2015
  ;              (only persons with active person class)
  ;   SCMCSTN  - Filter persons based on station number entered
  ;              (optional, can be null)  This parameter is no longer used, but left as a place holder.
- ;   SCMCMNM  - Maximum Number of entries to return
- ;              (Number between 1 and 50.  Null defaults to 50)
+ ;   SCMCMNM  - Maximum Number of entries to return (*811 - parameter no longer used)
+ ;              (Number between 1 and 50.  Null defaults to "*", all results)
  ;   SCMCDATE - Date to be used to determine whether person has
  ;              active person class.  If null, current date is used.
  ;
@@ -64,7 +64,7 @@ EN1(RESULT,SCMCVPID,SCMCDUZ,SCMCLNAM,SCMCFNAM,SCMCSSN,SCMCPROV,SCMCSTN,SCMCMNM,S
  S SCMCDATE=$S(SCMCDATE="":SCMCNDAT,1:$$FMDATE^HLFNC(SCMCDATE)) ;change date from hl7 format to fileman format
  ;
  N SCMCCNT,SCMCNAME,SCMCIEN,SCMCDOB,SCMCSEX,SCMCPC,SCMCX12,SCMCPASS ;initialize new set of variables
- S:$G(SCMCMNM)="" SCMCMNM=50 ;set to default
+ S:$G(SCMCMNM)="" SCMCMNM="*" ;set to default ; *811 - setting default to all results (parameter no longer used)
  S SCMCCNT=0 ;Initialize variable
  ;
  ;Lookup by VPID
@@ -88,7 +88,7 @@ EN1(RESULT,SCMCVPID,SCMCDUZ,SCMCLNAM,SCMCFNAM,SCMCSSN,SCMCPROV,SCMCSTN,SCMCMNM,S
  ;Lookup by name
  S SCMCIEN=0,SCMCNAME=SCMCLNAM ;initialize variables
  N SCMCRET,SCMCMSG,SCI
- D FIND^DIC(200,,"@;.01","PQ",SCMCLNAM,500,"B",,,"SCMCRET","SCMCMSG")
+ D FIND^DIC(200,,"@;.01","PQ",SCMCLNAM,"*","B",,,"SCMCRET","SCMCMSG") ;* 811 - modifying to return all results "*" (was 500)
  S SCI=0
  F  S SCI=$O(SCMCRET("DILIST",SCI)) Q:SCI=""  D
  .S SCMCIEN=$P(SCMCRET("DILIST",SCI,0),U,1)

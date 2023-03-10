@@ -1,12 +1,12 @@
-IBCNEHL1 ;DAOU/ALA - HL7 Process Incoming RPI Messages ;26-JUN-2002
- ;;2.0;INTEGRATED BILLING;**300,345,416,444,438,497,506,549,593,601,595,621,631**;21-MAR-94;Build 23
+IBCNEHL1 ;DAOU/ALA - HL7 Process Incoming RPI Messages ; 26-JUN-2002
+ ;;2.0;INTEGRATED BILLING;**300,345,416,444,438,497,506,549,593,601,595,621,631,668,687,702,732**;21-MAR-94;Build 13
  ;;Per VA Directive 6402, this routine should not be modified.
  ;
  ;**Program Description**
  ;  This program will process incoming IIV response messages.
- ;  This includes updating the record in the IIV Response File,
- ;  updating the Buffer record (if there is one & creating a new
- ;  one if there isn't) with the appropriate Buffer Symbol & data
+ ;  Including updating the record in the #365 File, updating
+ ;  the #355.33 record (if there is one or creating a new one)
+ ;  with the appropriate Buffer Symbol & data.
  ;
  ;  Variables
  ;    ACK      - Acknowledgment (AA=Accepted, AE=Error)
@@ -27,10 +27,14 @@ IBCNEHL1 ;DAOU/ALA - HL7 Process Incoming RPI Messages ;26-JUN-2002
  ;    RIEN     - Response Record IEN
  ;    SEG      - HL7 Segment Name
  ;
- ;IB*2.0*621/TAZ - Added to insure the routine is called via entry point EN with the event type.
+ ; IB*2*621/TAZ - Added EVENTYP to control type of event processing.
+ ;
+ ; *** With IB*702, the code in the tag AUTOFIL was moved to another routine.
+ ; *** Therefore, modifications from IB*631 and IB*687 are no longer found in this routine.
+ ;
+ ; IB*2*621/TAZ - Added to insure the routine is called via entry point EN with the event type.
  Q  ;No direct entry to routine. Call label EN with parameter
  ;
- ;IB*2.0*621/TAZ - Added EVENTYP to control type of event processing.
 EN(EVENTYP) ;Entry Point
  ;EVENTYP=1 > EICD Identification Response (RPI^IO4)
  ;EVENTYP=2 > Normal 271 Response (RPI^IO1) 
@@ -57,78 +61,78 @@ EN(EVENTYP) ;Entry Point
  .;
  .Q:SEG="PRD"  ;IB*2*497 PRD segment is not processed
  .;
- .;IB*2.0*621 - The ZMS is an exact copy of MSA segment. It was added for the PIN^I07 message 
+ .;IB*2*621 - The ZMS is an exact copy of MSA segment. It was added for the PIN^I07 message 
  .I SEG="MSA" D MSA^IBCNEHL2(.ERACT,.ERCON,.ERROR,.ERTXT,.IBSEG,MGRP,.RIEN,.TRACE,EVENTYP) Q
  .I SEG="ZMS" D MSA^IBCNEHL2(.ERACT,.ERCON,.ERROR,.ERTXT,.IBSEG,MGRP,.RIEN,.TRACE,EVENTYP) Q
  .;
- .;Contact Segment
+ .;Contact Seg
  .I SEG="CTD",'G2OFLG D CTD^IBCNEHL2(.ERROR,.IBSEG,RIEN) Q
  .;
- .;Patient Segment
+ .;Patient Seg
  .I SEG="PID" D PID^IBCNEHL2(.ERFLG,.ERROR,.IBSEG,RIEN) Q
  .;
- .;Guarantor Segment
- .;IB*2.0*621/TAZ Pass EVENTYP along
+ .;Guarantor Seg
+ .;IB*2*621/TAZ Pass EVENTYP along
  .I SEG="GT1" D GT1^IBCNEHL2(.ERROR,.IBSEG,RIEN,.SUBID,EVENTYP) Q
  .;
- .;Insurance Segment
- .;IB*2.0*621/TAZ Pass EVENTYP along
+ .;Insurance Seg
+ .;IB*2*621/TAZ Pass EVENTYP along
  .I SEG="IN1" D IN1^IBCNEHL2(.ERROR,.IBSEG,RIEN,SUBID,EVENTYP) Q
  .;
- .;Addt'l Insurance Segment
+ .;Addt'l Insurance Seg
  .;I SEG="IN2" ; for future expansion, add IN2 tag to IBCNEHL2
  .;
- .;Addt'l Insurance - Cert Segment
+ .;Addt'l Insurance - Cert Seg
  .I SEG="IN3" D IN3^IBCNEHL2(.ERROR,.IBSEG,RIEN) Q 
  .;
  .;IB*2*497 GROUP LEVEL REFERENCE ID segment (x12 loops 2100C & 2100D)
  . I SEG="ZRF",'$D(EBDA) D GZRF^IBCNEHL5(.ERROR,.IBSEG,RIEN) Q
  .;
- .;Eligibility/Benefit Segment
+ .;Eligibility/Benefit Seg
  .I SEG="ZEB" D ZEB^IBCNEHL2(.EBDA,.ERROR,.IBSEG,RIEN) Q
  .;
- .;Healthcare Delivery Segment
+ .;Healthcare Delivery Seg
  .I SEG="ZHS" D ZHS^IBCNEHL4(EBDA,.ERROR,.IBSEG,RIEN) Q
  .;
- .;Benefit level Reference ID Segment (X12 loops 2110C & 2110D)
+ .;Benefit level Reference ID Seg (X12 loops 2110C & 2110D)
  .I SEG="ZRF",+$G(EBDA) D ZRF^IBCNEHL4(EBDA,.ERROR,.IBSEG,RIEN) Q  ;IB*2*497 add check to make sure z benefit group
  .;
- .;Subscriber Date Segment
+ .;Subscriber Date Seg
  .I SEG="ZSD" D ZSD^IBCNEHL4(EBDA,.ERROR,.IBSEG,RIEN) Q
  .;
- .;Subscriber Additional Info Segment
+ .;Subscriber Additional Info Seg
  .I SEG="ZII" D ZII^IBCNEHL4(EBDA,.ERROR,.IBSEG,RIEN) Q
  .;
- .;Benefit Related Entity Segment
+ .;Benefit Related Entity Seg
  .I SEG="ZTY" D ZTY^IBCNEHL4(EBDA,.ERROR,.IBSEG,RIEN) Q
  .;
- .;Benefit Related Entity Contact Segment
+ .;Benefit Related Entity Contact Seg
  .I SEG="CTD",G2OFLG D G2OCTD^IBCNEHL4(EBDA,.ERROR,.IBSEG,RIEN) Q
  .;
- .;Benefit Related Entity Notes Segment
+ .;Benefit Related Entity Notes Seg
  .I SEG="NTE",+$G(EBDA) D EBNTE^IBCNEHL2(EBDA,.IBSEG,RIEN) Q
  .;
- .;Reject Reasons Segment
+ .;Reject Reasons Seg
  .I SEG="ERR" K ERDA D ERR^IBCNEHL4(.ERDA,.ERROR,.IBSEG,RIEN) Q
  .;
- .;Notes Segment
+ .;Notes Seg
  .I SEG="NTE",'$D(EBDA),+$G(ERDA) D NTE^IBCNEHL4(ERDA,.ERROR,.IBSEG,RIEN) Q
  .;
- .;Subscriber date segment (subscriber level)
+ .;Subscriber date seg (subscriber level)
  .I SEG="ZTP" D ZTP^IBCNEHL4(.ERROR,.IBSEG,RIEN) Q
  . ;ib*2*497 - add processing for ROL, DG1, & ZMP segments
- . ;Provider Code segment 
+ . ;Provider Code seg
  . I SEG="ROL" D ROL^IBCNEHL5(.ERROR,.IBSEG,RIEN) Q
  . ;
- . ;Health Care Diagnosis Code segment
+ . ;Health Care Diagnosis Code seg
  . I SEG="DG1" D DG1^IBCNEHL5(.ERROR,.IBSEG,RIEN) Q
  . ;
- . ;Military Personnel Information segment
+ . ;Military Personnel Information seg
  . I SEG="ZMP" D ZMP^IBCNEHL5(.ERROR,.IBSEG,RIEN)
  ;
- ;IB*2.0*621/TAZ - File EICD Identification Response
+ ;IB*2*621/TAZ - File EICD Identification Response
  I EVENTYP=1 S TRKIEN=$$SVEICD^IBCNEHL7()
- ;IB*2.0*621/TAZ - Update EIV EICD TRACKING FILE for EICD verification Response 
+ ;IB*2*621/TAZ - Update EIV EICD TRACKING FILE for EICD verification Response 
  I EVENTYP=2 D
  . N D0,D1,FDA,IENS,TQN,EXT
  . S TQN=$$GET1^DIQ(365,RIEN_",",.05,"I")
@@ -143,6 +147,10 @@ EN(EVENTYP) ;Entry Point
  . I IIVSTAT="V" S FDA(365.185,IENS,1.04)=3  ;Ambiguous
  . D FILE^DIE("","FDA"),CLEAN^DILF
  ;
+ ; IB*702/DTG start set auto eiv user name
+ N IBEIVUSR
+ S IBEIVUSR="AUTOUPDATE,IBEIV"
+ ; IB*702/DTG end set auto eiv user name
  S AUTO=$$AUTOUPD(RIEN)
  I $G(ACK)'="AE",$G(ERACT)="",$G(ERTXT)="",'$D(ERROR),+AUTO D  Q
  .D:$P(AUTO,U,3)'="" AUTOFIL($P(AUTO,U,2),$P(AUTO,U,3),$P(AUTO,U,6))
@@ -154,128 +162,19 @@ ENX ;
  Q
  ;
  ;=================================================================
+ ; IB*702/DTG start move body of AUTOFIL to IBCNEHL5 for SAC space size.
 AUTOFIL(DFN,IEN312,ISSUB) ;Finish processing the response message - file directly into patient insurance
  ;
- N BUFF,DATA,ERROR,IENS,MIL,OKAY,PREL,RDATA0,RDATA1,RDATA5,RDATA13,RSTYPE,TQN,TSTAMP,XX  ;IB*2.0*497 (vd)
- ;
- Q:$G(RIEN)=""
- S TSTAMP=$$NOW^XLFDT(),IENS=IEN312_","_DFN_","
- S RDATA0=$G(^IBCN(365,RIEN,0)),RDATA1=$G(^IBCN(365,RIEN,1)),RDATA5=$G(^IBCN(365,RIEN,5))
- S RDATA13=$G(^IBCN(365,RIEN,13))     ;IB*2.0*497 (vd)
- S TQN=$P(RDATA0,U,5),RSTYPE=$P(RDATA0,U,10)
- ;\Beginning IB*2.0*549 - Modified the following lines
- S XX=$$GET1^DIQ(2.312,IENS,7.01,"I")
- I ISSUB,XX="" S DATA(2.312,IENS,7.01)=$P(RDATA13,U)  ;Name
- S XX=$$GET1^DIQ(2.312,IENS,3.01,"I")
- I XX="" S DATA(2.312,IENS,3.01)=$P(RDATA1,U,2)       ;DOB
- S XX=$$GET1^DIQ(2.312,IENS,3.05,"I")
- I XX="" S DATA(2.312,IENS,3.05)=$P(RDATA1,U,3)       ;SSN
- S XX=$$GET1^DIQ(2.312,IENS,6,"I")
- I ISSUB,XX="" S DATA(2.312,IENS,6)=$P(RDATA1,U,8)    ;Whose insurance
- ;pt. relationship (365,8.01) IB*2*497 code from 365,8.01 needs evaluation & possible conversion
- S PREL=$$GET1^DIQ(365,RIEN,8.01)
- S XX=$$GET1^DIQ(2.312,IENS,4.03,"I")
- I ISSUB,XX="",PREL'="" D
- . S DATA(2.312,IENS,4.03)=$$PREL^IBCNEHLU(2.312,4.03,PREL)
- ;\End of IB*2.0*549 changes.
- ;IB*2*595/DM moved the following 4 lines below
- ;S DATA(2.312,IENS,1.03)=TSTAMP       ;Date last verified
- ;S DATA(2.312,IENS,1.04)=""           ;Last verified by
- ;S DATA(2.312,IENS,1.05)=TSTAMP       ;Date last edited
- ;S DATA(2.312,IENS,1.06)=""           ;Last edited by
- ;S DATA(2.312,IENS,1.09)=5 ;Source of info = eIV
- ;IB*2.0*595/DM persist the original Source of Information
- ;note: external values are used to populate DATA
- I $$GET1^DIQ(2.312,IENS,1.09,"I")="" D
- . S XX=$$GET1^DIQ(365.1,TQN_",1,",3.02)
- . I XX="" S XX="eIV"
- . S DATA(2.312,IENS,1.09)=XX
- ;
- ;Set Subscriber address Fields if none of the fields are currently defined
- ;\Beginning IB*2.0*549 - Modified the following lines
- S XX=$$GET1^DIQ(2.312,IENS,3.06,"I")      ;Current Ins Street Line 1
- I XX="" D
- . S XX=$$GET1^DIQ(2.312,IENS,3.07,"I")    ;Current Ins Street Line 2
- . Q:XX'=""
- . S XX=$$GET1^DIQ(2.312,IENS,3.08,"I")    ;Current Ins City
- . Q:XX'=""
- . S XX=$$GET1^DIQ(2.312,IENS,3.09,"I")    ;Current Ins State
- . Q:XX'=""
- . S XX=$$GET1^DIQ(2.312,IENS,3.1,"I")     ;Current Ins Zip
- . Q:XX'=""
- . S XX=$$GET1^DIQ(2.312,IENS,3.13,"I")    ;Current Ins Country
- . Q:XX'=""
- . S XX=$$GET1^DIQ(2.312,IENS,3.14,"I")    ;Current Ins Country Subdivision
- . Q:XX'=""
- . S DATA(2.312,IENS,3.06)=$P(RDATA5,U)    ;Street line 1
- . S DATA(2.312,IENS,3.07)=$P(RDATA5,U,2)  ;Street line 2
- . S DATA(2.312,IENS,3.08)=$P(RDATA5,U,3)  ;City
- . S DATA(2.312,IENS,3.09)=$P(RDATA5,U,4)  ;State
- . S DATA(2.312,IENS,3.1)=$P(RDATA5,U,5)   ;Zip
- . S DATA(2.312,IENS,3.13)=$P(RDATA5,U,6)  ;Country
- . S DATA(2.312,IENS,3.14)=$P(RDATA5,U,7)  ;Country subdivision
- ;\End of IB*2.0*549 changes.
- ;
- L +^DPT(DFN,.312,IEN312):15 I '$T D LCKERR^IBCNEHL3 D FIL Q
- I $D(DATA) D FILE^DIE("ET","DATA","ERROR") ;IB*2*595/DM make sure DATA has data  
- I $D(ERROR) D WARN^IBCNEHL3 K ERROR D FIL G AUTOFILX
- ;IB*2*595/DM set auto-update fields
- ;the EIV AUTO-UPDATE flag is now located in the IIV Response file
- ;set eIV auto-update field separately because of the trigger on field 1.05
- ;S DATA(2.312,IENS,4.04)="YES"
- K DATA
- S DATA(2.312,IENS,1.03)=TSTAMP                ;Date last verified
- S DATA(2.312,IENS,1.04)="AUTOUPDATE,IBEIV"    ;Last verified by ; Edit with 595 was null
- S DATA(2.312,IENS,1.05)=TSTAMP                ;Date last edited
- S DATA(2.312,IENS,1.06)="AUTOUPDATE,IBEIV"    ;Last edited by ; Edit with 595 was null
- D FILE^DIE("ET","DATA","ERROR")
- I $D(ERROR) D WARN^IBCNEHL3 G AUTOFILX
- ;IB*2*595/DM set the insurance record IEN in the IIV Response file
- ;to track which policy was updated based on the response
- D UPDIREC^IBCNEHL3(RIEN,IEN312)
- ;IB*2*595/DM set the EIV AUTO-UPDATE in the response file to signal auto-update
- K DATA
- S DATA(365,RIEN_",",.13)="YES"
- D FILE^DIE("ET","DATA")
- ;
- S ERFLG=$$GRPFILE(DFN,IEN312,RIEN,1)
- I $G(ERFLG) G AUTOFILX  ;IB*2*497 file data at 2.312, 9, 10 & 11 subfiles; if error is produced update buffer entry & then quit processing
- ;file new EB data
- S ERFLG=$$EBFILE(DFN,IEN312,RIEN,1)
- ;bail out if something went wrong during filing of EB data
- I $G(ERFLG) G AUTOFILX
- ;update insurance record ien in transmission queue
- D UPDIREC^IBCNEHL3(RIEN,IEN312)
- ;For an original response, set the Transmission Queue Status to 'Response Received' &
- ;update remaining retries to comm failure (5)
- I $G(RSTYPE)="O" D SST^IBCNEUT2(TQN,3),RSTA^IBCNEUT7(TQN)
- ;update buffer file entry so only stub remains & status is changed
- S BUFF=+$P($G(^IBCN(365,RIEN,0)),U,4)
- I BUFF D
- .D STATUS^IBCNBEE(BUFF,"A",0,0,0) ;update buffer entry's status to accepted
- .D DELDATA^IBCNBED(BUFF) ;delete buffer's insurance/patient data
- ;
- ;IB*2*631/vd - Start of new code for filing data to #355.36 file.
- N BUFF,ERROR,FDA,WE
- S WE=$$GET1^DIQ(365.1,TQN_",",.1,"I")
- S BUFF=$$GET1^DIQ(365,RIEN_",",.04,"I")
- S FDA(355.36,"+1,",.01)=$$NOW^XLFDT    ;Date Processed
- S FDA(355.36,"+1,",.02)=$S("^5^6^"[(U_WE_U):3,"^1^2^3^"[(U_WE_U):1,1:"")   ;"WE" Should never be 4 or 7 at this point
- S FDA(355.36,"+1,",.03)=$$GET1^DIQ(365.1,TQN_",",3.02,"I")   ;Source of Information
- S FDA(355.36,"+1,",.04)=$$GET1^DIQ(365,RIEN_",",.13,"I")     ;EIV Auto-Update
- S FDA(355.36,"+1,",.05)=TQN            ;EIV Inquiry
- S FDA(355.36,"+1,",.06)=RIEN           ;IV Response
- S FDA(355.36,"+1,",.07)=BUFF           ;Buffer
- S FDA(355.36,"+1,",.08)=WE             ;Source of Request (Which Extract)
- D UPDATE^DIE("","FDA",,"ERROR")
- I $D(ERROR) D
- . D MSG003^IBCNEMS1(.IBMSG,.ERROR,TQN,RIEN,BUFF)
- . D MSG^IBCNEUT5($$MGRP^IBCNEUT5(),"eIV Problem: Error writing to the CREATION TO PROCESSING TRACKING File (#355.36)","IBMSG(")
- ;IB*2*631/vd - End of new code.
+ ; IB*702/DTG moved autofil to IBCNEHL5 due to routine file size
+ ;IB*732/CKB&TAZ - Loop through each insurance type IEN and file
+ N INSIEN,PCE
+ I $G(RIEN)="" G AUTOFILX
+ F PCE=1:1 S INSIEN=$P(IEN312,"~",PCE) Q:INSIEN=""  D
+ . D AUTOFIL^IBCNEHL5(DFN,INSIEN,ISSUB)
  ;
 AUTOFILX ;
- L -^DPT(DFN,.312,IEN312)
  Q
+ ; IB*702/DTG end move body of AUTOFIL to IBCNEHL5 for SAC space size.
  ;
 GRPFILE(DFN,IEN312,RIEN,AFLG) ;ib*2*497 file data at node 12 & at subfiles 2.312,9, 10 & 11
  ;DFN - file 2 ien
@@ -333,44 +232,68 @@ AUTOUPD(RIEN) ;
  ;
  ;RIEN - ien in file 365
  ;
+ ;IB*732/CKB&TAZ - New ISBLUE
  N APPIEN,GDATA,GIEN,GNAME,GNUM,GNUM1,GOK,IEN2,IEN312,IEN36,IDATA0,IDATA3,ISSUB,MWNRA,MWNRB,MWNRIEN,MWNRTYP
- N ONEPOL,PIEN,RDATA0,RDATA1,RES,TQIEN,IDATA7,RDATA13,RDATA14   ;IB*2.0*497
+ N ONEPOL,PIEN,RDATA0,RDATA1,RES,TQIEN,IDATA7,RDATA13,RDATA14,ISBLUE
+ N IBGETTQ,IBGETWE,IBGETSTC,IBGETDEF,IBGETNOK
  S RES=0
  I +$G(RIEN)'>0 Q RES          ;Invalid ien for file 365
- ;IB*2.0*595/DM if entry is missing from #200, file in buffer
- I '$$FIND1^DIC(200,,"M","AUTOUPDATE,IBEIV") Q RES
+ ;IB*2*595/DM if entry is missing from #200, file in buffer
+ I '$$FIND1^DIC(200,,"M",IBEIVUSR) Q RES  ; IB*702/DTG change user name ("AUTOUPDATE,IBEIV") to use var.
  ;
- ;IB*2.0*549 - Moved up the next 5 lines. Originally, these lines were
+ ;IB*2*549 - Moved up the next 5 lines. Originally, these lines were
  ;             directly after line 'I $G(IIVSTAT)'=1 Q RES'
  S RDATA0=$G(^IBCN(365,RIEN,0)),RDATA1=$G(^IBCN(365,RIEN,1))
  ;
- ;IB*2.0*497 - longer fields for GROUP NAME, GROUP NUMBER, NAME OF INSURED, & SUBSCRIBER ID
+ ;IB*2*497 - longer fields for GROUP NAME, GROUP NUMBER, NAME OF INSURED, & SUBSCRIBER ID
  S RDATA13=$G(^IBCN(365,RIEN,13)),RDATA14=$G(^IBCN(365,RIEN,14))
  S PIEN=$P(RDATA0,U,3)
+ S ISBLUE=$$GET1^DIQ(365.12,PIEN_",",.09,"I") ;IB*732/CKB&TAZ
  ;
- ;IB*2.0*549 - Moved up the next 2 lines.  Originally, these lines were
+ ;IB*2*549 - Moved up the next 2 lines.  Originally, these lines were
  ;             directly after 'S IEN2=$P(RDATA0,U,2) I +IEN2'>0 Q RES'
  S MWNRIEN=$P($G(^IBE(350.9,1,51)),U,25),MWNRTYP=0,(MWNRA,MWNRB)=""
  I PIEN=MWNRIEN S MWNRTYP=$$ISMCR^IBCNEHLU(RIEN)
  ;
- ;IB*2.0*549 - Added ',MWNRTYP' below to only quit for non-medicare policies
+ ;IB*2*549 - Added ',MWNRTYP' below to only quit for non-medicare policies
  I $G(IIVSTAT)'=1,'MWNRTYP Q RES     ;Only auto-update 'active policy' responses
- I +PIEN>0 S APPIEN=$$PYRAPP^IBCNEUT5("IIV",PIEN)
+ ;IB*2*668/TAZ - Changed app to EIV from IIV
+ I +PIEN>0 S APPIEN=$$PYRAPP^IBCNEUT5("EIV",PIEN)
  I +$G(APPIEN)'>0 Q RES  ;couldn't find eIV application entry
  ;
- ;IB*2.0*601/HN Don't allow any entry with HMS SOI to auto-update
- ;IB*2.0*595/HN Don't allow any entry with Contract Services SOI to auto-update
- I $P(RDATA0,U,5)'="" I "^HMS^CONTRACT SERVICES^"[("^"_$$GET1^DIQ(365.1,$P(RDATA0,U,5)_",","SOURCE OF INFORMATION","E")_"^") Q RES  ; HAN IB*2.0*621
+ ;IB*2*601/HN Don't allow any entry with HMS SOI to auto-update
+ ;IB*2*595/HN Don't allow any entry with Contract Services SOI to auto-update
+ I $P(RDATA0,U,5)'="" I "^HMS^CONTRACT SERVICES^"[("^"_$$GET1^DIQ(365.1,$P(RDATA0,U,5)_",","SOURCE OF INFORMATION","E")_"^") Q RES  ; HAN IB*2*621
+ ;
+ ;IB*732/DTG start, allow auto update for some "Request Electronic Insurance Inquiry" requests
+ ;
  ;Check dictionary 365.1 MANUAL REQUEST DATE/TIME Flag, Quit if Set.
- I $P(RDATA0,U,5)'="",$P($G(^IBCN(365.1,$P(RDATA0,U,5),3)),U,1)'="" Q RES
- I $P(^IBE(365.12,PIEN,1,APPIEN,0),U,7)=0 Q RES  ; auto-accept is OFF
+ ;I $P(RDATA0,U,5)'="",$P($G(^IBCN(365.1,$P(RDATA0,U,5),3)),U,1)'="" Q RES
+ ;
+ ; get values
+ S (IBGETTQ,IBGETDEF,IBGETWE,IBGETSTC)=""
+ ; Get 365.1 transmission queue number
+ S IBGETTQ=$$GET1^DIQ(365,RIEN_",",.05,"I") I IBGETTQ="" Q RES
+ ; Get 365.1 which extract
+ S IBGETNOK=0
+ S IBGETWE=$$GET1^DIQ(365.1,IBGETTQ_",",.1,"I") I IBGETWE=5 D  I IBGETNOK Q RES
+ . ; Get 350.9 default service type code
+ . S IBGETDEF=$$GET1^DIQ(350.9,1_",",60.01,"I") I IBGETDEF="" S IBGETNOK=1 Q
+ . ; Get 365 requested service type code
+ . S IBGETSTC=$$GET1^DIQ(365,RIEN_",",.15,"I") I IBGETSTC'=IBGETDEF S IBGETNOK=1 Q
+ ;
+ ;IB*732/DTG end, allow auto update for some "Request Electronic Insurance Inquiry" requests
+ ;
+ ;IB*2*668/TAZ - Changed to new field location
+ I '$$GET1^DIQ(365.121,APPIEN_","_PIEN_",",4.01,"I") Q RES  ; auto-accept is OFF
  S IEN2=$P(RDATA0,U,2) I +IEN2'>0 Q RES  ; couldn't find patient
  S ONEPOL=$$ONEPOL^IBCNEHLU(PIEN,IEN2)
  ;try to find a matching pat. insurance
- S IEN36="" F  S IEN36=$O(^DIC(36,"AC",PIEN,IEN36)) Q:IEN36=""!(RES>0)  D
- .S IEN312="" F  S IEN312=$O(^DPT(IEN2,.312,"B",IEN36,IEN312)) Q:IEN312=""!(RES>0&('+MWNRTYP))  D
+ ;IB*732/CKB&TAZ - Modify next two lines to check for ISBLUE
+ S IEN36="" F  S IEN36=$O(^DIC(36,"AC",PIEN,IEN36)) Q:IEN36=""  D  I 'ISBLUE&(RES>0) Q
+ .S IEN312="" F  S IEN312=$O(^DPT(IEN2,.312,"B",IEN36,IEN312)) Q:IEN312=""  D  I ('ISBLUE)&(RES>0&('+MWNRTYP)) Q
  ..S IDATA0=$G(^DPT(IEN2,.312,IEN312,0)),IDATA3=$G(^DPT(IEN2,.312,IEN312,3))
- ..S IDATA7=$G(^DPT(IEN2,.312,IEN312,7))   ;IB*2.0*497 (vd)
+ ..S IDATA7=$G(^DPT(IEN2,.312,IEN312,7))   ;IB*2*497 (vd)
  ..I $$EXPIRED^IBCNEDE2($P(IDATA0,U,4)) Q  ;Insurance policy has expired
  ..S ISSUB=$$PATISSUB^IBCNEHLU(IDATA0)
  ..;Patient is the subscriber
@@ -383,11 +306,11 @@ AUTOUPD(RIEN) ;
  ..I '+MWNRTYP D  Q:'GOK  ;Group # doesn't match
  ...I 'ONEPOL D
  ....I GIEN'>0 S GOK=0 Q
- ....S GNUM1=$P($G(^IBA(355.3,GIEN,2)),U,2)   ;IB*2.0*497 (vd)
+ ....S GNUM1=$P($G(^IBA(355.3,GIEN,2)),U,2)   ;IB*2*497 (vd)
  ....I GNUM=""!(GNUM1="")!(GNUM'=GNUM1) S GOK=0
  ....Q
  ...I ONEPOL D
- ....I GNUM'="",GIEN'="" S GNUM1=$P($G(^IBA(355.3,GIEN,2)),U,2) I GNUM1'="",GNUM'=GNUM1 S GOK=0  ;IB*2.0*497 (vd)
+ ....I GNUM'="",GIEN'="" S GNUM1=$P($G(^IBA(355.3,GIEN,2)),U,2) I GNUM1'="",GNUM'=GNUM1 S GOK=0  ;IB*2*497 (vd)
  ....Q
  ...Q
  ..;check for Medicare part A/B
@@ -395,21 +318,22 @@ AUTOUPD(RIEN) ;
  ...I GIEN'>0 S GOK=0 Q
  ...S GDATA=$G(^IBA(355.3,GIEN,0))
  ...I $P(GDATA,U,14)="A" D
- ....;IB*2.0*549 Change $P(MWNRTYP,U,2)="MA"!($P(MWNRTYP,U,2)="B")
+ ....;IB*2*549 Change $P(MWNRTYP,U,2)="MA"!($P(MWNRTYP,U,2)="B")
  ....;           To     $P(MWNRTYP,U,5)="MA"!($P(MWNRTYP,U,5)="B")
  ....I $P(MWNRTYP,U,5)="MA"!($P(MWNRTYP,U,5)="B") S MWNRA=IEN312 Q
  ....S GOK=0
  ....Q
  ...I $P(GDATA,U,14)="B" D
- ....;IB*2.0*549 Change $P(MWNRTYP,U,2)="MB"!($P(MWNRTYP,U,2)="B")
+ ....;IB*2*549 Change $P(MWNRTYP,U,2)="MB"!($P(MWNRTYP,U,2)="B")
  ....;           To     $P(MWNRTYP,U,5)="MB"!($P(MWNRTYP,U,5)="B")
  ....I $P(MWNRTYP,U,5)="MB"!($P(MWNRTYP,U,5)="B") S MWNRB=IEN312 Q
  ....S GOK=0
  ....Q
  ...Q
- ..S RES=1_U_IEN2_U_$S(+MWNRTYP:MWNRA_U_MWNRB_U_1,1:IEN312_U_U_0)
- ..S $P(RES,U,6)=ISSUB
- ..Q
+ ..;IB*732/CKB&TAZ - Restructured building RES string
+ ..I +MWNRTYP S RES=1_U_IEN2_U_MWNRA_U_MWNRB_U_1_U_ISSUB Q   ;Process MWNR
+ ..I ISBLUE S P3=$P(RES,U,3),P3=P3_$S($L(P3):"~",1:"")_IEN312,RES=1_U_IEN2_U_P3_U_U_0_U_ISSUB Q  ;Process Blues
+ ..S RES=1_U_IEN2_U_IEN312_U_U_0_U_ISSUB  ;Process non-MWNR and Non-Blue
  .Q
  Q RES
  ;
@@ -422,5 +346,5 @@ EBFILE(DFN,IEN312,RIEN,AFLG) ;File eligibility/benefit data from file 365 into f
  ;Returns: "" on success, ERFLG on failure. Also called from ACCEPT^IBCNBAR
  ;         for manual processing of ins. buffer entry.
  ;
- Q $$EBFILE^IBCNEHL5(DFN,IEN312,RIEN,AFLG)  ;IB*2.0*549 moved because of routine size
+ Q $$EBFILE^IBCNEHL5(DFN,IEN312,RIEN,AFLG)  ;IB*2*549 moved because of routine size
  ;

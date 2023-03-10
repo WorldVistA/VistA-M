@@ -1,692 +1,254 @@
-IBDEI0BM ; ; 01-MAY-2020
- ;;3.0;IB ENCOUNTER FORM IMP/EXP;;MAY 01, 2020
- Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,999) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
+IBDEI0BM ; ; 01-AUG-2022
+ ;;3.0;IB ENCOUNTER FORM IMP/EXP;;AUG 01, 2022
+ Q:'DIFQR(358.6)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,999) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
- ;;^UTILITY(U,$J,358.3,28387,1,3,0)
- ;;=3^Hypertensive Heart Disease w/o Heart Failure
- ;;^UTILITY(U,$J,358.3,28387,1,4,0)
- ;;=4^I11.9
- ;;^UTILITY(U,$J,358.3,28387,2)
- ;;=^5007064
- ;;^UTILITY(U,$J,358.3,28388,0)
- ;;=I12.0^^81^1104^5
- ;;^UTILITY(U,$J,358.3,28388,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,28388,1,3,0)
- ;;=3^Hypertensive CKD w/ Stage 5 CKD or ESRD
- ;;^UTILITY(U,$J,358.3,28388,1,4,0)
- ;;=4^I12.0
- ;;^UTILITY(U,$J,358.3,28388,2)
- ;;=^5007065
- ;;^UTILITY(U,$J,358.3,28389,0)
- ;;=I12.9^^81^1104^4
- ;;^UTILITY(U,$J,358.3,28389,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,28389,1,3,0)
- ;;=3^Hypertensive CKD w/ Stage 1-4 CKD
- ;;^UTILITY(U,$J,358.3,28389,1,4,0)
- ;;=4^I12.9
- ;;^UTILITY(U,$J,358.3,28389,2)
- ;;=^5007066
- ;;^UTILITY(U,$J,358.3,28390,0)
- ;;=I13.0^^81^1104^8
- ;;^UTILITY(U,$J,358.3,28390,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,28390,1,3,0)
- ;;=3^Hypertensive HRT & CKD w/ Hrt Fail & Stg 1-4 CKD
- ;;^UTILITY(U,$J,358.3,28390,1,4,0)
- ;;=4^I13.0
- ;;^UTILITY(U,$J,358.3,28390,2)
- ;;=^5007067
- ;;^UTILITY(U,$J,358.3,28391,0)
- ;;=I13.10^^81^1104^10
- ;;^UTILITY(U,$J,358.3,28391,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,28391,1,3,0)
- ;;=3^Hypertensive HRT & CKD w/o Hrt Fail & Stg 1-4 CKD
- ;;^UTILITY(U,$J,358.3,28391,1,4,0)
- ;;=4^I13.10
- ;;^UTILITY(U,$J,358.3,28391,2)
- ;;=^5007068
- ;;^UTILITY(U,$J,358.3,28392,0)
- ;;=I13.11^^81^1104^11
- ;;^UTILITY(U,$J,358.3,28392,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,28392,1,3,0)
- ;;=3^Hypertensive HRT & CKD w/o Hrt Fail & Stg 5 CKD/ESRD
- ;;^UTILITY(U,$J,358.3,28392,1,4,0)
- ;;=4^I13.11
- ;;^UTILITY(U,$J,358.3,28392,2)
- ;;=^5007069
- ;;^UTILITY(U,$J,358.3,28393,0)
- ;;=I13.2^^81^1104^9
- ;;^UTILITY(U,$J,358.3,28393,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,28393,1,3,0)
- ;;=3^Hypertensive HRT & CKD w/ Hrt Fail & Stg 5 CKD/ESRD
- ;;^UTILITY(U,$J,358.3,28393,1,4,0)
- ;;=4^I13.2
- ;;^UTILITY(U,$J,358.3,28393,2)
- ;;=^5007070
- ;;^UTILITY(U,$J,358.3,28394,0)
- ;;=I15.0^^81^1104^15
- ;;^UTILITY(U,$J,358.3,28394,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,28394,1,3,0)
- ;;=3^Renovascular Hypertension
- ;;^UTILITY(U,$J,358.3,28394,1,4,0)
- ;;=4^I15.0
- ;;^UTILITY(U,$J,358.3,28394,2)
- ;;=^5007071
- ;;^UTILITY(U,$J,358.3,28395,0)
- ;;=I15.1^^81^1104^3
- ;;^UTILITY(U,$J,358.3,28395,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,28395,1,3,0)
- ;;=3^Hypertension Secondary to Oth Renal Disorders
- ;;^UTILITY(U,$J,358.3,28395,1,4,0)
- ;;=4^I15.1
- ;;^UTILITY(U,$J,358.3,28395,2)
- ;;=^5007072
- ;;^UTILITY(U,$J,358.3,28396,0)
- ;;=I15.2^^81^1104^2
- ;;^UTILITY(U,$J,358.3,28396,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,28396,1,3,0)
- ;;=3^Hypertension Secondary to Endocrine Disorders
- ;;^UTILITY(U,$J,358.3,28396,1,4,0)
- ;;=4^I15.2
- ;;^UTILITY(U,$J,358.3,28396,2)
- ;;=^5007073
- ;;^UTILITY(U,$J,358.3,28397,0)
- ;;=I15.8^^81^1104^16
- ;;^UTILITY(U,$J,358.3,28397,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,28397,1,3,0)
- ;;=3^Secondary Hypertension,Oth
- ;;^UTILITY(U,$J,358.3,28397,1,4,0)
- ;;=4^I15.8
- ;;^UTILITY(U,$J,358.3,28397,2)
- ;;=^5007074
- ;;^UTILITY(U,$J,358.3,28398,0)
- ;;=I15.9^^81^1104^17
- ;;^UTILITY(U,$J,358.3,28398,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,28398,1,3,0)
- ;;=3^Secondary Hypertension,Unspec
- ;;^UTILITY(U,$J,358.3,28398,1,4,0)
- ;;=4^I15.9
- ;;^UTILITY(U,$J,358.3,28398,2)
- ;;=^5007075
- ;;^UTILITY(U,$J,358.3,28399,0)
- ;;=I16.0^^81^1104^14
- ;;^UTILITY(U,$J,358.3,28399,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,28399,1,3,0)
- ;;=3^Hypertensive Urgency
- ;;^UTILITY(U,$J,358.3,28399,1,4,0)
- ;;=4^I16.0
- ;;^UTILITY(U,$J,358.3,28399,2)
- ;;=^8133013
- ;;^UTILITY(U,$J,358.3,28400,0)
- ;;=I16.1^^81^1104^7
- ;;^UTILITY(U,$J,358.3,28400,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,28400,1,3,0)
- ;;=3^Hypertensive Emergency
- ;;^UTILITY(U,$J,358.3,28400,1,4,0)
- ;;=4^I16.1
- ;;^UTILITY(U,$J,358.3,28400,2)
- ;;=^8204721
- ;;^UTILITY(U,$J,358.3,28401,0)
- ;;=I16.9^^81^1104^6
- ;;^UTILITY(U,$J,358.3,28401,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,28401,1,3,0)
- ;;=3^Hypertensive Crisis,Unspec
- ;;^UTILITY(U,$J,358.3,28401,1,4,0)
- ;;=4^I16.9
- ;;^UTILITY(U,$J,358.3,28401,2)
- ;;=^5138600
- ;;^UTILITY(U,$J,358.3,28402,0)
- ;;=A07.0^^81^1105^5
- ;;^UTILITY(U,$J,358.3,28402,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,28402,1,3,0)
- ;;=3^Balantidiasis
- ;;^UTILITY(U,$J,358.3,28402,1,4,0)
- ;;=4^A07.0
- ;;^UTILITY(U,$J,358.3,28402,2)
- ;;=^12533
- ;;^UTILITY(U,$J,358.3,28403,0)
- ;;=A07.1^^81^1105^9
- ;;^UTILITY(U,$J,358.3,28403,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,28403,1,3,0)
- ;;=3^Giardiasis [lambliasis]
- ;;^UTILITY(U,$J,358.3,28403,1,4,0)
- ;;=4^A07.1
- ;;^UTILITY(U,$J,358.3,28403,2)
- ;;=^5000049
- ;;^UTILITY(U,$J,358.3,28404,0)
- ;;=A07.2^^81^1105^7
- ;;^UTILITY(U,$J,358.3,28404,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,28404,1,3,0)
- ;;=3^Cryptosporidiosis
- ;;^UTILITY(U,$J,358.3,28404,1,4,0)
- ;;=4^A07.2
- ;;^UTILITY(U,$J,358.3,28404,2)
- ;;=^29629
- ;;^UTILITY(U,$J,358.3,28405,0)
- ;;=A07.3^^81^1105^12
- ;;^UTILITY(U,$J,358.3,28405,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,28405,1,3,0)
- ;;=3^Isosporiasis
- ;;^UTILITY(U,$J,358.3,28405,1,4,0)
- ;;=4^A07.3
- ;;^UTILITY(U,$J,358.3,28405,2)
- ;;=^5000050
- ;;^UTILITY(U,$J,358.3,28406,0)
- ;;=A07.4^^81^1105^8
- ;;^UTILITY(U,$J,358.3,28406,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,28406,1,3,0)
- ;;=3^Cyclosporiasis
- ;;^UTILITY(U,$J,358.3,28406,1,4,0)
- ;;=4^A07.4
- ;;^UTILITY(U,$J,358.3,28406,2)
- ;;=^321973
- ;;^UTILITY(U,$J,358.3,28407,0)
- ;;=A07.8^^81^1105^14
- ;;^UTILITY(U,$J,358.3,28407,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,28407,1,3,0)
- ;;=3^Protozoal Intestinal Diseases,Oth Spec
- ;;^UTILITY(U,$J,358.3,28407,1,4,0)
- ;;=4^A07.8
- ;;^UTILITY(U,$J,358.3,28407,2)
- ;;=^265972
- ;;^UTILITY(U,$J,358.3,28408,0)
- ;;=A07.9^^81^1105^13
- ;;^UTILITY(U,$J,358.3,28408,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,28408,1,3,0)
- ;;=3^Protozoal Intestinal Disease,Unspec
- ;;^UTILITY(U,$J,358.3,28408,1,4,0)
- ;;=4^A07.9
- ;;^UTILITY(U,$J,358.3,28408,2)
- ;;=^5000051
- ;;^UTILITY(U,$J,358.3,28409,0)
- ;;=A08.0^^81^1105^15
- ;;^UTILITY(U,$J,358.3,28409,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,28409,1,3,0)
- ;;=3^Rotaviral Enteritis
- ;;^UTILITY(U,$J,358.3,28409,1,4,0)
- ;;=4^A08.0
- ;;^UTILITY(U,$J,358.3,28409,2)
- ;;=^5000052
- ;;^UTILITY(U,$J,358.3,28410,0)
- ;;=A08.11^^81^1105^1
- ;;^UTILITY(U,$J,358.3,28410,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,28410,1,3,0)
- ;;=3^Acute Gastroenteropathy d/t Norwalk Agent
- ;;^UTILITY(U,$J,358.3,28410,1,4,0)
- ;;=4^A08.11
- ;;^UTILITY(U,$J,358.3,28410,2)
- ;;=^5000053
- ;;^UTILITY(U,$J,358.3,28411,0)
- ;;=A08.19^^81^1105^2
- ;;^UTILITY(U,$J,358.3,28411,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,28411,1,3,0)
- ;;=3^Acute Gastroenteropathy d/t Oth Small Round Viruses
- ;;^UTILITY(U,$J,358.3,28411,1,4,0)
- ;;=4^A08.19
- ;;^UTILITY(U,$J,358.3,28411,2)
- ;;=^5000054
- ;;^UTILITY(U,$J,358.3,28412,0)
- ;;=A08.2^^81^1105^3
- ;;^UTILITY(U,$J,358.3,28412,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,28412,1,3,0)
- ;;=3^Adenoviral Enteritis
- ;;^UTILITY(U,$J,358.3,28412,1,4,0)
- ;;=4^A08.2
- ;;^UTILITY(U,$J,358.3,28412,2)
- ;;=^5000055
- ;;^UTILITY(U,$J,358.3,28413,0)
- ;;=A08.31^^81^1105^6
- ;;^UTILITY(U,$J,358.3,28413,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,28413,1,3,0)
- ;;=3^Calicivirus enteritis
- ;;^UTILITY(U,$J,358.3,28413,1,4,0)
- ;;=4^A08.31
- ;;^UTILITY(U,$J,358.3,28413,2)
- ;;=^5000056
- ;;^UTILITY(U,$J,358.3,28414,0)
- ;;=A08.32^^81^1105^4
- ;;^UTILITY(U,$J,358.3,28414,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,28414,1,3,0)
- ;;=3^Astrovirus enteritis
- ;;^UTILITY(U,$J,358.3,28414,1,4,0)
- ;;=4^A08.32
- ;;^UTILITY(U,$J,358.3,28414,2)
- ;;=^5000057
- ;;^UTILITY(U,$J,358.3,28415,0)
- ;;=A08.39^^81^1105^16
- ;;^UTILITY(U,$J,358.3,28415,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,28415,1,3,0)
- ;;=3^Viral Enteritis,Oth
- ;;^UTILITY(U,$J,358.3,28415,1,4,0)
- ;;=4^A08.39
- ;;^UTILITY(U,$J,358.3,28415,2)
- ;;=^5000058
- ;;^UTILITY(U,$J,358.3,28416,0)
- ;;=A08.4^^81^1105^17
- ;;^UTILITY(U,$J,358.3,28416,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,28416,1,3,0)
- ;;=3^Viral Intestinal Infection,Unspec
- ;;^UTILITY(U,$J,358.3,28416,1,4,0)
- ;;=4^A08.4
- ;;^UTILITY(U,$J,358.3,28416,2)
- ;;=^5000059
- ;;^UTILITY(U,$J,358.3,28417,0)
- ;;=A08.8^^81^1105^11
- ;;^UTILITY(U,$J,358.3,28417,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,28417,1,3,0)
- ;;=3^Intestinal Infections,Oth Spec
- ;;^UTILITY(U,$J,358.3,28417,1,4,0)
- ;;=4^A08.8
- ;;^UTILITY(U,$J,358.3,28417,2)
- ;;=^5000060
- ;;^UTILITY(U,$J,358.3,28418,0)
- ;;=A09.^^81^1105^10
- ;;^UTILITY(U,$J,358.3,28418,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,28418,1,3,0)
- ;;=3^Infectious Gastroenteritis & Colitis,Unspec
- ;;^UTILITY(U,$J,358.3,28418,1,4,0)
- ;;=4^A09.
- ;;^UTILITY(U,$J,358.3,28418,2)
- ;;=^5000061
- ;;^UTILITY(U,$J,358.3,28419,0)
- ;;=J12.0^^81^1106^1
- ;;^UTILITY(U,$J,358.3,28419,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,28419,1,3,0)
- ;;=3^Adenoviral Pneumonia
- ;;^UTILITY(U,$J,358.3,28419,1,4,0)
- ;;=4^J12.0
- ;;^UTILITY(U,$J,358.3,28419,2)
- ;;=^5008164
- ;;^UTILITY(U,$J,358.3,28420,0)
- ;;=J12.1^^81^1106^30
- ;;^UTILITY(U,$J,358.3,28420,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,28420,1,3,0)
- ;;=3^Respiratory Syncytial Virus Pneumonia
- ;;^UTILITY(U,$J,358.3,28420,1,4,0)
- ;;=4^J12.1
- ;;^UTILITY(U,$J,358.3,28420,2)
- ;;=^5008165
- ;;^UTILITY(U,$J,358.3,28421,0)
- ;;=J12.2^^81^1106^4
- ;;^UTILITY(U,$J,358.3,28421,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,28421,1,3,0)
- ;;=3^Parainfluenza Virus Pneumonia
- ;;^UTILITY(U,$J,358.3,28421,1,4,0)
- ;;=4^J12.2
- ;;^UTILITY(U,$J,358.3,28421,2)
- ;;=^5008166
- ;;^UTILITY(U,$J,358.3,28422,0)
- ;;=J12.3^^81^1106^3
- ;;^UTILITY(U,$J,358.3,28422,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,28422,1,3,0)
- ;;=3^Human Metapneumovirus Pneumonia
- ;;^UTILITY(U,$J,358.3,28422,1,4,0)
- ;;=4^J12.3
- ;;^UTILITY(U,$J,358.3,28422,2)
- ;;=^5008167
- ;;^UTILITY(U,$J,358.3,28423,0)
- ;;=J12.81^^81^1106^17
- ;;^UTILITY(U,$J,358.3,28423,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,28423,1,3,0)
- ;;=3^Pneumonia d/t SARS-Associated Coronavirus
- ;;^UTILITY(U,$J,358.3,28423,1,4,0)
- ;;=4^J12.81
- ;;^UTILITY(U,$J,358.3,28423,2)
- ;;=^329925
- ;;^UTILITY(U,$J,358.3,28424,0)
- ;;=J12.89^^81^1106^28
- ;;^UTILITY(U,$J,358.3,28424,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,28424,1,3,0)
- ;;=3^Pneumonia,Viral,Other
- ;;^UTILITY(U,$J,358.3,28424,1,4,0)
- ;;=4^J12.89
- ;;^UTILITY(U,$J,358.3,28424,2)
- ;;=^5008168
- ;;^UTILITY(U,$J,358.3,28425,0)
- ;;=J12.9^^81^1106^29
- ;;^UTILITY(U,$J,358.3,28425,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,28425,1,3,0)
- ;;=3^Pneumonia,Viral,Unspec
- ;;^UTILITY(U,$J,358.3,28425,1,4,0)
- ;;=4^J12.9
- ;;^UTILITY(U,$J,358.3,28425,2)
- ;;=^5008169
- ;;^UTILITY(U,$J,358.3,28426,0)
- ;;=J13.^^81^1106^19
- ;;^UTILITY(U,$J,358.3,28426,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,28426,1,3,0)
- ;;=3^Pneumonia d/t Streptococcus Pneumoniae
- ;;^UTILITY(U,$J,358.3,28426,1,4,0)
- ;;=4^J13.
- ;;^UTILITY(U,$J,358.3,28426,2)
- ;;=^5008170
- ;;^UTILITY(U,$J,358.3,28427,0)
- ;;=J14.^^81^1106^6
- ;;^UTILITY(U,$J,358.3,28427,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,28427,1,3,0)
- ;;=3^Pneumonia d/t Hemophilus Influenzae
- ;;^UTILITY(U,$J,358.3,28427,1,4,0)
- ;;=4^J14.
- ;;^UTILITY(U,$J,358.3,28427,2)
- ;;=^5008171
- ;;^UTILITY(U,$J,358.3,28428,0)
- ;;=J15.0^^81^1106^7
- ;;^UTILITY(U,$J,358.3,28428,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,28428,1,3,0)
- ;;=3^Pneumonia d/t Klebsiella Pneumoniae
- ;;^UTILITY(U,$J,358.3,28428,1,4,0)
- ;;=4^J15.0
- ;;^UTILITY(U,$J,358.3,28428,2)
- ;;=^269931
- ;;^UTILITY(U,$J,358.3,28429,0)
- ;;=J15.1^^81^1106^16
- ;;^UTILITY(U,$J,358.3,28429,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,28429,1,3,0)
- ;;=3^Pneumonia d/t Pseudomonas
- ;;^UTILITY(U,$J,358.3,28429,1,4,0)
- ;;=4^J15.1
- ;;^UTILITY(U,$J,358.3,28429,2)
- ;;=^269932
- ;;^UTILITY(U,$J,358.3,28430,0)
- ;;=J15.20^^81^1106^18
- ;;^UTILITY(U,$J,358.3,28430,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,28430,1,3,0)
- ;;=3^Pneumonia d/t Staphylococcus,Unspec
- ;;^UTILITY(U,$J,358.3,28430,1,4,0)
- ;;=4^J15.20
- ;;^UTILITY(U,$J,358.3,28430,2)
- ;;=^321179
- ;;^UTILITY(U,$J,358.3,28431,0)
- ;;=J15.211^^81^1106^9
- ;;^UTILITY(U,$J,358.3,28431,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,28431,1,3,0)
- ;;=3^Pneumonia d/t Methicillin Suscep Staph
- ;;^UTILITY(U,$J,358.3,28431,1,4,0)
- ;;=4^J15.211
- ;;^UTILITY(U,$J,358.3,28431,2)
- ;;=^336833
- ;;^UTILITY(U,$J,358.3,28432,0)
- ;;=J15.212^^81^1106^8
- ;;^UTILITY(U,$J,358.3,28432,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,28432,1,3,0)
- ;;=3^Pneumonia d/t Methicillin Resistant Staph Aureus
- ;;^UTILITY(U,$J,358.3,28432,1,4,0)
- ;;=4^J15.212
- ;;^UTILITY(U,$J,358.3,28432,2)
- ;;=^336602
- ;;^UTILITY(U,$J,358.3,28433,0)
- ;;=J15.29^^81^1106^11
- ;;^UTILITY(U,$J,358.3,28433,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,28433,1,3,0)
- ;;=3^Pneumonia d/t Oth Staph
- ;;^UTILITY(U,$J,358.3,28433,1,4,0)
- ;;=4^J15.29
- ;;^UTILITY(U,$J,358.3,28433,2)
- ;;=^5008172
- ;;^UTILITY(U,$J,358.3,28434,0)
- ;;=J15.3^^81^1106^20
- ;;^UTILITY(U,$J,358.3,28434,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,28434,1,3,0)
- ;;=3^Pneumonia d/t Streptococcus,Group B
- ;;^UTILITY(U,$J,358.3,28434,1,4,0)
- ;;=4^J15.3
- ;;^UTILITY(U,$J,358.3,28434,2)
- ;;=^5008173
- ;;^UTILITY(U,$J,358.3,28435,0)
- ;;=J15.4^^81^1106^15
- ;;^UTILITY(U,$J,358.3,28435,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,28435,1,3,0)
- ;;=3^Pneumonia d/t Other Streptococci
- ;;^UTILITY(U,$J,358.3,28435,1,4,0)
- ;;=4^J15.4
- ;;^UTILITY(U,$J,358.3,28435,2)
- ;;=^5008174
- ;;^UTILITY(U,$J,358.3,28436,0)
- ;;=J15.5^^81^1106^5
- ;;^UTILITY(U,$J,358.3,28436,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,28436,1,3,0)
- ;;=3^Pneumonia d/t Escherichia Coli
- ;;^UTILITY(U,$J,358.3,28436,1,4,0)
- ;;=4^J15.5
- ;;^UTILITY(U,$J,358.3,28436,2)
- ;;=^5008175
- ;;^UTILITY(U,$J,358.3,28437,0)
- ;;=J15.6^^81^1106^12
- ;;^UTILITY(U,$J,358.3,28437,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,28437,1,3,0)
- ;;=3^Pneumonia d/t Other Aerobic Gram-Neg Bacteria
- ;;^UTILITY(U,$J,358.3,28437,1,4,0)
- ;;=4^J15.6
- ;;^UTILITY(U,$J,358.3,28437,2)
- ;;=^5008176
- ;;^UTILITY(U,$J,358.3,28438,0)
- ;;=J15.7^^81^1106^10
- ;;^UTILITY(U,$J,358.3,28438,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,28438,1,3,0)
- ;;=3^Pneumonia d/t Mycoplasma Pneumoniae
- ;;^UTILITY(U,$J,358.3,28438,1,4,0)
- ;;=4^J15.7
- ;;^UTILITY(U,$J,358.3,28438,2)
- ;;=^5008177
- ;;^UTILITY(U,$J,358.3,28439,0)
- ;;=J15.8^^81^1106^13
- ;;^UTILITY(U,$J,358.3,28439,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,28439,1,3,0)
- ;;=3^Pneumonia d/t Other Spec Bacteria
- ;;^UTILITY(U,$J,358.3,28439,1,4,0)
- ;;=4^J15.8
- ;;^UTILITY(U,$J,358.3,28439,2)
- ;;=^95571
- ;;^UTILITY(U,$J,358.3,28440,0)
- ;;=J15.9^^81^1106^22
- ;;^UTILITY(U,$J,358.3,28440,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,28440,1,3,0)
- ;;=3^Pneumonia,Bacterial,Unspec
- ;;^UTILITY(U,$J,358.3,28440,1,4,0)
- ;;=4^J15.9
- ;;^UTILITY(U,$J,358.3,28440,2)
- ;;=^5008178
- ;;^UTILITY(U,$J,358.3,28441,0)
- ;;=J16.0^^81^1106^23
- ;;^UTILITY(U,$J,358.3,28441,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,28441,1,3,0)
- ;;=3^Pneumonia,Chlamydial
- ;;^UTILITY(U,$J,358.3,28441,1,4,0)
- ;;=4^J16.0
- ;;^UTILITY(U,$J,358.3,28441,2)
- ;;=^5008179
- ;;^UTILITY(U,$J,358.3,28442,0)
- ;;=J16.8^^81^1106^14
- ;;^UTILITY(U,$J,358.3,28442,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,28442,1,3,0)
- ;;=3^Pneumonia d/t Other Spec Infectious Organisms
- ;;^UTILITY(U,$J,358.3,28442,1,4,0)
- ;;=4^J16.8
- ;;^UTILITY(U,$J,358.3,28442,2)
- ;;=^5008180
- ;;^UTILITY(U,$J,358.3,28443,0)
- ;;=J17.^^81^1106^21
- ;;^UTILITY(U,$J,358.3,28443,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,28443,1,3,0)
- ;;=3^Pneumonia in Diseases Classified Elsewhere
- ;;^UTILITY(U,$J,358.3,28443,1,4,0)
- ;;=4^J17.
- ;;^UTILITY(U,$J,358.3,28443,2)
- ;;=^5008181
- ;;^UTILITY(U,$J,358.3,28444,0)
- ;;=J18.0^^81^1106^2
- ;;^UTILITY(U,$J,358.3,28444,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,28444,1,3,0)
- ;;=3^Bronchopneumonia,Unspec Organism
- ;;^UTILITY(U,$J,358.3,28444,1,4,0)
- ;;=4^J18.0
- ;;^UTILITY(U,$J,358.3,28444,2)
- ;;=^5008182
- ;;^UTILITY(U,$J,358.3,28445,0)
- ;;=J18.1^^81^1106^25
- ;;^UTILITY(U,$J,358.3,28445,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,28445,1,3,0)
- ;;=3^Pneumonia,Lobar,Unspec Organism
- ;;^UTILITY(U,$J,358.3,28445,1,4,0)
- ;;=4^J18.1
- ;;^UTILITY(U,$J,358.3,28445,2)
- ;;=^5008183
- ;;^UTILITY(U,$J,358.3,28446,0)
- ;;=J18.2^^81^1106^24
- ;;^UTILITY(U,$J,358.3,28446,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,28446,1,3,0)
- ;;=3^Pneumonia,Hypostatic,Unspec Organism
- ;;^UTILITY(U,$J,358.3,28446,1,4,0)
- ;;=4^J18.2
- ;;^UTILITY(U,$J,358.3,28446,2)
- ;;=^5008184
- ;;^UTILITY(U,$J,358.3,28447,0)
- ;;=J18.8^^81^1106^26
- ;;^UTILITY(U,$J,358.3,28447,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,28447,1,3,0)
- ;;=3^Pneumonia,Oth,Unspec Organism
- ;;^UTILITY(U,$J,358.3,28447,1,4,0)
- ;;=4^J18.8
- ;;^UTILITY(U,$J,358.3,28447,2)
- ;;=^5008185
- ;;^UTILITY(U,$J,358.3,28448,0)
- ;;=J18.9^^81^1106^27
- ;;^UTILITY(U,$J,358.3,28448,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,28448,1,3,0)
- ;;=3^Pneumonia,Unspec Organism
- ;;^UTILITY(U,$J,358.3,28448,1,4,0)
- ;;=4^J18.9
- ;;^UTILITY(U,$J,358.3,28448,2)
- ;;=^95632
- ;;^UTILITY(U,$J,358.3,28449,0)
- ;;=N39.0^^81^1107^13
- ;;^UTILITY(U,$J,358.3,28449,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,28449,1,3,0)
- ;;=3^UTI,Site not Spec
- ;;^UTILITY(U,$J,358.3,28449,1,4,0)
- ;;=4^N39.0
- ;;^UTILITY(U,$J,358.3,28449,2)
- ;;=^124436
- ;;^UTILITY(U,$J,358.3,28450,0)
- ;;=N30.01^^81^1107^1
- ;;^UTILITY(U,$J,358.3,28450,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,28450,1,3,0)
- ;;=3^Acute Cystitis w/ Hematuria
- ;;^UTILITY(U,$J,358.3,28450,1,4,0)
- ;;=4^N30.01
- ;;^UTILITY(U,$J,358.3,28450,2)
- ;;=^5015633
- ;;^UTILITY(U,$J,358.3,28451,0)
- ;;=N30.00^^81^1107^2
- ;;^UTILITY(U,$J,358.3,28451,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,28451,1,3,0)
- ;;=3^Acute Cystitis w/o Hematuria
- ;;^UTILITY(U,$J,358.3,28451,1,4,0)
- ;;=4^N30.00
- ;;^UTILITY(U,$J,358.3,28451,2)
- ;;=^5015632
- ;;^UTILITY(U,$J,358.3,28452,0)
- ;;=N10.^^81^1107^3
- ;;^UTILITY(U,$J,358.3,28452,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,28452,1,3,0)
- ;;=3^Acute Tubulo-Interstitial Nephritis
- ;;^UTILITY(U,$J,358.3,28452,1,4,0)
- ;;=4^N10.
- ;;^UTILITY(U,$J,358.3,28452,2)
- ;;=^5015570
- ;;^UTILITY(U,$J,358.3,28453,0)
- ;;=N11.9^^81^1107^4
- ;;^UTILITY(U,$J,358.3,28453,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,28453,1,3,0)
- ;;=3^Chronic Tubulo-Interstitial Nephritis,Unspec
- ;;^UTILITY(U,$J,358.3,28453,1,4,0)
- ;;=4^N11.9
- ;;^UTILITY(U,$J,358.3,28453,2)
- ;;=^5015574
- ;;^UTILITY(U,$J,358.3,28454,0)
- ;;=N30.91^^81^1107^5
- ;;^UTILITY(U,$J,358.3,28454,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,28454,1,3,0)
- ;;=3^Cystitis,Unspec w/ Hematuria
- ;;^UTILITY(U,$J,358.3,28454,1,4,0)
- ;;=4^N30.91
- ;;^UTILITY(U,$J,358.3,28454,2)
- ;;=^5015643
- ;;^UTILITY(U,$J,358.3,28455,0)
- ;;=N30.90^^81^1107^6
- ;;^UTILITY(U,$J,358.3,28455,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,28455,1,3,0)
- ;;=3^Cystitis,Unspec w/o Hematuria
- ;;^UTILITY(U,$J,358.3,28455,1,4,0)
- ;;=4^N30.90
- ;;^UTILITY(U,$J,358.3,28455,2)
- ;;=^5015642
- ;;^UTILITY(U,$J,358.3,28456,0)
- ;;=N28.84^^81^1107^7
+ ;;^UTILITY(U,$J,358.6)
+ ;;=^IBE(358.6,
+ ;;^UTILITY(U,$J,358.6,0)
+ ;;=IMP/EXP PACKAGE INTERFACE^358.6I^9^9
+ ;;^UTILITY(U,$J,358.6,1,0)
+ ;;=DPT PATIENT'S NAME^VADPT^IBDFN^REGISTRATION^1^2^1^1^1^^^1
+ ;;^UTILITY(U,$J,358.6,1,1,0)
+ ;;=^^2^2^2930212^^^^
+ ;;^UTILITY(U,$J,358.6,1,1,1,0)
+ ;;= 
+ ;;^UTILITY(U,$J,358.6,1,1,2,0)
+ ;;=Patient's Name
+ ;;^UTILITY(U,$J,358.6,1,2)
+ ;;=Patient's Name^30^^^^^^^^^^^^^^^1
+ ;;^UTILITY(U,$J,358.6,1,3)
+ ;;=PATIENT NAME
+ ;;^UTILITY(U,$J,358.6,1,7,0)
+ ;;=^357.67^1^1
+ ;;^UTILITY(U,$J,358.6,1,7,1,0)
+ ;;=DFN
+ ;;^UTILITY(U,$J,358.6,1,15,0)
+ ;;=^357.615I^0^0
+ ;;^UTILITY(U,$J,358.6,2,0)
+ ;;=DPT PATIENT'S PID^VADPT^IBDFN^REGISTRATION^1^2^1^1^1^^^1
+ ;;^UTILITY(U,$J,358.6,2,1,0)
+ ;;=^^1^1^2931015^^
+ ;;^UTILITY(U,$J,358.6,2,1,1,0)
+ ;;=Used to display the patient identifier.
+ ;;^UTILITY(U,$J,358.6,2,2)
+ ;;=PATIENT IDENTIFIER^15^^^^^^^^^^^^^^^1
+ ;;^UTILITY(U,$J,358.6,2,3)
+ ;;=PATIENT IDENTIFIER PID
+ ;;^UTILITY(U,$J,358.6,2,7,0)
+ ;;=^357.67^1^1
+ ;;^UTILITY(U,$J,358.6,2,7,1,0)
+ ;;=DFN
+ ;;^UTILITY(U,$J,358.6,2,15,0)
+ ;;=^357.615I^0^0
+ ;;^UTILITY(U,$J,358.6,3,0)
+ ;;=DPT PATIENT'S DOB/AGE^VADPT^IBDFN^REGISTRATION^1^2^2^^1^^^1
+ ;;^UTILITY(U,$J,358.6,3,1,0)
+ ;;=^^2^2^2951023^
+ ;;^UTILITY(U,$J,358.6,3,1,1,0)
+ ;;=Patient's DOB in MM DD, YYYY format
+ ;;^UTILITY(U,$J,358.6,3,1,2,0)
+ ;;=Patient's age in years.
+ ;;^UTILITY(U,$J,358.6,3,2)
+ ;;=Patient's DOB^12^Patient's Age^3^^^^^^^^^^^^^1
+ ;;^UTILITY(U,$J,358.6,3,3)
+ ;;=PATIENT DOB AGE PIMS
+ ;;^UTILITY(U,$J,358.6,3,7,0)
+ ;;=^357.67^1^1
+ ;;^UTILITY(U,$J,358.6,3,7,1,0)
+ ;;=DFN
+ ;;^UTILITY(U,$J,358.6,3,15,0)
+ ;;=^357.615I^1^1
+ ;;^UTILITY(U,$J,358.6,3,15,1,0)
+ ;;=Patient's Age^3^2^
+ ;;^UTILITY(U,$J,358.6,4,0)
+ ;;=DG SELECT CPT PROCEDURE CODES^CPT^IBDFN4^SCHEDULING^^3^2^^1^^^1^5^^^^^^^^1
+ ;;^UTILITY(U,$J,358.6,4,1,0)
+ ;;=^^2^2^2961007^^^^
+ ;;^UTILITY(U,$J,358.6,4,1,1,0)
+ ;;=Allows for the selection of CPT codes from the CPT file. Only active codes
+ ;;^UTILITY(U,$J,358.6,4,1,2,0)
+ ;;=are allowed.
+ ;;^UTILITY(U,$J,358.6,4,2)
+ ;;=CODE^5^SHORT NAME^28^DESCRIPTION^161^^^^^^^^^^CODE^1^1
+ ;;^UTILITY(U,$J,358.6,4,3)
+ ;;=SELECT CPT PROCEDURE CODES
+ ;;^UTILITY(U,$J,358.6,4,9)
+ ;;=S X=$$CPT^IBDFN12(X)
+ ;;^UTILITY(U,$J,358.6,4,11)
+ ;;=D TESTCPT^IBDFN7
+ ;;^UTILITY(U,$J,358.6,4,15,0)
+ ;;=^357.615I^2^2
+ ;;^UTILITY(U,$J,358.6,4,15,1,0)
+ ;;=SHORT NAME^28^2^^PROCEDURE
+ ;;^UTILITY(U,$J,358.6,4,15,2,0)
+ ;;=DESCRIPTION^161^3^^PROCEDURE
+ ;;^UTILITY(U,$J,358.6,4,16)
+ ;;=o^1^Procedure Narrative^^r^2^CPT CODE^1
+ ;;^UTILITY(U,$J,358.6,5,0)
+ ;;=INPUT PROCEDURE CODE (CPT4)^^^PATIENT CARE ENCOUNTER^^1^4^^1^0^^1^^^^SMP
+ ;;^UTILITY(U,$J,358.6,5,1,0)
+ ;;=^^1^1^2960205^^^^
+ ;;^UTILITY(U,$J,358.6,5,1,1,0)
+ ;;=Used for inputting CPT coded procedures performed on the patient.
+ ;;^UTILITY(U,$J,358.6,5,2)
+ ;;=^^^^^^^^^^^^^^^^^1
+ ;;^UTILITY(U,$J,358.6,5,3)
+ ;;=CPT4 PROCEDURE CODES
+ ;;^UTILITY(U,$J,358.6,5,9)
+ ;;=D INPUTCPT^IBDFN8(.X)
+ ;;^UTILITY(U,$J,358.6,5,10)
+ ;;=Enter an active CPT procedure code.
+ ;;^UTILITY(U,$J,358.6,5,11)
+ ;;=D TESTCPT^IBDFN7
+ ;;^UTILITY(U,$J,358.6,5,12)
+ ;;=PROCEDURE^1^6^7^3^2
+ ;;^UTILITY(U,$J,358.6,5,13,0)
+ ;;=^358.613V^2^2
+ ;;^UTILITY(U,$J,358.6,5,13,1,0)
+ ;;=1;IBD(358.98,^^0
+ ;;^UTILITY(U,$J,358.6,5,13,2,0)
+ ;;=2;IBD(358.98,^^0
+ ;;^UTILITY(U,$J,358.6,5,14)
+ ;;=S Y=$$DSPLYCPT^IBDFN9(Y)
+ ;;^UTILITY(U,$J,358.6,5,15,0)
+ ;;=^357.615I^0^0
+ ;;^UTILITY(U,$J,358.6,5,17)
+ ;;=D SLCTCPT^IBDFN12(.X)
+ ;;^UTILITY(U,$J,358.6,5,18)
+ ;;=S IBDF("OTHER")="81^I '$P(^(0),U,4)" D LIST^IBDFDE2(.IBDSEL,.IBDF,"CPT Procedure Code")
+ ;;^UTILITY(U,$J,358.6,5,19)
+ ;;=D CPT^IBDFN14(X)
+ ;;^UTILITY(U,$J,358.6,6,0)
+ ;;=DG SELECT ICD-10 DIAGNOSIS CODES^ICD10^IBDFN4^SCHEDULING^^3^2^^1^^^1^7^^^^1^1^^^^30
+ ;;^UTILITY(U,$J,358.6,6,1,0)
+ ;;=^^2^2^3140327
+ ;;^UTILITY(U,$J,358.6,6,1,1,0)
+ ;;=Allows the user to select ICD-10 diagnosis codes from the ICD Diagnosis
+ ;;^UTILITY(U,$J,358.6,6,1,2,0)
+ ;;=file. Allows only active codes to be selected.
+ ;;^UTILITY(U,$J,358.6,6,2)
+ ;;=CODE^8^^^^^^^^^^^^^^^1^1
+ ;;^UTILITY(U,$J,358.6,6,3)
+ ;;=SELECT ICD10 ICD-10 CODES DIAGNOSIS
+ ;;^UTILITY(U,$J,358.6,6,9)
+ ;;=D INPICD10^IBDFN8(.X)
+ ;;^UTILITY(U,$J,358.6,6,11)
+ ;;=D TESTICD0^IBDFN7
+ ;;^UTILITY(U,$J,358.6,6,12)
+ ;;=^^^^^
+ ;;^UTILITY(U,$J,358.6,6,13,0)
+ ;;=^357.613V^2^2
+ ;;^UTILITY(U,$J,358.6,6,13,1,0)
+ ;;=1;IBD(358.98,^^^^^^^
+ ;;^UTILITY(U,$J,358.6,6,13,2,0)
+ ;;=2;IBD(358.98,^^^^^^^
+ ;;^UTILITY(U,$J,358.6,6,15,0)
+ ;;=^357.615I^2^2
+ ;;^UTILITY(U,$J,358.6,6,15,1,0)
+ ;;=DIAGNOSIS^60^2^^DIAGNOSIS
+ ;;^UTILITY(U,$J,358.6,6,15,2,0)
+ ;;=DESCRIPTION^200^3^^DIAGNOSIS
+ ;;^UTILITY(U,$J,358.6,6,16)
+ ;;=o^4^Diagnosis^^r^5^ICD-10 Code^^1
+ ;;^UTILITY(U,$J,358.6,6,17)
+ ;;=D SLCTDX10^IBDFN12(.X)
+ ;;^UTILITY(U,$J,358.6,6,19)
+ ;;=D DX10^IBDFN14(X)
+ ;;^UTILITY(U,$J,358.6,7,0)
+ ;;=INPUT DIAGNOSIS CODE (ICD10)^^^PATIENT CARE ENCOUNTER^^1^^^1^^^1^^^^SMP^^^1^^^
+ ;;^UTILITY(U,$J,358.6,7,1,0)
+ ;;=^^1^1^3140327
+ ;;^UTILITY(U,$J,358.6,7,1,1,0)
+ ;;=Used for inputting ICD10 diagnosis codes.
+ ;;^UTILITY(U,$J,358.6,7,2)
+ ;;=^^^^^^^^^^^^^^^^^1
+ ;;^UTILITY(U,$J,358.6,7,3)
+ ;;=INPUT ICD10 ICD-10 DIAGNOSIS CODES
+ ;;^UTILITY(U,$J,358.6,7,9)
+ ;;=D INPICD10^IBDFN8(.X)
+ ;;^UTILITY(U,$J,358.6,7,10)
+ ;;=Enter at least two characters of an active ICD10 diagnosis code.
+ ;;^UTILITY(U,$J,358.6,7,11)
+ ;;=D TESTICD0^IBDFN7
+ ;;^UTILITY(U,$J,358.6,7,12)
+ ;;=DIAGNOSIS/PROBLEM^1^13^14^2^
+ ;;^UTILITY(U,$J,358.6,7,13,0)
+ ;;=^357.613V^10^10
+ ;;^UTILITY(U,$J,358.6,7,13,1,0)
+ ;;=1;IBD(358.98,^^1^^^^^2
+ ;;^UTILITY(U,$J,358.6,7,13,2,0)
+ ;;=2;IBD(358.98,^^1^^^^^2
+ ;;^UTILITY(U,$J,358.6,7,13,3,0)
+ ;;=3;IBD(358.98,^^1^^^^^9
+ ;;^UTILITY(U,$J,358.6,7,13,4,0)
+ ;;=3;IBE(358.99,^^0^^^^^
+ ;;^UTILITY(U,$J,358.6,7,13,5,0)
+ ;;=4;IBD(358.98,^^1^^^^^10
+ ;;^UTILITY(U,$J,358.6,7,13,6,0)
+ ;;=5;IBD(358.98,^^1^^^^^11
+ ;;^UTILITY(U,$J,358.6,7,13,7,0)
+ ;;=6;IBD(358.98,^^1^^^^^12
+ ;;^UTILITY(U,$J,358.6,7,13,8,0)
+ ;;=7;IBD(358.98,^^1^^^^^5
+ ;;^UTILITY(U,$J,358.6,7,13,9,0)
+ ;;=8;IBD(358.98,^^1^^^^^6
+ ;;^UTILITY(U,$J,358.6,7,13,10,0)
+ ;;=9;IBD(358.98,^^1^^^^^6
+ ;;^UTILITY(U,$J,358.6,7,14)
+ ;;=S Y=$$DSPICD10^IBDFN9(Y)
+ ;;^UTILITY(U,$J,358.6,7,16)
+ ;;=^^^^^^^^
+ ;;^UTILITY(U,$J,358.6,7,17)
+ ;;=D SLCTDX10^IBDFN12(.X)
+ ;;^UTILITY(U,$J,358.6,7,18)
+ ;;=S IBDF("OTHER")="80^I '$P(^(0),U,9)" D LIST^IBDFDE2(.IBDSEL,.IBDF,"ICD-10 Diagnosis Code")
+ ;;^UTILITY(U,$J,358.6,7,19)
+ ;;=D DX10^IBDFN14(X)
+ ;;^UTILITY(U,$J,358.6,8,0)
+ ;;=DG SELECT VISIT TYPE CPT PROCEDURES^VSIT^IBDFN4^SCHEDULING^^3^2^^1^^^1^9^^^^^^^^1
+ ;;^UTILITY(U,$J,358.6,8,1,0)
+ ;;=^^1^1^2941116^^^^
+ ;;^UTILITY(U,$J,358.6,8,1,1,0)
+ ;;=Allows for select of just Visit type CPT codes from the CPT file.
+ ;;^UTILITY(U,$J,358.6,8,2)
+ ;;=CODE^5^RECOMMENDED TEXT-SHORT NAME^40^RECOMMENDED HEADER^30^SHORT NAME FROM CPT FILE^28^^^^^^^^^1^1
+ ;;^UTILITY(U,$J,358.6,8,3)
+ ;;=SELECT TYPE OF VISIT CPT
+ ;;^UTILITY(U,$J,358.6,8,11)
+ ;;=D TESTVST^IBDFN7
+ ;;^UTILITY(U,$J,358.6,8,15,0)
+ ;;=^357.615I^4^3
+ ;;^UTILITY(U,$J,358.6,8,15,2,0)
+ ;;=RECOMMENDED TEXT-SHORT NAME^40^2
+ ;;^UTILITY(U,$J,358.6,8,15,3,0)
+ ;;=RECOMMENDED HEADER^30^3
+ ;;^UTILITY(U,$J,358.6,8,15,4,0)
+ ;;=SHORT NAME FROM CPT FILE^28^4
+ ;;^UTILITY(U,$J,358.6,9,0)
+ ;;=INPUT VISIT TYPE^^^PATIENT CARE ENCOUNTER^^1^^^1^^^1^^^^SMP
+ ;;^UTILITY(U,$J,358.6,9,1,0)
+ ;;=^^1^1^2951023^
+ ;;^UTILITY(U,$J,358.6,9,1,1,0)
+ ;;=Used for inputting the visit type that applies to the visit.
+ ;;^UTILITY(U,$J,358.6,9,2)
+ ;;=^^^^^^^^^^^^^^^^^1
+ ;;^UTILITY(U,$J,358.6,9,3)
+ ;;=VISIT TYPE OF VISIT
+ ;;^UTILITY(U,$J,358.6,9,9)
+ ;;=D INPUTCPT^IBDFN8(.X)
+ ;;^UTILITY(U,$J,358.6,9,10)
+ ;;=Enter an active Visit Type code.
+ ;;^UTILITY(U,$J,358.6,9,11)
+ ;;=D TESTVST^IBDFN7
+ ;;^UTILITY(U,$J,358.6,9,12)
+ ;;=ENCOUNTER^5
+ ;;^UTILITY(U,$J,358.6,9,14)
+ ;;=S Y=$$DSPLYCPT^IBDFN9(Y)
+ ;;^UTILITY(U,$J,358.6,9,15,0)
+ ;;=^357.615I^0^0
+ ;;^UTILITY(U,$J,358.6,9,17)
+ ;;=D SLCTVST^IBDFN12(.X)
+ ;;^UTILITY(U,$J,358.6,9,18)
+ ;;=S IBDF("OTHER")="357.69^I '$P(^(0),U,4)" D LIST^IBDFDE2(.IBDSEL,.IBDF,"Visit Type (EM) Code")
+ ;;^UTILITY(U,$J,358.6,9,19)
+ ;;=D VST^IBDFN14(X)

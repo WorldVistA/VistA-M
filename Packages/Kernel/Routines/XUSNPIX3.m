@@ -1,5 +1,5 @@
-XUSNPIX3 ;OAK_BP/CMW - NPI EXTRACT REPORT ;01-OCT-06
- ;;8.0;KERNEL;**438,452,453,481,548**; Jul 10, 1995;Build 24
+XUSNPIX3 ;OAK_BP/CMW - NPI EXTRACT REPORT ; Aug 30, 2022@04:12:24
+ ;;8.0;KERNEL;**438,452,453,481,548,774**; Jul 10, 1995;Build 2
  ;;Per VHA Directive 2004-038, this routine should not be modified.
  ;
  ; Direct access to ^IBE(350.9, fields .02, 1.05, 19;.02, 19;1.01, 19;1.02, 19;1.03, 19;,1.04, 19;1.05 authorized by
@@ -51,6 +51,7 @@ ENT(XUSPROD,XUSVER) ; ENTRY POINT
  . ; setup NPI array
  . S ^TMP("XUSNPI",$J,XUSTYP,XUSNPI)=NVIEN
  ;
+ I $D(^TMP("XUSNPI",$J))'>0 Q  ;p774
  I $D(^TMP("XUSNPI",$J)) D INITA     ; set up global variables and P2P data
  ;
  ; If Provider Type is Individual
@@ -138,7 +139,7 @@ HDR(XUSRTN) ;Get header
  ;
  ; *** Start XU*8.0*548 - RBN ***
  ; Get header for extracted data NOT email
- I INST D
+ I $G(INST) D
  . S DIC4=$G(^DIC(4,INST,4))
  . S XUSCITY=$P(DIC4,U,3)
  . S XUSSTATE=$P(DIC4,U,4)

@@ -1,6 +1,6 @@
 IBRFN1 ;ALB/CPM - PASS PATIENT STATEMENT DATA TO A/R ; 24-FEB-93
- ;;Version 2.0 ; INTEGRATED BILLING ;**27,57,52**; 21-MAR-94
- ;;Per VHA Directive 10-93-142, this routine should not be modified.
+ ;;2.0;INTEGRATED BILLING;**27,57,52,715**; 21-MAR-94;Build 25
+ ;;Per VA Directive 6402, this routine should not be modified.
  ;
 STMT(TRAN) ; Pass clinical data to AR for the patient statement.
  ;         Input:    TRAN -- AR Transaction number (ptr to #433)
@@ -22,16 +22,19 @@ STMT(TRAN) ; Pass clinical data to AR for the patient statement.
  ;        -----------------------------------------------------------
  ;
  Q:'$G(TRAN)  K ^TMP("IBRFN1",$J)
- N IBN,IBJ,IBND,IBBG,IBSL,IBPE,IBCHG
+ N IBATYP,IBATYPN,IBN,IBJ,IBND,IBBG,IBSL,IBPE,IBCHG
  S IBN=0 F IBJ=1:1 S IBN=$O(^IB("AT",TRAN,IBN)) Q:'IBN  D
- . S IBND=$G(^IB(IBN,0)),IBSL=$P(IBND,"^",4),IBCHG=$P(IBND,"^",7) Q:'IBND
- . I +IBSL=52 D RX Q
- . S IBBG=$P($G(^IBE(350.1,+$P(IBND,"^",3),0)),"^",11)
- . I IBBG=4 S ^TMP("IBRFN1",$J,IBJ)=+IBND_"^"_$P(IBND,"^",14)_"^^^^^^"_IBCHG Q
- . S IBPE=$G(^IB(+$P(IBND,"^",16),0))
- . I +IBSL'=405,+IBSL'=45 S IBSL=$P(IBPE,"^",4)
- . I +IBSL=405!(+IBSL=45) D INP Q
- . S ^TMP("IBRFN1",$J,IBJ)=+IBND_"^^"_$P(IBND,"^",14)_"^"_$P(IBND,"^",15)_"^^^^"_IBCHG
+ .S IBND=$G(^IB(IBN,0)),IBSL=$P(IBND,U,4),IBCHG=$P(IBND,U,7) Q:'IBND
+ .I +IBSL=52 D RX Q
+ .S IBATYP=$P(IBND,U,3),IBATYPN=$$GET1^DIQ(350.1,IBATYP_",",.01)  ; get action type (file 350.1 ien) and action type name (350.1/.01) IB*2.0*715
+ .S IBBG=$P($G(^IBE(350.1,IBATYP,0)),U,11)
+ .I IBBG=4 S ^TMP("IBRFN1",$J,IBJ)=+IBND_U_$P(IBND,U,14)_"^^^^^^"_IBCHG Q  ; outpatient
+ .I IBBG=7,IBATYPN["OPT"!(IBATYPN["RX") S ^TMP("IBRFN1",$J,IBJ)=+IBND_U_$P(IBND,U,14)_"^^^^^^"_IBCHG Q  ; Tricare outpatient / RX  IB*2.0*715
+ .S IBPE=$G(^IB(+$P(IBND,U,16),0))
+ .I +IBSL'=405,+IBSL'=45 S IBSL=$P(IBPE,U,4)
+ .I +IBSL=405!(+IBSL=45) D INP Q
+ .S ^TMP("IBRFN1",$J,IBJ)=+IBND_"^^"_$P(IBND,U,14)_U_$P(IBND,U,15)_"^^^^"_IBCHG
+ .Q
  Q
  ;
 RX ; Build array element for Pharmacy Co-pay charges.

@@ -1,5 +1,5 @@
 PSOREJU1 ;BIRM/MFR - BPS (ECME) - Clinical Rejects Utilities (1) ;10/15/04
- ;;7.0;OUTPATIENT PHARMACY;**148,247,260,287,289,358,359,385,403,421,482**;DEC 1997;Build 44
+ ;;7.0;OUTPATIENT PHARMACY;**148,247,260,287,289,358,359,385,403,421,482,562**;DEC 1997;Build 19
  ;Reference to File 9002313.21 - BPS NCPDP PROFESSIONAL SERVICE CODE supported by IA 4712
  ;Reference to File 9002313.22 - BPS NCPDP RESULT OF SERVICE CODE supported by IA 4713
  ;Reference to File 9002313.23 - BPS NCPDP REASON FOR SERVICE CODE supported by IA 4714
@@ -157,7 +157,7 @@ CLADIC ;
 HDLG(RX,RFL,CODES,FROM,OPTS,DEF) ; - REJECT Handling
  ;Input: (r) RX   - Rx IEN (#52)
  ;       (o) RFL  - Refill # (Default: most recent)
- ;       (r) CODES - List of REJECT CODES to be handled separated by commas (default is "79,88")
+ ;       (r) CODES - List of REJECT CODES to be handled separated by commas (default is "79,88,943")
  ;       (r) FROM  - Same values as BWHERE param. in the EN^BPSNCPDP api
  ;       (r) OPTS  - Available options ("IOQ" for IGNORE/OVERRIDE/QUIT)
  ;       (o) DEF   - Default Option ("O", "I" or "Q")
@@ -220,17 +220,17 @@ HDLGRRR(RRRDATA,OPTS,DEF,RRR,CODES)  ; Check for VET with open RRR rejects, new 
  ; (r) CODES - Open reject codes
  ;           - modified by subroutine
  ; Output:(r) RRR   - Reject Resolution Required information  Flag(0/1)^Threshold Amt^Gross Amt Due
- ;           - only return a value for RRR if not 79 or 88
+ ;           - only return a value for RRR if not 79 or 88 or 943
  ;
  N REJIEN,EX7988,SAVECODES
  S SAVECODES=CODES
  S (REJIEN,CODES)="",RRR=0,EX7988=0
- ; Set CODES with all open RRR, 79, and 88 reject codes for RX/Fill returned from $$FIND
+ ; Set CODES with all open RRR, 79, 88, and 943 reject codes for RX/Fill returned from $$FIND
  F  S REJIEN=$O(RRRDATA(REJIEN)) Q:(REJIEN="")!EX7988  D
  . ;find RRR reject
  . I RRRDATA(REJIEN,"RRR FLAG")="YES" S RRR=1_U_RRRDATA(REJIEN,"RRR THRESHOLD AMT")_U_RRRDATA(REJIEN,"RRR GROSS AMT DUE"),CODES=RRRDATA(REJIEN,"CODE")_","_CODES Q
- . ; find 79 or 88 reject, if 79 or 88 is present then don't set up RRR for display on reject notification screen (EX7988=1)
- . I "/79/88/"[("/"_RRRDATA(REJIEN,"CODE")_"/") S RRR=0,EX7988=1
+ . ; If reject code 79 or 88 or 943 is present, then don't set up RRR for display on reject notification screen (EX7988=1)
+ . I "/79/88/943/"[("/"_RRRDATA(REJIEN,"CODE")_"/") S RRR=0,EX7988=1
  I 'RRR S CODES=SAVECODES Q  ;if not RRR, don't override CODES
  ;Strip the last comma off CODES
  I $E(CODES,$L(CODES))="," S CODES=$E(CODES,1,$L(CODES)-1)
@@ -254,7 +254,11 @@ HDLGTC(REJDATA,OPTS,DEF,CODES,DUZ) ; Check for TRICARE/CHAMPVA open rejects, new
  ; Strip the last comma off CODES
  I $E(CODES,$L(CODES))="," S CODES=$E(CODES,1,$L(CODES)-1)
  ; Set action prompt.
- S OPTS=$S(CODES["88"!(CODES["79"):"ODQ",1:"DQ"),DEF="Q"
+ S DEF="Q"
+ S OPTS="DQ"
+ I (","_CODES_",")[(",79,") S OPTS="ODQ"
+ I (","_CODES_",")[(",88,") S OPTS="ODQ"
+ I (","_CODES_",")[(",943,") S OPTS="ODQ"
  ; Include the Ignore action prompt if user holds key.
  I $D(^XUSEC("PSO TRICARE/CHAMPVA",DUZ)) S OPTS=OPTS_"I"
  Q
@@ -353,9 +357,9 @@ DUP(RX,RSP,CLOSED) ; Checks if REJECT has already been logged in the PRESCRIPTIO
  Q DUP
  ;
 OTH(CODE,LST) ; Removes the current Reject code from the list
- ; Input:  (r) CODE  - Current Reject Code (79 or 88)
+ ; Input:  (r) CODE  - Current Reject Code (79 or 88 or 943)
  ;         (o) LST   - List of all Reject codes with response (comma separated)
- ; Output:     OTH   - List of OTHER Reject codes (w/out 79 or 88)
+ ; Output:     OTH   - List of OTHER Reject codes (w/out 79 or 88 or 943)
  ;
  N I,OTH
  F I=1:1:$L(LST,",") D

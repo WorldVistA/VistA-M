@@ -1,132 +1,122 @@
-IBDEI12Z ; ; 04-FEB-2020
- ;;3.0;IB ENCOUNTER FORM IMP/EXP;;FEB 04, 2020
+IBDEI12Z ; ; 01-FEB-2022
+ ;;3.0;IB ENCOUNTER FORM IMP/EXP;;FEB 01, 2022
  Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,999) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
- ;;^UTILITY(U,$J,358.3,17373,0)
- ;;=R29.5^^88^891^162
- ;;^UTILITY(U,$J,358.3,17373,1,0)
+ ;;^UTILITY(U,$J,358.3,17556,2)
+ ;;=^5043541
+ ;;^UTILITY(U,$J,358.3,17557,0)
+ ;;=S86.111A^^61^788^51
+ ;;^UTILITY(U,$J,358.3,17557,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,17373,1,3,0)
- ;;=3^Transient Paralysis
- ;;^UTILITY(U,$J,358.3,17373,1,4,0)
- ;;=4^R29.5
- ;;^UTILITY(U,$J,358.3,17373,2)
- ;;=^5019316
- ;;^UTILITY(U,$J,358.3,17374,0)
- ;;=R34.^^88^891^43
- ;;^UTILITY(U,$J,358.3,17374,1,0)
+ ;;^UTILITY(U,$J,358.3,17557,1,3,0)
+ ;;=3^Strain of Right Lower Leg Posterior Muscle/Tendon
+ ;;^UTILITY(U,$J,358.3,17557,1,4,0)
+ ;;=4^S86.111A
+ ;;^UTILITY(U,$J,358.3,17557,2)
+ ;;=^5043460
+ ;;^UTILITY(U,$J,358.3,17558,0)
+ ;;=S86.112A^^61^788^32
+ ;;^UTILITY(U,$J,358.3,17558,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,17374,1,3,0)
- ;;=3^Anuria and Oliguria
- ;;^UTILITY(U,$J,358.3,17374,1,4,0)
- ;;=4^R34.
- ;;^UTILITY(U,$J,358.3,17374,2)
- ;;=^5019333
- ;;^UTILITY(U,$J,358.3,17375,0)
- ;;=R35.8^^88^891^145
- ;;^UTILITY(U,$J,358.3,17375,1,0)
+ ;;^UTILITY(U,$J,358.3,17558,1,3,0)
+ ;;=3^Strain of Left Lower Leg Posterior Muscle/Tendon
+ ;;^UTILITY(U,$J,358.3,17558,1,4,0)
+ ;;=4^S86.112A
+ ;;^UTILITY(U,$J,358.3,17558,2)
+ ;;=^5043463
+ ;;^UTILITY(U,$J,358.3,17559,0)
+ ;;=S83.401A^^61^788^17
+ ;;^UTILITY(U,$J,358.3,17559,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,17375,1,3,0)
- ;;=3^Polyuria NEC
- ;;^UTILITY(U,$J,358.3,17375,1,4,0)
- ;;=4^R35.8
- ;;^UTILITY(U,$J,358.3,17375,2)
- ;;=^5019336
- ;;^UTILITY(U,$J,358.3,17376,0)
- ;;=R39.12^^88^891^146
- ;;^UTILITY(U,$J,358.3,17376,1,0)
+ ;;^UTILITY(U,$J,358.3,17559,1,3,0)
+ ;;=3^Sprain of Right Knee Collateral Ligament
+ ;;^UTILITY(U,$J,358.3,17559,1,4,0)
+ ;;=4^S83.401A
+ ;;^UTILITY(U,$J,358.3,17559,2)
+ ;;=^5043103
+ ;;^UTILITY(U,$J,358.3,17560,0)
+ ;;=S83.402A^^61^788^8
+ ;;^UTILITY(U,$J,358.3,17560,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,17376,1,3,0)
- ;;=3^Poor Urinary Stream
- ;;^UTILITY(U,$J,358.3,17376,1,4,0)
- ;;=4^R39.12
- ;;^UTILITY(U,$J,358.3,17376,2)
- ;;=^5019342
- ;;^UTILITY(U,$J,358.3,17377,0)
- ;;=R39.14^^88^891^78
- ;;^UTILITY(U,$J,358.3,17377,1,0)
+ ;;^UTILITY(U,$J,358.3,17560,1,3,0)
+ ;;=3^Sprain of Left Knee Collateral Ligament
+ ;;^UTILITY(U,$J,358.3,17560,1,4,0)
+ ;;=4^S83.402A
+ ;;^UTILITY(U,$J,358.3,17560,2)
+ ;;=^5043106
+ ;;^UTILITY(U,$J,358.3,17561,0)
+ ;;=S93.402A^^61^788^6
+ ;;^UTILITY(U,$J,358.3,17561,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,17377,1,3,0)
- ;;=3^Feeling of Incomplete Bladder Emptying
- ;;^UTILITY(U,$J,358.3,17377,1,4,0)
- ;;=4^R39.14
- ;;^UTILITY(U,$J,358.3,17377,2)
- ;;=^5019344
- ;;^UTILITY(U,$J,358.3,17378,0)
- ;;=R41.4^^88^891^127
- ;;^UTILITY(U,$J,358.3,17378,1,0)
+ ;;^UTILITY(U,$J,358.3,17561,1,3,0)
+ ;;=3^Sprain of Left Ankle Ligament
+ ;;^UTILITY(U,$J,358.3,17561,1,4,0)
+ ;;=4^S93.402A
+ ;;^UTILITY(U,$J,358.3,17561,2)
+ ;;=^5045777
+ ;;^UTILITY(U,$J,358.3,17562,0)
+ ;;=S93.401A^^61^788^15
+ ;;^UTILITY(U,$J,358.3,17562,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,17378,1,3,0)
- ;;=3^Neurologic Neglect Syndrome
- ;;^UTILITY(U,$J,358.3,17378,1,4,0)
- ;;=4^R41.4
- ;;^UTILITY(U,$J,358.3,17378,2)
- ;;=^303316
- ;;^UTILITY(U,$J,358.3,17379,0)
- ;;=R41.81^^88^891^36
- ;;^UTILITY(U,$J,358.3,17379,1,0)
+ ;;^UTILITY(U,$J,358.3,17562,1,3,0)
+ ;;=3^Sprain of Right Ankle Ligament
+ ;;^UTILITY(U,$J,358.3,17562,1,4,0)
+ ;;=4^S93.401A
+ ;;^UTILITY(U,$J,358.3,17562,2)
+ ;;=^5045774
+ ;;^UTILITY(U,$J,358.3,17563,0)
+ ;;=S56.511A^^61^788^40
+ ;;^UTILITY(U,$J,358.3,17563,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,17379,1,3,0)
- ;;=3^Age-Related Cognitive Decline
- ;;^UTILITY(U,$J,358.3,17379,1,4,0)
- ;;=4^R41.81
- ;;^UTILITY(U,$J,358.3,17379,2)
- ;;=^5019440
- ;;^UTILITY(U,$J,358.3,17380,0)
- ;;=R41.0^^88^891^66
- ;;^UTILITY(U,$J,358.3,17380,1,0)
+ ;;^UTILITY(U,$J,358.3,17563,1,3,0)
+ ;;=3^Strain of Right Forearm Extn Musc/Fasc/Tend
+ ;;^UTILITY(U,$J,358.3,17563,1,4,0)
+ ;;=4^S56.511A
+ ;;^UTILITY(U,$J,358.3,17563,2)
+ ;;=^5031838
+ ;;^UTILITY(U,$J,358.3,17564,0)
+ ;;=S56.512A^^61^788^21
+ ;;^UTILITY(U,$J,358.3,17564,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,17380,1,3,0)
- ;;=3^Disorientation/Confusion/Delrium,Unspec
- ;;^UTILITY(U,$J,358.3,17380,1,4,0)
- ;;=4^R41.0
- ;;^UTILITY(U,$J,358.3,17380,2)
- ;;=^5019436
- ;;^UTILITY(U,$J,358.3,17381,0)
- ;;=R41.82^^88^891^38
- ;;^UTILITY(U,$J,358.3,17381,1,0)
+ ;;^UTILITY(U,$J,358.3,17564,1,3,0)
+ ;;=3^Strain of Left Forearm Extn Musc/Fasc/Tend
+ ;;^UTILITY(U,$J,358.3,17564,1,4,0)
+ ;;=4^S56.512A
+ ;;^UTILITY(U,$J,358.3,17564,2)
+ ;;=^5031841
+ ;;^UTILITY(U,$J,358.3,17565,0)
+ ;;=S13.8XXA^^61^788^13
+ ;;^UTILITY(U,$J,358.3,17565,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,17381,1,3,0)
- ;;=3^Altered Mental Status,Unspec
- ;;^UTILITY(U,$J,358.3,17381,1,4,0)
- ;;=4^R41.82
- ;;^UTILITY(U,$J,358.3,17381,2)
- ;;=^5019441
- ;;^UTILITY(U,$J,358.3,17382,0)
- ;;=R43.0^^88^891^41
- ;;^UTILITY(U,$J,358.3,17382,1,0)
+ ;;^UTILITY(U,$J,358.3,17565,1,3,0)
+ ;;=3^Sprain of Neck Joints/Ligaments,Init Encntr
+ ;;^UTILITY(U,$J,358.3,17565,1,4,0)
+ ;;=4^S13.8XXA
+ ;;^UTILITY(U,$J,358.3,17565,2)
+ ;;=^5022034
+ ;;^UTILITY(U,$J,358.3,17566,0)
+ ;;=S16.1XXA^^61^788^39
+ ;;^UTILITY(U,$J,358.3,17566,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,17382,1,3,0)
- ;;=3^Anosmia
- ;;^UTILITY(U,$J,358.3,17382,1,4,0)
- ;;=4^R43.0
- ;;^UTILITY(U,$J,358.3,17382,2)
- ;;=^7949
- ;;^UTILITY(U,$J,358.3,17383,0)
- ;;=R43.1^^88^891^137
- ;;^UTILITY(U,$J,358.3,17383,1,0)
+ ;;^UTILITY(U,$J,358.3,17566,1,3,0)
+ ;;=3^Strain of Neck Muscle/Fasc/Tendon,Init Encntr
+ ;;^UTILITY(U,$J,358.3,17566,1,4,0)
+ ;;=4^S16.1XXA
+ ;;^UTILITY(U,$J,358.3,17566,2)
+ ;;=^5022358
+ ;;^UTILITY(U,$J,358.3,17567,0)
+ ;;=S33.5XXA^^61^788^12
+ ;;^UTILITY(U,$J,358.3,17567,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,17383,1,3,0)
- ;;=3^Parosmia
- ;;^UTILITY(U,$J,358.3,17383,1,4,0)
- ;;=4^R43.1
- ;;^UTILITY(U,$J,358.3,17383,2)
- ;;=^5019451
- ;;^UTILITY(U,$J,358.3,17384,0)
- ;;=R43.2^^88^891^134
- ;;^UTILITY(U,$J,358.3,17384,1,0)
+ ;;^UTILITY(U,$J,358.3,17567,1,3,0)
+ ;;=3^Sprain of Lumbar Spine Ligaments,Init Encntr
+ ;;^UTILITY(U,$J,358.3,17567,1,4,0)
+ ;;=4^S33.5XXA
+ ;;^UTILITY(U,$J,358.3,17567,2)
+ ;;=^5025172
+ ;;^UTILITY(U,$J,358.3,17568,0)
+ ;;=S20.221A^^61^788^4
+ ;;^UTILITY(U,$J,358.3,17568,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,17384,1,3,0)
- ;;=3^Parageusia
- ;;^UTILITY(U,$J,358.3,17384,1,4,0)
- ;;=4^R43.2
- ;;^UTILITY(U,$J,358.3,17384,2)
- ;;=^5019452
- ;;^UTILITY(U,$J,358.3,17385,0)
- ;;=R43.9^^88^891^155
- ;;^UTILITY(U,$J,358.3,17385,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,17385,1,3,0)
- ;;=3^Smell and Taste Disturbances,Unspec
- ;;^UTILITY(U,$J,358.3,17385,1,4,0)
- ;;=4^R43.9
+ ;;^UTILITY(U,$J,358.3,17568,1,3,0)
+ ;;=3^Contusion,Rt Back Wall of Thorax

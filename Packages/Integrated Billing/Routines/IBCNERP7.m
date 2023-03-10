@@ -1,5 +1,5 @@
 IBCNERP7 ;DAOU/BHS - eIV STATISTICAL REPORT ;10-JUN-2002
- ;;2.0;INTEGRATED BILLING;**184,416,528,621**;21-MAR-94;Build 14
+ ;;2.0;INTEGRATED BILLING;**184,416,528,621,687**;21-MAR-94;Build 88
  ;;Per VA Directive 6402, this routine should not be modified.
  ;
  ; eIV - Insurance Verification Interface
@@ -62,12 +62,18 @@ DTMRNG ; Determine the start and end date/times for the report
  ;
  W !
  ;
+DTMRNG0 ;/ckb - IB*2*687 - Added the DTMRNG0 tag.
  S DIR(0)="DO^::ERX"
  S DIR("A")="Start DATE/TIME"
  S DIR("?",1)="    Enter Start DATE/TIME for report range."
  S DIR("?")="    The time element is required."
  D ^DIR K DIR
  I $D(DIRUT) S STOP=1 G DTMRNGX
+ ;/ckb-IB*2*687 - Added the following date validation.
+ I Y>$$NOW^XLFDT D  G DTMRNG0
+ . W !!,"    The Start DATE/TIME entered cannot in the future."
+ . W !,"    Please reenter."
+ . W !
  S IBCNESPC("BEGDTM")=Y
  ;
 DTMRNG1 S DIR(0)="D^::ERX"
@@ -79,6 +85,11 @@ DTMRNG1 S DIR(0)="D^::ERX"
  I Y<IBCNESPC("BEGDTM") D  G DTMRNG1
  . W !,"    The End Date/Time must not precede the Start Date/Time."
  . W !,"    Please reenter."
+ ;/ckb-IB*2*687 - Added the following date validation.
+ I Y>$$NOW^XLFDT D  G DTMRNG1
+ . W !!,"    The End DATE/TIME entered cannot in the future."
+ . W !,"    Please reenter."
+ . W !
  S IBCNESPC("ENDDTM")=Y
  ;
 DTMRNGX ; DTMRNG exit pt
@@ -111,9 +122,12 @@ SECTS ; Prompt to allow users to include the available sections in the report
  S DIR("?",9)="  4  -  Include statistics on the Current Status of the system and Payer"
  S DIR("?",10)="        Activity. The totals in the Current Status section--including responses"
  S DIR("?",11)="        pending, queued inquiries, deferred inquiries, insurance companies"
- S DIR("?",12)="        without national ID, eIV Payers disabled locally, and insurance buffer"
- S DIR("?",13)="        entries--are independent of the report date range. The totals in the"
- S DIR("?",14)="        Payer Activity section reflect activity during the report date range."
+ ;/ckb-IB*2,0*687 - Reworded the text for the line below and adjusted the following lines accordingly.
+ ;S DIR("?",12)="        without national ID, eIV Payers disabled locally, and insurance buffer"
+ S DIR("?",12)="        without national ID, eIV Payers locally enabled is NO, and insurance"
+ S DIR("?",13)="        buffer entries--are independent of the report date range. The totals"
+ S DIR("?",14)="        in the Payer Activity section reflect activity during the report date"
+ S DIR("?",15)="        range."
  S DIR("?")=" "
  D ^DIR K DIR
  I $D(DIRUT) S STOP=1 G SECTSX

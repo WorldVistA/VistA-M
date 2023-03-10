@@ -1,5 +1,5 @@
 RORUPDUT ;HCIOFO/SG - REGISTRY UPDATE UTILITIES ;15 Jun 2015  12:30 PM
- ;;1.5;CLINICAL CASE REGISTRIES;**18,19,26**;Feb 17, 2006;Build 53
+ ;;1.5;CLINICAL CASE REGISTRIES;**18,19,26,37**;Feb 17, 2006;Build 9
  ;
  ;*****************************************************************************
  ;*****************************************************************************
@@ -12,13 +12,19 @@ RORUPDUT ;HCIOFO/SG - REGISTRY UPDATE UTILITIES ;15 Jun 2015  12:30 PM
  ;ROR*1.5*19   FEB  2012   K GUPTA      Support for ICD-10 Coding System
  ;ROR*1.5*26   APR  2015   T KOPP       Add check for coding system for procedures
  ;                                      Add logic for storing inpatient proc codes
+ ;ROR*1.5*37   SEP  2020   F TRAXLER    Add LAST2YRS, LASTADM, LASTVSIT and DELETE
+ ;                                      subroutines
  ;*****************************************************************************
  ;****************************************************************************
  ; This routine uses the following IAs:
  ;
- ; #2051  FIND^DIC  (supported)
+ ; #2051  FIND^DIC (supported)
+ ; #2053  FILE^DIC (supported)
  ; #2056  GETS^DIQ (supported)
+ ; #2309  ^AUPNVSIT("AA") x-ref
+ ; #3545  ^DGPT("AAD") x-ref
  ; #5679  IMPDATE^LEXU (Supported)
+ ;
  ;****************************************************************************          
  ;
  ; RORVALS ------------- CALCULATED VALUES
@@ -317,3 +323,43 @@ SRDT(NAME,PFX,COND) ;
  S DATE=$G(RORVALS("SV",NAME,$S(PFX="GDL":"DTL",1:"DTF")))
  I DATE  S:DATE<$G(RORVALS("SV","ROR SRDT")) RORVALS("SV","ROR SRDT")=DATE
  Q 1
+ ;
+LAST2YRS(RORDFN) ;any admission or visit dates in the last 2 years?
+ ;  RORDFN = dfn
+ ;
+ ;return: 0 - admission and visit dates are more than 2 years old 
+ ;        1 - admission and/or visit dates are less than 2 years old
+ N RC,ROR2YRS,RORADATE,RORIENS,RORVDATE,RORREGI
+ S RC=0,ROR2YRS=DT-20000
+ S RORADATE=+$$LASTADM(RORDFN) ;most recent admission date (file 45)
+ S RORVDATE=+$$LASTVSIT(RORDFN) ;most recent visit date (file 9000010)
+ I (RORADATE>ROR2YRS)!(RORVDATE>ROR2YRS) S RC=1 Q RC
+ S RORREGI=$$REGIEN^RORUTL02("VA RECENT PATIENTS") ;registry ien
+ S RORIENS=$$PRRIEN^RORUTL01(RORDFN,RORREGI)_"," ;get 798 ien for patient and registry
+ I +RORIENS'>0 S RC=0 Q RC
+ S RC=$$DELETE(RORIENS)
+ Q RC
+ ;
+LASTADM(RORDFN) ;returns patient's last admission date
+ ; RORDFN = DFN
+ S RORDFN=+$G(RORDFN)
+ Q $O(^DGPT("AAD",RORDFN,9999999),-1)
+ ;
+LASTVSIT(RORDFN) ;returns patient's last visit date
+ ; RORDFN = DFN
+ N RORDATE
+ S RORDFN=+$G(RORDFN)
+ S RORDATE=$O(^AUPNVSIT("AA",RORDFN,""))
+ I +RORDATE>0 S RORDATE=9999999-$P(RORDATE,".",1)
+ Q RORDATE
+ ;
+DELETE(RORIENS) ;set STATUS=5 (Deleted)
+ N DIERR,RC,RORFDA,RORMSG
+ S RC=0
+ S RORFDA(798,RORIENS,3)=5
+ D FILE^DIE(,"RORFDA","RORMSG")
+ S:'$G(DIERR) RC=1
+ I $G(DIERR) D  ;RC=-1
+ . S RC=$$ERROR^RORERR(-9,"DELETE^RORUPDUT","STATUS not set to 5 (Deleted)",,RORIENS)
+ Q RC
+ ;

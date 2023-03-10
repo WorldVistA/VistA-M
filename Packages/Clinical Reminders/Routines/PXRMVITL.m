@@ -1,24 +1,24 @@
-PXRMVITL ;SLC/PKR - Handle vitals findings. ;08/19/2010
- ;;2.0;CLINICAL REMINDERS;**6,12,17,18**;Feb 04, 2005;Build 152
+PXRMVITL ;SLC/PKR - Handle vitals findings. ;07/31/2020
+ ;;2.0;CLINICAL REMINDERS;**6,12,17,18,42**;Feb 04, 2005;Build 245
  ;
- ;===========================================================
+ ;===============
 EVALFI(DFN,DEFARR,ENODE,FIEVAL) ;Evaluate vital measurement findings.
  D EVALFI^PXRMINDX(DFN,.DEFARR,ENODE,.FIEVAL)
  Q
  ;
- ;===========================================================
+ ;===============
 EVALPL(FINDPA,ENODE,TERMARR,PLIST) ;Evaluate vital measurement
  ;term findings for patient lists.
  D EVALPL^PXRMINDL(.FINDPA,ENODE,.TERMARR,PLIST)
  Q
  ;
- ;===========================================================
+ ;===============
 EVALTERM(DFN,FINDPA,ENODE,TERMARR,TFIEVAL) ;Evaluate vital measurement
  ;terms.
  D EVALTERM^PXRMINDX(DFN,.FINDPA,ENODE,.TERMARR,.TFIEVAL)
  Q
  ;
- ;===========================================================
+ ;===============
 GETDATA(DAS,FIEVT) ;Return data for a GMRV Vital Measurement entry.
  N EM,IND,GMRVDATA,STOP,TEMP,TYPE
  ;DBIA #3647
@@ -37,6 +37,7 @@ GETDATA(DAS,FIEVT) ;Return data for a GMRV Vital Measurement entry.
  I FIEVT("TYPE")="BLOOD PRESSURE",FIEVT("RATE")["/" D
  . S FIEVT("SYSTOLIC")=$P(FIEVT("RATE"),"/",1)
  . S FIEVT("DIASTOLIC")=$P(FIEVT("RATE"),"/",$L(FIEVT("RATE"),"/"))
+ I GMRVDATA(8)'="" S FIEVT("SUPPLEMENTAL O2")=GMRVDATA(8)
  S IND=0
  ;Load the external form of the qualifiers.
  F  S IND=$O(GMRVDATA(12,IND)) Q:IND=""  D
@@ -48,7 +49,7 @@ GETDATA(DAS,FIEVT) ;Return data for a GMRV Vital Measurement entry.
  E  S FIEVT("STOP CODE")=""
  Q
  ;
- ;===========================================================
+ ;===============
 MHVOUT(INDENT,IFIEVAL,NLINES,TEXT) ;Produce the MHV output.
  N DATE,EM,IND,JND,NAME,NOUT,RATE,TEMP,TEXTOUT,TYPE
  S TYPE=$$EXTERNAL^DILFD(120.5,.03,"",IFIEVAL("TYPE"),.EM)
@@ -64,7 +65,7 @@ MHVOUT(INDENT,IFIEVAL,NLINES,TEXT) ;Produce the MHV output.
  S NLINES=NLINES+1,TEXT(NLINES)=""
  Q
  ;
- ;===========================================================
+ ;===============
 OUTPUT(INDENT,IFIEVAL,NLINES,TEXT) ;Produce the clinical
  ;maintenance output.
  N DATE,EM,IND,JND,NOUT,RATE,TEMP,TEXTOUT,TYPE
@@ -79,6 +80,8 @@ OUTPUT(INDENT,IFIEVAL,NLINES,TEXT) ;Produce the clinical
  . S TEMP=TEMP_"; rate - "_RATE
  . D FORMATS^PXRMTEXT(INDENT+2,PXRMRM,TEMP,.NOUT,.TEXTOUT)
  . F JND=1:1:NOUT S NLINES=NLINES+1,TEXT(NLINES)=TEXTOUT(JND)
+ .;If there is a supplemental O2 display it.
+ . I $D(IFIEVAL("SUPPLEMENTAL O2")) S NLINES=NLINES+1,TEXT(NLINES)="   Supplemental O2: "_IFIEVAL("SUPPLEMENTAL O2")
  .;If there are qualifiers display them.
  . I $D(IFIEVAL(IND,"QUALIFIER")) D
  .. S TEMP="Qualifiers:"

@@ -1,5 +1,5 @@
 SROAUTLC ;BIR/ADM - CARDIAC RISK ASSESSMENT UTILITY ;08/18/2011
- ;;3.0;Surgery;**38,71,90,88,95,97,102,96,125,153,163,164,166,174,175,176,182,184**;24 Jun 93;Build 35
+ ;;3.0;Surgery;**38,71,90,88,95,97,102,96,125,153,163,164,166,174,175,176,182,184,200**;24 Jun 93;Build 9
  ;
  ; Reference to ^DIC(45.3 supported by DBIA #218
  ;
@@ -35,7 +35,7 @@ HELP K SRHLP S SRHLP(1)="This is the category of emergency reflecting the patien
  S SRHLP(4)="1. Emergent (ongoing ischemia) - Clinical condition mandates immediate",SRHLP(5)="surgery usually on day of catheterization because of ischemia despite"
  S SRHLP(6)="medical therapy, such as intravenous nitroglycerine.  Ischemia should",SRHLP(7)="be manifested as chest pain and/or ST-segment depression."
  S SRHLP(8)="",SRHLP(9)="2. Emergent (hemodynamic compromise) - Persistent hypotension (arterial",SRHLP(10)="systolic pressure < 80 mm Hg) and/or low cardiac output (cardiac index"
- S SRHLP(11)="< 2.0 L/min/MxM) despite iontropic and/or mechanical circulatory",SRHLP(12)="support mandates immediates surgery within hours of the cardiac",SRHLP(13)="catheterization."
+ S SRHLP(11)="< 2.0 L/min/MxM) despite inotropic and/or mechanical circulatory",SRHLP(12)="support mandates immediate surgery within hours of the cardiac",SRHLP(13)="catheterization."
  S SRHLP(14)="",SRHLP(15)="3. Emergent (arrest with CPR) - Patient is taken to the operating room in",SRHLP(16)="full cardiac arrest with the circulation supported by cardiopulmonary"
  S SRHLP(17)="resuscitation (excludes patients being adequately perfused by a",SRHLP(18)="cardiopulmonary support system).",SRHLP(19)=""
  S SRHLP(20)="Enter the appropriate number to designate the category of emergency.",SRHLP(21)="",SRHLP(22)="" D EN^DDIOL(.SRHLP) K SRHLP
@@ -51,7 +51,7 @@ CATH S DR="476;357;358;359;360;363;415;477;361;362.1;362.2;362.3;478;479;480"
  Q
 R S DR="413;418;440;685;.205;.22;.23;.232;470;471;473;442;342;670;671;673;674;677"
  Q
-OP S DR="1.13;414;414.1;1.09"
+OP S DR="1.13;414;414.1;1.09;2006"
  Q
 CAR S DR="481;451;450;468;469"
  Q

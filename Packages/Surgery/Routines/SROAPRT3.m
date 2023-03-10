@@ -1,11 +1,12 @@
 SROAPRT3 ;BIR/MAM - PRINT OPERATION INFO ;01/23/07
- ;;3.0; Surgery ;**38,47,63,81,88,95,125,142,153,160**;24 Jun 93;Build 7
+ ;;3.0;Surgery;**38,47,63,81,88,95,125,142,153,160,200**;24 Jun 93;Build 9
  K SRAO S (SRAO(7),SRAO(8))="",SRA("OP")=^SRF(SRTN,"OP")
  S SRAO(2)="^1" K SROPS S SROPER=$P(SRA("OP"),"^")
  S:$L(SROPER)<49 SROPS(1)=SROPER K M,MM,MMM I $L(SROPER)>48 S SROPER=SROPER_"  " F M=1:1 D LOOP Q:MMM=""
  S SRA(0)=^SRF(SRTN,0),X=$P(SRA(0),"^",4) S:X X=$P(^SRO(137.45,X,0),"^") S SRAO(2)=X_"^.04"
  W !,?29,"OPERATIVE INFORMATION",!!,$J("Surgical Specialty: ",39)_$P(SRAO(2),"^")
  W !!,$J("Principal Operation: ",39)_SROPS(1) I $D(SROPS(2)) W !,?40,SROPS(2) I $D(SROPS(3)) W !,?40,SROPS(3)
+ W !!,$J("Robotic Assistance (Y/N): ",39)_$$GET1^DIQ(130,SRTN_",",2006,"E")
  D ^SROAOTH
  S X=$P(SRA(200),"^",52),SRAO(9)=X_"^214",NYUK=$P(SRA(0),"^",10),NYUK=$S(NYUK="EM":"YES",1:"NO") S SRAO(10)=NYUK_"^.035"
  S Y=$P($G(^SRF(SRTN,"1.0")),"^",8),C=$P(^DD(130,1.09,0),"^",2) D:Y'="" Y^DIQ S SRAO(11)=Y_"^1.09"

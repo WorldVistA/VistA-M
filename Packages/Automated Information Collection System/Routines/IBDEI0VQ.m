@@ -1,128 +1,126 @@
-IBDEI0VQ ; ; 04-FEB-2020
- ;;3.0;IB ENCOUNTER FORM IMP/EXP;;FEB 04, 2020
+IBDEI0VQ ; ; 01-FEB-2022
+ ;;3.0;IB ENCOUNTER FORM IMP/EXP;;FEB 01, 2022
  Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,999) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
- ;;^UTILITY(U,$J,358.3,14126,1,0)
+ ;;^UTILITY(U,$J,358.3,14301,1,3,0)
+ ;;=3^Pain in left lower leg
+ ;;^UTILITY(U,$J,358.3,14301,1,4,0)
+ ;;=4^M79.662
+ ;;^UTILITY(U,$J,358.3,14301,2)
+ ;;=^5013348
+ ;;^UTILITY(U,$J,358.3,14302,0)
+ ;;=M79.652^^55^675^24
+ ;;^UTILITY(U,$J,358.3,14302,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,14126,1,3,0)
- ;;=3^Osteoporosis,Age-Related Fx,Unspec Site,Sequela
- ;;^UTILITY(U,$J,358.3,14126,1,4,0)
- ;;=4^M80.00XS
- ;;^UTILITY(U,$J,358.3,14126,2)
- ;;=^5013368
- ;;^UTILITY(U,$J,358.3,14127,0)
- ;;=M81.0^^83^821^126
- ;;^UTILITY(U,$J,358.3,14127,1,0)
+ ;;^UTILITY(U,$J,358.3,14302,1,3,0)
+ ;;=3^Pain in left thigh
+ ;;^UTILITY(U,$J,358.3,14302,1,4,0)
+ ;;=4^M79.652
+ ;;^UTILITY(U,$J,358.3,14302,2)
+ ;;=^5013345
+ ;;^UTILITY(U,$J,358.3,14303,0)
+ ;;=M79.675^^55^675^25
+ ;;^UTILITY(U,$J,358.3,14303,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,14127,1,3,0)
- ;;=3^Osteoporosis,Age-Related
- ;;^UTILITY(U,$J,358.3,14127,1,4,0)
- ;;=4^M81.0
- ;;^UTILITY(U,$J,358.3,14127,2)
- ;;=^5013555
- ;;^UTILITY(U,$J,358.3,14128,0)
- ;;=Z87.310^^83^821^137
- ;;^UTILITY(U,$J,358.3,14128,1,0)
+ ;;^UTILITY(U,$J,358.3,14303,1,3,0)
+ ;;=3^Pain in left toe(s)
+ ;;^UTILITY(U,$J,358.3,14303,1,4,0)
+ ;;=4^M79.675
+ ;;^UTILITY(U,$J,358.3,14303,2)
+ ;;=^5013354
+ ;;^UTILITY(U,$J,358.3,14304,0)
+ ;;=M79.671^^55^675^26
+ ;;^UTILITY(U,$J,358.3,14304,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,14128,1,3,0)
- ;;=3^Personal Hx of Healed Osteoporosis Fx
- ;;^UTILITY(U,$J,358.3,14128,1,4,0)
- ;;=4^Z87.310
- ;;^UTILITY(U,$J,358.3,14128,2)
- ;;=^5063485
- ;;^UTILITY(U,$J,358.3,14129,0)
- ;;=M81.6^^83^821^133
- ;;^UTILITY(U,$J,358.3,14129,1,0)
+ ;;^UTILITY(U,$J,358.3,14304,1,3,0)
+ ;;=3^Pain in right foot
+ ;;^UTILITY(U,$J,358.3,14304,1,4,0)
+ ;;=4^M79.671
+ ;;^UTILITY(U,$J,358.3,14304,2)
+ ;;=^5013350
+ ;;^UTILITY(U,$J,358.3,14305,0)
+ ;;=M79.604^^55^675^27
+ ;;^UTILITY(U,$J,358.3,14305,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,14129,1,3,0)
- ;;=3^Osteoporosis,Localized
- ;;^UTILITY(U,$J,358.3,14129,1,4,0)
- ;;=4^M81.6
- ;;^UTILITY(U,$J,358.3,14129,2)
- ;;=^5013556
- ;;^UTILITY(U,$J,358.3,14130,0)
- ;;=M54.00^^83^821^134
- ;;^UTILITY(U,$J,358.3,14130,1,0)
+ ;;^UTILITY(U,$J,358.3,14305,1,3,0)
+ ;;=3^Pain in right leg
+ ;;^UTILITY(U,$J,358.3,14305,1,4,0)
+ ;;=4^M79.604
+ ;;^UTILITY(U,$J,358.3,14305,2)
+ ;;=^5013328
+ ;;^UTILITY(U,$J,358.3,14306,0)
+ ;;=M79.661^^55^675^28
+ ;;^UTILITY(U,$J,358.3,14306,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,14130,1,3,0)
- ;;=3^Panniculitis,Neck/Back,Unspec Site
- ;;^UTILITY(U,$J,358.3,14130,1,4,0)
- ;;=4^M54.00
- ;;^UTILITY(U,$J,358.3,14130,2)
- ;;=^5012285
- ;;^UTILITY(U,$J,358.3,14131,0)
- ;;=M79.3^^83^821^135
- ;;^UTILITY(U,$J,358.3,14131,1,0)
+ ;;^UTILITY(U,$J,358.3,14306,1,3,0)
+ ;;=3^Pain in right lower leg
+ ;;^UTILITY(U,$J,358.3,14306,1,4,0)
+ ;;=4^M79.661
+ ;;^UTILITY(U,$J,358.3,14306,2)
+ ;;=^5013347
+ ;;^UTILITY(U,$J,358.3,14307,0)
+ ;;=M79.651^^55^675^29
+ ;;^UTILITY(U,$J,358.3,14307,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,14131,1,3,0)
- ;;=3^Panniculitis,Unspec
- ;;^UTILITY(U,$J,358.3,14131,1,4,0)
- ;;=4^M79.3
- ;;^UTILITY(U,$J,358.3,14131,2)
- ;;=^5013323
- ;;^UTILITY(U,$J,358.3,14132,0)
- ;;=M62.3^^83^821^136
- ;;^UTILITY(U,$J,358.3,14132,1,0)
+ ;;^UTILITY(U,$J,358.3,14307,1,3,0)
+ ;;=3^Pain in right thigh
+ ;;^UTILITY(U,$J,358.3,14307,1,4,0)
+ ;;=4^M79.651
+ ;;^UTILITY(U,$J,358.3,14307,2)
+ ;;=^5013344
+ ;;^UTILITY(U,$J,358.3,14308,0)
+ ;;=M79.674^^55^675^30
+ ;;^UTILITY(U,$J,358.3,14308,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,14132,1,3,0)
- ;;=3^Paraplegic Immobility Syndrome
- ;;^UTILITY(U,$J,358.3,14132,1,4,0)
- ;;=4^M62.3
- ;;^UTILITY(U,$J,358.3,14132,2)
- ;;=^5012630
- ;;^UTILITY(U,$J,358.3,14133,0)
- ;;=R29.3^^83^821^139
- ;;^UTILITY(U,$J,358.3,14133,1,0)
+ ;;^UTILITY(U,$J,358.3,14308,1,3,0)
+ ;;=3^Pain in right toe(s)
+ ;;^UTILITY(U,$J,358.3,14308,1,4,0)
+ ;;=4^M79.674
+ ;;^UTILITY(U,$J,358.3,14308,2)
+ ;;=^5013353
+ ;;^UTILITY(U,$J,358.3,14309,0)
+ ;;=M84.464A^^55^675^31
+ ;;^UTILITY(U,$J,358.3,14309,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,14133,1,3,0)
- ;;=3^Posture,Abnormal
- ;;^UTILITY(U,$J,358.3,14133,1,4,0)
- ;;=4^R29.3
- ;;^UTILITY(U,$J,358.3,14133,2)
- ;;=^322158
- ;;^UTILITY(U,$J,358.3,14134,0)
- ;;=M54.10^^83^821^140
- ;;^UTILITY(U,$J,358.3,14134,1,0)
+ ;;^UTILITY(U,$J,358.3,14309,1,3,0)
+ ;;=3^Pathological fracture, left fibula, init encntr for fracture
+ ;;^UTILITY(U,$J,358.3,14309,1,4,0)
+ ;;=4^M84.464A
+ ;;^UTILITY(U,$J,358.3,14309,2)
+ ;;=^5013950
+ ;;^UTILITY(U,$J,358.3,14310,0)
+ ;;=M84.463A^^55^675^35
+ ;;^UTILITY(U,$J,358.3,14310,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,14134,1,3,0)
- ;;=3^Radiculopathy,Unspec Site
- ;;^UTILITY(U,$J,358.3,14134,1,4,0)
- ;;=4^M54.10
- ;;^UTILITY(U,$J,358.3,14134,2)
- ;;=^5012295
- ;;^UTILITY(U,$J,358.3,14135,0)
- ;;=M79.5^^83^821^141
- ;;^UTILITY(U,$J,358.3,14135,1,0)
+ ;;^UTILITY(U,$J,358.3,14310,1,3,0)
+ ;;=3^Pathological fracture, right fibula, init for fx
+ ;;^UTILITY(U,$J,358.3,14310,1,4,0)
+ ;;=4^M84.463A
+ ;;^UTILITY(U,$J,358.3,14310,2)
+ ;;=^5013944
+ ;;^UTILITY(U,$J,358.3,14311,0)
+ ;;=M84.461A^^55^675^37
+ ;;^UTILITY(U,$J,358.3,14311,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,14135,1,3,0)
- ;;=3^Residual FB in Soft Tissue
- ;;^UTILITY(U,$J,358.3,14135,1,4,0)
- ;;=4^M79.5
- ;;^UTILITY(U,$J,358.3,14135,2)
- ;;=^272608
- ;;^UTILITY(U,$J,358.3,14136,0)
- ;;=M62.82^^83^821^142
- ;;^UTILITY(U,$J,358.3,14136,1,0)
+ ;;^UTILITY(U,$J,358.3,14311,1,3,0)
+ ;;=3^Pathological fracture, right tibia, init encntr for fracture
+ ;;^UTILITY(U,$J,358.3,14311,1,4,0)
+ ;;=4^M84.461A
+ ;;^UTILITY(U,$J,358.3,14311,2)
+ ;;=^5013932
+ ;;^UTILITY(U,$J,358.3,14312,0)
+ ;;=T79.A22A^^55^675^41
+ ;;^UTILITY(U,$J,358.3,14312,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,14136,1,3,0)
- ;;=3^Rhabdomyolysis
- ;;^UTILITY(U,$J,358.3,14136,1,4,0)
- ;;=4^M62.82
- ;;^UTILITY(U,$J,358.3,14136,2)
- ;;=^5012679
- ;;^UTILITY(U,$J,358.3,14137,0)
- ;;=M79.0^^83^821^143
- ;;^UTILITY(U,$J,358.3,14137,1,0)
+ ;;^UTILITY(U,$J,358.3,14312,1,3,0)
+ ;;=3^Traumatic compartment syndrome of left lower extremity, init
+ ;;^UTILITY(U,$J,358.3,14312,1,4,0)
+ ;;=4^T79.A22A
+ ;;^UTILITY(U,$J,358.3,14312,2)
+ ;;=^5137969
+ ;;^UTILITY(U,$J,358.3,14313,0)
+ ;;=T79.A21A^^55^675^42
+ ;;^UTILITY(U,$J,358.3,14313,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,14137,1,3,0)
- ;;=3^Rheumatism,Unspec
- ;;^UTILITY(U,$J,358.3,14137,1,4,0)
- ;;=4^M79.0
- ;;^UTILITY(U,$J,358.3,14137,2)
- ;;=^5013320
- ;;^UTILITY(U,$J,358.3,14138,0)
- ;;=M05.9^^83^821^144
- ;;^UTILITY(U,$J,358.3,14138,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,14138,1,3,0)
- ;;=3^Rheumatoid Arthritis w/ Rheumatoid Factor,Unspec
+ ;;^UTILITY(U,$J,358.3,14313,1,3,0)
+ ;;=3^Traumatic compartment syndrome of r low extrem, init

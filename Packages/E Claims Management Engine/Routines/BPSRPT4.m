@@ -1,5 +1,5 @@
 BPSRPT4 ;BHAM ISC/BEE - ECME REPORTS (CONT) ;14-FEB-05
- ;;1.0;E CLAIMS MGMT ENGINE;**1,5,7,8,10,11,19,23,24**;JUN 2004;Build 43
+ ;;1.0;E CLAIMS MGMT ENGINE;**1,5,7,8,10,11,19,23,24,28**;JUN 2004;Build 22
  ;;Per VA Directive 6402, this routine should not be modified.
  ;
  Q
@@ -314,7 +314,8 @@ GETREJ(REJ) ;
  ; Input variable: BPRTYPE -> Report Type (1-7)
  ;
 HEADLN1(BPRTYPE) ;
- I (",1,2,3,4,5,7,8,9,")[BPRTYPE W !,"PATIENT NAME",?27,"Pt.ID"
+ I (",1,2,3,4,5,7,8,9,10,")[(","_BPRTYPE_",") W !,"PATIENT NAME",?27,"Pt.ID"
+ ;
  I (BPRTYPE=1)!(BPRTYPE=4) D  Q
  . W ?35,"ELIG"
  . W ?40,"RX#"
@@ -377,11 +378,20 @@ HEADLN1(BPRTYPE) ;
  . W ?52,"REF"
  . W ?64,"DATE"
  . W ?84,$J("$DRUG COST",10)
+ ;
+ I BPRTYPE=10 D  Q
+ . W ?35,"ELIG"
+ . W ?45,"REF/ECME#"
+ . W ?65,"DATE"
+ . W ?77,$J("$BILLED",10)
+ . W ?90,$J("$INS RESPONSE",13)
+ . W ?106,$J("$COLLECT",10)
+ . W ?118,$J("Pt.RESP(INS)",12)
  Q
  ;
  ;Print Header 2 Line 2
  ;
- ; Input variable: BPRTYPE -> Report Type (1-9)
+ ; Input variable: BPRTYPE -> Report Type (1-10)
  ; 
 HEADLN2(BPRTYPE) ;
  I (BPRTYPE=1)!(BPRTYPE=4) D  Q
@@ -445,6 +455,15 @@ HEADLN2(BPRTYPE) ;
  . W ?47,"RELEASED ON"
  . W ?62,"RX INFO"
  . W ?75,"NON-BILLABLE STATUS"
+ ;
+ I BPRTYPE=10 D  Q
+ . W !,?4,"DRUG"
+ . W ?36,"NDC"
+ . W ?47,"RELEASED ON"
+ . W ?68,"RX INFO"
+ . W ?94,"BILL#"
+ . W ?112,"COB"
+ . W ?119,"STATUS"
  Q
  ;
  ;Print Header 2 Line 3
@@ -478,6 +497,11 @@ SELEXCEL() ; - Returns whether to capture data for Excel report.
  I BPRTYPE=7 D
  . W !!,"Data field for billed amount will only be included when the report is captured",!
  . W "for an Excel document. All additional data fields may not be present for all",!
+ . W "reports."
+ I BPRTYPE=10 D
+ . W !!,"Data fields VA Ingredient Cost, VA Dispensing Fee, Ingredient Cost Paid",!
+ . W "and Dispensing Fee Paid will only be included when the report is captured",!
+ . W "for an Excel document.  All additional data fields may not be present for all",!
  . W "reports."
  ;
  S DIR(0)="Y",DIR("B")="NO",DIR("T")=DTIME W !

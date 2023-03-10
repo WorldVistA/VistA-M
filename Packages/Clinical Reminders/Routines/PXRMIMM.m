@@ -1,29 +1,184 @@
-PXRMIMM ; SLC/PKR - Handle immunization findings. ;12/23/2004
- ;;2.0;CLINICAL REMINDERS;;Feb 04, 2005
+PXRMIMM ;SLC/PKR - Handle immunization findings. ;03/31/2022
+ ;;2.0;CLINICAL REMINDERS;**42,65**;Feb 04, 2005;Build 438
  ;
- ;=======================================================
+ ;   API                   ICR#
+ ;PATICR^PXAPIIM           6387
+ ;^AUPNVSIT                2028
+ ;VIMM^PXPXRM              6992
+ ;IMMGRP^PXAPIIM           6387
+ ;BROWSE^DDBR              5746
+ ; 
+ ;====================
+CRFINDING(DFN,ITEM,FINDING,CRFIEVAL) ;Determine if there are any active contraindication, precautions,
+ ;or refusals.
+ N CRLIST,CRTYPE,DATE,DATEORDER,NCR,NCRF,SUB
+ D CRLIST(DFN,ITEM,0,.NCRF,.CRLIST)
+ F CRTYPE="CONTRA","PRECAUTION","REFUSED" D
+ .;Only keep active C/R.
+ . I CRLIST(CRTYPE)=0 Q
+ . S CRFIEVAL(CRTYPE,FINDING)=CRLIST(CRTYPE)
+ . F NCR=1:1:NCRF(CRTYPE) D
+ .. K DATEORDER
+ .. S SUB=""
+ .. F  S SUB=$O(CRLIST(CRTYPE,NCR,SUB)) Q:SUB=""  D
+ ... S CRFIEVAL(CRTYPE,FINDING,NCR,SUB)=CRLIST(CRTYPE,NCR,SUB)
+ ... I SUB="DATE" S DATE=CRLIST(CRTYPE,NCR,SUB),DATEORDER(DATE,NCR)=""
+ ..;Save the most recent as the overall result.
+ .. S DATE=$O(DATEORDER(""),-1)
+ .. S NCR=$O(DATEORDER(DATE,""))
+ .. S SUB=""
+ .. F  S SUB=$O(CRFIEVAL(CRTYPE,FINDING,NCR,SUB)) Q:SUB=""  D
+ ... S CRFIEVAL(CRTYPE,FINDING,SUB)=CRFIEVAL(CRTYPE,FINDING,NCR,SUB)
+ Q
+ ;
+ ;====================
+CRLIST(DFN,IMMIEN,BDT,NCRF,CRLIST) ;Check for contraindications and refusals.
+ N CRDATA,CRTYPE,CRVP,DAS,EVENTDT,NUM,TEMP,VISITIEN,WUDT,WUDTL
+ K CRLIST
+ S (CRLIST("CONTRA"),CRLIST("PRECAUTION"),CRLIST("REFUSED"))=0
+ ;Call PATICR^PXAPIIM to get a list of all of the patient's
+ ;contraindications, precautions, and refusals.
+ D PATICR^PXAPIIM(.CRDATA,DFN,IMMIEN,BDT,"")
+ S DAS="",WUDT=PXRMDATE
+ F  S DAS=$O(CRDATA(DAS)) Q:(WUDT="")!(DAS="")  D
+ . S WUDT=+$P(CRDATA(DAS),U,4)
+ .;If Warn Until Date is null the contra/refusal is permanent.
+ . I (WUDT>0),(PXRMDATE>WUDT) Q
+ . S TEMP=$P(CRDATA(DAS),U,2)
+ . S CRVP=$P(TEMP,"|",1)
+ . S CRTYPE=$S(CRVP["920.4":"CONTRA",CRVP["920.5":"REFUSED",1:"")
+ . I CRTYPE="" Q
+ . I CRTYPE="CONTRA" S CRTYPE=$S(CRDATA(DAS,"CONTRAINDICATION/PRECAUTION")="C":"CONTRA",CRDATA(DAS,"CONTRAINDICATION/PRECAUTION")="P":"PRECAUTION")
+ . S WUDTL(CRTYPE,WUDT,DAS)=""
+ I '$D(WUDTL) Q
+ ;Sort the list by Warn Until Date.
+ F CRTYPE="CONTRA","PRECAUTION","REFUSED" D
+ . S NUM=0,WUDT=""
+ . F  S WUDT=$O(WUDTL(CRTYPE,WUDT)) Q:WUDT=""  D
+ .. S CRLIST(CRTYPE)=1
+ .. S DAS=""
+ .. F  S DAS=$O(WUDTL(CRTYPE,WUDT,DAS)) Q:DAS=""  D
+ ... S NUM=NUM+1
+ ... S TEMP=$P(CRDATA(DAS),U,2)
+ ... S EVENTDT=$P(CRDATA(DAS),U,6)
+ ... I EVENTDT="" D
+ .... S VISITIEN=$P(CRDATA(DAS),U,1)
+ .... S EVENTDT=$P(^AUPNVSIT(VISITIEN,0),U,1)
+ ... S CRLIST(CRTYPE,NUM,"COMMENTS")=$G(CRDATA(DAS,"COMMENTS"))
+ ... S CRLIST(CRTYPE,NUM,"DATE")=EVENTDT
+ ... S CRLIST(CRTYPE,NUM,"REASON")=$P(TEMP,"|",2)
+ ... I $P(CRDATA(DAS),U,8)=1 S CRLIST(CRTYPE,NUM,"GROUP REFUSAL")="Patient has refused all vaccines in the group."
+ ... S CRLIST(CRTYPE,NUM,"WUDT")=WUDT
+ . S NCRF(CRTYPE)=NUM
+ Q
+ ;
+ ;====================
+CVXL(ITEM,NOCC,BDT,EDT,PLIST) ;Find patient list immunizations by CVX code.
+ N CVX,DAS,DATE,DFN,DS,NFOUND
+ K ^TMP($J,PLIST)
+ S CVX=$P(^AUTTIMM(ITEM,0),U,3)
+ I CVX="" Q
+ S DS=$S(EDT[".":EDT+.0000001,1:EDT+.240001)
+ S DFN=0
+ F  S DFN=$O(^PXRMINDX(9000010.11,"CVX","IP",CVX,DFN)) Q:DFN=""  D
+ . S NFOUND=0
+ . S DATE=DS
+ . F  S DATE=+$O(^PXRMINDX(9000010.11,"CVX","IP",CVX,DFN,DATE),-1) Q:(DATE=0)!(DATE<BDT)!(NFOUND=NOCC)  D
+ .. S DAS=""
+ .. F  S DAS=$O(^PXRMINDX(9000010.11,"CVX","IP",CVX,DFN,DATE,DAS),-1) Q:DAS=""  D
+ ... S NFOUND=NFOUND+1
+ ... S ^TMP($J,PLIST,DFN,NFOUND)=DAS_U_DATE
+ Q
+ ;
+ ;====================
+CVXP(DFN,ITEM,NGET,SDIR,BDT,EDT,NFOUND,FLIST) ;Find patient immunizations
+ ;by CVX code.
+ N CVX,DAS,DATE,DONE,EDTT
+ S (DONE,NFOUND)=0
+ S CVX=$P(^AUTTIMM(ITEM,0),U,3)
+ I CVX="" Q
+ S EDTT=$S(EDT[".":EDT+.0000001,1:EDT+.240001)
+ S DATE=$S(SDIR=+1:BDT-.000001,1:EDTT)
+ F  S DATE=+$O(^PXRMINDX(9000010.11,"CVX","PI",DFN,CVX,DATE),SDIR) Q:(DATE=0)!(DONE)  D
+ . I DATE<BDT,SDIR=-1 S DONE=1 Q
+ . I DATE>EDTT,SDIR=1 S DONE=1 Q
+ . S DAS=""
+ . F  S DAS=$O(^PXRMINDX(9000010.11,"CVX","PI",DFN,CVX,DATE,DAS),-1) Q:DAS=""  D
+ .. S NFOUND=NFOUND+1
+ .. S FLIST(NFOUND)=DAS_U_DATE
+ .. I NFOUND=NGET S DONE=1 Q
+ Q
+ ;
+ ;====================
 EVALFI(DFN,DEFARR,ENODE,FIEVAL) ;Evaluate immunization findings.
  D EVALFI^PXRMINDX(DFN,.DEFARR,ENODE,.FIEVAL)
  Q
  ;
- ;=======================================================
+ ;====================
 EVALPL(FINDPA,ENODE,TERMARR,PLIST) ;Evaluate immunization term findings
  ;for patient lists.
  D EVALPL^PXRMINDL(.FINDPA,ENODE,.TERMARR,PLIST)
  Q
  ;
- ;=======================================================
+ ;====================
 EVALTERM(DFN,FINDPA,ENODE,TERMARR,TFIEVAL) ;Evaluate immunization terms.
  D EVALTERM^PXRMINDX(DFN,.FINDPA,ENODE,.TERMARR,.TFIEVAL)
+ ;Determine the term's contra/refused status. If all the mapped findings are contra, the status
+ ;is CONTRA. If all the mapped findings are REFUSED, the status is REFUSED. If a mapped
+ ;finding is both CONTRA and REFUSED count it as CONTRA. If all the mapped
+ ;findings are either CONTRA or REFUSED the status is REFUSED.
+ N FINDING,NCONTRA,NF,NPREC,NREFUSED
+ S (FINDING,NCONTRA,NF,NPREC,NREFUSED)=0
+ F  S FINDING=$O(TERMARR(20,FINDING)) Q:FINDING=""  D
+ . S NF=NF+1
+ . I $G(TFIEVAL("CONTRA",FINDING))=1 S NCONTRA=NCONTRA+1
+ . I $G(TFIEVAL("PRECAUTION",FINDING))=1 S NPREC=NPREC+1
+ . I ($G(TFIEVAL("CONTRA",FINDING))'=1),($G(TFIEVAL("REFUSED",FINDING))=1) S NREFUSED=NREFUSED+1
+ I NCONTRA=NF S TFIEVAL("C/R STATUS")="CONTRA"
+ I NREFUSED=NF S TFIEVAL("C/R STATUS")="REFUSED"
+ I (NREFUSED>0),(NCONTRA+NREFUSED)=NF S TFIEVAL("C/R STATUS")="REFUSED"
+ I '$D(TFIEVAL("C/R STATUS")),(NPREC>0) S TFIEVAL("C/R STATUS")="PRECAUTION"
  Q
  ;
- ;=======================================================
+ ;====================
 GETDATA(DAS,FIEVT) ;Return data, for a specified V Immunization entry.
- ;DBIA #4250
- D VIMM^PXPXRM(DAS,.FIEVT)
+ D VIMM^PXPXRM(DAS,.FIEVT,1)
  Q
  ;
- ;=======================================================
+ ;====================
+ISCXHELP(DA,FILENUM) ;Executable help for the Immunization Search Criteria
+ ;finding modifier.
+ N CVX,DDS,IEN,IMM,IMMIEN,IMMGRP,NLINES,TEXT,VGN,X
+ S IMM=$S(FILENUM=811.5:$P(^PXRMD(811.5,DA(1),20,DA,0),U,1),FILENUM=811.9:$P(^PXD(811.9,DA(1),20,DA,0),U,1),1:"")
+ I IMM'["AUTTIM" Q
+ S IMMIEN=$P(IMM,";",1)
+ D IMMGRP^PXAPIIM(.IMMGRP,IMMIEN)
+ S NLINES=0
+ S CVX=$O(IMMGRP("CVX",""))
+ S NLINES=NLINES+1,TEXT(NLINES)="Immunizations with the CVX code "_CVX_", are:"
+ S IEN=""
+ F  S IEN=$O(IMMGRP("CVX",CVX,IEN)) Q:IEN=""  D
+ . S NLINES=NLINES+1,TEXT(NLINES)=IMMGRP("CVX",CVX,IEN)_" (IEN="_IEN_")"
+ S VGN=$O(IMMGRP("VG",""))
+ S NLINES=NLINES+1,TEXT(NLINES)=""
+ I VGN="" S NLINES=NLINES+1,TEXT(NLINES)="This immunization is not in a vaccine group."
+ E  D
+ . S NLINES=NLINES+1,TEXT(NLINES)="Immunizations in the vaccine group "_VGN_", are:"
+ . S IEN=""
+ . F  S IEN=$O(IMMGRP("VG",VGN,IEN)) Q:IEN=""  D
+ .. S NLINES=NLINES+1,TEXT(NLINES)=IMMGRP("VG",VGN,IEN)_" (IEN="_IEN_")"
+ S NLINES=NLINES+1,TEXT(NLINES)=""
+ ;DBIA #5746 covers kill and set of DDS. DDS needs to be set or the
+ ;Browser will kill some ScreenMan variables.
+ S DDS=1
+ S X="IORESET"
+ D ENDR^%ZISS
+ D BROWSE^DDBR("TEXT","NR","Immunization Search Criteria Help")
+ W IORESET
+ D KILL^%ZISS
+ Q
+ ;
+ ;====================
 MHVOUT(INDENT,IFIEVAL,NLINES,TEXT) ;Produce the clinical
  ;maintenance output.
  N EM,FIEN,IND,JND,NAME,NOUT,PNAME,REACTION,SERIES,TEMP,TEXTOUT,VDATE
@@ -34,7 +189,6 @@ MHVOUT(INDENT,IFIEVAL,NLINES,TEXT) ;Produce the clinical
  F  S IND=+$O(IFIEVAL(IND)) Q:IND=0  D
  . S SERIES=$G(IFIEVAL(IND,"SERIES"))
  . I SERIES'="" S SERIES=$$EXTERNAL^DILFD(9000010.11,.04,"",SERIES,.EM)
- . I $G(IFIEVAL(IND,"CONTRAINDICATED")) S SERIES=SERIES_"; - CONTRAINDICATED"
  . S VDATE=IFIEVAL(IND,"DATE")
  . S TEMP=NAME_SERIES_" ("_$$EDATE^PXRMDATE(VDATE)_")"
  . D FORMATS^PXRMTEXT(INDENT+2,PXRMRM,TEMP,.NOUT,.TEXTOUT)
@@ -42,18 +196,42 @@ MHVOUT(INDENT,IFIEVAL,NLINES,TEXT) ;Produce the clinical
  S NLINES=NLINES+1,TEXT(NLINES)=""
  Q
  ;
- ;=======================================================
+ ;====================
 OUTPUT(INDENT,IFIEVAL,NLINES,TEXT) ;Produce the clinical
  ;maintenance output.
- N EM,FIEN,IND,JND,NOUT,PNAME,REACTION,SERIES,TEMP,TEXTOUT,VDATE
+ N CONREF,CVX,EM,FIEN,IND,INDENTP1,ISC,JND,NOUT,PNAME
+ N REACTION,SERIES,TEMP,TEXTOUT,VDATE,WUDT
  S FIEN=$P(IFIEVAL("FINDING"),";",1)
  S PNAME=$P(^AUTTIMM(FIEN,0),U,1)
- S NLINES=NLINES+1
- S TEXT(NLINES)=$$INSCHR^PXRMEXLC(INDENT," ")_"Immunization: "_PNAME
+ S INDENTP1=INDENT+1
+ I INDENT+14+$L(PNAME)<81 D
+ . S NLINES=NLINES+1
+ . S TEXT(NLINES)=$$INSCHR^PXRMEXLC(INDENT," ")_"Immunization: "_PNAME
+ E  D
+ . N COL1W,COL2W,FMTSTR
+ . S TEMP="Immunization:^"_PNAME
+ . S COL1W=INDENT+13,COL2W=80-COL1W
+ . S FMTSTR=COL1W_"R1^"_COL2W_"L"
+ . D COLFMT^PXRMTEXT(FMTSTR,TEMP," ",.NOUT,.TEXTOUT)
+ . F JND=1:1:NOUT S NLINES=NLINES+1,TEXT(NLINES)=TEXTOUT(JND)
+ S ISC=$G(IFIEVAL("ISC"))
+ I ISC="CVX" D
+ . S NLINES=NLINES+1,TEXT(NLINES)=" CVX search enabled for CVX "_IFIEVAL("CVX")_"."
+ I ISC="VGN" D
+ . S TEMP=" Vaccine Group search enabled for vaccine groups:"
+ . S (JND,IND)=0
+ . F  S IND=+$O(^AUTTIMM(FIEN,7,IND)) Q:IND=0  D
+ .. S JND=JND+1
+ .. I JND>1 S TEMP=TEMP_","
+ .. S TEMP=TEMP_" "_^AUTTIMM(FIEN,7,IND,0)
+ . S TEMP=TEMP_"."
+ . D FORMATS^PXRMTEXT(INDENTP1,PXRMRM,TEMP,.NOUT,.TEXTOUT)
+ . F JND=1:1:NOUT S NLINES=NLINES+1,TEXT(NLINES)=TEXTOUT(JND)
  S IND=0
  F  S IND=+$O(IFIEVAL(IND)) Q:IND=0  D
  . S VDATE=IFIEVAL(IND,"DATE")
  . S TEMP=$$EDATE^PXRMDATE(VDATE)
+ . I ISC'="" S TEMP=TEMP_" "_IFIEVAL(IND,"IMMUNIZATION")
  . S REACTION=$G(IFIEVAL(IND,"REACTION"))
  . S SERIES=$G(IFIEVAL(IND,"SERIES"))
  . I SERIES'="" D
@@ -62,13 +240,137 @@ OUTPUT(INDENT,IFIEVAL,NLINES,TEXT) ;Produce the clinical
  . I REACTION'="" D
  .. S TEMP=TEMP_" reaction - "
  .. S TEMP=TEMP_$$EXTERNAL^DILFD(9000010.11,.06,"",REACTION,.EM)
- . I $G(IFIEVAL(IND,"CONTRAINDICATED")) S TEMP=TEMP_"; - CONTRAINDICATED"
  . D FORMATS^PXRMTEXT(INDENT+2,PXRMRM,TEMP,.NOUT,.TEXTOUT)
  . F JND=1:1:NOUT S NLINES=NLINES+1,TEXT(NLINES)=TEXTOUT(JND)
- . I IFIEVAL(IND,"COMMENTS")'="" D
+ . I $G(IFIEVAL(IND,"COMMENTS"))'="" D
  .. S TEMP="Comments: "_IFIEVAL(IND,"COMMENTS")
  .. D FORMATS^PXRMTEXT(INDENT+3,PXRMRM,TEMP,.NOUT,.TEXTOUT)
  .. F JND=1:1:NOUT S NLINES=NLINES+1,TEXT(NLINES)=TEXTOUT(JND)
  S NLINES=NLINES+1,TEXT(NLINES)=""
+ Q
+ ;
+ ;====================
+OUTPUTCONREF(INDENT,CRTYPE,DEFARR,FIEVAL,NTXT) ;Output contraindication, precaution, and refusal information.
+ N DATE,IEN,JND,FINDING,FINUM,GBL,INDENTP1,NOCC,NLINES,NOUT,PNAME,TEMP,TEXT,TEXTOUT,WUDT
+ S PNAME=$S(CRTYPE="CONTRA":"Contraindications",CRTYPE="PRECAUTION":"Precautions",CRTYPE="REFUSED":"Refusals",1:"")
+ I PNAME="" Q
+ S TEXT(1)="",TEXT(2)=PNAME
+ D ADDTXTA^PXRMOUTU(INDENT,PXRMRM,.NTXT,2,.TEXT)
+ S INDENTP1=INDENT+1
+ S NLINES=0
+ S FINUM=""
+ F  S FINUM=$O(FIEVAL(CRTYPE,FINUM)) Q:FINUM=""  D
+ . S FINDING=$P(DEFARR(20,FINUM,0),U,1)
+ . S IEN=$P(FINDING,";",1)
+ . S GBL=$P(FINDING,";",2)
+ .;If it is not an immunization or term then it is unexpected.
+ . S PNAME="Unexpected finding :"_FINDING
+ . I GBL="AUTTIMM(" S PNAME="Immunization: "_$P(^AUTTIMM(IEN,0),U,1)
+ . I GBL="PXRMD(811.5," S PNAME="Reminder Term: "_$P(^PXRMD(811.5,IEN,0),U,1)
+ . S NLINES=NLINES+1,TEXT(NLINES)=$$REPEAT^XLFSTR(" ",INDENTP1)_PNAME
+ . S NOCC=0
+ . F  S NOCC=+$O(FIEVAL(CRTYPE,FINUM,NOCC)) Q:NOCC=0  D
+ .. S DATE=FIEVAL(CRTYPE,FINUM,NOCC,"DATE")
+ .. S TEMP=$$EDATE^PXRMDATE(DATE)
+ .. S TEMP=TEMP_" Reason: "_$G(FIEVAL(CRTYPE,FINUM,NOCC,"REASON"))
+ .. S WUDT=FIEVAL(CRTYPE,FINUM,NOCC,"WUDT")
+ .. S TEMP=TEMP_$S(WUDT=0:", is permanent.",1:", expires "_$$EDATE^PXRMDATE(WUDT)_".")
+ .. D FORMATS^PXRMTEXT(INDENT+2,PXRMRM,TEMP,.NOUT,.TEXTOUT)
+ .. F JND=1:1:NOUT S NLINES=NLINES+1,TEXT(NLINES)=TEXTOUT(JND)
+ .. I $G(FIEVAL(CRTYPE,FINUM,NOCC,"COMMENTS"))'="" D
+ ... S TEMP="Comments: "_FIEVAL(CRTYPE,FINUM,"COMMENTS")
+ ... D FORMATS^PXRMTEXT(INDENT+2,PXRMRM,TEMP,.NOUT,.TEXTOUT)
+ ... F JND=1:1:NOUT S NLINES=NLINES+1,TEXT(NLINES)=TEXTOUT(JND)
+ .. I $G(FIEVAL(CRTYPE,FINUM,NOCC,"GROUP REFUSAL"))'="" D
+ ... S NLINES=NLINES+1,TEXT(NLINES)=$$REPEAT^XLFSTR(" ",INDENTP1)_FIEVAL(CRTYPE,FINUM,NOCC,"GROUP REFUSAL")
+ I NLINES>0 D COPYTXT^PXRMOUTU(.NTXT,NLINES,.TEXT)
+ Q
+ ;
+ ;====================
+TERMCRFINDING(TFIEVAL,FINDING,FIEVAL) ;Save the contraindication, precaution, refusal values of a
+ ;term. Called from EVALFI^PXRMTERM.
+ N CRTYPE,DATE,DATEORDER,SUB1,SUB2,TFINDING,TYPELIST
+ ;If a contraindication or refusal was found it is in TFIEVAL("C/R STATUS"),
+ ;save it to the TYPELIST.
+ S TYPELIST(TFIEVAL("C/R STATUS"))=""
+ ;Add precautions to the TYPELIST so if there are any they will be saved
+ ;in FIEVAL("PRECAUTION,FINDING). This allows precautions to be displayed
+ ;in the reminder evaluation output.
+ S TYPELIST("PRECAUTION")=""
+ S CRTYPE=""
+ F  S CRTYPE=$O(TYPELIST(CRTYPE)) Q:CRTYPE=""  D
+ . I '$D(TFIEVAL(CRTYPE)) Q
+ . K DATEORDER
+ . S TFINDING=""
+ . F  S TFINDING=$O(TFIEVAL(CRTYPE,TFINDING)) Q:TFINDING=""  D
+ .. S DATE=TFIEVAL(CRTYPE,TFINDING,"DATE")
+ .. S DATEORDER(DATE,TFINDING)=""
+ .;Save the term finding with the most recent date as
+ .;value of the finding.
+ . S DATE=$O(DATEORDER(""),-1)
+ . S TFINDING=$O(DATEORDER(DATE,""))
+ . S FIEVAL(CRTYPE,FINDING)=TFIEVAL(CRTYPE,TFINDING)
+ .;Save the rest of the term into the finding.
+ . S DATE=""
+ . F  S DATE=$O(DATEORDER(DATE),-1) Q:DATE=""  D
+ .. S TFINDING=""
+ .. F  S TFINDING=$O(DATEORDER(DATE,TFINDING)) Q:TFINDING=""  D
+ ... S SUB1=""
+ ... F  S SUB1=$O(TFIEVAL(CRTYPE,TFINDING,SUB1)) Q:SUB1=""  D
+ .... I +SUB1=0 S FIEVAL(CRTYPE,FINDING,SUB1)=TFIEVAL(CRTYPE,TFINDING,SUB1) Q
+ .... S SUB2=""
+ .... F  S SUB2=$O(TFIEVAL(CRTYPE,TFINDING,SUB1,SUB2)) Q:SUB2=""  D
+ ..... S FIEVAL(CRTYPE,FINDING,SUB1,SUB2)=TFIEVAL(CRTYPE,TFINDING,SUB1,SUB2)
+ Q
+ ;
+ ;====================
+VGNL(ITEM,NOCC,BDT,EDT,PLIST) ;Find patient list immunizations by Vaccine
+ ;Group Names.
+ N DAS,DATE,DFN,DS,IMM,IND,NFOUND,VGN,VGNL
+ K ^TMP($J,PLIST)
+ I '$D(^AUTTIMM(ITEM,7)) Q
+ S DS=$S(EDT[".":EDT+.0000001,1:EDT+.240001)
+ ;Build the list of immunizations based on the vaccine groups.
+ S IND=0
+ F  S IND=+$O(^AUTTIMM(ITEM,7,IND)) Q:IND=0  D
+ . S VGN=^AUTTIMM(ITEM,7,IND,0)
+ . M VGNL=^AUTTIMM("I",VGN)
+ S IMM=""
+ F  S IMM=$O(VGNL(IMM)) Q:IMM=""  D
+ . S DFN=0
+ . F  S DFN=$O(^PXRMINDX(9000010.11,"IP",IMM,DFN)) Q:DFN=""  D
+ .. S NFOUND=0
+ .. S DATE=DS
+ .. F  S DATE=+$O(^PXRMINDX(9000010.11,"IP",IMM,DFN,DATE),-1) Q:(DATE=0)!(DATE<BDT)!(NFOUND=NOCC)  D
+ ... S DAS=""
+ ... F  S DAS=$O(^PXRMINDX(9000010.11,"IP",IMM,DFN,DATE,DAS),-1) Q:DAS=""  D
+ .... S NFOUND=NFOUND+1
+ .... S ^TMP($J,PLIST,DFN,NFOUND)=DAS_U_DATE
+ Q
+ ;
+ ;====================
+VGNP(DFN,ITEM,NGET,SDIR,BDT,EDT,NFOUND,FLIST) ;Find patient immunizations
+ ;by Vaccine Group Names.
+ N DAS,DATE,DONE,DS,EDTT,IMM,IND,VGN,VGNL
+ S (DONE,NFOUND)=0
+ I '$D(^AUTTIMM(ITEM,7)) Q
+ S EDTT=$S(EDT[".":EDT+.0000001,1:EDT+.240001)
+ S DS=$S(SDIR=+1:BDT-.000001,1:EDTT)
+ ;Build the list of immunizations based on the vaccine groups.
+ S IND=0
+ F  S IND=+$O(^AUTTIMM(ITEM,7,IND)) Q:IND=0  D
+ . S VGN=^AUTTIMM(ITEM,7,IND,0)
+ . M VGNL=^AUTTIMM("I",VGN)
+ S IMM=""
+ F  S IMM=$O(VGNL(IMM)) Q:IMM=""  D
+ . S DATE=DS
+ . F  S DATE=+$O(^PXRMINDX(9000010.11,"PI",DFN,IMM,DATE),SDIR) Q:(DATE=0)!(DONE)  D
+ .. I DATE<BDT,SDIR=-1 S DONE=1 Q
+ .. I DATE>EDTT,SDIR=1 S DONE=1 Q
+ .. S DAS=""
+ .. F  S DAS=$O(^PXRMINDX(9000010.11,"PI",DFN,IMM,DATE,DAS),-1) Q:DAS=""  D
+ ... S NFOUND=NFOUND+1
+ ... S FLIST(NFOUND)=DAS_U_DATE
+ ... I NFOUND=NGET S DONE=1 Q
  Q
  ;

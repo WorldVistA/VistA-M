@@ -1,5 +1,5 @@
-PXRM ;SLC/PKR - Clinical Reminders entry points. ;10/25/2016
- ;;2.0;CLINICAL REMINDERS;**4,11,12,16,18,24,26,47**;Feb 04, 2005;Build 291
+PXRM ;SLC/PKR - Clinical Reminders entry points. ;04/01/2022
+ ;;2.0;CLINICAL REMINDERS;**4,11,12,16,18,24,26,47,42,65**;Feb 04, 2005;Build 438
  ;Entry points in this routine are listed in DBIA #2182.
  ;==========================================================
 MAIN(DFN,PXRMITEM,OUTTYPE,DISC) ;Main driver for clinical reminders.
@@ -57,25 +57,23 @@ MAINDF(DFN,PXRMITEM,OUTTYPE,EVALDT) ;Alternate entry point that allows
  ;
  ;==========================================================
 DISABLE(PXRMITEM,RNAME) ;
- N MNAME,NTXT,RDATA,REASON
+ N MNAME,NTXT,RDATA,REASON,TEXT
  S ^TMP("PXRHM",$J,PXRMITEM,RNAME)="CNBD^DISABLED^DISABLED"
  S ^TMP("PXRHM",$J,PXRMITEM,RNAME,"TXT",1)="Reminder evaluation is temporarily disabled."
- S NTXT=1
- S REASON=0
- F  S REASON=$O(^XTMP("PXRM_DISEV",REASON)) Q:REASON=""  D
- . I $D(^XTMP("PXRM_DISEV",REASON))=1 D  Q
- .. S NTXT=NTXT+1
- .. S ^TMP("PXRHM",$J,PXRMITEM,RNAME,"TXT",NTXT)="Reason: "_REASON_"."
+ S NTXT=1,REASON=""
+ F  S REASON=$O(^XTMP("PXRM_DISEV","REASON",REASON)) Q:REASON=""  D
+ . S NTXT=NTXT+1
+ . S ^TMP("PXRHM",$J,PXRMITEM,RNAME,"TXT",NTXT)="Reason: "_REASON_"."
  . S RDATA=""
- . F  S RDATA=$O(^XTMP("PXRM_DISEV",REASON,RDATA)) Q:RDATA=""  D
+ . F  S RDATA=$O(^XTMP("PXRM_DISEV","REASON",REASON,RDATA)) Q:RDATA=""  D
  .. S NTXT=NTXT+1
  .. I REASON["index" D
- ... S TEXT="Reason: "_REASON_" of file #"_RDATA
+ ... S TEXT="Of file #"_RDATA
  ...;Check if the index has been rebuilt.
  ... D INDXCHK^PXRMDIEV(REASON,RDATA)
  .. I REASON["manager" D
  ... S MNAME=$P(^VA(200,RDATA,0),U,1)
- ... S TEXT="Reason: "_REASON_" - "_MNAME
+ ... S TEXT="The reminder manager is - "_MNAME
  .. S ^TMP("PXRHM",$J,PXRMITEM,RNAME,"TXT",NTXT)=TEXT_"."
  Q
  ;
@@ -83,15 +81,15 @@ DISABLE(PXRMITEM,RNAME) ;
 EVAL(DFN,DEFARR,OUTTYPE,NODISC,FIEVAL,DATE) ;Reminder evaluation entry
  ;point. This entry point uses the local array DEFARR for the reminder
  ;definition and returns the Finding Evaluation Array, FIEVAL.
- ;PXRM namespaced variables are the reminder evaluation "global"
+ ;PXRM name spaced variables are the reminder evaluation "global"
  ;variables. If date is specified then the reminder will be evaluated
  ;as if the current date is DATE.
  N LAST,PXRMAGE,PXRMDATE,PXRMDOB,PXRMDOD,PXRMLAD,PXRMPDEM,PXRMPID
- N PXRMITEM,PXRMRM,PXRMRNAM,PXRMSEX,PXRMXTLK
+ N PXRMITEM,PXRMRM,PXRMRNAM,PXRMSEX,PXRMSIG
  ;Make sure the reminder exists.
  I $D(DEFARR("DNE")) D NODEF^PXRMERRH(DEFARR("IEN")) Q
  ;PXRMRM is the right margin for output.
- S PXRMRM=74
+ S PXRMRM=80
  S PXRMDATE=+$G(DATE)
  S PXRMITEM=DEFARR("IEN")
  S PXRMPID="PXRM"_PXRMITEM_$H
@@ -124,9 +122,9 @@ EVAL(DFN,DEFARR,OUTTYPE,NODISC,FIEVAL,DATE) ;Reminder evaluation entry
  . S ERROR=$$FERROR^PXRMOUTU(.NTXT)
  ;
  ;Establish the main findings evaluation variables.
- N DUE,DUEDATE,FREQ,PCLOGIC,RESDATE,RESLOGIC
+ N CRSTATUS,DUE,DUEDATE,FREQ,PCLOGIC,RESDATE,RESLOGIC
  S (DUE,DUEDATE,FREQ,RESDATE)=0
- S (PCLOGIC,RESLOGIC)=""
+ S (CRSTATUS,PCLOGIC,RESLOGIC)=""
  ;
  ;Establish the patient demographic information.
  N TODAY
@@ -138,7 +136,7 @@ EVAL(DFN,DEFARR,OUTTYPE,NODISC,FIEVAL,DATE) ;Reminder evaluation entry
  ;
  ;Load the local demographic variables for use in condition.
  S PXRMAGE=PXRMPDEM("AGE"),PXRMDOB=PXRMPDEM("DOB"),PXRMDOD=PXRMPDEM("DOD")
- S PXRMLAD=PXRMPDEM("LAD"),PXRMSEX=PXRMPDEM("SEX")
+ S PXRMLAD=PXRMPDEM("LAD"),PXRMSEX=PXRMPDEM("SEX"),PXRMSIG=PXRMPDEM("SIG")
  ;
  ;Check for a date of death.
  I PXRMPDEM("DOD")'="" D
@@ -159,11 +157,7 @@ EVAL(DFN,DEFARR,OUTTYPE,NODISC,FIEVAL,DATE) ;Reminder evaluation entry
  . S ^TMP(PXRMPID,$J,PXRMITEM,"INFO","SEX")="Patient is the wrong sex!"
  ;
  ;Evaluate the findings.
- S PXRMXTLK=""
  D EVAL^PXRMEVFI(DFN,.DEFARR,.FIEVAL)
- I +PXRMXTLK>0 D  G OUTPUT
- . S ^TMP(PXRMPID,$J,PXRMITEM,"FERROR","EXPANDED TAXONOMY","NO LOCK")="NO LOCK for ien "_+PXRMXTLK
- . S PCLOGIC=0
  ;
  ;Check for missing index.
  I $D(^TMP(PXRMPID,$J,PXRMITEM,"WARNING","MISSING INDEX")) D  G OUTPUT
@@ -175,11 +169,14 @@ EVAL(DFN,DEFARR,OUTTYPE,NODISC,FIEVAL,DATE) ;Reminder evaluation entry
  ;Evaluate the resolution logic and get the last resolution date.
  D EVALRESL^PXRMLOG(.DEFARR,.RESDATE,.RESLOGIC,.FIEVAL)
  ;
+ ;If there is CONTRAINDICATED LOGIC or RESOLUTION LOGIC, determine CRSTATUS.
+ I (DEFARR(80)'="")!(DEFARR(90)'="") S CRSTATUS=$$CRSTATUS^PXRMLOG(.DEFARR,.FIEVAL)
+ ;
  ;If the reminder is applicable calculate the due date.
  I PCLOGIC D DUE^PXRMDATE(.DEFARR,RESDATE,FREQ,.DUE,.DUEDATE,.FIEVAL)
  ;
 OUTPUT ;Prepare the final output.
- D OUTPUT^PXRMOUTD(OUTTYPE,.DEFARR,.PXRMPDEM,PCLOGIC,RESLOGIC,DUE,DUEDATE,RESDATE,FREQ,.FIEVAL)
+ D OUTPUT^PXRMOUTD(OUTTYPE,.DEFARR,.PXRMPDEM,PCLOGIC,RESLOGIC,DUE,DUEDATE,RESDATE,FREQ,CRSTATUS,.FIEVAL)
  ;
 EXIT ;Kill the working arrays unless this was a test run.
  K ^TMP($J,"SVC",DFN)

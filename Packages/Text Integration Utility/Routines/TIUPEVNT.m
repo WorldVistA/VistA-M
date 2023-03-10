@@ -1,5 +1,6 @@
-TIUPEVNT ; SLC/JER,AJB - Event logger for upload/filer ;Jul 09, 2020@12:07:14
- ;;1.0;TEXT INTEGRATION UTILITIES;**3,21,81,131,113,184,290,335**;Jun 20, 1997;Build 3
+TIUPEVNT ; SLC/JER,AJB - Event logger for upload/filer ;Sep 18, 2021@22:54:45
+ ;;1.0;TEXT INTEGRATION UTILITIES;**3,21,81,131,113,184,290,335,338**;Jun 20, 1997;Build 9
+ ;
 MAIN(BUFDA,ETYPE,ECODE,TIUTYPE,FDA,MSG) ; ---- Controls branching
  N TIUEVTDA,TIUFDA,TIUMSG,EVNTDA
  M TIUFDA=FDA M TIUMSG=MSG
@@ -110,7 +111,7 @@ DISPLAY ; ---- Alert followup action for filing errors
  . S TIUTYPE=+$P(XQADATA,";",4)
  . ; If no author or dict dt, can't evaluate if auth requires EC so force refile until they are included.
  . ;(Inquire does not refile.) TIU*1*273:
- . S TIUINQ=1 D WRITEHDR(TIUEVNT,TIUTYPE,.TIUINQ) I 'TIUINQ Q
+ . S TIUINQ=1 D WRITEHDR(TIUEVNT,TIUTYPE,.TIUINQ)
  . I TIUTYPE>0 S RESCODE=$$FIXCODE^TIULC1(TIUTYPE)
  . ;E  S RESCODE="D GETPAT^TIUCHLP"
  . I $G(RESCODE)]"" D  Q

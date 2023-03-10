@@ -1,5 +1,5 @@
-TIUSRVA ; SLC/JER,AJB - API's for Authorization ;07/30/14  09:46 [12/4/14 4:01pm]
- ;;1.0;TEXT INTEGRATION UTILITIES;**19,28,47,80,100,116,152,160,178,175,157,236,234,239,268**;Jun 20, 1997;Build 60
+TIUSRVA ; SLC/JER,AJB - API's for Authorization ;Feb 25, 2022@08:00:44
+ ;;1.0;TEXT INTEGRATION UTILITIES;**19,28,47,80,100,116,152,160,178,175,157,236,234,239,268,289**;Jun 20, 1997;Build 200
  ;
  ;   DBIA  2056  $$GET1^DIQ
  ;   DBIA 10141  PATCH^XPDUTL
@@ -59,22 +59,26 @@ AUTHSIGN(TIUY,TIUDA,TIUUSR) ; Has Author signed?
  . S:$P(TIUD12,U,2)'=$P(TIUD15,U,2) TIUY=0
  Q
 TIUVISIT(TIUY,DOCTYP,DFN,VISIT) ;  Check for a 1 time only doc
- ;  TIUY    =    return value
+ ;  TIUY    = return value
  ;          = 0 if can add more than one or none already exist
  ;          = 1 if cannot add more than one and one already exists
- ;  DOCTYP  =    Pointer to ^TUI(8925.1,   TIU DOCUMENT DEFINITION
- ;  DFN     =    Patient IEN
- ;  VISIT   =    Visit String "LOC;VDATE;VTYP"
- I $$PATCH^XPDUTL("OR*3.0*195") D
+ ;  DOCTYP  = Pointer to ^TIU(8925.1, TIU DOCUMENT DEFINITION
+ ;  DFN     = Patient IEN
+ ;  VISIT   = Visit String "LOC;VDATE;VTYP"
+ ; *289 ajb
+ I $$PATCH^XPDUTL("OR*3.0*195") D  Q
+ . S TIUY=0 ; default is allow
  . Q:($G(DOCTYP)="")!($G(DFN)="")!($G(VISIT)="")
- . N TIUDPRM,TIUTEST
- . D DOCPRM^TIULC1(DOCTYP,.TIUDPRM)
- . S TIUY=$S($P(TIUDPRM(0),U,10)="":1,1:$P(TIUDPRM(0),U,10))
- . I TIUY=1 S TIUY=0 Q
+ . N TIUDPRM D DOCPRM^TIULC1(DOCTYP,.TIUDPRM) ; get document parameters
+ . I $P(TIUDPRM(0),U,10)=""!($P(TIUDPRM(0),U,10)=1) Q  ; no value or ALLOW >1 RECORD PER VISIT is YES
  . I $L(VISIT,";")=3 D
- . . S TIUTEST=$$EXIST^TIUEDI3(DFN,DOCTYP,VISIT)
- . . I TIUTEST S TIUY=1
- . . I 'TIUTEST S TIUY=0
+ . . N TIUDA I $$EXIST^TIUEDI3(DFN,DOCTYP,VISIT) S TIUY=1 Q  ; document exists
+ . . N TIUDS S TIUDS=$$FIND1^DIC(8925.1,"","","DISCHARGE SUMMARY","","I $P(^(0),U,4)=""CL""","")
+ . . I '+TIUDS!('$$ISA^TIULX(DOCTYP,TIUDS)) Q  ; can't find class or not a child of DISCHARGE SUMMARY, quit
+ . . N IEN,NAME S (NAME,TIUDA)="" F  S NAME=$O(^TIU(8925.1,"ACL",TIUDS,NAME)) Q:NAME=""  D  Q:+TIUDA
+ . . . S IEN="" F  S IEN=$O(^TIU(8925.1,"ACL",TIUDS,NAME,IEN)) Q:'+IEN  S TIUDA=$$EXIST^TIUEDI3(DFN,IEN,VISIT) Q:+TIUDA
+ . . I +TIUDA S TIUY=1
+ ; /*289
  I '$$PATCH^XPDUTL("OR*3.0*195") D
  . Q:($G(DOCTYP)="")!($G(DFN)="")!($G(VISIT)="")
  . N TIUX3
@@ -139,4 +143,20 @@ WORKCHRT(TIUY,TIUDA) ; RPC: Can user print Work or Chart copy of document
  I +$P(TIUDPRM(0),U,9) S TIUY=2 Q
  I +$$ISA^USRLM(DUZ,"MEDICAL INFORMATION SECTION") S TIUY=2 Q
  S TIUY=1
+ Q
+NDTOSIGN(TIUY,TIUDA) ; Does current user need to sign this document? *289 ajb
+ N NODE,STATUS S NODE(0)=$G(^TIU(8925,+TIUDA,0)),NODE(12)=$G(^TIU(8925,+TIUDA,12)),STATUS=$P(NODE(0),U,5),TIUY=0
+ ; check for signatures by context
+ I STATUS=7!(STATUS=8) D  Q  ; completed/amended notes - ony need to check for additional signers
+ . N IEN S IEN=0 F  S IEN=$O(^TIU(8925.7,"AC",+NODE(12),+TIUDA,IEN)) Q:'+IEN  D  Q:+TIUY
+ . . N ADDSIGNER S ADDSIGNER=$P($G(^TIU(8925.7,IEN,0)),U,3) Q:'ADDSIGNER
+ . . I DUZ=ADDSIGNER S TIUY=1 Q
+ . . I $$ISSURFOR^TIUADSIG(DUZ,ADDSIGNER) S TIUY=1
+ I STATUS=6 D  Q  ; uncosigned notes - only need to check cosigner
+ . I DUZ=$P(NODE(12),U,8) S TIUY=1 Q  ; is user the cosigner?
+ . I +$P(NODE(12),U,8) I $$ISSURFOR^TIUADSIG(DUZ,$P(NODE(12),U,8)) S TIUY=1  ; is user a surrogate for cosigner?
+ I STATUS=5 D  Q  ; unsigned notes - check signer/cosigner
+ . I DUZ=$P(NODE(12),U,4)!(DUZ=$P(NODE(12),U,8)) S TIUY=1 Q  ; is user the signer or cosigner?
+ . I +$P(NODE(12),U,4) I $$ISSURFOR^TIUADSIG(DUZ,$P(NODE(12),U,4)) S TIUY=1 Q  ; is user a surrogate for signer?
+ . I +$P(NODE(12),U,8) I $$ISSURFOR^TIUADSIG(DUZ,$P(NODE(12),U,8)) S TIUY=1 Q  ; is user a surrogate for cosigner?
  Q

@@ -1,6 +1,6 @@
 IBCEOB ;ALB/TMP/PJH - 835 EDI EOB MESSAGE PROCESSING ; 8/19/10 6:33pm
- ;;2.0;INTEGRATED BILLING;**137,135,265,155,377,407,431,432,488**;21-MAR-94;Build 184
- ;;Per VHA Directive 2004-038, this routine should not be modified.
+ ;;2.0;INTEGRATED BILLING;**137,135,265,155,377,407,431,432,488,639,718**;21-MAR-94;Build 73
+ ;;Per VA Directive 6402, this routine should not be modified.
  ;
  Q
  ;
@@ -267,12 +267,24 @@ UPD3611(IBEOB,IBTDA,IBAR) ; From flat file 835 format, add EOB record
  . I IBREC'=37 K ^TMP($J,37)
  . ;;;I IBREC S IB="S IBOK=$$"_IBREC_"(IB0,IBEGBL,IBEOB)",Q=IBREC_"^IBCEOB" I $T(@Q)'="" X IB S:'IBOK ^TMP(IBEGBL,$J,+$O(^TMP(IBEGBL,$J,""),-1)+1)=$S('$G(IBAR):"  ##RAW DATA: ",1:"")_IB0
  . I IBREC S IB="S IBOK=$$"_IBREC_"(IB0,IBEGBL,IBEOB)",Q=IBREC_"^IBCEOB" I $T(@Q)'="" X IB S:'IBOK ^TMP(IBEGBL,$J,+$O(^TMP(IBEGBL,$J,""),-1)+1)=DASHES
+ ;
+ ; WCJ;IB*2.0*718 v23;additional check for message storage errors since not filed just yet
+ ; check if this is an MRA and was split but not marked as such
+ ; If so we need to change the REVIEW STATUS of this MRA to be ACCEPTED-INTERIM EOB.
+ ; only check this specific one so the second parameter is needed
+ ; set PARTIAL EOB filed is this MRA does not cover all the lines on the claim.
+ I '$O(^TMP(IBEGBL,$J,0)),$$SPLIT2^IBCEMU1(IBEOB,1)=0 D   ; check TMP global since errors aren't filed just yet
+ . N DA,DIE,DR,DIC
+ . S DA=IBEOB,DIE=361.1,DR=".16////2;.22////1" D ^DIE
+ . Q
+ ;
  ; If a DENIED non MRA EOB with no filing errors is updated, put on the CBW worklist if the 
- ; claim isn't already COLLECTED/CLOSED and there is a subsequent payer (incl. Tricare & ChampVA)
- I IBEOB,'$O(^TMP(IBEGBL,$J,0)) D
+ ; claim isn't already COLLECTED/CLOSED and there is a subsequent payer (incl. Tricare & ChampVA) 
+ I IBEOB,'$O(^TMP(IBEGBL,$J,0)) D    ; check TMP global since errors aren't filed just yet
  .N IB361,IBIFN,IBX,IBTXT,IBPYMT
  .; must be non-MRA EOB and DENIED
- .S IB361=$G(^IBM(361.1,IBEOB,0)),IBIFN=$P(IB361,U) Q:$P(IB361,U,4)'=0
+ .S IB361=$G(^IBM(361.1,IBEOB,0)),IBIFN=$P(IB361,U)
+ .Q:$P(IB361,U,4)'=0
  .Q:$P(IB361,U,13)'=2
  .Q:$P($$ARSTATA^IBJTU4(IBIFN),U)="COLLECTED/CLOSED"
  .; payment on this bill from A/R IA#380 OR payer paid amount from EOB
@@ -319,3 +331,12 @@ DUP(IBARRAY,IBIFN) ; Duplicate Check
 DUPX ;
  Q DUP
  ;
+ERADET(IBEOB,ERADET) ; EP - Update EOB with reference to ERA detail - Subroutine added for IB*2.0*639
+ ; Input: IBEOB - Internal entry number to file 361.1
+ ;        ERADET - IENS reference to ERA detail in the format "nnn,nnnnnn,"
+ ; Output: None
+ ;
+ N FDA
+ S FDA(361.1,IBEOB_",",104)=ERADET ; DBIA 7017 Allows storage of ERA Detail IENS in file 361.1
+ D FILE^DIE("","FDA")
+ Q

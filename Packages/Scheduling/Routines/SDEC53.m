@@ -1,7 +1,8 @@
 SDEC53 ;ALB/SAT,LAB - VISTA SCHEDULING RPCS ;Apr 10, 2020@15:22
- ;;5.3;Scheduling;**627,658,679,745**;Aug 13, 1993;Build 40
- ;;Per VHA Directive 2004-038, this routine should not be modified
+ ;;5.3;Scheduling;**627,658,679,745,809**;Aug 13, 1993;Build 10
+ ;;Per VA Directive 6402, this routine should not be modified.
  ;
+ ; Reference to PREREG^VPSRPC3 (Update to 41.41) is supported by IA #5797,#4425
  Q
  ;
 PTSET(SDECY,INP) ;SET patient demographics
@@ -361,6 +362,8 @@ PTSET(SDECY,INP) ;SET patient demographics
  ..S @SDFDA@(.01)=$P(SDIN,";;",1)
  ..S:$P(SDIN,";;",2)'="" @SDFDA@(.02)=$P(SDIN,";;",2)
  ..D UPDATE^DIE("","SDFDA")
+ N RTN
+ D PREREG^VPSRPC3(.RTN,DFN,"X") ;ICR 5797
  S SDECI=SDECI+1 S @SDECY@(SDECI)="0^"_$C(30,31)
 EXIT  ;unlock exit  ;alb/sat 658
  L -^TMP(DFN,"REGISTRATION IN PROGRESS")

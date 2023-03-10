@@ -1,5 +1,5 @@
 VPRSDAB ;SLC/MKB -- SDA Lab utilities ;4/11/19  21:05
- ;;1.0;VIRTUAL PATIENT RECORD;**20**;Sep 01, 2011;Build 9
+ ;;1.0;VIRTUAL PATIENT RECORD;**20,26,27**;Sep 01, 2011;Build 10
  ;;Per VHA Directive 6402, this routine should not be modified.
  ;
  ; External References          DBIA#
@@ -79,8 +79,6 @@ LRDFN(ORIFN) ; -- set up LRDFN for Lab Order
 RSLT ; -- get Entity for LabOrder Result
  ; Returns VALUE, ENTITY, DATA
  N SUB,IDT S SUB=$S($G(VPRVBEC):"BB",1:$G(LRSUB))
- I SUB'="BB",$L($G(ORPK),";")<5 S DDEOUT=1 Q  ;no results yet
- ;I SUB="BB",$P($G(^OR(100,DIEN,3)),U,3)'=2 S DDEOUT=1 Q
  I SUB="BB" S DDEOUT=1 Q  ;for now
  S IDT=$P($G(ORPK),";",5) S:'IDT IDT=9999999-$G(VPRCDT)
  S VALUE=IDT_","_+$G(LRDFN),ENTITY="VPR LR"_SUB_" RESULT"
@@ -90,6 +88,7 @@ RSLT ; -- get Entity for LabOrder Result
  ;
 CH(TEST) ; -- builds DLIST(#) of result nodes for TEST
  ; called from ResultItems in VPR LRCH RESULT, expects DIEN
+ Q:'$P($G(LR0),U,3)  ;only return final results
  N T,X S TEST=+$G(TEST)
  D EXPAND^LR7OU1(TEST,.DLIST)
  S T=0 F  S T=$O(DLIST(T)) Q:T<1  D
@@ -98,8 +97,16 @@ CH(TEST) ; -- builds DLIST(#) of result nodes for TEST
  . S DLIST(T)=$$LRDN^LRPXAPIU(T)_","_DIEN
  Q
  ;
+MI1(D0,D1) ; -- return MI approval node
+ N GBL,N,X,Y
+ S D0=+$G(D0),D1=+$G(D1),GBL=$NA(^LR(D0,"MI",D1)),Y=""
+ F N=1,5,8,11,16 S X=$G(@GBL@(N)) I X,$P(X,U,2)="F" D  Q
+ . S Y=$P(X,U,1,2)_U_$S(N=11:$P(X,U,5),1:$P(X,U,3))
+ Q Y
+ ;
 AP1(ID) ; -- parse ID=IDT,LRDFN~SUB for AP,MI report
  ; Returns DIFN, LRSUB, updated ID, LR0=^LR(LRDFN,SUB,IDT,0)
+ ;     and LR1=^LR(LRDFN,"MI",IDT,#) report approval if MI
  S ID=$G(ID),LRSUB=$P(ID,"~",2),ID=$P(ID,"~")
  I LRSUB D  ;sub-file#
  . S DIFN=LRSUB,LRSUB=$S(DIFN=63.05:"MI",DIFN=63.09:"CY",DIFN=63.02:"EM",DIFN=63.08:"SP",1:"AP")
@@ -107,11 +114,12 @@ AP1(ID) ; -- parse ID=IDT,LRDFN~SUB for AP,MI report
  I DIFN<1 S DDEOUT=1 Q
  S:'$G(LRDFN) LRDFN=+$P(ID,",",2)
  S LR0=$G(^LR(LRDFN,LRSUB,+ID,0))
+ I LRSUB="MI" S LR1=$$MI1(LRDFN,+ID)
  Q
  ;
 LRTIU(IDT,SUB) ; -- return TIU ien of lab report
- N I,IEN,X,Y S IDT=$G(IDT),SUB=$G(SUB)
- S Y=IDT_";"_SUB
+ N I,IEN,X,Y
+ S IDT=$G(IDT),SUB=$G(SUB),Y=IDT_";"_SUB
  S I=0 F  S I=$O(^LR(LRDFN,SUB,IDT,.05,I)) Q:I<1  S IEN=+$P($G(^(I,0)),U,2),X=+$$GET1^DIQ(8925,IEN,.05,"I") I (X=7)!(X=8) S Y=IEN_";TIU" Q
  Q Y
  ;

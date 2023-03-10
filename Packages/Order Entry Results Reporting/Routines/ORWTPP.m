@@ -1,5 +1,5 @@
-ORWTPP ; SLC/STAFF Personal Preference - Personal ;05/21/14  22:07
- ;;3.0;ORDER ENTRY/RESULTS REPORTING;**85,149,243,377**;Oct 24, 2000;Build 582
+ORWTPP ; SLC/STAFF Personal Preference - Personal ;Jul 26, 2021@09:10:23
+ ;;3.0;ORDER ENTRY/RESULTS REPORTING;**85,149,243,377,539,405**;Oct 24, 2000;Build 211
  ;
 NEWLIST(VAL,LISTNAME,ORVIZ) ; RPC
  ; set current user's new personal list
@@ -121,6 +121,11 @@ GETSURR(INFO) ; RPC
  D GETSURR^ORWTPR(.INFO,DUZ)
  Q
  ;
+GETSURRS(INFO) ; RPC ;TDP - Added for CPRSv32 (*405) surrogate modifications
+ ; get surrogate info for current user
+ D GETSURRS^ORWTPR(.INFO,DUZ)
+ Q
+ ;
 SAVESURR(OK,INFO) ; RPC
  ; save current user's surrogate info
  D SAVESURR^ORWTPR(.OK,INFO,DUZ)
@@ -146,10 +151,11 @@ GETSUB(VALUE) ; RPC
  D GETSUB^ORWTPN(.VALUE,DUZ)
  Q
  ;
-GETCOS(VALUES,FROM,DIR,VISITORS) ; RPC
+GETCOS(VALUES,FROM,DIR,VISITORS,ORSIM) ; RPC
  ; get elgible cosigners for current user
  I '$G(VISITORS) S VISITORS=""
- D GETCOS^ORWTPN(.VALUES,DUZ,FROM,DIR,VISITORS)
+ S ORSIM=+$G(ORSIM)
+ D GETCOS^ORWTPN(.VALUES,DUZ,FROM,DIR,VISITORS,ORSIM)
  Q
  ;
 GETDCOS(VALUE) ; RPC
@@ -221,4 +227,11 @@ GETCOMBO(VALUES) ; RPC
 SETCOMBO(OK,VALUES) ; RPC
  ; set current user's combo list definition
  D SETCOMBO^ORWTPT(.OK,.VALUES,DUZ)
+ Q
+ ;
+SURRDFLT(OK,ACTION,VALUES) ; RPC
+ ; set or retrieve the surrogate tab default settings
+ I ACTION="SAVE" D SVSRDFLT^ORWTPR(.OK,VALUES) Q  ; save default surrogate settings
+ I ACTION="GET" D GTSRDFLT^ORWTPR(.OK,VALUES) Q  ; retrieve default surrogate settings
+ S OK="-1^ACTION IS INVALID"
  Q

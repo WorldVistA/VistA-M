@@ -1,5 +1,5 @@
 RORX024A ;ALB/TK,MAF - HEP A/B VACCINE/IMMUNITY REPORTS (QUERY & STORE) ; 27 Jul 2016  3:04 PM
- ;;1.5;CLINICAL CASE REGISTRIES;**29,30,31,33,34**;Feb 17, 2006;Build 45
+ ;;1.5;CLINICAL CASE REGISTRIES;**29,30,31,33,34,37,38,39**;Feb 17, 2006;Build 4
  ;
  ; This routine uses the following IAs:
  ;
@@ -18,6 +18,9 @@ RORX024A ;ALB/TK,MAF - HEP A/B VACCINE/IMMUNITY REPORTS (QUERY & STORE) ; 27 Jul
  ;                                      identifiers.
  ;ROR*1.5*33   MAY 2017    M FERRARESE  Adding Future Appointment
  ;ROR*1.5*34   SEP 2018    M FERRARESE  Adding Future Appointment clinic name ; Fix LOINC code table for HEP A/B
+ ;ROR*1.5*37   NOV 2020    F TRAXLER    Adding UNDET check in POS subroutine
+ ;ROR*1.5*38   APR 2021    F TRAXLER    Fix bug introduced by ROR*1.5*37 change.
+ ;ROR*1.5*39   JUN 2021    F TRAXLER    Replace real SSN with zeroes.
  ;******************************************************************************
  ;******************************************************************************
  Q
@@ -154,7 +157,7 @@ QUERY(FLAGS,NSPT,RORRTN) ;
  . I SKIP K ^TMP(RORRTN,$J,"PAT",PATIEN) Q
  . ;
  . ;--- Get and store the patient's data
- . D VADEM^RORUTL05(PATIEN,1)
+ . D VADEM^RORUTL05(PATIEN,1) S VA("BID")="0000"
  . S RORICN=$S($$PARAM^RORTSK01("PATIENTS","ICN"):$$ICN^RORUTL02(PATIEN),1:"")
  . S RORPACT=$S($$PARAM^RORTSK01("PATIENTS","PACT"):$$PACT^RORUTL02(PATIEN),1:"")
  . S RORPCP=$S($$PARAM^RORTSK01("PATIENTS","PCP"):$$PCP^RORUTL02(PATIEN),1:"")
@@ -179,14 +182,15 @@ QUERY(FLAGS,NSPT,RORRTN) ;
  Q $S(RC<0:RC,1:0)
  ;
 POS(VAL) ; Returns 1 if lab test returns positive result (VAL)
- ;Positive results are results that are equal to "P" or contain "POS", "DETEC" or "REACT"
- ;         -- AND -- do not contain "NEG", "NO" or "IND." 
+ ;Positive results are results that are equal to "P" or contain "POS", "DETEC" or "REA"
+ ;         -- AND -- do not contain "NEG", "NO" or "IND" or "UNDET" or "CANC" or "PEND"
  N POS,X
  S POS=0
  S X=VAL
  S VAL=$TR(X,"abcdefghijklmnopqrstuvwxyz","ABCDEFGHIJKLMNOPQRSTUVWXYZ")
- I VAL="P"!(VAL["POS")!(VAL["DETEC")!(VAL["REACT") D
- . I '(VAL["NEG"!(VAL["NO")!(VAL["IND.")) S POS=1
+ I VAL["UNDET" Q POS
+ I VAL="P"!(VAL["POS")!(VAL["DETEC")!(VAL["REA") D
+ . I '(VAL["NEG"!(VAL["NO")!(VAL["IND")) S POS=1
  Q POS
  ;
  ;***** STORES THE REPORT DATA

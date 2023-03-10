@@ -1,6 +1,6 @@
 BPSPRRX ;ALB/SS - ePharmacy secondary billing ;12-DEC-08
- ;;1.0;E CLAIMS MGMT ENGINE;**8,9,11**;JUN 2004;Build 27
- ;;Per VHA Directive 2004-038, this routine should not be modified.
+ ;;1.0;E CLAIMS MGMT ENGINE;**8,9,11,28**;JUN 2004;Build 22
+ ;;Per VA Directive 6402, this routine should not be modified.
  ;
  ;Entry point for the menu option [BPS COB PROCESS SECONDARY AND TRICARE CLAIMS]
  ;
@@ -251,6 +251,8 @@ SECONDRY(BPSRX,BPSRF,BPSDOS,BPS399,BPDISPPR) ;
  ; NEW COB DATA will indicate to BPSNCPDP that it should NOT rebuild the data from the BPS Transaction and
  ;   the previous secondary claim
  S BPSECOND("NEW COB DATA")=1
+ ;
+ D ACTDTY^BPSPRRX7(BPSRX,BPSRF,BPSDFN,BPSDOS)
  ;
  ; Set BWHERE dependent on whether this is an original submission or a resubmit
  I BPRESUBM=0 S BPSWHERE="P2"

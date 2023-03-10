@@ -1,5 +1,5 @@
-DGRPD1 ;BPFO/JRC,BAJ,DJE,ARF,JAM - PATIENT INQUIRY (NEW) ;Sep 28, 2017  5:35PM
- ;;5.3;Registration;**703,730,688,863,935,985,997**;Aug 13, 1993;Build 42
+DGRPD1 ;BPFO/JRC,BAJ,DJE,ARF,JAM,ARF - PATIENT INQUIRY (NEW) ;Sep 28, 2017  5:35PM
+ ;;5.3;Registration;**703,730,688,863,935,985,997,1067**;Aug 13, 1993;Build 23
  ; DG*5.3*688 BAJ
  ; tags HDR & OKLINE moved as is from DGRPD for size considerations
  Q
@@ -13,10 +13,18 @@ EC ;display emergency contact information
  I DGEC1(9)]"" D
  . W !,"Emergency Contact Information:"
  . ;Contacts name and realtionship
- . W !?5,"E-Cont.: ",DGEC1(9)
- . I DGEC2(9)]"" W ?40,"E2-Cont.: ",DGEC2(9)
- . W !,"Relationship: ",DGEC1(10)
- . I DGEC2(9)]"" W ?36,"Relationship: ",DGEC2(10)
+ . W !?6,"E-Cont.: ",DGEC1(9)
+ . I DGEC2(9)]"" W ?46,"E2-Cont.: ",DGEC2(9)
+ . ;DG*5.3*1067 begin - Added RELATION TYPE field and moved
+ . ;RELATIONSHIP TO PATIENT under the RELATION TYPE.
+ . ;Changed its label to from RELATIONSHIP TO PATIENT to RELATION NOTE
+ . W:((DGEC1(12)'="")!(DGEC2(12)'="")!(DGEC1(10)'="")!(DGEC2(10)'="")) !  ;RELATION TYPE is in node 10-RELATIONSHIP TO PATIENT is in node 12
+ . W:DGEC1(10)]'"" "Relation Type: ",$E(DGEC1(10),1,25)
+ . W:DGEC2(10)]'"" ?41,"Relation Type: ",DGEC2(10)
+ . W:((DGEC1(12)'="")!(DGEC2(12)'="")) !
+ . I DGEC1(10)]"" W "Relation Note: ",DGEC1(12)
+ . I DGEC2(10)]"" W ?41,"Relation Note: ",DGEC2(12)
+ . ;DG*5.3*1067 end
  . ;ECs address lines 1, 2 and 3
  . I DGEC1(1)]"" W !?14,DGEC1(1)
  . I DGEC1(1)']"",DGEC2(1)]"" W !

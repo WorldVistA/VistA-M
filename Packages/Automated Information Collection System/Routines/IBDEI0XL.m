@@ -1,130 +1,124 @@
-IBDEI0XL ; ; 04-FEB-2020
- ;;3.0;IB ENCOUNTER FORM IMP/EXP;;FEB 04, 2020
+IBDEI0XL ; ; 01-FEB-2022
+ ;;3.0;IB ENCOUNTER FORM IMP/EXP;;FEB 01, 2022
  Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,999) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
- ;;^UTILITY(U,$J,358.3,14959,2)
- ;;=^5018700
- ;;^UTILITY(U,$J,358.3,14960,0)
- ;;=K86.89^^85^837^3
- ;;^UTILITY(U,$J,358.3,14960,1,0)
+ ;;^UTILITY(U,$J,358.3,15135,2)
+ ;;=^5063710
+ ;;^UTILITY(U,$J,358.3,15136,0)
+ ;;=Z96.622^^58^716^3
+ ;;^UTILITY(U,$J,358.3,15136,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,14960,1,3,0)
- ;;=3^Atrophy of Pancreas
- ;;^UTILITY(U,$J,358.3,14960,1,4,0)
- ;;=4^K86.89
- ;;^UTILITY(U,$J,358.3,14960,2)
- ;;=^87974
- ;;^UTILITY(U,$J,358.3,14961,0)
- ;;=D13.6^^85^837^4
- ;;^UTILITY(U,$J,358.3,14961,1,0)
+ ;;^UTILITY(U,$J,358.3,15136,1,3,0)
+ ;;=3^Presence of left artificial elbow joint
+ ;;^UTILITY(U,$J,358.3,15136,1,4,0)
+ ;;=4^Z96.622
+ ;;^UTILITY(U,$J,358.3,15136,2)
+ ;;=^5063696
+ ;;^UTILITY(U,$J,358.3,15137,0)
+ ;;=Z96.642^^58^716^4
+ ;;^UTILITY(U,$J,358.3,15137,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,14961,1,3,0)
- ;;=3^Benign neoplasm of Pancreas
- ;;^UTILITY(U,$J,358.3,14961,1,4,0)
- ;;=4^D13.6
- ;;^UTILITY(U,$J,358.3,14961,2)
- ;;=^5001978
- ;;^UTILITY(U,$J,358.3,14962,0)
- ;;=K86.81^^85^837^15
- ;;^UTILITY(U,$J,358.3,14962,1,0)
+ ;;^UTILITY(U,$J,358.3,15137,1,3,0)
+ ;;=3^Presence of left artificial hip joint
+ ;;^UTILITY(U,$J,358.3,15137,1,4,0)
+ ;;=4^Z96.642
+ ;;^UTILITY(U,$J,358.3,15137,2)
+ ;;=^5063702
+ ;;^UTILITY(U,$J,358.3,15138,0)
+ ;;=Z96.652^^58^716^5
+ ;;^UTILITY(U,$J,358.3,15138,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,14962,1,3,0)
- ;;=3^Pancreatic insufficiency (Exocrine)
- ;;^UTILITY(U,$J,358.3,14962,1,4,0)
- ;;=4^K86.81
- ;;^UTILITY(U,$J,358.3,14962,2)
- ;;=^7084481
- ;;^UTILITY(U,$J,358.3,14963,0)
- ;;=K85.82^^85^837^28
- ;;^UTILITY(U,$J,358.3,14963,1,0)
+ ;;^UTILITY(U,$J,358.3,15138,1,3,0)
+ ;;=3^Presence of left artificial knee joint
+ ;;^UTILITY(U,$J,358.3,15138,1,4,0)
+ ;;=4^Z96.652
+ ;;^UTILITY(U,$J,358.3,15138,2)
+ ;;=^5063706
+ ;;^UTILITY(U,$J,358.3,15139,0)
+ ;;=Z96.612^^58^716^6
+ ;;^UTILITY(U,$J,358.3,15139,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,14963,1,3,0)
- ;;=3^Pancreatitis,Acute Other w/ Infected necrosis
- ;;^UTILITY(U,$J,358.3,14963,1,4,0)
- ;;=4^K85.82
- ;;^UTILITY(U,$J,358.3,14963,2)
- ;;=^5138760
- ;;^UTILITY(U,$J,358.3,14964,0)
- ;;=K90.3^^85^837^34
- ;;^UTILITY(U,$J,358.3,14964,1,0)
+ ;;^UTILITY(U,$J,358.3,15139,1,3,0)
+ ;;=3^Presence of left artificial shoulder joint
+ ;;^UTILITY(U,$J,358.3,15139,1,4,0)
+ ;;=4^Z96.612
+ ;;^UTILITY(U,$J,358.3,15139,2)
+ ;;=^5063693
+ ;;^UTILITY(U,$J,358.3,15140,0)
+ ;;=Z96.632^^58^716^7
+ ;;^UTILITY(U,$J,358.3,15140,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,14964,1,3,0)
- ;;=3^Steatorrhea,Pancreatic
- ;;^UTILITY(U,$J,358.3,14964,1,4,0)
- ;;=4^K90.3
- ;;^UTILITY(U,$J,358.3,14964,2)
- ;;=^265301
- ;;^UTILITY(U,$J,358.3,14965,0)
- ;;=K86.9^^85^837^35
- ;;^UTILITY(U,$J,358.3,14965,1,0)
+ ;;^UTILITY(U,$J,358.3,15140,1,3,0)
+ ;;=3^Presence of left artificial wrist joint
+ ;;^UTILITY(U,$J,358.3,15140,1,4,0)
+ ;;=4^Z96.632
+ ;;^UTILITY(U,$J,358.3,15140,2)
+ ;;=^5063699
+ ;;^UTILITY(U,$J,358.3,15141,0)
+ ;;=Z96.60^^58^716^14
+ ;;^UTILITY(U,$J,358.3,15141,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,14965,1,3,0)
- ;;=3^Disease of Pancreas,Unsp
- ;;^UTILITY(U,$J,358.3,14965,1,4,0)
- ;;=4^K86.9
- ;;^UTILITY(U,$J,358.3,14965,2)
- ;;=^5008892
- ;;^UTILITY(U,$J,358.3,14966,0)
- ;;=K86.89^^85^837^5
- ;;^UTILITY(U,$J,358.3,14966,1,0)
+ ;;^UTILITY(U,$J,358.3,15141,1,3,0)
+ ;;=3^Presence of unspecified orthopedic joint implant
+ ;;^UTILITY(U,$J,358.3,15141,1,4,0)
+ ;;=4^Z96.60
+ ;;^UTILITY(U,$J,358.3,15141,2)
+ ;;=^5063691
+ ;;^UTILITY(U,$J,358.3,15142,0)
+ ;;=Z96.661^^58^716^8
+ ;;^UTILITY(U,$J,358.3,15142,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,14966,1,3,0)
- ;;=3^Calculus of Pancreas
- ;;^UTILITY(U,$J,358.3,14966,1,4,0)
- ;;=4^K86.89
- ;;^UTILITY(U,$J,358.3,14966,2)
- ;;=^87974
- ;;^UTILITY(U,$J,358.3,14967,0)
- ;;=K90.0^^85^838^10
- ;;^UTILITY(U,$J,358.3,14967,1,0)
+ ;;^UTILITY(U,$J,358.3,15142,1,3,0)
+ ;;=3^Presence of right artificial ankle joint
+ ;;^UTILITY(U,$J,358.3,15142,1,4,0)
+ ;;=4^Z96.661
+ ;;^UTILITY(U,$J,358.3,15142,2)
+ ;;=^5063709
+ ;;^UTILITY(U,$J,358.3,15143,0)
+ ;;=Z96.621^^58^716^9
+ ;;^UTILITY(U,$J,358.3,15143,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,14967,1,3,0)
- ;;=3^Celiac disease
- ;;^UTILITY(U,$J,358.3,14967,1,4,0)
- ;;=4^K90.0
- ;;^UTILITY(U,$J,358.3,14967,2)
- ;;=^20828
- ;;^UTILITY(U,$J,358.3,14968,0)
- ;;=R93.3^^85^838^1
- ;;^UTILITY(U,$J,358.3,14968,1,0)
+ ;;^UTILITY(U,$J,358.3,15143,1,3,0)
+ ;;=3^Presence of right artificial elbow joint
+ ;;^UTILITY(U,$J,358.3,15143,1,4,0)
+ ;;=4^Z96.621
+ ;;^UTILITY(U,$J,358.3,15143,2)
+ ;;=^5063695
+ ;;^UTILITY(U,$J,358.3,15144,0)
+ ;;=Z96.641^^58^716^10
+ ;;^UTILITY(U,$J,358.3,15144,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,14968,1,3,0)
- ;;=3^Abnormal imaging Digestive tract
- ;;^UTILITY(U,$J,358.3,14968,1,4,0)
- ;;=4^R93.3
- ;;^UTILITY(U,$J,358.3,14968,2)
- ;;=^5019716
- ;;^UTILITY(U,$J,358.3,14969,0)
- ;;=K31.811^^85^838^2
- ;;^UTILITY(U,$J,358.3,14969,1,0)
+ ;;^UTILITY(U,$J,358.3,15144,1,3,0)
+ ;;=3^Presence of right artificial hip joint
+ ;;^UTILITY(U,$J,358.3,15144,1,4,0)
+ ;;=4^Z96.641
+ ;;^UTILITY(U,$J,358.3,15144,2)
+ ;;=^5063701
+ ;;^UTILITY(U,$J,358.3,15145,0)
+ ;;=Z96.651^^58^716^11
+ ;;^UTILITY(U,$J,358.3,15145,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,14969,1,3,0)
- ;;=3^Angiodysplasia of Duodenum w/ Bleeding
- ;;^UTILITY(U,$J,358.3,14969,1,4,0)
- ;;=4^K31.811
- ;;^UTILITY(U,$J,358.3,14969,2)
- ;;=^5008567
- ;;^UTILITY(U,$J,358.3,14970,0)
- ;;=K31.819^^85^838^3
- ;;^UTILITY(U,$J,358.3,14970,1,0)
+ ;;^UTILITY(U,$J,358.3,15145,1,3,0)
+ ;;=3^Presence of right artificial knee joint
+ ;;^UTILITY(U,$J,358.3,15145,1,4,0)
+ ;;=4^Z96.651
+ ;;^UTILITY(U,$J,358.3,15145,2)
+ ;;=^5063705
+ ;;^UTILITY(U,$J,358.3,15146,0)
+ ;;=Z96.611^^58^716^12
+ ;;^UTILITY(U,$J,358.3,15146,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,14970,1,3,0)
- ;;=3^Angiodysplasia of Duodenum w/o Bleeding
- ;;^UTILITY(U,$J,358.3,14970,1,4,0)
- ;;=4^K31.819
- ;;^UTILITY(U,$J,358.3,14970,2)
- ;;=^5008568
- ;;^UTILITY(U,$J,358.3,14971,0)
- ;;=K55.8^^85^838^4
- ;;^UTILITY(U,$J,358.3,14971,1,0)
+ ;;^UTILITY(U,$J,358.3,15146,1,3,0)
+ ;;=3^Presence of right artificial shoulder joint
+ ;;^UTILITY(U,$J,358.3,15146,1,4,0)
+ ;;=4^Z96.611
+ ;;^UTILITY(U,$J,358.3,15146,2)
+ ;;=^5063692
+ ;;^UTILITY(U,$J,358.3,15147,0)
+ ;;=Z96.631^^58^716^13
+ ;;^UTILITY(U,$J,358.3,15147,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,14971,1,3,0)
- ;;=3^Angiodysplasia of Jejunum/Ileum
- ;;^UTILITY(U,$J,358.3,14971,1,4,0)
- ;;=4^K55.8
- ;;^UTILITY(U,$J,358.3,14971,2)
- ;;=^5008709
- ;;^UTILITY(U,$J,358.3,14972,0)
- ;;=D13.2^^85^838^5
- ;;^UTILITY(U,$J,358.3,14972,1,0)
- ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,15147,1,3,0)
+ ;;=3^Presence of right artificial wrist joint
+ ;;^UTILITY(U,$J,358.3,15147,1,4,0)
+ ;;=4^Z96.631

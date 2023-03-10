@@ -1,130 +1,128 @@
-IBDEI0XV ; ; 04-FEB-2020
- ;;3.0;IB ENCOUNTER FORM IMP/EXP;;FEB 04, 2020
+IBDEI0XV ; ; 01-FEB-2022
+ ;;3.0;IB ENCOUNTER FORM IMP/EXP;;FEB 01, 2022
  Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,999) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
- ;;^UTILITY(U,$J,358.3,15084,1,3,0)
- ;;=3^Gastritis,Unspec w/o Bleeding
- ;;^UTILITY(U,$J,358.3,15084,1,4,0)
- ;;=4^K29.70
- ;;^UTILITY(U,$J,358.3,15084,2)
- ;;=^5008552
- ;;^UTILITY(U,$J,358.3,15085,0)
- ;;=D00.2^^85^839^5
- ;;^UTILITY(U,$J,358.3,15085,1,0)
+ ;;^UTILITY(U,$J,358.3,15256,0)
+ ;;=F43.10^^58^718^15
+ ;;^UTILITY(U,$J,358.3,15256,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,15085,1,3,0)
- ;;=3^Carcinoma in Situ of Stomach
- ;;^UTILITY(U,$J,358.3,15085,1,4,0)
- ;;=4^D00.2
- ;;^UTILITY(U,$J,358.3,15085,2)
- ;;=^267711
- ;;^UTILITY(U,$J,358.3,15086,0)
- ;;=K91.1^^85^840^14
- ;;^UTILITY(U,$J,358.3,15086,1,0)
+ ;;^UTILITY(U,$J,358.3,15256,1,3,0)
+ ;;=3^Post-traumatic stress disorder, unspecified
+ ;;^UTILITY(U,$J,358.3,15256,1,4,0)
+ ;;=4^F43.10
+ ;;^UTILITY(U,$J,358.3,15256,2)
+ ;;=^5003570
+ ;;^UTILITY(U,$J,358.3,15257,0)
+ ;;=F43.12^^58^718^14
+ ;;^UTILITY(U,$J,358.3,15257,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,15086,1,3,0)
- ;;=3^Postgastric surgery syndromes incl. Dumping syndrome
- ;;^UTILITY(U,$J,358.3,15086,1,4,0)
- ;;=4^K91.1
- ;;^UTILITY(U,$J,358.3,15086,2)
- ;;=^5008900
- ;;^UTILITY(U,$J,358.3,15087,0)
- ;;=Z93.1^^85^840^10
- ;;^UTILITY(U,$J,358.3,15087,1,0)
+ ;;^UTILITY(U,$J,358.3,15257,1,3,0)
+ ;;=3^Post-traumatic stress disorder, chronic
+ ;;^UTILITY(U,$J,358.3,15257,1,4,0)
+ ;;=4^F43.12
+ ;;^UTILITY(U,$J,358.3,15257,2)
+ ;;=^5003572
+ ;;^UTILITY(U,$J,358.3,15258,0)
+ ;;=F43.8^^58^718^16
+ ;;^UTILITY(U,$J,358.3,15258,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,15087,1,3,0)
- ;;=3^Gastrostomy status
- ;;^UTILITY(U,$J,358.3,15087,1,4,0)
- ;;=4^Z93.1
- ;;^UTILITY(U,$J,358.3,15087,2)
- ;;=^5063643
- ;;^UTILITY(U,$J,358.3,15088,0)
- ;;=Z90.3^^85^840^4
- ;;^UTILITY(U,$J,358.3,15088,1,0)
+ ;;^UTILITY(U,$J,358.3,15258,1,3,0)
+ ;;=3^Reactions to severe stress NEC
+ ;;^UTILITY(U,$J,358.3,15258,1,4,0)
+ ;;=4^F43.8
+ ;;^UTILITY(U,$J,358.3,15258,2)
+ ;;=^5003575
+ ;;^UTILITY(U,$J,358.3,15259,0)
+ ;;=F43.20^^58^718^6
+ ;;^UTILITY(U,$J,358.3,15259,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,15088,1,3,0)
- ;;=3^Acquired absence of Stomach
- ;;^UTILITY(U,$J,358.3,15088,1,4,0)
- ;;=4^Z90.3
- ;;^UTILITY(U,$J,358.3,15088,2)
- ;;=^5063586
- ;;^UTILITY(U,$J,358.3,15089,0)
- ;;=Z90.49^^85^840^1
- ;;^UTILITY(U,$J,358.3,15089,1,0)
+ ;;^UTILITY(U,$J,358.3,15259,1,3,0)
+ ;;=3^Adjustment D/O,Unspec
+ ;;^UTILITY(U,$J,358.3,15259,1,4,0)
+ ;;=4^F43.20
+ ;;^UTILITY(U,$J,358.3,15259,2)
+ ;;=^5003573
+ ;;^UTILITY(U,$J,358.3,15260,0)
+ ;;=F07.0^^58^718^13
+ ;;^UTILITY(U,$J,358.3,15260,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,15089,1,3,0)
- ;;=3^Acquired absence of (specified) Digestive tract
- ;;^UTILITY(U,$J,358.3,15089,1,4,0)
- ;;=4^Z90.49
- ;;^UTILITY(U,$J,358.3,15089,2)
- ;;=^5063589
- ;;^UTILITY(U,$J,358.3,15090,0)
- ;;=Z90.411^^85^840^2
- ;;^UTILITY(U,$J,358.3,15090,1,0)
+ ;;^UTILITY(U,$J,358.3,15260,1,3,0)
+ ;;=3^Personality change due to known physiological condition
+ ;;^UTILITY(U,$J,358.3,15260,1,4,0)
+ ;;=4^F07.0
+ ;;^UTILITY(U,$J,358.3,15260,2)
+ ;;=^5003063
+ ;;^UTILITY(U,$J,358.3,15261,0)
+ ;;=F98.5^^58^719^1
+ ;;^UTILITY(U,$J,358.3,15261,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,15090,1,3,0)
- ;;=3^Acquired absence of Pancreas,Partial
- ;;^UTILITY(U,$J,358.3,15090,1,4,0)
- ;;=4^Z90.411
- ;;^UTILITY(U,$J,358.3,15090,2)
- ;;=^5063588
- ;;^UTILITY(U,$J,358.3,15091,0)
- ;;=Z90.410^^85^840^3
- ;;^UTILITY(U,$J,358.3,15091,1,0)
+ ;;^UTILITY(U,$J,358.3,15261,1,3,0)
+ ;;=3^Adult onset fluency disorder
+ ;;^UTILITY(U,$J,358.3,15261,1,4,0)
+ ;;=4^F98.5
+ ;;^UTILITY(U,$J,358.3,15261,2)
+ ;;=^5003717
+ ;;^UTILITY(U,$J,358.3,15262,0)
+ ;;=R47.01^^58^719^2
+ ;;^UTILITY(U,$J,358.3,15262,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,15091,1,3,0)
- ;;=3^Acquired absence of Pancreas,Total
- ;;^UTILITY(U,$J,358.3,15091,1,4,0)
- ;;=4^Z90.410
- ;;^UTILITY(U,$J,358.3,15091,2)
- ;;=^5063587
- ;;^UTILITY(U,$J,358.3,15092,0)
- ;;=Z98.84^^85^840^5
- ;;^UTILITY(U,$J,358.3,15092,1,0)
+ ;;^UTILITY(U,$J,358.3,15262,1,3,0)
+ ;;=3^Aphasia
+ ;;^UTILITY(U,$J,358.3,15262,1,4,0)
+ ;;=4^R47.01
+ ;;^UTILITY(U,$J,358.3,15262,2)
+ ;;=^5019488
+ ;;^UTILITY(U,$J,358.3,15263,0)
+ ;;=I69.920^^58^719^4
+ ;;^UTILITY(U,$J,358.3,15263,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,15092,1,3,0)
- ;;=3^Bariatric surgery status
- ;;^UTILITY(U,$J,358.3,15092,1,4,0)
- ;;=4^Z98.84
- ;;^UTILITY(U,$J,358.3,15092,2)
- ;;=^5063749
- ;;^UTILITY(U,$J,358.3,15093,0)
- ;;=Z93.3^^85^840^6
- ;;^UTILITY(U,$J,358.3,15093,1,0)
+ ;;^UTILITY(U,$J,358.3,15263,1,3,0)
+ ;;=3^Aphasia following unspecified cerebrovascular disease
+ ;;^UTILITY(U,$J,358.3,15263,1,4,0)
+ ;;=4^I69.920
+ ;;^UTILITY(U,$J,358.3,15263,2)
+ ;;=^5007553
+ ;;^UTILITY(U,$J,358.3,15264,0)
+ ;;=F80.1^^58^719^5
+ ;;^UTILITY(U,$J,358.3,15264,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,15093,1,3,0)
- ;;=3^Colostomy status
- ;;^UTILITY(U,$J,358.3,15093,1,4,0)
- ;;=4^Z93.3
- ;;^UTILITY(U,$J,358.3,15093,2)
- ;;=^5063645
- ;;^UTILITY(U,$J,358.3,15094,0)
- ;;=K94.21^^85^840^8
- ;;^UTILITY(U,$J,358.3,15094,1,0)
+ ;;^UTILITY(U,$J,358.3,15264,1,3,0)
+ ;;=3^Expressive language disorder
+ ;;^UTILITY(U,$J,358.3,15264,1,4,0)
+ ;;=4^F80.1
+ ;;^UTILITY(U,$J,358.3,15264,2)
+ ;;=^331958
+ ;;^UTILITY(U,$J,358.3,15265,0)
+ ;;=F80.2^^58^719^6
+ ;;^UTILITY(U,$J,358.3,15265,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,15094,1,3,0)
- ;;=3^Gastrostomy hemorrhage
- ;;^UTILITY(U,$J,358.3,15094,1,4,0)
- ;;=4^K94.21
- ;;^UTILITY(U,$J,358.3,15094,2)
- ;;=^5008929
- ;;^UTILITY(U,$J,358.3,15095,0)
- ;;=K94.23^^85^840^9
- ;;^UTILITY(U,$J,358.3,15095,1,0)
+ ;;^UTILITY(U,$J,358.3,15265,1,3,0)
+ ;;=3^Mixed receptive-expressive language disorder
+ ;;^UTILITY(U,$J,358.3,15265,1,4,0)
+ ;;=4^F80.2
+ ;;^UTILITY(U,$J,358.3,15265,2)
+ ;;=^331959
+ ;;^UTILITY(U,$J,358.3,15266,0)
+ ;;=R47.89^^58^719^7
+ ;;^UTILITY(U,$J,358.3,15266,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,15095,1,3,0)
- ;;=3^Gastrostomy malfunction
- ;;^UTILITY(U,$J,358.3,15095,1,4,0)
- ;;=4^K94.23
- ;;^UTILITY(U,$J,358.3,15095,2)
- ;;=^5008931
- ;;^UTILITY(U,$J,358.3,15096,0)
- ;;=Z93.2^^85^840^11
- ;;^UTILITY(U,$J,358.3,15096,1,0)
+ ;;^UTILITY(U,$J,358.3,15266,1,3,0)
+ ;;=3^Speech disturbances NEC
+ ;;^UTILITY(U,$J,358.3,15266,1,4,0)
+ ;;=4^R47.89
+ ;;^UTILITY(U,$J,358.3,15266,2)
+ ;;=^5019493
+ ;;^UTILITY(U,$J,358.3,15267,0)
+ ;;=R49.8^^58^719^8
+ ;;^UTILITY(U,$J,358.3,15267,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,15096,1,3,0)
- ;;=3^Ileostomy status
- ;;^UTILITY(U,$J,358.3,15096,1,4,0)
- ;;=4^Z93.2
- ;;^UTILITY(U,$J,358.3,15096,2)
- ;;=^5063644
+ ;;^UTILITY(U,$J,358.3,15267,1,3,0)
+ ;;=3^Voice and resonance disorders NEC
+ ;;^UTILITY(U,$J,358.3,15267,1,4,0)
+ ;;=4^R49.8
+ ;;^UTILITY(U,$J,358.3,15267,2)
+ ;;=^5019505
+ ;;^UTILITY(U,$J,358.3,15268,0)
+ ;;=I69.320^^58^719^3
+ ;;^UTILITY(U,$J,358.3,15268,1,0)
+ ;;=^358.31IA^4^2

@@ -1,122 +1,130 @@
-IBDEI10X ; ; 04-FEB-2020
- ;;3.0;IB ENCOUNTER FORM IMP/EXP;;FEB 04, 2020
+IBDEI10X ; ; 01-FEB-2022
+ ;;3.0;IB ENCOUNTER FORM IMP/EXP;;FEB 01, 2022
  Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,999) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
- ;;^UTILITY(U,$J,358.3,16461,1,3,0)
- ;;=3^Chronic Lymphocytic Leukemia of B-Cell Type,In Remission
- ;;^UTILITY(U,$J,358.3,16461,1,4,0)
- ;;=4^C91.11
- ;;^UTILITY(U,$J,358.3,16461,2)
- ;;=^5001766
- ;;^UTILITY(U,$J,358.3,16462,0)
- ;;=C91.10^^88^879^49
- ;;^UTILITY(U,$J,358.3,16462,1,0)
+ ;;^UTILITY(U,$J,358.3,16646,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,16462,1,3,0)
- ;;=3^Chronic Lymphocytic Leukemia of B-Cell Type,Not in Remission
- ;;^UTILITY(U,$J,358.3,16462,1,4,0)
- ;;=4^C91.10
- ;;^UTILITY(U,$J,358.3,16462,2)
- ;;=^5001765
- ;;^UTILITY(U,$J,358.3,16463,0)
- ;;=C92.11^^88^879^50
- ;;^UTILITY(U,$J,358.3,16463,1,0)
+ ;;^UTILITY(U,$J,358.3,16646,1,3,0)
+ ;;=3^Malig Neop Right Male Breast,Unspec Site
+ ;;^UTILITY(U,$J,358.3,16646,1,4,0)
+ ;;=4^C50.921
+ ;;^UTILITY(U,$J,358.3,16646,2)
+ ;;=^5001198
+ ;;^UTILITY(U,$J,358.3,16647,0)
+ ;;=C90.02^^61^775^176
+ ;;^UTILITY(U,$J,358.3,16647,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,16463,1,3,0)
- ;;=3^Chronic Myeloid Leukemia,BCR/ABL-Positive,In Remission
- ;;^UTILITY(U,$J,358.3,16463,1,4,0)
- ;;=4^C92.11
- ;;^UTILITY(U,$J,358.3,16463,2)
- ;;=^5001793
- ;;^UTILITY(U,$J,358.3,16464,0)
- ;;=C92.10^^88^879^51
- ;;^UTILITY(U,$J,358.3,16464,1,0)
+ ;;^UTILITY(U,$J,358.3,16647,1,3,0)
+ ;;=3^Multiple Myeloma,In Relapse
+ ;;^UTILITY(U,$J,358.3,16647,1,4,0)
+ ;;=4^C90.02
+ ;;^UTILITY(U,$J,358.3,16647,2)
+ ;;=^5001753
+ ;;^UTILITY(U,$J,358.3,16648,0)
+ ;;=D51.9^^61^775^25
+ ;;^UTILITY(U,$J,358.3,16648,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,16464,1,3,0)
- ;;=3^Chronic Myeloid Leukemia,BCR/ABL-Positive,Not in Remission
- ;;^UTILITY(U,$J,358.3,16464,1,4,0)
- ;;=4^C92.10
- ;;^UTILITY(U,$J,358.3,16464,2)
- ;;=^5001792
- ;;^UTILITY(U,$J,358.3,16465,0)
- ;;=D47.1^^88^879^52
- ;;^UTILITY(U,$J,358.3,16465,1,0)
+ ;;^UTILITY(U,$J,358.3,16648,1,3,0)
+ ;;=3^Anemia in Vitamin B12 Deficiency
+ ;;^UTILITY(U,$J,358.3,16648,1,4,0)
+ ;;=4^D51.9
+ ;;^UTILITY(U,$J,358.3,16648,2)
+ ;;=^5002289
+ ;;^UTILITY(U,$J,358.3,16649,0)
+ ;;=C79.51^^61^775^35
+ ;;^UTILITY(U,$J,358.3,16649,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,16465,1,3,0)
- ;;=3^Chronic Myeloproliferative Disease
- ;;^UTILITY(U,$J,358.3,16465,1,4,0)
- ;;=4^D47.1
- ;;^UTILITY(U,$J,358.3,16465,2)
- ;;=^5002256
- ;;^UTILITY(U,$J,358.3,16466,0)
- ;;=C82.69^^88^879^53
- ;;^UTILITY(U,$J,358.3,16466,1,0)
+ ;;^UTILITY(U,$J,358.3,16649,1,3,0)
+ ;;=3^Bone Mets
+ ;;^UTILITY(U,$J,358.3,16649,1,4,0)
+ ;;=4^C79.51
+ ;;^UTILITY(U,$J,358.3,16649,2)
+ ;;=^5001350
+ ;;^UTILITY(U,$J,358.3,16650,0)
+ ;;=C80.1^^61^775^171
+ ;;^UTILITY(U,$J,358.3,16650,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,16466,1,3,0)
- ;;=3^Cutaneous Follicle Center Lymphoma,Extranodal/Solid Organ Sites
- ;;^UTILITY(U,$J,358.3,16466,1,4,0)
- ;;=4^C82.69
- ;;^UTILITY(U,$J,358.3,16466,2)
- ;;=^5001530
- ;;^UTILITY(U,$J,358.3,16467,0)
- ;;=C82.60^^88^879^54
- ;;^UTILITY(U,$J,358.3,16467,1,0)
+ ;;^UTILITY(U,$J,358.3,16650,1,3,0)
+ ;;=3^Malig Neop,Primary,Unspec Site
+ ;;^UTILITY(U,$J,358.3,16650,1,4,0)
+ ;;=4^C80.1
+ ;;^UTILITY(U,$J,358.3,16650,2)
+ ;;=^5001389
+ ;;^UTILITY(U,$J,358.3,16651,0)
+ ;;=C80.0^^61^775^172
+ ;;^UTILITY(U,$J,358.3,16651,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,16467,1,3,0)
- ;;=3^Cutaneous Follicle Center Lymphoma,Unspec Site
- ;;^UTILITY(U,$J,358.3,16467,1,4,0)
- ;;=4^C82.60
- ;;^UTILITY(U,$J,358.3,16467,2)
- ;;=^5001521
- ;;^UTILITY(U,$J,358.3,16468,0)
- ;;=D56.2^^88^879^55
- ;;^UTILITY(U,$J,358.3,16468,1,0)
+ ;;^UTILITY(U,$J,358.3,16651,1,3,0)
+ ;;=3^Malig Neop,Unspec Primary or Secondary
+ ;;^UTILITY(U,$J,358.3,16651,1,4,0)
+ ;;=4^C80.0
+ ;;^UTILITY(U,$J,358.3,16651,2)
+ ;;=^5001388
+ ;;^UTILITY(U,$J,358.3,16652,0)
+ ;;=E28.39^^61^775^96
+ ;;^UTILITY(U,$J,358.3,16652,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,16468,1,3,0)
- ;;=3^Delta-Beta Thalassemia
- ;;^UTILITY(U,$J,358.3,16468,1,4,0)
- ;;=4^D56.2
- ;;^UTILITY(U,$J,358.3,16468,2)
- ;;=^340496
- ;;^UTILITY(U,$J,358.3,16469,0)
- ;;=D75.9^^88^879^56
- ;;^UTILITY(U,$J,358.3,16469,1,0)
+ ;;^UTILITY(U,$J,358.3,16652,1,3,0)
+ ;;=3^Hypogonadism,Ovarian
+ ;;^UTILITY(U,$J,358.3,16652,1,4,0)
+ ;;=4^E28.39
+ ;;^UTILITY(U,$J,358.3,16652,2)
+ ;;=^5002752
+ ;;^UTILITY(U,$J,358.3,16653,0)
+ ;;=E29.1^^61^775^97
+ ;;^UTILITY(U,$J,358.3,16653,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,16469,1,3,0)
- ;;=3^Disease of Blood/Blood-Forming Organs,Unspec
- ;;^UTILITY(U,$J,358.3,16469,1,4,0)
- ;;=4^D75.9
- ;;^UTILITY(U,$J,358.3,16469,2)
- ;;=^5002393
- ;;^UTILITY(U,$J,358.3,16470,0)
- ;;=D59.0^^88^879^59
- ;;^UTILITY(U,$J,358.3,16470,1,0)
+ ;;^UTILITY(U,$J,358.3,16653,1,3,0)
+ ;;=3^Hypogonadism,Testicular
+ ;;^UTILITY(U,$J,358.3,16653,1,4,0)
+ ;;=4^E29.1
+ ;;^UTILITY(U,$J,358.3,16653,2)
+ ;;=^5002754
+ ;;^UTILITY(U,$J,358.3,16654,0)
+ ;;=C96.20^^61^775^111
+ ;;^UTILITY(U,$J,358.3,16654,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,16470,1,3,0)
- ;;=3^Drug-Induced Autoimmune Hemolytic Anemia
- ;;^UTILITY(U,$J,358.3,16470,1,4,0)
- ;;=4^D59.0
- ;;^UTILITY(U,$J,358.3,16470,2)
- ;;=^5002323
- ;;^UTILITY(U,$J,358.3,16471,0)
- ;;=D59.2^^88^879^60
- ;;^UTILITY(U,$J,358.3,16471,1,0)
+ ;;^UTILITY(U,$J,358.3,16654,1,3,0)
+ ;;=3^Malig Mast Cell Neoplasm,Unspec
+ ;;^UTILITY(U,$J,358.3,16654,1,4,0)
+ ;;=4^C96.20
+ ;;^UTILITY(U,$J,358.3,16654,2)
+ ;;=^5151293
+ ;;^UTILITY(U,$J,358.3,16655,0)
+ ;;=C96.22^^61^775^173
+ ;;^UTILITY(U,$J,358.3,16655,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,16471,1,3,0)
- ;;=3^Drug-Induced Nonautoimmune Hemolytic Anemia
- ;;^UTILITY(U,$J,358.3,16471,1,4,0)
- ;;=4^D59.2
- ;;^UTILITY(U,$J,358.3,16471,2)
- ;;=^5002325
- ;;^UTILITY(U,$J,358.3,16472,0)
- ;;=R59.9^^88^879^63
- ;;^UTILITY(U,$J,358.3,16472,1,0)
+ ;;^UTILITY(U,$J,358.3,16655,1,3,0)
+ ;;=3^Mast Cell Sarcoma
+ ;;^UTILITY(U,$J,358.3,16655,1,4,0)
+ ;;=4^C96.22
+ ;;^UTILITY(U,$J,358.3,16655,2)
+ ;;=^5151295
+ ;;^UTILITY(U,$J,358.3,16656,0)
+ ;;=D64.9^^61^775^26
+ ;;^UTILITY(U,$J,358.3,16656,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,16472,1,3,0)
- ;;=3^Enlarged Lymph Nodes,Unspec
- ;;^UTILITY(U,$J,358.3,16472,1,4,0)
- ;;=4^R59.9
- ;;^UTILITY(U,$J,358.3,16472,2)
- ;;=^5019531
- ;;^UTILITY(U,$J,358.3,16473,0)
- ;;=D47.3^^88^879^64
+ ;;^UTILITY(U,$J,358.3,16656,1,3,0)
+ ;;=3^Anemia,Unspec
+ ;;^UTILITY(U,$J,358.3,16656,1,4,0)
+ ;;=4^D64.9
+ ;;^UTILITY(U,$J,358.3,16656,2)
+ ;;=^5002351
+ ;;^UTILITY(U,$J,358.3,16657,0)
+ ;;=D59.10^^61^775^32
+ ;;^UTILITY(U,$J,358.3,16657,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,16657,1,3,0)
+ ;;=3^Autoimmune Hemolytic Anemia,Unspec
+ ;;^UTILITY(U,$J,358.3,16657,1,4,0)
+ ;;=4^D59.10
+ ;;^UTILITY(U,$J,358.3,16657,2)
+ ;;=^5159101
+ ;;^UTILITY(U,$J,358.3,16658,0)
+ ;;=D59.11^^61^775^33
+ ;;^UTILITY(U,$J,358.3,16658,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,16658,1,3,0)
+ ;;=3^Autoimmune Hemolytic Anemia,Warm
+ ;;^UTILITY(U,$J,358.3,16658,1,4,0)
+ ;;=4^D59.11

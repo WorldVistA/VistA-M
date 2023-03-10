@@ -1,128 +1,26 @@
-IBDEI1NC ; ; 04-FEB-2020
- ;;3.0;IB ENCOUNTER FORM IMP/EXP;;FEB 04, 2020
- Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,999) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
-Q Q
- ;;^UTILITY(U,$J,358.3,26292,1,3,0)
- ;;=3^Acute Kidney Failure w/ Acute Cortical Necrosis
- ;;^UTILITY(U,$J,358.3,26292,1,4,0)
- ;;=4^N17.1
- ;;^UTILITY(U,$J,358.3,26292,2)
- ;;=^5015599
- ;;^UTILITY(U,$J,358.3,26293,0)
- ;;=N17.2^^107^1235^2
- ;;^UTILITY(U,$J,358.3,26293,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,26293,1,3,0)
- ;;=3^Acute Kidney Failure w/ Medullary Necrosis
- ;;^UTILITY(U,$J,358.3,26293,1,4,0)
- ;;=4^N17.2
- ;;^UTILITY(U,$J,358.3,26293,2)
- ;;=^5015600
- ;;^UTILITY(U,$J,358.3,26294,0)
- ;;=N17.8^^107^1235^4
- ;;^UTILITY(U,$J,358.3,26294,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,26294,1,3,0)
- ;;=3^Acute Kidney Failure,Other
- ;;^UTILITY(U,$J,358.3,26294,1,4,0)
- ;;=4^N17.8
- ;;^UTILITY(U,$J,358.3,26294,2)
- ;;=^5015601
- ;;^UTILITY(U,$J,358.3,26295,0)
- ;;=N17.9^^107^1235^5
- ;;^UTILITY(U,$J,358.3,26295,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,26295,1,3,0)
- ;;=3^Acute Kidney Failure,Unspec
- ;;^UTILITY(U,$J,358.3,26295,1,4,0)
- ;;=4^N17.9
- ;;^UTILITY(U,$J,358.3,26295,2)
- ;;=^338532
- ;;^UTILITY(U,$J,358.3,26296,0)
- ;;=I20.0^^107^1236^4
- ;;^UTILITY(U,$J,358.3,26296,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,26296,1,3,0)
- ;;=3^Unstable Angina
- ;;^UTILITY(U,$J,358.3,26296,1,4,0)
- ;;=4^I20.0
- ;;^UTILITY(U,$J,358.3,26296,2)
- ;;=^5007076
- ;;^UTILITY(U,$J,358.3,26297,0)
- ;;=I20.1^^107^1236^1
- ;;^UTILITY(U,$J,358.3,26297,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,26297,1,3,0)
- ;;=3^Angina Pectoris w/ Documented Spasm
- ;;^UTILITY(U,$J,358.3,26297,1,4,0)
- ;;=4^I20.1
- ;;^UTILITY(U,$J,358.3,26297,2)
- ;;=^5007077
- ;;^UTILITY(U,$J,358.3,26298,0)
- ;;=I20.8^^107^1236^2
- ;;^UTILITY(U,$J,358.3,26298,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,26298,1,3,0)
- ;;=3^Angina Pectoris,Other Forms
- ;;^UTILITY(U,$J,358.3,26298,1,4,0)
- ;;=4^I20.8
- ;;^UTILITY(U,$J,358.3,26298,2)
- ;;=^5007078
- ;;^UTILITY(U,$J,358.3,26299,0)
- ;;=I20.9^^107^1236^3
- ;;^UTILITY(U,$J,358.3,26299,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,26299,1,3,0)
- ;;=3^Angina Pectoris,Unspec
- ;;^UTILITY(U,$J,358.3,26299,1,4,0)
- ;;=4^I20.9
- ;;^UTILITY(U,$J,358.3,26299,2)
- ;;=^5007079
- ;;^UTILITY(U,$J,358.3,26300,0)
- ;;=J40.^^107^1237^17
- ;;^UTILITY(U,$J,358.3,26300,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,26300,1,3,0)
- ;;=3^Bronchitis
- ;;^UTILITY(U,$J,358.3,26300,1,4,0)
- ;;=4^J40.
- ;;^UTILITY(U,$J,358.3,26300,2)
- ;;=^17164
- ;;^UTILITY(U,$J,358.3,26301,0)
- ;;=J41.0^^107^1237^20
- ;;^UTILITY(U,$J,358.3,26301,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,26301,1,3,0)
- ;;=3^Bronchitis,Simple Chronic
- ;;^UTILITY(U,$J,358.3,26301,1,4,0)
- ;;=4^J41.0
- ;;^UTILITY(U,$J,358.3,26301,2)
- ;;=^269946
- ;;^UTILITY(U,$J,358.3,26302,0)
- ;;=J41.1^^107^1237^19
- ;;^UTILITY(U,$J,358.3,26302,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,26302,1,3,0)
- ;;=3^Bronchitis,Mucopurulent Chronic
- ;;^UTILITY(U,$J,358.3,26302,1,4,0)
- ;;=4^J41.1
- ;;^UTILITY(U,$J,358.3,26302,2)
- ;;=^269949
- ;;^UTILITY(U,$J,358.3,26303,0)
- ;;=J41.8^^107^1237^18
- ;;^UTILITY(U,$J,358.3,26303,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,26303,1,3,0)
- ;;=3^Bronchitis,Mixed Simple & Mucopurulent Chronic
- ;;^UTILITY(U,$J,358.3,26303,1,4,0)
- ;;=4^J41.8
- ;;^UTILITY(U,$J,358.3,26303,2)
- ;;=^5008233
- ;;^UTILITY(U,$J,358.3,26304,0)
- ;;=J42.^^107^1237^21
- ;;^UTILITY(U,$J,358.3,26304,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,26304,1,3,0)
- ;;=3^Bronchitis,Unspec Chronic
- ;;^UTILITY(U,$J,358.3,26304,1,4,0)
- ;;=4^J42.
+IBDEI1NC ; ; 01-FEB-2022
+ ;;3.0;IB ENCOUNTER FORM IMP/EXP;;FEB 01, 2022
+ ;
+ ;
+ I N="DIST(.403," D
+ .N DIFRVAL S DIFRVAL=$$VAL^DIFROMSS(.403,DA)
+ .I DIFRVAL W !,"Compiling form: ",$P(^DIST(.403,DA,0),U) D EN^DDSZ(DA) Q
+ .W !,"ERROR: Form: ",$P(^DIST(.403,DA,0),U)," cannot be compiled"
+ .Q
+ Q
+BLK F J=0:0 S J=$O(^UTILITY(U,$J,N,R,40,J)) Q:'J  I $D(^(J,0)) S %=$P(^(0),U,2) S:%]"" %=$O(^DIST(.404,"B",%,0)) S:% $P(^UTILITY(U,$J,N,R,40,J,0),U,2)=% D B1
+ K A0,A1,A2,J,L Q
+B1 F L=0:0 S L=$O(^UTILITY(U,$J,N,R,40,J,40,L)) Q:'L  S A0=$G(^(L,0)),%=$P(A0,U) I %]"" S %=$O(^DIST(.404,"B",%,0)) I % S $P(A0,U)=%,^UTILITY(U,$J,N,R,40,J,"BLK",%,0)=A0 D
+ .N X S X=0
+ .F  S X=$O(^UTILITY(U,$J,N,R,40,J,40,L,X)) Q:X=""  S ^UTILITY(U,$J,N,R,40,J,"BLK",%,X)=^(X)
+ .Q
+ S A0=$G(^UTILITY(U,$J,N,R,40,J,40,0)) Q:A0=""  K ^UTILITY(U,$J,N,R,40,J,40) S (A1,A2)=0
+ F L=0:0 S L=$O(^UTILITY(U,$J,N,R,40,J,"BLK",L)) Q:'L  S ^UTILITY(U,$J,N,R,40,J,40,L,0)=^(L,0),A1=L,A2=A2+1 D
+ .N X S X=0
+ .F  S X=$O(^UTILITY(U,$J,N,R,40,J,"BLK",L,X)) Q:X=""  S ^UTILITY(U,$J,N,R,40,J,40,L,X)=^(X)
+ .Q
+ S $P(A0,U,3,4)=A1_U_A2,^UTILITY(U,$J,N,R,40,J,40,0)=A0 K ^UTILITY(U,$J,N,R,40,J,"BLK")
+ Q
+KAD(D0) N D1,X
+ S X=0 F  S X=$O(^DIC(19,D0,10,"B",X)) Q:X'>0  S D1=0 F  S D1=$O(^DIC(19,D0,10,"B",X,D1)) Q:D1'>0  K ^DIC(19,"AD",X,D0,D1)
+ Q

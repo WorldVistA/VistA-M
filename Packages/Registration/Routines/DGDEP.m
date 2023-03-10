@@ -1,5 +1,5 @@
-DGDEP ;ALB/CAW,BAJ - Dependent Driver ; 8/1/08 12:55pm
- ;;5.3;Registration;**45,688**;Aug 13, 1993;Build 29
+DGDEP ;ALB/CAW,BAJ,ARF - Dependent Driver ; 8/1/08 12:55pm
+ ;;5.3;Registration;**45,688,1014**;Aug 13, 1993;Build 42
  ;
 EN ;
  S VALMBCK=""
@@ -23,9 +23,10 @@ HDR ; Header
  I $G(DGSCR8) D  G HDRQ
  .S X="",VALMHDR(1)="                      FAMILY DEMOGRAPHIC DATA, SCREEN <8>"
  .S VALMHDR(1)=$$SETSTR^VALM1(X,VALMHDR(1),80-$L(X),$L(X))
- .S VALMHDR(2)=$E($P("Patient: "_$G(^DPT(DFN,0)),"^",1),1,30)_" ("_VA("PID")_")"_" "_SSNV
- .S X=$S($D(^DPT(DFN,.1)):"Ward: "_^(.1),1:"Outpatient")
- .S VALMHDR(2)=$$SETSTR^VALM1(X,VALMHDR(2),80-$L(X),$L(X))
+ .D LISTHDR^DGRPU(2) ;DG*5.3*1014 - ARF - sets patient data in the 2nd and 3rd entries in VALMHDR array
+ .;S VALMHDR(2)=$E($P("Patient: "_$G(^DPT(DFN,0)),"^",1),1,30)_" ("_VA("PID")_")"_" "_SSNV ;DG*5.3*1014
+ .;S X=$S($D(^DPT(DFN,.1)):"Ward: "_^(.1),1:"Outpatient")  ;DG*5.3*1014 and next line ;DG*5.3*1014 - Ward removed
+ .;S VALMHDR(2)=$$SETSTR^VALM1(X,VALMHDR(2),80-$L(X),$L(X)) ;DG*5.3*1014
  S X="",VALMHDR(1)="                     MARITAL STATUS/DEPENDENTS, SCREEN <1>"
  S VALMHDR(2)=$E($P("Patient: "_$G(^DPT(DFN,0)),"^",1),1,30)_" ("_VA("PID")_")"_" "_SSNV
  S X=$S($D(^DPT(DFN,.1)):"Ward: "_^(.1),1:"Outpatient")

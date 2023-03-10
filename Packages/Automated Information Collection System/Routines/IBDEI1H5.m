@@ -1,118 +1,130 @@
-IBDEI1H5 ; ; 04-FEB-2020
- ;;3.0;IB ENCOUNTER FORM IMP/EXP;;FEB 04, 2020
+IBDEI1H5 ; ; 01-FEB-2022
+ ;;3.0;IB ENCOUNTER FORM IMP/EXP;;FEB 01, 2022
  Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,999) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
- ;;^UTILITY(U,$J,358.3,23580,1,3,0)
- ;;=3^Colitis,C. Difficile,Recurrent
- ;;^UTILITY(U,$J,358.3,23580,1,4,0)
- ;;=4^A04.71
- ;;^UTILITY(U,$J,358.3,23580,2)
- ;;=^5151291
- ;;^UTILITY(U,$J,358.3,23581,0)
- ;;=A04.72^^105^1174^25
- ;;^UTILITY(U,$J,358.3,23581,1,0)
+ ;;^UTILITY(U,$J,358.3,23849,1,4,0)
+ ;;=4^I73.9
+ ;;^UTILITY(U,$J,358.3,23849,2)
+ ;;=^184182
+ ;;^UTILITY(U,$J,358.3,23850,0)
+ ;;=I87.2^^82^1033^30
+ ;;^UTILITY(U,$J,358.3,23850,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,23581,1,3,0)
- ;;=3^Colitis,C. Difficile,Not Spec as Recurrent
- ;;^UTILITY(U,$J,358.3,23581,1,4,0)
- ;;=4^A04.72
- ;;^UTILITY(U,$J,358.3,23581,2)
- ;;=^5151292
- ;;^UTILITY(U,$J,358.3,23582,0)
- ;;=T81.40XD^^105^1174^66
- ;;^UTILITY(U,$J,358.3,23582,1,0)
+ ;;^UTILITY(U,$J,358.3,23850,1,3,0)
+ ;;=3^Venous Insufficiency,Chronic,Peripheral
+ ;;^UTILITY(U,$J,358.3,23850,1,4,0)
+ ;;=4^I87.2
+ ;;^UTILITY(U,$J,358.3,23850,2)
+ ;;=^5008047
+ ;;^UTILITY(U,$J,358.3,23851,0)
+ ;;=R07.9^^82^1033^7
+ ;;^UTILITY(U,$J,358.3,23851,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,23582,1,3,0)
- ;;=3^Infect Following Proced,Unspec,Subs
- ;;^UTILITY(U,$J,358.3,23582,1,4,0)
- ;;=4^T81.40XD
- ;;^UTILITY(U,$J,358.3,23582,2)
- ;;=^5157585
- ;;^UTILITY(U,$J,358.3,23583,0)
- ;;=T81.40XS^^105^1174^65
- ;;^UTILITY(U,$J,358.3,23583,1,0)
+ ;;^UTILITY(U,$J,358.3,23851,1,3,0)
+ ;;=3^Chest Pain,Unspec
+ ;;^UTILITY(U,$J,358.3,23851,1,4,0)
+ ;;=4^R07.9
+ ;;^UTILITY(U,$J,358.3,23851,2)
+ ;;=^5019201
+ ;;^UTILITY(U,$J,358.3,23852,0)
+ ;;=I16.9^^82^1033^19
+ ;;^UTILITY(U,$J,358.3,23852,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,23583,1,3,0)
- ;;=3^Infect Following Proced,Unspec,Sequela
- ;;^UTILITY(U,$J,358.3,23583,1,4,0)
- ;;=4^T81.40XS
- ;;^UTILITY(U,$J,358.3,23583,2)
- ;;=^5157586
- ;;^UTILITY(U,$J,358.3,23584,0)
- ;;=T81.41XA^^105^1174^60
- ;;^UTILITY(U,$J,358.3,23584,1,0)
+ ;;^UTILITY(U,$J,358.3,23852,1,3,0)
+ ;;=3^Hypertensive Crisis,Unspec
+ ;;^UTILITY(U,$J,358.3,23852,1,4,0)
+ ;;=4^I16.9
+ ;;^UTILITY(U,$J,358.3,23852,2)
+ ;;=^5138600
+ ;;^UTILITY(U,$J,358.3,23853,0)
+ ;;=I16.1^^82^1033^20
+ ;;^UTILITY(U,$J,358.3,23853,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,23584,1,3,0)
- ;;=3^Infect Following Proced,Superfic Incis Surg Site,Init
- ;;^UTILITY(U,$J,358.3,23584,1,4,0)
- ;;=4^T81.41XA
- ;;^UTILITY(U,$J,358.3,23584,2)
- ;;=^5157587
- ;;^UTILITY(U,$J,358.3,23585,0)
- ;;=T81.41XD^^105^1174^61
- ;;^UTILITY(U,$J,358.3,23585,1,0)
+ ;;^UTILITY(U,$J,358.3,23853,1,3,0)
+ ;;=3^Hypertensive Emergency
+ ;;^UTILITY(U,$J,358.3,23853,1,4,0)
+ ;;=4^I16.1
+ ;;^UTILITY(U,$J,358.3,23853,2)
+ ;;=^8204721
+ ;;^UTILITY(U,$J,358.3,23854,0)
+ ;;=I16.0^^82^1033^21
+ ;;^UTILITY(U,$J,358.3,23854,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,23585,1,3,0)
- ;;=3^Infect Following Proced,Superfic Incis Surg Site,Subs
- ;;^UTILITY(U,$J,358.3,23585,1,4,0)
- ;;=4^T81.41XD
- ;;^UTILITY(U,$J,358.3,23585,2)
- ;;=^5157588
- ;;^UTILITY(U,$J,358.3,23586,0)
- ;;=T81.42XD^^105^1174^52
- ;;^UTILITY(U,$J,358.3,23586,1,0)
+ ;;^UTILITY(U,$J,358.3,23854,1,3,0)
+ ;;=3^Hypertensive Urgency
+ ;;^UTILITY(U,$J,358.3,23854,1,4,0)
+ ;;=4^I16.0
+ ;;^UTILITY(U,$J,358.3,23854,2)
+ ;;=^8133013
+ ;;^UTILITY(U,$J,358.3,23855,0)
+ ;;=I50.810^^82^1033^16
+ ;;^UTILITY(U,$J,358.3,23855,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,23586,1,3,0)
- ;;=3^Infect Following Proced,Deep Incis Surg Site,Subs
- ;;^UTILITY(U,$J,358.3,23586,1,4,0)
- ;;=4^T81.42XD
- ;;^UTILITY(U,$J,358.3,23586,2)
- ;;=^5157591
- ;;^UTILITY(U,$J,358.3,23587,0)
- ;;=T81.42XA^^105^1174^51
- ;;^UTILITY(U,$J,358.3,23587,1,0)
+ ;;^UTILITY(U,$J,358.3,23855,1,3,0)
+ ;;=3^Heart Failure,Right,Unsp
+ ;;^UTILITY(U,$J,358.3,23855,1,4,0)
+ ;;=4^I50.810
+ ;;^UTILITY(U,$J,358.3,23855,2)
+ ;;=^5151384
+ ;;^UTILITY(U,$J,358.3,23856,0)
+ ;;=I50.811^^82^1033^13
+ ;;^UTILITY(U,$J,358.3,23856,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,23587,1,3,0)
- ;;=3^Infect Following Proced,Deep Incis Surg Site,Init
- ;;^UTILITY(U,$J,358.3,23587,1,4,0)
- ;;=4^T81.42XA
- ;;^UTILITY(U,$J,358.3,23587,2)
- ;;=^5157590
- ;;^UTILITY(U,$J,358.3,23588,0)
- ;;=T81.42XS^^105^1174^53
- ;;^UTILITY(U,$J,358.3,23588,1,0)
+ ;;^UTILITY(U,$J,358.3,23856,1,3,0)
+ ;;=3^Heart Failure,Right,Acute
+ ;;^UTILITY(U,$J,358.3,23856,1,4,0)
+ ;;=4^I50.811
+ ;;^UTILITY(U,$J,358.3,23856,2)
+ ;;=^5151385
+ ;;^UTILITY(U,$J,358.3,23857,0)
+ ;;=I50.812^^82^1033^15
+ ;;^UTILITY(U,$J,358.3,23857,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,23588,1,3,0)
- ;;=3^Infect Following Proced,Deep Incis Surg Site,Sequela
- ;;^UTILITY(U,$J,358.3,23588,1,4,0)
- ;;=4^T81.42XS
- ;;^UTILITY(U,$J,358.3,23588,2)
- ;;=^5157592
- ;;^UTILITY(U,$J,358.3,23589,0)
- ;;=T81.43XA^^105^1174^54
- ;;^UTILITY(U,$J,358.3,23589,1,0)
+ ;;^UTILITY(U,$J,358.3,23857,1,3,0)
+ ;;=3^Heart Failure,Right,Chronic
+ ;;^UTILITY(U,$J,358.3,23857,1,4,0)
+ ;;=4^I50.812
+ ;;^UTILITY(U,$J,358.3,23857,2)
+ ;;=^5151386
+ ;;^UTILITY(U,$J,358.3,23858,0)
+ ;;=I50.813^^82^1033^14
+ ;;^UTILITY(U,$J,358.3,23858,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,23589,1,3,0)
- ;;=3^Infect Following Proced,Organ/Space Surg Site,Init
- ;;^UTILITY(U,$J,358.3,23589,1,4,0)
- ;;=4^T81.43XA
- ;;^UTILITY(U,$J,358.3,23589,2)
- ;;=^5157593
- ;;^UTILITY(U,$J,358.3,23590,0)
- ;;=T81.43XD^^105^1174^55
- ;;^UTILITY(U,$J,358.3,23590,1,0)
+ ;;^UTILITY(U,$J,358.3,23858,1,3,0)
+ ;;=3^Heart Failure,Right,Acute on Chronic
+ ;;^UTILITY(U,$J,358.3,23858,1,4,0)
+ ;;=4^I50.813
+ ;;^UTILITY(U,$J,358.3,23858,2)
+ ;;=^5151387
+ ;;^UTILITY(U,$J,358.3,23859,0)
+ ;;=I50.814^^82^1033^12
+ ;;^UTILITY(U,$J,358.3,23859,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,23590,1,3,0)
- ;;=3^Infect Following Proced,Organ/Space Surg Site,Subs
- ;;^UTILITY(U,$J,358.3,23590,1,4,0)
- ;;=4^T81.43XD
- ;;^UTILITY(U,$J,358.3,23590,2)
- ;;=^5157594
- ;;^UTILITY(U,$J,358.3,23591,0)
- ;;=T81.43XS^^105^1174^56
- ;;^UTILITY(U,$J,358.3,23591,1,0)
+ ;;^UTILITY(U,$J,358.3,23859,1,3,0)
+ ;;=3^Heart Failure,Right d/t Left Heart Failure
+ ;;^UTILITY(U,$J,358.3,23859,1,4,0)
+ ;;=4^I50.814
+ ;;^UTILITY(U,$J,358.3,23859,2)
+ ;;=^5151388
+ ;;^UTILITY(U,$J,358.3,23860,0)
+ ;;=I50.82^^82^1033^8
+ ;;^UTILITY(U,$J,358.3,23860,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,23591,1,3,0)
- ;;=3^Infect Following Proced,Organ/Space Surg Site,Sequela
- ;;^UTILITY(U,$J,358.3,23591,1,4,0)
- ;;=4^T81.43XS
+ ;;^UTILITY(U,$J,358.3,23860,1,3,0)
+ ;;=3^Heart Failure,Biventricular
+ ;;^UTILITY(U,$J,358.3,23860,1,4,0)
+ ;;=4^I50.82
+ ;;^UTILITY(U,$J,358.3,23860,2)
+ ;;=^5151389
+ ;;^UTILITY(U,$J,358.3,23861,0)
+ ;;=I50.83^^82^1033^10
+ ;;^UTILITY(U,$J,358.3,23861,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,23861,1,3,0)
+ ;;=3^Heart Failure,High Output
+ ;;^UTILITY(U,$J,358.3,23861,1,4,0)
+ ;;=4^I50.83
+ ;;^UTILITY(U,$J,358.3,23861,2)
+ ;;=^5151390
+ ;;^UTILITY(U,$J,358.3,23862,0)
+ ;;=I50.84^^82^1033^9

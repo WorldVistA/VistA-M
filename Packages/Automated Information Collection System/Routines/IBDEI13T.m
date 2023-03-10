@@ -1,118 +1,122 @@
-IBDEI13T ; ; 04-FEB-2020
- ;;3.0;IB ENCOUNTER FORM IMP/EXP;;FEB 04, 2020
+IBDEI13T ; ; 01-FEB-2022
+ ;;3.0;IB ENCOUNTER FORM IMP/EXP;;FEB 01, 2022
  Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,999) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
- ;;^UTILITY(U,$J,358.3,17738,1,4,0)
- ;;=4^R40.2212
- ;;^UTILITY(U,$J,358.3,17738,2)
- ;;=^5019377
- ;;^UTILITY(U,$J,358.3,17739,0)
- ;;=R40.2344^^88^897^6
- ;;^UTILITY(U,$J,358.3,17739,1,0)
+ ;;^UTILITY(U,$J,358.3,17918,2)
+ ;;=^5060680
+ ;;^UTILITY(U,$J,358.3,17919,0)
+ ;;=X32.XXXA^^61^794^20
+ ;;^UTILITY(U,$J,358.3,17919,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,17739,1,3,0)
- ;;=3^Coma Scale,Best Motor Resp,Flexion Withdrawal,24+ Hrs
- ;;^UTILITY(U,$J,358.3,17739,1,4,0)
- ;;=4^R40.2344
- ;;^UTILITY(U,$J,358.3,17739,2)
- ;;=^5019419
- ;;^UTILITY(U,$J,358.3,17740,0)
- ;;=R40.2343^^88^897^7
- ;;^UTILITY(U,$J,358.3,17740,1,0)
+ ;;^UTILITY(U,$J,358.3,17919,1,3,0)
+ ;;=3^Exp to Sunlight,Init Encntr
+ ;;^UTILITY(U,$J,358.3,17919,1,4,0)
+ ;;=4^X32.XXXA
+ ;;^UTILITY(U,$J,358.3,17919,2)
+ ;;=^5060847
+ ;;^UTILITY(U,$J,358.3,17920,0)
+ ;;=X32.XXXD^^61^794^21
+ ;;^UTILITY(U,$J,358.3,17920,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,17740,1,3,0)
- ;;=3^Coma Scale,Best Motor Resp,Flexion Withdrawal,at Hospital Admission
- ;;^UTILITY(U,$J,358.3,17740,1,4,0)
- ;;=4^R40.2343
- ;;^UTILITY(U,$J,358.3,17740,2)
- ;;=^5019418
- ;;^UTILITY(U,$J,358.3,17741,0)
- ;;=R40.2342^^88^897^8
- ;;^UTILITY(U,$J,358.3,17741,1,0)
+ ;;^UTILITY(U,$J,358.3,17920,1,3,0)
+ ;;=3^Exp to Sunlight,Subs Encntr
+ ;;^UTILITY(U,$J,358.3,17920,1,4,0)
+ ;;=4^X32.XXXD
+ ;;^UTILITY(U,$J,358.3,17920,2)
+ ;;=^5060848
+ ;;^UTILITY(U,$J,358.3,17921,0)
+ ;;=Y04.0XXA^^61^794^7
+ ;;^UTILITY(U,$J,358.3,17921,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,17741,1,3,0)
- ;;=3^Coma Scale,Best Motor Resp,Flexion Withdrawal,Emger Dept
- ;;^UTILITY(U,$J,358.3,17741,1,4,0)
- ;;=4^R40.2342
- ;;^UTILITY(U,$J,358.3,17741,2)
- ;;=^5019417
- ;;^UTILITY(U,$J,358.3,17742,0)
- ;;=R40.2341^^88^897^9
- ;;^UTILITY(U,$J,358.3,17742,1,0)
+ ;;^UTILITY(U,$J,358.3,17921,1,3,0)
+ ;;=3^Assault by Unarmed Fight,Init Encntr
+ ;;^UTILITY(U,$J,358.3,17921,1,4,0)
+ ;;=4^Y04.0XXA
+ ;;^UTILITY(U,$J,358.3,17921,2)
+ ;;=^5061165
+ ;;^UTILITY(U,$J,358.3,17922,0)
+ ;;=Y04.0XXD^^61^794^8
+ ;;^UTILITY(U,$J,358.3,17922,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,17742,1,3,0)
- ;;=3^Coma Scale,Best Motor Resp,Flexion Withdrawal,in the Field
- ;;^UTILITY(U,$J,358.3,17742,1,4,0)
- ;;=4^R40.2341
- ;;^UTILITY(U,$J,358.3,17742,2)
- ;;=^5019416
- ;;^UTILITY(U,$J,358.3,17743,0)
- ;;=R40.2340^^88^897^10
- ;;^UTILITY(U,$J,358.3,17743,1,0)
+ ;;^UTILITY(U,$J,358.3,17922,1,3,0)
+ ;;=3^Assault by Unarmed Fight,Subs Encntr
+ ;;^UTILITY(U,$J,358.3,17922,1,4,0)
+ ;;=4^Y04.0XXD
+ ;;^UTILITY(U,$J,358.3,17922,2)
+ ;;=^5061166
+ ;;^UTILITY(U,$J,358.3,17923,0)
+ ;;=Y04.1XXA^^61^794^1
+ ;;^UTILITY(U,$J,358.3,17923,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,17743,1,3,0)
- ;;=3^Coma Scale,Best Motor Resp,Flexion Withdrawal,Unspec Time
- ;;^UTILITY(U,$J,358.3,17743,1,4,0)
- ;;=4^R40.2340
- ;;^UTILITY(U,$J,358.3,17743,2)
- ;;=^5019415
- ;;^UTILITY(U,$J,358.3,17744,0)
- ;;=R40.2324^^88^897^1
- ;;^UTILITY(U,$J,358.3,17744,1,0)
+ ;;^UTILITY(U,$J,358.3,17923,1,3,0)
+ ;;=3^Assault by Human Bite,Init Encntr
+ ;;^UTILITY(U,$J,358.3,17923,1,4,0)
+ ;;=4^Y04.1XXA
+ ;;^UTILITY(U,$J,358.3,17923,2)
+ ;;=^5061168
+ ;;^UTILITY(U,$J,358.3,17924,0)
+ ;;=Y04.1XXD^^61^794^2
+ ;;^UTILITY(U,$J,358.3,17924,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,17744,1,3,0)
- ;;=3^Coma Scale,Best Motor Resp,Extension,24+ Hrs
- ;;^UTILITY(U,$J,358.3,17744,1,4,0)
- ;;=4^R40.2324
- ;;^UTILITY(U,$J,358.3,17744,2)
- ;;=^5019409
- ;;^UTILITY(U,$J,358.3,17745,0)
- ;;=R40.2323^^88^897^4
- ;;^UTILITY(U,$J,358.3,17745,1,0)
+ ;;^UTILITY(U,$J,358.3,17924,1,3,0)
+ ;;=3^Assault by Human Bite,Subs Encntr
+ ;;^UTILITY(U,$J,358.3,17924,1,4,0)
+ ;;=4^Y04.1XXD
+ ;;^UTILITY(U,$J,358.3,17924,2)
+ ;;=^5061169
+ ;;^UTILITY(U,$J,358.3,17925,0)
+ ;;=Y04.2XXA^^61^794^5
+ ;;^UTILITY(U,$J,358.3,17925,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,17745,1,3,0)
- ;;=3^Coma Scale,Best Motor Resp,Extension,at Hospital Admission
- ;;^UTILITY(U,$J,358.3,17745,1,4,0)
- ;;=4^R40.2323
- ;;^UTILITY(U,$J,358.3,17745,2)
- ;;=^5019408
- ;;^UTILITY(U,$J,358.3,17746,0)
- ;;=R40.2322^^88^897^2
- ;;^UTILITY(U,$J,358.3,17746,1,0)
+ ;;^UTILITY(U,$J,358.3,17925,1,3,0)
+ ;;=3^Assault by Strike/Bumped by Another Person,Init Encntr
+ ;;^UTILITY(U,$J,358.3,17925,1,4,0)
+ ;;=4^Y04.2XXA
+ ;;^UTILITY(U,$J,358.3,17925,2)
+ ;;=^5061171
+ ;;^UTILITY(U,$J,358.3,17926,0)
+ ;;=Y04.8XXA^^61^794^3
+ ;;^UTILITY(U,$J,358.3,17926,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,17746,1,3,0)
- ;;=3^Coma Scale,Best Motor Resp,Extension,Emger Dept
- ;;^UTILITY(U,$J,358.3,17746,1,4,0)
- ;;=4^R40.2322
- ;;^UTILITY(U,$J,358.3,17746,2)
- ;;=^5019407
- ;;^UTILITY(U,$J,358.3,17747,0)
- ;;=R40.2321^^88^897^5
- ;;^UTILITY(U,$J,358.3,17747,1,0)
+ ;;^UTILITY(U,$J,358.3,17926,1,3,0)
+ ;;=3^Assault by Oth Bodily Force,Init Encntr
+ ;;^UTILITY(U,$J,358.3,17926,1,4,0)
+ ;;=4^Y04.8XXA
+ ;;^UTILITY(U,$J,358.3,17926,2)
+ ;;=^5061174
+ ;;^UTILITY(U,$J,358.3,17927,0)
+ ;;=Y04.2XXD^^61^794^6
+ ;;^UTILITY(U,$J,358.3,17927,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,17747,1,3,0)
- ;;=3^Coma Scale,Best Motor Resp,Extension,in the Field
- ;;^UTILITY(U,$J,358.3,17747,1,4,0)
- ;;=4^R40.2321
- ;;^UTILITY(U,$J,358.3,17747,2)
- ;;=^5019406
- ;;^UTILITY(U,$J,358.3,17748,0)
- ;;=R40.2320^^88^897^3
- ;;^UTILITY(U,$J,358.3,17748,1,0)
+ ;;^UTILITY(U,$J,358.3,17927,1,3,0)
+ ;;=3^Assault by Strike/Bumped by Another Person,Subs Encntr
+ ;;^UTILITY(U,$J,358.3,17927,1,4,0)
+ ;;=4^Y04.2XXD
+ ;;^UTILITY(U,$J,358.3,17927,2)
+ ;;=^5061172
+ ;;^UTILITY(U,$J,358.3,17928,0)
+ ;;=Y04.8XXD^^61^794^4
+ ;;^UTILITY(U,$J,358.3,17928,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,17748,1,3,0)
- ;;=3^Coma Scale,Best Motor Resp,Extension,Unspec Time
- ;;^UTILITY(U,$J,358.3,17748,1,4,0)
- ;;=4^R40.2320
- ;;^UTILITY(U,$J,358.3,17748,2)
- ;;=^5019405
- ;;^UTILITY(U,$J,358.3,17749,0)
- ;;=R40.2314^^88^897^11
- ;;^UTILITY(U,$J,358.3,17749,1,0)
+ ;;^UTILITY(U,$J,358.3,17928,1,3,0)
+ ;;=3^Assault by Oth Bodily Force,Subs Encntr
+ ;;^UTILITY(U,$J,358.3,17928,1,4,0)
+ ;;=4^Y04.8XXD
+ ;;^UTILITY(U,$J,358.3,17928,2)
+ ;;=^5061175
+ ;;^UTILITY(U,$J,358.3,17929,0)
+ ;;=Y36.200A^^61^794^133
+ ;;^UTILITY(U,$J,358.3,17929,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,17749,1,3,0)
- ;;=3^Coma Scale,Best Motor Resp,None,24+ Hrs
- ;;^UTILITY(U,$J,358.3,17749,1,4,0)
- ;;=4^R40.2314
- ;;^UTILITY(U,$J,358.3,17749,2)
- ;;=^5019404
+ ;;^UTILITY(U,$J,358.3,17929,1,3,0)
+ ;;=3^War Op Inv Unspec Explosion/Fragments,Milt,Init Encntr
+ ;;^UTILITY(U,$J,358.3,17929,1,4,0)
+ ;;=4^Y36.200A
+ ;;^UTILITY(U,$J,358.3,17929,2)
+ ;;=^5061607
+ ;;^UTILITY(U,$J,358.3,17930,0)
+ ;;=Y36.200D^^61^794^134
+ ;;^UTILITY(U,$J,358.3,17930,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,17930,1,3,0)
+ ;;=3^War Op Inv Unspec Explosion/Fragments,Milt,Subs Encntr

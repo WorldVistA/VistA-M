@@ -1,122 +1,124 @@
-IBDEI1I1 ; ; 04-FEB-2020
- ;;3.0;IB ENCOUNTER FORM IMP/EXP;;FEB 04, 2020
+IBDEI1I1 ; ; 01-FEB-2022
+ ;;3.0;IB ENCOUNTER FORM IMP/EXP;;FEB 01, 2022
  Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,999) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
- ;;^UTILITY(U,$J,358.3,23978,1,4,0)
- ;;=4^I70.239
- ;;^UTILITY(U,$J,358.3,23978,2)
- ;;=^5007594
- ;;^UTILITY(U,$J,358.3,23979,0)
- ;;=I70.269^^107^1199^13
- ;;^UTILITY(U,$J,358.3,23979,1,0)
+ ;;^UTILITY(U,$J,358.3,24248,2)
+ ;;=^332840
+ ;;^UTILITY(U,$J,358.3,24249,0)
+ ;;=E87.0^^82^1049^2
+ ;;^UTILITY(U,$J,358.3,24249,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,23979,1,3,0)
- ;;=3^Athscl Natv Arteries of Extrm w/ Gangrene,Unspec Extremity
- ;;^UTILITY(U,$J,358.3,23979,1,4,0)
- ;;=4^I70.269
- ;;^UTILITY(U,$J,358.3,23979,2)
- ;;=^5007607
- ;;^UTILITY(U,$J,358.3,23980,0)
- ;;=I70.263^^107^1199^14
- ;;^UTILITY(U,$J,358.3,23980,1,0)
+ ;;^UTILITY(U,$J,358.3,24249,1,3,0)
+ ;;=3^Hyperosmolality & Hpernatremia
+ ;;^UTILITY(U,$J,358.3,24249,1,4,0)
+ ;;=4^E87.0
+ ;;^UTILITY(U,$J,358.3,24249,2)
+ ;;=^5003018
+ ;;^UTILITY(U,$J,358.3,24250,0)
+ ;;=E87.1^^82^1049^3
+ ;;^UTILITY(U,$J,358.3,24250,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,23980,1,3,0)
- ;;=3^Athscl Natv Arteries of Extrm w/ Gangrene,Bilateral Legs
- ;;^UTILITY(U,$J,358.3,23980,1,4,0)
- ;;=4^I70.263
- ;;^UTILITY(U,$J,358.3,23980,2)
- ;;=^5007605
- ;;^UTILITY(U,$J,358.3,23981,0)
- ;;=I70.262^^107^1199^15
- ;;^UTILITY(U,$J,358.3,23981,1,0)
+ ;;^UTILITY(U,$J,358.3,24250,1,3,0)
+ ;;=3^Hypo-osmolality & Hyponatremia
+ ;;^UTILITY(U,$J,358.3,24250,1,4,0)
+ ;;=4^E87.1
+ ;;^UTILITY(U,$J,358.3,24250,2)
+ ;;=^5003019
+ ;;^UTILITY(U,$J,358.3,24251,0)
+ ;;=E10.10^^82^1050^15
+ ;;^UTILITY(U,$J,358.3,24251,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,23981,1,3,0)
- ;;=3^Athscl Natv Arteries of Extrm w/ Gangrene,Left Leg
- ;;^UTILITY(U,$J,358.3,23981,1,4,0)
- ;;=4^I70.262
- ;;^UTILITY(U,$J,358.3,23981,2)
- ;;=^5007604
- ;;^UTILITY(U,$J,358.3,23982,0)
- ;;=I70.261^^107^1199^16
- ;;^UTILITY(U,$J,358.3,23982,1,0)
+ ;;^UTILITY(U,$J,358.3,24251,1,3,0)
+ ;;=3^DM Type 1 w/ Ketoacidosis w/o Coma
+ ;;^UTILITY(U,$J,358.3,24251,1,4,0)
+ ;;=4^E10.10
+ ;;^UTILITY(U,$J,358.3,24251,2)
+ ;;=^5002587
+ ;;^UTILITY(U,$J,358.3,24252,0)
+ ;;=E10.11^^82^1050^14
+ ;;^UTILITY(U,$J,358.3,24252,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,23982,1,3,0)
- ;;=3^Athscl Natv Arteries of Extrm w/ Gangrene,Right Leg
- ;;^UTILITY(U,$J,358.3,23982,1,4,0)
- ;;=4^I70.261
- ;;^UTILITY(U,$J,358.3,23982,2)
- ;;=^5007603
- ;;^UTILITY(U,$J,358.3,23983,0)
- ;;=I71.2^^107^1199^34
- ;;^UTILITY(U,$J,358.3,23983,1,0)
+ ;;^UTILITY(U,$J,358.3,24252,1,3,0)
+ ;;=3^DM Type 1 w/ Ketoacidosis w/ Coma
+ ;;^UTILITY(U,$J,358.3,24252,1,4,0)
+ ;;=4^E10.11
+ ;;^UTILITY(U,$J,358.3,24252,2)
+ ;;=^5002588
+ ;;^UTILITY(U,$J,358.3,24253,0)
+ ;;=E10.21^^82^1050^5
+ ;;^UTILITY(U,$J,358.3,24253,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,23983,1,3,0)
- ;;=3^Thoracic Aortic Aneurysm w/o Rupture
- ;;^UTILITY(U,$J,358.3,23983,1,4,0)
- ;;=4^I71.2
- ;;^UTILITY(U,$J,358.3,23983,2)
- ;;=^5007787
- ;;^UTILITY(U,$J,358.3,23984,0)
- ;;=I71.4^^107^1199^1
- ;;^UTILITY(U,$J,358.3,23984,1,0)
+ ;;^UTILITY(U,$J,358.3,24253,1,3,0)
+ ;;=3^DM Type 1 w/ Diab Nephropathy
+ ;;^UTILITY(U,$J,358.3,24253,1,4,0)
+ ;;=4^E10.21
+ ;;^UTILITY(U,$J,358.3,24253,2)
+ ;;=^5002589
+ ;;^UTILITY(U,$J,358.3,24254,0)
+ ;;=E10.22^^82^1050^3
+ ;;^UTILITY(U,$J,358.3,24254,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,23984,1,3,0)
- ;;=3^Abdominal Aortic Aneurysm w/o Rupture
- ;;^UTILITY(U,$J,358.3,23984,1,4,0)
- ;;=4^I71.4
- ;;^UTILITY(U,$J,358.3,23984,2)
- ;;=^5007789
- ;;^UTILITY(U,$J,358.3,23985,0)
- ;;=I73.9^^107^1199^32
- ;;^UTILITY(U,$J,358.3,23985,1,0)
+ ;;^UTILITY(U,$J,358.3,24254,1,3,0)
+ ;;=3^DM Type 1 w/ Diab CKD
+ ;;^UTILITY(U,$J,358.3,24254,1,4,0)
+ ;;=4^E10.22
+ ;;^UTILITY(U,$J,358.3,24254,2)
+ ;;=^5002590
+ ;;^UTILITY(U,$J,358.3,24255,0)
+ ;;=E10.29^^82^1050^21
+ ;;^UTILITY(U,$J,358.3,24255,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,23985,1,3,0)
- ;;=3^Peripheral Vascular Disease,Unspec
- ;;^UTILITY(U,$J,358.3,23985,1,4,0)
- ;;=4^I73.9
- ;;^UTILITY(U,$J,358.3,23985,2)
- ;;=^184182
- ;;^UTILITY(U,$J,358.3,23986,0)
- ;;=I82.891^^107^1199^23
- ;;^UTILITY(U,$J,358.3,23986,1,0)
+ ;;^UTILITY(U,$J,358.3,24255,1,3,0)
+ ;;=3^DM Type 1 w/ Oth Diab Kidney Compl
+ ;;^UTILITY(U,$J,358.3,24255,1,4,0)
+ ;;=4^E10.29
+ ;;^UTILITY(U,$J,358.3,24255,2)
+ ;;=^5002591
+ ;;^UTILITY(U,$J,358.3,24256,0)
+ ;;=E10.311^^82^1050^9
+ ;;^UTILITY(U,$J,358.3,24256,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,23986,1,3,0)
- ;;=3^Embolism/Thrombosis Oth Spec Veins,Chronic
- ;;^UTILITY(U,$J,358.3,23986,1,4,0)
- ;;=4^I82.891
- ;;^UTILITY(U,$J,358.3,23986,2)
- ;;=^5007939
- ;;^UTILITY(U,$J,358.3,23987,0)
- ;;=I82.890^^107^1199^22
- ;;^UTILITY(U,$J,358.3,23987,1,0)
+ ;;^UTILITY(U,$J,358.3,24256,1,3,0)
+ ;;=3^DM Type 1 w/ Diab Retinopathy w/ Macular Edema
+ ;;^UTILITY(U,$J,358.3,24256,1,4,0)
+ ;;=4^E10.311
+ ;;^UTILITY(U,$J,358.3,24256,2)
+ ;;=^5002592
+ ;;^UTILITY(U,$J,358.3,24257,0)
+ ;;=E10.319^^82^1050^10
+ ;;^UTILITY(U,$J,358.3,24257,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,23987,1,3,0)
- ;;=3^Embolism/Thrombosis Oth Spec Veins,Acute
- ;;^UTILITY(U,$J,358.3,23987,1,4,0)
- ;;=4^I82.890
- ;;^UTILITY(U,$J,358.3,23987,2)
- ;;=^5007938
- ;;^UTILITY(U,$J,358.3,23988,0)
- ;;=I25.729^^107^1199^2
- ;;^UTILITY(U,$J,358.3,23988,1,0)
+ ;;^UTILITY(U,$J,358.3,24257,1,3,0)
+ ;;=3^DM Type 1 w/ Diab Retinopathy w/o Macular Edema
+ ;;^UTILITY(U,$J,358.3,24257,1,4,0)
+ ;;=4^E10.319
+ ;;^UTILITY(U,$J,358.3,24257,2)
+ ;;=^5002593
+ ;;^UTILITY(U,$J,358.3,24258,0)
+ ;;=E10.3211^^82^1050^16
+ ;;^UTILITY(U,$J,358.3,24258,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,23988,1,3,0)
- ;;=3^Athscl Autologous Artery CABG w/ Unspec Angina Pectoris
- ;;^UTILITY(U,$J,358.3,23988,1,4,0)
- ;;=4^I25.729
- ;;^UTILITY(U,$J,358.3,23988,2)
- ;;=^5133561
- ;;^UTILITY(U,$J,358.3,23989,0)
- ;;=I25.119^^107^1199^3
- ;;^UTILITY(U,$J,358.3,23989,1,0)
+ ;;^UTILITY(U,$J,358.3,24258,1,3,0)
+ ;;=3^DM Type 1 w/ Mild Nonp Rtnop w/ Macular Edema,Rt Eye
+ ;;^UTILITY(U,$J,358.3,24258,1,4,0)
+ ;;=4^E10.3211
+ ;;^UTILITY(U,$J,358.3,24258,2)
+ ;;=^5138279
+ ;;^UTILITY(U,$J,358.3,24259,0)
+ ;;=E10.3212^^82^1050^17
+ ;;^UTILITY(U,$J,358.3,24259,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,23989,1,3,0)
- ;;=3^Athscl HRT Dis of Native Cor Art w/ Ang Pctrs,Unspec
- ;;^UTILITY(U,$J,358.3,23989,1,4,0)
- ;;=4^I25.119
- ;;^UTILITY(U,$J,358.3,23989,2)
- ;;=^5007111
- ;;^UTILITY(U,$J,358.3,23990,0)
- ;;=I25.10^^107^1199^4
- ;;^UTILITY(U,$J,358.3,23990,1,0)
+ ;;^UTILITY(U,$J,358.3,24259,1,3,0)
+ ;;=3^DM Type 1 w/ Mild Nonp Rtnop w/ Macular Edema,Lt Eye
+ ;;^UTILITY(U,$J,358.3,24259,1,4,0)
+ ;;=4^E10.3212
+ ;;^UTILITY(U,$J,358.3,24259,2)
+ ;;=^5138280
+ ;;^UTILITY(U,$J,358.3,24260,0)
+ ;;=E10.3213^^82^1050^18
+ ;;^UTILITY(U,$J,358.3,24260,1,0)
  ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,24260,1,3,0)
+ ;;=3^DM Type 1 w/ Mild Nonp Rtnop w/ Macular Edema,Bilat
+ ;;^UTILITY(U,$J,358.3,24260,1,4,0)
+ ;;=4^E10.3213

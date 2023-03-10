@@ -1,5 +1,5 @@
-PXRMDEDI ;SLC/PJH - Edit PXRM reminder dialog. ;04/07/2016  13:49
- ;;2.0;CLINICAL REMINDERS;**4,26,45**;Feb 04, 2005;Build 566
+PXRMDEDI ;SLC/PJH - Edit PXRM reminder dialog. ;Apr 27, 2021@18:34
+ ;;2.0;CLINICAL REMINDERS;**4,26,45,77**;Feb 04, 2005;Build 5
  ;
  ;Used by protocol PXRM DIALOG SELECTION ITEM
  ;
@@ -78,6 +78,12 @@ IND(DIEN,SEL) ;Edit individual element
  I ANS="D" D DEL(SEQ,PIEN) Q
  ;Copy and Replace option
  I ANS="C" D SEL^PXRMDCPY(.DIEN,PIEN) Q:$D(DTOUT)!$D(DUOUT) 
+ ;PXRM*2.0*77 - set NATIONAL at selection (IEN) level when get
+ ;              to this point if this is a national dialog which
+ ;              should not be edited. (PXRMINST is set in
+ ;              programmer mode by National Support if editing of
+ ;              a national dialog is needed.)
+ I '$G(PXRMINST),$P($G(^PXRMD(801.41,IEN,100)),"^")="N" S NATIONAL=1
  ;Determine if a taxonomy dialog
  N FIND
  S FAIL=0

@@ -1,648 +1,690 @@
-IBDEI09Z ; ; 01-MAY-2020
- ;;3.0;IB ENCOUNTER FORM IMP/EXP;;MAY 01, 2020
+IBDEI09Z ; ; 01-AUG-2022
+ ;;3.0;IB ENCOUNTER FORM IMP/EXP;;AUG 01, 2022
  Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,999) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
+ ;;^UTILITY(U,$J,358.3,24411,2)
+ ;;=^5007251
+ ;;^UTILITY(U,$J,358.3,24412,0)
+ ;;=I35.1^^74^972^76
+ ;;^UTILITY(U,$J,358.3,24412,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,24412,1,3,0)
+ ;;=3^Nonrheumatic Aortic Valve Insufficiency
+ ;;^UTILITY(U,$J,358.3,24412,1,4,0)
+ ;;=4^I35.1
+ ;;^UTILITY(U,$J,358.3,24412,2)
+ ;;=^5007175
+ ;;^UTILITY(U,$J,358.3,24413,0)
+ ;;=I35.0^^74^972^77
+ ;;^UTILITY(U,$J,358.3,24413,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,24413,1,3,0)
+ ;;=3^Nonrheumatic Aortic Valve Stenosis
+ ;;^UTILITY(U,$J,358.3,24413,1,4,0)
+ ;;=4^I35.0
+ ;;^UTILITY(U,$J,358.3,24413,2)
+ ;;=^5007174
+ ;;^UTILITY(U,$J,358.3,24414,0)
+ ;;=I35.2^^74^972^78
+ ;;^UTILITY(U,$J,358.3,24414,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,24414,1,3,0)
+ ;;=3^Nonrheumatic Aortic Valve Stenosis w/ Insufficiency
+ ;;^UTILITY(U,$J,358.3,24414,1,4,0)
+ ;;=4^I35.2
+ ;;^UTILITY(U,$J,358.3,24414,2)
+ ;;=^5007176
+ ;;^UTILITY(U,$J,358.3,24415,0)
+ ;;=I35.9^^74^972^74
+ ;;^UTILITY(U,$J,358.3,24415,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,24415,1,3,0)
+ ;;=3^Nonrheumatic Aortic Valve Disorder,Unspec
+ ;;^UTILITY(U,$J,358.3,24415,1,4,0)
+ ;;=4^I35.9
+ ;;^UTILITY(U,$J,358.3,24415,2)
+ ;;=^5007178
+ ;;^UTILITY(U,$J,358.3,24416,0)
+ ;;=I21.4^^74^972^73
+ ;;^UTILITY(U,$J,358.3,24416,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,24416,1,3,0)
+ ;;=3^NSTEMI Myocardial Infarction
+ ;;^UTILITY(U,$J,358.3,24416,1,4,0)
+ ;;=4^I21.4
+ ;;^UTILITY(U,$J,358.3,24416,2)
+ ;;=^5007088
+ ;;^UTILITY(U,$J,358.3,24417,0)
+ ;;=I42.8^^74^972^52
+ ;;^UTILITY(U,$J,358.3,24417,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,24417,1,3,0)
+ ;;=3^Cardiomypathies NEC
+ ;;^UTILITY(U,$J,358.3,24417,1,4,0)
+ ;;=4^I42.8
+ ;;^UTILITY(U,$J,358.3,24417,2)
+ ;;=^5007199
+ ;;^UTILITY(U,$J,358.3,24418,0)
+ ;;=I20.8^^74^972^9
+ ;;^UTILITY(U,$J,358.3,24418,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,24418,1,3,0)
+ ;;=3^Angina Pectoris NEC
+ ;;^UTILITY(U,$J,358.3,24418,1,4,0)
+ ;;=4^I20.8
+ ;;^UTILITY(U,$J,358.3,24418,2)
+ ;;=^5007078
+ ;;^UTILITY(U,$J,358.3,24419,0)
+ ;;=I42.2^^74^972^68
+ ;;^UTILITY(U,$J,358.3,24419,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,24419,1,3,0)
+ ;;=3^Hypertrophic Cardiomyopathy NEC
+ ;;^UTILITY(U,$J,358.3,24419,1,4,0)
+ ;;=4^I42.2
+ ;;^UTILITY(U,$J,358.3,24419,2)
+ ;;=^340521
+ ;;^UTILITY(U,$J,358.3,24420,0)
+ ;;=I35.8^^74^972^75
+ ;;^UTILITY(U,$J,358.3,24420,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,24420,1,3,0)
+ ;;=3^Nonrheumatic Aortic Valve Disorders NEC
+ ;;^UTILITY(U,$J,358.3,24420,1,4,0)
+ ;;=4^I35.8
+ ;;^UTILITY(U,$J,358.3,24420,2)
+ ;;=^5007177
+ ;;^UTILITY(U,$J,358.3,24421,0)
+ ;;=I42.5^^74^972^81
+ ;;^UTILITY(U,$J,358.3,24421,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,24421,1,3,0)
+ ;;=3^Restrictive Cardiomyopathy NEC
+ ;;^UTILITY(U,$J,358.3,24421,1,4,0)
+ ;;=4^I42.5
+ ;;^UTILITY(U,$J,358.3,24421,2)
+ ;;=^5007196
+ ;;^UTILITY(U,$J,358.3,24422,0)
+ ;;=I05.8^^74^972^85
+ ;;^UTILITY(U,$J,358.3,24422,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,24422,1,3,0)
+ ;;=3^Rheumatic Mitral Valve Diseases NEC
+ ;;^UTILITY(U,$J,358.3,24422,1,4,0)
+ ;;=4^I05.8
+ ;;^UTILITY(U,$J,358.3,24422,2)
+ ;;=^5007043
+ ;;^UTILITY(U,$J,358.3,24423,0)
+ ;;=I08.8^^74^972^86
+ ;;^UTILITY(U,$J,358.3,24423,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,24423,1,3,0)
+ ;;=3^Rheumatic Multiple Valve Diseases NEC
+ ;;^UTILITY(U,$J,358.3,24423,1,4,0)
+ ;;=4^I08.8
+ ;;^UTILITY(U,$J,358.3,24423,2)
+ ;;=^5007056
+ ;;^UTILITY(U,$J,358.3,24424,0)
+ ;;=I47.9^^74^972^79
+ ;;^UTILITY(U,$J,358.3,24424,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,24424,1,3,0)
+ ;;=3^Paroxysmal Tachycardia,Unspec
+ ;;^UTILITY(U,$J,358.3,24424,1,4,0)
+ ;;=4^I47.9
+ ;;^UTILITY(U,$J,358.3,24424,2)
+ ;;=^5007224
+ ;;^UTILITY(U,$J,358.3,24425,0)
+ ;;=I05.1^^74^972^82
+ ;;^UTILITY(U,$J,358.3,24425,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,24425,1,3,0)
+ ;;=3^Rheumatic Mitral Insufficiency
+ ;;^UTILITY(U,$J,358.3,24425,1,4,0)
+ ;;=4^I05.1
+ ;;^UTILITY(U,$J,358.3,24425,2)
+ ;;=^269568
+ ;;^UTILITY(U,$J,358.3,24426,0)
+ ;;=I05.0^^74^972^83
+ ;;^UTILITY(U,$J,358.3,24426,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,24426,1,3,0)
+ ;;=3^Rheumatic Mitral Stenosis
+ ;;^UTILITY(U,$J,358.3,24426,1,4,0)
+ ;;=4^I05.0
+ ;;^UTILITY(U,$J,358.3,24426,2)
+ ;;=^5007041
+ ;;^UTILITY(U,$J,358.3,24427,0)
+ ;;=I05.9^^74^972^84
+ ;;^UTILITY(U,$J,358.3,24427,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,24427,1,3,0)
+ ;;=3^Rheumatic Mitral Valve Disease,Unspec
+ ;;^UTILITY(U,$J,358.3,24427,1,4,0)
+ ;;=4^I05.9
+ ;;^UTILITY(U,$J,358.3,24427,2)
+ ;;=^5007044
+ ;;^UTILITY(U,$J,358.3,24428,0)
+ ;;=I21.3^^74^972^87
+ ;;^UTILITY(U,$J,358.3,24428,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,24428,1,3,0)
+ ;;=3^STEMI Myocardial Infarction,Unspec Site
+ ;;^UTILITY(U,$J,358.3,24428,1,4,0)
+ ;;=4^I21.3
+ ;;^UTILITY(U,$J,358.3,24428,2)
+ ;;=^5007087
+ ;;^UTILITY(U,$J,358.3,24429,0)
+ ;;=I44.30^^74^972^49
+ ;;^UTILITY(U,$J,358.3,24429,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,24429,1,3,0)
+ ;;=3^Atrioventricular Block,Unspec
+ ;;^UTILITY(U,$J,358.3,24429,1,4,0)
+ ;;=4^I44.30
+ ;;^UTILITY(U,$J,358.3,24429,2)
+ ;;=^5007204
+ ;;^UTILITY(U,$J,358.3,24430,0)
+ ;;=I50.40^^74^972^58
+ ;;^UTILITY(U,$J,358.3,24430,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,24430,1,3,0)
+ ;;=3^Combined Systolic & Diastolic Congestive Hrt Failure,Unspec
+ ;;^UTILITY(U,$J,358.3,24430,1,4,0)
+ ;;=4^I50.40
+ ;;^UTILITY(U,$J,358.3,24430,2)
+ ;;=^5007247
+ ;;^UTILITY(U,$J,358.3,24431,0)
+ ;;=I50.30^^74^972^59
+ ;;^UTILITY(U,$J,358.3,24431,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,24431,1,3,0)
+ ;;=3^Diastolic Congestive Hrt Failure,Unspec
+ ;;^UTILITY(U,$J,358.3,24431,1,4,0)
+ ;;=4^I50.30
+ ;;^UTILITY(U,$J,358.3,24431,2)
+ ;;=^5007243
+ ;;^UTILITY(U,$J,358.3,24432,0)
+ ;;=I50.20^^74^972^88
+ ;;^UTILITY(U,$J,358.3,24432,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,24432,1,3,0)
+ ;;=3^Systolic Congestive Hrt Failure,Unspec
+ ;;^UTILITY(U,$J,358.3,24432,1,4,0)
+ ;;=4^I50.20
+ ;;^UTILITY(U,$J,358.3,24432,2)
+ ;;=^5007239
+ ;;^UTILITY(U,$J,358.3,24433,0)
+ ;;=I20.0^^74^972^89
+ ;;^UTILITY(U,$J,358.3,24433,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,24433,1,3,0)
+ ;;=3^Unstable Angina
+ ;;^UTILITY(U,$J,358.3,24433,1,4,0)
+ ;;=4^I20.0
+ ;;^UTILITY(U,$J,358.3,24433,2)
+ ;;=^5007076
+ ;;^UTILITY(U,$J,358.3,24434,0)
+ ;;=M32.12^^74^972^80
+ ;;^UTILITY(U,$J,358.3,24434,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,24434,1,3,0)
+ ;;=3^Pericarditis in Systemic Lupus Erythematosus
+ ;;^UTILITY(U,$J,358.3,24434,1,4,0)
+ ;;=4^M32.12
+ ;;^UTILITY(U,$J,358.3,24434,2)
+ ;;=^5011755
+ ;;^UTILITY(U,$J,358.3,24435,0)
+ ;;=I50.811^^74^972^3
+ ;;^UTILITY(U,$J,358.3,24435,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,24435,1,3,0)
+ ;;=3^AC Right Heart Failure
+ ;;^UTILITY(U,$J,358.3,24435,1,4,0)
+ ;;=4^I50.811
+ ;;^UTILITY(U,$J,358.3,24435,2)
+ ;;=^5151385
+ ;;^UTILITY(U,$J,358.3,24436,0)
+ ;;=I50.813^^74^972^7
+ ;;^UTILITY(U,$J,358.3,24436,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,24436,1,3,0)
+ ;;=3^AC on Chr Right Heart Failure
+ ;;^UTILITY(U,$J,358.3,24436,1,4,0)
+ ;;=4^I50.813
+ ;;^UTILITY(U,$J,358.3,24436,2)
+ ;;=^5151387
+ ;;^UTILITY(U,$J,358.3,24437,0)
+ ;;=I50.812^^74^972^56
+ ;;^UTILITY(U,$J,358.3,24437,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,24437,1,3,0)
+ ;;=3^Chr Right Heart Failure
+ ;;^UTILITY(U,$J,358.3,24437,1,4,0)
+ ;;=4^I50.812
+ ;;^UTILITY(U,$J,358.3,24437,2)
+ ;;=^5151386
+ ;;^UTILITY(U,$J,358.3,24438,0)
+ ;;=I50.84^^74^972^61
  ;;^UTILITY(U,$J,358.3,24438,1,0)
  ;;=^358.31IA^4^2
  ;;^UTILITY(U,$J,358.3,24438,1,3,0)
- ;;=3^Wrist Drop,Right Wrist
+ ;;=3^End Stage Heart Failure
  ;;^UTILITY(U,$J,358.3,24438,1,4,0)
- ;;=4^M21.331
+ ;;=4^I50.84
  ;;^UTILITY(U,$J,358.3,24438,2)
- ;;=^5011107
+ ;;=^5151391
  ;;^UTILITY(U,$J,358.3,24439,0)
- ;;=M21.332^^76^1004^208
+ ;;=I50.810^^74^972^66
  ;;^UTILITY(U,$J,358.3,24439,1,0)
  ;;=^358.31IA^4^2
  ;;^UTILITY(U,$J,358.3,24439,1,3,0)
- ;;=3^Wrist Drop,Left Wrist
+ ;;=3^Heart Failure,Right,Unspec
  ;;^UTILITY(U,$J,358.3,24439,1,4,0)
- ;;=4^M21.332
+ ;;=4^I50.810
  ;;^UTILITY(U,$J,358.3,24439,2)
- ;;=^5011108
+ ;;=^5151384
  ;;^UTILITY(U,$J,358.3,24440,0)
- ;;=M18.0^^76^1004^74
+ ;;=I50.811^^74^972^63
  ;;^UTILITY(U,$J,358.3,24440,1,0)
  ;;=^358.31IA^4^2
  ;;^UTILITY(U,$J,358.3,24440,1,3,0)
- ;;=3^Prim Osteoarth,1st Carpometacarpal Joint(s),Bilateral
+ ;;=3^Heart Failure,Right,Acute
  ;;^UTILITY(U,$J,358.3,24440,1,4,0)
- ;;=4^M18.0
+ ;;=4^I50.811
  ;;^UTILITY(U,$J,358.3,24440,2)
- ;;=^5010795
+ ;;=^5151385
  ;;^UTILITY(U,$J,358.3,24441,0)
- ;;=M18.11^^76^1004^75
+ ;;=I50.812^^74^972^65
  ;;^UTILITY(U,$J,358.3,24441,1,0)
  ;;=^358.31IA^4^2
  ;;^UTILITY(U,$J,358.3,24441,1,3,0)
- ;;=3^Prim Osteoarth,1st Carpometacarpal Joint(s),Right Hand,Unilat
+ ;;=3^Heart Failure,Right,Chronic
  ;;^UTILITY(U,$J,358.3,24441,1,4,0)
- ;;=4^M18.11
+ ;;=4^I50.812
  ;;^UTILITY(U,$J,358.3,24441,2)
- ;;=^5010797
+ ;;=^5151386
  ;;^UTILITY(U,$J,358.3,24442,0)
- ;;=M18.12^^76^1004^76
+ ;;=I50.813^^74^972^64
  ;;^UTILITY(U,$J,358.3,24442,1,0)
  ;;=^358.31IA^4^2
  ;;^UTILITY(U,$J,358.3,24442,1,3,0)
- ;;=3^Prim Osteoarth,1st Carpometacarpal Joint(s),Left Hand,Unilat
+ ;;=3^Heart Failure,Right,Acute on Chronic
  ;;^UTILITY(U,$J,358.3,24442,1,4,0)
- ;;=4^M18.12
+ ;;=4^I50.813
  ;;^UTILITY(U,$J,358.3,24442,2)
- ;;=^5010798
+ ;;=^5151387
  ;;^UTILITY(U,$J,358.3,24443,0)
- ;;=M19.031^^76^1004^85
+ ;;=I21.A1^^74^972^72
  ;;^UTILITY(U,$J,358.3,24443,1,0)
  ;;=^358.31IA^4^2
  ;;^UTILITY(U,$J,358.3,24443,1,3,0)
- ;;=3^Prim Osteoarth,Right Wrist
+ ;;=3^Myocardial Infarction,Type 2
  ;;^UTILITY(U,$J,358.3,24443,1,4,0)
- ;;=4^M19.031
+ ;;=4^I21.A1
  ;;^UTILITY(U,$J,358.3,24443,2)
- ;;=^5010814
+ ;;=^5151374
  ;;^UTILITY(U,$J,358.3,24444,0)
- ;;=M19.032^^76^1004^81
+ ;;=I48.11^^74^972^46
  ;;^UTILITY(U,$J,358.3,24444,1,0)
  ;;=^358.31IA^4^2
  ;;^UTILITY(U,$J,358.3,24444,1,3,0)
- ;;=3^Prim Osteoarth,Left Wrist
+ ;;=3^Atrial Fibrillation,Longstanding Persistent
  ;;^UTILITY(U,$J,358.3,24444,1,4,0)
- ;;=4^M19.032
+ ;;=4^I48.11
  ;;^UTILITY(U,$J,358.3,24444,2)
- ;;=^5010815
+ ;;=^5158046
  ;;^UTILITY(U,$J,358.3,24445,0)
- ;;=M19.041^^76^1004^83
+ ;;=I48.19^^74^972^44
  ;;^UTILITY(U,$J,358.3,24445,1,0)
  ;;=^358.31IA^4^2
  ;;^UTILITY(U,$J,358.3,24445,1,3,0)
- ;;=3^Prim Osteoarth,Right Hand
+ ;;=3^Atrial Fibrillation,Chr Persistent
  ;;^UTILITY(U,$J,358.3,24445,1,4,0)
- ;;=4^M19.041
+ ;;=4^I48.19
  ;;^UTILITY(U,$J,358.3,24445,2)
- ;;=^5010817
+ ;;=^5158047
  ;;^UTILITY(U,$J,358.3,24446,0)
- ;;=Z44.012^^76^1005^4
+ ;;=I48.20^^74^972^45
  ;;^UTILITY(U,$J,358.3,24446,1,0)
  ;;=^358.31IA^4^2
  ;;^UTILITY(U,$J,358.3,24446,1,3,0)
- ;;=3^Fit/adjst of complete left artificial arm
+ ;;=3^Atrial Fibrillation,Chr Unspec
  ;;^UTILITY(U,$J,358.3,24446,1,4,0)
- ;;=4^Z44.012
+ ;;=4^I48.20
  ;;^UTILITY(U,$J,358.3,24446,2)
- ;;=^5062972
+ ;;=^5158048
  ;;^UTILITY(U,$J,358.3,24447,0)
- ;;=Z44.011^^76^1005^6
+ ;;=I48.21^^74^972^48
  ;;^UTILITY(U,$J,358.3,24447,1,0)
  ;;=^358.31IA^4^2
  ;;^UTILITY(U,$J,358.3,24447,1,3,0)
- ;;=3^Fit/adjst of complete right artificial arm
+ ;;=3^Atrial Fibrillation,Permanent
  ;;^UTILITY(U,$J,358.3,24447,1,4,0)
- ;;=4^Z44.011
+ ;;=4^I48.21
  ;;^UTILITY(U,$J,358.3,24447,2)
- ;;=^5062971
+ ;;=^304710
  ;;^UTILITY(U,$J,358.3,24448,0)
- ;;=Z44.022^^76^1005^10
+ ;;=Z79.82^^74^972^71
  ;;^UTILITY(U,$J,358.3,24448,1,0)
  ;;=^358.31IA^4^2
  ;;^UTILITY(U,$J,358.3,24448,1,3,0)
- ;;=3^Fit/adjst of partial artificial left arm
+ ;;=3^Long Term (Current) Use of Aspirin
  ;;^UTILITY(U,$J,358.3,24448,1,4,0)
- ;;=4^Z44.022
+ ;;=4^Z79.82
  ;;^UTILITY(U,$J,358.3,24448,2)
- ;;=^5062975
+ ;;=^5063340
  ;;^UTILITY(U,$J,358.3,24449,0)
- ;;=Z44.021^^76^1005^12
+ ;;=Z79.01^^74^972^69
  ;;^UTILITY(U,$J,358.3,24449,1,0)
  ;;=^358.31IA^4^2
  ;;^UTILITY(U,$J,358.3,24449,1,3,0)
- ;;=3^Fit/adjst of partial artificial right arm
+ ;;=3^Long Term (Current) Use of Anticoagulants
  ;;^UTILITY(U,$J,358.3,24449,1,4,0)
- ;;=4^Z44.021
+ ;;=4^Z79.01
  ;;^UTILITY(U,$J,358.3,24449,2)
- ;;=^5062974
+ ;;=^5063330
  ;;^UTILITY(U,$J,358.3,24450,0)
- ;;=Z44.112^^76^1005^5
+ ;;=Z79.02^^74^972^70
  ;;^UTILITY(U,$J,358.3,24450,1,0)
  ;;=^358.31IA^4^2
  ;;^UTILITY(U,$J,358.3,24450,1,3,0)
- ;;=3^Fit/adjst of complete left artificial leg
+ ;;=3^Long Term (Current) Use of Antithrombotics/Antiplatelets
  ;;^UTILITY(U,$J,358.3,24450,1,4,0)
- ;;=4^Z44.112
+ ;;=4^Z79.02
  ;;^UTILITY(U,$J,358.3,24450,2)
- ;;=^5062981
+ ;;=^5063331
  ;;^UTILITY(U,$J,358.3,24451,0)
- ;;=Z44.111^^76^1005^7
+ ;;=E87.8^^74^973^12
  ;;^UTILITY(U,$J,358.3,24451,1,0)
  ;;=^358.31IA^4^2
  ;;^UTILITY(U,$J,358.3,24451,1,3,0)
- ;;=3^Fit/adjst of complete right artificial leg
+ ;;=3^Electrolyte/Fluid Balance Disorders NEC
  ;;^UTILITY(U,$J,358.3,24451,1,4,0)
- ;;=4^Z44.111
+ ;;=4^E87.8
  ;;^UTILITY(U,$J,358.3,24451,2)
- ;;=^5062980
+ ;;=^5003026
  ;;^UTILITY(U,$J,358.3,24452,0)
- ;;=Z44.122^^76^1005^11
+ ;;=E11.9^^74^973^11
  ;;^UTILITY(U,$J,358.3,24452,1,0)
  ;;=^358.31IA^4^2
  ;;^UTILITY(U,$J,358.3,24452,1,3,0)
- ;;=3^Fit/adjst of partial artificial left leg
+ ;;=3^DM Type 2 w/o Complications
  ;;^UTILITY(U,$J,358.3,24452,1,4,0)
- ;;=4^Z44.122
+ ;;=4^E11.9
  ;;^UTILITY(U,$J,358.3,24452,2)
- ;;=^5062984
+ ;;=^5002666
  ;;^UTILITY(U,$J,358.3,24453,0)
- ;;=Z44.121^^76^1005^13
+ ;;=E10.9^^74^973^1
  ;;^UTILITY(U,$J,358.3,24453,1,0)
  ;;=^358.31IA^4^2
  ;;^UTILITY(U,$J,358.3,24453,1,3,0)
- ;;=3^Fit/adjst of partial artificial right leg
+ ;;=3^DM Type 1 w/o Complications
  ;;^UTILITY(U,$J,358.3,24453,1,4,0)
- ;;=4^Z44.121
+ ;;=4^E10.9
  ;;^UTILITY(U,$J,358.3,24453,2)
- ;;=^5062983
+ ;;=^5002626
  ;;^UTILITY(U,$J,358.3,24454,0)
- ;;=Z44.8^^76^1005^8
+ ;;=Z79.4^^74^973^14
  ;;^UTILITY(U,$J,358.3,24454,1,0)
  ;;=^358.31IA^4^2
  ;;^UTILITY(U,$J,358.3,24454,1,3,0)
- ;;=3^Fit/adjst of external prosthetic devices
+ ;;=3^Long Term Use of Insulin
  ;;^UTILITY(U,$J,358.3,24454,1,4,0)
- ;;=4^Z44.8
+ ;;=4^Z79.4
  ;;^UTILITY(U,$J,358.3,24454,2)
- ;;=^5062992
+ ;;=^5063334
  ;;^UTILITY(U,$J,358.3,24455,0)
- ;;=Z46.89^^76^1005^9
+ ;;=E11.22^^74^973^3
  ;;^UTILITY(U,$J,358.3,24455,1,0)
  ;;=^358.31IA^4^2
  ;;^UTILITY(U,$J,358.3,24455,1,3,0)
- ;;=3^Fit/adjst of oth devices
+ ;;=3^DM Type 2 w/ CKD
  ;;^UTILITY(U,$J,358.3,24455,1,4,0)
- ;;=4^Z46.89
+ ;;=4^E11.22
  ;;^UTILITY(U,$J,358.3,24455,2)
- ;;=^5063023
+ ;;=^5002630
  ;;^UTILITY(U,$J,358.3,24456,0)
- ;;=Z47.81^^76^1005^16
+ ;;=E11.42^^74^973^10
  ;;^UTILITY(U,$J,358.3,24456,1,0)
  ;;=^358.31IA^4^2
  ;;^UTILITY(U,$J,358.3,24456,1,3,0)
- ;;=3^Ortho aftercare following surgical amp
+ ;;=3^DM Type 2 w/ Peripheral Neuropathy
  ;;^UTILITY(U,$J,358.3,24456,1,4,0)
- ;;=4^Z47.81
+ ;;=4^E11.42
  ;;^UTILITY(U,$J,358.3,24456,2)
- ;;=^5063030
+ ;;=^5002646
  ;;^UTILITY(U,$J,358.3,24457,0)
- ;;=Z47.82^^76^1005^15
+ ;;=E11.43^^74^973^2
  ;;^UTILITY(U,$J,358.3,24457,1,0)
  ;;=^358.31IA^4^2
  ;;^UTILITY(U,$J,358.3,24457,1,3,0)
- ;;=3^Ortho aftercare following scoliosis surgery
+ ;;=3^DM Type 2 w/ Autonomic Neuropathy
  ;;^UTILITY(U,$J,358.3,24457,1,4,0)
- ;;=4^Z47.82
+ ;;=4^E11.43
  ;;^UTILITY(U,$J,358.3,24457,2)
- ;;=^5063031
+ ;;=^5002647
  ;;^UTILITY(U,$J,358.3,24458,0)
- ;;=Z47.89^^76^1005^14
+ ;;=E11.51^^74^973^9
  ;;^UTILITY(U,$J,358.3,24458,1,0)
  ;;=^358.31IA^4^2
  ;;^UTILITY(U,$J,358.3,24458,1,3,0)
- ;;=3^Ortho Aftercare NEC
+ ;;=3^DM Type 2 w/ Peripheral Angiopathy w/o Gangrene
  ;;^UTILITY(U,$J,358.3,24458,1,4,0)
- ;;=4^Z47.89
+ ;;=4^E11.51
  ;;^UTILITY(U,$J,358.3,24458,2)
- ;;=^5063032
+ ;;=^5002650
  ;;^UTILITY(U,$J,358.3,24459,0)
- ;;=Z51.89^^76^1005^2
+ ;;=E11.52^^74^973^8
  ;;^UTILITY(U,$J,358.3,24459,1,0)
  ;;=^358.31IA^4^2
  ;;^UTILITY(U,$J,358.3,24459,1,3,0)
- ;;=3^Encounter for Other Specified Aftercare
+ ;;=3^DM Type 2 w/ Peripheral Angiopathy w/ Gangrene
  ;;^UTILITY(U,$J,358.3,24459,1,4,0)
- ;;=4^Z51.89
+ ;;=4^E11.52
  ;;^UTILITY(U,$J,358.3,24459,2)
- ;;=^5063065
+ ;;=^5002651
  ;;^UTILITY(U,$J,358.3,24460,0)
- ;;=Z02.89^^76^1005^1
+ ;;=E11.621^^74^973^4
  ;;^UTILITY(U,$J,358.3,24460,1,0)
  ;;=^358.31IA^4^2
  ;;^UTILITY(U,$J,358.3,24460,1,3,0)
- ;;=3^Administrative Exams
+ ;;=3^DM Type 2 w/ Foot Ulcer
  ;;^UTILITY(U,$J,358.3,24460,1,4,0)
- ;;=4^Z02.89
+ ;;=4^E11.621
  ;;^UTILITY(U,$J,358.3,24460,2)
- ;;=^5062645
+ ;;=^5002656
  ;;^UTILITY(U,$J,358.3,24461,0)
- ;;=Z02.5^^76^1005^3
+ ;;=E11.649^^74^973^6
  ;;^UTILITY(U,$J,358.3,24461,1,0)
  ;;=^358.31IA^4^2
  ;;^UTILITY(U,$J,358.3,24461,1,3,0)
- ;;=3^Exam for Sport Participation
+ ;;=3^DM Type 2 w/ Hypoglycemia w/o Coma
  ;;^UTILITY(U,$J,358.3,24461,1,4,0)
- ;;=4^Z02.5
+ ;;=4^E11.649
  ;;^UTILITY(U,$J,358.3,24461,2)
- ;;=^5062638
+ ;;=^5002662
  ;;^UTILITY(U,$J,358.3,24462,0)
- ;;=S06.0X1S^^76^1006^1
+ ;;=E11.65^^74^973^5
  ;;^UTILITY(U,$J,358.3,24462,1,0)
  ;;=^358.31IA^4^2
  ;;^UTILITY(U,$J,358.3,24462,1,3,0)
- ;;=3^Concussion w LOC of 30 minutes or less, sequela
+ ;;=3^DM Type 2 w/ Hyperglycemia
  ;;^UTILITY(U,$J,358.3,24462,1,4,0)
- ;;=4^S06.0X1S
+ ;;=4^E11.65
  ;;^UTILITY(U,$J,358.3,24462,2)
- ;;=^5020671
+ ;;=^5002663
  ;;^UTILITY(U,$J,358.3,24463,0)
- ;;=S06.0X9S^^76^1006^2
+ ;;=E11.69^^74^973^7
  ;;^UTILITY(U,$J,358.3,24463,1,0)
  ;;=^358.31IA^4^2
  ;;^UTILITY(U,$J,358.3,24463,1,3,0)
- ;;=3^Concussion w LOC of unsp duration, sequela
+ ;;=3^DM Type 2 w/ Other Complications
  ;;^UTILITY(U,$J,358.3,24463,1,4,0)
- ;;=4^S06.0X9S
+ ;;=4^E11.69
  ;;^UTILITY(U,$J,358.3,24463,2)
- ;;=^5020695
+ ;;=^5002664
  ;;^UTILITY(U,$J,358.3,24464,0)
- ;;=S06.0X0S^^76^1006^3
+ ;;=Z79.84^^74^973^13
  ;;^UTILITY(U,$J,358.3,24464,1,0)
  ;;=^358.31IA^4^2
  ;;^UTILITY(U,$J,358.3,24464,1,3,0)
- ;;=3^Concussion w/o LOC, sequela
+ ;;=3^Long Term (Current) Use of Oral Hypoglycemics
  ;;^UTILITY(U,$J,358.3,24464,1,4,0)
- ;;=4^S06.0X0S
+ ;;=4^Z79.84
  ;;^UTILITY(U,$J,358.3,24464,2)
- ;;=^5020668
+ ;;=^5140432
  ;;^UTILITY(U,$J,358.3,24465,0)
- ;;=S06.335S^^76^1006^4
+ ;;=H60.03^^74^974^1
  ;;^UTILITY(U,$J,358.3,24465,1,0)
  ;;=^358.31IA^4^2
  ;;^UTILITY(U,$J,358.3,24465,1,3,0)
- ;;=3^Contus/lac cereb, w LOC >24 hr w ret consc lev, sequela
+ ;;=3^Abscess Bilateral External Ear
  ;;^UTILITY(U,$J,358.3,24465,1,4,0)
- ;;=4^S06.335S
+ ;;=4^H60.03
  ;;^UTILITY(U,$J,358.3,24465,2)
- ;;=^5020863
+ ;;=^5006438
  ;;^UTILITY(U,$J,358.3,24466,0)
- ;;=S06.336S^^76^1006^5
+ ;;=H60.02^^74^974^2
  ;;^UTILITY(U,$J,358.3,24466,1,0)
  ;;=^358.31IA^4^2
  ;;^UTILITY(U,$J,358.3,24466,1,3,0)
- ;;=3^Contus/lac cereb, w LOC >24 hr w/o ret consc w surv, sequela
+ ;;=3^Abscess Left External Ear
  ;;^UTILITY(U,$J,358.3,24466,1,4,0)
- ;;=4^S06.336S
+ ;;=4^H60.02
  ;;^UTILITY(U,$J,358.3,24466,2)
- ;;=^5020866
+ ;;=^5006437
  ;;^UTILITY(U,$J,358.3,24467,0)
- ;;=S06.333S^^76^1006^6
+ ;;=H60.01^^74^974^3
  ;;^UTILITY(U,$J,358.3,24467,1,0)
  ;;=^358.31IA^4^2
  ;;^UTILITY(U,$J,358.3,24467,1,3,0)
- ;;=3^Contus/lac cereb, w LOC of 1-5 hrs 59 min, sequela
+ ;;=3^Abscess Right External Ear
  ;;^UTILITY(U,$J,358.3,24467,1,4,0)
- ;;=4^S06.333S
+ ;;=4^H60.01
  ;;^UTILITY(U,$J,358.3,24467,2)
- ;;=^5020857
+ ;;=^5006436
  ;;^UTILITY(U,$J,358.3,24468,0)
- ;;=S06.331S^^76^1006^7
+ ;;=H60.13^^74^974^5
  ;;^UTILITY(U,$J,358.3,24468,1,0)
  ;;=^358.31IA^4^2
  ;;^UTILITY(U,$J,358.3,24468,1,3,0)
- ;;=3^Contus/lac cereb, w LOC of 30 minutes or less, sequela
+ ;;=3^Cellulitis Bilateral External Ear
  ;;^UTILITY(U,$J,358.3,24468,1,4,0)
- ;;=4^S06.331S
+ ;;=4^H60.13
  ;;^UTILITY(U,$J,358.3,24468,2)
- ;;=^5020851
+ ;;=^5006442
  ;;^UTILITY(U,$J,358.3,24469,0)
- ;;=S06.325S^^76^1006^8
+ ;;=H60.12^^74^974^6
  ;;^UTILITY(U,$J,358.3,24469,1,0)
  ;;=^358.31IA^4^2
  ;;^UTILITY(U,$J,358.3,24469,1,3,0)
- ;;=3^Contus/lac left cerebrum w LOC >24 hr w ret consc lev, sequela
+ ;;=3^Cellulitis Left External Ear
  ;;^UTILITY(U,$J,358.3,24469,1,4,0)
- ;;=4^S06.325S
+ ;;=4^H60.12
  ;;^UTILITY(U,$J,358.3,24469,2)
- ;;=^5020833
+ ;;=^5006441
  ;;^UTILITY(U,$J,358.3,24470,0)
- ;;=S06.326S^^76^1006^9
+ ;;=H60.11^^74^974^7
  ;;^UTILITY(U,$J,358.3,24470,1,0)
  ;;=^358.31IA^4^2
  ;;^UTILITY(U,$J,358.3,24470,1,3,0)
- ;;=3^Contus/lac left cerebrum w LOC >24 hr w/o ret consc w surv, sqla
+ ;;=3^Cellulitis Right External Ear
  ;;^UTILITY(U,$J,358.3,24470,1,4,0)
- ;;=4^S06.326S
+ ;;=4^H60.11
  ;;^UTILITY(U,$J,358.3,24470,2)
- ;;=^5020836
+ ;;=^5006440
  ;;^UTILITY(U,$J,358.3,24471,0)
- ;;=S06.323S^^76^1006^10
+ ;;=H60.323^^74^974^8
  ;;^UTILITY(U,$J,358.3,24471,1,0)
  ;;=^358.31IA^4^2
  ;;^UTILITY(U,$J,358.3,24471,1,3,0)
- ;;=3^Contus/lac left cerebrum w LOC of 1-5 hrs 59 min, sequela
+ ;;=3^Hemorrhagic Bilateral Otitis Externa
  ;;^UTILITY(U,$J,358.3,24471,1,4,0)
- ;;=4^S06.323S
+ ;;=4^H60.323
  ;;^UTILITY(U,$J,358.3,24471,2)
- ;;=^5020827
+ ;;=^5006453
  ;;^UTILITY(U,$J,358.3,24472,0)
- ;;=S06.321S^^76^1006^11
+ ;;=H60.322^^74^974^9
  ;;^UTILITY(U,$J,358.3,24472,1,0)
  ;;=^358.31IA^4^2
  ;;^UTILITY(U,$J,358.3,24472,1,3,0)
- ;;=3^Contus/lac left cerebrum w LOC of 30 minutes or less, sequela
+ ;;=3^Hemorrhagic Left Otitis Externa
  ;;^UTILITY(U,$J,358.3,24472,1,4,0)
- ;;=4^S06.321S
+ ;;=4^H60.322
  ;;^UTILITY(U,$J,358.3,24472,2)
- ;;=^5020821
+ ;;=^5006452
  ;;^UTILITY(U,$J,358.3,24473,0)
- ;;=S06.322S^^76^1006^12
+ ;;=H60.321^^74^974^10
  ;;^UTILITY(U,$J,358.3,24473,1,0)
  ;;=^358.31IA^4^2
  ;;^UTILITY(U,$J,358.3,24473,1,3,0)
- ;;=3^Contus/lac left cerebrum w LOC of 31-59 min, sequela
+ ;;=3^Hemorrhagic Right Otitis Externa
  ;;^UTILITY(U,$J,358.3,24473,1,4,0)
- ;;=4^S06.322S
+ ;;=4^H60.321
  ;;^UTILITY(U,$J,358.3,24473,2)
- ;;=^5020824
+ ;;=^5006451
  ;;^UTILITY(U,$J,358.3,24474,0)
- ;;=S06.324S^^76^1006^13
+ ;;=H60.393^^74^974^11
  ;;^UTILITY(U,$J,358.3,24474,1,0)
  ;;=^358.31IA^4^2
  ;;^UTILITY(U,$J,358.3,24474,1,3,0)
- ;;=3^Contus/lac left cerebrum w LOC of 6-24 hrs, sequela
+ ;;=3^Infective Bilateral Otitis Externa NEC
  ;;^UTILITY(U,$J,358.3,24474,1,4,0)
- ;;=4^S06.324S
+ ;;=4^H60.393
  ;;^UTILITY(U,$J,358.3,24474,2)
- ;;=^5020830
+ ;;=^5006461
  ;;^UTILITY(U,$J,358.3,24475,0)
- ;;=S06.329S^^76^1006^14
+ ;;=H60.392^^74^974^12
  ;;^UTILITY(U,$J,358.3,24475,1,0)
  ;;=^358.31IA^4^2
  ;;^UTILITY(U,$J,358.3,24475,1,3,0)
- ;;=3^Contus/lac left cerebrum w LOC of unsp duration, sequela
+ ;;=3^Infective Left Otitis Externa
  ;;^UTILITY(U,$J,358.3,24475,1,4,0)
- ;;=4^S06.329S
+ ;;=4^H60.392
  ;;^UTILITY(U,$J,358.3,24475,2)
- ;;=^5020845
+ ;;=^5006460
  ;;^UTILITY(U,$J,358.3,24476,0)
- ;;=S06.320S^^76^1006^15
+ ;;=H60.391^^74^974^13
  ;;^UTILITY(U,$J,358.3,24476,1,0)
  ;;=^358.31IA^4^2
  ;;^UTILITY(U,$J,358.3,24476,1,3,0)
- ;;=3^Contus/lac left cerebrum w/o LOC, sequela
+ ;;=3^Infective Right Otitis Externa
  ;;^UTILITY(U,$J,358.3,24476,1,4,0)
- ;;=4^S06.320S
+ ;;=4^H60.391
  ;;^UTILITY(U,$J,358.3,24476,2)
- ;;=^5020818
+ ;;=^5006459
  ;;^UTILITY(U,$J,358.3,24477,0)
- ;;=S06.315S^^76^1006^16
+ ;;=H66.93^^74^974^17
  ;;^UTILITY(U,$J,358.3,24477,1,0)
  ;;=^358.31IA^4^2
  ;;^UTILITY(U,$J,358.3,24477,1,3,0)
- ;;=3^Contus/lac right cerebrum w LOC >24 hr w ret consc lev, sequela
+ ;;=3^Otitis Media Bilateral,Unspec
  ;;^UTILITY(U,$J,358.3,24477,1,4,0)
- ;;=4^S06.315S
+ ;;=4^H66.93
  ;;^UTILITY(U,$J,358.3,24477,2)
- ;;=^5020803
+ ;;=^5006642
  ;;^UTILITY(U,$J,358.3,24478,0)
- ;;=S06.316S^^76^1006^17
+ ;;=H66.92^^74^974^18
  ;;^UTILITY(U,$J,358.3,24478,1,0)
  ;;=^358.31IA^4^2
  ;;^UTILITY(U,$J,358.3,24478,1,3,0)
- ;;=3^Contus/lac right cerebrum w LOC >24 hr w/o ret consc w surv, sqla
+ ;;=3^Otitis Media Left Ear,Unspec
  ;;^UTILITY(U,$J,358.3,24478,1,4,0)
- ;;=4^S06.316S
+ ;;=4^H66.92
  ;;^UTILITY(U,$J,358.3,24478,2)
- ;;=^5020806
+ ;;=^5006641
  ;;^UTILITY(U,$J,358.3,24479,0)
- ;;=S06.313S^^76^1006^18
+ ;;=H66.91^^74^974^19
  ;;^UTILITY(U,$J,358.3,24479,1,0)
  ;;=^358.31IA^4^2
  ;;^UTILITY(U,$J,358.3,24479,1,3,0)
- ;;=3^Contus/lac right cerebrum w LOC of 1-5 hrs 59 min, sequela
+ ;;=3^Otitis Media Right Ear,Unspec
  ;;^UTILITY(U,$J,358.3,24479,1,4,0)
- ;;=4^S06.313S
+ ;;=4^H66.91
  ;;^UTILITY(U,$J,358.3,24479,2)
- ;;=^5020797
+ ;;=^5006640
  ;;^UTILITY(U,$J,358.3,24480,0)
- ;;=S06.311S^^76^1006^19
+ ;;=H60.93^^74^974^14
  ;;^UTILITY(U,$J,358.3,24480,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,24480,1,3,0)
- ;;=3^Contus/lac right cerebrum w LOC of 30 minutes or less, sequela
- ;;^UTILITY(U,$J,358.3,24480,1,4,0)
- ;;=4^S06.311S
- ;;^UTILITY(U,$J,358.3,24480,2)
- ;;=^5020791
- ;;^UTILITY(U,$J,358.3,24481,0)
- ;;=S06.312S^^76^1006^20
- ;;^UTILITY(U,$J,358.3,24481,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,24481,1,3,0)
- ;;=3^Contus/lac right cerebrum w LOC of 31-59 min, sequela
- ;;^UTILITY(U,$J,358.3,24481,1,4,0)
- ;;=4^S06.312S
- ;;^UTILITY(U,$J,358.3,24481,2)
- ;;=^5020794
- ;;^UTILITY(U,$J,358.3,24482,0)
- ;;=S06.314S^^76^1006^21
- ;;^UTILITY(U,$J,358.3,24482,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,24482,1,3,0)
- ;;=3^Contus/lac right cerebrum w LOC of 6-24 hrs, sequela
- ;;^UTILITY(U,$J,358.3,24482,1,4,0)
- ;;=4^S06.314S
- ;;^UTILITY(U,$J,358.3,24482,2)
- ;;=^5020800
- ;;^UTILITY(U,$J,358.3,24483,0)
- ;;=S06.319S^^76^1006^22
- ;;^UTILITY(U,$J,358.3,24483,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,24483,1,3,0)
- ;;=3^Contus/lac right cerebrum w LOC of unsp duration, sequela
- ;;^UTILITY(U,$J,358.3,24483,1,4,0)
- ;;=4^S06.319S
- ;;^UTILITY(U,$J,358.3,24483,2)
- ;;=^5020815
- ;;^UTILITY(U,$J,358.3,24484,0)
- ;;=S06.310S^^76^1006^23
- ;;^UTILITY(U,$J,358.3,24484,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,24484,1,3,0)
- ;;=3^Contus/lac right cerebrum w/o LOC, sequela
- ;;^UTILITY(U,$J,358.3,24484,1,4,0)
- ;;=4^S06.310S
- ;;^UTILITY(U,$J,358.3,24484,2)
- ;;=^5020788
- ;;^UTILITY(U,$J,358.3,24485,0)
- ;;=S06.385S^^76^1006^24
- ;;^UTILITY(U,$J,358.3,24485,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,24485,1,3,0)
- ;;=3^Contus/lac/hem brnst w LOC >24 hr w ret consc lev, sequela
- ;;^UTILITY(U,$J,358.3,24485,1,4,0)
- ;;=4^S06.385S
- ;;^UTILITY(U,$J,358.3,24485,2)
- ;;=^5021013
- ;;^UTILITY(U,$J,358.3,24486,0)
- ;;=S06.386S^^76^1006^25
- ;;^UTILITY(U,$J,358.3,24486,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,24486,1,3,0)
- ;;=3^Contus/lac/hem brnst w LOC >24 hr w/o ret consc w surv, sqla
- ;;^UTILITY(U,$J,358.3,24486,1,4,0)
- ;;=4^S06.386S
- ;;^UTILITY(U,$J,358.3,24486,2)
- ;;=^5021016
- ;;^UTILITY(U,$J,358.3,24487,0)
- ;;=S06.383S^^76^1006^26
- ;;^UTILITY(U,$J,358.3,24487,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,24487,1,3,0)
- ;;=3^Contus/lac/hem brnst w LOC of 1-5 hrs 59 min, sequela
- ;;^UTILITY(U,$J,358.3,24487,1,4,0)
- ;;=4^S06.383S
- ;;^UTILITY(U,$J,358.3,24487,2)
- ;;=^5021007
- ;;^UTILITY(U,$J,358.3,24488,0)
- ;;=S06.381S^^76^1006^27
- ;;^UTILITY(U,$J,358.3,24488,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,24488,1,3,0)
- ;;=3^Contus/lac/hem brnst w LOC of 30 minutes or less, sequela
- ;;^UTILITY(U,$J,358.3,24488,1,4,0)
- ;;=4^S06.381S
- ;;^UTILITY(U,$J,358.3,24488,2)
- ;;=^5021001
- ;;^UTILITY(U,$J,358.3,24489,0)
- ;;=S06.382S^^76^1006^28
- ;;^UTILITY(U,$J,358.3,24489,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,24489,1,3,0)
- ;;=3^Contus/lac/hem brnst w LOC of 31-59 min, sequela
- ;;^UTILITY(U,$J,358.3,24489,1,4,0)
- ;;=4^S06.382S
- ;;^UTILITY(U,$J,358.3,24489,2)
- ;;=^5021004
- ;;^UTILITY(U,$J,358.3,24490,0)
- ;;=S06.384S^^76^1006^29
- ;;^UTILITY(U,$J,358.3,24490,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,24490,1,3,0)
- ;;=3^Contus/lac/hem brnst w LOC of 6-24 hrs, sequela
- ;;^UTILITY(U,$J,358.3,24490,1,4,0)
- ;;=4^S06.384S
- ;;^UTILITY(U,$J,358.3,24490,2)
- ;;=^5021010
- ;;^UTILITY(U,$J,358.3,24491,0)
- ;;=S06.389S^^76^1006^30
- ;;^UTILITY(U,$J,358.3,24491,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,24491,1,3,0)
- ;;=3^Contus/lac/hem brnst w LOC of unsp duration, sequela
- ;;^UTILITY(U,$J,358.3,24491,1,4,0)
- ;;=4^S06.389S
- ;;^UTILITY(U,$J,358.3,24491,2)
- ;;=^5021025
- ;;^UTILITY(U,$J,358.3,24492,0)
- ;;=S06.380S^^76^1006^31
- ;;^UTILITY(U,$J,358.3,24492,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,24492,1,3,0)
- ;;=3^Contus/lac/hem brnst w/o LOC, sequela
- ;;^UTILITY(U,$J,358.3,24492,1,4,0)
- ;;=4^S06.380S
- ;;^UTILITY(U,$J,358.3,24492,2)
- ;;=^5020998
- ;;^UTILITY(U,$J,358.3,24493,0)
- ;;=S06.375S^^76^1006^32
- ;;^UTILITY(U,$J,358.3,24493,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,24493,1,3,0)
- ;;=3^Contus/lac/hem crblm w LOC >24 hr w ret consc lev, sequela
- ;;^UTILITY(U,$J,358.3,24493,1,4,0)
- ;;=4^S06.375S
- ;;^UTILITY(U,$J,358.3,24493,2)
- ;;=^5020983
- ;;^UTILITY(U,$J,358.3,24494,0)
- ;;=S06.376S^^76^1006^33
- ;;^UTILITY(U,$J,358.3,24494,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,24494,1,3,0)
- ;;=3^Contus/lac/hem crblm w LOC >24 hr w/o ret consc w surv, sqla
- ;;^UTILITY(U,$J,358.3,24494,1,4,0)
- ;;=4^S06.376S
- ;;^UTILITY(U,$J,358.3,24494,2)
- ;;=^5020986
- ;;^UTILITY(U,$J,358.3,24495,0)
- ;;=S06.373S^^76^1006^34
- ;;^UTILITY(U,$J,358.3,24495,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,24495,1,3,0)
- ;;=3^Contus/lac/hem crblm w LOC of 1-5 hrs 59 min, sequela
- ;;^UTILITY(U,$J,358.3,24495,1,4,0)
- ;;=4^S06.373S
- ;;^UTILITY(U,$J,358.3,24495,2)
- ;;=^5020977
- ;;^UTILITY(U,$J,358.3,24496,0)
- ;;=S06.371S^^76^1006^35
- ;;^UTILITY(U,$J,358.3,24496,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,24496,1,3,0)
- ;;=3^Contus/lac/hem crblm w LOC of 30 minutes or less, sequela
- ;;^UTILITY(U,$J,358.3,24496,1,4,0)
- ;;=4^S06.371S
- ;;^UTILITY(U,$J,358.3,24496,2)
- ;;=^5020971
- ;;^UTILITY(U,$J,358.3,24497,0)
- ;;=S06.372S^^76^1006^36
- ;;^UTILITY(U,$J,358.3,24497,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,24497,1,3,0)
- ;;=3^Contus/lac/hem crblm w LOC of 31-59 min, sequela
- ;;^UTILITY(U,$J,358.3,24497,1,4,0)
- ;;=4^S06.372S
- ;;^UTILITY(U,$J,358.3,24497,2)
- ;;=^5020974
- ;;^UTILITY(U,$J,358.3,24498,0)
- ;;=S06.374S^^76^1006^37
- ;;^UTILITY(U,$J,358.3,24498,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,24498,1,3,0)
- ;;=3^Contus/lac/hem crblm w LOC of 6 hours to 24 hours, sequela
- ;;^UTILITY(U,$J,358.3,24498,1,4,0)
- ;;=4^S06.374S
- ;;^UTILITY(U,$J,358.3,24498,2)
- ;;=^5020980
- ;;^UTILITY(U,$J,358.3,24499,0)
- ;;=S06.379S^^76^1006^38
- ;;^UTILITY(U,$J,358.3,24499,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,24499,1,3,0)
- ;;=3^Contus/lac/hem crblm w LOC of unsp duration, sequela
- ;;^UTILITY(U,$J,358.3,24499,1,4,0)
- ;;=4^S06.379S
- ;;^UTILITY(U,$J,358.3,24499,2)
- ;;=^5020995
- ;;^UTILITY(U,$J,358.3,24500,0)
- ;;=S06.370S^^76^1006^39
- ;;^UTILITY(U,$J,358.3,24500,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,24500,1,3,0)
- ;;=3^Contus/lac/hem crblm w/o LOC, sequela
- ;;^UTILITY(U,$J,358.3,24500,1,4,0)
- ;;=4^S06.370S
- ;;^UTILITY(U,$J,358.3,24500,2)
- ;;=^5020968
- ;;^UTILITY(U,$J,358.3,24501,0)
- ;;=S06.2X5S^^76^1006^40
- ;;^UTILITY(U,$J,358.3,24501,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,24501,1,3,0)
- ;;=3^Diffuse TBI w LOC >24 hr w return to consc levels, sequela
- ;;^UTILITY(U,$J,358.3,24501,1,4,0)
- ;;=4^S06.2X5S
- ;;^UTILITY(U,$J,358.3,24501,2)
- ;;=^5020743
- ;;^UTILITY(U,$J,358.3,24502,0)
- ;;=S06.2X6S^^76^1006^41
- ;;^UTILITY(U,$J,358.3,24502,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,24502,1,3,0)
- ;;=3^Diffuse TBI w LOC >24 hr w/o ret consc w surv, sequela

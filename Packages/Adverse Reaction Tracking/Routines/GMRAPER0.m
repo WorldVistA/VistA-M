@@ -1,5 +1,5 @@
-GMRAPER0 ;HIRMFO/WAA-REACTIONS SELECT ROUTINE ;6/9/05  11:12
- ;;4.0;Adverse Reaction Tracking;**7,21,23**;Mar 29, 1996
+GMRAPER0 ; HIRMFO/WAA - REACTIONS SELECT ROUTINE ;May 11, 2021@12:02:09
+ ;;4.0;Adverse Reaction Tracking;**7,21,23,63**;Mar 29, 1996;Build 34
 EN1 ; ENTRY POINT TO SELECT SIGNS/SYMPTOMS
  K GMRARAD,GMRAROT,GMRARDL,GMRAROTD S GMRAR10(11)=GMRAOTH_"^OTHER SIGN/SYMPTOM"
 LIST ; Display Signs/Symptoms
@@ -146,6 +146,7 @@ DATE(DATE,ASK) ; Enter the date for a reaction
  N %DT,X,Y
  S DATE=$G(DATE,""),%DT="AEPT",%DT("A")="Date(Time Optional) of appearance of Sign/Symptom(s): "
  S:$P(GMRAPA(0),U,6)="o" %DT("B")=$S(DATE="":"NOW",1:$$FMTE^XLFDT(DATE,1))
+ S:$P(GMRAPA(0),U,6)="h" %DT("B")=$S(DATE="":"",1:$$FMTE^XLFDT(DATE,1))
  S %DT(0)="-NOW" D ^%DT  I "^^"[X S GMRAOUT=$L(X) Q
  S DATE=Y,ASK=1
  Q

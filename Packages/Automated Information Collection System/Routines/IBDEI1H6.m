@@ -1,122 +1,130 @@
-IBDEI1H6 ; ; 04-FEB-2020
- ;;3.0;IB ENCOUNTER FORM IMP/EXP;;FEB 04, 2020
+IBDEI1H6 ; ; 01-FEB-2022
+ ;;3.0;IB ENCOUNTER FORM IMP/EXP;;FEB 01, 2022
  Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,999) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
- ;;^UTILITY(U,$J,358.3,23591,2)
- ;;=^5157595
- ;;^UTILITY(U,$J,358.3,23592,0)
- ;;=T81.49XA^^105^1174^57
- ;;^UTILITY(U,$J,358.3,23592,1,0)
+ ;;^UTILITY(U,$J,358.3,23862,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,23592,1,3,0)
- ;;=3^Infect Following Proced,Oth Surg Site,Init
- ;;^UTILITY(U,$J,358.3,23592,1,4,0)
- ;;=4^T81.49XA
- ;;^UTILITY(U,$J,358.3,23592,2)
- ;;=^5157599
- ;;^UTILITY(U,$J,358.3,23593,0)
- ;;=T81.49XD^^105^1174^58
- ;;^UTILITY(U,$J,358.3,23593,1,0)
+ ;;^UTILITY(U,$J,358.3,23862,1,3,0)
+ ;;=3^Heart Failure,End Stage
+ ;;^UTILITY(U,$J,358.3,23862,1,4,0)
+ ;;=4^I50.84
+ ;;^UTILITY(U,$J,358.3,23862,2)
+ ;;=^5151391
+ ;;^UTILITY(U,$J,358.3,23863,0)
+ ;;=I50.89^^82^1033^11
+ ;;^UTILITY(U,$J,358.3,23863,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,23593,1,3,0)
- ;;=3^Infect Following Proced,Oth Surg Site,Subs
- ;;^UTILITY(U,$J,358.3,23593,1,4,0)
- ;;=4^T81.49XD
- ;;^UTILITY(U,$J,358.3,23593,2)
- ;;=^5157600
- ;;^UTILITY(U,$J,358.3,23594,0)
- ;;=T81.49XS^^105^1174^59
- ;;^UTILITY(U,$J,358.3,23594,1,0)
+ ;;^UTILITY(U,$J,358.3,23863,1,3,0)
+ ;;=3^Heart Failure,Other
+ ;;^UTILITY(U,$J,358.3,23863,1,4,0)
+ ;;=4^I50.89
+ ;;^UTILITY(U,$J,358.3,23863,2)
+ ;;=^5151392
+ ;;^UTILITY(U,$J,358.3,23864,0)
+ ;;=E03.9^^82^1034^21
+ ;;^UTILITY(U,$J,358.3,23864,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,23594,1,3,0)
- ;;=3^Infect Following Proced,Oth Surg Site,Sequela
- ;;^UTILITY(U,$J,358.3,23594,1,4,0)
- ;;=4^T81.49XS
- ;;^UTILITY(U,$J,358.3,23594,2)
- ;;=^5157601
- ;;^UTILITY(U,$J,358.3,23595,0)
- ;;=T81.44XA^^105^1174^132
- ;;^UTILITY(U,$J,358.3,23595,1,0)
+ ;;^UTILITY(U,$J,358.3,23864,1,3,0)
+ ;;=3^Hypothyroidism,Unspec
+ ;;^UTILITY(U,$J,358.3,23864,1,4,0)
+ ;;=4^E03.9
+ ;;^UTILITY(U,$J,358.3,23864,2)
+ ;;=^5002476
+ ;;^UTILITY(U,$J,358.3,23865,0)
+ ;;=E11.9^^82^1034^13
+ ;;^UTILITY(U,$J,358.3,23865,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,23595,1,3,0)
- ;;=3^Sepsis Following Proced,Init
- ;;^UTILITY(U,$J,358.3,23595,1,4,0)
- ;;=4^T81.44XA
- ;;^UTILITY(U,$J,358.3,23595,2)
- ;;=^5157596
- ;;^UTILITY(U,$J,358.3,23596,0)
- ;;=T81.44XD^^105^1174^134
- ;;^UTILITY(U,$J,358.3,23596,1,0)
+ ;;^UTILITY(U,$J,358.3,23865,1,3,0)
+ ;;=3^DM Type 2 w/o Complications
+ ;;^UTILITY(U,$J,358.3,23865,1,4,0)
+ ;;=4^E11.9
+ ;;^UTILITY(U,$J,358.3,23865,2)
+ ;;=^5002666
+ ;;^UTILITY(U,$J,358.3,23866,0)
+ ;;=E10.9^^82^1034^7
+ ;;^UTILITY(U,$J,358.3,23866,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,23596,1,3,0)
- ;;=3^Sepsis Following Proced,Subs
- ;;^UTILITY(U,$J,358.3,23596,1,4,0)
- ;;=4^T81.44XD
- ;;^UTILITY(U,$J,358.3,23596,2)
- ;;=^5157597
- ;;^UTILITY(U,$J,358.3,23597,0)
- ;;=T81.44XS^^105^1174^133
- ;;^UTILITY(U,$J,358.3,23597,1,0)
+ ;;^UTILITY(U,$J,358.3,23866,1,3,0)
+ ;;=3^DM Type 1 w/o Complications
+ ;;^UTILITY(U,$J,358.3,23866,1,4,0)
+ ;;=4^E10.9
+ ;;^UTILITY(U,$J,358.3,23866,2)
+ ;;=^5002626
+ ;;^UTILITY(U,$J,358.3,23867,0)
+ ;;=E11.65^^82^1034^9
+ ;;^UTILITY(U,$J,358.3,23867,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,23597,1,3,0)
- ;;=3^Sepsis Following Proced,Sequela
- ;;^UTILITY(U,$J,358.3,23597,1,4,0)
- ;;=4^T81.44XS
- ;;^UTILITY(U,$J,358.3,23597,2)
- ;;=^5157598
- ;;^UTILITY(U,$J,358.3,23598,0)
- ;;=T81.41XS^^105^1174^63
- ;;^UTILITY(U,$J,358.3,23598,1,0)
+ ;;^UTILITY(U,$J,358.3,23867,1,3,0)
+ ;;=3^DM Type 2 w/ Hyperglycemia
+ ;;^UTILITY(U,$J,358.3,23867,1,4,0)
+ ;;=4^E11.65
+ ;;^UTILITY(U,$J,358.3,23867,2)
+ ;;=^5002663
+ ;;^UTILITY(U,$J,358.3,23868,0)
+ ;;=E10.65^^82^1034^5
+ ;;^UTILITY(U,$J,358.3,23868,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,23598,1,3,0)
- ;;=3^Infect Following Proced,Superfic Incis Surg Site,Sequela
- ;;^UTILITY(U,$J,358.3,23598,1,4,0)
- ;;=4^T81.41XS
- ;;^UTILITY(U,$J,358.3,23598,2)
- ;;=^5157589
- ;;^UTILITY(U,$J,358.3,23599,0)
- ;;=T81.40XA^^105^1174^64
- ;;^UTILITY(U,$J,358.3,23599,1,0)
+ ;;^UTILITY(U,$J,358.3,23868,1,3,0)
+ ;;=3^DM Type 1 w/ Hyperglycemia
+ ;;^UTILITY(U,$J,358.3,23868,1,4,0)
+ ;;=4^E10.65
+ ;;^UTILITY(U,$J,358.3,23868,2)
+ ;;=^5002623
+ ;;^UTILITY(U,$J,358.3,23869,0)
+ ;;=E11.8^^82^1034^8
+ ;;^UTILITY(U,$J,358.3,23869,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,23599,1,3,0)
- ;;=3^Infect Following Proced,Unspec,Init
- ;;^UTILITY(U,$J,358.3,23599,1,4,0)
- ;;=4^T81.40XA
- ;;^UTILITY(U,$J,358.3,23599,2)
- ;;=^5157584
- ;;^UTILITY(U,$J,358.3,23600,0)
- ;;=F10.10^^105^1175^2
- ;;^UTILITY(U,$J,358.3,23600,1,0)
+ ;;^UTILITY(U,$J,358.3,23869,1,3,0)
+ ;;=3^DM Type 2 w/ Complications,Unspec
+ ;;^UTILITY(U,$J,358.3,23869,1,4,0)
+ ;;=4^E11.8
+ ;;^UTILITY(U,$J,358.3,23869,2)
+ ;;=^5002665
+ ;;^UTILITY(U,$J,358.3,23870,0)
+ ;;=E10.8^^82^1034^4
+ ;;^UTILITY(U,$J,358.3,23870,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,23600,1,3,0)
- ;;=3^Alcohol Use Disorder,Mild
- ;;^UTILITY(U,$J,358.3,23600,1,4,0)
- ;;=4^F10.10
- ;;^UTILITY(U,$J,358.3,23600,2)
- ;;=^5003068
- ;;^UTILITY(U,$J,358.3,23601,0)
- ;;=F10.14^^105^1175^9
- ;;^UTILITY(U,$J,358.3,23601,1,0)
+ ;;^UTILITY(U,$J,358.3,23870,1,3,0)
+ ;;=3^DM Type 1 w/ Complications,Unspec
+ ;;^UTILITY(U,$J,358.3,23870,1,4,0)
+ ;;=4^E10.8
+ ;;^UTILITY(U,$J,358.3,23870,2)
+ ;;=^5002625
+ ;;^UTILITY(U,$J,358.3,23871,0)
+ ;;=E53.8^^82^1034^31
+ ;;^UTILITY(U,$J,358.3,23871,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,23601,1,3,0)
- ;;=3^Alcohol-Induced Bipolar & Related Disorder/Depressive Disorder w/ Mild Use Disorder
- ;;^UTILITY(U,$J,358.3,23601,1,4,0)
- ;;=4^F10.14
- ;;^UTILITY(U,$J,358.3,23601,2)
- ;;=^5003072
- ;;^UTILITY(U,$J,358.3,23602,0)
- ;;=F10.182^^105^1175^11
- ;;^UTILITY(U,$J,358.3,23602,1,0)
+ ;;^UTILITY(U,$J,358.3,23871,1,3,0)
+ ;;=3^Vitamin B Group Deficiency
+ ;;^UTILITY(U,$J,358.3,23871,1,4,0)
+ ;;=4^E53.8
+ ;;^UTILITY(U,$J,358.3,23871,2)
+ ;;=^5002797
+ ;;^UTILITY(U,$J,358.3,23872,0)
+ ;;=E78.5^^82^1034^20
+ ;;^UTILITY(U,$J,358.3,23872,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,23602,1,3,0)
- ;;=3^Alcohol-Induced Sleep Disorder w/ Mild Use Disorder
- ;;^UTILITY(U,$J,358.3,23602,1,4,0)
- ;;=4^F10.182
- ;;^UTILITY(U,$J,358.3,23602,2)
- ;;=^5003078
- ;;^UTILITY(U,$J,358.3,23603,0)
- ;;=F10.20^^105^1175^3
- ;;^UTILITY(U,$J,358.3,23603,1,0)
+ ;;^UTILITY(U,$J,358.3,23872,1,3,0)
+ ;;=3^Hyperlipidemia,Unspec
+ ;;^UTILITY(U,$J,358.3,23872,1,4,0)
+ ;;=4^E78.5
+ ;;^UTILITY(U,$J,358.3,23872,2)
+ ;;=^5002969
+ ;;^UTILITY(U,$J,358.3,23873,0)
+ ;;=E66.9^^82^1034^28
+ ;;^UTILITY(U,$J,358.3,23873,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,23603,1,3,0)
- ;;=3^Alcohol Use Disorder,Moderate-Severe
+ ;;^UTILITY(U,$J,358.3,23873,1,3,0)
+ ;;=3^Obesity,Unspec
+ ;;^UTILITY(U,$J,358.3,23873,1,4,0)
+ ;;=4^E66.9
+ ;;^UTILITY(U,$J,358.3,23873,2)
+ ;;=^5002832
+ ;;^UTILITY(U,$J,358.3,23874,0)
+ ;;=E66.01^^82^1034^26
+ ;;^UTILITY(U,$J,358.3,23874,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,23874,1,3,0)
+ ;;=3^Morbid Obesity d/t Excess Calories
+ ;;^UTILITY(U,$J,358.3,23874,1,4,0)
+ ;;=4^E66.01

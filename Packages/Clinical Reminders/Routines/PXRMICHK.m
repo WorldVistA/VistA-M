@@ -1,5 +1,5 @@
-PXRMICHK ;SLC/PKR - Integrity checking routines. ;08/29/2018
- ;;2.0;CLINICAL REMINDERS;**18,24,26,47,45**;Feb 04, 2005;Build 566
+PXRMICHK ;SLC/PKR - Integrity checking routines. ;05/31/2022
+ ;;2.0;CLINICAL REMINDERS;**18,24,26,47,45,42,65**;Feb 04, 2005;Build 438
  ;===============
 ADDTEXT(NIN,TEXT,NL,OUTPUT) ;
  N IND,NOUT,TEXTOUT
@@ -11,8 +11,8 @@ ADDTEXT(NIN,TEXT,NL,OUTPUT) ;
 CCRLOGIC(COHOK,FFOK,RESOK,DEFARR,NL,OUTPUT) ;Check cohort and resolution logic.
  N AGE,FIEVAL,FINDING,FF,FLIST,IND,JND,NUM,OCCN,PCLOG
  N RESLOG,RESLSTR,SEX,TEMP,TEST,TEXT
- N PXRMAGE,PXRMDOB,PXRMDOD,PXRMLAD,PXRMSEX,PXRMSIG
- S (PXRMAGE,PXRMDOB,PXRMDOD,PXRMLAD)=0
+ N PXRMAGE,PXRMDATE,PXRMDOB,PXRMDOD,PXRMLAD,PXRMSEX,PXRMSIG
+ S (PXRMAGE,PXRMDATE,PXRMDOB,PXRMDOD,PXRMLAD)=0
  S (PXRMSEX,PXRMSIG)=""
  ;Set all findings false.
  S (FIEVAL("AGE"),FIEVAL("SEX"))=0
@@ -23,7 +23,7 @@ CCRLOGIC(COHOK,FFOK,RESOK,DEFARR,NL,OUTPUT) ;Check cohort and resolution logic.
  . F JND=1:1:OCCN S FIEVAL(IND,JND)=0
  ;If there were no problems with the function findings evaluate them
  ;with all findings false.
- I FFOK D EVAL^PXRMFF(0,.DEFARR,.FIEVAL)
+ I FFOK D EVAL^PXRMFF(.DEFARR,.FIEVAL)
  S PCLOG=DEFARR(31)
  I (PCLOG["FF"),('FFOK) S COHOK=0
  I COHOK D
@@ -156,7 +156,7 @@ DEF(IEN,OUTPUT,WRITE) ;Definition integrity check. 0 is returned if the
  ;definition has fatal errors, otherwise 1 is returned.
  ;Warning and error text is stored in the OUTPUT array. If WRITE=1 then
  ;the contents of OUTPUT will be written out.
- N ARGTYPE,BDT,COHOK,DEF,DEFARR,EDT,FFOK
+ N ARGTYPE,BDT,C1,COHOK,DEF,DEFARR,EDT,FFOK
  N FFNUM,FI,FIEN,FLIST,FNUM,FUNCTION,GBL,IND,JND,KND
  N LOGCHK,LOGINTR,LOGSTR,NBFREQ,NFI,NFFREQ,NL
  N OCC,OCN,OK,RESOK
@@ -198,7 +198,7 @@ DEF(IEN,OUTPUT,WRITE) ;Definition integrity check. 0 is returned if the
  .;Check computed findings.
  . I (GBL="PXRMD(811.4,"),'$$CFCHK(USAGE,IND,FIEN,.DEFARR,"D",.NL,.OUTPUT) S OK=0
  .;Check terms.
- . I (GBL="PXRMD(811.5,"),'$$TERMCHK(USAGE,FIEN,.NL,.OUTPUT) S OK=0
+ . I (GBL="PXRMD(811.5,"),'$$TERMCHK^PXRMICK1(USAGE,FIEN,.NL,.OUTPUT) S OK=0
  ;
  ;Check for recursion.
  I $$RECCHK(IEN,.NL,.OUTPUT) S OK=0
@@ -222,6 +222,8 @@ DEF(IEN,OUTPUT,WRITE) ;Definition integrity check. 0 is returned if the
  ... S ARGTYPE=$$ARGTYPE^PXRMFFAT(FUNCTION,KND)
  ... I ARGTYPE="F" D
  .... S FI=DEFARR(25,FFNUM,5,JND,20,KND,0)
+ .... S C1=$E(FI,1)
+ .... I (C1="C")!(C1="R") S FI=$E(FI,2,15)
  .... I '$D(DEFARR(20,FI,0)) D
  ..... K TEXT
  ..... S TEXT(1)="FATAL: Function finding number "_IND_" depends on finding number "_FI_" which does not exist."
@@ -231,6 +233,8 @@ DEF(IEN,OUTPUT,WRITE) ;Definition integrity check. 0 is returned if the
  .... S OCN=DEFARR(25,FFNUM,5,JND,20,KND,0)
  .... S OCC=+$P(DEFARR(20,FI,0),U,14)
  .... S OCC=$S(OCC=0:1,OCC>0:OCC,1:-OCC)
+ .... ;Ignore Occurrence Count check for contraindication and refusal findings.
+ .... I (C1="C")!(C1="R") S OCN=OCC
  .... I OCN>OCC D
  ..... K TEXT
  ..... S TEXT(1)="FATAL: Function finding number "_IND_" uses occurrence number "_OCN
@@ -394,7 +398,7 @@ RDCFCHK(CFNAME,CFPAR,IND,TYPE,NL,OUTPUT) ;Additional checks when the computed
  ;A blank Computed Finding Parameter has already been checked for.
  I CFPAR="" Q 0
  N NDEFIEN,RECUR,TEXT
- S NDEFIEN=$O(^PXD(811.9,"B",CFPAR,""))
+ S NDEFIEN=$S(+CFPAR=CFPAR:+CFPAR,1:$O(^PXD(811.9,"B",CFPAR,"")))
  I NDEFIEN="" D  Q 0
  . I TYPE="D" S TEXT(1)="FATAL: Finding number "_IND_" uses computed finding "_CFNAME_"."
  . I TYPE="T" S TEXT(1)="FATAL: Term finding number "_IND_" uses computed finding "_CFNAME_"."
@@ -431,53 +435,4 @@ RECCHK(DEFIEN,NL,OUTPUT) ;Check for recursion
  .. S TEXT(2)="This term is recursively calling definition "_DEFNAME_"."
  . D ADDTEXT(2,.TEXT,.NL,.OUTPUT)
  Q P1
- ;
- ;===============
-TERM(IEN,OUTPUT,WRITE) ;Definition integrity check. 0 is returned if the
- ;definition has fatal errors, otherwise 1 is returned.
- ;Warning and error text is stored in the OUTPUT array. If WRITE=1 then
- ;the contents of OUTPUT will be written out.
- N OK,NL
- S NL=0
- S OK=$$TERMCHK("",IEN,.NL,.OUTPUT)
- I WRITE=1 D OUTPUT^PXRMICK1(NL,.OUTPUT)
- Q OK
- ;
- ;===============
-TERMCHK(USAGE,TIEN,NL,OUTPUT) ;Check terms.
- ;TERMCHK(USAGE,TIEN,DEFARR,NL,OUTPUT) ;Check terms.
- N FI,FIEN,FNUM,GBL,JND,OK,TERMARR,TEXT,TNAME,TTEXT,ZNODE
- S TNAME=$P(^PXRMD(811.5,TIEN,0),U,1)_" ("_TIEN_")"
- S TTEXT=" The term is "_TNAME_"."
- S OK=1
- D TERM^PXRMLDR(TIEN,.TERMARR)
- ;Check findings and finding modifiers.
- S JND=0
- F  S JND=+$O(TERMARR(20,JND)) Q:JND=0  D
- . S ZNODE=TERMARR(20,JND,0)
- . S FI=$P(ZNODE,U,1)
- . S FIEN=$P(FI,";",1)
- . S GBL=$P(FI,";",2)
- . I (FIEN'=+FIEN)!(GBL="") D  Q
- .. K TEXT
- .. S TEXT(1)="FATAL: Term finding number "_JND_" is invalid."
- .. S TEXT(2)=TTEXT
- .. D ADDTEXT(2,.TEXT,.NL,.OUTPUT)
- .. S OK=0
- . S FNUM=$$GETFNUM^PXRMEXPS(GBL)
- . I '$$FIND1^DIC(FNUM,"","XU","`"_FIEN) D
- .. K TEXT
- .. S TEXT(1)="FATAL: Term finding number "_JND_", does not exist! It is entry number "_FIEN_" in file #"_FNUM_"."
- .. S TEXT(2)=TTEXT
- .. D ADDTEXT(2,.TEXT,.NL,.OUTPUT)
- .. S OK=0
- .;Check computed findings.
- . I (GBL="PXRMD(811.4,"),'$$CFCHK(USAGE,JND,FIEN,.TERMARR,"T",.NL,.OUTPUT) D
- ..;CFCHK issues the messages for the CF, let the user know the name
- ..;of the term.
- .. K TEXT
- .. S TEXT(1)=TTEXT
- .. D ADDTEXT(1,.TEXT,.NL,.OUTPUT)
- .. S OK=0
- Q OK
  ;

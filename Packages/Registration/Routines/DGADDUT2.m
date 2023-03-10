@@ -1,5 +1,5 @@
-DGADDUT2 ;ALB/ERC,CKN,LBD,JAM - CONTINUATION OF ADDRESS UTILITIES ;19 Jul 2017  3:03 PM
- ;;5.3;Registration;**688,851,925,941**;AUG 13, 1993;Build 73
+DGADDUT2 ;ALB/ERC,CKN,LBD,JAM,ARF - CONTINUATION OF ADDRESS UTILITIES ;May 24, 2021@14:47:36
+ ;;5.3;Registration;**688,851,925,941,1056**;AUG 13, 1993;Build 18
  ;a continuation of utilities from DGADDUTL
  ;
 UPDDTTM(DFN,TYPE) ; Update the PATIENT file #2 with the current date and time
@@ -54,18 +54,17 @@ CNTRY(DGARR) ;
  S DGARR("CNTRY")=DGC
  Q
  ;
-DISPADD(DFN) ;Display Permanent Address (DG*5.3*851)
+DISPADD(DFN) ;Display Mailing Address (DG*5.3*851)
  Q:'$G(DFN)
  N DGRP,DGA1,DGA2,DGA,DGAD,DGI,DGCC,DGUN
  ;Get current address
- ;JAM Patch DG*5.3*941 Home and office phone now associated with Residential Address - remove retrieval of those fields 
+ ;JAM Patch DG*5.3*941 Home and office phone now associated with Residential Address - remove retrieval of those fields
  S DGRP(.11)=$G(^DPT(DFN,.11))
  S DGUN="UNANSWERED"
  ;Format address data
  S DGAD=.11,(DGA1,DGA2)=1 D AL^DGRPU(35)
- ;Display address
- ;jam DG*5.3*925 RM#788099 Add/Edit Residential Address - change label to Permanent Mailing Address:
- W !!," Permanent Mailing Address: "
+ ;DG*5.3*1056 remove "Permanent" from the following label:
+ W !!," Mailing Address: "
  W !,?11,$S($D(DGA(1)):DGA(1),1:"NONE ON FILE")
  S DGI=1 F  S DGI=$O(DGA(DGI)) Q:'DGI  W !,?11,DGA(DGI)
  ; only print county info if it's a US address
@@ -74,8 +73,8 @@ DISPADD(DFN) ;Display Permanent Address (DG*5.3*851)
  S DGCC=$S($G(DGCC)]"":"County: "_DGCC,1:"")
  W !?3,DGCC
  ;Display phone numbers
- ;JAM Patch DG*5.3*941 Home and office phone now associated with Residential Address - not shown with Permanent. 
- ; - remove from being displayed here 
+ ;JAM Patch DG*5.3*941 Home and office phone now associated with Residential Address - not shown with Permanent.
+ ; - remove from being displayed here
  ;W !?4,"Phone: ",$S($P(DGRP(.13),U,1)]"":$P(DGRP(.13),U,1),1:DGUN)
  ;W !?3,"Office: ",$S($P(DGRP(.13),U,2)]"":$P(DGRP(.13),U,2),1:DGUN)
  ;Display Bad Address Indicator

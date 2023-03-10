@@ -1,6 +1,6 @@
-PRCB1F ;WISC/PLT-IFCAP MONTHLY ACCRUAL ;9/13/96  16:21
-V ;;5.1;IFCAP;**64,72,142,159**;Oct 20, 2000;Build 9
- ;Per VHA Directive 2004-038, this routine should not be modified.
+PRCB1F ;WISC/PLT-IFCAP MONTHLY ACCRUAL ;8/6/21  10:46
+V ;;5.1;IFCAP;**64,72,142,159,225**;Oct 20, 2000;Build 3
+ ;Per VA Directive 6402, this routine should not be modified.
  QUIT  ;invalid entry
  ;
  ;ZTQPARAM=999 if from schedule option
@@ -80,6 +80,14 @@ Q5 D YN^PRC0A(.X,.Y,"Ready to "_$P("Compile/Print,Edit,Generate/Rebuild Document
  . I X>0 D EDIT^PRC0B(.X,"440.7;^PRCH(440.7,;"_PRCRI(440.7),"2///^S X=""N"";6////"_X)
  . QUIT
 Q5X I $G(PRCRI(440.7)) L -^PRCH(440.7,PRCRI(440.7))  ;PRC*5.1*159 insures previously compile file entry is unlocked when recompile is queued
+ ; Generating YTD Accrual Extract immediately after generating SV txns
+ I PRCOPT=3 D
+ . N PRCX,PRCFY,PRCSTN
+ . S PRCX=$P(^PRCH(440.7,PRCRI(440.7),0),"^")
+ . S PRCFY=$E(PRCX,1,3)+1700 S:$E(PRCX,4,5)>9 PRCFY=PRCFY+1
+ . S PRCSTN=$P(PRCX,"-",2)
+ . D TASKED^PRCB1GE(PRCFY,PRCSTN)
+ . QUIT
  D EN^DDIOL(" "),EN^DDIOL(" ") G Q4
  ;
 EXIT QUIT

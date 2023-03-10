@@ -1,118 +1,118 @@
-IBDEI19S ; ; 04-FEB-2020
- ;;3.0;IB ENCOUNTER FORM IMP/EXP;;FEB 04, 2020
+IBDEI19S ; ; 01-FEB-2022
+ ;;3.0;IB ENCOUNTER FORM IMP/EXP;;FEB 01, 2022
  Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,999) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
- ;;^UTILITY(U,$J,358.3,20320,1,4,0)
- ;;=4^S32.011S
- ;;^UTILITY(U,$J,358.3,20320,2)
- ;;=^5024382
- ;;^UTILITY(U,$J,358.3,20321,0)
- ;;=S22.011S^^93^1001^40
- ;;^UTILITY(U,$J,358.3,20321,1,0)
+ ;;^UTILITY(U,$J,358.3,20547,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,20321,1,3,0)
- ;;=3^Stable burst fracture of first thoracic vertebra, sequela
- ;;^UTILITY(U,$J,358.3,20321,1,4,0)
- ;;=4^S22.011S
- ;;^UTILITY(U,$J,358.3,20321,2)
- ;;=^5022846
- ;;^UTILITY(U,$J,358.3,20322,0)
- ;;=S32.041S^^93^1001^41
- ;;^UTILITY(U,$J,358.3,20322,1,0)
+ ;;^UTILITY(U,$J,358.3,20547,1,3,0)
+ ;;=3^Nondisp fx of bicondylar of left tibia, sequela   
+ ;;^UTILITY(U,$J,358.3,20547,1,4,0)
+ ;;=4^S82.145S
+ ;;^UTILITY(U,$J,358.3,20547,2)
+ ;;=^5040950
+ ;;^UTILITY(U,$J,358.3,20548,0)
+ ;;=S82.144S^^67^888^40
+ ;;^UTILITY(U,$J,358.3,20548,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,20322,1,3,0)
- ;;=3^Stable burst fracture of fourth lumbar vertebra, sequela
- ;;^UTILITY(U,$J,358.3,20322,1,4,0)
- ;;=4^S32.041S
- ;;^UTILITY(U,$J,358.3,20322,2)
- ;;=^5024472
- ;;^UTILITY(U,$J,358.3,20323,0)
- ;;=S22.041S^^93^1001^42
- ;;^UTILITY(U,$J,358.3,20323,1,0)
+ ;;^UTILITY(U,$J,358.3,20548,1,3,0)
+ ;;=3^Nondisp fx of bicondylar of right tibia, sequela  
+ ;;^UTILITY(U,$J,358.3,20548,1,4,0)
+ ;;=4^S82.144S
+ ;;^UTILITY(U,$J,358.3,20548,2)
+ ;;=^5040934
+ ;;^UTILITY(U,$J,358.3,20549,0)
+ ;;=S82.255S^^67^888^41
+ ;;^UTILITY(U,$J,358.3,20549,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,20323,1,3,0)
- ;;=3^Stable burst fracture of fourth thoracic vertebra, sequela
- ;;^UTILITY(U,$J,358.3,20323,1,4,0)
- ;;=4^S22.041S
- ;;^UTILITY(U,$J,358.3,20323,2)
- ;;=^5022936
- ;;^UTILITY(U,$J,358.3,20324,0)
- ;;=S32.021S^^93^1001^43
- ;;^UTILITY(U,$J,358.3,20324,1,0)
+ ;;^UTILITY(U,$J,358.3,20549,1,3,0)
+ ;;=3^Nondisp fx of comminuted shaft of left tibia, sequela 
+ ;;^UTILITY(U,$J,358.3,20549,1,4,0)
+ ;;=4^S82.255S
+ ;;^UTILITY(U,$J,358.3,20549,2)
+ ;;=^5041506
+ ;;^UTILITY(U,$J,358.3,20550,0)
+ ;;=S82.254S^^67^888^43
+ ;;^UTILITY(U,$J,358.3,20550,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,20324,1,3,0)
- ;;=3^Stable burst fracture of second lumbar vertebra, sequela
- ;;^UTILITY(U,$J,358.3,20324,1,4,0)
- ;;=4^S32.021S
- ;;^UTILITY(U,$J,358.3,20324,2)
- ;;=^5024412
- ;;^UTILITY(U,$J,358.3,20325,0)
- ;;=S22.021S^^93^1001^44
- ;;^UTILITY(U,$J,358.3,20325,1,0)
+ ;;^UTILITY(U,$J,358.3,20550,1,3,0)
+ ;;=3^Nondisp fx of comminuted shaft of right tibia, sequela 
+ ;;^UTILITY(U,$J,358.3,20550,1,4,0)
+ ;;=4^S82.254S
+ ;;^UTILITY(U,$J,358.3,20550,2)
+ ;;=^5041490
+ ;;^UTILITY(U,$J,358.3,20551,0)
+ ;;=S82.125S^^67^888^45
+ ;;^UTILITY(U,$J,358.3,20551,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,20325,1,3,0)
- ;;=3^Stable burst fracture of second thoracic vertebra, sequela
- ;;^UTILITY(U,$J,358.3,20325,1,4,0)
- ;;=4^S22.021S
- ;;^UTILITY(U,$J,358.3,20325,2)
- ;;=^5022876
- ;;^UTILITY(U,$J,358.3,20326,0)
- ;;=S22.081S^^93^1001^33
- ;;^UTILITY(U,$J,358.3,20326,1,0)
+ ;;^UTILITY(U,$J,358.3,20551,1,3,0)
+ ;;=3^Nondisp fx of lateral condyle of left tibia, sequela
+ ;;^UTILITY(U,$J,358.3,20551,1,4,0)
+ ;;=4^S82.125S
+ ;;^UTILITY(U,$J,358.3,20551,2)
+ ;;=^5040758
+ ;;^UTILITY(U,$J,358.3,20552,0)
+ ;;=S82.124S^^67^888^46
+ ;;^UTILITY(U,$J,358.3,20552,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,20326,1,3,0)
- ;;=3^Stable burst fracture of T11-T12 vertebra, sequela
- ;;^UTILITY(U,$J,358.3,20326,1,4,0)
- ;;=4^S22.081S
- ;;^UTILITY(U,$J,358.3,20326,2)
- ;;=^5023056
- ;;^UTILITY(U,$J,358.3,20327,0)
- ;;=S22.051S^^93^1001^34
- ;;^UTILITY(U,$J,358.3,20327,1,0)
+ ;;^UTILITY(U,$J,358.3,20552,1,3,0)
+ ;;=3^Nondisp fx of lateral condyle of right tibia, sequela
+ ;;^UTILITY(U,$J,358.3,20552,1,4,0)
+ ;;=4^S82.124S
+ ;;^UTILITY(U,$J,358.3,20552,2)
+ ;;=^5040742
+ ;;^UTILITY(U,$J,358.3,20553,0)
+ ;;=S82.115S^^67^888^49
+ ;;^UTILITY(U,$J,358.3,20553,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,20327,1,3,0)
- ;;=3^Stable burst fracture of T5-T6 vertebra, sequela
- ;;^UTILITY(U,$J,358.3,20327,1,4,0)
- ;;=4^S22.051S
- ;;^UTILITY(U,$J,358.3,20327,2)
- ;;=^5022966
- ;;^UTILITY(U,$J,358.3,20328,0)
- ;;=S22.061S^^93^1001^35
- ;;^UTILITY(U,$J,358.3,20328,1,0)
+ ;;^UTILITY(U,$J,358.3,20553,1,3,0)
+ ;;=3^Nondisp fx of left tibial spine, sequela       
+ ;;^UTILITY(U,$J,358.3,20553,1,4,0)
+ ;;=4^S82.115S
+ ;;^UTILITY(U,$J,358.3,20553,2)
+ ;;=^5040662
+ ;;^UTILITY(U,$J,358.3,20554,0)
+ ;;=S82.155S^^67^888^50
+ ;;^UTILITY(U,$J,358.3,20554,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,20328,1,3,0)
- ;;=3^Stable burst fracture of T7-T8 vertebra, sequela
- ;;^UTILITY(U,$J,358.3,20328,1,4,0)
- ;;=4^S22.061S
- ;;^UTILITY(U,$J,358.3,20328,2)
- ;;=^5022996
- ;;^UTILITY(U,$J,358.3,20329,0)
- ;;=S22.071S^^93^1001^36
- ;;^UTILITY(U,$J,358.3,20329,1,0)
+ ;;^UTILITY(U,$J,358.3,20554,1,3,0)
+ ;;=3^Nondisp fx of left tibial tuberosity, sequela   
+ ;;^UTILITY(U,$J,358.3,20554,1,4,0)
+ ;;=4^S82.155S
+ ;;^UTILITY(U,$J,358.3,20554,2)
+ ;;=^5041046
+ ;;^UTILITY(U,$J,358.3,20555,0)
+ ;;=S82.135S^^67^888^51
+ ;;^UTILITY(U,$J,358.3,20555,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,20329,1,3,0)
- ;;=3^Stable burst fracture of T9-T10 vertebra, sequela
- ;;^UTILITY(U,$J,358.3,20329,1,4,0)
- ;;=4^S22.071S
- ;;^UTILITY(U,$J,358.3,20329,2)
- ;;=^5023026
- ;;^UTILITY(U,$J,358.3,20330,0)
- ;;=S32.031S^^93^1001^45
- ;;^UTILITY(U,$J,358.3,20330,1,0)
+ ;;^UTILITY(U,$J,358.3,20555,1,3,0)
+ ;;=3^Nondisp fx of medial condyle of left tibia, sequela
+ ;;^UTILITY(U,$J,358.3,20555,1,4,0)
+ ;;=4^S82.135S
+ ;;^UTILITY(U,$J,358.3,20555,2)
+ ;;=^5040854
+ ;;^UTILITY(U,$J,358.3,20556,0)
+ ;;=S82.134S^^67^888^52
+ ;;^UTILITY(U,$J,358.3,20556,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,20330,1,3,0)
- ;;=3^Stable burst fracture of third lumbar vertebra, sequela
- ;;^UTILITY(U,$J,358.3,20330,1,4,0)
- ;;=4^S32.031S
- ;;^UTILITY(U,$J,358.3,20330,2)
- ;;=^5024442
- ;;^UTILITY(U,$J,358.3,20331,0)
- ;;=S22.031S^^93^1001^46
- ;;^UTILITY(U,$J,358.3,20331,1,0)
+ ;;^UTILITY(U,$J,358.3,20556,1,3,0)
+ ;;=3^Nondisp fx of medial condyle of right tibia, sequela
+ ;;^UTILITY(U,$J,358.3,20556,1,4,0)
+ ;;=4^S82.134S
+ ;;^UTILITY(U,$J,358.3,20556,2)
+ ;;=^5040838
+ ;;^UTILITY(U,$J,358.3,20557,0)
+ ;;=S82.55XS^^67^888^53
+ ;;^UTILITY(U,$J,358.3,20557,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,20331,1,3,0)
- ;;=3^Stable burst fracture of third thoracic vertebra, sequela
- ;;^UTILITY(U,$J,358.3,20331,1,4,0)
- ;;=4^S22.031S
- ;;^UTILITY(U,$J,358.3,20331,2)
- ;;=^5022906
+ ;;^UTILITY(U,$J,358.3,20557,1,3,0)
+ ;;=3^Nondisp fx of medial malleolus of left tibia, sequela
+ ;;^UTILITY(U,$J,358.3,20557,1,4,0)
+ ;;=4^S82.55XS
+ ;;^UTILITY(U,$J,358.3,20557,2)
+ ;;=^5042294
+ ;;^UTILITY(U,$J,358.3,20558,0)
+ ;;=S82.54XS^^67^888^54
+ ;;^UTILITY(U,$J,358.3,20558,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,20558,1,3,0)
+ ;;=3^Nondisp fx of medial malleolus of right tibia, sequela

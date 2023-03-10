@@ -1,5 +1,5 @@
 SROAEX ;BIR/MAM - EXCLUSION CRITERIA ;03/22/07
- ;;3.0; Surgery ;**38,47,63,88,142,153,160**;24 Jun 93;Build 7
+ ;;3.0;Surgery;**38,47,63,88,142,153,160,200**;24 Jun 93;Build 9
  N SRCSTAT S SRACLR=0,SRSOUT=0 D NCODE^SROAUTL
 START D:SRACLR RET G:SRSOUT END S SRACLR=0 K SRA,SRAO S SRAO(4)=""
  S SR(0)=^SRF(SRTN,0),Y=$P($G(^SRF(SRTN,"RA")),"^",7) D CRITERIA S SRAO(1)=NYUK_"^102"
@@ -8,14 +8,15 @@ START D:SRACLR RET G:SRSOUT END S SRACLR=0 K SRA,SRAO S SRAO(4)=""
  S SRCSTAT=">> Coding "_$S($P($G(^SRO(136,SRTN,10)),"^"):"",1:"Not ")_"Complete <<"
  D TECH^SROPRIN S:SRTECH="NOT ENTERED" SRTECH="" S SRAO(5)=SRTECH
  D TSTAT^SRO1L1,HDR^SROAUTL
+ S SRAO(6)=$P(^SRF(SRTN,"OP"),"^",3)_"^2006"
  W !,"1. Exclusion Criteria: ",?35,$P(SRAO(1),"^"),!,"2. Surgical Priority:",?35,$P(SRAO(2),"^"),!,"3. Surgical Specialty:",?35,$P(SRAO(3),"^")
  N SRPROC,SRL S SRL=45 D CPTS^SROAUTL0 W !,"4. CPT Codes (view only):"
  F I=1:1 Q:'$D(SRPROC(I))  W:I=1 ?35,SRPROC(I) W:I'=1 !,?35,SRPROC(I)
- W !,"5. Principal Anesthesia Technique: "_$P(SRAO(5),"^"),!! F LINE=1:1:80 W "-"
+ W !,"5. Principal Anesthesia Technique: "_$P(SRAO(5),"^"),!,"6. Robotic Assistance (Y/N): ",?35,$$GET1^DIQ(130,SRTN_",",2006,"E"),!! F LINE=1:1:80 W "-"
 ASK W !!,"Select Excluded Case Information to Edit: " R X:DTIME I '$T!("^"[X) G END
  S:X="a" X="A" I '$D(SRAO(X)),(X'?.N1":".N),(X'="A") D HELP G:SRSOUT END G START
- I X="A" S X="1:5"
- I X?.N1":".N S Y=$E(X),Z=$P(X,":",2) I Y<1!(Z>5)!(Y>Z) D HELP G:SRSOUT END G START
+ I X="A" S X="1:6"
+ I X?.N1":".N S Y=$E(X),Z=$P(X,":",2) I Y<1!(Z>6)!(Y>Z) D HELP G:SRSOUT END G START
  D TSTAT^SRO1L1,HDR^SROAUTL
  I X?.N1":".N D RANGE,AQ G START
  I $D(SRAO(X)) S EMILY=X W !! D ONE,AQ G START

@@ -1,5 +1,5 @@
 HLTPCK1A ;SAW/AISC - Message Header Validation Routine for HL7 (Con't) ;03/24/2004  15:12
- ;;1.6;HEALTH LEVEL SEVEN;**2,25,34,57,59,108,171**;Oct 13, 1995;Build 4
+ ;;1.6;HEALTH LEVEL SEVEN;**2,25,34,57,59,108,171,174**;Oct 13, 1995;Build 6
  ;;Per VA Directive 6402, this routine should not be modified.
  ;
  S ERR=""
@@ -156,6 +156,7 @@ RF ;Validate Receiving Facility
  .Q:ARY("RAF")=(HLINSTN_HLCS_HLDOM_HLCS_"DNS")
  .S:ERR="" ERR="Receiving Facility mismatch."
 SF ;Validate Sending Facility
+ N HLDOMPF,HLDOMPS,HLDOMX
  I HLSFREQ D
  .I ARY("SAF")="" S:ERR="" ERR="Missing required sending facility" Q
  .I HL771SF]"" D  Q
@@ -165,7 +166,11 @@ SF ;Validate Sending Facility
  ..S:ERR="" ERR="Sending Facility/App Parameter mismatch."
  .;If default value was sent, validate that DOMAIN RESOLVES TO LOGICAL LINK
  .;If so, use this instead of Protocol definition for return path
- .S HLDOMP=$P(ARY("SAF"),HLCS,2),HLDOMP=$O(^DIC(4.2,"B",HLDOMP,0))
+ .;S HLDOMP=$P(ARY("SAF"),HLCS,2),HLDOMP=$O(^DIC(4.2,"B",HLDOMP,0))
+ .;Patch HL*1.6*174 updates logic to only extract the first 30 chars of the domain to adhere to the 30 char limit in the "B" cross reference
+ .S HLDOMPF=$P(ARY("SAF"),HLCS,2),HLDOMPS=$E(HLDOMPF,1,30) D
+ ..I HLDOMPF=HLDOMPS S HLDOMP=$O(^DIC(4.2,"B",HLDOMPF,0)) Q  ;If 30 or less characters, use exact match
+ ..S HLDOMX=0 F  S HLDOMX=$O(^DIC(4.2,"B",HLDOMPS,HLDOMX)) Q:'HLDOMX  I $P(^DIC(4.2,HLDOMX,0),U)=HLDOMPF S HLDOMP=$O(^DIC(4.2,"B",HLDOMPS,0)) Q  ;ensure you have the right entry for >30 characters
  .I 'HLDOMP S:ERR="" ERR="Unrecognized domain in sending facility"
  .Q:HLDOMP=$P(HLPARAM,U)  ;This is local app to app
  .I HLDOMP N HLNK S HLNK=+$O(^HLCS(870,"D",HLDOMP,0))

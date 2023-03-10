@@ -1,5 +1,5 @@
 DG10 ;ALB/MRL,DAK,AEG,PHH,TMK,ASMR/JD-LOAD/EDIT PATIENT DATA ; 09/30/15 @ 08:34
- ;;5.3;Registration;**32,109,139,149,182,326,513,425,574,642,658,773,864,921,993**;Aug 13, 1993;Build 92
+ ;;5.3;Registration;**32,109,139,149,182,326,513,425,574,642,658,773,864,921,993,1040**;Aug 13, 1993;Build 15
  ;Per VHA Directive 2004-038, this routine should not be modified.
  ;
  ;Done for eHMP project: DG*5.3*921
@@ -16,6 +16,8 @@ START ;
  ;
  ; DG*5.3*993; Remove the DLAYGO variable and the "L" from DIC(0) since adding records to the PATIENT file is not allowed in DG LOAD PATIENT DATA
 A ;W !! K VET,DIE,DIC,CARD S DIC=2,DLAYGO=2,DIC(0)="ALEQM" K DIC("S") D ^DIC G Q:Y<0 S (DFN,DA)=+Y,DGNEW=$P(Y,"^",3) K DLAYGO
+ ; DG*5.3*1040 - NEW variable DGTMOT and initialize to 0 to track timeout in address and DGADDRE to track the return value of $$ADD^DGADDUTL
+ N DGADDRE,DGTMOT S DGTMOT=0,DGADDRE=""
  W !! K VET,DIE,DIC,CARD S DIC=2,DIC(0)="AEQM" K DIC("S") D ^DIC G Q:Y<0 S (DFN,DA)=+Y,DGNEW=$P(Y,"^",3) K DLAYGO
  ;DG*5.3*921 Invoke eHMP demographic change checking
  I DGNEW']"" D T59(DFN,"BEFORE")  ;Get a snapshot of the demographics before changes
@@ -56,16 +58,18 @@ HINQ ;
  ;   SDIEMM is used as a flag by AMBCARE Incomplete Encounter Management
  ;   to bypass the embossing routines when calling load/edit from IEMM
  ;
-A1 D  G H:'%,CK:%'=1 S DGRPV=0 D EN1^DGRP,MT(DFN),CP G Q:$G(DGPRFLG)=1 G Q:$G(SDIEMM) G Q:'$D(DA),EMBOS
+ ; DG*5.3*1040 - If variable DGADDRE=-1, branch to RPOUT due to timeout; if DGRPOUT=1, branch to RPOUT as well
+A1 D  G:$G(DGADDRE)=-1 RPOUT G H:'%,CK:%'=1 S DGRPV=0 D EN1^DGRP G:+$G(DGRPOUT) RPOUT D MT(DFN),CP G Q:$G(DGPRFLG)=1 G Q:$G(SDIEMM) G Q:'$D(DA),EMBOS
  .W !,"Do you want to ",$S(DGNEW:"enter",1:"edit")," Patient Data"
  .S %=1 D YN^DICN
  .I +$G(DGNEW) Q
- .I $$ADD^DGADDUTL($G(DFN)) ;
+ .S DGADDRE=$$ADD^DGADDUTL($G(DFN)) ; DG*5.3*1040 - Store the return value in DGADDRE
  ;
 H W !?5,"Enter 'YES' to enter/edit registration data or 'NO' to continue without",!?5,"editing."
  G A1
  ;
-CK S DGEDCN=1 D ^DGRPC,MT(DFN),CP
+ ; DG*5.3*1040 - Only do if there wasn't a timeout so branch to RPOUT
+CK S DGEDCN=1 G:+$G(DGRPOUT) RPOUT D ^DGRPC,MT(DFN),CP
  G Q:$G(DGPRFLG)=1 G Q:$G(SDIEMM)
  I $G(DGER)[55 K DIR S DIR(0)="Y",DIR("A")="Do you wish to return to Screen #9 to enter missing Income Data? " D ^DIR K DIR
  ;G:Y ^DGRP9
@@ -76,7 +80,8 @@ EMBOS ;W ! D EMBOS^DGQEMA G A
  G A
  ;
  ;
-Q K X,Y,Z,DIC,DGELVER,DGNEW,DGRPV,VET Q
+ ; DG*5.3*1040 - Clean variable DGTMOT
+Q K X,Y,Z,DIC,DGELVER,DGNEW,DGRPV,DGTMOT,VET Q
  ;
 MT(DFN) ; Check if user requires a means test.  Ask user if they want to proceedif
  ; one is required
@@ -181,3 +186,7 @@ T60(A,B,C) ;Compare the before and after arrays to see if any of the considerd d
  ..F  S X=$O(@A@(Z,Y,X)) Q:$G(F)!(X'=+X)  D
  ...I @A@(Z,Y,X)'=$G(@B@(Z,Y,X)) S F=1,C=X Q
  Q F
+ ; DG*5.3*1040 - Entry point to quit and go to next select patient prompt
+RPOUT ; Entry point if user timeout out
+ S DGRPOUT=""
+ G A

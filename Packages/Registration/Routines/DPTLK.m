@@ -1,5 +1,5 @@
-DPTLK ;ALB/RMO,RTK,ARF - MAS Patient Look-up Main Routine ; 3/22/05 4:19pm
- ;;5.3;Registration;**32,72,93,73,136,157,197,232,265,277,223,327,244,513,528,541,576,600,485,633,629,647,769,857,876,915,919,993**;Aug 13, 1993;Build 92
+DPTLK ;ALB/RMO,RTK,ARF,JAM - MAS Patient Look-up Main Routine ; 3/22/05 4:19pm
+ ;;5.3;Registration;**32,72,93,73,136,157,197,232,265,277,223,327,244,513,528,541,576,600,485,633,629,647,769,857,876,915,919,993,1031,1014**;Aug 13, 1993;Build 42
  ;
  ; mods made for magstripe read 12/96 - JFP
  ; mods made for VIC 4.0 (barcode and magstripe) read 4/2012 - ELZ (*857)
@@ -77,10 +77,13 @@ CHKPAT1 .S X=DPTX
  .D SETDPT^DPTLK1:Y>0
  .S DPTDFN=$S($D(DPTS(Y)):Y,1:-1)
  ; -- Check for index lookups
- N DGSTOP S DGSTOP=0
- I '$G(DGVIC40)!(DPTX?9N) D ^DPTLK1  D  G QK:$D(DTOUT)!($D(DUOUT)&(DIC(0)'["A")),ASKPAT:$D(DUOUT)!(DGSTOP=1),CHKPAT:DPTDFN<0,CHKDFN:DPTDFN>0 I DIC(0)["N",$D(^DPT(DPTX,0)) S Y=X D SETDPT^DPTLK1 S DPTDFN=$S($D(DPTS(Y)):Y,1:-1) G CHKDFN
+ ; DG*5.3*1031 remove the use of the DGSTOP var - not needed - was added by DG*5.3*993
+ ;N DGSTOP S DGSTOP=0
+ ;I '$G(DGVIC40)!(DPTX?9N) D ^DPTLK1  D  G QK:$D(DTOUT)!($D(DUOUT)&(DIC(0)'["A")),ASKPAT:$D(DUOUT)!(DGSTOP=1),CHKPAT:DPTDFN<0,CHKDFN:DPTDFN>0 I DIC(0)["N",$D(^DPT(DPTX,0)) S Y=X D SETDPT^DPTLK1 S DPTDFN=$S($D(DPTS(Y)):Y,1:-1) G CHKDFN
+ I '$G(DGVIC40)!(DPTX?9N) D ^DPTLK1  D  G QK:$D(DTOUT)!($D(DUOUT)&(DIC(0)'["A")),ASKPAT:$D(DUOUT),CHKPAT:DPTDFN<0,CHKDFN:DPTDFN>0 I DIC(0)["N",$D(^DPT(DPTX,0)) S Y=X D SETDPT^DPTLK1 S DPTDFN=$S($D(DPTS(Y)):Y,1:-1) G CHKDFN
  . ;Next lines inclusively stop creation of a patient if Load/Edit Patient Data or Admit A Patient  DG*5.3*993
- . I DPTDFN=0,$P($G(XQY0),"^",1)="DG LOAD PATIENT DATA"!($P($G(XQY0),"^",1)="DG ADMIT PATIENT") I $G(DIVDIC)'["IBA" I '$T!(X'="^")&(X'="") W:DIC(0)["Q" *7," ??" D STOP Q  ;adding sponsor
+ . ; DG*5.3*1031 - this check moved to tag NOPAT
+ . ;I DPTDFN=0,$P($G(XQY0),"^",1)="DG LOAD PATIENT DATA"!($P($G(XQY0),"^",1)="DG ADMIT PATIENT") I $G(DIVDIC)'["IBA" I (X'="^"),(X'="") I DIC(0)["A" W:DIC(0)["Q" *7," ??" D STOP Q  ;adding sponsor
  . I DPTDFN<1,$P($G(XQY0),"^",1)="DG REGISTER PATIENT",$T(PATIENT^MPIFXMLP)'="",'MAG D
  .. S DPTDFN=$$SEARCH^DPTLK7(DPTX,$G(DPTXX))
  .. I DPTDFN<1 K DO,D,DIC("W"),DPTCNT,DPTS,DPTSEL,DPTSZ S DPTDFN=-1,Y=-1,(DPTX,DPTXX)=""
@@ -117,15 +120,22 @@ STOP ;
  I $E(DPTX)="""",$E(DPTX,$L(DPTX))="""" W:DIC(0)["Q" *7," ??" ;DG*5.3*993
  W !!?5,"Use Register A Patient option to add a new person."  ;DG*5.3*993
  W !!?5,"Press RETURN to continue..." R X:DTIME  ;DG*5.3*993
- S DGSTOP=1
+ ; DG*5.3*1031 remove DGSTOP var - not needed
+ ;S DGSTOP=1
  Q
  ;
 NOPAT ; -- No patient found, ask to add new
+ ; DG*5.3*1031;jam; If in Load/Edit or Admit, and not in "Ask" mode (DIC(0)'["A"), then quit. This allows trigger code that does lookups which end up in this routine, to quit (and not call STOP and go back to ASKPAT)
+ ;  Otherwise, (per patch DG*5.3*993) do not allow adding a new patient and reprompt for the patient entry.
+ I $P($G(XQY0),"^",1)="DG LOAD PATIENT DATA"!($P($G(XQY0),"^",1)="DG ADMIT PATIENT") G:DIC(0)'["A" QK1 W:DIC(0)["Q" *7," ??" D STOP G ASKPAT
  I DIC(0)["L" D ^DPTLK2 S Y=DPTDFN G ASKPAT:DIC(0)["A"&(Y<0)&('$G(DTOUT)),QK1
  ;
 CHKDFN ; -- 
  S:'$D(DPTDFN) DPTDFN=-1 I DPTDFN'>0!('$D(DPTS(+DPTDFN))) W:DIC(0)["Q" *7," ??" G ASKPAT:DIC(0)["A",QK
- I DIC(0)["E" D  W $S('$D(DPTSEL)&('$D(DIVP)):$P(DPTS(DPTDFN),U,2)_"  "_$P(DPTS(DPTDFN),U)_"  ",$D(^DPT(DPTDFN,0)):"  "_$P(^(0),U)_"  ",1:"") S Y=DPTDFN X:$D(^DPT(DPTDFN,0)) "N DDS X DIC(""W"")"
+ N DGPREFNM   ;DG*5.3*1014 ARF - add PRFERRED NAME to prompt display response if populated
+ S DGPREFNM=$$GET1^DIQ(2,DPTDFN,.2405)
+ ;DG*5.3*1014 - ARF -Add conditional write to the following line of code to display PREFERRED NAME .2405 when the field is populated
+ I DIC(0)["E" D  W $S('$D(DPTSEL)&('$D(DIVP)):$P(DPTS(DPTDFN),U,2)_"  "_$P(DPTS(DPTDFN),U)_"  ",$D(^DPT(DPTDFN,0)):"  "_$P(^(0),U)_"  ",1:"") W:DGPREFNM'="" "(",DGPREFNM,")" S Y=DPTDFN X:$D(^DPT(DPTDFN,0)) "N DDS X DIC(""W"")"
  .I $D(DDS) D CLRMSG^DDS S DX=0,DY=DDSHBX+1 X DDXY
  ;
  ; check for other patients in "BS5" xref on Patient file

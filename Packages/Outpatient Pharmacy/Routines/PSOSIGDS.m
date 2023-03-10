@@ -1,5 +1,5 @@
-PSOSIGDS ;BIR/RTR-Utility to calculate Days Supply ;6/04/00
- ;;7.0;OUTPATIENT PHARMACY;**46,222,391,282,444,612**;DEC 1997;Build 23
+PSOSIGDS ;BIR/RTR - Utility to calculate Days Supply ;May 04, 2021@09:52:11
+ ;;7.0;OUTPATIENT PHARMACY;**46,222,391,282,444,612,441**;DEC 1997;Build 208
  ;External reference to PS(51 supported by DBIA 2224
  ;External reference to PS(51.1 supported by DBIA 2225
  ;External reference to PS(55 supported by DBIA 2228
@@ -126,11 +126,13 @@ QTYX(PSOQX) ;
  Q
 DSUP(PSOQX) ;Default Days Supply for CPRS, without QTY (just patient and drug)
  ;Should we add to accept # of refills?
- ;If no Drug, should we base on Orderable Item
- N CS,DR,OI,MXDS,DRMXDS S CS=0,MXDS=90,DR=$G(PSOQX("DRUG"))
+ ;If no Drug, should we base on Orderable Item *441 MWA yes we should!!!
+ N CS,DR,OI,MXDS,DRMXDS,OIISCLOZ S CS=0,MXDS=90,DR=$G(PSOQX("DRUG")),OIISCLOZ=0
  I DR S CS=$$CSDS(DR),MXDS=$$MXDAYSUP^PSSUTIL1(DR)
+ ;441 added OI check for clozapine
  I 'DR S OI=$G(PSOQX("OI")) D:OI
- .N IDT,PAC S DR=0 F  S DR=$O(^PSDRUG("ASP",OI,DR)) Q:'DR   D
+ .N IDT,PAC S DR=0 F  S DR=$O(^PSDRUG("ASP",OI,DR)) Q:'DR  Q:OIISCLOZ   D
+ ..S:($P($G(^PSDRUG(DR,"CLOZ1")),"^")="PSOCLO1") OIISCLOZ=1
  ..S DRMXDS=$$MXDAYSUP^PSSUTIL1(DR) I DRMXDS>MXDS S MXDS=DRMXDS
  ..I CS Q
  ..S IDT=$P($G(^PSDRUG(DR,"I")),"^"),PAC=$P($G(^(2)),"^",3)
@@ -147,7 +149,7 @@ DSUP(PSOQX) ;Default Days Supply for CPRS, without QTY (just patient and drug)
 DSUPDG ;
  N PSOCLPAT,PSOCLMAX,YSCLPSN
  Q:'DR
- I $P($G(^PSDRUG(DR,"CLOZ1")),"^")="PSOCLO1" D
+ I ($P($G(^PSDRUG(DR,"CLOZ1")),"^")="PSOCLO1")!(OIISCLOZ) D
  .;BEGIN: JCH - PSO*7*612
  .N PSOCZPTS,PSOERR,PSODFN
  .S PSODFN=+$G(PSOQX("PATIENT"))
@@ -155,7 +157,6 @@ DSUPDG ;
  .D FIND^DIC(603.01,"","","QX",PSODFN,"","C","I $P($G(^(0)),""^"")=$G(YSCLPSN)","","PSOCZPTS","PSOERR")
  .S PSOCLPAT=$G(PSOCZPTS("DILIST",2,1))
  .;END: JCH - PSO*7*612
- .;S PSOCLPAT=$O(^YSCL(603.01,"C",PSOQX("PATIENT"),0)) Q:'PSOCLPAT
  .S PSOCLPAT=$P($G(^YSCL(603.01,PSOCLPAT,0)),"^",3)
  .;BEGIN: JCH - PSO*7*612 - default Days Supply to 4 when registered to Local Override clozapine #
  .S:YSCLPSN?1U6N PSOCLPAT="Z"

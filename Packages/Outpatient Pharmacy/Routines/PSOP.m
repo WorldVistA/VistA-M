@@ -1,5 +1,5 @@
-PSOP ;BIR/SAB - Medication profile long or short ;02/25/94
- ;;7.0;OUTPATIENT PHARMACY;**2,15,98,132,148,326,313**;DEC 1997;Build 76
+PSOP ;BIR/SAB - Medication profile long or short ;May 20, 2020@10:37:43
+ ;;7.0;OUTPATIENT PHARMACY;**2,15,98,132,148,326,313,441**;DEC 1997;Build 208
  ;External reference to PS(55 supported by DBIA 2228
  ;External reference to PS(59.7 supported by DBIA 694
  ;External reference to PSDRUG supported by DBIA 221
@@ -13,7 +13,7 @@ S S DIR(0)="SA^D:DATE;M:MEDICATION;C:CLASS",DIR("A")="Sort by DATE, CLASS or MED
  K DIR G:PSRT="DATE" DEV S DIR("A")="Profile Expiration/Discontinued cutoff",DIR("B")=120,DIR(0)="N^1:9999:0",DIR("?",1)="Enter the number of days which will cut discontinued and expired Rx's from",DIR("?")="the profile."
  D ^DIR G:$D(DTOUT)!($D(DUOUT)) Q K DIR S X1=DT,X2=-X D C^%DTC S PSODTCT=X
 DEV D SORT^PSOP1 G:$D(DUOUT)!($D(DTOUT)) Q
- K %ZIS,IOP,ZTSK S PSOION=ION,%ZIS="MQ" D ^%ZIS K %ZIS I POP S IOP=PSOION D ^%ZIS K IOP,PSOION G Q
+ K %ZIS,IOP,POP,ZTSK S PSOION=ION,%ZIS="MQ" D ^%ZIS K %ZIS I POP S IOP=PSOION D ^%ZIS K IOP,PSOION G Q
  K PSOION I $D(IO("Q")) S ZTDESC="Patient Medication Profile",ZTRTN="P^PSOP" D  G PSOP
  .F G="HDR","TO","FR","SDT","PSFR","PSTO","DTS","CLS","EDT","DRS","PSODTCT","FN","DFN","DA","D0","PLS","PSRT","PSOPAR" S:$D(@G) ZTSAVE(G)=""
  .K IO("Q") D ^%ZTLOAD W:$D(ZTSK) !,"Task Queued to Print",! K Q,ZTSK D Q
@@ -25,8 +25,8 @@ P U IO S PAGE=1,$P(PSOPLINE,"-",80)="" K ^TMP($J) D LOOP D ^PSODEM W:$O(^PS(55,D
  I PLS="S" D ^PSOP1 G Q
  W ! S DRUG="" F II=0:0 S DRUG=$O(^TMP($J,DRUG)) Q:DRUG=""!($D(PQT))  F J=0:0 S J=$O(^TMP($J,DRUG,J)) Q:'J  D O W:$G(PQT) @IOF Q:$G(PQT)  I $Y+8>IOSL,$E(IOST)="C" D DIR^PSOP1 W @IOF Q:$D(PQT)
  D PEND^PSOP2,NVA^PSOP2
-Q D ^%ZISC K CP,HDR,X1,X2,RX3,^TMP($J),ST0,PSODTCT,ST,D0,DIC,DIR,DIRUT,DUOUT,G,II,K,RXD,RXF,ZX,DRUG,X,DFN,PHYS,PSRT,CT,AL,I1,PLS,REF,LMI,PI,FN,Y,I,J,RX,DRX,ST,RX0,RX2,DA,PSOPLINE,PAGE,PRLBL,PSOPATOK,PSOPTLK
- K PSOLR,PSDIV,PQT,TO,FR,CLS,DRG,DRS,DTS,DTOUT,PSFR,PSTO,SDT,EDT,PPP,FSIG,IIII,STAT,PP,EEEE,PPPCNT,PENDREX,PSOPEND,PPDIS,PPOI,PCOUNT,PPCOUNT,PPP S:$D(ZTQUEUED) ZTREQ="@" Q
+Q D ^%ZISC K CP,HDR,X1,X2,RX3,^TMP($J),ST0,PSODTCT,ST,D0,DIC,DIR,DIRUT,DUOUT,G,II,K,RXD,RXF,ZX,DRUG,X,DFN,PHYS,PSRT,CT,AL,I1,PLS,REF,LMI,PI,FN,Y,I,J,RX,DRX,ST,RX0,RX1,RX2,DA,PSOPLINE,PAGE,PRLBL,PSOPATOK,PSOPTLK
+ K PSOLR,PSDIV,PQT,TO,FR,CLS,DRG,DRS,DTS,DTOUT,PSFR,PSTO,SDT,EDT,PPP,FSIG,IIII,STAT,PP,EEEE,PPPCNT,PENDREX,PSOPEND,PPDIS,PPOI,PCOUNT,PPCOUNT,PPP,PSOX S:$D(ZTQUEUED) ZTREQ="@" Q
  ;
 O S RX0=^PSRX(J,0),RX2=$G(^(2)),RX3=$G(^(3)),$P(RX0,"^",15)=$G(^("STA")),DRX="NOT ON FILE",CP=$S(+$G(^PSRX(J,"IB")):"$",1:" ") S:$P(RX0,"^",15)="" $P(RX0,"^",15)=-1
  ;
@@ -47,6 +47,7 @@ O S RX0=^PSRX(J,0),RX2=$G(^(2)),RX3=$G(^(3)),$P(RX0,"^",15)=$G(^("STA")),DRX="NO
  ..W @IOF,!,$P(^DPT(DFN,0),"^"),?70,"Page: "_PAGE
  ..W !?(80-$L("Medication Profile Sorted by "_HDR))/2,"Medication Profile Sorted by "_HDR W:$G(FR)]"" !?(80-$L(FR_" to "_TO))/2,FR_" to "_TO
  ..W !,PSOPLINE
+ W:$P($G(^PSRX(J,"IND")),"^")]"" !,?2,"Indication: "_$P(^PSRX(J,"IND"),"^")  ;*441-IND
  Q:$G(PQT)
  W !?2,"QTY: ",$P(RX0,"^",7),?23,"# of Refills: ",$P(RX0,"^",9),?45,"Issue/Expr: " S Y=$P(RX0,"^",13) W $E(Y,4,5),"-",$E(Y,6,7),"-",$E(Y,2,3),"/" S Y=$P(RX2,"^",6) W:Y $E(Y,4,5),"-",$E(Y,6,7),"-",$E(Y,2,3)
  K DIC,X,Y S DIC="^VA(200,",DIC(0)="M",X="`"_+$P(RX0,"^",4) D ^DIC S PHYS=$S(+Y:$P(Y,"^",2),1:"Unknown") K DIC,X,Y

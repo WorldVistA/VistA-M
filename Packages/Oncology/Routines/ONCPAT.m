@@ -1,11 +1,12 @@
-ONCPAT ;Hines OIFO/GWB - PATIENT IDENTIFICATION ;10/07/11
- ;;2.2;ONCOLOGY;**1**;Jul 31, 2013;Build 8
+ONCPAT ;HINES OIFO/GWB - PATIENT IDENTIFICATION ;10/07/11
+ ;;2.2;ONCOLOGY;**1,13**;Jul 31, 2013;Build 7
  ;
  W !
  K DR
  N DA
  S DIE="^ONCO(160,",DA=ONCOD0,DR=""
  S DR(1,160,1)="7    PLACE OF BIRTH............."
+ S DR(1,160,1.5)="71    BIRTH SURNAME.............."
  S DR(1,160,2)="8    RACE 1.....................//^S X=RACE"
  S DR(1,160,3)="I X'=99 S Y=""@81"""
  S DR(1,160,4)="8.1////99"

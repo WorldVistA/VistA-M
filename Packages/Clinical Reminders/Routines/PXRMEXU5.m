@@ -1,6 +1,6 @@
-PXRMEXU5 ;SLC/PKR - Reminder exchange KIDS utilities, #5. ;May 30, 2018@10:11
- ;;2.0;CLINICAL REMINDERS;**12,16,18,22,45**;Feb 04, 2005;Build 566
- ;==================================================
+PXRMEXU5 ;SLC/PKR - Reminder exchange KIDS utilities, #5. ;07/16/2020
+ ;;2.0;CLINICAL REMINDERS;**12,16,18,22,45,42**;Feb 04, 2005;Build 245
+ ;=============
 BMTABLE(MTABLE,IENROOT,DIQOUT,FDA) ;Build the table for merging
  ;GETS^DIQOUT indexes into the FDA. The merge table has the form:
  ;MTABLE(IENSD)=IENSF. IENSD is the DIQOUT IENs and IENSF is the
@@ -50,7 +50,7 @@ BMTABLE(MTABLE,IENROOT,DIQOUT,FDA) ;Build the table for merging
  .. D MMTAB(.MTABLE,.IENROOT,.LAST,FILENUM,IENSD,.IENRF)
  Q
  ;
- ;==================================================
+ ;=============
 DIALOGGF(FDA,IENROOT) ;
  N FOUND,IEN,LIEN,NAME,PKGIEN,PREFIX,TEMP
  S IENS="" F  S IENS=$O(FDA(801.46,IENS)) Q:IENS=""  D
@@ -64,7 +64,7 @@ DIALOGGF(FDA,IENROOT) ;
  .S FDA(801.46,IENS,2)="`"_LIEN
  Q
  ;
- ;==================================================
+ ;=============
 DLINKSAV(FDA) ; save dialog entry to temp global to prevent recurrisve install.
  N EXIST,IENS,DIAL,NAME
  S IENS="" F  S IENS=$O(FDA(801.48,IENS)) Q:IENS=""  D
@@ -75,7 +75,7 @@ DLINKSAV(FDA) ; save dialog entry to temp global to prevent recurrisve install.
  .K FDA(801.48,IENS,1)
  Q
  ;
- ;==================================================
+ ;=============
 DLINKSET ; reset file dialog entry to link file
  N DA,DIE,DIEN,DIK,DNAME,DR,LIEN,LNAME
  S LNAME="" F  S LNAME=$O(^TMP("PXRM DIALOG LINK FILE",$J,LNAME)) Q:LNAME=""  D
@@ -87,7 +87,7 @@ DLINKSET ; reset file dialog entry to link file
  .D ^DIE
  Q
  ;
- ;==================================================
+ ;=============
 EXCHINCK(EXNAME,DPACKED) ;Given the name and the date packed of an Exchange
  ;entry return:
  ; -1 if the entry does not exist
@@ -104,7 +104,7 @@ EXCHINCK(EXNAME,DPACKED) ;Given the name and the date packed of an Exchange
  S LASTINDT=$P(^PXD(811.8,IEN,130,IND,0),U,1)
  Q 1_U_LASTINDT
  ;
- ;==================================================
+ ;=============
 LOIEN(FILENUM,START) ;Find the first open IEN in a global. If the optional
  ;parameter START is present then start there looking for the first
  ;open IEN.
@@ -119,7 +119,22 @@ LOIEN(FILENUM,START) ;Find the first open IEN in a global. If the optional
  I OIEN=-1 S OIEN=I2+1
  Q OIEN
  ;
- ;==================================================
+ ;=============
+MMTAB(MTABLE,IENROOT,LAST,FILENUM,IENS,IENRF) ;Generate a merge table entry.
+ N IENRL,FNUP,UP,UPIENS
+ S UP=$P(IENS,",",2,99)
+ ;DBIA #2631
+ S FNUP=$G(^DD(FILENUM,0,"UP"))
+ S UPIENS=MTABLE(FNUP,UP)
+ S LAST=LAST+1
+ ;Make sure the IENROOT entries are unique.
+ I $D(IENROOT(LAST)) S LAST=$O(IENROOT(""),-1)+1
+ S MTABLE(FILENUM,IENS)="+"_LAST_","_UPIENS
+ S IENRL=$O(IENRF(FILENUM,""),-1)+1
+ S IENROOT(LAST)=IENRL,IENRF(FILENUM,IENRL)=LAST
+ Q
+ ;
+ ;=============
 MOU(FILENUM,IEN,FIELD,FDA,IENROOT,ACTION,WPTMP) ;Merge or update existing site
  ;entries into the FDA that is loaded from Exchange.
  ;FILENUM - the file number
@@ -146,6 +161,7 @@ MOU(FILENUM,IEN,FIELD,FDA,IENROOT,ACTION,WPTMP) ;Merge or update existing site
  ;Clean up DIQOUT remove null entries and change pointers to the resolved
  ;form.
  D CLDIQOUT^PXRMEXPU(.DIQOUT)
+ ;Remove the edit history.
  D RMEH^PXRMEXPU(FILENUM,.DIQOUT,1)
  ;If there is nothing left to merge quit.
  I '$D(DIQOUT) Q
@@ -165,20 +181,7 @@ MOU(FILENUM,IEN,FIELD,FDA,IENROOT,ACTION,WPTMP) ;Merge or update existing site
  ... S FDA(FNUM,IENSF,FIELD)=DIQOUT(FNUM,IENSD,FIELD)
  Q
  ;
- ;==================================================
-MMTAB(MTABLE,IENROOT,LAST,FILENUM,IENS,IENRF) ;Generate a merge table entry.
- N IENRL,FNUP,UP,UPIENS
- S UP=$P(IENS,",",2,99)
- ;DBIA #2631
- S FNUP=$G(^DD(FILENUM,0,"UP"))
- S UPIENS=MTABLE(FNUP,UP)
- S LAST=LAST+1
- S MTABLE(FILENUM,IENS)="+"_LAST_","_UPIENS
- S IENRL=$O(IENRF(FILENUM,""),-1)+1
- S IENROOT(LAST)=IENRL,IENRF(FILENUM,IENRL)=LAST
- Q
- ;
- ;==================================================
+ ;=============
 REPCHAR(PXRMRIEN,CHAR1,CHAR2) ;Replace CHAR1 with CHAR2 for all lines in node
  ;100 of entry PXRMRIEN of the Exchange File.
  N IND,LINE
@@ -188,7 +191,7 @@ REPCHAR(PXRMRIEN,CHAR1,CHAR2) ;Replace CHAR1 with CHAR2 for all lines in node
  . S ^PXD(811.8,PXRMRIEN,100,IND,0)=LINE
  Q
  ;
- ;==================================================
+ ;=============
 ROC(FDA,IENROOT) ;For Reminder Order Checks.
  N ACTION,IEN,IENS,NODE,OI,OOI,TEXT
  S ACTION="",IENS=""
@@ -228,7 +231,7 @@ ROC(FDA,IENROOT) ;For Reminder Order Checks.
  .I IEN>0 S FDA(801.015,IENS,.01)="OI.`"_IEN
  Q
  ;
- ;==================================================
+ ;=============
 ROCCONV(FDA,IENROOT) ;handle converting pre-patch 45 packed file to new structure
  N CNT,IEN,IENS,IEN1,IENL,LIST,OI,OIIEN
  ;build list of orderable items
@@ -244,28 +247,16 @@ ROCCONV(FDA,IENROOT) ;handle converting pre-patch 45 packed file to new structur
  .I $G(FDA(801.015,IENS,.01))'["OI" Q
  .S IEN=+$P(IENS,",")
  .S IENROOT(IEN)=CNT
- ;S LIST(FDA(801.02,IENS,.01))="",IENL=IENS
- ;find last Item List IENS
- ;S IEN=$P(IENL,",",2)
- ;I $D(FDA(801.015)) D
- ;.S IENL=$O(FDA(801.015,""),-1) I IENL="" Q
- ;.S IEN1=+$P(IENS,","),IEN=$P(IENS,",",2)
- ;;add Orderable Items to ITEMLIST FDA
- ;S OI="" F  S OI=$O(LIST(OI)) Q:OI=""  D
- ;.S OIIEN=$$FIND1^DIC(101.43,"","BXU",OI)
- ;.I +OIIEN'>0 D BMES^XPDUTL("Error mapping Orderable Item: "_OI_" to new file structure.") Q
- ;.S IEN1=IEN+1
- ;.S FDA(801.02,"+"_IEN1_",+"_IEN_",",.01)="OI.`"_OIIEN
  Q
  ;
- ;==================================================
+ ;=============
 ROCR(FDA) ;
  N IENS
  S IENS="" F  S IENS=$O(FDA(801.1,IENS)) Q:IENS=""  D
  .I '$G(PXRMINST) S FDA(801.1,IENS,2)="I"
  Q
  ;
- ;==================================================
+ ;=============
 TIU(IEN,ARRAY,SUB) ;
  I $D(^TMP($J,SUB,IEN))>0 Q
  N CNT,ERROR,OUTPUT
@@ -276,7 +267,7 @@ TIU(IEN,ARRAY,SUB) ;
  S CNT=CNT+1,@OUTPUT@(CNT)=""
  Q
  ;
- ;==================================================
+ ;=============
 WORDPROC(FILENUM,IENSD,FIELD,DIQOUT,WPTMP) ;
  N I3,NL
  S NL=$P(DIQOUT(FILENUM,IENSD,FIELD),"~",2)

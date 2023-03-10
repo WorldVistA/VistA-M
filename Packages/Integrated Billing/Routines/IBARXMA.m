@@ -1,5 +1,5 @@
-IBARXMA ;LL/ELZ - PHARMCAY COPAY BACKGROUND PROCESSES ;19-JAN-2001
- ;;2.0;INTEGRATED BILLING;**150,158**;21-MAR-94
+IBARXMA ;LL/ELZ - PHARMCAY COPAY BACKGROUND PROCESSES ; 02 Mar 2021
+ ;;2.0;INTEGRATED BILLING;**150,158,676**;21-MAR-94;Build 34
  ;;Per VHA Directive 10-93-142, this routine should not be modified.
  ;
 FILER(IBA) ; This label is called by the IB background filer to
@@ -24,22 +24,27 @@ FOUND(IBY,IBZ) ; come in here to do the work
  ;
  ; ien in 354.71 stored in IBZ, assumes DFN is defined
  ;
- N IBTFL,IBX,IBT,X,Y,DIE,DA,DR,DIC,IBS
+ N IBTFL,IBX,IBT,X,Y,DIE,DA,DR,DIC,IBS,IBD
  ;
  ; get treating facility list
- S IBTFL=$$TFL^IBARXMU(DFN,.IBTFL)
+ S IBTFL=$$TFL^IBARXMU(DFN,.IBTFL,2)
  ;
- ; no other facilities, i'm done
+ ; No other facilities, I'm done
  I 'IBTFL D STATUS(.IBY,IBZ,0) Q
  ;
  ; ok lets do some talking to other VA's
  S IBX=0 F  S IBX=$O(IBTFL(IBX)) Q:IBX<1!(IBY<1)  D
  . ;
  . ; have I already completed transmission here?
- . S IBS=$$LKUP^XUAF4(IBX) I IBS>0,$P($G(^IBAM(354.71,IBZ,1,+$O(^IBAM(354.71,IBZ,1,"B",+IBS,0)),0)),"^",2),'$G(IBONE) Q
+ . S IBS=$$LKUP^XUAF4($P(IBTFL(IBX),"^"))   ;676;BL Modify the call to use full station number
+ . I IBS>0,$P($G(^IBAM(354.71,IBZ,1,+$O(^IBAM(354.71,IBZ,1,"B",+IBS,0)),0)),"^",2),'$G(IBONE) Q
  . ;
  . I '$D(ZTQUEUED) U IO W !,"Now transmitting to ",$P(IBTFL(IBX),"^",2)," ..."
- . S IBT=$$SEND^IBARXMU(DFN,IBX,^IBAM(354.71,IBZ,0))
+ . D  ;Determine if Cerner, use HL7 send
+ . . I $P(IBTFL(IBX),"^",1)["200CRNR" D  Q
+ . . . D EN^IBARXCHL(DFN,IBZ)
+ . . . S IBT=1  ;Assume send was successful
+ . . S IBT=$$SEND^IBARXMU(DFN,IBX,^IBAM(354.71,IBZ,0))
  . ;
  . ; update 354.71 transmission record
  . S DA=$O(^IBAM(354.71,IBZ,1,"B",IBS,0)),DA(1)=IBZ
@@ -126,3 +131,4 @@ STATUS(IBY,IBZ,IBT) ; update status in 354.71 if applicable
 M(T) ; used to set text in mail message
  ; assumes XMZ and IBL
  S IBL=IBL+1,^XMB(3.9,XMZ,2,IBL,0)=T
+ ;

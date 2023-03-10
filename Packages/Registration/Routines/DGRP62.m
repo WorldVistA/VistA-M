@@ -1,5 +1,5 @@
-DGRP62 ;ALB/PJH,LBD - Patient MSDS History - List Manager Screen;12 JUN 1997 10:00 am ; 6/23/09 3:48pm
- ;;5.3;Registration;**797**;08/13/93;Build 24
+DGRP62 ;ALB/PJH,LBD,ARF - Patient MSDS History - List Manager Screen;12 JUN 1997 10:00 am ; 6/23/09 3:48pm
+ ;;5.3;Registration;**797,1014**;08/13/93;Build 42
  ;
 EN(DFN) ;Main entry point to invoke the DGEN PATIENT MSDS VIEW list
  ; Input  -- DFN      Patient IEN
@@ -11,14 +11,17 @@ EN(DFN) ;Main entry point to invoke the DGEN PATIENT MSDS VIEW list
 HDR ;Header code
  N DGPREFNM,X,VA,VAERR
  S VALMHDR(1)=$J("",18)_"VISTA MILITARY SERVICE DATA, SCREEN <6.2>"
- D PID^VADPT
- S VALMHDR(2)=$E("Patient: "_$P($G(^DPT(DFN,0)),U),1,30)
- S VALMHDR(2)=VALMHDR(2)_" ("_VA("BID")_")"
- S X="PATIENT TYPE UNKNOWN"
- I $D(^DPT(DFN,"TYPE")),$D(^DG(391,+^("TYPE"),0)) S X=$P(^(0),U,1)
- S VALMHDR(2)=$$SETSTR^VALM1(X,VALMHDR(2),60,80)
- S VALMHDR(3)=$J("",4)_"Service Branch/Component  Service #"
- S VALMHDR(3)=VALMHDR(3)_"        Entered    Separated   Discharge"
+ D LISTHDR^DGRPU(2) ;DG*5.3*1014 - ARF - sets patient data in the 2nd and 3rd entries in VALMHDR array
+ ;D PID^VADPT                                             ;DG*5.3*1014 begin - comment previous code
+ ;S VALMHDR(2)=$E("Patient: "_$P($G(^DPT(DFN,0)),U),1,30)
+ ;S VALMHDR(2)=VALMHDR(2)_" ("_VA("BID")_")"
+ ;S X="PATIENT TYPE UNKNOWN"
+ ;I $D(^DPT(DFN,"TYPE")),$D(^DG(391,+^("TYPE"),0)) S X=$P(^(0),U,1)
+ ;S VALMHDR(2)=$$SETSTR^VALM1(X,VALMHDR(2),60,80)
+ ;S VALMHDR(3)=$J("",4)_"Service Branch/Component  Service #"
+ ;S VALMHDR(3)=VALMHDR(3)_"        Entered    Separated   Discharge" ;DG*5.3*1014 end - comment previous code
+ S VALMHDR(4)=$J("",4)_"Service Branch/Component  Service #"
+ S VALMHDR(4)=VALMHDR(4)_"        Entered    Separated   Discharge"
  Q
  ;
 INIT ;Build patient MSDS screen

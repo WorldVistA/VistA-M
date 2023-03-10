@@ -1,5 +1,5 @@
 DIDGFTPT ;GFT/GFT  - GET ALL ENTRIES THAT POINT TO ENTRY GFTIEN IN FILE GFTFILE ;20 Aug 2015 4:46 PM
- ;;22.2;VA FileMan;;Jan 05, 2016;Build 42
+ ;;22.2;VA FileMan;**19**;Jan 05, 2016;Build 2
  ;;Per VA Directive 6402, this routine should not be modified.
  ;;Submitted to OSEHRA 5 January 2015 by the VISTA Expertise Network.
  ;;Based on Medsphere Systems Corporation's MSC FileMan 1051.
@@ -41,19 +41,19 @@ START K DIC
 DEPEND(GFTFILE,IEN,GFTWHERE,GFTPARAM) ;
  I $G(GFTPARAM)["M" N GFTANY S GFTANY=+$P(GFTPARAM,"M",2)
  S:$G(GFTWHERE)="" GFTWHERE=$NA(^TMP($J))
-    K @GFTWHERE ;output array
+ K @GFTWHERE ;output array
  I $D(IEN)<9 S GFTIEN(GFTFILE,+IEN)="" ;IEN can be either a scalar...
  E  M GFTIEN(GFTFILE)=IEN ;...or an array
  N A,B
  S A=0 F  S A=+$O(^DD(GFTFILE,0,"PT",A)) Q:'A  D
- . S B=0 F  S B=+$O(^DD(GFTFILE,0,"PT",A,B)) Q:'B  D
- . . D CHASE(A,B,.GFTRCR)
+ .S B=0 F  S B=+$O(^DD(GFTFILE,0,"PT",A,B)) Q:'B  D
+ ..D CHASE(A,B,.GFTRCR)
 COMPUTED S A=0 F  S A=+$O(^DD(GFTFILE,0,"PTC",A)) Q:'A  D
  .S B=0 F  S B=+$O(^DD(GFTFILE,0,"PTC",A,B)) Q:'B  D
  ..D CHASE(A,B,.GFTRCR)
  Q
-         ;
-         ;
+ ;
+ ;
 CHASE(FILE,FIELD,GFTRCR) ;BUILD AN 'XEC' THAT WILL GO THRU FILE REMEMBERING FIELD'S POINTERS
  I FILE=.6!(FILE=1.1) Q  ;NOT AUDIT FILES
  N GFTF,X,I,J,V,XEC,A,B,D0,D1,D2,D3,D4,D5,D6,D7,D8,D9,DICMX,DIDGFTPT,GFTFISCR

@@ -1,128 +1,128 @@
-IBDEI1KF ; ; 04-FEB-2020
- ;;3.0;IB ENCOUNTER FORM IMP/EXP;;FEB 04, 2020
+IBDEI1KF ; ; 01-FEB-2022
+ ;;3.0;IB ENCOUNTER FORM IMP/EXP;;FEB 01, 2022
  Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,999) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
- ;;^UTILITY(U,$J,358.3,25019,1,0)
+ ;;^UTILITY(U,$J,358.3,25382,2)
+ ;;=^5019449
+ ;;^UTILITY(U,$J,358.3,25383,0)
+ ;;=F01.50^^92^1150^33
+ ;;^UTILITY(U,$J,358.3,25383,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,25019,1,3,0)
- ;;=3^Underdose of Med Regiment d/t Age-Related Debility
- ;;^UTILITY(U,$J,358.3,25019,1,4,0)
- ;;=4^Z91.130
- ;;^UTILITY(U,$J,358.3,25019,2)
- ;;=^5063614
- ;;^UTILITY(U,$J,358.3,25020,0)
- ;;=Z91.138^^107^1212^153
- ;;^UTILITY(U,$J,358.3,25020,1,0)
+ ;;^UTILITY(U,$J,358.3,25383,1,3,0)
+ ;;=3^Vascular Dementia w/o Behav Disturb
+ ;;^UTILITY(U,$J,358.3,25383,1,4,0)
+ ;;=4^F01.50
+ ;;^UTILITY(U,$J,358.3,25383,2)
+ ;;=^5003046
+ ;;^UTILITY(U,$J,358.3,25384,0)
+ ;;=F06.31^^92^1151^1
+ ;;^UTILITY(U,$J,358.3,25384,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,25020,1,3,0)
- ;;=3^Underdose of Med Regiment for Other Reason
- ;;^UTILITY(U,$J,358.3,25020,1,4,0)
- ;;=4^Z91.138
- ;;^UTILITY(U,$J,358.3,25020,2)
- ;;=^5063615
- ;;^UTILITY(U,$J,358.3,25021,0)
- ;;=Z91.14^^107^1212^64
- ;;^UTILITY(U,$J,358.3,25021,1,0)
+ ;;^UTILITY(U,$J,358.3,25384,1,3,0)
+ ;;=3^Depress D/O d/t Anth Med Cond w/ Dep Feat
+ ;;^UTILITY(U,$J,358.3,25384,1,4,0)
+ ;;=4^F06.31
+ ;;^UTILITY(U,$J,358.3,25384,2)
+ ;;=^5003057
+ ;;^UTILITY(U,$J,358.3,25385,0)
+ ;;=F06.32^^92^1151^2
+ ;;^UTILITY(U,$J,358.3,25385,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,25021,1,3,0)
- ;;=3^Noncompliance w/ Medication Regimen
- ;;^UTILITY(U,$J,358.3,25021,1,4,0)
- ;;=4^Z91.14
- ;;^UTILITY(U,$J,358.3,25021,2)
- ;;=^5063616
- ;;^UTILITY(U,$J,358.3,25022,0)
- ;;=Z91.19^^107^1212^63
- ;;^UTILITY(U,$J,358.3,25022,1,0)
+ ;;^UTILITY(U,$J,358.3,25385,1,3,0)
+ ;;=3^Depress D/O d/t Anth Med Cond w/ Maj Dep-Like Ep
+ ;;^UTILITY(U,$J,358.3,25385,1,4,0)
+ ;;=4^F06.32
+ ;;^UTILITY(U,$J,358.3,25385,2)
+ ;;=^5003058
+ ;;^UTILITY(U,$J,358.3,25386,0)
+ ;;=F32.0^^92^1151^17
+ ;;^UTILITY(U,$J,358.3,25386,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,25022,1,3,0)
- ;;=3^Noncompliance w/ Medical Treatment & Regimen
- ;;^UTILITY(U,$J,358.3,25022,1,4,0)
- ;;=4^Z91.19
- ;;^UTILITY(U,$J,358.3,25022,2)
- ;;=^5063618
- ;;^UTILITY(U,$J,358.3,25023,0)
- ;;=Z93.1^^107^1212^45
- ;;^UTILITY(U,$J,358.3,25023,1,0)
+ ;;^UTILITY(U,$J,358.3,25386,1,3,0)
+ ;;=3^MDD,Single Episode,Mild
+ ;;^UTILITY(U,$J,358.3,25386,1,4,0)
+ ;;=4^F32.0
+ ;;^UTILITY(U,$J,358.3,25386,2)
+ ;;=^5003521
+ ;;^UTILITY(U,$J,358.3,25387,0)
+ ;;=F32.1^^92^1151^18
+ ;;^UTILITY(U,$J,358.3,25387,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,25023,1,3,0)
- ;;=3^Gastrostomy Status
- ;;^UTILITY(U,$J,358.3,25023,1,4,0)
- ;;=4^Z93.1
- ;;^UTILITY(U,$J,358.3,25023,2)
- ;;=^5063643
- ;;^UTILITY(U,$J,358.3,25024,0)
- ;;=Z93.2^^107^1212^51
- ;;^UTILITY(U,$J,358.3,25024,1,0)
+ ;;^UTILITY(U,$J,358.3,25387,1,3,0)
+ ;;=3^MDD,Single Episode,Moderate
+ ;;^UTILITY(U,$J,358.3,25387,1,4,0)
+ ;;=4^F32.1
+ ;;^UTILITY(U,$J,358.3,25387,2)
+ ;;=^5003522
+ ;;^UTILITY(U,$J,358.3,25388,0)
+ ;;=F32.2^^92^1151^19
+ ;;^UTILITY(U,$J,358.3,25388,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,25024,1,3,0)
- ;;=3^Ileostomy Status
- ;;^UTILITY(U,$J,358.3,25024,1,4,0)
- ;;=4^Z93.2
- ;;^UTILITY(U,$J,358.3,25024,2)
- ;;=^5063644
- ;;^UTILITY(U,$J,358.3,25025,0)
- ;;=Z93.3^^107^1212^7
- ;;^UTILITY(U,$J,358.3,25025,1,0)
+ ;;^UTILITY(U,$J,358.3,25388,1,3,0)
+ ;;=3^MDD,Single Episode,Severe
+ ;;^UTILITY(U,$J,358.3,25388,1,4,0)
+ ;;=4^F32.2
+ ;;^UTILITY(U,$J,358.3,25388,2)
+ ;;=^5003523
+ ;;^UTILITY(U,$J,358.3,25389,0)
+ ;;=F32.3^^92^1151^14
+ ;;^UTILITY(U,$J,358.3,25389,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,25025,1,3,0)
- ;;=3^Colostomy Status
- ;;^UTILITY(U,$J,358.3,25025,1,4,0)
- ;;=4^Z93.3
- ;;^UTILITY(U,$J,358.3,25025,2)
- ;;=^5063645
- ;;^UTILITY(U,$J,358.3,25026,0)
- ;;=Z94.0^^107^1212^56
- ;;^UTILITY(U,$J,358.3,25026,1,0)
+ ;;^UTILITY(U,$J,358.3,25389,1,3,0)
+ ;;=3^MDD,Single Episode w/ Psychotic Feat
+ ;;^UTILITY(U,$J,358.3,25389,1,4,0)
+ ;;=4^F32.3
+ ;;^UTILITY(U,$J,358.3,25389,2)
+ ;;=^5003524
+ ;;^UTILITY(U,$J,358.3,25390,0)
+ ;;=F32.4^^92^1151^16
+ ;;^UTILITY(U,$J,358.3,25390,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,25026,1,3,0)
- ;;=3^Kidney Transplant Status
- ;;^UTILITY(U,$J,358.3,25026,1,4,0)
- ;;=4^Z94.0
- ;;^UTILITY(U,$J,358.3,25026,2)
- ;;=^5063654
- ;;^UTILITY(U,$J,358.3,25027,0)
- ;;=Z94.1^^107^1212^49
- ;;^UTILITY(U,$J,358.3,25027,1,0)
+ ;;^UTILITY(U,$J,358.3,25390,1,3,0)
+ ;;=3^MDD,Single Episode,In Partial Remission
+ ;;^UTILITY(U,$J,358.3,25390,1,4,0)
+ ;;=4^F32.4
+ ;;^UTILITY(U,$J,358.3,25390,2)
+ ;;=^5003525
+ ;;^UTILITY(U,$J,358.3,25391,0)
+ ;;=F32.5^^92^1151^15
+ ;;^UTILITY(U,$J,358.3,25391,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,25027,1,3,0)
- ;;=3^Heart Transplant Status
- ;;^UTILITY(U,$J,358.3,25027,1,4,0)
- ;;=4^Z94.1
- ;;^UTILITY(U,$J,358.3,25027,2)
- ;;=^5063655
- ;;^UTILITY(U,$J,358.3,25028,0)
- ;;=Z94.2^^107^1212^59
- ;;^UTILITY(U,$J,358.3,25028,1,0)
+ ;;^UTILITY(U,$J,358.3,25391,1,3,0)
+ ;;=3^MDD,Single Episode,In Full Remission
+ ;;^UTILITY(U,$J,358.3,25391,1,4,0)
+ ;;=4^F32.5
+ ;;^UTILITY(U,$J,358.3,25391,2)
+ ;;=^5003526
+ ;;^UTILITY(U,$J,358.3,25392,0)
+ ;;=F33.9^^92^1151^13
+ ;;^UTILITY(U,$J,358.3,25392,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,25028,1,3,0)
- ;;=3^Lung Transplant Status
- ;;^UTILITY(U,$J,358.3,25028,1,4,0)
- ;;=4^Z94.2
- ;;^UTILITY(U,$J,358.3,25028,2)
- ;;=^5063656
- ;;^UTILITY(U,$J,358.3,25029,0)
- ;;=Z94.3^^107^1212^48
- ;;^UTILITY(U,$J,358.3,25029,1,0)
+ ;;^UTILITY(U,$J,358.3,25392,1,3,0)
+ ;;=3^MDD,Recurrent Episode,Unspec
+ ;;^UTILITY(U,$J,358.3,25392,1,4,0)
+ ;;=4^F33.9
+ ;;^UTILITY(U,$J,358.3,25392,2)
+ ;;=^5003537
+ ;;^UTILITY(U,$J,358.3,25393,0)
+ ;;=F33.0^^92^1151^10
+ ;;^UTILITY(U,$J,358.3,25393,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,25029,1,3,0)
- ;;=3^Heart & Lungs Transplant Status
- ;;^UTILITY(U,$J,358.3,25029,1,4,0)
- ;;=4^Z94.3
- ;;^UTILITY(U,$J,358.3,25029,2)
- ;;=^5063657
- ;;^UTILITY(U,$J,358.3,25030,0)
- ;;=Z94.4^^107^1212^58
- ;;^UTILITY(U,$J,358.3,25030,1,0)
+ ;;^UTILITY(U,$J,358.3,25393,1,3,0)
+ ;;=3^MDD,Recurrent Episode,Mild
+ ;;^UTILITY(U,$J,358.3,25393,1,4,0)
+ ;;=4^F33.0
+ ;;^UTILITY(U,$J,358.3,25393,2)
+ ;;=^5003529
+ ;;^UTILITY(U,$J,358.3,25394,0)
+ ;;=F33.1^^92^1151^11
+ ;;^UTILITY(U,$J,358.3,25394,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,25030,1,3,0)
- ;;=3^Liver Transplant Status
- ;;^UTILITY(U,$J,358.3,25030,1,4,0)
- ;;=4^Z94.4
- ;;^UTILITY(U,$J,358.3,25030,2)
- ;;=^5063658
- ;;^UTILITY(U,$J,358.3,25031,0)
- ;;=Z94.84^^107^1212^149
- ;;^UTILITY(U,$J,358.3,25031,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,25031,1,3,0)
- ;;=3^Stem Cell Transplant Status
+ ;;^UTILITY(U,$J,358.3,25394,1,3,0)
+ ;;=3^MDD,Recurrent Episode,Moderate
+ ;;^UTILITY(U,$J,358.3,25394,1,4,0)
+ ;;=4^F33.1
+ ;;^UTILITY(U,$J,358.3,25394,2)
+ ;;=^5003530
+ ;;^UTILITY(U,$J,358.3,25395,0)
+ ;;=F33.2^^92^1151^12

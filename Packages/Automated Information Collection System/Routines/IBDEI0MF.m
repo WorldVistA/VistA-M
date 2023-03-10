@@ -1,132 +1,124 @@
-IBDEI0MF ; ; 04-FEB-2020
- ;;3.0;IB ENCOUNTER FORM IMP/EXP;;FEB 04, 2020
+IBDEI0MF ; ; 01-FEB-2022
+ ;;3.0;IB ENCOUNTER FORM IMP/EXP;;FEB 01, 2022
  Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,999) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
- ;;^UTILITY(U,$J,358.3,9971,2)
- ;;=^5032273
- ;;^UTILITY(U,$J,358.3,9972,0)
- ;;=S63.509A^^72^657^15
- ;;^UTILITY(U,$J,358.3,9972,1,0)
+ ;;^UTILITY(U,$J,358.3,10079,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,9972,1,3,0)
- ;;=3^Wrist Fracture
- ;;^UTILITY(U,$J,358.3,9972,1,4,0)
- ;;=4^S63.509A
- ;;^UTILITY(U,$J,358.3,9972,2)
- ;;=^5136019
- ;;^UTILITY(U,$J,358.3,9973,0)
- ;;=S50.819A^^72^657^17
- ;;^UTILITY(U,$J,358.3,9973,1,0)
+ ;;^UTILITY(U,$J,358.3,10079,1,3,0)
+ ;;=3^Acquired Absence of Great Toe,Right
+ ;;^UTILITY(U,$J,358.3,10079,1,4,0)
+ ;;=4^Z89.411
+ ;;^UTILITY(U,$J,358.3,10079,2)
+ ;;=^5063554
+ ;;^UTILITY(U,$J,358.3,10080,0)
+ ;;=Z89.111^^39^423^15
+ ;;^UTILITY(U,$J,358.3,10080,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,9973,1,3,0)
- ;;=3^Forearm Abrasion
- ;;^UTILITY(U,$J,358.3,9973,1,4,0)
- ;;=4^S50.819A
- ;;^UTILITY(U,$J,358.3,9973,2)
- ;;=^5028560
- ;;^UTILITY(U,$J,358.3,9974,0)
- ;;=S50.10XA^^72^657^18
- ;;^UTILITY(U,$J,358.3,9974,1,0)
+ ;;^UTILITY(U,$J,358.3,10080,1,3,0)
+ ;;=3^Acquired Absence of Hand,Right
+ ;;^UTILITY(U,$J,358.3,10080,1,4,0)
+ ;;=4^Z89.111
+ ;;^UTILITY(U,$J,358.3,10080,2)
+ ;;=^5063537
+ ;;^UTILITY(U,$J,358.3,10081,0)
+ ;;=Z89.621^^39^423^17
+ ;;^UTILITY(U,$J,358.3,10081,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,9974,1,3,0)
- ;;=3^Forearm Contusion
- ;;^UTILITY(U,$J,358.3,9974,1,4,0)
- ;;=4^S50.10XA
- ;;^UTILITY(U,$J,358.3,9974,2)
- ;;=^5028491
- ;;^UTILITY(U,$J,358.3,9975,0)
- ;;=S52.126A^^72^657^19
- ;;^UTILITY(U,$J,358.3,9975,1,0)
+ ;;^UTILITY(U,$J,358.3,10081,1,3,0)
+ ;;=3^Acquired Absence of Hip Joint,Right
+ ;;^UTILITY(U,$J,358.3,10081,1,4,0)
+ ;;=4^Z89.621
+ ;;^UTILITY(U,$J,358.3,10081,2)
+ ;;=^5063575
+ ;;^UTILITY(U,$J,358.3,10082,0)
+ ;;=Z89.611^^39^423^21
+ ;;^UTILITY(U,$J,358.3,10082,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,9975,1,3,0)
- ;;=3^Forearm Fracture,Radial Head
- ;;^UTILITY(U,$J,358.3,9975,1,4,0)
- ;;=4^S52.126A
- ;;^UTILITY(U,$J,358.3,9975,2)
- ;;=^5029127
- ;;^UTILITY(U,$J,358.3,9976,0)
- ;;=S52.109A^^72^657^20
- ;;^UTILITY(U,$J,358.3,9976,1,0)
+ ;;^UTILITY(U,$J,358.3,10082,1,3,0)
+ ;;=3^Acquired Absence of Leg Above Knee,Right
+ ;;^UTILITY(U,$J,358.3,10082,1,4,0)
+ ;;=4^Z89.611
+ ;;^UTILITY(U,$J,358.3,10082,2)
+ ;;=^5063572
+ ;;^UTILITY(U,$J,358.3,10083,0)
+ ;;=Z89.511^^39^423^23
+ ;;^UTILITY(U,$J,358.3,10083,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,9976,1,3,0)
- ;;=3^Forearm Fracture,Radius-Proximal
- ;;^UTILITY(U,$J,358.3,9976,1,4,0)
- ;;=4^S52.109A
- ;;^UTILITY(U,$J,358.3,9976,2)
- ;;=^5135154
- ;;^UTILITY(U,$J,358.3,9977,0)
- ;;=S52.309A^^72^657^21
- ;;^UTILITY(U,$J,358.3,9977,1,0)
+ ;;^UTILITY(U,$J,358.3,10083,1,3,0)
+ ;;=3^Acquired Absence of Leg Below Knee,Right
+ ;;^UTILITY(U,$J,358.3,10083,1,4,0)
+ ;;=4^Z89.511
+ ;;^UTILITY(U,$J,358.3,10083,2)
+ ;;=^5063566
+ ;;^UTILITY(U,$J,358.3,10084,0)
+ ;;=Z89.231^^39^423^33
+ ;;^UTILITY(U,$J,358.3,10084,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,9977,1,3,0)
- ;;=3^Forearm Fracture,Radius-Shaft
- ;;^UTILITY(U,$J,358.3,9977,1,4,0)
- ;;=4^S52.309A
- ;;^UTILITY(U,$J,358.3,9977,2)
- ;;=^5135241
- ;;^UTILITY(U,$J,358.3,9978,0)
- ;;=S52.509A^^72^657^22
- ;;^UTILITY(U,$J,358.3,9978,1,0)
+ ;;^UTILITY(U,$J,358.3,10084,1,3,0)
+ ;;=3^Acquired Absence of Shoulder,Right
+ ;;^UTILITY(U,$J,358.3,10084,1,4,0)
+ ;;=4^Z89.231
+ ;;^UTILITY(U,$J,358.3,10084,2)
+ ;;=^5063551
+ ;;^UTILITY(U,$J,358.3,10085,0)
+ ;;=Z89.011^^39^423^37
+ ;;^UTILITY(U,$J,358.3,10085,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,9978,1,3,0)
- ;;=3^Forearm Fracture,Radius-Distal
- ;;^UTILITY(U,$J,358.3,9978,1,4,0)
- ;;=4^S52.509A
- ;;^UTILITY(U,$J,358.3,9978,2)
- ;;=^5135256
- ;;^UTILITY(U,$J,358.3,9979,0)
- ;;=S52.009A^^72^657^23
- ;;^UTILITY(U,$J,358.3,9979,1,0)
+ ;;^UTILITY(U,$J,358.3,10085,1,3,0)
+ ;;=3^Acquired Absence of Thumb,Right
+ ;;^UTILITY(U,$J,358.3,10085,1,4,0)
+ ;;=4^Z89.011
+ ;;^UTILITY(U,$J,358.3,10085,2)
+ ;;=^5063531
+ ;;^UTILITY(U,$J,358.3,10086,0)
+ ;;=Z89.421^^39^423^26
+ ;;^UTILITY(U,$J,358.3,10086,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,9979,1,3,0)
- ;;=3^Forearm Fracture,Ulna-Proximal
- ;;^UTILITY(U,$J,358.3,9979,1,4,0)
- ;;=4^S52.009A
- ;;^UTILITY(U,$J,358.3,9979,2)
- ;;=^5135038
- ;;^UTILITY(U,$J,358.3,9980,0)
- ;;=S52.209A^^72^657^24
- ;;^UTILITY(U,$J,358.3,9980,1,0)
+ ;;^UTILITY(U,$J,358.3,10086,1,3,0)
+ ;;=3^Acquired Absence of Oth Toe(s),Right
+ ;;^UTILITY(U,$J,358.3,10086,1,4,0)
+ ;;=4^Z89.421
+ ;;^UTILITY(U,$J,358.3,10086,2)
+ ;;=^5063557
+ ;;^UTILITY(U,$J,358.3,10087,0)
+ ;;=Z89.221^^39^423^39
+ ;;^UTILITY(U,$J,358.3,10087,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,9980,1,3,0)
- ;;=3^Forearm Fracture,Ulna-Shaft
- ;;^UTILITY(U,$J,358.3,9980,1,4,0)
- ;;=4^S52.209A
- ;;^UTILITY(U,$J,358.3,9980,2)
- ;;=^5135203
- ;;^UTILITY(U,$J,358.3,9981,0)
- ;;=S52.609A^^72^657^25
- ;;^UTILITY(U,$J,358.3,9981,1,0)
+ ;;^UTILITY(U,$J,358.3,10087,1,3,0)
+ ;;=3^Acquired Absence of Upper Limb Above Elbow,Right
+ ;;^UTILITY(U,$J,358.3,10087,1,4,0)
+ ;;=4^Z89.221
+ ;;^UTILITY(U,$J,358.3,10087,2)
+ ;;=^5063548
+ ;;^UTILITY(U,$J,358.3,10088,0)
+ ;;=Z89.211^^39^423^41
+ ;;^UTILITY(U,$J,358.3,10088,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,9981,1,3,0)
- ;;=3^Forearm Fracture,Ulna-Distal
- ;;^UTILITY(U,$J,358.3,9981,1,4,0)
- ;;=4^S52.609A
- ;;^UTILITY(U,$J,358.3,9981,2)
- ;;=^5135274
- ;;^UTILITY(U,$J,358.3,9982,0)
- ;;=S50.319A^^72^657^26
- ;;^UTILITY(U,$J,358.3,9982,1,0)
+ ;;^UTILITY(U,$J,358.3,10088,1,3,0)
+ ;;=3^Acquired Absence of Upper Limb Below Elbow,Right
+ ;;^UTILITY(U,$J,358.3,10088,1,4,0)
+ ;;=4^Z89.211
+ ;;^UTILITY(U,$J,358.3,10088,2)
+ ;;=^5063545
+ ;;^UTILITY(U,$J,358.3,10089,0)
+ ;;=Z89.121^^39^423^44
+ ;;^UTILITY(U,$J,358.3,10089,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,9982,1,3,0)
- ;;=3^Elbow Abrasion
- ;;^UTILITY(U,$J,358.3,9982,1,4,0)
- ;;=4^S50.319A
- ;;^UTILITY(U,$J,358.3,9982,2)
- ;;=^5028506
- ;;^UTILITY(U,$J,358.3,9983,0)
- ;;=S50.00XA^^72^657^27
- ;;^UTILITY(U,$J,358.3,9983,1,0)
+ ;;^UTILITY(U,$J,358.3,10089,1,3,0)
+ ;;=3^Acquired Absence of Wrist,Right
+ ;;^UTILITY(U,$J,358.3,10089,1,4,0)
+ ;;=4^Z89.121
+ ;;^UTILITY(U,$J,358.3,10089,2)
+ ;;=^5063540
+ ;;^UTILITY(U,$J,358.3,10090,0)
+ ;;=Z90.81^^39^423^34
+ ;;^UTILITY(U,$J,358.3,10090,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,9983,1,3,0)
- ;;=3^Elbow Contusion
- ;;^UTILITY(U,$J,358.3,9983,1,4,0)
- ;;=4^S50.00XA
- ;;^UTILITY(U,$J,358.3,9983,2)
- ;;=^5028482
- ;;^UTILITY(U,$J,358.3,9984,0)
- ;;=S53.106A^^72^657^28
- ;;^UTILITY(U,$J,358.3,9984,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,9984,1,3,0)
- ;;=3^Elbow Dislocation
+ ;;^UTILITY(U,$J,358.3,10090,1,3,0)
+ ;;=3^Acquired Absence of Spleen
+ ;;^UTILITY(U,$J,358.3,10090,1,4,0)
+ ;;=4^Z90.81
+ ;;^UTILITY(U,$J,358.3,10090,2)
+ ;;=^5063597
+ ;;^UTILITY(U,$J,358.3,10091,0)
+ ;;=Z90.3^^39^423^35

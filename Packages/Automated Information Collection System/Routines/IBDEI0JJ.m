@@ -1,120 +1,130 @@
-IBDEI0JJ ; ; 04-FEB-2020
- ;;3.0;IB ENCOUNTER FORM IMP/EXP;;FEB 04, 2020
+IBDEI0JJ ; ; 01-FEB-2022
+ ;;3.0;IB ENCOUNTER FORM IMP/EXP;;FEB 01, 2022
  Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,999) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
- ;;^UTILITY(U,$J,358.3,8576,1,0)
- ;;=^358.31IA^3^2
- ;;^UTILITY(U,$J,358.3,8576,1,2,0)
- ;;=2^15261
- ;;^UTILITY(U,$J,358.3,8576,1,3,0)
- ;;=3^Full-Thick,Free,Incl Dir Clsr of Donor site,Nose/Ears/Eyelid/Lip,Ea Addl 20 sq cm
- ;;^UTILITY(U,$J,358.3,8577,0)
- ;;=15271^^66^574^2^^^^1
- ;;^UTILITY(U,$J,358.3,8577,1,0)
- ;;=^358.31IA^3^2
- ;;^UTILITY(U,$J,358.3,8577,1,2,0)
- ;;=2^15271
- ;;^UTILITY(U,$J,358.3,8577,1,3,0)
- ;;=3^Apply Skin Subst Grft Trunk/Arms/Legs;up to 25 cm
- ;;^UTILITY(U,$J,358.3,8578,0)
- ;;=15272^^66^574^1^^^^1
- ;;^UTILITY(U,$J,358.3,8578,1,0)
- ;;=^358.31IA^3^2
- ;;^UTILITY(U,$J,358.3,8578,1,2,0)
- ;;=2^15272
- ;;^UTILITY(U,$J,358.3,8578,1,3,0)
- ;;=3^Apply Skin Subst Grft Trunk/Arms/Legs;Ea Addl 25 cm
- ;;^UTILITY(U,$J,358.3,8579,0)
- ;;=15760^^66^574^10^^^^1
- ;;^UTILITY(U,$J,358.3,8579,1,0)
- ;;=^358.31IA^3^2
- ;;^UTILITY(U,$J,358.3,8579,1,2,0)
- ;;=2^15760
- ;;^UTILITY(U,$J,358.3,8579,1,3,0)
- ;;=3^Graft;Composite,Incl Prim Clsr,Donor Area
- ;;^UTILITY(U,$J,358.3,8580,0)
- ;;=15770^^66^574^9^^^^1
- ;;^UTILITY(U,$J,358.3,8580,1,0)
- ;;=^358.31IA^3^2
- ;;^UTILITY(U,$J,358.3,8580,1,2,0)
- ;;=2^15770
- ;;^UTILITY(U,$J,358.3,8580,1,3,0)
- ;;=3^Garft;Derma-Fat-Fascia
- ;;^UTILITY(U,$J,358.3,8581,0)
- ;;=17106^^66^575^1^^^^1
- ;;^UTILITY(U,$J,358.3,8581,1,0)
- ;;=^358.31IA^3^2
- ;;^UTILITY(U,$J,358.3,8581,1,2,0)
- ;;=2^17106
- ;;^UTILITY(U,$J,358.3,8581,1,3,0)
- ;;=3^Dest Cutan Vasc Prolif Lesion < 10 sq cm
- ;;^UTILITY(U,$J,358.3,8582,0)
- ;;=17107^^66^575^2^^^^1
- ;;^UTILITY(U,$J,358.3,8582,1,0)
- ;;=^358.31IA^3^2
- ;;^UTILITY(U,$J,358.3,8582,1,2,0)
- ;;=2^17107
- ;;^UTILITY(U,$J,358.3,8582,1,3,0)
- ;;=3^Dest Cutan Vasc Prolif Lesion 10-50 sq cm
- ;;^UTILITY(U,$J,358.3,8583,0)
- ;;=17108^^66^575^3^^^^1
- ;;^UTILITY(U,$J,358.3,8583,1,0)
- ;;=^358.31IA^3^2
- ;;^UTILITY(U,$J,358.3,8583,1,2,0)
- ;;=2^17108
- ;;^UTILITY(U,$J,358.3,8583,1,3,0)
- ;;=3^Dest Cutan Vasc Prolif Lesion > 50 sq cm
- ;;^UTILITY(U,$J,358.3,8584,0)
- ;;=10021^^66^576^9^^^^1
- ;;^UTILITY(U,$J,358.3,8584,1,0)
- ;;=^358.31IA^3^2
- ;;^UTILITY(U,$J,358.3,8584,1,2,0)
- ;;=2^10021
- ;;^UTILITY(U,$J,358.3,8584,1,3,0)
- ;;=3^FNA w/o Image Guidance,1st Lesion
- ;;^UTILITY(U,$J,358.3,8585,0)
- ;;=10004^^66^576^10^^^^1
- ;;^UTILITY(U,$J,358.3,8585,1,0)
- ;;=^358.31IA^3^2
- ;;^UTILITY(U,$J,358.3,8585,1,2,0)
- ;;=2^10004
- ;;^UTILITY(U,$J,358.3,8585,1,3,0)
- ;;=3^FNA w/o Image Guidance,Ea Addl Lesion
- ;;^UTILITY(U,$J,358.3,8586,0)
- ;;=10005^^66^576^7^^^^1
- ;;^UTILITY(U,$J,358.3,8586,1,0)
- ;;=^358.31IA^3^2
- ;;^UTILITY(U,$J,358.3,8586,1,2,0)
- ;;=2^10005
- ;;^UTILITY(U,$J,358.3,8586,1,3,0)
- ;;=3^FNA w/ US Guidance,1st Lesion
- ;;^UTILITY(U,$J,358.3,8587,0)
- ;;=10006^^66^576^8^^^^1
- ;;^UTILITY(U,$J,358.3,8587,1,0)
- ;;=^358.31IA^3^2
- ;;^UTILITY(U,$J,358.3,8587,1,2,0)
- ;;=2^10006
- ;;^UTILITY(U,$J,358.3,8587,1,3,0)
- ;;=3^FNA w/ US Guidance,Ea Addl Lesion
- ;;^UTILITY(U,$J,358.3,8588,0)
- ;;=10007^^66^576^3^^^^1
- ;;^UTILITY(U,$J,358.3,8588,1,0)
- ;;=^358.31IA^3^2
- ;;^UTILITY(U,$J,358.3,8588,1,2,0)
- ;;=2^10007
- ;;^UTILITY(U,$J,358.3,8588,1,3,0)
- ;;=3^FNA w/ Fluro Guidance,1st Lesion
- ;;^UTILITY(U,$J,358.3,8589,0)
- ;;=10008^^66^576^4^^^^1
- ;;^UTILITY(U,$J,358.3,8589,1,0)
- ;;=^358.31IA^3^2
- ;;^UTILITY(U,$J,358.3,8589,1,2,0)
- ;;=2^10008
- ;;^UTILITY(U,$J,358.3,8589,1,3,0)
- ;;=3^FNA w/ Fluro Guidance,Ea Addl Lesion
- ;;^UTILITY(U,$J,358.3,8590,0)
- ;;=10009^^66^576^1^^^^1
- ;;^UTILITY(U,$J,358.3,8590,1,0)
- ;;=^358.31IA^3^2
- ;;^UTILITY(U,$J,358.3,8590,1,2,0)
- ;;=2^10009
+ ;;^UTILITY(U,$J,358.3,8788,1,4,0)
+ ;;=4^Z86.711
+ ;;^UTILITY(U,$J,358.3,8788,2)
+ ;;=^5063474
+ ;;^UTILITY(U,$J,358.3,8789,0)
+ ;;=Z86.72^^39^402^107
+ ;;^UTILITY(U,$J,358.3,8789,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,8789,1,3,0)
+ ;;=3^Personal Hx of Thrombophlebitis
+ ;;^UTILITY(U,$J,358.3,8789,1,4,0)
+ ;;=4^Z86.72
+ ;;^UTILITY(U,$J,358.3,8789,2)
+ ;;=^5063476
+ ;;^UTILITY(U,$J,358.3,8790,0)
+ ;;=Z87.310^^39^402^99
+ ;;^UTILITY(U,$J,358.3,8790,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,8790,1,3,0)
+ ;;=3^Personal Hx of Osteoporosis Fx
+ ;;^UTILITY(U,$J,358.3,8790,1,4,0)
+ ;;=4^Z87.310
+ ;;^UTILITY(U,$J,358.3,8790,2)
+ ;;=^5063485
+ ;;^UTILITY(U,$J,358.3,8791,0)
+ ;;=Z87.442^^39^402^110
+ ;;^UTILITY(U,$J,358.3,8791,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,8791,1,3,0)
+ ;;=3^Personal Hx of Urinary Calculi
+ ;;^UTILITY(U,$J,358.3,8791,1,4,0)
+ ;;=4^Z87.442
+ ;;^UTILITY(U,$J,358.3,8791,2)
+ ;;=^5063497
+ ;;^UTILITY(U,$J,358.3,8792,0)
+ ;;=Z87.81^^39^402^108
+ ;;^UTILITY(U,$J,358.3,8792,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,8792,1,3,0)
+ ;;=3^Personal Hx of Traumatic Fx (Healed)
+ ;;^UTILITY(U,$J,358.3,8792,1,4,0)
+ ;;=4^Z87.81
+ ;;^UTILITY(U,$J,358.3,8792,2)
+ ;;=^5063513
+ ;;^UTILITY(U,$J,358.3,8793,0)
+ ;;=Z87.890^^39^402^102
+ ;;^UTILITY(U,$J,358.3,8793,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,8793,1,3,0)
+ ;;=3^Personal Hx of Sex Reassignment
+ ;;^UTILITY(U,$J,358.3,8793,1,4,0)
+ ;;=4^Z87.890
+ ;;^UTILITY(U,$J,358.3,8793,2)
+ ;;=^5063517
+ ;;^UTILITY(U,$J,358.3,8794,0)
+ ;;=Z87.892^^39^402^68
+ ;;^UTILITY(U,$J,358.3,8794,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,8794,1,3,0)
+ ;;=3^Personal Hx of Anaphylaxis
+ ;;^UTILITY(U,$J,358.3,8794,1,4,0)
+ ;;=4^Z87.892
+ ;;^UTILITY(U,$J,358.3,8794,2)
+ ;;=^5063519
+ ;;^UTILITY(U,$J,358.3,8795,0)
+ ;;=Z87.39^^39^402^96
+ ;;^UTILITY(U,$J,358.3,8795,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,8795,1,3,0)
+ ;;=3^Personal Hx of Musculoskeletal/Connective Tissue Disease
+ ;;^UTILITY(U,$J,358.3,8795,1,4,0)
+ ;;=4^Z87.39
+ ;;^UTILITY(U,$J,358.3,8795,2)
+ ;;=^5063488
+ ;;^UTILITY(U,$J,358.3,8796,0)
+ ;;=Z87.820^^39^402^105
+ ;;^UTILITY(U,$J,358.3,8796,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,8796,1,3,0)
+ ;;=3^Personal Hx of TBI
+ ;;^UTILITY(U,$J,358.3,8796,1,4,0)
+ ;;=4^Z87.820
+ ;;^UTILITY(U,$J,358.3,8796,2)
+ ;;=^5063514
+ ;;^UTILITY(U,$J,358.3,8797,0)
+ ;;=Z91.82^^39^402^95
+ ;;^UTILITY(U,$J,358.3,8797,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,8797,1,3,0)
+ ;;=3^Personal Hx of Military Deployment
+ ;;^UTILITY(U,$J,358.3,8797,1,4,0)
+ ;;=4^Z91.82
+ ;;^UTILITY(U,$J,358.3,8797,2)
+ ;;=^5063626
+ ;;^UTILITY(U,$J,358.3,8798,0)
+ ;;=Z91.030^^39^402^5
+ ;;^UTILITY(U,$J,358.3,8798,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,8798,1,3,0)
+ ;;=3^Bee Allergy
+ ;;^UTILITY(U,$J,358.3,8798,1,4,0)
+ ;;=4^Z91.030
+ ;;^UTILITY(U,$J,358.3,8798,2)
+ ;;=^5063605
+ ;;^UTILITY(U,$J,358.3,8799,0)
+ ;;=Z91.038^^39^402^52
+ ;;^UTILITY(U,$J,358.3,8799,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,8799,1,3,0)
+ ;;=3^Insect Allergy NEC
+ ;;^UTILITY(U,$J,358.3,8799,1,4,0)
+ ;;=4^Z91.038
+ ;;^UTILITY(U,$J,358.3,8799,2)
+ ;;=^5063606
+ ;;^UTILITY(U,$J,358.3,8800,0)
+ ;;=Z91.041^^39^402^145
+ ;;^UTILITY(U,$J,358.3,8800,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,8800,1,3,0)
+ ;;=3^Radiographic Dye Allergy
+ ;;^UTILITY(U,$J,358.3,8800,1,4,0)
+ ;;=4^Z91.041
+ ;;^UTILITY(U,$J,358.3,8800,2)
+ ;;=^5063608
+ ;;^UTILITY(U,$J,358.3,8801,0)
+ ;;=Z91.130^^39^402^152

@@ -1,5 +1,5 @@
-MAGDHOW1 ;WOIFO/PMK/DAC - Capture Consult/Procedure Request data ;09 Aug 2018 7:54 AM
- ;;3.0;IMAGING;**138,174,180,210,208**;Mar 19, 2002;Build 6
+MAGDHOW1 ;WOIFO/PMK/DAC - Capture Consult/Procedure Request data ; Jul 26, 2022@07:38:34
+ ;;3.0;IMAGING;**138,174,180,210,208,292,323**;Mar 19, 2002;Build 8
  ;; Per VHA Directive 2004-038, this routine should not be modified.
  ;; +---------------------------------------------------------------+
  ;; | Property of the US Government.                                |
@@ -106,11 +106,11 @@ SERVICE(SERVICE,GMRCIEN,DIVISION,ITYPNAME,ITYPCODE,CPTIEN,HL7SUBLIST) ;
  . . ; get specialty index and procedure index (if available, otherwise, use 0)
  . . S Y=$P(X,"^",3)
  . . S ITYPNAME=$P(^MAG(2005.84,Y,0),"^",1)
- . . S ITYPCODE=$P(^MAG(2005.84,Y,2),"^",1)
+ . . S ITYPCODE=$P($G(^MAG(2005.84,Y,2)),"^",1)  ; P323 JCH - Fix undefined abbreviation issue
  . . S Z=$P(X,"^",4)
  . . I Z D  ; get procedure name and code
  . . . S ITYPNAME=ITYPNAME_" -- "_$P(^MAG(2005.85,Z,0),"^",1)
- . . . S ITYPCODE=ITYPCODE_"/"_$P(^MAG(2005.85,Z,2),"^",1)
+ . . . S ITYPCODE=ITYPCODE_"/"_$P($G(^MAG(2005.85,Z,2)),"^",1) ; P292 DAC - Fix undefined abbreviation issue
  . . . Q
  . . S SENDIT=1
  . . Q

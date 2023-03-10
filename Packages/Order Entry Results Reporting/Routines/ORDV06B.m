@@ -1,5 +1,5 @@
-ORDV06B ; slc/dcm - OE/RR Report Extracts ;11/26/19  15:26
- ;;3.0;ORDER ENTRY RESULTS REPORTING;**312,350,424,428,377**;Dec 17, 1997;Build 582
+ORDV06B ; slc/dcm - OE/RR Report Extracts ;Aug 19, 2020@08:38:27
+ ;;3.0;ORDER ENTRY RESULTS REPORTING;**312,350,424,428,377,498**;Dec 17, 1997;Build 38
  ;Pharmacy Extracts for VistaWeb and ALL Medication Report
 RXALL(ROOT,ORALPHA,OROMEGA,ORMAX,ORDBEG,ORDEND,OREXT) ;All Patient Meds
  ;Call to PSOORRL
@@ -38,12 +38,12 @@ IN ;Setup and call to Pharmacy API
  . S (INSTRUCT,@COMMENTS,STOPDT)="",FIELDS=^TMP("PS",$J,ITMP,0)
  . S $P(FIELDS,"^",17)=$P($G(^TMP("PS",$J,ITMP,"P",0)),"^",2) ;Provider
  . S SORTDT=$S($L($P(FIELDS,"^",10)):$P(FIELDS,"^",10),1:$P(FIELDS,"^",15)) ;Date Priority: 1)Last Fill Date, 2)Issue/Start Date, 3)Order Date
- . I 'SORTDT D  ;If pharmacy API doesn't screen out data within selected date range, check CPRS OrderDate and screen out as appropriate
- .. K ^TMP("ORXPS",$J) M ^TMP("ORXPS",$J)=^TMP("PS",$J)
- .. D OEL^PSOORRL(DFN,$P(FIELDS,"^")) ;This API uses same ^TMP("PS" global
- ..;;;OR*428-BG adding $G for SORTDT and STOPDT
- .. S ORIFN=+$P(^TMP("PS",$J,0),"^",11) I ORIFN S SORTDT=$P($G(^OR(100,ORIFN,0)),"^",7),STOPDT=$P($G(^(0)),"^",9)
- .. M ^TMP("PS",$J)=^TMP("ORXPS",$J) K ^TMP("ORXPS",$J)
+ . I 'SORTDT D  ;If pharmacy API doesn't screen out data within selected date range, check CPRS OrderDate to get a StartDate and screen out as appropriate
+ .. N PSIEN S PSIEN=$P(FIELDS,"^")
+ .. I $P(PSIEN,";",2)="O",$P(PSIEN,";")["P" S PSIEN=+PSIEN_"S"
+ .. S PSIEN=$P(PSIEN,";")
+ .. S ORIFN=+$$PLACER^PSSUTLA1(DFN,PSIEN)
+ .. I ORIFN S SORTDT=$P($G(^OR(100,ORIFN,0)),"^",7),STOPDT=$P($G(^(0)),"^",9)
  . S TYPE=$S($P($P(FIELDS,U),";",2)="O":"OP",1:"UD")
  . I $D(^TMP("PS",$J,ITMP,"CLINIC",0)) S TYPE="CP"
  . N LOC,LOCEX S (LOC,LOCEX)=""
@@ -53,11 +53,14 @@ IN ;Setup and call to Pharmacy API
  . ;Next line excludes any data where (ExpirationDate, LastFill Date, StartDate or OrderDate) is outside of selected date range for everything except non-VAmeds.
  . I TYPE'="NV",SORTDT<ORBEG!(SORTDT>OREND),($P(FIELDS,"^",4)<ORBEG!($P(FIELDS,"^",4)>OREND)),($P(FIELDS,"^",10)<ORBEG!($P(FIELDS,"^",10)>OREND)),($P(FIELDS,"^",15)<ORBEG!($P(FIELDS,"^",15)>OREND)) Q
  . I $P(FIELDS,"^",9)["DISCONTINUED",(TYPE="OP"!(TYPE="NV")) D
- .. K ^TMP("ORXPS",$J) M ^TMP("ORXPS",$J)=^TMP("PS",$J)
- .. D OEL^PSOORRL(DFN,$P(FIELDS,"^")) ;This API uses same ^TMP("PS" global
- ..;;DG*428-BG adding $G to STOPDT
- .. S ORIFN=+$P(^TMP("PS",$J,0),"^",11) I ORIFN S STOPDT=$P($G(^OR(100,ORIFN,0)),"^",9)
- .. M ^TMP("PS",$J)=^TMP("ORXPS",$J) K ^TMP("ORXPS",$J)
+ .. I 'STOPDT D
+ ... N PSIEN
+ ... S PSIEN=$P(FIELDS,"^")
+ ... I $P(PSIEN,";",2)="O",$P(PSIEN,";")["P" S PSIEN=+PSIEN_"S"
+ ... S PSIEN=$P(PSIEN,";"),ORIFN=""
+ ... S ORIFN=+$$PLACER^PSSUTLA1(DFN,PSIEN)
+ ... I ORIFN S STOPDT=$P($G(^OR(100,ORIFN,0)),"^",9)
+ ..;
  .. I TYPE="NV",'$L($P(FIELDS,"^",4)) S $P(FIELDS,"^",4)=STOPDT
  .. I TYPE="OP" S $P(FIELDS,"^",4)=STOPDT
  . I $O(^TMP("PS",$J,ITMP,"A",0))>0 S TYPE="IV"

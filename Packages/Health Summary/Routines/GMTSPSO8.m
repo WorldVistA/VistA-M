@@ -1,5 +1,5 @@
-GMTSPSO8 ; RS/DLC - OP Rx Summary Component by VA Drug Class ;Apr 23, 2019@21:29:01
- ;;2.7;Health Summary;**125**;Oct 20, 1995;Build 15
+GMTSPSO8 ;RS/DLC - OP Rx Summary Component by VA Drug Class ;Jun 14, 2021@12:10:02
+ ;;2.7;Health Summary;**125,115**;Oct 20, 1995;Build 190
  ;
  ; This is a copy of GMTSPSO7 with modifications to enable selections by class
  ; External References
@@ -10,6 +10,9 @@ GMTSPSO8 ; RS/DLC - OP Rx Summary Component by VA Drug Class ;Apr 23, 2019@21:29
  ;   DBIA  10011  ^DIWP
  ;   DBIA   4820  ^PSO52API
  ;   DBIA   4828  ^PSS59P7
+ ;   DBIA   2858  ^PSDRUG
+ ;   DBIA   4997  ^PS(50.605
+ ;   DBIA   6263  ^UTILITY
  ;
 MAIN ; OP Rx HS Component
  N DC,ECD,GMR,IX,PSOBEGIN,PSOACT,GMX,GMTOP,GMTSI
@@ -36,11 +39,12 @@ MAIN ; OP Rx HS Component
  K ^TMP("PSOO",$J),^UTILITY($J,"W")
  Q
 WRT ; Writes OP Pharmacy Segment Record
- N ID,LFD,X,MI,NL,CF,GMD,GMV,GMI,DIWL,DIWR,DIWF,GMSIG,GUI S GUI=$$HF^GMTSU
+ N ID,LFD,X,MI,NL,CF,GMD,GMV,GMI,DIWL,DIWR,DIWF,GMSIG,GUI,IND S GUI=$$HF^GMTSU
  S ID=$P(GMR,U),LFD=$P(GMR,U,2),ECD=$P(GMR,U,11),CF=$P(GMR,U,10)
  ;   Don't display when issue date is after To Date
  Q:+$G(GMRANGE)&(ID>(9999999-GMTS1))
  F GMV="ID","LFD","ECD" S X=@GMV D REGDT4^GMTSU S @GMV=X K X
+ S IND=$P($G(^TMP("PSOO",$J,IX,"IND")),U)
  S NL=0,DIWL=1,DIWR=73,DIWF="" K ^UTILITY($J,"W")
  F  S NL=$O(^TMP("PSOO",$J,IX,NL)) Q:NL'>0  D
  . S X=$G(^TMP("PSOO",$J,IX,NL,0)) D ^DIWP
@@ -53,7 +57,7 @@ WRT ; Writes OP Pharmacy Segment Record
  . D CKP^GMTSUP Q:$D(GMTSQIT)  D:GMTSNPG HEAD
  . S MI=$G(^UTILITY($J,"W",DIWL,GMI,0))
  . W:GMSIG=1 ?2,"SIG: " S:GMSIG=1 GMSIG=0 W ?7,MI,! S GMTOP=0
- D CKP^GMTSUP Q:$D(GMTSQIT)  D:GMTSNPG HEAD W ?4,"Provider: ",$E(GMD,1,22) W:CF ?37,"Cost/Fill: $",$J(CF,6,2)
+ D CKP^GMTSUP Q:$D(GMTSQIT)  D:GMTSNPG HEAD W:IND]"" ?4,"Indication: "_IND,! W ?4,"Provider: ",$E(GMD,1,22) W:CF ?37,"Cost/Fill: $",$J(CF,6,2)
  I "EC"[$P($P(GMR,U,5),";"),ECD]"" W ?57,"Exp/Can Dt: "_ECD
  W ! S GMTOP=0
  Q

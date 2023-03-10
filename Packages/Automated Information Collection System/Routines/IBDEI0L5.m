@@ -1,132 +1,128 @@
-IBDEI0L5 ; ; 04-FEB-2020
- ;;3.0;IB ENCOUNTER FORM IMP/EXP;;FEB 04, 2020
+IBDEI0L5 ; ; 01-FEB-2022
+ ;;3.0;IB ENCOUNTER FORM IMP/EXP;;FEB 01, 2022
  Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,999) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
- ;;^UTILITY(U,$J,358.3,9370,1,4,0)
- ;;=4^Z53.21
- ;;^UTILITY(U,$J,358.3,9370,2)
- ;;=^5063096
- ;;^UTILITY(U,$J,358.3,9371,0)
- ;;=Z59.0^^72^641^1
- ;;^UTILITY(U,$J,358.3,9371,1,0)
+ ;;^UTILITY(U,$J,358.3,9520,1,3,0)
+ ;;=3^Abnormal Finding on Dx Image of Skull/Head NEC
+ ;;^UTILITY(U,$J,358.3,9520,1,4,0)
+ ;;=4^R93.0
+ ;;^UTILITY(U,$J,358.3,9520,2)
+ ;;=^5019713
+ ;;^UTILITY(U,$J,358.3,9521,0)
+ ;;=R93.2^^39^413^9
+ ;;^UTILITY(U,$J,358.3,9521,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,9371,1,3,0)
- ;;=3^Homelessness
- ;;^UTILITY(U,$J,358.3,9371,1,4,0)
- ;;=4^Z59.0
- ;;^UTILITY(U,$J,358.3,9371,2)
- ;;=^5063129
- ;;^UTILITY(U,$J,358.3,9372,0)
- ;;=Z11.1^^72^641^2
- ;;^UTILITY(U,$J,358.3,9372,1,0)
+ ;;^UTILITY(U,$J,358.3,9521,1,3,0)
+ ;;=3^Abnormal Finding on Dx Image of Liver/Biliary Tract
+ ;;^UTILITY(U,$J,358.3,9521,1,4,0)
+ ;;=4^R93.2
+ ;;^UTILITY(U,$J,358.3,9521,2)
+ ;;=^5019715
+ ;;^UTILITY(U,$J,358.3,9522,0)
+ ;;=R93.3^^39^413^7
+ ;;^UTILITY(U,$J,358.3,9522,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,9372,1,3,0)
- ;;=3^Screening/Reading TB Test
- ;;^UTILITY(U,$J,358.3,9372,1,4,0)
- ;;=4^Z11.1
- ;;^UTILITY(U,$J,358.3,9372,2)
- ;;=^5062670
- ;;^UTILITY(U,$J,358.3,9373,0)
- ;;=Z48.02^^72^641^4
- ;;^UTILITY(U,$J,358.3,9373,1,0)
+ ;;^UTILITY(U,$J,358.3,9522,1,3,0)
+ ;;=3^Abnormal Finding on Dx Image of Digestive Tract Part
+ ;;^UTILITY(U,$J,358.3,9522,1,4,0)
+ ;;=4^R93.3
+ ;;^UTILITY(U,$J,358.3,9522,2)
+ ;;=^5019716
+ ;;^UTILITY(U,$J,358.3,9523,0)
+ ;;=R93.5^^39^413^6
+ ;;^UTILITY(U,$J,358.3,9523,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,9373,1,3,0)
- ;;=3^Removal of Sutures/Staples
- ;;^UTILITY(U,$J,358.3,9373,1,4,0)
- ;;=4^Z48.02
- ;;^UTILITY(U,$J,358.3,9373,2)
- ;;=^5063035
- ;;^UTILITY(U,$J,358.3,9374,0)
- ;;=Z46.6^^72^641^5
- ;;^UTILITY(U,$J,358.3,9374,1,0)
+ ;;^UTILITY(U,$J,358.3,9523,1,3,0)
+ ;;=3^Abnormal Finding on Dx Image of Abdominal Regions
+ ;;^UTILITY(U,$J,358.3,9523,1,4,0)
+ ;;=4^R93.5
+ ;;^UTILITY(U,$J,358.3,9523,2)
+ ;;=^5019718
+ ;;^UTILITY(U,$J,358.3,9524,0)
+ ;;=R93.6^^39^413^8
+ ;;^UTILITY(U,$J,358.3,9524,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,9374,1,3,0)
- ;;=3^Fitting/Adjusting Urinary Device
- ;;^UTILITY(U,$J,358.3,9374,1,4,0)
- ;;=4^Z46.6
- ;;^UTILITY(U,$J,358.3,9374,2)
- ;;=^5063020
- ;;^UTILITY(U,$J,358.3,9375,0)
- ;;=Z09.^^72^641^6
- ;;^UTILITY(U,$J,358.3,9375,1,0)
+ ;;^UTILITY(U,$J,358.3,9524,1,3,0)
+ ;;=3^Abnormal Finding on Dx Image of Limbs
+ ;;^UTILITY(U,$J,358.3,9524,1,4,0)
+ ;;=4^R93.6
+ ;;^UTILITY(U,$J,358.3,9524,2)
+ ;;=^5019719
+ ;;^UTILITY(U,$J,358.3,9525,0)
+ ;;=R94.4^^39^413^19
+ ;;^UTILITY(U,$J,358.3,9525,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,9375,1,3,0)
- ;;=3^F/U Exam after Completed Treatment
- ;;^UTILITY(U,$J,358.3,9375,1,4,0)
- ;;=4^Z09.
- ;;^UTILITY(U,$J,358.3,9375,2)
- ;;=^5062668
- ;;^UTILITY(U,$J,358.3,9376,0)
- ;;=Z04.6^^72^641^11
- ;;^UTILITY(U,$J,358.3,9376,1,0)
+ ;;^UTILITY(U,$J,358.3,9525,1,3,0)
+ ;;=3^Abnormal Kidney Function Studies
+ ;;^UTILITY(U,$J,358.3,9525,1,4,0)
+ ;;=4^R94.4
+ ;;^UTILITY(U,$J,358.3,9525,2)
+ ;;=^5019741
+ ;;^UTILITY(U,$J,358.3,9526,0)
+ ;;=R94.5^^39^413^20
+ ;;^UTILITY(U,$J,358.3,9526,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,9376,1,3,0)
- ;;=3^General Psych Exam,Requested Authority
- ;;^UTILITY(U,$J,358.3,9376,1,4,0)
- ;;=4^Z04.6
- ;;^UTILITY(U,$J,358.3,9376,2)
- ;;=^5062662
- ;;^UTILITY(U,$J,358.3,9377,0)
- ;;=Z91.14^^72^641^13
- ;;^UTILITY(U,$J,358.3,9377,1,0)
+ ;;^UTILITY(U,$J,358.3,9526,1,3,0)
+ ;;=3^Abnormal Liver Function Studies
+ ;;^UTILITY(U,$J,358.3,9526,1,4,0)
+ ;;=4^R94.5
+ ;;^UTILITY(U,$J,358.3,9526,2)
+ ;;=^5019742
+ ;;^UTILITY(U,$J,358.3,9527,0)
+ ;;=R94.6^^39^413^24
+ ;;^UTILITY(U,$J,358.3,9527,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,9377,1,3,0)
- ;;=3^Patient's Noncompliance w/ Medical Treatment
- ;;^UTILITY(U,$J,358.3,9377,1,4,0)
- ;;=4^Z91.14
- ;;^UTILITY(U,$J,358.3,9377,2)
- ;;=^5063616
- ;;^UTILITY(U,$J,358.3,9378,0)
- ;;=Z76.5^^72^641^15
- ;;^UTILITY(U,$J,358.3,9378,1,0)
+ ;;^UTILITY(U,$J,358.3,9527,1,3,0)
+ ;;=3^Abnormal Thyroid Function Studies
+ ;;^UTILITY(U,$J,358.3,9527,1,4,0)
+ ;;=4^R94.6
+ ;;^UTILITY(U,$J,358.3,9527,2)
+ ;;=^5019743
+ ;;^UTILITY(U,$J,358.3,9528,0)
+ ;;=R94.7^^39^413^5
+ ;;^UTILITY(U,$J,358.3,9528,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,9378,1,3,0)
- ;;=3^Malingerer
- ;;^UTILITY(U,$J,358.3,9378,1,4,0)
- ;;=4^Z76.5
- ;;^UTILITY(U,$J,358.3,9378,2)
- ;;=^5063302
- ;;^UTILITY(U,$J,358.3,9379,0)
- ;;=Z23.^^72^641^17
- ;;^UTILITY(U,$J,358.3,9379,1,0)
+ ;;^UTILITY(U,$J,358.3,9528,1,3,0)
+ ;;=3^Abnormal Endocrine Function Studies NEC
+ ;;^UTILITY(U,$J,358.3,9528,1,4,0)
+ ;;=4^R94.7
+ ;;^UTILITY(U,$J,358.3,9528,2)
+ ;;=^5019744
+ ;;^UTILITY(U,$J,358.3,9529,0)
+ ;;=R94.31^^39^413^4
+ ;;^UTILITY(U,$J,358.3,9529,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,9379,1,3,0)
- ;;=3^Immunization
- ;;^UTILITY(U,$J,358.3,9379,1,4,0)
- ;;=4^Z23.
- ;;^UTILITY(U,$J,358.3,9379,2)
- ;;=^5062795
- ;;^UTILITY(U,$J,358.3,9380,0)
- ;;=Z03.6^^72^641^14
- ;;^UTILITY(U,$J,358.3,9380,1,0)
+ ;;^UTILITY(U,$J,358.3,9529,1,3,0)
+ ;;=3^Abnormal EKG
+ ;;^UTILITY(U,$J,358.3,9529,1,4,0)
+ ;;=4^R94.31
+ ;;^UTILITY(U,$J,358.3,9529,2)
+ ;;=^5019739
+ ;;^UTILITY(U,$J,358.3,9530,0)
+ ;;=R97.0^^39^413^71
+ ;;^UTILITY(U,$J,358.3,9530,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,9380,1,3,0)
- ;;=3^Observation for Suspected Toxic Effect From Ingested Subs Ruled-Out
- ;;^UTILITY(U,$J,358.3,9380,1,4,0)
- ;;=4^Z03.6
- ;;^UTILITY(U,$J,358.3,9380,2)
- ;;=^5062647
- ;;^UTILITY(U,$J,358.3,9381,0)
- ;;=Z03.89^^72^641^18
- ;;^UTILITY(U,$J,358.3,9381,1,0)
+ ;;^UTILITY(U,$J,358.3,9530,1,3,0)
+ ;;=3^Elevated Carcinoembryonic Antigen 
+ ;;^UTILITY(U,$J,358.3,9530,1,4,0)
+ ;;=4^R97.0
+ ;;^UTILITY(U,$J,358.3,9530,2)
+ ;;=^5019746
+ ;;^UTILITY(U,$J,358.3,9531,0)
+ ;;=R97.1^^39^413^70
+ ;;^UTILITY(U,$J,358.3,9531,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,9381,1,3,0)
- ;;=3^Suspected Diseases and Conditions Ruled Out
- ;;^UTILITY(U,$J,358.3,9381,1,4,0)
- ;;=4^Z03.89
- ;;^UTILITY(U,$J,358.3,9381,2)
- ;;=^5062656
- ;;^UTILITY(U,$J,358.3,9382,0)
- ;;=Z71.89^^72^641^20
- ;;^UTILITY(U,$J,358.3,9382,1,0)
+ ;;^UTILITY(U,$J,358.3,9531,1,3,0)
+ ;;=3^Elevated Cancer Antigen 125
+ ;;^UTILITY(U,$J,358.3,9531,1,4,0)
+ ;;=4^R97.1
+ ;;^UTILITY(U,$J,358.3,9531,2)
+ ;;=^5019747
+ ;;^UTILITY(U,$J,358.3,9532,0)
+ ;;=R97.8^^39^413^25
+ ;;^UTILITY(U,$J,358.3,9532,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,9382,1,3,0)
- ;;=3^Counseling,Oth Specified
- ;;^UTILITY(U,$J,358.3,9382,1,4,0)
- ;;=4^Z71.89
- ;;^UTILITY(U,$J,358.3,9382,2)
- ;;=^5063253
- ;;^UTILITY(U,$J,358.3,9383,0)
- ;;=I10.^^72^642^14
- ;;^UTILITY(U,$J,358.3,9383,1,0)
- ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,9532,1,3,0)
+ ;;=3^Abnormal Tumor Markers NEC
+ ;;^UTILITY(U,$J,358.3,9532,1,4,0)
+ ;;=4^R97.8

@@ -1,5 +1,5 @@
 DIEZ2 ;SFISC/GFT-COMPILE INPUT TEMPLATE ;15JUN2006
- ;;22.2;VA FileMan;;Jan 05, 2016;Build 42
+ ;;22.2;VA FileMan;**19**;Jan 05, 2016;Build 2
  ;;Per VA Directive 6402, this routine should not be modified.
  ;;Submitted to OSEHRA 5 January 2015 by the VISTA Expertise Network.
  ;;Based on Medsphere Systems Corporation's MSC FileMan 1051.
@@ -119,7 +119,7 @@ INDEX ;Build code field and record level cross references.
  S X=X_" S DIEZRXR("_DP_",DIIENS)=$$OREF^DILF($NA(@$$CREF^DILF(DIE)))" D L
  S X=" F DIXR="_$TR(DIEZRLST,U,",")_" S DIEZRXR("_DP_",DIXR)=""""" D L
  S DIEZI=0 F  S DIEZI=$O(DIEZRLST(DIEZI)) Q:'DIEZI  D
- . S X=" F DIXR="_$TR(DIEZRLST(DIEZI),U,",")_" S DIEZRXR("_DP_",DIEZIENS)=""""" D L
+ . S X=" F DIXR="_$TR(DIEZRLST(DIEZI),U,",")_" S DIEZRXR("_DP_",DIXR)=""""" D L  ;p19
  ;
  S X=""
  Q

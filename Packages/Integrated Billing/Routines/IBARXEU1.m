@@ -1,5 +1,5 @@
 IBARXEU1 ;ALB/AAS - RX EXEMPTION UTILITY ROUTINE (CONT.);3/27/07 3:10pm ; 31 Jan 2019  3:51 PM
- ;;2.0;INTEGRATED BILLING;**26,112,74,275,367,449,385,627**;21-MAR-94;Build 21
+ ;;2.0;INTEGRATED BILLING;**26,112,74,275,367,449,385,627,700**;21-MAR-94;Build 81
  ;;Per VHA Directive 2004-038, this routine should not be modified.
  ;
 STATUS(DFN,IBDT) ; -- Determine medication copayment exemption status
@@ -123,14 +123,14 @@ THRES(DATE,TYPE,DEPEND) ; -- return threshold amount
  ;
  I DATE<2921201 S DATE=2921201 ; use threshold rates from 12/1/92
  N IBTABLE,IBLEVEL,IBPRIOR
- S IBLEVEL=""
+ S (IBLEVEL,IBPRIOR)=""
  ; -- get entry to determine income amounts
  S IBTABLE=$G(^IBE(354.3,+$O(^(+$O(^IBE(354.3,"AIVDT",TYPE,-(DATE+.000001))),0)),0))
  G:IBTABLE="" THRESQ
  I TYPE=4 S DEPEND=0
  ;
  ; --see if rate is for prior year
- S IBPRIOR="" I $$PLUS^IBARXEU0(+IBTABLE)<DATE S IBPRIOR=+IBTABLE
+ I $$PLUS^IBARXEU0(+IBTABLE)<DATE S IBPRIOR=+IBTABLE
  ;
  ; -- rates begin in piece 3 for veteran alone, piece 4 for 1 dependent..
  S IBLEVEL=$S(DEPEND<9:$P(IBTABLE,"^",DEPEND+3),1:"")

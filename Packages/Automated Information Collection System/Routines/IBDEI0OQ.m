@@ -1,126 +1,116 @@
-IBDEI0OQ ; ; 04-FEB-2020
- ;;3.0;IB ENCOUNTER FORM IMP/EXP;;FEB 04, 2020
+IBDEI0OQ ; ; 01-FEB-2022
+ ;;3.0;IB ENCOUNTER FORM IMP/EXP;;FEB 01, 2022
  Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,999) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
- ;;^UTILITY(U,$J,358.3,11036,2)
- ;;=^5004418
- ;;^UTILITY(U,$J,358.3,11037,0)
- ;;=H02.834^^77^721^20
- ;;^UTILITY(U,$J,358.3,11037,1,0)
+ ;;^UTILITY(U,$J,358.3,11109,1,4,0)
+ ;;=4^F19.94
+ ;;^UTILITY(U,$J,358.3,11109,2)
+ ;;=^5003460
+ ;;^UTILITY(U,$J,358.3,11110,0)
+ ;;=F19.17^^42^508^4
+ ;;^UTILITY(U,$J,358.3,11110,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,11037,1,3,0)
- ;;=3^Dermatochalasis,Left Upper Eyelid
- ;;^UTILITY(U,$J,358.3,11037,1,4,0)
- ;;=4^H02.834
- ;;^UTILITY(U,$J,358.3,11037,2)
- ;;=^5004421
- ;;^UTILITY(U,$J,358.3,11038,0)
- ;;=H02.829^^77^721^24
- ;;^UTILITY(U,$J,358.3,11038,1,0)
+ ;;^UTILITY(U,$J,358.3,11110,1,3,0)
+ ;;=3^Other/Unknown Substance Induced Maj Neurocog D/O w/ Mild Use D/O
+ ;;^UTILITY(U,$J,358.3,11110,1,4,0)
+ ;;=4^F19.17
+ ;;^UTILITY(U,$J,358.3,11110,2)
+ ;;=^5003426
+ ;;^UTILITY(U,$J,358.3,11111,0)
+ ;;=F19.27^^42^508^5
+ ;;^UTILITY(U,$J,358.3,11111,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,11038,1,3,0)
- ;;=3^Cysts,Unspec Eyelid
- ;;^UTILITY(U,$J,358.3,11038,1,4,0)
- ;;=4^H02.829
- ;;^UTILITY(U,$J,358.3,11038,2)
- ;;=^5133442
- ;;^UTILITY(U,$J,358.3,11039,0)
- ;;=H01.119^^77^721^30
- ;;^UTILITY(U,$J,358.3,11039,1,0)
+ ;;^UTILITY(U,$J,358.3,11111,1,3,0)
+ ;;=3^Other/Unknown Substance Induced Maj Neurocog D/O w/ Mod-Sev Use D/O
+ ;;^UTILITY(U,$J,358.3,11111,1,4,0)
+ ;;=4^F19.27
+ ;;^UTILITY(U,$J,358.3,11111,2)
+ ;;=^5003446
+ ;;^UTILITY(U,$J,358.3,11112,0)
+ ;;=F19.97^^42^508^6
+ ;;^UTILITY(U,$J,358.3,11112,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,11039,1,3,0)
- ;;=3^Allergic Dermatitis,Unspec Eyelid
- ;;^UTILITY(U,$J,358.3,11039,1,4,0)
- ;;=4^H01.119
- ;;^UTILITY(U,$J,358.3,11039,2)
- ;;=^5133387
- ;;^UTILITY(U,$J,358.3,11040,0)
- ;;=H02.421^^77^721^19
- ;;^UTILITY(U,$J,358.3,11040,1,0)
+ ;;^UTILITY(U,$J,358.3,11112,1,3,0)
+ ;;=3^Other/Unknown Substance Induced Maj Neurocog D/O w/o Use D/O
+ ;;^UTILITY(U,$J,358.3,11112,1,4,0)
+ ;;=4^F19.97
+ ;;^UTILITY(U,$J,358.3,11112,2)
+ ;;=^5003465
+ ;;^UTILITY(U,$J,358.3,11113,0)
+ ;;=F19.188^^42^508^28
+ ;;^UTILITY(U,$J,358.3,11113,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,11040,1,3,0)
- ;;=3^Ptosis,Myogenic,Right Upper Eyelid
- ;;^UTILITY(U,$J,358.3,11040,1,4,0)
- ;;=4^H02.421
- ;;^UTILITY(U,$J,358.3,11040,2)
- ;;=^5004360
- ;;^UTILITY(U,$J,358.3,11041,0)
- ;;=H02.422^^77^721^21
- ;;^UTILITY(U,$J,358.3,11041,1,0)
+ ;;^UTILITY(U,$J,358.3,11113,1,3,0)
+ ;;=3^Psychoactive Substance Abuse w/ Induced Disorder,Other
+ ;;^UTILITY(U,$J,358.3,11113,1,4,0)
+ ;;=4^F19.188
+ ;;^UTILITY(U,$J,358.3,11113,2)
+ ;;=^5133361
+ ;;^UTILITY(U,$J,358.3,11114,0)
+ ;;=F19.288^^42^508^29
+ ;;^UTILITY(U,$J,358.3,11114,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,11041,1,3,0)
- ;;=3^Ptosis,Myogenic,Left Upper Eyelid
- ;;^UTILITY(U,$J,358.3,11041,1,4,0)
- ;;=4^H02.422
- ;;^UTILITY(U,$J,358.3,11041,2)
- ;;=^5004361
- ;;^UTILITY(U,$J,358.3,11042,0)
- ;;=H02.051^^77^721^8
- ;;^UTILITY(U,$J,358.3,11042,1,0)
+ ;;^UTILITY(U,$J,358.3,11114,1,3,0)
+ ;;=3^Psychoactive Substance Dependence w/ Induced Mood Disorder,Other
+ ;;^UTILITY(U,$J,358.3,11114,1,4,0)
+ ;;=4^F19.288
+ ;;^UTILITY(U,$J,358.3,11114,2)
+ ;;=^5133362
+ ;;^UTILITY(U,$J,358.3,11115,0)
+ ;;=F19.988^^42^508^30
+ ;;^UTILITY(U,$J,358.3,11115,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,11042,1,3,0)
- ;;=3^Trichiasis w/o Entropion,Right Upper Eyelid
- ;;^UTILITY(U,$J,358.3,11042,1,4,0)
- ;;=4^H02.051
- ;;^UTILITY(U,$J,358.3,11042,2)
- ;;=^5004298
- ;;^UTILITY(U,$J,358.3,11043,0)
- ;;=H02.054^^77^721^10
- ;;^UTILITY(U,$J,358.3,11043,1,0)
+ ;;^UTILITY(U,$J,358.3,11115,1,3,0)
+ ;;=3^Psychoactive Substance Use w/ Induced Mood Disorder,Other
+ ;;^UTILITY(U,$J,358.3,11115,1,4,0)
+ ;;=4^F19.988
+ ;;^UTILITY(U,$J,358.3,11115,2)
+ ;;=^5133363
+ ;;^UTILITY(U,$J,358.3,11116,0)
+ ;;=F19.159^^42^508^7
+ ;;^UTILITY(U,$J,358.3,11116,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,11043,1,3,0)
- ;;=3^Trichiasis w/o Entropion,Left Upper Eyelid
- ;;^UTILITY(U,$J,358.3,11043,1,4,0)
- ;;=4^H02.054
- ;;^UTILITY(U,$J,358.3,11043,2)
- ;;=^5004301
- ;;^UTILITY(U,$J,358.3,11044,0)
- ;;=H57.813^^77^721^17
- ;;^UTILITY(U,$J,358.3,11044,1,0)
+ ;;^UTILITY(U,$J,358.3,11116,1,3,0)
+ ;;=3^Other/Unknown Substance Induced Psychotic D/O w/ Mild Use D/O
+ ;;^UTILITY(U,$J,358.3,11116,1,4,0)
+ ;;=4^F19.159
+ ;;^UTILITY(U,$J,358.3,11116,2)
+ ;;=^5003424
+ ;;^UTILITY(U,$J,358.3,11117,0)
+ ;;=F19.259^^42^508^8
+ ;;^UTILITY(U,$J,358.3,11117,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,11044,1,3,0)
- ;;=3^Brow Ptosis,Bilateral
- ;;^UTILITY(U,$J,358.3,11044,1,4,0)
- ;;=4^H57.813
- ;;^UTILITY(U,$J,358.3,11044,2)
- ;;=^5157366
- ;;^UTILITY(U,$J,358.3,11045,0)
- ;;=D23.111^^77^721^25
- ;;^UTILITY(U,$J,358.3,11045,1,0)
+ ;;^UTILITY(U,$J,358.3,11117,1,3,0)
+ ;;=3^Other/Unknown Substance Induced Psychotic D/O w/ Mod-Sev Use D/O
+ ;;^UTILITY(U,$J,358.3,11117,1,4,0)
+ ;;=4^F19.259
+ ;;^UTILITY(U,$J,358.3,11117,2)
+ ;;=^5003444
+ ;;^UTILITY(U,$J,358.3,11118,0)
+ ;;=F19.959^^42^508^9
+ ;;^UTILITY(U,$J,358.3,11118,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,11045,1,3,0)
- ;;=3^Benign Eyelid Lesion,Right Upper Eyelid
- ;;^UTILITY(U,$J,358.3,11045,1,4,0)
- ;;=4^D23.111
- ;;^UTILITY(U,$J,358.3,11045,2)
- ;;=^5157290
- ;;^UTILITY(U,$J,358.3,11046,0)
- ;;=D23.121^^77^721^26
- ;;^UTILITY(U,$J,358.3,11046,1,0)
+ ;;^UTILITY(U,$J,358.3,11118,1,3,0)
+ ;;=3^Other/Unknown Substance Induced Psychotic D/O w/o Use D/O
+ ;;^UTILITY(U,$J,358.3,11118,1,4,0)
+ ;;=4^F19.959
+ ;;^UTILITY(U,$J,358.3,11118,2)
+ ;;=^5003463
+ ;;^UTILITY(U,$J,358.3,11119,0)
+ ;;=F19.181^^42^508^10
+ ;;^UTILITY(U,$J,358.3,11119,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,11046,1,3,0)
- ;;=3^Benign Eyelid Lesion,Left Upper Eyelid
- ;;^UTILITY(U,$J,358.3,11046,1,4,0)
- ;;=4^D23.121
- ;;^UTILITY(U,$J,358.3,11046,2)
- ;;=^5157292
- ;;^UTILITY(U,$J,358.3,11047,0)
- ;;=C44.1021^^77^721^27
- ;;^UTILITY(U,$J,358.3,11047,1,0)
+ ;;^UTILITY(U,$J,358.3,11119,1,3,0)
+ ;;=3^Other/Unknown Substance Induced Sexual Dysfunction w/ Mild Use D/O
+ ;;^UTILITY(U,$J,358.3,11119,1,4,0)
+ ;;=4^F19.181
+ ;;^UTILITY(U,$J,358.3,11119,2)
+ ;;=^5003428
+ ;;^UTILITY(U,$J,358.3,11120,0)
+ ;;=F19.281^^42^508^11
+ ;;^UTILITY(U,$J,358.3,11120,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,11047,1,3,0)
- ;;=3^Malignant Eyelid Lesion,Right Upper Eyelid
- ;;^UTILITY(U,$J,358.3,11047,1,4,0)
- ;;=4^C44.1021
- ;;^UTILITY(U,$J,358.3,11047,2)
- ;;=^5157253
- ;;^UTILITY(U,$J,358.3,11048,0)
- ;;=C44.1091^^77^721^28
- ;;^UTILITY(U,$J,358.3,11048,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,11048,1,3,0)
- ;;=3^Malignant Eyelid Lesion,Left Upper Eyelid
- ;;^UTILITY(U,$J,358.3,11048,1,4,0)
- ;;=4^C44.1091
- ;;^UTILITY(U,$J,358.3,11048,2)
- ;;=^5157255
+ ;;^UTILITY(U,$J,358.3,11120,1,3,0)
+ ;;=3^Other/Unknown Substance Induced Sexual Dysfunction w/ Mod-Sev Use D/O
+ ;;^UTILITY(U,$J,358.3,11120,1,4,0)
+ ;;=4^F19.281

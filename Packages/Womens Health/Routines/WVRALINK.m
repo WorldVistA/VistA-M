@@ -1,5 +1,5 @@
-WVRALINK ;HCIOFO/FT - RAD/NM-WOMEN'S HEALTH LINK  ;10/29/2019
- ;;1.0;WOMEN'S HEALTH;**3,5,7,9,10,16,18,23,25,24**;Sep 30, 1998;Build 582
+WVRALINK ;HCIOFO/FT - RAD/NM-WOMEN'S HEALTH LINK  ;04/15/2021
+ ;;1.0;WOMEN'S HEALTH;**3,5,7,9,10,16,18,23,25,24,26**;Sep 30, 1998;Build 624
  ;
  ; This routine uses the following IAs:
  ; #2480  - FILE 70         (private)
@@ -51,13 +51,14 @@ CREATE(DFN,DATE,CASE) ;
 CREATEH(DFN,DATE,CASE,STATUS) ; Entry from ^WVEXPTRA which looks for exams
  ; created before the WH package was installed.
  Q:($G(DFN)']"")!($G(DATE)']"")!($G(CASE)']"")!($G(STATUS)']"")
- ; 
+ ;
 CREATEQ ; Queue data entry creation. Called from CREATE above
- N CODES,ERROR,MATCH,TERMIEN
+ N CLOSED,CODES,EARLDATE,ERROR,MATCH,TEMPDATE,TERMIEN,TERMSTAT
  N WVPROC,WVLOC,WVDATE,WVDR,WVPROV,WVMOD,WVDX,WVBWDX,WVLEFT,WVRIGHT
- N WVCASE,WVCPT,WVERR,WVCREDIT,WVEXAM0,WVTERM,WVZSTAT
+ N WVCASE,WVCPT,WVERR,WVCREDIT,WVEXAM0,WVTERM,WVZSTAT,WVADDEOC
  ;---> QUIT IF RADIOLOGY DATA IS NOT DEFINED OR ="".
  I $D(ZTQUEUED) S ZTREQ="@"
+ S CLOSED=0
  Q:'$D(^RADPT(DFN,"DT",DATE,"P",CASE,0))
  ;
  ;---> QUIT IF THIS PROCEDURE DOES NOT HAVE A MAM CPT CODE.
@@ -66,6 +67,7 @@ CREATEQ ; Queue data entry creation. Called from CREATE above
  S WVEXAM0=^RADPT(DFN,"DT",DATE,"P",CASE,0)
  S WVCPT=$$GET1^DIQ(71,$P(WVEXAM0,U,2),9,"") Q:WVCPT=""
  ;check reminder terms
+ S WVADDEOC=0
  S MATCH=0
  S TERMIEN=0 F  S TERMIEN=$O(^WV(790.2,"RT",TERMIEN)) Q:TERMIEN'>0!($G(WVPROC)'="")  D
  .K CODES
@@ -74,7 +76,11 @@ CREATEQ ; Queue data entry creation. Called from CREATE above
  .I $D(CODES(WVCPT)) S MATCH=1
  .;S WVPROC=$O(^WV(790.2,"RT",TERMIEN,""))
  .I MATCH=0,$D(WVTERM("E","RAMIS(71,",$P(WVEXAM0,U,2))) S MATCH=1
- .I MATCH=1 S WVPROC=$O(^WV(790.2,"RT",TERMIEN,""))
+ .I MATCH=1 D
+ ..S WVPROC=$O(^WV(790.2,"RT",TERMIEN,""))
+ ..S EARLDATE=$$EARLDATE^PXRMPRAD(.WVTERM)
+ ..S TEMPDATE=9999999-$P(DATE,".")
+ ..I EARLDATE>0,TEMPDATE<EARLDATE S CLOSED=1
  ;check old style of specific CPT code
  I +$G(WVPROC)'>0 D
  .S WVCPT=$$GET1^DIQ(71,$P(WVEXAM0,U,2),9,"I") Q:WVCPT=""
@@ -97,8 +103,9 @@ CREATEQ ; Queue data entry creation. Called from CREATE above
  ;
  ;---> SET WVZSTAT =THE STATUS (OPEN OR CLOSED) IN WOMEN'S HEALTH.
  ;---> THAT MAMMOGRAMS SHOULD RECEIVE WHEN COPIED OVER FROM RADIOLOGY.
- S WVZSTAT=$P(Y,U,23) S:WVZSTAT="" WVZSTAT="o"
+ I $G(WVZSTAT)="" S WVZSTAT=$P(Y,U,23) S:WVZSTAT="" WVZSTAT="o"
  I $G(STATUS)]"" S WVZSTAT=$G(STATUS) ;status selected in ^WVEXPTRA
+ I CLOSED=1 S WVZSTAT="c"
  ;
  D COPY(WVEXAM0)
  ;
@@ -106,14 +113,27 @@ EXIT ;EP
  K I,N,X
  Q
  ;
+COMPARE(WVPROC) ;
+ N NAME,RESULT,TERMIEN,TERMARR,X
+ S RESULT=0
+ S TERMIEN=+$P($G(^WV(790.2,WVPROC,3)),U)
+ I TERMIEN=0 Q RESULT
+ S NAME=$$GET1^DIQ(811.5,TERMIEN_",",.01)
+ I NAME="" Q RESULT
+ D BLDTARR^PXRMPRAD(.TERMARR)
+ S X=0 F  S X=$O(TERMARR(X)) Q:X'>0!(RESULT=1)  D
+ .I TERMARR(X)=NAME S RESULT=1
+ Q RESULT
+ ;
 COPY(Y) ;EP
  ;---> COPY MAM PROCEDURE DATA FROM RADIOLOGY TO WOMEN'S HEALTH.
  ;---> VARIABLE DFN=PATIENT
  ;---> LOCATION=DUZ(2)
  ;---> WARD/CLINIC/LOCATION
- N X,WVIEN
+ N FDA,IENS,NUM,WVACCESS,WVIEN,WVIEN1,X,WVPVDX
  S WVLOC=$P(Y,U,8)
  ;
+ S WVPVDX=0
  ;---> WVDATE=DATE OF THE PROCEDURE.
  S WVDATE=$P($P(^RADPT(DFN,"DT",DATE,0),U),".")
  ;
@@ -124,8 +144,35 @@ COPY(Y) ;EP
  ;---> CHECK TO BE SURE THE CASE# XREF IS REALLY DOWN THERE.
  S:'$D(^RADPT("ADC",WVCASE,DFN,DATE,CASE)) WVCASE="UNKNOWN"
  ;
+ ;AGP TODO begin store off previous diagnosis into new multiple when when a verify report is resent
+ ;comment out the Q: command and remove the comments until AGP TODO END
+ ;---> capture previous info to be moved to the prev diagnosis multiple
  ;---> QUIT IF THIS PROCEDURE HAS ALREADY BEEN SENT TO WOMEN'S HEALTH.
- Q:$D(^WV(790.1,"E",WVCASE))
+ ;Q:$D(^WV(790.1,"E",WVCASE))
+ I $D(^WV(790.1,"E",WVCASE)) D  Q
+ .S WVIEN1=$O(^WV(790.1,"E",WVCASE,""))
+ .S WVACCESS=$P($G(^WV(790.1,WVIEN1,0)),U)
+ .S WVPVDX=$P($G(^WV(790.1,WVIEN1,0)),U,5)
+ .S WVZSTAT=$P($G(^WV(790.1,WVIEN1,0)),U,14)
+ .I WVPVDX=0!(WVIEN1=0)!(WVACCESS="") Q
+ .S WVDX=$P(Y,U,13)
+ .I +WVDX I $D(^WV(790.32,"C",WVDX)) S WVBWDX=$O(^WV(790.32,"C",WVDX,0))
+ .I WVPVDX=WVBWDX Q
+ .K WVERR
+ .S IENS="+2,"_WVIEN1_","
+ .S FDA(790.1,WVIEN1_",",.01)=WVACCESS
+ .S FDA(790.1,WVIEN1_",",.05)=$S(WVBWDX="":"@",1:WVBWDX)
+ .I WVZSTAT'="" S FDA(790.1,WVIEN1_",",.14)=WVZSTAT
+ .S FDA(790.24,IENS,.01)=WVPVDX
+ .S FDA(790.24,IENS,1)=$$NOW^XLFDT()
+ .D UPDATE^DIE("","FDA","","WVERR")
+ .K WVERR
+ .D ADD^PXRMEOC(DFN,$$NOW^XLFDT(),+WVIEN1_";WV(790.1,",1,0,"BREAST CARE",.WVERR)
+ .I '$D(WVERR) Q
+ .S NUM=0
+ .S NUM=NUM+1,^TMP("PXRMXMZ",$J,NUM,0)="Error adding Women's Health Procedure to the patient episode file."
+ .D BLDMSG^WVRPCGF1(DFN,"ERROR Updating Episode of Care File.",.NUM)
+ ;AGP TODO END
  ;
  ;---> REQUESTING PROVIDER/ORDERING PROVIDER
  S WVPROV=$P(Y,U,14)
@@ -160,6 +207,7 @@ PATIENT ;---> IF PATIENT ISN'T IN WOMEN'S HEALTH DATABASE, ADD HER.
  D FIND^WVRALIN1 ;check for 'unlinked' entry in File 790.1
  Q:$D(^WV(790.1,"E",WVCASE))  ;quit if link was made in WVRALIN1
 PROC ;---> CREATE MAMMOGRAM PROCEDURE IN WV PROCEDURE FILE #790.1.
+ ;
  S WVDR=".02////"_DFN_";.04////"_WVPROC
  S WVDR=WVDR_";.05////"_$G(WVBWDX)_";.07////"_WVPROV
  S WVDR=WVDR_";.09////"_$G(WVMOD)_";.1////"_DUZ(2)_";.11////"_WVLOC
@@ -170,11 +218,11 @@ PROC ;---> CREATE MAMMOGRAM PROCEDURE IN WV PROCEDURE FILE #790.1.
  I $D(WVMCNT) S:WVERR>-1 WVMCNT=WVMCNT+1
  Q:WVERR<0  ;procedure not added
  Q:$D(WVMCNT)  ;mass import of Rad/NM exams
- I +$G(Y)>0 D
+ I +$G(Y)>0,$$COMPARE(WVPROC)>0,WVPVDX=0 D
  .K WVERR
  .D ADD^PXRMEOC(DFN,$$NOW^XLFDT(),+Y_";WV(790.1,",1,0,"BREAST CARE",.WVERR)
  .I '$D(WVERR) Q
- .N NUM S NUM=0
+ .S NUM=0
  .S NUM=NUM+1,^TMP("PXRMXMZ",$J,NUM,0)="Error adding Women's Health Procedure to the patient episode file."
  .D BLDMSG^WVRPCGF1(DFN,"ERROR Updating Episode of Care File.",.NUM)
  ;Q:$P($G(^WV(790.02,+DUZ(2),0)),U,23)="c"  ;Status=closed
@@ -183,6 +231,7 @@ PROC ;---> CREATE MAMMOGRAM PROCEDURE IN WV PROCEDURE FILE #790.1.
  .Q
  D CPRS^WVSNOMED(69,DFN,"",WVPROV,"Mammogram results available.",DATE_"~"_CASE)
  Q
+ ;
  ;
 DELETE(DFN,DATE,CASE) ;EP
  ;---> MODIFY WOMEN'S HEALTH PROCEDURE TO REFLECT CHANGE.
@@ -194,6 +243,7 @@ DELETE(DFN,DATE,CASE) ;EP
  S ZTRTN="DELETEQ^WVRALINK",ZTDESC="WV MAMMOGRAM RPT CHANGE"
  S ZTSAVE("DFN")="",ZTSAVE("DATE")="",ZTSAVE("CASE")=""
  S ZTIO="",ZTDTH=$H
+ ;D DELETEQ^WVRALINK
  D ^%ZTLOAD
  Q
 DELETEQ ; Modify WV entry when mammogram report is unverified or deleted
@@ -213,7 +263,9 @@ DELETEQ ; Modify WV entry when mammogram report is unverified or deleted
  ;
  S WVIEN=$O(^WV(790.1,"E",WVCASE,0))
  Q:'$D(^WV(790.1,WVIEN,0))
- D RADMOD^WVPROC(WVIEN) ;update wh status to "open"
+ ;AGP TODO remove auto open a WH procedure when a report is unverified or deleted
+ ;commented out D RADMON^WVPROC
+ ;D RADMOD^WVPROC(WVIEN) ;update wh status to "open"
  S WVPROV=+$$GET1^DIQ(790.1,WVIEN,.07,"I") ;get provider/requestor
  S WVCMGR=+$$GET1^DIQ(790,DFN,.1,"I") ;get case manager
  S:WVCMGR XMY(WVCMGR)=""
@@ -235,3 +287,4 @@ DELETEQ ; Modify WV entry when mammogram report is unverified or deleted
  S XMTEXT="WVMSG("
  D ^XMD
  Q
+ ;

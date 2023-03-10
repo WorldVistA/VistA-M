@@ -1,7 +1,7 @@
-PXRMINDX ;SLC/PKR - Routines for utilizing the index. ;01/07/2013
- ;;2.0;CLINICAL REMINDERS;**4,6,12,17,18,26**;Feb 04, 2005;Build 404
+PXRMINDX ;SLC/PKR - Routines for utilizing the index. ;03/31/2022
+ ;;2.0;CLINICAL REMINDERS;**4,6,12,17,18,26,65**;Feb 04, 2005;Build 438
  ;Code for patient findings.
- ;================================================================
+ ;====================
 EVALFI(DFN,DEFARR,ENODE,FIEVAL) ;General finding evaluator.
  N BDT,EDT,FIEVT,FILENUM,FINDING,FINDPA,ITEM,NOINDEX
  S FILENUM=$$GETFNUM^PXRMDATA(ENODE)
@@ -20,9 +20,10 @@ EVALFI(DFN,DEFARR,ENODE,FIEVAL) ;General finding evaluator.
  .. D FIEVAL(FILENUM,"PI",DFN,ITEM,.FINDPA,.FIEVT)
  .. M FIEVAL(FINDING)=FIEVT
  .. S FIEVAL(FINDING,"FINDING")=$P(FINDPA(0),U,1)
+ .. I FILENUM=9000010.11 D CRFINDING^PXRMIMM(DFN,ITEM,FINDING,.FIEVAL)
  Q
  ;
- ;================================================================
+ ;====================
 EVALTERM(DFN,FINDPA,ENODE,TERMARR,TFIEVAL) ;General term
  ;evaluator.
  N FIEVT,FILENUM,ITEM,NOINDEX,PFINDPA
@@ -44,21 +45,23 @@ EVALTERM(DFN,FINDPA,ENODE,TERMARR,TFIEVAL) ;General term
  .. D FIEVAL(FILENUM,"PI",DFN,ITEM,.PFINDPA,.FIEVT)
  .. M TFIEVAL(TFINDING)=FIEVT
  .. S TFIEVAL(TFINDING,"FINDING")=$P(TFINDPA(0),U,1)
+ .. I FILENUM=9000010.11 D CRFINDING^PXRMIMM(DFN,ITEM,TFINDING,.TFIEVAL)
  Q
  ;
- ;================================================================
+ ;====================
 FIEVAL(FILENUM,SNODE,DFN,ITEM,PFINDPA,FIEVAL) ;
  ;Evaluate regular patient findings.
- N BDT,CASESEN,COND,CONVAL,DAS,DATE,EDT,FIEVD,FLIST,ICOND,IEN,IND,INVFD
- N NFOUND,NGET,NOCC,NP
+ N BDT,CASESEN,COND,CONVAL,CRLIST,DAS,DATE,EDT,FIEVD,FLIST
+ N ICOND,IEN,IND,INVFD,ISC,NFOUND,NGET,NOCC,NP
  N SAVE,SDIR,SSFIND,STATOK,STATUSA,UCIFS,USESTRT,VSLIST
  ;Set the finding search parameters.
  D SSPAR^PXRMUTIL(PFINDPA(0),.NOCC,.BDT,.EDT)
- I $G(PXRMDEBG) S FIEVAL("BDTE")=BDT,FIEVAL("EDTE")=EDT
+ S FIEVAL("BDTE")=BDT,FIEVAL("EDTE")=EDT
  D SCPAR^PXRMCOND(.PFINDPA,.CASESEN,.COND,.UCIFS,.ICOND,.VSLIST)
  S SDIR=$S(NOCC<0:+1,1:-1)
  S NOCC=$S(NOCC<0:-NOCC,1:NOCC)
  S NGET=$S(UCIFS:50,1:NOCC)
+ S ISC=$S(FILENUM=9000010.11:$P(PFINDPA(0),U,17),1:"")
  ;Determine if this is a finding with a start and stop date.
  S SSFIND=$S(FILENUM=52:1,FILENUM["55":1,FILENUM=100:1,1:0)
  S USESTRT=$S(SSFIND:$P(PFINDPA(0),U,15),1:0)
@@ -66,7 +69,7 @@ FIEVAL(FILENUM,SNODE,DFN,ITEM,PFINDPA,FIEVAL) ;
  ;Get the status list.
  D GETSTATI^PXRMSTAT(FILENUM,.PFINDPA,.STATUSA)
  I SSFIND D FPDATSS(FILENUM,SNODE,DFN,ITEM,NGET,SDIR,BDT,EDT,USESTRT,.NFOUND,.FLIST)
- I 'SSFIND D FPDAT(FILENUM,SNODE,DFN,ITEM,NGET,SDIR,BDT,EDT,.NFOUND,.FLIST)
+ I 'SSFIND D FPDAT(FILENUM,SNODE,ISC,DFN,ITEM,NGET,SDIR,BDT,EDT,.NFOUND,.FLIST)
  I NFOUND=0 S FIEVAL=0 Q
  S INVFD=$P(PFINDPA(0),U,16)
  S NP=0
@@ -79,6 +82,7 @@ FIEVAL(FILENUM,SNODE,DFN,ITEM,PFINDPA,FIEVAL) ;
  . D GETDATA^PXRMDATA(FILENUM,DAS,.FIEVD)
  . I INVFD,$D(FIEVD("VISIT")) D GETDATA^PXRMVSIT(FIEVD("VISIT"),.FIEVD,0)
  . S FIEVD("DATE")=$P(FLIST(IND),U,2)
+ . I ISC'="" S FIEVD("ISC")=ISC
  .;If there is a status list make sure the finding has one on the list.
  . S STATOK=$S($D(STATUSA):$$STATUSOK(.STATUSA,.FIEVD),1:1)
  . I 'STATOK Q
@@ -98,10 +102,12 @@ FIEVAL(FILENUM,SNODE,DFN,ITEM,PFINDPA,FIEVAL) ;
  S FIEVAL("FILE NUMBER")=FILENUM
  Q
  ;
- ;================================================================
-FPDAT(FILENUM,SNODE,DFN,ITEM,NGET,SDIR,BDT,EDT,NFOUND,FLIST) ;Find patient
+ ;====================
+FPDAT(FILENUM,SNODE,ISC,DFN,ITEM,NGET,SDIR,BDT,EDT,NFOUND,FLIST) ;Find patient
  ;data for regular files. FLIST is returned in date order, i.e.,
  ;FLIST(1) is the most recent SDIR=-1, oldest SDIR=+1.
+ I (FILENUM=9000010.11),(ISC="CVX") D CVXP^PXRMIMM(DFN,ITEM,NGET,SDIR,BDT,EDT,.NFOUND,.FLIST) Q
+ I (FILENUM=9000010.11),(ISC="VGN") D VGNP^PXRMIMM(DFN,ITEM,NGET,SDIR,BDT,EDT,.NFOUND,.FLIST) Q
  I FILENUM=601.84 D SEVALFI^PXRMMH(DFN,ITEM,NGET,SDIR,BDT,EDT,.NFOUND,.FLIST) Q
  N DAS,DATE,DONE,EDTT
  S EDTT=$S(EDT[".":EDT+.0000001,1:EDT+.240001)
@@ -117,7 +123,7 @@ FPDAT(FILENUM,SNODE,DFN,ITEM,NGET,SDIR,BDT,EDT,NFOUND,FLIST) ;Find patient
  .. I NFOUND=NGET S DONE=1 Q
  Q
  ;
- ;================================================================
+ ;====================
 FPDATSS(FILENUM,SNODE,DFN,ITEM,NGET,SDIR,BDT,EDT,USESTRT,NFOUND,FLIST) ;Find
  ;patient data for findings that have a start and stop date. FLIST
  ;is returned in date order, i.e., FLIST(1) is the most recent.
@@ -148,7 +154,7 @@ FPDATSS(FILENUM,SNODE,DFN,ITEM,NGET,SDIR,BDT,EDT,USESTRT,NFOUND,FLIST) ;Find
  .. S NFOUND=NFOUND+1,FLIST(NFOUND)=TLIST(TDATE,TIND)
  Q
  ;
- ;================================================================
+ ;====================
 OVERLAP(START,STOP,BDT,EDT) ;Determine if the date range defined by START and
  ;STOP overlaps with the date range defined by BDT and EDT. The return
  ;value "O" means they overlap, "L" means START, STOP is to the
@@ -157,7 +163,7 @@ OVERLAP(START,STOP,BDT,EDT) ;Determine if the date range defined by START and
  I STOP<BDT Q "L"
  Q "O"
  ;
- ;================================================================
+ ;====================
 STATUSOK(STATUSA,FIEVD) ;Return true if the status in FIEVD matches one in
  ;the list in STATUSA.
  I '$D(FIEVD("STATUS")) Q 1

@@ -1,5 +1,5 @@
 DGPTAE02 ;ALB/MTC,HIOFO/FT - 701 Edit Checks ;3/12/15 1:51pm
- ;;5.3;Registration;**8,22,39,114,176,251,247,270,446,418,482,466,683,729,884**;Aug 13, 1993;Build 31
+ ;;5.3;Registration;**8,22,39,114,176,251,247,270,446,418,482,466,683,729,884,1057**;Aug 13, 1993;Build 17
  ;10/06/1999 ACS - Added Place of Disposition codes M,Y,Z to the
  ;validity checks
  ;5/15/2000 ACS - Added Treating Specialty 37 as a valid code
@@ -182,5 +182,5 @@ SHAD ;shipboard hazard and defense
  I "012YN "'[DGPT70SHAD S DGPTERC=756
  Q
 DXLSPOA ;check dxls poa value
- I "YNUW "'[DGPTDXLSPOA S DGPTERC=720
+ I "1YNUW "'[DGPTDXLSPOA S DGPTERC=720  ; DG*5.3*1057
  Q

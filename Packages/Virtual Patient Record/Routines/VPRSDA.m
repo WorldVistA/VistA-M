@@ -1,11 +1,9 @@
 VPRSDA ;SLC/MKB -- SDA utilities ;10/25/18  15:29
- ;;1.0;VIRTUAL PATIENT RECORD;**8,10,16,20**;Sep 01, 2011;Build 9
+ ;;1.0;VIRTUAL PATIENT RECORD;**8,10,16,20,26,28,29**;Sep 01, 2011;Build 11
  ;;Per VHA Directive 6402, this routine should not be modified.
  ;
  ; External References          DBIA#
  ; -------------------          -----
- ; ^AUPNPROB                     5703
- ; ^LR                            525
  ; ^OR(100                       5771
  ; ^ORD(100.98                   6982
  ; ^SC                          10040
@@ -18,14 +16,14 @@ VPRSDA ;SLC/MKB -- SDA utilities ;10/25/18  15:29
  ; GMRVUT0, ^UTILITY($J          1446
  ; GMVGETVT                      5047
  ; GMVUTL                        5046
- ; ICDEX                         5747
  ; ICPTCOD                       1995
  ; LEXTRAN                       4912
  ; RMIMRP                        4745
- ; SCAPMC                        1916
- ; SDUTL3                        1252
  ; TIULQ                         2693
+ ; VASITE                       10112
+ ; WVRPCVPR, ^TMP("WVPREGST"     7199
  ; XLFNAME                       3065
+ ; XUPARAM                       2541
  ;
 INTDATE(X) ; -- Return internal form of date X
  N %DT,Y
@@ -67,22 +65,9 @@ NAMECOMP(NAME) ; -- return name as string of component pieces
  F I="GIVEN","MIDDLE","SUFFIX" S Y=Y_U_$G(NAME(I))
  Q Y
  ;
-WP(ORIFN,ID) ; -- return a WP value from an order response as a string
- N DA,I,X,Y S Y=""
- S DA=+$O(^OR(100,+$G(ORIFN),4.5,"ID",ID,0))
- S I=0 F  S I=$O(^OR(100,+$G(ORIFN),4.5,DA,2,I)) Q:'I  S X=$G(^(I,0)) D
- . I '$L(Y) Q:(X="")!(X?1." ")  S Y=X Q
- . I $E(X)=" " S Y=Y_$C(13,10)_X Q
- . S Y=Y_$S($E(Y,$L(Y))=" ":"",1:" ")_X
- Q Y
- ;
-LASTACT(ORIFN) ; -- return DA of current or last order action
- N Y S ORIFN=+$G(ORIFN)
- S Y=+$P($G(^OR(100,ORIFN,3)),U,7)
- I Y<1 S Y=+$O(^OR(100,ORIFN,8,"A"),-1) S:'Y Y=1
- Q Y
- ;
 CODED ; -- ck Code Table ID for internal^external format
+ ; called from DDEG for entity VPR CODE TABLE using variables:
+ ;   FILE, FIELD, ID (read only, do NOT kill)
  Q:$G(ID)=""  Q:$L(ID,"^")>1  ;ok
  N X,NM S NM=ID
  I $G(FILE),$G(FIELD) D
@@ -122,13 +107,19 @@ DESC(CODE) ; -- called from CODE, to return coding system text
  I '$L($G(Y)) S Y=$$GET1^DIQ(FILE,IEN_",",.01)
  Q Y
  ;
-CPT(IEN,DATE) ; -- return code^description^CPT-4 for #81 IEN
+NULL(N) ; -- return null string(s) to delete property
+ N I,Y,QOT S N=+$G(N,1),QOT=""""""
+ S Y=QOT I N>1 F I=1:1:(N-1) S Y=Y_U_QOT
+ Q Y
+ ;
+CPT(IEN,DATE,LONG) ; -- return code^description^CPT-4 for #81 IEN
  N X0,VPRX,N,I,X,Y
  S IEN=+$G(IEN),DATE=$G(DATE) S:DATE<1 DATE=DT
  S X0=$$CPT^ICPTCOD(IEN,DATE) I X0<0 Q ""
- S Y=$P(X0,U,2,3)_"^CPT-4"                ;CPT Code^Short Name
- S N=$$CPTD^ICPTCOD($P(Y,U),"VPRX",,DATE) ;CPT Description
- I N>0,$L($G(VPRX(1))) D
+ S Y=$P(X0,U,2,3)_"^CPT-4" ;CPT Code^Short Name
+ I $G(LONG) D              ;CPT Description instead
+ . S N=$$CPTD^ICPTCOD($P(Y,U),"VPRX",,DATE)
+ . I N'>0!'$L($G(VPRX(1))) Q
  . S X=$G(VPRX(1)),I=1
  . F  S I=$O(VPRX(I)) Q:I<1  Q:VPRX(I)=" "  S X=X_" "_VPRX(I)
  . S $P(Y,U,2)=X
@@ -145,64 +136,27 @@ COUNTY(ST,CTY) ; -- return ien^name for a STate and CounTY
  S:$L(Y) Y=+CTY_U_Y
  Q Y
  ;
- ;
-CONSNAME(IEN) ; -- return display name using fields
- ; Request Type (#13), To Service (#1) & Procedure/Request Type (#4)
- N VPRX,Y S VPRX=$G(VPRCONS(0))
- I $P(VPRX,U,8)?1.N1";ORD(101," D  ;resolve old v-ptr
- . S Y=$P(VPRX,U,8)
- . S Y=$$GET1^DIQ(101,+Y,.01),$P(VPRX,U,8)=Y
- . S $P(VPRCONS(0),U,8)=Y
- S Y=$P(VPRX,U,5)
- I $P(VPRX,U,17)="P",$L($P(VPRX,U,8)) S Y=$P(VPRX,U,8)_" "_Y_" Proc"
- E  S Y=Y_" Cons"
- ;I $P(VPRX,U,17)="P",$L($P(VPRX,U,8)) S Y=$P(VPRX,U,8)
- ;E  S Y=$P(VPRX,U,5)_" Consult"
+SITE() ; -- return current site#
+ N Y S Y=+$$SITE^VASITE
+ S:Y'>0 Y=$$KSP^XUPARAM("INST")
  Q Y
  ;
-PROVDX(IEN) ; -- return full Consult ProvDx string, or null
- N X,Y,VPRDX S Y=""
- S DATA=$G(VPRCONS(30)),X=$G(VPRCONS(30.1))
- I $L(X,U)<3 S DDEOUT=1 Q ""
- I $E(X)=U S DDEOUT=1 Q ""
- S:$P(X,U,2)="" $P(X,U,2)=DT
- S:$P(X,U,3)="" $P(X,U,3)="ICD"
- I $$ICDD^ICDEX($P(X,U),.VPRDX,$P(X,U,2),$P(X,U,3))>0 D
- . S Y=$P(X,U)_U_VPRDX(1)_U_$$SNAM^ICDEX($$SYS^ICDEX($P(X,U,3)))
- Q Y
  ;
-PROBCMT(IEN) ; -- return list of comments in
- ; DLIST(#) = id ^ date ^ user ^ type ^ facility ^ text
- N I,J,N,X,FAC S N=0
- S I=0 F  S I=$O(^AUPNPROB(IEN,11,I)) Q:I<1  S FAC=$G(^(I,0)) D
- . S J=0 F  S J=$O(^AUPNPROB(IEN,11,I,11,J)) Q:J<1  S X=$G(^(J,0)) D
- .. Q:$P(X,U,4)'="A"
- .. S Y=$P(X,U,5)_U_$P(X,U,6)_U_U_FAC_U_$P(X,U,3)
- .. S N=N+1,DLIST(N)=J_","_I_","_IEN_U_Y
+OR1(ORIFN) ; -- define basic variables for any order
+ ; Returns OR0, OR3, OR6, OR8, ORDAD, and ORSIG to Order entities
+ S ORIFN=+$G(ORIFN)
+ S OR0=$G(^OR(100,ORIFN,0)),OR3=$G(^(3)),OR6=$G(^(6)),OR8=$G(^(8,1,0))
+ S ORDAD=$P($G(OR3),U,9) ;parent order
+ S ORSIG=$$ORSIG(ORIFN)  ;signature info
  Q
  ;
-SCTTEXT(CODE,IEN) ; -- get Preferred Text for SCT Code
- N Y,GMPDT,LEX,LEXY S Y=""
- S GMPDT=$P($G(^AUPNPROB(IEN,0)),U,8) S:'GMPDT GMPDT=DT
- S LEXY=$$CODE^LEXTRAN(CODE,"SCT",GMPDT)
- S:LEXY>0 Y=$G(LEX("P")) ;preferred term
- Q Y
- ;
-AD(ID) ; -- get info for one Adv Directive
- K VPRTIU S ID=$G(ID)
- D EXTRACT^TIULQ(+ID,"VPRTIU",,".01:.05;1201;1212;1301;1302",,1,"I")
- S:'DFN DFN=+$G(VPRTIU(+ID,.02,"I"))
- I DFN,'$D(^TMP("TIUPPCV",$J)) D  ;one, do query
- . N DLIST,I,X
- . D ADVDIR^VPRSDAQ
- . S I=0 F  S I=$O(DLIST(I)) Q:I<1  S X=$G(DLIST(I)) I +X=+ID S ID=X Q
- S VPRADV=ID,ID=+ID
- Q
- ;
-LRTIU(IDT,SUB) ; -- return TIU ien of lab report
- N I,IEN,X,Y S IDT=$G(IDT),SUB=$G(SUB)
- S Y=IDT_";"_SUB
- S I=0 F  S I=$O(^LR(LRDFN,SUB,IDT,.05,I)) Q:I<1  S IEN=+$P($G(^(I,0)),U,2),X=+$$GET1^DIQ(8925,IEN,.05,"I") I (X=7)!(X=8) S Y=IEN_";TIU" Q
+WP(ORIFN,ID) ; -- return a WP value from an order response as a string
+ N DA,I,X,Y S Y=""
+ S DA=+$O(^OR(100,+$G(ORIFN),4.5,"ID",ID,0))
+ S I=0 F  S I=$O(^OR(100,+$G(ORIFN),4.5,DA,2,I)) Q:'I  S X=$G(^(I,0)) D
+ . I '$L(Y) Q:(X="")!(X?1." ")  S Y=X Q
+ . I $E(X)=" " S Y=Y_$C(13,10)_X Q
+ . S Y=Y_$S($E(Y,$L(Y))=" ":"",1:" ")_X
  Q Y
  ;
 ORDG(DG) ; -- return ien^name^VA100.98 for a DG abbreviation
@@ -210,7 +164,31 @@ ORDG(DG) ; -- return ien^name^VA100.98 for a DG abbreviation
  S:X Y=X_U_$P($G(^ORD(100.98,X,0)),U)_"^VA100.98"
  Q Y
  ;
-CP1(IEN) ; -- get MD nodes for procedure [ID Action]
+LASTACT(ORIFN) ; -- return DA of current or last order action
+ N Y S ORIFN=+$G(ORIFN)
+ S Y=+$P($G(^OR(100,ORIFN,3)),U,7)
+ I Y<1 S Y=+$O(^OR(100,ORIFN,8,"A"),-1) S:'Y Y=1
+ Q Y
+ ;
+ORSIG(ORIFN) ; -- return string of signature data from Order Action as
+ ; Signature Status (#4) ^ Signed By (#5) ^ D/T Signed (#6), or
+ ; Signature Status (#4) ^ ^ Release D/T (#16) if not e-signed
+ N Y,X0,X,I S Y=""
+ S X0=$G(^OR(100,+$G(ORIFN),8,1,0))
+ I $P(X0,U,6) S Y=$P(X0,U,4,6)
+ ; look for sign on corrected or parent order action
+ I Y="",$P(X0,U,15)=12 D  ;replaced
+ . S I=+$O(^OR(100,+$G(ORIFN),8,1)),X=$G(^(I,0))
+ . I $P(X,U,2)="XX",$P(X,U,6) S Y=$P(X,U,4,6)
+ I Y="",$P(X0,U,4)=8,$G(ORDAD) D  ;parent [no longer used]
+ . S X=$G(^OR(100,+$G(ORDAD),8,1,0))
+ . S:$P(X,U,6) Y=$P(X,U,4,6)
+ ; else, return Sig Sts & Release D/T
+ S:Y="" Y=$P(X0,U,4)_U_U_$P(X0,U,16)
+ S X=$P(Y,U) S:$L(X) $P(Y,U)=$$EXTERNAL^DILFD(100.008,4,,X)
+ Q Y
+ ;
+CP1(IEN) ; -- get MD nodes for procedure [ID Action], returns:
  ; VPRCP = ^TMP("MDHSP",$J,I)
  ; VPRCN = ^GMR(123,consult,0)
  ; VPRTIU(field#,"I") = TIU data field
@@ -230,7 +208,8 @@ CP1(IEN) ; -- get MD nodes for procedure [ID Action]
  . M VPRTIU=VPRD(X)
  Q
  ;
-VIT1(IEN) ; -- get info for one Vital measurement, returns VPRGMV=^(0)
+VIT1(IEN) ; -- get info for one Vital measurement
+ ; returns VPRV array, VPRGMV=VPRV(0), VPRANGE, VPRTYPE to entity
  S IEN=$G(IEN) I IEN="" S DDEOUT=1 Q
  D GETREC^GMVUTL(.VPRV,IEN,1)
  S VPRGMV=$G(VPRV(0)) I '$G(VPRV(0)) S DDEOUT=1 Q
@@ -263,6 +242,7 @@ VITCODE(IEN,SFN) ; -- return [first] code for vital type
  Q Y
  ;
 FIM1(IEN) ; -- get info for one set of measurements
+ ; Returns VPRSITE, VPRM arrays to entity
  I '$D(VPRSITE) D PRM^RMIMRP(.VPRSITE) I '$O(VPRSITE(1)) S DDEOUT=1 Q
  D GC^RMIMRP(.VPRM,IEN)
  ; S:'$G(DFN) ??
@@ -294,29 +274,11 @@ TOTAL(NODE) ; -- Return total of scores, or "" if incomplete
  S SUM=0 F I=1:1:18 S X=$P(NODE,U,I) S:X SUM=SUM+X I X<1 S SUM="" Q
  Q SUM
  ;
-PRF1(ID) ; -- set up one patient record flag assignment [moved to VPRSDAF]
- ; Returns VPRF1("NAME")=VALUE
- S:'$G(DFN) DFN=+$P(ID,"~",2)
- I '$G(DFN)!'$G(ID) S DDEOUT=1 Q
- D:'$D(VPRF)  K VPRF1
- . N DLIST D PRF^VPRSDAQ
- N I S I=+$G(VPRF("IDX",+ID))
- I I M VPRF1=VPRF(I)
- Q
- ;
-PCMM ; -- get DLIST(#)=ien^role of PCP, team members
- ; Expects DFN, VPRTEAM = ien^name of PCTeam
- N PCP,ALL S PCP=$$OUTPTPR^SDUTL3(DFN)
- S:PCP>0 DLIST(1)=+PCP_"^PRIMARY CARE PROVIDER"
- S ALL=$$PRPT^SCAPMC(DFN,,,,,,"VPRPTP") ;all prov's assigned to pt
-PCMMT ; -- enter here for just the team members
- N VPRTM,VPRN,PRV,ROLE
- Q:'$G(VPRTEAM)                             ;set by *TeamName property
- Q:'$$PRTM^SCAPMC(+$G(VPRTEAM),,,,"VPRTM")  ;team members
- S VPRN=+$O(DLIST("A"),-1)
- S PRV=0 F  S PRV=$O(VPRTM("SCPR",PRV)) Q:PRV<1  I PRV'=+$G(PCP) D
- . S ROLE=+$O(VPRTM("SCPR",PRV,0))
- . Q:'$D(VPRPTP("SCPR",PRV,ROLE))           ;not assigned to pt
- . S VPRN=VPRN+1,DLIST(VPRN)=PRV_U_$$GET1^DIQ(404.57,ROLE,.01)
- . ; provider #200 ien ^ position name
+WVPL1(IEN) ; -- set up pregnancy API array (IEN will be DFN)
+ ; Returns VPRPREG array to entity
+ I $G(IEN)<1 S DDEOUT=1 Q
+ D:'$D(^TMP("WVPREGST",$J,"BASELINE")) BASELINE^WVRPCVPR(IEN)
+ I '$D(^TMP("WVPREGST",$J,"BASELINE")) S DDEOUT=1 Q
+ M VPRPREG=^TMP("WVPREGST",$J,"BASELINE")
+ S DFN=IEN,IEN=$G(^TMP("WVPREGST",$J,"BASELINE","EXTERNAL ID"))
  Q

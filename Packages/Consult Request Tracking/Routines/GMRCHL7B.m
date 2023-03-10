@@ -1,16 +1,16 @@
-GMRCHL7B ;SLC/DCM,MA,JFR - Process data from GMRCHL7A ;10/09/15  13:26
- ;;3.0;CONSULT/REQUEST TRACKING;**1,5,12,21,17,22,33,66,46,73,85,96**;DEC 27, 1997;Build 21
+GMRCHL7B ;SLC/DCM,MA,JFR - Process data from GMRCHL7A ; 12/1/20 4:43pm
+ ;;3.0;CONSULT/REQUEST TRACKING;**1,5,12,21,17,22,33,66,46,73,85,96,145,168**;DEC 27, 1997;Build 3
  ;
  ; This routine invokes IA #2053(DIE), #10006(DIC), #2056(GET1^DIQ), #5747$$CODECS^ICDEX
  ;
  ; ABV/SCR: 09/26/2007 *96*- Modified to include population of UNIQUE CONSULT ID field
- ;
+ ; Patch 145 - adds GMRCDSID
 NEW(MESSAGE) ;Add new order
  ;GMRCO=^GMR(123,IFN, the new file number in file ^GMR(123,
  ;GMRCORFN=OE/RR file number       GMRCWARD=ward patient is on
  ;GMRCSS=service consult sent to   GMRCAD=date/time of request
  ;GMRCPRI=procedure/request        GMRCURGI=urgency
- ;GMRCERDT=earliest desired date
+ ;GMRCERDT=clinically ind date
  ;GMRCATN=attention                GMRCSTS=OE/RR order status
  ;GMRCORNP=patient's provider      GMRCTYPE=request type (request or consult)
  ;GMRCSBR=service rendered on what basis (Inpatient, or Outpatient)
@@ -20,12 +20,12 @@ NEW(MESSAGE) ;Add new order
  ;GMRCPRCD=provisional DX code
  ;GMRCCS=coding system for prov diagnosis
  ;GMRCCPTR=pointer to coding system file
+ ;GMRCUCID=consult unique ID       GMRCDSID=decision support tool id
  ; Output:
  ;    MESSAGE = rejection message if problems encountered while filing
  ;
  ;
- N DIC,DLAYGO,X,Y,DR,DIE,GMRCADUZ,GMRCCP,GMRCCS
- N GMRCUCID   ;ABV/SCR 09/26/2017
+ N DIC,DLAYGO,X,Y,DR,DIE,GMRCADUZ,GMRCCP,GMRCCS,GMRCUCID   ;ABV/SCR 09/26/2017
  S DIC="^GMR(123,",DIC(0)="L",X="""N""",DLAYGO=123 D ^DIC K DLAYGO Q:Y<1
  ; Patch #21 changed GMRCA=1 to GMRCA=2
  S (DA,GMRCO)=+Y,GMRCSTS=5,GMRCA=2,DIE=DIC
@@ -36,8 +36,8 @@ NEW(MESSAGE) ;Add new order
  D ^DIE
  I GMRCOTXT=$$GET1^DIQ(123.5,+GMRCSS,.01) S GMRCOTXT=""
  ;Added new field .1 to DR on 7/11/98 to save the order text
- ;S DR="6////^S X=GMRCPLI;8////^S X=GMRCSTS;9////^S X=GMRCA;10////^S X=GMRCORNP;13////^S X=GMRCTYPE;14////^S X=$G(GMRCSBR);17////^S X=$G(GMRCERDT);30////^S X=$G(GMRCPRDG);.1////^S X=$G(GMRCOTXT)" ;wat/66
  S DR="6////^S X=GMRCPLI;8////^S X=GMRCSTS;9////^S X=GMRCA;10////^S X=GMRCORNP;13////^S X=GMRCTYPE;14////^S X=$G(GMRCSBR);17////^S X=$G(GMRCERDT);30////^S X=$G(GMRCPRDG);.1////^S X=$G(GMRCOTXT);80////^S X=GMRCUCID" ;ABV/SCR 12/14/17 *96*
+ S DR=DR_";85////^S X=$G(GMRCDSID)"
  I $D(GMRCPRCD) D
  .S GMRCCS=""
  .S GMRCCS=$$CODECS^ICDEX(GMRCPRCD,80) I $G(GMRCCS)'="" D  ;use dx code to get coding system
@@ -115,14 +115,15 @@ MODIFY ;Change an order/request when an HL7 'XX' code is received
  D EXIT Q
 REASON ;load the reason for request into ^GMR(123,IFN,20
  S ^GMR(123,GMRCO,20,0)="^^^"_$S($D(GMRCDA):GMRCDA,1:DT)_"^"
- S L=0,LN=1 F  S L=$O(GMRCRFQ(L)) Q:L=""  S ^GMR(123,GMRCO,20,LN,0)=GMRCRFQ(L),LN=LN+1
+ S L=0,LN=1 F  S L=$O(GMRCRFQ(L)) Q:L=""  S GMRCRFQ(LN)=$$CHKTXT^GMRCHL7U(GMRCRFQ(LN)),^GMR(123,GMRCO,20,LN,0)=GMRCRFQ(L),LN=LN+1
  S LN=LN-1,$P(^GMR(123,GMRCO,20,0),"^",3)=LN
  K L,LN
  Q
 COMMENT(GMRCARY) ;add comments to the record.  Add the comment header, then the comment lines, and lastly, the number of comment lines to the header
  ;GMRCARY= GMRCNTC array
+ I $D(GMRCARY) Q:($E(GMRCARY(1),1,6)="dstid_")
  S LN=0,^GMR(123,GMRCO,40,DA,1,0)="^^^^"_$P(GMRCDA,".",1)_"^"
- F  S LN=$O(GMRCARY(LN)) Q:LN=""  S ^GMR(123,+GMRCO,40,DA,1,LN,0)=GMRCARY(LN),LN1=LN
+ F  S LN=$O(GMRCARY(LN)) Q:LN=""  S GMRCARY(LN)=$$CHKTXT^GMRCHL7U(GMRCARY(LN)),^GMR(123,+GMRCO,40,DA,1,LN,0)=GMRCARY(LN),LN1=LN
  S $P(^GMR(123,+GMRCO,40,DA,1,0),"^",3,4)=LN1_"^"_LN1
  K LN,LN1 Q
  Q

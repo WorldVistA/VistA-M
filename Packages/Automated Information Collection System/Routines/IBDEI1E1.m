@@ -1,132 +1,122 @@
-IBDEI1E1 ; ; 04-FEB-2020
- ;;3.0;IB ENCOUNTER FORM IMP/EXP;;FEB 04, 2020
+IBDEI1E1 ; ; 01-FEB-2022
+ ;;3.0;IB ENCOUNTER FORM IMP/EXP;;FEB 01, 2022
  Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,999) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
- ;;^UTILITY(U,$J,358.3,22184,1,3,0)
- ;;=3^Lobectomy
- ;;^UTILITY(U,$J,358.3,22184,1,4,0)
- ;;=4^Z90.2
- ;;^UTILITY(U,$J,358.3,22184,2)
- ;;=^5063585
- ;;^UTILITY(U,$J,358.3,22185,0)
- ;;=Z94.2^^99^1129^42
- ;;^UTILITY(U,$J,358.3,22185,1,0)
+ ;;^UTILITY(U,$J,358.3,22449,2)
+ ;;=^5022045
+ ;;^UTILITY(U,$J,358.3,22450,0)
+ ;;=S14.159S^^73^964^2
+ ;;^UTILITY(U,$J,358.3,22450,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,22185,1,3,0)
- ;;=3^Lung Transplant
- ;;^UTILITY(U,$J,358.3,22185,1,4,0)
- ;;=4^Z94.2
- ;;^UTILITY(U,$J,358.3,22185,2)
- ;;=^5063656
- ;;^UTILITY(U,$J,358.3,22186,0)
- ;;=Z90.5^^99^1129^43
- ;;^UTILITY(U,$J,358.3,22186,1,0)
+ ;;^UTILITY(U,$J,358.3,22450,1,3,0)
+ ;;=3^Incmpl Lesion at Unspec Level of Cervical Spinal Cord,Other,Sequela
+ ;;^UTILITY(U,$J,358.3,22450,1,4,0)
+ ;;=4^S14.159S
+ ;;^UTILITY(U,$J,358.3,22450,2)
+ ;;=^5022201
+ ;;^UTILITY(U,$J,358.3,22451,0)
+ ;;=S24.101S^^73^964^5
+ ;;^UTILITY(U,$J,358.3,22451,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,22186,1,3,0)
- ;;=3^Nephrectomy
- ;;^UTILITY(U,$J,358.3,22186,1,4,0)
- ;;=4^Z90.5
- ;;^UTILITY(U,$J,358.3,22186,2)
- ;;=^5063590
- ;;^UTILITY(U,$J,358.3,22187,0)
- ;;=Z93.6^^99^1129^44
- ;;^UTILITY(U,$J,358.3,22187,1,0)
+ ;;^UTILITY(U,$J,358.3,22451,1,3,0)
+ ;;=3^Injury at T1 Level of Thoracic Spinal Cord,Unspec,Sequela
+ ;;^UTILITY(U,$J,358.3,22451,1,4,0)
+ ;;=4^S24.101S
+ ;;^UTILITY(U,$J,358.3,22451,2)
+ ;;=^5023275
+ ;;^UTILITY(U,$J,358.3,22452,0)
+ ;;=S24.159S^^73^964^3
+ ;;^UTILITY(U,$J,358.3,22452,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,22187,1,3,0)
- ;;=3^Nephrostomy/Ureterostomy/Urostomy
- ;;^UTILITY(U,$J,358.3,22187,1,4,0)
- ;;=4^Z93.6
- ;;^UTILITY(U,$J,358.3,22187,2)
- ;;=^5063651
- ;;^UTILITY(U,$J,358.3,22188,0)
- ;;=Z91.14^^99^1129^46
- ;;^UTILITY(U,$J,358.3,22188,1,0)
+ ;;^UTILITY(U,$J,358.3,22452,1,3,0)
+ ;;=3^Incmpl Lesion at Unspec Level of Thoracic Spinal Cord,Other,Sequela
+ ;;^UTILITY(U,$J,358.3,22452,1,4,0)
+ ;;=4^S24.159S
+ ;;^UTILITY(U,$J,358.3,22452,2)
+ ;;=^5023344
+ ;;^UTILITY(U,$J,358.3,22453,0)
+ ;;=S34.101S^^73^964^6
+ ;;^UTILITY(U,$J,358.3,22453,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,22188,1,3,0)
- ;;=3^Noncompliance w/ Medication Regimen
- ;;^UTILITY(U,$J,358.3,22188,1,4,0)
- ;;=4^Z91.14
- ;;^UTILITY(U,$J,358.3,22188,2)
- ;;=^5063616
- ;;^UTILITY(U,$J,358.3,22189,0)
- ;;=Z91.19^^99^1129^45
- ;;^UTILITY(U,$J,358.3,22189,1,0)
+ ;;^UTILITY(U,$J,358.3,22453,1,3,0)
+ ;;=3^Injury to L1 Level of Lumbar Spinal Cord,Unspec,Sequela
+ ;;^UTILITY(U,$J,358.3,22453,1,4,0)
+ ;;=4^S34.101S
+ ;;^UTILITY(U,$J,358.3,22453,2)
+ ;;=^5025192
+ ;;^UTILITY(U,$J,358.3,22454,0)
+ ;;=S34.139S^^73^964^7
+ ;;^UTILITY(U,$J,358.3,22454,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,22189,1,3,0)
- ;;=3^Noncompliance w/ Medical Treatment/Regimen
- ;;^UTILITY(U,$J,358.3,22189,1,4,0)
- ;;=4^Z91.19
- ;;^UTILITY(U,$J,358.3,22189,2)
- ;;=^5063618
- ;;^UTILITY(U,$J,358.3,22190,0)
- ;;=Z90.722^^99^1129^47
- ;;^UTILITY(U,$J,358.3,22190,1,0)
+ ;;^UTILITY(U,$J,358.3,22454,1,3,0)
+ ;;=3^Injury to Sacral Spinal Cord,Unspec,Sequela
+ ;;^UTILITY(U,$J,358.3,22454,1,4,0)
+ ;;=4^S34.139S
+ ;;^UTILITY(U,$J,358.3,22454,2)
+ ;;=^5025249
+ ;;^UTILITY(U,$J,358.3,22455,0)
+ ;;=S06.0X0S^^73^964^1
+ ;;^UTILITY(U,$J,358.3,22455,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,22190,1,3,0)
- ;;=3^Oophorectomy,Bilateral
- ;;^UTILITY(U,$J,358.3,22190,1,4,0)
- ;;=4^Z90.722
- ;;^UTILITY(U,$J,358.3,22190,2)
- ;;=^5063595
- ;;^UTILITY(U,$J,358.3,22191,0)
- ;;=Z90.721^^99^1129^48
- ;;^UTILITY(U,$J,358.3,22191,1,0)
+ ;;^UTILITY(U,$J,358.3,22455,1,3,0)
+ ;;=3^Concussion w/o Loss of Consciousness,Sequela
+ ;;^UTILITY(U,$J,358.3,22455,1,4,0)
+ ;;=4^S06.0X0S
+ ;;^UTILITY(U,$J,358.3,22455,2)
+ ;;=^5020668
+ ;;^UTILITY(U,$J,358.3,22456,0)
+ ;;=S06.9X9S^^73^964^8
+ ;;^UTILITY(U,$J,358.3,22456,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,22191,1,3,0)
- ;;=3^Oophorectomy,Unilateral
- ;;^UTILITY(U,$J,358.3,22191,1,4,0)
- ;;=4^Z90.721
- ;;^UTILITY(U,$J,358.3,22191,2)
- ;;=^5063594
- ;;^UTILITY(U,$J,358.3,22192,0)
- ;;=Z98.890^^99^1129^49
- ;;^UTILITY(U,$J,358.3,22192,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,22192,1,3,0)
- ;;=3^Other Specified Surgery
- ;;^UTILITY(U,$J,358.3,22192,1,4,0)
- ;;=4^Z98.890
- ;;^UTILITY(U,$J,358.3,22192,2)
- ;;=^5063754
- ;;^UTILITY(U,$J,358.3,22193,0)
- ;;=Z99.81^^99^1129^50
- ;;^UTILITY(U,$J,358.3,22193,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,22193,1,3,0)
- ;;=3^Oxygen Dependance
- ;;^UTILITY(U,$J,358.3,22193,1,4,0)
- ;;=4^Z99.81
- ;;^UTILITY(U,$J,358.3,22193,2)
- ;;=^5063760
- ;;^UTILITY(U,$J,358.3,22194,0)
- ;;=Z95.0^^99^1129^51
- ;;^UTILITY(U,$J,358.3,22194,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,22194,1,3,0)
- ;;=3^Pacemaker
- ;;^UTILITY(U,$J,358.3,22194,1,4,0)
- ;;=4^Z95.0
- ;;^UTILITY(U,$J,358.3,22194,2)
- ;;=^5063668
- ;;^UTILITY(U,$J,358.3,22195,0)
- ;;=Z94.83^^99^1129^52
- ;;^UTILITY(U,$J,358.3,22195,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,22195,1,3,0)
- ;;=3^Pancreas Transplant
- ;;^UTILITY(U,$J,358.3,22195,1,4,0)
- ;;=4^Z94.83
- ;;^UTILITY(U,$J,358.3,22195,2)
- ;;=^5063664
- ;;^UTILITY(U,$J,358.3,22196,0)
- ;;=Z90.411^^99^1129^53
- ;;^UTILITY(U,$J,358.3,22196,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,22196,1,3,0)
- ;;=3^Pancreatectomy,Partial
- ;;^UTILITY(U,$J,358.3,22196,1,4,0)
- ;;=4^Z90.411
- ;;^UTILITY(U,$J,358.3,22196,2)
- ;;=^5063588
- ;;^UTILITY(U,$J,358.3,22197,0)
- ;;=Z90.410^^99^1129^54
+ ;;^UTILITY(U,$J,358.3,22456,1,3,0)
+ ;;=3^Intracranial Injury,Unspec,w/ LOC of Unspec Duration,Sequela
+ ;;^UTILITY(U,$J,358.3,22456,1,4,0)
+ ;;=4^S06.9X9S
+ ;;^UTILITY(U,$J,358.3,22456,2)
+ ;;=^5021235
+ ;;^UTILITY(U,$J,358.3,22457,0)
+ ;;=99212^^74^965^2
+ ;;^UTILITY(U,$J,358.3,22457,1,0)
+ ;;=^358.31IA^2^2
+ ;;^UTILITY(U,$J,358.3,22457,1,1,0)
+ ;;=1^SF MDM or 10-19 mins
+ ;;^UTILITY(U,$J,358.3,22457,1,2,0)
+ ;;=2^99212
+ ;;^UTILITY(U,$J,358.3,22458,0)
+ ;;=99213^^74^965^3
+ ;;^UTILITY(U,$J,358.3,22458,1,0)
+ ;;=^358.31IA^2^2
+ ;;^UTILITY(U,$J,358.3,22458,1,1,0)
+ ;;=1^Low MDM or 20-29 mins
+ ;;^UTILITY(U,$J,358.3,22458,1,2,0)
+ ;;=2^99213
+ ;;^UTILITY(U,$J,358.3,22459,0)
+ ;;=99214^^74^965^4
+ ;;^UTILITY(U,$J,358.3,22459,1,0)
+ ;;=^358.31IA^2^2
+ ;;^UTILITY(U,$J,358.3,22459,1,1,0)
+ ;;=1^Moderate MDM or 30-39 mins
+ ;;^UTILITY(U,$J,358.3,22459,1,2,0)
+ ;;=2^99214
+ ;;^UTILITY(U,$J,358.3,22460,0)
+ ;;=99241^^74^966^1
+ ;;^UTILITY(U,$J,358.3,22460,1,0)
+ ;;=^358.31IA^2^2
+ ;;^UTILITY(U,$J,358.3,22460,1,1,0)
+ ;;=1^Problem Focused Hx/PE & SF MDM
+ ;;^UTILITY(U,$J,358.3,22460,1,2,0)
+ ;;=2^99241
+ ;;^UTILITY(U,$J,358.3,22461,0)
+ ;;=99242^^74^966^2
+ ;;^UTILITY(U,$J,358.3,22461,1,0)
+ ;;=^358.31IA^2^2
+ ;;^UTILITY(U,$J,358.3,22461,1,1,0)
+ ;;=1^Exp Problem Focused Hx/PE & SF MDM
+ ;;^UTILITY(U,$J,358.3,22461,1,2,0)
+ ;;=2^99242
+ ;;^UTILITY(U,$J,358.3,22462,0)
+ ;;=99243^^74^966^3
+ ;;^UTILITY(U,$J,358.3,22462,1,0)
+ ;;=^358.31IA^2^2
+ ;;^UTILITY(U,$J,358.3,22462,1,1,0)
+ ;;=1^Detailed Hx/PE & Low Complex MDM

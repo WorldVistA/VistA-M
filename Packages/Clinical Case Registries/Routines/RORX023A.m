@@ -1,5 +1,5 @@
 RORX023A ;ALB/TMK - HCV SUSTAINED VIROLOGIC RESPONSE REPORT(QUERY & STORE) ;7/15/11 3:37pm
- ;;1.5;CLINICAL CASE REGISTRIES;**24,27,31**;Feb 17, 2006;Build 62
+ ;;1.5;CLINICAL CASE REGISTRIES;**24,27,31,39**;Feb 17, 2006;Build 4
  ;
  ; This routine uses the following IAs:
  ;
@@ -18,7 +18,7 @@ RORX023A ;ALB/TMK - HCV SUSTAINED VIROLOGIC RESPONSE REPORT(QUERY & STORE) ;7/15
  ;                                      into callable function $$SVR
  ;ROR*1.5*31   MAY 2017    M FERRARESE  Adding PACT, PCP, and AGE/DOB as additional
  ;                                      identifiers. 
- ;                                      
+ ;ROR*1.5*39   JUN 2021    F TRAXLER    Replace real SSN with zeroes.                                     
  ;******************************************************************************
  ;******************************************************************************
  Q
@@ -155,7 +155,7 @@ QUERY(REPORT,FLAGS,NSPT) ;
  . I SKIP K ^TMP("RORX023",$J,"PAT",PATIEN) Q
  . ;
  . ;--- Get and store the patient's data  last4^name
- . D VADEM^RORUTL05(PATIEN,1)
+ . D VADEM^RORUTL05(PATIEN,1) S VA("BID")="0000"
  . S TMP=$S($$PARAM^RORTSK01("PATIENTS","ICN"):$$ICN^RORUTL02(PATIEN),1:"")
  . S TMP=TMP_U_$S($$PARAM^RORTSK01("PATIENTS","PACT"):$$PACT^RORUTL02(PATIEN),1:"")
  . S TMP=TMP_U_$S($$PARAM^RORTSK01("PATIENTS","PCP"):$$PCP^RORUTL02(PATIEN),1:"")

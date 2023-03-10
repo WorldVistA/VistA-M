@@ -1,128 +1,126 @@
-IBDEI16A ; ; 04-FEB-2020
- ;;3.0;IB ENCOUNTER FORM IMP/EXP;;FEB 04, 2020
+IBDEI16A ; ; 01-FEB-2022
+ ;;3.0;IB ENCOUNTER FORM IMP/EXP;;FEB 01, 2022
  Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,999) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
- ;;^UTILITY(U,$J,358.3,18845,1,4,0)
- ;;=4^F43.24
- ;;^UTILITY(U,$J,358.3,18845,2)
- ;;=^331951
- ;;^UTILITY(U,$J,358.3,18846,0)
- ;;=F43.25^^91^964^6
- ;;^UTILITY(U,$J,358.3,18846,1,0)
+ ;;^UTILITY(U,$J,358.3,19029,1,3,0)
+ ;;=3^Rheum Polyneuropathy w/ Rheum Arth Right Knee
+ ;;^UTILITY(U,$J,358.3,19029,1,4,0)
+ ;;=4^M05.561
+ ;;^UTILITY(U,$J,358.3,19029,2)
+ ;;=^5009970
+ ;;^UTILITY(U,$J,358.3,19030,0)
+ ;;=M05.511^^64^842^90
+ ;;^UTILITY(U,$J,358.3,19030,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,18846,1,3,0)
- ;;=3^Adjustment D/O w/ Mixed Disturb Emotions & Conduct
- ;;^UTILITY(U,$J,358.3,18846,1,4,0)
- ;;=4^F43.25
- ;;^UTILITY(U,$J,358.3,18846,2)
- ;;=^331952
- ;;^UTILITY(U,$J,358.3,18847,0)
- ;;=F43.20^^91^964^7
- ;;^UTILITY(U,$J,358.3,18847,1,0)
+ ;;^UTILITY(U,$J,358.3,19030,1,3,0)
+ ;;=3^Rheum Polyneuropathy w/ Rheum Arth Right Shoulder
+ ;;^UTILITY(U,$J,358.3,19030,1,4,0)
+ ;;=4^M05.511
+ ;;^UTILITY(U,$J,358.3,19030,2)
+ ;;=^5009955
+ ;;^UTILITY(U,$J,358.3,19031,0)
+ ;;=M05.531^^64^842^91
+ ;;^UTILITY(U,$J,358.3,19031,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,18847,1,3,0)
- ;;=3^Adjustment D/O,Unspec
- ;;^UTILITY(U,$J,358.3,18847,1,4,0)
- ;;=4^F43.20
- ;;^UTILITY(U,$J,358.3,18847,2)
- ;;=^5003573
- ;;^UTILITY(U,$J,358.3,18848,0)
- ;;=F43.9^^91^964^13
- ;;^UTILITY(U,$J,358.3,18848,1,0)
+ ;;^UTILITY(U,$J,358.3,19031,1,3,0)
+ ;;=3^Rheum Polyneuropathy w/ Rheum Arth Right Wrist
+ ;;^UTILITY(U,$J,358.3,19031,1,4,0)
+ ;;=4^M05.531
+ ;;^UTILITY(U,$J,358.3,19031,2)
+ ;;=^5009961
+ ;;^UTILITY(U,$J,358.3,19032,0)
+ ;;=M05.50^^64^842^92
+ ;;^UTILITY(U,$J,358.3,19032,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,18848,1,3,0)
- ;;=3^Trauma/Stressor-Related D/O,Unspec
- ;;^UTILITY(U,$J,358.3,18848,1,4,0)
- ;;=4^F43.9
- ;;^UTILITY(U,$J,358.3,18848,2)
- ;;=^5003576
- ;;^UTILITY(U,$J,358.3,18849,0)
- ;;=F94.1^^91^964^11
- ;;^UTILITY(U,$J,358.3,18849,1,0)
+ ;;^UTILITY(U,$J,358.3,19032,1,3,0)
+ ;;=3^Rheum Polyneuropathy w/ Rheum Arth Unspec Site
+ ;;^UTILITY(U,$J,358.3,19032,1,4,0)
+ ;;=4^M05.50
+ ;;^UTILITY(U,$J,358.3,19032,2)
+ ;;=^5009954
+ ;;^UTILITY(U,$J,358.3,19033,0)
+ ;;=G04.1^^64^842^143
+ ;;^UTILITY(U,$J,358.3,19033,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,18849,1,3,0)
- ;;=3^Reactive Attachment D/O
- ;;^UTILITY(U,$J,358.3,18849,1,4,0)
- ;;=4^F94.1
- ;;^UTILITY(U,$J,358.3,18849,2)
- ;;=^5003705
- ;;^UTILITY(U,$J,358.3,18850,0)
- ;;=F94.2^^91^964^8
- ;;^UTILITY(U,$J,358.3,18850,1,0)
+ ;;^UTILITY(U,$J,358.3,19033,1,3,0)
+ ;;=3^Tropical Spastic Paraplegia
+ ;;^UTILITY(U,$J,358.3,19033,1,4,0)
+ ;;=4^G04.1
+ ;;^UTILITY(U,$J,358.3,19033,2)
+ ;;=^5003733
+ ;;^UTILITY(U,$J,358.3,19034,0)
+ ;;=M19.90^^64^842^20
+ ;;^UTILITY(U,$J,358.3,19034,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,18850,1,3,0)
- ;;=3^Disinhibited Social Engagement D/O
- ;;^UTILITY(U,$J,358.3,18850,1,4,0)
- ;;=4^F94.2
- ;;^UTILITY(U,$J,358.3,18850,2)
- ;;=^5003706
- ;;^UTILITY(U,$J,358.3,18851,0)
- ;;=F43.8^^91^964^12
- ;;^UTILITY(U,$J,358.3,18851,1,0)
+ ;;^UTILITY(U,$J,358.3,19034,1,3,0)
+ ;;=3^Osteoarthritis Unspec Site
+ ;;^UTILITY(U,$J,358.3,19034,1,4,0)
+ ;;=4^M19.90
+ ;;^UTILITY(U,$J,358.3,19034,2)
+ ;;=^5010853
+ ;;^UTILITY(U,$J,358.3,19035,0)
+ ;;=M54.50^^64^842^16
+ ;;^UTILITY(U,$J,358.3,19035,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,18851,1,3,0)
- ;;=3^Trauma/Stressor-Related D/O,Oth Spec
- ;;^UTILITY(U,$J,358.3,18851,1,4,0)
- ;;=4^F43.8
- ;;^UTILITY(U,$J,358.3,18851,2)
- ;;=^5003575
- ;;^UTILITY(U,$J,358.3,18852,0)
- ;;=F43.10^^91^964^10
- ;;^UTILITY(U,$J,358.3,18852,1,0)
+ ;;^UTILITY(U,$J,358.3,19035,1,3,0)
+ ;;=3^Low Back Pain,Unspec
+ ;;^UTILITY(U,$J,358.3,19035,1,4,0)
+ ;;=4^M54.50
+ ;;^UTILITY(U,$J,358.3,19035,2)
+ ;;=^5161215
+ ;;^UTILITY(U,$J,358.3,19036,0)
+ ;;=M54.59^^64^842^15
+ ;;^UTILITY(U,$J,358.3,19036,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,18852,1,3,0)
- ;;=3^PTSD,Unspec
- ;;^UTILITY(U,$J,358.3,18852,1,4,0)
- ;;=4^F43.10
- ;;^UTILITY(U,$J,358.3,18852,2)
- ;;=^5003570
- ;;^UTILITY(U,$J,358.3,18853,0)
- ;;=F43.12^^91^964^9
- ;;^UTILITY(U,$J,358.3,18853,1,0)
+ ;;^UTILITY(U,$J,358.3,19036,1,3,0)
+ ;;=3^Low Back Pain,Other
+ ;;^UTILITY(U,$J,358.3,19036,1,4,0)
+ ;;=4^M54.59
+ ;;^UTILITY(U,$J,358.3,19036,2)
+ ;;=^5161217
+ ;;^UTILITY(U,$J,358.3,19037,0)
+ ;;=M54.51^^64^842^17
+ ;;^UTILITY(U,$J,358.3,19037,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,18853,1,3,0)
- ;;=3^PTSD,Chronic
- ;;^UTILITY(U,$J,358.3,18853,1,4,0)
- ;;=4^F43.12
- ;;^UTILITY(U,$J,358.3,18853,2)
- ;;=^5003572
- ;;^UTILITY(U,$J,358.3,18854,0)
- ;;=F18.10^^91^965^23
- ;;^UTILITY(U,$J,358.3,18854,1,0)
+ ;;^UTILITY(U,$J,358.3,19037,1,3,0)
+ ;;=3^Low Back Pain,Vertebrogenic
+ ;;^UTILITY(U,$J,358.3,19037,1,4,0)
+ ;;=4^M54.51
+ ;;^UTILITY(U,$J,358.3,19037,2)
+ ;;=^5161216
+ ;;^UTILITY(U,$J,358.3,19038,0)
+ ;;=Z79.1^^64^842^14
+ ;;^UTILITY(U,$J,358.3,19038,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,18854,1,3,0)
- ;;=3^Inhalant Use D/O,Mild
- ;;^UTILITY(U,$J,358.3,18854,1,4,0)
- ;;=4^F18.10
- ;;^UTILITY(U,$J,358.3,18854,2)
- ;;=^5003380
- ;;^UTILITY(U,$J,358.3,18855,0)
- ;;=F18.20^^91^965^26
- ;;^UTILITY(U,$J,358.3,18855,1,0)
+ ;;^UTILITY(U,$J,358.3,19038,1,3,0)
+ ;;=3^Long Term (Current) Use of NSAID
+ ;;^UTILITY(U,$J,358.3,19038,1,4,0)
+ ;;=4^Z79.1
+ ;;^UTILITY(U,$J,358.3,19038,2)
+ ;;=^5063332
+ ;;^UTILITY(U,$J,358.3,19039,0)
+ ;;=Z48.02^^64^843^1
+ ;;^UTILITY(U,$J,358.3,19039,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,18855,1,3,0)
- ;;=3^Inhalant Use D/O,Mod/Sev,Uncomplicated
- ;;^UTILITY(U,$J,358.3,18855,1,4,0)
- ;;=4^F18.20
- ;;^UTILITY(U,$J,358.3,18855,2)
- ;;=^5003392
- ;;^UTILITY(U,$J,358.3,18856,0)
- ;;=F18.14^^91^965^4
- ;;^UTILITY(U,$J,358.3,18856,1,0)
+ ;;^UTILITY(U,$J,358.3,19039,1,3,0)
+ ;;=3^Suture Removal
+ ;;^UTILITY(U,$J,358.3,19039,1,4,0)
+ ;;=4^Z48.02
+ ;;^UTILITY(U,$J,358.3,19039,2)
+ ;;=^5063035
+ ;;^UTILITY(U,$J,358.3,19040,0)
+ ;;=J70.1^^64^844^1
+ ;;^UTILITY(U,$J,358.3,19040,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,18856,1,3,0)
- ;;=3^Inhalant Induced Depressive D/O w/ Mild Use D/O
- ;;^UTILITY(U,$J,358.3,18856,1,4,0)
- ;;=4^F18.14
- ;;^UTILITY(U,$J,358.3,18856,2)
- ;;=^5003384
- ;;^UTILITY(U,$J,358.3,18857,0)
- ;;=F18.24^^91^965^5
- ;;^UTILITY(U,$J,358.3,18857,1,0)
+ ;;^UTILITY(U,$J,358.3,19040,1,3,0)
+ ;;=3^Chr Pulmonary Manifestations d/t Radiation
+ ;;^UTILITY(U,$J,358.3,19040,1,4,0)
+ ;;=4^J70.1
+ ;;^UTILITY(U,$J,358.3,19040,2)
+ ;;=^269983
+ ;;^UTILITY(U,$J,358.3,19041,0)
+ ;;=J70.0^^64^845^1
+ ;;^UTILITY(U,$J,358.3,19041,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,18857,1,3,0)
- ;;=3^Inhalant Induced Depressive D/O w/ Mod/Sev Use D/O
- ;;^UTILITY(U,$J,358.3,18857,1,4,0)
- ;;=4^F18.24
- ;;^UTILITY(U,$J,358.3,18857,2)
- ;;=^5003397
+ ;;^UTILITY(U,$J,358.3,19041,1,3,0)
+ ;;=3^Acute Pulmonary Manifestations d/t Radiation

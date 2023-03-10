@@ -1,5 +1,5 @@
 PSOCAN1 ;BIR/BHW - modular rx cancel with speed cancel ability ;12/03/18  11:04
- ;;7.0;OUTPATIENT PHARMACY;**8,20,24,27,32,131,163,185,238,372,442,508,477**;DEC 1997;Build 187
+ ;;7.0;OUTPATIENT PHARMACY;**8,20,24,27,32,131,163,185,238,372,442,508,477,617**;DEC 1997;Build 110
  ;External reference to File #55 supported by DBIA 2228
  ;External reference to ^PSDRUG supported by DBIA 221
  ;External reference to ^DPT supported by DBIA 10035
@@ -56,7 +56,7 @@ SPEED1 S PSPOP=0 I $G(PSODIV),+$P($G(^PSRX(DA,2)),"^",9)'=$G(PSOSITE) D:'$G(SPEE
  K STAT S STAT=+$P(^PSRX(DA,"STA"),"^"),REA=$E("C00CCCCCCCCCR000C",STAT+1)
  I $$CONJ^PSOUTL(DA) S PSINV(RX)="" Q
  Q:$G(SPEED)&(REA="R")
- I REA="R",$P($G(^PSRX(DA,"PKI")),"^") S PKI=1 S PSINV(RX)="" Q
+ I REA="R",$P($G(^PSRX(DA,"PKI")),"^")!$P($G(^PSRX(DA,"PKI")),"^",3) S PKI=1 S PSINV(RX)="" Q
  I REA=0!(PSPOP)!($P(^PSRX(+YY,"STA"),"^")>12),$P(^("STA"),"^")<16 S PSINV(RX)="" Q
  S:REA'=0&('PSPOP) PSCAN(RX)=DA_"^"_REA,RXCNT=$G(RXCNT)+1
  Q

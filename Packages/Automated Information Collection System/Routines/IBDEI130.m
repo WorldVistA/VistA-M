@@ -1,134 +1,122 @@
-IBDEI130 ; ; 04-FEB-2020
- ;;3.0;IB ENCOUNTER FORM IMP/EXP;;FEB 04, 2020
+IBDEI130 ; ; 01-FEB-2022
+ ;;3.0;IB ENCOUNTER FORM IMP/EXP;;FEB 01, 2022
  Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,999) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
- ;;^UTILITY(U,$J,358.3,17385,2)
- ;;=^5019454
- ;;^UTILITY(U,$J,358.3,17386,0)
- ;;=R44.0^^88^891^48
- ;;^UTILITY(U,$J,358.3,17386,1,0)
+ ;;^UTILITY(U,$J,358.3,17568,1,4,0)
+ ;;=4^S20.221A
+ ;;^UTILITY(U,$J,358.3,17568,2)
+ ;;=^5022484
+ ;;^UTILITY(U,$J,358.3,17569,0)
+ ;;=S20.222A^^61^788^2
+ ;;^UTILITY(U,$J,358.3,17569,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,17386,1,3,0)
- ;;=3^Auditory Hallucinations
- ;;^UTILITY(U,$J,358.3,17386,1,4,0)
- ;;=4^R44.0
- ;;^UTILITY(U,$J,358.3,17386,2)
- ;;=^5019455
- ;;^UTILITY(U,$J,358.3,17387,0)
- ;;=R44.2^^88^891^83
- ;;^UTILITY(U,$J,358.3,17387,1,0)
+ ;;^UTILITY(U,$J,358.3,17569,1,3,0)
+ ;;=3^Contusion,Lt Back Wall of Thorax
+ ;;^UTILITY(U,$J,358.3,17569,1,4,0)
+ ;;=4^S20.222A
+ ;;^UTILITY(U,$J,358.3,17569,2)
+ ;;=^5022487
+ ;;^UTILITY(U,$J,358.3,17570,0)
+ ;;=S20.223A^^61^788^1
+ ;;^UTILITY(U,$J,358.3,17570,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,17387,1,3,0)
- ;;=3^Hallucinations NEC
- ;;^UTILITY(U,$J,358.3,17387,1,4,0)
- ;;=4^R44.2
- ;;^UTILITY(U,$J,358.3,17387,2)
- ;;=^5019457
- ;;^UTILITY(U,$J,358.3,17388,0)
- ;;=R44.3^^88^891^84
- ;;^UTILITY(U,$J,358.3,17388,1,0)
+ ;;^UTILITY(U,$J,358.3,17570,1,3,0)
+ ;;=3^Contusion,Bilateral Back Wall of Thorax
+ ;;^UTILITY(U,$J,358.3,17570,1,4,0)
+ ;;=4^S20.223A
+ ;;^UTILITY(U,$J,358.3,17570,2)
+ ;;=^5159315
+ ;;^UTILITY(U,$J,358.3,17571,0)
+ ;;=S20.224A^^61^788^3
+ ;;^UTILITY(U,$J,358.3,17571,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,17388,1,3,0)
- ;;=3^Hallucinations,Unspec
- ;;^UTILITY(U,$J,358.3,17388,1,4,0)
- ;;=4^R44.3
- ;;^UTILITY(U,$J,358.3,17388,2)
- ;;=^5019458
- ;;^UTILITY(U,$J,358.3,17389,0)
- ;;=R45.0^^88^891^126
- ;;^UTILITY(U,$J,358.3,17389,1,0)
+ ;;^UTILITY(U,$J,358.3,17571,1,3,0)
+ ;;=3^Contusion,Middle Back Wall of Thorax
+ ;;^UTILITY(U,$J,358.3,17571,1,4,0)
+ ;;=4^S20.224A
+ ;;^UTILITY(U,$J,358.3,17571,2)
+ ;;=^5159318
+ ;;^UTILITY(U,$J,358.3,17572,0)
+ ;;=F10.20^^61^789^9
+ ;;^UTILITY(U,$J,358.3,17572,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,17389,1,3,0)
- ;;=3^Nervousness
- ;;^UTILITY(U,$J,358.3,17389,1,4,0)
- ;;=4^R45.0
- ;;^UTILITY(U,$J,358.3,17389,2)
- ;;=^5019461
- ;;^UTILITY(U,$J,358.3,17390,0)
- ;;=R47.01^^88^891^44
- ;;^UTILITY(U,$J,358.3,17390,1,0)
+ ;;^UTILITY(U,$J,358.3,17572,1,3,0)
+ ;;=3^Alcohol Dependence,Uncomplicated
+ ;;^UTILITY(U,$J,358.3,17572,1,4,0)
+ ;;=4^F10.20
+ ;;^UTILITY(U,$J,358.3,17572,2)
+ ;;=^5003081
+ ;;^UTILITY(U,$J,358.3,17573,0)
+ ;;=F11.29^^61^789^61
+ ;;^UTILITY(U,$J,358.3,17573,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,17390,1,3,0)
- ;;=3^Aphasia
- ;;^UTILITY(U,$J,358.3,17390,1,4,0)
- ;;=4^R47.01
- ;;^UTILITY(U,$J,358.3,17390,2)
- ;;=^5019488
- ;;^UTILITY(U,$J,358.3,17391,0)
- ;;=R47.9^^88^891^157
- ;;^UTILITY(U,$J,358.3,17391,1,0)
+ ;;^UTILITY(U,$J,358.3,17573,1,3,0)
+ ;;=3^Opioid Dependence w/ Unspec Opioid-Induced Disorder
+ ;;^UTILITY(U,$J,358.3,17573,1,4,0)
+ ;;=4^F11.29
+ ;;^UTILITY(U,$J,358.3,17573,2)
+ ;;=^5003141
+ ;;^UTILITY(U,$J,358.3,17574,0)
+ ;;=F11.288^^61^789^60
+ ;;^UTILITY(U,$J,358.3,17574,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,17391,1,3,0)
- ;;=3^Speech Disturbances,Unspec
- ;;^UTILITY(U,$J,358.3,17391,1,4,0)
- ;;=4^R47.9
- ;;^UTILITY(U,$J,358.3,17391,2)
- ;;=^5019494
- ;;^UTILITY(U,$J,358.3,17392,0)
- ;;=R49.8^^88^891^169
- ;;^UTILITY(U,$J,358.3,17392,1,0)
+ ;;^UTILITY(U,$J,358.3,17574,1,3,0)
+ ;;=3^Opioid Dependence w/ Other Opioid-Induced Disorder
+ ;;^UTILITY(U,$J,358.3,17574,1,4,0)
+ ;;=4^F11.288
+ ;;^UTILITY(U,$J,358.3,17574,2)
+ ;;=^5003140
+ ;;^UTILITY(U,$J,358.3,17575,0)
+ ;;=F11.282^^61^789^59
+ ;;^UTILITY(U,$J,358.3,17575,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,17392,1,3,0)
- ;;=3^Voice and Resonance Disorders NEC
- ;;^UTILITY(U,$J,358.3,17392,1,4,0)
- ;;=4^R49.8
- ;;^UTILITY(U,$J,358.3,17392,2)
- ;;=^5019505
- ;;^UTILITY(U,$J,358.3,17393,0)
- ;;=R53.0^^88^891^120
- ;;^UTILITY(U,$J,358.3,17393,1,0)
+ ;;^UTILITY(U,$J,358.3,17575,1,3,0)
+ ;;=3^Opioid Dependence w/ Opioid-Induced Sleep Disorder
+ ;;^UTILITY(U,$J,358.3,17575,1,4,0)
+ ;;=4^F11.282
+ ;;^UTILITY(U,$J,358.3,17575,2)
+ ;;=^5003139
+ ;;^UTILITY(U,$J,358.3,17576,0)
+ ;;=F11.281^^61^789^58
+ ;;^UTILITY(U,$J,358.3,17576,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,17393,1,3,0)
- ;;=3^Malig Neop Related Fatigue
- ;;^UTILITY(U,$J,358.3,17393,1,4,0)
- ;;=4^R53.0
- ;;^UTILITY(U,$J,358.3,17393,2)
- ;;=^5019515
- ;;^UTILITY(U,$J,358.3,17394,0)
- ;;=R53.83^^88^891^76
- ;;^UTILITY(U,$J,358.3,17394,1,0)
+ ;;^UTILITY(U,$J,358.3,17576,1,3,0)
+ ;;=3^Opioid Dependence w/ Opioid-Induced Sexual Dysfunction
+ ;;^UTILITY(U,$J,358.3,17576,1,4,0)
+ ;;=4^F11.281
+ ;;^UTILITY(U,$J,358.3,17576,2)
+ ;;=^5003138
+ ;;^UTILITY(U,$J,358.3,17577,0)
+ ;;=F11.259^^61^789^57
+ ;;^UTILITY(U,$J,358.3,17577,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,17394,1,3,0)
- ;;=3^Fatigue NEC
- ;;^UTILITY(U,$J,358.3,17394,1,4,0)
- ;;=4^R53.83
- ;;^UTILITY(U,$J,358.3,17394,2)
- ;;=^5019520
- ;;^UTILITY(U,$J,358.3,17395,0)
- ;;=R53.1^^88^891^170
- ;;^UTILITY(U,$J,358.3,17395,1,0)
+ ;;^UTILITY(U,$J,358.3,17577,1,3,0)
+ ;;=3^Opioid Dependence w/ Opioid-Induced Psychotic Disorder,Unspec
+ ;;^UTILITY(U,$J,358.3,17577,1,4,0)
+ ;;=4^F11.259
+ ;;^UTILITY(U,$J,358.3,17577,2)
+ ;;=^5003137
+ ;;^UTILITY(U,$J,358.3,17578,0)
+ ;;=F11.251^^61^789^50
+ ;;^UTILITY(U,$J,358.3,17578,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,17395,1,3,0)
- ;;=3^Weakness
- ;;^UTILITY(U,$J,358.3,17395,1,4,0)
- ;;=4^R53.1
- ;;^UTILITY(U,$J,358.3,17395,2)
- ;;=^5019516
- ;;^UTILITY(U,$J,358.3,17396,0)
- ;;=R53.81^^88^891^119
- ;;^UTILITY(U,$J,358.3,17396,1,0)
+ ;;^UTILITY(U,$J,358.3,17578,1,3,0)
+ ;;=3^Opioid Depend w/ Opioid-Induc Psychotic Disorder w/ Hallucin
+ ;;^UTILITY(U,$J,358.3,17578,1,4,0)
+ ;;=4^F11.251
+ ;;^UTILITY(U,$J,358.3,17578,2)
+ ;;=^5003136
+ ;;^UTILITY(U,$J,358.3,17579,0)
+ ;;=F11.250^^61^789^51
+ ;;^UTILITY(U,$J,358.3,17579,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,17396,1,3,0)
- ;;=3^Malaise NEC
- ;;^UTILITY(U,$J,358.3,17396,1,4,0)
- ;;=4^R53.81
- ;;^UTILITY(U,$J,358.3,17396,2)
- ;;=^5019518
- ;;^UTILITY(U,$J,358.3,17397,0)
- ;;=R53.82^^88^891^54
- ;;^UTILITY(U,$J,358.3,17397,1,0)
+ ;;^UTILITY(U,$J,358.3,17579,1,3,0)
+ ;;=3^Opioid Depend w/ Opioid-Induc Psychotic Disorder w/ Delusions
+ ;;^UTILITY(U,$J,358.3,17579,1,4,0)
+ ;;=4^F11.250
+ ;;^UTILITY(U,$J,358.3,17579,2)
+ ;;=^5003135
+ ;;^UTILITY(U,$J,358.3,17580,0)
+ ;;=F11.24^^61^789^56
+ ;;^UTILITY(U,$J,358.3,17580,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,17397,1,3,0)
- ;;=3^Chronic Fatigue,Unspec
- ;;^UTILITY(U,$J,358.3,17397,1,4,0)
- ;;=4^R53.82
- ;;^UTILITY(U,$J,358.3,17397,2)
- ;;=^5019519
- ;;^UTILITY(U,$J,358.3,17398,0)
- ;;=R54.^^88^891^37
- ;;^UTILITY(U,$J,358.3,17398,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,17398,1,3,0)
- ;;=3^Age-Related Physical Debility
- ;;^UTILITY(U,$J,358.3,17398,1,4,0)
- ;;=4^R54.

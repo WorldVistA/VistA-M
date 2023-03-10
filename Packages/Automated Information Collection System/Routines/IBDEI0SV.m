@@ -1,116 +1,128 @@
-IBDEI0SV ; ; 04-FEB-2020
- ;;3.0;IB ENCOUNTER FORM IMP/EXP;;FEB 04, 2020
+IBDEI0SV ; ; 01-FEB-2022
+ ;;3.0;IB ENCOUNTER FORM IMP/EXP;;FEB 01, 2022
  Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,999) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
- ;;^UTILITY(U,$J,358.3,12859,0)
- ;;=N99.62^^80^789^32
- ;;^UTILITY(U,$J,358.3,12859,1,0)
+ ;;^UTILITY(U,$J,358.3,12990,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,12859,1,3,0)
- ;;=3^Intraoperative Hemorrhage/Hematoma of GU System
- ;;^UTILITY(U,$J,358.3,12859,1,4,0)
- ;;=4^N99.62
- ;;^UTILITY(U,$J,358.3,12859,2)
- ;;=^5015964
- ;;^UTILITY(U,$J,358.3,12860,0)
- ;;=M96.811^^80^789^34
- ;;^UTILITY(U,$J,358.3,12860,1,0)
+ ;;^UTILITY(U,$J,358.3,12990,1,3,0)
+ ;;=3^Anatomical Narrow Angle,Left Eye
+ ;;^UTILITY(U,$J,358.3,12990,1,4,0)
+ ;;=4^H40.032
+ ;;^UTILITY(U,$J,358.3,12990,2)
+ ;;=^5005733
+ ;;^UTILITY(U,$J,358.3,12991,0)
+ ;;=H40.031^^51^626^6
+ ;;^UTILITY(U,$J,358.3,12991,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,12860,1,3,0)
- ;;=3^Intraoperative Hemorrhage/Hematoma of Musculoskeletal System
- ;;^UTILITY(U,$J,358.3,12860,1,4,0)
- ;;=4^M96.811
- ;;^UTILITY(U,$J,358.3,12860,2)
- ;;=^5015394
- ;;^UTILITY(U,$J,358.3,12861,0)
- ;;=J95.62^^80^789^37
- ;;^UTILITY(U,$J,358.3,12861,1,0)
+ ;;^UTILITY(U,$J,358.3,12991,1,3,0)
+ ;;=3^Anatomical Narrow Angle,Right Eye
+ ;;^UTILITY(U,$J,358.3,12991,1,4,0)
+ ;;=4^H40.031
+ ;;^UTILITY(U,$J,358.3,12991,2)
+ ;;=^5005732
+ ;;^UTILITY(U,$J,358.3,12992,0)
+ ;;=H05.401^^51^626^11
+ ;;^UTILITY(U,$J,358.3,12992,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,12861,1,3,0)
- ;;=3^Intraoperative Hemorrhage/Hematoma of Respiratory System
- ;;^UTILITY(U,$J,358.3,12861,1,4,0)
- ;;=4^J95.62
- ;;^UTILITY(U,$J,358.3,12861,2)
- ;;=^5008333
- ;;^UTILITY(U,$J,358.3,12862,0)
- ;;=K91.72^^80^789^1
- ;;^UTILITY(U,$J,358.3,12862,1,0)
+ ;;^UTILITY(U,$J,358.3,12992,1,3,0)
+ ;;=3^Enophthalmos,Right Eye,Unspec
+ ;;^UTILITY(U,$J,358.3,12992,1,4,0)
+ ;;=4^H05.401
+ ;;^UTILITY(U,$J,358.3,12992,2)
+ ;;=^5004631
+ ;;^UTILITY(U,$J,358.3,12993,0)
+ ;;=H05.402^^51^626^10
+ ;;^UTILITY(U,$J,358.3,12993,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,12862,1,3,0)
- ;;=3^Accidental Puncture/Laceration of Digestive System During Surgery
- ;;^UTILITY(U,$J,358.3,12862,1,4,0)
- ;;=4^K91.72
- ;;^UTILITY(U,$J,358.3,12862,2)
- ;;=^5008906
- ;;^UTILITY(U,$J,358.3,12863,0)
- ;;=E36.12^^80^789^2
- ;;^UTILITY(U,$J,358.3,12863,1,0)
+ ;;^UTILITY(U,$J,358.3,12993,1,3,0)
+ ;;=3^Enophthalmos,Left Eye,Unspec
+ ;;^UTILITY(U,$J,358.3,12993,1,4,0)
+ ;;=4^H05.402
+ ;;^UTILITY(U,$J,358.3,12993,2)
+ ;;=^5004632
+ ;;^UTILITY(U,$J,358.3,12994,0)
+ ;;=H05.403^^51^626^9
+ ;;^UTILITY(U,$J,358.3,12994,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,12863,1,3,0)
- ;;=3^Accidental Puncture/Laceration of Endocrine System During Surgery
- ;;^UTILITY(U,$J,358.3,12863,1,4,0)
- ;;=4^E36.12
- ;;^UTILITY(U,$J,358.3,12863,2)
- ;;=^5002782
- ;;^UTILITY(U,$J,358.3,12864,0)
- ;;=H59.221^^80^789^9
- ;;^UTILITY(U,$J,358.3,12864,1,0)
+ ;;^UTILITY(U,$J,358.3,12994,1,3,0)
+ ;;=3^Enophthalmos,Bilateral,Unspec
+ ;;^UTILITY(U,$J,358.3,12994,1,4,0)
+ ;;=4^H05.403
+ ;;^UTILITY(U,$J,358.3,12994,2)
+ ;;=^5004633
+ ;;^UTILITY(U,$J,358.3,12995,0)
+ ;;=H05.20^^51^626^8
+ ;;^UTILITY(U,$J,358.3,12995,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,12864,1,3,0)
- ;;=3^Accidental Puncture/Laceration of Right Eye/Adnexa During Surgery
- ;;^UTILITY(U,$J,358.3,12864,1,4,0)
- ;;=4^H59.221
- ;;^UTILITY(U,$J,358.3,12864,2)
- ;;=^5006413
- ;;^UTILITY(U,$J,358.3,12865,0)
- ;;=H59.222^^80^789^5
- ;;^UTILITY(U,$J,358.3,12865,1,0)
+ ;;^UTILITY(U,$J,358.3,12995,1,3,0)
+ ;;=3^EXophthalmos,Unspec
+ ;;^UTILITY(U,$J,358.3,12995,1,4,0)
+ ;;=4^H05.20
+ ;;^UTILITY(U,$J,358.3,12995,2)
+ ;;=^5004585
+ ;;^UTILITY(U,$J,358.3,12996,0)
+ ;;=H44.521^^51^626^14
+ ;;^UTILITY(U,$J,358.3,12996,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,12865,1,3,0)
- ;;=3^Accidental Puncture/Laceration of Left Eye/Adnexa During Surgery
- ;;^UTILITY(U,$J,358.3,12865,1,4,0)
- ;;=4^H59.222
- ;;^UTILITY(U,$J,358.3,12865,2)
- ;;=^5006414
- ;;^UTILITY(U,$J,358.3,12866,0)
- ;;=N99.72^^80^789^4
- ;;^UTILITY(U,$J,358.3,12866,1,0)
+ ;;^UTILITY(U,$J,358.3,12996,1,3,0)
+ ;;=3^GLOBE,Atrophy of Globe,Right Eye
+ ;;^UTILITY(U,$J,358.3,12996,1,4,0)
+ ;;=4^H44.521
+ ;;^UTILITY(U,$J,358.3,12996,2)
+ ;;=^5006025
+ ;;^UTILITY(U,$J,358.3,12997,0)
+ ;;=H44.522^^51^626^13
+ ;;^UTILITY(U,$J,358.3,12997,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,12866,1,3,0)
- ;;=3^Accidental Puncture/Laceration of GU System
- ;;^UTILITY(U,$J,358.3,12866,1,4,0)
- ;;=4^N99.72
- ;;^UTILITY(U,$J,358.3,12866,2)
- ;;=^5015966
- ;;^UTILITY(U,$J,358.3,12867,0)
- ;;=M96.821^^80^789^6
- ;;^UTILITY(U,$J,358.3,12867,1,0)
+ ;;^UTILITY(U,$J,358.3,12997,1,3,0)
+ ;;=3^GLOBE,Atrophy of Globe,Left Eye
+ ;;^UTILITY(U,$J,358.3,12997,1,4,0)
+ ;;=4^H44.522
+ ;;^UTILITY(U,$J,358.3,12997,2)
+ ;;=^5006026
+ ;;^UTILITY(U,$J,358.3,12998,0)
+ ;;=H44.523^^51^626^12
+ ;;^UTILITY(U,$J,358.3,12998,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,12867,1,3,0)
- ;;=3^Accidental Puncture/Laceration of Musculoskeletal System
- ;;^UTILITY(U,$J,358.3,12867,1,4,0)
- ;;=4^M96.821
- ;;^UTILITY(U,$J,358.3,12867,2)
- ;;=^5015396
- ;;^UTILITY(U,$J,358.3,12868,0)
- ;;=G97.49^^80^789^7
- ;;^UTILITY(U,$J,358.3,12868,1,0)
+ ;;^UTILITY(U,$J,358.3,12998,1,3,0)
+ ;;=3^GLOBE,Atrophy of Globe,Bilateral
+ ;;^UTILITY(U,$J,358.3,12998,1,4,0)
+ ;;=4^H44.523
+ ;;^UTILITY(U,$J,358.3,12998,2)
+ ;;=^5006027
+ ;;^UTILITY(U,$J,358.3,12999,0)
+ ;;=H57.11^^51^626^17
+ ;;^UTILITY(U,$J,358.3,12999,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,12868,1,3,0)
- ;;=3^Accidental Puncture/Laceration of Nervous System During Surgery
- ;;^UTILITY(U,$J,358.3,12868,1,4,0)
- ;;=4^G97.49
- ;;^UTILITY(U,$J,358.3,12868,2)
- ;;=^5004208
- ;;^UTILITY(U,$J,358.3,12869,0)
- ;;=J95.72^^80^789^8
- ;;^UTILITY(U,$J,358.3,12869,1,0)
+ ;;^UTILITY(U,$J,358.3,12999,1,3,0)
+ ;;=3^Ocular Pain,Right Eye
+ ;;^UTILITY(U,$J,358.3,12999,1,4,0)
+ ;;=4^H57.11
+ ;;^UTILITY(U,$J,358.3,12999,2)
+ ;;=^5006382
+ ;;^UTILITY(U,$J,358.3,13000,0)
+ ;;=H57.12^^51^626^16
+ ;;^UTILITY(U,$J,358.3,13000,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,12869,1,3,0)
- ;;=3^Accidental Puncture/Laceration of Respiratory System During Surgery
- ;;^UTILITY(U,$J,358.3,12869,1,4,0)
- ;;=4^J95.72
- ;;^UTILITY(U,$J,358.3,12869,2)
- ;;=^5008335
- ;;^UTILITY(U,$J,358.3,12870,0)
- ;;=L76.12^^80^789^10
+ ;;^UTILITY(U,$J,358.3,13000,1,3,0)
+ ;;=3^Ocular Pain,Left Eye
+ ;;^UTILITY(U,$J,358.3,13000,1,4,0)
+ ;;=4^H57.12
+ ;;^UTILITY(U,$J,358.3,13000,2)
+ ;;=^5006383
+ ;;^UTILITY(U,$J,358.3,13001,0)
+ ;;=H57.13^^51^626^15
+ ;;^UTILITY(U,$J,358.3,13001,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,13001,1,3,0)
+ ;;=3^Ocular Pain,Bilateral
+ ;;^UTILITY(U,$J,358.3,13001,1,4,0)
+ ;;=4^H57.13
+ ;;^UTILITY(U,$J,358.3,13001,2)
+ ;;=^5006384
+ ;;^UTILITY(U,$J,358.3,13002,0)
+ ;;=H53.121^^51^626^20
+ ;;^UTILITY(U,$J,358.3,13002,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,13002,1,3,0)
+ ;;=3^Transient Vision Loss,Right Eye

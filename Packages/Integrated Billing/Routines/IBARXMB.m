@@ -1,12 +1,12 @@
-IBARXMB ;LL/ELZ - PHARMCAY COPAY CAP BILLING FUNCTIONS ;26-APR-2001
- ;;2.0;INTEGRATED BILLING;**156,563**;21-MAR-94;Build 12
+IBARXMB ;LL/ELZ - PHARMCAY COPAY CAP BILLING FUNCTIONS ; 08 Jul 2021  10:46 AM
+ ;;2.0;INTEGRATED BILLING;**156,563,676**;21-MAR-94;Build 34
  ;;Per VA Directive 6402, this routine should not be modified.
  ;
 BILL(IBX,IBB) ; receives information to bill for amounts not previously billed
  ; to create bills for them on the local system, DFN is assumed
  ; IBX = the parent transaction number to bill, IBB = the amount to bill
  ;
- N IBY,IBZ,IB350,IBUPDATE,IBER,Y,IBL
+ N IBY,IBZ,IB350,IBUPDATE,IBER,Y,IBL,IBN,ZVZTQ
  ;
  ; find bill number
  S IBY=+$O(^IBAM(354.71,"B",IBX,0)) Q:'IBY
@@ -21,7 +21,14 @@ BILL(IBX,IBB) ; receives information to bill for amounts not previously billed
  Q:$P($$NET^IBARXMC(IBY),"^",2)'>0
  ;
  ; cancel old 354.71 entry
- S IBUPDATE=1 S IBER=$$CANCEL^IBARXMN(DFN,IBY,.IBER)
+ S IBUPDATE=1 S IBN=$$CANCEL^IBARXMN(DFN,IBY,.IBER)
+ ;
+ ;676;BL; Send negative transaction immediately
+ I IBN>0 D
+ . S IBER=1
+ . S:'$D(ZTQUEUED) ZVZTQ=1,ZTQUEUED=1
+ . D FOUND^IBARXMA(.IBER,IBN)
+ . K:$G(ZVZTQ) ZTQUEUED
  ;
  ; cancel old 350 entry
  D:IB350 CAN(DFN,+$P(IBZ,"^",4))

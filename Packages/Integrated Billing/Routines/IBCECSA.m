@@ -1,9 +1,9 @@
 IBCECSA ;ALB/CXW - IB CLAIMS STATUS AWAITING RESOLUTION SCREEN ;28-JUL-1999
- ;;2.0;INTEGRATED BILLING;**137,320,623**;21-MAR-1994;Build 70
+ ;;2.0;INTEGRATED BILLING;**137,320,623,650**;21-MAR-1994;Build 21
  ;;Per VA Directive 6402, this routine should not be modified.
  ;
 EN ; -- main entry point for claims status awaiting resolution
- N IBSORT,IBSORT1,IBSORT2,IBSORT3,IBSORTOR,IBDAYS
+ N IBSORT,IBSORT1,IBSORT2,IBSORT3,IBSORTOR,IBDAYS,INFOSTDT,INFOENDT   ;WCJ;IB*2.0*650;added a date range for informational messages
  D EN^VALM("IBCEM CSA LIST")
  Q
  ;
@@ -56,10 +56,34 @@ INIT ; -- init variables and list array
  D SORT(2) I $G(VALMQUIT) G INITQ
  I $G(IBSORT2)'="" D SORT(3) I $G(VALMQUIT) G INITQ
  ;
- S DIR(0)="SA^R:REJECTS ONLY;B:BOTH INFORMATIONAL AND REJECTS",DIR("A")="(R)ejects only OR (B)oth informational and rejects?: "
- S DIR("?",1)="YOU MAY CHOOSE TO SEE JUST THOSE MESSAGES WE KNOW ARE REJECTS OR YOU MAY",DIR("?")="  CHOOSE TO SEE ALL MESSAGES MEETING YOUR SELECTION CRITERIA",DIR("B")="REJECTS ONLY" W !! D ^DIR K DIR
+ S DIR(0)="SA^R:REJECTS ONLY;B:BOTH INFORMATIONAL AND REJECTS"
+ S DIR("A")="(R)ejects only OR (B)oth informational and rejects?: "
+ S DIR("?",1)="YOU MAY CHOOSE TO SEE JUST THOSE MESSAGES WE KNOW ARE REJECTS OR YOU MAY"
+ S DIR("?")="  CHOOSE TO SEE ALL MESSAGES MEETING YOUR SELECTION CRITERIA",DIR("B")="REJECTS ONLY"
+ W !! D ^DIR K DIR
  I $D(DTOUT)!$D(DUOUT) S VALMQUIT=1 G INITQ
  S IBSEV=Y
+ ;
+ ;WCJ;IB*2.0*650;limit date range when biller chooses (B)oth - first ask for range here
+DATES I IBSEV="B" D  I $D(DTOUT)!$D(DUOUT) G INITQ
+ . N DIR
+ . S DIR(0)="DAO^:DT:EX"   ; limit from beginning of time to today
+ . S DIR("B")="T-1"
+ . S DIR("A")="First Date Received: "
+ . S DIR("?")="Enter the starting message received date."
+ . D ^DIR
+ . I $D(DTOUT)!$D(DUOUT) S VALMQUIT=1 Q
+ . S INFOSTDT=Y
+ . K DIR
+ . S DIR(0)="DAO^"_INFOSTDT_":DT:EX" ;limit from start day to today
+ . S DIR("B")="T"
+ . S DIR("A")="Last Date Received: "
+ . S DIR("?")="Enter the ending message received date.  Cannot be before starting date."
+ . D ^DIR
+ . I $D(DTOUT)!$D(DUOUT) S VALMQUIT=1 Q
+ . S INFOENDT=Y
+ . K DIR
+ ;
  D BLD^IBCECSA1
 INITQ Q
  ;

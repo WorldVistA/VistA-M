@@ -1,5 +1,5 @@
-ORAREN ;SLC/JLC - PROCESS RENEWAL REQUEST ;10/27/2014  07:14
- ;;3.0;ORDER ENTRY/RESULTS REPORTING;**336,349,350**;Dec 17, 1997;Build 77
+ORAREN ;SLC/JLC - PROCESS RENEWAL REQUEST ;Apr 07, 2022@14:23:48
+ ;;3.0;ORDER ENTRY/RESULTS REPORTING;**336,349,350,540,405**;Dec 17, 1997;Build 211
  ;
  ;The purpose of this API is to process a request to renew an
  ;Outpatient Prescription
@@ -96,7 +96,23 @@ END ;*249 Modify END.
  . . S ^TMP($J,"ORAREN OC",J,0)=$E("PATIENT"_SPACE,0,DSPNMLN)_" "_$E("RX#"_SPACE,0,RXELN)_" "_$E("DRUG"_SPACE,0,DRGLN),J=J+1
  . . S ^TMP($J,"ORAREN OC",J,0)="==============================================================================",J=J+1
  . . S ^TMP($J,"ORAREN OC",J,0)=" ",J=J+1
- . F I=0:0 S I=$O(INMSG(I)) Q:'I  S ^TMP($J,"ORAREN OC",J,0)=INMSG(I),J=J+1
+ . ;OR*3.0*540: Break up order check lines greater than 500 characters
+ . F I=0:0 S I=$O(INMSG(I)) Q:'I  D
+ . . I $L(INMSG(I))<500 S ^TMP($J,"ORAREN OC",J,0)=INMSG(I),J=J+1 Q
+ . . D SEG
+ D CLRALLGY^ORWDXC("",DFN)
+ Q
+ ;
+SEG ;break up lines longer than 500 characters
+ N ORLEN,OREND,ORSQ,ORX1,ORX2
+ S ORLEN=$L(INMSG(I)),OREND=ORLEN/500
+ ;Round number of iterations to next whole number.
+ S OREND=$S($P(OREND,".",2)>0:$P(OREND,".")+1,1:$P(OREND,"."))
+ F ORSQ=1:1:OREND D
+ . S ORX1=(ORSQ-1*500)+1
+ . S ORX2=ORSQ*500
+ . S ^TMP($J,"ORAREN OC",J,0)=$E(INMSG(I),ORX1,ORX2)
+ . S J=J+1
  Q
  ;
 AE(MSARY,RX,DFN,TEXT,PDET) ;*349

@@ -1,5 +1,5 @@
-GMTSPSO ; SLC/JER,KER/NDBI - OP Rx Summary Component (V6) ; 08/27/2002
- ;;2.7;Health Summary;**15,28,37,56,78,80**;Oct 20, 1995;Build 9
+GMTSPSO ;SLC/JER,KER/NDBI - OP Rx Summary Component (V6) ;Apr 16, 2021@16:16:52
+ ;;2.7;Health Summary;**15,28,37,56,78,80,115**;Oct 20, 1995;Build 190
  ;
  ; External References
  ;   DBIA  10141  $$VERSION^XPDUTL
@@ -9,7 +9,8 @@ GMTSPSO ; SLC/JER,KER/NDBI - OP Rx Summary Component (V6) ; 08/27/2002
  ;   DBIA    522  ^PS(55,
  ;   DBIA  10035  ^DPT(  file #2
  ;   DBIA   3136  ^PS(59.7,
- ;                    
+ ;   DBIA   4820  ^PSO52API
+ ;
 MAIN ; OP Rx HS Comp
  ;   Check for version 7 (or greater)   MAIN^GMTSPSO7
  I $$VERSION^XPDUTL("PSO")'<7 G MAIN^GMTSPSO7
@@ -33,19 +34,20 @@ MAIN ; OP Rx HS Comp
  K ^TMP("PSOO",$J)
  Q
 WRT ; Writes OP Pharmacy Segment Record
- N ID,LFD,X,MI,NL,CF,GMD,GMV,GMI,GUI S GUI=$$HF^GMTSU
+ N ID,LFD,X,MI,NL,CF,GMD,GMV,GMI,GUI,IND S GUI=$$HF^GMTSU
  S ID=$P(GMR,U),LFD=$P(GMR,U,2),ECD=$P(GMR,U,11),CF=$P(GMR,U,10)
  ;   Don't display when issue date is after To Date
  Q:+$G(GMRANGE)&(ID>(9999999-GMTS1))
  F GMV="ID","LFD","ECD" S X=@GMV D REGDT4^GMTSU S @GMV=X K X
  S MI=$G(^TMP("PSOO",$J,IX,1)),NL=0 I $L(MI)>73 D PARSE
+ S IND=$P($G(^TMP("PSOO",$J,IX,"IND")),U)
  S GMD=$P($P(GMR,U,4),";",2)
  D CKP^GMTSUP Q:$D(GMTSQIT)
  D:GMTSNPG!(GMX'>0) HEAD W:'GMTOP ! S GMTOP=0 W $P($P(GMR,U,3),";",2)
  W !,?18,$P(GMR,U,6),?31,$S($P($P(GMR,U,5),";")="S":"ACTIVE/SUSP",1:$P($P(GMR,U,5),";",2)),?45,$P(GMR,U,7),?54,ID,?65,LFD,?76,"("_$P(GMR,U,8)_")",!
  S GMX=1 I 'NL D CKP^GMTSUP Q:$D(GMTSQIT)  D:GMTSNPG HEAD W ?2,"SIG: ",MI,! S GMTOP=0
  F GMI=1:1:NL D CKP^GMTSUP Q:$D(GMTSQIT)  D:GMTSNPG HEAD W:GMI=1 ?2,"SIG: " W ?7,MI(GMI),! S GMTOP=0
- D CKP^GMTSUP Q:$D(GMTSQIT)  D:GMTSNPG HEAD W ?4,"Provider: ",$E(GMD,1,22) W:CF ?37,"Cost/Fill: $",$J(CF,6,2)
+ D CKP^GMTSUP Q:$D(GMTSQIT)  D:GMTSNPG HEAD W:IND]"" ?4,"Indication: "_IND,! W ?4,"Provider: ",$E(GMD,1,22) W:CF ?37,"Cost/Fill: $",$J(CF,6,2)
  I "EC"[$P($P(GMR,U,5),";"),ECD]"" W ?57,"Exp/Can Dt: "_ECD
  W ! S GMTOP=0
  Q

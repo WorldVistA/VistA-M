@@ -1,5 +1,5 @@
-DGMTSC4 ;ALB/RMO/CAW,LBD - Means Test Screen Net Worth ; 11/7/03 1:44pm
- ;;5.3;Registration;**45,130,456,540,567**;Aug 13, 1993
+DGMTSC4 ;ALB/RMO/CAW,LBD,HM - Means Test Screen Net Worth ;11/7/03 1:44pm
+ ;;5.3;Registration;**45,130,456,540,567,1014,1064**;Aug 13, 1993;Build 41
  ;
  ; Input  -- DFN      Patient IEN
  ;           DGMTDT   Date of Test
@@ -9,6 +9,7 @@ DGMTSC4 ;ALB/RMO/CAW,LBD - Means Test Screen Net Worth ; 11/7/03 1:44pm
  ;           DGVIRI   Veteran Income Relation IEN
  ;           DGVPRI   Veteran Patient Relation IEN
  ;           DGMTNWC  Net Worth Calculation flag
+ ;           DGMTACT  Global variable, Means test action being perfomed, set when DGMTE, DGMTA, or DGMTEO is called
  ; Output -- None
  ;
  ;DG*5.3*540 - Skip displaying of calculated Means Test Status at the
@@ -17,9 +18,20 @@ DGMTSC4 ;ALB/RMO/CAW,LBD - Means Test Screen Net Worth ; 11/7/03 1:44pm
  ;             for IVM display Source is IVM instead.
  ;
 EN ;Entry point for previous calendar year net worth screen
- S DGMTSCI=4 D HD^DGMTSCU
- D DIS
- S DGRNG="1-5" G EN^DGMTSCR
+ I DGMTACT'="EDT"&(DGMTACT'="ADD")&(DGMTACT'="COM") D  G EN^DGMTSCR ;DG*5.3*1014 check if entry point in screen was from edit, add, or complete a means test and skip screen 4
+ .D DEP^DGMTSCU2,INC^DGMTSCU3 ;DG*5.3*1014 set variable for screen 4 display
+ .N DGVET,DGSPD S (DGVET,DGSPD)=""
+ .S DGVET(1)=$P($G(DGIN2("V")),U),DGVET(2)=$P($G(DGIN2("V")),U,3),DGVET(3)=$P($G(DGIN2("V")),U,4)
+ .S DGSPD(1)=$P($G(DGIN2("S")),U),DGSPD(2)=$P($G(DGIN2("S")),U,3),DGSPD(3)=$P($G(DGIN2("S")),U,4)
+ .S DGMTSCI=4 I DGVET(1)'=""!(DGVET(2)'="")!(DGVET(3)'="")!(DGSPD(1)'="")!(DGSPD(2)'="")!(DGSPD(3)'="") D HD^DGMTSCU
+ .I DGVET(1)=""&(DGVET(2)="")&(DGVET(3)="") S DGSCR1=1
+ .I DGSPD(1)=""&(DGSPD(2)="")&(DGSPD(3)="") S DGSCR1=1
+ .I $$GETNAME^DGMTH(DGMTSCI)'="MT COPAY EXEMPT",DGVET(1)'=""!(DGVET(2)'="")!(DGVET(3)'="")!(DGSPD(1)'="")!(DGSPD(2)'="")!(DGSPD(3)'="") D DIS  ;DG*5.3*1014 do screen 4 if not MT COPAY EXEMPT
+ .I $$GETNAME^DGMTH(DGMTSCI)="MT COPAY EXEMPT"&(DGMTACT'="EDT")&(DGMTACT'="ADD")&(DGMTACT'="COM") D  ;DG*5.3*1014 do screen 4 if not edit, add, or complete and status is MT COPAY EXEMPT
+ ..I DGVET(1)'=""!(DGVET(2)'="")!(DGVET(3)'="")!(DGSPD(1)'="")!(DGSPD(2)'="")!(DGSPD(3)'="") D DIS ;if financial data exists for screen 4 display
+ .S DGRNG="1-3"
+ .I $G(DGSCR1),DGSCR1=1 D MTMSG ;DG*5.3*1014 display MT status message
+ I DGMTACT="EDT"!(DGMTACT="ADD")!(DGMTACT="COM") S DGRNG="1-3",DGMTSCI=4 D FEED^DGMTSCR,EN1^DGMTSCR Q  ;DG*5.3*1014 do not rewrite bottom of screen
  ;
 EN1 ;Entry point for read processor return
  D ALL^DGMTU21(DFN,"S",DGMTDT,"IPR",$S($G(DGMTI):DGMTI,1:""))
@@ -47,10 +59,19 @@ DIS ;Display net worth
  ;DG*5.3*567
  I DGMTACT="VEW",DGMTI,$$GET1^DIQ(408.31,DGMTI,.23)["IVM" D  G DISQ
  . W !!!!!!!!,"Source of Test is IVM"
- W !!!!!!!! I DGMTYPT=1 W "Income of ",$J($$AMT^DGMTSCU1(DGINT-DGDET),12) W "  ",$$GETNAME^DGMTH(DGMTS)
- I DGMTYPT=1,DGTYC="M",(DGNWT-DGDET)+$S($G(DGMTNWC):0,1:DGINT)'<$P(DGMTPAR,"^",8) W !,?3,"with property of ",$J($$AMT^DGMTSCU1(DGNWT),12)," makes a ",$S(DGTHG>DGTHA:"G",1:""),"MT COPAY REQUIRED status."
- I DGTYC="M",'DGNWTF W " requires property information."
- I DGMTYPT=2,'DGNWTF,DGCAT="E" W "Requires property information."
+ K DGSCR1 ;DG*5.3*1014 kill variable to not display repeating info
+MTMSG ;DG*5.3*1014 only display for view a past means test
+ I DGMTACT="VEW" D
+ .D DEP^DGMTSCU2,INC^DGMTSCU3
+ .S DGCAT=$P(^DGMT(408.31,DGMTI,0),"^",3),DGCAT=$P(^DG(408.32,DGCAT,0),"^",2) D STA^DGMTSCU2 S DGCNT=1
+ .W !!!!!! I DGMTYPT=1 W "Income of ",$J($$AMT^DGMTSCU1(DGINT-DGDET),12) W "  ",$$GETNAME^DGMTH(DGMTS)
+ .;jam; DG*5.3*1064
+ .I $$INDSTATUS^DGENELA2(DFN) D
+ . . D BLD^DIALOG(261134,"","","","F")
+ . . D MSG^DIALOG("WM","","","")
+ .;I DGMTYPT=1,DGTYC="M",(DGNWT-DGDET)+$S($G(DGMTNWC):0,1:DGINT)'<$P(DGMTPAR,"^",8) W !,?3,"with property of ",$J($$AMT^DGMTSCU1(DGNWT),12)," makes a ",$S(DGTHG>DGTHA:"G",1:""),"MT COPAY REQUIRED status."
+ .;I DGTYC="M",'DGNWTF W " requires property information."
+ .;I DGMTYPT=2,'DGNWTF,DGCAT="E" W "Requires property information."
 DISQ Q
  ;
 FLD(DGIN,DGPCE,DGTXT) ;Display income fields

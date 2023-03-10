@@ -1,5 +1,5 @@
-MAGVORDR ;WOIFO/RRB/BT/PMK/DAC - MAGV Order Lookup ; 16 Nov 2014 9:16 AM
- ;;3.0;IMAGING;**118,138,156**;Mar 19, 2002;Build 10;Nov 16, 2014
+MAGVORDR ;WOIFO/RRB/BT/PMK/DAC/JSJ - MAGV Order Lookup ; 14 Jul 2021@10:07:45
+ ;;3.0;IMAGING;**118,138,156,307**;Mar 19, 2002;Build 28
  ;; Per VHA Directive 2004-038, this routine should not be modified.
  ;; +---------------------------------------------------------------+
  ;; | Property of the US Government.                                |
@@ -16,11 +16,14 @@ MAGVORDR ;WOIFO/RRB/BT/PMK/DAC - MAGV Order Lookup ; 16 Nov 2014 9:16 AM
  ;; +---------------------------------------------------------------+
  ;;
  ;
+ ; Reference to FIND1^DIC in ICR #2051
+ ; Reference to GET1^DIQ in ICR #2056
+ ; Reference to ACCFIND^RAAPI in ICR #5020
+ ;
  ;
  ; Lookup the patient/study in the imaging service's database
  ; The imaging service, IMGSVC (RAD or CON), and case number, CASENUMB(accession)
  ; are required variables that must be passed to the LOOKUP subroutine.
- ; 
  ; 
  ; Output will be in the form of a string:
  ; 
@@ -29,8 +32,6 @@ MAGVORDR ;WOIFO/RRB/BT/PMK/DAC - MAGV Order Lookup ; 16 Nov 2014 9:16 AM
  ;     Incorrect accession # format or not present: -1~BAD CASE #
  ;     
  ;     No case on file: -1~NO CASE #
- ;     
- ;
  Q
  ;
 LOOKUP(CASENUMB,IMGSVC) ; MAGV Order Lookup
@@ -120,9 +121,9 @@ OLDCASE(CASENUMB,LIST)  ; Lookup case numbers using old method
  ;
  ;
 LABLKUP(ACNUMB) ; Lab patient/study lookup - P138
- N FMYEAR,LRAA,LRDFN,LRSS,IENS,YEAR,CASE,SITE
- S LRSS=$P(ACNUMB," ",1),YEAR=$P(ACNUMB," ",2),CASE=$P(ACNUMB," ",3)
- S LRAA=$$FIND1^DIC(68,"","BX",LRSS,"","","ERR") ; get lab area index
+ N FMYEAR,LRAA,LRDFN,LRSS,IENS,YEAR,CASE,SITE,ABBR  ;P307
+ S ABBR=$P(ACNUMB," ",1),YEAR=$P(ACNUMB," ",2),CASE=$P(ACNUMB," ",3)  ;P307
+ S LRAA=$$FIND1^DIC(68,"","BX",ABBR,"","","ERR") ; get lab area index ;P307
  S FMYEAR="3"_YEAR_"0000"
  S IENS=CASE_","_FMYEAR_","_LRAA
  ; lookup in ACCESSION file (#68)

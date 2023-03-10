@@ -1,0 +1,83 @@
+PSOSPML8 ;WILM/BDB - State Prescription Monitoring Program Utilities ;10/07/12
+ ;;7.0;OUTPATIENT PHARMACY;**625,630**;DEC 1997;Build 26
+ ;
+ Q
+ ;
+ASK ;
+ N %DT,DIR,DIRUT,X,DIC,DTOUT,DUOUT,BEGDTTM,ENDDTTM,PSOERROR
+ N POP,ZTDESC,ZTRTN,ZTSAVE,ZTSK,%ZIS
+ N RECTYPE,STATE,RTSONLY,LIST,PSOSPFLG,BATIEN,RXCNT
+ ;
+ ; - Selection of STATE
+ W ! S DIC("A")="STATE: ",DIC("S")="I $D(^PS(58.41,+Y,0))",DIC="^DIC(5,"
+ S DIC("B")=$$GET1^DIQ(5,+$O(^PS(58.41,0)),.01)
+ S DIC(0)="AEQMZ" D ^DIC I X="^"!(Y<0) Q
+ S STATE=+Y
+BEGDT ;
+ ; - Ask for Start DATE
+ S %DT(0)=3130211,%DT="AEP",%DT("A")="Begin Release Date: "
+ W ! D ^%DT I Y<0!($D(DTOUT)) Q
+ I (Y=DT)!(Y>DT) W !!?5,"Only past dates are allowed." D PAUSE^PSOSPMU1 G BEGDT
+ S BEGDTTM=Y
+ ;
+ENDDT ;
+ ; - Ask for End DATE
+ K %DT S %DT(0)=BEGDTTM\1,%DT="AEP",%DT("B")="TODAY-1",%DT("A")="End Release Date: "
+ W ! D ^%DT I Y<0!($D(DTOUT)) Q
+ I (Y=DT)!(Y>DT) W !!?5,"The latest end date permitted is TODAY-1 (yesterday)." D PAUSE^PSOSPMU1 G ENDDT
+ S ENDDTTM=Y
+ S LIST="ARX"
+ S LIST("STATE")=STATE
+ S RECTYPE="N"
+ S RTSONLY=0
+ S RXCNT=$$GATHER^PSOSPMU1(STATE,BEGDTTM-.1,ENDDTTM+.24,RECTYPE,RTSONLY,.LIST)
+ I 'RXCNT W !!,"No Rx's Found" G END
+ D PRINT
+ N DIR,DIROUT,DIRUT,DTOUT,DUOUT,X,Y
+ S DIR(0)="Y"
+ S DIR("A")="Do you want to create a batch"
+ S DIR("B")="No"
+ D ^DIR
+ I Y D
+ . S BATIEN=$$BLDBAT^PSOSPMU1("MA",BEGDTTM,ENDDTTM)
+ . I $P(BATIEN,"^")=-1 W !!,$P(BATIEN,"^",2),! D LOGERROR^PSOSPMUT(0,STATE,$P(BATIEN,"^",2),1) Q
+ . N DIR,DIROUT,DIRUT,DTOUT,DUOUT,X,Y
+ . S DIR(0)="Y"
+ . S DIR("A")="Do you want to launch Export Batch Processing"
+ . S DIR("B")="No"
+ . D ^DIR
+ . I Y D ^PSOSPML1
+END K ^TMP("PSOSPMRX",$J)
+ Q
+ ;
+PRINT ; Allow queueing
+ S PSOJOB=$J
+ K ^XTMP("PSO70625",PSOJOB)
+ S ^XTMP("PSO70625",PSOJOB,0)=$$FMADD^XLFDT(DT,2)_"^"_DT_"^"_"SPMP NOT SENT SCRIPTS"
+ M ^XTMP("PSO70625",PSOJOB)=^TMP("PSOSPMRX",$J)
+ K IOP,IO("Q") S %ZIS="MQ",%ZIS("B")="",POP=0 D ^%ZIS
+ Q:POP
+ I $D(IO("Q")) D  Q  ;Queued report settings
+ .S ZTDESC="CS PRESCRIPTIONS NOT TRANSMITTED REPORT",ZTRTN="PSOQ^PSOSPML8"
+ .S ZTSAVE("PSOJOB")="",ZTSAVE("ZTREQ")="@"
+ .D ^%ZTLOAD,HOME^%ZIS
+ .I $G(ZTSK) W !!,"Report compilation has started with task# ",ZTSK,".",! K DIR S DIR(0)="E" D ^DIR K DIR
+PSOQ ;
+ N PSOSPI,PSOSPJ,PSOSPK
+ S PSOSPI=0 S (PSOSPJ,PSOSPK)=""
+ W !!!,"CS Prescriptions Not Transmitted Report"
+ I '$G(PSOSPFLG) W !!,"Rx #",?15,"Fill #",?25,"Release Date",?45,"STATE"
+ F  S PSOSPI=$O(^XTMP("PSO70625",PSOJOB,PSOSPI)) Q:PSOSPI=""  D
+ .F  S PSOSPJ=$O(^XTMP("PSO70625",PSOJOB,PSOSPI,PSOSPJ)) Q:PSOSPJ=""  D
+ ..F  S PSOSPK=$O(^XTMP("PSO70625",PSOJOB,PSOSPI,PSOSPJ,PSOSPK)) Q:PSOSPK=""  D
+ ...W !,$$GET1^DIQ(52,PSOSPJ,.01),?15,PSOSPK,?25,$$FMTE^XLFDT($$RXRLDT^PSOBPSUT(PSOSPJ,PSOSPK),2),?45,$$GET1^DIQ(5,$$RXSTATE^PSOBPSUT(PSOSPJ,0),.01) S PSOSPFLG=1
+ W !
+ K PSOJOB
+ Q
+ ;
+CHKST(RXIEN,FILL,STATE) ;check batch state
+ N BATCH,RSLT
+ S RSLT=0
+ S BATCH=0 F  S BATCH=$O(^PS(58.42,"ARX",RXIEN,FILL,BATCH)) Q:BATCH=""  D
+ .I STATE=$$GET1^DIQ(58.42,BATCH,1,"I") S RSLT=1
+ Q RSLT

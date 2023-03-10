@@ -1,5 +1,5 @@
-PXRRMDR ;BP/WLC - PCE Missing Data Report ;11 Feb 04  10:10 AM
- ;;1.0;PCE PATIENT CARE ENCOUNTER;**124,174,168,199**;FEB 11, 2004;Build 51
+PXRRMDR ;BP/WLC - PCE Missing Data Report ;07/13/2021
+ ;;1.0;PCE PATIENT CARE ENCOUNTER;**124,174,168,199,217**;FEB 11, 2004;Build 134
  ; 04/11/05 WLC changed to check for AO, IR and EC, only if SC'=YES
  Q
  ;
@@ -39,7 +39,7 @@ RUN ;
  . S VSN=0 F  S VSN=$O(^AUPNVSIT("ADEL",PXDT,VSN)) Q:'VSN  D
  . . S VISITS=$P($G(^AUPNVSIT(VSN,812)),U,3) S:VISITS="" VISITS="Unknown"
  . . Q:'$D(PXDS(VISITS))
- . . D ENCEVENT^PXKENC(VSN,0)
+ . . D ENCEVENT^PXKENCOUNTER(VSN,0)
  . . Q:$P($G(^TMP("PXKENC",$J,VSN,"VST",VSN,0)),U,7)="E"  ;Historic encounter PX*1.0*174
  . . Q:$$TESTPAT^VADPT($P($G(^TMP("PXKENC",$J,VSN,"VST",VSN,0)),U,5))  ;Test patient PX*1.0*174
  . . N OE S OE=$O(^SCE("AVSIT",VSN,0)) Q:'OE  Q:$P(^SCE(OE,0),U,6)]""  Q:$P(^SCE(OE,0),U,12)=12  ;Check if a child encounter, non-count  PX*1.0*174

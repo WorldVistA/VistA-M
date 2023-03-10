@@ -1,5 +1,5 @@
-ECUMRPC1 ;ALB/JAM-Event Capture Management Broker Utilities ;3/9/18  08:59
- ;;2.0;EVENT CAPTURE;**25,30,33,72,94,95,105,100,107,110,112,126,130,131,134,139**;8 May 96;Build 7
+ECUMRPC1 ;ALB/JAM-Event Capture Management Broker Utilities ;Nov 12, 2020@15:34:23
+ ;;2.0;EVENT CAPTURE;**25,30,33,72,94,95,105,100,107,110,112,126,130,131,134,139,152**;8 May 96;Build 19
  ;
 DSSUNT(RESULTS,ECARY) ;
  ;
@@ -12,17 +12,17 @@ DSSUNT(RESULTS,ECARY) ;
  ;               P3 =   optional field to return 1 DSS unit by IEN, if used
  ;                      no other filters evaluated
  ;               P4 =   optional field to filter based on the DSS Unit Number (DSS Dept)
- ;               
+ ;
  ;               if data is passed into the other fields then all criteria
  ;               must be met for data on a unit to be returned
  ;
  ;OUTPUTS        RESULTS - Array of DSS units. Data pieces as follows:-
  ;               PIECE - Description
- ;                 1     IEN of DSS Unit 
+ ;                 1     IEN of DSS Unit
  ;                 2     Name of DSS Unit
  ;                 3     IEN of DSS Unit
  ;                 4     Inactive flag
- ;                 5     Send to PCE   
+ ;                 5     Send to PCE
  ;                 6     Unit Number
  ;                 7     Service
  ;                 8     Medical Specialty
@@ -133,7 +133,7 @@ PXCHK(RESULTS,ECARY) ;
  Q
 SRCLST(RESULTS,ECARY) ;
  ;
- ;This broker entry returns an array of codes from a file based on a 
+ ;This broker entry returns an array of codes from a file based on a
  ;search string.
  ;        RPC: EC GETLIST
  ;
@@ -178,13 +178,14 @@ EXIT K ^TMP("ECSRCH",$J)
  Q
 ASCLN ;Search for active associated clinics (file #44)
  N CLN,CNT,NOD,ECDT,INACT,REACT,ERR,ECNOD ;126
+ N ECRES,ECAC ;152
  S CNT=0,ECDT=ECADT ;112
  I (ECDIR'=1)&(ECDIR'=-1) S ECDIR=1
  ;the next 2 lines of code compensate for the M collating sequence & how the
  ;clinic code is passed in from a CPRS RPC, in a unique situation. If the
  ;code is numeric, ending in 0 and there is a similar code ending with a
  ;letter, the correct clinic is not returned. EX: 2 clinics, 3010 and "3010A"
- ;exist, the code is written to return 3010, yet 3010A is incorrectly returned. 
+ ;exist, the code is written to return 3010, yet 3010A is incorrectly returned.
  ;This code puts the 0 back on and subtracts 1 to the clinic code
  I $E(ECSTR,$L(ECSTR)-1)="/",$E(ECSTR,1,($L(ECSTR)-2))?.N D
  .S ECSTR=$E(ECSTR,1,($L(ECSTR)-2))_0,ECSTR=ECSTR-1
@@ -199,7 +200,10 @@ ASCLN ;Search for active associated clinics (file #44)
  ....I ECDT'<INACT,ECDT<REACT S ERR=1 Q
  ...;I REACT,ECDT<REACT S ERR=1  removed in EC*110 - BGP
  ..S ECNOD=$G(^ECX(728.44,CLN,0)) ;126 Get clinic and stop code zero node for selected clinic
- ..S CNT=CNT+1,^TMP($J,"ECFIND",CNT)=CLN_U_$P(NOD,U)_U_$P(ECNOD,U,2)_U_$P(ECNOD,U,3)_U_$P($G(^ECX(728.441,+$P(ECNOD,U,8),0)),U) ;126 Add stop code, credit stop, and char4 code
+ ..;S CNT=CNT+1,^TMP($J,"ECFIND",CNT)=CLN_U_$P(NOD,U)_U_$P(ECNOD,U,2)_U_$P(ECNOD,U,3)_U_$P($G(^ECX(728.441,+$P(ECNOD,U,8),0)),U) ;126 Add stop code, credit stop, and char4 code
+ ..I $P(ECNOD,U,2)'="" D  ;152 Only valid clinics are added to the list
+ ...S ECRES=$$CLNCK^SDUTL2(CLN,0) I 'ECRES Q  ;
+ ...S CNT=CNT+1,^TMP($J,"ECFIND",CNT)=CLN_U_$P(NOD,U)_U_$P(ECNOD,U,2)_U_$P(ECNOD,U,3)_U_$P($G(^ECX(728.441,+$P(ECNOD,U,8),0)),U) ;126 Add stop code, credit stop, and char4 code
  Q
 CSTCTR ;Search for cost centers (File #420.1)
  N ECNULL,INDX,STR,NSTR,I
@@ -270,4 +274,3 @@ SORT ;Extracts data to be returned to broker
  ;
 CHAR4 ;126, returns list of CHAR4 codes from the NATIONAL CLINIC file (#728.441)
  D LISTDIC(ECFIL,"",.01,ECORD,ECNUM,ECSTR,"","","I $P($G(^(2)),""^"")=""""!($P($G(^(2)),""^"")>DT)","","^TMP(""ECSRCH"",$J)","ECER")
- Q

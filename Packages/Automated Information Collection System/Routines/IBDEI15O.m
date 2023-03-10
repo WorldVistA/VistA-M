@@ -1,128 +1,128 @@
-IBDEI15O ; ; 04-FEB-2020
- ;;3.0;IB ENCOUNTER FORM IMP/EXP;;FEB 04, 2020
+IBDEI15O ; ; 01-FEB-2022
+ ;;3.0;IB ENCOUNTER FORM IMP/EXP;;FEB 01, 2022
  Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,999) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
- ;;^UTILITY(U,$J,358.3,18581,1,0)
+ ;;^UTILITY(U,$J,358.3,18760,0)
+ ;;=H60.543^^64^840^20
+ ;;^UTILITY(U,$J,358.3,18760,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,18581,1,3,0)
- ;;=3^Unavailable/Inaccessible to Other Helping Agencies
- ;;^UTILITY(U,$J,358.3,18581,1,4,0)
- ;;=4^Z75.4
- ;;^UTILITY(U,$J,358.3,18581,2)
- ;;=^5063293
- ;;^UTILITY(U,$J,358.3,18582,0)
- ;;=Z62.813^^91^947^13
- ;;^UTILITY(U,$J,358.3,18582,1,0)
+ ;;^UTILITY(U,$J,358.3,18760,1,3,0)
+ ;;=3^AC Eczematoid Otitis Externa,Bilateral
+ ;;^UTILITY(U,$J,358.3,18760,1,4,0)
+ ;;=4^H60.543
+ ;;^UTILITY(U,$J,358.3,18760,2)
+ ;;=^5006484
+ ;;^UTILITY(U,$J,358.3,18761,0)
+ ;;=H60.542^^64^840^21
+ ;;^UTILITY(U,$J,358.3,18761,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,18582,1,3,0)
- ;;=3^Personal Hx of Forced Labor/Sexual Exploitation in Childhood
- ;;^UTILITY(U,$J,358.3,18582,1,4,0)
- ;;=4^Z62.813
- ;;^UTILITY(U,$J,358.3,18582,2)
- ;;=^5157627
- ;;^UTILITY(U,$J,358.3,18583,0)
- ;;=Z91.42^^91^947^14
- ;;^UTILITY(U,$J,358.3,18583,1,0)
+ ;;^UTILITY(U,$J,358.3,18761,1,3,0)
+ ;;=3^AC Eczematoid Otitis Externa,Left Ear
+ ;;^UTILITY(U,$J,358.3,18761,1,4,0)
+ ;;=4^H60.542
+ ;;^UTILITY(U,$J,358.3,18761,2)
+ ;;=^5006483
+ ;;^UTILITY(U,$J,358.3,18762,0)
+ ;;=H60.541^^64^840^22
+ ;;^UTILITY(U,$J,358.3,18762,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,18583,1,3,0)
- ;;=3^Personal Hx of Forced Labor/Sexual Exploitation
- ;;^UTILITY(U,$J,358.3,18583,1,4,0)
- ;;=4^Z91.42
- ;;^UTILITY(U,$J,358.3,18583,2)
- ;;=^5157633
- ;;^UTILITY(U,$J,358.3,18584,0)
- ;;=Z02.89^^91^947^1
- ;;^UTILITY(U,$J,358.3,18584,1,0)
+ ;;^UTILITY(U,$J,358.3,18762,1,3,0)
+ ;;=3^AC Eczematoid Otitis Externa,Right Ear
+ ;;^UTILITY(U,$J,358.3,18762,1,4,0)
+ ;;=4^H60.541
+ ;;^UTILITY(U,$J,358.3,18762,2)
+ ;;=^5006482
+ ;;^UTILITY(U,$J,358.3,18763,0)
+ ;;=J04.0^^64^840^23
+ ;;^UTILITY(U,$J,358.3,18763,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,18584,1,3,0)
- ;;=3^Administrative Exams,Other
- ;;^UTILITY(U,$J,358.3,18584,1,4,0)
- ;;=4^Z02.89
- ;;^UTILITY(U,$J,358.3,18584,2)
- ;;=^5062645
- ;;^UTILITY(U,$J,358.3,18585,0)
- ;;=Z70.9^^91^948^2
- ;;^UTILITY(U,$J,358.3,18585,1,0)
+ ;;^UTILITY(U,$J,358.3,18763,1,3,0)
+ ;;=3^AC Laryngitis
+ ;;^UTILITY(U,$J,358.3,18763,1,4,0)
+ ;;=4^J04.0
+ ;;^UTILITY(U,$J,358.3,18763,2)
+ ;;=^5008137
+ ;;^UTILITY(U,$J,358.3,18764,0)
+ ;;=J04.2^^64^840^24
+ ;;^UTILITY(U,$J,358.3,18764,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,18585,1,3,0)
- ;;=3^Sex Counseling
- ;;^UTILITY(U,$J,358.3,18585,1,4,0)
- ;;=4^Z70.9
- ;;^UTILITY(U,$J,358.3,18585,2)
- ;;=^5063241
- ;;^UTILITY(U,$J,358.3,18586,0)
- ;;=Z71.9^^91^948^1
- ;;^UTILITY(U,$J,358.3,18586,1,0)
+ ;;^UTILITY(U,$J,358.3,18764,1,3,0)
+ ;;=3^AC Laryngotracheitis
+ ;;^UTILITY(U,$J,358.3,18764,1,4,0)
+ ;;=4^J04.2
+ ;;^UTILITY(U,$J,358.3,18764,2)
+ ;;=^269868
+ ;;^UTILITY(U,$J,358.3,18765,0)
+ ;;=J00.^^64^840^25
+ ;;^UTILITY(U,$J,358.3,18765,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,18586,1,3,0)
- ;;=3^Counseling,Unspec
- ;;^UTILITY(U,$J,358.3,18586,1,4,0)
- ;;=4^Z71.9
- ;;^UTILITY(U,$J,358.3,18586,2)
- ;;=^5063254
- ;;^UTILITY(U,$J,358.3,18587,0)
- ;;=Z60.0^^91^949^2
- ;;^UTILITY(U,$J,358.3,18587,1,0)
+ ;;^UTILITY(U,$J,358.3,18765,1,3,0)
+ ;;=3^AC Nasopharyngitis
+ ;;^UTILITY(U,$J,358.3,18765,1,4,0)
+ ;;=4^J00.
+ ;;^UTILITY(U,$J,358.3,18765,2)
+ ;;=^5008115
+ ;;^UTILITY(U,$J,358.3,18766,0)
+ ;;=J02.8^^64^840^29
+ ;;^UTILITY(U,$J,358.3,18766,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,18587,1,3,0)
- ;;=3^Phase of Life Problem
- ;;^UTILITY(U,$J,358.3,18587,1,4,0)
- ;;=4^Z60.0
- ;;^UTILITY(U,$J,358.3,18587,2)
- ;;=^5063139
- ;;^UTILITY(U,$J,358.3,18588,0)
- ;;=Z60.2^^91^949^3
- ;;^UTILITY(U,$J,358.3,18588,1,0)
+ ;;^UTILITY(U,$J,358.3,18766,1,3,0)
+ ;;=3^AC Pharyngitis d/t Specified Organisms
+ ;;^UTILITY(U,$J,358.3,18766,1,4,0)
+ ;;=4^J02.8
+ ;;^UTILITY(U,$J,358.3,18766,2)
+ ;;=^5008129
+ ;;^UTILITY(U,$J,358.3,18767,0)
+ ;;=J02.9^^64^840^30
+ ;;^UTILITY(U,$J,358.3,18767,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,18588,1,3,0)
- ;;=3^Problem Related to Living Alone
- ;;^UTILITY(U,$J,358.3,18588,1,4,0)
- ;;=4^Z60.2
- ;;^UTILITY(U,$J,358.3,18588,2)
- ;;=^5063140
- ;;^UTILITY(U,$J,358.3,18589,0)
- ;;=Z60.3^^91^949^1
- ;;^UTILITY(U,$J,358.3,18589,1,0)
+ ;;^UTILITY(U,$J,358.3,18767,1,3,0)
+ ;;=3^AC Pharyngitis,Unspec
+ ;;^UTILITY(U,$J,358.3,18767,1,4,0)
+ ;;=4^J02.9
+ ;;^UTILITY(U,$J,358.3,18767,2)
+ ;;=^5008130
+ ;;^UTILITY(U,$J,358.3,18768,0)
+ ;;=B40.0^^64^840^31
+ ;;^UTILITY(U,$J,358.3,18768,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,18589,1,3,0)
- ;;=3^Acculturation Difficulty
- ;;^UTILITY(U,$J,358.3,18589,1,4,0)
- ;;=4^Z60.3
- ;;^UTILITY(U,$J,358.3,18589,2)
- ;;=^5063141
- ;;^UTILITY(U,$J,358.3,18590,0)
- ;;=Z60.4^^91^949^5
- ;;^UTILITY(U,$J,358.3,18590,1,0)
+ ;;^UTILITY(U,$J,358.3,18768,1,3,0)
+ ;;=3^AC Pulmonary Blastomycosis
+ ;;^UTILITY(U,$J,358.3,18768,1,4,0)
+ ;;=4^B40.0
+ ;;^UTILITY(U,$J,358.3,18768,2)
+ ;;=^5000639
+ ;;^UTILITY(U,$J,358.3,18769,0)
+ ;;=H60.553^^64^840^32
+ ;;^UTILITY(U,$J,358.3,18769,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,18590,1,3,0)
- ;;=3^Social Exclusion or Rejection
- ;;^UTILITY(U,$J,358.3,18590,1,4,0)
- ;;=4^Z60.4
- ;;^UTILITY(U,$J,358.3,18590,2)
- ;;=^5063142
- ;;^UTILITY(U,$J,358.3,18591,0)
- ;;=Z60.5^^91^949^6
- ;;^UTILITY(U,$J,358.3,18591,1,0)
+ ;;^UTILITY(U,$J,358.3,18769,1,3,0)
+ ;;=3^AC Reactive Otitis Externa,Bilateral
+ ;;^UTILITY(U,$J,358.3,18769,1,4,0)
+ ;;=4^H60.553
+ ;;^UTILITY(U,$J,358.3,18769,2)
+ ;;=^5006488
+ ;;^UTILITY(U,$J,358.3,18770,0)
+ ;;=H60.552^^64^840^33
+ ;;^UTILITY(U,$J,358.3,18770,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,18591,1,3,0)
- ;;=3^Target (Perceived) Adverse Discrimination/Persecution
- ;;^UTILITY(U,$J,358.3,18591,1,4,0)
- ;;=4^Z60.5
- ;;^UTILITY(U,$J,358.3,18591,2)
- ;;=^5063143
- ;;^UTILITY(U,$J,358.3,18592,0)
- ;;=Z60.9^^91^949^4
- ;;^UTILITY(U,$J,358.3,18592,1,0)
+ ;;^UTILITY(U,$J,358.3,18770,1,3,0)
+ ;;=3^AC Reactive Otitis Externa,Left Ear
+ ;;^UTILITY(U,$J,358.3,18770,1,4,0)
+ ;;=4^H60.552
+ ;;^UTILITY(U,$J,358.3,18770,2)
+ ;;=^5006487
+ ;;^UTILITY(U,$J,358.3,18771,0)
+ ;;=H60.551^^64^840^34
+ ;;^UTILITY(U,$J,358.3,18771,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,18592,1,3,0)
- ;;=3^Problem Related to Social Environment,Unspec
- ;;^UTILITY(U,$J,358.3,18592,1,4,0)
- ;;=4^Z60.9
- ;;^UTILITY(U,$J,358.3,18592,2)
- ;;=^5063145
- ;;^UTILITY(U,$J,358.3,18593,0)
- ;;=F65.4^^91^950^6
- ;;^UTILITY(U,$J,358.3,18593,1,0)
+ ;;^UTILITY(U,$J,358.3,18771,1,3,0)
+ ;;=3^AC Reactive Otitis Externa,Right Ear
+ ;;^UTILITY(U,$J,358.3,18771,1,4,0)
+ ;;=4^H60.551
+ ;;^UTILITY(U,$J,358.3,18771,2)
+ ;;=^5006486
+ ;;^UTILITY(U,$J,358.3,18772,0)
+ ;;=J01.91^^64^840^35
+ ;;^UTILITY(U,$J,358.3,18772,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,18593,1,3,0)
- ;;=3^Pedophilic D/O

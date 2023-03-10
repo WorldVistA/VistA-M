@@ -1,6 +1,7 @@
-ORUPREF1 ; slc/dcm - Key allocation ;04/22/16  07:45
- ;;3.0;ORDER ENTRY/RESULTS REPORTING;**132,397**;Dec 17, 1997;Build 22
+ORUPREF1 ; slc/dcm - Key allocation ;Jan 08, 2021@11:59:33
+ ;;3.0;ORDER ENTRY/RESULTS REPORTING;**132,397,539**;Dec 17, 1997;Build 41
  ;;397 - WAT Add ORSUPPLY to KEY
+ ;;539 - WAT Add OR CPRS TESTER to KEY
 EN ;
  K ORC W $C(27),"[44;37m"
  S ORC(1)="Black^0",ORC(2)="Red^1",ORC(3)="Green^2",ORC(4)="Yellow^3",ORC(5)="Blue^4",ORC(6)="Magenta^5",ORC(7)="Cyan^6",ORC(8)="White^7"
@@ -26,7 +27,7 @@ UP ;Upper case
 KEY ;Edit user security keys
  N I
  S OREND=0,ORVER=+($G(^DD(200,0,"VR")))
- F ORKEY="ORES","ORELSE","OREMAS","ORSUPPLY" D K1 Q:OREND  W ! F I=1:1:(IOM-1) W "="
+ F ORKEY="ORES","ORELSE","OREMAS","ORSUPPLY","OR CPRS TESTER" D K1 Q:OREND  W ! F I=1:1:(IOM-1) W "="
  S OREND=0 K DLAYGO,DA,DR,DIE,DIC,OREND,ORK,ORKEY,ORHEAD,ORVER
  Q
 K1 N % I '$D(^DIC(19.1,"B",ORKEY)) W !,ORKEY_" is not in the Security Key file" Q

@@ -1,5 +1,5 @@
-PSOORCPY ;BIR/SAB-copy orders from backdoor ;Jun 26, 2018@08:23
- ;;7.0;OUTPATIENT PHARMACY;**10,21,27,32,46,100,117,148,313,411,444,468,504,477**;DEC 1997;Build 187
+PSOORCPY ;BIR/SAB-copy orders from backdoor ;Dec 10, 2019@13:08:57
+ ;;7.0;OUTPATIENT PHARMACY;**10,21,27,32,46,100,117,148,313,411,444,468,504,477,441**;DEC 1997;Build 208
  ;External reference to LK^ORX2 supported by DBIA 867
  ;External reference to ULK^ORX2 supported by DBIA 867
  ;External reference to ^PSDRUG( supported by DBIA 221
@@ -17,7 +17,7 @@ COPY ; Rx Copy Functionality
  S PSOCHECK=$$CHKRXPRV^PSOUTIL(PSORXIEN)
  I 'PSOCHECK S VALMSG=$P(PSOCHECK,"^",2),VALMBCK="R" W $C(7) Q
  I $$LMREJ^PSOREJU1(PSORXIEN,,.VALMSG,.VALMBCK) Q
- I '$G(PSOMTFLG),$$TITRX^PSOUTL(PSORXIEN)="t" S VALMSG="Cannot Copy a 'Titration Rx'.",VALMBCK="" W $C(7) Q
+ ;I '$G(PSOMTFLG),$$TITRX^PSOUTL(PSORXIEN)="t" S VALMSG="Cannot Copy a 'Titration Rx'.",VALMBCK="" W $C(7) Q ;p441
  I $G(PSOBEDT) W $C(7),$C(7) S VALMSG="Invalid Action at this time !",VALMBCK="" Q
  I $G(PSONACT) W $C(7),$C(7) S VALMSG="No Pharmacy Orderable Item !",VALMBCK="" K PSOCOPY D ^PSOBUILD Q
  S PSOPLCK=$$L^PSSLOCK(PSODFN,0) I '$G(PSOPLCK) D LOCK S VALMSG=$S($P($G(PSOPLCK),"^",2)'="":$P($G(PSOPLCK),"^",2)_" is working on this patient.",1:"Another person is entering orders for this patient.") K PSOPLCK S VALMBCK="" Q
@@ -29,6 +29,9 @@ COPY ; Rx Copy Functionality
  S:$G(^PSRX(PSORXED("IRXN"),"INSS"))]"" PSORXED("SINS")=^PSRX(PSORXED("IRXN"),"INSS")
  S D=0 F  S D=$O(^PSRX(PSORXED("IRXN"),"INS1",D)) Q:'D  S PSORXED("SIG",D)=^PSRX(PSORXED("IRXN"),"INS1",D,0)
  I '$O(PSORXED("SIG",0)),$G(PSORXED("INS"))]"" S PSORXED("SIG",1)=PSORXED("INS")
+ ;441-IND
+ S PSORXED("IND")=$P($G(^PSRX(PSORXED("IRXN"),"IND")),"^"),PSORXED("INDF")=$P($G(^PSRX(PSORXED("IRXN"),"IND")),"^",2)
+ S:$P($G(^PS(55,PSODFN,"LAN")),"^") PSORXED("INDO")=$P($G(^PSRX(PSORXED("IRXN"),"IND")),"^",3)
  I $G(^PSRX(PSORXED("IRXN"),"TN"))]"" S PSODRUG("TRADE NAME")=^PSRX(PSORXED("IRXN"),"TN")
  ;
  ; - This call copies the dosage into the new order and also split the Maintenance dose (if the case)

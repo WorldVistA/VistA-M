@@ -1,5 +1,5 @@
 PSOPRI ;BIR/JLC - INTERNET PRESCRIPTION REFILL PROCESSOR ;3/27/06 2:23pm
- ;;7.0;OUTPATIENT PHARMACY;**116,204,242,264,300**;DEC 1997;Build 4
+ ;;7.0;OUTPATIENT PHARMACY;**116,204,242,264,300,674**;DEC 1997;Build 1
  ;
  ;Reference to ^PSSLOCK supported by DBIA 2789
  ;Reference to DIC(19 supported by DBIA 2246
@@ -24,6 +24,7 @@ START L +^XTMP("PSOATRF"):5 I '$T D  Q
  D:'$D(PSOPAR) ^PSOLSET G:'$D(PSOPAR) END
  W !!!?20,"Division: "_$P(^PS(59,PSOSITE,0),"^"),!!
  S PSOBBC1("FROM")="REFILL",PSOBBC("QFLG")=0,PSOBBC("DFLG")=0
+ S:'$G(PSOINST) PSOINST=$P($G(^PS(59,PSOSITE,"INI")),"^") S:'PSOINST PSOINST=0 ;p674
  I '$D(^PS(52.43,"AINST",PSOINST)) S PSOANS="N" W !!?7,$C(7),"There are no internet refills to process." G END
  D ASK^PSOBBC W:PSOBBC("QFLG")=1 !?7,$C(7),"No internet refills were processed." G:PSOBBC("QFLG")=1 END
 IPR W ! S DIR("B")="YES",DIR("A")="Process internet refill requests at this time",DIR(0)="Y" D ^DIR K DIR S PSOANS="N" I $G(DIRUT) S PSOPTRX="" G END

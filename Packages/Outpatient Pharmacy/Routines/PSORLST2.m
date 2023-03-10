@@ -1,5 +1,5 @@
 PSORLST2 ;BIRM/MFR - List of Patients/Prescriptions for Recall Notice ;12/30/09
- ;;7.0;OUTPATIENT PHARMACY;**348,371,525**;DEC 1997;Build 6
+ ;;7.0;OUTPATIENT PHARMACY;**348,371,525,441**;DEC 1997;Build 208
  ;
  ; Report Output fields ("^" separated):
  ; ------------------------------------
@@ -17,7 +17,7 @@ PSORLST2 ;BIRM/MFR - List of Patients/Prescriptions for Recall Notice ;12/30/09
  ;   23. DIVISION                       24. PHARMACIST
  ;   25. PROVIDER                       26. PATIENT STATUS
  ;   27. QTY                            28. DAYS SUPPLY
- ;   29. # OF REFILLS                   30. MAIL/WINDOW
+ ;   29. # OF REFILLS                   30. MAIL/WINDOW/PARK
  ;   31. CMOP?                          32. PARTIAL REMARKS
  ;   33. TRANSMISSION NUMBER            34. SEQUENCE #
  ;   35. CMOP NDC                       36. DATE SHIPPED
@@ -133,7 +133,7 @@ ORIGINAL(RXND0,RXND2) ; Build output for specific original RX, store in ^TMP
  S PHARM=$P($G(^VA(200,+$P(RXND2,"^",3),0)),"^")
  S PROV=$P($G(^VA(200,+$P(RXND0,"^",4),0)),"^")
  S QTY=$P(RXND0,"^",7),DAYS=$P(RXND0,"^",8)
- S MW=$S($P(RXND0,"^",11)="W":"WINDOW",1:"MAIL")
+ S MW=$P(RXND0,"^",11),MW=$S(MW="W":"WINDOW",MW="P":"PARK",1:"MAIL")  ;441 PAPI
  S ORIGINAL="0^^"_FILLDT_"^"_RELDT_"^^"_LOT_"^"_NDC_"^"_DIVNAM_" ("_DIVNUM_")"
  S ORIGINAL=ORIGINAL_"^"_PHARM_"^"_PROV_"^^"_QTY_"^"_DAYS_"^^"_MW_"^^"
  Q ORIGINAL
@@ -159,7 +159,7 @@ REFILL(RX,REF,RXND0,RXND2) ; Build output for specific Refill, store in ^TMP
  S (DIVNAM,DIVNUM)="" I DIV S Z=$G(^PS(59,+DIV,0)),DIVNAM=$P(Z,"^"),DIVNUM=$P(Z,"^",6)
  S PHARM=$P(RF0,"^",5) S:'PHARM PHARM=$P(RXND2,"^",3) S PHARM=$P($G(^VA(200,+PHARM,0)),"^")
  S PROV=$P(RF0,"^",17) S:'PROV PROV=$P(RXND0,"^",4) S PROV=$P($G(^VA(200,+PROV,0)),"^")
- S MW=$S($P(RF0,"^",2)="W":"WINDOW",1:"MAIL")
+ S MW=$P(RF0,"^",2),MW=$S(MW="W":"WINDOW",MW="P":"PARK",1:"MAIL")  ;441 PAPI
  S REFILL=REF_"^^"_RFILDT_"^"_RLSDT_"^^"_LOT_"^"_NDC_"^"_DIVNAM_" ("_DIVNUM_")"
  S REFILL=REFILL_"^"_PHARM_"^"_PROV_"^^"_QTY_"^"_DAYS_"^^"_MW_"^^"
  Q REFILL

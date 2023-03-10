@@ -1,122 +1,130 @@
-IBDEI1BJ ; ; 04-FEB-2020
- ;;3.0;IB ENCOUNTER FORM IMP/EXP;;FEB 04, 2020
+IBDEI1BJ ; ; 01-FEB-2022
+ ;;3.0;IB ENCOUNTER FORM IMP/EXP;;FEB 01, 2022
  Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,999) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
- ;;^UTILITY(U,$J,358.3,21075,1,4,0)
- ;;=4^F16.929
- ;;^UTILITY(U,$J,358.3,21075,2)
- ;;=^5003352
- ;;^UTILITY(U,$J,358.3,21076,0)
- ;;=F16.180^^95^1045^2
- ;;^UTILITY(U,$J,358.3,21076,1,0)
+ ;;^UTILITY(U,$J,358.3,21315,1,4,0)
+ ;;=4^I35.2
+ ;;^UTILITY(U,$J,358.3,21315,2)
+ ;;=^5007176
+ ;;^UTILITY(U,$J,358.3,21316,0)
+ ;;=I35.9^^70^913^74
+ ;;^UTILITY(U,$J,358.3,21316,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,21076,1,3,0)
- ;;=3^Hallucinogen Abuse w/ Induced Anxiety Disorder
- ;;^UTILITY(U,$J,358.3,21076,1,4,0)
- ;;=4^F16.180
- ;;^UTILITY(U,$J,358.3,21076,2)
- ;;=^5003332
- ;;^UTILITY(U,$J,358.3,21077,0)
- ;;=F16.280^^95^1045^9
- ;;^UTILITY(U,$J,358.3,21077,1,0)
+ ;;^UTILITY(U,$J,358.3,21316,1,3,0)
+ ;;=3^Nonrheumatic Aortic Valve Disorder,Unspec
+ ;;^UTILITY(U,$J,358.3,21316,1,4,0)
+ ;;=4^I35.9
+ ;;^UTILITY(U,$J,358.3,21316,2)
+ ;;=^5007178
+ ;;^UTILITY(U,$J,358.3,21317,0)
+ ;;=I21.4^^70^913^73
+ ;;^UTILITY(U,$J,358.3,21317,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,21077,1,3,0)
- ;;=3^Hallucinogen Dependence w/ Induced Anxiety Disorder
- ;;^UTILITY(U,$J,358.3,21077,1,4,0)
- ;;=4^F16.280
- ;;^UTILITY(U,$J,358.3,21077,2)
- ;;=^5003345
- ;;^UTILITY(U,$J,358.3,21078,0)
- ;;=F16.980^^95^1045^16
- ;;^UTILITY(U,$J,358.3,21078,1,0)
+ ;;^UTILITY(U,$J,358.3,21317,1,3,0)
+ ;;=3^NSTEMI Myocardial Infarction
+ ;;^UTILITY(U,$J,358.3,21317,1,4,0)
+ ;;=4^I21.4
+ ;;^UTILITY(U,$J,358.3,21317,2)
+ ;;=^5007088
+ ;;^UTILITY(U,$J,358.3,21318,0)
+ ;;=I42.8^^70^913^52
+ ;;^UTILITY(U,$J,358.3,21318,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,21078,1,3,0)
- ;;=3^Hallucinogen Use w/ Induced Anxiety Disorder,Unspec
- ;;^UTILITY(U,$J,358.3,21078,1,4,0)
- ;;=4^F16.980
- ;;^UTILITY(U,$J,358.3,21078,2)
- ;;=^5003357
- ;;^UTILITY(U,$J,358.3,21079,0)
- ;;=F16.24^^95^1045^10
- ;;^UTILITY(U,$J,358.3,21079,1,0)
+ ;;^UTILITY(U,$J,358.3,21318,1,3,0)
+ ;;=3^Cardiomypathies NEC
+ ;;^UTILITY(U,$J,358.3,21318,1,4,0)
+ ;;=4^I42.8
+ ;;^UTILITY(U,$J,358.3,21318,2)
+ ;;=^5007199
+ ;;^UTILITY(U,$J,358.3,21319,0)
+ ;;=I20.8^^70^913^9
+ ;;^UTILITY(U,$J,358.3,21319,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,21079,1,3,0)
- ;;=3^Hallucinogen Dependence w/ Induced Mood Disorder
- ;;^UTILITY(U,$J,358.3,21079,1,4,0)
- ;;=4^F16.24
- ;;^UTILITY(U,$J,358.3,21079,2)
- ;;=^5003341
- ;;^UTILITY(U,$J,358.3,21080,0)
- ;;=F16.94^^95^1045^17
- ;;^UTILITY(U,$J,358.3,21080,1,0)
+ ;;^UTILITY(U,$J,358.3,21319,1,3,0)
+ ;;=3^Angina Pectoris NEC
+ ;;^UTILITY(U,$J,358.3,21319,1,4,0)
+ ;;=4^I20.8
+ ;;^UTILITY(U,$J,358.3,21319,2)
+ ;;=^5007078
+ ;;^UTILITY(U,$J,358.3,21320,0)
+ ;;=I42.2^^70^913^68
+ ;;^UTILITY(U,$J,358.3,21320,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,21080,1,3,0)
- ;;=3^Hallucinogen Use w/ Induced Mood Disorder
- ;;^UTILITY(U,$J,358.3,21080,1,4,0)
- ;;=4^F16.94
- ;;^UTILITY(U,$J,358.3,21080,2)
- ;;=^5003353
- ;;^UTILITY(U,$J,358.3,21081,0)
- ;;=F16.159^^95^1045^4
- ;;^UTILITY(U,$J,358.3,21081,1,0)
+ ;;^UTILITY(U,$J,358.3,21320,1,3,0)
+ ;;=3^Hypertrophic Cardiomyopathy NEC
+ ;;^UTILITY(U,$J,358.3,21320,1,4,0)
+ ;;=4^I42.2
+ ;;^UTILITY(U,$J,358.3,21320,2)
+ ;;=^340521
+ ;;^UTILITY(U,$J,358.3,21321,0)
+ ;;=I35.8^^70^913^75
+ ;;^UTILITY(U,$J,358.3,21321,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,21081,1,3,0)
- ;;=3^Hallucinogen Abuse w/ Induced Psychotic Disorder,Unspec
- ;;^UTILITY(U,$J,358.3,21081,1,4,0)
- ;;=4^F16.159
- ;;^UTILITY(U,$J,358.3,21081,2)
- ;;=^5003331
- ;;^UTILITY(U,$J,358.3,21082,0)
- ;;=F16.259^^95^1045^11
- ;;^UTILITY(U,$J,358.3,21082,1,0)
+ ;;^UTILITY(U,$J,358.3,21321,1,3,0)
+ ;;=3^Nonrheumatic Aortic Valve Disorders NEC
+ ;;^UTILITY(U,$J,358.3,21321,1,4,0)
+ ;;=4^I35.8
+ ;;^UTILITY(U,$J,358.3,21321,2)
+ ;;=^5007177
+ ;;^UTILITY(U,$J,358.3,21322,0)
+ ;;=I42.5^^70^913^81
+ ;;^UTILITY(U,$J,358.3,21322,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,21082,1,3,0)
- ;;=3^Hallucinogen Dependence w/ Induced Psychotic Disorder,Unspec
- ;;^UTILITY(U,$J,358.3,21082,1,4,0)
- ;;=4^F16.259
- ;;^UTILITY(U,$J,358.3,21082,2)
- ;;=^5003344
- ;;^UTILITY(U,$J,358.3,21083,0)
- ;;=F16.959^^95^1045^18
- ;;^UTILITY(U,$J,358.3,21083,1,0)
+ ;;^UTILITY(U,$J,358.3,21322,1,3,0)
+ ;;=3^Restrictive Cardiomyopathy NEC
+ ;;^UTILITY(U,$J,358.3,21322,1,4,0)
+ ;;=4^I42.5
+ ;;^UTILITY(U,$J,358.3,21322,2)
+ ;;=^5007196
+ ;;^UTILITY(U,$J,358.3,21323,0)
+ ;;=I05.8^^70^913^85
+ ;;^UTILITY(U,$J,358.3,21323,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,21083,1,3,0)
- ;;=3^Hallucinogen Use w/ Induced Psychotic Disorder
- ;;^UTILITY(U,$J,358.3,21083,1,4,0)
- ;;=4^F16.959
- ;;^UTILITY(U,$J,358.3,21083,2)
- ;;=^5003356
- ;;^UTILITY(U,$J,358.3,21084,0)
- ;;=F16.99^^95^1045^15
- ;;^UTILITY(U,$J,358.3,21084,1,0)
+ ;;^UTILITY(U,$J,358.3,21323,1,3,0)
+ ;;=3^Rheumatic Mitral Valve Diseases NEC
+ ;;^UTILITY(U,$J,358.3,21323,1,4,0)
+ ;;=4^I05.8
+ ;;^UTILITY(U,$J,358.3,21323,2)
+ ;;=^5007043
+ ;;^UTILITY(U,$J,358.3,21324,0)
+ ;;=I08.8^^70^913^86
+ ;;^UTILITY(U,$J,358.3,21324,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,21084,1,3,0)
- ;;=3^Hallucinogen Use w/ Hallucinogen Induced Disorder,Unspec
- ;;^UTILITY(U,$J,358.3,21084,1,4,0)
- ;;=4^F16.99
- ;;^UTILITY(U,$J,358.3,21084,2)
- ;;=^5133359
- ;;^UTILITY(U,$J,358.3,21085,0)
- ;;=F16.983^^95^1045^14
- ;;^UTILITY(U,$J,358.3,21085,1,0)
+ ;;^UTILITY(U,$J,358.3,21324,1,3,0)
+ ;;=3^Rheumatic Multiple Valve Diseases NEC
+ ;;^UTILITY(U,$J,358.3,21324,1,4,0)
+ ;;=4^I08.8
+ ;;^UTILITY(U,$J,358.3,21324,2)
+ ;;=^5007056
+ ;;^UTILITY(U,$J,358.3,21325,0)
+ ;;=I47.9^^70^913^79
+ ;;^UTILITY(U,$J,358.3,21325,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,21085,1,3,0)
- ;;=3^Hallucinogen Use w/ Flashbacks
- ;;^UTILITY(U,$J,358.3,21085,1,4,0)
- ;;=4^F16.983
- ;;^UTILITY(U,$J,358.3,21085,2)
- ;;=^5003358
- ;;^UTILITY(U,$J,358.3,21086,0)
- ;;=F16.14^^95^1045^3
- ;;^UTILITY(U,$J,358.3,21086,1,0)
+ ;;^UTILITY(U,$J,358.3,21325,1,3,0)
+ ;;=3^Paroxysmal Tachycardia,Unspec
+ ;;^UTILITY(U,$J,358.3,21325,1,4,0)
+ ;;=4^I47.9
+ ;;^UTILITY(U,$J,358.3,21325,2)
+ ;;=^5007224
+ ;;^UTILITY(U,$J,358.3,21326,0)
+ ;;=I05.1^^70^913^82
+ ;;^UTILITY(U,$J,358.3,21326,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,21086,1,3,0)
- ;;=3^Hallucinogen Abuse w/ Induced Mood Disorder
- ;;^UTILITY(U,$J,358.3,21086,1,4,0)
- ;;=4^F16.14
- ;;^UTILITY(U,$J,358.3,21086,2)
- ;;=^5003328
- ;;^UTILITY(U,$J,358.3,21087,0)
- ;;=F16.11^^95^1045^7
- ;;^UTILITY(U,$J,358.3,21087,1,0)
+ ;;^UTILITY(U,$J,358.3,21326,1,3,0)
+ ;;=3^Rheumatic Mitral Insufficiency
+ ;;^UTILITY(U,$J,358.3,21326,1,4,0)
+ ;;=4^I05.1
+ ;;^UTILITY(U,$J,358.3,21326,2)
+ ;;=^269568
+ ;;^UTILITY(U,$J,358.3,21327,0)
+ ;;=I05.0^^70^913^83
+ ;;^UTILITY(U,$J,358.3,21327,1,0)
  ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,21327,1,3,0)
+ ;;=3^Rheumatic Mitral Stenosis
+ ;;^UTILITY(U,$J,358.3,21327,1,4,0)
+ ;;=4^I05.0
+ ;;^UTILITY(U,$J,358.3,21327,2)
+ ;;=^5007041
+ ;;^UTILITY(U,$J,358.3,21328,0)
+ ;;=I05.9^^70^913^84

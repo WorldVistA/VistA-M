@@ -1,126 +1,126 @@
-IBDEI1H4 ; ; 04-FEB-2020
- ;;3.0;IB ENCOUNTER FORM IMP/EXP;;FEB 04, 2020
+IBDEI1H4 ; ; 01-FEB-2022
+ ;;3.0;IB ENCOUNTER FORM IMP/EXP;;FEB 01, 2022
  Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,999) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
- ;;^UTILITY(U,$J,358.3,23568,1,0)
+ ;;^UTILITY(U,$J,358.3,23837,1,3,0)
+ ;;=3^Athscl Hrt Dis,Ntv Cor Art w/o AP
+ ;;^UTILITY(U,$J,358.3,23837,1,4,0)
+ ;;=4^I25.10
+ ;;^UTILITY(U,$J,358.3,23837,2)
+ ;;=^5007107
+ ;;^UTILITY(U,$J,358.3,23838,0)
+ ;;=I25.810^^82^1033^4
+ ;;^UTILITY(U,$J,358.3,23838,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,23568,1,3,0)
- ;;=3^Zika Virus Disease (Confirmed)
- ;;^UTILITY(U,$J,358.3,23568,1,4,0)
- ;;=4^A92.5
- ;;^UTILITY(U,$J,358.3,23568,2)
- ;;=^7006765
- ;;^UTILITY(U,$J,358.3,23569,0)
- ;;=R78.81^^105^1174^7
- ;;^UTILITY(U,$J,358.3,23569,1,0)
+ ;;^UTILITY(U,$J,358.3,23838,1,3,0)
+ ;;=3^Athscl,CABG w/o AP
+ ;;^UTILITY(U,$J,358.3,23838,1,4,0)
+ ;;=4^I25.810
+ ;;^UTILITY(U,$J,358.3,23838,2)
+ ;;=^5007141
+ ;;^UTILITY(U,$J,358.3,23839,0)
+ ;;=I25.811^^82^1033^2
+ ;;^UTILITY(U,$J,358.3,23839,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,23569,1,3,0)
- ;;=3^Bacteremia
- ;;^UTILITY(U,$J,358.3,23569,1,4,0)
- ;;=4^R78.81
- ;;^UTILITY(U,$J,358.3,23569,2)
- ;;=^12280
- ;;^UTILITY(U,$J,358.3,23570,0)
- ;;=J15.9^^105^1174^113
- ;;^UTILITY(U,$J,358.3,23570,1,0)
+ ;;^UTILITY(U,$J,358.3,23839,1,3,0)
+ ;;=3^Athscl Hrt Dis of Trnsplt Hrt w/o AP
+ ;;^UTILITY(U,$J,358.3,23839,1,4,0)
+ ;;=4^I25.811
+ ;;^UTILITY(U,$J,358.3,23839,2)
+ ;;=^5007142
+ ;;^UTILITY(U,$J,358.3,23840,0)
+ ;;=I25.812^^82^1033^1
+ ;;^UTILITY(U,$J,358.3,23840,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,23570,1,3,0)
- ;;=3^Pneumonia, Bacterial,Unspec
- ;;^UTILITY(U,$J,358.3,23570,1,4,0)
- ;;=4^J15.9
- ;;^UTILITY(U,$J,358.3,23570,2)
- ;;=^5008178
- ;;^UTILITY(U,$J,358.3,23571,0)
- ;;=J95.851^^105^1174^118
- ;;^UTILITY(U,$J,358.3,23571,1,0)
+ ;;^UTILITY(U,$J,358.3,23840,1,3,0)
+ ;;=3^Athscl Byp Cor Art of Trnsplt Hrt w/o AP
+ ;;^UTILITY(U,$J,358.3,23840,1,4,0)
+ ;;=4^I25.812
+ ;;^UTILITY(U,$J,358.3,23840,2)
+ ;;=^5007143
+ ;;^UTILITY(U,$J,358.3,23841,0)
+ ;;=I35.0^^82^1033^25
+ ;;^UTILITY(U,$J,358.3,23841,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,23571,1,3,0)
- ;;=3^Pneumonia, Vent-Associated
- ;;^UTILITY(U,$J,358.3,23571,1,4,0)
- ;;=4^J95.851
- ;;^UTILITY(U,$J,358.3,23571,2)
- ;;=^336692
- ;;^UTILITY(U,$J,358.3,23572,0)
- ;;=J12.9^^105^1174^119
- ;;^UTILITY(U,$J,358.3,23572,1,0)
+ ;;^UTILITY(U,$J,358.3,23841,1,3,0)
+ ;;=3^Nonrheum Aortic Valve Stenosis
+ ;;^UTILITY(U,$J,358.3,23841,1,4,0)
+ ;;=4^I35.0
+ ;;^UTILITY(U,$J,358.3,23841,2)
+ ;;=^5007174
+ ;;^UTILITY(U,$J,358.3,23842,0)
+ ;;=I35.1^^82^1033^24
+ ;;^UTILITY(U,$J,358.3,23842,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,23572,1,3,0)
- ;;=3^Pneumonia, Viral,Unspec
- ;;^UTILITY(U,$J,358.3,23572,1,4,0)
- ;;=4^J12.9
- ;;^UTILITY(U,$J,358.3,23572,2)
- ;;=^5008169
- ;;^UTILITY(U,$J,358.3,23573,0)
- ;;=J69.0^^105^1174^120
- ;;^UTILITY(U,$J,358.3,23573,1,0)
+ ;;^UTILITY(U,$J,358.3,23842,1,3,0)
+ ;;=3^Nonrheum Aortic Valve Insufficiency
+ ;;^UTILITY(U,$J,358.3,23842,1,4,0)
+ ;;=4^I35.1
+ ;;^UTILITY(U,$J,358.3,23842,2)
+ ;;=^5007175
+ ;;^UTILITY(U,$J,358.3,23843,0)
+ ;;=I35.2^^82^1033^26
+ ;;^UTILITY(U,$J,358.3,23843,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,23573,1,3,0)
- ;;=3^Pneumonitis,Aspiration,Unspec
- ;;^UTILITY(U,$J,358.3,23573,1,4,0)
- ;;=4^J69.0
- ;;^UTILITY(U,$J,358.3,23573,2)
- ;;=^5008288
- ;;^UTILITY(U,$J,358.3,23574,0)
- ;;=T85.79XA^^105^1174^135
- ;;^UTILITY(U,$J,358.3,23574,1,0)
+ ;;^UTILITY(U,$J,358.3,23843,1,3,0)
+ ;;=3^Nonrheum Aortic Valve Stenosis w/ Insuff
+ ;;^UTILITY(U,$J,358.3,23843,1,4,0)
+ ;;=4^I35.2
+ ;;^UTILITY(U,$J,358.3,23843,2)
+ ;;=^5007176
+ ;;^UTILITY(U,$J,358.3,23844,0)
+ ;;=I35.8^^82^1033^22
+ ;;^UTILITY(U,$J,358.3,23844,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,23574,1,3,0)
- ;;=3^Sepsis d/t Device,Implant or Graft,Init Encntr
- ;;^UTILITY(U,$J,358.3,23574,1,4,0)
- ;;=4^T85.79XA
- ;;^UTILITY(U,$J,358.3,23574,2)
- ;;=^5055676
- ;;^UTILITY(U,$J,358.3,23575,0)
- ;;=A41.9^^105^1174^136
- ;;^UTILITY(U,$J,358.3,23575,1,0)
+ ;;^UTILITY(U,$J,358.3,23844,1,3,0)
+ ;;=3^Nonrheum Aortic Valve Disorders NEC
+ ;;^UTILITY(U,$J,358.3,23844,1,4,0)
+ ;;=4^I35.8
+ ;;^UTILITY(U,$J,358.3,23844,2)
+ ;;=^5007177
+ ;;^UTILITY(U,$J,358.3,23845,0)
+ ;;=I35.9^^82^1033^23
+ ;;^UTILITY(U,$J,358.3,23845,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,23575,1,3,0)
- ;;=3^Sepsis d/t Urinary Source
- ;;^UTILITY(U,$J,358.3,23575,1,4,0)
- ;;=4^A41.9
- ;;^UTILITY(U,$J,358.3,23575,2)
- ;;=^5000214^N39.0
- ;;^UTILITY(U,$J,358.3,23576,0)
- ;;=R65.21^^105^1174^140
- ;;^UTILITY(U,$J,358.3,23576,1,0)
+ ;;^UTILITY(U,$J,358.3,23845,1,3,0)
+ ;;=3^Nonrheum Aortic Valve Disorders,Unspec
+ ;;^UTILITY(U,$J,358.3,23845,1,4,0)
+ ;;=4^I35.9
+ ;;^UTILITY(U,$J,358.3,23845,2)
+ ;;=^5007178
+ ;;^UTILITY(U,$J,358.3,23846,0)
+ ;;=I48.91^^82^1033^5
+ ;;^UTILITY(U,$J,358.3,23846,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,23576,1,3,0)
- ;;=3^Septic Shock d/t Severe Sepsis
- ;;^UTILITY(U,$J,358.3,23576,1,4,0)
- ;;=4^R65.21
- ;;^UTILITY(U,$J,358.3,23576,2)
- ;;=^5019548
- ;;^UTILITY(U,$J,358.3,23577,0)
- ;;=T83.511A^^105^1174^174
- ;;^UTILITY(U,$J,358.3,23577,1,0)
+ ;;^UTILITY(U,$J,358.3,23846,1,3,0)
+ ;;=3^Atrial Fibrillation,Unspec
+ ;;^UTILITY(U,$J,358.3,23846,1,4,0)
+ ;;=4^I48.91
+ ;;^UTILITY(U,$J,358.3,23846,2)
+ ;;=^5007229
+ ;;^UTILITY(U,$J,358.3,23847,0)
+ ;;=I49.9^^82^1033^6
+ ;;^UTILITY(U,$J,358.3,23847,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,23577,1,3,0)
- ;;=3^UTI d/t Indwelling Urethral Catheter,Init Encntr
- ;;^UTILITY(U,$J,358.3,23577,1,4,0)
- ;;=4^T83.511A
- ;;^UTILITY(U,$J,358.3,23577,2)
- ;;=^5140138
- ;;^UTILITY(U,$J,358.3,23578,0)
- ;;=T83.511D^^105^1174^173
- ;;^UTILITY(U,$J,358.3,23578,1,0)
+ ;;^UTILITY(U,$J,358.3,23847,1,3,0)
+ ;;=3^Cardiac Arrhythmia,Unspec
+ ;;^UTILITY(U,$J,358.3,23847,1,4,0)
+ ;;=4^I49.9
+ ;;^UTILITY(U,$J,358.3,23847,2)
+ ;;=^5007237
+ ;;^UTILITY(U,$J,358.3,23848,0)
+ ;;=I50.9^^82^1033^17
+ ;;^UTILITY(U,$J,358.3,23848,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,23578,1,3,0)
- ;;=3^UTI d/t Indwelling Urethral Catheter,Healing/Subs
- ;;^UTILITY(U,$J,358.3,23578,1,4,0)
- ;;=4^T83.511D
- ;;^UTILITY(U,$J,358.3,23578,2)
- ;;=^5140139
- ;;^UTILITY(U,$J,358.3,23579,0)
- ;;=T83.511S^^105^1174^175
- ;;^UTILITY(U,$J,358.3,23579,1,0)
+ ;;^UTILITY(U,$J,358.3,23848,1,3,0)
+ ;;=3^Heart Failure,Unspec
+ ;;^UTILITY(U,$J,358.3,23848,1,4,0)
+ ;;=4^I50.9
+ ;;^UTILITY(U,$J,358.3,23848,2)
+ ;;=^5007251
+ ;;^UTILITY(U,$J,358.3,23849,0)
+ ;;=I73.9^^82^1033^28
+ ;;^UTILITY(U,$J,358.3,23849,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,23579,1,3,0)
- ;;=3^UTI d/t Indwelling Urethral Catheter,Sequela
- ;;^UTILITY(U,$J,358.3,23579,1,4,0)
- ;;=4^T83.511S
- ;;^UTILITY(U,$J,358.3,23579,2)
- ;;=^5140140
- ;;^UTILITY(U,$J,358.3,23580,0)
- ;;=A04.71^^105^1174^26
- ;;^UTILITY(U,$J,358.3,23580,1,0)
- ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,23849,1,3,0)
+ ;;=3^Peripheral Vascular Disease,Unspec

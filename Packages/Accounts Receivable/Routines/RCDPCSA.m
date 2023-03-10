@@ -1,10 +1,13 @@
 RCDPCSA ;UNY/RGB-CROSS-SERVICING STATUS FIX ;03/15/14 3:34 PM
- ;;4.5;Accounts Receivable;**325,336**;Mar 20, 1995;Build 45
+ ;;4.5;Accounts Receivable;**325,336,343**;Mar 20, 1995;Build 59
+ ;;Per VA Directive 6402, this routine should not be modified.
  ;OPTION: RCDP TCSP FLAG CONTROL
  ;
  ;PRCA*4.5*336 When setting bills to cross service date
  ;             ensure the TCSP address node ^PRCA(430,ien,16)
  ;             is established
+ ;PRCA*4.5*343 Moved Name/taxid lookup into routine since they
+ ;             were moved from previous calls into RCTCSPD.
  ;
 A S U="^" S SITE=+$$SITE^VASITE
 B K DIR S DIR(0)="SO^1:Set cross-service flag on BILL;2:Clear cross-service flag on BILL;3:Clear cross-service flag on DEBTOR (AND ALL BILLS);4:Set cross-service flag on DEBTOR;5:Fully re-establish debtor/bill as cross-serviced"
@@ -90,11 +93,11 @@ C1 I '$D(^PRCA(430,"TCSP",RCBILLDA)),PRCAOPT=2 W !,"*** BILL NOT CROSS SERVICED 
  W "fully re-established as Cross-Serviced >"
  Q
  ;
-SET16 ;SET NODE 16 FOR TCSP BILL                    ;PRCA*4.5*336
+SET16 ;SET NODE 16 FOR TCSP BILL     ;PRCA*4.5*336
  N RCXX,RCYY
  S (RCDEBTR0,DEBTOR0)=$G(^RCD(340,RCDEBTOR,0)),DEBTOR1=$G(^RCD(340,RCDEBTOR,1)),RCDFN=+RCDEBTR0
  S RCDPN16="",RCB6=$G(^PRCA(430,RCBILLDA,6)),RCB7=$G(^(7)),RCBILLDT=$P($P(RCB6,U,21),".")
- S TAXID=$$TAXID^RCTCSPD(RCDEBTOR),RCNAME=$$NAME^RCTCSPD(+RCDEBTR0),RCNAME=$P(RCNAME,U)
+ S TAXID=$$TAXID(RCDEBTOR),RCNAME=$$NAME(+RCDEBTR0),RCNAME=$P(RCNAME,U)
  S $P(RCDPN16,U)=TAXID,$P(RCDPN16,U,2)=RCNAME,$P(RCDPN16,U,3)=+RCBILLDT
  S DEBTOR=RCDEBTOR,ADDRCS=$$ADDR^RCTCSP1(RCDFN,1),$P(RCDPN16,U,4,8)=$P(ADDRCS,U,1,5)
  S $P(RCDPN16,U,12)=$S($P(ADDRCS,U,7)>2:$P(ADDRCS,U,7),+^PRCA(430,RCBILLDA,0)=436:2,1:1),$P(RCDPN16,U,13)=$P(^DPT(RCDFN,0),U,3)
@@ -106,5 +109,32 @@ SET16 ;SET NODE 16 FOR TCSP BILL                    ;PRCA*4.5*336
  S $P(RCDPN16,U,11)=$E("000000000000",1,10-$L(RCYY))_RCYY
  S ^PRCA(430,RCBILLDA,16)=RCDPN16
  Q
+ ;
+TAXID(DEBTOR) ;computes TAXID to place on documents   ;PRCA*4.5*343
+ N TAXID,DIC,DA,DR,DIQ
+ S TAXID=$$SSN^RCFN01(DEBTOR)
+ S TAXID=$$LJSF(TAXID,9)
+ Q TAXID
+ ;
+NAME(DFN) ;returns name for document and name in file   ;PRCA*4.5*343
+ N FN,LN,MN,NM,DOCNM,VA,VADM
+ S NM=""
+ D DEM^VADPT
+ I $D(VADM) S NM=VADM(1)
+ S LN=$TR($P(NM,",")," .'-"),MN=$P($P(NM,",",2)," ",2)
+ I ($E(MN,1,2)="SR")!($E(MN,1,2)="JR")!(MN?2.3"I")!(MN?0.1"I"1"V"1.3"I") S MN=""
+ S FN=$P($P(NM,",",2)," ")
+ S DOCNM=$$LJ^XLFSTR($E(LN,1,35),35)_$$LJ^XLFSTR($E(FN,1,35),35)_$$LJ^XLFSTR($E(MN,1,35),35)
+ Q DOCNM
+ ;
+LJSF(X,Y) ;left justified space filled
+ S X=$E(X,1,Y)
+ S X=X_$$BLANK(Y-$L(X))
+ Q X
+ ;
+BLANK(X) ;returns 'x' blank spaces
+ N BLANK
+ S BLANK="",$P(BLANK," ",X+1)=""
+ Q BLANK
  ;
 EXIT D KILL^XUSCLEAN Q

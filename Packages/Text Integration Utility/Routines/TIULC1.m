@@ -1,16 +1,20 @@
-TIULC1 ; SLC/JER - More computational functions ;11/01/03
- ;;1.0;TEXT INTEGRATION UTILITIES;**3,4,40,49,100,131,113,112**;Jun 20, 1997
+TIULC1 ; SLC/JER - More computational functions ;Feb 24, 2022@08:28:13
+ ;;1.0;TEXT INTEGRATION UTILITIES;**3,4,40,49,100,131,113,112,289**;Jun 20, 1997;Build 200
  ; External References
  ; DBIA 2324  $$ISA^USRLM
  ; Any patch which makes ANY changes to this rtn must include a
  ;note in the patch desc reminding sites to update the Imaging
  ;Gateway.  See IA # 3622.
- ; IN ADDITION, if changes are made to components used by Imaging, 
+ ; IN ADDITION, if changes are made to components used by Imaging,
  ;namely PNAME, backward compatibility may not be enough. If
  ;changes call additional rtns, TIU should consult with Imaging
  ;on need to add additional rtns to list of TIU rtns copied for
  ;Imaging Gateway.
- ;                         ****
+ ;
+ ; External reference to File ^AUPNVSIT supported by IA 3580
+ ; External reference to File ^DPT supported by IA 10035
+ ; External reference to File ^SC supported by IA 10040
+ ; External reference to File ^VA supported by IA 10060
  ;
 ENCRYPT(X,X1,X2) ; Encrypt Text Strings
  D EN^XUSHSHP
@@ -32,7 +36,6 @@ WHOCOSIG(DA) ; Evaluate who should be the expected cosigner
  . E  S Y=""
  E  S Y=$P(TIU12,U,9)
  Q Y
- ;
 HASADDEN(DA,IDKIDFLG) ; Evaluate whether a given record has addenda
  ; **100**:
  ; If +IDKIDFLG, check interdisciplinary kids of DA, as well as DA.
@@ -47,7 +50,6 @@ HASADDEN(DA,IDKIDFLG) ; Evaluate whether a given record has addenda
  . F  S TIUK=$O(^TIU(8925,"DAD",TIUJ,TIUK)) Q:+TIUK'>0  D  Q:TIUY
  . . I $P($G(^TIU(8925.1,+$G(^TIU(8925,+TIUK,0)),0)),U)["ADDENDUM" S TIUY=1
 HASX Q TIUY
- ;
 ISADDNDM(DA) ; Evaluate whether a given record IS an addendum
  N TIUY S TIUY=0
  I $P($G(^TIU(8925.1,+$G(^TIU(8925,+DA,0)),0)),U)["ADDENDUM",+$P($G(^TIU(8925,+DA,0)),U,6)>0 S TIUY=1
@@ -71,7 +73,7 @@ ABBREV(DA) ; Get abbreviaton for a document type or class
 PERSNAME(USER) ; Receives pointer to 200, returns name field
  N X S X=$$GET1^DIQ(200,USER,.01)
  Q $S($L(X):X,1:"UNKNOWN")
-BEEP(USER) ; Get beeper #'s 
+BEEP(USER) ; Get beeper #'s
  Q $P($G(^VA(200,+USER,.13)),U,7,8)
 DOCPRM(TIUTYP,TIUDPRM,TIUDA) ; Get Document Parameters, support inheritance
  N TIUI,TIUDAD
@@ -80,6 +82,10 @@ DOCPRM(TIUTYP,TIUDPRM,TIUDA) ; Get Document Parameters, support inheritance
  S TIUI=+$O(^TIU(8925.95,"B",+TIUTYP,0))
  I +TIUI D  Q
  . S TIUDPRM(0)=$G(^TIU(8925.95,+TIUI,0))
+ . ; *289 ajb - get discharge summary class IEN, always set ALLOW >1 RECORD PER VISIT parameter to NO for any title in that class
+ . N TIUDS S TIUDS=$$FIND1^DIC(8925.1,"","","DISCHARGE SUMMARY","","I $P(^(0),U,4)=""CL""","")
+ . I TIUTYP=TIUDS!($$ISA^TIULX(TIUTYP,TIUDS)) S $P(TIUDPRM(0),U,10)=0
+ . ; /*289
  . I +$O(^TIU(8925.95,+TIUI,5,0)) D
  . . N TIUJ S TIUJ=0
  . . F  S TIUJ=$O(^TIU(8925.95,+TIUI,5,TIUJ)) Q:+TIUJ'>0  D
@@ -188,7 +194,7 @@ REASSIGN(TIUTYP) ; Get Package Reassign Action, support inheritance
  S TIUDAD=$O(^TIU(8925.1,"AD",+TIUTYP,0))
  I +TIUDAD S TIUREASS=$$REASSIGN(TIUDAD)
 REASSIX Q TIUREASS
-ONBROWSE(TIUTYP)        ; Get OnBrowse Event, support inheritance
+ONBROWSE(TIUTYP) ; Get OnBrowse Event, support inheritance
  N TIUBRWS,TIUDAD
  S TIUBRWS=$G(^TIU(8925.1,+TIUTYP,6.5))
  I TIUBRWS]"" G ONBRWSX

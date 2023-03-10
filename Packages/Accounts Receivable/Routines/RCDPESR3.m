@@ -1,5 +1,5 @@
 RCDPESR3 ;ALB/TMK/PJH - Server auto-update utilities - EDI Lockbox ;Jun 06, 2014@19:11:19
- ;;4.5;Accounts Receivable;**173,214,208,255,269,283,298,321**;Mar 20, 1995;Build 48
+ ;;4.5;Accounts Receivable;**173,214,208,255,269,283,298,321,345,349,380**;Mar 20, 1995;Build 14
  ;Per VA Directive 6402, this routine should not be modified.
  Q
  ;
@@ -11,7 +11,7 @@ EFTIN(RCTXN,RCD,XMZ,RCGBL,RCEFLG) ; Adds a new EFT record to AR file 344.3
  ;          RCGBL   - Name of the array or global where the message is stored
  ; Output:  RCEFLG  - Error flag returned if passed by reference
  ;
- N CT,DA,DIK,DLAYGO,RC,RC1,RCLAST,RCEFT,RCTDA,RCERR,RCTYP1,RCZ,XX,Z,Z0
+ N CT,DA,DIK,DLAYGO,RC,RC1,RCLAST,RCDEPAMT,RCEFT,RCMEFTS,RCTDA,RCERR,RCTYP1,RCZ,XX,Z,Z0
  ;
  ; Take data out of mail message
  S (RCEFLG,RCLAST)=0,CT=0,RCTYP1="835EFT"
@@ -19,7 +19,8 @@ EFTIN(RCTXN,RCD,XMZ,RCGBL,RCEFLG) ; Adds a new EFT record to AR file 344.3
  . I +XMRG=99,$P(XMRG,U,2)="$" S RCLAST=1 Q
  . S:XMRG'="" CT=CT+1,@RCGBL@(2,"D",CT)=XMRG
  ;
- I 'RCLAST,'$G(RCERR) K @RCGBL S RCERR=2    ; No $ as last character of msg
+ ; PRCA*4.5*349 - Removed killing of RCGBL to ensure raw data gets sent in error message
+ I 'RCLAST,'$G(RCERR) S RCERR=2    ; No $ as last character of msg
  ;
  I $G(RCERR)>0 D  G EFTQ
  . D ERRUPD^RCDPESR1(RCGBL,.RCD,RCTYP1,.RCERR)
@@ -34,11 +35,7 @@ EFTIN(RCTXN,RCD,XMZ,RCGBL,RCEFLG) ; Adds a new EFT record to AR file 344.3
  ;
  G:'RCEFT EFTQ
  ;
- ; Add the detail data to file 344.31 for this EFT record
- S Z=0
- F  S Z=$O(^RCY(344.31,"B",RCEFT,Z)) Q:'Z  D
- . S DA=Z,DIK="^RCY(344.31,"
- . D ^DIK                                   ; Delete any detail data already there
+ ; PRCA*4.5*380 - No longer deleting EFT Details
  ;
  S (RC,RC1,RCZ)=0
  F  S RCZ=$O(@RCGBL@(2,"D",RCZ)) Q:'RCZ  S Z0=$G(^(RCZ)) I Z0'="" D  Q:$G(RCERR)
@@ -104,7 +101,9 @@ ADDEFT(RCTXN,RCXMZ,RCGBL,RCERR) ; File EFT TOTAL record in file 344.3
  . S X=$$FDT^RCDPESR9($P(RCTXN,U,7))
  . S RCDDAT=0,%DT="X" D ^%DT S:Y>0 RCDDAT=Y
  . S Z=0 ; Lookup deposit by deposit #
- . F  S Z=$O(^RCY(344.3,"ADEP",RCDDAT,$P(RCTXN,U,6),Z)) Q:'Z  S Z0=$G(^RCY(344.3,Z,0)) S:'$P(Z0,U,3) RCTDA=Z Q:RCTDA  D  Q
+ . ; PRCA*4.5*380 - Don't quit now until we've either gone through all the records or found a valid match, since we might be matching
+ . ;                a duplicate record now
+ . F  S Z=$O(^RCY(344.3,"ADEP",RCDDAT,$P(RCTXN,U,6),Z)) Q:'Z  S Z0=$G(^RCY(344.3,Z,0)) S:'$P(Z0,U,3) RCTDA=Z Q:RCTDA  D  Q:RCTDA
  .. ; Deposit found - find receipt
  .. I $O(^RCY(344,"AD",$P(Z0,U,3),0)) S RCDUP=Z Q
  .. S RCTDA=Z
@@ -119,31 +118,39 @@ ADDEFT(RCTXN,RCXMZ,RCGBL,RCERR) ; File EFT TOTAL record in file 344.3
  ;. D DISP("EDI LBOX DUP EFT DEPOSIT RECEIVED",RCCT,.RCDXM,RCXMZ)
  ;-----
  ;
- I 'RCDUP D  ; Add or update the record
- . N RCX,RCDTTM,DIE,DIC,DLAYGO,DD,DA,DO,DR,X,Y,%DT,DINUM
- . ;
- . S X=$$FDT^RCDPESR9($P(RCTXN,U,3))_"@"_$P(RCTXN,U,4)
- . S %DT="XTS" D ^%DT S:Y>0 RCDTTM=Y
- . ;
- . S DIC("DR")=""
- . S DIC("DR")=$S(RCDTTM'="":".02////"_RCDTTM,1:"")
- . S DIC("DR")=DIC("DR")_$S(DIC("DR")'="":";",1:"")_".06////"_$P(RCTXN,U,6)_";.07///"_$$FDT^RCDPESR9($P(RCTXN,U,7))
- . S DIC("DR")=DIC("DR")_";.08////"_$$ZERO^RCDPESR9($P(RCTXN,U,8),1)_";.13////"_$$NOW^XLFDT()_";.05////"_RCXMZ_";.14////0;.12////0"
- . ;
- . I RCTDA D  ; Overwrite the data already there
- .. L +^RCY(344.3,RCTDA):1 I '$T S RCTDA=-1 Q
- .. S DIE="^RCY(344.3,",DA=RCTDA,DR=DIC("DR") K DIC D ^DIE
- .. L -^RCY(344.3,RCTDA)
- . ;
- . I 'RCTDA D
- .. S RCX=+$O(^RCY(344.3," "),-1)
- .. F RCX=RCX+1:1 I '$D(^RCY(344.3,RCX,0)) L +^RCY(344.3,RCX,0):1 I $T S X=RCX Q
- .. S DIC(0)="L",DIC="^RCY(344.3,",DLAYGO=344.3,DINUM=RCX
- .. D FILE^DICN K DO,DD,DLAYGO,DIC,DINUM
- .. L -^RCY(344.3,RCX,0)
- .. S RCTDA=$S(Y<0:"",1:+Y)
- . ;
- . I 'RCTDA S RCERR=3 ; Error in add of EFT record to file 344.3 
+ ; PRCA*4.5*380 - Removed check for dup; will now just create new transaction, instead
+ N %DT,DA,DD,DEPAMT,DIC,DIE,DINUM,DLAYGO,DO,DR,RCDTTM,RCX,X,Y
+ ;
+ S X=$$FDT^RCDPESR9($P(RCTXN,U,3))_"@"_$P(RCTXN,U,4)
+ S %DT="XTS" D ^%DT S:Y>0 RCDTTM=Y
+ ;
+ ;PRCA*4.5*380 - If updating an existing deposit, add new deposit amount to existing total
+ S DEPAMT=$S(RCTDA:+$$GET1^DIQ(344.3,RCTDA_",",.08),1:0)+$$ZERO^RCDPESR9($P(RCTXN,U,8),1)
+ ;
+ S DIC("DR")=""
+ S DIC("DR")=$S(RCDTTM'="":".02////"_RCDTTM,1:"")
+ S DIC("DR")=DIC("DR")_$S(DIC("DR")'="":";",1:"")_".06////"_$P(RCTXN,U,6)_";.07///"_$$FDT^RCDPESR9($P(RCTXN,U,7))
+ ;PRCA*4.5*380 - If updating an existing deposit, add new deposit amount to existing total
+ S DIC("DR")=DIC("DR")_";.08////"_DEPAMT_";.13////"_$$NOW^XLFDT()_$S('RCTDA:";.05////"_RCXMZ,1:"")_";.14////0;.12////0"
+ ;
+ I RCTDA D  ; Update the data already there
+ . L +^RCY(344.3,RCTDA):1 I '$T S RCTDA=-1 Q
+ . S DIE="^RCY(344.3,",DA=RCTDA,DR=DIC("DR") K DIC D ^DIE
+ . K DIE,DA,DR
+ . ; PRCA*4.5*380 - Add an entry to the subsequent mail messages multiple
+ . S DIC="^RCY(344.3,"_RCTDA_",3,",DIC(0)="L",DA(1)=RCTDA,X=RCXMZ
+ . D FILE^DICN K DA,DIC
+ . L -^RCY(344.3,RCTDA)
+ ;
+ I 'RCTDA D
+ . S RCX=+$O(^RCY(344.3," "),-1)
+ . F RCX=RCX+1:1 I '$D(^RCY(344.3,RCX,0)) L +^RCY(344.3,RCX,0):1 I $T S X=RCX Q
+ . S DIC(0)="L",DIC="^RCY(344.3,",DLAYGO=344.3,DINUM=RCX
+ . D FILE^DICN K DO,DD,DLAYGO,DIC,DINUM
+ . L -^RCY(344.3,RCX,0)
+ . S RCTDA=$S(Y<0:"",1:+Y)
+ ;
+ I 'RCTDA S RCERR=3 ; Error in add of EFT record to file 344.3 
  ;
 ADDQ Q $S(RCTDA>0:RCTDA,1:"")
  ;

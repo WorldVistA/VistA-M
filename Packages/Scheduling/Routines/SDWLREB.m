@@ -1,5 +1,5 @@
-SDWLREB ;BP/ESW - EWL matched with Canceled and Rebooked Appointment by Clinic ; 11/16/05 1:16pm  ; Compiled October 25, 2006 17:29:46
- ;;5.3;Scheduling;**467,491**;Aug 13, 1993;Build 53
+SDWLREB ;BP/ESW - EWL matched with Canceled and Rebooked Appointment by Clinic ; 11/16/05 1:16pm
+ ;;5.3;Scheduling;**467,491,783**;Aug 13, 1993;Build 2
  ;
  ;SD*5.3*467 - Match canceled appointments in EWL entries 
  ;
@@ -57,6 +57,7 @@ OPENEWL(DFN,SDT,SC,SDREB,CEWL) ; SD*5.3*467 Open EWL entry if closed with appoin
  ;SDREB - REBOOKING FLAG: 1 - cancel & rebook
  ;                        0 - cancel only
  ;CEWL - counter, optionally passed by reference with initial value=0 
+ Q  ;SDWL Decommission - SD*5.3*783
  N DH,IEN,STATUS,CLINIC,WLAPPT,WLSTAT,SDNAM,SDAPPT,SSN,SCN
  K ^TMP("SDWLPL",$J),^TMP($J,"SDWLPL")
  I '$D(CEWL) D

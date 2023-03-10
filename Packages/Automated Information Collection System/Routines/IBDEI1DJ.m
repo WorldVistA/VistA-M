@@ -1,128 +1,126 @@
-IBDEI1DJ ; ; 04-FEB-2020
- ;;3.0;IB ENCOUNTER FORM IMP/EXP;;FEB 04, 2020
+IBDEI1DJ ; ; 01-FEB-2022
+ ;;3.0;IB ENCOUNTER FORM IMP/EXP;;FEB 01, 2022
  Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,999) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
- ;;^UTILITY(U,$J,358.3,21960,0)
- ;;=F20.5^^99^1118^6
- ;;^UTILITY(U,$J,358.3,21960,1,0)
+ ;;^UTILITY(U,$J,358.3,22227,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,21960,1,3,0)
- ;;=3^Schizophrenia, residual
- ;;^UTILITY(U,$J,358.3,21960,1,4,0)
- ;;=4^F20.5
- ;;^UTILITY(U,$J,358.3,21960,2)
- ;;=^5003473
- ;;^UTILITY(U,$J,358.3,21961,0)
- ;;=F25.9^^99^1118^1
- ;;^UTILITY(U,$J,358.3,21961,1,0)
+ ;;^UTILITY(U,$J,358.3,22227,1,3,0)
+ ;;=3^Pressure Ulcer Right Elbow,Unstageable
+ ;;^UTILITY(U,$J,358.3,22227,1,4,0)
+ ;;=4^L89.010
+ ;;^UTILITY(U,$J,358.3,22227,2)
+ ;;=^5009337
+ ;;^UTILITY(U,$J,358.3,22228,0)
+ ;;=L89.011^^73^959^69
+ ;;^UTILITY(U,$J,358.3,22228,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,21961,1,3,0)
- ;;=3^Schizoaffective disorder, unspec
- ;;^UTILITY(U,$J,358.3,21961,1,4,0)
- ;;=4^F25.9
- ;;^UTILITY(U,$J,358.3,21961,2)
- ;;=^331857
- ;;^UTILITY(U,$J,358.3,21962,0)
- ;;=F20.9^^99^1118^7
- ;;^UTILITY(U,$J,358.3,21962,1,0)
+ ;;^UTILITY(U,$J,358.3,22228,1,3,0)
+ ;;=3^Pressure Ulcer Right Elbow,Stage 1
+ ;;^UTILITY(U,$J,358.3,22228,1,4,0)
+ ;;=4^L89.011
+ ;;^UTILITY(U,$J,358.3,22228,2)
+ ;;=^5009338
+ ;;^UTILITY(U,$J,358.3,22229,0)
+ ;;=L89.012^^73^959^70
+ ;;^UTILITY(U,$J,358.3,22229,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,21962,1,3,0)
- ;;=3^Schizophrenia, unspec
- ;;^UTILITY(U,$J,358.3,21962,1,4,0)
- ;;=4^F20.9
- ;;^UTILITY(U,$J,358.3,21962,2)
- ;;=^5003476
- ;;^UTILITY(U,$J,358.3,21963,0)
- ;;=F20.81^^99^1118^8
- ;;^UTILITY(U,$J,358.3,21963,1,0)
+ ;;^UTILITY(U,$J,358.3,22229,1,3,0)
+ ;;=3^Pressure Ulcer Right Elbow,Stage 2
+ ;;^UTILITY(U,$J,358.3,22229,1,4,0)
+ ;;=4^L89.012
+ ;;^UTILITY(U,$J,358.3,22229,2)
+ ;;=^5009339
+ ;;^UTILITY(U,$J,358.3,22230,0)
+ ;;=L89.013^^73^959^71
+ ;;^UTILITY(U,$J,358.3,22230,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,21963,1,3,0)
- ;;=3^Schizophreniform disorder
- ;;^UTILITY(U,$J,358.3,21963,1,4,0)
- ;;=4^F20.81
- ;;^UTILITY(U,$J,358.3,21963,2)
- ;;=^5003474
- ;;^UTILITY(U,$J,358.3,21964,0)
- ;;=F60.1^^99^1118^2
- ;;^UTILITY(U,$J,358.3,21964,1,0)
+ ;;^UTILITY(U,$J,358.3,22230,1,3,0)
+ ;;=3^Pressure Ulcer Right Elbow,Stage 3
+ ;;^UTILITY(U,$J,358.3,22230,1,4,0)
+ ;;=4^L89.013
+ ;;^UTILITY(U,$J,358.3,22230,2)
+ ;;=^5009340
+ ;;^UTILITY(U,$J,358.3,22231,0)
+ ;;=L89.014^^73^959^72
+ ;;^UTILITY(U,$J,358.3,22231,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,21964,1,3,0)
- ;;=3^Schizoid personality disorder
- ;;^UTILITY(U,$J,358.3,21964,1,4,0)
- ;;=4^F60.1
- ;;^UTILITY(U,$J,358.3,21964,2)
- ;;=^108271
- ;;^UTILITY(U,$J,358.3,21965,0)
- ;;=Z11.1^^99^1119^3
- ;;^UTILITY(U,$J,358.3,21965,1,0)
+ ;;^UTILITY(U,$J,358.3,22231,1,3,0)
+ ;;=3^Pressure Ulcer Right Elbow,Stage 4
+ ;;^UTILITY(U,$J,358.3,22231,1,4,0)
+ ;;=4^L89.014
+ ;;^UTILITY(U,$J,358.3,22231,2)
+ ;;=^5009341
+ ;;^UTILITY(U,$J,358.3,22232,0)
+ ;;=L89.019^^73^959^73
+ ;;^UTILITY(U,$J,358.3,22232,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,21965,1,3,0)
- ;;=3^Screening for Resp Tuberculosis
- ;;^UTILITY(U,$J,358.3,21965,1,4,0)
- ;;=4^Z11.1
- ;;^UTILITY(U,$J,358.3,21965,2)
- ;;=^5062670
- ;;^UTILITY(U,$J,358.3,21966,0)
- ;;=Z13.89^^99^1119^2
- ;;^UTILITY(U,$J,358.3,21966,1,0)
+ ;;^UTILITY(U,$J,358.3,22232,1,3,0)
+ ;;=3^Pressure Ulcer Right Elbow,Stage Unspec
+ ;;^UTILITY(U,$J,358.3,22232,1,4,0)
+ ;;=4^L89.019
+ ;;^UTILITY(U,$J,358.3,22232,2)
+ ;;=^5133648
+ ;;^UTILITY(U,$J,358.3,22233,0)
+ ;;=L89.020^^73^959^32
+ ;;^UTILITY(U,$J,358.3,22233,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,21966,1,3,0)
- ;;=3^Screening for Other Disorders
- ;;^UTILITY(U,$J,358.3,21966,1,4,0)
- ;;=4^Z13.89
- ;;^UTILITY(U,$J,358.3,21966,2)
- ;;=^5062720
- ;;^UTILITY(U,$J,358.3,21967,0)
- ;;=Z12.9^^99^1119^1
- ;;^UTILITY(U,$J,358.3,21967,1,0)
+ ;;^UTILITY(U,$J,358.3,22233,1,3,0)
+ ;;=3^Pressure Ulcer Left Elbow,Unstageable
+ ;;^UTILITY(U,$J,358.3,22233,1,4,0)
+ ;;=4^L89.020
+ ;;^UTILITY(U,$J,358.3,22233,2)
+ ;;=^5009342
+ ;;^UTILITY(U,$J,358.3,22234,0)
+ ;;=L89.021^^73^959^27
+ ;;^UTILITY(U,$J,358.3,22234,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,21967,1,3,0)
- ;;=3^Screening for Malig Neop,Site Unspec
- ;;^UTILITY(U,$J,358.3,21967,1,4,0)
- ;;=4^Z12.9
- ;;^UTILITY(U,$J,358.3,21967,2)
- ;;=^5062698
- ;;^UTILITY(U,$J,358.3,21968,0)
- ;;=F10.10^^99^1120^2
- ;;^UTILITY(U,$J,358.3,21968,1,0)
+ ;;^UTILITY(U,$J,358.3,22234,1,3,0)
+ ;;=3^Pressure Ulcer Left Elbow,Stage 1
+ ;;^UTILITY(U,$J,358.3,22234,1,4,0)
+ ;;=4^L89.021
+ ;;^UTILITY(U,$J,358.3,22234,2)
+ ;;=^5009343
+ ;;^UTILITY(U,$J,358.3,22235,0)
+ ;;=L89.022^^73^959^28
+ ;;^UTILITY(U,$J,358.3,22235,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,21968,1,3,0)
- ;;=3^Alcohol abuse, uncomplicated
- ;;^UTILITY(U,$J,358.3,21968,1,4,0)
- ;;=4^F10.10
- ;;^UTILITY(U,$J,358.3,21968,2)
- ;;=^5003068
- ;;^UTILITY(U,$J,358.3,21969,0)
- ;;=F10.20^^99^1120^4
- ;;^UTILITY(U,$J,358.3,21969,1,0)
+ ;;^UTILITY(U,$J,358.3,22235,1,3,0)
+ ;;=3^Pressure Ulcer Left Elbow,Stage 2
+ ;;^UTILITY(U,$J,358.3,22235,1,4,0)
+ ;;=4^L89.022
+ ;;^UTILITY(U,$J,358.3,22235,2)
+ ;;=^5009344
+ ;;^UTILITY(U,$J,358.3,22236,0)
+ ;;=L89.023^^73^959^29
+ ;;^UTILITY(U,$J,358.3,22236,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,21969,1,3,0)
- ;;=3^Alcohol dependence, uncomplicated
- ;;^UTILITY(U,$J,358.3,21969,1,4,0)
- ;;=4^F10.20
- ;;^UTILITY(U,$J,358.3,21969,2)
- ;;=^5003081
- ;;^UTILITY(U,$J,358.3,21970,0)
- ;;=F10.229^^99^1120^3
- ;;^UTILITY(U,$J,358.3,21970,1,0)
+ ;;^UTILITY(U,$J,358.3,22236,1,3,0)
+ ;;=3^Pressure Ulcer Left Elbow,Stage 3
+ ;;^UTILITY(U,$J,358.3,22236,1,4,0)
+ ;;=4^L89.023
+ ;;^UTILITY(U,$J,358.3,22236,2)
+ ;;=^5009345
+ ;;^UTILITY(U,$J,358.3,22237,0)
+ ;;=L89.024^^73^959^30
+ ;;^UTILITY(U,$J,358.3,22237,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,21970,1,3,0)
- ;;=3^Alcohol dependence w/ intoxctn, unspec
- ;;^UTILITY(U,$J,358.3,21970,1,4,0)
- ;;=4^F10.229
- ;;^UTILITY(U,$J,358.3,21970,2)
- ;;=^5003085
- ;;^UTILITY(U,$J,358.3,21971,0)
- ;;=F12.10^^99^1120^5
- ;;^UTILITY(U,$J,358.3,21971,1,0)
+ ;;^UTILITY(U,$J,358.3,22237,1,3,0)
+ ;;=3^Pressure Ulcer Left Elbow,Stage 4
+ ;;^UTILITY(U,$J,358.3,22237,1,4,0)
+ ;;=4^L89.024
+ ;;^UTILITY(U,$J,358.3,22237,2)
+ ;;=^5009346
+ ;;^UTILITY(U,$J,358.3,22238,0)
+ ;;=L89.029^^73^959^31
+ ;;^UTILITY(U,$J,358.3,22238,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,21971,1,3,0)
- ;;=3^Cannabis abuse, uncomplicated
- ;;^UTILITY(U,$J,358.3,21971,1,4,0)
- ;;=4^F12.10
- ;;^UTILITY(U,$J,358.3,21971,2)
- ;;=^5003155
- ;;^UTILITY(U,$J,358.3,21972,0)
- ;;=F12.20^^99^1120^6
- ;;^UTILITY(U,$J,358.3,21972,1,0)
+ ;;^UTILITY(U,$J,358.3,22238,1,3,0)
+ ;;=3^Pressure Ulcer Left Elbow,Stage Unspec
+ ;;^UTILITY(U,$J,358.3,22238,1,4,0)
+ ;;=4^L89.029
+ ;;^UTILITY(U,$J,358.3,22238,2)
+ ;;=^5133649
+ ;;^UTILITY(U,$J,358.3,22239,0)
+ ;;=L89.119^^73^959^97
+ ;;^UTILITY(U,$J,358.3,22239,1,0)
  ;;=^358.31IA^4^2

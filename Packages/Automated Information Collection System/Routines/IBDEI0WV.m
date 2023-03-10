@@ -1,124 +1,130 @@
-IBDEI0WV ; ; 04-FEB-2020
- ;;3.0;IB ENCOUNTER FORM IMP/EXP;;FEB 04, 2020
+IBDEI0WV ; ; 01-FEB-2022
+ ;;3.0;IB ENCOUNTER FORM IMP/EXP;;FEB 01, 2022
  Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,999) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
- ;;^UTILITY(U,$J,358.3,14633,1,4,0)
- ;;=4^Z59.7
- ;;^UTILITY(U,$J,358.3,14633,2)
- ;;=^5063136
- ;;^UTILITY(U,$J,358.3,14634,0)
- ;;=Z59.4^^83^826^140
- ;;^UTILITY(U,$J,358.3,14634,1,0)
+ ;;^UTILITY(U,$J,358.3,14813,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,14634,1,3,0)
- ;;=3^Problems Related to Lack of Food/Drinking Water
- ;;^UTILITY(U,$J,358.3,14634,1,4,0)
- ;;=4^Z59.4
- ;;^UTILITY(U,$J,358.3,14634,2)
- ;;=^5063133
- ;;^UTILITY(U,$J,358.3,14635,0)
- ;;=Z73.9^^83^826^141
- ;;^UTILITY(U,$J,358.3,14635,1,0)
+ ;;^UTILITY(U,$J,358.3,14813,1,3,0)
+ ;;=3^Heart failure, unspecified
+ ;;^UTILITY(U,$J,358.3,14813,1,4,0)
+ ;;=4^I50.9
+ ;;^UTILITY(U,$J,358.3,14813,2)
+ ;;=^5007251
+ ;;^UTILITY(U,$J,358.3,14814,0)
+ ;;=I25.2^^58^708^25
+ ;;^UTILITY(U,$J,358.3,14814,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,14635,1,3,0)
- ;;=3^Problems Related to Life Management Difficulty
- ;;^UTILITY(U,$J,358.3,14635,1,4,0)
- ;;=4^Z73.9
- ;;^UTILITY(U,$J,358.3,14635,2)
- ;;=^5063281
- ;;^UTILITY(U,$J,358.3,14636,0)
- ;;=Z72.9^^83^826^142
- ;;^UTILITY(U,$J,358.3,14636,1,0)
+ ;;^UTILITY(U,$J,358.3,14814,1,3,0)
+ ;;=3^Old myocardial infarction
+ ;;^UTILITY(U,$J,358.3,14814,1,4,0)
+ ;;=4^I25.2
+ ;;^UTILITY(U,$J,358.3,14814,2)
+ ;;=^259884
+ ;;^UTILITY(U,$J,358.3,14815,0)
+ ;;=I42.8^^58^708^19
+ ;;^UTILITY(U,$J,358.3,14815,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,14636,1,3,0)
- ;;=3^Problems Related to Lifestyle
- ;;^UTILITY(U,$J,358.3,14636,1,4,0)
- ;;=4^Z72.9
- ;;^UTILITY(U,$J,358.3,14636,2)
- ;;=^5063267
- ;;^UTILITY(U,$J,358.3,14637,0)
- ;;=Z73.6^^83^826^124
- ;;^UTILITY(U,$J,358.3,14637,1,0)
+ ;;^UTILITY(U,$J,358.3,14815,1,3,0)
+ ;;=3^Cardiomyopathies NEC
+ ;;^UTILITY(U,$J,358.3,14815,1,4,0)
+ ;;=4^I42.8
+ ;;^UTILITY(U,$J,358.3,14815,2)
+ ;;=^5007199
+ ;;^UTILITY(U,$J,358.3,14816,0)
+ ;;=I42.5^^58^708^29
+ ;;^UTILITY(U,$J,358.3,14816,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,14637,1,3,0)
- ;;=3^Problems Related to Activity Limitations d/t Disability
- ;;^UTILITY(U,$J,358.3,14637,1,4,0)
- ;;=4^Z73.6
- ;;^UTILITY(U,$J,358.3,14637,2)
- ;;=^5063274
- ;;^UTILITY(U,$J,358.3,14638,0)
- ;;=Z60.2^^83^826^143
- ;;^UTILITY(U,$J,358.3,14638,1,0)
+ ;;^UTILITY(U,$J,358.3,14816,1,3,0)
+ ;;=3^Restrictive Cardiomyopathy NEC
+ ;;^UTILITY(U,$J,358.3,14816,1,4,0)
+ ;;=4^I42.5
+ ;;^UTILITY(U,$J,358.3,14816,2)
+ ;;=^5007196
+ ;;^UTILITY(U,$J,358.3,14817,0)
+ ;;=Z95.1^^58^708^26
+ ;;^UTILITY(U,$J,358.3,14817,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,14638,1,3,0)
- ;;=3^Problems Related to Living Alone
- ;;^UTILITY(U,$J,358.3,14638,1,4,0)
- ;;=4^Z60.2
- ;;^UTILITY(U,$J,358.3,14638,2)
- ;;=^5063140
- ;;^UTILITY(U,$J,358.3,14639,0)
- ;;=Z59.3^^83^826^144
- ;;^UTILITY(U,$J,358.3,14639,1,0)
+ ;;^UTILITY(U,$J,358.3,14817,1,3,0)
+ ;;=3^Presence of aortocoronary bypass graft
+ ;;^UTILITY(U,$J,358.3,14817,1,4,0)
+ ;;=4^Z95.1
+ ;;^UTILITY(U,$J,358.3,14817,2)
+ ;;=^5063669
+ ;;^UTILITY(U,$J,358.3,14818,0)
+ ;;=Z95.0^^58^708^27
+ ;;^UTILITY(U,$J,358.3,14818,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,14639,1,3,0)
- ;;=3^Problems Related to Living in Residential Institution
- ;;^UTILITY(U,$J,358.3,14639,1,4,0)
- ;;=4^Z59.3
- ;;^UTILITY(U,$J,358.3,14639,2)
- ;;=^5063132
- ;;^UTILITY(U,$J,358.3,14640,0)
- ;;=Z59.6^^83^826^145
- ;;^UTILITY(U,$J,358.3,14640,1,0)
+ ;;^UTILITY(U,$J,358.3,14818,1,3,0)
+ ;;=3^Presence of cardiac pacemaker
+ ;;^UTILITY(U,$J,358.3,14818,1,4,0)
+ ;;=4^Z95.0
+ ;;^UTILITY(U,$J,358.3,14818,2)
+ ;;=^5063668
+ ;;^UTILITY(U,$J,358.3,14819,0)
+ ;;=J98.9^^58^708^28
+ ;;^UTILITY(U,$J,358.3,14819,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,14640,1,3,0)
- ;;=3^Problems Related to Low Income
- ;;^UTILITY(U,$J,358.3,14640,1,4,0)
- ;;=4^Z59.6
- ;;^UTILITY(U,$J,358.3,14640,2)
- ;;=^5063135
- ;;^UTILITY(U,$J,358.3,14641,0)
- ;;=Z75.9^^83^826^146
- ;;^UTILITY(U,$J,358.3,14641,1,0)
+ ;;^UTILITY(U,$J,358.3,14819,1,3,0)
+ ;;=3^Respiratory disorder, unspecified
+ ;;^UTILITY(U,$J,358.3,14819,1,4,0)
+ ;;=4^J98.9
+ ;;^UTILITY(U,$J,358.3,14819,2)
+ ;;=^5008366
+ ;;^UTILITY(U,$J,358.3,14820,0)
+ ;;=I22.9^^58^708^30
+ ;;^UTILITY(U,$J,358.3,14820,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,14641,1,3,0)
- ;;=3^Problems Related to Med Facilities/Health Care
- ;;^UTILITY(U,$J,358.3,14641,1,4,0)
- ;;=4^Z75.9
- ;;^UTILITY(U,$J,358.3,14641,2)
- ;;=^5063296
- ;;^UTILITY(U,$J,358.3,14642,0)
- ;;=Z75.0^^83^826^147
- ;;^UTILITY(U,$J,358.3,14642,1,0)
+ ;;^UTILITY(U,$J,358.3,14820,1,3,0)
+ ;;=3^Subsequent STEMI of unsp site
+ ;;^UTILITY(U,$J,358.3,14820,1,4,0)
+ ;;=4^I22.9
+ ;;^UTILITY(U,$J,358.3,14820,2)
+ ;;=^5007093
+ ;;^UTILITY(U,$J,358.3,14821,0)
+ ;;=I48.91^^58^708^6
+ ;;^UTILITY(U,$J,358.3,14821,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,14642,1,3,0)
- ;;=3^Problems Related to Med Services not Available in Home
- ;;^UTILITY(U,$J,358.3,14642,1,4,0)
- ;;=4^Z75.0
- ;;^UTILITY(U,$J,358.3,14642,2)
- ;;=^5063289
- ;;^UTILITY(U,$J,358.3,14643,0)
- ;;=Z74.2^^83^826^149
- ;;^UTILITY(U,$J,358.3,14643,1,0)
+ ;;^UTILITY(U,$J,358.3,14821,1,3,0)
+ ;;=3^AFIB-Unspec
+ ;;^UTILITY(U,$J,358.3,14821,1,4,0)
+ ;;=4^I48.91
+ ;;^UTILITY(U,$J,358.3,14821,2)
+ ;;=^5007229
+ ;;^UTILITY(U,$J,358.3,14822,0)
+ ;;=I25.110^^58^708^11
+ ;;^UTILITY(U,$J,358.3,14822,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,14643,1,3,0)
- ;;=3^Problems Related to Need for Assistance at Home
- ;;^UTILITY(U,$J,358.3,14643,1,4,0)
- ;;=4^Z74.2
- ;;^UTILITY(U,$J,358.3,14643,2)
- ;;=^5063285
- ;;^UTILITY(U,$J,358.3,14644,0)
- ;;=Z74.1^^83^826^150
- ;;^UTILITY(U,$J,358.3,14644,1,0)
+ ;;^UTILITY(U,$J,358.3,14822,1,3,0)
+ ;;=3^CAD w/ Unstable Agngia
+ ;;^UTILITY(U,$J,358.3,14822,1,4,0)
+ ;;=4^I25.110
+ ;;^UTILITY(U,$J,358.3,14822,2)
+ ;;=^5007108
+ ;;^UTILITY(U,$J,358.3,14823,0)
+ ;;=I25.111^^58^708^12
+ ;;^UTILITY(U,$J,358.3,14823,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,14644,1,3,0)
- ;;=3^Problems Related to Need for Assistance w/ Personal Care
- ;;^UTILITY(U,$J,358.3,14644,1,4,0)
- ;;=4^Z74.1
- ;;^UTILITY(U,$J,358.3,14644,2)
- ;;=^5063284
- ;;^UTILITY(U,$J,358.3,14645,0)
- ;;=Z74.3^^83^826^151
- ;;^UTILITY(U,$J,358.3,14645,1,0)
+ ;;^UTILITY(U,$J,358.3,14823,1,3,0)
+ ;;=3^CAD w/ Unstable Angia w/ Documented Spasm
+ ;;^UTILITY(U,$J,358.3,14823,1,4,0)
+ ;;=4^I25.111
+ ;;^UTILITY(U,$J,358.3,14823,2)
+ ;;=^5007109
+ ;;^UTILITY(U,$J,358.3,14824,0)
+ ;;=I25.118^^58^708^10
+ ;;^UTILITY(U,$J,358.3,14824,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,14645,1,3,0)
- ;;=3^Problems Related to Need for Continuous Supervision
+ ;;^UTILITY(U,$J,358.3,14824,1,3,0)
+ ;;=3^CAD w/ Oth Forms of Angina (Includes Stable)
+ ;;^UTILITY(U,$J,358.3,14824,1,4,0)
+ ;;=4^I25.118
+ ;;^UTILITY(U,$J,358.3,14824,2)
+ ;;=^5007110
+ ;;^UTILITY(U,$J,358.3,14825,0)
+ ;;=I48.0^^58^708^4
+ ;;^UTILITY(U,$J,358.3,14825,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,14825,1,3,0)
+ ;;=3^AFIB-Paroxysmal
+ ;;^UTILITY(U,$J,358.3,14825,1,4,0)
+ ;;=4^I48.0

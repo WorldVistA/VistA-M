@@ -1,5 +1,5 @@
 PSOSUPAT ;BIR/RTR - Pull all Rx's from suspense for a patient ;03/01/96
- ;;7.0;OUTPATIENT PHARMACY;**8,130,185,427,544**;DEC 1997;Build 19
+ ;;7.0;OUTPATIENT PHARMACY;**8,130,185,427,544,562**;DEC 1997;Build 19
  ;External reference to ^PS(55 supported by DBIA 2228
  ;External reference to ^PSSLOCK supported by DBIA 2789
 PAT N PSOALRX,PSOALRXS,PSOSKIP
@@ -58,7 +58,7 @@ NAM I BC="P" W ! S DIC(0)="AEMZQ",DIC="^DPT(",DIC("S")="I $D(^PS(52.5,""AC"",+Y)
  . . D ECMESND^PSOBPSU1(RXREC,RFL,,"PE")
  . . I $$PSOET^PSOREJP3(RXREC,RFL) S PSOSKIP=1 Q  ; Quit if there is an unresolved TRICARE/CHAMPVA non-billable reject code
  . . N PSOTRIC S PSOTRIC=$$TRIC^PSOREJP1(RXREC,RFL)
- . . I $$FIND^PSOREJUT(RXREC,RFL),$$HDLG^PSOREJU1(RXREC,RFL,"79,88","PE","IOQ","I")="Q" S PSOSKIP=1 Q
+ . . I $$FIND^PSOREJUT(RXREC,RFL),$$HDLG^PSOREJU1(RXREC,RFL,"79,88,943","PE","IOQ","I")="Q" S PSOSKIP=1 Q
  . . I $P($G(^PSRX(RXREC,"STA")),"^")=12 S PSOSKIP=1 Q  ;No label if discontinued via Reject Notification screen
  . . Q
  . ;

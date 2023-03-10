@@ -1,5 +1,5 @@
 IBCNEUT4 ;DAOU/ESG - eIV MISC. UTILITIES ;17-JUN-2002
- ;;2.0;INTEGRATED BILLING;**184,271,345,416,497,601**;21-MAR-94;Build 14
+ ;;2.0;INTEGRATED BILLING;**184,271,345,416,497,601,668**;21-MAR-94;Build 28
  ;;Per VA Directive 6402, this routine should not be modified.
  ;
  ; Can't be called from the top
@@ -158,7 +158,7 @@ PAYER(PAYIEN) ;
 VALPYR(INSNM) ;
  ; Payer Val'n - note: PAYIEN (payer IEN) must be set
  ; If INSNM="" val'n is for Most Pop Payer
- N PAYNM
+ N DEACT,PAYNM
  ;
  S INSNM=$G(INSNM) ; Init variable if not passed
  ; Retrieve the National ID(Payer ID) for this Payer IEN
@@ -167,18 +167,24 @@ VALPYR(INSNM) ;
  ; Retrieve payer name
  S PAYNM=$P($G(^IBE(365.12,PAYIEN,0)),U,1)
  ; Retrieve the IEN of the eIV Application
- S APPIEN=$$PYRAPP^IBCNEUT5("IIV",PAYIEN)
+ ;IB*668/TAZ - Changed Payer Application from IIV to EIV
+ S APPIEN=$$PYRAPP^IBCNEUT5("EIV",PAYIEN)
  I APPIEN="" S SYMIEN=$$ERROR^IBCNEUT8("B9","The eIV Payer Application has not been created for this site.") Q
  ; Verify the existence of the application for this Payer
  I '$D(^IBE(365.12,PAYIEN,1,APPIEN)) S SYMIEN=$$ERROR^IBCNEUT8("B7","Insurance company "_INSNM_" is linked to Payer "_PAYNM_" which is not set up to accept electronic insurance eligibility requests.") Q
  ; Retrieve the eIV-specific application data for this Payer
  S APPDATA=$G(^IBE(365.12,PAYIEN,1,APPIEN,0))
- ; Check if the Payer doesn't have either an active national or an
- ; active local connection and return one or, if applicable, BOTH errors
- I '$P(APPDATA,U,3) S SYMIEN=$$ERROR^IBCNEUT8("B6","Insurance company "_INSNM_" is linked to Payer "_PAYNM_" which is not locally active for eIV.")
- I '$P(APPDATA,U,2) S SYMIEN=$$ERROR^IBCNEUT8("B5","Insurance company "_INSNM_" is linked to Payer "_PAYNM_" which is not nationally active for eIV.")
+ ;IB*668/DW - Update comment and error text to reflect change from 'national/local active' to 'nationally/locally enabled'
+ ; Check the Payer's national enabled status and local enabled status.  If the payer is not both
+ ; enabled for both then return one or, if applicable, BOTH errors
+ ;I '$P(APPDATA,U,3) S SYMIEN=$$ERROR^IBCNEUT8("B6","Insurance company "_INSNM_" is linked to Payer "_PAYNM_" which is not locally active for eIV.")
+ ;I '$P(APPDATA,U,2) S SYMIEN=$$ERROR^IBCNEUT8("B5","Insurance company "_INSNM_" is linked to Payer "_PAYNM_" which is not nationally active for eIV.")
+ I '$P(APPDATA,U,3) S SYMIEN=$$ERROR^IBCNEUT8("B6","Insurance company "_INSNM_" is linked to Payer "_PAYNM_" which is not locally enabled for eIV.")
+ I '$P(APPDATA,U,2) S SYMIEN=$$ERROR^IBCNEUT8("B5","Insurance company "_INSNM_" is linked to Payer "_PAYNM_" which is not nationally enabled for eIV.")
+ ;IB*668/TAZ - Call PYRDEACT to get Payer Deactivated from new file location.
  ; Check if the Payer has been deactivated, if so report it
- I $P(APPDATA,U,11) S SYMIEN=$$ERROR^IBCNEUT8("B14","Insurance company "_INSNM_" is linked to Payer "_PAYNM_" which has been deactivated as of "_$$FMTE^XLFDT($P(APPDATA,U,12),"5Z")_".")
+ S DEACT=$$PYRDEACT^IBCNINSU(PAYIEN)
+ I +DEACT S SYMIEN=$$ERROR^IBCNEUT8("B14","Insurance company "_INSNM_" is linked to Payer "_PAYNM_" which has been deactivated as of "_$$FMTE^XLFDT($P(DEACT,U,2),"5Z")_".")
  Q
  ;
 MULTNAME(TEXT,LIST) ; Function to return an error message with a list of multiple names

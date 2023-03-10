@@ -1,124 +1,124 @@
-IBDEI133 ; ; 04-FEB-2020
- ;;3.0;IB ENCOUNTER FORM IMP/EXP;;FEB 04, 2020
+IBDEI133 ; ; 01-FEB-2022
+ ;;3.0;IB ENCOUNTER FORM IMP/EXP;;FEB 01, 2022
  Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,999) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
- ;;^UTILITY(U,$J,358.3,17424,1,0)
+ ;;^UTILITY(U,$J,358.3,17603,1,4,0)
+ ;;=4^F10.10
+ ;;^UTILITY(U,$J,358.3,17603,2)
+ ;;=^5003068
+ ;;^UTILITY(U,$J,358.3,17604,0)
+ ;;=F17.201^^61^789^41
+ ;;^UTILITY(U,$J,358.3,17604,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,17424,1,3,0)
- ;;=3^Abnormal Nonspecific Lung Field Finding NEC
- ;;^UTILITY(U,$J,358.3,17424,1,4,0)
- ;;=4^R91.8
- ;;^UTILITY(U,$J,358.3,17424,2)
- ;;=^5019708
- ;;^UTILITY(U,$J,358.3,17425,0)
- ;;=R92.0^^88^891^122
- ;;^UTILITY(U,$J,358.3,17425,1,0)
+ ;;^UTILITY(U,$J,358.3,17604,1,3,0)
+ ;;=3^Nicotine Dependence In Remission,Unspec
+ ;;^UTILITY(U,$J,358.3,17604,1,4,0)
+ ;;=4^F17.201
+ ;;^UTILITY(U,$J,358.3,17604,2)
+ ;;=^5003361
+ ;;^UTILITY(U,$J,358.3,17605,0)
+ ;;=F17.210^^61^789^40
+ ;;^UTILITY(U,$J,358.3,17605,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,17425,1,3,0)
- ;;=3^Mammographic Microcalcification on Dx Image of Breast
- ;;^UTILITY(U,$J,358.3,17425,1,4,0)
- ;;=4^R92.0
- ;;^UTILITY(U,$J,358.3,17425,2)
- ;;=^5019709
- ;;^UTILITY(U,$J,358.3,17426,0)
- ;;=R92.1^^88^891^121
- ;;^UTILITY(U,$J,358.3,17426,1,0)
+ ;;^UTILITY(U,$J,358.3,17605,1,3,0)
+ ;;=3^Nicotine Dependence Cigarettes,Uncomplicated
+ ;;^UTILITY(U,$J,358.3,17605,1,4,0)
+ ;;=4^F17.210
+ ;;^UTILITY(U,$J,358.3,17605,2)
+ ;;=^5003365
+ ;;^UTILITY(U,$J,358.3,17606,0)
+ ;;=F17.291^^61^789^42
+ ;;^UTILITY(U,$J,358.3,17606,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,17426,1,3,0)
- ;;=3^Mammographic Calcification on Dx Image of Breast
- ;;^UTILITY(U,$J,358.3,17426,1,4,0)
- ;;=4^R92.1
- ;;^UTILITY(U,$J,358.3,17426,2)
- ;;=^5019710
- ;;^UTILITY(U,$J,358.3,17427,0)
- ;;=R92.2^^88^891^96
- ;;^UTILITY(U,$J,358.3,17427,1,0)
+ ;;^UTILITY(U,$J,358.3,17606,1,3,0)
+ ;;=3^Nicotine Dependence Oth Tobacco Product,In Remission
+ ;;^UTILITY(U,$J,358.3,17606,1,4,0)
+ ;;=4^F17.291
+ ;;^UTILITY(U,$J,358.3,17606,2)
+ ;;=^5003376
+ ;;^UTILITY(U,$J,358.3,17607,0)
+ ;;=F17.290^^61^789^43
+ ;;^UTILITY(U,$J,358.3,17607,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,17427,1,3,0)
- ;;=3^Inconclusive Mammogram
- ;;^UTILITY(U,$J,358.3,17427,1,4,0)
- ;;=4^R92.2
- ;;^UTILITY(U,$J,358.3,17427,2)
- ;;=^5019711
- ;;^UTILITY(U,$J,358.3,17428,0)
- ;;=R93.0^^88^891^10
- ;;^UTILITY(U,$J,358.3,17428,1,0)
+ ;;^UTILITY(U,$J,358.3,17607,1,3,0)
+ ;;=3^Nicotine Dependence Oth Tobacco Product,Uncomplicated
+ ;;^UTILITY(U,$J,358.3,17607,1,4,0)
+ ;;=4^F17.290
+ ;;^UTILITY(U,$J,358.3,17607,2)
+ ;;=^5003375
+ ;;^UTILITY(U,$J,358.3,17608,0)
+ ;;=F17.221^^61^789^37
+ ;;^UTILITY(U,$J,358.3,17608,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,17428,1,3,0)
- ;;=3^Abnormal Finding on Dx Image of Skull/Head NEC
- ;;^UTILITY(U,$J,358.3,17428,1,4,0)
- ;;=4^R93.0
- ;;^UTILITY(U,$J,358.3,17428,2)
- ;;=^5019713
- ;;^UTILITY(U,$J,358.3,17429,0)
- ;;=R93.2^^88^891^9
- ;;^UTILITY(U,$J,358.3,17429,1,0)
+ ;;^UTILITY(U,$J,358.3,17608,1,3,0)
+ ;;=3^Nicotine Dependence Chewing Tobacco,In Remission
+ ;;^UTILITY(U,$J,358.3,17608,1,4,0)
+ ;;=4^F17.221
+ ;;^UTILITY(U,$J,358.3,17608,2)
+ ;;=^5003371
+ ;;^UTILITY(U,$J,358.3,17609,0)
+ ;;=F17.220^^61^789^38
+ ;;^UTILITY(U,$J,358.3,17609,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,17429,1,3,0)
- ;;=3^Abnormal Finding on Dx Image of Liver/Biliary Tract
- ;;^UTILITY(U,$J,358.3,17429,1,4,0)
- ;;=4^R93.2
- ;;^UTILITY(U,$J,358.3,17429,2)
- ;;=^5019715
- ;;^UTILITY(U,$J,358.3,17430,0)
- ;;=R93.3^^88^891^7
- ;;^UTILITY(U,$J,358.3,17430,1,0)
+ ;;^UTILITY(U,$J,358.3,17609,1,3,0)
+ ;;=3^Nicotine Dependence Chewing Tobacco,Uncomplicated
+ ;;^UTILITY(U,$J,358.3,17609,1,4,0)
+ ;;=4^F17.220
+ ;;^UTILITY(U,$J,358.3,17609,2)
+ ;;=^5003370
+ ;;^UTILITY(U,$J,358.3,17610,0)
+ ;;=F17.211^^61^789^39
+ ;;^UTILITY(U,$J,358.3,17610,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,17430,1,3,0)
- ;;=3^Abnormal Finding on Dx Image of Digestive Tract Part
- ;;^UTILITY(U,$J,358.3,17430,1,4,0)
- ;;=4^R93.3
- ;;^UTILITY(U,$J,358.3,17430,2)
- ;;=^5019716
- ;;^UTILITY(U,$J,358.3,17431,0)
- ;;=R93.5^^88^891^6
- ;;^UTILITY(U,$J,358.3,17431,1,0)
+ ;;^UTILITY(U,$J,358.3,17610,1,3,0)
+ ;;=3^Nicotine Dependence Cigarettes,In Remission
+ ;;^UTILITY(U,$J,358.3,17610,1,4,0)
+ ;;=4^F17.211
+ ;;^UTILITY(U,$J,358.3,17610,2)
+ ;;=^5003366
+ ;;^UTILITY(U,$J,358.3,17611,0)
+ ;;=F17.200^^61^789^44
+ ;;^UTILITY(U,$J,358.3,17611,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,17431,1,3,0)
- ;;=3^Abnormal Finding on Dx Image of Abdominal Regions
- ;;^UTILITY(U,$J,358.3,17431,1,4,0)
- ;;=4^R93.5
- ;;^UTILITY(U,$J,358.3,17431,2)
- ;;=^5019718
- ;;^UTILITY(U,$J,358.3,17432,0)
- ;;=R93.6^^88^891^8
- ;;^UTILITY(U,$J,358.3,17432,1,0)
+ ;;^UTILITY(U,$J,358.3,17611,1,3,0)
+ ;;=3^Nicotine Dependence,Unspec,Uncomplicated
+ ;;^UTILITY(U,$J,358.3,17611,1,4,0)
+ ;;=4^F17.200
+ ;;^UTILITY(U,$J,358.3,17611,2)
+ ;;=^5003360
+ ;;^UTILITY(U,$J,358.3,17612,0)
+ ;;=F11.120^^61^789^45
+ ;;^UTILITY(U,$J,358.3,17612,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,17432,1,3,0)
- ;;=3^Abnormal Finding on Dx Image of Limbs
- ;;^UTILITY(U,$J,358.3,17432,1,4,0)
- ;;=4^R93.6
- ;;^UTILITY(U,$J,358.3,17432,2)
- ;;=^5019719
- ;;^UTILITY(U,$J,358.3,17433,0)
- ;;=R94.4^^88^891^19
- ;;^UTILITY(U,$J,358.3,17433,1,0)
+ ;;^UTILITY(U,$J,358.3,17612,1,3,0)
+ ;;=3^Opioid Abuse w/ Intoxication,Uncomplicated
+ ;;^UTILITY(U,$J,358.3,17612,1,4,0)
+ ;;=4^F11.120
+ ;;^UTILITY(U,$J,358.3,17612,2)
+ ;;=^5003115
+ ;;^UTILITY(U,$J,358.3,17613,0)
+ ;;=F11.10^^61^789^49
+ ;;^UTILITY(U,$J,358.3,17613,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,17433,1,3,0)
- ;;=3^Abnormal Kidney Function Studies
- ;;^UTILITY(U,$J,358.3,17433,1,4,0)
- ;;=4^R94.4
- ;;^UTILITY(U,$J,358.3,17433,2)
- ;;=^5019741
- ;;^UTILITY(U,$J,358.3,17434,0)
- ;;=R94.5^^88^891^20
- ;;^UTILITY(U,$J,358.3,17434,1,0)
+ ;;^UTILITY(U,$J,358.3,17613,1,3,0)
+ ;;=3^Opioid Abuse,Uncomplicated
+ ;;^UTILITY(U,$J,358.3,17613,1,4,0)
+ ;;=4^F11.10
+ ;;^UTILITY(U,$J,358.3,17613,2)
+ ;;=^5003114
+ ;;^UTILITY(U,$J,358.3,17614,0)
+ ;;=F11.129^^61^789^46
+ ;;^UTILITY(U,$J,358.3,17614,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,17434,1,3,0)
- ;;=3^Abnormal Liver Function Studies
- ;;^UTILITY(U,$J,358.3,17434,1,4,0)
- ;;=4^R94.5
- ;;^UTILITY(U,$J,358.3,17434,2)
- ;;=^5019742
- ;;^UTILITY(U,$J,358.3,17435,0)
- ;;=R94.6^^88^891^24
- ;;^UTILITY(U,$J,358.3,17435,1,0)
+ ;;^UTILITY(U,$J,358.3,17614,1,3,0)
+ ;;=3^Opioid Abuse w/ Intoxication,Unspec
+ ;;^UTILITY(U,$J,358.3,17614,1,4,0)
+ ;;=4^F11.129
+ ;;^UTILITY(U,$J,358.3,17614,2)
+ ;;=^5003118
+ ;;^UTILITY(U,$J,358.3,17615,0)
+ ;;=F10.21^^61^789^8
+ ;;^UTILITY(U,$J,358.3,17615,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,17435,1,3,0)
- ;;=3^Abnormal Thyroid Function Studies
- ;;^UTILITY(U,$J,358.3,17435,1,4,0)
- ;;=4^R94.6
- ;;^UTILITY(U,$J,358.3,17435,2)
- ;;=^5019743
- ;;^UTILITY(U,$J,358.3,17436,0)
- ;;=R94.7^^88^891^5
+ ;;^UTILITY(U,$J,358.3,17615,1,3,0)
+ ;;=3^Alcohol Dependence,In Remission

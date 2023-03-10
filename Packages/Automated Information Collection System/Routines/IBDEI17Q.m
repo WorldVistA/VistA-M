@@ -1,124 +1,126 @@
-IBDEI17Q ; ; 04-FEB-2020
- ;;3.0;IB ENCOUNTER FORM IMP/EXP;;FEB 04, 2020
+IBDEI17Q ; ; 01-FEB-2022
+ ;;3.0;IB ENCOUNTER FORM IMP/EXP;;FEB 01, 2022
  Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,999) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
- ;;^UTILITY(U,$J,358.3,19475,1,3,0)
- ;;=3^Mallet Finger,Right Finger(s)
- ;;^UTILITY(U,$J,358.3,19475,1,4,0)
- ;;=4^M20.011
- ;;^UTILITY(U,$J,358.3,19475,2)
- ;;=^5011030
- ;;^UTILITY(U,$J,358.3,19476,0)
- ;;=M20.012^^93^992^58
- ;;^UTILITY(U,$J,358.3,19476,1,0)
+ ;;^UTILITY(U,$J,358.3,19694,1,3,0)
+ ;;=3^Incomplete rotatr-cuff tear/ruptr of r shoulder, not trauma
+ ;;^UTILITY(U,$J,358.3,19694,1,4,0)
+ ;;=4^M75.111
+ ;;^UTILITY(U,$J,358.3,19694,2)
+ ;;=^5013245
+ ;;^UTILITY(U,$J,358.3,19695,0)
+ ;;=M77.12^^67^880^52
+ ;;^UTILITY(U,$J,358.3,19695,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,19476,1,3,0)
- ;;=3^Mallet Finger,Left Finger(s)
- ;;^UTILITY(U,$J,358.3,19476,1,4,0)
- ;;=4^M20.012
- ;;^UTILITY(U,$J,358.3,19476,2)
- ;;=^5011031
- ;;^UTILITY(U,$J,358.3,19477,0)
- ;;=M20.021^^93^992^9
- ;;^UTILITY(U,$J,358.3,19477,1,0)
+ ;;^UTILITY(U,$J,358.3,19695,1,3,0)
+ ;;=3^Lateral epicondylitis, left elbow
+ ;;^UTILITY(U,$J,358.3,19695,1,4,0)
+ ;;=4^M77.12
+ ;;^UTILITY(U,$J,358.3,19695,2)
+ ;;=^5013305
+ ;;^UTILITY(U,$J,358.3,19696,0)
+ ;;=M77.11^^67^880^53
+ ;;^UTILITY(U,$J,358.3,19696,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,19477,1,3,0)
- ;;=3^Boutonniere Deformity,Right Finger(s)
- ;;^UTILITY(U,$J,358.3,19477,1,4,0)
- ;;=4^M20.021
- ;;^UTILITY(U,$J,358.3,19477,2)
- ;;=^5011033
- ;;^UTILITY(U,$J,358.3,19478,0)
- ;;=M20.022^^93^992^8
- ;;^UTILITY(U,$J,358.3,19478,1,0)
+ ;;^UTILITY(U,$J,358.3,19696,1,3,0)
+ ;;=3^Lateral epicondylitis, right elbow
+ ;;^UTILITY(U,$J,358.3,19696,1,4,0)
+ ;;=4^M77.11
+ ;;^UTILITY(U,$J,358.3,19696,2)
+ ;;=^5013304
+ ;;^UTILITY(U,$J,358.3,19697,0)
+ ;;=M77.02^^67^880^60
+ ;;^UTILITY(U,$J,358.3,19697,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,19478,1,3,0)
- ;;=3^Boutonniere Deformity,Left Finger(s)
- ;;^UTILITY(U,$J,358.3,19478,1,4,0)
- ;;=4^M20.022
- ;;^UTILITY(U,$J,358.3,19478,2)
- ;;=^5011034
- ;;^UTILITY(U,$J,358.3,19479,0)
- ;;=M20.031^^93^992^197
- ;;^UTILITY(U,$J,358.3,19479,1,0)
+ ;;^UTILITY(U,$J,358.3,19697,1,3,0)
+ ;;=3^Medial epicondylitis, left elbow
+ ;;^UTILITY(U,$J,358.3,19697,1,4,0)
+ ;;=4^M77.02
+ ;;^UTILITY(U,$J,358.3,19697,2)
+ ;;=^5013302
+ ;;^UTILITY(U,$J,358.3,19698,0)
+ ;;=M77.01^^67^880^61
+ ;;^UTILITY(U,$J,358.3,19698,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,19479,1,3,0)
- ;;=3^Swan-Neck Deformity,Right Finger(s)
- ;;^UTILITY(U,$J,358.3,19479,1,4,0)
- ;;=4^M20.031
- ;;^UTILITY(U,$J,358.3,19479,2)
- ;;=^5011036
- ;;^UTILITY(U,$J,358.3,19480,0)
- ;;=M20.032^^93^992^196
- ;;^UTILITY(U,$J,358.3,19480,1,0)
+ ;;^UTILITY(U,$J,358.3,19698,1,3,0)
+ ;;=3^Medial epicondylitis, right elbow
+ ;;^UTILITY(U,$J,358.3,19698,1,4,0)
+ ;;=4^M77.01
+ ;;^UTILITY(U,$J,358.3,19698,2)
+ ;;=^5013301
+ ;;^UTILITY(U,$J,358.3,19699,0)
+ ;;=M62.831^^67^880^62
+ ;;^UTILITY(U,$J,358.3,19699,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,19480,1,3,0)
- ;;=3^Swan-Neck Deformity,Left Finger(s)
- ;;^UTILITY(U,$J,358.3,19480,1,4,0)
- ;;=4^M20.032
- ;;^UTILITY(U,$J,358.3,19480,2)
- ;;=^5011037
- ;;^UTILITY(U,$J,358.3,19481,0)
- ;;=M21.331^^93^992^209
- ;;^UTILITY(U,$J,358.3,19481,1,0)
+ ;;^UTILITY(U,$J,358.3,19699,1,3,0)
+ ;;=3^Muscle spasm of calf
+ ;;^UTILITY(U,$J,358.3,19699,1,4,0)
+ ;;=4^M62.831
+ ;;^UTILITY(U,$J,358.3,19699,2)
+ ;;=^5012681
+ ;;^UTILITY(U,$J,358.3,19700,0)
+ ;;=M79.2^^67^880^63
+ ;;^UTILITY(U,$J,358.3,19700,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,19481,1,3,0)
- ;;=3^Wrist Drop,Right Wrist
- ;;^UTILITY(U,$J,358.3,19481,1,4,0)
- ;;=4^M21.331
- ;;^UTILITY(U,$J,358.3,19481,2)
- ;;=^5011107
- ;;^UTILITY(U,$J,358.3,19482,0)
- ;;=M21.332^^93^992^208
- ;;^UTILITY(U,$J,358.3,19482,1,0)
+ ;;^UTILITY(U,$J,358.3,19700,1,3,0)
+ ;;=3^Neuralgia and neuritis, unspecified
+ ;;^UTILITY(U,$J,358.3,19700,1,4,0)
+ ;;=4^M79.2
+ ;;^UTILITY(U,$J,358.3,19700,2)
+ ;;=^5013322
+ ;;^UTILITY(U,$J,358.3,19701,0)
+ ;;=M25.752^^67^880^64
+ ;;^UTILITY(U,$J,358.3,19701,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,19482,1,3,0)
- ;;=3^Wrist Drop,Left Wrist
- ;;^UTILITY(U,$J,358.3,19482,1,4,0)
- ;;=4^M21.332
- ;;^UTILITY(U,$J,358.3,19482,2)
- ;;=^5011108
- ;;^UTILITY(U,$J,358.3,19483,0)
- ;;=M18.0^^93^992^74
- ;;^UTILITY(U,$J,358.3,19483,1,0)
+ ;;^UTILITY(U,$J,358.3,19701,1,3,0)
+ ;;=3^Osteophyte, left hip
+ ;;^UTILITY(U,$J,358.3,19701,1,4,0)
+ ;;=4^M25.752
+ ;;^UTILITY(U,$J,358.3,19701,2)
+ ;;=^5011659
+ ;;^UTILITY(U,$J,358.3,19702,0)
+ ;;=M25.751^^67^880^65
+ ;;^UTILITY(U,$J,358.3,19702,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,19483,1,3,0)
- ;;=3^Prim Osteoarth,1st Carpometacarpal Joint(s),Bilateral
- ;;^UTILITY(U,$J,358.3,19483,1,4,0)
- ;;=4^M18.0
- ;;^UTILITY(U,$J,358.3,19483,2)
- ;;=^5010795
- ;;^UTILITY(U,$J,358.3,19484,0)
- ;;=M18.11^^93^992^75
- ;;^UTILITY(U,$J,358.3,19484,1,0)
+ ;;^UTILITY(U,$J,358.3,19702,1,3,0)
+ ;;=3^Osteophyte, right hip
+ ;;^UTILITY(U,$J,358.3,19702,1,4,0)
+ ;;=4^M25.751
+ ;;^UTILITY(U,$J,358.3,19702,2)
+ ;;=^5011658
+ ;;^UTILITY(U,$J,358.3,19703,0)
+ ;;=M72.0^^67^880^66
+ ;;^UTILITY(U,$J,358.3,19703,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,19484,1,3,0)
- ;;=3^Prim Osteoarth,1st Carpometacarpal Joint(s),Right Hand,Unilat
- ;;^UTILITY(U,$J,358.3,19484,1,4,0)
- ;;=4^M18.11
- ;;^UTILITY(U,$J,358.3,19484,2)
- ;;=^5010797
- ;;^UTILITY(U,$J,358.3,19485,0)
- ;;=M18.12^^93^992^76
- ;;^UTILITY(U,$J,358.3,19485,1,0)
+ ;;^UTILITY(U,$J,358.3,19703,1,3,0)
+ ;;=3^Palmar fascial fibromatosis [Dupuytren]
+ ;;^UTILITY(U,$J,358.3,19703,1,4,0)
+ ;;=4^M72.0
+ ;;^UTILITY(U,$J,358.3,19703,2)
+ ;;=^5013233
+ ;;^UTILITY(U,$J,358.3,19704,0)
+ ;;=M76.52^^67^880^67
+ ;;^UTILITY(U,$J,358.3,19704,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,19485,1,3,0)
- ;;=3^Prim Osteoarth,1st Carpometacarpal Joint(s),Left Hand,Unilat
- ;;^UTILITY(U,$J,358.3,19485,1,4,0)
- ;;=4^M18.12
- ;;^UTILITY(U,$J,358.3,19485,2)
- ;;=^5010798
- ;;^UTILITY(U,$J,358.3,19486,0)
- ;;=M19.031^^93^992^85
- ;;^UTILITY(U,$J,358.3,19486,1,0)
+ ;;^UTILITY(U,$J,358.3,19704,1,3,0)
+ ;;=3^Patellar tendinitis, left knee
+ ;;^UTILITY(U,$J,358.3,19704,1,4,0)
+ ;;=4^M76.52
+ ;;^UTILITY(U,$J,358.3,19704,2)
+ ;;=^5013283
+ ;;^UTILITY(U,$J,358.3,19705,0)
+ ;;=M72.2^^67^880^73
+ ;;^UTILITY(U,$J,358.3,19705,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,19486,1,3,0)
- ;;=3^Prim Osteoarth,Right Wrist
- ;;^UTILITY(U,$J,358.3,19486,1,4,0)
- ;;=4^M19.031
- ;;^UTILITY(U,$J,358.3,19486,2)
- ;;=^5010814
- ;;^UTILITY(U,$J,358.3,19487,0)
- ;;=M19.032^^93^992^81
- ;;^UTILITY(U,$J,358.3,19487,1,0)
+ ;;^UTILITY(U,$J,358.3,19705,1,3,0)
+ ;;=3^Plantar fascial fibromatosis
+ ;;^UTILITY(U,$J,358.3,19705,1,4,0)
+ ;;=4^M72.2
+ ;;^UTILITY(U,$J,358.3,19705,2)
+ ;;=^272598
+ ;;^UTILITY(U,$J,358.3,19706,0)
+ ;;=M15.0^^67^880^86
+ ;;^UTILITY(U,$J,358.3,19706,1,0)
  ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,19706,1,3,0)
+ ;;=3^Primary Generalized Osteoarthritis

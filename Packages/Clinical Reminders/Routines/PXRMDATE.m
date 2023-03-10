@@ -1,7 +1,7 @@
-PXRMDATE ;SLC/PKR - Clinical Reminders date utilities. ;04/16/2015
- ;;2.0;CLINICAL REMINDERS;**4,6,12,17,18,24,26,47**;Feb 04, 2005;Build 291
+PXRMDATE ;SLC/PKR - Clinical Reminders date utilities. ;06/28/2022
+ ;;2.0;CLINICAL REMINDERS;**4,6,12,17,18,24,26,47,42,65**;Feb 04, 2005;Build 438
  ;
- ;==================================================
+ ;====================
 CEFD(FDA) ;Called by the Exchange Utility only if the input packed
  ;reminder was packed under v1.5.  Move Effective Date to Beginning Date.
  N IND
@@ -14,7 +14,7 @@ CEFD(FDA) ;Called by the Exchange Utility only if the input packed
  . K FDA(811.902,IND,12)
  Q
  ;
- ;==================================================
+ ;====================
 COMPARE(X) ;Compare beginning and ending dates, give a warning if
  ;Ending Date comes before Beginning Date. Called by ADATE xref in
  ;definitions and terms.
@@ -38,7 +38,7 @@ COMPARE(X) ;Compare beginning and ending dates, give a warning if
  . D EN^DDIOL(TEXT)
  Q
  ;
- ;==================================================
+ ;====================
 COTN(EFP) ;Convert an Effective Period to the new date/time format.
  ;Possible effective periods are ND, NM, or NY where N is an integer.
  S EFP=$$UP^XLFSTR(EFP)
@@ -47,7 +47,89 @@ COTN(EFP) ;Convert an Effective Period to the new date/time format.
  . S EFP=$S(NUM=0:"T",1:"T-"_EFP)
  Q EFP
  ;
- ;==================================================
+ ;====================
+CRDUEDATE(CRSTATUS,CRDUEDATE,DEFARR,FIEVAL) ;Determine the C/R due date. If the C/R
+ ;status is CONTRA, order the contraindicated warn until dates from oldest to newest.
+ ;Starting at the oldest warn until date, one at a time, remove each non-permanent contraindicated
+ ;occurrence and evaluate the contraindicated logic. If it is now false, the C/R due
+ ;date is the corresponding warn until date plus one day. If the contraindicated logic
+ ;never becomes true, the contraindication is permanent and the C/R due date is NULL.
+ ;If the C/R status is REFUSED, use the same algorithm for the refusals.
+ N CRFIEVAL,DONE,FI,FIND,FINDING,FF,FLIST,IND,LOGIC,LOGICTEST,NUM,OCC,TEMP,WUDT,WUDTC,WUDTR
+ I CRSTATUS="REFUSED" G REFUSED
+ ;CONTRAINDICATED
+ ;If there is no CONTRAINDICATED LOGIC go to REFUSED section.
+ I DEFARR(80)="" G REFUSED
+ ;Build the list of contraindicated Warn Until Dates.
+ S FIND=0
+ F  S FIND=+$O(FIEVAL("CONTRA",FIND)) Q:FIND=0  D
+ . S OCC=0
+ . F  S OCC=+$O(FIEVAL("CONTRA",FIND,OCC)) Q:OCC=0  D
+ .. S WUDT=FIEVAL("CONTRA",FIND,OCC,"WUDT")
+ .. S WUDTC(WUDT,FIND,OCC)=""
+ M CRFIEVAL=FIEVAL
+ S LOGIC=DEFARR(80)
+ S NUM=$P(DEFARR(81),U,1)
+ S FLIST=$P(DEFARR(81),U,2)
+ S CRDUEDATE="",WUDT=0
+ F  S WUDT=$O(WUDTC(WUDT)) Q:(CRDUEDATE'="")!(WUDT="")  D
+ . S FIND=0
+ . F  S FIND=$O(WUDTC(WUDT,FIND)) Q:(CRDUEDATE'="")!(FIND="")  D
+ .. S (DONE,OCC)=0
+ .. F  S OCC=$O(WUDTC(WUDT,FIND,OCC)) Q:(CRDUEDATE'="")!(DONE=1)  D
+ ...;If the CONTRAINDICATION is not permanent remove it.
+ ... I WUDT=0 Q
+ ...;If all the occurrences have been deleted, delete the top level.
+ ... I OCC="" K CRFIEVAL("CONTRA",FIND) S DONE=1
+ ... I OCC'="" K CRFIEVAL("CONTRA",FIND,OCC)
+ ...;Evaluate function findings.
+ ... D EVAL^PXRMFF(.DEFARR,.CRFIEVAL)
+ ...;Evaluate CONTRAINDICATED LOGIC to determine if it is still true.
+ ... F IND=1:1:NUM D
+ .... S FINDING=$P(FLIST,";",IND)
+ .... I FINDING["FF" S TEMP=$P(FINDING,"FF",2),FF(TEMP)=CRFIEVAL(FINDING)
+ .... E  S FI(FINDING)=CRFIEVAL(FINDING)
+ ... S LOGICTEST=0 I @LOGIC S LOGICTEST=1
+ ... I 'LOGICTEST S CRDUEDATE=$$FMADD^XLFDT(WUDT,1,0,0,0)
+ I CRSTATUS="CONTRA" Q
+ I CRDUEDATE'="" Q
+ ;
+ ;REFUSED
+REFUSED I DEFARR(90)="" Q
+ ;Build the list of refused Warn Until Dates.
+ S FIND=0
+ F  S FIND=+$O(FIEVAL("REFUSED",FIND)) Q:FIND=0  D
+ . S OCC=0
+ . F  S OCC=+$O(FIEVAL("REFUSED",FIND,OCC)) Q:OCC=0  D
+ .. S WUDT=FIEVAL("REFUSED",FIND,OCC,"WUDT")
+ .. S WUDTR(WUDT,FIND,OCC)=""
+ I '$D(CRFIEVAL) M CRFIEVAL=FIEVAL
+ S LOGIC=DEFARR(90)
+ S NUM=$P(DEFARR(91),U,1)
+ S FLIST=$P(DEFARR(91),U,2)
+ S CRDUEDATE="",WUDT=0
+ F  S WUDT=$O(WUDTR(WUDT)) Q:(CRDUEDATE'="")!(WUDT="")  D
+ . S FIND=0
+ . F  S FIND=$O(WUDTR(WUDT,FIND)) Q:(CRDUEDATE'="")!(FIND="")  D
+ .. S (DONE,OCC)=0
+ .. F  S OCC=$O(WUDTR(WUDT,FIND,OCC)) Q:(CRDUEDATE'="")!(DONE=1)  D
+ ...;If the REFUSAL is not permanent remove it.
+ ... I WUDT=0 Q
+ ...;If all the occurrences have been deleted, delete the top level.
+ ... I OCC="" K CRFIEVAL("REFUSED",FIND) S DONE=1
+ ... I OCC'="" K CRFIEVAL("REFUSED",FIND,OCC)
+ ...;Evaluate function findings.
+ ... D EVAL^PXRMFF(.DEFARR,.CRFIEVAL)
+ ...;Evaluate REFUSED LOGIC to determine if it is still true.
+ ... F IND=1:1:NUM D
+ .... S FINDING=$P(FLIST,";",IND)
+ .... I FINDING["FF" S TEMP=$P(FINDING,"FF",2),FF(TEMP)=CRFIEVAL(FINDING)
+ .... E  S FI(FINDING)=CRFIEVAL(FINDING)
+ ... S LOGICTEST=0 I @LOGIC S LOGICTEST=1
+ ... I 'LOGICTEST S CRDUEDATE=$$FMADD^XLFDT(WUDT,1,0,0,0)
+ Q
+ ;
+ ;====================
 CTD(MULT,NUM) ;Convert months or years to days.
  N DAYS,INTDAYS,FRAC
  S DAYS=MULT*NUM
@@ -57,7 +139,7 @@ CTD(MULT,NUM) ;Convert months or years to days.
  S DAYS=$S(FRAC<0.5:INTDAYS,1:INTDAYS+1)
  Q DAYS
  ;
- ;==================================================
+ ;====================
 CTFMD(DATE) ;Convert DATE which may be in any of the FileMan acceptable
  ;forms with additional CR extensions to an internal FileMan date.
  N FMDATE,OFFSET,OP,SYM,SYMV,TDATE,TIME
@@ -92,7 +174,7 @@ CTFMD(DATE) ;Convert DATE which may be in any of the FileMan acceptable
  I '(SYMV?7N0.1"."0.6N) Q -1
  Q $$NEWDATE(SYMV,OP,OFFSET)
  ;
- ;=================================================
+ ;====================
 DCHECK(DATE) ;Trap for special characters before calling CTFMD^PXRMDATE.
  ;Used in DIR("PRE") for date inputs.
  I $D(DTOUT) Q DATE
@@ -101,12 +183,12 @@ DCHECK(DATE) ;Trap for special characters before calling CTFMD^PXRMDATE.
  I DATE["?" Q DATE
  Q $$CTFMD^PXRMDATE(DATE)
  ;
- ;==================================================
+ ;====================
 DDATE(DATE,FMT) ;Check for an historical (event) date, format as appropriate.
  I DATE=0 Q "00/00/0000"
  Q $$FMTE^XLFDT(DATE,FMT)
  ;
- ;==================================================
+ ;====================
 DUE(DEFARR,RESDATE,FREQ,DUE,DUEDATE,FIEVAL) ;Compute the due date.
  ;This is the date of the resolution finding + the reminder frequency.
  ;Subtract the due in advance time to see if the reminder should be
@@ -137,16 +219,14 @@ SETDUE ;If the due date is less than or equal to now date the
  I +DUEDATE'>NOW S DUE="DUE NOW"  Q
  ;
  S DIAT=$P(DEFARR(0),U,4)
- I DIAT="" D
- . S DIATOK=0
- . S ^TMP(PXRMPID,$J,PXRMITEM,"WARNING","DIAT")="Warning no do in advance time"
+ I DIAT="" S DIATOK=0
  E  S DIATOK=1
  ;
  S TDDUE=$S(DIATOK=1:$$NEWDATE(DUEDATE,"-",DIAT),1:DUEDATE)
  S DUE=$S(TDDUE'>NOW:"DUE SOON",1:"RESOLVED")
  Q
  ;
- ;==================================================
+ ;====================
 DURATION(START,STOP) ;Return the number days between the Start Date and
  ;Stop Date.
  I +START=0 Q 0
@@ -156,21 +236,25 @@ DURATION(START,STOP) ;Return the number days between the Start Date and
  I (STOP="")!(STOP>PXRMNOW) S STOP=PXRMNOW
  Q $$FMDIFF^XLFDT(STOP,START)
  ;
- ;==================================================
+ ;====================
 EDATE(DATE) ;Check for an historical (event) date, format as appropriate,
  ;include time.
  I DATE=0 Q "00/00/0000"
  I DATE=-1 Q "None"
  Q $$FMTE^XLFDT(DATE,"5Z")
  ;
- ;==================================================
+ ;====================
 FMDATE(DFN,TEST,DATE,VALUE,TEXT) ;FileMan date computed finding.
  I TEST="" S TEST=0 Q
- S (DATE,VALUE)=$$CTFMD^PXRMDATE(TEST)
- S TEST=1
+ I $E(TEST,1,4)="PXRM" D  Q
+ . N TDATE
+ . S TDATE=+$G(@TEST)
+ . I TDATE=0 S TEST=0 Q
+ . S (DATE,VALUE)=$$CTFMD^PXRMDATE(TDATE),TEST=1
+ S (DATE,VALUE)=$$CTFMD^PXRMDATE(TEST),TEST=1
  Q
  ;
- ;==================================================
+ ;====================
 FULLDATE(DATE) ;See if DATE is a full date, i.e., it has a month and
  ;a day along with a year. If the month is missing assume Jan. If the
  ;day is missing assume the first. Issue a warning so the user knows
@@ -194,7 +278,7 @@ FULLDATE(DATE) ;See if DATE is a full date, i.e., it has a month and
  . I DATE["E" S TDATE=TDATE_"E"
  Q TDATE
  ;
- ;==================================================
+ ;====================
 FRQINDAY(FREQ) ;Given a frequency in the form ND, NM, or NY where N is a
  ;number and D stands for days, M for months, and Y for years return
  ;the value in days. Used for ranking only.
@@ -208,7 +292,7 @@ FRQINDAY(FREQ) ;Given a frequency in the form ND, NM, or NY where N is a
  S NUM=$S(UNIT="D":NUM,UNIT="M":$$CTD(30.42,NUM),UNIT="Y":$$CTD(365.24,NUM),1:0)
  Q NUM
  ;
- ;==================================================
+ ;====================
 ISFULDTE(DATE) ; Function to check for full FileMan date.
   N DAY,MONTH,YEAR
   S DAY=$E(DATE,6,7) I +DAY=0 Q 0
@@ -216,13 +300,13 @@ ISFULDTE(DATE) ; Function to check for full FileMan date.
   S YEAR=$E(DATE,1,3) I +YEAR=0 Q 0
   Q 1
   ;
- ;==================================================
+ ;====================
 ISLEAP(YEAR) ;Given a 3 digit FileMan year return 1 if it is a leap year,
  ;0 otherwise.
  S YEAR=YEAR+1700
  Q (YEAR#4=0)&'(YEAR#100=0)!(YEAR#400=0)
  ;
- ;==================================================
+ ;====================
 MCALC(FMDATE,OP,NUM) ;Add or subtract NUM months to FMDATE.
  N DAY,DIM,MONTH,TIME,YEAR
  S YEAR=$E(FMDATE,1,3),MONTH=$E(FMDATE,4,5),DAY=$E(FMDATE,6,7)
@@ -234,12 +318,12 @@ MCALC(FMDATE,OP,NUM) ;Add or subtract NUM months to FMDATE.
  I DAY>$P(DIM,"^",MONTH) S DAY=$P(DIM,"^",MONTH)
  Q YEAR_"00"+MONTH_"00"+DAY_TIME
  ;
- ;==================================================
+ ;====================
 MID() ;If the reminder global PXRMDATE is defined return midnight on that day,
  ;otherwise return the current date at midnight.
  Q $S(+$G(PXRMDATE)>0:$E(PXRMDATE,1,7),1:$$DT^XLFDT)_".24"
  ;
- ;==================================================
+ ;====================
 NEWDATE(FMDATE,OP,OFFSET) ;Given an internal FileMan date, an operator of 
  ;that is + or - ,and an offset of the form I, ID, IW, IM, IY 
  ;where I is a positive integer and H is hours, D is days, W is weeks,
@@ -257,12 +341,12 @@ NEWDATE(FMDATE,OP,OFFSET) ;Given an internal FileMan date, an operator of
  I UNIT="Y" Q $$YCALC(FMDATE,OP,NUM)
  Q -1
  ;
- ;==================================================
+ ;====================
 NOON() ;If the reminder global PXRMDATE is defined return noon on that day,
  ;otherwise return the current date at noon.
  Q $S(+$G(PXRMDATE)>0:$E(PXRMDATE,1,7),1:$$DT^XLFDT)_".12"
  ;
- ;==================================================
+ ;====================
 NOW() ;If the reminder global PXRMDATE is defined return it, otherwise
  ;return the current date and time.
  I +$G(PXRMDATE)=0 Q $$NOW^XLFDT
@@ -272,12 +356,12 @@ NOW() ;If the reminder global PXRMDATE is defined return it, otherwise
  E  S NOW=PXRMDATE
  Q NOW
  ;
- ;==================================================
+ ;====================
 TODAY() ;If the reminder global PXRMDATE is defined return it, otherwise
  ;return the current date.
  Q $S(+$G(PXRMDATE)>0:$P(PXRMDATE,".",1),1:$$DT^XLFDT)
  ;
- ;==================================================
+ ;====================
 VDATE(VIEN) ;Given a visit ien return the visit date.
  N DATE
  S DATE=$S(+VIEN>0:$P($G(^AUPNVSIT(VIEN,0)),U,1),1:0)
@@ -286,14 +370,14 @@ VDATE(VIEN) ;Given a visit ien return the visit date.
  I $$ISHIST^PXRMVSIT(VIEN) S DATE=DATE_"E"
  Q DATE
  ;
- ;==================================================
+ ;====================
 VOFFSET(OFFSET) ;Make sure the offset part of a date is valid. It has to
  ;have the form I or IU where I is an integer and U is one of the
  ;following units: H, D, W, M, Y.
  I OFFSET?1.N0.1"H"0.1"D"0.1"W"0.1"M"0.1"Y" Q 1
  Q 0
  ;
- ;==================================================
+ ;====================
 VSYM(SYM) ;Make sure the symbolic part of a date is valid.
  ;Already in FileMan internal form.
  I SYM?7N Q 1
@@ -310,7 +394,7 @@ VSYM(SYM) ;Make sure the symbolic part of a date is valid.
  I SYM?1"FIEVAL("1.N1","0.1(1.N1",")1"""DATE"")" Q 1
  Q 0
  ;
- ;==================================================
+ ;====================
 YCALC(FMDATE,OP,NUM) ;Add or subtract NUM years to FMDATE.
  N DAY,MONTH,TIME,YEAR
  S YEAR=$E(FMDATE,1,3),MONTH=$E(FMDATE,4,5),DAY=$E(FMDATE,6,7)

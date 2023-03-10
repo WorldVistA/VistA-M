@@ -1,5 +1,5 @@
 PSBVT ;BIRMINGHAM/EFC-BCMA ORDER VARIABLES UTILITY ;03/06/16 3:06pm
- ;;3.0;BAR CODE MED ADMIN;**6,3,38,68,74,70,83**;Mar 2004;Build 89
+ ;;3.0;BAR CODE MED ADMIN;**6,3,38,68,74,70,83,106**;Mar 2004;Build 43
  ;Per VHA Directive 2004-038, this routine should not be modified.
  ;
  ; Reference/IA
@@ -11,6 +11,7 @@ PSBVT ;BIRMINGHAM/EFC-BCMA ORDER VARIABLES UTILITY ;03/06/16 3:06pm
  ;*70 - define new variable, 1/0 flag for is a Clinic order
  ;    - 1489: Blended PSB*3*74 with PSB*3*70
  ;*83 - create remove string var from new rmst passed PSJBCMA1
+ ;*106- add Hazardous Handle & Dispose flags
  ;
 PSJ(PSBX1) ;
  S ^TMP("TK PSJ",PSBX1)=""
@@ -68,11 +69,20 @@ PSJ(PSBX1) ;
  ;
  S PSBSCRT=$G(^TMP("PSB",$J,"PSBORDA",4))
  S PSBOTXT=PSBSCRT               ; special inst/other print info
- ; get disp drug
- I $G(^TMP("PSB",$J,"PSBORDA",700,0)) F PSBX2=1:1:^TMP("PSB",$J,"PSBORDA",700,0) M PSBDDA(PSBX2)=^TMP("PSB",$J,"PSBORDA",700,PSBX2,0) S PSBDDA(PSBX2)="DD^"_PSBDDA(PSBX2)  ; # of DDrug
- ;     "DD"^dispensed drug IEN -> ^PSDRUG() DRUG^dispensed drug name^units per dose^inactive date
+ ;
+ ; if any order's medication components involved are flagged 1 for Hazardous, then the whole order is flagged with that hazardous condition.   *106
+ ; so init Haz flags to 0 now, then only reset flags if '1 per each medical component tested later.                                            *106
+ S (PSBHAZHN,PSBHAZDS)=0
+ ;
+ ;get disp drug
+ I $G(^TMP("PSB",$J,"PSBORDA",700,0)) F PSBX2=1:1:^TMP("PSB",$J,"PSBORDA",700,0) D
+ . M PSBDDA(PSBX2)=^TMP("PSB",$J,"PSBORDA",700,PSBX2,0)
+ . S PSBDDA(PSBX2)="DD^"_PSBDDA(PSBX2)  ; # of DDrug
+ . S:'PSBHAZHN PSBHAZHN=$P(PSBDDA(PSBX2),U,9)          ;*106
+ . S:'PSBHAZDS PSBHAZDS=$P(PSBDDA(PSBX2),U,10)         ;*106
+ ;     "DD" ^drug file(#50) IEN ^drug name ^units per dose ^inactive date ^ ^ ^high risk med ^remove med ^haz handle ^haz dispose
  ; build unique id list
- ; add addits
+ ; add additives
  I $D(^TMP("PSB",$J,"PSBORDA",800)) S PSBX2="" F  S PSBX2=$O(^TMP("PSB",$J,"PSBORDA",800,PSBX2)) Q:PSBX2=""!(PSBX2="ERROR")  D
  .S PSBUIDA(PSBX2)="ID^"_PSBX2 F J=1:1:^TMP("PSB",$J,"PSBORDA",800,PSBX2,0) S PSBUIDA(PSBX2)=PSBUIDA(PSBX2)_"^"_"ADD;"_$P(^TMP("PSB",$J,"PSBORDA",800,PSBX2,J),U,1)
  ; add solutions
@@ -80,23 +90,26 @@ PSJ(PSBX1) ;
  .I '$D(PSBUIDA(PSBX2)) S PSBUIDA(PSBX2)="ID^"_PSBX2
  .F J=1:1:^TMP("PSB",$J,"PSBORDA",900,PSBX2,0) S PSBUIDA(PSBX2)=PSBUIDA(PSBX2)_"^"_"SOL;"_$P(^TMP("PSB",$J,"PSBORDA",900,PSBX2,J),U,1)
  ;     "ID"   ^   (piece 2,3,)... = type;IEN of each add/sol for this ID ex. "SOL;4"
- ; get addits
+ ; get additives
  I $G(^TMP("PSB",$J,"PSBORDA",850,0)) F PSBX2=1:1:^TMP("PSB",$J,"PSBORDA",850,0) D
- .M PSBADA(PSBX2)=^TMP("PSB",$J,"PSBORDA",850,PSBX2,0)  ; number od additives (exists only for IV)
+ .M PSBADA(PSBX2)=^TMP("PSB",$J,"PSBORDA",850,PSBX2,0)  ; number of additives (exists only for IV)
  .S PSBADA(PSBX2)="ADD^"_PSBADA(PSBX2)
  .S PSBBAGS=$P(PSBADA(PSBX2),U,5) I PSBBAGS'="" S PSBBAG=" IN BAG "_$P(PSBBAGS,",",1) F I=2:1 S X=$P(PSBBAGS,",",I) Q:X=""  S PSBBAG=PSBBAG_" AND "_X
  .S:PSBBAGS'="" $P(PSBADA(PSBX2),U,5)=PSBBAG,$P(PSBADA(PSBX2),U,6)=PSBBAGS
+ .S:'PSBHAZHN PSBHAZHN=$P(PSBADA(PSBX2),U,8)           ;*106
+ .S:'PSBHAZDS PSBHAZDS=$P(PSBADA(PSBX2),U,9)           ;*106
  .D ZADD(2)          ;*only executes for TEST accounts
+ ; "ADD" ^additive IEN PS(52.6) ^additive name ^strength ^bottle ^ ^high risk ^haz handle ^haz dispose
  ;
- ; "ADD"^add IEN PS(52.6)^additive name^strength ^bottle^high risk
- ;
- ; get soluts
+ ; get solutions
  I $G(^TMP("PSB",$J,"PSBORDA",950,0)) D
  .F PSBX2=1:1:^TMP("PSB",$J,"PSBORDA",950,0) D
  ..M PSBSOLA(PSBX2)=^TMP("PSB",$J,"PSBORDA",950,PSBX2,0)
  ..S PSBSOLA(PSBX2)="SOL^"_PSBSOLA(PSBX2)    ;# of SOL
+ ..S:'PSBHAZHN PSBHAZHN=$P(PSBSOLA(PSBX2),U,8)         ;*106
+ ..S:'PSBHAZDS PSBHAZDS=$P(PSBSOLA(PSBX2),U,9)         ;*106
  ..D ZSOL(2)         ;*only executes for TEST accounts
- ; "SOL"^solution IEN PS(52.7)^solution name^volume^^high risk drg
+ ; "SOL" ^solution IEN PS(52.7) ^solution name ^volume ^ ^ ^high risk ^haz handle ^haz dispose
  ;
  K ^TMP("PSB",$J,"PSBORDA"),PSBX1,PSBX2
  Q
@@ -187,35 +200,48 @@ PSJ1(PSBPAR1,PSBPAR2,PSBIGS2B,PSBEXIST) ; set the variables for an individual or
  S PSBRMRK=$G(PSBSCRT)
  ;If DayOFWeek set frequen to NULL
  I $$PSBDCHK1^PSBVT1(PSBSCH) S PSBFREQ=""
- ; get dispensed drug
- I $G(^TMP("PSB",$J,"PSBORDA",700,0)) F PSBX=1:1:^TMP("PSB",$J,"PSBORDA",700,0) M PSBDDA(PSBX)=^TMP("PSB",$J,"PSBORDA",700,PSBX,0) S PSBDDA(PSBX)="DD^"_PSBDDA(PSBX) ; # of DDrug
- ;     "DD"^dispensed drug IEN -> ^PSDRUG() DRUG^dispensed drug name^units per dose^inactive date
+ ;
+ ; if any order's medication components involved are flagged 1 for Hazardous, then the whole order is flagged with that hazardous condition.   *106
+ ; so init Haz flags to 0 now, then only reset flags if '1 per each medical component tested later.                                            *106
+ S (PSBHAZHN,PSBHAZDS)=0
+ ;
+ ;get dispensed drug
+ I $G(^TMP("PSB",$J,"PSBORDA",700,0)) F PSBX=1:1:^TMP("PSB",$J,"PSBORDA",700,0) D               ; # of DDrug
+ . M PSBDDA(PSBX)=^TMP("PSB",$J,"PSBORDA",700,PSBX,0)
+ . S PSBDDA(PSBX)="DD^"_PSBDDA(PSBX)
+ . S:'PSBHAZHN PSBHAZHN=$P(PSBDDA(PSBX),U,9)         ;*106
+ . S:'PSBHAZDS PSBHAZDS=$P(PSBDDA(PSBX),U,10)        ;*106
+ ;     "DD" ^drug file(#50) IEN ^drug name ^units per dose ^inactive date ^ ^ ^high risk med ^remove med ^haz handle ^haz dispose
  ; build unique id list
- ; add addits
+ ; add additives
  I $D(^TMP("PSB",$J,"PSBORDA",800)) S PSBX2="" F  S PSBX2=$O(^TMP("PSB",$J,"PSBORDA",800,PSBX2)) Q:PSBX2=""!(PSBX2="ERROR")  D
  .S PSBUIDA(PSBX2)="ID^"_PSBX2 F J=1:1:^TMP("PSB",$J,"PSBORDA",800,PSBX2,0) S PSBUIDA(PSBX2)=PSBUIDA(PSBX2)_"^"_"ADD;"_$P(^TMP("PSB",$J,"PSBORDA",800,PSBX2,J),U,1)
- ; add soluts
+ ; add solutions
  I $D(^TMP("PSB",$J,"PSBORDA",900)) S PSBX2="" F  S PSBX2=$O(^TMP("PSB",$J,"PSBORDA",900,PSBX2)) Q:PSBX2=""!(PSBX2="ERROR")  D
  .I '$D(PSBUIDA(PSBX2)) S PSBUIDA(PSBX2)="ID^"_PSBX2
  .F J=1:1:^TMP("PSB",$J,"PSBORDA",900,PSBX2,0) S PSBUIDA(PSBX2)=PSBUIDA(PSBX2)_"^"_"SOL;"_$P(^TMP("PSB",$J,"PSBORDA",900,PSBX2,J),U,1)
  ;     "ID"   ^   (piece 2,3),... = type;IEN of each add/sol for this ID ex. "SOL;4"
- ; get addits
+ ; get additives
  I $G(^TMP("PSB",$J,"PSBORDA",850,0)) F PSBX=1:1:^TMP("PSB",$J,"PSBORDA",850,0) D
  .M PSBADA(PSBX)=^TMP("PSB",$J,"PSBORDA",850,PSBX,0)  ; num of addits
  .S PSBADA(PSBX)="ADD^"_PSBADA(PSBX)
  .S PSBBAGS=$P(PSBADA(PSBX),U,5) I PSBBAGS'="" S PSBBAG=" IN BAG "_$P(PSBBAGS,",",1) D
  ..F I=2:1 S X=$P(PSBBAGS,",",I) Q:X=""  S PSBBAG=PSBBAG_" AND "_X
  .S:PSBBAGS'="" $P(PSBADA(PSBX),U,5)=PSBBAG
- .D ZADD(1)          ;*only executes for TEST accounts
- ; "ADD"^add IEN -> ^PS(52.6)^additive name^strength ^bottle^high risk
+ .S:'PSBHAZHN PSBHAZHN=$P(PSBADA(PSBX),U,8)          ;*106
+ .S:'PSBHAZDS PSBHAZDS=$P(PSBADA(PSBX),U,9)          ;*106
+ .D ZADD(1)   ;*only executes for TEST accounts on piece 12
+ ; "ADD" ^additive IEN PS(52.6) ^additive name ^strength ^bottle ^ ^high risk ^haz handle ^haz dispose
  ;
- ; get soluts
+ ; get solutions
  I $G(^TMP("PSB",$J,"PSBORDA",950,0)) D
  .F PSBX=1:1:^TMP("PSB",$J,"PSBORDA",950,0) D
  ..M PSBSOLA(PSBX)=^TMP("PSB",$J,"PSBORDA",950,PSBX,0)
  ..S PSBSOLA(PSBX)="SOL^"_PSBSOLA(PSBX)  ; # of SOLs
- ..D ZSOL(1)         ;*only executes for TEST accounts
- ; "SOL"^solution IEN -> ^PS(52.7) IV SOLUTIONS^solution name^volume
+ ..S:'PSBHAZHN PSBHAZHN=$P(PSBSOLA(PSBX),U,8)        ;*106
+ ..S:'PSBHAZDS PSBHAZDS=$P(PSBSOLA(PSBX),U,9)        ;*106
+ ..D ZSOL(1)  ;*only executes for TEST accounts on piece 12
+ ; "SOL" ^solution IEN PS(52.7) ^solution name ^volume ^ ^ ^high risk ^haz handle ^haz dispose
  ;
  ; get label
  I $D(^TMP("PSB",$J,"PSBORDA",1000)) M PSBLBLA=^TMP("PSB",$J,"PSBORDA",1000)
@@ -239,18 +265,19 @@ CLEAN ;
  K PSBCLIEN,PSBCLORD   ;*70
  K PSBMRIEN   ;*68
  K PSBDOA,PSBRMST,PSBMRRFL,PSBOPRSP   ;*83
+ K PSBHAZHN,PSBHAZDS   ;*106
  Q
  ;
-ZADD(XX) ;appends pointer to Drug file #50 for additives - Results(9)
+ZADD(XX) ;appends pointer to Drug file #50 for additives - Results(12)   *106 piece 9 & 10 now have valid HAZ info
  ;*test mode only, drug ien stuffed in
  Q:$$PROD^XUPROD    ;quit if a production account
- S:XX=1 $P(PSBADA(PSBX),U,9)=$P($G(^PS(52.6,$P(PSBADA(PSBX),U,2),0)),U,2)
- S:XX=2 $P(PSBADA(PSBX2),U,9)=$P($G(^PS(52.6,$P(PSBADA(PSBX2),U,2),0)),U,2)
+ S:XX=1 $P(PSBADA(PSBX),U,12)=$P($G(^PS(52.6,$P(PSBADA(PSBX),U,2),0)),U,2)
+ S:XX=2 $P(PSBADA(PSBX2),U,12)=$P($G(^PS(52.6,$P(PSBADA(PSBX2),U,2),0)),U,2)
  Q
  ;
-ZSOL(XX) ;appends pointer to Drug file #50 for solutions - Results(9)
+ZSOL(XX) ;appends pointer to Drug file #50 for solutions - Results(12)   *106 piece 8 & 9 now have valid HAZ info
  ;*test mode only, drug ien stuffed in
  Q:$$PROD^XUPROD    ;quit if a production account
- S:XX=1 $P(PSBSOLA(PSBX),U,9)=$P($G(^PS(52.7,$P(PSBSOLA(PSBX),U,2),0)),U,2)
- S:XX=2 $P(PSBSOLA(PSBX2),U,9)=$P($G(^PS(52.7,$P(PSBSOLA(PSBX2),U,2),0)),U,2)
+ S:XX=1 $P(PSBSOLA(PSBX),U,12)=$P($G(^PS(52.7,$P(PSBSOLA(PSBX),U,2),0)),U,2)
+ S:XX=2 $P(PSBSOLA(PSBX2),U,12)=$P($G(^PS(52.7,$P(PSBSOLA(PSBX2),U,2),0)),U,2)
  Q

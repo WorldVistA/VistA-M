@@ -1,126 +1,122 @@
-IBDEI1LL ; ; 04-FEB-2020
- ;;3.0;IB ENCOUNTER FORM IMP/EXP;;FEB 04, 2020
+IBDEI1LL ; ; 01-FEB-2022
+ ;;3.0;IB ENCOUNTER FORM IMP/EXP;;FEB 01, 2022
  Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,999) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
- ;;^UTILITY(U,$J,358.3,25532,2)
- ;;=^5002449
- ;;^UTILITY(U,$J,358.3,25533,0)
- ;;=D86.85^^107^1221^42
- ;;^UTILITY(U,$J,358.3,25533,1,0)
+ ;;^UTILITY(U,$J,358.3,25892,0)
+ ;;=F19.982^^92^1187^18
+ ;;^UTILITY(U,$J,358.3,25892,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,25533,1,3,0)
- ;;=3^Sarcoid Myocarditis
- ;;^UTILITY(U,$J,358.3,25533,1,4,0)
- ;;=4^D86.85
- ;;^UTILITY(U,$J,358.3,25533,2)
- ;;=^5002450
- ;;^UTILITY(U,$J,358.3,25534,0)
- ;;=D86.83^^107^1221^40
- ;;^UTILITY(U,$J,358.3,25534,1,0)
+ ;;^UTILITY(U,$J,358.3,25892,1,3,0)
+ ;;=3^Oth/Unk Substance Induced Sleep D/O w/o Use D/O
+ ;;^UTILITY(U,$J,358.3,25892,1,4,0)
+ ;;=4^F19.982
+ ;;^UTILITY(U,$J,358.3,25892,2)
+ ;;=^5003468
+ ;;^UTILITY(U,$J,358.3,25893,0)
+ ;;=F19.129^^92^1187^22
+ ;;^UTILITY(U,$J,358.3,25893,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,25534,1,3,0)
- ;;=3^Sarcoid Iridocyclitis
- ;;^UTILITY(U,$J,358.3,25534,1,4,0)
- ;;=4^D86.83
- ;;^UTILITY(U,$J,358.3,25534,2)
- ;;=^5002448
- ;;^UTILITY(U,$J,358.3,25535,0)
- ;;=D84.1^^107^1221^16
- ;;^UTILITY(U,$J,358.3,25535,1,0)
+ ;;^UTILITY(U,$J,358.3,25893,1,3,0)
+ ;;=3^Oth/Unk Substance Intox w/ Mild Use D/O
+ ;;^UTILITY(U,$J,358.3,25893,1,4,0)
+ ;;=4^F19.129
+ ;;^UTILITY(U,$J,358.3,25893,2)
+ ;;=^5003420
+ ;;^UTILITY(U,$J,358.3,25894,0)
+ ;;=F19.229^^92^1187^23
+ ;;^UTILITY(U,$J,358.3,25894,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,25535,1,3,0)
- ;;=3^Defects in Complement System
- ;;^UTILITY(U,$J,358.3,25535,1,4,0)
- ;;=4^D84.1
- ;;^UTILITY(U,$J,358.3,25535,2)
- ;;=^5002439
- ;;^UTILITY(U,$J,358.3,25536,0)
- ;;=D81.810^^107^1221^5
- ;;^UTILITY(U,$J,358.3,25536,1,0)
+ ;;^UTILITY(U,$J,358.3,25894,1,3,0)
+ ;;=3^Oth/Unk Substance Intox w/ Mod/Sev Use D/O
+ ;;^UTILITY(U,$J,358.3,25894,1,4,0)
+ ;;=4^F19.229
+ ;;^UTILITY(U,$J,358.3,25894,2)
+ ;;=^5003436
+ ;;^UTILITY(U,$J,358.3,25895,0)
+ ;;=F19.929^^92^1187^24
+ ;;^UTILITY(U,$J,358.3,25895,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,25536,1,3,0)
- ;;=3^Biotinidase Deficiency
- ;;^UTILITY(U,$J,358.3,25536,1,4,0)
- ;;=4^D81.810
- ;;^UTILITY(U,$J,358.3,25536,2)
- ;;=^5002422
- ;;^UTILITY(U,$J,358.3,25537,0)
- ;;=E88.01^^107^1221^2
- ;;^UTILITY(U,$J,358.3,25537,1,0)
+ ;;^UTILITY(U,$J,358.3,25895,1,3,0)
+ ;;=3^Oth/Unk Substance Intox w/o Use D/O
+ ;;^UTILITY(U,$J,358.3,25895,1,4,0)
+ ;;=4^F19.929
+ ;;^UTILITY(U,$J,358.3,25895,2)
+ ;;=^5003455
+ ;;^UTILITY(U,$J,358.3,25896,0)
+ ;;=F19.121^^92^1187^19
+ ;;^UTILITY(U,$J,358.3,25896,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,25537,1,3,0)
- ;;=3^Apha-1 Antitrypsin Deficiency
- ;;^UTILITY(U,$J,358.3,25537,1,4,0)
- ;;=4^E88.01
- ;;^UTILITY(U,$J,358.3,25537,2)
- ;;=^331442
- ;;^UTILITY(U,$J,358.3,25538,0)
- ;;=J09.X1^^107^1221^25
- ;;^UTILITY(U,$J,358.3,25538,1,0)
+ ;;^UTILITY(U,$J,358.3,25896,1,3,0)
+ ;;=3^Oth/Unk Substance Intox Delirium w/ Mild Use D/O
+ ;;^UTILITY(U,$J,358.3,25896,1,4,0)
+ ;;=4^F19.121
+ ;;^UTILITY(U,$J,358.3,25896,2)
+ ;;=^5003418
+ ;;^UTILITY(U,$J,358.3,25897,0)
+ ;;=F19.221^^92^1187^20
+ ;;^UTILITY(U,$J,358.3,25897,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,25538,1,3,0)
- ;;=3^Influenza d/t Indent Novel Influenza A Virus w/ Pneumonia
- ;;^UTILITY(U,$J,358.3,25538,1,4,0)
- ;;=4^J09.X1
- ;;^UTILITY(U,$J,358.3,25538,2)
- ;;=^5008144
- ;;^UTILITY(U,$J,358.3,25539,0)
- ;;=J09.X2^^107^1221^26
- ;;^UTILITY(U,$J,358.3,25539,1,0)
+ ;;^UTILITY(U,$J,358.3,25897,1,3,0)
+ ;;=3^Oth/Unk Substance Intox Delirium w/ Mod/Sev Use D/O
+ ;;^UTILITY(U,$J,358.3,25897,1,4,0)
+ ;;=4^F19.221
+ ;;^UTILITY(U,$J,358.3,25897,2)
+ ;;=^5003434
+ ;;^UTILITY(U,$J,358.3,25898,0)
+ ;;=F19.921^^92^1187^21
+ ;;^UTILITY(U,$J,358.3,25898,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,25539,1,3,0)
- ;;=3^Influenza d/t Indent Novel Influenza A Virus w/ Resp Manifest
- ;;^UTILITY(U,$J,358.3,25539,1,4,0)
- ;;=4^J09.X2
- ;;^UTILITY(U,$J,358.3,25539,2)
- ;;=^5008145
- ;;^UTILITY(U,$J,358.3,25540,0)
- ;;=J09.X3^^107^1221^27
- ;;^UTILITY(U,$J,358.3,25540,1,0)
+ ;;^UTILITY(U,$J,358.3,25898,1,3,0)
+ ;;=3^Oth/Unk Substance Intox Delirium w/o Use D/O
+ ;;^UTILITY(U,$J,358.3,25898,1,4,0)
+ ;;=4^F19.921
+ ;;^UTILITY(U,$J,358.3,25898,2)
+ ;;=^5003453
+ ;;^UTILITY(U,$J,358.3,25899,0)
+ ;;=F19.10^^92^1187^27
+ ;;^UTILITY(U,$J,358.3,25899,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,25540,1,3,0)
- ;;=3^Influenza d/t Indent Novel Influenza A Virus w/ GI Manifest
- ;;^UTILITY(U,$J,358.3,25540,1,4,0)
- ;;=4^J09.X3
- ;;^UTILITY(U,$J,358.3,25540,2)
- ;;=^5008146
- ;;^UTILITY(U,$J,358.3,25541,0)
- ;;=J09.X9^^107^1221^28
- ;;^UTILITY(U,$J,358.3,25541,1,0)
+ ;;^UTILITY(U,$J,358.3,25899,1,3,0)
+ ;;=3^Oth/Unk Substance Use DO,Mild,Uncomp
+ ;;^UTILITY(U,$J,358.3,25899,1,4,0)
+ ;;=4^F19.10
+ ;;^UTILITY(U,$J,358.3,25899,2)
+ ;;=^5003416
+ ;;^UTILITY(U,$J,358.3,25900,0)
+ ;;=F19.20^^92^1187^29
+ ;;^UTILITY(U,$J,358.3,25900,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,25541,1,3,0)
- ;;=3^Influenza d/t Indent Novel Influenza A Virus w/ Oth Manifest
- ;;^UTILITY(U,$J,358.3,25541,1,4,0)
- ;;=4^J09.X9
- ;;^UTILITY(U,$J,358.3,25541,2)
- ;;=^5008147
- ;;^UTILITY(U,$J,358.3,25542,0)
- ;;=J44.9^^107^1221^14
- ;;^UTILITY(U,$J,358.3,25542,1,0)
+ ;;^UTILITY(U,$J,358.3,25900,1,3,0)
+ ;;=3^Oth/Unk Substance Use DO,Mod/Sev,Uncomp
+ ;;^UTILITY(U,$J,358.3,25900,1,4,0)
+ ;;=4^F19.20
+ ;;^UTILITY(U,$J,358.3,25900,2)
+ ;;=^5003431
+ ;;^UTILITY(U,$J,358.3,25901,0)
+ ;;=F19.239^^92^1187^31
+ ;;^UTILITY(U,$J,358.3,25901,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,25542,1,3,0)
- ;;=3^COPD,Unspec
- ;;^UTILITY(U,$J,358.3,25542,1,4,0)
- ;;=4^J44.9
- ;;^UTILITY(U,$J,358.3,25542,2)
- ;;=^5008241
- ;;^UTILITY(U,$J,358.3,25543,0)
- ;;=J44.1^^107^1221^12
- ;;^UTILITY(U,$J,358.3,25543,1,0)
+ ;;^UTILITY(U,$J,358.3,25901,1,3,0)
+ ;;=3^Oth/Unk Substance Withdrawal
+ ;;^UTILITY(U,$J,358.3,25901,1,4,0)
+ ;;=4^F19.239
+ ;;^UTILITY(U,$J,358.3,25901,2)
+ ;;=^5003440
+ ;;^UTILITY(U,$J,358.3,25902,0)
+ ;;=F19.231^^92^1187^32
+ ;;^UTILITY(U,$J,358.3,25902,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,25543,1,3,0)
- ;;=3^COPD w/ Acute Exacerbation
- ;;^UTILITY(U,$J,358.3,25543,1,4,0)
- ;;=4^J44.1
- ;;^UTILITY(U,$J,358.3,25543,2)
- ;;=^5008240
- ;;^UTILITY(U,$J,358.3,25544,0)
- ;;=J42.^^107^1221^10
- ;;^UTILITY(U,$J,358.3,25544,1,0)
+ ;;^UTILITY(U,$J,358.3,25902,1,3,0)
+ ;;=3^Oth/Unk Substance Withdrawal Delirium
+ ;;^UTILITY(U,$J,358.3,25902,1,4,0)
+ ;;=4^F19.231
+ ;;^UTILITY(U,$J,358.3,25902,2)
+ ;;=^5003438
+ ;;^UTILITY(U,$J,358.3,25903,0)
+ ;;=F19.99^^92^1187^25
+ ;;^UTILITY(U,$J,358.3,25903,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,25544,1,3,0)
- ;;=3^Bronchitis,Unspec Chronic
- ;;^UTILITY(U,$J,358.3,25544,1,4,0)
- ;;=4^J42.
- ;;^UTILITY(U,$J,358.3,25544,2)
- ;;=^5008234
+ ;;^UTILITY(U,$J,358.3,25903,1,3,0)
+ ;;=3^Oth/Unk Substance Related D/O,Unspec
+ ;;^UTILITY(U,$J,358.3,25903,1,4,0)
+ ;;=4^F19.99

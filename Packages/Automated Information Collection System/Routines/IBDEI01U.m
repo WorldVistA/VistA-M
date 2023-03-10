@@ -1,674 +1,696 @@
-IBDEI01U ; ; 01-MAY-2020
- ;;3.0;IB ENCOUNTER FORM IMP/EXP;;MAY 01, 2020
+IBDEI01U ; ; 01-AUG-2022
+ ;;3.0;IB ENCOUNTER FORM IMP/EXP;;AUG 01, 2022
  Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,999) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
- ;;^UTILITY(U,$J,358.3,4052,0)
- ;;=L97.222^^34^287^62
- ;;^UTILITY(U,$J,358.3,4052,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,4052,1,3,0)
- ;;=3^Non-Prs Chr Ulc,Left Calf,Fat Layer Exposed
- ;;^UTILITY(U,$J,358.3,4052,1,4,0)
- ;;=4^L97.222
- ;;^UTILITY(U,$J,358.3,4052,2)
- ;;=^5009506
- ;;^UTILITY(U,$J,358.3,4053,0)
- ;;=L97.221^^34^287^61
- ;;^UTILITY(U,$J,358.3,4053,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,4053,1,3,0)
- ;;=3^Non-Prs Chr Ulc,Left Calf,Brkdwn Skin
- ;;^UTILITY(U,$J,358.3,4053,1,4,0)
- ;;=4^L97.221
- ;;^UTILITY(U,$J,358.3,4053,2)
- ;;=^5009505
- ;;^UTILITY(U,$J,358.3,4054,0)
- ;;=L97.219^^34^287^89
- ;;^UTILITY(U,$J,358.3,4054,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,4054,1,3,0)
- ;;=3^Non-Prs Chr Ulc,Right Calf,Severity Unspec
- ;;^UTILITY(U,$J,358.3,4054,1,4,0)
- ;;=4^L97.219
- ;;^UTILITY(U,$J,358.3,4054,2)
- ;;=^5009504
- ;;^UTILITY(U,$J,358.3,4055,0)
- ;;=L97.214^^34^287^85
- ;;^UTILITY(U,$J,358.3,4055,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,4055,1,3,0)
- ;;=3^Non-Prs Chr Ulc,Right Calf,Bone Necrosis
- ;;^UTILITY(U,$J,358.3,4055,1,4,0)
- ;;=4^L97.214
- ;;^UTILITY(U,$J,358.3,4055,2)
- ;;=^5009503
- ;;^UTILITY(U,$J,358.3,4056,0)
- ;;=L97.211^^34^287^86
- ;;^UTILITY(U,$J,358.3,4056,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,4056,1,3,0)
- ;;=3^Non-Prs Chr Ulc,Right Calf,Brkdwn Skin
- ;;^UTILITY(U,$J,358.3,4056,1,4,0)
- ;;=4^L97.211
- ;;^UTILITY(U,$J,358.3,4056,2)
- ;;=^5009500
- ;;^UTILITY(U,$J,358.3,4057,0)
- ;;=L97.213^^34^287^88
- ;;^UTILITY(U,$J,358.3,4057,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,4057,1,3,0)
- ;;=3^Non-Prs Chr Ulc,Right Calf,Muscle Necrosis
- ;;^UTILITY(U,$J,358.3,4057,1,4,0)
- ;;=4^L97.213
- ;;^UTILITY(U,$J,358.3,4057,2)
- ;;=^5009502
- ;;^UTILITY(U,$J,358.3,4058,0)
- ;;=L97.212^^34^287^87
- ;;^UTILITY(U,$J,358.3,4058,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,4058,1,3,0)
- ;;=3^Non-Prs Chr Ulc,Right Calf,Fat Layer Exposed
- ;;^UTILITY(U,$J,358.3,4058,1,4,0)
- ;;=4^L97.212
- ;;^UTILITY(U,$J,358.3,4058,2)
- ;;=^5009501
- ;;^UTILITY(U,$J,358.3,4059,0)
- ;;=L97.229^^34^287^64
- ;;^UTILITY(U,$J,358.3,4059,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,4059,1,3,0)
- ;;=3^Non-Prs Chr Ulc,Left Calf,Severity Unspec
- ;;^UTILITY(U,$J,358.3,4059,1,4,0)
- ;;=4^L97.229
- ;;^UTILITY(U,$J,358.3,4059,2)
- ;;=^5009509
- ;;^UTILITY(U,$J,358.3,4060,0)
- ;;=L97.224^^34^287^60
- ;;^UTILITY(U,$J,358.3,4060,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,4060,1,3,0)
- ;;=3^Non-Prs Chr Ulc,Left Calf,Bone Necrosis
- ;;^UTILITY(U,$J,358.3,4060,1,4,0)
- ;;=4^L97.224
- ;;^UTILITY(U,$J,358.3,4060,2)
- ;;=^5009508
- ;;^UTILITY(U,$J,358.3,4061,0)
- ;;=L97.324^^34^287^55
- ;;^UTILITY(U,$J,358.3,4061,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,4061,1,3,0)
- ;;=3^Non-Prs Chr Ulc,Left Ankle,Bone Necrosis
- ;;^UTILITY(U,$J,358.3,4061,1,4,0)
- ;;=4^L97.324
- ;;^UTILITY(U,$J,358.3,4061,2)
- ;;=^5009523
- ;;^UTILITY(U,$J,358.3,4062,0)
- ;;=L97.329^^34^287^59
- ;;^UTILITY(U,$J,358.3,4062,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,4062,1,3,0)
- ;;=3^Non-Prs Chr Ulc,Left Ankle,Severity Unspec
- ;;^UTILITY(U,$J,358.3,4062,1,4,0)
- ;;=4^L97.329
- ;;^UTILITY(U,$J,358.3,4062,2)
- ;;=^5009524
- ;;^UTILITY(U,$J,358.3,4063,0)
- ;;=L97.323^^34^287^58
- ;;^UTILITY(U,$J,358.3,4063,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,4063,1,3,0)
- ;;=3^Non-Prs Chr Ulc,Left Ankle,Muscle Necrosis
- ;;^UTILITY(U,$J,358.3,4063,1,4,0)
- ;;=4^L97.323
- ;;^UTILITY(U,$J,358.3,4063,2)
- ;;=^5009522
- ;;^UTILITY(U,$J,358.3,4064,0)
- ;;=L97.322^^34^287^57
- ;;^UTILITY(U,$J,358.3,4064,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,4064,1,3,0)
- ;;=3^Non-Prs Chr Ulc,Left Ankle,Fat Layer Exposed
- ;;^UTILITY(U,$J,358.3,4064,1,4,0)
- ;;=4^L97.322
- ;;^UTILITY(U,$J,358.3,4064,2)
- ;;=^5009521
- ;;^UTILITY(U,$J,358.3,4065,0)
- ;;=L97.319^^34^287^84
- ;;^UTILITY(U,$J,358.3,4065,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,4065,1,3,0)
- ;;=3^Non-Prs Chr Ulc,Right Ankle,Severity Unspec
- ;;^UTILITY(U,$J,358.3,4065,1,4,0)
- ;;=4^L97.319
- ;;^UTILITY(U,$J,358.3,4065,2)
- ;;=^5009519
- ;;^UTILITY(U,$J,358.3,4066,0)
- ;;=L97.321^^34^287^56
- ;;^UTILITY(U,$J,358.3,4066,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,4066,1,3,0)
- ;;=3^Non-Prs Chr Ulc,Left Ankle,Brkdwn Skin
- ;;^UTILITY(U,$J,358.3,4066,1,4,0)
- ;;=4^L97.321
- ;;^UTILITY(U,$J,358.3,4066,2)
- ;;=^5009520
- ;;^UTILITY(U,$J,358.3,4067,0)
- ;;=L97.314^^34^287^80
- ;;^UTILITY(U,$J,358.3,4067,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,4067,1,3,0)
- ;;=3^Non-Prs Chr Ulc,Right Ankle,Bone Necrosis
- ;;^UTILITY(U,$J,358.3,4067,1,4,0)
- ;;=4^L97.314
- ;;^UTILITY(U,$J,358.3,4067,2)
- ;;=^5009518
- ;;^UTILITY(U,$J,358.3,4068,0)
- ;;=L97.313^^34^287^83
- ;;^UTILITY(U,$J,358.3,4068,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,4068,1,3,0)
- ;;=3^Non-Prs Chr Ulc,Right Ankle,Muscle Necrosis
- ;;^UTILITY(U,$J,358.3,4068,1,4,0)
- ;;=4^L97.313
- ;;^UTILITY(U,$J,358.3,4068,2)
- ;;=^5009517
- ;;^UTILITY(U,$J,358.3,4069,0)
- ;;=L97.311^^34^287^81
- ;;^UTILITY(U,$J,358.3,4069,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,4069,1,3,0)
- ;;=3^Non-Prs Chr Ulc,Right Ankle,Brkdwn Skin
- ;;^UTILITY(U,$J,358.3,4069,1,4,0)
- ;;=4^L97.311
- ;;^UTILITY(U,$J,358.3,4069,2)
- ;;=^5009515
  ;;^UTILITY(U,$J,358.3,4070,0)
- ;;=L97.312^^34^287^82
+ ;;=L89.622^^29^240^285
  ;;^UTILITY(U,$J,358.3,4070,1,0)
  ;;=^358.31IA^4^2
  ;;^UTILITY(U,$J,358.3,4070,1,3,0)
- ;;=3^Non-Prs Chr Ulc,Right Ankle,Fat Layer Exposed
+ ;;=3^Pressure Ulcer,Left Heel,Stage 2
  ;;^UTILITY(U,$J,358.3,4070,1,4,0)
- ;;=4^L97.312
+ ;;=4^L89.622
  ;;^UTILITY(U,$J,358.3,4070,2)
- ;;=^5009516
+ ;;=^5009437
  ;;^UTILITY(U,$J,358.3,4071,0)
- ;;=L97.411^^34^287^96
+ ;;=L89.623^^29^240^286
  ;;^UTILITY(U,$J,358.3,4071,1,0)
  ;;=^358.31IA^4^2
  ;;^UTILITY(U,$J,358.3,4071,1,3,0)
- ;;=3^Non-Prs Chr Ulc,Right Heel/Midft,Brkdwn Skin
+ ;;=3^Pressure Ulcer,Left Heel,Stage 3
  ;;^UTILITY(U,$J,358.3,4071,1,4,0)
- ;;=4^L97.411
+ ;;=4^L89.623
  ;;^UTILITY(U,$J,358.3,4071,2)
- ;;=^5009530
+ ;;=^5009438
  ;;^UTILITY(U,$J,358.3,4072,0)
- ;;=L97.413^^34^287^98
+ ;;=L89.624^^29^240^287
  ;;^UTILITY(U,$J,358.3,4072,1,0)
  ;;=^358.31IA^4^2
  ;;^UTILITY(U,$J,358.3,4072,1,3,0)
- ;;=3^Non-Prs Chr Ulc,Right Heel/Midft,Muscle Necrosis
+ ;;=3^Pressure Ulcer,Left Heel,Stage 4
  ;;^UTILITY(U,$J,358.3,4072,1,4,0)
- ;;=4^L97.413
+ ;;=4^L89.624
  ;;^UTILITY(U,$J,358.3,4072,2)
- ;;=^5009532
+ ;;=^5009439
  ;;^UTILITY(U,$J,358.3,4073,0)
- ;;=L97.414^^34^287^95
+ ;;=L89.626^^29^240^305
  ;;^UTILITY(U,$J,358.3,4073,1,0)
  ;;=^358.31IA^4^2
  ;;^UTILITY(U,$J,358.3,4073,1,3,0)
- ;;=3^Non-Prs Chr Ulc,Right Heel/Midft,Bone Necrosis
+ ;;=3^Pressure-Induced Deep Tissue Damage,Left Heel
  ;;^UTILITY(U,$J,358.3,4073,1,4,0)
- ;;=4^L97.414
+ ;;=4^L89.626
  ;;^UTILITY(U,$J,358.3,4073,2)
- ;;=^5009533
+ ;;=^5158097
  ;;^UTILITY(U,$J,358.3,4074,0)
- ;;=L97.412^^34^287^97
+ ;;=R45.851^^29^241^3
  ;;^UTILITY(U,$J,358.3,4074,1,0)
  ;;=^358.31IA^4^2
  ;;^UTILITY(U,$J,358.3,4074,1,3,0)
- ;;=3^Non-Prs Chr Ulc,Right Heel/Midft,Fat Layer Exposed
+ ;;=3^Suicidal Ideations
  ;;^UTILITY(U,$J,358.3,4074,1,4,0)
- ;;=4^L97.412
+ ;;=4^R45.851
  ;;^UTILITY(U,$J,358.3,4074,2)
- ;;=^5009531
+ ;;=^5019474
  ;;^UTILITY(U,$J,358.3,4075,0)
- ;;=L97.419^^34^287^99
+ ;;=T14.91XA^^29^241^4
  ;;^UTILITY(U,$J,358.3,4075,1,0)
  ;;=^358.31IA^4^2
  ;;^UTILITY(U,$J,358.3,4075,1,3,0)
- ;;=3^Non-Prs Chr Ulc,Right Heel/Midft,Severity Unspec
+ ;;=3^Suicide Attempt,Initial Encntr
  ;;^UTILITY(U,$J,358.3,4075,1,4,0)
- ;;=4^L97.419
+ ;;=4^T14.91XA
  ;;^UTILITY(U,$J,358.3,4075,2)
- ;;=^5009534
+ ;;=^5151779
  ;;^UTILITY(U,$J,358.3,4076,0)
- ;;=L97.421^^34^287^71
+ ;;=T14.91XD^^29^241^6
  ;;^UTILITY(U,$J,358.3,4076,1,0)
  ;;=^358.31IA^4^2
  ;;^UTILITY(U,$J,358.3,4076,1,3,0)
- ;;=3^Non-Prs Chr Ulc,Left Heel/Midft,Brkdwn Skin
+ ;;=3^Suicide Attempt,Subsequent Encntr
  ;;^UTILITY(U,$J,358.3,4076,1,4,0)
- ;;=4^L97.421
+ ;;=4^T14.91XD
  ;;^UTILITY(U,$J,358.3,4076,2)
- ;;=^5009535
+ ;;=^5151780
  ;;^UTILITY(U,$J,358.3,4077,0)
- ;;=L97.422^^34^287^72
+ ;;=T14.91XS^^29^241^5
  ;;^UTILITY(U,$J,358.3,4077,1,0)
  ;;=^358.31IA^4^2
  ;;^UTILITY(U,$J,358.3,4077,1,3,0)
- ;;=3^Non-Prs Chr Ulc,Left Heel/Midft,Fat Layer Exposed
+ ;;=3^Suicide Attempt,Sequela
  ;;^UTILITY(U,$J,358.3,4077,1,4,0)
- ;;=4^L97.422
+ ;;=4^T14.91XS
  ;;^UTILITY(U,$J,358.3,4077,2)
- ;;=^5009536
+ ;;=^5151781
  ;;^UTILITY(U,$J,358.3,4078,0)
- ;;=L97.423^^34^287^73
+ ;;=Z91.51^^29^241^2
  ;;^UTILITY(U,$J,358.3,4078,1,0)
  ;;=^358.31IA^4^2
  ;;^UTILITY(U,$J,358.3,4078,1,3,0)
- ;;=3^Non-Prs Chr Ulc,Left Heel/Midft,Muscle Necrosis
+ ;;=3^Personal Hx of Suicidal Behavior     
  ;;^UTILITY(U,$J,358.3,4078,1,4,0)
- ;;=4^L97.423
+ ;;=4^Z91.51
  ;;^UTILITY(U,$J,358.3,4078,2)
- ;;=^5009537
+ ;;=^5161317
  ;;^UTILITY(U,$J,358.3,4079,0)
- ;;=L97.424^^34^287^70
+ ;;=Z91.52^^29^241^1
  ;;^UTILITY(U,$J,358.3,4079,1,0)
  ;;=^358.31IA^4^2
  ;;^UTILITY(U,$J,358.3,4079,1,3,0)
- ;;=3^Non-Prs Chr Ulc,Left Heel/Midft,Bone Necrosis
+ ;;=3^Personal Hx of Non-Suicidal Self-Harm
  ;;^UTILITY(U,$J,358.3,4079,1,4,0)
- ;;=4^L97.424
+ ;;=4^Z91.52
  ;;^UTILITY(U,$J,358.3,4079,2)
- ;;=^5009538
+ ;;=^5161318
  ;;^UTILITY(U,$J,358.3,4080,0)
- ;;=L97.429^^34^287^74
+ ;;=Z56.0^^29^242^17
  ;;^UTILITY(U,$J,358.3,4080,1,0)
  ;;=^358.31IA^4^2
  ;;^UTILITY(U,$J,358.3,4080,1,3,0)
- ;;=3^Non-Prs Chr Ulc,Left Heel/Midft,Severity Unspec
+ ;;=3^Unemployment,Unspec
  ;;^UTILITY(U,$J,358.3,4080,1,4,0)
- ;;=4^L97.429
+ ;;=4^Z56.0
  ;;^UTILITY(U,$J,358.3,4080,2)
- ;;=^5009539
+ ;;=^5063107
  ;;^UTILITY(U,$J,358.3,4081,0)
- ;;=L97.522^^34^287^67
+ ;;=Z59.01^^29^242^7
  ;;^UTILITY(U,$J,358.3,4081,1,0)
  ;;=^358.31IA^4^2
  ;;^UTILITY(U,$J,358.3,4081,1,3,0)
- ;;=3^Non-Prs Chr Ulc,Left Foot,Oth Part,Fat Layer Exposed
+ ;;=3^Homelessness,Sheltered
  ;;^UTILITY(U,$J,358.3,4081,1,4,0)
- ;;=4^L97.522
+ ;;=4^Z59.01
  ;;^UTILITY(U,$J,358.3,4081,2)
- ;;=^5009551
+ ;;=^5161305
  ;;^UTILITY(U,$J,358.3,4082,0)
- ;;=L97.523^^34^287^68
+ ;;=Z59.02^^29^242^8
  ;;^UTILITY(U,$J,358.3,4082,1,0)
  ;;=^358.31IA^4^2
  ;;^UTILITY(U,$J,358.3,4082,1,3,0)
- ;;=3^Non-Prs Chr Ulc,Left Foot,Oth Part,Muscle Necrosis
+ ;;=3^Homelessness,Unsheltered
  ;;^UTILITY(U,$J,358.3,4082,1,4,0)
- ;;=4^L97.523
+ ;;=4^Z59.02
  ;;^UTILITY(U,$J,358.3,4082,2)
- ;;=^5009552
+ ;;=^5161306
  ;;^UTILITY(U,$J,358.3,4083,0)
- ;;=L97.524^^34^287^65
+ ;;=Z59.00^^29^242^9
  ;;^UTILITY(U,$J,358.3,4083,1,0)
  ;;=^358.31IA^4^2
  ;;^UTILITY(U,$J,358.3,4083,1,3,0)
- ;;=3^Non-Prs Chr Ulc,Left Foot,Oth Part,Bone Necrosis
+ ;;=3^Homelessness,Unspec
  ;;^UTILITY(U,$J,358.3,4083,1,4,0)
- ;;=4^L97.524
+ ;;=4^Z59.00
  ;;^UTILITY(U,$J,358.3,4083,2)
- ;;=^5009553
+ ;;=^5161304
  ;;^UTILITY(U,$J,358.3,4084,0)
- ;;=L97.529^^34^287^69
+ ;;=Z59.41^^29^242^6
  ;;^UTILITY(U,$J,358.3,4084,1,0)
  ;;=^358.31IA^4^2
  ;;^UTILITY(U,$J,358.3,4084,1,3,0)
- ;;=3^Non-Prs Chr Ulc,Left Foot,Oth Part,Severity Unspec
+ ;;=3^Food Insecurity
  ;;^UTILITY(U,$J,358.3,4084,1,4,0)
- ;;=4^L97.529
+ ;;=4^Z59.41
  ;;^UTILITY(U,$J,358.3,4084,2)
- ;;=^5009554
+ ;;=^5161307
  ;;^UTILITY(U,$J,358.3,4085,0)
- ;;=L97.512^^34^287^92
+ ;;=Z59.5^^29^242^4
  ;;^UTILITY(U,$J,358.3,4085,1,0)
  ;;=^358.31IA^4^2
  ;;^UTILITY(U,$J,358.3,4085,1,3,0)
- ;;=3^Non-Prs Chr Ulc,Right Foot,Oth Part,Fat Layer Exposed
+ ;;=3^Extreme Poverty
  ;;^UTILITY(U,$J,358.3,4085,1,4,0)
- ;;=4^L97.512
+ ;;=4^Z59.5
  ;;^UTILITY(U,$J,358.3,4085,2)
- ;;=^5009546
+ ;;=^5063134
  ;;^UTILITY(U,$J,358.3,4086,0)
- ;;=L97.511^^34^287^91
+ ;;=Z59.6^^29^242^11
  ;;^UTILITY(U,$J,358.3,4086,1,0)
  ;;=^358.31IA^4^2
  ;;^UTILITY(U,$J,358.3,4086,1,3,0)
- ;;=3^Non-Prs Chr Ulc,Right Foot,Oth Part,Brkdwn Skin
+ ;;=3^Low Income
  ;;^UTILITY(U,$J,358.3,4086,1,4,0)
- ;;=4^L97.511
+ ;;=4^Z59.6
  ;;^UTILITY(U,$J,358.3,4086,2)
- ;;=^5009545
+ ;;=^5063135
  ;;^UTILITY(U,$J,358.3,4087,0)
- ;;=L97.513^^34^287^93
+ ;;=Z62.810^^29^242^13
  ;;^UTILITY(U,$J,358.3,4087,1,0)
  ;;=^358.31IA^4^2
  ;;^UTILITY(U,$J,358.3,4087,1,3,0)
- ;;=3^Non-Prs Chr Ulc,Right Foot,Oth Part,Muscle Necrosis
+ ;;=3^Personal Hx Physical/Sexual Abuse in Childhood
  ;;^UTILITY(U,$J,358.3,4087,1,4,0)
- ;;=4^L97.513
+ ;;=4^Z62.810
  ;;^UTILITY(U,$J,358.3,4087,2)
- ;;=^5009547
+ ;;=^5063153
  ;;^UTILITY(U,$J,358.3,4088,0)
- ;;=L97.514^^34^287^90
+ ;;=Z62.811^^29^242^14
  ;;^UTILITY(U,$J,358.3,4088,1,0)
  ;;=^358.31IA^4^2
  ;;^UTILITY(U,$J,358.3,4088,1,3,0)
- ;;=3^Non-Prs Chr Ulc,Right Foot,Oth Part,Bone Necrosis
+ ;;=3^Personal Hx Psychological Abuse in Childhood
  ;;^UTILITY(U,$J,358.3,4088,1,4,0)
- ;;=4^L97.514
+ ;;=4^Z62.811
  ;;^UTILITY(U,$J,358.3,4088,2)
- ;;=^5009548
+ ;;=^5063154
  ;;^UTILITY(U,$J,358.3,4089,0)
- ;;=L97.519^^34^287^94
+ ;;=Z62.812^^29^242^12
  ;;^UTILITY(U,$J,358.3,4089,1,0)
  ;;=^358.31IA^4^2
  ;;^UTILITY(U,$J,358.3,4089,1,3,0)
- ;;=3^Non-Prs Chr Ulc,Right Foot,Oth Part,Severity Unspec
+ ;;=3^Personal Hx Neglect in Childhood
  ;;^UTILITY(U,$J,358.3,4089,1,4,0)
- ;;=4^L97.519
+ ;;=4^Z62.812
  ;;^UTILITY(U,$J,358.3,4089,2)
- ;;=^5009549
+ ;;=^5063155
  ;;^UTILITY(U,$J,358.3,4090,0)
- ;;=L97.521^^34^287^66
+ ;;=Z63.0^^29^242^16
  ;;^UTILITY(U,$J,358.3,4090,1,0)
  ;;=^358.31IA^4^2
  ;;^UTILITY(U,$J,358.3,4090,1,3,0)
- ;;=3^Non-Prs Chr Ulc,Left Foot,Oth Part,Brkdwn Skin
+ ;;=3^Problems w/ Spouse/Partner Relationship
  ;;^UTILITY(U,$J,358.3,4090,1,4,0)
- ;;=4^L97.521
+ ;;=4^Z63.0
  ;;^UTILITY(U,$J,358.3,4090,2)
- ;;=^5009550
+ ;;=^5063164
  ;;^UTILITY(U,$J,358.3,4091,0)
- ;;=L89.90^^34^287^124
+ ;;=Z63.1^^29^242^15
  ;;^UTILITY(U,$J,358.3,4091,1,0)
  ;;=^358.31IA^4^2
  ;;^UTILITY(U,$J,358.3,4091,1,3,0)
- ;;=3^Pressure Ulcer,Unspec Site,Stage Unspec
+ ;;=3^Problems w/ In-Laws
  ;;^UTILITY(U,$J,358.3,4091,1,4,0)
- ;;=4^L89.90
+ ;;=4^Z63.1
  ;;^UTILITY(U,$J,358.3,4091,2)
- ;;=^5133666
+ ;;=^5063165
  ;;^UTILITY(U,$J,358.3,4092,0)
- ;;=L89.91^^34^287^120
+ ;;=Z63.4^^29^242^2
  ;;^UTILITY(U,$J,358.3,4092,1,0)
  ;;=^358.31IA^4^2
  ;;^UTILITY(U,$J,358.3,4092,1,3,0)
- ;;=3^Pressure Ulcer,Unspec Site,Stage 1
+ ;;=3^Bereavement
  ;;^UTILITY(U,$J,358.3,4092,1,4,0)
- ;;=4^L89.91
+ ;;=4^Z63.4
  ;;^UTILITY(U,$J,358.3,4092,2)
- ;;=^5133664
+ ;;=^5063168
  ;;^UTILITY(U,$J,358.3,4093,0)
- ;;=L89.92^^34^287^121
+ ;;=Z63.5^^29^242^5
  ;;^UTILITY(U,$J,358.3,4093,1,0)
  ;;=^358.31IA^4^2
  ;;^UTILITY(U,$J,358.3,4093,1,3,0)
- ;;=3^Pressure Ulcer,Unspec Site,Stage 2
+ ;;=3^Family Disruption by Separation/Divorce
  ;;^UTILITY(U,$J,358.3,4093,1,4,0)
- ;;=4^L89.92
+ ;;=4^Z63.5
  ;;^UTILITY(U,$J,358.3,4093,2)
- ;;=^5133667
+ ;;=^5063169
  ;;^UTILITY(U,$J,358.3,4094,0)
- ;;=L89.93^^34^287^122
+ ;;=Z63.6^^29^242^3
  ;;^UTILITY(U,$J,358.3,4094,1,0)
  ;;=^358.31IA^4^2
  ;;^UTILITY(U,$J,358.3,4094,1,3,0)
- ;;=3^Pressure Ulcer,Unspec Site,Stage 3
+ ;;=3^Dependent Relative Needing Home Care
  ;;^UTILITY(U,$J,358.3,4094,1,4,0)
- ;;=4^L89.93
+ ;;=4^Z63.6
  ;;^UTILITY(U,$J,358.3,4094,2)
- ;;=^5133668
+ ;;=^5063170
  ;;^UTILITY(U,$J,358.3,4095,0)
- ;;=L89.94^^34^287^123
+ ;;=Z63.72^^29^242^1
  ;;^UTILITY(U,$J,358.3,4095,1,0)
  ;;=^358.31IA^4^2
  ;;^UTILITY(U,$J,358.3,4095,1,3,0)
- ;;=3^Pressure Ulcer,Unspec Site,Stage 4
+ ;;=3^Alcoholism/Drug Addiction in Family
  ;;^UTILITY(U,$J,358.3,4095,1,4,0)
- ;;=4^L89.94
+ ;;=4^Z63.72
  ;;^UTILITY(U,$J,358.3,4095,2)
- ;;=^5133669
+ ;;=^5063172
  ;;^UTILITY(U,$J,358.3,4096,0)
- ;;=L89.95^^34^287^125
+ ;;=Z65.3^^29^242^10
  ;;^UTILITY(U,$J,358.3,4096,1,0)
  ;;=^358.31IA^4^2
  ;;^UTILITY(U,$J,358.3,4096,1,3,0)
- ;;=3^Pressure Ulcer,Unspec Site,Unstageable
+ ;;=3^Legal Problems
  ;;^UTILITY(U,$J,358.3,4096,1,4,0)
- ;;=4^L89.95
+ ;;=4^Z65.3
  ;;^UTILITY(U,$J,358.3,4096,2)
- ;;=^5133660
+ ;;=^5063182
  ;;^UTILITY(U,$J,358.3,4097,0)
- ;;=L50.9^^34^287^149
+ ;;=90471^^30^243^1^^^^1
  ;;^UTILITY(U,$J,358.3,4097,1,0)
- ;;=^358.31IA^4^2
+ ;;=^358.31IA^3^2
+ ;;^UTILITY(U,$J,358.3,4097,1,2,0)
+ ;;=2^90471
  ;;^UTILITY(U,$J,358.3,4097,1,3,0)
- ;;=3^Urticaria, unspecified
- ;;^UTILITY(U,$J,358.3,4097,1,4,0)
- ;;=4^L50.9
- ;;^UTILITY(U,$J,358.3,4097,2)
- ;;=^5009204
+ ;;=3^1 Immunization Administration (Use w/ Vacs Below)
  ;;^UTILITY(U,$J,358.3,4098,0)
- ;;=L98.9^^34^287^140
+ ;;=90472^^30^243^2^^^^1
  ;;^UTILITY(U,$J,358.3,4098,1,0)
- ;;=^358.31IA^4^2
+ ;;=^358.31IA^3^2
+ ;;^UTILITY(U,$J,358.3,4098,1,2,0)
+ ;;=2^90472
  ;;^UTILITY(U,$J,358.3,4098,1,3,0)
- ;;=3^Skin/Subcutaneous Tissue Disorder,Unspec
- ;;^UTILITY(U,$J,358.3,4098,1,4,0)
- ;;=4^L98.9
- ;;^UTILITY(U,$J,358.3,4098,2)
- ;;=^5009595
+ ;;=3^2 or more Immunization Administration (use w/ Vacs below)
  ;;^UTILITY(U,$J,358.3,4099,0)
- ;;=M34.9^^34^287^143
+ ;;=90732^^30^243^7^^^^1
  ;;^UTILITY(U,$J,358.3,4099,1,0)
- ;;=^358.31IA^4^2
+ ;;=^358.31IA^3^2
+ ;;^UTILITY(U,$J,358.3,4099,1,2,0)
+ ;;=2^90732
  ;;^UTILITY(U,$J,358.3,4099,1,3,0)
- ;;=3^Systemic sclerosis, unspecified
- ;;^UTILITY(U,$J,358.3,4099,1,4,0)
- ;;=4^M34.9
- ;;^UTILITY(U,$J,358.3,4099,2)
- ;;=^5011785
+ ;;=3^Pneumovax 23 (Pneumococcal Vaccine)
  ;;^UTILITY(U,$J,358.3,4100,0)
- ;;=M34.0^^34^287^126
+ ;;=90714^^30^243^10^^^^1
  ;;^UTILITY(U,$J,358.3,4100,1,0)
- ;;=^358.31IA^4^2
+ ;;=^358.31IA^3^2
+ ;;^UTILITY(U,$J,358.3,4100,1,2,0)
+ ;;=2^90714
  ;;^UTILITY(U,$J,358.3,4100,1,3,0)
- ;;=3^Progressive systemic sclerosis
- ;;^UTILITY(U,$J,358.3,4100,1,4,0)
- ;;=4^M34.0
- ;;^UTILITY(U,$J,358.3,4100,2)
- ;;=^5011778
+ ;;=3^Td Vaccine
  ;;^UTILITY(U,$J,358.3,4101,0)
- ;;=M34.1^^34^287^10
+ ;;=90715^^30^243^11^^^^1
  ;;^UTILITY(U,$J,358.3,4101,1,0)
- ;;=^358.31IA^4^2
+ ;;=^358.31IA^3^2
+ ;;^UTILITY(U,$J,358.3,4101,1,2,0)
+ ;;=2^90715
  ;;^UTILITY(U,$J,358.3,4101,1,3,0)
- ;;=3^CR(E)ST syndrome
- ;;^UTILITY(U,$J,358.3,4101,1,4,0)
- ;;=4^M34.1
- ;;^UTILITY(U,$J,358.3,4101,2)
- ;;=^5011779
+ ;;=3^Tdap Vaccine
  ;;^UTILITY(U,$J,358.3,4102,0)
- ;;=R21.^^34^287^132
+ ;;=90662^^30^243^3^^^^1
  ;;^UTILITY(U,$J,358.3,4102,1,0)
- ;;=^358.31IA^4^2
+ ;;=^358.31IA^3^2
+ ;;^UTILITY(U,$J,358.3,4102,1,2,0)
+ ;;=2^90662
  ;;^UTILITY(U,$J,358.3,4102,1,3,0)
- ;;=3^Rash and other nonspecific skin eruption
- ;;^UTILITY(U,$J,358.3,4102,1,4,0)
- ;;=4^R21.
- ;;^UTILITY(U,$J,358.3,4102,2)
- ;;=^5019283
+ ;;=3^Flu Vaccine High Dose Syringe (Fluzone)
  ;;^UTILITY(U,$J,358.3,4103,0)
- ;;=R23.3^^34^287^141
+ ;;=90675^^30^243^9^^^^1
  ;;^UTILITY(U,$J,358.3,4103,1,0)
- ;;=^358.31IA^4^2
+ ;;=^358.31IA^3^2
+ ;;^UTILITY(U,$J,358.3,4103,1,2,0)
+ ;;=2^90675
  ;;^UTILITY(U,$J,358.3,4103,1,3,0)
- ;;=3^Spontaneous ecchymoses
- ;;^UTILITY(U,$J,358.3,4103,1,4,0)
- ;;=4^R23.3
- ;;^UTILITY(U,$J,358.3,4103,2)
- ;;=^5019295
+ ;;=3^Rabies
  ;;^UTILITY(U,$J,358.3,4104,0)
- ;;=I96.^^34^287^43
+ ;;=90670^^30^243^8^^^^1
  ;;^UTILITY(U,$J,358.3,4104,1,0)
- ;;=^358.31IA^4^2
+ ;;=^358.31IA^3^2
+ ;;^UTILITY(U,$J,358.3,4104,1,2,0)
+ ;;=2^90670
  ;;^UTILITY(U,$J,358.3,4104,1,3,0)
- ;;=3^Gangrene NEC
- ;;^UTILITY(U,$J,358.3,4104,1,4,0)
- ;;=4^I96.
- ;;^UTILITY(U,$J,358.3,4104,2)
- ;;=^5008081
+ ;;=3^Prevnar 13 (Pneumococcal Vaccine)
  ;;^UTILITY(U,$J,358.3,4105,0)
- ;;=E11.21^^34^288^25
+ ;;=90688^^30^243^4^^^^1
  ;;^UTILITY(U,$J,358.3,4105,1,0)
- ;;=^358.31IA^4^2
+ ;;=^358.31IA^3^2
+ ;;^UTILITY(U,$J,358.3,4105,1,2,0)
+ ;;=2^90688
  ;;^UTILITY(U,$J,358.3,4105,1,3,0)
- ;;=3^Type 2 DM w/ Diabetic Nephropathy
- ;;^UTILITY(U,$J,358.3,4105,1,4,0)
- ;;=4^E11.21
- ;;^UTILITY(U,$J,358.3,4105,2)
- ;;=^5002629
+ ;;=3^Flu Vaccine Multidose (Flulaval)
  ;;^UTILITY(U,$J,358.3,4106,0)
- ;;=E10.21^^34^288^1
+ ;;=90686^^30^243^5^^^^1
  ;;^UTILITY(U,$J,358.3,4106,1,0)
- ;;=^358.31IA^4^2
+ ;;=^358.31IA^3^2
+ ;;^UTILITY(U,$J,358.3,4106,1,2,0)
+ ;;=2^90686
  ;;^UTILITY(U,$J,358.3,4106,1,3,0)
- ;;=3^Type 1 DM w/ Diabetic Nephropathy
- ;;^UTILITY(U,$J,358.3,4106,1,4,0)
- ;;=4^E10.21
- ;;^UTILITY(U,$J,358.3,4106,2)
- ;;=^5002589
+ ;;=3^Flu Vaccine,Sngl Dose (Afluria)
  ;;^UTILITY(U,$J,358.3,4107,0)
- ;;=E11.311^^34^288^49
+ ;;=90653^^30^243^6^^^^1
  ;;^UTILITY(U,$J,358.3,4107,1,0)
- ;;=^358.31IA^4^2
+ ;;=^358.31IA^3^2
+ ;;^UTILITY(U,$J,358.3,4107,1,2,0)
+ ;;=2^90653
  ;;^UTILITY(U,$J,358.3,4107,1,3,0)
- ;;=3^Type 2 DM w/ Unspec Diab Retinopathy w/ Macular Edema
- ;;^UTILITY(U,$J,358.3,4107,1,4,0)
- ;;=4^E11.311
- ;;^UTILITY(U,$J,358.3,4107,2)
- ;;=^5002632
+ ;;=3^Flu Vaccine,Sngl Dose (Fluad)
  ;;^UTILITY(U,$J,358.3,4108,0)
- ;;=E11.319^^34^288^50
+ ;;=J3301^^30^244^27^^^^1
  ;;^UTILITY(U,$J,358.3,4108,1,0)
- ;;=^358.31IA^4^2
+ ;;=^358.31IA^3^2
+ ;;^UTILITY(U,$J,358.3,4108,1,2,0)
+ ;;=2^J3301
  ;;^UTILITY(U,$J,358.3,4108,1,3,0)
- ;;=3^Type 2 DM w/ Unspec Diab Retinopathy w/o Macular Edema
- ;;^UTILITY(U,$J,358.3,4108,1,4,0)
- ;;=4^E11.319
- ;;^UTILITY(U,$J,358.3,4108,2)
- ;;=^5002633
+ ;;=3^Kenalog per 10mg
  ;;^UTILITY(U,$J,358.3,4109,0)
- ;;=E10.311^^34^288^23
+ ;;=J1885^^30^244^43^^^^1
  ;;^UTILITY(U,$J,358.3,4109,1,0)
- ;;=^358.31IA^4^2
+ ;;=^358.31IA^3^2
+ ;;^UTILITY(U,$J,358.3,4109,1,2,0)
+ ;;=2^J1885
  ;;^UTILITY(U,$J,358.3,4109,1,3,0)
- ;;=3^Type 1 DM w/ Unspec Diab Retinopathy w/ Macular Edema
- ;;^UTILITY(U,$J,358.3,4109,1,4,0)
- ;;=4^E10.311
- ;;^UTILITY(U,$J,358.3,4109,2)
- ;;=^5002592
+ ;;=3^Toradol per 15mg
  ;;^UTILITY(U,$J,358.3,4110,0)
- ;;=E10.319^^34^288^24
+ ;;=J2270^^30^244^35^^^^1
  ;;^UTILITY(U,$J,358.3,4110,1,0)
- ;;=^358.31IA^4^2
+ ;;=^358.31IA^3^2
+ ;;^UTILITY(U,$J,358.3,4110,1,2,0)
+ ;;=2^J2270
  ;;^UTILITY(U,$J,358.3,4110,1,3,0)
- ;;=3^Type 1 DM w/ Unspec Diab Retinopathy w/o Macular Edema
- ;;^UTILITY(U,$J,358.3,4110,1,4,0)
- ;;=4^E10.319
- ;;^UTILITY(U,$J,358.3,4110,2)
- ;;=^5002593
+ ;;=3^Morphine Sulfate per 10mg
  ;;^UTILITY(U,$J,358.3,4111,0)
- ;;=E11.40^^34^288^26
+ ;;=J1940^^30^244^28^^^^1
  ;;^UTILITY(U,$J,358.3,4111,1,0)
- ;;=^358.31IA^4^2
+ ;;=^358.31IA^3^2
+ ;;^UTILITY(U,$J,358.3,4111,1,2,0)
+ ;;=2^J1940
  ;;^UTILITY(U,$J,358.3,4111,1,3,0)
- ;;=3^Type 2 DM w/ Diabetic Neuropathy,Unspec
- ;;^UTILITY(U,$J,358.3,4111,1,4,0)
- ;;=4^E11.40
- ;;^UTILITY(U,$J,358.3,4111,2)
- ;;=^5002644
+ ;;=3^Lasix per 20mg
  ;;^UTILITY(U,$J,358.3,4112,0)
- ;;=E10.40^^34^288^2
+ ;;=J1630^^30^244^20^^^^1
  ;;^UTILITY(U,$J,358.3,4112,1,0)
- ;;=^358.31IA^4^2
+ ;;=^358.31IA^3^2
+ ;;^UTILITY(U,$J,358.3,4112,1,2,0)
+ ;;=2^J1630
  ;;^UTILITY(U,$J,358.3,4112,1,3,0)
- ;;=3^Type 1 DM w/ Diabetic Neuropathy,Unspec
- ;;^UTILITY(U,$J,358.3,4112,1,4,0)
- ;;=4^E10.40
- ;;^UTILITY(U,$J,358.3,4112,2)
- ;;=^5002604
+ ;;=3^Haldol up to 5mg
  ;;^UTILITY(U,$J,358.3,4113,0)
- ;;=E11.51^^34^288^27
+ ;;=J1720^^30^244^23^^^^1
  ;;^UTILITY(U,$J,358.3,4113,1,0)
- ;;=^358.31IA^4^2
+ ;;=^358.31IA^3^2
+ ;;^UTILITY(U,$J,358.3,4113,1,2,0)
+ ;;=2^J1720
  ;;^UTILITY(U,$J,358.3,4113,1,3,0)
- ;;=3^Type 2 DM w/ Diabetic Periph Angiopathy w/o Gangrene
- ;;^UTILITY(U,$J,358.3,4113,1,4,0)
- ;;=4^E11.51
- ;;^UTILITY(U,$J,358.3,4113,2)
- ;;=^5002650
+ ;;=3^Hydrocortisone Sodium Succinate per 100mg
  ;;^UTILITY(U,$J,358.3,4114,0)
- ;;=E11.52^^34^288^28
+ ;;=J0780^^30^244^13^^^^1
  ;;^UTILITY(U,$J,358.3,4114,1,0)
- ;;=^358.31IA^4^2
+ ;;=^358.31IA^3^2
+ ;;^UTILITY(U,$J,358.3,4114,1,2,0)
+ ;;=2^J0780
  ;;^UTILITY(U,$J,358.3,4114,1,3,0)
- ;;=3^Type 2 DM w/ Diabetic Periph Angiopathy w/ Gangrene
- ;;^UTILITY(U,$J,358.3,4114,1,4,0)
- ;;=4^E11.52
- ;;^UTILITY(U,$J,358.3,4114,2)
- ;;=^5002651
+ ;;=3^Compazine 10mg
  ;;^UTILITY(U,$J,358.3,4115,0)
- ;;=E10.51^^34^288^3
+ ;;=J2930^^30^244^41^^^^1
  ;;^UTILITY(U,$J,358.3,4115,1,0)
- ;;=^358.31IA^4^2
+ ;;=^358.31IA^3^2
+ ;;^UTILITY(U,$J,358.3,4115,1,2,0)
+ ;;=2^J2930
  ;;^UTILITY(U,$J,358.3,4115,1,3,0)
- ;;=3^Type 1 DM w/ Diabetic Periph Angiopathy w/o Gangrene
- ;;^UTILITY(U,$J,358.3,4115,1,4,0)
- ;;=4^E10.51
- ;;^UTILITY(U,$J,358.3,4115,2)
- ;;=^5002610
+ ;;=3^Solu-Medrol 125mg
  ;;^UTILITY(U,$J,358.3,4116,0)
- ;;=E10.52^^34^288^4
+ ;;=J3030^^30^244^25^^^^1
  ;;^UTILITY(U,$J,358.3,4116,1,0)
- ;;=^358.31IA^4^2
+ ;;=^358.31IA^3^2
+ ;;^UTILITY(U,$J,358.3,4116,1,2,0)
+ ;;=2^J3030
  ;;^UTILITY(U,$J,358.3,4116,1,3,0)
- ;;=3^Type 1 DM w/ Diabetic Periph Angiopathy w/ Gangrene
- ;;^UTILITY(U,$J,358.3,4116,1,4,0)
- ;;=4^E10.52
- ;;^UTILITY(U,$J,358.3,4116,2)
- ;;=^5002611
+ ;;=3^Imitrex 6mg
  ;;^UTILITY(U,$J,358.3,4117,0)
- ;;=E11.649^^34^288^30
+ ;;=J2550^^30^244^39^^^^1
  ;;^UTILITY(U,$J,358.3,4117,1,0)
- ;;=^358.31IA^4^2
+ ;;=^358.31IA^3^2
+ ;;^UTILITY(U,$J,358.3,4117,1,2,0)
+ ;;=2^J2550
  ;;^UTILITY(U,$J,358.3,4117,1,3,0)
- ;;=3^Type 2 DM w/ Hypoglycemia w/o Coma
- ;;^UTILITY(U,$J,358.3,4117,1,4,0)
- ;;=4^E11.649
- ;;^UTILITY(U,$J,358.3,4117,2)
- ;;=^5002662
+ ;;=3^Phenergan up to 50mg
  ;;^UTILITY(U,$J,358.3,4118,0)
- ;;=E11.641^^34^288^29
+ ;;=J0461^^30^244^7^^^^1
  ;;^UTILITY(U,$J,358.3,4118,1,0)
- ;;=^358.31IA^4^2
+ ;;=^358.31IA^3^2
+ ;;^UTILITY(U,$J,358.3,4118,1,2,0)
+ ;;=2^J0461
  ;;^UTILITY(U,$J,358.3,4118,1,3,0)
- ;;=3^Type 2 DM w/ Hypoglycemia w/ Coma
- ;;^UTILITY(U,$J,358.3,4118,1,4,0)
- ;;=4^E11.641
- ;;^UTILITY(U,$J,358.3,4118,2)
- ;;=^5002661
+ ;;=3^Atropine Sulfate 0.01mg
+ ;;^UTILITY(U,$J,358.3,4119,0)
+ ;;=J2060^^30^244^6^^^^1
+ ;;^UTILITY(U,$J,358.3,4119,1,0)
+ ;;=^358.31IA^3^2
+ ;;^UTILITY(U,$J,358.3,4119,1,2,0)
+ ;;=2^J2060
+ ;;^UTILITY(U,$J,358.3,4119,1,3,0)
+ ;;=3^Ativan/Lorazepam 2mg
+ ;;^UTILITY(U,$J,358.3,4120,0)
+ ;;=J7042^^30^244^1^^^^1
+ ;;^UTILITY(U,$J,358.3,4120,1,0)
+ ;;=^358.31IA^3^2
+ ;;^UTILITY(U,$J,358.3,4120,1,2,0)
+ ;;=2^J7042
+ ;;^UTILITY(U,$J,358.3,4120,1,3,0)
+ ;;=3^5% Dextrose/NS (500ml=1Unit)
+ ;;^UTILITY(U,$J,358.3,4121,0)
+ ;;=J7060^^30^244^2^^^^1
+ ;;^UTILITY(U,$J,358.3,4121,1,0)
+ ;;=^358.31IA^3^2
+ ;;^UTILITY(U,$J,358.3,4121,1,2,0)
+ ;;=2^J7060
+ ;;^UTILITY(U,$J,358.3,4121,1,3,0)
+ ;;=3^5% Dextrose/Water (500ml=1Unit)
+ ;;^UTILITY(U,$J,358.3,4122,0)
+ ;;=J0171^^30^244^4^^^^1
+ ;;^UTILITY(U,$J,358.3,4122,1,0)
+ ;;=^358.31IA^3^2
+ ;;^UTILITY(U,$J,358.3,4122,1,2,0)
+ ;;=2^J0171
+ ;;^UTILITY(U,$J,358.3,4122,1,3,0)
+ ;;=3^Adrenalin,Epinephrine 0.1 mg
+ ;;^UTILITY(U,$J,358.3,4123,0)
+ ;;=J0282^^30^244^5^^^^1
+ ;;^UTILITY(U,$J,358.3,4123,1,0)
+ ;;=^358.31IA^3^2
+ ;;^UTILITY(U,$J,358.3,4123,1,2,0)
+ ;;=2^J0282
+ ;;^UTILITY(U,$J,358.3,4123,1,3,0)
+ ;;=3^Amiodarone HCL 30mg
+ ;;^UTILITY(U,$J,358.3,4124,0)
+ ;;=J0456^^30^244^8^^^^1
+ ;;^UTILITY(U,$J,358.3,4124,1,0)
+ ;;=^358.31IA^3^2
+ ;;^UTILITY(U,$J,358.3,4124,1,2,0)
+ ;;=2^J0456
+ ;;^UTILITY(U,$J,358.3,4124,1,3,0)
+ ;;=3^Azithromycine (Zithromax) 500mg
+ ;;^UTILITY(U,$J,358.3,4125,0)
+ ;;=J0690^^30^244^9^^^^1
+ ;;^UTILITY(U,$J,358.3,4125,1,0)
+ ;;=^358.31IA^3^2
+ ;;^UTILITY(U,$J,358.3,4125,1,2,0)
+ ;;=2^J0690
+ ;;^UTILITY(U,$J,358.3,4125,1,3,0)
+ ;;=3^Cefazoline Sodium (Ancef) 500mg
+ ;;^UTILITY(U,$J,358.3,4126,0)
+ ;;=J0744^^30^244^10^^^^1
+ ;;^UTILITY(U,$J,358.3,4126,1,0)
+ ;;=^358.31IA^3^2
+ ;;^UTILITY(U,$J,358.3,4126,1,2,0)
+ ;;=2^J0744
+ ;;^UTILITY(U,$J,358.3,4126,1,3,0)
+ ;;=3^Ciprofloxacin IV Infusion 200mg
+ ;;^UTILITY(U,$J,358.3,4127,0)
+ ;;=J0735^^30^244^11^^^^1
+ ;;^UTILITY(U,$J,358.3,4127,1,0)
+ ;;=^358.31IA^3^2
+ ;;^UTILITY(U,$J,358.3,4127,1,2,0)
+ ;;=2^J0735
+ ;;^UTILITY(U,$J,358.3,4127,1,3,0)
+ ;;=3^Clonidine HCL 1mg
+ ;;^UTILITY(U,$J,358.3,4128,0)
+ ;;=J3360^^30^244^15^^^^1
+ ;;^UTILITY(U,$J,358.3,4128,1,0)
+ ;;=^358.31IA^3^2
+ ;;^UTILITY(U,$J,358.3,4128,1,2,0)
+ ;;=2^J3360
+ ;;^UTILITY(U,$J,358.3,4128,1,3,0)
+ ;;=3^Diazepam up to 5mg
+ ;;^UTILITY(U,$J,358.3,4129,0)
+ ;;=J1160^^30^244^16^^^^1
+ ;;^UTILITY(U,$J,358.3,4129,1,0)
+ ;;=^358.31IA^3^2
+ ;;^UTILITY(U,$J,358.3,4129,1,2,0)
+ ;;=2^J1160
+ ;;^UTILITY(U,$J,358.3,4129,1,3,0)
+ ;;=3^Digoxin up to 0.5mg
+ ;;^UTILITY(U,$J,358.3,4130,0)
+ ;;=J1020^^30^244^32^^^^1
+ ;;^UTILITY(U,$J,358.3,4130,1,0)
+ ;;=^358.31IA^3^2
+ ;;^UTILITY(U,$J,358.3,4130,1,2,0)
+ ;;=2^J1020
+ ;;^UTILITY(U,$J,358.3,4130,1,3,0)
+ ;;=3^Methylpredinsolone Acetate 20mg
+ ;;^UTILITY(U,$J,358.3,4131,0)
+ ;;=J1030^^30^244^33^^^^1
+ ;;^UTILITY(U,$J,358.3,4131,1,0)
+ ;;=^358.31IA^3^2
+ ;;^UTILITY(U,$J,358.3,4131,1,2,0)
+ ;;=2^J1030
+ ;;^UTILITY(U,$J,358.3,4131,1,3,0)
+ ;;=3^Methylpredinsolone Acetate 40mg
+ ;;^UTILITY(U,$J,358.3,4132,0)
+ ;;=J2765^^30^244^34^^^^1
+ ;;^UTILITY(U,$J,358.3,4132,1,0)
+ ;;=^358.31IA^3^2
+ ;;^UTILITY(U,$J,358.3,4132,1,2,0)
+ ;;=2^J2765
+ ;;^UTILITY(U,$J,358.3,4132,1,3,0)
+ ;;=3^Metoclopramide HCL up to 10mg
+ ;;^UTILITY(U,$J,358.3,4133,0)
+ ;;=J2310^^30^244^36^^^^1
+ ;;^UTILITY(U,$J,358.3,4133,1,0)
+ ;;=^358.31IA^3^2
+ ;;^UTILITY(U,$J,358.3,4133,1,2,0)
+ ;;=2^J2310
+ ;;^UTILITY(U,$J,358.3,4133,1,3,0)
+ ;;=3^Naloxone HCL per 1mg
+ ;;^UTILITY(U,$J,358.3,4134,0)
+ ;;=J7050^^30^244^37^^^^1
+ ;;^UTILITY(U,$J,358.3,4134,1,0)
+ ;;=^358.31IA^3^2
+ ;;^UTILITY(U,$J,358.3,4134,1,2,0)
+ ;;=2^J7050
+ ;;^UTILITY(U,$J,358.3,4134,1,3,0)
+ ;;=3^Normal Saline Solution 250cc
+ ;;^UTILITY(U,$J,358.3,4135,0)
+ ;;=J2405^^30^244^38^^^^1
+ ;;^UTILITY(U,$J,358.3,4135,1,0)
+ ;;=^358.31IA^3^2
+ ;;^UTILITY(U,$J,358.3,4135,1,2,0)
+ ;;=2^J2405
+ ;;^UTILITY(U,$J,358.3,4135,1,3,0)
+ ;;=3^Ondansetron HCL per 1mg
+ ;;^UTILITY(U,$J,358.3,4136,0)
+ ;;=J3480^^30^244^40^^^^1
+ ;;^UTILITY(U,$J,358.3,4136,1,0)
+ ;;=^358.31IA^3^2
+ ;;^UTILITY(U,$J,358.3,4136,1,2,0)
+ ;;=2^J3480
+ ;;^UTILITY(U,$J,358.3,4136,1,3,0)
+ ;;=3^Potassium Chloride per 2mEq
+ ;;^UTILITY(U,$J,358.3,4137,0)
+ ;;=J3430^^30^244^44^^^^1
+ ;;^UTILITY(U,$J,358.3,4137,1,0)
+ ;;=^358.31IA^3^2
+ ;;^UTILITY(U,$J,358.3,4137,1,2,0)
+ ;;=2^J3430
+ ;;^UTILITY(U,$J,358.3,4137,1,3,0)
+ ;;=3^Vitamin K per 1mg
+ ;;^UTILITY(U,$J,358.3,4138,0)
+ ;;=J0153^^30^244^3^^^^1
+ ;;^UTILITY(U,$J,358.3,4138,1,0)
+ ;;=^358.31IA^3^2
+ ;;^UTILITY(U,$J,358.3,4138,1,2,0)
+ ;;=2^J0153
+ ;;^UTILITY(U,$J,358.3,4138,1,3,0)
+ ;;=3^Adenosine 1mg
+ ;;^UTILITY(U,$J,358.3,4139,0)
+ ;;=J3121^^30^244^42^^^^1
+ ;;^UTILITY(U,$J,358.3,4139,1,0)
+ ;;=^358.31IA^3^2
+ ;;^UTILITY(U,$J,358.3,4139,1,2,0)
+ ;;=2^J3121
+ ;;^UTILITY(U,$J,358.3,4139,1,3,0)
+ ;;=3^Testosterone Enanthate 1mg
+ ;;^UTILITY(U,$J,358.3,4140,0)
+ ;;=J1165^^30^244^14^^^^1
+ ;;^UTILITY(U,$J,358.3,4140,1,0)
+ ;;=^358.31IA^3^2
+ ;;^UTILITY(U,$J,358.3,4140,1,2,0)
+ ;;=2^J1165
+ ;;^UTILITY(U,$J,358.3,4140,1,3,0)
+ ;;=3^Dialantin 50mg
+ ;;^UTILITY(U,$J,358.3,4141,0)
+ ;;=J1200^^30^244^17^^^^1
+ ;;^UTILITY(U,$J,358.3,4141,1,0)
+ ;;=^358.31IA^3^2
+ ;;^UTILITY(U,$J,358.3,4141,1,2,0)
+ ;;=2^J1200
+ ;;^UTILITY(U,$J,358.3,4141,1,3,0)
+ ;;=3^Diphenhydramine HCL,up to 50mg
+ ;;^UTILITY(U,$J,358.3,4142,0)
+ ;;=J1650^^30^244^18^^^^1
+ ;;^UTILITY(U,$J,358.3,4142,1,0)
+ ;;=^358.31IA^3^2
+ ;;^UTILITY(U,$J,358.3,4142,1,2,0)
+ ;;=2^J1650
+ ;;^UTILITY(U,$J,358.3,4142,1,3,0)
+ ;;=3^Enoxaprin Sodium 10mg
+ ;;^UTILITY(U,$J,358.3,4143,0)
+ ;;=J1327^^30^244^19^^^^1
+ ;;^UTILITY(U,$J,358.3,4143,1,0)
+ ;;=^358.31IA^3^2
+ ;;^UTILITY(U,$J,358.3,4143,1,2,0)
+ ;;=2^J1327
+ ;;^UTILITY(U,$J,358.3,4143,1,3,0)
+ ;;=3^Eptifibatide 5mg
+ ;;^UTILITY(U,$J,358.3,4144,0)
+ ;;=J1642^^30^244^22^^^^1
+ ;;^UTILITY(U,$J,358.3,4144,1,0)
+ ;;=^358.31IA^3^2
+ ;;^UTILITY(U,$J,358.3,4144,1,2,0)
+ ;;=2^J1642
+ ;;^UTILITY(U,$J,358.3,4144,1,3,0)
+ ;;=3^Heparin Sodium per 10U
+ ;;^UTILITY(U,$J,358.3,4145,0)
+ ;;=J1644^^30^244^21^^^^1
+ ;;^UTILITY(U,$J,358.3,4145,1,0)
+ ;;=^358.31IA^3^2
+ ;;^UTILITY(U,$J,358.3,4145,1,2,0)
+ ;;=2^J1644
+ ;;^UTILITY(U,$J,358.3,4145,1,3,0)
+ ;;=3^Heparin Sodium per 1000U
+ ;;^UTILITY(U,$J,358.3,4146,0)
+ ;;=J3410^^30^244^24^^^^1
+ ;;^UTILITY(U,$J,358.3,4146,1,0)
+ ;;=^358.31IA^3^2
+ ;;^UTILITY(U,$J,358.3,4146,1,2,0)
+ ;;=2^J3410
+ ;;^UTILITY(U,$J,358.3,4146,1,3,0)
+ ;;=3^Hydroxyzine HCL,up to 25mg
+ ;;^UTILITY(U,$J,358.3,4147,0)
+ ;;=J1815^^30^244^26^^^^1
+ ;;^UTILITY(U,$J,358.3,4147,1,0)
+ ;;=^358.31IA^3^2
+ ;;^UTILITY(U,$J,358.3,4147,1,2,0)
+ ;;=2^J1815
+ ;;^UTILITY(U,$J,358.3,4147,1,3,0)
+ ;;=3^Insulin 5U
+ ;;^UTILITY(U,$J,358.3,4148,0)
+ ;;=J1956^^30^244^29^^^^1
+ ;;^UTILITY(U,$J,358.3,4148,1,0)
+ ;;=^358.31IA^3^2
+ ;;^UTILITY(U,$J,358.3,4148,1,2,0)
+ ;;=2^J1956
+ ;;^UTILITY(U,$J,358.3,4148,1,3,0)
+ ;;=3^Levofloxacin 250mg
+ ;;^UTILITY(U,$J,358.3,4149,0)
+ ;;=J1050^^30^244^30^^^^1
+ ;;^UTILITY(U,$J,358.3,4149,1,0)
+ ;;=^358.31IA^3^2
+ ;;^UTILITY(U,$J,358.3,4149,1,2,0)
+ ;;=2^J1050

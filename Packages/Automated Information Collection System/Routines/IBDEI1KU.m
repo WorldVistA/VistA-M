@@ -1,126 +1,126 @@
-IBDEI1KU ; ; 04-FEB-2020
- ;;3.0;IB ENCOUNTER FORM IMP/EXP;;FEB 04, 2020
+IBDEI1KU ; ; 01-FEB-2022
+ ;;3.0;IB ENCOUNTER FORM IMP/EXP;;FEB 01, 2022
  Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,999) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
- ;;^UTILITY(U,$J,358.3,25203,1,3,0)
- ;;=3^Inflammatory Liver Disease,Oth Spec
- ;;^UTILITY(U,$J,358.3,25203,1,4,0)
- ;;=4^K75.89
- ;;^UTILITY(U,$J,358.3,25203,2)
- ;;=^5008829
- ;;^UTILITY(U,$J,358.3,25204,0)
- ;;=K76.4^^107^1214^21
- ;;^UTILITY(U,$J,358.3,25204,1,0)
+ ;;^UTILITY(U,$J,358.3,25568,2)
+ ;;=^331928
+ ;;^UTILITY(U,$J,358.3,25569,0)
+ ;;=F52.8^^92^1168^8
+ ;;^UTILITY(U,$J,358.3,25569,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,25204,1,3,0)
- ;;=3^Peliosis Hepatis
- ;;^UTILITY(U,$J,358.3,25204,1,4,0)
- ;;=4^K76.4
- ;;^UTILITY(U,$J,358.3,25204,2)
- ;;=^91041
- ;;^UTILITY(U,$J,358.3,25205,0)
- ;;=K71.50^^107^1214^25
- ;;^UTILITY(U,$J,358.3,25205,1,0)
+ ;;^UTILITY(U,$J,358.3,25569,1,3,0)
+ ;;=3^Sexual Dysfunction,Oth Spec
+ ;;^UTILITY(U,$J,358.3,25569,1,4,0)
+ ;;=4^F52.8
+ ;;^UTILITY(U,$J,358.3,25569,2)
+ ;;=^5003624
+ ;;^UTILITY(U,$J,358.3,25570,0)
+ ;;=F52.9^^92^1168^9
+ ;;^UTILITY(U,$J,358.3,25570,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,25205,1,3,0)
- ;;=3^Toxic Liver Disease w/ Chronic Active Hepatitis w/o Ascites
- ;;^UTILITY(U,$J,358.3,25205,1,4,0)
- ;;=4^K71.50
- ;;^UTILITY(U,$J,358.3,25205,2)
- ;;=^5008799
- ;;^UTILITY(U,$J,358.3,25206,0)
- ;;=K71.51^^107^1214^26
- ;;^UTILITY(U,$J,358.3,25206,1,0)
+ ;;^UTILITY(U,$J,358.3,25570,1,3,0)
+ ;;=3^Sexual Dysfunction,Unspec
+ ;;^UTILITY(U,$J,358.3,25570,1,4,0)
+ ;;=4^F52.9
+ ;;^UTILITY(U,$J,358.3,25570,2)
+ ;;=^5003625
+ ;;^UTILITY(U,$J,358.3,25571,0)
+ ;;=G47.09^^92^1169^14
+ ;;^UTILITY(U,$J,358.3,25571,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,25206,1,3,0)
- ;;=3^Toxic Liver Disease w/ Chronic Active Hepatitis w/ Ascites
- ;;^UTILITY(U,$J,358.3,25206,1,4,0)
- ;;=4^K71.51
- ;;^UTILITY(U,$J,358.3,25206,2)
- ;;=^5008800
- ;;^UTILITY(U,$J,358.3,25207,0)
- ;;=K71.7^^107^1214^29
- ;;^UTILITY(U,$J,358.3,25207,1,0)
+ ;;^UTILITY(U,$J,358.3,25571,1,3,0)
+ ;;=3^Insomnia D/O,Oth Spec
+ ;;^UTILITY(U,$J,358.3,25571,1,4,0)
+ ;;=4^G47.09
+ ;;^UTILITY(U,$J,358.3,25571,2)
+ ;;=^5003970
+ ;;^UTILITY(U,$J,358.3,25572,0)
+ ;;=G47.00^^92^1169^15
+ ;;^UTILITY(U,$J,358.3,25572,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,25207,1,3,0)
- ;;=3^Toxic Liver Disease w/ Fibrosis & Cirrhosis of Liver
- ;;^UTILITY(U,$J,358.3,25207,1,4,0)
- ;;=4^K71.7
- ;;^UTILITY(U,$J,358.3,25207,2)
- ;;=^5008802
- ;;^UTILITY(U,$J,358.3,25208,0)
- ;;=K71.8^^107^1214^33
- ;;^UTILITY(U,$J,358.3,25208,1,0)
+ ;;^UTILITY(U,$J,358.3,25572,1,3,0)
+ ;;=3^Insomnia D/O,Unspec
+ ;;^UTILITY(U,$J,358.3,25572,1,4,0)
+ ;;=4^G47.00
+ ;;^UTILITY(U,$J,358.3,25572,2)
+ ;;=^332924
+ ;;^UTILITY(U,$J,358.3,25573,0)
+ ;;=G47.10^^92^1169^12
+ ;;^UTILITY(U,$J,358.3,25573,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,25208,1,3,0)
- ;;=3^Toxic Liver Disease w/ Oth Disorders of Liver
- ;;^UTILITY(U,$J,358.3,25208,1,4,0)
- ;;=4^K71.8
- ;;^UTILITY(U,$J,358.3,25208,2)
- ;;=^5008803
- ;;^UTILITY(U,$J,358.3,25209,0)
- ;;=K71.9^^107^1214^34
- ;;^UTILITY(U,$J,358.3,25209,1,0)
+ ;;^UTILITY(U,$J,358.3,25573,1,3,0)
+ ;;=3^Hypersomnolence D/O,Unspec
+ ;;^UTILITY(U,$J,358.3,25573,1,4,0)
+ ;;=4^G47.10
+ ;;^UTILITY(U,$J,358.3,25573,2)
+ ;;=^332926
+ ;;^UTILITY(U,$J,358.3,25574,0)
+ ;;=G47.33^^92^1169^22
+ ;;^UTILITY(U,$J,358.3,25574,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,25209,1,3,0)
- ;;=3^Toxic Liver Disease,Unspec
- ;;^UTILITY(U,$J,358.3,25209,1,4,0)
- ;;=4^K71.9
- ;;^UTILITY(U,$J,358.3,25209,2)
- ;;=^5008804
- ;;^UTILITY(U,$J,358.3,25210,0)
- ;;=K75.2^^107^1214^20
- ;;^UTILITY(U,$J,358.3,25210,1,0)
+ ;;^UTILITY(U,$J,358.3,25574,1,3,0)
+ ;;=3^Obstructive Sleep Apnea Hypopnea
+ ;;^UTILITY(U,$J,358.3,25574,1,4,0)
+ ;;=4^G47.33
+ ;;^UTILITY(U,$J,358.3,25574,2)
+ ;;=^332763
+ ;;^UTILITY(U,$J,358.3,25575,0)
+ ;;=G47.31^^92^1169^2
+ ;;^UTILITY(U,$J,358.3,25575,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,25210,1,3,0)
- ;;=3^Nonspecific Reactive Hepatitis
- ;;^UTILITY(U,$J,358.3,25210,1,4,0)
- ;;=4^K75.2
- ;;^UTILITY(U,$J,358.3,25210,2)
- ;;=^5008826
- ;;^UTILITY(U,$J,358.3,25211,0)
- ;;=K75.3^^107^1214^13
- ;;^UTILITY(U,$J,358.3,25211,1,0)
+ ;;^UTILITY(U,$J,358.3,25575,1,3,0)
+ ;;=3^Central Sleep Apnea,Idiopathic
+ ;;^UTILITY(U,$J,358.3,25575,1,4,0)
+ ;;=4^G47.31
+ ;;^UTILITY(U,$J,358.3,25575,2)
+ ;;=^332761
+ ;;^UTILITY(U,$J,358.3,25576,0)
+ ;;=G47.21^^92^1169^5
+ ;;^UTILITY(U,$J,358.3,25576,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,25211,1,3,0)
- ;;=3^Granulomatous Hepatitis NEC
- ;;^UTILITY(U,$J,358.3,25211,1,4,0)
- ;;=4^K75.3
- ;;^UTILITY(U,$J,358.3,25211,2)
- ;;=^5008827
- ;;^UTILITY(U,$J,358.3,25212,0)
- ;;=K76.6^^107^1214^22
- ;;^UTILITY(U,$J,358.3,25212,1,0)
+ ;;^UTILITY(U,$J,358.3,25576,1,3,0)
+ ;;=3^Circadian Rhythm Sleep-Wake D/O;Delayed Sleep Phase Type
+ ;;^UTILITY(U,$J,358.3,25576,1,4,0)
+ ;;=4^G47.21
+ ;;^UTILITY(U,$J,358.3,25576,2)
+ ;;=^332769
+ ;;^UTILITY(U,$J,358.3,25577,0)
+ ;;=G47.22^^92^1169^4
+ ;;^UTILITY(U,$J,358.3,25577,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,25212,1,3,0)
- ;;=3^Portal Hypertension
- ;;^UTILITY(U,$J,358.3,25212,1,4,0)
- ;;=4^K76.6
- ;;^UTILITY(U,$J,358.3,25212,2)
- ;;=^5008834
- ;;^UTILITY(U,$J,358.3,25213,0)
- ;;=F20.3^^107^1215^31
- ;;^UTILITY(U,$J,358.3,25213,1,0)
+ ;;^UTILITY(U,$J,358.3,25577,1,3,0)
+ ;;=3^Circadian Rhythm Sleep-Wake D/O;Advanced Sleep Phase Type
+ ;;^UTILITY(U,$J,358.3,25577,1,4,0)
+ ;;=4^G47.22
+ ;;^UTILITY(U,$J,358.3,25577,2)
+ ;;=^332770
+ ;;^UTILITY(U,$J,358.3,25578,0)
+ ;;=G47.23^^92^1169^6
+ ;;^UTILITY(U,$J,358.3,25578,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,25213,1,3,0)
- ;;=3^Undifferentiated/Atypical Schizophrenia
- ;;^UTILITY(U,$J,358.3,25213,1,4,0)
- ;;=4^F20.3
- ;;^UTILITY(U,$J,358.3,25213,2)
- ;;=^5003472
- ;;^UTILITY(U,$J,358.3,25214,0)
- ;;=F20.9^^107^1215^27
- ;;^UTILITY(U,$J,358.3,25214,1,0)
+ ;;^UTILITY(U,$J,358.3,25578,1,3,0)
+ ;;=3^Circadian Rhythm Sleep-Wake D/O;Irregular Sleep Wake Type
+ ;;^UTILITY(U,$J,358.3,25578,1,4,0)
+ ;;=4^G47.23
+ ;;^UTILITY(U,$J,358.3,25578,2)
+ ;;=^5003975
+ ;;^UTILITY(U,$J,358.3,25579,0)
+ ;;=G47.24^^92^1169^7
+ ;;^UTILITY(U,$J,358.3,25579,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,25214,1,3,0)
- ;;=3^Schizophrenia,Unspec
- ;;^UTILITY(U,$J,358.3,25214,1,4,0)
- ;;=4^F20.9
- ;;^UTILITY(U,$J,358.3,25214,2)
- ;;=^5003476
- ;;^UTILITY(U,$J,358.3,25215,0)
- ;;=F31.9^^107^1215^6
- ;;^UTILITY(U,$J,358.3,25215,1,0)
+ ;;^UTILITY(U,$J,358.3,25579,1,3,0)
+ ;;=3^Circadian Rhythm Sleep-Wake D/O;Non-24 Hr Sleep Wake Type
+ ;;^UTILITY(U,$J,358.3,25579,1,4,0)
+ ;;=4^G47.24
+ ;;^UTILITY(U,$J,358.3,25579,2)
+ ;;=^5003976
+ ;;^UTILITY(U,$J,358.3,25580,0)
+ ;;=G47.26^^92^1169^8
+ ;;^UTILITY(U,$J,358.3,25580,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,25215,1,3,0)
- ;;=3^Bipolar Disorder,Unspec
+ ;;^UTILITY(U,$J,358.3,25580,1,3,0)
+ ;;=3^Circadian Rhythm Sleep-Wake D/O;Shift Work Type
+ ;;^UTILITY(U,$J,358.3,25580,1,4,0)
+ ;;=4^G47.26
+ ;;^UTILITY(U,$J,358.3,25580,2)
+ ;;=^332774

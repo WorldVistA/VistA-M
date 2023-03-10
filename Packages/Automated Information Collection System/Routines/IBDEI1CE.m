@@ -1,126 +1,128 @@
-IBDEI1CE ; ; 04-FEB-2020
- ;;3.0;IB ENCOUNTER FORM IMP/EXP;;FEB 04, 2020
+IBDEI1CE ; ; 01-FEB-2022
+ ;;3.0;IB ENCOUNTER FORM IMP/EXP;;FEB 01, 2022
  Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,999) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
- ;;^UTILITY(U,$J,358.3,21441,1,4,0)
- ;;=4^Z94.82
- ;;^UTILITY(U,$J,358.3,21441,2)
- ;;=^5063663
- ;;^UTILITY(U,$J,358.3,21442,0)
- ;;=Z94.9^^95^1072^13
- ;;^UTILITY(U,$J,358.3,21442,1,0)
+ ;;^UTILITY(U,$J,358.3,21696,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,21442,1,3,0)
- ;;=3^Transplanted Organ/Tissue Status,Unspec
- ;;^UTILITY(U,$J,358.3,21442,1,4,0)
- ;;=4^Z94.9
- ;;^UTILITY(U,$J,358.3,21442,2)
- ;;=^5063667
- ;;^UTILITY(U,$J,358.3,21443,0)
- ;;=Z92.3^^95^1073^9
- ;;^UTILITY(U,$J,358.3,21443,1,0)
+ ;;^UTILITY(U,$J,358.3,21696,1,3,0)
+ ;;=3^Rheumatoid Nodule Left Shoulder
+ ;;^UTILITY(U,$J,358.3,21696,1,4,0)
+ ;;=4^M06.312
+ ;;^UTILITY(U,$J,358.3,21696,2)
+ ;;=^5010098
+ ;;^UTILITY(U,$J,358.3,21697,0)
+ ;;=M06.332^^70^922^132
+ ;;^UTILITY(U,$J,358.3,21697,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,21443,1,3,0)
- ;;=3^Personal Hx of Irradiation
- ;;^UTILITY(U,$J,358.3,21443,1,4,0)
- ;;=4^Z92.3
- ;;^UTILITY(U,$J,358.3,21443,2)
- ;;=^5063637
- ;;^UTILITY(U,$J,358.3,21444,0)
- ;;=Z91.410^^95^1073^7
- ;;^UTILITY(U,$J,358.3,21444,1,0)
+ ;;^UTILITY(U,$J,358.3,21697,1,3,0)
+ ;;=3^Rheumatoid Nodule Left Wrist
+ ;;^UTILITY(U,$J,358.3,21697,1,4,0)
+ ;;=4^M06.332
+ ;;^UTILITY(U,$J,358.3,21697,2)
+ ;;=^5010104
+ ;;^UTILITY(U,$J,358.3,21698,0)
+ ;;=M06.39^^70^922^133
+ ;;^UTILITY(U,$J,358.3,21698,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,21444,1,3,0)
- ;;=3^Personal Hx of Adult Physical/Sexual Abuse
- ;;^UTILITY(U,$J,358.3,21444,1,4,0)
- ;;=4^Z91.410
- ;;^UTILITY(U,$J,358.3,21444,2)
- ;;=^5063619
- ;;^UTILITY(U,$J,358.3,21445,0)
- ;;=Z91.411^^95^1073^8
- ;;^UTILITY(U,$J,358.3,21445,1,0)
+ ;;^UTILITY(U,$J,358.3,21698,1,3,0)
+ ;;=3^Rheumatoid Nodule Mult Sites
+ ;;^UTILITY(U,$J,358.3,21698,1,4,0)
+ ;;=4^M06.39
+ ;;^UTILITY(U,$J,358.3,21698,2)
+ ;;=^5010119
+ ;;^UTILITY(U,$J,358.3,21699,0)
+ ;;=M06.371^^70^922^134
+ ;;^UTILITY(U,$J,358.3,21699,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,21445,1,3,0)
- ;;=3^Personal Hx of Adult Psychological Abuse
- ;;^UTILITY(U,$J,358.3,21445,1,4,0)
- ;;=4^Z91.411
- ;;^UTILITY(U,$J,358.3,21445,2)
- ;;=^5063620
- ;;^UTILITY(U,$J,358.3,21446,0)
- ;;=Z91.49^^95^1073^11
- ;;^UTILITY(U,$J,358.3,21446,1,0)
+ ;;^UTILITY(U,$J,358.3,21699,1,3,0)
+ ;;=3^Rheumatoid Nodule Right Ankle/Foot
+ ;;^UTILITY(U,$J,358.3,21699,1,4,0)
+ ;;=4^M06.371
+ ;;^UTILITY(U,$J,358.3,21699,2)
+ ;;=^5010115
+ ;;^UTILITY(U,$J,358.3,21700,0)
+ ;;=M06.321^^70^922^135
+ ;;^UTILITY(U,$J,358.3,21700,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,21446,1,3,0)
- ;;=3^Personal Hx of Psychological Trauma NEC
- ;;^UTILITY(U,$J,358.3,21446,1,4,0)
- ;;=4^Z91.49
- ;;^UTILITY(U,$J,358.3,21446,2)
- ;;=^5063623
- ;;^UTILITY(U,$J,358.3,21447,0)
- ;;=Z91.19^^95^1073^5
- ;;^UTILITY(U,$J,358.3,21447,1,0)
+ ;;^UTILITY(U,$J,358.3,21700,1,3,0)
+ ;;=3^Rheumatoid Nodule Right Elbow
+ ;;^UTILITY(U,$J,358.3,21700,1,4,0)
+ ;;=4^M06.321
+ ;;^UTILITY(U,$J,358.3,21700,2)
+ ;;=^5010100
+ ;;^UTILITY(U,$J,358.3,21701,0)
+ ;;=M06.341^^70^922^136
+ ;;^UTILITY(U,$J,358.3,21701,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,21447,1,3,0)
- ;;=3^Noncompliance w/ Medical Treatment/Regimen
- ;;^UTILITY(U,$J,358.3,21447,1,4,0)
- ;;=4^Z91.19
- ;;^UTILITY(U,$J,358.3,21447,2)
- ;;=^5063618
- ;;^UTILITY(U,$J,358.3,21448,0)
- ;;=Z87.891^^95^1073^10
- ;;^UTILITY(U,$J,358.3,21448,1,0)
+ ;;^UTILITY(U,$J,358.3,21701,1,3,0)
+ ;;=3^Rheumatoid Nodule Right Hand
+ ;;^UTILITY(U,$J,358.3,21701,1,4,0)
+ ;;=4^M06.341
+ ;;^UTILITY(U,$J,358.3,21701,2)
+ ;;=^5010106
+ ;;^UTILITY(U,$J,358.3,21702,0)
+ ;;=M06.351^^70^922^137
+ ;;^UTILITY(U,$J,358.3,21702,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,21448,1,3,0)
- ;;=3^Personal Hx of Nicotine Dependence
- ;;^UTILITY(U,$J,358.3,21448,1,4,0)
- ;;=4^Z87.891
- ;;^UTILITY(U,$J,358.3,21448,2)
- ;;=^5063518
- ;;^UTILITY(U,$J,358.3,21449,0)
- ;;=Z77.090^^95^1073^1
- ;;^UTILITY(U,$J,358.3,21449,1,0)
+ ;;^UTILITY(U,$J,358.3,21702,1,3,0)
+ ;;=3^Rheumatoid Nodule Right Hip
+ ;;^UTILITY(U,$J,358.3,21702,1,4,0)
+ ;;=4^M06.351
+ ;;^UTILITY(U,$J,358.3,21702,2)
+ ;;=^5010109
+ ;;^UTILITY(U,$J,358.3,21703,0)
+ ;;=M06.361^^70^922^138
+ ;;^UTILITY(U,$J,358.3,21703,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,21449,1,3,0)
- ;;=3^Asbestos Contact/Exposure
- ;;^UTILITY(U,$J,358.3,21449,1,4,0)
- ;;=4^Z77.090
- ;;^UTILITY(U,$J,358.3,21449,2)
- ;;=^5063312
- ;;^UTILITY(U,$J,358.3,21450,0)
- ;;=Z91.81^^95^1073^3
- ;;^UTILITY(U,$J,358.3,21450,1,0)
+ ;;^UTILITY(U,$J,358.3,21703,1,3,0)
+ ;;=3^Rheumatoid Nodule Right Knee
+ ;;^UTILITY(U,$J,358.3,21703,1,4,0)
+ ;;=4^M06.361
+ ;;^UTILITY(U,$J,358.3,21703,2)
+ ;;=^5010112
+ ;;^UTILITY(U,$J,358.3,21704,0)
+ ;;=M06.311^^70^922^139
+ ;;^UTILITY(U,$J,358.3,21704,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,21450,1,3,0)
- ;;=3^History of Falling
- ;;^UTILITY(U,$J,358.3,21450,1,4,0)
- ;;=4^Z91.81
- ;;^UTILITY(U,$J,358.3,21450,2)
- ;;=^5063625
- ;;^UTILITY(U,$J,358.3,21451,0)
- ;;=Z57.8^^95^1073^6
- ;;^UTILITY(U,$J,358.3,21451,1,0)
+ ;;^UTILITY(U,$J,358.3,21704,1,3,0)
+ ;;=3^Rheumatoid Nodule Right Shoulder
+ ;;^UTILITY(U,$J,358.3,21704,1,4,0)
+ ;;=4^M06.311
+ ;;^UTILITY(U,$J,358.3,21704,2)
+ ;;=^5010097
+ ;;^UTILITY(U,$J,358.3,21705,0)
+ ;;=M06.331^^70^922^140
+ ;;^UTILITY(U,$J,358.3,21705,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,21451,1,3,0)
- ;;=3^Occupational Risk Factor Exposure
- ;;^UTILITY(U,$J,358.3,21451,1,4,0)
- ;;=4^Z57.8
- ;;^UTILITY(U,$J,358.3,21451,2)
- ;;=^5063127
- ;;^UTILITY(U,$J,358.3,21452,0)
- ;;=Z77.011^^95^1073^4
- ;;^UTILITY(U,$J,358.3,21452,1,0)
+ ;;^UTILITY(U,$J,358.3,21705,1,3,0)
+ ;;=3^Rheumatoid Nodule Right Wrist
+ ;;^UTILITY(U,$J,358.3,21705,1,4,0)
+ ;;=4^M06.331
+ ;;^UTILITY(U,$J,358.3,21705,2)
+ ;;=^5010103
+ ;;^UTILITY(U,$J,358.3,21706,0)
+ ;;=M06.30^^70^922^141
+ ;;^UTILITY(U,$J,358.3,21706,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,21452,1,3,0)
- ;;=3^Lead Contact/Exposure
- ;;^UTILITY(U,$J,358.3,21452,1,4,0)
- ;;=4^Z77.011
- ;;^UTILITY(U,$J,358.3,21452,2)
- ;;=^5063306
- ;;^UTILITY(U,$J,358.3,21453,0)
- ;;=Z77.9^^95^1073^2
- ;;^UTILITY(U,$J,358.3,21453,1,0)
+ ;;^UTILITY(U,$J,358.3,21706,1,3,0)
+ ;;=3^Rheumatoid Nodule Unspec Site
+ ;;^UTILITY(U,$J,358.3,21706,1,4,0)
+ ;;=4^M06.30
+ ;;^UTILITY(U,$J,358.3,21706,2)
+ ;;=^5010096
+ ;;^UTILITY(U,$J,358.3,21707,0)
+ ;;=M06.38^^70^922^142
+ ;;^UTILITY(U,$J,358.3,21707,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,21453,1,3,0)
- ;;=3^Hazardous to Health Contact/Exposures
- ;;^UTILITY(U,$J,358.3,21453,1,4,0)
- ;;=4^Z77.9
+ ;;^UTILITY(U,$J,358.3,21707,1,3,0)
+ ;;=3^Rheumatoid Nodule Vertebrae
+ ;;^UTILITY(U,$J,358.3,21707,1,4,0)
+ ;;=4^M06.38
+ ;;^UTILITY(U,$J,358.3,21707,2)
+ ;;=^5010118
+ ;;^UTILITY(U,$J,358.3,21708,0)
+ ;;=M05.572^^70^922^77
+ ;;^UTILITY(U,$J,358.3,21708,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,21708,1,3,0)
+ ;;=3^Rheum Polyneuropathy w/ Rheum Arth Left Ankle/Foot

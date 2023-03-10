@@ -1,6 +1,7 @@
-RAORDS ;HISC/CAH,DAD AISC/RMO-Select Patient's Requests ;6/7/00  16:34
- ;;5.0;Radiology/Nuclear Medicine;**15,21,132**;Mar 16, 1998;Build 12
+RAORDS ;HISC/CAH,DAD AISC/RMO-Select Patient's Requests ; Sep 25, 2020@09:04:18
+ ;;5.0;Radiology/Nuclear Medicine;**15,21,132,174**;Mar 16, 1998;Build 2
  ; Supported IA #1120 reference to EN6^GMRVUTL  5-132
+ ;p174 changed all references to *7 to $C(7)
  ;
  Q:'$D(RADFN)  D HOME^%ZIS K ^TMP($J,"RAORDS"),RAOUT,RAORDS
  K ^TMP($J,"PRO-ORD"),^TMP($J,"PRO-REG")
@@ -43,9 +44,20 @@ CHKORD F RAOIFN=0:0 S RAOIFN=$O(^TMP($J,"RAORDS",RAOURG,RAODTI,RAOIFN)) Q:'RAOIF
 PRTORD D HD:'(RASEQ#8) Q:$D(RAOSEL)  S RASEQ=RASEQ+1,RAOIFNS(RASEQ)=RAOIFN,RAPRC=$S($D(^RAMIS(71,+$P(RAORD0,"^",2),0)):$P(^(0),"^"),1:"Unknown"),RAODTE=9999999.9999-RAODTI
  S RAPHY=$S($D(^VA(200,+$P(RAORD0,"^",14),0)):$P(^(0),"^"),1:"Unknown"),RALOC=$S($D(^SC(+$P(RAORD0,"^",22),0)):$P(^(0),"^"),1:"Unknown")
  N RA6 S RA6=$S($P($G(^RAMIS(71,+$P(RAORD0,U,2),0)),U,6)="P"&($P($G(^(0)),U,18)="Y"):"+",1:"") ;parent proc and single rpt
- W !,$J(RASEQ,2),?4,$P(RAOSTSYM,"^",+$P(RAORD0,"^",5)),?8,$E($P($P(^DD(75.1,6,0),RAOURG_":",2),";"),1,7),?16,RA6
- W ?17,$E(RAPRC,1,25),?44,$E(RAODTE,4,5)_"/"_$E(RAODTE,6,7)_"/"_(1700+$E(RAODTE,1,3)),?56,$E(RAPHY,1,11),?69,$E(RALOC,1,11)
- W !?17,"(",$S($P(RAORD0,U,20)="":"UNKNOWN",1:$E($P($G(^SC(+$G(^RA(79.1,+$P(RAORD0,U,20),0)),0)),U),1,23)),")"
+ ;//p174 begin //
+ I $G(RAFLGA)'=2 D  ; ;protection if called from RAORD2 or RAREG1 & covered if RAFLGA = 1
+ .W !,$J(RASEQ,2),?4,$P(RAOSTSYM,"^",+$P(RAORD0,"^",5)),?8,$E($P($P(^DD(75.1,6,0),RAOURG_":",2),";"),1,7),?16,RA6
+ .W ?17,$E(RAPRC,1,25),?44,$E(RAODTE,4,5)_"/"_$E(RAODTE,6,7)_"/"_(1700+$E(RAODTE,1,3)),?56,$E(RAPHY,1,11),?69,$E(RALOC,1,11)
+ .W !?17,"(",$S($P(RAORD0,U,20)="":"UNKNOWN",1:$E($P($G(^SC(+$G(^RA(79.1,+$P(RAORD0,U,20),0)),0)),U),1,23)),")"
+ .Q
+ E  D  ;schedule a request display P174
+ .W !,$J(RASEQ,2),?4,$P(RAOSTSYM,"^",+$P(RAORD0,"^",5)),?8,$E($P($P(^DD(75.1,6,0),RAOURG_":",2),";"),1,7),?16,RA6
+ .W ?17,$E(RAPRC,1,20),?40,$E(RAODTE,4,5)_"/"_$E(RAODTE,6,7)_"/"_(1700+$E(RAODTE,1,3)),?52,$E($TR($$FMTE^XLFDT($P(RAORD0,U,23),"5F")," ",0),1,10)
+ .W ?65,$E(RAPHY,1,11)
+ .W !?17,"(",$S($P(RAORD0,U,20)="":"UNKNOWN",1:$E($P($G(^SC(+$G(^RA(79.1,+$P(RAORD0,U,20),0)),0)),U),1,23)),")"
+ .W ?65,"("_$E(RALOC,1,11)_")"
+ .Q
+ ;//p174 end //
  D ASKSEL:RACNT=RASEQ
  Q
  ;
@@ -62,7 +74,15 @@ HD D ASKSEL:RASEQ Q:$D(RAOSEL)  W @IOF,!?16,"**** Requested Exams for ",$E(RANME
  .. Q
  . Q
  ;RTW Add height and weight *** END ***
- W !?4,"St",?8,"Urgency",?17,"Procedure / (Img. Loc.)",?44,"Desired",?56,"Requester",?69,"Req'g Loc",!?4,"--",?8,"-------",?17,"-------------------------",?44,"----------",?56,"-----------",?69,"-----------"
+ ;//p174 begin //
+ I $G(RAFLGA)'=2 D  ;protection if called from RAORD2 or RAREG1 & covered if RAFLGA = 1
+ .W !?4,"St",?8,"Urgency",?17,"Procedure / (Img. Loc.)",?44,"Desired",?56,"Requester",?69,"Req'g Loc",!?4,"--",?8,"-------",?17,"-------------------------",?44,"----------",?56,"-----------",?69,"-----------"
+ .Q
+ E  D
+ .W !?4,"St",?8,"Urgency",?17,"Procedure / (I-Loc.)",?40,"Desired",?52,"Scheduled",?65,"Req Phy / (Loc)"
+ .W !?4,"--",?8,"-------",?17,"--------------------",?40,"----------",?52,"----------",?65,"---------------"
+ .Q
+ ;//p174 end //
  Q
  ;
 ASKSEL K RADUP,RAORDS S (RAERR,RAI,RANUM)=0
@@ -76,13 +96,13 @@ PARSE I $$UP^XLFSTR(RAX)?1"P".N D DPAR Q  ; detail-to-parent
  K RADASH G ASKSEL:RAERR,PARSE
  ;
 CHKSEL I $D(RADASH),+$P(RAPAR,"-",2)<+$P(RAPAR,"-") S RAERR=1 Q
- I RASEL'?.N W !?3,*7,"Item ",RASEL," is not a valid selection." S RAERR=1 Q
- I '$D(RAOIFNS(RASEL)) W !?3,*7,"Item ",RASEL," is not a valid selection." S RAERR=1 Q
- I $D(RADUP(RASEL)) W !?3,*7,"Item ",RASEL," was already selected." S RAERR=1 Q
- I $D(^RAO(75.1,+(RAOIFNS(RASEL)),0)),RAOVSTS'[$P(^(0),"^",5) W !?3,*7,"Item ",RASEL," does not have a valid status for this option.",!?3,"Valid statuses are ",RAOSTSNM,"." S RAERR=1 Q
+ I RASEL'?.N W !?3,$C(7),"Item ",RASEL," is not a valid selection." S RAERR=1 Q
+ I '$D(RAOIFNS(RASEL)) W !?3,$C(7),"Item ",RASEL," is not a valid selection." S RAERR=1 Q
+ I $D(RADUP(RASEL)) W !?3,$C(7),"Item ",RASEL," was already selected." S RAERR=1 Q
+ I $D(^RAO(75.1,+(RAOIFNS(RASEL)),0)),RAOVSTS'[$P(^(0),"^",5) W !?3,$C(7),"Item ",RASEL," does not have a valid status for this option.",!?3,"Valid statuses are ",RAOSTSNM,"." S RAERR=1 Q
  I RAPARENT,$P($G(^RAMIS(71,+$P($G(^RAO(75.1,+RAOIFNS(RASEL),0)),U,2),0)),U,6)="P",('$D(RAOPT("ORDERPRINTPAT"))) D  S RAERR=1,RAPARENT=0 Q  ; Two parents chosen
  . ; check NOT valid during 'Print Selected Requests by Patient' option!
- . W !!?3,*7,"Only one parent type procedure may be chosen at a time."
+ . W !!?3,$C(7),"Only one parent type procedure may be chosen at a time."
  . W !?3,"(You have already chosen ",$P($G(^RAMIS(71,RAPARENT,0)),U),".)"
  . Q
  S RANUM=RANUM+1,RADUP(RASEL)="",RAORDS(RANUM)=RAOIFNS(RASEL),RAOSEL=RANUM
@@ -101,6 +121,8 @@ DPAR ; convert detail proc to parent
  ; if order's proc is a parent, then --
  ;   1-kill raords to skip exam^rareg1
  ;   2-don't kill raosel so chkord loop would stop
- I RAPARENT W !!?3,*7,"Only Detailed, Series, and Broad procedures can be selected !",! K RAORDS Q
+ I RAPARENT W !!?3,$C(7),"Only Detailed, Series, and Broad procedures can be selected !",! K RAORDS Q
  Q:RAX="P"  ;entry is only a single P, so don't flag
  S RADPARFL=1 ; flag
+ Q
+ ;

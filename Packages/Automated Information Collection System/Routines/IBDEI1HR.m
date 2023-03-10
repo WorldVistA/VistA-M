@@ -1,122 +1,122 @@
-IBDEI1HR ; ; 04-FEB-2020
- ;;3.0;IB ENCOUNTER FORM IMP/EXP;;FEB 04, 2020
+IBDEI1HR ; ; 01-FEB-2022
+ ;;3.0;IB ENCOUNTER FORM IMP/EXP;;FEB 01, 2022
  Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,999) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
- ;;^UTILITY(U,$J,358.3,23851,1,3,0)
- ;;=3^Est Pt-Detailed Home Visit
- ;;^UTILITY(U,$J,358.3,23852,0)
- ;;=99350^^106^1193^4^^^^1
- ;;^UTILITY(U,$J,358.3,23852,1,0)
- ;;=^358.31IA^3^2
- ;;^UTILITY(U,$J,358.3,23852,1,2,0)
- ;;=2^99350
- ;;^UTILITY(U,$J,358.3,23852,1,3,0)
- ;;=3^Est Pt-Comp Mod/High Home Visit
- ;;^UTILITY(U,$J,358.3,23853,0)
- ;;=99341^^106^1193^5^^^^1
- ;;^UTILITY(U,$J,358.3,23853,1,0)
- ;;=^358.31IA^3^2
- ;;^UTILITY(U,$J,358.3,23853,1,2,0)
- ;;=2^99341
- ;;^UTILITY(U,$J,358.3,23853,1,3,0)
- ;;=3^New Pt-Prob Focus Home Visit
- ;;^UTILITY(U,$J,358.3,23854,0)
- ;;=99342^^106^1193^6^^^^1
- ;;^UTILITY(U,$J,358.3,23854,1,0)
- ;;=^358.31IA^3^2
- ;;^UTILITY(U,$J,358.3,23854,1,2,0)
- ;;=2^99342
- ;;^UTILITY(U,$J,358.3,23854,1,3,0)
- ;;=3^New Pt-Exp Prob Focus Home Visit
- ;;^UTILITY(U,$J,358.3,23855,0)
- ;;=99343^^106^1193^7^^^^1
- ;;^UTILITY(U,$J,358.3,23855,1,0)
- ;;=^358.31IA^3^2
- ;;^UTILITY(U,$J,358.3,23855,1,2,0)
- ;;=2^99343
- ;;^UTILITY(U,$J,358.3,23855,1,3,0)
- ;;=3^New Pt-Detailed Home Visit
- ;;^UTILITY(U,$J,358.3,23856,0)
- ;;=99344^^106^1193^8^^^^1
- ;;^UTILITY(U,$J,358.3,23856,1,0)
- ;;=^358.31IA^3^2
- ;;^UTILITY(U,$J,358.3,23856,1,2,0)
- ;;=2^99344
- ;;^UTILITY(U,$J,358.3,23856,1,3,0)
- ;;=3^New Pt-Comp Moderate Home Visit
- ;;^UTILITY(U,$J,358.3,23857,0)
- ;;=99345^^106^1193^9^^^^1
- ;;^UTILITY(U,$J,358.3,23857,1,0)
- ;;=^358.31IA^3^2
- ;;^UTILITY(U,$J,358.3,23857,1,2,0)
- ;;=2^99345
- ;;^UTILITY(U,$J,358.3,23857,1,3,0)
- ;;=3^New Pt-Comp High Home Visit
- ;;^UTILITY(U,$J,358.3,23858,0)
- ;;=90471^^106^1194^1^^^^1
- ;;^UTILITY(U,$J,358.3,23858,1,0)
- ;;=^358.31IA^3^2
- ;;^UTILITY(U,$J,358.3,23858,1,2,0)
- ;;=2^90471
- ;;^UTILITY(U,$J,358.3,23858,1,3,0)
- ;;=3^Immunization Admin,1st Vaccine
- ;;^UTILITY(U,$J,358.3,23859,0)
- ;;=90472^^106^1194^2^^^^1
- ;;^UTILITY(U,$J,358.3,23859,1,0)
- ;;=^358.31IA^3^2
- ;;^UTILITY(U,$J,358.3,23859,1,2,0)
- ;;=2^90472
- ;;^UTILITY(U,$J,358.3,23859,1,3,0)
- ;;=3^Immunization Admin,Ea Addl
- ;;^UTILITY(U,$J,358.3,23860,0)
- ;;=90715^^106^1195^6^^^^1
- ;;^UTILITY(U,$J,358.3,23860,1,0)
- ;;=^358.31IA^3^2
- ;;^UTILITY(U,$J,358.3,23860,1,2,0)
- ;;=2^90715
- ;;^UTILITY(U,$J,358.3,23860,1,3,0)
- ;;=3^TdaP Vaccine IM
- ;;^UTILITY(U,$J,358.3,23861,0)
- ;;=90732^^106^1195^4^^^^1
- ;;^UTILITY(U,$J,358.3,23861,1,0)
- ;;=^358.31IA^3^2
- ;;^UTILITY(U,$J,358.3,23861,1,2,0)
- ;;=2^90732
- ;;^UTILITY(U,$J,358.3,23861,1,3,0)
- ;;=3^Pneumovax 23 (Pneumococcal Vaccine)
- ;;^UTILITY(U,$J,358.3,23862,0)
- ;;=90736^^106^1195^7^^^^1
- ;;^UTILITY(U,$J,358.3,23862,1,0)
- ;;=^358.31IA^3^2
- ;;^UTILITY(U,$J,358.3,23862,1,2,0)
- ;;=2^90736
- ;;^UTILITY(U,$J,358.3,23862,1,3,0)
- ;;=3^Zoster (Shingles) Vaccine
- ;;^UTILITY(U,$J,358.3,23863,0)
- ;;=90697^^106^1195^1^^^^1
- ;;^UTILITY(U,$J,358.3,23863,1,0)
- ;;=^358.31IA^3^2
- ;;^UTILITY(U,$J,358.3,23863,1,2,0)
- ;;=2^90697
- ;;^UTILITY(U,$J,358.3,23863,1,3,0)
- ;;=3^DTAP-IPV-Hib-HepB IM
- ;;^UTILITY(U,$J,358.3,23864,0)
- ;;=90670^^106^1195^5^^^^1
- ;;^UTILITY(U,$J,358.3,23864,1,0)
- ;;=^358.31IA^3^2
- ;;^UTILITY(U,$J,358.3,23864,1,2,0)
- ;;=2^90670
- ;;^UTILITY(U,$J,358.3,23864,1,3,0)
- ;;=3^Prevnar 13 (Pneumococcal Vaccine)
- ;;^UTILITY(U,$J,358.3,23865,0)
- ;;=90686^^106^1195^3^^^^1
- ;;^UTILITY(U,$J,358.3,23865,1,0)
- ;;=^358.31IA^3^2
- ;;^UTILITY(U,$J,358.3,23865,1,2,0)
- ;;=2^90686
- ;;^UTILITY(U,$J,358.3,23865,1,3,0)
- ;;=3^Flu Vaccine Single Dose Syringe (Afluria)
- ;;^UTILITY(U,$J,358.3,23866,0)
- ;;=90653^^106^1195^2^^^^1
- ;;^UTILITY(U,$J,358.3,23866,1,0)
- ;;=^358.31IA^3^2
+ ;;^UTILITY(U,$J,358.3,24124,1,4,0)
+ ;;=4^T74.51XA
+ ;;^UTILITY(U,$J,358.3,24124,2)
+ ;;=^5157560
+ ;;^UTILITY(U,$J,358.3,24125,0)
+ ;;=T74.51XD^^82^1043^8
+ ;;^UTILITY(U,$J,358.3,24125,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,24125,1,3,0)
+ ;;=3^Adult Forced Sex Exploit,Confirmed,Subs
+ ;;^UTILITY(U,$J,358.3,24125,1,4,0)
+ ;;=4^T74.51XD
+ ;;^UTILITY(U,$J,358.3,24125,2)
+ ;;=^5157561
+ ;;^UTILITY(U,$J,358.3,24126,0)
+ ;;=T74.51XS^^82^1043^9
+ ;;^UTILITY(U,$J,358.3,24126,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,24126,1,3,0)
+ ;;=3^Adult Forced Sex Exploit,Confirmed,Sequela
+ ;;^UTILITY(U,$J,358.3,24126,1,4,0)
+ ;;=4^T74.51XS
+ ;;^UTILITY(U,$J,358.3,24126,2)
+ ;;=^5157562
+ ;;^UTILITY(U,$J,358.3,24127,0)
+ ;;=T74.61XA^^82^1043^1
+ ;;^UTILITY(U,$J,358.3,24127,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,24127,1,3,0)
+ ;;=3^Adult Forced Labor Exploit,Confirmed,Init
+ ;;^UTILITY(U,$J,358.3,24127,1,4,0)
+ ;;=4^T74.61XA
+ ;;^UTILITY(U,$J,358.3,24127,2)
+ ;;=^5157566
+ ;;^UTILITY(U,$J,358.3,24128,0)
+ ;;=T74.61XD^^82^1043^2
+ ;;^UTILITY(U,$J,358.3,24128,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,24128,1,3,0)
+ ;;=3^Adult Forced Labor Exploit,Confirmed,Subs
+ ;;^UTILITY(U,$J,358.3,24128,1,4,0)
+ ;;=4^T74.61XD
+ ;;^UTILITY(U,$J,358.3,24128,2)
+ ;;=^5157567
+ ;;^UTILITY(U,$J,358.3,24129,0)
+ ;;=T74.61XS^^82^1043^3
+ ;;^UTILITY(U,$J,358.3,24129,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,24129,1,3,0)
+ ;;=3^Adult Forced Labor Exploit,Confirmed,Sequela
+ ;;^UTILITY(U,$J,358.3,24129,1,4,0)
+ ;;=4^T74.61XS
+ ;;^UTILITY(U,$J,358.3,24129,2)
+ ;;=^5157568
+ ;;^UTILITY(U,$J,358.3,24130,0)
+ ;;=T76.51XA^^82^1043^10
+ ;;^UTILITY(U,$J,358.3,24130,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,24130,1,3,0)
+ ;;=3^Adult Forced Sex Exploit,Suspected,Init
+ ;;^UTILITY(U,$J,358.3,24130,1,4,0)
+ ;;=4^T76.51XA
+ ;;^UTILITY(U,$J,358.3,24130,2)
+ ;;=^5157572
+ ;;^UTILITY(U,$J,358.3,24131,0)
+ ;;=T76.51XD^^82^1043^11
+ ;;^UTILITY(U,$J,358.3,24131,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,24131,1,3,0)
+ ;;=3^Adult Forced Sex Exploit,Suspected,Subs
+ ;;^UTILITY(U,$J,358.3,24131,1,4,0)
+ ;;=4^T76.51XD
+ ;;^UTILITY(U,$J,358.3,24131,2)
+ ;;=^5157573
+ ;;^UTILITY(U,$J,358.3,24132,0)
+ ;;=T76.51XS^^82^1043^12
+ ;;^UTILITY(U,$J,358.3,24132,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,24132,1,3,0)
+ ;;=3^Adult Forced Sex Exploit,Suspected,Sequela
+ ;;^UTILITY(U,$J,358.3,24132,1,4,0)
+ ;;=4^T76.51XS
+ ;;^UTILITY(U,$J,358.3,24132,2)
+ ;;=^5157574
+ ;;^UTILITY(U,$J,358.3,24133,0)
+ ;;=T76.61XA^^82^1043^4
+ ;;^UTILITY(U,$J,358.3,24133,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,24133,1,3,0)
+ ;;=3^Adult Forced Labor Exploit,Suspected,Init
+ ;;^UTILITY(U,$J,358.3,24133,1,4,0)
+ ;;=4^T76.61XA
+ ;;^UTILITY(U,$J,358.3,24133,2)
+ ;;=^5157578
+ ;;^UTILITY(U,$J,358.3,24134,0)
+ ;;=T76.61XD^^82^1043^5
+ ;;^UTILITY(U,$J,358.3,24134,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,24134,1,3,0)
+ ;;=3^Adult Forced Labor Exploit,Suspected,Subs
+ ;;^UTILITY(U,$J,358.3,24134,1,4,0)
+ ;;=4^T76.61XD
+ ;;^UTILITY(U,$J,358.3,24134,2)
+ ;;=^5157579
+ ;;^UTILITY(U,$J,358.3,24135,0)
+ ;;=T76.61XS^^82^1043^6
+ ;;^UTILITY(U,$J,358.3,24135,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,24135,1,3,0)
+ ;;=3^Adult Forced Labor Exploit,Suspected,Sequela
+ ;;^UTILITY(U,$J,358.3,24135,1,4,0)
+ ;;=4^T76.61XS
+ ;;^UTILITY(U,$J,358.3,24135,2)
+ ;;=^5157580
+ ;;^UTILITY(U,$J,358.3,24136,0)
+ ;;=B18.2^^82^1044^30
+ ;;^UTILITY(U,$J,358.3,24136,1,0)
+ ;;=^358.31IA^4^2

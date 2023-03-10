@@ -1,5 +1,5 @@
 DGPTFM ;ALB/MTC/PLT - PTF OP-PRO-DIAG ;07/01/2015  8:03 AM
- ;;5.3;Registration;**510,517,590,594,606,635,683,696,664,850,884**;Aug 13, 1993;Build 31
+ ;;5.3;Registration;**510,517,590,594,606,635,683,696,664,850,884,1057**;Aug 13, 1993;Build 17
  ;;Per VA Directive 6402, this routine should not be modified.
  ;
  K X1,M,S,P,M1,M2,M3,S1,S2,PS2,P1,P2,P1P,P2P,SDCLY,^TMP("PTF",$J)
@@ -98,6 +98,7 @@ NSR K S,S1,S2 S I=0 F I1=1:1 S I=$O(^DGPT(PTF,"S",I)) Q:I'>0  S S(I1)=^(I,0),S(I
  S S2=0,SU=I1-1 D WR G SERV
  ;
 WR W @IOF,HEAD,?70 S Z="<MAS>" D Z
+ W !,?30,"Initial Date Of Service: ",$$EXTERNAL^DILFD(45,14,,$G(DGIDTS))  ; DG*5.3*1057
  Q
 PRO ;load 401p code before 2871000
  K DGZSER,DGZDIAG,DGZSUR
@@ -176,7 +177,7 @@ A S Z="^C Delete Code^A Add Code^O Add Code^P Add NOP^S Add SE^D Delete Code^M A
  S Z=Z_"T Add PR^R Delete PR^E Edit PR^I Add 801^Y Delete 801^N Add CPT^G Delete CPT^F Edit 801"
  I 'DGPTFE S $P(Z,U,8,9)="M Edit treat Spec/PM"
  S X=ANS G Q^DGPTF:ANS="^" G ^DGPTFJ:ANS?1"^".E S (A,X)=ANS,X=$E(X,1) D IN^DGHELP
- I $P(^DGPT(PTF,0),U,4),X'="","IYNGF"[X W !,"***WARNING: This is a Fee Basis PTF record*** 801 encounters are not allowed." H 3 G DGPTFM
+ I $P(^DGPT(PTF,0),U,4),X'="","IYNGF"[X W !,"***WARNING: This is a Community Care PTF record*** 801 encounters are not allowed." H 3 G DGPTFM  ; DG*5.3*1057
  I ANS="" S (ST,ST1)=J+1 D:$D(DGZSUR) WR G @($S($D(DGZDIAG):"NDG",$D(DGZSER):"NSR",$D(DGZPRO):"NPR",$D(DGZSUR):"EN^DGPTFM0",+DGZPRF-1'=$P(DGZPRF,U,3):"NPS",1:"DONE"))
  G HELP^DGPTFM1A:$G(%)=-1 S Z=$L(A)-1 G @(X_$S(X="X":"",1:"^DGPTFM1"))
 PRV I $D(^VA(200,L,0)) W $P(^(0),U) Q

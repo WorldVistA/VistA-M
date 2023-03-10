@@ -1,124 +1,130 @@
-IBDEI1H9 ; ; 04-FEB-2020
- ;;3.0;IB ENCOUNTER FORM IMP/EXP;;FEB 04, 2020
+IBDEI1H9 ; ; 01-FEB-2022
+ ;;3.0;IB ENCOUNTER FORM IMP/EXP;;FEB 01, 2022
  Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,999) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
- ;;^UTILITY(U,$J,358.3,23627,0)
- ;;=F12.23^^105^1177^2
- ;;^UTILITY(U,$J,358.3,23627,1,0)
+ ;;^UTILITY(U,$J,358.3,23900,1,3,0)
+ ;;=3^Otitis Media,Unspec,Bilateral
+ ;;^UTILITY(U,$J,358.3,23900,1,4,0)
+ ;;=4^H66.93
+ ;;^UTILITY(U,$J,358.3,23900,2)
+ ;;=^5006642
+ ;;^UTILITY(U,$J,358.3,23901,0)
+ ;;=H91.91^^82^1035^4
+ ;;^UTILITY(U,$J,358.3,23901,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,23627,1,3,0)
- ;;=3^Cannabis Dependence w/ Withdrawal
- ;;^UTILITY(U,$J,358.3,23627,1,4,0)
- ;;=4^F12.23
- ;;^UTILITY(U,$J,358.3,23627,2)
- ;;=^5157301
- ;;^UTILITY(U,$J,358.3,23628,0)
- ;;=F12.93^^105^1177^6
- ;;^UTILITY(U,$J,358.3,23628,1,0)
+ ;;^UTILITY(U,$J,358.3,23901,1,3,0)
+ ;;=3^Hearing Loss,Unspec,Right Ear
+ ;;^UTILITY(U,$J,358.3,23901,1,4,0)
+ ;;=4^H91.91
+ ;;^UTILITY(U,$J,358.3,23901,2)
+ ;;=^5133553
+ ;;^UTILITY(U,$J,358.3,23902,0)
+ ;;=H91.92^^82^1035^3
+ ;;^UTILITY(U,$J,358.3,23902,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,23628,1,3,0)
- ;;=3^Cannabis Use,Unsp w/ Withdrawal
- ;;^UTILITY(U,$J,358.3,23628,1,4,0)
- ;;=4^F12.93
- ;;^UTILITY(U,$J,358.3,23628,2)
- ;;=^5157302
- ;;^UTILITY(U,$J,358.3,23629,0)
- ;;=F14.10^^105^1178^2
- ;;^UTILITY(U,$J,358.3,23629,1,0)
+ ;;^UTILITY(U,$J,358.3,23902,1,3,0)
+ ;;=3^Hearing Loss,Unspec,Left Ear
+ ;;^UTILITY(U,$J,358.3,23902,1,4,0)
+ ;;=4^H91.92
+ ;;^UTILITY(U,$J,358.3,23902,2)
+ ;;=^5133554
+ ;;^UTILITY(U,$J,358.3,23903,0)
+ ;;=H91.93^^82^1035^2
+ ;;^UTILITY(U,$J,358.3,23903,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,23629,1,3,0)
- ;;=3^Cocaine Use Disorder,Mild
- ;;^UTILITY(U,$J,358.3,23629,1,4,0)
- ;;=4^F14.10
- ;;^UTILITY(U,$J,358.3,23629,2)
- ;;=^5003239
- ;;^UTILITY(U,$J,358.3,23630,0)
- ;;=F14.14^^105^1178^6
- ;;^UTILITY(U,$J,358.3,23630,1,0)
+ ;;^UTILITY(U,$J,358.3,23903,1,3,0)
+ ;;=3^Hearing Loss,Unspec,Bilateral
+ ;;^UTILITY(U,$J,358.3,23903,1,4,0)
+ ;;=4^H91.93
+ ;;^UTILITY(U,$J,358.3,23903,2)
+ ;;=^5006944
+ ;;^UTILITY(U,$J,358.3,23904,0)
+ ;;=R42.^^82^1035^1
+ ;;^UTILITY(U,$J,358.3,23904,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,23630,1,3,0)
- ;;=3^Cocaine-Induced Depressive,Bipolar or Related Disorder w/ Mild Use Disorder
- ;;^UTILITY(U,$J,358.3,23630,1,4,0)
- ;;=4^F14.14
- ;;^UTILITY(U,$J,358.3,23630,2)
- ;;=^5003244
- ;;^UTILITY(U,$J,358.3,23631,0)
- ;;=F14.182^^105^1178^7
- ;;^UTILITY(U,$J,358.3,23631,1,0)
+ ;;^UTILITY(U,$J,358.3,23904,1,3,0)
+ ;;=3^Dizziness & Giddiness
+ ;;^UTILITY(U,$J,358.3,23904,1,4,0)
+ ;;=4^R42.
+ ;;^UTILITY(U,$J,358.3,23904,2)
+ ;;=^5019450
+ ;;^UTILITY(U,$J,358.3,23905,0)
+ ;;=J34.89^^82^1035^8
+ ;;^UTILITY(U,$J,358.3,23905,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,23631,1,3,0)
- ;;=3^Cocaine-Induced Sleep Disorder w/ Mild Use Disorder
- ;;^UTILITY(U,$J,358.3,23631,1,4,0)
- ;;=4^F14.182
- ;;^UTILITY(U,$J,358.3,23631,2)
- ;;=^5003250
- ;;^UTILITY(U,$J,358.3,23632,0)
- ;;=F14.20^^105^1178^4
- ;;^UTILITY(U,$J,358.3,23632,1,0)
+ ;;^UTILITY(U,$J,358.3,23905,1,3,0)
+ ;;=3^Nose/Nasal Sinus Disorders,Oth Specified
+ ;;^UTILITY(U,$J,358.3,23905,1,4,0)
+ ;;=4^J34.89
+ ;;^UTILITY(U,$J,358.3,23905,2)
+ ;;=^5008211
+ ;;^UTILITY(U,$J,358.3,23906,0)
+ ;;=B18.2^^82^1036^15
+ ;;^UTILITY(U,$J,358.3,23906,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,23632,1,3,0)
- ;;=3^Cocaine Use Disorder,Moderate-Severe
- ;;^UTILITY(U,$J,358.3,23632,1,4,0)
- ;;=4^F14.20
- ;;^UTILITY(U,$J,358.3,23632,2)
- ;;=^5003253
- ;;^UTILITY(U,$J,358.3,23633,0)
- ;;=F14.21^^105^1178^3
- ;;^UTILITY(U,$J,358.3,23633,1,0)
+ ;;^UTILITY(U,$J,358.3,23906,1,3,0)
+ ;;=3^Hepatitis C,Chr,Viral
+ ;;^UTILITY(U,$J,358.3,23906,1,4,0)
+ ;;=4^B18.2
+ ;;^UTILITY(U,$J,358.3,23906,2)
+ ;;=^5000548
+ ;;^UTILITY(U,$J,358.3,23907,0)
+ ;;=K63.5^^82^1036^8
+ ;;^UTILITY(U,$J,358.3,23907,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,23633,1,3,0)
- ;;=3^Cocaine Use Disorder,Mod-Severe,In Remission
- ;;^UTILITY(U,$J,358.3,23633,1,4,0)
- ;;=4^F14.21
- ;;^UTILITY(U,$J,358.3,23633,2)
- ;;=^5003254
- ;;^UTILITY(U,$J,358.3,23634,0)
- ;;=F14.23^^105^1178^5
- ;;^UTILITY(U,$J,358.3,23634,1,0)
+ ;;^UTILITY(U,$J,358.3,23907,1,3,0)
+ ;;=3^Colon Polyp
+ ;;^UTILITY(U,$J,358.3,23907,1,4,0)
+ ;;=4^K63.5
+ ;;^UTILITY(U,$J,358.3,23907,2)
+ ;;=^5008765
+ ;;^UTILITY(U,$J,358.3,23908,0)
+ ;;=D12.0^^82^1036^3
+ ;;^UTILITY(U,$J,358.3,23908,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,23634,1,3,0)
- ;;=3^Cocaine Withdrawal
- ;;^UTILITY(U,$J,358.3,23634,1,4,0)
- ;;=4^F14.23
- ;;^UTILITY(U,$J,358.3,23634,2)
- ;;=^5003259
- ;;^UTILITY(U,$J,358.3,23635,0)
- ;;=F14.11^^105^1178^1
- ;;^UTILITY(U,$J,358.3,23635,1,0)
+ ;;^UTILITY(U,$J,358.3,23908,1,3,0)
+ ;;=3^Benign Neop Cecum
+ ;;^UTILITY(U,$J,358.3,23908,1,4,0)
+ ;;=4^D12.0
+ ;;^UTILITY(U,$J,358.3,23908,2)
+ ;;=^5001963
+ ;;^UTILITY(U,$J,358.3,23909,0)
+ ;;=D12.6^^82^1036^4
+ ;;^UTILITY(U,$J,358.3,23909,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,23635,1,3,0)
- ;;=3^Cocaine Abuse,In Remission
- ;;^UTILITY(U,$J,358.3,23635,1,4,0)
- ;;=4^F14.11
- ;;^UTILITY(U,$J,358.3,23635,2)
- ;;=^268249
- ;;^UTILITY(U,$J,358.3,23636,0)
- ;;=F16.10^^105^1179^2
- ;;^UTILITY(U,$J,358.3,23636,1,0)
+ ;;^UTILITY(U,$J,358.3,23909,1,3,0)
+ ;;=3^Benign Neop Colon,Unspec
+ ;;^UTILITY(U,$J,358.3,23909,1,4,0)
+ ;;=4^D12.6
+ ;;^UTILITY(U,$J,358.3,23909,2)
+ ;;=^5001969
+ ;;^UTILITY(U,$J,358.3,23910,0)
+ ;;=K64.9^^82^1036^14
+ ;;^UTILITY(U,$J,358.3,23910,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,23636,1,3,0)
- ;;=3^Phencyclidine Use Disorder,Mild
- ;;^UTILITY(U,$J,358.3,23636,1,4,0)
- ;;=4^F16.10
- ;;^UTILITY(U,$J,358.3,23636,2)
- ;;=^5003323
- ;;^UTILITY(U,$J,358.3,23637,0)
- ;;=F16.20^^105^1179^3
- ;;^UTILITY(U,$J,358.3,23637,1,0)
+ ;;^UTILITY(U,$J,358.3,23910,1,3,0)
+ ;;=3^Hemorrhoids,Unspec
+ ;;^UTILITY(U,$J,358.3,23910,1,4,0)
+ ;;=4^K64.9
+ ;;^UTILITY(U,$J,358.3,23910,2)
+ ;;=^5008775
+ ;;^UTILITY(U,$J,358.3,23911,0)
+ ;;=K21.9^^82^1036^10
+ ;;^UTILITY(U,$J,358.3,23911,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,23637,1,3,0)
- ;;=3^Phencyclidine Use Disorder,Moderate-Severe
- ;;^UTILITY(U,$J,358.3,23637,1,4,0)
- ;;=4^F16.20
- ;;^UTILITY(U,$J,358.3,23637,2)
- ;;=^5003336
- ;;^UTILITY(U,$J,358.3,23638,0)
- ;;=F16.21^^105^1179^4
- ;;^UTILITY(U,$J,358.3,23638,1,0)
+ ;;^UTILITY(U,$J,358.3,23911,1,3,0)
+ ;;=3^GERD w/o Esophagitis
+ ;;^UTILITY(U,$J,358.3,23911,1,4,0)
+ ;;=4^K21.9
+ ;;^UTILITY(U,$J,358.3,23911,2)
+ ;;=^5008505
+ ;;^UTILITY(U,$J,358.3,23912,0)
+ ;;=K27.9^^82^1036^20
+ ;;^UTILITY(U,$J,358.3,23912,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,23638,1,3,0)
- ;;=3^Phencyclidine Use Disorder,Moderate-Severe,In Remission
- ;;^UTILITY(U,$J,358.3,23638,1,4,0)
- ;;=4^F16.21
- ;;^UTILITY(U,$J,358.3,23638,2)
- ;;=^5003337
+ ;;^UTILITY(U,$J,358.3,23912,1,3,0)
+ ;;=3^Peptic Ulcer w/o Hemorrhage/Perforation
+ ;;^UTILITY(U,$J,358.3,23912,1,4,0)
+ ;;=4^K27.9
+ ;;^UTILITY(U,$J,358.3,23912,2)
+ ;;=^5008536

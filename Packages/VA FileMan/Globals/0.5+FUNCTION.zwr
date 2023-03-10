@@ -1,6 +1,6 @@
 OSEHRA ZGO Export: FUNCTION
 ZWR
-^DD("FUNC",0)="FUNCTION^.5^211^175"
+^DD("FUNC",0)="FUNCTION^.5^211^166"
 ^DD("FUNC",1,0)="SQUAREROOT"
 ^DD("FUNC",1,1)="D SQR^DIXC S X=$S(X'>0:"""",1:Y)"
 ^DD("FUNC",2,0)="TIME"
@@ -588,9 +588,6 @@ ZWR
 ^DD("FUNC",180,2)="X"
 ^DD("FUNC",180,3)=1
 ^DD("FUNC",180,9)="Create TMP global of patient IEN's."
-^DD("FUNC",181,0)="ABSVAGE"
-^DD("FUNC",181,1)="S X=$$AGE^ABSVU2(X)"
-^DD("FUNC",181,3)=2
 ^DD("FUNC",182,0)="TIU UNKNOWN DATA"
 ^DD("FUNC",182,1)="S:X="""" X=""UNKNOWN"""
 ^DD("FUNC",182,2)="X"
@@ -643,42 +640,6 @@ ZWR
 ^DD("FUNC",194,2)="X"
 ^DD("FUNC",194,3)=0
 ^DD("FUNC",194,9)="Current administrative charges of bill"
-^DD("FUNC",195,0)="ABSV DOLLAR"
-^DD("FUNC",195,1)="S X=$FN(X,"","",2)"
-^DD("FUNC",195,9)="Convert value to Currency print"
-^DD("FUNC",199,0)="ABSVM NAME FAMILY"
-^DD("FUNC",199,1)="N NAME S NAME=X D STDNAME^XLFNAME(.NAME,""C"") S X=$G(NAME(""FAMILY""))"
-^DD("FUNC",199,2)="X"
-^DD("FUNC",199,3)=1
-^DD("FUNC",199,9)="Extracts Family Name when given a name in standard format."
-^DD("FUNC",200,0)="ABSVM NAME GIVEN"
-^DD("FUNC",200,1)="N NAME S NAME=X D STDNAME^XLFNAME(.NAME,""C"") S X=$G(NAME(""GIVEN""))"
-^DD("FUNC",200,2)="X"
-^DD("FUNC",200,3)=1
-^DD("FUNC",200,9)="Extracts the given name from a name in standard format."
-^DD("FUNC",201,0)="ABSVM NAME MIDDLE"
-^DD("FUNC",201,1)="N NAME S NAME=X D STDNAME^XLFNAME(.NAME,""C"") S X=$G(NAME(""MIDDLE""))"
-^DD("FUNC",201,2)="X"
-^DD("FUNC",201,3)=1
-^DD("FUNC",201,9)="Extracts the Middle Name from a name in standard format."
-^DD("FUNC",202,0)="ABSVM NAME SUFFIX"
-^DD("FUNC",202,1)="N NAME S NAME=X D STDNAME^XLFNAME(.NAME,""C"") S X=$G(NAME(""SUFFIX""))"
-^DD("FUNC",202,2)="X"
-^DD("FUNC",202,3)=1
-^DD("FUNC",202,9)="Extracts the Suffix from a name in standard format."
-^DD("FUNC",203,0)="ABSVM VOLREMARKS"
-^DD("FUNC",203,1)="S X=$E($$GETREM^ABSVMVV2,1,160)"
-^DD("FUNC",203,3)=0
-^DD("FUNC",203,9)="Retrieves word processing field REMARKS from Station Name mult of Voluntary Master file.  Relies on d0, d1 being set."
-^DD("FUNC",204,0)="ABSVM SITE"
-^DD("FUNC",204,1)="S X="" ""_$P($G(^DIC(4,$$KSP^XUPARAM(""INST""),99)),U)"
-^DD("FUNC",204,3)=0
-^DD("FUNC",204,9)="Returns the site's station number with a space and up-arrow appended."
-^DD("FUNC",205,0)="ABSVM FIX DATE"
-^DD("FUNC",205,1)="S X=$S($E(X,4,5)=""00"":$E(X,1,3)_""0615"",$E(X,6,7)=""00"":$E(X,1,5)_15,1:X)"
-^DD("FUNC",205,2)="D"
-^DD("FUNC",205,3)=1
-^DD("FUNC",205,9)="Takes date in internal FM format and makes it ""precise""."
 ^DD("FUNC",206,0)="RORPTSTATUS"
 ^DD("FUNC",206,1)="S X=$S(X>0:+$P($G(^RORDATA(798,+X,0)),U),1:0),X=$S(X'>0:9,$P($G(^RORDATA(798.4,X,1)),U,4)>0:2,1:1)"
 ^DD("FUNC",206,3)=1
@@ -707,15 +668,6 @@ ZWR
 ^DD("FUNC",211,3)=2
 ^DD("FUNC",211,9)="Get eligibility group for this patient on this event date."
 ^DD("FUNC","B","ABS",8)=""
-^DD("FUNC","B","ABSV DOLLAR",195)=""
-^DD("FUNC","B","ABSVAGE",181)=""
-^DD("FUNC","B","ABSVM FIX DATE",205)=""
-^DD("FUNC","B","ABSVM NAME FAMILY",199)=""
-^DD("FUNC","B","ABSVM NAME GIVEN",200)=""
-^DD("FUNC","B","ABSVM NAME MIDDLE",201)=""
-^DD("FUNC","B","ABSVM NAME SUFFIX",202)=""
-^DD("FUNC","B","ABSVM SITE",204)=""
-^DD("FUNC","B","ABSVM VOLREMARKS",203)=""
 ^DD("FUNC","B","ANRVPTCOUNTY",188)=""
 ^DD("FUNC","B","BETWEEN",43)=""
 ^DD("FUNC","B","BLANK",31)=""

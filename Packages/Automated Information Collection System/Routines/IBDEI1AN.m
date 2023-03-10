@@ -1,126 +1,124 @@
-IBDEI1AN ; ; 04-FEB-2020
- ;;3.0;IB ENCOUNTER FORM IMP/EXP;;FEB 04, 2020
+IBDEI1AN ; ; 01-FEB-2022
+ ;;3.0;IB ENCOUNTER FORM IMP/EXP;;FEB 01, 2022
  Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,999) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
- ;;^UTILITY(U,$J,358.3,20691,1,0)
+ ;;^UTILITY(U,$J,358.3,20900,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,20691,1,3,0)
- ;;=3^Personal Past Hx of Childhood Physical Abuse
- ;;^UTILITY(U,$J,358.3,20691,1,4,0)
- ;;=4^Z62.810
- ;;^UTILITY(U,$J,358.3,20691,2)
- ;;=^5063153
- ;;^UTILITY(U,$J,358.3,20692,0)
- ;;=Z62.810^^95^1020^39
- ;;^UTILITY(U,$J,358.3,20692,1,0)
+ ;;^UTILITY(U,$J,358.3,20900,1,3,0)
+ ;;=3^Multiple fractures of ribs, right side, sequela
+ ;;^UTILITY(U,$J,358.3,20900,1,4,0)
+ ;;=4^S22.41XS
+ ;;^UTILITY(U,$J,358.3,20900,2)
+ ;;=^5023128
+ ;;^UTILITY(U,$J,358.3,20901,0)
+ ;;=S22.23XS^^67^891^12
+ ;;^UTILITY(U,$J,358.3,20901,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,20692,1,3,0)
- ;;=3^Personal Past Hx of Childhood Sexual Abuse
- ;;^UTILITY(U,$J,358.3,20692,1,4,0)
- ;;=4^Z62.810
- ;;^UTILITY(U,$J,358.3,20692,2)
- ;;=^5063153
- ;;^UTILITY(U,$J,358.3,20693,0)
- ;;=Z62.811^^95^1020^38
- ;;^UTILITY(U,$J,358.3,20693,1,0)
+ ;;^UTILITY(U,$J,358.3,20901,1,3,0)
+ ;;=3^Sternal manubrial dissociation, sequela
+ ;;^UTILITY(U,$J,358.3,20901,1,4,0)
+ ;;=4^S22.23XS
+ ;;^UTILITY(U,$J,358.3,20901,2)
+ ;;=^5023098
+ ;;^UTILITY(U,$J,358.3,20902,0)
+ ;;=S02.11AS^^67^891^14
+ ;;^UTILITY(U,$J,358.3,20902,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,20693,1,3,0)
- ;;=3^Personal Past Hx of Childhood Psychological Abuse
- ;;^UTILITY(U,$J,358.3,20693,1,4,0)
- ;;=4^Z62.811
- ;;^UTILITY(U,$J,358.3,20693,2)
- ;;=^5063154
- ;;^UTILITY(U,$J,358.3,20694,0)
- ;;=Z91.410^^95^1020^42
- ;;^UTILITY(U,$J,358.3,20694,1,0)
+ ;;^UTILITY(U,$J,358.3,20902,1,3,0)
+ ;;=3^Type I Occupital Condyle Fx,Seq,Right Side
+ ;;^UTILITY(U,$J,358.3,20902,1,4,0)
+ ;;=4^S02.11AS
+ ;;^UTILITY(U,$J,358.3,20902,2)
+ ;;=^5139276
+ ;;^UTILITY(U,$J,358.3,20903,0)
+ ;;=S02.11CS^^67^891^16
+ ;;^UTILITY(U,$J,358.3,20903,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,20694,1,3,0)
- ;;=3^Personal Past Hx of Spouse or Partner Violence,Sexual
- ;;^UTILITY(U,$J,358.3,20694,1,4,0)
- ;;=4^Z91.410
- ;;^UTILITY(U,$J,358.3,20694,2)
- ;;=^5063619
- ;;^UTILITY(U,$J,358.3,20695,0)
- ;;=F06.4^^95^1021^3
- ;;^UTILITY(U,$J,358.3,20695,1,0)
+ ;;^UTILITY(U,$J,358.3,20903,1,3,0)
+ ;;=3^Type II Occupital Condyle Fx,Seq,Right Side
+ ;;^UTILITY(U,$J,358.3,20903,1,4,0)
+ ;;=4^S02.11CS
+ ;;^UTILITY(U,$J,358.3,20903,2)
+ ;;=^5139288
+ ;;^UTILITY(U,$J,358.3,20904,0)
+ ;;=S02.11ES^^67^891^18
+ ;;^UTILITY(U,$J,358.3,20904,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,20695,1,3,0)
- ;;=3^Anxiety Disorder d/t Another Medical Condition
- ;;^UTILITY(U,$J,358.3,20695,1,4,0)
- ;;=4^F06.4
- ;;^UTILITY(U,$J,358.3,20695,2)
- ;;=^5003061
- ;;^UTILITY(U,$J,358.3,20696,0)
- ;;=F41.0^^95^1021^12
- ;;^UTILITY(U,$J,358.3,20696,1,0)
+ ;;^UTILITY(U,$J,358.3,20904,1,3,0)
+ ;;=3^Type III Occupital Condyle Fx,Seq,Right Side
+ ;;^UTILITY(U,$J,358.3,20904,1,4,0)
+ ;;=4^S02.11ES
+ ;;^UTILITY(U,$J,358.3,20904,2)
+ ;;=^5139300
+ ;;^UTILITY(U,$J,358.3,20905,0)
+ ;;=S02.11BS^^67^891^13
+ ;;^UTILITY(U,$J,358.3,20905,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,20696,1,3,0)
- ;;=3^Panic Disorder
- ;;^UTILITY(U,$J,358.3,20696,1,4,0)
- ;;=4^F41.0
- ;;^UTILITY(U,$J,358.3,20696,2)
- ;;=^5003564
- ;;^UTILITY(U,$J,358.3,20697,0)
- ;;=F41.1^^95^1021^10
- ;;^UTILITY(U,$J,358.3,20697,1,0)
+ ;;^UTILITY(U,$J,358.3,20905,1,3,0)
+ ;;=3^Type I Occupital Condyle Fx,Seq,Left Side
+ ;;^UTILITY(U,$J,358.3,20905,1,4,0)
+ ;;=4^S02.11BS
+ ;;^UTILITY(U,$J,358.3,20905,2)
+ ;;=^5139282
+ ;;^UTILITY(U,$J,358.3,20906,0)
+ ;;=S02.11DS^^67^891^15
+ ;;^UTILITY(U,$J,358.3,20906,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,20697,1,3,0)
- ;;=3^Generalized Anxiety Disorder
- ;;^UTILITY(U,$J,358.3,20697,1,4,0)
- ;;=4^F41.1
- ;;^UTILITY(U,$J,358.3,20697,2)
- ;;=^50059
- ;;^UTILITY(U,$J,358.3,20698,0)
- ;;=F40.10^^95^1021^17
- ;;^UTILITY(U,$J,358.3,20698,1,0)
+ ;;^UTILITY(U,$J,358.3,20906,1,3,0)
+ ;;=3^Type II Occupital Condyle Fx,Seq,Left Side
+ ;;^UTILITY(U,$J,358.3,20906,1,4,0)
+ ;;=4^S02.11DS
+ ;;^UTILITY(U,$J,358.3,20906,2)
+ ;;=^5139294
+ ;;^UTILITY(U,$J,358.3,20907,0)
+ ;;=S02.11FS^^67^891^17
+ ;;^UTILITY(U,$J,358.3,20907,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,20698,1,3,0)
- ;;=3^Social Anxiety Disorder (Social Phobia)
- ;;^UTILITY(U,$J,358.3,20698,1,4,0)
- ;;=4^F40.10
- ;;^UTILITY(U,$J,358.3,20698,2)
- ;;=^5003544
- ;;^UTILITY(U,$J,358.3,20699,0)
- ;;=F40.218^^95^1021^2
- ;;^UTILITY(U,$J,358.3,20699,1,0)
+ ;;^UTILITY(U,$J,358.3,20907,1,3,0)
+ ;;=3^Type III Occupital Condyle Fx,Seq,Left Side
+ ;;^UTILITY(U,$J,358.3,20907,1,4,0)
+ ;;=4^S02.11FS
+ ;;^UTILITY(U,$J,358.3,20907,2)
+ ;;=^5139306
+ ;;^UTILITY(U,$J,358.3,20908,0)
+ ;;=G89.29^^67^892^5
+ ;;^UTILITY(U,$J,358.3,20908,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,20699,1,3,0)
- ;;=3^Animal Phobia
- ;;^UTILITY(U,$J,358.3,20699,1,4,0)
- ;;=4^F40.218
- ;;^UTILITY(U,$J,358.3,20699,2)
- ;;=^5003547
- ;;^UTILITY(U,$J,358.3,20700,0)
- ;;=F40.228^^95^1021^11
- ;;^UTILITY(U,$J,358.3,20700,1,0)
+ ;;^UTILITY(U,$J,358.3,20908,1,3,0)
+ ;;=3^Pain,Chronic,Other
+ ;;^UTILITY(U,$J,358.3,20908,1,4,0)
+ ;;=4^G89.29
+ ;;^UTILITY(U,$J,358.3,20908,2)
+ ;;=^5004158
+ ;;^UTILITY(U,$J,358.3,20909,0)
+ ;;=G89.21^^67^892^4
+ ;;^UTILITY(U,$J,358.3,20909,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,20700,1,3,0)
- ;;=3^Natural Environment Phobia
- ;;^UTILITY(U,$J,358.3,20700,1,4,0)
- ;;=4^F40.228
- ;;^UTILITY(U,$J,358.3,20700,2)
- ;;=^5003549
- ;;^UTILITY(U,$J,358.3,20701,0)
- ;;=F40.230^^95^1021^6
- ;;^UTILITY(U,$J,358.3,20701,1,0)
+ ;;^UTILITY(U,$J,358.3,20909,1,3,0)
+ ;;=3^Pain d/t Trauma,Chronic
+ ;;^UTILITY(U,$J,358.3,20909,1,4,0)
+ ;;=4^G89.21
+ ;;^UTILITY(U,$J,358.3,20909,2)
+ ;;=^5004155
+ ;;^UTILITY(U,$J,358.3,20910,0)
+ ;;=G89.22^^67^892^14
+ ;;^UTILITY(U,$J,358.3,20910,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,20701,1,3,0)
- ;;=3^Fear of Blood
- ;;^UTILITY(U,$J,358.3,20701,1,4,0)
- ;;=4^F40.230
- ;;^UTILITY(U,$J,358.3,20701,2)
- ;;=^5003550
- ;;^UTILITY(U,$J,358.3,20702,0)
- ;;=F40.231^^95^1021^7
- ;;^UTILITY(U,$J,358.3,20702,1,0)
+ ;;^UTILITY(U,$J,358.3,20910,1,3,0)
+ ;;=3^Pain,Post-Thoracotomy,Chronic
+ ;;^UTILITY(U,$J,358.3,20910,1,4,0)
+ ;;=4^G89.22
+ ;;^UTILITY(U,$J,358.3,20910,2)
+ ;;=^5004156
+ ;;^UTILITY(U,$J,358.3,20911,0)
+ ;;=G89.28^^67^892^15
+ ;;^UTILITY(U,$J,358.3,20911,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,20702,1,3,0)
- ;;=3^Fear of Injections & Transfusions
- ;;^UTILITY(U,$J,358.3,20702,1,4,0)
- ;;=4^F40.231
- ;;^UTILITY(U,$J,358.3,20702,2)
- ;;=^5003551
- ;;^UTILITY(U,$J,358.3,20703,0)
- ;;=F40.232^^95^1021^9
- ;;^UTILITY(U,$J,358.3,20703,1,0)
- ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,20911,1,3,0)
+ ;;=3^Pain,Postprocedural,Chronic,Other
+ ;;^UTILITY(U,$J,358.3,20911,1,4,0)
+ ;;=4^G89.28
+ ;;^UTILITY(U,$J,358.3,20911,2)
+ ;;=^5004157
+ ;;^UTILITY(U,$J,358.3,20912,0)
+ ;;=M54.2^^67^892^1

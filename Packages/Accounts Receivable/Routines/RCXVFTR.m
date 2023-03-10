@@ -1,6 +1,6 @@
 RCXVFTR ;DAOU/ALA-Retrieve FTP messages ;17-DEC-2003
- ;;4.5;Accounts Receivable;**201**;Mar 20, 1995
- ;
+ ;;4.5;Accounts Receivable;**201,395**;Mar 20, 1995;Build 9
+ ;Per VA Directive 6402, this routine should not be modified.
  ;**Program Description**
  ;  This program will read all the ftp messages to
  ;  see if they were successful or not
@@ -22,6 +22,7 @@ EN ;  Find all temporary files
  . ;
  . S RCXOKAY=0,RCXI=0
  . F  S RCXI=$O(^TMP("RCXVIN",$J,RCXI)) Q:'RCXI  D
+ .. I $E($G(^TMP("RCXVIN",$J,RCXI,0)),1,4)="SFTP" S ^TMP("RCXVIN",$J,1,0)="SFTP failed for batch #"_RCXVBTN
  .. I $E($G(^TMP("RCXVIN",$J,RCXI,0)),1,3)="226" S RCXOKAY=1
  . ;
  . ;  If the transfer does not say complete, send a mail message
@@ -30,7 +31,7 @@ EN ;  Find all temporary files
  .. I RCXMGRP="" S RCXMGRP="IRM"
  .. S RCXMGRP="G."_RCXMGRP
  .. S XMDUZ="CBO DATA EXTRACT",XMY(RCXMGRP)=""
- .. S XMSUB="CBO/ARC FTP ATTEMPT"
+ .. S XMSUB="CBO/ARC TRANSMISSION ATTEMPT"
  .. S XMTEXT="^TMP(""RCXVIN"",$J,"
  .. D ^XMD
  .. K XMDUN,XMDUZ,XMZ,XMY

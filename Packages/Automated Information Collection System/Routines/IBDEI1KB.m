@@ -1,124 +1,124 @@
-IBDEI1KB ; ; 04-FEB-2020
- ;;3.0;IB ENCOUNTER FORM IMP/EXP;;FEB 04, 2020
+IBDEI1KB ; ; 01-FEB-2022
+ ;;3.0;IB ENCOUNTER FORM IMP/EXP;;FEB 01, 2022
  Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,999) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
- ;;^UTILITY(U,$J,358.3,24970,1,3,0)
- ;;=3^Physical Environment Hazards Contact/Exposure
- ;;^UTILITY(U,$J,358.3,24970,1,4,0)
- ;;=4^Z77.128
- ;;^UTILITY(U,$J,358.3,24970,2)
- ;;=^5063322
- ;;^UTILITY(U,$J,358.3,24971,0)
- ;;=Z77.123^^107^1212^146
- ;;^UTILITY(U,$J,358.3,24971,1,0)
+ ;;^UTILITY(U,$J,358.3,25334,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,24971,1,3,0)
- ;;=3^Radon/Radiation Contact/Exposure
- ;;^UTILITY(U,$J,358.3,24971,1,4,0)
- ;;=4^Z77.123
- ;;^UTILITY(U,$J,358.3,24971,2)
- ;;=^5063321
- ;;^UTILITY(U,$J,358.3,24972,0)
- ;;=Z77.122^^107^1212^61
- ;;^UTILITY(U,$J,358.3,24972,1,0)
+ ;;^UTILITY(U,$J,358.3,25334,1,3,0)
+ ;;=3^Bipolar I D/O,Current/Recent Ep Dep,Mod
+ ;;^UTILITY(U,$J,358.3,25334,1,4,0)
+ ;;=4^F31.32
+ ;;^UTILITY(U,$J,358.3,25334,2)
+ ;;=^5003502
+ ;;^UTILITY(U,$J,358.3,25335,0)
+ ;;=F31.4^^92^1149^15
+ ;;^UTILITY(U,$J,358.3,25335,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,24972,1,3,0)
- ;;=3^Noise Contact/Exposure
- ;;^UTILITY(U,$J,358.3,24972,1,4,0)
- ;;=4^Z77.122
- ;;^UTILITY(U,$J,358.3,24972,2)
- ;;=^5063320
- ;;^UTILITY(U,$J,358.3,24973,0)
- ;;=Z77.118^^107^1212^11
- ;;^UTILITY(U,$J,358.3,24973,1,0)
+ ;;^UTILITY(U,$J,358.3,25335,1,3,0)
+ ;;=3^Bipolar I D/O,Current/Recent Ep Dep,Sev
+ ;;^UTILITY(U,$J,358.3,25335,1,4,0)
+ ;;=4^F31.4
+ ;;^UTILITY(U,$J,358.3,25335,2)
+ ;;=^5003503
+ ;;^UTILITY(U,$J,358.3,25336,0)
+ ;;=F31.5^^92^1149^10
+ ;;^UTILITY(U,$J,358.3,25336,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,24973,1,3,0)
- ;;=3^Environmental Pollution Contact/Exposure
- ;;^UTILITY(U,$J,358.3,24973,1,4,0)
- ;;=4^Z77.118
- ;;^UTILITY(U,$J,358.3,24973,2)
- ;;=^5063317
- ;;^UTILITY(U,$J,358.3,24974,0)
- ;;=Z77.9^^107^1212^47
- ;;^UTILITY(U,$J,358.3,24974,1,0)
+ ;;^UTILITY(U,$J,358.3,25336,1,3,0)
+ ;;=3^Bipolar I D/O,Current/Recent Ep Dep w/ Psych Feat
+ ;;^UTILITY(U,$J,358.3,25336,1,4,0)
+ ;;=4^F31.5
+ ;;^UTILITY(U,$J,358.3,25336,2)
+ ;;=^5003504
+ ;;^UTILITY(U,$J,358.3,25337,0)
+ ;;=F31.75^^92^1149^11
+ ;;^UTILITY(U,$J,358.3,25337,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,24974,1,3,0)
- ;;=3^Health Hazard Contact/Exposure
- ;;^UTILITY(U,$J,358.3,24974,1,4,0)
- ;;=4^Z77.9
- ;;^UTILITY(U,$J,358.3,24974,2)
- ;;=^5063326
- ;;^UTILITY(U,$J,358.3,24975,0)
- ;;=Z77.22^^107^1212^10
- ;;^UTILITY(U,$J,358.3,24975,1,0)
+ ;;^UTILITY(U,$J,358.3,25337,1,3,0)
+ ;;=3^Bipolar I D/O,Current/Recent Ep Dep,In Part Remiss
+ ;;^UTILITY(U,$J,358.3,25337,1,4,0)
+ ;;=4^F31.75
+ ;;^UTILITY(U,$J,358.3,25337,2)
+ ;;=^5003515
+ ;;^UTILITY(U,$J,358.3,25338,0)
+ ;;=F31.76^^92^1149^12
+ ;;^UTILITY(U,$J,358.3,25338,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,24975,1,3,0)
- ;;=3^Environmental Exposure Tobacco Smoke/Second-Hand Smoke
- ;;^UTILITY(U,$J,358.3,24975,1,4,0)
- ;;=4^Z77.22
- ;;^UTILITY(U,$J,358.3,24975,2)
- ;;=^5063324
- ;;^UTILITY(U,$J,358.3,24976,0)
- ;;=Z80.0^^107^1212^28
- ;;^UTILITY(U,$J,358.3,24976,1,0)
+ ;;^UTILITY(U,$J,358.3,25338,1,3,0)
+ ;;=3^Bipolar I D/O,Current/Recent Ep Dep,In Full Remiss
+ ;;^UTILITY(U,$J,358.3,25338,1,4,0)
+ ;;=4^F31.76
+ ;;^UTILITY(U,$J,358.3,25338,2)
+ ;;=^5003516
+ ;;^UTILITY(U,$J,358.3,25339,0)
+ ;;=F31.81^^92^1149^25
+ ;;^UTILITY(U,$J,358.3,25339,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,24976,1,3,0)
- ;;=3^Family Hx of Malig Neop of Digestive Organs
- ;;^UTILITY(U,$J,358.3,24976,1,4,0)
- ;;=4^Z80.0
- ;;^UTILITY(U,$J,358.3,24976,2)
- ;;=^5063344
- ;;^UTILITY(U,$J,358.3,24977,0)
- ;;=Z80.1^^107^1212^34
- ;;^UTILITY(U,$J,358.3,24977,1,0)
+ ;;^UTILITY(U,$J,358.3,25339,1,3,0)
+ ;;=3^Bipolar II Disorder
+ ;;^UTILITY(U,$J,358.3,25339,1,4,0)
+ ;;=4^F31.81
+ ;;^UTILITY(U,$J,358.3,25339,2)
+ ;;=^5003519
+ ;;^UTILITY(U,$J,358.3,25340,0)
+ ;;=F34.0^^92^1149^26
+ ;;^UTILITY(U,$J,358.3,25340,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,24977,1,3,0)
- ;;=3^Family Hx of Malig Neop of Trachea,Bronc & Lung
- ;;^UTILITY(U,$J,358.3,24977,1,4,0)
- ;;=4^Z80.1
- ;;^UTILITY(U,$J,358.3,24977,2)
- ;;=^5063345
- ;;^UTILITY(U,$J,358.3,24978,0)
- ;;=Z80.3^^107^1212^27
- ;;^UTILITY(U,$J,358.3,24978,1,0)
+ ;;^UTILITY(U,$J,358.3,25340,1,3,0)
+ ;;=3^Cyclothymic Disorder
+ ;;^UTILITY(U,$J,358.3,25340,1,4,0)
+ ;;=4^F34.0
+ ;;^UTILITY(U,$J,358.3,25340,2)
+ ;;=^5003538
+ ;;^UTILITY(U,$J,358.3,25341,0)
+ ;;=F31.0^^92^1149^16
+ ;;^UTILITY(U,$J,358.3,25341,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,24978,1,3,0)
- ;;=3^Family Hx of Malig Neop of Breast
- ;;^UTILITY(U,$J,358.3,24978,1,4,0)
- ;;=4^Z80.3
- ;;^UTILITY(U,$J,358.3,24978,2)
- ;;=^5063347
- ;;^UTILITY(U,$J,358.3,24979,0)
- ;;=Z80.41^^107^1212^31
- ;;^UTILITY(U,$J,358.3,24979,1,0)
+ ;;^UTILITY(U,$J,358.3,25341,1,3,0)
+ ;;=3^Bipolar I D/O,Current/Recent Ep Hypomanic
+ ;;^UTILITY(U,$J,358.3,25341,1,4,0)
+ ;;=4^F31.0
+ ;;^UTILITY(U,$J,358.3,25341,2)
+ ;;=^5003494
+ ;;^UTILITY(U,$J,358.3,25342,0)
+ ;;=F31.71^^92^1149^17
+ ;;^UTILITY(U,$J,358.3,25342,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,24979,1,3,0)
- ;;=3^Family Hx of Malig Neop of Ovary
- ;;^UTILITY(U,$J,358.3,24979,1,4,0)
- ;;=4^Z80.41
- ;;^UTILITY(U,$J,358.3,24979,2)
- ;;=^5063348
- ;;^UTILITY(U,$J,358.3,24980,0)
- ;;=Z80.42^^107^1212^32
- ;;^UTILITY(U,$J,358.3,24980,1,0)
+ ;;^UTILITY(U,$J,358.3,25342,1,3,0)
+ ;;=3^Bipolar I D/O,Current/Recent Ep Hypomanic,In Part Remiss
+ ;;^UTILITY(U,$J,358.3,25342,1,4,0)
+ ;;=4^F31.71
+ ;;^UTILITY(U,$J,358.3,25342,2)
+ ;;=^5003511
+ ;;^UTILITY(U,$J,358.3,25343,0)
+ ;;=F31.72^^92^1149^18
+ ;;^UTILITY(U,$J,358.3,25343,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,24980,1,3,0)
- ;;=3^Family Hx of Malig Neop of Prostate
- ;;^UTILITY(U,$J,358.3,24980,1,4,0)
- ;;=4^Z80.42
- ;;^UTILITY(U,$J,358.3,24980,2)
- ;;=^5063349
- ;;^UTILITY(U,$J,358.3,24981,0)
- ;;=Z80.43^^107^1212^33
- ;;^UTILITY(U,$J,358.3,24981,1,0)
+ ;;^UTILITY(U,$J,358.3,25343,1,3,0)
+ ;;=3^Bipolar I D/O,Current/Recent Ep Hypomanic,In Full Remiss
+ ;;^UTILITY(U,$J,358.3,25343,1,4,0)
+ ;;=4^F31.72
+ ;;^UTILITY(U,$J,358.3,25343,2)
+ ;;=^5003512
+ ;;^UTILITY(U,$J,358.3,25344,0)
+ ;;=F31.89^^92^1149^3
+ ;;^UTILITY(U,$J,358.3,25344,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,24981,1,3,0)
- ;;=3^Family Hx of Malig Neop of Testis
- ;;^UTILITY(U,$J,358.3,24981,1,4,0)
- ;;=4^Z80.43
- ;;^UTILITY(U,$J,358.3,24981,2)
- ;;=^5063350
- ;;^UTILITY(U,$J,358.3,24982,0)
- ;;=Z80.6^^107^1212^25
- ;;^UTILITY(U,$J,358.3,24982,1,0)
+ ;;^UTILITY(U,$J,358.3,25344,1,3,0)
+ ;;=3^Bipolar & Rel D/O,Other Specified
+ ;;^UTILITY(U,$J,358.3,25344,1,4,0)
+ ;;=4^F31.89
+ ;;^UTILITY(U,$J,358.3,25344,2)
+ ;;=^5003520
+ ;;^UTILITY(U,$J,358.3,25345,0)
+ ;;=F31.9^^92^1149^4
+ ;;^UTILITY(U,$J,358.3,25345,1,0)
  ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,25345,1,3,0)
+ ;;=3^Bipolar & Rel D/O,Unsp
+ ;;^UTILITY(U,$J,358.3,25345,1,4,0)
+ ;;=4^F31.9
+ ;;^UTILITY(U,$J,358.3,25345,2)
+ ;;=^331892
+ ;;^UTILITY(U,$J,358.3,25346,0)
+ ;;=F31.60^^92^1149^9

@@ -1,5 +1,5 @@
 PSNPPSNF ;HP/MJE-PPSN update NDF data ; 05 Mar 2014  1:20 PM
- ;;4.0;NATIONAL DRUG FILE;**513**; 30 Oct 98;Build 53
+ ;;4.0;NATIONAL DRUG FILE;**513,571**; 30 Oct 98;Build 5
  ;Reference to ^%ZISH supported by DBIA #2320
  ;Reference to ^XUTMOPT supported by DBIA #1472
  ;
@@ -60,11 +60,11 @@ CKDIR ;
  ..I '$G(PSNSCJOB) D
  ...W !,"Installation completed"_$S($G(ERRCHK):" with errors.  See error mail message",1:"")_".",!
  ...D CTRKDL^PSNPPSMS("Installation completed"_$S($G(ERRCHK):" with errors.  See error mail message",1:"")_".")
- ..I $O(B1(X22))]"",$D(^TMP("PSN PPSN READ",$J)) W:'$G(PSNSCJOB) !,"Purging background work files before starting the next install...",! K ^TMP("PSN PPSN READ",$J),^TMP("PSN PPSN PARSED",$J)
+ ..I $O(B1(X2))]"" W:'$G(PSNSCJOB) !,"Purging background work files before starting the next install...",!
+ ..K ^TMP("PSN PPSN READ",$J),^TMP("PSN PPSN PARSED",$J)
  I 'PSNFND W !,"There were no PPS-N update files to install.",!
- ;I PSNFLG S PSNFLG=0 G CKDIR
-EXIT ;
- ;D ENABLE^PSNPPSMS
+ ;
+EXIT ; Exit point
  K DIE,DA,DR
  S DIE="^PS(57.23,",DA=1,DR="10///N" D ^DIE K DIE,DA,DR
  K A1,B2,B1,^TMP("PSN PPSN READ",$J),^TMP("PSN PPSN PARSED",$J)

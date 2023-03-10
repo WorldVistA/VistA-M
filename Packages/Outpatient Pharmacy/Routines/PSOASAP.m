@@ -1,5 +1,5 @@
 PSOASAP ;BIRM/MFR - American Society for Automation in Pharmacy (ASAP) Field Values ;09/30/15
- ;;7.0;OUTPATIENT PHARMACY;**451,496**;DEC 1997;Build 11
+ ;;7.0;OUTPATIENT PHARMACY;**451,496,625**;DEC 1997;Build 42
  ;
  ; *** TH Segment - Transaction Header ***
 TH01() ;ASAP Version (3.0, 4.0, 4.1, 4.2, etc.)
@@ -63,6 +63,13 @@ IS02() ; Information Source Entity Name
  ;
 IS03() ;ASAP 3.0 : Address Information 1 (Not Used)
  ;      ASAP 4.0+: Message (Not Used)
+ ;  ZERO RPT 4.0+: Date Range of Report
+ N BEGDATE,ENDDATE,RANGE
+ S (BEGDATE,ENDDATE,RANGE)=""
+ I $G(BATCHIEN),$$GET1^DIQ(58.42,BATCHIEN,2,"I")="ZR" D  Q RANGE
+ . S BEGDATE=$$FMTHL7^XLFDT($$GET1^DIQ(58.42,BATCHIEN,4,"I")\1)
+ . S ENDDATE=$$FMTHL7^XLFDT($$GET1^DIQ(58.42,BATCHIEN,5,"I")\1)
+ . S RANGE="#"_BEGDATE_"#-#"_ENDDATE_"#"
  Q ""
  ;
 IS04() ;ASAP 3.0 : Address Information 2 (Not Used)

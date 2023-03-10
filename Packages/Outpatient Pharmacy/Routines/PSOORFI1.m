@@ -1,11 +1,17 @@
-PSOORFI1 ;BIR/SAB - finish OP orders from OE/RR continued ; 10/23/15 4:14pm
- ;;7.0;OUTPATIENT PHARMACY;**7,15,23,27,32,44,51,46,71,90,108,131,152,186,210,222,258,260,225,391,408,444,467,505**;DEC 1997;Build 39
+PSOORFI1 ;BIR/SAB - finish OP orders from OE/RR continued ;Dec 13, 2021@08:00:50
+ ;;7.0;OUTPATIENT PHARMACY;**7,15,23,27,32,44,51,46,71,90,108,131,152,186,210,222,258,260,225,391,408,444,467,505,617,441,651**;DEC 1997;Build 30
  ;Ref. ^PS(50.7 supp. DBIA 2223
  ;Ref. ^PSDRUG( supp. DBIA 221
  ;Ref. L^PSSLOCK supp. DBIA 2789
  ;Ref. ^PS(50.606 supp. DBIA 2174
  ;Ref. ^PS(55 supp. DBIA 2228
  ;Ref. ULK^ORX2 supp. DBIA 867
+ ;Ref. ^SC( supp. DBIA 10040
+ ;Ref. ^VA(200 supp. DBIA 10060
+ ;Ref. ^XUSEC( supp. DBIA 10076
+ ;Ref. ULK^ORX2 DBIA 867
+ ;Ref. KVA^VADPT supp. DBIA 10061
+ ;Ref. FULL^VALM1 supp. DBIA 10116
  ;
  ;PSO*186 add call to function $$DEACHK
  ;PSO*210 add call to WORDWRAP api
@@ -26,7 +32,7 @@ DRG I $P($G(^PSDRUG(+$G(PSODRUG("IEN")),"CLOZ1")),"^")="PSOCLO1" D CLOZ^PSOORFI2
 ISSDT S (PSOID,Y,PSONEW("ISSUE DATE"))=$S($G(PSONEW("ISSUE DATE")):PSONEW("ISSUE DATE"),$P($G(OR0),"^",6):$E($P(OR0,"^",6),1,7),1:DT)
  X ^DD("DD") S PSONEW("ISSUE DATE")=Y
  D USER^PSOORFI2($P(OR0,"^",4)) S PSONEW("CLERK CODE")=$P(OR0,"^",4),PSORX("CLERK CODE")=USER1
- S (PSONEW("DFLG"),PSONEW("QFLG"))=0,PSODFN=$P(OR0,"^",2),PSONEW("QTY")=$P(OR0,"^",10),PSONEW("MAIL/WINDOW")=$S($P(OR0,"^",17)="M":"M",1:"W")
+ S (PSONEW("DFLG"),PSONEW("QFLG"))=0,PSODFN=$P(OR0,"^",2),PSONEW("QTY")=$P(OR0,"^",10),PSONEW("MAIL/WINDOW")=$S($P(OR0,"^",17)="M":"M",$P(OR0,"^",17)="P":"P",1:"W")
  S:$G(PSONEW("CLINIC"))']"" PSONEW("CLINIC")=+$P(OR0,"^",13),PSORX("CLINIC")=$S($D(^SC(PSONEW("CLINIC"),0)):$P(^SC(PSONEW("CLINIC"),0),"^"),1:"")
  S:$G(PSORX("CLINIC"))']"" PSORX("CLINIC")=$S($D(^SC(+$P(OR0,"^",13),0)):$P(^SC($P(OR0,"^",13),0),"^"),1:"")
  D USER^PSOORFI2($P(OR0,"^",5))
@@ -43,8 +49,10 @@ DS ;
  D DIN^PSONFI(PSODRUG("OI"),$S($D(PSODRUG("IEN")):PSODRUG("IEN"),1:"")) ;Setup for N/F & DIN indicator
  ; pso*7*467 - add display of erx information if the rx came from eRx
  N ERXIEN
- S ERXIEN=$$CHKERX^PSOERXU1(OR0) I ERXIEN D DERX1^PSOERXU1($NA(^TMP("PSOPO",$J)),ERXIEN,"",.IEN)
+ S ERXIEN=$$CHKERX^PSOERXU1(OR0) I ERXIEN D DERX1^PSOERXU1($NA(^TMP("PSOPO",$J)),ERXIEN,"",.IEN,"P")
  ; pso*7*467 - end eRx enhancement
+ S:$P($G(^PS(52.41,ORD,4)),"^",2)]"" PSONEW("IND")=$P($G(^PS(52.41,ORD,4)),"^",2) ;*441-IND
+ S:$P($G(^PS(52.41,ORD,4)),"^",3)]"" PSONEW("INDO")=$P($G(^PS(52.41,ORD,4)),"^",3)
  S IEN=IEN+1,^TMP("PSOPO",$J,IEN,0)="*(1) Orderable Item: "_$P(^PS(50.7,PSODRUG("OI"),0),"^")_" "_$P(^PS(50.606,$P(^(0),"^",2),0),"^")_NFIO
  S:NFIO["<DIN>" NFIO=IEN_","_($L(^TMP("PSOPO",$J,IEN,0))-4)
  ;
@@ -57,7 +65,9 @@ PST D DOSE^PSOORFI4 K PSOINSFL
  S PSOINSFL=$P($G(^PS(52.41,ORD,"INS")),"^",2)
  S IEN=IEN+1,^TMP("PSOPO",$J,IEN,0)=" (4)   Pat Instruct:" D INST^PSOORFI4
  S IEN=IEN+1,^TMP("PSOPO",$J,IEN,0)="  Provider Comments:" S TY=3 D INST
- S IEN=IEN+1,^TMP("PSOPO",$J,IEN,0)="       Instructions:" S TY=2 D INST
+ S IEN=IEN+1,^TMP("PSOPO",$J,IEN,0)="        Indications: "_$G(PSONEW("IND")) ;*441-IND
+ I $G(ERXIEN) S IEN=IEN+1,^TMP("PSOPO",$J,IEN,0)="           eRx Drug: "_$$GET1^DIQ(52.49,ERXIEN,3.1)
+ S IEN=IEN+1,^TMP("PSOPO",$J,IEN,0)="   "_$S($G(ERXIEN):"eRx",1:"   ")_" Instructions: " S TY=2 D INST
  S IEN=IEN+1,^TMP("PSOPO",$J,IEN,0)="                SIG:" D SIG
  S IEN=IEN+1,^TMP("PSOPO",$J,IEN,0)=" (5) Patient Status: "_$P($G(^PS(53,+PSONEW("PATIENT STATUS"),0)),"^")
  S IEN=IEN+1,^TMP("PSOPO",$J,IEN,0)=" (6)     Issue Date: "_PSONEW("ISSUE DATE")
@@ -82,7 +92,7 @@ PST D DOSE^PSOORFI4 K PSOINSFL
  I $P(OR0,"^",24) S ^TMP("PSOPO",$J,IEN,0)="   Provider ordered: days supply "_$P(OR0,"^",22)_", quantity "_$P(OR0,"^",10)_" & refills "_+$P(OR0,"^",11)
  E  S ^TMP("PSOPO",$J,IEN,0)="       Provider ordered "_+$P(OR0,"^",11)_" refills"
  D:$D(CLOZPAT) PQTY^PSOORFI4
- S IEN=IEN+1,^TMP("PSOPO",$J,IEN,0)="(10)   # of Refills: "_PSONEW("# OF REFILLS")_$E("  ",$L(PSONEW("# OF REFILLS"))+1,2)_"               (11)   Routing: "_$S($G(PSONEW("MAIL/WINDOW"))="M":"MAIL",1:"WINDOW")
+ S IEN=IEN+1,^TMP("PSOPO",$J,IEN,0)="(10)   # of Refills: "_PSONEW("# OF REFILLS")_$E("  ",$L(PSONEW("# OF REFILLS"))+1,2)_"               (11)   Routing: "_$S($G(PSONEW("MAIL/WINDOW"))="M":"MAIL",$G(PSONEW("MAIL/WINDOW"))="P":"PARK",1:"WINDOW")
  S IEN=IEN+1,^TMP("PSOPO",$J,IEN,0)="(12)         Clinic: "_PSORX("CLINIC")
  S IEN=IEN+1,^TMP("PSOPO",$J,IEN,0)="(13)       Provider: "_PSONEW("PROVIDER NAME")
  I $G(PKI),+$G(PSODRUG("DEA"))>1,+$G(PSODRUG("DEA"))<6 D PRV^PSOORFI5($P(OR0,"^",5),$P(OR0,"^",9),$P(OR0,"^"))
@@ -96,6 +106,13 @@ PST D DOSE^PSOORFI4 K PSOINSFL
  D USER^PSOORFI2($P(OR0,"^",4))
  S $P(RN," ",35)=" ",IEN=IEN+1,^TMP("PSOPO",$J,IEN,0)="   Entry By: "_USER1_$E(RN,$L(USER1)+1,35)
  S Y=$P(OR0,"^",12) X ^DD("DD") S ^TMP("PSOPO",$J,IEN,0)=^TMP("PSOPO",$J,IEN,0)_"Entry Date: "_$E($P(OR0,"^",12),4,5)_"/"_$E($P(OR0,"^",12),6,7)_"/"_$E($P(OR0,"^",12),2,3)_" "_$P(Y,"@",2) K RN
+ ; DEA compliance note for eRx CS prescriptions
+ N ERXIEN S ERXIEN=$$ERXIEN^PSOERXUT($G(ORD)_"P")
+ I ERXIEN,$$GET1^DIQ(52.49,ERXIEN,95.1,"I"),$$CS^PSOERXA0(+$$GET1^DIQ(52.49,ERXIEN,3.2,"I")) D
+ . S IEN=IEN+1,^TMP("PSOPO",$J,IEN,0)=""
+ . S IEN=IEN+1,^TMP("PSOPO",$J,IEN,0)="This prescription meets the requirements of the Drug Enforcement Administration"
+ . S IEN=IEN+1,^TMP("PSOPO",$J,IEN,0)="(DEA) electronic prescribing for controlled substances rules (21 CFR Parts 1300,"
+ . S IEN=IEN+1,^TMP("PSOPO",$J,IEN,0)="1304, 1306, & 1311)."
  I $P(OR0,"^",24) S PSOACT=$S($D(^XUSEC("PSDRPH",DUZ)):"DEFX",$D(^XUSEC("PSORPH",DUZ)):"F",$P($G(PSOPAR),"^",2):"F",1:"") D
  .K PSOCSP S PSOCSP("NAME")=$G(PSODRUG("NAME")) M PSOCSP("DOSE")=PSONEW("DOSE"),PSOCSP("DOSE ORDERED")=PSONEW("DOSE ORDERED")
  .S PSOCSP("# OF REFILLS")=PSONEW("# OF REFILLS") ;track original data for dig. orders
@@ -121,7 +138,13 @@ OBX ;formats obx section
 ST(PSRT) ;sort by route or patient
  W !!,"Enter: ",!
  I $G(PSRT)'="PA" W "      'PA' to process orders by patients",!
- I $G(PSRT)'="RT" W "      'RT' to process orders by route (mail/window)",!
+ I $G(PSRT)'="RT" D  ;PAPI 441
+ .N RESULTS,PSOPARKX
+ .S RESULTS="PSOPARKX" D GETPARK^PSORPC01()
+ . ;I '$P($G(PSOPAR),"^",34) W "      'RT' to process orders by route (mail/window)",!
+ . ;I $P($G(PSOPAR),"^",34) W "      'RT' to process orders by route (mail/window/park)",!
+ .I $G(PSOPARKX(0))'="YES" W "      'RT' to process orders by route (mail/window)",!
+ .I $G(PSOPARKX(0))="YES" W "      'RT' to process orders by route (mail/window/park)",!
  I $G(PSRT)'="PR" W "      'PR' to process orders by priority",!
  I $G(PSRT)'="CL" W "      'CL' to process orders by clinic",!
  I $G(PSRT)'="FL" W "      'FL' to process flagged orders",!
@@ -131,8 +154,15 @@ ST(PSRT) ;sort by route or patient
  I $G(PSRT)]"","SUCS"'[$G(PSRT) W "      'SU' to process supply item orders",!
  I $D(PSRT) W "   or 'C' to continue with one filter ",!
  W "   or 'E' or '^' to exit" W ! Q
-RT ;which route to sort by
- W !!,"Enter 'W' to process window orders first",!,"      'M' to process mail orders first",!,"      'C' to process orders administered in clinic first",!,"   or 'E' or '^' to exit" Q
+RT ;which route to sort by  ;PAPI 441
+ N RESULTS,PSOPARKX
+ S RESULTS="PSOPARKX" D GETPARK^PSORPC01()
+ W !!,"Enter 'W' to process window orders first"
+ W !,"      'M' to process mail orders first"
+ ;I $P($G(PSOPAR),"^",34) W !,"      'P' to process park orders first"
+ I $G(PSOPARKX(0))="YES" W !,"      'P' to process park orders first"
+ W !,"      'C' to process orders administered in clinic first"
+ W !,"   or 'E' or '^' to exit" Q
 PT ;process for all or one patient
  W !!,"Enter 'A' to process all patient orders",!,"      'S' to process orders for a patient",!,"      or 'E' or '^' to exit" Q
 EP ;continue processing or not

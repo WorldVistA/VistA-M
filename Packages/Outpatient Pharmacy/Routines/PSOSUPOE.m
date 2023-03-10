@@ -1,5 +1,5 @@
-PSOSUPOE ;BIR/RTR - Suspense pull via Listman ;3/1/96
- ;;7.0;OUTPATIENT PHARMACY;**8,21,27,34,130,148,281,287,289,358,385,403,427,496,544**;DEC 1997;Build 19
+PSOSUPOE ;BIR/RTR - Suspense pull via Listman ;Jan 20, 2022@11:21:55
+ ;;7.0;OUTPATIENT PHARMACY;**8,21,27,34,130,148,281,287,289,358,385,403,427,496,544,562,441**;DEC 1997;Build 208
  ;External references PSOL and PSOUL^PSSLOCK supported by DBIA 2789
 SEL I '$G(PSOCNT) S VALMSG="This patient has no Prescriptions!" S VALMBCK="" Q
  N PSOGETF,PSOGET,PSOGETFN,ORD,ORN,MW,PDUZ,PSLST,PSOSQ,PSOSQRTE,PSOSQMTH,PSPOP,PSOX1,PSOX2,RXLTOP,RXREC,SFN,SORD,SORN,VALMCNT
@@ -20,7 +20,7 @@ BEG ;
  S RXREC=$P(PSOLST(SORN),"^",2)
 BEGQ Q:'$D(^PSRX(+$G(RXREC),0))
  D PSOL^PSSLOCK(RXREC) I '$G(PSOMSG) W !!,$S($P($G(PSOMSG),"^",2)'="":$P($G(PSOMSG),"^",2),1:"Another person is editing Rx "_$P($G(^PSRX(RXREC,0)),"^")),! K PSOMSG D DIR Q
- K PSOMSG I $P($G(^PSRX(RXREC,"STA")),"^")'=5 W !!,"Rx# ",$P(^PSRX(RXREC,0),"^")," is not on Suspense!" D DIR,ULRX Q
+ K PSOMSG I $P($G(^PSRX(RXREC,"STA")),"^")'=5 W !!,"Rx# ",$P(^PSRX(RXREC,0),"^")," is not on Suspense",$S($G(^PSRX(RXREC,"PARK")):" and needs to be UNPARKED to be filled",1:""),"!" D DIR,ULRX Q  ;p441 mwa added unparked message
  S SFN=$O(^PS(52.5,"B",RXREC,0)) I 'SFN D DIR,ULRX Q
  S PDUZ=DUZ I +$G(^PS(52.5,SFN,"P")) W !,">>> Rx #",$P(^PSRX(+$P(^(0),"^"),0),"^")," ALREADY PRINTED FROM SUSPENSE.",!,?5,"USE THE REPRINT OPTION TO REPRINT LABEL." D DIR,ULRX Q
  I +$P($G(^PSRX(RXREC,2)),"^",6)<DT,+$P($G(^("STA")),"^")<11 D  S DIE=52,DA=RXREC,DR="100///11" D ^DIE S DA=SFN,DIK="^PS(52.5," D ^DIK K DIE,DA,DIK W !,"Rx # "_$P(^PSRX(RXREC,0),"^")_" has expired!" D DIR,ULRX Q
@@ -55,7 +55,7 @@ BEGQ Q:'$D(^PSRX(+$G(RXREC),0))
  . ; Quit if there is an unresolved TRICARE/CHAMPVA non-billable reject code, PSO*7*358
  . I $$PSOET^PSOREJP3(RXREC,RFL) S ACTION="Q" W !!,"Pull early cannot be done for non-billable TRICARE/CHAMPVA Rx on the worklist" D DIR Q
  . ; Check for unresolved rejects
- . I $$FIND^PSOREJUT(RXREC,RFL) S ACTION=$$HDLG^PSOREJU1(RXREC,RFL,"79,88","PP","IOQ","Q")
+ . I $$FIND^PSOREJUT(RXREC,RFL) S ACTION=$$HDLG^PSOREJU1(RXREC,RFL,"79,88,943","PP","IOQ","Q")
  . ; Check for TRICARE/CHAMPVA that are not complete
  . I $$TRIC^PSOREJP1(RXREC,RFL),$P($$STATUS^PSOBPSUT(RXREC,RFL),U)="IN PROGRESS" S ACTION="Q" W !!,"Pull early cannot be done for IN PROGRESS TRICARE/CHAMPVA Rx" D DIR Q
  ;
@@ -129,7 +129,7 @@ SELONE ;Pull one Rx through Listman
  N ORD,MW,PDUZ,PSLST,PSOSQ,PSOSQRTE,PSOSQMTH,PSPOP,PSOX1,PSOX2,PULLONE,RXLTOP,RXREC,SFN,SORD,SORN,VALMCNT
  S PULLONE=1
  I +PSOLST(ORN)'=52 S VALMBCK="" Q
- I +PSOLST(ORN)=52,$P($G(^PSRX($P(PSOLST(ORN),"^",2),"STA")),"^")'=5 S VALMSG="Rx is not on Suspense!",VALMBCK="" Q
+ I +PSOLST(ORN)=52,$P($G(^PSRX($P(PSOLST(ORN),"^",2),"STA")),"^")'=5 S VALMSG="Rx is not on Suspense"_$S($G(^PSRX($P(PSOLST(ORN),"^",2),"PARK")):" and needs to be UNPARKED",1:"")_"!",VALMBCK="" Q  ;p441 mwa added unparked message
  I +PSOLST(ORN)=52,$D(RXRS($P(PSOLST(ORN),"^",2))) S VALMSG="Pull early has already been requested!",VALMBCK="" Q
  N EHOLDQ,ESIEN,ERXIEN S ERXIEN=$P(PSOLST(ORN),"^",2),ESIEN="",ESIEN=$O(^PS(52.5,"B",ERXIEN,ESIEN))
  I $G(ESIEN),$$GET1^DIQ(52.5,ESIEN,10)'="" D EHOLD Q:$G(EHOLDQ)

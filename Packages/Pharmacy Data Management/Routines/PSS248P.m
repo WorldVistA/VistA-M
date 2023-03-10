@@ -1,0 +1,12 @@
+PSS248P ;WAR - Set FDA MED GUIDE SERVER URL ; 12/23/20 2:40pm
+ ;;1.0;PHARMACY DATA MANAGEMENT;**248**;09/30/97;Build 2
+ ;POST-INSTALL TO POINT FDA MED GUIDE SERVER URL TO https://vaww.vashare.domain.ext/sites/PBMNat/FDAMedGuides/
+ ;
+ Q
+POST ; POST INSTALL ENTRY POINT
+ N DIE,DA,DR
+ S DIE="^PS(59.7,",DA=1,DR="100///https://vaww.vashare.domain.ext/sites/PBMNat/FDAMedGuides/"
+ D ^DIE
+ D BMES^XPDUTL("FDA MED GUIDE SERVER URL UPDATE COMPLETE.")
+ ;
+ Q

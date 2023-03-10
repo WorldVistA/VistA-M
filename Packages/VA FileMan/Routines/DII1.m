@@ -1,5 +1,5 @@
-DII1 ;SFISC/XAK-OTHER OPTIONS ;JUL 25, 1996  14:15
- ;;22.2;VA FileMan;**8,10,9**;Jan 05, 2016;Build 73
+DII1 ;SFISC/XAK - OTHER OPTIONS ; Dec 06, 2021@13:18:33
+ ;;22.2;VA FileMan;**8,10,9,21**;Jan 05, 2016;Build 4
  ;;Per VA Directive 6402, this routine should not be modified.
  ;;Submitted to OSEHRA 5 January 2015 by the VISTA Expertise Network.
  ;;Based on Medsphere Systems Corporation's MSC FileMan 1051.
@@ -49,5 +49,5 @@ Q K %,DIC,DIK,DI,DA,I,J,X,Y Q
 11 ;;DATA TYPE OPTIONS
  G ^DIFMEDT1
  ;
-12 ;;ENTITY MAPPING
+12 ;;DATA MAPPING
  G ^DDEOPT

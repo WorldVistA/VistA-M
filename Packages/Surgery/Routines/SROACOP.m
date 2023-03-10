@@ -1,5 +1,5 @@
 SROACOP ;BIR/MAM - CARDIAC OPERATIVE RISK SUMMARY ;05/05/10
- ;;3.0;Surgery;**38,47,71,88,95,107,100,125,142,153,160,166,174,175,182,184**;24 Jun 93;Build 35
+ ;;3.0;Surgery;**38,47,71,88,95,107,100,125,142,153,160,166,174,175,182,184,200**;24 Jun 93;Build 9
  I '$D(SRTN) W !!,"A Surgery Risk Assessment must be selected prior to using this option.",!!,"Press <RET> to continue  " R X:DTIME G END
  N SRCSTAT S SRACLR=0,SRSOUT=0,SRSUPCPT=1 D ^SROAUTL
 START D:SRACLR RET G:SRSOUT END S SRACLR=0 K SRA,SRAO
@@ -16,13 +16,15 @@ START D:SRACLR RET G:SRSOUT END S SRACLR=0 K SRA,SRAO
  F I=1:1 Q:'$D(SRPROC(I))  W:I=1 ?31,SRPROC(I) W:I'=1 !,?31,SRPROC(I)
  S Y=$P($G(^SRF(SRTN,"1.0")),"^",8),C=$P(^DD(130,1.09,0),"^",2) D:Y'="" Y^DIQ S SRAO(4)=Y_"^1.09"
  W !," 4. Wound Classification: ",?31,$P(SRAO(4),"^")
+ S Y=$$GET1^DIQ(130,SRTN_",",2006,"E") S:$G(Y)']"" Y="NOT ENTERED" S SRAO(5)=Y_"^2006"
+ W !," 5. Robotic Assistance (Y/N): ",?31,$P(SRAO(5),"^")
  W ! D CHCK
  W !! F MOE=1:1:80 W "-"
 ASK W !,"Select Operative Risk Summary Information to Edit: " R X:DTIME I '$T!("^"[X) G END
  S:X="a" X="A" I '$D(SRAO(X)),(X'?.N1":".N),(X'="A") D HELP G:SRSOUT END G START
- I X="A" S X="1:4"
- I X?.N1":".N S Y=$E(X),Z=$P(X,":",2) I Y<1!(Z>4)!(Y>Z) D HELP G:SRSOUT END G START
- I X'=4 D HDR^SROAUTL
+ I X="A" S X="1:5"
+ I X?.N1":".N S Y=$E(X),Z=$P(X,":",2) I Y<1!(Z>5)!(Y>Z) D HELP G:SRSOUT END G START
+ I "4,5"'[X D HDR^SROAUTL
  I X?.N1":".N D RANGE S SROERR=SRTN D ^SROERR0 G START
  I $D(SRAO(X))!(X=4) S EMILY=X D  S SROERR=SRTN D ^SROERR0 G START
  .I $$LOCK^SROUTL(SRTN) W !! D ONE,UNLOCK^SROUTL(SRTN)

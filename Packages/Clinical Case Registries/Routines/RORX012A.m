@@ -1,5 +1,5 @@
 RORX012A ;HOIFO/SG,VAC - COMBINED MEDS AND LABS (QUERY & STORE) ;4/7/09 2:09pm
- ;;1.5;CLINICAL CASE REGISTRIES;**8,13,19,21,31,33,34**;Feb 17, 2006;Build 45
+ ;;1.5;CLINICAL CASE REGISTRIES;**8,13,19,21,31,33,34,39**;Feb 17, 2006;Build 4
  ;
  ; This routine uses the following IAs:
  ;
@@ -22,6 +22,7 @@ RORX012A ;HOIFO/SG,VAC - COMBINED MEDS AND LABS (QUERY & STORE) ;4/7/09 2:09pm
  ;                                       identifiers.
  ;ROR*1.5*33   MAY 2017    M FERRARESE  Adding Future Appointment
  ;ROR*1.5*34   SEP 2018    M FERRARESE  Adding Future Appointment clinic name
+ ;ROR*1.5*39   JUL 2021    M FERRARESE  Setting SSN and LAST4 to zeros
  ;******************************************************************************
  ;******************************************************************************
  Q
@@ -253,7 +254,7 @@ STORE(REPORT,NSPT) ;
  . S CNT=CNT+1,NODE=$NA(^TMP("RORX012",$J,"PAT",DFN))
  . ;--- Patient's data
  . S TMP=$G(@NODE)
- . S LAST4=$P(TMP,U),PTNAME=$P(TMP,U,2),DOD=$P(TMP,U,3),ICN=$P(TMP,U,4),PACT=$P(TMP,U,5),PCP=$P(TMP,U,6),AGE=$P(TMP,U,7)
+ . S LAST4="0000",PTNAME=$P(TMP,U,2),DOD=$P(TMP,U,3),ICN=$P(TMP,U,4),PACT=$P(TMP,U,5),PCP=$P(TMP,U,6),AGE=$P(TMP,U,7)
  . I $$PARAM^RORTSK01("OPTIONS","FUT_APPT") S RORFUT=$P(TMP,U,8),RORCLIN=$P(TMP,U,9)
  . ;--- Patient list
  . S TMP=$S(LTLST<0:1,1:$D(@NODE@("LR"))<10)

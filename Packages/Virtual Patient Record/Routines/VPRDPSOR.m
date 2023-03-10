@@ -1,9 +1,10 @@
 VPRDPSOR ;SLC/MKB -- Medication extract by order ;8/2/11  15:29
- ;;1.0;VIRTUAL PATIENT RECORD;**1,4,18**;Sep 01, 2011;Build 2
+ ;;1.0;VIRTUAL PATIENT RECORD;**1,4,18,28**;Sep 01, 2011;Build 6
  ;;Per VHA Directive 2004-038, this routine should not be modified.
  ;
  ; External References          DBIA#
  ; -------------------          -----
+ ; ^DIC(9.4                     10048
  ; ^OR(100                       5771
  ; ^ORD(100.98                    873
  ; ^SC                          10040
@@ -58,6 +59,7 @@ EN1(IFN,MED) ; -- return an order in MED("attribute")=value [from EN]
  S X=$$LASTPROV(IFN),MED("currentProvider")=X_U_$$PROVSPC^VPRD(+X)
  S MED("start")=$G(ORSTRT),MED("stop")=$G(ORSTOP)
  S MED("vaStatus")=$P($G(ORSTS),U,2),MED("status")=$$STATUS(+$G(ORSTS))
+ S X=$$VALUE^ORX8(IFN,"INDICATION") S:$L(X) MED("indication")=X
  S LOC=+$G(ORL) S:LOC MED("location")=LOC_U_$P(^SC(LOC,0),U)
  I CLS="I" D
  . S:$P($G(^SC(+$G(LOC),0)),U,25) MED("IMO")=1

@@ -1,118 +1,118 @@
-IBDEI190 ; ; 04-FEB-2020
- ;;3.0;IB ENCOUNTER FORM IMP/EXP;;FEB 04, 2020
+IBDEI190 ; ; 01-FEB-2022
+ ;;3.0;IB ENCOUNTER FORM IMP/EXP;;FEB 01, 2022
  Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,999) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
- ;;^UTILITY(U,$J,358.3,20003,1,4,0)
- ;;=4^S32.315S
- ;;^UTILITY(U,$J,358.3,20003,2)
- ;;=^5024676
- ;;^UTILITY(U,$J,358.3,20004,0)
- ;;=S32.615S^^93^998^33
- ;;^UTILITY(U,$J,358.3,20004,1,0)
+ ;;^UTILITY(U,$J,358.3,20229,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,20004,1,3,0)
- ;;=3^Nondisp fx of avulsion of left ischium, sequela
- ;;^UTILITY(U,$J,358.3,20004,1,4,0)
- ;;=4^S32.615S
- ;;^UTILITY(U,$J,358.3,20004,2)
- ;;=^5025084
- ;;^UTILITY(U,$J,358.3,20005,0)
- ;;=S32.314S^^93^998^34
- ;;^UTILITY(U,$J,358.3,20005,1,0)
+ ;;^UTILITY(U,$J,358.3,20229,1,3,0)
+ ;;=3^Disp fx of base of 2nd MC bone, left hand, sequela
+ ;;^UTILITY(U,$J,358.3,20229,1,4,0)
+ ;;=4^S62.311S
+ ;;^UTILITY(U,$J,358.3,20229,2)
+ ;;=^5033842
+ ;;^UTILITY(U,$J,358.3,20230,0)
+ ;;=S62.313S^^67^885^5
+ ;;^UTILITY(U,$J,358.3,20230,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,20005,1,3,0)
- ;;=3^Nondisp fx of avulsion of right ilium, sequela
- ;;^UTILITY(U,$J,358.3,20005,1,4,0)
- ;;=4^S32.314S
- ;;^UTILITY(U,$J,358.3,20005,2)
- ;;=^5024670
- ;;^UTILITY(U,$J,358.3,20006,0)
- ;;=S32.614S^^93^998^35
- ;;^UTILITY(U,$J,358.3,20006,1,0)
+ ;;^UTILITY(U,$J,358.3,20230,1,3,0)
+ ;;=3^Disp fx of base of 3rd MC bone, left hand, sequela
+ ;;^UTILITY(U,$J,358.3,20230,1,4,0)
+ ;;=4^S62.313S
+ ;;^UTILITY(U,$J,358.3,20230,2)
+ ;;=^5033856
+ ;;^UTILITY(U,$J,358.3,20231,0)
+ ;;=S62.312S^^67^885^6
+ ;;^UTILITY(U,$J,358.3,20231,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,20006,1,3,0)
- ;;=3^Nondisp fx of avulsion of right ischium, sequela
- ;;^UTILITY(U,$J,358.3,20006,1,4,0)
- ;;=4^S32.614S
- ;;^UTILITY(U,$J,358.3,20006,2)
- ;;=^5025078
- ;;^UTILITY(U,$J,358.3,20007,0)
- ;;=S32.485S^^93^998^36
- ;;^UTILITY(U,$J,358.3,20007,1,0)
+ ;;^UTILITY(U,$J,358.3,20231,1,3,0)
+ ;;=3^Disp fx of base of 3rd MC bone, right hand, sequela
+ ;;^UTILITY(U,$J,358.3,20231,1,4,0)
+ ;;=4^S62.312S
+ ;;^UTILITY(U,$J,358.3,20231,2)
+ ;;=^5033849
+ ;;^UTILITY(U,$J,358.3,20232,0)
+ ;;=S62.337S^^67^885^37
+ ;;^UTILITY(U,$J,358.3,20232,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,20007,1,3,0)
- ;;=3^Nondisp fx of dome of left acetabulum, sequela
- ;;^UTILITY(U,$J,358.3,20007,1,4,0)
- ;;=4^S32.485S
- ;;^UTILITY(U,$J,358.3,20007,2)
- ;;=^5024982
- ;;^UTILITY(U,$J,358.3,20008,0)
- ;;=S32.484S^^93^998^27
- ;;^UTILITY(U,$J,358.3,20008,1,0)
+ ;;^UTILITY(U,$J,358.3,20232,1,3,0)
+ ;;=3^Disp fx of neck of 5th MC bone, left hand, sequela
+ ;;^UTILITY(U,$J,358.3,20232,1,4,0)
+ ;;=4^S62.337S
+ ;;^UTILITY(U,$J,358.3,20232,2)
+ ;;=^5034024
+ ;;^UTILITY(U,$J,358.3,20233,0)
+ ;;=S62.336S^^67^885^38
+ ;;^UTILITY(U,$J,358.3,20233,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,20008,1,3,0)
- ;;=3^Nondisp fx dome of right acetabulum, sequela
- ;;^UTILITY(U,$J,358.3,20008,1,4,0)
- ;;=4^S32.484S
- ;;^UTILITY(U,$J,358.3,20008,2)
- ;;=^5024976
- ;;^UTILITY(U,$J,358.3,20009,0)
- ;;=S32.435S^^93^998^28
- ;;^UTILITY(U,$J,358.3,20009,1,0)
+ ;;^UTILITY(U,$J,358.3,20233,1,3,0)
+ ;;=3^Disp fx of neck of 5th MC bone, right hand, sequela
+ ;;^UTILITY(U,$J,358.3,20233,1,4,0)
+ ;;=4^S62.336S
+ ;;^UTILITY(U,$J,358.3,20233,2)
+ ;;=^5034017
+ ;;^UTILITY(U,$J,358.3,20234,0)
+ ;;=S62.252S^^67^885^29
+ ;;^UTILITY(U,$J,358.3,20234,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,20009,1,3,0)
- ;;=3^Nondisp fx of anterior column of left acetabulum, sequela
- ;;^UTILITY(U,$J,358.3,20009,1,4,0)
- ;;=4^S32.435S
- ;;^UTILITY(U,$J,358.3,20009,2)
- ;;=^5024802
- ;;^UTILITY(U,$J,358.3,20010,0)
- ;;=S32.434S^^93^998^29
- ;;^UTILITY(U,$J,358.3,20010,1,0)
+ ;;^UTILITY(U,$J,358.3,20234,1,3,0)
+ ;;=3^Disp fx of neck of 1st MC bone, left hand, sequela
+ ;;^UTILITY(U,$J,358.3,20234,1,4,0)
+ ;;=4^S62.252S
+ ;;^UTILITY(U,$J,358.3,20234,2)
+ ;;=^5033723
+ ;;^UTILITY(U,$J,358.3,20235,0)
+ ;;=S62.251S^^67^885^30
+ ;;^UTILITY(U,$J,358.3,20235,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,20010,1,3,0)
- ;;=3^Nondisp fx of anterior column of right acetabulum, sequela
- ;;^UTILITY(U,$J,358.3,20010,1,4,0)
- ;;=4^S32.434S
- ;;^UTILITY(U,$J,358.3,20010,2)
- ;;=^5024796
- ;;^UTILITY(U,$J,358.3,20011,0)
- ;;=S32.415S^^93^998^30
- ;;^UTILITY(U,$J,358.3,20011,1,0)
+ ;;^UTILITY(U,$J,358.3,20235,1,3,0)
+ ;;=3^Disp fx of neck of 1st MC bone, right hand, sequela
+ ;;^UTILITY(U,$J,358.3,20235,1,4,0)
+ ;;=4^S62.251S
+ ;;^UTILITY(U,$J,358.3,20235,2)
+ ;;=^5033716
+ ;;^UTILITY(U,$J,358.3,20236,0)
+ ;;=S62.335S^^67^885^35
+ ;;^UTILITY(U,$J,358.3,20236,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,20011,1,3,0)
- ;;=3^Nondisp fx of anterior wall of left acetabulum, sequela
- ;;^UTILITY(U,$J,358.3,20011,1,4,0)
- ;;=4^S32.415S
- ;;^UTILITY(U,$J,358.3,20011,2)
- ;;=^5024730
- ;;^UTILITY(U,$J,358.3,20012,0)
- ;;=S32.414S^^93^998^31
- ;;^UTILITY(U,$J,358.3,20012,1,0)
+ ;;^UTILITY(U,$J,358.3,20236,1,3,0)
+ ;;=3^Disp fx of neck of 4th MC bone, left hand, sequela
+ ;;^UTILITY(U,$J,358.3,20236,1,4,0)
+ ;;=4^S62.335S
+ ;;^UTILITY(U,$J,358.3,20236,2)
+ ;;=^5034010
+ ;;^UTILITY(U,$J,358.3,20237,0)
+ ;;=S62.334S^^67^885^36
+ ;;^UTILITY(U,$J,358.3,20237,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,20012,1,3,0)
- ;;=3^Nondisp fx of anterior wall of right acetabulum, sequela
- ;;^UTILITY(U,$J,358.3,20012,1,4,0)
- ;;=4^S32.414S
- ;;^UTILITY(U,$J,358.3,20012,2)
- ;;=^5024724
- ;;^UTILITY(U,$J,358.3,20013,0)
- ;;=S32.475S^^93^998^37
- ;;^UTILITY(U,$J,358.3,20013,1,0)
+ ;;^UTILITY(U,$J,358.3,20237,1,3,0)
+ ;;=3^Disp fx of neck of 4th MC bone, right hand, sequela
+ ;;^UTILITY(U,$J,358.3,20237,1,4,0)
+ ;;=4^S62.334S
+ ;;^UTILITY(U,$J,358.3,20237,2)
+ ;;=^5034003
+ ;;^UTILITY(U,$J,358.3,20238,0)
+ ;;=S62.331S^^67^885^31
+ ;;^UTILITY(U,$J,358.3,20238,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,20013,1,3,0)
- ;;=3^Nondisp fx of medial wall of left acetabulum, sequela
- ;;^UTILITY(U,$J,358.3,20013,1,4,0)
- ;;=4^S32.475S
- ;;^UTILITY(U,$J,358.3,20013,2)
- ;;=^5024946
- ;;^UTILITY(U,$J,358.3,20014,0)
- ;;=S32.474S^^93^998^38
- ;;^UTILITY(U,$J,358.3,20014,1,0)
+ ;;^UTILITY(U,$J,358.3,20238,1,3,0)
+ ;;=3^Disp fx of neck of 2nd MC bone, left hand, sequela
+ ;;^UTILITY(U,$J,358.3,20238,1,4,0)
+ ;;=4^S62.331S
+ ;;^UTILITY(U,$J,358.3,20238,2)
+ ;;=^5033982
+ ;;^UTILITY(U,$J,358.3,20239,0)
+ ;;=S62.330S^^67^885^32
+ ;;^UTILITY(U,$J,358.3,20239,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,20014,1,3,0)
- ;;=3^Nondisp fx of medial wall of right acetabulum, sequela
- ;;^UTILITY(U,$J,358.3,20014,1,4,0)
- ;;=4^S32.474S
- ;;^UTILITY(U,$J,358.3,20014,2)
- ;;=^5024940
+ ;;^UTILITY(U,$J,358.3,20239,1,3,0)
+ ;;=3^Disp fx of neck of 2nd MC bone, right hand, sequela
+ ;;^UTILITY(U,$J,358.3,20239,1,4,0)
+ ;;=4^S62.330S
+ ;;^UTILITY(U,$J,358.3,20239,2)
+ ;;=^5033975
+ ;;^UTILITY(U,$J,358.3,20240,0)
+ ;;=S62.333S^^67^885^33
+ ;;^UTILITY(U,$J,358.3,20240,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,20240,1,3,0)
+ ;;=3^Disp fx of neck of 3rd MC bone, left hand, sequela

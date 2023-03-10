@@ -1,5 +1,5 @@
 IBCU72 ;ALB/CPM - ADD/EDIT/DELETE PROCEDURE DIAGNOSES ;18-JUN-96
- ;;2.0;INTEGRATED BILLING;**62,210,473,461,592**;21-MAR-94;Build 58
+ ;;2.0;INTEGRATED BILLING;**62,210,473,461,592,650**;21-MAR-94;Build 21
  ;;Per VA Directive 6402, this routine should not be modified.
  ;
 DX(IBIFN,IBPROC) ; Add/edit/delete procedure diagnoses.
@@ -121,6 +121,10 @@ ORAL2 ;check for conditional required field
  ;IA# 2056; IA# 10018
  I $$GET1^DIQ(399.0304,DA_","_DA(1),90.07)'="" S DR="90.08Prior Placement Date: " D ^DIE
  I $D(Y) S IBPOPOUT=1 Q
+ ;JWS;IB*2.0*650;8/5/20 - if no Prior Placement Date Qualifier (it was deleted), then delete the Prior Placement Date
+ I $$GET1^DIQ(399.0304,DA_","_DA(1),90.07)="",$$GET1^DIQ(399.0304,DA_","_DA(1),90.08)'="" D
+ . S DR="90.08///@" D ^DIE
+ ;
 ORAL1 ; check for conditional required field
  I $$GET1^DIQ(399.0304,DA_","_DA(1),90.07,"I")=441,$$GET1^DIQ(399.0304,DA_","_DA(1),90.08)="" D  Q:$G(IBPOPOUT)  G ORAL1
  . W *7,!," ** Prior Placement Date is required when Prior Placement Date Qualifier equals 441 (Prior Placement Date)"

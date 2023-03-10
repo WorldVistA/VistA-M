@@ -1,5 +1,5 @@
-TIUCOPP ;SLC/TDP - Copy/Paste Paste Tracking ;02/13/20  13:59
- ;;1.0;TEXT INTEGRATION UTILITIES;**290**;Jun 20, 1997;Build 548
+TIUCOPP ;SLC/TDP - Copy/Paste Paste Tracking ;Jul 30, 2020@11:14:22
+ ;;1.0;TEXT INTEGRATION UTILITIES;**290,336**;Jun 20, 1997;Build 4
  ;
  ; External Reference
  ;   DBIA 10000  NOW^%DTC
@@ -11,8 +11,8 @@ TIUCOPP ;SLC/TDP - Copy/Paste Paste Tracking ;02/13/20  13:59
  ;   DBIA  2056  $$GET1^DIQ
  ;   DBIA 10090  ^DIC(4
  ;   DBIA 10035  ^DPT(
- ;   DBIA  ^OR(100
- ;   DBIA  ^LRT(67
+ ;   DBIA  5771  ^OR(100
+ ;   DBIA  3260  ^LRT(67
  ;   DBIA  3162  ^GMR(123 0;14 12;6
  ;   DBIA 10103  NOW^XLFDT
  ;   DBIA 10063  ^%ZTLOAD
@@ -98,7 +98,7 @@ PUTPASTE(INST,ARY,ERR,SVARY) ;Save Pasted Text
  D NOW^%DTC
  S CDTM=%
  S CDT=X
- I $G(INST)="" S TIUERR="-1^Institution is required" G SVPSTQ
+ I $G(INST)="" S INST=$G(DUZ(2))
  I +INST<1 S TIUERR="-1^Invalid institution" G SVPSTQ
  S INST=$$FIND1^DIC(4,"","","`"_INST,"","","ERR")
  I +INST<1 S TIUERR="-1^Invalid institution" G SVPSTQ
@@ -191,6 +191,7 @@ SVPSTQ I $G(TIUERR)'="" D
  . F  S X=$O(TIUERR(X)) Q:X=""  D
  .. S ERR("ERR",X)=$G(TIUERR(X))
  . K TIUERR
+ K ^TMP("DIERR",$J)
  Q SAVE
  ;
 PRNTFND(PSTXTIEN,TIUCPRCD,ARY) ;
@@ -231,8 +232,8 @@ KLLCHLD(PRNT) ;Kill off child paste entries
 SVPST ;Save the paste information
  ;The following variables are expected to exist and are created
  ; in PUTPASTE^TIUCOPP which calls this code:
- ;   CAPP,CPFIL,CPFTXT,CPIEN,DFN,INST,PARENT,PCT,PRNTARY,PSTFIL
- ;   PSTIEN,PSTXTIEN,SMPST,SVARY,TFSCNT,TIUCPRCD,TIUPSTDT
+ ;   CAPP,CPFIL,CPFTXT,CPIEN,DFN,FORCE,INST,PARENT,PCT,PRNTARY
+ ;   PSTFIL,PSTIEN,PSTXTIEN,SMPST,SVARY,TFSCNT,TIUCPRCD,TIUPSTDT
  N DA,FDA,FDAIEN
  S DA=""
  S PRNTARY(TIUCPRCD)=$S(PARENT>0:PARENT,1:0)
@@ -316,7 +317,7 @@ GETPASTE(TIUIEN,INST,APP,ARY,ZERO) ;Retrieve pasted text
  N CPYLOC,CAPP,CPYSRCDT,PRNTIEN,TEXTLNG,COMPLT,FORCE
  S TIUERR=""
  I $G(ARY)'["" S TIUERR="-1^Return array is required." G GETPSTQ
- I $G(INST)="" S TIUERR="-1^Institution is required" G GETPSTQ
+ I $G(INST)="" S INST=$G(DUZ(2))
  I +INST<1 S TIUERR="-1^Invalid institution" G GETPSTQ
  S INST=$$FIND1^DIC(4,"","","`"_INST,"","","ERR")
  I +INST<1 S TIUERR="-1^Invalid institution" G GETPSTQ
@@ -394,7 +395,10 @@ GETPASTE(TIUIEN,INST,APP,ARY,ZERO) ;Retrieve pasted text
  .... S CPYGBL=$P(CPYDFN,";",2)
  .... S CPYDFN=+CPYDFN
  ... I CPYGBL="DPT(" S CPYPTNAME=$P($G(^DPT(CPYDFN,0)),U,1)
- ... I CPYGBL="LRT(67," S CPYPTNAME=$P($G(^LRT(67,CPYDFN,0)),U,1),CPYPTSRC="R"
+ ... ;I CPYGBL="LRT(67," S CPYPTNAME=$P($G(^LRT(67,CPYDFN,0)),U,1),CPYPTSRC="R"
+ ... I CPYGBL="LRT(67," D
+ .... S CPYPTNAME=$$GET1^DIQ(67,CPYDFN_",",.01)
+ .... S CPYPTSRC="R"
  ... I CPYPTNAME="" S CPYPTNAME="UNKNOWN PATIENT NAME"
  .. I CPYFILNM="REQUEST/CONSULTATION" D
  ... S CPYDATA0=$G(^GMR(CPYFIL,CPYIEN,0))
@@ -448,7 +452,7 @@ CHKPASTE(TIUIEN,INST) ;Check pasted text exists for a document
  ;
  N DTPST,ERR,FILE,FILENM,IEN,RSLT,TIUIENLN
  S RSLT=0
- I $G(INST)="" Q RSLT
+ I $G(INST)="" S INST=$G(DUZ(2))
  I +INST<1 Q RSLT
  S INST=$$FIND1^DIC(4,"","","`"_INST,"","","ERR")
  I +INST<1 Q RSLT

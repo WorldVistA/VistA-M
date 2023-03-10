@@ -1,13 +1,16 @@
-GMTSPSO9 ; RS/DLC - OP Rx Summary Component by Select Med ;Apr 23, 2019@21:31:34
- ;;2.7;Health Summary;**125**;Oct 20, 1995;Build 15
+GMTSPSO9 ;RS/DLC - OP Rx Summary Component by Select Med ;Jun 14, 2021@12:10:06
+ ;;2.7;Health Summary;**125,115**;Oct 20, 1995;Build 190
  ;
  ; This is a copy of GMTSPSO7 with modifications to enable selections by class
  ; External References
  ;   DBIA    330  ^PSOHCSUM, ACS^PSOHCSUM
- ;   DBIA    522  ^PS(55,
  ;   DBIA  10035  ^DPT(  file #2
- ;   DBIA   3136  ^PS(59.7,
  ;   DBIA  10011  ^DIWP
+ ;   DBIA   4820  PROF^PSO52API
+ ;   DBIA   2858  ^PSDRUG
+ ;   DBIA   6263  ^UTILITY
+ ;   DBIA   4828  PSS^PSS59P7
+ ;   DBIA   4662  NAME^PSS50P7
  ;
 MAIN ; OP Rx HS Component
  N SELMED,SELMEDOI,ECD,GMR,IX,PSOBEGIN,PSOACT,GMX,GMTOP,GMTSI
@@ -34,11 +37,12 @@ MAIN ; OP Rx HS Component
  K ^TMP("PSOO",$J),^UTILITY($J,"W")
  Q
 WRT ; Writes OP Pharmacy Segment Record
- N ID,LFD,X,MI,NL,CF,GMD,GMV,GMI,DIWL,DIWR,DIWF,GMSIG,GUI S GUI=$$HF^GMTSU
+ N ID,LFD,X,MI,NL,CF,GMD,GMV,GMI,DIWL,DIWR,DIWF,GMSIG,GUI,IND S GUI=$$HF^GMTSU
  S ID=$P(GMR,U),LFD=$P(GMR,U,2),ECD=$P(GMR,U,11),CF=$P(GMR,U,10)
  ;   Don't display when issue date is after To Date
  Q:+$G(GMRANGE)&(ID>(9999999-GMTS1))
  F GMV="ID","LFD","ECD" S X=@GMV D REGDT4^GMTSU S @GMV=X K X
+ S IND=$P($G(^TMP("PSOO",$J,IX,"IND")),U)
  S NL=0,DIWL=1,DIWR=73,DIWF="" K ^UTILITY($J,"W")
  F  S NL=$O(^TMP("PSOO",$J,IX,NL)) Q:NL'>0  D
  . S X=$G(^TMP("PSOO",$J,IX,NL,0)) D ^DIWP
@@ -51,7 +55,7 @@ WRT ; Writes OP Pharmacy Segment Record
  . D CKP^GMTSUP Q:$D(GMTSQIT)  D:GMTSNPG HEAD
  . S MI=$G(^UTILITY($J,"W",DIWL,GMI,0))
  . W:GMSIG=1 ?2,"SIG: " S:GMSIG=1 GMSIG=0 W ?7,MI,! S GMTOP=0
- D CKP^GMTSUP Q:$D(GMTSQIT)  D:GMTSNPG HEAD W ?4,"Provider: ",$E(GMD,1,22) W:CF ?37,"Cost/Fill: $",$J(CF,6,2)
+ D CKP^GMTSUP Q:$D(GMTSQIT)  D:GMTSNPG HEAD W:IND]"" ?4,"Indication: "_IND,! W ?4,"Provider: ",$E(GMD,1,22) W:CF ?37,"Cost/Fill: $",$J(CF,6,2)
  I "EC"[$P($P(GMR,U,5),";"),ECD]"" W ?57,"Exp/Can Dt: "_ECD
  W ! S GMTOP=0
  Q
@@ -65,10 +69,10 @@ HEAD ; Prints Header
  D CKP^GMTSUP Q:$D(GMTSQIT)
  W "Orderable item(s) selected: "
  S (GMI,GMY)=0
- F  S GMI=$O(GMTSEG(1,50.7,GMI)) Q:'GMI  D
+ F  S GMI=$O(GMTSEG(GMTSEGN,50.7,GMI)) Q:'GMI  D  ;p115 mwa replaced hard coded 1 with GMTSEGN
  . S GMY=GMY+1
  . W:GMY>1 "; "
- . S A=GMTSEG(1,50.7,GMI),GMNAME=$$NAME^PSS50P7(A)
+ . S A=GMTSEG(GMTSEGN,50.7,GMI),GMNAME=$$NAME^PSS50P7(A) ;p115 mwa replaced hard coded 1 with GMTSEGN
  . W:(75)'>($X+$L(GMNAME)) !?5
  . D CKP^GMTSUP Q:$D(GMTSQIT)
  . W GMNAME

@@ -1,5 +1,5 @@
-MAGVGUID ;WOIFO/RRB,DAC - Duplicate DICOM Study, Series, & SOP Instance UID Checks ; 23 Nov 2015 3:17 PM
- ;;3.0;IMAGING;**118,138,162**;Mar 19, 2002;Build 22;Nov 23, 2015
+MAGVGUID ;WOIFO/RRB,DAC,JSJ - Duplicate DICOM Study, Series, & SOP Instance UID Checks ; Jul 14, 2021@10:02:27:59
+ ;;3.0;IMAGING;**118,138,162,262,307**;Mar 19, 2002;Build 28
  ;; Per VHA Directive 2004-038, this routine should not be modified.
  ;; +---------------------------------------------------------------+
  ;; | Property of the US Government.                                |
@@ -15,6 +15,10 @@ MAGVGUID ;WOIFO/RRB,DAC - Duplicate DICOM Study, Series, & SOP Instance UID Chec
  ;; | to be a violation of US Federal Statutes.                     |
  ;; +---------------------------------------------------------------+
  ;;
+ ;
+ ; Reference to ^RA(74 in ICR #1171
+ ; Reference to ^RA(70 in ICR #1172
+ ; Reference to GET1^DIQ in ICR #2056
  Q
  ;
  ; check for duplicate SOP Instance UID
@@ -90,7 +94,8 @@ SERIES(DFN,ACNUMB,STUDYUID,SERIESUID) ;
  . S MAG0=$G(^MAG(2005,MAGIEN,0)) Q:MAG0=""
  . S MAGDFN=$P(MAG0,"^",7),MAGGROUP=$P(MAG0,"^",10)
  . S MAGSTUID=$P($G(^MAG(2005,MAGGROUP,"PACS")),"^",1)
- . S MAGACN=$$GETACN(MAGIEN)
+ . ; P262 DAC - Added 2nd ACNUMB parameter 
+ . S MAGACN=$$GETACN(MAGIEN,ACNUMB)
  . S X=MAGDFN_"^"_MAGACN_"^"_MAGSTUID
  . S ^TMP("MAG",$J,"SERIES UID",MAGIEN)=X
  . ; go through the object group file (2005.04) and remove redundancies
@@ -135,10 +140,11 @@ SAMESTDY(MAGIEN,DFN,ACNUMB) ;
  N MAGDFN ; DFN of designated image
  S MAG0=$G(^MAG(2005,MAGIEN,0)) Q:MAG0="" -1 ; no 0-node
  S MAGDFN=$P(MAG0,"^",7) Q:DFN'=MAGDFN 1 ; different patient
- I ACNUMB'=$$GETACN(MAGIEN) Q 1  ; different accession
+ ; P262 - Added 2nd ACNUMB parameter 
+ I ACNUMB'=$$GETACN(MAGIEN,ACNUMB) Q 1  ; different accession
  Q 0
  ;
-GETACN(MAGIEN) ; return the accession number of a study
+GETACN(MAGIEN,ACNUMB) ; P262 DAC - Added 2nd ACNUMB parameter - return the accession number of a study
  N ACNUMBVAH ; VA HIS accession number
  N DATETIME ; Accession DateTime
  N MAG2 ; 2-node of file 2005
@@ -148,12 +154,21 @@ GETACN(MAGIEN) ; return the accession number of a study
  N ROOT,POINTER ; parent data file root and pointer
  S MAG2=$G(^MAG(2005,MAGIEN,2)) Q:MAG2="" "" ; no 2-node
  S ROOT=$P(MAG2,"^",6),POINTER=$P(MAG2,"^",7)
+ S ACNUMBVAH="" ; P262 DAC - Predfine as null
  I ROOT=74 D
  . S RARPT0=$G(^RARPT(POINTER,0)),DATETIME=$P(RARPT0,"^",3)
  . S REVDT=9999999.9999-DATETIME
- . S RADPT0=$G(^RADPT(DFN,"DT",REVDT,"P",1,0))
- . S ACNUMBVAH=$P(RADPT0,"^",31)
- . I ACNUMBVAH="" S ACNUMBVAH=$P(RARPT0,"^",1)
+ . ; P262 DAC - Added IDX to loop through multiple file entries for the same date/time
+ . N IDX S IDX=""
+ . F  D  I ($G(ACNUMB)=$G(ACNUMBVAH))!(IDX="") Q
+ . . S IDX=$O(^RADPT(DFN,"DT",REVDT,"P",IDX))
+ . . Q:IDX=""
+ . . S RADPT0=$G(^RADPT(DFN,"DT",REVDT,"P",IDX,0))
+ . . S ACNUMBVAH=$P(RADPT0,"^",31)
+ . . I ACNUMBVAH="" S ACNUMBVAH=$P(RARPT0,"^",1)
+ . . ; if mismatch check accession cross reference for OTHER CASE#  ;P307
+ . . I (ACNUMBVAH'=ACNUMB),$D(^RARPT(POINTER,1,"B",ACNUMB)) S ACNUMBVAH=ACNUMB ; acc found as OTHER CASE#, set the return value  ;P307
+ . . Q
  . Q
  E  I ROOT=8925 S ACNUMBVAH=$$GMRCACN^MAGDFCNV(+$$GET1^DIQ(8925,POINTER,1405,"I"))
  E  I ROOT=2006.5839 S ACNUMBVAH=$$GMRCACN^MAGDFCNV(POINTER)

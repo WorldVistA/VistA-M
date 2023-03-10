@@ -1,126 +1,128 @@
-IBDEI0O0 ; ; 04-FEB-2020
- ;;3.0;IB ENCOUNTER FORM IMP/EXP;;FEB 04, 2020
+IBDEI0O0 ; ; 01-FEB-2022
+ ;;3.0;IB ENCOUNTER FORM IMP/EXP;;FEB 01, 2022
  Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,999) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
- ;;^UTILITY(U,$J,358.3,10681,1,3,0)
- ;;=3^Eye/Vision Exam w/o Abnormal Findings
- ;;^UTILITY(U,$J,358.3,10681,1,4,0)
- ;;=4^Z01.00
- ;;^UTILITY(U,$J,358.3,10681,2)
- ;;=^5062612
- ;;^UTILITY(U,$J,358.3,10682,0)
- ;;=Z01.01^^74^689^6
- ;;^UTILITY(U,$J,358.3,10682,1,0)
+ ;;^UTILITY(U,$J,358.3,10803,0)
+ ;;=R29.818^^42^488^6
+ ;;^UTILITY(U,$J,358.3,10803,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,10682,1,3,0)
- ;;=3^Eye/Vision Exam w/ Abnormal Findings
- ;;^UTILITY(U,$J,358.3,10682,1,4,0)
- ;;=4^Z01.01
- ;;^UTILITY(U,$J,358.3,10682,2)
- ;;=^5062613
- ;;^UTILITY(U,$J,358.3,10683,0)
- ;;=I10.^^74^689^9
- ;;^UTILITY(U,$J,358.3,10683,1,0)
+ ;;^UTILITY(U,$J,358.3,10803,1,3,0)
+ ;;=3^Nervous & Musculoskeletal System Symptoms,Other
+ ;;^UTILITY(U,$J,358.3,10803,1,4,0)
+ ;;=4^R29.818
+ ;;^UTILITY(U,$J,358.3,10803,2)
+ ;;=^5019318
+ ;;^UTILITY(U,$J,358.3,10804,0)
+ ;;=F06.2^^42^488^7
+ ;;^UTILITY(U,$J,358.3,10804,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,10683,1,3,0)
- ;;=3^Hypertension,Essential
- ;;^UTILITY(U,$J,358.3,10683,1,4,0)
- ;;=4^I10.
- ;;^UTILITY(U,$J,358.3,10683,2)
- ;;=^5007062
- ;;^UTILITY(U,$J,358.3,10684,0)
- ;;=Z21.^^74^689^10
- ;;^UTILITY(U,$J,358.3,10684,1,0)
+ ;;^UTILITY(U,$J,358.3,10804,1,3,0)
+ ;;=3^Psychotic Disorder d/t Another Med Cond w/ Delusions
+ ;;^UTILITY(U,$J,358.3,10804,1,4,0)
+ ;;=4^F06.2
+ ;;^UTILITY(U,$J,358.3,10804,2)
+ ;;=^5003055
+ ;;^UTILITY(U,$J,358.3,10805,0)
+ ;;=F06.0^^42^488^8
+ ;;^UTILITY(U,$J,358.3,10805,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,10684,1,3,0)
- ;;=3^Asymptomatic HIV Infection Status
- ;;^UTILITY(U,$J,358.3,10684,1,4,0)
- ;;=4^Z21.
- ;;^UTILITY(U,$J,358.3,10684,2)
- ;;=^5062777
- ;;^UTILITY(U,$J,358.3,10685,0)
- ;;=Z01.021^^74^689^7
- ;;^UTILITY(U,$J,358.3,10685,1,0)
+ ;;^UTILITY(U,$J,358.3,10805,1,3,0)
+ ;;=3^Psychotic Disorder d/t Another Med Cond w/ Hallucinations
+ ;;^UTILITY(U,$J,358.3,10805,1,4,0)
+ ;;=4^F06.0
+ ;;^UTILITY(U,$J,358.3,10805,2)
+ ;;=^5003053
+ ;;^UTILITY(U,$J,358.3,10806,0)
+ ;;=F52.32^^42^489^1
+ ;;^UTILITY(U,$J,358.3,10806,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,10685,1,3,0)
- ;;=3^Eye/Vision Exam After Failed Exam w/ Abnormal Findings 
- ;;^UTILITY(U,$J,358.3,10685,1,4,0)
- ;;=4^Z01.021
- ;;^UTILITY(U,$J,358.3,10685,2)
- ;;=^5158319
- ;;^UTILITY(U,$J,358.3,10686,0)
- ;;=Z01.020^^74^689^8
- ;;^UTILITY(U,$J,358.3,10686,1,0)
+ ;;^UTILITY(U,$J,358.3,10806,1,3,0)
+ ;;=3^Delayed Ejaculation
+ ;;^UTILITY(U,$J,358.3,10806,1,4,0)
+ ;;=4^F52.32
+ ;;^UTILITY(U,$J,358.3,10806,2)
+ ;;=^331927
+ ;;^UTILITY(U,$J,358.3,10807,0)
+ ;;=F52.21^^42^489^2
+ ;;^UTILITY(U,$J,358.3,10807,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,10686,1,3,0)
- ;;=3^Eye/Vision Exam After Failed Exam w/o Abnormal Findings
- ;;^UTILITY(U,$J,358.3,10686,1,4,0)
- ;;=4^Z01.020
- ;;^UTILITY(U,$J,358.3,10686,2)
- ;;=^5158318
- ;;^UTILITY(U,$J,358.3,10687,0)
- ;;=Z82.1^^74^689^11
- ;;^UTILITY(U,$J,358.3,10687,1,0)
+ ;;^UTILITY(U,$J,358.3,10807,1,3,0)
+ ;;=3^Erectile Disorder
+ ;;^UTILITY(U,$J,358.3,10807,1,4,0)
+ ;;=4^F52.21
+ ;;^UTILITY(U,$J,358.3,10807,2)
+ ;;=^5003620
+ ;;^UTILITY(U,$J,358.3,10808,0)
+ ;;=F52.31^^42^489^3
+ ;;^UTILITY(U,$J,358.3,10808,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,10687,1,3,0)
- ;;=3^Family Hx Blindness/Visual Loss
- ;;^UTILITY(U,$J,358.3,10687,1,4,0)
- ;;=4^Z82.1
- ;;^UTILITY(U,$J,358.3,10687,2)
- ;;=^5063365
- ;;^UTILITY(U,$J,358.3,10688,0)
- ;;=Z83.518^^74^689^12
- ;;^UTILITY(U,$J,358.3,10688,1,0)
+ ;;^UTILITY(U,$J,358.3,10808,1,3,0)
+ ;;=3^Female Orgasmic Disorder
+ ;;^UTILITY(U,$J,358.3,10808,1,4,0)
+ ;;=4^F52.31
+ ;;^UTILITY(U,$J,358.3,10808,2)
+ ;;=^331926
+ ;;^UTILITY(U,$J,358.3,10809,0)
+ ;;=F52.22^^42^489^4
+ ;;^UTILITY(U,$J,358.3,10809,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,10688,1,3,0)
- ;;=3^Family Hx Other Eye Disorder
- ;;^UTILITY(U,$J,358.3,10688,1,4,0)
- ;;=4^Z83.518
- ;;^UTILITY(U,$J,358.3,10688,2)
- ;;=^5063383
- ;;^UTILITY(U,$J,358.3,10689,0)
- ;;=Z83.511^^74^689^13
- ;;^UTILITY(U,$J,358.3,10689,1,0)
+ ;;^UTILITY(U,$J,358.3,10809,1,3,0)
+ ;;=3^Female Sexual Interest/Arousal Disorder
+ ;;^UTILITY(U,$J,358.3,10809,1,4,0)
+ ;;=4^F52.22
+ ;;^UTILITY(U,$J,358.3,10809,2)
+ ;;=^5003621
+ ;;^UTILITY(U,$J,358.3,10810,0)
+ ;;=F52.6^^42^489^5
+ ;;^UTILITY(U,$J,358.3,10810,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,10689,1,3,0)
- ;;=3^Family Hx of Glaucoma
- ;;^UTILITY(U,$J,358.3,10689,1,4,0)
- ;;=4^Z83.511
- ;;^UTILITY(U,$J,358.3,10689,2)
- ;;=^5063382
- ;;^UTILITY(U,$J,358.3,10690,0)
- ;;=H35.3211^^74^690^1
- ;;^UTILITY(U,$J,358.3,10690,1,0)
+ ;;^UTILITY(U,$J,358.3,10810,1,3,0)
+ ;;=3^Genito-Pelvic Pain/Penetration Disorder
+ ;;^UTILITY(U,$J,358.3,10810,1,4,0)
+ ;;=4^F52.6
+ ;;^UTILITY(U,$J,358.3,10810,2)
+ ;;=^5003623
+ ;;^UTILITY(U,$J,358.3,10811,0)
+ ;;=F52.0^^42^489^6
+ ;;^UTILITY(U,$J,358.3,10811,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,10690,1,3,0)
- ;;=3^Exudative AMD,RIGHT eye,active CNV
- ;;^UTILITY(U,$J,358.3,10690,1,4,0)
- ;;=4^H35.3211
- ;;^UTILITY(U,$J,358.3,10690,2)
- ;;=^5138521
- ;;^UTILITY(U,$J,358.3,10691,0)
- ;;=H35.3221^^74^690^2
- ;;^UTILITY(U,$J,358.3,10691,1,0)
+ ;;^UTILITY(U,$J,358.3,10811,1,3,0)
+ ;;=3^Male Hypoactive Sexual Desire Disorder
+ ;;^UTILITY(U,$J,358.3,10811,1,4,0)
+ ;;=4^F52.0
+ ;;^UTILITY(U,$J,358.3,10811,2)
+ ;;=^5003618
+ ;;^UTILITY(U,$J,358.3,10812,0)
+ ;;=F52.4^^42^489^7
+ ;;^UTILITY(U,$J,358.3,10812,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,10691,1,3,0)
- ;;=3^Exudative AMD,LEFT eye,active CNV 
- ;;^UTILITY(U,$J,358.3,10691,1,4,0)
- ;;=4^H35.3221
- ;;^UTILITY(U,$J,358.3,10691,2)
- ;;=^5138525
- ;;^UTILITY(U,$J,358.3,10692,0)
- ;;=H35.059^^74^690^3
- ;;^UTILITY(U,$J,358.3,10692,1,0)
+ ;;^UTILITY(U,$J,358.3,10812,1,3,0)
+ ;;=3^Premature (Early) Ejaculation
+ ;;^UTILITY(U,$J,358.3,10812,1,4,0)
+ ;;=4^F52.4
+ ;;^UTILITY(U,$J,358.3,10812,2)
+ ;;=^331928
+ ;;^UTILITY(U,$J,358.3,10813,0)
+ ;;=F52.8^^42^489^9
+ ;;^UTILITY(U,$J,358.3,10813,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,10692,1,3,0)
- ;;=3^Retinal CNV or NV,unspec          
- ;;^UTILITY(U,$J,358.3,10692,1,4,0)
- ;;=4^H35.059
- ;;^UTILITY(U,$J,358.3,10692,2)
- ;;=^5005601
- ;;^UTILITY(U,$J,358.3,10693,0)
- ;;=H35.82^^74^690^4
- ;;^UTILITY(U,$J,358.3,10693,1,0)
+ ;;^UTILITY(U,$J,358.3,10813,1,3,0)
+ ;;=3^Sexual Dysfuntion,Other
+ ;;^UTILITY(U,$J,358.3,10813,1,4,0)
+ ;;=4^F52.8
+ ;;^UTILITY(U,$J,358.3,10813,2)
+ ;;=^5003624
+ ;;^UTILITY(U,$J,358.3,10814,0)
+ ;;=F52.9^^42^489^8
+ ;;^UTILITY(U,$J,358.3,10814,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,10693,1,3,0)
- ;;=3^Retinal Ischemia,unspec           
+ ;;^UTILITY(U,$J,358.3,10814,1,3,0)
+ ;;=3^Sexual Dysfunction,Unspec
+ ;;^UTILITY(U,$J,358.3,10814,1,4,0)
+ ;;=4^F52.9
+ ;;^UTILITY(U,$J,358.3,10814,2)
+ ;;=^5003625
+ ;;^UTILITY(U,$J,358.3,10815,0)
+ ;;=G47.09^^42^490^16
+ ;;^UTILITY(U,$J,358.3,10815,1,0)
+ ;;=^358.31IA^4^2

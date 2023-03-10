@@ -1,5 +1,5 @@
-PXRMFNFT ; SLC/PKR - Process found/not found text. ;05/29/2020
- ;;2.0;CLINICAL REMINDERS;**4,12,16,47,46**;Feb 04, 2005;Build 236
+PXRMFNFT ; SLC/PKR - Process found/not found text. ;04/01/2022
+ ;;2.0;CLINICAL REMINDERS;**4,12,16,47,46,65**;Feb 04, 2005;Build 438
  ;
  ;===============
 AGE(DFN,DEFARR,FIEVAL,NTXT) ;Output the age match/no match
@@ -47,6 +47,34 @@ ALLWSP(TEXT) ;If $P(TEXT,"\\",IND) is all whitespace, ASCII characters < 33
  .. S ACHAR=$A(TEMP,JND)
  .. I ACHAR>32 S ALLWSP=0
  Q ALLWSP
+ ;
+ ;===============
+CRLOGIC(DFN,NUMLINES,WPNODE,NTXT) ;Output the CONTRAINDICATED and REFUSED
+ ;true and not true text.
+ I +NUMLINES'>0 Q
+ N CCSUBO,CSUBTEXT,CTIUO,FORMAT,LC,NCSUBL,NIN,NLINES,NTIUL
+ N TEXT,TEXTIN,TIUTEXT
+ ;If CCSUBO is true the text contains a CSUB object.
+ S CCSUBO=$S(NUMLINES["C":1,1:0)
+ ;If CTIUO is true the text contains a TIU object.
+ S CTIUO=$S(NUMLINES["T":1,1:0)
+ S NIN=+NUMLINES,NLINES=0
+ F LC=1:1:NIN S TEXTIN(LC)=^PXD(811.9,PXRMITEM,WPNODE,LC,0)
+ S NIN=NIN+1,TEXTIN(NIN)="\\"
+ I $E(TEXTIN(1),1,5)="'FMT:" D
+ . S FORMAT=0
+ . S TEXTIN(1)=$P(TEXTIN(1),"'FMT:",2)
+ E  S FORMAT=1
+ I CCSUBO D FNFTXTCSUBO(NIN,.TEXTIN,.NCSUBL,.CSUBTEXT,.FIEVAL)
+ I CTIUO D
+ . N VSTR S VSTR=""
+ . I CCSUBO D FNFTXTTIUO(NCSUBL,.CSUBTEXT,DFN,VSTR,.NTIUL,.TIUTEXT)
+ . I 'CCSUBO D FNFTXTTIUO(NIN,.TEXTIN,DFN,VSTR,.NTIUL,.TIUTEXT)
+ I CTIUO D FNFTXTF(1,NTIUL,.TIUTEXT,.NLINES,.TEXT)
+ I CCSUBO&('CTIUO) D FNFTXTF(1,NCSUBL,.CSUBTEXT,.NLINES,.TEXT)
+ I ('CTIUO)&('CCSUBO) D FNFTXTF(1,NIN,.TEXTIN,.NLINES,.TEXT)
+ D COPYTXT^PXRMOUTU(.NTXT,NLINES,.TEXT)
+ Q
  ;
  ;===============
 FINDING(DFN,FINDING,FIEVAL,IFIEVAL,NLINES,TEXT) ;Output the finding found/not
@@ -174,16 +202,15 @@ LOGIC(DFN,LOGSTR,LOGTYPE,TTYPE,DEFARR,FIEVAL,NTXT) ;Output the detailed
  I LOGSTR="" Q
  N CCSUBO,CSUBTEXT,CTIUO,FI,FORMAT,LC,NCSUBL,NIN,NLINES,NTIUL,SUB
  N TEXT,TEXTIN,TIUTEXT
- I TTYPE="S" S NIN=$S(LOGTYPE="PCL":DEFARR(72),LOGTYPE="RES":DEFARR(77),1:0)
- E  S NIN=$S(LOGTYPE="PCL":DEFARR(62),LOGTYPE="RES":DEFARR(67),1:0)
+ I TTYPE="S" S NLINES=$S(LOGTYPE="PCL":DEFARR(72),LOGTYPE="RES":DEFARR(77),1:0)
+ E  S NLINES=$S(LOGTYPE="PCL":DEFARR(62),LOGTYPE="RES":DEFARR(67),1:0)
+ S FI=$P(LOGSTR,U,1)
+ S NIN=$S(FI=1:$P(NLINES,U,1),FI=0:$P(NLINES,U,2),1:0)
  I +NIN=0 Q
  ;If CCSUBO is true the text contains a CSUB object.
  S CCSUBO=$S(NIN["C":1,1:0)
  ;If CTIUO is true the text contains a TIU object.
  S CTIUO=$S(NIN["T":1,1:0)
- S FI=$P(LOGSTR,U,1)
- S NIN=$S(FI=1:$P(NIN,U,1),FI=0:$P(NIN,U,2),1:0)
- I +NIN=0 Q
  I TTYPE="S" D
  . I LOGTYPE="PCL",FI=1 S SUB=70
  . I LOGTYPE="PCL",FI=0 S SUB=71
@@ -331,7 +358,11 @@ SNMLL(RIEN) ;Set the number of lines for the logic found/not found
  ;SUB=71 Summary cohort not found text
  ;SUB=75 Summary resolution found text
  ;SUB=76 Summary resolution not found text
- F SUB=60,61,65,66,70,71,75,76 D
+ ;SUB=83 Contraindicated true text
+ ;SUB=84 Contraindicated false text
+ ;SUB=93 Refused true tex
+ ;SUB=94 Refused false text
+ F SUB=60,61,65,66,70,71,75,76,83,84,93,94 D
  . S (IND,LC,NCSUB,NPIPE)=0
  . F  S IND=$O(^PXD(811.9,RIEN,SUB,IND)) Q:IND=""  D
  .. S TEXT=^PXD(811.9,RIEN,SUB,IND,0)
@@ -347,6 +378,10 @@ SNMLL(RIEN) ;Set the number of lines for the logic found/not found
  .. I SUB=71 S TTYPE="summary cohort not found text"
  .. I SUB=75 S TTYPE="summary resolution found text"
  .. I SUB=76 S TTYPE="summary resolution not found text"
+ .. I SUB=83 S TTYPE="contraindicated true text"
+ .. I SUB=84 S TTYPE="contraindicated false text"
+ .. I SUB=93 S TTYPE="refused true text"
+ .. I SUB=94 S TTYPE="refused false text"
  .. D TIUOBJW(TTYPE,NPIPE)
  . I NCSUB>0 S LC=LC_"C"
  . I NPIPE>1 S LC=LC_"T"
@@ -358,6 +393,10 @@ SNMLL(RIEN) ;Set the number of lines for the logic found/not found
  . I SUB=71 S ^PXD(811.9,RIEN,72)=CSTR_U_LC
  . I SUB=75 S CSTR=LC
  . I SUB=76 S ^PXD(811.9,RIEN,77)=CSTR_U_LC
+ . I SUB=83 S CSTR=LC
+ . I SUB=84 S ^PXD(811.9,RIEN,85)=CSTR_U_LC
+ . I SUB=93 S CSTR=LC
+ . I SUB=94 S ^PXD(811.9,RIEN,95)=CSTR_U_LC
  Q
  ;
  ;===============

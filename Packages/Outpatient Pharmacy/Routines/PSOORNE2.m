@@ -1,5 +1,5 @@
-PSOORNE2 ;BIR/SAB - Display finished orders from backdoor ;7/15/16 2:30pm
- ;;7.0;OUTPATIENT PHARMACY;**11,21,23,27,32,37,46,84,103,117,131,146,156,210,148,222,238,264,281,289,251,379,391,313,282,427,454,446,467,612**;DEC 1997;Build 23
+PSOORNE2 ;BIR/SAB - Display finished orders from backdoor ;Jul 20, 2021@15:35:49
+ ;;7.0;OUTPATIENT PHARMACY;**11,21,23,27,32,37,46,84,103,117,131,146,156,210,148,222,238,264,281,289,251,379,391,313,282,427,454,446,467,612,524,441,698**;DEC 1997;Build 2
  ;
  ;^PSDRUG( -  221
  ;^YSCL(603.01 - 2697
@@ -9,11 +9,14 @@ PSOORNE2 ;BIR/SAB - Display finished orders from backdoor ;7/15/16 2:30pm
  ;$$DAWEXT^PSSDAWUT - 4708
  ;Reference to ^SC( is supported by DBIA #10040
  ;
-SEL N ORN,ORD,PSORRBLD I '$G(PSOCNT),'$G(PSORCNT) S VALMSG="This patient has no Prescriptions!" S VALMBCK="" Q
+ ;*524 create and init psohz; user has seen Haz drug warning during this order's session
+ ;
+SEL N ORN,ORD,OR0,PSORRBLD I '$G(PSOCNT),'$G(PSORCNT) S VALMSG="This patient has no Prescriptions!" S VALMBCK="" Q
  D K1^PSOORNE6 S DIR("A")="Select Orders by number",DIR(0)="LO^1:"_$S($G(PSORCNT):PSORCNT,1:PSOCNT) D ^DIR I $D(DIRUT) D KV^PSOVER1 S VALMBCK="" Q
-NEWSEL N ORN,ORD D K2^PSOORNE6
+NEWSEL N ORN,ORD,OR0 D K2^PSOORNE6
+ N PSOHZ,PSOLSTDR S (PSOHZ,PSOLSTDR)=0  ;reset haz alerts displayed to user *524
  ;*282 Correct Patient Instructions Copy
- I +Y S PSOOELSE=1,PSLST=Y K PSOREEDT F ORD=1:1:$L(PSLST,",") Q:$P(PSLST,",",ORD)']""  D  D UL1 K ^TMP("PSORXPO",$J),PSORXED,PSONEW,PSOPINS I $G(PSOQUIT) K PSOQUIT Q
+ I +Y S PSOOELSE=1,PSLST=Y K PSOREEDT F ORD=1:1:$L(PSLST,",") Q:$P(PSLST,",",ORD)']""  D  D UL1 K ^TMP("PSORXPO",$J),PSORXED,PSONEW,PSOPINS,PSOPIND,PSOPINDF I $G(PSOQUIT) K PSOQUIT Q  ;*441-IND
  .; bwf 1/21/2014 - replaced line below with the one that follows for remote rx data handling.
  .;S ORN=+$P(PSLST,",",ORD) D @$S(+PSOLST(ORN)=52:"ACT",1:"PEN^PSOORNE5")
  .S ORN=+$P(PSLST,",",ORD) D @$S(+PSOLST(ORN)=52:"ACT",$P(PSOLST(ORN),"^")="R52":"RACT",1:"PEN^PSOORNE5")
@@ -37,10 +40,8 @@ ACT N REF,RPHKEY,PKIND K ^TMP("PSOAO",$J),PCOMX,PDA,PHI,PRC,ACOM,ANS,PSOFDR,CLOZ
  I 'RXOR,$P(^PSDRUG(PSODRG,2),"^") S $P(^PSRX(RXN,"OR1"),"^")=$P(^PSDRUG(PSODRG,2),"^"),RXOR=$P(^PSDRUG(PSODRG,2),"^")
  I $P($G(^PSDRUG(PSODRG,"CLOZ1")),"^")="PSOCLO1" D
  .; BEGIN - JCH: PSO*7*612
- .;S CLOZPAT=$O(^YSCL(603.01,"C",PSODFN,0)) Q:'CLOZPAT
  .S CLOZPAT=$$GETREGYS^PSOCLUTL(PSODFN) Q:'($G(CLOZPAT)>0)
  .; END - JCH: PSO*7*612
- .;S CLOZPAT=$S($P(^YSCL(603.01,CLOZPAT,0),"^",3)="B":1,1:0)
  .S CLOZPAT=$P(^YSCL(603.01,CLOZPAT,0),"^",3)
  .S CLOZPAT=$S(CLOZPAT="M":2,CLOZPAT="B":1,1:0)
  S PKIND=$D(^PSRX(RXN,"PKI")),RPHKEY=$S('PKIND&($D(^XUSEC("PSORPH",DUZ))):1,PKIND&($D(^XUSEC("PSDRPH",DUZ))):1,1:0)
@@ -66,6 +67,8 @@ ACT N REF,RPHKEY,PKIND K ^TMP("PSOAO",$J),PCOMX,PDA,PHI,PRC,ACOM,ANS,PSOFDR,CLOZ
  ; pso*7*467 - end eRx enhancement
  S IEN=IEN+1,^TMP("PSOAO",$J,IEN,0)=$S($P($G(^PSRX(RXN,"TPB")),"^"):"            TPB Rx #: ",1:"                Rx #: ")
  S ^TMP("PSOAO",$J,IEN,0)=^TMP("PSOAO",$J,IEN,0)_$P(RX0,"^")_$S($G(^PSRX(RXN,"IB")):"$",1:"")_$$ECME^PSOBPSUT(RXN)_$$TITRX^PSOUTL(RXN)_$E(RN,$L($P(RX0,"^")_$S($G(^PSRX(RXN,"IB")):"$",1:"")_$$ECME^PSOBPSUT(RXN)_$$TITRX^PSOUTL(RXN))+1,12)
+ I $$ECME^PSOBPSUT(RXN)'="" D              ;*524
+ . S ^TMP("PSOAO",$J,IEN,0)=^TMP("PSOAO",$J,IEN,0)_"(ECME#: "_$$ECMENUM^PSOBPSU2(RXN)_")"
  S IEN=IEN+1,^TMP("PSOAO",$J,IEN,0)=" ("_$S($P(PSOPAR,"^",3):1,1:"#")_")"_" *Orderable Item: "_$S($D(^PS(50.7,$P(+RXOR,"^"),0)):$P(^PS(50.7,$P(+RXOR,"^"),0),"^")_" "_$P(^PS(50.606,$P(^(0),"^",2),0),"^"),1:"")_NFIO
  S:NFIO["<DIN>" NFIO=IEN_","_($L(^TMP("PSOAO",$J,IEN,0))-4)
  S IEN=IEN+1,^TMP("PSOAO",$J,IEN,0)=" ("_$S($P(PSOPAR,"^",3):2,1:"#")_")"_$S($D(^PSDRUG("AQ",$P(RX0,"^",6))):"       CMOP ",1:"            ")_"Drug: "_$P(^PSDRUG($P(RX0,"^",6),0),"^")_NFID
@@ -75,6 +78,8 @@ ACT N REF,RPHKEY,PKIND K ^TMP("PSOAO",$J),PCOMX,PDA,PHI,PRC,ACOM,ANS,PSOFDR,CLOZ
  D DOSE^PSOORNE5
  S IEN=IEN+1,^TMP("PSOAO",$J,IEN,0)=" (4)Pat Instructions:" D INS^PSOORNE5
  D PC^PSOORNE5
+ S IEN=IEN+1,^TMP("PSOAO",$J,IEN,0)="         Indications: "_$S($P($G(^PSRX(RXN,"IND")),"^")]"":$P(^PSRX(RXN,"IND"),"^"),1:"") ;*441-IND
+ I $P($G(^PS(55,PSODFN,"LAN")),"^") S IEN=IEN+1,^TMP("PSOAO",$J,IEN,0)="   Other Indications: "_$S($P($G(^PSRX(RXN,"IND")),"^",3)]"":$P(^("IND"),"^",3),1:"")
  S IEN=IEN+1,^TMP("PSOAO",$J,IEN,0)="                 SIG:"
  I '$P($G(^PSRX(RXN,"SIG")),"^",2) S SIGOK=0 D  G PTST
  .S X=$P($G(^PSRX(RXN,"SIG")),"^") D SIGONE^PSOHELP S SIG=$E($G(INS1),2,250)
@@ -88,8 +93,8 @@ PTST S $P(RN," ",25)=" ",PTST=$S($G(^PS(53,+$P(RX0,"^",3),0))]"":$P($G(^PS(53,+$
  S ^TMP("PSOAO",$J,IEN,0)=" (5)  Patient Status: "_PTST_$E(RN,$L(PTST)+1,25)
  S IEN=IEN+1,^TMP("PSOAO",$J,IEN,0)=" (6)      Issue Date: "_$E($P(RX0,"^",13),4,5)_"/"_$E($P(RX0,"^",13),6,7)_"/"_$E($P(RX0,"^",13),2,3)
  S ^TMP("PSOAO",$J,IEN,0)=^TMP("PSOAO",$J,IEN,0)_"               (7)  Fill Date: "_$E($P(RX2,"^",2),4,5)_"/"_$E($P(RX2,"^",2),6,7)_"/"_$E($P(RX2,"^",2),2,3)
- S ROU=$S($P(RX0,"^",11)="W":"Window",1:"Mail")
- S REFL=$P(RX0,"^",9),I=0 F  S I=$O(^PSRX(RXN,1,I)) Q:'I  S REFL=REFL-1,ROU=$S($P(^PSRX(RXN,1,I,0),"^",2)="W":"Window",1:"Mail")
+ S ROU=$S($P(RX0,"^",11)="W":"Window",$P(RX0,"^",11)="P":"Park",1:"Mail")    ;PAPI 441
+ S REFL=$P(RX0,"^",9),I=0 F  S I=$O(^PSRX(RXN,1,I)) Q:'I  S REFL=REFL-1,ROU=$S($P(^PSRX(RXN,1,I,0),"^",2)="W":"Window",$P(^PSRX(RXN,1,I,0),"^",2)="P":"Park",1:"Mail")
  S IEN=IEN+1,^TMP("PSOAO",$J,IEN,0)="      Last Fill Date: "_$E($P(RX3,"^"),4,5)_"/"_$E($P(RX3,"^"),6,7)_"/"_$E($P(RX3,"^"),2,3)
  D CMOP^PSOORNE3
  S ^TMP("PSOAO",$J,IEN,0)=^TMP("PSOAO",$J,IEN,0)_" ("_ROU_$S($G(PSOCMOP)]"":", "_PSOCMOP,1:"")_")" K ROU,PSOCMOP
@@ -112,7 +117,8 @@ PTST S $P(RN," ",25)=" ",PTST=$S($G(^PS(53,+$P(RX0,"^",3),0))]"":$P($G(^PS(53,+$
  S IEN=IEN+1,^TMP("PSOAO",$J,IEN,0)="(12)        Provider: "_$S($D(^VA(200,$P(RX0,"^",4),0)):$P(^VA(200,$P(RX0,"^",4),0),"^"),1:"UNKNOWN")
  I +$P($G(^PSDRUG($P(RX0,"^",6),0)),"^",3)>1,+$P($G(^PSDRUG($P(RX0,"^",6),0)),"^",3)<6 D PRV^PSOORNE5
  I $P(RX3,"^",3) S IEN=IEN+1,^TMP("PSOAO",$J,IEN,0)="        Cos-Provider: "_$P(^VA(200,$S($G(PSORX("COSIGNING PROVIDER")):PSORX("COSIGNING PROVIDER"),1:$P(RX3,"^",3)),0),"^")
- S IEN=IEN+1,^TMP("PSOAO",$J,IEN,0)="(13)         Routing: "_$S($P(RX0,"^",11)="M":"MAIL",1:"WINDOW")_"                  (14)     Copies: "_$S($P(RX0,"^",18):$P(RX0,"^",18),1:1)
+ ;PAPI 441
+ S IEN=IEN+1,^TMP("PSOAO",$J,IEN,0)="(13)         Routing: "_$S($P(RX0,"^",11)="M":"MAIL",$P(RX0,"^",11)="P":"PARK",1:"WINDOW")_"                  (14)     Copies: "_$S($P(RX0,"^",18):$P(RX0,"^",18),1:1)
  S:$P(RX0,"^",11)="W"&($P(PSOPAR,"^",12)) IEN=IEN+1,^TMP("PSOAO",$J,IEN,0)="    Method of Pickup: "_$G(^PSRX(RXN,"MP"))
  S IEN=IEN+1,^TMP("PSOAO",$J,IEN,0)="(15)          Clinic: "_$S($D(^SC(+$P(RX0,"^",5),0)):$P(^SC($P(RX0,"^",5),0),"^"),1:"Not on File")
  S IEN=IEN+1,^TMP("PSOAO",$J,IEN,0)="(16)        Division: "_$S($G(^PS(59,+$P(RX2,"^",9),0))]"":$P(^PS(59,$P(RX2,"^",9),0),"^")_" ("_$P(^(0),"^",6)_")",1:"UNKNOWN")
@@ -185,7 +191,7 @@ RCHUNK(ARR,STR) ;
  ; add a space to the end of the string to avoid dropping last character
  S START=1,END=ROOM,STR=STR_" "
  F C=1:1 D  Q:$L(STR)<START  ; stop if we have made it to the end of the data string
- .; start at the end and work backwards until you find a blank space, cut the line there and move on to the next line 
+ .; start at the end and work backwards until you find a blank space, cut the line there and move on to the next line
  .F I=END:-1:START I $E(STR,I)=" " S ARR(C)=$E(STR,START,I),START=I+1,END=ROOM+START Q
  .; make sure there wasn't a really long string without spaces
  .I I=START S ARR(C)=$E(STR,START,END),START=END+1,END=ROOM+START

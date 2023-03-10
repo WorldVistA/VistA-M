@@ -1,5 +1,5 @@
 DGPFUT ;ALB/RPM - PRF UTILITIES ; 6/7/05 3:13pm
- ;;5.3;Registration;**425,554,650,951**;Aug 13, 1993;Build 135
+ ;;5.3;Registration;**425,554,650,951,1017**;Aug 13, 1993;Build 1
  ;     Last Edited: SHRPE/sgm - Sep 26, 2018 16:46
  ;
  ; ICR# TYPE DESCRIPTION
@@ -228,8 +228,10 @@ STATUS(DGACT) ;calculate the assignment STATUS given an ACTION code
  . Q:$D(DGERR)
  . D CHK^DIE(26.14,.03,"E",DGACT,.DGRSLT,"DGERR")
  . Q:$D(DGERR)
- . I DGRSLT(0)="INACTIVATE"!(DGRSLT(0)="ENTERED IN ERROR") S DGSTAT=0
- . E  S DGSTAT=1
+ . S DGSTAT=$S(DGRSLT(0)="INACTIVATE":0,DGRSLT(0)="ENTERED IN ERROR":0,DGRSLT(0)="REFRESH INACTIVE":0,1:1)
+ ;. I DGRSLT(0)="INACTIVATE"!(DGRSLT(0)="ENTERED IN ERROR") S DGSTAT=0
+ ;. E  S DGSTAT=1
+ ; DG*5.3*1017 using $S and adding "REFRESH INACTIVE" as possible action
  Q DGSTAT
  ;
 TESTVAL(DGFIL,DGFLD,DGVAL) ;validate individual value against field def

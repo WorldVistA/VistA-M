@@ -1,5 +1,5 @@
 MPIFXMLP ;OAK/ELZ - MPIF PROBLISTIC SEARCH ;21 May 2020  1:20 PM
- ;;1.0;MASTER PATIENT INDEX VISTA;**61,67,74**;30 Apr 99;Build 6
+ ;;1.0;MASTER PATIENT INDEX VISTA;**61,67,74,79**;30 Apr 99;Build 2
  ;
  ;
 PATIENT(RETURN,MPIARR) ; - query for patients based on traits
@@ -194,6 +194,7 @@ SE(MPIN,MPIA) ; - used for the parser to call back with STARTELEMENT
  I MPIN="NAME" D  Q
  . S MPIUSE=MPIA("type")
  . S:MPIUSE="A" MPIALIAS=MPIALIAS+1
+ I MPIUSE="D",MPIN="NAME" S MPIVAR=",""PreferName"")" q
  I MPIN="FIRSTNAME",MPIUSE="L" S MPIVAR=",""FirstName"")" Q
  I MPIN="LASTNAME",MPIUSE="L" S MPIVAR=",""Surname"")" Q
  I MPIN="MIDDLENAME",MPIUSE="L" S MPIVAR=",""MiddleName"")" Q
@@ -229,6 +230,8 @@ SE(MPIN,MPIA) ; - used for the parser to call back with STARTELEMENT
  . I MPIA("type")="MMN" S MPIUSE="MMN" Q
  . I MPIA("type")="DOB" S MPIUSE="DOB" Q
  . I MPIA("type")="GENDER" S MPIUSE="Gender" Q
+ .;**79 including MBI
+ .I MPIA("type")="MULTIBIRTH" S MPIUSE="MBI" Q
  . ; Story 722746 (elz) need DOD if there is one
  . I MPIA("type")="DEATHDATE" S MPIUSE="DOD" Q
  I MPIN="VALUE" D  K MPIUSE Q
@@ -237,11 +240,17 @@ SE(MPIN,MPIA) ; - used for the parser to call back with STARTELEMENT
  . I MPIA("type")="N" S MPIUSE="POB"
  . I MPIA("type")="P" S MPIUSE="ResAdd"
  . I MPIA("type")="BA" S MPIUSE="BA"
+ .;**79 VAMPI-16603 WORK AND CORRESPONDENCE ADDRESS
+ .I MPIA("type")="C" S MPIUSE="CorAdd"
+ .I MPIA("type")="W" S MPIUSE="WrkAdd"
  I MPIN="CITY" S MPIVAR=","""_MPIUSE_"City"")" Q
  I MPIN="STATE" S MPIVAR=","""_MPIUSE_"State"")" Q
  I MPIN="PROVINCECODE" S MPIVAR=","""_MPIUSE_"Province"")" Q
  I MPIN="COUNTRY" S MPIVAR=","""_MPIUSE_"Country"")" Q
  I MPIN="PHONE",MPIA("type")="Home" S MPIUSE="ResPhone" Q
+ ;**79 VAMPI-16603 cell and work phone
+ I MPIN="PHONE",MPIA("type")="Cell" S MPIUSE="CellPhone" Q
+ I MPIN="PHONE",MPIA("type")="Work" S MPIUSE="WrkPhone" Q
  I MPIN="NUMBER" S MPIVAR=","""_MPIUSE_""")" Q
  I MPIN="STREET1" S MPIVAR=","""_MPIUSE_"L1"")" Q
  I MPIN="STREET2" S MPIVAR=","""_MPIUSE_"L2"")" Q

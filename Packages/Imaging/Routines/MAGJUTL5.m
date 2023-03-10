@@ -1,5 +1,5 @@
-MAGJUTL5 ;WOIFO/JHC,DAC,GXT - VistARad RPCs ; 26 Apr 2018  3:07 PM
- ;;3.0;IMAGING;**65,76,101,90,115,104,120,133,152,153,184,199**;Mar 19, 2002;Build 5
+MAGJUTL5 ;WOIFO/JHC,DAC,GXT - VistARad RPCs ; May 19, 2020@13:22:53
+ ;;3.0;IMAGING;**65,76,101,90,115,104,120,133,152,153,184,199,255**;Mar 19, 2002;Build 5
  ;; Per VHA Directive 2004-038, this routine should not be modified.
  ;; +---------------------------------------------------------------+
  ;; | Property of the US Government.                                |
@@ -24,9 +24,9 @@ GETVER(SVRVER,SVRTVER,ALLOWCL,VIXVER) ;
  ;
  ;--- Synchronize the below information with that in MAGJTU4V.
  ;
- S SVRVER="3.0.199",SVRTVER=2  ; P199 DAC - <*> Edit this line for each patch/T-version
+ S SVRVER="3.0.255",SVRTVER=1  ; P255 DAC - <*> Edit this line for each patch/T-version
  ;
- S ALLOWCL="|3.0.184|3.0.153|"  ; P184 DAC - back-compatible with prior client(s)
+ S ALLOWCL="|3.0.199|3.0.184|"  ; P255 DAC - back-compatible with prior client(s)
  S VIXVER=""
  ; VIX may present versions different from vrad Client/Server versions; this would
  ; happen if M-only changes are made to vrad Server code as part of a VIX patch

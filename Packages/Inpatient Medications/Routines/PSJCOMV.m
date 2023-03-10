@@ -1,5 +1,5 @@
 PSJCOMV ;BIR/CML3-FINISH COMPLEX IV ORDERS ENTERED THROUGH OE/RR ;02 Feb 2001  12:20 PM
- ;;5.0;INPATIENT MEDICATIONS;**110,127,267,257,281**;16 DEC 97;Build 113
+ ;;5.0;INPATIENT MEDICATIONS;**110,127,267,257,281,416**;16 DEC 97;Build 8
  ;
  ; Reference to ^%DTC is supported by DBIA 10000
  ; Reference to ^DIR is supported by DBIA 10026
@@ -15,7 +15,7 @@ IV ; Move IV data in local variables to ^TMP
  S ND(8)=P(4)_U_P(23)_U_P("SYRS")_U_P(5)_U_P(8)_"^^"_P(7),ND(9)=$S($L(P("REM")_P("OPI")):P("REM")_U_P("OPI"),1:"")
  S:+$G(P("CLIN")) ^TMP("PSJCOM",$J,+ON,"DSS")=P("CLIN")
  F X=0,2,4,8,9 S ^TMP("PSJCOM",$J,+ON,X)=ND(X)
- S:'+$G(^TMP("PSJCOM",$J,+ON,.2)) $P(^(.2),U,1,3)=+P("PD")_U_P("DO")_U_$G(P("NAT"))
+ S $P(^TMP("PSJCOM",$J,+ON,.2),U,1,3)=+P("PD")_U_P("DO")_U_$G(P("NAT"))
  F DRGT="AD","SOL" D:$D(DRG(DRGT)) PTD531
  I '+$P(PSJSYSP0,"^",9) D NEWNVAL^PSJCOM(ON,$S(+PSJSYSU=3:22005,1:22000))
  S ^TMP("PSODAOC",$J,"IP IEN")=ON

@@ -1,5 +1,5 @@
-ORWU ;SLC/KCM - GENERAL UTILITIES FOR WINDOWS CALLS ;04/15/2020
- ;;3.0;ORDER ENTRY/RESULTS REPORTING;**10,85,132,148,149,187,195,215,243,350,424,377**;Dec 17, 1997;Build 582
+ORWU ;SLC/KCM - GENERAL UTILITIES FOR WINDOWS CALLS ;Aug 25, 2022@11:34:26
+ ;;3.0;ORDER ENTRY/RESULTS REPORTING;**10,85,132,148,149,187,195,215,243,350,424,377,519,539,405**;Dec 17, 1997;Build 211
  ;
 DT(Y,X,%DT) ; Internal Fileman Date/Time
  ; change the '00:00' that could be passed so Fileman doesn't reject
@@ -152,8 +152,11 @@ HOSPLOC(Y,FROM,DIR) ; Return a set of locations from HOSPITAL LOCATION
  . . Q:("CW"'[$P($G(^SC(IEN,0)),U,3)!('$$ACTLOC(IEN)))
  . . S I=I+1,Y(I)=IEN_"^"_FROM
  Q
-NEWPERS(ORY,ORFROM,ORDIR,ORKEY,ORDATE,ORVIZ,ORALL) ; Return a set of names from the NEW PERSON file.
+NEWPERS(ORY,ORFROM,ORDIR,ORKEY,ORDATE,ORVIZ,ORALL,ORPDMP,ORSIM,OREXCLDE) ; Return a set of names from the NEW PERSON file.
+ ; ajb - new parameter OREXCLDE to use OR CPRS USER CLASS EXCLUDE parameter definition
+ S OREXCLDE=$G(OREXCLDE,0) ; DEFAULT value is OFF
  ; SLC/PKS: Code moved to ORWU1 on 12/3/2002.
+ ; ORPDMP - filter users that are authorized to make a PDMP query (p519)
  D NP1^ORWU1
  Q
 GBLREF(VAL,FN) ; return global reference for file number
@@ -270,13 +273,21 @@ JSYSPARM(RESULTS,USER) ;
  S TEMP("cpCopyBufferDisable")=+$$GET^XPAR("PKG","ORQQTIU COPY BUFFER DISABLE",1,"I")
  S TEMP("orCPRSExceptionPurge")=+$$GET^XPAR("ALL","OR CPRS EXCEPTION PURGE",1,"I")
  S TEMP("orCPRSExceptionLogger")=+$$GET^XPAR("ALL","OR CPRS EXCEPTION LOGGER",1,"I")
+ ;
  D  ;CPRS Exception Email
  . N CNT2,ORLIST
  . D GETLST^XPAR(.ORLIST,"ALL","OR CPRS EXCEPTION EMAIL","Q")
  . S CNT2=""
  . F  S CNT2=$O(ORLIST(CNT2)) Q:CNT2=""  D
  . . S TEMP("orCPRSExceptionEmail",CNT2,"Email")=$P($G(ORLIST(CNT2)),U,2)
+ S TEMP("psoParkOn")=$S($$GET^XPAR("DIV^SYS^PKG","PSO PARK ON",,"E")="YES":"YES",1:"NO") ;Park-a-Prescription Enabled
  D SHWOTHER^ORWOTHER(.TEMP,USER)
+ D GETPAR^ORPDMP(.TEMP,USER)
+ D GETPAR^ORDSTCTB(.TEMP,USER)
+ ;Template Required Fields Identification Disabled
+ S TEMP("tmRequiredFldsOff")=+$$GET^XPAR("ALL","TIU REQUIRED FIELDS DISABLE",1,"I")
+ S TEMP("OverlayOn")=$$GET^XPAR("ALL","OR CPRS OVERLAY")
+ D GETSERIES^ORFEDT(.TEMP)
  ;D ENCODE^VPRJSON("TEMP","RESULTS","ERROR")
  D ENCODE^XLFJSON("TEMP",$NA(^TMP($J,"ORWU SYSPARAM")),"ERROR")
  Q

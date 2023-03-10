@@ -1,5 +1,5 @@
-PXRMCOPY ;SLC/PKR,PJH - Copy various reminder files. ;12/09/2019
- ;;2.0;CLINICAL REMINDERS;**6,12,26,45**;Feb 04, 2005;Build 566
+PXRMCOPY ;SLC/PKR,PJH - Copy various reminder files. ;Jun 29, 2021@11:59:53
+ ;;2.0;CLINICAL REMINDERS;**6,12,26,45,71**;Feb 04, 2005;Build 43
  ;
  ;=====================================================
 COPY(PROMPT,ROOT,WHAT) ;Copy an entry of ROOT into a new entry.
@@ -134,7 +134,7 @@ COPYTERM ;Copy a reminder term.
  Q
  ;
  ;=====================================================
-DELETE(DIK,DA) ;Delete the entry just added. 
+DELETE(DIK,DA) ;Delete the entry just added.
  D ^DIK
  W !!,"New entry not created due to invalid name!",!
  Q
@@ -161,13 +161,22 @@ HASGF(IEN) ;
  .S RESULT=$$ITEMHSGF(DIEN)
  Q RESULT
  ;
+GFCANCPY(FIND) ;
+ N NAME,RESULT
+ S RESULT=1
+ S NAME=$P($G(^PXRMD(801.46,FIND,0)),U)
+ I NAME'="VIEW PROGRESS NOTE TEXT",$P(NAME," ")'="TICKLER" S RESULT=0
+ Q RESULT
+ ;
 ITEMHSGF(IEN) ;
- N FIND,FOUND
- I $G(PXRMINST)=1 Q 0
- I $P($G(^PXRMD(801.41,IEN,1)),U,5)[801.46 Q 1
- S FOUND=0,FIND="" F  S FIND=$O(^PXRMD(801.41,IEN,3,"B",FIND)) Q:FIND=""!(FOUND=1)  D
- .I FIND[801.46 S FOUND=1
- Q 0
+ N FIND,RESULT
+ S RESULT=0
+ I $G(PXRMINST)=1 Q RESULT
+ S FIND=$P($G(^PXRMD(801.41,IEN,1)),U,5)
+ I FIND[801.46,'$$GFCANCPY(+FIND) Q 1
+ S FOUND=0,FIND="" F  S FIND=$O(^PXRMD(801.41,IEN,3,"B",FIND)) Q:FIND=""!(RESULT=1)  D
+ .I FIND[801.46,'$$GFCANCPY(+FIND) S RESULT=1
+ Q RESULT
  ;
  ;=====================================================
 INIEH(FILENUM,ROOT,IENN,IENO) ;Initialize the edit history after a copy.

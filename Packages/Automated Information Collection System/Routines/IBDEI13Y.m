@@ -1,126 +1,122 @@
-IBDEI13Y ; ; 04-FEB-2020
- ;;3.0;IB ENCOUNTER FORM IMP/EXP;;FEB 04, 2020
+IBDEI13Y ; ; 01-FEB-2022
+ ;;3.0;IB ENCOUNTER FORM IMP/EXP;;FEB 01, 2022
  Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,999) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
- ;;^UTILITY(U,$J,358.3,17796,1,4,0)
- ;;=4^W10.1XXD
- ;;^UTILITY(U,$J,358.3,17796,2)
- ;;=^5059584
- ;;^UTILITY(U,$J,358.3,17797,0)
- ;;=W11.XXXA^^88^898^46
- ;;^UTILITY(U,$J,358.3,17797,1,0)
+ ;;^UTILITY(U,$J,358.3,17976,1,4,0)
+ ;;=4^A81.89
+ ;;^UTILITY(U,$J,358.3,17976,2)
+ ;;=^5000413
+ ;;^UTILITY(U,$J,358.3,17977,0)
+ ;;=A81.2^^61^795^27
+ ;;^UTILITY(U,$J,358.3,17977,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,17797,1,3,0)
- ;;=3^Fall from Ladder,Init Encntr
- ;;^UTILITY(U,$J,358.3,17797,1,4,0)
- ;;=4^W11.XXXA
- ;;^UTILITY(U,$J,358.3,17797,2)
- ;;=^5059595
- ;;^UTILITY(U,$J,358.3,17798,0)
- ;;=W11.XXXD^^88^898^47
- ;;^UTILITY(U,$J,358.3,17798,1,0)
+ ;;^UTILITY(U,$J,358.3,17977,1,3,0)
+ ;;=3^Progressive Multifocal Leukoencephalopathy
+ ;;^UTILITY(U,$J,358.3,17977,1,4,0)
+ ;;=4^A81.2
+ ;;^UTILITY(U,$J,358.3,17977,2)
+ ;;=^5000411
+ ;;^UTILITY(U,$J,358.3,17978,0)
+ ;;=B20.^^61^795^17
+ ;;^UTILITY(U,$J,358.3,17978,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,17798,1,3,0)
- ;;=3^Fall from Ladder,Subs Encntr
- ;;^UTILITY(U,$J,358.3,17798,1,4,0)
- ;;=4^W11.XXXD
- ;;^UTILITY(U,$J,358.3,17798,2)
- ;;=^5059596
- ;;^UTILITY(U,$J,358.3,17799,0)
- ;;=W13.0XXA^^88^898^72
- ;;^UTILITY(U,$J,358.3,17799,1,0)
+ ;;^UTILITY(U,$J,358.3,17978,1,3,0)
+ ;;=3^HIV Disease w/ Dementia w/ Behavioral Disturbances
+ ;;^UTILITY(U,$J,358.3,17978,1,4,0)
+ ;;=4^B20.
+ ;;^UTILITY(U,$J,358.3,17978,2)
+ ;;=^5000555^F02.81
+ ;;^UTILITY(U,$J,358.3,17979,0)
+ ;;=B20.^^61^795^18
+ ;;^UTILITY(U,$J,358.3,17979,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,17799,1,3,0)
- ;;=3^Fall from/through Balcony,Init Encntr
- ;;^UTILITY(U,$J,358.3,17799,1,4,0)
- ;;=4^W13.0XXA
- ;;^UTILITY(U,$J,358.3,17799,2)
- ;;=^5059601
- ;;^UTILITY(U,$J,358.3,17800,0)
- ;;=W13.0XXD^^88^898^73
- ;;^UTILITY(U,$J,358.3,17800,1,0)
+ ;;^UTILITY(U,$J,358.3,17979,1,3,0)
+ ;;=3^HIV Disease w/ Dementia w/o Behavioral Disturbances
+ ;;^UTILITY(U,$J,358.3,17979,1,4,0)
+ ;;=4^B20.
+ ;;^UTILITY(U,$J,358.3,17979,2)
+ ;;=^5000555^F02.80
+ ;;^UTILITY(U,$J,358.3,17980,0)
+ ;;=F10.27^^61^795^1
+ ;;^UTILITY(U,$J,358.3,17980,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,17800,1,3,0)
- ;;=3^Fall from/through Balcony,Subs Encntr
- ;;^UTILITY(U,$J,358.3,17800,1,4,0)
- ;;=4^W13.0XXD
- ;;^UTILITY(U,$J,358.3,17800,2)
- ;;=^5059602
- ;;^UTILITY(U,$J,358.3,17801,0)
- ;;=W13.1XXA^^88^898^36
- ;;^UTILITY(U,$J,358.3,17801,1,0)
+ ;;^UTILITY(U,$J,358.3,17980,1,3,0)
+ ;;=3^Alcohol Dependence w/ Alcohol-Induced Persisting Dementia
+ ;;^UTILITY(U,$J,358.3,17980,1,4,0)
+ ;;=4^F10.27
+ ;;^UTILITY(U,$J,358.3,17980,2)
+ ;;=^5003095
+ ;;^UTILITY(U,$J,358.3,17981,0)
+ ;;=F19.97^^61^795^29
+ ;;^UTILITY(U,$J,358.3,17981,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,17801,1,3,0)
- ;;=3^Fall from Bridge,Init Encntr
- ;;^UTILITY(U,$J,358.3,17801,1,4,0)
- ;;=4^W13.1XXA
- ;;^UTILITY(U,$J,358.3,17801,2)
- ;;=^5059604
- ;;^UTILITY(U,$J,358.3,17802,0)
- ;;=W13.1XXD^^88^898^37
- ;;^UTILITY(U,$J,358.3,17802,1,0)
+ ;;^UTILITY(U,$J,358.3,17981,1,3,0)
+ ;;=3^Psychoactive Substance Use w/ Persisting Dementia NEC
+ ;;^UTILITY(U,$J,358.3,17981,1,4,0)
+ ;;=4^F19.97
+ ;;^UTILITY(U,$J,358.3,17981,2)
+ ;;=^5003465
+ ;;^UTILITY(U,$J,358.3,17982,0)
+ ;;=F03.90^^61^795^15
+ ;;^UTILITY(U,$J,358.3,17982,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,17802,1,3,0)
- ;;=3^Fall from Bridge,Subs Encntr
- ;;^UTILITY(U,$J,358.3,17802,1,4,0)
- ;;=4^W13.1XXD
- ;;^UTILITY(U,$J,358.3,17802,2)
- ;;=^5059605
- ;;^UTILITY(U,$J,358.3,17803,0)
- ;;=W13.2XXA^^88^898^74
- ;;^UTILITY(U,$J,358.3,17803,1,0)
+ ;;^UTILITY(U,$J,358.3,17982,1,3,0)
+ ;;=3^Dementia w/o Behavioral Disturbance,Unspec
+ ;;^UTILITY(U,$J,358.3,17982,1,4,0)
+ ;;=4^F03.90
+ ;;^UTILITY(U,$J,358.3,17982,2)
+ ;;=^5003050
+ ;;^UTILITY(U,$J,358.3,17983,0)
+ ;;=G30.0^^61^795^2
+ ;;^UTILITY(U,$J,358.3,17983,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,17803,1,3,0)
- ;;=3^Fall from/through Roof,Init Encntr
- ;;^UTILITY(U,$J,358.3,17803,1,4,0)
- ;;=4^W13.2XXA
- ;;^UTILITY(U,$J,358.3,17803,2)
- ;;=^5059607
- ;;^UTILITY(U,$J,358.3,17804,0)
- ;;=W13.2XXD^^88^898^75
- ;;^UTILITY(U,$J,358.3,17804,1,0)
+ ;;^UTILITY(U,$J,358.3,17983,1,3,0)
+ ;;=3^Alzheimer's Disease w/ Early Onset
+ ;;^UTILITY(U,$J,358.3,17983,1,4,0)
+ ;;=4^G30.0
+ ;;^UTILITY(U,$J,358.3,17983,2)
+ ;;=^5003805
+ ;;^UTILITY(U,$J,358.3,17984,0)
+ ;;=G30.1^^61^795^3
+ ;;^UTILITY(U,$J,358.3,17984,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,17804,1,3,0)
- ;;=3^Fall from/through Roof,Subs Encntr
- ;;^UTILITY(U,$J,358.3,17804,1,4,0)
- ;;=4^W13.2XXD
- ;;^UTILITY(U,$J,358.3,17804,2)
- ;;=^5059608
- ;;^UTILITY(U,$J,358.3,17805,0)
- ;;=W13.3XXA^^88^898^88
- ;;^UTILITY(U,$J,358.3,17805,1,0)
+ ;;^UTILITY(U,$J,358.3,17984,1,3,0)
+ ;;=3^Alzheimer's Disease w/ Late Onset
+ ;;^UTILITY(U,$J,358.3,17984,1,4,0)
+ ;;=4^G30.1
+ ;;^UTILITY(U,$J,358.3,17984,2)
+ ;;=^5003806
+ ;;^UTILITY(U,$J,358.3,17985,0)
+ ;;=G30.9^^61^795^4
+ ;;^UTILITY(U,$J,358.3,17985,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,17805,1,3,0)
- ;;=3^Fall through Floor,Init Encntr
- ;;^UTILITY(U,$J,358.3,17805,1,4,0)
- ;;=4^W13.3XXA
- ;;^UTILITY(U,$J,358.3,17805,2)
- ;;=^5059610
- ;;^UTILITY(U,$J,358.3,17806,0)
- ;;=W13.3XXD^^88^898^89
- ;;^UTILITY(U,$J,358.3,17806,1,0)
+ ;;^UTILITY(U,$J,358.3,17985,1,3,0)
+ ;;=3^Alzheimer's Disease,Unspec
+ ;;^UTILITY(U,$J,358.3,17985,1,4,0)
+ ;;=4^G30.9
+ ;;^UTILITY(U,$J,358.3,17985,2)
+ ;;=^5003808
+ ;;^UTILITY(U,$J,358.3,17986,0)
+ ;;=G10.^^61^795^19
+ ;;^UTILITY(U,$J,358.3,17986,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,17806,1,3,0)
- ;;=3^Fall through Floor,Subs Encntr
- ;;^UTILITY(U,$J,358.3,17806,1,4,0)
- ;;=4^W13.3XXD
- ;;^UTILITY(U,$J,358.3,17806,2)
- ;;=^5059611
- ;;^UTILITY(U,$J,358.3,17807,0)
- ;;=W13.4XXA^^88^898^76
- ;;^UTILITY(U,$J,358.3,17807,1,0)
+ ;;^UTILITY(U,$J,358.3,17986,1,3,0)
+ ;;=3^Huntington's Disease w/ Dementia w/ Behavioral Disturbance
+ ;;^UTILITY(U,$J,358.3,17986,1,4,0)
+ ;;=4^G10.
+ ;;^UTILITY(U,$J,358.3,17986,2)
+ ;;=^5003751^F02.81
+ ;;^UTILITY(U,$J,358.3,17987,0)
+ ;;=G10.^^61^795^20
+ ;;^UTILITY(U,$J,358.3,17987,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,17807,1,3,0)
- ;;=3^Fall from/through Window,Init Encntr
- ;;^UTILITY(U,$J,358.3,17807,1,4,0)
- ;;=4^W13.4XXA
- ;;^UTILITY(U,$J,358.3,17807,2)
- ;;=^5059613
- ;;^UTILITY(U,$J,358.3,17808,0)
- ;;=W13.4XXD^^88^898^77
- ;;^UTILITY(U,$J,358.3,17808,1,0)
+ ;;^UTILITY(U,$J,358.3,17987,1,3,0)
+ ;;=3^Huntington's Disease w/ Dementia w/o Behavioral Disturbances
+ ;;^UTILITY(U,$J,358.3,17987,1,4,0)
+ ;;=4^G10.
+ ;;^UTILITY(U,$J,358.3,17987,2)
+ ;;=^5003751^F02.80
+ ;;^UTILITY(U,$J,358.3,17988,0)
+ ;;=G90.3^^61^795^21
+ ;;^UTILITY(U,$J,358.3,17988,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,17808,1,3,0)
- ;;=3^Fall from/through Window,Subs Encntr
- ;;^UTILITY(U,$J,358.3,17808,1,4,0)
- ;;=4^W13.4XXD

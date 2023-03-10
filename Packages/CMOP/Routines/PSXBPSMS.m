@@ -1,5 +1,5 @@
 PSXBPSMS ;BIRM/BSR - BPS (ECME) Utilities ;10/29/98  2:13 PM
- ;;2.0;CMOP;**48,77,81**;11 Apr 97;Build 25
+ ;;2.0;CMOP;**48,77,81,91**;11 Apr 97;Build 33
  ;Reference to $$RXFLDT^PSOBPSUT supported by IA 4701
  ;Reference to LOG^BPSOSL supported by ICR# 6764
  ;Reference to IEN59^BPSOSRX supported by ICR# 4412
@@ -108,11 +108,9 @@ MAIL ;
  S PSBMSG(9)=" "
  S PSBMSG(10)="The prescriptions will remain in the CMOP queue and will transmit when the"
  S PSBMSG(11)="response from the third party payer is received, or the non-billable issue"
- S PSBMSG(12)="is resolved.  Examples of non-billable issues are prescriptions for"
- S PSBMSG(13)="sensitive medications that need Release of Information and prescriptions"
- S PSBMSG(14)="for non-billable drugs (e.g., OTC products for CHAMPVA and TRICARE patients)."
- S PSBMSG(15)=" "
- S M1=16
+ S PSBMSG(12)="is resolved."
+ S PSBMSG(13)=" "
+ S M1=14
  ;
  S Y=""
  F  S Y=$O(^TMP("PSXEPHOUT",$J,"M",Y)) Q:Y=""  D

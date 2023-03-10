@@ -1,5 +1,5 @@
-ONCOPA1A ;Hines OIFO/GWB - PRINT COMPLETE ABSTRACT continued ;10/05/11
- ;;2.2;ONCOLOGY;**1,6,10,12**;Jul 31, 2013;Build 8
+ONCOPA1A ;HINES OIFO/GWB - PRINT COMPLETE ABSTRACT continued ;10/05/11
+ ;;2.2;ONCOLOGY;**1,6,10,12,13**;Jul 31, 2013;Build 7
  ;
  I (COC=10)!(COC=11)!(COC=12)!(COC=13)!(COC=14),$E(TOP,3,4)=34 D
  .W !,"     Blood in Sputum Per Pt: ",ONCAB(165.5,IEN,174.1)," ",ONCAB(165.5,IEN,174) D P Q:EX=U
@@ -46,9 +46,10 @@ ONCOPA1A ;Hines OIFO/GWB - PRINT COMPLETE ABSTRACT continued ;10/05/11
  .W ?41,"------------------"
  .W !," TNM........: " S STGIND="C" D TNMDSP^ONCSGA8U W ?41,"TNM........: " S STGIND="P" D TNMDSP^ONCSGA8U
  .W !," Stage Group: ",$P($G(^ONCO(165.5,IEN,"AJCC8")),"^",5),?41,"Stage Group: ",$P($G(^ONCO(165.5,IEN,"AJCC8")),"^",9)
- .W !?22,"Post-Therapy Staging",!?22,"--------------------"
- .W !?22,"TNM........: " S STGIND="T" D TNMDSP^ONCSGA8U
- .W !?22,"Stage Group: ",$P($G(^ONCO(165.5,IEN,"AJCC8")),"^",13)
+ .W !!," Post-Therapy Staging (yc)",?41,"Post-Therapy Staging (yp)"
+ .W !," --------------------------",?41,"--------------------------"
+ .W !," TNM........: " S STGIND="Y" D TNMDSP^ONCSGA8U W ?41,"TNM........: " S STGIND="T" D TNMDSP^ONCSGA8U
+ .W !?41,"Stage Group: ",$P($G(^ONCO(165.5,IEN,"AJCC8")),"^",13),!
  I DATEDX<3180000 W !,"   Staged By (Clin):  ",ONCAB(165.5,IEN,19),?67,"Staged By (Path):  ",ONCAB(165.5,IEN,89) D P Q:EX=U
  W !,"   Lymph-Vascular Invasion (L):  ",ONCAB(165.5,IEN,149) D P Q:EX=U
  ;W !,"   Venous Invasion (V):  ",ONCAB(165.5,IEN,151) D P Q:EX=U

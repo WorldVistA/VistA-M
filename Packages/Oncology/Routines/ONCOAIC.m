@@ -1,5 +1,5 @@
-ONCOAIC ;Hines OIFO/GWB - Create first primary for a patient ;03/08/11
- ;;2.2;ONCOLOGY;**1**;Jul 31, 2013;Build 8
+ONCOAIC ;HINES OIFO/GWB - Create first primary for a patient ;03/08/11
+ ;;2.2;ONCOLOGY;**1,15**;Jul 31, 2013;Build 5
  ;
 EN ;Create first ONCOLOGY PRINMARY (165.5) record
  D KILL
@@ -54,7 +54,7 @@ AC S AC=$S(NR="":YR_"00001",1:(1000000000-NR)),SEQ="00"
  S AC=$S($L(AC)=1:"00000"_AC,$L(AC)=2:"0000"_AC,$L(AC)=3:"000"_AC,$L(AC)=4:"00"_AC,$L(AC)=5:"0"_AC,1:AC)
  ;
 DIE S DIE="^ONCO(165.5,",DA=ONCOD0P
- S DR="W !,?5;.07///^S X=YR;.05//^S X=AC;.06//^S X=SEQ"
+ S DR="W !,?5;.07///^S X=YR;.05//^S X=AC;.06//^S X=SEQ;.04;155;3;20;21"
  S ACN=AC_"/"_SEQ
  D ^DIE
 LOCK L -(^ONCO(165.5,"ACAY"),^ONCO(165.5,"ACD"),^ONCO(165.5,"AF")):1 G ASK:'$T,PID:$D(Y)=0 S Y=ONCOD0P D KLN G EX

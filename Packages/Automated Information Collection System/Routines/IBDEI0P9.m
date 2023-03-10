@@ -1,128 +1,124 @@
-IBDEI0P9 ; ; 04-FEB-2020
- ;;3.0;IB ENCOUNTER FORM IMP/EXP;;FEB 04, 2020
+IBDEI0P9 ; ; 01-FEB-2022
+ ;;3.0;IB ENCOUNTER FORM IMP/EXP;;FEB 01, 2022
  Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,999) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
- ;;^UTILITY(U,$J,358.3,11269,1,0)
+ ;;^UTILITY(U,$J,358.3,11337,1,3,0)
+ ;;=3^Unavailability/Inaccessibility of Health-Care Facilities
+ ;;^UTILITY(U,$J,358.3,11337,1,4,0)
+ ;;=4^Z75.3
+ ;;^UTILITY(U,$J,358.3,11337,2)
+ ;;=^5063292
+ ;;^UTILITY(U,$J,358.3,11338,0)
+ ;;=Z75.0^^42^527^3
+ ;;^UTILITY(U,$J,358.3,11338,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,11269,1,3,0)
- ;;=3^Conjunctivitis,Chronic,Right Eye
- ;;^UTILITY(U,$J,358.3,11269,1,4,0)
- ;;=4^H10.401
- ;;^UTILITY(U,$J,358.3,11269,2)
- ;;=^5004681
- ;;^UTILITY(U,$J,358.3,11270,0)
- ;;=H10.402^^77^728^4
- ;;^UTILITY(U,$J,358.3,11270,1,0)
+ ;;^UTILITY(U,$J,358.3,11338,1,3,0)
+ ;;=3^Medical Services Not Available in Home
+ ;;^UTILITY(U,$J,358.3,11338,1,4,0)
+ ;;=4^Z75.0
+ ;;^UTILITY(U,$J,358.3,11338,2)
+ ;;=^5063289
+ ;;^UTILITY(U,$J,358.3,11339,0)
+ ;;=Z75.1^^42^527^4
+ ;;^UTILITY(U,$J,358.3,11339,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,11270,1,3,0)
- ;;=3^Conjunctivitis,Chronic,Left Eye
- ;;^UTILITY(U,$J,358.3,11270,1,4,0)
- ;;=4^H10.402
- ;;^UTILITY(U,$J,358.3,11270,2)
- ;;=^5004682
- ;;^UTILITY(U,$J,358.3,11271,0)
- ;;=H10.403^^77^728^5
- ;;^UTILITY(U,$J,358.3,11271,1,0)
+ ;;^UTILITY(U,$J,358.3,11339,1,3,0)
+ ;;=3^Pt Awaiting Admission to Adequate Facility Elsewhere
+ ;;^UTILITY(U,$J,358.3,11339,1,4,0)
+ ;;=4^Z75.1
+ ;;^UTILITY(U,$J,358.3,11339,2)
+ ;;=^5063290
+ ;;^UTILITY(U,$J,358.3,11340,0)
+ ;;=Z75.4^^42^527^6
+ ;;^UTILITY(U,$J,358.3,11340,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,11271,1,3,0)
- ;;=3^Conjunctivitis,Chronic,Bilateral
- ;;^UTILITY(U,$J,358.3,11271,1,4,0)
- ;;=4^H10.403
- ;;^UTILITY(U,$J,358.3,11271,2)
- ;;=^5004683
- ;;^UTILITY(U,$J,358.3,11272,0)
- ;;=H10.45^^77^728^6
- ;;^UTILITY(U,$J,358.3,11272,1,0)
+ ;;^UTILITY(U,$J,358.3,11340,1,3,0)
+ ;;=3^Unavailability/Inaccessibility of Helping Agencies
+ ;;^UTILITY(U,$J,358.3,11340,1,4,0)
+ ;;=4^Z75.4
+ ;;^UTILITY(U,$J,358.3,11340,2)
+ ;;=^5063293
+ ;;^UTILITY(U,$J,358.3,11341,0)
+ ;;=Z75.8^^42^527^2
+ ;;^UTILITY(U,$J,358.3,11341,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,11272,1,3,0)
- ;;=3^Conjunctivitis,Allergic,Chronic
- ;;^UTILITY(U,$J,358.3,11272,1,4,0)
- ;;=4^H10.45
- ;;^UTILITY(U,$J,358.3,11272,2)
- ;;=^87396
- ;;^UTILITY(U,$J,358.3,11273,0)
- ;;=B30.8^^77^728^7
- ;;^UTILITY(U,$J,358.3,11273,1,0)
+ ;;^UTILITY(U,$J,358.3,11341,1,3,0)
+ ;;=3^Medical Facilities/Health Care Problems
+ ;;^UTILITY(U,$J,358.3,11341,1,4,0)
+ ;;=4^Z75.8
+ ;;^UTILITY(U,$J,358.3,11341,2)
+ ;;=^5063295
+ ;;^UTILITY(U,$J,358.3,11342,0)
+ ;;=Z71.9^^42^527^1
+ ;;^UTILITY(U,$J,358.3,11342,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,11273,1,3,0)
- ;;=3^Conjunctivitis,Viral
- ;;^UTILITY(U,$J,358.3,11273,1,4,0)
- ;;=4^B30.8
- ;;^UTILITY(U,$J,358.3,11273,2)
- ;;=^88239
- ;;^UTILITY(U,$J,358.3,11274,0)
- ;;=H10.13^^77^728^8
- ;;^UTILITY(U,$J,358.3,11274,1,0)
+ ;;^UTILITY(U,$J,358.3,11342,1,3,0)
+ ;;=3^Counseling,Unspec
+ ;;^UTILITY(U,$J,358.3,11342,1,4,0)
+ ;;=4^Z71.9
+ ;;^UTILITY(U,$J,358.3,11342,2)
+ ;;=^5063254
+ ;;^UTILITY(U,$J,358.3,11343,0)
+ ;;=Z89.201^^42^528^10
+ ;;^UTILITY(U,$J,358.3,11343,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,11274,1,3,0)
- ;;=3^Conjunctivitis,Atopic,Bilateral
- ;;^UTILITY(U,$J,358.3,11274,1,4,0)
- ;;=4^H10.13
- ;;^UTILITY(U,$J,358.3,11274,2)
- ;;=^5004667
- ;;^UTILITY(U,$J,358.3,11275,0)
- ;;=H10.419^^77^728^9
- ;;^UTILITY(U,$J,358.3,11275,1,0)
+ ;;^UTILITY(U,$J,358.3,11343,1,3,0)
+ ;;=3^Acquired Absence of Right Upper Limb,Unspec Level
+ ;;^UTILITY(U,$J,358.3,11343,1,4,0)
+ ;;=4^Z89.201
+ ;;^UTILITY(U,$J,358.3,11343,2)
+ ;;=^5063543
+ ;;^UTILITY(U,$J,358.3,11344,0)
+ ;;=Z89.202^^42^528^4
+ ;;^UTILITY(U,$J,358.3,11344,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,11275,1,3,0)
- ;;=3^Giant Papillary Conjunctivitis,Chronic
- ;;^UTILITY(U,$J,358.3,11275,1,4,0)
- ;;=4^H10.419
- ;;^UTILITY(U,$J,358.3,11275,2)
- ;;=^5004687
- ;;^UTILITY(U,$J,358.3,11276,0)
- ;;=H10.219^^77^728^10
- ;;^UTILITY(U,$J,358.3,11276,1,0)
+ ;;^UTILITY(U,$J,358.3,11344,1,3,0)
+ ;;=3^Acquired Absence of Left Upper Limb,Unspec Level
+ ;;^UTILITY(U,$J,358.3,11344,1,4,0)
+ ;;=4^Z89.202
+ ;;^UTILITY(U,$J,358.3,11344,2)
+ ;;=^5063544
+ ;;^UTILITY(U,$J,358.3,11345,0)
+ ;;=Z89.111^^42^528^6
+ ;;^UTILITY(U,$J,358.3,11345,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,11276,1,3,0)
- ;;=3^Toxic Conjunctivitis,Acute
- ;;^UTILITY(U,$J,358.3,11276,1,4,0)
- ;;=4^H10.219
- ;;^UTILITY(U,$J,358.3,11276,2)
- ;;=^5004671
- ;;^UTILITY(U,$J,358.3,11277,0)
- ;;=M35.01^^77^728^11
- ;;^UTILITY(U,$J,358.3,11277,1,0)
+ ;;^UTILITY(U,$J,358.3,11345,1,3,0)
+ ;;=3^Acquired Absence of Right Hand
+ ;;^UTILITY(U,$J,358.3,11345,1,4,0)
+ ;;=4^Z89.111
+ ;;^UTILITY(U,$J,358.3,11345,2)
+ ;;=^5063537
+ ;;^UTILITY(U,$J,358.3,11346,0)
+ ;;=Z89.112^^42^528^1
+ ;;^UTILITY(U,$J,358.3,11346,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,11277,1,3,0)
- ;;=3^Keratoconjunctivitis w/ Sicca Syndrome
- ;;^UTILITY(U,$J,358.3,11277,1,4,0)
- ;;=4^M35.01
- ;;^UTILITY(U,$J,358.3,11277,2)
- ;;=^5011787
- ;;^UTILITY(U,$J,358.3,11278,0)
- ;;=H11.31^^77^728^12
- ;;^UTILITY(U,$J,358.3,11278,1,0)
+ ;;^UTILITY(U,$J,358.3,11346,1,3,0)
+ ;;=3^Acquired Absence of Left Hand
+ ;;^UTILITY(U,$J,358.3,11346,1,4,0)
+ ;;=4^Z89.112
+ ;;^UTILITY(U,$J,358.3,11346,2)
+ ;;=^5063538
+ ;;^UTILITY(U,$J,358.3,11347,0)
+ ;;=Z89.121^^42^528^11
+ ;;^UTILITY(U,$J,358.3,11347,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,11278,1,3,0)
- ;;=3^Conjunctival Hemorrhage,Right Eye
- ;;^UTILITY(U,$J,358.3,11278,1,4,0)
- ;;=4^H11.31
- ;;^UTILITY(U,$J,358.3,11278,2)
- ;;=^5004782
- ;;^UTILITY(U,$J,358.3,11279,0)
- ;;=H11.32^^77^728^13
- ;;^UTILITY(U,$J,358.3,11279,1,0)
+ ;;^UTILITY(U,$J,358.3,11347,1,3,0)
+ ;;=3^Acquired Absence of Right Wrist
+ ;;^UTILITY(U,$J,358.3,11347,1,4,0)
+ ;;=4^Z89.121
+ ;;^UTILITY(U,$J,358.3,11347,2)
+ ;;=^5063540
+ ;;^UTILITY(U,$J,358.3,11348,0)
+ ;;=Z89.122^^42^528^5
+ ;;^UTILITY(U,$J,358.3,11348,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,11279,1,3,0)
- ;;=3^Conjunctival Hemorrhage,Left Eye
- ;;^UTILITY(U,$J,358.3,11279,1,4,0)
- ;;=4^H11.32
- ;;^UTILITY(U,$J,358.3,11279,2)
- ;;=^5004783
- ;;^UTILITY(U,$J,358.3,11280,0)
- ;;=H15.101^^77^728^14
- ;;^UTILITY(U,$J,358.3,11280,1,0)
+ ;;^UTILITY(U,$J,358.3,11348,1,3,0)
+ ;;=3^Acquired Absence of Left Wrist
+ ;;^UTILITY(U,$J,358.3,11348,1,4,0)
+ ;;=4^Z89.122
+ ;;^UTILITY(U,$J,358.3,11348,2)
+ ;;=^5063541
+ ;;^UTILITY(U,$J,358.3,11349,0)
+ ;;=Z89.211^^42^528^9
+ ;;^UTILITY(U,$J,358.3,11349,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,11280,1,3,0)
- ;;=3^Episcleritis,Right Eye
- ;;^UTILITY(U,$J,358.3,11280,1,4,0)
- ;;=4^H15.101
- ;;^UTILITY(U,$J,358.3,11280,2)
- ;;=^5004835
- ;;^UTILITY(U,$J,358.3,11281,0)
- ;;=H15.102^^77^728^15
- ;;^UTILITY(U,$J,358.3,11281,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,11281,1,3,0)
- ;;=3^Episcleritis,Left Eye

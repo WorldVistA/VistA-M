@@ -1,5 +1,5 @@
 PSGBRJ ;BIR/CML3-UD JANITOR (BACKGROUND TASKMAN JOB) ; 6/4/10 9:57am
- ;;5.0;INPATIENT MEDICATIONS;**12,50,244,317**;16 DEC 97;Build 130
+ ;;5.0;INPATIENT MEDICATIONS;**12,50,244,317,432**;16 DEC 97;Build 18
  ;
  ; Reference to ^PS(55 is supported by DBIA# 2191.
  ; Reference to ^PS(59.7 is supported by DBIA# 2181.
@@ -57,8 +57,8 @@ NVK ; *PSJ*5*244 - kill discontinued orders from non-verified X-refs
  .. F ON=0:0 S ON=$O(^PS(55,PSGREF(X),DFN,ON)) Q:'ON  D
  ... I $P($G(^PS(55,DFN,5,ON,0)),U,9)["D" K ^PS(55,PSGREF(X),DFN,ON)
  ;
-PADE ; *317 - kill messages older than 30 days
- N D,PDT,PDI S X1=DT,X2=-30 D C^%DTC S D=0,PDT=X,DIK="^PS(58.72,"
+PADE ; *317 - kill messages older than 90 days
+ N D,PDT,PDI S X1=DT,X2=-90 D C^%DTC S D=0,PDT=X,DIK="^PS(58.72,"
  F  S D=$O(^PS(58.72,"B",D)) Q:'D!(D>PDT)  D
  .S PDI=0 F  S PDI=$O(^PS(58.72,"B",D,PDI)) Q:'PDI  S DA=PDI D ^DIK
  Q

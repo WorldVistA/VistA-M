@@ -1,12 +1,13 @@
 IBJPI3 ;DAOU/BHS - IBJP IIV MOST POPULAR PAYER LIST SCREEN ;25-NOV-2003
- ;;2.0;INTEGRATED BILLING;**271**;21-MAR-94
- ;;Per VHA Directive 10-93-142, this routine should not be modified.
+ ;;2.0;INTEGRATED BILLING;**271,668**;21-MAR-94;Build 28
+ ;;Per VHA Directive 6402, this routine should not be modified.
  ;
  ; IIV - Insurance Identification and Verification Interface
  ;
 EN ; -- main entry pt for IBJP IIV MOST POPULAR PAYERS
  N POP,X,CTRLCOL,VALMHDR,VALMCNT,%DT
- D EN^VALM("IBJP IIV MOST POPULAR PAYERS")
+ ;IB*2.0*668/TAZ - This functionality is no longer used and will be removed with a future User Story.
+ ;D EN^VALM("IBJP IIV MOST POPULAR PAYERS")
  Q
  ;
 HDR ; -- header code

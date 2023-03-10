@@ -1,5 +1,5 @@
 PSBVDLUD ;BIRMINGHAM/EFC-BCMA UNIT DOSE VIRTUAL DUE LIST FUNCTIONS ;03/06/16 3:06pm
- ;;3.0;BAR CODE MED ADMIN;**11,13,38,32,58,68,70,83**;Mar 2004;Build 89
+ ;;3.0;BAR CODE MED ADMIN;**11,13,38,32,58,68,70,83,106**;Mar 2004;Build 43
  ;Per VHA Directive 2004-038 (or future revisions regarding same), this routine should not be modified.
  ;
  ; Reference/IA
@@ -15,6 +15,7 @@ PSBVDLUD ;BIRMINGHAM/EFC-BCMA UNIT DOSE VIRTUAL DUE LIST FUNCTIONS ;03/06/16 3:0
  ;      add call to new routine PSBVDLRM for placing MRR meds on VDL
  ;    - Clinic Orders should show up on VDL's when start order date
  ;      is Today now ignores the time portion of that field.
+ ;*106- add Hazardous to Handle & Dispose flags 36 & 37
  ;
 EN(DFN,PSBDT) ;
  ;
@@ -137,6 +138,9 @@ EN(DFN,PSBDT) ;
  .;       piece 31 reserved by IVPB tab
  .S $P(PSBREC,U,32)=$G(PSBCLORD)  ;clinic name          *70
  .S $P(PSBREC,U,33)=$G(PSBCLIEN)  ;clinic ien ptr       *70
+ .;       piece 34-35 reserved for Remove meds and set by PSBVDLU1
+ .S $P(PSBREC,U,36)=$G(PSBHAZHN)  ;Hazardous to Handle    *106
+ .S $P(PSBREC,U,37)=$G(PSBHAZDS)  ;Hazardous to Dispose   *106
  .;
  .; Gather Dispense Drugs
  .D NOW^%DTC

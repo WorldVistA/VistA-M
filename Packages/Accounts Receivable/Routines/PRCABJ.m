@@ -1,5 +1,5 @@
-PRCABJ ;WASH-ISC@ALTOONA,PA/LDB,TJK-NIGHTLY PROCESS FOR ACCOUNTS RECEIVABLE ;11/8/96  3:54 PM
- ;;4.5;Accounts Receivable;**11,34,101,114,155,153,141,165,167,173,201,237,304,301**;Mar 20, 1995;Build 144
+PRCABJ ;WASH-ISC@ALTOONA,PA/LDB,TJK - NIGHTLY PROCESS FOR ACCOUNTS RECEIVABLE ;11/8/96  3:54 PM
+ ;;4.5;Accounts Receivable;**11,34,101,114,155,153,141,165,167,173,201,237,304,301,378**;Mar 20, 1995;Build 54
  ;Per VA Directive 6402, this routine should not be modified.
  ;
  ;This routine is called by the PRCA NIGHTLY PROCESS option which should be run nightly to call the following tasks
@@ -19,6 +19,8 @@ PRCABJ ;WASH-ISC@ALTOONA,PA/LDB,TJK-NIGHTLY PROCESS FOR ACCOUNTS RECEIVABLE ;11/
  ;14) Generates CBO Data Extract files for Boston ARC
  ;15) Auto-audit of Paper Bills
  ;16) Generate the AR Diagnostic Measures Statistical Reports (for a defined period)
+ ;17) Auto Updates Repayment Plans
+ ;18) Clean out older AR Metrics data.
  ;
  ;Process will first check and Validate AR pointer files 341.1,
  ;430.2, and 430.3.
@@ -31,10 +33,10 @@ EN ;Start of nightly process-check to see if process is already running
  ;
 DRIVER ;All processes are called from this point
  N CHK,POP,% S CHK=0
- D CHK,INT,CHK,EN^RCCPCBJ,CHK,STM,CHK,RECPT,CHK,TOP,CHK,TCSP,CHK,EVNT,CHK,BNUM
+ D CHK,INT,CHK,RPP,CHK,EN^RCCPCBJ,CHK,STM,CHK,RECPT,CHK,TOP,CHK,TCSP,CHK,EVNT,CHK,BNUM
  D CHK,ENUM,CHK,PURFMS,CHK,EN3^RCFMOBR,CHK,START^RCRJR,CHK,UB
  D CHK,STATMNT,CHK,UDLIST^PRCABJ1,CHK,LIST,CHK,COMMENT,CHK,REPAY
- D CHK,WRKLD,CHK,EFT,CHK,CBO,ABAUDIT,ARDM
+ D CHK,WRKLD,CHK,EFT,CHK,CBO,CHK,ABAUDIT,CHK,ARDM,CHK,CLNMTR
  D NOW^%DTC S $P(^RC(342,1,0),"^",10)=%
  L -^RC("PRCABJ")
  K ^RC("PRCABJ")
@@ -183,9 +185,24 @@ CBO ; Create Extract Files for ARC
  S ZTIO="",ZTRTN="EN^RCXVTSK",ZTDESC="CBO DATA EXTRACT",ZTDTH=$H
  D ^%ZTLOAD
  Q
+ ;
 ABAUDIT ;PRCA*4.5*304 - Auto-audit Paper bills
  ;
  N ZTRTN,ZTIO,ZTDTH,ZTSK,ZTDESC
  ;
  S ZTIO="",ZTRTN="ABAUDIT^PRCABJ2",ZTDESC="AR AUTO-AUDIT OF PAPER BILLS",ZTDTH=$H D ^%ZTLOAD
+ Q
+ ;
+RPP ;PRCA*4.5*378 - Repayment Plan Nightly Process
+ ;
+ N ZTRTN,ZTIO,ZTDTH,ZTSK,ZTDESC
+ ;
+ S ZTIO="",ZTRTN="MAIN^RCRPNP",ZTDESC="AR REPAYMENT PLAN NIGHTLY PROCESS",ZTDTH=$H D ^%ZTLOAD
+ Q
+ ;
+CLNMTR ;PRCA*4.5*378 - Remove AR Metrics file data older than the # days specified by the METRICS RETENTION DAYS parameter
+ ;
+ N ZTRTN,ZTIO,ZTDTH,ZTSK,ZTDESC
+ ;
+ S ZTIO="",ZTRTN="CLEANUP^RCSTATU",ZTDESC="AR METRICS File (#340.7) data cleanup",ZTDTH=$H D ^%ZTLOAD
  Q

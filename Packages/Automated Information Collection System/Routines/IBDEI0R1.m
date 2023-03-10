@@ -1,128 +1,128 @@
-IBDEI0R1 ; ; 04-FEB-2020
- ;;3.0;IB ENCOUNTER FORM IMP/EXP;;FEB 04, 2020
+IBDEI0R1 ; ; 01-FEB-2022
+ ;;3.0;IB ENCOUNTER FORM IMP/EXP;;FEB 01, 2022
  Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,999) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
- ;;^UTILITY(U,$J,358.3,12068,2)
- ;;=^5001341
- ;;^UTILITY(U,$J,358.3,12069,0)
- ;;=C15.3^^80^770^85
- ;;^UTILITY(U,$J,358.3,12069,1,0)
+ ;;^UTILITY(U,$J,358.3,12179,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,12069,1,3,0)
- ;;=3^Malig Neop of Upper Third of Esophagus
- ;;^UTILITY(U,$J,358.3,12069,1,4,0)
- ;;=4^C15.3
- ;;^UTILITY(U,$J,358.3,12069,2)
- ;;=^267059
- ;;^UTILITY(U,$J,358.3,12070,0)
- ;;=C15.4^^80^770^68
- ;;^UTILITY(U,$J,358.3,12070,1,0)
+ ;;^UTILITY(U,$J,358.3,12179,1,3,0)
+ ;;=3^Pressure-Induced Deep Tissue Damage of Sacral Region
+ ;;^UTILITY(U,$J,358.3,12179,1,4,0)
+ ;;=4^L89.156
+ ;;^UTILITY(U,$J,358.3,12179,2)
+ ;;=^5158084
+ ;;^UTILITY(U,$J,358.3,12180,0)
+ ;;=B35.1^^49^596^130
+ ;;^UTILITY(U,$J,358.3,12180,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,12070,1,3,0)
- ;;=3^Malig Neop of Middle Third of Esophagus
- ;;^UTILITY(U,$J,358.3,12070,1,4,0)
- ;;=4^C15.4
- ;;^UTILITY(U,$J,358.3,12070,2)
- ;;=^267060
- ;;^UTILITY(U,$J,358.3,12071,0)
- ;;=C15.5^^80^770^67
- ;;^UTILITY(U,$J,358.3,12071,1,0)
+ ;;^UTILITY(U,$J,358.3,12180,1,3,0)
+ ;;=3^Tinea Unguium
+ ;;^UTILITY(U,$J,358.3,12180,1,4,0)
+ ;;=4^B35.1
+ ;;^UTILITY(U,$J,358.3,12180,2)
+ ;;=^119748
+ ;;^UTILITY(U,$J,358.3,12181,0)
+ ;;=L03.011^^49^596^14
+ ;;^UTILITY(U,$J,358.3,12181,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,12071,1,3,0)
- ;;=3^Malig Neop of Lower Third of Esophagus
- ;;^UTILITY(U,$J,358.3,12071,1,4,0)
- ;;=4^C15.5
- ;;^UTILITY(U,$J,358.3,12071,2)
- ;;=^267061
- ;;^UTILITY(U,$J,358.3,12072,0)
- ;;=C15.9^^80^770^61
- ;;^UTILITY(U,$J,358.3,12072,1,0)
+ ;;^UTILITY(U,$J,358.3,12181,1,3,0)
+ ;;=3^Cellulitis Right Finger
+ ;;^UTILITY(U,$J,358.3,12181,1,4,0)
+ ;;=4^L03.011
+ ;;^UTILITY(U,$J,358.3,12181,2)
+ ;;=^5009019
+ ;;^UTILITY(U,$J,358.3,12182,0)
+ ;;=L03.012^^49^596^12
+ ;;^UTILITY(U,$J,358.3,12182,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,12072,1,3,0)
- ;;=3^Malig Neop of Esophagus,Unspec
- ;;^UTILITY(U,$J,358.3,12072,1,4,0)
- ;;=4^C15.9
- ;;^UTILITY(U,$J,358.3,12072,2)
- ;;=^5000919
- ;;^UTILITY(U,$J,358.3,12073,0)
- ;;=C16.0^^80^770^56
- ;;^UTILITY(U,$J,358.3,12073,1,0)
+ ;;^UTILITY(U,$J,358.3,12182,1,3,0)
+ ;;=3^Cellulitis Left Finger
+ ;;^UTILITY(U,$J,358.3,12182,1,4,0)
+ ;;=4^L03.012
+ ;;^UTILITY(U,$J,358.3,12182,2)
+ ;;=^5009020
+ ;;^UTILITY(U,$J,358.3,12183,0)
+ ;;=L03.021^^49^596^33
+ ;;^UTILITY(U,$J,358.3,12183,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,12073,1,3,0)
- ;;=3^Malig Neop of Cardia
- ;;^UTILITY(U,$J,358.3,12073,1,4,0)
- ;;=4^C16.0
- ;;^UTILITY(U,$J,358.3,12073,2)
- ;;=^267063
- ;;^UTILITY(U,$J,358.3,12074,0)
- ;;=C16.1^^80^770^62
- ;;^UTILITY(U,$J,358.3,12074,1,0)
+ ;;^UTILITY(U,$J,358.3,12183,1,3,0)
+ ;;=3^Lymphangitis Right Finger,Acute
+ ;;^UTILITY(U,$J,358.3,12183,1,4,0)
+ ;;=4^L03.021
+ ;;^UTILITY(U,$J,358.3,12183,2)
+ ;;=^5009022
+ ;;^UTILITY(U,$J,358.3,12184,0)
+ ;;=L03.022^^49^596^31
+ ;;^UTILITY(U,$J,358.3,12184,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,12074,1,3,0)
- ;;=3^Malig Neop of Fundus of Stomach
- ;;^UTILITY(U,$J,358.3,12074,1,4,0)
- ;;=4^C16.1
- ;;^UTILITY(U,$J,358.3,12074,2)
- ;;=^267066
- ;;^UTILITY(U,$J,358.3,12075,0)
- ;;=C16.2^^80^770^55
- ;;^UTILITY(U,$J,358.3,12075,1,0)
+ ;;^UTILITY(U,$J,358.3,12184,1,3,0)
+ ;;=3^Lymphangitis Left Finger,Acute
+ ;;^UTILITY(U,$J,358.3,12184,1,4,0)
+ ;;=4^L03.022
+ ;;^UTILITY(U,$J,358.3,12184,2)
+ ;;=^5009023
+ ;;^UTILITY(U,$J,358.3,12185,0)
+ ;;=L03.031^^49^596^15
+ ;;^UTILITY(U,$J,358.3,12185,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,12075,1,3,0)
- ;;=3^Malig Neop of Body of Stomach
- ;;^UTILITY(U,$J,358.3,12075,1,4,0)
- ;;=4^C16.2
- ;;^UTILITY(U,$J,358.3,12075,2)
- ;;=^267067
- ;;^UTILITY(U,$J,358.3,12076,0)
- ;;=C16.3^^80^770^76
- ;;^UTILITY(U,$J,358.3,12076,1,0)
+ ;;^UTILITY(U,$J,358.3,12185,1,3,0)
+ ;;=3^Cellulitis Right Toe
+ ;;^UTILITY(U,$J,358.3,12185,1,4,0)
+ ;;=4^L03.031
+ ;;^UTILITY(U,$J,358.3,12185,2)
+ ;;=^5009025
+ ;;^UTILITY(U,$J,358.3,12186,0)
+ ;;=L03.032^^49^596^13
+ ;;^UTILITY(U,$J,358.3,12186,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,12076,1,3,0)
- ;;=3^Malig Neop of Pyloric Antrum
- ;;^UTILITY(U,$J,358.3,12076,1,4,0)
- ;;=4^C16.3
- ;;^UTILITY(U,$J,358.3,12076,2)
- ;;=^267065
- ;;^UTILITY(U,$J,358.3,12077,0)
- ;;=C16.4^^80^770^77
- ;;^UTILITY(U,$J,358.3,12077,1,0)
+ ;;^UTILITY(U,$J,358.3,12186,1,3,0)
+ ;;=3^Cellulitis Left Toe
+ ;;^UTILITY(U,$J,358.3,12186,1,4,0)
+ ;;=4^L03.032
+ ;;^UTILITY(U,$J,358.3,12186,2)
+ ;;=^5009026
+ ;;^UTILITY(U,$J,358.3,12187,0)
+ ;;=L03.041^^49^596^29
+ ;;^UTILITY(U,$J,358.3,12187,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,12077,1,3,0)
- ;;=3^Malig Neop of Pylorus
- ;;^UTILITY(U,$J,358.3,12077,1,4,0)
- ;;=4^C16.4
- ;;^UTILITY(U,$J,358.3,12077,2)
- ;;=^267064
- ;;^UTILITY(U,$J,358.3,12078,0)
- ;;=C16.5^^80^770^66
- ;;^UTILITY(U,$J,358.3,12078,1,0)
+ ;;^UTILITY(U,$J,358.3,12187,1,3,0)
+ ;;=3^Lymphagnitis Right Toe,Acute
+ ;;^UTILITY(U,$J,358.3,12187,1,4,0)
+ ;;=4^L03.041
+ ;;^UTILITY(U,$J,358.3,12187,2)
+ ;;=^5009028
+ ;;^UTILITY(U,$J,358.3,12188,0)
+ ;;=L03.042^^49^596^32
+ ;;^UTILITY(U,$J,358.3,12188,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,12078,1,3,0)
- ;;=3^Malig Neop of Lesser Curvature of Stomach,Unspec
- ;;^UTILITY(U,$J,358.3,12078,1,4,0)
- ;;=4^C16.5
- ;;^UTILITY(U,$J,358.3,12078,2)
- ;;=^5000920
- ;;^UTILITY(U,$J,358.3,12079,0)
- ;;=C16.6^^80^770^63
- ;;^UTILITY(U,$J,358.3,12079,1,0)
+ ;;^UTILITY(U,$J,358.3,12188,1,3,0)
+ ;;=3^Lymphangitis Left Toe,Acute
+ ;;^UTILITY(U,$J,358.3,12188,1,4,0)
+ ;;=4^L03.042
+ ;;^UTILITY(U,$J,358.3,12188,2)
+ ;;=^5009029
+ ;;^UTILITY(U,$J,358.3,12189,0)
+ ;;=L03.90^^49^596^25
+ ;;^UTILITY(U,$J,358.3,12189,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,12079,1,3,0)
- ;;=3^Malig Neop of Greater Curvature of Stomach,Unspec
- ;;^UTILITY(U,$J,358.3,12079,1,4,0)
- ;;=4^C16.6
- ;;^UTILITY(U,$J,358.3,12079,2)
- ;;=^5000921
- ;;^UTILITY(U,$J,358.3,12080,0)
- ;;=C16.8^^80^770^72
- ;;^UTILITY(U,$J,358.3,12080,1,0)
+ ;;^UTILITY(U,$J,358.3,12189,1,3,0)
+ ;;=3^Cellulitis,Unspec
+ ;;^UTILITY(U,$J,358.3,12189,1,4,0)
+ ;;=4^L03.90
+ ;;^UTILITY(U,$J,358.3,12189,2)
+ ;;=^5009067
+ ;;^UTILITY(U,$J,358.3,12190,0)
+ ;;=L25.9^^49^596^26
+ ;;^UTILITY(U,$J,358.3,12190,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,12080,1,3,0)
- ;;=3^Malig Neop of Overlapping Sites of Stomach
- ;;^UTILITY(U,$J,358.3,12080,1,4,0)
- ;;=4^C16.8
- ;;^UTILITY(U,$J,358.3,12080,2)
- ;;=^5000922
- ;;^UTILITY(U,$J,358.3,12081,0)
- ;;=C16.9^^80^770^82
+ ;;^UTILITY(U,$J,358.3,12190,1,3,0)
+ ;;=3^Contact Dermatitis,Unspec
+ ;;^UTILITY(U,$J,358.3,12190,1,4,0)
+ ;;=4^L25.9
+ ;;^UTILITY(U,$J,358.3,12190,2)
+ ;;=^5133647
+ ;;^UTILITY(U,$J,358.3,12191,0)
+ ;;=L97.919^^49^596^121
+ ;;^UTILITY(U,$J,358.3,12191,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,12191,1,3,0)
+ ;;=3^Non-Pressure Chr Ulcer Rt LL,Unsp Severity

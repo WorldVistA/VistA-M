@@ -1,128 +1,118 @@
-IBDEI0UU ; ; 04-FEB-2020
- ;;3.0;IB ENCOUNTER FORM IMP/EXP;;FEB 04, 2020
+IBDEI0UU ; ; 01-FEB-2022
+ ;;3.0;IB ENCOUNTER FORM IMP/EXP;;FEB 01, 2022
  Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,999) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
- ;;^UTILITY(U,$J,358.3,13732,0)
- ;;=H10.9^^83^816^11
- ;;^UTILITY(U,$J,358.3,13732,1,0)
+ ;;^UTILITY(U,$J,358.3,13923,1,3,0)
+ ;;=3^Contusion of left thigh, initial encounter
+ ;;^UTILITY(U,$J,358.3,13923,1,4,0)
+ ;;=4^S70.12XA
+ ;;^UTILITY(U,$J,358.3,13923,2)
+ ;;=^5036846
+ ;;^UTILITY(U,$J,358.3,13924,0)
+ ;;=S70.11XA^^55^665^3
+ ;;^UTILITY(U,$J,358.3,13924,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,13732,1,3,0)
- ;;=3^Conjunctivitis,Unspec
- ;;^UTILITY(U,$J,358.3,13732,1,4,0)
- ;;=4^H10.9
- ;;^UTILITY(U,$J,358.3,13732,2)
- ;;=^5004716
- ;;^UTILITY(U,$J,358.3,13733,0)
- ;;=Z97.3^^83^816^12
- ;;^UTILITY(U,$J,358.3,13733,1,0)
+ ;;^UTILITY(U,$J,358.3,13924,1,3,0)
+ ;;=3^Contusion of right thigh, initial encounter
+ ;;^UTILITY(U,$J,358.3,13924,1,4,0)
+ ;;=4^S70.11XA
+ ;;^UTILITY(U,$J,358.3,13924,2)
+ ;;=^5036843
+ ;;^UTILITY(U,$J,358.3,13925,0)
+ ;;=S72.352A^^55^665^5
+ ;;^UTILITY(U,$J,358.3,13925,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,13733,1,3,0)
- ;;=3^Contact Lenses/Eyeglasses,Presence of
- ;;^UTILITY(U,$J,358.3,13733,1,4,0)
- ;;=4^Z97.3
- ;;^UTILITY(U,$J,358.3,13733,2)
- ;;=^5063729
- ;;^UTILITY(U,$J,358.3,13734,0)
- ;;=H53.72^^83^816^13
- ;;^UTILITY(U,$J,358.3,13734,1,0)
+ ;;^UTILITY(U,$J,358.3,13925,1,3,0)
+ ;;=3^Displ comminuted fx shaft of left femur, init encntr
+ ;;^UTILITY(U,$J,358.3,13925,1,4,0)
+ ;;=4^S72.352A
+ ;;^UTILITY(U,$J,358.3,13925,2)
+ ;;=^5038448
+ ;;^UTILITY(U,$J,358.3,13926,0)
+ ;;=S72.351A^^55^665^7
+ ;;^UTILITY(U,$J,358.3,13926,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,13734,1,3,0)
- ;;=3^Contrast Sensitivity,Impaired
- ;;^UTILITY(U,$J,358.3,13734,1,4,0)
- ;;=4^H53.72
- ;;^UTILITY(U,$J,358.3,13734,2)
- ;;=^5006355
- ;;^UTILITY(U,$J,358.3,13735,0)
- ;;=H04.121^^83^816^16
- ;;^UTILITY(U,$J,358.3,13735,1,0)
+ ;;^UTILITY(U,$J,358.3,13926,1,3,0)
+ ;;=3^Displ comminuted fx shaft of right femur, init encntr
+ ;;^UTILITY(U,$J,358.3,13926,1,4,0)
+ ;;=4^S72.351A
+ ;;^UTILITY(U,$J,358.3,13926,2)
+ ;;=^5038432
+ ;;^UTILITY(U,$J,358.3,13927,0)
+ ;;=M61.052^^55^665^9
+ ;;^UTILITY(U,$J,358.3,13927,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,13735,1,3,0)
- ;;=3^Dry Eye Syndrome Right Lacrimal Gland
- ;;^UTILITY(U,$J,358.3,13735,1,4,0)
- ;;=4^H04.121
- ;;^UTILITY(U,$J,358.3,13735,2)
- ;;=^5004463
- ;;^UTILITY(U,$J,358.3,13736,0)
- ;;=H04.122^^83^816^15
- ;;^UTILITY(U,$J,358.3,13736,1,0)
+ ;;^UTILITY(U,$J,358.3,13927,1,3,0)
+ ;;=3^Myositis ossificans traumatica, left thigh
+ ;;^UTILITY(U,$J,358.3,13927,1,4,0)
+ ;;=4^M61.052
+ ;;^UTILITY(U,$J,358.3,13927,2)
+ ;;=^5012424
+ ;;^UTILITY(U,$J,358.3,13928,0)
+ ;;=S72.354A^^55^665^11
+ ;;^UTILITY(U,$J,358.3,13928,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,13736,1,3,0)
- ;;=3^Dry Eye Syndrome Left Lacrimal Gland
- ;;^UTILITY(U,$J,358.3,13736,1,4,0)
- ;;=4^H04.122
- ;;^UTILITY(U,$J,358.3,13736,2)
- ;;=^5004464
- ;;^UTILITY(U,$J,358.3,13737,0)
- ;;=H04.123^^83^816^14
- ;;^UTILITY(U,$J,358.3,13737,1,0)
+ ;;^UTILITY(U,$J,358.3,13928,1,3,0)
+ ;;=3^Nondisp commnt fx shaft of left femur, init encntr
+ ;;^UTILITY(U,$J,358.3,13928,1,4,0)
+ ;;=4^S72.354A
+ ;;^UTILITY(U,$J,358.3,13928,2)
+ ;;=^5038480
+ ;;^UTILITY(U,$J,358.3,13929,0)
+ ;;=M84.552A^^55^665^15
+ ;;^UTILITY(U,$J,358.3,13929,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,13737,1,3,0)
- ;;=3^Dry Eye Syndrome Bilateral Lacrimal Glands
- ;;^UTILITY(U,$J,358.3,13737,1,4,0)
- ;;=4^H04.123
- ;;^UTILITY(U,$J,358.3,13737,2)
- ;;=^5004465
- ;;^UTILITY(U,$J,358.3,13738,0)
- ;;=H02.106^^83^816^17
- ;;^UTILITY(U,$J,358.3,13738,1,0)
+ ;;^UTILITY(U,$J,358.3,13929,1,3,0)
+ ;;=3^Path fx in neopltc dis, left femur, init encntr
+ ;;^UTILITY(U,$J,358.3,13929,1,4,0)
+ ;;=4^M84.552A
+ ;;^UTILITY(U,$J,358.3,13929,2)
+ ;;=^5014124
+ ;;^UTILITY(U,$J,358.3,13930,0)
+ ;;=M84.551A^^55^665^19
+ ;;^UTILITY(U,$J,358.3,13930,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,13738,1,3,0)
- ;;=3^Ectropion Left Eye,Unspec Eyelid
- ;;^UTILITY(U,$J,358.3,13738,1,4,0)
- ;;=4^H02.106
- ;;^UTILITY(U,$J,358.3,13738,2)
- ;;=^5004306
- ;;^UTILITY(U,$J,358.3,13739,0)
- ;;=H02.103^^83^816^18
- ;;^UTILITY(U,$J,358.3,13739,1,0)
+ ;;^UTILITY(U,$J,358.3,13930,1,3,0)
+ ;;=3^Path fx in oth disease, right femur, init encntr
+ ;;^UTILITY(U,$J,358.3,13930,1,4,0)
+ ;;=4^M84.551A
+ ;;^UTILITY(U,$J,358.3,13930,2)
+ ;;=^5014118
+ ;;^UTILITY(U,$J,358.3,13931,0)
+ ;;=M84.652A^^55^665^21
+ ;;^UTILITY(U,$J,358.3,13931,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,13739,1,3,0)
- ;;=3^Ectropion Right Eye,Unspec Eyelid
- ;;^UTILITY(U,$J,358.3,13739,1,4,0)
- ;;=4^H02.103
- ;;^UTILITY(U,$J,358.3,13739,2)
- ;;=^5004304
- ;;^UTILITY(U,$J,358.3,13740,0)
- ;;=H02.006^^83^816^19
- ;;^UTILITY(U,$J,358.3,13740,1,0)
+ ;;^UTILITY(U,$J,358.3,13931,1,3,0)
+ ;;=3^Pathological fracture in oth disease, left femur, init
+ ;;^UTILITY(U,$J,358.3,13931,1,4,0)
+ ;;=4^M84.652A
+ ;;^UTILITY(U,$J,358.3,13931,2)
+ ;;=^5134003
+ ;;^UTILITY(U,$J,358.3,13932,0)
+ ;;=M61.051^^55^665^10
+ ;;^UTILITY(U,$J,358.3,13932,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,13740,1,3,0)
- ;;=3^Entropion Left Eye,Unspec Eyelid
- ;;^UTILITY(U,$J,358.3,13740,1,4,0)
- ;;=4^H02.006
- ;;^UTILITY(U,$J,358.3,13740,2)
- ;;=^5004277
- ;;^UTILITY(U,$J,358.3,13741,0)
- ;;=H02.003^^83^816^20
- ;;^UTILITY(U,$J,358.3,13741,1,0)
+ ;;^UTILITY(U,$J,358.3,13932,1,3,0)
+ ;;=3^Myositis ossificans traumatica, right thigh
+ ;;^UTILITY(U,$J,358.3,13932,1,4,0)
+ ;;=4^M61.051
+ ;;^UTILITY(U,$J,358.3,13932,2)
+ ;;=^5012423
+ ;;^UTILITY(U,$J,358.3,13933,0)
+ ;;=S72.355A^^55^665^13
+ ;;^UTILITY(U,$J,358.3,13933,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,13741,1,3,0)
- ;;=3^Entropion Right Eye,Unspec Eyelid
- ;;^UTILITY(U,$J,358.3,13741,1,4,0)
- ;;=4^H02.003
- ;;^UTILITY(U,$J,358.3,13741,2)
- ;;=^5004275
- ;;^UTILITY(U,$J,358.3,13742,0)
- ;;=H53.71^^83^816^29
- ;;^UTILITY(U,$J,358.3,13742,1,0)
+ ;;^UTILITY(U,$J,358.3,13933,1,3,0)
+ ;;=3^Nondisp commnt fx shaft of right femur, init encntr
+ ;;^UTILITY(U,$J,358.3,13933,1,4,0)
+ ;;=4^S72.355A
+ ;;^UTILITY(U,$J,358.3,13933,2)
+ ;;=^5038496
+ ;;^UTILITY(U,$J,358.3,13934,0)
+ ;;=M84.651A^^55^665^22
+ ;;^UTILITY(U,$J,358.3,13934,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,13742,1,3,0)
- ;;=3^Glare Sensitivity
- ;;^UTILITY(U,$J,358.3,13742,1,4,0)
- ;;=4^H53.71
- ;;^UTILITY(U,$J,358.3,13742,2)
- ;;=^5006354
- ;;^UTILITY(U,$J,358.3,13743,0)
- ;;=H40.9^^83^816^30
- ;;^UTILITY(U,$J,358.3,13743,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,13743,1,3,0)
- ;;=3^Glaucoma,Unspec
- ;;^UTILITY(U,$J,358.3,13743,1,4,0)
- ;;=4^H40.9
- ;;^UTILITY(U,$J,358.3,13743,2)
- ;;=^5005931
- ;;^UTILITY(U,$J,358.3,13744,0)
- ;;=H35.30^^83^816^31
- ;;^UTILITY(U,$J,358.3,13744,1,0)
- ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,13934,1,3,0)
+ ;;=3^Pathological fracture in oth disease, right femur, init
+ ;;^UTILITY(U,$J,358.3,13934,1,4,0)
+ ;;=4^M84.651A

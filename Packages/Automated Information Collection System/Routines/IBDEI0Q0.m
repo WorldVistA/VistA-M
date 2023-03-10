@@ -1,120 +1,132 @@
-IBDEI0Q0 ; ; 04-FEB-2020
- ;;3.0;IB ENCOUNTER FORM IMP/EXP;;FEB 04, 2020
+IBDEI0Q0 ; ; 01-FEB-2022
+ ;;3.0;IB ENCOUNTER FORM IMP/EXP;;FEB 01, 2022
  Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,999) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
- ;;^UTILITY(U,$J,358.3,11598,1,4,0)
- ;;=4^E10.3291
- ;;^UTILITY(U,$J,358.3,11598,2)
- ;;=^5138283
- ;;^UTILITY(U,$J,358.3,11599,0)
- ;;=E10.3292^^77^741^27
- ;;^UTILITY(U,$J,358.3,11599,1,0)
+ ;;^UTILITY(U,$J,358.3,11691,2)
+ ;;=^5015600
+ ;;^UTILITY(U,$J,358.3,11692,0)
+ ;;=N10.^^46^572^6
+ ;;^UTILITY(U,$J,358.3,11692,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,11599,1,3,0)
- ;;=3^DM Type 1 w/ Mild NPDR w/o Macula Edema,Left Eye
- ;;^UTILITY(U,$J,358.3,11599,1,4,0)
- ;;=4^E10.3292
- ;;^UTILITY(U,$J,358.3,11599,2)
- ;;=^5138284
- ;;^UTILITY(U,$J,358.3,11600,0)
- ;;=E10.3391^^77^741^23
- ;;^UTILITY(U,$J,358.3,11600,1,0)
+ ;;^UTILITY(U,$J,358.3,11692,1,3,0)
+ ;;=3^Acute Tubulo-Interstitial Nephritis
+ ;;^UTILITY(U,$J,358.3,11692,1,4,0)
+ ;;=4^N10.
+ ;;^UTILITY(U,$J,358.3,11692,2)
+ ;;=^5015570
+ ;;^UTILITY(U,$J,358.3,11693,0)
+ ;;=N17.8^^46^572^4
+ ;;^UTILITY(U,$J,358.3,11693,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,11600,1,3,0)
- ;;=3^DM Type 1 w/ Mod NPDR w/o Macula Edema,Right Eye
- ;;^UTILITY(U,$J,358.3,11600,1,4,0)
- ;;=4^E10.3391
- ;;^UTILITY(U,$J,358.3,11600,2)
- ;;=^5138291
- ;;^UTILITY(U,$J,358.3,11601,0)
- ;;=E10.3392^^77^741^28
- ;;^UTILITY(U,$J,358.3,11601,1,0)
+ ;;^UTILITY(U,$J,358.3,11693,1,3,0)
+ ;;=3^AKI,Other
+ ;;^UTILITY(U,$J,358.3,11693,1,4,0)
+ ;;=4^N17.8
+ ;;^UTILITY(U,$J,358.3,11693,2)
+ ;;=^5015601
+ ;;^UTILITY(U,$J,358.3,11694,0)
+ ;;=N17.9^^46^572^5
+ ;;^UTILITY(U,$J,358.3,11694,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,11601,1,3,0)
- ;;=3^DM Type 1 w/ Mod NPDR w/o Macula Edema,Left Eye
- ;;^UTILITY(U,$J,358.3,11601,1,4,0)
- ;;=4^E10.3392
- ;;^UTILITY(U,$J,358.3,11601,2)
- ;;=^5138292
- ;;^UTILITY(U,$J,358.3,11602,0)
- ;;=E10.3491^^77^741^24
- ;;^UTILITY(U,$J,358.3,11602,1,0)
+ ;;^UTILITY(U,$J,358.3,11694,1,3,0)
+ ;;=3^AKI,Unspec
+ ;;^UTILITY(U,$J,358.3,11694,1,4,0)
+ ;;=4^N17.9
+ ;;^UTILITY(U,$J,358.3,11694,2)
+ ;;=^338532
+ ;;^UTILITY(U,$J,358.3,11695,0)
+ ;;=R39.2^^46^572^15
+ ;;^UTILITY(U,$J,358.3,11695,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,11602,1,3,0)
- ;;=3^DM Type 1 w/ Severe NPDR w/o Macula Edema,Right Eye
- ;;^UTILITY(U,$J,358.3,11602,1,4,0)
- ;;=4^E10.3491
- ;;^UTILITY(U,$J,358.3,11602,2)
- ;;=^5138299
- ;;^UTILITY(U,$J,358.3,11603,0)
- ;;=E10.3492^^77^741^29
- ;;^UTILITY(U,$J,358.3,11603,1,0)
+ ;;^UTILITY(U,$J,358.3,11695,1,3,0)
+ ;;=3^Pre-Renal Uremia
+ ;;^UTILITY(U,$J,358.3,11695,1,4,0)
+ ;;=4^R39.2
+ ;;^UTILITY(U,$J,358.3,11695,2)
+ ;;=^5019348
+ ;;^UTILITY(U,$J,358.3,11696,0)
+ ;;=N13.9^^46^572^14
+ ;;^UTILITY(U,$J,358.3,11696,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,11603,1,3,0)
- ;;=3^DM Type 1 w/ Severe NPDR w/o Macula Edema,Left Eye
- ;;^UTILITY(U,$J,358.3,11603,1,4,0)
- ;;=4^E10.3492
- ;;^UTILITY(U,$J,358.3,11603,2)
- ;;=^5138300
- ;;^UTILITY(U,$J,358.3,11604,0)
- ;;=E10.3511^^77^741^25
- ;;^UTILITY(U,$J,358.3,11604,1,0)
+ ;;^UTILITY(U,$J,358.3,11696,1,3,0)
+ ;;=3^Obstructive and Reflux Uropathy,Unspec
+ ;;^UTILITY(U,$J,358.3,11696,1,4,0)
+ ;;=4^N13.9
+ ;;^UTILITY(U,$J,358.3,11696,2)
+ ;;=^5015589
+ ;;^UTILITY(U,$J,358.3,11697,0)
+ ;;=N13.1^^46^572^11
+ ;;^UTILITY(U,$J,358.3,11697,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,11604,1,3,0)
- ;;=3^DM Type 1 w/ PDR w/ Macula Edema,Right Eye
- ;;^UTILITY(U,$J,358.3,11604,1,4,0)
- ;;=4^E10.3511
- ;;^UTILITY(U,$J,358.3,11604,2)
- ;;=^5138303
- ;;^UTILITY(U,$J,358.3,11605,0)
- ;;=E10.3512^^77^741^30
- ;;^UTILITY(U,$J,358.3,11605,1,0)
+ ;;^UTILITY(U,$J,358.3,11697,1,3,0)
+ ;;=3^Hydronephrosis w/ Ureteral Stricture NEC
+ ;;^UTILITY(U,$J,358.3,11697,1,4,0)
+ ;;=4^N13.1
+ ;;^UTILITY(U,$J,358.3,11697,2)
+ ;;=^5015576
+ ;;^UTILITY(U,$J,358.3,11698,0)
+ ;;=N13.2^^46^572^10
+ ;;^UTILITY(U,$J,358.3,11698,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,11605,1,3,0)
- ;;=3^DM Type 1 w/ PDR w/ Macula Edema,Left Eye
- ;;^UTILITY(U,$J,358.3,11605,1,4,0)
- ;;=4^E10.3512
- ;;^UTILITY(U,$J,358.3,11605,2)
- ;;=^5138304
- ;;^UTILITY(U,$J,358.3,11606,0)
- ;;=E10.3591^^77^741^26
- ;;^UTILITY(U,$J,358.3,11606,1,0)
+ ;;^UTILITY(U,$J,358.3,11698,1,3,0)
+ ;;=3^Hydronephrosis w/ Renal and Ureteral Calculous Obstruction
+ ;;^UTILITY(U,$J,358.3,11698,1,4,0)
+ ;;=4^N13.2
+ ;;^UTILITY(U,$J,358.3,11698,2)
+ ;;=^5015577
+ ;;^UTILITY(U,$J,358.3,11699,0)
+ ;;=N13.30^^46^572^13
+ ;;^UTILITY(U,$J,358.3,11699,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,11606,1,3,0)
- ;;=3^DM Type 1 w/ PDR w/o Macula Edema,Right Eye
- ;;^UTILITY(U,$J,358.3,11606,1,4,0)
- ;;=4^E10.3591
- ;;^UTILITY(U,$J,358.3,11606,2)
- ;;=^5138323
- ;;^UTILITY(U,$J,358.3,11607,0)
- ;;=E10.3592^^77^741^31
- ;;^UTILITY(U,$J,358.3,11607,1,0)
+ ;;^UTILITY(U,$J,358.3,11699,1,3,0)
+ ;;=3^Hydronephrosis,Unspec
+ ;;^UTILITY(U,$J,358.3,11699,1,4,0)
+ ;;=4^N13.30
+ ;;^UTILITY(U,$J,358.3,11699,2)
+ ;;=^5015578
+ ;;^UTILITY(U,$J,358.3,11700,0)
+ ;;=N13.39^^46^572^12
+ ;;^UTILITY(U,$J,358.3,11700,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,11607,1,3,0)
- ;;=3^DM Type 1 w/ PDR w/o Macula Edema,Left Eye
- ;;^UTILITY(U,$J,358.3,11607,1,4,0)
- ;;=4^E10.3592
- ;;^UTILITY(U,$J,358.3,11607,2)
- ;;=^5138324
- ;;^UTILITY(U,$J,358.3,11608,0)
- ;;=E11.3211^^77^741^4
- ;;^UTILITY(U,$J,358.3,11608,1,0)
+ ;;^UTILITY(U,$J,358.3,11700,1,3,0)
+ ;;=3^Hydronephrosis,Other
+ ;;^UTILITY(U,$J,358.3,11700,1,4,0)
+ ;;=4^N13.39
+ ;;^UTILITY(U,$J,358.3,11700,2)
+ ;;=^5015579
+ ;;^UTILITY(U,$J,358.3,11701,0)
+ ;;=R33.9^^46^572^16
+ ;;^UTILITY(U,$J,358.3,11701,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,11608,1,3,0)
- ;;=3^DM Type 2 w/ Mild NPDR w/ Macula Edema,Right Eye
- ;;^UTILITY(U,$J,358.3,11608,1,4,0)
- ;;=4^E11.3211
- ;;^UTILITY(U,$J,358.3,11608,2)
- ;;=^5138331
- ;;^UTILITY(U,$J,358.3,11609,0)
- ;;=E11.3212^^77^741^12
- ;;^UTILITY(U,$J,358.3,11609,1,0)
+ ;;^UTILITY(U,$J,358.3,11701,1,3,0)
+ ;;=3^Urinary Retention,Unspec
+ ;;^UTILITY(U,$J,358.3,11701,1,4,0)
+ ;;=4^R33.9
+ ;;^UTILITY(U,$J,358.3,11701,2)
+ ;;=^5019332
+ ;;^UTILITY(U,$J,358.3,11702,0)
+ ;;=I75.81^^46^572^8
+ ;;^UTILITY(U,$J,358.3,11702,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,11609,1,3,0)
- ;;=3^DM Type 2 w/ Mild NPDR w/ Macula Edema,Left Eye
- ;;^UTILITY(U,$J,358.3,11609,1,4,0)
- ;;=4^E11.3212
- ;;^UTILITY(U,$J,358.3,11609,2)
- ;;=^5138332
- ;;^UTILITY(U,$J,358.3,11610,0)
- ;;=E11.3291^^77^741^5
+ ;;^UTILITY(U,$J,358.3,11702,1,3,0)
+ ;;=3^Atheroembolism of Kidney
+ ;;^UTILITY(U,$J,358.3,11702,1,4,0)
+ ;;=4^I75.81
+ ;;^UTILITY(U,$J,358.3,11702,2)
+ ;;=^328516
+ ;;^UTILITY(U,$J,358.3,11703,0)
+ ;;=R34.^^46^572^7
+ ;;^UTILITY(U,$J,358.3,11703,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,11703,1,3,0)
+ ;;=3^Anuria and Oliguria
+ ;;^UTILITY(U,$J,358.3,11703,1,4,0)
+ ;;=4^R34.
+ ;;^UTILITY(U,$J,358.3,11703,2)
+ ;;=^5019333
+ ;;^UTILITY(U,$J,358.3,11704,0)
+ ;;=K76.7^^46^572^9
+ ;;^UTILITY(U,$J,358.3,11704,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,11704,1,3,0)
+ ;;=3^Hepatorenal Syndrome

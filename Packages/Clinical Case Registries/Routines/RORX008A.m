@@ -1,5 +1,5 @@
 RORX008A ;HOIFO/BH,SG,VAC - VERA REIMBURSEMENT REPORT ;4/7/09 2:08pm
- ;;1.5;CLINICAL CASE REGISTRIES;**8,13,19,21,31**;Feb 17, 2006;Build 62
+ ;;1.5;CLINICAL CASE REGISTRIES;**8,13,19,21,31,39**;Feb 17, 2006;Build 4
  ;
  ;******************************************************************************
  ;******************************************************************************
@@ -16,7 +16,7 @@ RORX008A ;HOIFO/BH,SG,VAC - VERA REIMBURSEMENT REPORT ;4/7/09 2:08pm
  ;                                      additional identifier option selected
  ;ROR*1.5*31   MAY 2017    M FERRARESE  Adding PACT, PCP, and AGE/DOB as additional
  ;                                      identifiers.
- ;                                     
+ ;ROR*1.5*39   JUL 2021    M FERRARESE  Setting SSN and LAST4 to zeros                                     
  ;******************************************************************************
  ;******************************************************************************
  Q
@@ -166,7 +166,7 @@ STORE(REPORT) ;
  . D ADDATTR^RORTSK11(RORTSK,TABLE,"TABLE","PATIENTS")
  . S IEN=0
  . F  S IEN=$O(@NODE@("PAT",IEN))  Q:IEN'>0  D
- . . S BUF=@NODE@("PAT",IEN)
+ . . S BUF=@NODE@("PAT",IEN) S $P(BUF,U)="0000"
  . . S ITEM=$$ADDVAL^RORTSK11(RORTSK,"PATIENT",,TABLE,,IEN)
  . . D ADDVAL^RORTSK11(RORTSK,"NAME",$P(BUF,U,2),ITEM,1)
  . . D ADDVAL^RORTSK11(RORTSK,"LAST4",$P(BUF,U),ITEM,2)

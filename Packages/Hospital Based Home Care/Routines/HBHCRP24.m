@@ -1,5 +1,6 @@
-HBHCRP24 ; LR VAMC(IRMS)/MJT-HBHC file 631 rpt, All active (admitted but not D/C) cases by date range, sorted by pt name, includes: pt name, last 4, date, case manager, most recent visit date, visit discipline, & total; ; 12/21/05 3:41pm
- ;;1.0;HOSPITAL BASED HOME CARE;**21,22**;NOV 01, 1993;Build 2
+HBHCRP24 ; LR VAMC(IRMS)/MJT-HBHC file 631 rpt, All active (admitted but not D/C) cases ;Jul 27, 2021@16:15
+ ;;1.0;HOSPITAL BASED HOME CARE;**21,22,34**;NOV 01, 1993;Build 1
+ ;
  D START^HBHCUTL
  G:(HBHCBEG1=-1)!(HBHCEND1=-1) EXIT
  S %ZIS="Q",HBHCCC=0 K IOP,ZTIO,ZTSAVE D ^%ZIS G:POP EXIT
@@ -25,6 +26,8 @@ EXIT ; Exit module
  Q
 PROCESS ; Process record & build ^TMP("HBHC",$J) global
  Q:($P(HBHCNOD0,U,40)]"")&($P(HBHCNOD0,U,40)<HBHCEND1)
+ ;HBH*1.0*34: initialize HBHCSTOP
+ N HBHCSTOP S HBHCSTOP=""
  S HBHCDPT=$P(HBHCNOD0,U),HBHCDPT0=^DPT(HBHCDPT,0),(HBHCCASE,HBHCDAT,HBHCDATE)=""
  S HBHCNOD1=$G(^HBHC(631,HBHCDFN,1)) S:$P(HBHCNOD1,U,13)]"" HBHCCASE=$P(^VA(200,$P(^HBHC(631.4,$P(HBHCNOD1,U,13),0),U,2),0),U)
  S HBHCI=0 F  S HBHCI=$O(^HBHC(632,"B",HBHCDPT,HBHCI)) Q:HBHCI'>0  I $P(^HBHC(632,HBHCI,0),U,7)="" S:$P(^HBHC(632,HBHCI,0),U,2)>HBHCDAT HBHCDATE=$P(^HBHC(632,HBHCI,0),U,2)_U_HBHCI S HBHCDAT=$P(^HBHC(632,HBHCI,0),U,2)

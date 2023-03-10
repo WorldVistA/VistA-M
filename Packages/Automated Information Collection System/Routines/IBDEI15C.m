@@ -1,124 +1,130 @@
-IBDEI15C ; ; 04-FEB-2020
- ;;3.0;IB ENCOUNTER FORM IMP/EXP;;FEB 04, 2020
+IBDEI15C ; ; 01-FEB-2022
+ ;;3.0;IB ENCOUNTER FORM IMP/EXP;;FEB 01, 2022
  Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,999) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
- ;;^UTILITY(U,$J,358.3,18433,1,0)
+ ;;^UTILITY(U,$J,358.3,18612,0)
+ ;;=I48.0^^64^833^47
+ ;;^UTILITY(U,$J,358.3,18612,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,18433,1,3,0)
- ;;=3^Bipolar I D/O,Current/Recent Ep Dep,In Part Remiss
- ;;^UTILITY(U,$J,358.3,18433,1,4,0)
- ;;=4^F31.75
- ;;^UTILITY(U,$J,358.3,18433,2)
- ;;=^5003515
- ;;^UTILITY(U,$J,358.3,18434,0)
- ;;=F31.76^^91^937^12
- ;;^UTILITY(U,$J,358.3,18434,1,0)
+ ;;^UTILITY(U,$J,358.3,18612,1,3,0)
+ ;;=3^Atrial Fibrillation,Paroxysmal
+ ;;^UTILITY(U,$J,358.3,18612,1,4,0)
+ ;;=4^I48.0
+ ;;^UTILITY(U,$J,358.3,18612,2)
+ ;;=^90473
+ ;;^UTILITY(U,$J,358.3,18613,0)
+ ;;=I49.9^^64^833^50
+ ;;^UTILITY(U,$J,358.3,18613,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,18434,1,3,0)
- ;;=3^Bipolar I D/O,Current/Recent Ep Dep,In Full Remiss
- ;;^UTILITY(U,$J,358.3,18434,1,4,0)
- ;;=4^F31.76
- ;;^UTILITY(U,$J,358.3,18434,2)
- ;;=^5003516
- ;;^UTILITY(U,$J,358.3,18435,0)
- ;;=F31.81^^91^937^25
- ;;^UTILITY(U,$J,358.3,18435,1,0)
+ ;;^UTILITY(U,$J,358.3,18613,1,3,0)
+ ;;=3^Cardiac Arrhythmia,Unspec
+ ;;^UTILITY(U,$J,358.3,18613,1,4,0)
+ ;;=4^I49.9
+ ;;^UTILITY(U,$J,358.3,18613,2)
+ ;;=^5007237
+ ;;^UTILITY(U,$J,358.3,18614,0)
+ ;;=I42.9^^64^833^51
+ ;;^UTILITY(U,$J,358.3,18614,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,18435,1,3,0)
- ;;=3^Bipolar II Disorder
- ;;^UTILITY(U,$J,358.3,18435,1,4,0)
- ;;=4^F31.81
- ;;^UTILITY(U,$J,358.3,18435,2)
- ;;=^5003519
- ;;^UTILITY(U,$J,358.3,18436,0)
- ;;=F34.0^^91^937^26
- ;;^UTILITY(U,$J,358.3,18436,1,0)
+ ;;^UTILITY(U,$J,358.3,18614,1,3,0)
+ ;;=3^Cardiomyopathy,Unspec
+ ;;^UTILITY(U,$J,358.3,18614,1,4,0)
+ ;;=4^I42.9
+ ;;^UTILITY(U,$J,358.3,18614,2)
+ ;;=^5007200
+ ;;^UTILITY(U,$J,358.3,18615,0)
+ ;;=I50.42^^64^833^53
+ ;;^UTILITY(U,$J,358.3,18615,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,18436,1,3,0)
- ;;=3^Cyclothymic Disorder
- ;;^UTILITY(U,$J,358.3,18436,1,4,0)
- ;;=4^F34.0
- ;;^UTILITY(U,$J,358.3,18436,2)
- ;;=^5003538
- ;;^UTILITY(U,$J,358.3,18437,0)
- ;;=F31.0^^91^937^16
- ;;^UTILITY(U,$J,358.3,18437,1,0)
+ ;;^UTILITY(U,$J,358.3,18615,1,3,0)
+ ;;=3^Chr Combined Systolic & Diastolic Congestive Hrt Failure
+ ;;^UTILITY(U,$J,358.3,18615,1,4,0)
+ ;;=4^I50.42
+ ;;^UTILITY(U,$J,358.3,18615,2)
+ ;;=^5007249
+ ;;^UTILITY(U,$J,358.3,18616,0)
+ ;;=I50.32^^64^833^54
+ ;;^UTILITY(U,$J,358.3,18616,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,18437,1,3,0)
- ;;=3^Bipolar I D/O,Current/Recent Ep Hypomanic
- ;;^UTILITY(U,$J,358.3,18437,1,4,0)
- ;;=4^F31.0
- ;;^UTILITY(U,$J,358.3,18437,2)
- ;;=^5003494
- ;;^UTILITY(U,$J,358.3,18438,0)
- ;;=F31.71^^91^937^17
- ;;^UTILITY(U,$J,358.3,18438,1,0)
+ ;;^UTILITY(U,$J,358.3,18616,1,3,0)
+ ;;=3^Chr Diastolic Congestive Hrt Failure
+ ;;^UTILITY(U,$J,358.3,18616,1,4,0)
+ ;;=4^I50.32
+ ;;^UTILITY(U,$J,358.3,18616,2)
+ ;;=^5007245
+ ;;^UTILITY(U,$J,358.3,18617,0)
+ ;;=I27.82^^64^833^55
+ ;;^UTILITY(U,$J,358.3,18617,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,18438,1,3,0)
- ;;=3^Bipolar I D/O,Current/Recent Ep Hypomanic,In Part Remiss
- ;;^UTILITY(U,$J,358.3,18438,1,4,0)
- ;;=4^F31.71
- ;;^UTILITY(U,$J,358.3,18438,2)
- ;;=^5003511
- ;;^UTILITY(U,$J,358.3,18439,0)
- ;;=F31.72^^91^937^18
- ;;^UTILITY(U,$J,358.3,18439,1,0)
+ ;;^UTILITY(U,$J,358.3,18617,1,3,0)
+ ;;=3^Chr Pulmonary Embolism
+ ;;^UTILITY(U,$J,358.3,18617,1,4,0)
+ ;;=4^I27.82
+ ;;^UTILITY(U,$J,358.3,18617,2)
+ ;;=^338238
+ ;;^UTILITY(U,$J,358.3,18618,0)
+ ;;=I50.22^^64^833^57
+ ;;^UTILITY(U,$J,358.3,18618,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,18439,1,3,0)
- ;;=3^Bipolar I D/O,Current/Recent Ep Hypomanic,In Full Remiss
- ;;^UTILITY(U,$J,358.3,18439,1,4,0)
- ;;=4^F31.72
- ;;^UTILITY(U,$J,358.3,18439,2)
- ;;=^5003512
- ;;^UTILITY(U,$J,358.3,18440,0)
- ;;=F31.89^^91^937^3
- ;;^UTILITY(U,$J,358.3,18440,1,0)
+ ;;^UTILITY(U,$J,358.3,18618,1,3,0)
+ ;;=3^Chr Systolic Congestive Hrt Failure
+ ;;^UTILITY(U,$J,358.3,18618,1,4,0)
+ ;;=4^I50.22
+ ;;^UTILITY(U,$J,358.3,18618,2)
+ ;;=^5007241
+ ;;^UTILITY(U,$J,358.3,18619,0)
+ ;;=I42.0^^64^833^60
+ ;;^UTILITY(U,$J,358.3,18619,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,18440,1,3,0)
- ;;=3^Bipolar & Rel D/O,Other Specified
- ;;^UTILITY(U,$J,358.3,18440,1,4,0)
- ;;=4^F31.89
- ;;^UTILITY(U,$J,358.3,18440,2)
- ;;=^5003520
- ;;^UTILITY(U,$J,358.3,18441,0)
- ;;=F31.9^^91^937^4
- ;;^UTILITY(U,$J,358.3,18441,1,0)
+ ;;^UTILITY(U,$J,358.3,18619,1,3,0)
+ ;;=3^Dilated Cardiomyopathy
+ ;;^UTILITY(U,$J,358.3,18619,1,4,0)
+ ;;=4^I42.0
+ ;;^UTILITY(U,$J,358.3,18619,2)
+ ;;=^5007194
+ ;;^UTILITY(U,$J,358.3,18620,0)
+ ;;=I10.^^64^833^62
+ ;;^UTILITY(U,$J,358.3,18620,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,18441,1,3,0)
- ;;=3^Bipolar & Rel D/O,Unsp
- ;;^UTILITY(U,$J,358.3,18441,1,4,0)
- ;;=4^F31.9
- ;;^UTILITY(U,$J,358.3,18441,2)
- ;;=^331892
- ;;^UTILITY(U,$J,358.3,18442,0)
- ;;=F31.60^^91^937^9
- ;;^UTILITY(U,$J,358.3,18442,1,0)
+ ;;^UTILITY(U,$J,358.3,18620,1,3,0)
+ ;;=3^Essential Hypertension
+ ;;^UTILITY(U,$J,358.3,18620,1,4,0)
+ ;;=4^I10.
+ ;;^UTILITY(U,$J,358.3,18620,2)
+ ;;=^5007062
+ ;;^UTILITY(U,$J,358.3,18621,0)
+ ;;=I50.9^^64^833^67
+ ;;^UTILITY(U,$J,358.3,18621,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,18442,1,3,0)
- ;;=3^Bipolar D/O,Current Episode Mixed,Unspec
- ;;^UTILITY(U,$J,358.3,18442,1,4,0)
- ;;=4^F31.60
- ;;^UTILITY(U,$J,358.3,18442,2)
- ;;=^5003505
- ;;^UTILITY(U,$J,358.3,18443,0)
- ;;=F31.61^^91^937^5
- ;;^UTILITY(U,$J,358.3,18443,1,0)
+ ;;^UTILITY(U,$J,358.3,18621,1,3,0)
+ ;;=3^Heart Failure,Unspec
+ ;;^UTILITY(U,$J,358.3,18621,1,4,0)
+ ;;=4^I50.9
+ ;;^UTILITY(U,$J,358.3,18621,2)
+ ;;=^5007251
+ ;;^UTILITY(U,$J,358.3,18622,0)
+ ;;=I35.1^^64^833^76
+ ;;^UTILITY(U,$J,358.3,18622,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,18443,1,3,0)
- ;;=3^Bipolar D/O,Current Episode Mixed,Mild
- ;;^UTILITY(U,$J,358.3,18443,1,4,0)
- ;;=4^F31.61
- ;;^UTILITY(U,$J,358.3,18443,2)
- ;;=^5003506
- ;;^UTILITY(U,$J,358.3,18444,0)
- ;;=F31.62^^91^937^6
- ;;^UTILITY(U,$J,358.3,18444,1,0)
+ ;;^UTILITY(U,$J,358.3,18622,1,3,0)
+ ;;=3^Nonrheumatic Aortic Valve Insufficiency
+ ;;^UTILITY(U,$J,358.3,18622,1,4,0)
+ ;;=4^I35.1
+ ;;^UTILITY(U,$J,358.3,18622,2)
+ ;;=^5007175
+ ;;^UTILITY(U,$J,358.3,18623,0)
+ ;;=I35.0^^64^833^77
+ ;;^UTILITY(U,$J,358.3,18623,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,18444,1,3,0)
- ;;=3^Bipolar D/O,Current Episode Mixed,Moderate
- ;;^UTILITY(U,$J,358.3,18444,1,4,0)
- ;;=4^F31.62
- ;;^UTILITY(U,$J,358.3,18444,2)
- ;;=^5003507
- ;;^UTILITY(U,$J,358.3,18445,0)
- ;;=F31.63^^91^937^7
+ ;;^UTILITY(U,$J,358.3,18623,1,3,0)
+ ;;=3^Nonrheumatic Aortic Valve Stenosis
+ ;;^UTILITY(U,$J,358.3,18623,1,4,0)
+ ;;=4^I35.0
+ ;;^UTILITY(U,$J,358.3,18623,2)
+ ;;=^5007174
+ ;;^UTILITY(U,$J,358.3,18624,0)
+ ;;=I35.2^^64^833^78
+ ;;^UTILITY(U,$J,358.3,18624,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,18624,1,3,0)
+ ;;=3^Nonrheumatic Aortic Valve Stenosis w/ Insufficiency

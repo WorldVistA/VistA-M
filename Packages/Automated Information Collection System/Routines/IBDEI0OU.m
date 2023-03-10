@@ -1,132 +1,112 @@
-IBDEI0OU ; ; 04-FEB-2020
- ;;3.0;IB ENCOUNTER FORM IMP/EXP;;FEB 04, 2020
+IBDEI0OU ; ; 01-FEB-2022
+ ;;3.0;IB ENCOUNTER FORM IMP/EXP;;FEB 01, 2022
  Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,999) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
- ;;^UTILITY(U,$J,358.3,11086,2)
- ;;=^5006218
- ;;^UTILITY(U,$J,358.3,11087,0)
- ;;=H53.001^^77^722^27
- ;;^UTILITY(U,$J,358.3,11087,1,0)
+ ;;^UTILITY(U,$J,358.3,11155,0)
+ ;;=F15.981^^42^509^14
+ ;;^UTILITY(U,$J,358.3,11155,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,11087,1,3,0)
- ;;=3^Amblyopia,Right Eye
- ;;^UTILITY(U,$J,358.3,11087,1,4,0)
- ;;=4^H53.001
- ;;^UTILITY(U,$J,358.3,11087,2)
- ;;=^5006292
- ;;^UTILITY(U,$J,358.3,11088,0)
- ;;=H53.002^^77^722^28
- ;;^UTILITY(U,$J,358.3,11088,1,0)
+ ;;^UTILITY(U,$J,358.3,11155,1,3,0)
+ ;;=3^Amphetamine/Other Stimulant Induced Sexual Dysfunction w/o Use D/O
+ ;;^UTILITY(U,$J,358.3,11155,1,4,0)
+ ;;=4^F15.981
+ ;;^UTILITY(U,$J,358.3,11155,2)
+ ;;=^5003321
+ ;;^UTILITY(U,$J,358.3,11156,0)
+ ;;=F15.182^^42^509^15
+ ;;^UTILITY(U,$J,358.3,11156,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,11088,1,3,0)
- ;;=3^Amblyopia,Left Eye
- ;;^UTILITY(U,$J,358.3,11088,1,4,0)
- ;;=4^H53.002
- ;;^UTILITY(U,$J,358.3,11088,2)
- ;;=^5006293
- ;;^UTILITY(U,$J,358.3,11089,0)
- ;;=Z87.820^^77^722^41
- ;;^UTILITY(U,$J,358.3,11089,1,0)
+ ;;^UTILITY(U,$J,358.3,11156,1,3,0)
+ ;;=3^Amphetamine/Other Stimulant Induced Sleep D/O w/ Mild Use D/O
+ ;;^UTILITY(U,$J,358.3,11156,1,4,0)
+ ;;=4^F15.182
+ ;;^UTILITY(U,$J,358.3,11156,2)
+ ;;=^5003293
+ ;;^UTILITY(U,$J,358.3,11157,0)
+ ;;=F15.282^^42^509^16
+ ;;^UTILITY(U,$J,358.3,11157,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,11089,1,3,0)
- ;;=3^Personal Hx of TBI
- ;;^UTILITY(U,$J,358.3,11089,1,4,0)
- ;;=4^Z87.820
- ;;^UTILITY(U,$J,358.3,11089,2)
- ;;=^5063514
- ;;^UTILITY(U,$J,358.3,11090,0)
- ;;=H53.141^^77^722^59
- ;;^UTILITY(U,$J,358.3,11090,1,0)
+ ;;^UTILITY(U,$J,358.3,11157,1,3,0)
+ ;;=3^Amphetamine/Other Stimulant Induced Sleep D/O w/ Mod-Sev Use D/O
+ ;;^UTILITY(U,$J,358.3,11157,1,4,0)
+ ;;=4^F15.282
+ ;;^UTILITY(U,$J,358.3,11157,2)
+ ;;=^5003308
+ ;;^UTILITY(U,$J,358.3,11158,0)
+ ;;=F15.982^^42^509^17
+ ;;^UTILITY(U,$J,358.3,11158,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,11090,1,3,0)
- ;;=3^Visual Discomfort,Right Eye
- ;;^UTILITY(U,$J,358.3,11090,1,4,0)
- ;;=4^H53.141
- ;;^UTILITY(U,$J,358.3,11090,2)
- ;;=^5006317
- ;;^UTILITY(U,$J,358.3,11091,0)
- ;;=H53.142^^77^722^60
- ;;^UTILITY(U,$J,358.3,11091,1,0)
+ ;;^UTILITY(U,$J,358.3,11158,1,3,0)
+ ;;=3^Amphetamine/Other Stimulant Induced Sleep D/O w/o Use D/O
+ ;;^UTILITY(U,$J,358.3,11158,1,4,0)
+ ;;=4^F15.982
+ ;;^UTILITY(U,$J,358.3,11158,2)
+ ;;=^5003322
+ ;;^UTILITY(U,$J,358.3,11159,0)
+ ;;=F15.122^^42^509^20
+ ;;^UTILITY(U,$J,358.3,11159,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,11091,1,3,0)
- ;;=3^Visual Discomfort,Left Eye
- ;;^UTILITY(U,$J,358.3,11091,1,4,0)
- ;;=4^H53.142
- ;;^UTILITY(U,$J,358.3,11091,2)
- ;;=^5006318
- ;;^UTILITY(U,$J,358.3,11092,0)
- ;;=H53.143^^77^722^61
- ;;^UTILITY(U,$J,358.3,11092,1,0)
+ ;;^UTILITY(U,$J,358.3,11159,1,3,0)
+ ;;=3^Amphetamine/Other Stimulant Intoxication w/ Percept Disturb w/ Mild Use D/O
+ ;;^UTILITY(U,$J,358.3,11159,1,4,0)
+ ;;=4^F15.122
+ ;;^UTILITY(U,$J,358.3,11159,2)
+ ;;=^5003285
+ ;;^UTILITY(U,$J,358.3,11160,0)
+ ;;=F15.222^^42^509^21
+ ;;^UTILITY(U,$J,358.3,11160,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,11092,1,3,0)
- ;;=3^Visual Discomfort,Bilateral
- ;;^UTILITY(U,$J,358.3,11092,1,4,0)
- ;;=4^H53.143
- ;;^UTILITY(U,$J,358.3,11092,2)
- ;;=^5006319
- ;;^UTILITY(U,$J,358.3,11093,0)
- ;;=H50.21^^77^722^62
- ;;^UTILITY(U,$J,358.3,11093,1,0)
+ ;;^UTILITY(U,$J,358.3,11160,1,3,0)
+ ;;=3^Amphetamine/Other Stimulant Intoxication w/ Percept Disturb w/ Mod-Sev Use D/O
+ ;;^UTILITY(U,$J,358.3,11160,1,4,0)
+ ;;=4^F15.222
+ ;;^UTILITY(U,$J,358.3,11160,2)
+ ;;=^5003299
+ ;;^UTILITY(U,$J,358.3,11161,0)
+ ;;=F15.922^^42^509^22
+ ;;^UTILITY(U,$J,358.3,11161,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,11093,1,3,0)
- ;;=3^Hypertropia,Right Eye
- ;;^UTILITY(U,$J,358.3,11093,1,4,0)
- ;;=4^H50.21
- ;;^UTILITY(U,$J,358.3,11093,2)
- ;;=^5006228
- ;;^UTILITY(U,$J,358.3,11094,0)
- ;;=H50.22^^77^722^63
- ;;^UTILITY(U,$J,358.3,11094,1,0)
+ ;;^UTILITY(U,$J,358.3,11161,1,3,0)
+ ;;=3^Amphetamine/Other Stimulant Intoxication w/ Percept Disturb w/o Use D/O
+ ;;^UTILITY(U,$J,358.3,11161,1,4,0)
+ ;;=4^F15.922
+ ;;^UTILITY(U,$J,358.3,11161,2)
+ ;;=^5003313
+ ;;^UTILITY(U,$J,358.3,11162,0)
+ ;;=F15.129^^42^509^23
+ ;;^UTILITY(U,$J,358.3,11162,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,11094,1,3,0)
- ;;=3^Hypertropia,Left Eye
- ;;^UTILITY(U,$J,358.3,11094,1,4,0)
- ;;=4^H50.22
- ;;^UTILITY(U,$J,358.3,11094,2)
- ;;=^5006229
- ;;^UTILITY(U,$J,358.3,11095,0)
- ;;=H50.53^^77^722^64
- ;;^UTILITY(U,$J,358.3,11095,1,0)
+ ;;^UTILITY(U,$J,358.3,11162,1,3,0)
+ ;;=3^Amphetamine/Other Stimulant Intoxication w/o  Percept Disturb w/ Mild Use D/O
+ ;;^UTILITY(U,$J,358.3,11162,1,4,0)
+ ;;=4^F15.129
+ ;;^UTILITY(U,$J,358.3,11162,2)
+ ;;=^5003286
+ ;;^UTILITY(U,$J,358.3,11163,0)
+ ;;=F15.229^^42^509^24
+ ;;^UTILITY(U,$J,358.3,11163,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,11095,1,3,0)
- ;;=3^Hyperphoria
- ;;^UTILITY(U,$J,358.3,11095,1,4,0)
- ;;=4^H50.53
- ;;^UTILITY(U,$J,358.3,11095,2)
- ;;=^5006241
- ;;^UTILITY(U,$J,358.3,11096,0)
- ;;=H55.81^^77^722^65
- ;;^UTILITY(U,$J,358.3,11096,1,0)
+ ;;^UTILITY(U,$J,358.3,11163,1,3,0)
+ ;;=3^Amphetamine/Other Stimulant Intoxication w/o  Percept Disturb w/ Mod-Sev Use D/O
+ ;;^UTILITY(U,$J,358.3,11163,1,4,0)
+ ;;=4^F15.229
+ ;;^UTILITY(U,$J,358.3,11163,2)
+ ;;=^5003300
+ ;;^UTILITY(U,$J,358.3,11164,0)
+ ;;=F15.929^^42^509^25
+ ;;^UTILITY(U,$J,358.3,11164,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,11096,1,3,0)
- ;;=3^Saccadic Eye Movements
- ;;^UTILITY(U,$J,358.3,11096,1,4,0)
- ;;=4^H55.81
- ;;^UTILITY(U,$J,358.3,11096,2)
- ;;=^5006373
- ;;^UTILITY(U,$J,358.3,11097,0)
- ;;=H52.521^^77^722^67
- ;;^UTILITY(U,$J,358.3,11097,1,0)
+ ;;^UTILITY(U,$J,358.3,11164,1,3,0)
+ ;;=3^Amphetamine/Other Stimulant Intoxication w/o Percept Disturb w/o Use D/O
+ ;;^UTILITY(U,$J,358.3,11164,1,4,0)
+ ;;=4^F15.929
+ ;;^UTILITY(U,$J,358.3,11164,2)
+ ;;=^5003314
+ ;;^UTILITY(U,$J,358.3,11165,0)
+ ;;=F15.121^^42^509^18
+ ;;^UTILITY(U,$J,358.3,11165,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,11097,1,3,0)
- ;;=3^Paresis of Accommodation,Right Eye
- ;;^UTILITY(U,$J,358.3,11097,1,4,0)
- ;;=4^H52.521
- ;;^UTILITY(U,$J,358.3,11097,2)
- ;;=^5006282
- ;;^UTILITY(U,$J,358.3,11098,0)
- ;;=H52.522^^77^722^68
- ;;^UTILITY(U,$J,358.3,11098,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,11098,1,3,0)
- ;;=3^Paresis of Accommodation,Left Eye
- ;;^UTILITY(U,$J,358.3,11098,1,4,0)
- ;;=4^H52.522
- ;;^UTILITY(U,$J,358.3,11098,2)
- ;;=^5006283
- ;;^UTILITY(U,$J,358.3,11099,0)
- ;;=H52.523^^77^722^69
- ;;^UTILITY(U,$J,358.3,11099,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,11099,1,3,0)
- ;;=3^Paresis of Accommodation,Bilateral
+ ;;^UTILITY(U,$J,358.3,11165,1,3,0)
+ ;;=3^Amphetamine/Other Stimulant Intox Delirium  w/ Mild Use D/O
+ ;;^UTILITY(U,$J,358.3,11165,1,4,0)
+ ;;=4^F15.121

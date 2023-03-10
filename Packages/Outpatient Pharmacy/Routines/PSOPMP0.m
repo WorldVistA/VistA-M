@@ -1,5 +1,5 @@
 PSOPMP0 ;BIRM/MFR - Patient Medication Profile - Listmanager ;10/28/06
- ;;7.0;OUTPATIENT PHARMACY;**260,281,303,289,382,313,427,500,482,570**;DEC 1997;Build 8
+ ;;7.0;OUTPATIENT PHARMACY;**260,281,303,289,382,313,427,500,482,570,562**;DEC 1997;Build 19
  ;Reference to EN1^GMRADPT supported by IA #10099
  ;Reference to EN6^GMRVUTL supported by IA #1120
  ;Reference to ^PS(55 supported by DBIA 2228
@@ -123,7 +123,7 @@ SETSORT(FIELD) ;Sets the data sorted by the FIELD specified
  . S GROUP=$P(PSORDSEQ("R"),"^")_"R^"_$P(PSORDSEQ("R"),"^",2)
  . ; PSO*427 changes for RRR/TRI/CVA reject display
  . S RDREJ=0  ; initialize RTS/DUR reject flag to 0
- . I $$FIND^PSOREJUT(RX,,,"79,88") S GROUP=$P(PSORDSEQ("T"),"^")_"T^"_$P(PSORDSEQ("T"),"^",2),STS="<NULL>",RDREJ=1
+ . I $$FIND^PSOREJUT(RX,,,"79,88,943") S GROUP=$P(PSORDSEQ("T"),"^")_"T^"_$P(PSORDSEQ("T"),"^",2),STS="<NULL>",RDREJ=1
  . ; next look for any unresolved TRI/CVA rejects  *427
  . I 'RDREJ,$$TRIC^PSOREJP1(RX),$$FIND^PSOREJUT(RX,,,,1) S GROUP=$P(PSORDSEQ("H"),U,1)_"H^"_$P(PSORDSEQ("H"),U,2),STS="<NULL>"
  . ; next look for any unresolved RRR rejects  *427

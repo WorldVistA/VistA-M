@@ -1,124 +1,128 @@
-IBDEI0WN ; ; 04-FEB-2020
- ;;3.0;IB ENCOUNTER FORM IMP/EXP;;FEB 04, 2020
+IBDEI0WN ; ; 01-FEB-2022
+ ;;3.0;IB ENCOUNTER FORM IMP/EXP;;FEB 01, 2022
  Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,999) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
- ;;^UTILITY(U,$J,358.3,14536,2)
- ;;=^331975
- ;;^UTILITY(U,$J,358.3,14537,0)
- ;;=Z79.4^^83^826^48
- ;;^UTILITY(U,$J,358.3,14537,1,0)
+ ;;^UTILITY(U,$J,358.3,14717,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,14537,1,3,0)
- ;;=3^Drug Therapy,Insulin,Long Term Current Use
- ;;^UTILITY(U,$J,358.3,14537,1,4,0)
- ;;=4^Z79.4
- ;;^UTILITY(U,$J,358.3,14537,2)
- ;;=^5063334
- ;;^UTILITY(U,$J,358.3,14538,0)
- ;;=Z79.1^^83^826^49
- ;;^UTILITY(U,$J,358.3,14538,1,0)
+ ;;^UTILITY(U,$J,358.3,14717,1,3,0)
+ ;;=3^Kissing Spine,Cervical Region
+ ;;^UTILITY(U,$J,358.3,14717,1,4,0)
+ ;;=4^M48.22
+ ;;^UTILITY(U,$J,358.3,14717,2)
+ ;;=^5012108
+ ;;^UTILITY(U,$J,358.3,14718,0)
+ ;;=M48.26^^58^706^25
+ ;;^UTILITY(U,$J,358.3,14718,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,14538,1,3,0)
- ;;=3^Drug Therapy,NSAID,Long Term Current Use
- ;;^UTILITY(U,$J,358.3,14538,1,4,0)
- ;;=4^Z79.1
- ;;^UTILITY(U,$J,358.3,14538,2)
- ;;=^5063332
- ;;^UTILITY(U,$J,358.3,14539,0)
- ;;=Z79.891^^83^826^50
- ;;^UTILITY(U,$J,358.3,14539,1,0)
+ ;;^UTILITY(U,$J,358.3,14718,1,3,0)
+ ;;=3^Kissing Spine,Lumbar Region
+ ;;^UTILITY(U,$J,358.3,14718,1,4,0)
+ ;;=4^M48.26
+ ;;^UTILITY(U,$J,358.3,14718,2)
+ ;;=^5012112
+ ;;^UTILITY(U,$J,358.3,14719,0)
+ ;;=M48.27^^58^706^26
+ ;;^UTILITY(U,$J,358.3,14719,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,14539,1,3,0)
- ;;=3^Drug Therapy,Opiate Analgesic,Long Term Current Use
- ;;^UTILITY(U,$J,358.3,14539,1,4,0)
- ;;=4^Z79.891
- ;;^UTILITY(U,$J,358.3,14539,2)
- ;;=^5063342
- ;;^UTILITY(U,$J,358.3,14540,0)
- ;;=Z79.899^^83^826^51
- ;;^UTILITY(U,$J,358.3,14540,1,0)
+ ;;^UTILITY(U,$J,358.3,14719,1,3,0)
+ ;;=3^Kissing Spine,Lumbosacral Region
+ ;;^UTILITY(U,$J,358.3,14719,1,4,0)
+ ;;=4^M48.27
+ ;;^UTILITY(U,$J,358.3,14719,2)
+ ;;=^5012113
+ ;;^UTILITY(U,$J,358.3,14720,0)
+ ;;=M48.21^^58^706^27
+ ;;^UTILITY(U,$J,358.3,14720,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,14540,1,3,0)
- ;;=3^Drug Therapy,Other Long Term Current Use
- ;;^UTILITY(U,$J,358.3,14540,1,4,0)
- ;;=4^Z79.899
- ;;^UTILITY(U,$J,358.3,14540,2)
- ;;=^5063343
- ;;^UTILITY(U,$J,358.3,14541,0)
- ;;=Z76.0^^83^826^71
- ;;^UTILITY(U,$J,358.3,14541,1,0)
+ ;;^UTILITY(U,$J,358.3,14720,1,3,0)
+ ;;=3^Kissing Spine,Occipito-Atlanto-Axial Region
+ ;;^UTILITY(U,$J,358.3,14720,1,4,0)
+ ;;=4^M48.21
+ ;;^UTILITY(U,$J,358.3,14720,2)
+ ;;=^5012107
+ ;;^UTILITY(U,$J,358.3,14721,0)
+ ;;=M48.25^^58^706^29
+ ;;^UTILITY(U,$J,358.3,14721,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,14541,1,3,0)
- ;;=3^Issue of Repeat Prescription
- ;;^UTILITY(U,$J,358.3,14541,1,4,0)
- ;;=4^Z76.0
- ;;^UTILITY(U,$J,358.3,14541,2)
- ;;=^5063297
- ;;^UTILITY(U,$J,358.3,14542,0)
- ;;=Z79.810^^83^826^52
- ;;^UTILITY(U,$J,358.3,14542,1,0)
+ ;;^UTILITY(U,$J,358.3,14721,1,3,0)
+ ;;=3^Kissing Spine,Thoracolumbar Region
+ ;;^UTILITY(U,$J,358.3,14721,1,4,0)
+ ;;=4^M48.25
+ ;;^UTILITY(U,$J,358.3,14721,2)
+ ;;=^5012111
+ ;;^UTILITY(U,$J,358.3,14722,0)
+ ;;=M48.24^^58^706^28
+ ;;^UTILITY(U,$J,358.3,14722,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,14542,1,3,0)
- ;;=3^Drug Therapy,SERMs,Long Term Current Use
- ;;^UTILITY(U,$J,358.3,14542,1,4,0)
- ;;=4^Z79.810
- ;;^UTILITY(U,$J,358.3,14542,2)
- ;;=^5063337
- ;;^UTILITY(U,$J,358.3,14543,0)
- ;;=Z79.51^^83^826^47
- ;;^UTILITY(U,$J,358.3,14543,1,0)
+ ;;^UTILITY(U,$J,358.3,14722,1,3,0)
+ ;;=3^Kissing Spine,Thoracic Region
+ ;;^UTILITY(U,$J,358.3,14722,1,4,0)
+ ;;=4^M48.24
+ ;;^UTILITY(U,$J,358.3,14722,2)
+ ;;=^5012110
+ ;;^UTILITY(U,$J,358.3,14723,0)
+ ;;=M54.6^^58^706^33
+ ;;^UTILITY(U,$J,358.3,14723,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,14543,1,3,0)
- ;;=3^Drug Therapy,Inhaled Steroids,Long Term Current Use
- ;;^UTILITY(U,$J,358.3,14543,1,4,0)
- ;;=4^Z79.51
- ;;^UTILITY(U,$J,358.3,14543,2)
- ;;=^5063335
- ;;^UTILITY(U,$J,358.3,14544,0)
- ;;=Z79.52^^83^826^53
- ;;^UTILITY(U,$J,358.3,14544,1,0)
+ ;;^UTILITY(U,$J,358.3,14723,1,3,0)
+ ;;=3^Pain,Thoracic Spine
+ ;;^UTILITY(U,$J,358.3,14723,1,4,0)
+ ;;=4^M54.6
+ ;;^UTILITY(U,$J,358.3,14723,2)
+ ;;=^272507
+ ;;^UTILITY(U,$J,358.3,14724,0)
+ ;;=M96.1^^58^706^34
+ ;;^UTILITY(U,$J,358.3,14724,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,14544,1,3,0)
- ;;=3^Drug Therapy,Systemic Steroids,Long Term Current Use
- ;;^UTILITY(U,$J,358.3,14544,1,4,0)
- ;;=4^Z79.52
- ;;^UTILITY(U,$J,358.3,14544,2)
- ;;=^5063336
- ;;^UTILITY(U,$J,358.3,14545,0)
- ;;=R68.2^^83^826^54
- ;;^UTILITY(U,$J,358.3,14545,1,0)
+ ;;^UTILITY(U,$J,358.3,14724,1,3,0)
+ ;;=3^Postlaminectomy Syndrome NEC
+ ;;^UTILITY(U,$J,358.3,14724,1,4,0)
+ ;;=4^M96.1
+ ;;^UTILITY(U,$J,358.3,14724,2)
+ ;;=^5015374
+ ;;^UTILITY(U,$J,358.3,14725,0)
+ ;;=M54.16^^58^706^35
+ ;;^UTILITY(U,$J,358.3,14725,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,14545,1,3,0)
- ;;=3^Dry Mouth,Unspec
- ;;^UTILITY(U,$J,358.3,14545,1,4,0)
- ;;=4^R68.2
- ;;^UTILITY(U,$J,358.3,14545,2)
- ;;=^5019552
- ;;^UTILITY(U,$J,358.3,14546,0)
- ;;=Z02.89^^83^826^1
- ;;^UTILITY(U,$J,358.3,14546,1,0)
+ ;;^UTILITY(U,$J,358.3,14725,1,3,0)
+ ;;=3^Radiculopathy,Lumbar Region
+ ;;^UTILITY(U,$J,358.3,14725,1,4,0)
+ ;;=4^M54.16
+ ;;^UTILITY(U,$J,358.3,14725,2)
+ ;;=^5012301
+ ;;^UTILITY(U,$J,358.3,14726,0)
+ ;;=M54.17^^58^706^36
+ ;;^UTILITY(U,$J,358.3,14726,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,14546,1,3,0)
- ;;=3^Administrative Exam Encounter
- ;;^UTILITY(U,$J,358.3,14546,1,4,0)
- ;;=4^Z02.89
- ;;^UTILITY(U,$J,358.3,14546,2)
- ;;=^5062645
- ;;^UTILITY(U,$J,358.3,14547,0)
- ;;=Z09.^^83^826^56
- ;;^UTILITY(U,$J,358.3,14547,1,0)
+ ;;^UTILITY(U,$J,358.3,14726,1,3,0)
+ ;;=3^Radiculopathy,Lumbosacral Region
+ ;;^UTILITY(U,$J,358.3,14726,1,4,0)
+ ;;=4^M54.17
+ ;;^UTILITY(U,$J,358.3,14726,2)
+ ;;=^5012302
+ ;;^UTILITY(U,$J,358.3,14727,0)
+ ;;=M54.14^^58^706^37
+ ;;^UTILITY(U,$J,358.3,14727,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,14547,1,3,0)
- ;;=3^F/U Exam After Treatment Encounter
- ;;^UTILITY(U,$J,358.3,14547,1,4,0)
- ;;=4^Z09.
- ;;^UTILITY(U,$J,358.3,14547,2)
- ;;=^5062668
- ;;^UTILITY(U,$J,358.3,14548,0)
- ;;=Z00.01^^83^826^60
- ;;^UTILITY(U,$J,358.3,14548,1,0)
+ ;;^UTILITY(U,$J,358.3,14727,1,3,0)
+ ;;=3^Radiculopathy,Thoracic Region
+ ;;^UTILITY(U,$J,358.3,14727,1,4,0)
+ ;;=4^M54.14
+ ;;^UTILITY(U,$J,358.3,14727,2)
+ ;;=^5012299
+ ;;^UTILITY(U,$J,358.3,14728,0)
+ ;;=M54.15^^58^706^38
+ ;;^UTILITY(U,$J,358.3,14728,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,14548,1,3,0)
- ;;=3^General Medical Exam w/ Abnormal Findings
- ;;^UTILITY(U,$J,358.3,14548,1,4,0)
- ;;=4^Z00.01
+ ;;^UTILITY(U,$J,358.3,14728,1,3,0)
+ ;;=3^Radiculopathy,Thoracolumbar Region
+ ;;^UTILITY(U,$J,358.3,14728,1,4,0)
+ ;;=4^M54.15
+ ;;^UTILITY(U,$J,358.3,14728,2)
+ ;;=^5012300
+ ;;^UTILITY(U,$J,358.3,14729,0)
+ ;;=M46.1^^58^706^39
+ ;;^UTILITY(U,$J,358.3,14729,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,14729,1,3,0)
+ ;;=3^Sacroiliitis NEC

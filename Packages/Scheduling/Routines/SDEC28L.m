@@ -1,0 +1,194 @@
+SDEC28L ;ALB/LEG,JLS,LAB,BWF - VISTA SCHEDULING GET PAT DEMOG RPC ;JUL 26,2022
+ ;;5.3;Scheduling;**785,823,825**;Aug 13, 1993;Build 2
+ ;;Per VHA Directive 6402, this routine should not be modified
+ ;
+ ; Reference to ^AUPNPAT(DFN in ICR #7048
+ ; Reference to ^DPT in ICR #10035
+ Q
+ ;This Routine is a "LITE" version of the rtn SDEC28-Patient info lookup for RPC SDEC PTLOOKRS.
+ ; It generates only "PATIENT NAME, SSN, DOB, DFN, SEX, ELIGIBILITY" fields
+ ; and finds up to "SDECC" number of patients that match the "SDECP" defined lookup criteria.
+ ;
+ ;The Patient lookup supports input in the form of:
+ ;    a)#DFN,   b)DOB,   c)SSN,   d)First letter of LastName followed by L4SSN,
+ ;    e)PartialName  or  f)NULL for ALL
+ ;Vars In:
+ ;  SDECP   - (optional) Free-Text - Partial name to look up
+ ;  SDECC   - (optional) Max number of patients to return; defaults to 10
+ ;  LASTSUB - (optional) last subscripts from previous call
+ ;Var Out:
+ ;  SDECY (^TMP("SDEC",$J))
+ ;
+ ;PTLOOKRSLITE(SDECY,SDECP,SDECC,LASTSUB)  ;Patient Lookup
+GETPATDEMOG(SDECY,SDECP,SDECC,LASTSUB)  ;Get Patient Demographics ("PATIENT NAME, SSN, DOB, DFN, SEX, ELIGIBILITY")
+ S SDECI=0
+ S SDECP=$TR(SDECP,$C(13),"")
+ S SDECP=$TR(SDECP,$C(10),"")
+ S SDECP=$TR(SDECP,$C(9),"")
+ S:$G(SDECC)="" SDECC=10
+ S LASTSUB=$G(LASTSUB)
+ N PLIST,SDTMP,SDECHRN,SDECZ,SDECRET,DFN
+ N %DT,X,Y,SDECX
+ K ^TMP("SDEC",$J)
+ S SDECY="^TMP(""SDEC"","_$J_")"
+ S ^TMP("SDEC",$J,0)="T00030ERROR_CODE^T00030ERROR_TEXT"_$C(30)
+ I '+$G(DUZ) S SDECI=SDECI+1 S @SDECY@(SDECI)="0^Invalid User."_$C(30)_$C(31) Q
+ I '$D(DUZ(2)) S SDECI=SDECI+1 S @SDECY@(SDECI)="0^Invalid Institution."_$C(30)_$C(31) Q
+ S SDTMP="T00030NAME^T00030SSN^D00030DOB^T00030GENDER^T00030TYPENAME^T00030LASTSUB^T00030IEN^T00030SENSITIVE" ;  7
+ S ^TMP("SDEC",$J,0)=SDTMP_$C(30)
+ ;
+DFN ;Patient ID passed in
+ I $E(SDECP)="#" D  S SDECI=SDECI+1 S @SDECY@(SDECI)=$C(31) Q
+ . S DFN=$E(SDECP,2,$L(SDECP))
+ . Q:'$D(^DPT(DFN,0))
+ . S SDECHRN=$P($G(^AUPNPAT(DFN,41,DUZ(2),0)),U,2) ;CHART
+ . ;I SDECHRN="" Q  ;NO CHART AT THIS DUZ2
+ . ;I $P($G(^AUPNPAT(DFN,41,DUZ(2),0)),U,3) S SDECHRN=SDECHRN_"(*)" Q  ;HMW 20050721 Record Inactivated
+ . D GET1(DFN,SDECHRN,.SDECI,SDECY)
+ . Q
+ ;
+DOB ;DOB Lookup
+ I +DUZ(2),((SDECP?1.2N1"/"1.2N1"/"1.4N)!(SDECP?1.2N1" "1.2N1" "1.4N)!(SDECP?1.2N1"-"1.2N1"-"1.4N)!(SDECP?1.2N1"."1.2N1"."1.4N)) D  S SDECI=SDECI+1 S @SDECY@(SDECI)=$C(31) Q
+ . S X=SDECP S %DT="P" D ^%DT S SDECP=Y Q:'+Y
+ . Q:'$D(^DPT("ADOB",SDECP))
+ . S DFN=$S($P(LASTSUB,"|",1)'="":$P(LASTSUB,"|",1),1:0)
+ . S LASTSUB=""
+ . F  S DFN=$O(^DPT("ADOB",SDECP,DFN)) Q:'+DFN  D  Q:SDECI'<SDECC
+ . . Q:'$D(^DPT(DFN,0))
+ . . S SDECHRN=$P($G(^AUPNPAT(DFN,41,DUZ(2),0)),U,2) ;CHART
+ . . ;I SDECHRN="" Q  ;NO CHART AT THIS DUZ2
+ . . ;I $P($G(^AUPNPAT(DFN,41,DUZ(2),0)),U,3) S SDECHRN=SDECHRN_"(*)" Q  ;HMW 20050721 Record Inactivated
+ . . D GET1(DFN,SDECHRN,.SDECI,SDECY,DFN)
+ . . Q
+ . I SDECI>0,'+DFN S $P(@SDECY@(SDECI),U,6)=""
+ . Q
+ ;
+ ;SSN Lookup
+ ;I (SDECP?4.9N)!(SDECP?9N.1"P")!(SDECP?3N1"-"2N1"-"4N.1"P") D  S SDECI=SDECI+1 S @SDECY@(SDECI)=$C(31) Q
+ I (SDECP?4N)!(SDECP?9N)!(SDECP?9N.1"P")!(SDECP?3N1"-"2N1"-"4N.1"P") D  S SDECI=SDECI+1 S @SDECY@(SDECI)=$C(31) Q  ;VSE-168 LEG 5/12/21 eliminates ?1A1.3n
+ .;SSN Lookup (BS - last 4)
+ .I SDECP?4N D
+ ..S SDECP1=SDECP
+ ..S DFN=0 F  S DFN=$O(^DPT("BS",SDECP1,DFN)) Q:'+DFN  D
+ ...Q:'$D(^DPT(DFN,0))
+ ...S SDECHRN=$P($G(^AUPNPAT(DFN,41,DUZ(2),0)),U,2) ;CHART
+ ...;I SDECHRN="" Q  ;NO CHART AT THIS DUZ2
+ ...;I $P($G(^AUPNPAT(DFN,41,DUZ(2),0)),U,3) S SDECHRN=SDECHRN_"(*)" Q  ;HMW 20050721 Record Inactivated
+ ...D GET1(DFN,SDECHRN,.SDECI,SDECY)
+ .E  D SSN(SDECP,.SDECI,SDECY)  ;(partial/full ssn)
+ ;
+ ;SSN Lookup (BS5)
+ ;I SDECP?1A1.4N D  S SDECI=SDECI+1 S @SDECY@(SDECI)=$C(31) Q
+ I SDECP?1A4N D  S SDECI=SDECI+1 S @SDECY@(SDECI)=$C(31) Q  ;VSE-168 LEG 5/12/21 eliminates ?1A1.3N
+ .S SDECP1=$S(SDECP?1A4N:$E(SDECP,1,4)_$C($A($E(SDECP,5))-1),1:SDECP)
+ .F  S SDECP1=$O(^DPT("BS5",SDECP1)) Q:SDECP1=""  Q:SDECP1'[SDECP  Q:(SDECP?1A4N)&(SDECP1'=SDECP)  D
+ ..S DFN=0 F  S DFN=$O(^DPT("BS5",SDECP1,DFN)) Q:'+DFN  D
+ ...Q:'$D(^DPT(DFN,0))
+ ...S SDECHRN=$P($G(^AUPNPAT(DFN,41,DUZ(2),0)),U,2) ;CHART
+ ...;I SDECHRN="" Q  ;NO CHART AT THIS DUZ2
+ ...;I $P($G(^AUPNPAT(DFN,41,DUZ(2),0)),U,3) S SDECHRN=SDECHRN_"(*)" Q  ;HMW 20050721 Record Inactivated
+ ...D GET1(DFN,SDECHRN,.SDECI,SDECY)
+ ;
+ ;Chart# Lookup  (not currently used)
+ I 0,+DUZ(2),SDECP]"",$D(^AUPNPAT("D",SDECP)) D  S SDECI=SDECI+1 S @SDECY@(SDECI)=$C(31) Q
+ . S DFN=0 F  S DFN=$O(^AUPNPAT("D",SDECP,DFN)) Q:'+DFN  I $D(^AUPNPAT("D",SDECP,DFN,DUZ(2))) D  Q
+ . . Q:'$D(^DPT(DFN,0))
+ . . S SDECHRN=SDECP ;CHART
+ . . ;I $D(^AUPNPAT(DFN,41,DUZ(2),0)),$P(^(0),U,3) S SDECHRN=SDECHRN_"(*)" Q  ;HMW 20050721 Record Inactivated
+ . . D GET1(DFN,SDECHRN,.SDECI,SDECY)
+ . . Q
+ . Q
+ ;
+ ;Partial name
+ N SDARR
+ ;lab testing I SDECP?2.A.E D  Q
+ I SDECP?1.A.E D  Q
+ .;F SDECX=1:1:$P(SDECRSLT("DILIST",0),U) D
+ .; restrict lookup to 30 characters to prevent <SUBSCRIPT> error for extremely long values - INC23935053
+ .S SDECP=$E(SDECP,1,30)
+ .S SDECX=$S($P(LASTSUB,U,1)'="":$$GETSUB^SDECU($P(LASTSUB,U,1)),1:$$GETSUB^SDECU(SDECP))
+ .F  S SDECX=$O(^DPT("B",SDECX)) Q:SDECX'[SDECP  Q:SDECX=""  D  Q:SDECI'<SDECC
+ ..S DFN=$S($P(LASTSUB,U,2)'="":$P(LASTSUB,U,2),1:0)
+ ..S LASTSUB=""
+ ..F  S DFN=$O(^DPT("B",SDECX,DFN)) Q:DFN=""  D  Q:SDECI'<SDECC
+ ...Q:$D(SDARR(DFN))
+ ...S SDARR(DFN)=""
+ ...S SDECHRN=$P($G(^AUPNPAT(DFN,41,DUZ(2),0)),U,2) ;CHART
+ ...;I SDECHRN="" Q  ;NO CHART AT THIS DUZ2
+ ...;I $P($G(^AUPNPAT(DFN,41,DUZ(2),0)),U,3) S SDECHRN=SDECHRN_"(*)" Q  ;HMW 20050721 Record Inactivated
+ ...D GET1(DFN,SDECHRN,.SDECI,SDECY,SDECX_"|"_DFN)
+ ...Q
+ .I SDECI>0,(SDECX="")!(SDECX'[SDECP) S $P(@SDECY@(SDECI),U,6)=""
+ .S @SDECY@(SDECI)=@SDECY@(SDECI)_$C(31)
+ ;
+ ;All Patients
+ N FROM,SDSUB,SDECCNT
+ ;I SDECP'?1N.E D  S SDECI=SDECI+1 S @SDECY@(SDECI)=$C(31) Q
+ I SDECP="" D  S SDECI=SDECI+1 S @SDECY@(SDECI)=$C(31) Q
+ . K PLIST
+ . S FROM=$S($P(LASTSUB,"|",1)'="":$P(LASTSUB,"|",1),1:"")
+ . D LISTALL^SDECPTPL(.PLIST,FROM,1,SDECC)
+ . S SDECCNT=0 F  S SDECCNT=$O(PLIST(SDECCNT)) Q:'SDECCNT  D
+ . . S DFN=$P(PLIST(SDECCNT),U)
+ . . S SDECHRN=$P($G(^AUPNPAT(DFN,41,DUZ(2),0)),U,2) ;CHART
+ . . ;I SDECHRN="" Q  ;NO CHART AT THIS DUZ2
+ . . ;I $P($G(^AUPNPAT(DFN,41,DUZ(2),0)),U,3) S SDECHRN=SDECHRN_"(*)" Q  ;HMW 20050721 Record Inactivated
+ . . S SDSUB=$P(PLIST(SDECCNT),U,2)
+ . . D GET1(DFN,SDECHRN,.SDECI,SDECY,SDSUB)
+ . . Q
+ . Q
+ S SDECI=SDECI+1 S @SDECY@(SDECI)=$C(31)
+ Q
+ ;
+GET1(DFN,SDECHRN,SDECI,SDECY,LSUB) ;
+ N SDECZ,SDECDPT,SDDEMO
+ Q:'+$G(DFN)
+ Q:'$D(^DPT(DFN,0))
+ S SDECI=$G(SDECI)
+ S LSUB=$G(LSUB)
+ S SDECZ=""
+ S SDECZ=$$GET1^DIQ(2,DFN_",",.01) ; NAME
+ Q:SDECZ=""
+ S SDECDPT=$G(^DPT(DFN,0))
+ S $P(SDECZ,U,2)=$$LAST4SSN^SDESINPUTVALUTL(DFN)
+ S Y=$P(SDECDPT,U,3) X ^DD("DD")
+ S $P(SDECZ,U,3)=Y ;DOB
+ S $P(SDECZ,U,4)=$P(SDECDPT,U,2) ;Gender
+ D PDEMO^SDECU3(.SDDEMO,DFN)     ;use to get PATIENT ENROLLMENT data  ;alb/sat 658 PDEMO moved to SDECU3
+ S $P(SDECZ,U,5)=SDDEMO("TYPENAME")
+ S $P(SDECZ,U,6)=$P(SDECZ,U)_"|"_DFN ; NAME|DFN
+ S $P(SDECZ,U,7)=DFN ;
+ S $P(SDECZ,U,8)=$$PTSEC^SDECUTL(DFN) ;8   - sensitivity
+ S SDECI=SDECI+1 S @SDECY@(SDECI)=SDECZ_$C(30)
+ Q
+ ;
+SSN(SDECP,SDECI,SDECY)  ;
+ S SDECP=$TR(SDECP,"-","") ;LEG 05/10/2021-needed to fix 3N-2N-4N format
+ I $D(^DPT("SSN",$E(SDECP,1,9)_"P")) D
+ .N SDECP1
+ .S SDECP1=$E(SDECP,1,9)_"O"
+ .S SDECP1=$O(^DPT("SSN",SDECP1)) Q:SDECP1=""  Q:SDECP1'[$E(SDECP,1,9)  D SSN1
+ E  D
+ .N SDLEN S SDLEN=$L(SDECP)
+ .I SDLEN=9 S SDECP1=SDECP D SSN1
+ .E  D
+ ..S SDECP1=SDECP_$$FILL^SDECU(9-SDLEN,0)
+ ..F  S SDECP1=$O(^DPT("SSN",SDECP1)) Q:SDECP1=""  Q:$E(SDECP1,1,SDLEN)'=SDECP  D SSN1
+ Q
+SSN1 ;
+ S DFN=0 F  S DFN=$O(^DPT("SSN",SDECP1,DFN)) Q:'+DFN  D
+ .Q:'$D(^DPT(DFN,0))
+ .S SDECHRN=$P($G(^AUPNPAT(DFN,41,DUZ(2),0)),U,2) ;CHART
+ .;I SDECHRN="" Q  ;NO CHART AT THIS DUZ2
+ .;I $P($G(^AUPNPAT(DFN,41,DUZ(2),0)),U,3) S SDECHRN=SDECHRN_"(*)" Q  ;HMW 20050721 Record Inactivated
+ .D GET1(DFN,SDECHRN,.SDECI,SDECY)
+ .Q
+ Q
+ ;
+ERROR ;
+ D ERR("Error")
+ Q
+ ;
+ERR(ERRNO) ;Error processing
+ S SDECRET="T00030NAME^T00030SSN^D00030DOB^T00030IEN^T00030GENDER^T00030TYPENAME^T00030LASTSUB"_$C(30)_$C(31)
+ Q

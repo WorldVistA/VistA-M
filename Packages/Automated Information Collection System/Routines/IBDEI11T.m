@@ -1,126 +1,124 @@
-IBDEI11T ; ; 04-FEB-2020
- ;;3.0;IB ENCOUNTER FORM IMP/EXP;;FEB 04, 2020
+IBDEI11T ; ; 01-FEB-2022
+ ;;3.0;IB ENCOUNTER FORM IMP/EXP;;FEB 01, 2022
  Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,999) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
- ;;^UTILITY(U,$J,358.3,16853,1,3,0)
- ;;=3^Arthritis d/t Bacteria,Unspec Joint
- ;;^UTILITY(U,$J,358.3,16853,1,4,0)
- ;;=4^M00.80
- ;;^UTILITY(U,$J,358.3,16853,2)
- ;;=^5009669
- ;;^UTILITY(U,$J,358.3,16854,0)
- ;;=M00.9^^88^881^72
- ;;^UTILITY(U,$J,358.3,16854,1,0)
+ ;;^UTILITY(U,$J,358.3,17039,1,4,0)
+ ;;=4^M16.12
+ ;;^UTILITY(U,$J,358.3,17039,2)
+ ;;=^5010772
+ ;;^UTILITY(U,$J,358.3,17040,0)
+ ;;=M17.0^^61^781^129
+ ;;^UTILITY(U,$J,358.3,17040,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,16854,1,3,0)
- ;;=3^Pyogenic Arthritis,Unspec
- ;;^UTILITY(U,$J,358.3,16854,1,4,0)
- ;;=4^M00.9
- ;;^UTILITY(U,$J,358.3,16854,2)
- ;;=^5009693
- ;;^UTILITY(U,$J,358.3,16855,0)
- ;;=M00.00^^88^881^78
- ;;^UTILITY(U,$J,358.3,16855,1,0)
+ ;;^UTILITY(U,$J,358.3,17040,1,3,0)
+ ;;=3^Primary Osteoarthritis of Bilateral Knees
+ ;;^UTILITY(U,$J,358.3,17040,1,4,0)
+ ;;=4^M17.0
+ ;;^UTILITY(U,$J,358.3,17040,2)
+ ;;=^5010784
+ ;;^UTILITY(U,$J,358.3,17041,0)
+ ;;=M17.11^^61^781^140
+ ;;^UTILITY(U,$J,358.3,17041,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,16855,1,3,0)
- ;;=3^Staphylococcal Arthritis,Unspec Joint
- ;;^UTILITY(U,$J,358.3,16855,1,4,0)
- ;;=4^M00.00
- ;;^UTILITY(U,$J,358.3,16855,2)
- ;;=^5009597
- ;;^UTILITY(U,$J,358.3,16856,0)
- ;;=M00.10^^88^881^65
- ;;^UTILITY(U,$J,358.3,16856,1,0)
+ ;;^UTILITY(U,$J,358.3,17041,1,3,0)
+ ;;=3^Primary Osteoarthritis of Right Knee
+ ;;^UTILITY(U,$J,358.3,17041,1,4,0)
+ ;;=4^M17.11
+ ;;^UTILITY(U,$J,358.3,17041,2)
+ ;;=^5010786
+ ;;^UTILITY(U,$J,358.3,17042,0)
+ ;;=M17.12^^61^781^134
+ ;;^UTILITY(U,$J,358.3,17042,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,16856,1,3,0)
- ;;=3^Pneumococcal Arthritis,Unspec Joint
- ;;^UTILITY(U,$J,358.3,16856,1,4,0)
- ;;=4^M00.10
- ;;^UTILITY(U,$J,358.3,16856,2)
- ;;=^5009621
- ;;^UTILITY(U,$J,358.3,16857,0)
- ;;=M86.20^^88^881^62
- ;;^UTILITY(U,$J,358.3,16857,1,0)
+ ;;^UTILITY(U,$J,358.3,17042,1,3,0)
+ ;;=3^Primary Osteoarthritis of Left Knee
+ ;;^UTILITY(U,$J,358.3,17042,1,4,0)
+ ;;=4^M17.12
+ ;;^UTILITY(U,$J,358.3,17042,2)
+ ;;=^5010787
+ ;;^UTILITY(U,$J,358.3,17043,0)
+ ;;=M18.0^^61^781^128
+ ;;^UTILITY(U,$J,358.3,17043,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,16857,1,3,0)
- ;;=3^Osteomyelitis,Subacute,Unspec Site
- ;;^UTILITY(U,$J,358.3,16857,1,4,0)
- ;;=4^M86.20
- ;;^UTILITY(U,$J,358.3,16857,2)
- ;;=^5014535
- ;;^UTILITY(U,$J,358.3,16858,0)
- ;;=M86.10^^88^881^58
- ;;^UTILITY(U,$J,358.3,16858,1,0)
+ ;;^UTILITY(U,$J,358.3,17043,1,3,0)
+ ;;=3^Primary Osteoarthritis of Bilateral 1st Carpometacarp Jts
+ ;;^UTILITY(U,$J,358.3,17043,1,4,0)
+ ;;=4^M18.0
+ ;;^UTILITY(U,$J,358.3,17043,2)
+ ;;=^5010795
+ ;;^UTILITY(U,$J,358.3,17044,0)
+ ;;=M18.11^^61^781^138
+ ;;^UTILITY(U,$J,358.3,17044,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,16858,1,3,0)
- ;;=3^Osteomyelitis,Acute,Unspec Site
- ;;^UTILITY(U,$J,358.3,16858,1,4,0)
- ;;=4^M86.10
- ;;^UTILITY(U,$J,358.3,16858,2)
- ;;=^5014521
- ;;^UTILITY(U,$J,358.3,16859,0)
- ;;=M86.00^^88^881^57
- ;;^UTILITY(U,$J,358.3,16859,1,0)
+ ;;^UTILITY(U,$J,358.3,17044,1,3,0)
+ ;;=3^Primary Osteoarthritis of Right Hand 1st Carpometacarp Jt
+ ;;^UTILITY(U,$J,358.3,17044,1,4,0)
+ ;;=4^M18.11
+ ;;^UTILITY(U,$J,358.3,17044,2)
+ ;;=^5010797
+ ;;^UTILITY(U,$J,358.3,17045,0)
+ ;;=M18.12^^61^781^132
+ ;;^UTILITY(U,$J,358.3,17045,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,16859,1,3,0)
- ;;=3^Osteomyelitis,Acute Hematogenous,Unspec Site
- ;;^UTILITY(U,$J,358.3,16859,1,4,0)
- ;;=4^M86.00
- ;;^UTILITY(U,$J,358.3,16859,2)
- ;;=^5014497
- ;;^UTILITY(U,$J,358.3,16860,0)
- ;;=M86.50^^88^881^59
- ;;^UTILITY(U,$J,358.3,16860,1,0)
+ ;;^UTILITY(U,$J,358.3,17045,1,3,0)
+ ;;=3^Primary Osteoarthritis of Left Hand 1st Carpometacarp Jt
+ ;;^UTILITY(U,$J,358.3,17045,1,4,0)
+ ;;=4^M18.12
+ ;;^UTILITY(U,$J,358.3,17045,2)
+ ;;=^5010798
+ ;;^UTILITY(U,$J,358.3,17046,0)
+ ;;=M19.011^^61^781^141
+ ;;^UTILITY(U,$J,358.3,17046,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,16860,1,3,0)
- ;;=3^Osteomyelitis,Chronic Hematogenous,Unspec Site
- ;;^UTILITY(U,$J,358.3,16860,1,4,0)
- ;;=4^M86.50
- ;;^UTILITY(U,$J,358.3,16860,2)
- ;;=^5014607
- ;;^UTILITY(U,$J,358.3,16861,0)
- ;;=M86.30^^88^881^60
- ;;^UTILITY(U,$J,358.3,16861,1,0)
+ ;;^UTILITY(U,$J,358.3,17046,1,3,0)
+ ;;=3^Primary Osteoarthritis of Right Shoulder
+ ;;^UTILITY(U,$J,358.3,17046,1,4,0)
+ ;;=4^M19.011
+ ;;^UTILITY(U,$J,358.3,17046,2)
+ ;;=^5010808
+ ;;^UTILITY(U,$J,358.3,17047,0)
+ ;;=M19.012^^61^781^135
+ ;;^UTILITY(U,$J,358.3,17047,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,16861,1,3,0)
- ;;=3^Osteomyelitis,Chronic Multifocal,Unspec Site
- ;;^UTILITY(U,$J,358.3,16861,1,4,0)
- ;;=4^M86.30
- ;;^UTILITY(U,$J,358.3,16861,2)
- ;;=^5014559
- ;;^UTILITY(U,$J,358.3,16862,0)
- ;;=M86.8X9^^88^881^63
- ;;^UTILITY(U,$J,358.3,16862,1,0)
+ ;;^UTILITY(U,$J,358.3,17047,1,3,0)
+ ;;=3^Primary Osteoarthritis of Left Shoulder
+ ;;^UTILITY(U,$J,358.3,17047,1,4,0)
+ ;;=4^M19.012
+ ;;^UTILITY(U,$J,358.3,17047,2)
+ ;;=^5010809
+ ;;^UTILITY(U,$J,358.3,17048,0)
+ ;;=M19.031^^61^781^142
+ ;;^UTILITY(U,$J,358.3,17048,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,16862,1,3,0)
- ;;=3^Osteomyelitis,Unspec Sites
- ;;^UTILITY(U,$J,358.3,16862,1,4,0)
- ;;=4^M86.8X9
- ;;^UTILITY(U,$J,358.3,16862,2)
- ;;=^5014655
- ;;^UTILITY(U,$J,358.3,16863,0)
- ;;=M86.60^^88^881^61
- ;;^UTILITY(U,$J,358.3,16863,1,0)
+ ;;^UTILITY(U,$J,358.3,17048,1,3,0)
+ ;;=3^Primary Osteoarthritis of Right Wrist
+ ;;^UTILITY(U,$J,358.3,17048,1,4,0)
+ ;;=4^M19.031
+ ;;^UTILITY(U,$J,358.3,17048,2)
+ ;;=^5010814
+ ;;^UTILITY(U,$J,358.3,17049,0)
+ ;;=M19.032^^61^781^136
+ ;;^UTILITY(U,$J,358.3,17049,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,16863,1,3,0)
- ;;=3^Osteomyelitis,Chronic,Unspec Site
- ;;^UTILITY(U,$J,358.3,16863,1,4,0)
- ;;=4^M86.60
- ;;^UTILITY(U,$J,358.3,16863,2)
- ;;=^5014630
- ;;^UTILITY(U,$J,358.3,16864,0)
- ;;=M86.40^^88^881^56
- ;;^UTILITY(U,$J,358.3,16864,1,0)
+ ;;^UTILITY(U,$J,358.3,17049,1,3,0)
+ ;;=3^Primary Osteoarthritis of Left Wrist
+ ;;^UTILITY(U,$J,358.3,17049,1,4,0)
+ ;;=4^M19.032
+ ;;^UTILITY(U,$J,358.3,17049,2)
+ ;;=^5010815
+ ;;^UTILITY(U,$J,358.3,17050,0)
+ ;;=M19.041^^61^781^137
+ ;;^UTILITY(U,$J,358.3,17050,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,16864,1,3,0)
- ;;=3^Osteomyelitis w/ Draining Sinus,Chronic,Unspec Site
- ;;^UTILITY(U,$J,358.3,16864,1,4,0)
- ;;=4^M86.40
- ;;^UTILITY(U,$J,358.3,16864,2)
- ;;=^5014583
- ;;^UTILITY(U,$J,358.3,16865,0)
- ;;=R50.2^^88^881^23
- ;;^UTILITY(U,$J,358.3,16865,1,0)
+ ;;^UTILITY(U,$J,358.3,17050,1,3,0)
+ ;;=3^Primary Osteoarthritis of Right Hand
+ ;;^UTILITY(U,$J,358.3,17050,1,4,0)
+ ;;=4^M19.041
+ ;;^UTILITY(U,$J,358.3,17050,2)
+ ;;=^5010817
+ ;;^UTILITY(U,$J,358.3,17051,0)
+ ;;=M19.042^^61^781^131
+ ;;^UTILITY(U,$J,358.3,17051,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,16865,1,3,0)
- ;;=3^Fever,Drug-Induced
+ ;;^UTILITY(U,$J,358.3,17051,1,3,0)
+ ;;=3^Primary Osteoarthritis of Left Hand

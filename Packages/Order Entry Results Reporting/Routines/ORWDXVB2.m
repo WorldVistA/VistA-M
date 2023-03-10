@@ -1,5 +1,5 @@
-ORWDXVB2 ;slc/dcm - Order dialog utilities for Blood Bank Cont.;3/2/04  09:31
- ;;3.0;ORDER ENTRY/RESULTS REPORTING;**215,243,212,309,332**;Dec 17 1997;Build 44
+ORWDXVB2 ;SLC/DCM - Order dialog utilities for Blood Bank Cont. ;Dec 02, 2021@12:50:32
+ ;;3.0;ORDER ENTRY/RESULTS REPORTING;**215,243,212,309,332,405**;Dec 17 1997;Build 211
  ;
 ERROR(OROOT) ;Process error
  N ORERR,ORI,X,Y,I
@@ -33,14 +33,14 @@ PULL(OROOT,ORVP,ITEMID,SDATE,EDATE) ;Get list of orders matching ITEM
  S ORTNSB=$$GET^XPAR("ALL","ORWDXVB VBECS TNS CHECK",1,"I")
  S:'ORTNSB ORTNSB=3 ;Use Default of DT-3 or Parameter [ORWDXVB VBECS TNS CHECK] if no start date passed in
  S ITEMID=$S($D(ITEMID):ITEMID,1:"1;99VBC") ;Default to Type and Screen if nothing passed in
- S SDATE=$S($D(SDATE):SDATE,1:$$FMADD^XLFDT(DT-ORTNSB))
- S EDATE=$S($D(EDATE):EDATE,1:DT) ;Default to DT if no End date passed in
+ S EDATE=$S($G(EDATE):EDATE,1:DT) ;Default to DT if no End date passed in
+ S SDATE=$S($D(SDATE):SDATE,1:$$FMADD^XLFDT(EDATE,-ORTNSB))
  N ORDG,FLG,ORLIST,ORX0,ORX3,ORSTAT,ORIFN,I,X,J,CNT,ITEM,ITEMNM,ORLOC,DIV
  S ITEM=+$O(^ORD(101.43,"ID",ITEMID,0)),ITEMNM=$P($G(^ORD(101.43,ITEM,0)),"^")
  S CNT=0,ORDG=$O(^ORD(100.98,"B","VBEC",0)) Q:'ORDG
  F FLG=4,23 D  ;Get completed, active/pending
  . K ^TMP("ORR",$J)
- . D EN^ORQ1(ORVP,ORDG,FLG,0,SDATE,EDATE)
+ . D EN^ORQ1(ORVP,ORDG,FLG,0,SDATE,EDATE,,,"AW")
  . I '$O(^TMP("ORR",$J,ORLIST,0)) Q
  . S I=0
  . F  S I=$O(^TMP("ORR",$J,ORLIST,I)) Q:'I  S X=^(I) D

@@ -1,5 +1,5 @@
-PSIVORFA ;BIR/MLM-FILE/RETRIEVE ORDERS IN 53.1 ; 8/17/09 9:23am
- ;;5.0;INPATIENT MEDICATIONS;**4,7,18,28,50,71,58,91,80,110,111,134,225,267,275,279,259**;16 DEC 97;Build 21
+PSIVORFA ;BIR/MLM - FILE/RETRIEVE ORDERS IN 53.1 ;Jun 17, 2020@15:41:25
+ ;;5.0;INPATIENT MEDICATIONS;**4,7,18,28,50,71,58,91,80,110,111,134,225,267,275,279,259,399**;16 DEC 97;Build 64
  ;
  ; Reference to ^PS(51.1 supported by DBIA 2177.
  ; Reference to ^PS(51.2 supported by DBIA 2178.
@@ -15,7 +15,7 @@ GT531(DFN,ON,PSJAPI) ; Retrieve order data from 53.1 and place into local array
  S P("RES")=$P(Y,U,24),P("OLDON")=$P(Y,U,25),P("NEWON")=$P(Y,U,26),P("FRES")=$P(Y,U,27)
  S P("MR")=$P(Y,U,3),P(6)=+$P(Y,U,2),Y=$G(^VA(200,+P(6),0)),$P(P(6),U,2)=$P(Y,U),Y=$G(^PS(51.2,+P("MR"),0)),$P(P("MR"),U,2)=$S($P(Y,U,3)]"":$P(Y,U,3),1:$P(Y,U))
  S Y=$G(^PS(53.1,+ON,.2)),P("PD")=$S(+Y:$P(Y,U)_U_$$OIDF^PSJLMUT1(+Y),1:""),P("DO")=$P(Y,U,2),P("NAT")=$P(Y,U,3),P("PRY")=$P(Y,U,4),(PSJCOM,P("PRNTON"))=$P(Y,U,8)
- S P("INS")=$G(^PS(53.1,+ON,.3))
+ S P("INS")=$G(^PS(53.1,+ON,.3)),P("IND")=$G(^PS(53.1,+ON,18)) ;*399-IND
  I $G(^PS(53.1,+ON,4))]"" S P("NINIT")=$P(^(4),U),P("NINITDT")=$P(^(4),U,2)
  NEW NAME S NAME=""
  I $D(^PS(53.1,+ON,1,1)) D DD^PSJLMUT1("^PS(53.1,+ON,",.NAME)
@@ -74,6 +74,7 @@ PUT531 ; Move data in local variables to 53.1
  K DA,DIK S PSGS0Y=P(11),PSGS0XT=P(15),DA=+ON,DIK="^PS(53.1," D IX^DIK K DA,DIK,PSGS0Y,PSGS0XT,ND,^PS(53.1,"AS","P",DFN,+ON)
  K:P(17)="A" ^PS(53.1,"AS","N",DFN,+ON)
  S:P(15)="D" $P(^PS(53.1,+ON,2),U,6)="D"
+ S:$D(P("IND")) ^PS(53.1,+ON,18)=P("IND") ;*399-IND
  I $G(PSJINFIN) K PSJINFIN I $D(^PS(53.45,+$G(PSJSYSP),6)),'$D(^PS(53.1,+ON,"A")),'$D(^PS(53.1,+ON,16)) S PSJINFIN=2
  I $G(PSJSYSP) D
  .I '$D(^PS(53.45,+PSJSYSP,6)) I $G(PSJORD)["V"!($G(PSJORD)["P") I '$D(^PS(53.1,+ON,16)) N I S I=$$GETOPI^PSJBCMA5(DFN,PSJORD)

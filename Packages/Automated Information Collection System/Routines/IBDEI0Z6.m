@@ -1,124 +1,132 @@
-IBDEI0Z6 ; ; 04-FEB-2020
- ;;3.0;IB ENCOUNTER FORM IMP/EXP;;FEB 04, 2020
+IBDEI0Z6 ; ; 01-FEB-2022
+ ;;3.0;IB ENCOUNTER FORM IMP/EXP;;FEB 01, 2022
  Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,999) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
- ;;^UTILITY(U,$J,358.3,15693,2)
- ;;=^5007120
- ;;^UTILITY(U,$J,358.3,15694,0)
- ;;=I25.700^^88^867^21
- ;;^UTILITY(U,$J,358.3,15694,1,0)
+ ;;^UTILITY(U,$J,358.3,15877,1,4,0)
+ ;;=4^L11.0
+ ;;^UTILITY(U,$J,358.3,15877,2)
+ ;;=^5009091
+ ;;^UTILITY(U,$J,358.3,15878,0)
+ ;;=L20.0^^61^765^91
+ ;;^UTILITY(U,$J,358.3,15878,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,15694,1,3,0)
- ;;=3^Athscl of CABG,Unspec w/ Unstable Angina Pectoris
- ;;^UTILITY(U,$J,358.3,15694,1,4,0)
- ;;=4^I25.700
- ;;^UTILITY(U,$J,358.3,15694,2)
- ;;=^5007117
- ;;^UTILITY(U,$J,358.3,15695,0)
- ;;=I82.469^^88^867^24
- ;;^UTILITY(U,$J,358.3,15695,1,0)
+ ;;^UTILITY(U,$J,358.3,15878,1,3,0)
+ ;;=3^Besnier's Prurigo
+ ;;^UTILITY(U,$J,358.3,15878,1,4,0)
+ ;;=4^L20.0
+ ;;^UTILITY(U,$J,358.3,15878,2)
+ ;;=^5009107
+ ;;^UTILITY(U,$J,358.3,15879,0)
+ ;;=L20.81^^61^765^88
+ ;;^UTILITY(U,$J,358.3,15879,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,15695,1,3,0)
- ;;=3^Embolism/Thrombosis,Unspec Calf Muscle Vein,Acute
- ;;^UTILITY(U,$J,358.3,15695,1,4,0)
- ;;=4^I82.469
- ;;^UTILITY(U,$J,358.3,15695,2)
- ;;=^5158066
- ;;^UTILITY(U,$J,358.3,15696,0)
- ;;=I82.569^^88^867^25
- ;;^UTILITY(U,$J,358.3,15696,1,0)
+ ;;^UTILITY(U,$J,358.3,15879,1,3,0)
+ ;;=3^Atopic Neurodermatitis
+ ;;^UTILITY(U,$J,358.3,15879,1,4,0)
+ ;;=4^L20.81
+ ;;^UTILITY(U,$J,358.3,15879,2)
+ ;;=^5009108
+ ;;^UTILITY(U,$J,358.3,15880,0)
+ ;;=L20.82^^61^765^153
+ ;;^UTILITY(U,$J,358.3,15880,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,15696,1,3,0)
- ;;=3^Embolism/Thrombosis,Unspec Calf Muscle Vein,Chronic
- ;;^UTILITY(U,$J,358.3,15696,1,4,0)
- ;;=4^I82.569
- ;;^UTILITY(U,$J,358.3,15696,2)
- ;;=^5158074
- ;;^UTILITY(U,$J,358.3,15697,0)
- ;;=I80.259^^88^867^33
- ;;^UTILITY(U,$J,358.3,15697,1,0)
+ ;;^UTILITY(U,$J,358.3,15880,1,3,0)
+ ;;=3^Flexural Eczema
+ ;;^UTILITY(U,$J,358.3,15880,1,4,0)
+ ;;=4^L20.82
+ ;;^UTILITY(U,$J,358.3,15880,2)
+ ;;=^5009109
+ ;;^UTILITY(U,$J,358.3,15881,0)
+ ;;=L20.84^^61^765^165
+ ;;^UTILITY(U,$J,358.3,15881,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,15697,1,3,0)
- ;;=3^Phlebitis & Thrombophlebitis,Unspec Calf Muscle Vein
- ;;^UTILITY(U,$J,358.3,15697,1,4,0)
- ;;=4^I80.259
- ;;^UTILITY(U,$J,358.3,15697,2)
- ;;=^5158058
- ;;^UTILITY(U,$J,358.3,15698,0)
- ;;=I82.409^^88^867^26
- ;;^UTILITY(U,$J,358.3,15698,1,0)
+ ;;^UTILITY(U,$J,358.3,15881,1,3,0)
+ ;;=3^Intrinsic Eczema
+ ;;^UTILITY(U,$J,358.3,15881,1,4,0)
+ ;;=4^L20.84
+ ;;^UTILITY(U,$J,358.3,15881,2)
+ ;;=^5009111
+ ;;^UTILITY(U,$J,358.3,15882,0)
+ ;;=L20.89^^61^765^86
+ ;;^UTILITY(U,$J,358.3,15882,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,15698,1,3,0)
- ;;=3^Embolism/Thrombosis,Unspec Deep Vein,LE Unspec Acute
- ;;^UTILITY(U,$J,358.3,15698,1,4,0)
- ;;=4^I82.409
- ;;^UTILITY(U,$J,358.3,15698,2)
- ;;=^5133625
- ;;^UTILITY(U,$J,358.3,15699,0)
- ;;=I82.509^^88^867^27
- ;;^UTILITY(U,$J,358.3,15699,1,0)
+ ;;^UTILITY(U,$J,358.3,15882,1,3,0)
+ ;;=3^Atopic Dermatitis NEC
+ ;;^UTILITY(U,$J,358.3,15882,1,4,0)
+ ;;=4^L20.89
+ ;;^UTILITY(U,$J,358.3,15882,2)
+ ;;=^5009112
+ ;;^UTILITY(U,$J,358.3,15883,0)
+ ;;=L20.9^^61^765^87
+ ;;^UTILITY(U,$J,358.3,15883,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,15699,1,3,0)
- ;;=3^Embolism/Thrombosis,Unspec Deep Vein,LE Unspec Chronic
- ;;^UTILITY(U,$J,358.3,15699,1,4,0)
- ;;=4^I82.509
- ;;^UTILITY(U,$J,358.3,15699,2)
- ;;=^5133628
- ;;^UTILITY(U,$J,358.3,15700,0)
- ;;=E78.1^^88^868^23
- ;;^UTILITY(U,$J,358.3,15700,1,0)
+ ;;^UTILITY(U,$J,358.3,15883,1,3,0)
+ ;;=3^Atopic Dermatitis,Unspec
+ ;;^UTILITY(U,$J,358.3,15883,1,4,0)
+ ;;=4^L20.9
+ ;;^UTILITY(U,$J,358.3,15883,2)
+ ;;=^5009113
+ ;;^UTILITY(U,$J,358.3,15884,0)
+ ;;=L21.8^^61^765^302
+ ;;^UTILITY(U,$J,358.3,15884,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,15700,1,3,0)
- ;;=3^Pure Hyperglyceridemia
- ;;^UTILITY(U,$J,358.3,15700,1,4,0)
- ;;=4^E78.1
- ;;^UTILITY(U,$J,358.3,15700,2)
- ;;=^101303
- ;;^UTILITY(U,$J,358.3,15701,0)
- ;;=E78.2^^88^868^21
- ;;^UTILITY(U,$J,358.3,15701,1,0)
+ ;;^UTILITY(U,$J,358.3,15884,1,3,0)
+ ;;=3^Seborrheic Dermatitis NEC
+ ;;^UTILITY(U,$J,358.3,15884,1,4,0)
+ ;;=4^L21.8
+ ;;^UTILITY(U,$J,358.3,15884,2)
+ ;;=^303310
+ ;;^UTILITY(U,$J,358.3,15885,0)
+ ;;=L21.9^^61^765^303
+ ;;^UTILITY(U,$J,358.3,15885,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,15701,1,3,0)
- ;;=3^Mixed Hyperlipidemia
- ;;^UTILITY(U,$J,358.3,15701,1,4,0)
- ;;=4^E78.2
- ;;^UTILITY(U,$J,358.3,15701,2)
- ;;=^78424
- ;;^UTILITY(U,$J,358.3,15702,0)
- ;;=I10.^^88^868^9
- ;;^UTILITY(U,$J,358.3,15702,1,0)
+ ;;^UTILITY(U,$J,358.3,15885,1,3,0)
+ ;;=3^Seborrheic Dermatitis,Unspec
+ ;;^UTILITY(U,$J,358.3,15885,1,4,0)
+ ;;=4^L21.9
+ ;;^UTILITY(U,$J,358.3,15885,2)
+ ;;=^188703
+ ;;^UTILITY(U,$J,358.3,15886,0)
+ ;;=L23.7^^61^765^31
+ ;;^UTILITY(U,$J,358.3,15886,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,15702,1,3,0)
- ;;=3^Essential Primary Hypertension
- ;;^UTILITY(U,$J,358.3,15702,1,4,0)
- ;;=4^I10.
- ;;^UTILITY(U,$J,358.3,15702,2)
- ;;=^5007062
- ;;^UTILITY(U,$J,358.3,15703,0)
- ;;=I11.9^^88^868^19
- ;;^UTILITY(U,$J,358.3,15703,1,0)
+ ;;^UTILITY(U,$J,358.3,15886,1,3,0)
+ ;;=3^Allergic Contact Dermatitis d/t Plants
+ ;;^UTILITY(U,$J,358.3,15886,1,4,0)
+ ;;=4^L23.7
+ ;;^UTILITY(U,$J,358.3,15886,2)
+ ;;=^5009122
+ ;;^UTILITY(U,$J,358.3,15887,0)
+ ;;=L23.9^^61^765^32
+ ;;^UTILITY(U,$J,358.3,15887,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,15703,1,3,0)
- ;;=3^Hypertensive Heart Disease w/o Heart Failure
- ;;^UTILITY(U,$J,358.3,15703,1,4,0)
- ;;=4^I11.9
- ;;^UTILITY(U,$J,358.3,15703,2)
- ;;=^5007064
- ;;^UTILITY(U,$J,358.3,15704,0)
- ;;=I11.0^^88^868^18
- ;;^UTILITY(U,$J,358.3,15704,1,0)
+ ;;^UTILITY(U,$J,358.3,15887,1,3,0)
+ ;;=3^Allergic Contact Dermatitis,Unspec
+ ;;^UTILITY(U,$J,358.3,15887,1,4,0)
+ ;;=4^L23.9
+ ;;^UTILITY(U,$J,358.3,15887,2)
+ ;;=^5009125
+ ;;^UTILITY(U,$J,358.3,15888,0)
+ ;;=L24.9^^61^765^166
+ ;;^UTILITY(U,$J,358.3,15888,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,15704,1,3,0)
- ;;=3^Hypertensive Heart Disease w/ Heart Failure
- ;;^UTILITY(U,$J,358.3,15704,1,4,0)
- ;;=4^I11.0
- ;;^UTILITY(U,$J,358.3,15704,2)
- ;;=^5007063
- ;;^UTILITY(U,$J,358.3,15705,0)
- ;;=I12.0^^88^868^15
- ;;^UTILITY(U,$J,358.3,15705,1,0)
+ ;;^UTILITY(U,$J,358.3,15888,1,3,0)
+ ;;=3^Irritant Contact Dermatitis,Unspec
+ ;;^UTILITY(U,$J,358.3,15888,1,4,0)
+ ;;=4^L24.9
+ ;;^UTILITY(U,$J,358.3,15888,2)
+ ;;=^5009136
+ ;;^UTILITY(U,$J,358.3,15889,0)
+ ;;=L25.9^^61^765^117
+ ;;^UTILITY(U,$J,358.3,15889,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,15705,1,3,0)
- ;;=3^Hypertensive Chr Kidney Disease w/ ESRD
- ;;^UTILITY(U,$J,358.3,15705,1,4,0)
- ;;=4^I12.0
+ ;;^UTILITY(U,$J,358.3,15889,1,3,0)
+ ;;=3^Contact Dermatitis,Unspec
+ ;;^UTILITY(U,$J,358.3,15889,1,4,0)
+ ;;=4^L25.9
+ ;;^UTILITY(U,$J,358.3,15889,2)
+ ;;=^5133647
+ ;;^UTILITY(U,$J,358.3,15890,0)
+ ;;=L26.^^61^765^151
+ ;;^UTILITY(U,$J,358.3,15890,1,0)
+ ;;=^358.31IA^4^2

@@ -1,5 +1,5 @@
-YTSMCMIA ;BAL/KTL- Extention of YTSMCMI4 MHAX ANSWERS SPECIAL HANDLING ; 9/14/18 3:19pm
- ;;5.01;MENTAL HEALTH;**151**;Dec 30, 1994;Build 92
+YTSMCMIA ;BAL/KTL - Extension of YTSMCMI4 MHA ANSWERS SPECIAL HANDLING ; 9/14/18 3:19pm
+ ;;5.01;MENTAL HEALTH;**151,187,217**;Dec 30, 1994;Build 12
  ;
  ; MCMI4 Scoring
  ;
@@ -18,7 +18,7 @@ ADDRSL  ;Add up the related scored answers for each scale
  F LINE=1:1 S TEXT=$P($T(SCOREDAT+LINE),";",2) Q:TEXT="QUIT"  D
  .N SCALE,RAWTYPE,SCLRAW,QUESTIONS,I,SNAM,RVAL,ADVAL,NXTLIN,NXTSCL
  .S SCLRAW=$P(TEXT,"|",1,2),SCALE=$P(TEXT,"|",1) S RAWTYPE=$P(TEXT,"|",2) S QUESTIONS=$P(TEXT,"|",3)
- .S NXTLIN=$P($T(SCOREDAT+LINE+1),";",2)  ;For lines with too many questions, split into two $Tlines
+ .S NXTLIN=$P($T(SCOREDAT+LINE+1),";",2)  ;For lines with too many questions, split into two $T lines
  .S NXTSCL=$P(NXTLIN,"|",1,2)
  .I NXTSCL=SCLRAW D
  ..S NXTQUES=$P(NXTLIN,"|",3)
@@ -208,7 +208,7 @@ SCORESV ;
  K ^TMP($J,"YSCOR")
  ;F SNAM="W Inconsistency","V Invalidity" D
  ;. S YBRS(SNAM,"RSL")=$G(YSRAWRSL(SNAM))  ;Patch to be able to graph the raw results for these two scales
- ;. ;There is no Base Rate or Percentile for these two calculated scales so need to subsitute raw for br
+ ;. ;There is no Base Rate or Percentile for these two calculated scales so need to substitute raw for br
  S ^TMP($J,"YSCOR",1)="[ERROR]"
  S CNT=1
  F I=1140:1:1169,1240:1:1284 D  ;1142 VS 1143? ADDED 1144 BACK IN FOR W INCONSISTENCY
@@ -255,6 +255,7 @@ BRADJ1 ;Adjust the Base Rate score for scales 1-8B and S-PP depending on the X R
  .S SCAL=$$GET1^DIQ(601.87,I_",",3,"I")
  .S BR=YBRS(SCAL,"RSL")
  .S BR=BR+ADJ
+ .S BR=$$BRFIX(BR)
  .S YBRS(SCAL,"RSL")=BR
  K ADJARR
  ;S-PP
@@ -267,6 +268,7 @@ BRADJ1 ;Adjust the Base Rate score for scales 1-8B and S-PP depending on the X R
  .S SCAL=$$GET1^DIQ(601.87,I_",",3,"I")
  .S BR=YBRS(SCAL,"RSL")
  .S BR=BR+ADJ
+ .S BR=$$BRFIX(BR)
  .S YBRS(SCAL,"RSL")=BR
  Q
 SETADJ(STEND) ; Set up the Base Rate Adjustment Array
@@ -278,30 +280,25 @@ BRADJ2 ;Adjust the Base Rate based on Scales A and CC
  N ACC,ABR,CCBR,ADJARR,I
  S ABR=$G(YBRS("A Generalized Anxiety","RSL"))
  S CCBR=$G(YBRS("CC Major Depression","RSL"))
- S ^TMP("YKTL","BR2")=ABR_"^"_CCBR
  Q:((ABR<75)!(CCBR<75))
  S ACC=(ABR-75)+(CCBR-75)
  F STEND="0^4;-1","5^9;-2","10^14;-3","15^19;-4","20^24;-5","25^29;-5","30^34;-6","35^39;-6","40^44;-7","45^49;-7","50^54;-8","55^59;-8","60^64;-9","65^69;-9","70^75;-10","76^80;-10" D
  .D SETADJ(STEND)
  S ADJ=ADJARR(ACC)
- S ^TMP("YKTL","ADJ1")=ADJ
  F I=1147,1156,1158 D
  .S SCAL=$$GET1^DIQ(601.87,I_",",3,"I")
  .S BR=YBRS(SCAL,"RSL")
- .S ^TMP("YKTL",SCAL,"BEF")=BR
  .S BR=BR+ADJ
- .S ^TMP("YKTL",SCAL,"CAFT")=BR
+ .S BR=$$BRFIX(BR)
  .S YBRS(SCAL,"RSL")=BR
  F STEND="0^4;-1","5^9;-1","10^14;-2","15^19;-2","20^24;-3","25^29;-3","30^34;-3","35^39;-3","40^44;-4","45^49;-4","50^54;-4","55^59;-4","60^64;-5","65^69;-5","70^75;-5","76^80;-5" D
  .D SETADJ(STEND)
  S ADJ=ADJARR(ACC)
- S ^TMP("YKTL","ADJ2")=ADJ
  F I=1146,1157 D
  .S SCAL=$$GET1^DIQ(601.87,I_",",3,"I")
  .S BR=YBRS(SCAL,"RSL")
- .S ^TMP("YKTL",SCAL,"2BEF")=BR
  .S BR=BR+ADJ
- .S ^TMP("YKTL",SCAL,"2CAFT")=BR
+ .S BR=$$BRFIX(BR)
  .S YBRS(SCAL,"RSL")=BR
  Q
 PR ;Get the Percentile for each scale based on adjusted Base Rate for Personality/Psychopathology
@@ -318,3 +315,7 @@ PR ;Get the Percentile for each scale based on adjusted Base Rate for Personalit
  .S RAW=$G(YSRAWRSL(SCAL))
  .S YPRS(SCAL,"RSL")=$P(YPRS(SCAL,"STR"),"^",RAW+1)  ;Note RAW+1 because raw values start at 0 
  Q
+BRFIX(VAL) ;If adjusted base rate <0 set to 0. If >115 set to 115 PATCH X
+ I VAL<0 S VAL=0
+ I VAL>115 S VAL=115
+ Q VAL

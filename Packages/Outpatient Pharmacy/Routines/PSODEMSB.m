@@ -1,5 +1,5 @@
 PSODEMSB ;EPIP/RTW - PSODEM subroutines ; 7/29/17 3:24pm
- ;;7.0;OUTPATIENT PHARMACY;**452,564,570,607**;Dec 1997;Build 5
+ ;;7.0;OUTPATIENT PHARMACY;**452,564,570,607,664**;Dec 1997;Build 6
  ;------------------------------------------------------------------
  ; External reference  to $$OUTPTTM^SDUTL3  supported by ICR  1252
  ; External reference  to ^DIE              supported by ICR  2022
@@ -62,9 +62,12 @@ CA(PSODFN) ; Print PHARMACY PATIENT CLINICAL ALERTS multiple field (#2)
  ;------------------------------------------------------------------
 HDR(HDR) ;
  N DIR
+ I '$D(OPT) S OPT=$G(XQY0)     ;p664 OPT=Option
  W !
  ;PSO*7*607
  I PG,IO=IO(0),$E(IOST)="C" S DIR("T")=DTIME,DIR(0)="EA",DIR("A")="Type <Enter> to continue or '^' to exit Clinical Alerts:" D ^DIR I $D(DIRUT) Q
+ I $G(XQY0)["PSO LMOE FINISH"!($G(XQY0)["PSO VIEW") D     ;P664
+ . I $G(OPT)'=$G(XQY0) S PAGE=0 S OPT=$G(XQY0)
  I HDR]"" W @IOF S PAGE=$G(PAGE)+1 W HDR,?70,"Page: ",PAGE,! S $Y=1
  Q
 CURRFAC(PSODFN) ; Return: The Assigned/Recent Facility INSTITUTION for the Patient's DFN

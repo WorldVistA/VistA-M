@@ -1,5 +1,5 @@
-ORWORR1 ; SLC/JLI - Utilities for Retrieve Orders for Broker ;Feb 24, 2018@06:51 [7/23/18 10:25am]
- ;;3.0;ORDER ENTRY/RESULTS REPORTING;**141,243,456,444**;Dec 17, 1997;Build 48
+ORWORR1 ; SLC/JLI - Utilities for Retrieve Orders for Broker ;Dec 07, 2020@12:26:20
+ ;;3.0;ORDER ENTRY/RESULTS REPORTING;**141,243,456,444,539**;Dec 17, 1997;Build 41
  ;Called from ORWORR
  ;EPIP/RTW Modified for the Unified Action Profile 26 Oct 2016
  ; External References
@@ -58,11 +58,14 @@ FLAGRULE(ORNUM,USR) ;
  ;determines based on whether the user USR should see these flagged orders
  ; based on presence in file 100 NODE 8 FIELD 39 and
  ; based on whether the user should have gotten the flag due to provider recipients
- N ORI,ORRET,ORQUIT,I,LST,ORDFN
+ N ORI,ORRET,ORQUIT,I,LST,ORDFN,IEN3,FUSR
  I '$G(USR) S USR=DUZ
  S ORRET=1,ORQUIT=0
  S ORI=0 F  S ORI=$O(^OR(100,ORNUM,8,ORI)) Q:'ORI  D
  .I '$P($G(^OR(100,ORNUM,8,ORI,3)),U,6)&($P($G(^OR(100,ORNUM,8,ORI,3)),U,9)) S LST($P($G(^OR(100,ORNUM,8,ORI,3)),U,9))=""
+ .;p539 add recipients who received notification for the current order
+ .I '$P($G(^OR(100,ORNUM,8,ORI,3)),U,6) S IEN3=0 D
+ ..F  S IEN3=$O(^OR(100,ORNUM,8,ORI,6,IEN3)) Q:'IEN3  S FUSR=+$G(^(IEN3,0)) I FUSR S LST(FUSR)=""
  S ORDFN=+$P($G(^OR(100,ORNUM,0)),U,2)
  D START^ORBPRCHK(.LST,ORNUM,6,ORDFN)
  ;add ordering provider

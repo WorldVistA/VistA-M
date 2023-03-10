@@ -1,5 +1,5 @@
-DGEN ;ALB/RMO/CJM - Patient Enrollment Option; 11/17/00 12:12pm ; 12/6/00 5:32pm
- ;;5.3;Registration;**121,122,165,147,232,314,624,993**;Aug 13,1993;Build 92
+DGEN ;ALB/RMO/CJM,JAM,RN - Patient Enrollment Option; 11/17/00 12:12pm ; 12/6/00 5:32pm
+ ;;5.3;Registration;**121,122,165,147,232,314,624,993,1027,1045**;Aug 13,1993;Build 15
  ;
 EN ;Entry point for stand-alone enrollment option
  ; Input  -- None
@@ -300,29 +300,46 @@ VIEWDATE(FMDATE) ;
  Q Y
  ;
 REGONLY(DFN) ;
- N DGENR,DGFDA,DGIENS,DGINELIG
- I $$GET^DGENPTA(DFN,.DGENPTA) S DGINELIG=$G(DGENPTA("INELDATE"))
+ ; DG*5.3*1045 - capture ineligible reason DGINELREA
+ N DGIENS,DGFDA,DGINELIG,DGENPTA,DGINELREA
+ I $$GET^DGENPTA(DFN,.DGENPTA) S DGINELIG=$G(DGENPTA("INELDATE")),DGINELREA=$G(DGENPTA("INELREA"))
  ;Lock enrollment record
  I '$$LOCK^DGENA1(DFN) D  Q
  . W !,">>> Another user is editing, try later ..."
  . D PAUSE^VALM1
  Q:$$FINDCUR^DGENA(DFN)
+ ; DG*5.3*1027 - Create empty enrollment record
  S DGFDA(27.11,"+1,",.01)=DT
  S DGFDA(27.11,"+1,",.02)=DFN
- S DGFDA(27.11,"+1,",.03)=1
- S DGFDA(27.11,"+1,",.04)=25
- S DGFDA(27.11,"+1,",.06)=$$INST^DGENU()
- S DGFDA(27.11,"+1,",.07)=""
- S DGFDA(27.11,"+1,",.08)=DT
- S DGFDA(27.11,"+1,",.14)=0
- I $G(DGENRYN)=1,$G(DGINELIG)'="" S DGFDA(27.11,"+1,",.14)=$G(DGENRYN)
- S DGFDA(27.11,"+1,",.15)=$G(DGENRRSN)
- S DGFDA(27.11,"+1,",.16)=$G(DGENRODT)
- S DGFDA(27.11,"+1,",.17)=$G(DGENSRCE)
- S DGFDA(27.11,"+1,",50.01)=$$NATCODE^DGENELA($$GET1^DIQ(2,DFN_",",".361","I"))
- S DGFDA(27.11,"+1,",75.01)=$$NOW^XLFDT()
- S DGFDA(27.11,"+1,",75.02)=$G(DUZ)
  D UPDATE^DIE("","DGFDA","DGIENS")
- I $D(DGIENS(1)) K DGFDA S DGFDA(2,DFN_",",27.01)=DGIENS(1) D FILE^DIE("","DGFDA")
+ I '$D(DGIENS(1)) D UNLOCK^DGENA1(DFN) Q
+ K DGFDA
+ ; DG*5.3*1027 - Set CURRENT ENROLLMENT field in the PATIENT file
+ S DGFDA(2,DFN_",",27.01)=DGIENS(1) D FILE^DIE("","DGFDA")
+ K DGFDA
+ ; DG*5.3*1027 - Set field values into the enrollment record
+ S DGFDA(27.11,DGIENS(1)_",",.03)=1
+ ; DG*5.3*1045- Set Enrollment Status to 20 if Ineligible date and Ineligible reason are populated 
+ I $G(DGINELIG)'="",$G(DGINELREA)'="" D
+ . S DGFDA(27.11,DGIENS(1)_",",.04)=20
+ ELSE  D
+ . S DGFDA(27.11,DGIENS(1)_",",.04)=25
+ S DGFDA(27.11,DGIENS(1)_",",.06)=$$INST^DGENU()
+ S DGFDA(27.11,DGIENS(1)_",",.07)=""
+ S DGFDA(27.11,DGIENS(1)_",",.08)=DT
+ S DGFDA(27.11,DGIENS(1)_",",.14)=0
+ ; DG*5.3*1027;RN - Added condition for application date if ineligible date is populated
+ I $G(DGENRYN)=1,$G(DGINELIG)'="" S DGFDA(27.11,DGIENS(1)_",",.14)=1,DGFDA(27.11,DGIENS(1)_",",.01)=$G(DGENRDT)
+ ;DG*5.3*1027;RN - Added logic for Registration reason, source and registration date for a non-veteran
+ I $G(DGINELIG)="",$G(DGENRRSN)?."" S DGENRRSN=$$FIND1^DIC(408.43,"","X","UNANSWERED")
+ I $G(DGENRODT)?."" S DGENRODT=DGNOW
+ I $G(DGENSRCE)?."" S DGENSRCE=1
+ S DGFDA(27.11,DGIENS(1)_",",.15)=$G(DGENRRSN)
+ S DGFDA(27.11,DGIENS(1)_",",.16)=$G(DGENRODT)
+ S DGFDA(27.11,DGIENS(1)_",",.17)=$G(DGENSRCE)
+ S DGFDA(27.11,DGIENS(1)_",",50.01)=$$NATCODE^DGENELA($$GET1^DIQ(2,DFN_",",".361","I"))
+ S DGFDA(27.11,DGIENS(1)_",",75.01)=$$NOW^XLFDT()
+ S DGFDA(27.11,DGIENS(1)_",",75.02)=$G(DUZ)
+ D FILE^DIE("","DGFDA")
  D UNLOCK^DGENA1(DFN)
  Q

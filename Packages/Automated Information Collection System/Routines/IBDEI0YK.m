@@ -1,130 +1,128 @@
-IBDEI0YK ; ; 04-FEB-2020
- ;;3.0;IB ENCOUNTER FORM IMP/EXP;;FEB 04, 2020
+IBDEI0YK ; ; 01-FEB-2022
+ ;;3.0;IB ENCOUNTER FORM IMP/EXP;;FEB 01, 2022
  Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,999) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
- ;;^UTILITY(U,$J,358.3,15397,0)
- ;;=C7A.024^^85^847^23
- ;;^UTILITY(U,$J,358.3,15397,1,0)
+ ;;^UTILITY(U,$J,358.3,15608,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,15397,1,3,0)
- ;;=3^Carcinoid,Malignant,Descending
- ;;^UTILITY(U,$J,358.3,15397,1,4,0)
- ;;=4^C7A.024
- ;;^UTILITY(U,$J,358.3,15397,2)
- ;;=^5001367
- ;;^UTILITY(U,$J,358.3,15398,0)
- ;;=C7A.025^^85^847^28
- ;;^UTILITY(U,$J,358.3,15398,1,0)
+ ;;^UTILITY(U,$J,358.3,15608,1,3,0)
+ ;;=3^Impaired Fasting Glucose
+ ;;^UTILITY(U,$J,358.3,15608,1,4,0)
+ ;;=4^R73.01
+ ;;^UTILITY(U,$J,358.3,15608,2)
+ ;;=^5019561
+ ;;^UTILITY(U,$J,358.3,15609,0)
+ ;;=R74.8^^61^760^1
+ ;;^UTILITY(U,$J,358.3,15609,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,15398,1,3,0)
- ;;=3^Carcinoid,Malignant,Sigmoid
- ;;^UTILITY(U,$J,358.3,15398,1,4,0)
- ;;=4^C7A.025
- ;;^UTILITY(U,$J,358.3,15398,2)
- ;;=^5001368
- ;;^UTILITY(U,$J,358.3,15399,0)
- ;;=C7A.026^^85^847^27
- ;;^UTILITY(U,$J,358.3,15399,1,0)
+ ;;^UTILITY(U,$J,358.3,15609,1,3,0)
+ ;;=3^Abnormal Levels of Serum Enzymes
+ ;;^UTILITY(U,$J,358.3,15609,1,4,0)
+ ;;=4^R74.8
+ ;;^UTILITY(U,$J,358.3,15609,2)
+ ;;=^5019566
+ ;;^UTILITY(U,$J,358.3,15610,0)
+ ;;=R03.0^^61^760^27
+ ;;^UTILITY(U,$J,358.3,15610,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,15399,1,3,0)
- ;;=3^Carcinoid,Malignant,Rectum
- ;;^UTILITY(U,$J,358.3,15399,1,4,0)
- ;;=4^C7A.026
- ;;^UTILITY(U,$J,358.3,15399,2)
- ;;=^5001369
- ;;^UTILITY(U,$J,358.3,15400,0)
- ;;=C7A.029^^85^847^31
- ;;^UTILITY(U,$J,358.3,15400,1,0)
+ ;;^UTILITY(U,$J,358.3,15610,1,3,0)
+ ;;=3^Elevated BP Reading w/o Diagnosis of HTN
+ ;;^UTILITY(U,$J,358.3,15610,1,4,0)
+ ;;=4^R03.0
+ ;;^UTILITY(U,$J,358.3,15610,2)
+ ;;=^5019171
+ ;;^UTILITY(U,$J,358.3,15611,0)
+ ;;=Z91.19^^61^760^53
+ ;;^UTILITY(U,$J,358.3,15611,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,15400,1,3,0)
- ;;=3^Carcinoid,Malignant,Unspec Colon
- ;;^UTILITY(U,$J,358.3,15400,1,4,0)
- ;;=4^C7A.029
- ;;^UTILITY(U,$J,358.3,15400,2)
- ;;=^5001370
- ;;^UTILITY(U,$J,358.3,15401,0)
- ;;=C7B.02^^85^847^5
- ;;^UTILITY(U,$J,358.3,15401,1,0)
+ ;;^UTILITY(U,$J,358.3,15611,1,3,0)
+ ;;=3^Noncompliance w/ Medical Treatment/Regimen
+ ;;^UTILITY(U,$J,358.3,15611,1,4,0)
+ ;;=4^Z91.19
+ ;;^UTILITY(U,$J,358.3,15611,2)
+ ;;=^5063618
+ ;;^UTILITY(U,$J,358.3,15612,0)
+ ;;=E66.01^^61^760^54
+ ;;^UTILITY(U,$J,358.3,15612,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,15401,1,3,0)
- ;;=3^Carcinoid of Liver
- ;;^UTILITY(U,$J,358.3,15401,1,4,0)
- ;;=4^C7B.02
- ;;^UTILITY(U,$J,358.3,15401,2)
- ;;=^5001383
- ;;^UTILITY(U,$J,358.3,15402,0)
- ;;=E34.0^^85^847^6
- ;;^UTILITY(U,$J,358.3,15402,1,0)
+ ;;^UTILITY(U,$J,358.3,15612,1,3,0)
+ ;;=3^Obesity,Morbid
+ ;;^UTILITY(U,$J,358.3,15612,1,4,0)
+ ;;=4^E66.01
+ ;;^UTILITY(U,$J,358.3,15612,2)
+ ;;=^5002826
+ ;;^UTILITY(U,$J,358.3,15613,0)
+ ;;=F43.11^^61^760^61
+ ;;^UTILITY(U,$J,358.3,15613,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,15402,1,3,0)
- ;;=3^Carcinoid syndrome
- ;;^UTILITY(U,$J,358.3,15402,1,4,0)
- ;;=4^E34.0
- ;;^UTILITY(U,$J,358.3,15402,2)
- ;;=^19261
- ;;^UTILITY(U,$J,358.3,15403,0)
- ;;=C83.79^^85^847^33
- ;;^UTILITY(U,$J,358.3,15403,1,0)
+ ;;^UTILITY(U,$J,358.3,15613,1,3,0)
+ ;;=3^PTSD,Acute
+ ;;^UTILITY(U,$J,358.3,15613,1,4,0)
+ ;;=4^F43.11
+ ;;^UTILITY(U,$J,358.3,15613,2)
+ ;;=^5003571
+ ;;^UTILITY(U,$J,358.3,15614,0)
+ ;;=F43.12^^61^760^62
+ ;;^UTILITY(U,$J,358.3,15614,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,15403,1,3,0)
- ;;=3^Lymphoma,Burkitt,Extranodal
- ;;^UTILITY(U,$J,358.3,15403,1,4,0)
- ;;=4^C83.79
- ;;^UTILITY(U,$J,358.3,15403,2)
- ;;=^5001600
- ;;^UTILITY(U,$J,358.3,15404,0)
- ;;=C83.39^^85^847^34
- ;;^UTILITY(U,$J,358.3,15404,1,0)
+ ;;^UTILITY(U,$J,358.3,15614,1,3,0)
+ ;;=3^PTSD,Chronic
+ ;;^UTILITY(U,$J,358.3,15614,1,4,0)
+ ;;=4^F43.12
+ ;;^UTILITY(U,$J,358.3,15614,2)
+ ;;=^5003572
+ ;;^UTILITY(U,$J,358.3,15615,0)
+ ;;=I25.119^^61^760^5
+ ;;^UTILITY(U,$J,358.3,15615,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,15404,1,3,0)
- ;;=3^Lymphoma,Diffuse large B-Cell,Extranodal
- ;;^UTILITY(U,$J,358.3,15404,1,4,0)
- ;;=4^C83.39
- ;;^UTILITY(U,$J,358.3,15404,2)
- ;;=^5001580
- ;;^UTILITY(U,$J,358.3,15405,0)
- ;;=C86.2^^85^847^35
- ;;^UTILITY(U,$J,358.3,15405,1,0)
+ ;;^UTILITY(U,$J,358.3,15615,1,3,0)
+ ;;=3^Athscl Hrt Dis of Native Cor Art w/ Ang Pctrs,Unspec
+ ;;^UTILITY(U,$J,358.3,15615,1,4,0)
+ ;;=4^I25.119
+ ;;^UTILITY(U,$J,358.3,15615,2)
+ ;;=^5007111
+ ;;^UTILITY(U,$J,358.3,15616,0)
+ ;;=I25.10^^61^760^6
+ ;;^UTILITY(U,$J,358.3,15616,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,15405,1,3,0)
- ;;=3^Lymphoma,Enteropathy T-cell type
- ;;^UTILITY(U,$J,358.3,15405,1,4,0)
- ;;=4^C86.2
- ;;^UTILITY(U,$J,358.3,15405,2)
- ;;=^5001743
- ;;^UTILITY(U,$J,358.3,15406,0)
- ;;=C82.59^^85^847^36
- ;;^UTILITY(U,$J,358.3,15406,1,0)
+ ;;^UTILITY(U,$J,358.3,15616,1,3,0)
+ ;;=3^Athscl Hrt Dis of Native Cor Art w/o Ang Pctrs
+ ;;^UTILITY(U,$J,358.3,15616,1,4,0)
+ ;;=4^I25.10
+ ;;^UTILITY(U,$J,358.3,15616,2)
+ ;;=^5007107
+ ;;^UTILITY(U,$J,358.3,15617,0)
+ ;;=F17.219^^61^760^51
+ ;;^UTILITY(U,$J,358.3,15617,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,15406,1,3,0)
- ;;=3^Lymphoma,Follicular Diffuse,Extranodal
- ;;^UTILITY(U,$J,358.3,15406,1,4,0)
- ;;=4^C82.59
- ;;^UTILITY(U,$J,358.3,15406,2)
- ;;=^5001520
- ;;^UTILITY(U,$J,358.3,15407,0)
- ;;=C88.4^^85^847^37
- ;;^UTILITY(U,$J,358.3,15407,1,0)
+ ;;^UTILITY(U,$J,358.3,15617,1,3,0)
+ ;;=3^Nicotine Dependence,Cigarettes
+ ;;^UTILITY(U,$J,358.3,15617,1,4,0)
+ ;;=4^F17.219
+ ;;^UTILITY(U,$J,358.3,15617,2)
+ ;;=^5003369
+ ;;^UTILITY(U,$J,358.3,15618,0)
+ ;;=Z51.5^^61^760^64
+ ;;^UTILITY(U,$J,358.3,15618,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,15407,1,3,0)
- ;;=3^Lymphoma,MALT Type
- ;;^UTILITY(U,$J,358.3,15407,1,4,0)
- ;;=4^C88.4
- ;;^UTILITY(U,$J,358.3,15407,2)
- ;;=^5001749
- ;;^UTILITY(U,$J,358.3,15408,0)
- ;;=C83.19^^85^847^38
- ;;^UTILITY(U,$J,358.3,15408,1,0)
+ ;;^UTILITY(U,$J,358.3,15618,1,3,0)
+ ;;=3^Palliative Care Encounter
+ ;;^UTILITY(U,$J,358.3,15618,1,4,0)
+ ;;=4^Z51.5
+ ;;^UTILITY(U,$J,358.3,15618,2)
+ ;;=^5063063
+ ;;^UTILITY(U,$J,358.3,15619,0)
+ ;;=Z23.^^61^760^28
+ ;;^UTILITY(U,$J,358.3,15619,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,15408,1,3,0)
- ;;=3^Lymphoma,Mantle cell,Extranodal
- ;;^UTILITY(U,$J,358.3,15408,1,4,0)
- ;;=4^C83.19
- ;;^UTILITY(U,$J,358.3,15408,2)
- ;;=^5001570
- ;;^UTILITY(U,$J,358.3,15409,0)
- ;;=C78.6^^85^847^39
- ;;^UTILITY(U,$J,358.3,15409,1,0)
+ ;;^UTILITY(U,$J,358.3,15619,1,3,0)
+ ;;=3^Encounter for Immunization(s)
+ ;;^UTILITY(U,$J,358.3,15619,1,4,0)
+ ;;=4^Z23.
+ ;;^UTILITY(U,$J,358.3,15619,2)
+ ;;=^5062795
+ ;;^UTILITY(U,$J,358.3,15620,0)
+ ;;=E11.65^^61^760^20
+ ;;^UTILITY(U,$J,358.3,15620,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,15409,1,3,0)
- ;;=3^Peritoneal carinomatosis
+ ;;^UTILITY(U,$J,358.3,15620,1,3,0)
+ ;;=3^DM Type 2 Uncontrolled w/ Hyperglycemia

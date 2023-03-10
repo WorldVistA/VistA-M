@@ -1,126 +1,124 @@
-IBDEI1KC ; ; 04-FEB-2020
- ;;3.0;IB ENCOUNTER FORM IMP/EXP;;FEB 04, 2020
+IBDEI1KC ; ; 01-FEB-2022
+ ;;3.0;IB ENCOUNTER FORM IMP/EXP;;FEB 01, 2022
  Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,999) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
- ;;^UTILITY(U,$J,358.3,24982,1,3,0)
- ;;=3^Family Hx of Leukemia
- ;;^UTILITY(U,$J,358.3,24982,1,4,0)
- ;;=4^Z80.6
- ;;^UTILITY(U,$J,358.3,24982,2)
- ;;=^5063354
- ;;^UTILITY(U,$J,358.3,24983,0)
- ;;=Z80.8^^107^1212^30
- ;;^UTILITY(U,$J,358.3,24983,1,0)
+ ;;^UTILITY(U,$J,358.3,25346,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,24983,1,3,0)
- ;;=3^Family Hx of Malig Neop of Organs/Systems
- ;;^UTILITY(U,$J,358.3,24983,1,4,0)
- ;;=4^Z80.8
- ;;^UTILITY(U,$J,358.3,24983,2)
- ;;=^5063356
- ;;^UTILITY(U,$J,358.3,24984,0)
- ;;=Z81.8^^107^1212^35
- ;;^UTILITY(U,$J,358.3,24984,1,0)
+ ;;^UTILITY(U,$J,358.3,25346,1,3,0)
+ ;;=3^Bipolar D/O,Current Episode Mixed,Unspec
+ ;;^UTILITY(U,$J,358.3,25346,1,4,0)
+ ;;=4^F31.60
+ ;;^UTILITY(U,$J,358.3,25346,2)
+ ;;=^5003505
+ ;;^UTILITY(U,$J,358.3,25347,0)
+ ;;=F31.61^^92^1149^5
+ ;;^UTILITY(U,$J,358.3,25347,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,24984,1,3,0)
- ;;=3^Family Hx of Mental/Behavioral Disorders
- ;;^UTILITY(U,$J,358.3,24984,1,4,0)
- ;;=4^Z81.8
- ;;^UTILITY(U,$J,358.3,24984,2)
- ;;=^5063363
- ;;^UTILITY(U,$J,358.3,24985,0)
- ;;=Z82.3^^107^1212^42
- ;;^UTILITY(U,$J,358.3,24985,1,0)
+ ;;^UTILITY(U,$J,358.3,25347,1,3,0)
+ ;;=3^Bipolar D/O,Current Episode Mixed,Mild
+ ;;^UTILITY(U,$J,358.3,25347,1,4,0)
+ ;;=4^F31.61
+ ;;^UTILITY(U,$J,358.3,25347,2)
+ ;;=^5003506
+ ;;^UTILITY(U,$J,358.3,25348,0)
+ ;;=F31.62^^92^1149^6
+ ;;^UTILITY(U,$J,358.3,25348,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,24985,1,3,0)
- ;;=3^Family Hx of Stroke
- ;;^UTILITY(U,$J,358.3,24985,1,4,0)
- ;;=4^Z82.3
- ;;^UTILITY(U,$J,358.3,24985,2)
- ;;=^5063367
- ;;^UTILITY(U,$J,358.3,24986,0)
- ;;=Z82.49^^107^1212^24
- ;;^UTILITY(U,$J,358.3,24986,1,0)
+ ;;^UTILITY(U,$J,358.3,25348,1,3,0)
+ ;;=3^Bipolar D/O,Current Episode Mixed,Moderate
+ ;;^UTILITY(U,$J,358.3,25348,1,4,0)
+ ;;=4^F31.62
+ ;;^UTILITY(U,$J,358.3,25348,2)
+ ;;=^5003507
+ ;;^UTILITY(U,$J,358.3,25349,0)
+ ;;=F31.63^^92^1149^7
+ ;;^UTILITY(U,$J,358.3,25349,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,24986,1,3,0)
- ;;=3^Family Hx of Ischemic Heart Disease/Circulatory System
- ;;^UTILITY(U,$J,358.3,24986,1,4,0)
- ;;=4^Z82.49
- ;;^UTILITY(U,$J,358.3,24986,2)
- ;;=^5063369
- ;;^UTILITY(U,$J,358.3,24987,0)
- ;;=Z82.5^^107^1212^14
- ;;^UTILITY(U,$J,358.3,24987,1,0)
+ ;;^UTILITY(U,$J,358.3,25349,1,3,0)
+ ;;=3^Bipolar D/O,Current Episode Mixed,Severe w/o Psychotic Feat
+ ;;^UTILITY(U,$J,358.3,25349,1,4,0)
+ ;;=4^F31.63
+ ;;^UTILITY(U,$J,358.3,25349,2)
+ ;;=^5003508
+ ;;^UTILITY(U,$J,358.3,25350,0)
+ ;;=F31.64^^92^1149^8
+ ;;^UTILITY(U,$J,358.3,25350,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,24987,1,3,0)
- ;;=3^Family Hx of Asthma/Chronic Lower Respiratory Diseases
- ;;^UTILITY(U,$J,358.3,24987,1,4,0)
- ;;=4^Z82.5
- ;;^UTILITY(U,$J,358.3,24987,2)
- ;;=^5063370
- ;;^UTILITY(U,$J,358.3,24988,0)
- ;;=Z82.61^^107^1212^13
- ;;^UTILITY(U,$J,358.3,24988,1,0)
+ ;;^UTILITY(U,$J,358.3,25350,1,3,0)
+ ;;=3^Bipolar D/O,Current Episode Mixed,Severe w/ Psychotic Feat
+ ;;^UTILITY(U,$J,358.3,25350,1,4,0)
+ ;;=4^F31.64
+ ;;^UTILITY(U,$J,358.3,25350,2)
+ ;;=^5003509
+ ;;^UTILITY(U,$J,358.3,25351,0)
+ ;;=A81.00^^92^1150^8
+ ;;^UTILITY(U,$J,358.3,25351,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,24988,1,3,0)
- ;;=3^Family Hx of Arthritis
- ;;^UTILITY(U,$J,358.3,24988,1,4,0)
- ;;=4^Z82.61
- ;;^UTILITY(U,$J,358.3,24988,2)
- ;;=^5063371
- ;;^UTILITY(U,$J,358.3,24989,0)
- ;;=Z82.69^^107^1212^37
- ;;^UTILITY(U,$J,358.3,24989,1,0)
+ ;;^UTILITY(U,$J,358.3,25351,1,3,0)
+ ;;=3^Creutzfeldt-Jakob Disease,Unspec
+ ;;^UTILITY(U,$J,358.3,25351,1,4,0)
+ ;;=4^A81.00
+ ;;^UTILITY(U,$J,358.3,25351,2)
+ ;;=^5000409
+ ;;^UTILITY(U,$J,358.3,25352,0)
+ ;;=A81.09^^92^1150^7
+ ;;^UTILITY(U,$J,358.3,25352,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,24989,1,3,0)
- ;;=3^Family Hx of Musculoskeletal System/Connective Tissue
- ;;^UTILITY(U,$J,358.3,24989,1,4,0)
- ;;=4^Z82.69
- ;;^UTILITY(U,$J,358.3,24989,2)
- ;;=^5063373
- ;;^UTILITY(U,$J,358.3,24990,0)
- ;;=Z83.3^^107^1212^20
- ;;^UTILITY(U,$J,358.3,24990,1,0)
+ ;;^UTILITY(U,$J,358.3,25352,1,3,0)
+ ;;=3^Creutzfeldt-Jakob Disease,Other
+ ;;^UTILITY(U,$J,358.3,25352,1,4,0)
+ ;;=4^A81.09
+ ;;^UTILITY(U,$J,358.3,25352,2)
+ ;;=^5000410
+ ;;^UTILITY(U,$J,358.3,25353,0)
+ ;;=A81.2^^92^1150^29
+ ;;^UTILITY(U,$J,358.3,25353,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,24990,1,3,0)
- ;;=3^Family Hx of Diabetes Mellitus
- ;;^UTILITY(U,$J,358.3,24990,1,4,0)
- ;;=4^Z83.3
- ;;^UTILITY(U,$J,358.3,24990,2)
- ;;=^5063379
- ;;^UTILITY(U,$J,358.3,24991,0)
- ;;=Z83.2^^107^1212^16
- ;;^UTILITY(U,$J,358.3,24991,1,0)
+ ;;^UTILITY(U,$J,358.3,25353,1,3,0)
+ ;;=3^Progressive Multifocal Leukoencephalopathy
+ ;;^UTILITY(U,$J,358.3,25353,1,4,0)
+ ;;=4^A81.2
+ ;;^UTILITY(U,$J,358.3,25353,2)
+ ;;=^5000411
+ ;;^UTILITY(U,$J,358.3,25354,0)
+ ;;=F01.51^^92^1150^32
+ ;;^UTILITY(U,$J,358.3,25354,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,24991,1,3,0)
- ;;=3^Family Hx of Blood/Immune Mechanism Diseases
- ;;^UTILITY(U,$J,358.3,24991,1,4,0)
- ;;=4^Z83.2
- ;;^UTILITY(U,$J,358.3,24991,2)
- ;;=^5063378
- ;;^UTILITY(U,$J,358.3,24992,0)
- ;;=Z82.71^^107^1212^40
- ;;^UTILITY(U,$J,358.3,24992,1,0)
+ ;;^UTILITY(U,$J,358.3,25354,1,3,0)
+ ;;=3^Vascular Dementia w/ Behav Disturb
+ ;;^UTILITY(U,$J,358.3,25354,1,4,0)
+ ;;=4^F01.51
+ ;;^UTILITY(U,$J,358.3,25354,2)
+ ;;=^5003047
+ ;;^UTILITY(U,$J,358.3,25355,0)
+ ;;=G30.9^^92^1150^4
+ ;;^UTILITY(U,$J,358.3,25355,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,24992,1,3,0)
- ;;=3^Family Hx of Polycystic Kidney
- ;;^UTILITY(U,$J,358.3,24992,1,4,0)
- ;;=4^Z82.71
- ;;^UTILITY(U,$J,358.3,24992,2)
- ;;=^321531
- ;;^UTILITY(U,$J,358.3,24993,0)
- ;;=Z82.1^^107^1212^15
- ;;^UTILITY(U,$J,358.3,24993,1,0)
+ ;;^UTILITY(U,$J,358.3,25355,1,3,0)
+ ;;=3^Alzheimer's Disease,Unspec
+ ;;^UTILITY(U,$J,358.3,25355,1,4,0)
+ ;;=4^G30.9
+ ;;^UTILITY(U,$J,358.3,25355,2)
+ ;;=^5003808
+ ;;^UTILITY(U,$J,358.3,25356,0)
+ ;;=G31.01^^92^1150^27
+ ;;^UTILITY(U,$J,358.3,25356,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,24993,1,3,0)
- ;;=3^Family Hx of Blindness/Visual Loss
- ;;^UTILITY(U,$J,358.3,24993,1,4,0)
- ;;=4^Z82.1
- ;;^UTILITY(U,$J,358.3,24993,2)
- ;;=^5063365
- ;;^UTILITY(U,$J,358.3,24994,0)
- ;;=Z82.2^^107^1212^19
- ;;^UTILITY(U,$J,358.3,24994,1,0)
+ ;;^UTILITY(U,$J,358.3,25356,1,3,0)
+ ;;=3^Pick's Disease
+ ;;^UTILITY(U,$J,358.3,25356,1,4,0)
+ ;;=4^G31.01
+ ;;^UTILITY(U,$J,358.3,25356,2)
+ ;;=^329915
+ ;;^UTILITY(U,$J,358.3,25357,0)
+ ;;=G94.^^92^1150^6
+ ;;^UTILITY(U,$J,358.3,25357,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,24994,1,3,0)
- ;;=3^Family Hx of Deafness/Hearing Loss
+ ;;^UTILITY(U,$J,358.3,25357,1,3,0)
+ ;;=3^Brain D/O in Diseases Classified Elsewhere NEC
+ ;;^UTILITY(U,$J,358.3,25357,1,4,0)
+ ;;=4^G94.
+ ;;^UTILITY(U,$J,358.3,25357,2)
+ ;;=^5004187
+ ;;^UTILITY(U,$J,358.3,25358,0)
+ ;;=G31.83^^92^1150^17

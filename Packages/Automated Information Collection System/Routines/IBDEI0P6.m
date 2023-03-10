@@ -1,126 +1,128 @@
-IBDEI0P6 ; ; 04-FEB-2020
- ;;3.0;IB ENCOUNTER FORM IMP/EXP;;FEB 04, 2020
+IBDEI0P6 ; ; 01-FEB-2022
+ ;;3.0;IB ENCOUNTER FORM IMP/EXP;;FEB 01, 2022
  Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,999) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
- ;;^UTILITY(U,$J,358.3,11233,1,0)
+ ;;^UTILITY(U,$J,358.3,11300,0)
+ ;;=Z65.8^^42^522^3
+ ;;^UTILITY(U,$J,358.3,11300,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,11233,1,3,0)
- ;;=3^Iridocyclitis,Acute/Subacute,Unspec
- ;;^UTILITY(U,$J,358.3,11233,1,4,0)
- ;;=4^H20.00
- ;;^UTILITY(U,$J,358.3,11233,2)
- ;;=^5005133
- ;;^UTILITY(U,$J,358.3,11234,0)
- ;;=B00.59^^77^727^32
- ;;^UTILITY(U,$J,358.3,11234,1,0)
+ ;;^UTILITY(U,$J,358.3,11300,1,3,0)
+ ;;=3^Psychosocial Related Problems
+ ;;^UTILITY(U,$J,358.3,11300,1,4,0)
+ ;;=4^Z65.8
+ ;;^UTILITY(U,$J,358.3,11300,2)
+ ;;=^5063185
+ ;;^UTILITY(U,$J,358.3,11301,0)
+ ;;=Z86.51^^42^522^1
+ ;;^UTILITY(U,$J,358.3,11301,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,11234,1,3,0)
- ;;=3^Herpes Viral Eye Disease NEC
- ;;^UTILITY(U,$J,358.3,11234,1,4,0)
- ;;=4^B00.59
- ;;^UTILITY(U,$J,358.3,11234,2)
- ;;=^5000476
- ;;^UTILITY(U,$J,358.3,11235,0)
- ;;=Z01.00^^77^727^30
- ;;^UTILITY(U,$J,358.3,11235,1,0)
+ ;;^UTILITY(U,$J,358.3,11301,1,3,0)
+ ;;=3^Personal Hx of Combat/Operational Stress Reaction
+ ;;^UTILITY(U,$J,358.3,11301,1,4,0)
+ ;;=4^Z86.51
+ ;;^UTILITY(U,$J,358.3,11301,2)
+ ;;=^5063470
+ ;;^UTILITY(U,$J,358.3,11302,0)
+ ;;=Z86.59^^42^522^2
+ ;;^UTILITY(U,$J,358.3,11302,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,11235,1,3,0)
- ;;=3^Eye/Vision Exam w/o Abnormal Findings
- ;;^UTILITY(U,$J,358.3,11235,1,4,0)
- ;;=4^Z01.00
- ;;^UTILITY(U,$J,358.3,11235,2)
- ;;=^5062612
- ;;^UTILITY(U,$J,358.3,11236,0)
- ;;=Z01.01^^77^727^29
- ;;^UTILITY(U,$J,358.3,11236,1,0)
+ ;;^UTILITY(U,$J,358.3,11302,1,3,0)
+ ;;=3^Personal Hx of Oth Mental/Behavioral Disorders
+ ;;^UTILITY(U,$J,358.3,11302,1,4,0)
+ ;;=4^Z86.59
+ ;;^UTILITY(U,$J,358.3,11302,2)
+ ;;=^5063471
+ ;;^UTILITY(U,$J,358.3,11303,0)
+ ;;=Z76.3^^42^523^5
+ ;;^UTILITY(U,$J,358.3,11303,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,11236,1,3,0)
- ;;=3^Eye/Vision Exam w/ Abnormal Findings
- ;;^UTILITY(U,$J,358.3,11236,1,4,0)
- ;;=4^Z01.01
- ;;^UTILITY(U,$J,358.3,11236,2)
- ;;=^5062613
- ;;^UTILITY(U,$J,358.3,11237,0)
- ;;=H52.213^^77^727^2
- ;;^UTILITY(U,$J,358.3,11237,1,0)
+ ;;^UTILITY(U,$J,358.3,11303,1,3,0)
+ ;;=3^Healthy Person Accompanying Sick Person
+ ;;^UTILITY(U,$J,358.3,11303,1,4,0)
+ ;;=4^Z76.3
+ ;;^UTILITY(U,$J,358.3,11303,2)
+ ;;=^5063300
+ ;;^UTILITY(U,$J,358.3,11304,0)
+ ;;=Z71.0^^42^523^3
+ ;;^UTILITY(U,$J,358.3,11304,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,11237,1,3,0)
- ;;=3^Astigmatism,Irregular,Bilateral
- ;;^UTILITY(U,$J,358.3,11237,1,4,0)
- ;;=4^H52.213
- ;;^UTILITY(U,$J,358.3,11237,2)
- ;;=^5006272
- ;;^UTILITY(U,$J,358.3,11238,0)
- ;;=H52.223^^77^727^3
- ;;^UTILITY(U,$J,358.3,11238,1,0)
+ ;;^UTILITY(U,$J,358.3,11304,1,3,0)
+ ;;=3^Health Service Consult on Behalf of Another Person
+ ;;^UTILITY(U,$J,358.3,11304,1,4,0)
+ ;;=4^Z71.0
+ ;;^UTILITY(U,$J,358.3,11304,2)
+ ;;=^5063242
+ ;;^UTILITY(U,$J,358.3,11305,0)
+ ;;=Z76.5^^42^523^6
+ ;;^UTILITY(U,$J,358.3,11305,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,11238,1,3,0)
- ;;=3^Astigmatism,Regular,Bilateral
- ;;^UTILITY(U,$J,358.3,11238,1,4,0)
- ;;=4^H52.223
- ;;^UTILITY(U,$J,358.3,11238,2)
- ;;=^5006276
- ;;^UTILITY(U,$J,358.3,11239,0)
- ;;=H40.1113^^77^727^49
- ;;^UTILITY(U,$J,358.3,11239,1,0)
+ ;;^UTILITY(U,$J,358.3,11305,1,3,0)
+ ;;=3^Malingerer
+ ;;^UTILITY(U,$J,358.3,11305,1,4,0)
+ ;;=4^Z76.5
+ ;;^UTILITY(U,$J,358.3,11305,2)
+ ;;=^5063302
+ ;;^UTILITY(U,$J,358.3,11306,0)
+ ;;=Z71.41^^42^523^1
+ ;;^UTILITY(U,$J,358.3,11306,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,11239,1,3,0)
- ;;=3^Primary Open-Angle Glaucoma,Severe Stage,Right Eye
- ;;^UTILITY(U,$J,358.3,11239,1,4,0)
- ;;=4^H40.1113
- ;;^UTILITY(U,$J,358.3,11239,2)
- ;;=^5138539
- ;;^UTILITY(U,$J,358.3,11240,0)
- ;;=H40.1123^^77^727^50
- ;;^UTILITY(U,$J,358.3,11240,1,0)
+ ;;^UTILITY(U,$J,358.3,11306,1,3,0)
+ ;;=3^Alcohol Abuse Counseling/Surveillance of Alcoholic
+ ;;^UTILITY(U,$J,358.3,11306,1,4,0)
+ ;;=4^Z71.41
+ ;;^UTILITY(U,$J,358.3,11306,2)
+ ;;=^5063246
+ ;;^UTILITY(U,$J,358.3,11307,0)
+ ;;=Z71.7^^42^523^2
+ ;;^UTILITY(U,$J,358.3,11307,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,11240,1,3,0)
- ;;=3^Primary Open-Angle Glaucoma,Severe Stage,Left Eye
- ;;^UTILITY(U,$J,358.3,11240,1,4,0)
- ;;=4^H40.1123
- ;;^UTILITY(U,$J,358.3,11240,2)
- ;;=^5138544
- ;;^UTILITY(U,$J,358.3,11241,0)
- ;;=H35.3110^^77^727^39
- ;;^UTILITY(U,$J,358.3,11241,1,0)
+ ;;^UTILITY(U,$J,358.3,11307,1,3,0)
+ ;;=3^HIV Counseling
+ ;;^UTILITY(U,$J,358.3,11307,1,4,0)
+ ;;=4^Z71.7
+ ;;^UTILITY(U,$J,358.3,11307,2)
+ ;;=^5063251
+ ;;^UTILITY(U,$J,358.3,11308,0)
+ ;;=Z76.89^^42^523^4
+ ;;^UTILITY(U,$J,358.3,11308,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,11241,1,3,0)
- ;;=3^Nonexudative ARMD,Right Eye
- ;;^UTILITY(U,$J,358.3,11241,1,4,0)
- ;;=4^H35.3110
- ;;^UTILITY(U,$J,358.3,11241,2)
- ;;=^5138500
- ;;^UTILITY(U,$J,358.3,11242,0)
- ;;=H35.3120^^77^727^38
- ;;^UTILITY(U,$J,358.3,11242,1,0)
+ ;;^UTILITY(U,$J,358.3,11308,1,3,0)
+ ;;=3^Health Services in Oth Circumstances
+ ;;^UTILITY(U,$J,358.3,11308,1,4,0)
+ ;;=4^Z76.89
+ ;;^UTILITY(U,$J,358.3,11308,2)
+ ;;=^5063304
+ ;;^UTILITY(U,$J,358.3,11309,0)
+ ;;=Z56.82^^42^523^7
+ ;;^UTILITY(U,$J,358.3,11309,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,11242,1,3,0)
- ;;=3^Nonexudative ARMD,Left Eye
- ;;^UTILITY(U,$J,358.3,11242,1,4,0)
- ;;=4^H35.3120
- ;;^UTILITY(U,$J,358.3,11242,2)
- ;;=^5138505
- ;;^UTILITY(U,$J,358.3,11243,0)
- ;;=H35.3210^^77^727^26
- ;;^UTILITY(U,$J,358.3,11243,1,0)
+ ;;^UTILITY(U,$J,358.3,11309,1,3,0)
+ ;;=3^Military Deployment Status
+ ;;^UTILITY(U,$J,358.3,11309,1,4,0)
+ ;;=4^Z56.82
+ ;;^UTILITY(U,$J,358.3,11309,2)
+ ;;=^5063115
+ ;;^UTILITY(U,$J,358.3,11310,0)
+ ;;=Z91.82^^42^523^8
+ ;;^UTILITY(U,$J,358.3,11310,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,11243,1,3,0)
- ;;=3^Exudative ARMD,Right Eye
- ;;^UTILITY(U,$J,358.3,11243,1,4,0)
- ;;=4^H35.3210
- ;;^UTILITY(U,$J,358.3,11243,2)
- ;;=^5138520
- ;;^UTILITY(U,$J,358.3,11244,0)
- ;;=H35.3220^^77^727^25
- ;;^UTILITY(U,$J,358.3,11244,1,0)
+ ;;^UTILITY(U,$J,358.3,11310,1,3,0)
+ ;;=3^Personal Hx of Military Deployment
+ ;;^UTILITY(U,$J,358.3,11310,1,4,0)
+ ;;=4^Z91.82
+ ;;^UTILITY(U,$J,358.3,11310,2)
+ ;;=^5063626
+ ;;^UTILITY(U,$J,358.3,11311,0)
+ ;;=Z99.2^^42^524^1
+ ;;^UTILITY(U,$J,358.3,11311,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,11244,1,3,0)
- ;;=3^Exudative ARMD,Left Eye
- ;;^UTILITY(U,$J,358.3,11244,1,4,0)
- ;;=4^H35.3220
- ;;^UTILITY(U,$J,358.3,11244,2)
- ;;=^5138524
- ;;^UTILITY(U,$J,358.3,11245,0)
- ;;=E11.3291^^77^727^15
- ;;^UTILITY(U,$J,358.3,11245,1,0)
+ ;;^UTILITY(U,$J,358.3,11311,1,3,0)
+ ;;=3^Dependence on Renal Dialysis
+ ;;^UTILITY(U,$J,358.3,11311,1,4,0)
+ ;;=4^Z99.2
+ ;;^UTILITY(U,$J,358.3,11311,2)
+ ;;=^5063758
+ ;;^UTILITY(U,$J,358.3,11312,0)
+ ;;=Z91.15^^42^524^2
+ ;;^UTILITY(U,$J,358.3,11312,1,0)
  ;;=^358.31IA^4^2

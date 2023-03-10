@@ -1,5 +1,5 @@
 BPSSCRLG ;BHAM ISC/SS - ECME LOGINFO ;05-APR-05
- ;;1.0;E CLAIMS MGMT ENGINE;**1,5,7,8,10,11,15,18,20,22,24**;JUN 2004;Build 43
+ ;;1.0;E CLAIMS MGMT ENGINE;**1,5,7,8,10,11,15,18,20,22,24,28**;JUN 2004;Build 22
  ;;Per VA Directive 6402, this routine should not be modified.
  ;
  Q
@@ -403,3 +403,74 @@ DISPPYR(BPLN,BPIEN03) ;
  ;
 PYRIDCNT(BPIEN03,PYR) ;
  Q $P($G(^BPSR(BPIEN03,1000,1,355.01,PYR,0)),U)
+ ;
+ ; Invalid Provider Data Source
+INVPROV(BPIEN03) ;
+ Q $$GET1^DIQ(9002313.0301,"1,"_BPIEN03,2387,"E")
+ ;
+ ; Formulary Alternative Effective Date
+FAEDT(BPIEN03) ;
+ N BPDT
+ S BPDT=$$GET1^DIQ(9002313.0301,"1,"_BPIEN03,2389,"I")
+ I BPDT'="" S BPDT=$E(BPDT,5,6)_"/"_$E(BPDT,7,8)_"/"_$E(BPDT,1,4)
+ Q BPDT
+ ;
+ ; DUR/DUE Co-Agent Description
+DCADES(BPIEN03) ;
+ Q $$GET1^DIQ(9002313.0301,"1,"_BPIEN03,2393,"E")
+ ;
+ ; Unit of Prior Dispensed Qty
+UPDQ(BPIEN03) ;
+ Q $$GET1^DIQ(9002313.0301,"1,"_BPIEN03,2394,"I")
+ ;
+ ; Other Pharmacy ID Qualifier
+OPIDQ(BPIEN03) ;
+ Q $$GET1^DIQ(9002313.0301,"1,"_BPIEN03,2395,"E")
+ ;
+ ; Other Pharmacy Name
+OPNAM(BPIEN03) ;
+ Q $$GET1^DIQ(9002313.0301,"1,"_BPIEN03,2397,"E")
+ ;
+ ; Other Pharmacy Telephone
+OPTELE(BPIEN03) ;
+ Q $$GET1^DIQ(9002313.0301,"1,"_BPIEN03,2398,"E")
+ ;
+ ; Other Prescriber Last Name
+OPLNAM(BPIEN03) ;
+ Q $$GET1^DIQ(9002313.0301,"1,"_BPIEN03,2399,"E")
+ ;
+ ; Other Prescriber ID Qualifier
+OPRIDQ(BPIEN03) ;
+ Q $$GET1^DIQ(9002313.0301,"1,"_BPIEN03,2401,"E")
+ ;
+ ; Other Prescriber ID
+OPRID(BPIEN03) ;
+ Q $$GET1^DIQ(9002313.0301,"1,"_BPIEN03,2402,"E")
+ ;
+ ; Other Prescriber ID Phone Number
+OPRPH(BPIEN03) ;
+ Q $$GET1^DIQ(9002313.0301,"1,"_BPIEN03,2403,"E")
+ ;
+ ; DUR/DUE Compound Product ID
+CMPPID(BPIEN03) ;
+ Q $$GET1^DIQ(9002313.0301,"1,"_BPIEN03,2404,"E")
+ ;
+ ; DUR/DUE Compound Product ID Qualifier
+CMPPIDQ(BPIEN03) ;
+ Q $$GET1^DIQ(9002313.0301,"1,"_BPIEN03,2405,"E")
+ ;
+ ; DUR/DUE Maximum Daily Dose Qty
+MAXDDQ(BPIEN03) ;
+ Q $$GET1^DIQ(9002313.0301,"1,"_BPIEN03,2406,"E")
+ ;
+ ; DUR/DUE Maximum Daily Dose - Unit
+MAXDDU(BPIEN03) ;
+ Q $$GET1^DIQ(9002313.0301,"1,"_BPIEN03,2407,"I")
+ ;
+ ; DUR/DUE Minimum Daily Dose Qty
+MINDDQ(BPIEN03) ;
+ Q $$GET1^DIQ(9002313.0301,"1,"_BPIEN03,2408,"E")
+ ;
+ ; DUR/DUE Minimum Daily Dose - Unit
+MINDDU(BPIEN03) ;
+ Q $$GET1^DIQ(9002313.0301,"1,"_BPIEN03,2409,"I")

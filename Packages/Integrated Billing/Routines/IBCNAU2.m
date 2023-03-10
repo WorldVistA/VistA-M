@@ -1,5 +1,5 @@
 IBCNAU2 ;ALB/KML/AWC - eIV USER EDIT REPORT (COMPILE) ;6-APRIL-2015
- ;;2.0;INTEGRATED BILLING;**528**;21-MAR-94;Build 163
+ ;;2.0;INTEGRATED BILLING;**528,664,668**;21-MAR-94;Build 28
  ;;Per VA Directive 6402, this routine should not be modified.
  ;
  ; Queued Entry Point for Report.
@@ -10,18 +10,31 @@ IBCNAU2 ;ALB/KML/AWC - eIV USER EDIT REPORT (COMPILE) ;6-APRIL-2015
  ;
  Q
  ;
-EN(ALLINS,ALLPLANS,PLANS,DATE) ;
+ ;EN(ALLINS,ALLPLANS,PLANS,DATE) ;
+ ;/vd-IB*2*664 - Changed the above line to the line below.
+EN(ALLINS,ALLPLANS,PLANS,ALLPYRS,REPTYP,DATE) ;
  N LN
  S LN=0
  ; - compile report data
- K ^TMP("IBPR",$J)
+ K ^TMP("IBPR",$J),^TMP("IBPR2",$J)
  ;
- ; - user wanted all companies,PLANS, and users
- I PLANS D PLANS(ALLUSERS,.LN,.DATE)
- E  D NOPLANS(ALLUSERS,.LN,.DATE)
+ ; - user wanted all companies, PLANS, and users
+ ;I PLANS D PLANS(ALLUSERS,.LN,.DATE)
+ ;E  D NOPLANS(ALLUSERS,.LN,.DATE)
+ ;/vd-IB*2*664 - Replaced the above 3 lines with the following:
+ ;Beginning of IB*2*664 code
+ ; - dependent upon Report selection prepare the respective insurance companies,
+ ;   plans, eIV payers, and users
+ I REPTYP'=2 D      ; report for ins cos/plans or both was selected
+ .I PLANS D PLANS(ALLUSERS,.LN,.DATE)
+ .E  D NOPLANS(ALLUSERS,.LN,.DATE)
+ I REPTYP'=1 D PAYERS(ALLPLANS,ALLUSERS,.LN,.DATE)   ; report for eIV payers or both was selected
+ ;End of IB*2*664 code
  ;
 PRINT ; - print report
- D EN^IBCNAU3(ALLPLANS,PLANS)
+ ;D EN^IBCNAU3(ALLPLANS,PLANS)
+ ;/vd-IB*2*664 - Replaced the line above with the line below
+ D EN^IBCNAU3(ALLPLANS,PLANS,ALLPYRS,REPTYP)
  ;
  I $D(ZTQUEUED) S ZTREQ="@" Q
  D ^%ZISC
@@ -34,7 +47,7 @@ PLANS(ALLUSERS,LN,DATE) ;
  . S INSIEN=0 F  S INSIEN=$O(^TMP("IBINC",$J,INSNAME,INSIEN)) Q:'INSIEN  D
  . . S PLIEN=0 F  S PLIEN=$O(^TMP("IBINC",$J,INSNAME,INSIEN,PLIEN)) Q:'PLIEN  D
  . . . I ALLUSERS D ALLUSERS(INSNAME,INSIEN,PLIEN,PLANS,.LN,.DATE,.Z) Q
- . . . I 'ALLUSERS D SELUSERS(INSNAME,INSIEN,PLIEN,.DATE,.Z)
+ . . . I 'ALLUSERS D SELUSERS(INSNAME,INSIEN,PLIEN,.LN,.DATE,.Z)
  Q
  ;
 NOPLANS(ALLUSERS,LN,DATE) ;  only report edits made to INSURANCE COMPANY file (36)
@@ -44,7 +57,7 @@ NOPLANS(ALLUSERS,LN,DATE) ;  only report edits made to INSURANCE COMPANY file (3
  S INSNAME="" F  S INSNAME=$O(^TMP("IBINC",$J,INSNAME)) Q:INSNAME=""  D
  . S INSIEN=0 F  S INSIEN=$O(^TMP("IBINC",$J,INSNAME,INSIEN)) Q:'INSIEN  D
  . . I ALLUSERS D ALLUSERS(INSNAME,INSIEN,0,0,.LN,.DATE,.Z)
- . . I 'ALLUSERS D SELUSERS(INSNAME,INSIEN,PLIEN,.DATE,.Z)
+ . . I 'ALLUSERS D SELUSERS(INSNAME,INSIEN,PLIEN,.LN,.DATE,.Z)
  Q
  ;
 ALLUSERS(INSNAME,INSIEN,PLIEN,PLANS,LN,DATE,Z) ; procedure to gather edits for All Users within a date range
@@ -83,11 +96,11 @@ ALLUSERS(INSNAME,INSIEN,PLIEN,PLANS,LN,DATE,Z) ; procedure to gather edits for A
  . . D ADDLN(SUB,.LN,.Z)
  Q
  ;
-SELUSERS(INSNAME,INSIEN,PLIEN,DATE,Z) ; procedure to gather edits for selected Users for a date range
+SELUSERS(INSNAME,INSIEN,PLIEN,LN,DATE,Z) ; procedure to gather edits for selected Users for a date range
  K Z
- N DIAIEN,LN,SUB,DIA0,FIELD,USER
+ N DIAIEN,SUB,DIA0,FIELD,USER
  S SUB=$S(PLIEN:1,1:0)
- S (LN,DIAIEN)=0
+ S DIAIEN=0
  S Z("PLAN")=$S(PLIEN:$P($G(^IBA(355.3,PLIEN,2)),U),1:"NO PLANS SELECTED")
  S Z("INSNAME")=INSNAME
  ; INSURANCE COMPANY AUDITS
@@ -115,10 +128,42 @@ SELUSERS(INSNAME,INSIEN,PLIEN,DATE,Z) ; procedure to gather edits for selected U
  . D ADDLN(SUB,.LN,.Z)
  Q
  ;
-ADDLN(SUB,LN,Z) ;
+ ;/vd-IB*2*664 - Beginning of new code for eIV Payer selection(s).
+PAYERS(ALLPLANS,ALLUSERS,LN,DATE) ; PROCESS EIV PAYERS - VITO
+ N BDATE,DIA0,DIAIEN,EDATE,FIELD,PAYERLN,PYRAPP,PYRIEN,PYRNAME,SUB
+ ;
+ S SUB=0
+ S BDATE=DATE("START")-.000001,EDATE=DATE("END")+.999999
+ F  S BDATE=$O(^DIA(365.12,"C",BDATE)) Q:BDATE=""  D
+ . I BDATE>EDATE Q
+ . S DIAIEN=0,PAYERLN=1
+ . F  S DIAIEN=$O(^DIA(365.12,"C",BDATE,DIAIEN)) Q:DIAIEN=""  D
+ . . N Z
+ . . S DIA0=^DIA(365.12,DIAIEN,0)
+ . . S PYRIEN=+$P(DIA0,U,1),PYRAPP=$P($P(DIA0,U,1),",",2)   ; Get the internal Payer # and the Application
+ . . I $$GET1^DIQ(365.121,PYRAPP_","_PYRIEN_",",.01)'="EIV" Q  ; Only want "eIV" Application Modifications.
+ . . S PYRNAME=$$GET1^DIQ(365.12,PYRIEN,.01)
+ . . I 'ALLPYRS,'$D(^TMP("IBPYR",$J,PYRNAME,PYRIEN)) Q   ; Is this a selected payer?
+ . . ;IB*668/TAZ - Changed Payer Application from IIV to EIV
+ . . I '+$$PYRAPP^IBCNEUT5("EIV",PYRIEN) Q   ; Not an eIV Payer...Only want eIV Payers.
+ . . S FIELD=$S($P(DIA0,U,3)="1,.03":"LOCALLY ENABLED",1:"") I FIELD="" Q   ; Not the Locally Enabled field.
+ . . S Z("DATE")=$P(DIA0,U,2),Z("FIELD")=FIELD,Z("USER")=$P(DIA0,U,4)
+ . . S Z("OLDVAL")=$G(^DIA(365.12,DIAIEN,2)),Z("NEWVAL")=$G(^DIA(365.12,DIAIEN,3)),Z("PYRNAME")=PYRNAME
+ . . I 'ALLUSERS,'$D(^TMP("IBUSER",$J,Z("USER"))) Q
+ . . D ADDLN(SUB,.LN,.Z,PAYERLN)
+ Q
+ ;/IB*2*664 - End of new code.
+ ;
+ ;ADDLN(SUB,LN,Z) ;/vd-IB*2*664 - Replaced this line with the following line:
+ADDLN(SUB,LN,Z,PAYERLN) ;
  ; SUB = 0 if no group plans to be reported
  ;     = 1 if group plans to be reported
  ; LN = passed by reference.  Line subscript at ^TMP("IBPR",$J,PLANS,LN)
+ ; PAYERLN=0 if not generating a payer's line
+ ;        =1 if a payer's line is being generated
  S LN=LN+1
- S ^TMP("IBPR",$J,SUB,LN)=Z("INSNAME")_U_Z("PLAN")_U_Z("USER")_U_Z("DATE")_U_Z("OLDVAL")_U_Z("NEWVAL")_U_Z("FIELD")
+ ; /vd-IB*2*664 - Replaced the following line with couple of lines below it.
+ ;S ^TMP("IBPR",$J,SUB,LN)=Z("INSNAME")_U_Z("PLAN")_U_Z("USER")_U_Z("DATE")_U_Z("OLDVAL")_U_Z("NEWVAL")_U_Z("FIELD")
+ I '+$G(PAYERLN) S ^TMP("IBPR",$J,SUB,LN)=Z("INSNAME")_U_Z("PLAN")_U_Z("USER")_U_Z("DATE")_U_Z("OLDVAL")_U_Z("NEWVAL")_U_Z("FIELD") Q
+ S ^TMP("IBPR2",$J,SUB,LN)=Z("PYRNAME")_U_Z("USER")_U_Z("DATE")_U_Z("OLDVAL")_U_Z("NEWVAL")_U_Z("FIELD")
  Q

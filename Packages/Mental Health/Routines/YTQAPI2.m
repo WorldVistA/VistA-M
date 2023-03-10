@@ -1,12 +1,10 @@
 YTQAPI2 ;ASF/ALB - MHAX REMOTE PROCEDURES cont ;10/17/16  13:37
- ;;5.01;MENTAL HEALTH;**85,96,119,121,123,130**;Dec 30, 1994;Build 62
+ ;;5.01;MENTAL HEALTH;**85,96,119,121,123,130,217**;Dec 30, 1994;Build 12
  ;
- ; External Reference    ICR#
- ; ------------------   -----
- ; ^DPT                 10035
- ; DIC                   2051
- ; DILFD                 2055
- ; DIQ                   2056
+ ; Reference to ^DPT in ICR #10035
+ ; Reference to LIST^DIC in ICR #2051
+ ; Reference to $$VFILE^DILFD,$$VFIELD^DILFD in ICR #2055
+ ; Reference to $$GET1^DIQ in ICR #2056
  ;
  Q
 LISTER(YSDATA,YS) ;list entries
@@ -80,16 +78,15 @@ SETANS(YSDATA,YS) ;save an answer
  I $D(^YTT(601.85,"AC",YSAD,YSQN)) S YSIENS=$O(^YTT(601.85,"AC",YSAD,YSQN,0))
  I '$D(^YTT(601.85,"AC",YSAD,YSQN)) D  ; set new entry
  . S YSIENS=""
- . S YSIENS=$$NEW^YTQLIB(601.85)
+ . S YSIENS=$$NEW^YTQAPI17(601.85)
  . Q:YSIENS'?1N.N
- . L +^YTT(601.85,YSIENS):DILOCKTM
- . I '$T S YSDATA(2)="time out" Q
+ . L +^YTT(601.85,YSIENS):DILOCKTM I '$T S YSDATA(2)="time out" Q
  . S ^YTT(601.85,YSIENS,0)=YSIENS_U_YSAD_U_YSQN
- . L -^YTT(601.85,YSIENS)
  . S ^YTT(601.85,0)="MH ANSWERS^601.85^"_YSIENS_U_($P(^YTT(601.85,0),U,4)+1)
  . S ^YTT(601.85,"B",YSIENS,YSIENS)=""
  . S ^YTT(601.85,"AC",YSAD,YSQN,YSIENS)=""
  . S ^YTT(601.85,"AD",YSAD,YSIENS)=""
+ . L -^YTT(601.85,YSIENS)
  Q:$D(YSDATA(2))
  ;enter or delete Answers
  S $P(^YTT(601.85,YSIENS,0),U,4)=YSCI

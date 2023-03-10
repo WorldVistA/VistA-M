@@ -1,124 +1,120 @@
-IBDEI1K8 ; ; 04-FEB-2020
- ;;3.0;IB ENCOUNTER FORM IMP/EXP;;FEB 04, 2020
+IBDEI1K8 ; ; 01-FEB-2022
+ ;;3.0;IB ENCOUNTER FORM IMP/EXP;;FEB 01, 2022
  Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,999) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
- ;;^UTILITY(U,$J,358.3,24934,1,0)
+ ;;^UTILITY(U,$J,358.3,25297,2)
+ ;;=^5063620
+ ;;^UTILITY(U,$J,358.3,25298,0)
+ ;;=Z69.021^^92^1147^20
+ ;;^UTILITY(U,$J,358.3,25298,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,24934,1,3,0)
- ;;=3^Personal Hx of Malig Neop of Large Intestine
- ;;^UTILITY(U,$J,358.3,24934,1,4,0)
- ;;=4^Z85.038
- ;;^UTILITY(U,$J,358.3,24934,2)
- ;;=^5063399
- ;;^UTILITY(U,$J,358.3,24935,0)
- ;;=Z85.048^^107^1212^91
- ;;^UTILITY(U,$J,358.3,24935,1,0)
+ ;;^UTILITY(U,$J,358.3,25298,1,3,0)
+ ;;=3^MH Svc for Perpetrator of Nonparental Child Abuse
+ ;;^UTILITY(U,$J,358.3,25298,1,4,0)
+ ;;=4^Z69.021
+ ;;^UTILITY(U,$J,358.3,25298,2)
+ ;;=^5063231
+ ;;^UTILITY(U,$J,358.3,25299,0)
+ ;;=Z69.011^^92^1147^22
+ ;;^UTILITY(U,$J,358.3,25299,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,24935,1,3,0)
- ;;=3^Personal Hx of Malig Neop of Rectum,Rectosig Junct & Anus
- ;;^UTILITY(U,$J,358.3,24935,1,4,0)
- ;;=4^Z85.048
- ;;^UTILITY(U,$J,358.3,24935,2)
- ;;=^5063401
- ;;^UTILITY(U,$J,358.3,24936,0)
- ;;=Z85.118^^107^1212^80
- ;;^UTILITY(U,$J,358.3,24936,1,0)
+ ;;^UTILITY(U,$J,358.3,25299,1,3,0)
+ ;;=3^MH Svc for Perpetrator of Parental Child Abuse
+ ;;^UTILITY(U,$J,358.3,25299,1,4,0)
+ ;;=4^Z69.011
+ ;;^UTILITY(U,$J,358.3,25299,2)
+ ;;=^5063229
+ ;;^UTILITY(U,$J,358.3,25300,0)
+ ;;=Z69.12^^92^1147^19
+ ;;^UTILITY(U,$J,358.3,25300,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,24936,1,3,0)
- ;;=3^Personal Hx of Malig Neop of Bronchus & Lung
- ;;^UTILITY(U,$J,358.3,24936,1,4,0)
- ;;=4^Z85.118
- ;;^UTILITY(U,$J,358.3,24936,2)
- ;;=^5063408
- ;;^UTILITY(U,$J,358.3,24937,0)
- ;;=Z85.21^^107^1212^85
- ;;^UTILITY(U,$J,358.3,24937,1,0)
+ ;;^UTILITY(U,$J,358.3,25300,1,3,0)
+ ;;=3^MH SVC for Perpetrator of Spousal/Partner Abuse
+ ;;^UTILITY(U,$J,358.3,25300,1,4,0)
+ ;;=4^Z69.12
+ ;;^UTILITY(U,$J,358.3,25300,2)
+ ;;=^5063233
+ ;;^UTILITY(U,$J,358.3,25301,0)
+ ;;=Z62.812^^92^1147^28
+ ;;^UTILITY(U,$J,358.3,25301,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,24937,1,3,0)
- ;;=3^Personal Hx of Malig Neop of Larynx
- ;;^UTILITY(U,$J,358.3,24937,1,4,0)
- ;;=4^Z85.21
- ;;^UTILITY(U,$J,358.3,24937,2)
- ;;=^5063411
- ;;^UTILITY(U,$J,358.3,24938,0)
- ;;=Z85.3^^107^1212^79
- ;;^UTILITY(U,$J,358.3,24938,1,0)
+ ;;^UTILITY(U,$J,358.3,25301,1,3,0)
+ ;;=3^Personal Hx of Childhood Neglect
+ ;;^UTILITY(U,$J,358.3,25301,1,4,0)
+ ;;=4^Z62.812
+ ;;^UTILITY(U,$J,358.3,25301,2)
+ ;;=^5063155
+ ;;^UTILITY(U,$J,358.3,25302,0)
+ ;;=Z62.810^^92^1147^29
+ ;;^UTILITY(U,$J,358.3,25302,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,24938,1,3,0)
- ;;=3^Personal Hx of Malig Neop of Breast
- ;;^UTILITY(U,$J,358.3,24938,1,4,0)
- ;;=4^Z85.3
- ;;^UTILITY(U,$J,358.3,24938,2)
- ;;=^5063416
- ;;^UTILITY(U,$J,358.3,24939,0)
- ;;=Z85.41^^107^1212^81
- ;;^UTILITY(U,$J,358.3,24939,1,0)
+ ;;^UTILITY(U,$J,358.3,25302,1,3,0)
+ ;;=3^Personal Hx of Childhood Physical & Sexual Abuse
+ ;;^UTILITY(U,$J,358.3,25302,1,4,0)
+ ;;=4^Z62.810
+ ;;^UTILITY(U,$J,358.3,25302,2)
+ ;;=^5063153
+ ;;^UTILITY(U,$J,358.3,25303,0)
+ ;;=Z62.811^^92^1147^30
+ ;;^UTILITY(U,$J,358.3,25303,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,24939,1,3,0)
- ;;=3^Personal Hx of Malig Neop of Cervix Uteri
- ;;^UTILITY(U,$J,358.3,24939,1,4,0)
- ;;=4^Z85.41
- ;;^UTILITY(U,$J,358.3,24939,2)
- ;;=^5063418
- ;;^UTILITY(U,$J,358.3,24940,0)
- ;;=Z85.43^^107^1212^89
- ;;^UTILITY(U,$J,358.3,24940,1,0)
+ ;;^UTILITY(U,$J,358.3,25303,1,3,0)
+ ;;=3^Personal Hx of Childhood Psychological Abuse
+ ;;^UTILITY(U,$J,358.3,25303,1,4,0)
+ ;;=4^Z62.811
+ ;;^UTILITY(U,$J,358.3,25303,2)
+ ;;=^5063154
+ ;;^UTILITY(U,$J,358.3,25304,0)
+ ;;=T76.51XA^^92^1147^1
+ ;;^UTILITY(U,$J,358.3,25304,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,24940,1,3,0)
- ;;=3^Personal Hx of Malig Neop of Ovary
- ;;^UTILITY(U,$J,358.3,24940,1,4,0)
- ;;=4^Z85.43
- ;;^UTILITY(U,$J,358.3,24940,2)
- ;;=^5063420
- ;;^UTILITY(U,$J,358.3,24941,0)
- ;;=Z85.46^^107^1212^90
- ;;^UTILITY(U,$J,358.3,24941,1,0)
+ ;;^UTILITY(U,$J,358.3,25304,1,3,0)
+ ;;=3^Adult Forced Sexual Exploitation,Suspected,Init Enctr
+ ;;^UTILITY(U,$J,358.3,25304,1,4,0)
+ ;;=4^T76.51XA
+ ;;^UTILITY(U,$J,358.3,25304,2)
+ ;;=^5157572
+ ;;^UTILITY(U,$J,358.3,25305,0)
+ ;;=T76.51XD^^92^1147^2
+ ;;^UTILITY(U,$J,358.3,25305,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,24941,1,3,0)
- ;;=3^Personal Hx of Malig Neop of Prostate
- ;;^UTILITY(U,$J,358.3,24941,1,4,0)
- ;;=4^Z85.46
- ;;^UTILITY(U,$J,358.3,24941,2)
- ;;=^5063423
- ;;^UTILITY(U,$J,358.3,24942,0)
- ;;=Z85.47^^107^1212^94
- ;;^UTILITY(U,$J,358.3,24942,1,0)
+ ;;^UTILITY(U,$J,358.3,25305,1,3,0)
+ ;;=3^Adult Forced Sexual Exploitation,Suspected,Subs Enctr
+ ;;^UTILITY(U,$J,358.3,25305,1,4,0)
+ ;;=4^T76.51XD
+ ;;^UTILITY(U,$J,358.3,25305,2)
+ ;;=^5157573
+ ;;^UTILITY(U,$J,358.3,25306,0)
+ ;;=Z91.42^^92^1147^31
+ ;;^UTILITY(U,$J,358.3,25306,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,24942,1,3,0)
- ;;=3^Personal Hx of Malig Neop of Testis
- ;;^UTILITY(U,$J,358.3,24942,1,4,0)
- ;;=4^Z85.47
- ;;^UTILITY(U,$J,358.3,24942,2)
- ;;=^5063424
- ;;^UTILITY(U,$J,358.3,24943,0)
- ;;=Z85.51^^107^1212^78
- ;;^UTILITY(U,$J,358.3,24943,1,0)
+ ;;^UTILITY(U,$J,358.3,25306,1,3,0)
+ ;;=3^Personal Hx of Forced Labor/Sexual Exploitation
+ ;;^UTILITY(U,$J,358.3,25306,1,4,0)
+ ;;=4^Z91.42
+ ;;^UTILITY(U,$J,358.3,25306,2)
+ ;;=^5157633
+ ;;^UTILITY(U,$J,358.3,25307,0)
+ ;;=Z62.813^^92^1147^32
+ ;;^UTILITY(U,$J,358.3,25307,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,24943,1,3,0)
- ;;=3^Personal Hx of Malig Neop of Bladder
- ;;^UTILITY(U,$J,358.3,24943,1,4,0)
- ;;=4^Z85.51
- ;;^UTILITY(U,$J,358.3,24943,2)
- ;;=^5063428
- ;;^UTILITY(U,$J,358.3,24944,0)
- ;;=Z85.528^^107^1212^83
- ;;^UTILITY(U,$J,358.3,24944,1,0)
+ ;;^UTILITY(U,$J,358.3,25307,1,3,0)
+ ;;=3^Personal Hx of Forced Labor/Sexual Exploitation in Childhood
+ ;;^UTILITY(U,$J,358.3,25307,1,4,0)
+ ;;=4^Z62.813
+ ;;^UTILITY(U,$J,358.3,25307,2)
+ ;;=^5157627
+ ;;^UTILITY(U,$J,358.3,25308,0)
+ ;;=F06.4^^92^1148^3
+ ;;^UTILITY(U,$J,358.3,25308,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,24944,1,3,0)
- ;;=3^Personal Hx of Malig Neop of Kidney
- ;;^UTILITY(U,$J,358.3,24944,1,4,0)
- ;;=4^Z85.528
- ;;^UTILITY(U,$J,358.3,24944,2)
- ;;=^5063430
- ;;^UTILITY(U,$J,358.3,24945,0)
- ;;=Z85.6^^107^1212^74
- ;;^UTILITY(U,$J,358.3,24945,1,0)
+ ;;^UTILITY(U,$J,358.3,25308,1,3,0)
+ ;;=3^Anxiety Disorder d/t Another Medical Condition
+ ;;^UTILITY(U,$J,358.3,25308,1,4,0)
+ ;;=4^F06.4
+ ;;^UTILITY(U,$J,358.3,25308,2)
+ ;;=^5003061
+ ;;^UTILITY(U,$J,358.3,25309,0)
+ ;;=F41.0^^92^1148^12
+ ;;^UTILITY(U,$J,358.3,25309,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,24945,1,3,0)
- ;;=3^Personal Hx of Leukemia
- ;;^UTILITY(U,$J,358.3,24945,1,4,0)
- ;;=4^Z85.6
- ;;^UTILITY(U,$J,358.3,24945,2)
- ;;=^5063434
- ;;^UTILITY(U,$J,358.3,24946,0)
- ;;=Z85.72^^107^1212^98

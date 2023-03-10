@@ -1,5 +1,5 @@
-GMPLUTL ; SLC/MKB/KER/TC -- PL Utilities ;01/19/16  13:13
- ;;2.0;Problem List;**3,6,8,10,16,26,35,39,36,42,40,50**;Aug 25, 1994;Build 2
+GMPLUTL ; SLC/MKB/KER/TC -- PL Utilities ;03/30/2020
+ ;;2.0;Problem List;**3,6,8,10,16,26,35,39,36,42,40,50,53**;Aug 25, 1994;Build 159
  ;
  ; External References
  ;   DBIA    348  ^DPT(
@@ -92,6 +92,8 @@ CREATE(PL,PLY) ; Creates a new problem
  K PLY S PLY=-1,PLY(0)=""
  S GMPVAMC=+$G(DUZ(2)),GMPVA=$S($G(DUZ("AG"))="V":1,1:0)
  I '$L($G(PL("NARRATIVE"))) S PLY(0)="Missing problem narrative" Q
+ ;ICR #6953
+ I $P($$PROVNARR^PXAPI(PL("NARRATIVE"),""),U,1)=-1 S PLY(0)="Invalid problem narrative" Q
  I '$D(^DPT(+$G(PL("PATIENT")),0)) S PLY(0)="Invalid patient" Q
  I '$D(^VA(200,+$G(PL("PROVIDER")),0)) S PLY(0)="Invalid provider" Q
  S GMPDFN=+PL("PATIENT"),(GMPSC,GMPAGTOR,GMPION,GMPGULF,GMPHNC,GMPMST,GMPCV,GMPSHD)=0
@@ -203,6 +205,7 @@ UPDATE(PL,PLY) ; Update a Problem/Create if Not Found
  Q:$D(GMPQUIT)
  I +GMPFLD(1.07),GMPFLD(1.07)<GMPFLD(.13) S PLY(0)="Date Resolved cannot be prior to Date of Onset" Q
  I +GMPFLD(1.09),GMPFLD(1.09)<GMPFLD(.13) S PLY(0)="Date Recorded cannot be prior to Date of Onset" Q
+ I $P($G(PL("NARRATIVE")),U,1)=-1 S PLY(0)="Invalid Provider Narrative" Q
  S:$L($G(PL("NARRATIVE"))) GMPFLD(.05)=U_PL("NARRATIVE"),DIFFRENT=1
  S:$L($G(PL("COMMENT"))) GMPFLD(10,"NEW",1)=$E(PL("COMMENT"),1,60),DIFFRENT=1
  D:$D(DIFFRENT) EN^GMPLSAVE S PLY=GMPIFN,PLY(0)=""

@@ -1,7 +1,10 @@
 SDHL7CON ;MS/TG/MS/PB - TMP HL7 Routine;JULY 05, 2018
- ;;5.3;Scheduling;**704**;May 29, 2018;Build 64
+ ;;5.3;Scheduling;**704,773,812**;May 29, 2018;Build 17
  ;
  ;  Integration Agreements:
+ ;
+ ;SD*5.3*773 - Removed unused function TMCONV
+ ;SD*5.3*812 - Removed code that sent AA for "No consults found" and then quit the process
  Q
  ;
 PARSEQ13 ;Process QBP^Q13 messages from the "TMP VISTA" Subscriber protocol
@@ -10,7 +13,7 @@ PARSEQ13 ;Process QBP^Q13 messages from the "TMP VISTA" Subscriber protocol
  ; variables are properly initialized and will produce a fatal error
  ; if they are missing.
  ;
- ;  The message will be checked to see if it is a valid query.
+ ; The message will be checked to see if it is a valid query.
  ; If not a negative acknowledgement will be sent.  If the query is an
  ; immediate mode or synchronous query, the realtime request manager
  ; is called to handle the query.  This means the query will be
@@ -19,11 +22,11 @@ PARSEQ13 ;Process QBP^Q13 messages from the "TMP VISTA" Subscriber protocol
  ; later processing, or transmission.
  ;
  ;  Input:
- ;          HL7 environment variables
+ ;  HL7 environment variables
  ;
  ; Output:
- ;          Processed query or negative acknowledgement
- ;          If handled real-time the query response is generated
+ ;  Processed query or negative acknowledgement
+ ;  If handled real-time the query response is generated
  ;
  ;  Integration Agreements
  ;
@@ -38,7 +41,7 @@ PARSEQ13 ;Process QBP^Q13 messages from the "TMP VISTA" Subscriber protocol
  N EIN
  S EIN=$$FIND1^DIC(101,,,"TMP QBP-Q13 Event Driver")
  ;
- D LOADXMT(.HL,.XMT)         ;Load inbound message information
+ D LOADXMT(.HL,.XMT) ;Load inbound message information
  S RNAME=XMT("MESSAGE TYPE")_"-"_XMT("EVENT TYPE")_" RECEIVER"
  ;
  N CNT,SEG
@@ -80,12 +83,6 @@ PARSEQ13 ;Process QBP^Q13 messages from the "TMP VISTA" Subscriber protocol
  D LIST(.LST,QRYDFN)
  D RTCLIST(.RTCLST,QRYDFN)
  ;
- I '$D(^TMP("ORQQCN",$J,"CS")) D  Q
- . S ERR="RDT^1^^100^AA^No consults found"
- . D SENDERR(ERR)
- . K @DATAROOT,@MSGROOT
- . Q
- ;
  S HIT=0,EXTIME=""
  ;
  ;****BUILD THE RESPONSE MSG
@@ -107,18 +104,13 @@ PARSEQ13 ;Process QBP^Q13 messages from the "TMP VISTA" Subscriber protocol
  . D RTCRDT^SDTMBUS(MSGROOT,RTCLST,.CNT,.LEN,.HL)
  . Q
  ;
- I 'FOUNDCN D  Q
- . S ERR="RDT^1^^100^AA^No consults found"
- . D SENDERR(ERR)
- . K @DATAROOT,@MSGROOT
- . Q
  F IX=1:1:CNT S HLA("HLS",IX)=$G(@MSGROOT@(IX))
  ;
  M HLA("HLA")=HLA("HLS")
  ;
  D GENACK^HLMA1(HL("EID"),HLMTIENS,HL("EIDS"),"LM",1,.MYRESULT)
  ;
- D RESET^SDHL7UL         ;Clean up TMP used by logging
+ D RESET^SDHL7UL ;Clean up TMP used by logging
  K @DATAROOT,@MSGROOT
  ;
  Q
@@ -166,9 +158,9 @@ VALIDMSG(MSGROOT,QRY,XMT,ERR)   ;Validate message
  ;
  I '$D(QPD) S ERR="QPD^1^^100^AE^Missing QPD segment" Q 0
  ;
- S QTAG=$G(QPD(1,1,2))               ;Query Tag
- S REQID=$G(QPD(2))                  ;Request ID
- S REQTYPE=$G(QPD(3,1,1))            ;Request Type
+ S QTAG=$G(QPD(1,1,2))       ;Query Tag
+ S REQID=$G(QPD(2))  ;Request ID
+ S REQTYPE=$G(QPD(3,1,1))    ;Request Type
  S:REQTYPE="" REQTYPE=$G(QPD(3))     ;Request Type if no other params 
  ;
  ; Validate required fields and query parameters
@@ -196,19 +188,19 @@ LOADXMT(HL,XMT) ;Set HL dependent XMT values
  ; is not defined on synchronous calls.
  ;
  ;  Integration Agreements:
- ;         1373 : Reference to PROTOCOL file #101
+ ; 1373 : Reference to PROTOCOL file #101
  ;
  N SUBPROT,RESPIEN,RESP0
  S HL("EID")=$$FIND1^DIC(101,,,"TMP QBP-Q13 Event Driver")
  S HL("EIDS")=$$FIND1^DIC(101,,,"TMP QBP-Q13 Subscriber")
- S XMT("MID")=HL("MID")                   ;Message ID
- S XMT("MODE")="A"                        ;Response mode
+ S XMT("MID")=HL("MID")   ;Message ID
+ S XMT("MODE")="A"        ;Response mode
  I $G(HL("APAT"))="" S XMT("MODE")="S"    ;Synchronous mode
- S XMT("MESSAGE TYPE")=HL("MTN")          ;Message type
- S XMT("EVENT TYPE")=HL("ETN")            ;Event type
+ S XMT("MESSAGE TYPE")=HL("MTN")  ;Message type
+ S XMT("EVENT TYPE")=HL("ETN")    ;Event type
  S XMT("DELIM")=HL("FS")_HL("ECH")        ;HL Delimiters
  ;S XMT("DELIM")="~^\&"
- S XMT("MAX SIZE")=0                      ;Default size unlimited
+ S XMT("MAX SIZE")=0      ;Default size unlimited
  ;
  ; Map response protocol and builder
  S SUBPROT=$P(^ORD(101,HL("EIDS"),0),"^")
@@ -254,13 +246,6 @@ RTCLIST(SDY,SDPT,SDSDT,SDEDT) ; return patient's "Return to Clinic" appointment 
  . S CNT=CNT+1,@SDY@(CNT)=IEN_U_REQDT_U_CLINID_U_CID_U_PRVID_U_CMTS_U_$G(MRTC)_U_$G(RTCINT)_U_$G(RTCPAR)
  S @SDY=CNT
  Q
-TMCONV(X) ;
- ;convert time to Zulu timezone
- N TZONE,DIFF,UTC,UTC1,UTC2
- S TZONE=$$GET1^DIQ(4.3,"1,",1,"I"),DIFF=$$GET1^DIQ(4.4,$G(TZONE)_",",2,"E")*(-1)
- S UTC=$$FMADD^XLFDT(X,,$G(DIFF),,),UTC2=$$FMTHL7^XLFDT(UTC)
- S UTC1=$E(UTC2,1,4)_"-"_$E(UTC2,5,6)_"-"_$E(UTC2,7,8)_"T"_$E(UTC2,9,10)_":"_$E(UTC2,11,12)_":00.000Z"
- Q UTC1
 PARSESEG(SEG,DATA,HL) ;Generic segment parser
  ;This procedure parses a single HL7 segment and builds an array
  ;subscripted by the field number containing the data for that field.
@@ -272,7 +257,7 @@ PARSESEG(SEG,DATA,HL) ;Generic segment parser
  ;
  ;  Output:
  ;    Function value - field data array [SUB1:field, SUB2:repetition,
- ;                                SUB3:component, SUB4:sub-component]
+ ;        SUB3:component, SUB4:sub-component]
  ;
  N CMP     ;component subscript
  N CMPVAL  ;component value

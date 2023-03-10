@@ -1,5 +1,5 @@
-PSOATRF1 ;BIR/MHA - Automate Internet Refill Cont ;07/24/07
- ;;7.0;OUTPATIENT PHARMACY;**264**;DEC 1997;Build 19
+PSOATRF1 ;BIR/MHA - Automate Internet Refill Cont ;Jan 20, 2022@06:59:24
+ ;;7.0;OUTPATIENT PHARMACY;**264,441**;DEC 1997;Build 208
  ;Reference ^PSDRUG supported by DBIA 221
  ;
 SMAIL ;
@@ -11,9 +11,9 @@ SMAIL ;
 BMAIL ;
  K ^TMP(ZZ,$J)
  S XMSUB=DIVN_" Internet Refills Not Processed List, ",XMDUZ=.5,XMDUN="Pharmacy Manager"
- S LC=1,^TMP(ZZ,$J,LC)="Internet Refills Not Processed Report for the "_DIVN_" Division.",LC=LC+1
+ S LC=1,^TMP(ZZ,$J,LC)="Internet Refills/Fills Not Processed Report for the "_DIVN_" Division.",LC=LC+1
  S ^TMP(ZZ,$J,LC)="",LC=LC+1
- S ^TMP(ZZ,$J,LC)="The following refill requests were not processed:  ",LC=LC+1
+ S ^TMP(ZZ,$J,LC)="The following refill/fill requests were not processed:  ",LC=LC+1
  S ^TMP(ZZ,$J,LC)="",LC=LC+1
  S DFN="" F  S DFN=$O(^XTMP(ZZ,$J,DV,DFN)) Q:DFN=""  D
  .D PID^VADPT

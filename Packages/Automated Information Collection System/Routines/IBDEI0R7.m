@@ -1,130 +1,118 @@
-IBDEI0R7 ; ; 04-FEB-2020
- ;;3.0;IB ENCOUNTER FORM IMP/EXP;;FEB 04, 2020
+IBDEI0R7 ; ; 01-FEB-2022
+ ;;3.0;IB ENCOUNTER FORM IMP/EXP;;FEB 01, 2022
  Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,999) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
- ;;^UTILITY(U,$J,358.3,12144,1,3,0)
- ;;=3^Gastrostomy Infection
- ;;^UTILITY(U,$J,358.3,12144,1,4,0)
- ;;=4^K94.22
- ;;^UTILITY(U,$J,358.3,12144,2)
- ;;=^5008930
- ;;^UTILITY(U,$J,358.3,12145,0)
- ;;=K94.23^^80^770^42
- ;;^UTILITY(U,$J,358.3,12145,1,0)
+ ;;^UTILITY(U,$J,358.3,12251,0)
+ ;;=L97.425^^49^596^62
+ ;;^UTILITY(U,$J,358.3,12251,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,12145,1,3,0)
- ;;=3^Gastrostomy Malfunction
- ;;^UTILITY(U,$J,358.3,12145,1,4,0)
- ;;=4^K94.23
- ;;^UTILITY(U,$J,358.3,12145,2)
- ;;=^5008931
- ;;^UTILITY(U,$J,358.3,12146,0)
- ;;=K94.29^^80^770^39
- ;;^UTILITY(U,$J,358.3,12146,1,0)
+ ;;^UTILITY(U,$J,358.3,12251,1,3,0)
+ ;;=3^Non-Pressure Chr Ulcer Lt Heel & Midft w/ Msl Invl w/o Necrosis
+ ;;^UTILITY(U,$J,358.3,12251,1,4,0)
+ ;;=4^L97.425
+ ;;^UTILITY(U,$J,358.3,12251,2)
+ ;;=^5151463
+ ;;^UTILITY(U,$J,358.3,12252,0)
+ ;;=L97.426^^49^596^63
+ ;;^UTILITY(U,$J,358.3,12252,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,12146,1,3,0)
- ;;=3^Gastrostomy Complications NEC
- ;;^UTILITY(U,$J,358.3,12146,1,4,0)
- ;;=4^K94.29
- ;;^UTILITY(U,$J,358.3,12146,2)
- ;;=^5008932
- ;;^UTILITY(U,$J,358.3,12147,0)
- ;;=R16.0^^80^770^43
- ;;^UTILITY(U,$J,358.3,12147,1,0)
+ ;;^UTILITY(U,$J,358.3,12252,1,3,0)
+ ;;=3^Non-Pressure Chr Ulcer Lt Heel & Midft w/ Bone Invl w/o Necrosis
+ ;;^UTILITY(U,$J,358.3,12252,1,4,0)
+ ;;=4^L97.426
+ ;;^UTILITY(U,$J,358.3,12252,2)
+ ;;=^5151464
+ ;;^UTILITY(U,$J,358.3,12253,0)
+ ;;=L97.428^^49^596^64
+ ;;^UTILITY(U,$J,358.3,12253,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,12147,1,3,0)
- ;;=3^Hepatomegaly NEC
- ;;^UTILITY(U,$J,358.3,12147,1,4,0)
- ;;=4^R16.0
- ;;^UTILITY(U,$J,358.3,12147,2)
- ;;=^5019248
- ;;^UTILITY(U,$J,358.3,12148,0)
- ;;=R16.2^^80^770^44
- ;;^UTILITY(U,$J,358.3,12148,1,0)
+ ;;^UTILITY(U,$J,358.3,12253,1,3,0)
+ ;;=3^Non-Pressure Chr Ulcer Lt Heel & Midft w/ Oth Servity
+ ;;^UTILITY(U,$J,358.3,12253,1,4,0)
+ ;;=4^L97.428
+ ;;^UTILITY(U,$J,358.3,12253,2)
+ ;;=^5151465
+ ;;^UTILITY(U,$J,358.3,12254,0)
+ ;;=L97.921^^49^596^66
+ ;;^UTILITY(U,$J,358.3,12254,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,12148,1,3,0)
- ;;=3^Hepatomegaly w/ Splenomegaly NEC
- ;;^UTILITY(U,$J,358.3,12148,1,4,0)
- ;;=4^R16.2
- ;;^UTILITY(U,$J,358.3,12148,2)
- ;;=^5019250
- ;;^UTILITY(U,$J,358.3,12149,0)
- ;;=R19.5^^80^770^36
- ;;^UTILITY(U,$J,358.3,12149,1,0)
+ ;;^UTILITY(U,$J,358.3,12254,1,3,0)
+ ;;=3^Non-Pressure Chr Ulcer Lt LL Limited to Brkdwn Skin
+ ;;^UTILITY(U,$J,358.3,12254,1,4,0)
+ ;;=4^L97.921
+ ;;^UTILITY(U,$J,358.3,12254,2)
+ ;;=^5133680
+ ;;^UTILITY(U,$J,358.3,12255,0)
+ ;;=L97.922^^49^596^68
+ ;;^UTILITY(U,$J,358.3,12255,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,12149,1,3,0)
- ;;=3^Fecal Abnormalities
- ;;^UTILITY(U,$J,358.3,12149,1,4,0)
- ;;=4^R19.5
- ;;^UTILITY(U,$J,358.3,12149,2)
- ;;=^5019274
- ;;^UTILITY(U,$J,358.3,12150,0)
- ;;=R19.7^^80^770^29
- ;;^UTILITY(U,$J,358.3,12150,1,0)
+ ;;^UTILITY(U,$J,358.3,12255,1,3,0)
+ ;;=3^Non-Pressure Chr Ulcer Lt LL w/ Fat Layer Exposed
+ ;;^UTILITY(U,$J,358.3,12255,1,4,0)
+ ;;=4^L97.922
+ ;;^UTILITY(U,$J,358.3,12255,2)
+ ;;=^5133682
+ ;;^UTILITY(U,$J,358.3,12256,0)
+ ;;=L97.923^^49^596^70
+ ;;^UTILITY(U,$J,358.3,12256,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,12150,1,3,0)
- ;;=3^Diarrhea,Unspec
- ;;^UTILITY(U,$J,358.3,12150,1,4,0)
- ;;=4^R19.7
- ;;^UTILITY(U,$J,358.3,12150,2)
- ;;=^5019276
- ;;^UTILITY(U,$J,358.3,12151,0)
- ;;=K43.2^^80^770^46
- ;;^UTILITY(U,$J,358.3,12151,1,0)
+ ;;^UTILITY(U,$J,358.3,12256,1,3,0)
+ ;;=3^Non-Pressure Chr Ulcer Lt LL w/ Necrosis of Msl
+ ;;^UTILITY(U,$J,358.3,12256,1,4,0)
+ ;;=4^L97.923
+ ;;^UTILITY(U,$J,358.3,12256,2)
+ ;;=^5133684
+ ;;^UTILITY(U,$J,358.3,12257,0)
+ ;;=L97.924^^49^596^71
+ ;;^UTILITY(U,$J,358.3,12257,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,12151,1,3,0)
- ;;=3^Incisional Hernia w/o Obstruction/Gangrene
- ;;^UTILITY(U,$J,358.3,12151,1,4,0)
- ;;=4^K43.2
- ;;^UTILITY(U,$J,358.3,12151,2)
- ;;=^5008609
- ;;^UTILITY(U,$J,358.3,12152,0)
- ;;=B25.2^^80^770^27
- ;;^UTILITY(U,$J,358.3,12152,1,0)
+ ;;^UTILITY(U,$J,358.3,12257,1,3,0)
+ ;;=3^Non-Pressure Chr Ulcer Lt LL w/ Necrosis of Bone
+ ;;^UTILITY(U,$J,358.3,12257,1,4,0)
+ ;;=4^L97.924
+ ;;^UTILITY(U,$J,358.3,12257,2)
+ ;;=^5133686
+ ;;^UTILITY(U,$J,358.3,12258,0)
+ ;;=L97.925^^49^596^69
+ ;;^UTILITY(U,$J,358.3,12258,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,12152,1,3,0)
- ;;=3^Cytomegaloviral Pancreatitis
- ;;^UTILITY(U,$J,358.3,12152,1,4,0)
- ;;=4^B25.2
- ;;^UTILITY(U,$J,358.3,12152,2)
- ;;=^5000558
- ;;^UTILITY(U,$J,358.3,12153,0)
- ;;=C21.0^^80^770^51
- ;;^UTILITY(U,$J,358.3,12153,1,0)
+ ;;^UTILITY(U,$J,358.3,12258,1,3,0)
+ ;;=3^Non-Pressure Chr Ulcer Lt LL w/ Msl Invl w/o Necrosis
+ ;;^UTILITY(U,$J,358.3,12258,1,4,0)
+ ;;=4^L97.925
+ ;;^UTILITY(U,$J,358.3,12258,2)
+ ;;=^5151490
+ ;;^UTILITY(U,$J,358.3,12259,0)
+ ;;=L97.926^^49^596^67
+ ;;^UTILITY(U,$J,358.3,12259,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,12153,1,3,0)
- ;;=3^Malig Neop of Anus,Unspec
- ;;^UTILITY(U,$J,358.3,12153,1,4,0)
- ;;=4^C21.0
- ;;^UTILITY(U,$J,358.3,12153,2)
- ;;=^5000930
- ;;^UTILITY(U,$J,358.3,12154,0)
- ;;=C15.8^^80^770^70
- ;;^UTILITY(U,$J,358.3,12154,1,0)
+ ;;^UTILITY(U,$J,358.3,12259,1,3,0)
+ ;;=3^Non-Pressure Chr Ulcer Lt LL w/ Bone Invl w/o Necrosis
+ ;;^UTILITY(U,$J,358.3,12259,1,4,0)
+ ;;=4^L97.926
+ ;;^UTILITY(U,$J,358.3,12259,2)
+ ;;=^5151491
+ ;;^UTILITY(U,$J,358.3,12260,0)
+ ;;=L97.928^^49^596^72
+ ;;^UTILITY(U,$J,358.3,12260,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,12154,1,3,0)
- ;;=3^Malig Neop of Overlapping Sites of Esophagus
- ;;^UTILITY(U,$J,358.3,12154,1,4,0)
- ;;=4^C15.8
- ;;^UTILITY(U,$J,358.3,12154,2)
- ;;=^5000918
- ;;^UTILITY(U,$J,358.3,12155,0)
- ;;=C78.4^^80^770^94
- ;;^UTILITY(U,$J,358.3,12155,1,0)
+ ;;^UTILITY(U,$J,358.3,12260,1,3,0)
+ ;;=3^Non-Pressure Chr Ulcer Lt LL w/ Oth Severity
+ ;;^UTILITY(U,$J,358.3,12260,1,4,0)
+ ;;=4^L97.928
+ ;;^UTILITY(U,$J,358.3,12260,2)
+ ;;=^5151492
+ ;;^UTILITY(U,$J,358.3,12261,0)
+ ;;=L97.121^^49^596^74
+ ;;^UTILITY(U,$J,358.3,12261,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,12155,1,3,0)
- ;;=3^Secondary Malig Neop of Small Intestine
- ;;^UTILITY(U,$J,358.3,12155,1,4,0)
- ;;=4^C78.4
- ;;^UTILITY(U,$J,358.3,12155,2)
- ;;=^5001338
- ;;^UTILITY(U,$J,358.3,12156,0)
- ;;=K85.80^^80^770^1
- ;;^UTILITY(U,$J,358.3,12156,1,0)
+ ;;^UTILITY(U,$J,358.3,12261,1,3,0)
+ ;;=3^Non-Pressure Chr Ulcer Lt Thigh Limited to Brkdwn Skin
+ ;;^UTILITY(U,$J,358.3,12261,1,4,0)
+ ;;=4^L97.121
+ ;;^UTILITY(U,$J,358.3,12261,2)
+ ;;=^5009490
+ ;;^UTILITY(U,$J,358.3,12262,0)
+ ;;=L97.122^^49^596^76
+ ;;^UTILITY(U,$J,358.3,12262,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,12156,1,3,0)
- ;;=3^Acute Pancreatitis NEC
- ;;^UTILITY(U,$J,358.3,12156,1,4,0)
- ;;=4^K85.80
- ;;^UTILITY(U,$J,358.3,12156,2)
- ;;=^5138758

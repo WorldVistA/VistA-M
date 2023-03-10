@@ -1,124 +1,124 @@
-IBDEI1CC ; ; 04-FEB-2020
- ;;3.0;IB ENCOUNTER FORM IMP/EXP;;FEB 04, 2020
+IBDEI1CC ; ; 01-FEB-2022
+ ;;3.0;IB ENCOUNTER FORM IMP/EXP;;FEB 01, 2022
  Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,999) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
- ;;^UTILITY(U,$J,358.3,21416,2)
- ;;=^5063567
- ;;^UTILITY(U,$J,358.3,21417,0)
- ;;=Z89.611^^95^1068^12
- ;;^UTILITY(U,$J,358.3,21417,1,0)
+ ;;^UTILITY(U,$J,358.3,21672,0)
+ ;;=M06.211^^70^922^123
+ ;;^UTILITY(U,$J,358.3,21672,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,21417,1,3,0)
- ;;=3^Acquired Absence of Right Leg Above Knee
- ;;^UTILITY(U,$J,358.3,21417,1,4,0)
- ;;=4^Z89.611
- ;;^UTILITY(U,$J,358.3,21417,2)
- ;;=^5063572
- ;;^UTILITY(U,$J,358.3,21418,0)
- ;;=Z89.612^^95^1068^5
- ;;^UTILITY(U,$J,358.3,21418,1,0)
+ ;;^UTILITY(U,$J,358.3,21672,1,3,0)
+ ;;=3^Rheumatoid Bursitis Right Shoulder
+ ;;^UTILITY(U,$J,358.3,21672,1,4,0)
+ ;;=4^M06.211
+ ;;^UTILITY(U,$J,358.3,21672,2)
+ ;;=^5010073
+ ;;^UTILITY(U,$J,358.3,21673,0)
+ ;;=M06.231^^70^922^124
+ ;;^UTILITY(U,$J,358.3,21673,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,21418,1,3,0)
- ;;=3^Acquired Absence of Left Leg Above Knee
- ;;^UTILITY(U,$J,358.3,21418,1,4,0)
- ;;=4^Z89.612
- ;;^UTILITY(U,$J,358.3,21418,2)
- ;;=^5063573
- ;;^UTILITY(U,$J,358.3,21419,0)
- ;;=Z89.621^^95^1068^11
- ;;^UTILITY(U,$J,358.3,21419,1,0)
+ ;;^UTILITY(U,$J,358.3,21673,1,3,0)
+ ;;=3^Rheumatoid Bursitis Right Wrist
+ ;;^UTILITY(U,$J,358.3,21673,1,4,0)
+ ;;=4^M06.231
+ ;;^UTILITY(U,$J,358.3,21673,2)
+ ;;=^5010079
+ ;;^UTILITY(U,$J,358.3,21674,0)
+ ;;=M06.28^^70^922^125
+ ;;^UTILITY(U,$J,358.3,21674,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,21419,1,3,0)
- ;;=3^Acquired Absence of Right Hip Joint
- ;;^UTILITY(U,$J,358.3,21419,1,4,0)
- ;;=4^Z89.621
- ;;^UTILITY(U,$J,358.3,21419,2)
- ;;=^5063575
- ;;^UTILITY(U,$J,358.3,21420,0)
- ;;=Z89.622^^95^1068^4
- ;;^UTILITY(U,$J,358.3,21420,1,0)
+ ;;^UTILITY(U,$J,358.3,21674,1,3,0)
+ ;;=3^Rheumatoid Bursitis Vertebrae
+ ;;^UTILITY(U,$J,358.3,21674,1,4,0)
+ ;;=4^M06.28
+ ;;^UTILITY(U,$J,358.3,21674,2)
+ ;;=^5010094
+ ;;^UTILITY(U,$J,358.3,21675,0)
+ ;;=M05.472^^70^922^61
+ ;;^UTILITY(U,$J,358.3,21675,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,21420,1,3,0)
- ;;=3^Acquired Absence of Left Hip Joint
- ;;^UTILITY(U,$J,358.3,21420,1,4,0)
- ;;=4^Z89.622
- ;;^UTILITY(U,$J,358.3,21420,2)
- ;;=^5063576
- ;;^UTILITY(U,$J,358.3,21421,0)
- ;;=Z99.11^^95^1069^2
- ;;^UTILITY(U,$J,358.3,21421,1,0)
+ ;;^UTILITY(U,$J,358.3,21675,1,3,0)
+ ;;=3^Rheum Myopathy w/ Rheum Arth Left Ankle/Foot
+ ;;^UTILITY(U,$J,358.3,21675,1,4,0)
+ ;;=4^M05.472
+ ;;^UTILITY(U,$J,358.3,21675,2)
+ ;;=^5009951
+ ;;^UTILITY(U,$J,358.3,21676,0)
+ ;;=M05.422^^70^922^62
+ ;;^UTILITY(U,$J,358.3,21676,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,21421,1,3,0)
- ;;=3^Dependence on Respirator/Ventilator Status
- ;;^UTILITY(U,$J,358.3,21421,1,4,0)
- ;;=4^Z99.11
- ;;^UTILITY(U,$J,358.3,21421,2)
- ;;=^5063756
- ;;^UTILITY(U,$J,358.3,21422,0)
- ;;=Z99.3^^95^1069^3
- ;;^UTILITY(U,$J,358.3,21422,1,0)
+ ;;^UTILITY(U,$J,358.3,21676,1,3,0)
+ ;;=3^Rheum Myopathy w/ Rheum Arth Left Elbow
+ ;;^UTILITY(U,$J,358.3,21676,1,4,0)
+ ;;=4^M05.422
+ ;;^UTILITY(U,$J,358.3,21676,2)
+ ;;=^5009936
+ ;;^UTILITY(U,$J,358.3,21677,0)
+ ;;=M05.442^^70^922^63
+ ;;^UTILITY(U,$J,358.3,21677,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,21422,1,3,0)
- ;;=3^Dependence on Wheelchair
- ;;^UTILITY(U,$J,358.3,21422,1,4,0)
- ;;=4^Z99.3
- ;;^UTILITY(U,$J,358.3,21422,2)
- ;;=^5063759
- ;;^UTILITY(U,$J,358.3,21423,0)
- ;;=Z99.89^^95^1069^1
- ;;^UTILITY(U,$J,358.3,21423,1,0)
+ ;;^UTILITY(U,$J,358.3,21677,1,3,0)
+ ;;=3^Rheum Myopathy w/ Rheum Arth Left Hand
+ ;;^UTILITY(U,$J,358.3,21677,1,4,0)
+ ;;=4^M05.442
+ ;;^UTILITY(U,$J,358.3,21677,2)
+ ;;=^5009942
+ ;;^UTILITY(U,$J,358.3,21678,0)
+ ;;=M05.452^^70^922^64
+ ;;^UTILITY(U,$J,358.3,21678,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,21423,1,3,0)
- ;;=3^Dependence on Enabling Machines/Devices NOS
- ;;^UTILITY(U,$J,358.3,21423,1,4,0)
- ;;=4^Z99.89
- ;;^UTILITY(U,$J,358.3,21423,2)
- ;;=^5063761
- ;;^UTILITY(U,$J,358.3,21424,0)
- ;;=F81.9^^95^1070^2
- ;;^UTILITY(U,$J,358.3,21424,1,0)
+ ;;^UTILITY(U,$J,358.3,21678,1,3,0)
+ ;;=3^Rheum Myopathy w/ Rheum Arth Left Hip
+ ;;^UTILITY(U,$J,358.3,21678,1,4,0)
+ ;;=4^M05.452
+ ;;^UTILITY(U,$J,358.3,21678,2)
+ ;;=^5009945
+ ;;^UTILITY(U,$J,358.3,21679,0)
+ ;;=M05.462^^70^922^65
+ ;;^UTILITY(U,$J,358.3,21679,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,21424,1,3,0)
- ;;=3^Developmental Disorder of Scholastic Skills,Unspec
- ;;^UTILITY(U,$J,358.3,21424,1,4,0)
- ;;=4^F81.9
- ;;^UTILITY(U,$J,358.3,21424,2)
- ;;=^5003682
- ;;^UTILITY(U,$J,358.3,21425,0)
- ;;=Z86.59^^95^1070^4
- ;;^UTILITY(U,$J,358.3,21425,1,0)
+ ;;^UTILITY(U,$J,358.3,21679,1,3,0)
+ ;;=3^Rheum Myopathy w/ Rheum Arth Left Knee
+ ;;^UTILITY(U,$J,358.3,21679,1,4,0)
+ ;;=4^M05.462
+ ;;^UTILITY(U,$J,358.3,21679,2)
+ ;;=^5009948
+ ;;^UTILITY(U,$J,358.3,21680,0)
+ ;;=M05.412^^70^922^66
+ ;;^UTILITY(U,$J,358.3,21680,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,21425,1,3,0)
- ;;=3^Personal Hx of Mental/Behavioral Disorders
- ;;^UTILITY(U,$J,358.3,21425,1,4,0)
- ;;=4^Z86.59
- ;;^UTILITY(U,$J,358.3,21425,2)
- ;;=^5063471
- ;;^UTILITY(U,$J,358.3,21426,0)
- ;;=F48.9^^95^1070^3
- ;;^UTILITY(U,$J,358.3,21426,1,0)
+ ;;^UTILITY(U,$J,358.3,21680,1,3,0)
+ ;;=3^Rheum Myopathy w/ Rheum Arth Left Shoulder
+ ;;^UTILITY(U,$J,358.3,21680,1,4,0)
+ ;;=4^M05.412
+ ;;^UTILITY(U,$J,358.3,21680,2)
+ ;;=^5009933
+ ;;^UTILITY(U,$J,358.3,21681,0)
+ ;;=M05.432^^70^922^67
+ ;;^UTILITY(U,$J,358.3,21681,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,21426,1,3,0)
- ;;=3^Nonpsychotic Mental Disorder,Unspec
- ;;^UTILITY(U,$J,358.3,21426,1,4,0)
- ;;=4^F48.9
- ;;^UTILITY(U,$J,358.3,21426,2)
- ;;=^5003596
- ;;^UTILITY(U,$J,358.3,21427,0)
- ;;=Z91.83^^95^1070^5
- ;;^UTILITY(U,$J,358.3,21427,1,0)
+ ;;^UTILITY(U,$J,358.3,21681,1,3,0)
+ ;;=3^Rheum Myopathy w/ Rheum Arth Left Wrist
+ ;;^UTILITY(U,$J,358.3,21681,1,4,0)
+ ;;=4^M05.432
+ ;;^UTILITY(U,$J,358.3,21681,2)
+ ;;=^5009939
+ ;;^UTILITY(U,$J,358.3,21682,0)
+ ;;=M05.49^^70^922^68
+ ;;^UTILITY(U,$J,358.3,21682,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,21427,1,3,0)
- ;;=3^Wandering in Diseases Classified Elsewhere
- ;;^UTILITY(U,$J,358.3,21427,1,4,0)
- ;;=4^Z91.83
- ;;^UTILITY(U,$J,358.3,21427,2)
- ;;=^5063627
- ;;^UTILITY(U,$J,358.3,21428,0)
- ;;=F69.^^95^1070^1
- ;;^UTILITY(U,$J,358.3,21428,1,0)
+ ;;^UTILITY(U,$J,358.3,21682,1,3,0)
+ ;;=3^Rheum Myopathy w/ Rheum Arth Mult Sites
+ ;;^UTILITY(U,$J,358.3,21682,1,4,0)
+ ;;=4^M05.49
+ ;;^UTILITY(U,$J,358.3,21682,2)
+ ;;=^5009953
+ ;;^UTILITY(U,$J,358.3,21683,0)
+ ;;=M05.471^^70^922^69
+ ;;^UTILITY(U,$J,358.3,21683,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,21428,1,3,0)
- ;;=3^Adult Personality/Behavior Disorder,Unspec
- ;;^UTILITY(U,$J,358.3,21428,1,4,0)
- ;;=4^F69.
+ ;;^UTILITY(U,$J,358.3,21683,1,3,0)
+ ;;=3^Rheum Myopathy w/ Rheum Arth Right Ankle/Foot
+ ;;^UTILITY(U,$J,358.3,21683,1,4,0)
+ ;;=4^M05.471
+ ;;^UTILITY(U,$J,358.3,21683,2)
+ ;;=^5009950

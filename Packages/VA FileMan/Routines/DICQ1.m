@@ -1,5 +1,5 @@
 DICQ1 ;SFISC/GFT,TKW - HELP FOR LOOKUPS ;01MAR2016
- ;;22.2;VA FileMan;**2**;Jan 05, 2016;Build 139
+ ;;22.2;VA FileMan;**2,20**;Jan 05, 2016;Build 2
  ;;Per VA Directive 6402, this routine should not be modified.
  ;;Submitted to OSEHRA 5 January 2015 by the VISTA Expertise Network.
  ;;Based on Medsphere Systems Corporation's MSC FileMan 1051.
@@ -92,7 +92,7 @@ W1 F  S DI1X=$O(^DD(DIFILEI,0,"ID",DI1X)) Q:DI1X=""  S %=^(DI1X) D
  K DDC,DIEQ,DIW,DS I DIC(0)'["L" D QQ Q
  I $D(%Y)#2 S:%Y="??" DZ=%Y S:%Y?1P DZ="?"
  S DDH=+$G(DDH) N A1,DIACCESS S DIACCESS=1
- I $S($D(DLAYGO):DIFILEI-DLAYGO\1,1:1),DUZ(0)'="@",'$D(^DD(DIFILEI,0,"UP")) D CHKACC
+ I $S($D(DLAYGO):DIFILEI\1-(DLAYGO\1),1:1),DUZ(0)'="@",'$D(^DD(DIFILEI,0,"UP")) D CHKACC ;p20 change DIFILEI
  I '$G(DIACCESS) D RCR Q
 10 ; Tell user that they may enter new entries to the file
  I DZ?1."?" S DST=" " D DS^DIEQ S DST=$$EZBLD^DIALOG(8069,$P(DO,U)) D DS^DIEQ D:DZ="?" HP

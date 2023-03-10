@@ -1,120 +1,122 @@
-IBDEI1L3 ; ; 04-FEB-2020
- ;;3.0;IB ENCOUNTER FORM IMP/EXP;;FEB 04, 2020
+IBDEI1L3 ; ; 01-FEB-2022
+ ;;3.0;IB ENCOUNTER FORM IMP/EXP;;FEB 01, 2022
  Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,999) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
- ;;^UTILITY(U,$J,358.3,25312,1,4,0)
- ;;=4^M47.817
- ;;^UTILITY(U,$J,358.3,25312,2)
- ;;=^5012074
- ;;^UTILITY(U,$J,358.3,25313,0)
- ;;=M48.50XA^^107^1217^22
- ;;^UTILITY(U,$J,358.3,25313,1,0)
+ ;;^UTILITY(U,$J,358.3,25676,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,25313,1,3,0)
- ;;=3^Collapsed Vertebra NEC,Site Unspec,Init Encntr
- ;;^UTILITY(U,$J,358.3,25313,1,4,0)
- ;;=4^M48.50XA
- ;;^UTILITY(U,$J,358.3,25313,2)
- ;;=^5012159
- ;;^UTILITY(U,$J,358.3,25314,0)
- ;;=M48.50XD^^107^1217^23
- ;;^UTILITY(U,$J,358.3,25314,1,0)
+ ;;^UTILITY(U,$J,358.3,25676,1,3,0)
+ ;;=3^Hallucinogen Induced Bipolar D/O w/ Mod/Sev Use D/O
+ ;;^UTILITY(U,$J,358.3,25676,1,4,0)
+ ;;=4^F16.24
+ ;;^UTILITY(U,$J,358.3,25676,2)
+ ;;=^5003341
+ ;;^UTILITY(U,$J,358.3,25677,0)
+ ;;=F16.94^^92^1172^6
+ ;;^UTILITY(U,$J,358.3,25677,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,25314,1,3,0)
- ;;=3^Collapsed Vertebra NEC,Site Unspec,Subs Encntr
- ;;^UTILITY(U,$J,358.3,25314,1,4,0)
- ;;=4^M48.50XD
- ;;^UTILITY(U,$J,358.3,25314,2)
- ;;=^5012160
- ;;^UTILITY(U,$J,358.3,25315,0)
- ;;=M48.52XA^^107^1217^24
- ;;^UTILITY(U,$J,358.3,25315,1,0)
+ ;;^UTILITY(U,$J,358.3,25677,1,3,0)
+ ;;=3^Hallucinogen Induced Bipolar D/O w/o Use D/O
+ ;;^UTILITY(U,$J,358.3,25677,1,4,0)
+ ;;=4^F16.94
+ ;;^UTILITY(U,$J,358.3,25677,2)
+ ;;=^5003353
+ ;;^UTILITY(U,$J,358.3,25678,0)
+ ;;=F16.159^^92^1172^7
+ ;;^UTILITY(U,$J,358.3,25678,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,25315,1,3,0)
- ;;=3^Collapsed Vertebra,Cervical Region,Init Encntr
- ;;^UTILITY(U,$J,358.3,25315,1,4,0)
- ;;=4^M48.52XA
- ;;^UTILITY(U,$J,358.3,25315,2)
- ;;=^5012167
- ;;^UTILITY(U,$J,358.3,25316,0)
- ;;=M48.52XD^^107^1217^25
- ;;^UTILITY(U,$J,358.3,25316,1,0)
+ ;;^UTILITY(U,$J,358.3,25678,1,3,0)
+ ;;=3^Hallucinogen Induced Psychotic D/O w/ Mild Use D/O
+ ;;^UTILITY(U,$J,358.3,25678,1,4,0)
+ ;;=4^F16.159
+ ;;^UTILITY(U,$J,358.3,25678,2)
+ ;;=^5003331
+ ;;^UTILITY(U,$J,358.3,25679,0)
+ ;;=F16.259^^92^1172^8
+ ;;^UTILITY(U,$J,358.3,25679,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,25316,1,3,0)
- ;;=3^Collapsed Vertebra,Cervical Region,Subs Encntr,Rt Healing
- ;;^UTILITY(U,$J,358.3,25316,1,4,0)
- ;;=4^M48.52XD
- ;;^UTILITY(U,$J,358.3,25316,2)
- ;;=^5012168
- ;;^UTILITY(U,$J,358.3,25317,0)
- ;;=M48.54XA^^107^1217^33
- ;;^UTILITY(U,$J,358.3,25317,1,0)
+ ;;^UTILITY(U,$J,358.3,25679,1,3,0)
+ ;;=3^Hallucinogen Induced Psychotic D/O w/ Mod/Sev Use D/O
+ ;;^UTILITY(U,$J,358.3,25679,1,4,0)
+ ;;=4^F16.259
+ ;;^UTILITY(U,$J,358.3,25679,2)
+ ;;=^5003344
+ ;;^UTILITY(U,$J,358.3,25680,0)
+ ;;=F16.959^^92^1172^9
+ ;;^UTILITY(U,$J,358.3,25680,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,25317,1,3,0)
- ;;=3^Collapsed Vertebra,Throacic Region,Init Encntr
- ;;^UTILITY(U,$J,358.3,25317,1,4,0)
- ;;=4^M48.54XA
- ;;^UTILITY(U,$J,358.3,25317,2)
- ;;=^5012175
- ;;^UTILITY(U,$J,358.3,25318,0)
- ;;=M48.54XD^^107^1217^34
- ;;^UTILITY(U,$J,358.3,25318,1,0)
+ ;;^UTILITY(U,$J,358.3,25680,1,3,0)
+ ;;=3^Hallucinogen Induced Psychotic D/O w/o Use D/O
+ ;;^UTILITY(U,$J,358.3,25680,1,4,0)
+ ;;=4^F16.959
+ ;;^UTILITY(U,$J,358.3,25680,2)
+ ;;=^5003356
+ ;;^UTILITY(U,$J,358.3,25681,0)
+ ;;=F16.99^^92^1172^17
+ ;;^UTILITY(U,$J,358.3,25681,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,25318,1,3,0)
- ;;=3^Collapsed Vertebra,Throacic Region,Subs Encntr
- ;;^UTILITY(U,$J,358.3,25318,1,4,0)
- ;;=4^M48.54XD
- ;;^UTILITY(U,$J,358.3,25318,2)
- ;;=^5012176
- ;;^UTILITY(U,$J,358.3,25319,0)
- ;;=M48.57XA^^107^1217^26
- ;;^UTILITY(U,$J,358.3,25319,1,0)
+ ;;^UTILITY(U,$J,358.3,25681,1,3,0)
+ ;;=3^Hallucinogen Related D/O,Unspec
+ ;;^UTILITY(U,$J,358.3,25681,1,4,0)
+ ;;=4^F16.99
+ ;;^UTILITY(U,$J,358.3,25681,2)
+ ;;=^5133359
+ ;;^UTILITY(U,$J,358.3,25682,0)
+ ;;=F16.983^^92^1172^16
+ ;;^UTILITY(U,$J,358.3,25682,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,25319,1,3,0)
- ;;=3^Collapsed Vertebra,Lumbosacral Region,Init Encntr
- ;;^UTILITY(U,$J,358.3,25319,1,4,0)
- ;;=4^M48.57XA
- ;;^UTILITY(U,$J,358.3,25319,2)
- ;;=^5012187
- ;;^UTILITY(U,$J,358.3,25320,0)
- ;;=M48.57XD^^107^1217^27
- ;;^UTILITY(U,$J,358.3,25320,1,0)
+ ;;^UTILITY(U,$J,358.3,25682,1,3,0)
+ ;;=3^Hallucinogen Persisting Perception D/O
+ ;;^UTILITY(U,$J,358.3,25682,1,4,0)
+ ;;=4^F16.983
+ ;;^UTILITY(U,$J,358.3,25682,2)
+ ;;=^5003358
+ ;;^UTILITY(U,$J,358.3,25683,0)
+ ;;=F16.21^^92^1172^20
+ ;;^UTILITY(U,$J,358.3,25683,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,25320,1,3,0)
- ;;=3^Collapsed Vertebra,Lumbosacral Region,Subs Encntr,Rt Healing
- ;;^UTILITY(U,$J,358.3,25320,1,4,0)
- ;;=4^M48.57XD
- ;;^UTILITY(U,$J,358.3,25320,2)
- ;;=^5012188
- ;;^UTILITY(U,$J,358.3,25321,0)
- ;;=M50.30^^107^1217^14
- ;;^UTILITY(U,$J,358.3,25321,1,0)
+ ;;^UTILITY(U,$J,358.3,25683,1,3,0)
+ ;;=3^Hallucinogen Use DO,Mod/Sev,In Remiss
+ ;;^UTILITY(U,$J,358.3,25683,1,4,0)
+ ;;=4^F16.21
+ ;;^UTILITY(U,$J,358.3,25683,2)
+ ;;=^5003337
+ ;;^UTILITY(U,$J,358.3,25684,0)
+ ;;=F16.11^^92^1172^18
+ ;;^UTILITY(U,$J,358.3,25684,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,25321,1,3,0)
- ;;=3^Cervical Disc Degeneration,Unspec Region
- ;;^UTILITY(U,$J,358.3,25321,1,4,0)
- ;;=4^M50.30
- ;;^UTILITY(U,$J,358.3,25321,2)
- ;;=^5012227
- ;;^UTILITY(U,$J,358.3,25322,0)
- ;;=M51.14^^107^1217^55
- ;;^UTILITY(U,$J,358.3,25322,1,0)
+ ;;^UTILITY(U,$J,358.3,25684,1,3,0)
+ ;;=3^Hallucinogen Use DO,Mild,In Remiss
+ ;;^UTILITY(U,$J,358.3,25684,1,4,0)
+ ;;=4^F16.11
+ ;;^UTILITY(U,$J,358.3,25684,2)
+ ;;=^268239
+ ;;^UTILITY(U,$J,358.3,25685,0)
+ ;;=F11.10^^92^1173^25
+ ;;^UTILITY(U,$J,358.3,25685,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,25322,1,3,0)
- ;;=3^Intvrt Disc Disorder w/ Radiculopathy,Thoracic Region
- ;;^UTILITY(U,$J,358.3,25322,1,4,0)
- ;;=4^M51.14
- ;;^UTILITY(U,$J,358.3,25322,2)
- ;;=^5012243
- ;;^UTILITY(U,$J,358.3,25323,0)
- ;;=M51.17^^107^1217^54
- ;;^UTILITY(U,$J,358.3,25323,1,0)
+ ;;^UTILITY(U,$J,358.3,25685,1,3,0)
+ ;;=3^Opioid Use DO,Mild,Uncomp
+ ;;^UTILITY(U,$J,358.3,25685,1,4,0)
+ ;;=4^F11.10
+ ;;^UTILITY(U,$J,358.3,25685,2)
+ ;;=^5003114
+ ;;^UTILITY(U,$J,358.3,25686,0)
+ ;;=F11.129^^92^1173^22
+ ;;^UTILITY(U,$J,358.3,25686,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,25323,1,3,0)
- ;;=3^Intvrt Disc Disorder w/ Radiculopathy,Lumbosacral Region
- ;;^UTILITY(U,$J,358.3,25323,1,4,0)
- ;;=4^M51.17
- ;;^UTILITY(U,$J,358.3,25323,2)
- ;;=^5012246
- ;;^UTILITY(U,$J,358.3,25324,0)
- ;;=M51.34^^107^1217^53
+ ;;^UTILITY(U,$J,358.3,25686,1,3,0)
+ ;;=3^Opioid Intox w/o Perceptual Dists w/ Mild Use D/O
+ ;;^UTILITY(U,$J,358.3,25686,1,4,0)
+ ;;=4^F11.129
+ ;;^UTILITY(U,$J,358.3,25686,2)
+ ;;=^5003118
+ ;;^UTILITY(U,$J,358.3,25687,0)
+ ;;=F11.14^^92^1173^5
+ ;;^UTILITY(U,$J,358.3,25687,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,25687,1,3,0)
+ ;;=3^Opioid Induced Depressive D/O w/ Mild Use D/O
+ ;;^UTILITY(U,$J,358.3,25687,1,4,0)
+ ;;=4^F11.14
+ ;;^UTILITY(U,$J,358.3,25687,2)
+ ;;=^5003119

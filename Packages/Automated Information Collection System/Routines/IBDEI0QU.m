@@ -1,128 +1,126 @@
-IBDEI0QU ; ; 04-FEB-2020
- ;;3.0;IB ENCOUNTER FORM IMP/EXP;;FEB 04, 2020
+IBDEI0QU ; ; 01-FEB-2022
+ ;;3.0;IB ENCOUNTER FORM IMP/EXP;;FEB 01, 2022
  Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,999) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
- ;;^UTILITY(U,$J,358.3,11979,2)
- ;;=^5007642
- ;;^UTILITY(U,$J,358.3,11980,0)
- ;;=I70.363^^80^768^13
- ;;^UTILITY(U,$J,358.3,11980,1,0)
+ ;;^UTILITY(U,$J,358.3,12095,1,3,0)
+ ;;=3^Pressure Ulcer Right Hip,Stage Unspec
+ ;;^UTILITY(U,$J,358.3,12095,1,4,0)
+ ;;=4^L89.219
+ ;;^UTILITY(U,$J,358.3,12095,2)
+ ;;=^5133661
+ ;;^UTILITY(U,$J,358.3,12096,0)
+ ;;=L89.220^^49^595^42
+ ;;^UTILITY(U,$J,358.3,12096,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,11980,1,3,0)
- ;;=3^Athscl of Unspec Bypass,Bilateral Legs w/ Gangrene
- ;;^UTILITY(U,$J,358.3,11980,1,4,0)
- ;;=4^I70.363
- ;;^UTILITY(U,$J,358.3,11980,2)
- ;;=^5007643
- ;;^UTILITY(U,$J,358.3,11981,0)
- ;;=E10.52^^80^768^16
- ;;^UTILITY(U,$J,358.3,11981,1,0)
+ ;;^UTILITY(U,$J,358.3,12096,1,3,0)
+ ;;=3^Pressure Ulcer Left Hip,Unstageable
+ ;;^UTILITY(U,$J,358.3,12096,1,4,0)
+ ;;=4^L89.220
+ ;;^UTILITY(U,$J,358.3,12096,2)
+ ;;=^5009384
+ ;;^UTILITY(U,$J,358.3,12097,0)
+ ;;=L89.221^^49^595^37
+ ;;^UTILITY(U,$J,358.3,12097,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,11981,1,3,0)
- ;;=3^DM Type 1 w/ Diabetic Prph Angiopathy w/ Gangrene
- ;;^UTILITY(U,$J,358.3,11981,1,4,0)
- ;;=4^E10.52
- ;;^UTILITY(U,$J,358.3,11981,2)
- ;;=^5002611
- ;;^UTILITY(U,$J,358.3,11982,0)
- ;;=E11.52^^80^768^17
- ;;^UTILITY(U,$J,358.3,11982,1,0)
+ ;;^UTILITY(U,$J,358.3,12097,1,3,0)
+ ;;=3^Pressure Ulcer Left Hip,Stage 1
+ ;;^UTILITY(U,$J,358.3,12097,1,4,0)
+ ;;=4^L89.221
+ ;;^UTILITY(U,$J,358.3,12097,2)
+ ;;=^5009385
+ ;;^UTILITY(U,$J,358.3,12098,0)
+ ;;=L89.222^^49^595^38
+ ;;^UTILITY(U,$J,358.3,12098,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,11982,1,3,0)
- ;;=3^DM Type 2 w/ Diabetic Prph Angiopathy w/ Gangrene
- ;;^UTILITY(U,$J,358.3,11982,1,4,0)
- ;;=4^E11.52
- ;;^UTILITY(U,$J,358.3,11982,2)
- ;;=^5002651
- ;;^UTILITY(U,$J,358.3,11983,0)
- ;;=R13.19^^80^769^40
- ;;^UTILITY(U,$J,358.3,11983,1,0)
+ ;;^UTILITY(U,$J,358.3,12098,1,3,0)
+ ;;=3^Pressure Ulcer Left Hip,Stage 2
+ ;;^UTILITY(U,$J,358.3,12098,1,4,0)
+ ;;=4^L89.222
+ ;;^UTILITY(U,$J,358.3,12098,2)
+ ;;=^5009386
+ ;;^UTILITY(U,$J,358.3,12099,0)
+ ;;=L89.223^^49^595^39
+ ;;^UTILITY(U,$J,358.3,12099,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,11983,1,3,0)
- ;;=3^Dysphagia NEC
- ;;^UTILITY(U,$J,358.3,11983,1,4,0)
- ;;=4^R13.19
- ;;^UTILITY(U,$J,358.3,11983,2)
- ;;=^335280
- ;;^UTILITY(U,$J,358.3,11984,0)
- ;;=R15.9^^80^769^47
- ;;^UTILITY(U,$J,358.3,11984,1,0)
+ ;;^UTILITY(U,$J,358.3,12099,1,3,0)
+ ;;=3^Pressure Ulcer Left Hip,Stage 3
+ ;;^UTILITY(U,$J,358.3,12099,1,4,0)
+ ;;=4^L89.223
+ ;;^UTILITY(U,$J,358.3,12099,2)
+ ;;=^5009387
+ ;;^UTILITY(U,$J,358.3,12100,0)
+ ;;=L89.224^^49^595^40
+ ;;^UTILITY(U,$J,358.3,12100,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,11984,1,3,0)
- ;;=3^Full Incontinence of Feces
- ;;^UTILITY(U,$J,358.3,11984,1,4,0)
- ;;=4^R15.9
- ;;^UTILITY(U,$J,358.3,11984,2)
- ;;=^5019247
- ;;^UTILITY(U,$J,358.3,11985,0)
- ;;=D50.0^^80^769^58
- ;;^UTILITY(U,$J,358.3,11985,1,0)
+ ;;^UTILITY(U,$J,358.3,12100,1,3,0)
+ ;;=3^Pressure Ulcer Left Hip,Stage 4
+ ;;^UTILITY(U,$J,358.3,12100,1,4,0)
+ ;;=4^L89.224
+ ;;^UTILITY(U,$J,358.3,12100,2)
+ ;;=^5009388
+ ;;^UTILITY(U,$J,358.3,12101,0)
+ ;;=L89.229^^49^595^41
+ ;;^UTILITY(U,$J,358.3,12101,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,11985,1,3,0)
- ;;=3^Iron Deficiency Anemia d/t Blood Loss
- ;;^UTILITY(U,$J,358.3,11985,1,4,0)
- ;;=4^D50.0
- ;;^UTILITY(U,$J,358.3,11985,2)
- ;;=^267971
- ;;^UTILITY(U,$J,358.3,11986,0)
- ;;=D50.9^^80^769^59
- ;;^UTILITY(U,$J,358.3,11986,1,0)
+ ;;^UTILITY(U,$J,358.3,12101,1,3,0)
+ ;;=3^Pressure Ulcer Left Hip,Stage Unspec
+ ;;^UTILITY(U,$J,358.3,12101,1,4,0)
+ ;;=4^L89.229
+ ;;^UTILITY(U,$J,358.3,12101,2)
+ ;;=^5133662
+ ;;^UTILITY(U,$J,358.3,12102,0)
+ ;;=L89.310^^49^595^72
+ ;;^UTILITY(U,$J,358.3,12102,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,11986,1,3,0)
- ;;=3^Iron Deficiency Anemia,Unspec
- ;;^UTILITY(U,$J,358.3,11986,1,4,0)
- ;;=4^D50.9
- ;;^UTILITY(U,$J,358.3,11986,2)
- ;;=^5002283
- ;;^UTILITY(U,$J,358.3,11987,0)
- ;;=D62.^^80^769^5
- ;;^UTILITY(U,$J,358.3,11987,1,0)
+ ;;^UTILITY(U,$J,358.3,12102,1,3,0)
+ ;;=3^Pressure Ulcer Right Buttock,Unstageable
+ ;;^UTILITY(U,$J,358.3,12102,1,4,0)
+ ;;=4^L89.310
+ ;;^UTILITY(U,$J,358.3,12102,2)
+ ;;=^5009394
+ ;;^UTILITY(U,$J,358.3,12103,0)
+ ;;=L89.311^^49^595^67
+ ;;^UTILITY(U,$J,358.3,12103,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,11987,1,3,0)
- ;;=3^Acute Posthemorrhagic Anemia
- ;;^UTILITY(U,$J,358.3,11987,1,4,0)
- ;;=4^D62.
- ;;^UTILITY(U,$J,358.3,11987,2)
- ;;=^267986
- ;;^UTILITY(U,$J,358.3,11988,0)
- ;;=D64.9^^80^769^13
- ;;^UTILITY(U,$J,358.3,11988,1,0)
+ ;;^UTILITY(U,$J,358.3,12103,1,3,0)
+ ;;=3^Pressure Ulcer Right Buttock,Stage 1
+ ;;^UTILITY(U,$J,358.3,12103,1,4,0)
+ ;;=4^L89.311
+ ;;^UTILITY(U,$J,358.3,12103,2)
+ ;;=^5009395
+ ;;^UTILITY(U,$J,358.3,12104,0)
+ ;;=L89.312^^49^595^68
+ ;;^UTILITY(U,$J,358.3,12104,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,11988,1,3,0)
- ;;=3^Anemia,Unspec
- ;;^UTILITY(U,$J,358.3,11988,1,4,0)
- ;;=4^D64.9
- ;;^UTILITY(U,$J,358.3,11988,2)
- ;;=^5002351
- ;;^UTILITY(U,$J,358.3,11989,0)
- ;;=E10.9^^80^769^31
- ;;^UTILITY(U,$J,358.3,11989,1,0)
+ ;;^UTILITY(U,$J,358.3,12104,1,3,0)
+ ;;=3^Pressure Ulcer Right Buttock,Stage 2
+ ;;^UTILITY(U,$J,358.3,12104,1,4,0)
+ ;;=4^L89.312
+ ;;^UTILITY(U,$J,358.3,12104,2)
+ ;;=^5009396
+ ;;^UTILITY(U,$J,358.3,12105,0)
+ ;;=L89.313^^49^595^69
+ ;;^UTILITY(U,$J,358.3,12105,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,11989,1,3,0)
- ;;=3^Diabetes Type 1 w/o Complications
- ;;^UTILITY(U,$J,358.3,11989,1,4,0)
- ;;=4^E10.9
- ;;^UTILITY(U,$J,358.3,11989,2)
- ;;=^5002626
- ;;^UTILITY(U,$J,358.3,11990,0)
- ;;=E11.9^^80^769^32
- ;;^UTILITY(U,$J,358.3,11990,1,0)
+ ;;^UTILITY(U,$J,358.3,12105,1,3,0)
+ ;;=3^Pressure Ulcer Right Buttock,Stage 3
+ ;;^UTILITY(U,$J,358.3,12105,1,4,0)
+ ;;=4^L89.313
+ ;;^UTILITY(U,$J,358.3,12105,2)
+ ;;=^5009397
+ ;;^UTILITY(U,$J,358.3,12106,0)
+ ;;=L89.314^^49^595^70
+ ;;^UTILITY(U,$J,358.3,12106,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,11990,1,3,0)
- ;;=3^Diabetes Type 2 w/o Complications
- ;;^UTILITY(U,$J,358.3,11990,1,4,0)
- ;;=4^E11.9
- ;;^UTILITY(U,$J,358.3,11990,2)
- ;;=^5002666
- ;;^UTILITY(U,$J,358.3,11991,0)
- ;;=E13.9^^80^769^33
- ;;^UTILITY(U,$J,358.3,11991,1,0)
+ ;;^UTILITY(U,$J,358.3,12106,1,3,0)
+ ;;=3^Pressure Ulcer Right Buttock,Stage 4
+ ;;^UTILITY(U,$J,358.3,12106,1,4,0)
+ ;;=4^L89.314
+ ;;^UTILITY(U,$J,358.3,12106,2)
+ ;;=^5009398
+ ;;^UTILITY(U,$J,358.3,12107,0)
+ ;;=L89.319^^49^595^71
+ ;;^UTILITY(U,$J,358.3,12107,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,11991,1,3,0)
- ;;=3^Diabetes w/o Complications NEC
- ;;^UTILITY(U,$J,358.3,11991,1,4,0)
- ;;=4^E13.9
- ;;^UTILITY(U,$J,358.3,11991,2)
- ;;=^5002704
- ;;^UTILITY(U,$J,358.3,11992,0)
- ;;=F03.90^^80^769^30
+ ;;^UTILITY(U,$J,358.3,12107,1,3,0)
+ ;;=3^Pressure Ulcer Right Buttock,Stage Unspec

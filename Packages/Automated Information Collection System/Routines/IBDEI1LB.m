@@ -1,128 +1,124 @@
-IBDEI1LB ; ; 04-FEB-2020
- ;;3.0;IB ENCOUNTER FORM IMP/EXP;;FEB 04, 2020
+IBDEI1LB ; ; 01-FEB-2022
+ ;;3.0;IB ENCOUNTER FORM IMP/EXP;;FEB 01, 2022
  Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,999) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
- ;;^UTILITY(U,$J,358.3,25410,1,0)
+ ;;^UTILITY(U,$J,358.3,25769,1,4,0)
+ ;;=4^F43.12
+ ;;^UTILITY(U,$J,358.3,25769,2)
+ ;;=^5003572
+ ;;^UTILITY(U,$J,358.3,25770,0)
+ ;;=F18.10^^92^1177^23
+ ;;^UTILITY(U,$J,358.3,25770,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,25410,1,3,0)
- ;;=3^Muscle Spasm of Back
- ;;^UTILITY(U,$J,358.3,25410,1,4,0)
- ;;=4^M62.830
- ;;^UTILITY(U,$J,358.3,25410,2)
- ;;=^5012680
- ;;^UTILITY(U,$J,358.3,25411,0)
- ;;=M19.92^^107^1217^126
- ;;^UTILITY(U,$J,358.3,25411,1,0)
+ ;;^UTILITY(U,$J,358.3,25770,1,3,0)
+ ;;=3^Inhalant Use D/O,Mild
+ ;;^UTILITY(U,$J,358.3,25770,1,4,0)
+ ;;=4^F18.10
+ ;;^UTILITY(U,$J,358.3,25770,2)
+ ;;=^5003380
+ ;;^UTILITY(U,$J,358.3,25771,0)
+ ;;=F18.20^^92^1177^26
+ ;;^UTILITY(U,$J,358.3,25771,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,25411,1,3,0)
- ;;=3^Post-Traumatic Osteoarthritis,Unspec Site
- ;;^UTILITY(U,$J,358.3,25411,1,4,0)
- ;;=4^M19.92
- ;;^UTILITY(U,$J,358.3,25411,2)
- ;;=^5010855
- ;;^UTILITY(U,$J,358.3,25412,0)
- ;;=M85.872^^107^1217^84
- ;;^UTILITY(U,$J,358.3,25412,1,0)
+ ;;^UTILITY(U,$J,358.3,25771,1,3,0)
+ ;;=3^Inhalant Use D/O,Mod/Sev,Uncomplicated
+ ;;^UTILITY(U,$J,358.3,25771,1,4,0)
+ ;;=4^F18.20
+ ;;^UTILITY(U,$J,358.3,25771,2)
+ ;;=^5003392
+ ;;^UTILITY(U,$J,358.3,25772,0)
+ ;;=F18.14^^92^1177^4
+ ;;^UTILITY(U,$J,358.3,25772,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,25412,1,3,0)
- ;;=3^Osteopenia,Left Ankle & Foot
- ;;^UTILITY(U,$J,358.3,25412,1,4,0)
- ;;=4^M85.872
- ;;^UTILITY(U,$J,358.3,25412,2)
- ;;=^5014493
- ;;^UTILITY(U,$J,358.3,25413,0)
- ;;=M85.832^^107^1217^85
- ;;^UTILITY(U,$J,358.3,25413,1,0)
+ ;;^UTILITY(U,$J,358.3,25772,1,3,0)
+ ;;=3^Inhalant Induced Depressive D/O w/ Mild Use D/O
+ ;;^UTILITY(U,$J,358.3,25772,1,4,0)
+ ;;=4^F18.14
+ ;;^UTILITY(U,$J,358.3,25772,2)
+ ;;=^5003384
+ ;;^UTILITY(U,$J,358.3,25773,0)
+ ;;=F18.24^^92^1177^5
+ ;;^UTILITY(U,$J,358.3,25773,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,25413,1,3,0)
- ;;=3^Osteopenia,Left Forearm
- ;;^UTILITY(U,$J,358.3,25413,1,4,0)
- ;;=4^M85.832
- ;;^UTILITY(U,$J,358.3,25413,2)
- ;;=^5014481
- ;;^UTILITY(U,$J,358.3,25414,0)
- ;;=M85.842^^107^1217^86
- ;;^UTILITY(U,$J,358.3,25414,1,0)
+ ;;^UTILITY(U,$J,358.3,25773,1,3,0)
+ ;;=3^Inhalant Induced Depressive D/O w/ Mod/Sev Use D/O
+ ;;^UTILITY(U,$J,358.3,25773,1,4,0)
+ ;;=4^F18.24
+ ;;^UTILITY(U,$J,358.3,25773,2)
+ ;;=^5003397
+ ;;^UTILITY(U,$J,358.3,25774,0)
+ ;;=F18.121^^92^1177^16
+ ;;^UTILITY(U,$J,358.3,25774,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,25414,1,3,0)
- ;;=3^Osteopenia,Left Hand
- ;;^UTILITY(U,$J,358.3,25414,1,4,0)
- ;;=4^M85.842
- ;;^UTILITY(U,$J,358.3,25414,2)
- ;;=^5014484
- ;;^UTILITY(U,$J,358.3,25415,0)
- ;;=M85.862^^107^1217^87
- ;;^UTILITY(U,$J,358.3,25415,1,0)
+ ;;^UTILITY(U,$J,358.3,25774,1,3,0)
+ ;;=3^Inhalant Intoxication Delirium w/ Mild Use D/O
+ ;;^UTILITY(U,$J,358.3,25774,1,4,0)
+ ;;=4^F18.121
+ ;;^UTILITY(U,$J,358.3,25774,2)
+ ;;=^5003382
+ ;;^UTILITY(U,$J,358.3,25775,0)
+ ;;=F18.221^^92^1177^17
+ ;;^UTILITY(U,$J,358.3,25775,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,25415,1,3,0)
- ;;=3^Osteopenia,Left Lower Leg
- ;;^UTILITY(U,$J,358.3,25415,1,4,0)
- ;;=4^M85.862
- ;;^UTILITY(U,$J,358.3,25415,2)
- ;;=^5014490
- ;;^UTILITY(U,$J,358.3,25416,0)
- ;;=M85.812^^107^1217^88
- ;;^UTILITY(U,$J,358.3,25416,1,0)
+ ;;^UTILITY(U,$J,358.3,25775,1,3,0)
+ ;;=3^Inhalant Intoxication Delirium w/ Mod/Sev Use D/O
+ ;;^UTILITY(U,$J,358.3,25775,1,4,0)
+ ;;=4^F18.221
+ ;;^UTILITY(U,$J,358.3,25775,2)
+ ;;=^5003395
+ ;;^UTILITY(U,$J,358.3,25776,0)
+ ;;=F18.921^^92^1177^18
+ ;;^UTILITY(U,$J,358.3,25776,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,25416,1,3,0)
- ;;=3^Osteopenia,Left Shoulder
- ;;^UTILITY(U,$J,358.3,25416,1,4,0)
- ;;=4^M85.812
- ;;^UTILITY(U,$J,358.3,25416,2)
- ;;=^5014475
- ;;^UTILITY(U,$J,358.3,25417,0)
- ;;=M85.852^^107^1217^89
- ;;^UTILITY(U,$J,358.3,25417,1,0)
+ ;;^UTILITY(U,$J,358.3,25776,1,3,0)
+ ;;=3^Inhalant Intoxication Delirium w/o Use D/O
+ ;;^UTILITY(U,$J,358.3,25776,1,4,0)
+ ;;=4^F18.921
+ ;;^UTILITY(U,$J,358.3,25776,2)
+ ;;=^5003407
+ ;;^UTILITY(U,$J,358.3,25777,0)
+ ;;=F18.129^^92^1177^19
+ ;;^UTILITY(U,$J,358.3,25777,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,25417,1,3,0)
- ;;=3^Osteopenia,Left Thigh
- ;;^UTILITY(U,$J,358.3,25417,1,4,0)
- ;;=4^M85.852
- ;;^UTILITY(U,$J,358.3,25417,2)
- ;;=^5014487
- ;;^UTILITY(U,$J,358.3,25418,0)
- ;;=M85.822^^107^1217^90
- ;;^UTILITY(U,$J,358.3,25418,1,0)
+ ;;^UTILITY(U,$J,358.3,25777,1,3,0)
+ ;;=3^Inhalant Intoxication w/ Mild Use D/O
+ ;;^UTILITY(U,$J,358.3,25777,1,4,0)
+ ;;=4^F18.129
+ ;;^UTILITY(U,$J,358.3,25777,2)
+ ;;=^5003383
+ ;;^UTILITY(U,$J,358.3,25778,0)
+ ;;=F18.229^^92^1177^20
+ ;;^UTILITY(U,$J,358.3,25778,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,25418,1,3,0)
- ;;=3^Osteopenia,Left Upper Arm
- ;;^UTILITY(U,$J,358.3,25418,1,4,0)
- ;;=4^M85.822
- ;;^UTILITY(U,$J,358.3,25418,2)
- ;;=^5014478
- ;;^UTILITY(U,$J,358.3,25419,0)
- ;;=M85.89^^107^1217^91
- ;;^UTILITY(U,$J,358.3,25419,1,0)
+ ;;^UTILITY(U,$J,358.3,25778,1,3,0)
+ ;;=3^Inhalant Intoxication w/ Mod/Sev Use D/O
+ ;;^UTILITY(U,$J,358.3,25778,1,4,0)
+ ;;=4^F18.229
+ ;;^UTILITY(U,$J,358.3,25778,2)
+ ;;=^5003396
+ ;;^UTILITY(U,$J,358.3,25779,0)
+ ;;=F18.929^^92^1177^21
+ ;;^UTILITY(U,$J,358.3,25779,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,25419,1,3,0)
- ;;=3^Osteopenia,Multiple Sites
- ;;^UTILITY(U,$J,358.3,25419,1,4,0)
- ;;=4^M85.89
- ;;^UTILITY(U,$J,358.3,25419,2)
- ;;=^5014495
- ;;^UTILITY(U,$J,358.3,25420,0)
- ;;=M85.88^^107^1217^92
- ;;^UTILITY(U,$J,358.3,25420,1,0)
+ ;;^UTILITY(U,$J,358.3,25779,1,3,0)
+ ;;=3^Inhalant Intoxication w/o Use D/O
+ ;;^UTILITY(U,$J,358.3,25779,1,4,0)
+ ;;=4^F18.929
+ ;;^UTILITY(U,$J,358.3,25779,2)
+ ;;=^5003408
+ ;;^UTILITY(U,$J,358.3,25780,0)
+ ;;=F18.180^^92^1177^1
+ ;;^UTILITY(U,$J,358.3,25780,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,25420,1,3,0)
- ;;=3^Osteopenia,Other Site
- ;;^UTILITY(U,$J,358.3,25420,1,4,0)
- ;;=4^M85.88
- ;;^UTILITY(U,$J,358.3,25420,2)
- ;;=^5134059
- ;;^UTILITY(U,$J,358.3,25421,0)
- ;;=M85.871^^107^1217^93
- ;;^UTILITY(U,$J,358.3,25421,1,0)
+ ;;^UTILITY(U,$J,358.3,25780,1,3,0)
+ ;;=3^Inhalant Induced Anxiety D/O w/ Mild Use D/O
+ ;;^UTILITY(U,$J,358.3,25780,1,4,0)
+ ;;=4^F18.180
+ ;;^UTILITY(U,$J,358.3,25780,2)
+ ;;=^5003389
+ ;;^UTILITY(U,$J,358.3,25781,0)
+ ;;=F18.280^^92^1177^2
+ ;;^UTILITY(U,$J,358.3,25781,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,25421,1,3,0)
- ;;=3^Osteopenia,Right Foot & Ankle
- ;;^UTILITY(U,$J,358.3,25421,1,4,0)
- ;;=4^M85.871
- ;;^UTILITY(U,$J,358.3,25421,2)
- ;;=^5014492
- ;;^UTILITY(U,$J,358.3,25422,0)
- ;;=M85.831^^107^1217^94
- ;;^UTILITY(U,$J,358.3,25422,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,25422,1,3,0)
- ;;=3^Osteopenia,Right Forearm
+ ;;^UTILITY(U,$J,358.3,25781,1,3,0)
+ ;;=3^Inhalant Induced Anxiety D/O w/ Mod/Sev Use D/O

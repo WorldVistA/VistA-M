@@ -1,7 +1,8 @@
-SDECEPT ;SPFO/RT,WTC SCHEDULING ENHANCEMENTS VSE EP API ;Feb 12, 2020@15:22
- ;;5.3;Scheduling;**669,671,694**;Aug 13 1993;Build 61
+SDECEPT ;SPFO/RT,MGD,LAB SCHEDULING ENHANCEMENTS VSE EP API ;JUL 26,2022@08:44
+ ;;5.3;Scheduling;**669,671,694,794,809,813,823**;Aug 13 1993;Build 9
+ ;;Per VHA Directive 6402, this routine should not be modified
  ;
- ;The API provides Extended Profile Appt info the VS Gui.
+ ;The API provides Extended Profile Appt info the VS GUI.
  ;INPUT - DFN required
  ;        APP appointment date/time required
  Q
@@ -26,21 +27,25 @@ INIT ;
  ...S HLAP0=$G(^SC(CLIEN,"S",ADT,1,HLAPIEN,0))
  Q
  ;
-GETDEM(RET,DFN,ADT) ;
+GETDEM(RET,DFN,ADT,SDAPPTIEN) ;
  ; REQUIRE DFN AND APPOINTMENT DATE TIME
  Q:'$G(DFN)
  Q:'$G(ADT)
+ S SDAPPTIEN=$G(SDAPPTIEN)
+ S SDRET=$$SDEXPST(.SDRET,DFN,ADT,SDAPPTIEN)
+ I +SDRET=-1 D  Q RET
+ . S RET="-1^The detail for the selected record is no longer available in VistA. Select the more recent record for Expanded Entry."
  ;
  S ADT=+ADT   ;strip off extra zeros on time  pwc SD*5.3*694
  D INIT
  ;
  ; INITIALIZE VARIABLES
- S (PATN,RSSN,SSN,LAB,XRAY,EKG,PCODE,POV,ATIEN)=""
+ S (PATN,SSN,LAB,XRAY,EKG,PCODE,POV,ATIEN)=""
  S (PAMAT,CCODE,COLL,CLN,LOA,OTH,ECODE,EGIL,PAMSC)=""
  S (ENROLC,STAT,OCODE)=""
+ N TIMEZONE
  ;
  ;PATN=Patient Name - Patient File [0,1]
- ;RSSN=Raw Social Securty Number  - Patient File [0,9]
  ;SSN=Formatted Social Security Number
  ;STAT=Status Patient Appointment Multiple - CURRENT STATUS (2.98,100)
  ;LAB=Date/Time of Labs - PATIENT/APPOINTMENT MULTIPLE [0,3]
@@ -60,14 +65,13 @@ GETDEM(RET,DFN,ADT) ;
  ;OVB=Overbook
  ;PATEN0=Patient Enrollment Clinic - Patient File Enrollment Clinic Multiple [B]
  ;ENROLC=Enrolled in Clinic Yes/No
- ;ERCNUM=Enrolled Clinic Number 
- ;LPNUM=Loop Number 
- ; 
+ ;ERCNUM=Enrolled Clinic Number
+ ;LPNUM=Loop Number
+ ;
  ; -PATIENT FILE GLOBAL LOCATION 0
  I PAT0'="" D
  .S PATN=$P($G(PAT0),U,1)
- .S RSSN=$P($G(PAT0),U,9) I RSSN'="" D
- ..S SSN=$E(RSSN,1,3)_"-"_$E(RSSN,4,5)_"-"_$E(RSSN,6,9)
+ .S SSN=$$LAST4SSN^SDESINPUTVALUTL(DFN)
  ;
  ; -PATIENT/APPOINTMENT MULTIPLE GLOBAL LOCATION 0
  I PAM0'="" D
@@ -121,10 +125,29 @@ GETDEM(RET,DFN,ADT) ;
  ;I EKG'="" S Y=EKG D D^DIQ S EKG=Y
  I EKG'="" S EKG=$$FMTONET^SDECDATE(EKG) ;
  ;
- S RET=PATN_U_CLN_U_SSN_U_ADT_U_STAT_U_POV_U_LOA_U_PAMAT_U_LAB_U_EGIL_U_XRAY_U_OVB_U_EKG_U_COLL_U_OTH_U_ENROLC
+ S TIMEZONE=$$TIMEZONEDATA^SDESUTIL($G(CLIEN)),TIMEZONE=$P($G(TIMEZONE),U)
+ ;
+ S RET=PATN_U_CLN_U_SSN_U_ADT_U_STAT_U_POV_U_LOA_U_PAMAT_U_LAB_U_EGIL_U_XRAY_U_OVB_U_EKG_U_COLL_U_OTH_U_ENROLC_U_TIMEZONE
  ;
  D EXIT
  Q
+ ;
+SDEXPST(SDRET,DFN,ADT,SDAPPTIEN) ;
+ N SDAPPT,SDRTN,SDNEXTIEN,SDCAN
+ S SDRTN="" ; Appt can be expanded
+ S SDAPPT="",ADT=+ADT
+ F  S SDAPPT=$O(^SDEC(409.84,"APTDT",DFN,ADT,SDAPPT)) Q:'SDAPPT  D  Q:SDRTN'=""
+ . Q:SDAPPT'=SDAPPTIEN
+ . S SDCAN=($$GET1^DIQ(409.84,SDAPPT,.12,"I")'="")
+ . S SDNEXTIEN=$O(^SDEC(409.84,"APTDT",DFN,ADT,SDAPPT))
+ . ; Current Appt is cancelled and there is another APPT
+ . I SDCAN,SDNEXTIEN S SDRTN=-1 Q
+ . ; Current Appt is cancelled & no other Appt
+ . I SDCAN,'SDNEXTIEN S SDRTN=0 Q
+ . ; Current Appt is NOT cancelled so there can't be other Appt for same Date/Time
+ . I 'SDCAN,'SDNEXTIEN S SDRTN=0 Q
+ S SDRET=SDRTN
+ Q SDRET
  ;
 GETEVT(RET,DFN,ADT) ;
  ; REQUIRE DFN AND APPOINTMENT DATE TIME
@@ -297,23 +320,22 @@ GETPTIN(RET,DFN,ADT) ;
  S ADT=+ADT  ;strip off extra zeros on time  pwc SD*5.3*694
  D INIT
  ;
- S (DOB,RSSN,SSN,SEX,MARSIEN,MARS,RELGP,PAT36,PELIG,POS,SADDR1,SWASIAC)=""
+ S (DOB,SSN,SEX,MARSIEN,MARS,RELGP,PAT36,PELIG,POS,SADDR1,SWASIAC)=""
  S (SADDR2,SADDR3,CITY,STATEN,STATE,CNTY,ADDR,PHN,CPHN,PGER,EMAIL,RADEXC)=""
  S (RADEX,STAT,POW,LADMT,AOEXLC,AOEXL,LDIS,CMBTVC,CMBTV,CMBTVED,PROJ112)=""
  S (PROCODE,SWASIA,PAT36,PAT11,PAT13,PAT36,PAT52,PAT321,PAT322,POWCODE)=""
  S (RELGPN,PELIGN,POSN)=""
  ;
  ;DOB=Date Of Birth - Patient File [0,3]
- ;RSSN=Raw Social Security Number - Patient File [0,9]
  ;SSN=Formatted Social Security Number
  ;SEX=Male or Female - Patient File [0,2]
- ;MARSIEN=Marital Status IEN - Patient File [0,5] 
+ ;MARSIEN=Marital Status IEN - Patient File [0,5]
  ;MARS=Marital Status - Marital Status File (11) Field .01
  ;RELGPN=Religious Preference IEN - Patient File [0,8]
  ;RELGP=Religious Preference - file 13 field .01 (Name)
- ;PELIGN=Preimary Eligibility IEN - Patient File [.36,1]
- ;PELIG=Primary Eligibility - File 8 field .01 (name) 
- ;POSN=Period of Servic IEN
+ ;PELIGN=Primary Eligibility IEN - Patient File [.36,1]
+ ;PELIG=Primary Eligibility - File 8 field .01 (name)
+ ;POSN=Period of Service IEN
  ;POS=Period of Service - File 21 Field .01 (Name)
  ;SADDR1=Street Address 1 - Patient File [.11,1]
  ;SADDR2=Street Address 2 - Patient File [.11,2]
@@ -350,12 +372,11 @@ GETPTIN(RET,DFN,ADT) ;
  ;PROJ112=Project 112/SHAD
  ;SWASIAC=SW Asia Conditions Code Y=Yes N=No U=Unknown - Patient File [.322,13]
  ;SWASIA=SW Asia Conditions
- ; 
+ ;
  ; -PATIENT FILE GLOBAL LOCATION 0
  I PAT0'="" D
  .S DOB=$P($G(PAT0),U,3)
- .S RSSN=$P($G(PAT0),U,9) I RSSN'="" D
- ..S SSN=$E(RSSN,1,3)_"-"_$E(RSSN,4,5)_"-"_$E(RSSN,6,9)
+ .S SSN=$$LAST4SSN^SDESINPUTVALUTL(DFN)
  .S SEXCODE=$P($G(PAT0),U,2) I SEXCODE'="" D
  ..I SEXCODE="M" S SEX="Male"
  ..I SEXCODE="F" S SEX="Female"
@@ -440,7 +461,7 @@ GETPTIN(RET,DFN,ADT) ;
  Q
  ;
 EXIT ;
- K PAT0,PAM0,CLIEN,HLF0,HLAPIEN,HLAP0,RSSN,PAMS,PCODE,ATIEN,CCODE,ECODE,PAMSC
+ K PAT0,PAM0,CLIEN,HLF0,HLAPIEN,HLAP0,PAMS,PCODE,ATIEN,CCODE,ECODE,PAMSC
  K AMUIEN,AMU,HLAPC,CIUIEN,COUIEN,NCUIEN,PAT36,SADDR1,SWASIAC,SADDR2,SADDR3
  K CITY,STATEN,STATE,CNTY,RADEXC,AOEXLC,CMBTVC,PROCODE,PAT36,PAT11,PAT13,PAT52
  K PAT321,PAT322,ENROLC

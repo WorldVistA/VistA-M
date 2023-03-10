@@ -1,5 +1,5 @@
 IBCNSUR1 ;ALB/CPM/CMS - MOVE SUBSCRIBERS TO DIFFERENT PLAN (CON'T) ;09-SEP-96
- ;;2.0;INTEGRATED BILLING;**103,225,276,516,549**;21-MAR-94;Build 54
+ ;;2.0;INTEGRATED BILLING;**103,225,276,516,549,713**;21-MAR-94;Build 12
  ;;Per VA Directive 6402, this routine should not be modified.
  Q
  ;
@@ -163,9 +163,14 @@ COLLECT  ; - collect the plan subscribers
  ;
  ; - copy plan comments over to the new plan
  I IBAB D
- .S DIC="^IBA(355.3,"_IBP2_",11,",DIC(0)="L",DIC("P")=355.311
- .S IBI=0 F  S IBI=$O(^IBA(355.3,IBP1,11,IBI)) Q:'IBI  D
- ..I $G(^IBA(355.3,IBP1,11,IBI,0))]"" S X=^(0) D FILE^DICN
+ . ;IB*713/TAZ - Maintain blank lines in word processing field - user request.
+ . N ARRAY,LINE
+ . M ARRAY=^IBA(355.3,IBP1,11)
+ . ;File data in new location.
+ . D WP^DIE(355.3,IBP2_",",11,,"ARRAY")
+ .;S DIC="^IBA(355.3,"_IBP2_",11,",DIC(0)="L",DIC("P")=355.311
+ .;S IBI=0 F  S IBI=$O(^IBA(355.3,IBP1,11,IBI)) Q:'IBI  D
+ .;. I $G(^IBA(355.3,IBP1,11,IBI,0))]"" S X=^(0) D FILE^DICN
  ;
  ; The MailMan bulletin header
  D BHEAD^IBCNSUR3

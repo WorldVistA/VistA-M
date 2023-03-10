@@ -1,124 +1,126 @@
-IBDEI157 ; ; 04-FEB-2020
- ;;3.0;IB ENCOUNTER FORM IMP/EXP;;FEB 04, 2020
+IBDEI157 ; ; 01-FEB-2022
+ ;;3.0;IB ENCOUNTER FORM IMP/EXP;;FEB 01, 2022
  Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,999) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
- ;;^UTILITY(U,$J,358.3,18372,1,4,0)
- ;;=4^T74.11XA
- ;;^UTILITY(U,$J,358.3,18372,2)
- ;;=^5054146
- ;;^UTILITY(U,$J,358.3,18373,0)
- ;;=T74.11XD^^91^935^8
- ;;^UTILITY(U,$J,358.3,18373,1,0)
+ ;;^UTILITY(U,$J,358.3,18552,1,4,0)
+ ;;=4^D02.22
+ ;;^UTILITY(U,$J,358.3,18552,2)
+ ;;=^5001885
+ ;;^UTILITY(U,$J,358.3,18553,0)
+ ;;=D02.21^^64^832^6
+ ;;^UTILITY(U,$J,358.3,18553,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,18373,1,3,0)
- ;;=3^Adult Physical Abuse,Confirmed,Subs Enctr
- ;;^UTILITY(U,$J,358.3,18373,1,4,0)
- ;;=4^T74.11XD
- ;;^UTILITY(U,$J,358.3,18373,2)
- ;;=^5054147
- ;;^UTILITY(U,$J,358.3,18374,0)
- ;;=T76.11XA^^91^935^9
- ;;^UTILITY(U,$J,358.3,18374,1,0)
+ ;;^UTILITY(U,$J,358.3,18553,1,3,0)
+ ;;=3^Carcinoma in Situ Right Bronchus/Lung
+ ;;^UTILITY(U,$J,358.3,18553,1,4,0)
+ ;;=4^D02.21
+ ;;^UTILITY(U,$J,358.3,18553,2)
+ ;;=^5001884
+ ;;^UTILITY(U,$J,358.3,18554,0)
+ ;;=R22.2^^64^832^7
+ ;;^UTILITY(U,$J,358.3,18554,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,18374,1,3,0)
- ;;=3^Adult Physical Abuse,Suspected,Init Enctr
- ;;^UTILITY(U,$J,358.3,18374,1,4,0)
- ;;=4^T76.11XA
- ;;^UTILITY(U,$J,358.3,18374,2)
- ;;=^5054221
- ;;^UTILITY(U,$J,358.3,18375,0)
- ;;=T76.11XD^^91^935^10
- ;;^UTILITY(U,$J,358.3,18375,1,0)
+ ;;^UTILITY(U,$J,358.3,18554,1,3,0)
+ ;;=3^Localized Swelling/Mass/Lump,Trunk
+ ;;^UTILITY(U,$J,358.3,18554,1,4,0)
+ ;;=4^R22.2
+ ;;^UTILITY(U,$J,358.3,18554,2)
+ ;;=^5019286
+ ;;^UTILITY(U,$J,358.3,18555,0)
+ ;;=C7A.090^^64^832^8
+ ;;^UTILITY(U,$J,358.3,18555,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,18375,1,3,0)
- ;;=3^Adult Physical Abuse,Suspected,Subs Enctr
- ;;^UTILITY(U,$J,358.3,18375,1,4,0)
- ;;=4^T76.11XD
- ;;^UTILITY(U,$J,358.3,18375,2)
- ;;=^5054222
- ;;^UTILITY(U,$J,358.3,18376,0)
- ;;=Z69.11^^91^935^24
- ;;^UTILITY(U,$J,358.3,18376,1,0)
+ ;;^UTILITY(U,$J,358.3,18555,1,3,0)
+ ;;=3^Malig Carcinoid Tumor Bronchus/Lung
+ ;;^UTILITY(U,$J,358.3,18555,1,4,0)
+ ;;=4^C7A.090
+ ;;^UTILITY(U,$J,358.3,18555,2)
+ ;;=^5001371
+ ;;^UTILITY(U,$J,358.3,18556,0)
+ ;;=C34.02^^64^832^11
+ ;;^UTILITY(U,$J,358.3,18556,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,18376,1,3,0)
- ;;=3^MH Svc for Victim of Spousal/Partner Abuse,Neglect
- ;;^UTILITY(U,$J,358.3,18376,1,4,0)
- ;;=4^Z69.11
- ;;^UTILITY(U,$J,358.3,18376,2)
- ;;=^5063232
- ;;^UTILITY(U,$J,358.3,18377,0)
- ;;=Z91.410^^91^935^26
- ;;^UTILITY(U,$J,358.3,18377,1,0)
+ ;;^UTILITY(U,$J,358.3,18556,1,3,0)
+ ;;=3^Malig Neop Left Main Bronchus
+ ;;^UTILITY(U,$J,358.3,18556,1,4,0)
+ ;;=4^C34.02
+ ;;^UTILITY(U,$J,358.3,18556,2)
+ ;;=^5000959
+ ;;^UTILITY(U,$J,358.3,18557,0)
+ ;;=C34.32^^64^832^10
+ ;;^UTILITY(U,$J,358.3,18557,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,18377,1,3,0)
- ;;=3^Personal Hx of Adult Physical/Sexual Abuse
- ;;^UTILITY(U,$J,358.3,18377,1,4,0)
- ;;=4^Z91.410
- ;;^UTILITY(U,$J,358.3,18377,2)
- ;;=^5063619
- ;;^UTILITY(U,$J,358.3,18378,0)
- ;;=T74.21XA^^91^935^15
- ;;^UTILITY(U,$J,358.3,18378,1,0)
+ ;;^UTILITY(U,$J,358.3,18557,1,3,0)
+ ;;=3^Malig Neop Left Lower Lobe Bronchus/Lung
+ ;;^UTILITY(U,$J,358.3,18557,1,4,0)
+ ;;=4^C34.32
+ ;;^UTILITY(U,$J,358.3,18557,2)
+ ;;=^5133322
+ ;;^UTILITY(U,$J,358.3,18558,0)
+ ;;=C34.31^^64^832^19
+ ;;^UTILITY(U,$J,358.3,18558,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,18378,1,3,0)
- ;;=3^Adult Sexual Abuse,Confirmed,Init Enctr
- ;;^UTILITY(U,$J,358.3,18378,1,4,0)
- ;;=4^T74.21XA
- ;;^UTILITY(U,$J,358.3,18378,2)
- ;;=^5054152
- ;;^UTILITY(U,$J,358.3,18379,0)
- ;;=T74.21XD^^91^935^16
- ;;^UTILITY(U,$J,358.3,18379,1,0)
+ ;;^UTILITY(U,$J,358.3,18558,1,3,0)
+ ;;=3^Malig Neop Right Lower Lobe Bronchus/Lung
+ ;;^UTILITY(U,$J,358.3,18558,1,4,0)
+ ;;=4^C34.31
+ ;;^UTILITY(U,$J,358.3,18558,2)
+ ;;=^5133321
+ ;;^UTILITY(U,$J,358.3,18559,0)
+ ;;=C39.9^^64^832^13
+ ;;^UTILITY(U,$J,358.3,18559,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,18379,1,3,0)
- ;;=3^Adult Sexual Abuse,Confirmed,Subs Enctr
- ;;^UTILITY(U,$J,358.3,18379,1,4,0)
- ;;=4^T74.21XD
- ;;^UTILITY(U,$J,358.3,18379,2)
- ;;=^5054153
- ;;^UTILITY(U,$J,358.3,18380,0)
- ;;=T76.21XA^^91^935^17
- ;;^UTILITY(U,$J,358.3,18380,1,0)
+ ;;^UTILITY(U,$J,358.3,18559,1,3,0)
+ ;;=3^Malig Neop Lower Respiratory Tract,Unspec Part
+ ;;^UTILITY(U,$J,358.3,18559,1,4,0)
+ ;;=4^C39.9
+ ;;^UTILITY(U,$J,358.3,18559,2)
+ ;;=^5000972
+ ;;^UTILITY(U,$J,358.3,18560,0)
+ ;;=C34.2^^64^832^14
+ ;;^UTILITY(U,$J,358.3,18560,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,18380,1,3,0)
- ;;=3^Adult Sexual Abuse,Suspected,Init Enctr
- ;;^UTILITY(U,$J,358.3,18380,1,4,0)
- ;;=4^T76.21XA
- ;;^UTILITY(U,$J,358.3,18380,2)
- ;;=^5054227
- ;;^UTILITY(U,$J,358.3,18381,0)
- ;;=T76.21XD^^91^935^18
- ;;^UTILITY(U,$J,358.3,18381,1,0)
+ ;;^UTILITY(U,$J,358.3,18560,1,3,0)
+ ;;=3^Malig Neop Middle Lobe Bronchus/Lung
+ ;;^UTILITY(U,$J,358.3,18560,1,4,0)
+ ;;=4^C34.2
+ ;;^UTILITY(U,$J,358.3,18560,2)
+ ;;=^267137
+ ;;^UTILITY(U,$J,358.3,18561,0)
+ ;;=C34.82^^64^832^15
+ ;;^UTILITY(U,$J,358.3,18561,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,18381,1,3,0)
- ;;=3^Adult Sexual Abuse,Suspected,Subs Enctr
- ;;^UTILITY(U,$J,358.3,18381,1,4,0)
- ;;=4^T76.21XD
- ;;^UTILITY(U,$J,358.3,18381,2)
- ;;=^5054228
- ;;^UTILITY(U,$J,358.3,18382,0)
- ;;=Z69.81^^91^935^23
- ;;^UTILITY(U,$J,358.3,18382,1,0)
+ ;;^UTILITY(U,$J,358.3,18561,1,3,0)
+ ;;=3^Malig Neop Ovrlp Sites Left Bronchus/Lung
+ ;;^UTILITY(U,$J,358.3,18561,1,4,0)
+ ;;=4^C34.82
+ ;;^UTILITY(U,$J,358.3,18561,2)
+ ;;=^5000965
+ ;;^UTILITY(U,$J,358.3,18562,0)
+ ;;=C34.81^^64^832^16
+ ;;^UTILITY(U,$J,358.3,18562,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,18382,1,3,0)
- ;;=3^MH Svc for Victim of Other Abuse
- ;;^UTILITY(U,$J,358.3,18382,1,4,0)
- ;;=4^Z69.81
- ;;^UTILITY(U,$J,358.3,18382,2)
- ;;=^5063234
- ;;^UTILITY(U,$J,358.3,18383,0)
- ;;=Z69.82^^91^935^21
- ;;^UTILITY(U,$J,358.3,18383,1,0)
+ ;;^UTILITY(U,$J,358.3,18562,1,3,0)
+ ;;=3^Malig Neop Ovrlp Sites Right Bronchus/Lung
+ ;;^UTILITY(U,$J,358.3,18562,1,4,0)
+ ;;=4^C34.81
+ ;;^UTILITY(U,$J,358.3,18562,2)
+ ;;=^5000964
+ ;;^UTILITY(U,$J,358.3,18563,0)
+ ;;=C38.4^^64^832^17
+ ;;^UTILITY(U,$J,358.3,18563,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,18383,1,3,0)
- ;;=3^MH Svc for Perpetrator of Other Abuse
- ;;^UTILITY(U,$J,358.3,18383,1,4,0)
- ;;=4^Z69.82
- ;;^UTILITY(U,$J,358.3,18383,2)
- ;;=^5063235
- ;;^UTILITY(U,$J,358.3,18384,0)
- ;;=T74.01XA^^91^935^3
- ;;^UTILITY(U,$J,358.3,18384,1,0)
+ ;;^UTILITY(U,$J,358.3,18563,1,3,0)
+ ;;=3^Malig Neop Pleura
+ ;;^UTILITY(U,$J,358.3,18563,1,4,0)
+ ;;=4^C38.4
+ ;;^UTILITY(U,$J,358.3,18563,2)
+ ;;=^267140
+ ;;^UTILITY(U,$J,358.3,18564,0)
+ ;;=C34.01^^64^832^20
+ ;;^UTILITY(U,$J,358.3,18564,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,18384,1,3,0)
- ;;=3^Adult Neglect,Confirmed,Init Enctr
+ ;;^UTILITY(U,$J,358.3,18564,1,3,0)
+ ;;=3^Malig Neop Right Main Bronchus
+ ;;^UTILITY(U,$J,358.3,18564,1,4,0)
+ ;;=4^C34.01

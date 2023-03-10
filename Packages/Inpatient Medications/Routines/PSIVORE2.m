@@ -1,5 +1,5 @@
-PSIVORE2 ;BIR/RGY,PR,MLM - ACT, NEW ORDER (CONT. OF PSIVORE1) ;Oct 31, 2018@14:54
- ;;5.0;INPATIENT MEDICATIONS;**21,58,101,244,290,329,319**;16 DEC 97;Build 31
+PSIVORE2 ;BIR/RGY,PR,MLM - ACT, NEW ORDER (CONT. OF PSIVORE1) ;Nov 10, 2020@14:01:05
+ ;;5.0;INPATIENT MEDICATIONS;**21,58,101,244,290,329,319,399,430**;16 DEC 97;Build 1
  ;
  ; References to ^PS(55 supported by DBIA #2191.
  ;
@@ -46,6 +46,8 @@ INCOMP ; Delete order missing critical information.
  ;
 DEL55 ; Delete order from 55.
  I ON55'["V"!($G(P(21))]"") Q
+ ;p430 nothing to delete, quit out
+ I $D(^PS(55,DFN,"IV",+ON55,0))=0 Q
  I $G(^PS(55,DFN,"IV",+ON55,0))=+ON55 NEW PSIVORFA S PSIVORFA=1 ; P290 If only operating on a stub, do not display status message below
  S DIK="^PS(55,"_DFN_",""IV"",",DA(1)=DFN,DA=+ON55 D ^DIK W:'$G(PSIVORFA) $C(7),"...Order ",$S($E($G(PSIVAC),2)="N":"deleted.",1:"unchanged.")
  N DA,DIK,ORIFN S ORIFN=$P($G(^PS(55,DFN,"IV",+ON55,0)),U,21) I ORIFN,$E($G(PSIVAC),2)="N" D EN1^PSJHL2(DFN,"OD",+ON55_"V","ORDER DELETED")
@@ -54,11 +56,11 @@ DEL55 ; Delete order from 55.
  ;
 NEW ; New order entry
  N ON D NEWENT^PSIVORFE S DRGN="",P("IVRM")=+PSIVSN_U_$P($G(^PS(59.5,+PSIVSN,0)),U) ;*PSJ*5*244 - NEW ON
- K DRG,PSGFDX F X="AD","DRG","LF","LFA","CUM","MR","SOL","OPI","OT","SYRS","REM","SI",2,3,4,5,7,8,9,11,12,15,17,23 S:'$D(P(X)) P(X)=""
+ K DRG,PSGFDX F X="AD","DRG","LF","LFA","CUM","MR","SOL","OPI","OT","SYRS","REM","SI","IND",2,3,4,5,7,8,9,11,12,15,17,23 S:'$D(P(X)) P(X)="" ;*399-IND
  S P(17)="A",P(4)=$E($G(PSIVTYPE)) S:"CS"[P(4) P(23)=$P($G(PSIVTYPE),U,2)
  D:P(4)="" 53^PSIVORC1 Q:$G(P(4))=""  S Y=$P($G(^PS(55,DFN,5.1)),U,2),P(6)=Y_U_$P($G(^VA(200,+Y,0)),U)
  I $G(PSJCLAPP) S P("CLIN")=$P(PSJCLAPP,U),P("APPT")=$P(PSJCLAPP,U,2) ;*p319
- D OTYP^PSIVORC1 S PSIVOK="",EDIT="57^58^59^3"_$S(P("DTYP")=1:"^26^39",1:"")_"^63^64^10^25^1"
+ D OTYP^PSIVORC1 S PSIVOK="",EDIT="57^58^59^3"_$S(P("DTYP")=1:"^26^39",1:"")_"^63^64^132^10^25^1" ;*399-IND-132
  D EDIT^PSIVEDT Q:'$G(P(2))  D GTOT^PSIVUTL(P(4)) D:$G(P("PD"))="" GTPD
  Q
  ;

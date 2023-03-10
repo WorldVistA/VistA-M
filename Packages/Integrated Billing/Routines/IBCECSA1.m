@@ -1,5 +1,5 @@
 IBCECSA1 ;ALB/CXW - IB STATUS AWAITING RESOLUTION SCREEN ;28-JUL-99
- ;;2.0;INTEGRATED BILLING;**137,283,288,320,368,623**;21-MAR-94;Build 70
+ ;;2.0;INTEGRATED BILLING;**137,283,288,320,368,623,650**;21-MAR-94;Build 21
  ;;Per VA Directive 6402, this routine should not be modified.
  ; DBIA for $$BN1^PRCAFN()
  ;
@@ -7,72 +7,28 @@ BLD ; Build list entrypoint
  ;N IBDA,IBREV,IBIFN,IBPAY,IBSSN,IBSER,IB399,IBLOC,IBDIV,IBUER,IBMSG,IBERR,IBPEN,SEVERITY,A,IBOAM,IBPAT,IBSTSMSG,SV1,SV2,SV3
  N A,IB399,IBDA,IBDIV,IBERR,IBIFN,IBLOC,IBMCCF,IBMSG,IBNON,IBOAM,IBPAT,IBPAY,IBPEN   ;/vd-IB*2.0*623 (US141) - Reordered variables
  N IBREV,IBRTYP,IBSER,IBSSN,IBSTSMSG,IBUER,SEVERITY,SV1,SV2,SV3
+ N LOOPDT,LOOPEND  ; WCJ;IB*2.0*650
  K ^TMP("IBCECSA",$J),^TMP("IBCECSB",$J),^TMP("IBCECSD",$J)
  W !!,"Compiling CSA status messages ... "
  S IBMCCF=^TMP("IBRTYP",$J,0)   ; "M"CCF, "N"on-MCCF or "B"oth - IB*2.0*623
  S IBSEV=$G(IBSEV,"R")
  S VALMCNT=0,IB364=""
  S SEVERITY=""
- F  S SEVERITY=$O(^IBM(361,"ACSA",SEVERITY)) Q:SEVERITY=""  I SEVERITY="R"!(IBSEV="B") S IBREV="" F  S IBREV=$O(^IBM(361,"ACSA",SEVERITY,IBREV)) Q:IBREV=""  I IBREV<2 S IBDA=0 F  S IBDA=$O(^IBM(361,"ACSA",SEVERITY,IBREV,IBDA)) Q:'IBDA  D
- . S IB=$G(^IBM(361,IBDA,0)),IBIFN=+IB
- . S IBPEN=$$FMDIFF^XLFDT(DT,$P(IB,U,2),1)
- . ;quit if not pending for at least the minimum # of days requested
- . Q:IBDAYS>IBPEN
- . S IB399=$G(^DGCR(399,IBIFN,0))
- . ;
- . ; no cancelled claims allowed on the CSA screen
- . ; if we find one, then update the appropriate EDI files
- . I $P(IB399,U,13)=7 D UPDEDI^IBCEM(+$P(IB,U,11),"C") Q
- . ;
- . ; automatically review this message if the claim was last printed on
- . ; or after the MCS - 'Resubmit by Print' date
- . I $P(IB,U,16),($P($G(^DGCR(399,IBIFN,"S")),U,14)\1)'<$P(IB,U,16) D UPDEDI^IBCEM(+$P(IB,U,11),"P") Q
- . ;
- . ;/vd - IB*2.0*623 (US141) - Beginning of Code added to support the new sort prompt for MCCF, NON-MCCF or BOTH
- . S IBRTYP=$P(IB399,U,7),IBNON=0   ;Rate type for claim and variable for identifying the sort criteria.
- . I $D(^IBE(350.9,1,28,"B",IBRTYP)) S IBNON=1   ; The claim's Rate Type is a Non-MCCF Rate Type.
- . I IBMCCF="M",+IBNON Q   ; User selected only MCCF Rate Types.
- . I IBMCCF="N",'IBNON Q   ; User selected only Non-MCCF Rate Types.
- . ;/vd - IB*2.0*623 (US141) - End
- . ;
- . S IBDIV=+$P(IB399,U,22)
- . S IBUER=+$P($G(^DGCR(399,IBIFN,"S")),U,11)
- . ;
- . ; If Request MRA bill, pull the MRA Requestor user instead
- . I 'IBUER,$P(IB399,U,13)=2 S IBUER=+$P($G(^DGCR(399,IBIFN,"S")),U,8)
- . I $D(^TMP("IBBIL",$J)),'$D(^TMP("IBBIL",$J,IBUER)) Q  ; User not selected
- . I $D(^TMP("IBDIV",$J)),'$D(^TMP("IBDIV",$J,IBDIV)) Q  ; Div not selected
- . ;
- . S IBPAY=$P($G(^DIC(36,+$P($G(^DGCR(399,IBIFN,"MP")),U),0)),U)
- . I IBPAY="" S IBPAY=$P($G(^DIC(36,+$$CURR^IBCEF2(IBIFN),0)),U)
- . I IBPAY="" S IBPAY="UNKNOWN PAYER"
- . S IBPAT=$G(^DPT(+$P(IB399,U,2),0))
- . S IBSSN=$E($P(IBPAT,U,9),6,9) I IBSSN="" S IBSSN="~unk"
- . S IBPAT=$P(IBPAT,U,1) I IBPAT="" S IBPAT="~UNKNOWN PATIENT NAME"
- . S IBSER=$P($G(^DGCR(399,IBIFN,"U")),U)
- . S IBLOC=$P(IB399,U,4)
- . S IBLOC=$S(IBLOC=1:"HOSPITAL",IBLOC=2:"SKILLED NURSING",1:"CLINIC")
- . I IBDIV S IBDIV=$P($G(^DG(40.8,IBDIV,0)),U)
- . I IBDIV=""!(IBDIV=0) S IBDIV="UNSPECIFIED"
- . S IBMSG=$S($P(IB,U,8):"PAYER",1:"NON-PAYER")
- . S IBUER=$S(IBUER:$P($G(^VA(200,IBUER,0)),U),1:"UNKNOWN")_"~"_IBUER
- . S IB364=$P(IB,U,11)
- . S IBOAM=$G(^DGCR(399,IBIFN,"U1"))
- . S IBOAM=$P(IBOAM,U,1)-$P(IBOAM,U,2)     ; current balance (total charges - offset)
- . ;
- . S IBSTSMSG=$$TXT(IBDA)       ; status message text
- . S IBERR=$E(IBSTSMSG,1,60)
- . I IBERR="" S IBERR="-"
- . ;
- . S IB=$$BN1^PRCAFN(IBIFN)     ; external bill#
- . S A=IBIFN_U_IBPAY_U_IBPAT_U_IBSSN_U_IBSER_U_IBOAM_U_IBLOC_U_IBDIV_U_IBUER_U_IBMSG_U_IBPEN_U_$S(IBREV:"*",1:"")_U_IB364_U_IB
- . ;
- . S SV1=$$SRTV($G(IBSORT1),IBDA)
- . S SV2=$$SRTV($G(IBSORT2),IBDA)
- . S SV3=$$SRTV($G(IBSORT3),IBDA)
- . S ^TMP("IBCECSB",$J,SV1,SV2,SV3,IBDA)=A
- . S ^TMP("IBCECSB",$J,SV1,SV2,SV3,IBDA,"MSG")=IBSTSMSG
- . Q
+ ; 'R'ejects only
+ I IBSEV="R" D
+ .F  S SEVERITY=$O(^IBM(361,"ACSA",SEVERITY)) Q:SEVERITY=""  I SEVERITY="R"!(IBSEV="B") D
+ .. S IBREV="" F  S IBREV=$O(^IBM(361,"ACSA",SEVERITY,IBREV)) Q:IBREV=""  I IBREV<2 D
+ ... S IBDA=0 F  S IBDA=$O(^IBM(361,"ACSA",SEVERITY,IBREV,IBDA)) Q:'IBDA  D TAG
+ ;  'B'oth Rejects and Informational Messages - go by dates 
+ I IBSEV="B" D
+ . S LOOPDT=$$FMADD^XLFDT(INFOSTDT,,,,-1)
+ . S LOOPEND=$$FMADD^XLFDT(INFOENDT,1,,,-1)
+ . F  S LOOPDT=$O(^IBM(361,"ARD",LOOPDT)) Q:'+LOOPDT!(LOOPDT>LOOPEND)  D
+ .. S IBDA="" F  S IBDA=$O(^IBM(361,"ARD",LOOPDT,IBDA)) Q:IBDA=""  D
+ ... S IBREV=$P($G(^IBM(361,IBDA,0)),U,9)
+ ... Q:IBREV'<2
+ ... S SEVERITY=$P($G(^IBM(361,IBDA,0)),U,3)
+ ... D TAG
  ;
  I '$D(^TMP("IBCECSB",$J)) D NMAT Q
  D SCRN
@@ -182,3 +138,63 @@ TXT(IBDA,LEN) ; Return a string of status message text
  . Q
  Q $E(MSG,1,LEN)
  ;
+ ;
+TAG S IB=$G(^IBM(361,IBDA,0)),IBIFN=+IB
+ S IBPEN=$$FMDIFF^XLFDT(DT,$P(IB,U,2),1)
+ ;quit if not pending for at least the minimum # of days requested
+ Q:IBDAYS>IBPEN
+ S IB399=$G(^DGCR(399,IBIFN,0))
+ ;
+ ; no cancelled claims allowed on the CSA screen
+ ; if we find one, then update the appropriate EDI files
+ I $P(IB399,U,13)=7 D UPDEDI^IBCEM(+$P(IB,U,11),"C") Q
+ ;
+ ; automatically review this message if the claim was last printed on
+ ; or after the MCS - 'Resubmit by Print' date
+ I $P(IB,U,16),($P($G(^DGCR(399,IBIFN,"S")),U,14)\1)'<$P(IB,U,16) D UPDEDI^IBCEM(+$P(IB,U,11),"P") Q
+ ;
+ ;/vd - IB*2.0*623 (US141) - Beginning of Code added to support the new sort prompt for MCCF, NON-MCCF or BOTH
+ S IBRTYP=$P(IB399,U,7),IBNON=0   ;Rate type for claim and variable for identifying the sort criteria.
+ I $D(^IBE(350.9,1,28,"B",IBRTYP)) S IBNON=1   ; The claim's Rate Type is a Non-MCCF Rate Type.
+ I IBMCCF="M",+IBNON Q   ; User selected only MCCF Rate Types.
+ I IBMCCF="N",'IBNON Q   ; User selected only Non-MCCF Rate Types.
+ ;/vd - IB*2.0*623 (US141) - End
+ ;
+ S IBDIV=+$P(IB399,U,22)
+ S IBUER=+$P($G(^DGCR(399,IBIFN,"S")),U,11)
+ ;
+ ; If Request MRA bill, pull the MRA Requestor user instead
+ I 'IBUER,$P(IB399,U,13)=2 S IBUER=+$P($G(^DGCR(399,IBIFN,"S")),U,8)
+ I $D(^TMP("IBBIL",$J)),'$D(^TMP("IBBIL",$J,IBUER)) Q  ; User not selected
+ I $D(^TMP("IBDIV",$J)),'$D(^TMP("IBDIV",$J,IBDIV)) Q  ; Div not selected
+ ;
+ S IBPAY=$P($G(^DIC(36,+$P($G(^DGCR(399,IBIFN,"MP")),U),0)),U)
+ I IBPAY="" S IBPAY=$P($G(^DIC(36,+$$CURR^IBCEF2(IBIFN),0)),U)
+ I IBPAY="" S IBPAY="UNKNOWN PAYER"
+ S IBPAT=$G(^DPT(+$P(IB399,U,2),0))
+ S IBSSN=$E($P(IBPAT,U,9),6,9) I IBSSN="" S IBSSN="~unk"
+ S IBPAT=$P(IBPAT,U,1) I IBPAT="" S IBPAT="~UNKNOWN PATIENT NAME"
+ S IBSER=$P($G(^DGCR(399,IBIFN,"U")),U)
+ S IBLOC=$P(IB399,U,4)
+ S IBLOC=$S(IBLOC=1:"HOSPITAL",IBLOC=2:"SKILLED NURSING",1:"CLINIC")
+ I IBDIV S IBDIV=$P($G(^DG(40.8,IBDIV,0)),U)
+ I IBDIV=""!(IBDIV=0) S IBDIV="UNSPECIFIED"
+ S IBMSG=$S($P(IB,U,8):"PAYER",1:"NON-PAYER")
+ S IBUER=$S(IBUER:$P($G(^VA(200,IBUER,0)),U),1:"UNKNOWN")_"~"_IBUER
+ S IB364=$P(IB,U,11)
+ S IBOAM=$G(^DGCR(399,IBIFN,"U1"))
+ S IBOAM=$P(IBOAM,U,1)-$P(IBOAM,U,2)     ; current balance (total charges - offset)
+ ;
+ S IBSTSMSG=$$TXT(IBDA)       ; status message text
+ S IBERR=$E(IBSTSMSG,1,60)
+ I IBERR="" S IBERR="-"
+ ;
+ S IB=$$BN1^PRCAFN(IBIFN)     ; external bill#
+ S A=IBIFN_U_IBPAY_U_IBPAT_U_IBSSN_U_IBSER_U_IBOAM_U_IBLOC_U_IBDIV_U_IBUER_U_IBMSG_U_IBPEN_U_$S(IBREV:"*",1:"")_U_IB364_U_IB
+ ;
+ S SV1=$$SRTV($G(IBSORT1),IBDA)
+ S SV2=$$SRTV($G(IBSORT2),IBDA)
+ S SV3=$$SRTV($G(IBSORT3),IBDA)
+ S ^TMP("IBCECSB",$J,SV1,SV2,SV3,IBDA)=A
+ S ^TMP("IBCECSB",$J,SV1,SV2,SV3,IBDA,"MSG")=IBSTSMSG
+ Q

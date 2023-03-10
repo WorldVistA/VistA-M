@@ -1,5 +1,5 @@
-DGENELA2 ;ALB/CJM,ERC - Patient Eligibility API ; 13 JUN 1997
- ;;5.3;Registration;**147,688**;Aug 13,1993;Build 29
+DGENELA2 ;ALB/CJM,ERC,JAM - Patient Eligibility API ; 13 JUN 1997
+ ;;5.3;Registration;**147,688,1064**;Aug 13,1993;Build 41
  ;
 DELELIG(DFN,DGELG) ;
  ;Description: Deletes eligibilities from the patient file Patient
@@ -51,3 +51,12 @@ UPDZ11 ;update the VistA Patient file record with data
  . S DATA3013(.3013)=DATA(.3013)
  . I '$$UPD^DGENDBS(2,DFN,.DATA3013) S ERROR="FILEMAN FAILED TO UPDATE P&T EFFECTIVE DATE" Q
  Q
+INDSTATUS(DFN) ; Returns Indian copay status for a patient
+ ; jam; this tag added for Patch DG*5.3*1064
+ ; Input: DFN - patient DFN
+ ; Returns:  1 - (TRUE) if INDIAN SELF IDENTIFICATION field (#.571) equals YES, 
+ ;                      and the patient's ENROLLMENT STATUS is equal to VERIFIED.
+ ; 
+ I '$G(DFN) Q 0
+ I $$ENROLLED^DGENA(DFN)&($$GET1^DIQ(2,DFN_",",.571,"E")="YES") Q 1
+ Q 0

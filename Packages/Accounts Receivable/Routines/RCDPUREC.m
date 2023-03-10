@@ -1,5 +1,5 @@
 RCDPUREC ;WISC/RFJ - receipt utilities ;Jun 06, 2014@19:11:19
- ;;4.5;Accounts Receivable;**114,148,169,173,208,222,293,298,321,326**;Mar 20, 1995;Build 26
+ ;;4.5;Accounts Receivable;**114,148,169,173,208,222,293,298,321,326,380,367,371**;Mar 20, 1995;Build 29
  ;Per VA Directive 6402, this routine should not be modified.
  Q
  ;
@@ -11,8 +11,9 @@ ADDRECT(TRANDATE,RCDEPTDA,PAYTYPDA) ;  add a receipt
  N DA,DATA,RCDPFLAG,RECEIPT,TYPE
  ;  if a receipt has already been added for this transmission date
  ;  and deposit number, do not add a new one
- S DA=0 F  S DA=$O(^RCY(344,"AD",+RCDEPTDA,DA)) Q:'DA  S DATA=$G(^RCY(344,DA,0)) I $P($P(DATA,"^",3),".")=TRANDATE,$P(DATA,"^",4)=PAYTYPDA S RCDPFLAG=1 Q
- I $G(RCDPFLAG) Q DA
+ ; PRCA*4.5*380 - Removed to allow for duplicate deposit number/date records
+ ;S DA=0 F  S DA=$O(^RCY(344,"AD",+RCDEPTDA,DA)) Q:'DA  S DATA=$G(^RCY(344,DA,0)) I $P($P(DATA,"^",3),".")=TRANDATE,$P(DATA,"^",4)=PAYTYPDA S RCDPFLAG=1 Q
+ ;I $G(RCDPFLAG) Q DA
  ;
  Q $$BLDRCPT(TRANDATE,RCDEPTDA,PAYTYPDA)
  ;
@@ -89,7 +90,7 @@ SELRECT(ADDNEW,RCDEPTDA) ;  select a receipt
  ;  if $g(rcdeptda) allow selection of receipts for the deposit only
  ;  if $g(addnew) and $g(rcdeptda) deposit number auto set for new receipt
  ;  returns -1 for timeout or ^, 0 for no selection, or ien of receipt
- N %,%Y,C,D0,DA,DI,DIC,DIE,DIK,DG,DLAYGO,DQ,DR,DTOUT,DUOUT,RCREFLUP,X,Y,RCDE,RCLB,RC1,RC2,RCREQ,RCY
+ N %,%Y,C,D0,DA,DG,DI,DIC,DIE,DIK,DLAYGO,DQ,DR,DTOUT,DUOUT,RC1,RC2,RCDE,RCHMP,RCLB,RCREFLUP,RCREQ,RCY,X,Y
  S DIC="^RCY(344,",DIC(0)="QEAM",DIC("A")="Select RECEIPT: "
  S DIC("W")="D DICW^RCDPUREC"
  ;  set screen to select receipts linked to deposit and to screen out
@@ -109,8 +110,9 @@ SELRECT(ADDNEW,RCDEPTDA) ;  select a receipt
  .   S DIC("DR")="S RCREQ=0;.02////"_DUZ_";.03///NOW;.14////1;@4;.04"_$S(RCDE:"////"_$$LBEVENT^RCDPEU(),1:"")
  .   ; Next line use EFT picker utility instead of .17 in DR string - PRCA*4.5*326
  .   ; Do not delete DIC("W") from the DR string. It has a role in ^DIC flow if an EFT is not picked.
- .   S DIC("DR")=DIC("DR")_";S RCLB=$$EDILBEV^RCDPEU(+X) S:'RCLB Y=""@6"";I $G(RCDEPTDA) S Y=$S('RCDE:""@8"",1:""@6"");W !,RC2 S RCREQ=1,DIC(""W"")="""";D EFT344^RCDPEU2(""   AR BATCH PAYMENT EFT RECORD: "",DA);S Y=""@99"""
- .   S DIC("DR")=DIC("DR")_";@6;.06"_$S($G(RCDEPTDA):"////"_RCDEPTDA,1:"")_";S:'RCDE Y=""@99"";.17////"_+RCDE_";S Y=""@99"";@8;W *7,!,RC1 S Y=""@4"";@99"
+ .   ; PRCA*4.5*367 - If type is CHAMPVA, jump to setting receipt total then exit
+ .   S DIC("DR")=DIC("DR")_";S RCLB=$$EDILBEV^RCDPEU(+X),RCHMP=$$ISCHMPVA^RCDPUREC(+$G(X)) S:'RCLB Y=""@6"" S:RCHMP Y=""@9"";I $G(RCDEPTDA) S Y=$S('RCDE:""@8"",1:""@6"");W !,RC2 S RCREQ=1,DIC(""W"")="""""
+ .   S DIC("DR")=DIC("DR")_";D EFT344^RCDPEU2(""   AR BATCH PAYMENT EFT RECORD: "",DA);S Y=""@99"";@6;.06"_$S($G(RCDEPTDA):"////"_RCDEPTDA,1:"")_";S:'RCDE Y=""@99"";.17////"_+RCDE_";S Y=""@99"";@8;W *7,!,RC1 S Y=""@4"";@9;.22;@99"
  .   S DIC("DR")=DIC("DR")_";"
  D ^DIC
  S RCY=Y
@@ -152,7 +154,7 @@ LOOKUP ;  special lookup on receipts, called from ^dd(344,.01,7.5)
  ; PRCA*4.5*298 - updated logic and comments in EDITREC
 EDITREC(DA,DR) ;  edit the receipt (DR = string of fields to ask) in AR BATCH PAYMENT file (#344)
  ; RCBPYMNT - AR BATCH PAYMENT entry before edit
- N D,D0,DI,DIC,DIE,DQ,EFTKEY,RCBPYMNT,RCDA,RCDR1,RCDR2,RCDR3,X,Y
+ N D,D0,DI,DIC,DIE,DQ,EFTKEY,RCBPYMNT,RCDA,RCDR1,RCDR2,RCDR3,RCNE,X,Y ; PRCA*4.5*371 Added RCNE
  S (DIC,DIE)="^RCY(344,",RCDA=DA
  S EFTKEY=$$EFTKEY() ; PRCA*4.5*321 - Check if user has key to unmatch EFTs
  I $G(DR)="" N DR D
@@ -221,18 +223,27 @@ TYP(Y) ; Determine where to jump to in the 'type' edit of
  ; Y - passed by ref. from DR string logic
  ; DR(1,344,1)="@20;.04;S RCNO=0,RCN4=X D TYP^RCDPUREC(.Y);.17////^S X=RCNE;S Y=""@22"";@21;.04////^S X=RCO4;I RCOE="""" S Y=""@23"";.17////^S X=RCOE;@23;W !,*7,$S(RCO4=14:$S('RCNO:RCM1,1:RCM2),1:RCM) S Y=""@20"";@22"
  ;  Assumes RCP,RCNO,RCN4,RCO4,DA defined
- N DIR,RCCHANGE,RCEFTSWP
+ N DIR,RCCHANGE,RCEFTSWP,RCERA,RCTRC
+ S RCTRC="" ; PRCA*4.5*367 - initialize to null in case no ERA has been assigned
  S RCEFTSWP=EFTKEY&((RCO4=14)&(RCN4=14)) ; PRCA*4.5*321 - Allow edit of matched EFT with security key
- I $S(RCEFTSWP:0,RCN4=RCO4:1,(RCO4'=4)&(RCN4'=4)&(RCO4'=14)&(RCN4'=14):1,1:0) S Y=RCP+2 G TYPQ
+ ; PRCA*4.5*367 - Skip to Receipt Total if new type is CHAMPVA
+ I $S(RCEFTSWP:0,RCN4=RCO4:1,(RCO4'=4)&(RCN4'=4)&(RCO4'=14)&(RCN4'=14):1,1:0) S Y=$S(RCN4=17:RCP+4,1:RCP+2) G TYPQ
  ; To get here, the type was changed and it either was 4 or 14 OR is now 4 or 14
  ; Or per PRCA*4.5*231 user has unmatch key and type is 14 (EDI LOCKBOX) 
  S RCCHANGE=(RCN4'=RCO4)
  I RCCHANGE D  G:Y TYPQ
+ .; PRCA*4.5*367 - CHECK/MO PAYMENT can be changed to CHAMPVA if trace number begins w/ TDA
+ .S RCERA=$P($G(^RCY(344,DA,0)),U,18) S:RCERA RCTRC=$P($G(^RCY(344.4,RCERA,0)),U,2)
+ .I $P(^RCY(344,DA,0),"^",14),RCN4=17,$E(RCTRC,1,3)'="TDA" D  S Y=RCP Q
+ ..S $P(^RCY(344,DA,0),U,4)=RCO4
+ ..W !!,"The Payment Type can only be changed to "_$$GET1^DIQ(341.1,17,.01)_" if"
+ ..W !,"matching ERA trace number begins with 'TDA'"
  .; If receipt Status is OPEN, EDI LOCKBOX can only be changed to CHECK/MO PAYMENT and vice-versa
- .I $P(^RCY(344,DA,0),"^",14),(RCO4=4&(RCN4'=14))!(RCO4=14&(RCN4'=4)) D  S Y=RCP Q  ; PRCA*4.5*321
+ .; PRCA*4.5*367 - Allow CHECK/MO PAYMENT (4) to be switched to CHAMPVA (17)
+ .I $P(^RCY(344,DA,0),"^",14),(RCO4=4&(RCN4'=14)&(RCN4'=17))!(RCO4=14&(RCN4'=4)) D  S Y=RCP Q  ; PRCA*4.5*321
  ..S $P(^RCY(344,DA,0),"^",4)=RCO4
  ..W !!,"The Payment Type can only be changed to "
- ..W $S(RCO4=4:$$GET1^DIQ(341.1,14,.01),1:$$GET1^DIQ(341.1,4,.01)),$C(7),!
+ ..W $S(RCO4=4:$$GET1^DIQ(341.1,14,.01)_" or "_$$GET1^DIQ(341.1,17,.01),1:$$GET1^DIQ(341.1,4,.01)),$C(7),!
  .; Type can't be changed if the old type was EDI Lockbox and there is an ERA detail record
  .; associated with it. Unless user has the UNMATCH EFT key.
  .I 'EFTKEY,RCO4=14,$P($G(^RCY(344,DA,0)),U,18) S Y=RCP+1 Q  ; PRCA*4.5*321
@@ -247,7 +258,8 @@ TYP(Y) ; Determine where to jump to in the 'type' edit of
  ..I 'Y S $P(^RCY(344,DA,0),"^",4)=RCO4,Y=RCP Q
  ..S:Y Y=RCP+2 S:RCN4=14 Y=0
  ;
- I RCN4'=14 S Y=RCP+2
+ ; PRCA*4.5*367 - Skip to Receipt Total if new type is CHAMPVA
+ I RCN4'=14 S Y=$S(RCN4=17:RCP+4,1:RCP+2)
  ; fall through to TYPQ
 TYPQ ;
  ; If type changed to EDI LOCKBOX, must have an EFT reference
@@ -358,4 +370,7 @@ DIC19 ;
  S G="^DIC(19)" F  S G=$Q(@G) Q:'$P(G,"^DIC(",2)=19  I @G["IDP" W !,G,!,@G
  ;
  Q
+ ;
+ISCHMPVA(RCTYP) ; Returns whether the given receipt type is CHAMPVA or not
+ Q $P($G(^RC(341.1,+$G(RCTYP),0)),U,2)=17
  ;

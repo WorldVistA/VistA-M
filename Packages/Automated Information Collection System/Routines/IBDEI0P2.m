@@ -1,126 +1,126 @@
-IBDEI0P2 ; ; 04-FEB-2020
- ;;3.0;IB ENCOUNTER FORM IMP/EXP;;FEB 04, 2020
+IBDEI0P2 ; ; 01-FEB-2022
+ ;;3.0;IB ENCOUNTER FORM IMP/EXP;;FEB 01, 2022
  Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,999) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
- ;;^UTILITY(U,$J,358.3,11184,0)
- ;;=M35.01^^77^726^2
- ;;^UTILITY(U,$J,358.3,11184,1,0)
+ ;;^UTILITY(U,$J,358.3,11250,1,4,0)
+ ;;=4^Z72.9
+ ;;^UTILITY(U,$J,358.3,11250,2)
+ ;;=^5063267
+ ;;^UTILITY(U,$J,358.3,11251,0)
+ ;;=Z89.411^^42^516^10
+ ;;^UTILITY(U,$J,358.3,11251,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,11184,1,3,0)
- ;;=3^Sicca Syndrome w/ Keratoconjunctivitis
- ;;^UTILITY(U,$J,358.3,11184,1,4,0)
- ;;=4^M35.01
- ;;^UTILITY(U,$J,358.3,11184,2)
- ;;=^5011787
- ;;^UTILITY(U,$J,358.3,11185,0)
- ;;=H10.503^^77^726^3
- ;;^UTILITY(U,$J,358.3,11185,1,0)
+ ;;^UTILITY(U,$J,358.3,11251,1,3,0)
+ ;;=3^Acquired Absence of Right Great Toe
+ ;;^UTILITY(U,$J,358.3,11251,1,4,0)
+ ;;=4^Z89.411
+ ;;^UTILITY(U,$J,358.3,11251,2)
+ ;;=^5063554
+ ;;^UTILITY(U,$J,358.3,11252,0)
+ ;;=Z89.412^^42^516^3
+ ;;^UTILITY(U,$J,358.3,11252,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,11185,1,3,0)
- ;;=3^Blepharoconjunctivitis,Bilateral
- ;;^UTILITY(U,$J,358.3,11185,1,4,0)
- ;;=4^H10.503
- ;;^UTILITY(U,$J,358.3,11185,2)
- ;;=^5004699
- ;;^UTILITY(U,$J,358.3,11186,0)
- ;;=H01.001^^77^726^4
- ;;^UTILITY(U,$J,358.3,11186,1,0)
+ ;;^UTILITY(U,$J,358.3,11252,1,3,0)
+ ;;=3^Acquired Absence of Left Great Toe
+ ;;^UTILITY(U,$J,358.3,11252,1,4,0)
+ ;;=4^Z89.412
+ ;;^UTILITY(U,$J,358.3,11252,2)
+ ;;=^5063555
+ ;;^UTILITY(U,$J,358.3,11253,0)
+ ;;=Z89.421^^42^516^14
+ ;;^UTILITY(U,$J,358.3,11253,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,11186,1,3,0)
- ;;=3^Blepharitis,Right Upper Eyelid
- ;;^UTILITY(U,$J,358.3,11186,1,4,0)
- ;;=4^H01.001
- ;;^UTILITY(U,$J,358.3,11186,2)
- ;;=^5004238
- ;;^UTILITY(U,$J,358.3,11187,0)
- ;;=H01.004^^77^726^5
- ;;^UTILITY(U,$J,358.3,11187,1,0)
+ ;;^UTILITY(U,$J,358.3,11253,1,3,0)
+ ;;=3^Acquired Absence of Right Toe(s)
+ ;;^UTILITY(U,$J,358.3,11253,1,4,0)
+ ;;=4^Z89.421
+ ;;^UTILITY(U,$J,358.3,11253,2)
+ ;;=^5063557
+ ;;^UTILITY(U,$J,358.3,11254,0)
+ ;;=Z89.422^^42^516^7
+ ;;^UTILITY(U,$J,358.3,11254,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,11187,1,3,0)
- ;;=3^Blepharitis,Left Upper Eyelid
- ;;^UTILITY(U,$J,358.3,11187,1,4,0)
- ;;=4^H01.004
- ;;^UTILITY(U,$J,358.3,11187,2)
- ;;=^5004241
- ;;^UTILITY(U,$J,358.3,11188,0)
- ;;=L71.9^^77^726^6
- ;;^UTILITY(U,$J,358.3,11188,1,0)
+ ;;^UTILITY(U,$J,358.3,11254,1,3,0)
+ ;;=3^Acquired Absence of Left Toe(s)
+ ;;^UTILITY(U,$J,358.3,11254,1,4,0)
+ ;;=4^Z89.422
+ ;;^UTILITY(U,$J,358.3,11254,2)
+ ;;=^5063558
+ ;;^UTILITY(U,$J,358.3,11255,0)
+ ;;=Z89.431^^42^516^9
+ ;;^UTILITY(U,$J,358.3,11255,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,11188,1,3,0)
- ;;=3^Rosacea,Unspec
- ;;^UTILITY(U,$J,358.3,11188,1,4,0)
- ;;=4^L71.9
- ;;^UTILITY(U,$J,358.3,11188,2)
- ;;=^5009276
- ;;^UTILITY(U,$J,358.3,11189,0)
- ;;=H04.221^^77^726^10
- ;;^UTILITY(U,$J,358.3,11189,1,0)
+ ;;^UTILITY(U,$J,358.3,11255,1,3,0)
+ ;;=3^Acquired Absence of Right Foot
+ ;;^UTILITY(U,$J,358.3,11255,1,4,0)
+ ;;=4^Z89.431
+ ;;^UTILITY(U,$J,358.3,11255,2)
+ ;;=^5063560
+ ;;^UTILITY(U,$J,358.3,11256,0)
+ ;;=Z89.432^^42^516^2
+ ;;^UTILITY(U,$J,358.3,11256,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,11189,1,3,0)
- ;;=3^Epiphora d/t Insuff Drainage,Right 
- ;;^UTILITY(U,$J,358.3,11189,1,4,0)
- ;;=4^H04.221
- ;;^UTILITY(U,$J,358.3,11189,2)
- ;;=^5004491
- ;;^UTILITY(U,$J,358.3,11190,0)
- ;;=H04.222^^77^726^11
- ;;^UTILITY(U,$J,358.3,11190,1,0)
+ ;;^UTILITY(U,$J,358.3,11256,1,3,0)
+ ;;=3^Acquired Absence of Left Foot
+ ;;^UTILITY(U,$J,358.3,11256,1,4,0)
+ ;;=4^Z89.432
+ ;;^UTILITY(U,$J,358.3,11256,2)
+ ;;=^5063561
+ ;;^UTILITY(U,$J,358.3,11257,0)
+ ;;=Z89.441^^42^516^8
+ ;;^UTILITY(U,$J,358.3,11257,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,11190,1,3,0)
- ;;=3^Epiphora d/t Insuff Drainage,Left 
- ;;^UTILITY(U,$J,358.3,11190,1,4,0)
- ;;=4^H04.222
- ;;^UTILITY(U,$J,358.3,11190,2)
- ;;=^5004492
- ;;^UTILITY(U,$J,358.3,11191,0)
- ;;=H04.551^^77^726^12
- ;;^UTILITY(U,$J,358.3,11191,1,0)
+ ;;^UTILITY(U,$J,358.3,11257,1,3,0)
+ ;;=3^Acquired Absence of Right Ankle
+ ;;^UTILITY(U,$J,358.3,11257,1,4,0)
+ ;;=4^Z89.441
+ ;;^UTILITY(U,$J,358.3,11257,2)
+ ;;=^5063563
+ ;;^UTILITY(U,$J,358.3,11258,0)
+ ;;=Z89.442^^42^516^1
+ ;;^UTILITY(U,$J,358.3,11258,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,11191,1,3,0)
- ;;=3^Acquired Stenosis,Right Nasolacrimal Duct
- ;;^UTILITY(U,$J,358.3,11191,1,4,0)
- ;;=4^H04.551
- ;;^UTILITY(U,$J,358.3,11191,2)
- ;;=^5004538
- ;;^UTILITY(U,$J,358.3,11192,0)
- ;;=H04.552^^77^726^13
- ;;^UTILITY(U,$J,358.3,11192,1,0)
+ ;;^UTILITY(U,$J,358.3,11258,1,3,0)
+ ;;=3^Acquired Absence of Left Ankle
+ ;;^UTILITY(U,$J,358.3,11258,1,4,0)
+ ;;=4^Z89.442
+ ;;^UTILITY(U,$J,358.3,11258,2)
+ ;;=^5063564
+ ;;^UTILITY(U,$J,358.3,11259,0)
+ ;;=Z89.511^^42^516^13
+ ;;^UTILITY(U,$J,358.3,11259,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,11192,1,3,0)
- ;;=3^Acquired Stenosis,Left Nasolacrimal Duct
- ;;^UTILITY(U,$J,358.3,11192,1,4,0)
- ;;=4^H04.552
- ;;^UTILITY(U,$J,358.3,11192,2)
- ;;=^5004539
- ;;^UTILITY(U,$J,358.3,11193,0)
- ;;=H04.211^^77^726^7
- ;;^UTILITY(U,$J,358.3,11193,1,0)
+ ;;^UTILITY(U,$J,358.3,11259,1,3,0)
+ ;;=3^Acquired Absence of Right Leg Below Knee
+ ;;^UTILITY(U,$J,358.3,11259,1,4,0)
+ ;;=4^Z89.511
+ ;;^UTILITY(U,$J,358.3,11259,2)
+ ;;=^5063566
+ ;;^UTILITY(U,$J,358.3,11260,0)
+ ;;=Z89.512^^42^516^6
+ ;;^UTILITY(U,$J,358.3,11260,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,11193,1,3,0)
- ;;=3^Epiphora d/t Excessive Lacrimation,Right
- ;;^UTILITY(U,$J,358.3,11193,1,4,0)
- ;;=4^H04.211
- ;;^UTILITY(U,$J,358.3,11193,2)
- ;;=^5004487
- ;;^UTILITY(U,$J,358.3,11194,0)
- ;;=H04.212^^77^726^8
- ;;^UTILITY(U,$J,358.3,11194,1,0)
+ ;;^UTILITY(U,$J,358.3,11260,1,3,0)
+ ;;=3^Acquired Absence of Left Leg Below Knee
+ ;;^UTILITY(U,$J,358.3,11260,1,4,0)
+ ;;=4^Z89.512
+ ;;^UTILITY(U,$J,358.3,11260,2)
+ ;;=^5063567
+ ;;^UTILITY(U,$J,358.3,11261,0)
+ ;;=Z89.611^^42^516^12
+ ;;^UTILITY(U,$J,358.3,11261,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,11194,1,3,0)
- ;;=3^Epiphora d/t Excessive Lacrimation,Left
- ;;^UTILITY(U,$J,358.3,11194,1,4,0)
- ;;=4^H04.212
- ;;^UTILITY(U,$J,358.3,11194,2)
- ;;=^5004488
- ;;^UTILITY(U,$J,358.3,11195,0)
- ;;=H04.213^^77^726^9
- ;;^UTILITY(U,$J,358.3,11195,1,0)
+ ;;^UTILITY(U,$J,358.3,11261,1,3,0)
+ ;;=3^Acquired Absence of Right Leg Above Knee
+ ;;^UTILITY(U,$J,358.3,11261,1,4,0)
+ ;;=4^Z89.611
+ ;;^UTILITY(U,$J,358.3,11261,2)
+ ;;=^5063572
+ ;;^UTILITY(U,$J,358.3,11262,0)
+ ;;=Z89.612^^42^516^5
+ ;;^UTILITY(U,$J,358.3,11262,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,11195,1,3,0)
- ;;=3^Epiphora d/t Excessive Lacrimation,Bilateral
- ;;^UTILITY(U,$J,358.3,11195,1,4,0)
- ;;=4^H04.213
- ;;^UTILITY(U,$J,358.3,11195,2)
- ;;=^5004489
- ;;^UTILITY(U,$J,358.3,11196,0)
- ;;=D23.111^^77^726^14
+ ;;^UTILITY(U,$J,358.3,11262,1,3,0)
+ ;;=3^Acquired Absence of Left Leg Above Knee
+ ;;^UTILITY(U,$J,358.3,11262,1,4,0)
+ ;;=4^Z89.612

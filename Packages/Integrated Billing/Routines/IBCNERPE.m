@@ -1,5 +1,5 @@
-IBCNERPE ;DAOU/BHS - IBCNE eIV RESPONSE REPORT (cont'd);03-JUN-2002
- ;;2.0;INTEGRATED BILLING;**271,300,416,438,497,506,519,521,659**;21-MAR-94;Build 16
+IBCNERPE ;DAOU/BHS - IBCNE eIV RESPONSE REPORT (cont'd); 03-JUN-2002
+ ;;2.0;INTEGRATED BILLING;**271,300,416,438,497,506,519,521,659,702**;21-MAR-94;Build 53
  ;;Per VA Directive 6402, this routine should not be modified.
  ;
  ; Must call at tag
@@ -20,7 +20,14 @@ GETDATA(IEN,RPTDATA) ; Retrieve response data
  S IENS=IEN_","
  S $P(RPTDATA(1),U,8)=$$GET1^DIQ(365,IENS,1.08,"E")   ; Whose Ins
  S $P(RPTDATA(1),U,13)=$$GET1^DIQ(365,IENS,1.13,"E")  ; COB
- S RPTDATA(8)=$$GET1^DIQ(365,IENS,8.01,"E")   ; Pt Rel to Sub
+ ;IB*2*702/ckb - Convert Pt Rel code to English
+ ; Pt Rel to Sub
+ ;S RPTDATA(8)=$$GET1^DIQ(365,IENS,8.01,"E")   ; Pt Rel to Sub
+ N PTREL,PTRIEN
+ S PTRIEN=$$GET1^DIQ(365,IENS,8.01,"I")
+ S PTREL=$$GET1^DIQ(365.037,PTRIEN_",",.02,"E")
+ S RPTDATA(8)=PTREL
+ ;IB*2*702/ckb - end
  ; if pt. rel is empty, try to get value from the old field 365/1.09
  I RPTDATA(8)="" S RPTDATA(8)=$$GET1^DIQ(365,IENS,1.09,"E")
  ; Trans err actions/codes to ext

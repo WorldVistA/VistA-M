@@ -1,636 +1,666 @@
-IBDEI0A9 ; ; 01-MAY-2020
- ;;3.0;IB ENCOUNTER FORM IMP/EXP;;MAY 01, 2020
+IBDEI0A9 ; ; 01-AUG-2022
+ ;;3.0;IB ENCOUNTER FORM IMP/EXP;;AUG 01, 2022
  Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,999) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
- ;;^UTILITY(U,$J,358.3,25070,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,25070,1,3,0)
- ;;=3^Torus fracture of upper end of right humerus, sequela
- ;;^UTILITY(U,$J,358.3,25070,1,4,0)
- ;;=4^S42.271S
- ;;^UTILITY(U,$J,358.3,25070,2)
- ;;=^5026976
- ;;^UTILITY(U,$J,358.3,25071,0)
- ;;=S42.122S^^76^1011^8
- ;;^UTILITY(U,$J,358.3,25071,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,25071,1,3,0)
- ;;=3^Disp fx of acromial process, left shoulder, sequela
- ;;^UTILITY(U,$J,358.3,25071,1,4,0)
- ;;=4^S42.122S
- ;;^UTILITY(U,$J,358.3,25071,2)
- ;;=^5026599
- ;;^UTILITY(U,$J,358.3,25072,0)
- ;;=S42.121S^^76^1011^9
- ;;^UTILITY(U,$J,358.3,25072,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,25072,1,3,0)
- ;;=3^Disp fx of acromial process, right shoulder, sequela
- ;;^UTILITY(U,$J,358.3,25072,1,4,0)
- ;;=4^S42.121S
- ;;^UTILITY(U,$J,358.3,25072,2)
- ;;=^5026592
- ;;^UTILITY(U,$J,358.3,25073,0)
- ;;=S42.112S^^76^1011^12
- ;;^UTILITY(U,$J,358.3,25073,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,25073,1,3,0)
- ;;=3^Disp fx of body of scapula, left shoulder, sequela
- ;;^UTILITY(U,$J,358.3,25073,1,4,0)
- ;;=4^S42.112S
- ;;^UTILITY(U,$J,358.3,25073,2)
- ;;=^5026557
- ;;^UTILITY(U,$J,358.3,25074,0)
- ;;=S42.111S^^76^1011^13
- ;;^UTILITY(U,$J,358.3,25074,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,25074,1,3,0)
- ;;=3^Disp fx of body of scapula, right shoulder, sequela
- ;;^UTILITY(U,$J,358.3,25074,1,4,0)
- ;;=4^S42.111S
- ;;^UTILITY(U,$J,358.3,25074,2)
- ;;=^5026550
- ;;^UTILITY(U,$J,358.3,25075,0)
- ;;=S42.132S^^76^1011^18
- ;;^UTILITY(U,$J,358.3,25075,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,25075,1,3,0)
- ;;=3^Disp fx of coracoid process, left shoulder, sequela
- ;;^UTILITY(U,$J,358.3,25075,1,4,0)
- ;;=4^S42.132S
- ;;^UTILITY(U,$J,358.3,25075,2)
- ;;=^5026641
- ;;^UTILITY(U,$J,358.3,25076,0)
- ;;=S42.131S^^76^1011^19
- ;;^UTILITY(U,$J,358.3,25076,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,25076,1,3,0)
- ;;=3^Disp fx of coracoid process, right shoulder, sequela
- ;;^UTILITY(U,$J,358.3,25076,1,4,0)
- ;;=4^S42.131S
- ;;^UTILITY(U,$J,358.3,25076,2)
- ;;=^5026634
- ;;^UTILITY(U,$J,358.3,25077,0)
- ;;=S42.142S^^76^1011^21
- ;;^UTILITY(U,$J,358.3,25077,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,25077,1,3,0)
- ;;=3^Disp fx of glenoid cavity of scapula, left shoulder, sequela
- ;;^UTILITY(U,$J,358.3,25077,1,4,0)
- ;;=4^S42.142S
- ;;^UTILITY(U,$J,358.3,25077,2)
- ;;=^5026683
- ;;^UTILITY(U,$J,358.3,25078,0)
- ;;=S42.141S^^76^1011^20
- ;;^UTILITY(U,$J,358.3,25078,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,25078,1,3,0)
- ;;=3^Disp fx of glenoid cav of scapula, right shoulder, sequela
- ;;^UTILITY(U,$J,358.3,25078,1,4,0)
- ;;=4^S42.141S
- ;;^UTILITY(U,$J,358.3,25078,2)
- ;;=^5026676
- ;;^UTILITY(U,$J,358.3,25079,0)
- ;;=S42.151S^^76^1011^36
- ;;^UTILITY(U,$J,358.3,25079,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,25079,1,3,0)
- ;;=3^Disp fx of neck of scapula, right shoulder, sequela
- ;;^UTILITY(U,$J,358.3,25079,1,4,0)
- ;;=4^S42.151S
- ;;^UTILITY(U,$J,358.3,25079,2)
- ;;=^5026718
- ;;^UTILITY(U,$J,358.3,25080,0)
- ;;=S42.151S^^76^1011^37
- ;;^UTILITY(U,$J,358.3,25080,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,25080,1,3,0)
- ;;=3^Disp fx of neck of scapula, right shoulder, sequela
- ;;^UTILITY(U,$J,358.3,25080,1,4,0)
- ;;=4^S42.151S
- ;;^UTILITY(U,$J,358.3,25080,2)
- ;;=^5026718
- ;;^UTILITY(U,$J,358.3,25081,0)
- ;;=S42.125S^^76^1011^57
- ;;^UTILITY(U,$J,358.3,25081,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,25081,1,3,0)
- ;;=3^Nondisp fx of acromial process, left shoulder, sequela
- ;;^UTILITY(U,$J,358.3,25081,1,4,0)
- ;;=4^S42.125S
- ;;^UTILITY(U,$J,358.3,25081,2)
- ;;=^5026620
- ;;^UTILITY(U,$J,358.3,25082,0)
- ;;=S42.115S^^76^1011^58
- ;;^UTILITY(U,$J,358.3,25082,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,25082,1,3,0)
- ;;=3^Nondisp fx of body of scapula, left shoulder, sequela
- ;;^UTILITY(U,$J,358.3,25082,1,4,0)
- ;;=4^S42.115S
- ;;^UTILITY(U,$J,358.3,25082,2)
- ;;=^5026578
- ;;^UTILITY(U,$J,358.3,25083,0)
- ;;=S42.114S^^76^1011^59
- ;;^UTILITY(U,$J,358.3,25083,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,25083,1,3,0)
- ;;=3^Nondisp fx of body of scapula, right shoulder, sequela
- ;;^UTILITY(U,$J,358.3,25083,1,4,0)
- ;;=4^S42.114S
- ;;^UTILITY(U,$J,358.3,25083,2)
- ;;=^5026571
- ;;^UTILITY(U,$J,358.3,25084,0)
- ;;=S42.114S^^76^1011^60
- ;;^UTILITY(U,$J,358.3,25084,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,25084,1,3,0)
- ;;=3^Nondisp fx of body of scapula, right shoulder, sequela
- ;;^UTILITY(U,$J,358.3,25084,1,4,0)
- ;;=4^S42.114S
- ;;^UTILITY(U,$J,358.3,25084,2)
- ;;=^5026571
- ;;^UTILITY(U,$J,358.3,25085,0)
- ;;=S42.135S^^76^1011^65
- ;;^UTILITY(U,$J,358.3,25085,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,25085,1,3,0)
- ;;=3^Nondisp fx of coracoid process, left shoulder, sequela
- ;;^UTILITY(U,$J,358.3,25085,1,4,0)
- ;;=4^S42.135S
- ;;^UTILITY(U,$J,358.3,25085,2)
- ;;=^5026662
- ;;^UTILITY(U,$J,358.3,25086,0)
- ;;=S42.134S^^76^1011^66
- ;;^UTILITY(U,$J,358.3,25086,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,25086,1,3,0)
- ;;=3^Nondisp fx of coracoid process, right shoulder, sequela
- ;;^UTILITY(U,$J,358.3,25086,1,4,0)
- ;;=4^S42.134S
- ;;^UTILITY(U,$J,358.3,25086,2)
- ;;=^5026655
- ;;^UTILITY(U,$J,358.3,25087,0)
- ;;=S42.144S^^76^1011^67
- ;;^UTILITY(U,$J,358.3,25087,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,25087,1,3,0)
- ;;=3^Nondisp fx of glenoid cav of scapula, right shoulder, sequela
- ;;^UTILITY(U,$J,358.3,25087,1,4,0)
- ;;=4^S42.144S
- ;;^UTILITY(U,$J,358.3,25087,2)
- ;;=^5026697
- ;;^UTILITY(U,$J,358.3,25088,0)
- ;;=S42.155S^^76^1011^82
- ;;^UTILITY(U,$J,358.3,25088,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,25088,1,3,0)
- ;;=3^Nondisp fx of neck of scapula, left shoulder, sequela
- ;;^UTILITY(U,$J,358.3,25088,1,4,0)
- ;;=4^S42.155S
- ;;^UTILITY(U,$J,358.3,25088,2)
- ;;=^5026746
- ;;^UTILITY(U,$J,358.3,25089,0)
- ;;=S42.155S^^76^1011^83
- ;;^UTILITY(U,$J,358.3,25089,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,25089,1,3,0)
- ;;=3^Nondisp fx of neck of scapula, left shoulder, sequela
- ;;^UTILITY(U,$J,358.3,25089,1,4,0)
- ;;=4^S42.155S
- ;;^UTILITY(U,$J,358.3,25089,2)
- ;;=^5026746
- ;;^UTILITY(U,$J,358.3,25090,0)
- ;;=S42.154S^^76^1011^84
- ;;^UTILITY(U,$J,358.3,25090,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,25090,1,3,0)
- ;;=3^Nondisp fx of neck of scapula, right shoulder, sequela
- ;;^UTILITY(U,$J,358.3,25090,1,4,0)
- ;;=4^S42.154S
- ;;^UTILITY(U,$J,358.3,25090,2)
- ;;=^5026739
- ;;^UTILITY(U,$J,358.3,25091,0)
- ;;=M84.412S^^76^1011^102
- ;;^UTILITY(U,$J,358.3,25091,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,25091,1,3,0)
- ;;=3^Pathological fracture, left shoulder, sequela
- ;;^UTILITY(U,$J,358.3,25091,1,4,0)
- ;;=4^M84.412S
- ;;^UTILITY(U,$J,358.3,25091,2)
- ;;=^5013811
- ;;^UTILITY(U,$J,358.3,25092,0)
- ;;=M84.411S^^76^1011^104
- ;;^UTILITY(U,$J,358.3,25092,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,25092,1,3,0)
- ;;=3^Pathological fracture, right shoulder, sequela
- ;;^UTILITY(U,$J,358.3,25092,1,4,0)
- ;;=4^M84.411S
- ;;^UTILITY(U,$J,358.3,25092,2)
- ;;=^5013805
- ;;^UTILITY(U,$J,358.3,25093,0)
- ;;=M84.312S^^76^1011^124
- ;;^UTILITY(U,$J,358.3,25093,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,25093,1,3,0)
- ;;=3^Stress fracture, left shoulder, sequela
- ;;^UTILITY(U,$J,358.3,25093,1,4,0)
- ;;=4^M84.312S
- ;;^UTILITY(U,$J,358.3,25093,2)
- ;;=^5013583
- ;;^UTILITY(U,$J,358.3,25094,0)
- ;;=M84.311S^^76^1011^126
- ;;^UTILITY(U,$J,358.3,25094,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,25094,1,3,0)
- ;;=3^Stress fracture, right shoulder, sequela
- ;;^UTILITY(U,$J,358.3,25094,1,4,0)
- ;;=4^M84.311S
- ;;^UTILITY(U,$J,358.3,25094,2)
- ;;=^5013577
  ;;^UTILITY(U,$J,358.3,25095,0)
- ;;=S42.012S^^76^1011^10
+ ;;=R51.9^^74^992^40
  ;;^UTILITY(U,$J,358.3,25095,1,0)
  ;;=^358.31IA^4^2
  ;;^UTILITY(U,$J,358.3,25095,1,3,0)
- ;;=3^Disp fx of anterior sternal end of left clavicle, sequela
+ ;;=3^Headache,Unspecified
  ;;^UTILITY(U,$J,358.3,25095,1,4,0)
- ;;=4^S42.012S
+ ;;=4^R51.9
  ;;^UTILITY(U,$J,358.3,25095,2)
- ;;=^5026396
+ ;;=^5159306
  ;;^UTILITY(U,$J,358.3,25096,0)
- ;;=S42.011S^^76^1011^11
+ ;;=R05.9^^74^992^23
  ;;^UTILITY(U,$J,358.3,25096,1,0)
  ;;=^358.31IA^4^2
  ;;^UTILITY(U,$J,358.3,25096,1,3,0)
- ;;=3^Disp fx of anterior sternal end of right clavicle, sequela
+ ;;=3^Cough,Unspec
  ;;^UTILITY(U,$J,358.3,25096,1,4,0)
- ;;=4^S42.011S
+ ;;=4^R05.9
  ;;^UTILITY(U,$J,358.3,25096,2)
- ;;=^5026389
+ ;;=^5161232
  ;;^UTILITY(U,$J,358.3,25097,0)
- ;;=S42.032S^^76^1011^26
+ ;;=R45.851^^74^993^3
  ;;^UTILITY(U,$J,358.3,25097,1,0)
  ;;=^358.31IA^4^2
  ;;^UTILITY(U,$J,358.3,25097,1,3,0)
- ;;=3^Disp fx of lateral end of left clavicle, sequela
+ ;;=3^Suicidal Ideations
  ;;^UTILITY(U,$J,358.3,25097,1,4,0)
- ;;=4^S42.032S
+ ;;=4^R45.851
  ;;^UTILITY(U,$J,358.3,25097,2)
- ;;=^5026501
+ ;;=^5019474
  ;;^UTILITY(U,$J,358.3,25098,0)
- ;;=S42.031S^^76^1011^27
+ ;;=T14.91XA^^74^993^4
  ;;^UTILITY(U,$J,358.3,25098,1,0)
  ;;=^358.31IA^4^2
  ;;^UTILITY(U,$J,358.3,25098,1,3,0)
- ;;=3^Disp fx of lateral end of right clavicle, sequela 
+ ;;=3^Suicide Attempt,Initial Encntr
  ;;^UTILITY(U,$J,358.3,25098,1,4,0)
- ;;=4^S42.031S
+ ;;=4^T14.91XA
  ;;^UTILITY(U,$J,358.3,25098,2)
- ;;=^5026494
+ ;;=^5151779
  ;;^UTILITY(U,$J,358.3,25099,0)
- ;;=S42.022S^^76^1011^43
+ ;;=T14.91XD^^74^993^6
  ;;^UTILITY(U,$J,358.3,25099,1,0)
  ;;=^358.31IA^4^2
  ;;^UTILITY(U,$J,358.3,25099,1,3,0)
- ;;=3^Disp fx of shaft of left clavicle, sequela    
+ ;;=3^Suicide Attempt,Subsequent Encntr
  ;;^UTILITY(U,$J,358.3,25099,1,4,0)
- ;;=4^S42.022S
+ ;;=4^T14.91XD
  ;;^UTILITY(U,$J,358.3,25099,2)
- ;;=^5026459
+ ;;=^5151780
  ;;^UTILITY(U,$J,358.3,25100,0)
- ;;=S42.021S^^76^1011^44
+ ;;=T14.91XS^^74^993^5
  ;;^UTILITY(U,$J,358.3,25100,1,0)
  ;;=^358.31IA^4^2
  ;;^UTILITY(U,$J,358.3,25100,1,3,0)
- ;;=3^Disp fx of shaft of right clavicle, sequela   
+ ;;=3^Suicide Attempt,Sequela
  ;;^UTILITY(U,$J,358.3,25100,1,4,0)
- ;;=4^S42.021S
+ ;;=4^T14.91XS
  ;;^UTILITY(U,$J,358.3,25100,2)
- ;;=^5026452
+ ;;=^5151781
  ;;^UTILITY(U,$J,358.3,25101,0)
- ;;=S42.035S^^76^1011^72
+ ;;=Z91.52^^74^993^1
  ;;^UTILITY(U,$J,358.3,25101,1,0)
  ;;=^358.31IA^4^2
  ;;^UTILITY(U,$J,358.3,25101,1,3,0)
- ;;=3^Nondisp fx of lateral end of left clavicle, sequela
+ ;;=3^Personal Hx of Non-Suicidal Self-Harm
  ;;^UTILITY(U,$J,358.3,25101,1,4,0)
- ;;=4^S42.035S
+ ;;=4^Z91.52
  ;;^UTILITY(U,$J,358.3,25101,2)
- ;;=^5026522
+ ;;=^5161318
  ;;^UTILITY(U,$J,358.3,25102,0)
- ;;=S42.034S^^76^1011^73
+ ;;=Z91.51^^74^993^2
  ;;^UTILITY(U,$J,358.3,25102,1,0)
  ;;=^358.31IA^4^2
  ;;^UTILITY(U,$J,358.3,25102,1,3,0)
- ;;=3^Nondisp fx of lateral end of right clavicle, sequela
+ ;;=3^Personal Hx of Suicidal Behavior     
  ;;^UTILITY(U,$J,358.3,25102,1,4,0)
- ;;=4^S42.034S
+ ;;=4^Z91.51
  ;;^UTILITY(U,$J,358.3,25102,2)
- ;;=^5026515
+ ;;=^5161317
  ;;^UTILITY(U,$J,358.3,25103,0)
- ;;=S42.025S^^76^1011^89
+ ;;=90471^^75^994^1^^^^1
  ;;^UTILITY(U,$J,358.3,25103,1,0)
- ;;=^358.31IA^4^2
+ ;;=^358.31IA^3^2
+ ;;^UTILITY(U,$J,358.3,25103,1,2,0)
+ ;;=2^90471
  ;;^UTILITY(U,$J,358.3,25103,1,3,0)
- ;;=3^Nondisp fx of shaft of left clavicle, sequela 
- ;;^UTILITY(U,$J,358.3,25103,1,4,0)
- ;;=4^S42.025S
- ;;^UTILITY(U,$J,358.3,25103,2)
- ;;=^5026480
+ ;;=3^Immunization Admin (use w/ Vaccs)
  ;;^UTILITY(U,$J,358.3,25104,0)
- ;;=S42.024S^^76^1011^90
+ ;;=90472^^75^994^2^^^^1
  ;;^UTILITY(U,$J,358.3,25104,1,0)
- ;;=^358.31IA^4^2
+ ;;=^358.31IA^3^2
+ ;;^UTILITY(U,$J,358.3,25104,1,2,0)
+ ;;=2^90472
  ;;^UTILITY(U,$J,358.3,25104,1,3,0)
- ;;=3^Nondisp fx of shaft of right clavicle, sequela
- ;;^UTILITY(U,$J,358.3,25104,1,4,0)
- ;;=4^S42.024S
- ;;^UTILITY(U,$J,358.3,25104,2)
- ;;=^5026473
+ ;;=3^Immunization Admin, ea add
  ;;^UTILITY(U,$J,358.3,25105,0)
- ;;=S42.018S^^76^1011^95
+ ;;=90632^^75^994^7^^^^1
  ;;^UTILITY(U,$J,358.3,25105,1,0)
- ;;=^358.31IA^4^2
+ ;;=^358.31IA^3^2
+ ;;^UTILITY(U,$J,358.3,25105,1,2,0)
+ ;;=2^90632
  ;;^UTILITY(U,$J,358.3,25105,1,3,0)
- ;;=3^Nondisp fx of sternal end of left clavicle, sequela
- ;;^UTILITY(U,$J,358.3,25105,1,4,0)
- ;;=4^S42.018S
- ;;^UTILITY(U,$J,358.3,25105,2)
- ;;=^5026438
+ ;;=3^Hepatitis A Vaccine
  ;;^UTILITY(U,$J,358.3,25106,0)
- ;;=S42.017S^^76^1011^96
+ ;;=90746^^75^994^9^^^^1
  ;;^UTILITY(U,$J,358.3,25106,1,0)
- ;;=^358.31IA^4^2
+ ;;=^358.31IA^3^2
+ ;;^UTILITY(U,$J,358.3,25106,1,2,0)
+ ;;=2^90746
  ;;^UTILITY(U,$J,358.3,25106,1,3,0)
- ;;=3^Nondisp fx of sternal end of right clavicle, sequela
- ;;^UTILITY(U,$J,358.3,25106,1,4,0)
- ;;=4^S42.017S
- ;;^UTILITY(U,$J,358.3,25106,2)
- ;;=^5026431
+ ;;=3^Hepatitis B Vaccine (3 Doses)
  ;;^UTILITY(U,$J,358.3,25107,0)
- ;;=S42.015S^^76^1011^105
+ ;;=90636^^75^994^8^^^^1
  ;;^UTILITY(U,$J,358.3,25107,1,0)
- ;;=^358.31IA^4^2
+ ;;=^358.31IA^3^2
+ ;;^UTILITY(U,$J,358.3,25107,1,2,0)
+ ;;=2^90636
  ;;^UTILITY(U,$J,358.3,25107,1,3,0)
- ;;=3^Posterior disp fx of sternal end of left clavicle, sequela
- ;;^UTILITY(U,$J,358.3,25107,1,4,0)
- ;;=4^S42.015S
- ;;^UTILITY(U,$J,358.3,25107,2)
- ;;=^5026417
+ ;;=3^Hepatitis A&B Vaccine
  ;;^UTILITY(U,$J,358.3,25108,0)
- ;;=S42.014S^^76^1011^106
+ ;;=90707^^75^994^10^^^^1
  ;;^UTILITY(U,$J,358.3,25108,1,0)
- ;;=^358.31IA^4^2
+ ;;=^358.31IA^3^2
+ ;;^UTILITY(U,$J,358.3,25108,1,2,0)
+ ;;=2^90707
  ;;^UTILITY(U,$J,358.3,25108,1,3,0)
- ;;=3^Posterior disp fx of sternal end of right clavicle, sequela
- ;;^UTILITY(U,$J,358.3,25108,1,4,0)
- ;;=4^S42.014S
- ;;^UTILITY(U,$J,358.3,25108,2)
- ;;=^5026410
+ ;;=3^MMR Virus
  ;;^UTILITY(U,$J,358.3,25109,0)
- ;;=S82.142S^^76^1012^1
+ ;;=90658^^75^994^4^^^^1
  ;;^UTILITY(U,$J,358.3,25109,1,0)
- ;;=^358.31IA^4^2
+ ;;=^358.31IA^3^2
+ ;;^UTILITY(U,$J,358.3,25109,1,2,0)
+ ;;=2^90658
  ;;^UTILITY(U,$J,358.3,25109,1,3,0)
- ;;=3^Disp fx of bicondylar left tibia, sequela 
- ;;^UTILITY(U,$J,358.3,25109,1,4,0)
- ;;=4^S82.142S
- ;;^UTILITY(U,$J,358.3,25109,2)
- ;;=^5040902
+ ;;=3^Flu Vaccine IM (Flulaval)
  ;;^UTILITY(U,$J,358.3,25110,0)
- ;;=S82.141S^^76^1012^2
+ ;;=90732^^75^994^11^^^^1
  ;;^UTILITY(U,$J,358.3,25110,1,0)
- ;;=^358.31IA^4^2
+ ;;=^358.31IA^3^2
+ ;;^UTILITY(U,$J,358.3,25110,1,2,0)
+ ;;=2^90732
  ;;^UTILITY(U,$J,358.3,25110,1,3,0)
- ;;=3^Disp fx of bicondylar right tibia, sequela
- ;;^UTILITY(U,$J,358.3,25110,1,4,0)
- ;;=4^S82.141S
- ;;^UTILITY(U,$J,358.3,25110,2)
- ;;=^5040886
+ ;;=3^Pneumovax 23 (Pneumococcal Vaccine)
  ;;^UTILITY(U,$J,358.3,25111,0)
- ;;=S82.252S^^76^1012^4
+ ;;=90715^^75^994^14^^^^1
  ;;^UTILITY(U,$J,358.3,25111,1,0)
- ;;=^358.31IA^4^2
+ ;;=^358.31IA^3^2
+ ;;^UTILITY(U,$J,358.3,25111,1,2,0)
+ ;;=2^90715
  ;;^UTILITY(U,$J,358.3,25111,1,3,0)
- ;;=3^Disp fx of comminuted shaft of left tibia, sequela    
- ;;^UTILITY(U,$J,358.3,25111,1,4,0)
- ;;=4^S82.252S
- ;;^UTILITY(U,$J,358.3,25111,2)
- ;;=^5041458
+ ;;=3^TDaP Vaccine
  ;;^UTILITY(U,$J,358.3,25112,0)
- ;;=S82.251S^^76^1012^6
+ ;;=90736^^75^994^15^^^^1
  ;;^UTILITY(U,$J,358.3,25112,1,0)
- ;;=^358.31IA^4^2
+ ;;=^358.31IA^3^2
+ ;;^UTILITY(U,$J,358.3,25112,1,2,0)
+ ;;=2^90736
  ;;^UTILITY(U,$J,358.3,25112,1,3,0)
- ;;=3^Disp fx of comminuted shaft of right tibia, sequela   
- ;;^UTILITY(U,$J,358.3,25112,1,4,0)
- ;;=4^S82.251S
- ;;^UTILITY(U,$J,358.3,25112,2)
- ;;=^5041442
+ ;;=3^Zoster (Shingles) Vaccine
  ;;^UTILITY(U,$J,358.3,25113,0)
- ;;=S82.122S^^76^1012^7
+ ;;=90714^^75^994^13^^^^1
  ;;^UTILITY(U,$J,358.3,25113,1,0)
- ;;=^358.31IA^4^2
+ ;;=^358.31IA^3^2
+ ;;^UTILITY(U,$J,358.3,25113,1,2,0)
+ ;;=2^90714
  ;;^UTILITY(U,$J,358.3,25113,1,3,0)
- ;;=3^Disp fx of lateral condyle of left tibia, sequela
- ;;^UTILITY(U,$J,358.3,25113,1,4,0)
- ;;=4^S82.122S
- ;;^UTILITY(U,$J,358.3,25113,2)
- ;;=^5040710
+ ;;=3^TD Vaccine
  ;;^UTILITY(U,$J,358.3,25114,0)
- ;;=S82.112S^^76^1012^11
+ ;;=90656^^75^994^5^^^^1
  ;;^UTILITY(U,$J,358.3,25114,1,0)
- ;;=^358.31IA^4^2
+ ;;=^358.31IA^3^2
+ ;;^UTILITY(U,$J,358.3,25114,1,2,0)
+ ;;=2^90656
  ;;^UTILITY(U,$J,358.3,25114,1,3,0)
- ;;=3^Disp fx of left tibial spine, sequela        
- ;;^UTILITY(U,$J,358.3,25114,1,4,0)
- ;;=4^S82.112S
- ;;^UTILITY(U,$J,358.3,25114,2)
- ;;=^5040614
+ ;;=3^Flu Vaccine Single Dose Syringe (Afluria)
  ;;^UTILITY(U,$J,358.3,25115,0)
- ;;=S82.121S^^76^1012^8
+ ;;=90662^^75^994^3^^^^1
  ;;^UTILITY(U,$J,358.3,25115,1,0)
- ;;=^358.31IA^4^2
+ ;;=^358.31IA^3^2
+ ;;^UTILITY(U,$J,358.3,25115,1,2,0)
+ ;;=2^90662
  ;;^UTILITY(U,$J,358.3,25115,1,3,0)
- ;;=3^Disp fx of lateral condyle of right tibia, sequela
- ;;^UTILITY(U,$J,358.3,25115,1,4,0)
- ;;=4^S82.121S
- ;;^UTILITY(U,$J,358.3,25115,2)
- ;;=^5040694
+ ;;=3^Flu Vaccine High Dose Syringe (Fluzone)
  ;;^UTILITY(U,$J,358.3,25116,0)
- ;;=S82.152S^^76^1012^12
+ ;;=90670^^75^994^12^^^^1
  ;;^UTILITY(U,$J,358.3,25116,1,0)
- ;;=^358.31IA^4^2
+ ;;=^358.31IA^3^2
+ ;;^UTILITY(U,$J,358.3,25116,1,2,0)
+ ;;=2^90670
  ;;^UTILITY(U,$J,358.3,25116,1,3,0)
- ;;=3^Disp fx of left tibial tuberosity, sequela   
- ;;^UTILITY(U,$J,358.3,25116,1,4,0)
- ;;=4^S82.152S
- ;;^UTILITY(U,$J,358.3,25116,2)
- ;;=^5040998
+ ;;=3^Prevnar 13 (Pneumococcal Vaccine)
  ;;^UTILITY(U,$J,358.3,25117,0)
- ;;=S82.132S^^76^1012^13
+ ;;=90686^^75^994^6^^^^1
  ;;^UTILITY(U,$J,358.3,25117,1,0)
- ;;=^358.31IA^4^2
+ ;;=^358.31IA^3^2
+ ;;^UTILITY(U,$J,358.3,25117,1,2,0)
+ ;;=2^90686
  ;;^UTILITY(U,$J,358.3,25117,1,3,0)
- ;;=3^Disp fx of medial condyle of left tibia, sequela
- ;;^UTILITY(U,$J,358.3,25117,1,4,0)
- ;;=4^S82.132S
- ;;^UTILITY(U,$J,358.3,25117,2)
- ;;=^5040806
+ ;;=3^Flu Vaccine Single Dose Syringe (Fluarix)
  ;;^UTILITY(U,$J,358.3,25118,0)
- ;;=S82.131S^^76^1012^14
+ ;;=96372^^75^995^1^^^^1
  ;;^UTILITY(U,$J,358.3,25118,1,0)
- ;;=^358.31IA^4^2
+ ;;=^358.31IA^3^2
+ ;;^UTILITY(U,$J,358.3,25118,1,2,0)
+ ;;=2^96372
  ;;^UTILITY(U,$J,358.3,25118,1,3,0)
- ;;=3^Disp fx of medial condyle of right tibia, sequela 
- ;;^UTILITY(U,$J,358.3,25118,1,4,0)
- ;;=4^S82.131S
- ;;^UTILITY(U,$J,358.3,25118,2)
- ;;=^5040790
+ ;;=3^Ther/Proph/Dx Inj SQ/IM
  ;;^UTILITY(U,$J,358.3,25119,0)
- ;;=S82.52XS^^76^1012^15
+ ;;=20600^^75^995^2^^^^1
  ;;^UTILITY(U,$J,358.3,25119,1,0)
- ;;=^358.31IA^4^2
+ ;;=^358.31IA^3^2
+ ;;^UTILITY(U,$J,358.3,25119,1,2,0)
+ ;;=2^20600
  ;;^UTILITY(U,$J,358.3,25119,1,3,0)
- ;;=3^Disp fx of medial malleolus of left tibia, sequela
- ;;^UTILITY(U,$J,358.3,25119,1,4,0)
- ;;=4^S82.52XS
- ;;^UTILITY(U,$J,358.3,25119,2)
- ;;=^5042246
+ ;;=3^Drain/Inject Small Joint/Bursa w/o US
  ;;^UTILITY(U,$J,358.3,25120,0)
- ;;=S82.51XS^^76^1012^16
+ ;;=20605^^75^995^4^^^^1
  ;;^UTILITY(U,$J,358.3,25120,1,0)
- ;;=^358.31IA^4^2
+ ;;=^358.31IA^3^2
+ ;;^UTILITY(U,$J,358.3,25120,1,2,0)
+ ;;=2^20605
  ;;^UTILITY(U,$J,358.3,25120,1,3,0)
- ;;=3^Disp fx of medial malleolus of right tibia, sequela
- ;;^UTILITY(U,$J,358.3,25120,1,4,0)
- ;;=4^S82.51XS
- ;;^UTILITY(U,$J,358.3,25120,2)
- ;;=^5042230
+ ;;=3^Drain/Inject Interm Joint/Bursa w/o US
  ;;^UTILITY(U,$J,358.3,25121,0)
- ;;=S82.111S^^76^1012^23
+ ;;=20610^^75^995^6^^^^1
  ;;^UTILITY(U,$J,358.3,25121,1,0)
- ;;=^358.31IA^4^2
+ ;;=^358.31IA^3^2
+ ;;^UTILITY(U,$J,358.3,25121,1,2,0)
+ ;;=2^20610
  ;;^UTILITY(U,$J,358.3,25121,1,3,0)
- ;;=3^Disp fx of right tibial spine, sequela       
- ;;^UTILITY(U,$J,358.3,25121,1,4,0)
- ;;=4^S82.111S
- ;;^UTILITY(U,$J,358.3,25121,2)
- ;;=^5040598
+ ;;=3^Drain/Inject Major Joint/Bursa w/o US
  ;;^UTILITY(U,$J,358.3,25122,0)
- ;;=S82.151S^^76^1012^24
+ ;;=20604^^75^995^3^^^^1
  ;;^UTILITY(U,$J,358.3,25122,1,0)
- ;;=^358.31IA^4^2
+ ;;=^358.31IA^3^2
+ ;;^UTILITY(U,$J,358.3,25122,1,2,0)
+ ;;=2^20604
  ;;^UTILITY(U,$J,358.3,25122,1,3,0)
- ;;=3^Disp fx of right tibial tuberosity, sequela  
- ;;^UTILITY(U,$J,358.3,25122,1,4,0)
- ;;=4^S82.151S
- ;;^UTILITY(U,$J,358.3,25122,2)
- ;;=^5040982
+ ;;=3^Drain/Inject Small Joint/Bursa w/ US
  ;;^UTILITY(U,$J,358.3,25123,0)
- ;;=S82.232S^^76^1012^18
+ ;;=20606^^75^995^5^^^^1
  ;;^UTILITY(U,$J,358.3,25123,1,0)
- ;;=^358.31IA^4^2
+ ;;=^358.31IA^3^2
+ ;;^UTILITY(U,$J,358.3,25123,1,2,0)
+ ;;=2^20606
  ;;^UTILITY(U,$J,358.3,25123,1,3,0)
- ;;=3^Disp fx of oblique shaft of left tibia, sequela 
- ;;^UTILITY(U,$J,358.3,25123,1,4,0)
- ;;=4^S82.232S
- ;;^UTILITY(U,$J,358.3,25123,2)
- ;;=^5041266
+ ;;=3^Drain/Inject Interm Joint/Bursa w/ US
  ;;^UTILITY(U,$J,358.3,25124,0)
- ;;=S82.231S^^76^1012^20
+ ;;=20611^^75^995^7^^^^1
  ;;^UTILITY(U,$J,358.3,25124,1,0)
- ;;=^358.31IA^4^2
+ ;;=^358.31IA^3^2
+ ;;^UTILITY(U,$J,358.3,25124,1,2,0)
+ ;;=2^20611
  ;;^UTILITY(U,$J,358.3,25124,1,3,0)
- ;;=3^Disp fx of oblique shaft of right tibia, sequela 
- ;;^UTILITY(U,$J,358.3,25124,1,4,0)
- ;;=4^S82.231S
- ;;^UTILITY(U,$J,358.3,25124,2)
- ;;=^5041250
+ ;;=3^Drain/Inject Major Joint/Bursa w/ US
  ;;^UTILITY(U,$J,358.3,25125,0)
- ;;=S82.872S^^76^1012^21
+ ;;=99078^^75^996^2^^^^1
  ;;^UTILITY(U,$J,358.3,25125,1,0)
- ;;=^358.31IA^4^2
+ ;;=^358.31IA^3^2
+ ;;^UTILITY(U,$J,358.3,25125,1,2,0)
+ ;;=2^99078
  ;;^UTILITY(U,$J,358.3,25125,1,3,0)
- ;;=3^Disp fx of pilon of left tibia, sequela          
- ;;^UTILITY(U,$J,358.3,25125,1,4,0)
- ;;=4^S82.872S
- ;;^UTILITY(U,$J,358.3,25125,2)
- ;;=^5042798
+ ;;=3^Group Health Education
  ;;^UTILITY(U,$J,358.3,25126,0)
- ;;=S82.871S^^76^1012^22
+ ;;=98960^^75^996^3^^^^1
  ;;^UTILITY(U,$J,358.3,25126,1,0)
- ;;=^358.31IA^4^2
+ ;;=^358.31IA^3^2
+ ;;^UTILITY(U,$J,358.3,25126,1,2,0)
+ ;;=2^98960
  ;;^UTILITY(U,$J,358.3,25126,1,3,0)
- ;;=3^Disp fx of pilon of right tibia, sequela         
- ;;^UTILITY(U,$J,358.3,25126,1,4,0)
- ;;=4^S82.871S
- ;;^UTILITY(U,$J,358.3,25126,2)
- ;;=^5042782
+ ;;=3^Self-Mgmt Educ/Train 1 Pt
  ;;^UTILITY(U,$J,358.3,25127,0)
- ;;=S82.262S^^76^1012^26
+ ;;=98961^^75^996^4^^^^1
  ;;^UTILITY(U,$J,358.3,25127,1,0)
- ;;=^358.31IA^4^2
+ ;;=^358.31IA^3^2
+ ;;^UTILITY(U,$J,358.3,25127,1,2,0)
+ ;;=2^98961
  ;;^UTILITY(U,$J,358.3,25127,1,3,0)
- ;;=3^Disp fx of segmental shaft of left tibia, sequela  
- ;;^UTILITY(U,$J,358.3,25127,1,4,0)
- ;;=4^S82.262S
- ;;^UTILITY(U,$J,358.3,25127,2)
- ;;=^5041554
+ ;;=3^Self-Mgmt Educ/Train 2-4 Pt
  ;;^UTILITY(U,$J,358.3,25128,0)
- ;;=S82.261S^^76^1012^28
+ ;;=98962^^75^996^5^^^^1
  ;;^UTILITY(U,$J,358.3,25128,1,0)
- ;;=^358.31IA^4^2
+ ;;=^358.31IA^3^2
+ ;;^UTILITY(U,$J,358.3,25128,1,2,0)
+ ;;=2^98962
  ;;^UTILITY(U,$J,358.3,25128,1,3,0)
- ;;=3^Disp fx of segmental shaft of right tibia, sequela     
- ;;^UTILITY(U,$J,358.3,25128,1,4,0)
- ;;=4^S82.261S
- ;;^UTILITY(U,$J,358.3,25128,2)
- ;;=^5041538
+ ;;=3^Self-Mgmt Educ/Train 5-8 Pt
  ;;^UTILITY(U,$J,358.3,25129,0)
- ;;=S82.242S^^76^1012^30
+ ;;=90887^^75^997^1^^^^1
  ;;^UTILITY(U,$J,358.3,25129,1,0)
- ;;=^358.31IA^4^2
+ ;;=^358.31IA^3^2
+ ;;^UTILITY(U,$J,358.3,25129,1,2,0)
+ ;;=2^90887
  ;;^UTILITY(U,$J,358.3,25129,1,3,0)
- ;;=3^Disp fx of spiral shaft of left tibia, sequela  
- ;;^UTILITY(U,$J,358.3,25129,1,4,0)
- ;;=4^S82.242S
- ;;^UTILITY(U,$J,358.3,25129,2)
- ;;=^5041362
+ ;;=3^CONSULTATION WITH FAMILY
  ;;^UTILITY(U,$J,358.3,25130,0)
- ;;=S82.241S^^76^1012^32
+ ;;=90846^^75^997^2^^^^1
  ;;^UTILITY(U,$J,358.3,25130,1,0)
- ;;=^358.31IA^4^2
+ ;;=^358.31IA^3^2
+ ;;^UTILITY(U,$J,358.3,25130,1,2,0)
+ ;;=2^90846
  ;;^UTILITY(U,$J,358.3,25130,1,3,0)
- ;;=3^Disp fx of spiral shaft of right tibia, sequela 
- ;;^UTILITY(U,$J,358.3,25130,1,4,0)
- ;;=4^S82.241S
- ;;^UTILITY(U,$J,358.3,25130,2)
- ;;=^5041346
+ ;;=3^FAMILY PSYTX W/O PATIENT
  ;;^UTILITY(U,$J,358.3,25131,0)
- ;;=S82.222S^^76^1012^34
+ ;;=99401^^75^997^3^^^^1
  ;;^UTILITY(U,$J,358.3,25131,1,0)
- ;;=^358.31IA^4^2
+ ;;=^358.31IA^3^2
+ ;;^UTILITY(U,$J,358.3,25131,1,2,0)
+ ;;=2^99401
  ;;^UTILITY(U,$J,358.3,25131,1,3,0)
- ;;=3^Disp fx of transverse shaft of left tibia, sequela     
- ;;^UTILITY(U,$J,358.3,25131,1,4,0)
- ;;=4^S82.222S
- ;;^UTILITY(U,$J,358.3,25131,2)
- ;;=^5041170
+ ;;=3^Preventive Counseling, IND (15 Mins)
  ;;^UTILITY(U,$J,358.3,25132,0)
- ;;=S82.221S^^76^1012^36
+ ;;=99402^^75^997^4^^^^1
  ;;^UTILITY(U,$J,358.3,25132,1,0)
- ;;=^358.31IA^4^2
+ ;;=^358.31IA^3^2
+ ;;^UTILITY(U,$J,358.3,25132,1,2,0)
+ ;;=2^99402
  ;;^UTILITY(U,$J,358.3,25132,1,3,0)
- ;;=3^Disp fx of transverse shaft of right tibia, sequela   
- ;;^UTILITY(U,$J,358.3,25132,1,4,0)
- ;;=4^S82.221S
- ;;^UTILITY(U,$J,358.3,25132,2)
- ;;=^5041154
+ ;;=3^Preventive Counseling, IND (30 Mins)
  ;;^UTILITY(U,$J,358.3,25133,0)
- ;;=S82.145S^^76^1012^39
+ ;;=99403^^75^997^5^^^^1
  ;;^UTILITY(U,$J,358.3,25133,1,0)
- ;;=^358.31IA^4^2
+ ;;=^358.31IA^3^2
+ ;;^UTILITY(U,$J,358.3,25133,1,2,0)
+ ;;=2^99403
+ ;;^UTILITY(U,$J,358.3,25133,1,3,0)
+ ;;=3^Preventive Counseling, IND (45 Mins)
+ ;;^UTILITY(U,$J,358.3,25134,0)
+ ;;=99404^^75^997^6^^^^1
+ ;;^UTILITY(U,$J,358.3,25134,1,0)
+ ;;=^358.31IA^3^2
+ ;;^UTILITY(U,$J,358.3,25134,1,2,0)
+ ;;=2^99404
+ ;;^UTILITY(U,$J,358.3,25134,1,3,0)
+ ;;=3^Preventive Counseling, IND (60 Mins)
+ ;;^UTILITY(U,$J,358.3,25135,0)
+ ;;=99411^^75^997^7^^^^1
+ ;;^UTILITY(U,$J,358.3,25135,1,0)
+ ;;=^358.31IA^3^2
+ ;;^UTILITY(U,$J,358.3,25135,1,2,0)
+ ;;=2^99411
+ ;;^UTILITY(U,$J,358.3,25135,1,3,0)
+ ;;=3^Preventive Counseling, Group (30 Mins)
+ ;;^UTILITY(U,$J,358.3,25136,0)
+ ;;=99412^^75^997^8^^^^1
+ ;;^UTILITY(U,$J,358.3,25136,1,0)
+ ;;=^358.31IA^3^2
+ ;;^UTILITY(U,$J,358.3,25136,1,2,0)
+ ;;=2^99412
+ ;;^UTILITY(U,$J,358.3,25136,1,3,0)
+ ;;=3^Preventive Counseling, Group (60 Mins)
+ ;;^UTILITY(U,$J,358.3,25137,0)
+ ;;=99366^^75^997^9^^^^1
+ ;;^UTILITY(U,$J,358.3,25137,1,0)
+ ;;=^358.31IA^3^2
+ ;;^UTILITY(U,$J,358.3,25137,1,2,0)
+ ;;=2^99366
+ ;;^UTILITY(U,$J,358.3,25137,1,3,0)
+ ;;=3^Team Conf w/ Pat by HC Pro (30 Mins)
+ ;;^UTILITY(U,$J,358.3,25138,0)
+ ;;=99367^^75^997^10^^^^1
+ ;;^UTILITY(U,$J,358.3,25138,1,0)
+ ;;=^358.31IA^3^2
+ ;;^UTILITY(U,$J,358.3,25138,1,2,0)
+ ;;=2^99367
+ ;;^UTILITY(U,$J,358.3,25138,1,3,0)
+ ;;=3^Team Conf w/o Pat by Phys (30 Mins)
+ ;;^UTILITY(U,$J,358.3,25139,0)
+ ;;=99368^^75^997^11^^^^1
+ ;;^UTILITY(U,$J,358.3,25139,1,0)
+ ;;=^358.31IA^3^2
+ ;;^UTILITY(U,$J,358.3,25139,1,2,0)
+ ;;=2^99368
+ ;;^UTILITY(U,$J,358.3,25139,1,3,0)
+ ;;=3^Team Conf w/o Pat by HC Prof (30 Mins)
+ ;;^UTILITY(U,$J,358.3,25140,0)
+ ;;=97535^^75^998^1^^^^1
+ ;;^UTILITY(U,$J,358.3,25140,1,0)
+ ;;=^358.31IA^3^2
+ ;;^UTILITY(U,$J,358.3,25140,1,2,0)
+ ;;=2^97535
+ ;;^UTILITY(U,$J,358.3,25140,1,3,0)
+ ;;=3^ADLS Training,Ea 15min
+ ;;^UTILITY(U,$J,358.3,25141,0)
+ ;;=96105^^75^998^2^^^^1
+ ;;^UTILITY(U,$J,358.3,25141,1,0)
+ ;;=^358.31IA^3^2
+ ;;^UTILITY(U,$J,358.3,25141,1,2,0)
+ ;;=2^96105
+ ;;^UTILITY(U,$J,358.3,25141,1,3,0)
+ ;;=3^Aphasia Assessment,Per Hr
+ ;;^UTILITY(U,$J,358.3,25142,0)
+ ;;=90901^^75^998^3^^^^1
+ ;;^UTILITY(U,$J,358.3,25142,1,0)
+ ;;=^358.31IA^3^2
+ ;;^UTILITY(U,$J,358.3,25142,1,2,0)
+ ;;=2^90901
+ ;;^UTILITY(U,$J,358.3,25142,1,3,0)
+ ;;=3^Biofeedback training any method
+ ;;^UTILITY(U,$J,358.3,25143,0)
+ ;;=97750^^75^998^6^^^^1
+ ;;^UTILITY(U,$J,358.3,25143,1,0)
+ ;;=^358.31IA^3^2
+ ;;^UTILITY(U,$J,358.3,25143,1,2,0)
+ ;;=2^97750
+ ;;^UTILITY(U,$J,358.3,25143,1,3,0)
+ ;;=3^Extrem Perf Testing,Ea 15min
+ ;;^UTILITY(U,$J,358.3,25144,0)
+ ;;=97161^^75^998^12^^^^1
+ ;;^UTILITY(U,$J,358.3,25144,1,0)
+ ;;=^358.31IA^3^2
+ ;;^UTILITY(U,$J,358.3,25144,1,2,0)
+ ;;=2^97161
+ ;;^UTILITY(U,$J,358.3,25144,1,3,0)
+ ;;=3^PT Evaluation,Low Complexity
+ ;;^UTILITY(U,$J,358.3,25145,0)
+ ;;=97162^^75^998^13^^^^1
+ ;;^UTILITY(U,$J,358.3,25145,1,0)
+ ;;=^358.31IA^3^2
+ ;;^UTILITY(U,$J,358.3,25145,1,2,0)
+ ;;=2^97162
+ ;;^UTILITY(U,$J,358.3,25145,1,3,0)
+ ;;=3^PT Evaluation,Moderate Complexity
+ ;;^UTILITY(U,$J,358.3,25146,0)
+ ;;=97163^^75^998^11^^^^1
+ ;;^UTILITY(U,$J,358.3,25146,1,0)
+ ;;=^358.31IA^3^2
+ ;;^UTILITY(U,$J,358.3,25146,1,2,0)
+ ;;=2^97163
+ ;;^UTILITY(U,$J,358.3,25146,1,3,0)
+ ;;=3^PT Evaluation,High Complexity
+ ;;^UTILITY(U,$J,358.3,25147,0)
+ ;;=97164^^75^998^14^^^^1
+ ;;^UTILITY(U,$J,358.3,25147,1,0)
+ ;;=^358.31IA^3^2
+ ;;^UTILITY(U,$J,358.3,25147,1,2,0)
+ ;;=2^97164
+ ;;^UTILITY(U,$J,358.3,25147,1,3,0)
+ ;;=3^PT Re-Evaluation
+ ;;^UTILITY(U,$J,358.3,25148,0)
+ ;;=97165^^75^998^8^^^^1
+ ;;^UTILITY(U,$J,358.3,25148,1,0)
+ ;;=^358.31IA^3^2
+ ;;^UTILITY(U,$J,358.3,25148,1,2,0)
+ ;;=2^97165
+ ;;^UTILITY(U,$J,358.3,25148,1,3,0)
+ ;;=3^OT Evaluation,Low Complexity
+ ;;^UTILITY(U,$J,358.3,25149,0)
+ ;;=97166^^75^998^9^^^^1
+ ;;^UTILITY(U,$J,358.3,25149,1,0)
+ ;;=^358.31IA^3^2
+ ;;^UTILITY(U,$J,358.3,25149,1,2,0)
+ ;;=2^97166
+ ;;^UTILITY(U,$J,358.3,25149,1,3,0)
+ ;;=3^OT Evaluation,Moderate Complexity
+ ;;^UTILITY(U,$J,358.3,25150,0)
+ ;;=97167^^75^998^7^^^^1
+ ;;^UTILITY(U,$J,358.3,25150,1,0)
+ ;;=^358.31IA^3^2
+ ;;^UTILITY(U,$J,358.3,25150,1,2,0)
+ ;;=2^97167
+ ;;^UTILITY(U,$J,358.3,25150,1,3,0)
+ ;;=3^OT Evaluation,High Complexity
+ ;;^UTILITY(U,$J,358.3,25151,0)
+ ;;=97168^^75^998^10^^^^1
+ ;;^UTILITY(U,$J,358.3,25151,1,0)
+ ;;=^358.31IA^3^2
+ ;;^UTILITY(U,$J,358.3,25151,1,2,0)
+ ;;=2^97168
+ ;;^UTILITY(U,$J,358.3,25151,1,3,0)
+ ;;=3^OT Re-Evaluation
+ ;;^UTILITY(U,$J,358.3,25152,0)
+ ;;=96112^^75^998^4^^^^1
+ ;;^UTILITY(U,$J,358.3,25152,1,0)
+ ;;=^358.31IA^3^2
+ ;;^UTILITY(U,$J,358.3,25152,1,2,0)
+ ;;=2^96112
+ ;;^UTILITY(U,$J,358.3,25152,1,3,0)
+ ;;=3^Developmental Test Admin,1st Hr
+ ;;^UTILITY(U,$J,358.3,25153,0)
+ ;;=96113^^75^998^5^^^^1
+ ;;^UTILITY(U,$J,358.3,25153,1,0)
+ ;;=^358.31IA^3^2
+ ;;^UTILITY(U,$J,358.3,25153,1,2,0)
+ ;;=2^96113
+ ;;^UTILITY(U,$J,358.3,25153,1,3,0)
+ ;;=3^Developmental Test Admin,Ea Addl 30 min
+ ;;^UTILITY(U,$J,358.3,25154,0)
+ ;;=64479^^75^999^6^^^^1
+ ;;^UTILITY(U,$J,358.3,25154,1,0)
+ ;;=^358.31IA^3^2
+ ;;^UTILITY(U,$J,358.3,25154,1,2,0)
+ ;;=2^64479
+ ;;^UTILITY(U,$J,358.3,25154,1,3,0)
+ ;;=3^INJ Epidural, foramen, C/T
+ ;;^UTILITY(U,$J,358.3,25155,0)
+ ;;=64480^^75^999^8^^^^1
+ ;;^UTILITY(U,$J,358.3,25155,1,0)
+ ;;=^358.31IA^3^2
+ ;;^UTILITY(U,$J,358.3,25155,1,2,0)
+ ;;=2^64480
+ ;;^UTILITY(U,$J,358.3,25155,1,3,0)
+ ;;=3^INJ Epidural,C/T Ea Addl Level
+ ;;^UTILITY(U,$J,358.3,25156,0)
+ ;;=64483^^75^999^7^^^^1
+ ;;^UTILITY(U,$J,358.3,25156,1,0)
+ ;;=^358.31IA^3^2
+ ;;^UTILITY(U,$J,358.3,25156,1,2,0)
+ ;;=2^64483
+ ;;^UTILITY(U,$J,358.3,25156,1,3,0)
+ ;;=3^INJ Epidural, foramen, L/S
+ ;;^UTILITY(U,$J,358.3,25157,0)
+ ;;=64484^^75^999^5^^^^1
+ ;;^UTILITY(U,$J,358.3,25157,1,0)
+ ;;=^358.31IA^3^2
+ ;;^UTILITY(U,$J,358.3,25157,1,2,0)
+ ;;=2^64484
+ ;;^UTILITY(U,$J,358.3,25157,1,3,0)
+ ;;=3^INJ Epidural, L/S Ea Addl Level
+ ;;^UTILITY(U,$J,358.3,25158,0)
+ ;;=64633^^75^999^1^^^^1
+ ;;^UTILITY(U,$J,358.3,25158,1,0)
+ ;;=^358.31IA^3^2
+ ;;^UTILITY(U,$J,358.3,25158,1,2,0)
+ ;;=2^64633
+ ;;^UTILITY(U,$J,358.3,25158,1,3,0)
+ ;;=3^DESTR PARAVERT Nerve C/T, single
+ ;;^UTILITY(U,$J,358.3,25159,0)
+ ;;=64634^^75^999^4^^^^1
+ ;;^UTILITY(U,$J,358.3,25159,1,0)
+ ;;=^358.31IA^3^2
+ ;;^UTILITY(U,$J,358.3,25159,1,2,0)
+ ;;=2^64634
+ ;;^UTILITY(U,$J,358.3,25159,1,3,0)
+ ;;=3^Destr PN C/T,Ea Addl Level
+ ;;^UTILITY(U,$J,358.3,25160,0)
+ ;;=64635^^75^999^2^^^^1
+ ;;^UTILITY(U,$J,358.3,25160,1,0)
+ ;;=^358.31IA^3^2
+ ;;^UTILITY(U,$J,358.3,25160,1,2,0)
+ ;;=2^64635
+ ;;^UTILITY(U,$J,358.3,25160,1,3,0)
+ ;;=3^DESTR PARAVERT Nerve L/S, single
+ ;;^UTILITY(U,$J,358.3,25161,0)
+ ;;=64636^^75^999^3^^^^1
+ ;;^UTILITY(U,$J,358.3,25161,1,0)
+ ;;=^358.31IA^3^2
+ ;;^UTILITY(U,$J,358.3,25161,1,2,0)
+ ;;=2^64636
+ ;;^UTILITY(U,$J,358.3,25161,1,3,0)
+ ;;=3^DESTR PN L/S, Ea Addl Level
+ ;;^UTILITY(U,$J,358.3,25162,0)
+ ;;=64490^^75^999^11^^^^1
+ ;;^UTILITY(U,$J,358.3,25162,1,0)
+ ;;=^358.31IA^3^2
+ ;;^UTILITY(U,$J,358.3,25162,1,2,0)
+ ;;=2^64490
+ ;;^UTILITY(U,$J,358.3,25162,1,3,0)
+ ;;=3^INJ PARAVERT Joint C/T, Single
+ ;;^UTILITY(U,$J,358.3,25163,0)
+ ;;=64491^^75^999^13^^^^1
+ ;;^UTILITY(U,$J,358.3,25163,1,0)
+ ;;=^358.31IA^3^2
+ ;;^UTILITY(U,$J,358.3,25163,1,2,0)
+ ;;=2^64491
+ ;;^UTILITY(U,$J,358.3,25163,1,3,0)
+ ;;=3^INJ PV Joint C/T, second level
+ ;;^UTILITY(U,$J,358.3,25164,0)
+ ;;=64492^^75^999^14^^^^1
+ ;;^UTILITY(U,$J,358.3,25164,1,0)
+ ;;=^358.31IA^3^2
+ ;;^UTILITY(U,$J,358.3,25164,1,2,0)
+ ;;=2^64492
+ ;;^UTILITY(U,$J,358.3,25164,1,3,0)
+ ;;=3^INJ PV Joint C/T, third or more
+ ;;^UTILITY(U,$J,358.3,25165,0)
+ ;;=64493^^75^999^12^^^^1
+ ;;^UTILITY(U,$J,358.3,25165,1,0)
+ ;;=^358.31IA^3^2
+ ;;^UTILITY(U,$J,358.3,25165,1,2,0)
+ ;;=2^64493
+ ;;^UTILITY(U,$J,358.3,25165,1,3,0)
+ ;;=3^INJ PARAVERT Joint L/S, Single
+ ;;^UTILITY(U,$J,358.3,25166,0)
+ ;;=64494^^75^999^15^^^^1
+ ;;^UTILITY(U,$J,358.3,25166,1,0)
+ ;;=^358.31IA^3^2
+ ;;^UTILITY(U,$J,358.3,25166,1,2,0)
+ ;;=2^64494
+ ;;^UTILITY(U,$J,358.3,25166,1,3,0)
+ ;;=3^INJ PV Joint L/S, second level
+ ;;^UTILITY(U,$J,358.3,25167,0)
+ ;;=64495^^75^999^16^^^^1
+ ;;^UTILITY(U,$J,358.3,25167,1,0)
+ ;;=^358.31IA^3^2
+ ;;^UTILITY(U,$J,358.3,25167,1,2,0)
+ ;;=2^64495
+ ;;^UTILITY(U,$J,358.3,25167,1,3,0)
+ ;;=3^INJ PV Joint L/S, third or more
+ ;;^UTILITY(U,$J,358.3,25168,0)
+ ;;=62320^^75^999^9^^^^1
+ ;;^UTILITY(U,$J,358.3,25168,1,0)
+ ;;=^358.31IA^3^2
+ ;;^UTILITY(U,$J,358.3,25168,1,2,0)
+ ;;=2^62320
+ ;;^UTILITY(U,$J,358.3,25168,1,3,0)
+ ;;=3^INJ Epidural/Subarachnoid,C/T
+ ;;^UTILITY(U,$J,358.3,25169,0)
+ ;;=62322^^75^999^10^^^^1
+ ;;^UTILITY(U,$J,358.3,25169,1,0)
+ ;;=^358.31IA^3^2
+ ;;^UTILITY(U,$J,358.3,25169,1,2,0)
+ ;;=2^62322
+ ;;^UTILITY(U,$J,358.3,25169,1,3,0)
+ ;;=3^INJ Epidural/Subarachnoid,L/S
+ ;;^UTILITY(U,$J,358.3,25170,0)
+ ;;=A6196^^75^1000^1^^^^1
+ ;;^UTILITY(U,$J,358.3,25170,1,0)
+ ;;=^358.31IA^3^2
+ ;;^UTILITY(U,$J,358.3,25170,1,2,0)
+ ;;=2^A6196
+ ;;^UTILITY(U,$J,358.3,25170,1,3,0)
+ ;;=3^Alginate dressing,16 sq IN or < EA
+ ;;^UTILITY(U,$J,358.3,25171,0)
+ ;;=A6222^^75^1000^3^^^^1
+ ;;^UTILITY(U,$J,358.3,25171,1,0)
+ ;;=^358.31IA^3^2
+ ;;^UTILITY(U,$J,358.3,25171,1,2,0)
+ ;;=2^A6222
+ ;;^UTILITY(U,$J,358.3,25171,1,3,0)
+ ;;=3^Gauze, 16 sq IN or <, saline
+ ;;^UTILITY(U,$J,358.3,25172,0)
+ ;;=A6234^^75^1000^4^^^^1
+ ;;^UTILITY(U,$J,358.3,25172,1,0)
+ ;;=^358.31IA^3^2
+ ;;^UTILITY(U,$J,358.3,25172,1,2,0)
+ ;;=2^A6234
+ ;;^UTILITY(U,$J,358.3,25172,1,3,0)
+ ;;=3^Hydrocolid drg 16<=IN w/o bdr
+ ;;^UTILITY(U,$J,358.3,25173,0)
+ ;;=A6242^^75^1000^5^^^^1
+ ;;^UTILITY(U,$J,358.3,25173,1,0)
+ ;;=^358.31IA^3^2
+ ;;^UTILITY(U,$J,358.3,25173,1,2,0)
+ ;;=2^A6242
+ ;;^UTILITY(U,$J,358.3,25173,1,3,0)
+ ;;=3^Hydrogel drg <=IN w/o bdr
+ ;;^UTILITY(U,$J,358.3,25174,0)
+ ;;=A6216^^75^1000^6^^^^1
+ ;;^UTILITY(U,$J,358.3,25174,1,0)
+ ;;=^358.31IA^3^2
+ ;;^UTILITY(U,$J,358.3,25174,1,2,0)
+ ;;=2^A6216
+ ;;^UTILITY(U,$J,358.3,25174,1,3,0)
+ ;;=3^Non-Sterile Gauze <=16 Sq IN
+ ;;^UTILITY(U,$J,358.3,25175,0)
+ ;;=A6250^^75^1000^8^^^^1
+ ;;^UTILITY(U,$J,358.3,25175,1,0)
+ ;;=^358.31IA^3^2
+ ;;^UTILITY(U,$J,358.3,25175,1,2,0)
+ ;;=2^A6250

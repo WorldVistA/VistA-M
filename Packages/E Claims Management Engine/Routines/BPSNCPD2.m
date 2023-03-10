@@ -1,5 +1,5 @@
 BPSNCPD2 ;BHAM ISC/LJE - Continuation of BPSNCPDP (IB Billing Determination) ;11/7/07  16:01
- ;;1.0;E CLAIMS MGMT ENGINE;**1,5,6,7,8,10,11,20**;JUN 2004;Build 27
+ ;;1.0;E CLAIMS MGMT ENGINE;**1,5,6,7,8,10,11,20,28**;JUN 2004;Build 22
  ;;Per VA Directive 6402, this routine should not be modified.
  ;
  ;External reference $$RX^IBNCPDP supported by DBIA 4299
@@ -22,6 +22,12 @@ BPSNCPD2 ;BHAM ISC/LJE - Continuation of BPSNCPDP (IB Billing Determination) ;11
  ;
 EN(DFN,BWHERE,MOREDATA,BPSARRY,IB) ;
  I '$G(CERTIEN) D
+ . ;
+ . I $G(BPSARRY("ACT DTY OVR")),'$G(BPSARRY("PLAN")) D
+ . . N IEN5902
+ . . S IEN5902=$$GET1^DIQ(9002313.59,IEN59,901,"I")
+ . . I 'IEN5902 S IEN5902=1
+ . . S BPSARRY("PLAN")=$$GET1^DIQ(9002313.59902,IEN5902_","_IEN59_",",".01","I")
  . ;
  . ;For NCPDP IB call to see if we need to 3rd Party Bill and if so, get insurance/payer sheet info
  . S MOREDATA("BILL")=$$RX^IBNCPDP(DFN,.BPSARRY)  ;IB CALL

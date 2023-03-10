@@ -1,122 +1,136 @@
-IBDEI0GE ; ; 04-FEB-2020
- ;;3.0;IB ENCOUNTER FORM IMP/EXP;;FEB 04, 2020
+IBDEI0GE ; ; 01-FEB-2022
+ ;;3.0;IB ENCOUNTER FORM IMP/EXP;;FEB 01, 2022
  Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,999) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
- ;;^UTILITY(U,$J,358.3,7100,1,0)
+ ;;^UTILITY(U,$J,358.3,7354,1,4,0)
+ ;;=4^F19.120
+ ;;^UTILITY(U,$J,358.3,7354,2)
+ ;;=^5003417
+ ;;^UTILITY(U,$J,358.3,7355,0)
+ ;;=F15.220^^36^365^82
+ ;;^UTILITY(U,$J,358.3,7355,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,7100,1,3,0)
- ;;=3^Lower Back Muscle/Fascia/Tendon Strain,Subs Encntr
- ;;^UTILITY(U,$J,358.3,7100,1,4,0)
- ;;=4^S39.012D
- ;;^UTILITY(U,$J,358.3,7100,2)
- ;;=^5026103
- ;;^UTILITY(U,$J,358.3,7101,0)
- ;;=S44.8X2D^^58^466^16
- ;;^UTILITY(U,$J,358.3,7101,1,0)
+ ;;^UTILITY(U,$J,358.3,7355,1,3,0)
+ ;;=3^Substance Dependence,Oth Stimulant w/ Intoxication,Uncomplicated
+ ;;^UTILITY(U,$J,358.3,7355,1,4,0)
+ ;;=4^F15.220
+ ;;^UTILITY(U,$J,358.3,7355,2)
+ ;;=^5003297
+ ;;^UTILITY(U,$J,358.3,7356,0)
+ ;;=R56.9^^36^365^81
+ ;;^UTILITY(U,$J,358.3,7356,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,7101,1,3,0)
- ;;=3^Shoulder/Upper Arm Nerve Inj,Left Arm,Subs Encntr
- ;;^UTILITY(U,$J,358.3,7101,1,4,0)
- ;;=4^S44.8X2D
- ;;^UTILITY(U,$J,358.3,7101,2)
- ;;=^5027994
- ;;^UTILITY(U,$J,358.3,7102,0)
- ;;=S46.091S^^58^466^15
- ;;^UTILITY(U,$J,358.3,7102,1,0)
+ ;;^UTILITY(U,$J,358.3,7356,1,3,0)
+ ;;=3^Seizure Disorder,Unsp
+ ;;^UTILITY(U,$J,358.3,7356,1,4,0)
+ ;;=4^R56.9
+ ;;^UTILITY(U,$J,358.3,7356,2)
+ ;;=^5019524
+ ;;^UTILITY(U,$J,358.3,7357,0)
+ ;;=Z93.0^^36^365^91
+ ;;^UTILITY(U,$J,358.3,7357,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,7102,1,3,0)
- ;;=3^Rotator Cuff Muscle/Tendon Inj,Right Shoulder,Sequela
- ;;^UTILITY(U,$J,358.3,7102,1,4,0)
- ;;=4^S46.091S
- ;;^UTILITY(U,$J,358.3,7102,2)
- ;;=^5028166
- ;;^UTILITY(U,$J,358.3,7103,0)
- ;;=S76.312A^^58^466^7
- ;;^UTILITY(U,$J,358.3,7103,1,0)
+ ;;^UTILITY(U,$J,358.3,7357,1,3,0)
+ ;;=3^Tracheostomy status
+ ;;^UTILITY(U,$J,358.3,7357,1,4,0)
+ ;;=4^Z93.0
+ ;;^UTILITY(U,$J,358.3,7357,2)
+ ;;=^5063642
+ ;;^UTILITY(U,$J,358.3,7358,0)
+ ;;=I47.2^^36^365^92
+ ;;^UTILITY(U,$J,358.3,7358,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,7103,1,3,0)
- ;;=3^Muscle/Fascia/Tendon Strain,Left Thigh,Init Encntr
- ;;^UTILITY(U,$J,358.3,7103,1,4,0)
- ;;=4^S76.312A
- ;;^UTILITY(U,$J,358.3,7103,2)
- ;;=^5039609
- ;;^UTILITY(U,$J,358.3,7104,0)
- ;;=S83.91XA^^58^466^13
- ;;^UTILITY(U,$J,358.3,7104,1,0)
+ ;;^UTILITY(U,$J,358.3,7358,1,3,0)
+ ;;=3^Ventricular tachycardia
+ ;;^UTILITY(U,$J,358.3,7358,1,4,0)
+ ;;=4^I47.2
+ ;;^UTILITY(U,$J,358.3,7358,2)
+ ;;=^125976
+ ;;^UTILITY(U,$J,358.3,7359,0)
+ ;;=N17.9^^36^365^2
+ ;;^UTILITY(U,$J,358.3,7359,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,7104,1,3,0)
- ;;=3^Right Knee Sprain,Init Encntr
- ;;^UTILITY(U,$J,358.3,7104,1,4,0)
- ;;=4^S83.91XA
- ;;^UTILITY(U,$J,358.3,7104,2)
- ;;=^5043172
- ;;^UTILITY(U,$J,358.3,7105,0)
- ;;=S88.112S^^58^466^1
- ;;^UTILITY(U,$J,358.3,7105,1,0)
+ ;;^UTILITY(U,$J,358.3,7359,1,3,0)
+ ;;=3^Acute kidney failure,unspc
+ ;;^UTILITY(U,$J,358.3,7359,1,4,0)
+ ;;=4^N17.9
+ ;;^UTILITY(U,$J,358.3,7359,2)
+ ;;=^338532
+ ;;^UTILITY(U,$J,358.3,7360,0)
+ ;;=Z72.0^^36^365^90
+ ;;^UTILITY(U,$J,358.3,7360,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,7105,1,3,0)
- ;;=3^Complete Traumatic Amputation,Between Left Knee and Ankle,Sequela
- ;;^UTILITY(U,$J,358.3,7105,1,4,0)
- ;;=4^S88.112S
- ;;^UTILITY(U,$J,358.3,7105,2)
- ;;=^5043606
- ;;^UTILITY(U,$J,358.3,7106,0)
- ;;=S44.8X1D^^58^466^17
- ;;^UTILITY(U,$J,358.3,7106,1,0)
+ ;;^UTILITY(U,$J,358.3,7360,1,3,0)
+ ;;=3^Tobacco Use
+ ;;^UTILITY(U,$J,358.3,7360,1,4,0)
+ ;;=4^Z72.0
+ ;;^UTILITY(U,$J,358.3,7360,2)
+ ;;=^5063255
+ ;;^UTILITY(U,$J,358.3,7361,0)
+ ;;=E87.6^^36^365^46
+ ;;^UTILITY(U,$J,358.3,7361,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,7106,1,3,0)
- ;;=3^Shoulder/Upper Arm Nerve Inj,Right Arm,Subs Encntr
- ;;^UTILITY(U,$J,358.3,7106,1,4,0)
- ;;=4^S44.8X1D
- ;;^UTILITY(U,$J,358.3,7106,2)
- ;;=^5027991
- ;;^UTILITY(U,$J,358.3,7107,0)
- ;;=S46.092S^^58^466^14
- ;;^UTILITY(U,$J,358.3,7107,1,0)
+ ;;^UTILITY(U,$J,358.3,7361,1,3,0)
+ ;;=3^Hypokalemia
+ ;;^UTILITY(U,$J,358.3,7361,1,4,0)
+ ;;=4^E87.6
+ ;;^UTILITY(U,$J,358.3,7361,2)
+ ;;=^60610
+ ;;^UTILITY(U,$J,358.3,7362,0)
+ ;;=E87.1^^36^365^47
+ ;;^UTILITY(U,$J,358.3,7362,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,7107,1,3,0)
- ;;=3^Rotator Cuff Muscle/Tendon Inj,Left Shoulder,Sequela
- ;;^UTILITY(U,$J,358.3,7107,1,4,0)
- ;;=4^S46.092S
- ;;^UTILITY(U,$J,358.3,7107,2)
- ;;=^5134838
- ;;^UTILITY(U,$J,358.3,7108,0)
- ;;=S76.311A^^58^466^8
- ;;^UTILITY(U,$J,358.3,7108,1,0)
+ ;;^UTILITY(U,$J,358.3,7362,1,3,0)
+ ;;=3^Hyponatremia
+ ;;^UTILITY(U,$J,358.3,7362,1,4,0)
+ ;;=4^E87.1
+ ;;^UTILITY(U,$J,358.3,7362,2)
+ ;;=^5003019
+ ;;^UTILITY(U,$J,358.3,7363,0)
+ ;;=E87.5^^36^365^40
+ ;;^UTILITY(U,$J,358.3,7363,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,7108,1,3,0)
- ;;=3^Muscle/Fascia/Tendon Strain,Left Thigh,Init Encntr
- ;;^UTILITY(U,$J,358.3,7108,1,4,0)
- ;;=4^S76.311A
- ;;^UTILITY(U,$J,358.3,7108,2)
- ;;=^5039606
- ;;^UTILITY(U,$J,358.3,7109,0)
- ;;=S83.92XA^^58^466^4
- ;;^UTILITY(U,$J,358.3,7109,1,0)
+ ;;^UTILITY(U,$J,358.3,7363,1,3,0)
+ ;;=3^Hyperkalemia
+ ;;^UTILITY(U,$J,358.3,7363,1,4,0)
+ ;;=4^E87.5
+ ;;^UTILITY(U,$J,358.3,7363,2)
+ ;;=^60041
+ ;;^UTILITY(U,$J,358.3,7364,0)
+ ;;=E87.0^^36^365^44
+ ;;^UTILITY(U,$J,358.3,7364,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,7109,1,3,0)
- ;;=3^Left Knee Sprain,Init Encntr
- ;;^UTILITY(U,$J,358.3,7109,1,4,0)
- ;;=4^S83.92XA
- ;;^UTILITY(U,$J,358.3,7109,2)
- ;;=^5043175
- ;;^UTILITY(U,$J,358.3,7110,0)
- ;;=S88.111S^^58^466^2
- ;;^UTILITY(U,$J,358.3,7110,1,0)
+ ;;^UTILITY(U,$J,358.3,7364,1,3,0)
+ ;;=3^Hypernatremia
+ ;;^UTILITY(U,$J,358.3,7364,1,4,0)
+ ;;=4^E87.0
+ ;;^UTILITY(U,$J,358.3,7364,2)
+ ;;=^5003018
+ ;;^UTILITY(U,$J,358.3,7365,0)
+ ;;=I48.20^^36^365^6
+ ;;^UTILITY(U,$J,358.3,7365,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,7110,1,3,0)
- ;;=3^Complete Traumatic Amputation,Between Right Knee and Ankle,Sequela
- ;;^UTILITY(U,$J,358.3,7110,1,4,0)
- ;;=4^S88.111S
- ;;^UTILITY(U,$J,358.3,7110,2)
- ;;=^5043603
- ;;^UTILITY(U,$J,358.3,7111,0)
- ;;=C79.51^^58^467^5
- ;;^UTILITY(U,$J,358.3,7111,1,0)
+ ;;^UTILITY(U,$J,358.3,7365,1,3,0)
+ ;;=3^Atrial Fibrillation,Chronic,Unspec
+ ;;^UTILITY(U,$J,358.3,7365,1,4,0)
+ ;;=4^I48.20
+ ;;^UTILITY(U,$J,358.3,7365,2)
+ ;;=^5158048
+ ;;^UTILITY(U,$J,358.3,7366,0)
+ ;;=N18.30^^36^365^21
+ ;;^UTILITY(U,$J,358.3,7366,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,7111,1,3,0)
- ;;=3^Secondary Malig Neop of Bone
- ;;^UTILITY(U,$J,358.3,7111,1,4,0)
- ;;=4^C79.51
- ;;^UTILITY(U,$J,358.3,7111,2)
- ;;=^5001350
+ ;;^UTILITY(U,$J,358.3,7366,1,3,0)
+ ;;=3^CKD Stage 3,Unspec
+ ;;^UTILITY(U,$J,358.3,7366,1,4,0)
+ ;;=4^N18.30
+ ;;^UTILITY(U,$J,358.3,7366,2)
+ ;;=^5159286
+ ;;^UTILITY(U,$J,358.3,7367,0)
+ ;;=N18.31^^36^365^22
+ ;;^UTILITY(U,$J,358.3,7367,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,7367,1,3,0)
+ ;;=3^CKD Stage 3a
+ ;;^UTILITY(U,$J,358.3,7367,1,4,0)
+ ;;=4^N18.31

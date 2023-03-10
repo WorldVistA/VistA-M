@@ -1,5 +1,5 @@
-MAGDHOW3 ;WOIFO/PMK,DWM,DAC,GXT - Capture Consult/GMRC data ;29 May 2018 9:50 AM
- ;;3.0;IMAGING;**138,180,203,208**;Mar 19, 2002;Build 6
+MAGDHOW3 ;WOIFO/PMK,DWM,DAC,GXT - Capture Consult/GMRC data ; Mar 12, 2020@14:08:32
+ ;;3.0;IMAGING;**138,180,203,208,231**;Mar 19, 2002;Build 9
  ;; Per VHA Directive 2004-038, this routine should not be modified.
  ;; +---------------------------------------------------------------+
  ;; | Property of the US Government.                                |
@@ -19,12 +19,12 @@ MAGDHOW3 ;WOIFO/PMK,DWM,DAC,GXT - Capture Consult/GMRC data ;29 May 2018 9:50 AM
  ; Supported IA #2051 reference $$FIND1^DIC function call
  ; Supported IA #2056 reference $$GET1^DIQ function call
  ; Supported IA #2056 reference GETS^DIQ subroutine call
- ; Supported IA #4716 reference ^HLOAPI function calls
+ ; Supported IA #4716 reference SET^HLOAPI and $$ADDSEG^HLOAPI calls
  ; Supported IA #10103 reference $$FMTHL7^XLFDT function call
  ; Supported IA #3065 reference $$HLNAME^XLFNAME function call
  ; Controlled IA #4110 to read REQUEST/CONSULTATION file (#123)
  ; Private IA #2698 to read URGENCY FILE (#101.42)
- ; Supported IA #10060 to read phone numbers from NEW PATIENT file (#200)
+ ; Supported IA #10060 to read phone numbers from NEW PERSON file (#200)
  ;
 ORC(HLMSTATE,GMRCIEN,SAVEORCSEG) ; build the ORC segment (see ORC^GMRCHL7)
  N ACNUMB,ERROR,ORCSEG,ORDERENTERER,ORDERNUMBER,ORDERPLACER,PRIORITY,SUCCESS,X
@@ -102,31 +102,9 @@ PHONE(IEN,FIELD,SEGMENT) ; call back phone number(s)
  . S NUMBER=$$GET1^DIQ(200,IEN,FNUMBER)
  . D PHONE1(.REP,FIELD,.SEGMENT,NUMBER,USECODE,EQTYPE)
  . Q
- ; check VISITED FROM subfile (#8910) to get PHONE AT SITE field (#5)
- ; P180 DAC - New MAGOUT array to sort from earliest to latest VISITED FROM entries
- ; P203 Code changes to use fileman call to sort thur VISITED FROM entries;GXT
- S J=0
- D GETS^DIQ(200,IEN_",","8910*","E","MAGOUT","MAGERR")
- S I="" F  S I=$O(MAGOUT("200.06",I)) Q:I=""  D
- . S NUM=$P(I,",",1) ; GET IEN NUMBER OF I
- . I (NUM<=9)&(J<=3) D
- . . S NUMBER=MAGOUT("200.06",I,5,"E")
- . . N X,Y S X=NUMBER X ^%ZOSF("UPPERCASE") Q:((Y="NO PHONE")!(Y=""))
- . . D PHONE1(.REP,FIELD,.SEGMENT,NUMBER,"WPN","PN")
- . . S J=J+1
- . . Q
- . Q
- I (J>=0)&(J<3) D
- . S I="" F  S I=$O(MAGOUT("200.06",I)) Q:I=""  D
- . . S NUM=$P(I,",",1)
- . . I (NUM>=10)&(J<3) D
- . . . S NUMBER=MAGOUT("200.06",I,5,"E")
- . . . N X,Y S X=NUMBER X ^%ZOSF("UPPERCASE") Q:((Y="NO PHONE")!(Y=""))
- . . . D PHONE1(.REP,FIELD,.SEGMENT,NUMBER,"WPN","PN")
- . . . S J=J+1
- . . . Q
- . . Q
- . Q
+ ;
+ ; P231 DAC - Removed Visited from Phone Numbers - Phone numbers not used, can cause errors.
+ ;
  Q
  ;
 PHONE1(REP,FIELD,SEGMENT,NUMBER,USECODE,EQTYPE) ; store phone info

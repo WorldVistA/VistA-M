@@ -1,5 +1,5 @@
-DGFFPLM1 ;ALB/SCK - FUGITIVE FELON PROGRAM LIST MANAGER - 2 ; 12/6/02
- ;;5.3;Registration;**485**;Aug 13, 1993
+DGFFPLM1 ;ALB/SCK,ARF - FUGITIVE FELON PROGRAM LIST MANAGER - 2 ; 12/6/02
+ ;;5.3;Registration;**485,1056**;Aug 13, 1993;Build 18
  ;
 SEL(DFN) ;
  N DIC
@@ -41,7 +41,8 @@ EN(DFN,DGARY,DGSTART,DGCNT) ;
  D SET(DGARY,DGLINE,"",.DGCNT) S DGLINE=DGLINE+1
  ;
  ; Address Information
- S X=$$SETSTR^VALM1("Permanent Address:","",5,30)
+ ; DG*5.3*1056 - replaced Permanent with Mailing on the following label
+ S X=$$SETSTR^VALM1("Mailing Address:","",5,30)
  S X=$$SETSTR^VALM1("Temporary Address:",X,35,30)
  D SET(DGARY,DGLINE,X,.DGCNT) S DGLINE=DGLINE+1
  ;

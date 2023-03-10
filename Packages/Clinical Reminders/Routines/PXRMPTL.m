@@ -1,5 +1,5 @@
-PXRMPTL ;SLC/DLT,PKR,PJH - Print Clinical Reminders logic ;02/04/2011
- ;;2.0;CLINICAL REMINDERS;**4,12,18**;Feb 04, 2005;Build 152
+PXRMPTL ;SLC/DLT,PKR,PJH - Print Clinical Reminders logic ;05/09/2022
+ ;;2.0;CLINICAL REMINDERS;**4,12,18,65**;Feb 04, 2005;Build 438
  ;
  ;====================================================
 BLDFLST(RITEM,FL) ;Build the list of findings defined for this reminder.
@@ -28,7 +28,7 @@ CDUE(CDUE,FL,NL,ARRAY) ;Expand the custom date due string into ARRAY.
  ;====================================================
 COHORT(DA) ;
  N ARRAY,CNT,LINE,NODE,NLINES,OUTPUT
- F NODE=60,61,65,66,70,71,75,76  I $D(^PXD(811.9,DA,NODE))>0 D
+ F NODE=60,61,65,66,70,71,75,76,83,84,93,94  I $D(^PXD(811.9,DA,NODE))>0 D
  . I NODE=60 W !,"General Patient Cohort Found Text:"
  . I NODE=61 W !,"General Patient Cohort Not Found Text:"
  . I NODE=65 W !,"General Resolution Found Text:"
@@ -37,6 +37,10 @@ COHORT(DA) ;
  . I NODE=71 W !,"Summary Patient Cohort Not Found Text:"
  . I NODE=75 W !,"Summary Resolution Found Text:"
  . I NODE=76 W !,"Summary Resolution Not Found Text:"
+ . I NODE=83 W !,"Contraindicated True Text:"
+ . I NODE=84 W !,"Contraindicated False Text:"
+ . I NODE=93 W !,"Refused True Text:"
+ . I NODE=94 W !,"Refused False Text:"
  . S (CNT,LINE)=0 F  S LINE=$O(^PXD(811.9,DA,NODE,LINE)) Q:LINE=""  D
  .. S CNT=CNT+1 S ARRAY(CNT)=$G(^PXD(811.9,DA,NODE,LINE,0))
  . I $D(ARRAY)>0 D FORMAT^PXRMTEXT(5,78,CNT,.ARRAY,.NLINES,.OUTPUT)
@@ -77,12 +81,12 @@ DISLOG ;Display the patient cohort, resolution logic, and custom date due.
  ;Expand the logic and print it.
  D EXPAND(NLOGLIN,.LARRAY,.FL,"FI(",")")
  S NPL=$$FMTARR(MAXLEN,NLOGLIN,.LARRAY,.PARRAY)
- W !!,"Expanded Patient Cohort Logic:"
+ W !!,"Expanded PATIENT COHORT LOGIC:"
  F IND=1:1:NPL W !,?1,PARRAY(IND)
  ;
  ;Get the resolution logic string.
  S LOGSTR=$G(^PXD(811.9,RITEM,34))
- ;Otherwise use internal cohort logic
+ ;Otherwise use internal resolution logic
  I LOGSTR="" S LOGSTR=$G(^PXD(811.9,RITEM,35)),CUSTOM=0
  E  S CUSTOM=1
  ;
@@ -103,24 +107,66 @@ DISLOG ;Display the patient cohort, resolution logic, and custom date due.
  ;Expand the logic and print it.
  D EXPAND(NLOGLIN,.LARRAY,.FL,"FI(",")")
  S NPL=$$FMTARR(MAXLEN,NLOGLIN,.LARRAY,.PARRAY)
- W !!,"Expanded Resolution Logic:"
+ W !!,"Expanded RESOLUTION LOGIC:"
  F IND=1:1:NPL W !,?1,PARRAY(IND)
  ;
  ;Display the custom date due string.
  S CDUE=$G(^PXD(811.9,D0,45))
- I CDUE="" Q
- W !!,"Custom Date Due:"
- W !," ",CDUE
- D CDUE(CDUE,.FL,.NLOGLIN,.LARRAY)
- S NPL=$$FMTARR(MAXLEN,NLOGLIN,.LARRAY,.PARRAY)
- W !!,"Expanded Custom Date Due:"
- F IND=1:1:NPL W !,?1,PARRAY(IND)
+ I CDUE'="" D
+ . W !!,"CUSTOM DATE DUE:"
+ . W !," ",CDUE
+ . D CDUE(CDUE,.FL,.NLOGLIN,.LARRAY)
+ . S NPL=$$FMTARR(MAXLEN,NLOGLIN,.LARRAY,.PARRAY)
+ . W !!,"Expanded CUSTOM DATE DUE:"
+ . F IND=1:1:NPL W !,?1,PARRAY(IND)
+ ;
+ ;Get the contraindicated logic string.
+ S LOGSTR=$G(^PXD(811.9,RITEM,80))
+ I LOGSTR'="" D
+ .;Remove any (0)! and (1)& entries
+ . S LOGSTR=$$REMOVE(LOGSTR)
+ . ;
+ . ;Break the logic string into an array using the Boolean operators
+ . ;and the comma as separators.
+ . S NLOGLIN=$$STRARR(LOGSTR,SEP,.LARRAY)
+ .;
+ .;Print the contraindicated logic.
+ . W !!,"CONTRAINDICATED LOGIC"
+ . S NPL=$$FMTARR(MAXLEN,NLOGLIN,.LARRAY,.PARRAY)
+ . F IND=1:1:NPL W !,?1,PARRAY(IND)
+ . ;
+ . ;Expand the logic and print it.
+ . D EXPAND(NLOGLIN,.LARRAY,.FL,"FI(",")")
+ . S NPL=$$FMTARR(MAXLEN,NLOGLIN,.LARRAY,.PARRAY)
+ . W !!,"Expanded CONTRAINDICATED LOGIC:"
+ . F IND=1:1:NPL W !,?1,PARRAY(IND)
+ ;
+ ;Get the refused logic string.
+ S LOGSTR=$G(^PXD(811.9,RITEM,90))
+ I LOGSTR'="" D
+ .;Remove any (0)! and (1)& entries
+ . S LOGSTR=$$REMOVE(LOGSTR)
+ . ;
+ . ;Break the logic string into an array using the Boolean operators
+ . ;and the comma as separators.
+ . S NLOGLIN=$$STRARR(LOGSTR,SEP,.LARRAY)
+ .;
+ .;Print the contraindicated logic.
+ . W !!,"REFUSED LOGIC"
+ . S NPL=$$FMTARR(MAXLEN,NLOGLIN,.LARRAY,.PARRAY)
+ . F IND=1:1:NPL W !,?1,PARRAY(IND)
+ . ;
+ . ;Expand the logic and print it.
+ . D EXPAND(NLOGLIN,.LARRAY,.FL,"FI(",")")
+ . S NPL=$$FMTARR(MAXLEN,NLOGLIN,.LARRAY,.PARRAY)
+ . W !!,"Expanded REFUSED LOGIC:"
+ . F IND=1:1:NPL W !,?1,PARRAY(IND)
  Q
  ;
  ;====================================================
 DISLOGF(RITEM,FINDING,FL,PARRAY) ;Expand FUNCTION FINDING logic and
  ;return the result in PARRAY.
- N ARGNUM,AT,FARG,FUN,FUNCTION,FUNSTR,IND,ISFUN,MAXLEN,LARRAY
+ N ARGNUM,AT,C1,FARG,FUN,FUNCTION,FUNSTR,IND,ISFUN,MAXLEN,LARRAY
  N NAME,NLOGLIN,NPL,NUM,SEP,TEMP
  S MAXLEN=72
  K PARRAY
@@ -141,11 +187,14 @@ DISLOGF(RITEM,FINDING,FL,PARRAY) ;Expand FUNCTION FINDING logic and
  . S ISFUN=$S(FUN="":0,$D(^PXRMD(802.4,"B",FUN)):1,1:0)
  . I ISFUN S FARG=1,FUNCTION=$TR(FUN,"_",""),ARGNUM=0 Q
  . I FARG D
+ .. S C1=$E(TEMP,1)
+ .. I (C1="C")!(C1="R") S TEMP=$E(TEMP,2,15)
  .. S NUM=+TEMP
  .. S ARGNUM=ARGNUM+1
  .. S AT=$$ARGTYPE^PXRMFFAT(FUNCTION,ARGNUM)
  .. I AT="F" D
  ... S NAME=$S($D(FL(NUM)):FL(NUM),1:"???")
+ ... I (C1="C")!(C1="R") S NAME=":"_NAME
  ... S LARRAY(IND)=$$STRREP^PXRMUTIL(LARRAY(IND),NUM,NAME)
  ..E  S LARRAY(IND)=TEMP
  . I TEMP[")" S FARG=0

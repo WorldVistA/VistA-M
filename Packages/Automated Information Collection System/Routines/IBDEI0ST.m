@@ -1,118 +1,124 @@
-IBDEI0ST ; ; 04-FEB-2020
- ;;3.0;IB ENCOUNTER FORM IMP/EXP;;FEB 04, 2020
+IBDEI0ST ; ; 01-FEB-2022
+ ;;3.0;IB ENCOUNTER FORM IMP/EXP;;FEB 01, 2022
  Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,999) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
- ;;^UTILITY(U,$J,358.3,12836,1,0)
+ ;;^UTILITY(U,$J,358.3,12966,0)
+ ;;=H54.1215^^51^625^14
+ ;;^UTILITY(U,$J,358.3,12966,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,12836,1,3,0)
- ;;=3^Varicose Veins of Left Lower Extrem w/ Foot Ulcer
- ;;^UTILITY(U,$J,358.3,12836,1,4,0)
- ;;=4^I83.025
- ;;^UTILITY(U,$J,358.3,12836,2)
- ;;=^5007984
- ;;^UTILITY(U,$J,358.3,12837,0)
- ;;=I83.024^^80^788^6
- ;;^UTILITY(U,$J,358.3,12837,1,0)
+ ;;^UTILITY(U,$J,358.3,12966,1,3,0)
+ ;;=3^OD Low Vision Cat 1/OS Blindness Cat 5
+ ;;^UTILITY(U,$J,358.3,12966,1,4,0)
+ ;;=4^H54.1215
+ ;;^UTILITY(U,$J,358.3,12966,2)
+ ;;=^5151355
+ ;;^UTILITY(U,$J,358.3,12967,0)
+ ;;=H54.1223^^51^625^18
+ ;;^UTILITY(U,$J,358.3,12967,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,12837,1,3,0)
- ;;=3^Varicose Veins of Left Lower Extrem w/ Heel/Midfoot Ulcer
- ;;^UTILITY(U,$J,358.3,12837,1,4,0)
- ;;=4^I83.024
- ;;^UTILITY(U,$J,358.3,12837,2)
- ;;=^5007983
- ;;^UTILITY(U,$J,358.3,12838,0)
- ;;=I83.028^^80^788^7
- ;;^UTILITY(U,$J,358.3,12838,1,0)
+ ;;^UTILITY(U,$J,358.3,12967,1,3,0)
+ ;;=3^OD Low Vision Cat 2/OS Blindness Cat 3
+ ;;^UTILITY(U,$J,358.3,12967,1,4,0)
+ ;;=4^H54.1223
+ ;;^UTILITY(U,$J,358.3,12967,2)
+ ;;=^5151356
+ ;;^UTILITY(U,$J,358.3,12968,0)
+ ;;=H54.1224^^51^625^19
+ ;;^UTILITY(U,$J,358.3,12968,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,12838,1,3,0)
- ;;=3^Varicose Veins of Left Lower Extrem w/ Lower Leg Ulcer
- ;;^UTILITY(U,$J,358.3,12838,1,4,0)
- ;;=4^I83.028
- ;;^UTILITY(U,$J,358.3,12838,2)
- ;;=^5007985
- ;;^UTILITY(U,$J,358.3,12839,0)
- ;;=I83.023^^80^788^8
- ;;^UTILITY(U,$J,358.3,12839,1,0)
+ ;;^UTILITY(U,$J,358.3,12968,1,3,0)
+ ;;=3^OD Low Vision Cat 2/OS Blindness Cat 4
+ ;;^UTILITY(U,$J,358.3,12968,1,4,0)
+ ;;=4^H54.1224
+ ;;^UTILITY(U,$J,358.3,12968,2)
+ ;;=^5151357
+ ;;^UTILITY(U,$J,358.3,12969,0)
+ ;;=H54.1225^^51^625^20
+ ;;^UTILITY(U,$J,358.3,12969,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,12839,1,3,0)
- ;;=3^Varicose Veins of Left Lower Extrem w/ Ankle Ulcer
- ;;^UTILITY(U,$J,358.3,12839,1,4,0)
- ;;=4^I83.023
- ;;^UTILITY(U,$J,358.3,12839,2)
- ;;=^5007982
- ;;^UTILITY(U,$J,358.3,12840,0)
- ;;=I83.022^^80^788^9
- ;;^UTILITY(U,$J,358.3,12840,1,0)
+ ;;^UTILITY(U,$J,358.3,12969,1,3,0)
+ ;;=3^OD Low Vision Cat 2/OS Blindness Cat 5
+ ;;^UTILITY(U,$J,358.3,12969,1,4,0)
+ ;;=4^H54.1225
+ ;;^UTILITY(U,$J,358.3,12969,2)
+ ;;=^5151358
+ ;;^UTILITY(U,$J,358.3,12970,0)
+ ;;=H54.0X33^^51^625^24
+ ;;^UTILITY(U,$J,358.3,12970,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,12840,1,3,0)
- ;;=3^Varicose Veins of Left Lower Extrem w/ Calf Ulcer
- ;;^UTILITY(U,$J,358.3,12840,1,4,0)
- ;;=4^I83.022
- ;;^UTILITY(U,$J,358.3,12840,2)
- ;;=^5007981
- ;;^UTILITY(U,$J,358.3,12841,0)
- ;;=I83.021^^80^788^10
- ;;^UTILITY(U,$J,358.3,12841,1,0)
+ ;;^UTILITY(U,$J,358.3,12970,1,3,0)
+ ;;=3^OD Blindness Cat 3/OS Blindness Cat 3
+ ;;^UTILITY(U,$J,358.3,12970,1,4,0)
+ ;;=4^H54.0X33
+ ;;^UTILITY(U,$J,358.3,12970,2)
+ ;;=^5151338
+ ;;^UTILITY(U,$J,358.3,12971,0)
+ ;;=H54.0X34^^51^625^25
+ ;;^UTILITY(U,$J,358.3,12971,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,12841,1,3,0)
- ;;=3^Varicose Veins of Left Lower Extrem w/ Thigh Ulcer
- ;;^UTILITY(U,$J,358.3,12841,1,4,0)
- ;;=4^I83.021
- ;;^UTILITY(U,$J,358.3,12841,2)
- ;;=^5007980
- ;;^UTILITY(U,$J,358.3,12842,0)
- ;;=I83.12^^80^788^11
- ;;^UTILITY(U,$J,358.3,12842,1,0)
+ ;;^UTILITY(U,$J,358.3,12971,1,3,0)
+ ;;=3^OD Blindness Cat 3/OS Blindness Cat 4
+ ;;^UTILITY(U,$J,358.3,12971,1,4,0)
+ ;;=4^H54.0X34
+ ;;^UTILITY(U,$J,358.3,12971,2)
+ ;;=^5151339
+ ;;^UTILITY(U,$J,358.3,12972,0)
+ ;;=H54.0X35^^51^625^26
+ ;;^UTILITY(U,$J,358.3,12972,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,12842,1,3,0)
- ;;=3^Varicose Veins of Left Lower Extrem w/ Inflammation
- ;;^UTILITY(U,$J,358.3,12842,1,4,0)
- ;;=4^I83.12
- ;;^UTILITY(U,$J,358.3,12842,2)
- ;;=^5007989
- ;;^UTILITY(U,$J,358.3,12843,0)
- ;;=I83.93^^80^788^1
- ;;^UTILITY(U,$J,358.3,12843,1,0)
+ ;;^UTILITY(U,$J,358.3,12972,1,3,0)
+ ;;=3^OD Blindness Cat 3/OS Blindness Cat 5
+ ;;^UTILITY(U,$J,358.3,12972,1,4,0)
+ ;;=4^H54.0X35
+ ;;^UTILITY(U,$J,358.3,12972,2)
+ ;;=^5151340
+ ;;^UTILITY(U,$J,358.3,12973,0)
+ ;;=H54.0X43^^51^625^30
+ ;;^UTILITY(U,$J,358.3,12973,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,12843,1,3,0)
- ;;=3^Asymptomatic Varicose Veins of Bilateral Lower Extrem
- ;;^UTILITY(U,$J,358.3,12843,1,4,0)
- ;;=4^I83.93
- ;;^UTILITY(U,$J,358.3,12843,2)
- ;;=^5008022
- ;;^UTILITY(U,$J,358.3,12844,0)
- ;;=I83.92^^80^788^2
- ;;^UTILITY(U,$J,358.3,12844,1,0)
+ ;;^UTILITY(U,$J,358.3,12973,1,3,0)
+ ;;=3^OD Blindness Cat 4/OS Blindness Cat 3
+ ;;^UTILITY(U,$J,358.3,12973,1,4,0)
+ ;;=4^H54.0X43
+ ;;^UTILITY(U,$J,358.3,12973,2)
+ ;;=^5151341
+ ;;^UTILITY(U,$J,358.3,12974,0)
+ ;;=H54.0X44^^51^625^31
+ ;;^UTILITY(U,$J,358.3,12974,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,12844,1,3,0)
- ;;=3^Asymptomatic Varicose Veins of Left Lower Extrem
- ;;^UTILITY(U,$J,358.3,12844,1,4,0)
- ;;=4^I83.92
- ;;^UTILITY(U,$J,358.3,12844,2)
- ;;=^5008021
- ;;^UTILITY(U,$J,358.3,12845,0)
- ;;=G97.32^^80^789^35
- ;;^UTILITY(U,$J,358.3,12845,1,0)
+ ;;^UTILITY(U,$J,358.3,12974,1,3,0)
+ ;;=3^OD Blindness Cat 4/OS Blindness Cat 4
+ ;;^UTILITY(U,$J,358.3,12974,1,4,0)
+ ;;=4^H54.0X44
+ ;;^UTILITY(U,$J,358.3,12974,2)
+ ;;=^5151342
+ ;;^UTILITY(U,$J,358.3,12975,0)
+ ;;=H54.0X45^^51^625^32
+ ;;^UTILITY(U,$J,358.3,12975,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,12845,1,3,0)
- ;;=3^Intraoperative Hemorrhage/Hematoma of Nervous System Organ/Sturcture
- ;;^UTILITY(U,$J,358.3,12845,1,4,0)
- ;;=4^G97.32
- ;;^UTILITY(U,$J,358.3,12845,2)
- ;;=^5004205
- ;;^UTILITY(U,$J,358.3,12846,0)
- ;;=D78.02^^80^789^38
- ;;^UTILITY(U,$J,358.3,12846,1,0)
+ ;;^UTILITY(U,$J,358.3,12975,1,3,0)
+ ;;=3^OD Blindness Cat 4/OS Blindness Cat 5
+ ;;^UTILITY(U,$J,358.3,12975,1,4,0)
+ ;;=4^H54.0X45
+ ;;^UTILITY(U,$J,358.3,12975,2)
+ ;;=^5151343
+ ;;^UTILITY(U,$J,358.3,12976,0)
+ ;;=H54.0X53^^51^625^36
+ ;;^UTILITY(U,$J,358.3,12976,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,12846,1,3,0)
- ;;=3^Intraoperative Hemorrhage/Hematoma of Spleen
- ;;^UTILITY(U,$J,358.3,12846,1,4,0)
- ;;=4^D78.02
- ;;^UTILITY(U,$J,358.3,12846,2)
- ;;=^5002398
- ;;^UTILITY(U,$J,358.3,12847,0)
- ;;=E36.01^^80^789^29
- ;;^UTILITY(U,$J,358.3,12847,1,0)
+ ;;^UTILITY(U,$J,358.3,12976,1,3,0)
+ ;;=3^OD Blindness Cat 5/OS Blindness Cat 3
+ ;;^UTILITY(U,$J,358.3,12976,1,4,0)
+ ;;=4^H54.0X53
+ ;;^UTILITY(U,$J,358.3,12976,2)
+ ;;=^5151344
+ ;;^UTILITY(U,$J,358.3,12977,0)
+ ;;=H54.0X54^^51^625^37
+ ;;^UTILITY(U,$J,358.3,12977,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,12847,1,3,0)
- ;;=3^Intraoperative Hemorrhage/Hematoma of Endocrine System Organ/Structure
+ ;;^UTILITY(U,$J,358.3,12977,1,3,0)
+ ;;=3^OD Blindness Cat 5/OS Blindness Cat 4
+ ;;^UTILITY(U,$J,358.3,12977,1,4,0)
+ ;;=4^H54.0X54
+ ;;^UTILITY(U,$J,358.3,12977,2)
+ ;;=^5151345

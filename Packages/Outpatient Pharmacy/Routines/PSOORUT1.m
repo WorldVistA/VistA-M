@@ -1,9 +1,12 @@
-PSOORUT1 ;BIR/SAB - Utility routine for oerr interface ;8/26/16 1:41pm
- ;;7.0;OUTPATIENT PHARMACY;**1,14,30,46,132,148,233,274,225,305,289,251,387,385,313,427,444,454,508**;DEC 1997;Build 295
+PSOORUT1 ;BIR/SAB - Utility routine for oerr interface ;Jan 20, 2022@11:20:10
+ ;;7.0;OUTPATIENT PHARMACY;**1,14,30,46,132,148,233,274,225,305,289,251,387,385,313,427,444,454,508,562,441**;DEC 1997;Build 208
  ;
  ;External reference to ^PSDRUG supported by DBIA 221
  ;External reference to ^PSXOPUTL supported by DBIA 2203
  ;called from HD^PSOORUTL
+ ;
+ ;Add Complex Orders to NVA Meds
+ ;
 REL ;removed order from hold
  S ACT=1,ORS=0
  I POERR("PSOFILNM")["S" S DA=+POERR("PSOFILNM") D  G EXIT^PSOORUTL
@@ -52,7 +55,7 @@ SHOW ;
  . F  S PSODRNM=$O(PSOSD(PSOSTS,PSODRNM)) Q:PSODRNM=""  D
  . . S PSORX=+$G(PSOSD(PSOSTS,PSODRNM))
   . . ; PSO*7*427 - add a new section for open TRICARE/CHAMPVA/RRR rejects after the 79/88 open rejects
- . . I PSOSTS="ACTIVE",$$FIND^PSOREJUT(PSORX,,,"79,88") S PSOTMP(" REJECT",PSODRNM)=PSOSTS Q   ; DUR/RTS
+ . . I PSOSTS="ACTIVE",$$FIND^PSOREJUT(PSORX,,,"79,88,943") S PSOTMP(" REJECT",PSODRNM)=PSOSTS Q   ; DUR/RTS
  . . I PSOSTS="ACTIVE",$$TRIC^PSOREJP1(PSORX),$$FIND^PSOREJUT(PSORX,,,,1) S PSOTMP(" REJECT2",PSODRNM)=PSOSTS Q  ; TRI/CVA
  . . I PSOSTS="ACTIVE",'$$TRIC^PSOREJP1(PSORX),$$FIND^PSOREJUT(PSORX,,,,,1) S PSOTMP(" REJECT2",PSODRNM)=PSOSTS Q  ; RRR
  . . S PSOTMP(PSOSTS,PSODRNM)=PSOSTS
@@ -131,6 +134,7 @@ DISPL S IEN=IEN+1 N PSOID,PSOCMOP,STATLTH,ECME,TITRX,ORNUM,ERXIEN
  .K PSXZ
  S (STA,STATLTH)=$P(STA,"^",$P(PSODATA,"^",2)+1) D
  .I $G(^PSRX(+PSODATA,"DDSTA"))]"" S (STATLTH,STA)="DD" Q
+ .I $G(^PSRX(+PSODATA,"PARK")),STA="A" S STA="AP"    ;PAPI 441
  .S (STATLTH,STA)=$S($P($G(^PSRX(+PSODATA,7)),"^")=1:"DA",$P($G(^PSRX(+PSODATA,7)),"^")=2:"DF",1:STA)
  S STAPRT=STA_PSOCMOP,STATLTH=$L(STAPRT)
  S ^TMP("PSOPF",$J,IEN,0)=^TMP("PSOPF",$J,IEN,0)_STAPRT_$S(STATLTH=0:"   ",STATLTH=1:"  ",STATLTH=2:" ",1:"")
@@ -146,6 +150,7 @@ DISPL S IEN=IEN+1 N PSOID,PSOCMOP,STATLTH,ECME,TITRX,ORNUM,ERXIEN
  S PSOLRD=$S($G(PSOLRD):$E(PSOLRD,4,5),1:"  ")_"-"_$S($G(PSOLRD):$E(PSOLRD,6,7),1:"  ")_$S($P(PSOLRD,"^",2)="R":"R ",1:"  ")
  S ^TMP("PSOPF",$J,IEN,0)=^TMP("PSOPF",$J,IEN,0)_$S($G(PSORFG):PSOLRD,1:PSOLF)
  S ^TMP("PSOPF",$J,IEN,0)=^TMP("PSOPF",$J,IEN,0)_$J($P(PSODATA,"^",6),2)_" "_$J($P(PSODATA,"^",8),3)
+ ;K SPC S PSOIND=$G(^PSRX(+PSODATA,6.5)) S:PSOIND'="" IEN=IEN+1,$P(SPC," ",20)=" ",^TMP("PSOPF",$J,IEN,0)=SPC_"INDICATION: "_PSOIND
  ;recently dc'd rxs
  I $P($G(^PSRX(+PSODATA,3)),"^",5) D  K X
  .S X2=$S($P(PSOPAR,"^",33):$P(PSOPAR,"^",33),1:7),X1=$P(^PSRX(+PSODATA,3),"^",5) D C^%DTC
@@ -174,6 +179,7 @@ STA N LABEL,LINE,POS
  S ^TMP("PSOPF",$J,IEN,0)=LINE
  Q
 PENX S PSOLST(PSOCNT)="52.41^"_$P(PSODATA,"^",10)_"^"_PSOSTA
+ ;K SPC S ENTRY=$P(PSODATA,"^",10),PSOIND=$P($G(^PS(52.41,ENTRY,4)),"^",2) S:PSOIND'="" IEN=IEN+1,$P(SPC," ",5)=" ",^TMP("PSOPF",$J,IEN,0)=SPC_"INDICATION: "_PSOIND
  K PSODATA,PSOLF,RN,PSOLSP,PSOQTL,PSOLNT
  Q
 PEN ;
@@ -202,14 +208,20 @@ PEN ;
  S ^TMP("PSOPF",$J,IEN,0)=^TMP("PSOPF",$J,IEN,0)_$P(PSODATA,"^",6)
  G PENX
  ;
-NVA ; Setting the Non-VA Meds on the Medication Profile Screen (ListMan)
- S IEN=IEN+1,^TMP("PSOPF",$J,IEN,0)="  "_$P(PSODRG,"^")_" "
- I ($L(^TMP("PSOPF",$J,IEN,0))+$L($P(PSODATA,"^",6))>70) S IEN=IEN+1,^TMP("PSOPF",$J,IEN,0)="    "
- S ^TMP("PSOPF",$J,IEN,0)=^TMP("PSOPF",$J,IEN,0)_$P(PSODATA,"^",6)_" "
- I ($L(^TMP("PSOPF",$J,IEN,0))+$L($P(PSODATA,"^",8))>70) S IEN=IEN+1,^TMP("PSOPF",$J,IEN,0)="    "
- S ^TMP("PSOPF",$J,IEN,0)=^TMP("PSOPF",$J,IEN,0)_$P(PSODATA,"^",8)
- I ($L(^TMP("PSOPF",$J,IEN,0))+20)>70 D  Q
- . S IEN=IEN+1,$P(^TMP("PSOPF",$J,IEN,0)," ",51)="Date Documented: "_$E($P(PSODATA,"^",9),4,5)_"/"_$E($P(PSODATA,"^",9),6,7)_"/"_$E($P(PSODATA,"^",9),2,3)
- F I=0:0 S ^TMP("PSOPF",$J,IEN,0)=^TMP("PSOPF",$J,IEN,0)_" " Q:$L(^TMP("PSOPF",$J,IEN,0))>49
- S ^TMP("PSOPF",$J,IEN,0)=^TMP("PSOPF",$J,IEN,0)_"Date Documented: "_$E($P(PSODATA,"^",9),4,5)_"/"_$E($P(PSODATA,"^",9),6,7)_"/"_$E($P(PSODATA,"^",9),2,3)
+NVA ; Setting the Non-VA Meds on the Medication Profile Screen (ListMan)    *modified listman to a new look to accomodate complex orders
+ S IEN=IEN+1,^TMP("PSOPF",$J,IEN,0)="  "_$P(PSODRG,"^")_" "                                         ;drug name
+ S:($L(^TMP("PSOPF",$J,IEN,0))+$L($P(PSODATA,"^",6))>80) IEN=IEN+1,^TMP("PSOPF",$J,IEN,0)="   "
+ S ^TMP("PSOPF",$J,IEN,0)=^TMP("PSOPF",$J,IEN,0)_$P(PSODATA,"^",6)_" "                              ;dosage
+ S:($L(^TMP("PSOPF",$J,IEN,0))+$L($P(PSODATA,"^",8))>80) IEN=IEN+1,^TMP("PSOPF",$J,IEN,0)="   "
+ S ^TMP("PSOPF",$J,IEN,0)=^TMP("PSOPF",$J,IEN,0)_$P(PSODATA,"^",8)_" "                              ;sched
+ I $P(PSODATA,"^",12)]"" D        ;dura opt.
+ . S:($L(^TMP("PSOPF",$J,IEN,0))+$L($P(PSODATA,"^",12))>80) IEN=IEN+1,^TMP("PSOPF",$J,IEN,0)="   "
+ . S ^TMP("PSOPF",$J,IEN,0)=^TMP("PSOPF",$J,IEN,0)_"FOR "_$P(PSODATA,"^",12)_" "                    ;dura
+ I $P(PSODATA,"^",13)]"" D  Q    ;conj opt.   if present quit so next complex drug on new line
+ . S:($L(^TMP("PSOPF",$J,IEN,0))+$L($P(PSODATA,"^",13))>78) IEN=IEN+1,^TMP("PSOPF",$J,IEN,0)="   "
+ . S ^TMP("PSOPF",$J,IEN,0)=^TMP("PSOPF",$J,IEN,0)_"-"_$P(PSODATA,"^",13)_"-"                       ;conj
+ ;print date documented info @ col 62
+ S:($L(^TMP("PSOPF",$J,IEN,0)))>62 IEN=IEN+1,^TMP("PSOPF",$J,IEN,0)="   "
+ I $L(^TMP("PSOPF",$J,IEN,0))<62 F  S ^TMP("PSOPF",$J,IEN,0)=^TMP("PSOPF",$J,IEN,0)_" " Q:$L(^TMP("PSOPF",$J,IEN,0))>61      ;space fill to 62
+ S ^TMP("PSOPF",$J,IEN,0)=^TMP("PSOPF",$J,IEN,0)_"Date Doc: "_$E($P(PSODATA,"^",9),4,5)_"/"_$E($P(PSODATA,"^",9),6,7)_"/"_$E($P(PSODATA,"^",9),2,3)
  Q

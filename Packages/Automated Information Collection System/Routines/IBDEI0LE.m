@@ -1,134 +1,122 @@
-IBDEI0LE ; ; 04-FEB-2020
- ;;3.0;IB ENCOUNTER FORM IMP/EXP;;FEB 04, 2020
+IBDEI0LE ; ; 01-FEB-2022
+ ;;3.0;IB ENCOUNTER FORM IMP/EXP;;FEB 01, 2022
  Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,999) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
- ;;^UTILITY(U,$J,358.3,9489,1,3,0)
- ;;=3^Type 2 DM w/ Ketacidosis w/o Coma
- ;;^UTILITY(U,$J,358.3,9489,1,4,0)
- ;;=4^E11.10
- ;;^UTILITY(U,$J,358.3,9489,2)
- ;;=^5151300
- ;;^UTILITY(U,$J,358.3,9490,0)
- ;;=E11.11^^72^644^6
- ;;^UTILITY(U,$J,358.3,9490,1,0)
+ ;;^UTILITY(U,$J,358.3,9627,1,4,0)
+ ;;=4^F14.29
+ ;;^UTILITY(U,$J,358.3,9627,2)
+ ;;=^5003268
+ ;;^UTILITY(U,$J,358.3,9628,0)
+ ;;=F14.288^^39^415^33
+ ;;^UTILITY(U,$J,358.3,9628,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,9490,1,3,0)
- ;;=3^Type 2 DM w/ Ketacidosis w/ Coma
- ;;^UTILITY(U,$J,358.3,9490,1,4,0)
- ;;=4^E11.11
- ;;^UTILITY(U,$J,358.3,9490,2)
- ;;=^5151301
- ;;^UTILITY(U,$J,358.3,9491,0)
- ;;=R82.998^^72^644^29
- ;;^UTILITY(U,$J,358.3,9491,1,0)
+ ;;^UTILITY(U,$J,358.3,9628,1,3,0)
+ ;;=3^Cocaine Dependence w/ Other Cocaine-Induced Disorder
+ ;;^UTILITY(U,$J,358.3,9628,1,4,0)
+ ;;=4^F14.288
+ ;;^UTILITY(U,$J,358.3,9628,2)
+ ;;=^5003267
+ ;;^UTILITY(U,$J,358.3,9629,0)
+ ;;=F14.282^^39^415^27
+ ;;^UTILITY(U,$J,358.3,9629,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,9491,1,3,0)
- ;;=3^Abnormal Findings in Urine,Oth
- ;;^UTILITY(U,$J,358.3,9491,1,4,0)
- ;;=4^R82.998
- ;;^UTILITY(U,$J,358.3,9491,2)
- ;;=^5157472
- ;;^UTILITY(U,$J,358.3,9492,0)
- ;;=Z99.2^^72^644^41
- ;;^UTILITY(U,$J,358.3,9492,1,0)
+ ;;^UTILITY(U,$J,358.3,9629,1,3,0)
+ ;;=3^Cocaine Dependence w/ Cocaine-Induced Sleep Disorder
+ ;;^UTILITY(U,$J,358.3,9629,1,4,0)
+ ;;=4^F14.282
+ ;;^UTILITY(U,$J,358.3,9629,2)
+ ;;=^5003266
+ ;;^UTILITY(U,$J,358.3,9630,0)
+ ;;=F14.281^^39^415^28
+ ;;^UTILITY(U,$J,358.3,9630,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,9492,1,3,0)
- ;;=3^Dialysis Dependent
- ;;^UTILITY(U,$J,358.3,9492,1,4,0)
- ;;=4^Z99.2
- ;;^UTILITY(U,$J,358.3,9492,2)
- ;;=^5063758
- ;;^UTILITY(U,$J,358.3,9493,0)
- ;;=T85.71XA^^72^644^42
- ;;^UTILITY(U,$J,358.3,9493,1,0)
+ ;;^UTILITY(U,$J,358.3,9630,1,3,0)
+ ;;=3^Cocaine Dependence w/ Cocaine-Induced Sexual Dysfunction
+ ;;^UTILITY(U,$J,358.3,9630,1,4,0)
+ ;;=4^F14.281
+ ;;^UTILITY(U,$J,358.3,9630,2)
+ ;;=^5003265
+ ;;^UTILITY(U,$J,358.3,9631,0)
+ ;;=F14.280^^39^415^25
+ ;;^UTILITY(U,$J,358.3,9631,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,9493,1,3,0)
- ;;=3^Peritoneal Dialysis Catheter Infection
- ;;^UTILITY(U,$J,358.3,9493,1,4,0)
- ;;=4^T85.71XA
- ;;^UTILITY(U,$J,358.3,9493,2)
- ;;=^5055670
- ;;^UTILITY(U,$J,358.3,9494,0)
- ;;=H57.10^^72^645^1
- ;;^UTILITY(U,$J,358.3,9494,1,0)
+ ;;^UTILITY(U,$J,358.3,9631,1,3,0)
+ ;;=3^Cocaine Dependence w/ Cocaine-Induced Anxiety Disorder
+ ;;^UTILITY(U,$J,358.3,9631,1,4,0)
+ ;;=4^F14.280
+ ;;^UTILITY(U,$J,358.3,9631,2)
+ ;;=^5003264
+ ;;^UTILITY(U,$J,358.3,9632,0)
+ ;;=F14.259^^39^415^24
+ ;;^UTILITY(U,$J,358.3,9632,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,9494,1,3,0)
- ;;=3^Eye Pain
- ;;^UTILITY(U,$J,358.3,9494,1,4,0)
- ;;=4^H57.10
- ;;^UTILITY(U,$J,358.3,9494,2)
- ;;=^5006381
- ;;^UTILITY(U,$J,358.3,9495,0)
- ;;=S05.00XA^^72^645^2
- ;;^UTILITY(U,$J,358.3,9495,1,0)
+ ;;^UTILITY(U,$J,358.3,9632,1,3,0)
+ ;;=3^Cocaine Dependence w/ Cocaine-Induc Psychotic Disorder,Unspec
+ ;;^UTILITY(U,$J,358.3,9632,1,4,0)
+ ;;=4^F14.259
+ ;;^UTILITY(U,$J,358.3,9632,2)
+ ;;=^5003263
+ ;;^UTILITY(U,$J,358.3,9633,0)
+ ;;=F14.251^^39^415^23
+ ;;^UTILITY(U,$J,358.3,9633,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,9495,1,3,0)
- ;;=3^Corneal Abrasion w/o FB
- ;;^UTILITY(U,$J,358.3,9495,1,4,0)
- ;;=4^S05.00XA
- ;;^UTILITY(U,$J,358.3,9495,2)
- ;;=^5020576
- ;;^UTILITY(U,$J,358.3,9496,0)
- ;;=T15.00XA^^72^645^3
- ;;^UTILITY(U,$J,358.3,9496,1,0)
+ ;;^UTILITY(U,$J,358.3,9633,1,3,0)
+ ;;=3^Cocaine Depend w/ Cocaine-Induc Psychotic Disorder w/ Hallucin
+ ;;^UTILITY(U,$J,358.3,9633,1,4,0)
+ ;;=4^F14.251
+ ;;^UTILITY(U,$J,358.3,9633,2)
+ ;;=^5003262
+ ;;^UTILITY(U,$J,358.3,9634,0)
+ ;;=F14.250^^39^415^22
+ ;;^UTILITY(U,$J,358.3,9634,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,9496,1,3,0)
- ;;=3^Corneal FB
- ;;^UTILITY(U,$J,358.3,9496,1,4,0)
- ;;=4^T15.00XA
- ;;^UTILITY(U,$J,358.3,9496,2)
- ;;=^5046381
- ;;^UTILITY(U,$J,358.3,9497,0)
- ;;=H10.30^^72^645^5
- ;;^UTILITY(U,$J,358.3,9497,1,0)
+ ;;^UTILITY(U,$J,358.3,9634,1,3,0)
+ ;;=3^Cocaine Depend w/ Cocaine-Induc Psych Disorder w/ Delusions
+ ;;^UTILITY(U,$J,358.3,9634,1,4,0)
+ ;;=4^F14.250
+ ;;^UTILITY(U,$J,358.3,9634,2)
+ ;;=^5003261
+ ;;^UTILITY(U,$J,358.3,9635,0)
+ ;;=F14.24^^39^415^26
+ ;;^UTILITY(U,$J,358.3,9635,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,9497,1,3,0)
- ;;=3^Acute Conjunctivitis
- ;;^UTILITY(U,$J,358.3,9497,1,4,0)
- ;;=4^H10.30
- ;;^UTILITY(U,$J,358.3,9497,2)
- ;;=^5133457
- ;;^UTILITY(U,$J,358.3,9498,0)
- ;;=H01.009^^72^645^6
- ;;^UTILITY(U,$J,358.3,9498,1,0)
+ ;;^UTILITY(U,$J,358.3,9635,1,3,0)
+ ;;=3^Cocaine Dependence w/ Cocaine-Induced Mood Disorder
+ ;;^UTILITY(U,$J,358.3,9635,1,4,0)
+ ;;=4^F14.24
+ ;;^UTILITY(U,$J,358.3,9635,2)
+ ;;=^5003260
+ ;;^UTILITY(U,$J,358.3,9636,0)
+ ;;=F14.23^^39^415^35
+ ;;^UTILITY(U,$J,358.3,9636,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,9498,1,3,0)
- ;;=3^Blepharitis,Unspec Eye,Unspec Eyelid
- ;;^UTILITY(U,$J,358.3,9498,1,4,0)
- ;;=4^H01.009
- ;;^UTILITY(U,$J,358.3,9498,2)
- ;;=^5133381
- ;;^UTILITY(U,$J,358.3,9499,0)
- ;;=H00.019^^72^645^7
- ;;^UTILITY(U,$J,358.3,9499,1,0)
+ ;;^UTILITY(U,$J,358.3,9636,1,3,0)
+ ;;=3^Cocaine Dependence w/ Withdrawal
+ ;;^UTILITY(U,$J,358.3,9636,1,4,0)
+ ;;=4^F14.23
+ ;;^UTILITY(U,$J,358.3,9636,2)
+ ;;=^5003259
+ ;;^UTILITY(U,$J,358.3,9637,0)
+ ;;=F14.229^^39^415^32
+ ;;^UTILITY(U,$J,358.3,9637,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,9499,1,3,0)
- ;;=3^Stye
- ;;^UTILITY(U,$J,358.3,9499,1,4,0)
- ;;=4^H00.019
- ;;^UTILITY(U,$J,358.3,9499,2)
- ;;=^5133373
- ;;^UTILITY(U,$J,358.3,9500,0)
- ;;=B02.39^^72^645^10
- ;;^UTILITY(U,$J,358.3,9500,1,0)
+ ;;^UTILITY(U,$J,358.3,9637,1,3,0)
+ ;;=3^Cocaine Dependence w/ Intoxication,Unspec
+ ;;^UTILITY(U,$J,358.3,9637,1,4,0)
+ ;;=4^F14.229
+ ;;^UTILITY(U,$J,358.3,9637,2)
+ ;;=^5003258
+ ;;^UTILITY(U,$J,358.3,9638,0)
+ ;;=F14.222^^39^415^30
+ ;;^UTILITY(U,$J,358.3,9638,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,9500,1,3,0)
- ;;=3^Herpes Zoster Eye Disease
- ;;^UTILITY(U,$J,358.3,9500,1,4,0)
- ;;=4^B02.39
- ;;^UTILITY(U,$J,358.3,9500,2)
- ;;=^5000498
- ;;^UTILITY(U,$J,358.3,9501,0)
- ;;=L03.213^^72^645^8
- ;;^UTILITY(U,$J,358.3,9501,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,9501,1,3,0)
- ;;=3^Periorbital Cellulitis
- ;;^UTILITY(U,$J,358.3,9501,1,4,0)
- ;;=4^L03.213
- ;;^UTILITY(U,$J,358.3,9501,2)
- ;;=^259555
- ;;^UTILITY(U,$J,358.3,9502,0)
- ;;=H05.019^^72^645^9
- ;;^UTILITY(U,$J,358.3,9502,1,0)
+ ;;^UTILITY(U,$J,358.3,9638,1,3,0)
+ ;;=3^Cocaine Dependence w/ Intoxication w/ Perceptual Disturbance
+ ;;^UTILITY(U,$J,358.3,9638,1,4,0)
+ ;;=4^F14.222
+ ;;^UTILITY(U,$J,358.3,9638,2)
+ ;;=^5003257
+ ;;^UTILITY(U,$J,358.3,9639,0)
+ ;;=F14.221^^39^415^29
+ ;;^UTILITY(U,$J,358.3,9639,1,0)
  ;;=^358.31IA^4^2

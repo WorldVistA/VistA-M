@@ -1,8 +1,10 @@
 RMPORPD ;(NG)/DG/CAP/HINES CIOFO/HNC -PRESCRIPTION EXPIRE DATE ACTIVE PATIENTS ; 5/19/00 9:12am
- ;;3.0;PROSTHETICS;**29,46,49,179**;Feb 09, 1996;Build 7
+ ;;3.0;PROSTHETICS;**29,46,49,179,207**;Feb 09, 1996;Build 15
  ;
  ;RMPR*3.0*179 Check for deceased patients. Add to report by
  ;             displaying asterisk (*) if patient deceased.
+ ;RMPR*3.0*207 Ensure the script expiration displays correct
+ ;             dates even though script edit/add could be back dated.
  ;
 SITE ;   Set up the site variables.
  D HOSITE^RMPOUTL0  Q:'$D(RMPOXITE)
@@ -42,7 +44,7 @@ CNT ;*** COUNT NAMES
  Q
  ;
  ;*** CONVERT DATE FROM FILEMAN FORMAT TO MM/DD/YYYY
-DATE(FMD) ;  RMPR*3.0*179 Flag a deceased patient by attaching an '*' to SSN. ^DPT(D0,.35) direct read supported by ICR #10035
+DATE(FMD) ;  RMPR*3.0*179 Flag a deceased patient by attaching an '*' to SSN. ^PT(D0,.35) direct read supported by ICR #10035
  N RMPOEXP S RMPOEXP=" " I +$G(^DPT(D0,.35)) S RMPOEXP="*",RMPODCNT=RMPODCNT+1
  Q $E(FMD,4,5)_"/"_$E(FMD,6,7)_"/"_($E(FMD,1,3)+1700)_RMPOEXP
  ;
@@ -78,12 +80,11 @@ RPTHDR ;*** REPORT HEADER
  ;*** EXPIRATION DATE OF CURRENT RX
  ; MODE      Date format: 0 - MM/DD/YYYY or "N/A" (default)
  ;                        1 - YYYMMDD or "N/A"
-RXDT(MODE) ;
- N J,D,Y,RA S (D,RA,Y)=""
- F  S D=$O(^RMPR(665,D0,"RMPOB","B",D))  Q:D=""  D
- . S J=$O(^RMPR(665,D0,"RMPOB","B",D,""),-1)  Q:J=""  S:J>RA RA=J
- S:RA'="" Y=$P($G(^RMPR(665,D0,"RMPOB",RA,0)),U,3)
- S X=$S('Y:"N/A",'$G(MODE):$$DATE(Y),1:Y)
+RXDT(MODE) ;Rewrite latest expiration date determination    RMPR*3.0*207
+ N RMPRDA,RMPRDT,RMPRDAT S (RMPRDA,RMPRDT)=0
+ F  S RMPRDA=$O(^RMPR(665,D0,"RMPOB",RMPRDA))  Q:'RMPRDA  D
+ . S RMPRDAT=$P(^RMPR(665,D0,"RMPOB",RMPRDA,0),U,3) I RMPRDAT>RMPRDT  S RMPRDT=RMPRDAT
+ S X=$S('RMPRDT:"N/A",'$G(MODE):$$DATE(RMPRDT),1:RMPRDT)
  Q X
  ;
 SSN() ;*** SOCIAL SECURITY NUMBER

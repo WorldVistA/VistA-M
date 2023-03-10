@@ -1,114 +1,130 @@
-IBDEI1FT ; ; 04-FEB-2020
- ;;3.0;IB ENCOUNTER FORM IMP/EXP;;FEB 04, 2020
+IBDEI1FT ; ; 01-FEB-2022
+ ;;3.0;IB ENCOUNTER FORM IMP/EXP;;FEB 01, 2022
  Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,999) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
- ;;^UTILITY(U,$J,358.3,22991,1,4,0)
- ;;=4^I97.411
- ;;^UTILITY(U,$J,358.3,22991,2)
- ;;=^5008094
- ;;^UTILITY(U,$J,358.3,22992,0)
- ;;=I97.418^^105^1166^112
- ;;^UTILITY(U,$J,358.3,22992,1,0)
+ ;;^UTILITY(U,$J,358.3,23249,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,22992,1,3,0)
- ;;=3^Intraop Hemor/Hemtom of Circ Sys Complicating Oth Circ Sys Procedure
- ;;^UTILITY(U,$J,358.3,22992,1,4,0)
- ;;=4^I97.418
- ;;^UTILITY(U,$J,358.3,22992,2)
- ;;=^5008095
- ;;^UTILITY(U,$J,358.3,22993,0)
- ;;=I97.42^^105^1166^113
- ;;^UTILITY(U,$J,358.3,22993,1,0)
+ ;;^UTILITY(U,$J,358.3,23249,1,3,0)
+ ;;=3^Sinusitis,Chronic,Unspec
+ ;;^UTILITY(U,$J,358.3,23249,1,4,0)
+ ;;=4^J32.9
+ ;;^UTILITY(U,$J,358.3,23249,2)
+ ;;=^5008207
+ ;;^UTILITY(U,$J,358.3,23250,0)
+ ;;=J01.00^^78^1004^65
+ ;;^UTILITY(U,$J,358.3,23250,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,22993,1,3,0)
- ;;=3^Intraop Hemor/Hemtom of Circ Sys Complicating Oth Procedure
- ;;^UTILITY(U,$J,358.3,22993,1,4,0)
- ;;=4^I97.42
- ;;^UTILITY(U,$J,358.3,22993,2)
- ;;=^5008096
- ;;^UTILITY(U,$J,358.3,22994,0)
- ;;=J95.61^^105^1166^128
- ;;^UTILITY(U,$J,358.3,22994,1,0)
+ ;;^UTILITY(U,$J,358.3,23250,1,3,0)
+ ;;=3^Sinusitis,Maxillary,Acute
+ ;;^UTILITY(U,$J,358.3,23250,1,4,0)
+ ;;=4^J01.00
+ ;;^UTILITY(U,$J,358.3,23250,2)
+ ;;=^5008116
+ ;;^UTILITY(U,$J,358.3,23251,0)
+ ;;=J01.01^^78^1004^67
+ ;;^UTILITY(U,$J,358.3,23251,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,22994,1,3,0)
- ;;=3^Intraop Hemor/Hemtom of Resp Sys Complicating Resp Sys Procedure
- ;;^UTILITY(U,$J,358.3,22994,1,4,0)
- ;;=4^J95.61
- ;;^UTILITY(U,$J,358.3,22994,2)
- ;;=^5008332
- ;;^UTILITY(U,$J,358.3,22995,0)
- ;;=J95.62^^105^1166^129
- ;;^UTILITY(U,$J,358.3,22995,1,0)
+ ;;^UTILITY(U,$J,358.3,23251,1,3,0)
+ ;;=3^Sinusitis,Maxillary,Recurrent
+ ;;^UTILITY(U,$J,358.3,23251,1,4,0)
+ ;;=4^J01.01
+ ;;^UTILITY(U,$J,358.3,23251,2)
+ ;;=^5008117
+ ;;^UTILITY(U,$J,358.3,23252,0)
+ ;;=J01.10^^78^1004^62
+ ;;^UTILITY(U,$J,358.3,23252,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,22995,1,3,0)
- ;;=3^Intraop Hemor/Hemtom of Resp Sys Complicating Oth Procedure
- ;;^UTILITY(U,$J,358.3,22995,1,4,0)
- ;;=4^J95.62
- ;;^UTILITY(U,$J,358.3,22995,2)
- ;;=^5008333
- ;;^UTILITY(U,$J,358.3,22996,0)
- ;;=K91.61^^105^1166^114
- ;;^UTILITY(U,$J,358.3,22996,1,0)
+ ;;^UTILITY(U,$J,358.3,23252,1,3,0)
+ ;;=3^Sinusitis,Frontal,Acute
+ ;;^UTILITY(U,$J,358.3,23252,1,4,0)
+ ;;=4^J01.10
+ ;;^UTILITY(U,$J,358.3,23252,2)
+ ;;=^5008118
+ ;;^UTILITY(U,$J,358.3,23253,0)
+ ;;=J01.11^^78^1004^64
+ ;;^UTILITY(U,$J,358.3,23253,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,22996,1,3,0)
- ;;=3^Intraop Hemor/Hemtom of Digestive Sys Complicating Digestive Sys Procedure
- ;;^UTILITY(U,$J,358.3,22996,1,4,0)
- ;;=4^K91.61
- ;;^UTILITY(U,$J,358.3,22996,2)
- ;;=^5008903
- ;;^UTILITY(U,$J,358.3,22997,0)
- ;;=K91.62^^105^1166^115
- ;;^UTILITY(U,$J,358.3,22997,1,0)
+ ;;^UTILITY(U,$J,358.3,23253,1,3,0)
+ ;;=3^Sinusitis,Frontal,Recurrent
+ ;;^UTILITY(U,$J,358.3,23253,1,4,0)
+ ;;=4^J01.11
+ ;;^UTILITY(U,$J,358.3,23253,2)
+ ;;=^5008119
+ ;;^UTILITY(U,$J,358.3,23254,0)
+ ;;=J01.20^^78^1004^59
+ ;;^UTILITY(U,$J,358.3,23254,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,22997,1,3,0)
- ;;=3^Intraop Hemor/Hemtom of Digestive Sys Complicating Oth Procedure
- ;;^UTILITY(U,$J,358.3,22997,1,4,0)
- ;;=4^K91.62
- ;;^UTILITY(U,$J,358.3,22997,2)
- ;;=^5008904
- ;;^UTILITY(U,$J,358.3,22998,0)
- ;;=L76.01^^105^1166^132
- ;;^UTILITY(U,$J,358.3,22998,1,0)
+ ;;^UTILITY(U,$J,358.3,23254,1,3,0)
+ ;;=3^Sinusitis,Ethmoid,Acute
+ ;;^UTILITY(U,$J,358.3,23254,1,4,0)
+ ;;=4^J01.20
+ ;;^UTILITY(U,$J,358.3,23254,2)
+ ;;=^5008120
+ ;;^UTILITY(U,$J,358.3,23255,0)
+ ;;=J01.21^^78^1004^60
+ ;;^UTILITY(U,$J,358.3,23255,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,22998,1,3,0)
- ;;=3^Intraop Hemor/Hemtom of Skin Complicating Derm Procedure
- ;;^UTILITY(U,$J,358.3,22998,1,4,0)
- ;;=4^L76.01
- ;;^UTILITY(U,$J,358.3,22998,2)
- ;;=^5009302
- ;;^UTILITY(U,$J,358.3,22999,0)
- ;;=L76.02^^105^1166^133
- ;;^UTILITY(U,$J,358.3,22999,1,0)
+ ;;^UTILITY(U,$J,358.3,23255,1,3,0)
+ ;;=3^Sinusitis,Ethmoid,Recurrent
+ ;;^UTILITY(U,$J,358.3,23255,1,4,0)
+ ;;=4^J01.21
+ ;;^UTILITY(U,$J,358.3,23255,2)
+ ;;=^5008121
+ ;;^UTILITY(U,$J,358.3,23256,0)
+ ;;=J01.30^^78^1004^69
+ ;;^UTILITY(U,$J,358.3,23256,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,22999,1,3,0)
- ;;=3^Intraop Hemor/Hemtom of Skin Complicating Oth Procedure
- ;;^UTILITY(U,$J,358.3,22999,1,4,0)
- ;;=4^L76.02
- ;;^UTILITY(U,$J,358.3,22999,2)
- ;;=^5009303
- ;;^UTILITY(U,$J,358.3,23000,0)
- ;;=M96.810^^105^1166^124
- ;;^UTILITY(U,$J,358.3,23000,1,0)
+ ;;^UTILITY(U,$J,358.3,23256,1,3,0)
+ ;;=3^Sinusitis,Sphenoidal,Acute
+ ;;^UTILITY(U,$J,358.3,23256,1,4,0)
+ ;;=4^J01.30
+ ;;^UTILITY(U,$J,358.3,23256,2)
+ ;;=^5008122
+ ;;^UTILITY(U,$J,358.3,23257,0)
+ ;;=J01.31^^78^1004^70
+ ;;^UTILITY(U,$J,358.3,23257,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,23000,1,3,0)
- ;;=3^Intraop Hemor/Hemtom of MS Structure Complication MS Sys Procedure
- ;;^UTILITY(U,$J,358.3,23000,1,4,0)
- ;;=4^M96.810
- ;;^UTILITY(U,$J,358.3,23000,2)
- ;;=^5015393
- ;;^UTILITY(U,$J,358.3,23001,0)
- ;;=M96.811^^105^1166^125
- ;;^UTILITY(U,$J,358.3,23001,1,0)
+ ;;^UTILITY(U,$J,358.3,23257,1,3,0)
+ ;;=3^Sinusitis,Sphenoidal,Recurrent
+ ;;^UTILITY(U,$J,358.3,23257,1,4,0)
+ ;;=4^J01.31
+ ;;^UTILITY(U,$J,358.3,23257,2)
+ ;;=^5008123
+ ;;^UTILITY(U,$J,358.3,23258,0)
+ ;;=J01.40^^78^1004^51
+ ;;^UTILITY(U,$J,358.3,23258,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,23001,1,3,0)
- ;;=3^Intraop Hemor/Hemtom of MS Structure Complication Oth Procedure
- ;;^UTILITY(U,$J,358.3,23001,1,4,0)
- ;;=4^M96.811
- ;;^UTILITY(U,$J,358.3,23001,2)
- ;;=^5015394
- ;;^UTILITY(U,$J,358.3,23002,0)
- ;;=N99.61^^105^1166^120
- ;;^UTILITY(U,$J,358.3,23002,1,0)
+ ;;^UTILITY(U,$J,358.3,23258,1,3,0)
+ ;;=3^Pansinusitis,Acute
+ ;;^UTILITY(U,$J,358.3,23258,1,4,0)
+ ;;=4^J01.40
+ ;;^UTILITY(U,$J,358.3,23258,2)
+ ;;=^5008124
+ ;;^UTILITY(U,$J,358.3,23259,0)
+ ;;=J01.41^^78^1004^53
+ ;;^UTILITY(U,$J,358.3,23259,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,23002,1,3,0)
- ;;=3^Intraop Hemor/Hemtom of GU Sys Complicating a GU Sys Procedure
+ ;;^UTILITY(U,$J,358.3,23259,1,3,0)
+ ;;=3^Pansinusitis,Recurrent
+ ;;^UTILITY(U,$J,358.3,23259,1,4,0)
+ ;;=4^J01.41
+ ;;^UTILITY(U,$J,358.3,23259,2)
+ ;;=^5008125
+ ;;^UTILITY(U,$J,358.3,23260,0)
+ ;;=J32.0^^78^1004^66
+ ;;^UTILITY(U,$J,358.3,23260,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,23260,1,3,0)
+ ;;=3^Sinusitis,Maxillary,Chronic
+ ;;^UTILITY(U,$J,358.3,23260,1,4,0)
+ ;;=4^J32.0
+ ;;^UTILITY(U,$J,358.3,23260,2)
+ ;;=^24407
+ ;;^UTILITY(U,$J,358.3,23261,0)
+ ;;=J32.1^^78^1004^63
+ ;;^UTILITY(U,$J,358.3,23261,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,23261,1,3,0)
+ ;;=3^Sinusitis,Frontal,Chronic
+ ;;^UTILITY(U,$J,358.3,23261,1,4,0)
+ ;;=4^J32.1

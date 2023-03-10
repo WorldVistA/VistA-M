@@ -1,118 +1,128 @@
-IBDEI0RP ; ; 04-FEB-2020
- ;;3.0;IB ENCOUNTER FORM IMP/EXP;;FEB 04, 2020
+IBDEI0RP ; ; 01-FEB-2022
+ ;;3.0;IB ENCOUNTER FORM IMP/EXP;;FEB 01, 2022
  Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,999) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
- ;;^UTILITY(U,$J,358.3,12360,1,3,0)
- ;;=3^Open Wound of Right Wrist,Init Encntr
- ;;^UTILITY(U,$J,358.3,12360,1,4,0)
- ;;=4^S61.501A
- ;;^UTILITY(U,$J,358.3,12360,2)
- ;;=^5033020
- ;;^UTILITY(U,$J,358.3,12361,0)
- ;;=S61.502A^^80^778^30
- ;;^UTILITY(U,$J,358.3,12361,1,0)
+ ;;^UTILITY(U,$J,358.3,12470,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,12361,1,3,0)
- ;;=3^Open Wound of Left Wrist,Init Encntr
- ;;^UTILITY(U,$J,358.3,12361,1,4,0)
- ;;=4^S61.502A
- ;;^UTILITY(U,$J,358.3,12361,2)
- ;;=^5033023
- ;;^UTILITY(U,$J,358.3,12362,0)
- ;;=S61.401A^^80^778^43
- ;;^UTILITY(U,$J,358.3,12362,1,0)
+ ;;^UTILITY(U,$J,358.3,12470,1,3,0)
+ ;;=3^Hemorrhoids,Unspec
+ ;;^UTILITY(U,$J,358.3,12470,1,4,0)
+ ;;=4^K64.9
+ ;;^UTILITY(U,$J,358.3,12470,2)
+ ;;=^5008775
+ ;;^UTILITY(U,$J,358.3,12471,0)
+ ;;=K21.9^^49^602^15
+ ;;^UTILITY(U,$J,358.3,12471,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,12362,1,3,0)
- ;;=3^Open Wound of Right Hand,Init Encntr
- ;;^UTILITY(U,$J,358.3,12362,1,4,0)
- ;;=4^S61.401A
- ;;^UTILITY(U,$J,358.3,12362,2)
- ;;=^5032981
- ;;^UTILITY(U,$J,358.3,12363,0)
- ;;=S61.402A^^80^778^12
- ;;^UTILITY(U,$J,358.3,12363,1,0)
+ ;;^UTILITY(U,$J,358.3,12471,1,3,0)
+ ;;=3^GERD w/o Esophagitis
+ ;;^UTILITY(U,$J,358.3,12471,1,4,0)
+ ;;=4^K21.9
+ ;;^UTILITY(U,$J,358.3,12471,2)
+ ;;=^5008505
+ ;;^UTILITY(U,$J,358.3,12472,0)
+ ;;=K27.9^^49^602^20
+ ;;^UTILITY(U,$J,358.3,12472,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,12363,1,3,0)
- ;;=3^Open Wound of Left Hand,Init Encntr
- ;;^UTILITY(U,$J,358.3,12363,1,4,0)
- ;;=4^S61.402A
- ;;^UTILITY(U,$J,358.3,12363,2)
- ;;=^5032984
- ;;^UTILITY(U,$J,358.3,12364,0)
- ;;=S61.001A^^80^778^60
- ;;^UTILITY(U,$J,358.3,12364,1,0)
+ ;;^UTILITY(U,$J,358.3,12472,1,3,0)
+ ;;=3^Peptic Ulcer w/o Hemorrhage/Perforation,Unspec Site
+ ;;^UTILITY(U,$J,358.3,12472,1,4,0)
+ ;;=4^K27.9
+ ;;^UTILITY(U,$J,358.3,12472,2)
+ ;;=^5008536
+ ;;^UTILITY(U,$J,358.3,12473,0)
+ ;;=K29.00^^49^602^2
+ ;;^UTILITY(U,$J,358.3,12473,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,12364,1,3,0)
- ;;=3^Open Wound of Right Thumb w/o Nail Damage,Init Encntr
- ;;^UTILITY(U,$J,358.3,12364,1,4,0)
- ;;=4^S61.001A
- ;;^UTILITY(U,$J,358.3,12364,2)
- ;;=^5032684
- ;;^UTILITY(U,$J,358.3,12365,0)
- ;;=S61.002A^^80^778^29
- ;;^UTILITY(U,$J,358.3,12365,1,0)
+ ;;^UTILITY(U,$J,358.3,12473,1,3,0)
+ ;;=3^Acute Gastritis w/o Bleeding
+ ;;^UTILITY(U,$J,358.3,12473,1,4,0)
+ ;;=4^K29.00
+ ;;^UTILITY(U,$J,358.3,12473,2)
+ ;;=^5008542
+ ;;^UTILITY(U,$J,358.3,12474,0)
+ ;;=K46.9^^49^602^1
+ ;;^UTILITY(U,$J,358.3,12474,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,12365,1,3,0)
- ;;=3^Open Wound of Left Thumb w/o Nail Damage,Init Encntr
- ;;^UTILITY(U,$J,358.3,12365,1,4,0)
- ;;=4^S61.002A
- ;;^UTILITY(U,$J,358.3,12365,2)
- ;;=^5032687
- ;;^UTILITY(U,$J,358.3,12366,0)
- ;;=S61.101A^^80^778^59
- ;;^UTILITY(U,$J,358.3,12366,1,0)
+ ;;^UTILITY(U,$J,358.3,12474,1,3,0)
+ ;;=3^Abdominal Hernia w/o Obstruction/Gangrene,Unspec
+ ;;^UTILITY(U,$J,358.3,12474,1,4,0)
+ ;;=4^K46.9
+ ;;^UTILITY(U,$J,358.3,12474,2)
+ ;;=^5008623
+ ;;^UTILITY(U,$J,358.3,12475,0)
+ ;;=K52.9^^49^602^19
+ ;;^UTILITY(U,$J,358.3,12475,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,12366,1,3,0)
- ;;=3^Open Wound of Right Thumb w/ Nail Damage,Init Encntr
- ;;^UTILITY(U,$J,358.3,12366,1,4,0)
- ;;=4^S61.101A
- ;;^UTILITY(U,$J,358.3,12366,2)
- ;;=^5032723
- ;;^UTILITY(U,$J,358.3,12367,0)
- ;;=S61.102A^^80^778^28
- ;;^UTILITY(U,$J,358.3,12367,1,0)
+ ;;^UTILITY(U,$J,358.3,12475,1,3,0)
+ ;;=3^Noninfective Gastroenteritis/Colitis,Unspec
+ ;;^UTILITY(U,$J,358.3,12475,1,4,0)
+ ;;=4^K52.9
+ ;;^UTILITY(U,$J,358.3,12475,2)
+ ;;=^5008704
+ ;;^UTILITY(U,$J,358.3,12476,0)
+ ;;=K58.9^^49^602^18
+ ;;^UTILITY(U,$J,358.3,12476,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,12367,1,3,0)
- ;;=3^Open Wound of Left Thumb w/ Nail Damage,Init Encntr
- ;;^UTILITY(U,$J,358.3,12367,1,4,0)
- ;;=4^S61.102A
- ;;^UTILITY(U,$J,358.3,12367,2)
- ;;=^5135687
- ;;^UTILITY(U,$J,358.3,12368,0)
- ;;=S61.200A^^80^778^46
- ;;^UTILITY(U,$J,358.3,12368,1,0)
+ ;;^UTILITY(U,$J,358.3,12476,1,3,0)
+ ;;=3^IBS w/o Diarrhea
+ ;;^UTILITY(U,$J,358.3,12476,1,4,0)
+ ;;=4^K58.9
+ ;;^UTILITY(U,$J,358.3,12476,2)
+ ;;=^5008740
+ ;;^UTILITY(U,$J,358.3,12477,0)
+ ;;=K74.60^^49^602^11
+ ;;^UTILITY(U,$J,358.3,12477,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,12368,1,3,0)
- ;;=3^Open Wound of Right Index Finger w/o Nail Damage,Init Encntr
- ;;^UTILITY(U,$J,358.3,12368,1,4,0)
- ;;=4^S61.200A
- ;;^UTILITY(U,$J,358.3,12368,2)
- ;;=^5032741
- ;;^UTILITY(U,$J,358.3,12369,0)
- ;;=S61.201A^^80^778^15
- ;;^UTILITY(U,$J,358.3,12369,1,0)
+ ;;^UTILITY(U,$J,358.3,12477,1,3,0)
+ ;;=3^Cirrhosis of Liver,Unspec
+ ;;^UTILITY(U,$J,358.3,12477,1,4,0)
+ ;;=4^K74.60
+ ;;^UTILITY(U,$J,358.3,12477,2)
+ ;;=^5008822
+ ;;^UTILITY(U,$J,358.3,12478,0)
+ ;;=B17.10^^49^602^4
+ ;;^UTILITY(U,$J,358.3,12478,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,12369,1,3,0)
- ;;=3^Open Wound of Left Index Finger w/o Nail Damage,Init Encntr
- ;;^UTILITY(U,$J,358.3,12369,1,4,0)
- ;;=4^S61.201A
- ;;^UTILITY(U,$J,358.3,12369,2)
- ;;=^5032744
- ;;^UTILITY(U,$J,358.3,12370,0)
- ;;=S61.202A^^80^778^54
- ;;^UTILITY(U,$J,358.3,12370,1,0)
+ ;;^UTILITY(U,$J,358.3,12478,1,3,0)
+ ;;=3^Acute Viral Hepatitis C w/o Hepatic Coma
+ ;;^UTILITY(U,$J,358.3,12478,1,4,0)
+ ;;=4^B17.10
+ ;;^UTILITY(U,$J,358.3,12478,2)
+ ;;=^5000542
+ ;;^UTILITY(U,$J,358.3,12479,0)
+ ;;=B17.11^^49^602^3
+ ;;^UTILITY(U,$J,358.3,12479,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,12370,1,3,0)
- ;;=3^Open Wound of Right Middle Finger w/o Nail Damage,Init Encntr
- ;;^UTILITY(U,$J,358.3,12370,1,4,0)
- ;;=4^S61.202A
- ;;^UTILITY(U,$J,358.3,12370,2)
- ;;=^5032747
- ;;^UTILITY(U,$J,358.3,12371,0)
- ;;=S61.203A^^80^778^23
- ;;^UTILITY(U,$J,358.3,12371,1,0)
+ ;;^UTILITY(U,$J,358.3,12479,1,3,0)
+ ;;=3^Acute Viral Hepatitis C w/ Hepatic Coma
+ ;;^UTILITY(U,$J,358.3,12479,1,4,0)
+ ;;=4^B17.11
+ ;;^UTILITY(U,$J,358.3,12479,2)
+ ;;=^331777
+ ;;^UTILITY(U,$J,358.3,12480,0)
+ ;;=K70.30^^49^602^6
+ ;;^UTILITY(U,$J,358.3,12480,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,12371,1,3,0)
- ;;=3^Open Wound of Left Middle Finger w/o Nail Damage,Init Encntr
- ;;^UTILITY(U,$J,358.3,12371,1,4,0)
- ;;=4^S61.203A
+ ;;^UTILITY(U,$J,358.3,12480,1,3,0)
+ ;;=3^Alcoholic Cirrhosis of Liver w/o Ascites
+ ;;^UTILITY(U,$J,358.3,12480,1,4,0)
+ ;;=4^K70.30
+ ;;^UTILITY(U,$J,358.3,12480,2)
+ ;;=^5008788
+ ;;^UTILITY(U,$J,358.3,12481,0)
+ ;;=K70.31^^49^602^5
+ ;;^UTILITY(U,$J,358.3,12481,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,12481,1,3,0)
+ ;;=3^Alcoholic Cirrhosis of Liver w/ Ascites
+ ;;^UTILITY(U,$J,358.3,12481,1,4,0)
+ ;;=4^K70.31
+ ;;^UTILITY(U,$J,358.3,12481,2)
+ ;;=^5008789
+ ;;^UTILITY(U,$J,358.3,12482,0)
+ ;;=K58.0^^49^602^17
+ ;;^UTILITY(U,$J,358.3,12482,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,12482,1,3,0)
+ ;;=3^IBS w/ Diarrhea

@@ -1,5 +1,5 @@
 IBARXMU ;LL/ELZ-PHARMACY COPAY CAP UTILITIES ;17-NOV-2000
- ;;2.0;INTEGRATED BILLING;**150,158,156,178,186**;21-MAR-94
+ ;;2.0;INTEGRATED BILLING;**150,158,156,178,186,676,717**;21-MAR-94;Build 1
  ;;Per VHA Directive 10-93-142, this routine should not be modified.
  ;
 PRIORITY(DFN) ; returns the patient's priority level, ia #2918 for DGENA
@@ -11,15 +11,31 @@ FAC(X) ; returns facility information ia #2171
 SITE() ; returns site number and info
  Q $$SITE^VASITE
  ;
-TFL(DFN,IBT) ; returns treating facility list (pass IBT by reference)
+TFL(DFN,IBT,CCR) ; returns treating facility list (pass IBT by reference)
  ; supported references ia #2990 and #10112, value returned is count
  ; needed to N Y because VAFCTFU1 will kill it
- N IBC,IBZ,IBS,IBFT,Y
+ ;676/BL; As part of patch IB*2.0*676 a new parameter is being added to this call
+ ;CCR will specify in this call if the array returned will contain Sites that have
+ ;been converted to Cerner or not. The DEFAULT will be to return Converted sites and
+ ;not return Cerner.
+ ;     CCR=0            - Remove Converted sites Remove Cerner site in list
+ ;     CCR=1            - Remove Converted sites, Leave Cerner site
+ ;     CCR=2            - Leave Converted sites, Leave Cerner site
+ ;     CCR=3   (Default)- Leave Converted sites, Remove Cerner site in list
+ ;
+ N IBC,IBZ,IBS,IBFT,Y,CON,IBA
+ S:$G(CCR)="" CCR=3   ;Cerner Check, default
  ;
  D TFL^VAFCTFU1(.IBZ,DFN) Q:-$G(IBZ(1))=1 0
  S IBS=+$P($$SITE,"^",3),(IBZ,IBC)=0
- ; Return only remote facilities of certain types:
+ ;
+ ;676;BL; The VAFCTFU1 and VAFCTFU2 utilities must be reconciled this utility will remove any site 
+ ;not returned in the VAFCTFU2 utility. VAFCTFU2 is no considered the source of truth
+ S IBZ=$$TFL^IBARXCFL(.IBZ,DFN,CCR)   ;IBZ is changed to contain only the sites in VAFCTFU2
+ Q:IBZ=0 0
+ ;
  S IBFT="^VAMC^M&ROC^RO-OC^"
+ S IBZ=0,IBC=0
  F  S IBZ=$O(IBZ(IBZ)) Q:IBZ<1  I +IBZ(IBZ)>0,+IBZ(IBZ)'=IBS,IBFT[("^"_$P(IBZ(IBZ),U,5)_"^") S IBT(+IBZ(IBZ))=IBZ(IBZ),IBC=IBC+1
  Q IBC
  ;

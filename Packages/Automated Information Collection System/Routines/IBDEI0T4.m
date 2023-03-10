@@ -1,118 +1,132 @@
-IBDEI0T4 ; ; 04-FEB-2020
- ;;3.0;IB ENCOUNTER FORM IMP/EXP;;FEB 04, 2020
+IBDEI0T4 ; ; 01-FEB-2022
+ ;;3.0;IB ENCOUNTER FORM IMP/EXP;;FEB 01, 2022
  Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,999) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
- ;;^UTILITY(U,$J,358.3,12962,0)
- ;;=S41.031A^^80^791^59
- ;;^UTILITY(U,$J,358.3,12962,1,0)
+ ;;^UTILITY(U,$J,358.3,13102,1,4,0)
+ ;;=4^H18.413
+ ;;^UTILITY(U,$J,358.3,13102,2)
+ ;;=^5005064
+ ;;^UTILITY(U,$J,358.3,13103,0)
+ ;;=H18.411^^51^629^5
+ ;;^UTILITY(U,$J,358.3,13103,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,12962,1,3,0)
- ;;=3^Puncture Wound w/o FB of Right Shoulder,Init Encntr
- ;;^UTILITY(U,$J,358.3,12962,1,4,0)
- ;;=4^S41.031A
- ;;^UTILITY(U,$J,358.3,12962,2)
- ;;=^5026309
- ;;^UTILITY(U,$J,358.3,12963,0)
- ;;=S41.032A^^80^791^27
- ;;^UTILITY(U,$J,358.3,12963,1,0)
+ ;;^UTILITY(U,$J,358.3,13103,1,3,0)
+ ;;=3^Arcus Senilis,OD
+ ;;^UTILITY(U,$J,358.3,13103,1,4,0)
+ ;;=4^H18.411
+ ;;^UTILITY(U,$J,358.3,13103,2)
+ ;;=^5005062
+ ;;^UTILITY(U,$J,358.3,13104,0)
+ ;;=H18.412^^51^629^6
+ ;;^UTILITY(U,$J,358.3,13104,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,12963,1,3,0)
- ;;=3^Puncture Wound w/o FB of Left Shoulder,Init Encntr
- ;;^UTILITY(U,$J,358.3,12963,1,4,0)
- ;;=4^S41.032A
- ;;^UTILITY(U,$J,358.3,12963,2)
- ;;=^5026312
- ;;^UTILITY(U,$J,358.3,12964,0)
- ;;=S51.031A^^80^791^41
- ;;^UTILITY(U,$J,358.3,12964,1,0)
+ ;;^UTILITY(U,$J,358.3,13104,1,3,0)
+ ;;=3^Arcus Senilis,OS
+ ;;^UTILITY(U,$J,358.3,13104,1,4,0)
+ ;;=4^H18.412
+ ;;^UTILITY(U,$J,358.3,13104,2)
+ ;;=^5005063
+ ;;^UTILITY(U,$J,358.3,13105,0)
+ ;;=H18.422^^51^629^9
+ ;;^UTILITY(U,$J,358.3,13105,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,12964,1,3,0)
- ;;=3^Puncture Wound w/o FB of Right Elbow,Init Encntr
- ;;^UTILITY(U,$J,358.3,12964,1,4,0)
- ;;=4^S51.031A
- ;;^UTILITY(U,$J,358.3,12964,2)
- ;;=^5028638
- ;;^UTILITY(U,$J,358.3,12965,0)
- ;;=S51.032A^^80^791^9
- ;;^UTILITY(U,$J,358.3,12965,1,0)
+ ;;^UTILITY(U,$J,358.3,13105,1,3,0)
+ ;;=3^Band Keratopathy,OS
+ ;;^UTILITY(U,$J,358.3,13105,1,4,0)
+ ;;=4^H18.422
+ ;;^UTILITY(U,$J,358.3,13105,2)
+ ;;=^5005067
+ ;;^UTILITY(U,$J,358.3,13106,0)
+ ;;=H18.421^^51^629^8
+ ;;^UTILITY(U,$J,358.3,13106,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,12965,1,3,0)
- ;;=3^Puncture Wound w/o FB of Left Elbow,Init Encntr
- ;;^UTILITY(U,$J,358.3,12965,1,4,0)
- ;;=4^S51.032A
- ;;^UTILITY(U,$J,358.3,12965,2)
- ;;=^5028641
- ;;^UTILITY(U,$J,358.3,12966,0)
- ;;=S61.531A^^80^791^63
- ;;^UTILITY(U,$J,358.3,12966,1,0)
+ ;;^UTILITY(U,$J,358.3,13106,1,3,0)
+ ;;=3^Band Keratopathy,OD
+ ;;^UTILITY(U,$J,358.3,13106,1,4,0)
+ ;;=4^H18.421
+ ;;^UTILITY(U,$J,358.3,13106,2)
+ ;;=^5005066
+ ;;^UTILITY(U,$J,358.3,13107,0)
+ ;;=H17.13^^51^629^12
+ ;;^UTILITY(U,$J,358.3,13107,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,12966,1,3,0)
- ;;=3^Puncture Wound w/o FB of Right Wrist,Init Encntr
- ;;^UTILITY(U,$J,358.3,12966,1,4,0)
- ;;=4^S61.531A
- ;;^UTILITY(U,$J,358.3,12966,2)
- ;;=^5033038
- ;;^UTILITY(U,$J,358.3,12967,0)
- ;;=S61.532A^^80^791^31
- ;;^UTILITY(U,$J,358.3,12967,1,0)
+ ;;^UTILITY(U,$J,358.3,13107,1,3,0)
+ ;;=3^Central Corneal Opacity,OU
+ ;;^UTILITY(U,$J,358.3,13107,1,4,0)
+ ;;=4^H17.13
+ ;;^UTILITY(U,$J,358.3,13107,2)
+ ;;=^5004993
+ ;;^UTILITY(U,$J,358.3,13108,0)
+ ;;=H17.11^^51^629^10
+ ;;^UTILITY(U,$J,358.3,13108,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,12967,1,3,0)
- ;;=3^Puncture Wound w/o FB of Left Wrist,Init Encntr
- ;;^UTILITY(U,$J,358.3,12967,1,4,0)
- ;;=4^S61.532A
- ;;^UTILITY(U,$J,358.3,12967,2)
- ;;=^5033041
- ;;^UTILITY(U,$J,358.3,12968,0)
- ;;=S61.432A^^80^791^13
- ;;^UTILITY(U,$J,358.3,12968,1,0)
+ ;;^UTILITY(U,$J,358.3,13108,1,3,0)
+ ;;=3^Central Corneal Opacity,OD
+ ;;^UTILITY(U,$J,358.3,13108,1,4,0)
+ ;;=4^H17.11
+ ;;^UTILITY(U,$J,358.3,13108,2)
+ ;;=^5004991
+ ;;^UTILITY(U,$J,358.3,13109,0)
+ ;;=H17.12^^51^629^11
+ ;;^UTILITY(U,$J,358.3,13109,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,12968,1,3,0)
- ;;=3^Puncture Wound w/o FB of Left Hand,Init Encntr
- ;;^UTILITY(U,$J,358.3,12968,1,4,0)
- ;;=4^S61.432A
- ;;^UTILITY(U,$J,358.3,12968,2)
- ;;=^5033002
- ;;^UTILITY(U,$J,358.3,12969,0)
- ;;=S61.431A^^80^791^45
- ;;^UTILITY(U,$J,358.3,12969,1,0)
+ ;;^UTILITY(U,$J,358.3,13109,1,3,0)
+ ;;=3^Central Corneal Opacity,OS
+ ;;^UTILITY(U,$J,358.3,13109,1,4,0)
+ ;;=4^H17.12
+ ;;^UTILITY(U,$J,358.3,13109,2)
+ ;;=^5004992
+ ;;^UTILITY(U,$J,358.3,13110,0)
+ ;;=H18.40^^51^629^14
+ ;;^UTILITY(U,$J,358.3,13110,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,12969,1,3,0)
- ;;=3^Puncture Wound w/o FB of Right Hand,Init Encntr
- ;;^UTILITY(U,$J,358.3,12969,1,4,0)
- ;;=4^S61.431A
- ;;^UTILITY(U,$J,358.3,12969,2)
- ;;=^5032999
- ;;^UTILITY(U,$J,358.3,12970,0)
- ;;=S61.031A^^80^791^61
- ;;^UTILITY(U,$J,358.3,12970,1,0)
+ ;;^UTILITY(U,$J,358.3,13110,1,3,0)
+ ;;=3^Corneal Degeneration,Unspec
+ ;;^UTILITY(U,$J,358.3,13110,1,4,0)
+ ;;=4^H18.40
+ ;;^UTILITY(U,$J,358.3,13110,2)
+ ;;=^5005061
+ ;;^UTILITY(U,$J,358.3,13111,0)
+ ;;=H18.003^^51^629^17
+ ;;^UTILITY(U,$J,358.3,13111,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,12970,1,3,0)
- ;;=3^Puncture Wound w/o FB of Right Thumb w/o Nail Damage,Init Encntr
- ;;^UTILITY(U,$J,358.3,12970,1,4,0)
- ;;=4^S61.031A
- ;;^UTILITY(U,$J,358.3,12970,2)
- ;;=^5032702
- ;;^UTILITY(U,$J,358.3,12971,0)
- ;;=S61.032A^^80^791^30
- ;;^UTILITY(U,$J,358.3,12971,1,0)
+ ;;^UTILITY(U,$J,358.3,13111,1,3,0)
+ ;;=3^Corneal Deposit,OU,Unspec
+ ;;^UTILITY(U,$J,358.3,13111,1,4,0)
+ ;;=4^H18.003
+ ;;^UTILITY(U,$J,358.3,13111,2)
+ ;;=^5005006
+ ;;^UTILITY(U,$J,358.3,13112,0)
+ ;;=H18.002^^51^629^16
+ ;;^UTILITY(U,$J,358.3,13112,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,12971,1,3,0)
- ;;=3^Puncture Wound w/o FB of Left Thumb w/o Nail Damage,Init Encntr
- ;;^UTILITY(U,$J,358.3,12971,1,4,0)
- ;;=4^S61.032A
- ;;^UTILITY(U,$J,358.3,12971,2)
- ;;=^5032705
- ;;^UTILITY(U,$J,358.3,12972,0)
- ;;=S61.237A^^80^791^20
- ;;^UTILITY(U,$J,358.3,12972,1,0)
+ ;;^UTILITY(U,$J,358.3,13112,1,3,0)
+ ;;=3^Corneal Deposit,OS,Unspec
+ ;;^UTILITY(U,$J,358.3,13112,1,4,0)
+ ;;=4^H18.002
+ ;;^UTILITY(U,$J,358.3,13112,2)
+ ;;=^5005005
+ ;;^UTILITY(U,$J,358.3,13113,0)
+ ;;=H18.001^^51^629^15
+ ;;^UTILITY(U,$J,358.3,13113,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,12972,1,3,0)
- ;;=3^Puncture Wound w/o FB of Left Little Finger w/o Nail Damage,Init Encntr
- ;;^UTILITY(U,$J,358.3,12972,1,4,0)
- ;;=4^S61.237A
- ;;^UTILITY(U,$J,358.3,12972,2)
- ;;=^5032837
- ;;^UTILITY(U,$J,358.3,12973,0)
- ;;=S91.232A^^80^791^11
- ;;^UTILITY(U,$J,358.3,12973,1,0)
+ ;;^UTILITY(U,$J,358.3,13113,1,3,0)
+ ;;=3^Corneal Deposit,OD,Unspec
+ ;;^UTILITY(U,$J,358.3,13113,1,4,0)
+ ;;=4^H18.001
+ ;;^UTILITY(U,$J,358.3,13113,2)
+ ;;=^5005004
+ ;;^UTILITY(U,$J,358.3,13114,0)
+ ;;=H18.712^^51^629^19
+ ;;^UTILITY(U,$J,358.3,13114,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,13114,1,3,0)
+ ;;=3^Corneal Ectasia,OS
+ ;;^UTILITY(U,$J,358.3,13114,1,4,0)
+ ;;=4^H18.712
+ ;;^UTILITY(U,$J,358.3,13114,2)
+ ;;=^5005103
+ ;;^UTILITY(U,$J,358.3,13115,0)
+ ;;=H18.711^^51^629^18
+ ;;^UTILITY(U,$J,358.3,13115,1,0)
  ;;=^358.31IA^4^2

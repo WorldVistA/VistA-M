@@ -1,124 +1,132 @@
-IBDEI1LF ; ; 04-FEB-2020
- ;;3.0;IB ENCOUNTER FORM IMP/EXP;;FEB 04, 2020
+IBDEI1LF ; ; 01-FEB-2022
+ ;;3.0;IB ENCOUNTER FORM IMP/EXP;;FEB 01, 2022
  Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,999) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
- ;;^UTILITY(U,$J,358.3,25459,0)
- ;;=G25.1^^107^1218^44
- ;;^UTILITY(U,$J,358.3,25459,1,0)
+ ;;^UTILITY(U,$J,358.3,25818,1,3,0)
+ ;;=3^Disruptive,Impulse-Control & Conduct D/O,Oth 
+ ;;^UTILITY(U,$J,358.3,25818,1,4,0)
+ ;;=4^F91.8
+ ;;^UTILITY(U,$J,358.3,25818,2)
+ ;;=^5003700
+ ;;^UTILITY(U,$J,358.3,25819,0)
+ ;;=R45.6^^92^1180^10
+ ;;^UTILITY(U,$J,358.3,25819,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,25459,1,3,0)
- ;;=3^Tremor,Drug-Induced
- ;;^UTILITY(U,$J,358.3,25459,1,4,0)
- ;;=4^G25.1
- ;;^UTILITY(U,$J,358.3,25459,2)
- ;;=^5003792
- ;;^UTILITY(U,$J,358.3,25460,0)
- ;;=G25.81^^107^1218^39
- ;;^UTILITY(U,$J,358.3,25460,1,0)
+ ;;^UTILITY(U,$J,358.3,25819,1,3,0)
+ ;;=3^Violent Behavior
+ ;;^UTILITY(U,$J,358.3,25819,1,4,0)
+ ;;=4^R45.6
+ ;;^UTILITY(U,$J,358.3,25819,2)
+ ;;=^5019467
+ ;;^UTILITY(U,$J,358.3,25820,0)
+ ;;=R45.850^^92^1180^5
+ ;;^UTILITY(U,$J,358.3,25820,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,25460,1,3,0)
- ;;=3^Restless Legs Syndrome
- ;;^UTILITY(U,$J,358.3,25460,1,4,0)
- ;;=4^G25.81
- ;;^UTILITY(U,$J,358.3,25460,2)
- ;;=^5003801
- ;;^UTILITY(U,$J,358.3,25461,0)
- ;;=G35.^^107^1218^32
- ;;^UTILITY(U,$J,358.3,25461,1,0)
+ ;;^UTILITY(U,$J,358.3,25820,1,3,0)
+ ;;=3^Homicidal Ideations
+ ;;^UTILITY(U,$J,358.3,25820,1,4,0)
+ ;;=4^R45.850
+ ;;^UTILITY(U,$J,358.3,25820,2)
+ ;;=^5019473
+ ;;^UTILITY(U,$J,358.3,25821,0)
+ ;;=F98.0^^92^1181^2
+ ;;^UTILITY(U,$J,358.3,25821,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,25461,1,3,0)
- ;;=3^Multiple Sclerosis
- ;;^UTILITY(U,$J,358.3,25461,1,4,0)
- ;;=4^G35.
- ;;^UTILITY(U,$J,358.3,25461,2)
- ;;=^79761
- ;;^UTILITY(U,$J,358.3,25462,0)
- ;;=G40.901^^107^1218^14
- ;;^UTILITY(U,$J,358.3,25462,1,0)
+ ;;^UTILITY(U,$J,358.3,25821,1,3,0)
+ ;;=3^Enuresis
+ ;;^UTILITY(U,$J,358.3,25821,1,4,0)
+ ;;=4^F98.0
+ ;;^UTILITY(U,$J,358.3,25821,2)
+ ;;=^5003711
+ ;;^UTILITY(U,$J,358.3,25822,0)
+ ;;=F98.1^^92^1181^1
+ ;;^UTILITY(U,$J,358.3,25822,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,25462,1,3,0)
- ;;=3^Epilepsy,Not Intractable w/ Status Epilepticus,Unspec
- ;;^UTILITY(U,$J,358.3,25462,1,4,0)
- ;;=4^G40.901
- ;;^UTILITY(U,$J,358.3,25462,2)
- ;;=^5003864
- ;;^UTILITY(U,$J,358.3,25463,0)
- ;;=G40.909^^107^1218^15
- ;;^UTILITY(U,$J,358.3,25463,1,0)
+ ;;^UTILITY(U,$J,358.3,25822,1,3,0)
+ ;;=3^Encopresis
+ ;;^UTILITY(U,$J,358.3,25822,1,4,0)
+ ;;=4^F98.1
+ ;;^UTILITY(U,$J,358.3,25822,2)
+ ;;=^5003712
+ ;;^UTILITY(U,$J,358.3,25823,0)
+ ;;=N39.498^^92^1181^4
+ ;;^UTILITY(U,$J,358.3,25823,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,25463,1,3,0)
- ;;=3^Epilepsy,Not Intractable w/o Status Epilepticus,Unspec
- ;;^UTILITY(U,$J,358.3,25463,1,4,0)
- ;;=4^G40.909
- ;;^UTILITY(U,$J,358.3,25463,2)
- ;;=^5003865
- ;;^UTILITY(U,$J,358.3,25464,0)
- ;;=G43.809^^107^1218^29
- ;;^UTILITY(U,$J,358.3,25464,1,0)
+ ;;^UTILITY(U,$J,358.3,25823,1,3,0)
+ ;;=3^Urinary Incontinence,Oth Spec
+ ;;^UTILITY(U,$J,358.3,25823,1,4,0)
+ ;;=4^N39.498
+ ;;^UTILITY(U,$J,358.3,25823,2)
+ ;;=^5015686
+ ;;^UTILITY(U,$J,358.3,25824,0)
+ ;;=R15.9^^92^1181^3
+ ;;^UTILITY(U,$J,358.3,25824,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,25464,1,3,0)
- ;;=3^Migraine,Not Intractable w/o Status Migrainosus,Other
- ;;^UTILITY(U,$J,358.3,25464,1,4,0)
- ;;=4^G43.809
- ;;^UTILITY(U,$J,358.3,25464,2)
- ;;=^5003901
- ;;^UTILITY(U,$J,358.3,25465,0)
- ;;=G43.B0^^107^1218^31
- ;;^UTILITY(U,$J,358.3,25465,1,0)
+ ;;^UTILITY(U,$J,358.3,25824,1,3,0)
+ ;;=3^Full Incontinence of Feces
+ ;;^UTILITY(U,$J,358.3,25824,1,4,0)
+ ;;=4^R15.9
+ ;;^UTILITY(U,$J,358.3,25824,2)
+ ;;=^5019247
+ ;;^UTILITY(U,$J,358.3,25825,0)
+ ;;=R32.^^92^1181^5
+ ;;^UTILITY(U,$J,358.3,25825,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,25465,1,3,0)
- ;;=3^Migraine,Ophthalmoplegic Not Intractable
- ;;^UTILITY(U,$J,358.3,25465,1,4,0)
- ;;=4^G43.B0
- ;;^UTILITY(U,$J,358.3,25465,2)
- ;;=^5003914
- ;;^UTILITY(U,$J,358.3,25466,0)
- ;;=G43.C0^^107^1218^18
- ;;^UTILITY(U,$J,358.3,25466,1,0)
+ ;;^UTILITY(U,$J,358.3,25825,1,3,0)
+ ;;=3^Urinary Incontinence,Unspec
+ ;;^UTILITY(U,$J,358.3,25825,1,4,0)
+ ;;=4^R32.
+ ;;^UTILITY(U,$J,358.3,25825,2)
+ ;;=^5019329
+ ;;^UTILITY(U,$J,358.3,25826,0)
+ ;;=F63.0^^92^1182^1
+ ;;^UTILITY(U,$J,358.3,25826,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,25466,1,3,0)
- ;;=3^Headache Syndromes,Periodic Not Intractable
- ;;^UTILITY(U,$J,358.3,25466,1,4,0)
- ;;=4^G43.C0
- ;;^UTILITY(U,$J,358.3,25466,2)
- ;;=^5003916
- ;;^UTILITY(U,$J,358.3,25467,0)
- ;;=G43.A0^^107^1218^9
- ;;^UTILITY(U,$J,358.3,25467,1,0)
+ ;;^UTILITY(U,$J,358.3,25826,1,3,0)
+ ;;=3^Gambling Disorder
+ ;;^UTILITY(U,$J,358.3,25826,1,4,0)
+ ;;=4^F63.0
+ ;;^UTILITY(U,$J,358.3,25826,2)
+ ;;=^5003640
+ ;;^UTILITY(U,$J,358.3,25827,0)
+ ;;=F06.8^^92^1183^2
+ ;;^UTILITY(U,$J,358.3,25827,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,25467,1,3,0)
- ;;=3^Cyclical Vomiting Not Intractable
- ;;^UTILITY(U,$J,358.3,25467,1,4,0)
- ;;=4^G43.A0
- ;;^UTILITY(U,$J,358.3,25467,2)
- ;;=^5003912
- ;;^UTILITY(U,$J,358.3,25468,0)
- ;;=G43.C1^^107^1218^17
- ;;^UTILITY(U,$J,358.3,25468,1,0)
+ ;;^UTILITY(U,$J,358.3,25827,1,3,0)
+ ;;=3^Mental D/O,Oth Spec,d/t Anth Med Cond
+ ;;^UTILITY(U,$J,358.3,25827,1,4,0)
+ ;;=4^F06.8
+ ;;^UTILITY(U,$J,358.3,25827,2)
+ ;;=^5003062
+ ;;^UTILITY(U,$J,358.3,25828,0)
+ ;;=F09.^^92^1183^3
+ ;;^UTILITY(U,$J,358.3,25828,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,25468,1,3,0)
- ;;=3^Headache Syndromes,Periodic Intractable
- ;;^UTILITY(U,$J,358.3,25468,1,4,0)
- ;;=4^G43.C1
- ;;^UTILITY(U,$J,358.3,25468,2)
- ;;=^5003917
- ;;^UTILITY(U,$J,358.3,25469,0)
- ;;=G43.B1^^107^1218^30
- ;;^UTILITY(U,$J,358.3,25469,1,0)
+ ;;^UTILITY(U,$J,358.3,25828,1,3,0)
+ ;;=3^Mental D/O,Unspec,d/t Anth Med Cond
+ ;;^UTILITY(U,$J,358.3,25828,1,4,0)
+ ;;=4^F09.
+ ;;^UTILITY(U,$J,358.3,25828,2)
+ ;;=^5003067
+ ;;^UTILITY(U,$J,358.3,25829,0)
+ ;;=F99.^^92^1183^1
+ ;;^UTILITY(U,$J,358.3,25829,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,25469,1,3,0)
- ;;=3^Migraine,Ophthalmoplegic Intractable
- ;;^UTILITY(U,$J,358.3,25469,1,4,0)
- ;;=4^G43.B1
- ;;^UTILITY(U,$J,358.3,25469,2)
- ;;=^5003915
- ;;^UTILITY(U,$J,358.3,25470,0)
- ;;=G43.A1^^107^1218^8
- ;;^UTILITY(U,$J,358.3,25470,1,0)
+ ;;^UTILITY(U,$J,358.3,25829,1,3,0)
+ ;;=3^Mental D/O NOS
+ ;;^UTILITY(U,$J,358.3,25829,1,4,0)
+ ;;=4^F99.
+ ;;^UTILITY(U,$J,358.3,25829,2)
+ ;;=^5003720
+ ;;^UTILITY(U,$J,358.3,25830,0)
+ ;;=Z03.89^^92^1183^4
+ ;;^UTILITY(U,$J,358.3,25830,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,25470,1,3,0)
- ;;=3^Cyclical Vomiting Intractable
- ;;^UTILITY(U,$J,358.3,25470,1,4,0)
- ;;=4^G43.A1
- ;;^UTILITY(U,$J,358.3,25470,2)
- ;;=^5003913
+ ;;^UTILITY(U,$J,358.3,25830,1,3,0)
+ ;;=3^Obs for Oth Suspect Dis/Cond R/O
+ ;;^UTILITY(U,$J,358.3,25830,1,4,0)
+ ;;=4^Z03.89
+ ;;^UTILITY(U,$J,358.3,25830,2)
+ ;;=^5062656
+ ;;^UTILITY(U,$J,358.3,25831,0)
+ ;;=F84.0^^92^1184^7

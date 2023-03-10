@@ -1,5 +1,5 @@
-PSOSIGMX ;BIR/RTR-Utility routine to calculate Max Refills for CPRS ; 7/25/07 11:17am
- ;;7.0;OUTPATIENT PHARMACY;**46,78,108,131,222,206,444,612**;DEC 1997;Build 23
+PSOSIGMX ;BIR/RTR - Utility routine to calculate Max Refills for CPRS ;Aug 05, 2022@11:52:26
+ ;;7.0;OUTPATIENT PHARMACY;**46,78,108,131,222,206,444,612,441**;DEC 1997;Build 208
  ;External reference to PS(55 supported by DBIA 2228
  ;External reference to PSDRUG( supported by DBIA 221
  ;External reference to YSCL(603.01 supported by DBIA 2697
@@ -10,6 +10,7 @@ PSOSIGMX ;BIR/RTR-Utility routine to calculate Max Refills for CPRS ; 7/25/07 11
  ;PSOQX("DRUG")=File 50 ien ->Optional
  ;PSOQX("ITEM")=File 50.7 ien -> we may not use this
  ;PSOQX("DISCHARGE")=1 if the order is for a Discharge
+ ;PSOQX("TITRATION")=1 if the order is for Titration
  ;
  ;PSOQX("MAX")=Returned max refills allowed
  ;
@@ -35,16 +36,16 @@ EN ;
  I $G(PSOQX("DRUG")) D
  .S PSOCDEA=$P($G(^PSDRUG(PSOQX("DRUG"),0)),"^",3)
  .I PSOCDEA["2"!(PSOCDEA["3")!(PSOCDEA["4")!(PSOCDEA["5") S PSOCSX=1
+ I $G(PSOQX("DRUG")),$G(PSOQX("TITRATION")),(PSOCDEA[3)!(PSOCDEA[4)!(PSOCDEA[5) S PSOQX("MAX")=0 Q  ;P441
  ;
  S PSOQX("MAX")=$$MAXNUMRF^PSOUTIL($G(PSOQX("DRUG")),$G(PSOQX("DAYS SUPPLY")),PSOMXAUX,.CLOZPAT)
  ;
  I $P($G(^PSDRUG(+$G(PSOQX("DRUG")),"CLOZ1")),"^")="PSOCLO1" D  Q
  .; BEGIN - JCH: PSO*7*612
- .;S PSOMXPAT=$O(^YSCL(603.01,"C",+$G(PSOQX("PATIENT")),0)) I 'PSOMXPAT S PSOQX("MAX")=0 Q
  .S PSOMXPAT=$$GETREGYS^PSOCLUTL(+$G(PSOQX("PATIENT"))) I 'PSOMXPAT S PSOQX("MAX")=0 Q
  .; END - JCH: PSO*7*612
  .S PSOMXPAT=$P($G(^YSCL(603.01,PSOMXPAT,0)),"^",3)
- .I $D(PSOQX("DAYS SUPPLY")) S PSOQX("MAX")=$S(PSOMXPAT="M"&($G(PSOQX("DAYS SUPPLY"))<8):3,PSOMXPAT="M"&($G(PSOQX("DAYS SUPPLY"))<15):1,PSOMXPAT="B"&($G(PSOQX("DAYS SUPPLY"))<8):1,1:0) Q
+ .I $D(PSOQX("DAYS SUPPLY")) S PSOQX("MAX")=$S(PSOMXPAT="M"&($G(PSOQX("DAYS SUPPLY"))=7):3,PSOMXPAT="M"&($G(PSOQX("DAYS SUPPLY"))=14):1,PSOMXPAT="B"&($G(PSOQX("DAYS SUPPLY"))=7):1,1:0) Q
  .S PSOQX("MAX")=$S(PSOMXPAT="M":3,PSOMXPAT="B":1,1:0)
  I $G(PSOQX("DRUG")) I PSOCDEA["A"&(PSOCDEA'["B")!(PSOCDEA["F")!(PSOCDEA[1)!(PSOCDEA[2) S PSOQX("MAX")=0
  I PSONODD S PSOQX("DRUG")=0

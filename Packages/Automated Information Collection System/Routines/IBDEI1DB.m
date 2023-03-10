@@ -1,130 +1,126 @@
-IBDEI1DB ; ; 04-FEB-2020
- ;;3.0;IB ENCOUNTER FORM IMP/EXP;;FEB 04, 2020
+IBDEI1DB ; ; 01-FEB-2022
+ ;;3.0;IB ENCOUNTER FORM IMP/EXP;;FEB 01, 2022
  Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,999) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
- ;;^UTILITY(U,$J,358.3,21859,1,4,0)
- ;;=4^L97.916
- ;;^UTILITY(U,$J,358.3,21859,2)
- ;;=^5151488
- ;;^UTILITY(U,$J,358.3,21860,0)
- ;;=G20.^^99^1113^2
- ;;^UTILITY(U,$J,358.3,21860,1,0)
+ ;;^UTILITY(U,$J,358.3,22128,1,3,0)
+ ;;=3^Left Heart Failure
+ ;;^UTILITY(U,$J,358.3,22128,1,4,0)
+ ;;=4^I50.1
+ ;;^UTILITY(U,$J,358.3,22128,2)
+ ;;=^5007238
+ ;;^UTILITY(U,$J,358.3,22129,0)
+ ;;=I50.21^^73^952^1
+ ;;^UTILITY(U,$J,358.3,22129,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,21860,1,3,0)
- ;;=3^Parkinson's disease
- ;;^UTILITY(U,$J,358.3,21860,1,4,0)
- ;;=4^G20.
- ;;^UTILITY(U,$J,358.3,21860,2)
- ;;=^5003770
- ;;^UTILITY(U,$J,358.3,21861,0)
- ;;=I30.0^^99^1113^3
- ;;^UTILITY(U,$J,358.3,21861,1,0)
+ ;;^UTILITY(U,$J,358.3,22129,1,3,0)
+ ;;=3^Acute Systolic Cong Heart Failure
+ ;;^UTILITY(U,$J,358.3,22129,1,4,0)
+ ;;=4^I50.21
+ ;;^UTILITY(U,$J,358.3,22129,2)
+ ;;=^5007240
+ ;;^UTILITY(U,$J,358.3,22130,0)
+ ;;=I50.22^^73^952^16
+ ;;^UTILITY(U,$J,358.3,22130,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,21861,1,3,0)
- ;;=3^Pericarditis,idiopath,acute,nonspec
- ;;^UTILITY(U,$J,358.3,21861,1,4,0)
- ;;=4^I30.0
- ;;^UTILITY(U,$J,358.3,21861,2)
- ;;=^5007157
- ;;^UTILITY(U,$J,358.3,21862,0)
- ;;=I73.9^^99^1113^4
- ;;^UTILITY(U,$J,358.3,21862,1,0)
+ ;;^UTILITY(U,$J,358.3,22130,1,3,0)
+ ;;=3^Chronic Systolic CHF
+ ;;^UTILITY(U,$J,358.3,22130,1,4,0)
+ ;;=4^I50.22
+ ;;^UTILITY(U,$J,358.3,22130,2)
+ ;;=^5007241
+ ;;^UTILITY(U,$J,358.3,22131,0)
+ ;;=I48.20^^73^952^4
+ ;;^UTILITY(U,$J,358.3,22131,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,21862,1,3,0)
- ;;=3^Peripheral vascular disease, unspec
- ;;^UTILITY(U,$J,358.3,21862,1,4,0)
- ;;=4^I73.9
- ;;^UTILITY(U,$J,358.3,21862,2)
- ;;=^184182
- ;;^UTILITY(U,$J,358.3,21863,0)
- ;;=F60.89^^99^1113^5
- ;;^UTILITY(U,$J,358.3,21863,1,0)
+ ;;^UTILITY(U,$J,358.3,22131,1,3,0)
+ ;;=3^Atrial Fibrillation,Chronic,Unspec
+ ;;^UTILITY(U,$J,358.3,22131,1,4,0)
+ ;;=4^I48.20
+ ;;^UTILITY(U,$J,358.3,22131,2)
+ ;;=^5158048
+ ;;^UTILITY(U,$J,358.3,22132,0)
+ ;;=I48.21^^73^952^8
+ ;;^UTILITY(U,$J,358.3,22132,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,21863,1,3,0)
- ;;=3^Personality disorders,oth,spec
- ;;^UTILITY(U,$J,358.3,21863,1,4,0)
- ;;=4^F60.89
- ;;^UTILITY(U,$J,358.3,21863,2)
- ;;=^5003638
- ;;^UTILITY(U,$J,358.3,21864,0)
- ;;=I80.3^^99^1113^7
- ;;^UTILITY(U,$J,358.3,21864,1,0)
+ ;;^UTILITY(U,$J,358.3,22132,1,3,0)
+ ;;=3^Atrial Fibrillation,Permanent
+ ;;^UTILITY(U,$J,358.3,22132,1,4,0)
+ ;;=4^I48.21
+ ;;^UTILITY(U,$J,358.3,22132,2)
+ ;;=^304710
+ ;;^UTILITY(U,$J,358.3,22133,0)
+ ;;=I48.11^^73^952^5
+ ;;^UTILITY(U,$J,358.3,22133,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,21864,1,3,0)
- ;;=3^Phlebitis & thrombophlbts of low extrmties, unspec
- ;;^UTILITY(U,$J,358.3,21864,1,4,0)
- ;;=4^I80.3
- ;;^UTILITY(U,$J,358.3,21864,2)
- ;;=^5007845
- ;;^UTILITY(U,$J,358.3,21865,0)
- ;;=R09.1^^99^1113^9
- ;;^UTILITY(U,$J,358.3,21865,1,0)
+ ;;^UTILITY(U,$J,358.3,22133,1,3,0)
+ ;;=3^Atrial Fibrillation,Longstanding Persistent
+ ;;^UTILITY(U,$J,358.3,22133,1,4,0)
+ ;;=4^I48.11
+ ;;^UTILITY(U,$J,358.3,22133,2)
+ ;;=^5158046
+ ;;^UTILITY(U,$J,358.3,22134,0)
+ ;;=I48.19^^73^952^6
+ ;;^UTILITY(U,$J,358.3,22134,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,21865,1,3,0)
- ;;=3^Pleurisy
- ;;^UTILITY(U,$J,358.3,21865,1,4,0)
- ;;=4^R09.1
- ;;^UTILITY(U,$J,358.3,21865,2)
- ;;=^95428
- ;;^UTILITY(U,$J,358.3,21866,0)
- ;;=J91.8^^99^1113^8
- ;;^UTILITY(U,$J,358.3,21866,1,0)
+ ;;^UTILITY(U,$J,358.3,22134,1,3,0)
+ ;;=3^Atrial Fibrillation,Oth Persistent
+ ;;^UTILITY(U,$J,358.3,22134,1,4,0)
+ ;;=4^I48.19
+ ;;^UTILITY(U,$J,358.3,22134,2)
+ ;;=^5158047
+ ;;^UTILITY(U,$J,358.3,22135,0)
+ ;;=I50.32^^73^952^15
+ ;;^UTILITY(U,$J,358.3,22135,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,21866,1,3,0)
- ;;=3^Pleural effus in oth cond clsfd elsewhere
- ;;^UTILITY(U,$J,358.3,21866,1,4,0)
- ;;=4^J91.8
- ;;^UTILITY(U,$J,358.3,21866,2)
- ;;=^5008311
- ;;^UTILITY(U,$J,358.3,21867,0)
- ;;=J18.9^^99^1113^10
- ;;^UTILITY(U,$J,358.3,21867,1,0)
+ ;;^UTILITY(U,$J,358.3,22135,1,3,0)
+ ;;=3^Chronic Diastolic CHF
+ ;;^UTILITY(U,$J,358.3,22135,1,4,0)
+ ;;=4^I50.32
+ ;;^UTILITY(U,$J,358.3,22135,2)
+ ;;=^5007245
+ ;;^UTILITY(U,$J,358.3,22136,0)
+ ;;=I50.42^^73^952^17
+ ;;^UTILITY(U,$J,358.3,22136,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,21867,1,3,0)
- ;;=3^Pneumonia, unspec organism
- ;;^UTILITY(U,$J,358.3,21867,1,4,0)
- ;;=4^J18.9
- ;;^UTILITY(U,$J,358.3,21867,2)
- ;;=^95632
- ;;^UTILITY(U,$J,358.3,21868,0)
- ;;=I49.3^^99^1113^13
- ;;^UTILITY(U,$J,358.3,21868,1,0)
+ ;;^UTILITY(U,$J,358.3,22136,1,3,0)
+ ;;=3^Chronic Systoloic & Diastolic CHF
+ ;;^UTILITY(U,$J,358.3,22136,1,4,0)
+ ;;=4^I50.42
+ ;;^UTILITY(U,$J,358.3,22136,2)
+ ;;=^5007249
+ ;;^UTILITY(U,$J,358.3,22137,0)
+ ;;=I25.118^^73^952^12
+ ;;^UTILITY(U,$J,358.3,22137,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,21868,1,3,0)
- ;;=3^Premature ventricular depolarization
- ;;^UTILITY(U,$J,358.3,21868,1,4,0)
- ;;=4^I49.3
- ;;^UTILITY(U,$J,358.3,21868,2)
- ;;=^5007233
- ;;^UTILITY(U,$J,358.3,21869,0)
- ;;=L40.4^^99^1113^15
- ;;^UTILITY(U,$J,358.3,21869,1,0)
+ ;;^UTILITY(U,$J,358.3,22137,1,3,0)
+ ;;=3^CAD w/ Oth Angina (Includes Stable)
+ ;;^UTILITY(U,$J,358.3,22137,1,4,0)
+ ;;=4^I25.118
+ ;;^UTILITY(U,$J,358.3,22137,2)
+ ;;=^5007110
+ ;;^UTILITY(U,$J,358.3,22138,0)
+ ;;=V49.9XXA^^73^953^1
+ ;;^UTILITY(U,$J,358.3,22138,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,21869,1,3,0)
- ;;=3^Psoriasis Guttate
- ;;^UTILITY(U,$J,358.3,21869,1,4,0)
- ;;=4^L40.4
- ;;^UTILITY(U,$J,358.3,21869,2)
- ;;=^5009164
- ;;^UTILITY(U,$J,358.3,21870,0)
- ;;=L40.1^^99^1113^17
- ;;^UTILITY(U,$J,358.3,21870,1,0)
+ ;;^UTILITY(U,$J,358.3,22138,1,3,0)
+ ;;=3^Car Occupant Traffic Accident Injury,Init Encntr
+ ;;^UTILITY(U,$J,358.3,22138,1,4,0)
+ ;;=4^V49.9XXA
+ ;;^UTILITY(U,$J,358.3,22138,2)
+ ;;=^5057368
+ ;;^UTILITY(U,$J,358.3,22139,0)
+ ;;=V59.9XXA^^73^953^7
+ ;;^UTILITY(U,$J,358.3,22139,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,21870,1,3,0)
- ;;=3^Psoriasis, generalized pustular
- ;;^UTILITY(U,$J,358.3,21870,1,4,0)
- ;;=4^L40.1
- ;;^UTILITY(U,$J,358.3,21870,2)
- ;;=^5009161
- ;;^UTILITY(U,$J,358.3,21871,0)
- ;;=L40.0^^99^1113^16
- ;;^UTILITY(U,$J,358.3,21871,1,0)
+ ;;^UTILITY(U,$J,358.3,22139,1,3,0)
+ ;;=3^Truck/Van Occupant Traffic Accident Injury,Init Encntr
+ ;;^UTILITY(U,$J,358.3,22139,1,4,0)
+ ;;=4^V59.9XXA
+ ;;^UTILITY(U,$J,358.3,22139,2)
+ ;;=^5057659
+ ;;^UTILITY(U,$J,358.3,22140,0)
+ ;;=V69.9XXA^^73^953^5
+ ;;^UTILITY(U,$J,358.3,22140,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,21871,1,3,0)
- ;;=3^Psoriasis vulgaris
- ;;^UTILITY(U,$J,358.3,21871,1,4,0)
- ;;=4^L40.0
- ;;^UTILITY(U,$J,358.3,21871,2)
- ;;=^5009160
- ;;^UTILITY(U,$J,358.3,21872,0)
- ;;=L40.8^^99^1113^18
+ ;;^UTILITY(U,$J,358.3,22140,1,3,0)
+ ;;=3^Heavy Transport Vehicle Occupant Traffic Accident Injury,Init Encntr

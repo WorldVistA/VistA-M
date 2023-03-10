@@ -1,9 +1,9 @@
 YTQRUTL ;SLC/KCM - RESTful API Utilities ; 1/25/2017
- ;;5.01;MENTAL HEALTH;**130**;Dec 30, 1994;Build 62
+ ;;5.01;MENTAL HEALTH;**130,158,187**;Dec 30, 1994;Build 73
  ;
  ; External Reference    ICR#
  ; ------------------   -----
- ; VPRJSON               6411
+ ; XLFJSON               6682
  ; XLFSTR               10104
  ; XLFUTL                2622
  ; XWBLIB                2238
@@ -46,21 +46,24 @@ HANDLE(URLTAG,HTTPREQ,HTTPRSP) ; route REST request based on URL pattern
  ; .HTTPRSP: response to caller in HTTP form
  N YTQRREQT,YTQRERRS,YTQRARGS,YTQRTREE,YTQRRSLT,JSONBODY,CALL,LOCATION
  K ^TMP("YTQRERRS",$J),^TMP("YTQ-JSON",$J)
- D PARSHTTP(.HTTPREQ,.YTQRREQT,.JSONBODY) G:$G(YTQRERRS) RESPONSE
- I $D(JSONBODY) D PARSJSON(.JSONBODY,.YTQRTREE) G:$G(YTQRERRS) RESPONSE
- D MATCH(URLTAG,.CALL,.YTQRARGS) G:$G(YTQRERRS) RESPONSE
+ D PARSHTTP(.HTTPREQ,.YTQRREQT,.JSONBODY) G:$G(YTQRERRS) XHANDLE
+ I $D(JSONBODY) D PARSJSON(.JSONBODY,.YTQRTREE) G:$G(YTQRERRS) XHANDLE
+ D MATCH(URLTAG,.CALL,.YTQRARGS) G:$G(YTQRERRS) XHANDLE
  D QSPLIT(.YTQRARGS)
  ; treat PUT and POST the same for now
  I "PUT,POST"[YTQRREQT("method") X "S LOCATION=$$"_CALL_"(.YTQRARGS,.YTQRTREE)" I 1
  I YTQRREQT("method")="GET" D @(CALL_"(.YTQRARGS,.YTQRRSLT)")
  I YTQRREQT("method")="DELETE" D @(CALL_"(.YTQRARGS)")
+XHANDLE ; tag for exit if error
  D RESPONSE(.YTQRRSLT,.LOCATION)
  Q
 PARSHTTP(HTTPREQ,YTQRREQT,JSONBODY) ; parse out header and body of HTTP HTTPREQ
  N I,J,X
  S YTQRREQT("method")=$P(HTTPREQ(1)," ")
- S YTQRREQT("path")=$P($P(HTTPREQ(1)," ",2),"?")
- S YTQRREQT("query")=$P($P(HTTPREQ(1)," ",2),"?",2,99)
+ ;S YTQRREQT("path")=$P($P(HTTPREQ(1)," ",2),"?")
+ S YTQRREQT("path")=$P($P($P(HTTPREQ(1)," ",2,999)," HTTP/"),"?")
+ ;S YTQRREQT("query")=$P($P(HTTPREQ(1)," ",2,999),"?",2,99)
+ S YTQRREQT("query")=$P($P($P(HTTPREQ(1)," ",2,999)," HTTP/"),"?",2,99)
  F I=2:1 Q:'$L($G(HTTPREQ(I)))  S X=HTTPREQ(I),YTQRREQT("header",$P(X,"="))=$P(X,"=",2,99)
  F J=1:1 S I=$O(HTTPREQ(I)) Q:'I  S JSONBODY(J)=HTTPREQ(I)
  I '$D(YTQRREQT("method")) D SETERROR(400,"Missing HTTP method")
@@ -68,7 +71,7 @@ PARSHTTP(HTTPREQ,YTQRREQT,JSONBODY) ; parse out header and body of HTTP HTTPREQ
  Q 
 PARSJSON(JSONBODY,YTQRTREE) ; parse JSON request into M tree structure
  N ERRORS
- D DECODE^VPRJSON("JSONBODY","YTQRTREE","ERRORS")
+ D DECODE^XLFJSON("JSONBODY","YTQRTREE","ERRORS")
  I $D(ERRORS)>0 D SETERROR(400,$G(ERRORS(1)))
  Q
 MATCH(TAG,CALL,ARGS) ; evaluate paths listed in TAG until match found (else 404)
@@ -130,7 +133,7 @@ RESPONSE(YTQRRSLT,LOCATION) ; build HTTPRSP based results or error
 JSONRSP(ROOT,HTTPRSP) ; encode response tree or error info as JSON
  N ERRORS
  K HTTPRSP
- D ENCODE^VPRJSON(ROOT,"HTTPRSP","ERRORS")
+ D ENCODE^XLFJSON(ROOT,"HTTPRSP","ERRORS")
  I $D(ERRORS)>0 D SETERROR(400,"Unable to encode HTTPRSP: "_$G(ERRORS(1)))
  Q
 ADDHDR(DEST,SIZE,LOCATION) ; add header values to response

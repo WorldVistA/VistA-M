@@ -1,5 +1,8 @@
-VADPT1 ;ALB/MRL,MJK,ERC,TDM,CLT - PATIENT VARIABLES ;05 May 2017  1:41 PM
- ;;5.3;Registration;**415,489,516,614,688,754,887,941**;Aug 13, 1993;Build 73
+VADPT1 ;ALB/MRL,MJK,ERC,TDM,CLT,ARF - PATIENT VARIABLES ;05 May 2017  1:41 PM
+ ;;5.3;Registration;**415,489,516,614,688,754,887,941,1059,1067,1071,1064**;Aug 13, 1993;Build 41
+ ;
+ ; NOTE: When setting up subscripts in the return array, the top level subscript must always be defined
+ ;  - (e.g. Inpatient Meds uses this API and assumes the top level subscript is defined)
  ;
 1 ;Demographic [DEM]
  N W,Z,NODE
@@ -56,13 +59,48 @@ VADPT1 ;ALB/MRL,MJK,ERC,TDM,CLT - PATIENT VARIABLES ;05 May 2017  1:41 PM
  N VALANGDT,VAPRFLAN,VALANG0,VAY,VALANGDA,X,Y
  S VALANGDT=9999999,(VAPRFLAN,VALANG0)=""
  S VALANGDT=$O(^DPT(DFN,.207,"B",VALANGDT),-1)
- I VALANGDT="" DO  Q
- .S @VAV@($P(VAS,"^",13))="",@VAV@($P(VAS,"^",13),1)=""
- S VALANGDA=$O(^DPT(DFN,.207,"B",VALANGDT,0))
- S VALANG0=$G(^DPT(DFN,.207,VALANGDA,0)),Y=$P(VALANG0,U),VAPRFLAN=$P(VALANG0,U,2)
- S (VAY,Y)=VALANGDT X ^DD("DD") S VALANGDT=Y
- S @VAV@($P(VAS,"^",13))=VAY_"^"_VALANGDT ; FM version^human readable
- S @VAV@($P(VAS,"^",13),1)=VALANGDA_"^"_VAPRFLAN ; Pointer^human readable
+ I VALANGDT="" S @VAV@($P(VAS,"^",13))="",@VAV@($P(VAS,"^",13),1)=""
+ I VALANGDT'="" D
+ .S VALANGDA=$O(^DPT(DFN,.207,"B",VALANGDT,0))
+ .S VALANG0=$G(^DPT(DFN,.207,VALANGDA,0)),Y=$P(VALANG0,U),VAPRFLAN=$P(VALANG0,U,2)
+ .S (VAY,Y)=VALANGDT X ^DD("DD") S VALANGDT=Y
+ .S @VAV@($P(VAS,"^",13))=VAY_"^"_VALANGDT ; FM version^human readable
+ .S @VAV@($P(VAS,"^",13),1)=VALANGDA_"^"_VAPRFLAN ; Pointer^human readable
+ ;
+ ;**1059 Adding Sexual Orientation, Sexual Orientation Description, Pronoun, Pronoun Description, SIGI [14 - SOGI]
+ ;**1071 VAMPI-13755 (jfw) - Display Additional SO Info
+ N SOC,CNTR,PRO,SIGI,SIGIN,VAREF
+ S @VAV@($P(VAS,"^",14))=""
+ ;Sexual Orientation #.025 multiple
+ S CNTR=1,X=0 F  S X=$O(^DPT(DFN,.025,X)) Q:'X!(X="")  D
+ .N VASOI D GETS^DIQ(2.025,X_","_DFN,"*","EI","VASOI")
+ .;External^Internal values: SO, Status, Date Created, Date Last Updated, TIU Document
+ .S VAREF="VASOI(2.025,"""_X_","_DFN_","")",@VAV@($P(VAS,"^",14),1,CNTR)=$P($G(^DG(47.77,@VAREF@(.01,"I"),0)),"^",1,2)
+ .N VAI F VAI=.02,.03,.04,.05 S @VAV@($P(VAS,"^",14),1,CNTR,(VAI*100-1))=@VAREF@(VAI,"E")_"^"_@VAREF@(VAI,"I")
+ .S CNTR=CNTR+1
+ S @VAV@($P(VAS,"^",14),1)=CNTR-1
+ ;Sexual Orientatin Description #.241
+ S @VAV@($P(VAS,"^",14),2)=$P($G(^DPT(DFN,.241)),"^")
+ ;Pronoun #.2406 multiple
+ K CNTR,X
+ S CNTR=1,X=0 F  S X=$O(^DPT(DFN,.2406,X)) Q:'X!(X="")  D
+ .S PRO=$G(^DPT(DFN,.2406,X,0))
+ .S @VAV@($P(VAS,"^",14),3,CNTR)=$G(^DG(47.78,PRO,0)),CNTR=CNTR+1 ;NAME ^ CODE
+ S @VAV@($P(VAS,"^",14),3)=CNTR-1
+ ;Pronoun Description #.24061
+ S @VAV@($P(VAS,"^",14),4)=$P($G(^DPT(DFN,.241)),"^",2)
+ ;SELF IDENTIFIED GENDER #.024
+ S SIGI=$P($G(^DPT(DFN,.24)),"^",4),SIGIN=$$GET1^DIQ(2,DFN_",",.024)
+ S @VAV@($P(VAS,"^",14),5)=SIGIN_"^"_SIGI ;NAME ^ CODE
+ ; DG*5.3*1064; Adding INDIAN SELF IDENTIFICATION, INDIAN ATTESTATION DATE, INDIAN START DATE, INDIAN END DATE [15 - IND]
+ ; The top level subscript must always be defined (see NOTE above)
+ S @VAV@($P(VAS,"^",15))=""
+ N DGINDARR
+ D GETS^DIQ(2,DFN,".571:.574","I","DGINDARR")
+ S @VAV@($P(VAS,"^",15),1)=$G(DGINDARR(2,DFN_",",.571,"I"))
+ S @VAV@($P(VAS,"^",15),2)=$G(DGINDARR(2,DFN_",",.572,"I"))
+ S @VAV@($P(VAS,"^",15),3)=$G(DGINDARR(2,DFN_",",.573,"I"))
+ S @VAV@($P(VAS,"^",15),4)=$G(DGINDARR(2,DFN_",",.574,"I"))
  Q
  ;
 2 ;Other Patient Variables [OPD]
@@ -173,6 +211,9 @@ Q3 K VABEG,VAEND,VAZIP4 Q
  S @VAV@($P(VAS,"^",7))="",@VAV@($P(VAS,"^",8))=$P(VAX,"^",9),VAX(2)=8
  F I=1,2 S VAX(2)=VAX(2)+1,@VAV@($P(VAS,"^",VAX(2)))=$P(VAX,"^",I)
  I "^.311^.25"[("^"_VAX(1)_"^") S @VAV@($P(VAS,"^",10))=""
+ ;DG*5.3*1067 store the RELATION TYPE field, from the PATIENT CONTACT RELATION file(#12.11)file, into node 10
+ ;and move RELATIONSHIP TO PATIENT to node 12 only for the Emergency Contacts, Next of Kins, and Designees options.
+ I (+VAOA("A")'=5)&(+VAOA("A")'=6) S @VAV@($P(VAS,"^",10))=$$GET1^DIQ(12.11,$P(VAX,"^",15)_",",.02),@VAV@($P(VAS,"^",12))=$P(VAX,"^",2)
  S VAZ=@VAV@($P(VAS,"^",5)) I VAZ,$D(^DIC(5,+VAZ,0)) S VAZ(1)=$P(^(0),"^",1),@VAV@($P(VAS,"^",5))=VAZ_"^"_VAZ(1)
  S VAZIP4=$P($G(^DPT(DFN,.22)),U,VAOA("A"))
  S @VAV@($P(VAS,U,11))=VAZIP4_$S('$G(VAZIP4):"",($L(VAZIP4)=5):U_VAZIP4,1:U_$E(VAZIP4,1,5)_"-"_$E(VAZIP4,6,9))

@@ -1,5 +1,5 @@
-PSOORRL1 ;BHAM ISC/SAB,TJH - sub-module for PSOORRL ;01/14/99
- ;;7.0;OUTPATIENT PHARMACY;**20,46,132,159**;DEC 1997
+PSOORRL1 ;BHAM ISC/SAB,TJH - sub-module for PSOORRL ;May 29, 2020@14:36:35
+ ;;7.0;OUTPATIENT PHARMACY;**20,46,132,159,441**;DEC 1997;Build 208
  ;External reference to ^PS(51.2 supported by DBIA 2226
  ;External reference to ^PS(50.607 supported by DBIA 2221
  ;External reference to ^PS(50.606 supported by DBIA 2174
@@ -31,6 +31,7 @@ PEN ;
  S SD=0 F SCH=0:0 S SCH=$O(^PS(52.41,IFN,"SIG",SCH)) Q:'SCH  S SD=SD+1,^TMP("PS",$J,"SIG",SD,0)=$P(^PS(52.41,IFN,"SIG",SCH,0),"^"),^TMP("PS",$J,"SIG",0)=SD
  S (IEN,SD)=1,INST=0 F  S INST=$O(^PS(52.41,IFN,2,INST)) Q:'INST  S (MIG,INST(INST))=^PS(52.41,IFN,2,INST,0),^TMP("PS",$J,"SIO",0)=SD D
  .F SG=1:1:$L(MIG," ") S:$L($G(^TMP("PS",$J,"SIO",SD,0))_" "_$P(MIG," ",SG))>80 SD=SD+1,^TMP("PS",$J,"SIO",0)=SD S ^TMP("PS",$J,"SIO",SD,0)=$G(^TMP("PS",$J,"SIO",SD,0))_" "_$P(MIG," ",SG)
+ S:$P($G(^PS(52.41,IFN,4)),U,2)]"" ^TMP("PS",$J,"IND",0)=1,^TMP("PS",$J,"IND",1,0)=$P(^PS(52.41,IFN,4),U,2)  ;*441-IND
 END K FL,SD,SCH,%T,Y,ST,ST0,PSBDT,PSEDT,IFN,EXDT,RX0,RX2,RX3,TRM,I,X,Z1,Z0,PSOX1,PSOX2,PSOR,STA,TFN,X1,X2,SC,MDR,MR,IFN,MIG,INST
  K BDT,EDT,IEN,ITFN,RXNUM
  Q
@@ -47,6 +48,7 @@ NVA ;non-va meds display
  S ^TMP("PS",$J,"SIG",1,0)=$P(PSOR,"^",3)_" "_$P(PSOR,"^",4)_" "_$P(PSOR,"^",5),^TMP("PS",$J,"SIG",0)=1
  S ^TMP("PS",$J,"SIO",1,0)=$P(PSOR,"^",3)_" "_$P(PSOR,"^",4)_" "_$P(PSOR,"^",5),^TMP("PS",$J,"SIO",0)=1
  K PSOR
+ S:$P($G(^PS(55,DFN,"NVA",IFN,2)),U)]"" ^TMP("PS",$J,"IND",0)=1,^TMP("PS",$J,"IND",1,0)=$P($G(^PS(55,DFN,"NVA",IFN,2)),U)  ;*441-IND
  Q
  ;
 SIG ;expands SIG expanded list

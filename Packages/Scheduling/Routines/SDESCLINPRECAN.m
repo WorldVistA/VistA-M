@@ -1,0 +1,47 @@
+SDESCLINPRECAN ;ALB/BWF - VISTA SCHEDULING RPCS CANCEL CLINIC AVAILABILITY - PRE-CANCELLATION LIST ; August 23, 2022
+ ;;5.3;Scheduling;**824,825**;Aug 13, 1993;Build 2
+ ;;Per VHA Directive 6402, this routine should not be modified
+ ;
+ ;
+ Q  ;No Direct Call
+ ; get pre-cancellation list for cancelling clinic availability
+PRECANLIST(SDRES,SDCLNIEN,SDFULLPART,SDESBEGDTTM,SDESENDDTTM,SDEAS) ;
+ ; This RPC cancels Clinic availability within a given timeframe for a given clinic.
+ ; Input:
+ ;   SDRES       [required] - Success or Error message
+ ;   SDCLNIEN    [required] - The Internal Entry Number (IEN) from the HOSPITAL LOCATION File #44
+ ;   SDFULLPART  [required] - Full or partial day cancellation ('F' for full, 'P' for partial)
+ ;   SDESBEGDTTM [required] - Start date/time in ISO8601 format (CCYY-MM-DDTHH:MM:SS-HH:MM)
+ ;   SDESENDDTTM [required] - End Date/time in ISO8601 format (CCYY-MM-DDTHH:MM:SS-HH:MM)
+ ;   SDEAS       [optional] - Enterprise Appointment Scheduling (EAS) Tracking Number associated to an appointment.
+ ;
+ N FMSDTTM,FMEDTTM,ERRORS,SINC,STARTOFDAY,SDCLNSREC,RESULTS,SDCLNJSON,APPTCHK
+ S SDCLNIEN=$G(SDCLNIEN),SDFULLPART=$G(SDFULLPART),SDESBEGDTTM=$G(SDESBEGDTTM),SDESENDDTTM=$G(SDESENDDTTM),SDEAS=$G(SDEAS)
+ ; validate the dates first, since we need them to fully validate the clinic
+ D VALIDATEFULLPART^SDESCCAVAIL(.ERRORS,SDFULLPART)
+ I $D(ERRORS) S ERRORS("PreCancellationList",1)="" D BUILDJSON^SDESBUILDJSON(.SDRES,.ERRORS) Q
+ S FMSDTTM=$$VALIDATEBEGDATE^SDESCCAVAIL(.ERRORS,SDESBEGDTTM,SDCLNIEN)
+ I $D(ERRORS) S ERRORS("PreCancellationList",1)="" D BUILDJSON^SDESBUILDJSON(.SDRES,.ERRORS) Q
+ S FMEDTTM=$$VALIDATEENDDATE^SDESCCAVAIL(.ERRORS,SDESBEGDTTM,SDESENDDTTM,SDCLNIEN)
+ I $D(ERRORS) S ERRORS("PreCancellationList",1)="" D BUILDJSON^SDESBUILDJSON(.SDRES,.ERRORS) Q
+ S SINC=""
+ D VALIDATECLINIC^SDESCCAVAIL(.ERRORS,SDCLNIEN,FMSDTTM,FMEDTTM,.SINC,.STARTOFDAY)
+ D VALIDATEEAS^SDESCCAVAIL(.ERRORS,SDEAS)
+ I $D(ERRORS) D  Q
+ .S ERRORS("PreCancellationList",1)=""
+ .D BUILDJSON^SDESBUILDJSON(.SDRES,.ERRORS)
+ D BLDPRECANLIST(.SDCLNJSON,SDFULLPART,SDCLNIEN,FMSDTTM,FMEDTTM)
+ ; filter out cancelled appointments
+ S APPTCHK=0 F  S APPTCHK=$O(SDCLNJSON("Appointment",APPTCHK))  Q:'APPTCHK  D
+ .I $G(SDCLNJSON("Appointment",APPTCHK,"AppointmentCancelled"))]"" K SDCLNJSON("Appointment",APPTCHK)
+ M RESULTS("PreCancellationList")=SDCLNJSON
+ I '$D(RESULTS) S RESULTS("PreCancellationList",1)=""
+ D BUILDJSON^SDESBUILDJSON(.SDRES,.RESULTS)
+ Q
+ ; build pre-cancellation list
+BLDPRECANLIST(APPTDATA,FULLPART,CLINICIEN,STARTDTTM,ENDDTTM) ;
+ N APPTDTTM,SFIEN,IENS,DFN,CNT,RETURN
+ S CNT=0
+ I FULLPART="F" S ENDDTTM=$P(ENDDTTM,".")_.2359
+ D GETAPPOINTMENTS^SDESGETAPPTWRAP4(.APPTDATA,CLINICIEN,STARTDTTM,ENDDTTM,1)
+ Q

@@ -1,5 +1,6 @@
-XTPMKPP ;OAK/BP - PATCH MONITOR PURGING;1/16/07
- ;;7.3;TOOLKIT;**98,104**; Apr 25, 1995;Build 3
+XTPMKPP ;OAK/BP - PATCH MONITOR PURGING; 4/13/21
+ ;;7.3;TOOLKIT;**98,104,150**; Apr 25, 1995;Build 1
+ ;;Per VA Directive 6402, this routine should not be modified
  ;
 EN D DT^DICRW
  ; number of days to keep data in param file
@@ -9,7 +10,7 @@ EN D DT^DICRW
  F  S XTBX=$O(^XPD(9.9,"B",XTBX)) Q:XTBX=""  F XTBDA=0:0 S XTBDA=$O(^XPD(9.9,"B",XTBX,XTBDA)) Q:XTBDA=""  DO
  .S XTBDTA=$G(^XPD(9.9,XTBDA,0)) Q:XTBDTA=""
  .I $P(XTBDTA,U,10) D NONKID(XTBDA,XTBDTA,XTBEND) Q
- .S XTBINST=$P(XTBDTA,U,8) ; install name
+ .S XTBINST=$P(XTBDTA,U,8) I $G(XTBINST)="" N DA S DIK="^XPD(9.9,",DA=XTBDA D ^DIK Q  ; check install name if it is NULL p752
  .S XTBCMPDT=$P(XTBDTA,U,9) ; compliance date
  .S XTBXX=$O(^XPD(9.7,"B",XTBINST,"A"),-1) I +XTBXX'>0 Q 
  .Q:$P($G(^XPD(9.7,+XTBXX,0)),U,9)'=3  ; not installed
@@ -22,4 +23,8 @@ NONKID(XTBDA,XTBDTA,XTBEND) ;Delete Non_Kid patches
  S XTNKB=$P(XTBDTA,U,10) ; Non-Kids build
  S XTNKBID=$P(XTBDTA,U,11) ; Non-Kids build Install date
  I XTBCMPDT,XTNKBID,XTBCMPDT<XTBEND S DIK="^XPD(9.9,",DA=XTBDA D ^DIK
+ Q
+ ;
+UNITEST ;
+ N XTBX,IEN S XTBX=0 F  S XTBX=$O(^XPD(9.9,"B",XTBX)) Q:XTBX=""  S IEN=$O(^XPD(9.9,"B",XTBX,0)) W !,IEN,?15,$P($G(^XPD(9.9,IEN,0)),"^",8)
  Q

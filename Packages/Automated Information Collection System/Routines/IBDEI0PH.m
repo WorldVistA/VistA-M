@@ -1,126 +1,130 @@
-IBDEI0PH ; ; 04-FEB-2020
- ;;3.0;IB ENCOUNTER FORM IMP/EXP;;FEB 04, 2020
+IBDEI0PH ; ; 01-FEB-2022
+ ;;3.0;IB ENCOUNTER FORM IMP/EXP;;FEB 01, 2022
  Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,999) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
- ;;^UTILITY(U,$J,358.3,11369,0)
- ;;=H21.261^^77^731^26
- ;;^UTILITY(U,$J,358.3,11369,1,0)
+ ;;^UTILITY(U,$J,358.3,11453,1,3,0)
+ ;;=3^99367
+ ;;^UTILITY(U,$J,358.3,11454,0)
+ ;;=99368^^45^552^3^^^^1
+ ;;^UTILITY(U,$J,358.3,11454,1,0)
+ ;;=^358.31IA^3^2
+ ;;^UTILITY(U,$J,358.3,11454,1,2,0)
+ ;;=2^Med Team Conf w/o FTF;Nonphysician
+ ;;^UTILITY(U,$J,358.3,11454,1,3,0)
+ ;;=3^99368
+ ;;^UTILITY(U,$J,358.3,11455,0)
+ ;;=Z49.31^^46^553^1
+ ;;^UTILITY(U,$J,358.3,11455,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,11369,1,3,0)
- ;;=3^Iris Atrophy,Essential,Right Eye
- ;;^UTILITY(U,$J,358.3,11369,1,4,0)
- ;;=4^H21.261
- ;;^UTILITY(U,$J,358.3,11369,2)
- ;;=^5005199
- ;;^UTILITY(U,$J,358.3,11370,0)
- ;;=H21.262^^77^731^27
- ;;^UTILITY(U,$J,358.3,11370,1,0)
+ ;;^UTILITY(U,$J,358.3,11455,1,3,0)
+ ;;=3^Adequacy Testing for Hemodialysis
+ ;;^UTILITY(U,$J,358.3,11455,1,4,0)
+ ;;=4^Z49.31
+ ;;^UTILITY(U,$J,358.3,11455,2)
+ ;;=^5063058
+ ;;^UTILITY(U,$J,358.3,11456,0)
+ ;;=N18.6^^46^553^3
+ ;;^UTILITY(U,$J,358.3,11456,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,11370,1,3,0)
- ;;=3^Iris Atrophy,Essential,Left Eye
- ;;^UTILITY(U,$J,358.3,11370,1,4,0)
- ;;=4^H21.262
- ;;^UTILITY(U,$J,358.3,11370,2)
- ;;=^5005200
- ;;^UTILITY(U,$J,358.3,11371,0)
- ;;=H21.231^^77^731^28
- ;;^UTILITY(U,$J,358.3,11371,1,0)
+ ;;^UTILITY(U,$J,358.3,11456,1,3,0)
+ ;;=3^ESRD
+ ;;^UTILITY(U,$J,358.3,11456,1,4,0)
+ ;;=4^N18.6
+ ;;^UTILITY(U,$J,358.3,11456,2)
+ ;;=^303986
+ ;;^UTILITY(U,$J,358.3,11457,0)
+ ;;=Z99.2^^46^553^2
+ ;;^UTILITY(U,$J,358.3,11457,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,11371,1,3,0)
- ;;=3^Degeneration of Iris,Pigmentary,Right Eye
- ;;^UTILITY(U,$J,358.3,11371,1,4,0)
- ;;=4^H21.231
- ;;^UTILITY(U,$J,358.3,11371,2)
- ;;=^5005187
- ;;^UTILITY(U,$J,358.3,11372,0)
- ;;=H21.232^^77^731^29
- ;;^UTILITY(U,$J,358.3,11372,1,0)
+ ;;^UTILITY(U,$J,358.3,11457,1,3,0)
+ ;;=3^Dependence on Renal Dialysis
+ ;;^UTILITY(U,$J,358.3,11457,1,4,0)
+ ;;=4^Z99.2
+ ;;^UTILITY(U,$J,358.3,11457,2)
+ ;;=^5063758
+ ;;^UTILITY(U,$J,358.3,11458,0)
+ ;;=Z91.15^^46^553^4
+ ;;^UTILITY(U,$J,358.3,11458,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,11372,1,3,0)
- ;;=3^Degeneration of Iris,Pigmentary,Left Eye
- ;;^UTILITY(U,$J,358.3,11372,1,4,0)
- ;;=4^H21.232
- ;;^UTILITY(U,$J,358.3,11372,2)
- ;;=^5005188
- ;;^UTILITY(U,$J,358.3,11373,0)
- ;;=H57.00^^77^731^30
- ;;^UTILITY(U,$J,358.3,11373,1,0)
+ ;;^UTILITY(U,$J,358.3,11458,1,3,0)
+ ;;=3^Patient's Noncompliance w/ Renal Dialysis
+ ;;^UTILITY(U,$J,358.3,11458,1,4,0)
+ ;;=4^Z91.15
+ ;;^UTILITY(U,$J,358.3,11458,2)
+ ;;=^5063617
+ ;;^UTILITY(U,$J,358.3,11459,0)
+ ;;=Z49.32^^46^554^1
+ ;;^UTILITY(U,$J,358.3,11459,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,11373,1,3,0)
- ;;=3^Anomaly of Pupillary Function,Unspec
- ;;^UTILITY(U,$J,358.3,11373,1,4,0)
- ;;=4^H57.00
- ;;^UTILITY(U,$J,358.3,11373,2)
- ;;=^5006375
- ;;^UTILITY(U,$J,358.3,11374,0)
- ;;=D31.42^^77^731^31
- ;;^UTILITY(U,$J,358.3,11374,1,0)
+ ;;^UTILITY(U,$J,358.3,11459,1,3,0)
+ ;;=3^Adequacy Testing for Peritoneal Dialysis
+ ;;^UTILITY(U,$J,358.3,11459,1,4,0)
+ ;;=4^Z49.32
+ ;;^UTILITY(U,$J,358.3,11459,2)
+ ;;=^5063059
+ ;;^UTILITY(U,$J,358.3,11460,0)
+ ;;=N18.6^^46^554^2
+ ;;^UTILITY(U,$J,358.3,11460,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,11374,1,3,0)
- ;;=3^Benign Neopl of Ciliary Body,Left Eye
- ;;^UTILITY(U,$J,358.3,11374,1,4,0)
- ;;=4^D31.42
- ;;^UTILITY(U,$J,358.3,11374,2)
- ;;=^5002125
- ;;^UTILITY(U,$J,358.3,11375,0)
- ;;=D31.41^^77^731^32
- ;;^UTILITY(U,$J,358.3,11375,1,0)
+ ;;^UTILITY(U,$J,358.3,11460,1,3,0)
+ ;;=3^ESRD
+ ;;^UTILITY(U,$J,358.3,11460,1,4,0)
+ ;;=4^N18.6
+ ;;^UTILITY(U,$J,358.3,11460,2)
+ ;;=^303986
+ ;;^UTILITY(U,$J,358.3,11461,0)
+ ;;=I25.10^^46^555^3
+ ;;^UTILITY(U,$J,358.3,11461,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,11375,1,3,0)
- ;;=3^Benign Neopl of Ciliary Body,Right Eye
- ;;^UTILITY(U,$J,358.3,11375,1,4,0)
- ;;=4^D31.41
- ;;^UTILITY(U,$J,358.3,11375,2)
- ;;=^5002124
- ;;^UTILITY(U,$J,358.3,11376,0)
- ;;=C69.41^^77^731^33
- ;;^UTILITY(U,$J,358.3,11376,1,0)
+ ;;^UTILITY(U,$J,358.3,11461,1,3,0)
+ ;;=3^Athscl Hrt Disease,Native Coronary Artery w/o Angina Pectoris
+ ;;^UTILITY(U,$J,358.3,11461,1,4,0)
+ ;;=4^I25.10
+ ;;^UTILITY(U,$J,358.3,11461,2)
+ ;;=^5007107
+ ;;^UTILITY(U,$J,358.3,11462,0)
+ ;;=I42.8^^46^555^7
+ ;;^UTILITY(U,$J,358.3,11462,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,11376,1,3,0)
- ;;=3^Malig Neopl of Ciliary Body,Right Eye
- ;;^UTILITY(U,$J,358.3,11376,1,4,0)
- ;;=4^C69.41
- ;;^UTILITY(U,$J,358.3,11376,2)
- ;;=^5001279
- ;;^UTILITY(U,$J,358.3,11377,0)
- ;;=C69.42^^77^731^34
- ;;^UTILITY(U,$J,358.3,11377,1,0)
+ ;;^UTILITY(U,$J,358.3,11462,1,3,0)
+ ;;=3^Cardiomyopathy,Other
+ ;;^UTILITY(U,$J,358.3,11462,1,4,0)
+ ;;=4^I42.8
+ ;;^UTILITY(U,$J,358.3,11462,2)
+ ;;=^5007199
+ ;;^UTILITY(U,$J,358.3,11463,0)
+ ;;=I48.91^^46^555^4
+ ;;^UTILITY(U,$J,358.3,11463,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,11377,1,3,0)
- ;;=3^Malig Neopl of Ciliary Body,Left Eye
- ;;^UTILITY(U,$J,358.3,11377,1,4,0)
- ;;=4^C69.42
- ;;^UTILITY(U,$J,358.3,11377,2)
- ;;=^5001280
- ;;^UTILITY(U,$J,358.3,11378,0)
- ;;=H35.061^^77^731^35
- ;;^UTILITY(U,$J,358.3,11378,1,0)
+ ;;^UTILITY(U,$J,358.3,11463,1,3,0)
+ ;;=3^Atrial Fibrillation,Unspec
+ ;;^UTILITY(U,$J,358.3,11463,1,4,0)
+ ;;=4^I48.91
+ ;;^UTILITY(U,$J,358.3,11463,2)
+ ;;=^5007229
+ ;;^UTILITY(U,$J,358.3,11464,0)
+ ;;=I49.8^^46^555^6
+ ;;^UTILITY(U,$J,358.3,11464,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,11378,1,3,0)
- ;;=3^Retinal Vasculitis,Right Eye
- ;;^UTILITY(U,$J,358.3,11378,1,4,0)
- ;;=4^H35.061
- ;;^UTILITY(U,$J,358.3,11378,2)
- ;;=^5005602
- ;;^UTILITY(U,$J,358.3,11379,0)
- ;;=H35.062^^77^731^36
- ;;^UTILITY(U,$J,358.3,11379,1,0)
+ ;;^UTILITY(U,$J,358.3,11464,1,3,0)
+ ;;=3^Cardiac Arrhythmias,Other Spec
+ ;;^UTILITY(U,$J,358.3,11464,1,4,0)
+ ;;=4^I49.8
+ ;;^UTILITY(U,$J,358.3,11464,2)
+ ;;=^5007236
+ ;;^UTILITY(U,$J,358.3,11465,0)
+ ;;=R00.1^^46^555^5
+ ;;^UTILITY(U,$J,358.3,11465,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,11379,1,3,0)
- ;;=3^Retinal Vasculitis,Left Eye
- ;;^UTILITY(U,$J,358.3,11379,1,4,0)
- ;;=4^H35.062
- ;;^UTILITY(U,$J,358.3,11379,2)
- ;;=^5005603
- ;;^UTILITY(U,$J,358.3,11380,0)
- ;;=H20.011^^77^731^2
- ;;^UTILITY(U,$J,358.3,11380,1,0)
+ ;;^UTILITY(U,$J,358.3,11465,1,3,0)
+ ;;=3^Bradycardia,Unspec
+ ;;^UTILITY(U,$J,358.3,11465,1,4,0)
+ ;;=4^R00.1
+ ;;^UTILITY(U,$J,358.3,11465,2)
+ ;;=^5019164
+ ;;^UTILITY(U,$J,358.3,11466,0)
+ ;;=I50.9^^46^555^13
+ ;;^UTILITY(U,$J,358.3,11466,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,11380,1,3,0)
- ;;=3^Iridocyclitis,Primary,Right Eye
- ;;^UTILITY(U,$J,358.3,11380,1,4,0)
- ;;=4^H20.011
- ;;^UTILITY(U,$J,358.3,11380,2)
- ;;=^5005134
- ;;^UTILITY(U,$J,358.3,11381,0)
- ;;=H20.012^^77^731^3
+ ;;^UTILITY(U,$J,358.3,11466,1,3,0)
+ ;;=3^Heart Failure,Unspec

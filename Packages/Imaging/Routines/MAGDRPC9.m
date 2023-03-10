@@ -1,5 +1,5 @@
-MAGDRPC9 ;WOIFO/EdM/MLH/JSL/SAF/DAC/PMK - Imaging RPCs ; 22 Aug 2019 8:38 AM
- ;;3.0;IMAGING;**50,54,53,49,123,118,138,180,190,239**;Mar 19, 2002;Build 18
+MAGDRPC9 ;WOIFO/EDM/MLH/JSL/SAF/DAC/PMK/JSJ - Imaging RPCs ; Jun 23, 2022@15:30:40
+ ;;3.0;IMAGING;**50,54,53,49,123,118,138,180,190,239,280,305,307**;Mar 19, 2002;Build 28
  ;; Per VHA Directive 2004-038, this routine should not be modified.
  ;; +---------------------------------------------------------------+
  ;; | Property of the US Government.                                |
@@ -15,6 +15,16 @@ MAGDRPC9 ;WOIFO/EdM/MLH/JSL/SAF/DAC/PMK - Imaging RPCs ; 22 Aug 2019 8:38 AM
  ;; | to be a violation of US Federal Statutes.                     |
  ;; +---------------------------------------------------------------+
  ;;
+ ;    
+ ; Reference to FIND1^DIC in ICR #2051
+ ; Reference to GET1^DIQ in ICR #2056
+ ; Reference to ^RA(74 in ICR #1171
+ ; Reference to ^RA(70 in ICR #1172
+ ; Reference to ACCFIND^RAAPI in ICR #5020
+ ; Reference to HDIFF^XLFDT in ICR #10103
+ ; Reference to HTFM^XLFDT in ICR #10103
+ ; Reference to GETICN^MPIF001 in ICR #2701
+ ;
  Q
  ;
 UIDROOT(OUT) ; RPC = MAG DICOM GET UID ROOT
@@ -68,15 +78,18 @@ NEWUID(OUT,OLD,NEW,IMAGE,DBTYPE) ; RPC = MAG NEW SOP INSTANCE UID
  . Q
  Q
  ;
-QRNEWUID(IMAGE,DBTYPE) ; Get updated UID for Query/Retrieve
+QRNEWUID(IDX,DBTYPE) ; Get updated UID for Query/Retrieve - P280 DAC - Modified to reflect that index can be Image or SOP
  N DATE,DH,FAIL,I,OLD,OUT,NEW,LASTUID,NEXTUID,TIME,X,Y
  S DBTYPE=$G(DBTYPE,"OLD")
- S IMAGE=+$G(IMAGE)
+ ; P280 DAC - Modified to set the indexes based on the type of data base referenced 
+ I DBTYPE="OLD" S IMAGE=+$G(IDX)
+ I DBTYPE="NEW" S SOPIX=+$G(IDX)
  D:DBTYPE="OLD"  ; find new UID, if any, in legacy DB
  . S NEW=$P($G(^MAG(2005,IMAGE,"PACS")),"^",1) ; P239 DAC - Modified to pull from PACS node (not SOP)
  . Q
  D:DBTYPE="NEW"  ; find new UID, if any, in P34 DB
- . S NEW="" S:$P($G(^MAGV(2005.64,IMAGE,0)),"^",2)'="" NEW=$P(^(0),"^",1)
+ . ; P280 DAC - Modified to use the SOP index instead of the Image index
+ . S NEW="" S:$P($G(^MAGV(2005.64,SOPIX,0)),"^",2)'="" NEW=$P(^(0),"^",1)
  . Q
  Q:NEW'="" NEW
  ; Generate the next UID using date/time and counter
@@ -101,8 +114,10 @@ QRNEWUID(IMAGE,DBTYPE) ; Get updated UID for Query/Retrieve
  . Q
  S ^MAGDICOM(2006.563,1,"LAST UID")=NEXTUID
  L -^MAGDICOM(2006.563,1,"MACHINE ID")
- S OLD=$S(DBTYPE="OLD":$P($G(^MAG(2005,IMAGE,"PACS")),"^",1),1:$P($G(^MAGV(2005.64,IMAGE,0)),"^",1))
- D NEWUID(.OUT,OLD,NEXTUID,IMAGE,DBTYPE) ; Store the new UID with the image
+ ; P280 DAC - Modified new data structure to use the SOP index instead of the Image index
+ S OLD=$S(DBTYPE="OLD":$P($G(^MAG(2005,IMAGE,"PACS")),"^",1),1:$P($G(^MAGV(2005.64,SOPIX,0)),"^",1))
+ ; P280 DAC - Modifed to send the correct index type for each both DB types
+ D NEWUID(.OUT,OLD,NEXTUID,IDX,DBTYPE) ; Store the new UID with the image
  Q OUT
  ;
 NEXT(OUT,SEED,DIR) ; RPC = MAG RAD GET NEXT RPT BY DATE
@@ -146,37 +161,62 @@ GETICN(OUT,DFN) ; RPC = MAG DICOM GET ICN
  S OUT=$S($T(GETICN^MPIF001)'="":$$GETICN^MPIF001(DFN),1:"-1^NO MPI")
  Q
  ;
-CLEAN ; Overflow from MAGDRPC4
- ; P180 DAC - Moved global locking to calling routine MAGDRPC4
- N REQUESTDATETIME,STUID,PRI,S0,S1,STS,NEWSTS
- S S0=$P(SENT(I),"^",1),S1=$P(SENT(I),"^",2),NEWSTS=$P(SENT(I),"^",3)
- Q:'$D(^MAGDOUTP(2006.574,S0,1,S1))
+INIT(OUT,LOCATION,COUNTONLY) ; RPC = MAG DICOM QUEUE INIT (moved from ^MAGDRPC4)
+ N ACNUMB,COUNT,D0,D1,IMAGEDB,N,PRIORITY,REQUESTDATETIME,STATE,STUDYUID,X,Y ; P305 PMK 05/12/2021
+ I $G(LOCATION)="" S OUT="-3,No origin specified." Q
+ I '$D(^MAGDOUTP(2006.574,0)) S OUT="-1,No entries at all in queue." Q
+ S COUNTONLY=$G(COUNTONLY,0) ; P305 PMK 11/17/2021
  ;
- S X=$G(^MAGDOUTP(2006.574,S0,0)),LOC=$P(X,"^",4),PRI=+$P(X,"^",5)
- S REQUESTDATETIME=$P(X,"^",7)
- S STS=$P($G(^MAGDOUTP(2006.574,S0,1,S1,0)),"^",2)
- ;
- I NEWSTS'="" D  Q  ; just update the status and get out
- . S $P(^MAGDOUTP(2006.574,S0,1,S1,0),"^",2)=NEWSTS,$P(^(0),"^",3)=$H
- . I LOC'="",PRI'="" S ^MAGDOUTP(2006.574,"STS",LOC,PRI,NEWSTS,S0,S1)=""
- . I LOC'="",PRI'="",STS'="" K ^MAGDOUTP(2006.574,"STS",LOC,PRI,STS,S0,S1)
+ ; check for deleting the entire DICOM OBJECT EXPORT file - P305 PMK 01/07/2022
+ I LOCATION="ALL" D  Q
+ . S N=$P($G(^MAGDOUTP(2006.574,0)),"^",4)
+ . I COUNTONLY D
+ . . I N D
+ . . . S OUT=$S(N=1:"One entry is",1:N_" entries are")
+ . . . S OUT=OUT_" present in the Image Transmission Queues for all locations."
+ . . . Q
+ . . E  S OUT="-2,No entries are present in the Image Transmission Queue."
+ . . Q
+ . E  D
+ . . L +^MAGDOUTP(2006.574):1E9
+ . . K ^MAGDOUTP(2006.574)
+ . . S ^MAGDOUTP(2006.574,0)="DICOM OBJECT EXPORT^2006.574^0^0"
+ . . L -^MAGDOUTP(2006.574)
+ . . S OUT="Image Transmission Queue completely initialized, "
+ . . S OUT=OUT_$S(N=1:"one entry was",1:N_" entries were")_" deleted."
+ . . Q
  . Q
  ;
- K ^MAGDOUTP(2006.574,S0,1,S1)
- I LOC'="",PRI'="",STS'="" K ^MAGDOUTP(2006.574,"STS",LOC,PRI,STS,S0,S1)
- S X=$G(^MAGDOUTP(2006.574,S0,1,0))
- S $P(X,"^",4)=$P(X,"^",4)-1
- S ^MAGDOUTP(2006.574,S0,1,0)=X
- ;
- Q:$O(^MAGDOUTP(2006.574,S0,1,0))  ; don't delete the study node yet
- ;
- S STUID=$G(^MAGDOUTP(2006.574,S0,2))
- K ^MAGDOUTP(2006.574,S0)
- K:REQUESTDATETIME'="" ^MAGDOUTP(2006.574,"C",REQUESTDATETIME,S0)
- K:STUID'="" ^MAGDOUTP(2006.574,"STUDY",STUID)
- S X=$G(^MAGDOUTP(2006.574,0))
- S $P(X,"^",4)=$P(X,"^",4)-1
- S ^MAGDOUTP(2006.574,0)=X
+ ; deleting only a single location
+ S N=0,OUT="-2,No entries are present in"
+ L +^MAGDOUTP(2006.574):1E9 ; P180 DAC - Lock entire global, background process MUST wait
+ S D0=0 F  S D0=$O(^MAGDOUTP(2006.574,D0)) Q:'D0  S X=$G(^(D0,0)) Q:$P(X,"^",4)'=LOCATION  D
+ . S N=N+1 Q:COUNTONLY
+ . S ACNUMB=$P(X,"^",3),PRIORITY=$P(X,"^",5)
+ . S REQUESTDATETIME=$P(X,"^",7),IMAGEDB=$P(X,"^",8)
+ . S STUDYUID=$G(^MAGDOUTP(2006.574,D0,2))
+ . S D1=0 F  S D1=$O(^MAGDOUTP(2006.574,D0,1,D1)) Q:'D1  S Y=$G(^(D1,0)) D
+ . . S STATE=$P(Y,"^",2)
+ . . K ^MAGDOUTP(2006.567,D0,1,D1)
+ . . K ^MAGDOUTP(2006.574,"STATE",LOCATION,PRIORITY,STATE,D0,D1)
+ . . Q
+ . K ^MAGDOUTP(2006.574,D0)
+ . K:REQUESTDATETIME'="" ^MAGDOUTP(2006.574,"C",REQUESTDATETIME,D0)
+ . K:ACNUMB'="" ^MAGDOUTP(2006.574,"D",ACNUMB,D0) ; P305 PMK 05/12/2021
+ . I STUDYUID'="",IMAGEDB'="" K ^MAGDOUTP(2006.574,"STUDY",STUDYUID,IMAGEDB,D0)
+ . Q
+ I N D
+ . I COUNTONLY S OUT=$S(N=1:"One entry is",1:N_" entries are")_" present in"
+ . E  D
+ . . S COUNT=$P(^MAGDOUTP(2006.574,0),"^",4)-N
+ . . I COUNT<0 S COUNT=0 ; don't let count become negative
+ . . S $P(^MAGDOUTP(2006.574,0),"^",4)=COUNT ; P305 PMK 05/12/2021
+ . . S $P(^MAGDOUTP(2006.574,0),"^",3)=0 ; P305 PMK 05/12/2021
+ . . S OUT=$S(N=1:"One entry has",1:N_" entries have been")_" deleted from"
+ . . Q
+ . Q
+ S OUT=OUT_" the queue for "_$$GET1^DIQ(4,LOCATION,.01)_"."
+ L -^MAGDOUTP(2006.574) ; P180 DAC - Unlock global
  Q
  ;
 IENLOOK ; Overflow from MAGDRPC4
@@ -248,16 +288,68 @@ IENLOOK ; Overflow from MAGDRPC4
 GETINFO(INFO,TIUIEN) ; scan the TIU document and try to extract the accession number
  N FILE ; ---- LAB DATA subfile numbers and other info
  N ERRSTAT S ERRSTAT=0 ; error status - assume nothing to repor
- N ERROR,I,LRSS,IENS,TEXT,X
+ N ABBR,ERROR,I,LRAA,LRSS,IENS,TEXT,X  ;P307
  S IENS=TIUIEN_","
  D GETS^DIQ(8925,IENS,2,"I","TEXT","ERROR")
  F I=1:1 Q:'$D(TEXT(8925,IENS,2,I))  S X=TEXT(8925,IENS,2,I) D
  . I '$D(INFO("ACNUMB")),X["Accession No." D
  . . S INFO("ACNUMB")=$P(X,"Accession No. ",2)
- . . S LRSS=$E(INFO("ACNUMB"),1,2)
+ . . S ABBR=$P(INFO("ACNUMB")," ")  ;P307
+ . . S LRAA=$$FIND1^DIC(68,"","BX",ABBR,"","","ERR") ; get lab area index ;P307
+ . . S LRSS=$$GET1^DIQ(68,LRAA,.02,"I")  ;P307
  . . S ERRSTAT=$$GETFILE^MAGT7MA(LRSS) I ERRSTAT S INFO("LAB")="" Q
  . . S INFO("LAB")=FILE("NAME")
  . . Q
  . I '$D(INFO("DATE")),X["Date obtained: " S INFO("DATE")=$P(X,"Date obtained: ",2)
  . Q
- Q 
+ Q
+ ;
+STATS(OUT,SITE) ; RPC = MAG DICOM GET EXPORT QUEUE STS
+ N COUNT,D0,D1,NOUT,NOW,PRIORITY,STATE,TIME,WAIT,X,Y
+ K OUT
+ ;
+ I '$G(SITE) S OUT(1)="-1,Location not specified" Q
+ ;
+ S NOUT=1,OUT(NOUT)=0
+ ;
+ S NOUT=1,NOW=$H
+ S PRIORITY="" F  S PRIORITY=$O(^MAGDOUTP(2006.574,"STATE",SITE,PRIORITY)) Q:PRIORITY=""  D
+ . ; Ignore states SUCCESS, NOT ON FILE, IGNORE, and HOLD
+ . F STATE="FAIL","WAITING","XMIT" D
+ . . S D0=0 F  S D0=$O(^MAGDOUTP(2006.574,"STATE",SITE,PRIORITY,STATE,D0)) Q:'D0  D
+ . . . S Y=^MAGDOUTP(2006.574,D0,0)
+ . . . S D1=0 F  S D1=$O(^MAGDOUTP(2006.574,"STATE",SITE,PRIORITY,STATE,D0,D1)) Q:'D1  D
+ . . . . S X=$G(^MAGDOUTP(2006.574,D0,1,D1,0))
+ . . . . S COUNT(D0,STATE)=($G(COUNT(D0,STATE))+1)_"^^"_Y
+ . . . . S TIME=$P(X,"^",3)
+ . . . . S WAIT=$$TIMEDIFF(NOW,TIME)
+ . . . . I $P(COUNT(D0,STATE),"^",2)<WAIT S $P(COUNT(D0,STATE),"^",2)=WAIT
+ . . . . Q
+ . . . Q
+ . . Q
+ . Q
+ ;
+ ; save output
+ S D0=0 F  S D0=$O(COUNT(D0)) Q:D0=""  D
+ . S STATE="" F  S STATE=$O(COUNT(D0,STATE)) Q:STATE=""  D
+ . . S NOUT=NOUT+1,OUT(1)=NOUT
+ . . S OUT(NOUT)=D0_"^"_STATE_"^"_COUNT(D0,STATE)
+ . . Q
+ . Q
+ ;
+ Q
+ ;
+TIMEDIFF(T1,T2) ; formatted time difference
+ N RETURN,TIMEDIFF
+ S TIMEDIFF=$$HDIFF^XLFDT(T1,T2,2)
+ I TIMEDIFF>86400 D  ; greater than a day
+ . S RETURN=$$HDIFF^XLFDT(T1,T2,1)_" days"
+ . Q
+ E  I TIMEDIFF>3600 D   ; greater than an hour
+ . S RETURN=(TIMEDIFF+1800)\3600_" hours"
+ . Q
+ E  I TIMEDIFF>60 D  ; greater than a minute
+ . S RETURN=(TIMEDIFF+30)\60_" min."
+ . Q
+ E  S RETURN=TIMEDIFF_" sec."
+ Q RETURN

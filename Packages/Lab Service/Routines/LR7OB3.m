@@ -1,5 +1,5 @@
 LR7OB3 ;DALOI/DCM/JAH - Build message, backdoor from Lab order #;Sep 27, 2018@10:00:00
- ;;5.2;LAB SERVICE;**121,187,272,291,462,512**;Sep 27, 1994;Build 7
+ ;;5.2;LAB SERVICE;**121,187,272,291,462,512,541**;Sep 27, 1994;Build 7
 69 K ^TMP("LRX",$J)
  D 69^LR7OB69(ODT,SN) Q:'$D(^TMP("LRX",$J,69))  G OUT:'$D(DFN) D:LRFIRST FIRST^LR7OB0 S LRFIRST=0
 SNEAK ;
@@ -63,7 +63,11 @@ SNEAK ;
  ... ;LR*5.2*512 commenting out line below
  ... ;because a single result status should not update 
  ... ;the overall order status in the ORC segment
- ... ;D AX8
+ ... ;LR*5.2*541: invoking line below only if:
+ ... ;            (1) not in full edit mode logic (as in LEDI or if user elects not to do full edit)
+ ... ;            (2) and if status of a test is preliminary. Any preliminary test should cause an
+ ... ;                order to remain at "active" status.
+ ... I $D(LREDITTYPE),LREDITTYPE<3 S:X8="P" X8="I" D AX8
  ... I $L($P(Z1,"^",18)) S X=$P(@MSG@(ORCMSG),"|",4),Y=$P(X,"^",2),X=$P(X,"^")_$P(Z1,"^",18) S $P(@MSG@(ORCMSG),"|",4)=X_"^"_Y ;Append 63 ptr to placer ID
  ... I "SPCYEM"[$P($G(X),";",4)&($L($P(X,";",5))) S $P(@MSG@(ORCMSG),"|",4)=X_"^LRAP"  ;;* added to correct result update to CPRS where the package reference was not being updated properly for AP results
  ... ; X=ORD#;LRODT;LRSN;LRSS;LRIDT, indirect set of ^TMP("LRAP",$J

@@ -1,5 +1,5 @@
 PRCAATR ;WASH-ISC@ALTOONA,PA/RGY - VIEW TRANSACTION FOR BILLS ;2/14/96  2:46 PM
-V ;;4.5;Accounts Receivable;**36,104,172,138,233,276,303,301,315,350**;Mar 20, 1995;Build 66
+V ;;4.5;Accounts Receivable;**36,104,172,138,233,276,303,301,315,350,388**;Mar 20, 1995;Build 13
  ;;Per VA Directive 6402, this routine should not be modified.
  ;
  ; PRCAAPR cleans up DEBT, DTOUT
@@ -34,11 +34,11 @@ HDR ;Header
  ; W ! D PROFRJ^RCTCSJS1(BILL) ; Reject history  ;prca*4.5*301
  W !,"Bill #: ",$G(PRCOUT)_CSFLG_$P(^PRCA(430,BILL,0),"^") D @($S($P(^(0),"^",9)'=+DEBT:"DEB",1:"CSREJ")) ; prca*4.5*315, PRCA*4.5*350
  I REJFLG W !,"Bill #: ",$G(PRCOUT)_$S(REJFLG:"c",1:"")_$P(^PRCA(430,BILL,0),"^") D @($S($P(^(0),"^",9)'=+DEBT:"DEB",1:"CSREJ")) ; PRCA*4.5*350
- W !!,"Bill #",?8,"Tr #",?17,"Type",?52,"Date",?70,"Amount"
+ W !!,"Bill #",?8,"Tr #",?20,"Type",?52,"Date",?70,"Amount"
  S X="",$P(X,"-",IOM)="" W !,X
  Q
 DIS ;Display transactions
- W !,?17,"Original Amount",?52,$$SLH^RCFN01($P(^PRCA(430,BILL,0),"^",10)),?65,$J($P(^(0),"^",3),11,2)
+ W !,?20,"Original Amount",?52,$$SLH^RCFN01($P(^PRCA(430,BILL,0),"^",10)),?65,$J($P(^(0),"^",3),11,2)
  I '$O(^PRCA(433,"C",BILL,0)) D
  . S X="",$P(X,"*",20)="" W !!,X,"  NO TRANSACTION INFORMATION AVAILABLE  ",X
 RD . R !!,"Press return to continue: ",X:DTIME S:'$T DTOUT=1 S OUT=1
@@ -52,7 +52,7 @@ TLN ;Display a transaction
  N YR
  I $Y+5>IOSL,COUNT D READ G:$D(DTOUT)!$D(OUT) Q1 D HDR
  S COUNT=COUNT+1,X=$G(^PRCA(433,TRAN,1)),^TMP("PRCAATR",$J,COUNT)=TRAN
- W !,COUNT,$S($P(^PRCA(433,TRAN,0),"^",4)=1!$P(^(0),"^",10):"(I)",1:""),?8,TRAN,?17
+ W !,COUNT,$S($P(^PRCA(433,TRAN,0),"^",4)=1!$P(^(0),"^",10):"(I)",1:""),?8,TRAN,?20
  W $S($P($G(^PRCA(430.3,+$P(X,"^",2),0)),"^",3)=17:$P($G(^PRCA(433,TRAN,5)),"^",2),1:$P($G(^(0)),"^"))
  ;  show decrease adjustments as negative (patch 4.5*172)
  I $P(X,"^",2)=35 S:$P(X,"^",5)>0 $P(X,"^",5)=-$P(X,"^",5)

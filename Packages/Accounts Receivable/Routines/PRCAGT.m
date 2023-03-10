@@ -1,5 +1,5 @@
 PRCAGT ;WASH-ISC@ALTOONA,PA/CMS-Patient Statement Build Tran List ;8/19/93
-V ;;4.5;Accounts Receivable;**100,162,165,169,219,301,340**;Mar 20, 1995;Build 9
+V ;;4.5;Accounts Receivable;**100,162,165,169,219,301,340,377,381**;Mar 20, 1995;Build 28
  ;;Per VA Directive 6402, this routine should not be modified.
  ;SEND (DEB=340-IFN,BEG,END,TRANTYPE=430.3-IFN)
  ;BUILD ^TMP("PRCAGT",$J,DEB,DATE,BILL,TN)=TAMT^TTY
@@ -23,7 +23,8 @@ F433 ;
  .S TN0=$G(^PRCA(433,TN,0)) Q:TN0=""  S TN1=$G(^PRCA(433,TN,1))
  .I $P(TN1,U,2)=45 S COMM=1
  .I $G(TTY)'="" Q:TTY'=$P(TN1,U,2)
- .I TTY="",",3,4,5,6,7,24,25,30,"[(","_$P(TN1,U,2)_",") Q
+ .;PRCA*4.5*377/PRCA*4.5*381
+ .I TTY="",",3,4,5,6,7,24,25,30,90,91,92,"[(","_$P(TN1,U,2)_",") Q
  .I ($P(TN0,U,2)="")!($P(TN0,U,4)'=2) Q
  .I $G(PRCAHIST)="THIST",$P(TN1,U,2)=45 G F433A
  .I $P(TN0,U,10)=1 Q

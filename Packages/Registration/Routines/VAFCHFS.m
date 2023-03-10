@@ -1,5 +1,5 @@
-VAFCHFS ;BIR/DLR-BUILD HFS FILE FOR CAPTURING REPORT DATA ;08/20/01
- ;;5.3;Registration;**414,477**;Aug 13, 1993
+VAFCHFS ;BIR/DLR-BUILD HFS FILE FOR CAPTURING REPORT DATA ;13 Sep 2021  9:58 AM
+ ;;5.3;Registration;**414,477,1059**;Aug 13, 1993;Build 6
  ;;Routine uses the following supported IAs #2263, #2320, #2336, and #2992.
 HFS(LINETAG) ;
  N VAFCDIR,VAFCFILE,POP
@@ -51,7 +51,7 @@ OPEN(VAFCRM,VAFCHFS,VAFCMODE,VAFCIO) ; -- open WORKSTATION device
  Q
  ;
 CLOSE(VAFCRM,VAFCHFS,VAFCSUB,VAFCIO) ; -- close WORKSTATION device
- ; VAFCSUB: unique subscript name for output 
+ ; VAFCSUB: unique subscript name for output
  I IO=VAFCIO D ^%ZISC
  U IO
  D USEHFS
@@ -70,14 +70,18 @@ EDIT ;edit the HFS directory
 DSPPDAT(VAFC) ;
  ; Output
  ;   VAFC - array passed back with the display formatted PDAT call
- N CNT,X,TXT
+ N CNT,X,TXT,OVF
  S CNT=0,X=0 F  S X=$O(^TMP("VAFCHFS",$J,X)) Q:'X  S TXT=^TMP("VAFCHFS",$J,X) D  I $S<3000 S VAFC(CNT)="*** QUERY TERMINATED DUE TO VOLUME OF DATA FOR SELECTED DATE RANGE ***" Q  ;**477
  . I $E(TXT,1,20)="Treating Facilities:" S VAFC(CNT)="" S CNT=CNT+1
  . I $E(TXT,1,12)="Subscribers:" S VAFC(CNT)="" S CNT=CNT+1
  . I $E(TXT,1,12)="ICN History:" S VAFC(CNT)="" S CNT=CNT+1
  . I $E(TXT,1,13)="CMOR History:" S VAFC(CNT)="" S CNT=CNT+1
  . I $E(TXT,1,28)="CMOR Change Request History:" S VAFC(CNT)="" S CNT=CNT+1
- . I TXT'="" I $E(TXT,1,12)'="Enter RETURN" S VAFC(CNT)=^TMP("VAFCHFS",$J,X),CNT=CNT+1
+ . I TXT'="",$E(TXT,1,12)'="Enter RETURN" D
+ .. S VAFC(CNT)=^TMP("VAFCHFS",$J,X)
+ .. ;**1059,Story 11114,11118 (mko): Account for lines > 255 characters; overflow is in "OVF" nodes.
+ .. S OVF="" F  S OVF=$O(^TMP("VAFCHFS",$J,X,"OVF",OVF)) Q:'OVF  S VAFC(CNT)=VAFC(CNT)_$G(^TMP("VAFCHFS",$J,X,"OVF",OVF))
+ .. S CNT=CNT+1
  K ^TMP("VAFCHFS",$J)
  Q
 CREATE ;create entry in File #8989.51 for remote HFS functionality

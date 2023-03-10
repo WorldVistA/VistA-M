@@ -1,6 +1,12 @@
 PRCHDP2 ;ID/RSD/RHD-DISPLAY P.O. ;  [7/22/98 11:11am]
-V ;;5.1;IFCAP;**38,131**;Oct 20, 2000;Build 13
- ;Per VHA Directive 2004-038, this routine should not be modified.
+V ;;5.1;IFCAP;**38,131,221**;Oct 20, 2000;Build 14
+ ;Per VA Directive 6402, this routine should not be modified.
+ ;
+ ;PRC*5.1*221 Modify an item description display to skip '|' logic
+ ;            if description contains a undefined display command
+ ;            like '| IN '.
+ ;
+ N PRCHAMNT,PRCHAMCT S PRCHAMNT=0 I $D(^PRC(442,D0,6,0)) S PRCHAMCT=$P(^PRC(442,D0,6,0),U,3),PRCHAMNT=1    ;PRC*5.1*221
  W !?8,"ENTER '^' TO HALT: " S PRCHDQ=0 R X:DTIME S:X["^" PRCHDQ=1 G ASK2:PRCHDQ D HDR
  S (N,PRCHDI)=0 F I=0:0 S PRCHDI=$O(^PRC(442,D0,2,PRCHDI)) Q:PRCHDI'>0  S PRCHDI0=^(PRCHDI,0),PRCHDI2=$S($D(^(2)):^(2),1:""),N=+PRCHDI0 D ITEM G:PRCHDQ ASK2
  S PRCHDI=0 F I=0:0 S PRCHDI=$O(^PRC(442,D0,3,PRCHDI)) Q:PRCHDI'>0  S PRCHDI0=^(PRCHDI,0),N=N+1 W !?2,$J(N,3),?7,"LESS ",$P(PRCHDI0,U,2),$S($E($P(PRCHDI0,U,2),1)="$":"",1:" %")," FOR " D DIS
@@ -24,12 +30,21 @@ PT1 K DIC S (PRCHPO,DA(1))=D0,DIC="^PRC(442,DA(1),11,",DIC(0)="NEAZ"
  D ^DIC G:Y<0 Q S PRCHDPT=+Y,PRCHDRD=$P(Y(0),U,1),PRCHDTP=1 D ^PRCHDP3 G PT1
 ASK I $Y+5>IOSL W !?8,"ENTER '^' TO HALT: " R X:DTIME S:X["^" PRCHDQ=1 D:'PRCHDQ HDR Q
  Q
-ASK1 W !,$C(7) G:PRCHDQ Q W "END OF DISPLAY--PRESS RETURN OR ENTER '^' TO HALT: " R X:DTIME G Q
+ASK1 I $G(PRCHAMNT)=2 D    ;PRC*5.1*221
+ . W !!,"** An amendment updated the order during your display that affected  **"
+ . W !,"** the order's first page total and any items that were amended      **"
+ . W !,"** for price/quantity. If the accuracy of the displayed order is     **"
+ . W !,"** critical, you should re-display the order again with the updated  **"
+ . W !,"** order total and items.                                            **"
+ . W !,""
+ . Q
+ W !,$C(7) G:PRCHDQ Q W "END OF DISPLAY--PRESS RETURN OR ENTER '^' TO HALT: " R X:DTIME G Q
 HDR W:$Y>0 @IOF,!!?55,"UNIT",?70,"TOTAL",!,"ITEM",?15,"DESCRIPTION",?42,"QTY",?46,"UNIT",?55,"COST",?70,"COST",! F I=1:1:80 W "-"
  Q
 ITEM S DIWL=1,DIWR=33,DIWF="",PRCHDIW=0 K ^UTILITY($J,"W")
- N PURCTYPE S:$P($G(^PRC(442,D0,23)),"^",11)="S" PURCTYPE=1
- F PRCHJ=1:1 S PRCHDIW=$O(^PRC(442,D0,2,PRCHDI,1,PRCHDIW)) Q:PRCHDIW'>0  S X=$S($D(^(PRCHDIW,0)):^(0),1:"") D DIWP^PRCUTL($G(DA))
+ N PURCTYPE,PURPIPE,PRCHI,PRCHJ S:$P($G(^PRC(442,D0,23)),"^",11)="S" PURCTYPE=1   ;PRC*5.1*221  
+ D PIPECK S PRCHDIW=0   ;PRC*5.1*221
+ F PRCHJ=1:1 S PRCHDIW=$O(^PRC(442,D0,2,PRCHDI,1,PRCHDIW)) Q:PRCHDIW'>0  S X=$S($D(^(PRCHDIW,0)):^(0),1:"") S:PURPIPE DIWF=$G(DIWF)_"|"  D DIWP^PRCUTL($G(DA))   ;PRC*5.1*221
  K ^TMP($J,"W") S %X="^UTILITY($J,""W"",",%Y="^TMP($J,""W""," D %XY^%RCR
  S PRCHDCNT=$S($D(^TMP($J,"W",1)):^(1),1:"") W ! I $G(PURCTYPE)="" W ?2,$J(+$P(PRCHDI0,U,1),3)
  W ?7,$S($D(^(1,1,0)):^(0),1:"")
@@ -78,3 +93,10 @@ ADJCHK ;Check for any Adjustment on PO. If any show the adjuster. PRC*5.1*38
  Q
 Q ;W @IOF  ;REMOVE IF PROBLEM WITH KERNEL V6.5
  K I,J,K,N,DIC,DIWF,DIWL,DIWR,IOP,PRCHDI,PRCHD0,PRCHD1,PRCHFTYP,PRCHDSIT,PRCHDHSP,PRCHDSHP,PRCHDST,PRCHDS,PRCHDV,PRCHDQ,PRCHDI0,PRCHDI2,PRCHDIW,PRCHDCNT,PRCHI,PRCHJ,PRCHK,S,V,^TMP($J,"W"),^UTILITY($J,"W"),KK,JJ Q
+PIPECK ;check for invalid pipe '|IN ' command in item description   ;PRC*5.1*221
+ S PURPIPE=0,PRCH=0
+ F PRCHI=1:1 S PRCH=$O(^PRC(442,D0,2,PRCH)),PRCHDIW=0 Q:'PRCH  D  Q:PURPIPE
+ . F PRCHJ=1:1 S PRCHDIW=$O(^PRC(442,D0,2,PRCH,1,PRCHDIW)) Q:PRCHDIW'>0  S X=$S($D(^(PRCHDIW,0)):^(0),1:"") D  Q:PURPIPE
+ . . I X["| IN " S PURPIPE=1
+ . . Q
+ Q

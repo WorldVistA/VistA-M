@@ -1,130 +1,128 @@
-IBDEI0VG ; ; 04-FEB-2020
- ;;3.0;IB ENCOUNTER FORM IMP/EXP;;FEB 04, 2020
+IBDEI0VG ; ; 01-FEB-2022
+ ;;3.0;IB ENCOUNTER FORM IMP/EXP;;FEB 01, 2022
  Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,999) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
- ;;^UTILITY(U,$J,358.3,14002,2)
- ;;=^5012096
- ;;^UTILITY(U,$J,358.3,14003,0)
- ;;=M45.9^^83^821^7
- ;;^UTILITY(U,$J,358.3,14003,1,0)
+ ;;^UTILITY(U,$J,358.3,14184,0)
+ ;;=M79.10^^55^671^34
+ ;;^UTILITY(U,$J,358.3,14184,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,14003,1,3,0)
- ;;=3^Ankylosing Spondylitis,Spine,Unspec Site
- ;;^UTILITY(U,$J,358.3,14003,1,4,0)
- ;;=4^M45.9
- ;;^UTILITY(U,$J,358.3,14003,2)
- ;;=^5011969
- ;;^UTILITY(U,$J,358.3,14004,0)
- ;;=M13.0^^83^821^11
- ;;^UTILITY(U,$J,358.3,14004,1,0)
+ ;;^UTILITY(U,$J,358.3,14184,1,3,0)
+ ;;=3^Myalgia,Unspec Site
+ ;;^UTILITY(U,$J,358.3,14184,1,4,0)
+ ;;=4^M79.10
+ ;;^UTILITY(U,$J,358.3,14184,2)
+ ;;=^5157394
+ ;;^UTILITY(U,$J,358.3,14185,0)
+ ;;=M79.18^^55^671^33
+ ;;^UTILITY(U,$J,358.3,14185,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,14004,1,3,0)
- ;;=3^Arthritis,Polyarthritis,Unspec
- ;;^UTILITY(U,$J,358.3,14004,1,4,0)
- ;;=4^M13.0
- ;;^UTILITY(U,$J,358.3,14004,2)
- ;;=^5010667
- ;;^UTILITY(U,$J,358.3,14005,0)
- ;;=M15.9^^83^821^12
- ;;^UTILITY(U,$J,358.3,14005,1,0)
+ ;;^UTILITY(U,$J,358.3,14185,1,3,0)
+ ;;=3^Myalgia,Other Site
+ ;;^UTILITY(U,$J,358.3,14185,1,4,0)
+ ;;=4^M79.18
+ ;;^UTILITY(U,$J,358.3,14185,2)
+ ;;=^5157397
+ ;;^UTILITY(U,$J,358.3,14186,0)
+ ;;=G89.11^^55^672^1
+ ;;^UTILITY(U,$J,358.3,14186,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,14005,1,3,0)
- ;;=3^Arthritis,Polyosteoarthritis,Unspec
- ;;^UTILITY(U,$J,358.3,14005,1,4,0)
- ;;=4^M15.9
- ;;^UTILITY(U,$J,358.3,14005,2)
- ;;=^5010768
- ;;^UTILITY(U,$J,358.3,14006,0)
- ;;=M15.4^^83^821^8
- ;;^UTILITY(U,$J,358.3,14006,1,0)
+ ;;^UTILITY(U,$J,358.3,14186,1,3,0)
+ ;;=3^Acute pain due to trauma
+ ;;^UTILITY(U,$J,358.3,14186,1,4,0)
+ ;;=4^G89.11
+ ;;^UTILITY(U,$J,358.3,14186,2)
+ ;;=^5004152
+ ;;^UTILITY(U,$J,358.3,14187,0)
+ ;;=G89.21^^55^672^3
+ ;;^UTILITY(U,$J,358.3,14187,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,14006,1,3,0)
- ;;=3^Arthritis (Osteo),Erosive
- ;;^UTILITY(U,$J,358.3,14006,1,4,0)
- ;;=4^M15.4
- ;;^UTILITY(U,$J,358.3,14006,2)
- ;;=^5010766
- ;;^UTILITY(U,$J,358.3,14007,0)
- ;;=M15.0^^83^821^9
- ;;^UTILITY(U,$J,358.3,14007,1,0)
+ ;;^UTILITY(U,$J,358.3,14187,1,3,0)
+ ;;=3^Chronic Pain d/t Trauma
+ ;;^UTILITY(U,$J,358.3,14187,1,4,0)
+ ;;=4^G89.21
+ ;;^UTILITY(U,$J,358.3,14187,2)
+ ;;=^5004155
+ ;;^UTILITY(U,$J,358.3,14188,0)
+ ;;=G89.18^^55^672^2
+ ;;^UTILITY(U,$J,358.3,14188,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,14007,1,3,0)
- ;;=3^Arthritis (Osteo),Primary Generalized
- ;;^UTILITY(U,$J,358.3,14007,1,4,0)
- ;;=4^M15.0
- ;;^UTILITY(U,$J,358.3,14007,2)
- ;;=^5010762
- ;;^UTILITY(U,$J,358.3,14008,0)
- ;;=M13.10^^83^821^10
- ;;^UTILITY(U,$J,358.3,14008,1,0)
+ ;;^UTILITY(U,$J,358.3,14188,1,3,0)
+ ;;=3^Acute postprocedural pain NEC
+ ;;^UTILITY(U,$J,358.3,14188,1,4,0)
+ ;;=4^G89.18
+ ;;^UTILITY(U,$J,358.3,14188,2)
+ ;;=^5004154
+ ;;^UTILITY(U,$J,358.3,14189,0)
+ ;;=G89.28^^55^672^5
+ ;;^UTILITY(U,$J,358.3,14189,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,14008,1,3,0)
- ;;=3^Arthritis,Monoarthritis,Unspec Site NEC
- ;;^UTILITY(U,$J,358.3,14008,1,4,0)
- ;;=4^M13.10
- ;;^UTILITY(U,$J,358.3,14008,2)
- ;;=^5010668
- ;;^UTILITY(U,$J,358.3,14009,0)
- ;;=M15.3^^83^821^13
- ;;^UTILITY(U,$J,358.3,14009,1,0)
+ ;;^UTILITY(U,$J,358.3,14189,1,3,0)
+ ;;=3^Chronic postprocedural pain NEC
+ ;;^UTILITY(U,$J,358.3,14189,1,4,0)
+ ;;=4^G89.28
+ ;;^UTILITY(U,$J,358.3,14189,2)
+ ;;=^5004157
+ ;;^UTILITY(U,$J,358.3,14190,0)
+ ;;=G89.29^^55^672^4
+ ;;^UTILITY(U,$J,358.3,14190,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,14009,1,3,0)
- ;;=3^Arthritis,Secondary Multiple
- ;;^UTILITY(U,$J,358.3,14009,1,4,0)
- ;;=4^M15.3
- ;;^UTILITY(U,$J,358.3,14009,2)
- ;;=^5010765
- ;;^UTILITY(U,$J,358.3,14010,0)
- ;;=M11.9^^83^821^14
- ;;^UTILITY(U,$J,358.3,14010,1,0)
+ ;;^UTILITY(U,$J,358.3,14190,1,3,0)
+ ;;=3^Chronic Pain,Other
+ ;;^UTILITY(U,$J,358.3,14190,1,4,0)
+ ;;=4^G89.29
+ ;;^UTILITY(U,$J,358.3,14190,2)
+ ;;=^5004158
+ ;;^UTILITY(U,$J,358.3,14191,0)
+ ;;=M00.851^^55^673^2
+ ;;^UTILITY(U,$J,358.3,14191,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,14010,1,3,0)
- ;;=3^Arthropathy,Crystal,Unspec
- ;;^UTILITY(U,$J,358.3,14010,1,4,0)
- ;;=4^M11.9
- ;;^UTILITY(U,$J,358.3,14010,2)
- ;;=^5010497
- ;;^UTILITY(U,$J,358.3,14011,0)
- ;;=M12.9^^83^821^15
- ;;^UTILITY(U,$J,358.3,14011,1,0)
+ ;;^UTILITY(U,$J,358.3,14191,1,3,0)
+ ;;=3^Arthritis d/t other bacteria, right hip
+ ;;^UTILITY(U,$J,358.3,14191,1,4,0)
+ ;;=4^M00.851
+ ;;^UTILITY(U,$J,358.3,14191,2)
+ ;;=^5009682
+ ;;^UTILITY(U,$J,358.3,14192,0)
+ ;;=M00.852^^55^673^1
+ ;;^UTILITY(U,$J,358.3,14192,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,14011,1,3,0)
- ;;=3^Arthropathy,Unspec
- ;;^UTILITY(U,$J,358.3,14011,1,4,0)
- ;;=4^M12.9
- ;;^UTILITY(U,$J,358.3,14011,2)
- ;;=^5010666
- ;;^UTILITY(U,$J,358.3,14012,0)
- ;;=Z97.10^^83^821^16
- ;;^UTILITY(U,$J,358.3,14012,1,0)
+ ;;^UTILITY(U,$J,358.3,14192,1,3,0)
+ ;;=3^Arthritis d/t other bacteria, left hip
+ ;;^UTILITY(U,$J,358.3,14192,1,4,0)
+ ;;=4^M00.852
+ ;;^UTILITY(U,$J,358.3,14192,2)
+ ;;=^5009683
+ ;;^UTILITY(U,$J,358.3,14193,0)
+ ;;=S70.02XA^^55^673^5
+ ;;^UTILITY(U,$J,358.3,14193,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,14012,1,3,0)
- ;;=3^Artificial Limb,Unspec
- ;;^UTILITY(U,$J,358.3,14012,1,4,0)
- ;;=4^Z97.10
- ;;^UTILITY(U,$J,358.3,14012,2)
- ;;=^5063721
- ;;^UTILITY(U,$J,358.3,14013,0)
- ;;=M99.9^^83^821^17
- ;;^UTILITY(U,$J,358.3,14013,1,0)
+ ;;^UTILITY(U,$J,358.3,14193,1,3,0)
+ ;;=3^Contusion of left hip, initial encounter
+ ;;^UTILITY(U,$J,358.3,14193,1,4,0)
+ ;;=4^S70.02XA
+ ;;^UTILITY(U,$J,358.3,14193,2)
+ ;;=^5036837
+ ;;^UTILITY(U,$J,358.3,14194,0)
+ ;;=S70.01XA^^55^673^7
+ ;;^UTILITY(U,$J,358.3,14194,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,14013,1,3,0)
- ;;=3^Biomechanical Lesion,Unspec
- ;;^UTILITY(U,$J,358.3,14013,1,4,0)
- ;;=4^M99.9
- ;;^UTILITY(U,$J,358.3,14013,2)
- ;;=^5015490
- ;;^UTILITY(U,$J,358.3,14014,0)
- ;;=M85.9^^83^821^27
- ;;^UTILITY(U,$J,358.3,14014,1,0)
+ ;;^UTILITY(U,$J,358.3,14194,1,3,0)
+ ;;=3^Contusion of right hip, initial encounter
+ ;;^UTILITY(U,$J,358.3,14194,1,4,0)
+ ;;=4^S70.01XA
+ ;;^UTILITY(U,$J,358.3,14194,2)
+ ;;=^5036834
+ ;;^UTILITY(U,$J,358.3,14195,0)
+ ;;=S72.142A^^55^673^15
+ ;;^UTILITY(U,$J,358.3,14195,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,14014,1,3,0)
- ;;=3^Done Density/Structure Disorder,Unspec
- ;;^UTILITY(U,$J,358.3,14014,1,4,0)
- ;;=4^M85.9
- ;;^UTILITY(U,$J,358.3,14014,2)
- ;;=^5014496
- ;;^UTILITY(U,$J,358.3,14015,0)
- ;;=M89.20^^83^821^18
- ;;^UTILITY(U,$J,358.3,14015,1,0)
+ ;;^UTILITY(U,$J,358.3,14195,1,3,0)
+ ;;=3^Displaced intertrochanteric fracture of left femur, init
+ ;;^UTILITY(U,$J,358.3,14195,1,4,0)
+ ;;=4^S72.142A
+ ;;^UTILITY(U,$J,358.3,14195,2)
+ ;;=^5037931
+ ;;^UTILITY(U,$J,358.3,14196,0)
+ ;;=S72.141A^^55^673^16
+ ;;^UTILITY(U,$J,358.3,14196,1,0)
  ;;=^358.31IA^4^2

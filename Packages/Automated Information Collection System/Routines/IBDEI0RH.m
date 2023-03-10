@@ -1,126 +1,130 @@
-IBDEI0RH ; ; 04-FEB-2020
- ;;3.0;IB ENCOUNTER FORM IMP/EXP;;FEB 04, 2020
+IBDEI0RH ; ; 01-FEB-2022
+ ;;3.0;IB ENCOUNTER FORM IMP/EXP;;FEB 01, 2022
  Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,999) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
- ;;^UTILITY(U,$J,358.3,12263,1,3,0)
- ;;=3^Laceration w/o FB of Right Lower Leg,Init Encntr
- ;;^UTILITY(U,$J,358.3,12263,1,4,0)
- ;;=4^S81.811A
- ;;^UTILITY(U,$J,358.3,12263,2)
- ;;=^5040071
- ;;^UTILITY(U,$J,358.3,12264,0)
- ;;=S71.111A^^80^774^62
- ;;^UTILITY(U,$J,358.3,12264,1,0)
+ ;;^UTILITY(U,$J,358.3,12371,1,4,0)
+ ;;=4^I50.9
+ ;;^UTILITY(U,$J,358.3,12371,2)
+ ;;=^5007251
+ ;;^UTILITY(U,$J,358.3,12372,0)
+ ;;=I73.9^^49^598^33
+ ;;^UTILITY(U,$J,358.3,12372,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,12264,1,3,0)
- ;;=3^Laceration w/o FB of Right Thigh,Init Encntr
- ;;^UTILITY(U,$J,358.3,12264,1,4,0)
- ;;=4^S71.111A
- ;;^UTILITY(U,$J,358.3,12264,2)
- ;;=^5037014
- ;;^UTILITY(U,$J,358.3,12265,0)
- ;;=C44.00^^80^775^11
- ;;^UTILITY(U,$J,358.3,12265,1,0)
+ ;;^UTILITY(U,$J,358.3,12372,1,3,0)
+ ;;=3^Periph Vascular Disease,Unspec
+ ;;^UTILITY(U,$J,358.3,12372,1,4,0)
+ ;;=4^I73.9
+ ;;^UTILITY(U,$J,358.3,12372,2)
+ ;;=^184182
+ ;;^UTILITY(U,$J,358.3,12373,0)
+ ;;=I87.2^^49^598^38
+ ;;^UTILITY(U,$J,358.3,12373,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,12265,1,3,0)
- ;;=3^Malig Neop of Skin of Lip
- ;;^UTILITY(U,$J,358.3,12265,1,4,0)
- ;;=4^C44.00
- ;;^UTILITY(U,$J,358.3,12265,2)
- ;;=^340596
- ;;^UTILITY(U,$J,358.3,12266,0)
- ;;=C44.202^^80^775^13
- ;;^UTILITY(U,$J,358.3,12266,1,0)
+ ;;^UTILITY(U,$J,358.3,12373,1,3,0)
+ ;;=3^Venous Insufficiency
+ ;;^UTILITY(U,$J,358.3,12373,1,4,0)
+ ;;=4^I87.2
+ ;;^UTILITY(U,$J,358.3,12373,2)
+ ;;=^5008047
+ ;;^UTILITY(U,$J,358.3,12374,0)
+ ;;=R03.0^^49^598^14
+ ;;^UTILITY(U,$J,358.3,12374,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,12266,1,3,0)
- ;;=3^Malig Neop of Skin of Right Ear
- ;;^UTILITY(U,$J,358.3,12266,1,4,0)
- ;;=4^C44.202
- ;;^UTILITY(U,$J,358.3,12266,2)
- ;;=^5001029
- ;;^UTILITY(U,$J,358.3,12267,0)
- ;;=C44.209^^80^775^6
- ;;^UTILITY(U,$J,358.3,12267,1,0)
+ ;;^UTILITY(U,$J,358.3,12374,1,3,0)
+ ;;=3^Elevated B/P Reading w/o HTN Dx
+ ;;^UTILITY(U,$J,358.3,12374,1,4,0)
+ ;;=4^R03.0
+ ;;^UTILITY(U,$J,358.3,12374,2)
+ ;;=^5019171
+ ;;^UTILITY(U,$J,358.3,12375,0)
+ ;;=I25.110^^49^598^3
+ ;;^UTILITY(U,$J,358.3,12375,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,12267,1,3,0)
- ;;=3^Malig Neop of Skin of Left Ear
- ;;^UTILITY(U,$J,358.3,12267,1,4,0)
- ;;=4^C44.209
- ;;^UTILITY(U,$J,358.3,12267,2)
- ;;=^5001030
- ;;^UTILITY(U,$J,358.3,12268,0)
- ;;=C44.300^^80^775^5
- ;;^UTILITY(U,$J,358.3,12268,1,0)
+ ;;^UTILITY(U,$J,358.3,12375,1,3,0)
+ ;;=3^Athscl Hrt Disease,Native Coronary Artery w/ Unstable Angina
+ ;;^UTILITY(U,$J,358.3,12375,1,4,0)
+ ;;=4^I25.110
+ ;;^UTILITY(U,$J,358.3,12375,2)
+ ;;=^5007108
+ ;;^UTILITY(U,$J,358.3,12376,0)
+ ;;=I25.119^^49^598^4
+ ;;^UTILITY(U,$J,358.3,12376,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,12268,1,3,0)
- ;;=3^Malig Neop of Skin of Face,Unspec
- ;;^UTILITY(U,$J,358.3,12268,1,4,0)
- ;;=4^C44.300
- ;;^UTILITY(U,$J,358.3,12268,2)
- ;;=^5001040
- ;;^UTILITY(U,$J,358.3,12269,0)
- ;;=C44.301^^80^775^12
- ;;^UTILITY(U,$J,358.3,12269,1,0)
+ ;;^UTILITY(U,$J,358.3,12376,1,3,0)
+ ;;=3^Athscl Hrt Disease,Native Coronary Artery w/ Unspec Angina
+ ;;^UTILITY(U,$J,358.3,12376,1,4,0)
+ ;;=4^I25.119
+ ;;^UTILITY(U,$J,358.3,12376,2)
+ ;;=^5007111
+ ;;^UTILITY(U,$J,358.3,12377,0)
+ ;;=I48.0^^49^598^31
+ ;;^UTILITY(U,$J,358.3,12377,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,12269,1,3,0)
- ;;=3^Malig Neop of Skin of Nose
- ;;^UTILITY(U,$J,358.3,12269,1,4,0)
- ;;=4^C44.301
- ;;^UTILITY(U,$J,358.3,12269,2)
- ;;=^5001041
- ;;^UTILITY(U,$J,358.3,12270,0)
- ;;=C44.309^^80^775^4
- ;;^UTILITY(U,$J,358.3,12270,1,0)
+ ;;^UTILITY(U,$J,358.3,12377,1,3,0)
+ ;;=3^Paroxysmal Atrial Fibrillation
+ ;;^UTILITY(U,$J,358.3,12377,1,4,0)
+ ;;=4^I48.0
+ ;;^UTILITY(U,$J,358.3,12377,2)
+ ;;=^90473
+ ;;^UTILITY(U,$J,358.3,12378,0)
+ ;;=I48.92^^49^598^10
+ ;;^UTILITY(U,$J,358.3,12378,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,12270,1,3,0)
- ;;=3^Malig Neop of Skin of Face NEC
- ;;^UTILITY(U,$J,358.3,12270,1,4,0)
- ;;=4^C44.309
- ;;^UTILITY(U,$J,358.3,12270,2)
- ;;=^5001042
- ;;^UTILITY(U,$J,358.3,12271,0)
- ;;=C44.40^^80^775^18
- ;;^UTILITY(U,$J,358.3,12271,1,0)
+ ;;^UTILITY(U,$J,358.3,12378,1,3,0)
+ ;;=3^Atrial Flutter,Unspec
+ ;;^UTILITY(U,$J,358.3,12378,1,4,0)
+ ;;=4^I48.92
+ ;;^UTILITY(U,$J,358.3,12378,2)
+ ;;=^5007230
+ ;;^UTILITY(U,$J,358.3,12379,0)
+ ;;=I48.3^^49^598^36
+ ;;^UTILITY(U,$J,358.3,12379,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,12271,1,3,0)
- ;;=3^Malig Neop of Skin of Scalp/Neck
- ;;^UTILITY(U,$J,358.3,12271,1,4,0)
- ;;=4^C44.40
- ;;^UTILITY(U,$J,358.3,12271,2)
- ;;=^340600
- ;;^UTILITY(U,$J,358.3,12272,0)
- ;;=C44.500^^80^775^1
- ;;^UTILITY(U,$J,358.3,12272,1,0)
+ ;;^UTILITY(U,$J,358.3,12379,1,3,0)
+ ;;=3^Typical Atrial Flutter
+ ;;^UTILITY(U,$J,358.3,12379,1,4,0)
+ ;;=4^I48.3
+ ;;^UTILITY(U,$J,358.3,12379,2)
+ ;;=^5007227
+ ;;^UTILITY(U,$J,358.3,12380,0)
+ ;;=I48.4^^49^598^11
+ ;;^UTILITY(U,$J,358.3,12380,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,12272,1,3,0)
- ;;=3^Malig Neop of Anal Skin
- ;;^UTILITY(U,$J,358.3,12272,1,4,0)
- ;;=4^C44.500
- ;;^UTILITY(U,$J,358.3,12272,2)
- ;;=^5001051
- ;;^UTILITY(U,$J,358.3,12273,0)
- ;;=C44.501^^80^775^3
- ;;^UTILITY(U,$J,358.3,12273,1,0)
+ ;;^UTILITY(U,$J,358.3,12380,1,3,0)
+ ;;=3^Atypical Atrial Flutter
+ ;;^UTILITY(U,$J,358.3,12380,1,4,0)
+ ;;=4^I48.4
+ ;;^UTILITY(U,$J,358.3,12380,2)
+ ;;=^5007228
+ ;;^UTILITY(U,$J,358.3,12381,0)
+ ;;=I16.9^^49^598^23
+ ;;^UTILITY(U,$J,358.3,12381,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,12273,1,3,0)
- ;;=3^Malig Neop of Skin of Breast
- ;;^UTILITY(U,$J,358.3,12273,1,4,0)
- ;;=4^C44.501
- ;;^UTILITY(U,$J,358.3,12273,2)
- ;;=^5001052
- ;;^UTILITY(U,$J,358.3,12274,0)
- ;;=C44.509^^80^775^19
- ;;^UTILITY(U,$J,358.3,12274,1,0)
+ ;;^UTILITY(U,$J,358.3,12381,1,3,0)
+ ;;=3^Hypertensive Crisis,Unspec
+ ;;^UTILITY(U,$J,358.3,12381,1,4,0)
+ ;;=4^I16.9
+ ;;^UTILITY(U,$J,358.3,12381,2)
+ ;;=^5138600
+ ;;^UTILITY(U,$J,358.3,12382,0)
+ ;;=I16.1^^49^598^24
+ ;;^UTILITY(U,$J,358.3,12382,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,12274,1,3,0)
- ;;=3^Malig Neop of Skin of Trunk NEC
- ;;^UTILITY(U,$J,358.3,12274,1,4,0)
- ;;=4^C44.509
- ;;^UTILITY(U,$J,358.3,12274,2)
- ;;=^5001053
- ;;^UTILITY(U,$J,358.3,12275,0)
- ;;=C44.602^^80^775^17
- ;;^UTILITY(U,$J,358.3,12275,1,0)
+ ;;^UTILITY(U,$J,358.3,12382,1,3,0)
+ ;;=3^Hypertensive Emergency
+ ;;^UTILITY(U,$J,358.3,12382,1,4,0)
+ ;;=4^I16.1
+ ;;^UTILITY(U,$J,358.3,12382,2)
+ ;;=^8204721
+ ;;^UTILITY(U,$J,358.3,12383,0)
+ ;;=I16.0^^49^598^25
+ ;;^UTILITY(U,$J,358.3,12383,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,12275,1,3,0)
- ;;=3^Malig Neop of Skin of Right Upper Limb
+ ;;^UTILITY(U,$J,358.3,12383,1,3,0)
+ ;;=3^Hypertensive Urgency
+ ;;^UTILITY(U,$J,358.3,12383,1,4,0)
+ ;;=4^I16.0
+ ;;^UTILITY(U,$J,358.3,12383,2)
+ ;;=^8133013
+ ;;^UTILITY(U,$J,358.3,12384,0)
+ ;;=I12.9^^49^598^15

@@ -1,5 +1,5 @@
 RCDPURE1 ;WISC/RFJ - Process a Receipt ;Jun 06, 2014@19:11:19
- ;;4.5;Accounts Receivable;**114,148,153,169,204,173,214,217,296,298,304,321**;Mar 20, 1995;Build 48
+ ;;4.5;Accounts Receivable;**114,148,153,169,204,173,214,217,296,298,304,321,367**;Mar 20, 1995;Build 11
  ;;Per VA Directive 6402, this routine should not be modified.
  Q
  ;
@@ -190,8 +190,8 @@ EDIT4(DA,DR,RCDR1,RCDR2,RCDR3) ; Modify DR string for type of payment edit
  ; Reset field .04 and .17 if not a valid type change
  S RCDR2=RCDR2_";@"_(RCP+1)_";.04////^S X=RCO4;I RCOE="""" S Y=""@"_(RCP+3)_""";"
  S RCDR2=RCDR2_".17////^S X=RCOE;@"_(RCP+3)_";"
- ; PRCA*4.5*321 Modified error message logic in $S
- S RCDR2=RCDR2_"W !,*7,$S(RCN4=14&RCNO:RCM2,RCO4=14:RCM1,1:RCM),! S Y=""@"_RCP_""";@"_(RCP+2)
+ ; PRCA*4.5*321 Modified error message logic in $S ; PRCA*4.5*367 - Added RECEIPT TOTAL if type is CHAMPVA
+ S RCDR2=RCDR2_"W !,*7,$S(RCN4=14&RCNO:RCM2,RCO4=14:RCM1,1:RCM),! S Y=""@"_RCP_""";@"_(RCP+4)_";.06///@;.22;S Y=""@99"";@"_(RCP+2)
  S RCDR3=$P(DR,".04;",RCSTRT+1,RCLST)
  Q
  ;

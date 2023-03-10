@@ -1,124 +1,120 @@
-IBDEI0VP ; ; 04-FEB-2020
- ;;3.0;IB ENCOUNTER FORM IMP/EXP;;FEB 04, 2020
+IBDEI0VP ; ; 01-FEB-2022
+ ;;3.0;IB ENCOUNTER FORM IMP/EXP;;FEB 01, 2022
  Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,999) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
- ;;^UTILITY(U,$J,358.3,14114,1,0)
+ ;;^UTILITY(U,$J,358.3,14289,2)
+ ;;=^5010839
+ ;;^UTILITY(U,$J,358.3,14290,0)
+ ;;=S43.005D^^55^674^20
+ ;;^UTILITY(U,$J,358.3,14290,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,14114,1,3,0)
- ;;=3^Osteochondrosis,Spinal,Unspec
- ;;^UTILITY(U,$J,358.3,14114,1,4,0)
- ;;=4^M42.9
- ;;^UTILITY(U,$J,358.3,14114,2)
- ;;=^5011910
- ;;^UTILITY(U,$J,358.3,14115,0)
- ;;=M89.50^^83^821^120
- ;;^UTILITY(U,$J,358.3,14115,1,0)
+ ;;^UTILITY(U,$J,358.3,14290,1,3,0)
+ ;;=3^Dislocation of left shoulder joint, subs encntr
+ ;;^UTILITY(U,$J,358.3,14290,1,4,0)
+ ;;=4^S43.005D
+ ;;^UTILITY(U,$J,358.3,14290,2)
+ ;;=^5027667
+ ;;^UTILITY(U,$J,358.3,14291,0)
+ ;;=M80.072A^^55^675^3
+ ;;^UTILITY(U,$J,358.3,14291,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,14115,1,3,0)
- ;;=3^Osteolysis,Unspec Site
- ;;^UTILITY(U,$J,358.3,14115,1,4,0)
- ;;=4^M89.50
- ;;^UTILITY(U,$J,358.3,14115,2)
- ;;=^5015037
- ;;^UTILITY(U,$J,358.3,14116,0)
- ;;=M83.9^^83^821^121
- ;;^UTILITY(U,$J,358.3,14116,1,0)
+ ;;^UTILITY(U,$J,358.3,14291,1,3,0)
+ ;;=3^Age-rel osteopor w current path fracture, left ank/ft, init
+ ;;^UTILITY(U,$J,358.3,14291,1,4,0)
+ ;;=4^M80.072A
+ ;;^UTILITY(U,$J,358.3,14291,2)
+ ;;=^5013483
+ ;;^UTILITY(U,$J,358.3,14292,0)
+ ;;=M80.071A^^55^675^4
+ ;;^UTILITY(U,$J,358.3,14292,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,14116,1,3,0)
- ;;=3^Osteomalacia,Unspec
- ;;^UTILITY(U,$J,358.3,14116,1,4,0)
- ;;=4^M83.9
- ;;^UTILITY(U,$J,358.3,14116,2)
- ;;=^5013565
- ;;^UTILITY(U,$J,358.3,14117,0)
- ;;=M86.9^^83^821^122
- ;;^UTILITY(U,$J,358.3,14117,1,0)
+ ;;^UTILITY(U,$J,358.3,14292,1,3,0)
+ ;;=3^Age-rel osteopor w current path fracture, right ank/ft, init
+ ;;^UTILITY(U,$J,358.3,14292,1,4,0)
+ ;;=4^M80.071A
+ ;;^UTILITY(U,$J,358.3,14292,2)
+ ;;=^5013477
+ ;;^UTILITY(U,$J,358.3,14293,0)
+ ;;=S80.12XA^^55^675^5
+ ;;^UTILITY(U,$J,358.3,14293,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,14117,1,3,0)
- ;;=3^Osteomyelitis,Unspec
- ;;^UTILITY(U,$J,358.3,14117,1,4,0)
- ;;=4^M86.9
- ;;^UTILITY(U,$J,358.3,14117,2)
- ;;=^5014656
- ;;^UTILITY(U,$J,358.3,14118,0)
- ;;=M87.9^^83^821^123
- ;;^UTILITY(U,$J,358.3,14118,1,0)
+ ;;^UTILITY(U,$J,358.3,14293,1,3,0)
+ ;;=3^Contusion of left lower leg, initial encounter
+ ;;^UTILITY(U,$J,358.3,14293,1,4,0)
+ ;;=4^S80.12XA
+ ;;^UTILITY(U,$J,358.3,14293,2)
+ ;;=^5039903
+ ;;^UTILITY(U,$J,358.3,14294,0)
+ ;;=S80.11XA^^55^675^7
+ ;;^UTILITY(U,$J,358.3,14294,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,14118,1,3,0)
- ;;=3^Osteonecrosis,Unspec
- ;;^UTILITY(U,$J,358.3,14118,1,4,0)
- ;;=4^M87.9
- ;;^UTILITY(U,$J,358.3,14118,2)
- ;;=^5014873
- ;;^UTILITY(U,$J,358.3,14119,0)
- ;;=M89.60^^83^821^124
- ;;^UTILITY(U,$J,358.3,14119,1,0)
+ ;;^UTILITY(U,$J,358.3,14294,1,3,0)
+ ;;=3^Contusion of right lower leg, initial encounter
+ ;;^UTILITY(U,$J,358.3,14294,1,4,0)
+ ;;=4^S80.11XA
+ ;;^UTILITY(U,$J,358.3,14294,2)
+ ;;=^5039900
+ ;;^UTILITY(U,$J,358.3,14295,0)
+ ;;=S82.425A^^55^675^17
+ ;;^UTILITY(U,$J,358.3,14295,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,14119,1,3,0)
- ;;=3^Osteopathy after Poliomyelitis,Unspec Site
- ;;^UTILITY(U,$J,358.3,14119,1,4,0)
- ;;=4^M89.60
- ;;^UTILITY(U,$J,358.3,14119,2)
- ;;=^5015061
- ;;^UTILITY(U,$J,358.3,14120,0)
- ;;=M90.80^^83^821^125
- ;;^UTILITY(U,$J,358.3,14120,1,0)
+ ;;^UTILITY(U,$J,358.3,14295,1,3,0)
+ ;;=3^Nondisp transverse fracture of shaft of left fibula, init
+ ;;^UTILITY(U,$J,358.3,14295,1,4,0)
+ ;;=4^S82.425A
+ ;;^UTILITY(U,$J,358.3,14295,2)
+ ;;=^5041778
+ ;;^UTILITY(U,$J,358.3,14296,0)
+ ;;=S82.424A^^55^675^18
+ ;;^UTILITY(U,$J,358.3,14296,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,14120,1,3,0)
- ;;=3^Osteopathy in Dieseases Classified Elsewhere
- ;;^UTILITY(U,$J,358.3,14120,1,4,0)
- ;;=4^M90.80
- ;;^UTILITY(U,$J,358.3,14120,2)
- ;;=^5015168
- ;;^UTILITY(U,$J,358.3,14121,0)
- ;;=M80.00XA^^83^821^127
- ;;^UTILITY(U,$J,358.3,14121,1,0)
+ ;;^UTILITY(U,$J,358.3,14296,1,3,0)
+ ;;=3^Nondisp transverse fracture of shaft of right fibula, init
+ ;;^UTILITY(U,$J,358.3,14296,1,4,0)
+ ;;=4^S82.424A
+ ;;^UTILITY(U,$J,358.3,14296,2)
+ ;;=^5041762
+ ;;^UTILITY(U,$J,358.3,14297,0)
+ ;;=S82.292A^^55^675^9
+ ;;^UTILITY(U,$J,358.3,14297,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,14121,1,3,0)
- ;;=3^Osteoporosis,Age-Related Fx,Unspec Site,Init Encntr
- ;;^UTILITY(U,$J,358.3,14121,1,4,0)
- ;;=4^M80.00XA
- ;;^UTILITY(U,$J,358.3,14121,2)
- ;;=^5013363
- ;;^UTILITY(U,$J,358.3,14122,0)
- ;;=M80.00XG^^83^821^128
- ;;^UTILITY(U,$J,358.3,14122,1,0)
+ ;;^UTILITY(U,$J,358.3,14297,1,3,0)
+ ;;=3^Fracture of shaft of left tibia, init for clos fx NEC
+ ;;^UTILITY(U,$J,358.3,14297,1,4,0)
+ ;;=4^S82.292A
+ ;;^UTILITY(U,$J,358.3,14297,2)
+ ;;=^5136798
+ ;;^UTILITY(U,$J,358.3,14298,0)
+ ;;=S82.291A^^55^675^10
+ ;;^UTILITY(U,$J,358.3,14298,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,14122,1,3,0)
- ;;=3^Osteoporosis,Age-Related Fx,Unspec Site,Delayed Healing
- ;;^UTILITY(U,$J,358.3,14122,1,4,0)
- ;;=4^M80.00XG
- ;;^UTILITY(U,$J,358.3,14122,2)
- ;;=^5013365
- ;;^UTILITY(U,$J,358.3,14123,0)
- ;;=M80.00XP^^83^821^129
- ;;^UTILITY(U,$J,358.3,14123,1,0)
+ ;;^UTILITY(U,$J,358.3,14298,1,3,0)
+ ;;=3^Fracture of shaft of right tibia, init for clos fx NEC
+ ;;^UTILITY(U,$J,358.3,14298,1,4,0)
+ ;;=4^S82.291A
+ ;;^UTILITY(U,$J,358.3,14298,2)
+ ;;=^5041619
+ ;;^UTILITY(U,$J,358.3,14299,0)
+ ;;=M79.672^^55^675^21
+ ;;^UTILITY(U,$J,358.3,14299,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,14123,1,3,0)
- ;;=3^Osteoporosis,Age-Related Fx,Unspec Site,Malunion
- ;;^UTILITY(U,$J,358.3,14123,1,4,0)
- ;;=4^M80.00XP
- ;;^UTILITY(U,$J,358.3,14123,2)
- ;;=^5013367
- ;;^UTILITY(U,$J,358.3,14124,0)
- ;;=M80.00XK^^83^821^130
- ;;^UTILITY(U,$J,358.3,14124,1,0)
+ ;;^UTILITY(U,$J,358.3,14299,1,3,0)
+ ;;=3^Pain in left foot
+ ;;^UTILITY(U,$J,358.3,14299,1,4,0)
+ ;;=4^M79.672
+ ;;^UTILITY(U,$J,358.3,14299,2)
+ ;;=^5013351
+ ;;^UTILITY(U,$J,358.3,14300,0)
+ ;;=M79.605^^55^675^22
+ ;;^UTILITY(U,$J,358.3,14300,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,14124,1,3,0)
- ;;=3^Osteoporosis,Age-Related Fx,Unspec Site,Nonunion
- ;;^UTILITY(U,$J,358.3,14124,1,4,0)
- ;;=4^M80.00XK
- ;;^UTILITY(U,$J,358.3,14124,2)
- ;;=^5013366
- ;;^UTILITY(U,$J,358.3,14125,0)
- ;;=M80.00XD^^83^821^131
- ;;^UTILITY(U,$J,358.3,14125,1,0)
+ ;;^UTILITY(U,$J,358.3,14300,1,3,0)
+ ;;=3^Pain in left leg
+ ;;^UTILITY(U,$J,358.3,14300,1,4,0)
+ ;;=4^M79.605
+ ;;^UTILITY(U,$J,358.3,14300,2)
+ ;;=^5013329
+ ;;^UTILITY(U,$J,358.3,14301,0)
+ ;;=M79.662^^55^675^23
+ ;;^UTILITY(U,$J,358.3,14301,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,14125,1,3,0)
- ;;=3^Osteoporosis,Age-Related Fx,Unspec Site,Routine Healing
- ;;^UTILITY(U,$J,358.3,14125,1,4,0)
- ;;=4^M80.00XD
- ;;^UTILITY(U,$J,358.3,14125,2)
- ;;=^5013364
- ;;^UTILITY(U,$J,358.3,14126,0)
- ;;=M80.00XS^^83^821^132

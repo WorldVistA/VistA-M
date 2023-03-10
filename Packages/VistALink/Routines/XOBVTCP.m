@@ -1,79 +1,79 @@
 XOBVTCP ;; mjk/alb - VistALink TCP Utilities ; 07/27/2002  13:00
- ;;1.6;VistALink;;May 08, 2009;Build 15
- ;Per VHA directive 2004-038, this routine should not be modified.
- QUIT
+ ;;1.6;VistALink Security;**4**;May 08, 2009;Build 7
+ ; ;Per VA Directive 6402, this routine should not be modified.
+ Q
  ;
  ; -- called from protocol action at START^XOBUM1 
 START(XOBPORT,XOBCFG) ;
  ; 
  ; -- set up environment
- NEW XOBOK
- SET XOBOK=0
- SET U="^" DO HOME^%ZIS
+ N XOBOK
+ S XOBOK=0
+ S U="^" D HOME^%ZIS
  ;
  ; -- if no port, set to default
- IF $GET(XOBPORT)="" NEW XOBPORT SET XOBPORT=8000
+ I $G(XOBPORT)="" N XOBPORT S XOBPORT=8000
  ;
- IF $$LOCK(XOBPORT) DO
- . DO UNLOCK(XOBPORT)
+ I $$LOCK(XOBPORT) D
+ . D UNLOCK(XOBPORT)
  . ; -- JOB command same for CacheNT and DSM
- . JOB LISTENER^XOBVTCPL(XOBPORT,$GET(XOBCFG))::5
- . SET XOBOK=$TEST
- ELSE  DO
- . SET XOBOK=0
- QUIT XOBOK
+ . J LISTENER^XOBVTCPL(XOBPORT,$G(XOBCFG))::5
+ . S XOBOK=$T
+ E  D
+ . S XOBOK=0
+ Q XOBOK
  ;
 UCX ; -- old VMS TCPIP (UCX) multi-thread entry point [for DSM]
  ; -- Called from VistALink .com files
  ;
- NEW XOBEC
- DO ESET
- SET (IO,IO(0))="SYS$NET"
+ N XOBEC
+ D ESET
+ S (IO,IO(0))="SYS$NET"
  ; **VMS specific code, need to share device**
- OPEN IO:(TCPDEV:BLOCKSIZE=512):60 ELSE  SET ^TMP("XOB DSM CONNECT FAILURE",$HOROLOG)="" QUIT
- USE IO
- SET XOBEC=$$NEWOK^XOBVTCPL()
- IF XOBEC DO LOGINERR^XOBVTCPL(XOBEC,IO)
- IF 'XOBEC DO SPAWN^XOBVLL
- QUIT
+ O IO:(TCPDEV:BLOCKSIZE=512):60 E  S ^TMP("XOB DSM CONNECT FAILURE",$H)="" Q
+ U IO
+ S XOBEC=$$NEWOK^XOBVTCPL()
+ I XOBEC D LOGINERR^XOBVTCPL(XOBEC,IO)
+ I 'XOBEC D SPAWN^XOBVLL
+ Q
  ;
 CACHEVMS ; -- VMS TCPIP (UCX) multi-thread entry point for Cache for VMS
  ; -- Called from VistALink .com files
  ;
- NEW XOBEC
- DO ESET
- SET (IO,IO(0))="SYS$NET"
+ N XOBEC
+ D ESET
+ S (IO,IO(0))="SYS$NET"
  ;
- OPEN IO::5
- USE IO:(::"-M") ;Packet mode like DSM
+ O IO::5
+ U IO:(::"-M") ;Packet mode like DSM
  ;
- SET XOBEC=$$NEWOK^XOBVTCPL()
- IF XOBEC DO LOGINERR^XOBVTCPL(XOBEC,IO)
- IF 'XOBEC DO SPAWN^XOBVLL
- QUIT
+ S XOBEC=$$NEWOK^XOBVTCPL()
+ I XOBEC D LOGINERR^XOBVTCPL(XOBEC,IO)
+ I 'XOBEC D SPAWN^XOBVLL
+ Q
  ;
 CACHELNX ; -- multi-thread entry point for Cache for Linux
  ; -- Called from XINETD service files
  ;
- NEW XOBEC
- DO ESET
- SET (IO,IO(0))=$PRINCIPAL
+ N XOBEC
+ D ESET
+ S (IO,IO(0))=$P
  ;
- OPEN IO::5
- USE IO:(::"-M") ;Packet mode like DSM
+ O IO::5
+ U IO:(::"-M") ;Packet mode like DSM
  ;
- SET XOBEC=$$NEWOK^XOBVTCPL()
- IF XOBEC DO LOGINERR^XOBVTCPL(XOBEC,IO)
- IF 'XOBEC DO SPAWN^XOBVLL
- QUIT
+ S XOBEC=$$NEWOK^XOBVTCPL()
+ I XOBEC D LOGINERR^XOBVTCPL(XOBEC,IO)
+ I 'XOBEC D SPAWN^XOBVLL
+ Q
  ;
 GTMLNX ; -- Linux xinetd multi-thread entry point for GT.M
  ;
- NEW XOBEC,TMP,X,%
- DO ESET
+ N XOBEC,TMP,X,%
+ D ESET
  ;
  ; **GTM/linux specific code**
- SET (IO,IO(0))=$P,@("$ZT=""""")
+ S (IO,IO(0))=$P,@("$ZT=""""")
  X "U IO:(nowrap:nodelimiter:IOERROR=""TRAP"")" ;Setup device
  S @("$ZINTERRUPT=""I $$JOBEXAM^ZU($ZPOSITION)"""),X=""
  X "ZSHOW ""D"":TMP"
@@ -81,10 +81,10 @@ GTMLNX ; -- Linux xinetd multi-thread entry point for GT.M
  S IO("IP")=$P($P(X,"REMOTE=",2),"@"),IO("PORT")=+$P($P(X,"LOCAL=",2),"@",2)
  ;End GT.M code
  ;
- SET XOBEC=$$NEWOK^XOBVTCPL()
- IF XOBEC DO LOGINERR^XOBVTCPL(XOBEC,IO)
- IF 'XOBEC DO COUNT^XUSCNT(1),SPAWN^XOBVLL,COUNT^XUSCNT(-1)
- QUIT
+ S XOBEC=$$NEWOK^XOBVTCPL()
+ I XOBEC D LOGINERR^XOBVTCPL(XOBEC,IO)
+ I 'XOBEC D COUNT^XUSCNT(1),SPAWN^XOBVLL,COUNT^XUSCNT(-1)
+ Q
  ;
  ;Sample linux scripts
  ;xinetd script
@@ -115,78 +115,79 @@ GTMLNX ; -- Linux xinetd multi-thread entry point for GT.M
  ;
 SERVICE ; -- service entry point (for VMS TCP/IP & LINUX XINETD utilities)
  ; TODO: possible single entry point for os service calls; needs work and has not been tested
- NEW XOBEC,XOBMOS,XOBSOS
- DO ESET
- SET XOBMOS=$$OS^XOBVSKT()
- IF XOBMOS'["OpenM" SET $ECODE=",U98,"
- SET XOBSOS=$$SYSOS^XOBVLIB(XOBMOS)
- IF XOBMOS'["VMS"!(XOBMOS'["UNIX") SET $ECODE=",U97,"
+ N XOBEC,XOBMOS,XOBSOS
+ D ESET
+ S XOBMOS=$$OS^XOBVSKT()
+ I XOBMOS'["OpenM" S $EC=",U98,"
+ S XOBSOS=$$SYSOS^XOBVLIB(XOBMOS)
+ I XOBMOS'["VMS"!(XOBMOS'["UNIX") S $EC=",U97,"
  ;
- SET (IO,IO(0))=$SELECT(XOBSOS="VMS":"SYS$NET","UNIX":$PRINCIPAL)
+ S (IO,IO(0))=$S(XOBSOS="VMS":"SYS$NET","UNIX":$P)
  ;
- OPEN IO::5
- USE IO:(::"-M") ;Packet mode like DSM
+ O IO::5
+ U IO:(::"-M") ;Packet mode like DSM
  ;
- SET XOBEC=$$NEWOK^XOBVTCPL()
- IF XOBEC DO LOGINERR^XOBVTCPL(XOBEC,IO)
- IF 'XOBEC DO SPAWN^XOBVLL
- QUIT
+ S XOBEC=$$NEWOK^XOBVTCPL()
+ I XOBEC D LOGINERR^XOBVTCPL(XOBEC,IO)
+ I 'XOBEC D SPAWN^XOBVLL
+ Q
  ;
 ESET ;Set initial error trap
- SET U="^",$ETRAP="D ^%ZTER H" ;Set up the error trap
- QUIT
+ N $ET,$ES
+ S U="^",$ET="D APPERROR^%ZTER(""VistALink Error - TCP Utilities"") H" ;Set up the error trap ;*4
+ Q
  ;
 STARTUP ; -- called by TaskMan startup option [Option: XOBV LISTENER STARTUP]
  ;           and could be called by VMS .com procedure
  ;
  ; -- quit if not Cache OS
- IF $$GETOS()'["OpenM" GOTO STARTUPQ
+ I $$GETOS()'["OpenM" G STARTUPQ
  ; -- clear log of non-active listeners
- DO CLEARLOG
+ D CLEARLOG
  ; -- get config for BOX-VOL and start it!
- DO STARTCFG($$GETCFG())
+ D STARTCFG($$GETCFG())
 STARTUPQ ;
- QUIT
+ Q
  ;
 CLEARLOG ; -- clear log of non-active listeners
- NEW DIK,DA,Y,XOBI,XOB0,XOBPORT
+ N DIK,DA,Y,XOBI,XOB0,XOBPORT
  ;
- SET XOBI=0
- FOR  SET XOBI=$ORDER(^XOB(18.04,XOBI)) QUIT:'XOBI  DO
- . SET XOB0=$GET(^XOB(18.04,XOBI,0))
- . SET XOBPORT=+$PIECE(XOB0,U,2)
+ S XOBI=0
+ F  S XOBI=$O(^XOB(18.04,XOBI)) Q:'XOBI  D
+ . S XOB0=$G(^XOB(18.04,XOBI,0))
+ . S XOBPORT=+$P(XOB0,U,2)
  . ; -- make sure listener is not running
- . IF $$LOCK(XOBPORT) DO
- . . SET DIK="^XOB(18.04,",DA=XOBI DO ^DIK
- . . DO UNLOCK(XOBPORT)
+ . I $$LOCK(XOBPORT) D
+ . . S DIK="^XOB(18.04,",DA=XOBI D ^DIK
+ . . D UNLOCK(XOBPORT)
  ;
- QUIT
+ Q
  ;
 STARTCFG(XOBCFG) ; -- start a configurations listeners
- NEW CFG0,LSTR,LSTR0,XOBPORT,STARTUP,XOBOK
- SET CFG0=$GET(^XOB(18.03,XOBCFG,0))
+ N CFG0,LSTR,LSTR0,XOBPORT,STARTUP,XOBOK
+ S CFG0=$G(^XOB(18.03,XOBCFG,0))
  ;
  ; -- quit if no configuration
- IF CFG0="" GOTO CFGQ
+ I CFG0="" G CFGQ
  ;
  ; -- quit if not Cache...for now!
- IF $$GETOS()'["OpenM" GOTO CFGQ
+ I $$GETOS()'["OpenM" G CFGQ
  ;
- SET LSTR=0
- FOR  SET LSTR=$ORDER(^XOB(18.03,XOBCFG,"PORTS",LSTR)) QUIT:'LSTR  DO
- . SET LSTR0=$GET(^XOB(18.03,XOBCFG,"PORTS",LSTR,0))
- . SET XOBPORT=+$PIECE(LSTR0,U,1)
- . SET STARTUP=$PIECE(LSTR0,U,2)
+ S LSTR=0
+ F  S LSTR=$O(^XOB(18.03,XOBCFG,"PORTS",LSTR)) Q:'LSTR  D
+ . S LSTR0=$G(^XOB(18.03,XOBCFG,"PORTS",LSTR,0))
+ . S XOBPORT=+$P(LSTR0,U,1)
+ . S STARTUP=$P(LSTR0,U,2)
  . ;
  . ; -- if ok to start, port # defined and not already started
- . IF XOBPORT,STARTUP,$$LOCK^XOBVTCP(XOBPORT) DO
- . . DO UNLOCK(XOBPORT)
- . . DO UPDATE^XOBVTCP(XOBPORT,1,XOBCFG)
- . . SET XOBOK=$$START(XOBPORT,XOBCFG)
- . . IF 'XOBOK DO UPDATE(XOBPORT,5,XOBCFG)
+ . I XOBPORT,STARTUP,$$LOCK^XOBVTCP(XOBPORT) D
+ . . D UNLOCK(XOBPORT)
+ . . D UPDATE^XOBVTCP(XOBPORT,1,XOBCFG)
+ . . S XOBOK=$$START(XOBPORT,XOBCFG)
+ . . I 'XOBOK D UPDATE(XOBPORT,5,XOBCFG)
  ;
 CFGQ ;
- QUIT
+ Q
  ;
 LOCK(XOBPORT) ;-- Lock port
  ;
@@ -199,7 +200,7 @@ LOCK(XOBPORT) ;-- Lock port
  ;   Output:
  ;      Function Value - Returns 1 if lock was successful, 0 otherwise
  ;
- QUIT $$ACTION("LOCK",XOBPORT)
+ Q $$ACTION("LOCK",XOBPORT)
  ;
  ;
 UNLOCK(XOBPORT) ;-- Unlock port
@@ -212,64 +213,64 @@ UNLOCK(XOBPORT) ;-- Unlock port
  ;   Output:
  ;      None
  ;
- NEW X
- SET X=$$ACTION("UNLOCK",XOBPORT)
- QUIT
+ N X
+ S X=$$ACTION("UNLOCK",XOBPORT)
+ Q
  ;
 ACTION(ACTION,XOBPORT) ; -- do lock action
- NEW ENV,VOL,UCI,BOX
+ N ENV,VOL,UCI,BOX
  ;
- SET XOBPORT=+$GET(XOBPORT)
+ S XOBPORT=+$G(XOBPORT)
  ;
- SET ENV=$$GETENV()
- SET VOL=$PIECE(ENV,U,2)
- SET UCI=$PIECE(ENV,U)
- SET BOX=$PIECE(ENV,U,4)
+ S ENV=$$GETENV()
+ S VOL=$P(ENV,U,2)
+ S UCI=$P(ENV,U)
+ S BOX=$P(ENV,U,4)
  ;
- IF ACTION="LOCK",XOBPORT LOCK +^XOB(18.01,"VistALink Listener",VOL,UCI,BOX,XOBPORT):1 QUIT $TEST
- IF ACTION="UNLOCK",XOBPORT LOCK -^XOB(18.01,"VistALink Listener",VOL,UCI,BOX,XOBPORT) QUIT 1
- QUIT 0
+ I ACTION="LOCK",XOBPORT L +^XOB(18.01,"VistALink Listener",VOL,UCI,BOX,XOBPORT):1 Q $T
+ I ACTION="UNLOCK",XOBPORT L -^XOB(18.01,"VistALink Listener",VOL,UCI,BOX,XOBPORT) Q 1
+ Q 0
  ;
  ;
 UPDATE(XOBPORT,XOBSTAT,XOBCFG) ; -- update VISTALINK LISTENER STARTUP LOG for listener
- NEW DIC,Y,X,XOBBOX
- SET XOBBOX=$$GETBOXN()
+ N DIC,Y,X,XOBBOX
+ S XOBBOX=$$GETBOXN()
  ;
  ; -- set up lookup call
- SET DIC="^XOB(18.04,"
- SET DIC(0)="MLX"
- SET DIC("DR")=".02////"_XOBPORT
- SET DIC("S")="IF $P(^(0),U,2)="_XOBPORT
- SET X=XOBBOX
+ S DIC="^XOB(18.04,"
+ S DIC(0)="MLX"
+ S DIC("DR")=".02////"_XOBPORT
+ S DIC("S")="IF $P(^(0),U,2)="_XOBPORT
+ S X=XOBBOX
  ;
- DO ^DIC
+ D ^DIC
  ; -- quit if lookup failed
- IF +Y>0 DO UPDLOG(+Y,XOBPORT,XOBSTAT,$GET(XOBCFG))
- QUIT
+ I +Y>0 D UPDLOG(+Y,XOBPORT,XOBSTAT,$G(XOBCFG))
+ Q
  ;
 UPDLOG(XOBDA,XOBPORT,XOBSTAT,XOBCFG) ; -- do edit
- NEW DA,DIE,DR,Y,X
+ N DA,DIE,DR,Y,X
  ;
- LOCK +^XOB(18.04,XOBDA,0)
+ L +^XOB(18.04,XOBDA,0)
  ; -- set basic fields
- SET DA=XOBDA
- SET DIE="^XOB(18.04,"
- SET DR=".02////"_XOBPORT_";.03////"_XOBSTAT_";.05////^S X=$$NOW^XLFDT"
+ S DA=XOBDA
+ S DIE="^XOB(18.04,"
+ S DR=".02////"_XOBPORT_";.03////"_XOBSTAT_";.05////^S X=$$NOW^XLFDT"
  ; -- set config if defined, otherwise delete
- SET DR=DR_";.06////"_$SELECT($GET(XOBCFG)]"":XOBCFG,1:"@")
+ S DR=DR_";.06////"_$S($G(XOBCFG)]"":XOBCFG,1:"@")
  ; -- set user if defined, otherwise delete
- SET DR=DR_";.04////"_$SELECT($GET(DUZ)]"":DUZ,1:"@")
+ S DR=DR_";.04////"_$S($G(DUZ)]"":DUZ,1:"@")
  ;
- DO ^DIE
- LOCK -^XOB(18.04,XOBDA,0)
+ D ^DIE
+ L -^XOB(18.04,XOBDA,0)
  ;
- QUIT
+ Q
  ;
 GETENV() ; -- get environment variable
  ;-- Get environment of current system i.e. Y=UCI^VOL/DIR^NODE^BOX LOOKUP
- NEW Y
- DO GETENV^%ZOSV
- QUIT Y
+ N Y
+ D GETENV^%ZOSV
+ Q Y
  ;
 GETOS() ;-- Get operating system
  ;
@@ -282,17 +283,17 @@ GETOS() ;-- Get operating system
  ;     Operating system value i.e. OpenM-NT for OpenM.
  ;
  ;-- Get operating system
- QUIT $PIECE($GET(^%ZOSF("OS")),"^")
+ Q $P($G(^%ZOSF("OS")),"^")
  ;
  ;
 GETBOX() ; -- get box ien
  ;
- QUIT $$FIND1^DIC(14.7,"","BX",$PIECE($$GETENV(),U,4),"","","")
+ Q $$FIND1^DIC(14.7,"","BX",$P($$GETENV(),U,4),"","","")
  ;
 GETBOXN() ; -- get box name
  ;
- QUIT $PIECE($$GETENV(),U,4)
+ Q $P($$GETENV(),U,4)
  ;
 GETCFG() ; -- get config ien for current BOX-VOL pair
- QUIT +$PIECE($GET(^XOB(18.01,1,"CONFIG",+$ORDER(^XOB(18.01,1,"CONFIG","B",+$$GETBOX(),"")),0)),U,2)
+ Q +$P($G(^XOB(18.01,1,"CONFIG",+$O(^XOB(18.01,1,"CONFIG","B",+$$GETBOX(),"")),0)),U,2)
  ;

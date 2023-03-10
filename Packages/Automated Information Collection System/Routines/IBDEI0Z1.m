@@ -1,128 +1,128 @@
-IBDEI0Z1 ; ; 04-FEB-2020
- ;;3.0;IB ENCOUNTER FORM IMP/EXP;;FEB 04, 2020
+IBDEI0Z1 ; ; 01-FEB-2022
+ ;;3.0;IB ENCOUNTER FORM IMP/EXP;;FEB 01, 2022
  Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,999) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
- ;;^UTILITY(U,$J,358.3,15633,1,3,0)
- ;;=3^Screening,Diabetes
- ;;^UTILITY(U,$J,358.3,15633,1,4,0)
- ;;=4^Z13.1
- ;;^UTILITY(U,$J,358.3,15633,2)
- ;;=^5062700
- ;;^UTILITY(U,$J,358.3,15634,0)
- ;;=M48.061^^88^864^78
- ;;^UTILITY(U,$J,358.3,15634,1,0)
+ ;;^UTILITY(U,$J,358.3,15815,1,4,0)
+ ;;=4^L02.211
+ ;;^UTILITY(U,$J,358.3,15815,2)
+ ;;=^5008950
+ ;;^UTILITY(U,$J,358.3,15816,0)
+ ;;=L02.212^^61^765^120
+ ;;^UTILITY(U,$J,358.3,15816,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,15634,1,3,0)
- ;;=3^Spinal Stenosis,Lumbar Region w/o Neurogenic Claudication
- ;;^UTILITY(U,$J,358.3,15634,1,4,0)
- ;;=4^M48.061
- ;;^UTILITY(U,$J,358.3,15634,2)
- ;;=^5151513
- ;;^UTILITY(U,$J,358.3,15635,0)
- ;;=M48.062^^88^864^77
- ;;^UTILITY(U,$J,358.3,15635,1,0)
+ ;;^UTILITY(U,$J,358.3,15816,1,3,0)
+ ;;=3^Cutaneous Abscess of Back
+ ;;^UTILITY(U,$J,358.3,15816,1,4,0)
+ ;;=4^L02.212
+ ;;^UTILITY(U,$J,358.3,15816,2)
+ ;;=^5008951
+ ;;^UTILITY(U,$J,358.3,15817,0)
+ ;;=L02.213^^61^765^121
+ ;;^UTILITY(U,$J,358.3,15817,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,15635,1,3,0)
- ;;=3^Spinal Stenosis,Lumbar Region w/ Neurogenic Claudication
- ;;^UTILITY(U,$J,358.3,15635,1,4,0)
- ;;=4^M48.062
- ;;^UTILITY(U,$J,358.3,15635,2)
- ;;=^5151514
- ;;^UTILITY(U,$J,358.3,15636,0)
- ;;=Z53.21^^88^864^58
- ;;^UTILITY(U,$J,358.3,15636,1,0)
+ ;;^UTILITY(U,$J,358.3,15817,1,3,0)
+ ;;=3^Cutaneous Abscess of Chest Wall
+ ;;^UTILITY(U,$J,358.3,15817,1,4,0)
+ ;;=4^L02.213
+ ;;^UTILITY(U,$J,358.3,15817,2)
+ ;;=^5008952
+ ;;^UTILITY(U,$J,358.3,15818,0)
+ ;;=L02.214^^61^765^123
+ ;;^UTILITY(U,$J,358.3,15818,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,15636,1,3,0)
- ;;=3^PT left w/o being seen
- ;;^UTILITY(U,$J,358.3,15636,1,4,0)
- ;;=4^Z53.21
- ;;^UTILITY(U,$J,358.3,15636,2)
- ;;=^5063096
- ;;^UTILITY(U,$J,358.3,15637,0)
- ;;=Z78.9^^88^864^79
- ;;^UTILITY(U,$J,358.3,15637,1,0)
+ ;;^UTILITY(U,$J,358.3,15818,1,3,0)
+ ;;=3^Cutaneous Abscess of Groin
+ ;;^UTILITY(U,$J,358.3,15818,1,4,0)
+ ;;=4^L02.214
+ ;;^UTILITY(U,$J,358.3,15818,2)
+ ;;=^5008953
+ ;;^UTILITY(U,$J,358.3,15819,0)
+ ;;=L02.215^^61^765^129
+ ;;^UTILITY(U,$J,358.3,15819,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,15637,1,3,0)
- ;;=3^Triaged to Primary Care Clinic
- ;;^UTILITY(U,$J,358.3,15637,1,4,0)
- ;;=4^Z78.9
- ;;^UTILITY(U,$J,358.3,15637,2)
- ;;=^5063329
- ;;^UTILITY(U,$J,358.3,15638,0)
- ;;=I48.20^^88^864^8
- ;;^UTILITY(U,$J,358.3,15638,1,0)
+ ;;^UTILITY(U,$J,358.3,15819,1,3,0)
+ ;;=3^Cutaneous Abscess of Perineum
+ ;;^UTILITY(U,$J,358.3,15819,1,4,0)
+ ;;=4^L02.215
+ ;;^UTILITY(U,$J,358.3,15819,2)
+ ;;=^5008954
+ ;;^UTILITY(U,$J,358.3,15820,0)
+ ;;=L02.216^^61^765^134
+ ;;^UTILITY(U,$J,358.3,15820,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,15638,1,3,0)
- ;;=3^Atrial Fibrillation,Chronic,Unspec
- ;;^UTILITY(U,$J,358.3,15638,1,4,0)
- ;;=4^I48.20
- ;;^UTILITY(U,$J,358.3,15638,2)
- ;;=^5158048
- ;;^UTILITY(U,$J,358.3,15639,0)
- ;;=M54.6^^88^864^61
- ;;^UTILITY(U,$J,358.3,15639,1,0)
+ ;;^UTILITY(U,$J,358.3,15820,1,3,0)
+ ;;=3^Cutaneous Abscess of Unbilicus
+ ;;^UTILITY(U,$J,358.3,15820,1,4,0)
+ ;;=4^L02.216
+ ;;^UTILITY(U,$J,358.3,15820,2)
+ ;;=^5008955
+ ;;^UTILITY(U,$J,358.3,15821,0)
+ ;;=L02.219^^61^765^133
+ ;;^UTILITY(U,$J,358.3,15821,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,15639,1,3,0)
- ;;=3^Pain in Thoracic Spine
- ;;^UTILITY(U,$J,358.3,15639,1,4,0)
- ;;=4^M54.6
- ;;^UTILITY(U,$J,358.3,15639,2)
- ;;=^272507
- ;;^UTILITY(U,$J,358.3,15640,0)
- ;;=M54.12^^88^864^64
- ;;^UTILITY(U,$J,358.3,15640,1,0)
+ ;;^UTILITY(U,$J,358.3,15821,1,3,0)
+ ;;=3^Cutaneous Abscess of Trunk,Unspec
+ ;;^UTILITY(U,$J,358.3,15821,1,4,0)
+ ;;=4^L02.219
+ ;;^UTILITY(U,$J,358.3,15821,2)
+ ;;=^5008956
+ ;;^UTILITY(U,$J,358.3,15822,0)
+ ;;=L02.32^^61^765^157
+ ;;^UTILITY(U,$J,358.3,15822,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,15640,1,3,0)
- ;;=3^Radiculopathy,Cervical Region
- ;;^UTILITY(U,$J,358.3,15640,1,4,0)
- ;;=4^M54.12
- ;;^UTILITY(U,$J,358.3,15640,2)
- ;;=^5012297
- ;;^UTILITY(U,$J,358.3,15641,0)
- ;;=M54.17^^88^864^65
- ;;^UTILITY(U,$J,358.3,15641,1,0)
+ ;;^UTILITY(U,$J,358.3,15822,1,3,0)
+ ;;=3^Furuncle of Buttock
+ ;;^UTILITY(U,$J,358.3,15822,1,4,0)
+ ;;=4^L02.32
+ ;;^UTILITY(U,$J,358.3,15822,2)
+ ;;=^5008972
+ ;;^UTILITY(U,$J,358.3,15823,0)
+ ;;=L02.33^^61^765^93
+ ;;^UTILITY(U,$J,358.3,15823,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,15641,1,3,0)
- ;;=3^Radiculopathy,Lumbosacral Region
- ;;^UTILITY(U,$J,358.3,15641,1,4,0)
- ;;=4^M54.17
- ;;^UTILITY(U,$J,358.3,15641,2)
- ;;=^5012302
- ;;^UTILITY(U,$J,358.3,15642,0)
- ;;=M54.30^^88^864^67
- ;;^UTILITY(U,$J,358.3,15642,1,0)
+ ;;^UTILITY(U,$J,358.3,15823,1,3,0)
+ ;;=3^Carbuncle of Buttock
+ ;;^UTILITY(U,$J,358.3,15823,1,4,0)
+ ;;=4^L02.33
+ ;;^UTILITY(U,$J,358.3,15823,2)
+ ;;=^5008973
+ ;;^UTILITY(U,$J,358.3,15824,0)
+ ;;=L02.415^^61^765^132
+ ;;^UTILITY(U,$J,358.3,15824,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,15642,1,3,0)
- ;;=3^Sciatica
- ;;^UTILITY(U,$J,358.3,15642,1,4,0)
- ;;=4^M54.30
- ;;^UTILITY(U,$J,358.3,15642,2)
- ;;=^5012305
- ;;^UTILITY(U,$J,358.3,15643,0)
- ;;=M48.02^^88^864^76
- ;;^UTILITY(U,$J,358.3,15643,1,0)
+ ;;^UTILITY(U,$J,358.3,15824,1,3,0)
+ ;;=3^Cutaneous Abscess of Right Lower Limb
+ ;;^UTILITY(U,$J,358.3,15824,1,4,0)
+ ;;=4^L02.415
+ ;;^UTILITY(U,$J,358.3,15824,2)
+ ;;=^5008978
+ ;;^UTILITY(U,$J,358.3,15825,0)
+ ;;=L02.416^^61^765^126
+ ;;^UTILITY(U,$J,358.3,15825,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,15643,1,3,0)
- ;;=3^Spinal Stenosis,Cervical Region
- ;;^UTILITY(U,$J,358.3,15643,1,4,0)
- ;;=4^M48.02
- ;;^UTILITY(U,$J,358.3,15643,2)
- ;;=^5012089
- ;;^UTILITY(U,$J,358.3,15644,0)
- ;;=Z51.81^^88^865^17
- ;;^UTILITY(U,$J,358.3,15644,1,0)
+ ;;^UTILITY(U,$J,358.3,15825,1,3,0)
+ ;;=3^Cutaneous Abscess of Left Lower Limb
+ ;;^UTILITY(U,$J,358.3,15825,1,4,0)
+ ;;=4^L02.416
+ ;;^UTILITY(U,$J,358.3,15825,2)
+ ;;=^5133642
+ ;;^UTILITY(U,$J,358.3,15826,0)
+ ;;=L02.511^^61^765^131
+ ;;^UTILITY(U,$J,358.3,15826,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,15644,1,3,0)
- ;;=3^Therapeutic Drug Level Monitoring
- ;;^UTILITY(U,$J,358.3,15644,1,4,0)
- ;;=4^Z51.81
- ;;^UTILITY(U,$J,358.3,15644,2)
- ;;=^5063064
- ;;^UTILITY(U,$J,358.3,15645,0)
- ;;=Z02.79^^88^865^11
- ;;^UTILITY(U,$J,358.3,15645,1,0)
+ ;;^UTILITY(U,$J,358.3,15826,1,3,0)
+ ;;=3^Cutaneous Abscess of Right Hand
+ ;;^UTILITY(U,$J,358.3,15826,1,4,0)
+ ;;=4^L02.511
+ ;;^UTILITY(U,$J,358.3,15826,2)
+ ;;=^5008992
+ ;;^UTILITY(U,$J,358.3,15827,0)
+ ;;=L02.512^^61^765^125
+ ;;^UTILITY(U,$J,358.3,15827,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,15645,1,3,0)
- ;;=3^Issue of Medical Certificate NEC
- ;;^UTILITY(U,$J,358.3,15645,1,4,0)
- ;;=4^Z02.79
+ ;;^UTILITY(U,$J,358.3,15827,1,3,0)
+ ;;=3^Cutaneous Abscess of Left Hand
+ ;;^UTILITY(U,$J,358.3,15827,1,4,0)
+ ;;=4^L02.512
+ ;;^UTILITY(U,$J,358.3,15827,2)
+ ;;=^5008993

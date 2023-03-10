@@ -1,5 +1,5 @@
-MAGDRPC1 ;WOIFO/EdM,DAC - Imaging RPCs ;30 May 2019 2:57 PM
- ;;3.0;IMAGING;**11,30,51,50,54,49,122,138,239**;Mar 19, 2002;Build 18
+MAGDRPC1 ;WOIFO/EDM,DAC - Imaging RPCs ; Feb 15, 2022@10:28:27
+ ;;3.0;IMAGING;**11,30,51,50,54,49,122,138,239,305**;Mar 19, 2002;Build 3
  ;; Per VHA Directive 2004-038, this routine should not be modified.
  ;; +---------------------------------------------------------------+
  ;; | Property of the US Government.                                |
@@ -240,7 +240,7 @@ RARPTO(OUT,TYPE,D0,F,D1) ; RPC = MAG DICOM GET RAD RPT INFO
 LISTORIG(OUT) ; RPC = MAG GET DICOM XMIT ORIGIN
  N FROM,MSG,N,PRI,RTN
  S N=1,OUT(1)="No entries in transmission queue"
- S FROM="" F  S FROM=$O(^MAGDOUTP(2006.574,"STS",FROM)) Q:FROM=""  D
+ S FROM="" F  S FROM=$O(^MAGDOUTP(2006.574,"STATE",FROM)) Q:FROM=""  D
  . D GETS^DIQ(4,FROM,.01,"","RTN","MSG")
  . S N=N+1,OUT(N)=FROM_"^"_$G(RTN(4,FROM_",",.01))
  . Q

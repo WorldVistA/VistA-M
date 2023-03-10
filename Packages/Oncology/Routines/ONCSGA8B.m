@@ -1,5 +1,5 @@
-ONCSGA8B ;Hines OIFO/RTK - AJCC 8th Ed Automatic Staging Tables ;01/15/19
- ;;2.2;ONCOLOGY;**10,12**;Jul 31, 2013;Build 8
+ONCSGA8B ;HINES OIFO/RTK - AJCC 8th Ed Automatic Staging Tables ;01/15/19
+ ;;2.2;ONCOLOGY;**10,12,13**;Jul 31, 2013;Build 7
  ;
  ;
 30 ;NET
@@ -380,8 +380,8 @@ ONCSGA8B ;Hines OIFO/RTK - AJCC 8th Ed Automatic Staging Tables ;01/15/19
 59 ;TESTIS
  S M=$E(M,2,5)
  I T="Tis",N="N0",M="M0",SCAT=0 S SG=0 Q
- I ((T="T1")!(T="T2")!(T="T3")!(T="T4")),N="N0",M="M0",SCAT=9 S SG=1 Q
- I T="T1",N="N0",M="M0",SCAT=0 S SG="1A" Q
+ I ((T["T1")!(T="T2")!(T="T3")!(T="T4")),N="N0",M="M0",SCAT=9 S SG=1 Q
+ I T["T1",N="N0",M="M0",SCAT=0 S SG="1A" Q
  I T="T2",N="N0",M="M0",SCAT=0 S SG="1B" Q
  I T="T3",N="N0",M="M0",SCAT=0 S SG="1B" Q
  I T="T4",N="N0",M="M0",SCAT=0 S SG="1B" Q

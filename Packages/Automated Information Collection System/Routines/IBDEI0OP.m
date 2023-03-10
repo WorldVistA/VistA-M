@@ -1,124 +1,124 @@
-IBDEI0OP ; ; 04-FEB-2020
- ;;3.0;IB ENCOUNTER FORM IMP/EXP;;FEB 04, 2020
+IBDEI0OP ; ; 01-FEB-2022
+ ;;3.0;IB ENCOUNTER FORM IMP/EXP;;FEB 01, 2022
  Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,999) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
- ;;^UTILITY(U,$J,358.3,11024,2)
- ;;=^5004236
- ;;^UTILITY(U,$J,358.3,11025,0)
- ;;=H00.15^^77^721^4
- ;;^UTILITY(U,$J,358.3,11025,1,0)
+ ;;^UTILITY(U,$J,358.3,11097,1,4,0)
+ ;;=4^F15.182
+ ;;^UTILITY(U,$J,358.3,11097,2)
+ ;;=^5003293
+ ;;^UTILITY(U,$J,358.3,11098,0)
+ ;;=F15.282^^42^506^5
+ ;;^UTILITY(U,$J,358.3,11098,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,11025,1,3,0)
- ;;=3^Chalazion Left Lower Eyelid
- ;;^UTILITY(U,$J,358.3,11025,1,4,0)
- ;;=4^H00.15
- ;;^UTILITY(U,$J,358.3,11025,2)
- ;;=^5133378
- ;;^UTILITY(U,$J,358.3,11026,0)
- ;;=H00.011^^77^721^5
- ;;^UTILITY(U,$J,358.3,11026,1,0)
+ ;;^UTILITY(U,$J,358.3,11098,1,3,0)
+ ;;=3^Caffeine Induced Sleep Disorder w/ Mod/Severe Use Disorder
+ ;;^UTILITY(U,$J,358.3,11098,1,4,0)
+ ;;=4^F15.282
+ ;;^UTILITY(U,$J,358.3,11098,2)
+ ;;=^5003308
+ ;;^UTILITY(U,$J,358.3,11099,0)
+ ;;=F15.982^^42^506^6
+ ;;^UTILITY(U,$J,358.3,11099,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,11026,1,3,0)
- ;;=3^Hordeolum Externum Right Upper Eyelid
- ;;^UTILITY(U,$J,358.3,11026,1,4,0)
- ;;=4^H00.011
- ;;^UTILITY(U,$J,358.3,11026,2)
- ;;=^5004218
- ;;^UTILITY(U,$J,358.3,11027,0)
- ;;=H00.014^^77^721^6
- ;;^UTILITY(U,$J,358.3,11027,1,0)
+ ;;^UTILITY(U,$J,358.3,11099,1,3,0)
+ ;;=3^Caffeine Induced Sleep Disorder w/o Use Disorder
+ ;;^UTILITY(U,$J,358.3,11099,1,4,0)
+ ;;=4^F15.982
+ ;;^UTILITY(U,$J,358.3,11099,2)
+ ;;=^5003322
+ ;;^UTILITY(U,$J,358.3,11100,0)
+ ;;=F15.99^^42^506^9
+ ;;^UTILITY(U,$J,358.3,11100,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,11027,1,3,0)
- ;;=3^Hordeolum Externum Left Upper Eyelid
- ;;^UTILITY(U,$J,358.3,11027,1,4,0)
- ;;=4^H00.014
- ;;^UTILITY(U,$J,358.3,11027,2)
- ;;=^5004221
- ;;^UTILITY(U,$J,358.3,11028,0)
- ;;=H02.052^^77^721^7
- ;;^UTILITY(U,$J,358.3,11028,1,0)
+ ;;^UTILITY(U,$J,358.3,11100,1,3,0)
+ ;;=3^Caffeinie Related Disorder,Unspec
+ ;;^UTILITY(U,$J,358.3,11100,1,4,0)
+ ;;=4^F15.99
+ ;;^UTILITY(U,$J,358.3,11100,2)
+ ;;=^5133358
+ ;;^UTILITY(U,$J,358.3,11101,0)
+ ;;=R45.851^^42^507^3
+ ;;^UTILITY(U,$J,358.3,11101,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,11028,1,3,0)
- ;;=3^Trichiasis w/o Entropion,Right Lower Eyelid
- ;;^UTILITY(U,$J,358.3,11028,1,4,0)
- ;;=4^H02.052
- ;;^UTILITY(U,$J,358.3,11028,2)
- ;;=^5004299
- ;;^UTILITY(U,$J,358.3,11029,0)
- ;;=H02.055^^77^721^9
- ;;^UTILITY(U,$J,358.3,11029,1,0)
+ ;;^UTILITY(U,$J,358.3,11101,1,3,0)
+ ;;=3^Suicidal Ideations
+ ;;^UTILITY(U,$J,358.3,11101,1,4,0)
+ ;;=4^R45.851
+ ;;^UTILITY(U,$J,358.3,11101,2)
+ ;;=^5019474
+ ;;^UTILITY(U,$J,358.3,11102,0)
+ ;;=T14.91XA^^42^507^4
+ ;;^UTILITY(U,$J,358.3,11102,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,11029,1,3,0)
- ;;=3^Trichiasis w/o Entropion,Left Lower Eyelid
- ;;^UTILITY(U,$J,358.3,11029,1,4,0)
- ;;=4^H02.055
- ;;^UTILITY(U,$J,358.3,11029,2)
- ;;=^5133405
- ;;^UTILITY(U,$J,358.3,11030,0)
- ;;=H02.032^^77^721^11
- ;;^UTILITY(U,$J,358.3,11030,1,0)
+ ;;^UTILITY(U,$J,358.3,11102,1,3,0)
+ ;;=3^Suicide Attempt,Initial Encntr
+ ;;^UTILITY(U,$J,358.3,11102,1,4,0)
+ ;;=4^T14.91XA
+ ;;^UTILITY(U,$J,358.3,11102,2)
+ ;;=^5151779
+ ;;^UTILITY(U,$J,358.3,11103,0)
+ ;;=T14.91XD^^42^507^6
+ ;;^UTILITY(U,$J,358.3,11103,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,11030,1,3,0)
- ;;=3^Entropion,Senile,Right Lower Eyelid
- ;;^UTILITY(U,$J,358.3,11030,1,4,0)
- ;;=4^H02.032
- ;;^UTILITY(U,$J,358.3,11030,2)
- ;;=^5004289
- ;;^UTILITY(U,$J,358.3,11031,0)
- ;;=H02.035^^77^721^12
- ;;^UTILITY(U,$J,358.3,11031,1,0)
+ ;;^UTILITY(U,$J,358.3,11103,1,3,0)
+ ;;=3^Suicide Attempt,Subsequent Encntr
+ ;;^UTILITY(U,$J,358.3,11103,1,4,0)
+ ;;=4^T14.91XD
+ ;;^UTILITY(U,$J,358.3,11103,2)
+ ;;=^5151780
+ ;;^UTILITY(U,$J,358.3,11104,0)
+ ;;=T14.91XS^^42^507^5
+ ;;^UTILITY(U,$J,358.3,11104,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,11031,1,3,0)
- ;;=3^Entropion,Senile,Left Lower Eyelid
- ;;^UTILITY(U,$J,358.3,11031,1,4,0)
- ;;=4^H02.035
- ;;^UTILITY(U,$J,358.3,11031,2)
- ;;=^5133401
- ;;^UTILITY(U,$J,358.3,11032,0)
- ;;=H02.112^^77^721^15
- ;;^UTILITY(U,$J,358.3,11032,1,0)
+ ;;^UTILITY(U,$J,358.3,11104,1,3,0)
+ ;;=3^Suicide Attempt,Sequela
+ ;;^UTILITY(U,$J,358.3,11104,1,4,0)
+ ;;=4^T14.91XS
+ ;;^UTILITY(U,$J,358.3,11104,2)
+ ;;=^5151781
+ ;;^UTILITY(U,$J,358.3,11105,0)
+ ;;=Z91.51^^42^507^2
+ ;;^UTILITY(U,$J,358.3,11105,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,11032,1,3,0)
- ;;=3^Ectropion,Cicatricial,Right Lower Eyelid
- ;;^UTILITY(U,$J,358.3,11032,1,4,0)
- ;;=4^H02.112
- ;;^UTILITY(U,$J,358.3,11032,2)
- ;;=^5004308
- ;;^UTILITY(U,$J,358.3,11033,0)
- ;;=H02.115^^77^721^16
- ;;^UTILITY(U,$J,358.3,11033,1,0)
+ ;;^UTILITY(U,$J,358.3,11105,1,3,0)
+ ;;=3^Personal Hx of Suicidal Behavior
+ ;;^UTILITY(U,$J,358.3,11105,1,4,0)
+ ;;=4^Z91.51
+ ;;^UTILITY(U,$J,358.3,11105,2)
+ ;;=^5161317
+ ;;^UTILITY(U,$J,358.3,11106,0)
+ ;;=Z91.52^^42^507^1
+ ;;^UTILITY(U,$J,358.3,11106,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,11033,1,3,0)
- ;;=3^Ectropion,Cicatricial,Left Lower Eyelid
- ;;^UTILITY(U,$J,358.3,11033,1,4,0)
- ;;=4^H02.115
- ;;^UTILITY(U,$J,358.3,11033,2)
- ;;=^5133410
- ;;^UTILITY(U,$J,358.3,11034,0)
- ;;=H02.201^^77^721^22
- ;;^UTILITY(U,$J,358.3,11034,1,0)
+ ;;^UTILITY(U,$J,358.3,11106,1,3,0)
+ ;;=3^Personal Hx of Non-Suicidal Self-Harm
+ ;;^UTILITY(U,$J,358.3,11106,1,4,0)
+ ;;=4^Z91.52
+ ;;^UTILITY(U,$J,358.3,11106,2)
+ ;;=^5161318
+ ;;^UTILITY(U,$J,358.3,11107,0)
+ ;;=F19.14^^42^508^1
+ ;;^UTILITY(U,$J,358.3,11107,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,11034,1,3,0)
- ;;=3^Lagophthalmos,Right Upper Eyelid,Unspec
- ;;^UTILITY(U,$J,358.3,11034,1,4,0)
- ;;=4^H02.201
- ;;^UTILITY(U,$J,358.3,11034,2)
- ;;=^5004327
- ;;^UTILITY(U,$J,358.3,11035,0)
- ;;=H02.204^^77^721^23
- ;;^UTILITY(U,$J,358.3,11035,1,0)
+ ;;^UTILITY(U,$J,358.3,11107,1,3,0)
+ ;;=3^Other/Unknown Substance Induced Depressive D/O w/ Mild Use D/O
+ ;;^UTILITY(U,$J,358.3,11107,1,4,0)
+ ;;=4^F19.14
+ ;;^UTILITY(U,$J,358.3,11107,2)
+ ;;=^5003421
+ ;;^UTILITY(U,$J,358.3,11108,0)
+ ;;=F19.24^^42^508^2
+ ;;^UTILITY(U,$J,358.3,11108,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,11035,1,3,0)
- ;;=3^Lagophthalmos,Left Upper Eyelid,Unspec
- ;;^UTILITY(U,$J,358.3,11035,1,4,0)
- ;;=4^H02.204
- ;;^UTILITY(U,$J,358.3,11035,2)
- ;;=^5004330
- ;;^UTILITY(U,$J,358.3,11036,0)
- ;;=H02.831^^77^721^18
- ;;^UTILITY(U,$J,358.3,11036,1,0)
+ ;;^UTILITY(U,$J,358.3,11108,1,3,0)
+ ;;=3^Other/Unknown Substance Induced Depressive D/O w/ Mod-Sev Use D/O
+ ;;^UTILITY(U,$J,358.3,11108,1,4,0)
+ ;;=4^F19.24
+ ;;^UTILITY(U,$J,358.3,11108,2)
+ ;;=^5003441
+ ;;^UTILITY(U,$J,358.3,11109,0)
+ ;;=F19.94^^42^508^3
+ ;;^UTILITY(U,$J,358.3,11109,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,11036,1,3,0)
- ;;=3^Dermatochalasis,Right Upper Eyelid
- ;;^UTILITY(U,$J,358.3,11036,1,4,0)
- ;;=4^H02.831
+ ;;^UTILITY(U,$J,358.3,11109,1,3,0)
+ ;;=3^Other/Unknown Substance Induced Depressive D/O w/o Use D/O

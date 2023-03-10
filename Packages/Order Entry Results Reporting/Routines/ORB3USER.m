@@ -1,6 +1,6 @@
-ORB3USER ;SLC/CLA - Alert Recipient Algorithms for OE/RR 3 Notifications;08/31/2017  11:36
- ;;3.0;ORDER ENTRY/RESULTS REPORTING;**74,91,105,139,200,220,458,377**;Dec 17, 1997;Build 582
-USER(XQA,ORBDUZ,ORN,ORBU,ORBUI,ORBDFN,ORNUM) ;called from ORB3
+ORB3USER ;SLC/CLA - Alert Recipient Algorithms for OE/RR 3 Notifications;Apr 21, 2021@11:13:50
+ ;;3.0;ORDER ENTRY/RESULTS REPORTING;**74,91,105,139,200,220,458,377,498**;Dec 17, 1997;Build 38
+USER(XQA,ORBDUZ,ORN,ORBU,ORBUI,ORBDFN,ORNUM,ORWHY) ;called from ORB3
  ;check to see if potential recip (ORBDUZ) should be an alert recip
  ;XQA     array of alert recips passed to Kernel Alert Utility
  ;ORBDUZ  duz of current potential alert recipient
@@ -8,7 +8,8 @@ USER(XQA,ORBDUZ,ORN,ORBU,ORBUI,ORBDFN,ORNUM) ;called from ORB3
  ;ORBU    array of info for utility displaying recip who and why
  ;ORBUI   counter for utility array
  ;ORBDFN  patient ien from Patient file [#2]
- ;ORNUM   order number to base division params on[optional]
+ ;ORNUM   order number to base division params on [optional]
+ ;ORWHY   reason why user is a recipient [optional]
  ;
  N ORBNODE,ORBSUR,ORBTM,ORBTMF,ORBTEAM,ORBON,ORBDUP
  I $G(ORBDUZ)["G." S XQA(ORBDUZ)="" Q
@@ -34,6 +35,7 @@ USER(XQA,ORBDUZ,ORN,ORBU,ORBUI,ORBDFN,ORNUM) ;called from ORB3
  .S ORBNODE=$G(^VA(200,ORBDUZ,0)) I $L($G(ORBNODE)) D
  ..S ORBU(ORBUI)="   "_$P(ORBNODE,U)_": "_$P(ORBON,U)_" because ",ORBUI=ORBUI+1
  ..S ORBU(ORBUI)="     "_$P(ORBON,U,2),ORBUI=ORBUI+1
+ ..I $G(ORWHY)'="" S ORBU(ORBUI)="     Reason: "_ORWHY,ORBUI=ORBUI+1
  I $D(ORBU),($P(ORBON,U)="ON"),($G(ORBDUZ)'["G.") D
  .S ORBSUR=$$ACTVSURO^XQALSURO(ORBDUZ)  ;DBIA 2790 Alert surrogate
  .I +$G(ORBSUR)>0 D
@@ -88,8 +90,8 @@ ONOFF(ORN,ORBUSR,ORBPT,ORBTEAM,ORNUM) ;Extrinsic function to check param file
  ;get division flag and name:
  S ORBDIV=$$DIVF(ORBUSR,ORN,$G(ORNUM))
  I $L(ORBDIV) D
- .S ORBDIVF=$P(ORBDIV,U,2),ORBDIV=$P(ORBDIV,U),NODE=$G(^DIC(4,ORBDIV,0))
- .S:$L($G(NODE)) ORBDIVN=$P(NODE,U)
+ .S ORBDIVF=$P(ORBDIV,U,2),ORBDIV=$P(ORBDIV,U)
+ .S ORBDIVN=$$GET1^DIQ(4,+ORBDIV_",",.01)
  ;
  ;get system flag:
  S ORBSYSF=$$GET^XPAR("SYS","ORB PROCESSING FLAG",ORN,"I")

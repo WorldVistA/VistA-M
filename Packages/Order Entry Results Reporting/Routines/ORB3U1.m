@@ -1,5 +1,5 @@
-ORB3U1 ;SLC/CLA - Utilities which support OE/RR 3 Notifications ;01/18/2017  07:20
- ;;3.0;ORDER ENTRY/RESULTS REPORTING;**9,74,88,91,105,179,220,250,379,377**;Dec 17, 1997;Build 582
+ORB3U1 ;SLC/CLA - Utilities which support OE/RR 3 Notifications ;Nov 03, 2020@14:21
+ ;;3.0;ORDER ENTRY/RESULTS REPORTING;**9,74,88,91,105,179,220,250,379,377,498**;Dec 17, 1997;Build 38
  Q
 LIST(Y) ;return list of notifications from Notification File [#100.9]
  ; RETURN IEN^NAME^URGENCY
@@ -134,7 +134,7 @@ GETRECS(ORBAID)  ;get recipient data for an alert
  .S ORY(ORJ)="  Non-process deletion by:    "_$S($P(ORBR,U,9):$P(^VA(200,$P(ORBR,U,9),0),U),1:""),ORJ=ORJ+1
  Q
 RECIPS ;determine/report the list of recipients for a notification
- N ORY,ORN,ORBDFN,ORNUM,ORBADUZ,DESC,HDR,ORBPR,ORDIV
+ N ORY,ORN,ORBDFN,ORNUM,ORBADUZ,DESC,HDR,ORBPR,ORDIV,ORADD,ORLINE
  ;prompt for patient (required):
  K DIC S DIC="^DPT(",DIC("A")="PATIENT (req'd): ",DIC(0)="AEQNM" D ^DIC Q:Y<1
  S ORBDFN=+Y
@@ -168,6 +168,9 @@ RECIPS ;determine/report the list of recipients for a notification
  ; get recipients for Lab Threshold notif:
  I ORN=68 D LABTHR^ORB3U2(.ORBADUZ,ORBDFN,$G(ORNUM))
  ;
+ ; get recipients for Women's Health notif:
+ I (ORN=86)!(ORN=87) I '$$WHRECIP^ORB3U2(.ORBADUZ,ORN,ORBDFN,.ORADD) Q
+ ;
  ;prompt for pkg-defined recips if normally occurs with notif:
  I (ORN=21)!(ORN=22)!(ORN=23)!(ORN=27)!(ORN=30)!(ORN=51)!(ORN=52)!(ORN=53)!(ORN=63) D
  .F  K DIC,Y S DIC="^VA(200,",DIC(0)="AEQN",DIC("A")="RECIPIENT(S) FROM PACKAGE WHEN NOTIF WAS TRIGGERED: " D ^DIC Q:Y<1  S ORBADUZ(+Y)=""
@@ -184,6 +187,11 @@ RECIPS ;determine/report the list of recipients for a notification
  ;determine recipients and why:
  S ORY="1"
  D UTL^ORB3(.ORY,ORN,ORBDFN,$G(ORNUM),.ORBADUZ,"","")
+ I $D(ORADD) D
+ .S ORLINE=1+$O(ORY("?"),-1),ORY(ORLINE)="",ORLINE=ORLINE+1
+ .S ORY(ORLINE)="Message(s) Supplied by the Package:",ORLINE=ORLINE+1
+ .S ORADD="" F  S ORADD=$O(ORADD(ORADD)) Q:'+ORADD  D
+ ..S ORY(ORLINE)=ORADD(ORADD),ORLINE=ORLINE+1
  S DESC="Determine Notification Recipients Report"
  S HDR="DETERMINE NOTIFICATION RECIPIENTS REPORT"
  D OUTPUT(.ORY,DESC,HDR)

@@ -1,5 +1,5 @@
-EASAILK1 ;ALB/BRM,ERC,JAM - Patient Address Inquiry ;18 Jul 2017  4:03 PM
- ;;1.0;ENROLLMENT APPLICATION SYSTEM;**13,29,39,70,151**;Mar 15, 2001;Build 70
+EASAILK1 ;ALB/BRM,ERC,JAM,ARF - Patient Address Inquiry ;18 Jul 2017  4:03 PM
+ ;;1.0;ENROLLMENT APPLICATION SYSTEM;**13,29,39,70,151,203**;Mar 15, 2001;Build 17
  ;
  ;*151*; JAM - Add Residential Address and modify Permanent, Confidential, and Temporary address field labels and reformat the output
  ;
@@ -26,19 +26,22 @@ PAT ;patient address
  W !?23,"Patient Name: ",?37,PATNAM
  ; exit if error occurs during DIQ call
  ; EAS*1.0*151; JAM; Change label to Permanent Mailing Address 
- I $D(PATERR) W !!?11,"There is invalid data in the Permanent Mailing Address",!?11,"Please use Registration options to edit",!! G CON
+ ; EAS*1.0*203; ARF; Removed Permanent from the following message
+ I $D(PATERR) W !!?11,"There is invalid data in the Mailing Address",!?11,"Please use Registration options to edit",!! G CON
  ;
  ; exit if there is no address for patient
  S FLD="",PATOK=0
  D OK(.PATARR,.PATOK)
- ; EAS*1.0*151; JAM; Change label to Permanent Mailing Address 
- I 'PATOK W !!?11,"*** No Permanent Mailing Address On File For This Patient ***",!! G CON
+ ; EAS*1.0*151; JAM; Change label to Permanent Mailing Address
+ ; EAS*1.0*203; ARF; Removed Permanent from the following message
+ I 'PATOK W !!?11,"*** No Mailing Address On File For This Patient ***",!! G CON
  ;set a string of the field numbers needed for the patient address
  S PATSTR=".111^.112^.113^.114^.115^.1112^.1173^.121^.118^.119^.12^^^.1171^.1172"
  N STRARR
  D STRG(PATSTR,.STRARR) ;place the fld numbers into an array
- ; EAS*1.0*151; JAM; Change TYPE to "Permanent Mailing" (from "Patient")  
- S TYPE="Permanent Mailing"
+ ; EAS*1.0*151; JAM; Change TYPE to "Permanent Mailing" (from "Patient") 
+ ; EAS*1.0*203; ARF; Removed "Permanent" from the following TYPE variable 
+ S TYPE="          Mailing"
  S DGC=1
  ;display the patient address information
  D DISP(TYPE,.PATARR,.STRARR)
@@ -186,14 +189,15 @@ DISP(TYPE,ARR,STR) ;
  . S DGCNTRY=$$COUNTRY^DGADDUTL(.DGCNTRY)
  . W !?37,DGCNTRY
  ; EAS*1.0*151; JAM; TYPE is modified from "Patient" to "Permanent Mailing" and new address type "Residential"
- I TYPE["Permanent" W !?14,"Bad Address Indicator: ",?37,$G(ARR(2,IENS,STR(8),"E"))
+ ; EAS*1.0*203 ; ARF; TYPE is modified from "Permanent" to "  Mailing" 
+ I TYPE["  Mailing" W !?14,"Bad Address Indicator: ",?37,$G(ARR(2,IENS,STR(8),"E"))
  W !?2,TYPE_" Add Change Date: ",?37,$G(ARR(2,IENS,STR(9),"E"))
- I TYPE["Permanent" W !,"Permanent Mailing Add Change Source: ",?37,$G(ARR(2,IENS,STR(10),"E"))
+ I TYPE["  Mailing" W !?10,"Mailing Add Change Source: ",?37,$G(ARR(2,IENS,STR(10),"E"))
  I TYPE["Residential" W !,TYPE_" Add Change Source: ",?37,$G(ARR(2,IENS,STR(10),"E"))
- I TYPE["Permanent" W:$G(ARR(2,IENS,STR(10),"E"))="VAMC" !?2,TYPE_" Add Change Site: ",?37,$G(ARR(2,IENS,STR(11),"E"))
- I TYPE'["Permanent" W:$G(ARR(2,IENS,STR(11),"E"))]"" !?2,TYPE_" Add Change Site: ",?37,$G(ARR(2,IENS,STR(11),"E"))
- I TYPE'["Permanent",TYPE'["Residential" W !?3,TYPE_" Add Start Date: ",?37,$G(ARR(2,IENS,STR(12),"E"))
- I TYPE'["Permanent",TYPE'["Residential" W !?5,TYPE_" Add End Date: ",?37,$G(ARR(2,IENS,STR(13),"E"))
+ I TYPE["  Mailing" W:$G(ARR(2,IENS,STR(10),"E"))="VAMC" !?2,TYPE_" Add Change Site: ",?37,$G(ARR(2,IENS,STR(11),"E"))
+ I TYPE'["  Mailing" W:$G(ARR(2,IENS,STR(11),"E"))]"" !?2,TYPE_" Add Change Site: ",?37,$G(ARR(2,IENS,STR(11),"E"))
+ I TYPE'["  Mailing",TYPE'["Residential" W !?3,TYPE_" Add Start Date: ",?37,$G(ARR(2,IENS,STR(12),"E"))
+ I TYPE'["  Mailing",TYPE'["Residential" W !?5,TYPE_" Add End Date: ",?37,$G(ARR(2,IENS,STR(13),"E"))
  W !
  Q
  ;

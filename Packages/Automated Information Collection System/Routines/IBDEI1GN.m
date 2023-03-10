@@ -1,124 +1,128 @@
-IBDEI1GN ; ; 04-FEB-2020
- ;;3.0;IB ENCOUNTER FORM IMP/EXP;;FEB 04, 2020
+IBDEI1GN ; ; 01-FEB-2022
+ ;;3.0;IB ENCOUNTER FORM IMP/EXP;;FEB 01, 2022
  Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,999) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
- ;;^UTILITY(U,$J,358.3,23357,1,4,0)
- ;;=4^C78.02
- ;;^UTILITY(U,$J,358.3,23357,2)
- ;;=^5001336
- ;;^UTILITY(U,$J,358.3,23358,0)
- ;;=C78.7^^105^1173^95
- ;;^UTILITY(U,$J,358.3,23358,1,0)
+ ;;^UTILITY(U,$J,358.3,23619,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,23358,1,3,0)
- ;;=3^Secondary Malig Neop of Liver/Intrahepatic Bile Duct
- ;;^UTILITY(U,$J,358.3,23358,1,4,0)
- ;;=4^C78.7
- ;;^UTILITY(U,$J,358.3,23358,2)
- ;;=^5001339
- ;;^UTILITY(U,$J,358.3,23359,0)
- ;;=C79.31^^105^1173^93
- ;;^UTILITY(U,$J,358.3,23359,1,0)
+ ;;^UTILITY(U,$J,358.3,23619,1,3,0)
+ ;;=3^Suicidal Ideations
+ ;;^UTILITY(U,$J,358.3,23619,1,4,0)
+ ;;=4^R45.851
+ ;;^UTILITY(U,$J,358.3,23619,2)
+ ;;=^5019474
+ ;;^UTILITY(U,$J,358.3,23620,0)
+ ;;=T14.91XA^^79^1020^4
+ ;;^UTILITY(U,$J,358.3,23620,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,23359,1,3,0)
- ;;=3^Secondary Malig Neop of Brain
- ;;^UTILITY(U,$J,358.3,23359,1,4,0)
- ;;=4^C79.31
- ;;^UTILITY(U,$J,358.3,23359,2)
- ;;=^5001347
- ;;^UTILITY(U,$J,358.3,23360,0)
- ;;=C79.49^^105^1173^98
- ;;^UTILITY(U,$J,358.3,23360,1,0)
+ ;;^UTILITY(U,$J,358.3,23620,1,3,0)
+ ;;=3^Suicide Attempt,Initial Encntr
+ ;;^UTILITY(U,$J,358.3,23620,1,4,0)
+ ;;=4^T14.91XA
+ ;;^UTILITY(U,$J,358.3,23620,2)
+ ;;=^5151779
+ ;;^UTILITY(U,$J,358.3,23621,0)
+ ;;=T14.91XD^^79^1020^6
+ ;;^UTILITY(U,$J,358.3,23621,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,23360,1,3,0)
- ;;=3^Secondary Malig Neop of Nervous System
- ;;^UTILITY(U,$J,358.3,23360,1,4,0)
- ;;=4^C79.49
- ;;^UTILITY(U,$J,358.3,23360,2)
- ;;=^267335
- ;;^UTILITY(U,$J,358.3,23361,0)
- ;;=C79.32^^105^1173^94
- ;;^UTILITY(U,$J,358.3,23361,1,0)
+ ;;^UTILITY(U,$J,358.3,23621,1,3,0)
+ ;;=3^Suicide Attempt,Subsequent Encntr
+ ;;^UTILITY(U,$J,358.3,23621,1,4,0)
+ ;;=4^T14.91XD
+ ;;^UTILITY(U,$J,358.3,23621,2)
+ ;;=^5151780
+ ;;^UTILITY(U,$J,358.3,23622,0)
+ ;;=T14.91XS^^79^1020^5
+ ;;^UTILITY(U,$J,358.3,23622,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,23361,1,3,0)
- ;;=3^Secondary Malig Neop of Cerebral Meninges
- ;;^UTILITY(U,$J,358.3,23361,1,4,0)
- ;;=4^C79.32
- ;;^UTILITY(U,$J,358.3,23361,2)
- ;;=^5001348
- ;;^UTILITY(U,$J,358.3,23362,0)
- ;;=C79.51^^105^1173^91
- ;;^UTILITY(U,$J,358.3,23362,1,0)
+ ;;^UTILITY(U,$J,358.3,23622,1,3,0)
+ ;;=3^Suicide Attempt,Sequela
+ ;;^UTILITY(U,$J,358.3,23622,1,4,0)
+ ;;=4^T14.91XS
+ ;;^UTILITY(U,$J,358.3,23622,2)
+ ;;=^5151781
+ ;;^UTILITY(U,$J,358.3,23623,0)
+ ;;=Z91.52^^79^1020^1
+ ;;^UTILITY(U,$J,358.3,23623,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,23362,1,3,0)
- ;;=3^Secondary Malig Neop of Bone
- ;;^UTILITY(U,$J,358.3,23362,1,4,0)
- ;;=4^C79.51
- ;;^UTILITY(U,$J,358.3,23362,2)
- ;;=^5001350
- ;;^UTILITY(U,$J,358.3,23363,0)
- ;;=C79.52^^105^1173^92
- ;;^UTILITY(U,$J,358.3,23363,1,0)
+ ;;^UTILITY(U,$J,358.3,23623,1,3,0)
+ ;;=3^Personal Hx of Non-Suicidal Self-Harm
+ ;;^UTILITY(U,$J,358.3,23623,1,4,0)
+ ;;=4^Z91.52
+ ;;^UTILITY(U,$J,358.3,23623,2)
+ ;;=^5161318
+ ;;^UTILITY(U,$J,358.3,23624,0)
+ ;;=Z91.52^^79^1020^2
+ ;;^UTILITY(U,$J,358.3,23624,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,23363,1,3,0)
- ;;=3^Secondary Malig Neop of Bone Marrow
- ;;^UTILITY(U,$J,358.3,23363,1,4,0)
- ;;=4^C79.52
- ;;^UTILITY(U,$J,358.3,23363,2)
- ;;=^5001351
- ;;^UTILITY(U,$J,358.3,23364,0)
- ;;=C79.70^^105^1173^90
- ;;^UTILITY(U,$J,358.3,23364,1,0)
+ ;;^UTILITY(U,$J,358.3,23624,1,3,0)
+ ;;=3^Personal Hx of Suicidal Behavior     
+ ;;^UTILITY(U,$J,358.3,23624,1,4,0)
+ ;;=4^Z91.52
+ ;;^UTILITY(U,$J,358.3,23624,2)
+ ;;=^5161318
+ ;;^UTILITY(U,$J,358.3,23625,0)
+ ;;=Z51.81^^79^1021^19
+ ;;^UTILITY(U,$J,358.3,23625,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,23364,1,3,0)
- ;;=3^Secondary Malig Neop of Adrenal Gland,Unspec
- ;;^UTILITY(U,$J,358.3,23364,1,4,0)
- ;;=4^C79.70
- ;;^UTILITY(U,$J,358.3,23364,2)
- ;;=^5001355
- ;;^UTILITY(U,$J,358.3,23365,0)
- ;;=C83.30^^105^1173^12
- ;;^UTILITY(U,$J,358.3,23365,1,0)
+ ;;^UTILITY(U,$J,358.3,23625,1,3,0)
+ ;;=3^Therapeutic Drug Level Monitoring
+ ;;^UTILITY(U,$J,358.3,23625,1,4,0)
+ ;;=4^Z51.81
+ ;;^UTILITY(U,$J,358.3,23625,2)
+ ;;=^5063064
+ ;;^UTILITY(U,$J,358.3,23626,0)
+ ;;=Z79.01^^79^1021^15
+ ;;^UTILITY(U,$J,358.3,23626,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,23365,1,3,0)
- ;;=3^Diffuse Large B-Cell Lymphoma,Unspec Site
- ;;^UTILITY(U,$J,358.3,23365,1,4,0)
- ;;=4^C83.30
- ;;^UTILITY(U,$J,358.3,23365,2)
- ;;=^5001571
- ;;^UTILITY(U,$J,358.3,23366,0)
- ;;=C83.39^^105^1173^11
- ;;^UTILITY(U,$J,358.3,23366,1,0)
+ ;;^UTILITY(U,$J,358.3,23626,1,3,0)
+ ;;=3^Long Term Current Use of Anticoagulants
+ ;;^UTILITY(U,$J,358.3,23626,1,4,0)
+ ;;=4^Z79.01
+ ;;^UTILITY(U,$J,358.3,23626,2)
+ ;;=^5063330
+ ;;^UTILITY(U,$J,358.3,23627,0)
+ ;;=I48.0^^79^1021^7
+ ;;^UTILITY(U,$J,358.3,23627,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,23366,1,3,0)
- ;;=3^Diffuse Large B-Cell Lymphoma,Extranodal/Solid Organ Sites
- ;;^UTILITY(U,$J,358.3,23366,1,4,0)
- ;;=4^C83.39
- ;;^UTILITY(U,$J,358.3,23366,2)
- ;;=^5001580
- ;;^UTILITY(U,$J,358.3,23367,0)
- ;;=C83.50^^105^1173^31
- ;;^UTILITY(U,$J,358.3,23367,1,0)
+ ;;^UTILITY(U,$J,358.3,23627,1,3,0)
+ ;;=3^Atrial Fibrillation,Paroxysmal
+ ;;^UTILITY(U,$J,358.3,23627,1,4,0)
+ ;;=4^I48.0
+ ;;^UTILITY(U,$J,358.3,23627,2)
+ ;;=^90473
+ ;;^UTILITY(U,$J,358.3,23628,0)
+ ;;=Z86.711^^79^1021^17
+ ;;^UTILITY(U,$J,358.3,23628,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,23367,1,3,0)
- ;;=3^Lymphoblastic Lymphoma,Unspec Site
- ;;^UTILITY(U,$J,358.3,23367,1,4,0)
- ;;=4^C83.50
- ;;^UTILITY(U,$J,358.3,23367,2)
- ;;=^5001581
- ;;^UTILITY(U,$J,358.3,23368,0)
- ;;=C83.59^^105^1173^30
- ;;^UTILITY(U,$J,358.3,23368,1,0)
+ ;;^UTILITY(U,$J,358.3,23628,1,3,0)
+ ;;=3^Personal Hx of Pulmonary Embolism
+ ;;^UTILITY(U,$J,358.3,23628,1,4,0)
+ ;;=4^Z86.711
+ ;;^UTILITY(U,$J,358.3,23628,2)
+ ;;=^5063474
+ ;;^UTILITY(U,$J,358.3,23629,0)
+ ;;=Z95.2^^79^1021^18
+ ;;^UTILITY(U,$J,358.3,23629,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,23368,1,3,0)
- ;;=3^Lymphoblastic Lymphoma,Extranodal/Solid Organ Sites
- ;;^UTILITY(U,$J,358.3,23368,1,4,0)
- ;;=4^C83.59
- ;;^UTILITY(U,$J,358.3,23368,2)
- ;;=^5001590
- ;;^UTILITY(U,$J,358.3,23369,0)
- ;;=C81.90^^105^1173^22
- ;;^UTILITY(U,$J,358.3,23369,1,0)
+ ;;^UTILITY(U,$J,358.3,23629,1,3,0)
+ ;;=3^Presence of Prosthetic Heart Valve
+ ;;^UTILITY(U,$J,358.3,23629,1,4,0)
+ ;;=4^Z95.2
+ ;;^UTILITY(U,$J,358.3,23629,2)
+ ;;=^5063670
+ ;;^UTILITY(U,$J,358.3,23630,0)
+ ;;=I48.92^^79^1021^9
+ ;;^UTILITY(U,$J,358.3,23630,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,23369,1,3,0)
- ;;=3^Hodgkin Lymphoma,Unspec Site,Unspec
+ ;;^UTILITY(U,$J,358.3,23630,1,3,0)
+ ;;=3^Atrial Flutter,Unspec
+ ;;^UTILITY(U,$J,358.3,23630,1,4,0)
+ ;;=4^I48.92
+ ;;^UTILITY(U,$J,358.3,23630,2)
+ ;;=^5007230
+ ;;^UTILITY(U,$J,358.3,23631,0)
+ ;;=D68.8^^79^1021^11
+ ;;^UTILITY(U,$J,358.3,23631,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,23631,1,3,0)
+ ;;=3^Coagulation Defects,Oth Specified

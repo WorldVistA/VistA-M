@@ -1,696 +1,704 @@
-IBDEI06S ; ; 01-MAY-2020
- ;;3.0;IB ENCOUNTER FORM IMP/EXP;;MAY 01, 2020
+IBDEI06S ; ; 01-AUG-2022
+ ;;3.0;IB ENCOUNTER FORM IMP/EXP;;AUG 01, 2022
  Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,999) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
+ ;;^UTILITY(U,$J,358.3,16459,1,4,0)
+ ;;=4^N91.0
+ ;;^UTILITY(U,$J,358.3,16459,2)
+ ;;=^5015902
+ ;;^UTILITY(U,$J,358.3,16460,0)
+ ;;=N91.1^^56^660^10
+ ;;^UTILITY(U,$J,358.3,16460,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,16460,1,3,0)
+ ;;=3^Amenorrhea,Secondary
+ ;;^UTILITY(U,$J,358.3,16460,1,4,0)
+ ;;=4^N91.1
+ ;;^UTILITY(U,$J,358.3,16460,2)
+ ;;=^5015903
+ ;;^UTILITY(U,$J,358.3,16461,0)
+ ;;=N91.2^^56^660^11
+ ;;^UTILITY(U,$J,358.3,16461,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,16461,1,3,0)
+ ;;=3^Amenorrhea,Unspec
+ ;;^UTILITY(U,$J,358.3,16461,1,4,0)
+ ;;=4^N91.2
+ ;;^UTILITY(U,$J,358.3,16461,2)
+ ;;=^5015904
+ ;;^UTILITY(U,$J,358.3,16462,0)
+ ;;=N91.3^^56^660^73
+ ;;^UTILITY(U,$J,358.3,16462,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,16462,1,3,0)
+ ;;=3^Oligomenorrhea,Primary
+ ;;^UTILITY(U,$J,358.3,16462,1,4,0)
+ ;;=4^N91.3
+ ;;^UTILITY(U,$J,358.3,16462,2)
+ ;;=^5015905
+ ;;^UTILITY(U,$J,358.3,16463,0)
+ ;;=N91.4^^56^660^74
+ ;;^UTILITY(U,$J,358.3,16463,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,16463,1,3,0)
+ ;;=3^Oligomenorrhea,Secondary
+ ;;^UTILITY(U,$J,358.3,16463,1,4,0)
+ ;;=4^N91.4
+ ;;^UTILITY(U,$J,358.3,16463,2)
+ ;;=^5015906
+ ;;^UTILITY(U,$J,358.3,16464,0)
+ ;;=N91.5^^56^660^75
+ ;;^UTILITY(U,$J,358.3,16464,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,16464,1,3,0)
+ ;;=3^Oligomenorrhea,Unspec
+ ;;^UTILITY(U,$J,358.3,16464,1,4,0)
+ ;;=4^N91.5
+ ;;^UTILITY(U,$J,358.3,16464,2)
+ ;;=^5015907
+ ;;^UTILITY(U,$J,358.3,16465,0)
+ ;;=N92.0^^56^660^40
+ ;;^UTILITY(U,$J,358.3,16465,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,16465,1,3,0)
+ ;;=3^Excessive/Frequent Menstruation w/ Regular Cycle
+ ;;^UTILITY(U,$J,358.3,16465,1,4,0)
+ ;;=4^N92.0
+ ;;^UTILITY(U,$J,358.3,16465,2)
+ ;;=^5015908
+ ;;^UTILITY(U,$J,358.3,16466,0)
+ ;;=N92.6^^56^660^62
+ ;;^UTILITY(U,$J,358.3,16466,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,16466,1,3,0)
+ ;;=3^Irregular Menstruation,Unspec
+ ;;^UTILITY(U,$J,358.3,16466,1,4,0)
+ ;;=4^N92.6
+ ;;^UTILITY(U,$J,358.3,16466,2)
+ ;;=^5015913
+ ;;^UTILITY(U,$J,358.3,16467,0)
+ ;;=N92.5^^56^660^61
+ ;;^UTILITY(U,$J,358.3,16467,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,16467,1,3,0)
+ ;;=3^Irregular Menstruation,Other Spec
+ ;;^UTILITY(U,$J,358.3,16467,1,4,0)
+ ;;=4^N92.5
+ ;;^UTILITY(U,$J,358.3,16467,2)
+ ;;=^5015912
+ ;;^UTILITY(U,$J,358.3,16468,0)
+ ;;=N92.3^^56^660^80
+ ;;^UTILITY(U,$J,358.3,16468,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,16468,1,3,0)
+ ;;=3^Ovulation Bleeding
+ ;;^UTILITY(U,$J,358.3,16468,1,4,0)
+ ;;=4^N92.3
+ ;;^UTILITY(U,$J,358.3,16468,2)
+ ;;=^270570
+ ;;^UTILITY(U,$J,358.3,16469,0)
+ ;;=N89.7^^56^660^54
+ ;;^UTILITY(U,$J,358.3,16469,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,16469,1,3,0)
+ ;;=3^Hematocolpos
+ ;;^UTILITY(U,$J,358.3,16469,1,4,0)
+ ;;=4^N89.7
+ ;;^UTILITY(U,$J,358.3,16469,2)
+ ;;=^5015889
+ ;;^UTILITY(U,$J,358.3,16470,0)
+ ;;=N93.8^^56^660^5
+ ;;^UTILITY(U,$J,358.3,16470,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,16470,1,3,0)
+ ;;=3^Abnormal Uterine/Vaginal Bleeding,Other Spec
+ ;;^UTILITY(U,$J,358.3,16470,1,4,0)
+ ;;=4^N93.8
+ ;;^UTILITY(U,$J,358.3,16470,2)
+ ;;=^5015915
+ ;;^UTILITY(U,$J,358.3,16471,0)
+ ;;=N93.9^^56^660^6
+ ;;^UTILITY(U,$J,358.3,16471,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,16471,1,3,0)
+ ;;=3^Abnormal Uterine/Vaginal Bleeding,Unspec
+ ;;^UTILITY(U,$J,358.3,16471,1,4,0)
+ ;;=4^N93.9
+ ;;^UTILITY(U,$J,358.3,16471,2)
+ ;;=^5015916
+ ;;^UTILITY(U,$J,358.3,16472,0)
+ ;;=N92.4^^56^660^38
+ ;;^UTILITY(U,$J,358.3,16472,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,16472,1,3,0)
+ ;;=3^Excessive Bleeding in Premenopausal Period
+ ;;^UTILITY(U,$J,358.3,16472,1,4,0)
+ ;;=4^N92.4
+ ;;^UTILITY(U,$J,358.3,16472,2)
+ ;;=^5015911
+ ;;^UTILITY(U,$J,358.3,16473,0)
+ ;;=N95.0^^56^660^89
+ ;;^UTILITY(U,$J,358.3,16473,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,16473,1,3,0)
+ ;;=3^Postmenopausal Bleeding
+ ;;^UTILITY(U,$J,358.3,16473,1,4,0)
+ ;;=4^N95.0
+ ;;^UTILITY(U,$J,358.3,16473,2)
+ ;;=^97040
+ ;;^UTILITY(U,$J,358.3,16474,0)
+ ;;=N95.1^^56^660^69
+ ;;^UTILITY(U,$J,358.3,16474,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,16474,1,3,0)
+ ;;=3^Menopausal/Female Climacteric States
+ ;;^UTILITY(U,$J,358.3,16474,1,4,0)
+ ;;=4^N95.1
+ ;;^UTILITY(U,$J,358.3,16474,2)
+ ;;=^5015927
+ ;;^UTILITY(U,$J,358.3,16475,0)
+ ;;=N97.0^^56^660^45
+ ;;^UTILITY(U,$J,358.3,16475,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,16475,1,3,0)
+ ;;=3^Female Infertility Associated w/ Anovulation
+ ;;^UTILITY(U,$J,358.3,16475,1,4,0)
+ ;;=4^N97.0
+ ;;^UTILITY(U,$J,358.3,16475,2)
+ ;;=^5015931
+ ;;^UTILITY(U,$J,358.3,16476,0)
+ ;;=N97.9^^56^660^46
+ ;;^UTILITY(U,$J,358.3,16476,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,16476,1,3,0)
+ ;;=3^Female Infertility,Unspec
+ ;;^UTILITY(U,$J,358.3,16476,1,4,0)
+ ;;=4^N97.9
+ ;;^UTILITY(U,$J,358.3,16476,2)
+ ;;=^5015935
+ ;;^UTILITY(U,$J,358.3,16477,0)
+ ;;=L29.2^^56^660^96
+ ;;^UTILITY(U,$J,358.3,16477,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,16477,1,3,0)
+ ;;=3^Pruritus Vulvae
+ ;;^UTILITY(U,$J,358.3,16477,1,4,0)
+ ;;=4^L29.2
+ ;;^UTILITY(U,$J,358.3,16477,2)
+ ;;=^100075
+ ;;^UTILITY(U,$J,358.3,16478,0)
+ ;;=R92.8^^56^660^7
+ ;;^UTILITY(U,$J,358.3,16478,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,16478,1,3,0)
+ ;;=3^Abnormal/Inconclusive Findings on Dx Imaging of Breast
+ ;;^UTILITY(U,$J,358.3,16478,1,4,0)
+ ;;=4^R92.8
+ ;;^UTILITY(U,$J,358.3,16478,2)
+ ;;=^5019712
+ ;;^UTILITY(U,$J,358.3,16479,0)
+ ;;=R87.619^^56^660^4
+ ;;^UTILITY(U,$J,358.3,16479,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,16479,1,3,0)
+ ;;=3^Abnormal Cytology Findings in Specimen of Cervix Uteri,Unspec
+ ;;^UTILITY(U,$J,358.3,16479,1,4,0)
+ ;;=4^R87.619
+ ;;^UTILITY(U,$J,358.3,16479,2)
+ ;;=^5019676
+ ;;^UTILITY(U,$J,358.3,16480,0)
+ ;;=Z79.890^^56^660^56
+ ;;^UTILITY(U,$J,358.3,16480,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,16480,1,3,0)
+ ;;=3^Hormone Replacement Therapy,Postmenopausal
+ ;;^UTILITY(U,$J,358.3,16480,1,4,0)
+ ;;=4^Z79.890
+ ;;^UTILITY(U,$J,358.3,16480,2)
+ ;;=^331975
+ ;;^UTILITY(U,$J,358.3,16481,0)
+ ;;=Z33.1^^56^660^94
+ ;;^UTILITY(U,$J,358.3,16481,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,16481,1,3,0)
+ ;;=3^Pregnant State,Incidental
+ ;;^UTILITY(U,$J,358.3,16481,1,4,0)
+ ;;=4^Z33.1
+ ;;^UTILITY(U,$J,358.3,16481,2)
+ ;;=^5062853
+ ;;^UTILITY(U,$J,358.3,16482,0)
+ ;;=Z39.2^^56^660^90
+ ;;^UTILITY(U,$J,358.3,16482,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,16482,1,3,0)
+ ;;=3^Postpartum Follow-up Routine Encounter
+ ;;^UTILITY(U,$J,358.3,16482,1,4,0)
+ ;;=4^Z39.2
+ ;;^UTILITY(U,$J,358.3,16482,2)
+ ;;=^5062906
+ ;;^UTILITY(U,$J,358.3,16483,0)
+ ;;=Z30.09^^56^660^21
+ ;;^UTILITY(U,$J,358.3,16483,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,16483,1,3,0)
+ ;;=3^Counsel/Advice on Contraception Encounter
+ ;;^UTILITY(U,$J,358.3,16483,1,4,0)
+ ;;=4^Z30.09
+ ;;^UTILITY(U,$J,358.3,16483,2)
+ ;;=^5062817
+ ;;^UTILITY(U,$J,358.3,16484,0)
+ ;;=Z30.9^^56^660^20
+ ;;^UTILITY(U,$J,358.3,16484,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,16484,1,3,0)
+ ;;=3^Contraceptive Management Encounter
+ ;;^UTILITY(U,$J,358.3,16484,1,4,0)
+ ;;=4^Z30.9
+ ;;^UTILITY(U,$J,358.3,16484,2)
+ ;;=^5062828
+ ;;^UTILITY(U,$J,358.3,16485,0)
+ ;;=N64.3^^56^660^52
+ ;;^UTILITY(U,$J,358.3,16485,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,16485,1,3,0)
+ ;;=3^Galactorrhea Not Associated w/ Childbirth
+ ;;^UTILITY(U,$J,358.3,16485,1,4,0)
+ ;;=4^N64.3
+ ;;^UTILITY(U,$J,358.3,16485,2)
+ ;;=^270460
+ ;;^UTILITY(U,$J,358.3,16486,0)
+ ;;=R92.2^^56^660^59
+ ;;^UTILITY(U,$J,358.3,16486,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,16486,1,3,0)
+ ;;=3^Inconclusive Mammogram
+ ;;^UTILITY(U,$J,358.3,16486,1,4,0)
+ ;;=4^R92.2
+ ;;^UTILITY(U,$J,358.3,16486,2)
+ ;;=^5019711
+ ;;^UTILITY(U,$J,358.3,16487,0)
+ ;;=Z30.432^^56^660^98
+ ;;^UTILITY(U,$J,358.3,16487,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,16487,1,3,0)
+ ;;=3^Removal of IUD
+ ;;^UTILITY(U,$J,358.3,16487,1,4,0)
+ ;;=4^Z30.432
+ ;;^UTILITY(U,$J,358.3,16487,2)
+ ;;=^5062824
+ ;;^UTILITY(U,$J,358.3,16488,0)
+ ;;=A63.0^^56^660^12
+ ;;^UTILITY(U,$J,358.3,16488,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,16488,1,3,0)
+ ;;=3^Anogenital Warts,Verereal
+ ;;^UTILITY(U,$J,358.3,16488,1,4,0)
+ ;;=4^A63.0
+ ;;^UTILITY(U,$J,358.3,16488,2)
+ ;;=^5000360
+ ;;^UTILITY(U,$J,358.3,16489,0)
+ ;;=R63.0^^56^660^13
+ ;;^UTILITY(U,$J,358.3,16489,1,0)
+ ;;=^358.31IA^4^2
  ;;^UTILITY(U,$J,358.3,16489,1,3,0)
- ;;=3^Cryptosporidiosis
+ ;;=3^Anorexia
  ;;^UTILITY(U,$J,358.3,16489,1,4,0)
- ;;=4^A07.2
+ ;;=4^R63.0
  ;;^UTILITY(U,$J,358.3,16489,2)
- ;;=^29629
+ ;;=^7939
  ;;^UTILITY(U,$J,358.3,16490,0)
- ;;=A07.3^^62^730^12
+ ;;=R87.611^^56^660^2
  ;;^UTILITY(U,$J,358.3,16490,1,0)
  ;;=^358.31IA^4^2
  ;;^UTILITY(U,$J,358.3,16490,1,3,0)
- ;;=3^Isosporiasis
+ ;;=3^ASC-H
  ;;^UTILITY(U,$J,358.3,16490,1,4,0)
- ;;=4^A07.3
+ ;;=4^R87.611
  ;;^UTILITY(U,$J,358.3,16490,2)
- ;;=^5000050
+ ;;=^5019669
  ;;^UTILITY(U,$J,358.3,16491,0)
- ;;=A07.4^^62^730^8
+ ;;=R87.610^^56^660^3
  ;;^UTILITY(U,$J,358.3,16491,1,0)
  ;;=^358.31IA^4^2
  ;;^UTILITY(U,$J,358.3,16491,1,3,0)
- ;;=3^Cyclosporiasis
+ ;;=3^ASC-US
  ;;^UTILITY(U,$J,358.3,16491,1,4,0)
- ;;=4^A07.4
+ ;;=4^R87.610
  ;;^UTILITY(U,$J,358.3,16491,2)
- ;;=^321973
+ ;;=^5019668
  ;;^UTILITY(U,$J,358.3,16492,0)
- ;;=A07.8^^62^730^14
+ ;;=Z98.82^^56^660^14
  ;;^UTILITY(U,$J,358.3,16492,1,0)
  ;;=^358.31IA^4^2
  ;;^UTILITY(U,$J,358.3,16492,1,3,0)
- ;;=3^Protozoal Intestinal Diseases,Oth Spec
+ ;;=3^Breast Implant Status
  ;;^UTILITY(U,$J,358.3,16492,1,4,0)
- ;;=4^A07.8
+ ;;=4^Z98.82
  ;;^UTILITY(U,$J,358.3,16492,2)
- ;;=^265972
+ ;;=^5063747
  ;;^UTILITY(U,$J,358.3,16493,0)
- ;;=A07.9^^62^730^13
+ ;;=B37.3^^56^660^15
  ;;^UTILITY(U,$J,358.3,16493,1,0)
  ;;=^358.31IA^4^2
  ;;^UTILITY(U,$J,358.3,16493,1,3,0)
- ;;=3^Protozoal Intestinal Disease,Unspec
+ ;;=3^Candidiasis of Vulva & Vagina
  ;;^UTILITY(U,$J,358.3,16493,1,4,0)
- ;;=4^A07.9
+ ;;=4^B37.3
  ;;^UTILITY(U,$J,358.3,16493,2)
- ;;=^5000051
+ ;;=^5000615
  ;;^UTILITY(U,$J,358.3,16494,0)
- ;;=A08.0^^62^730^15
+ ;;=D06.9^^56^660^16
  ;;^UTILITY(U,$J,358.3,16494,1,0)
  ;;=^358.31IA^4^2
  ;;^UTILITY(U,$J,358.3,16494,1,3,0)
- ;;=3^Rotaviral Enteritis
+ ;;=3^Carcinoma in Situ of Cervix,Unspec
  ;;^UTILITY(U,$J,358.3,16494,1,4,0)
- ;;=4^A08.0
+ ;;=4^D06.9
  ;;^UTILITY(U,$J,358.3,16494,2)
- ;;=^5000052
+ ;;=^5001941
  ;;^UTILITY(U,$J,358.3,16495,0)
- ;;=A08.11^^62^730^1
+ ;;=D06.0^^56^660^17
  ;;^UTILITY(U,$J,358.3,16495,1,0)
  ;;=^358.31IA^4^2
  ;;^UTILITY(U,$J,358.3,16495,1,3,0)
- ;;=3^Acute Gastroenteropathy d/t Norwalk Agent
+ ;;=3^Carcinoma in Situ of Endocervix
  ;;^UTILITY(U,$J,358.3,16495,1,4,0)
- ;;=4^A08.11
+ ;;=4^D06.0
  ;;^UTILITY(U,$J,358.3,16495,2)
- ;;=^5000053
+ ;;=^5001938
  ;;^UTILITY(U,$J,358.3,16496,0)
- ;;=A08.19^^62^730^2
+ ;;=D06.1^^56^660^18
  ;;^UTILITY(U,$J,358.3,16496,1,0)
  ;;=^358.31IA^4^2
  ;;^UTILITY(U,$J,358.3,16496,1,3,0)
- ;;=3^Acute Gastroenteropathy d/t Oth Small Round Viruses
+ ;;=3^Carcinoma in Situ of Exocervix
  ;;^UTILITY(U,$J,358.3,16496,1,4,0)
- ;;=4^A08.19
+ ;;=4^D06.1
  ;;^UTILITY(U,$J,358.3,16496,2)
- ;;=^5000054
+ ;;=^5001939
  ;;^UTILITY(U,$J,358.3,16497,0)
- ;;=A08.2^^62^730^3
+ ;;=A56.02^^56^660^19
  ;;^UTILITY(U,$J,358.3,16497,1,0)
  ;;=^358.31IA^4^2
  ;;^UTILITY(U,$J,358.3,16497,1,3,0)
- ;;=3^Adenoviral Enteritis
+ ;;=3^Chlamydial Vulvovaginitis
  ;;^UTILITY(U,$J,358.3,16497,1,4,0)
- ;;=4^A08.2
+ ;;=4^A56.02
  ;;^UTILITY(U,$J,358.3,16497,2)
- ;;=^5000055
+ ;;=^5000340
  ;;^UTILITY(U,$J,358.3,16498,0)
- ;;=A08.31^^62^730^6
+ ;;=N81.12^^56^660^22
  ;;^UTILITY(U,$J,358.3,16498,1,0)
  ;;=^358.31IA^4^2
  ;;^UTILITY(U,$J,358.3,16498,1,3,0)
- ;;=3^Calicivirus enteritis
+ ;;=3^Cystocele,Lateral
  ;;^UTILITY(U,$J,358.3,16498,1,4,0)
- ;;=4^A08.31
+ ;;=4^N81.12
  ;;^UTILITY(U,$J,358.3,16498,2)
- ;;=^5000056
+ ;;=^331535
  ;;^UTILITY(U,$J,358.3,16499,0)
- ;;=A08.32^^62^730^4
+ ;;=N81.11^^56^660^23
  ;;^UTILITY(U,$J,358.3,16499,1,0)
  ;;=^358.31IA^4^2
  ;;^UTILITY(U,$J,358.3,16499,1,3,0)
- ;;=3^Astrovirus enteritis
+ ;;=3^Cystocele,Midline
  ;;^UTILITY(U,$J,358.3,16499,1,4,0)
- ;;=4^A08.32
+ ;;=4^N81.11
  ;;^UTILITY(U,$J,358.3,16499,2)
- ;;=^5000057
+ ;;=^331534
  ;;^UTILITY(U,$J,358.3,16500,0)
- ;;=A08.39^^62^730^16
+ ;;=N81.10^^56^660^24
  ;;^UTILITY(U,$J,358.3,16500,1,0)
  ;;=^358.31IA^4^2
  ;;^UTILITY(U,$J,358.3,16500,1,3,0)
- ;;=3^Viral Enteritis,Oth
+ ;;=3^Cystocele,Unspec
  ;;^UTILITY(U,$J,358.3,16500,1,4,0)
- ;;=4^A08.39
+ ;;=4^N81.10
  ;;^UTILITY(U,$J,358.3,16500,2)
- ;;=^5000058
+ ;;=^5015838
  ;;^UTILITY(U,$J,358.3,16501,0)
- ;;=A08.4^^62^730^17
+ ;;=R87.614^^56^660^25
  ;;^UTILITY(U,$J,358.3,16501,1,0)
  ;;=^358.31IA^4^2
  ;;^UTILITY(U,$J,358.3,16501,1,3,0)
- ;;=3^Viral Intestinal Infection,Unspec
+ ;;=3^Cytologic Evidence of Malig on Smear of Cervix
  ;;^UTILITY(U,$J,358.3,16501,1,4,0)
- ;;=4^A08.4
+ ;;=4^R87.614
  ;;^UTILITY(U,$J,358.3,16501,2)
- ;;=^5000059
+ ;;=^5019672
  ;;^UTILITY(U,$J,358.3,16502,0)
- ;;=A08.8^^62^730^11
+ ;;=N87.9^^56^660^35
  ;;^UTILITY(U,$J,358.3,16502,1,0)
  ;;=^358.31IA^4^2
  ;;^UTILITY(U,$J,358.3,16502,1,3,0)
- ;;=3^Intestinal Infections,Oth Spec
+ ;;=3^Dysplasia of Cervix Uteri,Unspec
  ;;^UTILITY(U,$J,358.3,16502,1,4,0)
- ;;=4^A08.8
+ ;;=4^N87.9
  ;;^UTILITY(U,$J,358.3,16502,2)
- ;;=^5000060
+ ;;=^5015877
  ;;^UTILITY(U,$J,358.3,16503,0)
- ;;=A09.^^62^730^10
+ ;;=R30.0^^56^660^36
  ;;^UTILITY(U,$J,358.3,16503,1,0)
  ;;=^358.31IA^4^2
  ;;^UTILITY(U,$J,358.3,16503,1,3,0)
- ;;=3^Infectious Gastroenteritis & Colitis,Unspec
+ ;;=3^Dysuria
  ;;^UTILITY(U,$J,358.3,16503,1,4,0)
- ;;=4^A09.
+ ;;=4^R30.0
  ;;^UTILITY(U,$J,358.3,16503,2)
- ;;=^5000061
+ ;;=^5019322
  ;;^UTILITY(U,$J,358.3,16504,0)
- ;;=J12.0^^62^731^1
+ ;;=N92.1^^56^660^39
  ;;^UTILITY(U,$J,358.3,16504,1,0)
  ;;=^358.31IA^4^2
  ;;^UTILITY(U,$J,358.3,16504,1,3,0)
- ;;=3^Adenoviral Pneumonia
+ ;;=3^Excessive/Frequent Menstruation w/ Irregular Cycle
  ;;^UTILITY(U,$J,358.3,16504,1,4,0)
- ;;=4^J12.0
+ ;;=4^N92.1
  ;;^UTILITY(U,$J,358.3,16504,2)
- ;;=^5008164
+ ;;=^5015909
  ;;^UTILITY(U,$J,358.3,16505,0)
- ;;=J12.1^^62^731^30
+ ;;=Z08.^^56^660^41
  ;;^UTILITY(U,$J,358.3,16505,1,0)
  ;;=^358.31IA^4^2
  ;;^UTILITY(U,$J,358.3,16505,1,3,0)
- ;;=3^Respiratory Syncytial Virus Pneumonia
+ ;;=3^F/U Exam After Malig Neop Treatment
  ;;^UTILITY(U,$J,358.3,16505,1,4,0)
- ;;=4^J12.1
+ ;;=4^Z08.
  ;;^UTILITY(U,$J,358.3,16505,2)
- ;;=^5008165
+ ;;=^5062667
  ;;^UTILITY(U,$J,358.3,16506,0)
- ;;=J12.2^^62^731^4
+ ;;=Z80.3^^56^660^42
  ;;^UTILITY(U,$J,358.3,16506,1,0)
  ;;=^358.31IA^4^2
  ;;^UTILITY(U,$J,358.3,16506,1,3,0)
- ;;=3^Parainfluenza Virus Pneumonia
+ ;;=3^Family Hx of Breast CA
  ;;^UTILITY(U,$J,358.3,16506,1,4,0)
- ;;=4^J12.2
+ ;;=4^Z80.3
  ;;^UTILITY(U,$J,358.3,16506,2)
- ;;=^5008166
+ ;;=^5063347
  ;;^UTILITY(U,$J,358.3,16507,0)
- ;;=J12.3^^62^731^3
+ ;;=Z80.49^^56^660^43
  ;;^UTILITY(U,$J,358.3,16507,1,0)
  ;;=^358.31IA^4^2
  ;;^UTILITY(U,$J,358.3,16507,1,3,0)
- ;;=3^Human Metapneumovirus Pneumonia
+ ;;=3^Family Hx of Genital Organ CA
  ;;^UTILITY(U,$J,358.3,16507,1,4,0)
- ;;=4^J12.3
+ ;;=4^Z80.49
  ;;^UTILITY(U,$J,358.3,16507,2)
- ;;=^5008167
+ ;;=^5063351
  ;;^UTILITY(U,$J,358.3,16508,0)
- ;;=J12.81^^62^731^17
+ ;;=Z80.41^^56^660^44
  ;;^UTILITY(U,$J,358.3,16508,1,0)
  ;;=^358.31IA^4^2
  ;;^UTILITY(U,$J,358.3,16508,1,3,0)
- ;;=3^Pneumonia d/t SARS-Associated Coronavirus
+ ;;=3^Family Hx of Ovarian CA
  ;;^UTILITY(U,$J,358.3,16508,1,4,0)
- ;;=4^J12.81
+ ;;=4^Z80.41
  ;;^UTILITY(U,$J,358.3,16508,2)
- ;;=^329925
+ ;;=^5063348
  ;;^UTILITY(U,$J,358.3,16509,0)
- ;;=J12.89^^62^731^28
+ ;;=N73.9^^56^660^47
  ;;^UTILITY(U,$J,358.3,16509,1,0)
  ;;=^358.31IA^4^2
  ;;^UTILITY(U,$J,358.3,16509,1,3,0)
- ;;=3^Pneumonia,Viral,Other
+ ;;=3^Female Pelvic Inflammatory Disease,Unspec
  ;;^UTILITY(U,$J,358.3,16509,1,4,0)
- ;;=4^J12.89
+ ;;=4^N73.9
  ;;^UTILITY(U,$J,358.3,16509,2)
- ;;=^5008168
+ ;;=^5015820
  ;;^UTILITY(U,$J,358.3,16510,0)
- ;;=J12.9^^62^731^29
+ ;;=N60.32^^56^660^48
  ;;^UTILITY(U,$J,358.3,16510,1,0)
  ;;=^358.31IA^4^2
  ;;^UTILITY(U,$J,358.3,16510,1,3,0)
- ;;=3^Pneumonia,Viral,Unspec
+ ;;=3^Fibrosclerosis,Left Breast
  ;;^UTILITY(U,$J,358.3,16510,1,4,0)
- ;;=4^J12.9
+ ;;=4^N60.32
  ;;^UTILITY(U,$J,358.3,16510,2)
- ;;=^5008169
+ ;;=^5015780
  ;;^UTILITY(U,$J,358.3,16511,0)
- ;;=J13.^^62^731^19
+ ;;=N60.31^^56^660^49
  ;;^UTILITY(U,$J,358.3,16511,1,0)
  ;;=^358.31IA^4^2
  ;;^UTILITY(U,$J,358.3,16511,1,3,0)
- ;;=3^Pneumonia d/t Streptococcus Pneumoniae
+ ;;=3^Fibrosclerosis,Right Breast
  ;;^UTILITY(U,$J,358.3,16511,1,4,0)
- ;;=4^J13.
+ ;;=4^N60.31
  ;;^UTILITY(U,$J,358.3,16511,2)
- ;;=^5008170
+ ;;=^5015779
  ;;^UTILITY(U,$J,358.3,16512,0)
- ;;=J14.^^62^731^6
+ ;;=Z01.411^^56^660^50
  ;;^UTILITY(U,$J,358.3,16512,1,0)
  ;;=^358.31IA^4^2
  ;;^UTILITY(U,$J,358.3,16512,1,3,0)
- ;;=3^Pneumonia d/t Hemophilus Influenzae
+ ;;=3^GYN Exam w/ Abnormal Findings
  ;;^UTILITY(U,$J,358.3,16512,1,4,0)
- ;;=4^J14.
+ ;;=4^Z01.411
  ;;^UTILITY(U,$J,358.3,16512,2)
- ;;=^5008171
+ ;;=^5062622
  ;;^UTILITY(U,$J,358.3,16513,0)
- ;;=J15.0^^62^731^7
+ ;;=Z01.419^^56^660^1
  ;;^UTILITY(U,$J,358.3,16513,1,0)
  ;;=^358.31IA^4^2
  ;;^UTILITY(U,$J,358.3,16513,1,3,0)
- ;;=3^Pneumonia d/t Klebsiella Pneumoniae
+ ;;=3
  ;;^UTILITY(U,$J,358.3,16513,1,4,0)
- ;;=4^J15.0
+ ;;=4^Z01.419
  ;;^UTILITY(U,$J,358.3,16513,2)
- ;;=^269931
+ ;;=^5062623
  ;;^UTILITY(U,$J,358.3,16514,0)
- ;;=J15.1^^62^731^16
+ ;;=Z01.419^^56^660^51
  ;;^UTILITY(U,$J,358.3,16514,1,0)
  ;;=^358.31IA^4^2
  ;;^UTILITY(U,$J,358.3,16514,1,3,0)
- ;;=3^Pneumonia d/t Pseudomonas
+ ;;=3^GYN Exam w/ Normal Findings
  ;;^UTILITY(U,$J,358.3,16514,1,4,0)
- ;;=4^J15.1
+ ;;=4^Z01.419
  ;;^UTILITY(U,$J,358.3,16514,2)
- ;;=^269932
+ ;;=^5062623
  ;;^UTILITY(U,$J,358.3,16515,0)
- ;;=J15.20^^62^731^18
+ ;;=R87.613^^56^660^53
  ;;^UTILITY(U,$J,358.3,16515,1,0)
  ;;=^358.31IA^4^2
  ;;^UTILITY(U,$J,358.3,16515,1,3,0)
- ;;=3^Pneumonia d/t Staphylococcus,Unspec
+ ;;=3^HGSIL
  ;;^UTILITY(U,$J,358.3,16515,1,4,0)
- ;;=4^J15.20
+ ;;=4^R87.613
  ;;^UTILITY(U,$J,358.3,16515,2)
- ;;=^321179
+ ;;=^5019671
  ;;^UTILITY(U,$J,358.3,16516,0)
- ;;=J15.211^^62^731^9
+ ;;=R87.612^^56^660^63
  ;;^UTILITY(U,$J,358.3,16516,1,0)
  ;;=^358.31IA^4^2
  ;;^UTILITY(U,$J,358.3,16516,1,3,0)
- ;;=3^Pneumonia d/t Methicillin Suscep Staph
+ ;;=3^LGSIL
  ;;^UTILITY(U,$J,358.3,16516,1,4,0)
- ;;=4^J15.211
+ ;;=4^R87.612
  ;;^UTILITY(U,$J,358.3,16516,2)
- ;;=^336833
+ ;;=^5019670
  ;;^UTILITY(U,$J,358.3,16517,0)
- ;;=J15.212^^62^731^8
+ ;;=R92.1^^56^660^66
  ;;^UTILITY(U,$J,358.3,16517,1,0)
  ;;=^358.31IA^4^2
  ;;^UTILITY(U,$J,358.3,16517,1,3,0)
- ;;=3^Pneumonia d/t Methicillin Resistant Staph Aureus
+ ;;=3^Mammographic Calcification on Dx Breast Image
  ;;^UTILITY(U,$J,358.3,16517,1,4,0)
- ;;=4^J15.212
+ ;;=4^R92.1
  ;;^UTILITY(U,$J,358.3,16517,2)
- ;;=^336602
+ ;;=^5019710
  ;;^UTILITY(U,$J,358.3,16518,0)
- ;;=J15.29^^62^731^11
+ ;;=R92.0^^56^660^67
  ;;^UTILITY(U,$J,358.3,16518,1,0)
  ;;=^358.31IA^4^2
  ;;^UTILITY(U,$J,358.3,16518,1,3,0)
- ;;=3^Pneumonia d/t Oth Staph
+ ;;=3^Mammographic Microcalcification on Dx Breast Image
  ;;^UTILITY(U,$J,358.3,16518,1,4,0)
- ;;=4^J15.29
+ ;;=4^R92.0
  ;;^UTILITY(U,$J,358.3,16518,2)
- ;;=^5008172
+ ;;=^5019709
  ;;^UTILITY(U,$J,358.3,16519,0)
- ;;=J15.3^^62^731^20
+ ;;=N89.8^^56^660^72
  ;;^UTILITY(U,$J,358.3,16519,1,0)
  ;;=^358.31IA^4^2
  ;;^UTILITY(U,$J,358.3,16519,1,3,0)
- ;;=3^Pneumonia d/t Streptococcus,Group B
+ ;;=3^Noninflammatory Vaginal Disorder,Oth Spec
  ;;^UTILITY(U,$J,358.3,16519,1,4,0)
- ;;=4^J15.3
+ ;;=4^N89.8
  ;;^UTILITY(U,$J,358.3,16519,2)
- ;;=^5008173
+ ;;=^88111
  ;;^UTILITY(U,$J,358.3,16520,0)
- ;;=J15.4^^62^731^15
+ ;;=R10.2^^56^660^82
  ;;^UTILITY(U,$J,358.3,16520,1,0)
  ;;=^358.31IA^4^2
  ;;^UTILITY(U,$J,358.3,16520,1,3,0)
- ;;=3^Pneumonia d/t Other Streptococci
+ ;;=3^Pelvic & Perineal Pain
  ;;^UTILITY(U,$J,358.3,16520,1,4,0)
- ;;=4^J15.4
+ ;;=4^R10.2
  ;;^UTILITY(U,$J,358.3,16520,2)
- ;;=^5008174
+ ;;=^5019209
  ;;^UTILITY(U,$J,358.3,16521,0)
- ;;=J15.5^^62^731^5
+ ;;=N94.89^^56^660^83
  ;;^UTILITY(U,$J,358.3,16521,1,0)
  ;;=^358.31IA^4^2
  ;;^UTILITY(U,$J,358.3,16521,1,3,0)
- ;;=3^Pneumonia d/t Escherichia Coli
+ ;;=3^Pelvic Congestion Syndrome
  ;;^UTILITY(U,$J,358.3,16521,1,4,0)
- ;;=4^J15.5
+ ;;=4^N94.89
  ;;^UTILITY(U,$J,358.3,16521,2)
- ;;=^5008175
+ ;;=^5015925
  ;;^UTILITY(U,$J,358.3,16522,0)
- ;;=J15.6^^62^731^12
+ ;;=Z85.3^^56^660^57
  ;;^UTILITY(U,$J,358.3,16522,1,0)
  ;;=^358.31IA^4^2
  ;;^UTILITY(U,$J,358.3,16522,1,3,0)
- ;;=3^Pneumonia d/t Other Aerobic Gram-Neg Bacteria
+ ;;=3^Hx of Breast CA
  ;;^UTILITY(U,$J,358.3,16522,1,4,0)
- ;;=4^J15.6
+ ;;=4^Z85.3
  ;;^UTILITY(U,$J,358.3,16522,2)
- ;;=^5008176
+ ;;=^5063416
  ;;^UTILITY(U,$J,358.3,16523,0)
- ;;=J15.7^^62^731^10
+ ;;=Z85.43^^56^660^58
  ;;^UTILITY(U,$J,358.3,16523,1,0)
  ;;=^358.31IA^4^2
  ;;^UTILITY(U,$J,358.3,16523,1,3,0)
- ;;=3^Pneumonia d/t Mycoplasma Pneumoniae
+ ;;=3^Hx of Ovarian CA
  ;;^UTILITY(U,$J,358.3,16523,1,4,0)
- ;;=4^J15.7
+ ;;=4^Z85.43
  ;;^UTILITY(U,$J,358.3,16523,2)
- ;;=^5008177
+ ;;=^5063420
  ;;^UTILITY(U,$J,358.3,16524,0)
- ;;=J15.8^^62^731^13
+ ;;=N94.3^^56^660^81
  ;;^UTILITY(U,$J,358.3,16524,1,0)
  ;;=^358.31IA^4^2
  ;;^UTILITY(U,$J,358.3,16524,1,3,0)
- ;;=3^Pneumonia d/t Other Spec Bacteria
+ ;;=3^PMS
  ;;^UTILITY(U,$J,358.3,16524,1,4,0)
- ;;=4^J15.8
+ ;;=4^N94.3
  ;;^UTILITY(U,$J,358.3,16524,2)
- ;;=^95571
+ ;;=^5015919
  ;;^UTILITY(U,$J,358.3,16525,0)
- ;;=J15.9^^62^731^22
+ ;;=N93.0^^56^660^88
  ;;^UTILITY(U,$J,358.3,16525,1,0)
  ;;=^358.31IA^4^2
  ;;^UTILITY(U,$J,358.3,16525,1,3,0)
- ;;=3^Pneumonia,Bacterial,Unspec
+ ;;=3^Postcoital & Contact Bleeding
  ;;^UTILITY(U,$J,358.3,16525,1,4,0)
- ;;=4^J15.9
+ ;;=4^N93.0
  ;;^UTILITY(U,$J,358.3,16525,2)
- ;;=^5008178
+ ;;=^5015914
  ;;^UTILITY(U,$J,358.3,16526,0)
- ;;=J16.0^^62^731^23
+ ;;=Z32.02^^56^660^91
  ;;^UTILITY(U,$J,358.3,16526,1,0)
  ;;=^358.31IA^4^2
  ;;^UTILITY(U,$J,358.3,16526,1,3,0)
- ;;=3^Pneumonia,Chlamydial
+ ;;=3^Pregnancy Test,Negative
  ;;^UTILITY(U,$J,358.3,16526,1,4,0)
- ;;=4^J16.0
+ ;;=4^Z32.02
  ;;^UTILITY(U,$J,358.3,16526,2)
- ;;=^5008179
+ ;;=^5062850
  ;;^UTILITY(U,$J,358.3,16527,0)
- ;;=J16.8^^62^731^14
+ ;;=Z32.01^^56^660^92
  ;;^UTILITY(U,$J,358.3,16527,1,0)
  ;;=^358.31IA^4^2
  ;;^UTILITY(U,$J,358.3,16527,1,3,0)
- ;;=3^Pneumonia d/t Other Spec Infectious Organisms
+ ;;=3^Pregnancy Test,Positive
  ;;^UTILITY(U,$J,358.3,16527,1,4,0)
- ;;=4^J16.8
+ ;;=4^Z32.01
  ;;^UTILITY(U,$J,358.3,16527,2)
- ;;=^5008180
+ ;;=^5062849
  ;;^UTILITY(U,$J,358.3,16528,0)
- ;;=J17.^^62^731^21
+ ;;=Z32.00^^56^660^93
  ;;^UTILITY(U,$J,358.3,16528,1,0)
  ;;=^358.31IA^4^2
  ;;^UTILITY(U,$J,358.3,16528,1,3,0)
- ;;=3^Pneumonia in Diseases Classified Elsewhere
+ ;;=3^Pregnancy Test,Unknown Result
  ;;^UTILITY(U,$J,358.3,16528,1,4,0)
- ;;=4^J17.
+ ;;=4^Z32.00
  ;;^UTILITY(U,$J,358.3,16528,2)
- ;;=^5008181
+ ;;=^5062848
  ;;^UTILITY(U,$J,358.3,16529,0)
- ;;=J18.0^^62^731^2
+ ;;=N81.6^^56^660^97
  ;;^UTILITY(U,$J,358.3,16529,1,0)
  ;;=^358.31IA^4^2
  ;;^UTILITY(U,$J,358.3,16529,1,3,0)
- ;;=3^Bronchopneumonia,Unspec Organism
- ;;^UTILITY(U,$J,358.3,16529,1,4,0)
- ;;=4^J18.0
- ;;^UTILITY(U,$J,358.3,16529,2)
- ;;=^5008182
- ;;^UTILITY(U,$J,358.3,16530,0)
- ;;=J18.1^^62^731^25
- ;;^UTILITY(U,$J,358.3,16530,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,16530,1,3,0)
- ;;=3^Pneumonia,Lobar,Unspec Organism
- ;;^UTILITY(U,$J,358.3,16530,1,4,0)
- ;;=4^J18.1
- ;;^UTILITY(U,$J,358.3,16530,2)
- ;;=^5008183
- ;;^UTILITY(U,$J,358.3,16531,0)
- ;;=J18.2^^62^731^24
- ;;^UTILITY(U,$J,358.3,16531,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,16531,1,3,0)
- ;;=3^Pneumonia,Hypostatic,Unspec Organism
- ;;^UTILITY(U,$J,358.3,16531,1,4,0)
- ;;=4^J18.2
- ;;^UTILITY(U,$J,358.3,16531,2)
- ;;=^5008184
- ;;^UTILITY(U,$J,358.3,16532,0)
- ;;=J18.8^^62^731^26
- ;;^UTILITY(U,$J,358.3,16532,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,16532,1,3,0)
- ;;=3^Pneumonia,Oth,Unspec Organism
- ;;^UTILITY(U,$J,358.3,16532,1,4,0)
- ;;=4^J18.8
- ;;^UTILITY(U,$J,358.3,16532,2)
- ;;=^5008185
- ;;^UTILITY(U,$J,358.3,16533,0)
- ;;=J18.9^^62^731^27
- ;;^UTILITY(U,$J,358.3,16533,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,16533,1,3,0)
- ;;=3^Pneumonia,Unspec Organism
- ;;^UTILITY(U,$J,358.3,16533,1,4,0)
- ;;=4^J18.9
- ;;^UTILITY(U,$J,358.3,16533,2)
- ;;=^95632
- ;;^UTILITY(U,$J,358.3,16534,0)
- ;;=N39.0^^62^732^13
- ;;^UTILITY(U,$J,358.3,16534,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,16534,1,3,0)
- ;;=3^UTI,Site not Spec
- ;;^UTILITY(U,$J,358.3,16534,1,4,0)
- ;;=4^N39.0
- ;;^UTILITY(U,$J,358.3,16534,2)
- ;;=^124436
- ;;^UTILITY(U,$J,358.3,16535,0)
- ;;=N30.01^^62^732^1
- ;;^UTILITY(U,$J,358.3,16535,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,16535,1,3,0)
- ;;=3^Acute Cystitis w/ Hematuria
- ;;^UTILITY(U,$J,358.3,16535,1,4,0)
- ;;=4^N30.01
- ;;^UTILITY(U,$J,358.3,16535,2)
- ;;=^5015633
- ;;^UTILITY(U,$J,358.3,16536,0)
- ;;=N30.00^^62^732^2
- ;;^UTILITY(U,$J,358.3,16536,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,16536,1,3,0)
- ;;=3^Acute Cystitis w/o Hematuria
- ;;^UTILITY(U,$J,358.3,16536,1,4,0)
- ;;=4^N30.00
- ;;^UTILITY(U,$J,358.3,16536,2)
- ;;=^5015632
- ;;^UTILITY(U,$J,358.3,16537,0)
- ;;=N10.^^62^732^3
- ;;^UTILITY(U,$J,358.3,16537,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,16537,1,3,0)
- ;;=3^Acute Tubulo-Interstitial Nephritis
- ;;^UTILITY(U,$J,358.3,16537,1,4,0)
- ;;=4^N10.
- ;;^UTILITY(U,$J,358.3,16537,2)
- ;;=^5015570
- ;;^UTILITY(U,$J,358.3,16538,0)
- ;;=N11.9^^62^732^4
- ;;^UTILITY(U,$J,358.3,16538,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,16538,1,3,0)
- ;;=3^Chronic Tubulo-Interstitial Nephritis,Unspec
- ;;^UTILITY(U,$J,358.3,16538,1,4,0)
- ;;=4^N11.9
- ;;^UTILITY(U,$J,358.3,16538,2)
- ;;=^5015574
- ;;^UTILITY(U,$J,358.3,16539,0)
- ;;=N30.91^^62^732^5
- ;;^UTILITY(U,$J,358.3,16539,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,16539,1,3,0)
- ;;=3^Cystitis,Unspec w/ Hematuria
- ;;^UTILITY(U,$J,358.3,16539,1,4,0)
- ;;=4^N30.91
- ;;^UTILITY(U,$J,358.3,16539,2)
- ;;=^5015643
- ;;^UTILITY(U,$J,358.3,16540,0)
- ;;=N30.90^^62^732^6
- ;;^UTILITY(U,$J,358.3,16540,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,16540,1,3,0)
- ;;=3^Cystitis,Unspec w/o Hematuria
- ;;^UTILITY(U,$J,358.3,16540,1,4,0)
- ;;=4^N30.90
- ;;^UTILITY(U,$J,358.3,16540,2)
- ;;=^5015642
- ;;^UTILITY(U,$J,358.3,16541,0)
- ;;=N28.84^^62^732^7
- ;;^UTILITY(U,$J,358.3,16541,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,16541,1,3,0)
- ;;=3^Pyelitis Cystica
- ;;^UTILITY(U,$J,358.3,16541,1,4,0)
- ;;=4^N28.84
- ;;^UTILITY(U,$J,358.3,16541,2)
- ;;=^5015628
- ;;^UTILITY(U,$J,358.3,16542,0)
- ;;=N28.85^^62^732^8
- ;;^UTILITY(U,$J,358.3,16542,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,16542,1,3,0)
- ;;=3^Pyeloureteritis Cystica
- ;;^UTILITY(U,$J,358.3,16542,1,4,0)
- ;;=4^N28.85
- ;;^UTILITY(U,$J,358.3,16542,2)
- ;;=^270372
- ;;^UTILITY(U,$J,358.3,16543,0)
- ;;=N15.1^^62^732^9
- ;;^UTILITY(U,$J,358.3,16543,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,16543,1,3,0)
- ;;=3^Renal & Perinephric Abscess
- ;;^UTILITY(U,$J,358.3,16543,1,4,0)
- ;;=4^N15.1
- ;;^UTILITY(U,$J,358.3,16543,2)
- ;;=^270371
- ;;^UTILITY(U,$J,358.3,16544,0)
- ;;=N16.^^62^732^10
- ;;^UTILITY(U,$J,358.3,16544,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,16544,1,3,0)
- ;;=3^Tubulo-Interstitial D/O in Diseases Classigied Elsewhere
- ;;^UTILITY(U,$J,358.3,16544,1,4,0)
- ;;=4^N16.
- ;;^UTILITY(U,$J,358.3,16544,2)
- ;;=^5015597
- ;;^UTILITY(U,$J,358.3,16545,0)
- ;;=N15.9^^62^732^11
- ;;^UTILITY(U,$J,358.3,16545,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,16545,1,3,0)
- ;;=3^Tubulo-Interstitial Disease,Unspec
- ;;^UTILITY(U,$J,358.3,16545,1,4,0)
- ;;=4^N15.9
- ;;^UTILITY(U,$J,358.3,16545,2)
- ;;=^5015596
- ;;^UTILITY(U,$J,358.3,16546,0)
- ;;=N12.^^62^732^12
- ;;^UTILITY(U,$J,358.3,16546,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,16546,1,3,0)
- ;;=3^Tubulo-Interstitial Nephritis,Not Spec as Acute or Chronic
- ;;^UTILITY(U,$J,358.3,16546,1,4,0)
- ;;=4^N12.
- ;;^UTILITY(U,$J,358.3,16546,2)
- ;;=^5015575
- ;;^UTILITY(U,$J,358.3,16547,0)
- ;;=N28.86^^62^732^14
- ;;^UTILITY(U,$J,358.3,16547,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,16547,1,3,0)
- ;;=3^Ureteritis Cystica
- ;;^UTILITY(U,$J,358.3,16547,1,4,0)
- ;;=4^N28.86
- ;;^UTILITY(U,$J,358.3,16547,2)
- ;;=^5015629
- ;;^UTILITY(U,$J,358.3,16548,0)
- ;;=A08.0^^62^733^6
- ;;^UTILITY(U,$J,358.3,16548,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,16548,1,3,0)
- ;;=3^Enteritis,Rotaviral
- ;;^UTILITY(U,$J,358.3,16548,1,4,0)
- ;;=4^A08.0
- ;;^UTILITY(U,$J,358.3,16548,2)
- ;;=^5000052
- ;;^UTILITY(U,$J,358.3,16549,0)
- ;;=A08.11^^62^733^1
- ;;^UTILITY(U,$J,358.3,16549,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,16549,1,3,0)
- ;;=3^Acute Gastroenteropathy d/t Norwalk Agent
- ;;^UTILITY(U,$J,358.3,16549,1,4,0)
- ;;=4^A08.11
- ;;^UTILITY(U,$J,358.3,16549,2)
- ;;=^5000053
- ;;^UTILITY(U,$J,358.3,16550,0)
- ;;=A08.19^^62^733^2
- ;;^UTILITY(U,$J,358.3,16550,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,16550,1,3,0)
- ;;=3^Acute Gastroenteropathy d/t Oth Small Round Viruses
- ;;^UTILITY(U,$J,358.3,16550,1,4,0)
- ;;=4^A08.19
- ;;^UTILITY(U,$J,358.3,16550,2)
- ;;=^5000054
- ;;^UTILITY(U,$J,358.3,16551,0)
- ;;=A08.2^^62^733^3
- ;;^UTILITY(U,$J,358.3,16551,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,16551,1,3,0)
- ;;=3^Enteritis,Adenoviral
- ;;^UTILITY(U,$J,358.3,16551,1,4,0)
- ;;=4^A08.2
- ;;^UTILITY(U,$J,358.3,16551,2)
- ;;=^5000055
- ;;^UTILITY(U,$J,358.3,16552,0)
- ;;=A08.31^^62^733^5
- ;;^UTILITY(U,$J,358.3,16552,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,16552,1,3,0)
- ;;=3^Enteritis,Calicivirus
- ;;^UTILITY(U,$J,358.3,16552,1,4,0)
- ;;=4^A08.31
- ;;^UTILITY(U,$J,358.3,16552,2)
- ;;=^5000056
- ;;^UTILITY(U,$J,358.3,16553,0)
- ;;=A08.32^^62^733^4
- ;;^UTILITY(U,$J,358.3,16553,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,16553,1,3,0)
- ;;=3^Enteritis,Astrovirus
- ;;^UTILITY(U,$J,358.3,16553,1,4,0)
- ;;=4^A08.32
- ;;^UTILITY(U,$J,358.3,16553,2)
- ;;=^5000058
- ;;^UTILITY(U,$J,358.3,16554,0)
- ;;=A08.4^^62^733^8
- ;;^UTILITY(U,$J,358.3,16554,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,16554,1,3,0)
- ;;=3^Viral Intestinal Infection,Unspec
- ;;^UTILITY(U,$J,358.3,16554,1,4,0)
- ;;=4^A08.4
- ;;^UTILITY(U,$J,358.3,16554,2)
- ;;=^5000059
- ;;^UTILITY(U,$J,358.3,16555,0)
- ;;=A08.8^^62^733^7
- ;;^UTILITY(U,$J,358.3,16555,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,16555,1,3,0)
- ;;=3^Intestinal Infections,Oth Spec
- ;;^UTILITY(U,$J,358.3,16555,1,4,0)
- ;;=4^A08.8
- ;;^UTILITY(U,$J,358.3,16555,2)
- ;;=^5000060
- ;;^UTILITY(U,$J,358.3,16556,0)
- ;;=J68.0^^62^734^2
- ;;^UTILITY(U,$J,358.3,16556,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,16556,1,3,0)
- ;;=3^Bronchitis/Pneumonitis d/t Chem/Gases/Vapers
- ;;^UTILITY(U,$J,358.3,16556,1,4,0)
- ;;=4^J68.0
- ;;^UTILITY(U,$J,358.3,16556,2)
- ;;=^5008281
- ;;^UTILITY(U,$J,358.3,16557,0)
- ;;=J69.1^^62^734^4
- ;;^UTILITY(U,$J,358.3,16557,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,16557,1,3,0)
- ;;=3^Pneumonitis d/t Inhalation of Oils/Essences
- ;;^UTILITY(U,$J,358.3,16557,1,4,0)
- ;;=4^J69.1
- ;;^UTILITY(U,$J,358.3,16557,2)
- ;;=^95664
- ;;^UTILITY(U,$J,358.3,16558,0)
- ;;=J68.9^^62^734^6
- ;;^UTILITY(U,$J,358.3,16558,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,16558,1,3,0)
- ;;=3^Respiratory Condition,Unspec d/t Chem/Gases/Fumes/Vapors
+ ;;=3^Rectocele w/o Uterine Prolapse

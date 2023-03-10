@@ -1,128 +1,118 @@
-IBDEI17C ; ; 04-FEB-2020
- ;;3.0;IB ENCOUNTER FORM IMP/EXP;;FEB 04, 2020
+IBDEI17C ; ; 01-FEB-2022
+ ;;3.0;IB ENCOUNTER FORM IMP/EXP;;FEB 01, 2022
  Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,999) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
- ;;^UTILITY(U,$J,358.3,19307,2)
- ;;=^5012632
- ;;^UTILITY(U,$J,358.3,19308,0)
- ;;=M62.451^^93^992^30
- ;;^UTILITY(U,$J,358.3,19308,1,0)
+ ;;^UTILITY(U,$J,358.3,19530,1,3,0)
+ ;;=3^Ataxia following nontraumatic intracerebral hemorrhage
+ ;;^UTILITY(U,$J,358.3,19530,1,4,0)
+ ;;=4^I69.193
+ ;;^UTILITY(U,$J,358.3,19530,2)
+ ;;=^5007455
+ ;;^UTILITY(U,$J,358.3,19531,0)
+ ;;=I69.293^^67^877^16
+ ;;^UTILITY(U,$J,358.3,19531,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,19308,1,3,0)
- ;;=3^Contracture of muscle, right thigh
- ;;^UTILITY(U,$J,358.3,19308,1,4,0)
- ;;=4^M62.451
- ;;^UTILITY(U,$J,358.3,19308,2)
- ;;=^5012644
- ;;^UTILITY(U,$J,358.3,19309,0)
- ;;=M62.421^^93^992^31
- ;;^UTILITY(U,$J,358.3,19309,1,0)
+ ;;^UTILITY(U,$J,358.3,19531,1,3,0)
+ ;;=3^Ataxia following other nontraumatic intracranial hemorrhage
+ ;;^UTILITY(U,$J,358.3,19531,1,4,0)
+ ;;=4^I69.293
+ ;;^UTILITY(U,$J,358.3,19531,2)
+ ;;=^5007487
+ ;;^UTILITY(U,$J,358.3,19532,0)
+ ;;=I69.093^^67^877^14
+ ;;^UTILITY(U,$J,358.3,19532,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,19309,1,3,0)
- ;;=3^Contracture of muscle, right upper arm
- ;;^UTILITY(U,$J,358.3,19309,1,4,0)
- ;;=4^M62.421
- ;;^UTILITY(U,$J,358.3,19309,2)
- ;;=^5012635
- ;;^UTILITY(U,$J,358.3,19310,0)
- ;;=M25.262^^93^992^38
- ;;^UTILITY(U,$J,358.3,19310,1,0)
+ ;;^UTILITY(U,$J,358.3,19532,1,3,0)
+ ;;=3^Ataxia following nontraumatic subarachnoid hemorrhage
+ ;;^UTILITY(U,$J,358.3,19532,1,4,0)
+ ;;=4^I69.093
+ ;;^UTILITY(U,$J,358.3,19532,2)
+ ;;=^5007423
+ ;;^UTILITY(U,$J,358.3,19533,0)
+ ;;=I69.893^^67^877^15
+ ;;^UTILITY(U,$J,358.3,19533,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,19310,1,3,0)
- ;;=3^Flail joint, left knee
- ;;^UTILITY(U,$J,358.3,19310,1,4,0)
- ;;=4^M25.262
- ;;^UTILITY(U,$J,358.3,19310,2)
- ;;=^5011544
- ;;^UTILITY(U,$J,358.3,19311,0)
- ;;=M25.212^^93^992^39
- ;;^UTILITY(U,$J,358.3,19311,1,0)
+ ;;^UTILITY(U,$J,358.3,19533,1,3,0)
+ ;;=3^Ataxia following other cerebrovascular disease
+ ;;^UTILITY(U,$J,358.3,19533,1,4,0)
+ ;;=4^I69.893
+ ;;^UTILITY(U,$J,358.3,19533,2)
+ ;;=^5007549
+ ;;^UTILITY(U,$J,358.3,19534,0)
+ ;;=I69.391^^67^877^17
+ ;;^UTILITY(U,$J,358.3,19534,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,19311,1,3,0)
- ;;=3^Flail joint, left shoulder
- ;;^UTILITY(U,$J,358.3,19311,1,4,0)
- ;;=4^M25.212
- ;;^UTILITY(U,$J,358.3,19311,2)
- ;;=^5011529
- ;;^UTILITY(U,$J,358.3,19312,0)
- ;;=M25.261^^93^992^40
- ;;^UTILITY(U,$J,358.3,19312,1,0)
+ ;;^UTILITY(U,$J,358.3,19534,1,3,0)
+ ;;=3^Dysphagia following cerebral infarction
+ ;;^UTILITY(U,$J,358.3,19534,1,4,0)
+ ;;=4^I69.391
+ ;;^UTILITY(U,$J,358.3,19534,2)
+ ;;=^5007516
+ ;;^UTILITY(U,$J,358.3,19535,0)
+ ;;=I69.191^^67^877^18
+ ;;^UTILITY(U,$J,358.3,19535,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,19312,1,3,0)
- ;;=3^Flail joint, right knee
- ;;^UTILITY(U,$J,358.3,19312,1,4,0)
- ;;=4^M25.261
- ;;^UTILITY(U,$J,358.3,19312,2)
- ;;=^5011543
- ;;^UTILITY(U,$J,358.3,19313,0)
- ;;=M25.211^^93^992^41
- ;;^UTILITY(U,$J,358.3,19313,1,0)
+ ;;^UTILITY(U,$J,358.3,19535,1,3,0)
+ ;;=3^Dysphagia following nontraumatic intracerebral hemorrhage
+ ;;^UTILITY(U,$J,358.3,19535,1,4,0)
+ ;;=4^I69.191
+ ;;^UTILITY(U,$J,358.3,19535,2)
+ ;;=^5007453
+ ;;^UTILITY(U,$J,358.3,19536,0)
+ ;;=I69.291^^67^877^20
+ ;;^UTILITY(U,$J,358.3,19536,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,19313,1,3,0)
- ;;=3^Flail joint, right shoulder
- ;;^UTILITY(U,$J,358.3,19313,1,4,0)
- ;;=4^M25.211
- ;;^UTILITY(U,$J,358.3,19313,2)
- ;;=^5011528
- ;;^UTILITY(U,$J,358.3,19314,0)
- ;;=M21.42^^93^992^42
- ;;^UTILITY(U,$J,358.3,19314,1,0)
+ ;;^UTILITY(U,$J,358.3,19536,1,3,0)
+ ;;=3^Dysphagia following oth nontraumatic intracranial hemorrhage
+ ;;^UTILITY(U,$J,358.3,19536,1,4,0)
+ ;;=4^I69.291
+ ;;^UTILITY(U,$J,358.3,19536,2)
+ ;;=^5007485
+ ;;^UTILITY(U,$J,358.3,19537,0)
+ ;;=I69.091^^67^877^19
+ ;;^UTILITY(U,$J,358.3,19537,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,19314,1,3,0)
- ;;=3^Flat foot [pes planus] (acquired), left foot
- ;;^UTILITY(U,$J,358.3,19314,1,4,0)
- ;;=4^M21.42
- ;;^UTILITY(U,$J,358.3,19314,2)
- ;;=^5011115
- ;;^UTILITY(U,$J,358.3,19315,0)
- ;;=M21.41^^93^992^43
- ;;^UTILITY(U,$J,358.3,19315,1,0)
+ ;;^UTILITY(U,$J,358.3,19537,1,3,0)
+ ;;=3^Dysphagia following nontraumatic subarachnoid hemorrhage
+ ;;^UTILITY(U,$J,358.3,19537,1,4,0)
+ ;;=4^I69.091
+ ;;^UTILITY(U,$J,358.3,19537,2)
+ ;;=^5007421
+ ;;^UTILITY(U,$J,358.3,19538,0)
+ ;;=I69.891^^67^877^21
+ ;;^UTILITY(U,$J,358.3,19538,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,19315,1,3,0)
- ;;=3^Flat foot [pes planus] (acquired), right foot
- ;;^UTILITY(U,$J,358.3,19315,1,4,0)
- ;;=4^M21.41
- ;;^UTILITY(U,$J,358.3,19315,2)
- ;;=^5011114
- ;;^UTILITY(U,$J,358.3,19316,0)
- ;;=M76.02^^93^992^44
- ;;^UTILITY(U,$J,358.3,19316,1,0)
+ ;;^UTILITY(U,$J,358.3,19538,1,3,0)
+ ;;=3^Dysphagia following other cerebrovascular disease
+ ;;^UTILITY(U,$J,358.3,19538,1,4,0)
+ ;;=4^I69.891
+ ;;^UTILITY(U,$J,358.3,19538,2)
+ ;;=^5007547
+ ;;^UTILITY(U,$J,358.3,19539,0)
+ ;;=I69.321^^67^877^22
+ ;;^UTILITY(U,$J,358.3,19539,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,19316,1,3,0)
- ;;=3^Gluteal tendinitis, left hip
- ;;^UTILITY(U,$J,358.3,19316,1,4,0)
- ;;=4^M76.02
- ;;^UTILITY(U,$J,358.3,19316,2)
- ;;=^5013268
- ;;^UTILITY(U,$J,358.3,19317,0)
- ;;=M76.01^^93^992^45
- ;;^UTILITY(U,$J,358.3,19317,1,0)
+ ;;^UTILITY(U,$J,358.3,19539,1,3,0)
+ ;;=3^Dysphasia following cerebral infarction
+ ;;^UTILITY(U,$J,358.3,19539,1,4,0)
+ ;;=4^I69.321
+ ;;^UTILITY(U,$J,358.3,19539,2)
+ ;;=^5007492
+ ;;^UTILITY(U,$J,358.3,19540,0)
+ ;;=I69.121^^67^877^23
+ ;;^UTILITY(U,$J,358.3,19540,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,19317,1,3,0)
- ;;=3^Gluteal tendinitis, right hip
- ;;^UTILITY(U,$J,358.3,19317,1,4,0)
- ;;=4^M76.01
- ;;^UTILITY(U,$J,358.3,19317,2)
- ;;=^5013267
- ;;^UTILITY(U,$J,358.3,19318,0)
- ;;=M76.22^^93^992^46
- ;;^UTILITY(U,$J,358.3,19318,1,0)
+ ;;^UTILITY(U,$J,358.3,19540,1,3,0)
+ ;;=3^Dysphasia following nontraumatic intracerebral hemorrhage
+ ;;^UTILITY(U,$J,358.3,19540,1,4,0)
+ ;;=4^I69.121
+ ;;^UTILITY(U,$J,358.3,19540,2)
+ ;;=^5007428
+ ;;^UTILITY(U,$J,358.3,19541,0)
+ ;;=I69.021^^67^877^24
+ ;;^UTILITY(U,$J,358.3,19541,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,19318,1,3,0)
- ;;=3^Iliac crest spur, left hip
- ;;^UTILITY(U,$J,358.3,19318,1,4,0)
- ;;=4^M76.22
- ;;^UTILITY(U,$J,358.3,19318,2)
- ;;=^5013274
- ;;^UTILITY(U,$J,358.3,19319,0)
- ;;=M76.21^^93^992^47
- ;;^UTILITY(U,$J,358.3,19319,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,19319,1,3,0)
- ;;=3^Iliac crest spur, right hip
- ;;^UTILITY(U,$J,358.3,19319,1,4,0)
- ;;=4^M76.21
- ;;^UTILITY(U,$J,358.3,19319,2)
- ;;=^5013273
- ;;^UTILITY(U,$J,358.3,19320,0)
- ;;=M76.32^^93^992^48
+ ;;^UTILITY(U,$J,358.3,19541,1,3,0)
+ ;;=3^Dysphasia following nontraumatic subarachnoid hemorrhage
+ ;;^UTILITY(U,$J,358.3,19541,1,4,0)
+ ;;=4^I69.021

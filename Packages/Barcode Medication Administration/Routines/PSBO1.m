@@ -1,5 +1,5 @@
-PSBO1 ;BIRMINGHAM/EFC-BCMA OUTPUTS ;03/06/16 3:06pm
- ;;3.0;BAR CODE MED ADMIN;**4,13,32,2,43,28,70,83,103,114**;Mar 2004;Build 3
+PSBO1 ;BIRMINGHAM/EFC-BCMA OUTPUTS ;2/26/21  12:27
+ ;;3.0;BAR CODE MED ADMIN;**4,13,32,2,43,28,70,83,103,114,106**;Mar 2004;Build 43
  ;Per VHA Directive 2004-038 (or future revisions regarding same), this routine should not be modified.
  ;
  ; Reference/IA
@@ -7,10 +7,12 @@ PSBO1 ;BIRMINGHAM/EFC-BCMA OUTPUTS ;03/06/16 3:06pm
  ;
  ;*70 - add ablility to update List multiple for Clinic names
  ;*83 - add Function GETREMOV to find removes for associated MRR Gives
+ ;*106- add Hazardous Handle & Dispose flags
  ;
 NEW(RESULTS,PSBRTYP) ; Create a new report request
  ; Called interactively and via RPCBroker
  K RESULTS
+ ; Check Type
  ; PSB*3*103 - added 'RT' code for Respiratory Therapy report, called from EN1+3^PSBMMRB
  I '$F("DL^MD^MH^ML^MM^MV^MT^PE^PM^WA^BL^PI^AL^DO^VT^PF^XA^ST^SF^IV^CM^CP^CE^CI^BZ^RT^",PSBRTYP) S RESULTS(0)="-1^Invalid Report Type" Q
  I '+$G(DUZ) S RESULTS(0)="-1^Undefined User" Q
@@ -139,5 +141,8 @@ SETTMP(IEN) ;get and set MRR info for printing
  S $P(^TMP("PSB",$J,"RM",PSBIEN),U,7)=$P(^TMP("PSJ1",$J,2),U,3)  ;DOSE
  S $P(^TMP("PSB",$J,"RM",PSBIEN),U,8)=$P(^TMP("PSJ1",$J,1),U,13) ;MRNM
  S $P(^TMP("PSB",$J,"RM",PSBIEN),U,9)=$P(^TMP("PSJ1",$J,1),U,5)  ;SM
+ ;*106 Haz pieces
+ S $P(^TMP("PSB",$J,"RM",PSBIEN),U,10)=$P(^TMP("PSJ1",$J,700,1,0),U,8) ;HAZHAN
+ S $P(^TMP("PSB",$J,"RM",PSBIEN),U,11)=$P(^TMP("PSJ1",$J,700,1,0),U,9)  ;HAZDIS
  S ^TMP("PSB",$J,"RM","B",ONX,PSBIEN)=""               ;ORDER NUM XREF
  Q

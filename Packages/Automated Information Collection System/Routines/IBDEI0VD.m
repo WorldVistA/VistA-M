@@ -1,128 +1,124 @@
-IBDEI0VD ; ; 04-FEB-2020
- ;;3.0;IB ENCOUNTER FORM IMP/EXP;;FEB 04, 2020
+IBDEI0VD ; ; 01-FEB-2022
+ ;;3.0;IB ENCOUNTER FORM IMP/EXP;;FEB 01, 2022
  Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,999) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
- ;;^UTILITY(U,$J,358.3,13965,2)
- ;;=^5000834
- ;;^UTILITY(U,$J,358.3,13966,0)
- ;;=B91.^^83^819^31
- ;;^UTILITY(U,$J,358.3,13966,1,0)
+ ;;^UTILITY(U,$J,358.3,14148,1,4,0)
+ ;;=4^M93.272
+ ;;^UTILITY(U,$J,358.3,14148,2)
+ ;;=^5015275
+ ;;^UTILITY(U,$J,358.3,14149,0)
+ ;;=M93.271^^55^671^43
+ ;;^UTILITY(U,$J,358.3,14149,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,13966,1,3,0)
- ;;=3^Sequelae of Poliomyelitis
- ;;^UTILITY(U,$J,358.3,13966,1,4,0)
- ;;=4^B91.
- ;;^UTILITY(U,$J,358.3,13966,2)
- ;;=^5000828
- ;;^UTILITY(U,$J,358.3,13967,0)
- ;;=B90.9^^83^819^32
- ;;^UTILITY(U,$J,358.3,13967,1,0)
+ ;;^UTILITY(U,$J,358.3,14149,1,3,0)
+ ;;=3^Osteochondritis dissecans, right ankle & joints of right foot
+ ;;^UTILITY(U,$J,358.3,14149,1,4,0)
+ ;;=4^M93.271
+ ;;^UTILITY(U,$J,358.3,14149,2)
+ ;;=^5015274
+ ;;^UTILITY(U,$J,358.3,14150,0)
+ ;;=C79.51^^55^671^53
+ ;;^UTILITY(U,$J,358.3,14150,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,13967,1,3,0)
- ;;=3^Sequelae of Tuberculosis,Respiratory & Unspec
- ;;^UTILITY(U,$J,358.3,13967,1,4,0)
- ;;=4^B90.9
- ;;^UTILITY(U,$J,358.3,13967,2)
- ;;=^5000827
- ;;^UTILITY(U,$J,358.3,13968,0)
- ;;=A92.5^^83^819^33
- ;;^UTILITY(U,$J,358.3,13968,1,0)
+ ;;^UTILITY(U,$J,358.3,14150,1,3,0)
+ ;;=3^Secondary malignant neoplasm of bone
+ ;;^UTILITY(U,$J,358.3,14150,1,4,0)
+ ;;=4^C79.51
+ ;;^UTILITY(U,$J,358.3,14150,2)
+ ;;=^5001350
+ ;;^UTILITY(U,$J,358.3,14151,0)
+ ;;=L40.51^^55^671^2
+ ;;^UTILITY(U,$J,358.3,14151,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,13968,1,3,0)
- ;;=3^Zika Virus Disease (Confirmed)
- ;;^UTILITY(U,$J,358.3,13968,1,4,0)
- ;;=4^A92.5
- ;;^UTILITY(U,$J,358.3,13968,2)
- ;;=^7006765
- ;;^UTILITY(U,$J,358.3,13969,0)
- ;;=Z90.5^^83^820^1
- ;;^UTILITY(U,$J,358.3,13969,1,0)
+ ;;^UTILITY(U,$J,358.3,14151,1,3,0)
+ ;;=3^Arthropathic psoriasis, distal interphalangeal
+ ;;^UTILITY(U,$J,358.3,14151,1,4,0)
+ ;;=4^L40.51
+ ;;^UTILITY(U,$J,358.3,14151,2)
+ ;;=^5009166
+ ;;^UTILITY(U,$J,358.3,14152,0)
+ ;;=L40.52^^55^671^49
+ ;;^UTILITY(U,$J,358.3,14152,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,13969,1,3,0)
- ;;=3^Acquired Absence of Kidney
- ;;^UTILITY(U,$J,358.3,13969,1,4,0)
- ;;=4^Z90.5
- ;;^UTILITY(U,$J,358.3,13969,2)
- ;;=^5063590
- ;;^UTILITY(U,$J,358.3,13970,0)
- ;;=N20.2^^83^820^2
- ;;^UTILITY(U,$J,358.3,13970,1,0)
+ ;;^UTILITY(U,$J,358.3,14152,1,3,0)
+ ;;=3^Psoriatic arthritis mutilans
+ ;;^UTILITY(U,$J,358.3,14152,1,4,0)
+ ;;=4^L40.52
+ ;;^UTILITY(U,$J,358.3,14152,2)
+ ;;=^5009167
+ ;;^UTILITY(U,$J,358.3,14153,0)
+ ;;=L40.53^^55^671^52
+ ;;^UTILITY(U,$J,358.3,14153,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,13970,1,3,0)
- ;;=3^Calculus of Kidney w/ Calculus of Ureter
- ;;^UTILITY(U,$J,358.3,13970,1,4,0)
- ;;=4^N20.2
- ;;^UTILITY(U,$J,358.3,13970,2)
- ;;=^5015609
- ;;^UTILITY(U,$J,358.3,13971,0)
- ;;=N21.9^^83^820^3
- ;;^UTILITY(U,$J,358.3,13971,1,0)
+ ;;^UTILITY(U,$J,358.3,14153,1,3,0)
+ ;;=3^Psoriatic spondylitis
+ ;;^UTILITY(U,$J,358.3,14153,1,4,0)
+ ;;=4^L40.53
+ ;;^UTILITY(U,$J,358.3,14153,2)
+ ;;=^5009168
+ ;;^UTILITY(U,$J,358.3,14154,0)
+ ;;=L40.54^^55^671^51
+ ;;^UTILITY(U,$J,358.3,14154,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,13971,1,3,0)
- ;;=3^Calculus of Lower Urinary Tract,Unspec
- ;;^UTILITY(U,$J,358.3,13971,1,4,0)
- ;;=4^N21.9
- ;;^UTILITY(U,$J,358.3,13971,2)
- ;;=^5015613
- ;;^UTILITY(U,$J,358.3,13972,0)
- ;;=N20.9^^83^820^4
- ;;^UTILITY(U,$J,358.3,13972,1,0)
+ ;;^UTILITY(U,$J,358.3,14154,1,3,0)
+ ;;=3^Psoriatic juvenile arthropathy
+ ;;^UTILITY(U,$J,358.3,14154,1,4,0)
+ ;;=4^L40.54
+ ;;^UTILITY(U,$J,358.3,14154,2)
+ ;;=^5009169
+ ;;^UTILITY(U,$J,358.3,14155,0)
+ ;;=L40.59^^55^671^50
+ ;;^UTILITY(U,$J,358.3,14155,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,13972,1,3,0)
- ;;=3^Calculus,Urinary,Unspec
- ;;^UTILITY(U,$J,358.3,13972,1,4,0)
- ;;=4^N20.9
- ;;^UTILITY(U,$J,358.3,13972,2)
- ;;=^5015610
- ;;^UTILITY(U,$J,358.3,13973,0)
- ;;=N28.9^^83^820^6
- ;;^UTILITY(U,$J,358.3,13973,1,0)
+ ;;^UTILITY(U,$J,358.3,14155,1,3,0)
+ ;;=3^Psoriatic arthropathy, other
+ ;;^UTILITY(U,$J,358.3,14155,1,4,0)
+ ;;=4^L40.59
+ ;;^UTILITY(U,$J,358.3,14155,2)
+ ;;=^5009170
+ ;;^UTILITY(U,$J,358.3,14156,0)
+ ;;=T79.A11A^^55^671^12
+ ;;^UTILITY(U,$J,358.3,14156,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,13973,1,3,0)
- ;;=3^Kidney & Ureter Disorder,Unspec
- ;;^UTILITY(U,$J,358.3,13973,1,4,0)
- ;;=4^N28.9
- ;;^UTILITY(U,$J,358.3,13973,2)
- ;;=^5015630
- ;;^UTILITY(U,$J,358.3,13974,0)
- ;;=I12.9^^83^820^7
- ;;^UTILITY(U,$J,358.3,13974,1,0)
+ ;;^UTILITY(U,$J,358.3,14156,1,3,0)
+ ;;=3^Compartment syndrome of right upper extrem, init encntr
+ ;;^UTILITY(U,$J,358.3,14156,1,4,0)
+ ;;=4^T79.A11A
+ ;;^UTILITY(U,$J,358.3,14156,2)
+ ;;=^5054326
+ ;;^UTILITY(U,$J,358.3,14157,0)
+ ;;=T79.A11D^^55^671^13
+ ;;^UTILITY(U,$J,358.3,14157,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,13974,1,3,0)
- ;;=3^Kidney Disease,Chr,Hypertensive w/ Stage 1-4 or UNSPEC
- ;;^UTILITY(U,$J,358.3,13974,1,4,0)
- ;;=4^I12.9
- ;;^UTILITY(U,$J,358.3,13974,2)
- ;;=^5007066
- ;;^UTILITY(U,$J,358.3,13975,0)
- ;;=N18.1^^83^820^8
- ;;^UTILITY(U,$J,358.3,13975,1,0)
+ ;;^UTILITY(U,$J,358.3,14157,1,3,0)
+ ;;=3^Compartment syndrome of right upper extrem, subs
+ ;;^UTILITY(U,$J,358.3,14157,1,4,0)
+ ;;=4^T79.A11D
+ ;;^UTILITY(U,$J,358.3,14157,2)
+ ;;=^5054327
+ ;;^UTILITY(U,$J,358.3,14158,0)
+ ;;=T79.A12A^^55^671^6
+ ;;^UTILITY(U,$J,358.3,14158,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,13975,1,3,0)
- ;;=3^Kidney Disease,Chr,Stage 1
- ;;^UTILITY(U,$J,358.3,13975,1,4,0)
- ;;=4^N18.1
- ;;^UTILITY(U,$J,358.3,13975,2)
- ;;=^5015602
- ;;^UTILITY(U,$J,358.3,13976,0)
- ;;=N18.2^^83^820^9
- ;;^UTILITY(U,$J,358.3,13976,1,0)
+ ;;^UTILITY(U,$J,358.3,14158,1,3,0)
+ ;;=3^Compartment syndrome of left upper extremity, init
+ ;;^UTILITY(U,$J,358.3,14158,1,4,0)
+ ;;=4^T79.A12A
+ ;;^UTILITY(U,$J,358.3,14158,2)
+ ;;=^5054329
+ ;;^UTILITY(U,$J,358.3,14159,0)
+ ;;=T79.A12D^^55^671^7
+ ;;^UTILITY(U,$J,358.3,14159,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,13976,1,3,0)
- ;;=3^Kidney Disease,Chr,Stage 2
- ;;^UTILITY(U,$J,358.3,13976,1,4,0)
- ;;=4^N18.2
- ;;^UTILITY(U,$J,358.3,13976,2)
- ;;=^5015603
- ;;^UTILITY(U,$J,358.3,13977,0)
- ;;=N18.3^^83^820^10
- ;;^UTILITY(U,$J,358.3,13977,1,0)
+ ;;^UTILITY(U,$J,358.3,14159,1,3,0)
+ ;;=3^Compartment syndrome of left upper extremity, subs
+ ;;^UTILITY(U,$J,358.3,14159,1,4,0)
+ ;;=4^T79.A12D
+ ;;^UTILITY(U,$J,358.3,14159,2)
+ ;;=^5054330
+ ;;^UTILITY(U,$J,358.3,14160,0)
+ ;;=T79.A21A^^55^671^10
+ ;;^UTILITY(U,$J,358.3,14160,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,13977,1,3,0)
- ;;=3^Kidney Disease,Chr,Stage 3
- ;;^UTILITY(U,$J,358.3,13977,1,4,0)
- ;;=4^N18.3
- ;;^UTILITY(U,$J,358.3,13977,2)
- ;;=^5015604
- ;;^UTILITY(U,$J,358.3,13978,0)
- ;;=N18.4^^83^820^11
+ ;;^UTILITY(U,$J,358.3,14160,1,3,0)
+ ;;=3^Compartment syndrome of right lower extrem, init

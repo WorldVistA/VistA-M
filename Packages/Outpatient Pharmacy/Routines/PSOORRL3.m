@@ -1,5 +1,5 @@
-PSOORRL3 ;BHAM ISC/SJA - returns patient's outpatient meds-new sort ;02/02/07
- ;;7.0;OUTPATIENT PHARMACY;**225,331,381**;DEC 1997;Build 4
+PSOORRL3 ;BHAM ISC/SJA - returns patient's outpatient meds-new sort ;Dec 10, 2021@09:33:28
+ ;;7.0;OUTPATIENT PHARMACY;**225,331,381,622,441**;DEC 1997;Build 208
  ;External reference to ^PS(55 supported by DBIA 2228
  ;External reference to ^PSDRUG supported by DBIA 221
  ;External reference to ^VA(200 supported by DBIA 10060
@@ -19,6 +19,7 @@ OCL ;entry point to return condensed list
  .S TFN=TFN+1,RX0=^PSRX(IFN,0),RX2=$G(^(2)),RX3=$G(^(3)),STA=+$G(^("STA")),TRM=0,LSTFD=$P(RX2,"^",2),LSTRD=$P(RX2,"^",13),LSTDS=$P(RX0,"^",8)
  .F I=0:0 S I=$O(^PSRX(IFN,1,I)) Q:'I  S TRM=TRM+1,LSTFD=$P(^PSRX(IFN,1,I,0),"^"),LSTDS=$P(^(0),"^",10) S:$P(^(0),"^",18)]"" LSTRD=$P(^(0),"^",18)
  .S ST0=STA,ST=$P("ERROR^ACTIVE^^^HOLD^^ACTIVE/SUSP^^^^^^EXPIRED^^^^^HOLD^","^",ST0+2)
+ .I STA=0,+$G(^PSRX(IFN,"PARK")) S ST="ACTIVE/PARKED"  ;441 PAPI
  .S DRUG=$P($G(^PSDRUG(+$P(RX0,"^",6),0)),"^")
  .S ^TMP("PSO",$J,DRUG,ST,TFN,0)=IFN_"R;O"_"^"_DRUG_"^^"_$P(RX2,"^",6)_"^"_($P(RX0,"^",9)-TRM)_"^^^"_$P($G(^PSRX(IFN,"OR1")),"^",2)
  .S ^TMP("PSO",$J,DRUG,ST,TFN,"P",0)=$P(RX0,"^",4)_"^"_$P($G(^VA(200,+$P(RX0,"^",4),0)),"^")
@@ -34,13 +35,15 @@ OCL ;entry point to return condensed list
  .I '$G(PSOELSE) S ITFN=1 D
  ..S ^TMP("PSO",$J,DRUG,ST,TFN,"SIG",ITFN,0)=$G(^PSRX(IFN,"SIG1",1,0)),^TMP("PSO",$J,DRUG,ST,TFN,"SIG",0)=+$G(^TMP("PSO",$J,DRUG,ST,TFN,"SIG",0))+1
  ..F I=1:0 S I=$O(^PSRX(IFN,"SIG1",I)) Q:'I  S ITFN=ITFN+1,^TMP("PSO",$J,DRUG,ST,TFN,"SIG",ITFN,0)=^PSRX(IFN,"SIG1",I,0),^TMP("PSO",$J,DRUG,ST,TFN,"SIG",0)=+$G(^TMP("PSO",$J,DRUG,ST,TFN,"SIG",0))+1
+ .S:$P($G(^PSRX(IFN,"IND")),U)]"" ^TMP("PSO",$J,DRUG,ST,TFN,"IND",0)=$P(^PSRX(IFN,"IND"),U)  ;*441-IND
  K PSOELSE D NVA
  S PSG="",J=1 F  S PSG=$O(^TMP("PSO",$J,PSG)) Q:PSG=""  S PST="" F  S PST=$O(^TMP("PSO",$J,PSG,PST)) Q:PST=""  S I=0 F  S I=$O(^TMP("PSO",$J,PSG,PST,I)) Q:'I  D
  .M ^TMP("PS",$J,J)=^TMP("PSO",$J,PSG,PST,I) S J=J+1
  S PSG="" F  S PSG=$O(^TMP("PS1",$J,PSG)) Q:PSG=""  S PST="" F  S PST=$O(^TMP("PS1",$J,PSG,PST)) Q:PST=""  S I=0 F  S I=$O(^TMP("PS1",$J,PSG,PST,I)) Q:I=""  D
  .M ^TMP("PS",$J,J)=^TMP("PS1",$J,PSG,PST,I) S J=J+1
  K ^TMP("PSO",$J),^TMP("PS1",$J)
- D OCL^PSJORRE(DFN,BDT,EDT,.TFN,+$G(VIEW)) D END^PSOORRL1
+ D OCL^PSJORRE(DFN,$G(PSOBDTIN),$G(PSOEDTIN),.TFN,+$G(VIEW))
+ D END^PSOORRL1
  K SDT,SDT1,ST,DRUG,PSG,PST,PSD,EDT,EDT1,BDT,DBT1,X
  Q
 NVA ; Set Non-VA Med Orders in the ^TMP Global
@@ -55,6 +58,7 @@ NVA ; Set Non-VA Med Orders in the ^TMP Global
  I PSOBDT,'PSOEDT S PSOEDT=DT   ;*381
  F I=0:0 S I=$O(^PS(55,DFN,"NVA",I)) Q:'I  S X=$G(^PS(55,DFN,"NVA",I,0)) D
  .Q:'$P(X,"^")
+ .I $O(^PS(55,DFN,"NVA",I,3,0)) D NVANEW^PSOORRLO Q    ;*441-Complex dose
  .S DRG=$S($P(X,"^",2):$P($G(^PSDRUG($P(X,"^",2),0)),"^"),1:$P(^PS(50.7,$P(X,"^"),0),"^")_" "_$P(^PS(50.606,$P(^PS(50.7,$P(X,"^"),0),"^",2),0),"^"))
  .S SDT=$P(X,"^",9),PSODCDT=$P(X,"^",7)  ;*331
  .S (PSOACT,PSODC)=0
@@ -84,4 +88,5 @@ TMPBLD S TFN=$G(TFN)+1,ST="ACTIVE"
  S $P(^TMP("PS1",$J,DRG,ST,TFN,0),"^",8)=$P(X,"^",8)_"^"_$S($P(X,"^",7):"DISCONTINUED",1:"ACTIVE")
  S ^TMP("PS1",$J,DRG,ST,TFN,"SCH",0)=1,^TMP("PS1",$J,DRG,ST,TFN,"SCH",1,0)=$P(X,"^",5)
  S ^TMP("PS1",$J,DRG,ST,TFN,"SIG",0)=1,^TMP("PS1",$J,DRG,ST,TFN,"SIG",1,0)=$P(X,"^",3)_" "_$P(X,"^",4)_" "_$P(X,"^",5)
+ S:$P($G(^PS(55,DFN,"NVA",I,2)),U)]"" ^TMP("PS1",$J,DRG,ST,TFN,"IND",0)=$P($G(^PS(55,DFN,"NVA",I,2)),U)  ;*441-IND
  Q

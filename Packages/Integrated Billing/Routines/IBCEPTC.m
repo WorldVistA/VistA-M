@@ -1,5 +1,5 @@
 IBCEPTC ;ALB/TMK - EDI PREVIOUSLY TRANSMITTED CLAIMS ; 4/12/05 11:15am
- ;;2.0;INTEGRATED BILLING;**296,320,348,349,547,592,623,659**;21-MAR-94;Build 16
+ ;;2.0;INTEGRATED BILLING;**296,320,348,349,547,592,623,659,641,665**;21-MAR-94;Build 28
  ;;Per VA Directive 6402, this routine should not be modified.
  ;
 EN ; Main entrypoint
@@ -32,7 +32,10 @@ EN ; Main entrypoint
 Q1 ;
  W !
  ;S DIR(0)="SA^C:Claim;B:Batch;L:List",DIR("A")="Select By: (C)laim, (B)atch or see a (L)ist to pick from?: ",DIR("B")="List"
- S DIR(0)="SA^C:Claim;"_$S(IBLOC:"",1:"B:Batch;")_"L:List",DIR("A")="Select By: (C)laim"_$S(IBLOC:"",1:", (B)atch")_" or see a (L)ist to pick from?: ",DIR("B")="List"
+ ;WCJ;IB665;start;no longer selecting batches since each claim is now a batch
+ ;S DIR(0)="SA^C:Claim;"_$S(IBLOC:"",1:"B:Batch;")_"L:List",DIR("A")="Select By: (C)laim"_$S(IBLOC:"",1:", (B)atch")_" or see a (L)ist to pick from?: ",DIR("B")="List"
+ S DIR(0)="SA^C:Claim;L:List",DIR("A")="Select By: (C)laim or see a (L)ist to pick from?: ",DIR("B")="List"
+ ;WCJ;IB665;end
  D ^DIR K DIR
  I $D(DTOUT)!$D(DUOUT) G ENQ
  S IBHOW=Y
@@ -44,8 +47,8 @@ Q1 ;
  F  D  Q:IBQUIT
  .;I IBHOW="C" S DIR("A")="Select a"_$S(IBCT:"nother",1:"")_" Claim: ",DIR(0)="PA^364:AEMQZ",DIR("S")="I '$P(^(0),U,7),'$O(^IBA(364,""B"",+^(0),Y))"
  . ;JWS;IB*2.0*623;allow previously trans claims in test to be resubmitted if non-production environment "!'$$PROD^XUPROD(1)"
- . ;JWS;2/12/20;IB*2.0*659 removed '$$PROD^XUPROD(1) call in screen, caused Naked ref error
- . I IBHOW="C",IBLOC="" S DIR("A")="Select a"_$S(IBCT:"nother",1:"")_" Claim: ",DIR(0)="PA^364:AEMQZ",DIR("S")="I '$P(^(0),U,7),'$O(^IBA(364,""B"",+^(0),Y))"
+ . ;JWS;IB*2.0*641v9;screen change in IB*623 failed - created SCRN label in this routine to perform check
+ . I IBHOW="C",IBLOC="" S DIR("A")="Select a"_$S(IBCT:"nother",1:"")_" Claim: ",DIR(0)="PA^364:AEMQZ",DIR("S")="I $$SCRN^IBCEPTC(Y)"
  . I IBHOW="C",IBLOC=1 S DIR("A")="Select a"_$S(IBCT:"nother",1:"")_" Locally Printed Claim: ",DIR(0)="PA^399:AEMQZ",DIR("S")="I '$D(^IBA(364,""B"",Y)),$$INSOK^IBCEF4(+$$CURR^IBCEF2(Y))"
  . I IBHOW="B" S DIR("A")="Select a"_$S(IBCT:"nother",1:"")_" Batch: ",DIR(0)="PA^IBA(364.1,:AEMQ^W ""  "",$P(^(0),U,3),"" Claims""",DIR("S")="I '$P(^(0),U,14)"
  . S DIR("?")="^D SELDSP^IBCEPTC(IBHOW)"
@@ -118,26 +121,50 @@ Q2 ;; JWS;IB*2.0*592 US1108 - Dental EDI 837D / form J430D
  I $D(DTOUT)!$D(DUOUT) G Q1A
  S IBFORM=Y
  ;
-Q3 S DIR(0)="DA^0:9999999:EPX",DIR("A")="Start with Date "_$S(IBLOC:"First Printed:  ",1:"Last Transmitted: ")
- ;S DIR("?",1)="This is the earliest date on which a batch that you want to include on this",DIR("?",2)=" report was last transmitted. You may choose a maximum date range of 90 days.",DIR("?")=" "
- S DIR("?",1)="This is the earliest date on which a batch that you want to include on this",DIR("?",2)=" report was "_$S(IBLOC=1:"first printed",1:"last transmitted")_". You may choose a maximum date range of 90 days.",DIR("?")=" "
- ;W !!,"LAST BATCH TRANSMIT DATE RANGE SELECTION:" D ^DIR K DIR
+Q3 ;WCJ;IB665;start;allow times
+ S IBDTSAME=0
+ S DIR(0)="DA^0:9999999:EPTX"
+ S DIR("A")="Start with Date "_$S(IBLOC:"First Printed:  ",1:"Last Transmitted: ")
+ S DIR("?",1)="This is the earliest date on which a claim that you want to include on this"
+ S DIR("?",2)="report was "_$S(IBLOC=1:"first printed",1:"last transmitted")_". You may choose a maximum date range of 90 days."
+ S DIR("?",3)="*Times are optional."
+ S DIR("?")=" "
  W !!,$S(IBLOC:"FIRST PRINT",1:"LAST BATCH TRANSMIT")_" DATE RANGE SELECTION:" D ^DIR K DIR
  I X="^^" G ENQ
  I $D(DTOUT)!$D(DUOUT) G Q2
  S IBDT1=Y
- S IBDT2=$$FMADD^XLFDT(IBDT1,90) I IBDT2>DT S IBDT2=DT
- S DIR("?",1)="This is the latest date on which a batch that you want to include on this",DIR("?",2)=" report was "_$S(IBLOC:"first printed",1:"last transmitted")_". You may choose a maximum date range of 90 days.",DIR("?")=" "
- S DIR("B")=$$FMTE^XLFDT(IBDT2,2),DIR(0)="DA^"_IBDT1_":"_IBDT2_":EPX"
- S DIR("A")="Go to Date "_$S(IBLOC:"First Printed",1:"Last Transmitted")_":("_$$FMTE^XLFDT(IBDT1,2)_"-"_$$FMTE^XLFDT(IBDT2,2)_"): " D ^DIR K DIR
+ ;
+Q3ED ; go to date 
+ S IBDT2=$$FMADD^XLFDT(IBDT1,90)
+ S IBDT2=$P(IBDT2,".")
+ I IBDT2>DT S IBDT2=DT
+ S DIR("?",1)="This is the latest date on which a claim that you want to include on this"
+ S DIR("?",2)="report was "_$S(IBLOC:"first printed",1:"last transmitted")_". You may choose a maximum date range of 90 days."
+ S DIR("?",3)="*Times are optional."
+ S DIR("?")=" "
+ S DIR("B")=$$FMTE^XLFDT(IBDT2,2)
+ S DIR(0)="DA^"_(IBDT1\1)_":"_(IBDT2+.24)_":EPTX"
+ S DIR("A")="Go to Date "_$S(IBLOC:"First Printed",1:"Last Transmitted")_":("_$$FMTE^XLFDT(IBDT1,2)_"-"_$$FMTE^XLFDT(IBDT2,2)_"): "
+ D ^DIR K DIR
  I X="^^" G ENQ
  I $D(DTOUT)!$D(DUOUT) G Q3
+ I $P(Y,".",2),Y<IBDT1 W !!,"'Go to Date' must be after 'Start with Date'",! G Q3ED  ; if you have an end time, it has to be after start time
+  ;WCJ;IB665;end
  S IBDT2=Y
  ;
 Q4 ; Additional selection criteria
- S DIR(0)="SAO^1:MRA Secondary Only;2:Primary Claims Only;3:Secondary Claims Only;4:Claims Previously Printed at Clearinghouse"
+ ;WCJ;IB665;start;added A0 selection
+ ;S DIR(0)="SAO^1:MRA Secondary Only;2:Primary Claims Only;3:Secondary Claims Only;4:Claims Previously Printed at Clearinghouse;5:A0 Received in Austin Only"
+ S DIR(0)="SAO^1:MRA Secondary Only;2:Primary Claims Only;3:Secondary Claims Only"
+ I 'IBLOC S DIR(0)=DIR(0)_"4:Claims Previously Printed at Clearinghouse;5:A0 Received in Austin Only"
  S DIR("A",1)="ADDITIONAL SELECTION CRITERIA:",DIR("A",2)=" ",DIR("A",3)="1 - MRA Secondary Only",DIR("A",4)="2 - Primary Claims Only",DIR("A",5)="3 - Secondary Claims Only"
- S DIR("A",6)=$S(IBLOC:"",1:"4 - Claims Sent to Print at Clearinghouse Only"),DIR("A",7)=" ",DIR("A")="Select Additional Limiting Criteria (optional): "
+ ;S DIR("A",6)=$S(IBLOC:"",1:"4 - Claims Sent to Print at Clearinghouse Only"),DIR("A",7)=" ",DIR("A")="Select Additional Limiting Criteria (optional): "
+ I 'IBLOC D
+ . S DIR("A",6)="4 - Claims Sent to Print at Clearinghouse Only"
+ . S DIR("A",7)="5 - A0 Received in Austin Only"
+ ;S DIR("A",7)=" ",DIR("A")="Select Additional Limiting Criteria (optional): "
+ S DIR("A",$S(IBLOC:6,1:8))=" ",DIR("A")="Select Additional Limiting Criteria (optional): "
+ ;WCJ;IB665;end
  S DIR("?")="Select one of the listed criteria to further limit the claims to include"
  W ! D ^DIR K DIR
  I X="^^" G ENQ
@@ -220,4 +247,9 @@ SELDSP(IBHOW) ; Display list of selected claims/batches
  . I '(CT#10),$O(^TMP($J,IBHOW,Z)) S DIR("A")="Press return for more or '^' to exit ",DIR(0)="EA" W ! D ^DIR K DIR I $D(DTOUT)!$D(DUOUT) S QUIT=1
  W !
  Q
+ ;
+SCRN(Y) ; JWS;IB*2.0*641; added SCRN label to screen $$PROD^XUPROD(1) to allow more claim selections in non-prod environments
+ I '$$PROD^XUPROD(1),+^IBA(364,Y,0),'$O(^IBA(364,"B",+^(0),Y)) Q 1
+ I '$P(^IBA(364,Y,0),U,7),'$O(^IBA(364,"B",+^(0),Y)) Q 1
+ Q 0
  ;

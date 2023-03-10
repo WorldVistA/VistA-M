@@ -1,4 +1,4 @@
-RACTRG1 ; ;01/03/19
+RACTRG1 ; ;07/26/21
  D DE G BEGIN
 DE S DIE="^RADPT(D0,""DT"",",DIC=DIE,DP=70.02,DL=2,DIEL=1,DU="" K DG,DE,DB Q:$O(^RADPT(D0,"DT",DA,""))=""
  I $D(^(0)) S %Z=^(0) S %=$P(%Z,U,2) S:%]"" DE(2)=% S %=$P(%Z,U,3) S:%]"" DE(3)=% S %=$P(%Z,U,4) S:%]"" DE(4)=%

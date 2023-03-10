@@ -1,122 +1,128 @@
-IBDEI10J ; ; 04-FEB-2020
- ;;3.0;IB ENCOUNTER FORM IMP/EXP;;FEB 04, 2020
+IBDEI10J ; ; 01-FEB-2022
+ ;;3.0;IB ENCOUNTER FORM IMP/EXP;;FEB 01, 2022
  Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,999) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
- ;;^UTILITY(U,$J,358.3,16288,0)
- ;;=F52.8^^88^876^104
- ;;^UTILITY(U,$J,358.3,16288,1,0)
+ ;;^UTILITY(U,$J,358.3,16475,1,3,0)
+ ;;=3^Acute Promyelocytic Leukemia,In Remission
+ ;;^UTILITY(U,$J,358.3,16475,1,4,0)
+ ;;=4^C92.41
+ ;;^UTILITY(U,$J,358.3,16475,2)
+ ;;=^5001802
+ ;;^UTILITY(U,$J,358.3,16476,0)
+ ;;=C92.40^^61^775^20
+ ;;^UTILITY(U,$J,358.3,16476,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,16288,1,3,0)
- ;;=3^Sexual Dysfnct Not d/t Substance/Known Physiological Cond
- ;;^UTILITY(U,$J,358.3,16288,1,4,0)
- ;;=4^F52.8
- ;;^UTILITY(U,$J,358.3,16288,2)
- ;;=^5003624
- ;;^UTILITY(U,$J,358.3,16289,0)
- ;;=F52.21^^88^876^33
- ;;^UTILITY(U,$J,358.3,16289,1,0)
+ ;;^UTILITY(U,$J,358.3,16476,1,3,0)
+ ;;=3^Acute Promyelocytic Leukemia,Not in Remission
+ ;;^UTILITY(U,$J,358.3,16476,1,4,0)
+ ;;=4^C92.40
+ ;;^UTILITY(U,$J,358.3,16476,2)
+ ;;=^5001801
+ ;;^UTILITY(U,$J,358.3,16477,0)
+ ;;=D56.0^^61^775^21
+ ;;^UTILITY(U,$J,358.3,16477,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,16289,1,3,0)
- ;;=3^Erectile Disorder,Male (Psychogenic)
- ;;^UTILITY(U,$J,358.3,16289,1,4,0)
- ;;=4^F52.21
- ;;^UTILITY(U,$J,358.3,16289,2)
- ;;=^5003620
- ;;^UTILITY(U,$J,358.3,16290,0)
- ;;=I12.9^^88^876^59
- ;;^UTILITY(U,$J,358.3,16290,1,0)
+ ;;^UTILITY(U,$J,358.3,16477,1,3,0)
+ ;;=3^Alpha Thalassemia
+ ;;^UTILITY(U,$J,358.3,16477,1,4,0)
+ ;;=4^D56.0
+ ;;^UTILITY(U,$J,358.3,16477,2)
+ ;;=^340494
+ ;;^UTILITY(U,$J,358.3,16478,0)
+ ;;=D63.1^^61^775^23
+ ;;^UTILITY(U,$J,358.3,16478,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,16290,1,3,0)
- ;;=3^Hypertensive Kidney Disease Chronic w/ Stg 1-4
- ;;^UTILITY(U,$J,358.3,16290,1,4,0)
- ;;=4^I12.9
- ;;^UTILITY(U,$J,358.3,16290,2)
- ;;=^5007066
- ;;^UTILITY(U,$J,358.3,16291,0)
- ;;=N04.9^^88^876^76
- ;;^UTILITY(U,$J,358.3,16291,1,0)
+ ;;^UTILITY(U,$J,358.3,16478,1,3,0)
+ ;;=3^Anemia in Chronic Kidney Disease
+ ;;^UTILITY(U,$J,358.3,16478,1,4,0)
+ ;;=4^D63.1
+ ;;^UTILITY(U,$J,358.3,16478,2)
+ ;;=^332908
+ ;;^UTILITY(U,$J,358.3,16479,0)
+ ;;=D63.0^^61^775^24
+ ;;^UTILITY(U,$J,358.3,16479,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,16291,1,3,0)
- ;;=3^Nephrotic Syndrome w/ Unspec Morphologic Changes
- ;;^UTILITY(U,$J,358.3,16291,1,4,0)
- ;;=4^N04.9
- ;;^UTILITY(U,$J,358.3,16291,2)
- ;;=^5015540
- ;;^UTILITY(U,$J,358.3,16292,0)
- ;;=N02.9^^88^876^53
- ;;^UTILITY(U,$J,358.3,16292,1,0)
+ ;;^UTILITY(U,$J,358.3,16479,1,3,0)
+ ;;=3^Anemia in Neoplastic Disease
+ ;;^UTILITY(U,$J,358.3,16479,1,4,0)
+ ;;=4^D63.0
+ ;;^UTILITY(U,$J,358.3,16479,2)
+ ;;=^321978
+ ;;^UTILITY(U,$J,358.3,16480,0)
+ ;;=D63.8^^61^775^22
+ ;;^UTILITY(U,$J,358.3,16480,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,16292,1,3,0)
- ;;=3^Hematuria w/ Unspec Morphologic Changes,Recurrent & Persistent
- ;;^UTILITY(U,$J,358.3,16292,1,4,0)
- ;;=4^N02.9
- ;;^UTILITY(U,$J,358.3,16292,2)
- ;;=^5015520
- ;;^UTILITY(U,$J,358.3,16293,0)
- ;;=N06.9^^88^876^93
- ;;^UTILITY(U,$J,358.3,16293,1,0)
+ ;;^UTILITY(U,$J,358.3,16480,1,3,0)
+ ;;=3^Anemia in Chronic Diseases Classified Elsewhere
+ ;;^UTILITY(U,$J,358.3,16480,1,4,0)
+ ;;=4^D63.8
+ ;;^UTILITY(U,$J,358.3,16480,2)
+ ;;=^5002343
+ ;;^UTILITY(U,$J,358.3,16481,0)
+ ;;=C22.3^^61^775^27
+ ;;^UTILITY(U,$J,358.3,16481,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,16293,1,3,0)
- ;;=3^Proteinuria Isolated w/ Unspec Morphologic Lesion
- ;;^UTILITY(U,$J,358.3,16293,1,4,0)
- ;;=4^N06.9
- ;;^UTILITY(U,$J,358.3,16293,2)
- ;;=^5015558
- ;;^UTILITY(U,$J,358.3,16294,0)
- ;;=N05.9^^88^876^73
- ;;^UTILITY(U,$J,358.3,16294,1,0)
+ ;;^UTILITY(U,$J,358.3,16481,1,3,0)
+ ;;=3^Angiosarcoma of Liver
+ ;;^UTILITY(U,$J,358.3,16481,1,4,0)
+ ;;=4^C22.3
+ ;;^UTILITY(U,$J,358.3,16481,2)
+ ;;=^5000936
+ ;;^UTILITY(U,$J,358.3,16482,0)
+ ;;=D61.9^^61^775^28
+ ;;^UTILITY(U,$J,358.3,16482,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,16294,1,3,0)
- ;;=3^Nephritic Syndrome w/ Unspec Morphologic Changes
- ;;^UTILITY(U,$J,358.3,16294,1,4,0)
- ;;=4^N05.9
- ;;^UTILITY(U,$J,358.3,16294,2)
- ;;=^5134086
- ;;^UTILITY(U,$J,358.3,16295,0)
- ;;=N07.9^^88^876^75
- ;;^UTILITY(U,$J,358.3,16295,1,0)
+ ;;^UTILITY(U,$J,358.3,16482,1,3,0)
+ ;;=3^Aplastic Anemia,Unspec
+ ;;^UTILITY(U,$J,358.3,16482,1,4,0)
+ ;;=4^D61.9
+ ;;^UTILITY(U,$J,358.3,16482,2)
+ ;;=^5002342
+ ;;^UTILITY(U,$J,358.3,16483,0)
+ ;;=D56.1^^61^775^34
+ ;;^UTILITY(U,$J,358.3,16483,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,16295,1,3,0)
- ;;=3^Nephropathy Hereditary w/ Unspec Morphologic Lesions
- ;;^UTILITY(U,$J,358.3,16295,1,4,0)
- ;;=4^N07.9
- ;;^UTILITY(U,$J,358.3,16295,2)
- ;;=^5015568
- ;;^UTILITY(U,$J,358.3,16296,0)
- ;;=N15.9^^88^876^100
- ;;^UTILITY(U,$J,358.3,16296,1,0)
+ ;;^UTILITY(U,$J,358.3,16483,1,3,0)
+ ;;=3^Beta Thalassemia
+ ;;^UTILITY(U,$J,358.3,16483,1,4,0)
+ ;;=4^D56.1
+ ;;^UTILITY(U,$J,358.3,16483,2)
+ ;;=^340495
+ ;;^UTILITY(U,$J,358.3,16484,0)
+ ;;=C83.79^^61^775^36
+ ;;^UTILITY(U,$J,358.3,16484,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,16296,1,3,0)
- ;;=3^Renal Tubulo-Interstitial Disease,Unspec
- ;;^UTILITY(U,$J,358.3,16296,1,4,0)
- ;;=4^N15.9
- ;;^UTILITY(U,$J,358.3,16296,2)
- ;;=^5015596
- ;;^UTILITY(U,$J,358.3,16297,0)
- ;;=N17.9^^88^876^65
- ;;^UTILITY(U,$J,358.3,16297,1,0)
+ ;;^UTILITY(U,$J,358.3,16484,1,3,0)
+ ;;=3^Burkitt Lymphoma,Extranodal/Solid Organ Sites
+ ;;^UTILITY(U,$J,358.3,16484,1,4,0)
+ ;;=4^C83.79
+ ;;^UTILITY(U,$J,358.3,16484,2)
+ ;;=^5001600
+ ;;^UTILITY(U,$J,358.3,16485,0)
+ ;;=C83.70^^61^775^37
+ ;;^UTILITY(U,$J,358.3,16485,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,16297,1,3,0)
- ;;=3^Kidney Failure,Acute,Unspec
- ;;^UTILITY(U,$J,358.3,16297,1,4,0)
- ;;=4^N17.9
- ;;^UTILITY(U,$J,358.3,16297,2)
- ;;=^338532
- ;;^UTILITY(U,$J,358.3,16298,0)
- ;;=N19.^^88^876^66
- ;;^UTILITY(U,$J,358.3,16298,1,0)
+ ;;^UTILITY(U,$J,358.3,16485,1,3,0)
+ ;;=3^Burkitt Lymphoma,Unspec Site
+ ;;^UTILITY(U,$J,358.3,16485,1,4,0)
+ ;;=4^C83.70
+ ;;^UTILITY(U,$J,358.3,16485,2)
+ ;;=^5001591
+ ;;^UTILITY(U,$J,358.3,16486,0)
+ ;;=D09.0^^61^775^44
+ ;;^UTILITY(U,$J,358.3,16486,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,16298,1,3,0)
- ;;=3^Kidney Failure,Unspec
- ;;^UTILITY(U,$J,358.3,16298,1,4,0)
- ;;=4^N19.
- ;;^UTILITY(U,$J,358.3,16298,2)
- ;;=^5015607
- ;;^UTILITY(U,$J,358.3,16299,0)
- ;;=N11.0^^88^876^97
- ;;^UTILITY(U,$J,358.3,16299,1,0)
+ ;;^UTILITY(U,$J,358.3,16486,1,3,0)
+ ;;=3^Carcinoma in Situ of Bladder
+ ;;^UTILITY(U,$J,358.3,16486,1,4,0)
+ ;;=4^D09.0
+ ;;^UTILITY(U,$J,358.3,16486,2)
+ ;;=^267742
+ ;;^UTILITY(U,$J,358.3,16487,0)
+ ;;=D06.9^^61^775^45
+ ;;^UTILITY(U,$J,358.3,16487,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,16299,1,3,0)
- ;;=3^Pyelonephritis,Chronic Nonobstructive Reflux-Associated
- ;;^UTILITY(U,$J,358.3,16299,1,4,0)
- ;;=4^N11.0
+ ;;^UTILITY(U,$J,358.3,16487,1,3,0)
+ ;;=3^Carcinoma in Situ of Cervix
+ ;;^UTILITY(U,$J,358.3,16487,1,4,0)
+ ;;=4^D06.9

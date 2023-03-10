@@ -1,5 +1,5 @@
-MAGDHOWE ;WOIFO/PMK - Clincial Specialty MWL & HL7 Editor ; 01 Apr 2013 12:39 PM
- ;;3.0;IMAGING;**138**;Mar 19, 2002;Build 5380;Sep 03, 2013
+MAGDHOWE ;WOIFO/PMK - Clinical Specialty MWL & HL7 Editor ; Apr 29, 2020@14:43:04
+ ;;3.0;IMAGING;**138,231**;Mar 19, 2002;Build 9;Dec 20, 2012
  ;; Per VHA Directive 2004-038, this routine should not be modified.
  ;; +---------------------------------------------------------------+
  ;; | Property of the US Government.                                |
@@ -15,9 +15,18 @@ MAGDHOWE ;WOIFO/PMK - Clincial Specialty MWL & HL7 Editor ; 01 Apr 2013 12:39 PM
  ;; | to be a violation of US Federal Statutes.                     |
  ;; +---------------------------------------------------------------+
  ;;
+ ;
+ ; Supported IA #2053 reference UPDATE^DIE subroutine call
+ ; Supported IA #10013 reference ^DIK subroutine call
+ ; Supported IA #2056 reference $$GET1^DIQ function call
+ ; Supported IA #2056 reference GETS^DIQ subroutine call
+ ; Private IA #7095 to read GMRC PROCEDURE file (#123.3)
+ ; Controlled IA #4171 to read REQUEST SERVICES file (#123.5)
+ ; Supported IA #10026 reference ^DIR subroutine call
+ ;
 ENTRY ; entry point from menu
  N CHANGE,CHOICE,CLINIC,CPT,HL7SUBLIST,IEN,IENS,IPROCIDX,ISPECIDX,LOCATION
- N MSG,OPTION,PROCEDURE,PROMPT,SERVICE,X
+ N MSG,OPTION,PROCEDURE,PROMPT,SERVICE,QRSCP,X
  N DIERR,IENS,MAGERR,MAGFDA,MAGIENS
  S CHANGE=0 ; use for counting updates
  S (MSG(1),MSG(3))=""
@@ -29,7 +38,7 @@ ENTRY ; entry point from menu
  S OPTION(3)="3:Display the existing dictionary"
  S OPTION(4)="4:Quit"
  S PROMPT="Enter an option"
- S X=$$CHOOSE^MAGDAIRF(PROMPT,"",.CHOICE,.OPTION) Q:X<0
+ S X=$$CHOOSE(PROMPT,"",.CHOICE,.OPTION) Q:X<0
  ;
  I CHOICE=4 Q
  D CHOICE G ENTRY
@@ -60,12 +69,13 @@ CHOICE ; option driver
  S X=$$LOCATION(.LOCATION) Q:X<0
  S X=$$CPT(.CPT) Q:X<0
  S X=$$HL7SUBL(.HL7SUBLIST) Q:X<0
+ S X=$$QRSCP(.QRSCP) Q:X<0
  S X=$$CLINIC(.CLINIC) Q:X<0
  ;
  D DISPLAY
  ;
  W !!
- S X=$$YESNO^MAGDAIRF("Create this entry","n",.CHOICE) Q:X<-1
+ S X=$$YESNO("Create this entry","n",.CHOICE) Q:X<-1
  I CHOICE'="YES" W " -- entry not created" Q
  ;
  ; create the entry
@@ -77,6 +87,7 @@ CHOICE ; option driver
  S MAGFDA(2006.5831,IENS,5)=$P(LOCATION,"^",1)     ; LOCATION (-> 4) 
  S MAGFDA(2006.5831,IENS,6)=$P(CPT,"^",1)          ; CPT (-> 81)
  S MAGFDA(2006.5831,IENS,7)=$P(HL7SUBLIST,"^",1)   ; HL7 HL0 SUBSCRIBER LIST (-> 779.4)
+ S MAGFDA(2006.5831,IENS,8)=$P(QRSCP,"^",1)        ; Query/Retrieve Provider
  D UPDATE^DIE("","MAGFDA","MAGIENS","MAGERR")
  I $D(DIERR) W !!,"*** Entry NOT Created ***" Q
  E  W " -- entry created"
@@ -101,15 +112,16 @@ UPDATE(IEN) ; delete or update the consult or procedure
  S LOCATION=$$GETVALUE(4,$P(X,"^",5),".01;99")
  S CPT=$$GETVALUE(81,$P(X,"^",6),".01;2")
  S HL7SUBLIST=$$GETVALUE(779.4,$P(X,"^",7),".01")
+ S QRSCP=$P(X,"^",8),QRSCP=QRSCP_"^"_QRSCP ; ien same as name
  S I=0 F  S I=$O(^MAG(2006.5831,IEN,1,I)) Q:'I  D
  . S CLINIC(I)=$$GETVALUE(44,^MAG(2006.5831,IEN,1,I,0),".01")
  . Q
  D DISPLAY
  ;
- S X=$$YESNO^MAGDAIRF("Change this entry","n",.CHOICE) Q:X<-1
+ S X=$$YESNO("Change this entry","n",.CHOICE) Q:X<-1
  I CHOICE'="YES" W " -- entry not changed" Q
  W !
- S X=$$YESNO^MAGDAIRF("Delete the entire entry","n",.CHOICE) Q:X<-1
+ S X=$$YESNO("Delete the entire entry","n",.CHOICE) Q:X<-1
  I CHOICE="YES" D  Q  ; delete the entire entry
  . N DA,DIK
  . S DIK="^MAG(2006.5831,",DA=IEN
@@ -129,6 +141,7 @@ UPDATE1 ; update a the consult or procedure
  S X=$$LOCATION(.LOCATION) Q:X<0
  S X=$$CPT(.CPT) Q:X<0
  S X=$$HL7SUBL(.HL7SUBLIST) Q:X<0
+ S X=$$QRSCP(.QRSCP) Q:X<0
  S X=$$CLINIC(.CLINIC) Q:X<0
  ;
  I CHANGE=0 W !!,"No changes" Q
@@ -136,7 +149,7 @@ UPDATE1 ; update a the consult or procedure
  D DISPLAY
  ;
  W !
- S X=$$YESNO^MAGDAIRF("Update this entry","n",.CHOICE) Q:X<-1
+ S X=$$YESNO("Update this entry","n",.CHOICE) Q:X<-1
  I CHOICE'="YES" W " -- entry not updated" Q
  ;
  ; update the entry
@@ -146,6 +159,7 @@ UPDATE1 ; update a the consult or procedure
  S MAGFDA(2006.5831,IENS,5)=$P(LOCATION,"^",1)     ; LOCATION (-> 4) 
  S MAGFDA(2006.5831,IENS,6)=$P(CPT,"^",1)          ; CPT (-> 81)
  S MAGFDA(2006.5831,IENS,7)=$P(HL7SUBLIST,"^",1)   ; HL7 HL0 SUBSCRIBER LIST (-> 779.4)
+ S MAGFDA(2006.5831,IENS,8)=$P(QRSCP,"^",1)        ; Query/Retrieve Provider
  D UPDATE^DIE("","MAGFDA","MAGIENS","MAGERR")
  I $D(DIERR) W !!,"*** Entry NOT Updated ***"
  E  W !!,"Entry Updated"
@@ -182,7 +196,7 @@ PROC(PROCEDURE,SERVICE) ;
  . Q
  E  D
  . S PROMPT="Select the Request Service from the list"
- . S X=$$CHOOSE^MAGDAIRF(PROMPT,"",.CHOICE,.OPTION) Q:X<0
+ . S X=$$CHOOSE(PROMPT,"",.CHOICE,.OPTION) Q:X<0
  . S SERVICE=OPTIONIEN(CHOICE)_"^"_$P(OPTION(CHOICE),":",2)
  . Q
  Q X
@@ -198,6 +212,9 @@ LOCATION(LOCATION) ;
  ;
 HL7SUBL(HL7SUBLIST) ;
  Q $$LOOKUP(.HL7SUBLIST,"HL7 (Optimized) Subscription List",779.4,".01",0)
+ ;
+QRSCP(QRSCP) ;
+ Q $$LOOKUP(.QRSCP,"Query/Retrieve Provider",2006.587,,0)
  ;
 CPT(CPT) ;
  I $G(CPT)="",+PROCEDURE D  ; lookup CPT in Medicine Package
@@ -221,7 +238,9 @@ CLINIC(CLINIC) ;
  . S I=0 F  S I=$O(CLINIC(I)) Q:'I  D
  . . S DONE=0 F  D  Q:DONE
  . . . W !,"Clinic: ",$$P(CLINIC(I))," ",$TR($J("",40-$X)," ","-")," Remove this clinic? n// "
- . . . R X:DTIME I X="" S X="NO" W X
+ . . . R X:DTIME E  S X="^"
+ . . . I X["^" S DONE=-1,I=99999 Q 
+ . . . I X="" S X="NO" W X
  . . . I "YyNn"'[$E(X) W !,"Enter YES to keep the clinic or NO to remove it." Q
  . . . I "Yy"[$E(X) W " -- removed" S CHANGE=CHANGE+1
  . . . E  S J=J+1,TMP(CLINIC(I))=""
@@ -241,15 +260,33 @@ CLINIC(CLINIC) ;
  Q 1
  ;
 LOOKUP(ITEM,NAME,FILE,FIELDS,REQUIRED) ; lookup entry
- N A,DIR,DONE,I,X,Y
+ N A,DIR,DONE,I,RETURN,X,Y
  ;
  S DONE=0
  ;
  I $D(ITEM) D  Q:DONE DONE
  . W !!,NAME,": ",$$P(ITEM)
- . S X=$$YESNO^MAGDAIRF("Change this value","n",.CHOICE) Q:X<-1
+ . S X=$$YESNO("Change this value","n",.CHOICE) Q:X<-1
  . I CHOICE'="YES" S DONE=1 Q
  . S CHANGE=CHANGE+1
+ . Q
+ ;
+ I FILE=2006.587 D  Q RETURN ; special code for Query/Retrieve Provider
+ . N DEFAULT
+ . S DEFAULT=$P($G(ITEM),"^",2)
+ . I DEFAULT'="" D
+ . . S X=$$YESNO("Delete the Query/Retrieve Provider","n",.CHOICE) Q:X<-1
+ . . I CHOICE="YES" S ITEM="",RETURN=1,DONE=1
+ . . Q
+ . E  D
+ . . S X=$$YESNO("Specify a Query/Retrieve Provider","n",.CHOICE) Q:X<-1
+ . . I CHOICE'="YES" S ITEM="",RETURN=1,DONE=1
+ . . Q
+ . I DONE Q  ; don't want a Query/Retrieve Provider
+ . W !
+ . S ITEM=$$PICKSCP^MAGDSTQ9(DEFAULT,"Q/R")
+ . I ITEM="" S RETURN=-1 Q
+ . S ITEM=ITEM_"^"_ITEM,RETURN=1
  . Q
  ;
  S DIR("A")="Enter the "_NAME ; prompt
@@ -274,20 +311,21 @@ GETVALUE(FILE,IEN,FIELDS) ;
 DISPLAY ;
  N I,X
  W !
- W !,"     Request Service = ",$$P(SERVICE)
- W !,"           Procedure = ",$$P(PROCEDURE)
- W !,"     Specialty Index = ",$$P(ISPECIDX)
- W !,"     Procedure Index = ",$$P(IPROCIDX)
- W !,"            Worklist = ",$P(ISPECIDX,"^",3)
+ W !,"        Request Service = ",$$P(SERVICE)
+ W !,"              Procedure = ",$$P(PROCEDURE)
+ W !,"        Specialty Index = ",$$P(ISPECIDX)
+ W !,"        Procedure Index = ",$$P(IPROCIDX)
+ W !,"               Worklist = ",$P(ISPECIDX,"^",3)
  I IPROCIDX W "/",$P(IPROCIDX,"^",3)
  W " (",$P(ISPECIDX,"^",2)
  I IPROCIDX W "/",$P(IPROCIDX,"^",2)
  W ")"
- W !,"         Acquired at = ",$$P(LOCATION)
- W !,"            CPT Code = ",$$P(CPT)
- W !," HL7 Subscriber List = ",$$P(HL7SUBLIST)
+ W !,"            Acquired at = ",$$P(LOCATION)
+ W !,"               CPT Code = ",$$P(CPT)
+ W !,"    HL7 Subscriber List = ",$$P(HL7SUBLIST)
+ W !,"Query/Retrieve Provider = ",$$P(QRSCP)
  S I=0 F  S I=$O(CLINIC(I)) Q:'I  D
- . W !,"              Clinic = ",$$P(CLINIC(I))
+ . W !,"                 Clinic = ",$$P(CLINIC(I))
  . Q
  W !
  ; output Associated Stop Code(s) if any
@@ -308,3 +346,27 @@ P(X) ;
  S Z=$P(X,"^",2)
  I $P(X,"^",3)'="" S Z=Z_" -- "_$P(X,"^",3)
  Q Z
+ ;
+YESNO(PROMPT,DEFAULT,CHOICE) ; generic YES/NO question driver
+ N DIR,DIRUT,DIROUT,X,Y
+ S DIR(0)="Y" S DIR("A")=PROMPT M DIR("A")=PROMPT
+ I $G(DEFAULT)'="" S DIR("B")=DEFAULT
+ D ^DIR
+ I $D(DIROUT) Q -2
+ I $D(DIRUT) Q -1
+ S CHOICE=Y(0)
+ Q 1
+ ;
+CHOOSE(PROMPT,DEFAULT,CHOICE,OPTION) ; generic question driver
+ N DIR,DIRUT,DIROUT,I,X,Y
+ S DIR(0)="S^",I=0
+ F  S I=$O(OPTION(I)) Q:'I  D
+ . S DIR(0)=DIR(0)_$S(I>1:";",1:"")_OPTION(I)
+ . Q
+ S DIR("A")=PROMPT
+ I $G(DEFAULT)'="" S DIR("B")=DEFAULT
+ D ^DIR
+ I $D(DIROUT) Q -2
+ I $D(DIRUT) Q -1
+ S CHOICE=Y
+ Q 1

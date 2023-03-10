@@ -1,5 +1,5 @@
 FBAAFSR ;WCIOFO/TCK,SS,DMK,SAB - RBRVS FEE SCHEDULE ;1/14/11 11:07am
- ;;3.5;FEE BASIS;**4,53,71,84,92,93,99,102,105,109,110,112,118,145,179**;JAN 30, 1995;Build 7
+ ;;3.5;FEE BASIS;**4,53,71,84,92,93,99,102,105,109,110,112,118,145,179,184**;JAN 30, 1995;Build 4
  ;Per VA Directive 6402, this routine should not be modified.
  ;
  Q
@@ -71,6 +71,7 @@ RBRVS(CPT,MODL,DOS,ZIP,FAC,TIME) ; calculate RBRVS Fee Schedule amount
  . D CALC(FBCY,FAC,FBCPTY0,FBGPCIY0,FBCF)
  . ;
  . ; apply adjustments to calculation
+ .  S FBAMT=$J(FBAMT,0,3) ;FB*3.5*184 - Adjust rounding to match CMS, go to 3 digits first (Anything $0.0045 or above is rounded up to next cent)
  .  S FBAMT=$J(FBAMT,0,2)*$$ADJ(CPT,DOS)
  . ; apply multiplier based on modifier
  . I MODL]"" S FBAMT=FBAMT*$$MULT(FBCY,MODL,FBCPT0,FBCPTY0)

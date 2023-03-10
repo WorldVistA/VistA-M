@@ -1,5 +1,6 @@
-ORDV02A ; slc/dcm - OE/RR Report Extracts ;03/19/15  09:34
- ;;3.0;ORDER ENTRY/RESULTS REPORTING;**243,377**;Dec 17, 1997;Build 582
+ORDV02A ; slc/dcm - OE/RR Report Extracts ; 4/15/21 1:08pm
+ ;;3.0;ORDER ENTRY/RESULTS REPORTING;**243,377,498**;Dec 17, 1997;Build 38
+ ; DBIA 4751 - IMGCNT^TIUSRVLO
  ;LAB Components
 EM(ROOT,ORALPHA,OROMEGA,ORMAX,ORDBEG,ORDEND,OREXT)      ;Electron Microscopy
  ;External references to ^DPT(DFN,"LR"), ^ORDVX1,
@@ -63,7 +64,7 @@ GET ;Get data
  .. D SPMRG^ORDVU("^TMP(""OROOT"","_$J_","_ORDT_","_""""_ORSS_""""_",.2)","^TMP(""ORDATA"","_$J_","_""""_ORDT_ORSS_""""_",""WP"",5)",5) ;report text
  .. S ^TMP("ORDATA",$J,ORDT_ORSS,"WP",6)="6^[+]" ;flag for detail
  .. S ^TMP("ORDATA",$J,ORDT_ORSS,"WP",7)="7^"_ORIMGCNT ;image indicator flag
- .. S ^TMP("ORDATA",$J,ORDT_ORSS,"WP",8)="8^"_$G(^TMP("OROOT",$J,ORDT,ORSS,.05)),ORCNT=ORCNT+1 ; TIU IEN for image
+ .. S ^TMP("ORDATA",$J,ORDT_ORSS,"WP",8)="8^"_+$G(^TMP("OROOT",$J,ORDT,ORSS,.05)),ORCNT=ORCNT+1 ; TIU IEN for image
  K ^TMP("OROOT",$J)
  S ROOT=$NA(^TMP("ORDATA",$J))
  Q

@@ -1,5 +1,5 @@
-PXRMFFDB ;SLC/PKR - Function finding data structure builder. ;05/06/2020
- ;;2.0;CLINICAL REMINDERS;**4,6,12,18,26,46**;Feb 04, 2005;Build 236
+PXRMFFDB ;SLC/PKR - Function finding data structure builder. ;05/31/2022
+ ;;2.0;CLINICAL REMINDERS;**4,6,12,18,26,46,65**;Feb 04, 2005;Build 438
  ;
  ;===========================================
 BASE2(NUM) ;Convert a base 10 integer to base 2.
@@ -119,9 +119,12 @@ GETOPERS() ;Return the list of operators that can be used in a function string.
  ;===========================================
 ISGRV(VAR) ;VAR can be a global reminder variable by itself or used in a
  ;$P.
- N DELIM,EXPR,FROM,TO,VALID
+ N DELIM,EXPR,FROM,GBLREMVAR,TO,VALID
+ S GBLREMVAR("PXRMAGE")="",GBLREMVAR("PXRMDATE")="",GBLREMVAR("PXRMDOB")=""
+ S GBLREMVAR("PXRMDOD")="",GBLREMVAR("PXRMLAD")="",GBLREMVAR("PXRMSEX")=""
+ S GBLREMVAR("PXRMSIG")=""
  S EXPR=$P(VAR,",",1)
- S VALID=$S(EXPR="PXRMAGE":1,EXPR="PXRMDOB":1,EXPR="PXRMDOD":1,EXPR="PXRMLAD":1,EXPR="PXRMSEX":1,EXPR="PXRMSIG":1,1:0)
+ S VALID=$D(GBLREMVAR(EXPR))
  I 'VALID Q 0
  S DELIM=$P(VAR,",",2)
  S VALID=$S(DELIM="":1,1:$$ISSTR(DELIM))
@@ -152,6 +155,70 @@ ISSTR(STRING) ;Return true if STRING really is a string and it is not
  Q VALID
  ;
  ;===========================================
+VARGLISTM(LIST,DAI,FUNCTION,FUNIEN) ;Make sure the function argument list
+ ;is valid. This check is for functions where a different pattern is
+ ;required for each argument.
+ N ARG,AT,C1,IND,LEN,NL,PATTERN,PATTERNS,TARG,TEXT,VARG,VALID
+ S LEN=$L(LIST,",")
+ I LEN=0 D  Q 0
+ . N TEXT
+ . S TEXT="The argument list is not defined!"
+ . D EN^DDIOL(TEXT) H 2
+ S PATTERNS=^PXRMD(802.4,FUNIEN,3)
+ S LEN=$L(PATTERNS,"~")
+ I LEN=0 D  Q 0
+ . N TEXT
+ . S TEXT="The pattern list is not defined!"
+ . D EN^DDIOL(TEXT) H 2
+ S NL=0,VALID=1
+ F IND=1:1:LEN D
+ . S ARG=$P(LIST,",",IND)
+ . S PATTERN=$P(PATTERNS,"~",IND)
+ . S VARG=ARG?@PATTERN
+ . I 'VARG S VALID=0,NL=NL+1,TEXT(NL)="Function argument number "_IND_" is incorrect." Q
+ . S AT=$$ARGTYPE^PXRMFFAT(FUNCTION,IND)
+ . I AT="U" S VARG=0
+ . I 'VARG S VALID=0,NL=NL+1,TEXT(NL)="Function argument number "_IND_" is the wrong type." Q
+ . I AT="F" D
+ ..;Check for an argument starting with C or R.
+ .. S C1=$E(ARG,1)
+ .. I (C1="C")!(C1="R") S TARG=$E(ARG,2,15),VARG=$$VFINDING(TARG,DAI)
+ .. E  S VARG=$$VFINDING(ARG,DAI)
+ . I 'VARG S VALID=0,NL=NL+1,TEXT(NL)="Function argument number "_IND_" is not a valid finding."
+ I 'VALID D EN^DDIOL(.TEXT) H 2
+ Q VALID
+ ;
+ ;===========================================
+VARGLISTS(LIST,DAI,FUNCTION,FUNIEN) ;Make sure the function argument list
+ ;is valid. This check is for functions where a single pattern can
+ ;be used.
+ N ARG,AT,C1,IND,LEN,PATTERN,TARG,TEXT,VALID
+ S LEN=$L(LIST,",")
+ I LEN=0 D  Q 0
+ . N TEXT
+ . S TEXT="The argument list is not defined!"
+ . D EN^DDIOL(TEXT) H 2
+ S PATTERN=^PXRMD(802.4,FUNIEN,2)
+ S VALID=$S(LIST?@PATTERN:1,1:0)
+ I 'VALID D  Q 0
+ . N TEXT
+ . S TEXT="Argument list: "_LIST_" is not correct for function "_$P(^PXRMD(802.4,FUNIEN,0),U,1)
+ . D EN^DDIOL(TEXT) H 2
+ F IND=1:1:LEN D
+ . S ARG=$P(LIST,",",IND)
+ . S AT=$$ARGTYPE^PXRMFFAT(FUNCTION,IND)
+ . I AT="U" S VALID=0 Q
+ . I AT="F" D
+ ..;Check for an argument starting with C or R.
+ .. S C1=$E(ARG,1)
+ .. I (C1="C")!(C1="R") S TARG=$E(ARG,2,15),VALID=$$VFINDING(TARG,DAI)
+ .. E  S VALID=$$VFINDING(ARG,DAI)
+ .. I 'VALID D
+ ... S TEXT=ARG_" is not a valid finding."
+ ... D EN^DDIOL(TEXT) H 2
+ Q VALID
+ ;
+ ;===========================================
 VFFORM(FUN,ARGLIST,FSTRING) ;Make sure the function is followed by an argument
  ;list i.e., FUN(...).
  N TSTRING,VALID
@@ -160,7 +227,7 @@ VFFORM(FUN,ARGLIST,FSTRING) ;Make sure the function is followed by an argument
  I 'VALID D
  . N TEXT
  . S TEXT="Function "_FUN_" must be followed by an argument list!"
- . D EN^DDIOL(.TEXT)
+ . D EN^DDIOL(.TEXT) H 2
  Q VALID
  ;
  ;===========================================
@@ -178,7 +245,7 @@ VFINDING(X,DAI) ;Make sure a finding number is a valid member of the
  E  D  Q 0
  . N TEXT
  . S TEXT="Finding number "_X_" does not exist!"
- . D EN^DDIOL(TEXT)
+ . D EN^DDIOL(TEXT) H 2
  ;
  ;===========================================
 VFSTRING(FFSTRING,DA) ;Make sure a function finding string is valid.
@@ -203,8 +270,8 @@ VFSTRING(FFSTRING,DA) ;Make sure a function finding string is valid.
  .. S LIST=$G(PFSTACK(IND))
  .. S VALID=$$VFFORM(TEMP,LIST,X)
  .. I 'VALID Q
- .. I $G(^PXRMD(802.4,FUNIEN,2))'="" S VALID=$$VALISTS(LIST,DAI,TEMP,FUNIEN)
- .. I $G(^PXRMD(802.4,FUNIEN,3))'="" S VALID=$$VALISTM(LIST,DAI,TEMP,FUNIEN)
+ .. I $G(^PXRMD(802.4,FUNIEN,2))'="" S VALID=$$VARGLISTS(LIST,DAI,TEMP,FUNIEN)
+ .. I $G(^PXRMD(802.4,FUNIEN,3))'="" S VALID=$$VARGLISTM(LIST,DAI,TEMP,FUNIEN)
  .;Check for an operator. Unary operators have a "U" appended.
  . I OPERS[$P(TEMP,"U",1) Q
  .;Check for number
@@ -217,7 +284,7 @@ VFSTRING(FFSTRING,DA) ;Make sure a function finding string is valid.
  . I $$ISSTR(TEMP) Q
  . S VALID=0
  . S TEXT=TEMP_" is not a valid function finding element!"
- . D EN^DDIOL(TEXT)
+ . D EN^DDIOL(TEXT) H 2
  I VALID D
  . N X
  . S X="I "_FFSTRING
@@ -225,58 +292,6 @@ VFSTRING(FFSTRING,DA) ;Make sure a function finding string is valid.
  . I $D(X)=0 S VALID=0
  I 'VALID D
  . S TEMP=FFSTRING_" is not a valid function string!"
- . D EN^DDIOL(TEMP)
- Q VALID
- ;
- ;===========================================
-VALISTS(LIST,DAI,FUNCTION,FUNIEN) ;Make sure the function argument list
- ;s valid. This check is for functions where a single pattern can
- ;be used.
- N AT,IND,LEN,PATTERN,VALID,X
- S LEN=$L(LIST,",")
- I LEN=0 D  Q 0
- . N TEXT
- . S TEXT="The argument list is not defined!"
- . D EN^DDIOL(TEXT)
- S PATTERN=^PXRMD(802.4,FUNIEN,2)
- S VALID=$S(LIST?@PATTERN:1,1:0)
- I 'VALID D  Q 0
- . N TEXT
- . S TEXT="Argument list "_LIST_" is not correct for function "_$P(^PXRMD(802.4,FUNIEN,0),U,1)
- . D EN^DDIOL(TEXT)
- F IND=1:1:LEN D
- . S X=$P(LIST,",",IND)
- . S AT=$$ARGTYPE^PXRMFFAT(FUNCTION,IND)
- . I AT="U" S VALID=0 Q
- . I AT="F",'$$VFINDING(X,DAI) S VALID=0
- Q VALID
- ;
- ;===========================================
-VALISTM(LIST,DAI,FUNCTION,FUNIEN) ;Make sure the function argument list
- ;is valid. This check is for functions where a different pattern is
- ;required for each argument.
- N ARG,AT,IND,LEN,NL,PAT,PATTERNS,TEXT,VARG,VALID
- S LEN=$L(LIST,",")
- I LEN=0 D  Q 0
- . N TEXT
- . S TEXT="The argument list is not defined!"
- . D EN^DDIOL(TEXT)
- S PATTERNS=^PXRMD(802.4,FUNIEN,3)
- S LEN=$L(PATTERNS,"~")
- I LEN=0 D  Q 0
- . N TEXT
- . S TEXT="The pattern list is not defined!"
- . D EN^DDIOL(TEXT)
- S NL=0,VALID=1
- F IND=1:1:LEN D
- . S ARG=$P(LIST,",",IND)
- . S PAT=$P(PATTERNS,"~",IND)
- . S VARG=ARG?@PAT
- . I 'VARG S VALID=0,NL=NL+1,TEXT(NL)="Function argument number "_IND_" is incorrect." Q
- . S AT=$$ARGTYPE^PXRMFFAT(FUNCTION,IND)
- . I AT="U" S VARG=0
- . I 'VARG S VALID=0,NL=NL+1,TEXT(NL)="Function argument number "_IND_" is the wrong type." Q
- . I AT="F",'$$VFINDING(ARG,DAI) S VARG=0
- I 'VALID D EN^DDIOL(.TEXT)
+ . D EN^DDIOL(TEMP) H 2
  Q VALID
  ;

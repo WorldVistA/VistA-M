@@ -1,15 +1,18 @@
-PSOORAL1 ;BHAM ISC/SAB - Build Listman activity logs ; 12/4/07 12:25pm
- ;;7.0;OUTPATIENT PHARMACY;**71,156,148,247,240,287,354,367,408,482,508,551**;DEC 1997;Build 37
+PSOORAL1 ;BHAM ISC/SAB - Build Listman activity logs ;Jan 20, 2022@11:18:59
+ ;;7.0;OUTPATIENT PHARMACY;**71,156,148,247,240,287,354,367,408,482,508,551,562,441,651**;DEC 1997;Build 30
+ ;
+ ;
  N RX0,VALMCNT K DIR,DTOUT,DUOUT,DIRUT,^TMP("PSOAL",$J) S DA=$P(PSOLST(ORN),"^",2),RX0=^PSRX(DA,0),J=DA,RX2=$G(^(2)),R3=$G(^(3)),CMOP=$O(^PSRX(DA,4,0))
  S IEN=0,DIR(0)="LO^1:"_$S(CMOP:10,1:9),DIR("A",1)=" ",DIR("A",2)="Select Activity Log by  number",DIR("A",3)="1.  Refill    2.  Partial     3.  Activity   4.  Labels      5.  Copay"
  S DIR("A")=$S(CMOP:"6.  ECME      7.  SPMP        8.  eRx Log    9.  CMOP Events 10.  All Logs    ",1:"6.  ECME      7.  SPMP        8.  eRx Log    9.  All Logs")
  S DIR("B")=$S(CMOP:10,1:9) D ^DIR S PSOELSE=+Y I +Y S Y=$S(CMOP&(Y[10):"1,2,3,4,5,6,7,8,9",'CMOP&(Y[9):"1,2,3,4,5,6,7,8",1:Y) S ACT=Y D FULL^VALM1 D
  .S IEN=IEN+1,^TMP("PSOAL",$J,IEN,0)="Rx #: "_$P(RX0,"^")_"   Original Fill Released: " I $P(RX2,"^",13) S DTT=$P(RX2,"^",13) D DAT S ^TMP("PSOAL",$J,IEN,0)=^TMP("PSOAL",$J,IEN,0)_DAT K DAT,DTT
  .I $P(RX2,"^",15) S DTT=$P(RX2,"^",15) D DAT S ^TMP("PSOAL",$J,IEN,0)=^TMP("PSOAL",$J,IEN,0)_"(Returned to Stock "_DAT_")" K DAT,DTT
- .S IEN=IEN+1,^TMP("PSOAL",$J,IEN,0)="Routing: "_$S($P(RX0,"^",11)="W":"Window",1:"Mail")_$S($P($G(^PSRX(DA,"OR1")),"^",5):"      Finished by: "_$P(^VA(200,$P(^PSRX(DA,"OR1"),"^",5),0),"^"),1:"")
+ .;441 PAPI
+ .S IEN=IEN+1,^TMP("PSOAL",$J,IEN,0)="Routing: "_$S($P(RX0,"^",11)="W":"Window",$P(RX0,"^",11)="P":"Park",1:"Mail")_$S($P($G(^PSRX(DA,"OR1")),"^",5):"      Finished by: "_$P(^VA(200,$P(^PSRX(DA,"OR1"),"^",5),0),"^"),1:"")
  .D:$G(^PSRX(DA,"H"))]""&($P(PSOLST(ORN),"^",3)="HOLD") HLD^PSOORAL2
  .F LOG=1:1:$L(ACT,",") Q:$P(ACT,",",LOG)']""  S LBL=$P(ACT,",",LOG) D @$S(LBL=1:"RF^PSOORAL2",LBL=2:"PAR^PSOORAL2",LBL=3:"ACT",LBL=5:"COPAY",LBL=6:"ECME",LBL=7:"SPMP",LBL=8:"ERX",LBL=9:"^PSORXVW2",1:"LBL")
- I 'PSOELSE S VALMBCK="" K PSOELSE Q 
+ I 'PSOELSE S VALMBCK="" K PSOELSE Q
  K ST0,RFL,RFLL,RFL1,II,J,N,PHYS,L1,DIRUT,PSDIV,PSEXDT,MED,M1,FFX,DTT,DAT,R3,RTN,SIG,STA,P1,PL,P0,Z0,Z1,EXDT,IFN,DIR,DUOUT,DTOUT,PSOELSE
  K LBL,I,RFDATE,%H,%I,RN,RFT
  S PSOAL=IEN K IEN,ACT,LBL,LOG D EN^PSOORAL S VALMBCK="R"
@@ -90,7 +93,7 @@ ECME ; ECME activity log
  ; The comments from ACTIVITY LOG (#52.3) and REJECT INFO (#52.25)
  ; will be compiled in array PSOAR. This array will allow comments
  ; from each sub-file to be sorted in ascending order by date.
- ; A counter (PSOCNT) will be used to accommodate multiple 
+ ; A counter (PSOCNT) will be used to accommodate multiple
  ; comments with the exact same date/time.
  ;
  ; PSOAR array definition:
@@ -121,7 +124,7 @@ ECME ; ECME activity log
  ;  .05 = Comment
  ;
  ; The above fields will be stored in array PSODATA via a call to ^DIQ.
- ; 
+ ;
  S I=0
  F  S I=$O(^PSRX(DA,"A",I)) Q:'I  D
  . ;
@@ -139,7 +142,7 @@ ECME ; ECME activity log
  . ;
  . S PSODATE=$G(PSODATA(PSOFILE,PSOIENS,.01,"I"))
  . S PSOUSER1=$G(PSODATA(PSOFILE,PSOIENS,.03,"E"))
- . S PSOREFILL1=$G(PSODATA(PSOFILE,PSOIENS,.04,"E"))
+ . S PSOREFILL1=$S('$G(PSODATA(PSOFILE,PSOIENS,.04,"I")):"ORIGINAL",1:"REFIL "_PSODATA(PSOFILE,PSOIENS,.04,"I"))
  . S PSOCOMMENT=$G(PSODATA(PSOFILE,PSOIENS,.05,"I"))
  . ;
  . S PSOCNT=$G(PSOAR(PSODATE))+1
@@ -147,7 +150,7 @@ ECME ; ECME activity log
  . S PSOAR(PSODATE,PSOCNT)=$$FMTE^XLFDT(PSODATE,2)_U_PSOUSER1_U_PSOREFILL1_U_PSOCOMMENT
  . ;
  . ; Node 2 of the ACTIVITY LOG contains any additional comments.
- . ; Loop through OTHER COMMENTS sub-file (file #52.34) to add to PSOAR 
+ . ; Loop through OTHER COMMENTS sub-file (file #52.34) to add to PSOAR
  . ; for reporting.
  . ;
  . I $D(^PSRX(DA,"A",I,2)) D
@@ -169,7 +172,7 @@ ECME ; ECME activity log
  ; The above fields will be stored in array PSODATA via a call to ^DIQ.
  ;
  S I=0 F  S I=$O(^PSRX(DA,"REJ",I)) Q:'I  S PSODATE=0 F  S PSODATE=$O(^PSRX(DA,"REJ",I,"COM","B",PSODATE)) Q:'PSODATE  D
- . S III=0 F  S III=$O(^PSRX(DA,"REJ",I,"COM","B",PSODATE,III)) Q:'III  D 
+ . S III=0 F  S III=$O(^PSRX(DA,"REJ",I,"COM","B",PSODATE,III)) Q:'III  D
  . . S REC=$G(^PSRX(DA,"REJ",I,"COM",III,0))
  . . S PSOUSER=$P(REC,U,2),PSOUSER1=$P($G(^VA(200,PSOUSER,0)),U,1)
  . . S PSOCOMMENT=$P(REC,U,3)
@@ -182,12 +185,12 @@ ECME ; ECME activity log
  . . S PSOAR(PSODATE)=PSOCNT
  . . S PSOAR(PSODATE,PSOCNT)=$$FMTE^XLFDT(PSODATE,2)_U_PSOUSER1_U_PSOREFILL1_U_PSOCOMMENT
  ;
- ; If PSOAR array contains no data, there is No ECME Activity to report. 
+ ; If PSOAR array contains no data, there is No ECME Activity to report.
  ;
  I '$D(PSOAR) S IEN=IEN+1,^TMP("PSOAL",$J,IEN,0)="There's NO ECME Activity to report" Q
  ;
  ; Loop through PSOAR array and assign data to ^TMP array for reporting.
- ; 
+ ;
  ; PSOLINE = ECME Log Entry line number.
  ;
  S (PSODATE1,PSOREFILL,PSOUSER)=""
@@ -227,7 +230,7 @@ ECME ; ECME activity log
  . . ;
  . . ; Loop through ^UTILITY($J,"W"), adding comments to ^TMP
  . . ;
- . . F I=1:1:^UTILITY($J,"W",1) D 
+ . . F I=1:1:^UTILITY($J,"W",1) D
  . . . S IEN=IEN+1
  . . . S ^TMP("PSOAL",$J,IEN,0)=$G(^UTILITY($J,"W",1,I,0))
  ;
@@ -268,7 +271,7 @@ DISPREJ  ;
  . S VAR=$G(^PSRX(DA,"REJ",REJ,0))
  . S RFT=+$P(VAR,"^",4)
  . S SEQ=SEQ+1,X=SEQ,$E(X,4)=$$FMTE^XLFDT($P(VAR,"^",2),2),$E(X,22)=$S(RFT:"REFILL "_RFT,1:"ORIGINAL")
- . S $E(X,32)=$S(+VAR=79:"REFILL TOO SOON",+VAR=88:"DUR",1:$E($$EXP^PSOREJP1($P(VAR,"^",1)),1,15))  ;can't + default because values can be 07, 08, etc.
+ . S $E(X,32)=$S(+VAR=79:"REFILL TOO SOON",+VAR=88!(+VAR=943):"DUR",1:$E($$EXP^PSOREJP1($P(VAR,"^",1)),1,15))  ;can't + default because values can be 07, 08, etc.
  . S $E(X,48)=$S($P(VAR,"^",5):"RESOLVED",1:"UNRESOLVED")
  . S:$P(VAR,"^",6) $E(X,59)=$$FMTE^XLFDT($P(VAR,"^",6),2)
  . S IEN=IEN+1,^TMP(PRI,$J,IEN,0)=X
@@ -281,7 +284,7 @@ DISPREJ  ;
  Q
  ;
 ERX ; eRx Log
- ;/BLB/ PSO*7.0*551 - BEGIN CHANGE - ERX LOG 
+ ;/BLB/ PSO*7.0*551 - BEGIN CHANGE - ERX LOG
  N CNT,G,STR,X,I,TMP,N,ERXREC,ERXCHK,DAT,PSOACBRV,P1
  S IEN=IEN+1,^TMP("PSOAL",$J,IEN,0)=" "
  S IEN=IEN+1,^TMP("PSOAL",$J,IEN,0)="eRx Activity Log:"

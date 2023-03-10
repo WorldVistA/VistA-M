@@ -1,5 +1,5 @@
 PSAVER3 ;BIR/JMB-Verify Invoices - CONT'D ;9/5/97
- ;;3.0; DRUG ACCOUNTABILITY/INVENTORY INTERFACE;**3,19,21,64,70**; 10/24/97;Build 12
+ ;;3.0;DRUG ACCOUNTABILITY/INVENTORY INTERFACE;**3,19,21,64,70,82**;10/24/97;Build 4
  ;This routine checks for verification errors, prints an error report,
  ;& changes data in DA ORDERS to verification if there are no errors.
  ;
@@ -146,11 +146,13 @@ VERIFY ;Set line item to verified
  K DIE
  Q
  ;
-VERIFY1 ;Set adjs if entire invioce was verified
+VERIFY1 ;NEW CODE - Set adjs if entire invioce was verified
  S DA=0 F  S DA=$O(^PSD(58.811,PSAIEN,1,PSAIEN1,1,PSALINE,1,DA)) Q:'DA  D
  .Q:'$D(^PSD(58.811,PSAIEN,1,PSAIEN1,1,PSALINE,1,DA,0))
  .Q:$P(^PSD(58.811,PSAIEN,1,PSAIEN1,1,PSALINE,1,DA,0),"^",9)=DUZ
- .S PSAREA="",PSADJ=$P(^PSD(58.811,PSAIEN,1,PSAIEN1,1,PSALINE,1,DA,0),"^",2) D ADJ^PSAVER2
+ .S PSADJ=$P(^PSD(58.811,PSAIEN,1,PSAIEN1,1,PSALINE,1,DA,0),"^",2)
+ .S:$P(^PSD(58.811,PSAIEN,1,PSAIEN1,1,PSALINE,1,DA,0),"^",6) PSADJ=$P(^PSD(58.811,PSAIEN,1,PSAIEN1,1,PSALINE,1,DA,0),"^",6) ;p82
+ .S PSAREA="" D ADJ^PSAVER2
  Q
  ;
 DDQOR ;Extended help for 'Edit field'

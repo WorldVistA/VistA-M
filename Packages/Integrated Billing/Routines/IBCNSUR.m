@@ -1,5 +1,5 @@
-IBCNSUR ;ALB/CPM/CMS - MOVE SUBSCRIBERS TO DIFFERENT PLAN ;09-SEP-96
- ;;2.0;INTEGRATED BILLING;**103,276,506,516,549,602**;21-MAR-94;Build 22
+IBCNSUR ;ALB/CPM/CMS - MOVE SUBSCRIBERS TO DIFFERENT PLAN ; 09-SEP-96
+ ;;2.0;INTEGRATED BILLING;**103,276,506,516,549,602,664,702,732**;21-MAR-94;Build 13
  ;;Per VA Directive 6402, this routine should not be modified.
  Q
  ;
@@ -42,14 +42,51 @@ PROC ; - Process continuation from IBCNSUR1.
  D IRACT^IBCNSJ(IBP1,1) W !!,"The plan has been inactivated."
  ;
 PROCDP ; - does the user wish to delete the old plan?
+ ;IB*2*702/CKB - Add checks to determine whether a group is allowed to be delete or not
+ ;
+ ;IB*732/CKB - removed check for the number of subscribers
+ ;If moving entire group by expiring the policy by adding a new effective
+ ; date, do NOT allow the group to be deleted.
+ I IBGRP,IBSPLIT,$G(IBEFFDT) D NODEL G PROCQ
+ ;
+ ;IB*732/CKB - should only check for only 1 subscriber.
+ ;If moving the entire group (if there is only 1 subscriber) by replacing the
+ ; old group plan,the user they should BE allowed to delete the group.
+ I IBGRP,(IBSUB=1) G PROCDP1
+ ;
+ ;If moving a subset of subscribers from the group by expiring the policy adding
+ ; a new effective date, do NOT allow the group to be deleted.
+ ;IB*732/CKB - if user selected chose to select subscribers allow for the user
+ ; selecting All or Some of the subscribers
+ ;;***I 'IBGRP,+NUMSEL<IBSUB,$G(IBEFFDT) D NODEL G PROCQ
+ I 'IBGRP,+NUMSEL'>IBSUB,$G(IBEFFDT) D NODEL G PROCQ
+ ;
+ ;If moving a subset of subscribers from the group by replacing the old group plan,
+ ; do NOT allow the group to be deleted.
+ ;IB*732/CKB - if user selected chose to select subscribers allow for the user
+ ; selecting All or Some of the subscribers
+ ;;***I 'IBGRP,+NUMSEL<IBSUB,'IBSPLIT D NODEL G PROCQ
+ I 'IBGRP,+NUMSEL'>IBSUB,'IBSPLIT D NODEL G PROCQ
+ ;
+PROCDP1 ; Prompt to delete the plan
  W !! S DIR(0)="Y",DIR("A")="Do you wish to delete this plan"
  S DIR("?")="If you wish to delete the old plan, enter 'Yes' - otherwise, enter 'No.'"
+ D ^DIR K DIR I 'Y G PROCQ
+ ;
+ ;IB*2*702/CKB - Added a "Are you sure" question before deleting the plan
+ W ! S DIR(0)="Y",DIR("A")="Are you sure you want to delete this plan"
+ S DIR("?")="If you're sure you want to delete the old plan, enter 'Yes' - otherwise, enter 'No.'"
  D ^DIR K DIR I 'Y G PROCQ
  ;
  D DEL^IBCNSJ(IBP1) W !!,"The plan has been deleted."
  ;
 PROCQ Q
  ;
+NODEL ;IB*2*702/CKB - Display a "not allowed to delete" message to the user
+ W !,"There are still subscribers to this plan. The plan cannot be deleted.",!
+ S DIR(0)="EA",DIR("A")="Press RETURN to continue."
+ D ^DIR K DIR
+ Q
  ;
 SEL(IBNP) ; Select a company and plan.
  ;   Input:     IBNP  --  If set to 1, allows adding a new plan and
@@ -146,7 +183,8 @@ NXTGRP ; EP for next expire group process
  ;
  W !
  ; get the expiration date
- S DIR(0)="D",DIR("A")="Enter expiration date (applies to all subscribers in this plan)"
+ ;IB*2.0*664/TAZ - Force exact date.
+ S DIR(0)="D^::EX",DIR("A")="Enter expiration date (applies to all subscribers in this plan)"
  S DIR("?")="Each active policy will be expired with the expiration date entered."
  D ^DIR K DIR
  I 'Y!$D(DIRUT) G NXTGRP

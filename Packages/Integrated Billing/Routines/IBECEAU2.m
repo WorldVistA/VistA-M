@@ -1,5 +1,5 @@
 IBECEAU2 ;ALB/CPM - Cancel/Edit/Add... User Prompts ; 19-APR-93
- ;;2.0;INTEGRATED BILLING;**7,52,153,176,545,563,614,618,646,663,671,669,653,678**;21-MAR-94;Build 7
+ ;;2.0;INTEGRATED BILLING;**7,52,153,176,545,563,614,618,646,663,671,669,653,678,715**;21-MAR-94;Build 25
  ;;Per VA Directive 6402, this routine should not be modified.
  ;
 REAS(IBX) ; Ask for the cancellation reason.
@@ -38,7 +38,15 @@ FR(DEF) ; Ask Bill From Date
  ; Input:   DEF  --  Default value if previous charge is to be displayed
  N DA,DIR,DIRUT,DUOUT,DTOUT,X,X1,Y
 FRA S:$G(DEF) DIR("B")=$$DAT2^IBOUTL(DEF)
- S DIR(0)="DA^2901001:"_IBLIM_":EX",DIR("A")=$S(IBXA=4!(IBXA=7):"Visit Date: ",IBXA=5:"Rx Date: ",1:"Charge for services from: "),DIR("?")="^D HFR^IBECEAU2"
+ S DIR(0)="DA^2901001:"_IBLIM_":EX"
+ ; IB*2.0*715
+ ; IBATYPN is defined in CUS^IBECEA35
+ S DIR("A")="Charge for services from: "
+ I IBXA=4 S DIR("A")="Visit Date: "
+ I IBXA=5 S DIR("A")="Rx Date: "
+ I IBXA=7,$G(IBATYPN)'="DG TRICARE INPT COPAY NEW" S DIR("A")=$S($G(IBATYPN)="DG TRICARE RX COPAY NEW":"Rx Date: ",1:"Visit Date: ")
+ S DIR("?")="^D HFR^IBECEAU2"
+ ;
  D ^DIR K DIR S IBFR=Y I 'Y W !!,$S(IBXA=4!(IBXA=7):"Visit",IBXA=5:"Rx",1:"Bill From")," Date not entered - transaction cannot be completed." S IBY=-1 G FRQ
  I IBXA=7 G FRQ
  I IBXA'=8,IBXA'=9,IBXA'=5,'IBUC,'$$BIL^DGMTUB(DFN,IBFR+.24) D CATC G FRA    ;IB*2.0*646 - added UC check.
@@ -80,7 +88,16 @@ HUN ; Help for units
  Q
  ;
 HFR ; Help for Bill From date
- W !!,"Please enter the ",$S(IBXA=4!(IBXA=7):"patient's outpatient visit date",IBXA=5:"patient's prescription date",1:"'Bill From' date for this charge"),$S(IBXA'=5:", which must follow",1:"")
+ N STR
+ ; IB*2.0*715
+ ; IBATYPN is defined in CUS^IBECEA35
+ S STR="'Bill From' date for this charge"
+ I IBXA=4 S STR="patient's outpatient visit date"
+ I IBXA=5 S STR="patient's prescription date"
+ I IBXA=7 S STR=$S($G(IBATYPN)="DG TRICARE RX COPAY NEW":"patient's prescription date",1:"patient's outpatient visit date")
+ W !!,"Please enter the ",STR
+ W $S(IBXA'=5:", which must follow",1:"")
+ ;
  W !,$S(IBXA=5:"today or prior to today",1:"10/1/90"_$S(IBXA=4!(IBXA=7):"",1:" (and be prior to today)")),", or '^' to quit."
  Q
  ;

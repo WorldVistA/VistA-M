@@ -1,5 +1,9 @@
-ECRRPC ;ALB/JAM - Event Capture Report RPC Broker ;9/28/17  14:12
- ;;2.0;EVENT CAPTURE;**25,47,61,72,95,101,100,107,112,131,139**;8 May 96;Build 7
+ECRRPC ;ALB/JAM - Event Capture Report RPC Broker ;1/11/21  16:09
+ ;;2.0;EVENT CAPTURE;**25,47,61,72,95,101,100,107,112,131,139,156**;8 May 96;Build 28
+ ;
+ ; Reference to ^%DT supported by ICR #10003
+ ; Reference to ^TMP supported by SACC 2.3.2.5.1
+ ; Reference to ^%ZISH: $$FTG, $$OPEN, $$CLOSE, $$DEL, $$DEFDIR supported by IA #2320
  ;
 RPTEN(RESULTS,ECARY) ;RPC Broker entry point for EC Reports
  ;All EC GUI reports will call this line tag
@@ -99,3 +103,4 @@ ECRGP ;;Generic print of report;ECRGP^ECRRPT2
 ECDSSSNR ;;DSS Units set to send no records to PCE;ECDSSSNR^ECRRPT2
 ECDISSUM ;;Disabled Category and Procedure Summary Report;ECDISSUM^ECRRPT2
 ECLATESH ;;Possible Late State Home Entries Report;ECLATESH^ECRRPT2
+ECRPROC ;;Procedure Summary Report;ECRPROC^ECRRPT2

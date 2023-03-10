@@ -1,5 +1,5 @@
-ONCOPA2A ;Hines OIFO/RTK [PA Print Complete Abstract (132c)]; 09/05/97
- ;;2.2;ONCOLOGY;**1,11,12**;Jul 31, 2013;Build 8
+ONCOPA2A ;HINES OIFO/RTK - [PA Print Complete Abstract (132c)]; 09/05/97
+ ;;2.2;ONCOLOGY;**1,11,12,13**;Jul 31, 2013;Build 7
  ; ONCO PRINT ABSTRACT CONTINUED
  W !!,"   Text-Remarks:  " F TX=0:0 S TX=$O(^ONCO(165.5,IEN,19,TX)) Q:TX'>0  W !?6,^ONCO(165.5,IEN,19,TX,0) D P Q:EX=U
  W !,"   Text Dx Proc-Phys.Exam:  " F TX=0:0 S TX=$O(^ONCO(165.5,IEN,10,TX)) Q:TX'>0  W !?6,^ONCO(165.5,IEN,10,TX,0) D P Q:EX=U
@@ -10,6 +10,7 @@ ONCOPA2A ;Hines OIFO/RTK [PA Print Complete Abstract (132c)]; 09/05/97
  W !,"   Text Dx Proc-Path/Cyto:  " F TX=0:0 S TX=$O(^ONCO(165.5,IEN,13,TX)) Q:TX'>0  W !?6,^ONCO(165.5,IEN,13,TX,0) D P Q:EX=U
  W !,"   Text Staging:  " F TX=0:0 S TX=$O(^ONCO(165.5,IEN,22.1,TX)) Q:TX'>0  W !?6,^ONCO(165.5,IEN,22.1,TX,0) D P Q:EX=U
  W !,"   Text Site Specific Data Items:  " F TX=0:0 S TX=$O(^ONCO(165.5,IEN,22.2,TX)) Q:TX'>0  W !?6,^ONCO(165.5,IEN,22.2,TX,0) D P Q:EX=U
+ W !,"   Text COVID-19:  " F TX=0:0 S TX=$O(^ONCO(165.5,IEN,22.3,TX)) Q:TX'>0  W !?6,^ONCO(165.5,IEN,22.3,TX,0) D P Q:EX=U
  ;
  S NAME="RECURRENCES" D FORMAT^ONCOPA1
  W !!,TITLE

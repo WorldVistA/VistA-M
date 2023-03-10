@@ -1,5 +1,5 @@
-DGENEGT1 ;ALB/KCL,ISA/KWP,LBD,RGL,BRM,DLF,TDM - Enrollment Group Threshold API's ; 6/17/09 11:05am
- ;;5.3;Registration;**232,417,454,491,513,451,564,672,717,688,803,754**;Aug 13, 1993;Build 46
+DGENEGT1 ;ALB/KCL,ISA/KWP,LBD,RGL,BRM,DLF,TDM,KUM - Enrollment Group Threshold API's ; 6/17/09 11:05am
+ ;;5.3;Registration;**232,417,454,491,513,451,564,672,717,688,803,754,1018**;Aug 13, 1993;Build 5
  ;
  ;
 NOTIFY(DGEGT,OLDEGT) ;
@@ -192,7 +192,9 @@ RULES(DPTDFN,EGTENR,EGT,DGPAT) ;check for new cont enrollment rules (DG*5.3*672)
  ; DG*5.3*688 - Date changed to 3/21/2009
  I DGPAT("AO")="Y" D  I $G(RTN) Q RTN
  .I $S($D(EGTENR("ELIG","AOEXPLOC")):EGTENR("ELIG","AOEXPLOC"),1:DGPAT("AOEXPLOC"))="K",EGTENR("EFFDATE"),EGTENR("EFFDATE")<3090321 S RTN=1
- .I EGTENR("ELIG","AOEXPLOC")="V" D   ;Added with DG*5.3*754
+ .;I (EGTENR("ELIG","AOEXPLOC")="V" D   ;Added with DG*5.3*754
+ .; DG*5.3*1018;KUM - Added Blue Water Navy check 
+ .I ((EGTENR("ELIG","AOEXPLOC")="V")!(EGTENR("ELIG","AOEXPLOC")="B")) D   ;Added with DG*5.3*754
  ..S STAEXP=$$STAEXP^DGENELA4("AO") Q:STAEXP<1
  ..I EGTENR("EFFDATE"),EGTENR("EFFDATE")<STAEXP S RTN=1
  ; If SWAC/EC = YES prior to Special Treatment (STA) termination

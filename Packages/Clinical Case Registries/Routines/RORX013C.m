@@ -1,5 +1,5 @@
 RORX013C ;HCIOFO/SG - DIAGNOSIS CODES (STORE) ;10/27/05 11:11am
- ;;1.5;CLINICAL CASE REGISTRIES;**19,21,31,34**;Feb 17, 2006;Build 45
+ ;;1.5;CLINICAL CASE REGISTRIES;**19,21,31,34,39**;Feb 17, 2006;Build 4
  ;
  ; This routine uses the following IAs:
  ;
@@ -17,6 +17,7 @@ RORX013C ;HCIOFO/SG - DIAGNOSIS CODES (STORE) ;10/27/05 11:11am
  ;ROR*1.5*31   MAY 2017  M FERRARESE  Adding PACT ,PCP,and AGE/DOB as additional
  ;                                    identifiers.
  ;ROR*1.5*34   SEP 2018  F TRAXLER   Adding FUT_APPT and FUT_CLIN
+ ;ROR*1.5*39   JUL 2021    M FERRARESE  Setting SSN and LAST4 to zeros
  ;******************************************************************************
  ;******************************************************************************
  ;
@@ -74,7 +75,7 @@ PATIENTS(PTAG,NODE) ;
  . S ITEM=$$ADDVAL^RORTSK11(RORTSK,"PATIENT",,TABLE)
  . S TMP=@NODE@("PAT",PATIEN)
  . D ADDVAL^RORTSK11(RORTSK,"NAME",$P(TMP,U,2),ITEM,2)
- . D ADDVAL^RORTSK11(RORTSK,"LAST4",$P(TMP,U,1),ITEM,2)
+ . S $P(TMP,U,1)="0000" D ADDVAL^RORTSK11(RORTSK,"LAST4",$P(TMP,U,1),ITEM,2)
  . I AGETYPE'="ALL" D ADDVAL^RORTSK11(RORTSK,AGETYPE,$P(TMP,U,7),ITEM,1)
  . D ADDVAL^RORTSK11(RORTSK,"DOD",$P(TMP,U,3),ITEM,1)
  . I $$PARAM^RORTSK01("PATIENTS","ICN") D ADDVAL^RORTSK11(RORTSK,"ICN",$P(TMP,U,4),ITEM,1)

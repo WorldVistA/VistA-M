@@ -1,5 +1,5 @@
-ONCSCHMS ;Hines OIFO/RTK - Derive schema discriminator ;08/27/18
- ;;2.2;ONCOLOGY;**10**;Jul 31, 2013;Build 20
+ONCSCHMS ;HINES OIFO/RTK - Derive schema discriminator ;08/27/18
+ ;;2.2;ONCOLOGY;**10,13**;Jul 31, 2013;Build 7
  ;
  ;
 DER ;Derive the correct schema discriminator codes for the abstract based
@@ -8,7 +8,8 @@ DER ;Derive the correct schema discriminator codes for the abstract based
  ;       to calculate the schema ID (field 3800)
  ;   TOPCOD should be set in Abstract
  N ONCHIST,ONCTPCD,ONCSDIS1,ONCSDIS2,ONCT3,HST14
- K ONC3927  ;used to prompt for or skip field #3927
+ N ONCPTPR S ONCPTPR=$P($G(^ONCO(165.5,D0,0)),U,2),ONCSSEX=$P($G(^ONCO(160,ONCPTPR,0)),U,8) I $G(ONCSSEX)="" W "CHECK PATIENT FILE" H 2
+ K ONC3927,ONCONLY2  ;used to prompt for or skip field #3926,3927
  S ONCSCMDS=0  ;initialize the schema first
  ;
  S ONCHIST=$$HIST^ONCFUNC(D0)
@@ -52,6 +53,9 @@ DER ;Derive the correct schema discriminator codes for the abstract based
  ;Cervical LN and Unknown Primary (Occult Head & Neck)
  I ONCTPCD="C760" D  I ONCSCMDS'=0 Q
  .I (HST14=8941) S ONCSCMDS="00450"
+ I "C473^C475^C493^C494^C495"[ONCTPCD D  I ONCSCMDS'=0 Q
+ .I ((HST14>7999)&(HST14<8804))!((HST14>8809)&(HST14<8922))!((HST14>8931)&(HST14<8935))!((HST14>8939)&(HST14<8991))!((HST14>8999)&(HST14<9017)) S ONCSCMDS="00450",ONCONLY2=1,ONC3927=1 Q
+ .I ((HST14>9029)&(HST14<9044))!((HST14>9044)&(HST14<9139))!((HST14>9140)&(HST14<9231))!((HST14>9239)&(HST14<9581))!(HST14=9582)!(HST14=9700)!(HST14=9701) S ONCSCMDS="00450",ONCONLY2=1,ONC3927=1 Q
  ;
  ;Urethra
  I ONCTPCD="C680" D  I ONCSCMDS'=0 Q

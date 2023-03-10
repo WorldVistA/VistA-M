@@ -1,6 +1,6 @@
 PRCARFD1 ;WASH-ISC@ALTOONA,PA/LDB-APPROVE REFUND AND GENERATE FMS DOC ;2/14/96  9:13 AM
- ;;4.5;Accounts Receivable;**21,36,90,104,141,190,204,203,207,220,238**;Mar 20, 1995
- ;;Per VHA Directive 10-93-142, this routine should not be modified.
+ ;;4.5;Accounts Receivable;**21,36,90,104,141,190,204,203,207,220,238,371**;Mar 20, 1995;Build 29
+ ;;Per VHA Directive 6402, this routine should not be modified.
  ;
 APPRV ;Enter Elec sig for CFO
  N ADD,DA,ENT,ERROR,PRCABN0,PRCANM,RA,TIME,X,Y
@@ -70,7 +70,7 @@ FMS W !!,"Creating an FMS Overcollection Payment Voucher . . .",!
  ;change date if resent to FMS
  ;
 TREF ;Create REFUNDED transaction and set to REFUNDED status
- N DIE,DR,DA,PRCASVC,PRCAA2,PRCAEN,PRCAMT,X,Y,DIR,DEBTOR,CLYRRF
+ N DIE,DR,DA,PRCASVC,PRCAA2,PRCAEN,PRCAMT,X,Y,DIR,DEBTOR,CLYRRF,PRCFDA
  S U="^"
  I $P($G(^PRCA(430,+PRCABN,0)),U,8)=$O(^PRCA(430.3,"AC",120,0)) Q
  D SETTR^PRCAUTL I '$G(PRCAEN) W !!,"COULD NOT SET UP A REFUND TRANSACTION!" Q
@@ -79,7 +79,8 @@ TREF ;Create REFUNDED transaction and set to REFUNDED status
  S DIE="^PRCA(433,",DR="[PRCA FY ADJ2 BATCH]",DA=PRCAEN D ^DIE
  S PRCAMT=-$G(PRCAMT),PRCAA2=$P(^PRCA(433,PRCAEN,4,0),U,3)
  D UPFY^PRCADJ,TRANUP^PRCAUTL
- S $P(^PRCA(430,PRCABN,7),U,1)=$G(^PRCA(430,PRCABN,7))+PRCAMT,PRCA("STATUS")=$O(^PRCA(430.3,"AC",120,0)) D UPSTATS^PRCAUT2
+ ; PRCA*4.5*371 - Replace direct global sets in 7 node with FileMan calls so indexes get updated
+ S PRCFDA(430,PRCABN_",",71)=$G(^PRCA(430,PRCABN,7))+PRCAMT,PRCA("STATUS")=$O(^PRCA(430.3,"AC",120,0)) D FILE^DIE(,"PRCFDA"),UPSTATS^PRCAUT2
  W !,"Bill is now in REFUNDED status.",!
  ;CHECK TO SEE IF TOP REFUND AND SET UP FIELDS TO SEND WITH NEXT
  ;TOP TRANSMISSION

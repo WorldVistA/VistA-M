@@ -1,128 +1,132 @@
-IBDEI0MH ; ; 04-FEB-2020
- ;;3.0;IB ENCOUNTER FORM IMP/EXP;;FEB 04, 2020
+IBDEI0MH ; ; 01-FEB-2022
+ ;;3.0;IB ENCOUNTER FORM IMP/EXP;;FEB 01, 2022
  Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,999) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
- ;;^UTILITY(U,$J,358.3,9997,1,4,0)
- ;;=4^S63.519A
- ;;^UTILITY(U,$J,358.3,9997,2)
- ;;=^5035595
- ;;^UTILITY(U,$J,358.3,9998,0)
- ;;=Z91.5^^72^658^631
- ;;^UTILITY(U,$J,358.3,9998,1,0)
+ ;;^UTILITY(U,$J,358.3,10103,1,4,0)
+ ;;=4^I20.0
+ ;;^UTILITY(U,$J,358.3,10103,2)
+ ;;=^5007076
+ ;;^UTILITY(U,$J,358.3,10104,0)
+ ;;=I20.1^^39^426^1
+ ;;^UTILITY(U,$J,358.3,10104,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,9998,1,3,0)
- ;;=3^Personal Hx of Suicide Attempt(s)
- ;;^UTILITY(U,$J,358.3,9998,1,4,0)
- ;;=4^Z91.5
- ;;^UTILITY(U,$J,358.3,9998,2)
- ;;=^5063624
- ;;^UTILITY(U,$J,358.3,9999,0)
- ;;=R45.851^^72^658^632
- ;;^UTILITY(U,$J,358.3,9999,1,0)
+ ;;^UTILITY(U,$J,358.3,10104,1,3,0)
+ ;;=3^Angina Pectoris w/ Documented Spasm
+ ;;^UTILITY(U,$J,358.3,10104,1,4,0)
+ ;;=4^I20.1
+ ;;^UTILITY(U,$J,358.3,10104,2)
+ ;;=^5007077
+ ;;^UTILITY(U,$J,358.3,10105,0)
+ ;;=I20.8^^39^426^2
+ ;;^UTILITY(U,$J,358.3,10105,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,9999,1,3,0)
- ;;=3^Suicidal Ideations
- ;;^UTILITY(U,$J,358.3,9999,1,4,0)
- ;;=4^R45.851
- ;;^UTILITY(U,$J,358.3,9999,2)
- ;;=^5019474
- ;;^UTILITY(U,$J,358.3,10000,0)
- ;;=T14.91XA^^72^658^633
- ;;^UTILITY(U,$J,358.3,10000,1,0)
+ ;;^UTILITY(U,$J,358.3,10105,1,3,0)
+ ;;=3^Angina Pectoris,Other Forms
+ ;;^UTILITY(U,$J,358.3,10105,1,4,0)
+ ;;=4^I20.8
+ ;;^UTILITY(U,$J,358.3,10105,2)
+ ;;=^5007078
+ ;;^UTILITY(U,$J,358.3,10106,0)
+ ;;=I20.9^^39^426^3
+ ;;^UTILITY(U,$J,358.3,10106,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,10000,1,3,0)
- ;;=3^Suicide Attempt,Initial Encounter
- ;;^UTILITY(U,$J,358.3,10000,1,4,0)
- ;;=4^T14.91XA
- ;;^UTILITY(U,$J,358.3,10000,2)
- ;;=^5151779
- ;;^UTILITY(U,$J,358.3,10001,0)
- ;;=T14.91XD^^72^658^634
- ;;^UTILITY(U,$J,358.3,10001,1,0)
+ ;;^UTILITY(U,$J,358.3,10106,1,3,0)
+ ;;=3^Angina Pectoris,Unspec
+ ;;^UTILITY(U,$J,358.3,10106,1,4,0)
+ ;;=4^I20.9
+ ;;^UTILITY(U,$J,358.3,10106,2)
+ ;;=^5007079
+ ;;^UTILITY(U,$J,358.3,10107,0)
+ ;;=J40.^^39^427^17
+ ;;^UTILITY(U,$J,358.3,10107,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,10001,1,3,0)
- ;;=3^Suicide Attempt,Subsequent Encounter
- ;;^UTILITY(U,$J,358.3,10001,1,4,0)
- ;;=4^T14.91XD
- ;;^UTILITY(U,$J,358.3,10001,2)
- ;;=^5151780
- ;;^UTILITY(U,$J,358.3,10002,0)
- ;;=T14.91XS^^72^658^635
- ;;^UTILITY(U,$J,358.3,10002,1,0)
+ ;;^UTILITY(U,$J,358.3,10107,1,3,0)
+ ;;=3^Bronchitis
+ ;;^UTILITY(U,$J,358.3,10107,1,4,0)
+ ;;=4^J40.
+ ;;^UTILITY(U,$J,358.3,10107,2)
+ ;;=^17164
+ ;;^UTILITY(U,$J,358.3,10108,0)
+ ;;=J41.0^^39^427^20
+ ;;^UTILITY(U,$J,358.3,10108,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,10002,1,3,0)
- ;;=3^Suicide Attempt,Sequela
- ;;^UTILITY(U,$J,358.3,10002,1,4,0)
- ;;=4^T14.91XS
- ;;^UTILITY(U,$J,358.3,10002,2)
- ;;=^5151781
- ;;^UTILITY(U,$J,358.3,10003,0)
- ;;=J68.0^^72^659^1
- ;;^UTILITY(U,$J,358.3,10003,1,0)
+ ;;^UTILITY(U,$J,358.3,10108,1,3,0)
+ ;;=3^Bronchitis,Simple Chronic
+ ;;^UTILITY(U,$J,358.3,10108,1,4,0)
+ ;;=4^J41.0
+ ;;^UTILITY(U,$J,358.3,10108,2)
+ ;;=^269946
+ ;;^UTILITY(U,$J,358.3,10109,0)
+ ;;=J41.1^^39^427^19
+ ;;^UTILITY(U,$J,358.3,10109,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,10003,1,3,0)
- ;;=3^Bronchitis/Pneumonitis d/t Chem/Gases/Vapors
- ;;^UTILITY(U,$J,358.3,10003,1,4,0)
- ;;=4^J68.0
- ;;^UTILITY(U,$J,358.3,10003,2)
- ;;=^5008281
- ;;^UTILITY(U,$J,358.3,10004,0)
- ;;=J69.1^^72^659^2
- ;;^UTILITY(U,$J,358.3,10004,1,0)
+ ;;^UTILITY(U,$J,358.3,10109,1,3,0)
+ ;;=3^Bronchitis,Mucopurulent Chronic
+ ;;^UTILITY(U,$J,358.3,10109,1,4,0)
+ ;;=4^J41.1
+ ;;^UTILITY(U,$J,358.3,10109,2)
+ ;;=^269949
+ ;;^UTILITY(U,$J,358.3,10110,0)
+ ;;=J41.8^^39^427^18
+ ;;^UTILITY(U,$J,358.3,10110,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,10004,1,3,0)
- ;;=3^Pneumonitis d/t Inhalation Oils/Essences
- ;;^UTILITY(U,$J,358.3,10004,1,4,0)
- ;;=4^J69.1
- ;;^UTILITY(U,$J,358.3,10004,2)
- ;;=^95664
- ;;^UTILITY(U,$J,358.3,10005,0)
- ;;=J68.9^^72^659^3
- ;;^UTILITY(U,$J,358.3,10005,1,0)
+ ;;^UTILITY(U,$J,358.3,10110,1,3,0)
+ ;;=3^Bronchitis,Mixed Simple & Mucopurulent Chronic
+ ;;^UTILITY(U,$J,358.3,10110,1,4,0)
+ ;;=4^J41.8
+ ;;^UTILITY(U,$J,358.3,10110,2)
+ ;;=^5008233
+ ;;^UTILITY(U,$J,358.3,10111,0)
+ ;;=J42.^^39^427^21
+ ;;^UTILITY(U,$J,358.3,10111,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,10005,1,3,0)
- ;;=3^Respiratory Cond d/t Chem/Gases/Vapors,Unspec
- ;;^UTILITY(U,$J,358.3,10005,1,4,0)
- ;;=4^J68.9
- ;;^UTILITY(U,$J,358.3,10005,2)
- ;;=^5008287
- ;;^UTILITY(U,$J,358.3,10006,0)
- ;;=J82.^^72^659^4
- ;;^UTILITY(U,$J,358.3,10006,1,0)
+ ;;^UTILITY(U,$J,358.3,10111,1,3,0)
+ ;;=3^Bronchitis,Unspec Chronic
+ ;;^UTILITY(U,$J,358.3,10111,1,4,0)
+ ;;=4^J42.
+ ;;^UTILITY(U,$J,358.3,10111,2)
+ ;;=^5008234
+ ;;^UTILITY(U,$J,358.3,10112,0)
+ ;;=J43.0^^39^427^29
+ ;;^UTILITY(U,$J,358.3,10112,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,10006,1,3,0)
- ;;=3^Pulmonary Eosinophilia NEC
- ;;^UTILITY(U,$J,358.3,10006,1,4,0)
- ;;=4^J82.
- ;;^UTILITY(U,$J,358.3,10006,2)
- ;;=^5008297
- ;;^UTILITY(U,$J,358.3,10007,0)
- ;;=J84.114^^72^659^5
- ;;^UTILITY(U,$J,358.3,10007,1,0)
+ ;;^UTILITY(U,$J,358.3,10112,1,3,0)
+ ;;=3^Emphysema,Pulmonary,Unilateral
+ ;;^UTILITY(U,$J,358.3,10112,1,4,0)
+ ;;=4^J43.0
+ ;;^UTILITY(U,$J,358.3,10112,2)
+ ;;=^5008235
+ ;;^UTILITY(U,$J,358.3,10113,0)
+ ;;=J43.1^^39^427^28
+ ;;^UTILITY(U,$J,358.3,10113,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,10007,1,3,0)
- ;;=3^Interstitial Pneumonitis,Acute
- ;;^UTILITY(U,$J,358.3,10007,1,4,0)
- ;;=4^J84.114
- ;;^UTILITY(U,$J,358.3,10007,2)
- ;;=^340536
- ;;^UTILITY(U,$J,358.3,10008,0)
- ;;=J84.89^^72^659^6
- ;;^UTILITY(U,$J,358.3,10008,1,0)
+ ;;^UTILITY(U,$J,358.3,10113,1,3,0)
+ ;;=3^Emphysema,Panlobular
+ ;;^UTILITY(U,$J,358.3,10113,1,4,0)
+ ;;=4^J43.1
+ ;;^UTILITY(U,$J,358.3,10113,2)
+ ;;=^5008236
+ ;;^UTILITY(U,$J,358.3,10114,0)
+ ;;=J43.2^^39^427^26
+ ;;^UTILITY(U,$J,358.3,10114,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,10008,1,3,0)
- ;;=3^Interstitial Pulmonary Diseease,Oth Spec
- ;;^UTILITY(U,$J,358.3,10008,1,4,0)
- ;;=4^J84.89
- ;;^UTILITY(U,$J,358.3,10008,2)
- ;;=^5008303
- ;;^UTILITY(U,$J,358.3,10009,0)
- ;;=J80.^^72^659^7
- ;;^UTILITY(U,$J,358.3,10009,1,0)
+ ;;^UTILITY(U,$J,358.3,10114,1,3,0)
+ ;;=3^Emphysema,Centrilobular
+ ;;^UTILITY(U,$J,358.3,10114,1,4,0)
+ ;;=4^J43.2
+ ;;^UTILITY(U,$J,358.3,10114,2)
+ ;;=^5008237
+ ;;^UTILITY(U,$J,358.3,10115,0)
+ ;;=J43.8^^39^427^27
+ ;;^UTILITY(U,$J,358.3,10115,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,10009,1,3,0)
- ;;=3^Acute Respiratory Distress Syndrome
- ;;^UTILITY(U,$J,358.3,10009,1,4,0)
- ;;=4^J80.
- ;;^UTILITY(U,$J,358.3,10009,2)
- ;;=^5008294
+ ;;^UTILITY(U,$J,358.3,10115,1,3,0)
+ ;;=3^Emphysema,Other
+ ;;^UTILITY(U,$J,358.3,10115,1,4,0)
+ ;;=4^J43.8
+ ;;^UTILITY(U,$J,358.3,10115,2)
+ ;;=^87569
+ ;;^UTILITY(U,$J,358.3,10116,0)
+ ;;=J43.9^^39^427^30
+ ;;^UTILITY(U,$J,358.3,10116,1,0)
+ ;;=^358.31IA^4^2

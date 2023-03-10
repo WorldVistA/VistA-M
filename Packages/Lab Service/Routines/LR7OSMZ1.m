@@ -1,5 +1,5 @@
 LR7OSMZ1 ;DALOI/JMC - Silent Micro rpt Cont. ;Mar 05, 2019@13:04:42
- ;;5.2;LAB SERVICE;**121,244,350,520**;Sep 27, 1994;Build 3
+ ;;5.2;LAB SERVICE;**121,244,350,520,536**;Sep 27, 1994;Build 18
  ;
 EN ; from LRMINEW2, LRMIPC, LRMIPLOG, LR7OSMZ, LRMIVER1
  S LRSPEC=$P(LRLLT,U,5)
@@ -51,7 +51,8 @@ RPT ;
  . . S:'$D(^TMP("LRT",$J,$P(X,"^"))) ^($P(X,"^"))="MICROBIOLOGY"_"^"_GCNT
  . . I '$P(X,U,2) D LN S ^TMP("LRC",$J,GCNT,0)="" Q
  . . S Y=$P(X,U,2)
- . . ; LR*5.2*520
+ . . ; LR*5.2*520 and LR*5.2*536
+ . . S LRDISP=$P(X,U,3)
  . . D D^LRU S LRY=$S(LRDISP["Not Performed":"canceled: ",1:"completed: ")_Y
  . . I (19+$L(LRX)+$L(LRY))>GIOM D LN S ^TMP("LRC",$J,GCNT,0)=""
  . . S ^(0)=^TMP("LRC",$J,GCNT,0)_$$S^LR7OS(50,CCNT,LRY)
@@ -83,7 +84,7 @@ EN1 ;
  I LRTS(1) S LRTESTCOMPLE=1
  ;
  S:LRTS=LRONETST LRPRINT=1
- S LRTSTS=$S($D(^LAB(60,LRTS,0)):$P(^(0),U),1:"deleted test"),^TMP("LR",$J,"T",$S($D(^LAB(60,LRTS,.1)):$P(^(.1),U,6),1:"")_","_LRBRR)=LRTSTS_U_LRTS(1)
+ S LRTSTS=$S($D(^LAB(60,LRTS,0)):$P(^(0),U),1:"deleted test"),^TMP("LR",$J,"T",$S($D(^LAB(60,LRTS,.1)):$P(^(.1),U,6),1:"")_","_LRBRR)=LRTSTS_U_LRTS(1)_U_LRDISP
  Q
  ;
  ;

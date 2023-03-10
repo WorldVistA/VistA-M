@@ -1,5 +1,5 @@
 PXBAPI22 ;ISL/DCM - API for Classification check out ; 16 Oct 2006  9:42 PM
- ;;1.0;PCE PATIENT CARE ENCOUNTER;**1,26,184,168**;Aug 12, 1996;Build 14
+ ;;1.0;PCE PATIENT CARE ENCOUNTER;**1,26,184,168,227**;Aug 12, 1996;Build 3
 ONE(TYPI,DATA,ENCOWNTR,SQUIT) ;Process One Classification
  ; Input  -- TYPI    Outpatient Classification Type IEN
  ;           DATA    Null or 409.42 IEN^Internal Value^1=n/a^1=unedt
@@ -18,7 +18,7 @@ ONE(TYPI,DATA,ENCOWNTR,SQUIT) ;Process One Classification
  Q
 VAL(TYPI,SDCT0,DATA) ;Get Outpatient Classification
  N DIR,DA,Y,SDXS,SDEF
- I TYPI=1,$P($G(^DPT(DFN,.321)),"^",2)'="Y"!($P($G(^DPT(DFN,.321)),"^",13)'="V") G VALQ
+ I TYPI=1,$P($G(^DPT(DFN,.321)),"^",2)'="Y"!(($P($G(^DPT(DFN,.321)),"^",13)'="V")&($P($G(^DPT(DFN,.321)),"^",13)'="B")) G VALQ  ;PX*1.0*227 - add BWN
  I TYPI=2,$P($G(^DPT(DFN,.321)),"^",3)'="Y" G VALQ
  I TYPI=4,$P($G(^DPT(DFN,.322)),"^",13)'="Y",'$$EC^SDCO22(DFN,ENCOWNTR) G VALQ
  I TYPI=3,$P($G(^SCE(+$G(ENCOWNTR),0)),"^",10)=2 S Y=1 G VALQ ;Change SC to 'yes'

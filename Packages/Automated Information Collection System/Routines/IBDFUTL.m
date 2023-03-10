@@ -1,9 +1,29 @@
 IBDFUTL ;ALB/MAF - Maintenance Utility Routine ;04/20/95
- ;;3.0;AUTOMATED INFO COLLECTION SYS;**9,32,51,63**;APR 24, 1997;Build 80
+ ;;3.0;AUTOMATED INFO COLLECTION SYS;**9,32,51,63,70**;APR 24, 1997;Build 46
  ;
  ;ICRs 
  ; Reference to LS^ICDEX supported by ICR #5747
  ; Reference to CSI^ICDEX supported by ICR #5747
+ ;
+EN ;IBD*3.0*70 - New Maintenance Utility Option Entry Point
+ ;Check if ^XTMP global exists. If so, Give user the option to use the last report or run a new one
+ N IBDLR,IBDFDIS,IBDFINT,IBDDUZ,IBDN,IBDIA,IBDST,IBDFACT,IBDSTR,IBDAI,IBDF
+ L +^XTMP("IBDRPT"):$G(DILOCKTM,5) I '$T W !!,"The Maintenance Utility is locked by another user or currently running in the background. Please try again later.",! Q
+ I '$D(^XTMP("IBDRPT",0))!('$D(^XTMP("IBDRPT",1)))!('$D(^XTMP("IBDRPT",2))) W !,"The Maintenance Utility must be run." D OUT Q
+ S IBDLR=$P($G(^XTMP("IBDRPT",0)),U,2) I IBDLR D
+ .S IBDFDIS=$P(^XTMP("IBDRPT",1),U,2),IBDFINT=$P(^XTMP("IBDRPT",1),U,3),IBDAI=$P(^IBE(357.6,IBDFINT,0),U),IBDDUZ=$P(^XTMP("IBDRPT",1),U),IBDN=$S(^XTMP("IBDRPT",2):"all",1:"select")
+ .S IBDIA=$S($P(^XTMP("IBDRPT",1),U,4)=1:"ACTIVE",$P(^XTMP("IBDRPT",1),U,4)=2:"INACTIVE",1:"")
+ .W ! F IBDSTR=1:1:80 W "*"
+ .W !,"The current report on file was run by ",$$GET1^DIQ(200,IBDDUZ,.01)," on ",$$FMTE^XLFDT(IBDLR),"."
+ .W !,"It is for ",IBDAI," and sorted by ",$S(IBDFDIS="CLIN":"CLINIC",1:IBDFDIS)
+ .W !,"The report contains ",IBDIA," codes."
+ .W:IBDN'="" !,"The report is for ",$S(IBDN="all":"all "_$S(IBDFDIS="CLIN":"CLINIC",1:IBDFDIS)_"S.",1:"the following "_$S(IBDFDIS="CLIN":"CLINIC",1:IBDFDIS)_"S.") I IBDN'="all" D
+ ..S IBDST=0 F  S IBDST=$O(^XTMP("IBDRPT",2,IBDST)) Q:'IBDST  W !,^XTMP("IBDRPT",2,IBDST)
+ .W ! F IBDSTR=1:1:80 W "*"
+ .S DIR(0)="Y",DIR("A")="Would you like to view this report",DIR("B")="Yes" D ^DIR I Y K XQORS,VALMEVL D SETIBDF(.IBDF) S IBDFACT=$P(^XTMP("IBDRPT",1),U,4) D SETSRT(IBDFDIS) D EN^VALM("IBDF UTIL PRIMARY SCREEN") Q
+ .Q:$D(DIRUT)  S DIR(0)="Y",DIR("A")="This will delete the current report and run a new one. Are you sure" D ^DIR I Y D OUT Q
+ .W !,"The Maintenance Utility will not be run." Q
+ Q
  ;
  ;  -- Set up variables for display by clinic/form/group
 OUT S IBDFL=0  ;W !!,"Display output by: CLINICS// " D ZSET1 S X="" R X:DTIME G QUIT:X="^"!('$T) I X=""!("Cc"[X) S X="1"
@@ -21,7 +41,7 @@ OUT S IBDFL=0  ;W !!,"Display output by: CLINICS// " D ZSET1 S X="" R X:DTIME G 
  ;
  ;
 OUT1 ;  -- Ask for what type of package interface
- N IBDTEMPY,IBDQUIT,IBDFINT,IBDCOUNT,IBDAUTO,IBDX,IBDQUI2
+ N IBDTEMPY,IBDQUIT,IBDFINT,IBDCOUNT,IBDAUTO,IBDX,IBDQUI2,ZTRTN,ZTDESC,ZTSAVE,IBDQUE
  S DIC="^IBE(357.6,",DIC(0)="AEMN"
  S DIC("S")="I $P(^(0),U,6)=3,$P(^(0),U,9)=1,$G(^(11))'="""""
  S DIC("A")="Select Type of Code to Display: " D ^DIC K DIC G QUIT:Y<0
@@ -42,7 +62,13 @@ OUT1 ;  -- Ask for what type of package interface
  .S IBDFACT=$E(X)
  I $D(DIRUT)&('$D(IBDF1))!(Y<0) G EXIT
  I $D(DIRUT)&$D(IBDF1) G QUIT
- ;
+ ;IBD*3.0*70 - set up XTMP global with Report Info
+ K ^XTMP("IBDRPT"),^XTMP("CPTIDX"),^XTMP("IBDCPT"),^XTMP("IBDF")
+ S ^XTMP("IBDRPT",0)=$$FMADD^XLFDT(DT,30)_U_DT_U_"Maintenance utility rpt global",^XTMP("IBDRPT",1)=DUZ_U_IBDFDIS_U_IBDFINT_U_IBDFACT
+ S ^XTMP("CPTIDX",0)=$$FMADD^XLFDT(DT,30)_U_DT_U_"Maintenance utility CPTIDX global"
+ S ^XTMP("IBDCPT",0)=$$FMADD^XLFDT(DT,30)_U_DT_U_"Maintenance utility IBDCPT global"
+ S ^XTMP("IBDF",0)=$$FMADD^XLFDT(DT,30)_U_DT_U_"Maintenance utility IBDF global"
+ S IBDTYP=$S($D(VAUTC):"VAUTC",$D(VAUTF):"VAUTF",$D(VAUTG):"VAUTG",1:"") S ^XTMP("IBDRPT",2)=@IBDTYP I ^XTMP("IBDRPT",2)=0 M ^XTMP("IBDRPT",2)=@IBDTYP
  ;cannot use this option before ICD-10 impelemenation 
  ;
  I $E($G(^IBE(357.6,IBDFINT,11)),7,9)="ICD",DT<$$IMPDATE^IBDUTICD(30),$$GETCODSY(IBDFINT)["ICD-10",IBDFACT=1 D  G:IBDQUI2<0 EXIT S:IBDQUI2="I" IBDFACT=2
@@ -89,6 +115,13 @@ OUT1 ;  -- Ask for what type of package interface
  I IBDFACT=1,Y<0,'$D(IBDF1) G EXIT
  I IBDFACT=1,$G(IBDQUIT) G EXIT
  ;
+ ;Allow Report to be Queued - IBD*3.0*70 
+ L -^XTMP("IBDRPT")
+ S DIR(0)="Y",DIR("A")="Would you like to queue this report and run it in the background",DIR("B")="Yes" D ^DIR
+ I Y S IBDQUE=1,ZTRTN="OUT2^IBDFUTL",ZTDESC="Maintenance Utility background job",ZTSAVE("*")="",ZTIO="NULL" D ^%ZTLOAD Q
+OUT2 ;Tasked entry point
+ L +^XTMP("IBDRPT"):$G(DILOCKTM,5) Q:'$T
+ I $G(IBDQUE) S VALMEVL=$S($D(VALMEVL):VALMEVL+1,1:0) D INIT S VALMBCK="R",VALMBG=1 Q
  I '$D(IBDF1) K XQORS,VALMEVL  D EN^VALM("IBDF UTIL PRIMARY SCREEN")
  I $D(IBDF1) D HDR,KILL,INIT S VALMBCK="R",VALMBG=1
  Q
@@ -102,9 +135,14 @@ HDR ; -- header code
  ;
  ;  -- Set up list
 INIT D FULL^VALM1 S (IBDCNT,IBDCNT1,VALMCNT)=0
- K ^TMP("IBDCPT",$J),^TMP("CPTIDX",$J) D KILL^VALM10()
- S IBDFCNT1=0 D @(IBDFDIS_"1^IBDFUTL1")
- I '$D(^TMP("IBDCPT",$J)) D NUL
+ N IBDX
+ D KILL^VALM10()
+ I '$O(^XTMP("IBDCPT",0)) S IBDFCNT1=0 D @(IBDFDIS_"1^IBDFUTL1")
+ I '$O(^XTMP("IBDCPT",0)) D NUL
+ I $O(^XTMP("IBDCPT",0)),'$G(VALMCNT) K ^TMP("IBDCPT1",$J) S VALMCNT=0,IBDX=0 F  S IBDX=$O(^XTMP("IBDCPT",IBDX)) Q:'IBDX  S VALMCNT=VALMCNT+1 D
+ .S ^TMP("IBDCPT1",$J,VALMCNT,0)=^XTMP("IBDCPT",IBDX,0) M ^TMP("IBDCPT1",$J,"IDX",VALMCNT)=^XTMP("IBDCPT","IDX",IBDX)
+ I $D(^TMP("IBDCPT1",$J)) K ^XTMP("IBDCPT") M ^XTMP("IBDCPT")=^TMP("IBDCPT1",$J) K ^TMP("IBDCPT1",$J)
+ I '$D(^XTMP("IBDCPT",0)) S ^XTMP("IBDCPT",0)=$$FMADD^XLFDT(DT,30)_U_DT_U_"Maintenance utility IBDCPT global"
  Q
  ;
  ;  -- Ask for clinics one/many/all
@@ -151,8 +189,9 @@ EXIT ;  -- Code executed at action exit
  K IBDFDIS,IBDFINT,VAUTC,VAUTF,VAUTG,VAUTJ,VAUTP,IBDFINT1,IBDFDIS1,^TMP("CLN",$J),IBDFCODE,IBI,IBDFACT1
 EXIT1 K DIC,IBDBLK,IBDCLN,IBDCLNM,IBDCNODE,IBDCNT,IBDCNT1,IBDF,IBDFBK,IBDFCIFN,IBDFCLIN,IBDFL,IBDFLG,IBDFN,IBDFNAME,IBDFNM,IBDFNODE,IBDFORM1,IBDFRM,IBDFSEL,IBDFSRT,IBDFTMP,IBDFVAL
  K IBDFX,IBDORM,IBDVAL,IBDVAL1,IBDFCNT1,Z,IBDFRNM,IBDFX1,IBDFX2,IBDFX3
- K IBCLN,IBDFCLN,IBDFCLNM,IBDFDIV,IBDFGIFN,IBDFGN,IBDFGNM,IBDIV,IBDNAM,IBDNAME,IEN,^TMP("IBDF",$J),^TMP("UTIL",$J),^TMP("IBDCPT",$J),^TMP("CPTIDX",$J),DIVISION,IBDF,IBDFACT,VAUTNALL
+ K IBCLN,IBDFCLN,IBDFCLNM,IBDFDIV,IBDFGIFN,IBDFGN,IBDFGNM,IBDIV,IBDNAM,IBDNAME,IEN,^TMP("IBDF",$J),^TMP("UTIL",$J),DIVISION,IBDF,IBDFACT,VAUTNALL
  K ^TMP("IBDFUTL_SELECTED",$J),^TMP("IBDFUTL_TEMP",$J),^TMP("IBDFUTL_WCSEARCH",$J)
+ L -^XTMP("IBDRPT")
  Q
  ;
 HLP ; -- help code
@@ -163,7 +202,7 @@ HLP ; -- help code
 EXP ; -- expand code
  Q
 NUL ; -- NULL MESSAGE
- S ^TMP("IBDCPT",$J,1,0)=" ",^TMP("IBDCPT",$J,2,0)="There are no "_$S(IBDFACT=1:"active",1:"inactive")_" codes on any forms.",^TMP("CPTIDX",$J,1)=1,^TMP("CPTIDX",$J,2)=2
+ S ^XTMP("IBDCPT",1,0)=" ",^XTMP("IBDCPT",2,0)="There are no "_$S(IBDFACT=1:"active",1:"inactive")_" codes on any forms.",^XTMP("CPTIDX",1)=1,^XTMP("CPTIDX",2)=2
  Q
  ;--------- new code for ICD-10 
 ICD10 ; Wildcard search for ICD-10 codes
@@ -288,7 +327,7 @@ SELECT(IBDBEGN,IBDCNT,IBDQUIT,IBDNDEX,IBDSEL,IBDCONTU) ;
  .S ^TMP("IBDFUTL_TEMP",$J,IBDIEN)=IBDCODE  ;Needed for validation check in SET^IBDFUTL1
  S IBDCONTU=0
  Q
- ;Ask user with 'OK? Yes' prompt.
+ ;Ask user with 'OK? Yes' prompt
 OKPROMPT(IBDONE,IBDCODE,IBDX,IBDQUIT,IBDNO) ;
  N DIR,IBDI
  I '$D(IBDONE) S IBDONE=0
@@ -314,3 +353,12 @@ OKPROMPT(IBDONE,IBDCODE,IBDX,IBDQUIT,IBDNO) ;
 GETCODSY(IBDFINT) ;
  Q $S($P($G(^IBE(357.6,IBDFINT,0)),"^")["ICD-9":"ICD-9 ",$P($G(^IBE(357.6,IBDFINT,0)),"^")["ICD-10":"ICD-10 ",1:"")
  ;IBDFUTL
+SETSRT(IBDFDIS) ;IBD*3.0*70 - Set VA variables
+ S:IBDFDIS="CLIN" VAUTC=^XTMP("IBDRPT",2)
+ S:IBDFDIS="GROUP" VAUTG=^XTMP("IBDRPT",2)
+ S:IBDFDIS="FORM" VAUTF=^XTMP("IBDRPT",2)
+ Q
+SETIBDF(IBDF) ;Set up IBDF array from ^XTMP("IBDF") global, IBD*3.0*70
+ N IBDX
+ S IBDX=0 F  S IBDX=$O(^XTMP("IBDF",IBDX)) Q:IBDX=""  S IBDF(IBDX)=^XTMP("IBDF",IBDX)
+ Q

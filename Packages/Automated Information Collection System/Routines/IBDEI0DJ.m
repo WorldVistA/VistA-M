@@ -1,312 +1,696 @@
-IBDEI0DJ ; ; 01-MAY-2020
- ;;3.0;IB ENCOUNTER FORM IMP/EXP;;MAY 01, 2020
- Q:'DIFQR(358.6)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,999) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
+IBDEI0DJ ; ; 03-MAY-2022
+ ;;3.0;IB ENCOUNTER FORM IMP/EXP;;MAY 03, 2022
+ Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,999) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
- ;;^UTILITY(U,$J,358.6)
- ;;=^IBE(358.6,
- ;;^UTILITY(U,$J,358.6,0)
- ;;=IMP/EXP PACKAGE INTERFACE^358.6I^11^11
- ;;^UTILITY(U,$J,358.6,1,0)
- ;;=DPT PATIENT'S NAME^VADPT^IBDFN^REGISTRATION^1^2^1^1^1^^^1
- ;;^UTILITY(U,$J,358.6,1,1,0)
- ;;=^^2^2^2930212^^^^
- ;;^UTILITY(U,$J,358.6,1,1,1,0)
- ;;= 
- ;;^UTILITY(U,$J,358.6,1,1,2,0)
- ;;=Patient's Name
- ;;^UTILITY(U,$J,358.6,1,2)
- ;;=Patient's Name^30^^^^^^^^^^^^^^^1
- ;;^UTILITY(U,$J,358.6,1,3)
- ;;=PATIENT NAME
- ;;^UTILITY(U,$J,358.6,1,7,0)
- ;;=^357.67^1^1
- ;;^UTILITY(U,$J,358.6,1,7,1,0)
- ;;=DFN
- ;;^UTILITY(U,$J,358.6,1,15,0)
- ;;=^357.615I^0^0
- ;;^UTILITY(U,$J,358.6,2,0)
- ;;=DPT PATIENT'S PID^VADPT^IBDFN^REGISTRATION^1^2^1^1^1^^^1
- ;;^UTILITY(U,$J,358.6,2,1,0)
- ;;=^^1^1^2931015^^
- ;;^UTILITY(U,$J,358.6,2,1,1,0)
- ;;=Used to display the patient identifier.
- ;;^UTILITY(U,$J,358.6,2,2)
- ;;=PATIENT IDENTIFIER^15^^^^^^^^^^^^^^^1
- ;;^UTILITY(U,$J,358.6,2,3)
- ;;=PATIENT IDENTIFIER PID
- ;;^UTILITY(U,$J,358.6,2,7,0)
- ;;=^357.67^1^1
- ;;^UTILITY(U,$J,358.6,2,7,1,0)
- ;;=DFN
- ;;^UTILITY(U,$J,358.6,2,15,0)
- ;;=^357.615I^0^0
- ;;^UTILITY(U,$J,358.6,3,0)
- ;;=DPT PATIENT'S DOB/AGE^VADPT^IBDFN^REGISTRATION^1^2^2^^1^^^1
- ;;^UTILITY(U,$J,358.6,3,1,0)
- ;;=^^2^2^2951023^
- ;;^UTILITY(U,$J,358.6,3,1,1,0)
- ;;=Patient's DOB in MM DD, YYYY format
- ;;^UTILITY(U,$J,358.6,3,1,2,0)
- ;;=Patient's age in years.
- ;;^UTILITY(U,$J,358.6,3,2)
- ;;=Patient's DOB^12^Patient's Age^3^^^^^^^^^^^^^1
- ;;^UTILITY(U,$J,358.6,3,3)
- ;;=PATIENT DOB AGE PIMS
- ;;^UTILITY(U,$J,358.6,3,7,0)
- ;;=^357.67^1^1
- ;;^UTILITY(U,$J,358.6,3,7,1,0)
- ;;=DFN
- ;;^UTILITY(U,$J,358.6,3,15,0)
- ;;=^357.615I^1^1
- ;;^UTILITY(U,$J,358.6,3,15,1,0)
- ;;=Patient's Age^3^2^
- ;;^UTILITY(U,$J,358.6,4,0)
- ;;=DG SELECT VISIT TYPE CPT PROCEDURES^VSIT^IBDFN4^SCHEDULING^^3^2^^1^^^1^5^^^^^^^^1
- ;;^UTILITY(U,$J,358.6,4,1,0)
- ;;=^^1^1^2941116^^^^
- ;;^UTILITY(U,$J,358.6,4,1,1,0)
- ;;=Allows for select of just Visit type CPT codes from the CPT file.
- ;;^UTILITY(U,$J,358.6,4,2)
- ;;=CODE^5^RECOMMENDED TEXT-SHORT NAME^40^RECOMMENDED HEADER^30^SHORT NAME FROM CPT FILE^28^^^^^^^^^1^1
- ;;^UTILITY(U,$J,358.6,4,3)
- ;;=SELECT TYPE OF VISIT CPT
- ;;^UTILITY(U,$J,358.6,4,11)
- ;;=D TESTVST^IBDFN7
- ;;^UTILITY(U,$J,358.6,4,15,0)
- ;;=^357.615I^4^3
- ;;^UTILITY(U,$J,358.6,4,15,2,0)
- ;;=RECOMMENDED TEXT-SHORT NAME^40^2
- ;;^UTILITY(U,$J,358.6,4,15,3,0)
- ;;=RECOMMENDED HEADER^30^3
- ;;^UTILITY(U,$J,358.6,4,15,4,0)
- ;;=SHORT NAME FROM CPT FILE^28^4
- ;;^UTILITY(U,$J,358.6,5,0)
- ;;=INPUT VISIT TYPE^^^PATIENT CARE ENCOUNTER^^1^^^1^^^1^^^^SMP
- ;;^UTILITY(U,$J,358.6,5,1,0)
- ;;=^^1^1^2951023^
- ;;^UTILITY(U,$J,358.6,5,1,1,0)
- ;;=Used for inputting the visit type that applies to the visit.
- ;;^UTILITY(U,$J,358.6,5,2)
- ;;=^^^^^^^^^^^^^^^^^1
- ;;^UTILITY(U,$J,358.6,5,3)
- ;;=VISIT TYPE OF VISIT
- ;;^UTILITY(U,$J,358.6,5,9)
- ;;=D INPUTCPT^IBDFN8(.X)
- ;;^UTILITY(U,$J,358.6,5,10)
- ;;=Enter an active Visit Type code.
- ;;^UTILITY(U,$J,358.6,5,11)
- ;;=D TESTVST^IBDFN7
- ;;^UTILITY(U,$J,358.6,5,12)
- ;;=ENCOUNTER^5
- ;;^UTILITY(U,$J,358.6,5,14)
- ;;=S Y=$$DSPLYCPT^IBDFN9(Y)
- ;;^UTILITY(U,$J,358.6,5,15,0)
- ;;=^357.615I^0^0
- ;;^UTILITY(U,$J,358.6,5,17)
- ;;=D SLCTVST^IBDFN12(.X)
- ;;^UTILITY(U,$J,358.6,5,18)
- ;;=S IBDF("OTHER")="357.69^I '$P(^(0),U,4)" D LIST^IBDFDE2(.IBDSEL,.IBDF,"Visit Type (EM) Code")
- ;;^UTILITY(U,$J,358.6,5,19)
- ;;=D VST^IBDFN14(X)
- ;;^UTILITY(U,$J,358.6,6,0)
- ;;=DG SELECT CPT PROCEDURE CODES^CPT^IBDFN4^SCHEDULING^^3^2^^1^^^1^7^^^^^^^^1
- ;;^UTILITY(U,$J,358.6,6,1,0)
- ;;=^^2^2^2961007^^^^
- ;;^UTILITY(U,$J,358.6,6,1,1,0)
- ;;=Allows for the selection of CPT codes from the CPT file. Only active codes
- ;;^UTILITY(U,$J,358.6,6,1,2,0)
- ;;=are allowed.
- ;;^UTILITY(U,$J,358.6,6,2)
- ;;=CODE^5^SHORT NAME^28^DESCRIPTION^161^^^^^^^^^^CODE^1^1
- ;;^UTILITY(U,$J,358.6,6,3)
- ;;=SELECT CPT PROCEDURE CODES
- ;;^UTILITY(U,$J,358.6,6,9)
- ;;=S X=$$CPT^IBDFN12(X)
- ;;^UTILITY(U,$J,358.6,6,11)
- ;;=D TESTCPT^IBDFN7
- ;;^UTILITY(U,$J,358.6,6,15,0)
- ;;=^357.615I^2^2
- ;;^UTILITY(U,$J,358.6,6,15,1,0)
- ;;=SHORT NAME^28^2^^PROCEDURE
- ;;^UTILITY(U,$J,358.6,6,15,2,0)
- ;;=DESCRIPTION^161^3^^PROCEDURE
- ;;^UTILITY(U,$J,358.6,6,16)
- ;;=o^1^Procedure Narrative^^r^2^CPT CODE^1
- ;;^UTILITY(U,$J,358.6,7,0)
- ;;=INPUT PROCEDURE CODE (CPT4)^^^PATIENT CARE ENCOUNTER^^1^4^^1^0^^1^^^^SMP
- ;;^UTILITY(U,$J,358.6,7,1,0)
- ;;=^^1^1^2960205^^^^
- ;;^UTILITY(U,$J,358.6,7,1,1,0)
- ;;=Used for inputting CPT coded procedures performed on the patient.
- ;;^UTILITY(U,$J,358.6,7,2)
- ;;=^^^^^^^^^^^^^^^^^1
- ;;^UTILITY(U,$J,358.6,7,3)
- ;;=CPT4 PROCEDURE CODES
- ;;^UTILITY(U,$J,358.6,7,9)
- ;;=D INPUTCPT^IBDFN8(.X)
- ;;^UTILITY(U,$J,358.6,7,10)
- ;;=Enter an active CPT procedure code.
- ;;^UTILITY(U,$J,358.6,7,11)
- ;;=D TESTCPT^IBDFN7
- ;;^UTILITY(U,$J,358.6,7,12)
- ;;=PROCEDURE^1^6^7^3^2
- ;;^UTILITY(U,$J,358.6,7,13,0)
- ;;=^358.613V^2^2
- ;;^UTILITY(U,$J,358.6,7,13,1,0)
- ;;=1;IBD(358.98,^^0
- ;;^UTILITY(U,$J,358.6,7,13,2,0)
- ;;=2;IBD(358.98,^^0
- ;;^UTILITY(U,$J,358.6,7,14)
- ;;=S Y=$$DSPLYCPT^IBDFN9(Y)
- ;;^UTILITY(U,$J,358.6,7,15,0)
- ;;=^357.615I^0^0
- ;;^UTILITY(U,$J,358.6,7,17)
- ;;=D SLCTCPT^IBDFN12(.X)
- ;;^UTILITY(U,$J,358.6,7,18)
- ;;=S IBDF("OTHER")="81^I '$P(^(0),U,4)" D LIST^IBDFDE2(.IBDSEL,.IBDF,"CPT Procedure Code")
- ;;^UTILITY(U,$J,358.6,7,19)
- ;;=D CPT^IBDFN14(X)
- ;;^UTILITY(U,$J,358.6,8,0)
- ;;=DG SELECT ICD-10 DIAGNOSIS CODES^ICD10^IBDFN4^SCHEDULING^^3^2^^1^^^1^9^^^^1^1^^^^30
- ;;^UTILITY(U,$J,358.6,8,1,0)
- ;;=^^2^2^3140327
- ;;^UTILITY(U,$J,358.6,8,1,1,0)
- ;;=Allows the user to select ICD-10 diagnosis codes from the ICD Diagnosis
- ;;^UTILITY(U,$J,358.6,8,1,2,0)
- ;;=file. Allows only active codes to be selected.
- ;;^UTILITY(U,$J,358.6,8,2)
- ;;=CODE^8^^^^^^^^^^^^^^^1^1
- ;;^UTILITY(U,$J,358.6,8,3)
- ;;=SELECT ICD10 ICD-10 CODES DIAGNOSIS
- ;;^UTILITY(U,$J,358.6,8,9)
- ;;=D INPICD10^IBDFN8(.X)
- ;;^UTILITY(U,$J,358.6,8,11)
- ;;=D TESTICD0^IBDFN7
- ;;^UTILITY(U,$J,358.6,8,12)
- ;;=^^^^^
- ;;^UTILITY(U,$J,358.6,8,13,0)
- ;;=^357.613V^2^2
- ;;^UTILITY(U,$J,358.6,8,13,1,0)
- ;;=1;IBD(358.98,^^^^^^^
- ;;^UTILITY(U,$J,358.6,8,13,2,0)
- ;;=2;IBD(358.98,^^^^^^^
- ;;^UTILITY(U,$J,358.6,8,15,0)
- ;;=^357.615I^2^2
- ;;^UTILITY(U,$J,358.6,8,15,1,0)
- ;;=DIAGNOSIS^60^2^^DIAGNOSIS
- ;;^UTILITY(U,$J,358.6,8,15,2,0)
- ;;=DESCRIPTION^200^3^^DIAGNOSIS
- ;;^UTILITY(U,$J,358.6,8,16)
- ;;=o^4^Diagnosis^^r^5^ICD-10 Code^^1
- ;;^UTILITY(U,$J,358.6,8,17)
- ;;=D SLCTDX10^IBDFN12(.X)
- ;;^UTILITY(U,$J,358.6,8,19)
- ;;=D DX10^IBDFN14(X)
- ;;^UTILITY(U,$J,358.6,9,0)
- ;;=INPUT DIAGNOSIS CODE (ICD10)^^^PATIENT CARE ENCOUNTER^^1^^^1^^^1^^^^SMP^^^1^^^
- ;;^UTILITY(U,$J,358.6,9,1,0)
- ;;=^^1^1^3140327
- ;;^UTILITY(U,$J,358.6,9,1,1,0)
- ;;=Used for inputting ICD10 diagnosis codes.
- ;;^UTILITY(U,$J,358.6,9,2)
- ;;=^^^^^^^^^^^^^^^^^1
- ;;^UTILITY(U,$J,358.6,9,3)
- ;;=INPUT ICD10 ICD-10 DIAGNOSIS CODES
- ;;^UTILITY(U,$J,358.6,9,9)
- ;;=D INPICD10^IBDFN8(.X)
- ;;^UTILITY(U,$J,358.6,9,10)
- ;;=Enter at least two characters of an active ICD10 diagnosis code.
- ;;^UTILITY(U,$J,358.6,9,11)
- ;;=D TESTICD0^IBDFN7
- ;;^UTILITY(U,$J,358.6,9,12)
- ;;=DIAGNOSIS/PROBLEM^1^13^14^2^
- ;;^UTILITY(U,$J,358.6,9,13,0)
- ;;=^357.613V^10^10
- ;;^UTILITY(U,$J,358.6,9,13,1,0)
- ;;=1;IBD(358.98,^^1^^^^^2
- ;;^UTILITY(U,$J,358.6,9,13,2,0)
- ;;=2;IBD(358.98,^^1^^^^^2
- ;;^UTILITY(U,$J,358.6,9,13,3,0)
- ;;=3;IBD(358.98,^^1^^^^^9
- ;;^UTILITY(U,$J,358.6,9,13,4,0)
- ;;=3;IBE(358.99,^^0^^^^^
- ;;^UTILITY(U,$J,358.6,9,13,5,0)
- ;;=4;IBD(358.98,^^1^^^^^10
- ;;^UTILITY(U,$J,358.6,9,13,6,0)
- ;;=5;IBD(358.98,^^1^^^^^11
- ;;^UTILITY(U,$J,358.6,9,13,7,0)
- ;;=6;IBD(358.98,^^1^^^^^12
- ;;^UTILITY(U,$J,358.6,9,13,8,0)
- ;;=7;IBD(358.98,^^1^^^^^5
- ;;^UTILITY(U,$J,358.6,9,13,9,0)
- ;;=8;IBD(358.98,^^1^^^^^6
- ;;^UTILITY(U,$J,358.6,9,13,10,0)
- ;;=9;IBD(358.98,^^1^^^^^6
- ;;^UTILITY(U,$J,358.6,9,14)
- ;;=S Y=$$DSPICD10^IBDFN9(Y)
- ;;^UTILITY(U,$J,358.6,9,16)
- ;;=^^^^^^^^
- ;;^UTILITY(U,$J,358.6,9,17)
- ;;=D SLCTDX10^IBDFN12(.X)
- ;;^UTILITY(U,$J,358.6,9,18)
- ;;=S IBDF("OTHER")="80^I '$P(^(0),U,9)" D LIST^IBDFDE2(.IBDSEL,.IBDF,"ICD-10 Diagnosis Code")
- ;;^UTILITY(U,$J,358.6,9,19)
- ;;=D DX10^IBDFN14(X)
- ;;^UTILITY(U,$J,358.6,10,0)
- ;;=PX SELECT HEALTH FACTORS^HF^IBDFN10^PATIENT CARE ENCOUNTER^^3^2^^1^^^1^11
- ;;^UTILITY(U,$J,358.6,10,1,0)
- ;;=^^1^1^2951208^^^
- ;;^UTILITY(U,$J,358.6,10,1,1,0)
- ;;=Allows health factors from the HEALTH FACTORS file to be selected.
- ;;^UTILITY(U,$J,358.6,10,2)
- ;;=Internal Number^9^^^^^^^^^^^^^^^0^0
- ;;^UTILITY(U,$J,358.6,10,3)
- ;;=PATIENT HEALTH FACTORS
- ;;^UTILITY(U,$J,358.6,10,11)
- ;;=D TESTHF^PXAPIIB
- ;;^UTILITY(U,$J,358.6,10,15,0)
- ;;=^357.615I^4^4
- ;;^UTILITY(U,$J,358.6,10,15,1,0)
- ;;=Health Factor Name^30^2^^HEALTH FACTOR
- ;;^UTILITY(U,$J,358.6,10,15,2,0)
- ;;=Code^5^3
- ;;^UTILITY(U,$J,358.6,10,15,3,0)
- ;;=Short Name^10^5
- ;;^UTILITY(U,$J,358.6,10,15,4,0)
- ;;=Sex Specific^6^6^^FOR
- ;;^UTILITY(U,$J,358.6,10,16)
- ;;=n^^^^n
- ;;^UTILITY(U,$J,358.6,11,0)
- ;;=PX INPUT HEALTH FACTORS^^^PATIENT CARE ENCOUNTER^^1^^^1^^^1^^^^SMP
- ;;^UTILITY(U,$J,358.6,11,1,0)
- ;;=^^1^1^2951208^^^
- ;;^UTILITY(U,$J,358.6,11,1,1,0)
- ;;=Used for inputting health factors determined to apply to the patient.
- ;;^UTILITY(U,$J,358.6,11,2)
- ;;=^^^^^^^^^^^^^^^^^0
- ;;^UTILITY(U,$J,358.6,11,3)
- ;;=HEALTH FACTORS
- ;;^UTILITY(U,$J,358.6,11,10)
- ;;=Enter a Patient Health Factor.
- ;;^UTILITY(U,$J,358.6,11,11)
- ;;=D TESTHF^PXAPIIB
- ;;^UTILITY(U,$J,358.6,11,12)
- ;;=HEALTH FACTORS^1^^^2
- ;;^UTILITY(U,$J,358.6,11,13,0)
- ;;=^358.613V^3^3
- ;;^UTILITY(U,$J,358.6,11,13,1,0)
- ;;=10;IBD(358.98,^^0
- ;;^UTILITY(U,$J,358.6,11,13,2,0)
- ;;=11;IBD(358.98,^^0
- ;;^UTILITY(U,$J,358.6,11,13,3,0)
- ;;=12;IBD(358.98,^^0
- ;;^UTILITY(U,$J,358.6,11,14)
- ;;=S Y=$$DSPLYHF^PXAPIIB(Y)
- ;;^UTILITY(U,$J,358.6,11,15,0)
- ;;=^357.615I^0^0
- ;;^UTILITY(U,$J,358.6,11,17)
- ;;=D SLCTHF^IBDFN12(.X)
- ;;^UTILITY(U,$J,358.6,11,18)
- ;;=S IBDF("OTHER")="9999999.64^I '$P(^(0),U,10),$P(^(0),U,10)=""F"",'$P(^(0),U,11)" D LIST^IBDFDE2(.IBDSEL,.IBDF,"Health Factors")
- ;;^UTILITY(U,$J,358.6,11,19)
- ;;=D HF^IBDFN14(X)
+ ;;^UTILITY(U,$J,358.3,33959,1,3,0)
+ ;;=3^Acute Serous Otitis Media,Right Ear
+ ;;^UTILITY(U,$J,358.3,33959,1,4,0)
+ ;;=4^H65.01
+ ;;^UTILITY(U,$J,358.3,33959,2)
+ ;;=^5006570
+ ;;^UTILITY(U,$J,358.3,33960,0)
+ ;;=H65.23^^105^1424^15
+ ;;^UTILITY(U,$J,358.3,33960,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,33960,1,3,0)
+ ;;=3^Chronic Serous Otitis Media,Bilateral
+ ;;^UTILITY(U,$J,358.3,33960,1,4,0)
+ ;;=4^H65.23
+ ;;^UTILITY(U,$J,358.3,33960,2)
+ ;;=^5006596
+ ;;^UTILITY(U,$J,358.3,33961,0)
+ ;;=H65.22^^105^1424^16
+ ;;^UTILITY(U,$J,358.3,33961,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,33961,1,3,0)
+ ;;=3^Chronic Serous Otitis Media,Left Ear
+ ;;^UTILITY(U,$J,358.3,33961,1,4,0)
+ ;;=4^H65.22
+ ;;^UTILITY(U,$J,358.3,33961,2)
+ ;;=^5006595
+ ;;^UTILITY(U,$J,358.3,33962,0)
+ ;;=H65.21^^105^1424^17
+ ;;^UTILITY(U,$J,358.3,33962,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,33962,1,3,0)
+ ;;=3^Chronic Serous Otitis Media,Right Ear
+ ;;^UTILITY(U,$J,358.3,33962,1,4,0)
+ ;;=4^H65.21
+ ;;^UTILITY(U,$J,358.3,33962,2)
+ ;;=^5006594
+ ;;^UTILITY(U,$J,358.3,33963,0)
+ ;;=H66.012^^105^1424^6
+ ;;^UTILITY(U,$J,358.3,33963,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,33963,1,3,0)
+ ;;=3^Acute Suppr Otitis Media w/ Spon Rupt Ear Drum,Left Ear
+ ;;^UTILITY(U,$J,358.3,33963,1,4,0)
+ ;;=4^H66.012
+ ;;^UTILITY(U,$J,358.3,33963,2)
+ ;;=^5133534
+ ;;^UTILITY(U,$J,358.3,33964,0)
+ ;;=H66.011^^105^1424^7
+ ;;^UTILITY(U,$J,358.3,33964,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,33964,1,3,0)
+ ;;=3^Acute Suppr Otitis Media w/ Spon Rupt Ear Drum,Right Ear
+ ;;^UTILITY(U,$J,358.3,33964,1,4,0)
+ ;;=4^H66.011
+ ;;^UTILITY(U,$J,358.3,33964,2)
+ ;;=^5006621
+ ;;^UTILITY(U,$J,358.3,33965,0)
+ ;;=H66.91^^105^1424^36
+ ;;^UTILITY(U,$J,358.3,33965,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,33965,1,3,0)
+ ;;=3^Otitis Media,Unspec,Right Ear
+ ;;^UTILITY(U,$J,358.3,33965,1,4,0)
+ ;;=4^H66.91
+ ;;^UTILITY(U,$J,358.3,33965,2)
+ ;;=^5006640
+ ;;^UTILITY(U,$J,358.3,33966,0)
+ ;;=H66.92^^105^1424^35
+ ;;^UTILITY(U,$J,358.3,33966,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,33966,1,3,0)
+ ;;=3^Otitis Media,Unspec,Left Ear
+ ;;^UTILITY(U,$J,358.3,33966,1,4,0)
+ ;;=4^H66.92
+ ;;^UTILITY(U,$J,358.3,33966,2)
+ ;;=^5006641
+ ;;^UTILITY(U,$J,358.3,33967,0)
+ ;;=H66.93^^105^1424^34
+ ;;^UTILITY(U,$J,358.3,33967,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,33967,1,3,0)
+ ;;=3^Otitis Media,Unspec,Bilateral
+ ;;^UTILITY(U,$J,358.3,33967,1,4,0)
+ ;;=4^H66.93
+ ;;^UTILITY(U,$J,358.3,33967,2)
+ ;;=^5006642
+ ;;^UTILITY(U,$J,358.3,33968,0)
+ ;;=H81.10^^105^1424^37
+ ;;^UTILITY(U,$J,358.3,33968,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,33968,1,3,0)
+ ;;=3^Paroxysmal Veritgo,Benign,Unspec Ear
+ ;;^UTILITY(U,$J,358.3,33968,1,4,0)
+ ;;=4^H81.10
+ ;;^UTILITY(U,$J,358.3,33968,2)
+ ;;=^5006864
+ ;;^UTILITY(U,$J,358.3,33969,0)
+ ;;=H93.13^^105^1424^41
+ ;;^UTILITY(U,$J,358.3,33969,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,33969,1,3,0)
+ ;;=3^Tinnitus,Bilateral
+ ;;^UTILITY(U,$J,358.3,33969,1,4,0)
+ ;;=4^H93.13
+ ;;^UTILITY(U,$J,358.3,33969,2)
+ ;;=^5006966
+ ;;^UTILITY(U,$J,358.3,33970,0)
+ ;;=H93.12^^105^1424^42
+ ;;^UTILITY(U,$J,358.3,33970,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,33970,1,3,0)
+ ;;=3^Tinnitus,Left Ear
+ ;;^UTILITY(U,$J,358.3,33970,1,4,0)
+ ;;=4^H93.12
+ ;;^UTILITY(U,$J,358.3,33970,2)
+ ;;=^5006965
+ ;;^UTILITY(U,$J,358.3,33971,0)
+ ;;=H93.11^^105^1424^43
+ ;;^UTILITY(U,$J,358.3,33971,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,33971,1,3,0)
+ ;;=3^Tinnitus,Right Ear
+ ;;^UTILITY(U,$J,358.3,33971,1,4,0)
+ ;;=4^H93.11
+ ;;^UTILITY(U,$J,358.3,33971,2)
+ ;;=^5006964
+ ;;^UTILITY(U,$J,358.3,33972,0)
+ ;;=H92.01^^105^1424^33
+ ;;^UTILITY(U,$J,358.3,33972,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,33972,1,3,0)
+ ;;=3^Otalgia,Right Ear
+ ;;^UTILITY(U,$J,358.3,33972,1,4,0)
+ ;;=4^H92.01
+ ;;^UTILITY(U,$J,358.3,33972,2)
+ ;;=^5006945
+ ;;^UTILITY(U,$J,358.3,33973,0)
+ ;;=H92.02^^105^1424^32
+ ;;^UTILITY(U,$J,358.3,33973,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,33973,1,3,0)
+ ;;=3^Otalgia,Left Ear
+ ;;^UTILITY(U,$J,358.3,33973,1,4,0)
+ ;;=4^H92.02
+ ;;^UTILITY(U,$J,358.3,33973,2)
+ ;;=^5006946
+ ;;^UTILITY(U,$J,358.3,33974,0)
+ ;;=H92.03^^105^1424^31
+ ;;^UTILITY(U,$J,358.3,33974,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,33974,1,3,0)
+ ;;=3^Otalgia,Bilateral
+ ;;^UTILITY(U,$J,358.3,33974,1,4,0)
+ ;;=4^H92.03
+ ;;^UTILITY(U,$J,358.3,33974,2)
+ ;;=^5006947
+ ;;^UTILITY(U,$J,358.3,33975,0)
+ ;;=H91.92^^105^1424^22
+ ;;^UTILITY(U,$J,358.3,33975,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,33975,1,3,0)
+ ;;=3^Hearing Loss,Unspec,Left Ear
+ ;;^UTILITY(U,$J,358.3,33975,1,4,0)
+ ;;=4^H91.92
+ ;;^UTILITY(U,$J,358.3,33975,2)
+ ;;=^5133554
+ ;;^UTILITY(U,$J,358.3,33976,0)
+ ;;=H91.93^^105^1424^21
+ ;;^UTILITY(U,$J,358.3,33976,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,33976,1,3,0)
+ ;;=3^Hearing Loss,Unspec,Bilateral
+ ;;^UTILITY(U,$J,358.3,33976,1,4,0)
+ ;;=4^H91.93
+ ;;^UTILITY(U,$J,358.3,33976,2)
+ ;;=^5006944
+ ;;^UTILITY(U,$J,358.3,33977,0)
+ ;;=H91.91^^105^1424^23
+ ;;^UTILITY(U,$J,358.3,33977,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,33977,1,3,0)
+ ;;=3^Hearing Loss,Unspec,Right Ear
+ ;;^UTILITY(U,$J,358.3,33977,1,4,0)
+ ;;=4^H91.91
+ ;;^UTILITY(U,$J,358.3,33977,2)
+ ;;=^5133553
+ ;;^UTILITY(U,$J,358.3,33978,0)
+ ;;=H65.02^^105^1424^4
+ ;;^UTILITY(U,$J,358.3,33978,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,33978,1,3,0)
+ ;;=3^Acute Serous Otitis Media,Left Ear
+ ;;^UTILITY(U,$J,358.3,33978,1,4,0)
+ ;;=4^H65.02
+ ;;^UTILITY(U,$J,358.3,33978,2)
+ ;;=^5006571
+ ;;^UTILITY(U,$J,358.3,33979,0)
+ ;;=H60.312^^105^1424^19
+ ;;^UTILITY(U,$J,358.3,33979,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,33979,1,3,0)
+ ;;=3^Diffuse Otitis Externa,Left Ear
+ ;;^UTILITY(U,$J,358.3,33979,1,4,0)
+ ;;=4^H60.312
+ ;;^UTILITY(U,$J,358.3,33979,2)
+ ;;=^5006448
+ ;;^UTILITY(U,$J,358.3,33980,0)
+ ;;=H60.311^^105^1424^20
+ ;;^UTILITY(U,$J,358.3,33980,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,33980,1,3,0)
+ ;;=3^Diffuse Otitis Externa,Right Ear
+ ;;^UTILITY(U,$J,358.3,33980,1,4,0)
+ ;;=4^H60.311
+ ;;^UTILITY(U,$J,358.3,33980,2)
+ ;;=^5006447
+ ;;^UTILITY(U,$J,358.3,33981,0)
+ ;;=H55.09^^105^1424^30
+ ;;^UTILITY(U,$J,358.3,33981,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,33981,1,3,0)
+ ;;=3^Nystagmus NEC
+ ;;^UTILITY(U,$J,358.3,33981,1,4,0)
+ ;;=4^H55.09
+ ;;^UTILITY(U,$J,358.3,33981,2)
+ ;;=^87599
+ ;;^UTILITY(U,$J,358.3,33982,0)
+ ;;=H60.01^^105^1424^2
+ ;;^UTILITY(U,$J,358.3,33982,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,33982,1,3,0)
+ ;;=3^Abscess External Ear,Right
+ ;;^UTILITY(U,$J,358.3,33982,1,4,0)
+ ;;=4^H60.01
+ ;;^UTILITY(U,$J,358.3,33982,2)
+ ;;=^5006436
+ ;;^UTILITY(U,$J,358.3,33983,0)
+ ;;=H60.02^^105^1424^1
+ ;;^UTILITY(U,$J,358.3,33983,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,33983,1,3,0)
+ ;;=3^Abscess External Ear,Left
+ ;;^UTILITY(U,$J,358.3,33983,1,4,0)
+ ;;=4^H60.02
+ ;;^UTILITY(U,$J,358.3,33983,2)
+ ;;=^5006437
+ ;;^UTILITY(U,$J,358.3,33984,0)
+ ;;=H60.12^^105^1424^13
+ ;;^UTILITY(U,$J,358.3,33984,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,33984,1,3,0)
+ ;;=3^Cellulitis External Ear,Left
+ ;;^UTILITY(U,$J,358.3,33984,1,4,0)
+ ;;=4^H60.12
+ ;;^UTILITY(U,$J,358.3,33984,2)
+ ;;=^5006441
+ ;;^UTILITY(U,$J,358.3,33985,0)
+ ;;=H60.11^^105^1424^14
+ ;;^UTILITY(U,$J,358.3,33985,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,33985,1,3,0)
+ ;;=3^Cellulitis External Ear,Right
+ ;;^UTILITY(U,$J,358.3,33985,1,4,0)
+ ;;=4^H60.11
+ ;;^UTILITY(U,$J,358.3,33985,2)
+ ;;=^5006440
+ ;;^UTILITY(U,$J,358.3,33986,0)
+ ;;=H61.21^^105^1424^26
+ ;;^UTILITY(U,$J,358.3,33986,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,33986,1,3,0)
+ ;;=3^Impacted Cerumen,Right Ear
+ ;;^UTILITY(U,$J,358.3,33986,1,4,0)
+ ;;=4^H61.21
+ ;;^UTILITY(U,$J,358.3,33986,2)
+ ;;=^5006531
+ ;;^UTILITY(U,$J,358.3,33987,0)
+ ;;=H61.22^^105^1424^25
+ ;;^UTILITY(U,$J,358.3,33987,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,33987,1,3,0)
+ ;;=3^Impacted Cerumen,Left Ear
+ ;;^UTILITY(U,$J,358.3,33987,1,4,0)
+ ;;=4^H61.22
+ ;;^UTILITY(U,$J,358.3,33987,2)
+ ;;=^5006532
+ ;;^UTILITY(U,$J,358.3,33988,0)
+ ;;=H61.23^^105^1424^24
+ ;;^UTILITY(U,$J,358.3,33988,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,33988,1,3,0)
+ ;;=3^Impacted Cerumen,Bilateral 
+ ;;^UTILITY(U,$J,358.3,33988,1,4,0)
+ ;;=4^H61.23
+ ;;^UTILITY(U,$J,358.3,33988,2)
+ ;;=^5006533
+ ;;^UTILITY(U,$J,358.3,33989,0)
+ ;;=H81.01^^105^1424^29
+ ;;^UTILITY(U,$J,358.3,33989,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,33989,1,3,0)
+ ;;=3^Meniere's Disease,Right Ear
+ ;;^UTILITY(U,$J,358.3,33989,1,4,0)
+ ;;=4^H81.01
+ ;;^UTILITY(U,$J,358.3,33989,2)
+ ;;=^5006860
+ ;;^UTILITY(U,$J,358.3,33990,0)
+ ;;=H81.02^^105^1424^28
+ ;;^UTILITY(U,$J,358.3,33990,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,33990,1,3,0)
+ ;;=3^Meniere's Disease,Left Ear
+ ;;^UTILITY(U,$J,358.3,33990,1,4,0)
+ ;;=4^H81.02
+ ;;^UTILITY(U,$J,358.3,33990,2)
+ ;;=^5006861
+ ;;^UTILITY(U,$J,358.3,33991,0)
+ ;;=H81.03^^105^1424^27
+ ;;^UTILITY(U,$J,358.3,33991,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,33991,1,3,0)
+ ;;=3^Meniere's Disease,Bilateral
+ ;;^UTILITY(U,$J,358.3,33991,1,4,0)
+ ;;=4^H81.03
+ ;;^UTILITY(U,$J,358.3,33991,2)
+ ;;=^5006862
+ ;;^UTILITY(U,$J,358.3,33992,0)
+ ;;=H81.12^^105^1424^9
+ ;;^UTILITY(U,$J,358.3,33992,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,33992,1,3,0)
+ ;;=3^Benign Paroxysmal Vertigo,Left Ear
+ ;;^UTILITY(U,$J,358.3,33992,1,4,0)
+ ;;=4^H81.12
+ ;;^UTILITY(U,$J,358.3,33992,2)
+ ;;=^5006866
+ ;;^UTILITY(U,$J,358.3,33993,0)
+ ;;=H81.11^^105^1424^10
+ ;;^UTILITY(U,$J,358.3,33993,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,33993,1,3,0)
+ ;;=3^Benign Paroxysmal Vertigo,Right Ear
+ ;;^UTILITY(U,$J,358.3,33993,1,4,0)
+ ;;=4^H81.11
+ ;;^UTILITY(U,$J,358.3,33993,2)
+ ;;=^5006865
+ ;;^UTILITY(U,$J,358.3,33994,0)
+ ;;=H81.13^^105^1424^8
+ ;;^UTILITY(U,$J,358.3,33994,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,33994,1,3,0)
+ ;;=3^Benign Paroxysmal Vertigo,Bilateral
+ ;;^UTILITY(U,$J,358.3,33994,1,4,0)
+ ;;=4^H81.13
+ ;;^UTILITY(U,$J,358.3,33994,2)
+ ;;=^5006867
+ ;;^UTILITY(U,$J,358.3,33995,0)
+ ;;=H81.10^^105^1424^11
+ ;;^UTILITY(U,$J,358.3,33995,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,33995,1,3,0)
+ ;;=3^Benign Paroxysmal Vertigo,Unspec Ear
+ ;;^UTILITY(U,$J,358.3,33995,1,4,0)
+ ;;=4^H81.10
+ ;;^UTILITY(U,$J,358.3,33995,2)
+ ;;=^5006864
+ ;;^UTILITY(U,$J,358.3,33996,0)
+ ;;=B37.84^^105^1424^12
+ ;;^UTILITY(U,$J,358.3,33996,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,33996,1,3,0)
+ ;;=3^Candidal Otitis Externa
+ ;;^UTILITY(U,$J,358.3,33996,1,4,0)
+ ;;=4^B37.84
+ ;;^UTILITY(U,$J,358.3,33996,2)
+ ;;=^266875
+ ;;^UTILITY(U,$J,358.3,33997,0)
+ ;;=H60.313^^105^1424^18
+ ;;^UTILITY(U,$J,358.3,33997,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,33997,1,3,0)
+ ;;=3^Diffuse Otitis Externa,Bilateral
+ ;;^UTILITY(U,$J,358.3,33997,1,4,0)
+ ;;=4^H60.313
+ ;;^UTILITY(U,$J,358.3,33997,2)
+ ;;=^5006449
+ ;;^UTILITY(U,$J,358.3,33998,0)
+ ;;=H93.A3^^105^1424^38
+ ;;^UTILITY(U,$J,358.3,33998,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,33998,1,3,0)
+ ;;=3^Pulsatile Tinnitus,Bilateral
+ ;;^UTILITY(U,$J,358.3,33998,1,4,0)
+ ;;=4^H93.A3
+ ;;^UTILITY(U,$J,358.3,33998,2)
+ ;;=^5138592
+ ;;^UTILITY(U,$J,358.3,33999,0)
+ ;;=H93.A1^^105^1424^40
+ ;;^UTILITY(U,$J,358.3,33999,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,33999,1,3,0)
+ ;;=3^Pulsatile Tinnitus,Right Ear
+ ;;^UTILITY(U,$J,358.3,33999,1,4,0)
+ ;;=4^H93.A1
+ ;;^UTILITY(U,$J,358.3,33999,2)
+ ;;=^5138590
+ ;;^UTILITY(U,$J,358.3,34000,0)
+ ;;=H93.A2^^105^1424^39
+ ;;^UTILITY(U,$J,358.3,34000,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,34000,1,3,0)
+ ;;=3^Pulsatile Tinnitus,Left Ear
+ ;;^UTILITY(U,$J,358.3,34000,1,4,0)
+ ;;=4^H93.A2
+ ;;^UTILITY(U,$J,358.3,34000,2)
+ ;;=^5138591
+ ;;^UTILITY(U,$J,358.3,34001,0)
+ ;;=B37.0^^105^1425^13
+ ;;^UTILITY(U,$J,358.3,34001,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,34001,1,3,0)
+ ;;=3^Candidal Stomatitis
+ ;;^UTILITY(U,$J,358.3,34001,1,4,0)
+ ;;=4^B37.0
+ ;;^UTILITY(U,$J,358.3,34001,2)
+ ;;=^5000612
+ ;;^UTILITY(U,$J,358.3,34002,0)
+ ;;=B37.83^^105^1425^12
+ ;;^UTILITY(U,$J,358.3,34002,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,34002,1,3,0)
+ ;;=3^Candidal Cheilitis
+ ;;^UTILITY(U,$J,358.3,34002,1,4,0)
+ ;;=4^B37.83
+ ;;^UTILITY(U,$J,358.3,34002,2)
+ ;;=^5000622
+ ;;^UTILITY(U,$J,358.3,34003,0)
+ ;;=J00.^^105^1425^6
+ ;;^UTILITY(U,$J,358.3,34003,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,34003,1,3,0)
+ ;;=3^Acute Nasopharyngitis 
+ ;;^UTILITY(U,$J,358.3,34003,1,4,0)
+ ;;=4^J00.
+ ;;^UTILITY(U,$J,358.3,34003,2)
+ ;;=^5008115
+ ;;^UTILITY(U,$J,358.3,34004,0)
+ ;;=J01.00^^105^1425^5
+ ;;^UTILITY(U,$J,358.3,34004,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,34004,1,3,0)
+ ;;=3^Acute Maxillary Sinusitis,Unspec
+ ;;^UTILITY(U,$J,358.3,34004,1,4,0)
+ ;;=4^J01.00
+ ;;^UTILITY(U,$J,358.3,34004,2)
+ ;;=^5008116
+ ;;^UTILITY(U,$J,358.3,34005,0)
+ ;;=J01.10^^105^1425^1
+ ;;^UTILITY(U,$J,358.3,34005,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,34005,1,3,0)
+ ;;=3^Acute Frontal Sinusitis,Unspec
+ ;;^UTILITY(U,$J,358.3,34005,1,4,0)
+ ;;=4^J01.10
+ ;;^UTILITY(U,$J,358.3,34005,2)
+ ;;=^5008118
+ ;;^UTILITY(U,$J,358.3,34006,0)
+ ;;=J02.9^^105^1425^7
+ ;;^UTILITY(U,$J,358.3,34006,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,34006,1,3,0)
+ ;;=3^Acute Pharyngitis,Unspec
+ ;;^UTILITY(U,$J,358.3,34006,1,4,0)
+ ;;=4^J02.9
+ ;;^UTILITY(U,$J,358.3,34006,2)
+ ;;=^5008130
+ ;;^UTILITY(U,$J,358.3,34007,0)
+ ;;=J03.91^^105^1425^8
+ ;;^UTILITY(U,$J,358.3,34007,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,34007,1,3,0)
+ ;;=3^Acute Recurrent Tonsillitis,Unspec
+ ;;^UTILITY(U,$J,358.3,34007,1,4,0)
+ ;;=4^J03.91
+ ;;^UTILITY(U,$J,358.3,34007,2)
+ ;;=^5008136
+ ;;^UTILITY(U,$J,358.3,34008,0)
+ ;;=J04.0^^105^1425^3
+ ;;^UTILITY(U,$J,358.3,34008,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,34008,1,3,0)
+ ;;=3^Acute Laryngitis
+ ;;^UTILITY(U,$J,358.3,34008,1,4,0)
+ ;;=4^J04.0
+ ;;^UTILITY(U,$J,358.3,34008,2)
+ ;;=^5008137
+ ;;^UTILITY(U,$J,358.3,34009,0)
+ ;;=J06.0^^105^1425^4
+ ;;^UTILITY(U,$J,358.3,34009,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,34009,1,3,0)
+ ;;=3^Acute Laryngopharyngitis
+ ;;^UTILITY(U,$J,358.3,34009,1,4,0)
+ ;;=4^J06.0
+ ;;^UTILITY(U,$J,358.3,34009,2)
+ ;;=^269876
+ ;;^UTILITY(U,$J,358.3,34010,0)
+ ;;=J06.9^^105^1425^9
+ ;;^UTILITY(U,$J,358.3,34010,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,34010,1,3,0)
+ ;;=3^Acute Upper Respiratory Infection,Unspec
+ ;;^UTILITY(U,$J,358.3,34010,1,4,0)
+ ;;=4^J06.9
+ ;;^UTILITY(U,$J,358.3,34010,2)
+ ;;=^5008143
+ ;;^UTILITY(U,$J,358.3,34011,0)
+ ;;=J33.9^^105^1425^19
+ ;;^UTILITY(U,$J,358.3,34011,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,34011,1,3,0)
+ ;;=3^Nasal Polyp,Unspec
+ ;;^UTILITY(U,$J,358.3,34011,1,4,0)
+ ;;=4^J33.9
+ ;;^UTILITY(U,$J,358.3,34011,2)
+ ;;=^5008208
+ ;;^UTILITY(U,$J,358.3,34012,0)
+ ;;=J32.0^^105^1425^15
+ ;;^UTILITY(U,$J,358.3,34012,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,34012,1,3,0)
+ ;;=3^Chronic Maxillary Sinusitis
+ ;;^UTILITY(U,$J,358.3,34012,1,4,0)
+ ;;=4^J32.0
+ ;;^UTILITY(U,$J,358.3,34012,2)
+ ;;=^24407
+ ;;^UTILITY(U,$J,358.3,34013,0)
+ ;;=J32.1^^105^1425^14
+ ;;^UTILITY(U,$J,358.3,34013,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,34013,1,3,0)
+ ;;=3^Chronic Frontal Sinusitis
+ ;;^UTILITY(U,$J,358.3,34013,1,4,0)
+ ;;=4^J32.1
+ ;;^UTILITY(U,$J,358.3,34013,2)
+ ;;=^24380
+ ;;^UTILITY(U,$J,358.3,34014,0)
+ ;;=J32.9^^105^1425^16
+ ;;^UTILITY(U,$J,358.3,34014,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,34014,1,3,0)
+ ;;=3^Chronic Sinusitis,Unspec
+ ;;^UTILITY(U,$J,358.3,34014,1,4,0)
+ ;;=4^J32.9
+ ;;^UTILITY(U,$J,358.3,34014,2)
+ ;;=^5008207
+ ;;^UTILITY(U,$J,358.3,34015,0)
+ ;;=J30.9^^105^1425^11
+ ;;^UTILITY(U,$J,358.3,34015,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,34015,1,3,0)
+ ;;=3^Allergic Rhinitis,Unspec
+ ;;^UTILITY(U,$J,358.3,34015,1,4,0)
+ ;;=4^J30.9
+ ;;^UTILITY(U,$J,358.3,34015,2)
+ ;;=^5008205
+ ;;^UTILITY(U,$J,358.3,34016,0)
+ ;;=J30.0^^105^1425^24
+ ;;^UTILITY(U,$J,358.3,34016,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,34016,1,3,0)
+ ;;=3^Vasomotor Rhinitis
+ ;;^UTILITY(U,$J,358.3,34016,1,4,0)
+ ;;=4^J30.0
+ ;;^UTILITY(U,$J,358.3,34016,2)
+ ;;=^5008201
+ ;;^UTILITY(U,$J,358.3,34017,0)
+ ;;=K05.00^^105^1425^2
+ ;;^UTILITY(U,$J,358.3,34017,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,34017,1,3,0)
+ ;;=3^Acute Gingivitis,Plaque Induced
+ ;;^UTILITY(U,$J,358.3,34017,1,4,0)
+ ;;=4^K05.00
+ ;;^UTILITY(U,$J,358.3,34017,2)
+ ;;=^334192
+ ;;^UTILITY(U,$J,358.3,34018,0)
+ ;;=R04.0^^105^1425^17
+ ;;^UTILITY(U,$J,358.3,34018,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,34018,1,3,0)
+ ;;=3^Epistaxis
+ ;;^UTILITY(U,$J,358.3,34018,1,4,0)
+ ;;=4^R04.0
+ ;;^UTILITY(U,$J,358.3,34018,2)
+ ;;=^5019173
+ ;;^UTILITY(U,$J,358.3,34019,0)
+ ;;=R09.82^^105^1425^21
+ ;;^UTILITY(U,$J,358.3,34019,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,34019,1,3,0)
+ ;;=3^Postnasal Drip
+ ;;^UTILITY(U,$J,358.3,34019,1,4,0)
+ ;;=4^R09.82
+ ;;^UTILITY(U,$J,358.3,34019,2)
+ ;;=^97058
+ ;;^UTILITY(U,$J,358.3,34020,0)
+ ;;=K12.30^^105^1425^20
+ ;;^UTILITY(U,$J,358.3,34020,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,34020,1,3,0)
+ ;;=3^Oral Mucositis,Unspec
+ ;;^UTILITY(U,$J,358.3,34020,1,4,0)
+ ;;=4^K12.30
+ ;;^UTILITY(U,$J,358.3,34020,2)
+ ;;=^5008486
+ ;;^UTILITY(U,$J,358.3,34021,0)
+ ;;=J30.1^^105^1425^10
+ ;;^UTILITY(U,$J,358.3,34021,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,34021,1,3,0)
+ ;;=3^Allergic Rhinitis d/t Pollen
+ ;;^UTILITY(U,$J,358.3,34021,1,4,0)
+ ;;=4^J30.1
+ ;;^UTILITY(U,$J,358.3,34021,2)
+ ;;=^269906
+ ;;^UTILITY(U,$J,358.3,34022,0)
+ ;;=R09.81^^105^1425^18
+ ;;^UTILITY(U,$J,358.3,34022,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,34022,1,3,0)
+ ;;=3^Nasal Congestion
+ ;;^UTILITY(U,$J,358.3,34022,1,4,0)
+ ;;=4^R09.81
+ ;;^UTILITY(U,$J,358.3,34022,2)
+ ;;=^5019203
+ ;;^UTILITY(U,$J,358.3,34023,0)
+ ;;=I69.928^^105^1425^22
+ ;;^UTILITY(U,$J,358.3,34023,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,34023,1,3,0)
+ ;;=3^Speech/Lang Deficit Following Cerebvasc Disease
+ ;;^UTILITY(U,$J,358.3,34023,1,4,0)
+ ;;=4^I69.928
+ ;;^UTILITY(U,$J,358.3,34023,2)
+ ;;=^5007557
+ ;;^UTILITY(U,$J,358.3,34024,0)
+ ;;=I69.328^^105^1425^23
+ ;;^UTILITY(U,$J,358.3,34024,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,34024,1,3,0)
+ ;;=3^Speech/Lang Deficit Following Cerebvasc Infarc
+ ;;^UTILITY(U,$J,358.3,34024,1,4,0)
+ ;;=4^I69.328
+ ;;^UTILITY(U,$J,358.3,34024,2)
+ ;;=^5007495
+ ;;^UTILITY(U,$J,358.3,34025,0)
+ ;;=H81.4^^105^1425^25
+ ;;^UTILITY(U,$J,358.3,34025,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,34025,1,3,0)
+ ;;=3^Vertigo of Central Origin
+ ;;^UTILITY(U,$J,358.3,34025,1,4,0)
+ ;;=4^H81.4
+ ;;^UTILITY(U,$J,358.3,34025,2)
+ ;;=^269484
+ ;;^UTILITY(U,$J,358.3,34026,0)
+ ;;=E04.0^^105^1426^21
+ ;;^UTILITY(U,$J,358.3,34026,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,34026,1,3,0)
+ ;;=3^Nontoxic Diffuse Goiter
+ ;;^UTILITY(U,$J,358.3,34026,1,4,0)
+ ;;=4^E04.0
+ ;;^UTILITY(U,$J,358.3,34026,2)
+ ;;=^5002477
+ ;;^UTILITY(U,$J,358.3,34027,0)
+ ;;=E04.1^^105^1426^23
+ ;;^UTILITY(U,$J,358.3,34027,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,34027,1,3,0)
+ ;;=3^Nontoxic Single Thyroid Nodule
+ ;;^UTILITY(U,$J,358.3,34027,1,4,0)
+ ;;=4^E04.1
+ ;;^UTILITY(U,$J,358.3,34027,2)
+ ;;=^5002478
+ ;;^UTILITY(U,$J,358.3,34028,0)
+ ;;=E04.2^^105^1426^22
+ ;;^UTILITY(U,$J,358.3,34028,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,34028,1,3,0)
+ ;;=3^Nontoxic Multinodular Goiter

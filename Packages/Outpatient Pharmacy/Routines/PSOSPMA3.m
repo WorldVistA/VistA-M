@@ -1,5 +1,5 @@
 PSOSPMA3 ;BIRM/MFR - ASAP Definitions Listman Actions Handler ;11/11/15
- ;;7.0;OUTPATIENT PHARMACY;**451**;DEC 1997;Build 114
+ ;;7.0;OUTPATIENT PHARMACY;**451,625**;DEC 1997;Build 42
  ;
 SHOWHID ; Handles Show/Hide Details
  ; (PSOSHOW: 1: Show Segment Tree only; 2: Show Segments & Data Elements; 3: Show Data Element Details)
@@ -21,7 +21,7 @@ COPYVER ; Handles 'Copy ASAP Version' Action
 CV ; Loop Prompt
  W !!," From ASAP Version: ",PSOASVER,!
  S DIR(0)="58.4001,.01",DIR("A")="   To ASAP Version" D ^DIR I $D(DIRUT)!$D(DTOUT) G BACK
- D VERLIST^PSOSPMU0("A",.VERS)
+ D VERLIST^PSOSPMU0("A","B",.VERS)    ;adding "B" for Zero Report
  I $D(VERS(Y_" ")) W !!?3,"ASAP Version '",Y,"' already exists.",$C(7) G CV
  S NEWASVER=Y
  S X="",DEFTYPE="B"

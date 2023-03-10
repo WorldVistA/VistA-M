@@ -1,5 +1,5 @@
-PSOORFI5 ;BIR/SJA-finish cprs orders ; 8/27/08 4:47pm
- ;;7.0;OUTPATIENT PHARMACY;**225,315,266,391,372,416,504,505,557**;DEC 1997;Build 7
+PSOORFI5 ;BIR/SJA - finish cprs orders ;Dec 14, 2021@11:29:56
+ ;;7.0;OUTPATIENT PHARMACY;**225,315,266,391,372,416,504,505,557,617,441**;DEC 1997;Build 208
  ;External references UL^PSSLOCK supported by DBIA 2789
  ;External reference to ^DPT supported by DBIA 10035
  ;
@@ -123,9 +123,14 @@ LMDISP(ORD) ; Backdoor ListManager Display of Flag/Unflag Information
  Q
  ;
 CS ; Digitally Signed CS - PSO*7*391
- K DIR N PSOCSRT S DIR("A")="Route",DIR(0)="SBM^W:WINDOW;M:MAIL;B:BOTH;E:EXIT",DIR("B")="BOTH" D ^DIR
+ K DIR
+ N PSOCSRT,PSOPARKX,RESULTS,Y
+ S DIR("A")="Route",DIR(0)="SBM^W:WINDOW;M:MAIL;B:BOTH;E:EXIT",DIR("B")="BOTH"
+ S RESULTS="PSOPARKX" D GETPARK^PSORPC01()
+ I $G(PSOPARKX(0))="YES" S DIR(0)="SBM^W:WINDOW;M:MAIL;P:PARK;A:ALL;E:EXIT",DIR("B")="ALL"
+ D ^DIR
  Q:$D(DIRUT)!(Y="E")
- S PSOCSRT=$S(Y="B":1,1:Y)
+ S PSOCSRT=$S(Y="A":1,Y="B":1,1:Y)
  W !!,"Select a schedule(s)"
  K DIR S PSOSORT="DIGITALLY SIGNED"
  S DIR("A")="Select Schedule(s)",DIR(0)="S^1:SCHEDULE II;2:SCHEDULES III - V;3:SCHEDULES II - V;4:NON-CS+SCHEDULES III - V;5:NON-CS ONLY;E:EXIT",DIR("B")=3
@@ -137,8 +142,8 @@ CS ; Digitally Signed CS - PSO*7*391
  .;PSO*7*505 - still quit if the order is flagged, but now only look for digital signature if the selection does not ask for non contolled substances
  .I $P(OR0,"^",23),$P(SECSORT,"^",1)'="FL" Q
  .S PDEA=0 D PDEA Q:'PDEA!(PDEA'=PSRT)
- .;PSO*7*505 moved digitally signed check after the DEA check
- .I PSRT<4,'$P(OR0,"^",24) Q
+ .;PSO*7*505 moved digitally signed check after the DEA check (Disregards eRx Pending orders)
+ .I PSRT<4,'$$ERXIEN^PSOERXUT(PSOD_"P"),'$P(OR0,"^",24) Q
  .I 'PSOCSRT,PSOCSRT'=$P(OR0,"^",17) Q
  .Q:$G(PAT($P(OR0,"^",2)))=$P(OR0,"^",2)  S PAT=$P(OR0,"^",2)
  .I PAT'=PATA K PSORX("DOSING OFF") I $O(PSORX("PSOL",0))!($D(RXRS)) D LBL^PSOORFIN
@@ -158,7 +163,7 @@ CS ; Digitally Signed CS - PSO*7*391
  ..I 'PSOCSRT,PSOCSRT'=$P(OR0,"^",17) Q
  ..Q:$P(OR0,"^",3)="DC"!($P(OR0,"^",3)="DE")
  ..S PDEA=0 D PDEA Q:'PDEA!(PDEA'=PSRT)
- ..I PSRT<4,'$P(OR0,"^",24) Q
+ ..I PSRT<4,'$$ERXIEN^PSOERXUT(ORD_"P"),'$P(OR0,"^",24) Q
  ..D PP,LK1,ORD^PSOORFIN
  .S X=PAT D ULP K PSOQQ
  I $O(PSORX("PSOL",0))!($D(RXRS)) D LBL^PSOORFIN
@@ -188,4 +193,3 @@ PRV(PROV,DRG,ORN) ;
  .S IEN=IEN+1,^TMP("PSOPO",$J,IEN,0)=$S($G(ADDS):" ",1:"")_"       Site Address: "_VADD(1)
  .S:VADD(2)'="" IEN=IEN+1,^TMP("PSOPO",$J,IEN,0)=$S($G(ADDS):" ",1:"")_"                     "_VADD(2) S:VADD(3)'="" IEN=IEN+1,^TMP("PSOPO",$J,IEN,0)=$S($G(ADDS):" ",1:"")_"                     "_VADD(3)
  Q
- ;

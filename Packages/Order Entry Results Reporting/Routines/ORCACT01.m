@@ -1,5 +1,5 @@
-ORCACT01 ;SLC/MKB-Validate order actions cont ;10/08/19  15:48
- ;;3.0;ORDER ENTRY/RESULTS REPORTING;**94,116,134,141,163,187,190,213,243,306,374,350,397,377**;Dec 17, 1997;Build 582
+ORCACT01 ;SLC/MKB-Validate order actions cont ;Oct 20, 2020@22:36:08
+ ;;3.0;ORDER ENTRY/RESULTS REPORTING;**94,116,134,141,163,187,190,213,243,306,374,350,397,377,498,580**;Dec 17, 1997;Build 4
  ;
  ;External reference to $$ORCOPY^PSOORCPY supported by ICR 6719
  ;
@@ -10,6 +10,7 @@ ES ; -- sign [on chart]
  . S X=$$DISABLED^ORCACT0 I X S ERROR=$P(X,U,2) Q
  I ACTION="OC",$G(DG)="NV RX" S:MEDPARM<2 ERROR="You are not authorized to release non-VA med orders!" Q
  S X=$P(ORA0,U,4) I X=3 S:ACTSTS'=11&(ACTSTS'=10) ERROR="This order does not require a signature!" Q
+ I X=5 S ERROR="This order has been canceled!" Q  ;p580
  I X'=2 S ERROR="This order has been signed!" Q
  N ORCS D CSVALUE^ORDEA(.ORCS,+IFN)
  I DG="O RX",ACTION="RS",$G(NATR)="I",ORCS=1 S ERROR="Controlled Substance outpatient meds may not be released without a clinician's signature!" Q
@@ -34,7 +35,7 @@ ES ; -- sign [on chart]
  ;
  I ACTION="OC" S:MEDPARM<2 ERROR="You are not authorized to release med orders!" Q
  ;
- ; Don't allow DC of lab order to be signed/released if its already been accessioned 
+ ; Don't allow DC of lab order to be signed/released if its already been accessioned
  I PKG="LR",$P(ORA0,U,2)="DC",$$COLLECTD^ORCACT0 D  Q:$D(ERROR)
  . S ERROR="This order may not be discontinued.                                                                                "
  . S ERROR=ERROR_"Cancel the discontinue to remove it from the patient's record.                                    "
@@ -101,6 +102,14 @@ XFR ; -- transfer to inpt/outpt [IFN=order to be transferred]
  I DG="O RX" D  Q:$L($G(ERROR))
  . I '$P(ORPS,U) S ERROR="This drug may not be ordered for an inpatient!" Q
  . D:$O(^OR(100,+IFN,4.5,"ID","MISC",0)) DOSES^ORCACT02(+IFN)
+ ;
+ ; Really this check should not be needed, as in BLDQRSP^ORWDXM1 if the urgency is not valid
+ ; it returns a 0, so that the GUI does not auto-accept the order. However, a bug in the GUI
+ ; is preventing that from happening. Once that bug is fixed, this check can be removed.
+ I PKG="RA" D  Q:$D(ERROR)
+ . N ORURG
+ . S ORURG=$$VALUE^ORCSAVE2(+IFN,"URGENCY")
+ . I ORURG,'$$RADURG^ORWDRA32(+ORURG) S ERROR="Invalid urgency. Cannot transfer!"
  Q
  ;
 RW ; -- rewrite/copy
@@ -118,7 +127,7 @@ RW ; -- rewrite/copy
  . ;
  . ;p377 LMT - check with pharmacy that order can be copied
  . S PSIFN=$G(^OR(100,+IFN,4))
- . I PSIFN<1 S ERROR="Missing or invalid order number!" Q
+ . I PSIFN="" Q  ; If does not have package ref yet (i.e., unsigned order) let it be copied w/o ORCOPY^PSOORCPY check
  . S ORX=$$ORCOPY^PSOORCPY(PSIFN)  ;ICR #6719
  . I ORX<1 S ERROR=$P(ORX,U,2) Q
  Q
@@ -135,10 +144,15 @@ RN ; -- renew
  . S ERROR="This order may not be renewed!"
  I (PKG="PS"),$$INACTIVE^ORCACT03 S ERROR="Orders for inactive orderables may not be renewed!" Q
  I '$$MEDOK^ORCACT03 S ERROR="This drug may not be ordered!" Q
-RN1 N PSIFN S PSIFN=$G(^OR(100,+IFN,4))
+RN1 N PSIFN,OROI
+ S PSIFN=$G(^OR(100,+IFN,4))
  I PSIFN<1,'$O(^OR(100,+IFN,2,0)) S ERROR="Missing or invalid order number!" Q
+ S OROI=$G(^OR(100,+IFN,.1,1,0))
+ I $$ISCLOZ^ORALWORD(OROI) S ERROR="Cannot renew Clozapine orders!" Q
  I DG="O RX"!(DG="SPLY") D  Q  ;Outpt Meds
- . N ORZ,ORD S ORZ=$L($T(RENEW^PSORENW),",")
+ . N ORZ,ORD
+ . I $$XCONJ(+IFN) S ERROR="Orders with a conjunction of 'EXCEPT' may not be renewed!" Q
+ . S ORZ=$L($T(RENEW^PSORENW),",")
  . I ORZ>1 S ORD=+$$VALUE^ORX8(+IFN,"DRUG"),X=$$RENEW^PSORENW(PSIFN,ORD)
  . S:ORZ'>1 X=$$RENEW^PSORENW(PSIFN) I X<1 S ERROR=$P(X,U,2) Q
  . S X=+$P(X,U,2) D:X RESET^ORCACT03(+IFN,X)
@@ -181,6 +195,14 @@ XX ; -- edit/change--
  . I PKG="PS",ORDSTS=5 S ERROR="Pending renewals may not be changed!" Q
  I $$INACTIVE^ORCACT03 S ERROR="Orders for inactive orderables may not be changed; please enter a new order!" Q
  I PKG="PS",'$$MEDOK^ORCACT03 S ERROR="This drug may not be ordered!" Q
+ I DG="O RX",$$XCONJ(+IFN) S ERROR="Orders with a conjunction of 'EXCEPT' may not be changed!" Q
  I DG="O RX",$O(^OR(100,+IFN,4.5,"ID","MISC",0)) D DOSES^ORCACT02(+IFN) ;old form
  Q
  ;
+XCONJ(ORIFN) ; check if Responses multiple has an OR GTX AND/THEN entry with value of X:EXCEPT
+ N ORI,ORRESULT
+ S ORRESULT=0
+ S ORI=""
+ F  S ORI=$O(^OR(100,ORIFN,4.5,"ID","CONJ",ORI)) Q:'ORI  D
+ . I $G(^OR(100,ORIFN,4.5,ORI,1))="X" S ORRESULT=1
+ Q ORRESULT

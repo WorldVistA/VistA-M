@@ -1,5 +1,5 @@
-PXCEICR ;BHM/ADM - EDIT/DISPLAY CONTRAINDICATION/REFUSAL ;02/01/2016
- ;;1.0;PCE PATIENT CARE ENCOUNTER;**215**;Aug 12, 1996;Build 10
+PXCEICR ;BHM/ADM - EDIT/DISPLAY CONTRAINDICATION/REFUSAL ;05/20/2022
+ ;;1.0;PCE PATIENT CARE ENCOUNTER;**215,217**;Aug 12, 1996;Build 134
  ;
  Q
  ;
@@ -16,9 +16,10 @@ PXCEICR ;BHM/ADM - EDIT/DISPLAY CONTRAINDICATION/REFUSAL ;02/01/2016
 FORMAT ;;Imm Contraindication/Refusal Event~9000010.707~0,12,801,811,812~1~^AUPNVICR
  ;;0~1~.01~Contraindication/Refusal:  ~Contra/Refusal Event:  ~~~~~B
  ;;0~4~.04~Immunization:  ~Immunization:  ~~EIMM^PXCEICR~~~D
+ ;;12~5~1205~Refused all immunizations in this group?:  ~Refused all immunizations in this group?:  ~~REFGRP^PXCEICR~~~B
  ;;12~1~1201~Event Date and Time: ~Event Date and Time: ~~~~~D
  ;;12~4~1204~Encounter Provider:  ~Encounter Provider:  ~~EPROV12^PXCEPRV~~~D
- ;;0~5~.05~Warning Until Date:  ~Warning Until Date:  ~~~~~D
+ ;;0~5~.05~Warn Until Date:  ~Warn Until Date:  ~~WARNDT^PXCEICR~~~D
  ;;0~6~.06~Date/Time Recorded: ~Date/Time Recorded:  ~~~~~D
  ;;811~1~81101~Comments:  ~Comments:  ~~~~~D
  ;;
@@ -26,7 +27,7 @@ FORMAT ;;Imm Contraindication/Refusal Event~9000010.707~0,12,801,811,812~1~^AUPN
  ;********************************
  ;Display text for the .01 field
  ;(Must have is called by ASK^PXCEVFI2 and DEL^PXCEVFI2.)
-DISPLY01(PXCEICR) ;
+DISPLY01(PXCEICR,PXCEDT) ;
  N DIERR,PXCEDILF,PXCEINT,PXCEEXT
  S PXCEINT=$P(PXCEICR,"^",1)
  S PXCEEXT=$$EXTERNAL^DILFD(9000010.707,.01,"",PXCEINT,"PXCEDILF")
@@ -42,6 +43,54 @@ EIMM ; Edit Immunization
  S DIR(0)="PA^9999999.14:QEM"
  S DIR("S")="I $$IMMCRSEL^PXVUTIL($P($G(PXCEAFTR(0)),U,1),Y)"
  S DIR("A")=$P(PXCETEXT,"~",4)
+ S:$P(PXCETEXT,"~",8)]"" DIR("?")=$P(PXCETEXT,"~",8)
+ D ^DIR
+ I X="@" S Y="@"
+ E  I $D(DTOUT)!$D(DUOUT) S PXCEEND=1
+ S $P(PXCEAFTR($P(PXCETEXT,"~",1)),"^",$P(PXCETEXT,"~",2))=$P(Y,"^")
+ Q
+ ;
+WARNDT ;
+ N DA,DIR,DTOUT,DUOUT,X,Y
+ ;
+ I $P(PXCEAFTR($P(PXCETEXT,"~",1)),"^",$P(PXCETEXT,"~",2))'="" D
+ . N DIERR,PXCEDILF,PXCEINT,PXCEEXT
+ . S PXCEINT=$P(PXCEAFTR($P(PXCETEXT,"~",1)),"^",$P(PXCETEXT,"~",2))
+ . S PXCEEXT=$$EXTERNAL^DILFD(PXCEFILE,$P(PXCETEXT,"~",3),"",PXCEINT,"PXCEDILF")
+ . S DIR("B")=$S('$D(DIERR):PXCEEXT,1:PXCEINT)
+ S DIR(0)=PXCEFILE_","_$P(PXCETEXT,"~",3)_"A"
+ S DIR("A")=$P(PXCETEXT,"~",4)
+ I $G(DIR("B"))="",'$G(PXCEFIEN) D
+ . N PXICR,PXFILE,PXIEN,PXLOC,PXRSLT,PXDEF
+ . S PXICR=$P($G(PXCEAFTR(0)),U,1)
+ . S PXFILE=+$P(PXICR,"(",2)
+ . I 'PXFILE Q
+ . S PXIEN=+PXICR
+ . I 'PXIEN Q
+ . I $G(PXCEVIEN) S PXLOC=$P($G(^AUPNVSIT(PXCEVIEN,0)),U,22)
+ . D GETICR^PXVRPC5(.PXRSLT,PXFILE,"R:"_PXIEN,"",$G(PXLOC))
+ . S PXDEF=$P($G(PXRSLT(1)),U,$S(PXFILE=920.5:5,1:8))
+ . I PXDEF>0 S DIR("B")=$$FMTE^XLFDT(PXDEF)
+ S:$P(PXCETEXT,"~",8)]"" DIR("?")=$P(PXCETEXT,"~",8)
+ D ^DIR
+ I X="@" S Y="@"
+ E  I $D(DTOUT)!$D(DUOUT) S PXCEEND=1
+ S $P(PXCEAFTR($P(PXCETEXT,"~",1)),"^",$P(PXCETEXT,"~",2))=$P(Y,"^")
+ Q
+ ;
+REFGRP ; Refused Vaccine Group
+ N DA,DIR,DTOUT,DUOUT,X,Y
+ ;
+ I $P($G(PXCEAFTR(0)),U,1)'[920.5 Q
+ ;
+ I $P(PXCEAFTR($P(PXCETEXT,"~",1)),"^",$P(PXCETEXT,"~",2))'="" D
+ . N DIERR,PXCEDILF,PXCEINT,PXCEEXT
+ . S PXCEINT=$P(PXCEAFTR($P(PXCETEXT,"~",1)),"^",$P(PXCETEXT,"~",2))
+ . S PXCEEXT=$$EXTERNAL^DILFD(PXCEFILE,$P(PXCETEXT,"~",3),"",PXCEINT,"PXCEDILF")
+ . S DIR("B")=$S('$D(DIERR):PXCEEXT,1:PXCEINT)
+ S DIR(0)=PXCEFILE_","_$P(PXCETEXT,"~",3)_"A"
+ S DIR("A")=$P(PXCETEXT,"~",4)
+ I $G(DIR("B"))="",'$G(PXCEFIEN) S DIR("B")="YES"
  S:$P(PXCETEXT,"~",8)]"" DIR("?")=$P(PXCETEXT,"~",8)
  D ^DIR
  I X="@" S Y="@"

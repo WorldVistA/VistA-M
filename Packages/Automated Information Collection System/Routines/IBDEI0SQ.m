@@ -1,128 +1,124 @@
-IBDEI0SQ ; ; 04-FEB-2020
- ;;3.0;IB ENCOUNTER FORM IMP/EXP;;FEB 04, 2020
+IBDEI0SQ ; ; 01-FEB-2022
+ ;;3.0;IB ENCOUNTER FORM IMP/EXP;;FEB 01, 2022
  Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,999) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
- ;;^UTILITY(U,$J,358.3,12800,0)
- ;;=N42.89^^80^787^33
- ;;^UTILITY(U,$J,358.3,12800,1,0)
+ ;;^UTILITY(U,$J,358.3,12929,1,4,0)
+ ;;=4^H47.642
+ ;;^UTILITY(U,$J,358.3,12929,2)
+ ;;=^5006176
+ ;;^UTILITY(U,$J,358.3,12930,0)
+ ;;=H47.641^^51^624^17
+ ;;^UTILITY(U,$J,358.3,12930,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,12800,1,3,0)
- ;;=3^Prostate Disorders NEC
- ;;^UTILITY(U,$J,358.3,12800,1,4,0)
- ;;=4^N42.89
- ;;^UTILITY(U,$J,358.3,12800,2)
- ;;=^270425
- ;;^UTILITY(U,$J,358.3,12801,0)
- ;;=N41.9^^80^787^23
- ;;^UTILITY(U,$J,358.3,12801,1,0)
+ ;;^UTILITY(U,$J,358.3,12930,1,3,0)
+ ;;=3^D/O of Visual Cortex in Vasc D/O,Rt Side of Brain
+ ;;^UTILITY(U,$J,358.3,12930,1,4,0)
+ ;;=4^H47.641
+ ;;^UTILITY(U,$J,358.3,12930,2)
+ ;;=^5006175
+ ;;^UTILITY(U,$J,358.3,12931,0)
+ ;;=H47.649^^51^624^19
+ ;;^UTILITY(U,$J,358.3,12931,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,12801,1,3,0)
- ;;=3^Inflammatory Disease of Prostate,Unspec
- ;;^UTILITY(U,$J,358.3,12801,1,4,0)
- ;;=4^N41.9
- ;;^UTILITY(U,$J,358.3,12801,2)
- ;;=^5015694
- ;;^UTILITY(U,$J,358.3,12802,0)
- ;;=N43.3^^80^787^22
- ;;^UTILITY(U,$J,358.3,12802,1,0)
+ ;;^UTILITY(U,$J,358.3,12931,1,3,0)
+ ;;=3^D/O of Visual Cortex in Vasc D/O,Unspec Side of Brain
+ ;;^UTILITY(U,$J,358.3,12931,1,4,0)
+ ;;=4^H47.649
+ ;;^UTILITY(U,$J,358.3,12931,2)
+ ;;=^5006177
+ ;;^UTILITY(U,$J,358.3,12932,0)
+ ;;=H53.483^^51^624^25
+ ;;^UTILITY(U,$J,358.3,12932,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,12802,1,3,0)
- ;;=3^Hydrocele,Unspec
- ;;^UTILITY(U,$J,358.3,12802,1,4,0)
- ;;=4^N43.3
- ;;^UTILITY(U,$J,358.3,12802,2)
- ;;=^5015700
- ;;^UTILITY(U,$J,358.3,12803,0)
- ;;=N47.1^^80^787^32
- ;;^UTILITY(U,$J,358.3,12803,1,0)
+ ;;^UTILITY(U,$J,358.3,12932,1,3,0)
+ ;;=3^Generalized Contraction of Visual Field,Bilateral
+ ;;^UTILITY(U,$J,358.3,12932,1,4,0)
+ ;;=4^H53.483
+ ;;^UTILITY(U,$J,358.3,12932,2)
+ ;;=^5006346
+ ;;^UTILITY(U,$J,358.3,12933,0)
+ ;;=H53.482^^51^624^24
+ ;;^UTILITY(U,$J,358.3,12933,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,12803,1,3,0)
- ;;=3^Phimosis
- ;;^UTILITY(U,$J,358.3,12803,1,4,0)
- ;;=4^N47.1
- ;;^UTILITY(U,$J,358.3,12803,2)
- ;;=^93340
- ;;^UTILITY(U,$J,358.3,12804,0)
- ;;=N47.2^^80^787^31
- ;;^UTILITY(U,$J,358.3,12804,1,0)
+ ;;^UTILITY(U,$J,358.3,12933,1,3,0)
+ ;;=3^Generalized Contraction of Visual Field,Lt Eye
+ ;;^UTILITY(U,$J,358.3,12933,1,4,0)
+ ;;=4^H53.482
+ ;;^UTILITY(U,$J,358.3,12933,2)
+ ;;=^5006345
+ ;;^UTILITY(U,$J,358.3,12934,0)
+ ;;=H53.481^^51^624^23
+ ;;^UTILITY(U,$J,358.3,12934,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,12804,1,3,0)
- ;;=3^Paraphimosis
- ;;^UTILITY(U,$J,358.3,12804,1,4,0)
- ;;=4^N47.2
- ;;^UTILITY(U,$J,358.3,12804,2)
- ;;=^90023
- ;;^UTILITY(U,$J,358.3,12805,0)
- ;;=N52.9^^80^787^16
- ;;^UTILITY(U,$J,358.3,12805,1,0)
+ ;;^UTILITY(U,$J,358.3,12934,1,3,0)
+ ;;=3^Generalized Contraction of Visual Field,Rt Eye
+ ;;^UTILITY(U,$J,358.3,12934,1,4,0)
+ ;;=4^H53.481
+ ;;^UTILITY(U,$J,358.3,12934,2)
+ ;;=^5006344
+ ;;^UTILITY(U,$J,358.3,12935,0)
+ ;;=H53.71^^51^624^13
+ ;;^UTILITY(U,$J,358.3,12935,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,12805,1,3,0)
- ;;=3^Erectile Dysfunction,Unspec
- ;;^UTILITY(U,$J,358.3,12805,1,4,0)
- ;;=4^N52.9
- ;;^UTILITY(U,$J,358.3,12805,2)
- ;;=^5015763
- ;;^UTILITY(U,$J,358.3,12806,0)
- ;;=N52.8^^80^787^11
- ;;^UTILITY(U,$J,358.3,12806,1,0)
+ ;;^UTILITY(U,$J,358.3,12935,1,3,0)
+ ;;=3^Glare Sensitivity
+ ;;^UTILITY(U,$J,358.3,12935,1,4,0)
+ ;;=4^H53.71
+ ;;^UTILITY(U,$J,358.3,12935,2)
+ ;;=^5006354
+ ;;^UTILITY(U,$J,358.3,12936,0)
+ ;;=H53.47^^51^624^29
+ ;;^UTILITY(U,$J,358.3,12936,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,12806,1,3,0)
- ;;=3^Erectile Dysfunction NEC
- ;;^UTILITY(U,$J,358.3,12806,1,4,0)
- ;;=4^N52.8
- ;;^UTILITY(U,$J,358.3,12806,2)
- ;;=^5015762
- ;;^UTILITY(U,$J,358.3,12807,0)
- ;;=N52.39^^80^787^15
- ;;^UTILITY(U,$J,358.3,12807,1,0)
+ ;;^UTILITY(U,$J,358.3,12936,1,3,0)
+ ;;=3^Heteronymous Bilateral Field Defects
+ ;;^UTILITY(U,$J,358.3,12936,1,4,0)
+ ;;=4^H53.47
+ ;;^UTILITY(U,$J,358.3,12936,2)
+ ;;=^268847
+ ;;^UTILITY(U,$J,358.3,12937,0)
+ ;;=H53.462^^51^624^27
+ ;;^UTILITY(U,$J,358.3,12937,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,12807,1,3,0)
- ;;=3^Erectile Dysfunction,Post-Surgical NEC
- ;;^UTILITY(U,$J,358.3,12807,1,4,0)
- ;;=4^N52.39
- ;;^UTILITY(U,$J,358.3,12807,2)
- ;;=^5015761
- ;;^UTILITY(U,$J,358.3,12808,0)
- ;;=N52.34^^80^787^9
- ;;^UTILITY(U,$J,358.3,12808,1,0)
+ ;;^UTILITY(U,$J,358.3,12937,1,3,0)
+ ;;=3^Homonymous Bilateral Field Defects,Lt Side
+ ;;^UTILITY(U,$J,358.3,12937,1,4,0)
+ ;;=4^H53.462
+ ;;^UTILITY(U,$J,358.3,12937,2)
+ ;;=^5006342
+ ;;^UTILITY(U,$J,358.3,12938,0)
+ ;;=H53.461^^51^624^26
+ ;;^UTILITY(U,$J,358.3,12938,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,12808,1,3,0)
- ;;=3^Erectile Dysfunction Following Simple Prostatectomy
- ;;^UTILITY(U,$J,358.3,12808,1,4,0)
- ;;=4^N52.34
- ;;^UTILITY(U,$J,358.3,12808,2)
- ;;=^5015760
- ;;^UTILITY(U,$J,358.3,12809,0)
- ;;=N52.33^^80^787^10
- ;;^UTILITY(U,$J,358.3,12809,1,0)
+ ;;^UTILITY(U,$J,358.3,12938,1,3,0)
+ ;;=3^Homonymous Bilateral Field Defects,Rt Side
+ ;;^UTILITY(U,$J,358.3,12938,1,4,0)
+ ;;=4^H53.461
+ ;;^UTILITY(U,$J,358.3,12938,2)
+ ;;=^5006341
+ ;;^UTILITY(U,$J,358.3,12939,0)
+ ;;=H53.72^^51^624^12
+ ;;^UTILITY(U,$J,358.3,12939,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,12809,1,3,0)
- ;;=3^Erectile Dysfunction Following Urethral Surgery
- ;;^UTILITY(U,$J,358.3,12809,1,4,0)
- ;;=4^N52.33
- ;;^UTILITY(U,$J,358.3,12809,2)
- ;;=^5015759
- ;;^UTILITY(U,$J,358.3,12810,0)
- ;;=N52.32^^80^787^7
- ;;^UTILITY(U,$J,358.3,12810,1,0)
+ ;;^UTILITY(U,$J,358.3,12939,1,3,0)
+ ;;=3^Impaired Contrast Sensitivity
+ ;;^UTILITY(U,$J,358.3,12939,1,4,0)
+ ;;=4^H53.72
+ ;;^UTILITY(U,$J,358.3,12939,2)
+ ;;=^5006355
+ ;;^UTILITY(U,$J,358.3,12940,0)
+ ;;=H53.413^^51^624^22
+ ;;^UTILITY(U,$J,358.3,12940,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,12810,1,3,0)
- ;;=3^Erectile Dysfunction Following Radical Cystectomy
- ;;^UTILITY(U,$J,358.3,12810,1,4,0)
- ;;=4^N52.32
- ;;^UTILITY(U,$J,358.3,12810,2)
- ;;=^5015758
- ;;^UTILITY(U,$J,358.3,12811,0)
- ;;=N52.31^^80^787^8
- ;;^UTILITY(U,$J,358.3,12811,1,0)
+ ;;^UTILITY(U,$J,358.3,12940,1,3,0)
+ ;;=3^Scotoma Involving Central Area,Bilateral
+ ;;^UTILITY(U,$J,358.3,12940,1,4,0)
+ ;;=4^H53.413
+ ;;^UTILITY(U,$J,358.3,12940,2)
+ ;;=^5006327
+ ;;^UTILITY(U,$J,358.3,12941,0)
+ ;;=H53.411^^51^624^20
+ ;;^UTILITY(U,$J,358.3,12941,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,12811,1,3,0)
- ;;=3^Erectile Dysfunction Following Radical Prostatectomy
- ;;^UTILITY(U,$J,358.3,12811,1,4,0)
- ;;=4^N52.31
- ;;^UTILITY(U,$J,358.3,12811,2)
- ;;=^5015757
- ;;^UTILITY(U,$J,358.3,12812,0)
- ;;=N52.2^^80^787^14
- ;;^UTILITY(U,$J,358.3,12812,1,0)
- ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,12941,1,3,0)
+ ;;=3^Scotoma Involving Central Area,Rt Eye

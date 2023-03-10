@@ -1,5 +1,5 @@
-PXRMDLED ;SLC/AGP - DIALOG UTILITIES. ;12/02/2019
- ;;2.0;CLINICAL REMINDERS;**45**;Feb 04, 2005;Build 566
+PXRMDLED ;SLC/AGP - DIALOG UTILITIES. ;08/04/2020
+ ;;2.0;CLINICAL REMINDERS;**45,71**;Feb 04, 2005;Build 43
  Q
  ;
 DICPROMPT(RESULT,GBL,ZERO,PROMPT,SCREEN,NUM) ;
@@ -33,6 +33,7 @@ EN ;
 FINDDIAL ;find dialog name #801.41
  D DICPROMPT(.VALUE,"^PXRMD(801.41,","AEMQ","Select Dialog Definition: ","I $P(^(0),U,4)=""R""",1)
  Q:$D(DTOUT)!($D(DUOUT))
+ I +VALUE=-1 Q
  S DIEN=+VALUE
  S DNAME=$P(VALUE,U,2)
  ;
@@ -50,8 +51,12 @@ DOC ;find note title 8927.1
  K VALUE
  D DICPROMPT(.VALUE,"^TIU(8925.1,","AEMQ","Select Document Definition: ","I $P(^(0),U,4)=""DOC""",4)
  Q:$D(DTOUT)&($D(DUOUT))  G:$D(DUOUT) ATTACH
+ I +VALUE=-1 G ATTACH
  S TIEN=+VALUE
  S TNAME=$P(VALUE,U,2)
+ I $D(^TIU(8927,"AL",TIEN_";TIU(8925.1,")) D  G DOC
+ .W !,TNAME_" has an existing template link to it."
+ .W !,"Cannot link to this note title."
  D LINK(DNAME,TNAME,TEMPNAME,0)
  Q
  ;

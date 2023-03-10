@@ -1,5 +1,5 @@
 RCDPEP ;AITC/CJE - FLAG PAYERS AS PHARMACY/TRICARE ; 19-APR-2017
- ;;4.5;Accounts Receivable;**321,326,332**;;Build 40
+ ;;4.5;Accounts Receivable;**321,326,332,371**;;Build 29
  ;Per VA Directive 6402, this routine should not be modified.
  ;
 EN(FILTER,DATEFILT) ; -- main entry point for RCDPE PAYER FLAGS template
@@ -150,15 +150,15 @@ BLD1PAY(PAYCNT) ; (Re)build one payor line into the listman array
  ; Input PAYCNT - The sequence number of the payer being built
  ; Output - Lines set into template array (^TMP("RCDPEP",$J)).
  N DATALN,LINE,XX
- S LINE=$$SETSTR^VALM1(" "_PAYCNT,"",1,4)
+ S LINE=$$SETSTR^VALM1(" "_PAYCNT,"",1,6)    ; PRCA*4.5*371 - Add space for 2 extra characters to line number
  S DATALN=^TMP($J,"RCDPEPIX",PAYCNT)
  S XX=$P(DATALN,"^",2) ; Name
  S XX=$E(XX,1,55) ; Truncate name to 55 characters to fit
- S LINE=$$SETSTR^VALM1(XX,LINE,6,55)
+ S LINE=$$SETSTR^VALM1(XX,LINE,8,55)         ; PRCA*4.5*371 - Add space for 2 extra characters to line number
  S XX=$P(DATALN,"^",3) ; Payer ID
- S LINE=$$SETSTR^VALM1(XX,LINE,63,10)
+ S LINE=$$SETSTR^VALM1(XX,LINE,65,10)        ; PRCA*4.5*371 - Move to add space for 2 extra characters to line number
  S XX=$P(DATALN,"^",5) ; Phamacy payer flag
- S LINE=$$SETSTR^VALM1(XX,LINE,75,2)
+ S LINE=$$SETSTR^VALM1(XX,LINE,76,2)         ; PRCA*4.5*371 - Move to add space for 2 extra characters to line number
  S XX=$P(DATALN,"^",6) ; Tricare payer flag
  S LINE=$$SETSTR^VALM1(XX,LINE,79,2)
  S XX=$P(DATALN,"^",4) ; Date added

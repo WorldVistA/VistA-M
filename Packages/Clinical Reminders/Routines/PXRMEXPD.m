@@ -1,5 +1,5 @@
-PXRMEXPD ;SLC/PKR - General packing driver. ;10/24/2018
- ;;2.0;CLINICAL REMINDERS;**12,17,16,18,22,26,45**;Feb 04, 2005;Build 566
+PXRMEXPD ;SLC/PKR - General packing driver. ;07/31/2020
+ ;;2.0;CLINICAL REMINDERS;**12,17,16,18,22,26,45,42**;Feb 04, 2005;Build 245
  ;==========================
 BLDDESC(USELLIST,TMPIND) ;If multiple entries have been selected
  ;then initialize the description with the selected list.
@@ -154,7 +154,7 @@ TERM ;Check reminder terms for errors.
  . F  S DIEN=$O(SELLIST(811.5,"IEN",DIEN)) Q:DIEN'>0  D
  .. W !!,"Checking reminder term "_$P(^PXRMD(811.5,DIEN,0),U,1)
  .. K OUTPUT
- .. S OK=$$TERM^PXRMICHK(DIEN,.OUTPUT,1)
+ .. S OK=$$TERM^PXRMICK1(DIEN,.OUTPUT,1)
  .. I OK=0 S FAIL=1
  . I FAIL=0 W !!,"No fatal reminder term problems were found, packing will continue."
  . I FAIL=1 W !!,"Cannot create the packed file, please correct the above fatal error(s)."

@@ -1,5 +1,5 @@
 PSOPXRM1 ;BHAM ISC/MR - Returns Patient's Prescription info ;10/16/09  15:07
- ;;7.0;OUTPATIENT PHARMACY;**118,344**;DEC 1997;Build 2
+ ;;7.0;OUTPATIENT PHARMACY;**118,344,441**;DEC 1997;Build 208
  ;External reference to ^PS(55 supported by DBIA 2228
  ;External reference to ^PS(50.7 supported by DBIA 2223
  ;External reference to ^PS(50.606 supported by DBIA 2174
@@ -24,6 +24,7 @@ NVA(DAS,DATA) ;Return data on non-VA meds.
  S DATA("DOCUMENTED DATE")=$P(TEMP,U,10)
  S DATA("DOCUMENTED BY")=$P(TEMP,U,11)
  S DATA("CLINIC")=$P(TEMP,U,12)
+ S DATA("INDICATION")=$P($G(^PS(55,IND1,IND2,2,2)),U)
  Q
  ;
  ;====================================================
@@ -54,6 +55,7 @@ PSRX(DAS,RXAR) ; Returns Rx Information
  S RXAR("PROVIDER")=$P(NODE0,U,4)_U_$$GET1^DIQ(52,DA,4)
  S RXAR("DISPENSE DRUG")=$P(NODE0,U,6)_U_$$GET1^DIQ(52,DA,6)
  S RXAR("DEA SPECIAL HDLG")=$P($G(^PSDRUG(+$P(NODE0,U,6),0)),U,3)
+ S RXAR("INDICATION")=$P($G(^PSRX(DA,"IND")),U)
  ;
 END Q
  ;

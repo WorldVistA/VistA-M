@@ -1,6 +1,7 @@
 XQSMDCPY ;ISC-SF/JLI - COPY ONE USER (PRIM & SEC MENUS, KEYS, FILES) TO ANOTHER USER ;07/12/10  11:12
- ;;8.0;KERNEL;**19,552**;Jul 10, 1995;Build 2
+ ;;8.0;KERNEL;**19,552,775**;Jul 10, 1995;Build 11
  ;Per VHA Directive 6402, this routine should not be modified.
+ N ZTDESC,ZTIO,ZTRTN,ZTSAVE
  S XQBOSS=0 I $D(^XUSEC("XUMGR",DUZ)) S XQBOSS=1
  I 'XQBOSS W !!,?5,"Note: You must have been delegated these options and",!,?11,"keys to transfer them from user to user.",!
  ;I 'XQBOSS,$O(^VA(200,DUZ,19.5,0))'>0 W !!,$C(7),"No Menus have been delegated to you to use this option",!,"If there are questions see your site manager's staff." Q
@@ -10,6 +11,13 @@ XQSMDCPY ;ISC-SF/JLI - COPY ONE USER (PRIM & SEC MENUS, KEYS, FILES) TO ANOTHER 
  S XQUSEC(0)="" F I=0:0 S I=$O(^VA(200,XQUSR1,203,I)) Q:I'>0  S X=^(I,0),XQUSEC(+X)=$P(X,U,2) I 'XQBOSS,'$D(^VA(200,DUZ,19.5,"B",+X)) W !,$C(7),"Skipping secondary menu ",$P(^DIC(19,+X,0),U) K XQUSEC(+X)
  ;I XQUSRPM'>0,$O(XQUSEC(0))'>0 W !!,$C(7),"No Primary or Secondary Menus to copy -- quitting.",!! G EXIT
  S XQUSEK(0)="" F I=0:0 S I=$O(^VA(200,XQUSR1,51,I)) Q:I'>0  S X=+^(I,0) I $D(^DIC(19.1,+X,0)) S XQUSEK(X)=X I 'XQBOSS,'$D(^VA(200,DUZ,52,"B",X)) W !,$C(7),"Not authorized to give ",$P(^DIC(19.1,X,0),U)," key -- skipping" K XQUSEK(X)
+ ;
+ I $$PSDRPH^XUSERBLK(XQUSR1) D
+ . N DIR
+ . W !!,"The PSDRPH key cannot be allocated / de-allocated by this option. Please"
+ . W !,"use the option 'Allocate/De-Allocate of PSDRPH Key (Audited)' if necessary."
+ . W !,"The PSDRPH key will not be copied to the new user.",!
+ . S DIR(0)="E",DIR("A")="Press ENTER to continue" D ^DIR
  ;
  ;Get recipient user
  ;
@@ -23,14 +31,16 @@ XQSMDCPY ;ISC-SF/JLI - COPY ONE USER (PRIM & SEC MENUS, KEYS, FILES) TO ANOTHER 
 DQ ;
  F XQI=0:0 S XQI=$O(XUSR(XQI)) Q:XQI'>0  D COPY1
 EXIT ;
- K %,D,D0,DA,DI,DISYS,DIC,DIE,DR,X,XQBOSS,XQI,XQJ,XQUSEK,XQUSR1,XUSR,XQUSEC,XQUSRPM,Y
+ K %,D,D0,DA,DI,DISYS,DIC,DIE,DR,X,XQBOSS,XQI,XQJ,XQUSEK,XQUSR1,XUSR,XQUSEC,XQUSRPM,Y,I
  Q
  ;
 COPY1 I XQUSRPM>0 S DIE=200,DA=XQI,DR="201///"_$P(^DIC(19,XQUSRPM,0),U) D ^DIE
  S:'$D(^VA(200,XQI,203,0)) ^(0)="^200.03P" S DLAYGO=200
  F XQJ=0:0 S XQJ=$O(XQUSEC(XQJ)) Q:XQJ'>0  S DIC="^VA(200,"_XQI_",203,",DA(1)=XQI,DIC("P")=200.03,X=$P(^DIC(19,XQJ,0),U),DIC(0)="ML" D ^DIC I Y>0,'$P(Y,U,3),XQUSEC(XQJ)'="" S DIE=DIC,DIE("P")=200.03,DA=+Y,DR="2///"_XQUSEC(XQJ)_";" D ^DIE
  S:'$D(^VA(200,XQI,51,0)) ^(0)="^200.051P^"
- S (DA,DA(1))=XQI F XQJ=0:0 S XQJ=$O(XQUSEK(XQJ)) Q:XQJ'>0  S DIC="^VA(200,"_XQI_",51,",DIC("P")=200.051,DIC(0)="ML",X=$P(^DIC(19.1,XQUSEK(XQJ),0),U) D ^DIC
+ S (DA,DA(1))=XQI F XQJ=0:0 S XQJ=$O(XQUSEK(XQJ)) Q:XQJ'>0  S DIC="^VA(200,"_XQI_",51,",DIC("P")=200.051,DIC(0)="ML",X=$P(^DIC(19.1,XQUSEK(XQJ),0),U) D
+ .Q:X="PSDRPH"  ; XU*8.0*775
+ .D ^DIC
  K DLAYGO
  Q
  ;

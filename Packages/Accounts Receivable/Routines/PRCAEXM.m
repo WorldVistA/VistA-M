@@ -1,5 +1,5 @@
 PRCAEXM ;SF-ISC/YJK-ADMIN.COST CHARGE TRANSACTION ;15 Nov 2018 13:51:18
- ;;4.5;Accounts Receivable;**67,103,196,301,318,315,332**;Mar 20, 1995;Build 40
+ ;;4.5;Accounts Receivable;**67,103,196,301,318,315,332,381,371**;Mar 20, 1995;Build 29
  ;Per VA Directive 6402, this routine should not be modified.
  ;
  ;Update Int/adm.balance and Administrative cost charge transaction, is called by ^PRCAWO.
@@ -39,7 +39,14 @@ EN11 S PRCATYPE=14,DIE="^PRCA(433,",DA=PRCAEN
  S DR=DR_"26////^S X="_+$P(PRCAIND,U,5)_";"  ;court cost
  S DIC=DIE,PRCA("LOCK")=0 D LOCKF^PRCAWO1 Q:PRCA("LOCK")=1  D ^DIE
  I PRCAEN,$D(^PRCA(430,"TCSP",PRCABN)) D DECADJ^RCTCSPU(PRCABN,PRCAEN) ;prca*4.5*301 add cs 5B flag
- S $P(^PRCA(430,PRCABN,7),U,2,5)="0^0^0^0" D TRANST^PRCAWO1 Q
+ ; PRCA*4.5*371 - Replace direct global sets in 7 node with FileMan calls so indexes get updated
+ N PRCFDA S PRCFDA(430,PRCABN_",",72)=0,PRCFDA(430,PRCABN_",",73)=0,PRCFDA(430,PRCABN_",",74)=0,PRCFDA(430,PRCABN_",",75)=0
+ D FILE^DIE(,"PRCFDA"),TRANST^PRCAWO1
+ ;
+ ;PRCA*4.5*381 - Update Repayment Plan balance, if in a plan.
+ D UPDBAL^RCRPU1(PRCABN,PRCAEN)
+ ;
+ Q
  ;
  ;
 EN2 Q:'$D(PRCAEN)  Q:($P(^PRCA(433,PRCAEN,2),U,8)="")&($P(^PRCA(433,PRCAEN,2),U,7)="")

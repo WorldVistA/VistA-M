@@ -1,0 +1,194 @@
+ECRPROC ;ALB/CMD - Event Code Procedure Used Report ;09/24/21  20:47
+ ;;2.0;EVENT CAPTURE;**156**;8 May 96;Build 28
+ ;
+ ; Reference to $$CPT^ICPTMOD supported by ICR #1995
+ ; Reference to ^TMP supported by SACC 2.3.2.5.1
+ ; Reference to ^%DTC supported by ICR #10000
+ ; Reference to ^%DT supported by ICR #10003
+ ;
+EN ;Main entry point for report
+ N %H,ECRDT
+ S %H=$H D YX^%DTC S ECRDT=Y
+ K ^TMP("ECRPROC",$J),^TMP("ECTMP",$J),^TMP($J,"ECRPT")
+ D PROCESS
+ I ECPTYP="E" D EXPORT K ^TMP("ECRPROC",$J),^TMP("ECTMP",$J) Q
+ D PRINT K ^TMP("ECRPROC",$J),^TMP("ECTMP",$J)
+ Q
+ ;
+PROCESS ;Get data for the report
+ N ECFILE,ECDA,ECC,ECCN,ECCPT,ECD,ECPN
+ N JJ,EC,NLOC,NUNIT,ECDATE,ECP,ECPI,ECPAT,ECPRV,ECPRVN,ECPROVN
+ N EC725,ECPDX,ECL,ECUNIT,ECV,ECMOD,ECMODF
+ S ECSD=ECSD-.0001,ECED=ECED+.9999
+ ;put locations and units into ien subscripted arrays
+ S JJ="" F  S JJ=$O(ECLOC(JJ)) Q:JJ=""  D
+ .S NLOC($P(ECLOC(JJ),"^",1))=$P(ECLOC(JJ),"^",2)
+ S JJ="" F  S JJ=$O(ECDSSU(JJ)) Q:JJ=""  D
+ .S NUNIT($P(ECDSSU(JJ),"^",1))=$P(ECDSSU(JJ),"^",2)
+ K ^TMP("ECRPROC",$J) S ECSD=ECSD-.1,ECED=ECED+.3
+ F  S ECSD=$O(^ECH("AC",ECSD)) Q:'ECSD  Q:ECSD>ECED  D
+ . S ECDA="" F  S ECDA=$O(^ECH("AC",ECSD,ECDA)) Q:'ECDA  D
+ .. I ECU'="ALL",('$D(^ECH("APRV",ECU,ECDA))) Q
+ .. S EC=$G(^ECH(ECDA,0)) D
+ ... S ECPRV=$$GETPPRV^ECPRVMUT(ECDA,.ECPRVN),ECPROVN=$S(ECPRV:"UNKNOWN",1:$P(ECPRVN,"^",2))
+ .. S ECPAT=+$P(EC,"^",2)
+ .. S ECP=$P(EC,U,9)
+ .. Q:'$$ECPCHK(ECP,.ECPROC)  ;Procedure Code check
+ .. S ECL=+$P(EC,U,4),ECUNIT=+$P(EC,U,7),ECC=+$P(EC,U,8),ECV=$P(EC,U,10)
+ .. I '$D(NLOC(ECL))!('$D(NUNIT(ECUNIT))) Q
+ .. S ECCN=$S($P($G(^EC(726,ECC,0)),"^")]"":$P(^(0),"^"),1:"None")
+ .. S ECFILE=$P(ECP,";",2),ECFILE=$S($E(ECFILE)="I":81,$E(ECFILE)="E":725,1:"UNKNOWN")
+ .. S ECCPT=$S(ECFILE=81:+ECP,1:$P($G(^EC(725,+ECP,0)),"^",5)),ECPI=""
+ .. I ECFILE="UNKNOWN" S ECPN="UNKNOWN"
+ .. I ECFILE=725 S EC725=$G(^EC(725,+ECP,0)),ECPN=$P(EC725,"^",2)
+ .. I ECCPT'="" D
+ ... S ECPI=$$CPT^ICPTCOD(ECCPT,$P(ECED,".")),ECCPT=$P(ECPI,U,2)
+ .. I ECFILE=81 S ECPN=$S($P(ECPI,U,3)]"":$P(ECPI,U,3),1:"UNKNOWN"),ECPDX=ECCPT_"~"_"I"_"~"_ECPN_"~"_ECCPT
+ .. I ECFILE=725 S EC725=$G(^EC(725,+ECP,0)),ECPDX=$P(EC725,U,2)_"~"_"E"_"~"_$P(EC725,U)_"~"_ECCPT
+ ..;Get Procedure CPT modifiers
+ .. K ECMOD S ECMODF=0 I $O(^ECH(ECDA,"MOD",0))'="" D
+ ... S ECMODF=$$MOD^ECUTL(ECDA,"I",.ECMOD)
+ .. D SETTMP ;Set TMP global 
+ Q
+ ;
+SETTMP ;Set data into TMP global for print
+ N MOD,MODSTR
+ I '$D(^TMP("ECTMP",$J,NLOC(ECL),NUNIT(ECUNIT),ECPDX,ECPAT)) D  Q  ;New procedure for a patient
+ . ;Track procedure by Provider
+ . S $P(^TMP("ECRPROC",$J,NLOC(ECL),NUNIT(ECUNIT),ECPRVN,ECCN,ECPDX),U)=$P($G(^TMP("ECRPROC",$J,NLOC(ECL),NUNIT(ECUNIT),ECPRVN,ECCN,ECPDX)),U)+1 ;Procedure and Patient count
+ . S $P(^TMP("ECRPROC",$J,NLOC(ECL),NUNIT(ECUNIT),ECPRVN,ECCN,ECPDX),U,2)=$P($G(^TMP("ECRPROC",$J,NLOC(ECL),NUNIT(ECUNIT),ECPRVN,ECCN,ECPDX)),U,2)+ECV ;Volume
+ . ;Add CPT Modifer
+ . I $D(ECMOD) D
+ .. S MOD="" F  S MOD=$O(ECMOD(MOD)) Q:MOD=""  D
+ ... S MODSTR=ECMOD(MOD)
+ ... S MODSTR="- "_$P(MODSTR,U,2)_" "_$P(MODSTR,U,3)
+ ... S ^TMP("ECRPROC",$J,NLOC(ECL),NUNIT(ECUNIT),ECPRVN,ECCN,ECPDX,"MOD",MODSTR)=$G(^TMP("ECRPROC",$J,NLOC(ECL),NUNIT(ECUNIT),ECPRVN,ECCN,ECPDX,"MOD",MODSTR))+ECV
+ . S ^TMP("ECTMP",$J,NLOC(ECL),NUNIT(ECUNIT),ECPDX,ECPAT,ECPRVN)="" ;track Procedure for a patient in ECTMP
+ .;Set totals for DSS Unit
+ . S $P(^TMP("ECRPROC",$J,NLOC(ECL),NUNIT(ECUNIT),0),U)=$P($G(^TMP("ECRPROC",$J,NLOC(ECL),NUNIT(ECUNIT),0)),U)+1
+ . S $P(^TMP("ECRPROC",$J,NLOC(ECL),NUNIT(ECUNIT),0),U,2)=$P(^TMP("ECRPROC",$J,NLOC(ECL),NUNIT(ECUNIT),0),U,2)+ECV
+ . S $P(^TMP("ECTMP",$J,NLOC(ECL),NUNIT(ECUNIT),ECPDX,0),U)=$P($G(^TMP("ECTMP",$J,NLOC(ECL),NUNIT(ECUNIT),ECPDX,0)),U)+1 ;#Uniques
+ . S $P(^TMP("ECTMP",$J,NLOC(ECL),NUNIT(ECUNIT),ECPDX,0),U,2)=$P(^TMP("ECTMP",$J,NLOC(ECL),NUNIT(ECUNIT),ECPDX,0),U,2)+ECV ;Volume
+ I $D(^TMP("ECTMP",$J,NLOC(ECL),NUNIT(ECUNIT),ECPDX,ECPAT)) D  ;Patient had this procedure
+ . I '$D(^TMP("ECTMP",$J,NLOC(ECL),NUNIT(ECUNIT),ECPDX,ECPAT,ECPRVN)) D  ;Diff Prov same Procedure 
+ .. S $P(^TMP("ECRPROC",$J,NLOC(ECL),NUNIT(ECUNIT),ECPRVN,ECCN,ECPDX),U)=$P($G(^TMP("ECRPROC",$J,NLOC(ECL),NUNIT(ECUNIT),ECPRVN,ECCN,ECPDX)),U)+1 ;Procedure and Patient count
+ .. S $P(^TMP("ECRPROC",$J,NLOC(ECL),NUNIT(ECUNIT),ECPRVN,ECCN,ECPDX),U,2)=$P($G(^TMP("ECRPROC",$J,NLOC(ECL),NUNIT(ECUNIT),ECPRVN,ECCN,ECPDX)),U,2)+ECV ;Volume 
+ . ;Add CPT Modifer
+ . I $D(ECMOD) D
+ .. S MOD="" F  S MOD=$O(ECMOD(MOD)) Q:MOD=""  D
+ ... S MODSTR=ECMOD(MOD)
+ ... S MODSTR="- "_$P(MODSTR,U,2)_" "_$P(MODSTR,U,3)
+ ... S ^TMP("ECRPROC",$J,NLOC(ECL),NUNIT(ECUNIT),ECPRVN,ECCN,ECPDX,"MOD",MODSTR)=$G(^TMP("ECRPROC",$J,NLOC(ECL),NUNIT(ECUNIT),ECPRVN,ECCN,ECPDX,"MOD",MODSTR))+ECV
+ . S ^TMP("ECTMP",$J,NLOC(ECL),NUNIT(ECUNIT),ECPDX,ECPAT,ECPRVN)=""
+ . S $P(^TMP("ECTMP",$J,NLOC(ECL),NUNIT(ECUNIT),ECPDX,0),U,2)=$P(^TMP("ECTMP",$J,NLOC(ECL),NUNIT(ECUNIT),ECPDX,0),U,2)+ECV ;only increment volume for the same patient.
+ . S $P(^TMP("ECRPROC",$J,NLOC(ECL),NUNIT(ECUNIT),0),U,2)=$P(^TMP("ECRPROC",$J,NLOC(ECL),NUNIT(ECUNIT),0),U,2)+ECV
+ Q
+ ;
+EXPORT ;Convert data to exportable format
+ N ECL,ECDSS,ECU,ECCAT,ECPRC,ECCPT,PROVOL,PRVUNIQ,VOL,UNIQUE,PCODE,PCNAM,PCPT,CNT
+ N ECDUNIT,ECUN,MOD,SUB,MODAMT
+ K ^TMP($J,"ECRPT")
+ S CNT=1,^TMP($J,"ECRPT",CNT)="LOCATION^DSS UNIT^CATEGORY^PROVIDER^CPT CODE^CPT MOD #1 (VOL)^CPT MOD #2 (VOL)^CPT MOD #3 (VOL)^PROCEDURE CODE^PROCEDURE NAME^NUMBER UNIQUES^PROCEDURE QUANTITY"
+ S ECLOC="" F  S ECLOC=$O(^TMP("ECRPROC",$J,ECLOC)) Q:ECLOC=""  D
+ .S ECDUNIT="" F  S ECDUNIT=$O(^TMP("ECRPROC",$J,ECLOC,ECDUNIT)) Q:ECDUNIT=""  D
+ ..S ECUN=0 F  S ECUN=$O(^TMP("ECRPROC",$J,ECLOC,ECDUNIT,ECUN)) Q:ECUN=""  D
+ ...S ECCAT="" F  S ECCAT=$O(^TMP("ECRPROC",$J,ECLOC,ECDUNIT,ECUN,ECCAT)) Q:ECCAT=""  D
+ ....S (PROVOL,PRVUNIQ)=0
+ ....S ECPRC="" F  S ECPRC=$O(^TMP("ECRPROC",$J,ECLOC,ECDUNIT,ECUN,ECCAT,ECPRC)) Q:ECPRC=""  D
+ .....S DATA=^TMP("ECRPROC",$J,ECLOC,ECDUNIT,ECUN,ECCAT,ECPRC)
+ .....S UNIQUE=$P(DATA,U),VOL=$P(DATA,U,2)
+ .....S PROVOL=PROVOL+VOL,PRVUNIQ=PRVUNIQ+UNIQUE
+ .....S PCODE=$P(ECPRC,"~"),PCNAM=$P(ECPRC,"~",3),PCPT=$P(ECPRC,"~",4)
+ .....S CNT=CNT+1,^TMP($J,"ECRPT",CNT)=ECLOC_U_ECDUNIT_U_ECCAT_U_$P(ECUN,U,2)_U_PCPT ;_U_PCODE_U_PCNAM_U_PRVUNIQ_U_PROVOL
+ .....S SUB=0,MODCNT=0 F  S:SUB'="" SUB=$O(^TMP("ECRPROC",$J,ECLOC,ECDUNIT,ECUN,ECCAT,ECPRC,"MOD",SUB)) Q:MODCNT=3  D  S ^TMP($J,"ECRPT",CNT)=^TMP($J,"ECRPT",CNT)_U_MOD,MODCNT=MODCNT+1
+ ......S MOD="" I SUB="" Q
+ ......S MODAMT=^TMP("ECRPROC",$J,ECLOC,ECDUNIT,ECUN,ECCAT,ECPRC,"MOD",SUB)
+ ......S MOD=SUB_"("_MODAMT_")"
+ .....S ^TMP($J,"ECRPT",CNT)=^TMP($J,"ECRPT",CNT)_U_PCODE_U_PCNAM_U_PRVUNIQ_U_PROVOL
+ Q
+ ;
+PRINT ;output report
+ N ECSD,ECED,ECLOC,ECUNIT,ECPROV,ECCAT,ECPRC,ECPROVN,ECPRCN,ECCPT,%
+ N DASH,DATA,PRNTDT,DSSTOT,PAGE,UNIQUES,VOL,Y,PRNDT,PROVOL,PROVUNIQ,PCODE,PCPT,PCNAM,UNIQ
+ S PAGE=0 S $P(DASH,"-",132)=""
+ U IO
+ D NOW^%DTC S Y=$E(%,1,12) D DD^%DT S PRNTDT=Y
+ S ECSD=$P(ECDATE,"^"),ECED=$P(ECDATE,"^",2)
+ I '$D(^TMP("ECRPROC",$J)) D HDR W !!,?12,"No data to report for the date range selected.",!! G EXIT
+ D HDR
+ S ECLOC="" F  S ECLOC=$O(^TMP("ECRPROC",$J,ECLOC)) Q:ECLOC=""  D
+ . W !!,"Location: "_ECLOC
+ . S ECUNIT="" F  S ECUNIT=$O(^TMP("ECRPROC",$J,ECLOC,ECUNIT)) Q:ECUNIT=""  D
+ .. W !,"DSS Unit: "_ECUNIT
+ .. S DSSTOT=^TMP("ECRPROC",$J,ECLOC,ECUNIT,0)
+ .. ;D HDR
+ .. S ECPROV="" F  S ECPROV=$O(^TMP("ECRPROC",$J,ECLOC,ECUNIT,ECPROV)) Q:ECPROV=""  D
+ ... S (PROVOL,PROVUNIQ)=0
+ ... S ECCAT="" F  S ECCAT=$O(^TMP("ECRPROC",$J,ECLOC,ECUNIT,ECPROV,ECCAT)) Q:ECCAT=""  D
+ .... S ECPROVN=$P(ECPROV,U,2)
+ .... W !!,ECPROVN,!,?3,ECCAT,!
+ .... S ECPRC="" F  S ECPRC=$O(^TMP("ECRPROC",$J,ECLOC,ECUNIT,ECPROV,ECCAT,ECPRC)) Q:ECPRC=""  D
+ ..... S DATA=^TMP("ECRPROC",$J,ECLOC,ECUNIT,ECPROV,ECCAT,ECPRC)
+ ..... S VOL=$P(DATA,U,2),UNIQ=$P(DATA,U)
+ ..... S PCODE=$P(ECPRC,"~"),PCNAM=$P(ECPRC,"~",3),PCPT=$P(ECPRC,"~",4)
+ ..... S ECCPT=$P(ECPRC,"~",4),ECPRCN=$P(ECPRC,"~",3)
+ ..... S PROVOL=PROVOL+VOL,PROVUNIQ=PROVUNIQ+UNIQ
+ ..... W !,?6,$J(PCPT_" ",6),$J(PCODE_" ",6),?18,$E(PCNAM,1,40),?70,$J(UNIQ,6),?95,$J(VOL,6)
+ ..... D PRTMOD ;PRint CPT Modifier
+ ..... I ($Y+6)>IOSL D PAGE
+ .... D TOTPRV
+ .. D TOTDSS,FOOTER
+ Q
+ ;
+PAGE ; end of page
+ D:$D(PAGE) FOOTER
+ Q
+ ;
+TOTPRV ; Total line for Provider
+ W !,?70,"--------",?95,"--------",!,"Totals for ",ECPROVN,?70,$J(PROVUNIQ,6),?95,$J(PROVOL,6),!
+ Q
+TOTDSS ; Total line for DSS UNIT
+ W !!,?70,"--------",?95,"--------",!,?70,"--------",?95,"--------"
+ W !,"Grand Totals for ",ECUNIT,?70,$J($P(DSSTOT,U),6),?95,$J($P(DSSTOT,U,2),6)
+ W !
+ Q
+HDR ; print heading
+ W @IOF W:$G(PAGE) !
+ S PAGE=$G(PAGE)+1
+ W:$Y @IOF W !?49,"EVENT CAPTURE PROCEDURE SUMMARY REPORT",?122,"Page:",PAGE,!,?49,"FROM "_$P(ECDATE,"^")_"  TO "_$P(ECDATE,"^",2),!,?49,"Run Date : ",ECRDT
+ W !!?3,"Category",!,?6,"CPT",?12,"Proc",?18,"Procedure Name" ;112
+ W ?70,"# UNIQUES",?95,"Volume*"
+ W !?6,"Code",?12,"Code",!?10,"CPT Modifier (volume)",!
+ W DASH
+ I '$D(^TMP("ECRPROC",$J)) Q
+ ;W !!,"Location: "_ECLOC,!,"DSS Unit: "_ECUNIT
+ Q
+ ;
+FOOTER ;print page footer
+ W !!?4,"*Volume totals may represent days, minutes, numbers of procedures"
+ W " and/or a combination of these."
+ W !?4,"UNIQUES totals may present the number of times a provider has used the given procedure code on a patient"
+ W !?4,"during the selected time period.  The Grand Total number of UNIQUES may not equal the sum of UNIQUES, as a "
+ W !?4,"patient may have been seen by more than one Provider."
+ Q
+ ;
+PRTMOD ;Print CPT Modifier
+ N CPTMOD,MODSTR
+ I $O(^TMP("ECRPROC",$J,ECLOC,ECUNIT,ECPROV,ECCAT,ECPRC,"MOD",""))="" Q
+ S MODSTR=""
+ F  S MODSTR=$O(^TMP("ECRPROC",$J,ECLOC,ECUNIT,ECPROV,ECCAT,ECPRC,"MOD",MODSTR)) Q:MODSTR=""  D
+ . W !?10,MODSTR_" ("_^TMP("ECRPROC",$J,ECLOC,ECUNIT,ECPROV,ECCAT,ECPRC,"MOD",MODSTR)_")"
+ . I ($Y+6)>IOSL D PAGE
+ Q
+ ;
+ECPCHK(PROC,ECPROC) ;Procedure Code check
+ N PRO,PX
+ I PROC["EC" D
+ .S PROC=$G(^EC(725,$P(PROC,";"),0)),PX=$P(PROC,U,2)_"~"_$P(PROC,U)
+ E  S PROC=$$CPT^ICPTCOD($P(PROC,";")) S PX=$P(PROC,U,2)_"~"_$P(PROC,U,3)
+ I '$D(ECPROC($P(PX,"~"))) Q 0
+ Q 1
+ ;
+EXIT ;common exit point
+ K ^TMP("ECRPROC",$J),^TMP("ECTMP",$J)
+ Q

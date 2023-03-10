@@ -1,122 +1,132 @@
-IBDEI0RR ; ; 04-FEB-2020
- ;;3.0;IB ENCOUNTER FORM IMP/EXP;;FEB 04, 2020
+IBDEI0RR ; ; 01-FEB-2022
+ ;;3.0;IB ENCOUNTER FORM IMP/EXP;;FEB 01, 2022
  Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,999) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
- ;;^UTILITY(U,$J,358.3,12383,0)
- ;;=S61.307A^^80^778^19
- ;;^UTILITY(U,$J,358.3,12383,1,0)
+ ;;^UTILITY(U,$J,358.3,12495,0)
+ ;;=R39.2^^49^603^26
+ ;;^UTILITY(U,$J,358.3,12495,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,12383,1,3,0)
- ;;=3^Open Wound of Left Little Finger w/ Nail Damage,Init Encntr
- ;;^UTILITY(U,$J,358.3,12383,1,4,0)
- ;;=4^S61.307A
- ;;^UTILITY(U,$J,358.3,12383,2)
- ;;=^5135744
- ;;^UTILITY(U,$J,358.3,12384,0)
- ;;=S71.102A^^80^778^27
- ;;^UTILITY(U,$J,358.3,12384,1,0)
+ ;;^UTILITY(U,$J,358.3,12495,1,3,0)
+ ;;=3^Extrarenal Uremia
+ ;;^UTILITY(U,$J,358.3,12495,1,4,0)
+ ;;=4^R39.2
+ ;;^UTILITY(U,$J,358.3,12495,2)
+ ;;=^5019348
+ ;;^UTILITY(U,$J,358.3,12496,0)
+ ;;=R30.1^^49^603^57
+ ;;^UTILITY(U,$J,358.3,12496,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,12384,1,3,0)
- ;;=3^Open Wound of Left Thigh,Init Encntr
- ;;^UTILITY(U,$J,358.3,12384,1,4,0)
- ;;=4^S71.102A
- ;;^UTILITY(U,$J,358.3,12384,2)
- ;;=^5037011
- ;;^UTILITY(U,$J,358.3,12385,0)
- ;;=S71.101A^^80^778^58
- ;;^UTILITY(U,$J,358.3,12385,1,0)
+ ;;^UTILITY(U,$J,358.3,12496,1,3,0)
+ ;;=3^Vesical Tenesmus
+ ;;^UTILITY(U,$J,358.3,12496,1,4,0)
+ ;;=4^R30.1
+ ;;^UTILITY(U,$J,358.3,12496,2)
+ ;;=^5019323
+ ;;^UTILITY(U,$J,358.3,12497,0)
+ ;;=Z85.46^^49^603^28
+ ;;^UTILITY(U,$J,358.3,12497,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,12385,1,3,0)
- ;;=3^Open Wound of Right Thigh,Init Encntr
- ;;^UTILITY(U,$J,358.3,12385,1,4,0)
- ;;=4^S71.101A
- ;;^UTILITY(U,$J,358.3,12385,2)
- ;;=^5037008
- ;;^UTILITY(U,$J,358.3,12386,0)
- ;;=S71.002A^^80^778^13
- ;;^UTILITY(U,$J,358.3,12386,1,0)
+ ;;^UTILITY(U,$J,358.3,12497,1,3,0)
+ ;;=3^Hx of Malig Neop of Prostate
+ ;;^UTILITY(U,$J,358.3,12497,1,4,0)
+ ;;=4^Z85.46
+ ;;^UTILITY(U,$J,358.3,12497,2)
+ ;;=^5063423
+ ;;^UTILITY(U,$J,358.3,12498,0)
+ ;;=N18.1^^49^603^7
+ ;;^UTILITY(U,$J,358.3,12498,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,12386,1,3,0)
- ;;=3^Open Wound of Left Hip,Init Encntr
- ;;^UTILITY(U,$J,358.3,12386,1,4,0)
- ;;=4^S71.002A
- ;;^UTILITY(U,$J,358.3,12386,2)
- ;;=^5036972
- ;;^UTILITY(U,$J,358.3,12387,0)
- ;;=S71.001A^^80^778^44
- ;;^UTILITY(U,$J,358.3,12387,1,0)
+ ;;^UTILITY(U,$J,358.3,12498,1,3,0)
+ ;;=3^Chr Kidney Disease,Stage 1
+ ;;^UTILITY(U,$J,358.3,12498,1,4,0)
+ ;;=4^N18.1
+ ;;^UTILITY(U,$J,358.3,12498,2)
+ ;;=^5015602
+ ;;^UTILITY(U,$J,358.3,12499,0)
+ ;;=N18.2^^49^603^8
+ ;;^UTILITY(U,$J,358.3,12499,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,12387,1,3,0)
- ;;=3^Open Wound of Right Hip,Init Encntr
- ;;^UTILITY(U,$J,358.3,12387,1,4,0)
- ;;=4^S71.001A
- ;;^UTILITY(U,$J,358.3,12387,2)
- ;;=^5036969
- ;;^UTILITY(U,$J,358.3,12388,0)
- ;;=S91.002A^^80^778^5
- ;;^UTILITY(U,$J,358.3,12388,1,0)
+ ;;^UTILITY(U,$J,358.3,12499,1,3,0)
+ ;;=3^Chr Kidney Disease,Stage 2
+ ;;^UTILITY(U,$J,358.3,12499,1,4,0)
+ ;;=4^N18.2
+ ;;^UTILITY(U,$J,358.3,12499,2)
+ ;;=^5015603
+ ;;^UTILITY(U,$J,358.3,12500,0)
+ ;;=N18.4^^49^603^12
+ ;;^UTILITY(U,$J,358.3,12500,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,12388,1,3,0)
- ;;=3^Open Wound of Left Ankle,Init Encntr
- ;;^UTILITY(U,$J,358.3,12388,1,4,0)
- ;;=4^S91.002A
- ;;^UTILITY(U,$J,358.3,12388,2)
- ;;=^5044132
- ;;^UTILITY(U,$J,358.3,12389,0)
- ;;=S91.001A^^80^778^36
- ;;^UTILITY(U,$J,358.3,12389,1,0)
+ ;;^UTILITY(U,$J,358.3,12500,1,3,0)
+ ;;=3^Chr Kidney Disease,Stage 4
+ ;;^UTILITY(U,$J,358.3,12500,1,4,0)
+ ;;=4^N18.4
+ ;;^UTILITY(U,$J,358.3,12500,2)
+ ;;=^5015605
+ ;;^UTILITY(U,$J,358.3,12501,0)
+ ;;=N18.5^^49^603^13
+ ;;^UTILITY(U,$J,358.3,12501,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,12389,1,3,0)
- ;;=3^Open Wound of Right Ankle,Init Encntr
- ;;^UTILITY(U,$J,358.3,12389,1,4,0)
- ;;=4^S91.001A
- ;;^UTILITY(U,$J,358.3,12389,2)
- ;;=^5044129
- ;;^UTILITY(U,$J,358.3,12390,0)
- ;;=S81.802A^^80^778^21
- ;;^UTILITY(U,$J,358.3,12390,1,0)
+ ;;^UTILITY(U,$J,358.3,12501,1,3,0)
+ ;;=3^Chr Kidney Disease,Stage 5
+ ;;^UTILITY(U,$J,358.3,12501,1,4,0)
+ ;;=4^N18.5
+ ;;^UTILITY(U,$J,358.3,12501,2)
+ ;;=^5015606
+ ;;^UTILITY(U,$J,358.3,12502,0)
+ ;;=N18.6^^49^603^17
+ ;;^UTILITY(U,$J,358.3,12502,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,12390,1,3,0)
- ;;=3^Open Wound of Left Lower Leg,Init Encntr
- ;;^UTILITY(U,$J,358.3,12390,1,4,0)
- ;;=4^S81.802A
- ;;^UTILITY(U,$J,358.3,12390,2)
- ;;=^5040068
- ;;^UTILITY(U,$J,358.3,12391,0)
- ;;=S81.801A^^80^778^52
- ;;^UTILITY(U,$J,358.3,12391,1,0)
+ ;;^UTILITY(U,$J,358.3,12502,1,3,0)
+ ;;=3^ESRD
+ ;;^UTILITY(U,$J,358.3,12502,1,4,0)
+ ;;=4^N18.6
+ ;;^UTILITY(U,$J,358.3,12502,2)
+ ;;=^303986
+ ;;^UTILITY(U,$J,358.3,12503,0)
+ ;;=N18.9^^49^603^14
+ ;;^UTILITY(U,$J,358.3,12503,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,12391,1,3,0)
- ;;=3^Open Wound of Right Lower Leg,Init Encntr
- ;;^UTILITY(U,$J,358.3,12391,1,4,0)
- ;;=4^S81.801A
- ;;^UTILITY(U,$J,358.3,12391,2)
- ;;=^5040065
- ;;^UTILITY(U,$J,358.3,12392,0)
- ;;=S81.002A^^80^778^16
- ;;^UTILITY(U,$J,358.3,12392,1,0)
+ ;;^UTILITY(U,$J,358.3,12503,1,3,0)
+ ;;=3^Chr Kidney Disease,Unspec
+ ;;^UTILITY(U,$J,358.3,12503,1,4,0)
+ ;;=4^N18.9
+ ;;^UTILITY(U,$J,358.3,12503,2)
+ ;;=^332812
+ ;;^UTILITY(U,$J,358.3,12504,0)
+ ;;=N17.8^^49^603^2
+ ;;^UTILITY(U,$J,358.3,12504,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,12392,1,3,0)
- ;;=3^Open Wound of Left Knee,Init Encntr
- ;;^UTILITY(U,$J,358.3,12392,1,4,0)
- ;;=4^S81.002A
- ;;^UTILITY(U,$J,358.3,12392,2)
- ;;=^5040029
- ;;^UTILITY(U,$J,358.3,12393,0)
- ;;=S81.001A^^80^778^47
- ;;^UTILITY(U,$J,358.3,12393,1,0)
+ ;;^UTILITY(U,$J,358.3,12504,1,3,0)
+ ;;=3^Acute Kidney Failure,Other
+ ;;^UTILITY(U,$J,358.3,12504,1,4,0)
+ ;;=4^N17.8
+ ;;^UTILITY(U,$J,358.3,12504,2)
+ ;;=^5015601
+ ;;^UTILITY(U,$J,358.3,12505,0)
+ ;;=N25.89^^49^603^29
+ ;;^UTILITY(U,$J,358.3,12505,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,12393,1,3,0)
- ;;=3^Open Wound of Right Knee,Init Encntr
- ;;^UTILITY(U,$J,358.3,12393,1,4,0)
- ;;=4^S81.001A
- ;;^UTILITY(U,$J,358.3,12393,2)
- ;;=^5040026
- ;;^UTILITY(U,$J,358.3,12394,0)
- ;;=S91.301A^^80^778^40
- ;;^UTILITY(U,$J,358.3,12394,1,0)
+ ;;^UTILITY(U,$J,358.3,12505,1,3,0)
+ ;;=3^Impaired Renal Tubular Function Disorder NEC
+ ;;^UTILITY(U,$J,358.3,12505,1,4,0)
+ ;;=4^N25.89
+ ;;^UTILITY(U,$J,358.3,12505,2)
+ ;;=^5015618
+ ;;^UTILITY(U,$J,358.3,12506,0)
+ ;;=N27.1^^49^603^54
+ ;;^UTILITY(U,$J,358.3,12506,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,12394,1,3,0)
- ;;=3^Open Wound of Right Foot,Init Encntr
- ;;^UTILITY(U,$J,358.3,12394,1,4,0)
- ;;=4^S91.301A
+ ;;^UTILITY(U,$J,358.3,12506,1,3,0)
+ ;;=3^Small Kidney,Bilateral
+ ;;^UTILITY(U,$J,358.3,12506,1,4,0)
+ ;;=4^N27.1
+ ;;^UTILITY(U,$J,358.3,12506,2)
+ ;;=^5015624
+ ;;^UTILITY(U,$J,358.3,12507,0)
+ ;;=N20.1^^49^603^6
+ ;;^UTILITY(U,$J,358.3,12507,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,12507,1,3,0)
+ ;;=3^Calculus of Ureter
+ ;;^UTILITY(U,$J,358.3,12507,1,4,0)
+ ;;=4^N20.1

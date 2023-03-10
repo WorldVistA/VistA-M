@@ -1,5 +1,5 @@
-WVRPCOR1 ;ISP/RFR - CPRS RPCS CONTINUED ;Sep 11, 2019@09:52
- ;;1.0;WOMEN'S HEALTH;**24**;Sep 30, 1998;Build 582
+WVRPCOR1 ;ISP/RFR - CPRS RPCS CONTINUED ;Oct 19, 2020@14:42
+ ;;1.0;WOMEN'S HEALTH;**24,26**;Sep 30, 1998;Build 624
  Q
 EIE(WVRETURN,WVRECID,WVREASON) ;MARK DATA AS ENTERED IN ERROR
  ;RPC: WVRPCOR EIE
@@ -18,7 +18,7 @@ EIE(WVRETURN,WVRECID,WVREASON) ;MARK DATA AS ENTERED IN ERROR
  I $P($G(^WV(790,$P(WVIENS,",",2),WVNODE,$P(WVIENS,","),0)),U,6) D  Q
  .S WVRETURN=-1_U_"That record is already marked as entered in error. Please refresh the Women's Health panel before continuing."
  I '$D(WVOVRIDE) D  Q:+WVRETURN=-1
- .S WVCUR=+$$GETLREC^WVRPCOR($P(WVIENS,",",2),WVNODE)
+ .S WVCUR=+$$GETLREC^WVUTL11($P(WVIENS,",",2),WVNODE)
  .I 'WVCUR S WVRETURN=-1_U_"There is no current status record. Please refresh the Women's Health panel before continuing." Q
  .I $P(WVIENS,",")'=WVCUR S WVRETURN=-1_U_"A newer status record exists. Please refresh the Women's Health panel before continuing." Q
  S WVFDA(WVFILE,WVIENS,6)="1"

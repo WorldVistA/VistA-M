@@ -1,8 +1,10 @@
 IBCNEUT6 ;DAOU/ESG - IIV MISC. UTILITIES ;14-AUG-2002
- ;;2.0;INTEGRATED BILLING;**184,252,271,566**;21-MAR-94;Build 1
+ ;;2.0;INTEGRATED BILLING;**184,252,271,566,668,687**;21-MAR-94;Build 88
  ;;Per VA Directive 6402, this routine should not be modified.
  ;
  ; Can't be called from the top
+ ;
+ ; IA 10076 - To access ^XUSEC global for security key check
  Q
  ;
 AMCHECK ; This procedure will examine the insurance company names in the 
@@ -42,8 +44,9 @@ AMADD(INSNAME,IBCNEXT1) ; Conditionally add an Auto Match entry based on user in
  NEW D,D0,D1,DA,DB,DC,DDH,DE,DG,DH,DI,DIC,DIE,DIEL,DIFLD,DIG,DIH
  NEW DIK,DILN,DIPA,DISYS,DIV,DK,DL,DM,DN,DOV,DP,DQ,DR,DU,DV,DZ
  ;
- ; First, check security key to see if user is allowed to do this
- I '$$KCHK^XUSRB("IBCNE EIV MAINTENANCE") G AMADDX
+ ;/vd-IB*2.0*687 - Changed the following line to address the renaming of the Security Key.
+ ;I '$$KCHK^XUSRB("IBCNE EIV MAINTENANCE") G AMADDX
+ I '$D(^XUSEC("IBCNE EIV IIU MAINTENANCE",DUZ)) G AMADDX  ;IA 10076
  ;
  S IBCNEXT1=$$UP^XLFSTR(IBCNEXT1)               ; all uppercase
  S IBCNEXT1=$$TRIM^XLFSTR(IBCNEXT1)             ; lead/trail spaces
@@ -107,6 +110,9 @@ PYRFLTR() ;
  ; lookups for most popular list.  This logic is used in the
  ; DIC("S") definition for the lookup
  ;
+ ;IB*2.0*668/TAZ - This functionality is no longer used and will be removed with a future User Story.
+ Q 0
+ ;
  NEW IBDATA,IBPIEN,IBPNM,IBAIEN,IBADATA,OK
  ;
  S OK=1
@@ -165,4 +171,14 @@ DSPLINE() ;
  S DISPSTR=DISPSTR_"  Local: "_$$FO^IBCNEUT1($S('$P(IBADATA,U,3):"Inactive",1:"Active"),8)
 EXDSP ;
  Q DISPSTR
+ ;
+ ;/vd-IB*2.0*687 - Added the following module of code for use by input templates
+CKAPS(IBPYR) ; Utility allow only for Payers that are active and have a valid IIV
+ ;             and/or IIU Payer application.
+ ; OUTPUT:
+ ;     0 = Not a valid Payer
+ ;     1 = Valid Payer (Active and has either an IIV or IIU Payer Application)
+ Q:'IBPYR 0
+ I '$$PYRAPP^IBCNEUT5("EIV",+IBPYR),'$$PYRAPP^IBCNEUT5("IIU",+IBPYR) Q 0   ; Invalid Payer Application.
+ Q 1
  ;

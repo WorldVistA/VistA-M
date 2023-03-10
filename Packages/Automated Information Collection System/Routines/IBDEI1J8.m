@@ -1,130 +1,124 @@
-IBDEI1J8 ; ; 04-FEB-2020
- ;;3.0;IB ENCOUNTER FORM IMP/EXP;;FEB 04, 2020
+IBDEI1J8 ; ; 01-FEB-2022
+ ;;3.0;IB ENCOUNTER FORM IMP/EXP;;FEB 01, 2022
  Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,999) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
- ;;^UTILITY(U,$J,358.3,24495,1,4,0)
- ;;=4^B17.8
- ;;^UTILITY(U,$J,358.3,24495,2)
- ;;=^5000544
- ;;^UTILITY(U,$J,358.3,24496,0)
- ;;=B18.9^^107^1207^71
- ;;^UTILITY(U,$J,358.3,24496,1,0)
+ ;;^UTILITY(U,$J,358.3,24802,1,3,0)
+ ;;=3^Phlebitis & Thrombophlebitis Deep Vessels Left Lower Extremity
+ ;;^UTILITY(U,$J,358.3,24802,1,4,0)
+ ;;=4^I80.202
+ ;;^UTILITY(U,$J,358.3,24802,2)
+ ;;=^5007829
+ ;;^UTILITY(U,$J,358.3,24803,0)
+ ;;=I80.203^^85^1091^45
+ ;;^UTILITY(U,$J,358.3,24803,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,24496,1,3,0)
- ;;=3^Hepatitis,Chronic Viral Unspec
- ;;^UTILITY(U,$J,358.3,24496,1,4,0)
- ;;=4^B18.9
- ;;^UTILITY(U,$J,358.3,24496,2)
- ;;=^5000550
- ;;^UTILITY(U,$J,358.3,24497,0)
- ;;=B37.81^^107^1207^18
- ;;^UTILITY(U,$J,358.3,24497,1,0)
+ ;;^UTILITY(U,$J,358.3,24803,1,3,0)
+ ;;=3^Phlebitis & Thrombophlebitis Deep Vessels Bilateral Lower Extremity
+ ;;^UTILITY(U,$J,358.3,24803,1,4,0)
+ ;;=4^I80.203
+ ;;^UTILITY(U,$J,358.3,24803,2)
+ ;;=^5007830
+ ;;^UTILITY(U,$J,358.3,24804,0)
+ ;;=K27.9^^85^1091^40
+ ;;^UTILITY(U,$J,358.3,24804,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,24497,1,3,0)
- ;;=3^Candidal Esophagitis
- ;;^UTILITY(U,$J,358.3,24497,1,4,0)
- ;;=4^B37.81
- ;;^UTILITY(U,$J,358.3,24497,2)
- ;;=^5000620
- ;;^UTILITY(U,$J,358.3,24498,0)
- ;;=D12.0^^107^1207^12
- ;;^UTILITY(U,$J,358.3,24498,1,0)
+ ;;^UTILITY(U,$J,358.3,24804,1,3,0)
+ ;;=3^Peptic Ulcer w/o Hemorrhage/Perforation
+ ;;^UTILITY(U,$J,358.3,24804,1,4,0)
+ ;;=4^K27.9
+ ;;^UTILITY(U,$J,358.3,24804,2)
+ ;;=^5008536
+ ;;^UTILITY(U,$J,358.3,24805,0)
+ ;;=G89.29^^85^1091^10
+ ;;^UTILITY(U,$J,358.3,24805,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,24498,1,3,0)
- ;;=3^Benign Neop of Cecum
- ;;^UTILITY(U,$J,358.3,24498,1,4,0)
- ;;=4^D12.0
- ;;^UTILITY(U,$J,358.3,24498,2)
- ;;=^5001963
- ;;^UTILITY(U,$J,358.3,24499,0)
- ;;=D12.6^^107^1207^13
- ;;^UTILITY(U,$J,358.3,24499,1,0)
+ ;;^UTILITY(U,$J,358.3,24805,1,3,0)
+ ;;=3^Pain,Chronic,Other
+ ;;^UTILITY(U,$J,358.3,24805,1,4,0)
+ ;;=4^G89.29
+ ;;^UTILITY(U,$J,358.3,24805,2)
+ ;;=^5004158
+ ;;^UTILITY(U,$J,358.3,24806,0)
+ ;;=G89.21^^85^1091^9
+ ;;^UTILITY(U,$J,358.3,24806,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,24499,1,3,0)
- ;;=3^Benign Neop of Colon,Unspec
- ;;^UTILITY(U,$J,358.3,24499,1,4,0)
- ;;=4^D12.6
- ;;^UTILITY(U,$J,358.3,24499,2)
- ;;=^5001969
- ;;^UTILITY(U,$J,358.3,24500,0)
- ;;=D12.1^^107^1207^10
- ;;^UTILITY(U,$J,358.3,24500,1,0)
+ ;;^UTILITY(U,$J,358.3,24806,1,3,0)
+ ;;=3^Pain,Chronic d/t Trauma
+ ;;^UTILITY(U,$J,358.3,24806,1,4,0)
+ ;;=4^G89.21
+ ;;^UTILITY(U,$J,358.3,24806,2)
+ ;;=^5004155
+ ;;^UTILITY(U,$J,358.3,24807,0)
+ ;;=G89.22^^85^1091^11
+ ;;^UTILITY(U,$J,358.3,24807,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,24500,1,3,0)
- ;;=3^Benign Neop of Appendix
- ;;^UTILITY(U,$J,358.3,24500,1,4,0)
- ;;=4^D12.1
- ;;^UTILITY(U,$J,358.3,24500,2)
- ;;=^5001964
- ;;^UTILITY(U,$J,358.3,24501,0)
- ;;=K63.5^^107^1207^83
- ;;^UTILITY(U,$J,358.3,24501,1,0)
+ ;;^UTILITY(U,$J,358.3,24807,1,3,0)
+ ;;=3^Pain,Chronic,Post-Thoracotomy
+ ;;^UTILITY(U,$J,358.3,24807,1,4,0)
+ ;;=4^G89.22
+ ;;^UTILITY(U,$J,358.3,24807,2)
+ ;;=^5004156
+ ;;^UTILITY(U,$J,358.3,24808,0)
+ ;;=G89.28^^85^1091^8
+ ;;^UTILITY(U,$J,358.3,24808,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,24501,1,3,0)
- ;;=3^Polyp of Colon
- ;;^UTILITY(U,$J,358.3,24501,1,4,0)
- ;;=4^K63.5
- ;;^UTILITY(U,$J,358.3,24501,2)
- ;;=^5008765
- ;;^UTILITY(U,$J,358.3,24502,0)
- ;;=D12.3^^107^1207^17
- ;;^UTILITY(U,$J,358.3,24502,1,0)
+ ;;^UTILITY(U,$J,358.3,24808,1,3,0)
+ ;;=3^Pain,Chronic Postprocedural Pain
+ ;;^UTILITY(U,$J,358.3,24808,1,4,0)
+ ;;=4^G89.28
+ ;;^UTILITY(U,$J,358.3,24808,2)
+ ;;=^5004157
+ ;;^UTILITY(U,$J,358.3,24809,0)
+ ;;=K85.90^^85^1091^38
+ ;;^UTILITY(U,$J,358.3,24809,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,24502,1,3,0)
- ;;=3^Benign Neop of Transverse Colon
- ;;^UTILITY(U,$J,358.3,24502,1,4,0)
- ;;=4^D12.3
- ;;^UTILITY(U,$J,358.3,24502,2)
- ;;=^5001966
- ;;^UTILITY(U,$J,358.3,24503,0)
- ;;=D12.2^^107^1207^11
- ;;^UTILITY(U,$J,358.3,24503,1,0)
+ ;;^UTILITY(U,$J,358.3,24809,1,3,0)
+ ;;=3^Pancreatitis,Acute w/o Necrosis/Infection,Unspec
+ ;;^UTILITY(U,$J,358.3,24809,1,4,0)
+ ;;=4^K85.90
+ ;;^UTILITY(U,$J,358.3,24809,2)
+ ;;=^5138761
+ ;;^UTILITY(U,$J,358.3,24810,0)
+ ;;=K85.91^^85^1091^37
+ ;;^UTILITY(U,$J,358.3,24810,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,24503,1,3,0)
- ;;=3^Benign Neop of Ascending Colon
- ;;^UTILITY(U,$J,358.3,24503,1,4,0)
- ;;=4^D12.2
- ;;^UTILITY(U,$J,358.3,24503,2)
- ;;=^5001965
- ;;^UTILITY(U,$J,358.3,24504,0)
- ;;=D12.5^^107^1207^16
- ;;^UTILITY(U,$J,358.3,24504,1,0)
+ ;;^UTILITY(U,$J,358.3,24810,1,3,0)
+ ;;=3^Pancreatitis,Acute w/ Uninfected Necrosis,Unspec
+ ;;^UTILITY(U,$J,358.3,24810,1,4,0)
+ ;;=4^K85.91
+ ;;^UTILITY(U,$J,358.3,24810,2)
+ ;;=^5138762
+ ;;^UTILITY(U,$J,358.3,24811,0)
+ ;;=K85.92^^85^1091^36
+ ;;^UTILITY(U,$J,358.3,24811,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,24504,1,3,0)
- ;;=3^Benign Neop of Sigmoid Colon
- ;;^UTILITY(U,$J,358.3,24504,1,4,0)
- ;;=4^D12.5
- ;;^UTILITY(U,$J,358.3,24504,2)
- ;;=^5001968
- ;;^UTILITY(U,$J,358.3,24505,0)
- ;;=D12.4^^107^1207^14
- ;;^UTILITY(U,$J,358.3,24505,1,0)
+ ;;^UTILITY(U,$J,358.3,24811,1,3,0)
+ ;;=3^Pancreatitis,Acute w/ Infected Necrosis,Unspec
+ ;;^UTILITY(U,$J,358.3,24811,1,4,0)
+ ;;=4^K85.92
+ ;;^UTILITY(U,$J,358.3,24811,2)
+ ;;=^5138763
+ ;;^UTILITY(U,$J,358.3,24812,0)
+ ;;=Z98.890^^85^1091^52
+ ;;^UTILITY(U,$J,358.3,24812,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,24505,1,3,0)
- ;;=3^Benign Neop of Descending Colon
- ;;^UTILITY(U,$J,358.3,24505,1,4,0)
- ;;=4^D12.4
- ;;^UTILITY(U,$J,358.3,24505,2)
- ;;=^5001967
- ;;^UTILITY(U,$J,358.3,24506,0)
- ;;=D73.2^^107^1207^19
- ;;^UTILITY(U,$J,358.3,24506,1,0)
+ ;;^UTILITY(U,$J,358.3,24812,1,3,0)
+ ;;=3^Postprocedural States,Other Specified
+ ;;^UTILITY(U,$J,358.3,24812,1,4,0)
+ ;;=4^Z98.890
+ ;;^UTILITY(U,$J,358.3,24812,2)
+ ;;=^5063754
+ ;;^UTILITY(U,$J,358.3,24813,0)
+ ;;=R10.9^^85^1091^4
+ ;;^UTILITY(U,$J,358.3,24813,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,24506,1,3,0)
- ;;=3^Congestive Splenomegaly,Chronic
- ;;^UTILITY(U,$J,358.3,24506,1,4,0)
- ;;=4^D73.2
- ;;^UTILITY(U,$J,358.3,24506,2)
- ;;=^268000
- ;;^UTILITY(U,$J,358.3,24507,0)
- ;;=I85.00^^107^1207^53
- ;;^UTILITY(U,$J,358.3,24507,1,0)
+ ;;^UTILITY(U,$J,358.3,24813,1,3,0)
+ ;;=3^Pain,Abdominal,Unspec
+ ;;^UTILITY(U,$J,358.3,24813,1,4,0)
+ ;;=4^R10.9
+ ;;^UTILITY(U,$J,358.3,24813,2)
+ ;;=^5019230
+ ;;^UTILITY(U,$J,358.3,24814,0)
+ ;;=M79.602^^85^1091^13
+ ;;^UTILITY(U,$J,358.3,24814,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,24507,1,3,0)
- ;;=3^Esophageal Varices w/o Bleeding
- ;;^UTILITY(U,$J,358.3,24507,1,4,0)
- ;;=4^I85.00
- ;;^UTILITY(U,$J,358.3,24507,2)
- ;;=^5008023
- ;;^UTILITY(U,$J,358.3,24508,0)
- ;;=K20.9^^107^1207^54

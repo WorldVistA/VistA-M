@@ -1,5 +1,5 @@
-MAGDQR02 ;WOIFO/EdM,MLH,JSL,BT,DSB - Imaging RPCs for Query/Retrieve ; 09 Sept 2019 4:11 PM
- ;;3.0;IMAGING;**51,54,66,118,239**Sept 09,2019;Build ;Build 18
+MAGDQR02 ;WOIFO/EdM,MLH,JSL,BT,DSB,NST - Imaging RPCs for Query/Retrieve ; 22 Jul 2021 4:11 PM
+ ;;3.0;IMAGING;**51,54,66,118,239,301**Sept 09,2019;Build ;Build 18
  ;; Per VHA Directive 2004-038, this routine should not be modified.
  ;; +---------------------------------------------------------------+
  ;; | Property of the US Government.                                |
@@ -88,8 +88,8 @@ QUERY ; --- perform actual query --- Called by TaskMan
  . S V="" F  S V=$O(^TMP("MAG",$J,"QR",3,V)) Q:V=""  D
  . . S I="" F  S I=$O(^DPT("SSN",V,I)) Q:I=""  S ^TMP("MAG",$J,"QR",4,I)="",SSN=1
  . . Q
- . I 'SSN,$$ISIHS^MAGSPID(),REQ(T,P)?1.6N D  Q  ;IHS Health Record No - patient lookup
- . . S V=$$FIND1^DIC(9000001,,"MX",REQ(T,P)) ;IA #447 
+ . I 'SSN,$$ISIHS^MAGSPID(),$TR(REQ(T,P),"*")?1.6N D  Q  ;IHS Health Record No - patient lookup
+ . . S V=$$FIND1^DIC(9000001,,"MX",$TR(REQ(T,P),"*")) ;IA #447 
  . . S:V ^TMP("MAG",$J,"QR",4,V)="",SSN=1
  . . Q
  . Q

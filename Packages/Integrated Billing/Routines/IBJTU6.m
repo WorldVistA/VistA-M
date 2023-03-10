@@ -1,5 +1,5 @@
 IBJTU6 ;ALB/ESG - TPJI UTILITIES/APIs ;9/2/11
- ;;2.0;INTEGRATED BILLING;**452,530**;21-MAR-94;Build 71
+ ;;2.0;INTEGRATED BILLING;**452,530,642**;21-MAR-94;Build 22
  ;;Per VA Directive 6402, this routine should not be modified.
  ;
  Q
@@ -70,4 +70,25 @@ BILLREJ(BILL) ;Is the bill a reject?
  S PTR=0 F  S PTR=$O(^IBM(361,"B",IEN,PTR)) Q:'PTR  D  Q:REJECT
  . S SEV=$$GET1^DIQ(361,PTR_",",.03,"I")
  . I SEV="R" S REJECT=1
+ Q REJECT
+ ;
+ ; Subroutine added for IB*2.0*642
+BILLREJ2(BILL) ;EP
+ ; Does this bill contain rejects with uncompleted reviews?
+ ; Input: BILL - Bill number from #399 - External Value (.01), not IEN
+ ; Returns: 1 - Bill contains rejects with uncompleted reviews, 0 otherwiese
+ ;
+ N IEN,PTR,REJECT,SEV
+ Q:BILL="" 0 ; No bill #
+ S REJECT=0,IEN=$O(^DGCR(399,"B",BILL,""))
+ Q:'IEN 0 ; Invalid bill #
+ Q:'$D(^IBM(361,"B",IEN)) 0 ; No messages in #361
+ S PTR=0
+ F  D  Q:'PTR  Q:REJECT
+ . S PTR=$O(^IBM(361,"B",IEN,PTR))
+ . Q:'PTR
+ . S SEV=$$GET1^DIQ(361,PTR_",",.03,"I")
+ . Q:SEV'="R"
+ . Q:$D(^IBM(361,"ACSA","R",2,PTR))  ; Review is completed
+ . S REJECT=1
  Q REJECT

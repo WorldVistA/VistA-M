@@ -1,136 +1,124 @@
-IBDEI0LB ; ; 04-FEB-2020
- ;;3.0;IB ENCOUNTER FORM IMP/EXP;;FEB 04, 2020
+IBDEI0LB ; ; 01-FEB-2022
+ ;;3.0;IB ENCOUNTER FORM IMP/EXP;;FEB 01, 2022
  Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,999) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
- ;;^UTILITY(U,$J,358.3,9449,1,4,0)
- ;;=4^S02.609A
- ;;^UTILITY(U,$J,358.3,9449,2)
- ;;=^5020372
- ;;^UTILITY(U,$J,358.3,9450,0)
- ;;=S02.2XXA^^72^643^26
- ;;^UTILITY(U,$J,358.3,9450,1,0)
+ ;;^UTILITY(U,$J,358.3,9591,2)
+ ;;=^5043484
+ ;;^UTILITY(U,$J,358.3,9592,0)
+ ;;=S86.212A^^39^414^29
+ ;;^UTILITY(U,$J,358.3,9592,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,9450,1,3,0)
- ;;=3^Closed Fx,Nasal Bones
- ;;^UTILITY(U,$J,358.3,9450,1,4,0)
- ;;=4^S02.2XXA
- ;;^UTILITY(U,$J,358.3,9450,2)
- ;;=^5020306
- ;;^UTILITY(U,$J,358.3,9451,0)
- ;;=R22.1^^72^643^4
- ;;^UTILITY(U,$J,358.3,9451,1,0)
+ ;;^UTILITY(U,$J,358.3,9592,1,3,0)
+ ;;=3^Strain of Left Lower Leg Anterior Muscle/Tendon
+ ;;^UTILITY(U,$J,358.3,9592,1,4,0)
+ ;;=4^S86.212A
+ ;;^UTILITY(U,$J,358.3,9592,2)
+ ;;=^5043487
+ ;;^UTILITY(U,$J,358.3,9593,0)
+ ;;=S86.311A^^39^414^50
+ ;;^UTILITY(U,$J,358.3,9593,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,9451,1,3,0)
- ;;=3^Localized Swelling,Mass and Lump,Neck
- ;;^UTILITY(U,$J,358.3,9451,1,4,0)
- ;;=4^R22.1
- ;;^UTILITY(U,$J,358.3,9451,2)
- ;;=^5019285
- ;;^UTILITY(U,$J,358.3,9452,0)
- ;;=E03.9^^72^644^35
- ;;^UTILITY(U,$J,358.3,9452,1,0)
+ ;;^UTILITY(U,$J,358.3,9593,1,3,0)
+ ;;=3^Strain of Right Lower Leg Peroneal Muscle/Tendon
+ ;;^UTILITY(U,$J,358.3,9593,1,4,0)
+ ;;=4^S86.311A
+ ;;^UTILITY(U,$J,358.3,9593,2)
+ ;;=^5043511
+ ;;^UTILITY(U,$J,358.3,9594,0)
+ ;;=S86.312A^^39^414^31
+ ;;^UTILITY(U,$J,358.3,9594,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,9452,1,3,0)
- ;;=3^Hypothyroidism
- ;;^UTILITY(U,$J,358.3,9452,1,4,0)
- ;;=4^E03.9
- ;;^UTILITY(U,$J,358.3,9452,2)
- ;;=^5002476
- ;;^UTILITY(U,$J,358.3,9453,0)
- ;;=E11.65^^72^644^3
- ;;^UTILITY(U,$J,358.3,9453,1,0)
+ ;;^UTILITY(U,$J,358.3,9594,1,3,0)
+ ;;=3^Strain of Left Lower Leg Peroneal Muscle/Tendon
+ ;;^UTILITY(U,$J,358.3,9594,1,4,0)
+ ;;=4^S86.312A
+ ;;^UTILITY(U,$J,358.3,9594,2)
+ ;;=^5043514
+ ;;^UTILITY(U,$J,358.3,9595,0)
+ ;;=S86.811A^^39^414^49
+ ;;^UTILITY(U,$J,358.3,9595,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,9453,1,3,0)
- ;;=3^Type 2 DM w/ Hyperglycemia
- ;;^UTILITY(U,$J,358.3,9453,1,4,0)
- ;;=4^E11.65
- ;;^UTILITY(U,$J,358.3,9453,2)
- ;;=^5002663
- ;;^UTILITY(U,$J,358.3,9454,0)
- ;;=E83.51^^72^644^26
- ;;^UTILITY(U,$J,358.3,9454,1,0)
+ ;;^UTILITY(U,$J,358.3,9595,1,3,0)
+ ;;=3^Strain of Right Lower Leg Muscle/Tendon NEC
+ ;;^UTILITY(U,$J,358.3,9595,1,4,0)
+ ;;=4^S86.811A
+ ;;^UTILITY(U,$J,358.3,9595,2)
+ ;;=^5043538
+ ;;^UTILITY(U,$J,358.3,9596,0)
+ ;;=S86.812A^^39^414^30
+ ;;^UTILITY(U,$J,358.3,9596,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,9454,1,3,0)
- ;;=3^Hypocalcemia
- ;;^UTILITY(U,$J,358.3,9454,1,4,0)
- ;;=4^E83.51
- ;;^UTILITY(U,$J,358.3,9454,2)
- ;;=^60542
- ;;^UTILITY(U,$J,358.3,9455,0)
- ;;=E83.52^^72^644^39
- ;;^UTILITY(U,$J,358.3,9455,1,0)
+ ;;^UTILITY(U,$J,358.3,9596,1,3,0)
+ ;;=3^Strain of Left Lower Leg Muscle/Tendon NEC
+ ;;^UTILITY(U,$J,358.3,9596,1,4,0)
+ ;;=4^S86.812A
+ ;;^UTILITY(U,$J,358.3,9596,2)
+ ;;=^5043541
+ ;;^UTILITY(U,$J,358.3,9597,0)
+ ;;=S86.111A^^39^414^51
+ ;;^UTILITY(U,$J,358.3,9597,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,9455,1,3,0)
- ;;=3^Hypercalcemia
- ;;^UTILITY(U,$J,358.3,9455,1,4,0)
- ;;=4^E83.52
- ;;^UTILITY(U,$J,358.3,9455,2)
- ;;=^59932
- ;;^UTILITY(U,$J,358.3,9456,0)
- ;;=E87.5^^72^644^23
- ;;^UTILITY(U,$J,358.3,9456,1,0)
+ ;;^UTILITY(U,$J,358.3,9597,1,3,0)
+ ;;=3^Strain of Right Lower Leg Posterior Muscle/Tendon
+ ;;^UTILITY(U,$J,358.3,9597,1,4,0)
+ ;;=4^S86.111A
+ ;;^UTILITY(U,$J,358.3,9597,2)
+ ;;=^5043460
+ ;;^UTILITY(U,$J,358.3,9598,0)
+ ;;=S86.112A^^39^414^32
+ ;;^UTILITY(U,$J,358.3,9598,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,9456,1,3,0)
- ;;=3^Hyperkalemia
- ;;^UTILITY(U,$J,358.3,9456,1,4,0)
- ;;=4^E87.5
- ;;^UTILITY(U,$J,358.3,9456,2)
- ;;=^60041
- ;;^UTILITY(U,$J,358.3,9457,0)
- ;;=C64.9^^72^644^33
- ;;^UTILITY(U,$J,358.3,9457,1,0)
+ ;;^UTILITY(U,$J,358.3,9598,1,3,0)
+ ;;=3^Strain of Left Lower Leg Posterior Muscle/Tendon
+ ;;^UTILITY(U,$J,358.3,9598,1,4,0)
+ ;;=4^S86.112A
+ ;;^UTILITY(U,$J,358.3,9598,2)
+ ;;=^5043463
+ ;;^UTILITY(U,$J,358.3,9599,0)
+ ;;=S83.401A^^39^414^17
+ ;;^UTILITY(U,$J,358.3,9599,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,9457,1,3,0)
- ;;=3^Malig Neopl of Kidney
- ;;^UTILITY(U,$J,358.3,9457,1,4,0)
- ;;=4^C64.9
- ;;^UTILITY(U,$J,358.3,9457,2)
- ;;=^5001250
- ;;^UTILITY(U,$J,358.3,9458,0)
- ;;=E03.5^^72^644^36
- ;;^UTILITY(U,$J,358.3,9458,1,0)
+ ;;^UTILITY(U,$J,358.3,9599,1,3,0)
+ ;;=3^Sprain of Right Knee Collateral Ligament
+ ;;^UTILITY(U,$J,358.3,9599,1,4,0)
+ ;;=4^S83.401A
+ ;;^UTILITY(U,$J,358.3,9599,2)
+ ;;=^5043103
+ ;;^UTILITY(U,$J,358.3,9600,0)
+ ;;=S83.402A^^39^414^8
+ ;;^UTILITY(U,$J,358.3,9600,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,9458,1,3,0)
- ;;=3^Myxedema Coma
- ;;^UTILITY(U,$J,358.3,9458,1,4,0)
- ;;=4^E03.5
- ;;^UTILITY(U,$J,358.3,9458,2)
- ;;=^5002474
- ;;^UTILITY(U,$J,358.3,9459,0)
- ;;=E05.91^^72^644^38
- ;;^UTILITY(U,$J,358.3,9459,1,0)
+ ;;^UTILITY(U,$J,358.3,9600,1,3,0)
+ ;;=3^Sprain of Left Knee Collateral Ligament
+ ;;^UTILITY(U,$J,358.3,9600,1,4,0)
+ ;;=4^S83.402A
+ ;;^UTILITY(U,$J,358.3,9600,2)
+ ;;=^5043106
+ ;;^UTILITY(U,$J,358.3,9601,0)
+ ;;=S93.402A^^39^414^6
+ ;;^UTILITY(U,$J,358.3,9601,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,9459,1,3,0)
- ;;=3^Thyroid Storm
- ;;^UTILITY(U,$J,358.3,9459,1,4,0)
- ;;=4^E05.91
- ;;^UTILITY(U,$J,358.3,9459,2)
- ;;=^5002493
- ;;^UTILITY(U,$J,358.3,9460,0)
- ;;=E05.80^^72^644^37
- ;;^UTILITY(U,$J,358.3,9460,1,0)
+ ;;^UTILITY(U,$J,358.3,9601,1,3,0)
+ ;;=3^Sprain of Left Ankle Ligament
+ ;;^UTILITY(U,$J,358.3,9601,1,4,0)
+ ;;=4^S93.402A
+ ;;^UTILITY(U,$J,358.3,9601,2)
+ ;;=^5045777
+ ;;^UTILITY(U,$J,358.3,9602,0)
+ ;;=S93.401A^^39^414^15
+ ;;^UTILITY(U,$J,358.3,9602,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,9460,1,3,0)
- ;;=3^Hyperthyroidism
- ;;^UTILITY(U,$J,358.3,9460,1,4,0)
- ;;=4^E05.80
- ;;^UTILITY(U,$J,358.3,9460,2)
- ;;=^5002491
- ;;^UTILITY(U,$J,358.3,9461,0)
- ;;=E10.65^^72^644^4
- ;;^UTILITY(U,$J,358.3,9461,1,0)
+ ;;^UTILITY(U,$J,358.3,9602,1,3,0)
+ ;;=3^Sprain of Right Ankle Ligament
+ ;;^UTILITY(U,$J,358.3,9602,1,4,0)
+ ;;=4^S93.401A
+ ;;^UTILITY(U,$J,358.3,9602,2)
+ ;;=^5045774
+ ;;^UTILITY(U,$J,358.3,9603,0)
+ ;;=S56.511A^^39^414^40
+ ;;^UTILITY(U,$J,358.3,9603,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,9461,1,3,0)
- ;;=3^Type 1 DM w/ Hyperglycemia
- ;;^UTILITY(U,$J,358.3,9461,1,4,0)
- ;;=4^E10.65
- ;;^UTILITY(U,$J,358.3,9461,2)
- ;;=^5002623
- ;;^UTILITY(U,$J,358.3,9462,0)
- ;;=E13.11^^72^644^8
- ;;^UTILITY(U,$J,358.3,9462,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,9462,1,3,0)
- ;;=3^Diabetic Ketoacidosis w/ Coma
- ;;^UTILITY(U,$J,358.3,9462,1,4,0)
- ;;=4^E13.11
+ ;;^UTILITY(U,$J,358.3,9603,1,3,0)
+ ;;=3^Strain of Right Forearm Extn Musc/Fasc/Tend
+ ;;^UTILITY(U,$J,358.3,9603,1,4,0)
+ ;;=4^S56.511A

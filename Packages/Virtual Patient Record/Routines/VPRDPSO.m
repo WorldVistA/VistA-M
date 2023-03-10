@@ -1,5 +1,5 @@
 VPRDPSO ;SLC/MKB -- Outpatient Pharmacy extract ;8/2/11  15:29
- ;;1.0;VIRTUAL PATIENT RECORD;**1,4,12,13**;Sep 01, 2011;Build 1
+ ;;1.0;VIRTUAL PATIENT RECORD;**1,4,12,13,28**;Sep 01, 2011;Build 6
  ;;Per VHA Directive 2004-038, this routine should not be modified.
  ;
  ; External References          DBIA#
@@ -32,6 +32,8 @@ RX(ID,MED) ; -- return a prescription in MED("attribute")=value
  S X=$P(RX0,U,17) S:X MED("ordered")=X
  S MED("vaStatus")=$$UP^XLFSTR($P($P(RX0,U,4),";",2)),X=$P($P(RX0,U,4),";")
  S MED("status")=$S(X="H":"hold",X="DC":"not active",X="D"!(X="E"):"historical",1:"active")
+ S X=$$GET1^PSODI(52,+ID_",",521012,"I") S:X MED("parked")=$P(X,U,2)  ;1^1/0
+ S X=$$GET1^PSODI(52,+ID_",",128,"I") S:X MED("indication")=$P(X,U,2) ;1^text
  S MED("quantity")=$P(RX0,U,6),MED("daysSupply")=$P(RX0,U,7)
  S MED("fillsAllowed")=$P(RX0,U,8),MED("fillsRemaining")=$P(RX0,U,9)
  S MED("routing")=$P($P(RX1,U,6),";"),MED("prescription")=$P(RX0,U,5)

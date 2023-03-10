@@ -1,664 +1,666 @@
-IBDEI09Y ; ; 01-MAY-2020
- ;;3.0;IB ENCOUNTER FORM IMP/EXP;;MAY 01, 2020
+IBDEI09Y ; ; 01-AUG-2022
+ ;;3.0;IB ENCOUNTER FORM IMP/EXP;;AUG 01, 2022
  Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,999) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
+ ;;^UTILITY(U,$J,358.3,24345,1,4,0)
+ ;;=4^C7A.090
+ ;;^UTILITY(U,$J,358.3,24345,2)
+ ;;=^5001371
+ ;;^UTILITY(U,$J,358.3,24346,0)
+ ;;=C34.02^^74^971^11
+ ;;^UTILITY(U,$J,358.3,24346,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,24346,1,3,0)
+ ;;=3^Malig Neop Left Main Bronchus
+ ;;^UTILITY(U,$J,358.3,24346,1,4,0)
+ ;;=4^C34.02
+ ;;^UTILITY(U,$J,358.3,24346,2)
+ ;;=^5000959
+ ;;^UTILITY(U,$J,358.3,24347,0)
+ ;;=C34.32^^74^971^10
+ ;;^UTILITY(U,$J,358.3,24347,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,24347,1,3,0)
+ ;;=3^Malig Neop Left Lower Lobe Bronchus/Lung
+ ;;^UTILITY(U,$J,358.3,24347,1,4,0)
+ ;;=4^C34.32
+ ;;^UTILITY(U,$J,358.3,24347,2)
+ ;;=^5133322
+ ;;^UTILITY(U,$J,358.3,24348,0)
+ ;;=C34.31^^74^971^19
+ ;;^UTILITY(U,$J,358.3,24348,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,24348,1,3,0)
+ ;;=3^Malig Neop Right Lower Lobe Bronchus/Lung
+ ;;^UTILITY(U,$J,358.3,24348,1,4,0)
+ ;;=4^C34.31
+ ;;^UTILITY(U,$J,358.3,24348,2)
+ ;;=^5133321
+ ;;^UTILITY(U,$J,358.3,24349,0)
+ ;;=C39.9^^74^971^13
+ ;;^UTILITY(U,$J,358.3,24349,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,24349,1,3,0)
+ ;;=3^Malig Neop Lower Respiratory Tract,Unspec Part
+ ;;^UTILITY(U,$J,358.3,24349,1,4,0)
+ ;;=4^C39.9
+ ;;^UTILITY(U,$J,358.3,24349,2)
+ ;;=^5000972
+ ;;^UTILITY(U,$J,358.3,24350,0)
+ ;;=C34.2^^74^971^14
+ ;;^UTILITY(U,$J,358.3,24350,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,24350,1,3,0)
+ ;;=3^Malig Neop Middle Lobe Bronchus/Lung
+ ;;^UTILITY(U,$J,358.3,24350,1,4,0)
+ ;;=4^C34.2
+ ;;^UTILITY(U,$J,358.3,24350,2)
+ ;;=^267137
+ ;;^UTILITY(U,$J,358.3,24351,0)
+ ;;=C34.82^^74^971^15
+ ;;^UTILITY(U,$J,358.3,24351,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,24351,1,3,0)
+ ;;=3^Malig Neop Ovrlp Sites Left Bronchus/Lung
+ ;;^UTILITY(U,$J,358.3,24351,1,4,0)
+ ;;=4^C34.82
+ ;;^UTILITY(U,$J,358.3,24351,2)
+ ;;=^5000965
+ ;;^UTILITY(U,$J,358.3,24352,0)
+ ;;=C34.81^^74^971^16
+ ;;^UTILITY(U,$J,358.3,24352,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,24352,1,3,0)
+ ;;=3^Malig Neop Ovrlp Sites Right Bronchus/Lung
+ ;;^UTILITY(U,$J,358.3,24352,1,4,0)
+ ;;=4^C34.81
+ ;;^UTILITY(U,$J,358.3,24352,2)
+ ;;=^5000964
+ ;;^UTILITY(U,$J,358.3,24353,0)
+ ;;=C38.4^^74^971^17
+ ;;^UTILITY(U,$J,358.3,24353,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,24353,1,3,0)
+ ;;=3^Malig Neop Pleura
+ ;;^UTILITY(U,$J,358.3,24353,1,4,0)
+ ;;=4^C38.4
+ ;;^UTILITY(U,$J,358.3,24353,2)
+ ;;=^267140
+ ;;^UTILITY(U,$J,358.3,24354,0)
+ ;;=C34.01^^74^971^20
+ ;;^UTILITY(U,$J,358.3,24354,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,24354,1,3,0)
+ ;;=3^Malig Neop Right Main Bronchus
+ ;;^UTILITY(U,$J,358.3,24354,1,4,0)
+ ;;=4^C34.01
+ ;;^UTILITY(U,$J,358.3,24354,2)
+ ;;=^5000958
+ ;;^UTILITY(U,$J,358.3,24355,0)
+ ;;=C34.92^^74^971^9
+ ;;^UTILITY(U,$J,358.3,24355,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,24355,1,3,0)
+ ;;=3^Malig Neop Left Bronchus/Lung,Unspec Part
+ ;;^UTILITY(U,$J,358.3,24355,1,4,0)
+ ;;=4^C34.92
+ ;;^UTILITY(U,$J,358.3,24355,2)
+ ;;=^5000968
+ ;;^UTILITY(U,$J,358.3,24356,0)
+ ;;=C34.91^^74^971^18
+ ;;^UTILITY(U,$J,358.3,24356,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,24356,1,3,0)
+ ;;=3^Malig Neop Right Bronchus/Lung,Unspec Part
+ ;;^UTILITY(U,$J,358.3,24356,1,4,0)
+ ;;=4^C34.91
+ ;;^UTILITY(U,$J,358.3,24356,2)
+ ;;=^5000967
+ ;;^UTILITY(U,$J,358.3,24357,0)
+ ;;=C34.12^^74^971^12
+ ;;^UTILITY(U,$J,358.3,24357,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,24357,1,3,0)
+ ;;=3^Malig Neop Left Upper Lobe Bronchus/Lung
+ ;;^UTILITY(U,$J,358.3,24357,1,4,0)
+ ;;=4^C34.12
+ ;;^UTILITY(U,$J,358.3,24357,2)
+ ;;=^5000962
+ ;;^UTILITY(U,$J,358.3,24358,0)
+ ;;=C34.11^^74^971^21
+ ;;^UTILITY(U,$J,358.3,24358,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,24358,1,3,0)
+ ;;=3^Malig Neop Right Upper Lobe Bronchus/Lung
+ ;;^UTILITY(U,$J,358.3,24358,1,4,0)
+ ;;=4^C34.11
+ ;;^UTILITY(U,$J,358.3,24358,2)
+ ;;=^5000961
+ ;;^UTILITY(U,$J,358.3,24359,0)
+ ;;=C39.0^^74^971^22
+ ;;^UTILITY(U,$J,358.3,24359,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,24359,1,3,0)
+ ;;=3^Malig Neop Upper Respiratory Tract,Unspec Part
+ ;;^UTILITY(U,$J,358.3,24359,1,4,0)
+ ;;=4^C39.0
+ ;;^UTILITY(U,$J,358.3,24359,2)
+ ;;=^5000971
+ ;;^UTILITY(U,$J,358.3,24360,0)
+ ;;=C78.02^^74^971^23
+ ;;^UTILITY(U,$J,358.3,24360,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,24360,1,3,0)
+ ;;=3^Secondary Malig Neop Left Lung
+ ;;^UTILITY(U,$J,358.3,24360,1,4,0)
+ ;;=4^C78.02
+ ;;^UTILITY(U,$J,358.3,24360,2)
+ ;;=^5001336
+ ;;^UTILITY(U,$J,358.3,24361,0)
+ ;;=C78.01^^74^971^24
+ ;;^UTILITY(U,$J,358.3,24361,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,24361,1,3,0)
+ ;;=3^Secondary Malig Neop Right Lung
+ ;;^UTILITY(U,$J,358.3,24361,1,4,0)
+ ;;=4^C78.01
+ ;;^UTILITY(U,$J,358.3,24361,2)
+ ;;=^5001335
+ ;;^UTILITY(U,$J,358.3,24362,0)
+ ;;=I50.41^^74^972^1
+ ;;^UTILITY(U,$J,358.3,24362,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,24362,1,3,0)
+ ;;=3^AC Combined Systolic & Diastolic Congestive Hrt Failure
+ ;;^UTILITY(U,$J,358.3,24362,1,4,0)
+ ;;=4^I50.41
+ ;;^UTILITY(U,$J,358.3,24362,2)
+ ;;=^5007248
+ ;;^UTILITY(U,$J,358.3,24363,0)
+ ;;=I50.31^^74^972^2
+ ;;^UTILITY(U,$J,358.3,24363,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,24363,1,3,0)
+ ;;=3^AC Diastolic Congestive Hrt Failure
+ ;;^UTILITY(U,$J,358.3,24363,1,4,0)
+ ;;=4^I50.31
+ ;;^UTILITY(U,$J,358.3,24363,2)
+ ;;=^5007244
+ ;;^UTILITY(U,$J,358.3,24364,0)
+ ;;=I50.43^^74^972^5
+ ;;^UTILITY(U,$J,358.3,24364,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,24364,1,3,0)
+ ;;=3^AC on Chr Combined Systolic & Diastolic Congestive Hrt Failure
+ ;;^UTILITY(U,$J,358.3,24364,1,4,0)
+ ;;=4^I50.43
+ ;;^UTILITY(U,$J,358.3,24364,2)
+ ;;=^5007250
+ ;;^UTILITY(U,$J,358.3,24365,0)
+ ;;=I50.33^^74^972^6
+ ;;^UTILITY(U,$J,358.3,24365,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,24365,1,3,0)
+ ;;=3^AC on Chr Diastolic Congestive Hrt Failure
+ ;;^UTILITY(U,$J,358.3,24365,1,4,0)
+ ;;=4^I50.33
+ ;;^UTILITY(U,$J,358.3,24365,2)
+ ;;=^5007246
+ ;;^UTILITY(U,$J,358.3,24366,0)
+ ;;=I50.23^^74^972^8
+ ;;^UTILITY(U,$J,358.3,24366,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,24366,1,3,0)
+ ;;=3^AC on Chr Systolic Congestive Hrt Failure
+ ;;^UTILITY(U,$J,358.3,24366,1,4,0)
+ ;;=4^I50.23
+ ;;^UTILITY(U,$J,358.3,24366,2)
+ ;;=^5007242
+ ;;^UTILITY(U,$J,358.3,24367,0)
+ ;;=I50.21^^74^972^4
+ ;;^UTILITY(U,$J,358.3,24367,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,24367,1,3,0)
+ ;;=3^AC Systolic Congestive Hrt Failure
+ ;;^UTILITY(U,$J,358.3,24367,1,4,0)
+ ;;=4^I50.21
+ ;;^UTILITY(U,$J,358.3,24367,2)
+ ;;=^5007240
+ ;;^UTILITY(U,$J,358.3,24368,0)
+ ;;=I20.9^^74^972^10
+ ;;^UTILITY(U,$J,358.3,24368,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,24368,1,3,0)
+ ;;=3^Angina Pectoris,Unspec
+ ;;^UTILITY(U,$J,358.3,24368,1,4,0)
+ ;;=4^I20.9
+ ;;^UTILITY(U,$J,358.3,24368,2)
+ ;;=^5007079
+ ;;^UTILITY(U,$J,358.3,24369,0)
+ ;;=I25.721^^74^972^11
+ ;;^UTILITY(U,$J,358.3,24369,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,24369,1,3,0)
+ ;;=3^Athscl Autologous Artery CABG w/ Ang Pctrs w/ Documented Spasm
+ ;;^UTILITY(U,$J,358.3,24369,1,4,0)
+ ;;=4^I25.721
+ ;;^UTILITY(U,$J,358.3,24369,2)
+ ;;=^5007126
+ ;;^UTILITY(U,$J,358.3,24370,0)
+ ;;=I25.728^^74^972^12
+ ;;^UTILITY(U,$J,358.3,24370,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,24370,1,3,0)
+ ;;=3^Athscl Autologous Artery CABG w/ Ang Pctrs NEC
+ ;;^UTILITY(U,$J,358.3,24370,1,4,0)
+ ;;=4^I25.728
+ ;;^UTILITY(U,$J,358.3,24370,2)
+ ;;=^5133560
+ ;;^UTILITY(U,$J,358.3,24371,0)
+ ;;=I25.729^^74^972^13
+ ;;^UTILITY(U,$J,358.3,24371,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,24371,1,3,0)
+ ;;=3^Athscl Autologous Artery CABG w/ Ang Pctrs,Unspec
+ ;;^UTILITY(U,$J,358.3,24371,1,4,0)
+ ;;=4^I25.729
+ ;;^UTILITY(U,$J,358.3,24371,2)
+ ;;=^5133561
+ ;;^UTILITY(U,$J,358.3,24372,0)
+ ;;=I25.720^^74^972^14
  ;;^UTILITY(U,$J,358.3,24372,1,0)
  ;;=^358.31IA^4^2
  ;;^UTILITY(U,$J,358.3,24372,1,3,0)
- ;;=3^Rheu polyneurop w rheu arthrit of left ank/ft
+ ;;=3^Athscl Autologous Artery CABG w/ Unstable Ang Pctrs
  ;;^UTILITY(U,$J,358.3,24372,1,4,0)
- ;;=4^M05.572
+ ;;=4^I25.720
  ;;^UTILITY(U,$J,358.3,24372,2)
- ;;=^5009974
+ ;;=^5007125
  ;;^UTILITY(U,$J,358.3,24373,0)
- ;;=M05.522^^76^1004^135
+ ;;=I25.711^^74^972^15
  ;;^UTILITY(U,$J,358.3,24373,1,0)
  ;;=^358.31IA^4^2
  ;;^UTILITY(U,$J,358.3,24373,1,3,0)
- ;;=3^Rheu polyneurop w rheu arthrit of left elbow
+ ;;=3^Athscl Autologous Vein CABG w/ Ang Pctrs w/ Documented Spasm
  ;;^UTILITY(U,$J,358.3,24373,1,4,0)
- ;;=4^M05.522
+ ;;=4^I25.711
  ;;^UTILITY(U,$J,358.3,24373,2)
- ;;=^5009959
+ ;;=^5007122
  ;;^UTILITY(U,$J,358.3,24374,0)
- ;;=M05.542^^76^1004^136
+ ;;=I25.718^^74^972^16
  ;;^UTILITY(U,$J,358.3,24374,1,0)
  ;;=^358.31IA^4^2
  ;;^UTILITY(U,$J,358.3,24374,1,3,0)
- ;;=3^Rheu polyneurop w rheu arthrit of left hand 
+ ;;=3^Athscl Autologous Vein CABG w/ Ang Pctrs NEC
  ;;^UTILITY(U,$J,358.3,24374,1,4,0)
- ;;=4^M05.542
+ ;;=4^I25.718
  ;;^UTILITY(U,$J,358.3,24374,2)
- ;;=^5009965
+ ;;=^5007123
  ;;^UTILITY(U,$J,358.3,24375,0)
- ;;=M05.552^^76^1004^137
+ ;;=I25.719^^74^972^17
  ;;^UTILITY(U,$J,358.3,24375,1,0)
  ;;=^358.31IA^4^2
  ;;^UTILITY(U,$J,358.3,24375,1,3,0)
- ;;=3^Rheu polyneurop w rheu arthrit of left hip
+ ;;=3^Athscl Autologous Vein CABG w/ Ang Pctrs,Unspec
  ;;^UTILITY(U,$J,358.3,24375,1,4,0)
- ;;=4^M05.552
+ ;;=4^I25.719
  ;;^UTILITY(U,$J,358.3,24375,2)
- ;;=^5009968
+ ;;=^5007124
  ;;^UTILITY(U,$J,358.3,24376,0)
- ;;=M05.562^^76^1004^138
+ ;;=I25.710^^74^972^18
  ;;^UTILITY(U,$J,358.3,24376,1,0)
  ;;=^358.31IA^4^2
  ;;^UTILITY(U,$J,358.3,24376,1,3,0)
- ;;=3^Rheu polyneurop w rheu arthrit of left knee 
+ ;;=3^Athscl Autologous Vein CABG w/ Unstable Ang Pctrs
  ;;^UTILITY(U,$J,358.3,24376,1,4,0)
- ;;=4^M05.562
+ ;;=4^I25.710
  ;;^UTILITY(U,$J,358.3,24376,2)
- ;;=^5009971
+ ;;=^5007121
  ;;^UTILITY(U,$J,358.3,24377,0)
- ;;=M05.512^^76^1004^139
+ ;;=I25.761^^74^972^19
  ;;^UTILITY(U,$J,358.3,24377,1,0)
  ;;=^358.31IA^4^2
  ;;^UTILITY(U,$J,358.3,24377,1,3,0)
- ;;=3^Rheu polyneurop w rheu arthrit of left shoulder 
+ ;;=3^Athscl Bypass Cor Art Transplt Hrt w/ Ang Pctrs w/ Documented Spasm
  ;;^UTILITY(U,$J,358.3,24377,1,4,0)
- ;;=4^M05.512
+ ;;=4^I25.761
  ;;^UTILITY(U,$J,358.3,24377,2)
- ;;=^5009956
+ ;;=^5007136
  ;;^UTILITY(U,$J,358.3,24378,0)
- ;;=M05.532^^76^1004^140
+ ;;=I25.768^^74^972^20
  ;;^UTILITY(U,$J,358.3,24378,1,0)
  ;;=^358.31IA^4^2
  ;;^UTILITY(U,$J,358.3,24378,1,3,0)
- ;;=3^Rheu polyneurop w rheu arthrit of left wrist
+ ;;=3^Athscl Bypass Cor Art Transplt Hrt w/ Ang Pctrs NEC
  ;;^UTILITY(U,$J,358.3,24378,1,4,0)
- ;;=4^M05.532
+ ;;=4^I25.768
  ;;^UTILITY(U,$J,358.3,24378,2)
- ;;=^5009962
+ ;;=^5007137
  ;;^UTILITY(U,$J,358.3,24379,0)
- ;;=M05.59^^76^1004^133
+ ;;=I25.769^^74^972^21
  ;;^UTILITY(U,$J,358.3,24379,1,0)
  ;;=^358.31IA^4^2
  ;;^UTILITY(U,$J,358.3,24379,1,3,0)
- ;;=3^Rheu polyneurop w rheu arthrit mult sites 
+ ;;=3^Athscl Bypass Cor Art Transplt Hrt w/ Ang Pctrs,Unspec
  ;;^UTILITY(U,$J,358.3,24379,1,4,0)
- ;;=4^M05.59
+ ;;=4^I25.769
  ;;^UTILITY(U,$J,358.3,24379,2)
- ;;=^5009976
+ ;;=^5007138
  ;;^UTILITY(U,$J,358.3,24380,0)
- ;;=M05.571^^76^1004^141
+ ;;=I25.760^^74^972^22
  ;;^UTILITY(U,$J,358.3,24380,1,0)
  ;;=^358.31IA^4^2
  ;;^UTILITY(U,$J,358.3,24380,1,3,0)
- ;;=3^Rheu polyneurop w rheu arthrit of right ank/ft
+ ;;=3^Athscl Bypass Cor Art Transplt Hrt w/ Unstable Angina
  ;;^UTILITY(U,$J,358.3,24380,1,4,0)
- ;;=4^M05.571
+ ;;=4^I25.760
  ;;^UTILITY(U,$J,358.3,24380,2)
- ;;=^5009973
+ ;;=^5007135
  ;;^UTILITY(U,$J,358.3,24381,0)
- ;;=M05.521^^76^1004^142
+ ;;=I25.701^^74^972^25
  ;;^UTILITY(U,$J,358.3,24381,1,0)
  ;;=^358.31IA^4^2
  ;;^UTILITY(U,$J,358.3,24381,1,3,0)
- ;;=3^Rheu polyneurop w rheu arthrit of right elbow 
+ ;;=3^Athscl CABG w/ Ang Pctrs w/ Documented Spasm
  ;;^UTILITY(U,$J,358.3,24381,1,4,0)
- ;;=4^M05.521
+ ;;=4^I25.701
  ;;^UTILITY(U,$J,358.3,24381,2)
- ;;=^5009958
+ ;;=^5007118
  ;;^UTILITY(U,$J,358.3,24382,0)
- ;;=M05.541^^76^1004^143
+ ;;=I25.708^^74^972^23
  ;;^UTILITY(U,$J,358.3,24382,1,0)
  ;;=^358.31IA^4^2
  ;;^UTILITY(U,$J,358.3,24382,1,3,0)
- ;;=3^Rheu polyneurop w rheu arthrit of right hand 
+ ;;=3^Athscl CABG w/ Ang Pctrs NEC
  ;;^UTILITY(U,$J,358.3,24382,1,4,0)
- ;;=4^M05.541
+ ;;=4^I25.708
  ;;^UTILITY(U,$J,358.3,24382,2)
- ;;=^5009964
+ ;;=^5007119
  ;;^UTILITY(U,$J,358.3,24383,0)
- ;;=M05.551^^76^1004^144
+ ;;=I25.709^^74^972^27
  ;;^UTILITY(U,$J,358.3,24383,1,0)
  ;;=^358.31IA^4^2
  ;;^UTILITY(U,$J,358.3,24383,1,3,0)
- ;;=3^Rheu polyneurop w rheu arthrit of right hip 
+ ;;=3^Athscl CABG w/ Ang Pctrs,Unspec
  ;;^UTILITY(U,$J,358.3,24383,1,4,0)
- ;;=4^M05.551
+ ;;=4^I25.709
  ;;^UTILITY(U,$J,358.3,24383,2)
- ;;=^5009967
+ ;;=^5007120
  ;;^UTILITY(U,$J,358.3,24384,0)
- ;;=M05.561^^76^1004^145
+ ;;=I25.700^^74^972^29
  ;;^UTILITY(U,$J,358.3,24384,1,0)
  ;;=^358.31IA^4^2
  ;;^UTILITY(U,$J,358.3,24384,1,3,0)
- ;;=3^Rheu polyneurop w rheu arthrit of right knee
+ ;;=3^Athscl CABG w/ Unstable Angina
  ;;^UTILITY(U,$J,358.3,24384,1,4,0)
- ;;=4^M05.561
+ ;;=4^I25.700
  ;;^UTILITY(U,$J,358.3,24384,2)
- ;;=^5009970
+ ;;=^5007117
  ;;^UTILITY(U,$J,358.3,24385,0)
- ;;=M05.511^^76^1004^146
+ ;;=I25.751^^74^972^36
  ;;^UTILITY(U,$J,358.3,24385,1,0)
  ;;=^358.31IA^4^2
  ;;^UTILITY(U,$J,358.3,24385,1,3,0)
- ;;=3^Rheu polyneurop w rheu arthrit of right shoulder 
+ ;;=3^Athscl Native Cor Art of Transplt Hrt w/ Ang Pctrs w/ Documented Spasm
  ;;^UTILITY(U,$J,358.3,24385,1,4,0)
- ;;=4^M05.511
+ ;;=4^I25.751
  ;;^UTILITY(U,$J,358.3,24385,2)
- ;;=^5009955
+ ;;=^5007132
  ;;^UTILITY(U,$J,358.3,24386,0)
- ;;=M05.531^^76^1004^147
+ ;;=I25.758^^74^972^37
  ;;^UTILITY(U,$J,358.3,24386,1,0)
  ;;=^358.31IA^4^2
  ;;^UTILITY(U,$J,358.3,24386,1,3,0)
- ;;=3^Rheu polyneurop w rheu arthrit of right wrist 
+ ;;=3^Athscl Native Cor Art of Transplt Hrt w/ Ang Pctrs NEC
  ;;^UTILITY(U,$J,358.3,24386,1,4,0)
- ;;=4^M05.531
+ ;;=4^I25.758
  ;;^UTILITY(U,$J,358.3,24386,2)
- ;;=^5009961
+ ;;=^5007133
  ;;^UTILITY(U,$J,358.3,24387,0)
- ;;=M19.272^^76^1004^178
+ ;;=I25.759^^74^972^38
  ;;^UTILITY(U,$J,358.3,24387,1,0)
  ;;=^358.31IA^4^2
  ;;^UTILITY(U,$J,358.3,24387,1,3,0)
- ;;=3^Secondary osteoarthritis, left ankle and foot
+ ;;=3^Athscl Native Cor Art of Transplt Hrt w/ Ang Pctrs,Unspec
  ;;^UTILITY(U,$J,358.3,24387,1,4,0)
- ;;=4^M19.272
+ ;;=4^I25.759
  ;;^UTILITY(U,$J,358.3,24387,2)
- ;;=^5010851
+ ;;=^5007134
  ;;^UTILITY(U,$J,358.3,24388,0)
- ;;=M19.271^^76^1004^181
+ ;;=I25.750^^74^972^39
  ;;^UTILITY(U,$J,358.3,24388,1,0)
  ;;=^358.31IA^4^2
  ;;^UTILITY(U,$J,358.3,24388,1,3,0)
- ;;=3^Secondary osteoarthritis, right ankle and foot
+ ;;=3^Athscl Native Cor Art of Transplt Hrt w/ Unstable Angina
  ;;^UTILITY(U,$J,358.3,24388,1,4,0)
- ;;=4^M19.271
+ ;;=4^I25.750
  ;;^UTILITY(U,$J,358.3,24388,2)
- ;;=^5010850
+ ;;=^5007131
  ;;^UTILITY(U,$J,358.3,24389,0)
- ;;=M19.242^^76^1004^179
+ ;;=I25.731^^74^972^41
  ;;^UTILITY(U,$J,358.3,24389,1,0)
  ;;=^358.31IA^4^2
  ;;^UTILITY(U,$J,358.3,24389,1,3,0)
- ;;=3^Secondary osteoarthritis, left hand
+ ;;=3^Athscl Nonaut Bio CABG w/ Ang Pctrs w/ Documented Spasm
  ;;^UTILITY(U,$J,358.3,24389,1,4,0)
- ;;=4^M19.242
+ ;;=4^I25.731
  ;;^UTILITY(U,$J,358.3,24389,2)
- ;;=^5010848
+ ;;=^5007128
  ;;^UTILITY(U,$J,358.3,24390,0)
- ;;=M19.212^^76^1004^180
+ ;;=I25.738^^74^972^40
  ;;^UTILITY(U,$J,358.3,24390,1,0)
  ;;=^358.31IA^4^2
  ;;^UTILITY(U,$J,358.3,24390,1,3,0)
- ;;=3^Secondary osteoarthritis, left shoulder
+ ;;=3^Athscl Nonaut Bio CABG w/ Ang Pctrs NEC
  ;;^UTILITY(U,$J,358.3,24390,1,4,0)
- ;;=4^M19.212
+ ;;=4^I25.738
  ;;^UTILITY(U,$J,358.3,24390,2)
- ;;=^5010839
+ ;;=^5007129
  ;;^UTILITY(U,$J,358.3,24391,0)
- ;;=M19.241^^76^1004^182
+ ;;=I25.739^^74^972^42
  ;;^UTILITY(U,$J,358.3,24391,1,0)
  ;;=^358.31IA^4^2
  ;;^UTILITY(U,$J,358.3,24391,1,3,0)
- ;;=3^Secondary osteoarthritis, right hand
+ ;;=3^Athscl Nonaut Bio CABG w/ Ang Pctrs,Unspec
  ;;^UTILITY(U,$J,358.3,24391,1,4,0)
- ;;=4^M19.241
+ ;;=4^I25.739
  ;;^UTILITY(U,$J,358.3,24391,2)
- ;;=^5010847
+ ;;=^5007130
  ;;^UTILITY(U,$J,358.3,24392,0)
- ;;=M19.211^^76^1004^183
+ ;;=I25.730^^74^972^43
  ;;^UTILITY(U,$J,358.3,24392,1,0)
  ;;=^358.31IA^4^2
  ;;^UTILITY(U,$J,358.3,24392,1,3,0)
- ;;=3^Secondary osteoarthritis, right shoulder
+ ;;=3^Athscl Nonaut Bio CABG w/ Unstable Angina
  ;;^UTILITY(U,$J,358.3,24392,1,4,0)
- ;;=4^M19.211
+ ;;=4^I25.730
  ;;^UTILITY(U,$J,358.3,24392,2)
- ;;=^5010838
+ ;;=^5007127
  ;;^UTILITY(U,$J,358.3,24393,0)
- ;;=M67.02^^76^1004^184
+ ;;=I25.791^^74^972^26
  ;;^UTILITY(U,$J,358.3,24393,1,0)
  ;;=^358.31IA^4^2
  ;;^UTILITY(U,$J,358.3,24393,1,3,0)
- ;;=3^Short Achilles tendon (acquired), left ankle
+ ;;=3^Athscl CABG w/ Ang Pctrs w/ Documented Spasm
  ;;^UTILITY(U,$J,358.3,24393,1,4,0)
- ;;=4^M67.02
+ ;;=4^I25.791
  ;;^UTILITY(U,$J,358.3,24393,2)
- ;;=^5012907
+ ;;=^5007140
  ;;^UTILITY(U,$J,358.3,24394,0)
- ;;=M67.01^^76^1004^185
+ ;;=I25.798^^74^972^24
  ;;^UTILITY(U,$J,358.3,24394,1,0)
  ;;=^358.31IA^4^2
  ;;^UTILITY(U,$J,358.3,24394,1,3,0)
- ;;=3^Short Achilles tendon (acquired), right ankle
+ ;;=3^Athscl CABG w/ Ang Pctrs NEC
  ;;^UTILITY(U,$J,358.3,24394,1,4,0)
- ;;=4^M67.01
+ ;;=4^I25.798
  ;;^UTILITY(U,$J,358.3,24394,2)
- ;;=^5012906
+ ;;=^5133558
  ;;^UTILITY(U,$J,358.3,24395,0)
- ;;=M66.232^^76^1004^186
+ ;;=I25.799^^74^972^28
  ;;^UTILITY(U,$J,358.3,24395,1,0)
  ;;=^358.31IA^4^2
  ;;^UTILITY(U,$J,358.3,24395,1,3,0)
- ;;=3^Spontaneous rupture of extensor tendons, left forearm
+ ;;=3^Athscl CABG w/ Ang Pctrs,Unspec
  ;;^UTILITY(U,$J,358.3,24395,1,4,0)
- ;;=4^M66.232
+ ;;=4^I25.799
  ;;^UTILITY(U,$J,358.3,24395,2)
- ;;=^5012855
+ ;;=^5133559
  ;;^UTILITY(U,$J,358.3,24396,0)
- ;;=M66.242^^76^1004^187
+ ;;=I25.790^^74^972^30
  ;;^UTILITY(U,$J,358.3,24396,1,0)
  ;;=^358.31IA^4^2
  ;;^UTILITY(U,$J,358.3,24396,1,3,0)
- ;;=3^Spontaneous rupture of extensor tendons, left hand
+ ;;=3^Athscl CABG w/ Unstable Angina
  ;;^UTILITY(U,$J,358.3,24396,1,4,0)
- ;;=4^M66.242
+ ;;=4^I25.790
  ;;^UTILITY(U,$J,358.3,24396,2)
- ;;=^5012858
+ ;;=^5007139
  ;;^UTILITY(U,$J,358.3,24397,0)
- ;;=M66.231^^76^1004^188
+ ;;=I25.111^^74^972^31
  ;;^UTILITY(U,$J,358.3,24397,1,0)
  ;;=^358.31IA^4^2
  ;;^UTILITY(U,$J,358.3,24397,1,3,0)
- ;;=3^Spontaneous rupture of extensor tendons, right forearm
+ ;;=3^Athscl Hrt Disease Native Cor Art w/ Ang Pctrs w/ Documented Spasm
  ;;^UTILITY(U,$J,358.3,24397,1,4,0)
- ;;=4^M66.231
+ ;;=4^I25.111
  ;;^UTILITY(U,$J,358.3,24397,2)
- ;;=^5012854
+ ;;=^5007109
  ;;^UTILITY(U,$J,358.3,24398,0)
- ;;=M66.241^^76^1004^189
+ ;;=I25.118^^74^972^32
  ;;^UTILITY(U,$J,358.3,24398,1,0)
  ;;=^358.31IA^4^2
  ;;^UTILITY(U,$J,358.3,24398,1,3,0)
- ;;=3^Spontaneous rupture of extensor tendons, right hand
+ ;;=3^Athscl Hrt Disease Native Cor Art w/ Ang Pctrs NEC
  ;;^UTILITY(U,$J,358.3,24398,1,4,0)
- ;;=4^M66.241
+ ;;=4^I25.118
  ;;^UTILITY(U,$J,358.3,24398,2)
- ;;=^5012857
+ ;;=^5007110
  ;;^UTILITY(U,$J,358.3,24399,0)
- ;;=M66.332^^76^1004^190
+ ;;=I25.119^^74^972^33
  ;;^UTILITY(U,$J,358.3,24399,1,0)
  ;;=^358.31IA^4^2
  ;;^UTILITY(U,$J,358.3,24399,1,3,0)
- ;;=3^Spontaneous rupture of flexor tendons, left forearm
+ ;;=3^Athscl Hrt Disease Native Cor Art w/ Ang Pctrs,Unspec
  ;;^UTILITY(U,$J,358.3,24399,1,4,0)
- ;;=4^M66.332
+ ;;=4^I25.119
  ;;^UTILITY(U,$J,358.3,24399,2)
- ;;=^5012879
+ ;;=^5007111
  ;;^UTILITY(U,$J,358.3,24400,0)
- ;;=M66.342^^76^1004^191
+ ;;=I25.110^^74^972^34
  ;;^UTILITY(U,$J,358.3,24400,1,0)
  ;;=^358.31IA^4^2
  ;;^UTILITY(U,$J,358.3,24400,1,3,0)
- ;;=3^Spontaneous rupture of flexor tendons, left hand
+ ;;=3^Athscl Hrt Disease Native Cor Art w/ Unstable Angina
  ;;^UTILITY(U,$J,358.3,24400,1,4,0)
- ;;=4^M66.342
+ ;;=4^I25.110
  ;;^UTILITY(U,$J,358.3,24400,2)
- ;;=^5012882
+ ;;=^5007108
  ;;^UTILITY(U,$J,358.3,24401,0)
- ;;=M66.331^^76^1004^192
+ ;;=I25.10^^74^972^35
  ;;^UTILITY(U,$J,358.3,24401,1,0)
  ;;=^358.31IA^4^2
  ;;^UTILITY(U,$J,358.3,24401,1,3,0)
- ;;=3^Spontaneous rupture of flexor tendons, right forearm
+ ;;=3^Athscl Hrt Disease Native Cor Art w/o Ang Pctrs
  ;;^UTILITY(U,$J,358.3,24401,1,4,0)
- ;;=4^M66.331
+ ;;=4^I25.10
  ;;^UTILITY(U,$J,358.3,24401,2)
- ;;=^5012878
+ ;;=^5007107
  ;;^UTILITY(U,$J,358.3,24402,0)
- ;;=M66.341^^76^1004^193
+ ;;=I48.0^^74^972^47
  ;;^UTILITY(U,$J,358.3,24402,1,0)
  ;;=^358.31IA^4^2
  ;;^UTILITY(U,$J,358.3,24402,1,3,0)
- ;;=3^Spontaneous rupture of flexor tendons, right hand
+ ;;=3^Atrial Fibrillation,Paroxysmal
  ;;^UTILITY(U,$J,358.3,24402,1,4,0)
- ;;=4^M66.341
+ ;;=4^I48.0
  ;;^UTILITY(U,$J,358.3,24402,2)
- ;;=^5012881
+ ;;=^90473
  ;;^UTILITY(U,$J,358.3,24403,0)
- ;;=M66.342^^76^1004^194
+ ;;=I49.9^^74^972^50
  ;;^UTILITY(U,$J,358.3,24403,1,0)
  ;;=^358.31IA^4^2
  ;;^UTILITY(U,$J,358.3,24403,1,3,0)
- ;;=3^Spontaneous rupture of flexor tendons, left hand
+ ;;=3^Cardiac Arrhythmia,Unspec
  ;;^UTILITY(U,$J,358.3,24403,1,4,0)
- ;;=4^M66.342
+ ;;=4^I49.9
  ;;^UTILITY(U,$J,358.3,24403,2)
- ;;=^5012882
+ ;;=^5007237
  ;;^UTILITY(U,$J,358.3,24404,0)
- ;;=M66.841^^76^1004^195
+ ;;=I42.9^^74^972^51
  ;;^UTILITY(U,$J,358.3,24404,1,0)
  ;;=^358.31IA^4^2
  ;;^UTILITY(U,$J,358.3,24404,1,3,0)
- ;;=3^Spontaneous rupture of other tendons, right hand
+ ;;=3^Cardiomyopathy,Unspec
  ;;^UTILITY(U,$J,358.3,24404,1,4,0)
- ;;=4^M66.841
+ ;;=4^I42.9
  ;;^UTILITY(U,$J,358.3,24404,2)
- ;;=^5012898
+ ;;=^5007200
  ;;^UTILITY(U,$J,358.3,24405,0)
- ;;=M70.62^^76^1004^198
+ ;;=I50.42^^74^972^53
  ;;^UTILITY(U,$J,358.3,24405,1,0)
  ;;=^358.31IA^4^2
  ;;^UTILITY(U,$J,358.3,24405,1,3,0)
- ;;=3^Trochanteric bursitis, left hip
+ ;;=3^Chr Combined Systolic & Diastolic Congestive Hrt Failure
  ;;^UTILITY(U,$J,358.3,24405,1,4,0)
- ;;=4^M70.62
+ ;;=4^I50.42
  ;;^UTILITY(U,$J,358.3,24405,2)
- ;;=^5013060
+ ;;=^5007249
  ;;^UTILITY(U,$J,358.3,24406,0)
- ;;=M70.61^^76^1004^199
+ ;;=I50.32^^74^972^54
  ;;^UTILITY(U,$J,358.3,24406,1,0)
  ;;=^358.31IA^4^2
  ;;^UTILITY(U,$J,358.3,24406,1,3,0)
- ;;=3^Trochanteric bursitis, right hip
+ ;;=3^Chr Diastolic Congestive Hrt Failure
  ;;^UTILITY(U,$J,358.3,24406,1,4,0)
- ;;=4^M70.61
+ ;;=4^I50.32
  ;;^UTILITY(U,$J,358.3,24406,2)
- ;;=^5013059
+ ;;=^5007245
  ;;^UTILITY(U,$J,358.3,24407,0)
- ;;=M21.752^^76^1004^200
+ ;;=I27.82^^74^972^55
  ;;^UTILITY(U,$J,358.3,24407,1,0)
  ;;=^358.31IA^4^2
  ;;^UTILITY(U,$J,358.3,24407,1,3,0)
- ;;=3^Unequal limb length (acquired), left femur
+ ;;=3^Chr Pulmonary Embolism
  ;;^UTILITY(U,$J,358.3,24407,1,4,0)
- ;;=4^M21.752
+ ;;=4^I27.82
  ;;^UTILITY(U,$J,358.3,24407,2)
- ;;=^5011141
+ ;;=^338238
  ;;^UTILITY(U,$J,358.3,24408,0)
- ;;=M21.764^^76^1004^201
+ ;;=I50.22^^74^972^57
  ;;^UTILITY(U,$J,358.3,24408,1,0)
  ;;=^358.31IA^4^2
  ;;^UTILITY(U,$J,358.3,24408,1,3,0)
- ;;=3^Unequal limb length (acquired), left fibula
+ ;;=3^Chr Systolic Congestive Hrt Failure
  ;;^UTILITY(U,$J,358.3,24408,1,4,0)
- ;;=4^M21.764
+ ;;=4^I50.22
  ;;^UTILITY(U,$J,358.3,24408,2)
- ;;=^5011146
+ ;;=^5007241
  ;;^UTILITY(U,$J,358.3,24409,0)
- ;;=M21.762^^76^1004^202
+ ;;=I42.0^^74^972^60
  ;;^UTILITY(U,$J,358.3,24409,1,0)
  ;;=^358.31IA^4^2
  ;;^UTILITY(U,$J,358.3,24409,1,3,0)
- ;;=3^Unequal limb length (acquired), left tibia
+ ;;=3^Dilated Cardiomyopathy
  ;;^UTILITY(U,$J,358.3,24409,1,4,0)
- ;;=4^M21.762
+ ;;=4^I42.0
  ;;^UTILITY(U,$J,358.3,24409,2)
- ;;=^5011144
+ ;;=^5007194
  ;;^UTILITY(U,$J,358.3,24410,0)
- ;;=M21.751^^76^1004^203
+ ;;=I10.^^74^972^62
  ;;^UTILITY(U,$J,358.3,24410,1,0)
  ;;=^358.31IA^4^2
  ;;^UTILITY(U,$J,358.3,24410,1,3,0)
- ;;=3^Unequal limb length (acquired), right femur
+ ;;=3^Essential Hypertension
  ;;^UTILITY(U,$J,358.3,24410,1,4,0)
- ;;=4^M21.751
+ ;;=4^I10.
  ;;^UTILITY(U,$J,358.3,24410,2)
- ;;=^5011140
+ ;;=^5007062
  ;;^UTILITY(U,$J,358.3,24411,0)
- ;;=M21.763^^76^1004^204
+ ;;=I50.9^^74^972^67
  ;;^UTILITY(U,$J,358.3,24411,1,0)
  ;;=^358.31IA^4^2
  ;;^UTILITY(U,$J,358.3,24411,1,3,0)
- ;;=3^Unequal limb length (acquired), right fibula
+ ;;=3^Heart Failure,Unspec
  ;;^UTILITY(U,$J,358.3,24411,1,4,0)
- ;;=4^M21.763
- ;;^UTILITY(U,$J,358.3,24411,2)
- ;;=^5011145
- ;;^UTILITY(U,$J,358.3,24412,0)
- ;;=M21.761^^76^1004^205
- ;;^UTILITY(U,$J,358.3,24412,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,24412,1,3,0)
- ;;=3^Unequal limb length (acquired), right tibia
- ;;^UTILITY(U,$J,358.3,24412,1,4,0)
- ;;=4^M21.761
- ;;^UTILITY(U,$J,358.3,24412,2)
- ;;=^5011143
- ;;^UTILITY(U,$J,358.3,24413,0)
- ;;=M17.12^^76^1004^206
- ;;^UTILITY(U,$J,358.3,24413,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,24413,1,3,0)
- ;;=3^Prim Osteoarth,Left Knee,Unilat
- ;;^UTILITY(U,$J,358.3,24413,1,4,0)
- ;;=4^M17.12
- ;;^UTILITY(U,$J,358.3,24413,2)
- ;;=^5010787
- ;;^UTILITY(U,$J,358.3,24414,0)
- ;;=M17.11^^76^1004^207
- ;;^UTILITY(U,$J,358.3,24414,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,24414,1,3,0)
- ;;=3^Prim Osteoarth,Right Knee,Unilat
- ;;^UTILITY(U,$J,358.3,24414,1,4,0)
- ;;=4^M17.11
- ;;^UTILITY(U,$J,358.3,24414,2)
- ;;=^5010786
- ;;^UTILITY(U,$J,358.3,24415,0)
- ;;=M76.51^^76^1004^68
- ;;^UTILITY(U,$J,358.3,24415,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,24415,1,3,0)
- ;;=3^Patellar tendinitis, right knee
- ;;^UTILITY(U,$J,358.3,24415,1,4,0)
- ;;=4^M76.51
- ;;^UTILITY(U,$J,358.3,24415,2)
- ;;=^5013282
- ;;^UTILITY(U,$J,358.3,24416,0)
- ;;=M24.311^^76^1004^72
- ;;^UTILITY(U,$J,358.3,24416,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,24416,1,3,0)
- ;;=3^Path Dislocation,Right Shoulder NEC
- ;;^UTILITY(U,$J,358.3,24416,1,4,0)
- ;;=4^M24.311
- ;;^UTILITY(U,$J,358.3,24416,2)
- ;;=^5011346
- ;;^UTILITY(U,$J,358.3,24417,0)
- ;;=M24.312^^76^1004^70
- ;;^UTILITY(U,$J,358.3,24417,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,24417,1,3,0)
- ;;=3^Path Dislocation,Left Shoulder NEC
- ;;^UTILITY(U,$J,358.3,24417,1,4,0)
- ;;=4^M24.312
- ;;^UTILITY(U,$J,358.3,24417,2)
- ;;=^5011347
- ;;^UTILITY(U,$J,358.3,24418,0)
- ;;=M24.231^^76^1004^57
- ;;^UTILITY(U,$J,358.3,24418,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,24418,1,3,0)
- ;;=3^Ligament D/O,Right Wrist
- ;;^UTILITY(U,$J,358.3,24418,1,4,0)
- ;;=4^M24.231
- ;;^UTILITY(U,$J,358.3,24418,2)
- ;;=^5011329
- ;;^UTILITY(U,$J,358.3,24419,0)
- ;;=M24.232^^76^1004^55
- ;;^UTILITY(U,$J,358.3,24419,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,24419,1,3,0)
- ;;=3^Ligament D/O,Left Wrist
- ;;^UTILITY(U,$J,358.3,24419,1,4,0)
- ;;=4^M24.232
- ;;^UTILITY(U,$J,358.3,24419,2)
- ;;=^5011330
- ;;^UTILITY(U,$J,358.3,24420,0)
- ;;=M24.241^^76^1004^56
- ;;^UTILITY(U,$J,358.3,24420,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,24420,1,3,0)
- ;;=3^Ligament D/O,Right Hand
- ;;^UTILITY(U,$J,358.3,24420,1,4,0)
- ;;=4^M24.241
- ;;^UTILITY(U,$J,358.3,24420,2)
- ;;=^5011332
- ;;^UTILITY(U,$J,358.3,24421,0)
- ;;=M24.242^^76^1004^54
- ;;^UTILITY(U,$J,358.3,24421,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,24421,1,3,0)
- ;;=3^Ligament D/O,Left Hand
- ;;^UTILITY(U,$J,358.3,24421,1,4,0)
- ;;=4^M24.242
- ;;^UTILITY(U,$J,358.3,24421,2)
- ;;=^5011333
- ;;^UTILITY(U,$J,358.3,24422,0)
- ;;=M24.411^^76^1004^92
- ;;^UTILITY(U,$J,358.3,24422,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,24422,1,3,0)
- ;;=3^Recurrent Dislocation,Right Shoulder
- ;;^UTILITY(U,$J,358.3,24422,1,4,0)
- ;;=4^M24.411
- ;;^UTILITY(U,$J,358.3,24422,2)
- ;;=^5011371
- ;;^UTILITY(U,$J,358.3,24423,0)
- ;;=M24.412^^76^1004^91
- ;;^UTILITY(U,$J,358.3,24423,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,24423,1,3,0)
- ;;=3^Recurrent Dislocation,Left Shoulder
- ;;^UTILITY(U,$J,358.3,24423,1,4,0)
- ;;=4^M24.412
- ;;^UTILITY(U,$J,358.3,24423,2)
- ;;=^5011372
- ;;^UTILITY(U,$J,358.3,24424,0)
- ;;=M24.511^^76^1004^35
- ;;^UTILITY(U,$J,358.3,24424,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,24424,1,3,0)
- ;;=3^Contracture,Right Shoulder
- ;;^UTILITY(U,$J,358.3,24424,1,4,0)
- ;;=4^M24.511
- ;;^UTILITY(U,$J,358.3,24424,2)
- ;;=^5011402
- ;;^UTILITY(U,$J,358.3,24425,0)
- ;;=M24.512^^76^1004^33
- ;;^UTILITY(U,$J,358.3,24425,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,24425,1,3,0)
- ;;=3^Contracture,Left Shoulder
- ;;^UTILITY(U,$J,358.3,24425,1,4,0)
- ;;=4^M24.512
- ;;^UTILITY(U,$J,358.3,24425,2)
- ;;=^5011403
- ;;^UTILITY(U,$J,358.3,24426,0)
- ;;=M24.541^^76^1004^34
- ;;^UTILITY(U,$J,358.3,24426,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,24426,1,3,0)
- ;;=3^Contracture,Right Hand
- ;;^UTILITY(U,$J,358.3,24426,1,4,0)
- ;;=4^M24.541
- ;;^UTILITY(U,$J,358.3,24426,2)
- ;;=^5011411
- ;;^UTILITY(U,$J,358.3,24427,0)
- ;;=M24.542^^76^1004^32
- ;;^UTILITY(U,$J,358.3,24427,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,24427,1,3,0)
- ;;=3^Contracture,Left Hand
- ;;^UTILITY(U,$J,358.3,24427,1,4,0)
- ;;=4^M24.542
- ;;^UTILITY(U,$J,358.3,24427,2)
- ;;=^5011412
- ;;^UTILITY(U,$J,358.3,24428,0)
- ;;=M24.321^^76^1004^71
- ;;^UTILITY(U,$J,358.3,24428,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,24428,1,3,0)
- ;;=3^Path Dislocation,Right Elbow NEC
- ;;^UTILITY(U,$J,358.3,24428,1,4,0)
- ;;=4^M24.321
- ;;^UTILITY(U,$J,358.3,24428,2)
- ;;=^5011349
- ;;^UTILITY(U,$J,358.3,24429,0)
- ;;=M24.322^^76^1004^69
- ;;^UTILITY(U,$J,358.3,24429,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,24429,1,3,0)
- ;;=3^Path Dislocation,Left Elbow NEC
- ;;^UTILITY(U,$J,358.3,24429,1,4,0)
- ;;=4^M24.322
- ;;^UTILITY(U,$J,358.3,24429,2)
- ;;=^5011350
- ;;^UTILITY(U,$J,358.3,24430,0)
- ;;=M20.001^^76^1004^37
- ;;^UTILITY(U,$J,358.3,24430,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,24430,1,3,0)
- ;;=3^Deformity,Right Finger(s),Unspec
- ;;^UTILITY(U,$J,358.3,24430,1,4,0)
- ;;=4^M20.001
- ;;^UTILITY(U,$J,358.3,24430,2)
- ;;=^5011028
- ;;^UTILITY(U,$J,358.3,24431,0)
- ;;=M20.002^^76^1004^36
- ;;^UTILITY(U,$J,358.3,24431,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,24431,1,3,0)
- ;;=3^Deformity,Left Finger(s),Unspec
- ;;^UTILITY(U,$J,358.3,24431,1,4,0)
- ;;=4^M20.002
- ;;^UTILITY(U,$J,358.3,24431,2)
- ;;=^5011029
- ;;^UTILITY(U,$J,358.3,24432,0)
- ;;=M20.011^^76^1004^59
- ;;^UTILITY(U,$J,358.3,24432,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,24432,1,3,0)
- ;;=3^Mallet Finger,Right Finger(s)
- ;;^UTILITY(U,$J,358.3,24432,1,4,0)
- ;;=4^M20.011
- ;;^UTILITY(U,$J,358.3,24432,2)
- ;;=^5011030
- ;;^UTILITY(U,$J,358.3,24433,0)
- ;;=M20.012^^76^1004^58
- ;;^UTILITY(U,$J,358.3,24433,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,24433,1,3,0)
- ;;=3^Mallet Finger,Left Finger(s)
- ;;^UTILITY(U,$J,358.3,24433,1,4,0)
- ;;=4^M20.012
- ;;^UTILITY(U,$J,358.3,24433,2)
- ;;=^5011031
- ;;^UTILITY(U,$J,358.3,24434,0)
- ;;=M20.021^^76^1004^9
- ;;^UTILITY(U,$J,358.3,24434,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,24434,1,3,0)
- ;;=3^Boutonniere Deformity,Right Finger(s)
- ;;^UTILITY(U,$J,358.3,24434,1,4,0)
- ;;=4^M20.021
- ;;^UTILITY(U,$J,358.3,24434,2)
- ;;=^5011033
- ;;^UTILITY(U,$J,358.3,24435,0)
- ;;=M20.022^^76^1004^8
- ;;^UTILITY(U,$J,358.3,24435,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,24435,1,3,0)
- ;;=3^Boutonniere Deformity,Left Finger(s)
- ;;^UTILITY(U,$J,358.3,24435,1,4,0)
- ;;=4^M20.022
- ;;^UTILITY(U,$J,358.3,24435,2)
- ;;=^5011034
- ;;^UTILITY(U,$J,358.3,24436,0)
- ;;=M20.031^^76^1004^197
- ;;^UTILITY(U,$J,358.3,24436,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,24436,1,3,0)
- ;;=3^Swan-Neck Deformity,Right Finger(s)
- ;;^UTILITY(U,$J,358.3,24436,1,4,0)
- ;;=4^M20.031
- ;;^UTILITY(U,$J,358.3,24436,2)
- ;;=^5011036
- ;;^UTILITY(U,$J,358.3,24437,0)
- ;;=M20.032^^76^1004^196
- ;;^UTILITY(U,$J,358.3,24437,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,24437,1,3,0)
- ;;=3^Swan-Neck Deformity,Left Finger(s)
- ;;^UTILITY(U,$J,358.3,24437,1,4,0)
- ;;=4^M20.032
- ;;^UTILITY(U,$J,358.3,24437,2)
- ;;=^5011037
- ;;^UTILITY(U,$J,358.3,24438,0)
- ;;=M21.331^^76^1004^209
+ ;;=4^I50.9

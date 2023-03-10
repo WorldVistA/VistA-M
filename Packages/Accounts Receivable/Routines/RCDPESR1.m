@@ -1,5 +1,5 @@
 RCDPESR1 ;ALB/TMP - Server interface to AR from Austin ;Jun 06, 2014@19:11:19
- ;;4.5;Accounts Receivable;**173,214,208,202,271,298,321**;Mar 20, 1995;Build 48
+ ;;4.5;Accounts Receivable;**173,214,208,202,271,298,321,345,349**;Mar 20, 1995;Build 44
  ;Per VA Directive 6402, this routine should not be modified.
  ;
  ;Reference to $$RXBIL^IBNCPDPU supported by DBIA 4435
@@ -31,9 +31,79 @@ PERROR(RCERR,RCEMG,RCXMZ) ; Process Errors - Send bulletin to mail group
  D
  . N DUZ S DUZ=.5,DUZ(0)="@"
  . D SENDMSG^XMXAPI(.5,XMSUBJ,XMBODY,.XMTO,,.XMZ)
+ ;
+ ; PRCA*4.5*349 - Send a new message to an Outlook email group notifying of error
+ D OUTMSG(.RCERR,RCXMZ)
  K ^TMP("RCRAW",$J)
  Q
  ;
+OUTMSG(RCERR,RCXMZ) ; Build message to send to Outlook address
+ ; PRCA*4.5*349 - New subroutine
+ ; RCERR = Error text array
+ ; RCXMZ = internal entry # of the mailman msg
+ N CT,RCMTXT,RCXM,TDATE,TTYPE,XMBODY,XMDUZ,XMSUBJ,XMTO,XMZ
+ S TDATE=$G(^TMP("RCERR",$J,"DATE")),TDATE=$$FMTE^XLFDT(TDATE)
+ S TTYPE=$G(^TMP("RCMSG",$J))
+ S XMBODY="RCXM"
+ ;
+ S CT=1
+ S RCXM(CT)="** AN EXCEPTION HAS BEEN DETECTED FOR AN EDI LOCKBOX MESSAGE **",CT=CT+1,RCXM(CT)=" "
+ S CT=CT+1
+ S RCXM(CT)="Message Type: "_$S(TTYPE="":$S($G(^TMP("RCERR",$J,"TYPE"))'="":^("TYPE"),1:"Cannot be determined"),1:TTYPE)
+ ;
+ S CT=CT+2
+ S RCXM(CT-1)=" ",RCXM(CT)="Message Date: "_TDATE
+ ;
+ S CT=CT+1,RCXM(CT)="Mailman Message #: "_$G(RCXMZ)
+ S CT=CT+1,RCXM(CT)=" "
+ S CT=CT+1,RCXM(CT)="Error: "_$S($D(^TMP("RCERR",$J,"TEXT")):^TMP("RCERR",$J,"TEXT"),1:"Unknown error")
+ I TTYPE["EFT" D
+ . D OUTEFT($NA(^TMP("RCERR",$J,"MSG")),.CT,"RCXM")
+ ; To be safe, try to parse unknown message types as ERAs for the purpose of
+ ; masking PII
+ I TTYPE'["EFT" D
+ . D OUTERA($NA(^TMP("RCERR",$J,"MSG")),.CT,"RCXM")
+ ;
+ S XMDUZ="",XMSUBJ="EDI LBOX-STA# "_$P($$SITE^VASITE,"^",3)_"-TRANSMISSION ERROR"
+ S XMTO("vha835payerinquiry@domain.ext")=""
+ D
+ . N DUZ S DUZ=.5,DUZ(0)="@"
+ . D SENDMSG^XMXAPI(.5,XMSUBJ,XMBODY,.XMTO,,.XMZ)
+ Q
+OUTERA(RAW,CT,RCMTXT) ; Format ERA/EEOB for Outlook message
+ ; PRCA*4.5*349 - New Subroutine
+ ; RAW - Points to raw data from the message
+ ; CT - (Passed by Reference) Current message text line count
+ ; RCMTXT - Pointer to message text array
+ N I,J,LN,RC,RCDAT,RCREF,OUTXFRM,X,Y,Z
+ Q:RCMTXT=""!(RAW="")
+ S J="" F  S J=$O(@RAW@(J)) Q:J=""  I +$G(@RAW@(J))=835 D  Q
+ . S LN=$G(@RAW@(J))
+ . F I=8,10,6,7 D
+ . . S RCDAT=$P(LN,U,I)
+ . . S RCREF="835+"_I_"^RCDPESR9",RC=$P($T(@RCREF),";;",2)
+ . . S OUTXFRM=$P(RC,U,4,99)
+ . . I OUTXFRM'="" S X=RCDAT X OUTXFRM S RCDAT=Y
+ . . S CT=CT+1,@RCMTXT@(CT)=$P(RC,U,3)_": "_RCDAT
+ S Z=0 F  S Z=$O(@RAW@(Z)) Q:Z=""  D
+ . S CT=CT+1,@RCMTXT@(CT)=$$MASKPII(@RAW@(Z))
+ Q
+OUTEFT(RAW,CT,RCMTXT) ; Format EFT for Outlook message
+ ; PRCA*4.5*349 - New Subroutine
+ ; RAW - Points to raw data from the message
+ ; CT - (Passed by Reference) Current message text line count
+ ; RCMTXT - Pointer to message text array
+ N DATA,I,Z
+ Q:RCMTXT=""!(RAW="")
+ S I="" F  S I=$O(@RAW@(I)) Q:'I  D
+ . S DATA($P(@RAW@(I),U))=$G(@RAW@(I))
+ S CT=CT+1,@RCMTXT@(CT)="Trace Number: "_$P($G(DATA("01")),U,2)
+ S CT=CT+1,@RCMTXT@(CT)="Dollar Amt: "_$$ZERO^RCDPESR9($P($G(DATA("01")),U,4),1)
+ S CT=CT+1,@RCMTXT@(CT)="Payer Name: "_$P($G(DATA("01")),U,5)
+ S CT=CT+1,@RCMTXT@(CT)="Payer ID: "_$P($G(DATA("01")),U,6)
+ S Z=0 F  S Z=$O(@RAW@(Z)) Q:'Z  D
+ . S CT=CT+1,@RCMTXT@(CT)=$G(@RAW@(Z))
+ Q
 EMFORM(CT,RCERR,RCXM,RCXMZ) ; Format error msgs
  ; INPUT:
  ;   CT = # of lines previously populated in error msg
@@ -65,6 +135,16 @@ EMFORM(CT,RCERR,RCXM,RCXMZ) ; Format error msgs
  S Z=0 F  S Z=$O(^TMP("RCERR",$J,"MSG",Z)) Q:'Z  S CT=CT+1,RCXM(CT)=^(Z)
  ;
  Q
+ ;
+MASKPII(X) ; Return a "05" field with PII masked for sending errors
+ ; PRCA*4.5*349 - Subroutine added
+ N I
+ I +X,+X'="835" D
+ . S $P(X,U,2)="**REDACTED**"
+ I $P(X,U)="05" D
+ . F I=3:1:6 D
+ . . S $P(X,U,I)="**REDACTED**"
+ Q X
  ;
 EXTERR(RCERR,RCE) ; Put error into error array
  ; Returns: (must be passed by reference)
@@ -162,14 +242,14 @@ TAXERR(RCTYPE,RCINS,RCTID,RCCHG) ; Send a bulletin for a bad tax id
 BILL(X,RCDT,RCIB) ; Returns ien of bill in X or -1 if not valid
  ; RCDT = the Statement from date (used for Rx bills)
  ; and, if passed by reference, RCIB = 1 if an insurance bill
- N DIC,Y,Z ; Z added PRCA*4.5*321
+ N ARRAY,DIC,Y,Z
  S RCIB=0
- S X=$TR(X," "),(X,Z)=$TR(X,"O","0") ; Remove spaces, change ohs to zeroes - Z added PRCA*4.5*321
+ S X=$TR(X," "),(X,Z)=$TR(X,"O","0") ; Remove spaces, change ohs to zeroes
  I X'["-",$E(X,1,3)?3N,+$E(X,1,3),$L(X)>7,$L(X)<12 S X=$E(X,1,3)_"-"_$E(X,4,$L(X))
  S DIC="^PRCA(430,",DIC(0)="MZ" D ^DIC
  ; Checks if the ECME# is valid
- I Y<0,$$VALECME^BPSUTIL2(Z) D  ; Uses Z - PRCA*4.5*321
- . S ARRAY("ECME")=Z,ARRAY("FILLDT")=$G(RCDT) ; Uses Z - PRCA*4.5*321
+ I Y<0,$$VALECME^BPSUTIL2(Z) D
+ . S ARRAY("ECME")=Z,ARRAY("FILLDT")=$G(RCDT)
  . S Y=$$RXBIL^IBNCPDPU(.ARRAY)     ; DBIA 4435
  . I Y>0 S Y(0)=$G(^PRCA(430,+Y,0))
  I Y>0 S RCIB=($P($G(^RCD(340,+$P(Y(0),U,9),0)),U)["DIC(36,")

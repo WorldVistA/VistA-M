@@ -1,5 +1,5 @@
-PSBOPM ;BIRMINGHAM/BSR-BCMA OIT HISTORY ;03/06/16 3:06pm
- ;;3.0;BAR CODE MED ADMIN;**3,9,13,17,40,70,72,83**;Mar 2004;Build 89
+PSBOPM ;BIRMINGHAM/BSR - BCMA OIT HISTORY ;Sep 02, 2020@15:05:53
+ ;;3.0;BAR CODE MED ADMIN;**3,9,13,17,40,70,72,83,82,136**;Mar 2004;Build 7
  ;;Per VHA Directive 2004-038, this routine should not be modified.
  ;
  ; Reference/IA
@@ -13,7 +13,7 @@ PSBOPM ;BIRMINGHAM/BSR-BCMA OIT HISTORY ;03/06/16 3:06pm
  ;*83 - add Give info associated with a Remove and print
  ;
 EN ;
- N PSBHDR,DFN
+ N PSBHDR,DFN,PSBGBL,X1,X2,PSBSTRT,PSBSTOP,PSBCOM,PSBSPC
  S PSBGBL="^TMP(""PSBO"",$J,""B"")"
  F  S PSBGBL=$Q(@PSBGBL) Q:PSBGBL=""  Q:$QS(PSBGBL,2)'=$J  Q:$QS(PSBGBL,1)'["PSBO"  D
  .S DFN=$QS(PSBGBL,5)
@@ -31,6 +31,7 @@ EN ;
  ;
 OUT(DFN,PSBSTRT,PSBSTOP,PSBORDNM)        ;
  D CLEANALL ;CLEAN UP VARIABLES AND TMP ARRAY
+ N PSBOR
  ;
  ;IF PSBORDNM DOESN'T CONTAIN A "U" OR A "V", SKIP THE ORDER LOOKUP
  S PSBOR=1
@@ -53,6 +54,7 @@ GETORDN ;
  Q
  ;
 GETOIS  ; LOAD PSBOIS(#) WITH ALL OF THE ORDERABLE ITEMS
+ N PSBOI,XXX,XXY,PSBADD,PSBSOL
  I PSBORDNM["U" D
  .;GET UNIT DOSE ORDERS
  .I $D(^TMP("PSJ1",$J,2)) D
@@ -75,6 +77,7 @@ GETOIS  ; LOAD PSBOIS(#) WITH ALL OF THE ORDERABLE ITEMS
  ..S XXX="" F  S XXX=$O(^TMP("PSJ1",$J,950,XXX)) Q:XXX=""  D
  ...S XXY="" F  S XXY=$O(^TMP("PSJ1",$J,950,XXX,XXY)) Q:XXY=""  D
  ....S PSBSOL=$P(^TMP("PSJ1",$J,950,XXX,XXY),"^")
+ ....I $G(^TMP("PSJ1",$J,850,0)) Q:$$GET1^DIQ(52.7,PSBSOL_",",18)'="YES"  ; PSB*3.0*82 rbd Do not do pre-mix when additive present
  ....;
  ....;CONVERT SOLUTIOIN TO ORDERABLE ITEM AND ADD TO LIST
  ....S TMP("PSBOIS",$J,$$OFROMS(PSBSOL))=""
@@ -82,12 +85,12 @@ GETOIS  ; LOAD PSBOIS(#) WITH ALL OF THE ORDERABLE ITEMS
  ;
 OFROMA(PSBADD) ;GET ORDERABLE ITEM FROM AN ADDITIVE
  Q $$GET1^DIQ(52.6,PSBADD_",",15,"I")
- ; 
+ ;
 OFROMS(PSBSOL) ; GET ORDERABLE ITEM FROM A SOLUTION
  Q $$GET1^DIQ(52.7,PSBSOL_",",9,"I")
  ;
 GETADSO ; GET ALL ADDITIVES FOR ALL ORDERABLE ITEMS
- K PSBAOUT,PSBSOUT
+ N PSBAOUT,PSBSOUT,XA,XB
  S XA="" F  S XA=$O(TMP("PSBOIS",$J,XA)) Q:XA=""  D
  .D LIST^DIC(52.6,"","@;15I","QPI","","","","AOI","","","PSBAOUT")
  .S XB=0 F  S XB=$O(PSBAOUT("DILIST",XB)) Q:XB=""  D
@@ -104,10 +107,10 @@ GETADSO ; GET ALL ADDITIVES FOR ALL ORDERABLE ITEMS
  Q
  ;
 PREOUT ;
- N TYP
+ N I,TYP,XDT,PSBIEN,PSBIENS
  F TYP="UD","ADD","SOL"  D
  .Q:'$D(TMP("PSBIENS",$J,TYP))
- .K PSBUNK S XDT="" F  S XDT=$O(TMP("PSBIENS",$J,TYP,XDT),-1) Q:XDT=""  D
+ .S XDT="" F  S XDT=$O(TMP("PSBIENS",$J,TYP,XDT),-1) Q:XDT=""  D
  ..S I="" F  S I=$O(TMP("PSBIENS",$J,TYP,XDT,I)) Q:I=""  D
  ...I TYP="UD" Q:$D(TMP("PSBIENS",$J,"ADD",XDT,I))  Q:$D(TMP("PSBIENS",$J,"SOL",XDT,I))
  ...S PSBIEN=I
@@ -117,66 +120,166 @@ PREOUT ;
  ;
 OUTPUT(TYP) ;
  N GIVE,G1,G2,G3,G4
+ ; added new local variables for PSB*3.0*82 rbd - also New'ing W & PSBUNK variables
+ N PSBUNK,W,W2,W22LINE,W22NUM,W22TEXT,W3,WCURSTAT,WINIT,WNAME
+ N WNPIEN,WOLDSTAT,WSUB9,WSUB9BY,WSUB9CNT,WSUB9DT,WUO,PSBNODE,PSBY,PSBDD
  S PSBSPC=$J("",80)
- S W=$E($$GET1^DIQ(53.79,PSBIENS,.02)_PSBSPC,1,20)_" "
- I $TR(W," ")="",$$MME^PSBOML(+PSBIENS) S W="MME/UNKNOWN LOCATION "
- S W=W_$S($P(^PSB(53.79,PSBIEN,0),U,9)="":"?? ",1:$E($P(^PSB(53.79,PSBIEN,0),U,9)_"  ",1,2)_" ")
- S:$P(^PSB(53.79,PSBIEN,0),U,9)="" PSBUNK=1
- S W=W_$E($P($G(^PSB(53.79,PSBIEN,.1)),U,2)_PSBSPC,1,2)_"  "
+ ; PSB*3.0*82 rbd - more room for LOCATION; chg'ed 20 to 25
+ S W=" "_$E($$GET1^DIQ(53.79,PSBIENS,.02)_PSBSPC,1,25)_" "
+ I $TR(W," ")="",$$MME^PSBOML(+PSBIENS) S W=" MME/UNKNOWN LOCATION      "
+ ; PSB*3.0*82 rbd - do not output status/sch type abbrevs anymore
+ ;S W=W_$S($P(^PSB(53.79,PSBIEN,0),U,9)="":"?? ",1:$E($P(^PSB(53.79,PSBIEN,0),U,9)_"  ",1,2)_" ")
+ S PSBUNK=0 S:$P(^PSB(53.79,PSBIEN,0),U,9)="" PSBUNK=1
+ ;S W=W_$E($P($G(^PSB(53.79,PSBIEN,.1)),U,2)_PSBSPC,1,2)_"  "
+ ; PSB*3.0*82 rbd - Status & Schedule Type spelled out now (unabbreviated)
+ S WCURSTAT=$S(PSBUNK:"Unknown Status",1:$P($G(^PSB(53.79,PSBIEN,0)),U,9))
+ S W=W_$E($$STATUS(WCURSTAT)_PSBSPC,1,23)_" "
+ S W=W_$E($$SCHED($P($G(^PSB(53.79,PSBIEN,.1)),U,2))_PSBSPC,1,19)_" "
  S W=W_$E($E($$GET1^DIQ(53.79,PSBIENS,.06),1,18)_PSBSPC,1,21)_" "
- S W=W_$E($$GETINIT^PSBCSUTX(PSBIEN,"I")_PSBSPC,1,10)_" " ;Get initials of who took action, PSB*3*72
  ;*83 body site info
  N SITE
  S SITE=$$GET1^DIQ(53.79,PSBIENS,.18)
  S:SITE="" SITE=$$GET1^DIQ(53.79,PSBIENS,.16)
- S W=W_SITE
+ ;S W=W_SITE    ; PSB*3*82 rbd Site Info will now go on the next line with the Medication
  ;
  D ADD(W,TYP)
- S W=$J("",56)
- ;Remove, find associated Give                                     *83
- I $P(^PSB(53.79,PSBIEN,0),U,9)="RM" D
- .S GIVE=$$FINDGIVE^PSBUTL(PSBIEN)
- .S G1=$E($P(GIVE,U,3)_PSBSPC,1,3)
- .S G2=$E($P($G(^PSB(53.79,PSBIEN,.1)),U,2)_PSBSPC,1,4)
- .S G3=$P(GIVE,U),G3=$E($$UP^XLFSTR($$FMTE^XLFDT(G3,1)),1,18)_$J("",4)
- .S G4=$E($P(GIVE,U,2)_PSBSPC,1,6)
- .S W=$J("",21)
- .S W=W_G1_G2_G3_G4
+ ; PSB*3.0*82 rbd - put By/Body Site on line with 1st med; keep legend of Initials & Name also
+ S WINIT=$$GETINIT^PSBCSUTX(PSBIEN,"I")
+ S WNAME=$$GETINIT^PSBCSUTX(PSBIEN,"N")
+ I WINIT]"",WNAME]"" S ^TMP("PSB_WINITNAM",$J,WINIT,WNAME)=""
+ S W=" "_$E(WINIT_PSBSPC,1,25)_" " ;Get initials of who took action, PSB*3*72 - ln/spacing chg'ed PSB*3*82 rbd
+ ;S W=$J("",56)
+ ; PSB*3.0*82 rbd find all audit history not just associated Give for Removal
+ ;I $P(^PSB(53.79,PSBIEN,0),U,9)="RM" D
+ ;.S GIVE=$$FINDGIVE^PSBUTL(PSBIEN)
+ ;.S G1=$E($P(GIVE,U,3)_PSBSPC,1,3)
+ ;.S G2=$E($P($G(^PSB(53.79,PSBIEN,.1)),U,2)_PSBSPC,1,4)
+ ;.S G3=$P(GIVE,U),G3=$E($$UP^XLFSTR($$FMTE^XLFDT(G3,1)),1,18)_$J("",4)
+ ;.S G4=$E($P(GIVE,U,2)_PSBSPC,1,6)
+ ;.S W=$J("",21)
+ ;.S W2=G1_G2_G3_G4
+ I $G(^PSB(53.79,PSBIEN,.9,1,0))]"" D
+ .S WSUB9CNT=""
+ .F  S WSUB9CNT=$O(^PSB(53.79,PSBIEN,.9,WSUB9CNT),-1) Q:WSUB9CNT=0  D
+ ..S WSUB9=$G(^PSB(53.79,PSBIEN,.9,WSUB9CNT,0)) I WSUB9]"" D
+ ...I $P(WSUB9,U,3)["ACTION STATUS Set to" D
+ ....S WSUB9BY=$P($P(WSUB9,U,3),"'",4),WSUB9DT=$P(WSUB9,U)
+ ....S WOLDSTAT=$E($P(WSUB9,U,4),1,3)
+ ....S:WOLDSTAT="REM" WOLDSTAT="RM"
+ ....S:WOLDSTAT'="RM" WOLDSTAT=$E(WOLDSTAT)
+ ....S W2(WSUB9CNT)=$$STATUS(WOLDSTAT)_U_WSUB9DT_U_WSUB9BY
+ ....I WSUB9BY]"" D   ; keep legend of init/name PSB*3.0*82 rbd
+ .....S WNPIEN=$P(WSUB9,U,5)
+ .....S WNAME=$$GET1^DIQ(200,WNPIEN,.01)
+ .....I WNAME]"" S ^TMP("PSB_WINITNAM",$J,WSUB9BY,WNAME)=""
  ;
  F PSBNODE=.5,.6,.7 D
  .S PSBDD=$S(PSBNODE=.5:53.795,PSBNODE=.6:53.796,1:53.797)
  .F PSBY=0:0 S PSBY=$O(^PSB(53.79,PSBIEN,PSBNODE,PSBY)) Q:'PSBY  D  ;Include units ordered for IV's
- ..D:PSBDD=53.795 WRAPMEDS(W,$$GET1^DIQ(PSBDD,PSBY_","_PSBIENS,.01),$$GET1^DIQ(PSBDD,PSBY_","_PSBIENS,.03),$$GET1^DIQ(PSBDD,PSBY_","_PSBIENS,.04),TYP)  ;insert W to Wrapmeds tag *83
- ..D:PSBDD=53.796!(PSBDD=53.797) WRAPMEDS(W,$$GET1^DIQ(PSBDD,PSBY_","_PSBIENS,.01)_" - "_$$GET1^DIQ(PSBDD,PSBY_","_PSBIENS,.02),$$GET1^DIQ(PSBDD,PSBY_","_PSBIENS,.03),$$GET1^DIQ(PSBDD,PSBY_","_PSBIENS,.04),TYP)  ;insert W to wrapmeds *83
- I PSBCOM=1  D COMNTS   ;GETS COMMENTS
+ ..; PSB*3.0*82 rbd Send in Units Ordered also to WRAPMEDS
+ ..;D:PSBDD=53.795 WRAPMEDS(W,$$GET1^DIQ(PSBDD,PSBY_","_PSBIENS,.01),$$GET1^DIQ(PSBDD,PSBY_","_PSBIENS,.03),$$GET1^DIQ(PSBDD,PSBY_","_PSBIENS,.04),TYP)  ;insert W to Wrapmeds tag *83
+ ..;D:PSBDD=53.796!(PSBDD=53.797) WRAPMEDS(W,$$GET1^DIQ(PSBDD,PSBY_","_PSBIENS,.01)_" - "_$$GET1^DIQ(PSBDD,PSBY_","_PSBIENS,.02),$$GET1^DIQ(PSBDD,PSBY_","_PSBIENS,.03),$$GET1^DIQ(PSBDD,PSBY_","_PSBIENS,.04),TYP)  ;insert W to wrapmeds *83
+ ..S WUO=$$GET1^DIQ(PSBDD,PSBY_","_PSBIENS,.02)
+ ..D:PSBDD=53.795 WRAPMEDS(W,SITE,$$GET1^DIQ(PSBDD,PSBY_","_PSBIENS,.01),$$GET1^DIQ(PSBDD,PSBY_","_PSBIENS,.03),WUO,$$GET1^DIQ(PSBDD,PSBY_","_PSBIENS,.04),TYP)  ;insert W to Wrapmeds tag *83
+ ..I PSBDD=53.796!(PSBDD=53.797) D
+ ...D WRAPMEDS(W,SITE,$$GET1^DIQ(PSBDD,PSBY_","_PSBIENS,.01)_" - "_WUO,$$GET1^DIQ(PSBDD,PSBY_","_PSBIENS,.03),WUO,$$GET1^DIQ(PSBDD,PSBY_","_PSBIENS,.04),TYP)  ;insert W to wrapmeds *83
+ ; PSB*3.0*82 rbd Add audit info as its own line
+ S WSUB9CNT=$O(W2(""),-1) I WSUB9CNT?1N.N K W2(WSUB9CNT)
+ S WSUB9CNT="" F  S WSUB9CNT=$O(W2(WSUB9CNT),-1) Q:WSUB9CNT=""  D
+ .S WSUB9=W2(WSUB9CNT),W3=$J("",27),W3=W3_"(Previous Status: "_$E($P(WSUB9,U)_PSBSPC,1,23)
+ .S W3=W3_"  At "_$$UP^XLFSTR($$FMTE^XLFDT($P(WSUB9,U,2),1))_"  By "
+ .S W3=W3_$P(WSUB9,U,3)_")" D ADD(W3,TYP)
+ ; PSB*3.0*82 rbd Add in PRN Effectiveness info.
+ S W=$E($$GET1^DIQ(53.79,PSBIENS,.21)_PSBSPC,1,27)_" "
+ I $TR(W," ")]"" D
+ .S W=" " D ADD(W,TYP)
+ .S W="     "_$E($$GET1^DIQ(53.79,PSBIENS,.21)_PSBSPC,1,27)_" "
+ .S W22LINE=$$GET1^DIQ(53.79,PSBIENS,.22)
+ .D WRAP2(W22LINE,25,.W22TEXT)
+ .S W=W_$E(W22TEXT(1)_PSBSPC,1,27)_" "
+ .S W=W_$E($$GET1^DIQ(53.79,PSBIENS,.23)_PSBSPC,1,29)_" "
+ .S W=W_$E($$GET1^DIQ(53.79,PSBIENS,.24)_PSBSPC,1,29)
+ .D ADD(W,TYP)
+ .I W22TEXT>1 F W22NUM=2:1:W22TEXT D
+ ..D ADD($J("",33)_W22TEXT(W22NUM),TYP)
+ I PSBCOM=1 D COMNTS   ;GETS COMMENTS
  D ADD("",TYP)
  Q
  ;
+STATUS(STATABBR) ; Give a full status from abbr - PSB*3.0*82 rbd
+ Q:STATABBR="G" "Given" Q:STATABBR="I" "Infusing"
+ Q:STATABBR="S" "Stopped" Q:STATABBR="C" "Completed"
+ Q:STATABBR="H" "Held" Q:STATABBR="R" "Refused"
+ Q:STATABBR="RM" "Removed" Q:STATABBR="M" "Missing Dose Requested"
+ Q ""
+ ;
+SCHED(SCHABBR) ; Give a full schedule type from abbr - PSB*3.0*82 rbd
+ Q:SCHABBR="C" "Continuous" Q:SCHABBR="P" "PRN"
+ Q:SCHABBR="O" "One Time" Q:SCHABBR="OC" "On Call"
+ Q ""
+ ;
 COMNTS  ;
- N Z,CNT
+ N Z,CNT,PSBCMNT,PSBINIT,PSBNAME,PSBPRREC,XT,XBR   ; PSB*3.0*82 rbd keep legend of init/name
  S Z="",CNT=0
  I $D(^PSB(53.79,PSBIEN,.3,0)) D
  .D ADD("",TYP)
- .D ADD($J("",45)_"Comments: "_$$MAKELINE("-",78),TYP)
- .S XT="" F  S XT=$O(^PSB(53.79,PSBIEN,.3,XT)) Q:XT=""  I XT'=0  D
+ .D ADD($J("",27)_"Comments: "_$$MAKELINE("-",81),TYP)  ; PSB*3.0*82 rbd Move Comments to align with Medication
+ .S XT="" F  S XT=$O(^PSB(53.79,PSBIEN,.3,XT),-1) Q:XT=""  I XT'=0  D   ; PSB*3.0*82 rbd reverse chronological for comments also
  ..D:CNT=1 ADD("",TYP)
- ..S Y=$P(^PSB(53.79,PSBIEN,.3,XT,0),"^",3) D DD^%DT S XBR=Y
- ..S Z=XBR_"   "_$P(^VA(200,$P(^PSB(53.79,PSBIEN,.3,XT,0),"^",2),0),"^",2)
+ ..; PSB*3.0*82 rbd keep legend of init/name
+ ..;S Y=$P(^PSB(53.79,PSBIEN,.3,XT,0),"^",3) D DD^%DT S XBR=Y
+ ..S PSBCMNT=$G(^PSB(53.79,PSBIEN,.3,XT,0))
+ ..S Y=$P(PSBCMNT,"^",3) D DD^%DT S XBR=Y
+ ..S PSBPRREC=$G(^VA(200,+$P(PSBCMNT,"^",2),0))
+ ..S PSBINIT=$P(PSBPRREC,"^",2)
+ ..S PSBNAME=$P(PSBPRREC,"^",1)
+ ..I PSBINIT]"",PSBNAME]"" D
+ ...S ^TMP("PSB_WINITNAM",$J,PSBINIT,PSBNAME)=""
+ ..;S Z=XBR_"   "_$P(^VA(200,$P(^PSB(53.79,PSBIEN,.3,XT,0),"^",2),0),"^",2)
+ ..S Z=XBR_"   "_PSBINIT
  ..D WRAP($P(^PSB(53.79,PSBIEN,.3,XT,0),"^",1),Z,PSBIEN)
  ..S CNT=1
- .D ADD($J("",55)_$$MAKELINE("-",78),TYP)
- Q
-        ;
-WRAP(SIZE,ZP,BRIEN)         ;
- D ADD($J("",56)_ZP,TYP)
- D ADD($J("",56)_$E(SIZE,1,75),TYP)
- I $L(SIZE)>75 D ADD($J("",56)_$E(SIZE,76,150),TYP)
+ .D ADD($J("",37)_$$MAKELINE("-",81),TYP)  ; PSB*3.0*82 rbd Move Comments to align with Medication
  Q
  ;
+WRAP(SIZE,ZP,BRIEN)         ;
+ ; PSB*3.0*82 rbd Massaged Comments to possibly be 4 lines using new WRAP2 API
+ ;D ADD($J("",56)_ZP,TYP)
+ ;D ADD($J("",56)_$E(SIZE,1,75),TYP)
+ ;I $L(SIZE)>75 D ADD($J("",56)_$E(SIZE,76,150),TYP)
+ N SIZE2,SIZE2NUM D WRAP2(SIZE,50,.SIZE2),ADD($J("",37)_ZP_"   "_SIZE2(1),TYP)
+ I SIZE2>1 F SIZE2NUM=2:1:SIZE2 D
+ .D ADD($J("",66)_SIZE2(SIZE2NUM),TYP)
+ Q
+ ;
+ ; PSB*3.0*82 rbd Put in place more robust wrapping API
+WRAP2(TEXTLINE,MAX,TEXT) ; Splits Text into TEXT array
+ N I,J S J=0 K TEXT
+ I $L(TEXTLINE)'>MAX S J=J+1,TEXT(J)=TEXTLINE G WRQ
+WR0 ;   Loop for Remaining Text
+ S I=$F(TEXTLINE," ")
+ I ('I)!(I>(MAX+2)) D
+ .S J=J+1,TEXT(J)=$E(TEXTLINE,1,MAX)
+ .S TEXTLINE=$E(TEXTLINE,MAX+1,999)
+ I $L(TEXTLINE)>MAX F I=(MAX+1):-1:1 I $E(TEXTLINE,I)=" " D  Q
+ .S J=J+1,TEXT(J)=$E(TEXTLINE,1,I-1)
+ .S TEXTLINE=$E(TEXTLINE,I+1,999)
+ G:$L(TEXTLINE)>MAX WR0
+ S:$L(TEXTLINE) J=J+1,TEXT(J)=TEXTLINE
+WRQ ;   Quit Wrap
+ S TEXT=J
+ Q
+ ; end new API for PSB*3*82 rbd
 HEADA ;
  W !
- W "Location",?21,"St Sch Administration Date",?50,"By",?61,"Body Site",?96,"Units",?112,"Units of"     ;*83
- W !,?56,"Medication & Dosage",?96,"GIVEN",?112,"Administration"
+ ; PSB*3.0*82 rbd - Expand fields and include new fields
+ ;W "Location",?21,"St Sch Administration Date",?50,"By",?61,"Body Site",?96,"Units",?112,"Units of"     ;*83
+ W ?1,"Location",?27,"Status",?51,"Schedule Type"
+ W ?71,"Administration Date",?98,"Units",?109,"Units",?121,"Units of"
+ W !?1,"By",?27,"Medication & Dosage",?71,"Body Site"
+ W ?97,"Ordered",?109,"GIVEN",?122,"Admin"
+ W !!?5,"PRN Reason",?33,"PRN Effectiveness",?61,"Effectiveness Entered By"
+ W ?91,"Effectiveness Entered"
  W !
  W $$MAKELINE("-",132)
  Q
@@ -185,39 +288,50 @@ ADD(XE,TYP)  ;
  S ^TMP("PSB",$J,TYP,$O(^TMP("PSB",$J,TYP,""),-1)+1)=XE
  Q
  ;
-WRAPMEDS(W,MED,UG,UOA,TYP)  ;insert parm W (possible RM string) to print on line 1 *83
+ ; PSB*3.0*82 rbd Send in Units Ordered as well
+WRAPMEDS(W,SITE,MED,UG,UO,UOA,TYP)  ;insert parm W (possible RM string) to print on line 1 *83
  ;MED IS NOT WRAPPED: MAX LENGTH IN PSDRUG/52.6/52.7 IS 40
  ;UG/UOA MAX AT 30/40 AND WILL BE WRAPPED AT 15 EACH
  ;THIS WILL CREATE UPTO 3 LINES
  S MED=$S($L(MED)>40:$E(MED_$J("",80),1,80),1:$E(MED_$J("",40),1,40)) ;Add wrapping for med/units ordered
- N UGWRAP,PSBMED1,PSBMED41,PSBMED81,PSBCNT
+ N UGWRAP,PSBMED1,PSBMED41,PSBMED81,PSBCNT,UOWRAP,CNTX,CNTXX,UOA1,UOA16,UOA31,UOAX   ; PSB*3.0*82 rbd Added Units Ordered
  S (CNTX,UOA1,UOA16,UOA31,PSBMED1,PSBMED41,PSBMED81)=""
  I +$G(UG)?1"."1.N S UG=0_+UG
+ I +$G(UO)?1"."1.N S UO=0_+UO   ; PSB*3.0*82 rbd Units Ordered added
  F CNT=1:15:45  D
  .S PSBCNT=$S(CNT=1:1,CNT=16:41,CNT=31:81,1:120)
  .D PARSEM(MED,PSBCNT)
  .D PARSE(UOA,CNT)
  .S UGWRAP=$E(UG,CNT,(CNT+14))
- .I CNT=1 D ADD(W_MED_" "_$$PAD(UGWRAP,15)_" "_$$PAD(UOA1,15),TYP)
- .I (CNT>1),($L(UGWRAP)>0!$L(@("UOA"_CNT))>0) D ADD($J("",96)_$$PAD(UGWRAP,15)_" "_$$PAD(@("UOA"_CNT),15),TYP)
+ .; PSB*3.0*82 rbd Units Ordered & Site handling next 3 lines of code
+ .S UOWRAP=$E(UO,CNT,(CNT+14))
+ .;P136 reduce SITE_PSBSPC,1,24(25);UOWRAP,9(11);UGWRAP,9(11);$J,97(99);Increase UOA1,15(11); UOA,15(11)
+ .I CNT=1 D ADD(W_$E(MED_PSBSPC,1,43)_" "_$E(SITE_PSBSPC,1,24)_"  "_$$PAD(UOWRAP,9)_" "_$$PAD(UGWRAP,9)_" "_$$PAD(UOA1,15),TYP)
+ .I (CNT>1),($L(UGWRAP)>0!$L(@("UOA"_CNT))>0) D ADD($J("",97)_$$PAD(UOWRAP,9)_" "_$$PAD(UGWRAP,9)_" "_$$PAD(@("UOA"_CNT),15),TYP)
  Q
  ;
 PAD(X,CNT) ;
  Q $E(X_$J("",CNT),1,CNT)
 WRITEOT ;
- N TPE
+ N TPE,PSTRTA,PSTP
  S Y=$P(PSBSTRT,".",1)  D D^DIQ  S PSTRTA=Y
  S Y=$P(PSBSTOP,".",1)  D D^DIQ  S PSTP=Y
  S PSBHDR(1)="MEDICATION HISTORY for "_PSTRTA_"  to  "_PSTP
  I '$D(TMP("PSBIENS",$J)) D ADD("<<<< NO HISTORY FOUND FOR THIS TIME FRAME >>>>","UD")
  S TPE="" F  S TPE=$O(^TMP("PSB",$J,TPE)) Q:TPE=""  D
  .D MEDS(TPE)
- .N PSBCLINORD S PSBCLINORD=2 D PT^PSBOHDR(DFN,.PSBHDR),HEADA     ;*70
+ .N PSBCLINORD,EX S PSBCLINORD=2 D PT^PSBOHDR(DFN,.PSBHDR),HEADA     ;*70
  .S EX="" F  S EX=$O(^TMP("PSB",$J,TPE,EX)) Q:EX=""  D
  ..I $Y>(IOSL-5) D
  ...W $$PTFTR^PSBOHDR()
  ...D PT^PSBOHDR(DFN,.PSBHDR),HEADA
  ..W !,$G(^TMP("PSB",$J,TPE,EX))
+ ; PSB*3.0*82 rbd Keep legend of initials & names
+ W !!,"Initial - Name Legend"
+ S WINIT="" F  S WINIT=$O(^TMP("PSB_WINITNAM",$J,WINIT)) Q:WINIT=""  D
+ .S WNAME="" F  S WNAME=$O(^TMP("PSB_WINITNAM",$J,WINIT,WNAME)) Q:WNAME=""  D
+ ..W !,$E(WINIT_PSBSPC,1,10)_WNAME
+ K ^TMP("PSB_WINITNAM",$J)
  W $$PTFTR^PSBOHDR()
  Q
  ;
@@ -262,6 +376,12 @@ MAKELINE(X,CNT) ;LINE OF WHAT'S PASSED IN CNT TIMES
  Q Y
  ;
 PARSE(X,CNT) ;Split text for wrapping.
+ ;Begin P136
+ N VAR
+ S VAR="UOA"_CNT
+ S @VAR=$E(X,CNT,CNT+14)
+ Q
+ ;End of P136, the below lines do not need anymore
  S CNTX="UOA"_CNT,@CNTX=@CNTX_$E(X,CNT,(CNT+14)),UOAX=""
  F  S:$F(@CNTX,", ",+UOAX)>0 UOAX=$F(@CNTX,", ",+UOAX)  Q:'$F(@CNTX,", ",+UOAX)
  I UOAX<1 F  S:$F(@CNTX," ",+UOAX)>0 UOAX=$F(@CNTX," ",+UOAX)  Q:'$F(@CNTX," ",+UOAX)

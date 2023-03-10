@@ -1,5 +1,5 @@
-MAGDQR74 ;WOIFO/NST - Imaging Utilities for Query/Retrieve - acc# scan (new); 16 Apr 2013 1:08 PM
- ;;3.0;IMAGING;**118**;Mar 19, 2002;Build 4525;May 01, 2013
+MAGDQR74 ;WOIFO/NST,PMK - Imaging Utilities for Query/Retrieve - acc# scan (new); Feb 15, 2022@10:27:25
+ ;;3.0;IMAGING;**118,305**;Mar 19, 2002;Build 3
  ;; Per VHA Directive 2004-038, this routine should not be modified.
  ;; +---------------------------------------------------------------+
  ;; | Property of the US Government.                                |
@@ -35,14 +35,16 @@ ADD1STD(ACCN,TMPQ)  ; Add one Study to temp global by accession number
  S RESULT=0
  S PROCIX=""
  F  S PROCIX=$O(^MAGV(2005.61,"B",ACCN,PROCIX)) Q:PROCIX=""  D
+ . I $$PROBLEM61^MAGDSTA8(PROCIX) Q  ; P305 PMK 12/06/2021
  . S PATREFIX=$P($G(^MAGV(2005.61,PROCIX,6)),"^",1) ; Patient Reference
- . Q:'PATREFIX  ; Quit if there is no Patient Reference
+ . ; Q:'PATREFIX  ; Quit if there is no Patient Reference
  . S PATREFDTA=$G(^MAGV(2005.6,PATREFIX,0))
- . Q:$P(PATREFDTA,"^",3)'="D"  ; Quit if it is not DFN
+ . ; Q:$P(PATREFDTA,"^",3)'="D"  ; Quit if it is not DFN
  . S MAGD0=$P(PATREFDTA,"^",1)  ; DFN
  . D:MAGD0'=""
  . . S STUDYIX="" F  S STUDYIX=$O(^MAGV(2005.62,"C",PROCIX,STUDYIX)) Q:'STUDYIX  D
- . . . Q:$P($G(^MAGV(2005.62,STUDYIX,5)),"^",2)="I"  ; study marked inaccessible
+ . . . I $$PROBLEM62^MAGDSTA8(STUDYIX) Q  ; P305 PMK 12/06/2021
+ . . . ; Q:$P($G(^MAGV(2005.62,STUDYIX,5)),"^",2)="I"  ; study marked inaccessible
  . . . S @TMPQ@("N^"_MAGD0_"^"_STUDYIX)="",RESULT=1
  . . . Q
  . . Q

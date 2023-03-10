@@ -1,9 +1,10 @@
-PSONEW2 ;BIR/DSD - displays new rx information for edit ;7/17/06 6:59pm
- ;;7.0;OUTPATIENT PHARMACY;**32,37,46,71,94,124,139,157,143,226,237,239,225,251,375,372,504**;DEC 1997;Build 15
+PSONEW2 ;BIR/DSD - displays new rx information for edit ;Jun 09, 2021@15:21:03
+ ;;7.0;OUTPATIENT PHARMACY;**32,37,46,71,94,124,139,157,143,226,237,239,225,251,375,372,504,441**;DEC 1997;Build 208
  ;External reference to ^PSDRUG supported by DBIA 221
  ;External reference to ^DPT supported by DBIA 10035
  ;External reference to PSOUL^PSSLOCK supported by DBIA 2789
  ;External reference VADPT supported by DBIA 10061
+ ;External reference to $$DS^PSSDSAPI supported by DBIA 5425
  ; This routine displays the entered new rx information and
  ; asks if correct, if not allows editing of the data.
  ;------------------------------------------------------------
@@ -38,7 +39,7 @@ START ;
 END D EOJ
  Q
  ;------------------------------------------------------------
-STOP ; Checks whether the Fill Date is past the Expiration Date 
+STOP ; Checks whether the Fill Date is past the Expiration Date
  N ISSDT,X K PSEXDT S PSON52("QFLG")=0
  S ISSDT=$G(PSONEW("ISSUE DATE")) I 'ISSDT S X=ISSDT D ^%DT S:Y>0 ISSDT=Y I 'ISSDT S ISSDT=DT
  I $$FMDIFF^XLFDT($G(PSONEW("FILL DATE")),ISSDT)>$S(+$G(PSONEW("CS")):184,1:366) D
@@ -47,7 +48,9 @@ STOP ; Checks whether the Fill Date is past the Expiration Date
 DISPLAY ;
  D:+$$DS^PSSDSAPI&($G(PSOFOERR)) HD3^PSODOSUN()
  W !!,"Rx # ",PSONEW("RX #")
- W ?23,$E(PSONEW("FILL DATE"),4,5),"/",$E(PSONEW("FILL DATE"),6,7),"/",$E(PSONEW("FILL DATE"),2,3),!,$G(PSORX("NAME")),?30,"#",PSONEW("QTY")
+ I $G(PSONEW("MAIL/WINDOW"))="P" W ?23,"Active/Parked"  ;441 PAPI
+ I $G(PSONEW("MAIL/WINDOW"))'="P" W ?23,$E(PSONEW("FILL DATE"),4,5),"/",$E(PSONEW("FILL DATE"),6,7),"/",$E(PSONEW("FILL DATE"),2,3)
+ W !,$G(PSORX("NAME")),?30,"#",PSONEW("QTY")
  I $G(SIGOK),$O(SIG(0)) D  K D G TRN
  .F D=0:0 S D=$O(SIG(D)) W !,SIG(D) Q:'$O(SIG(D))  D:+$$DS^PSSDSAPI&($G(PSOFOERR)) HD3^PSODOSUN(7)
  E  S X=PSONEW("SIG") D SIGONE^PSOHELP W !,$G(INS1) D:+$$DS^PSSDSAPI&($G(PSOFOERR)) HD3^PSODOSUN(7)

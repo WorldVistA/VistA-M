@@ -1,126 +1,130 @@
-IBDEI0MT ; ; 04-FEB-2020
- ;;3.0;IB ENCOUNTER FORM IMP/EXP;;FEB 04, 2020
+IBDEI0MT ; ; 01-FEB-2022
+ ;;3.0;IB ENCOUNTER FORM IMP/EXP;;FEB 01, 2022
  Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,999) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
- ;;^UTILITY(U,$J,358.3,10155,1,4,0)
- ;;=4^H02.112
- ;;^UTILITY(U,$J,358.3,10155,2)
- ;;=^5004308
- ;;^UTILITY(U,$J,358.3,10156,0)
- ;;=H02.115^^74^671^16
- ;;^UTILITY(U,$J,358.3,10156,1,0)
+ ;;^UTILITY(U,$J,358.3,10251,1,4,0)
+ ;;=4^A08.0
+ ;;^UTILITY(U,$J,358.3,10251,2)
+ ;;=^5000052
+ ;;^UTILITY(U,$J,358.3,10252,0)
+ ;;=A08.11^^39^433^1
+ ;;^UTILITY(U,$J,358.3,10252,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,10156,1,3,0)
- ;;=3^Ectropion,Cicatricial,Left Lower Eyelid
- ;;^UTILITY(U,$J,358.3,10156,1,4,0)
- ;;=4^H02.115
- ;;^UTILITY(U,$J,358.3,10156,2)
- ;;=^5133410
- ;;^UTILITY(U,$J,358.3,10157,0)
- ;;=H02.201^^74^671^22
- ;;^UTILITY(U,$J,358.3,10157,1,0)
+ ;;^UTILITY(U,$J,358.3,10252,1,3,0)
+ ;;=3^Acute Gastroenteropathy d/t Norwalk Agent
+ ;;^UTILITY(U,$J,358.3,10252,1,4,0)
+ ;;=4^A08.11
+ ;;^UTILITY(U,$J,358.3,10252,2)
+ ;;=^5000053
+ ;;^UTILITY(U,$J,358.3,10253,0)
+ ;;=A08.19^^39^433^2
+ ;;^UTILITY(U,$J,358.3,10253,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,10157,1,3,0)
- ;;=3^Lagophthalmos,Right Upper Eyelid,Unspec
- ;;^UTILITY(U,$J,358.3,10157,1,4,0)
- ;;=4^H02.201
- ;;^UTILITY(U,$J,358.3,10157,2)
- ;;=^5004327
- ;;^UTILITY(U,$J,358.3,10158,0)
- ;;=H02.204^^74^671^23
- ;;^UTILITY(U,$J,358.3,10158,1,0)
+ ;;^UTILITY(U,$J,358.3,10253,1,3,0)
+ ;;=3^Acute Gastroenteropathy d/t Oth Small Round Viruses
+ ;;^UTILITY(U,$J,358.3,10253,1,4,0)
+ ;;=4^A08.19
+ ;;^UTILITY(U,$J,358.3,10253,2)
+ ;;=^5000054
+ ;;^UTILITY(U,$J,358.3,10254,0)
+ ;;=A08.2^^39^433^3
+ ;;^UTILITY(U,$J,358.3,10254,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,10158,1,3,0)
- ;;=3^Lagophthalmos,Left Upper Eyelid,Unspec
- ;;^UTILITY(U,$J,358.3,10158,1,4,0)
- ;;=4^H02.204
- ;;^UTILITY(U,$J,358.3,10158,2)
- ;;=^5004330
- ;;^UTILITY(U,$J,358.3,10159,0)
- ;;=H02.831^^74^671^18
- ;;^UTILITY(U,$J,358.3,10159,1,0)
+ ;;^UTILITY(U,$J,358.3,10254,1,3,0)
+ ;;=3^Adenoviral Enteritis
+ ;;^UTILITY(U,$J,358.3,10254,1,4,0)
+ ;;=4^A08.2
+ ;;^UTILITY(U,$J,358.3,10254,2)
+ ;;=^5000055
+ ;;^UTILITY(U,$J,358.3,10255,0)
+ ;;=A08.31^^39^433^6
+ ;;^UTILITY(U,$J,358.3,10255,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,10159,1,3,0)
- ;;=3^Dermatochalasis,Right Upper Eyelid
- ;;^UTILITY(U,$J,358.3,10159,1,4,0)
- ;;=4^H02.831
- ;;^UTILITY(U,$J,358.3,10159,2)
- ;;=^5004418
- ;;^UTILITY(U,$J,358.3,10160,0)
- ;;=H02.834^^74^671^20
- ;;^UTILITY(U,$J,358.3,10160,1,0)
+ ;;^UTILITY(U,$J,358.3,10255,1,3,0)
+ ;;=3^Calicivirus enteritis
+ ;;^UTILITY(U,$J,358.3,10255,1,4,0)
+ ;;=4^A08.31
+ ;;^UTILITY(U,$J,358.3,10255,2)
+ ;;=^5000056
+ ;;^UTILITY(U,$J,358.3,10256,0)
+ ;;=A08.32^^39^433^4
+ ;;^UTILITY(U,$J,358.3,10256,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,10160,1,3,0)
- ;;=3^Dermatochalasis,Left Upper Eyelid
- ;;^UTILITY(U,$J,358.3,10160,1,4,0)
- ;;=4^H02.834
- ;;^UTILITY(U,$J,358.3,10160,2)
- ;;=^5004421
- ;;^UTILITY(U,$J,358.3,10161,0)
- ;;=H02.829^^74^671^24
- ;;^UTILITY(U,$J,358.3,10161,1,0)
+ ;;^UTILITY(U,$J,358.3,10256,1,3,0)
+ ;;=3^Astrovirus enteritis
+ ;;^UTILITY(U,$J,358.3,10256,1,4,0)
+ ;;=4^A08.32
+ ;;^UTILITY(U,$J,358.3,10256,2)
+ ;;=^5000057
+ ;;^UTILITY(U,$J,358.3,10257,0)
+ ;;=A08.39^^39^433^16
+ ;;^UTILITY(U,$J,358.3,10257,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,10161,1,3,0)
- ;;=3^Cysts,Unspec Eyelid
- ;;^UTILITY(U,$J,358.3,10161,1,4,0)
- ;;=4^H02.829
- ;;^UTILITY(U,$J,358.3,10161,2)
- ;;=^5133442
- ;;^UTILITY(U,$J,358.3,10162,0)
- ;;=H01.119^^74^671^30
- ;;^UTILITY(U,$J,358.3,10162,1,0)
+ ;;^UTILITY(U,$J,358.3,10257,1,3,0)
+ ;;=3^Viral Enteritis,Oth
+ ;;^UTILITY(U,$J,358.3,10257,1,4,0)
+ ;;=4^A08.39
+ ;;^UTILITY(U,$J,358.3,10257,2)
+ ;;=^5000058
+ ;;^UTILITY(U,$J,358.3,10258,0)
+ ;;=A08.4^^39^433^17
+ ;;^UTILITY(U,$J,358.3,10258,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,10162,1,3,0)
- ;;=3^Allergic Dermatitis,Unspec Eyelid
- ;;^UTILITY(U,$J,358.3,10162,1,4,0)
- ;;=4^H01.119
- ;;^UTILITY(U,$J,358.3,10162,2)
- ;;=^5133387
- ;;^UTILITY(U,$J,358.3,10163,0)
- ;;=H02.421^^74^671^19
- ;;^UTILITY(U,$J,358.3,10163,1,0)
+ ;;^UTILITY(U,$J,358.3,10258,1,3,0)
+ ;;=3^Viral Intestinal Infection,Unspec
+ ;;^UTILITY(U,$J,358.3,10258,1,4,0)
+ ;;=4^A08.4
+ ;;^UTILITY(U,$J,358.3,10258,2)
+ ;;=^5000059
+ ;;^UTILITY(U,$J,358.3,10259,0)
+ ;;=A08.8^^39^433^11
+ ;;^UTILITY(U,$J,358.3,10259,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,10163,1,3,0)
- ;;=3^Ptosis,Myogenic,Right Upper Eyelid
- ;;^UTILITY(U,$J,358.3,10163,1,4,0)
- ;;=4^H02.421
- ;;^UTILITY(U,$J,358.3,10163,2)
- ;;=^5004360
- ;;^UTILITY(U,$J,358.3,10164,0)
- ;;=H02.422^^74^671^21
- ;;^UTILITY(U,$J,358.3,10164,1,0)
+ ;;^UTILITY(U,$J,358.3,10259,1,3,0)
+ ;;=3^Intestinal Infections,Oth Spec
+ ;;^UTILITY(U,$J,358.3,10259,1,4,0)
+ ;;=4^A08.8
+ ;;^UTILITY(U,$J,358.3,10259,2)
+ ;;=^5000060
+ ;;^UTILITY(U,$J,358.3,10260,0)
+ ;;=A09.^^39^433^10
+ ;;^UTILITY(U,$J,358.3,10260,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,10164,1,3,0)
- ;;=3^Ptosis,Myogenic,Left Upper Eyelid
- ;;^UTILITY(U,$J,358.3,10164,1,4,0)
- ;;=4^H02.422
- ;;^UTILITY(U,$J,358.3,10164,2)
- ;;=^5004361
- ;;^UTILITY(U,$J,358.3,10165,0)
- ;;=H02.051^^74^671^8
- ;;^UTILITY(U,$J,358.3,10165,1,0)
+ ;;^UTILITY(U,$J,358.3,10260,1,3,0)
+ ;;=3^Infectious Gastroenteritis & Colitis,Unspec
+ ;;^UTILITY(U,$J,358.3,10260,1,4,0)
+ ;;=4^A09.
+ ;;^UTILITY(U,$J,358.3,10260,2)
+ ;;=^5000061
+ ;;^UTILITY(U,$J,358.3,10261,0)
+ ;;=J12.0^^39^434^1
+ ;;^UTILITY(U,$J,358.3,10261,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,10165,1,3,0)
- ;;=3^Trichiasis w/o Entropion,Right Upper Eyelid
- ;;^UTILITY(U,$J,358.3,10165,1,4,0)
- ;;=4^H02.051
- ;;^UTILITY(U,$J,358.3,10165,2)
- ;;=^5004298
- ;;^UTILITY(U,$J,358.3,10166,0)
- ;;=H02.054^^74^671^10
- ;;^UTILITY(U,$J,358.3,10166,1,0)
+ ;;^UTILITY(U,$J,358.3,10261,1,3,0)
+ ;;=3^Adenoviral Pneumonia
+ ;;^UTILITY(U,$J,358.3,10261,1,4,0)
+ ;;=4^J12.0
+ ;;^UTILITY(U,$J,358.3,10261,2)
+ ;;=^5008164
+ ;;^UTILITY(U,$J,358.3,10262,0)
+ ;;=J12.1^^39^434^30
+ ;;^UTILITY(U,$J,358.3,10262,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,10166,1,3,0)
- ;;=3^Trichiasis w/o Entropion,Left Upper Eyelid
- ;;^UTILITY(U,$J,358.3,10166,1,4,0)
- ;;=4^H02.054
- ;;^UTILITY(U,$J,358.3,10166,2)
- ;;=^5004301
- ;;^UTILITY(U,$J,358.3,10167,0)
- ;;=H57.813^^74^671^17
- ;;^UTILITY(U,$J,358.3,10167,1,0)
+ ;;^UTILITY(U,$J,358.3,10262,1,3,0)
+ ;;=3^Respiratory Syncytial Virus Pneumonia
+ ;;^UTILITY(U,$J,358.3,10262,1,4,0)
+ ;;=4^J12.1
+ ;;^UTILITY(U,$J,358.3,10262,2)
+ ;;=^5008165
+ ;;^UTILITY(U,$J,358.3,10263,0)
+ ;;=J12.2^^39^434^4
+ ;;^UTILITY(U,$J,358.3,10263,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,10167,1,3,0)
- ;;=3^Brow Ptosis,Bilateral
- ;;^UTILITY(U,$J,358.3,10167,1,4,0)
- ;;=4^H57.813
+ ;;^UTILITY(U,$J,358.3,10263,1,3,0)
+ ;;=3^Parainfluenza Virus Pneumonia
+ ;;^UTILITY(U,$J,358.3,10263,1,4,0)
+ ;;=4^J12.2
+ ;;^UTILITY(U,$J,358.3,10263,2)
+ ;;=^5008166
+ ;;^UTILITY(U,$J,358.3,10264,0)
+ ;;=J12.3^^39^434^3

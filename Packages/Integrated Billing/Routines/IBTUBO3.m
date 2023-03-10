@@ -1,5 +1,5 @@
 IBTUBO3 ;ALB/RB - UNBILLED AMOUNTS - GENERATE UNBILLED REPORTS ;03 Aug 2004  9:12 AM
- ;;2.0;INTEGRATED BILLING;**123,159,192,155,277,516,547,608**;21-MAR-94;Build 90
+ ;;2.0;INTEGRATED BILLING;**123,159,192,155,277,516,547,608,665**;21-MAR-94;Build 28
  ;;Per VA Directive 6402, this routine should not be modified.
  ;
 REPORT ; - Prepare report if requested, send summary bulletin.
@@ -18,7 +18,10 @@ REPRT1 ;
  F  S IBDIV=$O(^TMP($J,"IBTUB",IBDIV)) Q:'IBDIV  D REPRT2
  ;
 REPRT1Q ;
- D:'IBQ PAUSE
+ ;
+ ;WCJ;IB*2.0*665
+ ;D:'IBQ PAUSE
+ D:'IBQ EOR
  ;
 REPRTQ Q
  ;
@@ -178,4 +181,17 @@ PAUSE ; - Page break.
  N IBI,DIR,DIRUT,DUOUT,DTOUT,DIROUT,X,Y
  F IBI=$Y:1:(IOSL-3) W !
  S DIR(0)="E" D ^DIR S:$D(DIRUT)!($D(DUOUT)) IBQ=1
+ Q
+ ;
+ ;WCJ;IB*2.0*665
+EOR ; - End of Report
+ I $E(IOST,1,2)'="C-"!(IOSL>24) D WEOR Q  ;User is creating a continuous document to a log file. 
+ F IBI=$Y:1:(IOSL-5) W !
+ D WEOR
+ N IBI,DIR,DIRUT,DUOUT,DTOUT,DIROUT,X,Y
+ S DIR(0)="E" D ^DIR S:$D(DIRUT)!($D(DUOUT)) IBQ=1
+ Q
+ ;
+WEOR ; - End of Report Visual Indicator
+ W !,?(IOM-$L("*** END OF REPORT ***")\2),"*** END OF REPORT ***",!
  Q

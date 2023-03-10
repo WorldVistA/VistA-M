@@ -1,5 +1,5 @@
-PSOORNE5 ;BIR/SAB - display orders from backdoor con't ;5/10/07 8:29am
- ;;7.0;OUTPATIENT PHARMACY;**11,27,32,46,78,99,117,131,146,171,180,210,222,268,206,225,391,444,504**;DEC 1997;Build 15
+PSOORNE5 ;BIR/SAB - display orders from backdoor con't ;Mar 19, 2020@10:37:43
+ ;;7.0;OUTPATIENT PHARMACY;**11,27,32,46,78,99,117,131,146,171,180,210,222,268,206,225,391,444,504,441**;DEC 1997;Build 208
  ;External reference to ^PSDRUG supported by DBIA 221
  ;External references L and UL^PSSLOCK supported by DBIA 2789
  ;External reference to ^PS(51.2 supported by DBIA 2226
@@ -63,6 +63,7 @@ GET ;
  S:PSORFRM<0 PSORFRM=0 S:PSORFRM=0 ACTREF=0
  I $G(RXFL(RXN))]"",'$P(PSOPAR,"^",6) S ACTREF=0
  I $P(PSODRUG0,"^",3)["A"&($P(PSODRUG0,"^",3)'["B")!($P(PSODRUG0,"^",3)["F")!($P(PSODRUG0,"^",3)[1)!($P(PSODRUG0,"^",3)[2) S ACTREF=0
+ I PSORFRM=0,'$O(^PSRX(RXN,"L",0)),$G(^PSRX(RXN,"PARK")) S ACTREF=1 ;*441 - IF ORIGINAL FILL PARKED, NO REFILLS AND NO LABEL PREVIOUSLY PRINTED - PROCESS ORIGINAL FILL WHEN REFILL IS REQUESTED
  ;renews
  I $P(PSOPAR,"^",4)=0 S ACTREN=0 Q
  I $P($G(^PSDRUG(PSODRG,2)),"^",3)'["O" S ACTREN=0
@@ -117,6 +118,7 @@ INS ;patient instructions                                        ;PSO*210
 SPINS K T,SG,MIG
  I $P($G(^PS(55,PSODFN,"LAN")),"^") S IEN=IEN+1,^TMP("PSOAO",$J,IEN,0)="  Other Pat. Instruc: "_$S($G(^PSRX(RXN,"INSS"))]"":^PSRX(RXN,"INSS"),1:"")
  Q
+ ;
 SV S VALMSG="Pre-POE Rx. Please Compare Dosing Fields with SIG!"
  Q
 PRV ;

@@ -1,124 +1,124 @@
-IBDEI17R ; ; 04-FEB-2020
- ;;3.0;IB ENCOUNTER FORM IMP/EXP;;FEB 04, 2020
+IBDEI17R ; ; 01-FEB-2022
+ ;;3.0;IB ENCOUNTER FORM IMP/EXP;;FEB 01, 2022
  Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,999) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
- ;;^UTILITY(U,$J,358.3,19487,1,3,0)
- ;;=3^Prim Osteoarth,Left Wrist
- ;;^UTILITY(U,$J,358.3,19487,1,4,0)
- ;;=4^M19.032
- ;;^UTILITY(U,$J,358.3,19487,2)
- ;;=^5010815
- ;;^UTILITY(U,$J,358.3,19488,0)
- ;;=M19.041^^93^992^83
- ;;^UTILITY(U,$J,358.3,19488,1,0)
+ ;;^UTILITY(U,$J,358.3,19706,1,4,0)
+ ;;=4^M15.0
+ ;;^UTILITY(U,$J,358.3,19706,2)
+ ;;=^5010762
+ ;;^UTILITY(U,$J,358.3,19707,0)
+ ;;=M19.072^^67^880^78
+ ;;^UTILITY(U,$J,358.3,19707,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,19488,1,3,0)
- ;;=3^Prim Osteoarth,Right Hand
- ;;^UTILITY(U,$J,358.3,19488,1,4,0)
- ;;=4^M19.041
- ;;^UTILITY(U,$J,358.3,19488,2)
- ;;=^5010817
- ;;^UTILITY(U,$J,358.3,19489,0)
- ;;=Z44.012^^93^993^4
- ;;^UTILITY(U,$J,358.3,19489,1,0)
+ ;;^UTILITY(U,$J,358.3,19707,1,3,0)
+ ;;=3^Prim Osteoarth,Left Ankle & Foot
+ ;;^UTILITY(U,$J,358.3,19707,1,4,0)
+ ;;=4^M19.072
+ ;;^UTILITY(U,$J,358.3,19707,2)
+ ;;=^5010821
+ ;;^UTILITY(U,$J,358.3,19708,0)
+ ;;=M19.071^^67^880^82
+ ;;^UTILITY(U,$J,358.3,19708,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,19489,1,3,0)
- ;;=3^Fit/adjst of complete left artificial arm
- ;;^UTILITY(U,$J,358.3,19489,1,4,0)
- ;;=4^Z44.012
- ;;^UTILITY(U,$J,358.3,19489,2)
- ;;=^5062972
- ;;^UTILITY(U,$J,358.3,19490,0)
- ;;=Z44.011^^93^993^6
- ;;^UTILITY(U,$J,358.3,19490,1,0)
+ ;;^UTILITY(U,$J,358.3,19708,1,3,0)
+ ;;=3^Prim Osteoarth,Right Ankle & Foot
+ ;;^UTILITY(U,$J,358.3,19708,1,4,0)
+ ;;=4^M19.071
+ ;;^UTILITY(U,$J,358.3,19708,2)
+ ;;=^5010820
+ ;;^UTILITY(U,$J,358.3,19709,0)
+ ;;=M19.042^^67^880^79
+ ;;^UTILITY(U,$J,358.3,19709,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,19490,1,3,0)
- ;;=3^Fit/adjst of complete right artificial arm
- ;;^UTILITY(U,$J,358.3,19490,1,4,0)
- ;;=4^Z44.011
- ;;^UTILITY(U,$J,358.3,19490,2)
- ;;=^5062971
- ;;^UTILITY(U,$J,358.3,19491,0)
- ;;=Z44.022^^93^993^10
- ;;^UTILITY(U,$J,358.3,19491,1,0)
+ ;;^UTILITY(U,$J,358.3,19709,1,3,0)
+ ;;=3^Prim Osteoarth,Left Hand
+ ;;^UTILITY(U,$J,358.3,19709,1,4,0)
+ ;;=4^M19.042
+ ;;^UTILITY(U,$J,358.3,19709,2)
+ ;;=^5010818
+ ;;^UTILITY(U,$J,358.3,19710,0)
+ ;;=M19.012^^67^880^80
+ ;;^UTILITY(U,$J,358.3,19710,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,19491,1,3,0)
- ;;=3^Fit/adjst of partial artificial left arm
- ;;^UTILITY(U,$J,358.3,19491,1,4,0)
- ;;=4^Z44.022
- ;;^UTILITY(U,$J,358.3,19491,2)
- ;;=^5062975
- ;;^UTILITY(U,$J,358.3,19492,0)
- ;;=Z44.021^^93^993^12
- ;;^UTILITY(U,$J,358.3,19492,1,0)
+ ;;^UTILITY(U,$J,358.3,19710,1,3,0)
+ ;;=3^Prim Osteoarth,Left Shoulder
+ ;;^UTILITY(U,$J,358.3,19710,1,4,0)
+ ;;=4^M19.012
+ ;;^UTILITY(U,$J,358.3,19710,2)
+ ;;=^5010809
+ ;;^UTILITY(U,$J,358.3,19711,0)
+ ;;=M19.011^^67^880^84
+ ;;^UTILITY(U,$J,358.3,19711,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,19492,1,3,0)
- ;;=3^Fit/adjst of partial artificial right arm
- ;;^UTILITY(U,$J,358.3,19492,1,4,0)
- ;;=4^Z44.021
- ;;^UTILITY(U,$J,358.3,19492,2)
- ;;=^5062974
- ;;^UTILITY(U,$J,358.3,19493,0)
- ;;=Z44.112^^93^993^5
- ;;^UTILITY(U,$J,358.3,19493,1,0)
+ ;;^UTILITY(U,$J,358.3,19711,1,3,0)
+ ;;=3^Prim Osteoarth,Right Shoulder
+ ;;^UTILITY(U,$J,358.3,19711,1,4,0)
+ ;;=4^M19.011
+ ;;^UTILITY(U,$J,358.3,19711,2)
+ ;;=^5010808
+ ;;^UTILITY(U,$J,358.3,19712,0)
+ ;;=M76.12^^67^880^87
+ ;;^UTILITY(U,$J,358.3,19712,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,19493,1,3,0)
- ;;=3^Fit/adjst of complete left artificial leg
- ;;^UTILITY(U,$J,358.3,19493,1,4,0)
- ;;=4^Z44.112
- ;;^UTILITY(U,$J,358.3,19493,2)
- ;;=^5062981
- ;;^UTILITY(U,$J,358.3,19494,0)
- ;;=Z44.111^^93^993^7
- ;;^UTILITY(U,$J,358.3,19494,1,0)
+ ;;^UTILITY(U,$J,358.3,19712,1,3,0)
+ ;;=3^Psoas tendinitis, left hip
+ ;;^UTILITY(U,$J,358.3,19712,1,4,0)
+ ;;=4^M76.12
+ ;;^UTILITY(U,$J,358.3,19712,2)
+ ;;=^5013271
+ ;;^UTILITY(U,$J,358.3,19713,0)
+ ;;=M76.11^^67^880^88
+ ;;^UTILITY(U,$J,358.3,19713,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,19494,1,3,0)
- ;;=3^Fit/adjst of complete right artificial leg
- ;;^UTILITY(U,$J,358.3,19494,1,4,0)
- ;;=4^Z44.111
- ;;^UTILITY(U,$J,358.3,19494,2)
- ;;=^5062980
- ;;^UTILITY(U,$J,358.3,19495,0)
- ;;=Z44.122^^93^993^11
- ;;^UTILITY(U,$J,358.3,19495,1,0)
+ ;;^UTILITY(U,$J,358.3,19713,1,3,0)
+ ;;=3^Psoas tendinitis, right hip
+ ;;^UTILITY(U,$J,358.3,19713,1,4,0)
+ ;;=4^M76.11
+ ;;^UTILITY(U,$J,358.3,19713,2)
+ ;;=^5013270
+ ;;^UTILITY(U,$J,358.3,19714,0)
+ ;;=M65.4^^67^880^89
+ ;;^UTILITY(U,$J,358.3,19714,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,19495,1,3,0)
- ;;=3^Fit/adjst of partial artificial left leg
- ;;^UTILITY(U,$J,358.3,19495,1,4,0)
- ;;=4^Z44.122
- ;;^UTILITY(U,$J,358.3,19495,2)
- ;;=^5062984
- ;;^UTILITY(U,$J,358.3,19496,0)
- ;;=Z44.121^^93^993^13
- ;;^UTILITY(U,$J,358.3,19496,1,0)
+ ;;^UTILITY(U,$J,358.3,19714,1,3,0)
+ ;;=3^Radial styloid tenosynovitis [de Quervain]
+ ;;^UTILITY(U,$J,358.3,19714,1,4,0)
+ ;;=4^M65.4
+ ;;^UTILITY(U,$J,358.3,19714,2)
+ ;;=^5012792
+ ;;^UTILITY(U,$J,358.3,19715,0)
+ ;;=M54.18^^67^880^90
+ ;;^UTILITY(U,$J,358.3,19715,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,19496,1,3,0)
- ;;=3^Fit/adjst of partial artificial right leg
- ;;^UTILITY(U,$J,358.3,19496,1,4,0)
- ;;=4^Z44.121
- ;;^UTILITY(U,$J,358.3,19496,2)
- ;;=^5062983
- ;;^UTILITY(U,$J,358.3,19497,0)
- ;;=Z44.8^^93^993^8
- ;;^UTILITY(U,$J,358.3,19497,1,0)
+ ;;^UTILITY(U,$J,358.3,19715,1,3,0)
+ ;;=3^Radiculopathy, sacral and sacrococcygeal region
+ ;;^UTILITY(U,$J,358.3,19715,1,4,0)
+ ;;=4^M54.18
+ ;;^UTILITY(U,$J,358.3,19715,2)
+ ;;=^5012303
+ ;;^UTILITY(U,$J,358.3,19716,0)
+ ;;=M05.772^^67^880^93
+ ;;^UTILITY(U,$J,358.3,19716,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,19497,1,3,0)
- ;;=3^Fit/adjst of external prosthetic devices
- ;;^UTILITY(U,$J,358.3,19497,1,4,0)
- ;;=4^Z44.8
- ;;^UTILITY(U,$J,358.3,19497,2)
- ;;=^5062992
- ;;^UTILITY(U,$J,358.3,19498,0)
- ;;=Z46.89^^93^993^9
- ;;^UTILITY(U,$J,358.3,19498,1,0)
+ ;;^UTILITY(U,$J,358.3,19716,1,3,0)
+ ;;=3^Rheu arthrit w rheu factor of left ank/ft w/o org/sys involv
+ ;;^UTILITY(U,$J,358.3,19716,1,4,0)
+ ;;=4^M05.772
+ ;;^UTILITY(U,$J,358.3,19716,2)
+ ;;=^5010020
+ ;;^UTILITY(U,$J,358.3,19717,0)
+ ;;=M05.742^^67^880^94
+ ;;^UTILITY(U,$J,358.3,19717,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,19498,1,3,0)
- ;;=3^Fit/adjst of oth devices
- ;;^UTILITY(U,$J,358.3,19498,1,4,0)
- ;;=4^Z46.89
- ;;^UTILITY(U,$J,358.3,19498,2)
- ;;=^5063023
- ;;^UTILITY(U,$J,358.3,19499,0)
- ;;=Z47.81^^93^993^16
- ;;^UTILITY(U,$J,358.3,19499,1,0)
+ ;;^UTILITY(U,$J,358.3,19717,1,3,0)
+ ;;=3^Rheu arthrit w rheu factor of left hand w/o org/sys involv
+ ;;^UTILITY(U,$J,358.3,19717,1,4,0)
+ ;;=4^M05.742
+ ;;^UTILITY(U,$J,358.3,19717,2)
+ ;;=^5010011
+ ;;^UTILITY(U,$J,358.3,19718,0)
+ ;;=M05.762^^67^880^95
+ ;;^UTILITY(U,$J,358.3,19718,1,0)
  ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,19718,1,3,0)
+ ;;=3^Rheu arthrit w rheu factor of left knee w/o org/sys involv

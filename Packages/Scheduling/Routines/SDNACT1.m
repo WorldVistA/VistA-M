@@ -1,5 +1,6 @@
 SDNACT1 ;ALB/TMP - Inactivate a Clinic (continued) ; 30 APR 85  9:02 am 
- ;;5.3;Scheduling;**167**;Aug 13, 1993
+ ;;5.3;Scheduling;**167,781**;Aug 13, 1993;Build 11
+ ;
  S SDREACT="",SD0=0,X=$S(SDX1:SDX1,1:SDX) D DOW^SDM0 S SDN(Y)=X D PAT F I=1:1:6 S X1=X,X2=1 D C^%DTC,DOW^SDM0 S SDN(Y)=X D PAT
 R I 'SD0 S SD=SDX G SEL
  S Y=$S(SDX1:SDX1,1:SDX) D D^DIQ
@@ -18,9 +19,20 @@ SEL W !!,"AVAILABILITY DATE: ",$E(SDX,4,5),"-",$E(SDX,6,7),"-",$E(SDX,2,3),"  ("
  S SDH1=$S($D(SDIN):SDIN,1:""),SDH2=$S($D(SDRE):SDRE,1:"") K SDINH,SDIN,SDRE
  D EN1^SDB0 S SDRE=SDH2,SDIN=SDH1 K SDH1,SDH2,CNT,D0,DH,DO,H1,H2,HSI,LT,M1,M2,NSL
 DD I $S('$D(SDREACT):1,1:0) W *7,!,"Inactivation date not deleted" G END^SDNACT
+ D SDEC(SC) ;lab 781
  K ^SC(SC,"I") W !,*7,"Inactivation date deleted" G END^SDNACT
  ;
 SET S (POP,SDEL)=0,DA=SC,SL=^SC(SC,"SL"),X=$P(^("SL"),"^",3),STARTDAY=$S($L(X):X,1:8),SI=$P(^("SL"),"^",6),SDFSW="",X=SD,D0=SD D DOW^SDM0 S DOW=Y
  Q
 PAT I $D(^SC(SC,"T"_Y,X,1)) S SDZ=$S(SDX1:+$O(^SC(SC,"T"_Y,X)),1:X) I SDZ>0,$D(^SC(SC,"T"_Y,SDZ,1)),^(1)]"" S SDN(Y,1)=^(1) S:'SD0 SD0=1
  K SDZ Q
+SDEC(SC) ;remove inactivation and reactivation date from SDEC RESOURCE (lab 781)
+ N SDFDA,SDI,SDJ,SDRES,SDREACT
+ S SDRES=$$GETRES^SDECUTL(SC,1) ;lab 781 need, "1" sent to assign resource
+ Q:SDRES=""
+ S SDFDA(409.831,SDRES_",",.021)="@"
+ S SDFDA(409.831,SDRES_",",.022)="@"
+ S SDFDA(409.831,SDRES_",",.025)="@"
+ S SDFDA(409.831,SDRES_",",.026)="@"
+ D FILE^DIE("","SDFDA")
+ Q

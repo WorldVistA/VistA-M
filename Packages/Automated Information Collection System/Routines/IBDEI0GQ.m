@@ -1,128 +1,126 @@
-IBDEI0GQ ; ; 04-FEB-2020
- ;;3.0;IB ENCOUNTER FORM IMP/EXP;;FEB 04, 2020
+IBDEI0GQ ; ; 01-FEB-2022
+ ;;3.0;IB ENCOUNTER FORM IMP/EXP;;FEB 01, 2022
  Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,999) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
- ;;^UTILITY(U,$J,358.3,7252,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,7252,1,3,0)
- ;;=3^Rheumatoid Arthritis w/o Rhematoid Factor,Unspec Site
- ;;^UTILITY(U,$J,358.3,7252,1,4,0)
- ;;=4^M06.00
- ;;^UTILITY(U,$J,358.3,7252,2)
- ;;=^5010047
- ;;^UTILITY(U,$J,358.3,7253,0)
- ;;=M06.30^^58^473^161
- ;;^UTILITY(U,$J,358.3,7253,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,7253,1,3,0)
- ;;=3^Rheumatoid Nodule,Unspec Site
- ;;^UTILITY(U,$J,358.3,7253,1,4,0)
- ;;=4^M06.30
- ;;^UTILITY(U,$J,358.3,7253,2)
- ;;=^5010096
- ;;^UTILITY(U,$J,358.3,7254,0)
- ;;=M06.4^^58^473^48
- ;;^UTILITY(U,$J,358.3,7254,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,7254,1,3,0)
- ;;=3^Inflammatory Polyarthropathy
- ;;^UTILITY(U,$J,358.3,7254,1,4,0)
- ;;=4^M06.4
- ;;^UTILITY(U,$J,358.3,7254,2)
- ;;=^5010120
- ;;^UTILITY(U,$J,358.3,7255,0)
- ;;=M06.39^^58^473^160
- ;;^UTILITY(U,$J,358.3,7255,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,7255,1,3,0)
- ;;=3^Rheumatoid Nodule,Mult Sites
- ;;^UTILITY(U,$J,358.3,7255,1,4,0)
- ;;=4^M06.39
- ;;^UTILITY(U,$J,358.3,7255,2)
- ;;=^5010119
- ;;^UTILITY(U,$J,358.3,7256,0)
- ;;=M15.0^^58^473^124
- ;;^UTILITY(U,$J,358.3,7256,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,7256,1,3,0)
- ;;=3^Primary Generalized Osteoarthritis
- ;;^UTILITY(U,$J,358.3,7256,1,4,0)
- ;;=4^M15.0
- ;;^UTILITY(U,$J,358.3,7256,2)
- ;;=^5010762
- ;;^UTILITY(U,$J,358.3,7257,0)
- ;;=M06.9^^58^473^159
- ;;^UTILITY(U,$J,358.3,7257,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,7257,1,3,0)
- ;;=3^Rheumatoid Arthritis,Unspec
- ;;^UTILITY(U,$J,358.3,7257,1,4,0)
- ;;=4^M06.9
- ;;^UTILITY(U,$J,358.3,7257,2)
- ;;=^5010145
- ;;^UTILITY(U,$J,358.3,7258,0)
- ;;=M16.0^^58^473^127
- ;;^UTILITY(U,$J,358.3,7258,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,7258,1,3,0)
- ;;=3^Primary Osteoarthritis of Hip,Bilateral
- ;;^UTILITY(U,$J,358.3,7258,1,4,0)
- ;;=4^M16.0
- ;;^UTILITY(U,$J,358.3,7258,2)
- ;;=^5010769
- ;;^UTILITY(U,$J,358.3,7259,0)
- ;;=M16.11^^58^473^136
- ;;^UTILITY(U,$J,358.3,7259,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,7259,1,3,0)
- ;;=3^Primary Osteoarthritis of Right Hip
- ;;^UTILITY(U,$J,358.3,7259,1,4,0)
- ;;=4^M16.11
- ;;^UTILITY(U,$J,358.3,7259,2)
- ;;=^5010771
- ;;^UTILITY(U,$J,358.3,7260,0)
- ;;=M16.12^^58^473^130
- ;;^UTILITY(U,$J,358.3,7260,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,7260,1,3,0)
- ;;=3^Primary Osteoarthritis of Left Hip
- ;;^UTILITY(U,$J,358.3,7260,1,4,0)
- ;;=4^M16.12
- ;;^UTILITY(U,$J,358.3,7260,2)
- ;;=^5010772
- ;;^UTILITY(U,$J,358.3,7261,0)
- ;;=M17.0^^58^473^126
- ;;^UTILITY(U,$J,358.3,7261,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,7261,1,3,0)
- ;;=3^Primary Osteoarthritis of Bilateral Knees
- ;;^UTILITY(U,$J,358.3,7261,1,4,0)
- ;;=4^M17.0
- ;;^UTILITY(U,$J,358.3,7261,2)
- ;;=^5010784
- ;;^UTILITY(U,$J,358.3,7262,0)
- ;;=M17.11^^58^473^137
- ;;^UTILITY(U,$J,358.3,7262,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,7262,1,3,0)
- ;;=3^Primary Osteoarthritis of Right Knee
- ;;^UTILITY(U,$J,358.3,7262,1,4,0)
- ;;=4^M17.11
- ;;^UTILITY(U,$J,358.3,7262,2)
- ;;=^5010786
- ;;^UTILITY(U,$J,358.3,7263,0)
- ;;=M17.12^^58^473^131
- ;;^UTILITY(U,$J,358.3,7263,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,7263,1,3,0)
- ;;=3^Primary Osteoarthritis of Left Knee
- ;;^UTILITY(U,$J,358.3,7263,1,4,0)
- ;;=4^M17.12
- ;;^UTILITY(U,$J,358.3,7263,2)
- ;;=^5010787
- ;;^UTILITY(U,$J,358.3,7264,0)
- ;;=M18.0^^58^473^125
- ;;^UTILITY(U,$J,358.3,7264,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,7264,1,3,0)
- ;;=3^Primary Osteoarthritis of Bilateral 1st Carpometacarp Jts
+ ;;^UTILITY(U,$J,358.3,7513,1,3,0)
+ ;;=3^Flex Sig w/ Decompression 
+ ;;^UTILITY(U,$J,358.3,7514,0)
+ ;;=45346^^37^372^1^^^^1
+ ;;^UTILITY(U,$J,358.3,7514,1,0)
+ ;;=^358.31IA^3^2
+ ;;^UTILITY(U,$J,358.3,7514,1,2,0)
+ ;;=2^45346
+ ;;^UTILITY(U,$J,358.3,7514,1,3,0)
+ ;;=3^Flex Sig w/ Ablation
+ ;;^UTILITY(U,$J,358.3,7515,0)
+ ;;=45350^^37^372^2^^^^1
+ ;;^UTILITY(U,$J,358.3,7515,1,0)
+ ;;=^358.31IA^3^2
+ ;;^UTILITY(U,$J,358.3,7515,1,2,0)
+ ;;=2^45350
+ ;;^UTILITY(U,$J,358.3,7515,1,3,0)
+ ;;=3^Flex Sig w/ Band Ligation
+ ;;^UTILITY(U,$J,358.3,7516,0)
+ ;;=45340^^37^372^6^^^^1
+ ;;^UTILITY(U,$J,358.3,7516,1,0)
+ ;;=^358.31IA^3^2
+ ;;^UTILITY(U,$J,358.3,7516,1,2,0)
+ ;;=2^45340
+ ;;^UTILITY(U,$J,358.3,7516,1,3,0)
+ ;;=3^Flex Sig w/ Dilation
+ ;;^UTILITY(U,$J,358.3,7517,0)
+ ;;=45349^^37^372^7^^^^1
+ ;;^UTILITY(U,$J,358.3,7517,1,0)
+ ;;=^358.31IA^3^2
+ ;;^UTILITY(U,$J,358.3,7517,1,2,0)
+ ;;=2^45349
+ ;;^UTILITY(U,$J,358.3,7517,1,3,0)
+ ;;=3^Flex Sig w/ EMR
+ ;;^UTILITY(U,$J,358.3,7518,0)
+ ;;=45338^^37^372^10^^^^1
+ ;;^UTILITY(U,$J,358.3,7518,1,0)
+ ;;=^358.31IA^3^2
+ ;;^UTILITY(U,$J,358.3,7518,1,2,0)
+ ;;=2^45338
+ ;;^UTILITY(U,$J,358.3,7518,1,3,0)
+ ;;=3^Flex Sig w/ Snare
+ ;;^UTILITY(U,$J,358.3,7519,0)
+ ;;=45347^^37^372^11^^^^1
+ ;;^UTILITY(U,$J,358.3,7519,1,0)
+ ;;=^358.31IA^3^2
+ ;;^UTILITY(U,$J,358.3,7519,1,2,0)
+ ;;=2^45347
+ ;;^UTILITY(U,$J,358.3,7519,1,3,0)
+ ;;=3^Flex Sig w/ Stent Placement
+ ;;^UTILITY(U,$J,358.3,7520,0)
+ ;;=45378^^37^373^12^^^^1
+ ;;^UTILITY(U,$J,358.3,7520,1,0)
+ ;;=^358.31IA^3^2
+ ;;^UTILITY(U,$J,358.3,7520,1,2,0)
+ ;;=2^45378
+ ;;^UTILITY(U,$J,358.3,7520,1,3,0)
+ ;;=3^Colonoscopy,Diagnostic
+ ;;^UTILITY(U,$J,358.3,7521,0)
+ ;;=45380^^37^373^2^^^^1
+ ;;^UTILITY(U,$J,358.3,7521,1,0)
+ ;;=^358.31IA^3^2
+ ;;^UTILITY(U,$J,358.3,7521,1,2,0)
+ ;;=2^45380
+ ;;^UTILITY(U,$J,358.3,7521,1,3,0)
+ ;;=3^Colonoscopy w/ Biopsy
+ ;;^UTILITY(U,$J,358.3,7522,0)
+ ;;=45384^^37^373^8^^^^1
+ ;;^UTILITY(U,$J,358.3,7522,1,0)
+ ;;=^358.31IA^3^2
+ ;;^UTILITY(U,$J,358.3,7522,1,2,0)
+ ;;=2^45384
+ ;;^UTILITY(U,$J,358.3,7522,1,3,0)
+ ;;=3^Colonoscopy w/ Hot Forceps
+ ;;^UTILITY(U,$J,358.3,7523,0)
+ ;;=45385^^37^373^9^^^^1
+ ;;^UTILITY(U,$J,358.3,7523,1,0)
+ ;;=^358.31IA^3^2
+ ;;^UTILITY(U,$J,358.3,7523,1,2,0)
+ ;;=2^45385
+ ;;^UTILITY(U,$J,358.3,7523,1,3,0)
+ ;;=3^Colonoscopy w/ Snare
+ ;;^UTILITY(U,$J,358.3,7524,0)
+ ;;=45379^^37^373^7^^^^1
+ ;;^UTILITY(U,$J,358.3,7524,1,0)
+ ;;=^358.31IA^3^2
+ ;;^UTILITY(U,$J,358.3,7524,1,2,0)
+ ;;=2^45379
+ ;;^UTILITY(U,$J,358.3,7524,1,3,0)
+ ;;=3^Colonoscopy w/ Foreign Body Removal
+ ;;^UTILITY(U,$J,358.3,7525,0)
+ ;;=45382^^37^373^3^^^^1
+ ;;^UTILITY(U,$J,358.3,7525,1,0)
+ ;;=^358.31IA^3^2
+ ;;^UTILITY(U,$J,358.3,7525,1,2,0)
+ ;;=2^45382
+ ;;^UTILITY(U,$J,358.3,7525,1,3,0)
+ ;;=3^Colonoscopy w/ Control of Bleeding
+ ;;^UTILITY(U,$J,358.3,7526,0)
+ ;;=45386^^37^373^5^^^^1
+ ;;^UTILITY(U,$J,358.3,7526,1,0)
+ ;;=^358.31IA^3^2
+ ;;^UTILITY(U,$J,358.3,7526,1,2,0)
+ ;;=2^45386
+ ;;^UTILITY(U,$J,358.3,7526,1,3,0)
+ ;;=3^Colonoscopy w/ Dilation
+ ;;^UTILITY(U,$J,358.3,7527,0)
+ ;;=45381^^37^373^11^^^^1
+ ;;^UTILITY(U,$J,358.3,7527,1,0)
+ ;;=^358.31IA^3^2
+ ;;^UTILITY(U,$J,358.3,7527,1,2,0)
+ ;;=2^45381
+ ;;^UTILITY(U,$J,358.3,7527,1,3,0)
+ ;;=3^Colonoscopy w/ Submucosal Injection
+ ;;^UTILITY(U,$J,358.3,7528,0)
+ ;;=45389^^37^373^10^^^^1
+ ;;^UTILITY(U,$J,358.3,7528,1,0)
+ ;;=^358.31IA^3^2
+ ;;^UTILITY(U,$J,358.3,7528,1,2,0)
+ ;;=2^45389
+ ;;^UTILITY(U,$J,358.3,7528,1,3,0)
+ ;;=3^Colonoscopy w/ Stent

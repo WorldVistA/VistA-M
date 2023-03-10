@@ -1,126 +1,114 @@
-IBDEI13R ; ; 04-FEB-2020
- ;;3.0;IB ENCOUNTER FORM IMP/EXP;;FEB 04, 2020
+IBDEI13R ; ; 01-FEB-2022
+ ;;3.0;IB ENCOUNTER FORM IMP/EXP;;FEB 01, 2022
  Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,999) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
- ;;^UTILITY(U,$J,358.3,17715,0)
- ;;=S71.101A^^88^896^22
- ;;^UTILITY(U,$J,358.3,17715,1,0)
+ ;;^UTILITY(U,$J,358.3,17895,1,4,0)
+ ;;=4^W18.12XA
+ ;;^UTILITY(U,$J,358.3,17895,2)
+ ;;=^5059804
+ ;;^UTILITY(U,$J,358.3,17896,0)
+ ;;=W18.12XD^^61^794^67
+ ;;^UTILITY(U,$J,358.3,17896,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,17715,1,3,0)
- ;;=3^Open Wound,Right Thigh,Unspec
- ;;^UTILITY(U,$J,358.3,17715,1,4,0)
- ;;=4^S71.101A
- ;;^UTILITY(U,$J,358.3,17715,2)
- ;;=^5037008
- ;;^UTILITY(U,$J,358.3,17716,0)
- ;;=S41.101A^^88^896^23
- ;;^UTILITY(U,$J,358.3,17716,1,0)
+ ;;^UTILITY(U,$J,358.3,17896,1,3,0)
+ ;;=3^Fall from Toilet w/ Strike Against Obj,Subs Encntr
+ ;;^UTILITY(U,$J,358.3,17896,1,4,0)
+ ;;=4^W18.12XD
+ ;;^UTILITY(U,$J,358.3,17896,2)
+ ;;=^5137984
+ ;;^UTILITY(U,$J,358.3,17897,0)
+ ;;=W18.2XXA^^61^794^78
+ ;;^UTILITY(U,$J,358.3,17897,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,17716,1,3,0)
- ;;=3^Open Wound,Right Upper Arm,Unspec
- ;;^UTILITY(U,$J,358.3,17716,1,4,0)
- ;;=4^S41.101A
- ;;^UTILITY(U,$J,358.3,17716,2)
- ;;=^5026330
- ;;^UTILITY(U,$J,358.3,17717,0)
- ;;=E03.5^^88^897^37
- ;;^UTILITY(U,$J,358.3,17717,1,0)
+ ;;^UTILITY(U,$J,358.3,17897,1,3,0)
+ ;;=3^Fall in Empty Shower/Bathtub,Init Encntr
+ ;;^UTILITY(U,$J,358.3,17897,1,4,0)
+ ;;=4^W18.2XXA
+ ;;^UTILITY(U,$J,358.3,17897,2)
+ ;;=^5059806
+ ;;^UTILITY(U,$J,358.3,17898,0)
+ ;;=W18.2XXD^^61^794^79
+ ;;^UTILITY(U,$J,358.3,17898,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,17717,1,3,0)
- ;;=3^Myxedema Coma
- ;;^UTILITY(U,$J,358.3,17717,1,4,0)
- ;;=4^E03.5
- ;;^UTILITY(U,$J,358.3,17717,2)
- ;;=^5002474
- ;;^UTILITY(U,$J,358.3,17718,0)
- ;;=R40.2121^^88^897^33
- ;;^UTILITY(U,$J,358.3,17718,1,0)
+ ;;^UTILITY(U,$J,358.3,17898,1,3,0)
+ ;;=3^Fall in Empty Shower/Bathtub,Subs Encntr
+ ;;^UTILITY(U,$J,358.3,17898,1,4,0)
+ ;;=4^W18.2XXD
+ ;;^UTILITY(U,$J,358.3,17898,2)
+ ;;=^5059807
+ ;;^UTILITY(U,$J,358.3,17899,0)
+ ;;=W18.40XA^^61^794^114
+ ;;^UTILITY(U,$J,358.3,17899,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,17718,1,3,0)
- ;;=3^Coma Scale,Eyes Open,to Pain,In the Field
- ;;^UTILITY(U,$J,358.3,17718,1,4,0)
- ;;=4^R40.2121
- ;;^UTILITY(U,$J,358.3,17718,2)
- ;;=^5019361
- ;;^UTILITY(U,$J,358.3,17719,0)
- ;;=R40.2120^^88^897^34
- ;;^UTILITY(U,$J,358.3,17719,1,0)
+ ;;^UTILITY(U,$J,358.3,17899,1,3,0)
+ ;;=3^Slipping/Tripping/Stumbling w/o Falling,Init Encntr
+ ;;^UTILITY(U,$J,358.3,17899,1,4,0)
+ ;;=4^W18.40XA
+ ;;^UTILITY(U,$J,358.3,17899,2)
+ ;;=^5059818
+ ;;^UTILITY(U,$J,358.3,17900,0)
+ ;;=W18.40XD^^61^794^115
+ ;;^UTILITY(U,$J,358.3,17900,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,17719,1,3,0)
- ;;=3^Coma Scale,Eyes Open,to Pain,Unspec Time
- ;;^UTILITY(U,$J,358.3,17719,1,4,0)
- ;;=4^R40.2120
- ;;^UTILITY(U,$J,358.3,17719,2)
- ;;=^5019360
- ;;^UTILITY(U,$J,358.3,17720,0)
- ;;=R40.2114^^88^897^26
- ;;^UTILITY(U,$J,358.3,17720,1,0)
+ ;;^UTILITY(U,$J,358.3,17900,1,3,0)
+ ;;=3^Slipping/Tripping/Stumbling w/o Falling,Subs Encntr
+ ;;^UTILITY(U,$J,358.3,17900,1,4,0)
+ ;;=4^W18.40XD
+ ;;^UTILITY(U,$J,358.3,17900,2)
+ ;;=^5059819
+ ;;^UTILITY(U,$J,358.3,17901,0)
+ ;;=W18.41XA^^61^794^116
+ ;;^UTILITY(U,$J,358.3,17901,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,17720,1,3,0)
- ;;=3^Coma Scale,Eyes Open,Never,24+ hrs
- ;;^UTILITY(U,$J,358.3,17720,1,4,0)
- ;;=4^R40.2114
- ;;^UTILITY(U,$J,358.3,17720,2)
- ;;=^5019359
- ;;^UTILITY(U,$J,358.3,17721,0)
- ;;=R40.2113^^88^897^30
- ;;^UTILITY(U,$J,358.3,17721,1,0)
+ ;;^UTILITY(U,$J,358.3,17901,1,3,0)
+ ;;=3^Slipping/Tripping/Stumbling w/o Falling d/t Stepping on Obj,Init Encntr
+ ;;^UTILITY(U,$J,358.3,17901,1,4,0)
+ ;;=4^W18.41XA
+ ;;^UTILITY(U,$J,358.3,17901,2)
+ ;;=^5059821
+ ;;^UTILITY(U,$J,358.3,17902,0)
+ ;;=W18.41XD^^61^794^117
+ ;;^UTILITY(U,$J,358.3,17902,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,17721,1,3,0)
- ;;=3^Coma Scale,Eyes Open,Never,at Hospital Admission
- ;;^UTILITY(U,$J,358.3,17721,1,4,0)
- ;;=4^R40.2113
- ;;^UTILITY(U,$J,358.3,17721,2)
- ;;=^5019358
- ;;^UTILITY(U,$J,358.3,17722,0)
- ;;=R40.2112^^88^897^27
- ;;^UTILITY(U,$J,358.3,17722,1,0)
+ ;;^UTILITY(U,$J,358.3,17902,1,3,0)
+ ;;=3^Slipping/Tripping/Stumbling w/o Falling d/t Stepping on Obj,Subs Encntr
+ ;;^UTILITY(U,$J,358.3,17902,1,4,0)
+ ;;=4^W18.41XD
+ ;;^UTILITY(U,$J,358.3,17902,2)
+ ;;=^5059822
+ ;;^UTILITY(U,$J,358.3,17903,0)
+ ;;=W18.42XA^^61^794^118
+ ;;^UTILITY(U,$J,358.3,17903,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,17722,1,3,0)
- ;;=3^Coma Scale,Eyes Open,Never,Emerg Dept
- ;;^UTILITY(U,$J,358.3,17722,1,4,0)
- ;;=4^R40.2112
- ;;^UTILITY(U,$J,358.3,17722,2)
- ;;=^5019357
- ;;^UTILITY(U,$J,358.3,17723,0)
- ;;=R40.2111^^88^897^28
- ;;^UTILITY(U,$J,358.3,17723,1,0)
+ ;;^UTILITY(U,$J,358.3,17903,1,3,0)
+ ;;=3^Slipping/Tripping/Stumbling w/o Falling d/t Stepping into Hole,Init Encntr
+ ;;^UTILITY(U,$J,358.3,17903,1,4,0)
+ ;;=4^W18.42XA
+ ;;^UTILITY(U,$J,358.3,17903,2)
+ ;;=^5059824
+ ;;^UTILITY(U,$J,358.3,17904,0)
+ ;;=W18.42XD^^61^794^119
+ ;;^UTILITY(U,$J,358.3,17904,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,17723,1,3,0)
- ;;=3^Coma Scale,Eyes Open,Never,In the Field
- ;;^UTILITY(U,$J,358.3,17723,1,4,0)
- ;;=4^R40.2111
- ;;^UTILITY(U,$J,358.3,17723,2)
- ;;=^5019356
- ;;^UTILITY(U,$J,358.3,17724,0)
- ;;=R40.2110^^88^897^29
- ;;^UTILITY(U,$J,358.3,17724,1,0)
+ ;;^UTILITY(U,$J,358.3,17904,1,3,0)
+ ;;=3^Slipping/Tripping/Stumbling w/o Falling d/t Stepping into Hole,Subs Encntr
+ ;;^UTILITY(U,$J,358.3,17904,1,4,0)
+ ;;=4^W18.42XD
+ ;;^UTILITY(U,$J,358.3,17904,2)
+ ;;=^5059825
+ ;;^UTILITY(U,$J,358.3,17905,0)
+ ;;=W18.43XA^^61^794^112
+ ;;^UTILITY(U,$J,358.3,17905,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,17724,1,3,0)
- ;;=3^Coma Scale,Eyes Open,Never,Unspec Time
- ;;^UTILITY(U,$J,358.3,17724,1,4,0)
- ;;=4^R40.2110
- ;;^UTILITY(U,$J,358.3,17724,2)
- ;;=^5019355
- ;;^UTILITY(U,$J,358.3,17725,0)
- ;;=R40.20^^88^897^36
- ;;^UTILITY(U,$J,358.3,17725,1,0)
+ ;;^UTILITY(U,$J,358.3,17905,1,3,0)
+ ;;=3^Slipping/Tripping w/o Fall d/t Step from One Level to Another,Init Encntr
+ ;;^UTILITY(U,$J,358.3,17905,1,4,0)
+ ;;=4^W18.43XA
+ ;;^UTILITY(U,$J,358.3,17905,2)
+ ;;=^5059827
+ ;;^UTILITY(U,$J,358.3,17906,0)
+ ;;=W18.43XD^^61^794^113
+ ;;^UTILITY(U,$J,358.3,17906,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,17725,1,3,0)
- ;;=3^Coma,Unspec
- ;;^UTILITY(U,$J,358.3,17725,1,4,0)
- ;;=4^R40.20
- ;;^UTILITY(U,$J,358.3,17725,2)
- ;;=^5019354
- ;;^UTILITY(U,$J,358.3,17726,0)
- ;;=R40.2123^^88^897^35
- ;;^UTILITY(U,$J,358.3,17726,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,17726,1,3,0)
- ;;=3^Coma Scale,Eyes Open,to Pain,at Hospital Admission
- ;;^UTILITY(U,$J,358.3,17726,1,4,0)
- ;;=4^R40.2123
- ;;^UTILITY(U,$J,358.3,17726,2)
- ;;=^5019363
- ;;^UTILITY(U,$J,358.3,17727,0)
- ;;=R40.2122^^88^897^32
+ ;;^UTILITY(U,$J,358.3,17906,1,3,0)
+ ;;=3^Slipping/Tripping w/o Fall d/t Step from One Level to Another,Subs Encntr

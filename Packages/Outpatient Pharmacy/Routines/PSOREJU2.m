@@ -1,8 +1,9 @@
 PSOREJU2 ;BIRM/MFR - BPS (ECME) - Clinical Rejects Utilities (1) ;10/15/04
- ;;7.0;OUTPATIENT PHARMACY;**148,260,287,341,290,358,359,385,403,421,427,478**;DEC 1997;Build 27
- ;Reference to $$TAXID^IBCEF75 supported by IA 6768
- ;Reference to $$DIVNCPDP^BPSBUTL supported by IA 4719
- ;Reference to File 9002313.23 - BPS NCPDP REASON FOR SERVICE CODE supported by IA 4714
+ ;;7.0;OUTPATIENT PHARMACY;**148,260,287,341,290,358,359,385,403,421,427,478,562,680**;DEC 1997;Build 5
+ ; Reference to $$TAXID^IBCEF75 in ICR #6768
+ ; Reference to $$DIVNCPDP^BPSBUTL in ICR #4719
+ ; Reference to 9002313.23 in ICR #4714
+ ; Reference to $$CSNPI^BPSUTIL in ICR #4146
  ;
 GET(RX,RFL,REJDATA,REJID,OKCL,CODE,RRRFLG) ; get reject data from subfile 52.25
  ; Input:  (r) RX  - Rx IEN (#52) 
@@ -10,7 +11,7 @@ GET(RX,RFL,REJDATA,REJID,OKCL,CODE,RRRFLG) ; get reject data from subfile 52.25
  ;         (r) REJDATA(REJECT IEN,FIELD) - Array where these Reject fields will be returned:
  ;                       "BIN" - Payer BIN number
  ;                       "PCN" - Processor Control Number
- ;                       "CODE" - Reject Code (79 or 88)
+ ;                       "CODE" - Reject Code (79 or 88 or 943)
  ;                       "DATE/TIME" - DATE/TIME Reject was detected
  ;                       "PAYER MESSAGE" - Message returned by the payer
  ;                       "REASON" - Reject Reason description (from payer)
@@ -144,11 +145,17 @@ DVINFO(RX,RFL,LM) ; Returns header displayable Division Information
  ;Input: (r) RX   - Rx IEN (#52)
  ;       (o) RFL  - Refill # (Default: most recent)
  ;       (o) LM   - ListManager format? (1 - Yes / 0 - No) - Default: 0
- N TXT,DVINFO,NCPNPI,DVIEN,PSOTAXID
+ N DVIEN,DVINFO,NCPNPI,PSOTAXID,TXT
  S DVIEN=+$$RXSITE^PSOBPSUT(RX,RFL)
  S DVINFO="Division : "_$E($$GET1^DIQ(59,DVIEN,.01),1,15)
- ;Display both NPI and NCPDP numbers - PSO*7.0*421
- S NCPNPI=$$DIVNCPDP^BPSBUTL(DVIEN)
+ ;
+ ; Check for Controlled Substance Drug and if a BPS Pharmacy for CS has
+ ; been defined.  If so, use NCPDP# & NPI for the CS Pharmacy.
+ S NCPNPI=$$CSNPI^BPSUTIL(RX,RFL)
+ ;
+ ; If not a Controlled Substance, use NCPDP# & NPI info based on Division.
+ ; Display both NPI and NCPDP numbers - PSO*7.0*421
+ I +NCPNPI=-1 S NCPNPI=$$DIVNCPDP^BPSBUTL(DVIEN)
  S $E(DVINFO,28)="NPI: "_$P(NCPNPI,U,2)
  S $E(DVINFO,44)="NCPDP: "_$P(NCPNPI,U)
  S PSOTAXID=$P($$TAXID^IBCEF75,U,2)      ; IA 6768

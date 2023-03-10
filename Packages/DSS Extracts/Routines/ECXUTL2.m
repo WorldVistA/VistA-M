@@ -1,6 +1,8 @@
 ECXUTL2 ;ALB/JAP - Utilities for DSS Extracts (cont.) ;6/29/18  14:07
- ;;3.0;DSS EXTRACTS;**8,13,23,24,33,35,39,46,71,84,92,105,112,120,127,144,149,154,166,170**;Dec 22, 1997;Build 12
+ ;;3.0;DSS EXTRACTS;**8,13,23,24,33,35,39,46,71,84,92,105,112,120,127,144,149,154,166,170,184**;Dec 22, 1997;Build 124
  ;
+ ; Reference to $$UESTAT^EASUER in ICR #3989
+ ; 
 ECXDEF(ECXHEAD,ECXPACK,ECXGRP,ECXFILE,ECXRTN,ECXPIECE,ECXVER) ;variables specific to extract from file #727.1
  ;   input 
  ;   ECXHEAD = extract header code
@@ -58,6 +60,7 @@ PATDEM(DFN,DT1,PAR,FLG) ; determine patient information
  S FLG=$G(FLG),PAR=$S($D(PAR):PAR,1:"1;2;3;4;5;"),DT2=$P(DT1,".")
  Q:'$$PAT^ECXUTL3(DFN,DT2,PAR,.PAT) 0
  S ECXMPI=PAT("MPI")
+ S ECXSIGI=PAT("SIGI") ;184 Self Identified Gender
  I PAR["1" D
  .S ECXSSN=PAT("SSN"),ECXPNM=PAT("NAME"),ECXDOB=PAT("DOB")
  .S ECXSEX=PAT("SEX"),ECXREL=PAT("RELIGION"),ECXRACE=PAT("RACE")
@@ -187,6 +190,7 @@ INP(ECXDFN,ECXDATE) ; check for inpatient status
  ;       ward provider^attending phys.^ward (file #44 ien);facility
  ;       (file #40.8 ien);dss dept^dom^primary ward phys person class
  ;       ^attending phys person class^ward at discharge^ASIH other facility at date/time?
+ ;       ^primary provider taxonomy
  ;           where patient status = I for inpatient
  ;                                = O for outpatient
  N DFN,DSSDEPT,ECA,ECADM,ECMN,ECTS,ECWARD,ECDC,ECXINP,ECXPRO

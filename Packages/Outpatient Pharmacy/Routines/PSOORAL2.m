@@ -1,5 +1,5 @@
-PSOORAL2 ;BHAM-ISC/SAB - build listman activity logs con't ;7/27/16 6:45pm
- ;;7.0;OUTPATIENT PHARMACY;**258,260,386,427,454,482**;DEC 1997;Build 44
+PSOORAL2 ;BHAM-ISC/SAB - build listman activity logs con't ;Feb 10, 2022@10:12:50
+ ;;7.0;OUTPATIENT PHARMACY;**258,260,386,427,454,482,441**;DEC 1997;Build 208
  ;
 RF ;refill log
  S IEN=IEN+1,^TMP("PSOAL",$J,IEN,0)=" ",IEN=IEN+1,^TMP("PSOAL",$J,IEN,0)="Refill Log:"
@@ -9,7 +9,7 @@ RF ;refill log
  F N=0:0 S N=$O(^PSRX(DA,1,N)) Q:'N  S P1=^(N,0) D
  .S DTT=$P(P1,"^",8)\1 D DAT S IEN=IEN+1,^TMP("PSOAL",$J,IEN,0)=N_"   "_DAT_"   "
  .S DTT=$P(P1,"^"),$P(RN," ",10)=" " D DAT
- .S ^TMP("PSOAL",$J,IEN,0)=^TMP("PSOAL",$J,IEN,0)_DAT_"     "_$P(P1,"^",4)_$E("               ",$L($P(P1,"^",4))+1,15)_"  "_$S($P(P1,"^",2)="M":"Mail",1:"Window")_" "_$P(P1,"^",6)_$E(RN,$L($P(P1,"^",6))+1,12)
+ .S ^TMP("PSOAL",$J,IEN,0)=^TMP("PSOAL",$J,IEN,0)_DAT_"     "_$P(P1,"^",4)_$E("               ",$L($P(P1,"^",4))+1,15)_"  "_$S($P(P1,"^",2)="M":"Mail",$P(P1,"^",2)="P":"Park",1:"Window")_" "_$P(P1,"^",6)_$E(RN,$L($P(P1,"^",6))+1,12)
  .; grab remote fill information as part of OneVA project
  .; and display if available
  .N REMOTEF,REMOTEPH,REMOTES

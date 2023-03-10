@@ -1,0 +1,39 @@
+YS158PST ;BAH/QSB - Patch 158 Post-Init ; 7/29/2020
+ ;;5.01;MENTAL HEALTH;**158**;;Build 38
+ ;
+ Q
+POST ; Post-init for YS*5.01*158
+ D SSRRTN
+ Q
+ ; 
+SSRRTN ; Set the Suicide TAG & ROUTINE fileds in 601.71
+ N TEMP,CNT,TEST,YSFDA,INSTIEN,XXX,TAG,YSERR
+ K YSFDA
+ S TEMP=""
+ F CNT=1:1:9 D
+ . S TEMP=$T(INSTF+CNT)
+ . S TEMP=$P(TEMP,";;",2)
+ . S TEST=$P(TEMP,U,1) D
+ . S INSTIEN="" S INSTIEN=$O(^YTT(601.71,"B",TEST,""))
+ . S XXX=INSTIEN_","
+ . S YSFDA(601.71,XXX,95)="YTQRQAD6"
+ . S TAG=$P(TEMP,U,2)
+ . I TAG="zzzzz" Q
+ . S YSFDA(601.71,XXX,96)=TAG
+ D FILE^DIE("K","YSFDA","YSERR")
+ I $G(YSERR)'="" W !,"ERROR= ",YSERR
+ Q
+ ;
+INSTF ;Staff Entry Only Instruments
+ ;;BHS^BHS
+ ;;BSS^BSS
+ ;;C-SSRS^CSSRS
+ ;;I9+C-SSRS^I9CSSRS
+ ;;PHQ9^PHQ9
+ ;;PHQ-2+I9^PHQ2I9
+ ;;PSS-3^PSS3
+ ;;PSS-3 2ND^PSS32ND
+ ;;PC-PTSD-5+I9^PTSD5I9
+ ;;zzzzz
+ ;
+ Q

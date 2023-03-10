@@ -1,12 +1,12 @@
-PSGOE41 ;BIR/CML3 - REGULAR ORDER ENTRY (CONT.) ;May 27, 2020@15:39:55
- ;;5.0;INPATIENT MEDICATIONS;**50,63,64,69,58,111,136,113,267,315,334,373,366,327,319**;16 DEC 97;Build 31
- ;
+PSGOE41 ;BIR/CML3 - REGULAR ORDER ENTRY (CONT.) ;Dec 15, 2021@09:56:53
+ ;;5.0;INPATIENT MEDICATIONS;**50,63,64,69,58,111,136,113,267,315,334,373,366,327,319,399**;16 DEC 97;Build 64
  ;Per VHA Directive 2004-038, this routine should not be modified.
  ; Reference to ^DICN via DBIA 10009
  ; Reference to %DT via DBIA 10003
  ; Reference to %DTC via DBIA 10000
  ; Reference to ^PS(51.1 via DBIA 2177
  ; Reference to ^PS(50.7 via DBIA# 2180
+ ; Reference to ^YSCLTST2 via DBIA# 4556
  ;
 39 ; admin times
  G:$P(PSGNEDFD,"^",3)="P"!($P(PSGNEDFD,"^",3)="OC") 8
@@ -34,6 +34,10 @@ PSGOE41 ;BIR/CML3 - REGULAR ORDER ENTRY (CONT.) ;May 27, 2020@15:39:55
  S PSGSI=$S((PSGSI>0&(PSGSI<3)):$G(^PS(53.45,+PSJSYSP,5,1,0))_" "_$G(^PS(53.45,+PSJSYSP,5,2,0)),PSGSI>2:"Instructions too long. See Order View or BCMA for full text",1:"")
  S:PSGSI=" " PSGSI="" I PSGSI]"" S PSGSI=$$ENBCMA^PSJUTL("U"),PSGFOK(8)=""
  Q:$G(PSGOE3)
+132 ;*399-IND
+ I $G(PSGOEE) I $D(Y) N BKY S BKY=Y
+ D IND^PSGOE42(PSGPDRG) G:$G(PSGOROE1) DONE I $G(PSGOEE) S:$D(BKY) Y=BKY Q
+ I X?1"^".E D FF G:Y>0 @Y G 132
 10 ; start date/time
  I $P($G(PSJCLAPP),"^",2)'="",$G(PSGNESD)="" S PSGNESD=$P(PSJCLAPP,"^",2),PSGNESDO=$$ENDD^PSGMI(PSGNESD) S PSGSD=PSGNESDO G A10 ;P319 set StartDateTime to ApptDateTime
  D ^PSGNE3
@@ -143,7 +147,9 @@ DONE ;
  K F,F0,F1,PSGF2,F3,PSG,SDT,PSGEMRG,PSGCLOZ Q
  ;
 FF ; up-arrow to another field
- D ENFF^PSGOEM I Y>0,Y'=39,Y'=8,Y'=10,Y'=25 S Y=Y_"^PSGOE4"_$S("^109^13^3^7^26^"[("^"_Y_"^"):"",1:2) S:$P(Y,U)=2 FB=PSGF2_"^PSGOE41"
+ D ENFF^PSGOEM
+ I Y=132 S Y="132^PSGOE41" Q
+ I Y>0,Y'=39,Y'=8,Y'=10,Y'=25 S Y=Y_"^PSGOE4"_$S("^109^13^3^7^26^"[("^"_Y_"^"):"",1:2) S:$P(Y,U)=2 FB=PSGF2_"^PSGOE41"
  Q
  ;
 DEL ; delete entry

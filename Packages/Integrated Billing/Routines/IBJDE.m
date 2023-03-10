@@ -1,8 +1,9 @@
 IBJDE ;ALB/RB - DM DATA EXTRACTION (MAIN ROUTINE) ; 15-APR-99
- ;;2.0;INTEGRATED BILLING;**100,118,123,235,248,254,244**;21-MAR-94
+ ;;2.0;INTEGRATED BILLING;**100,118,123,235,248,254,244,694**;21-MAR-94;Build 11
  ;
 BJ ; - Entry point from IBAMTC.
  I $D(^IBE(351.7,"DISABLE")) G ENQ ; DM extraction process disabled.
+ I '$$PROD^XUPROD() G ENQ  ; IB*2.0*694 quit if not production account
  ;
  I $E(DT,6,7)=$E($$LDATE(DT)+1,6,7) S IBDT=$E($P($$M1(DT,0),"^",1),1,5)_"00"
  I '$G(IBDT) S IBDT=$$M1(DT,1)

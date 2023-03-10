@@ -1,5 +1,5 @@
 DGPFHLU6 ;ALB/RPM - PRF HL7 ORU~R01 UTILITIES ; 8/31/05 1:09pm
- ;;5.3;Registration;**425,554,1005**;Aug 13, 1993;Build 57
+ ;;5.3;Registration;**425,554,1005,1028**;Aug 13, 1993;Build 4
  ;Call to $$GET^XPAR supported by ICR #2263
  ;
  Q  ;no direct entry
@@ -42,7 +42,6 @@ XMIT(DGPFHIEN,DGHLEID,DGFAC,DGHLROOT,DGHL,DGHC) ;transmit ORU messages
  S DGHLS=$NA(^TMP("HLS",$J))
  S DGLINST=$P($$SITE^VASITE(),U,1)
  S DGRSLT=0
- S DGCFND=0
  ;
  S DGI=0
  F  S DGI=$O(DGFAC(DGI)) Q:'DGI  D
@@ -63,6 +62,8 @@ XMIT(DGPFHIEN,DGHLEID,DGFAC,DGHLROOT,DGHL,DGHC) ;transmit ORU messages
  . ;
  . ;get the HL7 LOGICAL LINK associated with the institution
  . S DGHLLNK=$$GETLINK^DGPFHLUT(DGINST)
+ . ;
+ . Q:DGHLLNK=0  ;patch 1028 - Don't try to send if there is no link.
  . ;
  . ;copy formatted message to HL7 "HLS" array
  . K @DGHLS

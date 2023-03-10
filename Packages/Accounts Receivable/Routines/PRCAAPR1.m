@@ -1,6 +1,8 @@
 PRCAAPR1 ;WASH-ISC@ALTOONA,PA/RGY - PATIENT ACCOUNT PROFILE ;2/12/97  11:48 AM
- ;;4.5;Accounts Receivable;**34,45,108,143,141,206,192,218,276,275,284,303,301,315,350**;Mar 20, 1995;Build 66
+ ;;4.5;Accounts Receivable;**34,45,108,143,141,206,192,218,276,275,284,303,301,315,350,343,404**;Mar 20, 1995;Build 7
  ;;Per VA Directive 6402, this routine should not be modified.
+ ;
+ ;PRCA*4.5*343 Ensure displayed phone number has format 111-222-3333
  ;
 HDR ;Head for Account profile
  S X="",$P(X,"=",23)="" W @IOF,!,X,"   A c c o u n t   P r o f i l e   ",X
@@ -27,6 +29,10 @@ HDR1 N DMC,IBRX,RSN,TOP4,TOP6,DPTFLG,ACCTNUM,RCCV
  W:$P(X("ADD"),"^",2)]"" !,$P(X("ADD"),"^",2) W:$P(X("ADD"),"^",3)]"" !,$P(X("ADD"),"^",3)
  W ! W:$P(X("ADD"),"^",4)]"" $P(X("ADD"),"^",4),", ",$P(X("ADD"),"^",5),"  ",$S($P(X("ADD"),"^",6):$P(X("ADD"),"^",6),1:$P(X("ADD"),"^",8))
  W ?55,"Amount Owed: ",?69,$J(+$G(^TMP("PRCAAPR",$J,"C")),9,2)
+ I $P(X("ADD"),"^",7)?10N D    ;PRCA*4.5*343
+ . N PRCHPHN
+ . S PRCAPHN=$P(X("ADD"),"^",7),PRCAPHN=$E(PRCAPHN,1,3)_"-"_$E(PRCAPHN,4,6)_"-"_$E(PRCAPHN,7,10)
+ . S $P(X("ADD"),"^",7)=PRCAPHN
  W !,"Phone #: ",$S($P(X("ADD"),"^",7)]"":$P(X("ADD"),"^",7),1:"N/A")
  I PRCADB["DPT(" W ?51,"RX Copay Exempt: " S IBRX=$$RXST^IBARXEU(+PRCADB,DT) W $S($P(IBRX,U)=1:"YES",$P(IBRX,U)=0:"NO",1:"N/A")
  I PRCADB["DPT(" W !?57,"CV Status: " S RCCV=$$CVEDT^DGCV(+PRCADB,DT) W $S($P(RCCV,U,3)>0:"YES",1:"NO") I $P(RCCV,U,2) W !?52,"CV Status Ends: ",$$SLH^RCFN01($P(RCCV,U,2))
@@ -48,6 +54,13 @@ HDR1 N DMC,IBRX,RSN,TOP4,TOP6,DPTFLG,ACCTNUM,RCCV
  I $O(^RCD(340,+DEBT,2,0)) D
  .S Y=0 F X=0:0 S X=$O(^RCD(340,+DEBT,2,X)) Q:'X  W:'Y ! W !,$G(^(X,0)) S Y=Y+1 W:Y=3&$O(^RCD(340,+DEBT,2,X)) "..." Q:Y=3
  .Q
+ ; PRCA*4.5*378/PRCA*4.5*404
+ S RPIEN=+$O(^RCRP(340.5,"E",+DEBT,""),-1) I RPIEN D
+ .S RPIENS=RPIEN_","
+ .W !,"Repayment Plan: ",$$GET1^DIQ(340.5,RPIENS,.01)
+ .W ?45,"Repayment Plan Status: ",$$GET1^DIQ(340.5,RPIENS,.07)
+ .Q
+ ;
  Q
  ; PRCA*4.5*276 - moved headers right to add EOB indicator to bill #, adjusted at tag BLN accordingly
  ; PRCA*4.5*275 - moved headers to line up with column changes

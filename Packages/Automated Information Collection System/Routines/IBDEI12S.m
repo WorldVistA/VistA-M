@@ -1,126 +1,124 @@
-IBDEI12S ; ; 04-FEB-2020
- ;;3.0;IB ENCOUNTER FORM IMP/EXP;;FEB 04, 2020
+IBDEI12S ; ; 01-FEB-2022
+ ;;3.0;IB ENCOUNTER FORM IMP/EXP;;FEB 01, 2022
  Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,999) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
- ;;^UTILITY(U,$J,358.3,17284,2)
- ;;=^5061207
- ;;^UTILITY(U,$J,358.3,17285,0)
- ;;=Y07.59^^88^890^14
- ;;^UTILITY(U,$J,358.3,17285,1,0)
+ ;;^UTILITY(U,$J,358.3,17474,1,4,0)
+ ;;=4^R90.0
+ ;;^UTILITY(U,$J,358.3,17474,2)
+ ;;=^5019703
+ ;;^UTILITY(U,$J,358.3,17475,0)
+ ;;=R90.89^^61^787^16
+ ;;^UTILITY(U,$J,358.3,17475,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,17285,1,3,0)
- ;;=3^Non-Family Member,Perpetrator of MST/Abuse NEC
- ;;^UTILITY(U,$J,358.3,17285,1,4,0)
- ;;=4^Y07.59
- ;;^UTILITY(U,$J,358.3,17285,2)
- ;;=^5061208
- ;;^UTILITY(U,$J,358.3,17286,0)
- ;;=T74.51XA^^88^890^1
- ;;^UTILITY(U,$J,358.3,17286,1,0)
+ ;;^UTILITY(U,$J,358.3,17475,1,3,0)
+ ;;=3^Abnormal Findings on Dx Imaging of Central Nervous System NEC
+ ;;^UTILITY(U,$J,358.3,17475,1,4,0)
+ ;;=4^R90.89
+ ;;^UTILITY(U,$J,358.3,17475,2)
+ ;;=^5019706
+ ;;^UTILITY(U,$J,358.3,17476,0)
+ ;;=R91.8^^61^787^21
+ ;;^UTILITY(U,$J,358.3,17476,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,17286,1,3,0)
- ;;=3^Adult Forced Sexual Exploit,Confirmed,Init enctr
- ;;^UTILITY(U,$J,358.3,17286,1,4,0)
- ;;=4^T74.51XA
- ;;^UTILITY(U,$J,358.3,17286,2)
- ;;=^5157560
- ;;^UTILITY(U,$J,358.3,17287,0)
- ;;=T74.51XD^^88^890^2
- ;;^UTILITY(U,$J,358.3,17287,1,0)
+ ;;^UTILITY(U,$J,358.3,17476,1,3,0)
+ ;;=3^Abnormal Nonspecific Lung Field Finding NEC
+ ;;^UTILITY(U,$J,358.3,17476,1,4,0)
+ ;;=4^R91.8
+ ;;^UTILITY(U,$J,358.3,17476,2)
+ ;;=^5019708
+ ;;^UTILITY(U,$J,358.3,17477,0)
+ ;;=R92.0^^61^787^121
+ ;;^UTILITY(U,$J,358.3,17477,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,17287,1,3,0)
- ;;=3^Adult Forced Sexual Exploit,Confirmed,Subs
- ;;^UTILITY(U,$J,358.3,17287,1,4,0)
- ;;=4^T74.51XD
- ;;^UTILITY(U,$J,358.3,17287,2)
- ;;=^5157561
- ;;^UTILITY(U,$J,358.3,17288,0)
- ;;=T74.51XS^^88^890^3
- ;;^UTILITY(U,$J,358.3,17288,1,0)
+ ;;^UTILITY(U,$J,358.3,17477,1,3,0)
+ ;;=3^Mammographic Microcalcification on Dx Image of Breast
+ ;;^UTILITY(U,$J,358.3,17477,1,4,0)
+ ;;=4^R92.0
+ ;;^UTILITY(U,$J,358.3,17477,2)
+ ;;=^5019709
+ ;;^UTILITY(U,$J,358.3,17478,0)
+ ;;=R92.1^^61^787^120
+ ;;^UTILITY(U,$J,358.3,17478,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,17288,1,3,0)
- ;;=3^Adult Forced Sexual Exploit,Confirmed,Sequela
- ;;^UTILITY(U,$J,358.3,17288,1,4,0)
- ;;=4^T74.51XS
- ;;^UTILITY(U,$J,358.3,17288,2)
- ;;=^5157562
- ;;^UTILITY(U,$J,358.3,17289,0)
- ;;=T76.51XA^^88^890^4
- ;;^UTILITY(U,$J,358.3,17289,1,0)
+ ;;^UTILITY(U,$J,358.3,17478,1,3,0)
+ ;;=3^Mammographic Calcification on Dx Image of Breast
+ ;;^UTILITY(U,$J,358.3,17478,1,4,0)
+ ;;=4^R92.1
+ ;;^UTILITY(U,$J,358.3,17478,2)
+ ;;=^5019710
+ ;;^UTILITY(U,$J,358.3,17479,0)
+ ;;=R92.2^^61^787^95
+ ;;^UTILITY(U,$J,358.3,17479,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,17289,1,3,0)
- ;;=3^Adult Forced Sexual Exploit,Suspected,Init 
- ;;^UTILITY(U,$J,358.3,17289,1,4,0)
- ;;=4^T76.51XA
- ;;^UTILITY(U,$J,358.3,17289,2)
- ;;=^5157572
- ;;^UTILITY(U,$J,358.3,17290,0)
- ;;=T76.51XD^^88^890^5
- ;;^UTILITY(U,$J,358.3,17290,1,0)
+ ;;^UTILITY(U,$J,358.3,17479,1,3,0)
+ ;;=3^Inconclusive Mammogram
+ ;;^UTILITY(U,$J,358.3,17479,1,4,0)
+ ;;=4^R92.2
+ ;;^UTILITY(U,$J,358.3,17479,2)
+ ;;=^5019711
+ ;;^UTILITY(U,$J,358.3,17480,0)
+ ;;=R93.0^^61^787^10
+ ;;^UTILITY(U,$J,358.3,17480,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,17290,1,3,0)
- ;;=3^Adult Forced Sexual Exploit,Suspected,Subs
- ;;^UTILITY(U,$J,358.3,17290,1,4,0)
- ;;=4^T76.51XD
- ;;^UTILITY(U,$J,358.3,17290,2)
- ;;=^5157573
- ;;^UTILITY(U,$J,358.3,17291,0)
- ;;=T76.51XS^^88^890^6
- ;;^UTILITY(U,$J,358.3,17291,1,0)
+ ;;^UTILITY(U,$J,358.3,17480,1,3,0)
+ ;;=3^Abnormal Finding on Dx Image of Skull/Head NEC
+ ;;^UTILITY(U,$J,358.3,17480,1,4,0)
+ ;;=4^R93.0
+ ;;^UTILITY(U,$J,358.3,17480,2)
+ ;;=^5019713
+ ;;^UTILITY(U,$J,358.3,17481,0)
+ ;;=R93.2^^61^787^9
+ ;;^UTILITY(U,$J,358.3,17481,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,17291,1,3,0)
- ;;=3^Adult Forced Sexual Exploit,Suspected,Sequela
- ;;^UTILITY(U,$J,358.3,17291,1,4,0)
- ;;=4^T76.51XS
- ;;^UTILITY(U,$J,358.3,17291,2)
- ;;=^5157574
- ;;^UTILITY(U,$J,358.3,17292,0)
- ;;=E66.01^^88^891^125
- ;;^UTILITY(U,$J,358.3,17292,1,0)
+ ;;^UTILITY(U,$J,358.3,17481,1,3,0)
+ ;;=3^Abnormal Finding on Dx Image of Liver/Biliary Tract
+ ;;^UTILITY(U,$J,358.3,17481,1,4,0)
+ ;;=4^R93.2
+ ;;^UTILITY(U,$J,358.3,17481,2)
+ ;;=^5019715
+ ;;^UTILITY(U,$J,358.3,17482,0)
+ ;;=R93.3^^61^787^7
+ ;;^UTILITY(U,$J,358.3,17482,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,17292,1,3,0)
- ;;=3^Morbid Obesity
- ;;^UTILITY(U,$J,358.3,17292,1,4,0)
- ;;=4^E66.01
- ;;^UTILITY(U,$J,358.3,17292,2)
- ;;=^5002826
- ;;^UTILITY(U,$J,358.3,17293,0)
- ;;=F18.10^^88^891^100
- ;;^UTILITY(U,$J,358.3,17293,1,0)
+ ;;^UTILITY(U,$J,358.3,17482,1,3,0)
+ ;;=3^Abnormal Finding on Dx Image of Digestive Tract Part
+ ;;^UTILITY(U,$J,358.3,17482,1,4,0)
+ ;;=4^R93.3
+ ;;^UTILITY(U,$J,358.3,17482,2)
+ ;;=^5019716
+ ;;^UTILITY(U,$J,358.3,17483,0)
+ ;;=R93.5^^61^787^6
+ ;;^UTILITY(U,$J,358.3,17483,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,17293,1,3,0)
- ;;=3^Inhalant Abuse,Uncomplicated
- ;;^UTILITY(U,$J,358.3,17293,1,4,0)
- ;;=4^F18.10
- ;;^UTILITY(U,$J,358.3,17293,2)
- ;;=^5003380
- ;;^UTILITY(U,$J,358.3,17294,0)
- ;;=F55.0^^88^891^42
- ;;^UTILITY(U,$J,358.3,17294,1,0)
+ ;;^UTILITY(U,$J,358.3,17483,1,3,0)
+ ;;=3^Abnormal Finding on Dx Image of Abdominal Regions
+ ;;^UTILITY(U,$J,358.3,17483,1,4,0)
+ ;;=4^R93.5
+ ;;^UTILITY(U,$J,358.3,17483,2)
+ ;;=^5019718
+ ;;^UTILITY(U,$J,358.3,17484,0)
+ ;;=R93.6^^61^787^8
+ ;;^UTILITY(U,$J,358.3,17484,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,17294,1,3,0)
- ;;=3^Antacid Abuse
- ;;^UTILITY(U,$J,358.3,17294,1,4,0)
- ;;=4^F55.0
- ;;^UTILITY(U,$J,358.3,17294,2)
- ;;=^5003628
- ;;^UTILITY(U,$J,358.3,17295,0)
- ;;=F18.90^^88^891^101
- ;;^UTILITY(U,$J,358.3,17295,1,0)
+ ;;^UTILITY(U,$J,358.3,17484,1,3,0)
+ ;;=3^Abnormal Finding on Dx Image of Limbs
+ ;;^UTILITY(U,$J,358.3,17484,1,4,0)
+ ;;=4^R93.6
+ ;;^UTILITY(U,$J,358.3,17484,2)
+ ;;=^5019719
+ ;;^UTILITY(U,$J,358.3,17485,0)
+ ;;=R94.4^^61^787^19
+ ;;^UTILITY(U,$J,358.3,17485,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,17295,1,3,0)
- ;;=3^Inhalant Use Uncomplicated,Unspec
- ;;^UTILITY(U,$J,358.3,17295,1,4,0)
- ;;=4^F18.90
- ;;^UTILITY(U,$J,358.3,17295,2)
- ;;=^5003405
- ;;^UTILITY(U,$J,358.3,17296,0)
- ;;=F55.2^^88^891^107
- ;;^UTILITY(U,$J,358.3,17296,1,0)
+ ;;^UTILITY(U,$J,358.3,17485,1,3,0)
+ ;;=3^Abnormal Kidney Function Studies
+ ;;^UTILITY(U,$J,358.3,17485,1,4,0)
+ ;;=4^R94.4
+ ;;^UTILITY(U,$J,358.3,17485,2)
+ ;;=^5019741
+ ;;^UTILITY(U,$J,358.3,17486,0)
+ ;;=R94.5^^61^787^20
+ ;;^UTILITY(U,$J,358.3,17486,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,17296,1,3,0)
- ;;=3^Laxative Abuse
- ;;^UTILITY(U,$J,358.3,17296,1,4,0)
- ;;=4^F55.2
- ;;^UTILITY(U,$J,358.3,17296,2)
- ;;=^5003630
+ ;;^UTILITY(U,$J,358.3,17486,1,3,0)
+ ;;=3^Abnormal Liver Function Studies

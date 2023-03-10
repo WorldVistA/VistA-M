@@ -1,5 +1,5 @@
 IBCEMU1 ;ALB/DSM - IB MRA Utility ;26-MAR-2003
- ;;2.0;INTEGRATED BILLING;**135,155,432**;21-MAR-94;Build 192
+ ;;2.0;INTEGRATED BILLING;**135,155,432,718**;21-MAR-94;Build 73
  ;;Per VHA Directive 2004-038, this routine should not be modified.
  ;
 MRAUSR() ;; Function
@@ -133,8 +133,95 @@ SPLIT(IBEOB) ; This function returns whether or not the given EOB is a
  F PCE=3:1:7 S REMC=$P(IBM3,U,PCE) I REMC="MA15" S SPLIT=1 Q
  I SPLIT G SPLITX
  F PCE=1:1:5 S REMC=$P(IBM5,U,PCE) I REMC="MA15" S SPLIT=1 Q
+ ;WCJ;IB*2.0*718;check new field for potential split
+ I 'SPLIT,$$GET1^DIQ(361.1,IBEOB_",",.22,"I") S SPLIT=1
+ ;
 SPLITX ;
  Q SPLIT
+ ;
+SPLIT2(IBEOB,IBALLORONE) ; All lines Covered? aka SPLIT2
+ ;
+ ; This was written because a medicare claims processor couldn't follow simple agreed upon instructions.
+ ; They were supposed to send an MA15 whenever an MRA was split, but they didn't.
+ ; Consequently, VistA was sending out secondary claims with MRAs that only covered part of the original claim - an X12 violation
+ ;
+ ; This function is passed an MRA.
+ ; depending on the second parameter
+ ; It either 
+ ; a) gets all the MRAs like it (same claim/payer #) and compares the lines on the claim to the lines in the MRAs 
+ ;    to make sure every line is accounted for.
+ ; or
+ ; b) checks only the one passed into see if it covers all
+ ;
+ ; Passed in:
+ ; IBEOB = the ien of the EOB entry in file 361.1
+ ; also passed IBALLORONE - 1 checks just the IBEOB passed in
+ ; anything else (or nothing) checks all the EOBS for the same claim number and payer sequence
+ ;
+ ; Returns -1 Couldn't tell (bad data?)
+ ;          0 All lines not covered
+ ;          1 All lines covered
+ ;
+ N IBIFN,IBFT,IBZDATA,IBLOOP,RESULT
+ N IBLOOPEOB,IBLINE,IBFT,IBZDATA,IBLINE,IBPAYSEQ
+ N IBXSAVE,IBXARRAY,IBXARRY,IBXERR,IBRC,IBMRAF   ; output formatter set these.  want this to be self-cleaning so added here.
+ ;
+ S RESULT=-1
+ I '+$G(IBEOB) Q RESULT  ; no EOB sent in - off to a bad start
+ ;
+ ; gotta be an MRA cause that's all we allow to be split so far
+ Q:$$GET1^DIQ(361.1,IBEOB_",",.04,"I")'=1 RESULT
+ ;
+ ; must be PROCESSED or DENIED
+ Q:".1.2."'[("."_$$GET1^DIQ(361.1,IBEOB_",",.13,"I")_".") RESULT
+ ;
+ ; filing errors - can't check ;WCJ;IB718;v21
+ I $D(^IBM(361.1,IBEOB,"ERR")) Q RESULT
+ ;
+ ; no lines returned so nothing to check if it's partial
+ I '$D(^IBM(361.1,IBEOB,15)) Q RESULT ;WCJ;IB718;v21
+ ;
+ ; get File 399 CLAIM #
+ S IBIFN=$$GET1^DIQ(361.1,IBEOB_",",.01,"I")
+ I '+IBIFN Q RESULT
+ I $$INPAT^IBCEF(IBIFN,1),$$INSPRF^IBCEF(IBIFN) Q RESULT   ;logic does not work for inpatient institutional as they return at the claim level ;WCJ;IB718;v21
+ ;
+ ; call the appropriate OUTPUT FORMATTER FUNCTION to determine how many lines went out
+ ; first get the form type
+ S IBFT=$$GET1^DIQ(399,IBIFN_",",.19,"I")
+ I 'IBFT Q RESULT
+ ;
+ ; only 3 valid form types but you already know that
+ I ".2.3.7."'[("."_IBFT_".") Q RESULT
+ ;
+ I IBFT=3 D F^IBCEF("N-UB-04 SERVICE LINE (EDI)","IBZDATA",,IBIFN)
+ I IBFT=2 D F^IBCEF("N-HCFA 1500 SERVICE LINE (EDI)","IBZDATA",,IBIFN)
+ I IBFT=7 D F^IBCEF("N-HCFA SERVICE LINE CALLABLE","IBZDATA",,IBIFN)
+ ;
+ ; get payer sequence from the EOB
+ S IBPAYSEQ=$$GET1^DIQ(361.1,IBEOB_",",.15,"I")
+ I '+IBPAYSEQ Q RESULT
+ ;
+ S RESULT=1
+ I '+$O(IBZDATA(0)) Q RESULT  ; no lines on the claim so technically they are all covered
+ ;
+ ; gets all the EOBs for that bill number
+ S IBLOOPEOB=0
+ F  S IBLOOPEOB=$O(^IBM(361.1,"B",IBIFN,IBLOOPEOB)) Q:'IBLOOPEOB  D
+ . I $G(IBALLORONE)=1,IBLOOPEOB'=IBEOB Q  ; only want to see if this one EOB fully covers claim
+ . Q:$$GET1^DIQ(361.1,IBLOOPEOB_",",.04,"I")'=1  ; remember, only MRAs
+ . Q:".1.2."'[("."_$$GET1^DIQ(361.1,IBLOOPEOB_",",.13,"I")_".")  ; must be PROCESSED or DENIED
+ . Q:$$GET1^DIQ(361.1,IBLOOPEOB_",",.15,"I")'=IBPAYSEQ  ; must be for same payer seq as EOB passed in
+ . S IBLINE=0
+ . F  S IBLINE=$O(IBZDATA(IBLINE)) Q:'IBLINE  D
+ .. I $D(^IBM(361.1,IBLOOPEOB,15,"AC",IBLINE)) K IBZDATA(IBLINE) ; remove the lines local array that are in an acceptable MRA
+ ;
+ ; and voila
+ ; if all lines are covered then there shouldn't be any left in the array
+ ;
+ Q:'$O(IBZDATA(0)) RESULT
+ ;
+ Q 0   ; no dice, we have lines left
  ;
  ;
 EOBLST(IBEOB) ; Standard FileMan lister code for entries in the EOB file

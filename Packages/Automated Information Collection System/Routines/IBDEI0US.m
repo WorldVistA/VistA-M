@@ -1,116 +1,122 @@
-IBDEI0US ; ; 04-FEB-2020
- ;;3.0;IB ENCOUNTER FORM IMP/EXP;;FEB 04, 2020
+IBDEI0US ; ; 01-FEB-2022
+ ;;3.0;IB ENCOUNTER FORM IMP/EXP;;FEB 01, 2022
  Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,999) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
- ;;^UTILITY(U,$J,358.3,13708,1,4,0)
- ;;=4^E11.3412
- ;;^UTILITY(U,$J,358.3,13708,2)
- ;;=^5138348
- ;;^UTILITY(U,$J,358.3,13709,0)
- ;;=E11.3413^^83^815^45
- ;;^UTILITY(U,$J,358.3,13709,1,0)
+ ;;^UTILITY(U,$J,358.3,13900,0)
+ ;;=M25.521^^55^664^36
+ ;;^UTILITY(U,$J,358.3,13900,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,13709,1,3,0)
- ;;=3^Diabetes Type 2 w/ Severe Nonp Rtnop w/ Macular Edema,Bilaterral
- ;;^UTILITY(U,$J,358.3,13709,1,4,0)
- ;;=4^E11.3413
- ;;^UTILITY(U,$J,358.3,13709,2)
- ;;=^5138349
- ;;^UTILITY(U,$J,358.3,13710,0)
- ;;=E11.3491^^83^815^46
- ;;^UTILITY(U,$J,358.3,13710,1,0)
+ ;;^UTILITY(U,$J,358.3,13900,1,3,0)
+ ;;=3^Pain in right elbow
+ ;;^UTILITY(U,$J,358.3,13900,1,4,0)
+ ;;=4^M25.521
+ ;;^UTILITY(U,$J,358.3,13900,2)
+ ;;=^5011605
+ ;;^UTILITY(U,$J,358.3,13901,0)
+ ;;=M19.022^^55^664^39
+ ;;^UTILITY(U,$J,358.3,13901,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,13710,1,3,0)
- ;;=3^Diabetes Type 2 w/ Severe Nonp Rtnop w/o Macular Edema,Right Eye
- ;;^UTILITY(U,$J,358.3,13710,1,4,0)
- ;;=4^E11.3491
- ;;^UTILITY(U,$J,358.3,13710,2)
- ;;=^5138351
- ;;^UTILITY(U,$J,358.3,13711,0)
- ;;=E11.3492^^83^815^47
- ;;^UTILITY(U,$J,358.3,13711,1,0)
+ ;;^UTILITY(U,$J,358.3,13901,1,3,0)
+ ;;=3^Primary osteoarthritis, left elbow
+ ;;^UTILITY(U,$J,358.3,13901,1,4,0)
+ ;;=4^M19.022
+ ;;^UTILITY(U,$J,358.3,13901,2)
+ ;;=^5010812
+ ;;^UTILITY(U,$J,358.3,13902,0)
+ ;;=M19.021^^55^664^40
+ ;;^UTILITY(U,$J,358.3,13902,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,13711,1,3,0)
- ;;=3^Diabetes Type 2 w/ Severe Nonp Rtnop w/o Macular Edema,Left Eye
- ;;^UTILITY(U,$J,358.3,13711,1,4,0)
- ;;=4^E11.3492
- ;;^UTILITY(U,$J,358.3,13711,2)
- ;;=^5138352
- ;;^UTILITY(U,$J,358.3,13712,0)
- ;;=E11.3493^^83^815^48
- ;;^UTILITY(U,$J,358.3,13712,1,0)
+ ;;^UTILITY(U,$J,358.3,13902,1,3,0)
+ ;;=3^Primary osteoarthritis, right elbow
+ ;;^UTILITY(U,$J,358.3,13902,1,4,0)
+ ;;=4^M19.021
+ ;;^UTILITY(U,$J,358.3,13902,2)
+ ;;=^5010811
+ ;;^UTILITY(U,$J,358.3,13903,0)
+ ;;=M12.522^^55^664^45
+ ;;^UTILITY(U,$J,358.3,13903,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,13712,1,3,0)
- ;;=3^Diabetes Type 2 w/ Severe Nonp Rtnop w/o Macular Edema,Bilateral
- ;;^UTILITY(U,$J,358.3,13712,1,4,0)
- ;;=4^E11.3493
- ;;^UTILITY(U,$J,358.3,13712,2)
- ;;=^5138353
- ;;^UTILITY(U,$J,358.3,13713,0)
- ;;=E11.3511^^83^815^37
- ;;^UTILITY(U,$J,358.3,13713,1,0)
+ ;;^UTILITY(U,$J,358.3,13903,1,3,0)
+ ;;=3^Traumatic arthropathy, left elbow
+ ;;^UTILITY(U,$J,358.3,13903,1,4,0)
+ ;;=4^M12.522
+ ;;^UTILITY(U,$J,358.3,13903,2)
+ ;;=^5010623
+ ;;^UTILITY(U,$J,358.3,13904,0)
+ ;;=M12.521^^55^664^46
+ ;;^UTILITY(U,$J,358.3,13904,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,13713,1,3,0)
- ;;=3^Diabetes Type 2 w/ Prolif Rtnop w/ Macular Edema,Right Eye
- ;;^UTILITY(U,$J,358.3,13713,1,4,0)
- ;;=4^E11.3511
- ;;^UTILITY(U,$J,358.3,13713,2)
- ;;=^5138355
- ;;^UTILITY(U,$J,358.3,13714,0)
- ;;=E11.3512^^83^815^38
- ;;^UTILITY(U,$J,358.3,13714,1,0)
+ ;;^UTILITY(U,$J,358.3,13904,1,3,0)
+ ;;=3^Traumatic arthropathy, right elbow
+ ;;^UTILITY(U,$J,358.3,13904,1,4,0)
+ ;;=4^M12.521
+ ;;^UTILITY(U,$J,358.3,13904,2)
+ ;;=^5010622
+ ;;^UTILITY(U,$J,358.3,13905,0)
+ ;;=S42.402A^^55^664^19
+ ;;^UTILITY(U,$J,358.3,13905,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,13714,1,3,0)
- ;;=3^Diabetes Type 2 w/ Prolif Rtnop w/ Macular Edema,Left Eye
- ;;^UTILITY(U,$J,358.3,13714,1,4,0)
- ;;=4^E11.3512
- ;;^UTILITY(U,$J,358.3,13714,2)
- ;;=^5138356
- ;;^UTILITY(U,$J,358.3,13715,0)
- ;;=E11.3513^^83^815^39
- ;;^UTILITY(U,$J,358.3,13715,1,0)
+ ;;^UTILITY(U,$J,358.3,13905,1,3,0)
+ ;;=3^Fracture of lower end of left humerus, init for clos fx,Unspec
+ ;;^UTILITY(U,$J,358.3,13905,1,4,0)
+ ;;=4^S42.402A
+ ;;^UTILITY(U,$J,358.3,13905,2)
+ ;;=^5134713
+ ;;^UTILITY(U,$J,358.3,13906,0)
+ ;;=S42.401A^^55^664^20
+ ;;^UTILITY(U,$J,358.3,13906,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,13715,1,3,0)
- ;;=3^Diabetes Type 2 w/ Prolif Rtnop w/ Macular Edema,Bilateral
- ;;^UTILITY(U,$J,358.3,13715,1,4,0)
- ;;=4^E11.3513
- ;;^UTILITY(U,$J,358.3,13715,2)
- ;;=^5138357
- ;;^UTILITY(U,$J,358.3,13716,0)
- ;;=E11.3551^^83^815^50
- ;;^UTILITY(U,$J,358.3,13716,1,0)
+ ;;^UTILITY(U,$J,358.3,13906,1,3,0)
+ ;;=3^Fracture of lower end of right humerus, init,Unspec
+ ;;^UTILITY(U,$J,358.3,13906,1,4,0)
+ ;;=4^S42.401A
+ ;;^UTILITY(U,$J,358.3,13906,2)
+ ;;=^5027294
+ ;;^UTILITY(U,$J,358.3,13907,0)
+ ;;=S53.402A^^55^664^41
+ ;;^UTILITY(U,$J,358.3,13907,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,13716,1,3,0)
- ;;=3^Diabetes Type 2 w/ Stable Prolif Rtnop,Right Eye
- ;;^UTILITY(U,$J,358.3,13716,1,4,0)
- ;;=4^E11.3551
- ;;^UTILITY(U,$J,358.3,13716,2)
- ;;=^5138371
- ;;^UTILITY(U,$J,358.3,13717,0)
- ;;=E11.3552^^83^815^51
- ;;^UTILITY(U,$J,358.3,13717,1,0)
+ ;;^UTILITY(U,$J,358.3,13907,1,3,0)
+ ;;=3^Sprain of left elbow, init encntr,Unspec
+ ;;^UTILITY(U,$J,358.3,13907,1,4,0)
+ ;;=4^S53.402A
+ ;;^UTILITY(U,$J,358.3,13907,2)
+ ;;=^5031364
+ ;;^UTILITY(U,$J,358.3,13908,0)
+ ;;=S53.401A^^55^664^43
+ ;;^UTILITY(U,$J,358.3,13908,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,13717,1,3,0)
- ;;=3^Diabetes Type 2 w/ Stable Prolif Rtnop,Left Eye
- ;;^UTILITY(U,$J,358.3,13717,1,4,0)
- ;;=4^E11.3552
- ;;^UTILITY(U,$J,358.3,13717,2)
- ;;=^5138372
- ;;^UTILITY(U,$J,358.3,13718,0)
- ;;=E11.3553^^83^815^52
- ;;^UTILITY(U,$J,358.3,13718,1,0)
+ ;;^UTILITY(U,$J,358.3,13908,1,3,0)
+ ;;=3^Sprain of right elbow, init encntr,Unspec
+ ;;^UTILITY(U,$J,358.3,13908,1,4,0)
+ ;;=4^S53.401A
+ ;;^UTILITY(U,$J,358.3,13908,2)
+ ;;=^5031361
+ ;;^UTILITY(U,$J,358.3,13909,0)
+ ;;=S50.02XD^^55^664^6
+ ;;^UTILITY(U,$J,358.3,13909,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,13718,1,3,0)
- ;;=3^Diabetes Type 2 w/ Stable Prolif Rtnop,Bilateral
- ;;^UTILITY(U,$J,358.3,13718,1,4,0)
- ;;=4^E11.3553
- ;;^UTILITY(U,$J,358.3,13718,2)
- ;;=^5138373
- ;;^UTILITY(U,$J,358.3,13719,0)
- ;;=E11.3591^^83^815^40
- ;;^UTILITY(U,$J,358.3,13719,1,0)
+ ;;^UTILITY(U,$J,358.3,13909,1,3,0)
+ ;;=3^Contusion of left elbow, subsequent encounter
+ ;;^UTILITY(U,$J,358.3,13909,1,4,0)
+ ;;=4^S50.02XD
+ ;;^UTILITY(U,$J,358.3,13909,2)
+ ;;=^5028489
+ ;;^UTILITY(U,$J,358.3,13910,0)
+ ;;=S50.01XD^^55^664^8
+ ;;^UTILITY(U,$J,358.3,13910,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,13719,1,3,0)
- ;;=3^Diabetes Type 2 w/ Prolif Rtnop w/o Macular Edema,Right Eye
- ;;^UTILITY(U,$J,358.3,13719,1,4,0)
- ;;=4^E11.3591
+ ;;^UTILITY(U,$J,358.3,13910,1,3,0)
+ ;;=3^Contusion of right elbow, subsequent encounter
+ ;;^UTILITY(U,$J,358.3,13910,1,4,0)
+ ;;=4^S50.01XD
+ ;;^UTILITY(U,$J,358.3,13910,2)
+ ;;=^5028486
+ ;;^UTILITY(U,$J,358.3,13911,0)
+ ;;=S52.122D^^55^664^10
+ ;;^UTILITY(U,$J,358.3,13911,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,13911,1,3,0)
+ ;;=3^Disp fx of head of left radius, subs encntr
+ ;;^UTILITY(U,$J,358.3,13911,1,4,0)
+ ;;=4^S52.122D

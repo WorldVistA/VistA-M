@@ -1,5 +1,5 @@
-MAGDIR9E ;WOIFO/PMK - Read a DICOM image file ; 14 Sep 2012 2:36 PM
- ;;3.0;IMAGING;**11,51,46,54,99,138**;Mar 19, 2002;Build 5380;Sep 03, 2013
+MAGDIR9E ;WOIFO/PMK - Read a DICOM image file ; Feb 15, 2022@09:34:42
+ ;;3.0;IMAGING;**11,51,46,54,99,138,305**;Mar 19, 2002;Build 3
  ;; Per VHA Directive 2004-038, this routine should not be modified.
  ;; +---------------------------------------------------------------+
  ;; | Property of the US Government.                                |
@@ -30,7 +30,6 @@ MAGDIR9E ;WOIFO/PMK - Read a DICOM image file ; 14 Sep 2012 2:36 PM
  ;
 GROUP() ; entry point from ^MAGDIR8 for consult/procedure groups
  N ACQDEVP ;-- pointer to acquisition device file (#2006.04)
- N COMPLETE ;- GMRC consult complete flag
  N D0 ;------- fileman variable
  N ERRCODE ;-- error trap code
  N GROUP ;---- array to pass group data to ^MAGGTIA
@@ -61,8 +60,7 @@ GROUP() ; entry point from ^MAGDIR8 for consult/procedure groups
  ; check if there already is a TIU note attached to this request
  ;
  S TIUIEN=$$TIULAST^MAGDGMRC(GMRCIEN)
- S COMPLETE=$$GET1^DIQ(123,GMRCIEN,8) ; get the consult status
- I TIUIEN,COMPLETE'="COMPLETE" D  Q:ERRCODE ERRCODE ; there is TIU note already
+ I TIUIEN D  Q:ERRCODE ERRCODE ; there is TIU note already
  . ; double check TIU note DFN to make sure that it matches
  . N HIT ; scratch variable used in finding corresponding image group
  . N TIUDFN ; DFN value from ^TIU for double checking

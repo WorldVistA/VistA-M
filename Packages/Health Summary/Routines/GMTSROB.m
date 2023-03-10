@@ -1,5 +1,5 @@
-GMTSROB ; SLC/JER,KER - Surgery Reports Brief ; 06/24/2002
- ;;2.7;Health Summary;**9,11,28,57**;Oct 20, 1995
+GMTSROB ; SLC/JER,KER - Surgery Reports Brief ; AUG 06,2002
+ ;;2.7;Health Summary;**9,11,28,57,142**;Oct 20, 1995;Build 1
  ;
  ; External References
  ;   DBIA   2491  ^SRF("B")
@@ -39,7 +39,7 @@ WRT ; Write surgical case record
  Q
 STATUS ; case status
  I $$GET1^DIQ(130,(+(GMN)_","),118,"I")="Y" D NONORST Q
- I $D(^SRF(GMN,30)) S STATUS=$S(+($$GET1^DIQ(130,(+(GMN)_","),.205,"I")):"(ABORTED)",1:"CANCELLED") Q
+ I $D(^SRF(GMN,30)),$P(^(30),U,1)>0 S STATUS=$S(+($$GET1^DIQ(130,(+(GMN)_","),.205,"I")):"(ABORTED)",1:"CANCELLED") Q
  I +($$GET1^DIQ(130,(+(GMN)_","),.23,"I")) S STATUS="(COMPLETED)" Q
  I +($$GET1^DIQ(130,(+(GMN)_","),.22,"I")),'+($$GET1^DIQ(130,(+(GMN)_","),.23,"I")) S STATUS="INCOMPLETE" Q
  I +($$GET1^DIQ(130,(+(GMN)_","),10,"I")) S STATUS="SCHEDULED" Q

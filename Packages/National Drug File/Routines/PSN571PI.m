@@ -1,0 +1,21 @@
+PSN571PI ;BIR/MFR-Post-install routine for Patch PSN*4*571 ; 27 Oct 2020 8:40 AM
+ ;;4.0;NATIONAL DRUG FILE;**571**; 30 Oct 98;Build 5
+ ;
+EN ; entry point
+ D BMES^XPDUTL(" Starting post-install for PSN*4*571...")
+ K ^XTMP("PSN571PI")
+ S ^XTMP("PSN571PI",0)=$$FMADD^XLFDT($$NOW^XLFDT(),365)_"^"_$$NOW^XLFDT()_"^PSN*4*571 - CORRUPTED RECORDS REMOVED FROM VA PRODUCT FILE (#50.68)"
+ ;
+ N VAPRD,VAGEN,DOSFRM,DRGUNT,Z,DIK,DA,CNT
+ S CNT=0,VAPRD=32900,DIK="^PSNDF(50.68,"
+ F  S VAPRD=$O(^PSNDF(50.68,VAPRD)) Q:'VAPRD  D
+ . S Z=$G(^PSNDF(50.68,VAPRD,0))
+ . S VAGEN=$P(Z,"^",2) I VAGEN'="",VAGEN?.N,$D(^PSNDF(50.6,VAGEN,0)) Q     ; Pointer to VA GENERIC #50.6
+ . S DOSFRM=$P(Z,"^",3) I DOSFRM'="",DOSFRM?.N,$D(^PS(50.606,DOSFRM,0)) Q  ; Pointer to DOSAGE FORM #50.606
+ . S DRGUNT=$P(Z,"^",5) I DRGUNT'="",DRGUNT?.N,$D(^PS(50.607,DRGUNT,0)) Q  ; Pointer to DRUG UNIT #50.607
+ . M ^XTMP("PSN571PI",VAPRD)=^PSNDF(50.68,VAPRD)
+ . S DA=VAPRD D ^DIK S CNT=CNT+1
+ D BMES^XPDUTL(" "_$S('CNT:"No",1:CNT)_" corrupted records found/removed from the VA PRODUCT file (#50.68).")
+ ;
+ D BMES^XPDUTL(" Finished post-install for PSN*4*571.")
+ Q

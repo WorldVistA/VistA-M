@@ -1,122 +1,130 @@
-IBDEI13A ; ; 04-FEB-2020
- ;;3.0;IB ENCOUNTER FORM IMP/EXP;;FEB 04, 2020
+IBDEI13A ; ; 01-FEB-2022
+ ;;3.0;IB ENCOUNTER FORM IMP/EXP;;FEB 01, 2022
  Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,999) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
- ;;^UTILITY(U,$J,358.3,17506,1,0)
+ ;;^UTILITY(U,$J,358.3,17690,1,3,0)
+ ;;=3^Abnormal Cytology Findings in Specimen of Cervix Uteri,Unspec
+ ;;^UTILITY(U,$J,358.3,17690,1,4,0)
+ ;;=4^R87.619
+ ;;^UTILITY(U,$J,358.3,17690,2)
+ ;;=^5019676
+ ;;^UTILITY(U,$J,358.3,17691,0)
+ ;;=Z79.890^^61^791^56
+ ;;^UTILITY(U,$J,358.3,17691,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,17506,1,3,0)
- ;;=3^Sprain of Left Knee Collateral Ligament
- ;;^UTILITY(U,$J,358.3,17506,1,4,0)
- ;;=4^S83.402A
- ;;^UTILITY(U,$J,358.3,17506,2)
- ;;=^5043106
- ;;^UTILITY(U,$J,358.3,17507,0)
- ;;=S93.402A^^88^892^2
- ;;^UTILITY(U,$J,358.3,17507,1,0)
+ ;;^UTILITY(U,$J,358.3,17691,1,3,0)
+ ;;=3^Hormone Replacement Therapy,Postmenopausal
+ ;;^UTILITY(U,$J,358.3,17691,1,4,0)
+ ;;=4^Z79.890
+ ;;^UTILITY(U,$J,358.3,17691,2)
+ ;;=^331975
+ ;;^UTILITY(U,$J,358.3,17692,0)
+ ;;=Z33.1^^61^791^94
+ ;;^UTILITY(U,$J,358.3,17692,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,17507,1,3,0)
- ;;=3^Sprain of Left Ankle Ligament
- ;;^UTILITY(U,$J,358.3,17507,1,4,0)
- ;;=4^S93.402A
- ;;^UTILITY(U,$J,358.3,17507,2)
- ;;=^5045777
- ;;^UTILITY(U,$J,358.3,17508,0)
- ;;=S93.401A^^88^892^13
- ;;^UTILITY(U,$J,358.3,17508,1,0)
+ ;;^UTILITY(U,$J,358.3,17692,1,3,0)
+ ;;=3^Pregnant State,Incidental
+ ;;^UTILITY(U,$J,358.3,17692,1,4,0)
+ ;;=4^Z33.1
+ ;;^UTILITY(U,$J,358.3,17692,2)
+ ;;=^5062853
+ ;;^UTILITY(U,$J,358.3,17693,0)
+ ;;=Z39.2^^61^791^90
+ ;;^UTILITY(U,$J,358.3,17693,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,17508,1,3,0)
- ;;=3^Sprain of Right Ankle Ligament
- ;;^UTILITY(U,$J,358.3,17508,1,4,0)
- ;;=4^S93.401A
- ;;^UTILITY(U,$J,358.3,17508,2)
- ;;=^5045774
- ;;^UTILITY(U,$J,358.3,17509,0)
- ;;=S56.511A^^88^892^39
- ;;^UTILITY(U,$J,358.3,17509,1,0)
+ ;;^UTILITY(U,$J,358.3,17693,1,3,0)
+ ;;=3^Postpartum Follow-up Routine Encounter
+ ;;^UTILITY(U,$J,358.3,17693,1,4,0)
+ ;;=4^Z39.2
+ ;;^UTILITY(U,$J,358.3,17693,2)
+ ;;=^5062906
+ ;;^UTILITY(U,$J,358.3,17694,0)
+ ;;=Z30.09^^61^791^21
+ ;;^UTILITY(U,$J,358.3,17694,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,17509,1,3,0)
- ;;=3^Strain of Right Forearm Extn Musc/Fasc/Tend
- ;;^UTILITY(U,$J,358.3,17509,1,4,0)
- ;;=4^S56.511A
- ;;^UTILITY(U,$J,358.3,17509,2)
- ;;=^5031838
- ;;^UTILITY(U,$J,358.3,17510,0)
- ;;=S56.512A^^88^892^19
- ;;^UTILITY(U,$J,358.3,17510,1,0)
+ ;;^UTILITY(U,$J,358.3,17694,1,3,0)
+ ;;=3^Counsel/Advice on Contraception Encounter
+ ;;^UTILITY(U,$J,358.3,17694,1,4,0)
+ ;;=4^Z30.09
+ ;;^UTILITY(U,$J,358.3,17694,2)
+ ;;=^5062817
+ ;;^UTILITY(U,$J,358.3,17695,0)
+ ;;=Z30.9^^61^791^20
+ ;;^UTILITY(U,$J,358.3,17695,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,17510,1,3,0)
- ;;=3^Strain of Left Forearm Extn Musc/Fasc/Tend
- ;;^UTILITY(U,$J,358.3,17510,1,4,0)
- ;;=4^S56.512A
- ;;^UTILITY(U,$J,358.3,17510,2)
- ;;=^5031841
- ;;^UTILITY(U,$J,358.3,17511,0)
- ;;=S13.8XXA^^88^892^10
- ;;^UTILITY(U,$J,358.3,17511,1,0)
+ ;;^UTILITY(U,$J,358.3,17695,1,3,0)
+ ;;=3^Contraceptive Management Encounter
+ ;;^UTILITY(U,$J,358.3,17695,1,4,0)
+ ;;=4^Z30.9
+ ;;^UTILITY(U,$J,358.3,17695,2)
+ ;;=^5062828
+ ;;^UTILITY(U,$J,358.3,17696,0)
+ ;;=N64.3^^61^791^52
+ ;;^UTILITY(U,$J,358.3,17696,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,17511,1,3,0)
- ;;=3^Sprain of Neck Joints/Ligaments,Init Encntr
- ;;^UTILITY(U,$J,358.3,17511,1,4,0)
- ;;=4^S13.8XXA
- ;;^UTILITY(U,$J,358.3,17511,2)
- ;;=^5022034
- ;;^UTILITY(U,$J,358.3,17512,0)
- ;;=S16.1XXA^^88^892^37
- ;;^UTILITY(U,$J,358.3,17512,1,0)
+ ;;^UTILITY(U,$J,358.3,17696,1,3,0)
+ ;;=3^Galactorrhea Not Associated w/ Childbirth
+ ;;^UTILITY(U,$J,358.3,17696,1,4,0)
+ ;;=4^N64.3
+ ;;^UTILITY(U,$J,358.3,17696,2)
+ ;;=^270460
+ ;;^UTILITY(U,$J,358.3,17697,0)
+ ;;=R92.2^^61^791^59
+ ;;^UTILITY(U,$J,358.3,17697,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,17512,1,3,0)
- ;;=3^Strain of Neck Muscle/Fasc/Tendon,Init Encntr
- ;;^UTILITY(U,$J,358.3,17512,1,4,0)
- ;;=4^S16.1XXA
- ;;^UTILITY(U,$J,358.3,17512,2)
- ;;=^5022358
- ;;^UTILITY(U,$J,358.3,17513,0)
- ;;=S33.5XXA^^88^892^8
- ;;^UTILITY(U,$J,358.3,17513,1,0)
+ ;;^UTILITY(U,$J,358.3,17697,1,3,0)
+ ;;=3^Inconclusive Mammogram
+ ;;^UTILITY(U,$J,358.3,17697,1,4,0)
+ ;;=4^R92.2
+ ;;^UTILITY(U,$J,358.3,17697,2)
+ ;;=^5019711
+ ;;^UTILITY(U,$J,358.3,17698,0)
+ ;;=Z30.432^^61^791^98
+ ;;^UTILITY(U,$J,358.3,17698,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,17513,1,3,0)
- ;;=3^Sprain of Lumbar Spine Ligaments,Init Encntr
- ;;^UTILITY(U,$J,358.3,17513,1,4,0)
- ;;=4^S33.5XXA
- ;;^UTILITY(U,$J,358.3,17513,2)
- ;;=^5025172
- ;;^UTILITY(U,$J,358.3,17514,0)
- ;;=F10.20^^88^893^5
- ;;^UTILITY(U,$J,358.3,17514,1,0)
+ ;;^UTILITY(U,$J,358.3,17698,1,3,0)
+ ;;=3^Removal of IUD
+ ;;^UTILITY(U,$J,358.3,17698,1,4,0)
+ ;;=4^Z30.432
+ ;;^UTILITY(U,$J,358.3,17698,2)
+ ;;=^5062824
+ ;;^UTILITY(U,$J,358.3,17699,0)
+ ;;=A63.0^^61^791^12
+ ;;^UTILITY(U,$J,358.3,17699,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,17514,1,3,0)
- ;;=3^Alcohol Dependence,Uncomplicated
- ;;^UTILITY(U,$J,358.3,17514,1,4,0)
- ;;=4^F10.20
- ;;^UTILITY(U,$J,358.3,17514,2)
- ;;=^5003081
- ;;^UTILITY(U,$J,358.3,17515,0)
- ;;=F11.29^^88^893^50
- ;;^UTILITY(U,$J,358.3,17515,1,0)
+ ;;^UTILITY(U,$J,358.3,17699,1,3,0)
+ ;;=3^Anogenital Warts,Verereal
+ ;;^UTILITY(U,$J,358.3,17699,1,4,0)
+ ;;=4^A63.0
+ ;;^UTILITY(U,$J,358.3,17699,2)
+ ;;=^5000360
+ ;;^UTILITY(U,$J,358.3,17700,0)
+ ;;=R63.0^^61^791^13
+ ;;^UTILITY(U,$J,358.3,17700,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,17515,1,3,0)
- ;;=3^Opioid Dependence w/ Unspec Opioid-Induced Disorder
- ;;^UTILITY(U,$J,358.3,17515,1,4,0)
- ;;=4^F11.29
- ;;^UTILITY(U,$J,358.3,17515,2)
- ;;=^5003141
- ;;^UTILITY(U,$J,358.3,17516,0)
- ;;=F11.288^^88^893^49
- ;;^UTILITY(U,$J,358.3,17516,1,0)
+ ;;^UTILITY(U,$J,358.3,17700,1,3,0)
+ ;;=3^Anorexia
+ ;;^UTILITY(U,$J,358.3,17700,1,4,0)
+ ;;=4^R63.0
+ ;;^UTILITY(U,$J,358.3,17700,2)
+ ;;=^7939
+ ;;^UTILITY(U,$J,358.3,17701,0)
+ ;;=R87.611^^61^791^2
+ ;;^UTILITY(U,$J,358.3,17701,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,17516,1,3,0)
- ;;=3^Opioid Dependence w/ Other Opioid-Induced Disorder
- ;;^UTILITY(U,$J,358.3,17516,1,4,0)
- ;;=4^F11.288
- ;;^UTILITY(U,$J,358.3,17516,2)
- ;;=^5003140
- ;;^UTILITY(U,$J,358.3,17517,0)
- ;;=F11.282^^88^893^48
- ;;^UTILITY(U,$J,358.3,17517,1,0)
+ ;;^UTILITY(U,$J,358.3,17701,1,3,0)
+ ;;=3^ASC-H
+ ;;^UTILITY(U,$J,358.3,17701,1,4,0)
+ ;;=4^R87.611
+ ;;^UTILITY(U,$J,358.3,17701,2)
+ ;;=^5019669
+ ;;^UTILITY(U,$J,358.3,17702,0)
+ ;;=R87.610^^61^791^3
+ ;;^UTILITY(U,$J,358.3,17702,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,17517,1,3,0)
- ;;=3^Opioid Dependence w/ Opioid-Induced Sleep Disorder
- ;;^UTILITY(U,$J,358.3,17517,1,4,0)
- ;;=4^F11.282
- ;;^UTILITY(U,$J,358.3,17517,2)
- ;;=^5003139
+ ;;^UTILITY(U,$J,358.3,17702,1,3,0)
+ ;;=3^ASC-US
+ ;;^UTILITY(U,$J,358.3,17702,1,4,0)
+ ;;=4^R87.610
+ ;;^UTILITY(U,$J,358.3,17702,2)
+ ;;=^5019668

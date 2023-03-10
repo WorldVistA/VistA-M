@@ -1,130 +1,128 @@
-IBDEI1B3 ; ; 04-FEB-2020
- ;;3.0;IB ENCOUNTER FORM IMP/EXP;;FEB 04, 2020
+IBDEI1B3 ; ; 01-FEB-2022
+ ;;3.0;IB ENCOUNTER FORM IMP/EXP;;FEB 01, 2022
  Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,999) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
- ;;^UTILITY(U,$J,358.3,20883,0)
- ;;=F42.4^^95^1031^2
- ;;^UTILITY(U,$J,358.3,20883,1,0)
+ ;;^UTILITY(U,$J,358.3,21118,1,4,0)
+ ;;=4^I10.
+ ;;^UTILITY(U,$J,358.3,21118,2)
+ ;;=^5007062
+ ;;^UTILITY(U,$J,358.3,21119,0)
+ ;;=R06.89^^70^908^20
+ ;;^UTILITY(U,$J,358.3,21119,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,20883,1,3,0)
- ;;=3^Excoriation (Skin-Picking) Disorder
- ;;^UTILITY(U,$J,358.3,20883,1,4,0)
- ;;=4^F42.4
- ;;^UTILITY(U,$J,358.3,20883,2)
- ;;=^5138446
- ;;^UTILITY(U,$J,358.3,20884,0)
- ;;=Z91.49^^95^1032^13
- ;;^UTILITY(U,$J,358.3,20884,1,0)
+ ;;^UTILITY(U,$J,358.3,21119,1,3,0)
+ ;;=3^Breathing Abnormalities
+ ;;^UTILITY(U,$J,358.3,21119,1,4,0)
+ ;;=4^R06.89
+ ;;^UTILITY(U,$J,358.3,21119,2)
+ ;;=^5019193
+ ;;^UTILITY(U,$J,358.3,21120,0)
+ ;;=E86.1^^70^908^46
+ ;;^UTILITY(U,$J,358.3,21120,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,20884,1,3,0)
- ;;=3^Personal Hx of Psychological Trauma
- ;;^UTILITY(U,$J,358.3,20884,1,4,0)
- ;;=4^Z91.49
- ;;^UTILITY(U,$J,358.3,20884,2)
- ;;=^5063623
- ;;^UTILITY(U,$J,358.3,20885,0)
- ;;=Z91.5^^95^1032^14
- ;;^UTILITY(U,$J,358.3,20885,1,0)
+ ;;^UTILITY(U,$J,358.3,21120,1,3,0)
+ ;;=3^Hypovolemia
+ ;;^UTILITY(U,$J,358.3,21120,1,4,0)
+ ;;=4^E86.1
+ ;;^UTILITY(U,$J,358.3,21120,2)
+ ;;=^332744
+ ;;^UTILITY(U,$J,358.3,21121,0)
+ ;;=C34.11^^70^908^61
+ ;;^UTILITY(U,$J,358.3,21121,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,20885,1,3,0)
- ;;=3^Personal Hx of Self-Harm
- ;;^UTILITY(U,$J,358.3,20885,1,4,0)
- ;;=4^Z91.5
- ;;^UTILITY(U,$J,358.3,20885,2)
- ;;=^5063624
- ;;^UTILITY(U,$J,358.3,20886,0)
- ;;=Z91.82^^95^1032^12
- ;;^UTILITY(U,$J,358.3,20886,1,0)
+ ;;^UTILITY(U,$J,358.3,21121,1,3,0)
+ ;;=3^Malig Neop Upper Lobe,Rt Bronchus/Lung
+ ;;^UTILITY(U,$J,358.3,21121,1,4,0)
+ ;;=4^C34.11
+ ;;^UTILITY(U,$J,358.3,21121,2)
+ ;;=^5000961
+ ;;^UTILITY(U,$J,358.3,21122,0)
+ ;;=C34.12^^70^908^60
+ ;;^UTILITY(U,$J,358.3,21122,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,20886,1,3,0)
- ;;=3^Personal Hx of Military Deployment
- ;;^UTILITY(U,$J,358.3,20886,1,4,0)
- ;;=4^Z91.82
- ;;^UTILITY(U,$J,358.3,20886,2)
- ;;=^5063626
- ;;^UTILITY(U,$J,358.3,20887,0)
- ;;=Z91.89^^95^1032^19
- ;;^UTILITY(U,$J,358.3,20887,1,0)
+ ;;^UTILITY(U,$J,358.3,21122,1,3,0)
+ ;;=3^Malig Neop Upper Lobe,Lt Bronchus/Lung
+ ;;^UTILITY(U,$J,358.3,21122,1,4,0)
+ ;;=4^C34.12
+ ;;^UTILITY(U,$J,358.3,21122,2)
+ ;;=^5000962
+ ;;^UTILITY(U,$J,358.3,21123,0)
+ ;;=C34.2^^70^908^54
+ ;;^UTILITY(U,$J,358.3,21123,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,20887,1,3,0)
- ;;=3^Personal Risk Factors
- ;;^UTILITY(U,$J,358.3,20887,1,4,0)
- ;;=4^Z91.89
- ;;^UTILITY(U,$J,358.3,20887,2)
- ;;=^5063628
- ;;^UTILITY(U,$J,358.3,20888,0)
- ;;=Z72.9^^95^1032^20
- ;;^UTILITY(U,$J,358.3,20888,1,0)
+ ;;^UTILITY(U,$J,358.3,21123,1,3,0)
+ ;;=3^Malig Neop Middle Lobe,Bronchus/Lung
+ ;;^UTILITY(U,$J,358.3,21123,1,4,0)
+ ;;=4^C34.2
+ ;;^UTILITY(U,$J,358.3,21123,2)
+ ;;=^267137
+ ;;^UTILITY(U,$J,358.3,21124,0)
+ ;;=C34.31^^70^908^52
+ ;;^UTILITY(U,$J,358.3,21124,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,20888,1,3,0)
- ;;=3^Problem Related to Lifestyle
- ;;^UTILITY(U,$J,358.3,20888,1,4,0)
- ;;=4^Z72.9
- ;;^UTILITY(U,$J,358.3,20888,2)
- ;;=^5063267
- ;;^UTILITY(U,$J,358.3,20889,0)
- ;;=Z72.811^^95^1032^1
- ;;^UTILITY(U,$J,358.3,20889,1,0)
+ ;;^UTILITY(U,$J,358.3,21124,1,3,0)
+ ;;=3^Malig Neop Lower Lobe,Rt Bronchus/Lung
+ ;;^UTILITY(U,$J,358.3,21124,1,4,0)
+ ;;=4^C34.31
+ ;;^UTILITY(U,$J,358.3,21124,2)
+ ;;=^5133321
+ ;;^UTILITY(U,$J,358.3,21125,0)
+ ;;=C34.32^^70^908^51
+ ;;^UTILITY(U,$J,358.3,21125,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,20889,1,3,0)
- ;;=3^Adult Antisocial Behavior
- ;;^UTILITY(U,$J,358.3,20889,1,4,0)
- ;;=4^Z72.811
- ;;^UTILITY(U,$J,358.3,20889,2)
- ;;=^5063263
- ;;^UTILITY(U,$J,358.3,20890,0)
- ;;=Z91.19^^95^1032^5
- ;;^UTILITY(U,$J,358.3,20890,1,0)
+ ;;^UTILITY(U,$J,358.3,21125,1,3,0)
+ ;;=3^Malig Neop Lower Lobe,Lt Bronchus/Lung
+ ;;^UTILITY(U,$J,358.3,21125,1,4,0)
+ ;;=4^C34.32
+ ;;^UTILITY(U,$J,358.3,21125,2)
+ ;;=^5133322
+ ;;^UTILITY(U,$J,358.3,21126,0)
+ ;;=C34.81^^70^908^56
+ ;;^UTILITY(U,$J,358.3,21126,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,20890,1,3,0)
- ;;=3^Nonadherence to Medical Treatment
- ;;^UTILITY(U,$J,358.3,20890,1,4,0)
- ;;=4^Z91.19
- ;;^UTILITY(U,$J,358.3,20890,2)
- ;;=^5063618
- ;;^UTILITY(U,$J,358.3,20891,0)
- ;;=E66.9^^95^1032^6
- ;;^UTILITY(U,$J,358.3,20891,1,0)
+ ;;^UTILITY(U,$J,358.3,21126,1,3,0)
+ ;;=3^Malig Neop Overlapping Sites,Rt Bronchus/Lung
+ ;;^UTILITY(U,$J,358.3,21126,1,4,0)
+ ;;=4^C34.81
+ ;;^UTILITY(U,$J,358.3,21126,2)
+ ;;=^5000964
+ ;;^UTILITY(U,$J,358.3,21127,0)
+ ;;=C34.82^^70^908^55
+ ;;^UTILITY(U,$J,358.3,21127,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,20891,1,3,0)
- ;;=3^Overweight or Obesity
- ;;^UTILITY(U,$J,358.3,20891,1,4,0)
- ;;=4^E66.9
- ;;^UTILITY(U,$J,358.3,20891,2)
- ;;=^5002832
- ;;^UTILITY(U,$J,358.3,20892,0)
- ;;=Z76.5^^95^1032^3
- ;;^UTILITY(U,$J,358.3,20892,1,0)
+ ;;^UTILITY(U,$J,358.3,21127,1,3,0)
+ ;;=3^Malig Neop Overlapping Sites,Lt Bronchus/Lung
+ ;;^UTILITY(U,$J,358.3,21127,1,4,0)
+ ;;=4^C34.82
+ ;;^UTILITY(U,$J,358.3,21127,2)
+ ;;=^5000965
+ ;;^UTILITY(U,$J,358.3,21128,0)
+ ;;=C34.91^^70^908^59
+ ;;^UTILITY(U,$J,358.3,21128,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,20892,1,3,0)
- ;;=3^Malingering
- ;;^UTILITY(U,$J,358.3,20892,1,4,0)
- ;;=4^Z76.5
- ;;^UTILITY(U,$J,358.3,20892,2)
- ;;=^5063302
- ;;^UTILITY(U,$J,358.3,20893,0)
- ;;=R41.83^^95^1032^2
- ;;^UTILITY(U,$J,358.3,20893,1,0)
+ ;;^UTILITY(U,$J,358.3,21128,1,3,0)
+ ;;=3^Malig Neop Unspec Part,Rt Bronchus/Lung
+ ;;^UTILITY(U,$J,358.3,21128,1,4,0)
+ ;;=4^C34.91
+ ;;^UTILITY(U,$J,358.3,21128,2)
+ ;;=^5000967
+ ;;^UTILITY(U,$J,358.3,21129,0)
+ ;;=C34.92^^70^908^58
+ ;;^UTILITY(U,$J,358.3,21129,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,20893,1,3,0)
- ;;=3^Borderline Intellectual Functioning
- ;;^UTILITY(U,$J,358.3,20893,1,4,0)
- ;;=4^R41.83
- ;;^UTILITY(U,$J,358.3,20893,2)
- ;;=^5019442
- ;;^UTILITY(U,$J,358.3,20894,0)
- ;;=Z56.82^^95^1032^4
- ;;^UTILITY(U,$J,358.3,20894,1,0)
+ ;;^UTILITY(U,$J,358.3,21129,1,3,0)
+ ;;=3^Malig Neop Unspec Part,Lt Bronchus/Lung
+ ;;^UTILITY(U,$J,358.3,21129,1,4,0)
+ ;;=4^C34.92
+ ;;^UTILITY(U,$J,358.3,21129,2)
+ ;;=^5000968
+ ;;^UTILITY(U,$J,358.3,21130,0)
+ ;;=C38.4^^70^908^57
+ ;;^UTILITY(U,$J,358.3,21130,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,20894,1,3,0)
- ;;=3^Military Deployment Status,Current
- ;;^UTILITY(U,$J,358.3,20894,1,4,0)
- ;;=4^Z56.82
- ;;^UTILITY(U,$J,358.3,20894,2)
- ;;=^5063115
- ;;^UTILITY(U,$J,358.3,20895,0)
- ;;=Z62.811^^95^1032^9
- ;;^UTILITY(U,$J,358.3,20895,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,20895,1,3,0)
- ;;=3^Personal Hx of Childhood Psychological Abuse
+ ;;^UTILITY(U,$J,358.3,21130,1,3,0)
+ ;;=3^Malig Neop Pleura
+ ;;^UTILITY(U,$J,358.3,21130,1,4,0)
+ ;;=4^C38.4
+ ;;^UTILITY(U,$J,358.3,21130,2)
+ ;;=^267140

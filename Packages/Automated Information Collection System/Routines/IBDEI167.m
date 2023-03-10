@@ -1,116 +1,126 @@
-IBDEI167 ; ; 04-FEB-2020
- ;;3.0;IB ENCOUNTER FORM IMP/EXP;;FEB 04, 2020
+IBDEI167 ; ; 01-FEB-2022
+ ;;3.0;IB ENCOUNTER FORM IMP/EXP;;FEB 01, 2022
  Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,999) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
- ;;^UTILITY(U,$J,358.3,18810,1,4,0)
- ;;=4^F13.959
- ;;^UTILITY(U,$J,358.3,18810,2)
- ;;=^5003232
- ;;^UTILITY(U,$J,358.3,18811,0)
- ;;=F13.181^^91^962^15
- ;;^UTILITY(U,$J,358.3,18811,1,0)
+ ;;^UTILITY(U,$J,358.3,18993,0)
+ ;;=M05.421^^64^842^70
+ ;;^UTILITY(U,$J,358.3,18993,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,18811,1,3,0)
- ;;=3^Sedative/Hypnotic/Anxiolytic Induced Sexual Dysfunc w/ Mild Use D/O
- ;;^UTILITY(U,$J,358.3,18811,1,4,0)
- ;;=4^F13.181
- ;;^UTILITY(U,$J,358.3,18811,2)
- ;;=^5003198
- ;;^UTILITY(U,$J,358.3,18812,0)
- ;;=F13.281^^91^962^16
- ;;^UTILITY(U,$J,358.3,18812,1,0)
+ ;;^UTILITY(U,$J,358.3,18993,1,3,0)
+ ;;=3^Rheum Myopathy w/ Rheum Arth Right Elbow
+ ;;^UTILITY(U,$J,358.3,18993,1,4,0)
+ ;;=4^M05.421
+ ;;^UTILITY(U,$J,358.3,18993,2)
+ ;;=^5009935
+ ;;^UTILITY(U,$J,358.3,18994,0)
+ ;;=M05.441^^64^842^71
+ ;;^UTILITY(U,$J,358.3,18994,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,18812,1,3,0)
- ;;=3^Sedative/Hypnotic/Anxiolytic Induced Sexual Dysfunc w/ Mod/Sev Use D/O
- ;;^UTILITY(U,$J,358.3,18812,1,4,0)
- ;;=4^F13.281
- ;;^UTILITY(U,$J,358.3,18812,2)
- ;;=^5003217
- ;;^UTILITY(U,$J,358.3,18813,0)
- ;;=F13.981^^91^962^17
- ;;^UTILITY(U,$J,358.3,18813,1,0)
+ ;;^UTILITY(U,$J,358.3,18994,1,3,0)
+ ;;=3^Rheum Myopathy w/ Rheum Arth Right Hand
+ ;;^UTILITY(U,$J,358.3,18994,1,4,0)
+ ;;=4^M05.441
+ ;;^UTILITY(U,$J,358.3,18994,2)
+ ;;=^5009941
+ ;;^UTILITY(U,$J,358.3,18995,0)
+ ;;=M05.451^^64^842^72
+ ;;^UTILITY(U,$J,358.3,18995,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,18813,1,3,0)
- ;;=3^Sedative/Hypnotic/Anxiolytic Induced Sexual Dysfunc w/o Use D/O
- ;;^UTILITY(U,$J,358.3,18813,1,4,0)
- ;;=4^F13.981
- ;;^UTILITY(U,$J,358.3,18813,2)
- ;;=^5003236
- ;;^UTILITY(U,$J,358.3,18814,0)
- ;;=F13.182^^91^962^18
- ;;^UTILITY(U,$J,358.3,18814,1,0)
+ ;;^UTILITY(U,$J,358.3,18995,1,3,0)
+ ;;=3^Rheum Myopathy w/ Rheum Arth Right Hip
+ ;;^UTILITY(U,$J,358.3,18995,1,4,0)
+ ;;=4^M05.451
+ ;;^UTILITY(U,$J,358.3,18995,2)
+ ;;=^5009944
+ ;;^UTILITY(U,$J,358.3,18996,0)
+ ;;=M05.461^^64^842^73
+ ;;^UTILITY(U,$J,358.3,18996,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,18814,1,3,0)
- ;;=3^Sedative/Hypnotic/Anxiolytic Induced Sleep D/O w/ Mild Use D/O
- ;;^UTILITY(U,$J,358.3,18814,1,4,0)
- ;;=4^F13.182
- ;;^UTILITY(U,$J,358.3,18814,2)
- ;;=^5003199
- ;;^UTILITY(U,$J,358.3,18815,0)
- ;;=F13.282^^91^962^19
- ;;^UTILITY(U,$J,358.3,18815,1,0)
+ ;;^UTILITY(U,$J,358.3,18996,1,3,0)
+ ;;=3^Rheum Myopathy w/ Rheum Arth Right Knee
+ ;;^UTILITY(U,$J,358.3,18996,1,4,0)
+ ;;=4^M05.461
+ ;;^UTILITY(U,$J,358.3,18996,2)
+ ;;=^5009947
+ ;;^UTILITY(U,$J,358.3,18997,0)
+ ;;=M05.411^^64^842^74
+ ;;^UTILITY(U,$J,358.3,18997,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,18815,1,3,0)
- ;;=3^Sedative/Hypnotic/Anxiolytic Induced Sleep D/O w/ Mod/Sev Use D/O
- ;;^UTILITY(U,$J,358.3,18815,1,4,0)
- ;;=4^F13.282
- ;;^UTILITY(U,$J,358.3,18815,2)
- ;;=^5003218
- ;;^UTILITY(U,$J,358.3,18816,0)
- ;;=F13.982^^91^962^20
- ;;^UTILITY(U,$J,358.3,18816,1,0)
+ ;;^UTILITY(U,$J,358.3,18997,1,3,0)
+ ;;=3^Rheum Myopathy w/ Rheum Arth Right Shoulder
+ ;;^UTILITY(U,$J,358.3,18997,1,4,0)
+ ;;=4^M05.411
+ ;;^UTILITY(U,$J,358.3,18997,2)
+ ;;=^5009932
+ ;;^UTILITY(U,$J,358.3,18998,0)
+ ;;=M05.431^^64^842^75
+ ;;^UTILITY(U,$J,358.3,18998,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,18816,1,3,0)
- ;;=3^Sedative/Hypnotic/Anxiolytic Induced Sleep D/O w/o Use D/O
- ;;^UTILITY(U,$J,358.3,18816,1,4,0)
- ;;=4^F13.982
- ;;^UTILITY(U,$J,358.3,18816,2)
- ;;=^5003237
- ;;^UTILITY(U,$J,358.3,18817,0)
- ;;=F13.129^^91^962^23
- ;;^UTILITY(U,$J,358.3,18817,1,0)
+ ;;^UTILITY(U,$J,358.3,18998,1,3,0)
+ ;;=3^Rheum Myopathy w/ Rheum Arth Right Wrist
+ ;;^UTILITY(U,$J,358.3,18998,1,4,0)
+ ;;=4^M05.431
+ ;;^UTILITY(U,$J,358.3,18998,2)
+ ;;=^5009938
+ ;;^UTILITY(U,$J,358.3,18999,0)
+ ;;=M05.40^^64^842^76
+ ;;^UTILITY(U,$J,358.3,18999,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,18817,1,3,0)
- ;;=3^Sedative/Hypnotic/Anxiolytic Intox w/ Mild Use D/O
- ;;^UTILITY(U,$J,358.3,18817,1,4,0)
- ;;=4^F13.129
- ;;^UTILITY(U,$J,358.3,18817,2)
- ;;=^5003192
- ;;^UTILITY(U,$J,358.3,18818,0)
- ;;=F13.229^^91^962^24
- ;;^UTILITY(U,$J,358.3,18818,1,0)
+ ;;^UTILITY(U,$J,358.3,18999,1,3,0)
+ ;;=3^Rheum Myopathy w/ Rheum Arth Unspec Site
+ ;;^UTILITY(U,$J,358.3,18999,1,4,0)
+ ;;=4^M05.40
+ ;;^UTILITY(U,$J,358.3,18999,2)
+ ;;=^5009931
+ ;;^UTILITY(U,$J,358.3,19000,0)
+ ;;=M06.372^^64^842^126
+ ;;^UTILITY(U,$J,358.3,19000,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,18818,1,3,0)
- ;;=3^Sedative/Hypnotic/Anxiolytic Intox w/ Mod/Sev Use D/O
- ;;^UTILITY(U,$J,358.3,18818,1,4,0)
- ;;=4^F13.229
- ;;^UTILITY(U,$J,358.3,18818,2)
- ;;=^5003205
- ;;^UTILITY(U,$J,358.3,18819,0)
- ;;=F13.929^^91^962^25
- ;;^UTILITY(U,$J,358.3,18819,1,0)
+ ;;^UTILITY(U,$J,358.3,19000,1,3,0)
+ ;;=3^Rheumatoid Nodule Left Ankle/Foot
+ ;;^UTILITY(U,$J,358.3,19000,1,4,0)
+ ;;=4^M06.372
+ ;;^UTILITY(U,$J,358.3,19000,2)
+ ;;=^5010116
+ ;;^UTILITY(U,$J,358.3,19001,0)
+ ;;=M06.322^^64^842^127
+ ;;^UTILITY(U,$J,358.3,19001,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,18819,1,3,0)
- ;;=3^Sedative/Hypnotic/Anxiolytic Intox w/o Use D/O
- ;;^UTILITY(U,$J,358.3,18819,1,4,0)
- ;;=4^F13.929
- ;;^UTILITY(U,$J,358.3,18819,2)
- ;;=^5003224
- ;;^UTILITY(U,$J,358.3,18820,0)
- ;;=F13.121^^91^962^21
- ;;^UTILITY(U,$J,358.3,18820,1,0)
+ ;;^UTILITY(U,$J,358.3,19001,1,3,0)
+ ;;=3^Rheumatoid Nodule Left Elbow
+ ;;^UTILITY(U,$J,358.3,19001,1,4,0)
+ ;;=4^M06.322
+ ;;^UTILITY(U,$J,358.3,19001,2)
+ ;;=^5010101
+ ;;^UTILITY(U,$J,358.3,19002,0)
+ ;;=M06.342^^64^842^128
+ ;;^UTILITY(U,$J,358.3,19002,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,18820,1,3,0)
- ;;=3^Sedative/Hypnotic/Anxiolytic Intox Delirium w/ Mild Use D/O
- ;;^UTILITY(U,$J,358.3,18820,1,4,0)
- ;;=4^F13.121
- ;;^UTILITY(U,$J,358.3,18820,2)
- ;;=^5003191
- ;;^UTILITY(U,$J,358.3,18821,0)
- ;;=F13.221^^91^962^22
- ;;^UTILITY(U,$J,358.3,18821,1,0)
+ ;;^UTILITY(U,$J,358.3,19002,1,3,0)
+ ;;=3^Rheumatoid Nodule Left Hand
+ ;;^UTILITY(U,$J,358.3,19002,1,4,0)
+ ;;=4^M06.342
+ ;;^UTILITY(U,$J,358.3,19002,2)
+ ;;=^5010107
+ ;;^UTILITY(U,$J,358.3,19003,0)
+ ;;=M06.352^^64^842^129
+ ;;^UTILITY(U,$J,358.3,19003,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,18821,1,3,0)
- ;;=3^Sedative/Hypnotic/Anxiolytic Intox Delirium w/ Mod/Sev Use D/O
- ;;^UTILITY(U,$J,358.3,18821,1,4,0)
- ;;=4^F13.221
+ ;;^UTILITY(U,$J,358.3,19003,1,3,0)
+ ;;=3^Rheumatoid Nodule Left Hip
+ ;;^UTILITY(U,$J,358.3,19003,1,4,0)
+ ;;=4^M06.352
+ ;;^UTILITY(U,$J,358.3,19003,2)
+ ;;=^5010110
+ ;;^UTILITY(U,$J,358.3,19004,0)
+ ;;=M06.362^^64^842^130
+ ;;^UTILITY(U,$J,358.3,19004,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,19004,1,3,0)
+ ;;=3^Rheumatoid Nodule Left Knee
+ ;;^UTILITY(U,$J,358.3,19004,1,4,0)
+ ;;=4^M06.362
+ ;;^UTILITY(U,$J,358.3,19004,2)
+ ;;=^5010113
+ ;;^UTILITY(U,$J,358.3,19005,0)
+ ;;=M06.312^^64^842^131

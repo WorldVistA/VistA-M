@@ -1,5 +1,5 @@
-PXRMREDT ;SLC/PKR,PJH - Edit PXRM reminder definition. ;08/29/2018
- ;;2.0;CLINICAL REMINDERS;**4,6,12,18,26,47,45**;Feb 04, 2005;Build 566
+PXRMREDT ;SLC/PKR,PJH - Edit PXRM reminder definition. ;03/29/2022
+ ;;2.0;CLINICAL REMINDERS;**4,6,12,18,26,47,45,65**;Feb 04, 2005;Build 438
  ;
  ;---------------
 EEDIT ;Entry point for PXRM DEFINITION EDIT option.
@@ -235,8 +235,12 @@ LOGIC W !!,"Patient Cohort and Resolution Logic"
  I $G(^PXD(811.9,DA,31))="" D
  . S ^PXD(811.9,DA,31)="(SEX)&(AGE)"
  . S ^PXD(811.9,DA,32)="2"_U_"SEX;AGE"
+ W !!,"Contraindicated and Refused Logic"
+ S DR="80T;83T;84T;90T;93T;94T"
+ D ^DIE
  D SNMLL^PXRMFNFT(DA)
  Q
+ ;
 CDUE W !!,"Custom Date Due"
  S DR=45
  D ^DIE

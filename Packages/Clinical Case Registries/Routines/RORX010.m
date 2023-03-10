@@ -1,5 +1,5 @@
 RORX010 ;HOIFO/SG,VAC - LAB TESTS BY RANGE REPORT ;4/7/09 2:08pm
- ;;1.5;CLINICAL CASE REGISTRIES;**8,13,19,21,31,33,34**;Feb 17, 2006;Build 45
+ ;;1.5;CLINICAL CASE REGISTRIES;**8,13,19,21,31,33,34,39**;Feb 17, 2006;Build 4
  ;
  ; This routine uses the following IAs:
  ;
@@ -25,6 +25,7 @@ RORX010 ;HOIFO/SG,VAC - LAB TESTS BY RANGE REPORT ;4/7/09 2:08pm
  ;ROR*1.5*33   MAR 2018    M FERRARESE  Adding FUTURE APPOINTMENT as additional identifiers.
  ;
  ;ROR*1.5*34   SEP 2018    M FERRARESE  Adding Future Appointment clinic name                                      
+ ;ROR*1.5*39   JUL 2021    M FERRARESE  Setting SSN and LAST4 to zeros
  ;******************************************************************************
  ;******************************************************************************
  Q
@@ -222,7 +223,7 @@ PATIENT(IENS,PARTAG) ;
  ;--- Patient Name
  D ADDVAL^RORTSK11(RORTSK,"NAME",VADM(1),PTAG,1)
  ;--- Last 4 digits of the SSN
- D ADDVAL^RORTSK11(RORTSK,"LAST4",VA("BID"),PTAG,2)
+ S VA("BID")="0000" D ADDVAL^RORTSK11(RORTSK,"LAST4",VA("BID"),PTAG,2)
  ;--- Age/DOB
  S AGETYPE=$$PARAM^RORTSK01("AGE_RANGE","TYPE")
  S AGE=$S(AGETYPE="AGE":$P(VADM(4),U),AGETYPE="DOB":$$DATE^RORXU002($P(VADM(3),U)\1),1:"")

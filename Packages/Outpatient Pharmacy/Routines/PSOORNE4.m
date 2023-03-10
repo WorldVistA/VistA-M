@@ -1,5 +1,5 @@
-PSOORNE4 ;BIR/SAB-display renew RXs from backdoor ;07/29/96
- ;;7.0;OUTPATIENT PHARMACY;**11,27,32,36,46,75,96,103,99,117,131,225,386,390,391,313,411**;DEC 1997;Build 95
+PSOORNE4 ;BIR/SAB-display renew RXs from backdoor ;Mar 30, 2022@14:37:15
+ ;;7.0;OUTPATIENT PHARMACY;**11,27,32,36,46,75,96,103,99,117,131,225,386,390,391,313,411,661,441**;DEC 1997;Build 208
  ;^SC DBIA-10040;^PS(50.7-2223;^PS(50.606-2174;^PS(50.607-2221;^PS(51.2-2226;^PSDRUG-221;^PS(55-2228
  ;External reference to EN1^ORCFLAG supported by DBIA 3620
  ;External reference to ^DD("DD" supported by DBIA 999
@@ -24,10 +24,10 @@ EDTSEL S PSOLM=1,(PSONEW("DFLG"),PSONEW("FIELD"),PSONEW3)=0
  Q
 ACP ; Renewal Accept
  N DIR,Y,DIRUT,DUOUT,DTOUT,DIR S Y=0
- I $$TITRX^PSOUTL(+$G(PSONEW("OIRXN")))="t" D  K DIR,PSOMSG W ! S DIR("A")="Press Return to continue",DIR(0)="E" D ^DIR Q
- . D FULL^VALM1
- . W !!,"Rx "_$P($G(^PSRX(+$G(PSONEW("OIRXN")),0)),"^")_" is marked as 'Titration' and cannot be renewed.",$C(7)
- . S VALMBCK="R"
+ ;I $$TITRX^PSOUTL(+$G(PSONEW("OIRXN")))="t" D  K DIR,PSOMSG W ! S DIR("A")="Press Return to continue",DIR(0)="E" D ^DIR Q
+ ;. D FULL^VALM1
+ ;. W !!,"Rx "_$P($G(^PSRX(+$G(PSONEW("OIRXN")),0)),"^")_" is marked as 'Titration' and cannot be renewed.",$C(7)
+ ;. S VALMBCK="R"
  I $G(ORD),+$P($G(^PS(52.41,+ORD,0)),"^",23)=1 D  Q:$D(DIRUT)!'Y  D EN1^ORCFLAG(+$P($G(^PS(52.41,ORD,0)),"^")) H 1
  . D FULL^VALM1
  . I '$D(^XUSEC("PSORPH",DUZ)) D  S Y=0 Q
@@ -56,6 +56,7 @@ PKI I $G(PSONEW("QFLG")) S POERR("DFLG")=1,VALMBCK="R" K PSONEW2 Q
  I $G(PSORNALL),$D(^TMP("PSODAOC",$J)) S PSORNEDT=$O(^TMP("PSORXN",$J,0))
  K ZFRENEW
  D RNPSOSD^PSOUTIL,ACP1^PSOORNE6,^PSOBUILD S VALMBCK="Q"
+ W !!!,"...ORDER RENEWED.",!!!      ;P661
  Q
 VER1(PSONEW) ;
 VER S (PSONEW("DFLG"),PSONEW("QFLG"))=0 I PSONEW("ENT")=0 D  K PSOORRNW,PSOFROM1 I PSONEW("DFLG")=1 S (PSONEW("QFLG"),POERR("DFLG"))=1 Q
@@ -130,7 +131,7 @@ PAT S IEN=IEN+1,^TMP("PSOPO",$J,IEN,0)=$S($G(PSOREEDT):" (10)",1:"     ")_"Pat I
  .S $P(RN," ",79)=" ",IEN=IEN+1
  .S ^TMP("PSOPO",$J,IEN,0)="            QTY DSP MSG: "_$P(^PSDRUG(PSODRUG("IEN"),5),"^")
  S IEN=IEN+1,^TMP("PSOPO",$J,IEN,0)="  (3)   # of Refills: "_PSONEW("# OF REFILLS")_$S($L(PSONEW("# OF REFILLS"))=1:" ",1:"")
- S IEN=IEN+1,^TMP("PSOPO",$J,IEN,0)="  (4)        Routing: "_$S($G(PSORENW("MAIL/WINDOW"))["W":"WINDOW",1:"MAIL")
+ S IEN=IEN+1,^TMP("PSOPO",$J,IEN,0)="  (4)        Routing: "_$S($G(PSORENW("MAIL/WINDOW"))["W":"WINDOW",$E($G(PSORENW("MAIL/WINDOW")))="P":"PARK",1:"MAIL")  ;441 PAPI
  S:$G(PSONEW("METHOD OF PICK-UP"))]""&($P(PSOPAR,"^",12)) IEN=IEN+1,^TMP("PSOPO",$J,IEN,0)="    Method of Pickup: "_PSONEW("METHOD OF PICK-UP")
  S IEN=IEN+1,^TMP("PSOPO",$J,IEN,0)="  (5)         Clinic: "_$S($G(PSONEW("CLINIC")):$P(^SC(PSONEW("CLINIC"),0),"^"),1:"")
  S $P(RN," ",31)=" ",IEN=IEN+1,^TMP("PSOPO",$J,IEN,0)="  (6)       Provider: "_PSONEW("PROVIDER NAME")_$E(RN,$L(PSONEW("PROVIDER NAME"))+1,31) K RN

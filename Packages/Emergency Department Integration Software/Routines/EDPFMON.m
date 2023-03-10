@@ -1,5 +1,5 @@
-EDPFMON ;SLC/MKB - ED Monitor at facility ;2/28/12 08:33am
- ;;2.0;EMERGENCY DEPARTMENT;;May 2, 2012;Build 103
+EDPFMON ;SLC/MKB - ED Monitor at facility ; 10/19/21 9:49am
+ ;;2.0;EMERGENCY DEPARTMENT;**16**;May 2, 2012;Build 6
  ;
 EN(MSG) ; -- main entry point for EDP MONITOR where MSG contains HL7 msg
  N EDMSG,PKG,MSH,PID,PV1,ORC,DFN,LOG
@@ -27,10 +27,14 @@ ENOR(MSG) ; -- main entry point for EDP OR MONITOR where MSG contains HL7 msg
  S DFN=$$PID Q:DFN<1                             ;missing patient
  S LOG=+$O(^EDP(230,"APA",DFN,0)) Q:LOG<1        ;not in ED now
  S ORC=0 F  S ORC=$O(@EDMSG@(+ORC)) Q:ORC'>0  I $E(@EDMSG@(ORC),1,3)="ORC" D
- . N ORDCNTRL,ORIFN
+ . N ORDCNTRL,ORIFN,ORDSTSCD,ORDSTSDTL,ORDACTFLG
  . S ORC=ORC_U_@EDMSG@(ORC),ORDCNTRL=$TR($P(ORC,"|",2),"@","P")
  . Q:ORDCNTRL'="NA"                              ;new backdoor ack
  . S ORIFN=$P($P(ORC,"|",3),U)
+ . I $D(^EDP(230,LOG,8,"B",+ORIFN)) Q            ;order already exists *16
+ . S ORDSTSCD=$P(^OR(100,+ORIFN,3),U,3)
+ . S ORDSTSDTL=$P(^ORD(100.01,ORDSTSCD,0),U,1)
+ . I ORDSTSDTL="ACTIVE" S ORDACTFLG=1
  . D NEW
  Q
  ;
@@ -64,7 +68,7 @@ NEW ; -- add new order to patient log
  S MSG(2)="id="_LOG
  S MSG(3)="orifn="_+ORIFN
  S MSG(4)="pkg="_PKG
- S MSG(5)="sts="_"N"
+ S MSG(5)=$S($G(ORDACTFLG)=1:"sts="_"A",1:"sts="_"N")
  S MSG(6)="stat="_(URG<3) ;1=STAT or 2=ASAP
  S MSG(7)="release="_$$NOW^XLFDT
  D SEND(.MSG)

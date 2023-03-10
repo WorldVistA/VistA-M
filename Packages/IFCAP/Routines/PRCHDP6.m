@@ -1,6 +1,14 @@
 PRCHDP6 ;WISC/DJM-PRINT AMENDMENT, ROUTINE #2 ;9/15/95  11:41 AM
-V ;;5.1;IFCAP;**21,131**;Oct 20, 2000;Build 13
- ;Per VHA Directive 2004-038, this routine should not be modified.
+V ;;5.1;IFCAP;**21,131,221**;Oct 20, 2000;Build 14
+ ;Per VA Directive 6402, this routine should not be modified.
+ ;
+ ;PRC*5.1*221 Modify an item description display to skip '|' logic
+ ;            if description contains a undefined display command
+ ;            like '| IN '.
+ ;            Also, the check for an existing amendment on an
+ ;            item being displayed. This intial check will allow
+ ;            for further determination whether the LATEST amendment
+ ;            has a pricing effect on the order printed.
  ;
 E22 ;LINE ITEM Delete PRINT
  N FIELD,CHANGE,CHANGES,OLD,ITEM,ITEM0,ITEM1,ITEM2,LCNT,DATA,I,UOP
@@ -102,6 +110,7 @@ EXIT Q VAL1
 NXTAMD ;FIND PREVIOUS CURRENT QTY/COST WHEN MORE THAN 1 AMENDMENT
  Q:'$D(^TMP($J,"PRCHDP6"))
  N TMPREC
+ I +$G(PRCHAMNT),$P(^PRC(442,PRCHPO,6,0),U,3)>PRCHAMCT,'$D(^TMP($J,"PRCHDP6",ITEM,PRCHAM)) S PRCHAMNT=2,AMDQTY=$P(ITEM0,U,2),AMDVAL=$P(ITEM0,U,9) Q   ;PRC*5.1*221
  S TMPREC=^TMP($J,"PRCHDP6",ITEM,PRCHAM)
  S AMDQTY=$P(TMPREC,U) S:AMDQTY="" AMDQTY=$P(ITEM0,U,2)
  S AMDVAL=$P(TMPREC,U,3) S:AMDVAL="" AMDVAL=$P(ITEM0,U,9)
@@ -109,6 +118,7 @@ NXTAMD ;FIND PREVIOUS CURRENT QTY/COST WHEN MORE THAN 1 AMENDMENT
 NXTAMD1 ;FIND PREVIOUS AMENDED TO +INFO WHEN MORE THAN 1
  Q:'$D(^TMP($J,"PRCHDP6"))
  N TMPREC
+ I +$G(PRCHAMNT),$P(^PRC(442,PRCHPO,6,0),U,3)>PRCHAMCT,'$D(^TMP($J,"PRCHDP6",ITEM,PRCHAM)) S PRCHAMNT=2,AMDQTY=$P(ITEM0,U,2),AMDVAL=$P(ITEM0,U,9) Q   ;PRC*5.1*221
  S TMPREC=^TMP($J,"PRCHDP6",ITEM,PRCHAM)
  S AMDQTY=$P(TMPREC,U,5) S:AMDQTY="" AMDQTY=$P(ITEM0,U,2)
  S AMDVAL=$P(TMPREC,U,7) S:AMDVAL="" AMDVAL=$P(ITEM0,U,9)

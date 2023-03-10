@@ -1,5 +1,5 @@
-PSOHLDA ;BIR/MFR - HOLD/UNHOLD functionality (cont.) ;07/15/96
- ;;7.0;OUTPATIENT PHARMACY;**148,225,386**;DEC 1997;Build 4
+PSOHLDA ;BIR/MFR - HOLD/UNHOLD functionality (cont.) ;08/23/17  20:01
+ ;;7.0;OUTPATIENT PHARMACY;**148,225,386,441**;DEC 1997;Build 208
  ;
 HOLD ;hold function
  I $P($G(^PSRX(DA,"STA")),"^")=3 Q
@@ -14,6 +14,7 @@ HOLD ;hold function
  S DIE="^PSRX(",DR=$S('RXF&('$P(^PSRX(DA,2),"^",13)):"22///@;",1:"")_"99///"_FLD(99)_";99.1///^S X=FLD(99.1);99.2///"_DT_";100///3;101///"_RSDT D ^DIE Q:$D(Y)
  S:$G(PSOHD) VALMSG="RX# "_$P(^PSRX(DA,0),"^")_" has been placed in a hold status."
  K RXRS(DA)
+ I $G(^PSRX(DA,"PARK")) D KILLPARK^PSOPRK(DA),RXACT^PSOPRK(DA,"UPK")  ;441 PAPI
  I +$G(PSDA) S DA=$O(^PS(52.5,"B",PSDA,0)) I DA S:$P($G(^PS(52.5,DA,"P")),"^")=0 PSUS=1 S DIK="^PS(52.5," D ^DIK K DA,DIK
  S:+$G(PSDA) DA=PSDA D RXACT^PSOHLD(DA,"H",$$GET1^DIQ(52,DA,99),$$GET1^DIQ(52,DA,99.1),$G(PSUS))
  S PSOHNX=+$P($G(^PSRX(+$G(DA),"H")),"^") D

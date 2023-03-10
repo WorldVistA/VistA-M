@@ -1,118 +1,124 @@
-IBDEI0SN ; ; 04-FEB-2020
- ;;3.0;IB ENCOUNTER FORM IMP/EXP;;FEB 04, 2020
+IBDEI0SN ; ; 01-FEB-2022
+ ;;3.0;IB ENCOUNTER FORM IMP/EXP;;FEB 01, 2022
  Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,999) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
- ;;^UTILITY(U,$J,358.3,12764,1,0)
+ ;;^UTILITY(U,$J,358.3,12892,1,3,0)
+ ;;=3^Exudative Retinopathy,OD
+ ;;^UTILITY(U,$J,358.3,12892,1,4,0)
+ ;;=4^H35.021
+ ;;^UTILITY(U,$J,358.3,12892,2)
+ ;;=^5005586
+ ;;^UTILITY(U,$J,358.3,12893,0)
+ ;;=H35.022^^51^623^42
+ ;;^UTILITY(U,$J,358.3,12893,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,12764,1,3,0)
- ;;=3^Nonpressure Chr Ulcer of Left Ankle,Breakdown of Skin
- ;;^UTILITY(U,$J,358.3,12764,1,4,0)
- ;;=4^L97.321
- ;;^UTILITY(U,$J,358.3,12764,2)
- ;;=^5009520
- ;;^UTILITY(U,$J,358.3,12765,0)
- ;;=L97.322^^80^786^88
- ;;^UTILITY(U,$J,358.3,12765,1,0)
+ ;;^UTILITY(U,$J,358.3,12893,1,3,0)
+ ;;=3^Exudative Retinopathy,OS
+ ;;^UTILITY(U,$J,358.3,12893,1,4,0)
+ ;;=4^H35.022
+ ;;^UTILITY(U,$J,358.3,12893,2)
+ ;;=^5005587
+ ;;^UTILITY(U,$J,358.3,12894,0)
+ ;;=H35.09^^51^623^37
+ ;;^UTILITY(U,$J,358.3,12894,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,12765,1,3,0)
- ;;=3^Nonpressure Chr Ulcer of Left Ankle,Fat Layer Exposed
- ;;^UTILITY(U,$J,358.3,12765,1,4,0)
- ;;=4^L97.322
- ;;^UTILITY(U,$J,358.3,12765,2)
- ;;=^5009521
- ;;^UTILITY(U,$J,358.3,12766,0)
- ;;=L97.323^^80^786^89
- ;;^UTILITY(U,$J,358.3,12766,1,0)
+ ;;^UTILITY(U,$J,358.3,12894,1,3,0)
+ ;;=3^Intraretinal Microvascular Abnormalities,Other
+ ;;^UTILITY(U,$J,358.3,12894,1,4,0)
+ ;;=4^H35.09
+ ;;^UTILITY(U,$J,358.3,12894,2)
+ ;;=^268617
+ ;;^UTILITY(U,$J,358.3,12895,0)
+ ;;=H35.23^^51^623^46
+ ;;^UTILITY(U,$J,358.3,12895,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,12766,1,3,0)
- ;;=3^Nonpressure Chr Ulcer of Left Ankle,Necrosis of Muscle
- ;;^UTILITY(U,$J,358.3,12766,1,4,0)
- ;;=4^L97.323
- ;;^UTILITY(U,$J,358.3,12766,2)
- ;;=^5009522
- ;;^UTILITY(U,$J,358.3,12767,0)
- ;;=L97.324^^80^786^90
- ;;^UTILITY(U,$J,358.3,12767,1,0)
+ ;;^UTILITY(U,$J,358.3,12895,1,3,0)
+ ;;=3^Non-Diabetic Proliferative Retinopathy,Other,OU
+ ;;^UTILITY(U,$J,358.3,12895,1,4,0)
+ ;;=4^H35.23
+ ;;^UTILITY(U,$J,358.3,12895,2)
+ ;;=^5005645
+ ;;^UTILITY(U,$J,358.3,12896,0)
+ ;;=H35.21^^51^623^44
+ ;;^UTILITY(U,$J,358.3,12896,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,12767,1,3,0)
- ;;=3^Nonpressure Chr Ulcer of Left Ankle,Necrosis of Bone
- ;;^UTILITY(U,$J,358.3,12767,1,4,0)
- ;;=4^L97.324
- ;;^UTILITY(U,$J,358.3,12767,2)
- ;;=^5009523
- ;;^UTILITY(U,$J,358.3,12768,0)
- ;;=L97.329^^80^786^91
- ;;^UTILITY(U,$J,358.3,12768,1,0)
+ ;;^UTILITY(U,$J,358.3,12896,1,3,0)
+ ;;=3^Non-Diabetic Proliferative Retinopathy,Other,OD
+ ;;^UTILITY(U,$J,358.3,12896,1,4,0)
+ ;;=4^H35.21
+ ;;^UTILITY(U,$J,358.3,12896,2)
+ ;;=^5005643
+ ;;^UTILITY(U,$J,358.3,12897,0)
+ ;;=H35.22^^51^623^45
+ ;;^UTILITY(U,$J,358.3,12897,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,12768,1,3,0)
- ;;=3^Nonpressure Chr Ulcer of Left Ankle,Unspec Severity
- ;;^UTILITY(U,$J,358.3,12768,1,4,0)
- ;;=4^L97.329
- ;;^UTILITY(U,$J,358.3,12768,2)
- ;;=^5009524
- ;;^UTILITY(U,$J,358.3,12769,0)
- ;;=L97.421^^80^786^102
- ;;^UTILITY(U,$J,358.3,12769,1,0)
+ ;;^UTILITY(U,$J,358.3,12897,1,3,0)
+ ;;=3^Non-Diabetic Proliferative Retinopathy,Other,OS
+ ;;^UTILITY(U,$J,358.3,12897,1,4,0)
+ ;;=4^H35.22
+ ;;^UTILITY(U,$J,358.3,12897,2)
+ ;;=^5005644
+ ;;^UTILITY(U,$J,358.3,12898,0)
+ ;;=H35.043^^51^623^30
+ ;;^UTILITY(U,$J,358.3,12898,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,12769,1,3,0)
- ;;=3^Nonpressure Chr Ulcer of Left Heel/Midfoot,Breakdown of Skin
- ;;^UTILITY(U,$J,358.3,12769,1,4,0)
- ;;=4^L97.421
- ;;^UTILITY(U,$J,358.3,12769,2)
- ;;=^5009535
- ;;^UTILITY(U,$J,358.3,12770,0)
- ;;=L97.422^^80^786^103
- ;;^UTILITY(U,$J,358.3,12770,1,0)
+ ;;^UTILITY(U,$J,358.3,12898,1,3,0)
+ ;;=3^Retinal Micro-Aneurysms,Unspec,OU
+ ;;^UTILITY(U,$J,358.3,12898,1,4,0)
+ ;;=4^H35.043
+ ;;^UTILITY(U,$J,358.3,12898,2)
+ ;;=^5005596
+ ;;^UTILITY(U,$J,358.3,12899,0)
+ ;;=H35.041^^51^623^28
+ ;;^UTILITY(U,$J,358.3,12899,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,12770,1,3,0)
- ;;=3^Nonpressure Chr Ulcer of Left Heel/Midfoot,Fat Layer Exposed
- ;;^UTILITY(U,$J,358.3,12770,1,4,0)
- ;;=4^L97.422
- ;;^UTILITY(U,$J,358.3,12770,2)
- ;;=^5009536
- ;;^UTILITY(U,$J,358.3,12771,0)
- ;;=L97.423^^80^786^104
- ;;^UTILITY(U,$J,358.3,12771,1,0)
+ ;;^UTILITY(U,$J,358.3,12899,1,3,0)
+ ;;=3^Retinal Micro-Aneurysms,Unspec,OD
+ ;;^UTILITY(U,$J,358.3,12899,1,4,0)
+ ;;=4^H35.041
+ ;;^UTILITY(U,$J,358.3,12899,2)
+ ;;=^5005594
+ ;;^UTILITY(U,$J,358.3,12900,0)
+ ;;=H35.042^^51^623^29
+ ;;^UTILITY(U,$J,358.3,12900,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,12771,1,3,0)
- ;;=3^Nonpressure Chr Ulcer of Left Heel/Midfoot,Necrosis of Muscle
- ;;^UTILITY(U,$J,358.3,12771,1,4,0)
- ;;=4^L97.423
- ;;^UTILITY(U,$J,358.3,12771,2)
- ;;=^5009537
- ;;^UTILITY(U,$J,358.3,12772,0)
- ;;=L97.424^^80^786^105
- ;;^UTILITY(U,$J,358.3,12772,1,0)
+ ;;^UTILITY(U,$J,358.3,12900,1,3,0)
+ ;;=3^Retinal Micro-Aneurysms,Unspec,OS
+ ;;^UTILITY(U,$J,358.3,12900,1,4,0)
+ ;;=4^H35.042
+ ;;^UTILITY(U,$J,358.3,12900,2)
+ ;;=^5005595
+ ;;^UTILITY(U,$J,358.3,12901,0)
+ ;;=H35.053^^51^623^33
+ ;;^UTILITY(U,$J,358.3,12901,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,12772,1,3,0)
- ;;=3^Nonpressure Chr Ulcer of Left Heel/Midfoot,Necrosis of Bone
- ;;^UTILITY(U,$J,358.3,12772,1,4,0)
- ;;=4^L97.424
- ;;^UTILITY(U,$J,358.3,12772,2)
- ;;=^5009538
- ;;^UTILITY(U,$J,358.3,12773,0)
- ;;=L97.429^^80^786^106
- ;;^UTILITY(U,$J,358.3,12773,1,0)
+ ;;^UTILITY(U,$J,358.3,12901,1,3,0)
+ ;;=3^Retinal Neovascularization,Unspec,OU
+ ;;^UTILITY(U,$J,358.3,12901,1,4,0)
+ ;;=4^H35.053
+ ;;^UTILITY(U,$J,358.3,12901,2)
+ ;;=^5005600
+ ;;^UTILITY(U,$J,358.3,12902,0)
+ ;;=H35.051^^51^623^31
+ ;;^UTILITY(U,$J,358.3,12902,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,12773,1,3,0)
- ;;=3^Nonpressure Chr Ulcer of Left Heel/Midfoot,Unspec Severity
- ;;^UTILITY(U,$J,358.3,12773,1,4,0)
- ;;=4^L97.429
- ;;^UTILITY(U,$J,358.3,12773,2)
- ;;=^5009539
- ;;^UTILITY(U,$J,358.3,12774,0)
- ;;=L97.521^^80^786^97
- ;;^UTILITY(U,$J,358.3,12774,1,0)
+ ;;^UTILITY(U,$J,358.3,12902,1,3,0)
+ ;;=3^Retinal Neovascularization,Unspec,OD
+ ;;^UTILITY(U,$J,358.3,12902,1,4,0)
+ ;;=4^H35.051
+ ;;^UTILITY(U,$J,358.3,12902,2)
+ ;;=^5005598
+ ;;^UTILITY(U,$J,358.3,12903,0)
+ ;;=H35.052^^51^623^32
+ ;;^UTILITY(U,$J,358.3,12903,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,12774,1,3,0)
- ;;=3^Nonpressure Chr Ulcer of Left Foot NEC,Breakdown of Skin
- ;;^UTILITY(U,$J,358.3,12774,1,4,0)
- ;;=4^L97.521
- ;;^UTILITY(U,$J,358.3,12774,2)
- ;;=^5009550
- ;;^UTILITY(U,$J,358.3,12775,0)
- ;;=L97.522^^80^786^98
- ;;^UTILITY(U,$J,358.3,12775,1,0)
+ ;;^UTILITY(U,$J,358.3,12903,1,3,0)
+ ;;=3^Retinal Neovascularization,Unspec,OS
+ ;;^UTILITY(U,$J,358.3,12903,1,4,0)
+ ;;=4^H35.052
+ ;;^UTILITY(U,$J,358.3,12903,2)
+ ;;=^5005599
+ ;;^UTILITY(U,$J,358.3,12904,0)
+ ;;=H35.073^^51^623^36
+ ;;^UTILITY(U,$J,358.3,12904,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,12775,1,3,0)
- ;;=3^Nonpressure Chr Ulcer of Left Foot NEC,Fat Layer Exposed

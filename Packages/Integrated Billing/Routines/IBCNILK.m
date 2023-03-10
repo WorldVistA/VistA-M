@@ -1,5 +1,5 @@
 IBCNILK ;ALB/FA - Insurance Company Selection ; 02-OCT-2015
- ;;2.0;INTEGRATED BILLING;**549**;21-MAR-94;Build 54
+ ;;2.0;INTEGRATED BILLING;**549,713**;21-MAR-94;Build 12
  ;;Per VA Directive 6402, this routine should not be modified.
  ;;
  ;
@@ -27,6 +27,8 @@ EN(WHICH,PIEN,FILTER) ;EP
  N NUMSEL
  S:'$D(PIEN) PIEN=""
  S:'$D(FILTER) FILTER=$$GETFILT()
+ ;IB*713/CKB - allow user to exit
+ I $G(FILTER)="^" Q
  Q:FILTER=""
  S NUMSEL=0
  K ^TMP("IBCNILKA",$J)
@@ -40,14 +42,20 @@ NEWSRCH() ; EP
  ; Output:  FILTER      - Update Insurance Company Filter (See EN for details)
  N XX
  S VALMBCK="R"
+ ;IB*713/CKB - reset VALMBG so the New Search (Insurance Company Lookup) will start on Page 1
+ S VALMBG=1
  D FULL^VALM1
+ ;IB*713/CKB&TAZ - added clean up of TMP, removed it from below
+ K ^TMP("IBCNILK",$J),^TMP("IBCNILKIX",$J)
  W !!
  S XX=$$GETFILT()
+ ;IB*713/CKB - allow user to exit, preventing 'jumping'
+ I XX="^" D PAUSE^VALM1 Q
  I XX=-1 D  Q
  . W *7,"Invalid Filter - nothing done"
  . D PAUSE^VALM1
  S FILTER=XX
- K ^TMP("IBCNILK",$J),^TMP("IBCNILKIX",$J)
+ ;K ^TMP("IBCNILK",$J),^TMP("IBCNILKIX",$J)
  D BLD,HDR
  Q
  ;
@@ -64,6 +72,7 @@ GETFILT() ; Gets the Insurance company filter
  ;               the range start if A=3
  ;           C - Range End text (only present when A=3)
  ;         -1 if a valid filter was not selected
+ ;          ^ if user wants to exit
  N DIR,DIROUT,DIRUT,DTOUT,DUOUT,FILTER,X,XX,Y
  ;
  ; First ask what kind of filter to use
@@ -84,6 +93,7 @@ GETFILT() ; Gets the Insurance company filter
  S DIR("?")="                 the specified range (inclusive, case insensitive)"
  S XX="1:Begins with;2:Contains;3:Range"
  D ^DIR
+ I Y="^" Q Y ;IB*713/CKB - allow user to exit
  I $D(DTOUT)!$D(DUOUT) Q -1                 ; No valid search selected
  S FILTER=Y
  ;
@@ -100,6 +110,7 @@ GETFILT() ; Gets the Insurance company filter
  I FILTER=3 D
  . S DIR("?")="Enter the starting range text"
  D ^DIR K DIR
+ I Y="^" Q Y ;IB*713/CKB - allow user to exit
  I $D(DTOUT)!$D(DUOUT) Q -1                 ; No valid search selected
  S $P(FILTER,"^",2)=Y
  Q:$P(FILTER,"^",1)'=3 FILTER
@@ -112,6 +123,7 @@ GETFILT() ; Gets the Insurance company filter
  S DIR("B")=$P(FILTER,"^",2)
  S DIR("?")="Enter the ending Range text"
  D ^DIR
+ I Y="^" Q Y ;IB*713/CKB - allow user to exit
  I $D(DTOUT)!$D(DUOUT) Q -1                 ; No valid search selected
  S $P(FILTER,"^",3)=Y
  Q FILTER
@@ -163,6 +175,7 @@ BLD ; Build listman body
  ;          ^TMP("IBCNILK",$J)   - Body lines to display
  ;          ^TMP("IBCNILKIX",$J) - Index of Entry IENs by display line
  N FTEXT1,FTEXT2,FTYPE,ICTR,IIEN,INACT,INM,INMU,LINE,PLEN,SKIP,START,STOP,XX
+ N PLA ; IB*713/DTG
  S FTYPE=$P(FILTER,"^",1)
  S FTEXT1=$P(FILTER,"^",2),FTEXT1=$$UP^XLFSTR(FTEXT1)
  S FTEXT2=$P(FILTER,"^",3),FTEXT2=$$UP^XLFSTR(FTEXT2)
@@ -170,19 +183,31 @@ BLD ; Build listman body
  S:FTYPE=1 PLEN=$L(FTEXT1)
  S:FTYPE=3 PLEN=$L(FTEXT2)
  S (ICTR,STOP,VALMCNT)=0,INM=""
- S:FTYPE'=2 INM=$O(^DIC(36,"B",FTEXT1),-1)
+ ;IB*713/DTG start allow all searches to use full index
+ ;S:FTYPE'=2 INM=$O(^DIC(36,"B",FTEXT1),-1)
+ ;IB*713/DTG end allow all searches to use full index
  F  D  Q:(INM="")!STOP
  . S INM=$O(^DIC(36,"B",INM))
  . Q:INM=""
  . S INMU=$$UP^XLFSTR(INM)
- . I FTYPE=1,$E(INMU,1,PLEN)'=FTEXT1 S STOP=1 Q
- . I FTYPE=2,INMU'[FTEXT1 Q
- . I FTYPE=3 D  Q:STOP
- . . S START=$E(FTEXT1,1,$L(FTEXT1))
- . . S XX=$E(INMU,1,$L(FTEXT1))
- . . Q:XX=START
- . . Q:$E(INMU,1,PLEN)']FTEXT2
- . . S STOP=1
+ . ;IB*713/TAZ&CKB - use utility to check Begins, Contains, and Range
+ . I '$$FILTER^IBCNINSU(INM,FILTER) Q
+ . ;IB*713/DTG start allow search to cycle through lower case and upper case insurance company names
+ . ;I FTYPE=1,$E(INMU,1,PLEN)'=FTEXT1 S STOP=1 Q
+ . ;I FTYPE=1,$E(INMU,1,PLEN)'=FTEXT1 Q
+ . ;I FTYPE=2,INMU'[FTEXT1 Q
+ . ;I FTYPE=3 D  Q:STOP
+ . ;I FTYPE=3 D  I STOP S STOP=0 Q
+ . ;. S PLA=$L(FTEXT1)
+ . ;. S START=$E(FTEXT1,1,$L(FTEXT1))
+ . ;. S XX=$E(INMU,1,$L(FTEXT1))
+ . ;. Q:XX=START
+ . ;. ;Q:$E(INMU,1,PLEN)']FTEXT2
+ . ;. I XX'=START&($E(INMU,1,PLA)']FTEXT1) S STOP=1 Q
+ . ;. I XX=START&($E(INMU,1,PLEN)']FTEXT2) Q
+ . ;. I $E(INMU,1,PLEN)']FTEXT2 Q
+ . ;. S STOP=1
+ . ;IB*713/DTG start allow search to cycle through lower case and upper case insurance company names
  . S IIEN=""
  . F  D  Q:IIEN=""
  . . S IIEN=$O(^DIC(36,"B",INM,IIEN))

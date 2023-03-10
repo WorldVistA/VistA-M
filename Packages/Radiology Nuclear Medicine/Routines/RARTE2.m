@@ -1,11 +1,12 @@
-RARTE2 ;HISC/SWM,GJC-Edit/Delete a Report ;07 Nov 2018 1:30 PM
- ;;5.0;Radiology/Nuclear Medicine;**10,31,47,124**;Mar 16, 1998;Build 4
+RARTE2 ;HISC/SWM,GJC-Edit/Delete a Report ; Feb 09, 2021@12:26:05
+ ;;5.0;Radiology/Nuclear Medicine;**10,31,47,124,175**;Mar 16, 1998;Build 2
  ; known vars-->RADFN,RACNI,RADTI,RARPT,RARPTN
  ;
  ;Routine              IA          Type
  ;-------------------------------------
  ; ^DIR               10026        (S)
  ; APPERROR^%ZTER     1621         (S)
+ ; OWNSKEY^XUSRB      3277         (S)
  ;
 PTR ; if the current study is the master study for
  ; the print set the accession of the master study
@@ -24,19 +25,24 @@ PTR ; if the current study is the master study for
  . S RAERR="Missing data needed by routine RARTE2"
  . Q
  ;
-PTR2 ;find descendent, if part of the pset build accession #, if descendent canceled
- ;set flag on array.
+PTR2 ;find the descendent, if part of the pset build accession # into our result
+ ;array iff they pass the conditions enumerated below.
  ;from RAHLO1: RARPTN=RALONGCN
  ;
- N RAO1,RA1ARY,RACCSTR
+ N RAO1,RA1ARY,RACCSTR,RARPTONCAN
  ;RAO1    - study IEN (think RACNI)
  ;RACCSTR - front end of the accession (excludes case #) in this part
  ;          of the code (changes to full accession # in PTR3)
  ;RA1ARY  - this will be the array where our accession #s are stored
  ;          RA1ARY(RAO1,accession #)=""
+ ;RARPTONCAN - allow rpts on canceled cases? '1' for yes, else '0'
  ;
  S RACCSTR=$P(RARPTN,"-",1,($L(RARPTN,"-")-1)) ;Ex: 141-040618 -or- 040618
- ;
+ ;--- RA5P175 
+ ;RAMDV is expected to be .1 node of file #79 division
+ ;record with the pieces having values of: '1','0' or ""
+ S RARPTONCAN=+$P($G(RAMDV),U,22)
+ ;---
  ;save off the accession # stored in the .01 field of the report
  ;we do not want this accession # set in the OTHER CASE# multiple
  S RA1ARY(0,RARPTN)=""
@@ -46,7 +52,18 @@ PTR2 ;find descendent, if part of the pset build accession #, if descendent canc
  .S RAO1(0)=$G(^RADPT(RADFN,"DT",RADTI,"P",RAO1,0))
  .;get the order # of the exam status for this study RAOX(3)
  .S RAOX(3)=$P(^RA(72,+$P(RAO1(0),U,3),0),U,3)
- .I $$SILENT()=1,RAOX(3)=0 Q:$$ASK()'=1
+ .;--- RA5P175
+ .;Condition 1: if a pset, if in foreground, study canceled
+ .;& allow rpts on canceled cases = 'no' ask the user if they
+ .;want to tie the report to the canceled exam.
+ .;Note: RA MGR key is required in order to be asked.
+ .I $$SILENT()=1,(RAOX(3)=0),(RARPTONCAN=0),($$OWNSKEY()=0) QUIT  ;no RA MGR key 
+ .I $$SILENT()=1,(RAOX(3)=0),(RARPTONCAN=0),($$OWNSKEY()) Q:$$ASK()'=1
+ .;--- RA5P175
+ .;Condition 2: if in background, study canceled & allow
+ .;rpts on canceled cases = 'no'
+ .I $$SILENT()=0,(RAOX(3)=0),(RARPTONCAN=0) QUIT
+ .;---
  .;set the report pointer for the study in question
  .S $P(^RADPT(RADFN,"DT",RADTI,"P",RAO1,0),U,17)=RARPT
  .;build the accession number: +RAO1(0) = case number
@@ -195,4 +212,14 @@ ASK() ;include canceled case in report?
  S RAX=$S(Y=1:"In",1:"Ex")_"clude case "_+$P(RAO1(0),U)
  W !!,RAX
  Q Y ;'1' for yes, '0' for no
+ ;
+OWNSKEY() ;does this user have the RA MGR key?
+ ;Input variable: none; DUZ must be defined
+ ;Output: BOOL(0) - Returns a subscripted output where
+ ; 1 - User owns key.
+ ; 0 - DUZ not defined or key not found.
+ ;
+ Q:$D(DUZ)#2=0 0
+ N BOOL D OWNSKEY^XUSRB(.BOOL,"RA MGR",DUZ)
+ Q BOOL(0)
  ;

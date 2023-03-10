@@ -1,124 +1,122 @@
-IBDEI0V9 ; ; 04-FEB-2020
- ;;3.0;IB ENCOUNTER FORM IMP/EXP;;FEB 04, 2020
+IBDEI0V9 ; ; 01-FEB-2022
+ ;;3.0;IB ENCOUNTER FORM IMP/EXP;;FEB 01, 2022
  Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,999) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
- ;;^UTILITY(U,$J,358.3,13916,1,4,0)
- ;;=4^N52.37
- ;;^UTILITY(U,$J,358.3,13916,2)
- ;;=^5138934
- ;;^UTILITY(U,$J,358.3,13917,0)
- ;;=R31.21^^83^818^43
- ;;^UTILITY(U,$J,358.3,13917,1,0)
+ ;;^UTILITY(U,$J,358.3,14102,1,4,0)
+ ;;=4^G90.523
+ ;;^UTILITY(U,$J,358.3,14102,2)
+ ;;=^5004169
+ ;;^UTILITY(U,$J,358.3,14103,0)
+ ;;=S80.01XA^^55^670^21
+ ;;^UTILITY(U,$J,358.3,14103,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,13917,1,3,0)
- ;;=3^Hematuria,Asymptomatic Microscopic
- ;;^UTILITY(U,$J,358.3,13917,1,4,0)
- ;;=4^R31.21
- ;;^UTILITY(U,$J,358.3,13917,2)
- ;;=^5139198
- ;;^UTILITY(U,$J,358.3,13918,0)
- ;;=R31.29^^83^818^44
- ;;^UTILITY(U,$J,358.3,13918,1,0)
+ ;;^UTILITY(U,$J,358.3,14103,1,3,0)
+ ;;=3^Contusion Right Knee,Init Encntr
+ ;;^UTILITY(U,$J,358.3,14103,1,4,0)
+ ;;=4^S80.01XA
+ ;;^UTILITY(U,$J,358.3,14103,2)
+ ;;=^5039891
+ ;;^UTILITY(U,$J,358.3,14104,0)
+ ;;=S80.01XD^^55^670^22
+ ;;^UTILITY(U,$J,358.3,14104,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,13918,1,3,0)
- ;;=3^Hematuria,Oth Microscopic
- ;;^UTILITY(U,$J,358.3,13918,1,4,0)
- ;;=4^R31.29
- ;;^UTILITY(U,$J,358.3,13918,2)
- ;;=^5019327
- ;;^UTILITY(U,$J,358.3,13919,0)
- ;;=R39.191^^83^818^94
- ;;^UTILITY(U,$J,358.3,13919,1,0)
+ ;;^UTILITY(U,$J,358.3,14104,1,3,0)
+ ;;=3^Contusion Right Knee,Subs Encntr
+ ;;^UTILITY(U,$J,358.3,14104,1,4,0)
+ ;;=4^S80.01XD
+ ;;^UTILITY(U,$J,358.3,14104,2)
+ ;;=^5039892
+ ;;^UTILITY(U,$J,358.3,14105,0)
+ ;;=S80.02XA^^55^670^19
+ ;;^UTILITY(U,$J,358.3,14105,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,13919,1,3,0)
- ;;=3^Re-Void,Immediate Need
- ;;^UTILITY(U,$J,358.3,13919,1,4,0)
- ;;=4^R39.191
- ;;^UTILITY(U,$J,358.3,13919,2)
- ;;=^5139199
- ;;^UTILITY(U,$J,358.3,13920,0)
- ;;=R39.192^^83^818^60
- ;;^UTILITY(U,$J,358.3,13920,1,0)
+ ;;^UTILITY(U,$J,358.3,14105,1,3,0)
+ ;;=3^Contusion Left Knee,Init Encntr
+ ;;^UTILITY(U,$J,358.3,14105,1,4,0)
+ ;;=4^S80.02XA
+ ;;^UTILITY(U,$J,358.3,14105,2)
+ ;;=^5039894
+ ;;^UTILITY(U,$J,358.3,14106,0)
+ ;;=S80.02XD^^55^670^20
+ ;;^UTILITY(U,$J,358.3,14106,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,13920,1,3,0)
- ;;=3^Micturition,Position Dependent
- ;;^UTILITY(U,$J,358.3,13920,1,4,0)
- ;;=4^R39.192
- ;;^UTILITY(U,$J,358.3,13920,2)
- ;;=^5139200
- ;;^UTILITY(U,$J,358.3,13921,0)
- ;;=R39.198^^83^818^59
- ;;^UTILITY(U,$J,358.3,13921,1,0)
+ ;;^UTILITY(U,$J,358.3,14106,1,3,0)
+ ;;=3^Contusion Left Knee,Subs Encntr
+ ;;^UTILITY(U,$J,358.3,14106,1,4,0)
+ ;;=4^S80.02XD
+ ;;^UTILITY(U,$J,358.3,14106,2)
+ ;;=^5039895
+ ;;^UTILITY(U,$J,358.3,14107,0)
+ ;;=M71.21^^55^670^24
+ ;;^UTILITY(U,$J,358.3,14107,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,13921,1,3,0)
- ;;=3^Micturition,Oth Difficulties
- ;;^UTILITY(U,$J,358.3,13921,1,4,0)
- ;;=4^R39.198
- ;;^UTILITY(U,$J,358.3,13921,2)
- ;;=^5019347
- ;;^UTILITY(U,$J,358.3,13922,0)
- ;;=R39.82^^83^818^11
- ;;^UTILITY(U,$J,358.3,13922,1,0)
+ ;;^UTILITY(U,$J,358.3,14107,1,3,0)
+ ;;=3^Cyst,Synovial of Popliteal Space,Right Knee
+ ;;^UTILITY(U,$J,358.3,14107,1,4,0)
+ ;;=4^M71.21
+ ;;^UTILITY(U,$J,358.3,14107,2)
+ ;;=^5013147
+ ;;^UTILITY(U,$J,358.3,14108,0)
+ ;;=M71.22^^55^670^23
+ ;;^UTILITY(U,$J,358.3,14108,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,13922,1,3,0)
- ;;=3^Bladder Pain,Chronic
- ;;^UTILITY(U,$J,358.3,13922,1,4,0)
- ;;=4^R39.82
- ;;^UTILITY(U,$J,358.3,13922,2)
- ;;=^5139201
- ;;^UTILITY(U,$J,358.3,13923,0)
- ;;=T83.510A^^83^818^48
- ;;^UTILITY(U,$J,358.3,13923,1,0)
+ ;;^UTILITY(U,$J,358.3,14108,1,3,0)
+ ;;=3^Cyst,Synovial of Popliteal Space,Left Knee
+ ;;^UTILITY(U,$J,358.3,14108,1,4,0)
+ ;;=4^M71.22
+ ;;^UTILITY(U,$J,358.3,14108,2)
+ ;;=^5013148
+ ;;^UTILITY(U,$J,358.3,14109,0)
+ ;;=M23.211^^55^670^27
+ ;;^UTILITY(U,$J,358.3,14109,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,13923,1,3,0)
- ;;=3^Infection d/t Cystostomy Catheter,Init Encntr
- ;;^UTILITY(U,$J,358.3,13923,1,4,0)
- ;;=4^T83.510A
- ;;^UTILITY(U,$J,358.3,13923,2)
- ;;=^5140135
- ;;^UTILITY(U,$J,358.3,13924,0)
- ;;=T83.510D^^83^818^50
- ;;^UTILITY(U,$J,358.3,13924,1,0)
+ ;;^UTILITY(U,$J,358.3,14109,1,3,0)
+ ;;=3^Derang Ant Horn Medial Menisc d/t Old Tear/Inj,Right Knee
+ ;;^UTILITY(U,$J,358.3,14109,1,4,0)
+ ;;=4^M23.211
+ ;;^UTILITY(U,$J,358.3,14109,2)
+ ;;=^5011218
+ ;;^UTILITY(U,$J,358.3,14110,0)
+ ;;=M23.212^^55^670^28
+ ;;^UTILITY(U,$J,358.3,14110,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,13924,1,3,0)
- ;;=3^Infection d/t Cystostomy Catheter,Subs Encntr
- ;;^UTILITY(U,$J,358.3,13924,1,4,0)
- ;;=4^T83.510D
- ;;^UTILITY(U,$J,358.3,13924,2)
- ;;=^5140136
- ;;^UTILITY(U,$J,358.3,13925,0)
- ;;=T83.510S^^83^818^49
- ;;^UTILITY(U,$J,358.3,13925,1,0)
+ ;;^UTILITY(U,$J,358.3,14110,1,3,0)
+ ;;=3^Derang Ant Horn Medial Menisc d/t Old Tear/Inj,Left Knee
+ ;;^UTILITY(U,$J,358.3,14110,1,4,0)
+ ;;=4^M23.212
+ ;;^UTILITY(U,$J,358.3,14110,2)
+ ;;=^5011219
+ ;;^UTILITY(U,$J,358.3,14111,0)
+ ;;=M23.221^^55^670^31
+ ;;^UTILITY(U,$J,358.3,14111,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,13925,1,3,0)
- ;;=3^Infection d/t Cystostomy Catheter,Sequela
- ;;^UTILITY(U,$J,358.3,13925,1,4,0)
- ;;=4^T83.510S
- ;;^UTILITY(U,$J,358.3,13925,2)
- ;;=^5140137
- ;;^UTILITY(U,$J,358.3,13926,0)
- ;;=T83.511A^^83^818^51
- ;;^UTILITY(U,$J,358.3,13926,1,0)
+ ;;^UTILITY(U,$J,358.3,14111,1,3,0)
+ ;;=3^Derang Post Horn Medial Mensc d/t Old Tear/Inj,Right Knee
+ ;;^UTILITY(U,$J,358.3,14111,1,4,0)
+ ;;=4^M23.221
+ ;;^UTILITY(U,$J,358.3,14111,2)
+ ;;=^5011221
+ ;;^UTILITY(U,$J,358.3,14112,0)
+ ;;=M23.222^^55^670^32
+ ;;^UTILITY(U,$J,358.3,14112,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,13926,1,3,0)
- ;;=3^Infection d/t Indwelling Urethral Catheter,Init Encntr
- ;;^UTILITY(U,$J,358.3,13926,1,4,0)
- ;;=4^T83.511A
- ;;^UTILITY(U,$J,358.3,13926,2)
- ;;=^5140138
- ;;^UTILITY(U,$J,358.3,13927,0)
- ;;=T83.511D^^83^818^52
- ;;^UTILITY(U,$J,358.3,13927,1,0)
+ ;;^UTILITY(U,$J,358.3,14112,1,3,0)
+ ;;=3^Derang Post Horn Medial Mensc d/t Old Tear/Inj,Left Knee
+ ;;^UTILITY(U,$J,358.3,14112,1,4,0)
+ ;;=4^M23.222
+ ;;^UTILITY(U,$J,358.3,14112,2)
+ ;;=^5011222
+ ;;^UTILITY(U,$J,358.3,14113,0)
+ ;;=M23.241^^55^670^25
+ ;;^UTILITY(U,$J,358.3,14113,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,13927,1,3,0)
- ;;=3^Infection d/t Indwelling Urethral Catheter,Subs Encntr
- ;;^UTILITY(U,$J,358.3,13927,1,4,0)
- ;;=4^T83.511D
- ;;^UTILITY(U,$J,358.3,13927,2)
- ;;=^5140139
- ;;^UTILITY(U,$J,358.3,13928,0)
- ;;=T83.511S^^83^818^53
- ;;^UTILITY(U,$J,358.3,13928,1,0)
+ ;;^UTILITY(U,$J,358.3,14113,1,3,0)
+ ;;=3^Derang Ant Horn Lateral Mensc d/t Old Tear/Inj,Right Knee
+ ;;^UTILITY(U,$J,358.3,14113,1,4,0)
+ ;;=4^M23.241
+ ;;^UTILITY(U,$J,358.3,14113,2)
+ ;;=^5011225
+ ;;^UTILITY(U,$J,358.3,14114,0)
+ ;;=M23.242^^55^670^26
+ ;;^UTILITY(U,$J,358.3,14114,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,13928,1,3,0)
- ;;=3^Infection d/t Indwelling Urethral Catheter,Sequela

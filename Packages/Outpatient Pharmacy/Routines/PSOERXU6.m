@@ -1,5 +1,5 @@
-PSOERXU6 ;ALB/BWF - eRx utilities ; 5/4/2018 9:57am
- ;;7.0;OUTPATIENT PHARMACY;**508,551**;DEC 1997;Build 37
+PSOERXU6 ;ALB/BWF - eRx utilities ;Feb 10, 2022@11:04
+ ;;7.0;OUTPATIENT PHARMACY;**508,551,581,631,617,672**;DEC 1997;Build 1
  ;
  Q
  ; auto discontinue orders related to cancel request
@@ -14,7 +14,7 @@ CANDC(ERXIEN,INST,PSSRET) ;
  S NRXPNIEN=$$GET1^DIQ(52.49,NERXIEN,25.2,"E")
  S CNT=CNT+1,ARY(CNT)=NRXPNIEN_U_NRXOPIEN
  S RELMIEN=0 F  S RELMIEN=$O(^PS(52.49,NERXIEN,201,"B",RELMIEN)) Q:'RELMIEN  D
- .Q:$$GET1^DIQ(52.49,RELMIEN,.08,"I")'="RE"
+ .I ",RE,CX,"'[$$GET1^DIQ(52.49,RELMIEN,.08,"I") Q
  .S REOPIEN=$$GET1^DIQ(52.49,RELMIEN,.13,"I")
  .S REPNIEN=$$GET1^DIQ(52.49,RELMIEN,25.2,"E")
  .S CNT=CNT+1,ARY(CNT)=REPNIEN_U_REOPIEN_U_RELMIEN
@@ -119,7 +119,7 @@ CANRELHQ(NERXIEN) ;
  ;I $$GET1^DIQ(52.49,NERXIEN,1,"E")'="CAN" Q
  S RELMIEN=0 F  S RELMIEN=$O(^PS(52.49,NERXIEN,201,"B",RELMIEN)) Q:'RELMIEN  D
  .S RRRETYPE=$$GET1^DIQ(52.49,RELMIEN,.08,"I")
- .I RRRETYPE="RE"!(RRRETYPE="RR") D
+ .I RRRETYPE="RE"!(RRRETYPE="RR")!(RRRETYPE="CR")!(RRRETYPE="CX") D
  ..D UPDSTAT^PSOERXU1(RELMIEN,"CAN")
  Q
 CANACT(ERXIEN,RXIEN,INST,PSSRET) ;
@@ -134,14 +134,9 @@ CANACT(ERXIEN,RXIEN,INST,PSSRET) ;
  .D FILERR^PSOERXU1(ERXIENS,ERRSEQ,"PX","V",$G(VALMSG))
  S PSOSITE=$$GET1^DIQ(52,RXIEN,20,"I")
  S PSOSYS=$G(^PS(59.7,1,40.1)) Q:PSOSYS="" ""
- ; FUTURE ENHANCEMENT/CONSIDERATION- SET PSODIV - PSODIV IS 0 in the test account. need to determine what it is set to.
  S PSODFN=$$GET1^DIQ(52,RXIEN,2,"I") Q:'PSODFN ""
- ; ORN is set to 1 since we are only building one item into the list. this makes the dc function use PSOLST(ORN)
- ; or PSOLST(1)
  S PSOLST(1)=52_U_RXIEN_U_$$GET1^DIQ(52,RXIEN,100,"E")
  S ORN=1
- ; PSODIV, PSOSITE, AND PSOSYS are used by LMNO^PSOCAN and DIV^PSOCAN - consider setting these if possible 
- ; PSOOPT is checked against a value of 3. find out if we need to set this to a certain value before calling psocan3
  S PSOOPT=0
  D OERR^PSOCAN3(NERXIEN)
  S UPDRXSTA=$$GET1^DIQ(52,RXIEN,100,"I")
@@ -163,13 +158,18 @@ CANPEND(ERXIEN,PENDIEN,INST,PSSRET) ;
  Q:'$D(^PS(52.41,PENDIEN,0)) "1^Rx no longer in pending file."
  S NERXIEN=$$RESOLV^PSOERXU2(ERXIEN)
  S PSODFN=$$GET1^DIQ(52.41,PENDIEN,1,"I")
- S PSOPLCK=$$L^PSSLOCK(PSODFN,0) I '$G(PSOPLCK) D LOCK^PSOORCPY S ACOM=$S($P($G(PSOPLCK),"^",2)'="":"Patient record locked by "_$P($G(PSOPLCK),"^",2)_".",1:"Another person is entering orders for this patient.") K PSOPLCK Q 0_U_ACOM
+ S PSOPLCK=$$L^PSSLOCK(PSODFN,0)
+ I '$G(PSOPLCK) D  Q ACOM
+ .D LOCK^PSOORCPY
+ .S ACOM=$S($P($G(PSOPLCK),"^",2)'="":"Patient record locked by "_$P($G(PSOPLCK),"^",2)_".",1:"Another person is entering orders for this patient.")
+ .K PSOPLCK S ACOM=0_U_ACOM
  S CANTYPE=$$GET1^DIQ(52.41,PENDIEN,2,"I")
  ; if this is already DC'd. update status of the releated messages
  I CANTYPE="DC"!(CANTYPE="DE") D  Q VALMSG
  .S ERRSEQ=$$ERRSEQ^PSOERXU1(ERXIEN) Q:'ERRSEQ
  .S VALMSG="1^Pending Order is already discontinued."
  .D FILERR^PSOERXU1(ERXIENS,ERRSEQ,"PX","V",$G(VALMSG))
+ .D UL^PSSLOCK(PSODFN)
  S ACOM="Rx was never dispensed. Canceled at Pharmacy."
  S ORD=PENDIEN
  S PSONOOR="W"
@@ -183,10 +183,9 @@ CANPEND(ERXIEN,PENDIEN,INST,PSSRET) ;
  .S ERRSEQ=$$ERRSEQ^PSOERXU1(ERXIEN) Q:'ERRSEQ
  .S VALMSG="0^eRx auto-discontinue failed. Please contact Pharmacy."
  .D FILERR^PSOERXU1(ERXIENS,ERRSEQ,"PX","V",$G(VALMSG))
- ;E   ; Log Auto-Discontinue of Pending Outpatient Orders if this eRx was already processed
- ;. S ORNUM=$$GET1^DIQ(52.49,ERXIEN,.12,"I") ; Validates if the order is an eRx and Log Activity in AL eRx
- ;. I $$CHKERX^PSOERXU1(ORNUM) D RXACT^PSOBPSU2(ERXIEN,0,"eRx Discontinued due to Cancel Request by external provider (eRx)","O")
+ .D UL^PSSLOCK(PSODFN)
  K POERR,PSOPTPST
+ D UL^PSSLOCK(PSODFN)
  Q 1_U_ACOM
 BLDRESP(RXIEN) ;
  N REFL,TOTFILL,LDDATE,FFILL,ACOM
@@ -207,11 +206,14 @@ FINDNRX(ERXIEN) ;
  .I $$GET1^DIQ(52.49,PREVIEN,.08,"I")="N" S DONE=1 Q
  Q PREVIEN
 JTQ(ERXIEN) ;
- N MEDA,XQY0,DFN,PSOFIN,POERR,PSOSORT,PTNM,PSODFN,PAT,MTYPE,PSOFINY,PSOLST
+ N MEDA,XQY0,DFN,PSOFIN,POERR,PSOSORT,PTNM,PSODFN,PAT,MTYPE,PSOFINY,PSOLST,MTYPE,RESVAL
  D FULL^VALM1
  S VALMBCK="R"
- S MTYPE=$$GET1^DIQ(52.49,ERXIEN,.08,"I") I MTYPE'="N" D  Q
- .W !,"Jumping can only be done on 'NewRx' messages." D DIRE^PSOERXX1 Q
+ I $G(PSOJUMP) S VALMSG="Cannot jump back, please use '^'" W $C(7) Q
+ S MTYPE=$$GET1^DIQ(52.49,ERXIEN,.08,"I")
+ S RESVAL=$$GET1^DIQ(52.49,ERXIEN,52.1,"I")
+ I MTYPE'="N",((MTYPE'="RE")&(RESVAL'="R")),MTYPE'="CX" D  Q
+ .W !,"Jumping can only be done on 'NewRx', 'Renewal Response - Replace' and fillable 'RxChange Response' messages." D DIRE^PSOERXX1 Q
  S XQY0="PSO LMOE FINISH"
  I $P($G(PSOPAR),"^",2),'$D(^XUSEC("PSORPH",DUZ)) S PSORX("VERIFY")=1
  S DFN=$$GET1^DIQ(52.49,ERXIEN,.05,"I")
@@ -220,12 +222,14 @@ JTQ(ERXIEN) ;
  S PSOSORT="PATIENT"
  S PTNM=$$GET1^DIQ(2,DFN,.01,"E")
  S (PSODFN,PAT)=DFN,PSOFINY=DFN_U_PTNM
- ; use the PSNPINST
- I '$D(^PS(52.41,"AOR",PAT,PSNPINST)) W !,"Patient has no pending prescriptions." D DIRE^PSOERXX1 Q
+ ;PSO*7.0*672: Check for any pending Rx's. Do not restrict based on variable PSNPINST.
+ I '$D(^PS(52.41,"AOR",PAT)) W !,"Patient has no pending prescriptions." D DIRE^PSOERXX1 Q
  W !,"Patient: "_PTNM,!
  ; new line SPAT2^PSOORFIN has been created to jump right into pending orders with the patient pre-selected
+ S PSOJUMP=1
  D SPAT2^PSOORFIN,EX^PSOORFI1
- K PSORX
+ ;S X=PAT D ULP^PSOORFIN
+ K PSORX,PSOJUMP
  Q
 VARENEW(OPIEN) ;
  N FORORD,VARENEW,PON
@@ -235,7 +239,7 @@ VARENEW(OPIEN) ;
  I FORORD,'$$CHKERX^PSOERXU1(PON) S VARENEW=1
  Q VARENEW
 SH(ERXIEN) ;
- N SIEN,IENS,F,LINE,SDTTM,ISTAT,ESTAT,EBY,SCOMM,CARY,ALOOP,STDESC,SDAT
+ N SIEN,IENS,F,LINE,SDTTM,ISTAT,ESTAT,EBY,SCOMM,CARY,ALOOP,STDESC,SDAT,UNACC
  D FULL^VALM1 S VALMBCK="R"
  S $P(LINE,"-",80)="" W !,LINE
  S F=52.4919
@@ -248,21 +252,19 @@ SH(ERXIEN) ;
  .S ESTAT=$G(SDAT(F,IENS,.02,"E"))
  .S STDESC=$$GET1^DIQ(52.45,ISTAT,.02,"E")
  .S EBY=$G(SDAT(F,IENS,.03,"E"))
+ .S UNACC=$G(SDAT(F,IENS,.04,"I"))
  .S SCOMM=$G(SDAT(F,IENS,1,"E")),SCOMM="Comments: "_SCOMM
  .K CARY
  .D TXT2ARY^PSOERXD1(.CARY,SCOMM,,80)
- .W !,SDTTM,?19,ESTAT,?26,STDESC,!,"Entered By: "_EBY ;"Comments: "_SCOMM,!
+ .W !,SDTTM,?19,ESTAT,?26,STDESC_$S(UNACC:" (eRx Un-Accepted)",1:""),!,"Entered By: "_EBY ;"Comments: "_SCOMM,!
  .S ALOOP=0 F  S ALOOP=$O(CARY(ALOOP)) Q:'ALOOP  D
  ..W !,$G(CARY(ALOOP))
  .W !
  D DIRE^PSOERXX1
  Q
- ;/BLB/ PSO*7.0*551 - BEGIN CHANGE - ADDED NEW CALL TO AVOID CONCATENATING A SPACE ONTO PATIENT INSTRUCTIONS
 LSIG(SIG) ;
-  N P,SGY
+ N P,SGY
  S SGY="" F P=1:1:$L(SIG," ") S X=$P(SIG," ",P) D:X]""  ;
- .;PSO*7*282 Intended Use Check
  .N PSOIN S PSOIN=$O(^PS(51,"B",X,0)) I PSOIN,($P(^PS(51,PSOIN,0),"^",4)<2)&($D(^PS(51,"A",X))) S %=^(X),X=$P(%,"^") I $P(%,"^",2)]"" S Y=$P(SIG,"",P-1),Y=$E(Y,$L(Y)) S:Y>1 X=$P(%,"^",2)
  .S SGY=SGY_" "_X
- Q SGY
- ;/BLB/ PSO*7.0*551 - END CHANGE
+ Q $$UP^XLFSTR(SGY)

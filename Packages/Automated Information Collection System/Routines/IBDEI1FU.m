@@ -1,118 +1,132 @@
-IBDEI1FU ; ; 04-FEB-2020
- ;;3.0;IB ENCOUNTER FORM IMP/EXP;;FEB 04, 2020
+IBDEI1FU ; ; 01-FEB-2022
+ ;;3.0;IB ENCOUNTER FORM IMP/EXP;;FEB 01, 2022
  Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,999) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
- ;;^UTILITY(U,$J,358.3,23002,1,4,0)
- ;;=4^N99.61
- ;;^UTILITY(U,$J,358.3,23002,2)
- ;;=^5015963
- ;;^UTILITY(U,$J,358.3,23003,0)
- ;;=N99.62^^105^1166^121
- ;;^UTILITY(U,$J,358.3,23003,1,0)
+ ;;^UTILITY(U,$J,358.3,23261,2)
+ ;;=^24380
+ ;;^UTILITY(U,$J,358.3,23262,0)
+ ;;=J32.2^^78^1004^61
+ ;;^UTILITY(U,$J,358.3,23262,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,23003,1,3,0)
- ;;=3^Intraop Hemor/Hemtom of GU Sys Complication Oth Procedure
- ;;^UTILITY(U,$J,358.3,23003,1,4,0)
- ;;=4^N99.62
- ;;^UTILITY(U,$J,358.3,23003,2)
- ;;=^5015964
- ;;^UTILITY(U,$J,358.3,23004,0)
- ;;=G97.51^^105^1166^200
- ;;^UTILITY(U,$J,358.3,23004,1,0)
+ ;;^UTILITY(U,$J,358.3,23262,1,3,0)
+ ;;=3^Sinusitis,Ethmoidal,Chronic
+ ;;^UTILITY(U,$J,358.3,23262,1,4,0)
+ ;;=4^J32.2
+ ;;^UTILITY(U,$J,358.3,23262,2)
+ ;;=^24376
+ ;;^UTILITY(U,$J,358.3,23263,0)
+ ;;=J32.3^^78^1004^68
+ ;;^UTILITY(U,$J,358.3,23263,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,23004,1,3,0)
- ;;=3^Postproc Hemor/Hematom,Nerv Sys After Nerv Sys Proc
- ;;^UTILITY(U,$J,358.3,23004,1,4,0)
- ;;=4^G97.51
- ;;^UTILITY(U,$J,358.3,23004,2)
- ;;=^5004209
- ;;^UTILITY(U,$J,358.3,23005,0)
- ;;=G97.52^^105^1166^201
- ;;^UTILITY(U,$J,358.3,23005,1,0)
+ ;;^UTILITY(U,$J,358.3,23263,1,3,0)
+ ;;=3^Sinusitis,Spenoidal,Chronic
+ ;;^UTILITY(U,$J,358.3,23263,1,4,0)
+ ;;=4^J32.3
+ ;;^UTILITY(U,$J,358.3,23263,2)
+ ;;=^24437
+ ;;^UTILITY(U,$J,358.3,23264,0)
+ ;;=J32.4^^78^1004^52
+ ;;^UTILITY(U,$J,358.3,23264,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,23005,1,3,0)
- ;;=3^Postproc Hemor/Hematom,Nerv Sys After Oth Proc
- ;;^UTILITY(U,$J,358.3,23005,1,4,0)
- ;;=4^G97.52
- ;;^UTILITY(U,$J,358.3,23005,2)
- ;;=^5004210
- ;;^UTILITY(U,$J,358.3,23006,0)
- ;;=H59.311^^105^1166^204
- ;;^UTILITY(U,$J,358.3,23006,1,0)
+ ;;^UTILITY(U,$J,358.3,23264,1,3,0)
+ ;;=3^Pansinusitis,Chronic
+ ;;^UTILITY(U,$J,358.3,23264,1,4,0)
+ ;;=4^J32.4
+ ;;^UTILITY(U,$J,358.3,23264,2)
+ ;;=^5008206
+ ;;^UTILITY(U,$J,358.3,23265,0)
+ ;;=J32.8^^78^1004^57
+ ;;^UTILITY(U,$J,358.3,23265,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,23006,1,3,0)
- ;;=3^Postproc Hemor/Hematom,Rt Eye/Adnexa After Ophth Proc
- ;;^UTILITY(U,$J,358.3,23006,1,4,0)
- ;;=4^H59.311
- ;;^UTILITY(U,$J,358.3,23006,2)
- ;;=^5006417
- ;;^UTILITY(U,$J,358.3,23007,0)
- ;;=H59.312^^105^1166^196
- ;;^UTILITY(U,$J,358.3,23007,1,0)
+ ;;^UTILITY(U,$J,358.3,23265,1,3,0)
+ ;;=3^Sinusitis,Chronic,Other
+ ;;^UTILITY(U,$J,358.3,23265,1,4,0)
+ ;;=4^J32.8
+ ;;^UTILITY(U,$J,358.3,23265,2)
+ ;;=^269890
+ ;;^UTILITY(U,$J,358.3,23266,0)
+ ;;=J35.3^^78^1004^1
+ ;;^UTILITY(U,$J,358.3,23266,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,23007,1,3,0)
- ;;=3^Postproc Hemor/Hematom,Lt Eye/Adnexa After Ophth Proc
- ;;^UTILITY(U,$J,358.3,23007,1,4,0)
- ;;=4^H59.312
- ;;^UTILITY(U,$J,358.3,23007,2)
- ;;=^5006418
- ;;^UTILITY(U,$J,358.3,23008,0)
- ;;=H59.313^^105^1166^186
- ;;^UTILITY(U,$J,358.3,23008,1,0)
+ ;;^UTILITY(U,$J,358.3,23266,1,3,0)
+ ;;=3^Adenotonsilliar Hypertrophy
+ ;;^UTILITY(U,$J,358.3,23266,1,4,0)
+ ;;=4^J35.3
+ ;;^UTILITY(U,$J,358.3,23266,2)
+ ;;=^5008216
+ ;;^UTILITY(U,$J,358.3,23267,0)
+ ;;=R06.5^^78^1004^17
+ ;;^UTILITY(U,$J,358.3,23267,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,23008,1,3,0)
- ;;=3^Postproc Hemor/Hematom,Bil Eyes/Adnexa After Ophth Proc
- ;;^UTILITY(U,$J,358.3,23008,1,4,0)
- ;;=4^H59.313
- ;;^UTILITY(U,$J,358.3,23008,2)
- ;;=^5006419
- ;;^UTILITY(U,$J,358.3,23009,0)
- ;;=H59.321^^105^1166^205
- ;;^UTILITY(U,$J,358.3,23009,1,0)
+ ;;^UTILITY(U,$J,358.3,23267,1,3,0)
+ ;;=3^Mouth Breathing
+ ;;^UTILITY(U,$J,358.3,23267,1,4,0)
+ ;;=4^R06.5
+ ;;^UTILITY(U,$J,358.3,23267,2)
+ ;;=^5019187
+ ;;^UTILITY(U,$J,358.3,23268,0)
+ ;;=J03.90^^78^1004^74
+ ;;^UTILITY(U,$J,358.3,23268,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,23009,1,3,0)
- ;;=3^Postproc Hemor/Hematom,Rt Eye/Adnexa After Oth Proc
- ;;^UTILITY(U,$J,358.3,23009,1,4,0)
- ;;=4^H59.321
- ;;^UTILITY(U,$J,358.3,23009,2)
- ;;=^5006421
- ;;^UTILITY(U,$J,358.3,23010,0)
- ;;=H59.322^^105^1166^197
- ;;^UTILITY(U,$J,358.3,23010,1,0)
+ ;;^UTILITY(U,$J,358.3,23268,1,3,0)
+ ;;=3^Tonsilitis
+ ;;^UTILITY(U,$J,358.3,23268,1,4,0)
+ ;;=4^J03.90
+ ;;^UTILITY(U,$J,358.3,23268,2)
+ ;;=^5008135
+ ;;^UTILITY(U,$J,358.3,23269,0)
+ ;;=J38.3^^78^1004^78
+ ;;^UTILITY(U,$J,358.3,23269,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,23010,1,3,0)
- ;;=3^Postproc Hemor/Hematom,Lt Eye/Adnexa After Oth Proc
- ;;^UTILITY(U,$J,358.3,23010,1,4,0)
- ;;=4^H59.322
- ;;^UTILITY(U,$J,358.3,23010,2)
- ;;=^5006422
- ;;^UTILITY(U,$J,358.3,23011,0)
- ;;=H95.41^^105^1166^192
- ;;^UTILITY(U,$J,358.3,23011,1,0)
+ ;;^UTILITY(U,$J,358.3,23269,1,3,0)
+ ;;=3^Vocal Cord Dysfunction
+ ;;^UTILITY(U,$J,358.3,23269,1,4,0)
+ ;;=4^J38.3
+ ;;^UTILITY(U,$J,358.3,23269,2)
+ ;;=^269924
+ ;;^UTILITY(U,$J,358.3,23270,0)
+ ;;=R49.0^^78^1004^11
+ ;;^UTILITY(U,$J,358.3,23270,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,23011,1,3,0)
- ;;=3^Postproc Hemor/Hematom,Ear/Mastoid After Ear/Mastoid Proc
- ;;^UTILITY(U,$J,358.3,23011,1,4,0)
- ;;=4^H95.41
- ;;^UTILITY(U,$J,358.3,23011,2)
- ;;=^5007030
- ;;^UTILITY(U,$J,358.3,23012,0)
- ;;=H95.42^^105^1166^193
- ;;^UTILITY(U,$J,358.3,23012,1,0)
+ ;;^UTILITY(U,$J,358.3,23270,1,3,0)
+ ;;=3^Hoarseness
+ ;;^UTILITY(U,$J,358.3,23270,1,4,0)
+ ;;=4^R49.0
+ ;;^UTILITY(U,$J,358.3,23270,2)
+ ;;=^5019501
+ ;;^UTILITY(U,$J,358.3,23271,0)
+ ;;=H60.393^^78^1004^30
+ ;;^UTILITY(U,$J,358.3,23271,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,23012,1,3,0)
- ;;=3^Postproc Hemor/Hematom,Ear/Mastoid After Oth Proc
- ;;^UTILITY(U,$J,358.3,23012,1,4,0)
- ;;=4^H95.42
- ;;^UTILITY(U,$J,358.3,23012,2)
- ;;=^5007031
- ;;^UTILITY(U,$J,358.3,23013,0)
- ;;=I97.610^^105^1166^187
- ;;^UTILITY(U,$J,358.3,23013,1,0)
+ ;;^UTILITY(U,$J,358.3,23271,1,3,0)
+ ;;=3^Otitis Externa Infective,Bilateral
+ ;;^UTILITY(U,$J,358.3,23271,1,4,0)
+ ;;=4^H60.393
+ ;;^UTILITY(U,$J,358.3,23271,2)
+ ;;=^5006461
+ ;;^UTILITY(U,$J,358.3,23272,0)
+ ;;=M25.511^^78^1005^26
+ ;;^UTILITY(U,$J,358.3,23272,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,23013,1,3,0)
- ;;=3^Postproc Hemor/Hematom,Circ Sys After Cardiac Cath
- ;;^UTILITY(U,$J,358.3,23013,1,4,0)
- ;;=4^I97.610
- ;;^UTILITY(U,$J,358.3,23013,2)
- ;;=^5008099
+ ;;^UTILITY(U,$J,358.3,23272,1,3,0)
+ ;;=3^Pain Right Shoulder
+ ;;^UTILITY(U,$J,358.3,23272,1,4,0)
+ ;;=4^M25.511
+ ;;^UTILITY(U,$J,358.3,23272,2)
+ ;;=^5011602
+ ;;^UTILITY(U,$J,358.3,23273,0)
+ ;;=M25.512^^78^1005^20
+ ;;^UTILITY(U,$J,358.3,23273,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,23273,1,3,0)
+ ;;=3^Pain Left Shoulder
+ ;;^UTILITY(U,$J,358.3,23273,1,4,0)
+ ;;=4^M25.512
+ ;;^UTILITY(U,$J,358.3,23273,2)
+ ;;=^5011603
+ ;;^UTILITY(U,$J,358.3,23274,0)
+ ;;=M25.521^^78^1005^22
+ ;;^UTILITY(U,$J,358.3,23274,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,23274,1,3,0)
+ ;;=3^Pain Right Elbow

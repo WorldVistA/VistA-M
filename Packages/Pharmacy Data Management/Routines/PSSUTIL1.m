@@ -1,5 +1,5 @@
 PSSUTIL1 ;BIR/RTR-Utility routine ;08/21/00
- ;;1.0;PHARMACY DATA MANAGEMENT;**38,66,69,166,189**;9/30/97;Build 54
+ ;;1.0;PHARMACY DATA MANAGEMENT;**38,66,69,166,189,255**;9/30/97;Build 2
  ;Reference to ^PS(50.607 supported by DBIA #2221
  ;Reference to ^PSNAPIS supported by DBIA 2531
  ;
@@ -155,7 +155,7 @@ MAXDS(INPUT) ; Returns the Maximum Day Supply to CPRS for a specific Drug or Ord
  I +$G(INPUT("PSOI")) D
  . S DRG=0
  . F  S DRG=$O(^PSDRUG("ASP",+INPUT("PSOI"),DRG)) Q:'DRG  D
- . . S DRGMAXDS=$$MXDAYSUP(DRG) I DRGMAXDS>MAXDS S MAXDS=DRGMAXDS
+ . . S DRGMAXDS=$$MXDAYSUP(DRG) I DRGMAXDS<MAXDS S MAXDS=DRGMAXDS ;p255 '<' replaces '>'
  Q MAXDS
  ;
 MXDAYSUP(DRUG) ; Returns the Maximum Day Supply for the Dispense Drug

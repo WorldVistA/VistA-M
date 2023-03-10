@@ -1,8 +1,8 @@
-SDM1A ;SF/GFT,ALB/TMP,MS/PB - MAKE APPOINTMENT ;JUN 21, 2017
- ;;5.3;Scheduling;**26,94,155,206,168,223,241,263,327,478,446,544,621,622,627,658,665,650,704,694**;Aug 13, 1993;Build 61
+SDM1A ;SF/GFT,ALB/TMP,MS/PB - MAKE APPOINTMENT ;JUN 29, 2017
+ ;;5.3;Scheduling;**26,94,155,206,168,223,241,263,327,478,446,544,621,622,627,658,665,650,704,694,775,792,809**;Aug 13, 1993;Build 10
  ;
 OK I $D(SDMLT) D ^SDM4 Q:X="^"!(SDMADE=2)
- S ^SC(SC,"ST",$P(SD,"."),1)=S,^DPT(DFN,"S",SD,0)=SC,^SC(SC,"S",SD,0)=SD S:'$D(^DPT(DFN,"S",0)) ^(0)="^2.98P^^" S:'$D(^SC(SC,"S",0)) ^(0)="^44.001DA^^" L
+ S ^SC(SC,"ST",$P(SD,"."),1)=S,^DPT(DFN,"S",SD,0)=SC,^SC(SC,"S",SD,0)=SD S:'$D(^DPT(DFN,"S",0)) ^(0)="^2.98P^^" S:'$D(^SC(SC,"S",0)) ^(0)="^44.001DA^^" L -^SC(SC,"ST",$P(SD,"."),1)
 S1 L +^SC(SC,"S",SD,1):$G(DILOCKTM,5) W:'$T "Another user is editing this record.  Trying again.",! G:'$T S1 F SDY=1:1 I '$D(^SC(SC,"S",SD,1,SDY)) S:'$D(^(0)) ^(0)="^44.003PA^^" S ^(SDY,0)=DFN_U_(+SL)_"^^^^"_$G(DUZ)_U_DT L -^SC(SC,"S",SD,1) Q
  I SM S ^("OB")="O" ;NAKED REFERENCE - ^SC(IFN,"S",Date,1,SDY,"OB")
  I $D(^SC(SC,"RAD")),^("RAD")="Y"!(^("RAD")=1) S ^SC("ARAD",SC,SD,DFN)=""
@@ -48,7 +48,7 @@ EWLCHK ;check if patient has any open EWL entries (SD/372)
  I $G(CNSLTLNK)="",SDWL="" S SDREC=$$RECALL^SDECUTL(DFN,SD,SDSC)  ;check if recall appt
  I SDWL="",$G(CNSLTLNK)="",SDREC="" S SDECAR=$$SDWLA(DFN,SD,SDSC,SDDATE,$G(SDAPTYP),$G(SDECANS))  ;alb/sat 665 add SDECANS
  K SDECANS
- S SDRES=$$GETRES^SDECUTL(SC)
+ S SDRES=$$GETRES^SDECUTL(SC,1)
  S SDAPTYP=$G(SDAPTYP) S:SDAPTYP="" SDAPTYP=$$GET1^DIQ(44,SC_",",2507,"I")
  ;alb/sat 658 - moved below OTHER INFO prompt to store in NOTE field of 409.84
  ;D SDECADD^SDEC07(SD,$$FMADD^XLFDT(SD,,,+SL),DFN,SDRES,0,SDDATE,"",$S(+SDWL:"E|"_SDWL,+$G(CNSLTLNK):"C|"_CNSLTLNK,+SDREC:"R|"_SDREC,+SDECAR:"A|"_SDECAR,1:""),,SC,,,,SDAPTYP) ;ADD SDEC APPOINTMENT ENTRY
@@ -108,7 +108,8 @@ OTHER R !,"  OTHER INFO: ",D:DTIME I D["^" W !,*7,"'^' not allowed - hit return 
  I $L($G(^SC(SC,"S",SD,1,SDY,0)))+$L(D)+$L(DT)+$S($D(DUZ):$L(DUZ),1:0)>250 D MSG^SDMM G OTHER  ; sd/446
  ;S $P(^(0),"^",4)=D,$P(^(0),U,6,7)=$S($D(DUZ):DUZ,1:"")_U_DT ;NAKED REFERENCE - ^SC(IFN,"S",Date,1,SDY,0)
  S $P(^(0),"^",4)=D ;NAKED REFERENCE - ^SC(IFN,"S",Date,1,SDY,0) 544 moved DUZ&DT to tag S1.
- S:$G(SL)="" SL=$G(^SC(+SC,"SL"))   ;alb/sat 658 - SL gets killed in SDM3 if 'WANT PATIENT NOTIFIED OF LAB,X-RAY, OR EKG STOPS' is answered with Y
+ ; SD*775 add SDSLSV to be evaluated
+ S:$G(SL)="" SL=$S($D(SDSLSV):SDSLSV,1:$G(^SC(+SC,"SL")))   ;alb/sat 658 - SL gets killed in SDM3 if 'WANT PATIENT NOTIFIED OF LAB,X-RAY, OR EKG STOPS' is answered with Y
  D SDECADD^SDEC07(SD,$$FMADD^XLFDT(SD,,,+SL),DFN,SDRES,0,SDDATE,"",$S(+SDWL:"E|"_SDWL,+$G(CNSLTLNK):"C|"_CNSLTLNK,+SDREC:"R|"_SDREC,+SDECAR:"A|"_SDECAR,1:""),,SC,$G(D),,,SDAPTYP) ;ADD SDEC APPOINTMENT ENTRY  ;alb/sat 658 moved from above
  D:$D(TMP) LINK^SDCNSLT(SC,SDY,SD,CNSLTLNK) ;SD/478
  D:$D(TMP) EDITCS^SDCNSLT(SD,TMPD,TMPYCLNC,CNSLTLNK) ;SD/478
@@ -306,6 +307,7 @@ SDWLA(DFN,SD,SDSC,SDDATE,SDAPTYP,SDECANS)  ;add SDEC APPT REQUEST entry  ;alb/sa
  S INP(1)=SDARIEN
  S INP(2)="REMOVED/SCHEDULED-ASSIGNED"
  S INP(3)=DUZ
- S INP(4)=$P(SD,".",1)
+ ;S INP(4)=$P(SD,".",1) ;SD_53_809 - commenting this code since this is not the correct disposition date
+ S INP(4)=$$NETTOFM^SDECDATE($P($G(SDECINP(3)),"@"),"N","N") ;SD_53_809 - date of disposition should be the same to the create date
  D ARCLOSE1^SDEC(.SDWLRET,.INP)
  Q SDARIEN

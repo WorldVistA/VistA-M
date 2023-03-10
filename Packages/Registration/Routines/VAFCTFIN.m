@@ -1,6 +1,8 @@
-VAFCTFIN ;BIR/DR-TREATING FACILTIY MFU PROCESSING ROUTINE ; 1/13/12 5:47pm
- ;;5.3;Registration;**428,474,520,639,707,800,821,837,863**;Aug 13, 1993;Build 2
+VAFCTFIN ;BIR/DR-TREATING FACILTIY MFU PROCESSING ROUTINE ;4/29/21  12:57
+ ;;5.3;Registration;**428,474,520,639,707,800,821,837,863,1013,1042,1050**;Aug 13, 1993;Build 2
  ;Reference to EXC, START, and STOP^RGHLLOG supported by IA #2796
+ ;Reference to GETDFN^MPIF001 supported by IA #2701
+ ;Reference to MPILINK^MPIFAPI supported by IA #2702
  ;
 IN ;This entry point is used to process the Treating Facility Master File Update Message.
  ;It is called by the VAFC MFN-M05 CLIENT processing routine when a MFN
@@ -31,8 +33,20 @@ INIT ;Process in the Treating Facility MFN msg
  .S SG=$E(HLNODE,1,3)
  .I SG="MFE" D MFE(.MSG) Q
  .D PICK
- ;reconcil the inbound TF list from the MPI to the local TF list
- D RECONCIL
+ ;
+ ;**1042, VAMPI-8215 (dri)
+ ;**1050, VAMPI-9501 (dri)
+ ;If the icn in the tf update is NOT known to the Patient (#2) file then
+ ;we know we're dealing with a tf update for someone who is ONLY known to
+ ;New Person (#200) file so we file their inbound tf list in the New Person
+ ;Treating Facility List (#391.92) file instead of the Treating Facility
+ ;List (#391.91) file.
+ ;If this New Person later also becomes a Patient then the tf list is
+ ;deleted from #391.92 and the incoming tf list is filed into #391.91.
+ I $$GETDFN^MPIF001(ICN)<0 D EN^VAFCTFNP(.MFI,.MFA) ;file tf list into #391.92
+ I $$GETDFN^MPIF001(ICN)>0,$O(^DGCN(391.92,"AISS",ICN,"NI","USVHA",$$IEN^XUAF4("200M"),0)) D CLEANUP^VAFCTFNP(ICN) ;delete tf list from #391.92
+ I '$D(MFA) D RECONCIL ;file tf list into #391.91
+ ;
  ;create response message
  S CNT=1
  S HLA("HLA",1)="MSA"_HL("FS")_"AA"_HL("FS")_HL("MID")_HL("FS") S CNT=CNT+1
@@ -133,7 +147,8 @@ RSP ;response process logic entry point
 ROUTE ;routing logic entry point
  N MPI
  S MPI=$$MPILINK^MPIFAPI() D
- .I $P($G(MPI),U)'=-1 S HLL("LINKS",1)="VAFC MFN-M05 CLIENT"_"^"_MPI
+ .;**1013 - Story - 1260465 (ckn) - Include 200M in HLL links for HAC
+ .I $P($G(MPI),U)'=-1 S HLL("LINKS",1)="VAFC MFN-M05 CLIENT"_"^"_MPI_$S($P($$SITE^VASITE(),"^",3)=741:"^200M",1:"")
  .I $P($G(MPI),U)=-1 D
  .. N RGLOG D START^RGHLLOG(HLMTIEN,"","")
  .. D EXC^RGHLLOG(224,"No MPI link identified in CIRN SITE PARAMETER file (#991.8)",$G(PDFN))

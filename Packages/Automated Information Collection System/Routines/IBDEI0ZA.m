@@ -1,120 +1,132 @@
-IBDEI0ZA ; ; 04-FEB-2020
- ;;3.0;IB ENCOUNTER FORM IMP/EXP;;FEB 04, 2020
+IBDEI0ZA ; ; 01-FEB-2022
+ ;;3.0;IB ENCOUNTER FORM IMP/EXP;;FEB 01, 2022
  Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,999) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
- ;;^UTILITY(U,$J,358.3,15743,1,4,0)
- ;;=4^I70.331
- ;;^UTILITY(U,$J,358.3,15743,2)
- ;;=^5007626
- ;;^UTILITY(U,$J,358.3,15744,0)
- ;;=I70.332^^88^869^52
- ;;^UTILITY(U,$J,358.3,15744,1,0)
+ ;;^UTILITY(U,$J,358.3,15929,0)
+ ;;=L70.3^^61^765^6
+ ;;^UTILITY(U,$J,358.3,15929,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,15744,1,3,0)
- ;;=3^Athscl Bypass of Right Leg w/ Ulcer of Calf
- ;;^UTILITY(U,$J,358.3,15744,1,4,0)
- ;;=4^I70.332
- ;;^UTILITY(U,$J,358.3,15744,2)
- ;;=^5007627
- ;;^UTILITY(U,$J,358.3,15745,0)
- ;;=I70.333^^88^869^53
- ;;^UTILITY(U,$J,358.3,15745,1,0)
+ ;;^UTILITY(U,$J,358.3,15929,1,3,0)
+ ;;=3^Acne Tropica
+ ;;^UTILITY(U,$J,358.3,15929,1,4,0)
+ ;;=4^L70.3
+ ;;^UTILITY(U,$J,358.3,15929,2)
+ ;;=^5009270
+ ;;^UTILITY(U,$J,358.3,15930,0)
+ ;;=L70.5^^61^765^3
+ ;;^UTILITY(U,$J,358.3,15930,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,15745,1,3,0)
- ;;=3^Athscl Bypass of Right Leg w/ Ulcer of Ankle
- ;;^UTILITY(U,$J,358.3,15745,1,4,0)
- ;;=4^I70.333
- ;;^UTILITY(U,$J,358.3,15745,2)
- ;;=^5007628
- ;;^UTILITY(U,$J,358.3,15746,0)
- ;;=I70.334^^88^869^54
- ;;^UTILITY(U,$J,358.3,15746,1,0)
+ ;;^UTILITY(U,$J,358.3,15930,1,3,0)
+ ;;=3^Acne Excoriee des Jeunes Filles
+ ;;^UTILITY(U,$J,358.3,15930,1,4,0)
+ ;;=4^L70.5
+ ;;^UTILITY(U,$J,358.3,15930,2)
+ ;;=^5009272
+ ;;^UTILITY(U,$J,358.3,15931,0)
+ ;;=L70.8^^61^765^5
+ ;;^UTILITY(U,$J,358.3,15931,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,15746,1,3,0)
- ;;=3^Athscl Bypass of Right Leg w/ Ulcer of Heel/Midfoot
- ;;^UTILITY(U,$J,358.3,15746,1,4,0)
- ;;=4^I70.334
- ;;^UTILITY(U,$J,358.3,15746,2)
- ;;=^5007629
- ;;^UTILITY(U,$J,358.3,15747,0)
- ;;=I70.335^^88^869^55
- ;;^UTILITY(U,$J,358.3,15747,1,0)
+ ;;^UTILITY(U,$J,358.3,15931,1,3,0)
+ ;;=3^Acne NEC
+ ;;^UTILITY(U,$J,358.3,15931,1,4,0)
+ ;;=4^L70.8
+ ;;^UTILITY(U,$J,358.3,15931,2)
+ ;;=^87239
+ ;;^UTILITY(U,$J,358.3,15932,0)
+ ;;=L70.9^^61^765^8
+ ;;^UTILITY(U,$J,358.3,15932,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,15747,1,3,0)
- ;;=3^Athscl Bypass of Right Leg w/ Ulcer of Oth Part of Foot
- ;;^UTILITY(U,$J,358.3,15747,1,4,0)
- ;;=4^I70.335
- ;;^UTILITY(U,$J,358.3,15747,2)
- ;;=^5007630
- ;;^UTILITY(U,$J,358.3,15748,0)
- ;;=I70.341^^88^869^50
- ;;^UTILITY(U,$J,358.3,15748,1,0)
+ ;;^UTILITY(U,$J,358.3,15932,1,3,0)
+ ;;=3^Acne,Unspec
+ ;;^UTILITY(U,$J,358.3,15932,1,4,0)
+ ;;=4^L70.9
+ ;;^UTILITY(U,$J,358.3,15932,2)
+ ;;=^5009273
+ ;;^UTILITY(U,$J,358.3,15933,0)
+ ;;=L71.0^^61^765^273
+ ;;^UTILITY(U,$J,358.3,15933,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,15748,1,3,0)
- ;;=3^Athscl Bypass of Left Leg w/ Ulcer of Thigh
- ;;^UTILITY(U,$J,358.3,15748,1,4,0)
- ;;=4^I70.341
- ;;^UTILITY(U,$J,358.3,15748,2)
- ;;=^5007633
- ;;^UTILITY(U,$J,358.3,15749,0)
- ;;=I70.342^^88^869^47
- ;;^UTILITY(U,$J,358.3,15749,1,0)
+ ;;^UTILITY(U,$J,358.3,15933,1,3,0)
+ ;;=3^Perioral Dermatitis
+ ;;^UTILITY(U,$J,358.3,15933,1,4,0)
+ ;;=4^L71.0
+ ;;^UTILITY(U,$J,358.3,15933,2)
+ ;;=^5009274
+ ;;^UTILITY(U,$J,358.3,15934,0)
+ ;;=L71.1^^61^765^299
+ ;;^UTILITY(U,$J,358.3,15934,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,15749,1,3,0)
- ;;=3^Athscl Bypass of Left Leg w/ Ulcer of Calf
- ;;^UTILITY(U,$J,358.3,15749,1,4,0)
- ;;=4^I70.342
- ;;^UTILITY(U,$J,358.3,15749,2)
- ;;=^5007634
- ;;^UTILITY(U,$J,358.3,15750,0)
- ;;=I70.343^^88^869^46
- ;;^UTILITY(U,$J,358.3,15750,1,0)
+ ;;^UTILITY(U,$J,358.3,15934,1,3,0)
+ ;;=3^Rhinophyma
+ ;;^UTILITY(U,$J,358.3,15934,1,4,0)
+ ;;=4^L71.1
+ ;;^UTILITY(U,$J,358.3,15934,2)
+ ;;=^106083
+ ;;^UTILITY(U,$J,358.3,15935,0)
+ ;;=L71.8^^61^765^300
+ ;;^UTILITY(U,$J,358.3,15935,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,15750,1,3,0)
- ;;=3^Athscl Bypass of Left Leg w/ Ulcer of Ankle
- ;;^UTILITY(U,$J,358.3,15750,1,4,0)
- ;;=4^I70.343
- ;;^UTILITY(U,$J,358.3,15750,2)
- ;;=^5007635
- ;;^UTILITY(U,$J,358.3,15751,0)
- ;;=I70.344^^88^869^48
- ;;^UTILITY(U,$J,358.3,15751,1,0)
+ ;;^UTILITY(U,$J,358.3,15935,1,3,0)
+ ;;=3^Rosacea NEC
+ ;;^UTILITY(U,$J,358.3,15935,1,4,0)
+ ;;=4^L71.8
+ ;;^UTILITY(U,$J,358.3,15935,2)
+ ;;=^5009275
+ ;;^UTILITY(U,$J,358.3,15936,0)
+ ;;=L71.9^^61^765^301
+ ;;^UTILITY(U,$J,358.3,15936,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,15751,1,3,0)
- ;;=3^Athscl Bypass of Left Leg w/ Ulcer of Heel/Midfoot
- ;;^UTILITY(U,$J,358.3,15751,1,4,0)
- ;;=4^I70.344
- ;;^UTILITY(U,$J,358.3,15751,2)
- ;;=^5007636
- ;;^UTILITY(U,$J,358.3,15752,0)
- ;;=I70.345^^88^869^49
- ;;^UTILITY(U,$J,358.3,15752,1,0)
+ ;;^UTILITY(U,$J,358.3,15936,1,3,0)
+ ;;=3^Rosacea,Unspec
+ ;;^UTILITY(U,$J,358.3,15936,1,4,0)
+ ;;=4^L71.9
+ ;;^UTILITY(U,$J,358.3,15936,2)
+ ;;=^5009276
+ ;;^UTILITY(U,$J,358.3,15937,0)
+ ;;=L72.0^^61^765^145
+ ;;^UTILITY(U,$J,358.3,15937,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,15752,1,3,0)
- ;;=3^Athscl Bypass of Left Leg w/ Ulcer of Oth Part of Foot
- ;;^UTILITY(U,$J,358.3,15752,1,4,0)
- ;;=4^I70.345
- ;;^UTILITY(U,$J,358.3,15752,2)
- ;;=^5007637
- ;;^UTILITY(U,$J,358.3,15753,0)
- ;;=I70.431^^88^869^41
- ;;^UTILITY(U,$J,358.3,15753,1,0)
+ ;;^UTILITY(U,$J,358.3,15937,1,3,0)
+ ;;=3^Epidermal Cyst
+ ;;^UTILITY(U,$J,358.3,15937,1,4,0)
+ ;;=4^L72.0
+ ;;^UTILITY(U,$J,358.3,15937,2)
+ ;;=^5009277
+ ;;^UTILITY(U,$J,358.3,15938,0)
+ ;;=L72.12^^61^765^325
+ ;;^UTILITY(U,$J,358.3,15938,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,15753,1,3,0)
- ;;=3^Athscl Autol Vein Bypass of Right Leg w/ Ulcer of Thigh
- ;;^UTILITY(U,$J,358.3,15753,1,4,0)
- ;;=4^I70.431
- ;;^UTILITY(U,$J,358.3,15753,2)
- ;;=^5007664
- ;;^UTILITY(U,$J,358.3,15754,0)
- ;;=I70.432^^88^869^42
- ;;^UTILITY(U,$J,358.3,15754,1,0)
+ ;;^UTILITY(U,$J,358.3,15938,1,3,0)
+ ;;=3^Trichodermal Cyst
+ ;;^UTILITY(U,$J,358.3,15938,1,4,0)
+ ;;=4^L72.12
+ ;;^UTILITY(U,$J,358.3,15938,2)
+ ;;=^5009279
+ ;;^UTILITY(U,$J,358.3,15939,0)
+ ;;=L72.2^^61^765^310
+ ;;^UTILITY(U,$J,358.3,15939,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,15754,1,3,0)
- ;;=3^Athscl Autol Vein Bypass of Right Leg w/ Ulcer of Calf
- ;;^UTILITY(U,$J,358.3,15754,1,4,0)
- ;;=4^I70.432
- ;;^UTILITY(U,$J,358.3,15754,2)
- ;;=^5007665
- ;;^UTILITY(U,$J,358.3,15755,0)
- ;;=I70.433^^88^869^43
+ ;;^UTILITY(U,$J,358.3,15939,1,3,0)
+ ;;=3^Steatocystoma Multiplex
+ ;;^UTILITY(U,$J,358.3,15939,1,4,0)
+ ;;=4^L72.2
+ ;;^UTILITY(U,$J,358.3,15939,2)
+ ;;=^5009280
+ ;;^UTILITY(U,$J,358.3,15940,0)
+ ;;=L72.8^^61^765^154
+ ;;^UTILITY(U,$J,358.3,15940,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,15940,1,3,0)
+ ;;=3^Follicular Cysts of Skin/Subcutaneous Tissue NEC
+ ;;^UTILITY(U,$J,358.3,15940,1,4,0)
+ ;;=4^L72.8
+ ;;^UTILITY(U,$J,358.3,15940,2)
+ ;;=^5009282
+ ;;^UTILITY(U,$J,358.3,15941,0)
+ ;;=L72.9^^61^765^155
+ ;;^UTILITY(U,$J,358.3,15941,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,15941,1,3,0)
+ ;;=3^Follicular Cysts of Skin/Subcutaneous Tissue,Unspec
+ ;;^UTILITY(U,$J,358.3,15941,1,4,0)
+ ;;=4^L72.9

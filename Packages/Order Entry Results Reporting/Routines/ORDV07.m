@@ -1,6 +1,6 @@
-ORDV07 ;SLC/DAN/KER - OE/RR Report extracts ; 01/09/2003
- ;;3.0;ORDER ENTRY/RESULTS REPORTING;**109,120,159**;Dec 17,1997
- ; 
+ORDV07 ;SLC/DAN/KER - OE/RR Report extracts ;Dec 29, 2021@11:43
+ ;;3.0;ORDER ENTRY/RESULTS REPORTING;**109,120,159,558**;Dec 17,1997;Build 15
+ ;
  ; External References
  ;   DBIA  10112  $$SITE^VASITE
  ;   DBIA  10061  4^VADPT
@@ -13,7 +13,7 @@ ORDV07 ;SLC/DAN/KER - OE/RR Report extracts ; 01/09/2003
  ;   DBIA    418  ^DGPT("B"
  ;   DBIA    794  ^DIC(36,
  ;   DBIA    951  ^IBE(355.1,
- ;                    
+ ;
  ;Dietetics components
 DIETA(ROOT,ORALPHA,OROMEGA,ORMAX,ORDBEG,ORDEND,OREXT) ;All diet
  N ORTYPE S ORTYPE="DI" D DIET Q
@@ -62,7 +62,7 @@ DEM(ROOT,ORALPHA,OROMEGA,ORMAX,ORDBEG,ORDEND,OREXT) ; ADT Demographics
  N VADM,VAPA,VAOA,ORSITE,SITE,I,ORDAT,ORETHN,ORRACE S (ORETHN,ORRACE)=""
  K ^TMP("ORDATA",$J)
  D 4^VADPT,OAD^VADPT
- ; Quit if error in data gathering, otherwise get 
+ ; Quit if error in data gathering, otherwise get
  ; demographic/address information as well as next
  ; of kin addres
  Q:VAERR
@@ -74,49 +74,51 @@ DEM(ROOT,ORALPHA,OROMEGA,ORMAX,ORDBEG,ORDEND,OREXT) ; ADT Demographics
  S ^TMP("ORDATA",$J,1,"WP",2)="2^"_VADM(1)
  ;  3  SSN
  S ^TMP("ORDATA",$J,1,"WP",3)="3^"_$P(VADM(2),"^")
- ;  4  Sex
+ ;  4  Birth Sex
  S ^TMP("ORDATA",$J,1,"WP",4)="4^"_$P(VADM(5),"^",2)
- ;  5  Date of Birth
- S ^TMP("ORDATA",$J,1,"WP",5)="5^"_$$DATE^ORDVU($P(VADM(3),"^"))
- ;  6  Religion
- S ^TMP("ORDATA",$J,1,"WP",6)="6^"_$P(VADM(9),"^",2)
- ;  7  Marital Status
- S ^TMP("ORDATA",$J,1,"WP",7)="7^"_$P(VADM(10),"^",2)
- ;  8  Phone Number
- S ^TMP("ORDATA",$J,1,"WP",8)="8^"_VAPA(8)
- ;  9  Street Address (1-3), City, State, and ZIP
- S ^TMP("ORDATA",$J,1,"WP",9,1)="9^"_VAPA(1) I $P(^(1),"^",2)="" K ^(1)
- S ^TMP("ORDATA",$J,1,"WP",9,2)="9^"_VAPA(2) I $P(^(2),"^",2)="" K ^(2)
- S ^TMP("ORDATA",$J,1,"WP",9,3)="9^"_VAPA(3) I $P(^(3),"^",2)="" K ^(3)
- S ^TMP("ORDATA",$J,1,"WP",9,4)="9^"_VAPA(4)_$S($G(VAPA(4))'="":", ",1:"")_$P(VAPA(5),"^",2)_" "_VAPA(6)
- ; 11  Ethnicity
+ ;  5  Self identified gender identity (SIGI)
+ S ^TMP("ORDATA",$J,1,"WP",5)="5^"_$$UP^XLFSTR($P($$GET1^DIQ(2,DFN,.024,"E"),"/"))
+ ;  6  Date of Birth
+ S ^TMP("ORDATA",$J,1,"WP",6)="6^"_$$DATE^ORDVU($P(VADM(3),"^"))
+ ;  7  Religion
+ S ^TMP("ORDATA",$J,1,"WP",7)="7^"_$P(VADM(9),"^",2)
+ ;  8  Marital Status
+ S ^TMP("ORDATA",$J,1,"WP",8)="8^"_$P(VADM(10),"^",2)
+ ;  9  Phone Number
+ S ^TMP("ORDATA",$J,1,"WP",9)="9^"_VAPA(8)
+ ;  10  Street Address (1-3), City, State, and ZIP
+ S ^TMP("ORDATA",$J,1,"WP",10,1)="10^"_VAPA(1) I $P(^(1),"^",2)="" K ^(1)
+ S ^TMP("ORDATA",$J,1,"WP",10,2)="10^"_VAPA(2) I $P(^(2),"^",2)="" K ^(2)
+ S ^TMP("ORDATA",$J,1,"WP",10,3)="10^"_VAPA(3) I $P(^(3),"^",2)="" K ^(3)
+ S ^TMP("ORDATA",$J,1,"WP",10,4)="10^"_VAPA(4)_$S($G(VAPA(4))'="":", ",1:"")_$P(VAPA(5),"^",2)_" "_VAPA(6)
+ ; 12  Ethnicity
  S I=0 F  S I=$O(VADM(11,I)) Q:+I=0  D
  . S ORDAT=$P(VADM(11,I),"^",2) Q:'$L(ORDAT)
  . S ORETHN=$G(ORETHN)_", "_ORDAT
- . S ^TMP("ORDATA",$J,1,"WP",11,I)="11^"_ORDAT
- ; 10  Race
- S:$L(ORETHN) ^TMP("ORDATA",$J,1,"WP",10,1)="10^"
+ . S ^TMP("ORDATA",$J,1,"WP",12,I)="12^"_ORDAT
+ ; 11  Race
+ S:$L(ORETHN) ^TMP("ORDATA",$J,1,"WP",11,1)="11^"
  S I=0 F  S I=$O(VADM(12,I)) Q:+I=0  D
  . S ORDAT=$P($G(VADM(12,I)),"^",2) Q:'$L(ORDAT)
  . S ORRACE=$G(ORRACE)_", "_ORDAT
- . S ^TMP("ORDATA",$J,1,"WP",10,I)="10^"_ORDAT
+ . S ^TMP("ORDATA",$J,1,"WP",11,I)="11^"_ORDAT
  S ORRACE=$P(ORRACE,", ",2,$L(ORRACE,", "))
- I '$L($P($G(^TMP("ORDATA",$J,1,"WP",11,1)),"^",2)) D
- . I '$L($P($G(^TMP("ORDATA",$J,1,"WP",10,1)),"^",2)) D
- . . S ^TMP("ORDATA",$J,1,"WP",11,1)="11^"
- . . S ^TMP("ORDATA",$J,1,"WP",10,1)="10^"_$P($G(VADM(8)),"^",2)
+ I '$L($P($G(^TMP("ORDATA",$J,1,"WP",12,1)),"^",2)) D
+ . I '$L($P($G(^TMP("ORDATA",$J,1,"WP",11,1)),"^",2)) D
+ . . S ^TMP("ORDATA",$J,1,"WP",12,1)="12^"
+ . . S ^TMP("ORDATA",$J,1,"WP",11,1)="11^"_$P($G(VADM(8)),"^",2)
  S ORETHN=$P(ORETHN,", ",2,$L(ORETHN,", "))
- ; 12  Next of Kin
- S ^TMP("ORDATA",$J,1,"WP",12)="12^"_VAOA(9)
+ ; 13  Next of Kin
+ S ^TMP("ORDATA",$J,1,"WP",13)="13^"_VAOA(9)
  ; 13  Next of Kin Relationship
- S ^TMP("ORDATA",$J,1,"WP",13)="13^"_VAOA(10)
+ S ^TMP("ORDATA",$J,1,"WP",14)="14^"_VAOA(10)
  ; 14  NOK Street Address (1-3), City, State, and ZIP
- S ^TMP("ORDATA",$J,1,"WP",14,1)="14^"_VAOA(1) I $P(^(1),"^",2)="" K ^(1)
- S ^TMP("ORDATA",$J,1,"WP",14,2)="14^"_VAOA(2) I $P(^(2),"^",2)="" K ^(2)
- S ^TMP("ORDATA",$J,1,"WP",14,3)="14^"_VAOA(3) I $P(^(3),"^",2)=""
- S ^TMP("ORDATA",$J,1,"WP",14,4)="14^"_VAOA(4)_$S($G(VAOA(4))'="":", ",1:"")_$P(VAOA(5),"^",2)_" "_VAOA(6)
+ S ^TMP("ORDATA",$J,1,"WP",15,1)="15^"_VAOA(1) I $P(^(1),"^",2)="" K ^(1)
+ S ^TMP("ORDATA",$J,1,"WP",15,2)="15^"_VAOA(2) I $P(^(2),"^",2)="" K ^(2)
+ S ^TMP("ORDATA",$J,1,"WP",15,3)="15^"_VAOA(3) I $P(^(3),"^",2)=""
+ S ^TMP("ORDATA",$J,1,"WP",15,4)="15^"_VAOA(4)_$S($G(VAOA(4))'="":", ",1:"")_$P(VAOA(5),"^",2)_" "_VAOA(6)
  ; 15  Security Log
- S ^TMP("ORDATA",$J,1,"WP",15)="15^"_$S($P($G(^DGSL(38.1,DFN,0)),"^",2):"YES",1:"NO")
+ S ^TMP("ORDATA",$J,1,"WP",16)="16^"_$S($P($G(^DGSL(38.1,DFN,0)),"^",2):"YES",1:"NO")
  S ROOT=$NA(^TMP("ORDATA",$J))
  Q
 ICDSUR(ROOT,ORALPHA,OROMEGA,ORMAX,ORDBEG,ORDEND,OREXT) ;Return ICD Surgery Information

@@ -1,130 +1,126 @@
-IBDEI11S ; ; 04-FEB-2020
- ;;3.0;IB ENCOUNTER FORM IMP/EXP;;FEB 04, 2020
+IBDEI11S ; ; 01-FEB-2022
+ ;;3.0;IB ENCOUNTER FORM IMP/EXP;;FEB 01, 2022
  Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,999) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
- ;;^UTILITY(U,$J,358.3,16840,2)
- ;;=^5015694
- ;;^UTILITY(U,$J,358.3,16841,0)
- ;;=N70.91^^88^881^75
- ;;^UTILITY(U,$J,358.3,16841,1,0)
+ ;;^UTILITY(U,$J,358.3,17027,1,3,0)
+ ;;=3^Rheumatoid Arthritis of Left Knee
+ ;;^UTILITY(U,$J,358.3,17027,1,4,0)
+ ;;=4^M05.762
+ ;;^UTILITY(U,$J,358.3,17027,2)
+ ;;=^5010017
+ ;;^UTILITY(U,$J,358.3,17028,0)
+ ;;=M05.771^^61^781^155
+ ;;^UTILITY(U,$J,358.3,17028,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,16841,1,3,0)
- ;;=3^Salpingitis,Unspec
- ;;^UTILITY(U,$J,358.3,16841,1,4,0)
- ;;=4^N70.91
- ;;^UTILITY(U,$J,358.3,16841,2)
- ;;=^5015806
- ;;^UTILITY(U,$J,358.3,16842,0)
- ;;=N70.93^^88^881^74
- ;;^UTILITY(U,$J,358.3,16842,1,0)
+ ;;^UTILITY(U,$J,358.3,17028,1,3,0)
+ ;;=3^Rheumatoid Arthritis of Right Ankle
+ ;;^UTILITY(U,$J,358.3,17028,1,4,0)
+ ;;=4^M05.771
+ ;;^UTILITY(U,$J,358.3,17028,2)
+ ;;=^5010019
+ ;;^UTILITY(U,$J,358.3,17029,0)
+ ;;=M05.772^^61^781^148
+ ;;^UTILITY(U,$J,358.3,17029,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,16842,1,3,0)
- ;;=3^Salpingitis & Oophoritis,Unspec
- ;;^UTILITY(U,$J,358.3,16842,1,4,0)
- ;;=4^N70.93
- ;;^UTILITY(U,$J,358.3,16842,2)
- ;;=^5015808
- ;;^UTILITY(U,$J,358.3,16843,0)
- ;;=N70.92^^88^881^55
- ;;^UTILITY(U,$J,358.3,16843,1,0)
+ ;;^UTILITY(U,$J,358.3,17029,1,3,0)
+ ;;=3^Rheumatoid Arthritis of Left Ankle
+ ;;^UTILITY(U,$J,358.3,17029,1,4,0)
+ ;;=4^M05.772
+ ;;^UTILITY(U,$J,358.3,17029,2)
+ ;;=^5010020
+ ;;^UTILITY(U,$J,358.3,17030,0)
+ ;;=M05.79^^61^781^154
+ ;;^UTILITY(U,$J,358.3,17030,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,16843,1,3,0)
- ;;=3^Oophoritis,Unspec
- ;;^UTILITY(U,$J,358.3,16843,1,4,0)
- ;;=4^N70.92
- ;;^UTILITY(U,$J,358.3,16843,2)
- ;;=^5015807
- ;;^UTILITY(U,$J,358.3,16844,0)
- ;;=N73.9^^88^881^37
- ;;^UTILITY(U,$J,358.3,16844,1,0)
+ ;;^UTILITY(U,$J,358.3,17030,1,3,0)
+ ;;=3^Rheumatoid Arthritis of Multiple Sites
+ ;;^UTILITY(U,$J,358.3,17030,1,4,0)
+ ;;=4^M05.79
+ ;;^UTILITY(U,$J,358.3,17030,2)
+ ;;=^5010022
+ ;;^UTILITY(U,$J,358.3,17031,0)
+ ;;=M06.00^^61^781^161
+ ;;^UTILITY(U,$J,358.3,17031,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,16844,1,3,0)
- ;;=3^Inflammatory Disease Female Pelvic,Unspec
- ;;^UTILITY(U,$J,358.3,16844,1,4,0)
- ;;=4^N73.9
- ;;^UTILITY(U,$J,358.3,16844,2)
- ;;=^5015820
- ;;^UTILITY(U,$J,358.3,16845,0)
- ;;=A56.11^^88^881^36
- ;;^UTILITY(U,$J,358.3,16845,1,0)
+ ;;^UTILITY(U,$J,358.3,17031,1,3,0)
+ ;;=3^Rheumatoid Arthritis w/o Rhematoid Factor,Unspec Site
+ ;;^UTILITY(U,$J,358.3,17031,1,4,0)
+ ;;=4^M06.00
+ ;;^UTILITY(U,$J,358.3,17031,2)
+ ;;=^5010047
+ ;;^UTILITY(U,$J,358.3,17032,0)
+ ;;=M06.30^^61^781^164
+ ;;^UTILITY(U,$J,358.3,17032,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,16845,1,3,0)
- ;;=3^Inflammatory Disease Chlamydial Female Pelvic
- ;;^UTILITY(U,$J,358.3,16845,1,4,0)
- ;;=4^A56.11
- ;;^UTILITY(U,$J,358.3,16845,2)
- ;;=^5000342
- ;;^UTILITY(U,$J,358.3,16846,0)
- ;;=N73.5^^88^881^64
- ;;^UTILITY(U,$J,358.3,16846,1,0)
+ ;;^UTILITY(U,$J,358.3,17032,1,3,0)
+ ;;=3^Rheumatoid Nodule,Unspec Site
+ ;;^UTILITY(U,$J,358.3,17032,1,4,0)
+ ;;=4^M06.30
+ ;;^UTILITY(U,$J,358.3,17032,2)
+ ;;=^5010096
+ ;;^UTILITY(U,$J,358.3,17033,0)
+ ;;=M06.4^^61^781^51
+ ;;^UTILITY(U,$J,358.3,17033,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,16846,1,3,0)
- ;;=3^Peritonitis Female Pelvic,Unspec
- ;;^UTILITY(U,$J,358.3,16846,1,4,0)
- ;;=4^N73.5
- ;;^UTILITY(U,$J,358.3,16846,2)
- ;;=^5015817
- ;;^UTILITY(U,$J,358.3,16847,0)
- ;;=N72.^^88^881^35
- ;;^UTILITY(U,$J,358.3,16847,1,0)
+ ;;^UTILITY(U,$J,358.3,17033,1,3,0)
+ ;;=3^Inflammatory Polyarthropathy
+ ;;^UTILITY(U,$J,358.3,17033,1,4,0)
+ ;;=4^M06.4
+ ;;^UTILITY(U,$J,358.3,17033,2)
+ ;;=^5010120
+ ;;^UTILITY(U,$J,358.3,17034,0)
+ ;;=M06.39^^61^781^163
+ ;;^UTILITY(U,$J,358.3,17034,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,16847,1,3,0)
- ;;=3^Inflammatory Disease Cervix Uteri
- ;;^UTILITY(U,$J,358.3,16847,1,4,0)
- ;;=4^N72.
- ;;^UTILITY(U,$J,358.3,16847,2)
- ;;=^5015812
- ;;^UTILITY(U,$J,358.3,16848,0)
- ;;=N76.3^^88^881^92
- ;;^UTILITY(U,$J,358.3,16848,1,0)
+ ;;^UTILITY(U,$J,358.3,17034,1,3,0)
+ ;;=3^Rheumatoid Nodule,Mult Sites
+ ;;^UTILITY(U,$J,358.3,17034,1,4,0)
+ ;;=4^M06.39
+ ;;^UTILITY(U,$J,358.3,17034,2)
+ ;;=^5010119
+ ;;^UTILITY(U,$J,358.3,17035,0)
+ ;;=M15.0^^61^781^127
+ ;;^UTILITY(U,$J,358.3,17035,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,16848,1,3,0)
- ;;=3^Vulvitis,Subacute & Chronic
- ;;^UTILITY(U,$J,358.3,16848,1,4,0)
- ;;=4^N76.3
- ;;^UTILITY(U,$J,358.3,16848,2)
- ;;=^5015829
- ;;^UTILITY(U,$J,358.3,16849,0)
- ;;=N76.1^^88^881^88
- ;;^UTILITY(U,$J,358.3,16849,1,0)
+ ;;^UTILITY(U,$J,358.3,17035,1,3,0)
+ ;;=3^Primary Generalized Osteoarthritis
+ ;;^UTILITY(U,$J,358.3,17035,1,4,0)
+ ;;=4^M15.0
+ ;;^UTILITY(U,$J,358.3,17035,2)
+ ;;=^5010762
+ ;;^UTILITY(U,$J,358.3,17036,0)
+ ;;=M06.9^^61^781^162
+ ;;^UTILITY(U,$J,358.3,17036,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,16849,1,3,0)
- ;;=3^Vaginitis,Subacute & Chronic
- ;;^UTILITY(U,$J,358.3,16849,1,4,0)
- ;;=4^N76.1
- ;;^UTILITY(U,$J,358.3,16849,2)
- ;;=^5015827
- ;;^UTILITY(U,$J,358.3,16850,0)
- ;;=N76.2^^88^881^91
- ;;^UTILITY(U,$J,358.3,16850,1,0)
+ ;;^UTILITY(U,$J,358.3,17036,1,3,0)
+ ;;=3^Rheumatoid Arthritis,Unspec
+ ;;^UTILITY(U,$J,358.3,17036,1,4,0)
+ ;;=4^M06.9
+ ;;^UTILITY(U,$J,358.3,17036,2)
+ ;;=^5010145
+ ;;^UTILITY(U,$J,358.3,17037,0)
+ ;;=M16.0^^61^781^130
+ ;;^UTILITY(U,$J,358.3,17037,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,16850,1,3,0)
- ;;=3^Vulvitis,Acute
- ;;^UTILITY(U,$J,358.3,16850,1,4,0)
- ;;=4^N76.2
- ;;^UTILITY(U,$J,358.3,16850,2)
- ;;=^5015828
- ;;^UTILITY(U,$J,358.3,16851,0)
- ;;=N76.0^^88^881^87
- ;;^UTILITY(U,$J,358.3,16851,1,0)
+ ;;^UTILITY(U,$J,358.3,17037,1,3,0)
+ ;;=3^Primary Osteoarthritis of Hip,Bilateral
+ ;;^UTILITY(U,$J,358.3,17037,1,4,0)
+ ;;=4^M16.0
+ ;;^UTILITY(U,$J,358.3,17037,2)
+ ;;=^5010769
+ ;;^UTILITY(U,$J,358.3,17038,0)
+ ;;=M16.11^^61^781^139
+ ;;^UTILITY(U,$J,358.3,17038,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,16851,1,3,0)
- ;;=3^Vaginitis,Acute
- ;;^UTILITY(U,$J,358.3,16851,1,4,0)
- ;;=4^N76.0
- ;;^UTILITY(U,$J,358.3,16851,2)
- ;;=^5015826
- ;;^UTILITY(U,$J,358.3,16852,0)
- ;;=M00.20^^88^881^3
- ;;^UTILITY(U,$J,358.3,16852,1,0)
+ ;;^UTILITY(U,$J,358.3,17038,1,3,0)
+ ;;=3^Primary Osteoarthritis of Right Hip
+ ;;^UTILITY(U,$J,358.3,17038,1,4,0)
+ ;;=4^M16.11
+ ;;^UTILITY(U,$J,358.3,17038,2)
+ ;;=^5010771
+ ;;^UTILITY(U,$J,358.3,17039,0)
+ ;;=M16.12^^61^781^133
+ ;;^UTILITY(U,$J,358.3,17039,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,16852,1,3,0)
- ;;=3^Arthritis Streptococcal,Unspec Joint
- ;;^UTILITY(U,$J,358.3,16852,1,4,0)
- ;;=4^M00.20
- ;;^UTILITY(U,$J,358.3,16852,2)
- ;;=^5009645
- ;;^UTILITY(U,$J,358.3,16853,0)
- ;;=M00.80^^88^881^4
- ;;^UTILITY(U,$J,358.3,16853,1,0)
- ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,17039,1,3,0)
+ ;;=3^Primary Osteoarthritis of Left Hip

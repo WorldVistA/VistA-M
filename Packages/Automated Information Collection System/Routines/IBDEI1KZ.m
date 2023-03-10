@@ -1,122 +1,124 @@
-IBDEI1KZ ; ; 04-FEB-2020
- ;;3.0;IB ENCOUNTER FORM IMP/EXP;;FEB 04, 2020
+IBDEI1KZ ; ; 01-FEB-2022
+ ;;3.0;IB ENCOUNTER FORM IMP/EXP;;FEB 01, 2022
  Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,999) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
- ;;^UTILITY(U,$J,358.3,25265,0)
- ;;=M05.59^^107^1217^165
- ;;^UTILITY(U,$J,358.3,25265,1,0)
+ ;;^UTILITY(U,$J,358.3,25628,1,4,0)
+ ;;=4^F10.14
+ ;;^UTILITY(U,$J,358.3,25628,2)
+ ;;=^5003072
+ ;;^UTILITY(U,$J,358.3,25629,0)
+ ;;=F10.24^^92^1170^11
+ ;;^UTILITY(U,$J,358.3,25629,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,25265,1,3,0)
- ;;=3^Rheumatoid Polyneuropathy w/ Rheumatoid Arthritis of Mult Sites
- ;;^UTILITY(U,$J,358.3,25265,1,4,0)
- ;;=4^M05.59
- ;;^UTILITY(U,$J,358.3,25265,2)
- ;;=^5009976
- ;;^UTILITY(U,$J,358.3,25266,0)
- ;;=M05.711^^107^1217^159
- ;;^UTILITY(U,$J,358.3,25266,1,0)
+ ;;^UTILITY(U,$J,358.3,25629,1,3,0)
+ ;;=3^Alcohol Induced Mood D/O w/ Mod/Sev Use D/O
+ ;;^UTILITY(U,$J,358.3,25629,1,4,0)
+ ;;=4^F10.24
+ ;;^UTILITY(U,$J,358.3,25629,2)
+ ;;=^5003090
+ ;;^UTILITY(U,$J,358.3,25630,0)
+ ;;=F10.94^^92^1170^12
+ ;;^UTILITY(U,$J,358.3,25630,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,25266,1,3,0)
- ;;=3^Rheumatoid Arthritis of Right Shoulder
- ;;^UTILITY(U,$J,358.3,25266,1,4,0)
- ;;=4^M05.711
- ;;^UTILITY(U,$J,358.3,25266,2)
- ;;=^5010001
- ;;^UTILITY(U,$J,358.3,25267,0)
- ;;=M05.712^^107^1217^152
- ;;^UTILITY(U,$J,358.3,25267,1,0)
+ ;;^UTILITY(U,$J,358.3,25630,1,3,0)
+ ;;=3^Alcohol Induced Mood D/O w/o Use D/O
+ ;;^UTILITY(U,$J,358.3,25630,1,4,0)
+ ;;=4^F10.94
+ ;;^UTILITY(U,$J,358.3,25630,2)
+ ;;=^5003104
+ ;;^UTILITY(U,$J,358.3,25631,0)
+ ;;=F10.231^^92^1170^32
+ ;;^UTILITY(U,$J,358.3,25631,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,25267,1,3,0)
- ;;=3^Rheumatoid Arthritis of Left Shoulder
- ;;^UTILITY(U,$J,358.3,25267,1,4,0)
- ;;=4^M05.712
- ;;^UTILITY(U,$J,358.3,25267,2)
- ;;=^5010002
- ;;^UTILITY(U,$J,358.3,25268,0)
- ;;=M05.731^^107^1217^160
- ;;^UTILITY(U,$J,358.3,25268,1,0)
+ ;;^UTILITY(U,$J,358.3,25631,1,3,0)
+ ;;=3^Alcohol Use DO (Mod/Sev) w/ WD Delirium
+ ;;^UTILITY(U,$J,358.3,25631,1,4,0)
+ ;;=4^F10.231
+ ;;^UTILITY(U,$J,358.3,25631,2)
+ ;;=^5003087
+ ;;^UTILITY(U,$J,358.3,25632,0)
+ ;;=F10.232^^92^1170^30
+ ;;^UTILITY(U,$J,358.3,25632,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,25268,1,3,0)
- ;;=3^Rheumatoid Arthritis of Right Wrist
- ;;^UTILITY(U,$J,358.3,25268,1,4,0)
- ;;=4^M05.731
- ;;^UTILITY(U,$J,358.3,25268,2)
- ;;=^5010007
- ;;^UTILITY(U,$J,358.3,25269,0)
- ;;=M05.732^^107^1217^153
- ;;^UTILITY(U,$J,358.3,25269,1,0)
+ ;;^UTILITY(U,$J,358.3,25632,1,3,0)
+ ;;=3^Alcohol Use DO (Mod/Sev) WD w/ Perceptual Disturbances
+ ;;^UTILITY(U,$J,358.3,25632,1,4,0)
+ ;;=4^F10.232
+ ;;^UTILITY(U,$J,358.3,25632,2)
+ ;;=^5003088
+ ;;^UTILITY(U,$J,358.3,25633,0)
+ ;;=F10.21^^92^1170^33
+ ;;^UTILITY(U,$J,358.3,25633,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,25269,1,3,0)
- ;;=3^Rheumatoid Arthritis of Left Wrist
- ;;^UTILITY(U,$J,358.3,25269,1,4,0)
- ;;=4^M05.732
- ;;^UTILITY(U,$J,358.3,25269,2)
- ;;=^5010008
- ;;^UTILITY(U,$J,358.3,25270,0)
- ;;=M05.741^^107^1217^156
- ;;^UTILITY(U,$J,358.3,25270,1,0)
+ ;;^UTILITY(U,$J,358.3,25633,1,3,0)
+ ;;=3^Alcohol Use DO (Mod/Sev),In Remission
+ ;;^UTILITY(U,$J,358.3,25633,1,4,0)
+ ;;=4^F10.21
+ ;;^UTILITY(U,$J,358.3,25633,2)
+ ;;=^5003082
+ ;;^UTILITY(U,$J,358.3,25634,0)
+ ;;=F10.930^^92^1170^35
+ ;;^UTILITY(U,$J,358.3,25634,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,25270,1,3,0)
- ;;=3^Rheumatoid Arthritis of Right Hand
- ;;^UTILITY(U,$J,358.3,25270,1,4,0)
- ;;=4^M05.741
- ;;^UTILITY(U,$J,358.3,25270,2)
- ;;=^5010010
- ;;^UTILITY(U,$J,358.3,25271,0)
- ;;=M05.742^^107^1217^149
- ;;^UTILITY(U,$J,358.3,25271,1,0)
+ ;;^UTILITY(U,$J,358.3,25634,1,3,0)
+ ;;=3^Alcohol Use,Unspec w/ Withdrawal
+ ;;^UTILITY(U,$J,358.3,25634,1,4,0)
+ ;;=4^F10.930
+ ;;^UTILITY(U,$J,358.3,25634,2)
+ ;;=^5159134
+ ;;^UTILITY(U,$J,358.3,25635,0)
+ ;;=F10.931^^92^1170^36
+ ;;^UTILITY(U,$J,358.3,25635,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,25271,1,3,0)
- ;;=3^Rheumatoid Arthritis of Left Hand
- ;;^UTILITY(U,$J,358.3,25271,1,4,0)
- ;;=4^M05.742
- ;;^UTILITY(U,$J,358.3,25271,2)
- ;;=^5010011
- ;;^UTILITY(U,$J,358.3,25272,0)
- ;;=M05.751^^107^1217^157
- ;;^UTILITY(U,$J,358.3,25272,1,0)
+ ;;^UTILITY(U,$J,358.3,25635,1,3,0)
+ ;;=3^Alcohol Use,Unspec w/ Withdrawal Delirium
+ ;;^UTILITY(U,$J,358.3,25635,1,4,0)
+ ;;=4^F10.931
+ ;;^UTILITY(U,$J,358.3,25635,2)
+ ;;=^5159135
+ ;;^UTILITY(U,$J,358.3,25636,0)
+ ;;=F10.932^^92^1170^37
+ ;;^UTILITY(U,$J,358.3,25636,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,25272,1,3,0)
- ;;=3^Rheumatoid Arthritis of Right Hip
- ;;^UTILITY(U,$J,358.3,25272,1,4,0)
- ;;=4^M05.751
- ;;^UTILITY(U,$J,358.3,25272,2)
- ;;=^5010013
- ;;^UTILITY(U,$J,358.3,25273,0)
- ;;=M05.752^^107^1217^150
- ;;^UTILITY(U,$J,358.3,25273,1,0)
+ ;;^UTILITY(U,$J,358.3,25636,1,3,0)
+ ;;=3^Alcohol Use,Unspec w/ Withdrawal w/ Perceptual Disturb
+ ;;^UTILITY(U,$J,358.3,25636,1,4,0)
+ ;;=4^F10.932
+ ;;^UTILITY(U,$J,358.3,25636,2)
+ ;;=^5159136
+ ;;^UTILITY(U,$J,358.3,25637,0)
+ ;;=F10.939^^92^1170^38
+ ;;^UTILITY(U,$J,358.3,25637,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,25273,1,3,0)
- ;;=3^Rheumatoid Arthritis of Left Hip
- ;;^UTILITY(U,$J,358.3,25273,1,4,0)
- ;;=4^M05.752
- ;;^UTILITY(U,$J,358.3,25273,2)
- ;;=^5010014
- ;;^UTILITY(U,$J,358.3,25274,0)
- ;;=M05.761^^107^1217^158
- ;;^UTILITY(U,$J,358.3,25274,1,0)
+ ;;^UTILITY(U,$J,358.3,25637,1,3,0)
+ ;;=3^Alcohol Use,Unspec w/ Withdrawal,Unspec
+ ;;^UTILITY(U,$J,358.3,25637,1,4,0)
+ ;;=4^F10.939
+ ;;^UTILITY(U,$J,358.3,25637,2)
+ ;;=^5159137
+ ;;^UTILITY(U,$J,358.3,25638,0)
+ ;;=F12.10^^92^1171^20
+ ;;^UTILITY(U,$J,358.3,25638,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,25274,1,3,0)
- ;;=3^Rheumatoid Arthritis of Right Knee
- ;;^UTILITY(U,$J,358.3,25274,1,4,0)
- ;;=4^M05.761
- ;;^UTILITY(U,$J,358.3,25274,2)
- ;;=^5010016
- ;;^UTILITY(U,$J,358.3,25275,0)
- ;;=M05.762^^107^1217^151
- ;;^UTILITY(U,$J,358.3,25275,1,0)
+ ;;^UTILITY(U,$J,358.3,25638,1,3,0)
+ ;;=3^Cannabis Use D/O,Mild
+ ;;^UTILITY(U,$J,358.3,25638,1,4,0)
+ ;;=4^F12.10
+ ;;^UTILITY(U,$J,358.3,25638,2)
+ ;;=^5003155
+ ;;^UTILITY(U,$J,358.3,25639,0)
+ ;;=F12.20^^92^1171^22
+ ;;^UTILITY(U,$J,358.3,25639,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,25275,1,3,0)
- ;;=3^Rheumatoid Arthritis of Left Knee
- ;;^UTILITY(U,$J,358.3,25275,1,4,0)
- ;;=4^M05.762
- ;;^UTILITY(U,$J,358.3,25275,2)
- ;;=^5010017
- ;;^UTILITY(U,$J,358.3,25276,0)
- ;;=M05.771^^107^1217^155
- ;;^UTILITY(U,$J,358.3,25276,1,0)
+ ;;^UTILITY(U,$J,358.3,25639,1,3,0)
+ ;;=3^Cannabis Use D/O,Mod/Sev
+ ;;^UTILITY(U,$J,358.3,25639,1,4,0)
+ ;;=4^F12.20
+ ;;^UTILITY(U,$J,358.3,25639,2)
+ ;;=^5003166
+ ;;^UTILITY(U,$J,358.3,25640,0)
+ ;;=F12.288^^92^1171^25
+ ;;^UTILITY(U,$J,358.3,25640,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,25276,1,3,0)
- ;;=3^Rheumatoid Arthritis of Right Ankle
- ;;^UTILITY(U,$J,358.3,25276,1,4,0)
- ;;=4^M05.771
+ ;;^UTILITY(U,$J,358.3,25640,1,3,0)
+ ;;=3^Cannabis Withdrawal

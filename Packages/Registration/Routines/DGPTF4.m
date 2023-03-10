@@ -1,9 +1,9 @@
 DGPTF4 ;ALB/JDS/PLT - PTF ENTRY/EDIT-4 ;2/19/04 9:33am
- ;;5.3;Registration;**114,115,397,510,517,478,683,775,850,884**;Aug 13, 1993;Build 31
+ ;;5.3;Registration;**114,115,397,510,517,478,683,775,850,884,1057**;Aug 13, 1993;Build 17
  ;;Per VA Directive 6402, this routine should not be modified.
  ;
 WR ;
- W @IOF,HEAD,?72 S Z="<701>" D Z^DGPTFM K X S $P(X,"-",81)="" W !,X
+ W @IOF,HEAD,?72 S Z="<701>" D Z^DGPTFM W !,?30,"Initial Date Of Service: ",$$EXTERNAL^DILFD(45,14,,$G(DGIDTS)) K X S $P(X,"-",81)="" W !,X  ; DG*5.3*1057
  Q
 EN S Y=+B(70) D D^DGPTUTL W ! S Z=5 D Z W $S($P(B(0),U,11)=1:"Date of Disch: ",1:"Census Date  : ") S Z=Y,Z1=20 D Z1 W "Disch Specialty: ",$S($D(^DIC(42.4,+$P(B(70),U,2),0)):$E($P(^(0),U,1),1,25),1:"")
  W !,"   Type of Disch: ",$$EXTERNAL^DILFD(45,72,,$P(B(70),U,3))

@@ -1,6 +1,8 @@
 IBCNSM2 ;ALB/AAS - INSURANCE MANAGEMENT - EDIT ROUTINE ;22-OCT-92
- ;;2.0;INTEGRATED BILLING;**28,103,139,516,528**;21-MAR-94;Build 163
+ ;;2.0;INTEGRATED BILLING;**28,103,139,516,528,668**;21-MAR-94;Build 28
  ;;Per VA Directive 6402, this routine should not be modified.
+ ;
+ ;/vd-IB*2*668 - Removed the SSVI logic introduced with IB*2*528 in its entirety within VistA.
  ;
 % S U="^"
  ;
@@ -43,7 +45,6 @@ VC ; -- Verify Insurance Coverage
  I '$$EPOL(DFN) D VCN G EXIT
  ;
  D EN^VALM2($G(XQORNOD(0)))
- I $D(^IBCN(366.1,DFN,0)) D DELINC^IBCNVCC1(DFN)  ;IB*2.0*512 - SSVI changes - baa
  I $D(VALMY) S IBXX=0 F  S IBXX=$O(VALMY(IBXX)) Q:'IBXX  D
  .S IBPPOL=$G(^TMP("IBNSMDX",$J,$O(^TMP("IBNSM",$J,"IDX",IBXX,0))))
  .Q:IBPPOL=""
@@ -92,12 +93,6 @@ REVFY ; -- Re-verify
  ;
  S DA(1)=DFN,DA=$P(IBPPOL,U,4),DIE="^DPT(DFN,.312,",DR="1.03////"_DT_";1.04////"_DUZ D ^DIE K DIE
  S IBDUZ=$P($G(^DPT(DFN,.312,$P(IBPPOL,U,4),1)),U,4)
- ; CODE COMMENTED OUT ; WILL BE redone in another project.  Do not remove
- ; baa - IB*2.0*528 SSVI - do consistency checker if turned on
- ;I $P($G(^IBE(350.9,1,100)),U) D EN^IBCNVCC(DFN,DA)
- ;I $D(^IBCN(366.1,DFN,1,"B",DA)) D  Q
- ;.W !," "_IBCH_" N0T verified because Inconsistencies were found."
- ;.D PAUSE^VALM1
  W !," "_IBCH_" VERIFIED BY "_$P($G(^VA(200,+DUZ,0)),U)_" ON "_$$DAT1^IBOUTL($P($G(^DPT(DFN,.312,$P(IBPPOL,U,4),1)),U,3))
  D PAUSE^VALM1
  Q

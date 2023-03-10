@@ -1,5 +1,5 @@
 BPSWRKLS ;ALB/SS - SEND CLAIMS TO PHARMACY WORKLIST ;12/26/07
- ;;1.0;E CLAIMS MGMT ENGINE;**7,8,11,15,20**;JUN 2004;Build 27
+ ;;1.0;E CLAIMS MGMT ENGINE;**7,8,11,15,20,30**;JUN 2004;Build 19
  ;;Per VA Directive 6402, this routine should not be modified.
  ;
  ; -- main entry point for BPS PRTCL USRSCR PHARM WRKLST protocol (ECME User Screen option)
@@ -160,7 +160,7 @@ CONVERT(BPSARRJ1,BPSARRJ2) ;
  . S BPREJ2=+$O(^BPSF(9002313.93,"B",BPREJ1,0))
  . I BPREJ2>0 S BPSARRJ2(1,BPREJ2)=""
  Q
- ;send the rejected claims with 79 and 88 codes to Pharmacy Worklist 
+ ;send the claims rejected with code 79, 88, or 943 to Pharmacy Worklist
  ;Input: 
  ; BPRXI - RX ien
  ; BPRXR - refill
@@ -175,7 +175,7 @@ SENDREJ(BPRXI,BPRXR,BPIEN59,BPPAYSEQ) ;
  S BPRET=0
  D DUR1^BPSNCPD3(BPRXI,BPRXR,.BPREJ,"",BPPAYSEQ)
  S BPZ=","_BPREJ(BPPAYSEQ,"REJ CODE LST")_","
- I BPZ[",79,"!(BPZ[",88,") S BPRET=$$WRKLST^PSOREJU4(BPRXI,BPRXR,"Sent by ECME engine",DUZ,DT,1,BPPAYSEQ)
+ I BPZ[",79,"!(BPZ[",88,")!(BPZ[",943,") S BPRET=$$WRKLST^PSOREJU4(BPRXI,BPRXR,"Sent by ECME engine",DUZ,DT,1,BPPAYSEQ)
  Q +BPRET
  ;
  ;BPSWRKLS

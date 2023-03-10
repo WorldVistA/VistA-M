@@ -1,5 +1,5 @@
 BPSNCPD4 ;OAK/ELZ - Extension of BPSNCPDP ;4/16/08  17:07
- ;;1.0;E CLAIMS MGMT ENGINE;**6,7,8,10,11,24,26**;JUN 2004;Build 24
+ ;;1.0;E CLAIMS MGMT ENGINE;**6,7,8,10,11,24,26,29**;JUN 2004;Build 41
  ;;Per VA Directive 6402, this routine should not be modified.
  ;
  ; Certification Testing
@@ -152,10 +152,15 @@ DISPL(WFLG,BPRETVAL,BPELIGIB) ;
  ;no response : 0^RESPONSE code=2 or 6^CLMSTAT message^D(display message)^seconds to hang 
  ;non billable : 2^RESPONSE code=2 or 6^CLMSTAT message 
 BILLABLE(DFN,BWHERE,MOREDATA,BPSARRY,CERTIEN,BPSELIG) ;
- N IB S IB=0
+ N BPSX,IB S IB=0
  D EN^BPSNCPD2(DFN,BWHERE,.MOREDATA,.BPSARRY,.IB)
  S BPSELIG=$G(MOREDATA("ELIG"))
- I IB=2 Q $S($G(BPSARRY("NO ECME INSURANCE")):"2^6^",1:"2^2^")_$P(MOREDATA("BILL"),"^",2)
+ ; If IB determined the claim is not billable, set response code to 2.  If the reason
+ ; the claim is not billable is NO ECME INSURANCE, set response code to 6 if the
+ ; patient type is not TRICARE/CHAMPVA
+ I IB=2 D  Q BPSX_$P(MOREDATA("BILL"),"^",2)
+ . S BPSX="2^2^"
+ . I $G(BPSARRY("NO ECME INSURANCE")),"^C^T^"'[("^"_$G(BPSARRY("PATIENT TYPE"))_"^") S BPSX="2^6^"
  I (IB=0)!('$G(MOREDATA("BILL"))) Q $S($G(BPSARRY("NO ECME INSURANCE")):"0^6^",1:"0^2^")_"Flagged by IB to not 3rd Party Insurance bill through ECME.^D^2"
  Q 1
  ;activate the request

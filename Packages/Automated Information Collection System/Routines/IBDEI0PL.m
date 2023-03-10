@@ -1,122 +1,118 @@
-IBDEI0PL ; ; 04-FEB-2020
- ;;3.0;IB ENCOUNTER FORM IMP/EXP;;FEB 04, 2020
+IBDEI0PL ; ; 01-FEB-2022
+ ;;3.0;IB ENCOUNTER FORM IMP/EXP;;FEB 01, 2022
  Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,999) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
- ;;^UTILITY(U,$J,358.3,11417,0)
- ;;=H40.031^^77^733^1
- ;;^UTILITY(U,$J,358.3,11417,1,0)
+ ;;^UTILITY(U,$J,358.3,11503,1,3,0)
+ ;;=3^Infection d/t Dialysis Catheter or AV Fistula/Graft,Init Encntr
+ ;;^UTILITY(U,$J,358.3,11503,1,4,0)
+ ;;=4^T82.7XXA
+ ;;^UTILITY(U,$J,358.3,11503,2)
+ ;;=^5054911
+ ;;^UTILITY(U,$J,358.3,11504,0)
+ ;;=T82.7XXD^^46^556^20
+ ;;^UTILITY(U,$J,358.3,11504,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,11417,1,3,0)
- ;;=3^Anatomical Narrow Angle,Right Eye
- ;;^UTILITY(U,$J,358.3,11417,1,4,0)
- ;;=4^H40.031
- ;;^UTILITY(U,$J,358.3,11417,2)
- ;;=^5005732
- ;;^UTILITY(U,$J,358.3,11418,0)
- ;;=H40.032^^77^733^2
- ;;^UTILITY(U,$J,358.3,11418,1,0)
+ ;;^UTILITY(U,$J,358.3,11504,1,3,0)
+ ;;=3^Infection d/t Dialysis Catheter or AV Fistula/Graft,Subs Encntr
+ ;;^UTILITY(U,$J,358.3,11504,1,4,0)
+ ;;=4^T82.7XXD
+ ;;^UTILITY(U,$J,358.3,11504,2)
+ ;;=^5054912
+ ;;^UTILITY(U,$J,358.3,11505,0)
+ ;;=T85.631A^^46^556^23
+ ;;^UTILITY(U,$J,358.3,11505,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,11418,1,3,0)
- ;;=3^Anatomical Narrow Angle,Left Eye
- ;;^UTILITY(U,$J,358.3,11418,1,4,0)
- ;;=4^H40.032
- ;;^UTILITY(U,$J,358.3,11418,2)
- ;;=^5005733
- ;;^UTILITY(U,$J,358.3,11419,0)
- ;;=H40.033^^77^733^3
- ;;^UTILITY(U,$J,358.3,11419,1,0)
+ ;;^UTILITY(U,$J,358.3,11505,1,3,0)
+ ;;=3^Leakage of Intraperitoneal Dialysis Catheter,Init Encntr
+ ;;^UTILITY(U,$J,358.3,11505,1,4,0)
+ ;;=4^T85.631A
+ ;;^UTILITY(U,$J,358.3,11505,2)
+ ;;=^5055643
+ ;;^UTILITY(U,$J,358.3,11506,0)
+ ;;=T85.631D^^46^556^24
+ ;;^UTILITY(U,$J,358.3,11506,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,11419,1,3,0)
- ;;=3^Anatomical Narrow Angle,Bilateral
- ;;^UTILITY(U,$J,358.3,11419,1,4,0)
- ;;=4^H40.033
- ;;^UTILITY(U,$J,358.3,11419,2)
- ;;=^5005734
- ;;^UTILITY(U,$J,358.3,11420,0)
- ;;=H40.061^^77^733^4
- ;;^UTILITY(U,$J,358.3,11420,1,0)
+ ;;^UTILITY(U,$J,358.3,11506,1,3,0)
+ ;;=3^Leakage of Intraperitoneal Dialysis Catheter,Subs Encntr
+ ;;^UTILITY(U,$J,358.3,11506,1,4,0)
+ ;;=4^T85.631D
+ ;;^UTILITY(U,$J,358.3,11506,2)
+ ;;=^5055644
+ ;;^UTILITY(U,$J,358.3,11507,0)
+ ;;=H54.8^^46^556^25
+ ;;^UTILITY(U,$J,358.3,11507,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,11420,1,3,0)
- ;;=3^Primary Angle Closure w/o Damage,Right Eye
- ;;^UTILITY(U,$J,358.3,11420,1,4,0)
- ;;=4^H40.061
- ;;^UTILITY(U,$J,358.3,11420,2)
- ;;=^5005744
- ;;^UTILITY(U,$J,358.3,11421,0)
- ;;=H40.062^^77^733^5
- ;;^UTILITY(U,$J,358.3,11421,1,0)
+ ;;^UTILITY(U,$J,358.3,11507,1,3,0)
+ ;;=3^Legal Blindness,USA Definition
+ ;;^UTILITY(U,$J,358.3,11507,1,4,0)
+ ;;=4^H54.8
+ ;;^UTILITY(U,$J,358.3,11507,2)
+ ;;=^5006369
+ ;;^UTILITY(U,$J,358.3,11508,0)
+ ;;=N25.89^^46^556^18
+ ;;^UTILITY(U,$J,358.3,11508,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,11421,1,3,0)
- ;;=3^Primary Angle Closure w/o Damage,Left Eye
- ;;^UTILITY(U,$J,358.3,11421,1,4,0)
- ;;=4^H40.062
- ;;^UTILITY(U,$J,358.3,11421,2)
- ;;=^5005745
- ;;^UTILITY(U,$J,358.3,11422,0)
- ;;=H40.063^^77^733^6
- ;;^UTILITY(U,$J,358.3,11422,1,0)
+ ;;^UTILITY(U,$J,358.3,11508,1,3,0)
+ ;;=3^Impaired Renal Tubular Function Disorders,Other
+ ;;^UTILITY(U,$J,358.3,11508,1,4,0)
+ ;;=4^N25.89
+ ;;^UTILITY(U,$J,358.3,11508,2)
+ ;;=^5015618
+ ;;^UTILITY(U,$J,358.3,11509,0)
+ ;;=T82.590A^^46^556^28
+ ;;^UTILITY(U,$J,358.3,11509,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,11422,1,3,0)
- ;;=3^Primary Angle Closure w/o Damage,Bilateral
- ;;^UTILITY(U,$J,358.3,11422,1,4,0)
- ;;=4^H40.063
- ;;^UTILITY(U,$J,358.3,11422,2)
- ;;=^5005746
- ;;^UTILITY(U,$J,358.3,11423,0)
- ;;=H40.20X1^^77^733^7
- ;;^UTILITY(U,$J,358.3,11423,1,0)
+ ;;^UTILITY(U,$J,358.3,11509,1,3,0)
+ ;;=3^Mech Comp,Surgically Created AV Fistula,Init Encntr
+ ;;^UTILITY(U,$J,358.3,11509,1,4,0)
+ ;;=4^T82.590A
+ ;;^UTILITY(U,$J,358.3,11509,2)
+ ;;=^5054884
+ ;;^UTILITY(U,$J,358.3,11510,0)
+ ;;=T82.590D^^46^556^29
+ ;;^UTILITY(U,$J,358.3,11510,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,11423,1,3,0)
- ;;=3^Angle-Closure Glaucoma,Primary,Mild Stage
- ;;^UTILITY(U,$J,358.3,11423,1,4,0)
- ;;=4^H40.20X1
- ;;^UTILITY(U,$J,358.3,11423,2)
- ;;=^5005814
- ;;^UTILITY(U,$J,358.3,11424,0)
- ;;=H40.20X2^^77^733^8
- ;;^UTILITY(U,$J,358.3,11424,1,0)
+ ;;^UTILITY(U,$J,358.3,11510,1,3,0)
+ ;;=3^Mech Comp,Surgically Created AV Fistula,Subs Encntr
+ ;;^UTILITY(U,$J,358.3,11510,1,4,0)
+ ;;=4^T82.590D
+ ;;^UTILITY(U,$J,358.3,11510,2)
+ ;;=^5054885
+ ;;^UTILITY(U,$J,358.3,11511,0)
+ ;;=T85.691A^^46^556^26
+ ;;^UTILITY(U,$J,358.3,11511,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,11424,1,3,0)
- ;;=3^Angle-Closure Glaucoma,Primary,Moderate Stage
- ;;^UTILITY(U,$J,358.3,11424,1,4,0)
- ;;=4^H40.20X2
- ;;^UTILITY(U,$J,358.3,11424,2)
- ;;=^5005815
- ;;^UTILITY(U,$J,358.3,11425,0)
- ;;=H40.20X3^^77^733^9
- ;;^UTILITY(U,$J,358.3,11425,1,0)
+ ;;^UTILITY(U,$J,358.3,11511,1,3,0)
+ ;;=3^Mech Comp,Intraperitoneal Dialysis Catheter,Init Encntr
+ ;;^UTILITY(U,$J,358.3,11511,1,4,0)
+ ;;=4^T85.691A
+ ;;^UTILITY(U,$J,358.3,11511,2)
+ ;;=^5055655
+ ;;^UTILITY(U,$J,358.3,11512,0)
+ ;;=T85.691D^^46^556^27
+ ;;^UTILITY(U,$J,358.3,11512,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,11425,1,3,0)
- ;;=3^Angle-Closure Glaucoma,Primary,Severe Stage
- ;;^UTILITY(U,$J,358.3,11425,1,4,0)
- ;;=4^H40.20X3
- ;;^UTILITY(U,$J,358.3,11425,2)
- ;;=^5005816
- ;;^UTILITY(U,$J,358.3,11426,0)
- ;;=H40.2211^^77^733^10
- ;;^UTILITY(U,$J,358.3,11426,1,0)
+ ;;^UTILITY(U,$J,358.3,11512,1,3,0)
+ ;;=3^Mech Comp,Intraperitoneal Dialysis Catheter,Subs Encntr
+ ;;^UTILITY(U,$J,358.3,11512,1,4,0)
+ ;;=4^T85.691D
+ ;;^UTILITY(U,$J,358.3,11512,2)
+ ;;=^5055656
+ ;;^UTILITY(U,$J,358.3,11513,0)
+ ;;=T82.898A^^46^556^6
+ ;;^UTILITY(U,$J,358.3,11513,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,11426,1,3,0)
- ;;=3^Angle-Closure Glaucoma,Chronic,Mild,Right Eye
- ;;^UTILITY(U,$J,358.3,11426,1,4,0)
- ;;=4^H40.2211
- ;;^UTILITY(U,$J,358.3,11426,2)
- ;;=^5005823
- ;;^UTILITY(U,$J,358.3,11427,0)
- ;;=H40.2221^^77^733^11
- ;;^UTILITY(U,$J,358.3,11427,1,0)
+ ;;^UTILITY(U,$J,358.3,11513,1,3,0)
+ ;;=3^Complication of Vascular Graft,Init Encntr
+ ;;^UTILITY(U,$J,358.3,11513,1,4,0)
+ ;;=4^T82.898A
+ ;;^UTILITY(U,$J,358.3,11513,2)
+ ;;=^5054953
+ ;;^UTILITY(U,$J,358.3,11514,0)
+ ;;=T82.898D^^46^556^7
+ ;;^UTILITY(U,$J,358.3,11514,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,11427,1,3,0)
- ;;=3^Angle-Closure Glaucoma,Chronic,Mild,Left Eye
- ;;^UTILITY(U,$J,358.3,11427,1,4,0)
- ;;=4^H40.2221
- ;;^UTILITY(U,$J,358.3,11427,2)
- ;;=^5005828
- ;;^UTILITY(U,$J,358.3,11428,0)
- ;;=H40.2231^^77^733^12
- ;;^UTILITY(U,$J,358.3,11428,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,11428,1,3,0)
- ;;=3^Angle-Closure Glaucoma,Chronic,Mild,Bilateral
- ;;^UTILITY(U,$J,358.3,11428,1,4,0)
- ;;=4^H40.2231
+ ;;^UTILITY(U,$J,358.3,11514,1,3,0)
+ ;;=3^Complication of Vascular Graft,Subs Encntr
+ ;;^UTILITY(U,$J,358.3,11514,1,4,0)
+ ;;=4^T82.898D

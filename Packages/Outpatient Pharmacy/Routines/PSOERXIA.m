@@ -1,0 +1,178 @@
+PSOERXIA ;ALB/BWF - eRx parsing Utilities ; 11/14/2019 3:46pm
+ ;;7.0;OUTPATIENT PHARMACY;**581**;DEC 1997;Build 126
+ ;
+ Q
+PAT(ERXIEN,MTYPE) ; patient
+ N F,EIENS,GL,GLN,GLFN,GLALT,GLFALT,MEDICARE,MEDICAID,MRID,PATACC,PATSSN,MUTDEF,REMPATID,PATNAME,LN,FN,MN,SUFF,PREF,PFN,FPATNAME
+ N FLN,FFN,FMN,FSUFF,FPREF,GEN,DOB,ADDINFO,AL1,LOCFAC,LOCBED,LOCROOM,LANGNC,ALTNM,ALTLN,ALTFN,ALTMN,ALTSUFF,ALTPREF,FALTNM,FALTLN
+ N FALTFN,FALTMN,FALTSUFF,FALTPREF,ALTADD,ALTAL1,ALTAL2,ALTCITY,ALTSTATE,ALTPOST,ALTCC,ALTCONRE,GESTAGE,HOSPIND,SIEN,ERXPAT,PIENS
+ N NPIEN,FDA,NEWPAT,SPEC,GLPADD,GLALTNM,GLALTADD,AL2,CC,CITY,GLALTAD,POSTAL,STATE
+ S F=52.46
+ S EIENS=ERXIEN_","
+ S SPEC=$O(^TMP($J,"PSOERXO1","Message",0,"Body",0,MTYPE,0,"Patient",0,""))
+ S GL=$NA(^TMP($J,"PSOERXO1","Message",0,"Body",0,MTYPE,0,"Patient",0,SPEC,0))
+ S GLN=$NA(^TMP($J,"PSOERXO1","Message",0,"Body",0,MTYPE,0,"Patient",0,SPEC,0,"Name",0))
+ S GLFN=$NA(^TMP($J,"PSOERXO1","Message",0,"Body",0,MTYPE,0,"Patient",0,SPEC,0,"FormerName",0))
+ S GLALT=$NA(^TMP($J,"PSOERXO1","Message",0,"Body",0,MTYPE,0,"Patient",0,SPEC,0,"AlternateContact",0))
+ S GLALTNM=$NA(^TMP($J,"PSOERXO1","Message",0,"Body",0,MTYPE,0,"Patient",0,SPEC,0,"AlternateContact",0,"Name",0))
+ S GLALTAD=$NA(^TMP($J,"PSOERXO1","Message",0,"Body",0,MTYPE,0,"Patient",0,SPEC,0,"AlternateContact",0,"Address",0))
+ S GLFALT=$NA(^TMP($J,"PSOERXO1","Message",0,"Body",0,MTYPE,0,"Patient",0,SPEC,0,"AlternateContact",0,"FormerName",0))
+ S GLPADD=$NA(^TMP($J,"PSOERXO1","Message",0,"Body",0,MTYPE,0,"Patient",0,SPEC,0,"Address",0))
+ S MEDICARE=$G(@GL@("Identification",0,"MedicareNumber",0))
+ S MEDICAID=$G(@GL@("Identification",0,"MedicaidNumber",0))
+ S MRID=$G(@GL@("Identification",0,"MedicalRecordIdentificationNumberEHR",0))
+ S PATACC=$G(@GL@("Identification",0,"PatientAccountNumber",0))
+ S PATSSN=$G(@GL@("Identification",0,"SocialSecurity",0))
+ S MUTDEF=$G(@GL@("Identification",0,"MutuallyDefined",0))
+ S REMPATID=$G(@GL@("Identification",0,"REMSPatientID",0))
+ S PATNAME=$$NAME^PSOERXIU(GLN)
+ S LN=$P(PATNAME,U,1),FN=$P(PATNAME,U,2),MN=$P(PATNAME,U,3),SUFF=$P(PATNAME,U,4),PREF=$P(PATNAME,U,5)
+ S PFN=LN_","_FN_$S(MN]"":" "_MN,1:"")
+ S FPATNAME=$$NAME^PSOERXIU(GLFN)
+ S FLN=$P(FPATNAME,U,1),FFN=$P(FPATNAME,U,2),FMN=$P(FPATNAME,U,3),FSUFF=$P(FPATNAME,U,4),FPREF=$P(FPATNAME,U,5)
+ S GEN=$G(@GL@("Gender",0))
+ S DOB=$G(@GL@("DateOfBirth",0,"Date",0))
+ I '$L(DOB) S DOB=$G(@GL@("DateOfBirth",0,"DateTime",0))
+ S DOB=$$CONVDTTM^PSOERXA1(DOB)
+ I DOB<1 S DOB=""
+ S ADDINFO=$$ADDRESS^PSOERXIU(GLPADD)
+ S AL1=$P(ADDINFO,U,1),AL2=$P(ADDINFO,U,2),CITY=$P(ADDINFO,U,3),POSTAL=$P(ADDINFO,U,5),STATE=$P(ADDINFO,U,4),CC=$P(ADDINFO,U,6)
+ S STATE=$$STRES^PSOERXA2(POSTAL,STATE)
+ S LOCFAC=$G(@GL@("PatientLocation",0,"FacilityUnit",0))
+ S LOCBED=$G(@GL@("PatientLocation",0,"Bed",0))
+ S LOCROOM=$G(@GL@("PatientLocation",0,"Room",0))
+ S LANGNC=$G(@GL@("LanguageNameCode",0))
+ S ALTNM=$$NAME^PSOERXIU(GLALTNM)
+ S ALTLN=$P(ALTNM,U,1),ALTFN=$P(ALTNM,U,2),ALTMN=$P(ALTNM,U,3),ALTSUFF=$P(ALTNM,U,4),ALTPREF=$P(ALTNM,U,5)
+ S FALTNM=$$NAME^PSOERXIU(GLFALT)
+ S FALTLN=$P(FALTNM,U,1),FALTFN=$P(FALTNM,U,2),FALTMN=$P(FALTNM,U,3),FALTSUFF=$P(ALTNM,U,4),FALTPREF=$P(FALTNM,U,5)
+ S ALTADD=$$ADDRESS^PSOERXIU(GLALTAD)
+ S ALTAL1=$P(ALTADD,U,1),ALTAL2=$P(ALTADD,U,2),ALTCITY=$P(ALTADD,U,3),ALTPOST=$P(ALTADD,U,5),ALTSTATE=$P(ALTADD,U,4),ALTCC=$P(ALTADD,U,6)
+ S ALTSTATE=$$STRES^PSOERXA2(ALTPOST,ALTSTATE)
+ S ALTCONRE=$G(@GL@("AlternateContact",0,"AlternateContactRelationship",0)) ;***need field***
+ S GESTAGE=$G(@GL@("GestationalAge",0))
+ S HOSPIND=$G(@GL@("HospiceIndicator",0))
+ ; need to check for SSN before trying to match the patient. This needs to be stored in an array for later processing
+ ; check 52.46 for a match before filing
+ S ERXPAT=$$FINDPAT^PSOERXU2(PFN,DOB,GEN,$G(PATSSN),$G(AL1)) S PIENS=$S(ERXPAT:ERXPAT_",",1:"+1,")
+ ;patient name info
+ S FDA(F,PIENS,.01)=PFN,FDA(F,PIENS,.02)=LN,FDA(F,PIENS,.03)=FN,FDA(F,PIENS,.04)=MN,FDA(F,PIENS,.05)=SUFF,FDA(F,PIENS,.06)=PREF
+ ;patient date of birth, gender
+ S FDA(F,PIENS,.07)=GEN,FDA(F,PIENS,.08)=DOB
+ ;patient address info
+ S FDA(F,PIENS,3.1)=AL1,FDA(F,PIENS,3.2)=AL2,FDA(F,PIENS,3.3)=CITY,FDA(F,PIENS,3.4)=STATE,FDA(F,PIENS,3.5)=POSTAL,FDA(F,PIENS,1.6)=CC
+ ;former name
+ S FDA(F,PIENS,7.1)=$G(FLN),FDA(F,PIENS,7.2)=$G(FFN),FDA(F,PIENS,7.3)=$G(FMN),FDA(F,PIENS,7.4)=$G(FSUFF),FDA(F,PIENS,7.5)=$G(FPREF)
+ ;patient location
+ S FDA(F,PIENS,8.1)=$G(LOCFAC),FDA(F,PIENS,8.2)=$G(LOCROOM),FDA(F,PIENS,8.3)=$G(LOCBED)
+ ;language name code, gestational age, hospice indicator
+ S FDA(F,PIENS,8.4)=$G(LANGNC),FDA(F,PIENS,8.5)=$G(GESTAGE),FDA(F,PIENS,8.6)=$G(HOSPIND)
+ ;alternate contact name
+ S FDA(F,PIENS,9.1)=$G(ALTLN),FDA(F,PIENS,9.2)=$G(ALTFN),FDA(F,PIENS,9.3)=$G(ALTMN),FDA(F,PIENS,9.4)=$G(ALTSUFF),FDA(F,PIENS,9.5)=$G(ALTPREF)
+ ;alternate contact relationship
+ I $L(ALTCONRE) S FDA(F,PIENS,9.6)=$$PRESOLV^PSOERXA1($G(ALTCONRE),"ACR")
+ ;alternate contact former name
+ S FDA(F,PIENS,10.1)=$G(FALTLN),FDA(F,PIENS,10.2)=$G(FALTFN),FDA(F,PIENS,10.3)=$G(FALTMN),FDA(F,PIENS,10.4)=$G(FALTSUFF),FDA(F,PIENS,10.5)=$G(FALTPREF)
+ ;alt contact address info
+ S FDA(F,PIENS,11.1)=$G(ALTAL1),FDA(F,PIENS,11.2)=$G(ALTAL2),FDA(F,PIENS,11.3)=$G(ALTCITY),FDA(F,PIENS,11.4)=$G(ALTSTATE)
+ S FDA(F,PIENS,11.5)=$G(ALTPOST),FDA(F,PIENS,11.6)=$G(ALTCC)
+ ;identification
+ S FDA(F,PIENS,17.1)=$G(MEDICARE),FDA(F,PIENS,17.2)=$G(MEDICAID),FDA(F,PIENS,17.3)=MRID
+ S FDA(F,PIENS,18.1)=$G(PATACC),FDA(F,PIENS,18.2)=$G(PATSSN),FDA(F,PIENS,18.3)=$G(MUTDEF),FDA(F,PIENS,18.4)=$G(REMPATID)
+ ; dual file SSN into old field to trigger the SSN cross reference to be built.
+ S FDA(F,PIENS,1.4)=$G(PATSSN)
+ I PIENS["+" D  Q
+ .D CFDA^PSOERXIU(.FDA)
+ .D UPDATE^DIE(,"FDA","NEWPAT") K FDA
+ .S NPIEN=$O(NEWPAT(0)),NPIEN=$G(NEWPAT(NPIEN))
+ .Q:'NPIEN
+ .S NPIEN=NPIEN
+ .D COMM^PSOERXIU(GL,52.4613,NPIEN,52.46,14) ;patient communication
+ .K ^PS(52.46,NPIEN,15),^PS(52.46,NPIEN,16)
+ .D COMM^PSOERXIU(GLALT,52.4615,NPIEN,52.46,16) ;alternate contact communication
+ .D SUB(GL,NPIEN_",") ;patient substances
+ .S FDA(52.49,EIENS,.04)=NPIEN D FILE^DIE(,"FDA") K FDA
+ K ^PS(52.46,ERXPAT,13),^PS(52.46,ERXPAT,14)
+ D CFDA^PSOERXIU(.FDA)
+ D FILE^DIE(,"FDA") K FDA
+ D COMM^PSOERXIU(GL,52.4613,ERXPAT,52.46,14)
+ D COMM^PSOERXIU(GLALT,52.4615,ERXPAT,52.46,16)
+ D SUB(GL,PIENS)
+ S FDA(52.49,EIENS,.04)=ERXPAT D FILE^DIE(,"FDA") K FDA
+ Q
+SUB(GL,IENS) ; parsing and filing into substance multiple ***should we replace or update??? TO DO - CLEAR OUT OR MATCH/UPDATE
+ N SUBSEQ,SF,SUBTT,SUBTQ,SUBTC,SUBLT,SUBLQ,SUBLC,ROAT,ROAQ,ROAC,FDA,I,SIENS
+ S SUBSEQ=0,SF=52.4619
+ S I=-1 F  S I=$O(@GL@("SubstanceUse",0,"Substance",I)) Q:I=""  D
+ .S SUBSEQ=$G(SUBSEQ)+1
+ .S SUBTT=$G(@GL@("SubstanceUse",0,"Substance",I,"Type",0,"Text",0))
+ .S SUBTQ=$G(@GL@("SubstanceUse",0,"Substance",I,"Type",0,"Qualifier",0))
+ .S SUBTC=$G(@GL@("SubstanceUse",0,"Substance",I,"Type",0,"Code",0))
+ .S SUBLT=$G(@GL@("SubstanceUse",0,"Substance",I,"Level",0,"Text",0))
+ .S SUBLQ=$G(@GL@("SubstanceUse",0,"Substance",I,"Level",0,"Qualifier",0))
+ .S SUBLC=$G(@GL@("SubstanceUse",0,"Substance",I,"Level",0,"Code",0))
+ .S ROAT=$G(@GL@("SubstanceUse",0,"Substance",I,"RouteOfAdministration",0,"Text",0))
+ .S ROAQ=$G(@GL@("SubstanceUse",0,"Substance",I,"RouteOfAdministration",0,"Qualifier",0))
+ .S ROAC=$G(@GL@("SubstanceUse",0,"Substance",I,"RouteOfAdministration",0,"Code",0))
+ .S SIENS="+"_SUBSEQ_","_IENS
+ .S FDA(SF,SIENS,.01)=$G(SUBSEQ),FDA(SF,SIENS,1)=$G(SUBTT),FDA(SF,SIENS,2)=$G(SUBTQ),FDA(SF,SIENS,3)=$G(SUBTC)
+ .S FDA(SF,SIENS,4)=$G(SUBLT),FDA(SF,SIENS,5)=$G(SUBLQ),FDA(SF,SIENS,6)=$G(SUBLC)
+ .S FDA(SF,SIENS,7)=$G(ROAT),FDA(SF,SIENS,8)=$G(ROAQ),FDA(SF,SIENS,9)=$G(ROAC)
+ D CFDA^PSOERXIU(.FDA)
+ D UPDATE^DIE(,"FDA") K FDA
+ Q
+CHMESREQ(ERXIEN,MTYPE)  ; message request code(s) for change request
+ N GL,MRCODE,RETREC,REQREFNM,URGIND,GLVAL,RESTYPE,MREQCODE,CHGL,SEQUENCE,FDA,I,GLV,GLVAL,CHRES,STATELIC,MEDICARE,MEDICAID,UPIN
+ N DEA,HIM,SOCSEC,NPI,CERTPRES,DATA2000,MUTDEF,REMSID,STSUBNUM,NOTE,DATE,SPECIALTY,FILE,GLE,HIN,MRSC,RESTNODE,RESTUP
+ S GL=$NA(^TMP($J,"PSOERXO1","Message",0,"Body",0))
+ S MREQCODE=$G(@GL@(MTYPE,0,"MessageRequestCode",0))
+ S MREQCODE=$$PRESOLV^PSOERXA1(MREQCODE,"MRC")
+ S FDA(52.49,ERXIEN_",",315.1)=MREQCODE
+ D FILE^DIE(,"FDA") K FDA
+ S I=-1,F=52.49316,IENS=ERXIEN_",",SEQUENCE=0
+ F  S I=$O(@GL@(MTYPE,0,"MessageRequestSubCode",I)) Q:I=""  D
+ .S SEQUENCE=SEQUENCE+1
+ .S MRSC=$G(@GL@(MTYPE,0,"MessageRequestSubCode",I))
+ .S MRSC=$$PRESOLV^PSOERXA1(MRSC,"MRSC")
+ .S FDA(F,"+"_SEQUENCE_","_IENS,.01)=SEQUENCE
+ .S FDA(F,"+"_SEQUENCE_","_IENS,1)=MRSC
+ D UPDATE^DIE(,"FDA") K FDA
+ I MTYPE="RxChangeRequest" Q
+ S GLVAL=$NA(^TMP($J,"PSOERXO1","Message",0,"Body",0,MTYPE,0,"Response",0))
+ S RESTYPE=$O(@GLVAL@("")),RESTUP=$$UP^XLFSTR(RESTYPE),RESTUP=$TR(RESTUP," ",""),RESTUP=$TR(RESTUP,",","")
+ S RESTNODE=RESTYPE
+ S RESTYPE=$S(RESTUP="VALIDATED":"V","APPROVED":"A",RESTUP="DENIED":"D",RESTUP="APPROVEDWITHCHANGES":"AWC",1:"")
+ ; ADD SECOND CHECK FOR DATA
+ I RESTYPE="V" D
+ .S CHRES=1
+ .S FILE=52.49
+ .S GLV=$NA(^TMP($J,"PSOERXO1","Message",0,"Body",0,MTYPE,0,"Response",0,"Validated",0,"Identification",0))
+ .S STATELIC=$G(@GLV@("StateLicenseNumber",0))
+ .S MEDICARE=$G(@GLV@("MedicareNumber",0))
+ .S MEDICAID=$G(@GLV@("MedicaidNumber",0))
+ .S UPIN=$G(@GLV@("UPIN",0))
+ .S DEA=$G(@GLV@("DEANumber",0))
+ .S HIN=$G(@GLV@("HIN",0))
+ .S SOCSEC=$G(@GLV@("SocialSecurity",0))
+ .S NPI=$G(@GLV@("NPI",0))
+ .S CERTPRES=$G(@GLV@("CertificateToPrescribe",0))
+ .S DATA2000=$G(@GLV@("Data2000WaiverID",0))
+ .S MUTDEF=$G(@GLV@("MutuallyDefined",0))
+ .S REMSID=$G(@GLV@("REMSHealthcareProviderEnrollmentID",0))
+ .S STSUBNUM=$G(@GLV@("StateControlSubstanceNumber",0))
+ .S FDA(FILE,IENS,318.1)=STATELIC,FDA(FILE,IENS,318.2)=MEDICARE,FDA(FILE,IENS,318.3)=MEDICAID
+ .S FDA(FILE,IENS,319.1)=UPIN,FDA(FILE,IENS,319.2)=DEA,FDA(FILE,IENS,319.3)=HIN
+ .S FDA(FILE,IENS,319.4)=SOCSEC,FDA(FILE,IENS,319.5)=NPI
+ .S FDA(FILE,IENS,321.1)=CERTPRES,FDA(FILE,IENS,321.2)=DATA2000,FDA(FILE,IENS,321.3)=MUTDEF
+ .S FDA(FILE,IENS,322.1)=REMSID,FDA(FILE,IENS,322.2)=STSUBNUM
+ .D FILE^DIE(,"FDA") K FDA
+ .D PRE^PSOERXIB(ERXIEN,MTYPE,"S",,CHRES) ;passing CHRES to PSOERXIB to file supervisor for change response
+ .S GLE=$NA(^TMP($J,"PSOERXO1","Message",0,"Body",0,MTYPE,0,"Response",0,"Validated",0))
+ .S NOTE=$G(@GLE@("Note",0))
+ .S DATE=$G(@GLE@("Date",0))
+ .S SPECIALTY=$G(@GLE@("Specialty",0))
+ .S FDA(FILE,IENS,324)=DATE
+ .S FDA(FILE,IENS,325)=SPECIALTY
+ .D CFDA^PSOERXIU(.FDA)
+ .D FILE^DIE(,"FDA") K FDA
+ Q

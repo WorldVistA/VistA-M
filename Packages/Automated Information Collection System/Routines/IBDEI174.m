@@ -1,122 +1,120 @@
-IBDEI174 ; ; 04-FEB-2020
- ;;3.0;IB ENCOUNTER FORM IMP/EXP;;FEB 04, 2020
+IBDEI174 ; ; 01-FEB-2022
+ ;;3.0;IB ENCOUNTER FORM IMP/EXP;;FEB 01, 2022
  Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,999) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
- ;;^UTILITY(U,$J,358.3,19212,2)
- ;;=^5133578
- ;;^UTILITY(U,$J,358.3,19213,0)
- ;;=I69.241^^93^989^69
- ;;^UTILITY(U,$J,358.3,19213,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,19213,1,3,0)
- ;;=3^Monoplg low lmb fol oth ntrm intcrn hemor aff right dom side
- ;;^UTILITY(U,$J,358.3,19213,1,4,0)
- ;;=4^I69.241
- ;;^UTILITY(U,$J,358.3,19213,2)
- ;;=^5007469
- ;;^UTILITY(U,$J,358.3,19214,0)
- ;;=I69.242^^93^989^70
- ;;^UTILITY(U,$J,358.3,19214,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,19214,1,3,0)
- ;;=3^Monoplg low lmb fol oth ntrm intcrn hemor aff left dom side
- ;;^UTILITY(U,$J,358.3,19214,1,4,0)
- ;;=4^I69.242
- ;;^UTILITY(U,$J,358.3,19214,2)
- ;;=^5133574
- ;;^UTILITY(U,$J,358.3,19215,0)
- ;;=I69.243^^93^989^71
- ;;^UTILITY(U,$J,358.3,19215,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,19215,1,3,0)
- ;;=3^Monoplg low lmb fol oth ntrm intcrn hemor aff r nondom side
- ;;^UTILITY(U,$J,358.3,19215,1,4,0)
- ;;=4^I69.243
- ;;^UTILITY(U,$J,358.3,19215,2)
- ;;=^5007470
- ;;^UTILITY(U,$J,358.3,19216,0)
- ;;=I69.244^^93^989^72
- ;;^UTILITY(U,$J,358.3,19216,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,19216,1,3,0)
- ;;=3^Monoplg low lmb fol oth ntrm intcrn hemor aff l nondom side
- ;;^UTILITY(U,$J,358.3,19216,1,4,0)
- ;;=4^I69.244
- ;;^UTILITY(U,$J,358.3,19216,2)
- ;;=^5007471
- ;;^UTILITY(U,$J,358.3,19217,0)
- ;;=G35.^^93^989^73
- ;;^UTILITY(U,$J,358.3,19217,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,19217,1,3,0)
- ;;=3^Multiple sclerosis
- ;;^UTILITY(U,$J,358.3,19217,1,4,0)
- ;;=4^G35.
- ;;^UTILITY(U,$J,358.3,19217,2)
- ;;=^79761
- ;;^UTILITY(U,$J,358.3,19218,0)
- ;;=G20.^^93^989^74
- ;;^UTILITY(U,$J,358.3,19218,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,19218,1,3,0)
- ;;=3^Parkinson's disease
- ;;^UTILITY(U,$J,358.3,19218,1,4,0)
- ;;=4^G20.
- ;;^UTILITY(U,$J,358.3,19218,2)
- ;;=^5003770
- ;;^UTILITY(U,$J,358.3,19219,0)
- ;;=G21.4^^93^989^75
- ;;^UTILITY(U,$J,358.3,19219,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,19219,1,3,0)
- ;;=3^Vascular parkinsonism
- ;;^UTILITY(U,$J,358.3,19219,1,4,0)
- ;;=4^G21.4
- ;;^UTILITY(U,$J,358.3,19219,2)
- ;;=^5003776
- ;;^UTILITY(U,$J,358.3,19220,0)
- ;;=I69.051^^93^989^43
- ;;^UTILITY(U,$J,358.3,19220,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,19220,1,3,0)
- ;;=3^Hemiplga fol ntrm subarach hemor aff right dominant side
- ;;^UTILITY(U,$J,358.3,19220,1,4,0)
- ;;=4^I69.051
- ;;^UTILITY(U,$J,358.3,19220,2)
- ;;=^5007409
- ;;^UTILITY(U,$J,358.3,19221,0)
- ;;=I69.052^^93^989^41
- ;;^UTILITY(U,$J,358.3,19221,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,19221,1,3,0)
- ;;=3^Hemiplga fol ntrm subarach hemor aff left dominant side
- ;;^UTILITY(U,$J,358.3,19221,1,4,0)
- ;;=4^I69.052
- ;;^UTILITY(U,$J,358.3,19221,2)
- ;;=^5007410
- ;;^UTILITY(U,$J,358.3,19222,0)
- ;;=I69.053^^93^989^44
- ;;^UTILITY(U,$J,358.3,19222,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,19222,1,3,0)
- ;;=3^Hemiplga fol ntrm subarach hemor aff right nondom side
- ;;^UTILITY(U,$J,358.3,19222,1,4,0)
- ;;=4^I69.053
- ;;^UTILITY(U,$J,358.3,19222,2)
- ;;=^5007411
- ;;^UTILITY(U,$J,358.3,19223,0)
- ;;=I69.054^^93^989^42
- ;;^UTILITY(U,$J,358.3,19223,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,19223,1,3,0)
- ;;=3^Hemiplga fol ntrm subarach hemor aff left nondom side
- ;;^UTILITY(U,$J,358.3,19223,1,4,0)
- ;;=4^I69.054
- ;;^UTILITY(U,$J,358.3,19223,2)
- ;;=^5007412
- ;;^UTILITY(U,$J,358.3,19224,0)
- ;;=I50.41^^93^990^1
- ;;^UTILITY(U,$J,358.3,19224,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,19224,1,3,0)
- ;;=3^Acute combined systolic and diastolic (congestive) hrt fail
+ ;;^UTILITY(U,$J,358.3,19423,1,2,0)
+ ;;=2^Nerve conduction studies; 5-6 studies
+ ;;^UTILITY(U,$J,358.3,19423,1,3,0)
+ ;;=3^95909
+ ;;^UTILITY(U,$J,358.3,19424,0)
+ ;;=95910^^66^866^18^^^^1
+ ;;^UTILITY(U,$J,358.3,19424,1,0)
+ ;;=^358.31IA^3^2
+ ;;^UTILITY(U,$J,358.3,19424,1,2,0)
+ ;;=2^Nerve conduction studies; 7-8 studies
+ ;;^UTILITY(U,$J,358.3,19424,1,3,0)
+ ;;=3^95910
+ ;;^UTILITY(U,$J,358.3,19425,0)
+ ;;=95911^^66^866^19^^^^1
+ ;;^UTILITY(U,$J,358.3,19425,1,0)
+ ;;=^358.31IA^3^2
+ ;;^UTILITY(U,$J,358.3,19425,1,2,0)
+ ;;=2^Nerve conduction studies; 9-10 studies
+ ;;^UTILITY(U,$J,358.3,19425,1,3,0)
+ ;;=3^95911
+ ;;^UTILITY(U,$J,358.3,19426,0)
+ ;;=95912^^66^866^15^^^^1
+ ;;^UTILITY(U,$J,358.3,19426,1,0)
+ ;;=^358.31IA^3^2
+ ;;^UTILITY(U,$J,358.3,19426,1,2,0)
+ ;;=2^Nerve conduction studies; 11-12 studies
+ ;;^UTILITY(U,$J,358.3,19426,1,3,0)
+ ;;=3^95912
+ ;;^UTILITY(U,$J,358.3,19427,0)
+ ;;=95913^^66^866^20^^^^1
+ ;;^UTILITY(U,$J,358.3,19427,1,0)
+ ;;=^358.31IA^3^2
+ ;;^UTILITY(U,$J,358.3,19427,1,2,0)
+ ;;=2^Nerve conduction studies;13 or > studies
+ ;;^UTILITY(U,$J,358.3,19427,1,3,0)
+ ;;=3^95913
+ ;;^UTILITY(U,$J,358.3,19428,0)
+ ;;=95925^^66^866^22^^^^1
+ ;;^UTILITY(U,$J,358.3,19428,1,0)
+ ;;=^358.31IA^3^2
+ ;;^UTILITY(U,$J,358.3,19428,1,2,0)
+ ;;=2^Somatosensory Testing
+ ;;^UTILITY(U,$J,358.3,19428,1,3,0)
+ ;;=3^95925
+ ;;^UTILITY(U,$J,358.3,19429,0)
+ ;;=95933^^66^866^1^^^^1
+ ;;^UTILITY(U,$J,358.3,19429,1,0)
+ ;;=^358.31IA^3^2
+ ;;^UTILITY(U,$J,358.3,19429,1,2,0)
+ ;;=2^Blink Reflex Test
+ ;;^UTILITY(U,$J,358.3,19429,1,3,0)
+ ;;=3^95933
+ ;;^UTILITY(U,$J,358.3,19430,0)
+ ;;=95937^^66^866^21^^^^1
+ ;;^UTILITY(U,$J,358.3,19430,1,0)
+ ;;=^358.31IA^3^2
+ ;;^UTILITY(U,$J,358.3,19430,1,2,0)
+ ;;=2^Neuromuscular Junction Test
+ ;;^UTILITY(U,$J,358.3,19430,1,3,0)
+ ;;=3^95937
+ ;;^UTILITY(U,$J,358.3,19431,0)
+ ;;=95869^^66^866^13^^^^1
+ ;;^UTILITY(U,$J,358.3,19431,1,0)
+ ;;=^358.31IA^3^2
+ ;;^UTILITY(U,$J,358.3,19431,1,2,0)
+ ;;=2^Needle EMG Thor Paraspinal
+ ;;^UTILITY(U,$J,358.3,19431,1,3,0)
+ ;;=3^95869
+ ;;^UTILITY(U,$J,358.3,19432,0)
+ ;;=99366^^66^867^1^^^^1
+ ;;^UTILITY(U,$J,358.3,19432,1,0)
+ ;;=^358.31IA^3^2
+ ;;^UTILITY(U,$J,358.3,19432,1,2,0)
+ ;;=2^Interdisc Team Conf HCP w/ Pt/Fam > 30 min
+ ;;^UTILITY(U,$J,358.3,19432,1,3,0)
+ ;;=3^99366
+ ;;^UTILITY(U,$J,358.3,19433,0)
+ ;;=99368^^66^867^2^^^^1
+ ;;^UTILITY(U,$J,358.3,19433,1,0)
+ ;;=^358.31IA^3^2
+ ;;^UTILITY(U,$J,358.3,19433,1,2,0)
+ ;;=2^Interdisc Team Conf HCP w/o Pt/Fam > 30 min
+ ;;^UTILITY(U,$J,358.3,19433,1,3,0)
+ ;;=3^99368
+ ;;^UTILITY(U,$J,358.3,19434,0)
+ ;;=99367^^66^867^3^^^^1
+ ;;^UTILITY(U,$J,358.3,19434,1,0)
+ ;;=^358.31IA^3^2
+ ;;^UTILITY(U,$J,358.3,19434,1,2,0)
+ ;;=2^Interdisc Team Conf MD w/o Pt/Fam > 30 min
+ ;;^UTILITY(U,$J,358.3,19434,1,3,0)
+ ;;=3^99367
+ ;;^UTILITY(U,$J,358.3,19435,0)
+ ;;=96156^^66^868^1^^^^1
+ ;;^UTILITY(U,$J,358.3,19435,1,0)
+ ;;=^358.31IA^3^2
+ ;;^UTILITY(U,$J,358.3,19435,1,2,0)
+ ;;=2^Hlth/Behav Assess/Re-Assess
+ ;;^UTILITY(U,$J,358.3,19435,1,3,0)
+ ;;=3^96156
+ ;;^UTILITY(U,$J,358.3,19436,0)
+ ;;=96158^^66^868^8^^^^1
+ ;;^UTILITY(U,$J,358.3,19436,1,0)
+ ;;=^358.31IA^3^2
+ ;;^UTILITY(U,$J,358.3,19436,1,2,0)
+ ;;=2^Hlth/Behav Intrvn,Ind,1st 30 min
+ ;;^UTILITY(U,$J,358.3,19436,1,3,0)
+ ;;=3^96158
+ ;;^UTILITY(U,$J,358.3,19437,0)
+ ;;=96159^^66^868^9^^^^1
+ ;;^UTILITY(U,$J,358.3,19437,1,0)
+ ;;=^358.31IA^3^2
+ ;;^UTILITY(U,$J,358.3,19437,1,2,0)
+ ;;=2^Hlth/Behav Intrvn,Ind,Ea Addl 15 min
+ ;;^UTILITY(U,$J,358.3,19437,1,3,0)
+ ;;=3^96159

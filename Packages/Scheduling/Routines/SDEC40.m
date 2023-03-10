@@ -1,5 +1,5 @@
-SDEC40 ;ALB/SAT,WTC - VISTA SCHEDULING RPCS ;Feb 12, 2020@15:22
- ;;5.3;Scheduling;**627,665,694**;Aug 13, 1993;Build 61
+SDEC40 ;ALB/SAT,WTC,LEG - VISTA SCHEDULING RPCS ;Feb 12, 2020@15:22
+ ;;5.3;Scheduling;**627,665,694,785,813**;Aug 13, 1993;Build 6
  ;
  ;  ICR
  ;  ---
@@ -20,7 +20,7 @@ APPTLETR(SDECY,SDECAPID,LT)  ;Print Appointment Letter
  ; SDECAPPT = Pointer to appointment in SDEC APPOINTMENT file 409.84
  ; LT       = Letter type - "N"=No Show; "P"=Pre-Appointment; "A"=Cancelled by Patient; "C"=Cancelled by Clinic
  ; Called by SDEC PRINT APPT LETTER remote procedure
- N SDECI,SDECNOD,SDECTMP,DFN,IN,RES,SCLT,SDC,SDLET,SDS,SDT,X1,X2,Y
+ N SDECI,SDECNOD,SDECTMP,DFN,IN,RES,SCLT,SDC,SDLET,SDS,SDT,X1,X2,Y,TIMEZONE
  N SDIV,SDFORM,SDNAM,SDSSN,VAPA
  S SDECI=0
  K ^TMP("SDEC",$J)
@@ -36,7 +36,7 @@ APPTLETR(SDECY,SDECAPID,LT)  ;Print Appointment Letter
  S SDS=^DPT(DFN,"S",SDT,0)
  S SCLT=$S(LT="N":1,LT="P":2,LT="C":3,LT="A":4,1:"2") ;get storage position of LETTER pointer
  S SDLET=$P($G(^SC(SDC,"LTR")),U,SCLT)
- I SDLET="" D ERR^SDECERR($S(SCLT=1:"No-Show",SCLT=2:"Pre-Appointment",SCLT=3:"Clinic Cancellation",1:"Patient Cancellation")_"Letter not defined for Clinic "_$P(^SC(SDC,0),U)_".") Q
+ I SDLET="" D ERR^SDECERR($S(SCLT=1:"No-Show",SCLT=2:"Pre-Appointment",SCLT=3:"Clinic Cancellation",1:"Patient Cancellation")_" Letter not defined for Clinic "_$P(^SC(SDC,0),U)_".") Q  ;LEG 5/17/2021 ; added missing space
  S SDIV=$P(^SC(SDC,0),"^",15),SDIV=$S(SDIV:SDIV,1:$O(^DG(40.8,0)))
  S SDFORM=$P($G(^DG(40.8,SDIV,"LTR")),U,1)
  ; data header
@@ -70,7 +70,8 @@ PRT(DFN,SDC,SD,LT,SDLET,SDFORM) ;
  ;
  S DPTNAME("FILE")=2,DPTNAME("FIELD")=".01",DPTNAME("IENS")=(+A)_","
  S X=$$NAMEFMT^XLFNAME(.DPTNAME,"G","M")
- S SDECI=SDECI+1 S ^TMP("SDEC",$J,SDECI)="Dear "_$S($P(^DPT(+A,0),"^",2)="M":"Mr. ",1:"Ms. ")_X_","_$C(13,10)
+ ;S SDECI=SDECI+1 S ^TMP("SDEC",$J,SDECI)="Dear "_$S($P(^DPT(+A,0),"^",2)="M":"Mr. ",1:"Ms. ")_X_","_$C(13,10)
+ S SDECI=SDECI+1 S ^TMP("SDEC",$J,SDECI)="Dear "_X_","_$C(13,10) ;VSE-693;LEG 5/12/21
  S SDECI=SDECI+1 S ^TMP("SDEC",$J,SDECI)=$C(13,10)
  S SDECI=SDECI+1 S ^TMP("SDEC",$J,SDECI)=$C(13,10)
  ;loop and display initial section of Letter
@@ -92,11 +93,12 @@ FORM ;S:$D(SDX) X=SDX S SDHX=X D DW^%DTC S DOW=X,X=SDHX X ^DD("FUNC",2,1) S SDT0
  ;
  ;  Change display time for noon and midnight from 12:00 PM to 12:00 Noon and 12:00 Midnight
  ;
+ S TIMEZONE=$$TIMEZONEDATA^SDESUTIL($G(SDC)),TIMEZONE=$P($G(TIMEZONE),U)
  S:$D(SDX) X=SDX S SDHX=X D DW^%DTC S DOW=X,X=SDHX ;
  I $P(X,".",2)=12!($P(X,".",2)=24) S X="12:00 "_$S($P(X,".",2)=12:"N",1:"M") ;
  E  X ^DD("FUNC",2,1) ;
  S SDT0=X,SDDAT=$P("JAN^FEB^MAR^APR^MAY^JUN^JUL^AUG^SEP^OCT^NOV^DEC","^",$E(SDHX,4,5))_" "_+$E(SDHX,6,7)_", "_(1700+$E(SDHX,1,3))
- I '$D(B) S SDECI=SDECI+1 S ^TMP("SDEC",$J,SDECI)="     Date/Time: "_DOW_"  "_$J(SDDAT,12)_$S('$D(B)&$D(SDC):$J(SDT0,9),1:"")_$C(13,10)
+ I '$D(B) S SDECI=SDECI+1 S ^TMP("SDEC",$J,SDECI)="     Date/Time: "_DOW_"  "_$J(SDDAT,12)_$S('$D(B)&$D(SDC):$J(SDT0,9),1:"")_" "_TIMEZONE_$C(13,10)
  I '$D(B),$D(SDC) D
  .S SDECI=SDECI+1 S ^TMP("SDEC",$J,SDECI)="    "_SDCL_$C(13,10)
  ; get default provider if defined for a given clinic, print it on the

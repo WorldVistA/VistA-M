@@ -1,8 +1,8 @@
 PSOREJU4 ;BIRM/LE - Pharmacy Reject Overrides ;06/26/08
- ;;7.0;OUTPATIENT PHARMACY;**289,290,358,359,385,421,448**;DEC 1997;Build 25
- ;Reference to DUR1^BPSNCPD3 supported by IA 4560
- ;Reference to 9002313.93 supported by IA 4720
- ;Reference to ELIG^BPSBUTL supported by IA 4719
+ ;;7.0;OUTPATIENT PHARMACY;**289,290,358,359,385,421,448,561,562,648**;DEC 1997;Build 15
+ ; Reference to DUR1^BPSNCPD3 in ICR #4560
+ ; Reference to 9002313.93 in ICR #4720
+ ; Reference to ELIG^BPSBUTL in ICR #4719
  ;
 AUTOREJ(CODES,PSODIV) ;API to evaluate an array of reject codes to see if they are allowed to be passed to OP reject Worklist 
  ;Input:      CODES - required; array of codes to be validated for overrides.  
@@ -29,9 +29,9 @@ AUTOREJ(CODES,PSODIV) ;API to evaluate an array of reject codes to see if they a
  . E  S CODES(SEQ,COD)=0
  Q
  ;
-WRKLST(RX,RFL,COMMTXT,USERID,DTTIME,OPECC,RXCOB,RESP) ;External API to store reject codes other that 79/88/TRICARE/CHAMPVA on the OP Reject Worklist
+WRKLST(RX,RFL,COMMTXT,USERID,DTTIME,OPECC,RXCOB,RESP) ;External API to store reject codes other that 79/88/943/TRICARE/CHAMPVA on the OP Reject Worklist
  ; 
- N REJ,REJS,REJLST,I,IDX,CODE,DATA,TXT,PSOTRIC,SPDVI,PSODIV,REJCD,CLOSECHK
+ N REJ,REJS,REJLST,I,IDX,CODE,DATA,TXT,PSOTRIC,SPDVI,PSODIV,REJCD,CLOSECHK,REJIDX
  S PSODIV=$$RXSITE^PSOBPSUT(RX,RFL)
  L +^PSRX("REJ",RX):15 Q:'$T "0^Rx locked by another user."
  I $G(RFL)="" S RFL=$$LSTRFL^PSOBPSU1(RX)
@@ -53,7 +53,24 @@ WRKLST(RX,RFL,COMMTXT,USERID,DTTIME,OPECC,RXCOB,RESP) ;External API to store rej
  . F I=1:1:$L(TXT,",") D
  . . S CODE=$P(TXT,",",I)
  . . I CODE="" Q   ;BNT-2/15/11 Rare, but could happen that a code is null.
- . . I CODE'="79"&(CODE'="88")&('$G(PSOTRIC)) S AUTO=$$EVAL(PSODIV,CODE,OPECC) Q:'+AUTO
+ . . ;
+ . . ; An Rx can only have 1 open/unresolved eC/eT code.
+ . . ; Orders for patients with no active insurance will now
+ . . ; result in a "NOT INSURED" eC/eT reject code, which
+ . . ; is higher priority than any existing eC/eT reject codes.
+ . . ; The logic below determines if the eC/eT reject code to 
+ . . ; be added is for "NOT INSURED".  If so, it will loop 
+ . . ; through the REJECT INFO subfile, for the Rx, and close
+ . . ; an open/unresolved eC/eT reject, if any, allowing the 
+ . . ; "NOT INSURED" eC/eT reject code to be added to the order.
+ . . I $P($G(RESP),"^",2)="NOT INSURED"&((CODE="eC")!(CODE="eT")) D
+ . . . S REJIDX=0
+ . . . F  S REJIDX=$O(^PSRX(RX,"REJ","B",CODE,REJIDX)) Q:'REJIDX  D
+ . . . . I +$$GET1^DIQ(52.25,REJIDX_","_RX,9,"I")=1 Q  ; already closed
+ . . . . I $$GET1^DIQ(52.25,REJIDX_","_RX,2)["NOT INSURED" Q  ; already has an unresolved not insured reject
+ . . . . D CLOSE^PSOREJUT(RX,RFL,REJIDX,"",1)
+ . . ;
+ . . I CODE'="79"&(CODE'="88")&(CODE'="943")&('$G(PSOTRIC)) S AUTO=$$EVAL(PSODIV,CODE,OPECC) Q:'+AUTO
  . . I PSOTRIC S AUTO=1  ;cnf, send all billable and non-billable rejects to worklist if TRICARE or CHAMPVA
  . . I $$DUP^PSOREJU1(RX,+$$CLEAN^PSOREJU1($G(REJ(IDX,"RESPONSE IEN"))),CLOSECHK) S AUTO="0^Rx is already on Pharmacy Reject Worklist."
  . . S REJS(IDX,CODE)=""

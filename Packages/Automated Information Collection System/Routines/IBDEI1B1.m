@@ -1,126 +1,126 @@
-IBDEI1B1 ; ; 04-FEB-2020
- ;;3.0;IB ENCOUNTER FORM IMP/EXP;;FEB 04, 2020
+IBDEI1B1 ; ; 01-FEB-2022
+ ;;3.0;IB ENCOUNTER FORM IMP/EXP;;FEB 01, 2022
  Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,999) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
- ;;^UTILITY(U,$J,358.3,20858,1,4,0)
- ;;=4^Z59.6
- ;;^UTILITY(U,$J,358.3,20858,2)
- ;;=^5063135
- ;;^UTILITY(U,$J,358.3,20859,0)
- ;;=Z59.7^^95^1029^6
- ;;^UTILITY(U,$J,358.3,20859,1,0)
+ ;;^UTILITY(U,$J,358.3,21093,1,3,0)
+ ;;=3^AIDS (HIV Disease, HIV Stage 3, ARC)
+ ;;^UTILITY(U,$J,358.3,21093,1,4,0)
+ ;;=4^B20.
+ ;;^UTILITY(U,$J,358.3,21093,2)
+ ;;=^5000555
+ ;;^UTILITY(U,$J,358.3,21094,0)
+ ;;=J61.^^70^908^80
+ ;;^UTILITY(U,$J,358.3,21094,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,20859,1,3,0)
- ;;=3^Insufficient Social Insurance/Welfare Support
- ;;^UTILITY(U,$J,358.3,20859,1,4,0)
- ;;=4^Z59.7
- ;;^UTILITY(U,$J,358.3,20859,2)
- ;;=^5063136
- ;;^UTILITY(U,$J,358.3,20860,0)
- ;;=Z59.9^^95^1029^4
- ;;^UTILITY(U,$J,358.3,20860,1,0)
+ ;;^UTILITY(U,$J,358.3,21094,1,3,0)
+ ;;=3^Pneumoconiosis d/t Asbestos/Other Mineral Fibers
+ ;;^UTILITY(U,$J,358.3,21094,1,4,0)
+ ;;=4^J61.
+ ;;^UTILITY(U,$J,358.3,21094,2)
+ ;;=^5008262
+ ;;^UTILITY(U,$J,358.3,21095,0)
+ ;;=B44.9^^70^908^14
+ ;;^UTILITY(U,$J,358.3,21095,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,20860,1,3,0)
- ;;=3^Housing/Economic Problems,Unspec
- ;;^UTILITY(U,$J,358.3,20860,1,4,0)
- ;;=4^Z59.9
- ;;^UTILITY(U,$J,358.3,20860,2)
- ;;=^5063138
- ;;^UTILITY(U,$J,358.3,20861,0)
- ;;=G21.19^^95^1030^10
- ;;^UTILITY(U,$J,358.3,20861,1,0)
+ ;;^UTILITY(U,$J,358.3,21095,1,3,0)
+ ;;=3^Aspergillosis,Unspec
+ ;;^UTILITY(U,$J,358.3,21095,1,4,0)
+ ;;=4^B44.9
+ ;;^UTILITY(U,$J,358.3,21095,2)
+ ;;=^5000668
+ ;;^UTILITY(U,$J,358.3,21096,0)
+ ;;=B44.0^^70^908^13
+ ;;^UTILITY(U,$J,358.3,21096,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,20861,1,3,0)
- ;;=3^Medication-Induced Parkinsonism,Other
- ;;^UTILITY(U,$J,358.3,20861,1,4,0)
- ;;=4^G21.19
- ;;^UTILITY(U,$J,358.3,20861,2)
- ;;=^5003773
- ;;^UTILITY(U,$J,358.3,20862,0)
- ;;=G21.11^^95^1030^13
- ;;^UTILITY(U,$J,358.3,20862,1,0)
+ ;;^UTILITY(U,$J,358.3,21096,1,3,0)
+ ;;=3^Aspergillosis,Invasive Pulmonary
+ ;;^UTILITY(U,$J,358.3,21096,1,4,0)
+ ;;=4^B44.0
+ ;;^UTILITY(U,$J,358.3,21096,2)
+ ;;=^5000663
+ ;;^UTILITY(U,$J,358.3,21097,0)
+ ;;=J44.9^^70^908^27
+ ;;^UTILITY(U,$J,358.3,21097,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,20862,1,3,0)
- ;;=3^Neuroleptic-Induced Parkinsonism
- ;;^UTILITY(U,$J,358.3,20862,1,4,0)
- ;;=4^G21.11
- ;;^UTILITY(U,$J,358.3,20862,2)
- ;;=^5003772
- ;;^UTILITY(U,$J,358.3,20863,0)
- ;;=G24.01^^95^1030^15
- ;;^UTILITY(U,$J,358.3,20863,1,0)
+ ;;^UTILITY(U,$J,358.3,21097,1,3,0)
+ ;;=3^COPD,Unspec
+ ;;^UTILITY(U,$J,358.3,21097,1,4,0)
+ ;;=4^J44.9
+ ;;^UTILITY(U,$J,358.3,21097,2)
+ ;;=^5008241
+ ;;^UTILITY(U,$J,358.3,21098,0)
+ ;;=J45.20^^70^908^16
+ ;;^UTILITY(U,$J,358.3,21098,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,20863,1,3,0)
- ;;=3^Tardive Dyskinesia
- ;;^UTILITY(U,$J,358.3,20863,1,4,0)
- ;;=4^G24.01
- ;;^UTILITY(U,$J,358.3,20863,2)
- ;;=^5003784
- ;;^UTILITY(U,$J,358.3,20864,0)
- ;;=G24.09^^95^1030^16
- ;;^UTILITY(U,$J,358.3,20864,1,0)
+ ;;^UTILITY(U,$J,358.3,21098,1,3,0)
+ ;;=3^Asthma,Mild Intermittent Uncomplicated
+ ;;^UTILITY(U,$J,358.3,21098,1,4,0)
+ ;;=4^J45.20
+ ;;^UTILITY(U,$J,358.3,21098,2)
+ ;;=^5008242
+ ;;^UTILITY(U,$J,358.3,21099,0)
+ ;;=J45.21^^70^908^17
+ ;;^UTILITY(U,$J,358.3,21099,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,20864,1,3,0)
- ;;=3^Tardive Dystonia
- ;;^UTILITY(U,$J,358.3,20864,1,4,0)
- ;;=4^G24.09
- ;;^UTILITY(U,$J,358.3,20864,2)
- ;;=^5003786
- ;;^UTILITY(U,$J,358.3,20865,0)
- ;;=G25.1^^95^1030^11
- ;;^UTILITY(U,$J,358.3,20865,1,0)
+ ;;^UTILITY(U,$J,358.3,21099,1,3,0)
+ ;;=3^Asthma,Mild Intermittent w/ Acute Exacerbation
+ ;;^UTILITY(U,$J,358.3,21099,1,4,0)
+ ;;=4^J45.21
+ ;;^UTILITY(U,$J,358.3,21099,2)
+ ;;=^5008243
+ ;;^UTILITY(U,$J,358.3,21100,0)
+ ;;=J45.909^^70^908^18
+ ;;^UTILITY(U,$J,358.3,21100,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,20865,1,3,0)
- ;;=3^Medication-Induced Postural Tremor
- ;;^UTILITY(U,$J,358.3,20865,1,4,0)
- ;;=4^G25.1
- ;;^UTILITY(U,$J,358.3,20865,2)
- ;;=^5003792
- ;;^UTILITY(U,$J,358.3,20866,0)
- ;;=G25.71^^95^1030^14
- ;;^UTILITY(U,$J,358.3,20866,1,0)
+ ;;^UTILITY(U,$J,358.3,21100,1,3,0)
+ ;;=3^Asthma,Uncomplicated,Unspec
+ ;;^UTILITY(U,$J,358.3,21100,1,4,0)
+ ;;=4^J45.909
+ ;;^UTILITY(U,$J,358.3,21100,2)
+ ;;=^5008256
+ ;;^UTILITY(U,$J,358.3,21101,0)
+ ;;=J45.902^^70^908^15
+ ;;^UTILITY(U,$J,358.3,21101,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,20866,1,3,0)
- ;;=3^Tardive Akathisia
- ;;^UTILITY(U,$J,358.3,20866,1,4,0)
- ;;=4^G25.71
- ;;^UTILITY(U,$J,358.3,20866,2)
- ;;=^5003799
- ;;^UTILITY(U,$J,358.3,20867,0)
- ;;=G25.79^^95^1030^9
- ;;^UTILITY(U,$J,358.3,20867,1,0)
+ ;;^UTILITY(U,$J,358.3,21101,1,3,0)
+ ;;=3^Asthma w/ Status Asthmaticus,Unspec
+ ;;^UTILITY(U,$J,358.3,21101,1,4,0)
+ ;;=4^J45.902
+ ;;^UTILITY(U,$J,358.3,21101,2)
+ ;;=^5008255
+ ;;^UTILITY(U,$J,358.3,21102,0)
+ ;;=J98.11^^70^908^19
+ ;;^UTILITY(U,$J,358.3,21102,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,20867,1,3,0)
- ;;=3^Medication-Induced Movement Disorder,Other
- ;;^UTILITY(U,$J,358.3,20867,1,4,0)
- ;;=4^G25.79
- ;;^UTILITY(U,$J,358.3,20867,2)
- ;;=^5003800
- ;;^UTILITY(U,$J,358.3,20868,0)
- ;;=T43.205A^^95^1030^4
- ;;^UTILITY(U,$J,358.3,20868,1,0)
+ ;;^UTILITY(U,$J,358.3,21102,1,3,0)
+ ;;=3^Atelectasis
+ ;;^UTILITY(U,$J,358.3,21102,1,4,0)
+ ;;=4^J98.11
+ ;;^UTILITY(U,$J,358.3,21102,2)
+ ;;=^5008360
+ ;;^UTILITY(U,$J,358.3,21103,0)
+ ;;=A31.9^^70^908^65
+ ;;^UTILITY(U,$J,358.3,21103,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,20868,1,3,0)
- ;;=3^Antidepressant Discontinuation Syndrome,Init Encntr
- ;;^UTILITY(U,$J,358.3,20868,1,4,0)
- ;;=4^T43.205A
- ;;^UTILITY(U,$J,358.3,20868,2)
- ;;=^5050540
- ;;^UTILITY(U,$J,358.3,20869,0)
- ;;=T43.205D^^95^1030^5
- ;;^UTILITY(U,$J,358.3,20869,1,0)
+ ;;^UTILITY(U,$J,358.3,21103,1,3,0)
+ ;;=3^Mycobacterial Infection,Unspec
+ ;;^UTILITY(U,$J,358.3,21103,1,4,0)
+ ;;=4^A31.9
+ ;;^UTILITY(U,$J,358.3,21103,2)
+ ;;=^5000153
+ ;;^UTILITY(U,$J,358.3,21104,0)
+ ;;=A31.0^^70^908^64
+ ;;^UTILITY(U,$J,358.3,21104,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,20869,1,3,0)
- ;;=3^Antidepressant Discontinuation Syndrome,Subseq Encntr
- ;;^UTILITY(U,$J,358.3,20869,1,4,0)
- ;;=4^T43.205D
- ;;^UTILITY(U,$J,358.3,20869,2)
- ;;=^5050541
- ;;^UTILITY(U,$J,358.3,20870,0)
- ;;=T43.205S^^95^1030^6
- ;;^UTILITY(U,$J,358.3,20870,1,0)
+ ;;^UTILITY(U,$J,358.3,21104,1,3,0)
+ ;;=3^Mycobacterial Infection,Pulmonary
+ ;;^UTILITY(U,$J,358.3,21104,1,4,0)
+ ;;=4^A31.0
+ ;;^UTILITY(U,$J,358.3,21104,2)
+ ;;=^5000149
+ ;;^UTILITY(U,$J,358.3,21105,0)
+ ;;=A31.2^^70^908^40
+ ;;^UTILITY(U,$J,358.3,21105,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,20870,1,3,0)
- ;;=3^Antidepressant Discontinuation Syndrome,Sequela
- ;;^UTILITY(U,$J,358.3,20870,1,4,0)
- ;;=4^T43.205S
+ ;;^UTILITY(U,$J,358.3,21105,1,3,0)
+ ;;=3^Disseminated Mycobacterium Avium-Intracellulare Complex

@@ -1,5 +1,5 @@
 IBARXMP ;LL/ELZ - PHARMCAY COPAY CAP PUSH TRANSACTION ;26-APR-2001
- ;;2.0;INTEGRATED BILLING;**150,158,637**;21-MAR-94;Build 29
+ ;;2.0;INTEGRATED BILLING;**150,158,637,676**;21-MAR-94;Build 34
  ;;Per VA Directive 6402, this routine should not be modified.
  ;
 PUSH ; this entry point will allow the user to select one or all transactions
@@ -19,7 +19,7 @@ I ; transmits selected individual transactions
  N DIC,X,Y,IBZ,IBX,%,%Y,IBTFL,DFN,IBY,IBS,IBONE
  ;
  S DIC="^IBAM(354.71,",DIC(0)="AEMNQZ",IBS=+$P($$SITE^IBARXMU,"^",3),DIC("S")="I $E(^(0),1,3)=IBS" D ^DIC Q:Y<1
- S IBX=+Y,IBZ=Y(0),DFN=$P(IBZ,"^",2),IBTFL=$$TFL^IBARXMU(DFN,.IBTFL),IBY=1
+ S IBX=+Y,IBZ=Y(0),DFN=$P(IBZ,"^",2),IBTFL=$$TFL^IBARXMU(DFN,.IBTFL,2),IBY=1
  ;
  I IBTFL,($P(IBZ,"^",5)="C"!($P(IBZ,"^",5)="X")) W !!,"This transaction appears to already be transmitted.",!,"Do you want to transmit again" S %=2 D YN^DICN G:%'=1 I S IBONE=1
  ;

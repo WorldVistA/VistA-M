@@ -1,118 +1,118 @@
-IBDEI19X ; ; 04-FEB-2020
- ;;3.0;IB ENCOUNTER FORM IMP/EXP;;FEB 04, 2020
+IBDEI19X ; ; 01-FEB-2022
+ ;;3.0;IB ENCOUNTER FORM IMP/EXP;;FEB 01, 2022
  Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,999) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
- ;;^UTILITY(U,$J,358.3,20378,1,4,0)
- ;;=4^S52.134S
- ;;^UTILITY(U,$J,358.3,20378,2)
- ;;=^5029206
- ;;^UTILITY(U,$J,358.3,20379,0)
- ;;=S52.335S^^93^1002^97
- ;;^UTILITY(U,$J,358.3,20379,1,0)
+ ;;^UTILITY(U,$J,358.3,20603,1,4,0)
+ ;;=4^S82.442S
+ ;;^UTILITY(U,$J,358.3,20603,2)
+ ;;=^5041937
+ ;;^UTILITY(U,$J,358.3,20604,0)
+ ;;=S82.441S^^67^888^31
+ ;;^UTILITY(U,$J,358.3,20604,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,20379,1,3,0)
- ;;=3^Nondisp fx of oblique shaft of left radius, sequela
- ;;^UTILITY(U,$J,358.3,20379,1,4,0)
- ;;=4^S52.335S
- ;;^UTILITY(U,$J,358.3,20379,2)
- ;;=^5030142
- ;;^UTILITY(U,$J,358.3,20380,0)
- ;;=S52.334S^^93^1002^99
- ;;^UTILITY(U,$J,358.3,20380,1,0)
+ ;;^UTILITY(U,$J,358.3,20604,1,3,0)
+ ;;=3^Disp fx of spiral shaft of right fibula, sequela 
+ ;;^UTILITY(U,$J,358.3,20604,1,4,0)
+ ;;=4^S82.441S
+ ;;^UTILITY(U,$J,358.3,20604,2)
+ ;;=^5041921
+ ;;^UTILITY(U,$J,358.3,20605,0)
+ ;;=S82.422S^^67^888^33
+ ;;^UTILITY(U,$J,358.3,20605,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,20380,1,3,0)
- ;;=3^Nondisp fx of oblique shaft of right radius, sequela
- ;;^UTILITY(U,$J,358.3,20380,1,4,0)
- ;;=4^S52.334S
- ;;^UTILITY(U,$J,358.3,20380,2)
- ;;=^5030126
- ;;^UTILITY(U,$J,358.3,20381,0)
- ;;=S52.365S^^93^1002^111
- ;;^UTILITY(U,$J,358.3,20381,1,0)
+ ;;^UTILITY(U,$J,358.3,20605,1,3,0)
+ ;;=3^Disp fx of transverse shaft of left fibula, sequela    
+ ;;^UTILITY(U,$J,358.3,20605,1,4,0)
+ ;;=4^S82.422S
+ ;;^UTILITY(U,$J,358.3,20605,2)
+ ;;=^5041745
+ ;;^UTILITY(U,$J,358.3,20606,0)
+ ;;=S82.421S^^67^888^35
+ ;;^UTILITY(U,$J,358.3,20606,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,20381,1,3,0)
- ;;=3^Nondisp fx of segmental shaft of radius, left arm, sequela
- ;;^UTILITY(U,$J,358.3,20381,1,4,0)
- ;;=4^S52.365S
- ;;^UTILITY(U,$J,358.3,20381,2)
- ;;=^5030430
- ;;^UTILITY(U,$J,358.3,20382,0)
- ;;=S52.364S^^93^1002^112
- ;;^UTILITY(U,$J,358.3,20382,1,0)
+ ;;^UTILITY(U,$J,358.3,20606,1,3,0)
+ ;;=3^Disp fx of transverse shaft of right fibula, sequela  
+ ;;^UTILITY(U,$J,358.3,20606,1,4,0)
+ ;;=4^S82.421S
+ ;;^UTILITY(U,$J,358.3,20606,2)
+ ;;=^5041729
+ ;;^UTILITY(U,$J,358.3,20607,0)
+ ;;=S82.455S^^67^888^42
+ ;;^UTILITY(U,$J,358.3,20607,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,20382,1,3,0)
- ;;=3^Nondisp fx of segmental shaft of radius, right arm, sequela
- ;;^UTILITY(U,$J,358.3,20382,1,4,0)
- ;;=4^S52.364S
- ;;^UTILITY(U,$J,358.3,20382,2)
- ;;=^5030414
- ;;^UTILITY(U,$J,358.3,20383,0)
- ;;=S52.345S^^93^1002^115
- ;;^UTILITY(U,$J,358.3,20383,1,0)
+ ;;^UTILITY(U,$J,358.3,20607,1,3,0)
+ ;;=3^Nondisp fx of comminuted shaft of left fibula, sequela 
+ ;;^UTILITY(U,$J,358.3,20607,1,4,0)
+ ;;=4^S82.455S
+ ;;^UTILITY(U,$J,358.3,20607,2)
+ ;;=^5042081
+ ;;^UTILITY(U,$J,358.3,20608,0)
+ ;;=S82.454S^^67^888^44
+ ;;^UTILITY(U,$J,358.3,20608,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,20383,1,3,0)
- ;;=3^Nondisp fx of spiral shaft of radius, left arm, sequela
- ;;^UTILITY(U,$J,358.3,20383,1,4,0)
- ;;=4^S52.345S
- ;;^UTILITY(U,$J,358.3,20383,2)
- ;;=^5030238
- ;;^UTILITY(U,$J,358.3,20384,0)
- ;;=S52.344S^^93^1002^116
- ;;^UTILITY(U,$J,358.3,20384,1,0)
+ ;;^UTILITY(U,$J,358.3,20608,1,3,0)
+ ;;=3^Nondisp fx of comminuted shaft of right fibula, sequela 
+ ;;^UTILITY(U,$J,358.3,20608,1,4,0)
+ ;;=4^S82.454S
+ ;;^UTILITY(U,$J,358.3,20608,2)
+ ;;=^5042065
+ ;;^UTILITY(U,$J,358.3,20609,0)
+ ;;=S82.65XS^^67^888^47
+ ;;^UTILITY(U,$J,358.3,20609,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,20384,1,3,0)
- ;;=3^Nondisp fx of spiral shaft of radius, right arm, sequela
- ;;^UTILITY(U,$J,358.3,20384,1,4,0)
- ;;=4^S52.344S
- ;;^UTILITY(U,$J,358.3,20384,2)
- ;;=^5030222
- ;;^UTILITY(U,$J,358.3,20385,0)
- ;;=S52.325S^^93^1002^119
- ;;^UTILITY(U,$J,358.3,20385,1,0)
+ ;;^UTILITY(U,$J,358.3,20609,1,3,0)
+ ;;=3^Nondisp fx of lateral malleolus of left fibula, sequela
+ ;;^UTILITY(U,$J,358.3,20609,1,4,0)
+ ;;=4^S82.65XS
+ ;;^UTILITY(U,$J,358.3,20609,2)
+ ;;=^5042390
+ ;;^UTILITY(U,$J,358.3,20610,0)
+ ;;=S82.64XS^^67^888^48
+ ;;^UTILITY(U,$J,358.3,20610,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,20385,1,3,0)
- ;;=3^Nondisp fx of transverse shaft of left radius, sequela
- ;;^UTILITY(U,$J,358.3,20385,1,4,0)
- ;;=4^S52.325S
- ;;^UTILITY(U,$J,358.3,20385,2)
- ;;=^5030046
- ;;^UTILITY(U,$J,358.3,20386,0)
- ;;=S52.324S^^93^1002^121
- ;;^UTILITY(U,$J,358.3,20386,1,0)
+ ;;^UTILITY(U,$J,358.3,20610,1,3,0)
+ ;;=3^Nondisp fx of lateral malleolus of right fibula, sequela
+ ;;^UTILITY(U,$J,358.3,20610,1,4,0)
+ ;;=4^S82.64XS
+ ;;^UTILITY(U,$J,358.3,20610,2)
+ ;;=^5042374
+ ;;^UTILITY(U,$J,358.3,20611,0)
+ ;;=S82.435S^^67^888^55
+ ;;^UTILITY(U,$J,358.3,20611,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,20386,1,3,0)
- ;;=3^Nondisp fx of transverse shaft of r radius, sequela
- ;;^UTILITY(U,$J,358.3,20386,1,4,0)
- ;;=4^S52.324S
- ;;^UTILITY(U,$J,358.3,20386,2)
- ;;=^5030030
- ;;^UTILITY(U,$J,358.3,20387,0)
- ;;=M84.434S^^93^1002^129
- ;;^UTILITY(U,$J,358.3,20387,1,0)
+ ;;^UTILITY(U,$J,358.3,20611,1,3,0)
+ ;;=3^Nondisp fx of oblique shaft of left fibula, sequela
+ ;;^UTILITY(U,$J,358.3,20611,1,4,0)
+ ;;=4^S82.435S
+ ;;^UTILITY(U,$J,358.3,20611,2)
+ ;;=^5041889
+ ;;^UTILITY(U,$J,358.3,20612,0)
+ ;;=S82.434S^^67^888^57
+ ;;^UTILITY(U,$J,358.3,20612,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,20387,1,3,0)
- ;;=3^Pathological fracture, left radius, sequela
- ;;^UTILITY(U,$J,358.3,20387,1,4,0)
- ;;=4^M84.434S
- ;;^UTILITY(U,$J,358.3,20387,2)
- ;;=^5013859
- ;;^UTILITY(U,$J,358.3,20388,0)
- ;;=M84.433S^^93^1002^131
- ;;^UTILITY(U,$J,358.3,20388,1,0)
+ ;;^UTILITY(U,$J,358.3,20612,1,3,0)
+ ;;=3^Nondisp fx of oblique shaft of right fibula, sequela  
+ ;;^UTILITY(U,$J,358.3,20612,1,4,0)
+ ;;=4^S82.434S
+ ;;^UTILITY(U,$J,358.3,20612,2)
+ ;;=^5041873
+ ;;^UTILITY(U,$J,358.3,20613,0)
+ ;;=S82.465S^^67^888^63
+ ;;^UTILITY(U,$J,358.3,20613,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,20388,1,3,0)
- ;;=3^Pathological fracture, right radius, sequela
- ;;^UTILITY(U,$J,358.3,20388,1,4,0)
- ;;=4^M84.433S
- ;;^UTILITY(U,$J,358.3,20388,2)
- ;;=^5013853
- ;;^UTILITY(U,$J,358.3,20389,0)
- ;;=S59.212S^^93^1002^134
- ;;^UTILITY(U,$J,358.3,20389,1,0)
+ ;;^UTILITY(U,$J,358.3,20613,1,3,0)
+ ;;=3^Nondisp fx of segmental shaft of left fibula, sequela  
+ ;;^UTILITY(U,$J,358.3,20613,1,4,0)
+ ;;=4^S82.465S
+ ;;^UTILITY(U,$J,358.3,20613,2)
+ ;;=^5042177
+ ;;^UTILITY(U,$J,358.3,20614,0)
+ ;;=S82.464S^^67^888^66
+ ;;^UTILITY(U,$J,358.3,20614,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,20389,1,3,0)
- ;;=3^Sltr-haris Type I physl fx lower end radius, left arm, sqla
- ;;^UTILITY(U,$J,358.3,20389,1,4,0)
- ;;=4^S59.212S
- ;;^UTILITY(U,$J,358.3,20389,2)
- ;;=^5135626
+ ;;^UTILITY(U,$J,358.3,20614,1,3,0)
+ ;;=3^Nondisp fx of segmental shaft of right fibula, sequela  
+ ;;^UTILITY(U,$J,358.3,20614,1,4,0)
+ ;;=4^S82.464S
+ ;;^UTILITY(U,$J,358.3,20614,2)
+ ;;=^5042161

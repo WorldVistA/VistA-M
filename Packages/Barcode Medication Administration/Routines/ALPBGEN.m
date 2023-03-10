@@ -1,5 +1,5 @@
 ALPBGEN ;SFVAMC/JC - Build HL7 PMU messages ;03/11/2004  15:54
- ;;3.0;BAR CODE MED ADMIN;**7,8,102**;March 2004;Build 14
+ ;;3.0;BAR CODE MED ADMIN;**7,8,102,127**;March 2004;Build 6
 HL7(XUIEN,XUFLG,XUSR) ;GENERATE MESSAGE - For Subscriber to XUSER DATA REQUEST (BCBU PMU MESSAGE BUILDER)
  ;Build HL7 PMU~B01 or B02 message from array XUSR() and XUNAME()
  ;B01=Personnel Add/Create event type
@@ -84,6 +84,7 @@ ESC(ST,PR) ;Translate reserved characters to escape sequences in Access/Verify
  ;ST=String to translate
  ;PR=Event Protocol to set up HL array variables (optional)
  ;First, do the escape character
+ N I,J
  I $G(ST)']"" Q ""
  S PR=$G(PR) I PR]"" D INIT^HLFNC2(PR,.HL)
  I '$D(HL) D
@@ -113,6 +114,7 @@ UNESC(ST,PR) ;Unescape string from message
  ;ST=String to translate
  ;PR=Event Protocol to set up HL array variables (optional)
  ;First, do the escape character
+ N I,J,K,L,X
  I $G(ST)="" Q ""
  S PR=$G(PR) I PR]"" D INIT^HLFNC2(PR,.HL)
  I '$D(HL) D

@@ -1,7 +1,7 @@
 YTXCHGI ;SLC/KCM - Instrument Specification Import ; 9/15/2015
- ;;5.01;MENTAL HEALTH;**121**;Dec 30, 1994;Build 61
+ ;;5.01;MENTAL HEALTH;**121,202**;Dec 30, 1994;Build 47
  ;
- ;Reference to TIUFLF7 APIs supported by DBIA #5352
+ ; Reference to TIUFLF7 in ICR #5352
  Q
 IMPTREE(TREE,YTXDRY) ; updates database from object tree source
  ;  TREE  : name of array containing object tree
@@ -151,6 +151,7 @@ DIFFREC(FILE,IEN,REC) ; return 0 if identical, 1 if changed, 2 if absent
  ;
 WP2REC(TREEREF,FIELD,REC) ; parse CRLF delimited JSON TREE text into ^TMP
  I '$D(@TREEREF) QUIT  ; nothing in WP field
+ I @TREEREF="null",'$D(@TREEREF@("\s")) QUIT  ; nothing in WP field
  ;
  K ^TMP("YTXCHG",$J,"WP",FIELD)
  D TR2WP^YTXCHGT(TREEREF,$NA(^TMP("YTXCHG",$J,"WP",FIELD)))

@@ -1,9 +1,8 @@
-DGBTSP ;ALB/BLD-BENEFICIARY TRAVEL SPECIAL MODE OF TRANSPORTATION; 12/18/2011@1000; 12/23/2012
- ;;1.0;Beneficiary Travel;**20,22,25**;December 27, 2011;Build 12
+DGBTSP ;ALB/BLD - BENEFICIARY TRAVEL SPECIAL MODE OF TRANSPORTATION ; 12/18/2011@1000 ; 12/23/2012
+ ;;1.0;Beneficiary Travel;**20,22,25,39**;December 27, 2011;Build 6
  ;
  ;MUST ENTER AT EN^DGBTSP
  Q
- ;
  ;
 EN(DGBTSP) ;main entry point from DGBTE
  ;
@@ -90,7 +89,7 @@ PREAUTH(DGBTSP) ;this will ask if trip was pre-authorized. If answer is no then 
  ;
  W !
  Q:$G(DFN)=""!($G(DGBTSP)=0)
- S PREAUTH=$$GET1^DIQ(392,DGBTDT,70)           ;,"I"),PREAUTH=$S(PREAUTH="Y":"YES",1:"NO")
+ S PREAUTH=$$GET1^DIQ(392,DGBTDT,70)
  S DIR("A")="WAS TRIP PRE-AUTHORIZED"
  S DIR(0)="Y"
  S DIR("?")="Sorry, enter 'N'o if not Pre-Authorized, 'Y'es if Pre-Authorized",DIR(0)="Y"
@@ -100,7 +99,7 @@ PREAUTH(DGBTSP) ;this will ask if trip was pre-authorized. If answer is no then 
  S DGBTSP("PRE-AUTHORIZED")=$G(Y(0))
  I DGBTSP("PRE-AUTHORIZED")="YES" K DGBTSP("AUTHORIZED") S DGBTSP("AUTHORIZED")="YES" D CLRLTR^DGBTDLT(0)
  I '+Y D  I ($D(DTOUT))!($D(DUOUT))!(SPCOMPLETE=0) S DGBTSP=0 Q
- .S AUTHORIZED=$$GET1^DIQ(392,DGBTDT,85)                              ;,"I"),AUTHORIZED=$S(AUTHORIZED="Y":"YES",1:"NO")
+ .S AUTHORIZED=$$GET1^DIQ(392,DGBTDT,85)
  .S DIR("A")="IS AUTHORIZATION APPROVED"
  .S DIR("?")="Sorry, enter 'N'o if Claim not Authorized, 'Y'es if Claim is Authorized",DIR(0)="Y"
  .S DIR(0)="Y"
@@ -144,7 +143,7 @@ ADDINFO(DGBTSP) ;this will ask additional questions of the end user about the in
  S DIR("?")="ENTER "_"PLACE OF DEPARTURE [LINE 1]. 1 TO 30 CHARACTERS"
  S DIR(0)="FO^1:30"
  S DEPL1=$$GET1^DIQ(392,DGBTDTI,73)
- S DIR("B")=$S($G(DEPL1)'="":$G(DEPL1),1:$G(VAPA(1)))
+ S DIR("B")=$S($G(DEPL1)'="":$G(DEPL1),1:$G(DGBTADDR(1))) ;*39 - updated to use residential address
  D ^DIR K DIR S:$D(^DGBT(392,DGBTDTI,"SP")) SPCOMPLETE=1 I $D(DTOUT)!($D(DUOUT)) S DGBTSP=0,SPCOMPLETE=0 Q
  S DGBTSP("PLACE OF DEPARTURE")=Y
  ;
@@ -152,7 +151,7 @@ ADDINFO(DGBTSP) ;this will ask additional questions of the end user about the in
  S DIR("?")="ENTER "_"PLACE OF DEPARTURE [LINE 2]. 1 TO 30 CHARACTERS"
  S DIR(0)="FO^1:30"
  S DEPL2=$$GET1^DIQ(392,DGBTDTI,74)
- S DIR("B")=$S($G(DEPL2)'="":$G(DEPL2),1:$G(VAPA(2)))
+ S DIR("B")=$S($G(DEPL2)'="":$G(DEPL2),1:$G(DGBTADDR(2))) ;*39 - updated to use residential address
  I $G(DIR("B"))="" K DIR("B")
  D ^DIR K DIR S:$D(^DGBT(392,DGBTDTI,"SP")) SPCOMPLETE=1 I $D(DTOUT)!($D(DUOUT)) S DGBTSP=0,SPCOMPLETE=0 Q
  S DGBTSP("PLACE OF DEPARTURE 2")=Y
@@ -161,7 +160,7 @@ ADDINFO(DGBTSP) ;this will ask additional questions of the end user about the in
  S DIR("?")="ENTER "_"CITY OF DEPARTURE. 3 TO 30 CHARACTERS"
  S DIR(0)="FO^3:30"
  S DEPCITY=$$GET1^DIQ(392,DGBTDTI,75)
- S DIR("B")=$S($G(DEPCITY)'="":$G(DEPCITY),1:$G(VAPA(4)))
+ S DIR("B")=$S($G(DEPCITY)'="":$G(DEPCITY),1:$G(DGBTADDR(4))) ;*39 - updated to use residential address
  D ^DIR K DIR S:$D(^DGBT(392,DGBTDTI,"SP")) SPCOMPLETE=1 I $D(DTOUT)!($D(DUOUT)) S DGBTSP=0,SPCOMPLETE=0 Q
  S DGBTSP("CITY OF DEPARTURE")=Y
  ;
@@ -169,7 +168,7 @@ ADDINFO(DGBTSP) ;this will ask additional questions of the end user about the in
  S DIR("?")="ENTER "_"STATE OF DEPARTURE"
  S DIR(0)="P^5:EMZ"
  S DEPST=$$GET1^DIQ(392,DGBTDTI,76)
- S DIR("B")=$S($G(DEPST)'="":$G(DEPST),1:$P($G(VAPA(5)),"^",2))
+ S DIR("B")=$S($G(DEPST)'="":$G(DEPST),1:$P($G(DGBTADDR(5)),"^",2)) ;*39 - updated to use residential address
  D ^DIR K DIR S:$D(^DGBT(392,DGBTDTI,"SP")) SPCOMPLETE=1 I $D(DTOUT)!($D(DUOUT)) S DGBTSP=0,SPCOMPLETE=0 Q
  S DGBTSP("STATE OF DEPARTURE")=$P(Y,"^",2)
  ;
@@ -177,7 +176,7 @@ ADDINFO(DGBTSP) ;this will ask additional questions of the end user about the in
  S DIR("?")="ENTER "_"ZIP CODE/DEPARTURE (5 NUMBERS)"
  S DIR(0)="FO^5:5"    ;$S(I="STATE OF DEPATURE":"P^5:EMZ",1:"FO^3:30")
  S DEPZIP=$$GET1^DIQ(392,DGBTDTI,77)
- S DIR("B")=$S($G(DEPZIP)'="":$G(DEPZIP),1:$P($G(VAPA(11)),"^",2))
+ S DIR("B")=$S($G(DEPZIP)'="":$G(DEPZIP),1:$E($P(DGBTADDR(6),U),1,5)) ;*39 - updated to use residential address
  D ^DIR K DIR S:$D(^DGBT(392,DGBTDTI,"SP")) SPCOMPLETE=1 I $D(DTOUT)!($D(DUOUT)) S DGBTSP=0,SPCOMPLETE=0 Q
  S DGBTSP("ZIP CODE/DEPARTURE")=Y
  ;
@@ -236,7 +235,6 @@ ADDINFO(DGBTSP) ;this will ask additional questions of the end user about the in
  S DGBTINST("ZIP CODE")=Y
  ;
  Q:$G(DGBTSP)=0
- ;
  ;invoice information
  W !
  S INVOICE=$$GET1^DIQ(392,DGBTDT,58,"I")
@@ -308,7 +306,6 @@ INST(DGBTINST) ;get destination information
  ;
 CLEANUP ;this will clean up the ^DGBT(392,D0) file for nodes "M","D","T" and the 3 and 4 piece of the "A" node
  ;
- ;N DGBTDL
  Q:$G(DGBTDTI)=""
  F I="M","D","B","C","T" I $D(DGBTDTI) K ^DGBT(392,DGBTDTI,I)
  ;F I=8,9,10 S $P(^DGBT(392,DGBTDTI,0),"^",I)=""

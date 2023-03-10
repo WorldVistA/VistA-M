@@ -1,6 +1,7 @@
-TIULO ; SLC/JER - Embedded Objects ;11/29/02
- ;;1.0;TEXT INTEGRATION UTILITIES;**34,70,101,148,204**;Jun 20, 1997
+TIULO ;SLC/JER - Embedded Objects ;Mar 18, 2021@06:56:30
+ ;;1.0;TEXT INTEGRATION UTILITIES;**34,70,101,148,204,341,345**;Jun 20, 1997;Build 3
 DEM(DFN,VADM) ; Calls DEM^VADPT
+ N VAROOT
  D DEM^VADPT
  Q
 NAME(DFN) ; Patient NAME
@@ -49,6 +50,8 @@ TEMP(DFN) ; Gets most recent Temperature from VITALS
  Q $$DOVITALS(DFN,"T")
 PULSE(DFN) ; Gets most recent Pulse from VITALS
  Q $$DOVITALS(DFN,"P")
+PO2(DFN) ; Get most recent Pulse Oximeter from VITALS - ajb *341
+ Q $$DOVITALS(DFN,"PO2")
 RESP(DFN) ; Gets most recent Respiration from VITALS
  Q $$DOVITALS(DFN,"R")
 BP(DFN) ; Gets most recent Blood Pressure from VITALS
@@ -69,9 +72,10 @@ DOVITALS(DFN,TIUVITC) ; INTERNAL ROUTINE TO GET SPECIFIED VITALS (**34**)
  . . . S TIUVTEMP=$G(TIUVIT(TIUVITC,TIUVDT,TIUVDA))
  . . . S VDT=$$DATE^TIULS($P(TIUVTEMP,U,1),"MM/DD/CCYY HR:MIN")
  . . . S TIUY=$P(TIUVTEMP,U,8)
+ . . . I TIUVITC="PO2" Q:+TIUY'>0  S TIUY=TIUY_"%" ; ajb *341
  . . . I TIUVITC="WT" D
  . . . . Q:+TIUY'>0
- . . . . S CONV=$J((+TIUY/2.2),3,1)
+ . . . . S CONV=$J((+TIUY/2.20462262),0,2)     ;P345
  . . . . S TIUY=TIUY_" lb ["_CONV_" kg]"
  . . . I TIUVITC="HT" D
  . . . . Q:+TIUY'>0

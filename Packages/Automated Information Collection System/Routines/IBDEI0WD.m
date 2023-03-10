@@ -1,134 +1,118 @@
-IBDEI0WD ; ; 04-FEB-2020
- ;;3.0;IB ENCOUNTER FORM IMP/EXP;;FEB 04, 2020
+IBDEI0WD ; ; 01-FEB-2022
+ ;;3.0;IB ENCOUNTER FORM IMP/EXP;;FEB 01, 2022
  Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,999) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
- ;;^UTILITY(U,$J,358.3,14409,1,4,0)
- ;;=4^R05.
- ;;^UTILITY(U,$J,358.3,14409,2)
- ;;=^5019179
- ;;^UTILITY(U,$J,358.3,14410,0)
- ;;=R06.00^^83^824^22
- ;;^UTILITY(U,$J,358.3,14410,1,0)
+ ;;^UTILITY(U,$J,358.3,14596,0)
+ ;;=S06.9X3A^^58^701^6
+ ;;^UTILITY(U,$J,358.3,14596,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,14410,1,3,0)
- ;;=3^Dyspnea,Unspec
- ;;^UTILITY(U,$J,358.3,14410,1,4,0)
- ;;=4^R06.00
- ;;^UTILITY(U,$J,358.3,14410,2)
- ;;=^5019180
- ;;^UTILITY(U,$J,358.3,14411,0)
- ;;=J43.9^^83^824^23
- ;;^UTILITY(U,$J,358.3,14411,1,0)
+ ;;^UTILITY(U,$J,358.3,14596,1,3,0)
+ ;;=3^Intcrn inj w LOC of 1-5 hrs 59 min, init encntr,Unspec
+ ;;^UTILITY(U,$J,358.3,14596,1,4,0)
+ ;;=4^S06.9X3A
+ ;;^UTILITY(U,$J,358.3,14596,2)
+ ;;=^5021215
+ ;;^UTILITY(U,$J,358.3,14597,0)
+ ;;=S06.9X1A^^58^701^7
+ ;;^UTILITY(U,$J,358.3,14597,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,14411,1,3,0)
- ;;=3^Emphysema,Unspec
- ;;^UTILITY(U,$J,358.3,14411,1,4,0)
- ;;=4^J43.9
- ;;^UTILITY(U,$J,358.3,14411,2)
- ;;=^5008238
- ;;^UTILITY(U,$J,358.3,14412,0)
- ;;=R04.0^^83^824^24
- ;;^UTILITY(U,$J,358.3,14412,1,0)
+ ;;^UTILITY(U,$J,358.3,14597,1,3,0)
+ ;;=3^Intcrn inj w LOC of 30 minutes or less, init encntr,Unspec
+ ;;^UTILITY(U,$J,358.3,14597,1,4,0)
+ ;;=4^S06.9X1A
+ ;;^UTILITY(U,$J,358.3,14597,2)
+ ;;=^5021209
+ ;;^UTILITY(U,$J,358.3,14598,0)
+ ;;=S06.9X2A^^58^701^8
+ ;;^UTILITY(U,$J,358.3,14598,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,14412,1,3,0)
- ;;=3^Epistaxis
- ;;^UTILITY(U,$J,358.3,14412,1,4,0)
- ;;=4^R04.0
- ;;^UTILITY(U,$J,358.3,14412,2)
- ;;=^5019173
- ;;^UTILITY(U,$J,358.3,14413,0)
- ;;=R04.2^^83^824^25
- ;;^UTILITY(U,$J,358.3,14413,1,0)
+ ;;^UTILITY(U,$J,358.3,14598,1,3,0)
+ ;;=3^Intcrn inj w LOC of 31-59 min, init encntr,Unspec
+ ;;^UTILITY(U,$J,358.3,14598,1,4,0)
+ ;;=4^S06.9X2A
+ ;;^UTILITY(U,$J,358.3,14598,2)
+ ;;=^5021212
+ ;;^UTILITY(U,$J,358.3,14599,0)
+ ;;=S06.9X4A^^58^701^9
+ ;;^UTILITY(U,$J,358.3,14599,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,14413,1,3,0)
- ;;=3^Hemoptysis
- ;;^UTILITY(U,$J,358.3,14413,1,4,0)
- ;;=4^R04.2
- ;;^UTILITY(U,$J,358.3,14413,2)
- ;;=^5019175
- ;;^UTILITY(U,$J,358.3,14414,0)
- ;;=R04.9^^83^824^26
- ;;^UTILITY(U,$J,358.3,14414,1,0)
+ ;;^UTILITY(U,$J,358.3,14599,1,3,0)
+ ;;=3^Intcrn inj w LOC of 6 hours to 24 hours, init encntr,Unspec
+ ;;^UTILITY(U,$J,358.3,14599,1,4,0)
+ ;;=4^S06.9X4A
+ ;;^UTILITY(U,$J,358.3,14599,2)
+ ;;=^5021218
+ ;;^UTILITY(U,$J,358.3,14600,0)
+ ;;=S06.9X9A^^58^701^10
+ ;;^UTILITY(U,$J,358.3,14600,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,14414,1,3,0)
- ;;=3^Hemorrhage from Respiratory Passages,Unspec
- ;;^UTILITY(U,$J,358.3,14414,1,4,0)
- ;;=4^R04.9
- ;;^UTILITY(U,$J,358.3,14414,2)
- ;;=^5019178
- ;;^UTILITY(U,$J,358.3,14415,0)
- ;;=R09.02^^83^824^27
- ;;^UTILITY(U,$J,358.3,14415,1,0)
+ ;;^UTILITY(U,$J,358.3,14600,1,3,0)
+ ;;=3^Intcrn inj w LOC of unsp duration, init encntr,Unspec
+ ;;^UTILITY(U,$J,358.3,14600,1,4,0)
+ ;;=4^S06.9X9A
+ ;;^UTILITY(U,$J,358.3,14600,2)
+ ;;=^5021233
+ ;;^UTILITY(U,$J,358.3,14601,0)
+ ;;=S06.9X0A^^58^701^12
+ ;;^UTILITY(U,$J,358.3,14601,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,14415,1,3,0)
- ;;=3^Hypoxemia
- ;;^UTILITY(U,$J,358.3,14415,1,4,0)
- ;;=4^R09.02
- ;;^UTILITY(U,$J,358.3,14415,2)
- ;;=^332831
- ;;^UTILITY(U,$J,358.3,14416,0)
- ;;=J11.2^^83^824^28
- ;;^UTILITY(U,$J,358.3,14416,1,0)
+ ;;^UTILITY(U,$J,358.3,14601,1,3,0)
+ ;;=3^Intcrn inj w/o LOC, init encntr,Unspec
+ ;;^UTILITY(U,$J,358.3,14601,1,4,0)
+ ;;=4^S06.9X0A
+ ;;^UTILITY(U,$J,358.3,14601,2)
+ ;;=^5021206
+ ;;^UTILITY(U,$J,358.3,14602,0)
+ ;;=S78.019S^^58^702^4
+ ;;^UTILITY(U,$J,358.3,14602,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,14416,1,3,0)
- ;;=3^Influenza w/ GI Manifestation
- ;;^UTILITY(U,$J,358.3,14416,1,4,0)
- ;;=4^J11.2
- ;;^UTILITY(U,$J,358.3,14416,2)
- ;;=^5008159
- ;;^UTILITY(U,$J,358.3,14417,0)
- ;;=J11.89^^83^824^29
- ;;^UTILITY(U,$J,358.3,14417,1,0)
+ ;;^UTILITY(U,$J,358.3,14602,1,3,0)
+ ;;=3^Complete traumatic amputation at unsp hip joint, sequela
+ ;;^UTILITY(U,$J,358.3,14602,1,4,0)
+ ;;=4^S78.019S
+ ;;^UTILITY(U,$J,358.3,14602,2)
+ ;;=^5039710
+ ;;^UTILITY(U,$J,358.3,14603,0)
+ ;;=S68.419S^^58^702^1
+ ;;^UTILITY(U,$J,358.3,14603,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,14417,1,3,0)
- ;;=3^Influenza w/ Other Manifestation
- ;;^UTILITY(U,$J,358.3,14417,1,4,0)
- ;;=4^J11.89
- ;;^UTILITY(U,$J,358.3,14417,2)
- ;;=^5008163
- ;;^UTILITY(U,$J,358.3,14418,0)
- ;;=J11.00^^83^824^30
- ;;^UTILITY(U,$J,358.3,14418,1,0)
+ ;;^UTILITY(U,$J,358.3,14603,1,3,0)
+ ;;=3^Complete traumatic amp of unsp hand at wrist level, sequela
+ ;;^UTILITY(U,$J,358.3,14603,1,4,0)
+ ;;=4^S68.419S
+ ;;^UTILITY(U,$J,358.3,14603,2)
+ ;;=^5036707
+ ;;^UTILITY(U,$J,358.3,14604,0)
+ ;;=S88.919S^^58^702^2
+ ;;^UTILITY(U,$J,358.3,14604,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,14418,1,3,0)
- ;;=3^Influenza w/ Pneumonia
- ;;^UTILITY(U,$J,358.3,14418,1,4,0)
- ;;=4^J11.00
- ;;^UTILITY(U,$J,358.3,14418,2)
- ;;=^5008156
- ;;^UTILITY(U,$J,358.3,14419,0)
- ;;=J04.0^^83^824^31
- ;;^UTILITY(U,$J,358.3,14419,1,0)
+ ;;^UTILITY(U,$J,358.3,14604,1,3,0)
+ ;;=3^Complete traumatic amp of unsp low leg, level unsp, sequela
+ ;;^UTILITY(U,$J,358.3,14604,1,4,0)
+ ;;=4^S88.919S
+ ;;^UTILITY(U,$J,358.3,14604,2)
+ ;;=^5137219
+ ;;^UTILITY(U,$J,358.3,14605,0)
+ ;;=S48.919S^^58^702^3
+ ;;^UTILITY(U,$J,358.3,14605,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,14419,1,3,0)
- ;;=3^Laryngitis,Acute
- ;;^UTILITY(U,$J,358.3,14419,1,4,0)
- ;;=4^J04.0
- ;;^UTILITY(U,$J,358.3,14419,2)
- ;;=^5008137
- ;;^UTILITY(U,$J,358.3,14420,0)
- ;;=J37.0^^83^824^32
- ;;^UTILITY(U,$J,358.3,14420,1,0)
+ ;;^UTILITY(U,$J,358.3,14605,1,3,0)
+ ;;=3^Complete traumatic amp of unsp shldr/up arm, level unsp, sequela
+ ;;^UTILITY(U,$J,358.3,14605,1,4,0)
+ ;;=4^S48.919S
+ ;;^UTILITY(U,$J,358.3,14605,2)
+ ;;=^5028331
+ ;;^UTILITY(U,$J,358.3,14606,0)
+ ;;=S14.2XXS^^58^702^6
+ ;;^UTILITY(U,$J,358.3,14606,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,14420,1,3,0)
- ;;=3^Laryngitis,Chronic
- ;;^UTILITY(U,$J,358.3,14420,1,4,0)
- ;;=4^J37.0
- ;;^UTILITY(U,$J,358.3,14420,2)
- ;;=^269902
- ;;^UTILITY(U,$J,358.3,14421,0)
- ;;=R09.81^^83^824^33
- ;;^UTILITY(U,$J,358.3,14421,1,0)
+ ;;^UTILITY(U,$J,358.3,14606,1,3,0)
+ ;;=3^Injury of nerve root of cervical spine, sequela
+ ;;^UTILITY(U,$J,358.3,14606,1,4,0)
+ ;;=4^S14.2XXS
+ ;;^UTILITY(U,$J,358.3,14606,2)
+ ;;=^5022204
+ ;;^UTILITY(U,$J,358.3,14607,0)
+ ;;=S34.21XS^^58^702^7
+ ;;^UTILITY(U,$J,358.3,14607,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,14421,1,3,0)
- ;;=3^Nasal Congestion
- ;;^UTILITY(U,$J,358.3,14421,1,4,0)
- ;;=4^R09.81
- ;;^UTILITY(U,$J,358.3,14421,2)
- ;;=^5019203
- ;;^UTILITY(U,$J,358.3,14422,0)
- ;;=J34.2^^83^824^34
- ;;^UTILITY(U,$J,358.3,14422,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,14422,1,3,0)
- ;;=3^Nasal Septum,Deviated

@@ -1,114 +1,128 @@
-IBDEI1BN ; ; 04-FEB-2020
- ;;3.0;IB ENCOUNTER FORM IMP/EXP;;FEB 04, 2020
+IBDEI1BN ; ; 01-FEB-2022
+ ;;3.0;IB ENCOUNTER FORM IMP/EXP;;FEB 01, 2022
  Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,999) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
- ;;^UTILITY(U,$J,358.3,21121,1,4,0)
- ;;=4^F13.27
- ;;^UTILITY(U,$J,358.3,21121,2)
- ;;=^5003215
- ;;^UTILITY(U,$J,358.3,21122,0)
- ;;=F13.97^^95^1047^9
- ;;^UTILITY(U,$J,358.3,21122,1,0)
+ ;;^UTILITY(U,$J,358.3,21365,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,21122,1,3,0)
- ;;=3^Sedative/Hypnotic/Anxiolytic Induced Maj Neurocog D/O w/o Use D/O
- ;;^UTILITY(U,$J,358.3,21122,1,4,0)
- ;;=4^F13.97
- ;;^UTILITY(U,$J,358.3,21122,2)
- ;;=^5003234
- ;;^UTILITY(U,$J,358.3,21123,0)
- ;;=F13.288^^95^1047^10
- ;;^UTILITY(U,$J,358.3,21123,1,0)
+ ;;^UTILITY(U,$J,358.3,21365,1,3,0)
+ ;;=3^Long Term (Current) Use of Oral Hypoglycemics
+ ;;^UTILITY(U,$J,358.3,21365,1,4,0)
+ ;;=4^Z79.84
+ ;;^UTILITY(U,$J,358.3,21365,2)
+ ;;=^5140432
+ ;;^UTILITY(U,$J,358.3,21366,0)
+ ;;=H60.03^^70^915^1
+ ;;^UTILITY(U,$J,358.3,21366,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,21123,1,3,0)
- ;;=3^Sedative/Hypnotic/Anxiolytic Induced Mild Neurocog D/O w/ Mod-Sev Use D/O
- ;;^UTILITY(U,$J,358.3,21123,1,4,0)
- ;;=4^F13.288
- ;;^UTILITY(U,$J,358.3,21123,2)
- ;;=^5003219
- ;;^UTILITY(U,$J,358.3,21124,0)
- ;;=F13.988^^95^1047^11
- ;;^UTILITY(U,$J,358.3,21124,1,0)
+ ;;^UTILITY(U,$J,358.3,21366,1,3,0)
+ ;;=3^Abscess Bilateral External Ear
+ ;;^UTILITY(U,$J,358.3,21366,1,4,0)
+ ;;=4^H60.03
+ ;;^UTILITY(U,$J,358.3,21366,2)
+ ;;=^5006438
+ ;;^UTILITY(U,$J,358.3,21367,0)
+ ;;=H60.02^^70^915^2
+ ;;^UTILITY(U,$J,358.3,21367,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,21124,1,3,0)
- ;;=3^Sedative/Hypnotic/Anxiolytic Induced Mild Neurocog D/O w/o Use D/O
- ;;^UTILITY(U,$J,358.3,21124,1,4,0)
- ;;=4^F13.988
- ;;^UTILITY(U,$J,358.3,21124,2)
- ;;=^5003238
- ;;^UTILITY(U,$J,358.3,21125,0)
- ;;=F13.159^^95^1047^12
- ;;^UTILITY(U,$J,358.3,21125,1,0)
+ ;;^UTILITY(U,$J,358.3,21367,1,3,0)
+ ;;=3^Abscess Left External Ear
+ ;;^UTILITY(U,$J,358.3,21367,1,4,0)
+ ;;=4^H60.02
+ ;;^UTILITY(U,$J,358.3,21367,2)
+ ;;=^5006437
+ ;;^UTILITY(U,$J,358.3,21368,0)
+ ;;=H60.01^^70^915^3
+ ;;^UTILITY(U,$J,358.3,21368,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,21125,1,3,0)
- ;;=3^Sedative/Hypnotic/Anxiolytic Induced Psychotic D/O w/ Mild Use D/O
- ;;^UTILITY(U,$J,358.3,21125,1,4,0)
- ;;=4^F13.159
- ;;^UTILITY(U,$J,358.3,21125,2)
- ;;=^5003196
- ;;^UTILITY(U,$J,358.3,21126,0)
- ;;=F13.259^^95^1047^13
- ;;^UTILITY(U,$J,358.3,21126,1,0)
+ ;;^UTILITY(U,$J,358.3,21368,1,3,0)
+ ;;=3^Abscess Right External Ear
+ ;;^UTILITY(U,$J,358.3,21368,1,4,0)
+ ;;=4^H60.01
+ ;;^UTILITY(U,$J,358.3,21368,2)
+ ;;=^5006436
+ ;;^UTILITY(U,$J,358.3,21369,0)
+ ;;=H60.13^^70^915^5
+ ;;^UTILITY(U,$J,358.3,21369,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,21126,1,3,0)
- ;;=3^Sedative/Hypnotic/Anxiolytic Induced Psychotic D/O w/ Mod-Sev Use D/O
- ;;^UTILITY(U,$J,358.3,21126,1,4,0)
- ;;=4^F13.259
- ;;^UTILITY(U,$J,358.3,21126,2)
- ;;=^5003213
- ;;^UTILITY(U,$J,358.3,21127,0)
- ;;=F13.959^^95^1047^14
- ;;^UTILITY(U,$J,358.3,21127,1,0)
+ ;;^UTILITY(U,$J,358.3,21369,1,3,0)
+ ;;=3^Cellulitis Bilateral External Ear
+ ;;^UTILITY(U,$J,358.3,21369,1,4,0)
+ ;;=4^H60.13
+ ;;^UTILITY(U,$J,358.3,21369,2)
+ ;;=^5006442
+ ;;^UTILITY(U,$J,358.3,21370,0)
+ ;;=H60.12^^70^915^6
+ ;;^UTILITY(U,$J,358.3,21370,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,21127,1,3,0)
- ;;=3^Sedative/Hypnotic/Anxiolytic Induced Psychotic D/O w/o Use D/O
- ;;^UTILITY(U,$J,358.3,21127,1,4,0)
- ;;=4^F13.959
- ;;^UTILITY(U,$J,358.3,21127,2)
- ;;=^5003232
- ;;^UTILITY(U,$J,358.3,21128,0)
- ;;=F13.181^^95^1047^15
- ;;^UTILITY(U,$J,358.3,21128,1,0)
+ ;;^UTILITY(U,$J,358.3,21370,1,3,0)
+ ;;=3^Cellulitis Left External Ear
+ ;;^UTILITY(U,$J,358.3,21370,1,4,0)
+ ;;=4^H60.12
+ ;;^UTILITY(U,$J,358.3,21370,2)
+ ;;=^5006441
+ ;;^UTILITY(U,$J,358.3,21371,0)
+ ;;=H60.11^^70^915^7
+ ;;^UTILITY(U,$J,358.3,21371,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,21128,1,3,0)
- ;;=3^Sedative/Hypnotic/Anxiolytic Induced Sexual Dysfunction w/ Mild Use D/O
- ;;^UTILITY(U,$J,358.3,21128,1,4,0)
- ;;=4^F13.181
- ;;^UTILITY(U,$J,358.3,21128,2)
- ;;=^5003198
- ;;^UTILITY(U,$J,358.3,21129,0)
- ;;=F13.281^^95^1047^16
- ;;^UTILITY(U,$J,358.3,21129,1,0)
+ ;;^UTILITY(U,$J,358.3,21371,1,3,0)
+ ;;=3^Cellulitis Right External Ear
+ ;;^UTILITY(U,$J,358.3,21371,1,4,0)
+ ;;=4^H60.11
+ ;;^UTILITY(U,$J,358.3,21371,2)
+ ;;=^5006440
+ ;;^UTILITY(U,$J,358.3,21372,0)
+ ;;=H60.323^^70^915^8
+ ;;^UTILITY(U,$J,358.3,21372,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,21129,1,3,0)
- ;;=3^Sedative/Hypnotic/Anxiolytic Induced Sexual Dysfunction w/ Mod-Sev Use D/O
- ;;^UTILITY(U,$J,358.3,21129,1,4,0)
- ;;=4^F13.281
- ;;^UTILITY(U,$J,358.3,21129,2)
- ;;=^5003217
- ;;^UTILITY(U,$J,358.3,21130,0)
- ;;=F13.981^^95^1047^17
- ;;^UTILITY(U,$J,358.3,21130,1,0)
+ ;;^UTILITY(U,$J,358.3,21372,1,3,0)
+ ;;=3^Hemorrhagic Bilateral Otitis Externa
+ ;;^UTILITY(U,$J,358.3,21372,1,4,0)
+ ;;=4^H60.323
+ ;;^UTILITY(U,$J,358.3,21372,2)
+ ;;=^5006453
+ ;;^UTILITY(U,$J,358.3,21373,0)
+ ;;=H60.322^^70^915^9
+ ;;^UTILITY(U,$J,358.3,21373,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,21130,1,3,0)
- ;;=3^Sedative/Hypnotic/Anxiolytic Induced Sexual Dysfunction w/o Use D/O
- ;;^UTILITY(U,$J,358.3,21130,1,4,0)
- ;;=4^F13.981
- ;;^UTILITY(U,$J,358.3,21130,2)
- ;;=^5003236
- ;;^UTILITY(U,$J,358.3,21131,0)
- ;;=F13.182^^95^1047^18
- ;;^UTILITY(U,$J,358.3,21131,1,0)
+ ;;^UTILITY(U,$J,358.3,21373,1,3,0)
+ ;;=3^Hemorrhagic Left Otitis Externa
+ ;;^UTILITY(U,$J,358.3,21373,1,4,0)
+ ;;=4^H60.322
+ ;;^UTILITY(U,$J,358.3,21373,2)
+ ;;=^5006452
+ ;;^UTILITY(U,$J,358.3,21374,0)
+ ;;=H60.321^^70^915^10
+ ;;^UTILITY(U,$J,358.3,21374,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,21131,1,3,0)
- ;;=3^Sedative/Hypnotic/Anxiolytic Induced Sleep D/O w/ Mild Use D/O
- ;;^UTILITY(U,$J,358.3,21131,1,4,0)
- ;;=4^F13.182
- ;;^UTILITY(U,$J,358.3,21131,2)
- ;;=^5003199
- ;;^UTILITY(U,$J,358.3,21132,0)
- ;;=F13.282^^95^1047^19
- ;;^UTILITY(U,$J,358.3,21132,1,0)
+ ;;^UTILITY(U,$J,358.3,21374,1,3,0)
+ ;;=3^Hemorrhagic Right Otitis Externa
+ ;;^UTILITY(U,$J,358.3,21374,1,4,0)
+ ;;=4^H60.321
+ ;;^UTILITY(U,$J,358.3,21374,2)
+ ;;=^5006451
+ ;;^UTILITY(U,$J,358.3,21375,0)
+ ;;=H60.393^^70^915^11
+ ;;^UTILITY(U,$J,358.3,21375,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,21132,1,3,0)
- ;;=3^Sedative/Hypnotic/Anxiolytic Induced Sleep D/O w/ Mod-Sev Use D/O
+ ;;^UTILITY(U,$J,358.3,21375,1,3,0)
+ ;;=3^Infective Bilateral Otitis Externa NEC
+ ;;^UTILITY(U,$J,358.3,21375,1,4,0)
+ ;;=4^H60.393
+ ;;^UTILITY(U,$J,358.3,21375,2)
+ ;;=^5006461
+ ;;^UTILITY(U,$J,358.3,21376,0)
+ ;;=H60.392^^70^915^12
+ ;;^UTILITY(U,$J,358.3,21376,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,21376,1,3,0)
+ ;;=3^Infective Left Otitis Externa
+ ;;^UTILITY(U,$J,358.3,21376,1,4,0)
+ ;;=4^H60.392
+ ;;^UTILITY(U,$J,358.3,21376,2)
+ ;;=^5006460
+ ;;^UTILITY(U,$J,358.3,21377,0)
+ ;;=H60.391^^70^915^13
+ ;;^UTILITY(U,$J,358.3,21377,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,21377,1,3,0)
+ ;;=3^Infective Right Otitis Externa

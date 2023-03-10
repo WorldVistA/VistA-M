@@ -1,0 +1,58 @@
+IVM20204P ;ALB/KUM - PATCH IVM*2*204 INSTALL UTILITIES ; 1/10/22 1:36pm
+ ;;2.0;INCOME VERIFICATION MATCH;**204**;21-OCT-94;Build 20
+ ;
+ Q
+ ;
+PRE ; Main entry point for Pre-Install items
+ ;
+ D PRE1 ; Delete entries from IVM DEMOGRAPHIC UPLAOD (#301.92) File
+ Q
+ ;
+PRE1 ;Delete entries
+ ;
+ ; Supported ICRs:
+ ;   10141:  BMES^XPDUTL
+ ;           MES^XPDUTL
+ ; 
+ N IVMFILE,IVMI,IVMELEMNT,IVMEXIST,IVMERR,IVMIEN,IVMNAME,IVMFDA
+ ;
+ S XPDABORT=""
+ D BMES^XPDUTL("*****")
+ D MES^XPDUTL(" Deleting Change Date/Time ZCT entries from the ")
+ D MES^XPDUTL(" IVM DEMOGRAPHIC UPLOAD FIELDS file #301.92")
+ S IVMFILE=301.92
+ F IVMI=1:1 S IVMELEMNT=$P($T(TEXT+IVMI),";;",2) Q:IVMELEMNT="QUIT"  D
+ . S IVMEXIST=0
+ . S IVMEXIST=$$FIND1^DIC(IVMFILE,,,IVMELEMNT,"B")
+ . I IVMEXIST D
+ . . S IVMNAME=IVMELEMNT
+ . . S IVMIEN=IVMEXIST_","
+ . . S IVMFDA(301.92,IVMIEN,.01)="@"
+ . . D UPDATE^DIE("E","IVMFDA","","IVMERR")
+ . . I '$D(IVMERR("DIERR")) D
+ . . . D MES^XPDUTL("    "_IVMNAME_" deleted.  ")
+ . . . S IVMEXIST=0
+ . . I $D(IVMERR("DIERR")) D
+ . . . D BMES^XPDUTL("*****")
+ . . . D MES^XPDUTL(" Error in deleting "_IVMNAME)
+ . . . D MES^XPDUTL(" Installation aborted. Please log YOUR IT Services ticket.")
+ . . . D MES^XPDUTL("*****")
+ . . . S XPDABORT=2
+ . . Q
+ D BMES^XPDUTL("*****")
+ I XPDABORT="" K XPDABORT
+ Q
+ ;
+SCR(Y) ;Screen Logic to be called from IVM*2.0*204 build to merge entries from IVM DEMOGRAPHIC UPLOAD (#301.92) file
+ N IVMSET
+ S IVMSET=0
+ I $P($G(^IVM(301.92,+Y,0)),U,2)["ZCT10"!($P($G(^IVM(301.92,+Y,0)),U,2)["ZCT11") S IVMSET=1
+ Q IVMSET
+ ; 
+TEXT ;;FIELD#~VALUE;FIELD#~VALUE;FIELD#~VALUE.....
+ ;;DESIGNEE CHANGE DATE/TIME
+ ;;E-CONTACT CHANGE DATE/TIME
+ ;;E2-CONTACT CHANGE DATE/TIME
+ ;;PRIMARY NOK CHANGE DATE/TIME
+ ;;SECONDARY NOK CHANGE DT/TM
+ ;;QUIT

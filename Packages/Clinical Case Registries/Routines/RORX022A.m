@@ -1,5 +1,5 @@
 RORX022A ;BPOIFO/CLR - LAB DAA MONITOR (CONT.) ; 22 Feb 2016  2:28 AM
- ;;1.5;CLINICAL CASE REGISTRIES;**8,13,17,18,19,21,28,31**;Feb 17, 2006;Build 62
+ ;;1.5;CLINICAL CASE REGISTRIES;**8,13,17,18,19,21,28,31,39**;Feb 17, 2006;Build 4
  ;
  ; This routine uses the following IAs:
  ;
@@ -22,6 +22,7 @@ RORX022A ;BPOIFO/CLR - LAB DAA MONITOR (CONT.) ; 22 Feb 2016  2:28 AM
  ;                                       the registry.
  ;ROR*1.5*31   MAY 2017    M FERRARESE  Adding PACT ,PCP,and AGE/DOB as additional
  ;                                      identifiers.
+ ;ROR*1.5*39   JUN 2021    F TRAXLER    Replace real SSN with zeroes.
  ;******************************************************************************
  Q
  ;
@@ -158,7 +159,7 @@ QUERY(FLAGS,RORTSK,NSPT) ;
  . ;--- Skip the patient if not all search criteria have been met
  . I SKIP D FREE^RORTMP(RORXDST) Q
  . ;=== Store the patient's data
- . D VADEM^RORUTL05(PATIEN,1)
+ . D VADEM^RORUTL05(PATIEN,1) S VA("BID")="0000"
  . D FREE^RORTMP(RORXDST)
  . S AGETYPE=$$PARAM^RORTSK01("AGE_RANGE","TYPE")
  . S AGE=$S(AGETYPE="AGE":$P(VADM(4),U),AGETYPE="DOB":$$DATE^RORXU002($P(VADM(3),U)\1),1:"")

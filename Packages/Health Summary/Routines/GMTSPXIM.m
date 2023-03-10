@@ -1,5 +1,5 @@
-GMTSPXIM ; SLC/SBW,KER - PCE Immunization component ;08/31/15  16:53
- ;;2.7;Health Summary;**8,10,28,56,89,114**;Oct 20, 1995;Build 11
+GMTSPXIM ; SLC/SBW,KER - PCE Immunization component ;Nov 01, 2021@09:36:30
+ ;;2.7;Health Summary;**8,10,28,56,89,114,115**;Oct 20, 1995;Build 190
  ;
  ; External References
  ;   DBIA  1239  IMMUN^PXRHS03
@@ -155,8 +155,10 @@ IMMDET  ;Main entry point for Detailed format (DIM)
  E  D CKP^GMTSUP Q:$D(GMTSQIT)  W !,?2,"VIS: ",?40,"Edition Date:"
  D CKP^GMTSUP Q:$D(GMTSQIT)
  W !,?2,"ADMINISTERED BY: "_$P(GMN0,U,9)
- I $P(GMN0,U,8)'="" D
+ I $P(GMN0,U,8)'=""!($P(GMN0,U,10)) D
  . D CKP^GMTSUP Q:$D(GMTSQIT)
+ . I $P(GMN0,U,10) D  Q
+ . . W !,?2,"ORDERED BY: POLICY"
  . W !,?2,"ORDERED BY: "_$P(GMN0,U,8)
  I $P(GMN2,U,4)'="",$P(GMN2,U,4)'=$P(GMN0,U,9) D
  . D CKP^GMTSUP Q:$D(GMTSQIT)

@@ -1,126 +1,126 @@
-IBDEI1H3 ; ; 04-FEB-2020
- ;;3.0;IB ENCOUNTER FORM IMP/EXP;;FEB 04, 2020
+IBDEI1H3 ; ; 01-FEB-2022
+ ;;3.0;IB ENCOUNTER FORM IMP/EXP;;FEB 01, 2022
  Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,999) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
- ;;^UTILITY(U,$J,358.3,23556,0)
- ;;=A69.22^^105^1174^96
- ;;^UTILITY(U,$J,358.3,23556,1,0)
+ ;;^UTILITY(U,$J,358.3,23825,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,23556,1,3,0)
- ;;=3^Neurologic Disorders d/t Lyme Disease
- ;;^UTILITY(U,$J,358.3,23556,1,4,0)
- ;;=4^A69.22
- ;;^UTILITY(U,$J,358.3,23556,2)
- ;;=^5000377
- ;;^UTILITY(U,$J,358.3,23557,0)
- ;;=A52.10^^105^1174^97
- ;;^UTILITY(U,$J,358.3,23557,1,0)
+ ;;^UTILITY(U,$J,358.3,23825,1,3,0)
+ ;;=3^Breast Lump,Right,Lower Outer Quadrant
+ ;;^UTILITY(U,$J,358.3,23825,1,4,0)
+ ;;=4^N63.13
+ ;;^UTILITY(U,$J,358.3,23825,2)
+ ;;=^5151522
+ ;;^UTILITY(U,$J,358.3,23826,0)
+ ;;=N63.10^^82^1032^36
+ ;;^UTILITY(U,$J,358.3,23826,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,23557,1,3,0)
- ;;=3^Neurosyphilis Symptomatic,Unspec
- ;;^UTILITY(U,$J,358.3,23557,1,4,0)
- ;;=4^A52.10
- ;;^UTILITY(U,$J,358.3,23557,2)
- ;;=^5000291
- ;;^UTILITY(U,$J,358.3,23558,0)
- ;;=A52.3^^105^1174^98
- ;;^UTILITY(U,$J,358.3,23558,1,0)
+ ;;^UTILITY(U,$J,358.3,23826,1,3,0)
+ ;;=3^Breast Lump,Right,Unsp Quadrant
+ ;;^UTILITY(U,$J,358.3,23826,1,4,0)
+ ;;=4^N63.10
+ ;;^UTILITY(U,$J,358.3,23826,2)
+ ;;=^5151519
+ ;;^UTILITY(U,$J,358.3,23827,0)
+ ;;=N63.12^^82^1032^37
+ ;;^UTILITY(U,$J,358.3,23827,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,23558,1,3,0)
- ;;=3^Neurosyphilis,Unspec
- ;;^UTILITY(U,$J,358.3,23558,1,4,0)
- ;;=4^A52.3
- ;;^UTILITY(U,$J,358.3,23558,2)
- ;;=^5000298
- ;;^UTILITY(U,$J,358.3,23559,0)
- ;;=N70.92^^105^1174^99
- ;;^UTILITY(U,$J,358.3,23559,1,0)
+ ;;^UTILITY(U,$J,358.3,23827,1,3,0)
+ ;;=3^Breast Lump,Right,Upper Inner Quadrant
+ ;;^UTILITY(U,$J,358.3,23827,1,4,0)
+ ;;=4^N63.12
+ ;;^UTILITY(U,$J,358.3,23827,2)
+ ;;=^5151521
+ ;;^UTILITY(U,$J,358.3,23828,0)
+ ;;=N63.11^^82^1032^38
+ ;;^UTILITY(U,$J,358.3,23828,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,23559,1,3,0)
- ;;=3^Oophoritis,Unspec
- ;;^UTILITY(U,$J,358.3,23559,1,4,0)
- ;;=4^N70.92
- ;;^UTILITY(U,$J,358.3,23559,2)
- ;;=^5015807
- ;;^UTILITY(U,$J,358.3,23560,0)
- ;;=M86.40^^105^1174^100
- ;;^UTILITY(U,$J,358.3,23560,1,0)
+ ;;^UTILITY(U,$J,358.3,23828,1,3,0)
+ ;;=3^Breast Lump,Right,Upper Outer Quadrant
+ ;;^UTILITY(U,$J,358.3,23828,1,4,0)
+ ;;=4^N63.11
+ ;;^UTILITY(U,$J,358.3,23828,2)
+ ;;=^5151520
+ ;;^UTILITY(U,$J,358.3,23829,0)
+ ;;=N63.41^^82^1032^35
+ ;;^UTILITY(U,$J,358.3,23829,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,23560,1,3,0)
- ;;=3^Osteomyelitis w/ Draining Sinus,Chronic,Unspec Site
- ;;^UTILITY(U,$J,358.3,23560,1,4,0)
- ;;=4^M86.40
- ;;^UTILITY(U,$J,358.3,23560,2)
- ;;=^5014583
- ;;^UTILITY(U,$J,358.3,23561,0)
- ;;=M86.00^^105^1174^103
- ;;^UTILITY(U,$J,358.3,23561,1,0)
+ ;;^UTILITY(U,$J,358.3,23829,1,3,0)
+ ;;=3^Breast Lump,Right,Subareolar
+ ;;^UTILITY(U,$J,358.3,23829,1,4,0)
+ ;;=4^N63.41
+ ;;^UTILITY(U,$J,358.3,23829,2)
+ ;;=^5151531
+ ;;^UTILITY(U,$J,358.3,23830,0)
+ ;;=N63.15^^82^1032^34
+ ;;^UTILITY(U,$J,358.3,23830,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,23561,1,3,0)
- ;;=3^Osteomyelitis,Acute Hematogenous,Unspec Site
- ;;^UTILITY(U,$J,358.3,23561,1,4,0)
- ;;=4^M86.00
- ;;^UTILITY(U,$J,358.3,23561,2)
- ;;=^5014497
- ;;^UTILITY(U,$J,358.3,23562,0)
- ;;=M86.50^^105^1174^104
- ;;^UTILITY(U,$J,358.3,23562,1,0)
+ ;;^UTILITY(U,$J,358.3,23830,1,3,0)
+ ;;=3^Breast Lump,Right,Overlapping Quadrants,Unspec
+ ;;^UTILITY(U,$J,358.3,23830,1,4,0)
+ ;;=4^N63.15
+ ;;^UTILITY(U,$J,358.3,23830,2)
+ ;;=^5158108
+ ;;^UTILITY(U,$J,358.3,23831,0)
+ ;;=N63.25^^82^1032^26
+ ;;^UTILITY(U,$J,358.3,23831,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,23562,1,3,0)
- ;;=3^Osteomyelitis,Chronic Hematogenous,Unspec Site
- ;;^UTILITY(U,$J,358.3,23562,1,4,0)
- ;;=4^M86.50
- ;;^UTILITY(U,$J,358.3,23562,2)
- ;;=^5014607
- ;;^UTILITY(U,$J,358.3,23563,0)
- ;;=M86.30^^105^1174^105
- ;;^UTILITY(U,$J,358.3,23563,1,0)
+ ;;^UTILITY(U,$J,358.3,23831,1,3,0)
+ ;;=3^Breast Lump,Left,Overlapping Quadrants,Unspec
+ ;;^UTILITY(U,$J,358.3,23831,1,4,0)
+ ;;=4^N63.25
+ ;;^UTILITY(U,$J,358.3,23831,2)
+ ;;=^5158109
+ ;;^UTILITY(U,$J,358.3,23832,0)
+ ;;=N99.85^^82^1032^112
+ ;;^UTILITY(U,$J,358.3,23832,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,23563,1,3,0)
- ;;=3^Osteomyelitis,Chronic Multifocal,Unspec Site
- ;;^UTILITY(U,$J,358.3,23563,1,4,0)
- ;;=4^M86.30
- ;;^UTILITY(U,$J,358.3,23563,2)
- ;;=^5014559
- ;;^UTILITY(U,$J,358.3,23564,0)
- ;;=M86.20^^105^1174^106
- ;;^UTILITY(U,$J,358.3,23564,1,0)
+ ;;^UTILITY(U,$J,358.3,23832,1,3,0)
+ ;;=3^Post Endometrial Ablation Syndrome
+ ;;^UTILITY(U,$J,358.3,23832,1,4,0)
+ ;;=4^N99.85
+ ;;^UTILITY(U,$J,358.3,23832,2)
+ ;;=^5158110
+ ;;^UTILITY(U,$J,358.3,23833,0)
+ ;;=Z86.002^^82^1032^109
+ ;;^UTILITY(U,$J,358.3,23833,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,23564,1,3,0)
- ;;=3^Osteomyelitis,Subacute,Unspec Site
- ;;^UTILITY(U,$J,358.3,23564,1,4,0)
- ;;=4^M86.20
- ;;^UTILITY(U,$J,358.3,23564,2)
- ;;=^5014535
- ;;^UTILITY(U,$J,358.3,23565,0)
- ;;=M86.8X9^^105^1174^107
- ;;^UTILITY(U,$J,358.3,23565,1,0)
+ ;;^UTILITY(U,$J,358.3,23833,1,3,0)
+ ;;=3^Personal Hx In-Situ Neop,Other/Unspec Genital Organs
+ ;;^UTILITY(U,$J,358.3,23833,1,4,0)
+ ;;=4^Z86.002
+ ;;^UTILITY(U,$J,358.3,23833,2)
+ ;;=^5158325
+ ;;^UTILITY(U,$J,358.3,23834,0)
+ ;;=I05.8^^82^1033^29
+ ;;^UTILITY(U,$J,358.3,23834,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,23565,1,3,0)
- ;;=3^Osteomyelitis,Unspec Sites
- ;;^UTILITY(U,$J,358.3,23565,1,4,0)
- ;;=4^M86.8X9
- ;;^UTILITY(U,$J,358.3,23565,2)
- ;;=^5014655
- ;;^UTILITY(U,$J,358.3,23566,0)
- ;;=N73.5^^105^1174^110
- ;;^UTILITY(U,$J,358.3,23566,1,0)
+ ;;^UTILITY(U,$J,358.3,23834,1,3,0)
+ ;;=3^Rheumatic Mitral Valve Disease NEC
+ ;;^UTILITY(U,$J,358.3,23834,1,4,0)
+ ;;=4^I05.8
+ ;;^UTILITY(U,$J,358.3,23834,2)
+ ;;=^5007043
+ ;;^UTILITY(U,$J,358.3,23835,0)
+ ;;=I10.^^82^1033^18
+ ;;^UTILITY(U,$J,358.3,23835,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,23566,1,3,0)
- ;;=3^Peritonitis,Female Pelvic,Unspec
- ;;^UTILITY(U,$J,358.3,23566,1,4,0)
- ;;=4^N73.5
- ;;^UTILITY(U,$J,358.3,23566,2)
- ;;=^5015817
- ;;^UTILITY(U,$J,358.3,23567,0)
- ;;=M00.10^^105^1174^111
- ;;^UTILITY(U,$J,358.3,23567,1,0)
+ ;;^UTILITY(U,$J,358.3,23835,1,3,0)
+ ;;=3^Hypertension,Essential
+ ;;^UTILITY(U,$J,358.3,23835,1,4,0)
+ ;;=4^I10.
+ ;;^UTILITY(U,$J,358.3,23835,2)
+ ;;=^5007062
+ ;;^UTILITY(U,$J,358.3,23836,0)
+ ;;=I25.2^^82^1033^27
+ ;;^UTILITY(U,$J,358.3,23836,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,23567,1,3,0)
- ;;=3^Pneumococcal Arthritis,Unspec Joint
- ;;^UTILITY(U,$J,358.3,23567,1,4,0)
- ;;=4^M00.10
- ;;^UTILITY(U,$J,358.3,23567,2)
- ;;=^5009621
- ;;^UTILITY(U,$J,358.3,23568,0)
- ;;=A92.5^^105^1174^181
+ ;;^UTILITY(U,$J,358.3,23836,1,3,0)
+ ;;=3^Old MI
+ ;;^UTILITY(U,$J,358.3,23836,1,4,0)
+ ;;=4^I25.2
+ ;;^UTILITY(U,$J,358.3,23836,2)
+ ;;=^259884
+ ;;^UTILITY(U,$J,358.3,23837,0)
+ ;;=I25.10^^82^1033^3
+ ;;^UTILITY(U,$J,358.3,23837,1,0)
+ ;;=^358.31IA^4^2

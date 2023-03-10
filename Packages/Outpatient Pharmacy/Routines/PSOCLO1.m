@@ -1,5 +1,5 @@
 PSOCLO1 ;BHAM ISC/SAB, HEC/hrubovcak - Clozapine Rx lockout logic ;24 Feb 2020 14:00:01
- ;;7.0;OUTPATIENT PHARMACY;**1,23,37,222,457,574,612**;DEC 1997;Build 23
+ ;;7.0;OUTPATIENT PHARMACY;**1,23,37,222,457,574,612,621,613**;DEC 1997;Build 10
  ; YSCLTST2 - DBIA 4556
  ;Reference to ^YSCL(603.01 - DBIA 2697
  ;MH package will authorize dispensing of the Clozapine drugs
@@ -34,7 +34,7 @@ PSOCLO1 ;BHAM ISC/SAB, HEC/hrubovcak - Clozapine Rx lockout logic ;24 Feb 2020 1
  S CLOZPAT=$P(PSOYS,U,7),CLOZPAT=$S(CLOZPAT="M":2,CLOZPAT="B":1,1:0)
  G:+PSOYS=0 OV1
  I +PSOYS=1 D
- .I '$G(CLOZFLG),$G(^TMP($J,"CLOZFLG",DFN)) S CLOZFLG=1  Q
+ .I '$G(CLOZFLG),$G(^TMP($J,"CLOZFLG",DFN)) S CLOZFLG=1 ;Q ; JCH - PSO*7*613 Remove Quit
  .D DSP
  ; Begin: JCH - PSO*7*612 - Kill ^XTMP's if patient has Active NCCC registration and valid labs
  I PSOYS("rWBC")>0,PSOYS("rANC")>1499,'$G(CLOZFLG) D:'$G(PSTYPE) GDOSE D  Q
@@ -338,11 +338,15 @@ EXPDT(PSORXARY,CLOZPT) ; PSORXARY,CLOZPAT passed by ref., determine expiration d
  ; PSORXARY can be a new Rx (PSONEW) or an edited Rx (PSORXED and PSODIR)
  Q:'($G(PSORXARY("IRXN"))>0)  ; must have IEN
  ; Check for updates to DAYS SUPPLY, ISSUE DATE and QUANTITY
- N D,DYS2EXPR,PSRXFMDT,PSCLUPDT
+ N D,DYS2EXPR,PSRXFMDT,PSCLUPDT,NUMREFS
  S PSCLUPDT("change")=0
  S:$G(PSORXARY("DAYS SUPPLY")) PSCLUPDT("change")=1
  S:$G(PSORXARY("FLD",1)) PSCLUPDT("change")=1
  S:$G(PSORXARY("QTY")) PSCLUPDT("change")=1
+ I $D(PSORXARY("N# REF")) D
+ . S NUMREFS=+$G(PSORXARY("N# REF"))
+ E  D
+ . S NUMREFS=+$P($G(PSORXARY("RX0")),U,9)
  Q:'PSCLUPDT("change")  ; no changes, exit
  S DYS2EXPR=0  ; days to expire
  S PSRXFMDT(1)=0  ; field #1
@@ -354,10 +358,10 @@ EXPDT(PSORXARY,CLOZPT) ; PSORXARY,CLOZPAT passed by ref., determine expiration d
  . S PSRXFMDT(1)=DT  ; last resort
  ;
  D  ; determine days to expire
- . S D=$G(PSORXARY("DAYS SUPPLY")) S:D>0 DYS2EXPR=D
+ . S D=$G(PSORXARY("DAYS SUPPLY")) S:D>0 DYS2EXPR=D*(NUMREFS+1)
  . I D,$G(PSORXARY("DAYS SUPPLY OLD")) S PSCLUPDT(8)=PSORXARY("DAYS SUPPLY")
  . Q:DYS2EXPR
- . S D=$P($G(PSORXARY("RX0")),U,8) I D>0 S DYS2EXPR=D Q
+ . S D=$P($G(PSORXARY("RX0")),U,8) I D>0 S DYS2EXPR=D*(NUMREFS+1) Q
  . S DYS2EXPR=$S(CLOZPAT=2:28,CLOZPAT=1:14,1:7)  ; default
  ; value for FM call
  S PSRXFMDT("expires")=$$FMADD^XLFDT(PSRXFMDT(1),DYS2EXPR)

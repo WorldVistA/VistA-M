@@ -1,7 +1,7 @@
 OSEHRA ZGO Export: SDEC SETTINGS
 ZWR
 ^SDEC(409.98,0)="SDEC SETTINGS^409.98^2^2"
-^SDEC(409.98,1,0)="VS GUI NATIONAL^1.7.1 R1^3200623"
+^SDEC(409.98,1,0)="VS GUI NATIONAL^1.7.36^3230201"
 ^SDEC(409.98,1,1,0)="^409.981^11^8"
 ^SDEC(409.98,1,1,1,0)="VS GUI Keyboard Shortcuts^2"
 ^SDEC(409.98,1,1,1,1)="dvagov.sharepoint.com/sites/vhavista-scheduling-enhancements-vse/SitePages/VS-GUI-Keyboard-Shortcuts.aspx"
@@ -28,6 +28,14 @@ ZWR
 ^SDEC(409.98,1,1,"B","VS GUI Resources",5)=""
 ^SDEC(409.98,1,1,"B","Veterans Crisis Line - (800) 2",7)=""
 ^SDEC(409.98,1,1,"B","Virtual Care Manager (VCM) - V",11)=""
-^SDEC(409.98,2,0)="VS GUI LOCAL^1.7.1 R1^3200623"
+^SDEC(409.98,1,2)="https://www.mobile.domain.ext/app/virtual-care-manager"
+^SDEC(409.98,1,3,0)="^409.987^3^3"
+^SDEC(409.98,1,3,1,0)=179
+^SDEC(409.98,1,3,2,0)=648
+^SDEC(409.98,1,3,3,0)=679
+^SDEC(409.98,1,3,"B",179,1)=""
+^SDEC(409.98,1,3,"B",648,2)=""
+^SDEC(409.98,1,3,"B",679,3)=""
+^SDEC(409.98,2,0)="VS GUI LOCAL^1.7.36^3230201"
 ^SDEC(409.98,"B","VS GUI LOCAL",2)=""
 ^SDEC(409.98,"B","VS GUI NATIONAL",1)=""

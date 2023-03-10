@@ -1,5 +1,5 @@
-ECNTPCE ;ALB/JAM-Event Capture Records failing transmission to PCE;14 Jan 04 ;11/7/12  11:27
- ;;2.0;EVENT CAPTURE;**61,72,119**;8 May 96;Build 12
+ECNTPCE ;ALB/JAM-Event Capture Records failing transmission to PCE;Sep 24, 2020@14:55:55
+ ;;2.0;EVENT CAPTURE;**61,72,119,152**;8 May 96;Build 19
 EN ; entry point
  K %DT S %DT="AEX",%DT("A")="Start with Date:  " D ^%DT I Y<0 G END
  S ECSD=Y,%DT("A")="End with Date:  " D ^%DT G:Y<0 END S ECED=Y
@@ -26,14 +26,23 @@ START ; entry when queued
  Q
 GET ; start processing or records
  N DATE,ECL,ECNT,ECFN,ECEC,ECPX,ECSTR,ECD
+ N NLOC,NDSSUNT,JJ ;152
  K ^TMP("ECNTPCE",$J)
+ ;***152 Begins
+ ;Set locations and  dss units into ien subscripted arrays
+ S JJ="" F  S JJ=$O(ECLOC(JJ)) Q:JJ=""  D
+ .S NLOC($P(ECLOC(JJ),U,1))=$P(ECLOC(JJ),U,2)
+ S JJ="" F  S JJ=$O(ECDSSU(JJ)) Q:JJ=""  D
+ .S NDSSUNT($P(ECDSSU(JJ),U,1))=$P(ECDSSU(JJ),U,2)
+ ;***152 Ends
  S DATE=ECSD,ECNT=0
  F  S DATE=$O(^ECH("AC",DATE)) Q:('DATE)!(DATE>ECED)  D
- .S ECFN=0 F  S ECFN=$O(^ECH("AC",DATE,ECFN)) Q:'ECFN  D 
+ .S ECFN=0 F  S ECFN=$O(^ECH("AC",DATE,ECFN)) Q:'ECFN  D
  ..Q:'$D(^ECH(ECFN,"R"))  S ECEC=$G(^ECH(ECFN,0)) Q:ECEC=""
  ..S ECL=$P(ECEC,U,4),ECD=$P(ECEC,U,7),ECPX=$P(ECEC,U,9)
  ..S ECDFN=$P(ECEC,U,2)
  ..I (ECL="")!(ECD="")!(ECPX="")!(ECDFN="") Q
+ ..I '$D(NLOC(ECL))!('$D(NDSSUNT(ECD))) Q  ;152  - Not on Location or DSS Units selected list
  ..S ECSTR=ECFN_U_$P(ECEC,U,8)_U_ECPX
  ..S ECNT=ECNT+1,^TMP("ECNTPCE",$J,DATE,ECL,ECD,ECDFN,ECNT)=ECSTR
  ..K ECPRV S ECPRV=$$GETPRV^ECPRVMUT(ECFN,.ECPRV) I 'ECPRV D  K ECPRV
@@ -54,7 +63,7 @@ END K ECSD,ECED
  Q
 PAGE ; end of page
  I $E(IOST,1,2)="C-" S DIR(0)="E" D ^DIR K DIR I 'Y S ECOUT=1 Q
- D HDR
+ I $O(^TMP("ECNTPCE",$J,ECDTE,ECL,ECD,ECDFN,ECNT))'="" D HDR ;152 to prevent printing just a header on the last page
  Q
 HDR ; print header
  W @IOF

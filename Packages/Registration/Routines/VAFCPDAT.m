@@ -1,5 +1,5 @@
 VAFCPDAT ;BIR/CML/ALS-DISPLAY MPI/PD INFORMATION FOR SELECTED PATIENT ; 7/12/16 11:11am
- ;;5.3;Registration;**333,414,474,505,707,712,837,863,876,902,926,937,950**;Aug 13, 1993;Build 4
+ ;;5.3;Registration;**333,414,474,505,707,712,837,863,876,902,926,937,950,1059,1071**;Aug 13, 1993;Build 4
  ;Registration has IA #3299 for MPI/PD to call START^VAFCPDAT
  ;
  ;variable DFN is not NEWed or KILLed in this routine as that variable is passed in
@@ -20,11 +20,12 @@ START ;Entry point without device call, used for RPC calls
  .I $D(NOTRPC) W @IOF,!," "
  .W !,"ICN ",$G(ICN)," does not exist at ",SITENAM,"."
  .W !,"Search date: ",HDT,!,LN
- S DIC=2,DR=".01;.02;.03;.09;.111;.112;.113;.114;.115;.1112;.131;.313;.351;994;.0907;.0906;.121;.1171;.1172;.1173;.024;.352;.353;.354;.355;.357;.358;.2405",DA=DFN,DIQ(0)="EI",DIQ="DNODE"  ;**707,712,863,876
- N NAME,SSN,DOB,SEX,CLAIM,DOD,ICN,STR1,STR2,STR3,CTY,ST,ZIP,PHN,MBI,SSNVER,PREAS,BAI,TIN,FIN,COUNTRY,CCODE,CNAME,PROVINCE,POSTCODE,SIGEN ;**707,712,837,863,876
- N DODD,DODENTBY,DODSRC,DODLUPD,DODLEBY,DODOPT ;**926 Story 323009 (ckn)
- D EN^DIQ1 K DIC,DR,DA,DIQ
- S NAME=$G(DNODE(2,DFN,.01,"E")),SSN=$G(DNODE(2,DFN,.09,"E"))
+ S DIC=2,DR=".01;.02;.03;.09;.111;.112;.113;.114;.115;.1112;.131;.132;.134;.313;.351;994;.0907;.0906;.121;.1171;.1172;.1173;"
+ S DR=DR_".024;.352;.353;.354;.355;.357;.358;.2405;.025;.0251;.2406;.24061;991.11;.1151;.1152;.1153;.1154;.1155;.1156;.11571;.11572;.11573"
+ S DA=DFN,DIQ(0)="EI",DIQ="DNODE" D EN^DIQ1 K DIC,DR,DA,DIQ  ;**707,712,863,876;1059
+ N NAME,SSN,DOB,SEX,CLAIM,DOD,ICN,STR1,STR2,STR3,CTY,ST,ZIP,PHN,WPHN,CPHN,MBI,SSNVER,PREAS,BAI,TIN,FIN,COUNTRY,CCODE,CNAME,PROVINCE,POSTCODE,SIGEN ;**707,712,837,863,876
+ N DODD,DODENTBY,DODSRC,DODLUPD,DODLEBY,DODOPT,REST1,REST2,REST3,RESCTY,RESST,RESZP,RESP,RESPC,RESCN,ITIN,SXOD,SXO,PRN,PRND,EN,RCCODE,RCNAME ;**926 Story 323009 (ckn) **1059 VAMPI-11114,VAMPI-11118,VAMPI-11120, VAMPI-11121
+ S NAME=$G(DNODE(2,DFN,.01,"E")),SSN=$G(DNODE(2,DFN,.09,"E")),SSNVER=$G(DNODE(2,DFN,.0907,"E"))  ;**707
  S DOB=$$FMTE^XLFDT($G(DNODE(2,DFN,.03,"I")))
  S MBI=$G(DNODE(2,DFN,994,"I")),MBI=$S(MBI="Y":"YES",MBI="N":"NO",1:"NULL")  ;**707
  S SEX=$G(DNODE(2,DFN,.02,"E")),SIGEN=$G(DNODE(2,DFN,.024,"E")),DOD=$G(DNODE(2,DFN,.351,"E"))  ;**876 - MVI_3432 (cml)
@@ -34,24 +35,24 @@ START ;Entry point without device call, used for RPC calls
  S CTY=$G(DNODE(2,DFN,.114,"E")),ST=$G(DNODE(2,DFN,.115,"E")),ZIP=$G(DNODE(2,DFN,.1112,"E"))
  S COUNTRY=$G(DNODE(2,DFN,.1173,"I")),(CCODE,CNAME)="" I COUNTRY]"" S CCODE=$$GET1^DIQ(779.004,+COUNTRY_",",.01),CNAME=$$GET1^DIQ(779.004,+COUNTRY_",",1.3)  ;**863 - MVI_1902 (ptd)
  S PROVINCE=$G(DNODE(2,DFN,.1171,"E")),POSTCODE=$G(DNODE(2,DFN,.1172,"E"))
- S PHN=$G(DNODE(2,DFN,.131,"E"))
- S SSNVER=$G(DNODE(2,DFN,.0907,"E"))  ;**707
- S PREAS=$G(DNODE(2,DFN,.0906,"E"))  ;**707
+ ;**1071 Story 13802 (jfw) - Retrieve/Display WorkPhone (.132) and CellPhone (.134)
+ S PHN=$G(DNODE(2,DFN,.131,"E")),WPHN=$G(DNODE(2,DFN,.132,"E")),CPHN=$G(DNODE(2,DFN,.134,"E")),PREAS=$G(DNODE(2,DFN,.0906,"E"))  ;**707
  S MNODE=$$MPINODE^MPIFAPI(DFN) I +MNODE=-1 S MNODE="^^^^^^^^"
  S (ICN,SCN,SCORE,SCRDT,DIFF,TIN,FIN)=""   ;**837, MVI_883
  S ICN=$$GETICN^MPIF001(DFN) S:(+ICN=-1) ICN="None" ;**863 - MVI_2351 (ptd)
  ;**926 - Story 323009 (ckn): DOD fields
  I DOD'="" D
- . S DODENTBY=$G(DNODE(2,DFN,.352,"E"))  ;Date of Death Entered By
- . S DODSRC=$G(DNODE(2,DFN,.353,"E"))  ;Date of Death Source of Notification
- . S DODLUPD=$G(DNODE(2,DFN,.354,"E"))  ;Date of Death Last Updated
- . S DODLEBY=$G(DNODE(2,DFN,.355,"E"))  ;Date of Death Last Edited By
- . S DODD=$G(DNODE(2,DFN,.357,"E"))  ;Date of Death Supporting Document Type
- . S DODOPT=$G(DNODE(2,DFN,.358,"E"))  ;Date of Death Option Used
+ .;Date of Death Entered By ;Date of Death Source of Notification ;Date of Death Last Updated ;Date of Death Last Edited By ;Date of Death Supporting Document Type ;Date of Death Option Used
+ . S DODENTBY=$G(DNODE(2,DFN,.352,"E")),DODSRC=$G(DNODE(2,DFN,.353,"E")),DODLUPD=$G(DNODE(2,DFN,.354,"E")),DODLEBY=$G(DNODE(2,DFN,.355,"E"))
+ . S DODD=$G(DNODE(2,DFN,.357,"E")),DODOPT=$G(DNODE(2,DFN,.358,"E"))
  ;S CMOR=$$GET1^DIQ(4,+$P($G(MNODE),"^",3)_",",.01) S:CMOR="" CMOR="None"    ;removed for **837, MVI_918
- I $E(ICN,1,3)=SITENUM S GOT=0 D
- . I $P($G(MNODE),"^",4)=""!('$D(^DPT("AICNL",1,DFN))) S ICN=ICN_"**"
- S TIN=$P($G(MNODE),"^",8),FIN=$P($G(MNODE),"^",9)   ;**837, MVI_883
+ I $E(ICN,1,3)=SITENUM S GOT=0 I $P($G(MNODE),"^",4)=""!('$D(^DPT("AICNL",1,DFN))) S ICN=ICN_"**"
+ S TIN=$P($G(MNODE),"^",8),FIN=$P($G(MNODE),"^",9) ;**837, MVI_883
+ ;**1059 VAMPI-11114,VAMPI-11118,VAMPI-11120, VAMPI-11121
+ S REST1=$G(DNODE(2,DFN,.1151,"E")),REST2=$G(DNODE(2,DFN,.1152,"E")),REST3=$G(DNODE(2,DFN,.1153,"E")),RESCTY=$G(DNODE(2,DFN,.1154,"E")),RESST=$G(DNODE(2,DFN,.1155,"E"))
+ S RESZP=$G(DNODE(2,DFN,.1156,"E")),RESP=$G(DNODE(2,DFN,.11571,"E")),RESPC=$G(DNODE(2,DFN,.11572,"E"))
+ S RESCN=$G(DNODE(2,DFN,.11573,"I")),(RCCODE,RCNAME)="" I RESCN]"" S RCCODE=$$GET1^DIQ(779.004,+RESCN_",",.01),RCNAME=$$GET1^DIQ(779.004,+RESCN_",",1.3)
+ S ITIN=$G(DNODE(2,DFN,991.11,"E")),SXOD=$G(DNODE(2,DFN,.0251,"E")),PRND=$G(DNODE(2,DFN,.24061,"E"))
  ;
  I $D(NOTRPC) W @IOF,!
  W !,"MPI/PD Data for: ",NAME,"  (DFN #",DFN,")"
@@ -68,13 +69,31 @@ START ;Entry point without device call, used for RPC calls
  W !,"Printed ",HDT," at ",SITENAM,!,LN
  S $Y=$Y+1
  ;next 7 lines modified for **707
- W !,"ICN          : ",ICN  ;CMOR removed  **837, MVI_918
- W !,"SSN          : ",SSN
- I SSNVER]"" W !?9,"SSN Verification Status: ",SSNVER
- I SSNVER="",PREAS]"" W !?9,"Pseudo SSN Reason: ",PREAS
- I SSNVER]"",PREAS]"" W !?9,"Pseudo SSN Reason      : ",PREAS
+ W !,"ICN : ",ICN  ;CMOR removed  **837, MVI_918
+ W !,"SSN : ",SSN
+ I SSNVER'="" W !?9,"SSN Verification Status: ",SSNVER
+ I PREAS'="" W !?9,"Pseudo SSN Reason: ",PREAS
+ I ITIN'="" W !?9,"Individual Tax ID: ",ITIN ;**1059 VAMPI-11114,VAMPI-11118,VAMPI-11120, VAMPI-11121
  ; Story 603957 (elz) change sex to birth sex, lined up with DOB and DOD at the same time
  W !,"Birth Sex    :  ",SEX
+ ;**1059 VAMPI-11114,VAMPI-11118,VAMPI-11120, VAMPI-11121
+ ;**1071 VAMPI-13755 (jfw) - Display additional SO Info
+ ;SEXUAL ORIENTATION
+ I $O(^DPT(DFN,.025,0))'="" W !,"Sexual Orientation: " D
+ .S EN=0 F  S EN=$O(^DPT(DFN,.025,EN)) Q:'EN  D
+ ..N VAFCSOI D GETS^DIQ(2.025,EN_","_DFN,"*",,"VAFCSOI")
+ ..W ?20,VAFCSOI(2.025,EN_","_DFN_",",.01)_" ("_VAFCSOI(2.025,EN_","_DFN_",",.02)_")"
+ ..W !?25,"Date Created: ",?44,VAFCSOI(2.025,EN_","_DFN_",",.03)
+ ..W !?25,"Date Last Updated: "_VAFCSOI(2.025,EN_","_DFN_",",.04)
+ ..W:(+$O(^DPT(DFN,.025,EN))) !
+ I SXOD'="" W !,"Sexual Orientation Description: ",SXOD
+ ;PRONOUN
+ I $O(^DPT(DFN,.2406,0))'="" W !,"Pronoun: " D
+ .S EN=0 F  S EN=$O(^DPT(DFN,.2406,EN)) Q:'EN  D
+ ..S PRN=$G(^DPT(DFN,.2406,EN,0))
+ ..W ?20,$P($G(^DG(47.78,PRN,0)),"^") W:(+$O(^DPT(DFN,.2406,EN))) !
+ I PRND'="" W !,"Pronoun Description: ",PRND
+ I SIGEN'="" W !,"Self-Identified Gender Identity: ",SIGEN  ;**876 - MVI_3432 (cml)  **902 - MVI_4730 (cml) MOVED HERE IN 1059
  W !,"Claim #      :  ",CLAIM
  W !,"Date of Birth:  ",DOB
  ;**926 - Story 323009 (ckn): DOD fields
@@ -86,11 +105,10 @@ START ;Entry point without device call, used for RPC calls
  . I DODLEBY]"" W !,?15,"Last Edited By: ",?42,DODLEBY
  . I DODD]"" W !,?15,"Supporting Document Type: ",?42,DODD
  . I DODOPT]"" W !,?15,"Option Used: ",?42,DODOPT
- ;I DOD]"" W !,"Date of Death: ",DOD
  I MBI]"" W !,"Multiple Birth Indicator: ",MBI  ;**707
  I TIN]"" W !,"DoD Temporary ID Number : ",TIN  ;**837, MVI_883
  I FIN]"" W !,"DoD Foreign ID Number   : ",FIN  ;**837, MVI_883
- W !,"Address:" I BAI'="" W " (Bad Address Indicator: ",BAI,")"
+ W !,"Correspondence Address:" I BAI'="" W " (Bad Address Indicator: ",BAI,")" ;**1059 VAMPI-11114,VAMPI-11118,VAMPI-11120, VAMPI-11121
  I STR1'="" W !?9,STR1
  I STR2'="" W !?9,STR2
  I STR3'="" W !?9,STR3
@@ -100,8 +118,19 @@ START ;Entry point without device call, used for RPC calls
  .I CTY]""!(PROVINCE]"")!(POSTCODE]"") D
  ..I PROVINCE]"" W !?9,CTY_", "_PROVINCE_" ("_CNAME_")  "_POSTCODE
  ..I PROVINCE="" W !?9,CTY_", "_"("_CNAME_")  "_POSTCODE
+ W !,"Residential Address: "
+ I REST1'="" W !?9,REST1
+ I REST2'="" W !?9,REST2
+ I REST3'="" W !?9,REST3
+ I $G(RESCN)=""!($G(RCCODE)="USA") I RESCTY]"" W !?9,$E(RESCTY,1,20)_", "_$G(RESST)_" "_$G(RESZP)
+ I RESCN'="",$G(RCCODE)'="USA" D   ;Foreign Address
+ .I RESCTY]""!(RESP]"")!(RESPC]"") D
+ ..I RESP]"" W !?9,RESCTY_", "_RESP_" ("_RCNAME_")  "_RESPC
+ ..I RESP="" W !?9,RESCTY_", "_"("_RCNAME_")  "_RESPC
  I PHN'="" W !,"Phone #: ",PHN
- I SIGEN]"" W !,"Self-Identified Gender Identity: ",SIGEN  ;**876 - MVI_3432 (cml)  **902 - MVI_4730 (cml)
+ ;**1071 Story 13802 (jfw) - Retrieve/Display WorkPhone (.132) and CellPhone (.134)
+ I WPHN'="" W !,"Work  #: ",WPHN
+ I CPHN'="" W !,"Cell  #: ",CPHN
  I $G(IOSL)<30&($E(IOST,1,2)="C-") D
  .I $Y>23 D
  ..S DIR(0)="E" D  D ^DIR K DIR I 'Y S QFLG=1
@@ -163,8 +192,7 @@ HIS ;find ICN history
  .W !,HFULLICN I HISDT]"" W "  - changed ",HISDT ;**863 - MVI_2351 (ptd)
  ;
 CONT ;Continue to VAFCPDT2 for extended data
- ;D CMORHIS^VAFCPDT2  
- ;CMOR History removed, called changed to EXT^VAFCPDT2  **837, MVI_918
+ ;D CMORHIS^VAFCPDT2  ;CMOR History removed, called changed to EXT^VAFCPDT2  **837, MVI_918
  D EXT^VAFCPDT2
 DONE ;
  I QFLG G QUIT

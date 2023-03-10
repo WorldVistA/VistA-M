@@ -1,118 +1,120 @@
-IBDEI18W ; ; 04-FEB-2020
- ;;3.0;IB ENCOUNTER FORM IMP/EXP;;FEB 04, 2020
+IBDEI18W ; ; 01-FEB-2022
+ ;;3.0;IB ENCOUNTER FORM IMP/EXP;;FEB 01, 2022
  Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,999) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
- ;;^UTILITY(U,$J,358.3,19958,0)
- ;;=S62.647S^^93^997^97
- ;;^UTILITY(U,$J,358.3,19958,1,0)
+ ;;^UTILITY(U,$J,358.3,20182,1,4,0)
+ ;;=4^S92.121S
+ ;;^UTILITY(U,$J,358.3,20182,2)
+ ;;=^5044653
+ ;;^UTILITY(U,$J,358.3,20183,0)
+ ;;=S92.112S^^67^884^46
+ ;;^UTILITY(U,$J,358.3,20183,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,19958,1,3,0)
- ;;=3^Nondisp fx of proximal phalanx of l little finger, sequela
- ;;^UTILITY(U,$J,358.3,19958,1,4,0)
- ;;=4^S62.647S
- ;;^UTILITY(U,$J,358.3,19958,2)
- ;;=^5034717
- ;;^UTILITY(U,$J,358.3,19959,0)
- ;;=S62.643S^^93^997^98
- ;;^UTILITY(U,$J,358.3,19959,1,0)
+ ;;^UTILITY(U,$J,358.3,20183,1,3,0)
+ ;;=3^Disp neck of left talus fx, sequla
+ ;;^UTILITY(U,$J,358.3,20183,1,4,0)
+ ;;=4^S92.112S
+ ;;^UTILITY(U,$J,358.3,20183,2)
+ ;;=^5044618
+ ;;^UTILITY(U,$J,358.3,20184,0)
+ ;;=S92.111S^^67^884^47
+ ;;^UTILITY(U,$J,358.3,20184,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,19959,1,3,0)
- ;;=3^Nondisp fx of proximal phalanx of l mid finger, sequela
- ;;^UTILITY(U,$J,358.3,19959,1,4,0)
- ;;=4^S62.643S
- ;;^UTILITY(U,$J,358.3,19959,2)
- ;;=^5034689
- ;;^UTILITY(U,$J,358.3,19960,0)
- ;;=S62.645S^^93^997^100
- ;;^UTILITY(U,$J,358.3,19960,1,0)
+ ;;^UTILITY(U,$J,358.3,20184,1,3,0)
+ ;;=3^Disp neck of right talus fx, sequela
+ ;;^UTILITY(U,$J,358.3,20184,1,4,0)
+ ;;=4^S92.111S
+ ;;^UTILITY(U,$J,358.3,20184,2)
+ ;;=^5044611
+ ;;^UTILITY(U,$J,358.3,20185,0)
+ ;;=S92.132S^^67^884^48
+ ;;^UTILITY(U,$J,358.3,20185,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,19960,1,3,0)
- ;;=3^Nondisp fx of proximal phalanx of left ring finger, sequela
- ;;^UTILITY(U,$J,358.3,19960,1,4,0)
- ;;=4^S62.645S
- ;;^UTILITY(U,$J,358.3,19960,2)
- ;;=^5034703
- ;;^UTILITY(U,$J,358.3,19961,0)
- ;;=S62.640S^^93^997^102
- ;;^UTILITY(U,$J,358.3,19961,1,0)
+ ;;^UTILITY(U,$J,358.3,20185,1,3,0)
+ ;;=3^Disp posterior process fx of left talus, sequela
+ ;;^UTILITY(U,$J,358.3,20185,1,4,0)
+ ;;=4^S92.132S
+ ;;^UTILITY(U,$J,358.3,20185,2)
+ ;;=^5044702
+ ;;^UTILITY(U,$J,358.3,20186,0)
+ ;;=S92.131S^^67^884^49
+ ;;^UTILITY(U,$J,358.3,20186,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,19961,1,3,0)
- ;;=3^Nondisp fx of proximal phalanx of r idx fngr, sequela
- ;;^UTILITY(U,$J,358.3,19961,1,4,0)
- ;;=4^S62.640S
- ;;^UTILITY(U,$J,358.3,19961,2)
- ;;=^5034668
- ;;^UTILITY(U,$J,358.3,19962,0)
- ;;=S62.646S^^93^997^103
- ;;^UTILITY(U,$J,358.3,19962,1,0)
+ ;;^UTILITY(U,$J,358.3,20186,1,3,0)
+ ;;=3^Disp posterior process fx of right talus, sequela
+ ;;^UTILITY(U,$J,358.3,20186,1,4,0)
+ ;;=4^S92.131S
+ ;;^UTILITY(U,$J,358.3,20186,2)
+ ;;=^5044695
+ ;;^UTILITY(U,$J,358.3,20187,0)
+ ;;=S92.062S^^67^884^33
+ ;;^UTILITY(U,$J,358.3,20187,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,19962,1,3,0)
- ;;=3^Nondisp fx of proximal phalanx of r little finger, sequela
- ;;^UTILITY(U,$J,358.3,19962,1,4,0)
- ;;=4^S62.646S
- ;;^UTILITY(U,$J,358.3,19962,2)
- ;;=^5034710
- ;;^UTILITY(U,$J,358.3,19963,0)
- ;;=S62.642S^^93^997^104
- ;;^UTILITY(U,$J,358.3,19963,1,0)
+ ;;^UTILITY(U,$J,358.3,20187,1,3,0)
+ ;;=3^Disp intraarticular fx of left calcaneus, sequela
+ ;;^UTILITY(U,$J,358.3,20187,1,4,0)
+ ;;=4^S92.062S
+ ;;^UTILITY(U,$J,358.3,20187,2)
+ ;;=^5044562
+ ;;^UTILITY(U,$J,358.3,20188,0)
+ ;;=S92.061S^^67^884^34
+ ;;^UTILITY(U,$J,358.3,20188,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,19963,1,3,0)
- ;;=3^Nondisp fx of proximal phalanx of r mid finger, sequela
- ;;^UTILITY(U,$J,358.3,19963,1,4,0)
- ;;=4^S62.642S
- ;;^UTILITY(U,$J,358.3,19963,2)
- ;;=^5034682
- ;;^UTILITY(U,$J,358.3,19964,0)
- ;;=S62.644S^^93^997^105
- ;;^UTILITY(U,$J,358.3,19964,1,0)
+ ;;^UTILITY(U,$J,358.3,20188,1,3,0)
+ ;;=3^Disp intraarticular fx of right calcaneus, sequela
+ ;;^UTILITY(U,$J,358.3,20188,1,4,0)
+ ;;=4^S92.061S
+ ;;^UTILITY(U,$J,358.3,20188,2)
+ ;;=^5044555
+ ;;^UTILITY(U,$J,358.3,20189,0)
+ ;;=S92.155S^^67^884^68
+ ;;^UTILITY(U,$J,358.3,20189,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,19964,1,3,0)
- ;;=3^Nondisp fx of proximal phalanx of right ring finger, sequela
- ;;^UTILITY(U,$J,358.3,19964,1,4,0)
- ;;=4^S62.644S
- ;;^UTILITY(U,$J,358.3,19964,2)
- ;;=^5034696
- ;;^UTILITY(U,$J,358.3,19965,0)
- ;;=M84.445S^^93^997^119
- ;;^UTILITY(U,$J,358.3,19965,1,0)
+ ;;^UTILITY(U,$J,358.3,20189,1,3,0)
+ ;;=3^Nondisp avulsion fx of left talus, sequela
+ ;;^UTILITY(U,$J,358.3,20189,1,4,0)
+ ;;=4^S92.155S
+ ;;^UTILITY(U,$J,358.3,20189,2)
+ ;;=^5044807
+ ;;^UTILITY(U,$J,358.3,20190,0)
+ ;;=S92.154S^^67^884^69
+ ;;^UTILITY(U,$J,358.3,20190,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,19965,1,3,0)
- ;;=3^Pathological fracture, left finger(s), sequela
- ;;^UTILITY(U,$J,358.3,19965,1,4,0)
- ;;=4^M84.445S
- ;;^UTILITY(U,$J,358.3,19965,2)
- ;;=^5013895
- ;;^UTILITY(U,$J,358.3,19966,0)
- ;;=M84.444S^^93^997^121
- ;;^UTILITY(U,$J,358.3,19966,1,0)
+ ;;^UTILITY(U,$J,358.3,20190,1,3,0)
+ ;;=3^Nondisp avulsion fx of right talus, sequela
+ ;;^UTILITY(U,$J,358.3,20190,1,4,0)
+ ;;=4^S92.154S
+ ;;^UTILITY(U,$J,358.3,20190,2)
+ ;;=^5044800
+ ;;^UTILITY(U,$J,358.3,20191,0)
+ ;;=S92.035S^^67^884^70
+ ;;^UTILITY(U,$J,358.3,20191,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,19966,1,3,0)
- ;;=3^Pathological fracture, right finger(s), sequela
- ;;^UTILITY(U,$J,358.3,19966,1,4,0)
- ;;=4^M84.444S
- ;;^UTILITY(U,$J,358.3,19966,2)
- ;;=^5013889
- ;;^UTILITY(U,$J,358.3,19967,0)
- ;;=M84.345S^^93^997^123
- ;;^UTILITY(U,$J,358.3,19967,1,0)
+ ;;^UTILITY(U,$J,358.3,20191,1,3,0)
+ ;;=3^Nondisp avulsion tuberosity fx of left calcaneus, sequela
+ ;;^UTILITY(U,$J,358.3,20191,1,4,0)
+ ;;=4^S92.035S
+ ;;^UTILITY(U,$J,358.3,20191,2)
+ ;;=^5044485
+ ;;^UTILITY(U,$J,358.3,20192,0)
+ ;;=S92.034S^^67^884^71
+ ;;^UTILITY(U,$J,358.3,20192,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,19967,1,3,0)
- ;;=3^Stress fracture, left finger(s), sequela
- ;;^UTILITY(U,$J,358.3,19967,1,4,0)
- ;;=4^M84.345S
- ;;^UTILITY(U,$J,358.3,19967,2)
- ;;=^5013667
- ;;^UTILITY(U,$J,358.3,19968,0)
- ;;=M84.344S^^93^997^125
- ;;^UTILITY(U,$J,358.3,19968,1,0)
+ ;;^UTILITY(U,$J,358.3,20192,1,3,0)
+ ;;=3^Nondisp avulsion tuberosity fx of right calcaneus, sequela
+ ;;^UTILITY(U,$J,358.3,20192,1,4,0)
+ ;;=4^S92.034S
+ ;;^UTILITY(U,$J,358.3,20192,2)
+ ;;=^5044478
+ ;;^UTILITY(U,$J,358.3,20193,0)
+ ;;=S92.145S^^67^884^84
+ ;;^UTILITY(U,$J,358.3,20193,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,19968,1,3,0)
- ;;=3^Stress fracture, right finger(s), sequela
- ;;^UTILITY(U,$J,358.3,19968,1,4,0)
- ;;=4^M84.344S
- ;;^UTILITY(U,$J,358.3,19968,2)
- ;;=^5013661
- ;;^UTILITY(U,$J,358.3,19969,0)
- ;;=S62.522S^^93^997^15
- ;;^UTILITY(U,$J,358.3,19969,1,0)
- ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,20193,1,3,0)
+ ;;=3^Nondisp dome fx of left talus, sequela
+ ;;^UTILITY(U,$J,358.3,20193,1,4,0)
+ ;;=4^S92.145S
+ ;;^UTILITY(U,$J,358.3,20193,2)
+ ;;=^5044765
+ ;;^UTILITY(U,$J,358.3,20194,0)
+ ;;=S92.144S^^67^884^85

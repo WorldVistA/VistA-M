@@ -1,668 +1,702 @@
-IBDEI018 ; ; 01-MAY-2020
- ;;3.0;IB ENCOUNTER FORM IMP/EXP;;MAY 01, 2020
+IBDEI018 ; ; 01-AUG-2022
+ ;;3.0;IB ENCOUNTER FORM IMP/EXP;;AUG 01, 2022
  Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,999) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
+ ;;^UTILITY(U,$J,358.3,2462,2)
+ ;;=^5157631
+ ;;^UTILITY(U,$J,358.3,2463,0)
+ ;;=I10.^^20^154^3
+ ;;^UTILITY(U,$J,358.3,2463,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,2463,1,3,0)
+ ;;=3^Hypertension,Essential
+ ;;^UTILITY(U,$J,358.3,2463,1,4,0)
+ ;;=4^I10.
+ ;;^UTILITY(U,$J,358.3,2463,2)
+ ;;=^5007062
+ ;;^UTILITY(U,$J,358.3,2464,0)
+ ;;=I11.0^^20^154^8
+ ;;^UTILITY(U,$J,358.3,2464,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,2464,1,3,0)
+ ;;=3^Hypertensive Heart Disease w/ Heart Failure
+ ;;^UTILITY(U,$J,358.3,2464,1,4,0)
+ ;;=4^I11.0
+ ;;^UTILITY(U,$J,358.3,2464,2)
+ ;;=^5007063
+ ;;^UTILITY(U,$J,358.3,2465,0)
+ ;;=I11.9^^20^154^9
+ ;;^UTILITY(U,$J,358.3,2465,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,2465,1,3,0)
+ ;;=3^Hypertensive Heart Disease w/o Heart Failure
+ ;;^UTILITY(U,$J,358.3,2465,1,4,0)
+ ;;=4^I11.9
+ ;;^UTILITY(U,$J,358.3,2465,2)
+ ;;=^5007064
+ ;;^UTILITY(U,$J,358.3,2466,0)
+ ;;=I15.8^^20^154^5
+ ;;^UTILITY(U,$J,358.3,2466,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,2466,1,3,0)
+ ;;=3^Hypertension,Secondary
+ ;;^UTILITY(U,$J,358.3,2466,1,4,0)
+ ;;=4^I15.8
+ ;;^UTILITY(U,$J,358.3,2466,2)
+ ;;=^5007074
+ ;;^UTILITY(U,$J,358.3,2467,0)
+ ;;=I15.0^^20^154^4
+ ;;^UTILITY(U,$J,358.3,2467,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,2467,1,3,0)
+ ;;=3^Hypertension,Renovascular
+ ;;^UTILITY(U,$J,358.3,2467,1,4,0)
+ ;;=4^I15.0
+ ;;^UTILITY(U,$J,358.3,2467,2)
+ ;;=^5007071
+ ;;^UTILITY(U,$J,358.3,2468,0)
+ ;;=I70.1^^20^154^1
+ ;;^UTILITY(U,$J,358.3,2468,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,2468,1,3,0)
+ ;;=3^Atherosclerosis of Renal Artery
+ ;;^UTILITY(U,$J,358.3,2468,1,4,0)
+ ;;=4^I70.1
+ ;;^UTILITY(U,$J,358.3,2468,2)
+ ;;=^269760
+ ;;^UTILITY(U,$J,358.3,2469,0)
+ ;;=R03.0^^20^154^2
+ ;;^UTILITY(U,$J,358.3,2469,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,2469,1,3,0)
+ ;;=3^Elevated B/P Reading w/o HTN Diagnosis
+ ;;^UTILITY(U,$J,358.3,2469,1,4,0)
+ ;;=4^R03.0
+ ;;^UTILITY(U,$J,358.3,2469,2)
+ ;;=^5019171
+ ;;^UTILITY(U,$J,358.3,2470,0)
+ ;;=I95.1^^20^154^13
+ ;;^UTILITY(U,$J,358.3,2470,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,2470,1,3,0)
+ ;;=3^Orthostatic Hypotension
+ ;;^UTILITY(U,$J,358.3,2470,1,4,0)
+ ;;=4^I95.1
+ ;;^UTILITY(U,$J,358.3,2470,2)
+ ;;=^60741
+ ;;^UTILITY(U,$J,358.3,2471,0)
+ ;;=I95.2^^20^154^11
+ ;;^UTILITY(U,$J,358.3,2471,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,2471,1,3,0)
+ ;;=3^Hypotension d/t Drugs
+ ;;^UTILITY(U,$J,358.3,2471,1,4,0)
+ ;;=4^I95.2
+ ;;^UTILITY(U,$J,358.3,2471,2)
+ ;;=^5008077
+ ;;^UTILITY(U,$J,358.3,2472,0)
+ ;;=I95.81^^20^154^14
+ ;;^UTILITY(U,$J,358.3,2472,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,2472,1,3,0)
+ ;;=3^Postprocedural Hypotension
+ ;;^UTILITY(U,$J,358.3,2472,1,4,0)
+ ;;=4^I95.81
+ ;;^UTILITY(U,$J,358.3,2472,2)
+ ;;=^5008078
+ ;;^UTILITY(U,$J,358.3,2473,0)
+ ;;=I95.9^^20^154^12
+ ;;^UTILITY(U,$J,358.3,2473,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,2473,1,3,0)
+ ;;=3^Hypotension,Unspec
+ ;;^UTILITY(U,$J,358.3,2473,1,4,0)
+ ;;=4^I95.9
+ ;;^UTILITY(U,$J,358.3,2473,2)
+ ;;=^5008080
+ ;;^UTILITY(U,$J,358.3,2474,0)
+ ;;=I16.0^^20^154^10
+ ;;^UTILITY(U,$J,358.3,2474,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,2474,1,3,0)
+ ;;=3^Hypertensive Urgency
+ ;;^UTILITY(U,$J,358.3,2474,1,4,0)
+ ;;=4^I16.0
+ ;;^UTILITY(U,$J,358.3,2474,2)
+ ;;=^8133013
+ ;;^UTILITY(U,$J,358.3,2475,0)
+ ;;=I16.1^^20^154^7
+ ;;^UTILITY(U,$J,358.3,2475,1,0)
+ ;;=^358.31IA^4^2
  ;;^UTILITY(U,$J,358.3,2475,1,3,0)
- ;;=3^Blindness Rt Eye Category 5,Blindness Lt Eye Category 4
+ ;;=3^Hypertensive Emergency
  ;;^UTILITY(U,$J,358.3,2475,1,4,0)
- ;;=4^H54.0X54
+ ;;=4^I16.1
  ;;^UTILITY(U,$J,358.3,2475,2)
- ;;=^5151345
+ ;;=^8204721
  ;;^UTILITY(U,$J,358.3,2476,0)
- ;;=H54.0X55^^23^185^19
+ ;;=I16.9^^20^154^6
  ;;^UTILITY(U,$J,358.3,2476,1,0)
  ;;=^358.31IA^4^2
  ;;^UTILITY(U,$J,358.3,2476,1,3,0)
- ;;=3^Blindness Rt Eye Category 5,Blindness Lt Eye Category 5
+ ;;=3^Hypertensive Crisis,Unspec
  ;;^UTILITY(U,$J,358.3,2476,1,4,0)
- ;;=4^H54.0X55
+ ;;=4^I16.9
  ;;^UTILITY(U,$J,358.3,2476,2)
- ;;=^5151346
+ ;;=^5138600
  ;;^UTILITY(U,$J,358.3,2477,0)
- ;;=H54.2X11^^23^185^41
+ ;;=B25.9^^20^155^5
  ;;^UTILITY(U,$J,358.3,2477,1,0)
  ;;=^358.31IA^4^2
  ;;^UTILITY(U,$J,358.3,2477,1,3,0)
- ;;=3^Low Vision Rt Eye Category 1,Low Vision Lt Eye Category 1
+ ;;=3^CMV Disease,Unspec
  ;;^UTILITY(U,$J,358.3,2477,1,4,0)
- ;;=4^H54.2X11
+ ;;=4^B25.9
  ;;^UTILITY(U,$J,358.3,2477,2)
- ;;=^5151359
+ ;;=^5000560
  ;;^UTILITY(U,$J,358.3,2478,0)
- ;;=H54.2X12^^23^185^42
+ ;;=I30.1^^20^155^7
  ;;^UTILITY(U,$J,358.3,2478,1,0)
  ;;=^358.31IA^4^2
  ;;^UTILITY(U,$J,358.3,2478,1,3,0)
- ;;=3^Low Vision Rt Eye Category 1,Low Vision Lt Eye Category 2
+ ;;=3^Infective Pericarditis
  ;;^UTILITY(U,$J,358.3,2478,1,4,0)
- ;;=4^H54.2X12
+ ;;=4^I30.1
  ;;^UTILITY(U,$J,358.3,2478,2)
- ;;=^5151360
+ ;;=^5007158
  ;;^UTILITY(U,$J,358.3,2479,0)
- ;;=H54.2X21^^23^185^49
+ ;;=I30.0^^20^155^1
  ;;^UTILITY(U,$J,358.3,2479,1,0)
  ;;=^358.31IA^4^2
  ;;^UTILITY(U,$J,358.3,2479,1,3,0)
- ;;=3^Low Vision Rt Eye Category 2,Low Vision Lt Eye Category 1
+ ;;=3^Acute Nonspecific Idiopathic Pericarditis
  ;;^UTILITY(U,$J,358.3,2479,1,4,0)
- ;;=4^H54.2X21
+ ;;=4^I30.0
  ;;^UTILITY(U,$J,358.3,2479,2)
- ;;=^5151361
+ ;;=^5007157
  ;;^UTILITY(U,$J,358.3,2480,0)
- ;;=H54.2X22^^23^185^50
+ ;;=I33.0^^20^155^3
  ;;^UTILITY(U,$J,358.3,2480,1,0)
  ;;=^358.31IA^4^2
  ;;^UTILITY(U,$J,358.3,2480,1,3,0)
- ;;=3^Low Vision Rt Eye Category 2,Low Vision Lt Eye Category 2
+ ;;=3^Acute/Subacute Infective Endocarditis
  ;;^UTILITY(U,$J,358.3,2480,1,4,0)
- ;;=4^H54.2X22
+ ;;=4^I33.0
  ;;^UTILITY(U,$J,358.3,2480,2)
- ;;=^5151362
+ ;;=^5007167
  ;;^UTILITY(U,$J,358.3,2481,0)
- ;;=H54.511A^^23^185^45
+ ;;=I33.9^^20^155^2
  ;;^UTILITY(U,$J,358.3,2481,1,0)
  ;;=^358.31IA^4^2
  ;;^UTILITY(U,$J,358.3,2481,1,3,0)
- ;;=3^Low Vision Rt Eye Category 1,Normal Vision Lt Eye
+ ;;=3^Acute/Subacute Endocarditis,Unspec
  ;;^UTILITY(U,$J,358.3,2481,1,4,0)
- ;;=4^H54.511A
+ ;;=4^I33.9
  ;;^UTILITY(U,$J,358.3,2481,2)
- ;;=^5151369
+ ;;=^5007168
  ;;^UTILITY(U,$J,358.3,2482,0)
- ;;=H54.512A^^23^185^53
+ ;;=I31.0^^20^155^4
  ;;^UTILITY(U,$J,358.3,2482,1,0)
  ;;=^358.31IA^4^2
  ;;^UTILITY(U,$J,358.3,2482,1,3,0)
- ;;=3^Low Vision Rt Eye Category 2,Normal Vision Lt Eye
+ ;;=3^Adhesive Pericarditis,Chronic
  ;;^UTILITY(U,$J,358.3,2482,1,4,0)
- ;;=4^H54.512A
+ ;;=4^I31.0
  ;;^UTILITY(U,$J,358.3,2482,2)
- ;;=^5151370
+ ;;=^5007161
  ;;^UTILITY(U,$J,358.3,2483,0)
- ;;=H54.2X11^^23^185^43
+ ;;=I31.1^^20^155^6
  ;;^UTILITY(U,$J,358.3,2483,1,0)
  ;;=^358.31IA^4^2
  ;;^UTILITY(U,$J,358.3,2483,1,3,0)
- ;;=3^Low Vision Rt Eye Category 1,Low Vision Lt Eye Category 1
+ ;;=3^Constrictive Pericarditis,Chronic
  ;;^UTILITY(U,$J,358.3,2483,1,4,0)
- ;;=4^H54.2X11
+ ;;=4^I31.1
  ;;^UTILITY(U,$J,358.3,2483,2)
- ;;=^5151359
+ ;;=^5007162
  ;;^UTILITY(U,$J,358.3,2484,0)
- ;;=H54.2X12^^23^185^44
+ ;;=E78.1^^20^156^7
  ;;^UTILITY(U,$J,358.3,2484,1,0)
  ;;=^358.31IA^4^2
  ;;^UTILITY(U,$J,358.3,2484,1,3,0)
- ;;=3^Low Vision Rt Eye Category 1,Low Vision Lt Eye Category 2
+ ;;=3^Pure Hyperglyceridemia
  ;;^UTILITY(U,$J,358.3,2484,1,4,0)
- ;;=4^H54.2X12
+ ;;=4^E78.1
  ;;^UTILITY(U,$J,358.3,2484,2)
- ;;=^5151360
+ ;;=^101303
  ;;^UTILITY(U,$J,358.3,2485,0)
- ;;=H54.2X21^^23^185^51
+ ;;=E78.2^^20^156^5
  ;;^UTILITY(U,$J,358.3,2485,1,0)
  ;;=^358.31IA^4^2
  ;;^UTILITY(U,$J,358.3,2485,1,3,0)
- ;;=3^Low Vision Rt Eye Category 2,Low Vision Lt Eye Category 1
+ ;;=3^Mixed Hyperlipidemia
  ;;^UTILITY(U,$J,358.3,2485,1,4,0)
- ;;=4^H54.2X21
+ ;;=4^E78.2
  ;;^UTILITY(U,$J,358.3,2485,2)
- ;;=^5151361
+ ;;=^78424
  ;;^UTILITY(U,$J,358.3,2486,0)
- ;;=H54.2X22^^23^185^52
+ ;;=E78.6^^20^156^4
  ;;^UTILITY(U,$J,358.3,2486,1,0)
  ;;=^358.31IA^4^2
  ;;^UTILITY(U,$J,358.3,2486,1,3,0)
- ;;=3^Low Vision Rt Eye Category 2,Low Vision Lt Eye Category 2
+ ;;=3^Lipoprotein Deficiency
  ;;^UTILITY(U,$J,358.3,2486,1,4,0)
- ;;=4^H54.2X22
+ ;;=4^E78.6
  ;;^UTILITY(U,$J,358.3,2486,2)
- ;;=^5151362
+ ;;=^5002970
  ;;^UTILITY(U,$J,358.3,2487,0)
- ;;=Z01.020^^23^185^31
+ ;;=E78.01^^20^156^2
  ;;^UTILITY(U,$J,358.3,2487,1,0)
  ;;=^358.31IA^4^2
  ;;^UTILITY(U,$J,358.3,2487,1,3,0)
- ;;=3^Exam of Eyes/Vision Following Failed Vision Scrn w/o Abn Findings
+ ;;=3^Familial Hypercholesterolemia
  ;;^UTILITY(U,$J,358.3,2487,1,4,0)
- ;;=4^Z01.020
+ ;;=4^E78.01
  ;;^UTILITY(U,$J,358.3,2487,2)
- ;;=^5158318
+ ;;=^7570555
  ;;^UTILITY(U,$J,358.3,2488,0)
- ;;=Z01.021^^23^185^32
+ ;;=E78.00^^20^156^6
  ;;^UTILITY(U,$J,358.3,2488,1,0)
  ;;=^358.31IA^4^2
  ;;^UTILITY(U,$J,358.3,2488,1,3,0)
- ;;=3^Exam of Eyes/Vision Following Failed Vision Scrn w/ Abn Findings
+ ;;=3^Pure Hypercholesterolemia,Unspec
  ;;^UTILITY(U,$J,358.3,2488,1,4,0)
- ;;=4^Z01.021
+ ;;=4^E78.00
  ;;^UTILITY(U,$J,358.3,2488,2)
- ;;=^5158319
+ ;;=^5138435
  ;;^UTILITY(U,$J,358.3,2489,0)
- ;;=B39.9^^23^186^33
+ ;;=E78.41^^20^156^1
  ;;^UTILITY(U,$J,358.3,2489,1,0)
  ;;=^358.31IA^4^2
  ;;^UTILITY(U,$J,358.3,2489,1,3,0)
- ;;=3^Histoplasmosis,Unspec
+ ;;=3^Elevated Lipoprotein(a)
  ;;^UTILITY(U,$J,358.3,2489,1,4,0)
- ;;=4^B39.9
+ ;;=4^E78.41
  ;;^UTILITY(U,$J,358.3,2489,2)
- ;;=^5000638
+ ;;=^5157298
  ;;^UTILITY(U,$J,358.3,2490,0)
- ;;=E11.311^^23^186^13
+ ;;=E78.49^^20^156^3
  ;;^UTILITY(U,$J,358.3,2490,1,0)
  ;;=^358.31IA^4^2
  ;;^UTILITY(U,$J,358.3,2490,1,3,0)
- ;;=3^DM Type 2 w/ Diab Retinopathy w/ Macular Edema
+ ;;=3^Hyperlipidemia,Other
  ;;^UTILITY(U,$J,358.3,2490,1,4,0)
- ;;=4^E11.311
+ ;;=4^E78.49
  ;;^UTILITY(U,$J,358.3,2490,2)
- ;;=^5002632
+ ;;=^5157299
  ;;^UTILITY(U,$J,358.3,2491,0)
- ;;=E11.319^^23^186^14
+ ;;=I22.0^^20^157^12
  ;;^UTILITY(U,$J,358.3,2491,1,0)
  ;;=^358.31IA^4^2
  ;;^UTILITY(U,$J,358.3,2491,1,3,0)
- ;;=3^DM Type 2 w/ Diab Retinopathy w/o Macular Edema
+ ;;=3^Subsequent STEMI of Anterior Wall
  ;;^UTILITY(U,$J,358.3,2491,1,4,0)
- ;;=4^E11.319
+ ;;=4^I22.0
  ;;^UTILITY(U,$J,358.3,2491,2)
- ;;=^5002633
+ ;;=^5007089
  ;;^UTILITY(U,$J,358.3,2492,0)
- ;;=E11.36^^23^186^11
+ ;;=I21.09^^20^157^3
  ;;^UTILITY(U,$J,358.3,2492,1,0)
  ;;=^358.31IA^4^2
  ;;^UTILITY(U,$J,358.3,2492,1,3,0)
- ;;=3^DM Type 2 w/ Diab Cataract
+ ;;=3^STEMI Involving Coronary Artery of Anterior Wall
  ;;^UTILITY(U,$J,358.3,2492,1,4,0)
- ;;=4^E11.36
+ ;;=4^I21.09
  ;;^UTILITY(U,$J,358.3,2492,2)
- ;;=^5002642
+ ;;=^5007082
  ;;^UTILITY(U,$J,358.3,2493,0)
- ;;=E11.39^^23^186^12
+ ;;=I21.02^^20^157^5
  ;;^UTILITY(U,$J,358.3,2493,1,0)
  ;;=^358.31IA^4^2
  ;;^UTILITY(U,$J,358.3,2493,1,3,0)
- ;;=3^DM Type 2 w/ Diab Ophthalmic Complication
+ ;;=3^STEMI Involving Left Anterior Descending Coronary Artery
  ;;^UTILITY(U,$J,358.3,2493,1,4,0)
- ;;=4^E11.39
+ ;;=4^I21.02
  ;;^UTILITY(U,$J,358.3,2493,2)
- ;;=^5002643
+ ;;=^5007081
  ;;^UTILITY(U,$J,358.3,2494,0)
- ;;=H35.30^^23^186^34
+ ;;=I21.01^^20^157^7
  ;;^UTILITY(U,$J,358.3,2494,1,0)
  ;;=^358.31IA^4^2
  ;;^UTILITY(U,$J,358.3,2494,1,3,0)
- ;;=3^Macular Degeneration,Unspec
+ ;;=3^STEMI Involving Left Main Coronary Artery
  ;;^UTILITY(U,$J,358.3,2494,1,4,0)
- ;;=4^H35.30
+ ;;=4^I21.01
  ;;^UTILITY(U,$J,358.3,2494,2)
- ;;=^5005646
+ ;;=^5007080
  ;;^UTILITY(U,$J,358.3,2495,0)
- ;;=H35.52^^23^186^60
+ ;;=I21.19^^20^157^4
  ;;^UTILITY(U,$J,358.3,2495,1,0)
  ;;=^358.31IA^4^2
  ;;^UTILITY(U,$J,358.3,2495,1,3,0)
- ;;=3^Pigmentary Retinal Dystrophy
+ ;;=3^STEMI Involving Coronary Artery of Inferior Wall
  ;;^UTILITY(U,$J,358.3,2495,1,4,0)
- ;;=4^H35.52
+ ;;=4^I21.19
  ;;^UTILITY(U,$J,358.3,2495,2)
- ;;=^5005697
+ ;;=^5007084
  ;;^UTILITY(U,$J,358.3,2496,0)
- ;;=H35.53^^23^186^65
+ ;;=I22.1^^20^157^13
  ;;^UTILITY(U,$J,358.3,2496,1,0)
  ;;=^358.31IA^4^2
  ;;^UTILITY(U,$J,358.3,2496,1,3,0)
- ;;=3^Sensory Retina Dystrophies
+ ;;=3^Subsequent STEMI of Inferior Wall
  ;;^UTILITY(U,$J,358.3,2496,1,4,0)
- ;;=4^H35.53
+ ;;=4^I22.1
  ;;^UTILITY(U,$J,358.3,2496,2)
- ;;=^268656
+ ;;=^5007090
  ;;^UTILITY(U,$J,358.3,2497,0)
- ;;=H40.9^^23^186^32
+ ;;=I21.4^^20^157^1
  ;;^UTILITY(U,$J,358.3,2497,1,0)
  ;;=^358.31IA^4^2
  ;;^UTILITY(U,$J,358.3,2497,1,3,0)
- ;;=3^Glaucoma,Unspec
+ ;;=3^NSTEMI
  ;;^UTILITY(U,$J,358.3,2497,1,4,0)
- ;;=4^H40.9
+ ;;=4^I21.4
  ;;^UTILITY(U,$J,358.3,2497,2)
- ;;=^5005931
+ ;;=^5007088
  ;;^UTILITY(U,$J,358.3,2498,0)
- ;;=H26.9^^23^186^8
+ ;;=I21.3^^20^157^10
  ;;^UTILITY(U,$J,358.3,2498,1,0)
  ;;=^358.31IA^4^2
  ;;^UTILITY(U,$J,358.3,2498,1,3,0)
- ;;=3^Cataract,Unspec
+ ;;=3^STEMI of Unspec Site
  ;;^UTILITY(U,$J,358.3,2498,1,4,0)
- ;;=4^H26.9
+ ;;=4^I21.3
  ;;^UTILITY(U,$J,358.3,2498,2)
- ;;=^5005363
+ ;;=^5007087
  ;;^UTILITY(U,$J,358.3,2499,0)
- ;;=H17.9^^23^186^10
+ ;;=I25.2^^20^157^2
  ;;^UTILITY(U,$J,358.3,2499,1,0)
  ;;=^358.31IA^4^2
  ;;^UTILITY(U,$J,358.3,2499,1,3,0)
- ;;=3^Corneal Scar & Opacity,Unspec
+ ;;=3^Old Myocardial Infarction
  ;;^UTILITY(U,$J,358.3,2499,1,4,0)
- ;;=4^H17.9
+ ;;=4^I25.2
  ;;^UTILITY(U,$J,358.3,2499,2)
- ;;=^5005003
+ ;;=^259884
  ;;^UTILITY(U,$J,358.3,2500,0)
- ;;=H47.20^^23^186^50
+ ;;=I22.2^^20^157^11
  ;;^UTILITY(U,$J,358.3,2500,1,0)
  ;;=^358.31IA^4^2
  ;;^UTILITY(U,$J,358.3,2500,1,3,0)
- ;;=3^Optic Atrophy,Unspec
+ ;;=3^Subsequent NSTEMI
  ;;^UTILITY(U,$J,358.3,2500,1,4,0)
- ;;=4^H47.20
+ ;;=4^I22.2
  ;;^UTILITY(U,$J,358.3,2500,2)
- ;;=^5006126
+ ;;=^5007091
  ;;^UTILITY(U,$J,358.3,2501,0)
- ;;=H47.091^^23^186^53
+ ;;=I21.21^^20^157^6
  ;;^UTILITY(U,$J,358.3,2501,1,0)
  ;;=^358.31IA^4^2
  ;;^UTILITY(U,$J,358.3,2501,1,3,0)
- ;;=3^Optic Nerve Disorders,Right Eye
+ ;;=3^STEMI Involving Left Circumflex Coronary Artery
  ;;^UTILITY(U,$J,358.3,2501,1,4,0)
- ;;=4^H47.091
+ ;;=4^I21.21
  ;;^UTILITY(U,$J,358.3,2501,2)
- ;;=^5006117
+ ;;=^5007085
  ;;^UTILITY(U,$J,358.3,2502,0)
- ;;=H47.092^^23^186^52
+ ;;=I21.29^^20^157^8
  ;;^UTILITY(U,$J,358.3,2502,1,0)
  ;;=^358.31IA^4^2
  ;;^UTILITY(U,$J,358.3,2502,1,3,0)
- ;;=3^Optic Nerve Disorders,Left Eye
+ ;;=3^STEMI Involving Other Sites
  ;;^UTILITY(U,$J,358.3,2502,1,4,0)
- ;;=4^H47.092
+ ;;=4^I21.29
  ;;^UTILITY(U,$J,358.3,2502,2)
- ;;=^5006118
+ ;;=^5007086
  ;;^UTILITY(U,$J,358.3,2503,0)
- ;;=H47.093^^23^186^51
+ ;;=I21.11^^20^157^9
  ;;^UTILITY(U,$J,358.3,2503,1,0)
  ;;=^358.31IA^4^2
  ;;^UTILITY(U,$J,358.3,2503,1,3,0)
- ;;=3^Optic Nerve Disorders,Bilateral
+ ;;=3^STEMI Involving Right Coronary Artery
  ;;^UTILITY(U,$J,358.3,2503,1,4,0)
- ;;=4^H47.093
+ ;;=4^I21.11
  ;;^UTILITY(U,$J,358.3,2503,2)
- ;;=^5006119
+ ;;=^5007083
  ;;^UTILITY(U,$J,358.3,2504,0)
- ;;=H27.03^^23^186^1
+ ;;=I22.8^^20^157^14
  ;;^UTILITY(U,$J,358.3,2504,1,0)
  ;;=^358.31IA^4^2
  ;;^UTILITY(U,$J,358.3,2504,1,3,0)
- ;;=3^Aphakia,Bilateral
+ ;;=3^Subsequent STEMI of Other Sites
  ;;^UTILITY(U,$J,358.3,2504,1,4,0)
- ;;=4^H27.03
+ ;;=4^I22.8
  ;;^UTILITY(U,$J,358.3,2504,2)
- ;;=^5005367
+ ;;=^5007092
  ;;^UTILITY(U,$J,358.3,2505,0)
- ;;=H27.01^^23^186^3
+ ;;=I22.9^^20^157^15
  ;;^UTILITY(U,$J,358.3,2505,1,0)
  ;;=^358.31IA^4^2
  ;;^UTILITY(U,$J,358.3,2505,1,3,0)
- ;;=3^Aphakia,Right Eye
+ ;;=3^Subsequent STEMI of Unspec Site
  ;;^UTILITY(U,$J,358.3,2505,1,4,0)
- ;;=4^H27.01
+ ;;=4^I22.9
  ;;^UTILITY(U,$J,358.3,2505,2)
- ;;=^5005365
+ ;;=^5007093
  ;;^UTILITY(U,$J,358.3,2506,0)
- ;;=H27.02^^23^186^2
+ ;;=I34.2^^20^158^6
  ;;^UTILITY(U,$J,358.3,2506,1,0)
  ;;=^358.31IA^4^2
  ;;^UTILITY(U,$J,358.3,2506,1,3,0)
- ;;=3^Aphakia,Left Eye
+ ;;=3^Nonrheumatic Mitral Valve Stenosis
  ;;^UTILITY(U,$J,358.3,2506,1,4,0)
- ;;=4^H27.02
+ ;;=4^I34.2
  ;;^UTILITY(U,$J,358.3,2506,2)
- ;;=^5005366
+ ;;=^5007171
  ;;^UTILITY(U,$J,358.3,2507,0)
- ;;=I69.998^^23^186^9
+ ;;=I35.0^^20^158^2
  ;;^UTILITY(U,$J,358.3,2507,1,0)
  ;;=^358.31IA^4^2
  ;;^UTILITY(U,$J,358.3,2507,1,3,0)
- ;;=3^Cerebrovascular Disease,Unspec,Sequelae
+ ;;=3^Nonrheumatic Aortic Valve Stenosis
  ;;^UTILITY(U,$J,358.3,2507,1,4,0)
- ;;=4^I69.998
+ ;;=4^I35.0
  ;;^UTILITY(U,$J,358.3,2507,2)
- ;;=^5007572
+ ;;=^5007174
  ;;^UTILITY(U,$J,358.3,2508,0)
- ;;=S04.011A^^23^186^57
+ ;;=I36.1^^20^158^9
  ;;^UTILITY(U,$J,358.3,2508,1,0)
  ;;=^358.31IA^4^2
  ;;^UTILITY(U,$J,358.3,2508,1,3,0)
- ;;=3^Optic Nerve Injury,Right Eye,Init Encntr
+ ;;=3^Nonrheumatic Tricuspid Valve Insufficiency
  ;;^UTILITY(U,$J,358.3,2508,1,4,0)
- ;;=4^S04.011A
+ ;;=4^I36.1
  ;;^UTILITY(U,$J,358.3,2508,2)
- ;;=^5020462
+ ;;=^5007180
  ;;^UTILITY(U,$J,358.3,2509,0)
- ;;=S04.012A^^23^186^54
+ ;;=I35.1^^20^158^1
  ;;^UTILITY(U,$J,358.3,2509,1,0)
  ;;=^358.31IA^4^2
  ;;^UTILITY(U,$J,358.3,2509,1,3,0)
- ;;=3^Optic Nerve Injury,Left Eye,Init Encntr
+ ;;=3^Nonrheumatic Aortic Valve Insufficiency
  ;;^UTILITY(U,$J,358.3,2509,1,4,0)
- ;;=4^S04.012A
+ ;;=4^I35.1
  ;;^UTILITY(U,$J,358.3,2509,2)
- ;;=^5020465
+ ;;=^5007175
  ;;^UTILITY(U,$J,358.3,2510,0)
- ;;=H33.001^^23^186^63
+ ;;=I35.2^^20^158^3
  ;;^UTILITY(U,$J,358.3,2510,1,0)
  ;;=^358.31IA^4^2
  ;;^UTILITY(U,$J,358.3,2510,1,3,0)
- ;;=3^Retinal Detachment w/ Retinal Break,Right Eye
+ ;;=3^Nonrheumatic Aortic Valve Stenosis w/ Insufficiency
  ;;^UTILITY(U,$J,358.3,2510,1,4,0)
- ;;=4^H33.001
+ ;;=4^I35.2
  ;;^UTILITY(U,$J,358.3,2510,2)
- ;;=^5005490
+ ;;=^5007176
  ;;^UTILITY(U,$J,358.3,2511,0)
- ;;=H33.002^^23^186^62
+ ;;=I51.1^^20^158^11
  ;;^UTILITY(U,$J,358.3,2511,1,0)
  ;;=^358.31IA^4^2
  ;;^UTILITY(U,$J,358.3,2511,1,3,0)
- ;;=3^Retinal Detachment w/ Retinal Break,Left Eye
+ ;;=3^Rupture of Chordae Tendineae NEC
  ;;^UTILITY(U,$J,358.3,2511,1,4,0)
- ;;=4^H33.002
+ ;;=4^I51.1
  ;;^UTILITY(U,$J,358.3,2511,2)
- ;;=^5005491
+ ;;=^5007253
  ;;^UTILITY(U,$J,358.3,2512,0)
- ;;=H33.003^^23^186^61
+ ;;=I34.0^^20^158^4
  ;;^UTILITY(U,$J,358.3,2512,1,0)
  ;;=^358.31IA^4^2
  ;;^UTILITY(U,$J,358.3,2512,1,3,0)
- ;;=3^Retinal Detachment w/ Retinal Break,Bilateral 
+ ;;=3^Nonrheumatic Mitral Valve Insufficiency
  ;;^UTILITY(U,$J,358.3,2512,1,4,0)
- ;;=4^H33.003
+ ;;=4^I34.0
  ;;^UTILITY(U,$J,358.3,2512,2)
- ;;=^5005492
+ ;;=^5007169
  ;;^UTILITY(U,$J,358.3,2513,0)
- ;;=H34.9^^23^186^64
+ ;;=I34.1^^20^158^5
  ;;^UTILITY(U,$J,358.3,2513,1,0)
  ;;=^358.31IA^4^2
  ;;^UTILITY(U,$J,358.3,2513,1,3,0)
- ;;=3^Retinal Vascular Occlusion,Unspec
+ ;;=3^Nonrheumatic Mitral Valve Prolapse
  ;;^UTILITY(U,$J,358.3,2513,1,4,0)
- ;;=4^H34.9
+ ;;=4^I34.1
  ;;^UTILITY(U,$J,358.3,2513,2)
- ;;=^5005580
+ ;;=^5007170
  ;;^UTILITY(U,$J,358.3,2514,0)
- ;;=H31.021^^23^186^68
+ ;;=I36.0^^20^158^10
  ;;^UTILITY(U,$J,358.3,2514,1,0)
  ;;=^358.31IA^4^2
  ;;^UTILITY(U,$J,358.3,2514,1,3,0)
- ;;=3^Solar Retinopathy,Right Eye
+ ;;=3^Nonrheumatic Tricuspid Valve Stenosis
  ;;^UTILITY(U,$J,358.3,2514,1,4,0)
- ;;=4^H31.021
+ ;;=4^I36.0
  ;;^UTILITY(U,$J,358.3,2514,2)
- ;;=^5005443
+ ;;=^5007179
  ;;^UTILITY(U,$J,358.3,2515,0)
- ;;=H31.022^^23^186^67
+ ;;=I37.0^^20^158^8
  ;;^UTILITY(U,$J,358.3,2515,1,0)
  ;;=^358.31IA^4^2
  ;;^UTILITY(U,$J,358.3,2515,1,3,0)
- ;;=3^Solar Retinopathy,Left Eye
+ ;;=3^Nonrheumatic Pulmonary Valve Stenosis
  ;;^UTILITY(U,$J,358.3,2515,1,4,0)
- ;;=4^H31.022
+ ;;=4^I37.0
  ;;^UTILITY(U,$J,358.3,2515,2)
- ;;=^5005444
+ ;;=^5007184
  ;;^UTILITY(U,$J,358.3,2516,0)
- ;;=H31.023^^23^186^66
+ ;;=I37.1^^20^158^7
  ;;^UTILITY(U,$J,358.3,2516,1,0)
  ;;=^358.31IA^4^2
  ;;^UTILITY(U,$J,358.3,2516,1,3,0)
- ;;=3^Solar Retinopathy,Bilateral
+ ;;=3^Nonrheumatic Pulmonary Valve Insufficiency
  ;;^UTILITY(U,$J,358.3,2516,1,4,0)
- ;;=4^H31.023
+ ;;=4^I37.1
  ;;^UTILITY(U,$J,358.3,2516,2)
- ;;=^5005445
+ ;;=^5007185
  ;;^UTILITY(U,$J,358.3,2517,0)
- ;;=H47.9^^23^186^69
+ ;;=I51.1^^20^159^1
  ;;^UTILITY(U,$J,358.3,2517,1,0)
  ;;=^358.31IA^4^2
  ;;^UTILITY(U,$J,358.3,2517,1,3,0)
- ;;=3^Visual Pathway Disorder,Unspec
+ ;;=3^Rupture of Chordae Tendineae NEC
  ;;^UTILITY(U,$J,358.3,2517,1,4,0)
- ;;=4^H47.9
+ ;;=4^I51.1
  ;;^UTILITY(U,$J,358.3,2517,2)
- ;;=^5006178
+ ;;=^5007253
  ;;^UTILITY(U,$J,358.3,2518,0)
- ;;=Z51.89^^23^186^19
+ ;;=I51.2^^20^159^2
  ;;^UTILITY(U,$J,358.3,2518,1,0)
  ;;=^358.31IA^4^2
  ;;^UTILITY(U,$J,358.3,2518,1,3,0)
- ;;=3^Encounter for Other Specified Aftercare
+ ;;=3^Rupture of Papillary Muscle NEC
  ;;^UTILITY(U,$J,358.3,2518,1,4,0)
- ;;=4^Z51.89
+ ;;=4^I51.2
  ;;^UTILITY(U,$J,358.3,2518,2)
- ;;=^5063065
+ ;;=^5007254
  ;;^UTILITY(U,$J,358.3,2519,0)
- ;;=S04.011D^^23^186^59
+ ;;=I38.^^20^160^4
  ;;^UTILITY(U,$J,358.3,2519,1,0)
  ;;=^358.31IA^4^2
  ;;^UTILITY(U,$J,358.3,2519,1,3,0)
- ;;=3^Optic Nerve Injury,Right Eye,Subseq
+ ;;=3^Endocarditis Valve,Unspec
  ;;^UTILITY(U,$J,358.3,2519,1,4,0)
- ;;=4^S04.011D
+ ;;=4^I38.
  ;;^UTILITY(U,$J,358.3,2519,2)
- ;;=^5020463
+ ;;=^40327
  ;;^UTILITY(U,$J,358.3,2520,0)
- ;;=S04.012D^^23^186^56
+ ;;=T82.01XA^^20^160^1
  ;;^UTILITY(U,$J,358.3,2520,1,0)
  ;;=^358.31IA^4^2
  ;;^UTILITY(U,$J,358.3,2520,1,3,0)
- ;;=3^Optic Nerve Injury,Left Eye,Subseq
+ ;;=3^Breakdown of Heart Valve Prosthesis,Init Encntr
  ;;^UTILITY(U,$J,358.3,2520,1,4,0)
- ;;=4^S04.012D
+ ;;=4^T82.01XA
  ;;^UTILITY(U,$J,358.3,2520,2)
- ;;=^5020466
+ ;;=^5054668
  ;;^UTILITY(U,$J,358.3,2521,0)
- ;;=S04.011S^^23^186^58
+ ;;=T82.02XA^^20^160^2
  ;;^UTILITY(U,$J,358.3,2521,1,0)
  ;;=^358.31IA^4^2
  ;;^UTILITY(U,$J,358.3,2521,1,3,0)
- ;;=3^Optic Nerve Injury,Right Eye,Sequela
+ ;;=3^Displacement of Heart Valve Prosthesis,Init Encntr
  ;;^UTILITY(U,$J,358.3,2521,1,4,0)
- ;;=4^S04.011S
+ ;;=4^T82.02XA
  ;;^UTILITY(U,$J,358.3,2521,2)
- ;;=^5020464
+ ;;=^5054671
  ;;^UTILITY(U,$J,358.3,2522,0)
- ;;=S04.012S^^23^186^55
+ ;;=T82.03XA^^20^160^5
  ;;^UTILITY(U,$J,358.3,2522,1,0)
  ;;=^358.31IA^4^2
  ;;^UTILITY(U,$J,358.3,2522,1,3,0)
- ;;=3^Optic Nerve Injury,Left Eye,Sequela
+ ;;=3^Leakage of Heart Valve Prosthesis,Init Encntr
  ;;^UTILITY(U,$J,358.3,2522,1,4,0)
- ;;=4^S04.012S
+ ;;=4^T82.03XA
  ;;^UTILITY(U,$J,358.3,2522,2)
- ;;=^5020467
+ ;;=^5054674
  ;;^UTILITY(U,$J,358.3,2523,0)
- ;;=E11.3591^^23^186^15
+ ;;=T82.09XA^^20^160^7
  ;;^UTILITY(U,$J,358.3,2523,1,0)
  ;;=^358.31IA^4^2
  ;;^UTILITY(U,$J,358.3,2523,1,3,0)
- ;;=3^DM Type 2 w/ Prolif Retinopathy w/o Macular Edema,Right Eye
+ ;;=3^Mech Compl of Heart Valve Prosthesis,Init Encntr
  ;;^UTILITY(U,$J,358.3,2523,1,4,0)
- ;;=4^E11.3591
+ ;;=4^T82.09XA
  ;;^UTILITY(U,$J,358.3,2523,2)
- ;;=^5138375
+ ;;=^5054677
  ;;^UTILITY(U,$J,358.3,2524,0)
- ;;=E11.3592^^23^186^16
+ ;;=T82.817A^^20^160^3
  ;;^UTILITY(U,$J,358.3,2524,1,0)
  ;;=^358.31IA^4^2
  ;;^UTILITY(U,$J,358.3,2524,1,3,0)
- ;;=3^DM Type 2 w/ Prolif Retinopathy w/o Macular Edema,Left Eye
+ ;;=3^Embolism of Cardiac Prosthetic Device/Implant/Graft,Init Encntr
  ;;^UTILITY(U,$J,358.3,2524,1,4,0)
- ;;=4^E11.3592
+ ;;=4^T82.817A
  ;;^UTILITY(U,$J,358.3,2524,2)
- ;;=^5138376
+ ;;=^5054914
  ;;^UTILITY(U,$J,358.3,2525,0)
- ;;=E11.3593^^23^186^17
+ ;;=T82.867A^^20^160^9
  ;;^UTILITY(U,$J,358.3,2525,1,0)
  ;;=^358.31IA^4^2
  ;;^UTILITY(U,$J,358.3,2525,1,3,0)
- ;;=3^DM Type 2 w/ Prolif Retinopathy w/o Macular Edema,Bilateral
+ ;;=3^Thrombosis of Cardiac Prosthetic Device/Implant/Graft,Init Encntr
  ;;^UTILITY(U,$J,358.3,2525,1,4,0)
- ;;=4^E11.3593
+ ;;=4^T82.867A
  ;;^UTILITY(U,$J,358.3,2525,2)
- ;;=^5138377
+ ;;=^5054944
  ;;^UTILITY(U,$J,358.3,2526,0)
- ;;=H35.3210^^23^186^28
+ ;;=Z95.2^^20^160^8
  ;;^UTILITY(U,$J,358.3,2526,1,0)
  ;;=^358.31IA^4^2
  ;;^UTILITY(U,$J,358.3,2526,1,3,0)
- ;;=3^Exudative Age-Rel Mclr Degn,Right Eye,Stage Unspec
+ ;;=3^Presence of Prosthetic Heart Valve
  ;;^UTILITY(U,$J,358.3,2526,1,4,0)
- ;;=4^H35.3210
+ ;;=4^Z95.2
  ;;^UTILITY(U,$J,358.3,2526,2)
- ;;=^5138520
+ ;;=^5063670
  ;;^UTILITY(U,$J,358.3,2527,0)
- ;;=H35.3211^^23^186^29
+ ;;=Z79.01^^20^160^6
  ;;^UTILITY(U,$J,358.3,2527,1,0)
  ;;=^358.31IA^4^2
  ;;^UTILITY(U,$J,358.3,2527,1,3,0)
- ;;=3^Exudative Age-Rel Mclr Degn,Right Eye,w/ Actv Chrdl Neovas
+ ;;=3^Long Term Current Use of Anticoagulants
  ;;^UTILITY(U,$J,358.3,2527,1,4,0)
- ;;=4^H35.3211
+ ;;=4^Z79.01
  ;;^UTILITY(U,$J,358.3,2527,2)
- ;;=^5138521
+ ;;=^5063330
  ;;^UTILITY(U,$J,358.3,2528,0)
- ;;=H35.3212^^23^186^30
+ ;;=I65.1^^20^161^85
  ;;^UTILITY(U,$J,358.3,2528,1,0)
  ;;=^358.31IA^4^2
  ;;^UTILITY(U,$J,358.3,2528,1,3,0)
- ;;=3^Exudative Age-Rel Mclr Degn,Right Eye,w/ Inact Chrdl Neovas
+ ;;=3^Occlusion/Stenosis of Basilar Artery
  ;;^UTILITY(U,$J,358.3,2528,1,4,0)
- ;;=4^H35.3212
+ ;;=4^I65.1
  ;;^UTILITY(U,$J,358.3,2528,2)
- ;;=^5138522
+ ;;=^269747
  ;;^UTILITY(U,$J,358.3,2529,0)
- ;;=H35.3213^^23^186^31
+ ;;=I63.22^^20^161^60
  ;;^UTILITY(U,$J,358.3,2529,1,0)
  ;;=^358.31IA^4^2
  ;;^UTILITY(U,$J,358.3,2529,1,3,0)
- ;;=3^Exudative Age-Rel Mclr Degn,Right Eye,w/ Inactive Scar
+ ;;=3^Cerebral Infarction d/t Unspec Occl/Stenosis of Basilar Arteries
  ;;^UTILITY(U,$J,358.3,2529,1,4,0)
- ;;=4^H35.3213
+ ;;=4^I63.22
  ;;^UTILITY(U,$J,358.3,2529,2)
- ;;=^5138523
+ ;;=^5007315
  ;;^UTILITY(U,$J,358.3,2530,0)
- ;;=H35.3220^^23^186^24
+ ;;=I65.21^^20^161^91
  ;;^UTILITY(U,$J,358.3,2530,1,0)
  ;;=^358.31IA^4^2
  ;;^UTILITY(U,$J,358.3,2530,1,3,0)
- ;;=3^Exudative Age-Rel Mclr Degn,Left Eye,Stage Unspec
+ ;;=3^Occlusion/Stenosis of Right Carotid Artery
  ;;^UTILITY(U,$J,358.3,2530,1,4,0)
- ;;=4^H35.3220
+ ;;=4^I65.21
  ;;^UTILITY(U,$J,358.3,2530,2)
- ;;=^5138524
+ ;;=^5007360
  ;;^UTILITY(U,$J,358.3,2531,0)
- ;;=H35.3221^^23^186^25
+ ;;=I65.22^^20^161^88
  ;;^UTILITY(U,$J,358.3,2531,1,0)
  ;;=^358.31IA^4^2
  ;;^UTILITY(U,$J,358.3,2531,1,3,0)
- ;;=3^Exudative Age-Rel Mclr Degn,Left Eye,w/ Actv Chrdl Neovas
+ ;;=3^Occlusion/Stenosis of Left Carotid Artery
  ;;^UTILITY(U,$J,358.3,2531,1,4,0)
- ;;=4^H35.3221
+ ;;=4^I65.22
  ;;^UTILITY(U,$J,358.3,2531,2)
- ;;=^5138525
+ ;;=^5007361
  ;;^UTILITY(U,$J,358.3,2532,0)
- ;;=H35.3222^^23^186^26
+ ;;=I65.23^^20^161^86
  ;;^UTILITY(U,$J,358.3,2532,1,0)
  ;;=^358.31IA^4^2
  ;;^UTILITY(U,$J,358.3,2532,1,3,0)
- ;;=3^Exudative Age-Rel Mclr Degn,Left Eye,w/ Inact Chrdl Neovas
- ;;^UTILITY(U,$J,358.3,2532,1,4,0)
- ;;=4^H35.3222
- ;;^UTILITY(U,$J,358.3,2532,2)
- ;;=^5138526
- ;;^UTILITY(U,$J,358.3,2533,0)
- ;;=H35.3223^^23^186^27
- ;;^UTILITY(U,$J,358.3,2533,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,2533,1,3,0)
- ;;=3^Exudative Age-Rel Mclr Degn,Left Eye,w/ Inactive Scar
- ;;^UTILITY(U,$J,358.3,2533,1,4,0)
- ;;=4^H35.3223
- ;;^UTILITY(U,$J,358.3,2533,2)
- ;;=^5138527
- ;;^UTILITY(U,$J,358.3,2534,0)
- ;;=H35.3230^^23^186^20
- ;;^UTILITY(U,$J,358.3,2534,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,2534,1,3,0)
- ;;=3^Exudative Age-Rel Mclr Degn,Bilateral,Stage Unspec
- ;;^UTILITY(U,$J,358.3,2534,1,4,0)
- ;;=4^H35.3230
- ;;^UTILITY(U,$J,358.3,2534,2)
- ;;=^5138528
- ;;^UTILITY(U,$J,358.3,2535,0)
- ;;=H35.3231^^23^186^21
- ;;^UTILITY(U,$J,358.3,2535,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,2535,1,3,0)
- ;;=3^Exudative Age-Rel Mclr Degn,Bilateral,w/ Actv Chrdl Neovas
- ;;^UTILITY(U,$J,358.3,2535,1,4,0)
- ;;=4^H35.3231
- ;;^UTILITY(U,$J,358.3,2535,2)
- ;;=^5138529
- ;;^UTILITY(U,$J,358.3,2536,0)
- ;;=H35.3232^^23^186^22
- ;;^UTILITY(U,$J,358.3,2536,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,2536,1,3,0)
- ;;=3^Exudative Age-Rel Mclr Degn,Bilateral,w/ Inact Chrdl Neovas
- ;;^UTILITY(U,$J,358.3,2536,1,4,0)
- ;;=4^H35.3232
- ;;^UTILITY(U,$J,358.3,2536,2)
- ;;=^5138530
- ;;^UTILITY(U,$J,358.3,2537,0)
- ;;=H35.3233^^23^186^23
- ;;^UTILITY(U,$J,358.3,2537,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,2537,1,3,0)
- ;;=3^Exudative Age-Rel Mclr Degn,Bilateral,w/ Inactive Scar
- ;;^UTILITY(U,$J,358.3,2537,1,4,0)
- ;;=4^H35.3233
- ;;^UTILITY(U,$J,358.3,2537,2)
- ;;=^5138531
- ;;^UTILITY(U,$J,358.3,2538,0)
- ;;=H35.3110^^23^186^49
- ;;^UTILITY(U,$J,358.3,2538,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,2538,1,3,0)
- ;;=3^Nexdtve Age-Rel Mclr Degn,Right Eye,Stage Unspec
- ;;^UTILITY(U,$J,358.3,2538,1,4,0)
- ;;=4^H35.3110
- ;;^UTILITY(U,$J,358.3,2538,2)
- ;;=^5138500
- ;;^UTILITY(U,$J,358.3,2539,0)
- ;;=H35.3111^^23^186^47
- ;;^UTILITY(U,$J,358.3,2539,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,2539,1,3,0)
- ;;=3^Nexdtve Age-Rel Mclr Degn,Right Eye,Early Dry Stage
- ;;^UTILITY(U,$J,358.3,2539,1,4,0)
- ;;=4^H35.3111
- ;;^UTILITY(U,$J,358.3,2539,2)
- ;;=^5138501
- ;;^UTILITY(U,$J,358.3,2540,0)
- ;;=H35.3112^^23^186^48
- ;;^UTILITY(U,$J,358.3,2540,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,2540,1,3,0)
- ;;=3^Nexdtve Age-Rel Mclr Degn,Right Eye,Intermed Dry Stage
- ;;^UTILITY(U,$J,358.3,2540,1,4,0)
- ;;=4^H35.3112
- ;;^UTILITY(U,$J,358.3,2540,2)
- ;;=^5138502
- ;;^UTILITY(U,$J,358.3,2541,0)
- ;;=H35.3113^^23^186^45
- ;;^UTILITY(U,$J,358.3,2541,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,2541,1,3,0)
- ;;=3^Nexdtve Age-Rel Mclr Degn,Right Eye,Adv Atrpc w/o Sbfvl Involv
- ;;^UTILITY(U,$J,358.3,2541,1,4,0)
- ;;=4^H35.3113
+ ;;=3^Occlusion/Stenosis of Bilateral Carotid Arteries

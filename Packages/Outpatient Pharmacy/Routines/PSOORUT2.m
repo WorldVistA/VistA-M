@@ -1,5 +1,5 @@
-PSOORUT2 ;ISC BHAM/SAB - build listman screen ; 3/20/07 9:47am
- ;;7.0;OUTPATIENT PHARMACY;**11,146,132,182,233,243,261,268,264,305,390,411,402,500,556**;DEC 1997;Build 2
+PSOORUT2 ;BIR/SAB - Build Listman Screen ;Jan 05, 2021@12:08
+ ;;7.0;OUTPATIENT PHARMACY;**11,146,132,182,233,243,261,268,264,305,390,411,402,500,556,622**;DEC 1997;Build 44
  ;External reference to $$PRIAPT^SDPHARM1 supported by DBIA 4196
  ;External reference to ^PS(55 supported by DBIA 2228
  ;External reference to ^DIC(31 supported by DBIA 658
@@ -25,7 +25,7 @@ PSOORUT2 ;ISC BHAM/SAB - build listman screen ; 3/20/07 9:47am
  S $P(^TMP("PSOHDR",$J,9,0)," ",62)="ISSUE  LAST REF DAY"
  S ^TMP("PSOHDR",$J,10,0)=" #  RX #         DRUG                                 QTY ST  DATE  "_$S($G(PSORFG):"RELD",1:"FILL")_" REM SUP"
  ;
- ;  Display CrCl/BSA - show serum creatinine if CrCl can't be calculated 
+ ;  Display CrCl/BSA - show serum creatinine if CrCl can't be calculated
  S PSOBSA=$$BSA^PSSDSAPI(DFN),PSOBSA=$P(PSOBSA,"^",3),PSOBSA=$S(PSOBSA'>0:"_______",1:$J(PSOBSA,4,2)) S ^TMP("PSOHDR",$J,12,0)=PSOBSA
  S RSLT=$$CRCL(DFN)
  ; RSLT -- DATE^CRCL^Serum Creatinine -- Ex.  11/25/11^68.7^1.1
@@ -35,6 +35,7 @@ PSOORUT2 ;ISC BHAM/SAB - build listman screen ; 3/20/07 9:47am
  I ($P($G(RSLT),"^",2)'["Not Found")&($P($G(RSLT),"^",3)<.01) S ZDSPL="  CrCL: "_$P(RSLT,"^",2)_" (CREAT: Not Found)"
  I ($P($G(RSLT),"^",2)'["Not Found")&($P($G(RSLT),"^",3)>=.01) S ZDSPL="  CrCL: "_$P(RSLT,"^",2)_"(est.)"_" (CREAT: "_$P($G(RSLT),"^",3)_"mg/dL "_$P($G(RSLT),"^")_")"
  S ^TMP("PSOHDR",$J,13,0)=$G(ZDSPL)
+ S ^TMP("PSOHDR",$J,14,0)=$$POSTSHRT^WVRPCOR(PSODFN)
  ;
  D ELIG^VADPT S IEN=1,^TMP("PSOPI",$J,IEN,0)="Eligibility: "_$P(VAEL(1),"^",2)_$S(+VAEL(3):"     SC%: "_$P(VAEL(3),"^",2),1:""),IEN=IEN+1
  S N=0 F  S N=$O(VAEL(1,N)) Q:'N  S $P(^TMP("PSOPI",$J,IEN,0)," ",14)=$P(VAEL(1,N),"^",2),IEN=IEN+1

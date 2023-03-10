@@ -1,5 +1,5 @@
-ORDEBUG ;SLC/JMH,AJB - CPRS Debug Support Routine ;12/22/14  10:02
- ;;3.0;ORDER ENTRY/RESULTS REPORTING;**350**;Dec 17, 1997;Build 77
+ORDEBUG ;SLC/JMH,AJB - CPRS Debug Support Routine ;Jul 23, 2020@11:29:03
+ ;;3.0;ORDER ENTRY/RESULTS REPORTING;**350,498**;Dec 17, 1997;Build 38
  ;
 SAVERPCS(ORY,ORKEY,ORDATA) ;
  ;
@@ -18,7 +18,10 @@ SAVEDESC(ORY,ORKEY,ORDATA) ;
  S ORTEXT(1)="Run option OR DEBUG REPORT to view information about this Debug Report."
  S XMDUZ=DUZ
  S XMSUB="NEW DEBUG REPORT SUBMITTED BY "_$P($G(^VA(200,+ORKEY,0)),U)_" AT "_$P(ORKEY,U,2)
- S XMY("G.OR CACS")=""
+ ; *498 get list of recipients from new parameter, quit if no recipients
+ N LIST D GETLST^XPAR(.LIST,"400;DIC(4.2,","OR CPRS DEBUG EMAIL") Q:'+LIST
+ S LIST=0 F  S LIST=$O(LIST(LIST)) Q:'+LIST  S XMY($P(LIST(LIST),U,2))=""
+ ; *498
  S XMTEXT="ORTEXT("
  D ^XMD
  Q

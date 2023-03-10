@@ -1,5 +1,5 @@
 RORX005C ;HCIOFO/BH,SG - INPATIENT UTILIZATION (STORE) ;9/14/05 9:17am
- ;;1.5;CLINICAL CASE REGISTRIES;**21,31**;Feb 17, 2006;Build 62
+ ;;1.5;CLINICAL CASE REGISTRIES;**21,31,39**;Feb 17, 2006;Build 4
  ;
  ;**********************************************************************
  ;                       --- ROUTINE MODIFICATION LOG ---
@@ -8,6 +8,7 @@ RORX005C ;HCIOFO/BH,SG - INPATIENT UTILIZATION (STORE) ;9/14/05 9:17am
  ;-----------  ----------  -----------  --------------------------------
  ;ROR*1.5*31   MAY 2017    M FERRARESE  Adding PACT, PCP, and AGE/DOB as additional
  ;                                       identifiers.
+ ;ROR*1.5*39   JUL 2021    M FERRARESE  Setting SSN and LAST4 to zeros
  ;**********************************************************************
  ;
  Q
@@ -67,7 +68,7 @@ HIGHUTSD(SECTION,SUBS,TBLNAME) ;
  . . . S ITEM=$$ADDVAL^RORTSK11(RORTSK,"PATIENT",,TABLE)
  . . . D ADDVAL^RORTSK11(RORTSK,"NAME",NAME,ITEM,1)
  . . . S IDNODE=$G(@RORNODE@("IP",DFN))
- . . . D ADDVAL^RORTSK11(RORTSK,"LAST4",$P(IDNODE,U),ITEM,2)
+ . . . S TMP="0000" D ADDVAL^RORTSK11(RORTSK,"LAST4",TMP,ITEM,2)
  . . . S AGETYPE=$$PARAM^RORTSK01("AGE_RANGE","TYPE") I AGETYPE'="ALL" D
  . . . . D ADDVAL^RORTSK11(RORTSK,AGETYPE,$P(IDNODE,U,5),ITEM,1)
  . . . S TMP=+$G(@RORNODE@("IP",DFN,"S"))
@@ -171,7 +172,7 @@ STOREIP(PRNTELMT,NODE) ;
  . . . . F  S DFN=$O(@NODE@("IPNOBS",NAME,DATE,PTF,DFN))  Q:DFN=""  D
  . . . . . S ITEM=$$ADDVAL^RORTSK11(RORTSK,"PATIENT",,TABLE)
  . . . . . D ADDVAL^RORTSK11(RORTSK,"NAME",NAME,ITEM,1)
- . . . . . S TMP=$P($G(@NODE@("IP",DFN)),U)
+ . . . . . S TMP="0000" ;$P($G(@NODE@("IP",DFN)),U)
  . . . . . D ADDVAL^RORTSK11(RORTSK,"LAST4",TMP,ITEM,2)
  . . . . . S TMP=$G(@NODE@("IP",DFN,"I"))
  . . . . . D ADDVAL^RORTSK11(RORTSK,"ICN",TMP,ITEM,1)

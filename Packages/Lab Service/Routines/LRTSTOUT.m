@@ -1,5 +1,5 @@
 LRTSTOUT ;DALOI/STAFF - JAM TESTS OFF ACCESSIONS ;July 29, 2019@10:00
- ;;5.2;LAB SERVICE;**100,121,153,202,221,337,350,445,527**;Sep 27, 1994;Build 16
+ ;;5.2;LAB SERVICE;**100,121,153,202,221,337,350,445,527,541**;Sep 27, 1994;Build 7
  ;
  ; Cancel tests - Test are no longer deleted, instead the status is changed to Not Performed.
  ;
@@ -155,10 +155,10 @@ SET ;
  . . S ^LRO(69,LRODT,1,LRSN,2,LRI,1.1,X,0)="*Merge from: "_$G(^LRO(68,+$G(LR1AA),1,+$G(LR1AD),1,+$G(LR1AN),.2),"Unknown")
  . . S ^LRO(69,LRODT,1,LRSN,2,LRI,1.1,0)="^^"_X_"^"_X(1)_"^"_DT
  . . S LRMERGSO=1,LRMSTATI=6 ;indicate that a same order merge occurred & we want to keep #100 order
- . ;LR*5.2*527: only check overall order status if deleting a test
- . ;            (i.e., not merging) and if the ordered test is a panel
- . ;LR*5.2*527 adding lines below:
- . I '$G(LRMERG),$G(LRORDTST),LRTSTS'=LRORDTST D
+ . ;LR*5.2*527: Check order status if deleting panel component
+ . ;LR*5.2*541: ... if patient is in the PATIENT (#2) file
+ . ;                (variable LRDPF).
+ . I '$G(LRMERG),$G(LRORDTST),LRTSTS'=LRORDTST,$G(LRDPF)=2 D
  . . S LR7DONE=1
  . . S LRORSTAT=$$OR(LRORDTST,LRTSTS,ORIFN)
  . . ;don't update status if any pending tests

@@ -1,5 +1,5 @@
-RASELCT ;HISC/DAD-Generic file entry selector ;7/1/98  15:48
- ;;5.0;Radiology/Nuclear Medicine;**83**;Mar 16, 1998;Build 4
+RASELCT ;HISC/DAD-Generic file entry selector ; Sep 28, 2022@10:59:06
+ ;;5.0;Radiology/Nuclear Medicine;**83,194**;Mar 16, 1998;Build 1
  ;
  ;*** SELECTS A GROUP OF RECORDS FROM A FILE ***
  ;
@@ -41,7 +41,10 @@ EN1(RADIC,RAUTIL,RAARRY,RAINPUT,RAFLD) ;
  ; RA*5*83 require exactly 3 chars when checking for "ALL"
  I $L(X),(($L(X)=3&("Aa"[$E(X))&("Ll"[$E(X,2))&("Ll"[$E(X,3)))!(X["*")) D ALL G EXIT:RAQUIT,1:RAALL
  D HELP:$E(X)="?"
- I $L($G(DIC("S")))<235 S DIC("S")=$S($G(DIC("S"))]"":DIC("S")_" ",1:"")_"I $$SEL^RASELCT(Y)"
+ I $$OPTCHK^RAUTL13(),($L($G(DIC("S")))<235) D  ;for all except log for pending/hold & log of scheduled p194
+ .S DIC("S")=$S($G(DIC("S"))]"":DIC("S")_" ",1:"")_"I $$SEL^RASELCT(Y)"
+ .Q
+ ;
  D ^DIC K DIC G:+Y'>0 1
  S RAMASK=+Y
  I $$CHFLD(RAFNUM)["D" D

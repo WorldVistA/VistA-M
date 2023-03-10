@@ -1,8 +1,11 @@
 PRCACDRP ;ALB/YG - Catastrophically Disabled Exempt Copay Charge Report; July 25, 2019@21:06
- ;;4.5;Accounts Receivable;**350**;Mar 20, 1995;Build 66
+ ;;4.5;Accounts Receivable;**350,386**;Mar 20, 1995;Build 6
  ;;Per VHA Directive 2004-038, this routine should not be modified.
  ;
  ; Routine was cloned from IBOCDRPT and moved to AR (PRCA) namespace
+ ;
+ ;PRC*4.5*386 Uses admit date in lieu of discharge date for I/P
+ ;            Removes Urgent Care copayments as they are not auto exempt
  ;
 EN ; - this will produce a report of patient's with charges that are CD.
  ;
@@ -30,15 +33,20 @@ EN ; - this will produce a report of patient's with charges that are CD.
 DQ U IO
  ;
  N IBX,IBZ,IBDT,IBDG,DFN,IBP,IBARX,IBARBILL,IBARDATA,IBDPT,IBDDT,IBQUIT,REAS,ARSTAT,EOCDT,FUND,IBDATA,IBSTAT,MCDT,RXDT,PRGRP,CD,CDDATE,PAR,PARZ
+ N PRCAAR1,PRCAADMT   ;PRCA*4.5*386
  ;
  S (IBP,IBQUIT)=0
  D HEAD
  I IBBDT<3100505 S IBBDT=3100505 ; not before CD effective date
  S IBDDT=IBBDT-1 F  S IBDDT=$O(^IB("D",IBDDT)) Q:'IBDDT!(IBQUIT)  D  Q:IBQUIT
- . S IBX=0 F  S IBX=$O(^IB("D",IBDDT,IBX)) Q:'IBX!(IBQUIT)  D  Q:IBQUIT  ;S ^TMP($J,"PRCACDRP",REAS,IBX)=IBZ,X=$I(^TMP($J,"PRCACDRP",REAS))
- . . S IBZ=$G(^IB(IBX,0)),DFN=+$P(IBZ,"^",2)
+ . S IBX=0 F  S IBX=$O(^IB("D",IBDDT,IBX)) Q:'IBX!(IBQUIT)  D  Q:IBQUIT
+ . . S IBZ=$G(^IB(IBX,0)),DFN=+$P(IBZ,"^",2),PRCAAR1=IBX,(PRCAADMT,PRCAAR1)=""   ;PRCA*4.5*386
+ . . I $P(IBZ,U,16) D   ;PRCA*4.5*386
+ . . . S PRCAAR1=$G(^IB($P(IBZ,U,16),0))
+ . . I $G(IBZ),":201:202:203:"[(":"_$P(IBZ,U,3)_":") Q   ;PRCA*4.5*386
+ . . I +PRCAAR1,":55:56:"[(":"_+$P(PRCAAR1,U,3)_":") S PRCAADMT=$P(PRCAAR1,U,17)   ;PRCA*4.5*386
  . . S PRGRP=$$PRIORITY^DGENA(DFN)
- . . S IBDT=$S($E($P(IBZ,"^",4),1,2)=52:IBDDT,$P(IBZ,"^",8)="RX COPAYMENT":IBDDT,$P(IBZ,"^",15):$P(IBZ,"^",15),1:$P(IBZ,"^",14))\1
+ . . S IBDT=$S($E($P(IBZ,"^",4),1,2)=52:IBDDT,$P(IBZ,"^",8)="RX COPAYMENT":IBDDT,$P(IBZ,"^",15):$P(IBZ,"^",15),1:$P(IBZ,"^",14))\1 S:PRCAADMT IBDT=PRCAADMT
  . . K IBDG
  . . S IBDG=$$GET^DGENCDA(DFN,.IBDG)  ; IA# 4969
  . . ; quit if no date, or pt not CD
@@ -54,7 +62,7 @@ DQ U IO
  . . K IBARDATA
  . . I IBARX D DIQ^RCJIBFN2(IBARX,"8,77:79;141;203;255.1","IBARDATA") ; IA# 1452
  . . S IBDATA=$$GETIB^RCDMCR4B(IBX,0)
- . . S MCDT=$P(IBDATA,U,2) I MCDT="" S MCDT=$P(IBDATA,U,3)
+ . . S MCDT=$P(IBDATA,U,2) S:MCDT="" MCDT=$P(IBDATA,U,3)
  . . S RXDT=$P(IBDATA,U,4)
  . . S EOCDT=$S(RXDT>MCDT:RXDT,1:MCDT)
  . . S IBSTAT=$P(IBDATA,U,5) S:IBSTAT="" IBSTAT=$P(IBZ,U,5)
@@ -82,13 +90,13 @@ DQ U IO
  . . S REAS=9 I '$F(",16,39,42,40,22,23,",","_$P(IBARBILL,U,2)_","),$P(IBZ,U,5)'=8 Q
  . . S REAS=10 Q:EOCDT<3100505  Q:EOCDT<CDDATE
  . . S IBDPT=$G(^DPT(DFN,0))
+ . . I PRCAADMT S MCDT=PRCAADMT   ;PRCA*4.5*386
  . . I 'IBEXCEL D
  . . . S REAS=0 W !,$E($P(IBDPT,"^"),1,20) ; patient name
  . . . W ?21,$P(IBDPT,"^",9) ; snn
  . . . W ?31,PRGRP ; Priority group
  . . . W ?33,$$FMTE^XLFDT($G(IBDG("REVDTE")),"2DZ") ; Catastrophically Disabled Date, IA# 10103
  . . . W ?42,$E($P($P(IBZ,"^",11),"-",2),1,8) ; ar bill no
- . . . ;IBDATA = 1 ^ Outpatient Date ^ Discharge Date ^ RX/Refill Date ^ IB Status ^ RX NUM ^ RX Name ^ CHGAMT
  . . . W:MCDT'="" ?50,$$FMTE^XLFDT(MCDT,"2DZ") ; Med Care Date
  . . . W:RXDT'="" ?59,$$FMTE^XLFDT(RXDT,"2DZ") ; RX Date
  . . . W ?68,$E($P(IBDATA,U,6),1,8) ; rx #
@@ -103,7 +111,6 @@ DQ U IO
  . . . W U,PRGRP ; Priority group
  . . . W U,$$FMTE^XLFDT($G(IBDG("REVDTE")),"2DZ") ; Catastrophically Disabled Date, IA# 10103
  . . . W U,$P($P(IBZ,"^",11),"-",2) ; ar bill no
- . . . ;IBDATA = 1 ^ Outpatient Date ^ Discharge Date ^ RX/Refill Date ^ IB Status ^ RX NUM ^ RX Name ^ CHGAMT
  . . . W U W:MCDT'="" $$FMTE^XLFDT(MCDT,"2DZ") ; Med Care Date
  . . . W U W:RXDT'="" $$FMTE^XLFDT(RXDT,"2DZ") ; RX Date
  . . . W U,$P(IBDATA,U,6) ; rx # (or get it from IBDATA?)

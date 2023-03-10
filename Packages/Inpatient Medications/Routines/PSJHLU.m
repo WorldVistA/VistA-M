@@ -1,5 +1,5 @@
 PSJHLU ;BIR/RLW - UTILITIES USED IN BUILDING HL7 SEGMENTS ;4/24/12 2:52pm
- ;;5.0;INPATIENT MEDICATIONS;**1,56,72,102,134,181,267,285,317,339**;16 DEC 97;Build 2
+ ;;5.0;INPATIENT MEDICATIONS;**1,56,72,102,134,181,267,285,317,339,364**;16 DEC 97;Build 47
  ;
  ; Reference to ^PS(52.6 is supported by DBIA# 1231.
  ; Reference to ^PS(52.7 is supported by DBIA# 2173.
@@ -8,6 +8,7 @@ PSJHLU ;BIR/RLW - UTILITIES USED IN BUILDING HL7 SEGMENTS ;4/24/12 2:52pm
  ;
  ;*267 Change NTE|21 so it can send over the Long Wp Special Inst/
  ;     Other Prt Info fields if populated.
+ ;*364 Add HAZ Handle & Haz Dispose flags to new ZZZ segment for BCBU
  ;
 INIT ; set up HL7 application variables
  S PSJHLSDT="PS",PSJHINST=$P($$SITE^VASITE(),"^")
@@ -59,7 +60,7 @@ CALL(HLEVN) ; call DHCP HL7 package -or- protocol, to pass Orders
  .. N PD0,PD1 S PD0=$G(@(PSJORDER_"0)"))
  .. S PD1=$S(RXORDER["V":$P(PD0,"^",17),1:$P(PD0,"^",9)) Q:PD1=""
  .. I ",A,D,H,"[(","_$E(PD1)_",") S PADE=1,PDTYP=PSOC
- K CLERK,DDIEN,DDNUM,DOSEFORM,DOSEOR,FIELD,IVTYPE,LIMIT,NAME,NDNODE,NODE1,NODE2,PRODNAME,PROVIDER,PSGS0Y,PSJHINST,PSJHLSDT,PSJI,PSJORDER,PSOC,PSREASON,ROOMBED,SPDIEN,SEGMENT,%
+ K CLERK,DDIEN,DDNUM,DOSEFORM,DOSEOR,FIELD,IVTYPE,LIMIT,NAME,NDNODE,NODE1,NODE2,PRODNAME,PROVIDER,PSGS0Y,PSJHINST,PSJHLSDT,PSJI,PSOC,PSREASON,ROOMBED,SPDIEN,SEGMENT,%   ;*364 move kill PSJORDER to later for PADE
  I $G(PSJBCBU)=1 M PSJNAME=^TMP("PSJHLS",$J,"PS") Q
  S PSJMSG="^TMP(""PSJHLS"",$J,""PS"")"
  I PADE N RXO,PDMSG S RXO=RXORDER_$S(+RXORDER=RXORDER:"U",1:"") M PDMSG=^TMP("PSJHLS",$J,"PS")  ;*317
@@ -68,6 +69,7 @@ CALL(HLEVN) ; call DHCP HL7 package -or- protocol, to pass Orders
  I $G(RXORDER),$G(PSJHLDFN) N PSJSTOP S PSJSTOP=$S(RXORDER["U":$P(^PS(55,PSJHLDFN,5,+RXORDER,2),"^",4),RXORDER["V":$P(^PS(55,PSJHLDFN,"IV",+RXORDER,0),"^",3),1:"") I PSJSTOP D
  .N PSJSTATU S PSJSTATU=$S(RXORDER["U":$P(^PS(55,PSJHLDFN,5,+RXORDER,0),"^",9),RXORDER["V":$P(^PS(55,PSJHLDFN,"IV",+RXORDER,0),"^",17),1:"")
  .I ",A,H,"[(","_PSJSTATU_",") D NOW^%DTC I PSJSTOP'>% N RXON S RXON=RXORDER D EXPIR^PSJHL6
+ K PSJORDER            ;*364 moved to here
  Q
  ;
 IVTYPE(PSJORDER) ; check whether a back-door order is Inpatient IV or IV fluid
@@ -147,3 +149,42 @@ ZRX ; Perform outbound processing
  S FIELD(5)=DUZ_"^"_$S($G(PSJBCBU):NAME,1:$$ESC^ORHLESC(NAME))_"^"_"99NP"
  D SEGMENT^PSJHLU(LIMIT),DISPLAY^PSJHL2
  Q
+ ;
+ZZZ ; BCBU ZZZ Seg, Hazardous drug flags ZZZ.4 & ZZZ.5                              *364
+ N NODE1,HAZ
+ S NODE1=$G(@(PSJORDER_"0)"))
+ S LIMIT=5 X PSJCLEAR
+ S FIELD(0)="ZZZ"
+ ;Field(1-3) below, not used for BCBU reserved for PADE in PSJPDCLU
+ S FIELD(1)=""
+ S FIELD(2)=""
+ S FIELD(3)=""
+ S HAZ=$$HAZDRUG(PSJORDER)    ;get Haz flag 1 or 0 value and convert flags to HL7 Y or N values
+ S FIELD(4)=$S($P(HAZ,U):"Y",1:"N")
+ S FIELD(5)=$S($P(HAZ,U,2):"Y",1:"N")
+ ;set fields into segment temp global
+ D SEGMENT^PSJHLU(LIMIT),DISPLAY^PSJHL2
+ Q
+ ;
+HAZDRUG(FILE) ;Get Hazardous to Handle and Hazardous to Dispose fields per this order (if any component is Haz then order is)   *364
+ ; FILE = file root + Order Num from inpatient variables during workflow;  Example VAR contains: "^PS(55,DFN,5,ON," or "(PS(53.1,ON," or "^PS(55,DFN,"IV",ON,"
+ ;         (build ROOT to the multiple level to find all Disp Drugs or Additives or Solution and check for any HAZ components.)
+ N QQ,ROOT,NXTROOT,NXT,IFN,GL,HAZH,HAZD,HZIFN
+ S (HAZH,HAZD,HZIFN)=0
+ ;check IF Unit Dose Disp Drug exists this order, then get IEN and Haz flags
+ F QQ=0:0 S ROOT=FILE_"1,"_QQ_")" S QQ=$O(@ROOT) Q:'QQ  D
+ . S NXTROOT=FILE_"1,"_QQ_")" S NXT=$O(@NXTROOT) S GL=$E(NXTROOT,1,$L(ROOT)-1),IFN=+@(GL_",0)")
+ . S:$P($$HAZ^PSSUTIL(IFN),U,1) HAZH=1,HZIFN=IFN
+ . S:$P($$HAZ^PSSUTIL(IFN),U,2) HAZD=1,HZIFN=IFN
+ . ;check IF IV additives exists this order, then get IEN and Haz flags
+ F QQ=0:0 S ROOT=FILE_"""AD"","_QQ_")" S QQ=$O(@ROOT) Q:'QQ  D
+ . S NXTROOT=FILE_"""AD"","_QQ_")" S NXT=$O(@NXTROOT) S GL=$E(NXTROOT,1,$L(ROOT)-1),IFN=+@(GL_",0)")
+ . S:IFN IFN=+$P($G(^PS(52.6,IFN,0)),U,2)
+ . S:$P($$HAZ^PSSUTIL(IFN),U,1) HAZH=1,HZIFN=IFN
+ . S:$P($$HAZ^PSSUTIL(IFN),U,2) HAZD=1,HZIFN=IFN
+ F QQ=0:0 S ROOT=FILE_"""SOL"","_QQ_")" S QQ=$O(@ROOT) Q:'QQ  D
+ . S NXTROOT=FILE_"""SOL"","_QQ_")" S NXT=$O(@NXTROOT) S GL=$E(NXTROOT,1,$L(ROOT)-1),IFN=+@(GL_",0)")
+ . S:IFN IFN=+$P($G(^PS(52.7,IFN,0)),U,2)
+ . S:$P($$HAZ^PSSUTIL(IFN),U,1) HAZH=1,HZIFN=IFN
+ . S:$P($$HAZ^PSSUTIL(IFN),U,2) HAZD=1,HZIFN=IFN
+ Q HAZH_U_HAZD_U_HZIFN

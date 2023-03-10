@@ -1,126 +1,128 @@
-IBDEI16I ; ; 04-FEB-2020
- ;;3.0;IB ENCOUNTER FORM IMP/EXP;;FEB 04, 2020
+IBDEI16I ; ; 01-FEB-2022
+ ;;3.0;IB ENCOUNTER FORM IMP/EXP;;FEB 01, 2022
  Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,999) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
- ;;^UTILITY(U,$J,358.3,18945,1,0)
+ ;;^UTILITY(U,$J,358.3,19128,1,4,0)
+ ;;=4^G45.9
+ ;;^UTILITY(U,$J,358.3,19128,2)
+ ;;=^5003959
+ ;;^UTILITY(U,$J,358.3,19129,0)
+ ;;=Z86.73^^64^850^21
+ ;;^UTILITY(U,$J,358.3,19129,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,18945,1,3,0)
- ;;=3^Caffeine Withdrawal
- ;;^UTILITY(U,$J,358.3,18945,1,4,0)
- ;;=4^F15.93
- ;;^UTILITY(U,$J,358.3,18945,2)
- ;;=^5003315
- ;;^UTILITY(U,$J,358.3,18946,0)
- ;;=F15.180^^91^973^1
- ;;^UTILITY(U,$J,358.3,18946,1,0)
+ ;;^UTILITY(U,$J,358.3,19129,1,3,0)
+ ;;=3^Hx of TIA and Cerebral Infarction w/o Residual Deficits
+ ;;^UTILITY(U,$J,358.3,19129,1,4,0)
+ ;;=4^Z86.73
+ ;;^UTILITY(U,$J,358.3,19129,2)
+ ;;=^5063477
+ ;;^UTILITY(U,$J,358.3,19130,0)
+ ;;=G82.50^^64^850^30
+ ;;^UTILITY(U,$J,358.3,19130,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,18946,1,3,0)
- ;;=3^Caffeine Induced Anxiety D/O w/ Mild Use D/O
- ;;^UTILITY(U,$J,358.3,18946,1,4,0)
- ;;=4^F15.180
- ;;^UTILITY(U,$J,358.3,18946,2)
- ;;=^5003291
- ;;^UTILITY(U,$J,358.3,18947,0)
- ;;=F15.280^^91^973^2
- ;;^UTILITY(U,$J,358.3,18947,1,0)
+ ;;^UTILITY(U,$J,358.3,19130,1,3,0)
+ ;;=3^Quadriplegia,Unspec
+ ;;^UTILITY(U,$J,358.3,19130,1,4,0)
+ ;;=4^G82.50
+ ;;^UTILITY(U,$J,358.3,19130,2)
+ ;;=^5004128
+ ;;^UTILITY(U,$J,358.3,19131,0)
+ ;;=I63.81^^64^850^6
+ ;;^UTILITY(U,$J,358.3,19131,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,18947,1,3,0)
- ;;=3^Caffeine Induced Anxiety D/O w/ Mod/Sev Use D/O
- ;;^UTILITY(U,$J,358.3,18947,1,4,0)
- ;;=4^F15.280
- ;;^UTILITY(U,$J,358.3,18947,2)
- ;;=^5003306
- ;;^UTILITY(U,$J,358.3,18948,0)
- ;;=F15.980^^91^973^3
- ;;^UTILITY(U,$J,358.3,18948,1,0)
+ ;;^UTILITY(U,$J,358.3,19131,1,3,0)
+ ;;=3^Cerebral Infarction d/t Occls/Stenosis Small Artery,Other
+ ;;^UTILITY(U,$J,358.3,19131,1,4,0)
+ ;;=4^I63.81
+ ;;^UTILITY(U,$J,358.3,19131,2)
+ ;;=^5157372
+ ;;^UTILITY(U,$J,358.3,19132,0)
+ ;;=I63.89^^64^850^13
+ ;;^UTILITY(U,$J,358.3,19132,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,18948,1,3,0)
- ;;=3^Caffeine Induced Anxiety D/O w/o Use D/O
- ;;^UTILITY(U,$J,358.3,18948,1,4,0)
- ;;=4^F15.980
- ;;^UTILITY(U,$J,358.3,18948,2)
- ;;=^5003320
- ;;^UTILITY(U,$J,358.3,18949,0)
- ;;=F15.182^^91^973^4
- ;;^UTILITY(U,$J,358.3,18949,1,0)
+ ;;^UTILITY(U,$J,358.3,19132,1,3,0)
+ ;;=3^Cerebral Infarction,Other
+ ;;^UTILITY(U,$J,358.3,19132,1,4,0)
+ ;;=4^I63.89
+ ;;^UTILITY(U,$J,358.3,19132,2)
+ ;;=^5157373
+ ;;^UTILITY(U,$J,358.3,19133,0)
+ ;;=G82.51^^64^850^26
+ ;;^UTILITY(U,$J,358.3,19133,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,18949,1,3,0)
- ;;=3^Caffeine Induced Sleep D/O w/ Mild Use D/O
- ;;^UTILITY(U,$J,358.3,18949,1,4,0)
- ;;=4^F15.182
- ;;^UTILITY(U,$J,358.3,18949,2)
- ;;=^5003293
- ;;^UTILITY(U,$J,358.3,18950,0)
- ;;=F15.282^^91^973^5
- ;;^UTILITY(U,$J,358.3,18950,1,0)
+ ;;^UTILITY(U,$J,358.3,19133,1,3,0)
+ ;;=3^Quadriplegia,C1-C4,Complete
+ ;;^UTILITY(U,$J,358.3,19133,1,4,0)
+ ;;=4^G82.51
+ ;;^UTILITY(U,$J,358.3,19133,2)
+ ;;=^5004129
+ ;;^UTILITY(U,$J,358.3,19134,0)
+ ;;=G82.52^^64^850^27
+ ;;^UTILITY(U,$J,358.3,19134,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,18950,1,3,0)
- ;;=3^Caffeine Induced Sleep D/O w/ Mod/Sev Use D/O
- ;;^UTILITY(U,$J,358.3,18950,1,4,0)
- ;;=4^F15.282
- ;;^UTILITY(U,$J,358.3,18950,2)
- ;;=^5003308
- ;;^UTILITY(U,$J,358.3,18951,0)
- ;;=F15.982^^91^973^6
- ;;^UTILITY(U,$J,358.3,18951,1,0)
+ ;;^UTILITY(U,$J,358.3,19134,1,3,0)
+ ;;=3^Quadriplegia,C1-C4,Incomplete
+ ;;^UTILITY(U,$J,358.3,19134,1,4,0)
+ ;;=4^G82.52
+ ;;^UTILITY(U,$J,358.3,19134,2)
+ ;;=^5004130
+ ;;^UTILITY(U,$J,358.3,19135,0)
+ ;;=G82.53^^64^850^28
+ ;;^UTILITY(U,$J,358.3,19135,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,18951,1,3,0)
- ;;=3^Caffeine Induced Sleep D/O w/o Use D/O
- ;;^UTILITY(U,$J,358.3,18951,1,4,0)
- ;;=4^F15.982
- ;;^UTILITY(U,$J,358.3,18951,2)
- ;;=^5003322
- ;;^UTILITY(U,$J,358.3,18952,0)
- ;;=F15.99^^91^973^8
- ;;^UTILITY(U,$J,358.3,18952,1,0)
+ ;;^UTILITY(U,$J,358.3,19135,1,3,0)
+ ;;=3^Quadriplegia,C5-C7,Complete
+ ;;^UTILITY(U,$J,358.3,19135,1,4,0)
+ ;;=4^G82.53
+ ;;^UTILITY(U,$J,358.3,19135,2)
+ ;;=^5004131
+ ;;^UTILITY(U,$J,358.3,19136,0)
+ ;;=G82.54^^64^850^29
+ ;;^UTILITY(U,$J,358.3,19136,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,18952,1,3,0)
- ;;=3^Caffeine Related D/O,Unspec
- ;;^UTILITY(U,$J,358.3,18952,1,4,0)
- ;;=4^F15.99
- ;;^UTILITY(U,$J,358.3,18952,2)
- ;;=^5133358
- ;;^UTILITY(U,$J,358.3,18953,0)
- ;;=R45.851^^91^974^2
- ;;^UTILITY(U,$J,358.3,18953,1,0)
+ ;;^UTILITY(U,$J,358.3,19136,1,3,0)
+ ;;=3^Quadriplegia,C5-C7,Incomplete
+ ;;^UTILITY(U,$J,358.3,19136,1,4,0)
+ ;;=4^G82.54
+ ;;^UTILITY(U,$J,358.3,19136,2)
+ ;;=^5004132
+ ;;^UTILITY(U,$J,358.3,19137,0)
+ ;;=G92.8^^64^850^18
+ ;;^UTILITY(U,$J,358.3,19137,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,18953,1,3,0)
- ;;=3^Suicidal Ideations
- ;;^UTILITY(U,$J,358.3,18953,1,4,0)
- ;;=4^R45.851
- ;;^UTILITY(U,$J,358.3,18953,2)
- ;;=^5019474
- ;;^UTILITY(U,$J,358.3,18954,0)
- ;;=Z91.5^^91^974^1
- ;;^UTILITY(U,$J,358.3,18954,1,0)
+ ;;^UTILITY(U,$J,358.3,19137,1,3,0)
+ ;;=3^Encephalopathy,Toxic-Metabolic
+ ;;^UTILITY(U,$J,358.3,19137,1,4,0)
+ ;;=4^G92.8
+ ;;^UTILITY(U,$J,358.3,19137,2)
+ ;;=^5161165
+ ;;^UTILITY(U,$J,358.3,19138,0)
+ ;;=G92.9^^64^850^17
+ ;;^UTILITY(U,$J,358.3,19138,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,18954,1,3,0)
- ;;=3^Personal Hx of Suicide Attempt(s)
- ;;^UTILITY(U,$J,358.3,18954,1,4,0)
- ;;=4^Z91.5
- ;;^UTILITY(U,$J,358.3,18954,2)
- ;;=^5063624
- ;;^UTILITY(U,$J,358.3,18955,0)
- ;;=T14.91XA^^91^974^3
- ;;^UTILITY(U,$J,358.3,18955,1,0)
+ ;;^UTILITY(U,$J,358.3,19138,1,3,0)
+ ;;=3^Encephalopathy,Toxic,Unspec
+ ;;^UTILITY(U,$J,358.3,19138,1,4,0)
+ ;;=4^G92.9
+ ;;^UTILITY(U,$J,358.3,19138,2)
+ ;;=^5161166
+ ;;^UTILITY(U,$J,358.3,19139,0)
+ ;;=G93.41^^64^850^16
+ ;;^UTILITY(U,$J,358.3,19139,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,18955,1,3,0)
- ;;=3^Suicide Attempt,Inital Encntr
- ;;^UTILITY(U,$J,358.3,18955,1,4,0)
- ;;=4^T14.91XA
- ;;^UTILITY(U,$J,358.3,18955,2)
- ;;=^5151779
- ;;^UTILITY(U,$J,358.3,18956,0)
- ;;=T14.91XD^^91^974^4
- ;;^UTILITY(U,$J,358.3,18956,1,0)
+ ;;^UTILITY(U,$J,358.3,19139,1,3,0)
+ ;;=3^Encephalopathy,Metabolic
+ ;;^UTILITY(U,$J,358.3,19139,1,4,0)
+ ;;=4^G93.41
+ ;;^UTILITY(U,$J,358.3,19139,2)
+ ;;=^329918
+ ;;^UTILITY(U,$J,358.3,19140,0)
+ ;;=G93.40^^64^850^19
+ ;;^UTILITY(U,$J,358.3,19140,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,18956,1,3,0)
- ;;=3^Suicide Attempt,Subsequent Encntr
- ;;^UTILITY(U,$J,358.3,18956,1,4,0)
- ;;=4^T14.91XD
- ;;^UTILITY(U,$J,358.3,18956,2)
- ;;=^5151780
- ;;^UTILITY(U,$J,358.3,18957,0)
- ;;=T14.91XS^^91^974^5
- ;;^UTILITY(U,$J,358.3,18957,1,0)
- ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,19140,1,3,0)
+ ;;=3^Encephalopathy,Unspec
+ ;;^UTILITY(U,$J,358.3,19140,1,4,0)
+ ;;=4^G93.40
+ ;;^UTILITY(U,$J,358.3,19140,2)
+ ;;=^329917

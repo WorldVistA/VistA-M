@@ -1,130 +1,122 @@
-IBDEI0QV ; ; 04-FEB-2020
- ;;3.0;IB ENCOUNTER FORM IMP/EXP;;FEB 04, 2020
+IBDEI0QV ; ; 01-FEB-2022
+ ;;3.0;IB ENCOUNTER FORM IMP/EXP;;FEB 01, 2022
  Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,999) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
- ;;^UTILITY(U,$J,358.3,11992,1,0)
+ ;;^UTILITY(U,$J,358.3,12107,1,4,0)
+ ;;=4^L89.319
+ ;;^UTILITY(U,$J,358.3,12107,2)
+ ;;=^5133670
+ ;;^UTILITY(U,$J,358.3,12108,0)
+ ;;=L89.320^^49^595^24
+ ;;^UTILITY(U,$J,358.3,12108,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,11992,1,3,0)
- ;;=3^Dementia w/o Behavioral Disturbance,Unspec
- ;;^UTILITY(U,$J,358.3,11992,1,4,0)
- ;;=4^F03.90
- ;;^UTILITY(U,$J,358.3,11992,2)
- ;;=^5003050
- ;;^UTILITY(U,$J,358.3,11993,0)
- ;;=F03.91^^80^769^29
- ;;^UTILITY(U,$J,358.3,11993,1,0)
+ ;;^UTILITY(U,$J,358.3,12108,1,3,0)
+ ;;=3^Pressure Ulcer Left Buttock,Unstageable
+ ;;^UTILITY(U,$J,358.3,12108,1,4,0)
+ ;;=4^L89.320
+ ;;^UTILITY(U,$J,358.3,12108,2)
+ ;;=^5009399
+ ;;^UTILITY(U,$J,358.3,12109,0)
+ ;;=L89.321^^49^595^19
+ ;;^UTILITY(U,$J,358.3,12109,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,11993,1,3,0)
- ;;=3^Dementia w/ Behavioral Disturbance,Unspec
- ;;^UTILITY(U,$J,358.3,11993,1,4,0)
- ;;=4^F03.91
- ;;^UTILITY(U,$J,358.3,11993,2)
- ;;=^5133350
- ;;^UTILITY(U,$J,358.3,11994,0)
- ;;=G30.0^^80^769^11
- ;;^UTILITY(U,$J,358.3,11994,1,0)
+ ;;^UTILITY(U,$J,358.3,12109,1,3,0)
+ ;;=3^Pressure Ulcer Left Buttock,Stage 1
+ ;;^UTILITY(U,$J,358.3,12109,1,4,0)
+ ;;=4^L89.321
+ ;;^UTILITY(U,$J,358.3,12109,2)
+ ;;=^5009400
+ ;;^UTILITY(U,$J,358.3,12110,0)
+ ;;=L89.322^^49^595^20
+ ;;^UTILITY(U,$J,358.3,12110,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,11994,1,3,0)
- ;;=3^Alzheimer's w/ Early Onset
- ;;^UTILITY(U,$J,358.3,11994,1,4,0)
- ;;=4^G30.0
- ;;^UTILITY(U,$J,358.3,11994,2)
- ;;=^5003805
- ;;^UTILITY(U,$J,358.3,11995,0)
- ;;=G30.1^^80^769^12
- ;;^UTILITY(U,$J,358.3,11995,1,0)
+ ;;^UTILITY(U,$J,358.3,12110,1,3,0)
+ ;;=3^Pressure Ulcer Left Buttock,Stage 2
+ ;;^UTILITY(U,$J,358.3,12110,1,4,0)
+ ;;=4^L89.322
+ ;;^UTILITY(U,$J,358.3,12110,2)
+ ;;=^5009401
+ ;;^UTILITY(U,$J,358.3,12111,0)
+ ;;=L89.323^^49^595^21
+ ;;^UTILITY(U,$J,358.3,12111,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,11995,1,3,0)
- ;;=3^Alzheimer's w/ Late Onset
- ;;^UTILITY(U,$J,358.3,11995,1,4,0)
- ;;=4^G30.1
- ;;^UTILITY(U,$J,358.3,11995,2)
- ;;=^5003806
- ;;^UTILITY(U,$J,358.3,11996,0)
- ;;=G30.8^^80^769^9
- ;;^UTILITY(U,$J,358.3,11996,1,0)
+ ;;^UTILITY(U,$J,358.3,12111,1,3,0)
+ ;;=3^Pressure Ulcer Left Buttock,Stage 3
+ ;;^UTILITY(U,$J,358.3,12111,1,4,0)
+ ;;=4^L89.323
+ ;;^UTILITY(U,$J,358.3,12111,2)
+ ;;=^5009402
+ ;;^UTILITY(U,$J,358.3,12112,0)
+ ;;=L89.324^^49^595^22
+ ;;^UTILITY(U,$J,358.3,12112,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,11996,1,3,0)
- ;;=3^Alzheimer's Disease NEC
- ;;^UTILITY(U,$J,358.3,11996,1,4,0)
- ;;=4^G30.8
- ;;^UTILITY(U,$J,358.3,11996,2)
- ;;=^5003807
- ;;^UTILITY(U,$J,358.3,11997,0)
- ;;=G30.9^^80^769^10
- ;;^UTILITY(U,$J,358.3,11997,1,0)
+ ;;^UTILITY(U,$J,358.3,12112,1,3,0)
+ ;;=3^Pressure Ulcer Left Buttock,Stage 4
+ ;;^UTILITY(U,$J,358.3,12112,1,4,0)
+ ;;=4^L89.324
+ ;;^UTILITY(U,$J,358.3,12112,2)
+ ;;=^5009403
+ ;;^UTILITY(U,$J,358.3,12113,0)
+ ;;=L89.329^^49^595^23
+ ;;^UTILITY(U,$J,358.3,12113,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,11997,1,3,0)
- ;;=3^Alzheimer's Disease,Unspec
- ;;^UTILITY(U,$J,358.3,11997,1,4,0)
- ;;=4^G30.9
- ;;^UTILITY(U,$J,358.3,11997,2)
- ;;=^5003808
- ;;^UTILITY(U,$J,358.3,11998,0)
- ;;=G45.9^^80^769^78
- ;;^UTILITY(U,$J,358.3,11998,1,0)
+ ;;^UTILITY(U,$J,358.3,12113,1,3,0)
+ ;;=3^Pressure Ulcer Left Buttock,Stage Unspec
+ ;;^UTILITY(U,$J,358.3,12113,1,4,0)
+ ;;=4^L89.329
+ ;;^UTILITY(U,$J,358.3,12113,2)
+ ;;=^5133671
+ ;;^UTILITY(U,$J,358.3,12114,0)
+ ;;=L89.40^^49^595^1
+ ;;^UTILITY(U,$J,358.3,12114,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,11998,1,3,0)
- ;;=3^Transient Cerebral Ischemic Attack (TIA),Unspec
- ;;^UTILITY(U,$J,358.3,11998,1,4,0)
- ;;=4^G45.9
- ;;^UTILITY(U,$J,358.3,11998,2)
- ;;=^5003959
- ;;^UTILITY(U,$J,358.3,11999,0)
- ;;=G47.00^^80^769^56
- ;;^UTILITY(U,$J,358.3,11999,1,0)
+ ;;^UTILITY(U,$J,358.3,12114,1,3,0)
+ ;;=3^Pressure Ulcer Contiguous Site Back,Buttock & Hip,Stage Unspec
+ ;;^UTILITY(U,$J,358.3,12114,1,4,0)
+ ;;=4^L89.40
+ ;;^UTILITY(U,$J,358.3,12114,2)
+ ;;=^5009404
+ ;;^UTILITY(U,$J,358.3,12115,0)
+ ;;=L89.41^^49^595^2
+ ;;^UTILITY(U,$J,358.3,12115,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,11999,1,3,0)
- ;;=3^Insomnia,Unspec
- ;;^UTILITY(U,$J,358.3,11999,1,4,0)
- ;;=4^G47.00
- ;;^UTILITY(U,$J,358.3,11999,2)
- ;;=^332924
- ;;^UTILITY(U,$J,358.3,12000,0)
- ;;=G47.30^^80^769^72
- ;;^UTILITY(U,$J,358.3,12000,1,0)
+ ;;^UTILITY(U,$J,358.3,12115,1,3,0)
+ ;;=3^Pressure Ulcer Contiguous Site Back,Buttock & Hip,Stage 1
+ ;;^UTILITY(U,$J,358.3,12115,1,4,0)
+ ;;=4^L89.41
+ ;;^UTILITY(U,$J,358.3,12115,2)
+ ;;=^5009405
+ ;;^UTILITY(U,$J,358.3,12116,0)
+ ;;=L89.42^^49^595^3
+ ;;^UTILITY(U,$J,358.3,12116,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,12000,1,3,0)
- ;;=3^Sleep Apnea,Unspec
- ;;^UTILITY(U,$J,358.3,12000,1,4,0)
- ;;=4^G47.30
- ;;^UTILITY(U,$J,358.3,12000,2)
- ;;=^5003977
- ;;^UTILITY(U,$J,358.3,12001,0)
- ;;=G47.9^^80^769^73
- ;;^UTILITY(U,$J,358.3,12001,1,0)
+ ;;^UTILITY(U,$J,358.3,12116,1,3,0)
+ ;;=3^Pressure Ulcer Contiguous Site Back,Buttock & Hip,Stage 2
+ ;;^UTILITY(U,$J,358.3,12116,1,4,0)
+ ;;=4^L89.42
+ ;;^UTILITY(U,$J,358.3,12116,2)
+ ;;=^5009406
+ ;;^UTILITY(U,$J,358.3,12117,0)
+ ;;=L89.43^^49^595^4
+ ;;^UTILITY(U,$J,358.3,12117,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,12001,1,3,0)
- ;;=3^Sleep Disorder,Unspec
- ;;^UTILITY(U,$J,358.3,12001,1,4,0)
- ;;=4^G47.9
- ;;^UTILITY(U,$J,358.3,12001,2)
- ;;=^5003990
- ;;^UTILITY(U,$J,358.3,12002,0)
- ;;=G93.3^^80^769^68
- ;;^UTILITY(U,$J,358.3,12002,1,0)
+ ;;^UTILITY(U,$J,358.3,12117,1,3,0)
+ ;;=3^Pressure Ulcer Contiguous Site Back,Buttock & Hip,Stage 3
+ ;;^UTILITY(U,$J,358.3,12117,1,4,0)
+ ;;=4^L89.43
+ ;;^UTILITY(U,$J,358.3,12117,2)
+ ;;=^5009407
+ ;;^UTILITY(U,$J,358.3,12118,0)
+ ;;=L89.44^^49^595^5
+ ;;^UTILITY(U,$J,358.3,12118,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,12002,1,3,0)
- ;;=3^Postviral Fatigue Syndrome
- ;;^UTILITY(U,$J,358.3,12002,1,4,0)
- ;;=4^G93.3
- ;;^UTILITY(U,$J,358.3,12002,2)
- ;;=^5004181
- ;;^UTILITY(U,$J,358.3,12003,0)
- ;;=I73.01^^80^769^71
- ;;^UTILITY(U,$J,358.3,12003,1,0)
+ ;;^UTILITY(U,$J,358.3,12118,1,3,0)
+ ;;=3^Pressure Ulcer Contiguous Site Back,Buttock & Hip,Stage 4
+ ;;^UTILITY(U,$J,358.3,12118,1,4,0)
+ ;;=4^L89.44
+ ;;^UTILITY(U,$J,358.3,12118,2)
+ ;;=^5009408
+ ;;^UTILITY(U,$J,358.3,12119,0)
+ ;;=L89.45^^49^595^6
+ ;;^UTILITY(U,$J,358.3,12119,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,12003,1,3,0)
- ;;=3^Raynaud's Syndrome w/ Gangrene
- ;;^UTILITY(U,$J,358.3,12003,1,4,0)
- ;;=4^I73.01
- ;;^UTILITY(U,$J,358.3,12003,2)
- ;;=^5007797
- ;;^UTILITY(U,$J,358.3,12004,0)
- ;;=I96.^^80^769^48
- ;;^UTILITY(U,$J,358.3,12004,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,12004,1,3,0)
- ;;=3^Gangrene NEC
- ;;^UTILITY(U,$J,358.3,12004,1,4,0)
- ;;=4^I96.

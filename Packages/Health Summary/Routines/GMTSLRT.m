@@ -1,5 +1,5 @@
-GMTSLRT ; SLC/JER,KER - Blood Bank Transfusion       ;8/11/09  14:32
- ;;2.7;Health Summary;**28,47,59,93**;Oct 20, 1995;Build 2
+GMTSLRT ; SLC/JER,KER - Blood Bank Transfusion ;AUG 08,2009@14:32
+ ;;2.7;Health Summary;**28,47,59,93,136**;Oct 20, 1995;Build 1
  ;                   
  ; External References
  ;   DBIA    525  ^LR( all fields
@@ -43,7 +43,7 @@ VBEC ;VBECS format
  N ID,GMR,GMA,TD,C,COMP,COMPSEQ,CNT,ORAY
  S CNT=0 F ID="RBC","FFP","PLT","CRY","PLA","SER","GRA","WB" S CNT=CNT+1,ORAY(ID)=CNT
  S ID=0 F GMI=1:1:MAX S ID=$O(^TMP("LRT",$J,ID)) Q:'ID!(ID>GMTS2)  S GMR=^(ID),COMP=$P(GMR,"^",2),COMP=$P(COMP,"\",2),COMP=$E($P(COMP,";"),1,3),COMPSEQ=$S($D(ORAY(COMP)):ORAY(COMP),1:99) D
- . I '$D(^TMP("ZTRAN",$J,$P(ID,"."),COMPSEQ)) S ^TMP("ZTRAN",$J,$P(ID,"."),COMPSEQ)=GMR_"^"_1 Q
+ . I '$D(^TMP("ZTRAN",$J,$P(ID,"."),COMPSEQ)) S $P(GMR,U,3)=1,^TMP("ZTRAN",$J,$P(ID,"."),COMPSEQ)=GMR Q
  . S CNT=$P(^TMP("ZTRAN",$J,$P(ID,"."),COMPSEQ),"^",3),$P(^(COMPSEQ),"^",3)=CNT+1
  I $O(^TMP("ZTRAN",$J,0)) D
  . S ID=0

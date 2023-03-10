@@ -1,118 +1,44 @@
-IBDEI1N3 ; ; 04-FEB-2020
- ;;3.0;IB ENCOUNTER FORM IMP/EXP;;FEB 04, 2020
- Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,999) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
+IBDEI1N3 ; ; 01-FEB-2022
+ ;;3.0;IB ENCOUNTER FORM IMP/EXP;;FEB 01, 2022
+ Q:'DIFQ(358.98)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,999) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
- ;;^UTILITY(U,$J,358.3,26184,2)
- ;;=^5061693
- ;;^UTILITY(U,$J,358.3,26185,0)
- ;;=Y36.200S^^107^1230^128
- ;;^UTILITY(U,$J,358.3,26185,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,26185,1,3,0)
- ;;=3^War Op Inv Explosion/Fragments,Unspec,Milt,Sequela
- ;;^UTILITY(U,$J,358.3,26185,1,4,0)
- ;;=4^Y36.200S
- ;;^UTILITY(U,$J,358.3,26185,2)
- ;;=^5061609
- ;;^UTILITY(U,$J,358.3,26186,0)
- ;;=Y36.300S^^107^1230^129
- ;;^UTILITY(U,$J,358.3,26186,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,26186,1,3,0)
- ;;=3^War Op Inv Fire/Conflagr/Hot Subst,Unspec,Milt,Sequela
- ;;^UTILITY(U,$J,358.3,26186,1,4,0)
- ;;=4^Y36.300S
- ;;^UTILITY(U,$J,358.3,26186,2)
- ;;=^5061663
- ;;^UTILITY(U,$J,358.3,26187,0)
- ;;=Y36.230A^^107^1230^125
- ;;^UTILITY(U,$J,358.3,26187,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,26187,1,3,0)
- ;;=3^War Op Inv Explosion of IED,Milt Pers,Init Encntr
- ;;^UTILITY(U,$J,358.3,26187,1,4,0)
- ;;=4^Y36.230A
- ;;^UTILITY(U,$J,358.3,26187,2)
- ;;=^5061625
- ;;^UTILITY(U,$J,358.3,26188,0)
- ;;=Y36.230D^^107^1230^126
- ;;^UTILITY(U,$J,358.3,26188,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,26188,1,3,0)
- ;;=3^War Op Inv Explosion of IED,Milt Pers,Subs Encntr
- ;;^UTILITY(U,$J,358.3,26188,1,4,0)
- ;;=4^Y36.230D
- ;;^UTILITY(U,$J,358.3,26188,2)
- ;;=^5061626
- ;;^UTILITY(U,$J,358.3,26189,0)
- ;;=Y36.230S^^107^1230^127
- ;;^UTILITY(U,$J,358.3,26189,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,26189,1,3,0)
- ;;=3^War Op Inv Explosion of IED,Milt Pers,Sequela
- ;;^UTILITY(U,$J,358.3,26189,1,4,0)
- ;;=4^Y36.230S
- ;;^UTILITY(U,$J,358.3,26189,2)
- ;;=^5061627
- ;;^UTILITY(U,$J,358.3,26190,0)
- ;;=Y36.7X0S^^107^1230^139
- ;;^UTILITY(U,$J,358.3,26190,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,26190,1,3,0)
- ;;=3^War Op w/ Chem Weapons/Unconvtl Warfare,Milt,Sequela
- ;;^UTILITY(U,$J,358.3,26190,1,4,0)
- ;;=4^Y36.7X0S
- ;;^UTILITY(U,$J,358.3,26190,2)
- ;;=^5061783
- ;;^UTILITY(U,$J,358.3,26191,0)
- ;;=V47.6XXA^^107^1230^14
- ;;^UTILITY(U,$J,358.3,26191,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,26191,1,3,0)
- ;;=3^Car Pasngr Injured in Collsn w/ Fixed Obj/Traffic,Init Encntr
- ;;^UTILITY(U,$J,358.3,26191,1,4,0)
- ;;=4^V47.6XXA
- ;;^UTILITY(U,$J,358.3,26191,2)
- ;;=^5140366
- ;;^UTILITY(U,$J,358.3,26192,0)
- ;;=V47.9XXA^^107^1230^13
- ;;^UTILITY(U,$J,358.3,26192,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,26192,1,3,0)
- ;;=3^Car Occpnt,Unspec,Injured in Collsn w/ Fixed Obj/Traffic,Init Encntr
- ;;^UTILITY(U,$J,358.3,26192,1,4,0)
- ;;=4^V47.9XXA
- ;;^UTILITY(U,$J,358.3,26192,2)
- ;;=^5140369
- ;;^UTILITY(U,$J,358.3,26193,0)
- ;;=W26.2XXA^^107^1230^15
- ;;^UTILITY(U,$J,358.3,26193,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,26193,1,3,0)
- ;;=3^Contact w/ Edge of Stiff Paper,Init Encntr
- ;;^UTILITY(U,$J,358.3,26193,1,4,0)
- ;;=4^W26.2XXA
- ;;^UTILITY(U,$J,358.3,26193,2)
- ;;=^5140372
- ;;^UTILITY(U,$J,358.3,26194,0)
- ;;=W26.8XXA^^107^1230^16
- ;;^UTILITY(U,$J,358.3,26194,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,26194,1,3,0)
- ;;=3^Contact w/ Other Sharp Object,Init Encntr
- ;;^UTILITY(U,$J,358.3,26194,1,4,0)
- ;;=4^W26.8XXA
- ;;^UTILITY(U,$J,358.3,26194,2)
- ;;=^5140375
- ;;^UTILITY(U,$J,358.3,26195,0)
- ;;=W26.9XXA^^107^1230^17
- ;;^UTILITY(U,$J,358.3,26195,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,26195,1,3,0)
- ;;=3^Contact w/ Unspec Sharp Object,Init Encntr
- ;;^UTILITY(U,$J,358.3,26195,1,4,0)
- ;;=4^W26.9XXA
- ;;^UTILITY(U,$J,358.3,26195,2)
- ;;=^5140378
- ;;^UTILITY(U,$J,358.3,26196,0)
- ;;=X50.0XXA^^107^1230^103
+ ;;^DIC(358.98,0,"GL")
+ ;;=^IBD(358.98,
+ ;;^DIC("B","IMP/EXP AICS DATA QUALIFIERS",358.98)
+ ;;=
+ ;;^DIC(358.98,"%D",0)
+ ;;=^^1^1^2950927^^^
+ ;;^DIC(358.98,"%D",1,0)
+ ;;=Used by the import/export utility of the encounter forms as a workspace.
+ ;;^DD(358.98,0)
+ ;;=FIELD^^.03^3
+ ;;^DD(358.98,0,"DDA")
+ ;;=N
+ ;;^DD(358.98,0,"DT")
+ ;;=2950717
+ ;;^DD(358.98,0,"ID",.02)
+ ;;=W "   ",$P(^(0),U,2)
+ ;;^DD(358.98,0,"IX","B",358.98,.01)
+ ;;=
+ ;;^DD(358.98,0,"NM","IMP/EXP AICS DATA QUALIFIERS")
+ ;;=
+ ;;^DD(358.98,0,"PT",358.22,.09)
+ ;;=
+ ;;^DD(358.98,0,"PT",358.613,.01)
+ ;;=
+ ;;^DD(358.98,0,"PT",358.931,.09)
+ ;;=
+ ;;^DD(358.98,0,"VRPK")
+ ;;=IBD
+ ;;^DD(358.98,.01,0)
+ ;;=NAME^RF^^0;1^K:$L(X)>30!(X?.N)!($L(X)<3)!'(X'?1P.E) X
+ ;;^DD(358.98,.01,1,0)
+ ;;=^.1
+ ;;^DD(358.98,.01,1,1,0)
+ ;;=358.98^B
+ ;;^DD(358.98,.01,1,1,1)
+ ;;=S ^IBD(358.98,"B",$E(X,1,30),DA)=""
+ ;;^DD(358.98,.01,1,1,2)
+ ;;=K ^IBD(358.98,"B",$E(X,1,30),DA)
+ ;;^DD(358.98,.01,3)
+ ;;=NAME MUST BE 3-30 CHARACTERS, NOT NUMERIC OR STARTING WITH PUNCTUATION

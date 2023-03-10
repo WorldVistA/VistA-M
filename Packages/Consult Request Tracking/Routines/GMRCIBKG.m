@@ -1,5 +1,5 @@
 GMRCIBKG ;SLC/JFR - IFC BACKGROUND ERROR PROCESSOR; 07/02/03 13:54
- ;;3.0;CONSULT/REQUEST TRACKING;**22,28,30,35,58,92**;DEC 27, 1997;Build 6
+ ;;3.0;CONSULT/REQUEST TRACKING;**22,28,30,35,58,92,154**;DEC 27, 1997;Build 135
  ;;Per VHA Directive 6402, this routine should not be modified.
  ;
  ; This routine invokes IA# 3335
@@ -40,7 +40,7 @@ EN ;process file 123.6 and take action
  .. D ^DIK ;remove old completed entries
  . ;
  . ;  v-- resend unknown patient errors after 3 hours
- . I $P(GMRCLOG0,U,8)=201,GMRCLOG0<$$FMADD^XLFDT($$NOW^XLFDT,,-3) D  Q
+ . I $P(GMRCLOG0,U,8)=201,GMRCLOG0<$$FMADD^XLFDT($$NOW^XLFDT,,-1) D  Q
  .. N GMRCSND,GMRCPAR,DOW
  .. S GMRCPAR=$$GET^XPAR("SYS","GMRC IFC SKIP WEEKEND RE-TRANS",1)
  .. S DOW=$$DOW^XLFDT(DT,1)
@@ -63,7 +63,16 @@ EN ;process file 123.6 and take action
  ..... S PID=$$EN^VAFCPID(GMRCDFN,"1,2,3,4,5,7,8,19")
  ..... S PID=$P(PID,"|",2,999)
  .... D LINK^HLUTIL3($P(GMRCLOG0,U,2),.GMRCLNK)
- .... S GMRCLNK=$O(GMRCLNK(0)) I 'GMRCLNK Q  ;no link set up
+ .... ;BL GMRC*3.0*154; Need to check if site has been converted to Cerner and if so route properly
+ .... ; S:$$CNVTD^GMRCIEVT($P(GMRCLOG0,U,2)) GMRCLNK(1)=$$GET^XPAR("SYS","GMRC IFC REGIONAL ROUTER",1)
+ .... ; S:$$CNVTD^GMRCIEVT($P(GMRCLOG0,U,4)) GMRCLNK(1)=$$GET^XPAR("SYS","GMRC IFC REGIONAL ROUTER",1)
+ .... N CNVDT
+ .... S CNVDT=$$CNVTD^GMRCIEVT($P(GMRCLOG0,U,4))
+ .... I CNVDT D
+ ..... S GMRCLNK(1)=$$GET^XPAR("SYS","GMRC IFC REGIONAL ROUTER",1)
+ ..... S GMRCLNK=$$FIND1^DIC(870,,"EX",GMRCLNK(1))
+ .... I 'CNVDT S GMRCLNK=$O(GMRCLNK(0))
+ .... I 'GMRCLNK Q  ;no link set up
  .... S DOM=$$GET1^DIQ(870,+GMRCLNK,.03)
  .... S STA=$$STA^XUAF4($P(GMRCLOG0,U,2))
  .... S OBR=$E($$OBR^GMRCISG1(+$P(GMRCLOG0,U,4),+$P(GMRCLOG0,U,5)),5,999)

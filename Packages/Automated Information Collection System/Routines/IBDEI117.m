@@ -1,124 +1,128 @@
-IBDEI117 ; ; 04-FEB-2020
- ;;3.0;IB ENCOUNTER FORM IMP/EXP;;FEB 04, 2020
+IBDEI117 ; ; 01-FEB-2022
+ ;;3.0;IB ENCOUNTER FORM IMP/EXP;;FEB 01, 2022
  Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,999) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
- ;;^UTILITY(U,$J,358.3,16583,0)
- ;;=C77.0^^88^879^146
- ;;^UTILITY(U,$J,358.3,16583,1,0)
+ ;;^UTILITY(U,$J,358.3,16768,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,16583,1,3,0)
- ;;=3^Malig Neop Nodes of Head,Face and Neck,Sec and Unspec
- ;;^UTILITY(U,$J,358.3,16583,1,4,0)
- ;;=4^C77.0
- ;;^UTILITY(U,$J,358.3,16583,2)
- ;;=^5001329
- ;;^UTILITY(U,$J,358.3,16584,0)
- ;;=C77.8^^88^879^147
- ;;^UTILITY(U,$J,358.3,16584,1,0)
+ ;;^UTILITY(U,$J,358.3,16768,1,3,0)
+ ;;=3^Kidney Transplant Status
+ ;;^UTILITY(U,$J,358.3,16768,1,4,0)
+ ;;=4^Z94.0
+ ;;^UTILITY(U,$J,358.3,16768,2)
+ ;;=^5063654
+ ;;^UTILITY(U,$J,358.3,16769,0)
+ ;;=Z94.1^^61^776^49
+ ;;^UTILITY(U,$J,358.3,16769,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,16584,1,3,0)
- ;;=3^Malig Neop Nodes of Multiple Regions,Sec and Unspec
- ;;^UTILITY(U,$J,358.3,16584,1,4,0)
- ;;=4^C77.8
- ;;^UTILITY(U,$J,358.3,16584,2)
- ;;=^5001332
- ;;^UTILITY(U,$J,358.3,16585,0)
- ;;=C79.51^^88^879^117
- ;;^UTILITY(U,$J,358.3,16585,1,0)
+ ;;^UTILITY(U,$J,358.3,16769,1,3,0)
+ ;;=3^Heart Transplant Status
+ ;;^UTILITY(U,$J,358.3,16769,1,4,0)
+ ;;=4^Z94.1
+ ;;^UTILITY(U,$J,358.3,16769,2)
+ ;;=^5063655
+ ;;^UTILITY(U,$J,358.3,16770,0)
+ ;;=Z94.2^^61^776^59
+ ;;^UTILITY(U,$J,358.3,16770,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,16585,1,3,0)
- ;;=3^Malig Neop Bone,Secondary
- ;;^UTILITY(U,$J,358.3,16585,1,4,0)
- ;;=4^C79.51
- ;;^UTILITY(U,$J,358.3,16585,2)
- ;;=^5001350
- ;;^UTILITY(U,$J,358.3,16586,0)
- ;;=C79.52^^88^879^116
- ;;^UTILITY(U,$J,358.3,16586,1,0)
+ ;;^UTILITY(U,$J,358.3,16770,1,3,0)
+ ;;=3^Lung Transplant Status
+ ;;^UTILITY(U,$J,358.3,16770,1,4,0)
+ ;;=4^Z94.2
+ ;;^UTILITY(U,$J,358.3,16770,2)
+ ;;=^5063656
+ ;;^UTILITY(U,$J,358.3,16771,0)
+ ;;=Z94.3^^61^776^48
+ ;;^UTILITY(U,$J,358.3,16771,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,16586,1,3,0)
- ;;=3^Malig Neop Bone Marrow,Secondary
- ;;^UTILITY(U,$J,358.3,16586,1,4,0)
- ;;=4^C79.52
- ;;^UTILITY(U,$J,358.3,16586,2)
- ;;=^5001351
- ;;^UTILITY(U,$J,358.3,16587,0)
- ;;=C79.31^^88^879^118
- ;;^UTILITY(U,$J,358.3,16587,1,0)
+ ;;^UTILITY(U,$J,358.3,16771,1,3,0)
+ ;;=3^Heart & Lungs Transplant Status
+ ;;^UTILITY(U,$J,358.3,16771,1,4,0)
+ ;;=4^Z94.3
+ ;;^UTILITY(U,$J,358.3,16771,2)
+ ;;=^5063657
+ ;;^UTILITY(U,$J,358.3,16772,0)
+ ;;=Z94.4^^61^776^58
+ ;;^UTILITY(U,$J,358.3,16772,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,16587,1,3,0)
- ;;=3^Malig Neop Brain,Secondary
- ;;^UTILITY(U,$J,358.3,16587,1,4,0)
- ;;=4^C79.31
- ;;^UTILITY(U,$J,358.3,16587,2)
- ;;=^5001347
- ;;^UTILITY(U,$J,358.3,16588,0)
- ;;=C79.72^^88^879^133
- ;;^UTILITY(U,$J,358.3,16588,1,0)
+ ;;^UTILITY(U,$J,358.3,16772,1,3,0)
+ ;;=3^Liver Transplant Status
+ ;;^UTILITY(U,$J,358.3,16772,1,4,0)
+ ;;=4^Z94.4
+ ;;^UTILITY(U,$J,358.3,16772,2)
+ ;;=^5063658
+ ;;^UTILITY(U,$J,358.3,16773,0)
+ ;;=Z94.84^^61^776^149
+ ;;^UTILITY(U,$J,358.3,16773,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,16588,1,3,0)
- ;;=3^Malig Neop Left Adrenal Gland,Secondary
- ;;^UTILITY(U,$J,358.3,16588,1,4,0)
- ;;=4^C79.72
- ;;^UTILITY(U,$J,358.3,16588,2)
- ;;=^5001357
- ;;^UTILITY(U,$J,358.3,16589,0)
- ;;=C78.02^^88^879^137
- ;;^UTILITY(U,$J,358.3,16589,1,0)
+ ;;^UTILITY(U,$J,358.3,16773,1,3,0)
+ ;;=3^Stem Cell Transplant Status
+ ;;^UTILITY(U,$J,358.3,16773,1,4,0)
+ ;;=4^Z94.84
+ ;;^UTILITY(U,$J,358.3,16773,2)
+ ;;=^5063665
+ ;;^UTILITY(U,$J,358.3,16774,0)
+ ;;=Z96.21^^61^776^6
+ ;;^UTILITY(U,$J,358.3,16774,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,16589,1,3,0)
- ;;=3^Malig Neop Left Lung,Secondary
- ;;^UTILITY(U,$J,358.3,16589,1,4,0)
- ;;=4^C78.02
- ;;^UTILITY(U,$J,358.3,16589,2)
- ;;=^5001336
- ;;^UTILITY(U,$J,358.3,16590,0)
- ;;=C78.7^^88^879^142
- ;;^UTILITY(U,$J,358.3,16590,1,0)
+ ;;^UTILITY(U,$J,358.3,16774,1,3,0)
+ ;;=3^Cochlear Implant Status
+ ;;^UTILITY(U,$J,358.3,16774,1,4,0)
+ ;;=4^Z96.21
+ ;;^UTILITY(U,$J,358.3,16774,2)
+ ;;=^5063684
+ ;;^UTILITY(U,$J,358.3,16775,0)
+ ;;=Z96.41^^61^776^132
+ ;;^UTILITY(U,$J,358.3,16775,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,16590,1,3,0)
- ;;=3^Malig Neop Liver/Intrahepatic Bile Duct,Secondary
- ;;^UTILITY(U,$J,358.3,16590,1,4,0)
- ;;=4^C78.7
- ;;^UTILITY(U,$J,358.3,16590,2)
- ;;=^5001339
- ;;^UTILITY(U,$J,358.3,16591,0)
- ;;=C79.71^^88^879^155
- ;;^UTILITY(U,$J,358.3,16591,1,0)
+ ;;^UTILITY(U,$J,358.3,16775,1,3,0)
+ ;;=3^Presence of Insulin Pump
+ ;;^UTILITY(U,$J,358.3,16775,1,4,0)
+ ;;=4^Z96.41
+ ;;^UTILITY(U,$J,358.3,16775,2)
+ ;;=^5063688
+ ;;^UTILITY(U,$J,358.3,16776,0)
+ ;;=Z96.641^^61^776^140
+ ;;^UTILITY(U,$J,358.3,16776,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,16591,1,3,0)
- ;;=3^Malig Neop Right Adrenal Gland,Secondary
- ;;^UTILITY(U,$J,358.3,16591,1,4,0)
- ;;=4^C79.71
- ;;^UTILITY(U,$J,358.3,16591,2)
- ;;=^5001356
- ;;^UTILITY(U,$J,358.3,16592,0)
- ;;=C78.01^^88^879^159
- ;;^UTILITY(U,$J,358.3,16592,1,0)
+ ;;^UTILITY(U,$J,358.3,16776,1,3,0)
+ ;;=3^Presence of Right Artificial Hip Jt
+ ;;^UTILITY(U,$J,358.3,16776,1,4,0)
+ ;;=4^Z96.641
+ ;;^UTILITY(U,$J,358.3,16776,2)
+ ;;=^5063701
+ ;;^UTILITY(U,$J,358.3,16777,0)
+ ;;=Z96.642^^61^776^135
+ ;;^UTILITY(U,$J,358.3,16777,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,16592,1,3,0)
- ;;=3^Malig Neop Right Lung,Secondary
- ;;^UTILITY(U,$J,358.3,16592,1,4,0)
- ;;=4^C78.01
- ;;^UTILITY(U,$J,358.3,16592,2)
- ;;=^5001335
- ;;^UTILITY(U,$J,358.3,16593,0)
- ;;=C79.70^^88^879^110
- ;;^UTILITY(U,$J,358.3,16593,1,0)
+ ;;^UTILITY(U,$J,358.3,16777,1,3,0)
+ ;;=3^Presence of Left Artificial Hip Jt
+ ;;^UTILITY(U,$J,358.3,16777,1,4,0)
+ ;;=4^Z96.642
+ ;;^UTILITY(U,$J,358.3,16777,2)
+ ;;=^5063702
+ ;;^UTILITY(U,$J,358.3,16778,0)
+ ;;=Z96.643^^61^776^119
+ ;;^UTILITY(U,$J,358.3,16778,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,16593,1,3,0)
- ;;=3^Malig Neop Adrenal Gland Unspec,Secondary
- ;;^UTILITY(U,$J,358.3,16593,1,4,0)
- ;;=4^C79.70
- ;;^UTILITY(U,$J,358.3,16593,2)
- ;;=^5001355
- ;;^UTILITY(U,$J,358.3,16594,0)
- ;;=C78.00^^88^879^143
- ;;^UTILITY(U,$J,358.3,16594,1,0)
+ ;;^UTILITY(U,$J,358.3,16778,1,3,0)
+ ;;=3^Presence of Artificial Hip Jt,Bilateral
+ ;;^UTILITY(U,$J,358.3,16778,1,4,0)
+ ;;=4^Z96.643
+ ;;^UTILITY(U,$J,358.3,16778,2)
+ ;;=^5063703
+ ;;^UTILITY(U,$J,358.3,16779,0)
+ ;;=Z96.651^^61^776^141
+ ;;^UTILITY(U,$J,358.3,16779,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,16594,1,3,0)
- ;;=3^Malig Neop Lung Unspec,Secondary
- ;;^UTILITY(U,$J,358.3,16594,1,4,0)
- ;;=4^C78.00
- ;;^UTILITY(U,$J,358.3,16594,2)
- ;;=^5001334
+ ;;^UTILITY(U,$J,358.3,16779,1,3,0)
+ ;;=3^Presence of Right Artificial Knee Jt
+ ;;^UTILITY(U,$J,358.3,16779,1,4,0)
+ ;;=4^Z96.651
+ ;;^UTILITY(U,$J,358.3,16779,2)
+ ;;=^5063705
+ ;;^UTILITY(U,$J,358.3,16780,0)
+ ;;=Z96.652^^61^776^136
+ ;;^UTILITY(U,$J,358.3,16780,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,16780,1,3,0)
+ ;;=3^Presence of Left Artificial Knee Jt

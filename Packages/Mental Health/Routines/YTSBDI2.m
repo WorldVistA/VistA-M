@@ -1,5 +1,5 @@
 YTSBDI2 ;SLC/PIJ - Score BDI2 ; 01/16/2016
- ;;5.01;MENTAL HEALTH;**123**;Dec 30, 1994;Build 73
+ ;;5.01;MENTAL HEALTH;**123,199**;Dec 30, 1994;Build 18
  ;
  Q
  ;
@@ -37,10 +37,12 @@ RPT ;
  S RISK=$S(SCORE<14:"low",SCORE<20:"mild",SCORE<29:"moderate",1:"severe")
  S RANGE=$S(SCORE<14:" between 0 - 13",SCORE<20:" between 14 - 19",SCORE<29:" between 20 - 28",1:" above 29")
  S STRING=STRING_"| "_YSINSNAM_" Score: "_SCORE_" indicates "_RISK_" depression."
- S STRING=STRING_" The overall range is 0 to 63 with "_RISK_" depression"_RANGE_"."
+ S STRING=STRING_" The overall range is 0 to 63"
+ S STRING=STRING_"| "_"with "_RISK_" depression"_RANGE_"."
  I RFLAG D
  .S STRING=STRING_"|| Responses consistent with the presence of suicidal ideation were endorsed "
- .S STRING=STRING_"in positive direction (item-9), additional clinical assessment is indicated."
+ .S STRING=STRING_"| in positive direction (item-9), additional clinical assessment is"
+ .S STRING=STRING_"| indicated."
  ;
  S STRING=STRING_"||    1 point  = mild symptom level  |    2 points = moderate symptom level  |    3 points = severe symptom level  "
  S STRING=STRING_"|| Questions and answers|"

@@ -1,5 +1,8 @@
-HBHCRXMT ; LR VAMC(IRMS)/MJT-HBHC Re-transmit previous MM (100 rec @ 125 chars ea, max) using ^HBHC(634) data, transmit/Austin, & set re-transmit batch initial MM msg no & re-transmit MM date in ^HBHC(631/632) ;9204
- ;;1.0;HOSPITAL BASED HOME CARE;**2,6**;NOV 01, 1993
+HBHCRXMT ; LR VAMC(IRMS)/MJT - RETRANSMIT TO AUSTIN; Feb 22, 2021@07:22
+ ;;1.0;HOSPITAL BASED HOME CARE;**2,6,32**;NOV 01, 1993;Build 58
+ ;
+ ;$$PROD^XUPROD - IA #4440  (Supported)
+ ;
  I ($D(^HBHC(634.1,"B")))!($D(^HBHC(634.2,"B")))!($D(^HBHC(634.3,"B")))!($D(^HBHC(634.5,"B"))) W *7,!!,"Records containing errors exist and must be corrected before file can",!,"be transmitted.",!! H 3 Q
  I '$D(^HBHC(634,"B")) W *7,!!,"No data on file to transmit." H 3 Q
 EN ; Entry point
@@ -18,7 +21,11 @@ EXIT ; Exit module
  K DA,DIE,DR,HBHCCNT,HBHCDAT,HBHCDATE,HBHCDT,HBHCFLG,HBHCMSG,HBHCNODE,HBHCZ,XMSUB,XMTEXT,XMY,XMZ,X,Y,%,%DT,^TMP("HBHC",$J)
  Q
 MAIL ; Send mail message
- S XMSUB="HBHC Site: "_$S($P(^HBHC(631.9,1,0),U,5)]"":$E($P($G(^DIC(4,$P(^HBHC(631.9,1,0),U,5),99)),U),1,3),1:"")_"  Message: "_HBHCMSG_"  "_HBHCDATE_" Transmission",XMTEXT="^TMP(""HBHC"",$J,HBHCMSG,",XMY("XXX@Q-HBH.DOMAIN.EXT")=""
+ ;HBH*1.0*32: Determine recipient based on whether test or production environment
+ N HBHCXMY
+ S HBHCXMY=$S($$PROD^XUPROD:"XXX@Q-HBH.DOMAIN.EXT",1:"XXX@Q-HBX.DOMAIN.EXT")
+ S XMY(HBHCXMY)=""
+ S XMSUB="HBHC Site: "_$S($P(^HBHC(631.9,1,0),U,5)]"":$E($P($G(^DIC(4,$P(^HBHC(631.9,1,0),U,5),99)),U),1,3),1:"")_"  Message: "_HBHCMSG_"  "_HBHCDATE_" Transmission",XMTEXT="^TMP(""HBHC"",$J,HBHCMSG,"
  D ^XMD
  S HBHCMSG=HBHCMSG+1,HBHCCNT=0
 LOOP ; Loop thru ^HBHC(631,"AG") (Form 3 Mail Message Date), ^HBHC(631,"AH") (Form 5 Mail Message Date), & ^HBHC(632,"AD") (Form 4 Mail Message Date) cross-refs

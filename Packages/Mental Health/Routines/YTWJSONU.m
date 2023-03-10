@@ -1,5 +1,5 @@
 YTWJSONU ;SLC/KCM - JSON Instrument Spec Utilities ; 7/20/2018
- ;;5.01;MENTAL HEALTH;**130**;Dec 30, 1994;Build 62
+ ;;5.01;MENTAL HEALTH;**130,141**;Dec 30, 1994;Build 85
  ;
  ; External Reference    ICR#
  ; ------------------   -----
@@ -37,6 +37,14 @@ HTMLESC(X) ; return X HTML escaped
  S SPEC("<")="\u003C"   ; "&lt;"
  Q $$REPLACE^XLFSTR(X,.SPEC)
  ;
+WRAPTXT(X,TEXT,MAX) ; Wrap X into MAX length strings in .TEXT
+ N I,LN,WORD
+ S MAX=$G(MAX,80),LN=1
+ F I=1:1:$L(X," ") S WORD=$P(X," ",I) D
+ . I $L(WORD)'<MAX S:$L($G(TEXT(LN))) LN=LN+1 I 1
+ . E  I ($L($G(TEXT(LN)))+$L(WORD))>MAX S LN=LN+1
+ . S TEXT(LN)=$G(TEXT(LN))_$S(I=1:"",1:" ")_WORD
+ Q
  ;
 NAMES(OUT) ; build JSON of all active test names
  N LN,NAME,TEST,STAFF

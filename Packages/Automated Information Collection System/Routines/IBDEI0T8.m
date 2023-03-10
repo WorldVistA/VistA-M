@@ -1,124 +1,130 @@
-IBDEI0T8 ; ; 04-FEB-2020
- ;;3.0;IB ENCOUNTER FORM IMP/EXP;;FEB 04, 2020
+IBDEI0T8 ; ; 01-FEB-2022
+ ;;3.0;IB ENCOUNTER FORM IMP/EXP;;FEB 01, 2022
  Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,999) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
- ;;^UTILITY(U,$J,358.3,13006,1,0)
+ ;;^UTILITY(U,$J,358.3,13153,0)
+ ;;=H16.143^^51^629^66
+ ;;^UTILITY(U,$J,358.3,13153,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,13006,1,3,0)
- ;;=3^Puncture Wound w/o FB of Right Hip,Init Encntr
- ;;^UTILITY(U,$J,358.3,13006,1,4,0)
- ;;=4^S71.031A
- ;;^UTILITY(U,$J,358.3,13006,2)
- ;;=^5036987
- ;;^UTILITY(U,$J,358.3,13007,0)
- ;;=S81.031A^^80^791^49
- ;;^UTILITY(U,$J,358.3,13007,1,0)
+ ;;^UTILITY(U,$J,358.3,13153,1,3,0)
+ ;;=3^Punctate Keratitis,OU
+ ;;^UTILITY(U,$J,358.3,13153,1,4,0)
+ ;;=4^H16.143
+ ;;^UTILITY(U,$J,358.3,13153,2)
+ ;;=^5004915
+ ;;^UTILITY(U,$J,358.3,13154,0)
+ ;;=H16.141^^51^629^64
+ ;;^UTILITY(U,$J,358.3,13154,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,13007,1,3,0)
- ;;=3^Puncture Wound w/o FB of Right Knee,Init Encntr
- ;;^UTILITY(U,$J,358.3,13007,1,4,0)
- ;;=4^S81.031A
- ;;^UTILITY(U,$J,358.3,13007,2)
- ;;=^5040044
- ;;^UTILITY(U,$J,358.3,13008,0)
- ;;=S81.831A^^80^791^54
- ;;^UTILITY(U,$J,358.3,13008,1,0)
+ ;;^UTILITY(U,$J,358.3,13154,1,3,0)
+ ;;=3^Punctate Keratitis,OD
+ ;;^UTILITY(U,$J,358.3,13154,1,4,0)
+ ;;=4^H16.141
+ ;;^UTILITY(U,$J,358.3,13154,2)
+ ;;=^5004913
+ ;;^UTILITY(U,$J,358.3,13155,0)
+ ;;=H16.142^^51^629^65
+ ;;^UTILITY(U,$J,358.3,13155,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,13008,1,3,0)
- ;;=3^Puncture Wound w/o FB of Right Lower Leg,Init Encntr
- ;;^UTILITY(U,$J,358.3,13008,1,4,0)
- ;;=4^S81.831A
- ;;^UTILITY(U,$J,358.3,13008,2)
- ;;=^5040083
- ;;^UTILITY(U,$J,358.3,13009,0)
- ;;=S71.131A^^80^791^60
- ;;^UTILITY(U,$J,358.3,13009,1,0)
+ ;;^UTILITY(U,$J,358.3,13155,1,3,0)
+ ;;=3^Punctate Keratitis,OS
+ ;;^UTILITY(U,$J,358.3,13155,1,4,0)
+ ;;=4^H16.142
+ ;;^UTILITY(U,$J,358.3,13155,2)
+ ;;=^5004914
+ ;;^UTILITY(U,$J,358.3,13156,0)
+ ;;=H21.562^^51^629^68
+ ;;^UTILITY(U,$J,358.3,13156,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,13009,1,3,0)
- ;;=3^Puncture Wound w/o FB of Right Thigh,Init Encntr
- ;;^UTILITY(U,$J,358.3,13009,1,4,0)
- ;;=4^S71.131A
- ;;^UTILITY(U,$J,358.3,13009,2)
- ;;=^5037026
- ;;^UTILITY(U,$J,358.3,13010,0)
- ;;=Z01.83^^80^792^1
- ;;^UTILITY(U,$J,358.3,13010,1,0)
+ ;;^UTILITY(U,$J,358.3,13156,1,3,0)
+ ;;=3^Pupillary Abnormality,OS
+ ;;^UTILITY(U,$J,358.3,13156,1,4,0)
+ ;;=4^H21.562
+ ;;^UTILITY(U,$J,358.3,13156,2)
+ ;;=^5005260
+ ;;^UTILITY(U,$J,358.3,13157,0)
+ ;;=H21.561^^51^629^67
+ ;;^UTILITY(U,$J,358.3,13157,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,13010,1,3,0)
- ;;=3^Encounter for Blood Typing
- ;;^UTILITY(U,$J,358.3,13010,1,4,0)
- ;;=4^Z01.83
- ;;^UTILITY(U,$J,358.3,13010,2)
- ;;=^5062630
- ;;^UTILITY(U,$J,358.3,13011,0)
- ;;=Z01.810^^80^792^2
- ;;^UTILITY(U,$J,358.3,13011,1,0)
+ ;;^UTILITY(U,$J,358.3,13157,1,3,0)
+ ;;=3^Pupillary Abnormality,OD
+ ;;^UTILITY(U,$J,358.3,13157,1,4,0)
+ ;;=4^H21.561
+ ;;^UTILITY(U,$J,358.3,13157,2)
+ ;;=^5005259
+ ;;^UTILITY(U,$J,358.3,13158,0)
+ ;;=H21.42^^51^629^70
+ ;;^UTILITY(U,$J,358.3,13158,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,13011,1,3,0)
- ;;=3^Encounter for Preproc Cardiovascular Exam
- ;;^UTILITY(U,$J,358.3,13011,1,4,0)
- ;;=4^Z01.810
- ;;^UTILITY(U,$J,358.3,13011,2)
- ;;=^5062625
- ;;^UTILITY(U,$J,358.3,13012,0)
- ;;=Z01.812^^80^792^4
- ;;^UTILITY(U,$J,358.3,13012,1,0)
+ ;;^UTILITY(U,$J,358.3,13158,1,3,0)
+ ;;=3^Pupillary Membranes,OS
+ ;;^UTILITY(U,$J,358.3,13158,1,4,0)
+ ;;=4^H21.42
+ ;;^UTILITY(U,$J,358.3,13158,2)
+ ;;=^5005233
+ ;;^UTILITY(U,$J,358.3,13159,0)
+ ;;=H21.41^^51^629^69
+ ;;^UTILITY(U,$J,358.3,13159,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,13012,1,3,0)
- ;;=3^Encounter for Preproc Laboratory Exam
- ;;^UTILITY(U,$J,358.3,13012,1,4,0)
- ;;=4^Z01.812
- ;;^UTILITY(U,$J,358.3,13012,2)
- ;;=^5062627
- ;;^UTILITY(U,$J,358.3,13013,0)
- ;;=Z01.818^^80^792^3
- ;;^UTILITY(U,$J,358.3,13013,1,0)
+ ;;^UTILITY(U,$J,358.3,13159,1,3,0)
+ ;;=3^Pupillary Membranes,OD
+ ;;^UTILITY(U,$J,358.3,13159,1,4,0)
+ ;;=4^H21.41
+ ;;^UTILITY(U,$J,358.3,13159,2)
+ ;;=^5005232
+ ;;^UTILITY(U,$J,358.3,13160,0)
+ ;;=H21.552^^51^629^72
+ ;;^UTILITY(U,$J,358.3,13160,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,13013,1,3,0)
- ;;=3^Encounter for Preproc Exam,Unspec
- ;;^UTILITY(U,$J,358.3,13013,1,4,0)
- ;;=4^Z01.818
- ;;^UTILITY(U,$J,358.3,13013,2)
- ;;=^5062628
- ;;^UTILITY(U,$J,358.3,13014,0)
- ;;=Z01.811^^80^792^5
- ;;^UTILITY(U,$J,358.3,13014,1,0)
+ ;;^UTILITY(U,$J,358.3,13160,1,3,0)
+ ;;=3^Recession of Chamber Angle,OS
+ ;;^UTILITY(U,$J,358.3,13160,1,4,0)
+ ;;=4^H21.552
+ ;;^UTILITY(U,$J,358.3,13160,2)
+ ;;=^5005256
+ ;;^UTILITY(U,$J,358.3,13161,0)
+ ;;=H21.551^^51^629^71
+ ;;^UTILITY(U,$J,358.3,13161,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,13014,1,3,0)
- ;;=3^Encounter for Preproc Respiratory Exam
- ;;^UTILITY(U,$J,358.3,13014,1,4,0)
- ;;=4^Z01.811
- ;;^UTILITY(U,$J,358.3,13014,2)
- ;;=^5062626
- ;;^UTILITY(U,$J,358.3,13015,0)
- ;;=K40.00^^80^793^15
- ;;^UTILITY(U,$J,358.3,13015,1,0)
+ ;;^UTILITY(U,$J,358.3,13161,1,3,0)
+ ;;=3^Recession of Chamber Angle,OD
+ ;;^UTILITY(U,$J,358.3,13161,1,4,0)
+ ;;=4^H21.551
+ ;;^UTILITY(U,$J,358.3,13161,2)
+ ;;=^5005255
+ ;;^UTILITY(U,$J,358.3,13162,0)
+ ;;=H18.832^^51^629^74
+ ;;^UTILITY(U,$J,358.3,13162,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,13015,1,3,0)
- ;;=3^Bil Inguinal Hernia w/ Obs w/o Gangrene
- ;;^UTILITY(U,$J,358.3,13015,1,4,0)
- ;;=4^K40.00
- ;;^UTILITY(U,$J,358.3,13015,2)
- ;;=^5008581
- ;;^UTILITY(U,$J,358.3,13016,0)
- ;;=K40.01^^80^793^16
- ;;^UTILITY(U,$J,358.3,13016,1,0)
+ ;;^UTILITY(U,$J,358.3,13162,1,3,0)
+ ;;=3^Recurrent Erosion of Cornea,OS
+ ;;^UTILITY(U,$J,358.3,13162,1,4,0)
+ ;;=4^H18.832
+ ;;^UTILITY(U,$J,358.3,13162,2)
+ ;;=^5005127
+ ;;^UTILITY(U,$J,358.3,13163,0)
+ ;;=H18.831^^51^629^73
+ ;;^UTILITY(U,$J,358.3,13163,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,13016,1,3,0)
- ;;=3^Bil Inguinal Hernia w/ Obs w/o Gangrene,Recurrent
- ;;^UTILITY(U,$J,358.3,13016,1,4,0)
- ;;=4^K40.01
- ;;^UTILITY(U,$J,358.3,13016,2)
- ;;=^5008582
- ;;^UTILITY(U,$J,358.3,13017,0)
- ;;=K40.10^^80^793^13
- ;;^UTILITY(U,$J,358.3,13017,1,0)
+ ;;^UTILITY(U,$J,358.3,13163,1,3,0)
+ ;;=3^Recurrent Erosion of Cornea,OD
+ ;;^UTILITY(U,$J,358.3,13163,1,4,0)
+ ;;=4^H18.831
+ ;;^UTILITY(U,$J,358.3,13163,2)
+ ;;=^5005126
+ ;;^UTILITY(U,$J,358.3,13164,0)
+ ;;=H16.102^^51^629^76
+ ;;^UTILITY(U,$J,358.3,13164,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,13017,1,3,0)
- ;;=3^Bil Inguinal Hernia w/ Gangrene
- ;;^UTILITY(U,$J,358.3,13017,1,4,0)
- ;;=4^K40.10
- ;;^UTILITY(U,$J,358.3,13017,2)
- ;;=^5008583
- ;;^UTILITY(U,$J,358.3,13018,0)
- ;;=K40.11^^80^793^14
+ ;;^UTILITY(U,$J,358.3,13164,1,3,0)
+ ;;=3^Superficial Keratitis,Unspec,OS
+ ;;^UTILITY(U,$J,358.3,13164,1,4,0)
+ ;;=4^H16.102
+ ;;^UTILITY(U,$J,358.3,13164,2)
+ ;;=^5004899
+ ;;^UTILITY(U,$J,358.3,13165,0)
+ ;;=H16.101^^51^629^75
+ ;;^UTILITY(U,$J,358.3,13165,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,13165,1,3,0)
+ ;;=3^Superficial Keratitis,Unspec,OD

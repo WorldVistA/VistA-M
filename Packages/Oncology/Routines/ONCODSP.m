@@ -1,5 +1,5 @@
-ONCODSP ;Hines OIFO/GWB,RTK - MISCELLANEOUS OPTIONS ;05/05/10
- ;;2.2;ONCOLOGY;**1,4,5,10**;Jul 31, 2013;Build 20
+ONCODSP ;HINES OIFO/GWB,RTK - MISCELLANEOUS OPTIONS ;05/05/10
+ ;;2.2;ONCOLOGY;**1,4,5,10,13**;Jul 31, 2013;Build 7
  ;
 TR ;[TR Define Tumor Registry Parameters]
  W ! S DIC="^ONCO(160.1,",DIC(0)="AEMLQ",DLAYGO=160.1 D ^DIC
@@ -106,9 +106,8 @@ T ;[RS Registry Summary Reports - Today]
 F ;[RS Registry Summary Reports - Follow-Up]
  K DIR
  W !!," Follow-up rate calculation parameters (select 1 or 2):",!
- W !," 1) All analytic patients from the cancer registry reference date"
- W !," 2) All analytic patients diagnosed within the last five years, or"
- W !,"    from the cancer registry reference date, whichever is shorter"
+ W !," 1) From cancer registry reference date or 1/1/2004 (whichever is later)"
+ W !," 2) Within last five years or reference date (whichever is shorter)"
  W !
  N DIR,X,Y
  S DIR(0)="SAO^1:From cancer registry reference date;2:Within last 5 years or reference date (whichever is shorter)"

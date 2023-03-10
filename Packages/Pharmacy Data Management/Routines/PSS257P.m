@@ -1,0 +1,13 @@
+PSS257P ;WAR/PHI - Set FDA MED GUIDE SERVER URL ; 1/19/22 9:40am
+ ;;1.0;PHARMACY DATA MANAGEMENT;**257**;09/30/97;Build 1
+ ;POST-INSTALL TO POINT FDA MED GUIDE SERVER URL TO file://v12.domain.ext/v12/PBM/Workgroup/VistA_MedGuides/
+ ;
+ Q
+ ;
+POST ;
+ N DIE,DA,DR
+ S DIE="^PS(59.7,",DA=1,DR="100///file://v12.domain.ext/v12/PBM/Workgroup/VistA_MedGuides/"
+ D ^DIE
+ D BMES^XPDUTL("FDA MED GUIDE SERVER URL UPDATE COMPLETE.")
+ ;
+ Q

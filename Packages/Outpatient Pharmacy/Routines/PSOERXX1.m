@@ -1,15 +1,15 @@
 PSOERXX1 ;ALB/BWF - eRx xml utilities ; 8/3/2016 5:14pm
- ;;7.0;OUTPATIENT PHARMACY;**467,520,527,508**;DEC 1997;Build 295
+ ;;7.0;OUTPATIENT PHARMACY;**467,520,527,508,581,617**;DEC 1997;Build 110
  ;
  Q
- ; called by PSO ERX REFILL REQUEST action protocol
+ ; called by PSO ERX RX RENEWAL REQUEST action protocol
 RREQLST(PSOLST,PSOSITE,PSOCNT) ;
  N ITEM,SEL,ORD,I,ERXIEN,DONE,ORDER,ORDLST,RXIEN,RXDRUG,RXDRUGN,PRECHECK,DIR
  D FULL^VALM1
  S DIR("A")="Select Orders by number",DIR(0)="LO^1:"_PSOCNT D ^DIR I $D(DTOUT)!($D(DUOUT)) K DIR,DIRUT,DTOUT,DUOUT Q
  S ORDLST=Y
  W !!,"NOTE: If you have selected items that are not inbound eRx Prescriptions,"
- W !,"those entries will be skipped during the refill/renewal process.",!!
+ W !,"those entries will be skipped during the RxRenewal process.",!!
  K DIR
  S DONE=0
  F I=1:1 D  Q:DONE
@@ -27,11 +27,11 @@ RREQLST(PSOLST,PSOSITE,PSOCNT) ;
  .I $P(PRECHECK,U)<1 W !,$P(PRECHECK,U,2),! D DIRE Q
  .D RREQOP(ERXIEN,PSOSITE)
  Q
- ; Called by PSO ERX SINGLE REFILL REQUEST action protocol
+ ; Called by PSO ERX SINGLE RX RENEWAL REQUEST action protocol
 RREQSIN(RXIEN,PSOSITE) ;
  N ORDER,ERXIEN,RXDRUG,RXDRUGN,PRECHECK
  S ORDER=$$GET1^DIQ(52,RXIEN,39.3,"I") Q:'ORDER
- S ERXIEN=$$CHKERX^PSOERXU1(ORDER) I 'ERXIEN W !!,"eRx Refill request may not be used. This prescription is not an eRx." D DIRE Q
+ S ERXIEN=$$CHKERX^PSOERXU1(ORDER) I 'ERXIEN W !!,"RxRenewal request may not be used. This prescription is not an eRx." D DIRE Q
  S RXDRUG=$$GET1^DIQ(52,RXIEN,6,"I"),RXDRUGN=$$GET1^DIQ(52,RXIEN,6,"E")
  W !!,"Now renewing prescription #: "_$$GET1^DIQ(52,RXIEN,.01,"E")
  W !,"Patient: "_$$GET1^DIQ(52,RXIEN,2,"E")
@@ -43,13 +43,20 @@ RREQSIN(RXIEN,PSOSITE) ;
  Q
  ; PSOIEN - ien from 52.49 (erx holding queue)
  ; PSOSITE - site ien from the outpatient site file (59)
- ; REFILL REQUEST VIA PSO LMOE FINISH/BACKDOOR ORDERS
+ ; RX RENEWAL REQUEST VIA PSO LMOE FINISH/BACKDOOR ORDERS
 RREQOP(PSOIEN,PSOSITE) ;
  N ORNUM,RXIEN,PSSOUT,GBL,REFL,I,EXDT,PEND,PSSRET,CNT,DIR,Y,REFQTY,REFREQ,DIV,VADAT,RRCNT
- N I,SSSTART,SSSTOP,GBL2,XXL1,XXL2,HUBID,NPIINST,STATION,Y,DIR,DONE,INNAME,NPI,NERXIEN
- N MSGIEN,MSGDT,RESIEN,SIG,SIGLEN,DTCUT,RTHID,PSORENW,EXPFLG
+ N I,SSSTART,SSSTOP,GBL2,XXL1,XXL2,HUBID,NPIINST,STATION,Y,DIR,DONE,INNAME,NPI,NERXIEN,PROHIBIT1,PROHIBIT
+ N MSGIEN,MSGDT,RESIEN,SIG,SIGLEN,DTCUT,RTHID,PSORENW,EXPFLG,S2017,MTYPE,RESVAL,REQIEN
  S VALMBCK="R"
  Q:'PSOIEN!('PSOSITE)
+ S MTYPE=$$GET1^DIQ(52.49,PSOIEN,.08,"I")
+ I MTYPE="CX" S NERXIEN=$$FINDNRX^PSOERXU6(PSOIEN)
+ I MTYPE="CX" S PROHIBIT=$$GET1^DIQ(52.49,NERXIEN,301.3,"I")
+ I MTYPE'="CX" S PROHIBIT=$$GET1^DIQ(52.49,PSOIEN,301.3,"I")
+ I PROHIBIT W !!,"Renewals are prohibited for this eRx." D DIRE Q
+ S RESVAL=$$GET1^DIQ(52.49,PSOIEN,52.1,"I")
+ S S2017=$$GET1^DIQ(52.49,PSOIEN,312.1,"I")
  S NPIINST=$$GET1^DIQ(59,PSOSITE,101,"I")
  S INNAME=$$NAME^XUAF4(NPIINST)
  S STATION=$$WHAT^XUAF4(NPIINST,99)
@@ -68,39 +75,39 @@ RREQOP(PSOIEN,PSOSITE) ;
  I $$GET1^DIQ(52,RXIEN,100,"I")=5 W !!,"Rx is in suspense, cannot renew prescription." D DIRE Q
  S PSORENW("ORX #")=$$GET1^DIQ(52,RXIEN,.01,"E")
  I $A($E(PSORENW("ORX #"),$L(PSORENW("ORX #"))))'<90 W !!,"Cannot renew Rx # "_PSORENW("ORX #")_", Max number reached." D DIRE Q
- ;/BLB/ PSO*7.0*520 - correct typo in the word "prescription" - BEGIN CHANGE
  S EXDT=$$GET1^DIQ(52,RXIEN,26,"I")
  I EXDT<$$FMADD^XLFDT(DT,-120) W !!,"Medication has expired, cannot renew prescription." D DIRE Q
- ;/BLB/ - END CHANGE
  I EXDT<DT S EXPFLG=1
  S REFL=$$GET1^DIQ(52,RXIEN,9,"I"),I=0 F  S I=$O(^PSRX(RXIEN,1,I)) Q:'I  S REFL=REFL-1
- I REFL>0,'$G(EXPFLG) W !!,"Refills remaining for this prescription. Cannot create refill request." D DIRE Q
+ I REFL>0,'$G(EXPFLG) W !!,"Refills remaining for this prescription. Cannot create RxRenewal request." D DIRE Q
  S (SIG,SIGLEN)=0 F  S SIG=$O(^PSRX(RXIEN,"INS1",SIG)) Q:'SIG  D
  .S SIGLEN=$G(SIGLEN)+$L(^PSRX(RXIEN,"INS1",SIG,0))
- I SIGLEN>140 W !!,"Sig is greater than 140 characters. Cannot create renewal request." D DIRE Q
- ; PSO*7*508 - check for previously sent eRx refill request
+ I 'S2017,SIGLEN>140 W !!,"Sig is greater than 140 characters. Cannot create renewal request." D DIRE Q
  S (DONE,RRCNT)=0,DTCUT=$$FMADD^XLFDT(DT,-30)
+ S REQIEN=$$GETREQ^PSOERXU2(PSOIEN)
  S MSGIEN=999999999 F  S MSGIEN=$O(^PS(52.49,PSOIEN,201,"B",MSGIEN),-1) Q:'MSGIEN  D
  .I $$GET1^DIQ(52.49,MSGIEN,.08,"I")'="RR" Q
+ .; if this is a renwal response/replace type, and the record is the related request, quit (dont show this one)
+ .I MTYPE="RE",RESVAL="R",MSGIEN=REQIEN,$$GET1^DIQ(52.49,REQIEN,.08,"I")="RR" Q
  .S MSGDT=$$GET1^DIQ(52.49,MSGIEN,.03,"I")
  .I MSGDT<DTCUT S DONE=1 Q
  .S RRCNT=$G(RRCNT)+1
  .S RESIEN=$$GETRESP^PSOERXU2(MSGIEN)
  .W !!,"********************************************************************"
- .W !!,"Previous Refill/Renewal Request Date/Time: "_$$FMTE^XLFDT(MSGDT)
- .W !,"Refill/Renewal Requested by: "_$$GET1^DIQ(52.49,MSGIEN,51.1,"E")
+ .W !!,"Previous RxRenewal Request Date/Time: "_$$FMTE^XLFDT(MSGDT)
+ .W !,"RxRenewal Requested by: "_$$GET1^DIQ(52.49,MSGIEN,51.1,"E")
  .W !,"# of Refills Requested: "_$$GET1^DIQ(52.49,MSGIEN,51.2,"E")
  .I 'RESIEN D  Q
  ..W !!,"***No response received from provider.***",!
  ..S DIR(0)="E" D ^DIR K DIR
- .W !!,"Refill/Renewal response Date/Time: "_$$GET1^DIQ(52.49,RESIEN,.03,"E")
- .W !!,"Refill/Renewal response status: "_$$GET1^DIQ(52.49,RESIEN,1,"E")
+ .W !!,"RxRenewal response Date/Time: "_$$GET1^DIQ(52.49,RESIEN,.03,"E")
+ .W !!,"RxRenewal response status: "_$$GET1^DIQ(52.49,RESIEN,1,"E")
  .W !!,"********************************************************************"
- I RRCNT>0 W !!,"Total Number of Refill/Renewal requests in the last 30 days: "_RRCNT,!!
+ I RRCNT>0 W !!,"Total Number of RxRenewal requests in the last 30 days: "_RRCNT,!!
  I RRCNT D  Q:'Y
- .K DIR S DIR(0)="YO",DIR("B")="N",DIR("A")="Are you sure you would like to send ANOTHER refill/renewal request" D ^DIR
- W !!,"Generating refill/renewal request for Rx #: "_$$GET1^DIQ(52,RXIEN,.01,"E"),!!
- K DIR S DIR(0)="SO^R:REFILL WITH PRE-POPULATED VALUE;C:CHANGE # OF REFILLS;E:EXIT"
+ .K DIR S DIR(0)="YO",DIR("B")="N",DIR("A")="Are you sure you would like to send ANOTHER RxRenewal request" D ^DIR
+ W !!,"Generating RxRenewal request for Rx #: "_$$GET1^DIQ(52,RXIEN,.01,"E"),!!
+ K DIR S DIR(0)="SO^R:RENEW WITH PRE-POPULATED VALUE;C:CHANGE # OF REFILLS;E:EXIT"
  S DIR("?")="     E - Exit"
  S DIR("?",1)="     R - Request the same # of refills as the original Rx"
  S DIR("?",2)="     C - Request desired # of refills (0-11)"
@@ -120,18 +127,19 @@ RREQOP(PSOIEN,PSOSITE) ;
  ..S REFREQ=Y
  Q:DONE=1
  S REFREQ=REFREQ+1
- I '$G(REFREQ) W !!,"Number of Refills is required. Refill request cancelled." S DIR(0)="E" D ^DIR K DIR
+ I '$G(REFREQ) W !!,"Number of Refills is required. RxRenewal request cancelled." S DIR(0)="E" D ^DIR K DIR
  ; display information to the user
- W !!,"Sending refill request for:"
+ W !!,"Sending RxRenewal request for:"
  W !!,"Patient: "_$$GET1^DIQ(52,RXIEN,2,"E")
  W !,"Patient Status: "_$$GET1^DIQ(52,RXIEN,3,"E")
  W !,"Drug: "_$$GET1^DIQ(52,RXIEN,6,"E")
  W !,"Orderable Item: "_$$GET1^DIQ(52,RXIEN,39.2,"E")
  W !,"# of Refills Requested: "_REFREQ,?30,"Days Supply: "_$$GET1^DIQ(52,RXIEN,8,"E"),?52,"Quantity: "_$$GET1^DIQ(52,RXIEN,7,"E")
- W !!,"Would you like to send this refill (renewal) request to the prescriber"
+ W !!,"Would you like to send this RxRenewal request to the prescriber"
  S DIR(0)="YO",DIR("B")="N" D ^DIR K DIR
- I Y<1!(Y=U) S DIR(0)="E" W !!,"Refill Request cancelled! No refill request will be sent." D ^DIR K DIR Q
- S GBL=$$RREQ(PSOIEN,RXIEN,ORNUM,PSOSITE,.MESSID,REFREQ) I '$O(@GBL@(0)) W !!,"Could not create outgoing renewal message structure." D DIRE Q
+ I Y<1!(Y=U) S DIR(0)="E" W !!,"RxRenewal Request cancelled! No RxRenewal request will be sent." D ^DIR K DIR Q
+ I 'S2017 S GBL=$$RREQ(PSOIEN,RXIEN,ORNUM,PSOSITE,.MESSID,REFREQ) I '$O(@GBL@(0)) W !!,"Could not create outgoing renewal message structure." D DIRE Q
+ I S2017 S GBL=$$RENEWREQ^PSOERXOA(PSOIEN,RXIEN,ORNUM,PSOSITE,.MESSID,REFREQ) I '$O(@GBL@(0)) W !!,"Could not create outgoing renewal message structure." D DIRE Q
  S PSSRET=$$RESTPOST^PSOERXO1(.PSSRET,.GBL)
  ; if the post was unsuccessful, inform the user and quit.
  I $P(PSSRET(0),U)<1 W !,$P(PSSRET(0),U,2) S DIR(0)="E" D ^DIR K DIR Q
@@ -141,31 +149,41 @@ RREQOP(PSOIEN,PSOSITE) ;
  S HUBID="V"_HUBID
  W !!,"Renewal Request sent." S DIR(0)="E" D ^DIR K DIR
  ; Validates if the order is an eRx and Logs Activity in AL eRx for Approved Refill Response Pending Renewal Activity 
- D RXACT^PSOBPSU2(RXIEN,,"Electronic Refill Request sent to External Provider","O")
- S I=0 F  S I=$O(@GBL@(I)) Q:'I!($G(SSSTART))  D
- .I $G(@GBL@(I,0))="<StructuredSIG>" S SSSTART=I Q
- S I=999999999 F  S I=$O(@GBL@(I),-1) Q:'I!$G(SSSTOP)  D
- .I $G(@GBL@(I,0))="</StructuredSIG>" S SSSTOP=I
- S GBL2=$NA(^TMP("STSIG^PSOERXX1",$J)) K @GBL2
- I $D(SSSTART),$D(SSSTOP) D
- .F I=SSSTART:1:SSSTOP D
- ..S @GBL2@(I,0)=@GBL@(I,0) K @GBL@(I,0)
- ; build streams
- S I=0 F  S I=$O(@GBL@(I)) Q:'I  D
- .S XXL1=$G(XXL1)_$G(@GBL@(I,0))
- I $D(@GBL2) D
- .S I=0 F  S I=$O(@GBL2@(I)) Q:'I  D
- ..S XXL2=$G(XXL2)_$G(@GBL2@(I,0))
- .S XXL2="<SIG>"_XXL2_"</SIG>"
- I '$D(XXL2) S XXL2=""
+ D RXACT^PSOBPSU2(RXIEN,,"Electronic RxRenewal Request sent to External Provider","O")
  N RES
- S VADAT=DUZ_U_RXIEN
- S RTHID=$$GET1^DIQ(52.49,PSOIEN,.01,"E")
- S HUBID=HUBID_U_U_RTHID
- D INCERX^PSOERXA1(.RES,.XXL1,"","","",STATION,DIV,HUBID,"",.XXL2,VADAT)
+ I 'S2017 D
+ .S I=0 F  S I=$O(@GBL@(I)) Q:'I!($G(SSSTART))  D
+ ..I $G(@GBL@(I,0))="<StructuredSIG>" S SSSTART=I Q
+ .S I=999999999 F  S I=$O(@GBL@(I),-1) Q:'I!$G(SSSTOP)  D
+ ..I $G(@GBL@(I,0))="</StructuredSIG>" S SSSTOP=I
+ .S GBL2=$NA(^TMP("STSIG^PSOERXX1",$J)) K @GBL2
+ .I $D(SSSTART),$D(SSSTOP) D
+ ..F I=SSSTART:1:SSSTOP D
+ ...S @GBL2@(I,0)=@GBL@(I,0) K @GBL@(I,0)
+ .; build streams
+ .; set BP
+ .S I=0 F  S I=$O(@GBL@(I)) Q:'I  D
+ ..S XXL1=$G(XXL1)_$G(@GBL@(I,0))
+ .I $D(@GBL2) D
+ ..S I=0 F  S I=$O(@GBL2@(I)) Q:'I  D
+ ...S XXL2=$G(XXL2)_$G(@GBL2@(I,0))
+ ..S XXL2="<SIG>"_XXL2_"</SIG>"
+ .I '$D(XXL2) S XXL2=""
+ .S VADAT=DUZ_U_RXIEN
+ .S RTHID=$$GET1^DIQ(52.49,PSOIEN,.01,"E")
+ .S HUBID=HUBID_U_U_RTHID
+ .D INCERX^PSOERXA1(.RES,.XXL1,"","","",STATION,DIV,HUBID,"",.XXL2,VADAT)
+ I S2017 D
+ .; build stream
+ .S I=0 F  S I=$O(@GBL@(I)) Q:'I  D
+ ..S XXL1=$G(XXL1)_$G(@GBL@(I,0))
+ .S VADAT=DUZ_U_RXIEN
+ .S RTHID=$$GET1^DIQ(52.49,PSOIEN,.01,"E")
+ .S HUBID=HUBID_U_U_RTHID
+ .D INCERX^PSOERXI1(.RES,.XXL1,"","","",STATION,DIV,HUBID,"","",VADAT,"")
  I $P(RES,U)=0 D
- .W !,"A problem was encountered while trying to file the refill request."
- .W !,"Refill Request was not filed in vista."
+ .W !,"A problem was encountered while trying to file the RxRenewal request."
+ .W !,"RxRenewal Request was not filed in vista."
  .W !!,"ERROR: "_$P(RES,U,2)
  .S DIR(0)="E" D ^DIR K DIR
  K @GBL
@@ -174,7 +192,6 @@ RREQOP(PSOIEN,PSOSITE) ;
 CREQHQ(PSOIEN,PSOSITE) ;
  N ORNUM,RXIEN,DRUG,GBL,DROK,CNT,PSSRET
  Q:'PSOIEN!('PSOSITE)
- ; IF THIS HASN'T BEEN SENT TO THE PRESCRIPTION FILE, WE DONT NEED ORDER OR RXIEN
  S ORNUM=$$GET1^DIQ(52.49,PSOIEN,.12,"I") ;I 'ORNUM W !!,"This order has been Accepted from eRx and cannot be changed." D DIRE Q
  S RXIEN=$O(^PSRX("APL",ORNUM,0)) ;I 'RXIEN W !!,"A current prescription exists for this eRx. Cannot change eRx." D DIRE Q
  ; build drug information into array to be passed into xml builder
@@ -194,13 +211,11 @@ CREQHQ(PSOIEN,PSOSITE) ;
 FMES(PSOIEN) ;
  N ORNUM,RXIEN,DRUG,GBL,FTYPE,PSSRET,CNT
  Q:'PSOIEN
- S ORNUM=$$GET1^DIQ(52.49,PSOIEN,.12,"I") ;I 'ORNUM W !!,"No OE/RR order number. Cannot create refill request." D DIRE Q
+ S ORNUM=$$GET1^DIQ(52.49,PSOIEN,.12,"I") ;I 'ORNUM W !!,"No OE/RR order number. Cannot create rx renewal request." D DIRE Q
  S RXIEN=$O(^PSRX("APL",ORNUM,0)) ;I 'RXIEN W !!,"Could not resolve RX #. Please contact technical support." D DIRE Q
- ; FOR NOW SET NOTE AND FTYPE (FULL/PARTIAL) FOR BUILDING XML
  S NOTE="TESTING NOTE"
  S FTYPE="F"
- S GBL=$$RXFILL(PSOIEN,FTYPE,NOTE,RXIEN,ORNUM) I '$L(GBL) W !!,"Could not create outgoing message structure." D DIRE Q
- ;W !!,"RxFill message sent to prescriber." S DIR(0)="E" D ^DIR K DIR 
+ S GBL=$$RXFILL(PSOIEN,FTYPE,NOTE,RXIEN,ORNUM) I '$L(GBL) W !!,"Could not create outgoing message structure." D DIRE Q 
  S PSSRET=$$RESTPOST^PSOERXO1(.PSSRET,.GBL)
  ; if the post was unsuccessful, inform the user and quit.
  I $P(PSSRET(0),U)<1 W !,$P(PSSRET(0),U,2) S DIR(0)="E" D ^DIR K DIR Q
@@ -213,11 +228,9 @@ FMES(PSOIEN) ;
 DRGPRMPT(DRG) ;
  ; Prompt for drug
  N DIC,PSODRUG,DIR,Y
- S DIC(0)="AEMQ",DIC=50,DIC("S")="I $$ACTIVE^PSOERXA0(Y),($$OUTPAT^PSOERXA0(Y)),('$$INVCOMP^PSOERXA0(Y)),('$$CS^PSOERXA0(Y))" D ^DIC
+ S DIC(0)="AEMQ",DIC=50,DIC("S")="I $$ACTIVE^PSOERXA0(Y),($$OUTPAT^PSOERXA0(Y)),('$$INVCOMP^PSOERXA0(Y))" D ^DIC
  K DIC
  Q:$P(Y,U)<1 0
- ; FOR FUTURE USE - ADD ROUTE PROMPT
- ; Y=DRUG IEN^DRUG DESCRIPTION
  S DRG("DRUG")=$P(Y,U,2)
  S PSODRUG("IEN")=$P(Y,U)
  ; prompt for days supply
@@ -318,8 +331,6 @@ RXFILL(PSOIEN,FP,NOTE,RXIEN,ORNUM) ;
  ; request type header
  D RTYPE^PSOERXX2(.GBL,"RxFill",1)
  ; request info
- ;D REQUEST(.GBL,"TEST1","TEST2")
- ;FP - full or partial fill
  S FP="F"
  S NOTE=$G(NOTE,"TESTING NOTES")
  ; fill status

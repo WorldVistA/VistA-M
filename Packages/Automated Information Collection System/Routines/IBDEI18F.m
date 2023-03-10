@@ -1,122 +1,122 @@
-IBDEI18F ; ; 04-FEB-2020
- ;;3.0;IB ENCOUNTER FORM IMP/EXP;;FEB 04, 2020
+IBDEI18F ; ; 01-FEB-2022
+ ;;3.0;IB ENCOUNTER FORM IMP/EXP;;FEB 01, 2022
  Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,999) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
- ;;^UTILITY(U,$J,358.3,19762,1,4,0)
- ;;=4^S92.342S
- ;;^UTILITY(U,$J,358.3,19762,2)
- ;;=^5045199
- ;;^UTILITY(U,$J,358.3,19763,0)
- ;;=S92.341S^^93^996^8
- ;;^UTILITY(U,$J,358.3,19763,1,0)
+ ;;^UTILITY(U,$J,358.3,19986,1,4,0)
+ ;;=4^S06.5X0S
+ ;;^UTILITY(U,$J,358.3,19986,2)
+ ;;=^5021058
+ ;;^UTILITY(U,$J,358.3,19987,0)
+ ;;=M84.351S^^67^883^114
+ ;;^UTILITY(U,$J,358.3,19987,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,19763,1,3,0)
- ;;=3^Disp 4th metatarsal fx of right foot,sequela
- ;;^UTILITY(U,$J,358.3,19763,1,4,0)
- ;;=4^S92.341S
- ;;^UTILITY(U,$J,358.3,19763,2)
- ;;=^5045192
- ;;^UTILITY(U,$J,358.3,19764,0)
- ;;=S92.232S^^93^996^31
- ;;^UTILITY(U,$J,358.3,19764,1,0)
+ ;;^UTILITY(U,$J,358.3,19987,1,3,0)
+ ;;=3^Stress fracture, right femur, sequela
+ ;;^UTILITY(U,$J,358.3,19987,1,4,0)
+ ;;=4^M84.351S
+ ;;^UTILITY(U,$J,358.3,19987,2)
+ ;;=^5013685
+ ;;^UTILITY(U,$J,358.3,19988,0)
+ ;;=M84.352S^^67^883^113
+ ;;^UTILITY(U,$J,358.3,19988,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,19764,1,3,0)
- ;;=3^Disp intermed cuneiform fx of left foot,sequela
- ;;^UTILITY(U,$J,358.3,19764,1,4,0)
- ;;=4^S92.232S
- ;;^UTILITY(U,$J,358.3,19764,2)
- ;;=^5044933
- ;;^UTILITY(U,$J,358.3,19765,0)
- ;;=S92.231S^^93^996^32
- ;;^UTILITY(U,$J,358.3,19765,1,0)
+ ;;^UTILITY(U,$J,358.3,19988,1,3,0)
+ ;;=3^Stress fracture, left femur, sequela
+ ;;^UTILITY(U,$J,358.3,19988,1,4,0)
+ ;;=4^M84.352S
+ ;;^UTILITY(U,$J,358.3,19988,2)
+ ;;=^5013691
+ ;;^UTILITY(U,$J,358.3,19989,0)
+ ;;=M84.451S^^67^883^102
+ ;;^UTILITY(U,$J,358.3,19989,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,19765,1,3,0)
- ;;=3^Disp intermed cuneiform fx of right foot,sequela
- ;;^UTILITY(U,$J,358.3,19765,1,4,0)
- ;;=4^S92.231S
- ;;^UTILITY(U,$J,358.3,19765,2)
- ;;=^5044926
- ;;^UTILITY(U,$J,358.3,19766,0)
- ;;=S92.222S^^93^996^35
- ;;^UTILITY(U,$J,358.3,19766,1,0)
+ ;;^UTILITY(U,$J,358.3,19989,1,3,0)
+ ;;=3^Pathological fracture, right femur, sequela
+ ;;^UTILITY(U,$J,358.3,19989,1,4,0)
+ ;;=4^M84.451S
+ ;;^UTILITY(U,$J,358.3,19989,2)
+ ;;=^5013907
+ ;;^UTILITY(U,$J,358.3,19990,0)
+ ;;=M84.452S^^67^883^101
+ ;;^UTILITY(U,$J,358.3,19990,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,19766,1,3,0)
- ;;=3^Disp lateral cuneiform fx of left foot,sequela
- ;;^UTILITY(U,$J,358.3,19766,1,4,0)
- ;;=4^S92.222S
- ;;^UTILITY(U,$J,358.3,19766,2)
- ;;=^5044891
- ;;^UTILITY(U,$J,358.3,19767,0)
- ;;=S92.221S^^93^996^36
- ;;^UTILITY(U,$J,358.3,19767,1,0)
+ ;;^UTILITY(U,$J,358.3,19990,1,3,0)
+ ;;=3^Pathological fracture, left femur, sequela
+ ;;^UTILITY(U,$J,358.3,19990,1,4,0)
+ ;;=4^M84.452S
+ ;;^UTILITY(U,$J,358.3,19990,2)
+ ;;=^5013913
+ ;;^UTILITY(U,$J,358.3,19991,0)
+ ;;=S72.021S^^67^883^17
+ ;;^UTILITY(U,$J,358.3,19991,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,19767,1,3,0)
- ;;=3^Disp lateral cuneiform fx of right foot,sequela
- ;;^UTILITY(U,$J,358.3,19767,1,4,0)
- ;;=4^S92.221S
- ;;^UTILITY(U,$J,358.3,19767,2)
- ;;=^5044884
- ;;^UTILITY(U,$J,358.3,19768,0)
- ;;=S92.242S^^93^996^39
- ;;^UTILITY(U,$J,358.3,19768,1,0)
+ ;;^UTILITY(U,$J,358.3,19991,1,3,0)
+ ;;=3^Displaced epiphy fx of right femur, sequela
+ ;;^UTILITY(U,$J,358.3,19991,1,4,0)
+ ;;=4^S72.021S
+ ;;^UTILITY(U,$J,358.3,19991,2)
+ ;;=^5037136
+ ;;^UTILITY(U,$J,358.3,19992,0)
+ ;;=S72.022S^^67^883^16
+ ;;^UTILITY(U,$J,358.3,19992,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,19768,1,3,0)
- ;;=3^Disp medial cuneiform fx of left foot, sequela
- ;;^UTILITY(U,$J,358.3,19768,1,4,0)
- ;;=4^S92.242S
- ;;^UTILITY(U,$J,358.3,19768,2)
- ;;=^5044975
- ;;^UTILITY(U,$J,358.3,19769,0)
- ;;=S92.241S^^93^996^41
- ;;^UTILITY(U,$J,358.3,19769,1,0)
+ ;;^UTILITY(U,$J,358.3,19992,1,3,0)
+ ;;=3^Displaced epiphy fx of left femur, sequela
+ ;;^UTILITY(U,$J,358.3,19992,1,4,0)
+ ;;=4^S72.022S
+ ;;^UTILITY(U,$J,358.3,19992,2)
+ ;;=^5037152
+ ;;^UTILITY(U,$J,358.3,19993,0)
+ ;;=S72.024S^^67^883^65
+ ;;^UTILITY(U,$J,358.3,19993,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,19769,1,3,0)
- ;;=3^Disp medial cuneiform fx of right foot,sequela
- ;;^UTILITY(U,$J,358.3,19769,1,4,0)
- ;;=4^S92.241S
- ;;^UTILITY(U,$J,358.3,19769,2)
- ;;=^5044968
- ;;^UTILITY(U,$J,358.3,19770,0)
- ;;=S92.252S^^93^996^44
- ;;^UTILITY(U,$J,358.3,19770,1,0)
+ ;;^UTILITY(U,$J,358.3,19993,1,3,0)
+ ;;=3^Nondisp epiphy fx of right femur, sequela
+ ;;^UTILITY(U,$J,358.3,19993,1,4,0)
+ ;;=4^S72.024S
+ ;;^UTILITY(U,$J,358.3,19993,2)
+ ;;=^5037184
+ ;;^UTILITY(U,$J,358.3,19994,0)
+ ;;=S72.025S^^67^883^64
+ ;;^UTILITY(U,$J,358.3,19994,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,19770,1,3,0)
- ;;=3^Disp navicular fx of left foot, sequela
- ;;^UTILITY(U,$J,358.3,19770,1,4,0)
- ;;=4^S92.252S
- ;;^UTILITY(U,$J,358.3,19770,2)
- ;;=^5045017
- ;;^UTILITY(U,$J,358.3,19771,0)
- ;;=S92.251S^^93^996^45
- ;;^UTILITY(U,$J,358.3,19771,1,0)
+ ;;^UTILITY(U,$J,358.3,19994,1,3,0)
+ ;;=3^Nondisp epiphy fx of left femur, sequela
+ ;;^UTILITY(U,$J,358.3,19994,1,4,0)
+ ;;=4^S72.025S
+ ;;^UTILITY(U,$J,358.3,19994,2)
+ ;;=^5037200
+ ;;^UTILITY(U,$J,358.3,19995,0)
+ ;;=S72.031S^^67^883^33
+ ;;^UTILITY(U,$J,358.3,19995,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,19771,1,3,0)
- ;;=3^Disp navicular fx of right foot, sequela
- ;;^UTILITY(U,$J,358.3,19771,1,4,0)
- ;;=4^S92.251S
- ;;^UTILITY(U,$J,358.3,19771,2)
- ;;=^5045010
- ;;^UTILITY(U,$J,358.3,19772,0)
- ;;=S92.322S^^93^996^3
- ;;^UTILITY(U,$J,358.3,19772,1,0)
+ ;;^UTILITY(U,$J,358.3,19995,1,3,0)
+ ;;=3^Displaced midcervical fx of right femur, sequela
+ ;;^UTILITY(U,$J,358.3,19995,1,4,0)
+ ;;=4^S72.031S
+ ;;^UTILITY(U,$J,358.3,19995,2)
+ ;;=^5037232
+ ;;^UTILITY(U,$J,358.3,19996,0)
+ ;;=S72.032S^^67^883^32
+ ;;^UTILITY(U,$J,358.3,19996,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,19772,1,3,0)
- ;;=3^Disp 2nd metatarsal fx of left foot, sequela
- ;;^UTILITY(U,$J,358.3,19772,1,4,0)
- ;;=4^S92.322S
- ;;^UTILITY(U,$J,358.3,19772,2)
- ;;=^5045115
- ;;^UTILITY(U,$J,358.3,19773,0)
- ;;=S92.321S^^93^996^4
- ;;^UTILITY(U,$J,358.3,19773,1,0)
+ ;;^UTILITY(U,$J,358.3,19996,1,3,0)
+ ;;=3^Displaced midcervical fx of left femur, sequela
+ ;;^UTILITY(U,$J,358.3,19996,1,4,0)
+ ;;=4^S72.032S
+ ;;^UTILITY(U,$J,358.3,19996,2)
+ ;;=^5037248
+ ;;^UTILITY(U,$J,358.3,19997,0)
+ ;;=S72.034S^^67^883^81
+ ;;^UTILITY(U,$J,358.3,19997,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,19773,1,3,0)
- ;;=3^Disp 2nd metatarsal fx of right foot, sequela
- ;;^UTILITY(U,$J,358.3,19773,1,4,0)
- ;;=4^S92.321S
- ;;^UTILITY(U,$J,358.3,19773,2)
- ;;=^5045108
- ;;^UTILITY(U,$J,358.3,19774,0)
- ;;=S92.332S^^93^996^5
- ;;^UTILITY(U,$J,358.3,19774,1,0)
+ ;;^UTILITY(U,$J,358.3,19997,1,3,0)
+ ;;=3^Nondisp midcervical fx of right femur, sequela
+ ;;^UTILITY(U,$J,358.3,19997,1,4,0)
+ ;;=4^S72.034S
+ ;;^UTILITY(U,$J,358.3,19997,2)
+ ;;=^5037280
+ ;;^UTILITY(U,$J,358.3,19998,0)
+ ;;=S72.035S^^67^883^80
+ ;;^UTILITY(U,$J,358.3,19998,1,0)
  ;;=^358.31IA^4^2

@@ -1,0 +1,52 @@
+DVB471P ;MNT/RFS - DVB*4.0*71 post install routine ; Sep 30, 2021@09:08
+ ;;4.0;HINQ;**71**;03/25/92;Build 13
+ ;
+ Q
+EN ; Entry point for post install routine
+ D DEQUEUE
+ D DISOPT
+ D DISPROT
+ D DELPROT
+ Q
+DEQUEUE ; Dequeuing of DVBHQDB tasks
+ N DVBLIST,DVBX,ZTSK
+ D BMES^XPDUTL("Starting dequeue of QUE^DVBHQDB tasks")
+ D RTN^%ZTLOAD("QUE^DVBHQDB","DVBLIST")
+ S DVBX=0 F  S DVBX=$O(DVBLIST(DVBX)) Q:'DVBX  S ZTSK=DVBX D DQ^%ZTLOAD
+ D BMES^XPDUTL("Dequeuing of QUE^DVBHQDB tasks complete")
+ Q
+DELPROT ;Delete Protocol from List Protocol
+ N DVBOM,DVBMN,DVBPROT,DVBCHK,DVBOP,DVBTEXT
+ F DVBOM=1:1 S DVBMN=$P($TEXT(MENLST+DVBOM),";;",2) Q:DVBMN="$$END"  D
+ .F DVBOP=1:1 S DVBPROT=$P($TEXT(PROLST+DVBOP),";;",2) Q:DVBPROT="$$END"  D
+ ..S DVBCHK=$$DELETE^XPDPROT(DVBMN,DVBPROT)
+ ..I DVBCHK S DVBTEXT="The "_DVBPROT_" protocol has been deleted from the "_DVBMN_" protocol menu." D BMES^XPDUTL(DVBTEXT)
+ ..I 'DVBCHK S DVBTEXT="The "_DVBPROT_" protocol could not be deleted from the "_DVBMN_" protocol menu." D BMES^XPDUTL(DVBTEXT)
+ Q
+DISOPT ;Mark options out of order
+ N DVBLP,DVBOPT,DVBTEXT
+ F DVBLP=1:1 S DVBOPT=$P($TEXT(OPTLST+DVBLP),";;",2) Q:DVBOPT="$$END"  D
+ .D OUT^XPDMENU(DVBOPT,"DO NOT USE!! - HINQ DECOM - DVB*4.0*71")
+ .S DVBTEXT="The "_DVBOPT_" option has been marked out of order." D BMES^XPDUTL(DVBTEXT)
+  Q
+DISPROT ;Disable Protocols
+ N DVBPRTL,DVBPR,DVBTEXT
+ F DVBPR=1:1 S DVBPRTL=$P($TEXT(PROLST+DVBPR),";;",2) Q:DVBPRTL="$$END"  D
+ .D OUT^XPDPROT(DVBPRTL,"DO NOT USE!! - HINQ DECOMM - DVB*4.0*71")
+ .S DVBTEXT="The "_DVBPRTL_" protocol has been disabled." D BMES^XPDUTL(DVBTEXT)
+ Q
+MENLST ;Protocol list
+ ;;DGPM MOVEMENT EVENTS
+ ;;$$END
+ ;
+PROLST ;Protocol List
+ ;;DVB ADMISSION HINQ
+ ;;$$END
+ ;
+OPTLST ;OPTION LIST
+ ;;DVB HSUSP-PROCESSFILE
+ ;;DVB HREQ-GENERHREQ
+ ;;DVB HREQ-INDIVHREQ
+ ;;DVB HSUSP-ENTERREQ
+ ;;$$END
+ ;

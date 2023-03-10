@@ -1,5 +1,5 @@
 BPSRPT8 ;BHAM ISC/BEE - ECME REPORTS ;14-FEB-05
- ;;1.0;E CLAIMS MGMT ENGINE;**1,3,5,7,8,10,11,19,20,23,24**;JUN 2004;Build 43
+ ;;1.0;E CLAIMS MGMT ENGINE;**1,3,5,7,8,10,11,19,20,23,24,28**;JUN 2004;Build 22
  ;;Per VA Directive 6402, this routine should not be modified.
  ;
  ;Reference to IB NCPCP NON-BILLABLE STATUS REASONS (#366.17) supported by ICR 6136
@@ -21,7 +21,7 @@ WRLINE1(BPRTYPE,BPREC,BPDIV,BPGRPLAN,BPDFN,BPRX,BPREF,BPX,BPSRTDT,BPBIL,BPINS,BP
  S BP03=+$P($G(^BPST(BP59,0)),U,5)
  ;Division
  I (",5,6,8,")[BPRTYPE S BPREC=$S(BPDIV=0:"BLANK",$$DIVNAME^BPSSCRDS(BPDIV)]"":$$DIVNAME^BPSSCRDS(BPDIV),1:BPDIV)_U
- I (",1,2,3,4,7,9,")[BPRTYPE S BPREC=$S(BPDIV=0:"BLANK",$$DIVNAME^BPSSCRDS(BPDIV)]"":$E($$DIVNAME^BPSSCRDS(BPDIV),1,12),1:$E(BPDIV,1,12))_U
+ I (",1,2,3,4,7,9,10,")[(","_BPRTYPE_",") S BPREC=$S(BPDIV=0:"BLANK",$$DIVNAME^BPSSCRDS(BPDIV)]"":$E($$DIVNAME^BPSSCRDS(BPDIV),1,12),1:$E(BPDIV,1,12))_U
  ;
  ;Insurance
  I BPRTYPE=8 S BPREC=BPREC_$E(BPGRPLAN,1,90)_U
@@ -114,12 +114,31 @@ WRLINE1(BPRTYPE,BPREC,BPDIV,BPGRPLAN,BPDFN,BPRX,BPREF,BPX,BPSRTDT,BPBIL,BPINS,BP
  . S BPREC=BPREC_BPREF_U                      ;Refill
  . S BPREC=BPREC_$$DATTIM^BPSRPT1(BPSRTDT)_U  ;Date
  . S BPREC=BPREC_$S($P(BPX,U,2)]"":$TR($J($P(BPX,U,2),10,2)," "),1:"")_U ;$Drug Cost
+ ;
+ I BPRTYPE=10 D  Q
+ . N BPDPAY
+ . S BPDPAY=$P(BPX,U,17)
+ . S BPREC=BPREC_$E(BPGRPLAN,1,21)_U                        ;Insurance
+ . S BPREC=BPREC_$E($$PATNAME^BPSRPT6(BPDFN),1,13)_U        ;Patient Name
+ . S BPREC=BPREC_$$SSN4^BPSRPT6(BPDFN)_U                    ;L4SSN
+ . S BPREC=BPREC_$$ELIGCODE^BPSSCR05($P(BPX,U,3))_U         ;Eligibility
+ . S BPREC=BPREC_$$RXNUM^BPSRPT6(BPRX)_$$COPAY^BPSRPT6(BPRX)_U ;RX Number 
+ . S BPREC=BPREC_BPREF_"/"_$$ECMENUM^BPSRPT1($P(BPX,U,3))_U ;Refill/ECME Number
+ . S BPREC=BPREC_$$DATTIM^BPSRPT1(BPSRTDT)_U                ;Date
+ . S BPREC=BPREC_$$INGRCST^BPSSCRLG(BP02)_U                 ;Ingredient Cost
+ . S BPREC=BPREC_$$DISPFEE^BPSSCRLG(BP02)_U                 ;Dispensing Fee 
+ . S BPREC=BPREC_$TR($J(BPBIL,10,2)," ")_U                  ;$Billed
+ . S BPREC=BPREC_$$ICPAID^BPSSCRLG(BP03)_U                  ;Ingredient Cost Paid
+ . S BPREC=BPREC_$$DFPAID^BPSSCRLG(BP03)_U                  ;Dispensing Fee Paid
+ . S BPREC=BPREC_$TR($J(BPDPAY,10,2)," ")_U                 ;Pt. Resp (Ins) 
+ . S BPREC=BPREC_$TR($J(BPINS,10,2)," ")_U                  ;$Ins. Paid
+ . S BPREC=BPREC_$S(BPCOLL]"":$TR($J(BPCOLL,10,2)," "),1:"")_U ;$Collected
  Q
  ;
  ;Print Report Line 2
  ;
  ; Input Variable -> BPRTYPE,BPX,BPRX,BPREF,BPBIL,BPGRPLAN
- ; 
+ ;
 WRLINE2(BPRTYPE,BPREC,BPX,BPRX,BPREF,BPBIL,BPGRPLAN,BPPSEQ) ;
  N BP59,BP02
  S BP59=$P(BPX,U,3)
@@ -197,6 +216,22 @@ WRLINE2(BPRTYPE,BPREC,BPX,BPRX,BPREF,BPBIL,BPGRPLAN,BPPSEQ) ;
  . S BPREC=BPREC_$$RXSTANAM^BPSSCRU2($P(BPX,U,6)) ;Status
  . S BPREC=BPREC_$S($P(BPX,U,5):"/R",1:"/N")_U    ;RL/NR
  . S BPREC=BPREC_$$GET1^DIQ(366.17,$P(BPX,U,7),.01,"E")  ;Non-Billable Status Reason - ICR 6136
+ ;
+ I BPRTYPE=10 D  Q
+ . N BPRXINFO,BPDUPST
+ . S BPDUPST=$P(BPX,U,16),BPRXINFO=""
+ . S BPREC=BPREC_$$DRGNAM^BPSRPT6($P(BPX,U,14),15)_U     ;Drug
+ . S BPREC=BPREC_$TR($$GETNDC^BPSRPT6(BPRX,BPREF),"-")_U ;NDC
+ . S BPREC=BPREC_$$DATTIM^BPSRPT1(+BPX)_U                ;Release Date
+ . ;RX INFO
+ . S BPREC=BPREC_$$MWC^BPSRPT6(BPRX,BPREF)_" "           ;Fill Location
+ . S BPREC=BPREC_$$RTBCKNAM^BPSRPT1($$RTBCK^BPSRPT1($P(BPX,U,3)))_" " ;Fill Type
+ . S BPREC=BPREC_$$RXSTATUS^BPSRPT6($P(BPX,U,3))         ;Status
+ . S BPREC=BPREC_$S($P(BPX,U):"/R",1:"/N")_U             ;RL/NR
+ . ; 
+ . S BPREC=BPREC_$$BILL^BPSRPT6(BPRX,BPREF,BPPSEQ)_U     ;Bill#
+ . S BPREC=BPREC_$$RXCOB($G(BPPSEQ))_U                   ;RX COB
+ . S BPREC=BPREC_BPDUPST                                 ;Status (duplicate)
  Q
  ;
  ;Print Report Line 3
@@ -247,197 +282,12 @@ WRLINE3(BPRTYPE,BPREC,BPX) ;
  . S BPREC=BPREC_$P($G(BPRICE),U,1)_U
  ;
  ;Write the record
- I (",1,3,4,9,")[BPRTYPE W !,$E(BPREC,1,255) Q
+ I (",1,3,4,9,10,")[(","_BPRTYPE_",") W !,$E(BPREC,1,255) Q
  W !,$G(BPREC)
  Q
  ;
- ;Print Excel Header
+ ;Print Excel Header - was moved to BPSRPT8A
  ;
-HDR(BPRTYPE) ;
- ;
- ;Check if header already printed
- I $G(BPSDATA) Q
- S BPSDATA=1
- ;
- ;Division
- W !,"DIVISION",U
- ;
- I BPRTYPE'=5,BPRTYPE'=6 W "INSURANCE",U
- I (",2,")[BPRTYPE W "BIN",U
- ;
- I (",5,8,")[BPRTYPE W "PATIENT NAME",U,"Pt.ID",U
- I (",1,2,3,4,7,9,")[BPRTYPE W "PATIENT",U,"Pt.ID",U
- ;
- I BPRTYPE=1 D  Q
- . W "ELIG",U
- . W "RX#",U
- . W "REF/ECME#",U
- . W "DATE",U
- . W "VA ING. COST",U
- . W "VA DISP. FEE",U
- . W "$BILLED",U
- . W "INGREDIENT COST PAID",U
- . W "DISPENSING FEE PAID",U
- . W "PATIENT RESP (INS)",U
- . W "$INS RESPONSE",U
- . W "$COLLECT",U
- . W "DRUG",U
- . W "NDC",U
- . W "RELEASED",U
- . W "LOCATION",U
- . W "TYPE",U
- . W "STATUS",U
- . W "REJECTED",U
- . W "BILL#",U
- . W "COB"
- ;
- I BPRTYPE=4 D  Q
- . W "ELIG",U
- . W "RX#",U
- . W "REF/ECME#",U
- . W "DATE",U
- . W "VA ING. COST",U
- . W "VA DISP. FEE",U
- . W "$BILLED",U
- . W "ING. COST PAID",U
- . W "DIS. FEE PAID",U
- . W "PATIENT RESP (INS)",U
- . W "$INS RESPONSE",U
- . W "$COLLECT",U
- . W "DRUG",U
- . W "NDC",U
- . W "RELEASED",U
- . W "LOCATION",U
- . W "TYPE",U
- . W "STATUS",U
- . W "COB",U
- . W "REJECTED",U
- . W "REVERSAL METHOD",U
- . W "RETURN STATUS",U
- . W "REASON"
- ;
- I BPRTYPE=2 D  Q
- . W "ELIG",U
- . W "RX#",U
- . W "REF/ECME#",U
- . W "DATE",U
- . W "RELEASED",U
- . W "LOCATION",U
- . W "TYPE",U
- . W "STATUS",U
- . W "COB",U
- . W "OPEN/CLOSED",U
- . W "GROUP ID",U
- . W "VA ING. COST",U
- . W "VA DISP. FEE",U
- . W "$BILLED",U
- . W "QTY",U
- . W "NDC#",U
- . W "DRUG",U
- . W "PRESCRIBER ID",U
- . W "PRESCRIBER",U
- . W "MULT REJ",U
- . W "REJECT CODE",U
- . W "REJECT EXPLANATION"
- ;
- I BPRTYPE=3 D  Q
- . W "RX#",U
- . W "REF/ECME#",U
- . W "DATE",U
- . W "VA ING. COST",U
- . W "VA DISP. FEE",U
- . W "$BILLED",U
- . W "INGREDIENT COST PAID",U
- . W "DISPENSING FEE PAID",U
- . W "PATIENT RESP (INS)",U
- . W "$INS RESPONSE",U
- . W "DRUG",U
- . W "NDC",U
- . W "LOCATION",U
- . W "TYPE",U
- . W "STATUS",U
- . W "COB",U
- . W "ELIG",U
- . W "REJECTED"
- ;
- I BPRTYPE=5 D  Q
- . W "RX#",U
- . W "REF/ECME#",U
- . W "COMPLETED",U
- . W "TRANS TYPE",U
- . W "PAYER RESPONSE",U
- . W "RX COB",U
- . W "DRUG",U
- . W "NDC",U
- . W "FILL LOCATION",U
- . W "FILL TYPE",U
- . W "STATUS",U
- . W "REJECTED",U
- . W "INSURANCE",U
- . W "ELAP TIME IN SECONDS"
- ;
- I BPRTYPE=6 D  Q
- .W "DATE",U
- .W "#CLAIMS",U
- .W "AMOUNT SUBMITTED",U
- .W "RETURNED REJECTED",U
- .W "RETURNED PAYABLE",U
- .W "AMOUNT TO RECEIVE",U
- .W "DIFFERENCE"
- ;
- I BPRTYPE=7 D  Q
- . W "ELIG",U
- . W "RX#",U
- . W "REF/ECME#",U
- . W "LOCATION",U
- . W "TYPE",U
- . W "STATUS",U
- . W "REJECTED",U
- . W "DRUG",U
- . W "NDC",U
- . W "GROUP ID",U
- . W "$BILLED",U
- . W "CLOSE DATE/TIME",U
- . W "CLOSED BY",U
- . W "CLOSE REASON",U
- . W "CLAIM ID",U
- . W "MULTI REJ",U
- . W "REJECT CODE",U
- . W "REJECT EXPLANATION"
- ;
- I BPRTYPE=8 D  Q
- . W "RX#",U
- . W "REF/ECME#",U
- . W "DATE",U
- . W "$BILLED",U
- . W "$INS RESPONSE",U
- . W "$COLLECT",U
- . W "DRUG",U
- . W "RX INFO",U
- . W "INS GROUP#",U
- . W "INS GROUP NAME",U
- . W "BILL#",U
- . W "$PROVIDER NETWORK",U
- . W "$BRAND DRUG",U
- . W "$NON-PREF FORM",U
- . W "$BRAND NON-PREF FORM",U
- . W "$COVERAGE GAP",U
- . W "$HEALTH ASST",U
- . W "$SPEND ACCT REMAINING",U
- ;
- I BPRTYPE=9 D  Q
- . W "ELIG",U
- . W "RX#",U
- . W "REF",U
- . W "DATE",U
- . W "$DRUG COST",U
- . W "DRUG",U
- . W "NDC",U
- . W "RELEASED ON",U
- . W "LOCATION",U
- . W "STATUS",U
- . W "NON-BILLABLE STATUS REASON"
- Q
  ;return RX COB as the 1st letter of the RX COB indicator
 RXCOB(BPPSEQ) ;
  Q $S(BPPSEQ=1:"p",BPPSEQ=2:"s",1:"")

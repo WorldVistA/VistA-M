@@ -1,5 +1,5 @@
-PXRMEUT1 ; SLC/PKR - General extract utilities ;07/14/2009
- ;;2.0;CLINICAL REMINDERS;**4,6,12**;Feb 04, 2005;Build 73
+PXRMEUT1 ; SLC/PKR - General extract utilities ;09/01/2021
+ ;;2.0;CLINICAL REMINDERS;**4,6,12,65**;Feb 04, 2005;Build 438
  ;=================================================
 CLDATES ;Cleanup entries in ^TMP("PXRMDDOC",$J) before making date checks.
  ;For drug findings consolidate PS(55, PS(55NVA, and PSRX( back to
@@ -24,7 +24,7 @@ CLDATES ;Cleanup entries in ^TMP("PXRMDDOC",$J) before making date checks.
  ;
  ;=================================================
 DAYSIM(FMDATE) ;Given a FileMan date return the number of days in the month.
- N MONTH
+ N DAYS,MONTH
  S MONTH=$E(FMDATE,4,5)
  S DAYS=$S(MONTH="01":31,MONTH="02":28,MONTH="03":31,MONTH="04":30,MONTH="05":31,MONTH="06":30,MONTH="07":31,MONTH="08":31,MONTH="09":30,MONTH="10":31,MONTH="11":30,MONTH="12":31,1:"")
  I MONTH="02" D
@@ -104,10 +104,12 @@ FMULPRT(FARR,PXRMFVPL,NL,OUTPUT) ;Print the finding multiple
  .. S DERROR=1
  .. S NL=NL+1,OUTPUT(NL)="  There is a consistency problem with the beginning date!"
  .. S NL=NL+1,OUTPUT(NL)="  Date used to build the list was: "_$$FMTE^XLFDT($P(TEMP,U,1),"5Z")
+ .. S NL=NL+1,OUTPUT(NL)="  BDT for the list was: "_$$FMTE^XLFDT(BDT,"5Z")
  . I $P(TEMP,U,2)'=EDT D
  .. S DERROR=1
  .. S NL=NL+1,OUTPUT(NL)="  There is a consistency problem with the ending date!"
  .. S NL=NL+1,OUTPUT(NL)="  Date used to build the list was: "_$$FMTE^XLFDT($P(TEMP,U,2),"5Z")
+ .. S NL=NL+1,OUTPUT(NL)="  EDT for the list was: "_$$FMTE^XLFDT(EDT,"5Z")
  . I DERROR D
  .. S NL=NL+1,OUTPUT(NL)="  Please notify the developers."
  .. ;S NL=NL+1,OUTPUT(NL)="  Please enter a Remedy ticket."

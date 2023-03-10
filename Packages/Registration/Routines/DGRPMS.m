@@ -1,5 +1,5 @@
-DGRPMS ;ALB/BRM,LBD,DJS - MILITARY SERVICE APIS ;11 Oct 2017  11:14am
- ;;5.3;Registration;**451,626,646,673,689,688,797,935**;Aug 13, 1993;Build 53
+DGRPMS ;ALB/BRM,LBD,DJS,ARF - MILITARY SERVICE APIS ;11 Oct 2017  11:14am
+ ;;5.3;Registration;**451,626,646,673,689,688,797,935,1044**;Aug 13, 1993;Build 13
  ;
 VALCON1(DFN,IEN,CDATE,FRTO) ; Valid conflict input for OIF/OEF/UNKNOWN OEF/OIF?
  ; Need to send the ien of the multiple as well as the DFN and
@@ -97,8 +97,8 @@ BRANCH(DGCOMBR) ;branches of service that require WWII service dates
 VALCOMP(DFN,CODE,DGEPI) ; Verify component is consistent with the corresponding
  ;  branch of service  Also, branch of service must be entered before
  ;  component.
- ;  ACTIVATED NATIONAL GUARD (G) only valid for ARMY or AIR FORCE branch
- ;  ACTIVATED RESERVE (V) only valid for ARMY, AIR FORCE, MARINES, NAVY
+ ;  ACTIVATED NATIONAL GUARD (G) only valid for ARMY or AIR FORCE or SPACE FORCE branch
+ ;  ACTIVATED RESERVE (V) only valid for ARMY, AIR FORCE, SPACE FORCE MARINES, NAVY
  ;                    or COAST GUARD branch
  ; DFN = ien of patient in file 2
  ; DGEPI = episode # to check (1=LAST, 2=NTL, 3=NNTL)
@@ -110,8 +110,9 @@ VALCOMP(DFN,CODE,DGEPI) ; Verify component is consistent with the corresponding
  I $G(DGEPI)["MSE" S Z=+$P($G(^DPT(DFN,.3216,+DGEPI,0)),U,3)
  E  S Z=+$P($G(^DPT(DFN,.32)),U,DGEPI*5)
  I 'Z Q 0  ; Require bos
- I CODE="R" Q 1  ; Regular is valid for all
- Q:Z=1!(Z=2) 1  ; Army (1)/air force (2) valid for guard and reserves
+ I CODE="R" Q 1  ; Regular is valid for all 
+ ;DG*5.3*1044-SPACE FORCE #15 added to next line of code
+ Q:(Z=1)!(Z=2)!(Z=15) 1  ; Army (1)/air force (2)/space force (15) valid for guard and reserves
  ; reserves also include navy (3), marines (4), coast guard (5)
  I CODE="V" Q $S(Z>2&(Z<6):1,1:0)
  ;

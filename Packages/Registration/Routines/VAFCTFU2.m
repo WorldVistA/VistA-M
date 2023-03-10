@@ -1,5 +1,5 @@
-VAFCTFU2 ;BHM/CMC,CKN-Utilities for the Treating Facility file 391.91, CONTINUED ; 5/23/12 6:25pm
- ;;5.3;Registration;**821,856,863,981,1026**;Aug 13, 1993;Build 3
+VAFCTFU2 ;BHM/CMC,CKN-Utilities for the Treating Facility file 391.91, CONTINUED ;2/2/21  10:41
+ ;;5.3;Registration;**821,856,863,981,1026,1042**;Aug 13, 1993;Build 5
 TFL(LIST,PT) ;for this PT [patient] (either DFN, ICN or EDIPI) return the list of treating facilities
  ; CALLED FROM RPC VAFC LOCAL GET CORRESPONDINGIDS
  ; PT values -->
@@ -36,7 +36,26 @@ TFL(LIST,PT) ;for this PT [patient] (either DFN, ICN or EDIPI) return the list o
  ;*1026 ALLOW ANY ID TO BE USED FOR LOOKUP IN TF LIST TO FIND THE FULL ID LIST
  I ID["V",TYPE="NI",ASSIGN="USVHA",SITE="200M" S ICN=ID ;ICN is lookup value
  S IEN=$O(^DGCN(391.91,"AISS",ID,ASSIGN,TYPE,SITEIEN,0))
+ ;
+ ;**1042, VAMPI-8215 (dri) - retrieve tf's from new person tf file (#391.92)
+ ;if id passed doesn't exist in tf file (#391.91) and the icn (if passed) is not
+ ;known to the patient file (#2), look in new person tf file (#391.92) for tf's
+ ;if no list of new person tf's returned continue on to look at #391.91
+ I IEN=""&($$GETDFN^MPIF001($G(ICN))<0) D  I $D(LIST) Q
+ .N FAC,SOURCEID,IDTYP,AA,IDENSTAT,CTR,NPTFIEN,NPIEN,VAFCARR
+ .S CTR=1
+ .I $D(^DGCN(391.92,"AISS",ID,TYPE,ASSIGN,+$$IEN^XUAF4(SITE))) S NPTFIEN=+$O(^DGCN(391.92,"AISS",ID,TYPE,ASSIGN,$$IEN^XUAF4(SITE),0)),NPIEN=$$GET1^DIQ(391.92,NPTFIEN_",",.01,"I") I NPIEN D
+ ..S NPTFIEN=0 F  S NPTFIEN=$O(^DGCN(391.92,"B",NPIEN,NPTFIEN)) Q:'NPTFIEN  D
+ ...D GETS^DIQ(391.92,NPTFIEN_",",".02;.03;.04;.05;.06","I","VAFCARR")
+ ...S FAC=VAFCARR(391.92,NPTFIEN_",",.02,"I")
+ ...S SOURCEID=VAFCARR(391.92,NPTFIEN_",",.03,"I")
+ ...S IDTYP=VAFCARR(391.92,NPTFIEN_",",.04,"I")
+ ...S AA=VAFCARR(391.92,NPTFIEN_",",.05,"I")
+ ...S IDENSTAT=$S($D(^DGCN(391.919,"ACRNR",FAC)):"C",1:VAFCARR(391.92,NPTFIEN_",",.06,"I"))
+ ...S LIST(CTR)=SOURCEID_U_IDTYP_U_AA_U_$$STA^XUAF4(FAC)_U_IDENSTAT S CTR=CTR+1
+ ;
  I IEN="",$G(ICN)="" S LIST(1)="-1^Id as '"_ID_"'"_" is not in database" Q
+ ;
  I IEN'="" S DFN=$P(^DGCN(391.91,IEN,0),"^")
  I $G(ICN)="" S ICN=$$GETICN^MPIF001(DFN)
  I $G(ICN)'="" S DFN=$$GETDFN^MPIF001(ICN)

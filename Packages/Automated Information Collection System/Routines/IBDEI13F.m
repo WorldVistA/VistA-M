@@ -1,124 +1,126 @@
-IBDEI13F ; ; 04-FEB-2020
- ;;3.0;IB ENCOUNTER FORM IMP/EXP;;FEB 04, 2020
+IBDEI13F ; ; 01-FEB-2022
+ ;;3.0;IB ENCOUNTER FORM IMP/EXP;;FEB 01, 2022
  Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,999) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
- ;;^UTILITY(U,$J,358.3,17565,1,3,0)
- ;;=3^Opioid Abuse,In Remission
- ;;^UTILITY(U,$J,358.3,17565,1,4,0)
- ;;=4^F11.11
- ;;^UTILITY(U,$J,358.3,17565,2)
- ;;=^268246
- ;;^UTILITY(U,$J,358.3,17566,0)
- ;;=F12.93^^88^893^53
- ;;^UTILITY(U,$J,358.3,17566,1,0)
+ ;;^UTILITY(U,$J,358.3,17753,1,4,0)
+ ;;=4^N94.819
+ ;;^UTILITY(U,$J,358.3,17753,2)
+ ;;=^5015924
+ ;;^UTILITY(U,$J,358.3,17754,0)
+ ;;=N94.12^^61^791^31
+ ;;^UTILITY(U,$J,358.3,17754,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,17566,1,3,0)
- ;;=3^Cannabis Use,Unspec w/ Withdrawal
- ;;^UTILITY(U,$J,358.3,17566,1,4,0)
- ;;=4^F12.93
- ;;^UTILITY(U,$J,358.3,17566,2)
- ;;=^5157302
- ;;^UTILITY(U,$J,358.3,17567,0)
- ;;=I83.019^^88^894^3
- ;;^UTILITY(U,$J,358.3,17567,1,0)
+ ;;^UTILITY(U,$J,358.3,17754,1,3,0)
+ ;;=3^Dyspareunia,Deep
+ ;;^UTILITY(U,$J,358.3,17754,1,4,0)
+ ;;=4^N94.12
+ ;;^UTILITY(U,$J,358.3,17754,2)
+ ;;=^5138974
+ ;;^UTILITY(U,$J,358.3,17755,0)
+ ;;=N94.19^^61^791^32
+ ;;^UTILITY(U,$J,358.3,17755,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,17567,1,3,0)
- ;;=3^Varicose Veins Right Lower Extrem w/ Ulcer,Unspec
- ;;^UTILITY(U,$J,358.3,17567,1,4,0)
- ;;=4^I83.019
- ;;^UTILITY(U,$J,358.3,17567,2)
- ;;=^5007979
- ;;^UTILITY(U,$J,358.3,17568,0)
- ;;=I83.219^^88^894^4
- ;;^UTILITY(U,$J,358.3,17568,1,0)
+ ;;^UTILITY(U,$J,358.3,17755,1,3,0)
+ ;;=3^Dyspareunia,Oth Spec
+ ;;^UTILITY(U,$J,358.3,17755,1,4,0)
+ ;;=4^N94.19
+ ;;^UTILITY(U,$J,358.3,17755,2)
+ ;;=^5138975
+ ;;^UTILITY(U,$J,358.3,17756,0)
+ ;;=N94.11^^61^791^33
+ ;;^UTILITY(U,$J,358.3,17756,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,17568,1,3,0)
- ;;=3^Varicose Veins Right Lower Extrem w/ Ulcer & Inflam,Unspec
- ;;^UTILITY(U,$J,358.3,17568,1,4,0)
- ;;=4^I83.219
- ;;^UTILITY(U,$J,358.3,17568,2)
- ;;=^5008003
- ;;^UTILITY(U,$J,358.3,17569,0)
- ;;=I83.029^^88^894^1
- ;;^UTILITY(U,$J,358.3,17569,1,0)
+ ;;^UTILITY(U,$J,358.3,17756,1,3,0)
+ ;;=3^Dyspareunia,Superficial
+ ;;^UTILITY(U,$J,358.3,17756,1,4,0)
+ ;;=4^N94.11
+ ;;^UTILITY(U,$J,358.3,17756,2)
+ ;;=^5138973
+ ;;^UTILITY(U,$J,358.3,17757,0)
+ ;;=N94.10^^61^791^34
+ ;;^UTILITY(U,$J,358.3,17757,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,17569,1,3,0)
- ;;=3^Varicose Veins Left Lower Extrem w/ Ulcer,Unspec
- ;;^UTILITY(U,$J,358.3,17569,1,4,0)
- ;;=4^I83.029
- ;;^UTILITY(U,$J,358.3,17569,2)
- ;;=^5007986
- ;;^UTILITY(U,$J,358.3,17570,0)
- ;;=I83.229^^88^894^2
- ;;^UTILITY(U,$J,358.3,17570,1,0)
+ ;;^UTILITY(U,$J,358.3,17757,1,3,0)
+ ;;=3^Dyspareunia,Unspec
+ ;;^UTILITY(U,$J,358.3,17757,1,4,0)
+ ;;=4^N94.10
+ ;;^UTILITY(U,$J,358.3,17757,2)
+ ;;=^5138972
+ ;;^UTILITY(U,$J,358.3,17758,0)
+ ;;=N83.292^^61^791^76
+ ;;^UTILITY(U,$J,358.3,17758,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,17570,1,3,0)
- ;;=3^Varicose Veins Left Lower Extrem w/ Ulcer & Inflam,Unspec
- ;;^UTILITY(U,$J,358.3,17570,1,4,0)
- ;;=4^I83.229
- ;;^UTILITY(U,$J,358.3,17570,2)
- ;;=^5008010
- ;;^UTILITY(U,$J,358.3,17571,0)
- ;;=B00.81^^88^895^55
- ;;^UTILITY(U,$J,358.3,17571,1,0)
+ ;;^UTILITY(U,$J,358.3,17758,1,3,0)
+ ;;=3^Ovarian Cysts,Oth,Left Side
+ ;;^UTILITY(U,$J,358.3,17758,1,4,0)
+ ;;=4^N83.292
+ ;;^UTILITY(U,$J,358.3,17758,2)
+ ;;=^5138948
+ ;;^UTILITY(U,$J,358.3,17759,0)
+ ;;=N83.291^^61^791^77
+ ;;^UTILITY(U,$J,358.3,17759,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,17571,1,3,0)
- ;;=3^Herpesviral Hepatitis
- ;;^UTILITY(U,$J,358.3,17571,1,4,0)
- ;;=4^B00.81
- ;;^UTILITY(U,$J,358.3,17571,2)
- ;;=^5000478
- ;;^UTILITY(U,$J,358.3,17572,0)
- ;;=D25.9^^88^895^64
- ;;^UTILITY(U,$J,358.3,17572,1,0)
+ ;;^UTILITY(U,$J,358.3,17759,1,3,0)
+ ;;=3^Ovarian Cysts,Oth,Right Side
+ ;;^UTILITY(U,$J,358.3,17759,1,4,0)
+ ;;=4^N83.291
+ ;;^UTILITY(U,$J,358.3,17759,2)
+ ;;=^5138947
+ ;;^UTILITY(U,$J,358.3,17760,0)
+ ;;=N83.202^^61^791^78
+ ;;^UTILITY(U,$J,358.3,17760,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,17572,1,3,0)
- ;;=3^Leiomyoma of Uterus,Unspec
- ;;^UTILITY(U,$J,358.3,17572,1,4,0)
- ;;=4^D25.9
- ;;^UTILITY(U,$J,358.3,17572,2)
- ;;=^5002081
- ;;^UTILITY(U,$J,358.3,17573,0)
- ;;=F52.9^^88^895^103
- ;;^UTILITY(U,$J,358.3,17573,1,0)
+ ;;^UTILITY(U,$J,358.3,17760,1,3,0)
+ ;;=3^Ovarian Cysts,Unspec,Left Side
+ ;;^UTILITY(U,$J,358.3,17760,1,4,0)
+ ;;=4^N83.202
+ ;;^UTILITY(U,$J,358.3,17760,2)
+ ;;=^5138945
+ ;;^UTILITY(U,$J,358.3,17761,0)
+ ;;=N83.201^^61^791^79
+ ;;^UTILITY(U,$J,358.3,17761,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,17573,1,3,0)
- ;;=3^Sexual Dysfnct Not d/t a Sub/Known Physiol Cond,Unspec
- ;;^UTILITY(U,$J,358.3,17573,1,4,0)
- ;;=4^F52.9
- ;;^UTILITY(U,$J,358.3,17573,2)
- ;;=^5003625
- ;;^UTILITY(U,$J,358.3,17574,0)
- ;;=R37.^^88^895^104
- ;;^UTILITY(U,$J,358.3,17574,1,0)
+ ;;^UTILITY(U,$J,358.3,17761,1,3,0)
+ ;;=3^Ovarian Cysts,Unspec,Right Side
+ ;;^UTILITY(U,$J,358.3,17761,1,4,0)
+ ;;=4^N83.201
+ ;;^UTILITY(U,$J,358.3,17761,2)
+ ;;=^5138944
+ ;;^UTILITY(U,$J,358.3,17762,0)
+ ;;=S31.000A^^61^792^3
+ ;;^UTILITY(U,$J,358.3,17762,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,17574,1,3,0)
- ;;=3^Sexual Dysfunction,Unspec
- ;;^UTILITY(U,$J,358.3,17574,1,4,0)
- ;;=4^R37.
- ;;^UTILITY(U,$J,358.3,17574,2)
- ;;=^5019339
- ;;^UTILITY(U,$J,358.3,17575,0)
- ;;=N60.01^^88^895^107
- ;;^UTILITY(U,$J,358.3,17575,1,0)
+ ;;^UTILITY(U,$J,358.3,17762,1,3,0)
+ ;;=3^Open Wnd Low Back/Pelvis w/o Penet Retroperiton,Init,Unspec
+ ;;^UTILITY(U,$J,358.3,17762,1,4,0)
+ ;;=4^S31.000A
+ ;;^UTILITY(U,$J,358.3,17762,2)
+ ;;=^5023993
+ ;;^UTILITY(U,$J,358.3,17763,0)
+ ;;=S31.010A^^61^792^1
+ ;;^UTILITY(U,$J,358.3,17763,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,17575,1,3,0)
- ;;=3^Solitary Cyst of Right Breast
- ;;^UTILITY(U,$J,358.3,17575,1,4,0)
- ;;=4^N60.01
- ;;^UTILITY(U,$J,358.3,17575,2)
- ;;=^5015770
- ;;^UTILITY(U,$J,358.3,17576,0)
- ;;=N60.02^^88^895^106
- ;;^UTILITY(U,$J,358.3,17576,1,0)
+ ;;^UTILITY(U,$J,358.3,17763,1,3,0)
+ ;;=3^Laceration w/o FB Low Back/Pelvis w/o Penet Retroperiton,Init
+ ;;^UTILITY(U,$J,358.3,17763,1,4,0)
+ ;;=4^S31.010A
+ ;;^UTILITY(U,$J,358.3,17763,2)
+ ;;=^5023999
+ ;;^UTILITY(U,$J,358.3,17764,0)
+ ;;=L08.89^^61^792^2
+ ;;^UTILITY(U,$J,358.3,17764,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,17576,1,3,0)
- ;;=3^Solitary Cyst of Left Breast
- ;;^UTILITY(U,$J,358.3,17576,1,4,0)
- ;;=4^N60.02
- ;;^UTILITY(U,$J,358.3,17576,2)
- ;;=^5015771
- ;;^UTILITY(U,$J,358.3,17577,0)
- ;;=N60.09^^88^895^108
- ;;^UTILITY(U,$J,358.3,17577,1,0)
+ ;;^UTILITY(U,$J,358.3,17764,1,3,0)
+ ;;=3^Local Infections Skin/Subcutaneous Tissue,Oth Spec
+ ;;^UTILITY(U,$J,358.3,17764,1,4,0)
+ ;;=4^L08.89
+ ;;^UTILITY(U,$J,358.3,17764,2)
+ ;;=^5009081
+ ;;^UTILITY(U,$J,358.3,17765,0)
+ ;;=S91.002A^^61^792^4
+ ;;^UTILITY(U,$J,358.3,17765,1,0)
  ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,17765,1,3,0)
+ ;;=3^Open Wound,Left Ankle,Unspec
+ ;;^UTILITY(U,$J,358.3,17765,1,4,0)
+ ;;=4^S91.002A

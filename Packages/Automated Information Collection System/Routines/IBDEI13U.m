@@ -1,120 +1,116 @@
-IBDEI13U ; ; 04-FEB-2020
- ;;3.0;IB ENCOUNTER FORM IMP/EXP;;FEB 04, 2020
+IBDEI13U ; ; 01-FEB-2022
+ ;;3.0;IB ENCOUNTER FORM IMP/EXP;;FEB 01, 2022
  Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,999) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
- ;;^UTILITY(U,$J,358.3,17750,0)
- ;;=R40.2313^^88^897^14
- ;;^UTILITY(U,$J,358.3,17750,1,0)
+ ;;^UTILITY(U,$J,358.3,17930,1,4,0)
+ ;;=4^Y36.200D
+ ;;^UTILITY(U,$J,358.3,17930,2)
+ ;;=^5061608
+ ;;^UTILITY(U,$J,358.3,17931,0)
+ ;;=Y36.300A^^61^794^135
+ ;;^UTILITY(U,$J,358.3,17931,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,17750,1,3,0)
- ;;=3^Coma Scale,Best Motor Resp,None,at Hospital Admission
- ;;^UTILITY(U,$J,358.3,17750,1,4,0)
- ;;=4^R40.2313
- ;;^UTILITY(U,$J,358.3,17750,2)
- ;;=^5019403
- ;;^UTILITY(U,$J,358.3,17751,0)
- ;;=R40.2312^^88^897^12
- ;;^UTILITY(U,$J,358.3,17751,1,0)
+ ;;^UTILITY(U,$J,358.3,17931,1,3,0)
+ ;;=3^War Op Inv Unspec Fire/Conflagr/Hot Subst,Milt,Init Encntr
+ ;;^UTILITY(U,$J,358.3,17931,1,4,0)
+ ;;=4^Y36.300A
+ ;;^UTILITY(U,$J,358.3,17931,2)
+ ;;=^5061661
+ ;;^UTILITY(U,$J,358.3,17932,0)
+ ;;=Y36.300D^^61^794^136
+ ;;^UTILITY(U,$J,358.3,17932,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,17751,1,3,0)
- ;;=3^Coma Scale,Best Motor Resp,None,Emerg Dept
- ;;^UTILITY(U,$J,358.3,17751,1,4,0)
- ;;=4^R40.2312
- ;;^UTILITY(U,$J,358.3,17751,2)
- ;;=^5019402
- ;;^UTILITY(U,$J,358.3,17752,0)
- ;;=R40.2311^^88^897^15
- ;;^UTILITY(U,$J,358.3,17752,1,0)
+ ;;^UTILITY(U,$J,358.3,17932,1,3,0)
+ ;;=3^War Op Inv Unspec Fire/Conflagr/Hot Subst,Milt,Subs Encntr
+ ;;^UTILITY(U,$J,358.3,17932,1,4,0)
+ ;;=4^Y36.300D
+ ;;^UTILITY(U,$J,358.3,17932,2)
+ ;;=^5061662
+ ;;^UTILITY(U,$J,358.3,17933,0)
+ ;;=Y36.410A^^61^794^130
+ ;;^UTILITY(U,$J,358.3,17933,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,17752,1,3,0)
- ;;=3^Coma Scale,Best Motor Resp,None,in the Field
- ;;^UTILITY(U,$J,358.3,17752,1,4,0)
- ;;=4^R40.2311
- ;;^UTILITY(U,$J,358.3,17752,2)
- ;;=^5019401
- ;;^UTILITY(U,$J,358.3,17753,0)
- ;;=R40.2310^^88^897^13
- ;;^UTILITY(U,$J,358.3,17753,1,0)
+ ;;^UTILITY(U,$J,358.3,17933,1,3,0)
+ ;;=3^War Op Inv Rubber Bullets,Milt,Init Encntr
+ ;;^UTILITY(U,$J,358.3,17933,1,4,0)
+ ;;=4^Y36.410A
+ ;;^UTILITY(U,$J,358.3,17933,2)
+ ;;=^5061691
+ ;;^UTILITY(U,$J,358.3,17934,0)
+ ;;=Y36.410D^^61^794^132
+ ;;^UTILITY(U,$J,358.3,17934,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,17753,1,3,0)
- ;;=3^Coma Scale,Best Motor Resp,None,Unspec Time
- ;;^UTILITY(U,$J,358.3,17753,1,4,0)
- ;;=4^R40.2310
- ;;^UTILITY(U,$J,358.3,17753,2)
- ;;=^5019400
- ;;^UTILITY(U,$J,358.3,17754,0)
- ;;=R40.4^^88^897^38
- ;;^UTILITY(U,$J,358.3,17754,1,0)
+ ;;^UTILITY(U,$J,358.3,17934,1,3,0)
+ ;;=3^War Op Inv Rubber Bullets,Milt,Subs Encntr
+ ;;^UTILITY(U,$J,358.3,17934,1,4,0)
+ ;;=4^Y36.410D
+ ;;^UTILITY(U,$J,358.3,17934,2)
+ ;;=^5061692
+ ;;^UTILITY(U,$J,358.3,17935,0)
+ ;;=Y36.6X0A^^61^794^122
+ ;;^UTILITY(U,$J,358.3,17935,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,17754,1,3,0)
- ;;=3^Transient Alteration of Awareness
- ;;^UTILITY(U,$J,358.3,17754,1,4,0)
- ;;=4^R40.4
- ;;^UTILITY(U,$J,358.3,17754,2)
- ;;=^5019435
- ;;^UTILITY(U,$J,358.3,17755,0)
- ;;=V00.811A^^88^898^50
- ;;^UTILITY(U,$J,358.3,17755,1,0)
+ ;;^UTILITY(U,$J,358.3,17935,1,3,0)
+ ;;=3^War Op Inv Biological Weapons,Milt,Init Encntr
+ ;;^UTILITY(U,$J,358.3,17935,1,4,0)
+ ;;=4^Y36.6X0A
+ ;;^UTILITY(U,$J,358.3,17935,2)
+ ;;=^5061775
+ ;;^UTILITY(U,$J,358.3,17936,0)
+ ;;=Y36.6X0D^^61^794^124
+ ;;^UTILITY(U,$J,358.3,17936,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,17755,1,3,0)
- ;;=3^Fall from Moving Wheelchair (pwered),Init Encntr
- ;;^UTILITY(U,$J,358.3,17755,1,4,0)
- ;;=4^V00.811A
- ;;^UTILITY(U,$J,358.3,17755,2)
- ;;=^5055937
- ;;^UTILITY(U,$J,358.3,17756,0)
- ;;=V00.811D^^88^898^51
- ;;^UTILITY(U,$J,358.3,17756,1,0)
+ ;;^UTILITY(U,$J,358.3,17936,1,3,0)
+ ;;=3^War Op Inv Biological Weapons,Milt,Subs Encntr
+ ;;^UTILITY(U,$J,358.3,17936,1,4,0)
+ ;;=4^Y36.6X0D
+ ;;^UTILITY(U,$J,358.3,17936,2)
+ ;;=^5061776
+ ;;^UTILITY(U,$J,358.3,17937,0)
+ ;;=Y36.7X0A^^61^794^137
+ ;;^UTILITY(U,$J,358.3,17937,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,17756,1,3,0)
- ;;=3^Fall from Moving Wheelchair (pwered),Subs Encntr
- ;;^UTILITY(U,$J,358.3,17756,1,4,0)
- ;;=4^V00.811D
- ;;^UTILITY(U,$J,358.3,17756,2)
- ;;=^5055938
- ;;^UTILITY(U,$J,358.3,17757,0)
- ;;=V00.812A^^88^898^142
- ;;^UTILITY(U,$J,358.3,17757,1,0)
+ ;;^UTILITY(U,$J,358.3,17937,1,3,0)
+ ;;=3^War Op w/ Chem Weapons/Unconvtl Warfare,Milt,Init Encntr
+ ;;^UTILITY(U,$J,358.3,17937,1,4,0)
+ ;;=4^Y36.7X0A
+ ;;^UTILITY(U,$J,358.3,17937,2)
+ ;;=^5061781
+ ;;^UTILITY(U,$J,358.3,17938,0)
+ ;;=Y36.7X0D^^61^794^138
+ ;;^UTILITY(U,$J,358.3,17938,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,17757,1,3,0)
- ;;=3^Wheelchair Colliding w/ Stationary Obj,Init Encntr
- ;;^UTILITY(U,$J,358.3,17757,1,4,0)
- ;;=4^V00.812A
- ;;^UTILITY(U,$J,358.3,17757,2)
- ;;=^5055940
- ;;^UTILITY(U,$J,358.3,17758,0)
- ;;=V00.812D^^88^898^143
- ;;^UTILITY(U,$J,358.3,17758,1,0)
+ ;;^UTILITY(U,$J,358.3,17938,1,3,0)
+ ;;=3^War Op w/ Chem Weapons/Unconvtl Warfare,Milt,Subs Encntr
+ ;;^UTILITY(U,$J,358.3,17938,1,4,0)
+ ;;=4^Y36.7X0D
+ ;;^UTILITY(U,$J,358.3,17938,2)
+ ;;=^5061782
+ ;;^UTILITY(U,$J,358.3,17939,0)
+ ;;=Y36.810A^^61^794^27
+ ;;^UTILITY(U,$J,358.3,17939,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,17758,1,3,0)
- ;;=3^Wheelchair Colliding w/ Stationary Obj,Subs Encntr
- ;;^UTILITY(U,$J,358.3,17758,1,4,0)
- ;;=4^V00.812D
- ;;^UTILITY(U,$J,358.3,17758,2)
- ;;=^5055941
- ;;^UTILITY(U,$J,358.3,17759,0)
- ;;=V00.818A^^88^898^140
- ;;^UTILITY(U,$J,358.3,17759,1,0)
+ ;;^UTILITY(U,$J,358.3,17939,1,3,0)
+ ;;=3^Explosn of Mine Placed During War Op but Expld Aft,Milt,Init Encntr
+ ;;^UTILITY(U,$J,358.3,17939,1,4,0)
+ ;;=4^Y36.810A
+ ;;^UTILITY(U,$J,358.3,17939,2)
+ ;;=^5061787
+ ;;^UTILITY(U,$J,358.3,17940,0)
+ ;;=Y36.810D^^61^794^28
+ ;;^UTILITY(U,$J,358.3,17940,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,17759,1,3,0)
- ;;=3^Wheelchair Accident NEC,Init Encntr
- ;;^UTILITY(U,$J,358.3,17759,1,4,0)
- ;;=4^V00.818A
- ;;^UTILITY(U,$J,358.3,17759,2)
- ;;=^5055943
- ;;^UTILITY(U,$J,358.3,17760,0)
- ;;=V00.818D^^88^898^141
- ;;^UTILITY(U,$J,358.3,17760,1,0)
+ ;;^UTILITY(U,$J,358.3,17940,1,3,0)
+ ;;=3^Explosn of Mine Placed During War Op but Expld Aft,Milt,Subs Encntr
+ ;;^UTILITY(U,$J,358.3,17940,1,4,0)
+ ;;=4^Y36.810D
+ ;;^UTILITY(U,$J,358.3,17940,2)
+ ;;=^5061788
+ ;;^UTILITY(U,$J,358.3,17941,0)
+ ;;=Y36.820A^^61^794^24
+ ;;^UTILITY(U,$J,358.3,17941,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,17760,1,3,0)
- ;;=3^Wheelchair Accident NEC,Subs Encntr
- ;;^UTILITY(U,$J,358.3,17760,1,4,0)
- ;;=4^V00.818D
- ;;^UTILITY(U,$J,358.3,17760,2)
- ;;=^5055944
- ;;^UTILITY(U,$J,358.3,17761,0)
- ;;=V00.831A^^88^898^48
- ;;^UTILITY(U,$J,358.3,17761,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,17761,1,3,0)
- ;;=3^Fall from Mobility Scooter,Init Encntr
+ ;;^UTILITY(U,$J,358.3,17941,1,3,0)
+ ;;=3^Explosn of Bomb Placed During War Op But Expld Aft,Milt,Init Encntr
+ ;;^UTILITY(U,$J,358.3,17941,1,4,0)
+ ;;=4^Y36.820A

@@ -1,26 +1,6 @@
 SDHLAPT2 ;MS/PB - VISTA SCHEDULING RPCS ;Nov 14, 2014
- ;;5.3;Scheduling;**704**;Nov 14, 2018;Build 64
+ ;;5.3;Scheduling;**704,773,810**;Nov 14, 2018;Build 3
  ;
- Q
-PROVSITE(X) ;
- N PROVAPT
- M PROVAPT=X
- Q:'$D(PROVAPT)
- N SDECY,SDECSTART,SDECEND,DFN,SDECRES,SDECLEN,SDECNOTE,SDECATID,SDECCR,SDMRTC,SDDDT,SDREQBY,SDLAB,PROVIEN,SDID,SDAPTYP,SDSVCP,SDSVCPR,SDCL,SDEKG,SDXRAY,APPTYPE,EESTAT,OVB,SDPARENT,SDEL
- S (SDECY,SDECSTART,SDECEND,DFN,SDECRES,SDECLEN,SDECNOTE,SDECATID,SDECCR,SDMRTC,SDDDT,SDREQBY,SDLAB,PROVIEN,SDID,SDAPTYP,SDSVCP,SDSVCPR,SDCL,SDEKG,SDXRAY,APPTYPE,EESTAT,OVB,SDPARENT,SDEL)=""
- S XX=0 F  S XX=$O(PROVAPT(XX)) Q:XX'>0  D
- . N STM,SEG
- . I $P(SEG,"|")="SCH" D PARSESEG^SDHL7APU(SEG,.SCH,.HL) D
- . . S TM=$G(SCH(11,1,4)),STM=$P(TM,":",1,2)_":00Z",SDECLEN=$G(SEG,9)
- . . S SDECATID=$G(SCH,6),SDECCR=$G(SEG(6,1,2))
- . . S FLMNFMT=$$CONVTIME^SDHL7APU(STM),TMPSTART=FLMNFMT,SDECSTART=$$FMTE^XLFDT(FLMNFMT),SDECEND=$$FMADD^XLFDT(FLMNFMT,,,SDECLEN,0)
- . . ;I $P(PROVAPT(XX+1),"|")="NTE" S SDECNOTE=$P($G(PROVAPT(XX+1)),"|",4)
- . . ;S MSGARY("CNCLRSN")=$G(SCH(6,1,2))
- . . ;S MSGARY("CANCODE")=$G(SCH(6,1,4))
- . . ;S MSGARY("CANREMARKS")=$G(SCH(6,1,5))
- . I $P(SEG,"|")="AIL" D AIL
- S OVB=1,SDEL=""
- D APPADD^SDEC07(.SDECY,SDECSTART,SDECEND,DFN,SDECRES,SDECLEN,SDECNOTE,SDECATID,SDECCR,SDMRTC,SDDDT,SDREQBY,SDLAB,PROVIEN,SDID,SDAPTYP,SDSVCP,SDSVCPR,SDCL,SDEKG,SDXRAY,APPTYPE,EESTAT,OVB,SDPARENT,SDEL) ;ADD NEW APPOINTMENT
  Q
 AIL ;
  D PARSESEG^SDHL7APU(SEG,.AIL,.HL)
@@ -39,30 +19,19 @@ AIL ;
  ;Get parent rtc order if it is a multi appointment rtc
  S:$G(AIL(1,4,1,2))="A" SDAPTYP="A|"
  I $P(PROVAPT(XX+1),"|")="NTE" S SDECNOTE=$P($G(PROVAPT(XX+1)),"|",4)
- ;
  Q
-NEWTIME ;
+ ;
+NEWTIME  ;Adjust time for intrafacility appointment
  N ST1,ST12
- S ST12=$P(SDTMPHL(1),"|",12)
- S ST1=$P(ST12,"^",4) ;2019-02-19T19:00
- S ST1=$TR(ST1,"-",""),ST1=$TR(ST1,"T",""),ST1=$TR(ST1,":",""),ST1=+ST1
- S TZONE=$$GET1^DIQ(4.3,"1,",1,"I"),DIFF=$$GET1^DIQ(4.4,$G(TZONE)_",",2,"E")*(-1)
- S ST1=$$HL7TFM^XLFDT(ST1,"U"),ST1=$$FMADD^XLFDT(ST1,,-$G(DIFF),5)
- S ST1=$$FMTHL7^XLFDT(ST1)
- S ST1=$$FMTE^XLFDT(ST1)
- S ST1=$E(ST1,1,4)_"-"_$E(ST1,5,6)_"-"_$E(ST1,7,8)_"T"_$E(ST1,9,10)_":"_$E(ST1,11,12)_":"_$E(ST1,13,14)_"Z"
+ S ST12=$P(SDTMPHL(1),"|",12),ST1=$P(ST12,"^",4)
+ S INST=$$INST^SDTMPHLA(AIL(2,3,1,1))
+ S ST1=$$JSONTFM(ST1,INST)
+ S ST1=$$FMADD^XLFDT(ST1,,,5) ;Add 5 minutes
+ S ST1=$$TMCONV^SDTMPHLA(ST1,INST)
  S $P(ST12,"^",4)=$G(ST1)
  S $P(SDTMPHL(1),"|",12)=$G(ST12)
  S $P(SDTMPHL(5),"|",5)=$P(ST12,"^",4)
  Q
- ;
-TMCONV(X) ;
- ;convert time to Zulu timezone
- N TZONE,DIFF,UTC,UTC1,UTC2
- S TZONE=$$GET1^DIQ(4.3,"1,",1,"I"),DIFF=$$GET1^DIQ(4.4,$G(TZONE)_",",2,"E")*(-1)
- S UTC=$$FMADD^XLFDT(X,,$G(DIFF),,),UTC2=$$FMTHL7^XLFDT(UTC)
- S UTC1=$E(UTC2,1,4)_"-"_$E(UTC2,5,6)_"-"_$E(UTC2,7,8)_"T"_$E(UTC2,9,10)_":"_$E(UTC2,11,12)_":00.000Z"
- Q UTC1
  ;
 CHKCON(DFN,SDAPTYP) ; checks if both consult ids or both rtc ids match the patient, if the consult or rts is not for the patient, reject
  Q:$G(AIL(1,3,1,4))'=$G(AIL(2,3,1,4))
@@ -91,6 +60,7 @@ CHKCON(DFN,SDAPTYP) ; checks if both consult ids or both rtc ids match the patie
  ...D SENDERR^SDHL7APU(ERR)
  ..Q
  Q
+ ;
 CHKCAN(PAT,CLINIC,DATE) ; check to see if the appointment in 44 is canceled correctly. if not cancel it
  N TIEN,DIK,DA
  Q:$G(PAT)'>0
@@ -104,3 +74,19 @@ CHKCAN(PAT,CLINIC,DATE) ; check to see if the appointment in 44 is canceled corr
  .D ^DIK
  .K DIK,DA
  Q
+ ;
+JSONTFM(DTTM,INST) ;Convert XML/JSON external time to FM format in local timezone. If zulu time, apply timezone difference.
+ ;Inputs:
+ ; DTTM = Date with time in JSON format
+ ; INST = Institution
+ ;Output:
+ ; Date and time in FileMan format with zulu difference applied if indicated
+ N DIFF,DATE,TM,SDT,ZULU,TZINST
+ S ZULU=DTTM["Z" ;is this zulu time?
+ S TZINST=$$CHKINST^SDTMPHLA(INST) ;get correct institution
+ S DATE=$P(DTTM,"T"),DATE=$TR(DATE,"-",""),DATE=DATE-17000000 ;get date
+ S TM=$P(DTTM,"T",2),TM=$P(TM,"."),TM=$TR(TM,":",""),TM=+("."_TM) ;get time
+ I TM=0 S TM=".000001" ;Add 1 second to avoid midnight problem
+ S DIFF=0 I ZULU S DIFF=$P($$UTC^DIUTC(DATE_TM,,TZINST,,1),"^",3) ;if zulu compute tz difference
+ S SDT=$$FMADD^XLFDT(DATE_TM,,$G(DIFF),0) ;add tz difference
+ Q +$E(SDT,1,13) ;get rid of 1 second and trailing zeroes

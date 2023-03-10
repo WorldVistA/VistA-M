@@ -1,7 +1,8 @@
 RORX000 ;HCIOFO/SG - DUMMY REPORT ; 9/29/03 3:51pm
- ;;1.5;CLINICAL CASE REGISTRIES;**30**;Feb 17, 2006;Build 37
+ ;;1.5;CLINICAL CASE REGISTRIES;**30,39**;Feb 17, 2006;Build 4
  ;
  ;ROR*1.5*30   OCT 2016   M FERRARESE   Changing the dispay for "Sex" to "Birth Sex" 
+ ;ROR*1.5*39   JUL 2021    M FERRARESE  Setting SSN and LAST4 to zeros
  ;
  Q
  ;

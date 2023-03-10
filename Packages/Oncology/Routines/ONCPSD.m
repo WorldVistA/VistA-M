@@ -1,5 +1,5 @@
-ONCPSD ;Hines OIFO/GWB - STAGE OF DISEASE AT DIAGNOSIS PRINT ;10/05/11
- ;;2.2;ONCOLOGY;**1,6,9,10,12**;Jul 31, 2013;Build 8
+ONCPSD ;HINES OIFO/GWB - STAGE OF DISEASE AT DIAGNOSIS PRINT ;10/05/11
+ ;;2.2;ONCOLOGY;**1,6,9,10,12,13**;Jul 31, 2013;Build 7
  ;
 PRT N DIC,DR,DA,DIQ,I,LEN,LOS,NOP,ONC,TXT,TXT1,TXT2,X
  S DIC="^ONCO(165.5,"
@@ -46,9 +46,10 @@ PRT N DIC,DR,DA,DIQ,I,LEN,LOS,NOP,ONC,TXT,TXT1,TXT2,X
  .N IEN S IEN=D0
  .W !," TNM........: " S STGIND="C" D TNMDSP^ONCSGA8U W ?41,"TNM........: " S STGIND="P" D TNMDSP^ONCSGA8U
  .W !," Stage Group: ",$P($G(^ONCO(165.5,D0,"AJCC8")),"^",5),?41,"Stage Group: ",$P($G(^ONCO(165.5,D0,"AJCC8")),"^",9)
- .W !?22,"Post-Therapy Staging",!?22,"--------------------"
- .W !?22,"TNM........: " S STGIND="T" D TNMDSP^ONCSGA8U
- .W !?22,"Stage Group: ",$P($G(^ONCO(165.5,D0,"AJCC8")),"^",13)
+ .W !!," Post-Therapy Staging (yc)",?41,"Post-Therapy Staging (yp)"
+ .W !," --------------------------",?41,"--------------------------"
+ .W !," TNM........: " S STGIND="Y" D TNMDSP^ONCSGA8U W ?41,"TNM........: " S STGIND="T" D TNMDSP^ONCSGA8U
+ .W !?41,"Stage Group: ",$P($G(^ONCO(165.5,D0,"AJCC8")),"^",13),!
  .Q
  ;
  W !," Staged By..: ",$E(ONC(165.5,D0,19),1,25),?41,"Staged By..: ",$E(ONC(165.5,D0,89),1,25)

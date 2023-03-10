@@ -1,5 +1,5 @@
-RANMUSE3 ;HISC/SWM-Nuclear Medicine Usage reports ;10/20/97  11:09
- ;;5.0;Radiology/Nuclear Medicine;**65,47**;Mar 16, 1998;Build 21
+RANMUSE3 ;HISC/SWM-Nuclear Medicine Usage reports ; Aug 20, 2020@07:23:45
+ ;;5.0;Radiology/Nuclear Medicine;**65,47,173**;Mar 16, 1998;Build 1
 PGHD ; Page Header
  I RAPG!($E(IOST,1,2)="C-") W:$Y>0 @IOF
  S RAPG=RAPG+1
@@ -19,7 +19,7 @@ COLHDS ; Column Header for summary report
  W !,RALN
  Q
 SUM S RAXIT=$$EOS^RAUTL5 Q:RAXIT
- S RA0=0
+ S RA0=0,RA2="" ;p173 RA2 previously used and has value.
 SM0 S RA0=$O(^TMP($J,"RATUNIQ",RA0)) Q:'RA0  S RA1=0
 SM2 S RA1=$O(^TMP($J,"RATUNIQ",RA0,RA1)) I RA1'=+RA1 D DIVSUM Q:RAXIT  G SM0
  ; if RA1 is alpha, then node is for division summary

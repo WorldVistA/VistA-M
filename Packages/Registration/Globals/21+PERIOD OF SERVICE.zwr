@@ -143,7 +143,7 @@ ZWR
 ^DIC(21,93,"E",8,0)=8
 ^DIC(21,93,"E",9,0)=9
 ^DIC(21,93,"E",20,0)=20
-^DIC(21,94,0)="AIR FORCE--ACTIVE DUTY^AF^C^^^P^^^Y"
+^DIC(21,94,0)="USAF, USSF - ACTIVE DUTY^AF^C^^^P^^^Y"
 ^DIC(21,94,"E",0)="^21.01P^20^4"
 ^DIC(21,94,"E",6,0)=6
 ^DIC(21,94,"E",8,0)=8
@@ -193,7 +193,8 @@ ZWR
 ^DIC(21,106,"E",8,0)=8
 ^DIC(21,106,"E",10,0)=10
 ^DIC(21,108,0)="OTHER NON-VETERANS^^T^^^^^^T"
-^DIC(21,108,"E",0)="^21.01P^23^6"
+^DIC(21,108,"E",0)="^21.01P^6^7"
+^DIC(21,108,"E",6,0)=6
 ^DIC(21,108,"E",8,0)=8
 ^DIC(21,108,"E",9,0)=9
 ^DIC(21,108,"E",13,0)=13
@@ -288,7 +289,6 @@ ZWR
 ^DIC(21,"%D",3,0)="undoubtedly have a negative impact on the efficient operation of the"
 ^DIC(21,"%D",4,0)="MAS module and other modules.  Updates to this file will be provided"
 ^DIC(21,"%D",5,0)="by the MAS developers by way of regular releases."
-^DIC(21,"B","AIR FORCE--ACTIVE DUTY",94)=""
 ^DIC(21,"B","ARMY--ACTIVE DUTY",92)=""
 ^DIC(21,"B","BENEFICIARIES-FOREIGN GOV",104)=""
 ^DIC(21,"B","CAV/NPS",110)=""
@@ -321,6 +321,7 @@ ZWR
 ^DIC(21,"B","SPANISH AMERICAN",4)=""
 ^DIC(21,"B","SPECIAL STUDIES (NON-VET)",120)=""
 ^DIC(21,"B","TRICARE",118)=""
+^DIC(21,"B","USAF, USSF - ACTIVE DUTY",94)=""
 ^DIC(21,"B","VIETNAM ERA",7)=""
 ^DIC(21,"B","WORLD WAR I",2)=""
 ^DIC(21,"B","WORLD WAR II",3)=""

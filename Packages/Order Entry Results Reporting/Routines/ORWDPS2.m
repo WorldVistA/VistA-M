@@ -1,5 +1,5 @@
-ORWDPS2 ; SLC/KCM/JLI - Pharmacy Calls for Windows Dialog ;06/08/20  10:08
- ;;3.0;ORDER ENTRY/RESULTS REPORTING;**85,116,125,131,132,148,141,195,215,258,243,424,420,454,452,377,413**;Dec 17, 1997;Build 32
+ORWDPS2 ; SLC/KCM/JLI - Pharmacy Calls for Windows Dialog ;Feb 24, 2022@08:28:30
+ ;;3.0;ORDER ENTRY/RESULTS REPORTING;**85,116,125,131,132,148,141,195,215,258,243,424,420,454,452,377,413,405**;Dec 17, 1997;Build 211
  ;
 OISLCT(LST,OI,PSTYPE,ORVP,NEEDPI,PKIACTIV) ; return for defaults for pharmacy orderable item
  I $D(NEEDPI),(NEEDPI="Y"),$G(^TMP($J,"ORWDX LOADRSP","QO SAVE")) D  ;check if bug for Supply, Clin Med/IV for NEEDPI
@@ -41,6 +41,7 @@ OISLCT(LST,OI,PSTYPE,ORVP,NEEDPI,PKIACTIV) ; return for defaults for pharmacy or
  . I '$L(X2) Q
  . I $G(PKIACTIV)="Y" S X=X2
  S LST(ILST)=LST(ILST)_X
+ S ILST=ILST+1,LST(ILST)="~Indication" D INDICAT
  I PSTYPE="U" D
  . ; start, expires, next admin
  I PSTYPE="O" D
@@ -181,8 +182,8 @@ QTY2DAY(VAL,QTY,UPD,SCH,DUR,PAT,DRG) ; return days supply given quantity
  D QTYX^PSOSIG(.ORWX)
  S VAL=$G(ORWX("DAYS SUPPLY"))
  Q
-MAXREF(VAL,PAT,DRG,SUP,OI,OUT) ; return the maximum number of refills
- ; PAT=Patient DFN, DRG=ptr50, SUP=days supply, OI=orderable item
+MAXREF(VAL,PAT,DRG,SUP,OI,OUT,TITR) ; return the maximum number of refills
+ ; PAT=Patient DFN, DRG=ptr50, SUP=days supply, OI=orderable item, TITR=Titration Flag (1/0)
  ; VAL: maximum refills allowed
  N ORWX
  S ORWX("PATIENT")=PAT
@@ -190,6 +191,7 @@ MAXREF(VAL,PAT,DRG,SUP,OI,OUT) ; return the maximum number of refills
  I $G(SUP) S ORWX("DAYS SUPPLY")=SUP
  I $G(OI)  S ORWX("ITEM")=+$P(^ORD(101.43,+OI,0),U,2)
  I $G(OUT) S ORWX("DISCHARGE")=1
+ S ORWX("TITRATION")=+$G(TITR)
  D MAX^PSOSIGDS(.ORWX)
  S VAL=$G(ORWX("MAX"))
  Q
@@ -214,10 +216,11 @@ CHKGRP(VAL,ORIFN) ;
  ;Otherwise, return 0
  S VAL=0
  I '$L(ORIFN) Q
- N UDGRP,IPGRP,OPGRP,ODGRP,ODID
+ N UDGRP,IPGRP,OPGRP,ODGRP,SPGRP,ODID
  S ODID=+ORIFN
  Q:ODID<1
- S (UDGRP,IPGRP,OPGRP,ODGRP)=0
+ S (UDGRP,IPGRP,OPGRP,ODGRP,SPGRP)=0
+ S SPGRP=$O(^ORD(100.98,"B","SUPPLIES/DEVICES",SPGRP))
  S UDGRP=$O(^ORD(100.98,"B","UD RX",UDGRP))
  S OPGRP=$O(^ORD(100.98,"B","OUTPATIENT MEDICATIONS",OPGRP))
  S IPGRP=$O(^ORD(100.98,"B","INPATIENT MEDICATIONS",IPGRP))
@@ -227,6 +230,7 @@ CHKGRP(VAL,ORIFN) ;
  I (UDGRP=ODGRP) S VAL=1
  I IPGRP=ODGRP S VAL=1
  I OPGRP=ODGRP S VAL=2
+ I SPGRP=ODGRP S VAL=2
  K UDGRP,ODGRP,OPGRP,IPGRP,ODID
  Q
 QOGRP(VAL,QOIFN) ;
@@ -247,4 +251,28 @@ QOGRP(VAL,QOIFN) ;
  I UDGRP=QOGRP S VAL=1
  I (IPGRP=QOGRP)!(CLMED=QOGRP) S VAL=1
  K UDGRP,QOGRP,QOID,IPGRP,CLMED
+ Q
+INDICAT ; from OISLCT return Indication for Use of Prescription or Medication Order
+ N G,IND,INDCAT
+ D INDCATN^PSS50P7(ORWPSOI,"ORWDPIND")
+ S G="" F  S G=$O(^TMP($J,"ORWDPIND",G)) Q:'G  D
+ .S INDCAT=$G(^TMP($J,"ORWDPIND",G))
+ .S IND=$S($P(INDCAT,"^",2)=1:"d"_$P(INDCAT,"^"),1:"i"_INDCAT)
+ .S ILST=ILST+1,LST(ILST)=IND
+ K ^TMP($J,"ORWDPIND")
+ Q
+INDICAT2(LST,ORWPSOI)   ; CPRS RPC return Indication for Use of Prescription
+ N G,IND,INDCAT,ILST
+ S ILST=0
+ D INDCATN^PSS50P7(ORWPSOI,"ORWDPIND")
+ S G="" F  S G=$O(^TMP($J,"ORWDPIND",G)) Q:'G  D
+ .S INDCAT=$G(^TMP($J,"ORWDPIND",G))
+  .S IND=$S($P(INDCAT,"^",2)=1:"d"_$P(INDCAT,"^"),1:"i"_INDCAT)
+  .S ILST=ILST+1,LST(ILST)=IND
+ K ^TMP($J,"ORWDPIND")
+ Q
+INDICAT3(LST,ORIFN) ; CPRS RPC to return Indication for use previously selected for an Order
+ N X,LST
+ S X="" I $D(^OR(100,ORIFN,10)) S X=$P(^OR(100,ORIFN,10),U,2)
+ S LST(1)="~Indication selected"_X
  Q

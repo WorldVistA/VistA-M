@@ -1,5 +1,5 @@
-ONCOAIM ;Hines OIFO/GWB - Create additional primaries for a patient ;03/08/11
- ;;2.2;ONCOLOGY;**1,4**;Jul 31, 2013;Build 5
+ONCOAIM ;HINES OIFO/GWB - Create additional primaries for a patient ;03/08/11
+ ;;2.2;ONCOLOGY;**1,4,15**;Jul 31, 2013;Build 5
  ;
 EN ;Add additional primaries for patient
  D KILL
@@ -83,7 +83,7 @@ CR ;Create Primary
  S ACAY=$E(DT,1)+17_$E(DT,2,3)
  L +^ONCO(165.5,ONCOD0P,0):0
  S DIE="^ONCO(165.5,"
- S DR="W !;.05////^S X=AC;.06////^S X=SEQ;.07//^S X=ACAY"
+ S DR="W !;.05////^S X=AC;.06////^S X=SEQ;.07//^S X=ACAY;.04;155;3;20;21"
  S ACN=AC_"/"_SEQ,DA=ONCOD0P
  D ^DIE
  L -^ONCO(165.5,ONCOD0P,0)

@@ -1,5 +1,5 @@
 RORX016A ;HOIFO/BH,SG,VAC - OUTPATIENT UTILIZATION (QUERY) ;4/7/09 2:10pm
- ;;1.5;CLINICAL CASE REGISTRIES;**8,13,19,31**;Feb 17, 2006;Build 62
+ ;;1.5;CLINICAL CASE REGISTRIES;**8,13,19,31,39**;Feb 17, 2006;Build 4
  ;
  ; This routine uses the following IAs:
  ;
@@ -18,6 +18,7 @@ RORX016A ;HOIFO/BH,SG,VAC - OUTPATIENT UTILIZATION (QUERY) ;4/7/09 2:10pm
  ;ROR*1.5*13   DEC 2010    A SAUNDERS   User can select specific patients
  ;ROR*1.5*19   FEB 2012    J SCOTT      Support for ICD-10 Coding System
  ;ROR*1.5*31   MAY 2017    S ALSAHHAR   Adding AGE/DOB as additional identifiers.
+ ;ROR*1.5*39   JUN 2021    F TRAXLER    Replace real SSN with zeroes.
  ;******************************************************************************
  ;******************************************************************************
  Q
@@ -88,7 +89,7 @@ QUERY(FLAGS) ;
  . ;
  . ;--- Get the patient's data
  . D VADEM^RORUTL05(PATIEN,1)
- . S RORPNAME=VADM(1),RORLAST4=VA("BID")
+ . S RORPNAME=VADM(1),(RORLAST4,VA("BID"))="0000" ;VA("BID")
  . S AGETYPE=$$PARAM^RORTSK01("AGE_RANGE","TYPE")
  . S AGE=$S(AGETYPE="AGE":$P(VADM(4),U),AGETYPE="DOB":$$DATE^RORXU002($P(VADM(3),U)\1),1:"")
  . ;

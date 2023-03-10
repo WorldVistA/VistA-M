@@ -1,6 +1,6 @@
 RCXFMSCR ;WISC/RFJ-fms cash receipt (cr) code sheet generator ;1 Oct 97
- ;;4.5;Accounts Receivable;**90,114,148,172,204,203,173,220,184**;Mar 20, 1995
- ;;Per VHA Directive 10-93-142, this routine should not be modified.
+ ;;4.5;Accounts Receivable;**90,114,148,172,204,203,173,220,184,375**;Mar 20, 1995;Build 15
+ ;;Per VHA Directive 6402, this routine should not be modified.
  Q
  ;
 BUILDCR(RCRECTDA,RCGECSDA,RCEFT) ;  generate a cr/tr code sheet for a receipt
@@ -9,7 +9,7 @@ BUILDCR(RCRECTDA,RCGECSDA,RCEFT) ;  generate a cr/tr code sheet for a receipt
  ;        = 2 if processing TR for the receipt detail relating to an EFT
  ;              (TR from 528704/8NZZ to original fund/rsc)
  ;
- N AMOUNT,BILLDA,COUNT,CR2,DETAIL,DEPOSIT,DESCRIP,DOCTOTAL,FISCALYR,FMSTYPE,FUND,GECSFMS,LINE,RCDEPTDA,REVSRCE,TOTAL,TRANDA,TRANNUMB,UNAPPLY,UNAPPNUM,VENDORID,EFTDEP
+ N AMOUNT,BILLDA,COUNT,CR2,DETAIL,DEPOSIT,DESCRIP,DOCTOTAL,FISCALYR,FMSTYPE,FUND,GECSFMS,LINE,RCDEPTDA,REVSRCE,TOTAL,TRANDA,TRANNUMB,UNAPPLY,UNAPPNUM,VENDORID,DEBIT
  ;
  ;  build the lines for all payments on receipt
  S RCEFT=+$G(RCEFT)
@@ -24,7 +24,12 @@ BUILDCR(RCRECTDA,RCGECSDA,RCEFT) ;  generate a cr/tr code sheet for a receipt
  .   ;  no dollars on transaction
  .   S AMOUNT=$P(^RCY(344,RCRECTDA,1,TRANDA,0),"^",4) I 'AMOUNT Q
  .   ;
- .   I RCEFT=1 S TOTAL("5287"_$S(DT<3030926:"",DT'<3030926&(DT<$$ADDPTEDT^PRCAACC()):".4",1:"04"),"8NZZ","MCCFVALUE")=$G(TOTAL("5287"_$S(DT<3030926:"",1:"04"),"8NZZ","MCCFVALUE"))+AMOUNT Q
+ .   ; PRCA*4.5*375 - If sending CR doc, check for debit; if debit, subtract amount instead of add
+ .   I RCEFT=1 D  Q
+ .   .   N DATE
+ .   .   S DATE=$S(DT<3030926:"",DT'<3030926&(DT<$$ADDPTEDT^PRCAACC()):".4",1:"04")
+ .   .   S:$P(^RCY(344,RCRECTDA,1,TRANDA,0),"^",29)="D" AMOUNT=-AMOUNT
+ .   .   S TOTAL("5287"_DATE,"8NZZ","MCCFVALUE")=$G(TOTAL("5287"_$S(DT<3030926:"",1:"04"),"8NZZ","MCCFVALUE"))+AMOUNT
  .   S UNAPPLY($$GETUNAPP(RCRECTDA,TRANDA,1))=AMOUNT
  ;
  ;  no code sheets to send
@@ -60,6 +65,8 @@ BUILDCR(RCRECTDA,RCGECSDA,RCEFT) ;  generate a cr/tr code sheet for a receipt
  .   S REVSRCE="" F  S REVSRCE=$O(TOTAL(FUND,REVSRCE)) Q:REVSRCE=""  D
  .   .   S VENDORID="" F  S VENDORID=$O(TOTAL(FUND,REVSRCE,VENDORID)) Q:VENDORID=""  D
  .   .   .   S AMOUNT=TOTAL(FUND,REVSRCE,VENDORID),DOCTOTAL=DOCTOTAL+AMOUNT
+ .   .   .   S DEBIT=""                                ; PRCA*4.5*375 - If negative amount, set debit flag
+ .   .   .   S:AMOUNT<0 DEBIT=1,AMOUNT=$FN(AMOUNT,"-") ; PRCA*4.5*375 - If negative amount, set debit flag
  .   .   .   S COUNT=COUNT+1
  .   .   .   S LINE(COUNT)="LIN^~CRA^"_$S($L(COUNT)=1:"00",$L(COUNT)=2:"0",1:"")_COUNT
  .   .   .   S $P(LINE(COUNT),"^",4)=$S(FUND=4032:"03",1:FISCALYR)
@@ -70,7 +77,7 @@ BUILDCR(RCRECTDA,RCGECSDA,RCEFT) ;  generate a cr/tr code sheet for a receipt
  .   .   .   ;I FUND=4032 S $P(LINE(COUNT),"^",13)="24GX40100"
  .   .   .   S $P(LINE(COUNT),"^",18)=VENDORID
  .   .   .   S $P(LINE(COUNT),"^",20)=$J(AMOUNT,0,2)
- .   .   .   S $P(LINE(COUNT),"^",21)="I"
+ .   .   .   S $P(LINE(COUNT),"^",21)=$S(DEBIT:"D",1:"I") ; PRCA*4.5*375 - Send Debit Flag if to FMS
  .   .   .   S $P(LINE(COUNT),"^",23)=23
  .   .   .   S $P(LINE(COUNT),"^",24)="~"
  ;
@@ -95,7 +102,7 @@ BUILDCR(RCRECTDA,RCGECSDA,RCEFT) ;  generate a cr/tr code sheet for a receipt
  ;  build cr2, $p(deposit,^,3)=deposit date
  N FMSDT S FMSDT=$$FMSDATE^RCBEUTRA(DT)
  S CR2="CR2^"_$E(FMSDT,2,3)_"^"_$E(FMSDT,4,5)_"^"_$E(FMSDT,6,7)_"^^^^^^E^^^"
- S CR2=CR2_$P(DEPOSIT,"^")_"^^"_$J(DOCTOTAL,0,2)_"^^"
+ S CR2=CR2_$P(DEPOSIT,"^")_"^^"_$FN(DOCTOTAL,"-",2)_"^^" ; PRCA*4.5*375 - Suppress minus sign so we don't send negative values to FMS
  S CR2=CR2_$E($P(DEPOSIT,"^",3),2,3)_"^"_$E($P(DEPOSIT,"^",3),4,5)_"^"_$E($P(DEPOSIT,"^",3),6,7)_"^~"
  ;
  ;  put together document in gcs

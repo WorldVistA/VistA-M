@@ -1,5 +1,5 @@
-IBCNES1 ;ALB/ESG/JM - eIV elig/benefit utilities ;01/13/2016
- ;;2.0;INTEGRATED BILLING;**416,438,497,549**;21-MAR-94;Build 54
+IBCNES1 ;ALB/ESG/JM - eIV elig/benefit utilities ; 01/13/2016
+ ;;2.0;INTEGRATED BILLING;**416,438,497,549,702,732**;21-MAR-94;Build 13
  ;;Per VA Directive 6402, this routine should not be modified.
  ;
  Q
@@ -233,14 +233,21 @@ NTE(IBVF,IBVIENS,IBVV,IBVSUB) ; Notes display
  ;    IBVV = video attributes flag
  ;  IBVSUB = display scratch global subscript
  ;
- N COL,DSP,LN,NTED,NTEDERR,ZIEN
+ ;IB*2*702/ckb - Added NOTE
+ N COL,DSP,LN,NOTE,NTED,NTEDERR,ZIEN
  D GETS^DIQ(IBVF,IBVIENS,2,"N","NTED","NTEDERR")
  S DSP=$NA(^TMP(IBVSUB,$J,"DISP"))       ; scratch global display array
  S LN=+$O(@DSP@(""),-1)                  ; last line# used in scratch global
  I '$D(NTED) G NTEX
  S COL=2
  S LN=LN+1 D SET(LN,1,"Notes and Comments",,IBVV)
- S ZIEN=0 F  S ZIEN=$O(NTED(IBVF,IBVIENS,2,ZIEN)) Q:'ZIEN  S LN=LN+1 D SET(LN,COL,$G(NTED(IBVF,IBVIENS,2,ZIEN)))
+ ;IB*2*702/ckb - Modified to display the entire Note/Comment, not just the first 80 char's.
+ ;S ZIEN=0 F  S ZIEN=$O(NTED(IBVF,IBVIENS,2,ZIEN)) Q:'ZIEN  S LN=LN+1 D SET(LN,COL,$G(NTED(IBVF,IBVIENS,2,ZIEN)))
+ S ZIEN=0 F  S ZIEN=$O(NTED(IBVF,IBVIENS,2,ZIEN)) Q:'ZIEN  D
+ . S NOTE=$G(NTED(IBVF,IBVIENS,2,ZIEN))
+ . I $L(NOTE)<80 S LN=LN+1 D SET(LN,COL,NOTE)
+ . I $L(NOTE)>79 S LN=LN+1 D
+ . . S LN=$$SETC(NOTE,LN)
  S LN=LN+1
  D SET(LN)
  ;
@@ -371,6 +378,31 @@ SET(LN,COL,LABEL,DATA,IBVV) ; set data into display scratch global
  ;
 SETX ;
  Q
+ ;
+ ;IB*2*702/ckb - Added to handle Notes/Comments that need more than 1 line to display.
+SETC(DATA,LINE) ; Sets Note text
+ ;Input:
+ ; DATA - Note Text to set into more than 1 line
+ ; LINE - Current Line text is being set into
+ ;Returns:
+ ; LINE - Updated Line text is being set into
+ N CLNEND,CPOS,CWLPOS,CWPOS,CWEPOS,SPOS,STLEN,XX
+ ;
+ ; Display the comment text 1 line at a time. The line begins with a
+ ; space and then the text therefore the text is limited to 79 char's.
+ S (CPOS,SPOS)=0,CLNEND=75
+ S (CWLPOS,CWPOS)=1,CWEPOS=$L(DATA)
+ F  D  Q:(CWPOS>CWEPOS)
+ . ; Display the text from position CWPOS-CLNEND
+ . I 'SPOS!(SPOS>CLNEND) D  Q
+ . . S XX=$E(DATA,CWPOS,CLNEND)
+ . . I $E(XX,1)=" " S XX=$E(XX,2,$L(XX)) ; removing leading spaces
+ . . D SET(LINE,2,XX)
+ . . S LINE=LINE+1,CWLPOS=1
+ . . S CWPOS=CLNEND+1,CLNEND=CLNEND+75
+ ;
+ ;Q LINE
+ Q (LINE-1)  ;IB*732/CKB correct line quit
  ;
 DATE(Z) ; convert date in Z in format CCYYMMDD to MM/DD/CCYY format for display
  I Z?8N S Z=$E(Z,5,6)_"/"_$E(Z,7,8)_"/"_$E(Z,1,4)

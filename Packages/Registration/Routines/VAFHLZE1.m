@@ -1,5 +1,5 @@
-VAFHLZE1 ;BPFO/JRP,TDM,JLS - Data extractor for ZEL segment ;5/24/06 3:43pm
- ;;5.3;Registration;**342,497,602,672,653,909,952**;Aug 13,1993;Build 160
+VAFHLZE1 ;BPFO/JRP,TDM,JLS,KUM - Data extractor for ZEL segment ;5/24/06 3:43pm
+ ;;5.3;Registration;**342,497,602,672,653,909,952,1018**;Aug 13,1993;Build 5
  ;
 GETDATA ;Get information needed to build ZEL  segment
  ;Input: Existence of the following variables is assumed
@@ -101,7 +101,9 @@ GETDATA ;Get information needed to build ZEL  segment
  I VAFSTR[28 S X=$P(VAF(.321),"^",10),VAFHLZEL(28)=$S(X]"":X,1:HLQ)
  ;Agent Orange Exposure Location
  ;I VAFSTR[29 S X=$P(VAF(.321),"^",13),VAFHLZEL(29)=$S(X]"":X,$P(VAF(.321),U,2)="Y":"U",1:HLQ)
- I VAFSTR[29 S X=$P(VAF(.321),"^",13),VAFHLZEL(29)=$S(",K,V,O,"[(","_X_","):X,1:HLQ)
+ ;DG*5.3*1018 - Add Blue Water Navy value 
+ ;I VAFSTR[29 S X=$P(VAF(.321),"^",13),VAFHLZEL(29)=$S(",K,V,O,"[(","_X_","):X,1:HLQ)
+ I VAFSTR[29 S X=$P(VAF(.321),"^",13),VAFHLZEL(29)=$S(",K,V,O,B,"[(","_X_","):X,1:HLQ)
  ;Radiation Registration Date
  I VAFSTR[30 S X=$P(VAF(.321),"^",11),VAFHLZEL(30)=$S(X]"":$$HLDATE^HLFNC(X),1:HLQ)
  ;Envir. Cont. Exam Date

@@ -1,126 +1,128 @@
-IBDEI11E ; ; 04-FEB-2020
- ;;3.0;IB ENCOUNTER FORM IMP/EXP;;FEB 04, 2020
+IBDEI11E ; ; 01-FEB-2022
+ ;;3.0;IB ENCOUNTER FORM IMP/EXP;;FEB 01, 2022
  Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,999) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
- ;;^UTILITY(U,$J,358.3,16668,1,0)
+ ;;^UTILITY(U,$J,358.3,16854,2)
+ ;;=^5006894
+ ;;^UTILITY(U,$J,358.3,16855,0)
+ ;;=H83.03^^61^777^48
+ ;;^UTILITY(U,$J,358.3,16855,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,16668,1,3,0)
- ;;=3^Physical Environment Hazards Contact/Exposure
- ;;^UTILITY(U,$J,358.3,16668,1,4,0)
- ;;=4^Z77.128
- ;;^UTILITY(U,$J,358.3,16668,2)
- ;;=^5063322
- ;;^UTILITY(U,$J,358.3,16669,0)
- ;;=Z77.123^^88^880^146
- ;;^UTILITY(U,$J,358.3,16669,1,0)
+ ;;^UTILITY(U,$J,358.3,16855,1,3,0)
+ ;;=3^Labyrinthitis,Bilateral
+ ;;^UTILITY(U,$J,358.3,16855,1,4,0)
+ ;;=4^H83.03
+ ;;^UTILITY(U,$J,358.3,16855,2)
+ ;;=^5006896
+ ;;^UTILITY(U,$J,358.3,16856,0)
+ ;;=H83.02^^61^777^49
+ ;;^UTILITY(U,$J,358.3,16856,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,16669,1,3,0)
- ;;=3^Radon/Radiation Contact/Exposure
- ;;^UTILITY(U,$J,358.3,16669,1,4,0)
- ;;=4^Z77.123
- ;;^UTILITY(U,$J,358.3,16669,2)
- ;;=^5063321
- ;;^UTILITY(U,$J,358.3,16670,0)
- ;;=Z77.122^^88^880^61
- ;;^UTILITY(U,$J,358.3,16670,1,0)
+ ;;^UTILITY(U,$J,358.3,16856,1,3,0)
+ ;;=3^Labyrinthitis,Left Ear
+ ;;^UTILITY(U,$J,358.3,16856,1,4,0)
+ ;;=4^H83.02
+ ;;^UTILITY(U,$J,358.3,16856,2)
+ ;;=^5006895
+ ;;^UTILITY(U,$J,358.3,16857,0)
+ ;;=J01.91^^61^777^81
+ ;;^UTILITY(U,$J,358.3,16857,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,16670,1,3,0)
- ;;=3^Noise Contact/Exposure
- ;;^UTILITY(U,$J,358.3,16670,1,4,0)
- ;;=4^Z77.122
- ;;^UTILITY(U,$J,358.3,16670,2)
- ;;=^5063320
- ;;^UTILITY(U,$J,358.3,16671,0)
- ;;=Z77.118^^88^880^11
- ;;^UTILITY(U,$J,358.3,16671,1,0)
+ ;;^UTILITY(U,$J,358.3,16857,1,3,0)
+ ;;=3^Sinusitis,Acute Recurrent Unspec
+ ;;^UTILITY(U,$J,358.3,16857,1,4,0)
+ ;;=4^J01.91
+ ;;^UTILITY(U,$J,358.3,16857,2)
+ ;;=^5008128
+ ;;^UTILITY(U,$J,358.3,16858,0)
+ ;;=J03.90^^61^777^88
+ ;;^UTILITY(U,$J,358.3,16858,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,16671,1,3,0)
- ;;=3^Environmental Pollution Contact/Exposure
- ;;^UTILITY(U,$J,358.3,16671,1,4,0)
- ;;=4^Z77.118
- ;;^UTILITY(U,$J,358.3,16671,2)
- ;;=^5063317
- ;;^UTILITY(U,$J,358.3,16672,0)
- ;;=Z77.9^^88^880^47
- ;;^UTILITY(U,$J,358.3,16672,1,0)
+ ;;^UTILITY(U,$J,358.3,16858,1,3,0)
+ ;;=3^Tonsillitis,Acute Unspec
+ ;;^UTILITY(U,$J,358.3,16858,1,4,0)
+ ;;=4^J03.90
+ ;;^UTILITY(U,$J,358.3,16858,2)
+ ;;=^5008135
+ ;;^UTILITY(U,$J,358.3,16859,0)
+ ;;=J01.90^^61^777^82
+ ;;^UTILITY(U,$J,358.3,16859,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,16672,1,3,0)
- ;;=3^Health Hazard Contact/Exposure
- ;;^UTILITY(U,$J,358.3,16672,1,4,0)
- ;;=4^Z77.9
- ;;^UTILITY(U,$J,358.3,16672,2)
- ;;=^5063326
- ;;^UTILITY(U,$J,358.3,16673,0)
- ;;=Z77.22^^88^880^10
- ;;^UTILITY(U,$J,358.3,16673,1,0)
+ ;;^UTILITY(U,$J,358.3,16859,1,3,0)
+ ;;=3^Sinusitis,Acute Unspec
+ ;;^UTILITY(U,$J,358.3,16859,1,4,0)
+ ;;=4^J01.90
+ ;;^UTILITY(U,$J,358.3,16859,2)
+ ;;=^5008127
+ ;;^UTILITY(U,$J,358.3,16860,0)
+ ;;=J20.1^^61^777^10
+ ;;^UTILITY(U,$J,358.3,16860,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,16673,1,3,0)
- ;;=3^Environmental Exposure Tobacco Smoke/Second-Hand Smoke
- ;;^UTILITY(U,$J,358.3,16673,1,4,0)
- ;;=4^Z77.22
- ;;^UTILITY(U,$J,358.3,16673,2)
- ;;=^5063324
- ;;^UTILITY(U,$J,358.3,16674,0)
- ;;=Z80.0^^88^880^28
- ;;^UTILITY(U,$J,358.3,16674,1,0)
+ ;;^UTILITY(U,$J,358.3,16860,1,3,0)
+ ;;=3^Bronchitis,Acute d/t Hemophilus Influenza
+ ;;^UTILITY(U,$J,358.3,16860,1,4,0)
+ ;;=4^J20.1
+ ;;^UTILITY(U,$J,358.3,16860,2)
+ ;;=^5008187
+ ;;^UTILITY(U,$J,358.3,16861,0)
+ ;;=J20.0^^61^777^11
+ ;;^UTILITY(U,$J,358.3,16861,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,16674,1,3,0)
- ;;=3^Family Hx of Malig Neop of Digestive Organs
- ;;^UTILITY(U,$J,358.3,16674,1,4,0)
- ;;=4^Z80.0
- ;;^UTILITY(U,$J,358.3,16674,2)
- ;;=^5063344
- ;;^UTILITY(U,$J,358.3,16675,0)
- ;;=Z80.1^^88^880^34
- ;;^UTILITY(U,$J,358.3,16675,1,0)
+ ;;^UTILITY(U,$J,358.3,16861,1,3,0)
+ ;;=3^Bronchitis,Acute d/t Mycoplasma Pneumonia
+ ;;^UTILITY(U,$J,358.3,16861,1,4,0)
+ ;;=4^J20.0
+ ;;^UTILITY(U,$J,358.3,16861,2)
+ ;;=^5008186
+ ;;^UTILITY(U,$J,358.3,16862,0)
+ ;;=J20.2^^61^777^6
+ ;;^UTILITY(U,$J,358.3,16862,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,16675,1,3,0)
- ;;=3^Family Hx of Malig Neop of Trachea,Bronc & Lung
- ;;^UTILITY(U,$J,358.3,16675,1,4,0)
- ;;=4^Z80.1
- ;;^UTILITY(U,$J,358.3,16675,2)
- ;;=^5063345
- ;;^UTILITY(U,$J,358.3,16676,0)
- ;;=Z80.3^^88^880^27
- ;;^UTILITY(U,$J,358.3,16676,1,0)
+ ;;^UTILITY(U,$J,358.3,16862,1,3,0)
+ ;;=3^Bonchitis,Acute d/t Streptococcus
+ ;;^UTILITY(U,$J,358.3,16862,1,4,0)
+ ;;=4^J20.2
+ ;;^UTILITY(U,$J,358.3,16862,2)
+ ;;=^5008188
+ ;;^UTILITY(U,$J,358.3,16863,0)
+ ;;=J20.4^^61^777^13
+ ;;^UTILITY(U,$J,358.3,16863,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,16676,1,3,0)
- ;;=3^Family Hx of Malig Neop of Breast
- ;;^UTILITY(U,$J,358.3,16676,1,4,0)
- ;;=4^Z80.3
- ;;^UTILITY(U,$J,358.3,16676,2)
- ;;=^5063347
- ;;^UTILITY(U,$J,358.3,16677,0)
- ;;=Z80.41^^88^880^31
- ;;^UTILITY(U,$J,358.3,16677,1,0)
+ ;;^UTILITY(U,$J,358.3,16863,1,3,0)
+ ;;=3^Bronchitis,Acute d/t Parainfluenza Virus
+ ;;^UTILITY(U,$J,358.3,16863,1,4,0)
+ ;;=4^J20.4
+ ;;^UTILITY(U,$J,358.3,16863,2)
+ ;;=^5008190
+ ;;^UTILITY(U,$J,358.3,16864,0)
+ ;;=J20.3^^61^777^8
+ ;;^UTILITY(U,$J,358.3,16864,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,16677,1,3,0)
- ;;=3^Family Hx of Malig Neop of Ovary
- ;;^UTILITY(U,$J,358.3,16677,1,4,0)
- ;;=4^Z80.41
- ;;^UTILITY(U,$J,358.3,16677,2)
- ;;=^5063348
- ;;^UTILITY(U,$J,358.3,16678,0)
- ;;=Z80.42^^88^880^32
- ;;^UTILITY(U,$J,358.3,16678,1,0)
+ ;;^UTILITY(U,$J,358.3,16864,1,3,0)
+ ;;=3^Bronchitis,Acute d/t Coxsackievirus
+ ;;^UTILITY(U,$J,358.3,16864,1,4,0)
+ ;;=4^J20.3
+ ;;^UTILITY(U,$J,358.3,16864,2)
+ ;;=^5008189
+ ;;^UTILITY(U,$J,358.3,16865,0)
+ ;;=J20.9^^61^777^7
+ ;;^UTILITY(U,$J,358.3,16865,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,16678,1,3,0)
- ;;=3^Family Hx of Malig Neop of Prostate
- ;;^UTILITY(U,$J,358.3,16678,1,4,0)
- ;;=4^Z80.42
- ;;^UTILITY(U,$J,358.3,16678,2)
- ;;=^5063349
- ;;^UTILITY(U,$J,358.3,16679,0)
- ;;=Z80.43^^88^880^33
- ;;^UTILITY(U,$J,358.3,16679,1,0)
+ ;;^UTILITY(U,$J,358.3,16865,1,3,0)
+ ;;=3^Bronchitis,Acute Unspec
+ ;;^UTILITY(U,$J,358.3,16865,1,4,0)
+ ;;=4^J20.9
+ ;;^UTILITY(U,$J,358.3,16865,2)
+ ;;=^5008195
+ ;;^UTILITY(U,$J,358.3,16866,0)
+ ;;=J20.8^^61^777^12
+ ;;^UTILITY(U,$J,358.3,16866,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,16679,1,3,0)
- ;;=3^Family Hx of Malig Neop of Testis
- ;;^UTILITY(U,$J,358.3,16679,1,4,0)
- ;;=4^Z80.43
- ;;^UTILITY(U,$J,358.3,16679,2)
- ;;=^5063350
- ;;^UTILITY(U,$J,358.3,16680,0)
- ;;=Z80.6^^88^880^25
- ;;^UTILITY(U,$J,358.3,16680,1,0)
- ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,16866,1,3,0)
+ ;;=3^Bronchitis,Acute d/t Oth Spec Organisms
+ ;;^UTILITY(U,$J,358.3,16866,1,4,0)
+ ;;=4^J20.8
+ ;;^UTILITY(U,$J,358.3,16866,2)
+ ;;=^5008194
+ ;;^UTILITY(U,$J,358.3,16867,0)
+ ;;=J20.5^^61^777^14

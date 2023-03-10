@@ -1,5 +1,5 @@
 %ZISH ;IHS/PR,SFISC/AC - Host File Control for Cache for VMS/NT/UNIX ;05/22/12  11:01
- ;;8.0;KERNEL;**34,65,84,104,191,306,385,440,518,524,546,599**;JUL 10, 1995;Build 8
+ ;;8.0;KERNEL;**34,65,84,104,191,306,385,440,518,524,546,599,738**;JUL 10, 1995;Build 5
  ;Per VHA Directive 2004-038, this routine should not be modified
  ;
  ; ZEXCEPT: IOM,IOSL,IOT,POP
@@ -180,7 +180,7 @@ DEFDIR(DF) ;ef. Default Dir and frmt
  ;Check syntax, NT needs c:\dir\ or \\server\folder\
  I %ZOS="NT" D
  . N P1,P2
- . I '(DF?1(1A1":\",1"\\").E) S DF=$$DEFDIR("")
+ . I '(DF?1(1A1":\",1"\\").E) S DF="" ;S DF=$$DEFDIR("") ;p738
  . S P1="",P2=DF
  . I DF[":" S P1=$P(DF,":")_":",P2=$P(DF,":",2)
  . S P2=$TR(P2,"/","\")

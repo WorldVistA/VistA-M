@@ -1,6 +1,9 @@
 PSSUTIL ;BIR/RTR-utility routine for NDF changes ;04/04/00
- ;;1.0;PHARMACY DATA MANAGEMENT;**34,38,147,155,170,243**;9/30/97;Build 3
+ ;;1.0;PHARMACY DATA MANAGEMENT;**34,38,147,155,170,243,226**;9/30/97;Build 10
+ ;
  ;Reference to PS(50.607 supported by DBIA 2221
+ ;
+ ;*226- create Hazardous Handle & Dispose API for Drugs/Orderable Items; and Haz Warning text for dialogs in Backdoor
  ;
 EN(PSSDIEN) ;Receive Drug entries unmatched as a result of NDF changes
  ;Not called, NDF deletes the possible and local possible dosages
@@ -201,4 +204,56 @@ DASK ;Ask to continue
  N DIR,X,Y,DTOUT,DUOUT,DIRUT,DIROUT
  K DIR W ! S DIR(0)="E",DIR("A")="Press Return to continue"  D ^DIR K DIR
  W @IOF
+ Q
+ ;
+ ;****************************************************************
+ ;*226 - A drug is considered Hazardous to Handle or Dispose if
+ ; it is marked Hazardous in the PSNDF file #50.68 or points to a
+ ; common Orderable Item that is pointed to by any drug that is 
+ ; marked as such. 
+ ;****************************************************************
+HAZ(PSSIEN,PSSF) ;*226 
+ ;  Determine if a Drug is Hazardous to Handle and to Dispose. 
+ ;  Pass in Drug IEN if known or pass in the OI IEN if preferred.
+ ;  Input: PSSIEN - IEN of either Drug file or Pharmacy OI file.        <required>
+ ;           PSSF - "OI" passed in, then IEN is Pharmacy OI file, else  <optional>
+ ;                  "OI" Not passed in, then IEN is for Drug file.      <default>
+ ;  Output: HAZ Handle flag (1/0 ^ HAZ Dispose flag (1/0) ^ Orderable Item name 
+ N PSSOI,PSSOINAM S PSSIEN=+$G(PSSIEN),PSSF=$G(PSSF)
+ S PSSDR=$S(PSSF'="OI":PSSIEN,1:0)
+ S PSSOI=$S(PSSF="OI":PSSIEN,1:$$GET1^DIQ(50,PSSIEN,"PHARMACY ORDERABLE ITEM","I")),PSSOINAM=$$GET1^DIQ(50.7,PSSOI,"NAME")
+ Q $$ISHAZ(PSSDR,PSSOI,"HAZARDOUS TO HANDLE")_U_$$ISHAZ(PSSDR,PSSOI,"HAZARDOUS TO DISPOSE")_U_PSSOINAM
+ ;
+ISHAZ(DRIEN,OIIEN,FLDNAM) ;*226
+ ;  Get Hazardous flag by NDF FLDNAM passed in to test
+ N HAZ,NDIEN,QQ
+ ;quick Drug check if Haz = 1
+ I DRIEN S NDIEN=+$$GET1^DIQ(50,DRIEN,"PSNDF VA PRODUCT NAME ENTRY","I") I +$$GET1^DIQ(50.68,NDIEN,FLDNAM,"I") Q 1
+ ;Pharm Orderable item check if a related drug(s) via OI xref are Haz true.  Quit upon Haz true found.
+ I 'OIIEN Q 0
+ S HAZ=0 F QQ=0:0 S QQ=$O(^PSDRUG("ASP",OIIEN,QQ)) Q:'QQ  D  Q:HAZ
+ . S NDIEN=+$$GET1^DIQ(50,QQ,"PSNDF VA PRODUCT NAME ENTRY","I")
+ . S HAZ=+$$GET1^DIQ(50.68,NDIEN,FLDNAM,"I")
+ Q HAZ
+ ;
+HAZWARNG(PSSDRIEN,PSSIO,PSSHAZH,PSSHAZD,PSSHAZTX) ;*226
+ ;  Hazardous standard text warning based on HAZ flags passed in
+ ;  Input:  PSSDRIEN - DRUG file #50 IEN
+ ;          PSSIO    - Inpatient or Outpatient (I - Clinicians only type warn)  (O - Patient type warn)  
+ ;          PSSHAZH - Haz to handle indicated
+ ;          PSSHAZD - Haz to Dispose indicated
+ ;  Output: PSSHAZTX - text for the specific warning indicated, if only one or both Haz indicators exist. 
+ ;            (Not wrapped, calling routine needs to do word wrap for printing and displaying)
+ Q:'PSSDRIEN
+ S PSSIO=$G(PSSIO),PSSHAZH=$G(PSSHAZH),PSSHAZD=$G(PSSHAZD)
+ Q:('PSSHAZH)&('PSSHAZD)
+ S PSSHAZTX=$$GET1^DIQ(50,PSSDRIEN,"PHARMACY ORDERABLE ITEM")_" is hazardous to "
+ S:(PSSHAZH&'PSSHAZD) PSSHAZTX=PSSHAZTX_"handle. "
+ S:('PSSHAZH&PSSHAZD) PSSHAZTX=PSSHAZTX_"dispose. "
+ S:(PSSHAZH&PSSHAZD) PSSHAZTX=PSSHAZTX_"handle and dispose. "
+ I PSSIO="O" S PSSHAZTX=PSSHAZTX_"Please notify pharmacy staff and counsel patient to take the appropriate "
+ I PSSIO="I" S PSSHAZTX=PSSHAZTX_"Please take the appropriate "
+ S:(PSSHAZH&'PSSHAZD) PSSHAZTX=PSSHAZTX_"handling precautions."
+ S:('PSSHAZH&PSSHAZD) PSSHAZTX=PSSHAZTX_"disposal precautions."
+ S:(PSSHAZH&PSSHAZD) PSSHAZTX=PSSHAZTX_"handling and disposal precautions."
  Q

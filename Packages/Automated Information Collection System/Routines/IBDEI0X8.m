@@ -1,128 +1,128 @@
-IBDEI0X8 ; ; 04-FEB-2020
- ;;3.0;IB ENCOUNTER FORM IMP/EXP;;FEB 04, 2020
+IBDEI0X8 ; ; 01-FEB-2022
+ ;;3.0;IB ENCOUNTER FORM IMP/EXP;;FEB 01, 2022
  Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,999) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
- ;;^UTILITY(U,$J,358.3,14796,1,4,0)
- ;;=4^K52.21
- ;;^UTILITY(U,$J,358.3,14796,2)
- ;;=^5138713
- ;;^UTILITY(U,$J,358.3,14797,0)
- ;;=K52.29^^85^835^3
- ;;^UTILITY(U,$J,358.3,14797,1,0)
+ ;;^UTILITY(U,$J,358.3,14973,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,14797,1,3,0)
- ;;=3^Allergic/Dietetic Gastroenteritis/Colitis,Other
- ;;^UTILITY(U,$J,358.3,14797,1,4,0)
- ;;=4^K52.29
- ;;^UTILITY(U,$J,358.3,14797,2)
- ;;=^5138715
- ;;^UTILITY(U,$J,358.3,14798,0)
- ;;=R93.3^^85^835^1
- ;;^UTILITY(U,$J,358.3,14798,1,0)
+ ;;^UTILITY(U,$J,358.3,14973,1,3,0)
+ ;;=3^Adhesive Capsulitis,Lt Shoulder
+ ;;^UTILITY(U,$J,358.3,14973,1,4,0)
+ ;;=4^M75.02
+ ;;^UTILITY(U,$J,358.3,14973,2)
+ ;;=^5013240
+ ;;^UTILITY(U,$J,358.3,14974,0)
+ ;;=M75.01^^58^714^4
+ ;;^UTILITY(U,$J,358.3,14974,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,14798,1,3,0)
- ;;=3^Abnormal imaging Digestive tract
- ;;^UTILITY(U,$J,358.3,14798,1,4,0)
- ;;=4^R93.3
- ;;^UTILITY(U,$J,358.3,14798,2)
- ;;=^5019716
- ;;^UTILITY(U,$J,358.3,14799,0)
- ;;=K55.21^^85^835^4
- ;;^UTILITY(U,$J,358.3,14799,1,0)
+ ;;^UTILITY(U,$J,358.3,14974,1,3,0)
+ ;;=3^Adhesive Capsulitis,Rt Shoulder
+ ;;^UTILITY(U,$J,358.3,14974,1,4,0)
+ ;;=4^M75.01
+ ;;^UTILITY(U,$J,358.3,14974,2)
+ ;;=^5013239
+ ;;^UTILITY(U,$J,358.3,14975,0)
+ ;;=M75.22^^58^714^5
+ ;;^UTILITY(U,$J,358.3,14975,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,14799,1,3,0)
- ;;=3^Angiodysplasia of Colon w/ Bleeding
- ;;^UTILITY(U,$J,358.3,14799,1,4,0)
- ;;=4^K55.21
- ;;^UTILITY(U,$J,358.3,14799,2)
- ;;=^5008708
- ;;^UTILITY(U,$J,358.3,14800,0)
- ;;=D01.0^^85^835^15
- ;;^UTILITY(U,$J,358.3,14800,1,0)
+ ;;^UTILITY(U,$J,358.3,14975,1,3,0)
+ ;;=3^Bicipital Tendinitis,Lt Shoulder
+ ;;^UTILITY(U,$J,358.3,14975,1,4,0)
+ ;;=4^M75.22
+ ;;^UTILITY(U,$J,358.3,14975,2)
+ ;;=^5013252
+ ;;^UTILITY(U,$J,358.3,14976,0)
+ ;;=M75.21^^58^714^6
+ ;;^UTILITY(U,$J,358.3,14976,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,14800,1,3,0)
- ;;=3^Carcinoma in situ of Colon
- ;;^UTILITY(U,$J,358.3,14800,1,4,0)
- ;;=4^D01.0
- ;;^UTILITY(U,$J,358.3,14800,2)
- ;;=^267712
- ;;^UTILITY(U,$J,358.3,14801,0)
- ;;=D01.2^^85^835^16
- ;;^UTILITY(U,$J,358.3,14801,1,0)
+ ;;^UTILITY(U,$J,358.3,14976,1,3,0)
+ ;;=3^Bicipital Tendinitis,Rt Shoulder
+ ;;^UTILITY(U,$J,358.3,14976,1,4,0)
+ ;;=4^M75.21
+ ;;^UTILITY(U,$J,358.3,14976,2)
+ ;;=^5013251
+ ;;^UTILITY(U,$J,358.3,14977,0)
+ ;;=M75.52^^58^714^7
+ ;;^UTILITY(U,$J,358.3,14977,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,14801,1,3,0)
- ;;=3^Carcinoma in situ of Rectum
- ;;^UTILITY(U,$J,358.3,14801,1,4,0)
- ;;=4^D01.2
- ;;^UTILITY(U,$J,358.3,14801,2)
- ;;=^267713
- ;;^UTILITY(U,$J,358.3,14802,0)
- ;;=K52.831^^85^835^20
- ;;^UTILITY(U,$J,358.3,14802,1,0)
+ ;;^UTILITY(U,$J,358.3,14977,1,3,0)
+ ;;=3^Bursitis,Lt Shoulder
+ ;;^UTILITY(U,$J,358.3,14977,1,4,0)
+ ;;=4^M75.52
+ ;;^UTILITY(U,$J,358.3,14977,2)
+ ;;=^5133691
+ ;;^UTILITY(U,$J,358.3,14978,0)
+ ;;=M75.51^^58^714^8
+ ;;^UTILITY(U,$J,358.3,14978,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,14802,1,3,0)
- ;;=3^Collagenous colitis
- ;;^UTILITY(U,$J,358.3,14802,1,4,0)
- ;;=4^K52.831
- ;;^UTILITY(U,$J,358.3,14802,2)
- ;;=^7034137
- ;;^UTILITY(U,$J,358.3,14803,0)
- ;;=K63.81^^85^835^21
- ;;^UTILITY(U,$J,358.3,14803,1,0)
+ ;;^UTILITY(U,$J,358.3,14978,1,3,0)
+ ;;=3^Bursitis,Rt Shoulder
+ ;;^UTILITY(U,$J,358.3,14978,1,4,0)
+ ;;=4^M75.51
+ ;;^UTILITY(U,$J,358.3,14978,2)
+ ;;=^5133690
+ ;;^UTILITY(U,$J,358.3,14979,0)
+ ;;=M75.32^^58^714^9
+ ;;^UTILITY(U,$J,358.3,14979,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,14803,1,3,0)
- ;;=3^Dieulafoy lesion of Intestine
- ;;^UTILITY(U,$J,358.3,14803,1,4,0)
- ;;=4^K63.81
- ;;^UTILITY(U,$J,358.3,14803,2)
- ;;=^5008766
- ;;^UTILITY(U,$J,358.3,14804,0)
- ;;=K57.31^^85^835^27
- ;;^UTILITY(U,$J,358.3,14804,1,0)
+ ;;^UTILITY(U,$J,358.3,14979,1,3,0)
+ ;;=3^Calcific Tendinitis,Lt Shoulder
+ ;;^UTILITY(U,$J,358.3,14979,1,4,0)
+ ;;=4^M75.32
+ ;;^UTILITY(U,$J,358.3,14979,2)
+ ;;=^5013255
+ ;;^UTILITY(U,$J,358.3,14980,0)
+ ;;=M75.31^^58^714^10
+ ;;^UTILITY(U,$J,358.3,14980,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,14804,1,3,0)
- ;;=3^Diverticulosis of Colon w/ Bleeding
- ;;^UTILITY(U,$J,358.3,14804,1,4,0)
- ;;=4^K57.31
- ;;^UTILITY(U,$J,358.3,14804,2)
- ;;=^5008724
- ;;^UTILITY(U,$J,358.3,14805,0)
- ;;=K57.21^^85^835^24
- ;;^UTILITY(U,$J,358.3,14805,1,0)
+ ;;^UTILITY(U,$J,358.3,14980,1,3,0)
+ ;;=3^Calcific Tendinitis,Rt Shoulder
+ ;;^UTILITY(U,$J,358.3,14980,1,4,0)
+ ;;=4^M75.31
+ ;;^UTILITY(U,$J,358.3,14980,2)
+ ;;=^5013254
+ ;;^UTILITY(U,$J,358.3,14981,0)
+ ;;=M22.42^^58^714^13
+ ;;^UTILITY(U,$J,358.3,14981,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,14805,1,3,0)
- ;;=3^Diverticulitis of Colon w/ Perf,Abscess & Bleed
- ;;^UTILITY(U,$J,358.3,14805,1,4,0)
- ;;=4^K57.21
- ;;^UTILITY(U,$J,358.3,14805,2)
- ;;=^5008722
- ;;^UTILITY(U,$J,358.3,14806,0)
- ;;=K52.82^^85^835^29
- ;;^UTILITY(U,$J,358.3,14806,1,0)
+ ;;^UTILITY(U,$J,358.3,14981,1,3,0)
+ ;;=3^Chondromalacia Patellae,Lt Knee
+ ;;^UTILITY(U,$J,358.3,14981,1,4,0)
+ ;;=4^M22.42
+ ;;^UTILITY(U,$J,358.3,14981,2)
+ ;;=^5011187
+ ;;^UTILITY(U,$J,358.3,14982,0)
+ ;;=M22.41^^58^714^14
+ ;;^UTILITY(U,$J,358.3,14982,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,14806,1,3,0)
- ;;=3^Eosinophilic colitis
- ;;^UTILITY(U,$J,358.3,14806,1,4,0)
- ;;=4^K52.82
- ;;^UTILITY(U,$J,358.3,14806,2)
- ;;=^336608
- ;;^UTILITY(U,$J,358.3,14807,0)
- ;;=K56.41^^85^835^30
- ;;^UTILITY(U,$J,358.3,14807,1,0)
+ ;;^UTILITY(U,$J,358.3,14982,1,3,0)
+ ;;=3^Chondromalacia Patellae,Rt Knee
+ ;;^UTILITY(U,$J,358.3,14982,1,4,0)
+ ;;=4^M22.41
+ ;;^UTILITY(U,$J,358.3,14982,2)
+ ;;=^5011186
+ ;;^UTILITY(U,$J,358.3,14983,0)
+ ;;=M23.52^^58^714^15
+ ;;^UTILITY(U,$J,358.3,14983,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,14807,1,3,0)
- ;;=3^Fecal impaction
- ;;^UTILITY(U,$J,358.3,14807,1,4,0)
- ;;=4^K56.41
- ;;^UTILITY(U,$J,358.3,14807,2)
- ;;=^186798
- ;;^UTILITY(U,$J,358.3,14808,0)
- ;;=T18.4XXA^^85^835^32
- ;;^UTILITY(U,$J,358.3,14808,1,0)
+ ;;^UTILITY(U,$J,358.3,14983,1,3,0)
+ ;;=3^Chr Instability of Lt Knee
+ ;;^UTILITY(U,$J,358.3,14983,1,4,0)
+ ;;=4^M23.52
+ ;;^UTILITY(U,$J,358.3,14983,2)
+ ;;=^5011255
+ ;;^UTILITY(U,$J,358.3,14984,0)
+ ;;=M23.51^^58^714^16
+ ;;^UTILITY(U,$J,358.3,14984,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,14808,1,3,0)
- ;;=3^Foreign Body in Colon,Initial
- ;;^UTILITY(U,$J,358.3,14808,1,4,0)
- ;;=4^T18.4XXA
- ;;^UTILITY(U,$J,358.3,14808,2)
- ;;=^5046609
+ ;;^UTILITY(U,$J,358.3,14984,1,3,0)
+ ;;=3^Chr Instability of Rt Knee
+ ;;^UTILITY(U,$J,358.3,14984,1,4,0)
+ ;;=4^M23.51
+ ;;^UTILITY(U,$J,358.3,14984,2)
+ ;;=^5011254
+ ;;^UTILITY(U,$J,358.3,14985,0)
+ ;;=T20.40XS^^58^714^17
+ ;;^UTILITY(U,$J,358.3,14985,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,14985,1,3,0)
+ ;;=3^Corrosion Head/Face/Neck,Unspec Degree/Site,Sequla

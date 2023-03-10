@@ -1,118 +1,122 @@
-IBDEI171 ; ; 04-FEB-2020
- ;;3.0;IB ENCOUNTER FORM IMP/EXP;;FEB 04, 2020
+IBDEI171 ; ; 01-FEB-2022
+ ;;3.0;IB ENCOUNTER FORM IMP/EXP;;FEB 01, 2022
  Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,999) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
- ;;^UTILITY(U,$J,358.3,19178,2)
- ;;=^5007486
- ;;^UTILITY(U,$J,358.3,19179,0)
- ;;=I69.092^^93^989^30
- ;;^UTILITY(U,$J,358.3,19179,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,19179,1,3,0)
- ;;=3^Facial weakness following ntrm subarachnoid hemorrhage
- ;;^UTILITY(U,$J,358.3,19179,1,4,0)
- ;;=4^I69.092
- ;;^UTILITY(U,$J,358.3,19179,2)
- ;;=^5007422
- ;;^UTILITY(U,$J,358.3,19180,0)
- ;;=I69.892^^93^989^32
- ;;^UTILITY(U,$J,358.3,19180,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,19180,1,3,0)
- ;;=3^Facial weakness following other cerebrovascular disease
- ;;^UTILITY(U,$J,358.3,19180,1,4,0)
- ;;=4^I69.892
- ;;^UTILITY(U,$J,358.3,19180,2)
- ;;=^5007548
- ;;^UTILITY(U,$J,358.3,19181,0)
- ;;=I69.351^^93^989^34
- ;;^UTILITY(U,$J,358.3,19181,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,19181,1,3,0)
- ;;=3^Hemiplga fol cerebral infrc aff right dominant side
- ;;^UTILITY(U,$J,358.3,19181,1,4,0)
- ;;=4^I69.351
- ;;^UTILITY(U,$J,358.3,19181,2)
- ;;=^5007504
- ;;^UTILITY(U,$J,358.3,19182,0)
- ;;=I69.352^^93^989^33
- ;;^UTILITY(U,$J,358.3,19182,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,19182,1,3,0)
- ;;=3^Hemiplga fol cerebral infrc aff left dominant side
- ;;^UTILITY(U,$J,358.3,19182,1,4,0)
- ;;=4^I69.352
- ;;^UTILITY(U,$J,358.3,19182,2)
- ;;=^5007505
- ;;^UTILITY(U,$J,358.3,19183,0)
- ;;=I69.353^^93^989^35
- ;;^UTILITY(U,$J,358.3,19183,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,19183,1,3,0)
- ;;=3^Hemiplga fol cerebral infrc aff right nondom side
- ;;^UTILITY(U,$J,358.3,19183,1,4,0)
- ;;=4^I69.353
- ;;^UTILITY(U,$J,358.3,19183,2)
- ;;=^5007506
- ;;^UTILITY(U,$J,358.3,19184,0)
- ;;=I69.354^^93^989^36
- ;;^UTILITY(U,$J,358.3,19184,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,19184,1,3,0)
- ;;=3^Hemiplga fol cerebral infrc affecting left nondom side
- ;;^UTILITY(U,$J,358.3,19184,1,4,0)
- ;;=4^I69.354
- ;;^UTILITY(U,$J,358.3,19184,2)
- ;;=^5007507
- ;;^UTILITY(U,$J,358.3,19185,0)
- ;;=I69.151^^93^989^39
- ;;^UTILITY(U,$J,358.3,19185,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,19185,1,3,0)
- ;;=3^Hemiplga fol ntrm intcrbl hemor aff right dominant side
- ;;^UTILITY(U,$J,358.3,19185,1,4,0)
- ;;=4^I69.151
- ;;^UTILITY(U,$J,358.3,19185,2)
- ;;=^5007441
- ;;^UTILITY(U,$J,358.3,19186,0)
- ;;=I69.152^^93^989^37
- ;;^UTILITY(U,$J,358.3,19186,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,19186,1,3,0)
- ;;=3^Hemiplga fol ntrm intcrbl hemor aff left dominant side
- ;;^UTILITY(U,$J,358.3,19186,1,4,0)
- ;;=4^I69.152
- ;;^UTILITY(U,$J,358.3,19186,2)
- ;;=^5007442
- ;;^UTILITY(U,$J,358.3,19187,0)
- ;;=I69.153^^93^989^40
- ;;^UTILITY(U,$J,358.3,19187,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,19187,1,3,0)
- ;;=3^Hemiplga fol ntrm intcrbl hemor aff right nondom side
- ;;^UTILITY(U,$J,358.3,19187,1,4,0)
- ;;=4^I69.153
- ;;^UTILITY(U,$J,358.3,19187,2)
- ;;=^5007443
- ;;^UTILITY(U,$J,358.3,19188,0)
- ;;=I69.154^^93^989^38
- ;;^UTILITY(U,$J,358.3,19188,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,19188,1,3,0)
- ;;=3^Hemiplga fol ntrm intcrbl hemor aff left nondom side
- ;;^UTILITY(U,$J,358.3,19188,1,4,0)
- ;;=4^I69.154
- ;;^UTILITY(U,$J,358.3,19188,2)
- ;;=^5007444
- ;;^UTILITY(U,$J,358.3,19189,0)
- ;;=I69.851^^93^989^45
- ;;^UTILITY(U,$J,358.3,19189,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,19189,1,3,0)
- ;;=3^Hemiplga fol oth cerebvasc disease aff right dominant side
- ;;^UTILITY(U,$J,358.3,19189,1,4,0)
- ;;=4^I69.851
- ;;^UTILITY(U,$J,358.3,19189,2)
- ;;=^5007535
- ;;^UTILITY(U,$J,358.3,19190,0)
- ;;=I69.852^^93^989^46
+ ;;^UTILITY(U,$J,358.3,19379,1,3,0)
+ ;;=3^97542
+ ;;^UTILITY(U,$J,358.3,19380,0)
+ ;;=97750^^66^862^9^^^^1
+ ;;^UTILITY(U,$J,358.3,19380,1,0)
+ ;;=^358.31IA^3^2
+ ;;^UTILITY(U,$J,358.3,19380,1,2,0)
+ ;;=2^Physical Performance Test (KT Eval)
+ ;;^UTILITY(U,$J,358.3,19380,1,3,0)
+ ;;=3^97750
+ ;;^UTILITY(U,$J,358.3,19381,0)
+ ;;=97161^^66^862^5^^^^1
+ ;;^UTILITY(U,$J,358.3,19381,1,0)
+ ;;=^358.31IA^3^2
+ ;;^UTILITY(U,$J,358.3,19381,1,2,0)
+ ;;=2^PT Evaluation,Low Complexity
+ ;;^UTILITY(U,$J,358.3,19381,1,3,0)
+ ;;=3^97161
+ ;;^UTILITY(U,$J,358.3,19382,0)
+ ;;=97162^^66^862^6^^^^1
+ ;;^UTILITY(U,$J,358.3,19382,1,0)
+ ;;=^358.31IA^3^2
+ ;;^UTILITY(U,$J,358.3,19382,1,2,0)
+ ;;=2^PT Evaluation,Moderate Complexity
+ ;;^UTILITY(U,$J,358.3,19382,1,3,0)
+ ;;=3^97162
+ ;;^UTILITY(U,$J,358.3,19383,0)
+ ;;=97163^^66^862^7^^^^1
+ ;;^UTILITY(U,$J,358.3,19383,1,0)
+ ;;=^358.31IA^3^2
+ ;;^UTILITY(U,$J,358.3,19383,1,2,0)
+ ;;=2^PT Evaluation,High Complexity
+ ;;^UTILITY(U,$J,358.3,19383,1,3,0)
+ ;;=3^97163
+ ;;^UTILITY(U,$J,358.3,19384,0)
+ ;;=97164^^66^862^8^^^^1
+ ;;^UTILITY(U,$J,358.3,19384,1,0)
+ ;;=^358.31IA^3^2
+ ;;^UTILITY(U,$J,358.3,19384,1,2,0)
+ ;;=2^PT Re-Evaluation
+ ;;^UTILITY(U,$J,358.3,19384,1,3,0)
+ ;;=3^97164
+ ;;^UTILITY(U,$J,358.3,19385,0)
+ ;;=97165^^66^862^1^^^^1
+ ;;^UTILITY(U,$J,358.3,19385,1,0)
+ ;;=^358.31IA^3^2
+ ;;^UTILITY(U,$J,358.3,19385,1,2,0)
+ ;;=2^OT Evaluation,Low Complexity
+ ;;^UTILITY(U,$J,358.3,19385,1,3,0)
+ ;;=3^97165
+ ;;^UTILITY(U,$J,358.3,19386,0)
+ ;;=97166^^66^862^2^^^^1
+ ;;^UTILITY(U,$J,358.3,19386,1,0)
+ ;;=^358.31IA^3^2
+ ;;^UTILITY(U,$J,358.3,19386,1,2,0)
+ ;;=2^OT Evaluation,Moderate Complexity
+ ;;^UTILITY(U,$J,358.3,19386,1,3,0)
+ ;;=3^97166
+ ;;^UTILITY(U,$J,358.3,19387,0)
+ ;;=97167^^66^862^3^^^^1
+ ;;^UTILITY(U,$J,358.3,19387,1,0)
+ ;;=^358.31IA^3^2
+ ;;^UTILITY(U,$J,358.3,19387,1,2,0)
+ ;;=2^OT Evaluation,High Complexity
+ ;;^UTILITY(U,$J,358.3,19387,1,3,0)
+ ;;=3^97167
+ ;;^UTILITY(U,$J,358.3,19388,0)
+ ;;=97168^^66^862^4^^^^1
+ ;;^UTILITY(U,$J,358.3,19388,1,0)
+ ;;=^358.31IA^3^2
+ ;;^UTILITY(U,$J,358.3,19388,1,2,0)
+ ;;=2^OT Re-Evaluation
+ ;;^UTILITY(U,$J,358.3,19388,1,3,0)
+ ;;=3^97168
+ ;;^UTILITY(U,$J,358.3,19389,0)
+ ;;=97597^^66^863^2^^^^1
+ ;;^UTILITY(U,$J,358.3,19389,1,0)
+ ;;=^358.31IA^3^2
+ ;;^UTILITY(U,$J,358.3,19389,1,2,0)
+ ;;=2^Active Wound Care,20 CM or Less
+ ;;^UTILITY(U,$J,358.3,19389,1,3,0)
+ ;;=3^97597
+ ;;^UTILITY(U,$J,358.3,19390,0)
+ ;;=97598^^66^863^1^^^^1
+ ;;^UTILITY(U,$J,358.3,19390,1,0)
+ ;;=^358.31IA^3^2
+ ;;^UTILITY(U,$J,358.3,19390,1,2,0)
+ ;;=2^Active Wound Care ea addl 20 Cm (add on)
+ ;;^UTILITY(U,$J,358.3,19390,1,3,0)
+ ;;=3^97598
+ ;;^UTILITY(U,$J,358.3,19391,0)
+ ;;=97605^^66^863^7^^^^1
+ ;;^UTILITY(U,$J,358.3,19391,1,0)
+ ;;=^358.31IA^3^2
+ ;;^UTILITY(U,$J,358.3,19391,1,2,0)
+ ;;=2^Neg Press Wound Tx </= 50 Sq Cm using DME
+ ;;^UTILITY(U,$J,358.3,19391,1,3,0)
+ ;;=3^97605
+ ;;^UTILITY(U,$J,358.3,19392,0)
+ ;;=97606^^66^863^9^^^^1
+ ;;^UTILITY(U,$J,358.3,19392,1,0)
+ ;;=^358.31IA^3^2
+ ;;^UTILITY(U,$J,358.3,19392,1,2,0)
+ ;;=2^Neg Press Wound Tx > 50 Sq Cm using DME
+ ;;^UTILITY(U,$J,358.3,19392,1,3,0)
+ ;;=3^97606
+ ;;^UTILITY(U,$J,358.3,19393,0)
+ ;;=97602^^66^863^11^^^^1
+ ;;^UTILITY(U,$J,358.3,19393,1,0)
+ ;;=^358.31IA^3^2
+ ;;^UTILITY(U,$J,358.3,19393,1,2,0)
+ ;;=2^Removal devitalized tissue w/o anesth
+ ;;^UTILITY(U,$J,358.3,19393,1,3,0)
+ ;;=3^97602
+ ;;^UTILITY(U,$J,358.3,19394,0)
+ ;;=G0281^^66^863^5^^^^1
+ ;;^UTILITY(U,$J,358.3,19394,1,0)
+ ;;=^358.31IA^3^2

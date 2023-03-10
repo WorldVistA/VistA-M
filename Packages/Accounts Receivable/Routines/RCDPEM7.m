@@ -1,6 +1,6 @@
-RCDPEM7 ;OIFO-BAYPINES/PJH - OVERDUE EFT AND ERA BULLETINS ;Jun 06, 2014@19:11:19
- ;;4.5;Accounts Receivable;**276,298,303,304,321,326**;Mar 20, 1995;Build 26
- ;;Per VA Directive 6402, this routine should not be modified.
+RCDPEM7 ;OIFO-BAYPINES/PJH - OVERDUE EFT AND ERA BULLETINS ; 6/7/19 7:24am
+ ;;4.5;Accounts Receivable;**276,298,303,304,321,326,345,349**;Mar 20, 1995;Build 44
+ ;Per VA Directive 6402, this routine should not be modified.
  ;
 EN ; Main entry point for overdue EFT/ERA bulletins
  ;
@@ -11,6 +11,8 @@ EN ; Main entry point for overdue EFT/ERA bulletins
  S (EFTCNT,ERACNT,ERA1CNT,ERA2CNT,EFTTOT,ERATOT,ERA1TOT,ERA2TOT,RCSUSCNT,RCSUSAMT)=0
  ;Cuttoff of 12:00 am today
  S TODAY=$P($$NOW^XLFDT,".")
+ I $E(TODAY,6,7)="01" D  ; PRCA*4.5*349 Things to run on the first of the month
+ . D BULL^RCDPEFA4("M")  ; PRCA*4.5*349 Monthy 1st Party Decrease Stats
  ;
  ;Verify this is correct day for bulletins - PRCA*4.5*321
  N X
@@ -29,6 +31,8 @@ EN ; Main entry point for overdue EFT/ERA bulletins
  D SUSPSCAN
  ;Bulletins
  D BULLETIN
+ ;
+ D BULL^RCDPEFA4("W") ; PRCA*4.5*349 Weekly 1st party auto-decrease stats
  ;Clear workfiles
  K ^TMP(RCPROG,$J)
  Q

@@ -1,5 +1,5 @@
-RAO7CMP ;HISC/FPT,GJC-Completed Request from Rad to OE/RR! ;10/3/01  15:07
- ;;5.0;Radiology/Nuclear Medicine;**10,18,26,28**;Mar 16, 1998
+RAO7CMP ;HISC/FPT,GJC-Completed Request from Rad to OE/RR! ; Aug 18, 2020@15:35:45
+ ;;5.0;Radiology/Nuclear Medicine;**10,18,26,28,160**;Mar 16, 1998;Build 4
  ;Last modification for P18 by SS, JULY 6, 2000
 EN1(RAOIFN) ; 'RAOIFN' is the ien in file 75.1
  ; New vars & define the following variables: RAECH, RAECH array & RAHLFS
@@ -60,7 +60,8 @@ SETVAR ; Setup exam specific variables
  ;if CPRS patch not installed always take procedure ien from 75.1
  ;if not - then in case of Parent procedure take it from 75.1,otherwise-from 70
  I '$$PATCH^XPDUTL("OR*3.0*92") S RA18PROC=+$P(RA0,U,2) ;P18
- E  S RA18PROC=$S($P(^RAMIS(71,+$P(RA0,U,2),0),U,6)="P":+$P(RA0,U,2),1:+$P(RA70(0),U,2)) ;P18;P26;P31
+ ;gjc p160 $G on the procedure zero node to prevent hard error
+ E  S RA18PROC=$S($P($G(^RAMIS(71,+$P(RA0,U,2),0)),U,6)="P":+$P(RA0,U,2),1:+$P(RA70(0),U,2)) ;P18;P26;P31
  S RAPROC(0)=$G(^RAMIS(71,RA18PROC,0)),RAPROC(9)=+$P(RAPROC(0),U,9) ;P18
  S RACPT(0)=$$NAMCODE^RACPTMSC(RAPROC(9),DT)
  S RAPRIOR=$P(RA0,U,6)

@@ -1,8 +1,8 @@
 GMRCIAC1 ;SLC/JFR - FILE IFC ACTIVITIES cont'd ;03/20/14  11:40
- ;;3.0;CONSULT/REQUEST TRACKING;**22,66,73**;DEC 27, 1997;Build 22
+ ;;3.0;CONSULT/REQUEST TRACKING;**22,66,73,154**;DEC 27, 1997;Build 135
  ;#2051($$FIND1^DIC), #2053(DIE), #10104 (XLFSTR)
  Q
-COMP(GMRCAR) ;process partial result, clin complete and admin complete
+COMP(GMRCAR,GMRCCRNR,GMRCMSGI) ;process partial result, clin complete and admin complete ;MKN GMRC*3*154 added GMRCCRNR and GMRCMSGI
  ;
  N GMRCDA,GMRCFDA,GMRCORC,GMRCLAT,GMRCACT,FDA
  N GMRCRES,GMRCERR,GMRCSTS,GMRCREAS
@@ -11,8 +11,9 @@ COMP(GMRCAR) ;process partial result, clin complete and admin complete
  S GMRCREAS=$P($P(GMRCORC,"|",16),U)
  S GMRCDA=$$GETDA^GMRCIAC2(GMRCORC)
  S GMRCSTS=$P(^GMR(123,GMRCDA,0),U,12)
+ S GMRCCRNR=$G(GMRCCRNR,0),GMRCMSGI=$G(GMRCMSGI) ;MKN GMRC*3*154
  I '$$LOCKREC^GMRCUTL1(GMRCDA) D  Q  ;couldn't lock record
- . D APPACK^GMRCIAC2(GMRCDA,"AR",901) ;send app. ACK
+ . D APPACK^GMRCIAC2(GMRCDA,"AR",901,GMRCCRNR,GMRCMSGI) ;send app. ACK ;MKN GMRC*3*154 added GMRCCRNR and GMRCMSGI
  . K ^TMP("GMRCIN",$J) Q
  ;
  S GMRCFDA(8)=$S($P(GMRCORC,"|",5)="CM":2,GMRCSTS=2:2,1:9) ;comp or pr
@@ -21,7 +22,7 @@ COMP(GMRCAR) ;process partial result, clin complete and admin complete
  I $D(^TMP("GMRCIN",$J,"OBX",6,1)) D
  . S GMRCFDA(15)=$P(^TMP("GMRCIN",$J,"OBX",6,1),"|",5)
  ;     v-- check to see if a duplicate transmission
- I $$DUPACT^GMRCIAC2(GMRCDA,GMRCLAT,GMRCORC,$S(GMRCLAT=13:"",1:$G(^TMP("GMRCIN",$J,"OBX",4,1)))) Q
+ I $$DUPACT^GMRCIAC2(GMRCDA,GMRCLAT,GMRCORC,$S(GMRCLAT=13:"",1:$G(^TMP("GMRCIN",$J,"OBX",4,1))),GMRCCRNR,GMRCMSGI) Q  ;MKN GMRC*3*154 added GMRCCRNR and GMRCMSGI
  M FDA(1,123,GMRCDA_",")=GMRCFDA
  D UPDATE^DIE("","FDA(1)",,"GMRCERR") ;file last action and status
  ; check GMRCERR and act if error
@@ -44,15 +45,17 @@ COMP(GMRCAR) ;process partial result, clin complete and admin complete
  . S GMRCORTX=GMRCORTX_"Remote Complete Consult: "_$$ORTX^GMRCAU(+GMRCDA)
  . D MSG^GMRCP($P(^GMR(123,GMRCDA,0),U,2),GMRCORTX,GMRCDA,23,,1)
  D  ;send appl ACK
- . D APPACK^GMRCIAC2(GMRCDA,"AA")
+ . D APPACK^GMRCIAC2(GMRCDA,"AA","",GMRCCRNR,GMRCMSGI) ;MKN GMRC*3*154 added GMRCCRNR and GMRCMSGI
  ;
  K ^TMP("GMRCIN",$J)
  Q
  ;
-FWD(GMRCAR)     ;file forward action from a remote site
+FWD(GMRCAR,GMRCCRNR,GMRCMSGI)     ;file forward action from a remote site ;MKN GMRC*3*154 added GMRCCRNR and GMRCMSGI
  ;Input:
  ; GMRCAR = array name containing message
  ;      e.g.  ^TMP("GMRCIF",$J)
+ ; GMRCCRNR = 1 if message came from Cerner
+ ; GMRCMSGI = message ID
  ;
  N GMRCFDA,GMRCDA,GMRCFWSR,GMRCFROM,GMRCORC,GMRCTIFC,GMRCLAC,GMRCROL
  M ^TMP("GMRCIN",$J)=@GMRCAR
@@ -60,8 +63,9 @@ FWD(GMRCAR)     ;file forward action from a remote site
  S GMRCORC=^TMP("GMRCIN",$J,"ORC")
  S GMRCTIFC=$S($P($P(GMRCORC,"|",16),U)="F":0,1:1)
  S GMRCDA=$$GETDA^GMRCIAC2(GMRCORC)
+ S GMRCCRNR=$G(GMRCCRNR,0),GMRCMSGI=$G(GMRCMSGI) ;MKN GMRC*3*154
  I '$$LOCKREC^GMRCUTL1(GMRCDA) D  Q  ;couldn't lock record
- . D APPACK^GMRCIAC2(GMRCDA,"AR",901) ;send app. ACK
+ . D APPACK^GMRCIAC2(GMRCDA,"AR",901,GMRCCRNR,GMRCMSGI) ;send app. ACK ;MKN GMRC*3*154 added GMRCCRNR and GMRCMSGI
         . K ^TMP("GMRCIN",$J) Q
  S GMRCROL=$P(^GMR(123,GMRCDA,12),U,5)
  I 'GMRCTIFC D
@@ -80,7 +84,9 @@ FWD(GMRCAR)     ;file forward action from a remote site
  . S URG=$$URG^GMRCHL7A($P($P(^TMP("GMRCIN",$J,"ORC"),"|",7),U,6))
  . S GMRCFDA(5)=$$FIND1^DIC(101,"","X","GMRCURGENCY - "_URG)
  ;   v-- chk to see if activity is a dup transmission
- I $$DUPACT^GMRCIAC2(GMRCDA,GMRCLAC,GMRCORC) Q
+ I $$DUPACT^GMRCIAC2(GMRCDA,GMRCLAC,GMRCORC,,GMRCCRNR,GMRCMSGI) Q  ;MKN GMRC*3*154 added GMRCCRNR and GMRCMSGI
+ ; GMRCMSGI = message ID
+ ;
  ;
  M FDA(1,123,GMRCDA_",")=GMRCFDA
  D UPDATE^DIE("","FDA(1)",,"GMRCERR")
@@ -108,11 +114,11 @@ FWD(GMRCAR)     ;file forward action from a remote site
  . D PRNT^GMRCUTL1("",GMRCDA)
  ;
  D  ;send app. ACK and unlock record
- . D APPACK^GMRCIAC2(GMRCDA,"AA")
+ . D APPACK^GMRCIAC2(GMRCDA,"AA","",GMRCCRNR,GMRCMSGI) ;MKN GMRC*3*154 added GMRCCRNR and GMRCMSGI
  K ^TMP("GMRCIN",$J)
  Q
  ;
-SF(GMRCAR) ;add significant findings
+SF(GMRCAR,GMRCCRNR,GMRCMSGI) ;add significant findings ;MKN GMRC*3*154 added GMRCCRNR and GMRCMSGI
  ; Input:
  ; GMRCAR = array name containing message
  ;      e.g.  ^TMP("GMRCIF",$J)
@@ -122,15 +128,16 @@ SF(GMRCAR) ;add significant findings
  I '$D(^TMP("GMRCIS",$J,"OBX",6,1)) Q  ;no SF flag sent  ;-(
  S GMRCDA=$$GETDA^GMRCIAC2(^TMP("GMRCIS",$J,"ORC"))
  I '$$LOCKREC^GMRCUTL1(GMRCDA) D  Q  ;couldn't lock record
- . D APPACK^GMRCIAC2(GMRCDA,"AR",901) ;send app. ACK
+ . D APPACK^GMRCIAC2(GMRCDA,"AR",901,GMRCCRNR,GMRCMSGI) ;send app. ACK ;MKN GMRC*3*154 added GMRCCRNR and GMRCMSGI
  . K ^TMP("GMRCIN",$J) Q
  ;
+ S GMRCCRNR=$G(GMRCCRNR,0),GMRCMSGI=$G(GMRCMSGI) ;MKN GMRC*3*154
  S GMRCOSF=$P(^GMR(123,GMRCDA,0),U,19)
  S GMRCISF=$P(^TMP("GMRCIS",$J,"OBX",6,1),"|",5)
  S FDA(1,123,GMRCDA_",",15)=GMRCISF
  S FDA(1,123,GMRCDA_",",9)=4
  ;   v-- quit if a duplicate activity
- I $$DUPACT^GMRCIAC2(GMRCDA,4,^TMP("GMRCIS",$J,"ORC")) Q
+ I $$DUPACT^GMRCIAC2(GMRCDA,4,^TMP("GMRCIS",$J,"ORC"),,GMRCCRNR,GMRCMSGI) Q  ;MKN GMRC*3*154 added GMRCCRNR and GMRCMSGI
  ;
  D UPDATE^DIE("","FDA(1)",,"GMRCERR") ;file last action and SF
  D FILEACT^GMRCIAC2(GMRCDA,4,,$NA(^TMP("GMRCIS",$J))) ;activity track
@@ -141,11 +148,11 @@ SF(GMRCAR) ;add significant findings
  . S GMRCORTX=GMRCORTX_"Sig Findings for "_$$ORTX^GMRCAU(+GMRCDA)
  . D MSG^GMRCP($P(^GMR(123,GMRCDA,0),U,2),GMRCORTX,GMRCDA,23,,1)
  D  ;send appl ACK and unlock record
- . D APPACK^GMRCIAC2(GMRCDA,"AA")
+ . D APPACK^GMRCIAC2(GMRCDA,"AA","",GMRCCRNR,GMRCMSGI) ;MKN GMRC*3*154 added GMRCCRNR and GMRCMSGI
  K ^TMP("GMRCIS",$J)
  Q
  ;
-RESUB(GMRCAR) ;resubmit a cancelled, remote consult
+RESUB(GMRCAR,GMRCCRNR,GMRCMSGI) ;resubmit a cancelled, remote consult ;MKN GMRC*3*154 added GMRCCRNR and GMRCMSGI
  ; Input:
  ;   GMRCAR - array name containing message
  ;      e.g.  ^TMP("GMRCIF",$J)
@@ -155,10 +162,11 @@ RESUB(GMRCAR) ;resubmit a cancelled, remote consult
  N GMRCDA,GMRCFDA,FDA
  S GMRCDA=$$GETDA^GMRCIAC2(^TMP("GMRCIN",$J,"ORC"))
  I '$$LOCKREC^GMRCUTL1(GMRCDA) D  Q  ;couldn't lock record
- . D APPACK^GMRCIAC2(GMRCDA,"AR",901) ; send app. ACK
+ . D APPACK^GMRCIAC2(GMRCDA,"AR",901,GMRCCRNR,GMRCMSGI) ; send app. ACK ;MKN GMRC*3*154 added GMRCCRNR and GMRCMSGI
  . K ^TMP("GMRCIN",$J) Q
  ;
  S GMRCFDA(8)=5,GMRCFDA(9)=11 ;status and last action
+ S GMRCCRNR=$G(GMRCCRNR,0),GMRCMSGI=$G(GMRCMSGI) ;MKN GMRC*3*154
  ;
  I $D(^TMP("GMRCIN",$J,"OBR")) D  ; has INPATIENT or OUTPATIENT changed?
  . N GMRCION
@@ -202,7 +210,7 @@ RESUB(GMRCAR) ;resubmit a cancelled, remote consult
  .. S:$D(^DD(123,30.3,0)) GMRCFDA(30.3)=$G(GMRCCSYS)
  . Q
  ;   v-- QUIT if a duplicate transmission
- I $$DUPACT^GMRCIAC2(GMRCDA,11,^TMP("GMRCIN",$J,"ORC")) Q
+ I $$DUPACT^GMRCIAC2(GMRCDA,11,^TMP("GMRCIN",$J,"ORC"),,GMRCCRNR,GMRCMSGI) Q  ;MKN GMRC*3*154 added GMRCCRNR and GMRCMSGI
  ;
  M FDA(1,123,GMRCDA_",")=GMRCFDA
  D UPDATE^DIE("","FDA(1)",,"GMRCERR") ;file edits
@@ -237,7 +245,7 @@ RESUB(GMRCAR) ;resubmit a cancelled, remote consult
  . D MSG^GMRCP($P(^GMR(123,GMRCDA,0),U,2),GMRCORTX,GMRCDA,27,,1)
  ;
  D  ;send appl ACK and unlock record
- . D APPACK^GMRCIAC2(GMRCDA,"AA")
+ . D APPACK^GMRCIAC2(GMRCDA,"AA","",GMRCCRNR,GMRCMSGI) ;MKN GMRC*3*154 added GMRCCRNR and GMRCMSGI
  ;
  K ^TMP("GMRCIN",$J)
  Q

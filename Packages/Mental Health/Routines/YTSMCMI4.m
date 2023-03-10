@@ -1,55 +1,48 @@
-YTSMCMI4 ;BAL/KTL- MHAX ANSWERS SPECIAL HANDLING #2 ; 9/14/18 3:19pm
- ;;5.01;MENTAL HEALTH;**151**;Dec 30, 1994;Build 92
+YTSMCMI4 ;BAL/KTL - MHAX ANSWERS SPECIAL HANDLING #2 ; 9/14/18 3:19pm
+ ;;5.01;MENTAL HEALTH;**151,187,202,217**;Dec 30, 1994;Build 12
  ;
- ; MCMI4 Scoring
- ;
- ; This routine handles limited complex reporting requirements withoutmodifying YS_AUX.DLL by adding free text "answers" that can be used by
- ; a report.
- ;
- ; Assumptions:  EDIT incomplete instrument should ignore the extra answers since there are no associated questions.  GRAPHING should ignore the
- ; answers since they not numeric.
+ ; MCMI4
  ;
 DLLSTR(YSDATA,YS,YSTRNG) ;
  ;  YSTRNG = 1 Score Instrument
  ;  YSTRNG = 2 get Report Answers and Text
  N YSCNT,YSIND,CNT,YSCOD,YSINVRPT,YSCALRSL,YSRAWRSL,YSQANS,YSQANS2,YSQSCAL,YSNOGRPH,HIARR,SCALOD
- N YBRS,YPRS   ;Calculated Base Rate, Calculated PR
+ N YBRS,YPRS   ;Calc Base Rate, Calc PR
  N YSNOTE      ;Noteworthy Responses Array
- N LOGIT,RECALC
+ N HIHIT,GRSHIT ;High 3 Personality Scale Hit and Grossman Facet >75 Hit
  S N=N+1
- D INICOD^YTSMCMIB  ;Generate array YSCOD(scalename)=scalecode
- D INIBRS^YTSMCMIC  ;initialize YBRS(scalecode,"STR") that gets possible Base Rate for each scale Raw
- D INIPRS^YTSMCMID  ;initialize YPRS(scalecode,"STR") that gets possible Percentile for each scale Raw (Facet) or Adjusted Base Rate (Non-Facet)
- D YSQ^YTSMCMIB     ;initialize YSQSCAL(scalcode)=questions for that scale.  Needed to check if any scales are invalid.
+ D INICOD^YTSMCMIB  ;array YSCOD(scalename)=scalecode
+ D INIBRS^YTSMCMIC  ;init YBRS(scalecode,"STR") -get possible Base Rate for each scale Raw
+ D INIPRS^YTSMCMID  ;init YPRS(scalecode,"STR") -get possible Percentile for scale Raw (Facet)/Adj Base Rate (Non-Facet)
+ D YSQ^YTSMCMIB     ;init YSQSCAL(scalcode)=questions.  Needed to chck if any scales are invalid.
  D DATA1
  I YSTRNG=1 Q
  ; Generate Report Sections
- ;D LDSCORES^YTSCORE(.YSDATA,.YS)
- K ^YKTL($J,"YSCOR1") M ^YKTL($J,"YSCOR1")=^TMP($J,"YSCOR")
- D MODIND   ;Modifying Indices
- D CPP      ;Clinical Personality Patterns
- D SPP      ;Severe Personality Pathology
+ D MODIND   ;Mod Indices
+ D CPP      ;Clin Personality Patterns
+ D SPP      ;Sevr Personality Path
  D CS       ;Clinical Syndromes
- D SCS      ;Severe Clinical Syndromes
- D TOP3     ;3 Highest Grossman Facet Scales
- D FACET    ;All Grossman Facet Scales
- D NTWRTHY  ;Noteworthy Responses
- D RESP    ;Set up the table of Responses
+ D SCS      ;Sevr Clinical Syndromes
+ D TOP3     ;3 Highest Grossman Scales
+ D FACET    ;All Facet Scales
+ D RSLWRN   ;Rsl Warning
+ D NTWRTHY
+ D RESP     ;Set up Responses
  Q
-DATA1 ;Extract results can do calculations
- ;I YSTRNG=1, add up the RAW values for each scale. then calculate the adjusted Base Rate and Percentile Rankings, Save them and quit
- ;I YSTRNG=2, then extract them from the saved values, Do any report calculations, Then display the report
+DATA1 ;Extract results&calc
+ ;I YSTRNG=1, add up RAW values for scaleN calc adj BR and PR
+ ;I YSTRNG=2, extract from saved values, Do rPT calcs
  I YSTRNG=1 D  Q
- .D EXTANS  ;Extract the T/F responses to each question - Needed because YSARRAY in different order
+ .D EXTANS  ;Extract the T/F responses
  .D ^YTSMCMIA
  D LDSCORES^YTSCORE(.YSDATA,.YS)
- ;Extract the Raw Scale Results;Get the High Point Scores;Get the Base Rate Adjustment Header;Get the V result for Invalidity;Get the W result for Inconsistency
+ ;Extract Raw Scale Rsl;Get the High Point;Get the BR Adj Header;Get V rsl for Invalidity;Get W rsl for Inconsistency
  D EXTRSL,EXTANS,HIGHPT,BRADJH,INVDH,INCNH
- S YSINVRPT=$$INVRPT()  ; See if INVALID Reprt conditions exist
+ S YSINVRPT=$$INVRPT()  ; See if INVALID Report conditions
  I YSINVRPT'="" D INVALID(YSINVRPT)
- D INVSCL  ;See if any Scale is invalid
- D ELEV    ;Get the top three Grossman Facet scale for the Elevated Scales portion of the report
- D NOTEW   ;Get the Noteworthy Responses
+ D INVSCL  ;Any Scale invalid
+ D ELEV    ;Top 3 Grossman Face
+ D NOTEW   ;Noteworthy Responses
  Q
 INVRPT() ;
  ; Check for Invalid Report conditions
@@ -57,9 +50,10 @@ INVRPT() ;
  ; Raw X > 114 ! Raw X < 7  ;Scale X outside acceptable range
  ; All Scales 1-8B Base Rate < 60  ; All scales too low
  ; Raw W > 19  ;Inconsistency Index elevated
- ; Return INVRPT of 1 = YES, INVALID
- ;                  0 = NO, OK TO PROCEED
- N INVSTR,SCALSTR,SCAL,CHK,XQUES,QUES,I
+ ; More than 13 responses skipped for X
+ ; INVRPT of 1 = YES, INVALID
+ ;           0 = NO, OK TO PROCEED
+ N INVSTR,SCALSTR,SCAL,CHK,XQUES,QUES,I,SKIPS
  I YSRAWRSL("V Invalidity")>1 S INVSTR="The Invalidity Index is elevated." Q INVSTR
  I YSRAWRSL("X Disclosure")<7!(YSRAWRSL("X Disclosure")>114) S INVSTR="Scale X is outside of an acceptable range." Q INVSTR
  S CHK=""
@@ -70,11 +64,21 @@ INVRPT() ;
  .S CHK=1
  I CHK="" S INVSTR="Scales 1-8B are all less than 60 BR" Q INVSTR
  I $G(YSRAWRSL("W Inconsistency"))>19 S INVSTR="The Inconsistency Index is elevated." Q INVSTR
+ ; Check if X scale>13 omits
  S XQUES=YSQSCAL("X Disclosure")
  S CHK=0
  F I=1:1:$L(XQUES,U) D
- .S QUES=$P(XQUES,U,I) I YSQANS(QUES)="" S CHK=CHK+1
- I CHK>13 S INVSTR="X Omits greater than 13" Q INVSTR
+ . S QUES=$P(XQUES,U,I) I YSQANS(QUES)="X" S CHK=CHK+1
+ I CHK>13 S INVSTR="Scale X omits greater than 13" Q INVSTR
+ ; Check all scale>13 omits
+ S CHK=0,SCAL=""
+ F  S SCAL=$O(YSQSCAL(SCAL)) Q:SCAL=""  D
+ . S XQUES=YSQSCAL(SCAL)
+ . F I=1:1:$L(XQUES,U) D
+ .. S QUES=$P(XQUES,U,I) Q:QUES=""  Q:YSQANS(QUES)'="X"
+ .. Q:$D(SKIPS(QUES))  ;already counted from another scale
+ .. S CHK=CHK+1,SKIPS(QUES)=""
+ I CHK>13 S INVSTR="Invalid responses greater than 13" Q INVSTR
  Q ""
 INVALID(INVSTR) ;
  ; Text for invalid report
@@ -83,13 +87,12 @@ INVALID(INVSTR) ;
  S I="" F  S I=$O(YSDATA(I)) Q:I=""!(DONE=1)  D
  .I YSDATA(I)["7771" S $P(YSDATA(I),U,3)="",DONE=1  ;If INVALID, do not display HP Code
  S N=N+1,YSDATA(N)="7783^9999;1^INVALID PROFILE: "_INVSTR_"|"
- S YSNOGRPH=1  ;Do not Graph BR Scores
+ S YSNOGRPH=1  ;Don't Graph BR Scores
  Q
 INVSCL ;
- ;See if any scale is invalid, more than 2 or 4 omits
+ ;Any scale>2 or 4 omits
  N OMITS,SCALSTR,SCAL,QUES,RSL,CNT,I,II
- F I=1140:1:1143,1145:1:1169,1240:1:1284 D  ;1142 VS 1143
- .;S SCAL=^YTT(601.87,I,0)
+ F I=1140:1:1143,1145:1:1169,1240:1:1284 D
  .S SCAL=$$GET1^DIQ(601.87,I_",",3,"I")
  .S CNT=0
  .I SCAL="X Disclosure"!(SCAL="W Inconsistency") Q
@@ -103,7 +106,7 @@ INVSCL ;
  ..S YPRS(SCAL,"RSL")="-"
  Q
 EXTANS ;
- ;Extract the T/F responses to each question from YSDATA array
+ ;Extract the T/F from YSDATA array
  ;TRUE=1 FALSE=2
  N X,QUEST,ANS,STR,PTR,DATA
  S X=2
@@ -111,35 +114,28 @@ EXTANS ;
  .S DATA=YSDATA(X)
  .S ANS=$$GET1^DIQ(601.75,$P($G(DATA),U,3)_",",4,"I")
  .S QUES=$P(DATA,U,2),PTR=$P(DATA,U)
- .;S ANS=$S(ANS=3919:1,ANS=3920:2,1:"")
  .S YSQANS(QUES)=ANS
  .S YSQANS(QUES,"PTR")=PTR
  .S YSQANS2(PTR)=ANS
  Q
 EXTRSL ;
- ; Extract the Raw score and store by Scale Name
+ ; Extract the Raw score-store by Scale Name
  N I,SCAL,VAL,BR,PR,RAW,YSAD,YSCALE,G,SCLNAM
- M ^YKTL($J,YSTRNG,"YSDATA")=YSDATA
- K ^YKTL($J,"YSCOR",YSTRNG) M ^YKTL($J,"YSCOR",YSTRNG)=^TMP($J,"YSCOR")
  S I=1 F  S I=$O(^TMP($J,"YSCOR",I)) Q:I=""  D
  .S VAL=^TMP($J,"YSCOR",I),SCAL=$P(VAL,"="),VAL=$P(VAL,"=",2)
  .S RAW=$P(VAL,U),YSRAWRSL(SCAL)=RAW
- .S BR=$P(VAL,U,2),YBRS(SCAL,"RSL")=BR
+ .S BR=$P(VAL,U,2),BR=$$BRFIX^YTSMCMIA(BR),YBRS(SCAL,"RSL")=BR  ;PATCH X
  .S PR=$P(VAL,U,3),YPRS(SCAL,"RSL")=PR
- .S SCLNAM(SCAL)=I  ;Index of ^TMP($J,"YSCOR") by scalename to extract calculated results below
- ;^TMP($J,"YSCOR") only contains the first value from 601.92
- ;If YTSCORE is updated to extract computed result fields this may not
- ;be needed in the future.
+ .S SCLNAM(SCAL)=I  ;^TMP($J,"YSCOR") by scalename to extract calculated results below
  D EX2
  Q
-EX2 ; PATCH UNTIL WE FIGURE OUT WHY T-SCORE NOT IN ^TMP($J,"YSCOR") 
+EX2 ;T-SCORE NOT IN ^TMP($J,"YSCOR") 
  S YSAD=$G(YS("AD"))
  S YSCALE=""
  F  S YSCALE=$O(^YTT(601.92,"AC",YSAD,YSCALE))  Q:'YSCALE  D
  .S G=$G(^YTT(601.92,YSCALE,0))
  .S SCAL=$P(G,U,3)
- .S RAW=$P(G,U,4),BR=$P(G,U,5),PR=$P(G,U,6)
- .;S YSRAWRSL(SCAL)=RAW
+ .S RAW=$P(G,U,4),BR=$P(G,U,5),BR=$$BRFIX^YTSMCMIA(BR),PR=$P(G,U,6)  ;PATCH X
  .S YBRS(SCAL,"RSL")=BR
  .S YPRS(SCAL,"RSL")=PR
  Q
@@ -147,13 +143,12 @@ HIGHPT ; Highpoint Header
  S N=N+1
  N TEXT1,SCAL,SCALC,SCALSTR,SCALCOD,I,HI,DONE,SCALR
  S TEXT1=""
- S SCALCOD="1 ^2A^2B^3 ^4A^4B^5 ^6A^6B^7 ^8A^8B"  ;Spaces added to sort correctly
- ;F I=1:1:$L(SCALSTR,U) D
+ S SCALCOD="1 ^2A^2B^3 ^4A^4B^5 ^6A^6B^7 ^8A^8B"
  F I=1145:1:1156 D
  .S SCAL=$$GET1^DIQ(601.87,I_",",3,"I")
  .S SCALR=$G(YBRS(SCAL,"RSL"))
  .Q:SCALR'>59
- .S SCALC=YSCOD("NAME",SCAL) S:$L(SCALC)=1 SCALC=SCALC_" "  ;To sort numbers vs strings correctly
+ .S SCALC=YSCOD("NAME",SCAL) S:$L(SCALC)=1 SCALC=SCALC_" "  ;Sort numbers vs strings correctly
  .S HI(-SCALR,SCALC)=""
  S DONE=0,I=0
  S SCAL="" F  S SCAL=$O(HI(SCAL)) Q:SCAL=""!DONE  D
@@ -165,7 +160,7 @@ HIGHPT ; Highpoint Header
  I $L(TEXT1)>0 S TEXT1=$E(TEXT1,1,$L(TEXT1)-1)
  S YSDATA(N)="7771^9999;1^"_TEXT1
  Q
-BRADJH ; Base Rate Adjustment Header
+BRADJH ; BR Adjustment Header
  N X,ACC,A,CC,TEXT1
  S TEXT1=""
  S X=YSRAWRSL("X Disclosure")
@@ -196,22 +191,21 @@ CALCW ; Calculate the W Scale
  Q
 WADD(PAIR) ;
  N Q1,Q2,ADD
- S Q1=$G(YSQANS($P(PAIR,"-"))) S:Q1=2 Q1=0    ;False is 0 instead of 2
- S Q2=$G(YSQANS($P(PAIR,"-",2))) S:Q2=2 Q2=0  ;False is 0 instead of 2
+ S Q1=$G(YSQANS($P(PAIR,"-"))) S:Q1=2 Q1=0    ;False=0 instead of 2
+ S Q2=$G(YSQANS($P(PAIR,"-",2))) S:Q2=2 Q2=0  ;
  S ADD=$TR((Q1-Q2),"-")  ;W ?30,ADD
  S YSRAWRSL("W Inconsistency")=YSRAWRSL("W Inconsistency")+ADD
  Q
-ELEV ; Calculate the three highest Personality Scores from Base Rate
- ; Order of Importance after BR: S, C, P, 1, 2A, 2B, 3, 4A, 4B, 5, 6A, 6B, 7, 8A, 8B
- ; End result is HIARR("FINAL")
+ELEV ; Calc three highest Personality Scores from BR
+ ; Order of Importance after BR: S,C,P,1,2A,2B,3,4A,4B,5,6A,6B,7,8A,8B
+ ; Result is HIARR("FINAL")
  N SCALSTR,SCAL,SCD,BR,TOPN,CNT,SCCOD,SCDF,SCALF,I,J
  F I=1157:1:1159,1145:1:1156 D
- .;S SCAL=^YTT(601.87,I,0)
  .S SCAL=$$GET1^DIQ(601.87,I_",",3,"I")
  .S BR=YBRS(SCAL,"RSL")
  .Q:BR<60
  .S HIARR("RSL",-BR,SCAL)=""
- S TOPN=3  ;Sample report has top 3 but documentation says 4?
+ S TOPN=3
  S CNT=0,BR="" F  S BR=$O(HIARR("RSL",BR)) Q:BR=""!(CNT>TOPN)  D
  .F I=1157:1:1159,1145:1:1156 D
  ..S SCAL=$$GET1^DIQ(601.87,I_",",3,"I")
@@ -219,25 +213,22 @@ ELEV ; Calculate the three highest Personality Scores from Base Rate
  ..S SCD=YSCOD("NAME",SCAL)
  ..Q:'$D(HIARR("RSL",BR,SCAL))
  ..S CNT=CNT+1,HIARR("FINAL",CNT)=SCAL_U_SCD
- S SCAL="" F  S SCAL=$O(YSCOD("NAME",SCAL)) Q:SCAL=""  S SCCOD(YSCOD("NAME",SCAL))=SCAL  ;Create SCCOD of Scale Codes=Scale Name
+ S SCAL="" F  S SCAL=$O(YSCOD("NAME",SCAL)) Q:SCAL=""  S SCCOD(YSCOD("NAME",SCAL))=SCAL  ;SCCOD of Scale Codes=Scale Name
  F I=1:1:TOPN D
  .Q:'$D(HIARR("FINAL",I))
  .S SCAL=HIARR("FINAL",I),SCD=$P(SCAL,U,2),SCAL=$P(SCAL,U)
  .F J=1:1:3 D
  ..S SCDF=SCD_"."_J,SCALF=SCCOD(SCDF)
  ..S HIARR("FINAL",I,J)=SCALF_U_SCDF_U_YSRAWRSL(SCALF)_U_YBRS(SCALF,"RSL")_U_YPRS(SCALF,"RSL")
- I $G(LOGIT) M ^TMP("YKTL","HIARR")=HIARR
  Q
 NOTEW ; Noteworthy Responses
  ; Use YSQANS(question number)=1/2 (True/False)
- ;     YSQANS(question number,"PTR")=pointer to MH QUESTION to get text if needed.
- ;     Note: Used CNT to index YSNOTE in case the order of display has to change.
- ; Sets array YSNOTE
+ ;     YSQANS(question number,"PTR")=pointer to MH QUESTION
  N CNT,CAT,QUESTR,QUES,CATTOT
  S CNT=1
  S CAT="Adult ADHD",CATTOT=0
  F QUES=56,77,82,92,108,-63 D SETNOT
- I CATTOT<4 K YSNOTE(CNT)  ;Must be at least four endorsed responses
+ I CATTOT<4 K YSNOTE(CNT)  ;Must be>=4 endorsed responses
  S CNT=CNT+1
  S CAT="Autism Spectrum",CATTOT=0
  F QUES=92,119,138,163,165,179,190 D SETNOT
@@ -279,7 +270,7 @@ NOTEW ; Noteworthy Responses
 SETNOT ;
  N CHK
  S CHK=1 ;True
- I QUES<0 S QUES=-QUES,CHK=2  ;Minus Ques# means check for a False response
+ I QUES<0 S QUES=-QUES,CHK=2  ;Minus Ques#-check for a False
  S ANS=YSQANS(QUES) Q:ANS'=CHK
  S:'$D(YSNOTE(CNT,"CAT")) YSNOTE(CNT,"CAT")=CAT
  S YSNOTE(CNT,"CAT",QUES)=YSQANS(QUES,"PTR")_U_ANS,CATTOT=CATTOT+1
@@ -316,17 +307,16 @@ SCS ;
  Q
 TOP3 ;
  N SCALSTR,SCAL,XSCAL,SCALCOD,ZTXT,STR,GRPH,I,ANS,RAW,BR,TCNT,TCNT2,HD
- S ANS=7780,STR="  "
+ S ANS=7780,STR="  ",HIHIT=0
  Q:'$D(HIARR)
  F TCNT=1:1:3 D
- .S HD=HIARR("FINAL",TCNT),SCAL=$P(HD,U),SCALCOD=$P(HD,U,2)
+ .Q:'$D(HIARR("FINAL",TCNT))
+ .S HD=HIARR("FINAL",TCNT),SCAL=$P(HD,U),SCALCOD=$P(HD,U,2),HIHIT=1
  .S ZTXT=$$MAKSTR(SCAL,39,"L"),STR=STR_ZTXT_"|"
- .;S ZTXT=$$MAKSTR(SCALCOD,4,"R"),STR=STR_ZTXT_"|"
  .S TCNT2="" F  S TCNT2=$O(HIARR("FINAL",TCNT,TCNT2)) Q:TCNT2=""  D
  ..S HD=HIARR("FINAL",TCNT,TCNT2),SCAL=$P(HD,U),SCALCOD=$P(HD,U,2)
  ..S RAW=$P(HD,U,3),BR=$P(HD,U,4),PR=$P(HD,U,5)
  ..S ZTXT=$$MAKSTR(SCAL,39,"L"),STR=STR_ZTXT
- ..;S ZTXT=$$MAKSTR(SCALCOD,4,"R"),STR=STR_ZTXT
  ..S ZTXT=$$MAKSTR(RAW,4,"R"),STR=STR_ZTXT
  ..S ZTXT=$$MAKSTR(PR,4,"R"),STR=STR_ZTXT
  ..S ZTXT=$$MAKSTR(BR,4,"R"),STR=STR_ZTXT
@@ -336,25 +326,35 @@ TOP3 ;
  Q
 FACET ;
  N SCAL,SCALCOD,GSCAL,GCOD,ZTXT,STR,SCALXRF,I,II
- ;Make SCALXRF by Scale Code in order to get to the individual Grossman Facet Scale Names
+ ;Make SCALXRF by Scale Code to get to the each Grossman Facet Scale Names
  S SCAL="" F  S SCAL=$O(YSCOD("NAME",SCAL)) Q:SCAL=""  S SCALXRF(YSCOD("NAME",SCAL))=SCAL
- S ANS=7781,STR="  "
+ S ANS=7781,STR="  ",GRSHIT=0
  F I=1145:1:1159 D
- .;S SCAL=^YTT(601.87,I,0)
  .S SCAL=$$GET1^DIQ(601.87,I_",",3,"I")
  .S SCALCOD=YSCOD("NAME",SCAL)
  .S ZTXT=$$MAKSTR(SCAL,39,"L"),STR=STR_ZTXT_"|"
- .;S ZTXT=$$MAKSTR(SCALCOD,4,"R"),STR=STR_ZTXT_"|"
  .F II=1:1:3 D
  ..S GCOD=SCALCOD_"."_II
  ..S GSCAL=SCALXRF(GCOD)
  ..S ZTXT=$$MAKSTR(GSCAL,39,"L"),STR=STR_ZTXT
- ..;S ZTXT=$$MAKSTR(GCOD,4,"R"),STR=STR_ZTXT
  ..S RAW=YSRAWRSL(GSCAL),PR=YPRS(GSCAL,"RSL"),BR=YBRS(GSCAL,"RSL")
+ ..I BR>74 S GRSHIT=1  ;At least one Grossman Facet >=75
  ..S ZTXT=$$MAKSTR(RAW,4,"R"),STR=STR_ZTXT
  ..S ZTXT=$$MAKSTR(PR,4,"R"),STR=STR_ZTXT
  ..S ZTXT=$$MAKSTR(BR,4,"R"),STR=STR_ZTXT_"|"
  .S STR=STR_"|"
+ S N=N+1,YSDATA(N)=ANS_"^9999;1^"_STR
+ Q
+RSLWRN ; Result warning
+ N STR
+ ;S HIHIT=1,GRSHIT=0 ;TESTING
+ Q:HIHIT=0   ;No Personality Scale >= 60
+ Q:GRSHIT=1  ;At least one Grossman Facet >=75
+ S STR="Generally, two conditions must be met in order for a Grossman Facet scale score |"
+ S STR=STR_"to be considered interpretable. The first is that a primary personality scale |"
+ S STR=STR_"must be at or above BR 60. The second is that one or more of its facet scales |"
+ S STR=STR_"must be at or above BR 75. Since none of this patient's facet scale scores are|"
+ S STR=STR_"at or above BR 75, no facet scale interpretations are included in this report.|"
  S N=N+1,YSDATA(N)=ANS_"^9999;1^"_STR
  Q
 NTWRTHY ;
@@ -378,7 +378,6 @@ NTWRTHY ;
 RESP ;
  N I,STR,NUM,QUES,ANS
  S ANS=7784
- M ^TMP("YKTL","YSQANS")=YSQANS
  S STR="||ITEM RESPONSES |"
  I '$D(YSQANS) S STR=STR_"Could not create list of responses for the report|" S N=N+1,YSDATA(N)=ANS_"^9999;1^"_STR Q
  F I=1:1:195 D
@@ -387,12 +386,10 @@ RESP ;
  S N=N+1,YSDATA(N)=ANS_"^9999;1^"_STR
  Q
 RPTBLK(ANS,SCALSTR) ;
- ;Report Block, no PR
+ ;Report Block no PR
  F I=1:1:$L(SCALSTR,U) D
  .S SCAL=$P(SCALSTR,U,I),SCALCOD=YSCOD("NAME",SCAL)
- .;S XSCAL=$E(SCAL,3,$L(SCAL))  ;Scale name does not include X,Y,Z
  .S ZTXT=$$MAKSTR(SCAL,43,"L"),STR=STR_ZTXT
- .;S ZTXT=$$MAKSTR(SCALCOD,4,"R"),STR=STR_ZTXT
  .S RAW=YSRAWRSL(SCAL),BR=YBRS(SCAL,"RSL")
  .S ZTXT=$$MAKSTR(RAW,4,"R"),STR=STR_ZTXT
  .S ZTXT=$$MAKSTR(BR,4,"R"),STR=STR_ZTXT
@@ -400,11 +397,10 @@ RPTBLK(ANS,SCALSTR) ;
  S N=N+1,YSDATA(N)=ANS_"^9999;1^"_STR
  Q
 RPTBLK1(ANS,SCALSTR) ;
- ;Report Block with PR
+ ;Report Block+PR
  F I=1:1:$L(SCALSTR,U) D
  .S SCAL=$P(SCALSTR,U,I),SCALCOD=YSCOD("NAME",SCAL)
  .S ZTXT=$$MAKSTR(SCAL,39,"L"),STR=STR_ZTXT
- .;S ZTXT=$$MAKSTR(SCALCOD,4,"R"),STR=STR_ZTXT
  .S RAW=YSRAWRSL(SCAL),PR=YPRS(SCAL,"RSL"),BR=YBRS(SCAL,"RSL")
  .S ZTXT=$$MAKSTR(RAW,4,"R"),STR=STR_ZTXT
  .S ZTXT=$$MAKSTR(PR,4,"R"),STR=STR_ZTXT
@@ -414,25 +410,25 @@ RPTBLK1(ANS,SCALSTR) ;
  Q
 MAKSTR(TXT,LEN,JUST,CHAR) ;
  ; Make a string, return STR 
- ;   TXT  = Text to embed
- ;   LEN  = Total Length
- ;   JUST = R/L Justified, default is R
- ;   CHAR = Character PAD, default is " "
+ ;   TXT =Text
+ ;   LEN =Total Len
+ ;   JUST=R/L Justified, def=R
+ ;   CHAR=Char PAD, def=" "
  N STR,TXTL
  S TXTL=$L(TXT),STR=""
- I TXT[" " S TXT=$TR(TXT," ",$C(0))  ;To pad correctly
+ I TXT[" " S TXT=$TR(TXT," ",$C(0))
  I $G(CHAR)="" S CHAR=" "
  I $G(JUST)="" S JUST="R"
  I JUST="L" D
  .S STR=TXT,$P(STR,CHAR,LEN-TXTL+1)=""
  I JUST="R" D
  .S $P(STR,CHAR,LEN-TXTL+1)="",STR=STR_TXT
- S:STR[$C(0) STR=$TR(STR,$C(0)," ")  ;XLAT out the $C(0)
+ S:STR[$C(0) STR=$TR(STR,$C(0)," ")  ;XLAT out $C(0)
  Q STR
 MAKGRP(NUM,MAX) ;
- ; Make a string of "*" that represents the graph
+ ; String of "*" for graph
  N GRP,LEN,RND,J,NCHAR
- S LEN=50  ;Length of graph in #of Chars. May have to adjust based on report format
+ S LEN=50  ;Graph #of Chars.
  I NUM="-"!($G(YSNOGRPH)=1) D  Q GRP
  .S GRP=$$MAKSTR("",LEN,"L")
  S NCHAR=LEN/MAX*NUM,RND=$P(NCHAR,".",2),NCHAR=$P(NCHAR,".")
@@ -443,7 +439,6 @@ YSARRAY(YSARRAY) ;
  N II,YSVAL,YSCALEI,YSCALEN,YSKEYI,G,YSQN,YSAI,YSAN,YSTARG
  K YSARRAY
  S II=1
- M ^TMP("YKTL","YSG")=^TMP($J,"YSG")
  F I=2:1 Q:'$D(^TMP($J,"YSG",I))  I ^TMP($J,"YSG",I)?1"Scale".E D
  . S YSCALEI=$P(^TMP($J,"YSG",I),U),YSCALEI=$P(YSCALEI,"=",2)
  . S YSCALEN=$P(^TMP($J,"YSG",I),U,4)

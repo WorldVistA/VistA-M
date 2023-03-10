@@ -1,124 +1,122 @@
-IBDEI1EH ; ; 04-FEB-2020
- ;;3.0;IB ENCOUNTER FORM IMP/EXP;;FEB 04, 2020
+IBDEI1EH ; ; 01-FEB-2022
+ ;;3.0;IB ENCOUNTER FORM IMP/EXP;;FEB 01, 2022
  Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,999) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
- ;;^UTILITY(U,$J,358.3,22396,0)
- ;;=J15.7^^102^1141^191
- ;;^UTILITY(U,$J,358.3,22396,1,0)
+ ;;^UTILITY(U,$J,358.3,22649,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,22396,1,3,0)
- ;;=3^Pneumonia, Mycoplasma
- ;;^UTILITY(U,$J,358.3,22396,1,4,0)
- ;;=4^J15.7
- ;;^UTILITY(U,$J,358.3,22396,2)
- ;;=^5008177
- ;;^UTILITY(U,$J,358.3,22397,0)
- ;;=J16.0^^102^1141^190
- ;;^UTILITY(U,$J,358.3,22397,1,0)
+ ;;^UTILITY(U,$J,358.3,22649,1,3,0)
+ ;;=3^Mycosis Fungoides,Spleen
+ ;;^UTILITY(U,$J,358.3,22649,1,4,0)
+ ;;=4^C84.07
+ ;;^UTILITY(U,$J,358.3,22649,2)
+ ;;=^5001628
+ ;;^UTILITY(U,$J,358.3,22650,0)
+ ;;=C84.00^^76^974^101
+ ;;^UTILITY(U,$J,358.3,22650,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,22397,1,3,0)
- ;;=3^Pneumonia, Chlamydia/Chlamydophila
- ;;^UTILITY(U,$J,358.3,22397,1,4,0)
- ;;=4^J16.0
- ;;^UTILITY(U,$J,358.3,22397,2)
- ;;=^5008179
- ;;^UTILITY(U,$J,358.3,22398,0)
- ;;=R76.11^^102^1141^196
- ;;^UTILITY(U,$J,358.3,22398,1,0)
+ ;;^UTILITY(U,$J,358.3,22650,1,3,0)
+ ;;=3^Mycosis Fungoides,Unspec Site
+ ;;^UTILITY(U,$J,358.3,22650,1,4,0)
+ ;;=4^C84.00
+ ;;^UTILITY(U,$J,358.3,22650,2)
+ ;;=^5001621
+ ;;^UTILITY(U,$J,358.3,22651,0)
+ ;;=C43.122^^76^974^4
+ ;;^UTILITY(U,$J,358.3,22651,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,22398,1,3,0)
- ;;=3^Positive PPD/Tuberculin skin test
- ;;^UTILITY(U,$J,358.3,22398,1,4,0)
- ;;=4^R76.11
- ;;^UTILITY(U,$J,358.3,22398,2)
- ;;=^5019570
- ;;^UTILITY(U,$J,358.3,22399,0)
- ;;=R76.12^^102^1141^195
- ;;^UTILITY(U,$J,358.3,22399,1,0)
+ ;;^UTILITY(U,$J,358.3,22651,1,3,0)
+ ;;=3^Malig Melanoma of Left Lower Eyelid,Incl Canthus
+ ;;^UTILITY(U,$J,358.3,22651,1,4,0)
+ ;;=4^C43.122
+ ;;^UTILITY(U,$J,358.3,22651,2)
+ ;;=^5157252
+ ;;^UTILITY(U,$J,358.3,22652,0)
+ ;;=C43.121^^76^974^6
+ ;;^UTILITY(U,$J,358.3,22652,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,22399,1,3,0)
- ;;=3^Positive IGRA test for tuberculosis
- ;;^UTILITY(U,$J,358.3,22399,1,4,0)
- ;;=4^R76.12
- ;;^UTILITY(U,$J,358.3,22399,2)
- ;;=^5019571
- ;;^UTILITY(U,$J,358.3,22400,0)
- ;;=R76.8^^102^1141^197
- ;;^UTILITY(U,$J,358.3,22400,1,0)
+ ;;^UTILITY(U,$J,358.3,22652,1,3,0)
+ ;;=3^Malig Melanoma of Left Upper Eyelid,Incl Canthus
+ ;;^UTILITY(U,$J,358.3,22652,1,4,0)
+ ;;=4^C43.121
+ ;;^UTILITY(U,$J,358.3,22652,2)
+ ;;=^5157251
+ ;;^UTILITY(U,$J,358.3,22653,0)
+ ;;=C43.112^^76^974^12
+ ;;^UTILITY(U,$J,358.3,22653,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,22400,1,3,0)
- ;;=3^Positive RPR
- ;;^UTILITY(U,$J,358.3,22400,1,4,0)
- ;;=4^R76.8
- ;;^UTILITY(U,$J,358.3,22400,2)
- ;;=^5019572
- ;;^UTILITY(U,$J,358.3,22401,0)
- ;;=N41.9^^102^1141^198
- ;;^UTILITY(U,$J,358.3,22401,1,0)
+ ;;^UTILITY(U,$J,358.3,22653,1,3,0)
+ ;;=3^Malig Melanoma of Right Lower Eyelid,Incl Canthus
+ ;;^UTILITY(U,$J,358.3,22653,1,4,0)
+ ;;=4^C43.112
+ ;;^UTILITY(U,$J,358.3,22653,2)
+ ;;=^5157250
+ ;;^UTILITY(U,$J,358.3,22654,0)
+ ;;=C43.111^^76^974^14
+ ;;^UTILITY(U,$J,358.3,22654,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,22401,1,3,0)
- ;;=3^Prostatitis
- ;;^UTILITY(U,$J,358.3,22401,1,4,0)
- ;;=4^N41.9
- ;;^UTILITY(U,$J,358.3,22401,2)
- ;;=^5015694
- ;;^UTILITY(U,$J,358.3,22402,0)
- ;;=T84.52XA^^102^1141^200
- ;;^UTILITY(U,$J,358.3,22402,1,0)
+ ;;^UTILITY(U,$J,358.3,22654,1,3,0)
+ ;;=3^Malig Melanoma of Right Upper Eyelid,Incl Canthus
+ ;;^UTILITY(U,$J,358.3,22654,1,4,0)
+ ;;=4^C43.111
+ ;;^UTILITY(U,$J,358.3,22654,2)
+ ;;=^5157249
+ ;;^UTILITY(U,$J,358.3,22655,0)
+ ;;=C44.1922^^76^974^30
+ ;;^UTILITY(U,$J,358.3,22655,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,22402,1,3,0)
- ;;=3^Prosthetic Left Hip Joint Infection,Init Encntr
- ;;^UTILITY(U,$J,358.3,22402,1,4,0)
- ;;=4^T84.52XA
- ;;^UTILITY(U,$J,358.3,22402,2)
- ;;=^5055388
- ;;^UTILITY(U,$J,358.3,22403,0)
- ;;=T84.51XA^^102^1141^202
- ;;^UTILITY(U,$J,358.3,22403,1,0)
+ ;;^UTILITY(U,$J,358.3,22655,1,3,0)
+ ;;=3^Malig Neop Skin of Right Lower Eyelid,Incl Canthus
+ ;;^UTILITY(U,$J,358.3,22655,1,4,0)
+ ;;=4^C44.1922
+ ;;^UTILITY(U,$J,358.3,22655,2)
+ ;;=^5157271
+ ;;^UTILITY(U,$J,358.3,22656,0)
+ ;;=C44.1921^^76^974^32
+ ;;^UTILITY(U,$J,358.3,22656,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,22403,1,3,0)
- ;;=3^Prosthetic Right Hip Joint Infection,Init Encntr
- ;;^UTILITY(U,$J,358.3,22403,1,4,0)
- ;;=4^T84.51XA
- ;;^UTILITY(U,$J,358.3,22403,2)
- ;;=^5055385
- ;;^UTILITY(U,$J,358.3,22404,0)
- ;;=T84.54XA^^102^1141^201
- ;;^UTILITY(U,$J,358.3,22404,1,0)
+ ;;^UTILITY(U,$J,358.3,22656,1,3,0)
+ ;;=3^Malig Neop Skin of Right Upper Eyelid,Incl Canthus
+ ;;^UTILITY(U,$J,358.3,22656,1,4,0)
+ ;;=4^C44.1921
+ ;;^UTILITY(U,$J,358.3,22656,2)
+ ;;=^5157270
+ ;;^UTILITY(U,$J,358.3,22657,0)
+ ;;=C44.1992^^76^974^22
+ ;;^UTILITY(U,$J,358.3,22657,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,22404,1,3,0)
- ;;=3^Prosthetic Left Knee Joint Infection,Init Encntr
- ;;^UTILITY(U,$J,358.3,22404,1,4,0)
- ;;=4^T84.54XA
- ;;^UTILITY(U,$J,358.3,22404,2)
- ;;=^5055394
- ;;^UTILITY(U,$J,358.3,22405,0)
- ;;=T84.53XA^^102^1141^203
- ;;^UTILITY(U,$J,358.3,22405,1,0)
+ ;;^UTILITY(U,$J,358.3,22657,1,3,0)
+ ;;=3^Malig Neop Skin of Left Lower Eyelid,Incl Canthus
+ ;;^UTILITY(U,$J,358.3,22657,1,4,0)
+ ;;=4^C44.1992
+ ;;^UTILITY(U,$J,358.3,22657,2)
+ ;;=^5157273
+ ;;^UTILITY(U,$J,358.3,22658,0)
+ ;;=C44.1991^^76^974^24
+ ;;^UTILITY(U,$J,358.3,22658,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,22405,1,3,0)
- ;;=3^Prosthetic Right Knee Joint Infection,Init Encntr
- ;;^UTILITY(U,$J,358.3,22405,1,4,0)
- ;;=4^T84.53XA
- ;;^UTILITY(U,$J,358.3,22405,2)
- ;;=^5055391
- ;;^UTILITY(U,$J,358.3,22406,0)
- ;;=T84.59XA^^102^1141^204
- ;;^UTILITY(U,$J,358.3,22406,1,0)
+ ;;^UTILITY(U,$J,358.3,22658,1,3,0)
+ ;;=3^Malig Neop Skin of Left Upper Eyelid,Incl Canthus
+ ;;^UTILITY(U,$J,358.3,22658,1,4,0)
+ ;;=4^C44.1991
+ ;;^UTILITY(U,$J,358.3,22658,2)
+ ;;=^5157272
+ ;;^UTILITY(U,$J,358.3,22659,0)
+ ;;=D22.122^^76^974^39
+ ;;^UTILITY(U,$J,358.3,22659,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,22406,1,3,0)
- ;;=3^Prosthetic Shoulder Joint Infection,Init Encntr
- ;;^UTILITY(U,$J,358.3,22406,1,4,0)
- ;;=4^T84.59XA
- ;;^UTILITY(U,$J,358.3,22406,2)
- ;;=^5055397
- ;;^UTILITY(U,$J,358.3,22407,0)
- ;;=T82.6XXA^^102^1141^199
- ;;^UTILITY(U,$J,358.3,22407,1,0)
+ ;;^UTILITY(U,$J,358.3,22659,1,3,0)
+ ;;=3^Melanocytic Nevi of Left Lower Eyelid
+ ;;^UTILITY(U,$J,358.3,22659,1,4,0)
+ ;;=4^D22.122
+ ;;^UTILITY(U,$J,358.3,22659,2)
+ ;;=^5157289
+ ;;^UTILITY(U,$J,358.3,22660,0)
+ ;;=D22.121^^76^974^41
+ ;;^UTILITY(U,$J,358.3,22660,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,22407,1,3,0)
- ;;=3^Prosthetic Heart Valve Infection, initial encounter
- ;;^UTILITY(U,$J,358.3,22407,1,4,0)
- ;;=4^T82.6XXA
- ;;^UTILITY(U,$J,358.3,22407,2)
- ;;=^5054908
+ ;;^UTILITY(U,$J,358.3,22660,1,3,0)
+ ;;=3^Melanocytic Nevi of Left Upper Eyelid
+ ;;^UTILITY(U,$J,358.3,22660,1,4,0)
+ ;;=4^D22.121
+ ;;^UTILITY(U,$J,358.3,22660,2)
+ ;;=^5157288

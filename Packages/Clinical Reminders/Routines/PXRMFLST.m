@@ -1,5 +1,5 @@
-PXRMFLST ; SLC/PJH - List Resolution Statuses ;03/09/2000
- ;;2.0;CLINICAL REMINDERS;;Feb 04, 2005
+PXRMFLST ; SLC/PJH - List Resolution Statuses ;07/25/2018
+ ;;2.0;CLINICAL REMINDERS;**65**;Feb 04, 2005;Build 438
  ;
  ;List selected finding type parameter
  ;------------------------------------
@@ -80,3 +80,25 @@ FDES N X S X=$P($G(^PXRMD(801.45,D0,0)),U) Q:X=""
  I X="CPT" W "(PROCEDURE)" Q
  W "("_$G(DEF2(X))_")"
  Q
+ ;
+DEF(RESULT,IEN) ;
+ N FIEN,GBL,GBLARR,TYPE
+ D BLDRLIST^PXRMVPTR(811.902,.01,.GBLARR)
+ S GBL="" F  S GBL=$O(^PXD(811.9,IEN,20,"B",GBL)) Q:GBL=""  D
+ .S FIEN=$P(GBL,";")
+ .S NODE=$G(GBLARR($P(GBL,";",2)))
+ .S TYPE=$P(NODE,U,4)
+ .I TYPE="RT" D TERM(.RESULT,FIEN) Q
+ .S RESULT(TYPE,$P(GBL,";"))=""
+ Q
+ ;
+TERM(RESULT,IEN) ;
+ N FIEN,GBL,GBLARR,TYPE
+ D BLDRLIST^PXRMVPTR(811.52,.01,.GBLARR)
+ S GBL="" F  S GBL=$O(^PXRMD(811.5,IEN,20,"B",GBL)) Q:GBL=""  D
+ .S FIEN=$P(GBL,";")
+ .S NODE=$G(GBLARR($P(GBL,";",2)))
+ .S TYPE=$P(NODE,U,4)
+ .S RESULT(TYPE,$P(GBL,";"))=""
+ Q
+ ;

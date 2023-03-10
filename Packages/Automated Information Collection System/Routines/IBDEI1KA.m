@@ -1,126 +1,124 @@
-IBDEI1KA ; ; 04-FEB-2020
- ;;3.0;IB ENCOUNTER FORM IMP/EXP;;FEB 04, 2020
+IBDEI1KA ; ; 01-FEB-2022
+ ;;3.0;IB ENCOUNTER FORM IMP/EXP;;FEB 01, 2022
  Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,999) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
- ;;^UTILITY(U,$J,358.3,24958,1,0)
+ ;;^UTILITY(U,$J,358.3,25322,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,24958,1,3,0)
- ;;=3^Intentional Underdose of Meds d/t Financial Hardship
- ;;^UTILITY(U,$J,358.3,24958,1,4,0)
- ;;=4^Z91.120
- ;;^UTILITY(U,$J,358.3,24958,2)
- ;;=^5063612
- ;;^UTILITY(U,$J,358.3,24959,0)
- ;;=Z91.11^^107^1212^62
- ;;^UTILITY(U,$J,358.3,24959,1,0)
+ ;;^UTILITY(U,$J,358.3,25322,1,3,0)
+ ;;=3^Phobia,Other Specified
+ ;;^UTILITY(U,$J,358.3,25322,1,4,0)
+ ;;=4^F40.298
+ ;;^UTILITY(U,$J,358.3,25322,2)
+ ;;=^5003561
+ ;;^UTILITY(U,$J,358.3,25323,0)
+ ;;=F41.9^^92^1148^5
+ ;;^UTILITY(U,$J,358.3,25323,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,24959,1,3,0)
- ;;=3^Noncompliance w/ Dietary Regimen
- ;;^UTILITY(U,$J,358.3,24959,1,4,0)
- ;;=4^Z91.11
- ;;^UTILITY(U,$J,358.3,24959,2)
- ;;=^5063611
- ;;^UTILITY(U,$J,358.3,24960,0)
- ;;=Z87.891^^107^1212^97
- ;;^UTILITY(U,$J,358.3,24960,1,0)
+ ;;^UTILITY(U,$J,358.3,25323,1,3,0)
+ ;;=3^Anxiety Disorder,Unsp
+ ;;^UTILITY(U,$J,358.3,25323,1,4,0)
+ ;;=4^F41.9
+ ;;^UTILITY(U,$J,358.3,25323,2)
+ ;;=^5003567
+ ;;^UTILITY(U,$J,358.3,25324,0)
+ ;;=F94.0^^92^1148^14
+ ;;^UTILITY(U,$J,358.3,25324,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,24960,1,3,0)
- ;;=3^Personal Hx of Nicotine Dependence
- ;;^UTILITY(U,$J,358.3,24960,1,4,0)
- ;;=4^Z87.891
- ;;^UTILITY(U,$J,358.3,24960,2)
- ;;=^5063518
- ;;^UTILITY(U,$J,358.3,24961,0)
- ;;=Z77.090^^107^1212^3
- ;;^UTILITY(U,$J,358.3,24961,1,0)
+ ;;^UTILITY(U,$J,358.3,25324,1,3,0)
+ ;;=3^Selective Mutism
+ ;;^UTILITY(U,$J,358.3,25324,1,4,0)
+ ;;=4^F94.0
+ ;;^UTILITY(U,$J,358.3,25324,2)
+ ;;=^331954
+ ;;^UTILITY(U,$J,358.3,25325,0)
+ ;;=F06.33^^92^1149^1
+ ;;^UTILITY(U,$J,358.3,25325,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,24961,1,3,0)
- ;;=3^Asbestos Contact/Exposure
- ;;^UTILITY(U,$J,358.3,24961,1,4,0)
- ;;=4^Z77.090
- ;;^UTILITY(U,$J,358.3,24961,2)
- ;;=^5063312
- ;;^UTILITY(U,$J,358.3,24962,0)
- ;;=Z57.8^^107^1212^65
- ;;^UTILITY(U,$J,358.3,24962,1,0)
+ ;;^UTILITY(U,$J,358.3,25325,1,3,0)
+ ;;=3^Bipolar & Rel D/O d/t Med Cond w/ Manic/Hypo-Like Ep
+ ;;^UTILITY(U,$J,358.3,25325,1,4,0)
+ ;;=4^F06.33
+ ;;^UTILITY(U,$J,358.3,25325,2)
+ ;;=^5003059
+ ;;^UTILITY(U,$J,358.3,25326,0)
+ ;;=F06.34^^92^1149^2
+ ;;^UTILITY(U,$J,358.3,25326,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,24962,1,3,0)
- ;;=3^Occupational Exposure to Other Risk Factors
- ;;^UTILITY(U,$J,358.3,24962,1,4,0)
- ;;=4^Z57.8
- ;;^UTILITY(U,$J,358.3,24962,2)
- ;;=^5063127
- ;;^UTILITY(U,$J,358.3,24963,0)
- ;;=Z77.21^^107^1212^46
- ;;^UTILITY(U,$J,358.3,24963,1,0)
+ ;;^UTILITY(U,$J,358.3,25326,1,3,0)
+ ;;=3^Bipolar & Rel D/O d/t Med Cond w/ Mixed Features
+ ;;^UTILITY(U,$J,358.3,25326,1,4,0)
+ ;;=4^F06.34
+ ;;^UTILITY(U,$J,358.3,25326,2)
+ ;;=^5003060
+ ;;^UTILITY(U,$J,358.3,25327,0)
+ ;;=F31.11^^92^1149^22
+ ;;^UTILITY(U,$J,358.3,25327,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,24963,1,3,0)
- ;;=3^Hazardous Body Fluid Contact/Exposure
- ;;^UTILITY(U,$J,358.3,24963,1,4,0)
- ;;=4^Z77.21
- ;;^UTILITY(U,$J,358.3,24963,2)
- ;;=^5063323
- ;;^UTILITY(U,$J,358.3,24964,0)
- ;;=Z91.81^^107^1212^50
- ;;^UTILITY(U,$J,358.3,24964,1,0)
+ ;;^UTILITY(U,$J,358.3,25327,1,3,0)
+ ;;=3^Bipolar I D/O,Current/Recent Ep Manic,Mild
+ ;;^UTILITY(U,$J,358.3,25327,1,4,0)
+ ;;=4^F31.11
+ ;;^UTILITY(U,$J,358.3,25327,2)
+ ;;=^5003496
+ ;;^UTILITY(U,$J,358.3,25328,0)
+ ;;=F31.12^^92^1149^23
+ ;;^UTILITY(U,$J,358.3,25328,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,24964,1,3,0)
- ;;=3^History of Falling
- ;;^UTILITY(U,$J,358.3,24964,1,4,0)
- ;;=4^Z91.81
- ;;^UTILITY(U,$J,358.3,24964,2)
- ;;=^5063625
- ;;^UTILITY(U,$J,358.3,24965,0)
- ;;=Z91.89^^107^1212^112
- ;;^UTILITY(U,$J,358.3,24965,1,0)
+ ;;^UTILITY(U,$J,358.3,25328,1,3,0)
+ ;;=3^Bipolar I D/O,Current/Recent Ep Manic,Mod
+ ;;^UTILITY(U,$J,358.3,25328,1,4,0)
+ ;;=4^F31.12
+ ;;^UTILITY(U,$J,358.3,25328,2)
+ ;;=^5003497
+ ;;^UTILITY(U,$J,358.3,25329,0)
+ ;;=F31.13^^92^1149^24
+ ;;^UTILITY(U,$J,358.3,25329,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,24965,1,3,0)
- ;;=3^Personal Risk Factors NEC
- ;;^UTILITY(U,$J,358.3,24965,1,4,0)
- ;;=4^Z91.89
- ;;^UTILITY(U,$J,358.3,24965,2)
- ;;=^5063628
- ;;^UTILITY(U,$J,358.3,24966,0)
- ;;=Z92.89^^107^1212^100
- ;;^UTILITY(U,$J,358.3,24966,1,0)
+ ;;^UTILITY(U,$J,358.3,25329,1,3,0)
+ ;;=3^Bipolar I D/O,Current/Recent Ep Manic,Sev
+ ;;^UTILITY(U,$J,358.3,25329,1,4,0)
+ ;;=4^F31.13
+ ;;^UTILITY(U,$J,358.3,25329,2)
+ ;;=^5003498
+ ;;^UTILITY(U,$J,358.3,25330,0)
+ ;;=F31.2^^92^1149^19
+ ;;^UTILITY(U,$J,358.3,25330,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,24966,1,3,0)
- ;;=3^Personal Hx of Other Medical Treatment
- ;;^UTILITY(U,$J,358.3,24966,1,4,0)
- ;;=4^Z92.89
- ;;^UTILITY(U,$J,358.3,24966,2)
- ;;=^5063641
- ;;^UTILITY(U,$J,358.3,24967,0)
- ;;=Z77.110^^107^1212^1
- ;;^UTILITY(U,$J,358.3,24967,1,0)
+ ;;^UTILITY(U,$J,358.3,25330,1,3,0)
+ ;;=3^Bipolar I D/O,Current/Recent Ep Manic w/ Psych Feat
+ ;;^UTILITY(U,$J,358.3,25330,1,4,0)
+ ;;=4^F31.2
+ ;;^UTILITY(U,$J,358.3,25330,2)
+ ;;=^5003499
+ ;;^UTILITY(U,$J,358.3,25331,0)
+ ;;=F31.73^^92^1149^20
+ ;;^UTILITY(U,$J,358.3,25331,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,24967,1,3,0)
- ;;=3^Air Pollution Contact/Exposure
- ;;^UTILITY(U,$J,358.3,24967,1,4,0)
- ;;=4^Z77.110
- ;;^UTILITY(U,$J,358.3,24967,2)
- ;;=^5063314
- ;;^UTILITY(U,$J,358.3,24968,0)
- ;;=Z77.112^^107^1212^148
- ;;^UTILITY(U,$J,358.3,24968,1,0)
+ ;;^UTILITY(U,$J,358.3,25331,1,3,0)
+ ;;=3^Bipolar I D/O,Current/Recent Ep Manic,In Part Remiss
+ ;;^UTILITY(U,$J,358.3,25331,1,4,0)
+ ;;=4^F31.73
+ ;;^UTILITY(U,$J,358.3,25331,2)
+ ;;=^5003513
+ ;;^UTILITY(U,$J,358.3,25332,0)
+ ;;=F31.74^^92^1149^21
+ ;;^UTILITY(U,$J,358.3,25332,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,24968,1,3,0)
- ;;=3^Soil Pollution Contact/Exposure
- ;;^UTILITY(U,$J,358.3,24968,1,4,0)
- ;;=4^Z77.112
- ;;^UTILITY(U,$J,358.3,24968,2)
- ;;=^5063316
- ;;^UTILITY(U,$J,358.3,24969,0)
- ;;=Z77.111^^107^1212^155
- ;;^UTILITY(U,$J,358.3,24969,1,0)
+ ;;^UTILITY(U,$J,358.3,25332,1,3,0)
+ ;;=3^Bipolar I D/O,Current/Recent Ep Manic,In Full Remiss
+ ;;^UTILITY(U,$J,358.3,25332,1,4,0)
+ ;;=4^F31.74
+ ;;^UTILITY(U,$J,358.3,25332,2)
+ ;;=^5003514
+ ;;^UTILITY(U,$J,358.3,25333,0)
+ ;;=F31.31^^92^1149^13
+ ;;^UTILITY(U,$J,358.3,25333,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,24969,1,3,0)
- ;;=3^Water Pollution Contact/Exposure
- ;;^UTILITY(U,$J,358.3,24969,1,4,0)
- ;;=4^Z77.111
- ;;^UTILITY(U,$J,358.3,24969,2)
- ;;=^5063315
- ;;^UTILITY(U,$J,358.3,24970,0)
- ;;=Z77.128^^107^1212^113
- ;;^UTILITY(U,$J,358.3,24970,1,0)
- ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,25333,1,3,0)
+ ;;=3^Bipolar I D/O,Current/Recent Ep Dep,Mild
+ ;;^UTILITY(U,$J,358.3,25333,1,4,0)
+ ;;=4^F31.31
+ ;;^UTILITY(U,$J,358.3,25333,2)
+ ;;=^5003501
+ ;;^UTILITY(U,$J,358.3,25334,0)
+ ;;=F31.32^^92^1149^14

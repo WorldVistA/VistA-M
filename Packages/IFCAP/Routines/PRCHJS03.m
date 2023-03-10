@@ -1,6 +1,6 @@
-PRCHJS03 ;OI&T/KCL - IFCAP/ECMS INTERFACE RETRIEVE 2237 DATA CONT.;6/12/12
- ;;5.1;IFCAP;**167**;Oct 20, 2000;Build 17
- ;Per VHA Directive 2004-38, this routine should not be modified.
+PRCHJS03 ;OI&T/KCL - IFCAP/ECMS INTERFACE RETRIEVE 2237 DATA CONT.;6/12/12 ;1/26/22  12:24
+ ;;5.1;IFCAP;**167,227**;Oct 20, 2000;Build 1
+ ;Per VHA Directive 6402, this routine should not be modified.
  ;
 GET440(PRC440R,PRCWRK,PRCER) ;Get #440 data
  ;This function is used to retrieve specified data
@@ -38,6 +38,7 @@ GET440(PRC440R,PRCWRK,PRCER) ;Get #440 data
  ;          VFMSNM     34.5    FMS VENDOR NAME
  ;          VALTADD    35      ALT-ADDR-IND
  ;          VFAX       46      FAX #
+ ;          VUEI       55      UEI
  ;
  N PRCIENS ;iens string for GETS^DIQ
  N PRCFLDS ;results array for GETS^DIQ
@@ -73,6 +74,7 @@ GET440(PRC440R,PRCWRK,PRCER) ;Get #440 data
  . S @PRCWRK@("VFMSNM")=$G(PRCFLDS(440,PRCIENS,34.5,"I"))_U_$G(PRCFLDS(440,PRCIENS,34.5,"E"))
  . S @PRCWRK@("VALTADD")=$G(PRCFLDS(440,PRCIENS,35,"I"))_U_$G(PRCFLDS(440,PRCIENS,35,"E"))
  . S @PRCWRK@("VFAX")=$G(PRCFLDS(440,PRCIENS,46,"I"))_U_$G(PRCFLDS(440,PRCIENS,46,"E"))
+ . S @PRCWRK@("VUEI")=$G(PRCFLDS(440,PRCIENS,55,"I"))_U_$G(PRCFLDS(440,PRCIENS,55,"E"))
  . ;
  . ;success
  . S PRCRSLT=1 K PRCER

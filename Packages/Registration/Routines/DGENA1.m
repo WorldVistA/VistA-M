@@ -1,5 +1,5 @@
-DGENA1 ;ALB/CJM,ISA/KWP - Enrollment API - File Data ;3/31/08 12:18pm
- ;;5.3;Registration;**121,147,232,671**;Aug 13,1993;Build 27
+DGENA1 ;ALB/CJM,ISA/KWP,KUM - Enrollment API - File Data ;3/31/08 12:18pm
+ ;;5.3;Registration;**121,147,232,671,1027**;Aug 13,1993;Build 70
  ;PHASE II moved CHECK and TESTVAL to DGENA3
 LOCK(DFN) ;
  ;Description: This lock is used to prevent another process from editing
@@ -82,6 +82,10 @@ STORECUR(DGENR,NOCHECK,ERRMSG) ;
  ..N DGENFDA
  ..S DGENFDA(2,DGENR("DFN")_",",27.01)=DGENRIEN
  ..D UPDATE^DIE("","DGENFDA","","ERR")
+ ..; DG*5.3*1027 - set PT APPLIED field - will sync with PATIENT file via trigger
+ ..K DGENFDA
+ ..S DGENFDA(27.11,DGENRIEN_",",.14)=$G(DGENR("PTAPPLIED"))
+ ..D UPDATE^DIE("","DGENFDA","","ERR")
  D UNLOCK(DGENR("DFN"))
  Q $S(OK:DGENRIEN,1:0)
 EDITCUR(DGENR) ;
@@ -109,5 +113,10 @@ EDITCUR(DGENR) ;
  .E  D
  ..S OK=$$CHECK^DGENA3(.DGENR)
  ..I OK S OK=$$EDIT^DGENA1A(DGENRIEN,.DGENR)
+ ..; DG*5.3*1027 - set PT APPLIED field - will sync with PATIENT file via trigger if editing the CURRENT ENROLLEMNT
+ ..I $G(DGENR("PTAPPLIED"))'="" D
+ ...K DGENFDA
+ ...S DGENFDA(27.11,DGENRIEN_",",.14)=$G(DGENR("PTAPPLIED"))
+ ...D UPDATE^DIE("","DGENFDA","","ERR")
  D UNLOCK(DGENR("DFN"))
  Q $S(OK:DGENRIEN,1:0)

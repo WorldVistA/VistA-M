@@ -1,5 +1,7 @@
 XQ6 ;SEA/AMF,SLC/CJS- BULK KEY DISTRIBUTION ;2/14/95  12:47
- ;;8.0;KERNEL;;Jul 10, 1995
+ ;;8.0;KERNEL;**775**;Jul 10, 1995;Build 11
+ ;Per VHA Directive 6402, this routine should not be modified.
+ ;
 EN1 S XQAL=1,XQDA=0 G INIT ; ENTRY POINT TO ACTIVATE KEY (XUKEYALL)
 EN2 S XQAL=0,XQDA=0 G INIT ; DE-ALLOCATE ACTIVE KEY (XUKEYDEALL)
 EN3 S XQAL=1,XQDA=1 G INIT ; DELEGATE KEYS (XQKEYDEL)
@@ -14,6 +16,10 @@ KEY ;
  I X["?" S XQH="XQKEYALLOCATE-KEY" D:X="?" EN^XQH D:X="??" LSTKEY^XQ6A D:X="???" KEYFIL^XQ6A G KEY
  S XQM=0 S:"-"[$E(X,1) X=$E(X,2,999),XQM=1
  S DIC=19.1,DIC(0)="EZM" S:'XQBOSS DIC("S")="I $D(^VA(200,DUZ,52,+Y,0))" D ^DIC K DIC I Y<0 W " ??",*7 G KEY
+ ;*775
+ I 'XQDA,$P(Y,U,2)="PSDRPH" D  G KEY
+ .W !,"The PSDRPH key cannot be allocated / de-allocated by this option. Please"
+ .W !,"use the option 'Allocate/De-Allocate of PSDRPH Key (Audited)'."
  I XQM W $S($D(XQKEY(+Y)):"  Deleted from current list",1:$C(7)_" ??  Key not on list") K XQKEY(+Y) G KEY
  S XQKEY(+Y)="" I $D(^DIC(19.1,+Y,3,0)),$P(^(0),U,4)>0 D MORE
  G KEY

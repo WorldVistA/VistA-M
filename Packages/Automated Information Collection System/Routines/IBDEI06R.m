@@ -1,686 +1,688 @@
-IBDEI06R ; ; 01-MAY-2020
- ;;3.0;IB ENCOUNTER FORM IMP/EXP;;MAY 01, 2020
+IBDEI06R ; ; 01-AUG-2022
+ ;;3.0;IB ENCOUNTER FORM IMP/EXP;;AUG 01, 2022
  Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,999) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
+ ;;^UTILITY(U,$J,358.3,16391,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,16391,1,3,0)
+ ;;=3^Alcohol Abuse w/ Intoxication,Uncomplicated
+ ;;^UTILITY(U,$J,358.3,16391,1,4,0)
+ ;;=4^F10.120
+ ;;^UTILITY(U,$J,358.3,16391,2)
+ ;;=^5003069
+ ;;^UTILITY(U,$J,358.3,16392,0)
+ ;;=F10.10^^56^658^7
+ ;;^UTILITY(U,$J,358.3,16392,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,16392,1,3,0)
+ ;;=3^Alcohol Abuse,Uncomplicated
+ ;;^UTILITY(U,$J,358.3,16392,1,4,0)
+ ;;=4^F10.10
+ ;;^UTILITY(U,$J,358.3,16392,2)
+ ;;=^5003068
+ ;;^UTILITY(U,$J,358.3,16393,0)
+ ;;=F17.201^^56^658^41
+ ;;^UTILITY(U,$J,358.3,16393,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,16393,1,3,0)
+ ;;=3^Nicotine Dependence In Remission,Unspec
+ ;;^UTILITY(U,$J,358.3,16393,1,4,0)
+ ;;=4^F17.201
+ ;;^UTILITY(U,$J,358.3,16393,2)
+ ;;=^5003361
+ ;;^UTILITY(U,$J,358.3,16394,0)
+ ;;=F17.210^^56^658^40
+ ;;^UTILITY(U,$J,358.3,16394,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,16394,1,3,0)
+ ;;=3^Nicotine Dependence Cigarettes,Uncomplicated
+ ;;^UTILITY(U,$J,358.3,16394,1,4,0)
+ ;;=4^F17.210
+ ;;^UTILITY(U,$J,358.3,16394,2)
+ ;;=^5003365
+ ;;^UTILITY(U,$J,358.3,16395,0)
+ ;;=F17.291^^56^658^42
+ ;;^UTILITY(U,$J,358.3,16395,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,16395,1,3,0)
+ ;;=3^Nicotine Dependence Oth Tobacco Product,In Remission
+ ;;^UTILITY(U,$J,358.3,16395,1,4,0)
+ ;;=4^F17.291
+ ;;^UTILITY(U,$J,358.3,16395,2)
+ ;;=^5003376
+ ;;^UTILITY(U,$J,358.3,16396,0)
+ ;;=F17.290^^56^658^43
+ ;;^UTILITY(U,$J,358.3,16396,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,16396,1,3,0)
+ ;;=3^Nicotine Dependence Oth Tobacco Product,Uncomplicated
+ ;;^UTILITY(U,$J,358.3,16396,1,4,0)
+ ;;=4^F17.290
+ ;;^UTILITY(U,$J,358.3,16396,2)
+ ;;=^5003375
+ ;;^UTILITY(U,$J,358.3,16397,0)
+ ;;=F17.221^^56^658^37
+ ;;^UTILITY(U,$J,358.3,16397,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,16397,1,3,0)
+ ;;=3^Nicotine Dependence Chewing Tobacco,In Remission
+ ;;^UTILITY(U,$J,358.3,16397,1,4,0)
+ ;;=4^F17.221
+ ;;^UTILITY(U,$J,358.3,16397,2)
+ ;;=^5003371
+ ;;^UTILITY(U,$J,358.3,16398,0)
+ ;;=F17.220^^56^658^38
+ ;;^UTILITY(U,$J,358.3,16398,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,16398,1,3,0)
+ ;;=3^Nicotine Dependence Chewing Tobacco,Uncomplicated
+ ;;^UTILITY(U,$J,358.3,16398,1,4,0)
+ ;;=4^F17.220
+ ;;^UTILITY(U,$J,358.3,16398,2)
+ ;;=^5003370
+ ;;^UTILITY(U,$J,358.3,16399,0)
+ ;;=F17.211^^56^658^39
+ ;;^UTILITY(U,$J,358.3,16399,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,16399,1,3,0)
+ ;;=3^Nicotine Dependence Cigarettes,In Remission
+ ;;^UTILITY(U,$J,358.3,16399,1,4,0)
+ ;;=4^F17.211
+ ;;^UTILITY(U,$J,358.3,16399,2)
+ ;;=^5003366
+ ;;^UTILITY(U,$J,358.3,16400,0)
+ ;;=F17.200^^56^658^44
+ ;;^UTILITY(U,$J,358.3,16400,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,16400,1,3,0)
+ ;;=3^Nicotine Dependence,Unspec,Uncomplicated
+ ;;^UTILITY(U,$J,358.3,16400,1,4,0)
+ ;;=4^F17.200
+ ;;^UTILITY(U,$J,358.3,16400,2)
+ ;;=^5003360
+ ;;^UTILITY(U,$J,358.3,16401,0)
+ ;;=F11.120^^56^658^45
+ ;;^UTILITY(U,$J,358.3,16401,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,16401,1,3,0)
+ ;;=3^Opioid Abuse w/ Intoxication,Uncomplicated
+ ;;^UTILITY(U,$J,358.3,16401,1,4,0)
+ ;;=4^F11.120
+ ;;^UTILITY(U,$J,358.3,16401,2)
+ ;;=^5003115
+ ;;^UTILITY(U,$J,358.3,16402,0)
+ ;;=F11.10^^56^658^49
+ ;;^UTILITY(U,$J,358.3,16402,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,16402,1,3,0)
+ ;;=3^Opioid Abuse,Uncomplicated
+ ;;^UTILITY(U,$J,358.3,16402,1,4,0)
+ ;;=4^F11.10
+ ;;^UTILITY(U,$J,358.3,16402,2)
+ ;;=^5003114
+ ;;^UTILITY(U,$J,358.3,16403,0)
+ ;;=F11.129^^56^658^46
+ ;;^UTILITY(U,$J,358.3,16403,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,16403,1,3,0)
+ ;;=3^Opioid Abuse w/ Intoxication,Unspec
+ ;;^UTILITY(U,$J,358.3,16403,1,4,0)
+ ;;=4^F11.129
+ ;;^UTILITY(U,$J,358.3,16403,2)
+ ;;=^5003118
+ ;;^UTILITY(U,$J,358.3,16404,0)
+ ;;=F10.21^^56^658^8
+ ;;^UTILITY(U,$J,358.3,16404,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,16404,1,3,0)
+ ;;=3^Alcohol Dependence,In Remission
+ ;;^UTILITY(U,$J,358.3,16404,1,4,0)
+ ;;=4^F10.21
+ ;;^UTILITY(U,$J,358.3,16404,2)
+ ;;=^5003082
+ ;;^UTILITY(U,$J,358.3,16405,0)
+ ;;=F12.10^^56^658^16
+ ;;^UTILITY(U,$J,358.3,16405,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,16405,1,3,0)
+ ;;=3^Cannabis Abuse,Uncomplicated
+ ;;^UTILITY(U,$J,358.3,16405,1,4,0)
+ ;;=4^F12.10
+ ;;^UTILITY(U,$J,358.3,16405,2)
+ ;;=^5003155
+ ;;^UTILITY(U,$J,358.3,16406,0)
+ ;;=F12.20^^56^658^18
+ ;;^UTILITY(U,$J,358.3,16406,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,16406,1,3,0)
+ ;;=3^Cannabis Dependence,Uncomplicated
+ ;;^UTILITY(U,$J,358.3,16406,1,4,0)
+ ;;=4^F12.20
+ ;;^UTILITY(U,$J,358.3,16406,2)
+ ;;=^5003166
+ ;;^UTILITY(U,$J,358.3,16407,0)
+ ;;=F12.21^^56^658^17
+ ;;^UTILITY(U,$J,358.3,16407,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,16407,1,3,0)
+ ;;=3^Cannabis Dependence,In Remission
+ ;;^UTILITY(U,$J,358.3,16407,1,4,0)
+ ;;=4^F12.21
+ ;;^UTILITY(U,$J,358.3,16407,2)
+ ;;=^5003167
+ ;;^UTILITY(U,$J,358.3,16408,0)
+ ;;=F12.90^^56^658^20
+ ;;^UTILITY(U,$J,358.3,16408,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,16408,1,3,0)
+ ;;=3^Cannabis Use,Unspec,Uncomplicated
+ ;;^UTILITY(U,$J,358.3,16408,1,4,0)
+ ;;=4^F12.90
+ ;;^UTILITY(U,$J,358.3,16408,2)
+ ;;=^5003178
+ ;;^UTILITY(U,$J,358.3,16409,0)
+ ;;=F10.11^^56^658^6
+ ;;^UTILITY(U,$J,358.3,16409,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,16409,1,3,0)
+ ;;=3^Alcohol Abuse,In Remission
+ ;;^UTILITY(U,$J,358.3,16409,1,4,0)
+ ;;=4^F10.11
+ ;;^UTILITY(U,$J,358.3,16409,2)
+ ;;=^268230
+ ;;^UTILITY(U,$J,358.3,16410,0)
+ ;;=F12.11^^56^658^15
+ ;;^UTILITY(U,$J,358.3,16410,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,16410,1,3,0)
+ ;;=3^Cannabis Abuse,In Remission
+ ;;^UTILITY(U,$J,358.3,16410,1,4,0)
+ ;;=4^F12.11
+ ;;^UTILITY(U,$J,358.3,16410,2)
+ ;;=^268236
+ ;;^UTILITY(U,$J,358.3,16411,0)
+ ;;=F14.11^^56^658^21
+ ;;^UTILITY(U,$J,358.3,16411,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,16411,1,3,0)
+ ;;=3^Cocaine Abuse,In Remission
+ ;;^UTILITY(U,$J,358.3,16411,1,4,0)
+ ;;=4^F14.11
+ ;;^UTILITY(U,$J,358.3,16411,2)
+ ;;=^268249
+ ;;^UTILITY(U,$J,358.3,16412,0)
+ ;;=F11.11^^56^658^48
+ ;;^UTILITY(U,$J,358.3,16412,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,16412,1,3,0)
+ ;;=3^Opioid Abuse,In Remission
+ ;;^UTILITY(U,$J,358.3,16412,1,4,0)
+ ;;=4^F11.11
+ ;;^UTILITY(U,$J,358.3,16412,2)
+ ;;=^268246
+ ;;^UTILITY(U,$J,358.3,16413,0)
+ ;;=F12.93^^56^658^19
+ ;;^UTILITY(U,$J,358.3,16413,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,16413,1,3,0)
+ ;;=3^Cannabis Use,Unspec w/ Withdrawal
+ ;;^UTILITY(U,$J,358.3,16413,1,4,0)
+ ;;=4^F12.93
+ ;;^UTILITY(U,$J,358.3,16413,2)
+ ;;=^5157302
+ ;;^UTILITY(U,$J,358.3,16414,0)
+ ;;=F10.130^^56^658^4
+ ;;^UTILITY(U,$J,358.3,16414,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,16414,1,3,0)
+ ;;=3^Alcohol Abuse w/ Withdrawal,Uncomp
+ ;;^UTILITY(U,$J,358.3,16414,1,4,0)
+ ;;=4^F10.130
+ ;;^UTILITY(U,$J,358.3,16414,2)
+ ;;=^5159130
+ ;;^UTILITY(U,$J,358.3,16415,0)
+ ;;=F10.131^^56^658^2
+ ;;^UTILITY(U,$J,358.3,16415,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,16415,1,3,0)
+ ;;=3^Alcohol Abuse w/ Withdrawal Delirium
+ ;;^UTILITY(U,$J,358.3,16415,1,4,0)
+ ;;=4^F10.131
+ ;;^UTILITY(U,$J,358.3,16415,2)
+ ;;=^5159131
+ ;;^UTILITY(U,$J,358.3,16416,0)
+ ;;=F10.132^^56^658^3
+ ;;^UTILITY(U,$J,358.3,16416,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,16416,1,3,0)
+ ;;=3^Alcohol Abuse w/ Withdrawal w/ Perceptual Disturbance
+ ;;^UTILITY(U,$J,358.3,16416,1,4,0)
+ ;;=4^F10.132
+ ;;^UTILITY(U,$J,358.3,16416,2)
+ ;;=^5159132
+ ;;^UTILITY(U,$J,358.3,16417,0)
+ ;;=F10.139^^56^658^5
+ ;;^UTILITY(U,$J,358.3,16417,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,16417,1,3,0)
+ ;;=3^Alcohol Abuse w/ Withdrawal,Unspec
+ ;;^UTILITY(U,$J,358.3,16417,1,4,0)
+ ;;=4^F10.139
+ ;;^UTILITY(U,$J,358.3,16417,2)
+ ;;=^5159133
+ ;;^UTILITY(U,$J,358.3,16418,0)
+ ;;=F10.930^^56^658^12
+ ;;^UTILITY(U,$J,358.3,16418,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,16418,1,3,0)
+ ;;=3^Alcohol Use,Unspec w/ Withdrawal,Uncomp
+ ;;^UTILITY(U,$J,358.3,16418,1,4,0)
+ ;;=4^F10.930
+ ;;^UTILITY(U,$J,358.3,16418,2)
+ ;;=^5159134
+ ;;^UTILITY(U,$J,358.3,16419,0)
+ ;;=F10.931^^56^658^10
+ ;;^UTILITY(U,$J,358.3,16419,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,16419,1,3,0)
+ ;;=3^Alcohol Use,Unspec w/ Withdrawal Delirium
+ ;;^UTILITY(U,$J,358.3,16419,1,4,0)
+ ;;=4^F10.931
+ ;;^UTILITY(U,$J,358.3,16419,2)
+ ;;=^5159135
+ ;;^UTILITY(U,$J,358.3,16420,0)
+ ;;=F10.932^^56^658^11
+ ;;^UTILITY(U,$J,358.3,16420,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,16420,1,3,0)
+ ;;=3^Alcohol Use,Unspec w/ Withdrawal w/ Perceptual Disturbance
+ ;;^UTILITY(U,$J,358.3,16420,1,4,0)
+ ;;=4^F10.932
+ ;;^UTILITY(U,$J,358.3,16420,2)
+ ;;=^5159136
+ ;;^UTILITY(U,$J,358.3,16421,0)
+ ;;=F10.939^^56^658^13
  ;;^UTILITY(U,$J,358.3,16421,1,0)
  ;;=^358.31IA^4^2
  ;;^UTILITY(U,$J,358.3,16421,1,3,0)
- ;;=3^DM Type 1 w/ Peridontal Disease
+ ;;=3^Alcohol Use,Unspec w/ Withdrawal,Unspec
  ;;^UTILITY(U,$J,358.3,16421,1,4,0)
- ;;=4^E10.630
+ ;;=4^F10.939
  ;;^UTILITY(U,$J,358.3,16421,2)
- ;;=^5002619
+ ;;=^5159137
  ;;^UTILITY(U,$J,358.3,16422,0)
- ;;=E10.638^^62^727^27
+ ;;=F12.13^^56^658^14
  ;;^UTILITY(U,$J,358.3,16422,1,0)
  ;;=^358.31IA^4^2
  ;;^UTILITY(U,$J,358.3,16422,1,3,0)
- ;;=3^DM Type 1 w/ Oth Oral Compl
+ ;;=3^Cannabis Abuse w/ Withdrawal
  ;;^UTILITY(U,$J,358.3,16422,1,4,0)
- ;;=4^E10.638
+ ;;=4^F12.13
  ;;^UTILITY(U,$J,358.3,16422,2)
- ;;=^5002620
+ ;;=^5159139
  ;;^UTILITY(U,$J,358.3,16423,0)
- ;;=E10.641^^62^727^15
+ ;;=F11.13^^56^658^47
  ;;^UTILITY(U,$J,358.3,16423,1,0)
  ;;=^358.31IA^4^2
  ;;^UTILITY(U,$J,358.3,16423,1,3,0)
- ;;=3^DM Type 1 w/ Hypoglycemia w/ Coma
+ ;;=3^Opioid Abuse w/ Withdrawal
  ;;^UTILITY(U,$J,358.3,16423,1,4,0)
- ;;=4^E10.641
+ ;;=4^F11.13
  ;;^UTILITY(U,$J,358.3,16423,2)
- ;;=^5002621
+ ;;=^5159138
  ;;^UTILITY(U,$J,358.3,16424,0)
- ;;=E10.649^^62^727^16
+ ;;=I83.019^^56^659^3
  ;;^UTILITY(U,$J,358.3,16424,1,0)
  ;;=^358.31IA^4^2
  ;;^UTILITY(U,$J,358.3,16424,1,3,0)
- ;;=3^DM Type 1 w/ Hypoglycemia w/o Coma
+ ;;=3^Varicose Veins Right Lower Extrem w/ Ulcer,Unspec
  ;;^UTILITY(U,$J,358.3,16424,1,4,0)
- ;;=4^E10.649
+ ;;=4^I83.019
  ;;^UTILITY(U,$J,358.3,16424,2)
- ;;=^5002622
+ ;;=^5007979
  ;;^UTILITY(U,$J,358.3,16425,0)
- ;;=E10.65^^62^727^14
+ ;;=I83.219^^56^659^4
  ;;^UTILITY(U,$J,358.3,16425,1,0)
  ;;=^358.31IA^4^2
  ;;^UTILITY(U,$J,358.3,16425,1,3,0)
- ;;=3^DM Type 1 w/ Hyperglycemia
+ ;;=3^Varicose Veins Right Lower Extrem w/ Ulcer & Inflam,Unspec
  ;;^UTILITY(U,$J,358.3,16425,1,4,0)
- ;;=4^E10.65
+ ;;=4^I83.219
  ;;^UTILITY(U,$J,358.3,16425,2)
- ;;=^5002623
+ ;;=^5008003
  ;;^UTILITY(U,$J,358.3,16426,0)
- ;;=E10.69^^62^727^29
+ ;;=I83.029^^56^659^1
  ;;^UTILITY(U,$J,358.3,16426,1,0)
  ;;=^358.31IA^4^2
  ;;^UTILITY(U,$J,358.3,16426,1,3,0)
- ;;=3^DM Type 1 w/ Oth Spec Compl
+ ;;=3^Varicose Veins Left Lower Extrem w/ Ulcer,Unspec
  ;;^UTILITY(U,$J,358.3,16426,1,4,0)
- ;;=4^E10.69
+ ;;=4^I83.029
  ;;^UTILITY(U,$J,358.3,16426,2)
- ;;=^5002624
+ ;;=^5007986
  ;;^UTILITY(U,$J,358.3,16427,0)
- ;;=E10.8^^62^727^33
+ ;;=I83.229^^56^659^2
  ;;^UTILITY(U,$J,358.3,16427,1,0)
  ;;=^358.31IA^4^2
  ;;^UTILITY(U,$J,358.3,16427,1,3,0)
- ;;=3^DM Type 1 w/ Unspec Compl
+ ;;=3^Varicose Veins Left Lower Extrem w/ Ulcer & Inflam,Unspec
  ;;^UTILITY(U,$J,358.3,16427,1,4,0)
- ;;=4^E10.8
+ ;;=4^I83.229
  ;;^UTILITY(U,$J,358.3,16427,2)
- ;;=^5002625
+ ;;=^5008010
  ;;^UTILITY(U,$J,358.3,16428,0)
- ;;=E10.9^^62^727^34
+ ;;=B00.81^^56^660^55
  ;;^UTILITY(U,$J,358.3,16428,1,0)
  ;;=^358.31IA^4^2
  ;;^UTILITY(U,$J,358.3,16428,1,3,0)
- ;;=3^DM Type 1 w/o Compl
+ ;;=3^Herpesviral Hepatitis
  ;;^UTILITY(U,$J,358.3,16428,1,4,0)
- ;;=4^E10.9
+ ;;=4^B00.81
  ;;^UTILITY(U,$J,358.3,16428,2)
- ;;=^5002626
+ ;;=^5000478
  ;;^UTILITY(U,$J,358.3,16429,0)
- ;;=E10.620^^62^727^5
+ ;;=D25.9^^56^660^64
  ;;^UTILITY(U,$J,358.3,16429,1,0)
  ;;=^358.31IA^4^2
  ;;^UTILITY(U,$J,358.3,16429,1,3,0)
- ;;=3^DM Type 1 w/ Diab Dermatitis
+ ;;=3^Leiomyoma of Uterus,Unspec
  ;;^UTILITY(U,$J,358.3,16429,1,4,0)
- ;;=4^E10.620
+ ;;=4^D25.9
  ;;^UTILITY(U,$J,358.3,16429,2)
- ;;=^5002615
+ ;;=^5002081
  ;;^UTILITY(U,$J,358.3,16430,0)
- ;;=E10.36^^62^727^4
+ ;;=F52.9^^56^660^103
  ;;^UTILITY(U,$J,358.3,16430,1,0)
  ;;=^358.31IA^4^2
  ;;^UTILITY(U,$J,358.3,16430,1,3,0)
- ;;=3^DM Type 1 w/ Diab Cataract
+ ;;=3^Sexual Dysfnct Not d/t a Sub/Known Physiol Cond,Unspec
  ;;^UTILITY(U,$J,358.3,16430,1,4,0)
- ;;=4^E10.36
+ ;;=4^F52.9
  ;;^UTILITY(U,$J,358.3,16430,2)
- ;;=^5002602
+ ;;=^5003625
  ;;^UTILITY(U,$J,358.3,16431,0)
- ;;=E10.621^^62^727^6
+ ;;=R37.^^56^660^104
  ;;^UTILITY(U,$J,358.3,16431,1,0)
  ;;=^358.31IA^4^2
  ;;^UTILITY(U,$J,358.3,16431,1,3,0)
- ;;=3^DM Type 1 w/ Diab Foot Ulcer
+ ;;=3^Sexual Dysfunction,Unspec
  ;;^UTILITY(U,$J,358.3,16431,1,4,0)
- ;;=4^E10.621
+ ;;=4^R37.
  ;;^UTILITY(U,$J,358.3,16431,2)
- ;;=^5002616
+ ;;=^5019339
  ;;^UTILITY(U,$J,358.3,16432,0)
- ;;=E10.622^^62^727^28
+ ;;=N60.01^^56^660^107
  ;;^UTILITY(U,$J,358.3,16432,1,0)
  ;;=^358.31IA^4^2
  ;;^UTILITY(U,$J,358.3,16432,1,3,0)
- ;;=3^DM Type 1 w/ Oth Skin Ulcer
+ ;;=3^Solitary Cyst of Right Breast
  ;;^UTILITY(U,$J,358.3,16432,1,4,0)
- ;;=4^E10.622
+ ;;=4^N60.01
  ;;^UTILITY(U,$J,358.3,16432,2)
- ;;=^5002617
+ ;;=^5015770
  ;;^UTILITY(U,$J,358.3,16433,0)
- ;;=E10.51^^62^727^32
+ ;;=N60.02^^56^660^106
  ;;^UTILITY(U,$J,358.3,16433,1,0)
  ;;=^358.31IA^4^2
  ;;^UTILITY(U,$J,358.3,16433,1,3,0)
- ;;=3^DM Type 1 w/ Periph Angiopathy w/o Gangrene
+ ;;=3^Solitary Cyst of Left Breast
  ;;^UTILITY(U,$J,358.3,16433,1,4,0)
- ;;=4^E10.51
+ ;;=4^N60.02
  ;;^UTILITY(U,$J,358.3,16433,2)
- ;;=^5002610
+ ;;=^5015771
  ;;^UTILITY(U,$J,358.3,16434,0)
- ;;=E10.52^^62^727^31
+ ;;=N60.09^^56^660^108
  ;;^UTILITY(U,$J,358.3,16434,1,0)
  ;;=^358.31IA^4^2
  ;;^UTILITY(U,$J,358.3,16434,1,3,0)
- ;;=3^DM Type 1 w/ Periph Angiopathy w/ Gangrene
+ ;;=3^Solitary Cyst of Unspec Breast
  ;;^UTILITY(U,$J,358.3,16434,1,4,0)
- ;;=4^E10.52
+ ;;=4^N60.09
  ;;^UTILITY(U,$J,358.3,16434,2)
- ;;=^5002611
+ ;;=^5015772
  ;;^UTILITY(U,$J,358.3,16435,0)
- ;;=E11.00^^62^728^19
+ ;;=N60.11^^56^660^27
  ;;^UTILITY(U,$J,358.3,16435,1,0)
  ;;=^358.31IA^4^2
  ;;^UTILITY(U,$J,358.3,16435,1,3,0)
- ;;=3^DM Type 2 w/ Hyperosmolarity w/o NKHHC
+ ;;=3^Diffuse Cystic Mastopathy of Right Breast
  ;;^UTILITY(U,$J,358.3,16435,1,4,0)
- ;;=4^E11.00
+ ;;=4^N60.11
  ;;^UTILITY(U,$J,358.3,16435,2)
- ;;=^5002627
+ ;;=^5015773
  ;;^UTILITY(U,$J,358.3,16436,0)
- ;;=E11.01^^62^728^18
+ ;;=N60.12^^56^660^26
  ;;^UTILITY(U,$J,358.3,16436,1,0)
  ;;=^358.31IA^4^2
  ;;^UTILITY(U,$J,358.3,16436,1,3,0)
- ;;=3^DM Type 2 w/ Hyperosmolarity w/ Coma
+ ;;=3^Diffuse Cystic Mastopathy of Left Breast
  ;;^UTILITY(U,$J,358.3,16436,1,4,0)
- ;;=4^E11.01
+ ;;=4^N60.12
  ;;^UTILITY(U,$J,358.3,16436,2)
- ;;=^5002628
+ ;;=^5015774
  ;;^UTILITY(U,$J,358.3,16437,0)
- ;;=E11.21^^62^728^7
+ ;;=N64.4^^56^660^68
  ;;^UTILITY(U,$J,358.3,16437,1,0)
  ;;=^358.31IA^4^2
  ;;^UTILITY(U,$J,358.3,16437,1,3,0)
- ;;=3^DM Type 2 w/ Diab Nephropathy
+ ;;=3^Mastodynia
  ;;^UTILITY(U,$J,358.3,16437,1,4,0)
- ;;=4^E11.21
+ ;;=4^N64.4
  ;;^UTILITY(U,$J,358.3,16437,2)
- ;;=^5002629
+ ;;=^5015794
  ;;^UTILITY(U,$J,358.3,16438,0)
- ;;=E11.22^^62^728^3
+ ;;=N64.51^^56^660^60
  ;;^UTILITY(U,$J,358.3,16438,1,0)
  ;;=^358.31IA^4^2
  ;;^UTILITY(U,$J,358.3,16438,1,3,0)
- ;;=3^DM Type 2 w/ Diab CKD
+ ;;=3^Induration of Breast
  ;;^UTILITY(U,$J,358.3,16438,1,4,0)
- ;;=4^E11.22
+ ;;=4^N64.51
  ;;^UTILITY(U,$J,358.3,16438,2)
- ;;=^5002630
+ ;;=^5015795
  ;;^UTILITY(U,$J,358.3,16439,0)
- ;;=E11.39^^62^728^28
+ ;;=N64.59^^56^660^105
  ;;^UTILITY(U,$J,358.3,16439,1,0)
  ;;=^358.31IA^4^2
  ;;^UTILITY(U,$J,358.3,16439,1,3,0)
- ;;=3^DM Type 2 w/ Oth Diab Ophth Compl
+ ;;=3^Signs and Symptoms in Breast,Other
  ;;^UTILITY(U,$J,358.3,16439,1,4,0)
- ;;=4^E11.39
+ ;;=4^N64.59
  ;;^UTILITY(U,$J,358.3,16439,2)
- ;;=^5002643
+ ;;=^5015797
  ;;^UTILITY(U,$J,358.3,16440,0)
- ;;=E11.41^^62^728^6
+ ;;=N64.52^^56^660^71
  ;;^UTILITY(U,$J,358.3,16440,1,0)
  ;;=^358.31IA^4^2
  ;;^UTILITY(U,$J,358.3,16440,1,3,0)
- ;;=3^DM Type 2 w/ Diab Mononeuropathy
+ ;;=3^Nipple Discharge
  ;;^UTILITY(U,$J,358.3,16440,1,4,0)
- ;;=4^E11.41
+ ;;=4^N64.52
  ;;^UTILITY(U,$J,358.3,16440,2)
- ;;=^5002645
+ ;;=^259531
  ;;^UTILITY(U,$J,358.3,16441,0)
- ;;=E11.42^^62^728^13
+ ;;=N64.53^^56^660^99
  ;;^UTILITY(U,$J,358.3,16441,1,0)
  ;;=^358.31IA^4^2
  ;;^UTILITY(U,$J,358.3,16441,1,3,0)
- ;;=3^DM Type 2 w/ Diab Polyneuropathy
+ ;;=3^Retraction of Nipple
  ;;^UTILITY(U,$J,358.3,16441,1,4,0)
- ;;=4^E11.42
+ ;;=4^N64.53
  ;;^UTILITY(U,$J,358.3,16441,2)
- ;;=^5002646
+ ;;=^5015796
  ;;^UTILITY(U,$J,358.3,16442,0)
- ;;=E11.43^^62^728^2
+ ;;=N75.1^^56^660^8
  ;;^UTILITY(U,$J,358.3,16442,1,0)
  ;;=^358.31IA^4^2
  ;;^UTILITY(U,$J,358.3,16442,1,3,0)
- ;;=3^DM Type 2 w/ Diab Autonomic Polyneuropathy
+ ;;=3^Abscess of Bartholin's Gland
  ;;^UTILITY(U,$J,358.3,16442,1,4,0)
- ;;=4^E11.43
+ ;;=4^N75.1
  ;;^UTILITY(U,$J,358.3,16442,2)
- ;;=^5002647
+ ;;=^5015823
  ;;^UTILITY(U,$J,358.3,16443,0)
- ;;=E11.44^^62^728^1
+ ;;=N80.9^^56^660^37
  ;;^UTILITY(U,$J,358.3,16443,1,0)
  ;;=^358.31IA^4^2
  ;;^UTILITY(U,$J,358.3,16443,1,3,0)
- ;;=3^DM Type 2 w/ Diab Amyotrophy
+ ;;=3^Endometriosis,Unspec
  ;;^UTILITY(U,$J,358.3,16443,1,4,0)
- ;;=4^E11.44
+ ;;=4^N80.9
  ;;^UTILITY(U,$J,358.3,16443,2)
- ;;=^5002648
+ ;;=^5015837
  ;;^UTILITY(U,$J,358.3,16444,0)
- ;;=E11.49^^62^728^8
+ ;;=N81.4^^56^660^112
  ;;^UTILITY(U,$J,358.3,16444,1,0)
  ;;=^358.31IA^4^2
  ;;^UTILITY(U,$J,358.3,16444,1,3,0)
- ;;=3^DM Type 2 w/ Diab Neurological Compl
+ ;;=3^Uterovaginal Prolapse,Unspec
  ;;^UTILITY(U,$J,358.3,16444,1,4,0)
- ;;=4^E11.49
+ ;;=4^N81.4
  ;;^UTILITY(U,$J,358.3,16444,2)
- ;;=^5002649
+ ;;=^5015841
  ;;^UTILITY(U,$J,358.3,16445,0)
- ;;=E11.59^^62^728^25
+ ;;=N84.8^^56^660^87
  ;;^UTILITY(U,$J,358.3,16445,1,0)
  ;;=^358.31IA^4^2
  ;;^UTILITY(U,$J,358.3,16445,1,3,0)
- ;;=3^DM Type 2 w/ Oth Circulatory Compl
+ ;;=3^Polyp of Other Parts of Female Genital Tract
  ;;^UTILITY(U,$J,358.3,16445,1,4,0)
- ;;=4^E11.59
+ ;;=4^N84.8
  ;;^UTILITY(U,$J,358.3,16445,2)
- ;;=^5002652
+ ;;=^5015868
  ;;^UTILITY(U,$J,358.3,16446,0)
- ;;=E11.610^^62^728^9
+ ;;=N84.0^^56^660^85
  ;;^UTILITY(U,$J,358.3,16446,1,0)
  ;;=^358.31IA^4^2
  ;;^UTILITY(U,$J,358.3,16446,1,3,0)
- ;;=3^DM Type 2 w/ Diab Neuropathic Arthropathy
+ ;;=3^Polyp of Corpus Uteri
  ;;^UTILITY(U,$J,358.3,16446,1,4,0)
- ;;=4^E11.610
+ ;;=4^N84.0
  ;;^UTILITY(U,$J,358.3,16446,2)
- ;;=^5002653
+ ;;=^270517
  ;;^UTILITY(U,$J,358.3,16447,0)
- ;;=E11.618^^62^728^26
+ ;;=N84.9^^56^660^86
  ;;^UTILITY(U,$J,358.3,16447,1,0)
  ;;=^358.31IA^4^2
  ;;^UTILITY(U,$J,358.3,16447,1,3,0)
- ;;=3^DM Type 2 w/ Oth Diab Arthropathy
+ ;;=3^Polyp of Female Genital Tract,Unspec
  ;;^UTILITY(U,$J,358.3,16447,1,4,0)
- ;;=4^E11.618
+ ;;=4^N84.9
  ;;^UTILITY(U,$J,358.3,16447,2)
- ;;=^5002654
+ ;;=^5015869
  ;;^UTILITY(U,$J,358.3,16448,0)
- ;;=E11.621^^62^728^16
+ ;;=N84.1^^56^660^84
  ;;^UTILITY(U,$J,358.3,16448,1,0)
  ;;=^358.31IA^4^2
  ;;^UTILITY(U,$J,358.3,16448,1,3,0)
- ;;=3^DM Type 2 w/ Foot Ulcer
+ ;;=3^Polyp of Cervix Uteri
  ;;^UTILITY(U,$J,358.3,16448,1,4,0)
- ;;=4^E11.621
+ ;;=4^N84.1
  ;;^UTILITY(U,$J,358.3,16448,2)
- ;;=^5002656
+ ;;=^5015866
  ;;^UTILITY(U,$J,358.3,16449,0)
- ;;=E11.622^^62^728^31
+ ;;=N89.1^^56^660^114
  ;;^UTILITY(U,$J,358.3,16449,1,0)
  ;;=^358.31IA^4^2
  ;;^UTILITY(U,$J,358.3,16449,1,3,0)
- ;;=3^DM Type 2 w/ Oth Skin Ulcer
+ ;;=3^Vaginal Dysplasia,Moderate
  ;;^UTILITY(U,$J,358.3,16449,1,4,0)
- ;;=4^E11.622
+ ;;=4^N89.1
  ;;^UTILITY(U,$J,358.3,16449,2)
- ;;=^5002657
+ ;;=^5015886
  ;;^UTILITY(U,$J,358.3,16450,0)
- ;;=E11.628^^62^728^30
+ ;;=N89.0^^56^660^113
  ;;^UTILITY(U,$J,358.3,16450,1,0)
  ;;=^358.31IA^4^2
  ;;^UTILITY(U,$J,358.3,16450,1,3,0)
- ;;=3^DM Type 2 w/ Oth Skin Compl
+ ;;=3^Vaginal Dysplasia,Mild
  ;;^UTILITY(U,$J,358.3,16450,1,4,0)
- ;;=4^E11.628
+ ;;=4^N89.0
  ;;^UTILITY(U,$J,358.3,16450,2)
- ;;=^5002658
+ ;;=^5015885
  ;;^UTILITY(U,$J,358.3,16451,0)
- ;;=E11.630^^62^728^33
+ ;;=N89.3^^56^660^115
  ;;^UTILITY(U,$J,358.3,16451,1,0)
  ;;=^358.31IA^4^2
  ;;^UTILITY(U,$J,358.3,16451,1,3,0)
- ;;=3^DM Type 2 w/ Periodontal Disease
+ ;;=3^Vaginal Dysplasia,Unspec
  ;;^UTILITY(U,$J,358.3,16451,1,4,0)
- ;;=4^E11.630
+ ;;=4^N89.3
  ;;^UTILITY(U,$J,358.3,16451,2)
- ;;=^5002659
+ ;;=^5015887
  ;;^UTILITY(U,$J,358.3,16452,0)
- ;;=E11.638^^62^728^29
+ ;;=N90.4^^56^660^65
  ;;^UTILITY(U,$J,358.3,16452,1,0)
  ;;=^358.31IA^4^2
  ;;^UTILITY(U,$J,358.3,16452,1,3,0)
- ;;=3^DM Type 2 w/ Oth Oral Compl
+ ;;=3^Leukoplakia of Vulva
  ;;^UTILITY(U,$J,358.3,16452,1,4,0)
- ;;=4^E11.638
+ ;;=4^N90.4
  ;;^UTILITY(U,$J,358.3,16452,2)
- ;;=^5002660
+ ;;=^5015894
  ;;^UTILITY(U,$J,358.3,16453,0)
- ;;=E11.641^^62^728^20
+ ;;=N94.2^^56^660^116
  ;;^UTILITY(U,$J,358.3,16453,1,0)
  ;;=^358.31IA^4^2
  ;;^UTILITY(U,$J,358.3,16453,1,3,0)
- ;;=3^DM Type 2 w/ Hypoglycemia w/ Coma
+ ;;=3^Vaginismus
  ;;^UTILITY(U,$J,358.3,16453,1,4,0)
- ;;=4^E11.641
+ ;;=4^N94.2
  ;;^UTILITY(U,$J,358.3,16453,2)
- ;;=^5002661
+ ;;=^5015918
  ;;^UTILITY(U,$J,358.3,16454,0)
- ;;=E11.649^^62^728^21
+ ;;=N94.0^^56^660^70
  ;;^UTILITY(U,$J,358.3,16454,1,0)
  ;;=^358.31IA^4^2
  ;;^UTILITY(U,$J,358.3,16454,1,3,0)
- ;;=3^DM Type 2 w/ Hypoglycemia w/o Coma
+ ;;=3^Mittelschmerz
  ;;^UTILITY(U,$J,358.3,16454,1,4,0)
- ;;=4^E11.649
+ ;;=4^N94.0
  ;;^UTILITY(U,$J,358.3,16454,2)
- ;;=^5002662
+ ;;=^265259
  ;;^UTILITY(U,$J,358.3,16455,0)
- ;;=E11.65^^62^728^17
+ ;;=N94.6^^56^660^30
  ;;^UTILITY(U,$J,358.3,16455,1,0)
  ;;=^358.31IA^4^2
  ;;^UTILITY(U,$J,358.3,16455,1,3,0)
- ;;=3^DM Type 2 w/ Hyperglycemia
+ ;;=3^Dysmenorrhea,Unspec
  ;;^UTILITY(U,$J,358.3,16455,1,4,0)
- ;;=4^E11.65
+ ;;=4^N94.6
  ;;^UTILITY(U,$J,358.3,16455,2)
- ;;=^5002663
+ ;;=^5015922
  ;;^UTILITY(U,$J,358.3,16456,0)
- ;;=E11.69^^62^728^32
+ ;;=N94.5^^56^660^29
  ;;^UTILITY(U,$J,358.3,16456,1,0)
  ;;=^358.31IA^4^2
  ;;^UTILITY(U,$J,358.3,16456,1,3,0)
- ;;=3^DM Type 2 w/ Oth Spec Compl
+ ;;=3^Dysmenorrhea,Secondary
  ;;^UTILITY(U,$J,358.3,16456,1,4,0)
- ;;=4^E11.69
+ ;;=4^N94.5
  ;;^UTILITY(U,$J,358.3,16456,2)
- ;;=^5002664
+ ;;=^5015921
  ;;^UTILITY(U,$J,358.3,16457,0)
- ;;=E11.8^^62^728^34
+ ;;=N94.4^^56^660^28
  ;;^UTILITY(U,$J,358.3,16457,1,0)
  ;;=^358.31IA^4^2
  ;;^UTILITY(U,$J,358.3,16457,1,3,0)
- ;;=3^DM Type 2 w/ Unspec Compl
+ ;;=3^Dysmenorrhea,Primary
  ;;^UTILITY(U,$J,358.3,16457,1,4,0)
- ;;=4^E11.8
+ ;;=4^N94.4
  ;;^UTILITY(U,$J,358.3,16457,2)
- ;;=^5002665
+ ;;=^5015920
  ;;^UTILITY(U,$J,358.3,16458,0)
- ;;=E11.9^^62^728^35
+ ;;=N94.3^^56^660^95
  ;;^UTILITY(U,$J,358.3,16458,1,0)
  ;;=^358.31IA^4^2
  ;;^UTILITY(U,$J,358.3,16458,1,3,0)
- ;;=3^DM Type 2 w/o Complications
+ ;;=3^Premenstrual Tension Syndrome
  ;;^UTILITY(U,$J,358.3,16458,1,4,0)
- ;;=4^E11.9
+ ;;=4^N94.3
  ;;^UTILITY(U,$J,358.3,16458,2)
- ;;=^5002666
+ ;;=^5015919
  ;;^UTILITY(U,$J,358.3,16459,0)
- ;;=E11.29^^62^728^27
+ ;;=N91.0^^56^660^9
  ;;^UTILITY(U,$J,358.3,16459,1,0)
  ;;=^358.31IA^4^2
  ;;^UTILITY(U,$J,358.3,16459,1,3,0)
- ;;=3^DM Type 2 w/ Oth Diab Kidney Compl
- ;;^UTILITY(U,$J,358.3,16459,1,4,0)
- ;;=4^E11.29
- ;;^UTILITY(U,$J,358.3,16459,2)
- ;;=^5002631
- ;;^UTILITY(U,$J,358.3,16460,0)
- ;;=E11.311^^62^728^14
- ;;^UTILITY(U,$J,358.3,16460,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,16460,1,3,0)
- ;;=3^DM Type 2 w/ Diab Rtnop w/ Macular Edema
- ;;^UTILITY(U,$J,358.3,16460,1,4,0)
- ;;=4^E11.311
- ;;^UTILITY(U,$J,358.3,16460,2)
- ;;=E11.319^5002632
- ;;^UTILITY(U,$J,358.3,16461,0)
- ;;=E11.319^^62^728^15
- ;;^UTILITY(U,$J,358.3,16461,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,16461,1,3,0)
- ;;=3^DM Type 2 w/ Diab Rtnop w/o Macular Edema
- ;;^UTILITY(U,$J,358.3,16461,1,4,0)
- ;;=4^E11.319
- ;;^UTILITY(U,$J,358.3,16461,2)
- ;;=^5002633
- ;;^UTILITY(U,$J,358.3,16462,0)
- ;;=E11.3211^^62^728^22
- ;;^UTILITY(U,$J,358.3,16462,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,16462,1,3,0)
- ;;=3^DM Type 2 w/ Mild Nonp Rtnop w/ Macular Edema,Rt Eye
- ;;^UTILITY(U,$J,358.3,16462,1,4,0)
- ;;=4^E11.3211
- ;;^UTILITY(U,$J,358.3,16462,2)
- ;;=^5138331
- ;;^UTILITY(U,$J,358.3,16463,0)
- ;;=E11.3212^^62^728^23
- ;;^UTILITY(U,$J,358.3,16463,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,16463,1,3,0)
- ;;=3^DM Type 2 w/ Mild Nonp Rtnop w/ Macular Edema,Lt Eye
- ;;^UTILITY(U,$J,358.3,16463,1,4,0)
- ;;=4^E11.3212
- ;;^UTILITY(U,$J,358.3,16463,2)
- ;;=^5138332
- ;;^UTILITY(U,$J,358.3,16464,0)
- ;;=E11.3213^^62^728^24
- ;;^UTILITY(U,$J,358.3,16464,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,16464,1,3,0)
- ;;=3^DM Type 2 w/ Mild Nonp Rtnop w/ Macular Edema,Bilat
- ;;^UTILITY(U,$J,358.3,16464,1,4,0)
- ;;=4^E11.3213
- ;;^UTILITY(U,$J,358.3,16464,2)
- ;;=^5138333
- ;;^UTILITY(U,$J,358.3,16465,0)
- ;;=E11.40^^62^728^10
- ;;^UTILITY(U,$J,358.3,16465,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,16465,1,3,0)
- ;;=3^DM Type 2 w/ Diab Neuropathy,Unspec
- ;;^UTILITY(U,$J,358.3,16465,1,4,0)
- ;;=4^E11.40
- ;;^UTILITY(U,$J,358.3,16465,2)
- ;;=^5002644
- ;;^UTILITY(U,$J,358.3,16466,0)
- ;;=E11.51^^62^728^12
- ;;^UTILITY(U,$J,358.3,16466,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,16466,1,3,0)
- ;;=3^DM Type 2 w/ Diab Periph Angiopathy w/o Gangrene
- ;;^UTILITY(U,$J,358.3,16466,1,4,0)
- ;;=4^E11.51
- ;;^UTILITY(U,$J,358.3,16466,2)
- ;;=^5002650
- ;;^UTILITY(U,$J,358.3,16467,0)
- ;;=E11.52^^62^728^11
- ;;^UTILITY(U,$J,358.3,16467,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,16467,1,3,0)
- ;;=3^DM Type 2 w/ Diab Periph Angiopathy w/ Gangrene
- ;;^UTILITY(U,$J,358.3,16467,1,4,0)
- ;;=4^E11.52
- ;;^UTILITY(U,$J,358.3,16467,2)
- ;;=^5002651
- ;;^UTILITY(U,$J,358.3,16468,0)
- ;;=E11.620^^62^728^5
- ;;^UTILITY(U,$J,358.3,16468,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,16468,1,3,0)
- ;;=3^DM Type 2 w/ Diab Dermatitis
- ;;^UTILITY(U,$J,358.3,16468,1,4,0)
- ;;=4^E11.620
- ;;^UTILITY(U,$J,358.3,16468,2)
- ;;=^5002655
- ;;^UTILITY(U,$J,358.3,16469,0)
- ;;=E11.36^^62^728^4
- ;;^UTILITY(U,$J,358.3,16469,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,16469,1,3,0)
- ;;=3^DM Type 2 w/ Diab Cataract
- ;;^UTILITY(U,$J,358.3,16469,1,4,0)
- ;;=4^E11.36
- ;;^UTILITY(U,$J,358.3,16469,2)
- ;;=^5002642
- ;;^UTILITY(U,$J,358.3,16470,0)
- ;;=I10.^^62^729^1
- ;;^UTILITY(U,$J,358.3,16470,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,16470,1,3,0)
- ;;=3^Essential/Primary Hypertension
- ;;^UTILITY(U,$J,358.3,16470,1,4,0)
- ;;=4^I10.
- ;;^UTILITY(U,$J,358.3,16470,2)
- ;;=^5007062
- ;;^UTILITY(U,$J,358.3,16471,0)
- ;;=I11.0^^62^729^12
- ;;^UTILITY(U,$J,358.3,16471,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,16471,1,3,0)
- ;;=3^Hypertensive Heart Disease w/ Heart Failure
- ;;^UTILITY(U,$J,358.3,16471,1,4,0)
- ;;=4^I11.0
- ;;^UTILITY(U,$J,358.3,16471,2)
- ;;=^5007063
- ;;^UTILITY(U,$J,358.3,16472,0)
- ;;=I11.9^^62^729^13
- ;;^UTILITY(U,$J,358.3,16472,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,16472,1,3,0)
- ;;=3^Hypertensive Heart Disease w/o Heart Failure
- ;;^UTILITY(U,$J,358.3,16472,1,4,0)
- ;;=4^I11.9
- ;;^UTILITY(U,$J,358.3,16472,2)
- ;;=^5007064
- ;;^UTILITY(U,$J,358.3,16473,0)
- ;;=I12.0^^62^729^5
- ;;^UTILITY(U,$J,358.3,16473,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,16473,1,3,0)
- ;;=3^Hypertensive CKD w/ Stage 5 CKD or ESRD
- ;;^UTILITY(U,$J,358.3,16473,1,4,0)
- ;;=4^I12.0
- ;;^UTILITY(U,$J,358.3,16473,2)
- ;;=^5007065
- ;;^UTILITY(U,$J,358.3,16474,0)
- ;;=I12.9^^62^729^4
- ;;^UTILITY(U,$J,358.3,16474,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,16474,1,3,0)
- ;;=3^Hypertensive CKD w/ Stage 1-4 CKD
- ;;^UTILITY(U,$J,358.3,16474,1,4,0)
- ;;=4^I12.9
- ;;^UTILITY(U,$J,358.3,16474,2)
- ;;=^5007066
- ;;^UTILITY(U,$J,358.3,16475,0)
- ;;=I13.0^^62^729^8
- ;;^UTILITY(U,$J,358.3,16475,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,16475,1,3,0)
- ;;=3^Hypertensive HRT & CKD w/ Hrt Fail & Stg 1-4 CKD
- ;;^UTILITY(U,$J,358.3,16475,1,4,0)
- ;;=4^I13.0
- ;;^UTILITY(U,$J,358.3,16475,2)
- ;;=^5007067
- ;;^UTILITY(U,$J,358.3,16476,0)
- ;;=I13.10^^62^729^10
- ;;^UTILITY(U,$J,358.3,16476,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,16476,1,3,0)
- ;;=3^Hypertensive HRT & CKD w/o Hrt Fail & Stg 1-4 CKD
- ;;^UTILITY(U,$J,358.3,16476,1,4,0)
- ;;=4^I13.10
- ;;^UTILITY(U,$J,358.3,16476,2)
- ;;=^5007068
- ;;^UTILITY(U,$J,358.3,16477,0)
- ;;=I13.11^^62^729^11
- ;;^UTILITY(U,$J,358.3,16477,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,16477,1,3,0)
- ;;=3^Hypertensive HRT & CKD w/o Hrt Fail & Stg 5 CKD/ESRD
- ;;^UTILITY(U,$J,358.3,16477,1,4,0)
- ;;=4^I13.11
- ;;^UTILITY(U,$J,358.3,16477,2)
- ;;=^5007069
- ;;^UTILITY(U,$J,358.3,16478,0)
- ;;=I13.2^^62^729^9
- ;;^UTILITY(U,$J,358.3,16478,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,16478,1,3,0)
- ;;=3^Hypertensive HRT & CKD w/ Hrt Fail & Stg 5 CKD/ESRD
- ;;^UTILITY(U,$J,358.3,16478,1,4,0)
- ;;=4^I13.2
- ;;^UTILITY(U,$J,358.3,16478,2)
- ;;=^5007070
- ;;^UTILITY(U,$J,358.3,16479,0)
- ;;=I15.0^^62^729^15
- ;;^UTILITY(U,$J,358.3,16479,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,16479,1,3,0)
- ;;=3^Renovascular Hypertension
- ;;^UTILITY(U,$J,358.3,16479,1,4,0)
- ;;=4^I15.0
- ;;^UTILITY(U,$J,358.3,16479,2)
- ;;=^5007071
- ;;^UTILITY(U,$J,358.3,16480,0)
- ;;=I15.1^^62^729^3
- ;;^UTILITY(U,$J,358.3,16480,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,16480,1,3,0)
- ;;=3^Hypertension Secondary to Oth Renal Disorders
- ;;^UTILITY(U,$J,358.3,16480,1,4,0)
- ;;=4^I15.1
- ;;^UTILITY(U,$J,358.3,16480,2)
- ;;=^5007072
- ;;^UTILITY(U,$J,358.3,16481,0)
- ;;=I15.2^^62^729^2
- ;;^UTILITY(U,$J,358.3,16481,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,16481,1,3,0)
- ;;=3^Hypertension Secondary to Endocrine Disorders
- ;;^UTILITY(U,$J,358.3,16481,1,4,0)
- ;;=4^I15.2
- ;;^UTILITY(U,$J,358.3,16481,2)
- ;;=^5007073
- ;;^UTILITY(U,$J,358.3,16482,0)
- ;;=I15.8^^62^729^16
- ;;^UTILITY(U,$J,358.3,16482,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,16482,1,3,0)
- ;;=3^Secondary Hypertension,Oth
- ;;^UTILITY(U,$J,358.3,16482,1,4,0)
- ;;=4^I15.8
- ;;^UTILITY(U,$J,358.3,16482,2)
- ;;=^5007074
- ;;^UTILITY(U,$J,358.3,16483,0)
- ;;=I15.9^^62^729^17
- ;;^UTILITY(U,$J,358.3,16483,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,16483,1,3,0)
- ;;=3^Secondary Hypertension,Unspec
- ;;^UTILITY(U,$J,358.3,16483,1,4,0)
- ;;=4^I15.9
- ;;^UTILITY(U,$J,358.3,16483,2)
- ;;=^5007075
- ;;^UTILITY(U,$J,358.3,16484,0)
- ;;=I16.0^^62^729^14
- ;;^UTILITY(U,$J,358.3,16484,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,16484,1,3,0)
- ;;=3^Hypertensive Urgency
- ;;^UTILITY(U,$J,358.3,16484,1,4,0)
- ;;=4^I16.0
- ;;^UTILITY(U,$J,358.3,16484,2)
- ;;=^8133013
- ;;^UTILITY(U,$J,358.3,16485,0)
- ;;=I16.1^^62^729^7
- ;;^UTILITY(U,$J,358.3,16485,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,16485,1,3,0)
- ;;=3^Hypertensive Emergency
- ;;^UTILITY(U,$J,358.3,16485,1,4,0)
- ;;=4^I16.1
- ;;^UTILITY(U,$J,358.3,16485,2)
- ;;=^8204721
- ;;^UTILITY(U,$J,358.3,16486,0)
- ;;=I16.9^^62^729^6
- ;;^UTILITY(U,$J,358.3,16486,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,16486,1,3,0)
- ;;=3^Hypertensive Crisis,Unspec
- ;;^UTILITY(U,$J,358.3,16486,1,4,0)
- ;;=4^I16.9
- ;;^UTILITY(U,$J,358.3,16486,2)
- ;;=^5138600
- ;;^UTILITY(U,$J,358.3,16487,0)
- ;;=A07.0^^62^730^5
- ;;^UTILITY(U,$J,358.3,16487,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,16487,1,3,0)
- ;;=3^Balantidiasis
- ;;^UTILITY(U,$J,358.3,16487,1,4,0)
- ;;=4^A07.0
- ;;^UTILITY(U,$J,358.3,16487,2)
- ;;=^12533
- ;;^UTILITY(U,$J,358.3,16488,0)
- ;;=A07.1^^62^730^9
- ;;^UTILITY(U,$J,358.3,16488,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,16488,1,3,0)
- ;;=3^Giardiasis [lambliasis]
- ;;^UTILITY(U,$J,358.3,16488,1,4,0)
- ;;=4^A07.1
- ;;^UTILITY(U,$J,358.3,16488,2)
- ;;=^5000049
- ;;^UTILITY(U,$J,358.3,16489,0)
- ;;=A07.2^^62^730^7
- ;;^UTILITY(U,$J,358.3,16489,1,0)
- ;;=^358.31IA^4^2
+ ;;=3^Amenorrhea,Primary

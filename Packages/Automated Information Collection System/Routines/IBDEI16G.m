@@ -1,130 +1,130 @@
-IBDEI16G ; ; 04-FEB-2020
- ;;3.0;IB ENCOUNTER FORM IMP/EXP;;FEB 04, 2020
+IBDEI16G ; ; 01-FEB-2022
+ ;;3.0;IB ENCOUNTER FORM IMP/EXP;;FEB 01, 2022
  Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,999) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
- ;;^UTILITY(U,$J,358.3,18920,0)
- ;;=F81.2^^91^972^18
- ;;^UTILITY(U,$J,358.3,18920,1,0)
+ ;;^UTILITY(U,$J,358.3,19105,0)
+ ;;=L40.9^^64^849^17
+ ;;^UTILITY(U,$J,358.3,19105,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,18920,1,3,0)
- ;;=3^Learning D/O w/ Impairment in Mathematics
- ;;^UTILITY(U,$J,358.3,18920,1,4,0)
- ;;=4^F81.2
- ;;^UTILITY(U,$J,358.3,18920,2)
- ;;=^331957
- ;;^UTILITY(U,$J,358.3,18921,0)
- ;;=F81.0^^91^972^19
- ;;^UTILITY(U,$J,358.3,18921,1,0)
+ ;;^UTILITY(U,$J,358.3,19105,1,3,0)
+ ;;=3^Psoriasis,Unspec
+ ;;^UTILITY(U,$J,358.3,19105,1,4,0)
+ ;;=4^L40.9
+ ;;^UTILITY(U,$J,358.3,19105,2)
+ ;;=^5009171
+ ;;^UTILITY(U,$J,358.3,19106,0)
+ ;;=L40.3^^64^849^19
+ ;;^UTILITY(U,$J,358.3,19106,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,18921,1,3,0)
- ;;=3^Learning D/O w/ Impairment in Reading
- ;;^UTILITY(U,$J,358.3,18921,1,4,0)
- ;;=4^F81.0
- ;;^UTILITY(U,$J,358.3,18921,2)
- ;;=^5003679
- ;;^UTILITY(U,$J,358.3,18922,0)
- ;;=F81.81^^91^972^20
- ;;^UTILITY(U,$J,358.3,18922,1,0)
+ ;;^UTILITY(U,$J,358.3,19106,1,3,0)
+ ;;=3^Pustulosis Palmaris et Plantaris
+ ;;^UTILITY(U,$J,358.3,19106,1,4,0)
+ ;;=4^L40.3
+ ;;^UTILITY(U,$J,358.3,19106,2)
+ ;;=^5009163
+ ;;^UTILITY(U,$J,358.3,19107,0)
+ ;;=R21.^^64^849^20
+ ;;^UTILITY(U,$J,358.3,19107,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,18922,1,3,0)
- ;;=3^Learning D/O w/ Impairment in Written Expression
- ;;^UTILITY(U,$J,358.3,18922,1,4,0)
- ;;=4^F81.81
- ;;^UTILITY(U,$J,358.3,18922,2)
- ;;=^5003680
- ;;^UTILITY(U,$J,358.3,18923,0)
- ;;=F89.^^91^972^21
- ;;^UTILITY(U,$J,358.3,18923,1,0)
+ ;;^UTILITY(U,$J,358.3,19107,1,3,0)
+ ;;=3^Rash/Oth Nonspecific Skin Eruption
+ ;;^UTILITY(U,$J,358.3,19107,1,4,0)
+ ;;=4^R21.
+ ;;^UTILITY(U,$J,358.3,19107,2)
+ ;;=^5019283
+ ;;^UTILITY(U,$J,358.3,19108,0)
+ ;;=L25.9^^64^849^6
+ ;;^UTILITY(U,$J,358.3,19108,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,18923,1,3,0)
- ;;=3^Neurodevelopmental D/O,Unspec
- ;;^UTILITY(U,$J,358.3,18923,1,4,0)
- ;;=4^F89.
- ;;^UTILITY(U,$J,358.3,18923,2)
- ;;=^5003691
- ;;^UTILITY(U,$J,358.3,18924,0)
- ;;=F95.1^^91^972^9
- ;;^UTILITY(U,$J,358.3,18924,1,0)
+ ;;^UTILITY(U,$J,358.3,19108,1,3,0)
+ ;;=3^Contact Dermatitis,Unspec
+ ;;^UTILITY(U,$J,358.3,19108,1,4,0)
+ ;;=4^L25.9
+ ;;^UTILITY(U,$J,358.3,19108,2)
+ ;;=^5133647
+ ;;^UTILITY(U,$J,358.3,19109,0)
+ ;;=M34.89^^64^850^31
+ ;;^UTILITY(U,$J,358.3,19109,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,18924,1,3,0)
- ;;=3^Chronic Motor or Vocal Tic D/O
- ;;^UTILITY(U,$J,358.3,18924,1,4,0)
- ;;=4^F95.1
- ;;^UTILITY(U,$J,358.3,18924,2)
- ;;=^331941
- ;;^UTILITY(U,$J,358.3,18925,0)
- ;;=F95.0^^91^972^23
- ;;^UTILITY(U,$J,358.3,18925,1,0)
+ ;;^UTILITY(U,$J,358.3,19109,1,3,0)
+ ;;=3^Systemic Sclerosis NEC
+ ;;^UTILITY(U,$J,358.3,19109,1,4,0)
+ ;;=4^M34.89
+ ;;^UTILITY(U,$J,358.3,19109,2)
+ ;;=^5011784
+ ;;^UTILITY(U,$J,358.3,19110,0)
+ ;;=M34.0^^64^850^25
+ ;;^UTILITY(U,$J,358.3,19110,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,18925,1,3,0)
- ;;=3^Provisional Tic D/O
- ;;^UTILITY(U,$J,358.3,18925,1,4,0)
- ;;=4^F95.0
- ;;^UTILITY(U,$J,358.3,18925,2)
- ;;=^331940
- ;;^UTILITY(U,$J,358.3,18926,0)
- ;;=F80.0^^91^972^22
- ;;^UTILITY(U,$J,358.3,18926,1,0)
+ ;;^UTILITY(U,$J,358.3,19110,1,3,0)
+ ;;=3^Progressive Systemic Sclerosis
+ ;;^UTILITY(U,$J,358.3,19110,1,4,0)
+ ;;=4^M34.0
+ ;;^UTILITY(U,$J,358.3,19110,2)
+ ;;=^5011778
+ ;;^UTILITY(U,$J,358.3,19111,0)
+ ;;=F03.90^^64^850^15
+ ;;^UTILITY(U,$J,358.3,19111,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,18926,1,3,0)
- ;;=3^Phonological D/O
- ;;^UTILITY(U,$J,358.3,18926,1,4,0)
- ;;=4^F80.0
- ;;^UTILITY(U,$J,358.3,18926,2)
- ;;=^5003674
- ;;^UTILITY(U,$J,358.3,18927,0)
- ;;=F98.4^^91^972^26
- ;;^UTILITY(U,$J,358.3,18927,1,0)
+ ;;^UTILITY(U,$J,358.3,19111,1,3,0)
+ ;;=3^Dementia w/o Behavioral Disturbance,Unspec
+ ;;^UTILITY(U,$J,358.3,19111,1,4,0)
+ ;;=4^F03.90
+ ;;^UTILITY(U,$J,358.3,19111,2)
+ ;;=^5003050
+ ;;^UTILITY(U,$J,358.3,19112,0)
+ ;;=F06.8^^64^850^22
+ ;;^UTILITY(U,$J,358.3,19112,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,18927,1,3,0)
- ;;=3^Stereotypic Movement D/O
- ;;^UTILITY(U,$J,358.3,18927,1,4,0)
- ;;=4^F98.4
- ;;^UTILITY(U,$J,358.3,18927,2)
- ;;=^5003716
- ;;^UTILITY(U,$J,358.3,18928,0)
- ;;=F95.8^^91^972^27
- ;;^UTILITY(U,$J,358.3,18928,1,0)
+ ;;^UTILITY(U,$J,358.3,19112,1,3,0)
+ ;;=3^Mental Disorders d/t Physiological Condition
+ ;;^UTILITY(U,$J,358.3,19112,1,4,0)
+ ;;=4^F06.8
+ ;;^UTILITY(U,$J,358.3,19112,2)
+ ;;=^5003062
+ ;;^UTILITY(U,$J,358.3,19113,0)
+ ;;=F06.1^^64^850^1
+ ;;^UTILITY(U,$J,358.3,19113,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,18928,1,3,0)
- ;;=3^Tic D/O,Oth Specified
- ;;^UTILITY(U,$J,358.3,18928,1,4,0)
- ;;=4^F95.8
- ;;^UTILITY(U,$J,358.3,18928,2)
- ;;=^5003709
- ;;^UTILITY(U,$J,358.3,18929,0)
- ;;=F95.9^^91^972^28
- ;;^UTILITY(U,$J,358.3,18929,1,0)
+ ;;^UTILITY(U,$J,358.3,19113,1,3,0)
+ ;;=3^Catatonic Disorder d/t Physiological Condition
+ ;;^UTILITY(U,$J,358.3,19113,1,4,0)
+ ;;=4^F06.1
+ ;;^UTILITY(U,$J,358.3,19113,2)
+ ;;=^5003054
+ ;;^UTILITY(U,$J,358.3,19114,0)
+ ;;=G35.^^64^850^23
+ ;;^UTILITY(U,$J,358.3,19114,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,18929,1,3,0)
- ;;=3^Tic D/O,Unspec
- ;;^UTILITY(U,$J,358.3,18929,1,4,0)
- ;;=4^F95.9
- ;;^UTILITY(U,$J,358.3,18929,2)
- ;;=^5003710
- ;;^UTILITY(U,$J,358.3,18930,0)
- ;;=F95.2^^91^972^29
- ;;^UTILITY(U,$J,358.3,18930,1,0)
+ ;;^UTILITY(U,$J,358.3,19114,1,3,0)
+ ;;=3^Multiple Sclerosis
+ ;;^UTILITY(U,$J,358.3,19114,1,4,0)
+ ;;=4^G35.
+ ;;^UTILITY(U,$J,358.3,19114,2)
+ ;;=^79761
+ ;;^UTILITY(U,$J,358.3,19115,0)
+ ;;=G60.9^^64^850^20
+ ;;^UTILITY(U,$J,358.3,19115,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,18930,1,3,0)
- ;;=3^Tourette's D/O
- ;;^UTILITY(U,$J,358.3,18930,1,4,0)
- ;;=4^F95.2
- ;;^UTILITY(U,$J,358.3,18930,2)
- ;;=^331942
- ;;^UTILITY(U,$J,358.3,18931,0)
- ;;=F98.5^^91^972^6
- ;;^UTILITY(U,$J,358.3,18931,1,0)
+ ;;^UTILITY(U,$J,358.3,19115,1,3,0)
+ ;;=3^Hereditary/Idiopathic Neuropathy,Unspec
+ ;;^UTILITY(U,$J,358.3,19115,1,4,0)
+ ;;=4^G60.9
+ ;;^UTILITY(U,$J,358.3,19115,2)
+ ;;=^5004071
+ ;;^UTILITY(U,$J,358.3,19116,0)
+ ;;=G62.9^^64^850^24
+ ;;^UTILITY(U,$J,358.3,19116,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,18931,1,3,0)
- ;;=3^Adult-Onset Fluency D/O
- ;;^UTILITY(U,$J,358.3,18931,1,4,0)
- ;;=4^F98.5
- ;;^UTILITY(U,$J,358.3,18931,2)
- ;;=^5003717
- ;;^UTILITY(U,$J,358.3,18932,0)
- ;;=F90.2^^91^972^1
- ;;^UTILITY(U,$J,358.3,18932,1,0)
+ ;;^UTILITY(U,$J,358.3,19116,1,3,0)
+ ;;=3^Polyneuropathy,Unspec
+ ;;^UTILITY(U,$J,358.3,19116,1,4,0)
+ ;;=4^G62.9
+ ;;^UTILITY(U,$J,358.3,19116,2)
+ ;;=^5004079
+ ;;^UTILITY(U,$J,358.3,19117,0)
+ ;;=I63.9^^64^850^14
+ ;;^UTILITY(U,$J,358.3,19117,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,18932,1,3,0)
- ;;=3^ADHD,Combined Presentation
+ ;;^UTILITY(U,$J,358.3,19117,1,3,0)
+ ;;=3^Cerebral Infarction,Unspec

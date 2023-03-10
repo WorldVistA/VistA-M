@@ -1,5 +1,5 @@
 ECXUTL5 ;ALB/JRC - Utilities for DSS Extracts ;5/9/19  16:31
- ;;3.0;DSS EXTRACTS;**71,84,92,103,105,120,136,166,170,174**;Dec 22, 1997;Build 33
+ ;;3.0;DSS EXTRACTS;**71,84,92,103,105,120,136,166,170,174,181,184**;Dec 22, 1997;Build 124
  ;
 REPEAT(CHAR,TIMES) ;REPEAT A STRING
  ;INPUT  : CHAR - Character to repeat
@@ -40,7 +40,7 @@ TYPE(DFN) ;Determine patient type DBIA #2511
  ;   DFN = patient ien
  ;
  ;   output
- ;   ECXPTYPE = patient type external value from fle 391
+ ;   ECXPTYPE = patient type external value from file 391
  ;
  ;          AC = ACTIVE DUTY        MI = MILITARY RETIREE
  ;          AL = ALLIED VETERAN     NO = NON-VETERAN (OTHER)
@@ -112,7 +112,9 @@ DOIVPO(K,L) ;Add destination for outpatient ivp orders
  ;     Input     K - DFN
  ;               L - Order # from Pharmacy Patient File (#55)
  ;
- ;     Output     ordering stop code
+ ;     Output    ordering stop code (clinic has been assigned a valid stop code)
+ ;          OR   Clinic^MISSING STOP CODE  
+ ;               Clinic^INVALID STOP CODE^Stop Code
  ;
  N ECXDIC,ECXDICA,ECXDICB,DOIVPO,CLINIC,SCODE,DIC,DIQ,DR,DA
  S (ECXDIC,ECXDICA,ECXDICB,DOIVPO,CLINIC,SCODE)=""
@@ -127,9 +129,11 @@ DOIVPO(K,L) ;Add destination for outpatient ivp orders
  I 'CLINIC Q SCODE
  ;Get stop code pointer to file 40.7 from file 44
  S DIC="^SC(",DIQ(0)="I",DIQ="ECXDICA",DR="8",DA=CLINIC D EN^DIQ1
- S SCODE=ECXDICA(44,CLINIC,8,"I")
+ S SCODE=$G(ECXDICA(44,CLINIC,8,"I")) ;181 - Add $Get
+ I 'SCODE S SCODE=CLINIC_U_"MISSING STOP CODE" Q SCODE  ;181 - Clinic has NO stop code
  ;Get stop code external value
- S DIC="^DIC(40.7,",DIQ(0)="E",DIQ="ECXDICB",DR="1",DA=SCODE D EN^DIQ1
+ S DIC="^DIC(40.7,",DIQ(0)="E",DIQ="ECXDICB",DR="1;2",DA=SCODE D EN^DIQ1 ;181 - Add Inactive Date
+ I $G(ECXDICB(40.7,SCODE,2,"E"))'="" S SCODE=CLINIC_U_"INVALID STOP CODE"_U_SCODE Q SCODE  ;181 - Stop Code is Inactive
  S SCODE=$G(ECXDICB(40.7,SCODE,1,"E"))
  Q SCODE
  ;
@@ -137,7 +141,9 @@ DOUDO(K,L) ;Add destination for outpatient udp orders
  ;     Input     K - DFN
  ;               L - Order # from Pharmacy Patient File (#55)
  ;
- ;     Output     ordering stop code
+ ;     Output    ordering stop code (clinic has been assigned a valid stop code)
+ ;          OR   Clinic^MISSING STOP CODE  
+ ;               Clinic^INVALID STOP CODE^Stop Code
  ;
  N ECXDIC,ECXDICA,ECXDICB,DOIVPO,CLINIC,SCODE,DIC,DIQ,DR,DA
  S (ECXDIC,ECXDICA,ECXDICB,DOIVPO,CLINIC,SCODE)=""
@@ -151,9 +157,11 @@ DOUDO(K,L) ;Add destination for outpatient udp orders
  I 'CLINIC Q SCODE
  ;Get stop code pointer to file 40.7 from file 44
  S DIC="^SC(",DIQ(0)="I",DIQ="ECXDICA",DR="8",DA=CLINIC D EN^DIQ1
- S SCODE=ECXDICA(44,CLINIC,8,"I")
+ S SCODE=$G(ECXDICA(44,CLINIC,8,"I")) ;181 - Add $Get
+ I 'SCODE S SCODE=CLINIC_U_"MISSING STOP CODE" Q SCODE  ;181 - Clinic has NO stop code
  ;Get stop code external value
- S DIC="^DIC(40.7,",DIQ(0)="E",DIQ="ECXDICB",DR="1",DA=SCODE D EN^DIQ1
+ S DIC="^DIC(40.7,",DIQ(0)="E",DIQ="ECXDICB",DR="1;2",DA=SCODE D EN^DIQ1 ;181 -  Add Inactive Date
+ I $G(ECXDICB(40.7,SCODE,2,"E"))'="" S SCODE=CLINIC_U_"INVALID STOP CODE"_U_SCODE Q SCODE  ;181 - Stop Code is Inactive
  S SCODE=$G(ECXDICB(40.7,SCODE,1,"E"))
  Q SCODE
  ;
@@ -162,23 +170,26 @@ PHAAPI(DRUG) ;Call Pharmacy drug file API dbia 4483
  ;
  ;   Output: generic name ^ classification ^ ndc ^ dea hand
  ;            ^ ndf file entry # ^ psndf va product entry ^
- ;            price per disp unit ^ dispense unit
+ ;            price per disp unit ^ dispense unit^ Price per Order Unit^ Dispense Unit per Order Unit ;184 added last 2 fields
+ ;
  ;
  ;Initialize variables and scratch global
  N NAME,CLASS,NDC,INV,NDF,P1,P3,PPDU,UNIT,ARRAY,DATA
- S (NAME,CLASS,NDC,INV,NDF,P1,P3,PPDU,ARRAY,DATA)=""
+ N PPOU,DUPOU ;184
+ S (NAME,CLASS,NDC,INV,NDF,P1,P3,PPDU,ARRAY,DATA,PPOU,DUPOU)="" ;184 Added Price Per Order Unit, Dispense Unit Per Order Unit
  S ARRAY="^TMP($J,""ECXLIST"")"
  K @ARRAY
  D DATA^PSS50(DRUG,,,,,"ECXLIST")
  I @ARRAY@(0)'>0 Q "^^^^^^"
  S NAME=@ARRAY@(DRUG,.01),CLASS=@ARRAY@(DRUG,2),NDC=@ARRAY@(DRUG,31)
  S INV=@ARRAY@(DRUG,3),P1=$P(@ARRAY@(DRUG,20),U),P3=$P(@ARRAY@(DRUG,22),U),PPDU=@ARRAY@(DRUG,16),UNIT=@ARRAY@(DRUG,14.5)
+ S PPOU=@ARRAY@(DRUG,13),DUPOU=@ARRAY@(DRUG,15) ;184 
  I NDC="",P3="" D  ;170,174 If NDC and NDF are blank, assign an LCL or LCD NDC
  .;174, Set NDC to LCL (supply items) or LCD (non-supply items) concatenated with the last 9 digits of IEN if IEN is longer than 9 digits
  .S NDC=$S(INV["S":"LCL",1:"LCD")_$$RJ^XLFSTR($E(DRUG,$S($L(DRUG)'>9:1,1:1+($L(DRUG)-9)),$L(DRUG)),9,0) ;174
  .S NDC=$E(NDC,1,6)_"-"_$E(NDC,7,10)_"-"_$E(NDC,11,12) ;Put NDC in xxxxxx-xxxx-xx format
  K @ARRAY
- Q NAME_U_CLASS_U_NDC_U_INV_U_P1_U_P3_U_PPDU_U_UNIT
+ Q NAME_U_CLASS_U_NDC_U_INV_U_P1_U_P3_U_PPDU_U_UNIT_U_PPOU_U_DUPOU ;184 Added Price Per Order Unit, Dispense Unit Per Order Unit
  ;
 TSSC(X) ;Check treating specialty (ts) and if ts equals any of the following
  ;18,23,24,36,41,65,94,108(1J) then assign predefined code and return value

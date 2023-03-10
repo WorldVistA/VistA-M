@@ -1,128 +1,128 @@
-IBDEI1BU ; ; 04-FEB-2020
- ;;3.0;IB ENCOUNTER FORM IMP/EXP;;FEB 04, 2020
+IBDEI1BU ; ; 01-FEB-2022
+ ;;3.0;IB ENCOUNTER FORM IMP/EXP;;FEB 01, 2022
  Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,999) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
- ;;^UTILITY(U,$J,358.3,21203,1,0)
+ ;;^UTILITY(U,$J,358.3,21451,0)
+ ;;=H60.543^^70^920^20
+ ;;^UTILITY(U,$J,358.3,21451,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,21203,1,3,0)
- ;;=3^Conversion Disorder w/ Weakness or Paralysis
- ;;^UTILITY(U,$J,358.3,21203,1,4,0)
- ;;=4^F44.4
- ;;^UTILITY(U,$J,358.3,21203,2)
- ;;=^5003579
- ;;^UTILITY(U,$J,358.3,21204,0)
- ;;=F45.21^^95^1052^11
- ;;^UTILITY(U,$J,358.3,21204,1,0)
+ ;;^UTILITY(U,$J,358.3,21451,1,3,0)
+ ;;=3^AC Eczematoid Otitis Externa,Bilateral
+ ;;^UTILITY(U,$J,358.3,21451,1,4,0)
+ ;;=4^H60.543
+ ;;^UTILITY(U,$J,358.3,21451,2)
+ ;;=^5006484
+ ;;^UTILITY(U,$J,358.3,21452,0)
+ ;;=H60.542^^70^920^21
+ ;;^UTILITY(U,$J,358.3,21452,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,21204,1,3,0)
- ;;=3^Illness Anxiety Disorder
- ;;^UTILITY(U,$J,358.3,21204,1,4,0)
- ;;=4^F45.21
- ;;^UTILITY(U,$J,358.3,21204,2)
- ;;=^5003587
- ;;^UTILITY(U,$J,358.3,21205,0)
- ;;=F91.2^^95^1053^1
- ;;^UTILITY(U,$J,358.3,21205,1,0)
+ ;;^UTILITY(U,$J,358.3,21452,1,3,0)
+ ;;=3^AC Eczematoid Otitis Externa,Left Ear
+ ;;^UTILITY(U,$J,358.3,21452,1,4,0)
+ ;;=4^H60.542
+ ;;^UTILITY(U,$J,358.3,21452,2)
+ ;;=^5006483
+ ;;^UTILITY(U,$J,358.3,21453,0)
+ ;;=H60.541^^70^920^22
+ ;;^UTILITY(U,$J,358.3,21453,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,21205,1,3,0)
- ;;=3^Conduct Disorder,Adolescent-Onset Type
- ;;^UTILITY(U,$J,358.3,21205,1,4,0)
- ;;=4^F91.2
- ;;^UTILITY(U,$J,358.3,21205,2)
- ;;=^5003699
- ;;^UTILITY(U,$J,358.3,21206,0)
- ;;=F91.1^^95^1053^2
- ;;^UTILITY(U,$J,358.3,21206,1,0)
+ ;;^UTILITY(U,$J,358.3,21453,1,3,0)
+ ;;=3^AC Eczematoid Otitis Externa,Right Ear
+ ;;^UTILITY(U,$J,358.3,21453,1,4,0)
+ ;;=4^H60.541
+ ;;^UTILITY(U,$J,358.3,21453,2)
+ ;;=^5006482
+ ;;^UTILITY(U,$J,358.3,21454,0)
+ ;;=J04.0^^70^920^23
+ ;;^UTILITY(U,$J,358.3,21454,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,21206,1,3,0)
- ;;=3^Conduct Disorder,Childhood-Onset Type
- ;;^UTILITY(U,$J,358.3,21206,1,4,0)
- ;;=4^F91.1
- ;;^UTILITY(U,$J,358.3,21206,2)
- ;;=^5003698
- ;;^UTILITY(U,$J,358.3,21207,0)
- ;;=F91.9^^95^1053^3
- ;;^UTILITY(U,$J,358.3,21207,1,0)
+ ;;^UTILITY(U,$J,358.3,21454,1,3,0)
+ ;;=3^AC Laryngitis
+ ;;^UTILITY(U,$J,358.3,21454,1,4,0)
+ ;;=4^J04.0
+ ;;^UTILITY(U,$J,358.3,21454,2)
+ ;;=^5008137
+ ;;^UTILITY(U,$J,358.3,21455,0)
+ ;;=J04.2^^70^920^24
+ ;;^UTILITY(U,$J,358.3,21455,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,21207,1,3,0)
- ;;=3^Conduct Disorder,Unspec-Onset Type
- ;;^UTILITY(U,$J,358.3,21207,1,4,0)
- ;;=4^F91.9
- ;;^UTILITY(U,$J,358.3,21207,2)
- ;;=^5003701
- ;;^UTILITY(U,$J,358.3,21208,0)
- ;;=F63.81^^95^1053^6
- ;;^UTILITY(U,$J,358.3,21208,1,0)
+ ;;^UTILITY(U,$J,358.3,21455,1,3,0)
+ ;;=3^AC Laryngotracheitis
+ ;;^UTILITY(U,$J,358.3,21455,1,4,0)
+ ;;=4^J04.2
+ ;;^UTILITY(U,$J,358.3,21455,2)
+ ;;=^269868
+ ;;^UTILITY(U,$J,358.3,21456,0)
+ ;;=J00.^^70^920^25
+ ;;^UTILITY(U,$J,358.3,21456,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,21208,1,3,0)
- ;;=3^Intermittent Explosive Disorder
- ;;^UTILITY(U,$J,358.3,21208,1,4,0)
- ;;=4^F63.81
- ;;^UTILITY(U,$J,358.3,21208,2)
- ;;=^5003644
- ;;^UTILITY(U,$J,358.3,21209,0)
- ;;=F63.2^^95^1053^7
- ;;^UTILITY(U,$J,358.3,21209,1,0)
+ ;;^UTILITY(U,$J,358.3,21456,1,3,0)
+ ;;=3^AC Nasopharyngitis
+ ;;^UTILITY(U,$J,358.3,21456,1,4,0)
+ ;;=4^J00.
+ ;;^UTILITY(U,$J,358.3,21456,2)
+ ;;=^5008115
+ ;;^UTILITY(U,$J,358.3,21457,0)
+ ;;=J02.8^^70^920^29
+ ;;^UTILITY(U,$J,358.3,21457,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,21209,1,3,0)
- ;;=3^Kleptomania
- ;;^UTILITY(U,$J,358.3,21209,1,4,0)
- ;;=4^F63.2
- ;;^UTILITY(U,$J,358.3,21209,2)
- ;;=^5003642
- ;;^UTILITY(U,$J,358.3,21210,0)
- ;;=F91.3^^95^1053^8
- ;;^UTILITY(U,$J,358.3,21210,1,0)
+ ;;^UTILITY(U,$J,358.3,21457,1,3,0)
+ ;;=3^AC Pharyngitis d/t Specified Organisms
+ ;;^UTILITY(U,$J,358.3,21457,1,4,0)
+ ;;=4^J02.8
+ ;;^UTILITY(U,$J,358.3,21457,2)
+ ;;=^5008129
+ ;;^UTILITY(U,$J,358.3,21458,0)
+ ;;=J02.9^^70^920^30
+ ;;^UTILITY(U,$J,358.3,21458,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,21210,1,3,0)
- ;;=3^Oppositional Defiant Disorder
- ;;^UTILITY(U,$J,358.3,21210,1,4,0)
- ;;=4^F91.3
- ;;^UTILITY(U,$J,358.3,21210,2)
- ;;=^331955
- ;;^UTILITY(U,$J,358.3,21211,0)
- ;;=F63.1^^95^1053^9
- ;;^UTILITY(U,$J,358.3,21211,1,0)
+ ;;^UTILITY(U,$J,358.3,21458,1,3,0)
+ ;;=3^AC Pharyngitis,Unspec
+ ;;^UTILITY(U,$J,358.3,21458,1,4,0)
+ ;;=4^J02.9
+ ;;^UTILITY(U,$J,358.3,21458,2)
+ ;;=^5008130
+ ;;^UTILITY(U,$J,358.3,21459,0)
+ ;;=B40.0^^70^920^31
+ ;;^UTILITY(U,$J,358.3,21459,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,21211,1,3,0)
- ;;=3^Pyromania
- ;;^UTILITY(U,$J,358.3,21211,1,4,0)
- ;;=4^F63.1
- ;;^UTILITY(U,$J,358.3,21211,2)
- ;;=^5003641
- ;;^UTILITY(U,$J,358.3,21212,0)
- ;;=F91.8^^95^1053^4
- ;;^UTILITY(U,$J,358.3,21212,1,0)
+ ;;^UTILITY(U,$J,358.3,21459,1,3,0)
+ ;;=3^AC Pulmonary Blastomycosis
+ ;;^UTILITY(U,$J,358.3,21459,1,4,0)
+ ;;=4^B40.0
+ ;;^UTILITY(U,$J,358.3,21459,2)
+ ;;=^5000639
+ ;;^UTILITY(U,$J,358.3,21460,0)
+ ;;=H60.553^^70^920^32
+ ;;^UTILITY(U,$J,358.3,21460,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,21212,1,3,0)
- ;;=3^Disruptive,Impulse-Control & Conduct Disorder,Other Specified
- ;;^UTILITY(U,$J,358.3,21212,1,4,0)
- ;;=4^F91.8
- ;;^UTILITY(U,$J,358.3,21212,2)
- ;;=^5003700
- ;;^UTILITY(U,$J,358.3,21213,0)
- ;;=F91.9^^95^1053^5
- ;;^UTILITY(U,$J,358.3,21213,1,0)
+ ;;^UTILITY(U,$J,358.3,21460,1,3,0)
+ ;;=3^AC Reactive Otitis Externa,Bilateral
+ ;;^UTILITY(U,$J,358.3,21460,1,4,0)
+ ;;=4^H60.553
+ ;;^UTILITY(U,$J,358.3,21460,2)
+ ;;=^5006488
+ ;;^UTILITY(U,$J,358.3,21461,0)
+ ;;=H60.552^^70^920^33
+ ;;^UTILITY(U,$J,358.3,21461,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,21213,1,3,0)
- ;;=3^Disruptive,Impulse-Control & Conduct Disorder,Unspec
- ;;^UTILITY(U,$J,358.3,21213,1,4,0)
- ;;=4^F91.9
- ;;^UTILITY(U,$J,358.3,21213,2)
- ;;=^5003701
- ;;^UTILITY(U,$J,358.3,21214,0)
- ;;=F98.0^^95^1054^6
- ;;^UTILITY(U,$J,358.3,21214,1,0)
+ ;;^UTILITY(U,$J,358.3,21461,1,3,0)
+ ;;=3^AC Reactive Otitis Externa,Left Ear
+ ;;^UTILITY(U,$J,358.3,21461,1,4,0)
+ ;;=4^H60.552
+ ;;^UTILITY(U,$J,358.3,21461,2)
+ ;;=^5006487
+ ;;^UTILITY(U,$J,358.3,21462,0)
+ ;;=H60.551^^70^920^34
+ ;;^UTILITY(U,$J,358.3,21462,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,21214,1,3,0)
- ;;=3^Enuresis
- ;;^UTILITY(U,$J,358.3,21214,1,4,0)
- ;;=4^F98.0
- ;;^UTILITY(U,$J,358.3,21214,2)
- ;;=^5003711
- ;;^UTILITY(U,$J,358.3,21215,0)
- ;;=F98.1^^95^1054^5
- ;;^UTILITY(U,$J,358.3,21215,1,0)
+ ;;^UTILITY(U,$J,358.3,21462,1,3,0)
+ ;;=3^AC Reactive Otitis Externa,Right Ear
+ ;;^UTILITY(U,$J,358.3,21462,1,4,0)
+ ;;=4^H60.551
+ ;;^UTILITY(U,$J,358.3,21462,2)
+ ;;=^5006486
+ ;;^UTILITY(U,$J,358.3,21463,0)
+ ;;=J01.91^^70^920^35
+ ;;^UTILITY(U,$J,358.3,21463,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,21215,1,3,0)
- ;;=3^Encopresis

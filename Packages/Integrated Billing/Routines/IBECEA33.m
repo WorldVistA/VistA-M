@@ -1,5 +1,5 @@
 IBECEA33 ;ALB/CPM-Cancel/Edit/Add... More Add Utilities ; 23-APR-93
- ;;2.0;INTEGRATED BILLING;**57,52,132,153,167,176,188,618,646,656,677**;21-MAR-94;Build 17
+ ;;2.0;INTEGRATED BILLING;**57,52,132,153,167,176,188,618,646,656,677,682**;21-MAR-94;Build 15
  ;;Per VA Directive 6402, this routine should not be modified.
  ;
 NOCL ; Find the correct clock from the 'bill from' date.
@@ -36,6 +36,8 @@ OPTQ Q
 CHTYP ; Ask for the Charge Type
  ;*** IB*2.0*618 add check for inactive field when building the list of Action Types.
  S DIC="^IBE(350.1,",DIC(0)="AEMQZ",D="E",DIC("S")="I '$P($G(^(0)),U,12),$P(^(0),U)'[""MEDICARE"",$P(^(0),U)'[""CHAMPVA SUB""",DIC("A")="Select CHARGE TYPE: "
+ ; IBREBILL array is defined in REBILL^IBECEA4
+ I $G(IBREBILL("CHRGTYPE"))'="" S DIC("B")=IBREBILL("CHRGTYPE")  ; IB*2.0*682
  D IX^DIC K DIC S IBATYP=+Y I Y<0 S IBY=-1 W !!,"No CHARGE TYPE entered - transaction cannot be completed." G CHTYPQ
  ;
  ; - perform charge type edits

@@ -1,120 +1,128 @@
-IBDEI0JG ; ; 04-FEB-2020
- ;;3.0;IB ENCOUNTER FORM IMP/EXP;;FEB 04, 2020
+IBDEI0JG ; ; 01-FEB-2022
+ ;;3.0;IB ENCOUNTER FORM IMP/EXP;;FEB 01, 2022
  Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,999) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
- ;;^UTILITY(U,$J,358.3,8533,0)
- ;;=13153^^66^564^3^^^^1
- ;;^UTILITY(U,$J,358.3,8533,1,0)
- ;;=^358.31IA^3^2
- ;;^UTILITY(U,$J,358.3,8533,1,2,0)
- ;;=2^13153
- ;;^UTILITY(U,$J,358.3,8533,1,3,0)
- ;;=3^Complex Repair Face;Ea Addl 5 cm
- ;;^UTILITY(U,$J,358.3,8534,0)
- ;;=13131^^66^565^1^^^^1
- ;;^UTILITY(U,$J,358.3,8534,1,0)
- ;;=^358.31IA^3^2
- ;;^UTILITY(U,$J,358.3,8534,1,2,0)
- ;;=2^13131
- ;;^UTILITY(U,$J,358.3,8534,1,3,0)
- ;;=3^Complex Repair Nk/Hd/Ft;1.1 to 2.5 cm
- ;;^UTILITY(U,$J,358.3,8535,0)
- ;;=13132^^66^565^2^^^^1
- ;;^UTILITY(U,$J,358.3,8535,1,0)
- ;;=^358.31IA^3^2
- ;;^UTILITY(U,$J,358.3,8535,1,2,0)
- ;;=2^13132
- ;;^UTILITY(U,$J,358.3,8535,1,3,0)
- ;;=3^Complex Repair Nk/Hd/Ft;2.6 to 7.5 cm
- ;;^UTILITY(U,$J,358.3,8536,0)
- ;;=13133^^66^565^3^^^^1
- ;;^UTILITY(U,$J,358.3,8536,1,0)
- ;;=^358.31IA^3^2
- ;;^UTILITY(U,$J,358.3,8536,1,2,0)
- ;;=2^13133
- ;;^UTILITY(U,$J,358.3,8536,1,3,0)
- ;;=3^Complex Repair Nk/Hd/Ft;Ea Addl 5 cm
- ;;^UTILITY(U,$J,358.3,8537,0)
- ;;=13100^^66^566^1^^^^1
- ;;^UTILITY(U,$J,358.3,8537,1,0)
- ;;=^358.31IA^3^2
- ;;^UTILITY(U,$J,358.3,8537,1,2,0)
- ;;=2^13100
- ;;^UTILITY(U,$J,358.3,8537,1,3,0)
- ;;=3^Complex Repair Trunk;1.1 to 2.5 cm
- ;;^UTILITY(U,$J,358.3,8538,0)
- ;;=13101^^66^566^2^^^^1
- ;;^UTILITY(U,$J,358.3,8538,1,0)
- ;;=^358.31IA^3^2
- ;;^UTILITY(U,$J,358.3,8538,1,2,0)
- ;;=2^13101
- ;;^UTILITY(U,$J,358.3,8538,1,3,0)
- ;;=3^Complex Repair Trunk;2.6 to 7.5 cm
- ;;^UTILITY(U,$J,358.3,8539,0)
- ;;=13102^^66^566^3^^^^1
- ;;^UTILITY(U,$J,358.3,8539,1,0)
- ;;=^358.31IA^3^2
- ;;^UTILITY(U,$J,358.3,8539,1,2,0)
- ;;=2^13102
- ;;^UTILITY(U,$J,358.3,8539,1,3,0)
- ;;=3^Complex Repair Trunk;Ea Addl 5 cm
- ;;^UTILITY(U,$J,358.3,8540,0)
- ;;=14040^^66^567^1^^^^1
- ;;^UTILITY(U,$J,358.3,8540,1,0)
- ;;=^358.31IA^3^2
- ;;^UTILITY(U,$J,358.3,8540,1,2,0)
- ;;=2^14040
- ;;^UTILITY(U,$J,358.3,8540,1,3,0)
- ;;=3^Tissue Rearrangement,Face/Nk/Hd/Ft,Up to 10.0 sq cm
- ;;^UTILITY(U,$J,358.3,8541,0)
- ;;=14041^^66^567^2^^^^1
- ;;^UTILITY(U,$J,358.3,8541,1,0)
- ;;=^358.31IA^3^2
- ;;^UTILITY(U,$J,358.3,8541,1,2,0)
- ;;=2^14041
- ;;^UTILITY(U,$J,358.3,8541,1,3,0)
- ;;=3^Tissue Rearrangement,Face/Nk/Hd/Ft,10.1 to 30.0 sq cm
- ;;^UTILITY(U,$J,358.3,8542,0)
- ;;=14020^^66^568^1^^^^1
- ;;^UTILITY(U,$J,358.3,8542,1,0)
- ;;=^358.31IA^3^2
- ;;^UTILITY(U,$J,358.3,8542,1,2,0)
- ;;=2^14020
- ;;^UTILITY(U,$J,358.3,8542,1,3,0)
- ;;=3^Tissue Rearrangement,S/A/L,Up to 10.0 sq cm
- ;;^UTILITY(U,$J,358.3,8543,0)
- ;;=14021^^66^568^2^^^^1
- ;;^UTILITY(U,$J,358.3,8543,1,0)
- ;;=^358.31IA^3^2
- ;;^UTILITY(U,$J,358.3,8543,1,2,0)
- ;;=2^14021
- ;;^UTILITY(U,$J,358.3,8543,1,3,0)
- ;;=3^Tissue Rearrangement,S/A/L,10.1 to 30.0 sq cm
- ;;^UTILITY(U,$J,358.3,8544,0)
- ;;=14000^^66^569^1^^^^1
- ;;^UTILITY(U,$J,358.3,8544,1,0)
- ;;=^358.31IA^3^2
- ;;^UTILITY(U,$J,358.3,8544,1,2,0)
- ;;=2^14000
- ;;^UTILITY(U,$J,358.3,8544,1,3,0)
- ;;=3^Tissue Rearrangement,Trunk,Up to 10.0 sq cm
- ;;^UTILITY(U,$J,358.3,8545,0)
- ;;=14001^^66^569^2^^^^1
- ;;^UTILITY(U,$J,358.3,8545,1,0)
- ;;=^358.31IA^3^2
- ;;^UTILITY(U,$J,358.3,8545,1,2,0)
- ;;=2^14001
- ;;^UTILITY(U,$J,358.3,8545,1,3,0)
- ;;=3^Tissue Rearrangement,Trunk,10.1 to 30.0 sq cm
- ;;^UTILITY(U,$J,358.3,8546,0)
- ;;=13120^^66^570^1^^^^1
- ;;^UTILITY(U,$J,358.3,8546,1,0)
- ;;=^358.31IA^3^2
- ;;^UTILITY(U,$J,358.3,8546,1,2,0)
- ;;=2^13120
- ;;^UTILITY(U,$J,358.3,8546,1,3,0)
- ;;=3^Complex Repair Scalp;1.1 to 2.5 cm
- ;;^UTILITY(U,$J,358.3,8547,0)
- ;;=13121^^66^570^2^^^^1
- ;;^UTILITY(U,$J,358.3,8547,1,0)
- ;;=^358.31IA^3^2
+ ;;^UTILITY(U,$J,358.3,8751,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,8751,1,3,0)
+ ;;=3^Soil Pollution Contact/Exposure
+ ;;^UTILITY(U,$J,358.3,8751,1,4,0)
+ ;;=4^Z77.112
+ ;;^UTILITY(U,$J,358.3,8751,2)
+ ;;=^5063316
+ ;;^UTILITY(U,$J,358.3,8752,0)
+ ;;=Z77.111^^39^402^155
+ ;;^UTILITY(U,$J,358.3,8752,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,8752,1,3,0)
+ ;;=3^Water Pollution Contact/Exposure
+ ;;^UTILITY(U,$J,358.3,8752,1,4,0)
+ ;;=4^Z77.111
+ ;;^UTILITY(U,$J,358.3,8752,2)
+ ;;=^5063315
+ ;;^UTILITY(U,$J,358.3,8753,0)
+ ;;=Z77.128^^39^402^113
+ ;;^UTILITY(U,$J,358.3,8753,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,8753,1,3,0)
+ ;;=3^Physical Environment Hazards Contact/Exposure
+ ;;^UTILITY(U,$J,358.3,8753,1,4,0)
+ ;;=4^Z77.128
+ ;;^UTILITY(U,$J,358.3,8753,2)
+ ;;=^5063322
+ ;;^UTILITY(U,$J,358.3,8754,0)
+ ;;=Z77.123^^39^402^146
+ ;;^UTILITY(U,$J,358.3,8754,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,8754,1,3,0)
+ ;;=3^Radon/Radiation Contact/Exposure
+ ;;^UTILITY(U,$J,358.3,8754,1,4,0)
+ ;;=4^Z77.123
+ ;;^UTILITY(U,$J,358.3,8754,2)
+ ;;=^5063321
+ ;;^UTILITY(U,$J,358.3,8755,0)
+ ;;=Z77.122^^39^402^61
+ ;;^UTILITY(U,$J,358.3,8755,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,8755,1,3,0)
+ ;;=3^Noise Contact/Exposure
+ ;;^UTILITY(U,$J,358.3,8755,1,4,0)
+ ;;=4^Z77.122
+ ;;^UTILITY(U,$J,358.3,8755,2)
+ ;;=^5063320
+ ;;^UTILITY(U,$J,358.3,8756,0)
+ ;;=Z77.118^^39^402^11
+ ;;^UTILITY(U,$J,358.3,8756,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,8756,1,3,0)
+ ;;=3^Environmental Pollution Contact/Exposure
+ ;;^UTILITY(U,$J,358.3,8756,1,4,0)
+ ;;=4^Z77.118
+ ;;^UTILITY(U,$J,358.3,8756,2)
+ ;;=^5063317
+ ;;^UTILITY(U,$J,358.3,8757,0)
+ ;;=Z77.9^^39^402^47
+ ;;^UTILITY(U,$J,358.3,8757,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,8757,1,3,0)
+ ;;=3^Health Hazard Contact/Exposure
+ ;;^UTILITY(U,$J,358.3,8757,1,4,0)
+ ;;=4^Z77.9
+ ;;^UTILITY(U,$J,358.3,8757,2)
+ ;;=^5063326
+ ;;^UTILITY(U,$J,358.3,8758,0)
+ ;;=Z77.22^^39^402^10
+ ;;^UTILITY(U,$J,358.3,8758,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,8758,1,3,0)
+ ;;=3^Environmental Exposure Tobacco Smoke/Second-Hand Smoke
+ ;;^UTILITY(U,$J,358.3,8758,1,4,0)
+ ;;=4^Z77.22
+ ;;^UTILITY(U,$J,358.3,8758,2)
+ ;;=^5063324
+ ;;^UTILITY(U,$J,358.3,8759,0)
+ ;;=Z80.0^^39^402^28
+ ;;^UTILITY(U,$J,358.3,8759,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,8759,1,3,0)
+ ;;=3^Family Hx of Malig Neop of Digestive Organs
+ ;;^UTILITY(U,$J,358.3,8759,1,4,0)
+ ;;=4^Z80.0
+ ;;^UTILITY(U,$J,358.3,8759,2)
+ ;;=^5063344
+ ;;^UTILITY(U,$J,358.3,8760,0)
+ ;;=Z80.1^^39^402^34
+ ;;^UTILITY(U,$J,358.3,8760,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,8760,1,3,0)
+ ;;=3^Family Hx of Malig Neop of Trachea,Bronc & Lung
+ ;;^UTILITY(U,$J,358.3,8760,1,4,0)
+ ;;=4^Z80.1
+ ;;^UTILITY(U,$J,358.3,8760,2)
+ ;;=^5063345
+ ;;^UTILITY(U,$J,358.3,8761,0)
+ ;;=Z80.3^^39^402^27
+ ;;^UTILITY(U,$J,358.3,8761,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,8761,1,3,0)
+ ;;=3^Family Hx of Malig Neop of Breast
+ ;;^UTILITY(U,$J,358.3,8761,1,4,0)
+ ;;=4^Z80.3
+ ;;^UTILITY(U,$J,358.3,8761,2)
+ ;;=^5063347
+ ;;^UTILITY(U,$J,358.3,8762,0)
+ ;;=Z80.41^^39^402^31
+ ;;^UTILITY(U,$J,358.3,8762,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,8762,1,3,0)
+ ;;=3^Family Hx of Malig Neop of Ovary
+ ;;^UTILITY(U,$J,358.3,8762,1,4,0)
+ ;;=4^Z80.41
+ ;;^UTILITY(U,$J,358.3,8762,2)
+ ;;=^5063348
+ ;;^UTILITY(U,$J,358.3,8763,0)
+ ;;=Z80.42^^39^402^32
+ ;;^UTILITY(U,$J,358.3,8763,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,8763,1,3,0)
+ ;;=3^Family Hx of Malig Neop of Prostate

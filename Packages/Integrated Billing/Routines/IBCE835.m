@@ -1,5 +1,5 @@
 IBCE835 ;ALB/TMP/PJH - 835 EDI EXPLANATION OF BENEFITS MSG PROCESSING ; 7/15/10 4:40pm
- ;;2.0;INTEGRATED BILLING;**137,135,155,377,431**;21-MAR-94;Build 106
+ ;;2.0;INTEGRATED BILLING;**137,135,155,377,431,718**;21-MAR-94;Build 73
  ;;Per VHA Directive 2004-038, this routine should not be modified.
  ;
  Q
@@ -41,8 +41,8 @@ HDR(IBCLNO,IBD) ;Process header data
  . S (L,Z)=0
  . F  S Z=$O(LINE(Z)) Q:'Z  S L=L+1,^TMP("IBMSG",$J,"CLAIM",IBCLNO,L)=LINE(Z)
  . S IBD("LINE")=IBD("LINE")+CT
- ;
- S IB399=+$O(^DGCR(399,"B",$$GETCLM^IBCE277(IBCLNO),""),-1)
+ ;;IB*2.0*718;JWS;EBILL-924;handle split MRAs in the same file - changed IBCLNO to $P(IBCLNO,"#")
+ S IB399=+$O(^DGCR(399,"B",$$GETCLM^IBCE277($P(IBCLNO,"#")),""),-1)
  ;
  S IBBILL=$$LAST364^IBCEF4(IB399)
  ;
@@ -65,8 +65,11 @@ HDR(IBCLNO,IBD) ;Process header data
  ;                                  ,"D1",msg seq #,5)=
  ;                                       claim pt id message raw data
  ;
- N IBBILL
+ ;;IB*2.0*718;JWS;EBILL-924;handle split MRAs in the same file received from FSC
+ N IBBILL,IBHCT
  S IBBILL=$$GETCLM^IBCE277($P(IBD,U,2))
+ ;;IB*2.0*718;JWS;EBILL-924;handle split MRAs in the same file received from FSC
+ S IBHCT=$$CHCT(IBBILL),IBBILL=IBBILL_"#"_IBHCT
  ;
  I '$D(^TMP("IBMSG",$J,"CLAIM",IBBILL)) D HDR(IBBILL,.IBD) ;Process header data if not already done for claim
  ;
@@ -79,9 +82,13 @@ HDR(IBCLNO,IBD) ;Process header data
  Q
  ;
 6(IBD) ; Process 06 record type for corrected name and/or ID# - IB*2*377 - 1/14/08
- NEW IBCLM,Z
+ NEW IBCLM,Z,IBHCT
  S IBCLM=$$GETCLM^IBCE277($P(IBD,U,2))
  Q:IBCLM=""
+ ;;IB*2.0*718;JWS;EBILL-924;handle split MRAs in the same file received from FSC
+ S IBHCT=$$GETHCT(IBCLM) I IBHCT=0 S IBHCT=$$CHCT(IBCLM)
+ S IBCLM=IBCLM_"#"_IBHCT
+ ;
  I '$D(^TMP("IBMSG",$J,"CLAIM",IBCLM)) D HDR(IBCLM,.IBD)   ;Process header data if not already done for claim
  ;
  S Z=$G(IBD("LINE"))
@@ -109,9 +116,13 @@ HDR(IBCLNO,IBD) ;Process header data
  ;                                  ,"D1",msg seq #,10)=
  ;                                       claim status raw data
  ;
- N IBCLM,CT,LINE,L,Z,Z0,IBDATA,IBSTAT
+ N IBCLM,CT,LINE,L,Z,Z0,IBDATA,IBSTAT,IBHCT
  S IBCLM=$$GETCLM^IBCE277($P(IBD,U,2))
  Q:IBCLM=""
+ ;
+ ;;IB*2.0*718;JWS;EBILL-924;handle split MRAs in the same file received from FSC
+ S IBHCT=$$GETHCT(IBCLM) I IBHCT=0 S IBHCT=$$CHCT(IBCLM)
+ S IBCLM=IBCLM_"#"_IBHCT
  ;
  I '$D(^TMP("IBMSG",$J,"CLAIM",IBCLM)) D HDR(IBCLM,.IBD) ;Process header data if not already done for claim
  ;
@@ -145,9 +156,13 @@ HDR(IBCLNO,IBD) ;Process header data
  ;   ^TMP("IBMSG",$J,"CLAIM",claim #,"D1",msg seq #,15)=
  ;                                       claim status raw data
  ;
- N IBCLM,Z,Z0,IBDATA
+ N IBCLM,Z,Z0,IBDATA,IBHCT
  S IBCLM=$$GETCLM^IBCE277($P(IBD,U,2))
  Q:IBCLM=""
+ ;
+ ;;IB*2.0*718;JWS;EBILL-924;handle split MRAs in the same file received from FSC
+ S IBHCT=$$GETHCT(IBCLM) I IBHCT=0 S IBHCT=$$CHCT(IBCLM)
+ S IBCLM=IBCLM_"#"_IBHCT
  ;
  I '$D(^TMP("IBMSG",$J,"CLAIM",IBCLM)) D HDR(IBCLM,.IBD) ;Process header data if not already done for claim
  ;
@@ -168,8 +183,13 @@ HDR(IBCLNO,IBD) ;Process header data
  ;                                  ,"D1",seq#,20)=
  ;                                          claim level adjust. raw data
  ;
- N IBCLM
+ N IBCLM,IBHCT
  S IBCLM=$$GETCLM^IBCE277($P(IBD,U,2))
+ ;
+ ;;IB*2.0*718;JWS;EBILL-924;handle split MRAs in the same file received from FSC
+ S IBHCT=$$GETHCT(IBCLM) I IBHCT=0 S IBHCT=$$CHCT(IBCLM)
+ S IBCLM=IBCLM_"#"_IBHCT
+ ;
  Q:'$D(^TMP("IBMSG",$J,"CLAIM",IBCLM))
  S IBD("LINE")=$G(IBD("LINE"))+1
  S ^TMP("IBMSG",$J,"CLAIM",IBCLM,IBD("LINE"))="ADJUSTMENT GROUP: "_$P(IBD,U,3)_"  QTY: "_+$P(IBD,U,6)_", AMT: "_($P(IBD,U,5)/100)
@@ -246,9 +266,23 @@ XX(IBD,IBID) ; Store non-displayed data nodes in TMP array
  N IBCLM
  S IBCLM=$$GETCLM^IBCE277($P(IBD,U,2))
  ;
+ ;;IB*2.0*718;JWS;EBILL-924;handle split MRAs in the same file received from FSC
+ S IBHCT=$$GETHCT(IBCLM)
+ S IBCLM=IBCLM_"#"_IBHCT
+ ;
  S IBD("LINE")=$G(IBD("LINE"))+1
  S ^TMP("IBMSG",$J,"CLAIM",IBCLM,"D",IBID,IBD("LINE"))="##RAW DATA: "_IBD
  S ^TMP("IBMSG",$J,"CLAIM",IBCLM,"D1",IBD("LINE"),IBID)="##RAW DATA: "_IBD
  ;
  Q
+ ;
+ ;;IB*2.0*718;JWS;EBILL-924;handle split MRAs in the same file received from FSC
+GETHCT(IBCLNO) ;
+ Q +$G(^TMP("IBMSG",$J,"CLAIM",IBCLNO))
+ ;
+ ;;IB*2.0*718;JWS;EBILL-924;handle split MRAs in the same file received from FSC
+CHCT(IBCLNO) ;
+ N IBHCT
+ S IBHCT=$G(^TMP("IBMSG",$J,"CLAIM",IBCLNO))+1,^(IBCLNO)=IBHCT
+ Q IBHCT
  ;

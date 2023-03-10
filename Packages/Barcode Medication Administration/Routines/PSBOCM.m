@@ -1,5 +1,5 @@
 PSBOCM ;BIRMINGHAM/TEJ-OVERSHEET MEDICATION OVERVIEW REPORT ;03/06/16 3:06pm
- ;;3.0;BAR CODE MED ADMIN;**32,50,68,70,83**;Mar 2004;Build 89
+ ;;3.0;BAR CODE MED ADMIN;**32,50,68,70,83,139**;Mar 2004;Build 1
  ;Per VHA Directive 2004-038 (or future revisions regarding same), this routine should not be modified.
  ;
  ; Reference/IA
@@ -19,6 +19,9 @@ PSBOCM ;BIRMINGHAM/TEJ-OVERSHEET MEDICATION OVERVIEW REPORT ;03/06/16 3:06pm
  ;         Remove date@time
  ;         Missed date@time
  ;           (Remove)
+ ;*139 - Prevent null subscript error when variable PSBNXTX2 (for the next
+ ;       administration time) is never reset to a value.
+ ;
 EN ;
  N PSBX1X,RESULTS,RESULT,PSBFUTR,QQ,PSBCLIN,PSBSRCHL,STRTDT,STOPDT,EXPIREHDG,REMOV,PSBNXTX,PSBNXTX1,PSBNXTX2  ;*83
  S PSBFUTR=$TR(PSBRPT(1),"~","^")
@@ -115,6 +118,7 @@ EN ;
  ...;don't do if Expired Next action is a Removal                  *83
  ...I PSBNXTX2'["Removal",PSBNXTX2'["REMOVE" D
  ....I ("^P^OC^O"[("^"_PSBSCHTY))!(PSBTB="IV")!(PSBSTS["Discontinued")!(PSBSTS["Expired") S:PSBSTS'["Hold" PSBNXTX2=" "
+ ...S:PSBNXTX2="" PSBNXTX2=" "                                   ; *139
  ...S PSBNXTX(PSBORDN,PSBNXTX2)=""
  ...; ** SPECIAL INSTRUCTIONS  **
  ...S PSBX2X=PSBX2X+1

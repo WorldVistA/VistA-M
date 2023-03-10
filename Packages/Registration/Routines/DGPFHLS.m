@@ -1,5 +1,5 @@
 DGPFHLS ;ALB/RPM - PRF HL7 SEND DRIVERS ; 7/31/06 10:10am
- ;;5.3;Registration;**425,650,1005**;Aug 13, 1993;Build 57
+ ;;5.3;Registration;**425,650,1005,1028,1037**;Aug 13, 1993;Build 4
  ;
 SNDORU(DGPFIEN,DGPFHARR,DGFAC) ;Send ORU Message Types (ORU~R01)
  ;This function builds and transmits a single ORU message to all sites
@@ -56,7 +56,8 @@ SNDORU(DGPFIEN,DGPFHARR,DGFAC) ;Send ORU Message Types (ORU~R01)
  . Q:'$O(DGPFHARR(0))
  . ;
  . ;retrieve treating facilities when no destination is provided
- . I $G(DGFAC(1))'>0 D TFL^VAFCTFU1(.DGFAC,+$G(DGPFA("DFN")))
+ . ;I $G(DGFAC(1))'>0 D TFL^VAFCTFU1(.DGFAC,+$G(DGPFA("DFN")))
+ . I $G(DGFAC(1))'>0 D BLDTFL2^DGPFUT2(+$G(DGPFA("DFN")),.DGFAC)
  . Q:$G(DGFAC(1))'>0
  . ;
  . ;initialize VistA HL7 environment
@@ -309,10 +310,12 @@ SNDMAIL(DGMIEN,DGHL,DGROOT) ;
  ;call to $$PROD^XUPROD supported by ICR #4440
  ;
  N XMDUZ,XMSUB,XMTEXT,XMY,XMZ ;MailMan variables
- N DGTXT,DGSTAT,DGMSA,DGTYP,DGFS,DGI
+ N DGTXT,DGSTAT,DGMSA,DGMSH,DGTYP,DGFS,DGI,DGOMID
  S DGFS=DGHL("FS")
+ S DGMSH=$G(^HLMA(DGMIEN,"MSH",1,0))
  S DGMSA=$G(@DGROOT@(1))
  S DGTYP=$P(DGMSA,DGFS,2)
+ S DGOMID=$P(DGMSA,DGFS,3)
  Q:DGTYP="AA"  ;Don't send mail messages for succesful AAs.
  S DGSTAT=$P($$SITE^VASITE,U,3)
  S XMDUZ="PRF Error Processor"
@@ -321,9 +324,12 @@ SNDMAIL(DGMIEN,DGHL,DGROOT) ;
  S XMY("G.DGPF APPLICATION ERRORS")=""
  S XMTEXT="DGTXT("
  S DGTXT(1)="An error occurred processing message #"_DGMIEN
- S DGTXT(2)=""
- S DGTXT(3)="MESSAGE TEXT (ACK):"
+ S DGTXT(2)="Original MID: "_DGOMID
+ S DGTXT(3)="Timestamp: "_$$FMTE^XLFDT($$NOW^XLFDT)_$$TZ^XLFDT
+ S DGTXT(4)=""
+ S DGTXT(5)="MESSAGE TEXT (ACK):"
+ S DGTXT(6)=DGMSH
  S DGI=""  F  S DGI=$O(@DGROOT@(DGI)) Q:DGI=""  D
- . S DGTXT(DGI+3)=$G(@DGROOT@(DGI))
+ . S DGTXT(DGI+6)=$G(@DGROOT@(DGI))
  D ^XMD
  Q

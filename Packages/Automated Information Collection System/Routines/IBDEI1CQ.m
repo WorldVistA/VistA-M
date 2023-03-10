@@ -1,126 +1,128 @@
-IBDEI1CQ ; ; 04-FEB-2020
- ;;3.0;IB ENCOUNTER FORM IMP/EXP;;FEB 04, 2020
+IBDEI1CQ ; ; 01-FEB-2022
+ ;;3.0;IB ENCOUNTER FORM IMP/EXP;;FEB 01, 2022
  Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,999) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
- ;;^UTILITY(U,$J,358.3,21600,1,0)
+ ;;^UTILITY(U,$J,358.3,21844,1,4,0)
+ ;;=4^J45.20
+ ;;^UTILITY(U,$J,358.3,21844,2)
+ ;;=^5008242
+ ;;^UTILITY(U,$J,358.3,21845,0)
+ ;;=J45.21^^70^931^18
+ ;;^UTILITY(U,$J,358.3,21845,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,21600,1,3,0)
- ;;=3^Acquired Absence Right Leg Below Knee
- ;;^UTILITY(U,$J,358.3,21600,1,4,0)
- ;;=4^Z89.511
- ;;^UTILITY(U,$J,358.3,21600,2)
- ;;=^5063566
- ;;^UTILITY(U,$J,358.3,21601,0)
- ;;=D51.9^^99^1096^13
- ;;^UTILITY(U,$J,358.3,21601,1,0)
+ ;;^UTILITY(U,$J,358.3,21845,1,3,0)
+ ;;=3^Mild Intermittent Asthma w/ Exacerbation
+ ;;^UTILITY(U,$J,358.3,21845,1,4,0)
+ ;;=4^J45.21
+ ;;^UTILITY(U,$J,358.3,21845,2)
+ ;;=^5008243
+ ;;^UTILITY(U,$J,358.3,21846,0)
+ ;;=J45.31^^70^931^21
+ ;;^UTILITY(U,$J,358.3,21846,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,21601,1,3,0)
- ;;=3^Anemia,Vitamin B12 Deficiency
- ;;^UTILITY(U,$J,358.3,21601,1,4,0)
- ;;=4^D51.9
- ;;^UTILITY(U,$J,358.3,21601,2)
- ;;=^5002289
- ;;^UTILITY(U,$J,358.3,21602,0)
- ;;=I50.811^^99^1096^6
- ;;^UTILITY(U,$J,358.3,21602,1,0)
+ ;;^UTILITY(U,$J,358.3,21846,1,3,0)
+ ;;=3^Mild Persistent Asthma w/ Exacerbation
+ ;;^UTILITY(U,$J,358.3,21846,1,4,0)
+ ;;=4^J45.31
+ ;;^UTILITY(U,$J,358.3,21846,2)
+ ;;=^5008246
+ ;;^UTILITY(U,$J,358.3,21847,0)
+ ;;=J45.32^^70^931^22
+ ;;^UTILITY(U,$J,358.3,21847,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,21602,1,3,0)
- ;;=3^Acute Right Heart Failure
- ;;^UTILITY(U,$J,358.3,21602,1,4,0)
- ;;=4^I50.811
- ;;^UTILITY(U,$J,358.3,21602,2)
- ;;=^5151385
- ;;^UTILITY(U,$J,358.3,21603,0)
- ;;=I50.813^^99^1096^7
- ;;^UTILITY(U,$J,358.3,21603,1,0)
+ ;;^UTILITY(U,$J,358.3,21847,1,3,0)
+ ;;=3^Mild Persistent Asthma w/ Status Asthmaticus
+ ;;^UTILITY(U,$J,358.3,21847,1,4,0)
+ ;;=4^J45.32
+ ;;^UTILITY(U,$J,358.3,21847,2)
+ ;;=^5008247
+ ;;^UTILITY(U,$J,358.3,21848,0)
+ ;;=J45.30^^70^931^23
+ ;;^UTILITY(U,$J,358.3,21848,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,21603,1,3,0)
- ;;=3^Acute on Chronic Right Heart Failure
- ;;^UTILITY(U,$J,358.3,21603,1,4,0)
- ;;=4^I50.813
- ;;^UTILITY(U,$J,358.3,21603,2)
- ;;=^5151387
- ;;^UTILITY(U,$J,358.3,21604,0)
- ;;=I48.20^^99^1096^18
- ;;^UTILITY(U,$J,358.3,21604,1,0)
+ ;;^UTILITY(U,$J,358.3,21848,1,3,0)
+ ;;=3^Mild Persistent Asthma,Uncomplicated
+ ;;^UTILITY(U,$J,358.3,21848,1,4,0)
+ ;;=4^J45.30
+ ;;^UTILITY(U,$J,358.3,21848,2)
+ ;;=^5008245
+ ;;^UTILITY(U,$J,358.3,21849,0)
+ ;;=J45.41^^70^931^24
+ ;;^UTILITY(U,$J,358.3,21849,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,21604,1,3,0)
- ;;=3^Atrial Fibrillation,Chronic,Unspec
- ;;^UTILITY(U,$J,358.3,21604,1,4,0)
- ;;=4^I48.20
- ;;^UTILITY(U,$J,358.3,21604,2)
- ;;=^5158048
- ;;^UTILITY(U,$J,358.3,21605,0)
- ;;=I48.11^^99^1096^19
- ;;^UTILITY(U,$J,358.3,21605,1,0)
+ ;;^UTILITY(U,$J,358.3,21849,1,3,0)
+ ;;=3^Moderate Persistent Asthma w/ Exacerbation
+ ;;^UTILITY(U,$J,358.3,21849,1,4,0)
+ ;;=4^J45.41
+ ;;^UTILITY(U,$J,358.3,21849,2)
+ ;;=^5008249
+ ;;^UTILITY(U,$J,358.3,21850,0)
+ ;;=J45.42^^70^931^25
+ ;;^UTILITY(U,$J,358.3,21850,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,21605,1,3,0)
- ;;=3^Atrial Fibrillation,Longstanding Persistent
- ;;^UTILITY(U,$J,358.3,21605,1,4,0)
- ;;=4^I48.11
- ;;^UTILITY(U,$J,358.3,21605,2)
- ;;=^5158046
- ;;^UTILITY(U,$J,358.3,21606,0)
- ;;=I48.19^^99^1096^20
- ;;^UTILITY(U,$J,358.3,21606,1,0)
+ ;;^UTILITY(U,$J,358.3,21850,1,3,0)
+ ;;=3^Moderate Persistent Asthma w/ Status Asthmaticus
+ ;;^UTILITY(U,$J,358.3,21850,1,4,0)
+ ;;=4^J45.42
+ ;;^UTILITY(U,$J,358.3,21850,2)
+ ;;=^5008250
+ ;;^UTILITY(U,$J,358.3,21851,0)
+ ;;=J45.40^^70^931^26
+ ;;^UTILITY(U,$J,358.3,21851,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,21606,1,3,0)
- ;;=3^Atrial Fibrillation,Persistent,Other
- ;;^UTILITY(U,$J,358.3,21606,1,4,0)
- ;;=4^I48.19
- ;;^UTILITY(U,$J,358.3,21606,2)
- ;;=^5158047
- ;;^UTILITY(U,$J,358.3,21607,0)
- ;;=F43.20^^99^1097^4
- ;;^UTILITY(U,$J,358.3,21607,1,0)
+ ;;^UTILITY(U,$J,358.3,21851,1,3,0)
+ ;;=3^Moderate Persistent Asthma,Uncomplicated
+ ;;^UTILITY(U,$J,358.3,21851,1,4,0)
+ ;;=4^J45.40
+ ;;^UTILITY(U,$J,358.3,21851,2)
+ ;;=^5008248
+ ;;^UTILITY(U,$J,358.3,21852,0)
+ ;;=J41.1^^70^931^27
+ ;;^UTILITY(U,$J,358.3,21852,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,21607,1,3,0)
- ;;=3^Adjustment disorder, unspec
- ;;^UTILITY(U,$J,358.3,21607,1,4,0)
- ;;=4^F43.20
- ;;^UTILITY(U,$J,358.3,21607,2)
- ;;=^5003573
- ;;^UTILITY(U,$J,358.3,21608,0)
- ;;=F43.21^^99^1097^3
- ;;^UTILITY(U,$J,358.3,21608,1,0)
+ ;;^UTILITY(U,$J,358.3,21852,1,3,0)
+ ;;=3^Mucopurulent Chr Bronchitis
+ ;;^UTILITY(U,$J,358.3,21852,1,4,0)
+ ;;=4^J41.1
+ ;;^UTILITY(U,$J,358.3,21852,2)
+ ;;=^269949
+ ;;^UTILITY(U,$J,358.3,21853,0)
+ ;;=J45.998^^70^931^2
+ ;;^UTILITY(U,$J,358.3,21853,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,21608,1,3,0)
- ;;=3^Adjustment disorder w/ depressed mood
- ;;^UTILITY(U,$J,358.3,21608,1,4,0)
- ;;=4^F43.21
- ;;^UTILITY(U,$J,358.3,21608,2)
- ;;=^331948
- ;;^UTILITY(U,$J,358.3,21609,0)
- ;;=F43.22^^99^1097^1
- ;;^UTILITY(U,$J,358.3,21609,1,0)
+ ;;^UTILITY(U,$J,358.3,21853,1,3,0)
+ ;;=3^Asthma NEC
+ ;;^UTILITY(U,$J,358.3,21853,1,4,0)
+ ;;=4^J45.998
+ ;;^UTILITY(U,$J,358.3,21853,2)
+ ;;=^5008257
+ ;;^UTILITY(U,$J,358.3,21854,0)
+ ;;=J43.8^^70^931^15
+ ;;^UTILITY(U,$J,358.3,21854,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,21609,1,3,0)
- ;;=3^Adjustment Disorder w/ Anxiety
- ;;^UTILITY(U,$J,358.3,21609,1,4,0)
- ;;=4^F43.22
- ;;^UTILITY(U,$J,358.3,21609,2)
- ;;=^331949
- ;;^UTILITY(U,$J,358.3,21610,0)
- ;;=F43.23^^99^1097^2
- ;;^UTILITY(U,$J,358.3,21610,1,0)
+ ;;^UTILITY(U,$J,358.3,21854,1,3,0)
+ ;;=3^Emphysema NEC
+ ;;^UTILITY(U,$J,358.3,21854,1,4,0)
+ ;;=4^J43.8
+ ;;^UTILITY(U,$J,358.3,21854,2)
+ ;;=^87569
+ ;;^UTILITY(U,$J,358.3,21855,0)
+ ;;=J43.1^^70^931^28
+ ;;^UTILITY(U,$J,358.3,21855,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,21610,1,3,0)
- ;;=3^Adjustment Disorder w/ Mixed Anxiety and Depressed Mood
- ;;^UTILITY(U,$J,358.3,21610,1,4,0)
- ;;=4^F43.23
- ;;^UTILITY(U,$J,358.3,21610,2)
- ;;=^331950
- ;;^UTILITY(U,$J,358.3,21611,0)
- ;;=F41.9^^99^1098^4
- ;;^UTILITY(U,$J,358.3,21611,1,0)
+ ;;^UTILITY(U,$J,358.3,21855,1,3,0)
+ ;;=3^Panlobular Emphysema
+ ;;^UTILITY(U,$J,358.3,21855,1,4,0)
+ ;;=4^J43.1
+ ;;^UTILITY(U,$J,358.3,21855,2)
+ ;;=^5008236
+ ;;^UTILITY(U,$J,358.3,21856,0)
+ ;;=J45.51^^70^931^29
+ ;;^UTILITY(U,$J,358.3,21856,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,21611,1,3,0)
- ;;=3^Anxiety disorder, unspec
- ;;^UTILITY(U,$J,358.3,21611,1,4,0)
- ;;=4^F41.9
- ;;^UTILITY(U,$J,358.3,21611,2)
- ;;=^5003567
- ;;^UTILITY(U,$J,358.3,21612,0)
- ;;=F41.0^^99^1098^7
- ;;^UTILITY(U,$J,358.3,21612,1,0)
- ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,21856,1,3,0)
+ ;;=3^Severe Persistent Asthma w/ Exacerbation
+ ;;^UTILITY(U,$J,358.3,21856,1,4,0)
+ ;;=4^J45.51
+ ;;^UTILITY(U,$J,358.3,21856,2)
+ ;;=^5008252

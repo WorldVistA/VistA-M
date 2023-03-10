@@ -1,110 +1,132 @@
-IBDEI0T6 ; ; 04-FEB-2020
- ;;3.0;IB ENCOUNTER FORM IMP/EXP;;FEB 04, 2020
+IBDEI0T6 ; ; 01-FEB-2022
+ ;;3.0;IB ENCOUNTER FORM IMP/EXP;;FEB 01, 2022
  Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,999) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
- ;;^UTILITY(U,$J,358.3,12984,1,0)
+ ;;^UTILITY(U,$J,358.3,13127,2)
+ ;;=^5005163
+ ;;^UTILITY(U,$J,358.3,13128,0)
+ ;;=H20.811^^51^629^34
+ ;;^UTILITY(U,$J,358.3,13128,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,12984,1,3,0)
- ;;=3^Puncture Wound w/o FB of Left Thumb w/ Nail Damage,Init Encntr
- ;;^UTILITY(U,$J,358.3,12984,1,4,0)
- ;;=4^S61.132A
- ;;^UTILITY(U,$J,358.3,12984,2)
- ;;=^5032735
- ;;^UTILITY(U,$J,358.3,12985,0)
- ;;=S91.231A^^80^791^43
- ;;^UTILITY(U,$J,358.3,12985,1,0)
+ ;;^UTILITY(U,$J,358.3,13128,1,3,0)
+ ;;=3^Fuchs' Heterochromic Cyclitis,OD
+ ;;^UTILITY(U,$J,358.3,13128,1,4,0)
+ ;;=4^H20.811
+ ;;^UTILITY(U,$J,358.3,13128,2)
+ ;;=^5005162
+ ;;^UTILITY(U,$J,358.3,13129,0)
+ ;;=H21.02^^51^629^40
+ ;;^UTILITY(U,$J,358.3,13129,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,12985,1,3,0)
- ;;=3^Puncture Wound w/o FB of Right Great Toe w/ Nail Damage,Init Encntr
- ;;^UTILITY(U,$J,358.3,12985,1,4,0)
- ;;=4^S91.231A
- ;;^UTILITY(U,$J,358.3,12985,2)
- ;;=^5044290
- ;;^UTILITY(U,$J,358.3,12986,0)
- ;;=S91.131A^^80^791^44
- ;;^UTILITY(U,$J,358.3,12986,1,0)
+ ;;^UTILITY(U,$J,358.3,13129,1,3,0)
+ ;;=3^Hyphema,OS
+ ;;^UTILITY(U,$J,358.3,13129,1,4,0)
+ ;;=4^H21.02
+ ;;^UTILITY(U,$J,358.3,13129,2)
+ ;;=^5005173
+ ;;^UTILITY(U,$J,358.3,13130,0)
+ ;;=H21.01^^51^629^39
+ ;;^UTILITY(U,$J,358.3,13130,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,12986,1,3,0)
- ;;=3^Puncture Wound w/o FB of Right Great Toe w/o Nail Damage,Init Encntr
- ;;^UTILITY(U,$J,358.3,12986,1,4,0)
- ;;=4^S91.131A
- ;;^UTILITY(U,$J,358.3,12986,2)
- ;;=^5044213
- ;;^UTILITY(U,$J,358.3,12987,0)
- ;;=S61.330A^^80^791^47
- ;;^UTILITY(U,$J,358.3,12987,1,0)
+ ;;^UTILITY(U,$J,358.3,13130,1,3,0)
+ ;;=3^Hyphema,OD
+ ;;^UTILITY(U,$J,358.3,13130,1,4,0)
+ ;;=4^H21.01
+ ;;^UTILITY(U,$J,358.3,13130,2)
+ ;;=^5005172
+ ;;^UTILITY(U,$J,358.3,13131,0)
+ ;;=H20.052^^51^629^42
+ ;;^UTILITY(U,$J,358.3,13131,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,12987,1,3,0)
- ;;=3^Puncture Wound w/o FB of Right Index Finger w/ Nail Damage,Init Encntr
- ;;^UTILITY(U,$J,358.3,12987,1,4,0)
- ;;=4^S61.330A
- ;;^UTILITY(U,$J,358.3,12987,2)
- ;;=^5032936
- ;;^UTILITY(U,$J,358.3,12988,0)
- ;;=S61.230A^^80^791^48
- ;;^UTILITY(U,$J,358.3,12988,1,0)
+ ;;^UTILITY(U,$J,358.3,13131,1,3,0)
+ ;;=3^Hypopyon,OS
+ ;;^UTILITY(U,$J,358.3,13131,1,4,0)
+ ;;=4^H20.052
+ ;;^UTILITY(U,$J,358.3,13131,2)
+ ;;=^5005151
+ ;;^UTILITY(U,$J,358.3,13132,0)
+ ;;=H20.051^^51^629^41
+ ;;^UTILITY(U,$J,358.3,13132,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,12988,1,3,0)
- ;;=3^Puncture Wound w/o FB of Right Index Finger w/o Nail Damage,Init Encntr
- ;;^UTILITY(U,$J,358.3,12988,1,4,0)
- ;;=4^S61.230A
- ;;^UTILITY(U,$J,358.3,12988,2)
- ;;=^5032816
- ;;^UTILITY(U,$J,358.3,12989,0)
- ;;=S91.234A^^80^791^50
- ;;^UTILITY(U,$J,358.3,12989,1,0)
+ ;;^UTILITY(U,$J,358.3,13132,1,3,0)
+ ;;=3^Hypopyon,OD
+ ;;^UTILITY(U,$J,358.3,13132,1,4,0)
+ ;;=4^H20.051
+ ;;^UTILITY(U,$J,358.3,13132,2)
+ ;;=^5005150
+ ;;^UTILITY(U,$J,358.3,13133,0)
+ ;;=H20.00^^51^629^43
+ ;;^UTILITY(U,$J,358.3,13133,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,12989,1,3,0)
- ;;=3^Puncture Wound w/o FB of Right Lesser Toe(s) w/ Nail Damage,Init Encntr
- ;;^UTILITY(U,$J,358.3,12989,1,4,0)
- ;;=4^S91.234A
- ;;^UTILITY(U,$J,358.3,12989,2)
- ;;=^5044296
- ;;^UTILITY(U,$J,358.3,12990,0)
- ;;=S91.134A^^80^791^51
- ;;^UTILITY(U,$J,358.3,12990,1,0)
+ ;;^UTILITY(U,$J,358.3,13133,1,3,0)
+ ;;=3^Iridocyclitis,Unspec Acute and Subacute
+ ;;^UTILITY(U,$J,358.3,13133,1,4,0)
+ ;;=4^H20.00
+ ;;^UTILITY(U,$J,358.3,13133,2)
+ ;;=^5005133
+ ;;^UTILITY(U,$J,358.3,13134,0)
+ ;;=H21.262^^51^629^49
+ ;;^UTILITY(U,$J,358.3,13134,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,12990,1,3,0)
- ;;=3^Puncture Wound w/o FB of Right Lesser Toe(s) w/o Nail Damage,Init Encntr
- ;;^UTILITY(U,$J,358.3,12990,1,4,0)
- ;;=4^S91.134A
- ;;^UTILITY(U,$J,358.3,12990,2)
- ;;=^5044222
- ;;^UTILITY(U,$J,358.3,12991,0)
- ;;=S61.336A^^80^791^52
- ;;^UTILITY(U,$J,358.3,12991,1,0)
+ ;;^UTILITY(U,$J,358.3,13134,1,3,0)
+ ;;=3^Iris Atrophy,OS
+ ;;^UTILITY(U,$J,358.3,13134,1,4,0)
+ ;;=4^H21.262
+ ;;^UTILITY(U,$J,358.3,13134,2)
+ ;;=^5005200
+ ;;^UTILITY(U,$J,358.3,13135,0)
+ ;;=H21.261^^51^629^48
+ ;;^UTILITY(U,$J,358.3,13135,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,12991,1,3,0)
- ;;=3^Puncture Wound w/o FB of Right Little Finger w/ Nail Damage,Init Encntr
- ;;^UTILITY(U,$J,358.3,12991,1,4,0)
- ;;=4^S61.336A
- ;;^UTILITY(U,$J,358.3,12991,2)
- ;;=^5032954
- ;;^UTILITY(U,$J,358.3,12992,0)
- ;;=S61.236A^^80^791^53
- ;;^UTILITY(U,$J,358.3,12992,1,0)
+ ;;^UTILITY(U,$J,358.3,13135,1,3,0)
+ ;;=3^Iris Atrophy,OD
+ ;;^UTILITY(U,$J,358.3,13135,1,4,0)
+ ;;=4^H21.261
+ ;;^UTILITY(U,$J,358.3,13135,2)
+ ;;=^5005199
+ ;;^UTILITY(U,$J,358.3,13136,0)
+ ;;=H21.233^^51^629^52
+ ;;^UTILITY(U,$J,358.3,13136,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,12992,1,3,0)
- ;;=3^Puncture Wound w/o FB of Right Little Finger w/o Nail Damage,Init Encntr
- ;;^UTILITY(U,$J,358.3,12992,1,4,0)
- ;;=4^S61.236A
- ;;^UTILITY(U,$J,358.3,12992,2)
- ;;=^5032834
- ;;^UTILITY(U,$J,358.3,12993,0)
- ;;=S61.332A^^80^791^55
- ;;^UTILITY(U,$J,358.3,12993,1,0)
+ ;;^UTILITY(U,$J,358.3,13136,1,3,0)
+ ;;=3^Iris Degeneration,OU
+ ;;^UTILITY(U,$J,358.3,13136,1,4,0)
+ ;;=4^H21.233
+ ;;^UTILITY(U,$J,358.3,13136,2)
+ ;;=^5005189
+ ;;^UTILITY(U,$J,358.3,13137,0)
+ ;;=H21.231^^51^629^50
+ ;;^UTILITY(U,$J,358.3,13137,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,12993,1,3,0)
- ;;=3^Puncture Wound w/o FB of Right Middle Finger w/ Nail Damage,Init Encntr
- ;;^UTILITY(U,$J,358.3,12993,1,4,0)
- ;;=4^S61.332A
- ;;^UTILITY(U,$J,358.3,12993,2)
- ;;=^5032942
- ;;^UTILITY(U,$J,358.3,12994,0)
- ;;=S61.232A^^80^791^56
- ;;^UTILITY(U,$J,358.3,12994,1,0)
+ ;;^UTILITY(U,$J,358.3,13137,1,3,0)
+ ;;=3^Iris Degeneration,OD
+ ;;^UTILITY(U,$J,358.3,13137,1,4,0)
+ ;;=4^H21.231
+ ;;^UTILITY(U,$J,358.3,13137,2)
+ ;;=^5005187
+ ;;^UTILITY(U,$J,358.3,13138,0)
+ ;;=H21.232^^51^629^51
+ ;;^UTILITY(U,$J,358.3,13138,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,12994,1,3,0)
- ;;=3^Puncture Wound w/o FB of Right Middle Finger w/o Nail Damage,Init Encntr
- ;;^UTILITY(U,$J,358.3,12994,1,4,0)
- ;;=4^S61.232A
+ ;;^UTILITY(U,$J,358.3,13138,1,3,0)
+ ;;=3^Iris Degeneration,OS
+ ;;^UTILITY(U,$J,358.3,13138,1,4,0)
+ ;;=4^H21.232
+ ;;^UTILITY(U,$J,358.3,13138,2)
+ ;;=^5005188
+ ;;^UTILITY(U,$J,358.3,13139,0)
+ ;;=H16.9^^51^629^53
+ ;;^UTILITY(U,$J,358.3,13139,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,13139,1,3,0)
+ ;;=3^Keratitis,Unspec
+ ;;^UTILITY(U,$J,358.3,13139,1,4,0)
+ ;;=4^H16.9
+ ;;^UTILITY(U,$J,358.3,13139,2)
+ ;;=^5004985
+ ;;^UTILITY(U,$J,358.3,13140,0)
+ ;;=H16.292^^51^629^55
+ ;;^UTILITY(U,$J,358.3,13140,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,13140,1,3,0)
+ ;;=3^Keratoconjunctivitis,Other,OS

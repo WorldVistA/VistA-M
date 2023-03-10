@@ -1,132 +1,120 @@
-IBDEI13K ; ; 04-FEB-2020
- ;;3.0;IB ENCOUNTER FORM IMP/EXP;;FEB 04, 2020
+IBDEI13K ; ; 01-FEB-2022
+ ;;3.0;IB ENCOUNTER FORM IMP/EXP;;FEB 01, 2022
  Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,999) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
- ;;^UTILITY(U,$J,358.3,17627,1,4,0)
- ;;=4^Z30.9
- ;;^UTILITY(U,$J,358.3,17627,2)
- ;;=^5062828
- ;;^UTILITY(U,$J,358.3,17628,0)
- ;;=N64.3^^88^895^52
- ;;^UTILITY(U,$J,358.3,17628,1,0)
+ ;;^UTILITY(U,$J,358.3,17813,0)
+ ;;=R40.2323^^61^793^4
+ ;;^UTILITY(U,$J,358.3,17813,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,17628,1,3,0)
- ;;=3^Galactorrhea Not Associated w/ Childbirth
- ;;^UTILITY(U,$J,358.3,17628,1,4,0)
- ;;=4^N64.3
- ;;^UTILITY(U,$J,358.3,17628,2)
- ;;=^270460
- ;;^UTILITY(U,$J,358.3,17629,0)
- ;;=R92.2^^88^895^59
- ;;^UTILITY(U,$J,358.3,17629,1,0)
+ ;;^UTILITY(U,$J,358.3,17813,1,3,0)
+ ;;=3^Coma Scale,Best Motor Resp,Extension,at Hospital Admission
+ ;;^UTILITY(U,$J,358.3,17813,1,4,0)
+ ;;=4^R40.2323
+ ;;^UTILITY(U,$J,358.3,17813,2)
+ ;;=^5019408
+ ;;^UTILITY(U,$J,358.3,17814,0)
+ ;;=R40.2322^^61^793^2
+ ;;^UTILITY(U,$J,358.3,17814,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,17629,1,3,0)
- ;;=3^Inconclusive Mammogram
- ;;^UTILITY(U,$J,358.3,17629,1,4,0)
- ;;=4^R92.2
- ;;^UTILITY(U,$J,358.3,17629,2)
- ;;=^5019711
- ;;^UTILITY(U,$J,358.3,17630,0)
- ;;=Z30.432^^88^895^98
- ;;^UTILITY(U,$J,358.3,17630,1,0)
+ ;;^UTILITY(U,$J,358.3,17814,1,3,0)
+ ;;=3^Coma Scale,Best Motor Resp,Extension,Emger Dept
+ ;;^UTILITY(U,$J,358.3,17814,1,4,0)
+ ;;=4^R40.2322
+ ;;^UTILITY(U,$J,358.3,17814,2)
+ ;;=^5019407
+ ;;^UTILITY(U,$J,358.3,17815,0)
+ ;;=R40.2321^^61^793^5
+ ;;^UTILITY(U,$J,358.3,17815,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,17630,1,3,0)
- ;;=3^Removal of IUD
- ;;^UTILITY(U,$J,358.3,17630,1,4,0)
- ;;=4^Z30.432
- ;;^UTILITY(U,$J,358.3,17630,2)
- ;;=^5062824
- ;;^UTILITY(U,$J,358.3,17631,0)
- ;;=A63.0^^88^895^12
- ;;^UTILITY(U,$J,358.3,17631,1,0)
+ ;;^UTILITY(U,$J,358.3,17815,1,3,0)
+ ;;=3^Coma Scale,Best Motor Resp,Extension,in the Field
+ ;;^UTILITY(U,$J,358.3,17815,1,4,0)
+ ;;=4^R40.2321
+ ;;^UTILITY(U,$J,358.3,17815,2)
+ ;;=^5019406
+ ;;^UTILITY(U,$J,358.3,17816,0)
+ ;;=R40.2320^^61^793^3
+ ;;^UTILITY(U,$J,358.3,17816,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,17631,1,3,0)
- ;;=3^Anogenital Warts,Verereal
- ;;^UTILITY(U,$J,358.3,17631,1,4,0)
- ;;=4^A63.0
- ;;^UTILITY(U,$J,358.3,17631,2)
- ;;=^5000360
- ;;^UTILITY(U,$J,358.3,17632,0)
- ;;=R63.0^^88^895^13
- ;;^UTILITY(U,$J,358.3,17632,1,0)
+ ;;^UTILITY(U,$J,358.3,17816,1,3,0)
+ ;;=3^Coma Scale,Best Motor Resp,Extension,Unspec Time
+ ;;^UTILITY(U,$J,358.3,17816,1,4,0)
+ ;;=4^R40.2320
+ ;;^UTILITY(U,$J,358.3,17816,2)
+ ;;=^5019405
+ ;;^UTILITY(U,$J,358.3,17817,0)
+ ;;=R40.2314^^61^793^11
+ ;;^UTILITY(U,$J,358.3,17817,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,17632,1,3,0)
- ;;=3^Anorexia
- ;;^UTILITY(U,$J,358.3,17632,1,4,0)
- ;;=4^R63.0
- ;;^UTILITY(U,$J,358.3,17632,2)
- ;;=^7939
- ;;^UTILITY(U,$J,358.3,17633,0)
- ;;=R87.611^^88^895^2
- ;;^UTILITY(U,$J,358.3,17633,1,0)
+ ;;^UTILITY(U,$J,358.3,17817,1,3,0)
+ ;;=3^Coma Scale,Best Motor Resp,None,24+ Hrs
+ ;;^UTILITY(U,$J,358.3,17817,1,4,0)
+ ;;=4^R40.2314
+ ;;^UTILITY(U,$J,358.3,17817,2)
+ ;;=^5019404
+ ;;^UTILITY(U,$J,358.3,17818,0)
+ ;;=R40.2313^^61^793^14
+ ;;^UTILITY(U,$J,358.3,17818,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,17633,1,3,0)
- ;;=3^ASC-H
- ;;^UTILITY(U,$J,358.3,17633,1,4,0)
- ;;=4^R87.611
- ;;^UTILITY(U,$J,358.3,17633,2)
- ;;=^5019669
- ;;^UTILITY(U,$J,358.3,17634,0)
- ;;=R87.610^^88^895^3
- ;;^UTILITY(U,$J,358.3,17634,1,0)
+ ;;^UTILITY(U,$J,358.3,17818,1,3,0)
+ ;;=3^Coma Scale,Best Motor Resp,None,at Hospital Admission
+ ;;^UTILITY(U,$J,358.3,17818,1,4,0)
+ ;;=4^R40.2313
+ ;;^UTILITY(U,$J,358.3,17818,2)
+ ;;=^5019403
+ ;;^UTILITY(U,$J,358.3,17819,0)
+ ;;=R40.2312^^61^793^12
+ ;;^UTILITY(U,$J,358.3,17819,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,17634,1,3,0)
- ;;=3^ASC-US
- ;;^UTILITY(U,$J,358.3,17634,1,4,0)
- ;;=4^R87.610
- ;;^UTILITY(U,$J,358.3,17634,2)
- ;;=^5019668
- ;;^UTILITY(U,$J,358.3,17635,0)
- ;;=Z98.82^^88^895^14
- ;;^UTILITY(U,$J,358.3,17635,1,0)
+ ;;^UTILITY(U,$J,358.3,17819,1,3,0)
+ ;;=3^Coma Scale,Best Motor Resp,None,Emerg Dept
+ ;;^UTILITY(U,$J,358.3,17819,1,4,0)
+ ;;=4^R40.2312
+ ;;^UTILITY(U,$J,358.3,17819,2)
+ ;;=^5019402
+ ;;^UTILITY(U,$J,358.3,17820,0)
+ ;;=R40.2311^^61^793^15
+ ;;^UTILITY(U,$J,358.3,17820,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,17635,1,3,0)
- ;;=3^Breast Implant Status
- ;;^UTILITY(U,$J,358.3,17635,1,4,0)
- ;;=4^Z98.82
- ;;^UTILITY(U,$J,358.3,17635,2)
- ;;=^5063747
- ;;^UTILITY(U,$J,358.3,17636,0)
- ;;=B37.3^^88^895^15
- ;;^UTILITY(U,$J,358.3,17636,1,0)
+ ;;^UTILITY(U,$J,358.3,17820,1,3,0)
+ ;;=3^Coma Scale,Best Motor Resp,None,in the Field
+ ;;^UTILITY(U,$J,358.3,17820,1,4,0)
+ ;;=4^R40.2311
+ ;;^UTILITY(U,$J,358.3,17820,2)
+ ;;=^5019401
+ ;;^UTILITY(U,$J,358.3,17821,0)
+ ;;=R40.2310^^61^793^13
+ ;;^UTILITY(U,$J,358.3,17821,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,17636,1,3,0)
- ;;=3^Candidiasis of Vulva & Vagina
- ;;^UTILITY(U,$J,358.3,17636,1,4,0)
- ;;=4^B37.3
- ;;^UTILITY(U,$J,358.3,17636,2)
- ;;=^5000615
- ;;^UTILITY(U,$J,358.3,17637,0)
- ;;=D06.9^^88^895^16
- ;;^UTILITY(U,$J,358.3,17637,1,0)
+ ;;^UTILITY(U,$J,358.3,17821,1,3,0)
+ ;;=3^Coma Scale,Best Motor Resp,None,Unspec Time
+ ;;^UTILITY(U,$J,358.3,17821,1,4,0)
+ ;;=4^R40.2310
+ ;;^UTILITY(U,$J,358.3,17821,2)
+ ;;=^5019400
+ ;;^UTILITY(U,$J,358.3,17822,0)
+ ;;=R40.4^^61^793^38
+ ;;^UTILITY(U,$J,358.3,17822,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,17637,1,3,0)
- ;;=3^Carcinoma in Situ of Cervix,Unspec
- ;;^UTILITY(U,$J,358.3,17637,1,4,0)
- ;;=4^D06.9
- ;;^UTILITY(U,$J,358.3,17637,2)
- ;;=^5001941
- ;;^UTILITY(U,$J,358.3,17638,0)
- ;;=D06.0^^88^895^17
- ;;^UTILITY(U,$J,358.3,17638,1,0)
+ ;;^UTILITY(U,$J,358.3,17822,1,3,0)
+ ;;=3^Transient Alteration of Awareness
+ ;;^UTILITY(U,$J,358.3,17822,1,4,0)
+ ;;=4^R40.4
+ ;;^UTILITY(U,$J,358.3,17822,2)
+ ;;=^5019435
+ ;;^UTILITY(U,$J,358.3,17823,0)
+ ;;=V00.811A^^61^794^50
+ ;;^UTILITY(U,$J,358.3,17823,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,17638,1,3,0)
- ;;=3^Carcinoma in Situ of Endocervix
- ;;^UTILITY(U,$J,358.3,17638,1,4,0)
- ;;=4^D06.0
- ;;^UTILITY(U,$J,358.3,17638,2)
- ;;=^5001938
- ;;^UTILITY(U,$J,358.3,17639,0)
- ;;=D06.1^^88^895^18
- ;;^UTILITY(U,$J,358.3,17639,1,0)
+ ;;^UTILITY(U,$J,358.3,17823,1,3,0)
+ ;;=3^Fall from Moving Wheelchair (pwered),Init Encntr
+ ;;^UTILITY(U,$J,358.3,17823,1,4,0)
+ ;;=4^V00.811A
+ ;;^UTILITY(U,$J,358.3,17823,2)
+ ;;=^5055937
+ ;;^UTILITY(U,$J,358.3,17824,0)
+ ;;=V00.811D^^61^794^51
+ ;;^UTILITY(U,$J,358.3,17824,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,17639,1,3,0)
- ;;=3^Carcinoma in Situ of Exocervix
- ;;^UTILITY(U,$J,358.3,17639,1,4,0)
- ;;=4^D06.1
- ;;^UTILITY(U,$J,358.3,17639,2)
- ;;=^5001939
- ;;^UTILITY(U,$J,358.3,17640,0)
- ;;=A56.02^^88^895^19
- ;;^UTILITY(U,$J,358.3,17640,1,0)
- ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,17824,1,3,0)
+ ;;=3^Fall from Moving Wheelchair (pwered),Subs Encntr

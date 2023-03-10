@@ -1,5 +1,5 @@
-MAGVIM08 ;;WOIFO/NST,JSL,DAC - Imaging RPCs for Importer II/III ; 20 Dec 2017 10:01 AM
- ;;3.0;IMAGING;**118,185**;Mar 19, 2002;Build 3;DEC 23, 2016
+MAGVIM08 ;;WOIFO/NST,DAC,JSL - Imaging RPCs for Importer II/III ; 10 Oct 2020 10:01 AM
+ ;;3.0;IMAGING;**118,185,301**;Mar 19, 2002;Build 3;OCT 10, 2020
  ;; Per VHA Directive 2004-038, this routine should not be modified.
  ;; +---------------------------------------------------------------+
  ;; | Property of the US Government.                                |
@@ -125,7 +125,7 @@ PROVLST(RESULTS,MAGIN) ; RPC [MAGV GET RAD PROVIDER]= "PSB GETPROVIDER"+ RA filt
  . Q:PRVIACT'=""&(+PRVIACT'>MAGNOW)  ;if Inactive date and date is less than now Q
  . S PRVTERM=$$GET1^DIQ(200,PRVIEN_",",9.2,"I")
  . Q:PRVTERM'=""&(+PRVTERM'>MAGNOW)  ;if termination date and date is less than now Q
- . S PRVAUTH=$$GET1^DIQ(200,PRVIEN_",",53.1,"I") I PRVAUTH'=1 Q  ;is AUTHORIZED TO WRITE MED ORDERS
+ . S PRVAUTH=$S($$ISIHS^MAGSPID():$D(^XUSEC("ORES",PRVIEN)),1:$$GET1^DIQ(200,PRVIEN_",",53.1,"I"))  I PRVAUTH'=1 Q  ;is AUTHORIZED TO WRITE MED ORDERS
  . S Y=PRVIEN Q:'$$PROV^RABWORD()  ;is RA provider
  . I RESULTS(1)["-1" S RESULTS(0)=0
  . S RESULTS(0)=RESULTS(0)+1,RESULTS(RESULTS(0))=$P(^TMP("MAGV",$J,"DILIST",X,0),U,1,2)

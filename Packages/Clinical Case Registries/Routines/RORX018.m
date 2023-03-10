@@ -1,5 +1,5 @@
 RORX018 ;BPOIFO/ACS - BMI BY RANGE REPORT ;11/1/09
- ;;1.5;CLINICAL CASE REGISTRIES;**10,13,19,21,31,33,34**;Feb 17, 2006;Build 45
+ ;;1.5;CLINICAL CASE REGISTRIES;**10,13,19,21,31,33,34,39**;Feb 17, 2006;Build 4
  ;
  ;
  ; This routine uses the following IAs:
@@ -26,7 +26,7 @@ RORX018 ;BPOIFO/ACS - BMI BY RANGE REPORT ;11/1/09
  ;ROR*1.5*33   JAN 2018    M FERRARESE  Adding Future Appointment date/time
  ;                                       
  ;ROR*1.5*34   SEP 2018    M FERRARESE  Adding Future Appointment clinic name
- ;                                                                              
+ ;ROR*1.5*39   JUN 2021    F TRAXLER    Replace real SSN with zeroes.                                                                            
  ;******************************************************************************
  ;******************************************************************************
  Q
@@ -213,7 +213,7 @@ PATIENT(DFN,PTAG,RORDATA) ;
  ;
  ;--- Get patient data and put into the report
  N VADM,VA,RORDOD,BTAG,HTAG,WTAG,AGE,AGETYPE
- D VADEM^RORUTL05(DFN,1)
+ D VADEM^RORUTL05(DFN,1) S VA("BID")="0000"
  ;--- The <PATIENT> tag
  S PTAG=$$ADDVAL^RORTSK11(RORTSK,"PATIENT",,PTAG,,DFN)
  I PTAG<0 Q PTAG

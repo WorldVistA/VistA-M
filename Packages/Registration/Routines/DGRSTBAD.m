@@ -1,5 +1,5 @@
-DGRSTBAD ;JDH,EG,PHH-STATE FILE REPORT ; 03/16/2007 4:15 PM
- ;;5.3;Registration;**694,738**;Aug 13, 1993;Build 6
+DGRSTBAD ;JDH,EG,PHH,ARF-STATE FILE REPORT ; 03/16/2007 4:15 PM
+ ;;5.3;Registration;**694,738,1056**;Aug 13, 1993;Build 18
  Q
 EN N %ZIS,DGNS,DIR,X,Y,DGRPTYP,DIRUT,MSG,POP,ZTSK
  S DIR("A")="Report on States Not Recognized by AAC or Inactive Counties for"
@@ -244,16 +244,16 @@ FILE2(DGFARR,TAG) ;
  .S DGFARR(1,DGFILED)=DGFARR(1,DGFILED)_$E(";",$L(DGFARR(1,DGFILED))>0)_DGFLDNO
  Q
  ;
-FOTXT ;
- ;;2;.115;Permanent Address - State
+FOTXT ;DG*5.3*1056 - Replaced Permanent with Mailing of the following line of code
+ ;;2;.115;Mailing Address - State
  ;;2;.1215;Temporary Address - State
  ;;2;.1415;Confidential Address - State
  ;;END
  ;
-FATXT ;
+FATXT ;DG*5.3*1056 - Replaced Permanent with Mailing on the State (.115) and County (.117) lines of code
  ;;2;.093;Place of Birth
- ;;2;.115;Permanent Address - State
- ;;2;.117;Permanent Address - County
+ ;;2;.115;Mailing Address - State
+ ;;2;.117;Mailing Address - County
  ;;2;.1215;Temporary Address - State
  ;;2;.12111;Temporary Address - County
  ;;2;.1415;Confidential Address - State

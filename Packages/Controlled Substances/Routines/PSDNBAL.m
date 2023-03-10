@@ -1,28 +1,39 @@
 PSDNBAL ;EPIP/RTW - Ask CS Remaining Balance ;29 Aug 94
- ;;3.0;CONTROLLED SUBSTANCES NARCOTIC BALANCE;**84**;13 Feb 97;Build 15
+ ;;3.0;CONTROLLED SUBSTANCES NARCOTIC BALANCE;**84,92**;13 Feb 97;Build 3
  ; ICR#   TYPE    DESCRIPTION
  ;-----  -------  ------------------------------------
  ;10026  Support  ^DIR
  ;4986   Support  ^%DTC
  ;1140   Support  ^XMD
  ;---------------------------------------------------------------------
+ N PSDNOT S PSDNOT=1 ;p92
  S PSDTRY=1
 ENTER ;
  N DIRUT
  S PSDOUT=0
- S DIR(0)="N"
+ I PSDNOT D
+ . W !,"*** NOTICE: You have 3 valid attempts to enter the correct remaining balance"
+ . W !,"            before a message is sent to the CS BALANCE DISCREPANCY mail group.",!
+ . S PSDNOT=0
+ S DIR(0)="N:^0:999999.99:2"
  S DIR("A")="            Enter the remaining balance (^ to quit)"
  S DIR("T")=DTIME
- S DIR("?",1)="Enter The remaining Balance on hand"
- S DIR("?",2)="The system will compare against the database."
- S DIR("?",3)="You will have 3 tries to complete before a message is sent"
- S DIR("?",4)="to the CS BALANCE DISCREPANCY mail group"
- S DIR("?")=" "
+ S DIR("??")="^D HLPMSG^PSDNBAL"
  D ^DIR K DIR S PSDANS=Y I $D(DIRUT) S PSDOUT=1 G EXIT
  S PSDQDB=(BAL-QTY)
  W:PSDANS=PSDQDB !!,"Balance confirmed, Thank you ",! ;RTW
  S PSDQCHO=$S(PSDANS=PSDQDB:"EXIT",1:"PSDATMPT")
  D @PSDQCHO
+ Q
+HLPMSG ;
+ W !!,"Enter the remaining balance on hand.  The system will compare"
+ W !,"against the database.  You will have a total of 3 valid attempts"
+ W !,"before a message is sent to the CS BALANCE DISCREPANCY mail"
+ W !,"group."
+ W !,""
+ W !,"Input must be a numeric amount with no more than two decimal"
+ W !,"digits.  Invalid attempts will not count against your total"
+ W !,"attempts."
  Q
 EXIT ;
  K PSDTRY,PSDQCHO,PSDANS,PSDQDB,PSDPHN,XMDUZ,XMY,XMSUB,XMZ,PSDWANS,PSDRN

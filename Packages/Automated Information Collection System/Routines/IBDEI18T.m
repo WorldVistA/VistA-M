@@ -1,116 +1,120 @@
-IBDEI18T ; ; 04-FEB-2020
- ;;3.0;IB ENCOUNTER FORM IMP/EXP;;FEB 04, 2020
+IBDEI18T ; ; 01-FEB-2022
+ ;;3.0;IB ENCOUNTER FORM IMP/EXP;;FEB 01, 2022
  Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,999) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
- ;;^UTILITY(U,$J,358.3,19924,1,3,0)
- ;;=3^Disp fx of distal phalanx of right ring finger, sequela
- ;;^UTILITY(U,$J,358.3,19924,1,4,0)
- ;;=4^S62.634S
- ;;^UTILITY(U,$J,358.3,19924,2)
- ;;=^5034626
- ;;^UTILITY(U,$J,358.3,19925,0)
- ;;=S62.621S^^93^997^21
- ;;^UTILITY(U,$J,358.3,19925,1,0)
+ ;;^UTILITY(U,$J,358.3,20147,1,4,0)
+ ;;=4^S92.215S
+ ;;^UTILITY(U,$J,358.3,20147,2)
+ ;;=^5044870
+ ;;^UTILITY(U,$J,358.3,20148,0)
+ ;;=S92.214S^^67^884^79
+ ;;^UTILITY(U,$J,358.3,20148,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,19925,1,3,0)
- ;;=3^Disp fx of medial phalanx of left index finger, sequela
- ;;^UTILITY(U,$J,358.3,19925,1,4,0)
- ;;=4^S62.621S
- ;;^UTILITY(U,$J,358.3,19925,2)
- ;;=^5034535
- ;;^UTILITY(U,$J,358.3,19926,0)
- ;;=S62.627S^^93^997^22
- ;;^UTILITY(U,$J,358.3,19926,1,0)
+ ;;^UTILITY(U,$J,358.3,20148,1,3,0)
+ ;;=3^Nondisp cuboid bone fx of right foot, sequela
+ ;;^UTILITY(U,$J,358.3,20148,1,4,0)
+ ;;=4^S92.214S
+ ;;^UTILITY(U,$J,358.3,20148,2)
+ ;;=^5044863
+ ;;^UTILITY(U,$J,358.3,20149,0)
+ ;;=S92.355S^^67^884^64
+ ;;^UTILITY(U,$J,358.3,20149,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,19926,1,3,0)
- ;;=3^Disp fx of medial phalanx of left little finger, sequela
- ;;^UTILITY(U,$J,358.3,19926,1,4,0)
- ;;=4^S62.627S
- ;;^UTILITY(U,$J,358.3,19926,2)
- ;;=^5034577
- ;;^UTILITY(U,$J,358.3,19927,0)
- ;;=S62.623S^^93^997^23
- ;;^UTILITY(U,$J,358.3,19927,1,0)
+ ;;^UTILITY(U,$J,358.3,20149,1,3,0)
+ ;;=3^Nondisp 5th metatarsal fx of left foot, sequela
+ ;;^UTILITY(U,$J,358.3,20149,1,4,0)
+ ;;=4^S92.355S
+ ;;^UTILITY(U,$J,358.3,20149,2)
+ ;;=^5045262
+ ;;^UTILITY(U,$J,358.3,20150,0)
+ ;;=S92.354S^^67^884^65
+ ;;^UTILITY(U,$J,358.3,20150,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,19927,1,3,0)
- ;;=3^Disp fx of medial phalanx of left middle finger, sequela
- ;;^UTILITY(U,$J,358.3,19927,1,4,0)
- ;;=4^S62.623S
- ;;^UTILITY(U,$J,358.3,19927,2)
- ;;=^5034549
- ;;^UTILITY(U,$J,358.3,19928,0)
- ;;=S62.625S^^93^997^24
- ;;^UTILITY(U,$J,358.3,19928,1,0)
+ ;;^UTILITY(U,$J,358.3,20150,1,3,0)
+ ;;=3^Nondisp 5th metatarsal fx of right foot, sequela
+ ;;^UTILITY(U,$J,358.3,20150,1,4,0)
+ ;;=4^S92.354S
+ ;;^UTILITY(U,$J,358.3,20150,2)
+ ;;=^5045255
+ ;;^UTILITY(U,$J,358.3,20151,0)
+ ;;=S92.315S^^67^884^56
+ ;;^UTILITY(U,$J,358.3,20151,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,19928,1,3,0)
- ;;=3^Disp fx of medial phalanx of left ring finger, sequela
- ;;^UTILITY(U,$J,358.3,19928,1,4,0)
- ;;=4^S62.625S
- ;;^UTILITY(U,$J,358.3,19928,2)
- ;;=^5034563
- ;;^UTILITY(U,$J,358.3,19929,0)
- ;;=S62.620S^^93^997^25
- ;;^UTILITY(U,$J,358.3,19929,1,0)
+ ;;^UTILITY(U,$J,358.3,20151,1,3,0)
+ ;;=3^Nondisp 1st metatarsal fx of left foot, sequela
+ ;;^UTILITY(U,$J,358.3,20151,1,4,0)
+ ;;=4^S92.315S
+ ;;^UTILITY(U,$J,358.3,20151,2)
+ ;;=^5045094
+ ;;^UTILITY(U,$J,358.3,20152,0)
+ ;;=S92.314S^^67^884^57
+ ;;^UTILITY(U,$J,358.3,20152,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,19929,1,3,0)
- ;;=3^Disp fx of medial phalanx of right index finger, sequela
- ;;^UTILITY(U,$J,358.3,19929,1,4,0)
- ;;=4^S62.620S
- ;;^UTILITY(U,$J,358.3,19929,2)
- ;;=^5034528
- ;;^UTILITY(U,$J,358.3,19930,0)
- ;;=S62.626S^^93^997^26
- ;;^UTILITY(U,$J,358.3,19930,1,0)
+ ;;^UTILITY(U,$J,358.3,20152,1,3,0)
+ ;;=3^Nondisp 1st metatarsal fx of right foot, sequela
+ ;;^UTILITY(U,$J,358.3,20152,1,4,0)
+ ;;=4^S92.314S
+ ;;^UTILITY(U,$J,358.3,20152,2)
+ ;;=^5045087
+ ;;^UTILITY(U,$J,358.3,20153,0)
+ ;;=S92.345S^^67^884^62
+ ;;^UTILITY(U,$J,358.3,20153,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,19930,1,3,0)
- ;;=3^Disp fx of medial phalanx of right little finger, sequela
- ;;^UTILITY(U,$J,358.3,19930,1,4,0)
- ;;=4^S62.626S
- ;;^UTILITY(U,$J,358.3,19930,2)
- ;;=^5034570
- ;;^UTILITY(U,$J,358.3,19931,0)
- ;;=S62.622S^^93^997^27
- ;;^UTILITY(U,$J,358.3,19931,1,0)
+ ;;^UTILITY(U,$J,358.3,20153,1,3,0)
+ ;;=3^Nondisp 4th metatarsal fx of left foot, sequela
+ ;;^UTILITY(U,$J,358.3,20153,1,4,0)
+ ;;=4^S92.345S
+ ;;^UTILITY(U,$J,358.3,20153,2)
+ ;;=^5045220
+ ;;^UTILITY(U,$J,358.3,20154,0)
+ ;;=S92.344S^^67^884^63
+ ;;^UTILITY(U,$J,358.3,20154,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,19931,1,3,0)
- ;;=3^Disp fx of medial phalanx of right middle finger, sequela
- ;;^UTILITY(U,$J,358.3,19931,1,4,0)
- ;;=4^S62.622S
- ;;^UTILITY(U,$J,358.3,19931,2)
- ;;=^5034542
- ;;^UTILITY(U,$J,358.3,19932,0)
- ;;=S62.624S^^93^997^28
- ;;^UTILITY(U,$J,358.3,19932,1,0)
+ ;;^UTILITY(U,$J,358.3,20154,1,3,0)
+ ;;=3^Nondisp 4th metatarsal fx of right foot, sequela
+ ;;^UTILITY(U,$J,358.3,20154,1,4,0)
+ ;;=4^S92.344S
+ ;;^UTILITY(U,$J,358.3,20154,2)
+ ;;=^5045213
+ ;;^UTILITY(U,$J,358.3,20155,0)
+ ;;=S92.235S^^67^884^86
+ ;;^UTILITY(U,$J,358.3,20155,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,19932,1,3,0)
- ;;=3^Disp fx of medial phalanx of right ring finger, sequela
- ;;^UTILITY(U,$J,358.3,19932,1,4,0)
- ;;=4^S62.624S
- ;;^UTILITY(U,$J,358.3,19932,2)
- ;;=^5034556
- ;;^UTILITY(U,$J,358.3,19933,0)
- ;;=S62.611S^^93^997^39
- ;;^UTILITY(U,$J,358.3,19933,1,0)
+ ;;^UTILITY(U,$J,358.3,20155,1,3,0)
+ ;;=3^Nondisp intermed cuneiform fx of left foot, sequela
+ ;;^UTILITY(U,$J,358.3,20155,1,4,0)
+ ;;=4^S92.235S
+ ;;^UTILITY(U,$J,358.3,20155,2)
+ ;;=^5044954
+ ;;^UTILITY(U,$J,358.3,20156,0)
+ ;;=S92.234S^^67^884^87
+ ;;^UTILITY(U,$J,358.3,20156,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,19933,1,3,0)
- ;;=3^Disp fx of proximal phalanx of left index finger, sequela
- ;;^UTILITY(U,$J,358.3,19933,1,4,0)
- ;;=4^S62.611S
- ;;^UTILITY(U,$J,358.3,19933,2)
- ;;=^5034465
- ;;^UTILITY(U,$J,358.3,19934,0)
- ;;=S62.617S^^93^997^40
- ;;^UTILITY(U,$J,358.3,19934,1,0)
+ ;;^UTILITY(U,$J,358.3,20156,1,3,0)
+ ;;=3^Nondisp intermed cuneiform fx of right foot, sequela
+ ;;^UTILITY(U,$J,358.3,20156,1,4,0)
+ ;;=4^S92.234S
+ ;;^UTILITY(U,$J,358.3,20156,2)
+ ;;=^5044947
+ ;;^UTILITY(U,$J,358.3,20157,0)
+ ;;=S92.225S^^67^884^90
+ ;;^UTILITY(U,$J,358.3,20157,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,19934,1,3,0)
- ;;=3^Disp fx of proximal phalanx of left little finger, sequela
- ;;^UTILITY(U,$J,358.3,19934,1,4,0)
- ;;=4^S62.617S
- ;;^UTILITY(U,$J,358.3,19934,2)
- ;;=^5034507
- ;;^UTILITY(U,$J,358.3,19935,0)
- ;;=S62.613S^^93^997^41
- ;;^UTILITY(U,$J,358.3,19935,1,0)
+ ;;^UTILITY(U,$J,358.3,20157,1,3,0)
+ ;;=3^Nondisp lateral cuneiform fx of left foot, sequela
+ ;;^UTILITY(U,$J,358.3,20157,1,4,0)
+ ;;=4^S92.225S
+ ;;^UTILITY(U,$J,358.3,20157,2)
+ ;;=^5044912
+ ;;^UTILITY(U,$J,358.3,20158,0)
+ ;;=S92.224S^^67^884^91
+ ;;^UTILITY(U,$J,358.3,20158,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,19935,1,3,0)
- ;;=3^Disp fx of proximal phalanx of left middle finger, sequela
+ ;;^UTILITY(U,$J,358.3,20158,1,3,0)
+ ;;=3^Nondisp lateral cuneiform fx of right foot, sequela
+ ;;^UTILITY(U,$J,358.3,20158,1,4,0)
+ ;;=4^S92.224S
+ ;;^UTILITY(U,$J,358.3,20158,2)
+ ;;=^5044905
+ ;;^UTILITY(U,$J,358.3,20159,0)
+ ;;=S92.245S^^67^884^92

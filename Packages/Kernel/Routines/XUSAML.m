@@ -1,30 +1,30 @@
-XUSAML ;ISD/HGW Kernel SAML Token Implementation ;01/27/20  15:03
- ;;8.0;KERNEL;**655,659,630,701**;Jul 10, 1995;Build 11
+XUSAML ;ISD/HGW Kernel SAML Token Implementation ; Apr 18, 2022@15:39
+ ;;8.0;KERNEL;**655,659,630,701,731,771**;Jul 10, 1995;Build 8
  ;Per VA Directive 6402, this routine should not be modified.
  ;
  ; Implements the Kernel SAML Token message framework for the Identification and
  ; Access Management (IAM) Single Sign-On (SSO) security model.
  ;
  ; External References:
- ;     ^%DT                Supported ICR #10003
- ;     $$ATTRIB^MXMLDOM    Supported ICR #3561
- ;     $$CHILD^MXMLDOM     Supported ICR #3561
- ;     $$EN^MXMLDOM        Supported ICR #3561
- ;     $$NAME^MXMLDOM      Supported ICR #3561
- ;     $$SIBLING^MXMLDOM   Supported ICR #3561
- ;     $$TEXT^MXMLDOM      Supported ICR #3561
- ;     $$VALUE^MXMLDOM     Supported ICR #3561
- ;     DELETE^MXMLDOM      Supported ICR #3561
- ;     TEXT^MXMLDOM        Supported ICR #3561
- ;     $$FMADD^XLFDT       Supported ICR #10103
- ;     $$NOW^XLFDT         Supported ICR #10103
- ;     $$TZ^XLFDT          Supported ICR #10103
- ;     $$TITLE^XLFSTR      Supported ICR #10104
- ;     $$LOW^XLFSTR        Supported ICR #10104
- ;     $$INVERT^XLFSTR     Supported ICR #10104
- ;     $$UP^XLFSTR         Supported ICR #10104
- ;     $$VALIDATE^XUCERT   Private (XU to XU)
- ;     $$AUTH^XUESSO2      Private (XU to XU)
+ ; Reference to ^%DT              in ICR #10003
+ ; Reference to $$ATTRIB^MXMLDOM  in ICR #3561
+ ; Reference to $$CHILD^MXMLDOM   in ICR #3561
+ ; Reference to $$EN^MXMLDOM      in ICR #3561
+ ; Reference to $$NAME^MXMLDOM    in ICR #3561
+ ; Reference to $$SIBLING^MXMLDOM in ICR #3561
+ ; Reference to $$TEXT^MXMLDOM    in ICR #3561
+ ; Reference to $$VALUE^MXMLDOM   in ICR #3561
+ ; Reference to DELETE^MXMLDOM    in ICR #3561
+ ; Reference to TEXT^MXMLDOM      in ICR #3561
+ ; Reference to $$FMADD^XLFDT     in ICR #10103
+ ; Reference to $$NOW^XLFDT       in ICR #10103
+ ; Reference to $$TZ^XLFDT        in ICR #10103
+ ; Reference to $$TITLE^XLFSTR    in ICR #10104
+ ; Reference to $$LOW^XLFSTR      in ICR #10104
+ ; Reference to $$INVERT^XLFSTR   in ICR #10104
+ ; Reference to $$UP^XLFSTR       in ICR #10104
+ ; Reference to $$VALIDATE^XUCERT   Private (XU to XU)
+ ; Reference to $$AUTH^XUESSO2      Private (XU to XU)
  ;
  Q
 EN(DOC) ;Function. Main entry point
@@ -158,26 +158,41 @@ FINDUSER(XUERR) ;Function. Identify user
  S XUHOME=$$LOW^XLFSTR($G(^TMP("XUSAML",$J,"Name","urn:nhin:names:saml:homeCommunityId"))) ;Home Community ID
  S XEDIPI=$G(^TMP("XUSAML",$J,"Name","edipi")) ;DoD CAC card identifier
  S DUZ("MVIICN")=$G(^TMP("XUSAML",$J,"Name","urn:va:vrn:iam:mviicn")) ;ICN
+ ; p771 trim values and lock on XARRY(7) SECID or XARRY(3) unique id
+ S XARRY(3)=$TR($$LOW^XLFSTR($E($$TRIM^XLFSTR(XARRY(3)),1,40)),"^","%")
+ S XARRY(7)=$TR($E($$TRIM^XLFSTR(XARRY(7)),1,40),"^","%")
+ S XARRY(8)=$$TRIM^XLFSTR(XARRY(8))
+ S XEDIPI=$$TRIM^XLFSTR(XEDIPI)
+ S XARRY(11)=$$TRIM^XLFSTR(XARRY(11))
  ;
  I (XUHOME=$P($G(^XTV(8989.3,1,200)),U,3))&(XAUTH="ssoi") D  ;SSOi
  . S XARRY(3)=XARRY(7) ;UID=SecID
  . S DUZ("AUTHENTICATION")="SSOI"
- . S XDUZ=$$FINDUSER^XUESSO2(.XARRY) ;Identify existing user
- . Q:XDUZ>0  ; user found
+ . ; p731,p771 ensure user is found before adding new one and deal with concurrent queries from JLV
+ . L +^VA(200,"ASECID",XARRY(7)):$G(DILOCKTM,10) I '$T S XDUZ="-1^Could not obtain LOCK" Q
+ . S XDUZ=$$FINDUSER^XUESSO2(.XARRY) ;Identify existing user with SecID
+ . I XDUZ'>0 S XARRY(9)=$$MPISSN(.XARRY) ; retry with SSN from MPI
+ . I $G(XARRY(9))]"" S XDUZ=$$FINDUSER^XUESSO2(.XARRY)
+ . I XDUZ>0 L -^VA(200,"ASECID",XARRY(7)) Q  ; user found
  . ;Add new user on the fly
  . I $G(XARRY(5))'="" D
  . . I '$$TOKVALID(.DUZ,.XUERR) S XDUZ="-1^Cannot add untrusted token-data" Q
  . . S XDUZ=$$ADDUSER^XUESSO2(.XARRY)
+ . L -^VA(200,"ASECID",XARRY(7)) ; end p731,p771
  ;
  E  I (XUHOME=$P($G(^XTV(8989.3,1,200)),U,3))&(XAUTH="ssoe") D  ;SSOe
  . I ($L($G(XARRY(1)))<3)!($L($G(XARRY(2)))<3) S XDUZ="-1^Invalid SORG or SORGID" Q
  . S XARRY(3)=XARRY(7) ;UID=SecID
  . I +DUZ("REMAPP")>0 D
  . . S DUZ("AUTHENTICATION")="SSOE"
- . . S XDUZ=$$FINDUSER^XUESSO2(.XARRY) ;Identify existing user
+ . . L +^VA(200,"ASECID",XARRY(7)):$G(DILOCKTM,10) I '$T S XDUZ="-1^Could not obtain LOCK" Q  ; p731,p771
+ . . S XDUZ=$$FINDUSER^XUESSO2(.XARRY) ;Identify existing user with SecID
+ . . I XDUZ'>0 S XARRY(9)=$$MPISSN(.XARRY) ; retry with SSN from MPI
+ . . I $G(XARRY(9))]"" S XDUZ=$$FINDUSER^XUESSO2(.XARRY)
  . . I (+XDUZ<0)&($G(XARRY(5))'="") D
  . . . I '$$TOKVALID(.DUZ,.XUERR) S XDUZ="-1^Cannot add untrusted token-data" Q
  . . . S XDUZ=$$ADDUSER^XUESSO2(.XARRY) ;Add new user on the fly
+ . . L -^VA(200,"ASECID",XARRY(7)) ; end p731,p771
  ;
  E  I (XARRY(2)["http://")!(XARRY(2)["https://")!((XARRY(2)["urn:oid:")&(XARRY(2)'=$P($G(^XTV(8989.3,1,200)),U,3))) D  ; NHIN
  . I (+DUZ("REMAPP")>0)&(XAUTH="nhin") D
@@ -185,13 +200,17 @@ FINDUSER(XUERR) ;Function. Identify user
  . . I $G(XARRY(3))="" S XARRY(3)=XEDIPI ;NHIN: DoD CAC card identifier
  . . I $G(XARRY(3))="" S XARRY(3)=XARRY(11) ;NHIN: UID is e-mail if available (alternative to NPI)
  . . S DUZ("AUTHENTICATION")="NHIN"
+ . . L +^VA(200,"UID",XARRY(3)):$G(DILOCKTM,10) I '$T S XDUZ="-1^Could not obtain LOCK" Q  ; p731,p771
  . . S XDUZ=$$FINDUSER^XUESSO2(.XARRY) ;Identify user by NPI or Unique User ID
  . . I +XDUZ<0 D
  . . . S XARRY(8)=""
  . . . S XDUZ=$$FINDUSER^XUESSO2(.XARRY) ;Identify user by Unique User ID only
+ . . . I XDUZ'>0 S XARRY(9)=$$MPISSN(.XARRY) ; retry with SSN from MPI
+ . . . I $G(XARRY(9))]"" S XDUZ=$$FINDUSER^XUESSO2(.XARRY)
  . . . I (+XDUZ<0)&($G(XARRY(5))'="") D
  . . . . I '$$TOKVALID(.DUZ,.XUERR) S XDUZ="-1^Cannot add untrusted token-data" Q
  . . . . S XDUZ=$$ADDUSER^XUESSO2(.XARRY) ;Add new user on the fly
+ . . L -^VA(200,"UID",XARRY(3)) ; end p731
  ;
  I XDUZ<0 D  ; record NAME and SECID to error
  . S XUERR("SECID")=""
@@ -289,4 +308,15 @@ LOGFAIL(IEN,DUZ) ; Record failed access
  S XUF=2
  D FILE^XUSTZ
  Q
+ ;
+MPISSN(XATR) ; Return SSN found in MPI
+ N SSN,XMPI,XOUT
+ S SSN=""
+ S:$G(XATR(7))]"" XMPI("secId")=XATR(7)
+ S:$G(XATR(6))]"" XMPI("samacctnm")=XATR(6)
+ S:$G(XATR(10))]"" XMPI("VAemail")=XATR(10)
+ N XI F XI="secId","samacctnm","VAemail" D  Q:SSN]""
+ . N XIN
+ . I $G(XMPI(XI))]"" S XIN(XI)=XMPI(XI) D USER^XUIAMXML(.XOUT,.XIN) S SSN=$G(XOUT("pnid"))
+ Q SSN
  ;

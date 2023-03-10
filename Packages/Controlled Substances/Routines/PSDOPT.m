@@ -1,5 +1,5 @@
-PSDOPT ;BIR/JPW,LTL,BJW - Outpatient Rx Entry ;2/5/04 12:15pm
- ;;3.0;CONTROLLED SUBSTANCES;**10,11,15,21,30,39,48,62,69,71,79,84**;13 Feb 97;Build 15
+PSDOPT ;BIR/JPW,LTL,BJW - Outpatient Rx Entry ;Feb 2, 2004@12:15
+ ;;3.0;CONTROLLED SUBSTANCES;**10,11,15,21,30,39,48,62,69,71,79,84,90**;13 Feb 97;Build 4
  ;Reference to ^PSDRUG( supported by DBIA #221
  ;References to ^PSD(58.8 are covered by DBIA #2711
  ;References to file 58.81 are covered by DBIA #2808
@@ -103,6 +103,8 @@ PROCESS ;process selection
  I PSDA="O" S NEW=1,(NEW(1),NEW(2))=0 ;Original
  I PSDA="R" S NEW(1)=XXX,(NEW,NEW(2))=0 ;Refill
  I PSDA="P" S NEW(2)=XXX,(NEW,NEW(1))=0 ;Partial
+ ; p90 Stop processing if med returned to stock and label not reprinted for original fill. 
+ I PSDA="O",$P($G(^PSRX(PSDRX,2)),U,15),'$P($G(^PSRX(PSDRX,2)),U,14) W !!,"Label not reprinted for this Rx that was returned to stock." G ASKP
  S X=0 F  S X=$O(^PSRX(PSDRX,4,X)) Q:X'>0  S STATUS=$P($G(^PSRX(PSDRX,4,X,0)),"^",4),NUMBER=$P($G(^PSRX(PSDRX,4,X,0)),"^",3) I $G(STATUS)'=3 D
  .I NUMBER=0,$G(NEW)=1,$G(NEW(1))=0 D CMOPMSG
  .I NUMBER=$G(NEW(1)),$G(NEW)=0,PSDA'="P",'$D(PSDRET("RF",NUMBER)) D CMOPMSG
@@ -110,9 +112,10 @@ PROCESS ;process selection
  ;
  D:PSDA="O" PSDORIG^PSDOPT1 D:PSDA="R" PSDRFL^PSDOPT1 D:PSDA="P" PSDPRTL^PSDOPT1
  I $G(PSDOUT)=1 G ASKP
- I $G(PSDPOST)=1,$G(PSDREL)="" W !,"This fill has already been posted.",$C(7) G ASKP
- I $G(PSDREL)'="",$G(PSDPOST)'>0 W !,"This fill has already been released.",$C(7)
- I $G(PSDREL)'="",$G(PSDPOST)>0 W !,"This fill has already been posted & released, no further action required.",$C(7) G ASKP
+ N PSDREPR S PSDREPR=0 S:($G(PSDA)="O")&($$PSDREPR^PSDOPT0($G(PSDRX))) PSDREPR=1 ; p90 Original RX was returned to stock and a label was reprinted.
+ I $G(PSDPOST)=1,$G(PSDREL)="",'PSDREPR W !,"This fill has already been posted.",$C(7) G ASKP
+ I $G(PSDREL)'="",$G(PSDPOST)'>0,'PSDREPR  W !,"This fill has already been released.",$C(7)
+ I $G(PSDREL)'="",$G(PSDPOST)>0,'PSDREPR W !,"This fill has already been posted & released, no further action required.",$C(7) G ASKP
  D DISPLAY G:PSDOUT END
  I $G(PSDQUIT) K PSDQUIT G ASKP ;RTW 
  K DA,DIR,DIRUT S DIR(0)="YA",DIR("B")="YES",DIR("A")="Is this OK? "

@@ -1,5 +1,5 @@
-DGRP6CL ;ALB/TMK,LBD - REGISTRATION SCREEN 6 FIELDS Conflict locations ; 6/23/09 4:08pm
- ;;5.3;Registration;**689,751,764,797**;Aug 13, 1993;Build 24
+DGRP6CL ;ALB/TMK,LBD,ARF - REGISTRATION SCREEN 6 FIELDS Conflict locations ; 6/23/09 4:08pm
+ ;;5.3;Registration;**689,751,764,797,1014**;Aug 13, 1993;Build 42
  ;
 CLLST(DFN,DGCONF,DGPOSS,DGMSE) ;
  ; For patient DFN:
@@ -77,8 +77,17 @@ EN1 ; Entry from conf subscreen off reg screen 6
  S DG321=$G(^DPT(DFN,.321)),DG322=$G(^(.322))
  ;
  S DIR(0)="SA^",DGCT=0
- S X=$S($D(^DPT(+DFN,0)):^(0),1:""),SSN=$P(X,"^",9),SSN=$E(SSN,1,3)_"-"_$E(SSN,4,5)_"-"_$E(SSN,6,10)
- S DGCT=DGCT+1,DIR("A",DGCT)=$$SSNNM^DGRPU(DFN)
+ N DGSSNSTR,DGPTYPE,DGSSN,DGDOB ;ARF-DG*5.3*1014 - begin - add standardize patient data to the screen banner
+ S DGSSNSTR=$$SSNNM^DGRPU(DFN)
+ S DGSSN=$P($P(DGSSNSTR,";",2)," ",3)
+ S DGDOB=$$GET1^DIQ(2,DFN,.03,"I")
+ S DGDOB=$$UP^XLFSTR($$FMTE^XLFDT($E(DGDOB,1,12),1))
+ S DGPTYPE=$$GET1^DIQ(391,$$GET1^DIQ(2,DFN_",",391,"I")_",",.01)
+ S:DGPTYPE="" DGPTYPE="PATIENT TYPE UNKNOWN"
+ S DGCT=DGCT+1,DIR("A",DGCT)=$P(DGSSNSTR,";",1)_$S($$GET1^DIQ(2,DFN,.2405)'="":" ("_$$GET1^DIQ(2,DFN,.2405)_")",1:"")_"    "_DGDOB
+ S DGCT=DGCT+1,DIR("A",DGCT)=$S($P($P(DGSSNSTR,";",2)," ",2)'="":$E($P($P(DGSSNSTR,";",2)," ",2),1,40)_"    ",1:"")_DGSSN_"    "_DGPTYPE
+ ;S X=$S($D(^DPT(+DFN,0)):^(0),1:""),SSN=$P(X,"^",9),SSN=$E(SSN,1,3)_"-"_$E(SSN,4,5)_"-"_$E(SSN,6,10)
+ ;S DGCT=DGCT+1,DIR("A",DGCT)=$$SSNNM^DGRPU(DFN) ;ARF-DG*5.3*1014 - end
  S DGCT=DGCT+1,DIR("A",DGCT)="",$P(DIR("A",DGCT),"=",81)=""
  S DGCT=DGCT+1,DIR("A",DGCT)=$S($O(DGMSE(0)):"MILITARY SERVICE PERIODS:",1:"NO SERVICE PERIODS FOR THIS PATIENT - NO CONFLICT LOC CAN BE ENTERED")
  S Z=0 F  S Z=$O(DGMSE(Z)) Q:'Z!(Z>4)  D

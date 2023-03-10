@@ -1,5 +1,5 @@
 IBCNERP8 ;DAOU/BHS - IBCNE eIV STATISTICAL REPORT COMPILE ;11-JUN-2002
- ;;2.0;INTEGRATED BILLING;**184,271,345,416,506,621,631**;21-MAR-94;Build 23
+ ;;2.0;INTEGRATED BILLING;**184,271,345,416,506,621,631,668,687**;21-MAR-94;Build 88
   ;;Per VA Directive 6402, this routine should not be modified.
  ;
  ; eIV - Insurance Verification Interface
@@ -34,9 +34,13 @@ IBCNERP8 ;DAOU/BHS - IBCNE eIV STATISTICAL REPORT COMPILE ;11-JUN-2002
  ;  ? InsBufSubtotal^- InsBufSubtotal^Other InsBufSubtotal^...
  ;  $ EscolatedBufSubtotal
  ; 1 OR contains 4 -->
- ; ^TMP($J,RTN,"PYR",PAYER,IEN)=""  (list of new payers)
+ ; ^TMP($J,RTN,"PYR",APP,PAYER,IEN)="" (list of new payers)  ;IB*2.0*687
  ;
  ; Must call at EN
+ ;
+ ;  /ckb-IB*2*687  Added APP to incorporate IIU into this rpt; corrected
+ ;           references from Nationally active & locally active to
+ ;           Nationally and Locally enabled
  Q
  ;
 EN(IBCNERTN,IBCNESPC) ; Entry pt
@@ -58,7 +62,7 @@ EN(IBCNERTN,IBCNESPC) ; Entry pt
  I $G(ZTSTOP) G EXIT
  I IBSCT=1!$F(IBSCT,",3,") D IN(IBCNERTN,IBBDT,IBEDT,.IBTOT)
  I $G(ZTSTOP) G EXIT
- I IBSCT=1!$F(IBSCT,",4,") D CUR(IBCNERTN,IBBDT,IBEDT,.IBTOT),PYR^IBCNERP0(IBCNERTN,IBBDT,IBEDT,.IBTOT)
+ I IBSCT=1!$F(IBSCT,",4,") D CUR(IBCNERTN,IBBDT,IBEDT,.IBTOT),PYR(IBCNERTN,IBBDT,IBEDT,.IBTOT)
  ;
 EXIT ; EN Exit pt
  Q
@@ -183,7 +187,7 @@ CUR(RTN,BDT,EDT,TOT) ; Current Status - stats - timeframe independent
  ;  2=total Queued Inqs (Ready to Transmit-1/Retry-6)
  ;  3=total Deferred Inqs (Hold-4)
  ;  4=Ins Cos w/o National ID
- ;  5=Payers w/eIV disabled locally
+ ;  5=Payers w/eIV locally enabled is NO  ;/vd-IB*2*687 - Reworded the description.
  ;  6=total user action required (symbol'='*' or '#' or '!' or '?' or '-')
  ;  7=total Man. Ver'd Ins Buf entries (symbol='*')
  ;  8=total eIV Processed Ver. (symbol='+')
@@ -200,8 +204,15 @@ CUR(RTN,BDT,EDT,TOT) ; Current Status - stats - timeframe independent
  ;  19=total Ele Ins Cov Discovery (EICD)
  ;  20=total EICD Triggered Einsurance Verification
  ;  21=total MBI Inquiry
- ;  ^TMP($J,RTN,"CUR","FLAGS","A",Payer name,N) = active flag timestamp ^ active flag setting
- ;  ^TMP($J,RTN,"CUR","FLAGS","T",Payer name,N) = trusted flag timestamp ^ trusted flag setting
+ ;  22=total IIU Payer 'Received IIU Data' set to NO ;IB*2.0*687
+ ;
+ ;  ^TMP($J,RTN,"CUR","FLAGS","NE",APP,Payer name,N) = nationally enabled flag timestamp ^ nationally enabled flag setting
+ ;  ^TMP($J,RTN,"CUR","FLAGS","AU",APP,Payer name,N) = auto updated flag timestamp ^ auto update flag setting
+ ;
+ ;/ckb-IB*2.0*687 Added APP to incorporate IIU into this report;
+ ;           added IIU Payer 'Received IIU Data' set to NO to the report; 
+ ;           corrected references from Active (A) & Trusted (T) to
+ ;           Nationally Enabled (NE) and Auto Update (AU)
  ;
  ; Init vars
  N RIEN,TQIEN,ICIEN,IBIEN,RPTDATA,IEN,IBSYMBOL,PIECE,IBSTS,APPIEN
@@ -271,7 +282,7 @@ CUR(RTN,BDT,EDT,TOT) ; Current Status - stats - timeframe independent
  ;
  I $G(ZTSTOP) G CURX
  ;
- ; eIV Payers disabled locally
+ ; eIV Payers locally enabled is NO   ;/ckb-IB*2.0*687 - Reworded the comment
  S PIEN=0
  F  S PIEN=$O(^IBE(365.12,PIEN)) Q:'PIEN  D  Q:$G(ZTSTOP)
  .  S TOT=TOT+1
@@ -280,18 +291,44 @@ CUR(RTN,BDT,EDT,TOT) ; Current Status - stats - timeframe independent
  .  ; Must have National ID
  .  I $P(PDATA,U,2)="" Q
  .  ; Get Payer app multiple IEN
- .  S APPIEN=$$PYRAPP^IBCNEUT5("IIV",PIEN)
+ .  ;   /ckb-IB*2.0*687 - Replaced the following code.
+ .  ;IB*668/TAZ - Changed Payer Application from IIV to EIV
+ .  ;S APPIEN=$$PYRAPP^IBCNEUT5("EIV",PIEN)
  .  ; Must have eIV application
- .  I 'APPIEN Q
+ .  ;I 'APPIEN Q
  .  ; Get Active/Trusted flag logs
- .  D GETFLAGS(PIEN,APPIEN,PDATA,BDT,EDT,.RPTDATA)
+ .  ;D GETFLAGS(PIEN,APPIEN,PDATA,BDT,EDT,.RPTDATA)
  .  ;
- .  S APPDATA=$G(^IBE(365.12,PIEN,1,APPIEN,0))
+ .  ;S APPDATA=$G(^IBE(365.12,PIEN,1,APPIEN,0))
  .  ; Must be Nationally Active
- .  I '$P(APPDATA,U,2) Q
+ .  ;I '$P(APPDATA,U,2) Q
  .  ; Must not be Locally Active
- .  I $P(APPDATA,U,3) Q
- .  S $P(RPTDATA,U,5)=$P(RPTDATA,U,5)+1
+ .  ;I $P(APPDATA,U,3) Q
+ .  ;S $P(RPTDATA,U,5)=$P(RPTDATA,U,5)+1
+ . ;
+ . N IENEIV,IENIIU
+ . K APPDATA
+ . S IENEIV=$$PYRAPP^IBCNEUT5("EIV",PIEN)
+ . S IENIIU=$$PYRAPP^IBCNEUT5("IIU",PIEN)
+ . I 'IENEIV,'IENIIU Q  ; Payer doesn't have any applications.
+ . ;'Receive IIU Data' field is set to NO (0), null values are also considered NO.
+ . I IENIIU D
+ . . ; Get the Nationally Enabled/Auto Update flag logs
+ . . D GETFLAGS(PIEN,IENIIU,PDATA,BDT,EDT,"IIU",.RPTDATA)
+ . . S APPDATA=$G(^IBE(365.12,PIEN,1,IENIIU,0))
+ . . ; Must be Nationally Enabled
+ . . I '$P(APPDATA,U,2) Q
+ . . I $P($G(^IBE(365.12,PIEN,1,IENIIU,5)),U)'=1 S $P(RPTDATA,U,22)=$P(RPTDATA,U,22)+1
+ . I IENEIV D
+ . . ; Get the Nationally Enabled/Auto Update flag logs
+ . . D GETFLAGS(PIEN,IENEIV,PDATA,BDT,EDT,"EIV",.RPTDATA)
+ . . S APPDATA=$G(^IBE(365.12,PIEN,1,IENEIV,0))
+ . . ; Must be Nationally Enabled
+ . . I '$P(APPDATA,U,2) Q
+ . . ; Must not be Locally Enabled
+ . . I $P(APPDATA,U,3) Q
+ . . S $P(RPTDATA,U,5)=$P(RPTDATA,U,5)+1
+ ;/ckb-IB*2.0*687 End of new code
  ;
  I $G(ZTSTOP) G CURX
  ;
@@ -314,26 +351,68 @@ CUR(RTN,BDT,EDT,TOT) ; Current Status - stats - timeframe independent
  . . S $P(RPTDATA,U,PIECE)=$P($G(RPTDATA),U,PIECE)+1
  ;
  I $G(ZTSTOP) G CURX
- ;
+CURM ;
  ; Save data to global
  M ^TMP($J,RTN,"CUR")=RPTDATA
  ;
 CURX ; CUR exit point
  Q
  ;
-GETFLAGS(PIEN,APPIEN,PDATA,BDT,EDT,RPTDATA) ; get Active/Trusted flag logs
+ ;/ckb-IB*2.0*687 - GETFLAGS is rewritten to incorporate IIU and improve readability.
+ ;   This function is only called by CUR^IBCNERP8; it is called by IBCNERPC but not used.
+GETFLAGS(PIEN,APPIEN,PDATA,BDT,EDT,APP,RPTDATA) ;
  ; PIEN - Payer ien in file 365.12
  ; APPIEN - Application ien in subfile 365.121
  ; PDATA - 0 node of Payer file entry
  ; BDT - Start date/time
  ; EDT - End date/time
+ ; APP - Payer Application EIV or IIU
  ; RPTDATA - output array, passed by reference
  ; 
  N FLAGS,IEN,PNAME,TYP,TM,VAL,Z
  S PNAME=$P(PDATA,U)
- F TYP=2,3 S TM=EDT,Z=0 F  S TM=$O(^IBE(365.12,PIEN,1,APPIEN,TYP,"B",TM),-1) Q:TM=""!($$FMDIFF^XLFDT(TM,BDT,2)'>0)  D
- .S IEN=$O(^IBE(365.12,PIEN,1,APPIEN,TYP,"B",TM,""))
- .S VAL=$$EXTERNAL^DILFD("365.121"_TYP,.02,,$P(^IBE(365.12,PIEN,1,APPIEN,TYP,IEN,0),U,2))
- .S Z=Z+1,RPTDATA("FLAGS",$S(TYP=2:"A",1:"T"),PNAME,Z)=$$FMTE^XLFDT(TM,"5ZS")_"^"_VAL
- .Q
+ I '$D(APP) S APP=0 ;to prevent error when called from IBCNERPC
+ ; TYP=2 Nationally Enabled Log / TYP=3 Auto-Update Log
+ F TYP=2,3 D
+ . S TM=EDT,Z=0 F  S TM=$O(^IBE(365.12,PIEN,1,APPIEN,TYP,"B",TM),-1) Q:TM=""!($$FMDIFF^XLFDT(TM,BDT,2)'>0)  D
+ . . S IEN=$O(^IBE(365.12,PIEN,1,APPIEN,TYP,"B",TM,""))
+ . . S VAL=$$EXTERNAL^DILFD("365.121"_TYP,.02,,$P(^IBE(365.12,PIEN,1,APPIEN,TYP,IEN,0),U,2))
+ . . S Z=Z+1
+ . . S RPTDATA("FLAGS",APP,$S(TYP=2:"NE",1:"AU"),PNAME,Z)=$$FMTE^XLFDT(TM,"5ZS")_"^"_VAL
+ . . Q
+ Q
+ ;
+PYR(RTN,BDT,EDT,TOT) ; Determine Incoming Data
+ ; Input params: RTN-routine name for ^TMP($J), BDT-start dt/time,
+ ;  EDT-end dt/time, **TOT-total records searched - used only for status
+ ;  checks when the process is queued (passed by reference)
+ ; Output vars: Set ^TMP($J,RTN,"PYR",APP,PAYER NAME,IEN of file 365.12)=""  ;IB*2.0*687
+ ;
+ ;  /ckb-IB*2*687  Added APP to incorporate IIU into this report. Moved from IBCNERP0.
+ ;
+ ;N PIEN,PYR,CREATEDT,APPIEN,APPDATA
+ N PIEN,PYR,CREATEDT,APP,APPIEN,APPDATA
+ S PIEN=0 F  S PIEN=$O(^IBE(365.12,PIEN)) Q:'PIEN  D
+ . S PYR=$P($G(^IBE(365.12,PIEN,0)),U)
+ . Q:PYR="~NO PAYER"       ; used internally only - not a real eIV payer
+ . S TOT=TOT+1
+ . F APP="EIV","IIU" D
+ . . S APPIEN=+$$PYRAPP^IBCNEUT5(APP,+PIEN)  ; Get the ien of the application
+ . . I 'APPIEN Q  ; No application for this Payer.
+ . . ; Get the Date/Time Created from the Application
+ . . S CREATEDT=$P($G(^IBE(365.12,PIEN,1,APPIEN,0)),U,13)
+ . . I CREATEDT=""!(CREATEDT<BDT)!(CREATEDT>EDT) Q
+ . . ;
+ . . ; Get Payer app multiple IEN
+ . . ;IB*668/TAZ - Changed Payer Application from IIV to EIV
+ . . ;S APPIEN=$$PYRAPP^IBCNEUT5("EIV",PIEN)
+ . . ; Must have eIV application
+ . . ;I 'APPIEN Q
+ . . ;IB*687 -remove Nationally Active check
+ . . ;S APPDATA=$G(^IBE(365.12,PIEN,1,APPIEN,0))
+ . . ; Must be Nationally Active
+ . . ;I '$P(APPDATA,U,2) Q
+ . . ;
+ . . S ^TMP($J,RTN,"PYR",APP,PYR,PIEN)=""
+ . . Q
  Q

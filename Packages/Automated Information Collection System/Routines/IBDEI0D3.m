@@ -1,686 +1,670 @@
-IBDEI0D3 ; ; 01-MAY-2020
- ;;3.0;IB ENCOUNTER FORM IMP/EXP;;MAY 01, 2020
+IBDEI0D3 ; ; 03-MAY-2022
+ ;;3.0;IB ENCOUNTER FORM IMP/EXP;;MAY 03, 2022
  Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,999) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
- ;;^UTILITY(U,$J,358.3,32035,2)
- ;;=^5063585
- ;;^UTILITY(U,$J,358.3,32036,0)
- ;;=Z90.79^^92^1227^31
- ;;^UTILITY(U,$J,358.3,32036,1,0)
+ ;;^UTILITY(U,$J,358.3,32841,0)
+ ;;=T78.01XD^^99^1354^33
+ ;;^UTILITY(U,$J,358.3,32841,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,32036,1,3,0)
- ;;=3^Acquired Absence of Prostate
- ;;^UTILITY(U,$J,358.3,32036,1,4,0)
- ;;=4^Z90.79
- ;;^UTILITY(U,$J,358.3,32036,2)
- ;;=^5063596
- ;;^UTILITY(U,$J,358.3,32037,0)
- ;;=Z90.722^^92^1227^27
- ;;^UTILITY(U,$J,358.3,32037,1,0)
+ ;;^UTILITY(U,$J,358.3,32841,1,3,0)
+ ;;=3^Anaphylactic Reaction,Peanuts,Subseq Encntr
+ ;;^UTILITY(U,$J,358.3,32841,1,4,0)
+ ;;=4^T78.01XD
+ ;;^UTILITY(U,$J,358.3,32841,2)
+ ;;=^5054249
+ ;;^UTILITY(U,$J,358.3,32842,0)
+ ;;=T78.01XS^^99^1354^32
+ ;;^UTILITY(U,$J,358.3,32842,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,32037,1,3,0)
- ;;=3^Acquired Absence of Ovaries,Bilateral
- ;;^UTILITY(U,$J,358.3,32037,1,4,0)
- ;;=4^Z90.722
- ;;^UTILITY(U,$J,358.3,32037,2)
- ;;=^5063595
- ;;^UTILITY(U,$J,358.3,32038,0)
- ;;=Z90.721^^92^1227^28
- ;;^UTILITY(U,$J,358.3,32038,1,0)
+ ;;^UTILITY(U,$J,358.3,32842,1,3,0)
+ ;;=3^Anaphylactic Reaction,Peanuts,Sequela
+ ;;^UTILITY(U,$J,358.3,32842,1,4,0)
+ ;;=4^T78.01XS
+ ;;^UTILITY(U,$J,358.3,32842,2)
+ ;;=^5054250
+ ;;^UTILITY(U,$J,358.3,32843,0)
+ ;;=T78.02XA^^99^1354^34
+ ;;^UTILITY(U,$J,358.3,32843,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,32038,1,3,0)
- ;;=3^Acquired Absence of Ovaries,Unilateral
- ;;^UTILITY(U,$J,358.3,32038,1,4,0)
- ;;=4^Z90.721
- ;;^UTILITY(U,$J,358.3,32038,2)
- ;;=^5063594
- ;;^UTILITY(U,$J,358.3,32039,0)
- ;;=Z90.411^^92^1227^29
- ;;^UTILITY(U,$J,358.3,32039,1,0)
+ ;;^UTILITY(U,$J,358.3,32843,1,3,0)
+ ;;=3^Anaphylactic Reaction,Shellfish,1st Encntr
+ ;;^UTILITY(U,$J,358.3,32843,1,4,0)
+ ;;=4^T78.02XA
+ ;;^UTILITY(U,$J,358.3,32843,2)
+ ;;=^5054251
+ ;;^UTILITY(U,$J,358.3,32844,0)
+ ;;=T78.02XD^^99^1354^36
+ ;;^UTILITY(U,$J,358.3,32844,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,32039,1,3,0)
- ;;=3^Acquired Absence of Pancreas,Partial
- ;;^UTILITY(U,$J,358.3,32039,1,4,0)
- ;;=4^Z90.411
- ;;^UTILITY(U,$J,358.3,32039,2)
- ;;=^5063588
- ;;^UTILITY(U,$J,358.3,32040,0)
- ;;=Z90.410^^92^1227^30
- ;;^UTILITY(U,$J,358.3,32040,1,0)
+ ;;^UTILITY(U,$J,358.3,32844,1,3,0)
+ ;;=3^Anaphylactic Reaction,Shellfish,Subseq Encntr
+ ;;^UTILITY(U,$J,358.3,32844,1,4,0)
+ ;;=4^T78.02XD
+ ;;^UTILITY(U,$J,358.3,32844,2)
+ ;;=^5054252
+ ;;^UTILITY(U,$J,358.3,32845,0)
+ ;;=T78.02XS^^99^1354^35
+ ;;^UTILITY(U,$J,358.3,32845,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,32040,1,3,0)
- ;;=3^Acquired Absence of Pancreas,Total
- ;;^UTILITY(U,$J,358.3,32040,1,4,0)
- ;;=4^Z90.410
- ;;^UTILITY(U,$J,358.3,32040,2)
- ;;=^5063587
- ;;^UTILITY(U,$J,358.3,32041,0)
- ;;=Z89.441^^92^1227^2
- ;;^UTILITY(U,$J,358.3,32041,1,0)
+ ;;^UTILITY(U,$J,358.3,32845,1,3,0)
+ ;;=3^Anaphylactic Reaction,Shellfish,Sequela
+ ;;^UTILITY(U,$J,358.3,32845,1,4,0)
+ ;;=4^T78.02XS
+ ;;^UTILITY(U,$J,358.3,32845,2)
+ ;;=^5054253
+ ;;^UTILITY(U,$J,358.3,32846,0)
+ ;;=T78.04XA^^99^1354^19
+ ;;^UTILITY(U,$J,358.3,32846,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,32041,1,3,0)
- ;;=3^Acquired Absence of Ankle,Right
- ;;^UTILITY(U,$J,358.3,32041,1,4,0)
- ;;=4^Z89.441
- ;;^UTILITY(U,$J,358.3,32041,2)
- ;;=^5063563
- ;;^UTILITY(U,$J,358.3,32042,0)
- ;;=Z90.11^^92^1227^4
- ;;^UTILITY(U,$J,358.3,32042,1,0)
+ ;;^UTILITY(U,$J,358.3,32846,1,3,0)
+ ;;=3^Anaphylactic Reaction,Fruits/Vegetables,1st Encntr
+ ;;^UTILITY(U,$J,358.3,32846,1,4,0)
+ ;;=4^T78.04XA
+ ;;^UTILITY(U,$J,358.3,32846,2)
+ ;;=^5054257
+ ;;^UTILITY(U,$J,358.3,32847,0)
+ ;;=T78.04XD^^99^1354^20
+ ;;^UTILITY(U,$J,358.3,32847,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,32042,1,3,0)
- ;;=3^Acquired Absence of Breast & Nipple,Right
- ;;^UTILITY(U,$J,358.3,32042,1,4,0)
- ;;=4^Z90.11
- ;;^UTILITY(U,$J,358.3,32042,2)
- ;;=^5063582
- ;;^UTILITY(U,$J,358.3,32043,0)
- ;;=Z89.021^^92^1227^9
- ;;^UTILITY(U,$J,358.3,32043,1,0)
+ ;;^UTILITY(U,$J,358.3,32847,1,3,0)
+ ;;=3^Anaphylactic Reaction,Fruits/Vegetables,Subseq Encntr
+ ;;^UTILITY(U,$J,358.3,32847,1,4,0)
+ ;;=4^T78.04XD
+ ;;^UTILITY(U,$J,358.3,32847,2)
+ ;;=^5054258
+ ;;^UTILITY(U,$J,358.3,32848,0)
+ ;;=T78.04XS^^99^1354^21
+ ;;^UTILITY(U,$J,358.3,32848,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,32043,1,3,0)
- ;;=3^Acquired Absence of Finger(s),Right
- ;;^UTILITY(U,$J,358.3,32043,1,4,0)
- ;;=4^Z89.021
- ;;^UTILITY(U,$J,358.3,32043,2)
- ;;=^5063534
- ;;^UTILITY(U,$J,358.3,32044,0)
- ;;=Z89.431^^92^1227^11
- ;;^UTILITY(U,$J,358.3,32044,1,0)
+ ;;^UTILITY(U,$J,358.3,32848,1,3,0)
+ ;;=3^Anaphylactic Reaction,Fruits/Vegetables,Sequela
+ ;;^UTILITY(U,$J,358.3,32848,1,4,0)
+ ;;=4^T78.04XS
+ ;;^UTILITY(U,$J,358.3,32848,2)
+ ;;=^5054259
+ ;;^UTILITY(U,$J,358.3,32849,0)
+ ;;=T78.05XA^^99^1354^25
+ ;;^UTILITY(U,$J,358.3,32849,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,32044,1,3,0)
- ;;=3^Acquired Absence of Foot,Right
- ;;^UTILITY(U,$J,358.3,32044,1,4,0)
- ;;=4^Z89.431
- ;;^UTILITY(U,$J,358.3,32044,2)
- ;;=^5063560
- ;;^UTILITY(U,$J,358.3,32045,0)
- ;;=Z89.411^^92^1227^13
- ;;^UTILITY(U,$J,358.3,32045,1,0)
+ ;;^UTILITY(U,$J,358.3,32849,1,3,0)
+ ;;=3^Anaphylactic Reaction,Nuts/Seeds,1st Encntr
+ ;;^UTILITY(U,$J,358.3,32849,1,4,0)
+ ;;=4^T78.05XA
+ ;;^UTILITY(U,$J,358.3,32849,2)
+ ;;=^5054260
+ ;;^UTILITY(U,$J,358.3,32850,0)
+ ;;=T78.05XD^^99^1354^27
+ ;;^UTILITY(U,$J,358.3,32850,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,32045,1,3,0)
- ;;=3^Acquired Absence of Great Toe,Right
- ;;^UTILITY(U,$J,358.3,32045,1,4,0)
- ;;=4^Z89.411
- ;;^UTILITY(U,$J,358.3,32045,2)
- ;;=^5063554
- ;;^UTILITY(U,$J,358.3,32046,0)
- ;;=Z89.111^^92^1227^15
- ;;^UTILITY(U,$J,358.3,32046,1,0)
+ ;;^UTILITY(U,$J,358.3,32850,1,3,0)
+ ;;=3^Anaphylactic Reaction,Nuts/Seeds,Subseq Encntr
+ ;;^UTILITY(U,$J,358.3,32850,1,4,0)
+ ;;=4^T78.05XD
+ ;;^UTILITY(U,$J,358.3,32850,2)
+ ;;=^5054261
+ ;;^UTILITY(U,$J,358.3,32851,0)
+ ;;=T78.05XS^^99^1354^26
+ ;;^UTILITY(U,$J,358.3,32851,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,32046,1,3,0)
- ;;=3^Acquired Absence of Hand,Right
- ;;^UTILITY(U,$J,358.3,32046,1,4,0)
- ;;=4^Z89.111
- ;;^UTILITY(U,$J,358.3,32046,2)
- ;;=^5063537
- ;;^UTILITY(U,$J,358.3,32047,0)
- ;;=Z89.621^^92^1227^17
- ;;^UTILITY(U,$J,358.3,32047,1,0)
+ ;;^UTILITY(U,$J,358.3,32851,1,3,0)
+ ;;=3^Anaphylactic Reaction,Nuts/Seeds,Sequela
+ ;;^UTILITY(U,$J,358.3,32851,1,4,0)
+ ;;=4^T78.05XS
+ ;;^UTILITY(U,$J,358.3,32851,2)
+ ;;=^5054262
+ ;;^UTILITY(U,$J,358.3,32852,0)
+ ;;=T78.03XA^^99^1354^13
+ ;;^UTILITY(U,$J,358.3,32852,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,32047,1,3,0)
- ;;=3^Acquired Absence of Hip Joint,Right
- ;;^UTILITY(U,$J,358.3,32047,1,4,0)
- ;;=4^Z89.621
- ;;^UTILITY(U,$J,358.3,32047,2)
- ;;=^5063575
- ;;^UTILITY(U,$J,358.3,32048,0)
- ;;=Z89.611^^92^1227^21
- ;;^UTILITY(U,$J,358.3,32048,1,0)
+ ;;^UTILITY(U,$J,358.3,32852,1,3,0)
+ ;;=3^Anaphylactic Reaction,Fish,1st Encntr
+ ;;^UTILITY(U,$J,358.3,32852,1,4,0)
+ ;;=4^T78.03XA
+ ;;^UTILITY(U,$J,358.3,32852,2)
+ ;;=^5054254
+ ;;^UTILITY(U,$J,358.3,32853,0)
+ ;;=T78.03XD^^99^1354^15
+ ;;^UTILITY(U,$J,358.3,32853,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,32048,1,3,0)
- ;;=3^Acquired Absence of Leg Above Knee,Right
- ;;^UTILITY(U,$J,358.3,32048,1,4,0)
- ;;=4^Z89.611
- ;;^UTILITY(U,$J,358.3,32048,2)
- ;;=^5063572
- ;;^UTILITY(U,$J,358.3,32049,0)
- ;;=Z89.511^^92^1227^23
- ;;^UTILITY(U,$J,358.3,32049,1,0)
+ ;;^UTILITY(U,$J,358.3,32853,1,3,0)
+ ;;=3^Anaphylactic Reaction,Fish,Subseq Encntr
+ ;;^UTILITY(U,$J,358.3,32853,1,4,0)
+ ;;=4^T78.03XD
+ ;;^UTILITY(U,$J,358.3,32853,2)
+ ;;=^5054255
+ ;;^UTILITY(U,$J,358.3,32854,0)
+ ;;=T78.03XS^^99^1354^14
+ ;;^UTILITY(U,$J,358.3,32854,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,32049,1,3,0)
- ;;=3^Acquired Absence of Leg Below Knee,Right
- ;;^UTILITY(U,$J,358.3,32049,1,4,0)
- ;;=4^Z89.511
- ;;^UTILITY(U,$J,358.3,32049,2)
- ;;=^5063566
- ;;^UTILITY(U,$J,358.3,32050,0)
- ;;=Z89.231^^92^1227^33
- ;;^UTILITY(U,$J,358.3,32050,1,0)
+ ;;^UTILITY(U,$J,358.3,32854,1,3,0)
+ ;;=3^Anaphylactic Reaction,Fish,Sequela
+ ;;^UTILITY(U,$J,358.3,32854,1,4,0)
+ ;;=4^T78.03XS
+ ;;^UTILITY(U,$J,358.3,32854,2)
+ ;;=^5054256
+ ;;^UTILITY(U,$J,358.3,32855,0)
+ ;;=T78.06XA^^99^1354^16
+ ;;^UTILITY(U,$J,358.3,32855,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,32050,1,3,0)
- ;;=3^Acquired Absence of Shoulder,Right
- ;;^UTILITY(U,$J,358.3,32050,1,4,0)
- ;;=4^Z89.231
- ;;^UTILITY(U,$J,358.3,32050,2)
- ;;=^5063551
- ;;^UTILITY(U,$J,358.3,32051,0)
- ;;=Z89.011^^92^1227^37
- ;;^UTILITY(U,$J,358.3,32051,1,0)
+ ;;^UTILITY(U,$J,358.3,32855,1,3,0)
+ ;;=3^Anaphylactic Reaction,Food Additives,1st Encntr
+ ;;^UTILITY(U,$J,358.3,32855,1,4,0)
+ ;;=4^T78.06XA
+ ;;^UTILITY(U,$J,358.3,32855,2)
+ ;;=^5054263
+ ;;^UTILITY(U,$J,358.3,32856,0)
+ ;;=T78.06XD^^99^1354^18
+ ;;^UTILITY(U,$J,358.3,32856,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,32051,1,3,0)
- ;;=3^Acquired Absence of Thumb,Right
- ;;^UTILITY(U,$J,358.3,32051,1,4,0)
- ;;=4^Z89.011
- ;;^UTILITY(U,$J,358.3,32051,2)
- ;;=^5063531
- ;;^UTILITY(U,$J,358.3,32052,0)
- ;;=Z89.421^^92^1227^26
- ;;^UTILITY(U,$J,358.3,32052,1,0)
+ ;;^UTILITY(U,$J,358.3,32856,1,3,0)
+ ;;=3^Anaphylactic Reaction,Food Additives,Subseq Encntr
+ ;;^UTILITY(U,$J,358.3,32856,1,4,0)
+ ;;=4^T78.06XD
+ ;;^UTILITY(U,$J,358.3,32856,2)
+ ;;=^5054264
+ ;;^UTILITY(U,$J,358.3,32857,0)
+ ;;=T78.06XS^^99^1354^17
+ ;;^UTILITY(U,$J,358.3,32857,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,32052,1,3,0)
- ;;=3^Acquired Absence of Oth Toe(s),Right
- ;;^UTILITY(U,$J,358.3,32052,1,4,0)
- ;;=4^Z89.421
- ;;^UTILITY(U,$J,358.3,32052,2)
- ;;=^5063557
- ;;^UTILITY(U,$J,358.3,32053,0)
- ;;=Z89.221^^92^1227^39
- ;;^UTILITY(U,$J,358.3,32053,1,0)
+ ;;^UTILITY(U,$J,358.3,32857,1,3,0)
+ ;;=3^Anaphylactic Reaction,Food Additives,Sequela
+ ;;^UTILITY(U,$J,358.3,32857,1,4,0)
+ ;;=4^T78.06XS
+ ;;^UTILITY(U,$J,358.3,32857,2)
+ ;;=^5054265
+ ;;^UTILITY(U,$J,358.3,32858,0)
+ ;;=T78.07XA^^99^1354^22
+ ;;^UTILITY(U,$J,358.3,32858,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,32053,1,3,0)
- ;;=3^Acquired Absence of Upper Limb Above Elbow,Right
- ;;^UTILITY(U,$J,358.3,32053,1,4,0)
- ;;=4^Z89.221
- ;;^UTILITY(U,$J,358.3,32053,2)
- ;;=^5063548
- ;;^UTILITY(U,$J,358.3,32054,0)
- ;;=Z89.211^^92^1227^41
- ;;^UTILITY(U,$J,358.3,32054,1,0)
+ ;;^UTILITY(U,$J,358.3,32858,1,3,0)
+ ;;=3^Anaphylactic Reaction,Milk Products,1st Encntr
+ ;;^UTILITY(U,$J,358.3,32858,1,4,0)
+ ;;=4^T78.07XA
+ ;;^UTILITY(U,$J,358.3,32858,2)
+ ;;=^5054266
+ ;;^UTILITY(U,$J,358.3,32859,0)
+ ;;=T78.07XD^^99^1354^24
+ ;;^UTILITY(U,$J,358.3,32859,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,32054,1,3,0)
- ;;=3^Acquired Absence of Upper Limb Below Elbow,Right
- ;;^UTILITY(U,$J,358.3,32054,1,4,0)
- ;;=4^Z89.211
- ;;^UTILITY(U,$J,358.3,32054,2)
- ;;=^5063545
- ;;^UTILITY(U,$J,358.3,32055,0)
- ;;=Z89.121^^92^1227^44
- ;;^UTILITY(U,$J,358.3,32055,1,0)
+ ;;^UTILITY(U,$J,358.3,32859,1,3,0)
+ ;;=3^Anaphylactic Reaction,Milk Products,Subseq Encntr
+ ;;^UTILITY(U,$J,358.3,32859,1,4,0)
+ ;;=4^T78.07XD
+ ;;^UTILITY(U,$J,358.3,32859,2)
+ ;;=^5054267
+ ;;^UTILITY(U,$J,358.3,32860,0)
+ ;;=T78.07XS^^99^1354^23
+ ;;^UTILITY(U,$J,358.3,32860,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,32055,1,3,0)
- ;;=3^Acquired Absence of Wrist,Right
- ;;^UTILITY(U,$J,358.3,32055,1,4,0)
- ;;=4^Z89.121
- ;;^UTILITY(U,$J,358.3,32055,2)
- ;;=^5063540
- ;;^UTILITY(U,$J,358.3,32056,0)
- ;;=Z90.81^^92^1227^34
- ;;^UTILITY(U,$J,358.3,32056,1,0)
+ ;;^UTILITY(U,$J,358.3,32860,1,3,0)
+ ;;=3^Anaphylactic Reaction,Milk Products,Sequela
+ ;;^UTILITY(U,$J,358.3,32860,1,4,0)
+ ;;=4^T78.07XS
+ ;;^UTILITY(U,$J,358.3,32860,2)
+ ;;=^5054268
+ ;;^UTILITY(U,$J,358.3,32861,0)
+ ;;=T78.08XA^^99^1354^10
+ ;;^UTILITY(U,$J,358.3,32861,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,32056,1,3,0)
- ;;=3^Acquired Absence of Spleen
- ;;^UTILITY(U,$J,358.3,32056,1,4,0)
- ;;=4^Z90.81
- ;;^UTILITY(U,$J,358.3,32056,2)
- ;;=^5063597
- ;;^UTILITY(U,$J,358.3,32057,0)
- ;;=Z90.3^^92^1227^35
- ;;^UTILITY(U,$J,358.3,32057,1,0)
+ ;;^UTILITY(U,$J,358.3,32861,1,3,0)
+ ;;=3^Anaphylactic Reaction,Eggs,1st Encntr
+ ;;^UTILITY(U,$J,358.3,32861,1,4,0)
+ ;;=4^T78.08XA
+ ;;^UTILITY(U,$J,358.3,32861,2)
+ ;;=^5054269
+ ;;^UTILITY(U,$J,358.3,32862,0)
+ ;;=T78.08XD^^99^1354^12
+ ;;^UTILITY(U,$J,358.3,32862,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,32057,1,3,0)
- ;;=3^Acquired Absence of Stomach (part of)
- ;;^UTILITY(U,$J,358.3,32057,1,4,0)
- ;;=4^Z90.3
- ;;^UTILITY(U,$J,358.3,32057,2)
- ;;=^5063586
- ;;^UTILITY(U,$J,358.3,32058,0)
- ;;=Z91.5^^92^1228^1
- ;;^UTILITY(U,$J,358.3,32058,1,0)
+ ;;^UTILITY(U,$J,358.3,32862,1,3,0)
+ ;;=3^Anaphylactic Reaction,Eggs,Subseq Encntr
+ ;;^UTILITY(U,$J,358.3,32862,1,4,0)
+ ;;=4^T78.08XD
+ ;;^UTILITY(U,$J,358.3,32862,2)
+ ;;=^5054270
+ ;;^UTILITY(U,$J,358.3,32863,0)
+ ;;=T78.08XS^^99^1354^11
+ ;;^UTILITY(U,$J,358.3,32863,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,32058,1,3,0)
- ;;=3^Personal Hx of Suicide Attempt(s)
- ;;^UTILITY(U,$J,358.3,32058,1,4,0)
- ;;=4^Z91.5
- ;;^UTILITY(U,$J,358.3,32058,2)
- ;;=^5063624
- ;;^UTILITY(U,$J,358.3,32059,0)
- ;;=R45.851^^92^1228^2
- ;;^UTILITY(U,$J,358.3,32059,1,0)
+ ;;^UTILITY(U,$J,358.3,32863,1,3,0)
+ ;;=3^Anaphylactic Reaction,Eggs,Sequela
+ ;;^UTILITY(U,$J,358.3,32863,1,4,0)
+ ;;=4^T78.08XS
+ ;;^UTILITY(U,$J,358.3,32863,2)
+ ;;=^5054271
+ ;;^UTILITY(U,$J,358.3,32864,0)
+ ;;=T78.09XA^^99^1354^28
+ ;;^UTILITY(U,$J,358.3,32864,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,32059,1,3,0)
- ;;=3^Suicidal Ideations
- ;;^UTILITY(U,$J,358.3,32059,1,4,0)
- ;;=4^R45.851
- ;;^UTILITY(U,$J,358.3,32059,2)
- ;;=^5019474
- ;;^UTILITY(U,$J,358.3,32060,0)
- ;;=T14.91XA^^92^1228^3
- ;;^UTILITY(U,$J,358.3,32060,1,0)
+ ;;^UTILITY(U,$J,358.3,32864,1,3,0)
+ ;;=3^Anaphylactic Reaction,Oth Food Products,1st Encntr
+ ;;^UTILITY(U,$J,358.3,32864,1,4,0)
+ ;;=4^T78.09XA
+ ;;^UTILITY(U,$J,358.3,32864,2)
+ ;;=^5054272
+ ;;^UTILITY(U,$J,358.3,32865,0)
+ ;;=T78.09XD^^99^1354^29
+ ;;^UTILITY(U,$J,358.3,32865,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,32060,1,3,0)
- ;;=3^Suicide Attempt,Initial Encntr
- ;;^UTILITY(U,$J,358.3,32060,1,4,0)
- ;;=4^T14.91XA
- ;;^UTILITY(U,$J,358.3,32060,2)
- ;;=^5151779
- ;;^UTILITY(U,$J,358.3,32061,0)
- ;;=T14.91XD^^92^1228^4
- ;;^UTILITY(U,$J,358.3,32061,1,0)
+ ;;^UTILITY(U,$J,358.3,32865,1,3,0)
+ ;;=3^Anaphylactic Reaction,Oth Food Products,Subseq Encntr
+ ;;^UTILITY(U,$J,358.3,32865,1,4,0)
+ ;;=4^T78.09XD
+ ;;^UTILITY(U,$J,358.3,32865,2)
+ ;;=^5054273
+ ;;^UTILITY(U,$J,358.3,32866,0)
+ ;;=T78.09XS^^99^1354^30
+ ;;^UTILITY(U,$J,358.3,32866,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,32061,1,3,0)
- ;;=3^Suicide Attempt,Subsequent Encntr
- ;;^UTILITY(U,$J,358.3,32061,1,4,0)
- ;;=4^T14.91XD
- ;;^UTILITY(U,$J,358.3,32061,2)
- ;;=^5151780
- ;;^UTILITY(U,$J,358.3,32062,0)
- ;;=T14.91XS^^92^1228^5
- ;;^UTILITY(U,$J,358.3,32062,1,0)
+ ;;^UTILITY(U,$J,358.3,32866,1,3,0)
+ ;;=3^Anaphylactic Reaction,Oth Food Products,Sequela
+ ;;^UTILITY(U,$J,358.3,32866,1,4,0)
+ ;;=4^T78.09XS
+ ;;^UTILITY(U,$J,358.3,32866,2)
+ ;;=^5054274
+ ;;^UTILITY(U,$J,358.3,32867,0)
+ ;;=T78.3XXA^^99^1354^43
+ ;;^UTILITY(U,$J,358.3,32867,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,32062,1,3,0)
- ;;=3^Suicide Attempt,Sequela
- ;;^UTILITY(U,$J,358.3,32062,1,4,0)
- ;;=4^T14.91XS
- ;;^UTILITY(U,$J,358.3,32062,2)
- ;;=^5151781
- ;;^UTILITY(U,$J,358.3,32063,0)
- ;;=N17.0^^92^1229^3
- ;;^UTILITY(U,$J,358.3,32063,1,0)
+ ;;^UTILITY(U,$J,358.3,32867,1,3,0)
+ ;;=3^Angioedema,1st Encntr
+ ;;^UTILITY(U,$J,358.3,32867,1,4,0)
+ ;;=4^T78.3XXA
+ ;;^UTILITY(U,$J,358.3,32867,2)
+ ;;=^5054281
+ ;;^UTILITY(U,$J,358.3,32868,0)
+ ;;=T78.3XXD^^99^1354^45
+ ;;^UTILITY(U,$J,358.3,32868,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,32063,1,3,0)
- ;;=3^Acute Kidney Failure w/ Tubular Necrosis
- ;;^UTILITY(U,$J,358.3,32063,1,4,0)
- ;;=4^N17.0
- ;;^UTILITY(U,$J,358.3,32063,2)
- ;;=^5015598
- ;;^UTILITY(U,$J,358.3,32064,0)
- ;;=N17.1^^92^1229^1
- ;;^UTILITY(U,$J,358.3,32064,1,0)
+ ;;^UTILITY(U,$J,358.3,32868,1,3,0)
+ ;;=3^Angioedema,Subseq Encntr
+ ;;^UTILITY(U,$J,358.3,32868,1,4,0)
+ ;;=4^T78.3XXD
+ ;;^UTILITY(U,$J,358.3,32868,2)
+ ;;=^5054282
+ ;;^UTILITY(U,$J,358.3,32869,0)
+ ;;=T78.3XXS^^99^1354^44
+ ;;^UTILITY(U,$J,358.3,32869,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,32064,1,3,0)
- ;;=3^Acute Kidney Failure w/ Acute Cortical Necrosis
- ;;^UTILITY(U,$J,358.3,32064,1,4,0)
- ;;=4^N17.1
- ;;^UTILITY(U,$J,358.3,32064,2)
- ;;=^5015599
- ;;^UTILITY(U,$J,358.3,32065,0)
- ;;=N17.2^^92^1229^2
- ;;^UTILITY(U,$J,358.3,32065,1,0)
+ ;;^UTILITY(U,$J,358.3,32869,1,3,0)
+ ;;=3^Angioedema,Sequela
+ ;;^UTILITY(U,$J,358.3,32869,1,4,0)
+ ;;=4^T78.3XXS
+ ;;^UTILITY(U,$J,358.3,32869,2)
+ ;;=^5054283
+ ;;^UTILITY(U,$J,358.3,32870,0)
+ ;;=T63.441A^^99^1354^61
+ ;;^UTILITY(U,$J,358.3,32870,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,32065,1,3,0)
- ;;=3^Acute Kidney Failure w/ Medullary Necrosis
- ;;^UTILITY(U,$J,358.3,32065,1,4,0)
- ;;=4^N17.2
- ;;^UTILITY(U,$J,358.3,32065,2)
- ;;=^5015600
- ;;^UTILITY(U,$J,358.3,32066,0)
- ;;=N17.8^^92^1229^4
- ;;^UTILITY(U,$J,358.3,32066,1,0)
+ ;;^UTILITY(U,$J,358.3,32870,1,3,0)
+ ;;=3^Toxic Effect,Bees,1st Encntr
+ ;;^UTILITY(U,$J,358.3,32870,1,4,0)
+ ;;=4^T63.441A
+ ;;^UTILITY(U,$J,358.3,32870,2)
+ ;;=^5053522
+ ;;^UTILITY(U,$J,358.3,32871,0)
+ ;;=T63.441D^^99^1354^63
+ ;;^UTILITY(U,$J,358.3,32871,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,32066,1,3,0)
- ;;=3^Acute Kidney Failure,Other
- ;;^UTILITY(U,$J,358.3,32066,1,4,0)
- ;;=4^N17.8
- ;;^UTILITY(U,$J,358.3,32066,2)
- ;;=^5015601
- ;;^UTILITY(U,$J,358.3,32067,0)
- ;;=N17.9^^92^1229^5
- ;;^UTILITY(U,$J,358.3,32067,1,0)
+ ;;^UTILITY(U,$J,358.3,32871,1,3,0)
+ ;;=3^Toxic Effect,Bees,Subseq Encntr
+ ;;^UTILITY(U,$J,358.3,32871,1,4,0)
+ ;;=4^T63.441D
+ ;;^UTILITY(U,$J,358.3,32871,2)
+ ;;=^5053523
+ ;;^UTILITY(U,$J,358.3,32872,0)
+ ;;=T63.441S^^99^1354^62
+ ;;^UTILITY(U,$J,358.3,32872,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,32067,1,3,0)
- ;;=3^Acute Kidney Failure,Unspec
- ;;^UTILITY(U,$J,358.3,32067,1,4,0)
- ;;=4^N17.9
- ;;^UTILITY(U,$J,358.3,32067,2)
- ;;=^338532
- ;;^UTILITY(U,$J,358.3,32068,0)
- ;;=I20.0^^92^1230^4
- ;;^UTILITY(U,$J,358.3,32068,1,0)
+ ;;^UTILITY(U,$J,358.3,32872,1,3,0)
+ ;;=3^Toxic Effect,Bees,Sequela
+ ;;^UTILITY(U,$J,358.3,32872,1,4,0)
+ ;;=4^T63.441S
+ ;;^UTILITY(U,$J,358.3,32872,2)
+ ;;=^5053524
+ ;;^UTILITY(U,$J,358.3,32873,0)
+ ;;=T63.451A^^99^1354^64
+ ;;^UTILITY(U,$J,358.3,32873,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,32068,1,3,0)
- ;;=3^Unstable Angina
- ;;^UTILITY(U,$J,358.3,32068,1,4,0)
- ;;=4^I20.0
- ;;^UTILITY(U,$J,358.3,32068,2)
- ;;=^5007076
- ;;^UTILITY(U,$J,358.3,32069,0)
- ;;=I20.1^^92^1230^1
- ;;^UTILITY(U,$J,358.3,32069,1,0)
+ ;;^UTILITY(U,$J,358.3,32873,1,3,0)
+ ;;=3^Toxic Effect,Hornets,1st Encntr
+ ;;^UTILITY(U,$J,358.3,32873,1,4,0)
+ ;;=4^T63.451A
+ ;;^UTILITY(U,$J,358.3,32873,2)
+ ;;=^5053534
+ ;;^UTILITY(U,$J,358.3,32874,0)
+ ;;=T63.451D^^99^1354^66
+ ;;^UTILITY(U,$J,358.3,32874,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,32069,1,3,0)
- ;;=3^Angina Pectoris w/ Documented Spasm
- ;;^UTILITY(U,$J,358.3,32069,1,4,0)
- ;;=4^I20.1
- ;;^UTILITY(U,$J,358.3,32069,2)
- ;;=^5007077
- ;;^UTILITY(U,$J,358.3,32070,0)
- ;;=I20.8^^92^1230^2
- ;;^UTILITY(U,$J,358.3,32070,1,0)
+ ;;^UTILITY(U,$J,358.3,32874,1,3,0)
+ ;;=3^Toxic Effect,Hornets,Subseq Encntr
+ ;;^UTILITY(U,$J,358.3,32874,1,4,0)
+ ;;=4^T63.451D
+ ;;^UTILITY(U,$J,358.3,32874,2)
+ ;;=^5053535
+ ;;^UTILITY(U,$J,358.3,32875,0)
+ ;;=T63.451S^^99^1354^65
+ ;;^UTILITY(U,$J,358.3,32875,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,32070,1,3,0)
- ;;=3^Angina Pectoris,Other Forms
- ;;^UTILITY(U,$J,358.3,32070,1,4,0)
- ;;=4^I20.8
- ;;^UTILITY(U,$J,358.3,32070,2)
- ;;=^5007078
- ;;^UTILITY(U,$J,358.3,32071,0)
- ;;=I20.9^^92^1230^3
- ;;^UTILITY(U,$J,358.3,32071,1,0)
+ ;;^UTILITY(U,$J,358.3,32875,1,3,0)
+ ;;=3^Toxic Effect,Hornets,Sequela
+ ;;^UTILITY(U,$J,358.3,32875,1,4,0)
+ ;;=4^T63.451S
+ ;;^UTILITY(U,$J,358.3,32875,2)
+ ;;=^5053536
+ ;;^UTILITY(U,$J,358.3,32876,0)
+ ;;=T63.461A^^99^1354^67
+ ;;^UTILITY(U,$J,358.3,32876,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,32071,1,3,0)
- ;;=3^Angina Pectoris,Unspec
- ;;^UTILITY(U,$J,358.3,32071,1,4,0)
- ;;=4^I20.9
- ;;^UTILITY(U,$J,358.3,32071,2)
- ;;=^5007079
- ;;^UTILITY(U,$J,358.3,32072,0)
- ;;=J40.^^92^1231^17
- ;;^UTILITY(U,$J,358.3,32072,1,0)
+ ;;^UTILITY(U,$J,358.3,32876,1,3,0)
+ ;;=3^Toxic Effect,Wasps,1st Encntr
+ ;;^UTILITY(U,$J,358.3,32876,1,4,0)
+ ;;=4^T63.461A
+ ;;^UTILITY(U,$J,358.3,32876,2)
+ ;;=^5053546
+ ;;^UTILITY(U,$J,358.3,32877,0)
+ ;;=T63.461D^^99^1354^69
+ ;;^UTILITY(U,$J,358.3,32877,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,32072,1,3,0)
- ;;=3^Bronchitis
- ;;^UTILITY(U,$J,358.3,32072,1,4,0)
- ;;=4^J40.
- ;;^UTILITY(U,$J,358.3,32072,2)
- ;;=^17164
- ;;^UTILITY(U,$J,358.3,32073,0)
- ;;=J41.0^^92^1231^20
- ;;^UTILITY(U,$J,358.3,32073,1,0)
+ ;;^UTILITY(U,$J,358.3,32877,1,3,0)
+ ;;=3^Toxic Effect,Wasps,Subseq Encntr
+ ;;^UTILITY(U,$J,358.3,32877,1,4,0)
+ ;;=4^T63.461D
+ ;;^UTILITY(U,$J,358.3,32877,2)
+ ;;=^5053547
+ ;;^UTILITY(U,$J,358.3,32878,0)
+ ;;=T63.461S^^99^1354^68
+ ;;^UTILITY(U,$J,358.3,32878,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,32073,1,3,0)
- ;;=3^Bronchitis,Simple Chronic
- ;;^UTILITY(U,$J,358.3,32073,1,4,0)
- ;;=4^J41.0
- ;;^UTILITY(U,$J,358.3,32073,2)
- ;;=^269946
- ;;^UTILITY(U,$J,358.3,32074,0)
- ;;=J41.1^^92^1231^19
- ;;^UTILITY(U,$J,358.3,32074,1,0)
+ ;;^UTILITY(U,$J,358.3,32878,1,3,0)
+ ;;=3^Toxic Effect,Wasps,Sequela
+ ;;^UTILITY(U,$J,358.3,32878,1,4,0)
+ ;;=4^T63.461S
+ ;;^UTILITY(U,$J,358.3,32878,2)
+ ;;=^5053548
+ ;;^UTILITY(U,$J,358.3,32879,0)
+ ;;=T88.6XXA^^99^1354^7
+ ;;^UTILITY(U,$J,358.3,32879,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,32074,1,3,0)
- ;;=3^Bronchitis,Mucopurulent Chronic
- ;;^UTILITY(U,$J,358.3,32074,1,4,0)
- ;;=4^J41.1
- ;;^UTILITY(U,$J,358.3,32074,2)
- ;;=^269949
- ;;^UTILITY(U,$J,358.3,32075,0)
- ;;=J41.8^^92^1231^18
- ;;^UTILITY(U,$J,358.3,32075,1,0)
+ ;;^UTILITY(U,$J,358.3,32879,1,3,0)
+ ;;=3^Anaphylactic Reaction,Drug/Med,1st Encntr
+ ;;^UTILITY(U,$J,358.3,32879,1,4,0)
+ ;;=4^T88.6XXA
+ ;;^UTILITY(U,$J,358.3,32879,2)
+ ;;=^5055808
+ ;;^UTILITY(U,$J,358.3,32880,0)
+ ;;=T88.6XXD^^99^1354^9
+ ;;^UTILITY(U,$J,358.3,32880,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,32075,1,3,0)
- ;;=3^Bronchitis,Mixed Simple & Mucopurulent Chronic
- ;;^UTILITY(U,$J,358.3,32075,1,4,0)
- ;;=4^J41.8
- ;;^UTILITY(U,$J,358.3,32075,2)
- ;;=^5008233
- ;;^UTILITY(U,$J,358.3,32076,0)
- ;;=J42.^^92^1231^21
- ;;^UTILITY(U,$J,358.3,32076,1,0)
+ ;;^UTILITY(U,$J,358.3,32880,1,3,0)
+ ;;=3^Anaphylactic Reaction,Drug/Med,Subseq Encntr
+ ;;^UTILITY(U,$J,358.3,32880,1,4,0)
+ ;;=4^T88.6XXD
+ ;;^UTILITY(U,$J,358.3,32880,2)
+ ;;=^5055809
+ ;;^UTILITY(U,$J,358.3,32881,0)
+ ;;=T88.6XXS^^99^1354^8
+ ;;^UTILITY(U,$J,358.3,32881,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,32076,1,3,0)
- ;;=3^Bronchitis,Unspec Chronic
- ;;^UTILITY(U,$J,358.3,32076,1,4,0)
- ;;=4^J42.
- ;;^UTILITY(U,$J,358.3,32076,2)
- ;;=^5008234
- ;;^UTILITY(U,$J,358.3,32077,0)
- ;;=J43.0^^92^1231^29
- ;;^UTILITY(U,$J,358.3,32077,1,0)
+ ;;^UTILITY(U,$J,358.3,32881,1,3,0)
+ ;;=3^Anaphylactic Reaction,Drug/Med,Sequela
+ ;;^UTILITY(U,$J,358.3,32881,1,4,0)
+ ;;=4^T88.6XXS
+ ;;^UTILITY(U,$J,358.3,32881,2)
+ ;;=^5055810
+ ;;^UTILITY(U,$J,358.3,32882,0)
+ ;;=J45.20^^99^1354^49
+ ;;^UTILITY(U,$J,358.3,32882,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,32077,1,3,0)
- ;;=3^Emphysema,Pulmonary,Unilateral
- ;;^UTILITY(U,$J,358.3,32077,1,4,0)
- ;;=4^J43.0
- ;;^UTILITY(U,$J,358.3,32077,2)
- ;;=^5008235
- ;;^UTILITY(U,$J,358.3,32078,0)
- ;;=J43.1^^92^1231^28
- ;;^UTILITY(U,$J,358.3,32078,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,32078,1,3,0)
- ;;=3^Emphysema,Panlobular
- ;;^UTILITY(U,$J,358.3,32078,1,4,0)
- ;;=4^J43.1
- ;;^UTILITY(U,$J,358.3,32078,2)
- ;;=^5008236
- ;;^UTILITY(U,$J,358.3,32079,0)
- ;;=J43.2^^92^1231^26
- ;;^UTILITY(U,$J,358.3,32079,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,32079,1,3,0)
- ;;=3^Emphysema,Centrilobular
- ;;^UTILITY(U,$J,358.3,32079,1,4,0)
- ;;=4^J43.2
- ;;^UTILITY(U,$J,358.3,32079,2)
- ;;=^5008237
- ;;^UTILITY(U,$J,358.3,32080,0)
- ;;=J43.8^^92^1231^27
- ;;^UTILITY(U,$J,358.3,32080,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,32080,1,3,0)
- ;;=3^Emphysema,Other
- ;;^UTILITY(U,$J,358.3,32080,1,4,0)
- ;;=4^J43.8
- ;;^UTILITY(U,$J,358.3,32080,2)
- ;;=^87569
- ;;^UTILITY(U,$J,358.3,32081,0)
- ;;=J43.9^^92^1231^30
- ;;^UTILITY(U,$J,358.3,32081,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,32081,1,3,0)
- ;;=3^Emphysema,Unspec
- ;;^UTILITY(U,$J,358.3,32081,1,4,0)
- ;;=4^J43.9
- ;;^UTILITY(U,$J,358.3,32081,2)
- ;;=^5008238
- ;;^UTILITY(U,$J,358.3,32082,0)
- ;;=J44.0^^92^1231^23
- ;;^UTILITY(U,$J,358.3,32082,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,32082,1,3,0)
- ;;=3^COPD w/ (Acute) Lower Resp Infection
- ;;^UTILITY(U,$J,358.3,32082,1,4,0)
- ;;=4^J44.0
- ;;^UTILITY(U,$J,358.3,32082,2)
- ;;=^5008239
- ;;^UTILITY(U,$J,358.3,32083,0)
- ;;=J45.20^^92^1231^5
- ;;^UTILITY(U,$J,358.3,32083,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,32083,1,3,0)
+ ;;^UTILITY(U,$J,358.3,32882,1,3,0)
  ;;=3^Asthma,Mild Intermittent,Uncompl
- ;;^UTILITY(U,$J,358.3,32083,1,4,0)
+ ;;^UTILITY(U,$J,358.3,32882,1,4,0)
  ;;=4^J45.20
- ;;^UTILITY(U,$J,358.3,32083,2)
+ ;;^UTILITY(U,$J,358.3,32882,2)
  ;;=^5008242
- ;;^UTILITY(U,$J,358.3,32084,0)
- ;;=J45.21^^92^1231^3
- ;;^UTILITY(U,$J,358.3,32084,1,0)
+ ;;^UTILITY(U,$J,358.3,32883,0)
+ ;;=J45.21^^99^1354^47
+ ;;^UTILITY(U,$J,358.3,32883,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,32084,1,3,0)
+ ;;^UTILITY(U,$J,358.3,32883,1,3,0)
  ;;=3^Asthma,Mild Intermittent w/ Acute Exacerbation
- ;;^UTILITY(U,$J,358.3,32084,1,4,0)
+ ;;^UTILITY(U,$J,358.3,32883,1,4,0)
  ;;=4^J45.21
- ;;^UTILITY(U,$J,358.3,32084,2)
+ ;;^UTILITY(U,$J,358.3,32883,2)
  ;;=^5008243
- ;;^UTILITY(U,$J,358.3,32085,0)
- ;;=J45.22^^92^1231^4
- ;;^UTILITY(U,$J,358.3,32085,1,0)
+ ;;^UTILITY(U,$J,358.3,32884,0)
+ ;;=J45.22^^99^1354^48
+ ;;^UTILITY(U,$J,358.3,32884,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,32085,1,3,0)
+ ;;^UTILITY(U,$J,358.3,32884,1,3,0)
  ;;=3^Asthma,Mild Intermittent w/ Status Asthmaticus
- ;;^UTILITY(U,$J,358.3,32085,1,4,0)
+ ;;^UTILITY(U,$J,358.3,32884,1,4,0)
  ;;=4^J45.22
- ;;^UTILITY(U,$J,358.3,32085,2)
+ ;;^UTILITY(U,$J,358.3,32884,2)
  ;;=^5008244
- ;;^UTILITY(U,$J,358.3,32086,0)
- ;;=J45.31^^92^1231^6
- ;;^UTILITY(U,$J,358.3,32086,1,0)
+ ;;^UTILITY(U,$J,358.3,32885,0)
+ ;;=J45.30^^99^1354^52
+ ;;^UTILITY(U,$J,358.3,32885,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,32086,1,3,0)
- ;;=3^Asthma,Mild Persistent w/ Acute Exacerbation
- ;;^UTILITY(U,$J,358.3,32086,1,4,0)
+ ;;^UTILITY(U,$J,358.3,32885,1,3,0)
+ ;;=3^Asthma,Mild Persistent,Uncomp
+ ;;^UTILITY(U,$J,358.3,32885,1,4,0)
+ ;;=4^J45.30
+ ;;^UTILITY(U,$J,358.3,32885,2)
+ ;;=^5008245
+ ;;^UTILITY(U,$J,358.3,32886,0)
+ ;;=J45.31^^99^1354^50
+ ;;^UTILITY(U,$J,358.3,32886,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,32886,1,3,0)
+ ;;=3^Asthma,Mild Persistent w/ Exacerbation
+ ;;^UTILITY(U,$J,358.3,32886,1,4,0)
  ;;=4^J45.31
- ;;^UTILITY(U,$J,358.3,32086,2)
+ ;;^UTILITY(U,$J,358.3,32886,2)
  ;;=^5008246
- ;;^UTILITY(U,$J,358.3,32087,0)
- ;;=J45.32^^92^1231^7
- ;;^UTILITY(U,$J,358.3,32087,1,0)
+ ;;^UTILITY(U,$J,358.3,32887,0)
+ ;;=J45.32^^99^1354^51
+ ;;^UTILITY(U,$J,358.3,32887,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,32087,1,3,0)
+ ;;^UTILITY(U,$J,358.3,32887,1,3,0)
  ;;=3^Asthma,Mild Persistent w/ Status Asthmaticus
- ;;^UTILITY(U,$J,358.3,32087,1,4,0)
+ ;;^UTILITY(U,$J,358.3,32887,1,4,0)
  ;;=4^J45.32
- ;;^UTILITY(U,$J,358.3,32087,2)
+ ;;^UTILITY(U,$J,358.3,32887,2)
  ;;=^5008247
- ;;^UTILITY(U,$J,358.3,32088,0)
- ;;=J45.40^^92^1231^10
- ;;^UTILITY(U,$J,358.3,32088,1,0)
+ ;;^UTILITY(U,$J,358.3,32888,0)
+ ;;=J45.40^^99^1354^55
+ ;;^UTILITY(U,$J,358.3,32888,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,32088,1,3,0)
- ;;=3^Asthma,Moderate Persistent,Uncomplicated
- ;;^UTILITY(U,$J,358.3,32088,1,4,0)
+ ;;^UTILITY(U,$J,358.3,32888,1,3,0)
+ ;;=3^Asthma,Moderate Persistent,Uncomp
+ ;;^UTILITY(U,$J,358.3,32888,1,4,0)
  ;;=4^J45.40
- ;;^UTILITY(U,$J,358.3,32088,2)
+ ;;^UTILITY(U,$J,358.3,32888,2)
  ;;=^5008248
- ;;^UTILITY(U,$J,358.3,32089,0)
- ;;=J44.9^^92^1231^24
- ;;^UTILITY(U,$J,358.3,32089,1,0)
+ ;;^UTILITY(U,$J,358.3,32889,0)
+ ;;=J45.41^^99^1354^53
+ ;;^UTILITY(U,$J,358.3,32889,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,32089,1,3,0)
- ;;=3^COPD,Unspec
- ;;^UTILITY(U,$J,358.3,32089,1,4,0)
- ;;=4^J44.9
- ;;^UTILITY(U,$J,358.3,32089,2)
- ;;=^5008241
- ;;^UTILITY(U,$J,358.3,32090,0)
- ;;=J44.1^^92^1231^22
- ;;^UTILITY(U,$J,358.3,32090,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,32090,1,3,0)
- ;;=3^COPD w/ Acute Exacerbation
- ;;^UTILITY(U,$J,358.3,32090,1,4,0)
- ;;=4^J44.1
- ;;^UTILITY(U,$J,358.3,32090,2)
- ;;=^5008240
- ;;^UTILITY(U,$J,358.3,32091,0)
- ;;=J47.0^^92^1231^15
- ;;^UTILITY(U,$J,358.3,32091,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,32091,1,3,0)
- ;;=3^Bronchiectasis w/ Acute Lower Resp Infection
- ;;^UTILITY(U,$J,358.3,32091,1,4,0)
- ;;=4^J47.0
- ;;^UTILITY(U,$J,358.3,32091,2)
- ;;=^5008258
- ;;^UTILITY(U,$J,358.3,32092,0)
- ;;=J47.1^^92^1231^14
- ;;^UTILITY(U,$J,358.3,32092,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,32092,1,3,0)
- ;;=3^Bronchiectasis w/ Acute Exacerbation
- ;;^UTILITY(U,$J,358.3,32092,1,4,0)
- ;;=4^J47.1
- ;;^UTILITY(U,$J,358.3,32092,2)
- ;;=^5008259
- ;;^UTILITY(U,$J,358.3,32093,0)
- ;;=J47.9^^92^1231^16
- ;;^UTILITY(U,$J,358.3,32093,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,32093,1,3,0)
- ;;=3^Bronchiectasis,Uncomplicated
- ;;^UTILITY(U,$J,358.3,32093,1,4,0)
- ;;=4^J47.9
- ;;^UTILITY(U,$J,358.3,32093,2)
- ;;=^5008260
- ;;^UTILITY(U,$J,358.3,32094,0)
- ;;=J45.41^^92^1231^8
- ;;^UTILITY(U,$J,358.3,32094,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,32094,1,3,0)
+ ;;^UTILITY(U,$J,358.3,32889,1,3,0)
  ;;=3^Asthma,Moderate Persistent w/ Acute Exacerbation
- ;;^UTILITY(U,$J,358.3,32094,1,4,0)
+ ;;^UTILITY(U,$J,358.3,32889,1,4,0)
  ;;=4^J45.41
- ;;^UTILITY(U,$J,358.3,32094,2)
+ ;;^UTILITY(U,$J,358.3,32889,2)
  ;;=^5008249
- ;;^UTILITY(U,$J,358.3,32095,0)
- ;;=J45.42^^92^1231^9
- ;;^UTILITY(U,$J,358.3,32095,1,0)
+ ;;^UTILITY(U,$J,358.3,32890,0)
+ ;;=J45.42^^99^1354^54
+ ;;^UTILITY(U,$J,358.3,32890,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,32095,1,3,0)
+ ;;^UTILITY(U,$J,358.3,32890,1,3,0)
  ;;=3^Asthma,Moderate Persistent w/ Status Asthmaticus
- ;;^UTILITY(U,$J,358.3,32095,1,4,0)
+ ;;^UTILITY(U,$J,358.3,32890,1,4,0)
  ;;=4^J45.42
- ;;^UTILITY(U,$J,358.3,32095,2)
+ ;;^UTILITY(U,$J,358.3,32890,2)
  ;;=^5008250
- ;;^UTILITY(U,$J,358.3,32096,0)
- ;;=J45.51^^92^1231^12
- ;;^UTILITY(U,$J,358.3,32096,1,0)
+ ;;^UTILITY(U,$J,358.3,32891,0)
+ ;;=J45.50^^99^1354^59
+ ;;^UTILITY(U,$J,358.3,32891,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,32096,1,3,0)
+ ;;^UTILITY(U,$J,358.3,32891,1,3,0)
+ ;;=3^Asthma,Severe Persistent,Uncomp
+ ;;^UTILITY(U,$J,358.3,32891,1,4,0)
+ ;;=4^J45.50
+ ;;^UTILITY(U,$J,358.3,32891,2)
+ ;;=^5008251
+ ;;^UTILITY(U,$J,358.3,32892,0)
+ ;;=J45.51^^99^1354^57
+ ;;^UTILITY(U,$J,358.3,32892,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,32892,1,3,0)
  ;;=3^Asthma,Severe Persistent w/ Acute Exacerbation
- ;;^UTILITY(U,$J,358.3,32096,1,4,0)
+ ;;^UTILITY(U,$J,358.3,32892,1,4,0)
  ;;=4^J45.51
- ;;^UTILITY(U,$J,358.3,32096,2)
+ ;;^UTILITY(U,$J,358.3,32892,2)
  ;;=^5008252
- ;;^UTILITY(U,$J,358.3,32097,0)
- ;;=J45.52^^92^1231^13
- ;;^UTILITY(U,$J,358.3,32097,1,0)
+ ;;^UTILITY(U,$J,358.3,32893,0)
+ ;;=J45.52^^99^1354^58
+ ;;^UTILITY(U,$J,358.3,32893,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,32097,1,3,0)
+ ;;^UTILITY(U,$J,358.3,32893,1,3,0)
  ;;=3^Asthma,Severe Persistent w/ Status Asthmaticus
- ;;^UTILITY(U,$J,358.3,32097,1,4,0)
+ ;;^UTILITY(U,$J,358.3,32893,1,4,0)
  ;;=4^J45.52
- ;;^UTILITY(U,$J,358.3,32097,2)
+ ;;^UTILITY(U,$J,358.3,32893,2)
  ;;=^5008253
- ;;^UTILITY(U,$J,358.3,32098,0)
- ;;=J45.901^^92^1231^1
- ;;^UTILITY(U,$J,358.3,32098,1,0)
+ ;;^UTILITY(U,$J,358.3,32894,0)
+ ;;=J45.990^^99^1354^60
+ ;;^UTILITY(U,$J,358.3,32894,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,32098,1,3,0)
- ;;=3^Asthma w/ Acute Exacerbation,Unspec
- ;;^UTILITY(U,$J,358.3,32098,1,4,0)
- ;;=4^J45.901
- ;;^UTILITY(U,$J,358.3,32098,2)
- ;;=^5008254
- ;;^UTILITY(U,$J,358.3,32099,0)
- ;;=J45.902^^92^1231^2
- ;;^UTILITY(U,$J,358.3,32099,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,32099,1,3,0)
- ;;=3^Asthma w/ Status Asthmaticus,Unspec
- ;;^UTILITY(U,$J,358.3,32099,1,4,0)
- ;;=4^J45.902
- ;;^UTILITY(U,$J,358.3,32099,2)
- ;;=^5008255
- ;;^UTILITY(U,$J,358.3,32100,0)
- ;;=J45.990^^92^1231^31
- ;;^UTILITY(U,$J,358.3,32100,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,32100,1,3,0)
- ;;=3^Exercised Induced Bronchospasm
- ;;^UTILITY(U,$J,358.3,32100,1,4,0)
+ ;;^UTILITY(U,$J,358.3,32894,1,3,0)
+ ;;=3^Bronchospasm,Exercise Induced
+ ;;^UTILITY(U,$J,358.3,32894,1,4,0)
  ;;=4^J45.990
- ;;^UTILITY(U,$J,358.3,32100,2)
+ ;;^UTILITY(U,$J,358.3,32894,2)
  ;;=^329926
- ;;^UTILITY(U,$J,358.3,32101,0)
- ;;=J45.998^^92^1231^11
- ;;^UTILITY(U,$J,358.3,32101,1,0)
+ ;;^UTILITY(U,$J,358.3,32895,0)
+ ;;=J45.991^^99^1354^46
+ ;;^UTILITY(U,$J,358.3,32895,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,32101,1,3,0)
- ;;=3^Asthma,Other
- ;;^UTILITY(U,$J,358.3,32101,1,4,0)
- ;;=4^J45.998
- ;;^UTILITY(U,$J,358.3,32101,2)
- ;;=^5008257
- ;;^UTILITY(U,$J,358.3,32102,0)
- ;;=J45.991^^92^1231^25
- ;;^UTILITY(U,$J,358.3,32102,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,32102,1,3,0)
- ;;=3^Cough Variant Asthma
- ;;^UTILITY(U,$J,358.3,32102,1,4,0)
+ ;;^UTILITY(U,$J,358.3,32895,1,3,0)
+ ;;=3^Asthma,Cough Variant
+ ;;^UTILITY(U,$J,358.3,32895,1,4,0)
  ;;=4^J45.991
- ;;^UTILITY(U,$J,358.3,32102,2)
+ ;;^UTILITY(U,$J,358.3,32895,2)
  ;;=^329927
- ;;^UTILITY(U,$J,358.3,32103,0)
- ;;=I50.1^^92^1232^14
- ;;^UTILITY(U,$J,358.3,32103,1,0)
+ ;;^UTILITY(U,$J,358.3,32896,0)
+ ;;=J45.998^^99^1354^56
+ ;;^UTILITY(U,$J,358.3,32896,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,32103,1,3,0)
- ;;=3^Left Ventricular Failure
- ;;^UTILITY(U,$J,358.3,32103,1,4,0)
- ;;=4^I50.1
- ;;^UTILITY(U,$J,358.3,32103,2)
- ;;=^5007238
+ ;;^UTILITY(U,$J,358.3,32896,1,3,0)
+ ;;=3^Asthma,Other
+ ;;^UTILITY(U,$J,358.3,32896,1,4,0)
+ ;;=4^J45.998
+ ;;^UTILITY(U,$J,358.3,32896,2)
+ ;;=^5008257
+ ;;^UTILITY(U,$J,358.3,32897,0)
+ ;;=H10.11^^99^1355^5
+ ;;^UTILITY(U,$J,358.3,32897,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,32897,1,3,0)
+ ;;=3^Conjunctivitis,Acute Atopic,Right Eye
+ ;;^UTILITY(U,$J,358.3,32897,1,4,0)
+ ;;=4^H10.11
+ ;;^UTILITY(U,$J,358.3,32897,2)
+ ;;=^5004665
+ ;;^UTILITY(U,$J,358.3,32898,0)
+ ;;=H10.12^^99^1355^4
+ ;;^UTILITY(U,$J,358.3,32898,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,32898,1,3,0)
+ ;;=3^Conjunctivitis,Acute Atopic,Left Eye
+ ;;^UTILITY(U,$J,358.3,32898,1,4,0)
+ ;;=4^H10.12
+ ;;^UTILITY(U,$J,358.3,32898,2)
+ ;;=^5004666
+ ;;^UTILITY(U,$J,358.3,32899,0)
+ ;;=H10.13^^99^1355^3
+ ;;^UTILITY(U,$J,358.3,32899,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,32899,1,3,0)
+ ;;=3^Conjunctivitis,Acute Atopic,Bilateral
+ ;;^UTILITY(U,$J,358.3,32899,1,4,0)
+ ;;=4^H10.13
+ ;;^UTILITY(U,$J,358.3,32899,2)
+ ;;=^5004667
+ ;;^UTILITY(U,$J,358.3,32900,0)
+ ;;=H10.31^^99^1355^8
+ ;;^UTILITY(U,$J,358.3,32900,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,32900,1,3,0)
+ ;;=3^Conjunctivitis,Acute,Unspec,Right Eye
+ ;;^UTILITY(U,$J,358.3,32900,1,4,0)
+ ;;=4^H10.31
+ ;;^UTILITY(U,$J,358.3,32900,2)
+ ;;=^5133458
+ ;;^UTILITY(U,$J,358.3,32901,0)
+ ;;=H10.32^^99^1355^7
+ ;;^UTILITY(U,$J,358.3,32901,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,32901,1,3,0)
+ ;;=3^Conjunctivitis,Acute,Unspec,Left Eye
+ ;;^UTILITY(U,$J,358.3,32901,1,4,0)
+ ;;=4^H10.32
+ ;;^UTILITY(U,$J,358.3,32901,2)
+ ;;=^5133459
+ ;;^UTILITY(U,$J,358.3,32902,0)
+ ;;=H10.33^^99^1355^6
+ ;;^UTILITY(U,$J,358.3,32902,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,32902,1,3,0)
+ ;;=3^Conjunctivitis,Acute,Unspec,Bilateral
+ ;;^UTILITY(U,$J,358.3,32902,1,4,0)
+ ;;=4^H10.33
+ ;;^UTILITY(U,$J,358.3,32902,2)
+ ;;=^5004680
+ ;;^UTILITY(U,$J,358.3,32903,0)
+ ;;=H10.45^^99^1355^9
+ ;;^UTILITY(U,$J,358.3,32903,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,32903,1,3,0)
+ ;;=3^Conjunctivitis,Allergic,Other Chronic
+ ;;^UTILITY(U,$J,358.3,32903,1,4,0)
+ ;;=4^H10.45
+ ;;^UTILITY(U,$J,358.3,32903,2)
+ ;;=^87396
+ ;;^UTILITY(U,$J,358.3,32904,0)
+ ;;=H26.9^^99^1355^2
+ ;;^UTILITY(U,$J,358.3,32904,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,32904,1,3,0)
+ ;;=3^Cataract,Unspec
+ ;;^UTILITY(U,$J,358.3,32904,1,4,0)
+ ;;=4^H26.9
+ ;;^UTILITY(U,$J,358.3,32904,2)
+ ;;=^5005363
+ ;;^UTILITY(U,$J,358.3,32905,0)
+ ;;=H40.9^^99^1355^10
+ ;;^UTILITY(U,$J,358.3,32905,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,32905,1,3,0)
+ ;;=3^Glaucoma,Unspec
+ ;;^UTILITY(U,$J,358.3,32905,1,4,0)
+ ;;=4^H40.9
+ ;;^UTILITY(U,$J,358.3,32905,2)
+ ;;=^5005931
+ ;;^UTILITY(U,$J,358.3,32906,0)
+ ;;=H54.7^^99^1355^14
+ ;;^UTILITY(U,$J,358.3,32906,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,32906,1,3,0)
+ ;;=3^Visual Loss,Unspec
+ ;;^UTILITY(U,$J,358.3,32906,1,4,0)
+ ;;=4^H54.7
+ ;;^UTILITY(U,$J,358.3,32906,2)
+ ;;=^5006368
+ ;;^UTILITY(U,$J,358.3,32907,0)
+ ;;=H57.11^^99^1355^13
+ ;;^UTILITY(U,$J,358.3,32907,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,32907,1,3,0)
+ ;;=3^Ocular Pain,Right Eye

@@ -1,5 +1,5 @@
 IBCECSA4 ;ALB/CXW - IB CLAIMS STATUS AWAITING RESOLUTION SCREEN ;5-AUG-1999
- ;;2.0;INTEGRATED BILLING;**137,155,320,371,433,516**;21-MAR-1994;Build 123
+ ;;2.0;INTEGRATED BILLING;**137,155,320,371,433,516,641**;21-MAR-1994;Build 61
  ;;Per VA Directive 6402, this routine should not be modified.
  ;
 SMSG ;select message
@@ -50,8 +50,14 @@ TPJI ;Third Party joint Inquiry
  ;
 PBILL ;Print bill - not for resubmit
  ; IB*320 - allow action for MRA request claims
- N IBIFN,IBX,IBA,IBRESUB
+ ;N IBIFN,IBX,IBA,IBRESUB
+ N IBIFN,IBX,IBA,IBRESUB,IB361,IBRESULT  ;WCJ;US3380
+ S IBRESULT=0
  D FULL^VALM1
+ ;
+ ;D APPERROR^%ZTER("PBILL^IBCECSA4")
+ I '$$ERRWARN() G PB1  ;/IB*2*641 - US3380. (Display warning message for a claim that has an Error or has been rejected.
+ ;
  S IBDAX=$O(IBDAX(0)),IBIFN=+$G(IBDAX(+IBDAX))
  I "234"'[$P($G(^DGCR(399,IBIFN,0)),U,13) W !!,"Bill status must be REQUEST MRA, AUTHORIZED or PRNT/TX to print the bill." D PAUSE^VALM1 G PB1
  ;
@@ -62,9 +68,15 @@ PBILL ;Print bill - not for resubmit
  I IBRESUB=2 D  G PB1
  . N IB364
  . S IB364=+$P($G(IBDAX(IBDAX)),U,5)
- . D PRINT1^IBCEM03(IBIFN,.IBDAX,IB364)
- D PBILL1^IBCECOB2(IBIFN)
+ . D PRINT1^IBCEM03(IBIFN,.IBDAX,IB364,,.IBRESULT)  ;WCJ;US3380
+ D PBILL1^IBCECOB2(IBIFN,.IBRESULT)  ;WCJ;US3380
+ ;
 PB1 ;
+ I $G(IBRESULT) D
+ . Q:'+$G(IBDAX)  ;WCJ;IB*2.0*641;V13;failsafe - since this was just for a report to track users actions. no use crachiung if it's not there
+ . S IB361=+$P($G(IBDAX(IBDAX)),U,2)   ;WCJ;IB641
+ . D LOGATMP(IB361,DUZ,$$NOW^XLFDT(),"P")   ;IB*2*641 (US3380) - Log an attempt to process a claim that has an error or was rejected.
+ ;
  S VALMBCK="R"
  Q
  ;
@@ -137,12 +149,19 @@ PROQ S VALMBCK="R"
  Q
  ;
 RES ;Resubmit bill by print
- N IBTMP,IB364,IBIFN,IBX,IBA
+ ;N IBTMP,IB364,IBIFN,IBX,IBA
+ N IBTMP,IB364,IBIFN,IBX,IBA,IB361  ;WCJ;IB641;US3380
  D FULL^VALM1
  S (IBTMP,IBDAX)=$O(IBDAX(0)),IBTMP(IBTMP)=IBDAX(IBDAX)
  S IBIFN=$P($G(IBDAX(+IBDAX)),U)
  S IB364=+$P($G(IBDAX(IBDAX)),U,5)
- I IBIFN D PRINT1^IBCEM03(IBIFN,.IBDAX,IB364),PAUSE^VALM1,INIT^IBCECSA2
+ S IB361=+$P($G(IBDAX(IBDAX)),U,2) ;WCJ;IB641
+ ;D APPERROR^%ZTER("RES^IBCECSA4")
+ I IBIFN,$$ERRWARN() D   ;/IB*2*641 - US3380. (Display warning message for a claim that has an Error or has been rejected.
+ . N IBRESULT
+ . D PRINT1^IBCEM03(IBIFN,.IBDAX,IB364,,.IBRESULT) ;WCJ;IB641;US3380
+ . D PAUSE^VALM1,INIT^IBCECSA2 ;WCJ;US3380
+ . I $G(IBRESULT) D LOGATMP(IB361,DUZ,$$NOW^XLFDT(),"PX")   ;/IB*2*641 (US3380) - Log an attempt to process a claim that has an error or was rejected.
  S IBDAX(IBTMP)=IBTMP(IBTMP)
  S VALMBCK="R"
  Q
@@ -216,12 +235,23 @@ RESUB(IBIFN,TXMT,IBFUNC,IBTBA) ; Function asks if resubmit as resolution to a
 RESUB1 Q +Y
  ;
 RETXMT ;
- N IB364,IBIFN
+ ;N IB364,IBIFN
+ N IB364,IBIFN,IB361,IBRES ; WCJ;IB641
  D FULL^VALM1
- S IBDAX=$O(IBDAX(0)),IB364=+$P($G(IBDAX(IBDAX)),U,5),IBIFN=+$P($G(IBDAX(IBDAX)),U)
- I 'IB364!('IBIFN) G RETXMTQ
+ ;S IBDAX=$O(IBDAX(0)),IB364=+$P($G(IBDAX(IBDAX)),U,5),IBIFN=+$P($G(IBDAX(IBDAX)),U) 
+ S IBDAX=$O(IBDAX(0)),IB364=+$P($G(IBDAX(IBDAX)),U,5),IBIFN=+$P($G(IBDAX(IBDAX)),U),IB361=+$P($G(IBDAX(IBDAX)),U,2) ; WCJ;IB641 
+ ;I 'IB364!('IBIFN) G RETXMTQ
+ I 'IB364!('IBIFN)!('IB361) G RETXMTQ ; WCJ;IB641 
  D MRACHK I MRACHK G RETXMTQ
- D RESUB^IBCE(IB364)
+ ;
+ ;D APPERROR^%ZTER("RETXMT^IBCECSA4")
+ I '$$ERRWARN() G RETXMTQ  ;/IB*2*641 - US3380. (Display warning message for a claim that has an Error or has been rejected.
+ ;
+ ;D RESUB^IBCE(IB364)
+ D RESUB^IBCE(IB364,.IBRES)  ;WCJ;IB641 added paramter to see if retransmit was successful.
+ ;
+ ; if successful in retransmit - log an attempt to process a claim that has an error or was rejected.
+ I $G(IBRES) D LOGATMP(IB361,DUZ,$$NOW^XLFDT(),"TX")   ;/IB*2*641 (US3380)
 RETXMTQ S VALMBCK="R"
  Q
  ;
@@ -233,3 +263,35 @@ MRACHK ; Restrict access to process REQUEST MRA claims
  . W !,?4,"the MRA Management Worklist.  Please use the MRA Management Menu"
  . W !,?4,"options for all processing related to this bill."
  Q
+ ;
+ERRWARN() ; Display the warning message when someone is about to Resubmit by Print,
+ ;        Retransmit or Print a bill that has an error or was rejected. - IB*2*641
+ ;        (US3380).
+ W !,?4,"You are about to Resubmit by Print, Retransmit or Print a bill"
+ W !,?4,"that has an error or was rejected without making any changes to"
+ W !,?4,"the claim.  Please check before continuing."
+ D PAUSE^VALM1
+ Q Y
+ ;
+LOGATMP(IBDA,USER,CURDAT,ACTION) ; Log a new entry in the "ARPN" cross-reference
+ ; for an attempt to Resubmit by Print, Retransmit, or Print a claim after ignoring
+ ; the warning message saying the claim has an error or was rejected.
+ ;
+ ;   Input:   IBDA is the internal claim number
+ ;            USER is User who made attempt
+ ;            CURDAT is date of attempt
+ ;            ACTION is the attempted action ["P"=Print,"PX"=Resubmit by Print or
+ ;                   "TX"=Retransmit]).
+ ;
+ Q:'$D(^IBM(361,IBDA))
+ Q:$$GET1^DIQ(361,IBDA,.03,"I")="I"   ; don't log if info only
+ N ADDARY,IENS,RETURN
+ ;
+ ; ADD CODE TO LOG AN ENTRY IN ^IBM(361,"ARPN",CURDAT,IBIFN,IBDA)
+ S IENS="+1,"_IBDA_","
+ S ADDARY(361.04,IENS,.01)=CURDAT
+ S ADDARY(361.04,IENS,.02)=USER
+ S ADDARY(361.04,IENS,.03)=ACTION
+ D UPDATE^DIE("","ADDARY","","RETURN")
+ Q
+ ;

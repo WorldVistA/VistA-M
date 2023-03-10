@@ -1,126 +1,128 @@
-IBDEI0RK ; ; 04-FEB-2020
- ;;3.0;IB ENCOUNTER FORM IMP/EXP;;FEB 04, 2020
+IBDEI0RK ; ; 01-FEB-2022
+ ;;3.0;IB ENCOUNTER FORM IMP/EXP;;FEB 01, 2022
  Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,999) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
- ;;^UTILITY(U,$J,358.3,12300,1,0)
+ ;;^UTILITY(U,$J,358.3,12409,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,12300,1,3,0)
- ;;=3^Melanoma in Situ of Lip
- ;;^UTILITY(U,$J,358.3,12300,1,4,0)
- ;;=4^D03.0
- ;;^UTILITY(U,$J,358.3,12300,2)
- ;;=^5001888
- ;;^UTILITY(U,$J,358.3,12301,0)
- ;;=D03.21^^80^776^31
- ;;^UTILITY(U,$J,358.3,12301,1,0)
+ ;;^UTILITY(U,$J,358.3,12409,1,3,0)
+ ;;=3^Hemorrhagic Disorder d/t Intrns Circ Anticoag/Antibodies/Inhibitors
+ ;;^UTILITY(U,$J,358.3,12409,1,4,0)
+ ;;=4^D68.318
+ ;;^UTILITY(U,$J,358.3,12409,2)
+ ;;=^340504
+ ;;^UTILITY(U,$J,358.3,12410,0)
+ ;;=D50.9^^49^600^30
+ ;;^UTILITY(U,$J,358.3,12410,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,12301,1,3,0)
- ;;=3^Melanoma in Situ of Right Ear/External Auricular Canal
- ;;^UTILITY(U,$J,358.3,12301,1,4,0)
- ;;=4^D03.21
- ;;^UTILITY(U,$J,358.3,12301,2)
- ;;=^5001893
- ;;^UTILITY(U,$J,358.3,12302,0)
- ;;=D03.22^^80^776^24
- ;;^UTILITY(U,$J,358.3,12302,1,0)
+ ;;^UTILITY(U,$J,358.3,12410,1,3,0)
+ ;;=3^Iron Deficiency Anemia,Unspec
+ ;;^UTILITY(U,$J,358.3,12410,1,4,0)
+ ;;=4^D50.9
+ ;;^UTILITY(U,$J,358.3,12410,2)
+ ;;=^5002283
+ ;;^UTILITY(U,$J,358.3,12411,0)
+ ;;=D64.81^^49^600^3
+ ;;^UTILITY(U,$J,358.3,12411,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,12302,1,3,0)
- ;;=3^Melanoma in Situ of Left Ear/External Auricular Canal
- ;;^UTILITY(U,$J,358.3,12302,1,4,0)
- ;;=4^D03.22
- ;;^UTILITY(U,$J,358.3,12302,2)
- ;;=^5001894
- ;;^UTILITY(U,$J,358.3,12303,0)
- ;;=D03.30^^80^776^23
- ;;^UTILITY(U,$J,358.3,12303,1,0)
+ ;;^UTILITY(U,$J,358.3,12411,1,3,0)
+ ;;=3^Anemia d/t Antineoplastic Chemotherapy
+ ;;^UTILITY(U,$J,358.3,12411,1,4,0)
+ ;;=4^D64.81
+ ;;^UTILITY(U,$J,358.3,12411,2)
+ ;;=^5002349
+ ;;^UTILITY(U,$J,358.3,12412,0)
+ ;;=D63.1^^49^600^5
+ ;;^UTILITY(U,$J,358.3,12412,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,12303,1,3,0)
- ;;=3^Melanoma in Situ of Face,Unspec
- ;;^UTILITY(U,$J,358.3,12303,1,4,0)
- ;;=4^D03.30
- ;;^UTILITY(U,$J,358.3,12303,2)
- ;;=^5001895
- ;;^UTILITY(U,$J,358.3,12304,0)
- ;;=D03.39^^80^776^22
- ;;^UTILITY(U,$J,358.3,12304,1,0)
+ ;;^UTILITY(U,$J,358.3,12412,1,3,0)
+ ;;=3^Anemia in Chronic Kidney Disease
+ ;;^UTILITY(U,$J,358.3,12412,1,4,0)
+ ;;=4^D63.1
+ ;;^UTILITY(U,$J,358.3,12412,2)
+ ;;=^332908
+ ;;^UTILITY(U,$J,358.3,12413,0)
+ ;;=D62.^^49^600^1
+ ;;^UTILITY(U,$J,358.3,12413,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,12304,1,3,0)
- ;;=3^Melanoma in Situ of Face NEC
- ;;^UTILITY(U,$J,358.3,12304,1,4,0)
- ;;=4^D03.39
- ;;^UTILITY(U,$J,358.3,12304,2)
- ;;=^5001896
- ;;^UTILITY(U,$J,358.3,12305,0)
- ;;=D03.4^^80^776^36
- ;;^UTILITY(U,$J,358.3,12305,1,0)
+ ;;^UTILITY(U,$J,358.3,12413,1,3,0)
+ ;;=3^Acute Blood Loss Anemia
+ ;;^UTILITY(U,$J,358.3,12413,1,4,0)
+ ;;=4^D62.
+ ;;^UTILITY(U,$J,358.3,12413,2)
+ ;;=^267986
+ ;;^UTILITY(U,$J,358.3,12414,0)
+ ;;=D51.9^^49^600^36
+ ;;^UTILITY(U,$J,358.3,12414,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,12305,1,3,0)
- ;;=3^Melanoma in Situ of Scalp/Neck
- ;;^UTILITY(U,$J,358.3,12305,1,4,0)
- ;;=4^D03.4
- ;;^UTILITY(U,$J,358.3,12305,2)
- ;;=^5001897
- ;;^UTILITY(U,$J,358.3,12306,0)
- ;;=D03.51^^80^776^20
- ;;^UTILITY(U,$J,358.3,12306,1,0)
+ ;;^UTILITY(U,$J,358.3,12414,1,3,0)
+ ;;=3^Vitamin B12 Deficiency Anemia,Unspec
+ ;;^UTILITY(U,$J,358.3,12414,1,4,0)
+ ;;=4^D51.9
+ ;;^UTILITY(U,$J,358.3,12414,2)
+ ;;=^5002289
+ ;;^UTILITY(U,$J,358.3,12415,0)
+ ;;=D51.3^^49^600^35
+ ;;^UTILITY(U,$J,358.3,12415,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,12306,1,3,0)
- ;;=3^Melanoma in Situ of Anal Skin
- ;;^UTILITY(U,$J,358.3,12306,1,4,0)
- ;;=4^D03.51
- ;;^UTILITY(U,$J,358.3,12306,2)
- ;;=^5001898
- ;;^UTILITY(U,$J,358.3,12307,0)
- ;;=D03.52^^80^776^21
- ;;^UTILITY(U,$J,358.3,12307,1,0)
+ ;;^UTILITY(U,$J,358.3,12415,1,3,0)
+ ;;=3^Vitamin B12 Deficiency Anemia,Dietary
+ ;;^UTILITY(U,$J,358.3,12415,1,4,0)
+ ;;=4^D51.3
+ ;;^UTILITY(U,$J,358.3,12415,2)
+ ;;=^5002287
+ ;;^UTILITY(U,$J,358.3,12416,0)
+ ;;=D51.0^^49^600^32
+ ;;^UTILITY(U,$J,358.3,12416,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,12307,1,3,0)
- ;;=3^Melanoma in Situ of Breast
- ;;^UTILITY(U,$J,358.3,12307,1,4,0)
- ;;=4^D03.52
- ;;^UTILITY(U,$J,358.3,12307,2)
- ;;=^5001899
- ;;^UTILITY(U,$J,358.3,12308,0)
- ;;=D03.59^^80^776^37
- ;;^UTILITY(U,$J,358.3,12308,1,0)
+ ;;^UTILITY(U,$J,358.3,12416,1,3,0)
+ ;;=3^Pernicious Anemia
+ ;;^UTILITY(U,$J,358.3,12416,1,4,0)
+ ;;=4^D51.0
+ ;;^UTILITY(U,$J,358.3,12416,2)
+ ;;=^5002284
+ ;;^UTILITY(U,$J,358.3,12417,0)
+ ;;=D50.0^^49^600^4
+ ;;^UTILITY(U,$J,358.3,12417,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,12308,1,3,0)
- ;;=3^Melanoma in Situ of Trunk NEC
- ;;^UTILITY(U,$J,358.3,12308,1,4,0)
- ;;=4^D03.59
- ;;^UTILITY(U,$J,358.3,12308,2)
- ;;=^5001900
- ;;^UTILITY(U,$J,358.3,12309,0)
- ;;=D03.61^^80^776^35
- ;;^UTILITY(U,$J,358.3,12309,1,0)
+ ;;^UTILITY(U,$J,358.3,12417,1,3,0)
+ ;;=3^Anemia d/t Blood Loss (Chronic)
+ ;;^UTILITY(U,$J,358.3,12417,1,4,0)
+ ;;=4^D50.0
+ ;;^UTILITY(U,$J,358.3,12417,2)
+ ;;=^267971
+ ;;^UTILITY(U,$J,358.3,12418,0)
+ ;;=E11.21^^49^600^19
+ ;;^UTILITY(U,$J,358.3,12418,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,12309,1,3,0)
- ;;=3^Melanoma in Situ of Right Upper Limb
- ;;^UTILITY(U,$J,358.3,12309,1,4,0)
- ;;=4^D03.61
- ;;^UTILITY(U,$J,358.3,12309,2)
- ;;=^5001902
- ;;^UTILITY(U,$J,358.3,12310,0)
- ;;=D03.62^^80^776^28
- ;;^UTILITY(U,$J,358.3,12310,1,0)
+ ;;^UTILITY(U,$J,358.3,12418,1,3,0)
+ ;;=3^DM Type 2 w/ Nephropathy
+ ;;^UTILITY(U,$J,358.3,12418,1,4,0)
+ ;;=4^E11.21
+ ;;^UTILITY(U,$J,358.3,12418,2)
+ ;;=^5002629
+ ;;^UTILITY(U,$J,358.3,12419,0)
+ ;;=E11.22^^49^600^9
+ ;;^UTILITY(U,$J,358.3,12419,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,12310,1,3,0)
- ;;=3^Melanoma in Situ of Left Upper Limb
- ;;^UTILITY(U,$J,358.3,12310,1,4,0)
- ;;=4^D03.62
- ;;^UTILITY(U,$J,358.3,12310,2)
- ;;=^5001903
- ;;^UTILITY(U,$J,358.3,12311,0)
- ;;=D03.71^^80^776^33
- ;;^UTILITY(U,$J,358.3,12311,1,0)
+ ;;^UTILITY(U,$J,358.3,12419,1,3,0)
+ ;;=3^DM Type 2 w/ Diabetic CKD
+ ;;^UTILITY(U,$J,358.3,12419,1,4,0)
+ ;;=4^E11.22
+ ;;^UTILITY(U,$J,358.3,12419,2)
+ ;;=^5002630
+ ;;^UTILITY(U,$J,358.3,12420,0)
+ ;;=E11.29^^49^600^20
+ ;;^UTILITY(U,$J,358.3,12420,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,12311,1,3,0)
- ;;=3^Melanoma in Situ of Right Lower Limb
- ;;^UTILITY(U,$J,358.3,12311,1,4,0)
- ;;=4^D03.71
- ;;^UTILITY(U,$J,358.3,12311,2)
- ;;=^5001905
- ;;^UTILITY(U,$J,358.3,12312,0)
- ;;=D03.72^^80^776^26
- ;;^UTILITY(U,$J,358.3,12312,1,0)
+ ;;^UTILITY(U,$J,358.3,12420,1,3,0)
+ ;;=3^DM Type 2 w/ Other Diabetic Kidney Complication
+ ;;^UTILITY(U,$J,358.3,12420,1,4,0)
+ ;;=4^E11.29
+ ;;^UTILITY(U,$J,358.3,12420,2)
+ ;;=^5002631
+ ;;^UTILITY(U,$J,358.3,12421,0)
+ ;;=E11.311^^49^600^21
+ ;;^UTILITY(U,$J,358.3,12421,1,0)
  ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,12421,1,3,0)
+ ;;=3^DM Type 2 w/ Unspec Diabetic Retinopathy w/ Macular edema

@@ -1,5 +1,5 @@
-PSJPDRTP ;BIR/MV-PRINT PADE TRANSACTION REPORT  ;11/15/2015
- ;;5.0;INPATIENT MEDICATIONS;**317**;16 DEC 97;Build 130
+PSJPDRTP ;BIR/MV - PRINT PADE TRANSACTION REPORT; Jun 29, 2022@12:45
+ ;;5.0;INPATIENT MEDICATIONS;**317,435**;16 DEC 97;Build 2
  ;
  ; Reference to ^%ZISC is supported by DBIA 10089.
  ; Reference to ^VA(200 is supported by DBIA 10060.
@@ -37,7 +37,10 @@ DELIM(PSJINP) ; Output delimited report
  .S PSJLNCNT=0 F  S PSJLNCNT=$O(^TMP($J,"PSJPDRTR",PSJPGCNT,PSJLNCNT)) Q:'PSJLNCNT!$G(PSJQUIT)  D
  ..N PSJLNRAW,PSJLNFMT   ; Get output, remove unused pieces in delimited
  ..S PSJLNRAW=$G(^TMP($J,"PSJPDRTR",PSJPGCNT,PSJLNCNT))
- ..S PSJLNFMT=$P(PSJLNRAW,"^",1,16)_"^"_$P(PSJLNRAW,"^",19)
+ ..;PSJ*5.0*435: Change $P(PSJLNRAW,"^",1,16)_"^"_$P(PSJLNRAW,"^",19)
+ ..;             to $P(PSJLNRAW,"^",1,15)_"^"_$P(PSJLNRAW,"^",18)
+ ..;             so that comments will appear on delimited report.
+ ..S PSJLNFMT=$P(PSJLNRAW,"^",1,15)_"^"_$P(PSJLNRAW,"^",18)
  ..W !,PSJLNFMT
  D ^%ZISC
  D EXIT

@@ -1,6 +1,6 @@
-RCDPEX2 ;ALB/TMK/KML/PJH - ELECTRONIC EOB DETAIL EXCEPTION MAIN LIST TEMPLATE ;Aug 14, 2014@15:07:21
- ;;4.5;Accounts Receivable;**173,269,298,304,326**;Mar 20, 1995;Build 26
- ;;Per VA Directive 6402, this routine should not be modified.
+RCDPEX2 ;ALB/TMK/KML/PJH - ELECTRONIC EOB DETAIL EXCEPTION MAIN LIST TEMPLATE ;20 Dec 2018 17:20:51
+ ;;4.5;Accounts Receivable;**173,269,298,304,326,345**;Mar 20, 1995;Build 34
+ ;Per VA Directive 6402, this routine should not be modified.
  ;
 INIT ;EP from listman template RCDPEX EOB_SUM EXCEPTION LIST
  ; set up initial variables
@@ -90,19 +90,19 @@ BLD ;EP from RCDPEX3,RCDPEX31,RCDEPEX32
  . . . . S X=$$SETSTR^VALM1("      Comment: "_RCOMMNT,X,1,80)
  . . . . D SET(X,RCSEQ,RCMSG,RCS)
  . . . ;
- . . . I $P(RC0,U,11) D
- . . . . S X=$J("",10)_"Transferred To: "_$G(RCDPDATA(344.41,RCSUB,.11,"E"))
- . . . . S XX=$$FMTE^XLFDT($G(RCDPDATA(344.41,RCSUB,.12,"I")),"2DZ")
- . . . . S X=$$SETSTR^VALM1("  On: "_XX,X,$L(X)+1,25)
- . . . . D SET(X,RCSEQ,RCMSG,RCS)
+ . . . ;I $P(RC0,U,11) D  ; removed PRCA*4.5*345
+ . . . ;. S X=$J("",10)_"Transferred To: "_$G(RCDPDATA(344.41,RCSUB,.11,"E"))
+ . . . ;. S XX=$$FMTE^XLFDT($G(RCDPDATA(344.41,RCSUB,.12,"I")),"2DZ")
+ . . . ;. S X=$$SETSTR^VALM1("  On: "_XX,X,$L(X)+1,25)
+ . . . ;. D SET(X,RCSEQ,RCMSG,RCS)
  . . . S XX=$G(RCDPDATA(344.41,RCSUB,.08,"E"))
  . . . S RCEXC=$S($G(RCDPDATA(344.41,RCSUB,.07,"I"))=99:$S(XX'="":XX,1:"UNKNOWN"),1:$G(RCDPDATA(344.41,RCSUB,.07,"E")))
  . . . ; PRCA*4.5*298 Remove comment " (TRANSFER NEEDED IF NOT YOURS)"
  . . . S X=$J("",10)_"**Exception: "_RCEXC
- . . . I $P(RC0,U,7)=1 D
- . . . . I $P(RC0,U,10)=0 S X=X_" (TRANSFER REJECTED)" Q
- . . . . I $P(RC0,U,16) S X=X_" (TRANSFER ACKNOWLEDGED)" Q
- . . . . S X=X_" (TRANSFER NOT ACKNOWLEDGED)"
+ . . . ;I $P(RC0,U,7)=1 D  ; removed PRCA*4.5*345
+ . . . ; I $P(RC0,U,10)=0 S X=X_" (TRANSFER REJECTED)" Q
+ . . . ; I $P(RC0,U,16) S X=X_" (TRANSFER ACKNOWLEDGED)" Q
+ . . . ; S X=X_" (TRANSFER NOT ACKNOWLEDGED)"
  . . . D SET(X,RCSEQ,RCMSG,RCS)
  ;
  I '$D(^TMP("RCDPEX_SUM-EOB",$J)) D
@@ -145,3 +145,4 @@ DIQ3444(DA,DR,RCPDATA) ; DIQ call to retrieve data for DR fields in file 344.4/3
  K RCDPDATA(FILE)
  D GETS^DIQ(FILE,DA_","_$S($G(DA(1)):DA(1)_",",1:""),DR,"EI","RCDPDATA")
  Q
+ ;

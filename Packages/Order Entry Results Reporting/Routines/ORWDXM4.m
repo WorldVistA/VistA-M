@@ -1,5 +1,5 @@
-ORWDXM4 ; SLC/KCM - Order Dialogs, Menus;05/09/17 ;05/10/17  07:48
- ;;3.0;ORDER ENTRY/RESULTS REPORTING;**10,85,215,296,280,394,350,434**;Dec 17, 1997;Build 35
+ORWDXM4 ; SLC/KCM - Order Dialogs, Menus;05/09/17 ;Jun 21, 2022@14:26:46
+ ;;3.0;ORDER ENTRY/RESULTS REPORTING;**10,85,215,296,280,394,350,434,569**;Dec 17, 1997;Build 23
  ;
 SETUP ; -- setup dialog (continued from ORWDXM1)
  ;    if xfer med order, setup ORDIALOG differently
@@ -36,6 +36,7 @@ SETUPS ; -- setup for specific types of dialogs (continued from ORWDXM1)
  . S:Y="Y" ORWPSWRG="" ;
  I ORRAORD D RA^ORWDXM2 G XENV
  I ORDIALOG=$O(^ORD(101.41,"B","LR OTHER LAB TESTS",0))   D LR^ORWDXM2 G XENV
+ I ORDIALOG=$O(^ORD(101.41,"B","LR OTHER LAB AP TESTS",0)) D LR^ORWDXM2 G XENV
  I ORDIALOG=$O(^ORD(101.41,"B","FHW1",0))                 D DO^ORWDXM2 G XENV
  I ORDIALOG=$O(^ORD(101.41,"B","FHW2",0))                 D EL^ORWDXM2 G XENV
  I ORDIALOG=$O(^ORD(101.41,"B","PSJ OR PAT OE",0))        D UD^ORWDXM2 G XENV

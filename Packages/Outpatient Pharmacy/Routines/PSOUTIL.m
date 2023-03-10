@@ -1,5 +1,5 @@
 PSOUTIL ;IHS/DSD/JCM - outpatient pharmacy utility routine ;12/28/15 4:01pm
- ;;7.0;OUTPATIENT PHARMACY;**64,456,444,469,504**;DEC 1997;Build 15
+ ;;7.0;OUTPATIENT PHARMACY;**64,456,444,469,504,651**;DEC 1997;Build 30
  ;External reference $$MXDAYSUP^PSSUTIL1 supported by DBIA 6229
  ;External reference to ^ORDEA is supported by DBIA 5709
  ;
@@ -246,11 +246,11 @@ BADADDFL(RXIEN) ; Indicate whether an Rx should be flagged with a Bad Address
  . S LSTLBLTX=$G(^PSRX(+RXIEN,"L",LSTLBLSQ,0)) I LSTLBLTX["(BAD ADDRESS)" S BADADDFL=1
  Q BADADDFL
  ;
-PRVDETOX(PRVIEN) ; Returns the Provider DETOX#, if available and not not expired
+PRVDETOX(PRVIEN) ; Returns the Provider DETOX#, if available and not expired
  ; Input: (r) PRVIEN   - Provider IEN (Pointer to VA PERSON file (#200))
  ;Output:     PRVDETOX - Provider Detox #
  N PRVDETOX
- S PRVDETOX=$$DETOX^XUSER(PRVIEN) I PRVDETOX?1"X"1A7N Q PRVDETOX
+ S PRVDETOX=$$DETOX^XUSER(PRVIEN) I PRVDETOX?2A7N Q PRVDETOX
  Q ""
  ;
 RXDEA(RXIEN,ORIEN) ; Returns the Provider DEA# associated with the Prescription/CPRS Order (At least one of RXIEN or ORIEN is required)

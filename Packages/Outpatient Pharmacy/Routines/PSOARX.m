@@ -1,5 +1,5 @@
-PSOARX ;B'ham ISC/SAB - display archived rxs ;03/10/94  1:08 pm 
- ;;7.0;OUTPATIENT PHARMACY;**10,148**;DEC 1997
+PSOARX ;ISC/SAB - display archived rxs ;Dec 02, 2021@12:55:57
+ ;;7.0;OUTPATIENT PHARMACY;**10,148,441**;DEC 1997;Build 208
 GET S RX=^PSRX(DA,0),J=DA,RX2=$G(^PSRX(DA,2)),R3=$G(^(3)),RTN=$G(^("TN")) S DFN=+$P(RX,"^",2) S ANS="",FFX=0
  S PSDIV=$S($D(^PS(59,+$P(RX2,"^",9),0)):$P(^(0),"^",1)_" ("_$P(^(0),"^",6)_")",1:"Unknown"),PSDIV=$E(PSDIV,1,28)
  S PSEXDT=$P(RX2,"^",6),PSEXDT=$S(PSEXDT]"":$E(PSEXDT,4,5)_"/"_$E(PSEXDT,6,7)_"/"_$E(PSEXDT,2,3),1:"Unknown")
@@ -15,7 +15,8 @@ RFL S II=J D LAST^PSORFL W !?4,"Latest: "_RFL,?37,"# of Refills: "_$P(RX,"^",9)
  W "  Remaining: "_RFM
  S PHYS=$S($D(^VA(200,+$P(RX,"^",4),0)):$P(^(0),"^"),1:"Unknown") W ?70,"Provider: "_PHYS
 DTT S DTT=$P(RX,"^",13) D DAT W !?4,"Issued: "_DAT,?43,"Clinic: "_$S($D(^SC(+$P(RX,"^",5),0)):$P(^(0),"^",1),1:"Not on File"),?71,"Division: "_PSDIV
- S DTT=$P(RX2,"^",1)\1 D DAT W !?4,"Logged: "_DAT,?42,"Routing: " S X=$F("MWI",$P(RX,"^",11))-1 W:X $P("Mail^Window^Inpatient","^",X),?69,"Clerk Code: "_$S($D(^VA(200,+$P(RX,"^",16),0)):$P(^(0),"^"),1:"Unknown")
+ ;441 PARK
+ S DTT=$P(RX2,"^",1)\1 D DAT W !?4,"Logged: "_DAT,?42,"Routing: " S X=$F("MWIP",$P(RX,"^",11))-1 W:X $P("Mail^Window^Inpatient^Park","^",X),?69,"Clerk Code: "_$S($D(^VA(200,+$P(RX,"^",16),0)):$P(^(0),"^"),1:"Unknown")
  W !?3,"Expires: "_PSEXDT
  W ?46,"Cap: "_$P("Non-^","^",$S($D(^PS(55,DFN,0)):+$P(^(0),"^",2),1:0)),"Safety",?73,"Status: "_ST I ($D(PS)#2),PS="DISCONTINUE",ST["DISCONTINUE" S PS="Reinstate"
  G:$D(PSOZVER) REM S DTT=$P(RX2,"^",2) D DAT W !?4,"Filled: "_DAT,?24,"Pharmacist: "_$S($D(^VA(200,+$P(RX2,"^",3),0)):$P(^(0),"^",1),1:""),?56,"Verifying Pharmacist: "_$S($D(^VA(200,+$P(RX2,"^",10),0)):$P(^(0),"^",1),1:"")
@@ -37,7 +38,7 @@ A2 W:($P(P1,U,5)]"")!(('PSOZ)&($P(P2,U,5)]"")) ! W:$P(P1,U,5)]"" ?5,"Comment: "_
  Q
 N S (DTT1,DTT2)="" Q:ANS="^"  D HEAD:FFX W !,N,?3 S DTT1=$P(P1,"^",8)\1,DTT2=$P(P1,U,1) D DAT1 W DAT1,?14,DAT2,?27,$P(P1,"^",4),?32
  S PSDIV=$S($D(^PS(59,+$P(P1,"^",9),0)):$P(^(0),"^"),1:"Unknown")
- S X=$P(P1,"^",2),X=$F("MWIBD",X)-1 W:X $P("Mail^Window^Inpatient","^",X),?40,$P(P1,"^",6),?52,$E($S($D(^VA(200,+$P(P1,"^",5),0)):$P(^(0),"^",1),1:""),1,16),?70,PSDIV
+ S X=$P(P1,"^",2),X=$F("MWIPBD",X)-1 W:X $P("Mail^Window^Inpatient^Park","^",X),?40,$P(P1,"^",6),?52,$E($S($D(^VA(200,+$P(P1,"^",5),0)):$P(^(0),"^",1),1:""),1,16),?70,PSDIV
  W !?4,$S($P(P1,"^",16):"Returned to Stock:  "_$E($P(P1,"^",16),4,5)_"/"_$E($P(P1,"^",16),6,7)_"/"_$E($P(P1,"^",16),2,3),1:"Released: "_$S($P(P1,"^",18):$E($P(P1,"^",18),4,5)_"/"_$E($P(P1,"^",18),6,7)_"/"_$E($P(P1,"^",18),2,3),1:""))
  I $P($G(^PSRX(DA,1,N,"IB")),"^")]"" W "     Copay Billing #:  "_$P($G(^PSRX(DA,1,N,"IB")),"^")
  W !?5,"Remarks: "_$P(P1,"^",3) Q

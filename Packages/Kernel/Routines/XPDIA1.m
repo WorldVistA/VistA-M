@@ -1,5 +1,5 @@
-XPDIA1 ;SFISC/RSD - Install Pre/Post Actions for Kernel files cont. ;06/24/2008
- ;;8.0;KERNEL;**2,44,51,58,68,85,131,146,182,229,302,399,507,539,672**;Jul 10, 1995;Build 28
+XPDIA1 ;SFISC/RSD - Install Pre/Post Actions for Kernel files cont. ; Apr 15, 2022@08:55:53
+ ;;8.0;KERNEL;**2,44,51,58,68,85,131,146,182,229,302,399,507,539,672,750,768**;Jul 10, 1995;Build 8
  ;Per VHA Directive 2004-038, this routine should not be modified.
  Q
 HLPF1 ;help frames file pre
@@ -223,6 +223,8 @@ RPCDEL ;del Kernel RPC, file 8994
 RPCE1 ;RPC pre entry, file 8994
  ;kill Input parameters multiple, field #2
  K ^XWB(8994,DA,2)
+ ;kill Description field #1 ;p750
+ K ^XWB(8994,DA,1)
  Q
 CRC32PE ;pre entry for Kernel RPCs CRC32
  ;if there is a new Description, kill the old Description
@@ -247,7 +249,7 @@ HLLLDEL(RT) ;del HL7 logical link #870
  . S XPDJ=0 F  S XPDJ=$O(^HLS(774,"C",XPDI,XPDJ))
  D DELIEN^XPDUTL1(870,RT)
  Q
-HLOE ;HLO application registry #779.2
+HLOE ;pre entry HLO application registry #779.2
  N I,J,K,L,Y
  S I=^HLD(779.2,DA,0),J=^XTMP("XPDI",XPDA,"KRN",779.2,OLDA,0)
  ;repoint APPLICATION SPECIFIC LISTENER (0;9)
@@ -258,4 +260,7 @@ HLOE ;HLO application registry #779.2
  S J=$P($G(^XTMP("XPDI",XPDA,"KRN",779.2,OLDA,2)),U)
  S:J]"" $P(^XTMP("XPDI",XPDA,"KRN",779.2,OLDA,2),U)=$$LK^XPDIA("^DIC(9.4)",J)
  ;save data from site on nodes 200,300,400
+ Q
+HLODEL(RT) ;delete for HLO APPLICATION REGISTRY #779.2 ;p768
+ D DELIEN^XPDUTL1(779.2,RT)
  Q

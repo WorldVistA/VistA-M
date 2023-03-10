@@ -1,122 +1,126 @@
-IBDEI0RG ; ; 04-FEB-2020
- ;;3.0;IB ENCOUNTER FORM IMP/EXP;;FEB 04, 2020
+IBDEI0RG ; ; 01-FEB-2022
+ ;;3.0;IB ENCOUNTER FORM IMP/EXP;;FEB 01, 2022
  Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,999) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
- ;;^UTILITY(U,$J,358.3,12251,1,4,0)
- ;;=4^S01.91XA
- ;;^UTILITY(U,$J,358.3,12251,2)
- ;;=^5020243
- ;;^UTILITY(U,$J,358.3,12252,0)
- ;;=S11.91XA^^80^774^35
- ;;^UTILITY(U,$J,358.3,12252,1,0)
+ ;;^UTILITY(U,$J,358.3,12359,1,3,0)
+ ;;=3^Hypertension
+ ;;^UTILITY(U,$J,358.3,12359,1,4,0)
+ ;;=4^I10.
+ ;;^UTILITY(U,$J,358.3,12359,2)
+ ;;=^5007062
+ ;;^UTILITY(U,$J,358.3,12360,0)
+ ;;=I20.0^^49^598^37
+ ;;^UTILITY(U,$J,358.3,12360,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,12252,1,3,0)
- ;;=3^Laceration w/o FB of Neck,Unspec Part,Init Encntr
- ;;^UTILITY(U,$J,358.3,12252,1,4,0)
- ;;=4^S11.91XA
- ;;^UTILITY(U,$J,358.3,12252,2)
- ;;=^5021530
- ;;^UTILITY(U,$J,358.3,12253,0)
- ;;=S91.012A^^80^774^7
- ;;^UTILITY(U,$J,358.3,12253,1,0)
+ ;;^UTILITY(U,$J,358.3,12360,1,3,0)
+ ;;=3^Unstable Angina w/o Athscl Hrt Disease
+ ;;^UTILITY(U,$J,358.3,12360,1,4,0)
+ ;;=4^I20.0
+ ;;^UTILITY(U,$J,358.3,12360,2)
+ ;;=^5007076
+ ;;^UTILITY(U,$J,358.3,12361,0)
+ ;;=I20.9^^49^598^1
+ ;;^UTILITY(U,$J,358.3,12361,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,12253,1,3,0)
- ;;=3^Laceration w/o FB of Left Ankle,Init Encntr
- ;;^UTILITY(U,$J,358.3,12253,1,4,0)
- ;;=4^S91.012A
- ;;^UTILITY(U,$J,358.3,12253,2)
- ;;=^5044138
- ;;^UTILITY(U,$J,358.3,12254,0)
- ;;=S91.312A^^80^774^12
- ;;^UTILITY(U,$J,358.3,12254,1,0)
+ ;;^UTILITY(U,$J,358.3,12361,1,3,0)
+ ;;=3^Angina Pectoris,Unspec
+ ;;^UTILITY(U,$J,358.3,12361,1,4,0)
+ ;;=4^I20.9
+ ;;^UTILITY(U,$J,358.3,12361,2)
+ ;;=^5007079
+ ;;^UTILITY(U,$J,358.3,12362,0)
+ ;;=I25.10^^49^598^2
+ ;;^UTILITY(U,$J,358.3,12362,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,12254,1,3,0)
- ;;=3^Laceration w/o FB of Left Foot,Init Encntr
- ;;^UTILITY(U,$J,358.3,12254,1,4,0)
- ;;=4^S91.312A
- ;;^UTILITY(U,$J,358.3,12254,2)
- ;;=^5044323
- ;;^UTILITY(U,$J,358.3,12255,0)
- ;;=S71.012A^^80^774^16
- ;;^UTILITY(U,$J,358.3,12255,1,0)
+ ;;^UTILITY(U,$J,358.3,12362,1,3,0)
+ ;;=3^Athscl Hrt Disease,Native Coronary Artery w/o Ang Pctrs
+ ;;^UTILITY(U,$J,358.3,12362,1,4,0)
+ ;;=4^I25.10
+ ;;^UTILITY(U,$J,358.3,12362,2)
+ ;;=^5007107
+ ;;^UTILITY(U,$J,358.3,12363,0)
+ ;;=I25.9^^49^598^13
+ ;;^UTILITY(U,$J,358.3,12363,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,12255,1,3,0)
- ;;=3^Laceration w/o FB of Left Hip,Init Encntr
- ;;^UTILITY(U,$J,358.3,12255,1,4,0)
- ;;=4^S71.012A
- ;;^UTILITY(U,$J,358.3,12255,2)
- ;;=^5036978
- ;;^UTILITY(U,$J,358.3,12256,0)
- ;;=S81.012A^^80^774^19
- ;;^UTILITY(U,$J,358.3,12256,1,0)
+ ;;^UTILITY(U,$J,358.3,12363,1,3,0)
+ ;;=3^Chronic Ischemic Heart Disease,Unspec
+ ;;^UTILITY(U,$J,358.3,12363,1,4,0)
+ ;;=4^I25.9
+ ;;^UTILITY(U,$J,358.3,12363,2)
+ ;;=^5007144
+ ;;^UTILITY(U,$J,358.3,12364,0)
+ ;;=I35.0^^49^598^29
+ ;;^UTILITY(U,$J,358.3,12364,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,12256,1,3,0)
- ;;=3^Laceration w/o FB of Left Knee,Init Encntr
- ;;^UTILITY(U,$J,358.3,12256,1,4,0)
- ;;=4^S81.012A
- ;;^UTILITY(U,$J,358.3,12256,2)
- ;;=^5040035
- ;;^UTILITY(U,$J,358.3,12257,0)
- ;;=S81.812A^^80^774^24
- ;;^UTILITY(U,$J,358.3,12257,1,0)
+ ;;^UTILITY(U,$J,358.3,12364,1,3,0)
+ ;;=3^Nonrheumatic Aortic Valve Stenosis
+ ;;^UTILITY(U,$J,358.3,12364,1,4,0)
+ ;;=4^I35.0
+ ;;^UTILITY(U,$J,358.3,12364,2)
+ ;;=^5007174
+ ;;^UTILITY(U,$J,358.3,12365,0)
+ ;;=I35.1^^49^598^28
+ ;;^UTILITY(U,$J,358.3,12365,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,12257,1,3,0)
- ;;=3^Laceration w/o FB of Left Lower Leg,Init Encntr
- ;;^UTILITY(U,$J,358.3,12257,1,4,0)
- ;;=4^S81.812A
- ;;^UTILITY(U,$J,358.3,12257,2)
- ;;=^5040074
- ;;^UTILITY(U,$J,358.3,12258,0)
- ;;=S71.112A^^80^774^30
- ;;^UTILITY(U,$J,358.3,12258,1,0)
+ ;;^UTILITY(U,$J,358.3,12365,1,3,0)
+ ;;=3^Nonrheumatic Aortic Valve Insufficiency
+ ;;^UTILITY(U,$J,358.3,12365,1,4,0)
+ ;;=4^I35.1
+ ;;^UTILITY(U,$J,358.3,12365,2)
+ ;;=^5007175
+ ;;^UTILITY(U,$J,358.3,12366,0)
+ ;;=I35.2^^49^598^30
+ ;;^UTILITY(U,$J,358.3,12366,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,12258,1,3,0)
- ;;=3^Laceration w/o FB of Left Thigh,Init Encntr
- ;;^UTILITY(U,$J,358.3,12258,1,4,0)
- ;;=4^S71.112A
- ;;^UTILITY(U,$J,358.3,12258,2)
- ;;=^5037017
- ;;^UTILITY(U,$J,358.3,12259,0)
- ;;=S91.011A^^80^774^39
- ;;^UTILITY(U,$J,358.3,12259,1,0)
+ ;;^UTILITY(U,$J,358.3,12366,1,3,0)
+ ;;=3^Nonrheumatic Aortic Valve Stenosis w/ Insufficiency
+ ;;^UTILITY(U,$J,358.3,12366,1,4,0)
+ ;;=4^I35.2
+ ;;^UTILITY(U,$J,358.3,12366,2)
+ ;;=^5007176
+ ;;^UTILITY(U,$J,358.3,12367,0)
+ ;;=I35.8^^49^598^26
+ ;;^UTILITY(U,$J,358.3,12367,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,12259,1,3,0)
- ;;=3^Laceration w/o FB of Right Ankle,Init Encntr
- ;;^UTILITY(U,$J,358.3,12259,1,4,0)
- ;;=4^S91.011A
- ;;^UTILITY(U,$J,358.3,12259,2)
- ;;=^5044135
- ;;^UTILITY(U,$J,358.3,12260,0)
- ;;=S91.311A^^80^774^44
- ;;^UTILITY(U,$J,358.3,12260,1,0)
+ ;;^UTILITY(U,$J,358.3,12367,1,3,0)
+ ;;=3^Nonrheumatic Aortic Valve Disorders,Other
+ ;;^UTILITY(U,$J,358.3,12367,1,4,0)
+ ;;=4^I35.8
+ ;;^UTILITY(U,$J,358.3,12367,2)
+ ;;=^5007177
+ ;;^UTILITY(U,$J,358.3,12368,0)
+ ;;=I35.9^^49^598^27
+ ;;^UTILITY(U,$J,358.3,12368,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,12260,1,3,0)
- ;;=3^Laceration w/o FB of Right Foot,Init Encntr
- ;;^UTILITY(U,$J,358.3,12260,1,4,0)
- ;;=4^S91.311A
- ;;^UTILITY(U,$J,358.3,12260,2)
- ;;=^5044320
- ;;^UTILITY(U,$J,358.3,12261,0)
- ;;=S71.011A^^80^774^48
- ;;^UTILITY(U,$J,358.3,12261,1,0)
+ ;;^UTILITY(U,$J,358.3,12368,1,3,0)
+ ;;=3^Nonrheumatic Aortic Valve Disorders,Unspec
+ ;;^UTILITY(U,$J,358.3,12368,1,4,0)
+ ;;=4^I35.9
+ ;;^UTILITY(U,$J,358.3,12368,2)
+ ;;=^5007178
+ ;;^UTILITY(U,$J,358.3,12369,0)
+ ;;=I48.91^^49^598^9
+ ;;^UTILITY(U,$J,358.3,12369,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,12261,1,3,0)
- ;;=3^Laceration w/o FB of Right Hip,Init Encntr
- ;;^UTILITY(U,$J,358.3,12261,1,4,0)
- ;;=4^S71.011A
- ;;^UTILITY(U,$J,358.3,12261,2)
- ;;=^5036975
- ;;^UTILITY(U,$J,358.3,12262,0)
- ;;=S81.011A^^80^774^51
- ;;^UTILITY(U,$J,358.3,12262,1,0)
+ ;;^UTILITY(U,$J,358.3,12369,1,3,0)
+ ;;=3^Atrial Fibrillation,Unspec
+ ;;^UTILITY(U,$J,358.3,12369,1,4,0)
+ ;;=4^I48.91
+ ;;^UTILITY(U,$J,358.3,12369,2)
+ ;;=^5007229
+ ;;^UTILITY(U,$J,358.3,12370,0)
+ ;;=I49.9^^49^598^12
+ ;;^UTILITY(U,$J,358.3,12370,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,12262,1,3,0)
- ;;=3^Laceration w/o FB of Right Knee,Init Encntr
- ;;^UTILITY(U,$J,358.3,12262,1,4,0)
- ;;=4^S81.011A
- ;;^UTILITY(U,$J,358.3,12262,2)
- ;;=^5040032
- ;;^UTILITY(U,$J,358.3,12263,0)
- ;;=S81.811A^^80^774^56
- ;;^UTILITY(U,$J,358.3,12263,1,0)
+ ;;^UTILITY(U,$J,358.3,12370,1,3,0)
+ ;;=3^Cardiac Arrhythmia,Unspec
+ ;;^UTILITY(U,$J,358.3,12370,1,4,0)
+ ;;=4^I49.9
+ ;;^UTILITY(U,$J,358.3,12370,2)
+ ;;=^5007237
+ ;;^UTILITY(U,$J,358.3,12371,0)
+ ;;=I50.9^^49^598^21
+ ;;^UTILITY(U,$J,358.3,12371,1,0)
  ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,12371,1,3,0)
+ ;;=3^Heart Failure,Unspec

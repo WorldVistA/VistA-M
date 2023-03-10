@@ -1,13 +1,13 @@
-PSOATRF ;BIR/MHA - Automate Internet Refill ;07/09/07
- ;;7.0;OUTPATIENT PHARMACY;**264,322,388,313**;DEC 1997;Build 76
+PSOATRF ;BIR/MHA - Automate Internet Refill ;Feb 03, 2022@11:08:24
+ ;;7.0;OUTPATIENT PHARMACY;**264,322,388,313,441**;DEC 1997;Build 208
  ;Reference to ^PSSLOCK supported by DBIA 2789
  ;Reference ^PSDRUG supported by DBIA 221
  ;Reference ^PS(55 supported by DBIA 2228
  ;
 START ;
- N PSOTITFL
+ N PSOTITFL,PSOPARKED,PSOORIG
  S PSOITMG="",U="^",PSOITNS="PSOATRF"  S:'$G(DT) DT=$$DT^XLFDT
- I '$D(^PS(52.43,"AINST")) S PSOITMG="There are no internet refills to process." G END
+ I '$D(^PS(52.43,"AINST")) S PSOITMG="There are no internet refills/fills to process." G END
  S (SITE,DA)=$P(^XMB(1,1,"XUS"),U,17),DIC="4",DIQ(0)="IE",DR=".01;99",DIQ="PSOUTIL" D EN^DIQ1
  S PSOINST=$G(PSOUTIL(4,SITE,99,"I"))
  I PSOINST']"" S PSOITMG="The Institution "_SITE_" is not defined in the INSTITUTION file (#4)." G END
@@ -17,7 +17,7 @@ START ;
  . K:($P($G(^PSX(550,+PSXSYS,0)),"^",2)'="A") PSXSYS
  . I $$VERSION^XPDUTL("PSO")<7.0 K PSXSYS
  I '$O(^XUSEC("PSOAUTRF","")) S PSOITMG="There are no users with PSOAUTRF key, at least one should have this key." G END
- I '$D(^PS(52.43,"AINST",PSOINST)) S PSOITMG="There are no internet refills to process for Institution "_PSOINST G END
+ I '$D(^PS(52.43,"AINST",PSOINST)) S PSOITMG="There are no internet refills/fills to process for Institution "_PSOINST G END
  L +^XTMP(PSOITNS):3 E  S PSOITMG="Automate Internet Refill job is currently running - Try later." G END
  K ^XTMP(PSOITNS,$J)
  S PSOSYS=$G(^PS(59.7,1,40.1))
@@ -29,7 +29,7 @@ START ;
  D PRORF
 END ;
  I $D(^XTMP(PSOITNS,$J)) D SMAIL^PSOATRF1 G:'$G(PSOITC) KV
- S PSOITMG(1)=$S($G(PSOITC):"Total internet refills processed = "_PSOITC,PSOITMG="":"There are no internet refills to process.",1:PSOITMG)
+ S PSOITMG(1)=$S($G(PSOITC):"Total internet refills/fills processed = "_PSOITC,PSOITMG="":"There are no internet refills/fills to process.",1:PSOITMG)
  D GRP
  S:'$O(XMY(0)) XMY(DUZ)=""
  S XMDUZ=.5,XMSUB="Outpatient Pharmacy - PSO AUTO REFILL"
@@ -54,23 +54,35 @@ PRORF ;
  . S PSOITRX0=^PSRX(PSOITRX,0),PSOITRX2=^(2),PSOITRX3=^(3),PSOITRXS=^("STA")
  . S (DFN,PSODFN)=$P(PSOITRX0,U,2),RXN=$P(PSOITRX0,U),DRG=$P(PSOITRX0,U,6)
  . I PSODFN'=$P(^PS(52.43,PSOITP,0),U,9) D  Q
- . . S PSOITNF=1,PSOITMG="Can't refill Rx # "_RXN_", it is not for this patient. DFN in file #52="_DFN_", DFN in file #52.43="_$P(^PS(52.43,PSOITP,0),U,9)
+ . . S PSOITNF=1,PSOITMG="Can't refill/fill Rx # "_RXN_", it is not for this patient. DFN in file #52="_DFN_", DFN in file #52.43="_$P(^PS(52.43,PSOITP,0),U,9)
  . D GET^PSOPTPST
  . I $G(PSOPTPST(2,PSODFN,.351))]"" S PSOITNF=1,PSOITMG="Patient Died on "_PSOPTPST(2,PSODFN,.351) Q
  . D ICN^PSODPT(DFN)
  . S PSOLOUD=1 D:$P($G(^PS(55,DFN,0)),U,6)'=2 EN^PSOHLUP(DFN) K PSOLOUD
  . I '$P(PSOPAR,U,11),$G(^PSDRUG(DRG,"I"))]"",DT>$G(^("I")) D  Q
- . . S PSOITNF=1,PSOITMG="Drug is inactive for Rx # "_RXN_" cannot be refilled"
+ . . S PSOITNF=1,PSOITMG="Drug is inactive for Rx # "_RXN_" cannot be refilled/filled"
  . S I=$P(^PSRX(PSOITRX,2),U,9) S:'I I=PSOITDD D SDIV
  . ;
  . I $G(PSOBDIV) D  Q
  . . S PSOITNF=1
- . . S PSOITMG="Inactive division for Rx # "_RXN_".  Cannot refill."
+ . . S PSOITMG="Inactive division for Rx # "_RXN_".  Cannot refill/fill."
  . . K PSOBDIV
  . ;
  . I $G(PSOPTPST(2,PSODFN,.1))]"",'PSORFN S PSOITNF=1,PSOITMG="Patient is an Inpatient on Ward "_PSOPTPST(2,PSODFN,.1) Q
  . I $G(PSOPTPST(2,PSODFN,148))="YES",'$P(PSORFN,U,2) S PSOITNF=1,PSOITMG="Patient is in a Contract Nursing Home" Q
- . D CHKRF Q:PSOITNF
+ . ;
+ . S PSOORIG=0
+ . S PSOPARKED=($G(^PSRX(PSOITRX,"STA"))=0)&($G(^PSRX(PSOITRX,"PARK")))
+ . I PSOPARKED S PSOORIG=$$CHKPRKORIG^PSOPRKA(PSOITRX)  ;check if filling original or refill
+ . ;
+ . I 'PSOORIG D  Q:PSOITNF
+ . . D CHKRF Q:PSOITNF
+ . . I $$TITRX^PSOUTL(PSOITRX)="t" D
+ . . . S PSOITNF=1,PSOITMG="'Titration Rx' cannot be refilled."
+ . . . S PSOTITFL=1 D FILE
+ . ;
+ . I PSOPARKED D UNPARK Q  ;441 PAPI
+ . ;
  . I $O(^PS(52.5,"B",PSOITRX,0)),'$G(^PS(52.5,+$O(^PS(52.5,"B",PSOITRX,0)),"P")) S PSOITNF=1,PSOITMG="Rx is in suspense and cannot be refilled" Q
  . S PSOY=1+$$LSTRFL^PSOBPSU1(PSOITRX)
  . I PSOY>$P(PSOITRX0,U,9) S PSOITNF=1,PSOITMG="Can't refill, no refills remaining" Q
@@ -85,9 +97,6 @@ PRORF ;
  . . I PSOCHECK=1 S PSOITMG="Requested refill exceeds maximum allowable days supply for Rx." Q  ;*388
  . . S PSOITMG="Current drug DEA/SPECIAL HANDLING code does not allow refills."  ;*388
  . D CHKDT Q:PSOITNF
- . I $$TITRX^PSOUTL(PSOITRX)="t" D  Q
- . . S PSOITNF=1,PSOITMG="'Titration Rx' cannot be refilled."
- . . S PSOTITFL=1 D FILE
  . D EN^PSOR52(.PSOX) I PSOITF,$D(^PSRX(PSOITRX,1,PSOITF,0)) S PSOITC=PSOITC+1,PSOITMG=PSOITF_" Susp. until "_$$DSP($P(^(0),U))
  Q
  ;
@@ -197,4 +206,35 @@ NEXT ;
 DSP(X) ;
  Q:'X ""
  Q $E(X,4,5)_"/"_$E(X,6,7)_"/"_$E(X,2,3)
- ; 
+ ;
+UNPARK ; 441 PAPI
+ N PSOARR,PSOERRMSG,PSOITF,PSOLASTREFILL
+ ;
+ S PSOLASTREFILL=$$LSTRFL^PSOBPSU1(PSOITRX)
+ ;
+ D UNPARK^PSOPRKA(PSOITRX,PSODFN,.PSOERRMSG,.PSOARR)  ; UNPARK regardless of original or refill
+ ;
+ S PSOITF=$$LSTRFL^PSOBPSU1(PSOITRX)
+ I (PSOLASTREFILL+1)'=PSOITF S PSOITF=0  ; If refill # was not incremented, than was not processed as a refill
+ ;
+ ; error - was not able to fill
+ I $G(PSOERRMSG(1))'="" D  Q
+ . S PSOITNF=1
+ . S PSOITMG=PSOERRMSG(1)  ; message if unable to fill/refill
+ . I PSOITMG["Titration Rx" S PSOTITFL=1
+ ;
+ ; original fill was put on suspense
+ I $G(PSOARR("UPKSUSPCOMM"))'="" D  Q
+ . S PSOITMG=PSOARR("UPKSUSPCOMM")
+ . S PSOITC=PSOITC+1
+ ;
+ ; new refill was generated
+ I PSOITF,$D(^PSRX(PSOITRX,1,PSOITF,0)) D
+ . S PSOITC=PSOITC+1
+ . S PSOITMG=PSOITF_" Susp. until "_$$DSP($P($G(^PSRX(PSOITRX,1,PSOITF,0)),U,1))
+ E  D  ; if none of the above scenarios occurred, unknown issue
+ . S PSOITNF=1
+ . S PSOITMG="Unexpected issue when processing parked RX refill/fill."
+ ;
+ Q
+ ;

@@ -1,120 +1,128 @@
-IBDEI1FQ ; ; 04-FEB-2020
- ;;3.0;IB ENCOUNTER FORM IMP/EXP;;FEB 04, 2020
+IBDEI1FQ ; ; 01-FEB-2022
+ ;;3.0;IB ENCOUNTER FORM IMP/EXP;;FEB 01, 2022
  Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,999) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
- ;;^UTILITY(U,$J,358.3,22957,1,0)
+ ;;^UTILITY(U,$J,358.3,23211,1,4,0)
+ ;;=4^H91.91
+ ;;^UTILITY(U,$J,358.3,23211,2)
+ ;;=^5133553
+ ;;^UTILITY(U,$J,358.3,23212,0)
+ ;;=H91.92^^78^1004^9
+ ;;^UTILITY(U,$J,358.3,23212,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,22957,1,3,0)
- ;;=3^Postproc Cardiac Arrest After Cardiac Surg
- ;;^UTILITY(U,$J,358.3,22957,1,4,0)
- ;;=4^I97.120
- ;;^UTILITY(U,$J,358.3,22957,2)
- ;;=^5008085
- ;;^UTILITY(U,$J,358.3,22958,0)
- ;;=I97.121^^105^1166^176
- ;;^UTILITY(U,$J,358.3,22958,1,0)
+ ;;^UTILITY(U,$J,358.3,23212,1,3,0)
+ ;;=3^Hearing loss, unspec, left ear
+ ;;^UTILITY(U,$J,358.3,23212,1,4,0)
+ ;;=4^H91.92
+ ;;^UTILITY(U,$J,358.3,23212,2)
+ ;;=^5133554
+ ;;^UTILITY(U,$J,358.3,23213,0)
+ ;;=H91.93^^78^1004^8
+ ;;^UTILITY(U,$J,358.3,23213,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,22958,1,3,0)
- ;;=3^Postproc Cardiac Arrest After Oth Surg
- ;;^UTILITY(U,$J,358.3,22958,1,4,0)
- ;;=4^I97.121
- ;;^UTILITY(U,$J,358.3,22958,2)
- ;;=^5008086
- ;;^UTILITY(U,$J,358.3,22959,0)
- ;;=I97.130^^105^1166^213
- ;;^UTILITY(U,$J,358.3,22959,1,0)
+ ;;^UTILITY(U,$J,358.3,23213,1,3,0)
+ ;;=3^Hearing loss, unspec, bilateral
+ ;;^UTILITY(U,$J,358.3,23213,1,4,0)
+ ;;=4^H91.93
+ ;;^UTILITY(U,$J,358.3,23213,2)
+ ;;=^5006944
+ ;;^UTILITY(U,$J,358.3,23214,0)
+ ;;=J02.9^^78^1004^54
+ ;;^UTILITY(U,$J,358.3,23214,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,22959,1,3,0)
- ;;=3^Postproc Hrt Failure After Cardiac Surg
- ;;^UTILITY(U,$J,358.3,22959,1,4,0)
- ;;=4^I97.130
- ;;^UTILITY(U,$J,358.3,22959,2)
- ;;=^5008087
- ;;^UTILITY(U,$J,358.3,22960,0)
- ;;=I97.131^^105^1166^214
- ;;^UTILITY(U,$J,358.3,22960,1,0)
+ ;;^UTILITY(U,$J,358.3,23214,1,3,0)
+ ;;=3^Pharyngitis, acute, unspec
+ ;;^UTILITY(U,$J,358.3,23214,1,4,0)
+ ;;=4^J02.9
+ ;;^UTILITY(U,$J,358.3,23214,2)
+ ;;=^5008130
+ ;;^UTILITY(U,$J,358.3,23215,0)
+ ;;=J04.0^^78^1004^15
+ ;;^UTILITY(U,$J,358.3,23215,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,22960,1,3,0)
- ;;=3^Postproc Hrt Failure After Oth Surg
- ;;^UTILITY(U,$J,358.3,22960,1,4,0)
- ;;=4^I97.131
- ;;^UTILITY(U,$J,358.3,22960,2)
- ;;=^5008088
- ;;^UTILITY(U,$J,358.3,22961,0)
- ;;=I97.190^^105^1166^177
- ;;^UTILITY(U,$J,358.3,22961,1,0)
+ ;;^UTILITY(U,$J,358.3,23215,1,3,0)
+ ;;=3^Laryngitis, acute
+ ;;^UTILITY(U,$J,358.3,23215,1,4,0)
+ ;;=4^J04.0
+ ;;^UTILITY(U,$J,358.3,23215,2)
+ ;;=^5008137
+ ;;^UTILITY(U,$J,358.3,23216,0)
+ ;;=J05.0^^78^1004^16
+ ;;^UTILITY(U,$J,358.3,23216,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,22961,1,3,0)
- ;;=3^Postproc Cardiac Functn Disturb After Cardiac Surg
- ;;^UTILITY(U,$J,358.3,22961,1,4,0)
- ;;=4^I97.190
- ;;^UTILITY(U,$J,358.3,22961,2)
- ;;=^5008089
- ;;^UTILITY(U,$J,358.3,22962,0)
- ;;=I97.191^^105^1166^178
- ;;^UTILITY(U,$J,358.3,22962,1,0)
+ ;;^UTILITY(U,$J,358.3,23216,1,3,0)
+ ;;=3^Laryngitis, acute obstructive (croup)
+ ;;^UTILITY(U,$J,358.3,23216,1,4,0)
+ ;;=4^J05.0
+ ;;^UTILITY(U,$J,358.3,23216,2)
+ ;;=^5008141
+ ;;^UTILITY(U,$J,358.3,23217,0)
+ ;;=H81.11^^78^1004^77
+ ;;^UTILITY(U,$J,358.3,23217,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,22962,1,3,0)
- ;;=3^Postproc Cardiac Functn Disturb After Oth Surg
- ;;^UTILITY(U,$J,358.3,22962,1,4,0)
- ;;=4^I97.191
- ;;^UTILITY(U,$J,358.3,22962,2)
- ;;=^5008090
- ;;^UTILITY(U,$J,358.3,22963,0)
- ;;=I97.710^^105^1166^101
- ;;^UTILITY(U,$J,358.3,22963,1,0)
+ ;;^UTILITY(U,$J,358.3,23217,1,3,0)
+ ;;=3^Vertigo,Benign Positional,Right Ear
+ ;;^UTILITY(U,$J,358.3,23217,1,4,0)
+ ;;=4^H81.11
+ ;;^UTILITY(U,$J,358.3,23217,2)
+ ;;=^5006865
+ ;;^UTILITY(U,$J,358.3,23218,0)
+ ;;=H81.12^^78^1004^76
+ ;;^UTILITY(U,$J,358.3,23218,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,22963,1,3,0)
- ;;=3^Intraop Cardiac Arrensst During Cardiac Surgery
- ;;^UTILITY(U,$J,358.3,22963,1,4,0)
- ;;=4^I97.710
- ;;^UTILITY(U,$J,358.3,22963,2)
- ;;=^5008103
- ;;^UTILITY(U,$J,358.3,22964,0)
- ;;=I97.711^^105^1166^102
- ;;^UTILITY(U,$J,358.3,22964,1,0)
+ ;;^UTILITY(U,$J,358.3,23218,1,3,0)
+ ;;=3^Vertigo,Benign Positional,Left Ear
+ ;;^UTILITY(U,$J,358.3,23218,1,4,0)
+ ;;=4^H81.12
+ ;;^UTILITY(U,$J,358.3,23218,2)
+ ;;=^5006866
+ ;;^UTILITY(U,$J,358.3,23219,0)
+ ;;=H81.13^^78^1004^75
+ ;;^UTILITY(U,$J,358.3,23219,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,22964,1,3,0)
- ;;=3^Intraop Cardiac Arrest During Oth Surgery
- ;;^UTILITY(U,$J,358.3,22964,1,4,0)
- ;;=4^I97.711
- ;;^UTILITY(U,$J,358.3,22964,2)
- ;;=^5008104
- ;;^UTILITY(U,$J,358.3,22965,0)
- ;;=I97.790^^105^1166^103
- ;;^UTILITY(U,$J,358.3,22965,1,0)
+ ;;^UTILITY(U,$J,358.3,23219,1,3,0)
+ ;;=3^Vertigo,Benign Positional,Bilateral
+ ;;^UTILITY(U,$J,358.3,23219,1,4,0)
+ ;;=4^H81.13
+ ;;^UTILITY(U,$J,358.3,23219,2)
+ ;;=^5006867
+ ;;^UTILITY(U,$J,358.3,23220,0)
+ ;;=H68.002^^78^1004^6
+ ;;^UTILITY(U,$J,358.3,23220,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,22965,1,3,0)
- ;;=3^Intraop Cardiac Functn Disturb During Cardiac Surgery
- ;;^UTILITY(U,$J,358.3,22965,1,4,0)
- ;;=4^I97.790
- ;;^UTILITY(U,$J,358.3,22965,2)
- ;;=^5008105
- ;;^UTILITY(U,$J,358.3,22966,0)
- ;;=I97.791^^105^1166^104
- ;;^UTILITY(U,$J,358.3,22966,1,0)
+ ;;^UTILITY(U,$J,358.3,23220,1,3,0)
+ ;;=3^Eustachian Salpingitis,Left Ear
+ ;;^UTILITY(U,$J,358.3,23220,1,4,0)
+ ;;=4^H68.002
+ ;;^UTILITY(U,$J,358.3,23220,2)
+ ;;=^5006648
+ ;;^UTILITY(U,$J,358.3,23221,0)
+ ;;=H68.003^^78^1004^5
+ ;;^UTILITY(U,$J,358.3,23221,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,22966,1,3,0)
- ;;=3^Intraop Cardiac Functn Disturb During Oth Surgery
- ;;^UTILITY(U,$J,358.3,22966,1,4,0)
- ;;=4^I97.791
- ;;^UTILITY(U,$J,358.3,22966,2)
- ;;=^5008106
- ;;^UTILITY(U,$J,358.3,22967,0)
- ;;=J95.88^^105^1166^107
- ;;^UTILITY(U,$J,358.3,22967,1,0)
+ ;;^UTILITY(U,$J,358.3,23221,1,3,0)
+ ;;=3^Eustachian Salpingitis,Bilateral
+ ;;^UTILITY(U,$J,358.3,23221,1,4,0)
+ ;;=4^H68.003
+ ;;^UTILITY(U,$J,358.3,23221,2)
+ ;;=^5006649
+ ;;^UTILITY(U,$J,358.3,23222,0)
+ ;;=H68.001^^78^1004^7
+ ;;^UTILITY(U,$J,358.3,23222,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,22967,1,3,0)
- ;;=3^Intraop Complications of Respiratory System NEC
- ;;^UTILITY(U,$J,358.3,22967,1,4,0)
- ;;=4^J95.88
- ;;^UTILITY(U,$J,358.3,22967,2)
- ;;=^5008345
- ;;^UTILITY(U,$J,358.3,22968,0)
- ;;=J95.89^^105^1166^181
- ;;^UTILITY(U,$J,358.3,22968,1,0)
+ ;;^UTILITY(U,$J,358.3,23222,1,3,0)
+ ;;=3^Eustachian Salpingitis,Right Ear
+ ;;^UTILITY(U,$J,358.3,23222,1,4,0)
+ ;;=4^H68.001
+ ;;^UTILITY(U,$J,358.3,23222,2)
+ ;;=^5006647
+ ;;^UTILITY(U,$J,358.3,23223,0)
+ ;;=H60.91^^78^1004^35
+ ;;^UTILITY(U,$J,358.3,23223,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,22968,1,3,0)
- ;;=3^Postproc Compl/Disorder,Resp Sys NEC
- ;;^UTILITY(U,$J,358.3,22968,1,4,0)
- ;;=4^J95.89
+ ;;^UTILITY(U,$J,358.3,23223,1,3,0)
+ ;;=3^Otitis Externa,Right Ear
+ ;;^UTILITY(U,$J,358.3,23223,1,4,0)
+ ;;=4^H60.91
+ ;;^UTILITY(U,$J,358.3,23223,2)
+ ;;=^5133524

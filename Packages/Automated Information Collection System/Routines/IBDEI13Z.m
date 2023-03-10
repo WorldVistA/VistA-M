@@ -1,126 +1,126 @@
-IBDEI13Z ; ; 04-FEB-2020
- ;;3.0;IB ENCOUNTER FORM IMP/EXP;;FEB 04, 2020
+IBDEI13Z ; ; 01-FEB-2022
+ ;;3.0;IB ENCOUNTER FORM IMP/EXP;;FEB 01, 2022
  Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,999) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
- ;;^UTILITY(U,$J,358.3,17808,2)
- ;;=^5059614
- ;;^UTILITY(U,$J,358.3,17809,0)
- ;;=W13.8XXA^^88^898^40
- ;;^UTILITY(U,$J,358.3,17809,1,0)
+ ;;^UTILITY(U,$J,358.3,17988,1,3,0)
+ ;;=3^Multi-System Degeneration of the Autonomic Nervous System
+ ;;^UTILITY(U,$J,358.3,17988,1,4,0)
+ ;;=4^G90.3
+ ;;^UTILITY(U,$J,358.3,17988,2)
+ ;;=^5004162
+ ;;^UTILITY(U,$J,358.3,17989,0)
+ ;;=G91.2^^61^795^22
+ ;;^UTILITY(U,$J,358.3,17989,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,17809,1,3,0)
- ;;=3^Fall from Building/Structure,Init Encntr
- ;;^UTILITY(U,$J,358.3,17809,1,4,0)
- ;;=4^W13.8XXA
- ;;^UTILITY(U,$J,358.3,17809,2)
- ;;=^5059616
- ;;^UTILITY(U,$J,358.3,17810,0)
- ;;=W13.8XXD^^88^898^41
- ;;^UTILITY(U,$J,358.3,17810,1,0)
+ ;;^UTILITY(U,$J,358.3,17989,1,3,0)
+ ;;=3^NPH w/ Dementia w/ Behavioral Disturbances
+ ;;^UTILITY(U,$J,358.3,17989,1,4,0)
+ ;;=4^G91.2
+ ;;^UTILITY(U,$J,358.3,17989,2)
+ ;;=^5004174^F02.81
+ ;;^UTILITY(U,$J,358.3,17990,0)
+ ;;=G91.2^^61^795^23
+ ;;^UTILITY(U,$J,358.3,17990,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,17810,1,3,0)
- ;;=3^Fall from Building/Structure,Subs Encntr
- ;;^UTILITY(U,$J,358.3,17810,1,4,0)
- ;;=4^W13.8XXD
- ;;^UTILITY(U,$J,358.3,17810,2)
- ;;=^5059617
- ;;^UTILITY(U,$J,358.3,17811,0)
- ;;=W13.9XXA^^88^898^38
- ;;^UTILITY(U,$J,358.3,17811,1,0)
+ ;;^UTILITY(U,$J,358.3,17990,1,3,0)
+ ;;=3^NPH w/ Dementia w/o Behavioral Disturbances
+ ;;^UTILITY(U,$J,358.3,17990,1,4,0)
+ ;;=4^G91.2
+ ;;^UTILITY(U,$J,358.3,17990,2)
+ ;;=^5004174^F02.80
+ ;;^UTILITY(U,$J,358.3,17991,0)
+ ;;=G30.8^^61^795^5
+ ;;^UTILITY(U,$J,358.3,17991,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,17811,1,3,0)
- ;;=3^Fall from Building NOS,Init Encntr
- ;;^UTILITY(U,$J,358.3,17811,1,4,0)
- ;;=4^W13.9XXA
- ;;^UTILITY(U,$J,358.3,17811,2)
- ;;=^5059619
- ;;^UTILITY(U,$J,358.3,17812,0)
- ;;=W13.9XXD^^88^898^39
- ;;^UTILITY(U,$J,358.3,17812,1,0)
+ ;;^UTILITY(U,$J,358.3,17991,1,3,0)
+ ;;=3^Alzheimer's Diseases NEC
+ ;;^UTILITY(U,$J,358.3,17991,1,4,0)
+ ;;=4^G30.8
+ ;;^UTILITY(U,$J,358.3,17991,2)
+ ;;=^5003807
+ ;;^UTILITY(U,$J,358.3,17992,0)
+ ;;=G31.09^^61^795^16
+ ;;^UTILITY(U,$J,358.3,17992,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,17812,1,3,0)
- ;;=3^Fall from Building NOS,Subs Encntr
- ;;^UTILITY(U,$J,358.3,17812,1,4,0)
- ;;=4^W13.9XXD
- ;;^UTILITY(U,$J,358.3,17812,2)
- ;;=^5059620
- ;;^UTILITY(U,$J,358.3,17813,0)
- ;;=W14.XXXA^^88^898^70
- ;;^UTILITY(U,$J,358.3,17813,1,0)
+ ;;^UTILITY(U,$J,358.3,17992,1,3,0)
+ ;;=3^Frontotemporal Dementia NEC
+ ;;^UTILITY(U,$J,358.3,17992,1,4,0)
+ ;;=4^G31.09
+ ;;^UTILITY(U,$J,358.3,17992,2)
+ ;;=^329916
+ ;;^UTILITY(U,$J,358.3,17993,0)
+ ;;=G20.^^61^795^24
+ ;;^UTILITY(U,$J,358.3,17993,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,17813,1,3,0)
- ;;=3^Fall from Tree,Init Encntr
- ;;^UTILITY(U,$J,358.3,17813,1,4,0)
- ;;=4^W14.XXXA
- ;;^UTILITY(U,$J,358.3,17813,2)
- ;;=^5059622
- ;;^UTILITY(U,$J,358.3,17814,0)
- ;;=W14.XXXD^^88^898^71
- ;;^UTILITY(U,$J,358.3,17814,1,0)
+ ;;^UTILITY(U,$J,358.3,17993,1,3,0)
+ ;;=3^Parkinson's Disease w/ Dementia w/ Behavioral Disturbances
+ ;;^UTILITY(U,$J,358.3,17993,1,4,0)
+ ;;=4^G20.
+ ;;^UTILITY(U,$J,358.3,17993,2)
+ ;;=^5003770^F02.81
+ ;;^UTILITY(U,$J,358.3,17994,0)
+ ;;=G20.^^61^795^25
+ ;;^UTILITY(U,$J,358.3,17994,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,17814,1,3,0)
- ;;=3^Fall from Tree,Subs Encntr
- ;;^UTILITY(U,$J,358.3,17814,1,4,0)
- ;;=4^W14.XXXD
- ;;^UTILITY(U,$J,358.3,17814,2)
- ;;=^5059623
- ;;^UTILITY(U,$J,358.3,17815,0)
- ;;=W17.2XXA^^88^898^82
- ;;^UTILITY(U,$J,358.3,17815,1,0)
+ ;;^UTILITY(U,$J,358.3,17994,1,3,0)
+ ;;=3^Parkinson's Disease w/ Dementia w/o Behavioral Disturbances
+ ;;^UTILITY(U,$J,358.3,17994,1,4,0)
+ ;;=4^G20.
+ ;;^UTILITY(U,$J,358.3,17994,2)
+ ;;=^5003770^F02.80
+ ;;^UTILITY(U,$J,358.3,17995,0)
+ ;;=G31.01^^61^795^26
+ ;;^UTILITY(U,$J,358.3,17995,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,17815,1,3,0)
- ;;=3^Fall into Hole,Init Encntr
- ;;^UTILITY(U,$J,358.3,17815,1,4,0)
- ;;=4^W17.2XXA
- ;;^UTILITY(U,$J,358.3,17815,2)
- ;;=^5059772
- ;;^UTILITY(U,$J,358.3,17816,0)
- ;;=W17.2XXD^^88^898^83
- ;;^UTILITY(U,$J,358.3,17816,1,0)
+ ;;^UTILITY(U,$J,358.3,17995,1,3,0)
+ ;;=3^Pick's Disease
+ ;;^UTILITY(U,$J,358.3,17995,1,4,0)
+ ;;=4^G31.01
+ ;;^UTILITY(U,$J,358.3,17995,2)
+ ;;=^329915
+ ;;^UTILITY(U,$J,358.3,17996,0)
+ ;;=G23.1^^61^795^28
+ ;;^UTILITY(U,$J,358.3,17996,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,17816,1,3,0)
- ;;=3^Fall into Hole,Subs Encntr
- ;;^UTILITY(U,$J,358.3,17816,1,4,0)
- ;;=4^W17.2XXD
- ;;^UTILITY(U,$J,358.3,17816,2)
- ;;=^5059773
- ;;^UTILITY(U,$J,358.3,17817,0)
- ;;=W17.3XXA^^88^898^80
- ;;^UTILITY(U,$J,358.3,17817,1,0)
+ ;;^UTILITY(U,$J,358.3,17996,1,3,0)
+ ;;=3^Progressive Supranuclear Ophthalmoplegia
+ ;;^UTILITY(U,$J,358.3,17996,1,4,0)
+ ;;=4^G23.1
+ ;;^UTILITY(U,$J,358.3,17996,2)
+ ;;=^5003780
+ ;;^UTILITY(U,$J,358.3,17997,0)
+ ;;=Z79.2^^61^796^1
+ ;;^UTILITY(U,$J,358.3,17997,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,17817,1,3,0)
- ;;=3^Fall into Empty Swimming Pool,Init Encntr
- ;;^UTILITY(U,$J,358.3,17817,1,4,0)
- ;;=4^W17.3XXA
- ;;^UTILITY(U,$J,358.3,17817,2)
- ;;=^5059775
- ;;^UTILITY(U,$J,358.3,17818,0)
- ;;=W17.3XXD^^88^898^81
- ;;^UTILITY(U,$J,358.3,17818,1,0)
+ ;;^UTILITY(U,$J,358.3,17997,1,3,0)
+ ;;=3^Antibiotics
+ ;;^UTILITY(U,$J,358.3,17997,1,4,0)
+ ;;=4^Z79.2
+ ;;^UTILITY(U,$J,358.3,17997,2)
+ ;;=^321546
+ ;;^UTILITY(U,$J,358.3,17998,0)
+ ;;=Z79.01^^61^796^2
+ ;;^UTILITY(U,$J,358.3,17998,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,17818,1,3,0)
- ;;=3^Fall into Empty Swimming Pool,Subs Encntr
- ;;^UTILITY(U,$J,358.3,17818,1,4,0)
- ;;=4^W17.3XXD
- ;;^UTILITY(U,$J,358.3,17818,2)
- ;;=^5059776
- ;;^UTILITY(U,$J,358.3,17819,0)
- ;;=W17.4XXA^^88^898^44
- ;;^UTILITY(U,$J,358.3,17819,1,0)
+ ;;^UTILITY(U,$J,358.3,17998,1,3,0)
+ ;;=3^Anticoagulants
+ ;;^UTILITY(U,$J,358.3,17998,1,4,0)
+ ;;=4^Z79.01
+ ;;^UTILITY(U,$J,358.3,17998,2)
+ ;;=^5063330
+ ;;^UTILITY(U,$J,358.3,17999,0)
+ ;;=Z79.02^^61^796^3
+ ;;^UTILITY(U,$J,358.3,17999,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,17819,1,3,0)
- ;;=3^Fall from Dock,Init Encntr
- ;;^UTILITY(U,$J,358.3,17819,1,4,0)
- ;;=4^W17.4XXA
- ;;^UTILITY(U,$J,358.3,17819,2)
- ;;=^5059778
- ;;^UTILITY(U,$J,358.3,17820,0)
- ;;=W17.4XXD^^88^898^45
- ;;^UTILITY(U,$J,358.3,17820,1,0)
+ ;;^UTILITY(U,$J,358.3,17999,1,3,0)
+ ;;=3^Antiplatelets/Antithrombotics
+ ;;^UTILITY(U,$J,358.3,17999,1,4,0)
+ ;;=4^Z79.02
+ ;;^UTILITY(U,$J,358.3,17999,2)
+ ;;=^5063331
+ ;;^UTILITY(U,$J,358.3,18000,0)
+ ;;=Z79.82^^61^796^4
+ ;;^UTILITY(U,$J,358.3,18000,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,17820,1,3,0)
- ;;=3^Fall from Dock,Subs Encntr
- ;;^UTILITY(U,$J,358.3,17820,1,4,0)
- ;;=4^W17.4XXD
- ;;^UTILITY(U,$J,358.3,17820,2)
- ;;=^5059779
+ ;;^UTILITY(U,$J,358.3,18000,1,3,0)
+ ;;=3^Aspirin

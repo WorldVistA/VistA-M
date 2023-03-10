@@ -1,5 +1,5 @@
 IBEFUR ;ALB/ARH - UTILITY: FIND RELATED FIRST AND THIRD PARTY BILLS ; 3/7/00
- ;;2.0;INTEGRATED BILLING;**130,459**;21-MAR-94;Build 16
+ ;;2.0;INTEGRATED BILLING;**130,459,728**;21-MAR-94;Build 14
  ;;Per VHA Directive 10-93-142, this routine should not be modified.
  ; 
  ; Called by Accounts Receivable report option
@@ -76,13 +76,14 @@ RT ; find all bills that have one or more of the same Prescription: same Rx numb
  ; BILL FROM ^ BILL TO ^ CANCELLED? (1/0)^ AR BILL NUMBER ^ TOTAL CHARGE ^ ACTION TYPE (SHORT) ^ # DAYS ON HOLD
  ;
 TPFP(IBIFN) ; given a specific Third Party Bill, find all related First Party Bills
- N IBX,IBY,IB0,DFN,IBEVDT,IBPTF,IBADM,IBOPV,IBXRF,IBRXN,IBRXIFN,IBRXDT,IBFROM,IBTO Q:'$G(IBIFN)
+ N IBX,IBY,IB0,DFN,IBEVDT,IBPTF,IBADM,IBOPV,IBXRF,IBRXN,IBRXIFN,IBRXDT,IBFROM,IBTO,IBU Q:'$G(IBIFN)
  S IB0=$G(^DGCR(399,+IBIFN,0)) Q:IB0=""  S DFN=$P(IB0,U,2),IBEVDT=$P(IB0,U,3)
+ S IBU=$G(^DGCR(399,+IBIFN,"U")),IBFROM=$P(IBU,U),IBTO=$P(IBU,U,2)  ; IB*2.0*728
  ;
  K ^TMP("IBRBF",$J,IBIFN) D SAVELN1^IBEFURF(IBIFN)
  ;
 IF ; find all First Party charges for the Inpatient Event Date (Admission Date) on the Third Party bill
- D FPINPT^IBEFURF(DFN,IBEVDT,IBIFN)
+ D FPINPT1^IBEFURF(DFN,IBFROM,IBTO,IBIFN)  ; IB*2.0*728
  ;
  ; find any First Party Outpatient charges for Visit Dates within the date range of the admission (PTF)
  S IBPTF=$P(IB0,U,8) I +IBPTF S IBADM=$$PTFADM^IBCU64(+IBPTF) I +IBADM S IBADM=$$AD^IBCU64(IBADM) D

@@ -1,5 +1,5 @@
-PSOLLL7 ;BHAM/JLC - LASER LABEL MULTI RX REFILL REQUEST FORM ;12/12/92
- ;;7.0;OUTPATIENT PHARMACY;**120,161,200,326**;DEC 1997;Build 11
+PSOLLL7 ;BHAM/JLC - LASER LABEL MULTI RX REFILL REQUEST FORM ;08/23/17  20:04
+ ;;7.0;OUTPATIENT PHARMACY;**120,161,200,326,441**;DEC 1997;Build 208
  ;
  ;Reference to ^PS(59.7 supported by DBIA 694
  ;Reference to ^PS(55 supported by DBIA 2228
@@ -47,8 +47,14 @@ DTCONNW S PSDT2=$P(RX(PSA),"^"),PSDT2=$E(PSDT2,4,5)_"/"_$E(PSDT2,6,7)_"/"_($E(PS
 RFILL2 F AMC=0:0 S AMC=$O(^PSRX(PSRXX,1,AMC)) Q:'AMC  S PSRFL=PSRFL-1
  I PSRFL>0 S X1=DT,X2=$P(^PSRX(PSRXX,0),"^",8)-10 D C^%DTC I X'<$P(^(2),"^",6) S PSRFL=0
  Q
-RZX S PSRXX=+^PS(55,DFN,"P",PSRX,0)
- I $D(^PSRX(PSRXX,0)) S PSRFL=$P(^(0),"^",9) D:$D(^(1))&PSRFL RFILL2 I PSRFL>0,$P($G(^PSRX(PSRXX,"STA")),"^")<10,134'[$E(+$P($G(^("STA")),"^")),$P(^(2),"^",6)>DT S RX(PSRXX)=$P(^(2),"^",6)_"^"_PSRFL
+RZX ;
+ S PSOORIG=0   ;441 PAPI
+ S PSRXX=+^PS(55,DFN,"P",PSRX,0) I $D(^PSRX(PSRXX,0)) D
+ .N EXPDT
+ .S EXPDT=$P(^PSRX(PSRXX,2),"^",6) I EXPDT'>DT Q
+ .S PSRFL=$P(^PSRX(PSRXX,0),"^",9) D:$D(^PSRX(PSRXX,1))&PSRFL RFILL2
+ .I +PSRFL=0,$G(^PSRX(PSRXX,"PARK")),$P($G(^PSRX(PSRXX,"STA")),"^")=0 D CHKLBL^PSOPRKA(PSRXX,0) I 'LBLP S RX(PSRXX)=EXPDT_"^"_PSRFL,PSOORIG=1
+ .I PSRFL>0,$P($G(^PSRX(PSRXX,"STA")),"^")<10,134'[$E(+$P($G(^("STA")),"^")) S RX(PSRXX)=EXPDT_"^"_PSRFL
  Q
 HDR S T=PNM D PRINT(T)
  D ADD^VADPT
@@ -63,7 +69,9 @@ HDR5 I $O(RX(0))="" D  S PSOY=PSOY+PSOYI Q
  .I '$D(PSOINST) D SITE
  .S PS=$S($D(^PS(59,PSOSITE,0)):^(0),1:"")
  .S OPSOX=PSOX,OPSOY=PSOY,T=$P(PS,"^",6) S PSOX=2300,PSOY=3900 D PRINT(T) S PSOX=OPSOX,PSOY=OPSOY
-ADD S PSOY=PSOY+PSOYI,T="Please check prescriptions to be refilled, sign the form, then" D PRINT(T)
+ADD S PSOY=PSOY+PSOYI
+ I 'PSOORIG S T="Please check prescriptions to be refilled, sign the form, then" D PRINT(T)  ;441 PAPI
+ I PSOORIG S T="Please check prescriptions to be filled/refilled, sign the form, then" D PRINT(T)
  S T="mail or return to your pharmacy." D PRINT(T) S PSOY=PSOY+PSOYI
  Q
 MAIL ;PRINT MAILING ADHESIVE LABEL

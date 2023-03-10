@@ -1,5 +1,5 @@
 PSOCAN4 ;BIR/SAB - rx speed dc listman ;10/23/06 11:50am
- ;;7.0;OUTPATIENT PHARMACY;**20,24,27,63,88,117,131,259,268,225,358,385,391,508**;DEC 1997;Build 295
+ ;;7.0;OUTPATIENT PHARMACY;**20,24,27,63,88,117,131,259,268,225,358,385,391,508,617**;DEC 1997;Build 110
  ;External reference to File #200 supported by DBIA 224
  ;External reference NA^ORX1 supported by DBIA 2186
  ;External references to L, UL, PSOL, and PSOUL^PSSLOCK supported by DBIA 2789
@@ -26,20 +26,22 @@ SEL I '$D(^XUSEC("PSORPH",DUZ)) S VALMSG="Unauthorized Action Selection.",VALMBC
 ULP D UL^PSSLOCK(+$G(PSODFN)) Q
  ;
 RX Q:'$D(^XUSEC("PSORPH",DUZ))
- D PSOL^PSSLOCK($P(PSOLST(ORN),"^",2)) I '$G(PSOMSG) D  D PAUSE^VALM1 K PSOMSG Q
- .I $P($G(PSOMSG),"^",2)'="" W $C(7),!!,$P($G(PSOMSG),"^",2),!,"Rx "_$P(^PSRX($P(PSOLST(ORN),"^",2),0),"^"),! Q
- .W $C(7),!!,"Another person is editing Rx "_$P(^PSRX($P(PSOLST(ORN),"^",2),0),"^"),!
- I $P($G(^PSRX($P(PSOLST(ORN),"^",2),"PKI")),"^")=1,'$D(^XUSEC("PSDRPH",DUZ)) W $C(7),!!,"Digitally Signed Order - PSDRPH key required" D PAUSE^VALM1 Q
- S RXSP=1 K PSCAN S (EN,X)=$P(^PSRX($P(PSOLST(ORN),"^",2),0),"^") S Y=$P(PSOLST(ORN),"^",2)_"^"_X,Y(0,0)=X,Y(0)=$G(^PSRX($P(PSOLST(ORN),"^",2),0)) D
+ N PSORXIEN
+ S PSORXIEN=$P(PSOLST(ORN),"^",2)
+ D PSOL^PSSLOCK(PSORXIEN) I '$G(PSOMSG) D  D PAUSE^VALM1 K PSOMSG Q
+ .I $P($G(PSOMSG),"^",2)'="" W $C(7),!!,$P($G(PSOMSG),"^",2),!,"Rx "_$P(^PSRX(PSORXIEN,0),"^"),! Q
+ .W $C(7),!!,"Another person is editing Rx "_$P(^PSRX(PSORXIEN,0),"^"),!
+ I $P($G(^PSRX(PSORXIEN,"PKI")),"^")!$P($G(^PSRX(PSORXIEN,"PKI")),"^",3),'$D(^XUSEC("PSDRPH",DUZ)) W $C(7),!!,"Digitally Signed Order - PSDRPH key required" D PAUSE^VALM1 Q
+ S RXSP=1 K PSCAN S (EN,X)=$P(^PSRX(PSORXIEN,0),"^") S Y=PSORXIEN_"^"_X,Y(0,0)=X,Y(0)=$G(^PSRX(PSORXIEN,0)) D
  .I $P(^PSRX(+Y,"STA"),"^")=1!($P(^("STA"),"^")=4) D  Q
  ..S:$G(PSONOOR)'="" PSONOORA=$G(PSONOOR) D DEL S:$G(PSONOORA)'="" PSONOOR=$G(PSONOORA) K PSONOORA Q
  .S YY=Y,YY(0,0)=Y(0,0),(PSODFN,DFN)=$P(Y(0),"^",2) D:$G(DFN) CHK^PSOCAN I DEAD!($P(^PSRX(+YY,"STA"),"^")>11),$P(^("STA"),"^")<16 S PSINV(EN)="" Q
  .S DA=+YY I $P($G(^PSRX(DA,"STA")),"^")=11!($P($G(^(2)),"^",6)<DT) D EXP^PSOCAN
  .S RX=YY(0,0) D:$D(^PSRX(DA,0)) SPEED1^PSOCAN1
- K YY I '$D(PSCAN) D PSOUL^PSSLOCK($P(PSOLST(ORN),"^",2)) Q
+ K YY I '$D(PSCAN) D PSOUL^PSSLOCK(PSORXIEN) Q
  S RX="",RXCNT=0 F  S RX=$O(PSCAN(RX)) Q:RX=""  S DA=+PSCAN(RX),REA=$P(PSCAN(RX),"^",2),RXCNT=RXCNT+1 D SHOW^PSOCAN1
  S RX="" F  S RX=$O(PSCAN(RX)) Q:RX=""  D ACT
- D PSOUL^PSSLOCK($P(PSOLST(ORN),"^",2))
+ D PSOUL^PSSLOCK(PSORXIEN)
  Q
 ACT S DA=+PSCAN(RX),REA=$P(PSCAN(RX),"^",2),II=RX,PSODFN=$P(^PSRX(DA,0),"^",2) I REA="R" D REINS^PSOCAN2 Q
  D CAN1^PSOCAN3 Q

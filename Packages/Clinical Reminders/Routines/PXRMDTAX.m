@@ -1,5 +1,5 @@
-PXRMDTAX ; SLC/AGP - Reminder Dialog Taxonomy Field editor/List Manager ;03/19/2015
- ;;2.0;CLINICAL REMINDERS;**26,47**;Feb 04, 2005;Build 291
+PXRMDTAX ; SLC/AGP - Reminder Dialog Taxonomy Field editor/List Manager ;Jun 22, 2021@08:09:50
+ ;;2.0;CLINICAL REMINDERS;**26,47,65**;Feb 04, 2005;Build 438
  ;
  ;ADDTAXF1(FIELD,CODE,ARRAY) ;
 ADDTAXF1(CODE,ARRAY) ;
@@ -11,21 +11,22 @@ ADDTAXF1(CODE,ARRAY) ;
  ;central location for building array of codes when determine what codes go with an
  ;encounter type
 BLDCODE(TYPE,CODESYS) ;
- I TYPE="ALL" S (CODESYS("ICD"),CODESYS("10D"),CODESYS("CPT"),CODESYS("CPC"))="" Q
+ I TYPE="ALL" S (CODESYS("ICD"),CODESYS("10D"),CODESYS("CPT"),CODESYS("CPC"))="",CODESYS("SCT")="" Q
  I TYPE="POV" S (CODESYS("ICD"),CODESYS("10D"))="" Q
  I TYPE="CPT" S (CODESYS("CPT"),CODESYS("CPC"))="" Q
+ ;I TYPE="SC" S CODESYS("SCT")=""
  Q
  ;
  ;build FDA array for Taxonomy Fields multiple
 BLDFDA(CODE,IEN,FDA,DEFAULT) ;
  N DA,ENCTYPE,FIELD,IENS,NODEIEN,RESULT,TEMP,VALUE,X
- S X=$S(CODE="POV":141,1:142)
+ S X=$S(CODE="POV":141,CODE="CPT":142,1:153)
  S VALUE=$$TAXDIR(X,CODE,IEN,.DEFAULT) I VALUE[U Q VALUE
  S FDA(801.41,IEN_",",X)=VALUE
  Q VALUE
  ;
 CHECKER(DIEN,TIEN,FIELD,OUTPUT) ;
- N CNT,FAIL,NAME,NODE,RESULT,TAXSEL,TDX,TDXNODE,TNAME,TPR,TPRNODE,TYPE
+ N CNT,FAIL,NAME,NODE,RESULT,TAXSEL,TDX,TDXNODE,TNAME,TPR,TPRNODE,TSCT,TSCNODE,TYPE
  S FAIL=""
  S NODE=$G(^PXRMD(801.41,DIEN,0)),NAME=$P(NODE,U),TYPE=$S($P(NODE,U,4)="G":"Group",1:"Element")
  S TNAME=$P($G(^PXD(811.2,TIEN,0)),U)
@@ -33,22 +34,24 @@ CHECKER(DIEN,TIEN,FIELD,OUTPUT) ;
  I '$D(^PXD(811.2,TIEN,20,"AUID")) S OUTPUT(1)="Dialog "_TYPE_" "_NAME_" contains a taxonomy "_TNAME_" that does not have codes marked to be used in a dialog.",FAIL=$S(FIELD="F":"F",1:"W") I FIELD'="" Q FAIL
  ;
  S TAXSEL=$P($G(^PXRMD(801.41,DIEN,"TAX")),U)
- S TDX=$$TOK(TIEN,"POV"),TPR=$$TOK(TIEN,"CPT")
+ S TDX=$$TOK(TIEN,"POV"),TPR=$$TOK(TIEN,"CPT"),TSC=$$TOK(TIEN,"SC")
  ;I TYPE="Group",TDX,TPR,TAXSEL'["N" S OUTPUT(1)="Dialog "_TYPE_" "_NAME_" cannot have a taxonomy selection field value other than 'No Pick List'.",FAIL="F" Q FAIL
  ;.I TAXSEL'["N" S OUTPUT(1)="Dialog "_TYPE_" "_NAME_" cannot have a taxonomy selection field value other than 'No Pick List'.",FAIL="F"
  I TAXSEL="N" Q FAIL
  S TDXNODE=$S($P($G(^PXRMD(801.41,DIEN,"POV")),U)'="":1,1:0),TPRNODE=$S($P($G(^PXRMD(801.41,DIEN,"CPT")),U)'="":1,1:0)
+ S TSCNODE=$S($P($G(^PXRMD(801.41,DIEN,"SC")),U)'="":1,1:0)
  S CNT=0
  I TAXSEL="A",TDX,TPR D  Q FAIL
  .S RESULT=$$CHCKCOMP(TDXNODE,TDX,"POV",NAME) I RESULT'="" S FAIL="W",CNT=CNT+1,OUTPUT(CNT)=RESULT
  .S RESULT=$$CHCKCOMP(TPRNODE,TPR,"CPT",NAME) I RESULT'="" S FAIL="W",CNT=CNT+1,OUTPUT(CNT)=RESULT
+ .S RESULT=$$CHCKCOMP(TSCNODE,TSC,"SC",NAME) I RESULT'="" S FAIL="W",CNT=CNT+1,OUTPUT(CNT)=RESULT
  ;I TAXSEL="D" S RESULT=$$CHCKCOMP(TDXNODE,TDX,"POV",NAME) I RESULT'="" S FAIL="W",CNT=CNT+1,OUTPUT(CNT)=RESULT
  ;I TAXSEL="P" S RESULT=$$CHCKCOMP(TPRNODE,TPR,"CPT",NAME) I RESULT'="" S FAIL="W",CNT=CNT+1,OUTPUT(CNT)=RESULT
  I $$HASACT(TIEN)=0 S FAIL="W",CNT=CNT+1,OUTPUT(CNT)="Taxonomy "_TNAME_" does not contain active codes for "_$$FMTE^XLFDT(DT)
  Q FAIL
  ;
 CHCKCOMP(DNODE,TNODE,TYPE,NAME) ;
- N NODE S NODE=$S(TYPE="POV":"diagnosis",1:"procedure")
+ N NODE S NODE=$S(TYPE="POV":"diagnosis",TYPE="SC":"standard codes",1:"procedure")
  I DNODE=1,TNODE=0 Q "Dialog element "_NAME_" "_NODE_" Header Text is defined, but the taxonomy does not have "_NODE_" codes marked to be used in a dialog."
  I DNODE=0,TNODE=1 Q "Dialog element "_NAME_" "_NODE_" Header Text is not defined, but the taxonomy does have "_NODE_" codes marked to be used in a dialog."
  Q ""
@@ -90,9 +93,27 @@ DELLOG(DA,FIELD,OLD,NEW) ;
  .I NEW=""!(NEW="N") D  Q
  ..S IENS=DA_"," D DELFIELD(IENS,801.41,141)
  ..S IENS=DA_"," D DELFIELD(IENS,801.41,142)
- .I NEW="D" S IENS=DA_"," D DELFIELD(IENS,801.41,142) Q
- .I NEW="P" S IENS=DA_"," D DELFIELD(IENS,801.41,141)
+ .I NEW="D" S IENS=DA_"," D  Q
+ ..D DELFIELD(IENS,801.41,142)
+ ..D DELFIELD(IENS,801.41,153)
+ .I NEW="P" S IENS=DA_"," D  Q
+ ..D DELFIELD(IENS,801.41,141)
+ ..D DELFIELD(IENS,801.41,153)
+ .I NEW="S" S IENS=DA_"," D  Q
+ ..D DELFIELD(IENS,801.41,141)
+ ..D DELFIELD(IENS,801.41,142)
  Q
+ ;
+GMPARAMS(TIEN) ;Return Minimum Value, Maximum Value, Maximum Decimals, and
+ ;UCUM pointer for a taxonomy.
+ N IEN,N1,RESULT
+ S RESULT=$G(^PXD(811.2,TIEN,220))
+ S IEN=$P(RESULT,U,4) I IEN D
+ . S RESULT=RESULT_U_$G(^LEX(757.5,IEN,0))
+ . S N1=$P($G(^LEX(757.5,IEN,1)),U,1)
+ . I "^(^{^[^"'[(U_$E(N1)_U) S N1="("_N1_")"
+ . I N1'="" S RESULT=RESULT_" "_N1
+ Q RESULT
  ;
 GETSTAT(TYPE) ;
  N HIST,RESULT,STATUS
@@ -158,8 +179,9 @@ PROMPTS(DA,SEL,DEFAULT,FDA,IENCNT) ;
  N CNT,CODE,DIR,DNUM,ENC,EXTVAL,FIELD,IEN,IENS,NAME,NODE,NUM,PROMPT,PROMPTS,START,VALUE,X,Y
  I $D(^PXRMD(801.41,DA,10)) Q 0
  S CODE="" F  S CODE=$O(DEFAULT(CODE)) Q:CODE=""  D
- .I SEL="P",CODE="POV" Q
- .I SEL="D",CODE="CPT" Q
+ .I SEL="P"&(CODE="POV"!(CODE="SC")) Q
+ .I SEL="D"&(CODE="CPT"!(CODE="SC")) Q
+ .I SEL="S"&(CODE="CPT"!(CODE="POV")) Q
  .S CNT=0 F  S CNT=$O(DEFAULT(CODE,"ADDFIND",CNT)) Q:CNT'>0  D
  ..S NODE=DEFAULT(CODE,"ADDFIND",CNT)
  ..S IEN=$P(NODE,U)
@@ -207,13 +229,13 @@ PROMPTS(DA,SEL,DEFAULT,FDA,IENCNT) ;
 TAXDIR(FIELD,CODE,DA,ARRAY) ;
  N DIR,CURVALUE,PROMPT,RESULT,SARRAY,TEMP,TYPE,X,Y
  S CURVALUE=""
- S DIR("A")=$S(CODE="POV":"Diagnosis Header",1:"Procedure Header")
+ S DIR("A")=$S(CODE="POV":"Diagnosis Header",CODE="SC":"Standard Codes Header",1:"Procedure Header")
  S DIR(0)="F^1:80"
- S TEMP=$S(CODE="POV":"diagnosis",1:"Procedure")
+ S TEMP=$S(CODE="POV":"diagnosis",CODE="SC":"Standard Codes",1:"Procedure")
  I +DA>0 S CURVALUE=$$GET1^DIQ(801.41,DA_",",FIELD)
  I CURVALUE="" D
  .S CURVALUE=$$GETTEXT(.ARRAY,CODE)
- .I CURVALUE="" S CURVALUE="Selectable "_$S($E(TEMP)="d":TEMP_"es",1:TEMP_"s")_" codes"
+ .I CURVALUE="" S CURVALUE="Selectable "_$S($E(TEMP)="d":TEMP_"es",TEMP="Standard Codes":TEMP,1:TEMP_"s")_$S(TEMP="Standard Codes":"",1:" codes")
  S DIR("B")=CURVALUE
  D ^DIR
  Q Y
@@ -224,7 +246,8 @@ TAXDIAL(IEN,FIND) ;
  N D,D0,DA,DC,DDES,DE,DG,DH,DI,DIC,DIDEL,DIE,DIEDA,DIEL,DIEN,DIR,DIETMP
  N DIEXREF,DIFLD,DIEIENS,DINUSE,DIP,DISYS,DK,DL,DM,DP,DQ,DR,DU
  ;
- N DEF,DEFAULT,DXTYPE,FDA,FDAIEN,HTEXT,IENCNT,IENS,ISHIST,MSG,NODEIEN,NAME,NONE,PRTYPE,RESULT,STR,TAXIEN,TAXSEL,TDX,TPR,VALUE,X,Y
+ N DEF,DEFAULT,DXTYPE,FDA,FDAIEN,HTEXT,IENCNT,IENS,ISHIST,MSG,NODEIEN,NAME,NONE
+ N PRTYPE,RESULT,STR,TAXIEN,TAXSEL,TDX,TPR,TSC,VALUE,X,Y
  ;
 ENTAXDL ;
  ;
@@ -234,14 +257,15 @@ ENTAXDL ;
  S ISHIST=$S($P($G(^PXRMD(801.41,IEN,1)),U,3)=2:1,1:0)
  S TDX=$$TOK(TAXIEN,"POV")
  S TPR=$$TOK(TAXIEN,"CPT")
+ S TSC=$$TOK(TAXIEN,"SC")
  S DEF=$P($G(^PXRMD(801.41,DA,"TAX")),U)
- S DIR(0)="S^A:All;N:No Pick List" D HELP(.HTEXT,"")
- I TDX=1,TPR=1 S DIR(0)="S^A:All;D:ICD Diagnoses Only;P:CPT Procedures Only;N:No Pick List" D HELP(.HTEXT,"PD")
- I $P($G(^PXRMD(801.41,IEN,0)),U,4)="G" D
- .I $G(DEF)="" S DEF="N"
- .I TDX=1,TPR=1 S DIR(0)="S^D:ICD Diagnoses Only;P:CPT Procedures Only;N:No Pick List" D HELP(.HTEXT,"GPD") Q
- .I TPR=1 S DIR(0)="S^P:CPT Procedures Only;N:No Pick List" D HELP(.HTEXT,"GP") Q
- .S DIR(0)="S^D:ICD Diagnoses Only;N:No Pick List" D HELP(.HTEXT,"GD")
+ S DIR(0)="S^A:All;"
+ I $G(DEF)="" S DEF="N"
+ I TDX=1 S DIR(0)=DIR(0)_"D:ICD Diagnoses Only;"
+ I TPR=1 S DIR(0)=DIR(0)_"P:CPT Procedures Only;"
+ I TSC=1 S DIR(0)=DIR(0)_"S:Standard Codes Only;"
+ S DIR(0)=DIR(0)_";N:No Pick List"
+ D HELP^PXRMDTX1(.HTEXT)
  I DIR(0)'[DEF S DEF=""
  S DIR("A")="Taxonomy Pick List"
  S DIR("B")=$S(DEF]"":DEF,1:"A")
@@ -254,10 +278,15 @@ ENTAXDL ;
  I VALUE="N" G TAXUPD
  I TDX=1 D GETTAXDF(.DEFAULT,"POV",ISHIST)
  I TPR=1 D GETTAXDF(.DEFAULT,"CPT",ISHIST)
+ I TSC=1 D GETTAXDF(.DEFAULT,"SC",ISHIST)
  S IENCNT=0
- I TDX=1,TPR=1,VALUE="A" D  G TAXDIALX:RESULT="^^" G ENTAXDL:RESULT=U
- .S RESULT=$$BLDFDA("POV",IEN,.FDA,.DEFAULT) I RESULT[U Q
- .S RESULT=$$BLDFDA("CPT",IEN,.FDA,.DEFAULT)
+ I VALUE="D",TDX=1 S RESULT=$$BLDFDA("POV",IEN,.FDA,.DEFAULT) G ENTAXDL:RESULT=U
+ I VALUE="P",TPR=1 S RESULT=$$BLDFDA("CPT",IEN,.FDA,.DEFAULT) G ENTAXDL:RESULT=U
+ I VALUE="S",TSC=1 S RESULT=$$BLDFDA("SC",IEN,.FDA,.DEFAULT) G ENTAXDL:RESULT=U
+ I VALUE="A" D  G TAXDIALX:RESULT="^^" G ENTAXDL:RESULT=U
+ .I TDX=1 S RESULT=$$BLDFDA("POV",IEN,.FDA,.DEFAULT) I RESULT[U Q
+ .I TPR=1 S RESULT=$$BLDFDA("CPT",IEN,.FDA,.DEFAULT) I RESULT[U Q
+ .I TSC=1 S RESULT=$$BLDFDA("SC",IEN,.FDA,.DEFAULT) I RESULT[U Q
  ;I TPR=1,VALUE="A" S RESULT=$$BLDFDA("CPT",IEN,.FDA,.DEFAULT) G TAXDIALX:RESULT="^^" G ENTAXDL:RESULT=U
  ;
  S RESULT=$$PROMPTS(IEN,VALUE,.DEFAULT,.FDA,.IENCNT) I RESULT[U G TAXDIALX:RESULT="^^" G ENTAXDL:RESULT=U
@@ -266,7 +295,7 @@ TAXUPD ;
  D UPDATE^DIE("","FDA","","MSG")
  I $D(MSG) W !,"Error in update",! D AWRITE^PXRMUTIL("MSG")
  ;
-TAXDIALX ; 
+TAXDIALX ;
  Q RESULT
  ;
  ;This routine is used to display Taxonomy codes in the List Manager view for Dialog Text.
@@ -274,7 +303,7 @@ TAXDIALX ;
 TAXDISP(FIEN,SEQ,DIEN,NLINE,NODE,ADDFIND,ISMAIL) ;
  N ARRAY,CNT,CODES,CODESYS,FILE,HIST,TIEN,TSEQ
  N CNT,DTXT,FNODE,RSUB,TDX,TNAME,TPAR,TPR,TYP
- N TCUR,TDTXT,TDHTXT,THIS,TPTXT,TPHTXT
+ N TCUR,TDTXT,TDHTXT,THIS,TPTXT,TPHTXT,TSC
  S TIEN=$P(FIEN,";") Q:TIEN=""
  S HIST=0,FILE=""
  ;Get associated codes
@@ -285,6 +314,7 @@ TAXDISP(FIEN,SEQ,DIEN,NLINE,NODE,ADDFIND,ISMAIL) ;
  ;Check what type of taxonomy codes exist
  S TDX=$$TOK(TIEN,"POV")
  S TPR=$$TOK(TIEN,"CPT")
+ S TSC=$$TOK(TIEN,"SC")
  ;
  S TAXSEL=$P($G(^PXRMD(801.41,DIEN,"TAX")),U)
  I ADDFIND=1 S TAXSEL="N"
@@ -315,11 +345,25 @@ TAXDISP(FIEN,SEQ,DIEN,NLINE,NODE,ADDFIND,ISMAIL) ;
  .D CODES(TIEN,.CODES,.NLINE,HIST,ISMAIL)
  .S NLINE=NLINE+1
  .S ^TMP(NODE,$J,NLINE,0)=$J("",79)
+ ;
+ I TSC D
+ .K CODESYS,CODES
+ .D BLDCODE("SC",.CODESYS)
+ .D CODES^PXRMDLLB(TIEN,.CODESYS,.CODES)
+ .I '$D(CODES) Q
+ .S TEXT=$J("",15)_$S(TAXSEL="N":"Procedures Codes:",TAXSEL="D":"Procedures Codes:",1:"Selectable Procedures codes:"),TAB=18
+ .S STR=$$LJ^XLFSTR($G(TEXT),$S(ISMAIL=1:51,1:60))
+ .S STR=STR_"Activation Periods"
+ .S NLINE=NLINE+1
+ .S ^TMP(NODE,$J,NLINE,0)=STR
+ .D CODES(TIEN,.CODES,.NLINE,HIST,ISMAIL)
+ .S NLINE=NLINE+1
+ .S ^TMP(NODE,$J,NLINE,0)=$J("",79)
  Q
  ;
 TAXEDITC(TIEN,TEXT) ;
  N DARRAY,DIEN,HEADER,IEN,NAME,OCNT,OUTPUT,RARRAY,RESULT
- N TDX,TPR,TAXNODE,TAXSEL
+ N TDX,TPR,TAXNODE,TAXSEL,TSC
  D FINDDIAL^PXRMFRPT(.DARRAY,"PXD(811.2,",TIEN)
  S TEXT(1)="Taxonomy and/or the following dialog(s) have problems."
  S TEXT(2)="Correct either the taxonomy or the following dialog(s):"
@@ -327,7 +371,7 @@ TAXEDITC(TIEN,TEXT) ;
  I '$D(DARRAY) G TXEDITCX
  I '$D(^PXD(811.2,TIEN,20,"AUID")) S TEXT(1)="Taxonomy does not contain codes marked to be used in a dialog. It is assigned to the following dialog(s)." D  Q
  .S CNT=1,NAME="" F  S NAME=$O(DARRAY(NAME)) Q:NAME=""  S CNT=CNT+1,TEXT(CNT)="   "_NAME
- S TDX=$$TOK(TIEN,"POV"),TPR=$$TOK(TIEN,"CPT")
+ S TDX=$$TOK(TIEN,"POV"),TPR=$$TOK(TIEN,"CPT"),TSC=$$TOK(TIEN,"SC")
  S NAME="" F  S NAME=$O(DARRAY(NAME)) Q:NAME=""  D
  .S IEN=DARRAY(NAME) S RESULT=$$CHECKER(IEN,TIEN,"",.OUTPUT) I RESULT="" Q
  .S TEXT(2)="See below for descriptions of the problem(s):"
@@ -345,26 +389,6 @@ TXEDITCX ;
 TOK(TIEN,TYPE) ;Check if selectable codes exist
  I TYPE="POV" I $D(^PXD(811.2,TIEN,20,"AUID","ICD"))>0!($D(^PXD(811.2,TIEN,20,"AUID","10D"))>0) Q 1
  I TYPE="CPT" I $D(^PXD(811.2,TIEN,20,"AUID","CPT"))>0!($D(^PXD(811.2,TIEN,20,"AUID","CPC"))>0) Q 1
+ ;I TYPE="SC" I $D(^PXD(811.2,TIEN,20,"AUID","SCT"))>0 Q 1
  Q 0
- ;
-HELP(HTEXT,TYPE) ;
- N CNT S CNT=1
- S HTEXT(CNT)="Set the taxonomy pick list display for the codes marked to be used in a dialog."
- I TYPE'["G" S CNT=CNT+1,HTEXT(CNT)="\\\\   A: To display a pick list for all codes "
- I TYPE["G" D  Q
- .I "PD" D  Q
- ..S CNT=CNT+1,HTEXT(CNT)="\\\\   D: To display a pick list for the diagnosis codes."
- ..S CNT=CNT+1,HTEXT(CNT)="\\\\      The procedure codes will automatically be filed to the encounter."
- ..S CNT=CNT+1,HTEXT(CNT)="\\\\   P: To display a pick list for the procedure codes."
- ..S CNT=CNT+1,HTEXT(CNT)="\\\\      The diagnosis codes will automatically be filed to the encounter."
- ..S CNT=CNT+1,HTEXT(CNT)="\\\\   N: To not display a pick list all codes will automatically be filed to the encounter."
- I TYPE["D" D
- .S CNT=CNT+1,HTEXT(CNT)="\\\\   D: To display a pick list for the diagnosis codes."
- .S CNT=CNT+1,HTEXT(CNT)="\\\\      The procedure codes will automatically be filed to the encounter."
- I TYPE["P" D
- .S CNT=CNT+1,HTEXT(CNT)="\\\\   P: To display a pick list for the procedure codes."
- .S CNT=CNT+1,HTEXT(CNT)="\\\\      The diagnosis codes will  automatically be filed to the encounter."
- S CNT=CNT+1,HTEXT(CNT)="\\\\   N: To not display a pick list, all codes will automatically be filed "
- S CNT=CNT+1,HTEXT(CNT)="\\\\      to the encounter."
- Q
  ;

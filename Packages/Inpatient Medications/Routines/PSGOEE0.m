@@ -1,5 +1,5 @@
-PSGOEE0 ;BIR/CML3 - ORDER EDIT UTILITIES ;Sep 16, 2019@15:44:38
- ;;5.0;INPATIENT MEDICATIONS;**58,95,179,216,315,319**;16 DEC 97;Build 31
+PSGOEE0 ;BIR/CML3 - ORDER EDIT UTILITIES ;Oct 27, 2020@15:14:39
+ ;;5.0;INPATIENT MEDICATIONS;**58,95,179,216,315,319,411,399**;16 DEC 97;Build 64
  ;;Per VHA Directive 2004-038, this routine should not be modified.
  ; Reference to ^DICN is supported by DBIA 10009.
  ; Reference to ^DIR is supported by DBIA 10026.
@@ -7,11 +7,11 @@ PSGOEE0 ;BIR/CML3 - ORDER EDIT UTILITIES ;Sep 16, 2019@15:44:38
 ENSFE(PSGP,PSGORD) ; Determine editable fields, and fields that cause new order.
  D @$S(PSGORD["P":"ENSFE3^PSGOEE0",1:"ENSFE5^PSGOEE0")
  Q
-ENSFE3 ; set-up fields to edit for 53.1
+ENSFE3 ; set-up fields to edit for 53.1 ;*399-IND
  N PSJCMOF
- S PSJCMOF=$S($D(PSJCMO):1,$D(PSJCM01):1,1:0)
- I PSGSTAT="PENDING" S PSGEFN=$S(PSJCMOF:"1:16",1:"1:13") F X=1:1:13,$S(PSJCMOF:15,1:""),$S(PSJCMOF:16,1:"") S:X PSGEFN(+X)=$P($T(@(3_X)),";",7),PSGOEEF(+$P($T(@(3_X)),";",3))="",PSGOEEF=PSGOEEF+1
- E  S PSGEFN=$S(PSJCMOF:"1:16",1:"1:13") F X=1:1:12,$S(PSJCMOF:15,1:""),$S(PSJCMOF:16,1:"") S:X Y=$T(@(3_X)),@("PSGEFN("_+X_")="_$S($D(PSGOETOF):0,1:$P(Y,";",7))),PSGOEEF(+$P(Y,";",3))="",PSGOEEF=PSGOEEF+1
+ S PSJCMOF=$S($G(PSJCMO):1,$G(PSJCM01):1,1:0)
+ I PSGSTAT="PENDING" S PSGEFN=$S(PSJCMOF:"1:16",1:"1:14") F X=1:1:$S(PSJCMOF:16,1:14) S PSGEFN(+X)=$P($T(@(3_X)),";",7),PSGOEEF(+$P($T(@(3_X)),";",3))="",PSGOEEF=PSGOEEF+1
+ E  S PSGEFN=$S(PSJCMOF:"1:16",1:"1:14") F X=1:1:$S(PSJCMOF:16,1:14) S:X'=13 Y=$T(@(3_X)),@("PSGEFN("_+X_")="_$S($D(PSGOETOF):0,1:$P(Y,";",7))),PSGOEEF(+$P(Y,";",3))="",PSGOEEF=PSGOEEF+1
  E  S:$P(PSJSYSU,";",3)>1 PSGEFN(9)=0,PSGOEEF(+$P($T(39),";",3))="",PSGOEEF=PSGOEEF+1
  E  I PSGEB'=PSGOPR F X=10,13 S Y=$T(@(3_X)),@("PSGEFN("_X_")="_$S($D(PSGOETOF):0,1:$P(Y,";",7))),PSGOEEF(+$P(Y,";",3))="",PSGOEEF=PSGOEEF+1
  ;*216 highlight if DOSECHK fails
@@ -20,9 +20,9 @@ ENSFE3 ; set-up fields to edit for 53.1
  ;
 ENSFE5 ; set-up fields to edit for 55
  N PSJCMOF
- S PSJCMOF=$S($D(PSJCMO):1,$D(PSJCM01):1,1:0)
- S PSGEFN=$S($D(PSJCMO):"1:16",1:"1:13")
- F X=1:1:13,$S(PSJCMOF:15,1:""),$S(PSJCMOF:16,1:"") S:X Y=$T(@(5_X)),@("PSGEFN("_+X_")="_$S($D(PSGOETO):0,1:$P(Y,";",7))),PSGOEEF(+$P(Y,";",3))="",PSGOEEF=PSGOEEF+1
+ S PSJCMOF=$S($G(PSJCMO):1,$G(PSJCM01):1,1:0)
+ S PSGEFN=$S($G(PSJCMO):"1:16",1:"1:14")
+ F X=1:1:$S(PSJCMOF:16,1:14) S Y=$T(@(5_X)),@("PSGEFN("_+X_")="_$S($D(PSGOETO):0,1:$P(Y,";",7))),PSGOEEF(+$P(Y,";",3))="",PSGOEEF=PSGOEEF+1
  I $P(PSJSYSU,";",3)>1 S PSGEFN(9)=0,PSGOEEF(+$P($T(59),";",3))="",PSGOEEF=PSGOEEF+1
  S PSGPDRG=PSGPD,PSGPDRGN=PSGPDN,PSGOEEND=1,PSGOEEG=5
  ;*216 highlight if DOSECHK fails
@@ -68,7 +68,7 @@ ENF ; finish order from edit
  .W !!,"Answer 'YES' to finish this order now.  Finishing the order converts it to a",!,"non-verified Unit Dose order.  Enter 'NO' (or an '^') if you do not want to",!,"finish this order now."
  I %=1 S PSGOEFF=0 D UPD^PSGOEF1 K PSGOEFF,PSGND,PSGSD
  Q
- ;
+ ;*399-IND-314,514
 FIELDS ;;linetag^routine for fied edit;variable used for before value;variable used for after value;associated field number in File; 1 - edit will create a new entry (field is starred) or 0 - edit will not create a new entry
 31 ;;108^PSGOE8;PSGOPD;PSGPD;108;1
 32 ;;109^PSGOE8;PSGODO;PSGDO;109;1
@@ -82,8 +82,8 @@ FIELDS ;;linetag^routine for fied edit;variable used for before value;variable u
 310 ;;1^PSGOE82;PSGOPR;PSGPR;1;1
 311 ;;8^PSGOE81;PSGOSI;PSGSI;8;0
 312 ;;2^PSGOE82;;;2;0
-313 ;;66^PSGOE82;;;66;0
-314 ;;40^PSGOE82;;;40;0
+313 ;;40^PSGOE82;;;40;0
+314 ;;132^PSGOE41;PSGOIND;PSGIND;132;0
 315 ;;50^PSGOE82;P("CLINO");P("CLIN");113;0
 316 ;;51^PSGOE82;P("APPTO");P("APPT");126;0
 51 ;;108^PSGOE9;PSGOPD;PSGPD;108;1
@@ -99,6 +99,6 @@ FIELDS ;;linetag^routine for fied edit;variable used for before value;variable u
 511 ;;8^PSGOE92;PSGOSI;PSGSI;8;0
 512 ;;2^PSGOE92;;;2;0
 513 ;;15^PSGOE92;;;15;0
-514 ;;72^PSGOE92;;;72;1
+514 ;;141^PSGOE41;PSGOIND;PSGIND;141;0
 515 ;;50^PSGOE82;P("CLINO");P("CLIN");130;0
 516 ;;51^PSGOE82;P("APPTO");P("APPT");131;0

@@ -1,124 +1,126 @@
-IBDEI147 ; ; 04-FEB-2020
- ;;3.0;IB ENCOUNTER FORM IMP/EXP;;FEB 04, 2020
+IBDEI147 ; ; 01-FEB-2022
+ ;;3.0;IB ENCOUNTER FORM IMP/EXP;;FEB 01, 2022
  Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,999) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
- ;;^UTILITY(U,$J,358.3,17901,1,4,0)
- ;;=4^G31.83
- ;;^UTILITY(U,$J,358.3,17901,2)
- ;;=^329888
- ;;^UTILITY(U,$J,358.3,17902,0)
- ;;=F01.51^^88^899^30
- ;;^UTILITY(U,$J,358.3,17902,1,0)
+ ;;^UTILITY(U,$J,358.3,18087,0)
+ ;;=J47.1^^61^801^14
+ ;;^UTILITY(U,$J,358.3,18087,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,17902,1,3,0)
- ;;=3^Vascular Dementia w/ Behavioral Disturbances
- ;;^UTILITY(U,$J,358.3,17902,1,4,0)
- ;;=4^F01.51
- ;;^UTILITY(U,$J,358.3,17902,2)
- ;;=^5003047
- ;;^UTILITY(U,$J,358.3,17903,0)
- ;;=F01.50^^88^899^31
- ;;^UTILITY(U,$J,358.3,17903,1,0)
+ ;;^UTILITY(U,$J,358.3,18087,1,3,0)
+ ;;=3^Bronchiectasis w/ Acute Exacerbation
+ ;;^UTILITY(U,$J,358.3,18087,1,4,0)
+ ;;=4^J47.1
+ ;;^UTILITY(U,$J,358.3,18087,2)
+ ;;=^5008259
+ ;;^UTILITY(U,$J,358.3,18088,0)
+ ;;=J47.9^^61^801^16
+ ;;^UTILITY(U,$J,358.3,18088,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,17903,1,3,0)
- ;;=3^Vascular Dementia w/o Behavioral Disturbances
- ;;^UTILITY(U,$J,358.3,17903,1,4,0)
- ;;=4^F01.50
- ;;^UTILITY(U,$J,358.3,17903,2)
- ;;=^5003046
- ;;^UTILITY(U,$J,358.3,17904,0)
- ;;=A81.9^^88^899^6
- ;;^UTILITY(U,$J,358.3,17904,1,0)
+ ;;^UTILITY(U,$J,358.3,18088,1,3,0)
+ ;;=3^Bronchiectasis,Uncomplicated
+ ;;^UTILITY(U,$J,358.3,18088,1,4,0)
+ ;;=4^J47.9
+ ;;^UTILITY(U,$J,358.3,18088,2)
+ ;;=^5008260
+ ;;^UTILITY(U,$J,358.3,18089,0)
+ ;;=J45.41^^61^801^8
+ ;;^UTILITY(U,$J,358.3,18089,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,17904,1,3,0)
- ;;=3^Atypical Virus Infection of CNS,Unspec
- ;;^UTILITY(U,$J,358.3,17904,1,4,0)
- ;;=4^A81.9
- ;;^UTILITY(U,$J,358.3,17904,2)
- ;;=^5000414
- ;;^UTILITY(U,$J,358.3,17905,0)
- ;;=A81.09^^88^899^8
- ;;^UTILITY(U,$J,358.3,17905,1,0)
+ ;;^UTILITY(U,$J,358.3,18089,1,3,0)
+ ;;=3^Asthma,Moderate Persistent w/ Acute Exacerbation
+ ;;^UTILITY(U,$J,358.3,18089,1,4,0)
+ ;;=4^J45.41
+ ;;^UTILITY(U,$J,358.3,18089,2)
+ ;;=^5008249
+ ;;^UTILITY(U,$J,358.3,18090,0)
+ ;;=J45.42^^61^801^9
+ ;;^UTILITY(U,$J,358.3,18090,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,17905,1,3,0)
- ;;=3^Creutzfeldt-Jakob Disease NEC
- ;;^UTILITY(U,$J,358.3,17905,1,4,0)
- ;;=4^A81.09
- ;;^UTILITY(U,$J,358.3,17905,2)
- ;;=^5000410
- ;;^UTILITY(U,$J,358.3,17906,0)
- ;;=A81.00^^88^899^9
- ;;^UTILITY(U,$J,358.3,17906,1,0)
+ ;;^UTILITY(U,$J,358.3,18090,1,3,0)
+ ;;=3^Asthma,Moderate Persistent w/ Status Asthmaticus
+ ;;^UTILITY(U,$J,358.3,18090,1,4,0)
+ ;;=4^J45.42
+ ;;^UTILITY(U,$J,358.3,18090,2)
+ ;;=^5008250
+ ;;^UTILITY(U,$J,358.3,18091,0)
+ ;;=J45.51^^61^801^12
+ ;;^UTILITY(U,$J,358.3,18091,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,17906,1,3,0)
- ;;=3^Creutzfeldt-Jakob Disease,Unspec
- ;;^UTILITY(U,$J,358.3,17906,1,4,0)
- ;;=4^A81.00
- ;;^UTILITY(U,$J,358.3,17906,2)
- ;;=^5000409
- ;;^UTILITY(U,$J,358.3,17907,0)
- ;;=A81.01^^88^899^10
- ;;^UTILITY(U,$J,358.3,17907,1,0)
+ ;;^UTILITY(U,$J,358.3,18091,1,3,0)
+ ;;=3^Asthma,Severe Persistent w/ Acute Exacerbation
+ ;;^UTILITY(U,$J,358.3,18091,1,4,0)
+ ;;=4^J45.51
+ ;;^UTILITY(U,$J,358.3,18091,2)
+ ;;=^5008252
+ ;;^UTILITY(U,$J,358.3,18092,0)
+ ;;=J45.52^^61^801^13
+ ;;^UTILITY(U,$J,358.3,18092,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,17907,1,3,0)
- ;;=3^Creutzfeldt-Jakob Disease,Variant
- ;;^UTILITY(U,$J,358.3,17907,1,4,0)
- ;;=4^A81.01
- ;;^UTILITY(U,$J,358.3,17907,2)
- ;;=^336701
- ;;^UTILITY(U,$J,358.3,17908,0)
- ;;=A81.89^^88^899^7
- ;;^UTILITY(U,$J,358.3,17908,1,0)
+ ;;^UTILITY(U,$J,358.3,18092,1,3,0)
+ ;;=3^Asthma,Severe Persistent w/ Status Asthmaticus
+ ;;^UTILITY(U,$J,358.3,18092,1,4,0)
+ ;;=4^J45.52
+ ;;^UTILITY(U,$J,358.3,18092,2)
+ ;;=^5008253
+ ;;^UTILITY(U,$J,358.3,18093,0)
+ ;;=J45.901^^61^801^1
+ ;;^UTILITY(U,$J,358.3,18093,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,17908,1,3,0)
- ;;=3^Atypical Virus Infections of CNS NEC
- ;;^UTILITY(U,$J,358.3,17908,1,4,0)
- ;;=4^A81.89
- ;;^UTILITY(U,$J,358.3,17908,2)
- ;;=^5000413
- ;;^UTILITY(U,$J,358.3,17909,0)
- ;;=A81.2^^88^899^27
- ;;^UTILITY(U,$J,358.3,17909,1,0)
+ ;;^UTILITY(U,$J,358.3,18093,1,3,0)
+ ;;=3^Asthma w/ Acute Exacerbation,Unspec
+ ;;^UTILITY(U,$J,358.3,18093,1,4,0)
+ ;;=4^J45.901
+ ;;^UTILITY(U,$J,358.3,18093,2)
+ ;;=^5008254
+ ;;^UTILITY(U,$J,358.3,18094,0)
+ ;;=J45.902^^61^801^2
+ ;;^UTILITY(U,$J,358.3,18094,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,17909,1,3,0)
- ;;=3^Progressive Multifocal Leukoencephalopathy
- ;;^UTILITY(U,$J,358.3,17909,1,4,0)
- ;;=4^A81.2
- ;;^UTILITY(U,$J,358.3,17909,2)
- ;;=^5000411
- ;;^UTILITY(U,$J,358.3,17910,0)
- ;;=B20.^^88^899^17
- ;;^UTILITY(U,$J,358.3,17910,1,0)
+ ;;^UTILITY(U,$J,358.3,18094,1,3,0)
+ ;;=3^Asthma w/ Status Asthmaticus,Unspec
+ ;;^UTILITY(U,$J,358.3,18094,1,4,0)
+ ;;=4^J45.902
+ ;;^UTILITY(U,$J,358.3,18094,2)
+ ;;=^5008255
+ ;;^UTILITY(U,$J,358.3,18095,0)
+ ;;=J45.990^^61^801^31
+ ;;^UTILITY(U,$J,358.3,18095,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,17910,1,3,0)
- ;;=3^HIV Disease w/ Dementia w/ Behavioral Disturbances
- ;;^UTILITY(U,$J,358.3,17910,1,4,0)
- ;;=4^B20.
- ;;^UTILITY(U,$J,358.3,17910,2)
- ;;=^5000555^F02.81
- ;;^UTILITY(U,$J,358.3,17911,0)
- ;;=B20.^^88^899^18
- ;;^UTILITY(U,$J,358.3,17911,1,0)
+ ;;^UTILITY(U,$J,358.3,18095,1,3,0)
+ ;;=3^Exercised Induced Bronchospasm
+ ;;^UTILITY(U,$J,358.3,18095,1,4,0)
+ ;;=4^J45.990
+ ;;^UTILITY(U,$J,358.3,18095,2)
+ ;;=^329926
+ ;;^UTILITY(U,$J,358.3,18096,0)
+ ;;=J45.998^^61^801^11
+ ;;^UTILITY(U,$J,358.3,18096,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,17911,1,3,0)
- ;;=3^HIV Disease w/ Dementia w/o Behavioral Disturbances
- ;;^UTILITY(U,$J,358.3,17911,1,4,0)
- ;;=4^B20.
- ;;^UTILITY(U,$J,358.3,17911,2)
- ;;=^5000555^F02.80
- ;;^UTILITY(U,$J,358.3,17912,0)
- ;;=F10.27^^88^899^1
- ;;^UTILITY(U,$J,358.3,17912,1,0)
+ ;;^UTILITY(U,$J,358.3,18096,1,3,0)
+ ;;=3^Asthma,Other
+ ;;^UTILITY(U,$J,358.3,18096,1,4,0)
+ ;;=4^J45.998
+ ;;^UTILITY(U,$J,358.3,18096,2)
+ ;;=^5008257
+ ;;^UTILITY(U,$J,358.3,18097,0)
+ ;;=J45.991^^61^801^25
+ ;;^UTILITY(U,$J,358.3,18097,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,17912,1,3,0)
- ;;=3^Alcohol Dependence w/ Alcohol-Induced Persisting Dementia
- ;;^UTILITY(U,$J,358.3,17912,1,4,0)
- ;;=4^F10.27
- ;;^UTILITY(U,$J,358.3,17912,2)
- ;;=^5003095
- ;;^UTILITY(U,$J,358.3,17913,0)
- ;;=F19.97^^88^899^29
- ;;^UTILITY(U,$J,358.3,17913,1,0)
+ ;;^UTILITY(U,$J,358.3,18097,1,3,0)
+ ;;=3^Cough Variant Asthma
+ ;;^UTILITY(U,$J,358.3,18097,1,4,0)
+ ;;=4^J45.991
+ ;;^UTILITY(U,$J,358.3,18097,2)
+ ;;=^329927
+ ;;^UTILITY(U,$J,358.3,18098,0)
+ ;;=I50.1^^61^802^14
+ ;;^UTILITY(U,$J,358.3,18098,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,17913,1,3,0)
- ;;=3^Psychoactive Substance Use w/ Persisting Dementia NEC
+ ;;^UTILITY(U,$J,358.3,18098,1,3,0)
+ ;;=3^Left Ventricular Failure
+ ;;^UTILITY(U,$J,358.3,18098,1,4,0)
+ ;;=4^I50.1
+ ;;^UTILITY(U,$J,358.3,18098,2)
+ ;;=^5007238
+ ;;^UTILITY(U,$J,358.3,18099,0)
+ ;;=I50.20^^61^802^12

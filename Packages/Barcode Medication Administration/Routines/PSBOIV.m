@@ -1,5 +1,5 @@
-PSBOIV ;BIRMINGHAM/TEJ-IV BAG STATUS REPORT ;8/30/12 10:56am
- ;;3.0;BAR CODE MED ADMIN;**32,68,70**;Mar 2004;Build 101
+PSBOIV ;BIRMINGHAM/TEJ-IV BAG STATUS REPORT ;2/6/21  16:54
+ ;;3.0;BAR CODE MED ADMIN;**32,68,70,106**;Mar 2004;Build 43
  ;Per VHA Directive 2004-038 (or future revisions regarding same), this routine should not be modified.
  ;
  ; Reference/IA
@@ -11,6 +11,7 @@ PSBOIV ;BIRMINGHAM/TEJ-IV BAG STATUS REPORT ;8/30/12 10:56am
  ; 
  ;*68 - change to accomodate unlimited lines for SIOPI array
  ;*70 - reset PSBCLINORD = 2 to signify combined orders report
+ ;*106- add Hazardous Handle & Dispose flags
  ;
 EN ; Entry
  N PSB1,PSBFUTR,PSBSI,QQ,PSBHDR               ;*70 add psbhdr
@@ -60,6 +61,8 @@ EN ; Entry
  ...;  *68 end
  ...M PSBLIST2(PSB2,"ADD")=PSBADA
  ...M PSBLIST2(PSB2,"SOL")=PSBSOLA
+ ...;*106 adds the hazardous handle/dispose notices-bg
+ ...I PSBHAZHN!PSBHAZDS S PSBLIST2(PSB2,"HAZ")=$S(PSBHAZHN:"<<HAZ Handle>> ",1:"")_$S(PSBHAZDS:"<<HAZ Dispose>>",1:"")         ;*106 new array item HAZ
  ...D EN^PSBPOIV(PSB1,PSB2)
  ...I +$O(^TMP("PSBAR",$J,""))>0 S X="" F  S X=$O(^TMP("PSBAR",$J,X)) Q:+X=0  S PSBBGS(PSB2,X)=$P(^TMP("PSBAR",$J,X),U,2)
  ...D:PSBACRIT["N"
@@ -89,6 +92,7 @@ EN ; Entry
  D BLDRPT
  D WRTRPT
  K PSBSILN,PSBOUTP,PSBLIST2,PSBCMNT,PSBNOX
+ D CLEAN^PSBVT    ;*106
  Q
 BLDRPT ; Buld Reprt
  S (PSB2,PSB3,PSB4)=""
@@ -97,8 +101,7 @@ BLDRPT ; Buld Reprt
  .S PSBOUTP(0,14)="W !!,""<<<< NO DATA TO DISPLAY >>>>"",!!"
  S PSBTOT1=0
  K PSBDATA
- K J S J=1
- F  S PSB2=$O(PSBLIST2(PSB2)) Q:+PSB2=0  D
+ K J S J=1 F  S PSB2=$O(PSBLIST2(PSB2)) Q:+PSB2=0  D
  .S PSBORDX="" S PSBORDX=PSB2
  .S PSBDATA(1)=$$FMTDT^PSBOIV1($E(PSBLIST2(PSB2,"OStart"),1,12))
  .S PSBDATA(2)=$$FMTDT^PSBOIV1($E(PSBLIST2(PSB2,"OStop"),1,12))
@@ -124,7 +127,10 @@ BLDRPT ; Buld Reprt
  .F N=$O(PSBRPLN("")):1:$O(PSBRPLN(""),-1)  D
  ..S PSB1X=0 S PSB1X=(($L(PSBRPLN(N),"""")-1)\2) I ($E(PSBRPLN(N),(PSBTAB8)+PSB1X)']" ") S $E(PSBRPLN(N),(PSBTAB8)+PSB1X)="|"
  ..S PSBOUTP($$PGTOT,PSBLNTOT)="W !,"""_PSBRPLN(N)_""""
+ .S:$G(PSBLIST2(PSB2,"HAZ"))]"" PSBOUTP($$PGTOT,PSBLNTOT)="W !?"_PSBTAB3_","_"PSBLIST2("""_PSB2_""",""HAZ"")"                  ;*106
+ .;
  .K PSBRPLN,PSBDATA
+ .;
  .S I="" F  S I=$O(PSBSILN(I)) Q:+I=0  D
  ..S PSB1X=0 S PSB1X=(($L(PSBSILN(I),"""")-1)\2)
  ..I ($E(PSBSILN(I),(PSBTAB8)+PSB1X)']" ") S $E(PSBSILN(I),(PSBTAB8)+PSB1X)="|"

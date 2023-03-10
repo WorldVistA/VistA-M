@@ -1,5 +1,5 @@
-PXRMERRH ;SLC/PKR - Error handling routines. ;07/06/2016  13:05
- ;;2.0;CLINICAL REMINDERS;**4,17,18,47,45**;Feb 04, 2005;Build 566
+PXRMERRH ;SLC/PKR - Error handling routines. ;01/22/2021
+ ;;2.0;CLINICAL REMINDERS;**4,17,18,47,45,42**;Feb 04, 2005;Build 245
  ;
  ;=================================================================
 DERRHRLR ;PXRM error handler. Send a MailMan message to the mail group defined
@@ -95,6 +95,7 @@ ERRHDLR ;PXRM error handler. Send a MailMan message to the mail group defined
  . S NL=NL+1,^TMP("PXRMXMZ",$J,NL,0)="to receive Clinical Reminder errors; please notify them."
  ;
  D SEND^PXRMMSG("PXRMXMZ","ERROR EVALUATING CLINICAL REMINDER","",DUZ)
+ I ERROR["VCPT",ERROR["PXPXRM" D VCPTINDEXREPAIR(PXRMPDEM("DFN"),ERROR)
  ;
  ;If the reminder exists mark that an error occured.
  I PXRMITEM=999999 Q
@@ -124,10 +125,8 @@ DCLEAN ;
 NODEF(IEN) ;Non-existent reminder definition.
  N SUBJ
  K ^TMP("PXRMXMZ",$J)
- S ^TMP("PXRMXMZ",$J,1,0)="A request was made to evaluate a non-existent reminder; the ien is "_IEN_"."
- S ^TMP("PXRMXMZ",$J,2,0)="An entry was made in the error trap that does not have a description."
- S ^TMP("PXRMXMZ",$J,3,0)="Match the time of this message with the time in the error trap."
- S SUBJ="Request to evaluate a non-existent reminder"
+ S ^TMP("PXRMXMZ",$J,1,0)="A request was made to evaluate a non-existent reminder; the IEN is "_IEN_"."
+ S SUBJ="Attempt to evaluate a non-existent reminder"
  D SEND^PXRMMSG("PXRMXMZ",SUBJ,"",DUZ)
  K ^TMP("PXRMXMZ",$J)
  D ^%ZTER
@@ -138,7 +137,7 @@ NOINDEX(FTYPE,IEN,FILENUM) ;Error handling for missing index.
  N ETEXT,SUBJ
  K ^TMP("PXRMXMZ",$J)
  S ETEXT(1)=""
- S ETEXT(2)="Index for file number "_FILENUM_" does not exist or is not complete."
+ S ETEXT(2)="Warning: Index for file number "_FILENUM_" does not exist or is not complete."
  I FTYPE="D" S ETEXT(3)="Reminder "_IEN_" will not be properly evaluated!"
  I FTYPE="TR" S ETEXT(3)="Term "_IEN_" will not be properly evaluated!"
  I FTYPE="TX" S ETEXT(3)="Taxonomy "_IEN_" will not be properly evaluated!"
@@ -154,3 +153,47 @@ NOINDEX(FTYPE,IEN,FILENUM) ;Error handling for missing index.
  K ^TMP("PXRMXMZ",$J)
  Q
  ;
+ ;=================================================================
+VCPTINDEXREPAIR(DFN,ERROR) ;Repair for reminder evaluation errors caused by
+ ;V CPT index entries that were not deleted when the V CPT entry was
+ ;deleted.
+ N CPT,DATE,DONE,PP,SUBJECT,TEMP,VCPTIEN
+ K ^TMP("PXRMXMZ",$J)
+ ;Get VCPT IEN.
+ S TEMP=$P(ERROR,"^AUPNVCPT(",2)
+ S VCPTIEN=$P(TEMP,",",1)
+ I +VCPTIEN'>0 Q
+ ;Check for a spurious error and send a message
+ ;if one is found.
+ I $D(^AUPNVCPT(VCPTIEN)) D  Q
+ . S SUBJECT="V CPT Index Spurious Error"
+ . S ^TMP("PXRMXMZ",$J,1,0)="The error:"
+ . S ^TMP("PXRMXMZ",$J,2,0)=ERROR
+ . S ^TMP("PXRMXMZ",$J,3,0)="appears to be spurious because the V CPT entry exists."
+ . S ^TMP("PXRMXMZ",$J,4,0)="Please enter a ticket so this can be examined."
+ . D SEND^PXRMMSG("PXRMXMZ",SUBJECT,"",DUZ)
+ . K ^TMP("PXRMXMZ",$J)
+ ;Delete the Index entries and send a message.
+ S DONE=0,PP=""
+ F  S PP=$O(^PXRMINDX(9000010.18,"PPI",DFN,PP)) Q:(DONE)!(PP="")  D
+ . S CPT=""
+ . F  S CPT=$O(^PXRMINDX(9000010.18,"PPI",DFN,PP,CPT)) Q:(DONE)!(CPT="")  D
+ .. S DATE=""
+ .. F  S DATE=$O(^PXRMINDX(9000010.18,"PPI",DFN,PP,CPT,DATE)) Q:(DONE)!(DATE="")  D
+ ... I $D(^PXRMINDX(9000010.18,"PPI",DFN,PP,CPT,DATE,VCPTIEN)) D
+ .... K ^PXRMINDX(9000010.18,"PPI",DFN,PP,CPT,DATE,VCPTIEN)
+ .... K ^PXRMINDX(9000010.18,"IPP",CPT,PP,DFN,DATE,VCPTIEN)
+ .... S DONE=1
+ ....;Send the message
+ .... S SUBJECT="V CPT Index Repair"
+ .... S ^TMP("PXRMXMZ",$J,1,0)="The Clinical Reminder Index entries related to the error:"
+ .... S ^TMP("PXRMXMZ",$J,2,0)=ERROR
+ .... S ^TMP("PXRMXMZ",$J,3,0)="have been deleted, no further action is required."
+ .... S ^TMP("PXRMXMZ",$J,4,0)="DFN="_DFN
+ .... S ^TMP("PXRMXMZ",$J,5,0)="PP="_PP
+ .... S ^TMP("PXRMXMZ",$J,6,0)="CPT="_CPT
+ .... S ^TMP("PXRMXMZ",$J,7,0)="Date="_DATE
+ .... S ^TMP("PXRMXMZ",$J,8,0)="V CPT IEN="_VCPTIEN
+ .... D SEND^PXRMMSG("PXRMXMZ",SUBJECT,"",DUZ)
+ .... K ^TMP("PXRMXMZ",$J)
+ Q

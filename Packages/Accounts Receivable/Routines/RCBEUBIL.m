@@ -1,6 +1,6 @@
-RCBEUBIL ;WISC/RFJ-utilties for bills (in file 430)                  ;1 Jun 00
- ;;4.5;Accounts Receivable;**153,226,276**;Mar 20, 1995;Build 87
- ;;Per VHA Directive 2004-038, this routine should not be modified.
+RCBEUBIL ;WISC/RFJ-utilties for bills (in file 430) ;Jun 06, 2014@19:11:19
+ ;;4.5;Accounts Receivable;**153,226,276,371**;Mar 20, 1995;Build 29
+ ;;Per VHA Directive 6402, this routine should not be modified.
  Q
  ;
  ;
@@ -67,7 +67,7 @@ SETRCDOJ(RCBILLDA,RCTRANDA,RCDOJ) ;  set the bill and transaction to rc or doj
  Q
  ;
 SETBAL(RCTRANDA,RCNFLG) ;  set the bills balance by adding value of transaction
- N RCBILLDA,RCDATA7,VALUE
+ N RCBILLDA,RCDATA7,VALUE,RCFDA
  S RCBILLDA=$P($G(^PRCA(433,RCTRANDA,0)),"^",2) I 'RCBILLDA Q
  ;  get the value of the transaction
  S VALUE=$P($$TRANVALU^RCDPBTLM(RCTRANDA),"^",2,6)
@@ -77,12 +77,13 @@ SETBAL(RCTRANDA,RCNFLG) ;  set the bills balance by adding value of transaction
  S RCDATA7=$G(^PRCA(430,RCBILLDA,7))
  ; PRCA276 - next line: if adjustment causes negative balance entry in ACCOUNTS RECEIVABLE file not updated
  I $P(RCDATA7,"^",1)+$P(VALUE,"^")<0 S RCNFLG=1 Q
- S $P(RCDATA7,"^",1)=$P(RCDATA7,"^")+$P(VALUE,"^") ; principal
- S $P(RCDATA7,"^",2)=$P(RCDATA7,"^",2)+$P(VALUE,"^",2) ; interest
- S $P(RCDATA7,"^",3)=$P(RCDATA7,"^",3)+$P(VALUE,"^",3) ; admin
- S $P(RCDATA7,"^",4)=$P(RCDATA7,"^",4)+$P(VALUE,"^",4) ; marshal fee
- S $P(RCDATA7,"^",5)=$P(RCDATA7,"^",5)+$P(VALUE,"^",5) ; court cost
- S $P(^PRCA(430,RCBILLDA,7),"^",1,5)=$P(RCDATA7,"^",1,5)
+ ; PRCA*4.5*371 - Replace direct global sets in 7 node with FileMan calls so indexes get updated
+ S RCFDA(430,RCBILLDA_",",71)=$P(RCDATA7,"^")+$P(VALUE,"^") ; principal
+ S RCFDA(430,RCBILLDA_",",72)=$P(RCDATA7,"^",2)+$P(VALUE,"^",2) ; interest
+ S RCFDA(430,RCBILLDA_",",73)=$P(RCDATA7,"^",3)+$P(VALUE,"^",3) ; admin
+ S RCFDA(430,RCBILLDA_",",74)=$P(RCDATA7,"^",4)+$P(VALUE,"^",4) ; marshal fee
+ S RCFDA(430,RCBILLDA_",",75)=$P(RCDATA7,"^",5)+$P(VALUE,"^",5) ; court cost
+ D FILE^DIE(,"RCFDA")
  Q
  ;
 FYMULT(RCTRANDA) ;  update the fiscal year multiple for bill

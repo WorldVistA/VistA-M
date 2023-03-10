@@ -1,120 +1,122 @@
-IBDEI1AM ; ; 04-FEB-2020
- ;;3.0;IB ENCOUNTER FORM IMP/EXP;;FEB 04, 2020
+IBDEI1AM ; ; 01-FEB-2022
+ ;;3.0;IB ENCOUNTER FORM IMP/EXP;;FEB 01, 2022
  Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,999) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
- ;;^UTILITY(U,$J,358.3,20679,1,4,0)
- ;;=4^Z69.021
- ;;^UTILITY(U,$J,358.3,20679,2)
- ;;=^5063231
- ;;^UTILITY(U,$J,358.3,20680,0)
- ;;=Z69.011^^95^1020^23
- ;;^UTILITY(U,$J,358.3,20680,1,0)
+ ;;^UTILITY(U,$J,358.3,20888,1,3,0)
+ ;;=3^Disp fx of right radial styloid process, sequela 
+ ;;^UTILITY(U,$J,358.3,20888,1,4,0)
+ ;;=4^S52.511S
+ ;;^UTILITY(U,$J,358.3,20888,2)
+ ;;=^5030634
+ ;;^UTILITY(U,$J,358.3,20889,0)
+ ;;=S52.514S^^67^890^109
+ ;;^UTILITY(U,$J,358.3,20889,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,20680,1,3,0)
- ;;=3^MH Svc for Perpetrator of Parental Child Abuse
- ;;^UTILITY(U,$J,358.3,20680,1,4,0)
- ;;=4^Z69.011
- ;;^UTILITY(U,$J,358.3,20680,2)
- ;;=^5063229
- ;;^UTILITY(U,$J,358.3,20681,0)
- ;;=Z69.011^^95^1020^24
- ;;^UTILITY(U,$J,358.3,20681,1,0)
+ ;;^UTILITY(U,$J,358.3,20889,1,3,0)
+ ;;=3^Nondisp fx of right radial styloid process, sequela
+ ;;^UTILITY(U,$J,358.3,20889,1,4,0)
+ ;;=4^S52.514S
+ ;;^UTILITY(U,$J,358.3,20889,2)
+ ;;=^5030682
+ ;;^UTILITY(U,$J,358.3,20890,0)
+ ;;=S22.22XS^^67^891^2
+ ;;^UTILITY(U,$J,358.3,20890,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,20681,1,3,0)
- ;;=3^MH Svc for Perpetrator of Parental Child Neglect
- ;;^UTILITY(U,$J,358.3,20681,1,4,0)
- ;;=4^Z69.011
- ;;^UTILITY(U,$J,358.3,20681,2)
- ;;=^5063229
- ;;^UTILITY(U,$J,358.3,20682,0)
- ;;=Z69.011^^95^1020^25
- ;;^UTILITY(U,$J,358.3,20682,1,0)
+ ;;^UTILITY(U,$J,358.3,20890,1,3,0)
+ ;;=3^Fracture of body of sternum, sequela
+ ;;^UTILITY(U,$J,358.3,20890,1,4,0)
+ ;;=4^S22.22XS
+ ;;^UTILITY(U,$J,358.3,20890,2)
+ ;;=^5023092
+ ;;^UTILITY(U,$J,358.3,20891,0)
+ ;;=S22.21XS^^67^891^3
+ ;;^UTILITY(U,$J,358.3,20891,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,20682,1,3,0)
- ;;=3^MH Svc for Perpetrator of Parental Child Psychological Abuse
- ;;^UTILITY(U,$J,358.3,20682,1,4,0)
- ;;=4^Z69.011
- ;;^UTILITY(U,$J,358.3,20682,2)
- ;;=^5063229
- ;;^UTILITY(U,$J,358.3,20683,0)
- ;;=Z69.011^^95^1020^26
- ;;^UTILITY(U,$J,358.3,20683,1,0)
+ ;;^UTILITY(U,$J,358.3,20891,1,3,0)
+ ;;=3^Fracture of manubrium, sequela
+ ;;^UTILITY(U,$J,358.3,20891,1,4,0)
+ ;;=4^S22.21XS
+ ;;^UTILITY(U,$J,358.3,20891,2)
+ ;;=^5023086
+ ;;^UTILITY(U,$J,358.3,20892,0)
+ ;;=S22.32XS^^67^891^5
+ ;;^UTILITY(U,$J,358.3,20892,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,20683,1,3,0)
- ;;=3^MH Svc for Perpetrator of Parental Child Sexual Abuse
- ;;^UTILITY(U,$J,358.3,20683,1,4,0)
- ;;=4^Z69.011
- ;;^UTILITY(U,$J,358.3,20683,2)
- ;;=^5063229
- ;;^UTILITY(U,$J,358.3,20684,0)
- ;;=Z69.12^^95^1020^17
- ;;^UTILITY(U,$J,358.3,20684,1,0)
+ ;;^UTILITY(U,$J,358.3,20892,1,3,0)
+ ;;=3^Fracture of one rib, left side, sequela
+ ;;^UTILITY(U,$J,358.3,20892,1,4,0)
+ ;;=4^S22.32XS
+ ;;^UTILITY(U,$J,358.3,20892,2)
+ ;;=^5023116
+ ;;^UTILITY(U,$J,358.3,20893,0)
+ ;;=S22.31XS^^67^891^6
+ ;;^UTILITY(U,$J,358.3,20893,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,20684,1,3,0)
- ;;=3^MH SVC for Perpetrator of Spousal/Partner Neglect
- ;;^UTILITY(U,$J,358.3,20684,1,4,0)
- ;;=4^Z69.12
- ;;^UTILITY(U,$J,358.3,20684,2)
- ;;=^5063233
- ;;^UTILITY(U,$J,358.3,20685,0)
- ;;=Z69.12^^95^1020^28
- ;;^UTILITY(U,$J,358.3,20685,1,0)
+ ;;^UTILITY(U,$J,358.3,20893,1,3,0)
+ ;;=3^Fracture of one rib, right side, sequela
+ ;;^UTILITY(U,$J,358.3,20893,1,4,0)
+ ;;=4^S22.31XS
+ ;;^UTILITY(U,$J,358.3,20893,2)
+ ;;=^5023110
+ ;;^UTILITY(U,$J,358.3,20894,0)
+ ;;=S22.24XS^^67^891^8
+ ;;^UTILITY(U,$J,358.3,20894,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,20685,1,3,0)
- ;;=3^MH Svc for Perpetrator of Spousal/Partner Psychological Abuse
- ;;^UTILITY(U,$J,358.3,20685,1,4,0)
- ;;=4^Z69.12
- ;;^UTILITY(U,$J,358.3,20685,2)
- ;;=^5063233
- ;;^UTILITY(U,$J,358.3,20686,0)
- ;;=Z69.12^^95^1020^29
- ;;^UTILITY(U,$J,358.3,20686,1,0)
+ ;;^UTILITY(U,$J,358.3,20894,1,3,0)
+ ;;=3^Fracture of xiphoid process, sequela
+ ;;^UTILITY(U,$J,358.3,20894,1,4,0)
+ ;;=4^S22.24XS
+ ;;^UTILITY(U,$J,358.3,20894,2)
+ ;;=^5023104
+ ;;^UTILITY(U,$J,358.3,20895,0)
+ ;;=S02.42XS^^67^891^1
+ ;;^UTILITY(U,$J,358.3,20895,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,20686,1,3,0)
- ;;=3^MH Svc for Perpetrator of Spousal/Partner Violence,Sexual
- ;;^UTILITY(U,$J,358.3,20686,1,4,0)
- ;;=4^Z69.12
- ;;^UTILITY(U,$J,358.3,20686,2)
- ;;=^5063233
- ;;^UTILITY(U,$J,358.3,20687,0)
- ;;=Z69.11^^95^1020^32
- ;;^UTILITY(U,$J,358.3,20687,1,0)
+ ;;^UTILITY(U,$J,358.3,20895,1,3,0)
+ ;;=3^Fracture of alveolus of maxilla, sequela
+ ;;^UTILITY(U,$J,358.3,20895,1,4,0)
+ ;;=4^S02.42XS
+ ;;^UTILITY(U,$J,358.3,20895,2)
+ ;;=^5020359
+ ;;^UTILITY(U,$J,358.3,20896,0)
+ ;;=S02.2XXS^^67^891^4
+ ;;^UTILITY(U,$J,358.3,20896,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,20687,1,3,0)
- ;;=3^MH Svc for Victim of Spousal/Partner Psychological Abuse
- ;;^UTILITY(U,$J,358.3,20687,1,4,0)
- ;;=4^Z69.11
- ;;^UTILITY(U,$J,358.3,20687,2)
- ;;=^5063232
- ;;^UTILITY(U,$J,358.3,20688,0)
- ;;=Z69.11^^95^1020^33
- ;;^UTILITY(U,$J,358.3,20688,1,0)
+ ;;^UTILITY(U,$J,358.3,20896,1,3,0)
+ ;;=3^Fracture of nasal bones, sequela
+ ;;^UTILITY(U,$J,358.3,20896,1,4,0)
+ ;;=4^S02.2XXS
+ ;;^UTILITY(U,$J,358.3,20896,2)
+ ;;=^5020311
+ ;;^UTILITY(U,$J,358.3,20897,0)
+ ;;=S02.66XS^^67^891^7
+ ;;^UTILITY(U,$J,358.3,20897,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,20688,1,3,0)
- ;;=3^MH Svc for Victim of Spousal/Partner Violence,Physical
- ;;^UTILITY(U,$J,358.3,20688,1,4,0)
- ;;=4^Z69.11
- ;;^UTILITY(U,$J,358.3,20688,2)
- ;;=^5063232
- ;;^UTILITY(U,$J,358.3,20689,0)
- ;;=Z69.11^^95^1020^34
- ;;^UTILITY(U,$J,358.3,20689,1,0)
+ ;;^UTILITY(U,$J,358.3,20897,1,3,0)
+ ;;=3^Fracture of symphysis of mandible, sequela
+ ;;^UTILITY(U,$J,358.3,20897,1,4,0)
+ ;;=4^S02.66XS
+ ;;^UTILITY(U,$J,358.3,20897,2)
+ ;;=^5020413
+ ;;^UTILITY(U,$J,358.3,20898,0)
+ ;;=S22.43XS^^67^891^9
+ ;;^UTILITY(U,$J,358.3,20898,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,20689,1,3,0)
- ;;=3^MH Svc for Victim of Spousal/Partner Violence,Sexual
- ;;^UTILITY(U,$J,358.3,20689,1,4,0)
- ;;=4^Z69.11
- ;;^UTILITY(U,$J,358.3,20689,2)
- ;;=^5063232
- ;;^UTILITY(U,$J,358.3,20690,0)
- ;;=Z62.812^^95^1020^36
- ;;^UTILITY(U,$J,358.3,20690,1,0)
+ ;;^UTILITY(U,$J,358.3,20898,1,3,0)
+ ;;=3^Multiple fractures of ribs, bilateral, sequela
+ ;;^UTILITY(U,$J,358.3,20898,1,4,0)
+ ;;=4^S22.43XS
+ ;;^UTILITY(U,$J,358.3,20898,2)
+ ;;=^5023140
+ ;;^UTILITY(U,$J,358.3,20899,0)
+ ;;=S22.42XS^^67^891^10
+ ;;^UTILITY(U,$J,358.3,20899,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,20690,1,3,0)
- ;;=3^Personal Past Hx of Childhood Neglect
- ;;^UTILITY(U,$J,358.3,20690,1,4,0)
- ;;=4^Z62.812
- ;;^UTILITY(U,$J,358.3,20690,2)
- ;;=^5063155
- ;;^UTILITY(U,$J,358.3,20691,0)
- ;;=Z62.810^^95^1020^37
+ ;;^UTILITY(U,$J,358.3,20899,1,3,0)
+ ;;=3^Multiple fractures of ribs, left side, sequela
+ ;;^UTILITY(U,$J,358.3,20899,1,4,0)
+ ;;=4^S22.42XS
+ ;;^UTILITY(U,$J,358.3,20899,2)
+ ;;=^5023134
+ ;;^UTILITY(U,$J,358.3,20900,0)
+ ;;=S22.41XS^^67^891^11

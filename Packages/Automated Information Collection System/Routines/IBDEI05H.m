@@ -1,702 +1,622 @@
-IBDEI05H ; ; 01-MAY-2020
- ;;3.0;IB ENCOUNTER FORM IMP/EXP;;MAY 01, 2020
+IBDEI05H ; ; 01-AUG-2022
+ ;;3.0;IB ENCOUNTER FORM IMP/EXP;;AUG 01, 2022
  Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,999) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
+ ;;^UTILITY(U,$J,358.3,13238,1,4,0)
+ ;;=4^T83.498A
+ ;;^UTILITY(U,$J,358.3,13238,2)
+ ;;=^5055055
+ ;;^UTILITY(U,$J,358.3,13239,0)
+ ;;=T85.398A^^53^582^160
+ ;;^UTILITY(U,$J,358.3,13239,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,13239,1,3,0)
+ ;;=3^Mech Compl of Prosthetic Device/Implant/Graft of Ocular,Init Encntr
+ ;;^UTILITY(U,$J,358.3,13239,1,4,0)
+ ;;=4^T85.398A
+ ;;^UTILITY(U,$J,358.3,13239,2)
+ ;;=^5055559
+ ;;^UTILITY(U,$J,358.3,13240,0)
+ ;;=T85.590A^^53^582^161
+ ;;^UTILITY(U,$J,358.3,13240,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,13240,1,3,0)
+ ;;=3^Mech Compl of Prosthetic Device/Implant/Graft of Bile Duct,Init Encntr
+ ;;^UTILITY(U,$J,358.3,13240,1,4,0)
+ ;;=4^T85.590A
+ ;;^UTILITY(U,$J,358.3,13240,2)
+ ;;=^5055595
+ ;;^UTILITY(U,$J,358.3,13241,0)
+ ;;=T85.692A^^53^582^158
+ ;;^UTILITY(U,$J,358.3,13241,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,13241,1,3,0)
+ ;;=3^Mech Compl of Permanent Sutures,Init Encntr
+ ;;^UTILITY(U,$J,358.3,13241,1,4,0)
+ ;;=4^T85.692A
+ ;;^UTILITY(U,$J,358.3,13241,2)
+ ;;=^5055658
+ ;;^UTILITY(U,$J,358.3,13242,0)
+ ;;=T85.698A^^53^582^157
+ ;;^UTILITY(U,$J,358.3,13242,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,13242,1,3,0)
+ ;;=3^Mech Compl of Internal Prosthetic Device/Implant/Graft,Init Encntr
+ ;;^UTILITY(U,$J,358.3,13242,1,4,0)
+ ;;=4^T85.698A
+ ;;^UTILITY(U,$J,358.3,13242,2)
+ ;;=^5055667
+ ;;^UTILITY(U,$J,358.3,13243,0)
+ ;;=T82.6XXA^^53^582^75
+ ;;^UTILITY(U,$J,358.3,13243,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,13243,1,3,0)
+ ;;=3^Infect/Inflm Reaction d/t Cardiac Valve Prosthesis,Init Encntr
+ ;;^UTILITY(U,$J,358.3,13243,1,4,0)
+ ;;=4^T82.6XXA
+ ;;^UTILITY(U,$J,358.3,13243,2)
+ ;;=^5054908
+ ;;^UTILITY(U,$J,358.3,13244,0)
+ ;;=T82.7XXA^^53^582^76
+ ;;^UTILITY(U,$J,358.3,13244,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,13244,1,3,0)
+ ;;=3^Infect/Inflm Reaction d/t Cardiac/Vasc Device/Implant/Graft,Init Encntr
+ ;;^UTILITY(U,$J,358.3,13244,1,4,0)
+ ;;=4^T82.7XXA
+ ;;^UTILITY(U,$J,358.3,13244,2)
+ ;;=^5054911
+ ;;^UTILITY(U,$J,358.3,13245,0)
+ ;;=T85.79XA^^53^582^96
+ ;;^UTILITY(U,$J,358.3,13245,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,13245,1,3,0)
+ ;;=3^Infect/Inflm Reaction d/t Internal Prosthetic Device/Implant/Graft,Init Encntr
+ ;;^UTILITY(U,$J,358.3,13245,1,4,0)
+ ;;=4^T85.79XA
+ ;;^UTILITY(U,$J,358.3,13245,2)
+ ;;=^5055676
+ ;;^UTILITY(U,$J,358.3,13246,0)
+ ;;=T84.50XA^^53^582^79
+ ;;^UTILITY(U,$J,358.3,13246,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,13246,1,3,0)
+ ;;=3^Infect/Inflm Reaction d/t Int Joint Prosthesis,Init Encntr
+ ;;^UTILITY(U,$J,358.3,13246,1,4,0)
+ ;;=4^T84.50XA
+ ;;^UTILITY(U,$J,358.3,13246,2)
+ ;;=^5055382
+ ;;^UTILITY(U,$J,358.3,13247,0)
+ ;;=T84.51XA^^53^582^97
+ ;;^UTILITY(U,$J,358.3,13247,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,13247,1,3,0)
+ ;;=3^Infect/Inflm Reaction d/t Internal Right Hip Prosthesis,Init Encntr
+ ;;^UTILITY(U,$J,358.3,13247,1,4,0)
+ ;;=4^T84.51XA
+ ;;^UTILITY(U,$J,358.3,13247,2)
+ ;;=^5055385
+ ;;^UTILITY(U,$J,358.3,13248,0)
+ ;;=T84.52XA^^53^582^99
+ ;;^UTILITY(U,$J,358.3,13248,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,13248,1,3,0)
+ ;;=3^Infect/Inflm Reaction d/t Left Hip Prosthesis,Init Encntr
+ ;;^UTILITY(U,$J,358.3,13248,1,4,0)
+ ;;=4^T84.52XA
+ ;;^UTILITY(U,$J,358.3,13248,2)
+ ;;=^5055388
+ ;;^UTILITY(U,$J,358.3,13249,0)
+ ;;=T84.53XA^^53^582^98
+ ;;^UTILITY(U,$J,358.3,13249,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,13249,1,3,0)
+ ;;=3^Infect/Inflm Reaction d/t Internal Right Knee Prosthesis,Init Encntr
+ ;;^UTILITY(U,$J,358.3,13249,1,4,0)
+ ;;=4^T84.53XA
+ ;;^UTILITY(U,$J,358.3,13249,2)
+ ;;=^5055391
+ ;;^UTILITY(U,$J,358.3,13250,0)
+ ;;=T84.54XA^^53^582^94
+ ;;^UTILITY(U,$J,358.3,13250,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,13250,1,3,0)
+ ;;=3^Infect/Inflm Reaction d/t Internal Left Knee Prosthesis,Init Encntr
+ ;;^UTILITY(U,$J,358.3,13250,1,4,0)
+ ;;=4^T84.54XA
+ ;;^UTILITY(U,$J,358.3,13250,2)
+ ;;=^5055394
+ ;;^UTILITY(U,$J,358.3,13251,0)
+ ;;=T84.60XA^^53^582^93
+ ;;^UTILITY(U,$J,358.3,13251,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,13251,1,3,0)
+ ;;=3^Infect/Inflm Reaction d/t Internal Fixation Device,Unspec Site,Init Encntr
+ ;;^UTILITY(U,$J,358.3,13251,1,4,0)
+ ;;=4^T84.60XA
+ ;;^UTILITY(U,$J,358.3,13251,2)
+ ;;=^5055400
+ ;;^UTILITY(U,$J,358.3,13252,0)
+ ;;=T84.610A^^53^582^80
+ ;;^UTILITY(U,$J,358.3,13252,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,13252,1,3,0)
+ ;;=3^Infect/Inflm Reaction d/t Internal Fix Right Humerus,Init Encntr
+ ;;^UTILITY(U,$J,358.3,13252,1,4,0)
+ ;;=4^T84.610A
+ ;;^UTILITY(U,$J,358.3,13252,2)
+ ;;=^5055403
+ ;;^UTILITY(U,$J,358.3,13253,0)
+ ;;=T84.611A^^53^582^81
+ ;;^UTILITY(U,$J,358.3,13253,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,13253,1,3,0)
+ ;;=3^Infect/Inflm Reaction d/t Internal Fix Left Humerus,Init Encntr
+ ;;^UTILITY(U,$J,358.3,13253,1,4,0)
+ ;;=4^T84.611A
+ ;;^UTILITY(U,$J,358.3,13253,2)
+ ;;=^5055406
+ ;;^UTILITY(U,$J,358.3,13254,0)
+ ;;=T84.612A^^53^582^82
+ ;;^UTILITY(U,$J,358.3,13254,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,13254,1,3,0)
+ ;;=3^Infect/Inflm Reaction d/t Internal Fix Right Radius,Init Encntr
+ ;;^UTILITY(U,$J,358.3,13254,1,4,0)
+ ;;=4^T84.612A
+ ;;^UTILITY(U,$J,358.3,13254,2)
+ ;;=^5055409
+ ;;^UTILITY(U,$J,358.3,13255,0)
+ ;;=T84.613A^^53^582^83
+ ;;^UTILITY(U,$J,358.3,13255,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,13255,1,3,0)
+ ;;=3^Infect/Inflm Reaction d/t Internal Fix Left Radius,Init Encntr
+ ;;^UTILITY(U,$J,358.3,13255,1,4,0)
+ ;;=4^T84.613A
+ ;;^UTILITY(U,$J,358.3,13255,2)
+ ;;=^5055412
+ ;;^UTILITY(U,$J,358.3,13256,0)
+ ;;=T84.614A^^53^582^84
+ ;;^UTILITY(U,$J,358.3,13256,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,13256,1,3,0)
+ ;;=3^Infect/Inflm Reaction d/t Internal Fix Right Ulna,Init Encntr
+ ;;^UTILITY(U,$J,358.3,13256,1,4,0)
+ ;;=4^T84.614A
+ ;;^UTILITY(U,$J,358.3,13256,2)
+ ;;=^5055415
+ ;;^UTILITY(U,$J,358.3,13257,0)
+ ;;=T84.615A^^53^582^85
+ ;;^UTILITY(U,$J,358.3,13257,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,13257,1,3,0)
+ ;;=3^Infect/Inflm Reaction d/t Internal Fix Left Ulna,Init Encntr
+ ;;^UTILITY(U,$J,358.3,13257,1,4,0)
+ ;;=4^T84.615A
+ ;;^UTILITY(U,$J,358.3,13257,2)
+ ;;=^5055418
+ ;;^UTILITY(U,$J,358.3,13258,0)
+ ;;=T84.620A^^53^582^86
+ ;;^UTILITY(U,$J,358.3,13258,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,13258,1,3,0)
+ ;;=3^Infect/Inflm Reaction d/t Internal Fix Right Femur,Init Encntr
+ ;;^UTILITY(U,$J,358.3,13258,1,4,0)
+ ;;=4^T84.620A
+ ;;^UTILITY(U,$J,358.3,13258,2)
+ ;;=^5055424
+ ;;^UTILITY(U,$J,358.3,13259,0)
+ ;;=T84.621A^^53^582^87
+ ;;^UTILITY(U,$J,358.3,13259,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,13259,1,3,0)
+ ;;=3^Infect/Inflm Reaction d/t Internal Fix Left Femur,Init Encntr
+ ;;^UTILITY(U,$J,358.3,13259,1,4,0)
+ ;;=4^T84.621A
+ ;;^UTILITY(U,$J,358.3,13259,2)
+ ;;=^5055427
+ ;;^UTILITY(U,$J,358.3,13260,0)
+ ;;=T84.622A^^53^582^88
+ ;;^UTILITY(U,$J,358.3,13260,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,13260,1,3,0)
+ ;;=3^Infect/Inflm Reaction d/t Internal Fix Right Tibia,Init Encntr
+ ;;^UTILITY(U,$J,358.3,13260,1,4,0)
+ ;;=4^T84.622A
+ ;;^UTILITY(U,$J,358.3,13260,2)
+ ;;=^5055430
+ ;;^UTILITY(U,$J,358.3,13261,0)
+ ;;=T84.623A^^53^582^89
+ ;;^UTILITY(U,$J,358.3,13261,1,0)
+ ;;=^358.31IA^4^2
  ;;^UTILITY(U,$J,358.3,13261,1,3,0)
- ;;=3^Long term (current) use of non-stroidl non-inflam (NSAID)
+ ;;=3^Infect/Inflm Reaction d/t Internal Fix Left Tibia,Init Encntr
  ;;^UTILITY(U,$J,358.3,13261,1,4,0)
- ;;=4^Z79.1
+ ;;=4^T84.623A
  ;;^UTILITY(U,$J,358.3,13261,2)
- ;;=^5063332
+ ;;=^5055433
  ;;^UTILITY(U,$J,358.3,13262,0)
- ;;=Z79.891^^57^656^29
+ ;;=T84.624A^^53^582^90
  ;;^UTILITY(U,$J,358.3,13262,1,0)
  ;;=^358.31IA^4^2
  ;;^UTILITY(U,$J,358.3,13262,1,3,0)
- ;;=3^Long term (current) use of opiate analgesic
+ ;;=3^Infect/Inflm Reaction d/t Internal Fix Right Fibula,Init Encntr
  ;;^UTILITY(U,$J,358.3,13262,1,4,0)
- ;;=4^Z79.891
+ ;;=4^T84.624A
  ;;^UTILITY(U,$J,358.3,13262,2)
- ;;=^5063342
+ ;;=^5055436
  ;;^UTILITY(U,$J,358.3,13263,0)
- ;;=Z79.52^^57^656^31
+ ;;=T84.625A^^53^582^91
  ;;^UTILITY(U,$J,358.3,13263,1,0)
  ;;=^358.31IA^4^2
  ;;^UTILITY(U,$J,358.3,13263,1,3,0)
- ;;=3^Long term (current) use of systemic steroids
+ ;;=3^Infect/Inflm Reaction d/t Internal Fix Left Fibula,Init Encntr
  ;;^UTILITY(U,$J,358.3,13263,1,4,0)
- ;;=4^Z79.52
+ ;;=4^T84.625A
  ;;^UTILITY(U,$J,358.3,13263,2)
- ;;=^5063336
+ ;;=^5055439
  ;;^UTILITY(U,$J,358.3,13264,0)
- ;;=Z91.19^^57^656^41
+ ;;=T84.63XA^^53^582^92
  ;;^UTILITY(U,$J,358.3,13264,1,0)
  ;;=^358.31IA^4^2
  ;;^UTILITY(U,$J,358.3,13264,1,3,0)
- ;;=3^Pt's noncmplnc w oth med'l trmnt & regimen
+ ;;=3^Infect/Inflm Reaction d/t Internal Fix Spine,Init Encntr
  ;;^UTILITY(U,$J,358.3,13264,1,4,0)
- ;;=4^Z91.19
+ ;;=4^T84.63XA
  ;;^UTILITY(U,$J,358.3,13264,2)
- ;;=^5063618
+ ;;=^5055445
  ;;^UTILITY(U,$J,358.3,13265,0)
- ;;=Z73.89^^57^656^33
+ ;;=T84.7XXA^^53^582^95
  ;;^UTILITY(U,$J,358.3,13265,1,0)
  ;;=^358.31IA^4^2
  ;;^UTILITY(U,$J,358.3,13265,1,3,0)
- ;;=3^Prblms related to life mngmt difficulty, oth
+ ;;=3^Infect/Inflm Reaction d/t Internal Ortho Prosthetic Device/Implant/Graft,Init Encntr
  ;;^UTILITY(U,$J,358.3,13265,1,4,0)
- ;;=4^Z73.89
+ ;;=4^T84.7XXA
  ;;^UTILITY(U,$J,358.3,13265,2)
- ;;=^5063280
+ ;;=^5055451
  ;;^UTILITY(U,$J,358.3,13266,0)
- ;;=Z55.9^^57^656^32
+ ;;=T82.817A^^53^582^51
  ;;^UTILITY(U,$J,358.3,13266,1,0)
  ;;=^358.31IA^4^2
  ;;^UTILITY(U,$J,358.3,13266,1,3,0)
- ;;=3^Prblms related to educ & literacy, unspec
+ ;;=3^Embol of Cardiac Prosthetic Device/Implant/Graft,Init Encntr
  ;;^UTILITY(U,$J,358.3,13266,1,4,0)
- ;;=4^Z55.9
+ ;;=4^T82.817A
  ;;^UTILITY(U,$J,358.3,13266,2)
- ;;=^5063106
+ ;;=^5054914
  ;;^UTILITY(U,$J,358.3,13267,0)
- ;;=Z63.8^^57^656^34
+ ;;=T82.827A^^53^582^57
  ;;^UTILITY(U,$J,358.3,13267,1,0)
  ;;=^358.31IA^4^2
  ;;^UTILITY(U,$J,358.3,13267,1,3,0)
- ;;=3^Prblms related to prim support grp, oth, unspec
+ ;;=3^Fibrosis of Cardiac Prosthetic Device/Implant/Graft,Init Encntr
  ;;^UTILITY(U,$J,358.3,13267,1,4,0)
- ;;=4^Z63.8
+ ;;=4^T82.827A
  ;;^UTILITY(U,$J,358.3,13267,2)
- ;;=^5063174
+ ;;=^5054920
  ;;^UTILITY(U,$J,358.3,13268,0)
- ;;=Z63.9^^57^656^35
+ ;;=T82.837A^^53^582^63
  ;;^UTILITY(U,$J,358.3,13268,1,0)
  ;;=^358.31IA^4^2
  ;;^UTILITY(U,$J,358.3,13268,1,3,0)
- ;;=3^Prblms related to prim support grp, unspec
+ ;;=3^Hemorrh of Cardiac Prosthetic Device/Implant/Graft,Init Encntr
  ;;^UTILITY(U,$J,358.3,13268,1,4,0)
- ;;=4^Z63.9
+ ;;=4^T82.837A
  ;;^UTILITY(U,$J,358.3,13268,2)
- ;;=^5063175
+ ;;=^5054926
  ;;^UTILITY(U,$J,358.3,13269,0)
- ;;=Z65.8^^57^656^36
+ ;;=T82.847A^^53^582^170
  ;;^UTILITY(U,$J,358.3,13269,1,0)
  ;;=^358.31IA^4^2
  ;;^UTILITY(U,$J,358.3,13269,1,3,0)
- ;;=3^Prblms related to psychosocial circumst, oth
+ ;;=3^Pain from Cardiac Prosthetic Device/Implant/Graft,Init Encntr
  ;;^UTILITY(U,$J,358.3,13269,1,4,0)
- ;;=4^Z65.8
+ ;;=4^T82.847A
  ;;^UTILITY(U,$J,358.3,13269,2)
- ;;=^5063185
+ ;;=^5054932
  ;;^UTILITY(U,$J,358.3,13270,0)
- ;;=Z65.9^^57^656^37
+ ;;=T82.857A^^53^582^223
  ;;^UTILITY(U,$J,358.3,13270,1,0)
  ;;=^358.31IA^4^2
  ;;^UTILITY(U,$J,358.3,13270,1,3,0)
- ;;=3^Prblms related to unspec psychosocial circumst
+ ;;=3^Sten,Cardiac Prosth Dvc/Implnt/Grft,Init Enc
  ;;^UTILITY(U,$J,358.3,13270,1,4,0)
- ;;=4^Z65.9
+ ;;=4^T82.857A
  ;;^UTILITY(U,$J,358.3,13270,2)
- ;;=^5063186
+ ;;=^5054938
  ;;^UTILITY(U,$J,358.3,13271,0)
- ;;=Z72.0^^57^656^46
+ ;;=T82.867A^^53^582^229
  ;;^UTILITY(U,$J,358.3,13271,1,0)
  ;;=^358.31IA^4^2
  ;;^UTILITY(U,$J,358.3,13271,1,3,0)
- ;;=3^Tobacco use, NOS
+ ;;=3^Thromb,Cardiac Prosth Dvc/Implnt/Grft,Init Enc
  ;;^UTILITY(U,$J,358.3,13271,1,4,0)
- ;;=4^Z72.0
+ ;;=4^T82.867A
  ;;^UTILITY(U,$J,358.3,13271,2)
- ;;=^5063255
+ ;;=^5054944
  ;;^UTILITY(U,$J,358.3,13272,0)
- ;;=Z73.5^^57^656^44
+ ;;=T82.9XXA^^53^582^22
  ;;^UTILITY(U,$J,358.3,13272,1,0)
  ;;=^358.31IA^4^2
  ;;^UTILITY(U,$J,358.3,13272,1,3,0)
- ;;=3^Social role conflict, NEC
+ ;;=3^Complic,Card/Vasc Prosth Dvc/Implnt/Grft Unspec,Init Encntr
  ;;^UTILITY(U,$J,358.3,13272,1,4,0)
- ;;=4^Z73.5
+ ;;=4^T82.9XXA
  ;;^UTILITY(U,$J,358.3,13272,2)
- ;;=^5063273
+ ;;=^5054956
  ;;^UTILITY(U,$J,358.3,13273,0)
- ;;=Z91.130^^57^656^42
+ ;;=T82.818A^^53^582^53
  ;;^UTILITY(U,$J,358.3,13273,1,0)
  ;;=^358.31IA^4^2
  ;;^UTILITY(U,$J,358.3,13273,1,3,0)
- ;;=3^Pt's unintent undrdose of meds regimen d/t age-rel dblity
+ ;;=3^Embol of Vascular Prosthetic Device/Implant/Graft,Init Encntr
  ;;^UTILITY(U,$J,358.3,13273,1,4,0)
- ;;=4^Z91.130
+ ;;=4^T82.818A
  ;;^UTILITY(U,$J,358.3,13273,2)
- ;;=^5063614
+ ;;=^5054917
  ;;^UTILITY(U,$J,358.3,13274,0)
- ;;=Z91.138^^57^656^43
+ ;;=T82.828A^^53^582^59
  ;;^UTILITY(U,$J,358.3,13274,1,0)
  ;;=^358.31IA^4^2
  ;;^UTILITY(U,$J,358.3,13274,1,3,0)
- ;;=3^Pt's unintent undrdose of meds regimen for oth reason
+ ;;=3^Fibrosis of Vascular Prosthetic Device/Implant/Graft,Init Encntr
  ;;^UTILITY(U,$J,358.3,13274,1,4,0)
- ;;=4^Z91.138
+ ;;=4^T82.828A
  ;;^UTILITY(U,$J,358.3,13274,2)
- ;;=^5063615
+ ;;=^5054923
  ;;^UTILITY(U,$J,358.3,13275,0)
- ;;=Z95.3^^57^656^38
+ ;;=T82.838A^^53^582^65
  ;;^UTILITY(U,$J,358.3,13275,1,0)
  ;;=^358.31IA^4^2
  ;;^UTILITY(U,$J,358.3,13275,1,3,0)
- ;;=3^Presence of Xenogenic Heart Valve
+ ;;=3^Hemorrh of Vascular Prosthetic Device/Implant/Graft,Init Encntr
  ;;^UTILITY(U,$J,358.3,13275,1,4,0)
- ;;=4^Z95.3
+ ;;=4^T82.838A
  ;;^UTILITY(U,$J,358.3,13275,2)
- ;;=^5063671
+ ;;=^5054929
  ;;^UTILITY(U,$J,358.3,13276,0)
- ;;=Z63.31^^57^656^1
+ ;;=T82.848A^^53^582^172
  ;;^UTILITY(U,$J,358.3,13276,1,0)
  ;;=^358.31IA^4^2
  ;;^UTILITY(U,$J,358.3,13276,1,3,0)
- ;;=3^Absence of family member d/t military deployment
+ ;;=3^Pain from Vascular Prosthetic Device/Implant/Graft,Init Encntr
  ;;^UTILITY(U,$J,358.3,13276,1,4,0)
- ;;=4^Z63.31
+ ;;=4^T82.848A
  ;;^UTILITY(U,$J,358.3,13276,2)
- ;;=^5063166
+ ;;=^5054935
  ;;^UTILITY(U,$J,358.3,13277,0)
- ;;=Z71.3^^57^656^6
+ ;;=T82.858A^^53^582^225
  ;;^UTILITY(U,$J,358.3,13277,1,0)
  ;;=^358.31IA^4^2
  ;;^UTILITY(U,$J,358.3,13277,1,3,0)
- ;;=3^Counseling,Dietary
+ ;;=3^Sten,Vasc Prosth Dvc/Implnt/Grft,Init Enc
  ;;^UTILITY(U,$J,358.3,13277,1,4,0)
- ;;=4^Z71.3
+ ;;=4^T82.858A
  ;;^UTILITY(U,$J,358.3,13277,2)
- ;;=^5063245
+ ;;=^5054941
  ;;^UTILITY(U,$J,358.3,13278,0)
- ;;=Z71.6^^57^656^7
+ ;;=T82.868A^^53^582^231
  ;;^UTILITY(U,$J,358.3,13278,1,0)
  ;;=^358.31IA^4^2
  ;;^UTILITY(U,$J,358.3,13278,1,3,0)
- ;;=3^Counseling,Tobacco Abuse
+ ;;=3^Thromb,Vascular Prosth Dvc/Implnt/Grft,Init Enc
  ;;^UTILITY(U,$J,358.3,13278,1,4,0)
- ;;=4^Z71.6
+ ;;=4^T82.868A
  ;;^UTILITY(U,$J,358.3,13278,2)
- ;;=^5063250
+ ;;=^5054947
  ;;^UTILITY(U,$J,358.3,13279,0)
- ;;=Z69.011^^57^656^12
+ ;;=T82.898A^^53^582^28
  ;;^UTILITY(U,$J,358.3,13279,1,0)
  ;;=^358.31IA^4^2
  ;;^UTILITY(U,$J,358.3,13279,1,3,0)
- ;;=3^Encntr for mntl hlth serv for perp of prntl child abuse
+ ;;=3^Complic,Vasc Prosth Dvc/Implt/Grft Unspec,Init Encntr
  ;;^UTILITY(U,$J,358.3,13279,1,4,0)
- ;;=4^Z69.011
+ ;;=4^T82.898A
  ;;^UTILITY(U,$J,358.3,13279,2)
- ;;=^5063229
+ ;;=^5054953
  ;;^UTILITY(U,$J,358.3,13280,0)
- ;;=Z91.120^^57^656^39
+ ;;=T83.81XA^^53^582^52
  ;;^UTILITY(U,$J,358.3,13280,1,0)
  ;;=^358.31IA^4^2
  ;;^UTILITY(U,$J,358.3,13280,1,3,0)
- ;;=3^Pt's intent underdose of meds d/t financial hardship
+ ;;=3^Embol of Genitourinary Prosthetic Device/Implant/Graft,Init Encntr
  ;;^UTILITY(U,$J,358.3,13280,1,4,0)
- ;;=4^Z91.120
+ ;;=4^T83.81XA
  ;;^UTILITY(U,$J,358.3,13280,2)
- ;;=^5063612
+ ;;=^5055079
  ;;^UTILITY(U,$J,358.3,13281,0)
- ;;=Z91.128^^57^656^40
+ ;;=T83.82XA^^53^582^58
  ;;^UTILITY(U,$J,358.3,13281,1,0)
  ;;=^358.31IA^4^2
  ;;^UTILITY(U,$J,358.3,13281,1,3,0)
- ;;=3^Pt's intent underdose of meds d/t oth reasons
+ ;;=3^Fibrosis of Genitourinary Prosthetic Device/Implant/Graft,Init Encntr
  ;;^UTILITY(U,$J,358.3,13281,1,4,0)
- ;;=4^Z91.128
+ ;;=4^T83.82XA
  ;;^UTILITY(U,$J,358.3,13281,2)
- ;;=^5063613
+ ;;=^5055082
  ;;^UTILITY(U,$J,358.3,13282,0)
- ;;=Z63.71^^57^656^45
+ ;;=T83.83XA^^53^582^64
  ;;^UTILITY(U,$J,358.3,13282,1,0)
  ;;=^358.31IA^4^2
  ;;^UTILITY(U,$J,358.3,13282,1,3,0)
- ;;=3^Stress on family d/t rtrn of family member from deployment
+ ;;=3^Hemorrh of Genitourinary Prosthetic Device/Implant/Graft,Init Encntr
  ;;^UTILITY(U,$J,358.3,13282,1,4,0)
- ;;=4^Z63.71
+ ;;=4^T83.83XA
  ;;^UTILITY(U,$J,358.3,13282,2)
- ;;=^5063171
+ ;;=^5055085
  ;;^UTILITY(U,$J,358.3,13283,0)
- ;;=Z79.84^^57^656^30
+ ;;=T83.84XA^^53^582^171
  ;;^UTILITY(U,$J,358.3,13283,1,0)
  ;;=^358.31IA^4^2
  ;;^UTILITY(U,$J,358.3,13283,1,3,0)
- ;;=3^Long term (current) use of oral hypoglycemic drugs
+ ;;=3^Pain from Genitourinary Prosthetic Device/Implant/Graft,Init Encntr
  ;;^UTILITY(U,$J,358.3,13283,1,4,0)
- ;;=4^Z79.84
+ ;;=4^T83.84XA
  ;;^UTILITY(U,$J,358.3,13283,2)
- ;;=^5140432
+ ;;=^5055088
  ;;^UTILITY(U,$J,358.3,13284,0)
- ;;=Z03.89^^57^657^1
+ ;;=T83.85XA^^53^582^224
  ;;^UTILITY(U,$J,358.3,13284,1,0)
  ;;=^358.31IA^4^2
  ;;^UTILITY(U,$J,358.3,13284,1,3,0)
- ;;=3^Observation for Suspected Diseases & Condition Ruled Out
+ ;;=3^Sten,Genitour Prosth Dvc/Implnt/Grft,Init Enc
  ;;^UTILITY(U,$J,358.3,13284,1,4,0)
- ;;=4^Z03.89
+ ;;=4^T83.85XA
  ;;^UTILITY(U,$J,358.3,13284,2)
- ;;=^5062656
+ ;;=^5055091
  ;;^UTILITY(U,$J,358.3,13285,0)
- ;;=E11.9^^57^658^13
+ ;;=T83.86XA^^53^582^230
  ;;^UTILITY(U,$J,358.3,13285,1,0)
  ;;=^358.31IA^4^2
  ;;^UTILITY(U,$J,358.3,13285,1,3,0)
- ;;=3^Type 2 DM w/o Complications
+ ;;=3^Thromb,Genitour Prosth Dvc/Implnt/Grft,Init Enc
  ;;^UTILITY(U,$J,358.3,13285,1,4,0)
- ;;=4^E11.9
+ ;;=4^T83.86XA
  ;;^UTILITY(U,$J,358.3,13285,2)
- ;;=^5002666
+ ;;=^5055094
  ;;^UTILITY(U,$J,358.3,13286,0)
- ;;=E11.65^^57^658^9
+ ;;=T83.9XXA^^53^582^23
  ;;^UTILITY(U,$J,358.3,13286,1,0)
  ;;=^358.31IA^4^2
  ;;^UTILITY(U,$J,358.3,13286,1,3,0)
- ;;=3^Type 2 DM w/ Hyperglycemia
+ ;;=3^Complic,Genitour Prosth Dvc/Implt/Grft,Init Encntr
  ;;^UTILITY(U,$J,358.3,13286,1,4,0)
- ;;=4^E11.65
+ ;;=4^T83.9XXA
  ;;^UTILITY(U,$J,358.3,13286,2)
- ;;=^5002663
+ ;;=^5055100
  ;;^UTILITY(U,$J,358.3,13287,0)
- ;;=E10.9^^57^658^6
+ ;;=T84.81XA^^53^582^47
  ;;^UTILITY(U,$J,358.3,13287,1,0)
  ;;=^358.31IA^4^2
  ;;^UTILITY(U,$J,358.3,13287,1,3,0)
- ;;=3^Type 1 DM w/o Complications
+ ;;=3^Embol d/t Internal Ortho Prosthetic Device/Implant/Graft,Init Encntr
  ;;^UTILITY(U,$J,358.3,13287,1,4,0)
- ;;=4^E10.9
+ ;;=4^T84.81XA
  ;;^UTILITY(U,$J,358.3,13287,2)
- ;;=^5002626
+ ;;=^5055454
  ;;^UTILITY(U,$J,358.3,13288,0)
- ;;=E10.65^^57^658^4
+ ;;=T84.82XA^^53^582^54
  ;;^UTILITY(U,$J,358.3,13288,1,0)
  ;;=^358.31IA^4^2
  ;;^UTILITY(U,$J,358.3,13288,1,3,0)
- ;;=3^Type 1 DM w/ Hyperglycemia
+ ;;=3^Fibrosis d/t Internal Ortho Prosthetic Device/Implant/Graft,Init Encntr
  ;;^UTILITY(U,$J,358.3,13288,1,4,0)
- ;;=4^E10.65
+ ;;=4^T84.82XA
  ;;^UTILITY(U,$J,358.3,13288,2)
- ;;=^5002623
+ ;;=^5055457
  ;;^UTILITY(U,$J,358.3,13289,0)
- ;;=E11.42^^57^658^7
+ ;;=T84.83XA^^53^582^60
  ;;^UTILITY(U,$J,358.3,13289,1,0)
  ;;=^358.31IA^4^2
  ;;^UTILITY(U,$J,358.3,13289,1,3,0)
- ;;=3^Type 2 DM w/ Diabetic Polyneuropathy
+ ;;=3^Hemorrh d/t Internal Ortho Prosthetic Device/Implant/Graft,Init Encntr
  ;;^UTILITY(U,$J,358.3,13289,1,4,0)
- ;;=4^E11.42
+ ;;=4^T84.83XA
  ;;^UTILITY(U,$J,358.3,13289,2)
- ;;=^5002646
+ ;;=^5055460
  ;;^UTILITY(U,$J,358.3,13290,0)
- ;;=E10.42^^57^658^2
+ ;;=T84.84XA^^53^582^167
  ;;^UTILITY(U,$J,358.3,13290,1,0)
  ;;=^358.31IA^4^2
  ;;^UTILITY(U,$J,358.3,13290,1,3,0)
- ;;=3^Type 1 DM w/ Diabetic Polyneuropathy
+ ;;=3^Pain d/t Internal Ortho Prosthetic Device/Implant/Graft,Init Encntr
  ;;^UTILITY(U,$J,358.3,13290,1,4,0)
- ;;=4^E10.42
+ ;;=4^T84.84XA
  ;;^UTILITY(U,$J,358.3,13290,2)
- ;;=^5002606
+ ;;=^5055463
  ;;^UTILITY(U,$J,358.3,13291,0)
- ;;=E13.42^^57^658^1
+ ;;=T84.85XA^^53^582^220
  ;;^UTILITY(U,$J,358.3,13291,1,0)
  ;;=^358.31IA^4^2
  ;;^UTILITY(U,$J,358.3,13291,1,3,0)
- ;;=3^Secondary Type DM w/ Diabetic Polyneuropathy
+ ;;=3^Sten d/t Int Ortho Prosth Dvc/Implnt/Grft,Init Enc
  ;;^UTILITY(U,$J,358.3,13291,1,4,0)
- ;;=4^E13.42
+ ;;=4^T84.85XA
  ;;^UTILITY(U,$J,358.3,13291,2)
- ;;=^5002686
+ ;;=^5055466
  ;;^UTILITY(U,$J,358.3,13292,0)
- ;;=E10.621^^57^658^3
+ ;;=T84.86XA^^53^582^226
  ;;^UTILITY(U,$J,358.3,13292,1,0)
  ;;=^358.31IA^4^2
  ;;^UTILITY(U,$J,358.3,13292,1,3,0)
- ;;=3^Type 1 DM w/ Foot Ulcer
+ ;;=3^Thromb d/t Int Ortho Prosth Dvc/Implnt/Grft,Init Enc
  ;;^UTILITY(U,$J,358.3,13292,1,4,0)
- ;;=4^E10.621
+ ;;=4^T84.86XA
  ;;^UTILITY(U,$J,358.3,13292,2)
- ;;=^5002616
+ ;;=^5055469
  ;;^UTILITY(U,$J,358.3,13293,0)
- ;;=E10.649^^57^658^5
+ ;;=T84.9XXA^^53^582^20
  ;;^UTILITY(U,$J,358.3,13293,1,0)
  ;;=^358.31IA^4^2
  ;;^UTILITY(U,$J,358.3,13293,1,3,0)
- ;;=3^Type 1 DM w/ Hypoglycemia w/o Coma
+ ;;=3^Complic d/t Intrn Ortho Prosth Dvc/Implnt/Grft,Init Encntr
  ;;^UTILITY(U,$J,358.3,13293,1,4,0)
- ;;=4^E10.649
+ ;;=4^T84.9XXA
  ;;^UTILITY(U,$J,358.3,13293,2)
- ;;=^5002622
+ ;;=^5055475
  ;;^UTILITY(U,$J,358.3,13294,0)
- ;;=E11.621^^57^658^8
+ ;;=I97.110^^53^582^179
  ;;^UTILITY(U,$J,358.3,13294,1,0)
  ;;=^358.31IA^4^2
  ;;^UTILITY(U,$J,358.3,13294,1,3,0)
- ;;=3^Type 2 DM w/ Foot Ulcer
+ ;;=3^Postproc Cardiac Insuff After Cardiac Surg
  ;;^UTILITY(U,$J,358.3,13294,1,4,0)
- ;;=4^E11.621
+ ;;=4^I97.110
  ;;^UTILITY(U,$J,358.3,13294,2)
- ;;=^5002656
+ ;;=^5008083
  ;;^UTILITY(U,$J,358.3,13295,0)
- ;;=E11.649^^57^658^10
+ ;;=I97.111^^53^582^180
  ;;^UTILITY(U,$J,358.3,13295,1,0)
  ;;=^358.31IA^4^2
  ;;^UTILITY(U,$J,358.3,13295,1,3,0)
- ;;=3^Type 2 DM w/ Hypoglycemia w/o Coma
+ ;;=3^Postproc Cardiac Insuff After Oth Surg
  ;;^UTILITY(U,$J,358.3,13295,1,4,0)
- ;;=4^E11.649
+ ;;=4^I97.111
  ;;^UTILITY(U,$J,358.3,13295,2)
- ;;=^5002662
+ ;;=^5008084
  ;;^UTILITY(U,$J,358.3,13296,0)
- ;;=E11.11^^57^658^11
+ ;;=I97.120^^53^582^175
  ;;^UTILITY(U,$J,358.3,13296,1,0)
  ;;=^358.31IA^4^2
  ;;^UTILITY(U,$J,358.3,13296,1,3,0)
- ;;=3^Type 2 DM w/ Ketoacidosis w/ Coma
+ ;;=3^Postproc Cardiac Arrest After Cardiac Surg
  ;;^UTILITY(U,$J,358.3,13296,1,4,0)
- ;;=4^E11.11
+ ;;=4^I97.120
  ;;^UTILITY(U,$J,358.3,13296,2)
- ;;=^5151301
+ ;;=^5008085
  ;;^UTILITY(U,$J,358.3,13297,0)
- ;;=E11.10^^57^658^12
+ ;;=I97.121^^53^582^176
  ;;^UTILITY(U,$J,358.3,13297,1,0)
  ;;=^358.31IA^4^2
  ;;^UTILITY(U,$J,358.3,13297,1,3,0)
- ;;=3^Type 2 DM w/ Ketoacidosis w/o Coma
+ ;;=3^Postproc Cardiac Arrest After Oth Surg
  ;;^UTILITY(U,$J,358.3,13297,1,4,0)
- ;;=4^E11.10
+ ;;=4^I97.121
  ;;^UTILITY(U,$J,358.3,13297,2)
- ;;=^5151300
+ ;;=^5008086
  ;;^UTILITY(U,$J,358.3,13298,0)
- ;;=Z85.828^^57^659^21
+ ;;=I97.130^^53^582^213
  ;;^UTILITY(U,$J,358.3,13298,1,0)
  ;;=^358.31IA^4^2
  ;;^UTILITY(U,$J,358.3,13298,1,3,0)
- ;;=3^Skin (BCC/SCC)
+ ;;=3^Postproc Hrt Failure After Cardiac Surg
  ;;^UTILITY(U,$J,358.3,13298,1,4,0)
- ;;=4^Z85.828
+ ;;=4^I97.130
  ;;^UTILITY(U,$J,358.3,13298,2)
- ;;=^5063443
+ ;;=^5008087
  ;;^UTILITY(U,$J,358.3,13299,0)
- ;;=Z85.51^^57^659^1
+ ;;=I97.131^^53^582^214
  ;;^UTILITY(U,$J,358.3,13299,1,0)
  ;;=^358.31IA^4^2
  ;;^UTILITY(U,$J,358.3,13299,1,3,0)
- ;;=3^Bladder
+ ;;=3^Postproc Hrt Failure After Oth Surg
  ;;^UTILITY(U,$J,358.3,13299,1,4,0)
- ;;=4^Z85.51
+ ;;=4^I97.131
  ;;^UTILITY(U,$J,358.3,13299,2)
- ;;=^5063428
+ ;;=^5008088
  ;;^UTILITY(U,$J,358.3,13300,0)
- ;;=Z85.830^^57^659^2
+ ;;=I97.190^^53^582^177
  ;;^UTILITY(U,$J,358.3,13300,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,13300,1,3,0)
- ;;=3^Bone
- ;;^UTILITY(U,$J,358.3,13300,1,4,0)
- ;;=4^Z85.830
- ;;^UTILITY(U,$J,358.3,13300,2)
- ;;=^5063444
- ;;^UTILITY(U,$J,358.3,13301,0)
- ;;=Z85.841^^57^659^3
- ;;^UTILITY(U,$J,358.3,13301,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,13301,1,3,0)
- ;;=3^Brain
- ;;^UTILITY(U,$J,358.3,13301,1,4,0)
- ;;=4^Z85.841
- ;;^UTILITY(U,$J,358.3,13301,2)
- ;;=^5063447
- ;;^UTILITY(U,$J,358.3,13302,0)
- ;;=Z85.3^^57^659^4
- ;;^UTILITY(U,$J,358.3,13302,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,13302,1,3,0)
- ;;=3^Breast
- ;;^UTILITY(U,$J,358.3,13302,1,4,0)
- ;;=4^Z85.3
- ;;^UTILITY(U,$J,358.3,13302,2)
- ;;=^5063416
- ;;^UTILITY(U,$J,358.3,13303,0)
- ;;=Z85.118^^57^659^5
- ;;^UTILITY(U,$J,358.3,13303,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,13303,1,3,0)
- ;;=3^Bronchus & Lung
- ;;^UTILITY(U,$J,358.3,13303,1,4,0)
- ;;=4^Z85.118
- ;;^UTILITY(U,$J,358.3,13303,2)
- ;;=^5063408
- ;;^UTILITY(U,$J,358.3,13304,0)
- ;;=Z85.41^^57^659^6
- ;;^UTILITY(U,$J,358.3,13304,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,13304,1,3,0)
- ;;=3^Cervix
- ;;^UTILITY(U,$J,358.3,13304,1,4,0)
- ;;=4^Z85.41
- ;;^UTILITY(U,$J,358.3,13304,2)
- ;;=^5063418
- ;;^UTILITY(U,$J,358.3,13305,0)
- ;;=Z85.038^^57^659^7
- ;;^UTILITY(U,$J,358.3,13305,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,13305,1,3,0)
- ;;=3^Colon/Large Intestine
- ;;^UTILITY(U,$J,358.3,13305,1,4,0)
- ;;=4^Z85.038
- ;;^UTILITY(U,$J,358.3,13305,2)
- ;;=^5063399
- ;;^UTILITY(U,$J,358.3,13306,0)
- ;;=Z85.48^^57^659^8
- ;;^UTILITY(U,$J,358.3,13306,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,13306,1,3,0)
- ;;=3^Epididymis
- ;;^UTILITY(U,$J,358.3,13306,1,4,0)
- ;;=4^Z85.48
- ;;^UTILITY(U,$J,358.3,13306,2)
- ;;=^5063425
- ;;^UTILITY(U,$J,358.3,13307,0)
- ;;=Z85.01^^57^659^9
- ;;^UTILITY(U,$J,358.3,13307,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,13307,1,3,0)
- ;;=3^Esophagus
- ;;^UTILITY(U,$J,358.3,13307,1,4,0)
- ;;=4^Z85.01
- ;;^UTILITY(U,$J,358.3,13307,2)
- ;;=^5063395
- ;;^UTILITY(U,$J,358.3,13308,0)
- ;;=Z85.840^^57^659^10
- ;;^UTILITY(U,$J,358.3,13308,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,13308,1,3,0)
- ;;=3^Eye
- ;;^UTILITY(U,$J,358.3,13308,1,4,0)
- ;;=4^Z85.840
- ;;^UTILITY(U,$J,358.3,13308,2)
- ;;=^5063446
- ;;^UTILITY(U,$J,358.3,13309,0)
- ;;=Z85.528^^57^659^11
- ;;^UTILITY(U,$J,358.3,13309,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,13309,1,3,0)
- ;;=3^Kidney/Renal Pelvis
- ;;^UTILITY(U,$J,358.3,13309,1,4,0)
- ;;=4^Z85.528
- ;;^UTILITY(U,$J,358.3,13309,2)
- ;;=^5063430
- ;;^UTILITY(U,$J,358.3,13310,0)
- ;;=Z85.21^^57^659^12
- ;;^UTILITY(U,$J,358.3,13310,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,13310,1,3,0)
- ;;=3^Larynx
- ;;^UTILITY(U,$J,358.3,13310,1,4,0)
- ;;=4^Z85.21
- ;;^UTILITY(U,$J,358.3,13310,2)
- ;;=^5063411
- ;;^UTILITY(U,$J,358.3,13311,0)
- ;;=Z85.05^^57^659^13
- ;;^UTILITY(U,$J,358.3,13311,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,13311,1,3,0)
- ;;=3^Liver
- ;;^UTILITY(U,$J,358.3,13311,1,4,0)
- ;;=4^Z85.05
- ;;^UTILITY(U,$J,358.3,13311,2)
- ;;=^5063402
- ;;^UTILITY(U,$J,358.3,13312,0)
- ;;=Z85.820^^57^659^14
- ;;^UTILITY(U,$J,358.3,13312,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,13312,1,3,0)
- ;;=3^Melanoma (Skin)
- ;;^UTILITY(U,$J,358.3,13312,1,4,0)
- ;;=4^Z85.820
- ;;^UTILITY(U,$J,358.3,13312,2)
- ;;=^5063441
- ;;^UTILITY(U,$J,358.3,13313,0)
- ;;=Z85.819^^57^659^15
- ;;^UTILITY(U,$J,358.3,13313,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,13313,1,3,0)
- ;;=3^Nasopharynx/Oropharynx/Pharynx
- ;;^UTILITY(U,$J,358.3,13313,1,4,0)
- ;;=4^Z85.819
- ;;^UTILITY(U,$J,358.3,13313,2)
- ;;=^5063440
- ;;^UTILITY(U,$J,358.3,13314,0)
- ;;=Z85.43^^57^659^16
- ;;^UTILITY(U,$J,358.3,13314,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,13314,1,3,0)
- ;;=3^Ovary
- ;;^UTILITY(U,$J,358.3,13314,1,4,0)
- ;;=4^Z85.43
- ;;^UTILITY(U,$J,358.3,13314,2)
- ;;=^5063420
- ;;^UTILITY(U,$J,358.3,13315,0)
- ;;=Z85.07^^57^659^17
- ;;^UTILITY(U,$J,358.3,13315,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,13315,1,3,0)
- ;;=3^Pancreas
- ;;^UTILITY(U,$J,358.3,13315,1,4,0)
- ;;=4^Z85.07
- ;;^UTILITY(U,$J,358.3,13315,2)
- ;;=^5063405
- ;;^UTILITY(U,$J,358.3,13316,0)
- ;;=Z85.29^^57^659^18
- ;;^UTILITY(U,$J,358.3,13316,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,13316,1,3,0)
- ;;=3^Pleura
- ;;^UTILITY(U,$J,358.3,13316,1,4,0)
- ;;=4^Z85.29
- ;;^UTILITY(U,$J,358.3,13316,2)
- ;;=^5063415
- ;;^UTILITY(U,$J,358.3,13317,0)
- ;;=Z85.46^^57^659^19
- ;;^UTILITY(U,$J,358.3,13317,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,13317,1,3,0)
- ;;=3^Prostate
- ;;^UTILITY(U,$J,358.3,13317,1,4,0)
- ;;=4^Z85.46
- ;;^UTILITY(U,$J,358.3,13317,2)
- ;;=^5063423
- ;;^UTILITY(U,$J,358.3,13318,0)
- ;;=Z85.048^^57^659^20
- ;;^UTILITY(U,$J,358.3,13318,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,13318,1,3,0)
- ;;=3^Rectum/Rectosig Junct/Anus
- ;;^UTILITY(U,$J,358.3,13318,1,4,0)
- ;;=4^Z85.048
- ;;^UTILITY(U,$J,358.3,13318,2)
- ;;=^5063401
- ;;^UTILITY(U,$J,358.3,13319,0)
- ;;=Z85.068^^57^659^22
- ;;^UTILITY(U,$J,358.3,13319,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,13319,1,3,0)
- ;;=3^Small Intestine
- ;;^UTILITY(U,$J,358.3,13319,1,4,0)
- ;;=4^Z85.068
- ;;^UTILITY(U,$J,358.3,13319,2)
- ;;=^5063404
- ;;^UTILITY(U,$J,358.3,13320,0)
- ;;=Z85.028^^57^659^23
- ;;^UTILITY(U,$J,358.3,13320,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,13320,1,3,0)
- ;;=3^Stomach
- ;;^UTILITY(U,$J,358.3,13320,1,4,0)
- ;;=4^Z85.028
- ;;^UTILITY(U,$J,358.3,13320,2)
- ;;=^5063397
- ;;^UTILITY(U,$J,358.3,13321,0)
- ;;=Z85.47^^57^659^24
- ;;^UTILITY(U,$J,358.3,13321,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,13321,1,3,0)
- ;;=3^Testis
- ;;^UTILITY(U,$J,358.3,13321,1,4,0)
- ;;=4^Z85.47
- ;;^UTILITY(U,$J,358.3,13321,2)
- ;;=^5063424
- ;;^UTILITY(U,$J,358.3,13322,0)
- ;;=Z85.850^^57^659^25
- ;;^UTILITY(U,$J,358.3,13322,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,13322,1,3,0)
- ;;=3^Thyroid
- ;;^UTILITY(U,$J,358.3,13322,1,4,0)
- ;;=4^Z85.850
- ;;^UTILITY(U,$J,358.3,13322,2)
- ;;=^5063449
- ;;^UTILITY(U,$J,358.3,13323,0)
- ;;=Z85.810^^57^659^26
- ;;^UTILITY(U,$J,358.3,13323,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,13323,1,3,0)
- ;;=3^Tongue
- ;;^UTILITY(U,$J,358.3,13323,1,4,0)
- ;;=4^Z85.810
- ;;^UTILITY(U,$J,358.3,13323,2)
- ;;=^5063438
- ;;^UTILITY(U,$J,358.3,13324,0)
- ;;=Z85.12^^57^659^27
- ;;^UTILITY(U,$J,358.3,13324,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,13324,1,3,0)
- ;;=3^Trachea
- ;;^UTILITY(U,$J,358.3,13324,1,4,0)
- ;;=4^Z85.12
- ;;^UTILITY(U,$J,358.3,13324,2)
- ;;=^5063409
- ;;^UTILITY(U,$J,358.3,13325,0)
- ;;=Z85.59^^57^659^28
- ;;^UTILITY(U,$J,358.3,13325,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,13325,1,3,0)
- ;;=3^Ureter/Urethra
- ;;^UTILITY(U,$J,358.3,13325,1,4,0)
- ;;=4^Z85.59
- ;;^UTILITY(U,$J,358.3,13325,2)
- ;;=^5063433
- ;;^UTILITY(U,$J,358.3,13326,0)
- ;;=Z85.42^^57^659^29
- ;;^UTILITY(U,$J,358.3,13326,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,13326,1,3,0)
- ;;=3^Uterine Adnexa/Body
- ;;^UTILITY(U,$J,358.3,13326,1,4,0)
- ;;=4^Z85.42
- ;;^UTILITY(U,$J,358.3,13326,2)
- ;;=^5063419
- ;;^UTILITY(U,$J,358.3,13327,0)
- ;;=Z85.44^^57^659^30
- ;;^UTILITY(U,$J,358.3,13327,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,13327,1,3,0)
- ;;=3^Vagina/Vulva
- ;;^UTILITY(U,$J,358.3,13327,1,4,0)
- ;;=4^Z85.44
- ;;^UTILITY(U,$J,358.3,13327,2)
- ;;=^5063421
- ;;^UTILITY(U,$J,358.3,13328,0)
- ;;=Z89.612^^57^660^1
- ;;^UTILITY(U,$J,358.3,13328,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,13328,1,3,0)
- ;;=3^Above the Knee Amputation,Left
- ;;^UTILITY(U,$J,358.3,13328,1,4,0)
- ;;=4^Z89.612
- ;;^UTILITY(U,$J,358.3,13328,2)
- ;;=^5063573
- ;;^UTILITY(U,$J,358.3,13329,0)
- ;;=Z89.611^^57^660^2
- ;;^UTILITY(U,$J,358.3,13329,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,13329,1,3,0)
- ;;=3^Above the Knee Amputation,Right
- ;;^UTILITY(U,$J,358.3,13329,1,4,0)
- ;;=4^Z89.611
- ;;^UTILITY(U,$J,358.3,13329,2)
- ;;=^5063572
- ;;^UTILITY(U,$J,358.3,13330,0)
- ;;=Z98.0^^57^660^3
- ;;^UTILITY(U,$J,358.3,13330,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,13330,1,3,0)
- ;;=3^Anastomosis
- ;;^UTILITY(U,$J,358.3,13330,1,4,0)
- ;;=4^Z98.0
- ;;^UTILITY(U,$J,358.3,13330,2)
- ;;=^5063733
- ;;^UTILITY(U,$J,358.3,13331,0)
- ;;=Z98.61^^57^660^5

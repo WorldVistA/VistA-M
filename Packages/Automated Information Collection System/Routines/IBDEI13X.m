@@ -1,124 +1,124 @@
-IBDEI13X ; ; 04-FEB-2020
- ;;3.0;IB ENCOUNTER FORM IMP/EXP;;FEB 04, 2020
+IBDEI13X ; ; 01-FEB-2022
+ ;;3.0;IB ENCOUNTER FORM IMP/EXP;;FEB 01, 2022
  Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,999) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
- ;;^UTILITY(U,$J,358.3,17784,1,4,0)
- ;;=4^W03.XXXD
- ;;^UTILITY(U,$J,358.3,17784,2)
- ;;=^5059545
- ;;^UTILITY(U,$J,358.3,17785,0)
- ;;=W05.0XXA^^88^898^56
- ;;^UTILITY(U,$J,358.3,17785,1,0)
+ ;;^UTILITY(U,$J,358.3,17964,1,4,0)
+ ;;=4^X50.3XXA
+ ;;^UTILITY(U,$J,358.3,17964,2)
+ ;;=^5140387
+ ;;^UTILITY(U,$J,358.3,17965,0)
+ ;;=X50.9XXA^^61^794^104
+ ;;^UTILITY(U,$J,358.3,17965,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,17785,1,3,0)
- ;;=3^Fall from Non-Moving Wheelchair,Init Encntr
- ;;^UTILITY(U,$J,358.3,17785,1,4,0)
- ;;=4^W05.0XXA
- ;;^UTILITY(U,$J,358.3,17785,2)
- ;;=^5059550
- ;;^UTILITY(U,$J,358.3,17786,0)
- ;;=W05.0XXD^^88^898^57
- ;;^UTILITY(U,$J,358.3,17786,1,0)
+ ;;^UTILITY(U,$J,358.3,17965,1,3,0)
+ ;;=3^Overexertion/Sten Mvmnts/Postures,Oth/Unspec,Init Encntr
+ ;;^UTILITY(U,$J,358.3,17965,1,4,0)
+ ;;=4^X50.9XXA
+ ;;^UTILITY(U,$J,358.3,17965,2)
+ ;;=^5140390
+ ;;^UTILITY(U,$J,358.3,17966,0)
+ ;;=F02.81^^61^795^11
+ ;;^UTILITY(U,$J,358.3,17966,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,17786,1,3,0)
- ;;=3^Fall from Non-Moving Wheelchair,Subs Encntr
- ;;^UTILITY(U,$J,358.3,17786,1,4,0)
- ;;=4^W05.0XXD
- ;;^UTILITY(U,$J,358.3,17786,2)
- ;;=^5059551
- ;;^UTILITY(U,$J,358.3,17787,0)
- ;;=W05.1XXA^^88^898^54
- ;;^UTILITY(U,$J,358.3,17787,1,0)
+ ;;^UTILITY(U,$J,358.3,17966,1,3,0)
+ ;;=3^Dementia in Oth Diseases Classd Elswhr w/ Behavioral Disturbances
+ ;;^UTILITY(U,$J,358.3,17966,1,4,0)
+ ;;=4^F02.81
+ ;;^UTILITY(U,$J,358.3,17966,2)
+ ;;=^5003049
+ ;;^UTILITY(U,$J,358.3,17967,0)
+ ;;=F02.80^^61^795^12
+ ;;^UTILITY(U,$J,358.3,17967,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,17787,1,3,0)
- ;;=3^Fall from Non-Moving Non-Motorized Scooter,Init Encntr
- ;;^UTILITY(U,$J,358.3,17787,1,4,0)
- ;;=4^W05.1XXA
- ;;^UTILITY(U,$J,358.3,17787,2)
- ;;=^5059553
- ;;^UTILITY(U,$J,358.3,17788,0)
- ;;=W05.1XXD^^88^898^55
- ;;^UTILITY(U,$J,358.3,17788,1,0)
+ ;;^UTILITY(U,$J,358.3,17967,1,3,0)
+ ;;=3^Dementia in Oth Diseases Classd Elswhr w/o Behavioral Disturbances
+ ;;^UTILITY(U,$J,358.3,17967,1,4,0)
+ ;;=4^F02.80
+ ;;^UTILITY(U,$J,358.3,17967,2)
+ ;;=^5003048
+ ;;^UTILITY(U,$J,358.3,17968,0)
+ ;;=F03.91^^61^795^13
+ ;;^UTILITY(U,$J,358.3,17968,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,17788,1,3,0)
- ;;=3^Fall from Non-Moving Non-Motorized Scooter,Subs Encntr
- ;;^UTILITY(U,$J,358.3,17788,1,4,0)
- ;;=4^W05.1XXD
- ;;^UTILITY(U,$J,358.3,17788,2)
- ;;=^5059554
- ;;^UTILITY(U,$J,358.3,17789,0)
- ;;=W05.2XXA^^88^898^52
- ;;^UTILITY(U,$J,358.3,17789,1,0)
+ ;;^UTILITY(U,$J,358.3,17968,1,3,0)
+ ;;=3^Dementia w/ Behavioral Disturbances,Unspec
+ ;;^UTILITY(U,$J,358.3,17968,1,4,0)
+ ;;=4^F03.91
+ ;;^UTILITY(U,$J,358.3,17968,2)
+ ;;=^5133350
+ ;;^UTILITY(U,$J,358.3,17969,0)
+ ;;=G31.83^^61^795^14
+ ;;^UTILITY(U,$J,358.3,17969,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,17789,1,3,0)
- ;;=3^Fall from Non-Moving Motorized Scooter,Init Encntr
- ;;^UTILITY(U,$J,358.3,17789,1,4,0)
- ;;=4^W05.2XXA
- ;;^UTILITY(U,$J,358.3,17789,2)
- ;;=^5059556
- ;;^UTILITY(U,$J,358.3,17790,0)
- ;;=W05.2XXD^^88^898^53
- ;;^UTILITY(U,$J,358.3,17790,1,0)
+ ;;^UTILITY(U,$J,358.3,17969,1,3,0)
+ ;;=3^Dementia w/ Lewy Bodies
+ ;;^UTILITY(U,$J,358.3,17969,1,4,0)
+ ;;=4^G31.83
+ ;;^UTILITY(U,$J,358.3,17969,2)
+ ;;=^329888
+ ;;^UTILITY(U,$J,358.3,17970,0)
+ ;;=F01.51^^61^795^30
+ ;;^UTILITY(U,$J,358.3,17970,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,17790,1,3,0)
- ;;=3^Fall from Non-Moving Motorized Scooter,Subs Encntr
- ;;^UTILITY(U,$J,358.3,17790,1,4,0)
- ;;=4^W05.2XXD
- ;;^UTILITY(U,$J,358.3,17790,2)
- ;;=^5059557
- ;;^UTILITY(U,$J,358.3,17791,0)
- ;;=W06.XXXA^^88^898^34
- ;;^UTILITY(U,$J,358.3,17791,1,0)
+ ;;^UTILITY(U,$J,358.3,17970,1,3,0)
+ ;;=3^Vascular Dementia w/ Behavioral Disturbances
+ ;;^UTILITY(U,$J,358.3,17970,1,4,0)
+ ;;=4^F01.51
+ ;;^UTILITY(U,$J,358.3,17970,2)
+ ;;=^5003047
+ ;;^UTILITY(U,$J,358.3,17971,0)
+ ;;=F01.50^^61^795^31
+ ;;^UTILITY(U,$J,358.3,17971,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,17791,1,3,0)
- ;;=3^Fall from Bed,Init Encntr
- ;;^UTILITY(U,$J,358.3,17791,1,4,0)
- ;;=4^W06.XXXA
- ;;^UTILITY(U,$J,358.3,17791,2)
- ;;=^5059559
- ;;^UTILITY(U,$J,358.3,17792,0)
- ;;=W06.XXXD^^88^898^35
- ;;^UTILITY(U,$J,358.3,17792,1,0)
+ ;;^UTILITY(U,$J,358.3,17971,1,3,0)
+ ;;=3^Vascular Dementia w/o Behavioral Disturbances
+ ;;^UTILITY(U,$J,358.3,17971,1,4,0)
+ ;;=4^F01.50
+ ;;^UTILITY(U,$J,358.3,17971,2)
+ ;;=^5003046
+ ;;^UTILITY(U,$J,358.3,17972,0)
+ ;;=A81.9^^61^795^6
+ ;;^UTILITY(U,$J,358.3,17972,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,17792,1,3,0)
- ;;=3^Fall from Bed,Subs Encntr
- ;;^UTILITY(U,$J,358.3,17792,1,4,0)
- ;;=4^W06.XXXD
- ;;^UTILITY(U,$J,358.3,17792,2)
- ;;=^5059560
- ;;^UTILITY(U,$J,358.3,17793,0)
- ;;=W07.XXXA^^88^898^42
- ;;^UTILITY(U,$J,358.3,17793,1,0)
+ ;;^UTILITY(U,$J,358.3,17972,1,3,0)
+ ;;=3^Atypical Virus Infection of CNS,Unspec
+ ;;^UTILITY(U,$J,358.3,17972,1,4,0)
+ ;;=4^A81.9
+ ;;^UTILITY(U,$J,358.3,17972,2)
+ ;;=^5000414
+ ;;^UTILITY(U,$J,358.3,17973,0)
+ ;;=A81.09^^61^795^8
+ ;;^UTILITY(U,$J,358.3,17973,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,17793,1,3,0)
- ;;=3^Fall from Chair,Init Encntr
- ;;^UTILITY(U,$J,358.3,17793,1,4,0)
- ;;=4^W07.XXXA
- ;;^UTILITY(U,$J,358.3,17793,2)
- ;;=^5059562
- ;;^UTILITY(U,$J,358.3,17794,0)
- ;;=W07.XXXD^^88^898^43
- ;;^UTILITY(U,$J,358.3,17794,1,0)
+ ;;^UTILITY(U,$J,358.3,17973,1,3,0)
+ ;;=3^Creutzfeldt-Jakob Disease NEC
+ ;;^UTILITY(U,$J,358.3,17973,1,4,0)
+ ;;=4^A81.09
+ ;;^UTILITY(U,$J,358.3,17973,2)
+ ;;=^5000410
+ ;;^UTILITY(U,$J,358.3,17974,0)
+ ;;=A81.00^^61^795^9
+ ;;^UTILITY(U,$J,358.3,17974,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,17794,1,3,0)
- ;;=3^Fall from Chair,Subs Encntr
- ;;^UTILITY(U,$J,358.3,17794,1,4,0)
- ;;=4^W07.XXXD
- ;;^UTILITY(U,$J,358.3,17794,2)
- ;;=^5059563
- ;;^UTILITY(U,$J,358.3,17795,0)
- ;;=W10.1XXA^^88^898^86
- ;;^UTILITY(U,$J,358.3,17795,1,0)
+ ;;^UTILITY(U,$J,358.3,17974,1,3,0)
+ ;;=3^Creutzfeldt-Jakob Disease,Unspec
+ ;;^UTILITY(U,$J,358.3,17974,1,4,0)
+ ;;=4^A81.00
+ ;;^UTILITY(U,$J,358.3,17974,2)
+ ;;=^5000409
+ ;;^UTILITY(U,$J,358.3,17975,0)
+ ;;=A81.01^^61^795^10
+ ;;^UTILITY(U,$J,358.3,17975,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,17795,1,3,0)
- ;;=3^Fall on Sidewalk Curb,Init Encntr
- ;;^UTILITY(U,$J,358.3,17795,1,4,0)
- ;;=4^W10.1XXA
- ;;^UTILITY(U,$J,358.3,17795,2)
- ;;=^5059583
- ;;^UTILITY(U,$J,358.3,17796,0)
- ;;=W10.1XXD^^88^898^87
- ;;^UTILITY(U,$J,358.3,17796,1,0)
+ ;;^UTILITY(U,$J,358.3,17975,1,3,0)
+ ;;=3^Creutzfeldt-Jakob Disease,Variant
+ ;;^UTILITY(U,$J,358.3,17975,1,4,0)
+ ;;=4^A81.01
+ ;;^UTILITY(U,$J,358.3,17975,2)
+ ;;=^336701
+ ;;^UTILITY(U,$J,358.3,17976,0)
+ ;;=A81.89^^61^795^7
+ ;;^UTILITY(U,$J,358.3,17976,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,17796,1,3,0)
- ;;=3^Fall on Sidewalk Curb,Subs Encntr
+ ;;^UTILITY(U,$J,358.3,17976,1,3,0)
+ ;;=3^Atypical Virus Infections of CNS NEC

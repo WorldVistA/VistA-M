@@ -1,5 +1,5 @@
 IBRBUL ;ALB/CJM - MEANS TEST HOLD CHARGE BULLETIN ;02-MAR-92
- ;;2.0;INTEGRATED BILLING;**70,95,121,153,195,347,452,516**;21-MAR-94;Build 123
+ ;;2.0;INTEGRATED BILLING;**70,95,121,153,195,347,452,516,647**;21-MAR-94;Build 10
  ;;Per VA Directive 6402, this routine should not be modified.
  ; This bulletin is sent even if the local site has chosen not to hold
  ; Means Test charges. In that case, IBHOLDP should be set = 0.
@@ -33,11 +33,14 @@ MAILTST ; for testing
  ;F IBC=1:1 Q:'$D(^TMP($J,"IBRBUL",IBC))  W !,^(IBC)
  Q
 HDR ; formated for held charges
- N IBW,IBU,IBV,SL S IBW=$S('IBHOLDP:"NOT ON HOLD",1:"ON HOLD"),IBU=$S(IBSEQNO=1:"NEW ",IBSEQNO=3:"UPDATED ",1:""),IBV=$S(+$O(IBDD(0)):"active",1:"may have")
+ N IBW,IBU,IBV,SL
+ S IBW=$S('IBHOLDP:"NOT ON HOLD",1:"ON HOLD")
+ S IBU=$S(IBSEQNO=1:"NEW ",IBSEQNO=3:"UPDATED ",1:"")
+ S IBV=$S(+$O(IBDD(0)):"active",1:"may have")
  ; if the parent event should have the soft-link that is needed to find
  ; the division
  S SL=$P(X,"^",16) S:SL SL=$G(^IB(SL,0)) S:'SL SL=X S SL=$P(SL,"^",4)
- S XMSUB=$E(IBNAME,1,8)_"("_IBBID_")"_" PATIENT CHRG W/INS"_"-"_$E($$DIV(SL),1,11)
+ S XMSUB="PATIENT CHRG W/INS"_"-"_$E($$DIV(SL),1,11)
  D ADDLN("The following patient has "_IBU_"charges "_IBW_" and "_IBV_" insurance.")
  D ADDLN("You need to immediately process the charges to the insurance company.")
  I +$$BUFFER^IBCNBU1(+$P(X,"^",2)) D

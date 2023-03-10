@@ -1,124 +1,118 @@
-IBDEI1JP ; ; 04-FEB-2020
- ;;3.0;IB ENCOUNTER FORM IMP/EXP;;FEB 04, 2020
+IBDEI1JP ; ; 01-FEB-2022
+ ;;3.0;IB ENCOUNTER FORM IMP/EXP;;FEB 01, 2022
  Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,999) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
- ;;^UTILITY(U,$J,358.3,24704,0)
- ;;=G44.301^^107^1209^6
- ;;^UTILITY(U,$J,358.3,24704,1,0)
+ ;;^UTILITY(U,$J,358.3,25031,1,2,0)
+ ;;=2^ANESTHESIA FOR CHEST TUBE PLACEMNT/DRAIN
+ ;;^UTILITY(U,$J,358.3,25031,1,4,0)
+ ;;=4^00524
+ ;;^UTILITY(U,$J,358.3,25032,0)
+ ;;=00540^^86^1121^4^^^^1
+ ;;^UTILITY(U,$J,358.3,25032,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,24704,1,3,0)
- ;;=3^Post-Traumatic Headache,Unspec,Intractable
- ;;^UTILITY(U,$J,358.3,24704,1,4,0)
- ;;=4^G44.301
- ;;^UTILITY(U,$J,358.3,24704,2)
- ;;=^5003941
- ;;^UTILITY(U,$J,358.3,24705,0)
- ;;=G44.209^^107^1209^8
- ;;^UTILITY(U,$J,358.3,24705,1,0)
+ ;;^UTILITY(U,$J,358.3,25032,1,2,0)
+ ;;=2^ANESTHESIA FOR THORACOTOMY PROCEDURES
+ ;;^UTILITY(U,$J,358.3,25032,1,4,0)
+ ;;=4^00540
+ ;;^UTILITY(U,$J,358.3,25033,0)
+ ;;=00541^^86^1121^5^^^^1
+ ;;^UTILITY(U,$J,358.3,25033,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,24705,1,3,0)
- ;;=3^Tension-Type Headache,Unspec,Not Intractable
- ;;^UTILITY(U,$J,358.3,24705,1,4,0)
- ;;=4^G44.209
- ;;^UTILITY(U,$J,358.3,24705,2)
- ;;=^5003936
- ;;^UTILITY(U,$J,358.3,24706,0)
- ;;=I30.0^^107^1210^5
- ;;^UTILITY(U,$J,358.3,24706,1,0)
+ ;;^UTILITY(U,$J,358.3,25033,1,2,0)
+ ;;=2^ANESTHESIA,ONE LUNG VENTILATION
+ ;;^UTILITY(U,$J,358.3,25033,1,4,0)
+ ;;=4^00541
+ ;;^UTILITY(U,$J,358.3,25034,0)
+ ;;=62273^^86^1122^1^^^^1
+ ;;^UTILITY(U,$J,358.3,25034,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,24706,1,3,0)
- ;;=3^Idiopathic Pericarditis,Acute Nonspec
- ;;^UTILITY(U,$J,358.3,24706,1,4,0)
- ;;=4^I30.0
- ;;^UTILITY(U,$J,358.3,24706,2)
- ;;=^5007157
- ;;^UTILITY(U,$J,358.3,24707,0)
- ;;=I34.8^^107^1210^6
- ;;^UTILITY(U,$J,358.3,24707,1,0)
+ ;;^UTILITY(U,$J,358.3,25034,1,2,0)
+ ;;=2^INJECT EPIDURAL PATCH
+ ;;^UTILITY(U,$J,358.3,25034,1,4,0)
+ ;;=4^62273
+ ;;^UTILITY(U,$J,358.3,25035,0)
+ ;;=62320^^86^1122^7^^^^1
+ ;;^UTILITY(U,$J,358.3,25035,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,24707,1,3,0)
- ;;=3^Mitral Valve Disorders,Nonrheumatic Other
- ;;^UTILITY(U,$J,358.3,24707,1,4,0)
- ;;=4^I34.8
- ;;^UTILITY(U,$J,358.3,24707,2)
- ;;=^5007172
- ;;^UTILITY(U,$J,358.3,24708,0)
- ;;=I34.0^^107^1210^13
- ;;^UTILITY(U,$J,358.3,24708,1,0)
+ ;;^UTILITY(U,$J,358.3,25035,1,2,0)
+ ;;=2^Inj Intralaminar Epidural C/T w/o Imaging
+ ;;^UTILITY(U,$J,358.3,25035,1,4,0)
+ ;;=4^62320
+ ;;^UTILITY(U,$J,358.3,25036,0)
+ ;;=62321^^86^1122^6^^^^1
+ ;;^UTILITY(U,$J,358.3,25036,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,24708,1,3,0)
- ;;=3^Nonrheumatic Mitral Valve Insufficiency
- ;;^UTILITY(U,$J,358.3,24708,1,4,0)
- ;;=4^I34.0
- ;;^UTILITY(U,$J,358.3,24708,2)
- ;;=^5007169
- ;;^UTILITY(U,$J,358.3,24709,0)
- ;;=I34.9^^107^1210^12
- ;;^UTILITY(U,$J,358.3,24709,1,0)
+ ;;^UTILITY(U,$J,358.3,25036,1,2,0)
+ ;;=2^Inj Intralaminar Epidural C/T w/ Imaging
+ ;;^UTILITY(U,$J,358.3,25036,1,4,0)
+ ;;=4^62321
+ ;;^UTILITY(U,$J,358.3,25037,0)
+ ;;=62322^^86^1122^9^^^^1
+ ;;^UTILITY(U,$J,358.3,25037,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,24709,1,3,0)
- ;;=3^Nonrheumatic Mitral Valve Disorder,Unspec
- ;;^UTILITY(U,$J,358.3,24709,1,4,0)
- ;;=4^I34.9
- ;;^UTILITY(U,$J,358.3,24709,2)
- ;;=^5007173
- ;;^UTILITY(U,$J,358.3,24710,0)
- ;;=I34.2^^107^1210^7
- ;;^UTILITY(U,$J,358.3,24710,1,0)
+ ;;^UTILITY(U,$J,358.3,25037,1,2,0)
+ ;;=2^Inj Intralaminar Epidural L/S w/o Imaging
+ ;;^UTILITY(U,$J,358.3,25037,1,4,0)
+ ;;=4^62322
+ ;;^UTILITY(U,$J,358.3,25038,0)
+ ;;=62323^^86^1122^8^^^^1
+ ;;^UTILITY(U,$J,358.3,25038,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,24710,1,3,0)
- ;;=3^Nonrhematic Mitral Valve Stenosis
- ;;^UTILITY(U,$J,358.3,24710,1,4,0)
- ;;=4^I34.2
- ;;^UTILITY(U,$J,358.3,24710,2)
- ;;=^5007171
- ;;^UTILITY(U,$J,358.3,24711,0)
- ;;=I35.0^^107^1210^10
- ;;^UTILITY(U,$J,358.3,24711,1,0)
+ ;;^UTILITY(U,$J,358.3,25038,1,2,0)
+ ;;=2^Inj Intralaminar Epidural L/S w/ Imaging
+ ;;^UTILITY(U,$J,358.3,25038,1,4,0)
+ ;;=4^62323
+ ;;^UTILITY(U,$J,358.3,25039,0)
+ ;;=62324^^86^1122^2^^^^1
+ ;;^UTILITY(U,$J,358.3,25039,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,24711,1,3,0)
- ;;=3^Nonrheumatic Aortic Valve Stenosis
- ;;^UTILITY(U,$J,358.3,24711,1,4,0)
- ;;=4^I35.0
- ;;^UTILITY(U,$J,358.3,24711,2)
- ;;=^5007174
- ;;^UTILITY(U,$J,358.3,24712,0)
- ;;=I35.1^^107^1210^9
- ;;^UTILITY(U,$J,358.3,24712,1,0)
+ ;;^UTILITY(U,$J,358.3,25039,1,2,0)
+ ;;=2^Inj Cath Placemnt,Cont Inf/Bolus C/T w/o Imaging
+ ;;^UTILITY(U,$J,358.3,25039,1,4,0)
+ ;;=4^62324
+ ;;^UTILITY(U,$J,358.3,25040,0)
+ ;;=62325^^86^1122^3^^^^1
+ ;;^UTILITY(U,$J,358.3,25040,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,24712,1,3,0)
- ;;=3^Nonrheumatic Aortic Valve Insufficiency
- ;;^UTILITY(U,$J,358.3,24712,1,4,0)
- ;;=4^I35.1
- ;;^UTILITY(U,$J,358.3,24712,2)
- ;;=^5007175
- ;;^UTILITY(U,$J,358.3,24713,0)
- ;;=I35.2^^107^1210^11
- ;;^UTILITY(U,$J,358.3,24713,1,0)
+ ;;^UTILITY(U,$J,358.3,25040,1,2,0)
+ ;;=2^Inj Cath Placemnt,Cont Inf/Bolus C/T w/ Imaging 
+ ;;^UTILITY(U,$J,358.3,25040,1,4,0)
+ ;;=4^62325
+ ;;^UTILITY(U,$J,358.3,25041,0)
+ ;;=62326^^86^1122^4^^^^1
+ ;;^UTILITY(U,$J,358.3,25041,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,24713,1,3,0)
- ;;=3^Nonrheumatic Aortic Valve Stenosis w/ Insufficiency
- ;;^UTILITY(U,$J,358.3,24713,1,4,0)
- ;;=4^I35.2
- ;;^UTILITY(U,$J,358.3,24713,2)
- ;;=^5007176
- ;;^UTILITY(U,$J,358.3,24714,0)
- ;;=I35.9^^107^1210^8
- ;;^UTILITY(U,$J,358.3,24714,1,0)
+ ;;^UTILITY(U,$J,358.3,25041,1,2,0)
+ ;;=2^Inj Cath Placemnt,Cont Inf/Bolus L/S w/o Imaging
+ ;;^UTILITY(U,$J,358.3,25041,1,4,0)
+ ;;=4^62326
+ ;;^UTILITY(U,$J,358.3,25042,0)
+ ;;=62327^^86^1122^5^^^^1
+ ;;^UTILITY(U,$J,358.3,25042,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,24714,1,3,0)
- ;;=3^Nonrheumatic Aortic Valve Disorder,Unspec
- ;;^UTILITY(U,$J,358.3,24714,1,4,0)
- ;;=4^I35.9
- ;;^UTILITY(U,$J,358.3,24714,2)
- ;;=^5007178
- ;;^UTILITY(U,$J,358.3,24715,0)
- ;;=I38.^^107^1210^4
- ;;^UTILITY(U,$J,358.3,24715,1,0)
+ ;;^UTILITY(U,$J,358.3,25042,1,2,0)
+ ;;=2^Inj Cath Placemnt,Cont Inf/Bolus L/S w/ Imaging 
+ ;;^UTILITY(U,$J,358.3,25042,1,4,0)
+ ;;=4^62327
+ ;;^UTILITY(U,$J,358.3,25043,0)
+ ;;=99100^^86^1123^4^^^^1
+ ;;^UTILITY(U,$J,358.3,25043,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,24715,1,3,0)
- ;;=3^Endocarditis,Valve Unspec
- ;;^UTILITY(U,$J,358.3,24715,1,4,0)
- ;;=4^I38.
- ;;^UTILITY(U,$J,358.3,24715,2)
- ;;=^40327
+ ;;^UTILITY(U,$J,358.3,25043,1,2,0)
+ ;;=2^ANESTH PTS > 70
+ ;;^UTILITY(U,$J,358.3,25043,1,4,0)
+ ;;=4^99100
+ ;;^UTILITY(U,$J,358.3,25044,0)
+ ;;=99135^^86^1123^1^^^^1
+ ;;^UTILITY(U,$J,358.3,25044,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,25044,1,2,0)
+ ;;=2^ANES COMP BY CONTROLLED HYPOTENSION
+ ;;^UTILITY(U,$J,358.3,25044,1,4,0)
+ ;;=4^99135
+ ;;^UTILITY(U,$J,358.3,25045,0)
+ ;;=99140^^86^1123^2^^^^1
+ ;;^UTILITY(U,$J,358.3,25045,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,25045,1,2,0)
+ ;;=2^ANES COMP BY EMERGENCY CONDITIONS

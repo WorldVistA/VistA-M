@@ -1,5 +1,10 @@
-ECXPIVD2 ;ALB/JAP,BIR/DMA,CML,PTD-Extract from IV EXTRACT DATA File (#728.113) ;3/11/19  15:31
- ;;3.0;DSS EXTRACTS;**105,120,127,144,149,161,166,170,174**;Dec 22, 1997;Build 33
+ECXPIVD2 ;ALB/JAP,BIR/DMA,CML,PTD-Extract from IV EXTRACT DATA File (#728.113) ;2/14/20  09:07
+ ;;3.0;DSS EXTRACTS;**105,120,127,144,149,161,166,170,174,178,181,184**;Dec 22, 1997;Build 124
+ ;
+ ; Reference to ^XMD in ICR #10113
+ ; Reference to ^XMB("NETNAME") in ICR #1131
+ ; Reference to ^TMP($J) in SACC 2.3.2.5.1
+ ; 
 FILE ;file record
  ;node0
  ;fac^dfn^ssn^name^i/o^day^va class^qty^ward^cost^movement #^treat spec^ndc^investigational^iv dispensing fee^new feeder key^total doses^
@@ -18,10 +23,16 @@ FILE ;file record
  ;^country ECXCNTRY^PATCAT^Encounter SC ECXESC^Camp Lejeune Status ECXCLST^Encounter Camp Lejeune ECXECL ;144
  ;^Combat Service Indicator (ECXSVCI) ^ Combat Service Location (ECXSVCL)
  ;^ Patient Division (ECXSTANO) ^ Vista DEA special hdlg (ECXDEA)  ;tjl 166
+ ;node3 - patch 184
+ ;Cerner Data (ECXCERN)
+ ;node4
+ ;New MPI (ECXNMPI)^Self Identified Gender (ECXSIGI) ;184
  N DA,DIK
  S ECPLACE=""
  S EC7=$O(^ECX(ECFILE,999999999),-1),EC7=EC7+1
  I ECXLOGIC>2018 S (ECXETH,ECXRC1,ECPTTM,ECPTPR,ECCLAS,ECASPR,ECCLAS2,ECASNPI,ECPTNPI)="" ;170 Fields will now be null
+ I ECXLOGIC>2020 S ECXMTST="" ;178 Means Test field will now be null
+ I ECXLOGIC>2022 S ECXMPI="" ;184 field retired
  S ECODE=EC7_U_EC23_U_ECXDIV_U_DFN_U_ECXSSN_U_ECXPNM_U_ECXA_U
  S ECODE=ECODE_$$ECXDATE^ECXUTL(ECD,ECXYM)_U_ECVACL_U_ECXCNT_U_ECXW_U
  ;convert specialty to PTF Code for transmission
@@ -49,9 +60,48 @@ FILE ;file record
  I ECXLOGIC>2013 S ECODE2=ECODE2_U_ECXESC_U_ECXCLST_U_ECXECL ;144
  I ECXLOGIC>2014 S ECODE2=ECODE2_U_ECXSVCI_U_ECXSVCL ;149
  I ECXLOGIC>2017 S ECODE2=ECODE2_U_ECXSTANO  ;166
- I ECXLOGIC>2019 S ECODE2=ECODE2_U_ECXDEA ;174
+ I ECXLOGIC>2019 S ECODE2=ECODE2_U_ECXDEA_U ;174 ,184 Added "^"
+ I ECXLOGIC>2022 S ECODE3=$G(ECXCERN)_U,ECODE4=ECXNMPI_U_ECXSIGI ;184
  S ^ECX(ECFILE,EC7,0)=ECODE,^ECX(ECFILE,EC7,1)=ECODE1
- S ^ECX(ECFILE,EC7,2)=ECODE2,ECRN=ECRN+1
+ S ^ECX(ECFILE,EC7,2)=ECODE2 ;,ECRN=ECRN+1 ;184 - Move record count to below
+ S:ECXLOGIC>2022 ^ECX(ECFILE,EC7,3)=$G(ECODE3),^ECX(ECFILE,EC7,4)=$G(ECODE4) ;184 
+ S ECRN=ECRN+1
  S DA=EC7,DIK="^ECX("_ECFILE_"," D IX^DIK K DIK,DA
  I $D(ZTQUEUED),$$S^%ZTLOAD S QFLG=1
+ Q
+SENDMSG ;181 - Called from ECXPIVDN
+ N ECMSG,ECX,XMSUB,XMDUZ,XMY,XMTEXT
+ ;Send missing stop  code message
+ S ECX=$O(^TMP($J,"ECXIVPM","ECXNOSC",0))
+ I ECX D
+ .S XMSUB="CLINICS WITH MISSING STOP CODE in File #44",XMDUZ="DSS SYSTEM"
+ .K XMY S XMY("G.DSS-"_ECGRP_"@"_^XMB("NETNAME"))=""
+ .S ECMSG(1,0)="The DSS-"_ECPACK_" extract (#"_$P(EC23,U,2)_") for "_ECSDN_" through "_ECEDN
+ .S ECMSG(2,0)="contains the following clinics which have not been assigned a stop code in"
+ .S ECMSG(3,0)="the HOSPITAL LOCATION file (#44).  The DSS-"_ECPACK_" extract records"
+ .S ECMSG(4,0)="associated with these clinics have been given a default Stop Code of ""PHA""."
+ .S ECMSG(5,0)=""
+ .S ECMSG(6,0)="CLIN IEN  CLINIC NAME"
+ .S ECMSG(7,0)="-----------------------------------------"
+ .S ECMSG(8,0)=""
+ .S ECX=0
+ .F  S ECX=$O(^TMP($J,"ECXIVPM","ECXNOSC",ECX)) Q:ECX=""  S ECMSG(8+ECX,0)=^TMP($J,"ECXIVPM","ECXNOSC",ECX,0)
+ .S XMTEXT="ECMSG(" D ^XMD
+ ;Send Inactive Stop Code message
+ S ECX=$O(^TMP($J,"ECXIVPM","ECXINVSC",0))
+ I ECX D
+ .S XMSUB="CLINICS WITH INACTIVE STOP CODE",XMDUZ="DSS SYSTEM"
+ .K XMY S XMY("G.DSS-"_ECGRP_"@"_^XMB("NETNAME"))=""
+ .S ECMSG(1,0)="The DSS-"_ECPACK_" extract (#"_$P(EC23,U,2)_") for "_ECSDN_" through "_ECEDN
+ .S ECMSG(2,0)="contains the following clinics which have been assigned an inactive stop"
+ .S ECMSG(3,0)="code in the HOSPITAL LOCATION file (#44).  The DSS-"_ECPACK_" extract records"
+ .S ECMSG(4,0)="associated with these clinics have been given a default Stop Code of ""PHA""."
+ .S ECMSG(5,0)=""
+ .S ECMSG(6,0)="CLINIC IEN/NAME                         STOP CODE NUMBER/NAME"
+ .S ECMSG(7,0)="--------------------------------------------------------------------"
+ .S ECMSG(8,0)=""
+ .S ECX=0
+ .F  S ECX=$O(^TMP($J,"ECXIVPM","ECXINVSC",ECX)) Q:ECX=""  S ECMSG(8+ECX,0)=^TMP($J,"ECXIVPM","ECXINVSC",ECX,0)
+ .S XMTEXT="ECMSG(" D ^XMD
+ K ^TMP($J,"ECXIVPM")
  Q

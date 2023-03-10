@@ -1,122 +1,122 @@
-IBDEI0O3 ; ; 04-FEB-2020
- ;;3.0;IB ENCOUNTER FORM IMP/EXP;;FEB 04, 2020
+IBDEI0O3 ; ; 01-FEB-2022
+ ;;3.0;IB ENCOUNTER FORM IMP/EXP;;FEB 01, 2022
  Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,999) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
- ;;^UTILITY(U,$J,358.3,10717,1,4,0)
- ;;=4^E11.9
- ;;^UTILITY(U,$J,358.3,10717,2)
- ;;=^5002666
- ;;^UTILITY(U,$J,358.3,10718,0)
- ;;=E11.39^^74^691^1
- ;;^UTILITY(U,$J,358.3,10718,1,0)
+ ;;^UTILITY(U,$J,358.3,10839,1,3,0)
+ ;;=3^Sleep-Related Hypoventilation,Congenital Central Alveolar Hypoventilation
+ ;;^UTILITY(U,$J,358.3,10839,1,4,0)
+ ;;=4^G47.35
+ ;;^UTILITY(U,$J,358.3,10839,2)
+ ;;=^332765
+ ;;^UTILITY(U,$J,358.3,10840,0)
+ ;;=G47.34^^42^490^29
+ ;;^UTILITY(U,$J,358.3,10840,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,10718,1,3,0)
- ;;=3^DM Type 2 w/ Diabetic Ophthalmic Complications
- ;;^UTILITY(U,$J,358.3,10718,1,4,0)
- ;;=4^E11.39
- ;;^UTILITY(U,$J,358.3,10718,2)
- ;;=^5002643
- ;;^UTILITY(U,$J,358.3,10719,0)
- ;;=E10.9^^74^691^21
- ;;^UTILITY(U,$J,358.3,10719,1,0)
+ ;;^UTILITY(U,$J,358.3,10840,1,3,0)
+ ;;=3^Sleep-Related Hypoventilation,Idiopathic
+ ;;^UTILITY(U,$J,358.3,10840,1,4,0)
+ ;;=4^G47.34
+ ;;^UTILITY(U,$J,358.3,10840,2)
+ ;;=^5003978
+ ;;^UTILITY(U,$J,358.3,10841,0)
+ ;;=G47.9^^42^490^31
+ ;;^UTILITY(U,$J,358.3,10841,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,10719,1,3,0)
- ;;=3^DM Type 1 w/o Complications
- ;;^UTILITY(U,$J,358.3,10719,1,4,0)
- ;;=4^E10.9
- ;;^UTILITY(U,$J,358.3,10719,2)
- ;;=^5002626
- ;;^UTILITY(U,$J,358.3,10720,0)
- ;;=E10.39^^74^691^20
- ;;^UTILITY(U,$J,358.3,10720,1,0)
+ ;;^UTILITY(U,$J,358.3,10841,1,3,0)
+ ;;=3^Sleep-Wake Disorder,Unspec
+ ;;^UTILITY(U,$J,358.3,10841,1,4,0)
+ ;;=4^G47.9
+ ;;^UTILITY(U,$J,358.3,10841,2)
+ ;;=^5003990
+ ;;^UTILITY(U,$J,358.3,10842,0)
+ ;;=G47.419^^42^490^1
+ ;;^UTILITY(U,$J,358.3,10842,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,10720,1,3,0)
- ;;=3^DM Type 1 w/ Diabetic Ophthalmic Complication
- ;;^UTILITY(U,$J,358.3,10720,1,4,0)
- ;;=4^E10.39
- ;;^UTILITY(U,$J,358.3,10720,2)
- ;;=^5002603
- ;;^UTILITY(U,$J,358.3,10721,0)
- ;;=E10.3291^^74^691^22
- ;;^UTILITY(U,$J,358.3,10721,1,0)
+ ;;^UTILITY(U,$J,358.3,10842,1,3,0)
+ ;;=3^Autosomal Dominant Cerebella Ataxia,Deafness,and Narcolepsy
+ ;;^UTILITY(U,$J,358.3,10842,1,4,0)
+ ;;=4^G47.419
+ ;;^UTILITY(U,$J,358.3,10842,2)
+ ;;=^5003982
+ ;;^UTILITY(U,$J,358.3,10843,0)
+ ;;=G47.419^^42^490^2
+ ;;^UTILITY(U,$J,358.3,10843,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,10721,1,3,0)
- ;;=3^DM Type 1 w/ Mild NPDR w/o Macula Edema,Right Eye
- ;;^UTILITY(U,$J,358.3,10721,1,4,0)
- ;;=4^E10.3291
- ;;^UTILITY(U,$J,358.3,10721,2)
- ;;=^5138283
- ;;^UTILITY(U,$J,358.3,10722,0)
- ;;=E10.3292^^74^691^27
- ;;^UTILITY(U,$J,358.3,10722,1,0)
+ ;;^UTILITY(U,$J,358.3,10843,1,3,0)
+ ;;=3^Autosomal Dominant Narcolepsy,Obesity,and Type 2 Diabetes
+ ;;^UTILITY(U,$J,358.3,10843,1,4,0)
+ ;;=4^G47.419
+ ;;^UTILITY(U,$J,358.3,10843,2)
+ ;;=^5003982
+ ;;^UTILITY(U,$J,358.3,10844,0)
+ ;;=R06.3^^42^490^5
+ ;;^UTILITY(U,$J,358.3,10844,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,10722,1,3,0)
- ;;=3^DM Type 1 w/ Mild NPDR w/o Macula Edema,Left Eye
- ;;^UTILITY(U,$J,358.3,10722,1,4,0)
- ;;=4^E10.3292
- ;;^UTILITY(U,$J,358.3,10722,2)
- ;;=^5138284
- ;;^UTILITY(U,$J,358.3,10723,0)
- ;;=E10.3391^^74^691^23
- ;;^UTILITY(U,$J,358.3,10723,1,0)
+ ;;^UTILITY(U,$J,358.3,10844,1,3,0)
+ ;;=3^Cheyne-Stokes Breathing
+ ;;^UTILITY(U,$J,358.3,10844,1,4,0)
+ ;;=4^R06.3
+ ;;^UTILITY(U,$J,358.3,10844,2)
+ ;;=^5019185
+ ;;^UTILITY(U,$J,358.3,10845,0)
+ ;;=G47.429^^42^490^18
+ ;;^UTILITY(U,$J,358.3,10845,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,10723,1,3,0)
- ;;=3^DM Type 1 w/ Mod NPDR w/o Macula Edema,Right Eye
- ;;^UTILITY(U,$J,358.3,10723,1,4,0)
- ;;=4^E10.3391
- ;;^UTILITY(U,$J,358.3,10723,2)
- ;;=^5138291
- ;;^UTILITY(U,$J,358.3,10724,0)
- ;;=E10.3392^^74^691^28
- ;;^UTILITY(U,$J,358.3,10724,1,0)
+ ;;^UTILITY(U,$J,358.3,10845,1,3,0)
+ ;;=3^Narcolepsy Secondary to Another Medical Condition
+ ;;^UTILITY(U,$J,358.3,10845,1,4,0)
+ ;;=4^G47.429
+ ;;^UTILITY(U,$J,358.3,10845,2)
+ ;;=^5003984
+ ;;^UTILITY(U,$J,358.3,10846,0)
+ ;;=F10.10^^42^491^30
+ ;;^UTILITY(U,$J,358.3,10846,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,10724,1,3,0)
- ;;=3^DM Type 1 w/ Mod NPDR w/o Macula Edema,Left Eye
- ;;^UTILITY(U,$J,358.3,10724,1,4,0)
- ;;=4^E10.3392
- ;;^UTILITY(U,$J,358.3,10724,2)
- ;;=^5138292
- ;;^UTILITY(U,$J,358.3,10725,0)
- ;;=E10.3491^^74^691^24
- ;;^UTILITY(U,$J,358.3,10725,1,0)
+ ;;^UTILITY(U,$J,358.3,10846,1,3,0)
+ ;;=3^Alcohol Use Disorder,Mild
+ ;;^UTILITY(U,$J,358.3,10846,1,4,0)
+ ;;=4^F10.10
+ ;;^UTILITY(U,$J,358.3,10846,2)
+ ;;=^5003068
+ ;;^UTILITY(U,$J,358.3,10847,0)
+ ;;=F10.20^^42^491^3
+ ;;^UTILITY(U,$J,358.3,10847,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,10725,1,3,0)
- ;;=3^DM Type 1 w/ Severe NPDR w/o Macula Edema,Right Eye
- ;;^UTILITY(U,$J,358.3,10725,1,4,0)
- ;;=4^E10.3491
- ;;^UTILITY(U,$J,358.3,10725,2)
- ;;=^5138299
- ;;^UTILITY(U,$J,358.3,10726,0)
- ;;=E10.3492^^74^691^29
- ;;^UTILITY(U,$J,358.3,10726,1,0)
+ ;;^UTILITY(U,$J,358.3,10847,1,3,0)
+ ;;=3^Alcohol Dependence
+ ;;^UTILITY(U,$J,358.3,10847,1,4,0)
+ ;;=4^F10.20
+ ;;^UTILITY(U,$J,358.3,10847,2)
+ ;;=^5003081
+ ;;^UTILITY(U,$J,358.3,10848,0)
+ ;;=F10.239^^42^491^34
+ ;;^UTILITY(U,$J,358.3,10848,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,10726,1,3,0)
- ;;=3^DM Type 1 w/ Severe NPDR w/o Macula Edema,Left Eye
- ;;^UTILITY(U,$J,358.3,10726,1,4,0)
- ;;=4^E10.3492
- ;;^UTILITY(U,$J,358.3,10726,2)
- ;;=^5138300
- ;;^UTILITY(U,$J,358.3,10727,0)
- ;;=E10.3511^^74^691^25
- ;;^UTILITY(U,$J,358.3,10727,1,0)
+ ;;^UTILITY(U,$J,358.3,10848,1,3,0)
+ ;;=3^Alcohol Withdrawal w/o Perceptual Disturbances
+ ;;^UTILITY(U,$J,358.3,10848,1,4,0)
+ ;;=4^F10.239
+ ;;^UTILITY(U,$J,358.3,10848,2)
+ ;;=^5003089
+ ;;^UTILITY(U,$J,358.3,10849,0)
+ ;;=F10.180^^42^491^5
+ ;;^UTILITY(U,$J,358.3,10849,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,10727,1,3,0)
- ;;=3^DM Type 1 w/ PDR w/ Macula Edema,Right Eye
- ;;^UTILITY(U,$J,358.3,10727,1,4,0)
- ;;=4^E10.3511
- ;;^UTILITY(U,$J,358.3,10727,2)
- ;;=^5138303
- ;;^UTILITY(U,$J,358.3,10728,0)
- ;;=E10.3512^^74^691^30
- ;;^UTILITY(U,$J,358.3,10728,1,0)
+ ;;^UTILITY(U,$J,358.3,10849,1,3,0)
+ ;;=3^Alcohol Induced Anxiety D/O w/ Mild Use Disorder
+ ;;^UTILITY(U,$J,358.3,10849,1,4,0)
+ ;;=4^F10.180
+ ;;^UTILITY(U,$J,358.3,10849,2)
+ ;;=^5003076
+ ;;^UTILITY(U,$J,358.3,10850,0)
+ ;;=F10.280^^42^491^6
+ ;;^UTILITY(U,$J,358.3,10850,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,10728,1,3,0)
- ;;=3^DM Type 1 w/ PDR w/ Macula Edema,Left Eye
- ;;^UTILITY(U,$J,358.3,10728,1,4,0)
- ;;=4^E10.3512
- ;;^UTILITY(U,$J,358.3,10728,2)
- ;;=^5138304
- ;;^UTILITY(U,$J,358.3,10729,0)
- ;;=E10.3591^^74^691^26
- ;;^UTILITY(U,$J,358.3,10729,1,0)
- ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,10850,1,3,0)
+ ;;=3^Alcohol Induced Anxiety D/O w/ Moderate/Severe Use Disorder
+ ;;^UTILITY(U,$J,358.3,10850,1,4,0)
+ ;;=4^F10.280
+ ;;^UTILITY(U,$J,358.3,10850,2)
+ ;;=^5003096
+ ;;^UTILITY(U,$J,358.3,10851,0)
+ ;;=F10.980^^42^491^7

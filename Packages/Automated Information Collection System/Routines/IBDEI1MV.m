@@ -1,124 +1,48 @@
-IBDEI1MV ; ; 04-FEB-2020
- ;;3.0;IB ENCOUNTER FORM IMP/EXP;;FEB 04, 2020
- Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,999) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
+IBDEI1MV ; ; 01-FEB-2022
+ ;;3.0;IB ENCOUNTER FORM IMP/EXP;;FEB 01, 2022
+ Q:'DIFQ(358.8)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,999) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
- ;;^UTILITY(U,$J,358.3,26091,1,3,0)
- ;;=3^Fall from Non-Moving Motorized Scooter,Init Encntr
- ;;^UTILITY(U,$J,358.3,26091,1,4,0)
- ;;=4^W05.2XXA
- ;;^UTILITY(U,$J,358.3,26091,2)
- ;;=^5059556
- ;;^UTILITY(U,$J,358.3,26092,0)
- ;;=W05.2XXD^^107^1230^53
- ;;^UTILITY(U,$J,358.3,26092,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,26092,1,3,0)
- ;;=3^Fall from Non-Moving Motorized Scooter,Subs Encntr
- ;;^UTILITY(U,$J,358.3,26092,1,4,0)
- ;;=4^W05.2XXD
- ;;^UTILITY(U,$J,358.3,26092,2)
- ;;=^5059557
- ;;^UTILITY(U,$J,358.3,26093,0)
- ;;=W06.XXXA^^107^1230^34
- ;;^UTILITY(U,$J,358.3,26093,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,26093,1,3,0)
- ;;=3^Fall from Bed,Init Encntr
- ;;^UTILITY(U,$J,358.3,26093,1,4,0)
- ;;=4^W06.XXXA
- ;;^UTILITY(U,$J,358.3,26093,2)
- ;;=^5059559
- ;;^UTILITY(U,$J,358.3,26094,0)
- ;;=W06.XXXD^^107^1230^35
- ;;^UTILITY(U,$J,358.3,26094,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,26094,1,3,0)
- ;;=3^Fall from Bed,Subs Encntr
- ;;^UTILITY(U,$J,358.3,26094,1,4,0)
- ;;=4^W06.XXXD
- ;;^UTILITY(U,$J,358.3,26094,2)
- ;;=^5059560
- ;;^UTILITY(U,$J,358.3,26095,0)
- ;;=W07.XXXA^^107^1230^42
- ;;^UTILITY(U,$J,358.3,26095,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,26095,1,3,0)
- ;;=3^Fall from Chair,Init Encntr
- ;;^UTILITY(U,$J,358.3,26095,1,4,0)
- ;;=4^W07.XXXA
- ;;^UTILITY(U,$J,358.3,26095,2)
- ;;=^5059562
- ;;^UTILITY(U,$J,358.3,26096,0)
- ;;=W07.XXXD^^107^1230^43
- ;;^UTILITY(U,$J,358.3,26096,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,26096,1,3,0)
- ;;=3^Fall from Chair,Subs Encntr
- ;;^UTILITY(U,$J,358.3,26096,1,4,0)
- ;;=4^W07.XXXD
- ;;^UTILITY(U,$J,358.3,26096,2)
- ;;=^5059563
- ;;^UTILITY(U,$J,358.3,26097,0)
- ;;=W10.1XXA^^107^1230^86
- ;;^UTILITY(U,$J,358.3,26097,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,26097,1,3,0)
- ;;=3^Fall on Sidewalk Curb,Init Encntr
- ;;^UTILITY(U,$J,358.3,26097,1,4,0)
- ;;=4^W10.1XXA
- ;;^UTILITY(U,$J,358.3,26097,2)
- ;;=^5059583
- ;;^UTILITY(U,$J,358.3,26098,0)
- ;;=W10.1XXD^^107^1230^87
- ;;^UTILITY(U,$J,358.3,26098,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,26098,1,3,0)
- ;;=3^Fall on Sidewalk Curb,Subs Encntr
- ;;^UTILITY(U,$J,358.3,26098,1,4,0)
- ;;=4^W10.1XXD
- ;;^UTILITY(U,$J,358.3,26098,2)
- ;;=^5059584
- ;;^UTILITY(U,$J,358.3,26099,0)
- ;;=W11.XXXA^^107^1230^46
- ;;^UTILITY(U,$J,358.3,26099,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,26099,1,3,0)
- ;;=3^Fall from Ladder,Init Encntr
- ;;^UTILITY(U,$J,358.3,26099,1,4,0)
- ;;=4^W11.XXXA
- ;;^UTILITY(U,$J,358.3,26099,2)
- ;;=^5059595
- ;;^UTILITY(U,$J,358.3,26100,0)
- ;;=W11.XXXD^^107^1230^47
- ;;^UTILITY(U,$J,358.3,26100,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,26100,1,3,0)
- ;;=3^Fall from Ladder,Subs Encntr
- ;;^UTILITY(U,$J,358.3,26100,1,4,0)
- ;;=4^W11.XXXD
- ;;^UTILITY(U,$J,358.3,26100,2)
- ;;=^5059596
- ;;^UTILITY(U,$J,358.3,26101,0)
- ;;=W13.0XXA^^107^1230^72
- ;;^UTILITY(U,$J,358.3,26101,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,26101,1,3,0)
- ;;=3^Fall from/through Balcony,Init Encntr
- ;;^UTILITY(U,$J,358.3,26101,1,4,0)
- ;;=4^W13.0XXA
- ;;^UTILITY(U,$J,358.3,26101,2)
- ;;=^5059601
- ;;^UTILITY(U,$J,358.3,26102,0)
- ;;=W13.0XXD^^107^1230^73
- ;;^UTILITY(U,$J,358.3,26102,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,26102,1,3,0)
- ;;=3^Fall from/through Balcony,Subs Encntr
- ;;^UTILITY(U,$J,358.3,26102,1,4,0)
- ;;=4^W13.0XXD
- ;;^UTILITY(U,$J,358.3,26102,2)
- ;;=^5059602
- ;;^UTILITY(U,$J,358.3,26103,0)
- ;;=W13.1XXA^^107^1230^36
- ;;^UTILITY(U,$J,358.3,26103,1,0)
- ;;=^358.31IA^4^2
+ ;;^DIC(358.8,0,"GL")
+ ;;=^IBE(358.8,
+ ;;^DIC("B","IMP/EXP TEXT AREA",358.8)
+ ;;=
+ ;;^DIC(358.8,"%D",0)
+ ;;=^^3^3^2940217^
+ ;;^DIC(358.8,"%D",1,0)
+ ;;=This file is nearly identical to file #357.8. It is used by the
+ ;;^DIC(358.8,"%D",2,0)
+ ;;=Import/Export Utility as a temporary staging area for data from that file
+ ;;^DIC(358.8,"%D",3,0)
+ ;;=that is being imported or exported.
+ ;;^DD(358.8,0)
+ ;;=FIELD^^1^7
+ ;;^DD(358.8,0,"DDA")
+ ;;=N
+ ;;^DD(358.8,0,"DT")
+ ;;=2930802
+ ;;^DD(358.8,0,"IX","B",358.8,.01)
+ ;;=
+ ;;^DD(358.8,0,"IX","C",358.8,.02)
+ ;;=
+ ;;^DD(358.8,0,"NM","IMP/EXP TEXT AREA")
+ ;;=
+ ;;^DD(358.8,0,"VRPK")
+ ;;=IBD
+ ;;^DD(358.8,.01,0)
+ ;;=NAME^RF^^0;1^K:$L(X)>30!(X?.N)!($L(X)<3)!'(X'?1P.E) X
+ ;;^DD(358.8,.01,1,0)
+ ;;=^.1
+ ;;^DD(358.8,.01,1,1,0)
+ ;;=358.8^B
+ ;;^DD(358.8,.01,1,1,1)
+ ;;=S ^IBE(358.8,"B",$E(X,1,30),DA)=""
+ ;;^DD(358.8,.01,1,1,2)
+ ;;=K ^IBE(358.8,"B",$E(X,1,30),DA)
+ ;;^DD(358.8,.01,3)
+ ;;=NAME MUST BE 3-30 CHARACTERS, NOT NUMERIC OR STARTING WITH PUNCTUATION
+ ;;^DD(358.8,.01,21,0)
+ ;;=^^2^2^2930528^
+ ;;^DD(358.8,.01,21,1,0)
+ ;;= 
+ ;;^DD(358.8,.01,21,2,0)
+ ;;=The name of the text area.

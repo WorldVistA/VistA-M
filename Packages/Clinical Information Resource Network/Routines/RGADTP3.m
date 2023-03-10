@@ -1,5 +1,5 @@
-RGADTP3 ;BIR/CMC-RGADTP2 - CONTINUED ; 12/5/19 12:38pm
- ;;1.0;CLINICAL INFO RESOURCE NETWORK;**48,59,63,65,67,68,71,73**;30 Apr 99;Build 2
+RGADTP3 ;BIR/CMC-RGADTP2 - CONTINUED ;4/21/22  10:52
+ ;;1.0;CLINICAL INFO RESOURCE NETWORK;**48,59,63,65,67,68,71,73,76,77**;30 Apr 99;Build 3
  ;
  ;MOVED CHKPVT AND DIFF FROM RGADTP2 DUE TO ROUTINE SIZE ISSUE
  Q
@@ -15,7 +15,7 @@ CHKPVT(ARRAY) ;CHECKS TO SEE IF OUTSTANDING IDENTITY EDIT IS WAITING TO BE SENT 
  Q 0
  ;
 DIFF(ARRAY,RGRSDFN,DR,ARAY) ; are there fields to update? **47
- N NAME,SSN,PDOB,SEX,SID,MMN,OLDNAME,OLDHLNAM,OLDMMN,OLDHLMMN,HLNAME,HLMMN,SSNV,MBI,PSNR,PREFNAME
+ N NAME,SSN,PDOB,SEX,SID,MMN,OLDNAME,OLDHLNAM,OLDMMN,OLDHLMMN,HLNAME,HLMMN,SSNV,MBI,PSNR,PREFNAME,TIN,FIN,ITIN,SEXORDES,PRONOUNDES
  S DR="",NAME=$$GET1^DIQ(2,+RGRSDFN_",",.01,"I"),HLNAME=ARRAY("NAME")
  ;**48 remove name standardization check
  ;D STDNAME^XLFNAME(.NAME,"F",.OLDNAME) S HLNAME=ARRAY("NAME") D STDNAME^XLFNAME(.HLNAME,"F",.OLDHLNAM)
@@ -36,62 +36,53 @@ DIFF(ARRAY,RGRSDFN,DR,ARAY) ; are there fields to update? **47
  .S:$G(TARG(20,NCIENS,5,"I"))'=$G(ARRAY("SUFFIX")) ARAY(2,1.01,"SUFFIX")=$G(ARRAY("SUFFIX"))
  .S:$D(ARAY(2,1.01)) DR=DR_"1.01;"
  ;**67 - Story 455460 (ckn) - Update Preferred Name
- S PREFNAME=$$GET1^DIQ(2,+RGRSDFN_",",.2405,"I"),HLNAME=$G(ARRAY("PREFERREDNAME"))
- I PREFNAME'=$G(HLNAME) S DR=DR_".2405;",ARAY(2,.2405)=ARRAY("PREFERREDNAME")
+ S PREFNAME=$$GET1^DIQ(2,+RGRSDFN_",",.2405,"I") D
+ .I PREFNAME="",$G(ARRAY("PREFERREDNAME"))="@" Q
+ .I PREFNAME'=$G(ARRAY("PREFERREDNAME")) S DR=DR_".2405;",ARAY(2,.2405)=$G(ARRAY("PREFERREDNAME"))
  S PDOB=$$GET1^DIQ(2,+RGRSDFN_",",.03,"I") I PDOB'=ARRAY("MPIDOB") S DR=DR_".03;",ARAY(2,.03)=ARRAY("MPIDOB")
  S SSN=$$GET1^DIQ(2,+RGRSDFN_",",.09,"I") D
  .I SSN["P",ARRAY("SSN")=""!(ARRAY("SSN")="@") Q
- .; ^ treat pseudos and null/@ as the same
  .; **47 if incoming SSN value is null/@ and existing SSN isn't a pseudo create a new pseudo SSN
  .I SSN'["P" I ARRAY("SSN")="@"!(ARRAY("SSN")="") S ARRAY("SSN")="P"
  .I SSN'=ARRAY("SSN"),ARRAY("SSN")'="" S DR=DR_".09;",ARAY(2,.09)=ARRAY("SSN")
  S SEX=$$GET1^DIQ(2,+RGRSDFN_",",.02,"I") D
  .I SEX=""&(ARRAY("SEX")="@") Q
- .; ^ treat null and @ as same
  .I SEX'=ARRAY("SEX") S DR=DR_".02;",ARAY(2,.02)=ARRAY("SEX")
  ;**63 Story 174247: Self-ID Gender
  S SID=$$GET1^DIQ(2,+RGRSDFN_",",.024,"I") D
  .I SID="",$G(ARRAY(.024))="@" Q
  .I SID'=$G(ARRAY(.024)) S DR=DR_".024;",ARAY(2,.024)=$G(ARRAY(".024"))
- S SSNV=$$GET1^DIQ(2,+RGRSDFN_",",.0907,"I") I SSNV="" S SSNV="@"
- ;if SSN VERIFICATION STATUS field has been added to the DD then attempt to set it
- N ERROR,LABEL D FIELD^DID(2,.0907,"","LABEL","LABEL","ERROR") I '$D(ERROR("DIERR"))&$D(LABEL("LABEL")) D
- .I SSNV'=ARRAY(.0907) S ARAY(2,.0907)=$G(ARRAY(.0907)),DR=DR_".0907;"
- S PSNR=$$GET1^DIQ(2,+RGRSDFN_",",.0906,"I") I PSNR="" S PSNR="@"
- ;if Pseudo SSN Reason field has been added to the DD then attempt to set it
- N ERROR,LABEL D FIELD^DID(2,.0906,"","LABEL","LABEL","ERROR") I '$D(ERROR("DIERR"))&$D(LABEL("LABEL")) D
- .I PSNR'=ARRAY(.0906) S ARAY(2,.0906)=$G(ARRAY(.0906)),DR=DR_".0906;"
- ; **59, MVI_881 start
- ; S MBI=$$GET1^DIQ(2,+RGRSDFN_",",994,"I") I MBI="" S MBI="@"
- ; I MBI="@"&(ARRAY("MBI")="") Q
- ; ^ treat @ and null as the same
- ; I MBI'=ARRAY("MBI") S DR=DR_"994;",ARAY(2,994)=ARRAY("MBI")
- ; S MMN=$$GET1^DIQ(2,+RGRSDFN_",",.2403,"I") I MMN="" S MMN="@"
- ; D STDNAME^XLFNAME(.MMN,"F",.OLDMMN) S HLMMN=ARRAY("MMN") D STDNAME^XLFNAME(.HLMMN,"F",.OLDHLMMN)
- ; I MMN="@"&($G(HLMMN)="") Q
- ; ^ treat @ and null as same
- ; I MMN'=$G(HLMMN) S DR=DR_".2403;",ARAY(2,.2403)=ARRAY("MMN")
- I $G(ARRAY("MBI"))'="" D
+ ;S SSNV=$$GET1^DIQ(2,+RGRSDFN_",",.0907,"I") I SSNV="" S SSNV="@"
+ ;I SSNV'=$G(ARRAY(.0907)) S ARAY(2,.0907)=$G(ARRAY(.0907)),DR=DR_".0907;" ;**76 don't file until after ssn is filed by EDIT^VAFCPTED in ^RGADTP2
+ ;S PSNR=$$GET1^DIQ(2,+RGRSDFN_",",.0906,"I") I PSNR="" S PSNR="@"
+ ;I PSNR'=ARRAY(.0906) S ARAY(2,.0906)=$G(ARRAY(.0906)),DR=DR_".0906;" ;**76 don't file until after ssn is filed by EDIT^VAFCPTED in ^RGADTP2
+ I $G(ARRAY("MBI"))'="" D  ;**59, MVI_881
  . S MBI=$$GET1^DIQ(2,+RGRSDFN_",",994,"I") S:MBI="" MBI="@"
- . ; ^ treat @ and null as the same
  . I MBI'=ARRAY("MBI") S DR=DR_"994;",ARAY(2,994)=ARRAY("MBI")
- S HLMMN=$G(ARRAY("MMN"))
+ S HLMMN=$G(ARRAY("MMN")) ;**59, MVI_881
  I HLMMN'="" D
  . S MMN=$$GET1^DIQ(2,+RGRSDFN_",",.2403,"I") S:MMN="" MMN="@"
  . I MMN'="@" D STDNAME^XLFNAME(.MMN,"F",.OLDMMN)
  . I HLMMN'="@" D STDNAME^XLFNAME(.HLMMN,"F",.OLDHLMMN)
- . ; ^ treat @ and null as same
  . I MMN'=HLMMN S DR=DR_".2403;",ARAY(2,.2403)=ARRAY("MMN")
- ; update TIN and FIN fields
- N TIN,FIN
  I $G(ARRAY("TIN"))'="" D
  . S TIN=$$GET1^DIQ(2,+RGRSDFN_",",991.08,"I") S:TIN="" TIN="@"
  . I TIN'=ARRAY("TIN") S DR=DR_"991.08;",ARAY(2,991.08)=ARRAY("TIN")
  I $G(ARRAY("FIN"))'="" D
  . S FIN=$$GET1^DIQ(2,+RGRSDFN_",",991.09,"I") S:FIN="" FIN="@"
  . I FIN'=ARRAY("FIN") S DR=DR_"991.09;",ARAY(2,991.09)=ARRAY("FIN")
- ; **59, MVI_881 end
- I $D(ARRAY("ALIAS")) S DR=DR_"1;"
+ I $G(ARRAY("ITIN"))'="" D  ;**76, VAMPI-11120 (dri) update ITIN field
+ . S ITIN=$$GET1^DIQ(2,+RGRSDFN_",",991.11,"I") S:ITIN="" ITIN="@"
+ . I ITIN'=ARRAY("ITIN") S DR=DR_"991.11;",ARAY(2,991.11)=ARRAY("ITIN")
+ I $S($O(ARRAY("SexOr",0)):1,$O(^DPT(+RGRSDFN,.025,0)):1,1:0) S DR=DR_".025;" ;**76, VAMPI-11114 (dri) check in ^vafcpted whether to update sexual orientation
+ I $G(ARRAY("SexOrDes"))'="" D  ;**76, VAMPI-11114 (dri) update sexual orientation description ;**77, VAMPI-13755 (dri) - file after "SexOr" for "AHIST" x-ref
+ . S SEXORDES=$$GET1^DIQ(2,+RGRSDFN_",",.0251,"I") S:SEXORDES="" SEXORDES="@"
+ . I SEXORDES'=ARRAY("SexOrDes") S DR=DR_".0251;",ARAY(2,.0251)=ARRAY("SexOrDes")
+ I $S($O(ARRAY("Pronoun",0)):1,$O(^DPT(+RGRSDFN,.2406,0)):1,1:0) S DR=DR_".2406;" ;**76, VAMPI-11118 (dri) check in vafcpted whether to update pronoun
+ I $G(ARRAY("PronounDes"))'="" D  ;**76, VAMPI-11118 (dri) update pronoun description
+ . S PRONOUNDES=$$GET1^DIQ(2,+RGRSDFN_",",.24061,"I") S:PRONOUNDES="" PRONOUNDES="@"
+ . I PRONOUNDES'=ARRAY("PronounDes") S DR=DR_".24061;",ARAY(2,.24061)=ARRAY("PronounDes")
+ I $S($O(ARRAY("ALIAS",0)):1,$O(^DPT(+RGRSDFN,.01,0)):1,1:0) S DR=DR_"1;"
  ;**65 - Story 323009 (ckn): Update DOD fields
  N ODOD,ODODP,ODODLUP,ODODSRC,ODODARY,ODODD,ANSWER,DUPDFLG
  S DUPDFLG=$$CHK^VAFCDODA() ;Date of Death update flag
@@ -151,3 +142,4 @@ FMTNAME(ARRAY,LEN) ;Return a formatted name from cleaned Name Components that do
  ;
  ;Build a full name, maximum length LEN
  Q $$NAMEFMT^XLFNAME(.NC,"F","CL"_LEN)
+ ;

@@ -1,10 +1,10 @@
-PXRMTMED ; SLC/PKR/PJH - Edit a reminder term. ;08/29/2018
- ;;2.0;CLINICAL REMINDERS;**1,4,6,12,26,45**;Feb 04, 2005;Build 566
+PXRMTMED ; SLC/PKR/PJH - Edit a reminder term. ;Aug 18, 2020@11:19:40
+ ;;2.0;CLINICAL REMINDERS;**1,4,6,12,26,45,42,65**;Feb 04, 2005;Build 438
  ;
  ;=======================================================
- N CS1,CS2,DA,DIC,DLAYGO,DTOUT,DUOUT,OUTPUT,Y
+ N CS1,CS2,DA,DIC,DLAYGO,DTOUT,DUOUT,Y
 GETNAME ;Get the name of the term to edit.
- K DA,DIC,DLAYGO,DTOUT,DUOUT,OUTPUT,Y
+ K DA,DIC,DLAYGO,DTOUT,DUOUT,Y
  S DIC="^PXRMD(811.5,"
  S DIC(0)="AEMQL"
  S DIC("A")="Select Reminder Term: "
@@ -23,7 +23,7 @@ GETNAME ;Get the name of the term to edit.
  I CS2=0 G GETNAME
  I CS2=CS1 G GETNAME
  W !!,"Checking integrity of the term ...",!
- I '$$TERM^PXRMICHK(DA,.OUTPUT,1) G GETNAME
+ I '$$TERM^PXRMICK1(DA,.OUTPUT,1) G GETNAME
  D SEHIST^PXRMUTIL(811.5,DIC,DA)
  G GETNAME
 END ;
@@ -78,13 +78,7 @@ FINDING(DIE,DA) ;
  D ^DIC I Y=-1 S DTOUT=1,TCONT=0 Q
  S DIE=DIC
  S DA=+Y,GLOB=$P($P(Y,U,2),";",2) Q:GLOB=""
- I GLOB="PXRMD(811.4," S CFIEN=$P($P(Y,U,2),";",1) D
- . I $D(^PXRMD(811.4,CFIEN,1))>0 D
- .. W !!,"Computed Finding Description:" S WPIEN=0
- .. F  S WPIEN=$O(^PXRMD(811.4,CFIEN,1,WPIEN)) Q:+WPIEN'>0  D
- ... W !,$G(^PXRMD(811.4,CFIEN,1,WPIEN,0))
- . E  W !!,"No description defined for this computed finding"
- . W !
+ I GLOB="PXRMD(811.4," S CFIEN=$P($P(Y,U,2),";",1) D HELP^PXRMCF(CFIEN)
  I GLOB="YTT(601.71," D WARN^PXRMMH
  W !,"Editing Finding Number: "_$G(DA)
  ;Finding record fields
@@ -96,10 +90,12 @@ FINDING(DIE,DA) ;
  .I TERMSTAT="P" S DR=DR_";10" Q
  .I TERMSTAT'=0 S DR=DR_";10",STATUS=1
  ;Health Factor - within category rank
- I GLOB="AUTTHF(" S DR=DR_";11"
+ I GLOB="AUTTHF(" S DR=DR_";11//0"
  ;If V file INCLUDE VISIT DATA
  S VF=$S(GLOB["AUTTEDT":1,GLOB["AUTTEXAM":1,GLOB["AUTTHF":1,GLOB["AUTTIMM":1,GLOB="AUTTSK":1,GLOB["PXD(811.2":1,1:0)
  I VF S DR=DR_";28"
+ ;Immunization - Immunization Search Criteria
+ I GLOB["AUTTIMM" S DR=DR_";29"
  ;Mental Health - scale
  I GLOB="YTT(601.71," S DR=DR_";13"
  ;Radiology procedure
@@ -108,8 +104,8 @@ FINDING(DIE,DA) ;
  I GLOB="ORD(101.43," S DR=DR_";27",STATUS=1
  ;Rx Type
  I GLOB="PSDRUG("!(GLOB="PS(50.605,")!(GLOB="PSNDF(50.6,") S DR=DR_";16;27",STATUS=1
- ;Condition
- S DR=DR_";14;15;18"
+ ;Condition, make the default for Condition Case Sensitive NO
+ S DR=DR_";14;15//NO;18"
  ;
  ;Edit finding record
  D ^DIE

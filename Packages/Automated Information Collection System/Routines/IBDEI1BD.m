@@ -1,124 +1,126 @@
-IBDEI1BD ; ; 04-FEB-2020
- ;;3.0;IB ENCOUNTER FORM IMP/EXP;;FEB 04, 2020
+IBDEI1BD ; ; 01-FEB-2022
+ ;;3.0;IB ENCOUNTER FORM IMP/EXP;;FEB 01, 2022
  Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,999) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
- ;;^UTILITY(U,$J,358.3,21005,1,4,0)
- ;;=4^G47.36
- ;;^UTILITY(U,$J,358.3,21005,2)
- ;;=^5003979
- ;;^UTILITY(U,$J,358.3,21006,0)
- ;;=G47.35^^95^1042^28
- ;;^UTILITY(U,$J,358.3,21006,1,0)
+ ;;^UTILITY(U,$J,358.3,21243,1,4,0)
+ ;;=4^D02.22
+ ;;^UTILITY(U,$J,358.3,21243,2)
+ ;;=^5001885
+ ;;^UTILITY(U,$J,358.3,21244,0)
+ ;;=D02.21^^70^912^6
+ ;;^UTILITY(U,$J,358.3,21244,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,21006,1,3,0)
- ;;=3^Sleep-Related Hypoventilation,Congenital Central Alveolar Hypoventilation
- ;;^UTILITY(U,$J,358.3,21006,1,4,0)
- ;;=4^G47.35
- ;;^UTILITY(U,$J,358.3,21006,2)
- ;;=^332765
- ;;^UTILITY(U,$J,358.3,21007,0)
- ;;=G47.34^^95^1042^29
- ;;^UTILITY(U,$J,358.3,21007,1,0)
+ ;;^UTILITY(U,$J,358.3,21244,1,3,0)
+ ;;=3^Carcinoma in Situ Right Bronchus/Lung
+ ;;^UTILITY(U,$J,358.3,21244,1,4,0)
+ ;;=4^D02.21
+ ;;^UTILITY(U,$J,358.3,21244,2)
+ ;;=^5001884
+ ;;^UTILITY(U,$J,358.3,21245,0)
+ ;;=R22.2^^70^912^7
+ ;;^UTILITY(U,$J,358.3,21245,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,21007,1,3,0)
- ;;=3^Sleep-Related Hypoventilation,Idiopathic
- ;;^UTILITY(U,$J,358.3,21007,1,4,0)
- ;;=4^G47.34
- ;;^UTILITY(U,$J,358.3,21007,2)
- ;;=^5003978
- ;;^UTILITY(U,$J,358.3,21008,0)
- ;;=G47.9^^95^1042^31
- ;;^UTILITY(U,$J,358.3,21008,1,0)
+ ;;^UTILITY(U,$J,358.3,21245,1,3,0)
+ ;;=3^Localized Swelling/Mass/Lump,Trunk
+ ;;^UTILITY(U,$J,358.3,21245,1,4,0)
+ ;;=4^R22.2
+ ;;^UTILITY(U,$J,358.3,21245,2)
+ ;;=^5019286
+ ;;^UTILITY(U,$J,358.3,21246,0)
+ ;;=C7A.090^^70^912^8
+ ;;^UTILITY(U,$J,358.3,21246,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,21008,1,3,0)
- ;;=3^Sleep-Wake Disorder,Unspec
- ;;^UTILITY(U,$J,358.3,21008,1,4,0)
- ;;=4^G47.9
- ;;^UTILITY(U,$J,358.3,21008,2)
- ;;=^5003990
- ;;^UTILITY(U,$J,358.3,21009,0)
- ;;=G47.419^^95^1042^1
- ;;^UTILITY(U,$J,358.3,21009,1,0)
+ ;;^UTILITY(U,$J,358.3,21246,1,3,0)
+ ;;=3^Malig Carcinoid Tumor Bronchus/Lung
+ ;;^UTILITY(U,$J,358.3,21246,1,4,0)
+ ;;=4^C7A.090
+ ;;^UTILITY(U,$J,358.3,21246,2)
+ ;;=^5001371
+ ;;^UTILITY(U,$J,358.3,21247,0)
+ ;;=C34.02^^70^912^11
+ ;;^UTILITY(U,$J,358.3,21247,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,21009,1,3,0)
- ;;=3^Autosomal Dominant Cerebella Ataxia,Deafness,and Narcolepsy
- ;;^UTILITY(U,$J,358.3,21009,1,4,0)
- ;;=4^G47.419
- ;;^UTILITY(U,$J,358.3,21009,2)
- ;;=^5003982
- ;;^UTILITY(U,$J,358.3,21010,0)
- ;;=G47.419^^95^1042^2
- ;;^UTILITY(U,$J,358.3,21010,1,0)
+ ;;^UTILITY(U,$J,358.3,21247,1,3,0)
+ ;;=3^Malig Neop Left Main Bronchus
+ ;;^UTILITY(U,$J,358.3,21247,1,4,0)
+ ;;=4^C34.02
+ ;;^UTILITY(U,$J,358.3,21247,2)
+ ;;=^5000959
+ ;;^UTILITY(U,$J,358.3,21248,0)
+ ;;=C34.32^^70^912^10
+ ;;^UTILITY(U,$J,358.3,21248,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,21010,1,3,0)
- ;;=3^Autosomal Dominant Narcolepsy,Obesity,and Type 2 Diabetes
- ;;^UTILITY(U,$J,358.3,21010,1,4,0)
- ;;=4^G47.419
- ;;^UTILITY(U,$J,358.3,21010,2)
- ;;=^5003982
- ;;^UTILITY(U,$J,358.3,21011,0)
- ;;=R06.3^^95^1042^5
- ;;^UTILITY(U,$J,358.3,21011,1,0)
+ ;;^UTILITY(U,$J,358.3,21248,1,3,0)
+ ;;=3^Malig Neop Left Lower Lobe Bronchus/Lung
+ ;;^UTILITY(U,$J,358.3,21248,1,4,0)
+ ;;=4^C34.32
+ ;;^UTILITY(U,$J,358.3,21248,2)
+ ;;=^5133322
+ ;;^UTILITY(U,$J,358.3,21249,0)
+ ;;=C34.31^^70^912^19
+ ;;^UTILITY(U,$J,358.3,21249,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,21011,1,3,0)
- ;;=3^Cheyne-Stokes Breathing
- ;;^UTILITY(U,$J,358.3,21011,1,4,0)
- ;;=4^R06.3
- ;;^UTILITY(U,$J,358.3,21011,2)
- ;;=^5019185
- ;;^UTILITY(U,$J,358.3,21012,0)
- ;;=G47.429^^95^1042^18
- ;;^UTILITY(U,$J,358.3,21012,1,0)
+ ;;^UTILITY(U,$J,358.3,21249,1,3,0)
+ ;;=3^Malig Neop Right Lower Lobe Bronchus/Lung
+ ;;^UTILITY(U,$J,358.3,21249,1,4,0)
+ ;;=4^C34.31
+ ;;^UTILITY(U,$J,358.3,21249,2)
+ ;;=^5133321
+ ;;^UTILITY(U,$J,358.3,21250,0)
+ ;;=C39.9^^70^912^13
+ ;;^UTILITY(U,$J,358.3,21250,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,21012,1,3,0)
- ;;=3^Narcolepsy Secondary to Another Medical Condition
- ;;^UTILITY(U,$J,358.3,21012,1,4,0)
- ;;=4^G47.429
- ;;^UTILITY(U,$J,358.3,21012,2)
- ;;=^5003984
- ;;^UTILITY(U,$J,358.3,21013,0)
- ;;=F10.10^^95^1043^30
- ;;^UTILITY(U,$J,358.3,21013,1,0)
+ ;;^UTILITY(U,$J,358.3,21250,1,3,0)
+ ;;=3^Malig Neop Lower Respiratory Tract,Unspec Part
+ ;;^UTILITY(U,$J,358.3,21250,1,4,0)
+ ;;=4^C39.9
+ ;;^UTILITY(U,$J,358.3,21250,2)
+ ;;=^5000972
+ ;;^UTILITY(U,$J,358.3,21251,0)
+ ;;=C34.2^^70^912^14
+ ;;^UTILITY(U,$J,358.3,21251,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,21013,1,3,0)
- ;;=3^Alcohol Use Disorder,Mild
- ;;^UTILITY(U,$J,358.3,21013,1,4,0)
- ;;=4^F10.10
- ;;^UTILITY(U,$J,358.3,21013,2)
- ;;=^5003068
- ;;^UTILITY(U,$J,358.3,21014,0)
- ;;=F10.20^^95^1043^3
- ;;^UTILITY(U,$J,358.3,21014,1,0)
+ ;;^UTILITY(U,$J,358.3,21251,1,3,0)
+ ;;=3^Malig Neop Middle Lobe Bronchus/Lung
+ ;;^UTILITY(U,$J,358.3,21251,1,4,0)
+ ;;=4^C34.2
+ ;;^UTILITY(U,$J,358.3,21251,2)
+ ;;=^267137
+ ;;^UTILITY(U,$J,358.3,21252,0)
+ ;;=C34.82^^70^912^15
+ ;;^UTILITY(U,$J,358.3,21252,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,21014,1,3,0)
- ;;=3^Alcohol Dependence
- ;;^UTILITY(U,$J,358.3,21014,1,4,0)
- ;;=4^F10.20
- ;;^UTILITY(U,$J,358.3,21014,2)
- ;;=^5003081
- ;;^UTILITY(U,$J,358.3,21015,0)
- ;;=F10.239^^95^1043^34
- ;;^UTILITY(U,$J,358.3,21015,1,0)
+ ;;^UTILITY(U,$J,358.3,21252,1,3,0)
+ ;;=3^Malig Neop Ovrlp Sites Left Bronchus/Lung
+ ;;^UTILITY(U,$J,358.3,21252,1,4,0)
+ ;;=4^C34.82
+ ;;^UTILITY(U,$J,358.3,21252,2)
+ ;;=^5000965
+ ;;^UTILITY(U,$J,358.3,21253,0)
+ ;;=C34.81^^70^912^16
+ ;;^UTILITY(U,$J,358.3,21253,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,21015,1,3,0)
- ;;=3^Alcohol Withdrawal w/o Perceptual Disturbances
- ;;^UTILITY(U,$J,358.3,21015,1,4,0)
- ;;=4^F10.239
- ;;^UTILITY(U,$J,358.3,21015,2)
- ;;=^5003089
- ;;^UTILITY(U,$J,358.3,21016,0)
- ;;=F10.180^^95^1043^5
- ;;^UTILITY(U,$J,358.3,21016,1,0)
+ ;;^UTILITY(U,$J,358.3,21253,1,3,0)
+ ;;=3^Malig Neop Ovrlp Sites Right Bronchus/Lung
+ ;;^UTILITY(U,$J,358.3,21253,1,4,0)
+ ;;=4^C34.81
+ ;;^UTILITY(U,$J,358.3,21253,2)
+ ;;=^5000964
+ ;;^UTILITY(U,$J,358.3,21254,0)
+ ;;=C38.4^^70^912^17
+ ;;^UTILITY(U,$J,358.3,21254,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,21016,1,3,0)
- ;;=3^Alcohol Induced Anxiety D/O w/ Mild Use Disorder
- ;;^UTILITY(U,$J,358.3,21016,1,4,0)
- ;;=4^F10.180
- ;;^UTILITY(U,$J,358.3,21016,2)
- ;;=^5003076
- ;;^UTILITY(U,$J,358.3,21017,0)
- ;;=F10.280^^95^1043^6
- ;;^UTILITY(U,$J,358.3,21017,1,0)
+ ;;^UTILITY(U,$J,358.3,21254,1,3,0)
+ ;;=3^Malig Neop Pleura
+ ;;^UTILITY(U,$J,358.3,21254,1,4,0)
+ ;;=4^C38.4
+ ;;^UTILITY(U,$J,358.3,21254,2)
+ ;;=^267140
+ ;;^UTILITY(U,$J,358.3,21255,0)
+ ;;=C34.01^^70^912^20
+ ;;^UTILITY(U,$J,358.3,21255,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,21017,1,3,0)
- ;;=3^Alcohol Induced Anxiety D/O w/ Moderate/Severe Use Disorder
+ ;;^UTILITY(U,$J,358.3,21255,1,3,0)
+ ;;=3^Malig Neop Right Main Bronchus
+ ;;^UTILITY(U,$J,358.3,21255,1,4,0)
+ ;;=4^C34.01

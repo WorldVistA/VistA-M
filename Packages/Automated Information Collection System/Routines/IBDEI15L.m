@@ -1,124 +1,130 @@
-IBDEI15L ; ; 04-FEB-2020
- ;;3.0;IB ENCOUNTER FORM IMP/EXP;;FEB 04, 2020
+IBDEI15L ; ; 01-FEB-2022
+ ;;3.0;IB ENCOUNTER FORM IMP/EXP;;FEB 01, 2022
  Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,999) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
- ;;^UTILITY(U,$J,358.3,18544,1,3,0)
- ;;=3^Tardive Akathisia
- ;;^UTILITY(U,$J,358.3,18544,1,4,0)
- ;;=4^G25.71
- ;;^UTILITY(U,$J,358.3,18544,2)
- ;;=^5003799
- ;;^UTILITY(U,$J,358.3,18545,0)
- ;;=G25.79^^91^945^9
- ;;^UTILITY(U,$J,358.3,18545,1,0)
+ ;;^UTILITY(U,$J,358.3,18722,1,4,0)
+ ;;=4^N05.0
+ ;;^UTILITY(U,$J,358.3,18722,2)
+ ;;=^5015541
+ ;;^UTILITY(U,$J,358.3,18723,0)
+ ;;=N05.8^^64^837^23
+ ;;^UTILITY(U,$J,358.3,18723,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,18545,1,3,0)
- ;;=3^Medication-Induced Movement Disorder,Other
- ;;^UTILITY(U,$J,358.3,18545,1,4,0)
- ;;=4^G25.79
- ;;^UTILITY(U,$J,358.3,18545,2)
- ;;=^5003800
- ;;^UTILITY(U,$J,358.3,18546,0)
- ;;=T43.205A^^91^945^4
- ;;^UTILITY(U,$J,358.3,18546,1,0)
+ ;;^UTILITY(U,$J,358.3,18723,1,3,0)
+ ;;=3^Nephritic Syndrome w/ Morphologic Changes,Unspec
+ ;;^UTILITY(U,$J,358.3,18723,1,4,0)
+ ;;=4^N05.8
+ ;;^UTILITY(U,$J,358.3,18723,2)
+ ;;=^5134085
+ ;;^UTILITY(U,$J,358.3,18724,0)
+ ;;=N18.6^^64^837^4
+ ;;^UTILITY(U,$J,358.3,18724,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,18546,1,3,0)
- ;;=3^Antidepressant Discontinuation Syndrome,Init Encntr
- ;;^UTILITY(U,$J,358.3,18546,1,4,0)
- ;;=4^T43.205A
- ;;^UTILITY(U,$J,358.3,18546,2)
- ;;=^5050540
- ;;^UTILITY(U,$J,358.3,18547,0)
- ;;=T43.205D^^91^945^5
- ;;^UTILITY(U,$J,358.3,18547,1,0)
+ ;;^UTILITY(U,$J,358.3,18724,1,3,0)
+ ;;=3^ESRD
+ ;;^UTILITY(U,$J,358.3,18724,1,4,0)
+ ;;=4^N18.6
+ ;;^UTILITY(U,$J,358.3,18724,2)
+ ;;=^303986
+ ;;^UTILITY(U,$J,358.3,18725,0)
+ ;;=R59.9^^64^838^4
+ ;;^UTILITY(U,$J,358.3,18725,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,18547,1,3,0)
- ;;=3^Antidepressant Discontinuation Syndrome,Subseq Encntr
- ;;^UTILITY(U,$J,358.3,18547,1,4,0)
- ;;=4^T43.205D
- ;;^UTILITY(U,$J,358.3,18547,2)
- ;;=^5050541
- ;;^UTILITY(U,$J,358.3,18548,0)
- ;;=T43.205S^^91^945^6
- ;;^UTILITY(U,$J,358.3,18548,1,0)
+ ;;^UTILITY(U,$J,358.3,18725,1,3,0)
+ ;;=3^Enlarged Lymph Nodes,Unspec
+ ;;^UTILITY(U,$J,358.3,18725,1,4,0)
+ ;;=4^R59.9
+ ;;^UTILITY(U,$J,358.3,18725,2)
+ ;;=^5019531
+ ;;^UTILITY(U,$J,358.3,18726,0)
+ ;;=R59.1^^64^838^2
+ ;;^UTILITY(U,$J,358.3,18726,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,18548,1,3,0)
- ;;=3^Antidepressant Discontinuation Syndrome,Sequela
- ;;^UTILITY(U,$J,358.3,18548,1,4,0)
- ;;=4^T43.205S
- ;;^UTILITY(U,$J,358.3,18548,2)
- ;;=^5050542
- ;;^UTILITY(U,$J,358.3,18549,0)
- ;;=G25.71^^91^945^7
- ;;^UTILITY(U,$J,358.3,18549,1,0)
+ ;;^UTILITY(U,$J,358.3,18726,1,3,0)
+ ;;=3^Enlarged Lymph Nodes,Generalized
+ ;;^UTILITY(U,$J,358.3,18726,1,4,0)
+ ;;=4^R59.1
+ ;;^UTILITY(U,$J,358.3,18726,2)
+ ;;=^5019530
+ ;;^UTILITY(U,$J,358.3,18727,0)
+ ;;=R59.0^^64^838^3
+ ;;^UTILITY(U,$J,358.3,18727,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,18549,1,3,0)
- ;;=3^Medication-Induced Acute Akathisia
- ;;^UTILITY(U,$J,358.3,18549,1,4,0)
- ;;=4^G25.71
- ;;^UTILITY(U,$J,358.3,18549,2)
- ;;=^5003799
- ;;^UTILITY(U,$J,358.3,18550,0)
- ;;=G24.02^^91^945^8
- ;;^UTILITY(U,$J,358.3,18550,1,0)
+ ;;^UTILITY(U,$J,358.3,18727,1,3,0)
+ ;;=3^Enlarged Lymph Nodes,Localized
+ ;;^UTILITY(U,$J,358.3,18727,1,4,0)
+ ;;=4^R59.0
+ ;;^UTILITY(U,$J,358.3,18727,2)
+ ;;=^5019529
+ ;;^UTILITY(U,$J,358.3,18728,0)
+ ;;=D64.9^^64^838^1
+ ;;^UTILITY(U,$J,358.3,18728,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,18550,1,3,0)
- ;;=3^Medication-Induced Acute Dystonia
- ;;^UTILITY(U,$J,358.3,18550,1,4,0)
- ;;=4^G24.02
- ;;^UTILITY(U,$J,358.3,18550,2)
- ;;=^5003785
- ;;^UTILITY(U,$J,358.3,18551,0)
- ;;=G21.0^^91^945^12
- ;;^UTILITY(U,$J,358.3,18551,1,0)
+ ;;^UTILITY(U,$J,358.3,18728,1,3,0)
+ ;;=3^Anemia,Unspec
+ ;;^UTILITY(U,$J,358.3,18728,1,4,0)
+ ;;=4^D64.9
+ ;;^UTILITY(U,$J,358.3,18728,2)
+ ;;=^5002351
+ ;;^UTILITY(U,$J,358.3,18729,0)
+ ;;=R79.9^^64^839^1
+ ;;^UTILITY(U,$J,358.3,18729,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,18551,1,3,0)
- ;;=3^Neuroleptic Malignant Syndrome
- ;;^UTILITY(U,$J,358.3,18551,1,4,0)
- ;;=4^G21.0
- ;;^UTILITY(U,$J,358.3,18551,2)
- ;;=^5003771
- ;;^UTILITY(U,$J,358.3,18552,0)
- ;;=T50.905A^^91^945^1
- ;;^UTILITY(U,$J,358.3,18552,1,0)
+ ;;^UTILITY(U,$J,358.3,18729,1,3,0)
+ ;;=3^Abnormal Finding of Blood Chemistry,Unspec
+ ;;^UTILITY(U,$J,358.3,18729,1,4,0)
+ ;;=4^R79.9
+ ;;^UTILITY(U,$J,358.3,18729,2)
+ ;;=^5019594
+ ;;^UTILITY(U,$J,358.3,18730,0)
+ ;;=R78.71^^64^839^2
+ ;;^UTILITY(U,$J,358.3,18730,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,18552,1,3,0)
- ;;=3^Adverse Effect of Medication,Other,Init Encntr
- ;;^UTILITY(U,$J,358.3,18552,1,4,0)
- ;;=4^T50.905A
- ;;^UTILITY(U,$J,358.3,18552,2)
- ;;=^5052160
- ;;^UTILITY(U,$J,358.3,18553,0)
- ;;=T50.905S^^91^945^2
- ;;^UTILITY(U,$J,358.3,18553,1,0)
+ ;;^UTILITY(U,$J,358.3,18730,1,3,0)
+ ;;=3^Abnormal Lead Level in Blood
+ ;;^UTILITY(U,$J,358.3,18730,1,4,0)
+ ;;=4^R78.71
+ ;;^UTILITY(U,$J,358.3,18730,2)
+ ;;=^5019586
+ ;;^UTILITY(U,$J,358.3,18731,0)
+ ;;=R79.0^^64^839^3
+ ;;^UTILITY(U,$J,358.3,18731,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,18553,1,3,0)
- ;;=3^Adverse Effect of Medication,Other,Sequela
- ;;^UTILITY(U,$J,358.3,18553,1,4,0)
- ;;=4^T50.905S
- ;;^UTILITY(U,$J,358.3,18553,2)
- ;;=^5052162
- ;;^UTILITY(U,$J,358.3,18554,0)
- ;;=T50.905D^^91^945^3
- ;;^UTILITY(U,$J,358.3,18554,1,0)
+ ;;^UTILITY(U,$J,358.3,18731,1,3,0)
+ ;;=3^Abnormal Level of Blood Mineral
+ ;;^UTILITY(U,$J,358.3,18731,1,4,0)
+ ;;=4^R79.0
+ ;;^UTILITY(U,$J,358.3,18731,2)
+ ;;=^5019590
+ ;;^UTILITY(U,$J,358.3,18732,0)
+ ;;=R78.79^^64^839^4
+ ;;^UTILITY(U,$J,358.3,18732,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,18554,1,3,0)
- ;;=3^Adverse Effect of Medication,Other,Subseq Encntr
- ;;^UTILITY(U,$J,358.3,18554,1,4,0)
- ;;=4^T50.905D
- ;;^UTILITY(U,$J,358.3,18554,2)
- ;;=^5052161
- ;;^UTILITY(U,$J,358.3,18555,0)
- ;;=F45.22^^91^946^1
- ;;^UTILITY(U,$J,358.3,18555,1,0)
+ ;;^UTILITY(U,$J,358.3,18732,1,3,0)
+ ;;=3^Abnormal Level of Heavy Metals in Blood
+ ;;^UTILITY(U,$J,358.3,18732,1,4,0)
+ ;;=4^R78.79
+ ;;^UTILITY(U,$J,358.3,18732,2)
+ ;;=^5019587
+ ;;^UTILITY(U,$J,358.3,18733,0)
+ ;;=E79.0^^64^839^10
+ ;;^UTILITY(U,$J,358.3,18733,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,18555,1,3,0)
- ;;=3^Body Dysmorphic D/O
- ;;^UTILITY(U,$J,358.3,18555,1,4,0)
- ;;=4^F45.22
- ;;^UTILITY(U,$J,358.3,18555,2)
- ;;=^5003588
- ;;^UTILITY(U,$J,358.3,18556,0)
- ;;=F63.3^^91^946^8
- ;;^UTILITY(U,$J,358.3,18556,1,0)
+ ;;^UTILITY(U,$J,358.3,18733,1,3,0)
+ ;;=3^Hyperuricemia w/o Signs of Inflam Arthrit/Tophaceous Disease
+ ;;^UTILITY(U,$J,358.3,18733,1,4,0)
+ ;;=4^E79.0
+ ;;^UTILITY(U,$J,358.3,18733,2)
+ ;;=^5002978
+ ;;^UTILITY(U,$J,358.3,18734,0)
+ ;;=K74.69^^64^839^5
+ ;;^UTILITY(U,$J,358.3,18734,1,0)
  ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,18734,1,3,0)
+ ;;=3^Cirrhosis of Liver NEC
+ ;;^UTILITY(U,$J,358.3,18734,1,4,0)
+ ;;=4^K74.69
+ ;;^UTILITY(U,$J,358.3,18734,2)
+ ;;=^5008823
+ ;;^UTILITY(U,$J,358.3,18735,0)
+ ;;=K74.60^^64^839^6

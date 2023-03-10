@@ -1,9 +1,10 @@
 PSOREJU3 ;BIRM/LJE - BPS (ECME) - Clinical Rejects Utilities (3) ;04/25/08
- ;;7.0;OUTPATIENT PHARMACY;**287,290,358,359,385,421,427,448,478,513,482,528**;DEC 1997;Build 10
- ;References to 9002313.99 supported by IA 4305
- ;Reference to $$CLAIM^BPSBUTL supported by IA 4719
- ;Reference to LOG^BPSOSL supported by ICR# 6764
- ;Reference to IEN59^BPSOSRX supported by ICR# 4412
+ ;;7.0;OUTPATIENT PHARMACY;**287,290,358,359,385,421,427,448,478,513,482,528,561,562,680**;DEC 1997;Build 5
+ ; Reference to 9002313.99 in ICR #4305
+ ; Reference to $$CLAIM^BPSBUTL in ICR #4719
+ ; Reference to LOG^BPSOSL in ICR #6764
+ ; Reference to IEN59^BPSOSRX in ICR #4412
+ ; Reference to $$CSNPI^BPSUTIL in ICR #4146
  ;
  Q
  ;
@@ -24,6 +25,7 @@ TRICCHK(RX,RFL,RESP,FROM,RVTX) ;check to see if Rx is non-billable or in an "In 
  S PSOBEI=$$ELIGDISP^PSOREJP1(RX,RFL)
  ;
  D LOG^BPSOSL($$IEN59^BPSOSRX(RX,RFL),$T(+0)_"-TRICCHK, RESP="_RESP)  ; ICR#s 4412,6764
+ D LOG^BPSOSL($$IEN59^BPSOSRX(RX,RFL),$T(+0)_"-TRICCHK, FROM="_FROM_"  ESTAT="_ESTAT)
  I ESTAT["IN PROGRESS",FROM="PC" D LOG^BPSOSL($$IEN59^BPSOSRX(RX,RFL),$T(+0)_"-Would have noted in Activity Log that Rx was left in CMOP suspense") Q  ; ICR#s 4412,6764
  ;
  I ESTAT["IN PROGRESS",FROM="RRL"!($G(RVTX)="RX RELEASE-NDC CHANGE") D  Q
@@ -35,13 +37,24 @@ TRICCHK(RX,RFL,RESP,FROM,RVTX) ;check to see if Rx is non-billable or in an "In 
  . I +RESP=6 W:'NFROM&('$G(CMOP)) !!,"Inactive ECME "_PSOBEI,!! D  Q
  . . S ACT="Inactive ECME "_PSOBEI D RXACT^PSOBPSU2(RX,RFL,ACT,"M",DUZ)
  . I +RESP=2!(+RESP=3) N PSONBILL S PSONBILL=1 D TRIC2 Q
- . I +RESP=4!(ESTAT["IN PROGRESS") N PSONPROG S PSONPROG=1 D TRIC2 Q
+ . I +RESP=4!(ESTAT["IN PROGRESS") D  Q
+ . . ;
+ . . ; Do not put the Rx into the suspense queue if this claim activity
+ . . ; was triggered by a release message from OPAI or CMOP.
+ . . ; 
+ . . I $E(FROM,1,2)="CR" Q
+ . . ;
+ . . ; Put the Rx into the suspense queue.
+ . . ;
+ . . N PSONPROG S PSONPROG=1 D TRIC2
+ ;
  Q
  ;
 TRIC2 ;
  N ACTION,DA,DIR,DIRUT,PSCAN,PSOIT,PSORESP,PSOTRIC
  N REA,REJ,REJCOD,REJDATA,X,ZZZ
  S PSOTRIC=1,REJ=9999999999
+ D LOG^BPSOSL($$IEN59^BPSOSRX(RX,RFL),$T(+0)_"-TRIC2, CMOP="_$G(CMOP)_" PSONPROG="_$G(PSONPROG))
  I $G(CMOP)&($G(PSONPROG)) D TACT Q
  ;
  ; If the prescription is non-billable, put the eT/eC reject on the
@@ -55,6 +68,7 @@ TRIC2 ;
  . Q
  ;
  Q:$G(CMOP)
+ D LOG^BPSOSL($$IEN59^BPSOSRX(RX,RFL),$T(+0)_"-TRIC2, NFROM="_NFROM)
  I 'NFROM D DISPLAY(RX,REJ)
  I 'NFROM&($G(PSONPROG)) D  D SUSP Q
  . W !!,"This prescription will be suspended.  After the third party claim is resolved,"
@@ -70,6 +84,7 @@ TRIC3 ;
 TRIC4 S DIR(0)="SO^",DIR("A")="",OPTS="DQ",DEF="D"
  S PSORESP=$P($G(RESP),U,2)
  I PSORESP["NO ACTIVE/VALID ROI" S DEF="Q"  ;IB routine IBNCPDP1 contains this text.
+ I PSORESP="NOT INSURED" S DEF="Q"
  ;reference to ^XUSEC( supported by IA 10076
  I $D(^XUSEC("PSO TRICARE/CHAMPVA",DUZ)) S OPTS=OPTS_"I" ;PSO*7.0*358, if user has security key, include IGNORE in TRICARE/CHAMPVA options
  S:(OPTS["D") DIR(0)=DIR(0)_"D:(D)iscontinue - DO NOT FILL PRESCRIPTION;",DIR("A")=DIR("A")_"(D)iscontinue,"
@@ -94,10 +109,12 @@ MSG ;
  W !!,"This is a non-billable "_$$ELIGDISP^PSOREJP1(RX,RFL)_" prescription."    ;cnf, PSO*7*358
  Q
 SUSP ;Suspense Rx due to IN PROGRESS status in ECME
+ D LOG^BPSOSL($$IEN59^BPSOSRX(RX,RFL),$T(+0)_"-SUSP")
  N DA,ACT,RX0,SD,RXS,PSOWFLG,DIK,RXN,XFLAG,RXP,DD,DO,X,Y,DIC,VALMSG,COMM,LFD,DFLG,RXCMOP
  N PSOQFLAG,PSORXZD,PSOQFLAG,PSOKSPPL,PSOZXPPL,PSOZXPI,RXLTOP
  S DA=RX D SUS^PSORXL1
 TACT ;
+ D LOG^BPSOSL($$IEN59^BPSOSRX(RX,RFL),$T(+0)_"-TACT, PSONPROG="_$G(PSONPROG)_"  PSONBILL="_$G(PSONBILL))
  S ACT=$$ELIGDISP^PSOREJP1(RX,RFL)_"-Rx placed on Suspense due to"_$S($G(PSONPROG):" ECME IN PROGRESS status",$G(PSONBILL):"the Rx being Non-billable",1:"")
  I '$G(DUZ) N DUZ S DUZ=.5
  D RXACT^PSOBPSU2(RX,RFL,ACT,"M",DUZ)
@@ -199,13 +216,13 @@ TYPE ;
  I $G(PSONBILL)!($G(PSONPROG)) D  Q
  . D NOW^%DTC S Y=% D DD^%DT
  . W !?3,"Date/Time: "_$$FMTE^XLFDT(Y)
- . W !?3,"Reason   : ",$S($G(PSONBILL):"Drug not billable.",$G(PSONPROG):"ECME Status is in an 'IN PROGRESS' state and cannot be filled",1:"")
+ . W !?3,"Reason   : ",$S($G(PSONBILL):"Not Billable.",$G(PSONPROG):"ECME Status is in an 'IN PROGRESS' state and cannot be filled",1:"")
  ;
  I $G(DATA(REJ,"REASON"))'="" W !?3,"Reason   : " D PRT^PSOREJU2("REASON",14,62)
  N RTXT,OCODE,OTXT,I
- S (OTXT,RTXT,OCODE)="",RTXT=$S(DATA(REJ,"CODE")=79:"REFILL TOO SOON",DATA(REJ,"CODE")=88:"DUR REJECT",1:$$EXP^PSOREJP1(DATA(REJ,"CODE")))_" ("_DATA(REJ,"CODE")_")"
+ S (OTXT,RTXT,OCODE)="",RTXT=$S(DATA(REJ,"CODE")=79:"REFILL TOO SOON",DATA(REJ,"CODE")=88!(DATA(REJ,"CODE")=943):"DUR REJECT",1:$$EXP^PSOREJP1(DATA(REJ,"CODE")))_" ("_DATA(REJ,"CODE")_")"
  F I=1:1 S OCODE=$P(DATA(REJ,"OTHER REJECTS"),",",I) Q:OCODE=""   D
- . S OTXT=OTXT_", "_$S(OCODE=79:"REFILL TOO SOON",OCODE=88:"DUR REJECT",1:$$EXP^PSOREJP1(OCODE))_" ("_OCODE_")"
+ . S OTXT=OTXT_", "_$S(OCODE=79:"REFILL TOO SOON",OCODE=88!(OCODE=943):"DUR REJECT",1:$$EXP^PSOREJP1(OCODE))_" ("_OCODE_")"
  S RTXT=RTXT_OTXT_".  Received on "_$$FMTE^XLFDT($G(DATA(REJ,"DATE/TIME")))_"."
  S OTXT=""
  W !?3,"Reject(s): " D WRAP(RTXT,14)
@@ -235,7 +252,7 @@ SUBMIT(RXIEN,RFCNT,PSOTRIC) ;called from PSOCAN2 (routine size exceeded)
  . D ECMESND^PSOBPSU1(RXIEN,,,$S($O(^PSRX(RXIEN,1,0)):"RF",1:"OF"))
  . ; Quit if there is an unresolved TRICARE or CHAMPVA non-billable reject code, PSO*7*358
  . I $$PSOET^PSOREJP3(RXIEN) S ACTION="Q" Q 
- . I $$FIND^PSOREJUT(RXIEN) S ACTION=$$HDLG^PSOREJU1(RXIEN,,"79,88","OF","IOQ","Q")
+ . I $$FIND^PSOREJUT(RXIEN) S ACTION=$$HDLG^PSOREJU1(RXIEN,,"79,88,943","OF","IOQ","Q")
  I 'SUBMITE&(PSOTRIC) D
  . I $$STATUS^PSOBPSUT(RXIEN,RFCNT'["PAYABLE") D TRICCHK(RXIEN,RFCNT)
  Q
@@ -307,7 +324,7 @@ ECMECHK(RX,FILL) ;
  I $G(FILL)="" S FILL=$$LSTRFL^PSOBPSU1(RX)
  ;
  ; DUR or Refill Too Soon or RRR rejects
- I $$FIND^PSOREJUT(RX,FILL,"","79,88",,1) Q 1
+ I $$FIND^PSOREJUT(RX,FILL,"","79,88,943",,1) Q 1
  ;
  ; If not TRICARE/CHAMPVA, quit with 0 as the rest of the checks
  ;   are all TRICARE/CHAMPVA dependent
@@ -324,11 +341,17 @@ DVINFO(RX,RFL,LM) ; Returns header displayable Division Information
  ;Input: (r) RX   - Rx IEN (#52)
  ;       (o) RFL  - Refill # (Default: most recent)
  ;       (o) LM   - ListManager format? (1 - Yes / 0 - No) - Default: 0
- N TXT,DVINFO,NCPNPI,DVIEN
+ N DVIEN,DVINFO,NCPNPI,TXT
  S DVIEN=+$$RXSITE^PSOBPSUT(RX,RFL)
  S DVINFO="Division : "_$$GET1^DIQ(59,DVIEN,.01)
- ;Display both NPI and NCPDP numbers - PSO*7.0*421
- S NCPNPI=$$DIVNCPDP^BPSBUTL(DVIEN)
+ ;
+ ; Check for Controlled Substance Drug and if a BPS Pharmacy for CS has
+ ; been defined.  If so, use NCPDP# & NPI for the CS Pharmacy.
+ S NCPNPI=$$CSNPI^BPSUTIL(RX,RFL)
+ ;
+ ; If not a Controlled Substance, use NCPDP# & NPI info based on Division.
+ ; Display both NPI and NCPDP numbers - PSO*7.0*421
+ I +NCPNPI=-1 S NCPNPI=$$DIVNCPDP^BPSBUTL(DVIEN)
  S $E(DVINFO,33)="NPI: "_$P(NCPNPI,U,2)
  S $E(DVINFO,$S($G(LM):59,1:52))="NCPDP: "_$P(NCPNPI,U)
  Q DVINFO

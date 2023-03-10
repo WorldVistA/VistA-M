@@ -1,5 +1,5 @@
 PSXVND ;BIR/WPB,HTW,PWC-File Release Data at the Remote Facility ;10/29/98  2:13 PM
- ;;2.0;CMOP;**1,2,4,5,14,18,19,15,24,23,27,35,39,36,48,62,58**;11 Apr 97;Build 2
+ ;;2.0;CMOP;**1,2,4,5,14,18,19,15,24,23,27,35,39,36,48,62,58,94**;11 Apr 97;Build 2
  ;Reference to ^PSDRUG( supported by DBIA #1983
  ;Reference to ^PSRX( supported by DBIA #1977
  ;Reference to ^PS(59 supported by DBIA #1976
@@ -8,11 +8,28 @@ PSXVND ;BIR/WPB,HTW,PWC-File Release Data at the Remote Facility ;10/29/98  2:13
  ;Reference to routine EN^RGEQ supported by DBIA #2382
  ;Reference to routine AUTOREL^PSOBPSUT supported by DBIA #4701
  ;Called by Taskman to handle release data
-EN H 5 S CNT=1,FROM=XMFROM,ZTREQ="@"
+EN ; Entry point
+ N PSXGOTO
+ H 5 S CNT=1,FROM=XMFROM,ZTREQ="@"
  S DOMAIN=$S($P(XMFROM,"@",2)'="":"@"_$P(FROM,"@",2),$P(XMFROM,"@",2)="":"",1:""),XMSER="S."_XQSOP,TXMZ=XQMSG
- S (X,SITE,DA)=$$KSP^XUPARAM("INST"),DIC="4",DIQ(0)="IE",DR=99,DIQ="PSXUTIL" D EN^DIQ1 S HERE=$G(PSXUTIL(4,SITE,99,"I")) K DA,DIC,DIQ(0),DR
- F  X XMREC I $G(XMRG)'="" S TXMRG=XMRG G:$G(XMER)<0 EXIT1 D:$E(XMRG,1,3)["$RX" GET G:$E(XMRG,1,5)["$$END" MAIL D:$E(XMRG,1,4)["$LOT" LOT S:$E(XMRG,1,5)["$$VND" MSNUM=$P(XMRG,"^",3)
+ S (X,SITE,DA)=$$KSP^XUPARAM("INST"),DIC="4",DIQ(0)="IE",DR=99,DIQ="PSXUTIL"
+ D EN^DIQ1 S HERE=$G(PSXUTIL(4,SITE,99,"I")) K DA,DIC,DIQ(0),DR
+ ;
+ ; Looping through each Rx returned in the Mailman Message by CMOP
+ S PSXGOTO=""
+ F  X XMREC Q:$G(XMRG)=""  D  I PSXGOTO'="" Q
+ . ;Protecting XMZ because it is used in the FOR Loop (inside XMREC above)
+ . N XMZ
+ . S TXMRG=XMRG
+ . I $G(XMER)<0 S PSXGOTO="EXIT1" Q
+ . I $E(XMRG,1,3)["$RX" D GET
+ . I $E(XMRG,1,5)["$$END" S PSXGOTO="MAIL" Q
+ . I $E(XMRG,1,4)["$LOT" D LOT
+ . S:$E(XMRG,1,5)["$$VND" MSNUM=$P(XMRG,"^",3)
+ I $G(PSXGOTO)'="" G @PSXGOTO
+ ;
  G EXIT
+ ;
 GET Q:$G(XMRG)=""!($E(XMRG,1,3)'["$RX")
  K FACBAT,BAT,NDC,RELDT,STAT,REASON,XFILL,P515A,P515B,%,RR,ALOT,RXP,RXN,FLAG,FILL,RELD,ZSTAT,RTN,CARRIER,PKGID,SHPDT
  S RX=$P(XMRG,U,2),FACBAT=$P(XMRG,U,3),BAT=$P(FACBAT,"-",2),NDC=$P(XMRG,U,4),RELDT=$P(XMRG,U,5),STAT=$P(XMRG,U,6),REASON=$P($G(XMRG),U,8),XFILL=$P($G(XMRG),U,7)
@@ -42,7 +59,6 @@ GET Q:$G(XMRG)=""!($E(XMRG,1,3)'["$RX")
  .I FILL'=XFILL S FLAG=3 D TMP Q
  .S PSXREF=FILL
  .Q:FLAG>0
- .S PSXXMZ=XMZ
  .D:$G(STAT)=1
  ..N PSOPAR,PSOSITE,X D NOW^%DTC
  ..I $G(PSXREF)>0 S PSOSITE=$P(^PSRX(RXP,1,PSXREF,0),"^",9) G:$G(PSOSITE) PAR
@@ -55,7 +71,6 @@ PAR ..S PSOPAR=$G(^PS(59,PSOSITE,1))
  ..I $G(PSXREF)>0 S YY=PSXREF
  ..I '$G(PSOSITE)!('$D(PSOPAR)) Q
  ..D CP^PSOCP K YY,X
- .S XMZ=PSXXMZ
  .I $G(FILL)="" Q
  .I $G(STAT)=1 D
  ..I FILL=0 S DA=RXN,DIE="^PSRX(",DR="31///"_RELDT D ^DIE K DIE,DA,DR

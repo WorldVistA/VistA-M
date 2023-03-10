@@ -1,114 +1,130 @@
-IBDEI1FO ; ; 04-FEB-2020
- ;;3.0;IB ENCOUNTER FORM IMP/EXP;;FEB 04, 2020
+IBDEI1FO ; ; 01-FEB-2022
+ ;;3.0;IB ENCOUNTER FORM IMP/EXP;;FEB 01, 2022
  Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,999) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
- ;;^UTILITY(U,$J,358.3,22935,0)
- ;;=T82.828A^^105^1166^59
- ;;^UTILITY(U,$J,358.3,22935,1,0)
+ ;;^UTILITY(U,$J,358.3,23186,1,4,0)
+ ;;=4^L50.0
+ ;;^UTILITY(U,$J,358.3,23186,2)
+ ;;=^5009200
+ ;;^UTILITY(U,$J,358.3,23187,0)
+ ;;=L50.5^^78^1003^35
+ ;;^UTILITY(U,$J,358.3,23187,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,22935,1,3,0)
- ;;=3^Fibrosis of Vascular Prosthetic Device/Implant/Graft,Init Encntr
- ;;^UTILITY(U,$J,358.3,22935,1,4,0)
- ;;=4^T82.828A
- ;;^UTILITY(U,$J,358.3,22935,2)
- ;;=^5054923
- ;;^UTILITY(U,$J,358.3,22936,0)
- ;;=T82.838A^^105^1166^65
- ;;^UTILITY(U,$J,358.3,22936,1,0)
+ ;;^UTILITY(U,$J,358.3,23187,1,3,0)
+ ;;=3^Urticaria,Cholinergic
+ ;;^UTILITY(U,$J,358.3,23187,1,4,0)
+ ;;=4^L50.5
+ ;;^UTILITY(U,$J,358.3,23187,2)
+ ;;=^265460
+ ;;^UTILITY(U,$J,358.3,23188,0)
+ ;;=L50.8^^78^1003^40
+ ;;^UTILITY(U,$J,358.3,23188,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,22936,1,3,0)
- ;;=3^Hemorrh of Vascular Prosthetic Device/Implant/Graft,Init Encntr
- ;;^UTILITY(U,$J,358.3,22936,1,4,0)
- ;;=4^T82.838A
- ;;^UTILITY(U,$J,358.3,22936,2)
- ;;=^5054929
- ;;^UTILITY(U,$J,358.3,22937,0)
- ;;=T82.848A^^105^1166^172
- ;;^UTILITY(U,$J,358.3,22937,1,0)
+ ;;^UTILITY(U,$J,358.3,23188,1,3,0)
+ ;;=3^Urticaria,Other
+ ;;^UTILITY(U,$J,358.3,23188,1,4,0)
+ ;;=4^L50.8
+ ;;^UTILITY(U,$J,358.3,23188,2)
+ ;;=^5009203
+ ;;^UTILITY(U,$J,358.3,23189,0)
+ ;;=L50.2^^78^1003^36
+ ;;^UTILITY(U,$J,358.3,23189,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,22937,1,3,0)
- ;;=3^Pain from Vascular Prosthetic Device/Implant/Graft,Init Encntr
- ;;^UTILITY(U,$J,358.3,22937,1,4,0)
- ;;=4^T82.848A
- ;;^UTILITY(U,$J,358.3,22937,2)
- ;;=^5054935
- ;;^UTILITY(U,$J,358.3,22938,0)
- ;;=T82.858A^^105^1166^225
- ;;^UTILITY(U,$J,358.3,22938,1,0)
+ ;;^UTILITY(U,$J,358.3,23189,1,3,0)
+ ;;=3^Urticaria,Cold/Heat
+ ;;^UTILITY(U,$J,358.3,23189,1,4,0)
+ ;;=4^L50.2
+ ;;^UTILITY(U,$J,358.3,23189,2)
+ ;;=^271938
+ ;;^UTILITY(U,$J,358.3,23190,0)
+ ;;=L50.6^^78^1003^37
+ ;;^UTILITY(U,$J,358.3,23190,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,22938,1,3,0)
- ;;=3^Sten,Vasc Prosth Dvc/Implnt/Grft,Init Enc
- ;;^UTILITY(U,$J,358.3,22938,1,4,0)
- ;;=4^T82.858A
- ;;^UTILITY(U,$J,358.3,22938,2)
- ;;=^5054941
- ;;^UTILITY(U,$J,358.3,22939,0)
- ;;=T82.868A^^105^1166^231
- ;;^UTILITY(U,$J,358.3,22939,1,0)
+ ;;^UTILITY(U,$J,358.3,23190,1,3,0)
+ ;;=3^Urticaria,Contact
+ ;;^UTILITY(U,$J,358.3,23190,1,4,0)
+ ;;=4^L50.6
+ ;;^UTILITY(U,$J,358.3,23190,2)
+ ;;=^5009202
+ ;;^UTILITY(U,$J,358.3,23191,0)
+ ;;=L50.3^^78^1003^38
+ ;;^UTILITY(U,$J,358.3,23191,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,22939,1,3,0)
- ;;=3^Thromb,Vascular Prosth Dvc/Implnt/Grft,Init Enc
- ;;^UTILITY(U,$J,358.3,22939,1,4,0)
- ;;=4^T82.868A
- ;;^UTILITY(U,$J,358.3,22939,2)
- ;;=^5054947
- ;;^UTILITY(U,$J,358.3,22940,0)
- ;;=T82.898A^^105^1166^28
- ;;^UTILITY(U,$J,358.3,22940,1,0)
+ ;;^UTILITY(U,$J,358.3,23191,1,3,0)
+ ;;=3^Urticaria,Dermatographic
+ ;;^UTILITY(U,$J,358.3,23191,1,4,0)
+ ;;=4^L50.3
+ ;;^UTILITY(U,$J,358.3,23191,2)
+ ;;=^5009201
+ ;;^UTILITY(U,$J,358.3,23192,0)
+ ;;=L50.1^^78^1003^39
+ ;;^UTILITY(U,$J,358.3,23192,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,22940,1,3,0)
- ;;=3^Complic,Vasc Prosth Dvc/Implt/Grft Unspec,Init Encntr
- ;;^UTILITY(U,$J,358.3,22940,1,4,0)
- ;;=4^T82.898A
- ;;^UTILITY(U,$J,358.3,22940,2)
- ;;=^5054953
- ;;^UTILITY(U,$J,358.3,22941,0)
- ;;=T83.81XA^^105^1166^52
- ;;^UTILITY(U,$J,358.3,22941,1,0)
+ ;;^UTILITY(U,$J,358.3,23192,1,3,0)
+ ;;=3^Urticaria,Idiopathic
+ ;;^UTILITY(U,$J,358.3,23192,1,4,0)
+ ;;=4^L50.1
+ ;;^UTILITY(U,$J,358.3,23192,2)
+ ;;=^271936
+ ;;^UTILITY(U,$J,358.3,23193,0)
+ ;;=L50.4^^78^1003^41
+ ;;^UTILITY(U,$J,358.3,23193,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,22941,1,3,0)
- ;;=3^Embol of Genitourinary Prosthetic Device/Implant/Graft,Init Encntr
- ;;^UTILITY(U,$J,358.3,22941,1,4,0)
- ;;=4^T83.81XA
- ;;^UTILITY(U,$J,358.3,22941,2)
- ;;=^5055079
- ;;^UTILITY(U,$J,358.3,22942,0)
- ;;=T83.82XA^^105^1166^58
- ;;^UTILITY(U,$J,358.3,22942,1,0)
+ ;;^UTILITY(U,$J,358.3,23193,1,3,0)
+ ;;=3^Urticaria,Vibratory
+ ;;^UTILITY(U,$J,358.3,23193,1,4,0)
+ ;;=4^L50.4
+ ;;^UTILITY(U,$J,358.3,23193,2)
+ ;;=^271939
+ ;;^UTILITY(U,$J,358.3,23194,0)
+ ;;=H60.311^^78^1004^26
+ ;;^UTILITY(U,$J,358.3,23194,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,22942,1,3,0)
- ;;=3^Fibrosis of Genitourinary Prosthetic Device/Implant/Graft,Init Encntr
- ;;^UTILITY(U,$J,358.3,22942,1,4,0)
- ;;=4^T83.82XA
- ;;^UTILITY(U,$J,358.3,22942,2)
- ;;=^5055082
- ;;^UTILITY(U,$J,358.3,22943,0)
- ;;=T83.83XA^^105^1166^64
- ;;^UTILITY(U,$J,358.3,22943,1,0)
+ ;;^UTILITY(U,$J,358.3,23194,1,3,0)
+ ;;=3^Otitis Externa Diffused,Right Ear
+ ;;^UTILITY(U,$J,358.3,23194,1,4,0)
+ ;;=4^H60.311
+ ;;^UTILITY(U,$J,358.3,23194,2)
+ ;;=^5006447
+ ;;^UTILITY(U,$J,358.3,23195,0)
+ ;;=H60.312^^78^1004^25
+ ;;^UTILITY(U,$J,358.3,23195,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,22943,1,3,0)
- ;;=3^Hemorrh of Genitourinary Prosthetic Device/Implant/Graft,Init Encntr
- ;;^UTILITY(U,$J,358.3,22943,1,4,0)
- ;;=4^T83.83XA
- ;;^UTILITY(U,$J,358.3,22943,2)
- ;;=^5055085
- ;;^UTILITY(U,$J,358.3,22944,0)
- ;;=T83.84XA^^105^1166^171
- ;;^UTILITY(U,$J,358.3,22944,1,0)
+ ;;^UTILITY(U,$J,358.3,23195,1,3,0)
+ ;;=3^Otitis Externa Diffused,Left Ear
+ ;;^UTILITY(U,$J,358.3,23195,1,4,0)
+ ;;=4^H60.312
+ ;;^UTILITY(U,$J,358.3,23195,2)
+ ;;=^5006448
+ ;;^UTILITY(U,$J,358.3,23196,0)
+ ;;=H60.313^^78^1004^24
+ ;;^UTILITY(U,$J,358.3,23196,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,22944,1,3,0)
- ;;=3^Pain from Genitourinary Prosthetic Device/Implant/Graft,Init Encntr
- ;;^UTILITY(U,$J,358.3,22944,1,4,0)
- ;;=4^T83.84XA
- ;;^UTILITY(U,$J,358.3,22944,2)
- ;;=^5055088
- ;;^UTILITY(U,$J,358.3,22945,0)
- ;;=T83.85XA^^105^1166^224
- ;;^UTILITY(U,$J,358.3,22945,1,0)
+ ;;^UTILITY(U,$J,358.3,23196,1,3,0)
+ ;;=3^Otitis Externa Diffused,Bilateral
+ ;;^UTILITY(U,$J,358.3,23196,1,4,0)
+ ;;=4^H60.313
+ ;;^UTILITY(U,$J,358.3,23196,2)
+ ;;=^5006449
+ ;;^UTILITY(U,$J,358.3,23197,0)
+ ;;=H60.321^^78^1004^29
+ ;;^UTILITY(U,$J,358.3,23197,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,22945,1,3,0)
- ;;=3^Sten,Genitour Prosth Dvc/Implnt/Grft,Init Enc
- ;;^UTILITY(U,$J,358.3,22945,1,4,0)
- ;;=4^T83.85XA
- ;;^UTILITY(U,$J,358.3,22945,2)
- ;;=^5055091
+ ;;^UTILITY(U,$J,358.3,23197,1,3,0)
+ ;;=3^Otitis Externa Hemorrhagic,Right Ear
+ ;;^UTILITY(U,$J,358.3,23197,1,4,0)
+ ;;=4^H60.321
+ ;;^UTILITY(U,$J,358.3,23197,2)
+ ;;=^5006451
+ ;;^UTILITY(U,$J,358.3,23198,0)
+ ;;=H60.322^^78^1004^28
+ ;;^UTILITY(U,$J,358.3,23198,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,23198,1,3,0)
+ ;;=3^Otitis Externa Hemorrhagic,Left Ear
+ ;;^UTILITY(U,$J,358.3,23198,1,4,0)
+ ;;=4^H60.322
+ ;;^UTILITY(U,$J,358.3,23198,2)
+ ;;=^5006452
+ ;;^UTILITY(U,$J,358.3,23199,0)
+ ;;=H60.323^^78^1004^27

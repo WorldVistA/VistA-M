@@ -1,5 +1,5 @@
 ORRDI1 ;SLC/JMH - RDI ROUTINES FOR API SUPPORTING CDS DATA ;10/28/2015  15:59
- ;;3.0;ORDER ENTRY/RESULTS REPORTING;**232,294,306,269**;Dec 17, 1997;Build 85
+ ;;3.0;ORDER ENTRY/RESULTS REPORTING;**232,294,306,269,591**;Dec 17, 1997;Build 1
  ;
 GET(DFN,DOMAIN) ;API for packages to call in order to get data from HDR for
  I '$L($G(DOMAIN)) S DOMAIN="ART"
@@ -49,7 +49,8 @@ RETRIEVE(DFN,DOMAIN) ;GET DATA
  S ORREQ=ORREQ_"filterRequest=<?xml version=""1.0"" encoding=""UTF-8""?>"
  S ORREQ=ORREQ_"<filter:filter vhimVersion=""Vhim_4_00"" xmlns:filter=""Filter"" "
  S ORREQ=ORREQ_"xmlns:xsi=""http://www.w3.org/2001/XMLSchema-instance"">"
- S ORREQ=ORREQ_"<filterId>RDI_ALLERGY_RX_SINGLE_PATIENT_FILTER</filterId><patients><NationalId>"_ICN_"</NationalId>"
+ S ORREQ=ORREQ_"<filterId>RDI_ALLERGY_RX_SINGLE_PATIENT_FILTER</filterId>"
+ S ORREQ=ORREQ_"<clientName>RDI</clientName><patients><NationalId>"_ICN_"</NationalId>"
  S ORREQ=ORREQ_"<excludeIdentifiers><assigningAuthority>USVHA</assigningAuthority>"
  S ORREQ=ORREQ_"<assigningFacility>"_FACIL_"</assigningFacility></excludeIdentifiers></patients>"
  S ORREQ=ORREQ_"<entryPointFilter queryName=""IC-Standardized""><domainEntryPoint>IntoleranceCondition</domainEntryPoint>"

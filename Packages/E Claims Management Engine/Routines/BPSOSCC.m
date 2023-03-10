@@ -1,5 +1,5 @@
 BPSOSCC ;BHAM ISC/FCS/DRS/DLF - Set up BPS() ;06/01/2004
- ;;1.0;E CLAIMS MGMT ENGINE;**1,2,5,8,10,11,19**;JUN 2004;Build 18
+ ;;1.0;E CLAIMS MGMT ENGINE;**1,2,5,8,10,11,19,27,32,33**;JUN 2004;Build 5
  ;;Per VA Directive 6402, this routine should not be modified.
  ;
  ; GETINFO - Create BPS array for non-repeating data
@@ -15,7 +15,7 @@ GETINFO(IEN59,IEN5902) ; EP - BPSOSCB
  Q:$G(IEN59)=""
  Q:$G(IEN5902)=""
  ;
- N BPPAYSEQ,DFN,IENS,NPI,SITE,VADM,VAPA,X
+ N BPPAYSEQ,BPSCS,BPSSEX,BPSSIG,BPSRF,BPSRX,DFN,IENS,NPI,SITE,VADM,VAPA,X
  ;
  S BPPAYSEQ=$$COB59^BPSUTIL2(IEN59)  ; COB payer sequence
  ; Setup IENS for transaction multiple
@@ -25,6 +25,13 @@ GETINFO(IEN59,IEN5902) ; EP - BPSOSCB
  S NPI=$$NPI^BPSNPI("Pharmacy_ID",SITE)
  I +NPI=-1 S NPI=""
  S BPS("Site","NPI")=$P(NPI,U)
+ ;
+ ; Check for Controlled Substance Drug and if BPS Pharmacy for CS
+ ; has been defined.  If so, use NPI for the CS Pharmacy.
+ S BPSRX=$$GET1^DIQ(9002313.59,IEN59,1.11,"I")
+ S BPSRF=$$GET1^DIQ(9002313.59,IEN59,9)
+ S BPSCS=$$CSNPI^BPSUTIL(BPSRX,BPSRF)
+ I +$P(BPSCS,"^",2) S BPS("Site","NPI")=$P(BPSCS,"^",2)
  ;
  ; Get Transaction Code
  S BPS("Transaction Code")=$S($P($G(^BPST(IEN59,0)),U,15)="E":"E1",1:"B1")
@@ -48,10 +55,16 @@ GETINFO(IEN59,IEN5902) ; EP - BPSOSCB
  D DEM^VADPT,ADD^VADPT
  S BPS("Patient","IEN")=DFN
  S (X,BPS("Patient","Name"))=$G(VADM(1))
- D NAMECOMP^XLFNAME(.X)
- S BPS("Patient","Last Name")=$G(X("FAMILY"))
- S BPS("Patient","First Name")=$G(X("GIVEN"))
- S BPS("Patient","Sex")=$P($G(VADM(5)),"^",1)
+ D SETNAME^PSOSPMUT(DFN)
+ S BPS("Patient","Last Name")=$G(PSONAME("LAST"))
+ S BPS("Patient","First Name")=$G(PSONAME("FIRST"))
+ S BPS("Patient","Middle Name")=$G(PSONAME("MIDDLE"))
+ S BPS("Patient","Prefix")=$G(PSONAME("PREFIX"))
+ S BPS("Patient","Suffix")=$G(PSONAME("SUFFIX"))
+ S BPSSEX=$P($G(VADM(5)),"^",1)  ; SEX, field# .02
+ S BPSSIG=$P($G(VADM(14,5)),"^",2)  ; SELF IDENTIFIED GENDER, field# .024
+ I BPSSIG'="" S BPS("Patient","Gender Code")=$S(BPSSIG="M":1,BPSSIG="F":2,BPSSIG="N":0,1:3)
+ E  S BPS("Patient","Gender Code")=$S(BPSSEX="M":1,BPSSEX="F":2,1:0)
  S X=$P($G(VADM(3)),"^")  ; date of birth, FM format
  S BPS("Patient","DOB")=($E(X,1,3)+1700)_$E(X,4,7)
  S BPS("Patient","SSN")=$P($G(VADM(2)),"^",1)

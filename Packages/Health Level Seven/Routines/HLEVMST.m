@@ -1,5 +1,5 @@
 HLEVMST ;O-OIFO/LJA - Event Monitor MASTER JOB ;02/04/2004 14:42
- ;;1.6;HEALTH LEVEL SEVEN;**109**;Oct 13, 1995
+ ;;1.6;HEALTH LEVEL SEVEN;**109,173**;Oct 13, 1995;Build 14
  ;
  ; Calling STARTJOB always queues a new master job NOW...
  ;
@@ -152,7 +152,7 @@ NEWMSTR(FUTURE,SILENT) ; Create a new master job...
  ; If FUTURE=0, then master job will be queued for NOW...
  ; If FUTURE=1, then master job will be q'd for CUTMIN in future...
  ;
- N CUTMIN,DA,DIC,DIE,DD,DO,DR,HLEVIENM,X,Y,ZTDESC,ZTDTH,ZTIO,ZTRTN,ZTSK
+ N CUTMIN,DA,DIC,DIE,DD,DO,DR,HLEVIENM,X,Y,ZTDESC,ZTDTH,ZTIO,ZTRTN,ZTSK,HLNOW,HLEN,HLCNT
  ;
  ; Should this process be silent?
  S SILENT=$S($G(SILENT)>0:1,1:0)
@@ -191,6 +191,7 @@ NEWMSTR(FUTURE,SILENT) ; Create a new master job...
  .  W !!,"Master job created.  Task# ",ZTSK,", and Event# ",HLEVIENM,"..."
  .  H 2
  ;
+ D CHKMLT(ZTSK,HLEVIENM) ;Remove duplicate Master Jobs
  QUIT $G(ZTSK)_U_HLEVIENM
  ;
 UPDFLDM(HLEVIENM,FLD,VAL) ; Update a specific piece in 776.2...
@@ -225,7 +226,7 @@ STAMPM(HLEVIENM) ; Update TIMESTAMP field in event..
  Q
  ;
 PURGEM(HLEVIENM) ; Purge master job entries...
- N CUTIME,IENM,LOOPTM,NOPURG,RETHRM
+ N CUTIME,IENM,LOOPTM,NOPURG,RETHRM,HLPRGTM
  ;
  ; Check parameter...
  QUIT:$P($G(^HLEV(776.999,1,0)),U,2)'="A" "" ;->
@@ -236,6 +237,7 @@ PURGEM(HLEVIENM) ; Purge master job entries...
  S RETHRM=$O(^HLEV(776.999,":"),-1)
  S RETHRM=$P($G(^HLEV(776.999,+RETHRM,0)),U,5)
  S RETHRM=$S(RETHRM>0:RETHRM,1:96) ; Default to 96 hours
+ S HLPRGTM=$$FMADD^XLFDT($$NOW^XLFDT,0,-RETHRM)
  ;
  ; Cutoff time...
  S CUTIME=$$FMADD^XLFDT($$NOW^XLFDT,0,-RETHRM)
@@ -249,5 +251,17 @@ PURGEM(HLEVIENM) ; Purge master job entries...
  .  .  D DELETE^HLEVUTIL(776.2,+IEN)
  ;
  Q NOPURG
+ ;
+CHKMLT(HLTSK,HLNWIEN) ;Check if multiple Master Jobs running; remove duplicate jobs - HL*1.6*173
+ N HLSTSK,HLIEN,HLIENS,HLNWIENS,HLQTM,HLNWQTM,HLRSN
+ Q:'HLTSK  Q:'HLNWIEN  ;Quit if no new job run
+ S HLNWIENS=HLNWIEN_",",HLRSN="Remove Duplicate Master Job"
+ S HLNOW=$$NOW^XLFDT,HLIEN=0 F  S HLIEN=$O(^HLEV(776.2,HLIEN)) Q:'HLIEN  D 
+ .S HLIENS=HLIEN_"," I $$GET1^DIQ(776.2,HLIENS,6,"I")>HLNOW D
+ ..Q:$$GET1^DIQ(776.2,HLIENS,4,"I")='"Q"  ;Quit if job not queued
+ ..S HLSTSK=$$GET1^DIQ(776.2,HLIENS,5) I HLSTSK'=HLTSK Q:ZTSKMST=HLSTSK  D
+ ...S HLQTM=$$GET1^DIQ(776.2,HLIENS,6),HLNWQTM=$$GET1^DIQ(776.2,HLNWIENS,6) Q:HLQTM>HLNWQTM
+ ...D UNQ^HLEVUTIL(HLIEN,HLSTSK,HLRSN)
+ Q
  ;
 EOR ;HLEVMST - Event Monitor MASTER JOB ;5/16/03 14:42

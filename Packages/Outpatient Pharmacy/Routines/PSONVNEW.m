@@ -1,5 +1,5 @@
-PSONVNEW ;BIR/SAB - Add Non-VA Med orders ;2/13/07 11:35am
- ;;7.0;OUTPATIENT PHARMACY;**132,118,203,265,282,455**;DEC 1997;Build 14
+PSONVNEW ;BIR/SAB - Add Non-VA Med orders ;Feb 28, 2022@14:29:26
+ ;;7.0;OUTPATIENT PHARMACY;**132,118,203,265,282,455,441**;DEC 1997;Build 208
  ;External reference ^PS(50.606 supported by DBIA 2174
  ;External reference ^PS(50.7 supported by DBIA 2223
  ;External reference ^PS(55 supported by DBIA 2228
@@ -10,26 +10,46 @@ PSONVNEW ;BIR/SAB - Add Non-VA Med orders ;2/13/07 11:35am
  ;*203 change 3 fields from "///" to "////" they can be larger than
  ;      defined and need to be put in as is to prevent hard crash.
  ;*265 change update of Dosage & Sched fields DR strings, can contain ;      free form char ";"
+ ;*441 Add Complex Orders to NVA Meds
  ;
  I '$D(^PS(55,DFN,0)) D
  .K DD,DO S DIC(0)="L",(DINUM,X)=DFN,DIC("DR")="52.1////2" D FILE^DICN D:Y<1  K DIC,DA,DR,DD,DO
  ..S $P(^PS(55,DFN,0),"^")=DFN,$P(^(0),"^",6)=2
  ..K DIK S DA=DFN,DIK="^PS(55,",DIK(1)=.01 D EN^DIK K DIK
  ;
- N PSONVA,DSC K PCOM
+ N PSONVA,DSC,ORCSEG,PSOIND K PCOM
  F I=0:0 S I=$O(MSG(I)) Q:'I  D
  .I $P(MSG(I),"|")="NTE",$P(MSG(I),"|",2)=6 S DSC=$G(DSC)+1 S PCOM(DSC)=$P(MSG(I),"|",4) F T=0:0 S T=$O(MSG(I,T)) Q:'T  S DSC=DSC+1,PCOM(DSC)=MSG(I,T)
- .I $P(MSG(I),"|")="ORC" S STDT=$P(MSG(I),"|",8),STRDT=$$HL7TFM^XLFDT($P(STDT,"^",4))
+ .I $P(MSG(I),"|")="ORC" S STDT=$P(MSG(I),"|",10),STRDT=$$HL7TFM^XLFDT(STDT),ORCSEG=$P($G(MSG(I)),"|",8)
+ .I $P(MSG(I),"|")="RXO" S PSOIND=$P(MSG(I),"|",21)  ;*441-IND
  ;
  ; - Files the Non-VA Med order into the "NVA" multiple in File #55
  K DR,DIC,DD,DA,DO,DINUM S DA(1)=DFN,X=PSORDITE
  ;*203,*265 fix DR & dose & sched fields
- S PSODOS=$G(PSOLQ1I(1)),PSOSCH=$$SCHED($P($G(QTARRAY(1)),"^"))
+ ;it appears NVA old structure never took into account Possible dose vs. Local Possible dose, fix below
+ S PSODOS=$S($G(PSOQWX)&($G(PSOLQ1II(1))):Q1I(1),$G(PSOQWX)&($G(PSOLQ1IX(1))'="")&('$G(PSOLQ1II(1))):PSOLQ1IX(1),1:$G(PSOLQ1I(1)))  ;init Dose for 1st rec for backwards compatible structure
+ S PSOSCH=$$SCHED($P($G(QTARRAY(1)),"^"))
  S DR="1////"_PSODDRUG_";2////^S X=PSODOS;3////"_$$ROUTE($G(ROUTE(1)))
  S DR=DR_";4////^S X=PSOSCH;7////"_$G(PLACER)_";8///"_$P($G(STRDT),".") ;*455 - ONLY STORE DATE, NOT TIME
- S DR=DR_";11///"_$G(PSOLOG)_";12////"_$G(ENTERED)_";13////"_$G(LOCATION)
+ S DR=DR_";11///"_$G(PSOLOG)_";12////"_$G(ENTERED)_";13////"_$G(LOCATION)_";15////^S X=$$UNESC^ORHLESC($G(PSOIND))"  ;*441-IND
  S DIC("DR")=DR,DIC(0)="L",DIC="^PS(55,"_DFN_",""NVA"",",DLAYGO=55.05
  D FILE^DICN S PSONVA=+Y K DR,DIC,DD,DA,DO,DINUM
+ ;introduces complex non-va orders via CPRS
+ K FDA S DA(1)=+Y,DA(2)=DFN
+ I $G(QCOUNT) D
+ .N PP,ORC
+ .F PP=0:0 S PP=$O(QTARRAY(PP)) Q:'PP  D
+ ..S ORC=$P($G(ORCSEG),"~",PP)
+ ..S FDA(55.516,"+1,"_DA(1)_","_DA(2)_",",.01)=$TR($G(ORC),"^","|")
+ ..S FDA(55.516,"+1,"_DA(1)_","_DA(2)_",",1)=$$SCHED($P($P($G(QTARRAY(PP)),"^"),"&"))   ;nva meds schedules can have embedded & sub-delimiter for IP patients vs. OP patients
+ ..S FDA(55.516,"+1,"_DA(1)_","_DA(2)_",",2)=$P($G(QTARRAY(PP)),"^",2)
+ ..S FDA(55.516,"+1,"_DA(1)_","_DA(2)_",",3)=$P($G(QTARRAY(PP)),"^",6)
+ ..;init val to either Possible Dose or Local Possible Dose
+ ..S VAL=$S($G(PSOQWX)&($G(PSOLQ1II(PP))):Q1I(PP),$G(PSOQWX)&($G(PSOLQ1IX(PP))'="")&('$G(PSOLQ1II(PP))):PSOLQ1IX(PP),1:PSOLQ1I(PP))
+ ..S FDA(55.516,"+1,"_DA(1)_","_DA(2)_",",4)=VAL
+ ..D UPDATE^DIE("","FDA") K FDA
+ ;
+ S PSONVA=+Y K DR,DIC,DD,DA,DO,DINUM
  K PSODOS,PSOSCH
  ;
  K DSC,STDT
@@ -71,9 +91,10 @@ REIN K MSG S NULLFLDS="F JJ=0:1:LIMIT S FIELD(JJ)="""""
  D SEG^PSOHLSN1
  I $G(REIN) S MSG(COUNT)=MSG(COUNT)_"|^^^^DATE OF DEATH DELETED BY MAS.^"
  ;
- S LIMIT=1 X NULLFLDS
+ S LIMIT=20 X NULLFLDS
  S FIELD(0)="RXO",OI=$P(^PS(55,DFN,"NVA",PSONVA,0),"^")
  S FIELD(1)="^^^"_OI_"^"_$P($G(^PS(50.7,OI,0)),"^")_" "_$P($G(^PS(50.606,+$P($G(^(0)),"^",2),0)),"^")_"^99PSP"
+ S FIELD(20)=$G(PSOIND)
  D SEG^PSOHLSN1
  ;
  S LIMIT=1 X NULLFLDS

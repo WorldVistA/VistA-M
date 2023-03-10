@@ -1,0 +1,13 @@
+OSEHRA ZGO Export: SDEC CANCELLATION COMMENT
+ZWR
+^SDEC(409.88,0)="SDEC CANCELLATION COMMENT^409.88^5^5"
+^SDEC(409.88,1,0)="COVID19 #TELE#^Canceled due to COVID19. Appointment converted to a Telephone appointment^1"
+^SDEC(409.88,2,0)="COVID19^Canceled due to COVID19. Rescheduled/not rescheduled^1"
+^SDEC(409.88,3,0)="#TELE#^Canceled appointment converted to a Telephone appointment. Not due to COVID19^1"
+^SDEC(409.88,4,0)="#VVC#^Canceled appointment converted to a VVC appointment. Not due to COVID19^1"
+^SDEC(409.88,5,0)="COVID19 #VVC#^Canceled due to COVID19. Appointment converted to a VVC appointment^1"
+^SDEC(409.88,"B","#TELE#",3)=""
+^SDEC(409.88,"B","#VVC#",4)=""
+^SDEC(409.88,"B","COVID19",2)=""
+^SDEC(409.88,"B","COVID19 #TELE#",1)=""
+^SDEC(409.88,"B","COVID19 #VVC#",5)=""

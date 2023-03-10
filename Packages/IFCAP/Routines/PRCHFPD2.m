@@ -1,6 +1,10 @@
 PRCHFPD2 ;SF/FKV,TKW/RHD-PROMPT WHETHER FPDS DATA IS TO BE ENTERED ;2/9/93  14:54
-V ;;5.1;IFCAP;**79,100**;Oct 20, 2000
- ;Per VHA Directive 10-93-142, this routine should not be modified.
+V ;;5.1;IFCAP;**79,100,220**;Oct 20, 2000;Build 23
+ ;Per VA Directive 6402, this routine should not be modified.
+ ;
+ ;PRC*5.1*220 Default 'Report to FPDS' to NO.  Even a (Y)es
+ ;            will no longer send an FPDS message
+ ;
 AMT ;
  S PRCHY=0 I PRCHEST>0,PRCHEC>0 S PRCHY=PRCHEST/PRCHEC,Y=$P(PRCHY,".",2) I $L(Y)>2 S PRCHY=$P(PRCHY,".",1)+$J("."_Y,2,2)
  S PRCH=0 F PRCHI=1:1 S PRCH=$O(PRCH("AM",PRCH)) Q:PRCH=""  D CHEC S PRCHAMT=""""_PRCH("AM",PRCH)_"""" K DR S DR="35///"_PRCHAMT,DR(2,442.1)=".01////"_PRCHAMT S:PRCH'=".OM" DR(2,442.1)=DR(2,442.1)_";2////"_PRCH D ^DIE
@@ -42,16 +46,18 @@ FPDS ;
  ; Check below for Delivery or Detailed purchase card orders, PRC*5.1*79
  I $G(PRCHTTT)'>0 S PRCHFPDS=0 Q  ;don't need $0 orders
  I $G(PRCHPC)=2!$G(PRCHPHAM)=1!$G(PRCHDELV)=1 D PC Q
- S %A="Is this P.O. to be reported to the FPDS system (Under $25,000 report)",%=1 D YN^PRCFYN S:%=1 PRCHFPDS=1 K:%=-1 PRCHPO D AMT:$D(PRCHPO)&(%=2)
+ ;S %A="Is this P.O. to be reported to the FPDS system (Under $25,000 report)",%=2 D YN^PRCFYN S:%=1 PRCHFPDS=1 K:%=-1 PRCHPO D AMT:$D(PRCHPO)&(%=2)   ;PRC*5.1*220
+ D AMT:$D(PRCHPO)   ;PRC*5.1*220
  K %B
  Q
  ;
-DEL S %A="Is this P.O. to be reported to the FPDS system",%=1 W ! D YN^PRCFYN S:%=1 PRCHFPDS=1 K:%=-1 PRCHPO D AMT:$D(PRCHPO)&(%=2)
+DEL ;S %A="Is this P.O. to be reported to the FPDS system",%=2 W ! D YN^PRCFYN S:%=1 PRCHFPDS=1 K:%=-1 PRCHPO D AMT:$D(PRCHPO)&(%=2)   ;PRC*5.1*220
+ D AMT:$D(PRCHPO)   ;PRC*5.1*220
  K %A,%B
  Q
  ;
 PC ; Checks below for PRC*5.1*79.
- S A(1)="This P.O. must be reported to the FPDS system."
+ ;S A(1)="This P.O. must be reported to the FPDS system."   ;PRC*5.1*220
  S A(1,"F")="!!?10"
  S A(2,"F")="!!"
  D EN^DDIOL(.A)

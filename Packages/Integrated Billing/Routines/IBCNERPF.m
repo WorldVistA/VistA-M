@@ -1,5 +1,5 @@
 IBCNERPF ;BP/YMG - IBCNE USER INTERFACE EIV INSURANCE UPDATE REPORT ;16-SEP-2009
- ;;2.0;INTEGRATED BILLING;**416,528,549,595**;16-SEP-09;Build 29
+ ;;2.0;INTEGRATED BILLING;**416,528,549,595,668**;16-SEP-09;Build 28
  ;;Per VA Directive 6402, this routine should not be modified.
  ;
  ; IB*2.0*549 Change value of IBCNESPC("PYR",ien)
@@ -102,10 +102,12 @@ AUTOUPDT(PIEN) ; Determine if the Auto update flag for payer = Yes
  ; Returns  1 - Auto update flag is set to 'Y', 0 otherwise
  ; IB*2.0*549 Only include payers with eIV Auto Update flag = Yes
  N AUTOUPDT,IENS,MULT
- S MULT=$$PYRAPP^IBCNEUT5("IIV",PIEN)
+ ;IB*668/TAZ - Changed Payer Application from IIV to EIV
+ S MULT=$$PYRAPP^IBCNEUT5("EIV",PIEN)
  I MULT D
  . S IENS=MULT_","_PIEN_","
- . S AUTOUPDT=$$GET1^DIQ(365.121,IENS,".07","I")
+ . ;IB*668/TAZ - Changed location for AUTOUPDT
+ . S AUTOUPDT=$$GET1^DIQ(365.121,IENS,4.01,"I")
  E  S AUTOUPDT=0
  Q AUTOUPDT
  ;

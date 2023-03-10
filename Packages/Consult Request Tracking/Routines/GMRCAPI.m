@@ -1,5 +1,5 @@
-GMRCAPI ;SLC/MKB,ASMR/BL -- Consult APIs ; 10/16/15 1:36pm
- ;;3.0;CONSULT/REQUEST TRACKING;**80**;DEC 27, 1997;Build 42
+GMRCAPI ;SLC/MKB,ASMR/BL -- Consult APIs ;Jun 16, 2020@05:56:23
+ ;;3.0;CONSULT/REQUEST TRACKING;**80,145**;DEC 27, 1997;Build 18
  ;Per VA directive #6402, this routine should not be modified.
  ;Use of this routine is controlled by IA #6082
  ;
@@ -17,6 +17,7 @@ GET(GMRCAR,GMRCDA,GMRCMED)  ;return basic data & list of linked results
  ;       GMRCAR(30)   = Prov Dx
  ;       GMRCAR(30.1) = Prov Dx codes
  ;       GMRCAR(50,n) = "ien;global ref," e.g. 5;TIU(8925, or 3;MCAR(691,
+ ;       GMRCAR(75)   = decision support tool id
  ;
  I '$D(^GMR(123,GMRCDA,0)) Q
  N X,P,RES,CNT
@@ -24,7 +25,9 @@ GET(GMRCAR,GMRCDA,GMRCMED)  ;return basic data & list of linked results
  S $P(GMRCAR(0),U,20)="" ;return TIU note in 50 list
  ; resolve GMRC file pointers to external format
  S X=$P(GMRCAR(0),U,5) S:X $P(GMRCAR(0),U,5)=$P($G(^GMR(123.5,X,0)),U)
- S X=$P(GMRCAR(0),U,8) I X,X["123.3" S $P(GMRCAR(0),U,8)=$P($G(^GMR(123.3,+X,0)),U)
+ S X=$P(GMRCAR(0),U,8) I X D
+ . S:X["123.3" $P(GMRCAR(0),U,8)=$P($G(^GMR(123.3,+X,0)),U)
+ . S:X["101" $P(GMRCAR(0),U,8)=$P($G(^ORD(101,+X,0)),U)
  F P=9,10 S X=$P(GMRCAR(0),U,P) I X S $P(GMRCAR(0),U,P)=$$GET1^DIQ(101,X_",",1)
  S X=$P(GMRCAR(0),U,12) S:X $P(GMRCAR(0),U,12)=$P($G(^ORD(100.01,X,0)),U)
  S X=$P(GMRCAR(0),U,13) S:X $P(GMRCAR(0),U,13)=$P($G(^GMR(123.1,X,0)),U)
@@ -43,6 +46,7 @@ GET(GMRCAR,GMRCDA,GMRCMED)  ;return basic data & list of linked results
  .. ;  procedure name ^ date.time ^^^^^^^^ 1=has image(s)
  .. S GMRCAR(50,CNT)=GMRCAR(50,CNT)_U_STR
  . S CNT=CNT+1
+ S:$D(^GMR(123,GMRCDA,75)) GMRCAR(75)=$G(^GMR(123,GMRCDA,75))
  Q
  ;
 IFC(GMRCDA) ;return IFC information
@@ -89,3 +93,19 @@ ACT(GMRCAR,GMRCDA) ;return Activity data
  . I $D(^GMR(123,GMRCDA,40,I,2)) S GMRCAR(I,2)=^(2)
  . I $D(^GMR(123,GMRCDA,40,I,3)) S GMRCAR(I,3)=^(3)
  Q
+CONS4PT(GMRCAR,GMRCPT) ; return consults for patient
+ ; Input:
+ ;  GMRCAR - array to return list, passed by reference
+ ;  GMRCPT - DFN of patient from file #2
+ ;
+ ; Output:
+ ;  GMRCAR - array in format:
+ ;       GMRCAR(n) = Consult IEN
+ ;       GMRCAR=0 if no patient, or no consults found for patient
+ I $G(GMRCPT)="" S GMRCAR=0 Q
+ I '$D(^GMR(123,"F",GMRCPT)) S GMRCAR=0 Q
+ N GMRCIEN,CNT S CNT=1,GMRCIEN=""
+ F  S GMRCIEN=$O(^GMR(123,"F",GMRCPT,GMRCIEN)) Q:GMRCIEN=""  D
+ . S GMRCAR(CNT)=GMRCIEN,CNT=CNT+1
+ Q
+ ;

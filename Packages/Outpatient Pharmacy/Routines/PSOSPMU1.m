@@ -1,16 +1,19 @@
 PSOSPMU1 ;BIRM/MFR - State Prescription Monitoring Program Utilities ;10/07/12
- ;;7.0;OUTPATIENT PHARMACY;**408,437,451**;DEC 1997;Build 114
+ ;;7.0;OUTPATIENT PHARMACY;**408,437,451,625,630,662**;DEC 1997;Build 4
  ;
-GATHER(STATE,BEGDTTM,ENDDTTM,RECTYPE,RTSONLY) ; Gathers all CS prescriptions for Data Range
+GATHER(STATE,BEGDTTM,ENDDTTM,RECTYPE,RTSONLY,LIST) ; Gathers all CS prescriptions for Data Range
  ;Input: STATE   - Pointer to the STATE file (#5)
  ;       BEGDTTM - Date Range Begin Date/Time
  ;       ENDDTTM - Date Range End Date/Time
  ;       RECTYPE - Record Type for Released Rx's only (N: New / R: Revise)
  ;       RTSONLY - Return To Stock Fills Only (1: YES / 0: NO)
+ ;       LIST    - List of Filter(s) to be screened (LIST="PR" or "DR" or "PA" or "NC" or "RX", LIST(PROV IEN) or (LIST(PAT IEN) or LIST(RXIEN,FILL)
  ;Output: $$GATHER - Number of Rx's found
  ;        ^TMP("PSOSPMRX",$J,STATE,RX,FILL)=Record Type (N/R/V) - List of Rx's gathered
+ ;        ^TMP("PSOSPMST",$J,$$RXSITE^PSOBPSUT(RXIEN,0))=""   Zero Report - saving SITEs with RXs
  N GATHER,XREF,RXRLDT,RXIEN,RXFILL,FILL,RTSDT,ENDRTSDT
- S GATHER=0 K ^TMP("PSOSPMRX",$J)
+ S GATHER=0 K ^TMP("PSOSPMRX",$J),^TMP("PSOSPMST",$J)           ;adding for Zero Report 
+ I '$D(LIST) S LIST="NC"  ; send all Rxs for a date range if no other criteria
  ; - Gathering Released Original Fills/Refills/Partials
  I '$G(RTSONLY) D
  . F XREF="AL","AM" D
@@ -19,14 +22,17 @@ GATHER(STATE,BEGDTTM,ENDDTTM,RECTYPE,RTSONLY) ; Gathers all CS prescriptions for
  . . . S RXIEN=0 F  S RXIEN=$O(^PSRX(XREF,RXRLDT,RXIEN)) Q:'RXIEN  D
  . . . . S RXFILL="" F  S RXFILL=$O(^PSRX(XREF,RXRLDT,RXIEN,RXFILL)) Q:RXFILL=""  D
  . . . . . S FILL=$S(XREF="AL":RXFILL,1:"P"_RXFILL)
- . . . . . I '$$RXRLDT^PSOBPSUT(RXIEN,FILL) Q
+ . . . . . I $$FILTER^PSOSPML7(.LIST,RXIEN,FILL) Q
  . . . . . I $$SCREEN^PSOSPMUT(RXIEN,FILL) Q
- . . . . . I $$RXSTATE^PSOBPSUT(RXIEN,0)'=STATE Q
+ . . . . . I $$RXSTATEZ^PSOBPSUT(RXIEN,0,STATE)=STATE S ^TMP("PSOSPMST",$J,$$RXSITE^PSOBPSUT(RXIEN,0))=""
+ . . . . . I $$RXSTATEP^PSOBPSUT(RXIEN,0,STATE)'[("^"_STATE_"^") Q     ;P662
  . . . . . S ^TMP("PSOSPMRX",$J,STATE,RXIEN,FILL)=RECTYPE
  . . . . . S GATHER=GATHER+1
  ;
  ; ASAP 1995 does not support transmissions of Return To Stock fills in the same file
  I $$GET1^DIQ(58.41,STATE,1,"I")="1995",'$G(RTSONLY) Q GATHER
+ ;
+ I LIST'="NC" Q GATHER   ; PSO*7*625/PSU-792 don't gather return to stock fills if user selects "PR", "DR", "PA", "DV", or "RX" criteria filters via MA option  
  ;
  ; - Gathering Fills Returned To Stock
  S RTSDT=BEGDTTM-.0000001,ENDRTSDT=ENDDTTM
@@ -40,13 +46,15 @@ GATHER(STATE,BEGDTTM,ENDDTTM,RECTYPE,RTSONLY) ; Gathers all CS prescriptions for
  . . . I $$RXRLDT^PSOBPSUT(RXIEN,FILL) Q
  . . . I $$SCREEN^PSOSPMUT(RXIEN,FILL) Q
  . . . I $D(^TMP("PSOSPMRX",$J,STATE,RXIEN,FILL)) Q
- . . . I $$RXSTATE^PSOBPSUT(RXIEN,0)'=STATE Q
+ . . . I $$RXSTATEZ^PSOBPSUT(RXIEN,0,STATE)=STATE S ^TMP("PSOSPMST",$J,$$RXSITE^PSOBPSUT(RXIEN,0))=""
+ . . . I $$RXSTATEP^PSOBPSUT(RXIEN,0,STATE)'[("^"_STATE_"^") Q     ;P662
  . . . S ^TMP("PSOSPMRX",$J,STATE,RXIEN,FILL)="V"
+ . . . ;S ^TMP("PSOSPMST",$J,$$RXSITE^PSOBPSUT(RXIEN,0))=""    ;PSO*7*625
  . . . S GATHER=GATHER+1
  Q GATHER
  ;
 BLDBAT(EXPTYPE,BEGRLDT,ENDRLDT) ; Given a list of Rx's builds a new Export Batch
- ; Input: (r) EXPTYPE - Export Type ((MA)naul/(SC)heduled/(RX) Single Rx)/(VD) Void Only
+ ; Input: (r) EXPTYPE - Export Type ((MA)naul/(SC)heduled/(RX) Single Rx)/(VD) Void Only/(ZR) Zero Report
  ;        (o) BEGRLDT  - Begin Release Date (FM Format) (Required for M and S batches)
  ;        (o) ENDRLDT - End Release Date (FM Format) (Required for M and S batches)
  ;        (r) List of Rx's: ^TMP("PSOSPMRX",$J,STATE,RXIEN,RXFILL)=Record Type ((N)ew/(R)evise/(V)oid)
@@ -62,6 +70,7 @@ BLDBAT(EXPTYPE,BEGRLDT,ENDRLDT) ; Given a list of Rx's builds a new Export Batch
  . S (DINUM,BATCHIEN)=$O(^PS(58.42,999999999999),-1)+1
  . I EXPTYPE'="VD" W !!,"Creating Batch #",DINUM," for ",$$GET1^DIQ(58.41,STATE,.01),"..."
  . S DIC="^PS(58.42,",X=DINUM,DIC(0)="",DIC("DR")="1////"_STATE_";2///"_EXPTYPE_";8///"_$$NOW^XLFDT()
+ . I $G(DUZ)>0 I $D(^XUSEC("PSO SPMP ADMIN",DUZ)) S DIC("DR")=DIC("DR")_";10////"_DUZ  ; PSO*7*625 - PSU-14 VOID
  . I $G(BEGRLDT) D
  . . S DIC("DR")=DIC("DR")_";4///"_BEGRLDT_";5///"_$G(ENDRLDT)
  . S DLAYGO=58.42 K DD,DO D FILE^DICN K DD,DO
@@ -288,9 +297,10 @@ SAVEKEYS(STATE,LOCDIR) ; Saves Key, converts SSH2 to OpenSSH when running on Lin
  Q
  ;
 LINUXDIR() ; Returns the Linux Directory for SPMP sFTP
- N CURDIR,ROOTDIR
+ N CURDIR,ROOTDIR,PSOVER
  I $$OS^%ZOSV()'="UNIX" Q ""
- I $$UP^XLFSTR($$VERSION^%ZOSV(1))'["CACHE" Q ""
+ S PSOVER=$$UP^XLFSTR($$VERSION^%ZOSV(1))
+ I PSOVER'["CACHE",PSOVER'["IRIS" Q ""     ;PSO*7*630
  ; Retrieving the current directory
  X "S CURDIR=$ZU(12)" S ROOTDIR=$P(CURDIR,"/",1,4)
  I $E(ROOTDIR,$L(ROOTDIR))="/" S $E(ROOTDIR,$L(ROOTDIR))=""
@@ -298,19 +308,21 @@ LINUXDIR() ; Returns the Linux Directory for SPMP sFTP
  ;
 DIREXIST(DIR) ; Returns whether the Linux Directory for SPMP sFTP already exists
  ;Input: DIR - Linux Directory name to be checked
- N DIREXIST
+ N DIREXIST,PSOVER
  I DIR="" Q 0
  I $$OS^%ZOSV()'="UNIX" Q 0
- I $$UP^XLFSTR($$VERSION^%ZOSV(1))'["CACHE" Q 0
+ S PSOVER=$$UP^XLFSTR($$VERSION^%ZOSV(1))
+ I PSOVER'["CACHE",PSOVER'["IRIS" Q 0     ;PSO*7*630
  I $E(DIR,$L(DIR))="/" S $E(DIR,$L(DIR))=""
  X "S DIREXIST=$ZSEARCH(DIR)"
  Q $S(DIREXIST="":0,1:1)
  ;
 MAKEDIR(DIR) ; Create a new directory
  ;Input: DIR - Linux Directory name to be created
- N MKDIR
+ N MKDIR,PSOVER
  I $$OS^%ZOSV()'="UNIX" Q
- I $$UP^XLFSTR($$VERSION^%ZOSV(1))'["CACHE" Q
+ S PSOVER=$$UP^XLFSTR($$VERSION^%ZOSV(1))
+ I PSOVER'["CACHE",PSOVER'["IRIS" Q     ;PSO*7*630
  I $$DIREXIST(DIR) Q
  X "S MKDIR=$ZF(-1,""mkdir ""_DIR)"
  I 'MKDIR X "S MKDIR=$ZF(-1,""chmod 777 ""_DIR)"

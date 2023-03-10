@@ -1,5 +1,5 @@
 PRCAPCL ;WASH-ISC@ALTOONA,PA/NYB-Print Bill Status Report ;8/19/94  10:21 AM
-V ;;4.5;Accounts Receivable;**72,63,143,154,315,342,368**;Mar 20, 1995;Build 7
+V ;;4.5;Accounts Receivable;**72,63,143,154,315,342,368,391**;Mar 20, 1995;Build 10
  ;
  ;PRCA*4.5*368 Instead of relying on the suspended tx for a bill
  ;             loop in reverse until the newest suspended tx is found
@@ -19,7 +19,6 @@ V ;;4.5;Accounts Receivable;**72,63,143,154,315,342,368**;Mar 20, 1995;Build 7
  . F PRCAE=0:0 S PRCAE=$O(^PRCA(430,"AC",STAT,PRCAE)),X="" Q:'PRCAE!($D(DIROUT)!($D(DUOUT)))  I $P($G(^PRCA(430,PRCAE,100)),"^",2)[$G(SER),$S($G(SER):+$G(^PRCA(430,PRCAE,100)),1:1) D  Q:$D(DIROUT)!($D(DUOUT))  D PRNTL
  .. I $Y+4>IOSL D TOP,HDR
  . I $Y+4>IOSL D TOP,HDR Q:$D(DIROUT)!($D(DUOUT))
- . S DP1=$S(+DAT>0:+DAT,1:0)
  . S DP2=$S(+$P($G(DAT),"^",2)=0:"",1:+$P($G(DAT),"^",2))
  . S ST="" F  S ST=$O(^TMP($J,"PRCAE",ST)) Q:ST=""!($D(DIROUT)!($D(DUOUT)))  D
  .. I STAT=40 D STHDR
@@ -52,7 +51,7 @@ PRNTL ;
  S ST=12 I STAT=40 D SUST ;PRCA*4.5*315/DRF Find suspended type
  I BEG,DP'>BEG Q
  I END,DP>END Q
- I STAT=40,$G(PRSELST)'="",PRSELST'[(","_ST_",") Q  ;PRCA*4.5*315/DRF Quit if suspended type is not selected
+ I STAT=40,PRSELST'="",PRSELST'="A",PRSELST'[(","_ST_",") Q  ; Quit if suspended type is not selected  PRCA*4.5*391
  S (CAT,PRCY)=$S(PRCY="":PRCY,$D(^PRCA(430.2,PRCY,0))#2:$P(^(0),U),1:PRCY)
  S PRCY=$S($D(^RCD(340,+$P(X,U,9),0)):$P(^(0),U),1:"")
  I PRCY["DPT" S DFN=+PRCY D DEM^VADPT S:+VADM(6) DEAD="*" D KVAR^VADPT K VA,VADM
@@ -84,14 +83,13 @@ HDR ;
 DT I Y X ^DD("DD") S DP2=Y
  Q
 STAT(SER) W ! ;Bill Status Listing
- N BEG,CH,DAT,END,I,PRSELST,PRSUS,SC1,SC2,STAT,STT,XX
+ N BEG,CH,DAT,END,I,PRSELST,SC1,SC2,STAT,STT,XX
  K ^TMP($J)
  S DAT=$$DATE^RCEVUTL1("")
  Q:$G(DAT)=-1
  S BEG=+DAT,END=+$P(DAT,U,2)
  S SC1=$S(BEG=0:"First",1:BEG-1) I +$G(SC1) S Y=SC1+1 X ^DD("DD") S SC1=Y
  S SC2=$S(END=0:"Last",1:END) I +$G(SC2) S Y=SC2 X ^DD("DD") S SC2=Y
- S XX=^DD(433,90,0),XX=$P(XX,"^",3) F I=1:1 S CH=$P(XX,";",I) Q:CH=""  S PRSUS($P(CH,":",1))=$P(CH,":",2)
  D ST
  Q:STAT="^"
  D TSK,Q1
@@ -105,31 +103,22 @@ ST N DIC,X,Y
  I X="" Q
  D ^DIC S STAT=+Y,SER=$G(SER)
  I X["?" W !!,"Enter 'ALL' for all status types.",! G ST
- I STAT'="ALL",(+STAT>0) S STAT(+STAT)="" D:STAT=40 SUSTYP G ST
+ I STAT'="ALL",(+STAT>0) S STAT(+STAT)="" S:STAT=40 PRSELST=$$STYPSEL() G ST  ; PRCA*4.5*391
  G:+STAT<0 ST
  Q
-SUSTYP ;If SUSPENDED is chosen, prompt for which suspended bills to display PRCA*4.5*315/DRF
- N X,CH,LAST,PRPRT
- S LAST=$O(PRSUS(""),-1) I PRSUS(LAST)'["ALL OF" D
- . S PRSUS(LAST+1)="NONE"
- . S PRSUS(LAST+2)="ALL OF THE ABOVE"
- . S XX=XX_"12:NONE;13:ALL OF ABOVE"
- S PRPRT="Choose from SUSPENDED TYPE:"
- S PRSELST=$$MLTP0(PRPRT,.PRSUS,1)
- Q
+ ;
 SUST ;Look for suspended type for a suspended bill PRCA*4.5*315/DRF
  ;Look for suspended type for suspended bill even if not last bill tx   ;PRCA*4.5*368
  N PRCATX S PRCATX="A",ST=""
  F  S PRCATX=$O(^PRCA(433,"C",PRCAE,PRCATX),-1) Q:PRCATX=""  D  Q:ST  ;Quit if no transactions for this entry, PRCA*4.5*342
- . I '$D(^PRCA(433,PRCATX,1)) Q
- . I $P(^PRCA(433,PRCATX,1),U,2)'=47 Q
- . S ST=$P($G(^PRCA(433,PRCATX,1)),U,11)
- . I ST="" S ST=12
- I ST="" S ST=12
+ .I '$D(^PRCA(433,PRCATX,1)) Q
+ .I $P(^PRCA(433,PRCATX,1),U,2)'=47 Q
+ .S ST=$P($G(^PRCA(433,PRCATX,1)),U,12)  ; PRCA*4.5*391
+ .Q
  Q
 STHDR ;Display Suspended Type PRCA*4.5*315/DRF
  I 'HDR W !
- W ?30,"Suspend Type: ",$G(PRSUS(ST)),!!
+ W ?30,"Suspend Type: ",$$GET1^DIQ(433.001,ST_",",.02),!!  ; PRCA*4.5*391
  S HDR=0
  Q
 TSK ;
@@ -140,42 +129,39 @@ TSK ;
  S ZTRTN="^PRCAPCL"
  S (ZTSAVE("BEG"),ZTSAVE("DAT"),ZTSAVE("END"),ZTSAVE("SER"))=""
  S (ZTSAVE("STAT"),ZTSAVE("STAT("),ZTSAVE("SC1"),ZTSAVE("SC2"))=""
- S (ZTSAVE("PRSELST"),ZTSAVE("PRSUS("))=""
+ S ZTSAVE("PRSELST")=""  ; PRCA*4.5*391
  S ZTDESC="Bill Status Listing" D ^%ZTLOAD
 Q1 D ^%ZISC Q
  ;
- ;Choose multiple items from a list including value 0 - PRCA*4.5*315/DRF
-MLTP0(PRPT,OPT,ALL) ; Function for multiple value selection
- ; Input: PRPT - String to be prompted to the user, before listing options
- ;        OPT  - Array containing the possible entries (indexed by code)
- ;               Obs: Code must be sequential starting with 0
- ;        ALL  - Flag indicating if the last option is ALL OF THE ABOVE
+STYPSEL() ; get suspension type(s) selection  PRCA*4.5*391
  ;
- ; Output: MLTP - User selection, i.e. "1,2,3," or "1," or NULL (nothing
- ;                 was selected)
+ ; returns comma-separated list of selected fiel 433.001 IENs, or "A" for all suspension types, or "" for no selection
  ;
- N A,DIR,DIRUT,DTOUT,DUOUT,DIROUT,I,IX,LST,MLTP
+ N DIC,DIR,DIROUT,DIRUT,DTOUT,DUOUT,X,Y
+ N RES
+ S RES=""
+ W !
+ S DIR("A")="Run for (A)ll Suspension Types or (S)elected Suspension Types: "
+ S DIR("A",1)="Suspension type Selection:"
+ S DIR("?")="^"
+ S DIR(0)="SA^A:All;S:Selected",DIR("B")="A"
+ D ^DIR I $D(DIRUT) Q RES
+ I Y="A" S RES="A" Q RES  ; "All Suspension Types" selected
+ S DIC(0)="ABEOMQ"
+ S DIC("A")="Select Suspension Type(s): "
+ S DIC="^PRCA(433.001,"
+STYPSEL1 ; Prompt for suspension type selection
+ W !
+ D ^DIC
+ I $D(DUOUT)!$D(DTOUT)!(Y=-1) S RES="" Q RES
+ S RES=RES_","_$P(Y,U,1)
+ I $$ANOTHER G STYPSEL1
+ Q RES_","
  ;
-PRPT S MLTP="",ALL=+$G(ALL)
- S LST=$O(OPT(""),-1)
- S DIR(0)="LO^0:"_LST_"^K:+$P(X,""-"",2)>"_LST_" X"
- S DIR("A",1)=$G(PRPT),DIR("A",2)=""
- S A="",IX=3
- F  S A=$O(OPT(A))  Q:A=""  D
- . S DIR("A",IX)="   "_A_" - "_$G(OPT(A)),IX=IX+1
- S DIR("A",IX)="",DIR("A")="Select",DIR("B")=LST,DIR("T")=DTIME W !
- D ^DIR K DIR I $D(DIRUT)!$D(DTOUT)!$D(DUOUT)!$D(DIROUT) S MLTP="" G QT
- S MLTP=Y K DIROUT,DTOUT,DUOUT,DIRUT
- S DIR(0)="Y",DIR("A",1)="You have selected",DIR("A",2)=""
- S A="",IX=3
- F I=1:1:($L(MLTP,",")-1) D
- . S DIR("A",IX)="    "_$P(MLTP,",",I)_" - "_$G(OPT($P(MLTP,",",I)))
- . S IX=IX+1
- S DIR("A",IX)=""
- S DIR("A")="Are you sure",DIR("B")="NO",DIR("T")=DTIME W !
- D ^DIR K DIR I $D(DIRUT)!$D(DTOUT)!$D(DUOUT)!$D(DIROUT) S MLTP="" G QT
- K DIROUT,DTOUT,DUOUT,DIRUT I 'Y K DIR G PRPT
- I ALL,MLTP[LST S MLTP="" G QT
- S MLTP=","_MLTP
- ;
-QT Q MLTP
+ANOTHER() ; "Select Another" prompt  PRCA*4.5*391
+ ; returns 1, if response was "YES", returns 0 otherwise
+ N DIR,DIROUT,DIRUT,DTOUT,DUOUT,X,Y
+ W !
+ S DIR("A")="Select Another" S DIR(0)="Y",DIR("B")="NO"
+ D ^DIR I $D(DIRUT) Q 0
+ Q Y

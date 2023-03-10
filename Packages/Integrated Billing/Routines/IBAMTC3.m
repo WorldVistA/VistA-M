@@ -1,6 +1,7 @@
 IBAMTC3 ;ALB/CJM - BULLETINS FOR UNCLOSED EVENTS,UNPASSED CHARGES ; 21-APRIL-92
- ;;2.0;INTEGRATED BILLING;**153**;21-MAR-94
+ ;;2.0;INTEGRATED BILLING;**153,703**;21-MAR-94;Build 5
  ;;Per VHA Directive 10-93-142, this routine should not be modified.
+ ;
 BULLET1 N IBT,IBC,XMSUB,XMY,XMDUZ,XMTEXT
  S IBC=1,IBDUZ=$G(DUZ)
  D HDR1,PAT1,CHRG1,MAIL^IBAERR1
@@ -71,3 +72,37 @@ PAT2 ; patient demographic data, admission and discharge date
 PR(STR,LEN) ; pad right
  N B S STR=$E(STR,1,LEN),$P(B," ",LEN-$L(STR))=" "
  Q STR_$G(B)
+ ;
+CANCBLTN ; send Mailman bulletin for cancelled copays (covid relief)  IB*2.0*703
+ ;
+ ; ^TMP("IBAMTC3",$J) is set and killed in the calling routine (CANCEL^IBAMTC)
+ ;
+ N CNT,DIFROM,IBREF,XMDUZ,XMMG,XMSUB,XMTEXT,XMY,Z
+ I '$D(^TMP("IBAMTC3",$J)) Q  ; nothing to report
+ S CNT=0
+ ; successful cancellations
+ I $D(^TMP("IBAMTC3",$J,1)) D
+ .S CNT=CNT+1,^TMP("IBAMTC3",$J,"MSG",CNT)="Copays successfully cancelled by IB Means Test nightly job:"
+ .S CNT=CNT+1,^TMP("IBAMTC3",$J,"MSG",CNT)=""
+ .S CNT=CNT+1,^TMP("IBAMTC3",$J,"MSG",CNT)="IB Reference No.   Bill Number"
+ .S CNT=CNT+1,^TMP("IBAMTC3",$J,"MSG",CNT)="-------------------------------------------------------------------------------"
+ .S IBREF="" F  S IBREF=$O(^TMP("IBAMTC3",$J,1,IBREF)) Q:IBREF=""  D
+ ..S CNT=CNT+1,^TMP("IBAMTC3",$J,"MSG",CNT)=$$LJ^XLFSTR(IBREF,"19T")_^TMP("IBAMTC3",$J,1,IBREF)
+ ..Q
+ .Q
+ ; cancellation errors
+ I $D(^TMP("IBAMTC3",$J,0)) D
+ .I $D(^TMP("IBAMTC3",$J,1)) S CNT=CNT+1,^TMP("IBAMTC3",$J,"MSG",CNT)=""  ; blank line between sections
+ .S CNT=CNT+1,^TMP("IBAMTC3",$J,"MSG",CNT)="Copays not cancelled due to errors (follow up is required):"
+ .S CNT=CNT+1,^TMP("IBAMTC3",$J,"MSG",CNT)=""
+ .S CNT=CNT+1,^TMP("IBAMTC3",$J,"MSG",CNT)="IB Reference No.   Bill Number    Error message"
+ .S CNT=CNT+1,^TMP("IBAMTC3",$J,"MSG",CNT)="-------------------------------------------------------------------------------"
+ .S IBREF="" F  S IBREF=$O(^TMP("IBAMTC3",$J,0,IBREF)) Q:IBREF=""  D
+ ..S Z=^TMP("IBAMTC3",$J,0,IBREF)
+ ..S CNT=CNT+1,^TMP("IBAMTC3",$J,"MSG",CNT)=$$LJ^XLFSTR(IBREF,"19T")_$$LJ^XLFSTR($P(Z,U),"15T")_$E($P(Z,U,2),1,40)
+ ..Q
+ .Q
+ S XMSUB="COPAY CANCELLATION REPORT (COVID RELIEF)",XMDUZ="INTEGRATED BILLING PACKAGE"
+ S XMY("G.IB MEANS TEST")="",XMTEXT="^TMP(""IBAMTC3"","_$J_",""MSG"","
+ D ^XMD
+ Q

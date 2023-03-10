@@ -1,132 +1,120 @@
-IBDEI101 ; ; 04-FEB-2020
- ;;3.0;IB ENCOUNTER FORM IMP/EXP;;FEB 04, 2020
+IBDEI101 ; ; 01-FEB-2022
+ ;;3.0;IB ENCOUNTER FORM IMP/EXP;;FEB 01, 2022
  Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,999) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
- ;;^UTILITY(U,$J,358.3,16065,2)
- ;;=^5006864
- ;;^UTILITY(U,$J,358.3,16066,0)
- ;;=H93.13^^88^870^41
- ;;^UTILITY(U,$J,358.3,16066,1,0)
+ ;;^UTILITY(U,$J,358.3,16253,1,4,0)
+ ;;=4^K51.90
+ ;;^UTILITY(U,$J,358.3,16253,2)
+ ;;=^5008694
+ ;;^UTILITY(U,$J,358.3,16254,0)
+ ;;=K51.919^^61^771^90
+ ;;^UTILITY(U,$J,358.3,16254,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,16066,1,3,0)
- ;;=3^Tinnitus,Bilateral
- ;;^UTILITY(U,$J,358.3,16066,1,4,0)
- ;;=4^H93.13
- ;;^UTILITY(U,$J,358.3,16066,2)
- ;;=^5006966
- ;;^UTILITY(U,$J,358.3,16067,0)
- ;;=H93.12^^88^870^42
- ;;^UTILITY(U,$J,358.3,16067,1,0)
+ ;;^UTILITY(U,$J,358.3,16254,1,3,0)
+ ;;=3^Ulcerative Colitis w/ Unspec Complications,Unspec
+ ;;^UTILITY(U,$J,358.3,16254,1,4,0)
+ ;;=4^K51.919
+ ;;^UTILITY(U,$J,358.3,16254,2)
+ ;;=^5008700
+ ;;^UTILITY(U,$J,358.3,16255,0)
+ ;;=K51.918^^61^771^88
+ ;;^UTILITY(U,$J,358.3,16255,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,16067,1,3,0)
- ;;=3^Tinnitus,Left Ear
- ;;^UTILITY(U,$J,358.3,16067,1,4,0)
- ;;=4^H93.12
- ;;^UTILITY(U,$J,358.3,16067,2)
- ;;=^5006965
- ;;^UTILITY(U,$J,358.3,16068,0)
- ;;=H93.11^^88^870^43
- ;;^UTILITY(U,$J,358.3,16068,1,0)
+ ;;^UTILITY(U,$J,358.3,16255,1,3,0)
+ ;;=3^Ulcerative Colitis w/ Oth Complication,Unspec
+ ;;^UTILITY(U,$J,358.3,16255,1,4,0)
+ ;;=4^K51.918
+ ;;^UTILITY(U,$J,358.3,16255,2)
+ ;;=^5008699
+ ;;^UTILITY(U,$J,358.3,16256,0)
+ ;;=K51.914^^61^771^85
+ ;;^UTILITY(U,$J,358.3,16256,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,16068,1,3,0)
- ;;=3^Tinnitus,Right Ear
- ;;^UTILITY(U,$J,358.3,16068,1,4,0)
- ;;=4^H93.11
- ;;^UTILITY(U,$J,358.3,16068,2)
- ;;=^5006964
- ;;^UTILITY(U,$J,358.3,16069,0)
- ;;=H92.01^^88^870^33
- ;;^UTILITY(U,$J,358.3,16069,1,0)
+ ;;^UTILITY(U,$J,358.3,16256,1,3,0)
+ ;;=3^Ulcerative Colitis w/ Abscess,Unspec
+ ;;^UTILITY(U,$J,358.3,16256,1,4,0)
+ ;;=4^K51.914
+ ;;^UTILITY(U,$J,358.3,16256,2)
+ ;;=^5008698
+ ;;^UTILITY(U,$J,358.3,16257,0)
+ ;;=K51.913^^61^771^86
+ ;;^UTILITY(U,$J,358.3,16257,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,16069,1,3,0)
- ;;=3^Otalgia,Right Ear
- ;;^UTILITY(U,$J,358.3,16069,1,4,0)
- ;;=4^H92.01
- ;;^UTILITY(U,$J,358.3,16069,2)
- ;;=^5006945
- ;;^UTILITY(U,$J,358.3,16070,0)
- ;;=H92.02^^88^870^32
- ;;^UTILITY(U,$J,358.3,16070,1,0)
+ ;;^UTILITY(U,$J,358.3,16257,1,3,0)
+ ;;=3^Ulcerative Colitis w/ Fistula,Unspec
+ ;;^UTILITY(U,$J,358.3,16257,1,4,0)
+ ;;=4^K51.913
+ ;;^UTILITY(U,$J,358.3,16257,2)
+ ;;=^5008697
+ ;;^UTILITY(U,$J,358.3,16258,0)
+ ;;=K51.912^^61^771^87
+ ;;^UTILITY(U,$J,358.3,16258,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,16070,1,3,0)
- ;;=3^Otalgia,Left Ear
- ;;^UTILITY(U,$J,358.3,16070,1,4,0)
- ;;=4^H92.02
- ;;^UTILITY(U,$J,358.3,16070,2)
- ;;=^5006946
- ;;^UTILITY(U,$J,358.3,16071,0)
- ;;=H92.03^^88^870^31
- ;;^UTILITY(U,$J,358.3,16071,1,0)
+ ;;^UTILITY(U,$J,358.3,16258,1,3,0)
+ ;;=3^Ulcerative Colitis w/ Intestinal Obstruction,Unspec
+ ;;^UTILITY(U,$J,358.3,16258,1,4,0)
+ ;;=4^K51.912
+ ;;^UTILITY(U,$J,358.3,16258,2)
+ ;;=^5008696
+ ;;^UTILITY(U,$J,358.3,16259,0)
+ ;;=K51.911^^61^771^89
+ ;;^UTILITY(U,$J,358.3,16259,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,16071,1,3,0)
- ;;=3^Otalgia,Bilateral
- ;;^UTILITY(U,$J,358.3,16071,1,4,0)
- ;;=4^H92.03
- ;;^UTILITY(U,$J,358.3,16071,2)
- ;;=^5006947
- ;;^UTILITY(U,$J,358.3,16072,0)
- ;;=H91.92^^88^870^22
- ;;^UTILITY(U,$J,358.3,16072,1,0)
+ ;;^UTILITY(U,$J,358.3,16259,1,3,0)
+ ;;=3^Ulcerative Colitis w/ Rectal Bleeding,Unspec
+ ;;^UTILITY(U,$J,358.3,16259,1,4,0)
+ ;;=4^K51.911
+ ;;^UTILITY(U,$J,358.3,16259,2)
+ ;;=^5008695
+ ;;^UTILITY(U,$J,358.3,16260,0)
+ ;;=K52.89^^61^771^62
+ ;;^UTILITY(U,$J,358.3,16260,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,16072,1,3,0)
- ;;=3^Hearing Loss,Unspec,Left Ear
- ;;^UTILITY(U,$J,358.3,16072,1,4,0)
- ;;=4^H91.92
- ;;^UTILITY(U,$J,358.3,16072,2)
- ;;=^5133554
- ;;^UTILITY(U,$J,358.3,16073,0)
- ;;=H91.93^^88^870^21
- ;;^UTILITY(U,$J,358.3,16073,1,0)
+ ;;^UTILITY(U,$J,358.3,16260,1,3,0)
+ ;;=3^Gastroenteritis & Colitis,Oth Spec Noninfective
+ ;;^UTILITY(U,$J,358.3,16260,1,4,0)
+ ;;=4^K52.89
+ ;;^UTILITY(U,$J,358.3,16260,2)
+ ;;=^5008703
+ ;;^UTILITY(U,$J,358.3,16261,0)
+ ;;=K52.9^^61^771^61
+ ;;^UTILITY(U,$J,358.3,16261,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,16073,1,3,0)
- ;;=3^Hearing Loss,Unspec,Bilateral
- ;;^UTILITY(U,$J,358.3,16073,1,4,0)
- ;;=4^H91.93
- ;;^UTILITY(U,$J,358.3,16073,2)
- ;;=^5006944
- ;;^UTILITY(U,$J,358.3,16074,0)
- ;;=H91.91^^88^870^23
- ;;^UTILITY(U,$J,358.3,16074,1,0)
+ ;;^UTILITY(U,$J,358.3,16261,1,3,0)
+ ;;=3^Gastroenteritis & Colitis,Noninfective Unspec
+ ;;^UTILITY(U,$J,358.3,16261,1,4,0)
+ ;;=4^K52.9
+ ;;^UTILITY(U,$J,358.3,16261,2)
+ ;;=^5008704
+ ;;^UTILITY(U,$J,358.3,16262,0)
+ ;;=K57.30^^61^771^47
+ ;;^UTILITY(U,$J,358.3,16262,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,16074,1,3,0)
- ;;=3^Hearing Loss,Unspec,Right Ear
- ;;^UTILITY(U,$J,358.3,16074,1,4,0)
- ;;=4^H91.91
- ;;^UTILITY(U,$J,358.3,16074,2)
- ;;=^5133553
- ;;^UTILITY(U,$J,358.3,16075,0)
- ;;=H65.02^^88^870^4
- ;;^UTILITY(U,$J,358.3,16075,1,0)
+ ;;^UTILITY(U,$J,358.3,16262,1,3,0)
+ ;;=3^Diverticulosis of Lg Intestine w/o Perforation/Abscess w/o Bleeding
+ ;;^UTILITY(U,$J,358.3,16262,1,4,0)
+ ;;=4^K57.30
+ ;;^UTILITY(U,$J,358.3,16262,2)
+ ;;=^5008723
+ ;;^UTILITY(U,$J,358.3,16263,0)
+ ;;=K57.50^^61^771^48
+ ;;^UTILITY(U,$J,358.3,16263,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,16075,1,3,0)
- ;;=3^Acute Serous Otitis Media,Left Ear
- ;;^UTILITY(U,$J,358.3,16075,1,4,0)
- ;;=4^H65.02
- ;;^UTILITY(U,$J,358.3,16075,2)
- ;;=^5006571
- ;;^UTILITY(U,$J,358.3,16076,0)
- ;;=H60.312^^88^870^19
- ;;^UTILITY(U,$J,358.3,16076,1,0)
+ ;;^UTILITY(U,$J,358.3,16263,1,3,0)
+ ;;=3^Diverticulosis of Sm & Lg Intestine w/o Performation/Abscess w/o Bleeding
+ ;;^UTILITY(U,$J,358.3,16263,1,4,0)
+ ;;=4^K57.50
+ ;;^UTILITY(U,$J,358.3,16263,2)
+ ;;=^5008729
+ ;;^UTILITY(U,$J,358.3,16264,0)
+ ;;=K57.90^^61^771^46
+ ;;^UTILITY(U,$J,358.3,16264,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,16076,1,3,0)
- ;;=3^Diffuse Otitis Externa,Left Ear
- ;;^UTILITY(U,$J,358.3,16076,1,4,0)
- ;;=4^H60.312
- ;;^UTILITY(U,$J,358.3,16076,2)
- ;;=^5006448
- ;;^UTILITY(U,$J,358.3,16077,0)
- ;;=H60.311^^88^870^20
- ;;^UTILITY(U,$J,358.3,16077,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,16077,1,3,0)
- ;;=3^Diffuse Otitis Externa,Right Ear
- ;;^UTILITY(U,$J,358.3,16077,1,4,0)
- ;;=4^H60.311
- ;;^UTILITY(U,$J,358.3,16077,2)
- ;;=^5006447
- ;;^UTILITY(U,$J,358.3,16078,0)
- ;;=H55.09^^88^870^30
- ;;^UTILITY(U,$J,358.3,16078,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,16078,1,3,0)
- ;;=3^Nystagmus NEC
+ ;;^UTILITY(U,$J,358.3,16264,1,3,0)
+ ;;=3^Diverticulosis of Intestine,Unspec w/o Performation/Abscess w/o Bleeding
+ ;;^UTILITY(U,$J,358.3,16264,1,4,0)
+ ;;=4^K57.90
+ ;;^UTILITY(U,$J,358.3,16264,2)
+ ;;=^5008735
+ ;;^UTILITY(U,$J,358.3,16265,0)
+ ;;=K57.20^^61^771^42

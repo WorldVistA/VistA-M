@@ -1,0 +1,148 @@
+IBY732PO ;AITC/DTG - Post-Installation for IB patch 732; MAR 30, 2022
+ ;;2.0;INTEGRATED BILLING;**732**;MAR 21,1994;Build 13
+ ;;Per VA Directive 6402, this routine should not be modified.
+ ;
+ ; Reference to $$INSTALDT^XPDUTL in ICR #10141
+ ; Reference to %ZTLOAD in ICR #10063
+ ; Reference to $$FMADD^XLFDT in ICR #10103
+ Q
+ ;
+POST ; POST-INSTALL
+ N IBINSTLD,IBXPD,SITE,SITENAME,SITENUM,XPDIDTOT
+ S IBPOSITION="!?((IOM/2)-($L(A)/2))"  ;IB718
+ ; total number of work items
+ S XPDIDTOT=3
+ ;
+ S SITE=$$SITE^VASITE,SITENAME=$P(SITE,U,2),SITENUM=$P(SITE,U,3)
+ ;
+ S IBINSTLD=$$INSTALDT^XPDUTL("IB*2.0*732","")
+ D MES^XPDUTL("")
+ ;
+ D PLAN(1)  ; added VISION to PLAN LIMITATION CATEGORY file (#355.31)
+ ;
+ D WRK(2)  ; fix from 718
+ ;
+ D SITEREG(3,SITENUM) ; Send site registration message to FSC ;
+ ;
+ D MES^XPDUTL("")      ; Displays the 'Done' message and finishes the progress bar
+ D MES^XPDUTL("POST-Install for IB*2.0*732 Completed.")
+ Q
+ ;============================
+ ;
+ ;
+PLAN(IBXPD) ; add Vision to Plan Coverage Limitations
+ S IBXPD=$G(IBXPD),XPDIDTOT=$G(XPDIDTOT)
+ D BMES^XPDUTL(" STEP "_IBXPD_" of "_XPDIDTOT)
+ D MES^XPDUTL("-------------")
+ ;
+ N DA,DD,DIC,DIE,DLAYGO,DO,DR,X,Y
+ N IBA,IBDA,IBFILE,IBFND,IBNAME
+ ;
+ S IBNAME="VISION",IBFILE="PLAN LIMITATION CATEGORY (#355.31)"
+ D MES^XPDUTL("Adding "_IBNAME_" to the "_IBFILE)
+ ;
+ S IBFND=0
+ I $O(^IBE(355.31,"B",IBNAME,0)) S IBFND=1
+ I $G(IBFND)=1 D MES^XPDUTL("*** "_IBNAME_" not added to "_IBFILE_"  ALREADY EXISTS ***") G PLANQ
+ ;
+ S DLAYGO=355.31,DIC="^IBE(355.31,",DIC(0)="L",X=IBNAME
+ D FILE^DICN K DIC
+ S IBDA=+Y I Y<1 K X,Y D  G PLANQ
+ . D MES^XPDUTL("*** "_IBNAME_" not added to "_IBFILE_" NOT able to create entry ***")
+ ;
+ S DIE="^IBE(355.31,",DA=+IBDA,DR=".02///Vision coverage"
+ D ^DIE
+ ;
+ D MES^XPDUTL("Vision Plan was added.....")
+ ;
+PLANQ ; plan add exit
+ ;
+ K DIE,DA,DR,X,Y
+ Q
+ ;
+WRK(IBXPD) ; FROM 718
+ ;
+ S IBXPD=$G(IBXPD),XPDIDTOT=$G(XPDIDTOT)
+ D BMES^XPDUTL(" STEP "_IBXPD_" of "_XPDIDTOT)
+ D MES^XPDUTL("-------------")
+ ;
+ N IBIEN,IBGLBROOT,IBFILENUM,IBFDA,LOCALIEN,LOCALIENS
+ N IBFLAGS,IBFIELD,IBWPROOT,IBWPERROR,IBNAME01,IBCODE
+ ;
+ ;XPDGREF = ^XTMP("XPDI",INSTALL_IEN,"TEMP")
+ ;XPDNM   = "ZZ*1.0*732"
+ ;
+ S IBFILENUM=$QS($Q(@XPDGREF),5)
+ S IBIEN=0
+ F  S IBIEN=$O(@XPDGREF@(XPDNM,IBFILENUM,IBIEN)) Q:'IBIEN  D
+ .S IBNAME01=$P($G(@XPDGREF@(XPDNM,IBFILENUM,IBIEN,0)),U)  ;NAME
+ .S IBCODE=$P($G(@XPDGREF@(XPDNM,IBFILENUM,IBIEN,0)),U,2)  ;CODE
+ .;
+ .S LOCALIEN=$$FINDLOCALIEN(IBNAME01,IBFILENUM,IBCODE)  ;FIND THE LOCAL ENTRY IEN WE NEED TO MODIFY
+ .Q:'LOCALIEN  ;IF NO DISTINCT IEN FOUND DO NOT TRY AND MODIFY
+ .;
+ .S LOCALIENS=LOCALIEN_","
+ .;JUST UPDATING THE HELP PROMPT
+ .;WORD PROCESSING FIELD MUST BE DONE BY WP^DIE
+ .S IBFIELD=1
+ .S IBFLAGS=""
+ .K IBWPROOT
+ .M IBWPROOT=@XPDGREF@(XPDNM,IBFILENUM,IBIEN,1)
+ .K IBWPROOT(0)
+ .S IBWPROOT="IBWPROOT"
+ .;
+ .D WP^DIE(IBFILENUM,LOCALIENS,IBFIELD,IBFLAGS,"IBWPROOT","IBWPERROR")        ;^DGCR(399.1,D0,1,D1,0)= (#.01) VALUE CODE HELP TEXT [1W]
+ .;
+ .I $D(IBWPERROR) D
+ ..D BMES^XPDUTL("Problem modifying Word Processing routine for "_NAME01_" in file "_IBFILENUM)
+ .;
+ ;
+ D BMES^XPDUTL("Finished modifying Entries to "_$G(IBFILENUM)_" File")
+ ;
+FINDLOCALIEN(NAME01,FILENUM,IBCODE)  ;FIND THE LOCAL IEN  WE NEED TO MODIFY
+ N RETURN,ERROR,INDEX,LOCALIEN,MATCHIEN
+ S INDEX="M"
+ D FIND^DIC(FILENUM,"","","",NAME01,INDEX,,,,"RETURN","ERROR")
+ ;
+ I $D(ERROR) D  Q 0
+ .D BMES^XPDUTL("*** Error when searching for  "_NAME01_" in file "_FILENUM_"***")
+ ;
+ I '$D(RETURN) D  Q 0
+ .D BMES^XPDUTL("*** Entry  "_NAME01_" in file "_FILENUM_"not found ***")
+ ;
+ I $P($G(RETURN("DILIST",0)),U)>1 D
+ .D BMES^XPDUTL("*** Duplicate entries found for  "_NAME01_" in file "_FILENUM_"***")
+ .D BMES^XPDUTL("*** Using CODE '"_$G(IBCODE)_"' to determine correct record to update.***")
+ .;CHECK FIELD #.18 VALUE CODE 0^NODE P^11
+ .S MATCHIEN=$$MATCHCODE(.RETURN,IBCODE)
+ .S LOCALIEN=$P($G(RETURN("DILIST",2,MATCHIEN)),U)
+ ;
+ ;AT THIS POINT WE HAVE FOUND ONE ENTRY AND WE CAN MODIFY IT
+ S:$G(LOCALIEN)="" LOCALIEN=$P($G(RETURN("DILIST",2,1)),U)
+ Q LOCALIEN
+ ;
+MATCHCODE(RETURN,IBCODE) ;EP - RETURN LOCAL IEN MATCHING NAME AND CODE OF INCOMING VALUE CODE ENTRY
+ N IEN,MATCH
+ S MATCH=0
+ S IEN=0
+ F  S IEN=$O(RETURN("DILIST","ID",IEN)) Q:'IEN  D  Q:$G(MATCH)
+ .I IBCODE=RETURN("DILIST","ID",IEN,.02) S MATCH=IEN
+ ;
+ I 'MATCH D
+ .D BMES^XPDUTL("No distinct match for Value Code "_$G(IBCODE)_" when duplicate records found!")
+ Q MATCH
+ ;
+ ;
+SITEREG(IBXPD,SITENUM) ; send site registration message to FSC
+ D BMES^XPDUTL(" STEP "_IBXPD_" of "_XPDIDTOT)
+ D MES^XPDUTL("-------------")
+ D MES^XPDUTL("Send eIV site registration message to FSC ... ")
+ ;
+ I '$$PROD^XUPROD(1) D MES^XPDUTL("N/A - Not a production account - No site registration message sent") G SITEREGQ
+ I SITENUM=358 D MES^XPDUTL("Current Site is MANILA - NO eIV site registration message sent") G SITEREGQ
+ D ^IBCNEHLM
+ D MES^XPDUTL("eIV site registration message was successfully sent")
+ ;
+SITEREGQ ;
+ Q
+ ;

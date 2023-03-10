@@ -1,5 +1,5 @@
 PRCAWREA ;WASH-ISC@ALTOONA,PA/TJK-RE-ESTABLISH BILL ;7/24/96  2:35 PM
-V ;;4.5;Accounts Receivable;**16,49,153,315**;Mar 20, 1995;Build 67
+V ;;4.5;Accounts Receivable;**16,49,153,315,377,371**;Mar 20, 1995;Build 29
  ;;Per VA Directive 6402, this routine should not be modified.
  ;;Select bill to make active, cancellation, suspended, coll/clos or write-off
  N DA,DIC,DIE,I,PRCABN,PRCATAMT,PRCAEN,PRCA,PRCAWO,PRCAPB,PRCATYPE,PRCATY,X,Y,FMSNUM,FMSAMT,PRCASTAT
@@ -26,6 +26,10 @@ APJ ; Entry point from the ENAP entry point (below) for the Account Profile scre
  S PRCA("SDT")=DT,PRCA("STATUS")=$O(^PRCA(430.3,"AC",102,0)) D UPSTATS^PRCAUT2
  S $P(^PRCA(433,PRCAEN,4,$O(^PRCA(433,PRCAEN,4,0)),0),U,5)=PRCATAMT
  S $P(^PRCA(433,PRCAEN,0),U,4)=2 L -^PRCA(430,PRCABN)
+ ;
+ ;PRCA*4.5*377 - update Repayment Plan with re-establishment of the bill
+ D UPDBAL^RCRPU1(PRCABN,PRCAEN)
+ ;
  W !!,*7,?5,$P(^PRCA(430,PRCABN,0),U,1)," is in the ",$P(^PRCA(430.3,$P(^PRCA(430,PRCABN,0),U,8),0),U,1)," status for $",$P(^PRCA(433,PRCAEN,1),U,5)
  I $P(^PRCA(430,PRCABN,0),U,8)=$O(^PRCA(430.3,"AC",102,"")) D PREPAY^RCBEPAYP(PRCABN)
  I FMSAMT>0,PRCASTAT'=40,'$$ACCK^PRCAACC(PRCABN) D
@@ -40,7 +44,13 @@ AMT ;
 AMTE R !!,"Enter Re-Establish Amount: ",Y:DTIME I '$T!(Y["^") S Y=0 G AMTQ
  I Y="" W !,*7,"The amount is required.  Enter ""^"" to exit!",!
  I Y["?"!(Y'?.N.1".".2N)!(Y>999999.99)!(Y<.01) D AMTH G AMTE
-AMTQ S PRCATAMT=+Y I Y>0 S PRCAPB=PRCATAMT_"^^^^^",$P(^PRCA(430,PRCABN,7),U,1)=Y,$P(^PRCA(430,PRCABN,2,$O(^PRCA(430,PRCABN,2,0)),0),U,2)=PRCATAMT
+ ; PRCA*4.5*371 - Replace direct global sets in 7 node with FileMan calls so indexes get updated
+AMTQ S PRCATAMT=+Y
+ I Y>0 D
+ . N PRCFDA
+ . S PRCAPB=PRCATAMT_"^^^^^",PRCFDA(430,PRCABN_",",71)=Y
+ . S $P(^PRCA(430,PRCABN,2,$O(^PRCA(430,PRCABN,2,0)),0),U,2)=PRCATAMT
+ . D FILE^DIE(,"PRCFDA")
  Q
 AMTH W !,"Enter in an amount from .01 to 999999.99, 2 decimal digits"
  W !!,"The bill must have an amount inorder to be re-established."

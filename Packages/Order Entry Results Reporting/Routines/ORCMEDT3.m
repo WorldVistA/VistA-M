@@ -1,5 +1,6 @@
-ORCMEDT3 ;SLC/MKB-Dialog editor ;6/28/01  14:21
- ;;3.0;ORDER ENTRY/RESULTS REPORTING;**8,46,60,95**;Dec 17, 1997
+ORCMEDT3 ;SLC/MKB-Dialog editor ;Apr 21, 2021@13:21
+ ;;3.0;ORDER ENTRY/RESULTS REPORTING;**8,46,60,95,556,567**;Dec 17, 1997;Build 1
+ ;
 EN ; -- Enter/edit generic ordering dialog
  N ORDLG,ORDG
  F  S ORDLG=$$DIALOG^ORCMEDT0("D") Q:ORDLG="^"  D EN1(ORDLG) W !
@@ -32,6 +33,15 @@ EN11 S ORQUIT=0 F  D  Q:ORQUIT  W ! ; ** Only few fields editable if pkg dlg
  Q
  ;
 PROMPT(X) ; -- Enter/edit prompt
+ ;OR*3.0*556 - check for same ID on multiple prompts
+ N ORXPR,ORXSUB,ORXID,ORXIDAR
+ S ORXPR=0
+ F  S ORXPR=$O(^ORD(101.41,ORDLG,10,ORXPR)) Q:'ORXPR  D
+ . S ORXSUB=$P($G(^ORD(101.41,ORDLG,10,ORXPR,0)),"^",2)
+ . Q:ORXSUB=""
+ . S ORXID=$P($G(^ORD(101.41,ORXSUB,1)),"^",3)
+ . I ORXID]"" S ORXIDAR(ORXID)=$P(^ORD(101.41,ORDLG,10,ORXPR,0),"^")_" ("_$P(^ORD(101.41,ORXSUB,0),"^")_")"
+ ;end OR*3.0*556
  N Y,DIC,OLD S OLD=+$G(X)
  S DIC="^ORD(101.41,",DIC(0)="AEQM",DIC("S")="I $P(^(0),U,4)=""P"""
  S DIC("A")="PROMPT: " S:OLD DIC("B")=$P(^ORD(101.41,X,0),U)
@@ -39,6 +49,22 @@ PROMPT(X) ; -- Enter/edit prompt
 P1 D ^DIC I $D(DTOUT)!$D(DUOUT) S Y="^" G PQ
  I Y'>0 W $C(7),!?5,"This is a required field!" G P1
  I +Y'=OLD,$D(^ORD(101.41,ORDLG,10,"D",+Y)) W $C(7),!?5,"Duplicates are not allowed!" G P1
+ ;OR*3.0*556 begin
+ S ORXID=$P($G(^ORD(101.41,+Y,1)),"^",3)
+ ;OR*3.0*567: added the check for variable "OLD" so that
+ ;            existing prompts may be edited.
+ I 'OLD,ORXID]"",$D(ORXIDAR(ORXID)) D  G P1
+ . W $C(7),!!,?5,"Sequence ",ORXIDAR(ORXID)," is also"
+ . W !,?5,"defined with an ID of ",ORXID,"."
+ . W !!,?5,"Select another prompt or define a new prompt"
+ . W !,?5,"with a different ID."
+ . W !!,?5,"WARNING: Do not change the ID field on an existing"
+ . W !,?5,"         prompt so as to not affect order dialogs"
+ . W !,?5,"         already using the existing prompt."
+ . W !,?5,"         (The ID field can only be edited in the option"
+ . W !,?5,"         ""Enter/edit prompts"" - not this option.)"
+ I ORXID]"" S ORXIDAR(ORXID)=OR0_" ("_$P(^ORD(101.41,+Y,0),"^")_")"
+ ;end OR*3.0*556
  S Y=+Y
 PQ Q Y
  ;

@@ -1,128 +1,122 @@
-IBDEI0XC ; ; 04-FEB-2020
- ;;3.0;IB ENCOUNTER FORM IMP/EXP;;FEB 04, 2020
+IBDEI0XC ; ; 01-FEB-2022
+ ;;3.0;IB ENCOUNTER FORM IMP/EXP;;FEB 01, 2022
  Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,999) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
- ;;^UTILITY(U,$J,358.3,14847,0)
- ;;=K70.10^^85^836^11
- ;;^UTILITY(U,$J,358.3,14847,1,0)
+ ;;^UTILITY(U,$J,358.3,15022,2)
+ ;;=^5013243
+ ;;^UTILITY(U,$J,358.3,15023,0)
+ ;;=M75.101^^58^714^63
+ ;;^UTILITY(U,$J,358.3,15023,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,14847,1,3,0)
- ;;=3^Alcoholic hepatitis (Acute) w/o Ascites
- ;;^UTILITY(U,$J,358.3,14847,1,4,0)
- ;;=4^K70.10
- ;;^UTILITY(U,$J,358.3,14847,2)
- ;;=^5008785
- ;;^UTILITY(U,$J,358.3,14848,0)
- ;;=K70.11^^85^836^10
- ;;^UTILITY(U,$J,358.3,14848,1,0)
+ ;;^UTILITY(U,$J,358.3,15023,1,3,0)
+ ;;=3^Rotator-Cuff Tear/Rupture,Rt Shoulder,Unspec
+ ;;^UTILITY(U,$J,358.3,15023,1,4,0)
+ ;;=4^M75.101
+ ;;^UTILITY(U,$J,358.3,15023,2)
+ ;;=^5013242
+ ;;^UTILITY(U,$J,358.3,15024,0)
+ ;;=M67.02^^58^714^65
+ ;;^UTILITY(U,$J,358.3,15024,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,14848,1,3,0)
- ;;=3^Alcoholic hepatitis (Acute) w/ Ascites
- ;;^UTILITY(U,$J,358.3,14848,1,4,0)
- ;;=4^K70.11
- ;;^UTILITY(U,$J,358.3,14848,2)
- ;;=^5008786
- ;;^UTILITY(U,$J,358.3,14849,0)
- ;;=K70.30^^85^836^7
- ;;^UTILITY(U,$J,358.3,14849,1,0)
+ ;;^UTILITY(U,$J,358.3,15024,1,3,0)
+ ;;=3^Short Achilles Tendon,Lt Ankle
+ ;;^UTILITY(U,$J,358.3,15024,1,4,0)
+ ;;=4^M67.02
+ ;;^UTILITY(U,$J,358.3,15024,2)
+ ;;=^5012907
+ ;;^UTILITY(U,$J,358.3,15025,0)
+ ;;=M66.232^^58^714^67
+ ;;^UTILITY(U,$J,358.3,15025,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,14849,1,3,0)
- ;;=3^Alcoholic cirrhosis w/o Ascites
- ;;^UTILITY(U,$J,358.3,14849,1,4,0)
- ;;=4^K70.30
- ;;^UTILITY(U,$J,358.3,14849,2)
- ;;=^5008788
- ;;^UTILITY(U,$J,358.3,14850,0)
- ;;=K70.31^^85^836^6
- ;;^UTILITY(U,$J,358.3,14850,1,0)
+ ;;^UTILITY(U,$J,358.3,15025,1,3,0)
+ ;;=3^Spontaneous Rupture Extensor Tendons,Lt Forearm
+ ;;^UTILITY(U,$J,358.3,15025,1,4,0)
+ ;;=4^M66.232
+ ;;^UTILITY(U,$J,358.3,15025,2)
+ ;;=^5012855
+ ;;^UTILITY(U,$J,358.3,15026,0)
+ ;;=M66.242^^58^714^68
+ ;;^UTILITY(U,$J,358.3,15026,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,14850,1,3,0)
- ;;=3^Alcoholic cirrhosis w/ Ascites
- ;;^UTILITY(U,$J,358.3,14850,1,4,0)
- ;;=4^K70.31
- ;;^UTILITY(U,$J,358.3,14850,2)
- ;;=^5008789
- ;;^UTILITY(U,$J,358.3,14851,0)
- ;;=K70.9^^85^836^12
- ;;^UTILITY(U,$J,358.3,14851,1,0)
+ ;;^UTILITY(U,$J,358.3,15026,1,3,0)
+ ;;=3^Spontaneous Rupture Extensor Tendons,Lt Hand
+ ;;^UTILITY(U,$J,358.3,15026,1,4,0)
+ ;;=4^M66.242
+ ;;^UTILITY(U,$J,358.3,15026,2)
+ ;;=^5012858
+ ;;^UTILITY(U,$J,358.3,15027,0)
+ ;;=M66.231^^58^714^69
+ ;;^UTILITY(U,$J,358.3,15027,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,14851,1,3,0)
- ;;=3^Alcoholic liver disease,unspecified
- ;;^UTILITY(U,$J,358.3,14851,1,4,0)
- ;;=4^K70.9
- ;;^UTILITY(U,$J,358.3,14851,2)
- ;;=^5008792
- ;;^UTILITY(U,$J,358.3,14852,0)
- ;;=C22.7^^85^836^72
- ;;^UTILITY(U,$J,358.3,14852,1,0)
+ ;;^UTILITY(U,$J,358.3,15027,1,3,0)
+ ;;=3^Spontaneous Rupture Extensor Tendons,Rt Forearm
+ ;;^UTILITY(U,$J,358.3,15027,1,4,0)
+ ;;=4^M66.231
+ ;;^UTILITY(U,$J,358.3,15027,2)
+ ;;=^5012854
+ ;;^UTILITY(U,$J,358.3,15028,0)
+ ;;=M66.241^^58^714^70
+ ;;^UTILITY(U,$J,358.3,15028,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,14852,1,3,0)
- ;;=3^Malignant Neop Liver,Primary,Non-HCC
- ;;^UTILITY(U,$J,358.3,14852,1,4,0)
- ;;=4^C22.7
- ;;^UTILITY(U,$J,358.3,14852,2)
- ;;=^5000938
- ;;^UTILITY(U,$J,358.3,14853,0)
- ;;=C78.7^^85^836^74
- ;;^UTILITY(U,$J,358.3,14853,1,0)
+ ;;^UTILITY(U,$J,358.3,15028,1,3,0)
+ ;;=3^Spontaneous Rupture Extensor Tendons,Rt Hand
+ ;;^UTILITY(U,$J,358.3,15028,1,4,0)
+ ;;=4^M66.241
+ ;;^UTILITY(U,$J,358.3,15028,2)
+ ;;=^5012857
+ ;;^UTILITY(U,$J,358.3,15029,0)
+ ;;=M66.331^^58^714^73
+ ;;^UTILITY(U,$J,358.3,15029,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,14853,1,3,0)
- ;;=3^Malignant Neop Liver,Secondary (Metastases)
- ;;^UTILITY(U,$J,358.3,14853,1,4,0)
- ;;=4^C78.7
- ;;^UTILITY(U,$J,358.3,14853,2)
- ;;=^5001339
- ;;^UTILITY(U,$J,358.3,14854,0)
- ;;=B17.11^^85^836^53
- ;;^UTILITY(U,$J,358.3,14854,1,0)
+ ;;^UTILITY(U,$J,358.3,15029,1,3,0)
+ ;;=3^Spontaneous Rupture Flexor Tendons,Rt Forearm
+ ;;^UTILITY(U,$J,358.3,15029,1,4,0)
+ ;;=4^M66.331
+ ;;^UTILITY(U,$J,358.3,15029,2)
+ ;;=^5012878
+ ;;^UTILITY(U,$J,358.3,15030,0)
+ ;;=M66.332^^58^714^71
+ ;;^UTILITY(U,$J,358.3,15030,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,14854,1,3,0)
- ;;=3^Hepatitis C,Acute w/ Coma
- ;;^UTILITY(U,$J,358.3,14854,1,4,0)
- ;;=4^B17.11
- ;;^UTILITY(U,$J,358.3,14854,2)
- ;;=^331777
- ;;^UTILITY(U,$J,358.3,14855,0)
- ;;=B17.10^^85^836^54
- ;;^UTILITY(U,$J,358.3,14855,1,0)
+ ;;^UTILITY(U,$J,358.3,15030,1,3,0)
+ ;;=3^Spontaneous Rupture Flexor Tendons,Lt Forearm
+ ;;^UTILITY(U,$J,358.3,15030,1,4,0)
+ ;;=4^M66.332
+ ;;^UTILITY(U,$J,358.3,15030,2)
+ ;;=^5012879
+ ;;^UTILITY(U,$J,358.3,15031,0)
+ ;;=M66.342^^58^714^72
+ ;;^UTILITY(U,$J,358.3,15031,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,14855,1,3,0)
- ;;=3^Hepatitis C,Acute w/o Coma
- ;;^UTILITY(U,$J,358.3,14855,1,4,0)
- ;;=4^B17.10
- ;;^UTILITY(U,$J,358.3,14855,2)
- ;;=^5000542
- ;;^UTILITY(U,$J,358.3,14856,0)
- ;;=K74.0^^85^836^42
- ;;^UTILITY(U,$J,358.3,14856,1,0)
+ ;;^UTILITY(U,$J,358.3,15031,1,3,0)
+ ;;=3^Spontaneous Rupture Flexor Tendons,Lt Hand
+ ;;^UTILITY(U,$J,358.3,15031,1,4,0)
+ ;;=4^M66.342
+ ;;^UTILITY(U,$J,358.3,15031,2)
+ ;;=^5012882
+ ;;^UTILITY(U,$J,358.3,15032,0)
+ ;;=M66.341^^58^714^74
+ ;;^UTILITY(U,$J,358.3,15032,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,14856,1,3,0)
- ;;=3^Hepatic fibrosis
- ;;^UTILITY(U,$J,358.3,14856,1,4,0)
- ;;=4^K74.0
- ;;^UTILITY(U,$J,358.3,14856,2)
- ;;=^5008816
- ;;^UTILITY(U,$J,358.3,14857,0)
- ;;=B18.0^^85^836^50
- ;;^UTILITY(U,$J,358.3,14857,1,0)
+ ;;^UTILITY(U,$J,358.3,15032,1,3,0)
+ ;;=3^Spontaneous Rupture Flexor Tendons,Rt Hand
+ ;;^UTILITY(U,$J,358.3,15032,1,4,0)
+ ;;=4^M66.341
+ ;;^UTILITY(U,$J,358.3,15032,2)
+ ;;=^5012881
+ ;;^UTILITY(U,$J,358.3,15033,0)
+ ;;=M21.752^^58^714^85
+ ;;^UTILITY(U,$J,358.3,15033,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,14857,1,3,0)
- ;;=3^Hepatitis B,Chronic w/ Delta
- ;;^UTILITY(U,$J,358.3,14857,1,4,0)
- ;;=4^B18.0
- ;;^UTILITY(U,$J,358.3,14857,2)
- ;;=^5000546
- ;;^UTILITY(U,$J,358.3,14858,0)
- ;;=K75.4^^85^836^16
- ;;^UTILITY(U,$J,358.3,14858,1,0)
+ ;;^UTILITY(U,$J,358.3,15033,1,3,0)
+ ;;=3^Unequal Limb Length,Lt Femur
+ ;;^UTILITY(U,$J,358.3,15033,1,4,0)
+ ;;=4^M21.752
+ ;;^UTILITY(U,$J,358.3,15033,2)
+ ;;=^5011141
+ ;;^UTILITY(U,$J,358.3,15034,0)
+ ;;=M21.762^^58^714^86
+ ;;^UTILITY(U,$J,358.3,15034,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,14858,1,3,0)
- ;;=3^Autoimmune Hepatitis
- ;;^UTILITY(U,$J,358.3,14858,1,4,0)
- ;;=4^K75.4
- ;;^UTILITY(U,$J,358.3,14858,2)
- ;;=^336610
- ;;^UTILITY(U,$J,358.3,14859,0)
- ;;=R93.2^^85^836^1
- ;;^UTILITY(U,$J,358.3,14859,1,0)
- ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,15034,1,3,0)
+ ;;=3^Unequal Limb Length,Lt Tibia

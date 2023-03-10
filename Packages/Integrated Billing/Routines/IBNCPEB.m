@@ -1,6 +1,6 @@
 IBNCPEB ;WOIFO/AAT - BULLETINS FOR NCPDP ;05-NOV-04
- ;;2.0;INTEGRATED BILLING;**276,342,347,363,452**;21-MAR-94;Build 26
- ;;Per VHA Directive 2004-038, this routine should not be modified.
+ ;;2.0;INTEGRATED BILLING;**276,342,347,363,452,647**;21-MAR-94;Build 10
+ ;;Per VA Directive 6402, this routine should not be modified.
  Q
  ;
 BULL(DFN,IBD,IBERR,IBIFN) ;Process NCPDP Error Messages.
@@ -74,7 +74,7 @@ RELBUL(DFN,IBRX,IBFIL,IBADT,IBACT,IBCR,IBCC,IBIFN,IBRETR) ;
  S IBAGE=$$PR($G(VADM(4)),3)
  S IBPID=$G(VA("PID"))
  S IBBID=$G(VA("BID"))
- S XMSUB=$E(IBNAME,1,8)_"("_IBBID_")"_" PATIENT CHRG NOT RELEASED"_"-"_$E($P($$MCDIV(IBRX,IBFIL),U),1,11)
+ S XMSUB="PATIENT CHRG NOT RELEASED"_"-"_$E($P($$MCDIV(IBRX,IBFIL),U),1,11)
  ;
  S IBC=0
  ;include a standard CHRG NOT RELEASED text

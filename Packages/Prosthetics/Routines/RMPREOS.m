@@ -1,5 +1,5 @@
 RMPREOS ;HINES-CIOFO/HNC,RN,ATG/JPN -Suspense Processing ;July 29, 2020@10:00
- ;;3.0;PROSTHETICS;**45,50,52,55,57,62,80,85,97,135,200**;Feb 09, 1996;Build 2
+ ;;3.0;PROSTHETICS;**45,50,52,55,57,62,80,85,97,135,200,206**;Feb 09, 1996;Build 4
  ;
  ;  HNC - patch 52 - 9/22/00 Modify EN2 not to check for RMPRFLAG
  ;                           RMPRCLOS, or FLAG.
@@ -23,6 +23,10 @@ RMPREOS ;HINES-CIOFO/HNC,RN,ATG/JPN -Suspense Processing ;July 29, 2020@10:00
  ;                           canceling the clone (in file 123)
  ;  
  ;Patch 80 -Read File 123.5 DBIA 3861
+ ;  RGB - patch 206- 9/09/20 Ensure user linking an order to a Suspense
+ ;                           entry sees that another user has the Suspense
+ ;                           entry locked. Also, modified all other protocols
+ ;                           with similar lock check message handling.
  ;
 EN ;Add Manual Suspense
  ;
@@ -32,7 +36,7 @@ EN ;Add Manual Suspense
  S DIC("DR")="1////^S X=RMPRDFN;22R;14////^S X=""O"";8////^S X=DUZ;9////^S X=5;3////^S X=9;2///^S X=""`""_RMPR(""STA"")"
  K DINUM,D0,DD,DO D FILE^DICN K DLAYGO G:Y'>0 EX S (RDA,DA)=+Y
  S DIE="^RMPR(668,",DR="13;4"
- L +^RMPR(668,RDA,0):1 I $T=0 W $C(7),?5,!,"Someone else is editing this record" G EX
+ L +^RMPR(668,RDA,0):1 I $T=0 W "   <Another user is editing this entry>" H 2 G EX   ;RMPR*3*206
  D ^DIE L -^RMPR(668,RDA,0)
  I '$P(^RMPR(668,RDA,0),U,3) S DA=RDA,DIK="^RMPR(668," D ^DIK W !,$C(7),?5,"Deleted..."
 EX K X,DIC,DIE,DR,Y
@@ -42,7 +46,7 @@ EN2 ;edit MANUAL suspense record
  ;DA must be defined
  ;
  I $P(^RMPR(668,DA,0),U,8)'>4 W !!!,"Can Not Edit This Suspense Record!",!! H 2 Q
-PROC L +^RMPR(668,DA):1 I $T=0 W !,?5,$C(7),"Someone else is Editing this entry!" Q
+PROC L +^RMPR(668,DA):1 I $T=0 W "   <Another user is editing this entry>" H 2 Q   ;RMPR*3*206
  S RO=$G(^RMPR(668,DA,0)),Y=$P(^(0),U,1) X ^DD("DD")
  W "   ",Y,"  ",$E($P(^DPT($P(RO,U,2),0),U,1),1,20)
  ;
@@ -58,7 +62,7 @@ PROC L +^RMPR(668,DA):1 I $T=0 W !,?5,$C(7),"Someone else is Editing this entry!
 ENIA ;initial action note
  ;
  I $D(^RMPR(668,DA,3)) W !!!,"Initial Action Note Already Posted!",!! H 2 Q
- L +^RMPR(668,DA):1 I $T=0 W !,?5,$C(7),"Someone else is Editing this entry!" Q
+ L +^RMPR(668,DA):1 I $T=0 W "   <Another user is editing this entry>" H 2 Q   ;RMPR*3*206
  D NOW^%DTC S RMPREODT=%
  ;link suspense to 2319 record, patch #62
  I $D(^TMP($J,"RMPRPCE",660)) S ^TMP($J,"RMPRPCE",668,DA)="" D SEL60^RMPRPCEL
@@ -92,7 +96,7 @@ FORW ;forward consult
  D ^DIC
  I (+Y'>0)!($D(DTOUT))!$D(DUOUT) W !!,"Not Forwarded! No Service Selected ." H 2 K DIC Q
  S GMRCSS=+Y
- L +^RMPR(668,DA):1 I $T=0 W !,?5,$C(7),"Someone else is Editing this entry!"
+ L +^RMPR(668,DA):1 I $T=0 W "   <Another user is editing this entry>" H 2   ;RMPR*3*206
  S DIE="^RMPR(668,"
  ;stuff Consult forward service
  S DR="23////^S X=GMRCSS"
@@ -140,7 +144,7 @@ FORW ;forward consult
 CLNT ;post closed note
  ;
  I $P(^RMPR(668,DA,0),U,10)="C" W !!!,"Completion Note Already Posted!",!! H 2 Q
- L +^RMPR(668,DA):1 I $T=0 W !,?5,$C(7),"Someone else is Editing this entry!" Q
+ L +^RMPR(668,DA):1 I $T=0 W "   <Another user is editing this entry>" H 2 Q   ;RMPR*3*206
  D NOW^%DTC S RMPREODT=%,GMRCAD=%
  ;link suspense to 2319 record, patch #62
  I $D(^TMP($J,"RMPRPCE",660)) S ^TMP($J,"RMPRPCE",668,DA)="" D SEL60^RMPRPCEL
@@ -182,7 +186,7 @@ OACT ;other notes - no initial needed 3/12/01
  ;delete if no note
  ;I '$D(^RMPR(668,DA,3,1,0)) W !!!,"No Initial Action Taken... ",!! H 2 Q
  ;
- L +^RMPR(668,DA):1 I $T=0 W !,?5,$C(7),"Someone else is Editing this entry!" Q
+ L +^RMPR(668,DA):1 I $T=0 W "   <Another user is editing this entry>" H 2 Q   ;RMPR*3*206
  ;link suspense to 2319 record, patch #62
  I $D(^TMP($J,"RMPRPCE",660)) S ^TMP($J,"RMPRPCE",668,DA)="" D SEL60^RMPRPCEL
  S DA(1)=DA,RMPRDA1=DA
@@ -222,7 +226,7 @@ CANCEL ;cancel suspense
  ;start
  ;
  I $P(^RMPR(668,DA,0),U,5)'="" W !!!,"This has already been completed, cannot cancel!",!! H 2  Q
- L +^RMPR(668,DA):1 I $T=0 W !,?5,$C(7),"Someone else is Editing this entry!" Q
+ L +^RMPR(668,DA):1 I $T=0 W "   <Another user is editing this entry>" H 2 Q   ;RMPR*3*206
  K Y
  S DIR(0)="Y",DIR("B")="N"
  W !!!,"This will CANCEL/DELETE this Suspense Request."

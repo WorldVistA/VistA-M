@@ -1,132 +1,118 @@
-IBDEI0WE ; ; 04-FEB-2020
- ;;3.0;IB ENCOUNTER FORM IMP/EXP;;FEB 04, 2020
+IBDEI0WE ; ; 01-FEB-2022
+ ;;3.0;IB ENCOUNTER FORM IMP/EXP;;FEB 01, 2022
  Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,999) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
- ;;^UTILITY(U,$J,358.3,14422,1,4,0)
- ;;=4^J34.2
- ;;^UTILITY(U,$J,358.3,14422,2)
- ;;=^259087
- ;;^UTILITY(U,$J,358.3,14423,0)
- ;;=J34.3^^83^824^35
- ;;^UTILITY(U,$J,358.3,14423,1,0)
+ ;;^UTILITY(U,$J,358.3,14607,1,3,0)
+ ;;=3^Injury of nerve root of lumbar spine, sequela
+ ;;^UTILITY(U,$J,358.3,14607,1,4,0)
+ ;;=4^S34.21XS
+ ;;^UTILITY(U,$J,358.3,14607,2)
+ ;;=^5025252
+ ;;^UTILITY(U,$J,358.3,14608,0)
+ ;;=S34.22XS^^58^702^8
+ ;;^UTILITY(U,$J,358.3,14608,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,14423,1,3,0)
- ;;=3^Nasal Turbinates,Hypertrophy
- ;;^UTILITY(U,$J,358.3,14423,1,4,0)
- ;;=4^J34.3
- ;;^UTILITY(U,$J,358.3,14423,2)
- ;;=^269909
- ;;^UTILITY(U,$J,358.3,14424,0)
- ;;=J00.^^83^824^36
- ;;^UTILITY(U,$J,358.3,14424,1,0)
+ ;;^UTILITY(U,$J,358.3,14608,1,3,0)
+ ;;=3^Injury of nerve root of sacral spine, sequela
+ ;;^UTILITY(U,$J,358.3,14608,1,4,0)
+ ;;=4^S34.22XS
+ ;;^UTILITY(U,$J,358.3,14608,2)
+ ;;=^5025255
+ ;;^UTILITY(U,$J,358.3,14609,0)
+ ;;=S24.2XXS^^58^702^9
+ ;;^UTILITY(U,$J,358.3,14609,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,14424,1,3,0)
- ;;=3^Nasopharyngitis,Acute
- ;;^UTILITY(U,$J,358.3,14424,1,4,0)
- ;;=4^J00.
- ;;^UTILITY(U,$J,358.3,14424,2)
- ;;=^5008115
- ;;^UTILITY(U,$J,358.3,14425,0)
- ;;=J31.1^^83^824^37
- ;;^UTILITY(U,$J,358.3,14425,1,0)
+ ;;^UTILITY(U,$J,358.3,14609,1,3,0)
+ ;;=3^Injury of nerve root of thoracic spine, sequela
+ ;;^UTILITY(U,$J,358.3,14609,1,4,0)
+ ;;=4^S24.2XXS
+ ;;^UTILITY(U,$J,358.3,14609,2)
+ ;;=^5023347
+ ;;^UTILITY(U,$J,358.3,14610,0)
+ ;;=S04.9XXS^^58^702^11
+ ;;^UTILITY(U,$J,358.3,14610,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,14425,1,3,0)
- ;;=3^Nasopharyngitis,Chronic
- ;;^UTILITY(U,$J,358.3,14425,1,4,0)
- ;;=4^J31.1
- ;;^UTILITY(U,$J,358.3,14425,2)
- ;;=^269888
- ;;^UTILITY(U,$J,358.3,14426,0)
- ;;=J34.9^^83^824^38
- ;;^UTILITY(U,$J,358.3,14426,1,0)
+ ;;^UTILITY(U,$J,358.3,14610,1,3,0)
+ ;;=3^Injury of unspec cranial nerve, sequela
+ ;;^UTILITY(U,$J,358.3,14610,1,4,0)
+ ;;=4^S04.9XXS
+ ;;^UTILITY(U,$J,358.3,14610,2)
+ ;;=^5020575
+ ;;^UTILITY(U,$J,358.3,14611,0)
+ ;;=S24.9XXS^^58^702^12
+ ;;^UTILITY(U,$J,358.3,14611,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,14426,1,3,0)
- ;;=3^Nose & Nasal Sinuse Disorder,Unspec
- ;;^UTILITY(U,$J,358.3,14426,1,4,0)
- ;;=4^J34.9
- ;;^UTILITY(U,$J,358.3,14426,2)
- ;;=^5008212
- ;;^UTILITY(U,$J,358.3,14427,0)
- ;;=Z99.81^^83^824^39
- ;;^UTILITY(U,$J,358.3,14427,1,0)
+ ;;^UTILITY(U,$J,358.3,14611,1,3,0)
+ ;;=3^Injury of unspec nerve of thorax, sequela
+ ;;^UTILITY(U,$J,358.3,14611,1,4,0)
+ ;;=4^S24.9XXS
+ ;;^UTILITY(U,$J,358.3,14611,2)
+ ;;=^5023359
+ ;;^UTILITY(U,$J,358.3,14612,0)
+ ;;=S34.9XXS^^58^702^18
+ ;;^UTILITY(U,$J,358.3,14612,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,14427,1,3,0)
- ;;=3^Oxygen,Supplemental,Dependence
- ;;^UTILITY(U,$J,358.3,14427,1,4,0)
- ;;=4^Z99.81
- ;;^UTILITY(U,$J,358.3,14427,2)
- ;;=^5063760
- ;;^UTILITY(U,$J,358.3,14428,0)
- ;;=J02.9^^83^824^41
- ;;^UTILITY(U,$J,358.3,14428,1,0)
+ ;;^UTILITY(U,$J,358.3,14612,1,3,0)
+ ;;=3^Injury to unspec nerves at abd/low back/pelvis level, sequela
+ ;;^UTILITY(U,$J,358.3,14612,1,4,0)
+ ;;=4^S34.9XXS
+ ;;^UTILITY(U,$J,358.3,14612,2)
+ ;;=^5025273
+ ;;^UTILITY(U,$J,358.3,14613,0)
+ ;;=S14.9XXS^^58^702^13
+ ;;^UTILITY(U,$J,358.3,14613,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,14428,1,3,0)
- ;;=3^Pharyngitis,Acute,Unspec
- ;;^UTILITY(U,$J,358.3,14428,1,4,0)
- ;;=4^J02.9
- ;;^UTILITY(U,$J,358.3,14428,2)
- ;;=^5008130
- ;;^UTILITY(U,$J,358.3,14429,0)
- ;;=J31.2^^83^824^42
- ;;^UTILITY(U,$J,358.3,14429,1,0)
+ ;;^UTILITY(U,$J,358.3,14613,1,3,0)
+ ;;=3^Injury of unspec nerves of neck, sequela
+ ;;^UTILITY(U,$J,358.3,14613,1,4,0)
+ ;;=4^S14.9XXS
+ ;;^UTILITY(U,$J,358.3,14613,2)
+ ;;=^5022219
+ ;;^UTILITY(U,$J,358.3,14614,0)
+ ;;=S58.922S^^58^702^20
+ ;;^UTILITY(U,$J,358.3,14614,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,14429,1,3,0)
- ;;=3^Pharyngitis,Chronic
- ;;^UTILITY(U,$J,358.3,14429,1,4,0)
- ;;=4^J31.2
- ;;^UTILITY(U,$J,358.3,14429,2)
- ;;=^269886
- ;;^UTILITY(U,$J,358.3,14430,0)
- ;;=J94.9^^83^824^43
- ;;^UTILITY(U,$J,358.3,14430,1,0)
+ ;;^UTILITY(U,$J,358.3,14614,1,3,0)
+ ;;=3^Partial traumatic amp of l forearm, level unsp, sequela
+ ;;^UTILITY(U,$J,358.3,14614,1,4,0)
+ ;;=4^S58.922S
+ ;;^UTILITY(U,$J,358.3,14614,2)
+ ;;=^5031957
+ ;;^UTILITY(U,$J,358.3,14615,0)
+ ;;=S14.109S^^58^702^15
+ ;;^UTILITY(U,$J,358.3,14615,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,14430,1,3,0)
- ;;=3^Pleural Condition,Unspec
- ;;^UTILITY(U,$J,358.3,14430,1,4,0)
- ;;=4^J94.9
- ;;^UTILITY(U,$J,358.3,14430,2)
- ;;=^5008320
- ;;^UTILITY(U,$J,358.3,14431,0)
- ;;=J90.^^83^824^44
- ;;^UTILITY(U,$J,358.3,14431,1,0)
+ ;;^UTILITY(U,$J,358.3,14615,1,3,0)
+ ;;=3^Injury to unsp level of cervical spinal cord unspec, sequela
+ ;;^UTILITY(U,$J,358.3,14615,1,4,0)
+ ;;=4^S14.109S
+ ;;^UTILITY(U,$J,358.3,14615,2)
+ ;;=^5134243
+ ;;^UTILITY(U,$J,358.3,14616,0)
+ ;;=S24.109S^^58^702^17
+ ;;^UTILITY(U,$J,358.3,14616,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,14431,1,3,0)
- ;;=3^Pleural Effusion NEC
- ;;^UTILITY(U,$J,358.3,14431,1,4,0)
- ;;=4^J90.
- ;;^UTILITY(U,$J,358.3,14431,2)
- ;;=^5008310
- ;;^UTILITY(U,$J,358.3,14432,0)
- ;;=R09.1^^83^824^45
- ;;^UTILITY(U,$J,358.3,14432,1,0)
+ ;;^UTILITY(U,$J,358.3,14616,1,3,0)
+ ;;=3^Injury to unsp level of thoracic spinal cord, sequela
+ ;;^UTILITY(U,$J,358.3,14616,1,4,0)
+ ;;=4^S24.109S
+ ;;^UTILITY(U,$J,358.3,14616,2)
+ ;;=^5134384
+ ;;^UTILITY(U,$J,358.3,14617,0)
+ ;;=S34.139S^^58^702^14
+ ;;^UTILITY(U,$J,358.3,14617,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,14432,1,3,0)
- ;;=3^Pleurisy
- ;;^UTILITY(U,$J,358.3,14432,1,4,0)
- ;;=4^R09.1
- ;;^UTILITY(U,$J,358.3,14432,2)
- ;;=^95428
- ;;^UTILITY(U,$J,358.3,14433,0)
- ;;=J16.8^^83^824^47
- ;;^UTILITY(U,$J,358.3,14433,1,0)
+ ;;^UTILITY(U,$J,358.3,14617,1,3,0)
+ ;;=3^Injury to sacral spinal cord, sequela
+ ;;^UTILITY(U,$J,358.3,14617,1,4,0)
+ ;;=4^S34.139S
+ ;;^UTILITY(U,$J,358.3,14617,2)
+ ;;=^5025249
+ ;;^UTILITY(U,$J,358.3,14618,0)
+ ;;=S34.109S^^58^702^16
+ ;;^UTILITY(U,$J,358.3,14618,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,14433,1,3,0)
- ;;=3^Pneumonia d/t Spec Infectious Organisms
- ;;^UTILITY(U,$J,358.3,14433,1,4,0)
- ;;=4^J16.8
- ;;^UTILITY(U,$J,358.3,14433,2)
- ;;=^5008180
- ;;^UTILITY(U,$J,358.3,14434,0)
- ;;=J17.^^83^824^49
- ;;^UTILITY(U,$J,358.3,14434,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,14434,1,3,0)
- ;;=3^Pneumonia in Diseases Classified Elsewhere
- ;;^UTILITY(U,$J,358.3,14434,1,4,0)
- ;;=4^J17.
- ;;^UTILITY(U,$J,358.3,14434,2)
- ;;=^5008181
- ;;^UTILITY(U,$J,358.3,14435,0)
- ;;=J13.^^83^824^48
- ;;^UTILITY(U,$J,358.3,14435,1,0)
- ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,14618,1,3,0)
+ ;;=3^Injury to unsp level of lumbar spinal cord, sequela
+ ;;^UTILITY(U,$J,358.3,14618,1,4,0)
+ ;;=4^S34.109S

@@ -1,114 +1,128 @@
-IBDEI1IR ; ; 04-FEB-2020
- ;;3.0;IB ENCOUNTER FORM IMP/EXP;;FEB 04, 2020
+IBDEI1IR ; ; 01-FEB-2022
+ ;;3.0;IB ENCOUNTER FORM IMP/EXP;;FEB 01, 2022
  Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,999) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
- ;;^UTILITY(U,$J,358.3,24291,1,3,0)
- ;;=3^Non-Pressure Chr Ulcer of Left Foot w/ Necrosis of Muscle
- ;;^UTILITY(U,$J,358.3,24291,1,4,0)
- ;;=4^L97.523
- ;;^UTILITY(U,$J,358.3,24291,2)
- ;;=^5009552
- ;;^UTILITY(U,$J,358.3,24292,0)
- ;;=L97.524^^107^1201^196
- ;;^UTILITY(U,$J,358.3,24292,1,0)
+ ;;^UTILITY(U,$J,358.3,24590,2)
+ ;;=^5000968
+ ;;^UTILITY(U,$J,358.3,24591,0)
+ ;;=C44.91^^85^1082^1
+ ;;^UTILITY(U,$J,358.3,24591,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,24292,1,3,0)
- ;;=3^Non-Pressure Chr Ulcer of Left Foot w/ Necrosis of Bone
- ;;^UTILITY(U,$J,358.3,24292,1,4,0)
- ;;=4^L97.524
- ;;^UTILITY(U,$J,358.3,24292,2)
- ;;=^5009553
- ;;^UTILITY(U,$J,358.3,24293,0)
- ;;=L97.529^^107^1201^197
- ;;^UTILITY(U,$J,358.3,24293,1,0)
+ ;;^UTILITY(U,$J,358.3,24591,1,3,0)
+ ;;=3^Basal Cell Carcinoma Skin,Unspec
+ ;;^UTILITY(U,$J,358.3,24591,1,4,0)
+ ;;=4^C44.91
+ ;;^UTILITY(U,$J,358.3,24591,2)
+ ;;=^5001092
+ ;;^UTILITY(U,$J,358.3,24592,0)
+ ;;=C44.99^^85^1082^14
+ ;;^UTILITY(U,$J,358.3,24592,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,24293,1,3,0)
- ;;=3^Non-Pressure Chr Ulcer of Left Foot w/ Unspec Severity
- ;;^UTILITY(U,$J,358.3,24293,1,4,0)
- ;;=4^L97.529
- ;;^UTILITY(U,$J,358.3,24293,2)
- ;;=^5009554
- ;;^UTILITY(U,$J,358.3,24294,0)
- ;;=L97.911^^107^1201^254
- ;;^UTILITY(U,$J,358.3,24294,1,0)
+ ;;^UTILITY(U,$J,358.3,24592,1,3,0)
+ ;;=3^Malig Neop Skin,Other Spec
+ ;;^UTILITY(U,$J,358.3,24592,1,4,0)
+ ;;=4^C44.99
+ ;;^UTILITY(U,$J,358.3,24592,2)
+ ;;=^5001094
+ ;;^UTILITY(U,$J,358.3,24593,0)
+ ;;=C50.912^^85^1082^8
+ ;;^UTILITY(U,$J,358.3,24593,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,24294,1,3,0)
- ;;=3^Non-Pressure Chr Ulcer of Right Lower Leg w/ Breakdown of Skin
- ;;^UTILITY(U,$J,358.3,24294,1,4,0)
- ;;=4^L97.911
- ;;^UTILITY(U,$J,358.3,24294,2)
- ;;=^5133679
- ;;^UTILITY(U,$J,358.3,24295,0)
- ;;=L97.912^^107^1201^255
- ;;^UTILITY(U,$J,358.3,24295,1,0)
+ ;;^UTILITY(U,$J,358.3,24593,1,3,0)
+ ;;=3^Malig Neop Left Female Breast,Unspec Site
+ ;;^UTILITY(U,$J,358.3,24593,1,4,0)
+ ;;=4^C50.912
+ ;;^UTILITY(U,$J,358.3,24593,2)
+ ;;=^5001196
+ ;;^UTILITY(U,$J,358.3,24594,0)
+ ;;=C50.911^^85^1082^12
+ ;;^UTILITY(U,$J,358.3,24594,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,24295,1,3,0)
- ;;=3^Non-Pressure Chr Ulcer of Right Lower Leg w/ Fat Layer Exposed
- ;;^UTILITY(U,$J,358.3,24295,1,4,0)
- ;;=4^L97.912
- ;;^UTILITY(U,$J,358.3,24295,2)
- ;;=^5133681
- ;;^UTILITY(U,$J,358.3,24296,0)
- ;;=L97.913^^107^1201^256
- ;;^UTILITY(U,$J,358.3,24296,1,0)
+ ;;^UTILITY(U,$J,358.3,24594,1,3,0)
+ ;;=3^Malig Neop Right Female Breast,Unspec Site
+ ;;^UTILITY(U,$J,358.3,24594,1,4,0)
+ ;;=4^C50.911
+ ;;^UTILITY(U,$J,358.3,24594,2)
+ ;;=^5001195
+ ;;^UTILITY(U,$J,358.3,24595,0)
+ ;;=C61.^^85^1082^10
+ ;;^UTILITY(U,$J,358.3,24595,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,24296,1,3,0)
- ;;=3^Non-Pressure Chr Ulcer of Right Lower Leg w/ Necrosis of Muscle
- ;;^UTILITY(U,$J,358.3,24296,1,4,0)
- ;;=4^L97.913
- ;;^UTILITY(U,$J,358.3,24296,2)
- ;;=^5133683
- ;;^UTILITY(U,$J,358.3,24297,0)
- ;;=L97.914^^107^1201^257
- ;;^UTILITY(U,$J,358.3,24297,1,0)
+ ;;^UTILITY(U,$J,358.3,24595,1,3,0)
+ ;;=3^Malig Neop Prostate
+ ;;^UTILITY(U,$J,358.3,24595,1,4,0)
+ ;;=4^C61.
+ ;;^UTILITY(U,$J,358.3,24595,2)
+ ;;=^267239
+ ;;^UTILITY(U,$J,358.3,24596,0)
+ ;;=C67.9^^85^1082^3
+ ;;^UTILITY(U,$J,358.3,24596,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,24297,1,3,0)
- ;;=3^Non-Pressure Chr Ulcer of Right Lower Leg w/ Necrosis of Bone
- ;;^UTILITY(U,$J,358.3,24297,1,4,0)
- ;;=4^L97.914
- ;;^UTILITY(U,$J,358.3,24297,2)
- ;;=^5133685
- ;;^UTILITY(U,$J,358.3,24298,0)
- ;;=L97.919^^107^1201^258
- ;;^UTILITY(U,$J,358.3,24298,1,0)
+ ;;^UTILITY(U,$J,358.3,24596,1,3,0)
+ ;;=3^Malig Neop Bladder,Unspec
+ ;;^UTILITY(U,$J,358.3,24596,1,4,0)
+ ;;=4^C67.9
+ ;;^UTILITY(U,$J,358.3,24596,2)
+ ;;=^5001263
+ ;;^UTILITY(U,$J,358.3,24597,0)
+ ;;=C64.2^^85^1082^9
+ ;;^UTILITY(U,$J,358.3,24597,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,24298,1,3,0)
- ;;=3^Non-Pressure Chr Ulcer of Right Lower Leg w/ Unspec Severity
- ;;^UTILITY(U,$J,358.3,24298,1,4,0)
- ;;=4^L97.919
- ;;^UTILITY(U,$J,358.3,24298,2)
- ;;=^5133688
- ;;^UTILITY(U,$J,358.3,24299,0)
- ;;=L97.921^^107^1201^207
- ;;^UTILITY(U,$J,358.3,24299,1,0)
+ ;;^UTILITY(U,$J,358.3,24597,1,3,0)
+ ;;=3^Malig Neop Left Kidney,Except Renal Pelvis
+ ;;^UTILITY(U,$J,358.3,24597,1,4,0)
+ ;;=4^C64.2
+ ;;^UTILITY(U,$J,358.3,24597,2)
+ ;;=^5001249
+ ;;^UTILITY(U,$J,358.3,24598,0)
+ ;;=C64.1^^85^1082^13
+ ;;^UTILITY(U,$J,358.3,24598,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,24299,1,3,0)
- ;;=3^Non-Pressure Chr Ulcer of Left Lower Leg w/ Breakdown of Skin
- ;;^UTILITY(U,$J,358.3,24299,1,4,0)
- ;;=4^L97.921
- ;;^UTILITY(U,$J,358.3,24299,2)
- ;;=^5133680
- ;;^UTILITY(U,$J,358.3,24300,0)
- ;;=L97.922^^107^1201^208
- ;;^UTILITY(U,$J,358.3,24300,1,0)
+ ;;^UTILITY(U,$J,358.3,24598,1,3,0)
+ ;;=3^Malig Neop Right Kidney,Except Renal Pelvis
+ ;;^UTILITY(U,$J,358.3,24598,1,4,0)
+ ;;=4^C64.1
+ ;;^UTILITY(U,$J,358.3,24598,2)
+ ;;=^5001248
+ ;;^UTILITY(U,$J,358.3,24599,0)
+ ;;=C79.51^^85^1082^16
+ ;;^UTILITY(U,$J,358.3,24599,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,24300,1,3,0)
- ;;=3^Non-Pressure Chr Ulcer of Left Lower Leg w/ Fat Layer Exposed
- ;;^UTILITY(U,$J,358.3,24300,1,4,0)
- ;;=4^L97.922
- ;;^UTILITY(U,$J,358.3,24300,2)
- ;;=^5133682
- ;;^UTILITY(U,$J,358.3,24301,0)
- ;;=L97.923^^107^1201^209
- ;;^UTILITY(U,$J,358.3,24301,1,0)
+ ;;^UTILITY(U,$J,358.3,24599,1,3,0)
+ ;;=3^Secondary Malig Neop Bone
+ ;;^UTILITY(U,$J,358.3,24599,1,4,0)
+ ;;=4^C79.51
+ ;;^UTILITY(U,$J,358.3,24599,2)
+ ;;=^5001350
+ ;;^UTILITY(U,$J,358.3,24600,0)
+ ;;=C79.52^^85^1082^17
+ ;;^UTILITY(U,$J,358.3,24600,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,24301,1,3,0)
- ;;=3^Non-Pressure Chr Ulcer of Left Lower Leg w/ Necrosis of Muscle
- ;;^UTILITY(U,$J,358.3,24301,1,4,0)
- ;;=4^L97.923
- ;;^UTILITY(U,$J,358.3,24301,2)
- ;;=^5133684
- ;;^UTILITY(U,$J,358.3,24302,0)
- ;;=L97.924^^107^1201^210
- ;;^UTILITY(U,$J,358.3,24302,1,0)
+ ;;^UTILITY(U,$J,358.3,24600,1,3,0)
+ ;;=3^Secondary Malig Neop Bone Marrow
+ ;;^UTILITY(U,$J,358.3,24600,1,4,0)
+ ;;=4^C79.52
+ ;;^UTILITY(U,$J,358.3,24600,2)
+ ;;=^5001351
+ ;;^UTILITY(U,$J,358.3,24601,0)
+ ;;=Z12.9^^85^1082^15
+ ;;^UTILITY(U,$J,358.3,24601,1,0)
  ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,24601,1,3,0)
+ ;;=3^Screening Malig Neop Site Unspec
+ ;;^UTILITY(U,$J,358.3,24601,1,4,0)
+ ;;=4^Z12.9
+ ;;^UTILITY(U,$J,358.3,24601,2)
+ ;;=^5062698
+ ;;^UTILITY(U,$J,358.3,24602,0)
+ ;;=D17.9^^85^1082^2
+ ;;^UTILITY(U,$J,358.3,24602,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,24602,1,3,0)
+ ;;=3^Benign Neop Lipomatous,Unspec
+ ;;^UTILITY(U,$J,358.3,24602,1,4,0)
+ ;;=4^D17.9
+ ;;^UTILITY(U,$J,358.3,24602,2)
+ ;;=^5002020
+ ;;^UTILITY(U,$J,358.3,24603,0)
+ ;;=E11.9^^85^1083^15

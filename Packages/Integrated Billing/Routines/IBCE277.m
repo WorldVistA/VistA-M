@@ -1,5 +1,5 @@
 IBCE277 ;ALB/TMP - 277 EDI CLAIM STATUS MESSAGE PROCESSING ;15-JUL-98
- ;;2.0;INTEGRATED BILLING;**137,155,368,403**;21-MAR-94;Build 24
+ ;;2.0;INTEGRATED BILLING;**137,155,368,403,650,665**;21-MAR-94;Build 28
  ;;Per VHA Directive 2004-038, this routine should not be modified.
  Q
  ; MESSAGE HEADER DATA STRING =
@@ -72,7 +72,8 @@ HDR(ENTITY,ENTVAL,IBTYPE,IBD) ;Process header data
  ;   ^TMP("IBMSG",$J,"CLAIM",claim #,line#)= message data lines
  ;                                  ,"D",9,msg seq #)= raw data
  N ENTITY,ERR,FLD,IBCLM,IBIFN,L
- D STRTREC Q:IBCLM=""  ; if no claim/batch number, bail out
+ ;D STRTREC Q:IBCLM=""  ; if no claim/batch number, bail out  ;JRA IB*2.0*650 ';'
+ D STRTREC Q:(IBCLM=""!('IBIFN))  ; if no claim/claim IEN, bail out  ;JRA IB*2.0*650
  ; make sure that we have data to file
  S ERR=$P(IBD,U,4) Q:ERR=""
  ; file error along with corresponding field number (if available)
@@ -94,19 +95,23 @@ HDR(ENTITY,ENTVAL,IBTYPE,IBD) ;Process header data
  ;   ^TMP("IBCONF",$J,claim #")="" for invalid claims within the batch
  ;
  N CODE,DATA,ENTITY,IBCLM,IBIFN,IBTYPE,L,Z
- D STRTREC Q:IBCLM=""  ; if no claim number, bail out
+ ;D STRTREC Q:IBCLM=""  ; if no claim number, bail out  ;JRA IB*2.0*650 ';'
+ D STRTREC Q:(IBCLM=""!('IBIFN))  ; if no claim number/claim IEN, bail out  ;JRA IB*2.0*650
  S:$P(IBD,U,3)="R" ^TMP("IBCONF",$J,IBIFN)=""
  S IBTYPE=$S($P(IBD,U,3)="R":"837REJ1",1:"837REC1")
  ;Process header data if not already done
  I '$D(^TMP("IBMSG",$J,ENTITY,IBCLM,0)) D HDR(ENTITY,IBCLM,IBTYPE,.IBD)
  I IBTYPE="837REJ1",$P($G(^TMP("IBMSG",$J,ENTITY,IBCLM,0)),U,1)'="837REJ1" D HDR(ENTITY,IBCLM,IBTYPE,.IBD)
  S CODE=$P(IBD,U,4) I CODE'="",$TR($P(IBD,U,5,6),U)'="" D
- .S Z=CODE_$P(IBD,U,5) I Z'=$G(IBD("SCODE")) D
+ .;JRA IB*2.0*650 Make status code flag claim specific to handle multiple claims of the same status. 
+ .;S Z=CODE_$P(IBD,U,5) I Z'=$G(IBD("SCODE")) D  ;JRA IB*2.0*650 ';'
+ .S Z=CODE_$P(IBD,U,5) I Z'=$G(IBD("SCODE",IBCLM)) D  ;JRA IB*2.0*650
  ..; determine type of status code and file it
  ..S L=L+1,DATA=$S(CODE="W":"Warning",CODE="E":"Error",1:"Informational")_" "
  ..I $P(IBD,U,5)'="" S ^TMP("IBMSG",$J,ENTITY,IBCLM,L)=DATA_"Code: "_$P(IBD,U,5)
  ..I $P(IBD,U,6)'="" S:$P(IBD,U,5)'="" L=L+1 S ^TMP("IBMSG",$J,ENTITY,IBCLM,L)=DATA_"Message:",L=L+1
- ..S IBD("SCODE")=Z
+ ..;S IBD("SCODE")=Z  ;JRA IB*2.0*650 ';'
+ ..S IBD("SCODE",IBCLM)=Z  ;JRA IB*2.0*650
  ..Q
  .; file status message
  .I $P(IBD,U,6)'="" S ^TMP("IBMSG",$J,ENTITY,IBCLM,L)=$P(IBD,U,6),L=L+1,^TMP("IBMSG",$J,ENTITY,IBCLM,L)=" "
@@ -126,7 +131,8 @@ HDR(ENTITY,ENTVAL,IBTYPE,IBD) ;Process header data
  ;                                    ,"D",13,msg seq #)=raw data
  ;
  N CTYPE,ENTITY,IBCLM,IBIFN,L,Z1,Z2
- D STRTREC
+ ;D STRTREC  ;JRA IB*2.0*650 ';'
+ D STRTREC Q:'IBIFN  ;JRA IB*2.0*650 QUIT if no claim IEN
  ; quit if no claim number or no previous 'line 10' record
  Q:$S(IBCLM="":1,1:'$D(^TMP("IBMSG",$J,"CLAIM",IBCLM)))
  ; file clearinghouse trace number
@@ -156,10 +162,11 @@ HDR(ENTITY,ENTVAL,IBTYPE,IBD) ;Process header data
  ;                                         subscr/patient raw data
  ;
  N ENTITY,DATA,IBCLM,IBIFN,IBNM,IBNUM,IBDFN,L
- D STRTREC
+ ;D STRTREC  ;JRA IB*2.0*650 ';'
+ D STRTREC Q:'IBIFN  ;JRA IB*2.0*650 QUIT if no claim IEN - If '0' will cause <UNDEFINED> below
  ; quit if no claim number or no previous 'line 10' record
  Q:$S(IBCLM="":1,1:'$D(^TMP("IBMSG",$J,"CLAIM",IBCLM)))
- S IBDFN=+$P(^DGCR(399,IBIFN,0),U,2)
+ S IBDFN=+$P(^DGCR(399,IBIFN,0),U,2)  ;JRA IB*2.0*650 If IBIFN=0 <UNDEFINED> will occur
  S IBNM=$S($P(IBD,U,3)'="":$P(IBD,U,3)_","_$P(IBD,U,4)_$S($P(IBD,U,5)'="":" "_$P(IBD,U,5),1:""),1:$P($G(^DPT(IBDFN,0)),U))
  S IBNUM=$S($P(IBD,U,6)'="":$P(IBD,U,6),1:$P($G(^DPT(IBDFN,0)),U,9))
  S L=L+1,^TMP("IBMSG",$J,ENTITY,IBCLM,L)="Patient: "_IBNM_"   "_IBNUM
@@ -196,7 +203,8 @@ ENDREC(TYPE) ; finish processing of the record
  ; file raw data
  S ^TMP("IBMSG",$J,ENTITY,IBCLM,"D",TYPE,$O(^TMP("IBMSG",$J,ENTITY,IBCLM,"D",TYPE,""),-1)+1)="##RAW DATA: "_IBD
  ; update line count
- S IBD("LINE")=$G(IBD("LINE"))+L
+ ;;JWS;IB*2.0*665;EBILL-2164;was adding L, should have been setting it =
+ S IBD("LINE")=L
  Q
  ;
 GETBILL(CLAIM) ; Extract transmission #

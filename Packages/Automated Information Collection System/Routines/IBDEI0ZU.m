@@ -1,116 +1,132 @@
-IBDEI0ZU ; ; 04-FEB-2020
- ;;3.0;IB ENCOUNTER FORM IMP/EXP;;FEB 04, 2020
+IBDEI0ZU ; ; 01-FEB-2022
+ ;;3.0;IB ENCOUNTER FORM IMP/EXP;;FEB 01, 2022
  Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,999) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
- ;;^UTILITY(U,$J,358.3,15985,2)
- ;;=^5009548
- ;;^UTILITY(U,$J,358.3,15986,0)
- ;;=L97.519^^88^869^242
- ;;^UTILITY(U,$J,358.3,15986,1,0)
+ ;;^UTILITY(U,$J,358.3,16167,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,15986,1,3,0)
- ;;=3^Non-Pressure Chr Ulcer of Right Foot w/ Unspec Severity
- ;;^UTILITY(U,$J,358.3,15986,1,4,0)
- ;;=4^L97.519
- ;;^UTILITY(U,$J,358.3,15986,2)
- ;;=^5009549
- ;;^UTILITY(U,$J,358.3,15987,0)
- ;;=L97.521^^88^869^193
- ;;^UTILITY(U,$J,358.3,15987,1,0)
+ ;;^UTILITY(U,$J,358.3,16167,1,3,0)
+ ;;=3^Hypopituitarism
+ ;;^UTILITY(U,$J,358.3,16167,1,4,0)
+ ;;=4^E23.0
+ ;;^UTILITY(U,$J,358.3,16167,2)
+ ;;=^60685
+ ;;^UTILITY(U,$J,358.3,16168,0)
+ ;;=E27.1^^61^768^34
+ ;;^UTILITY(U,$J,358.3,16168,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,15987,1,3,0)
- ;;=3^Non-Pressure Chr Ulcer of Left Foot w/ Breakdown of Skin
- ;;^UTILITY(U,$J,358.3,15987,1,4,0)
- ;;=4^L97.521
- ;;^UTILITY(U,$J,358.3,15987,2)
- ;;=^5009550
- ;;^UTILITY(U,$J,358.3,15988,0)
- ;;=L97.522^^88^869^194
- ;;^UTILITY(U,$J,358.3,15988,1,0)
+ ;;^UTILITY(U,$J,358.3,16168,1,3,0)
+ ;;=3^Primary Adrenocortical Insufficiency
+ ;;^UTILITY(U,$J,358.3,16168,1,4,0)
+ ;;=4^E27.1
+ ;;^UTILITY(U,$J,358.3,16168,2)
+ ;;=^5002740
+ ;;^UTILITY(U,$J,358.3,16169,0)
+ ;;=E27.2^^61^768^1
+ ;;^UTILITY(U,$J,358.3,16169,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,15988,1,3,0)
- ;;=3^Non-Pressure Chr Ulcer of Left Foot w/ Fat Layer Exposed
- ;;^UTILITY(U,$J,358.3,15988,1,4,0)
- ;;=4^L97.522
- ;;^UTILITY(U,$J,358.3,15988,2)
- ;;=^5009551
- ;;^UTILITY(U,$J,358.3,15989,0)
- ;;=L97.523^^88^869^195
- ;;^UTILITY(U,$J,358.3,15989,1,0)
+ ;;^UTILITY(U,$J,358.3,16169,1,3,0)
+ ;;=3^Addisonian Crisis
+ ;;^UTILITY(U,$J,358.3,16169,1,4,0)
+ ;;=4^E27.2
+ ;;^UTILITY(U,$J,358.3,16169,2)
+ ;;=^263725
+ ;;^UTILITY(U,$J,358.3,16170,0)
+ ;;=E27.3^^61^768^4
+ ;;^UTILITY(U,$J,358.3,16170,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,15989,1,3,0)
- ;;=3^Non-Pressure Chr Ulcer of Left Foot w/ Necrosis of Muscle
- ;;^UTILITY(U,$J,358.3,15989,1,4,0)
- ;;=4^L97.523
- ;;^UTILITY(U,$J,358.3,15989,2)
- ;;=^5009552
- ;;^UTILITY(U,$J,358.3,15990,0)
- ;;=L97.524^^88^869^196
- ;;^UTILITY(U,$J,358.3,15990,1,0)
+ ;;^UTILITY(U,$J,358.3,16170,1,3,0)
+ ;;=3^Drug-induced Adrenocortical Insufficiency
+ ;;^UTILITY(U,$J,358.3,16170,1,4,0)
+ ;;=4^E27.3
+ ;;^UTILITY(U,$J,358.3,16170,2)
+ ;;=^5002741
+ ;;^UTILITY(U,$J,358.3,16171,0)
+ ;;=E29.1^^61^768^35
+ ;;^UTILITY(U,$J,358.3,16171,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,15990,1,3,0)
- ;;=3^Non-Pressure Chr Ulcer of Left Foot w/ Necrosis of Bone
- ;;^UTILITY(U,$J,358.3,15990,1,4,0)
- ;;=4^L97.524
- ;;^UTILITY(U,$J,358.3,15990,2)
- ;;=^5009553
- ;;^UTILITY(U,$J,358.3,15991,0)
- ;;=L97.529^^88^869^197
- ;;^UTILITY(U,$J,358.3,15991,1,0)
+ ;;^UTILITY(U,$J,358.3,16171,1,3,0)
+ ;;=3^Testicular Hypofunction
+ ;;^UTILITY(U,$J,358.3,16171,1,4,0)
+ ;;=4^E29.1
+ ;;^UTILITY(U,$J,358.3,16171,2)
+ ;;=^5002754
+ ;;^UTILITY(U,$J,358.3,16172,0)
+ ;;=E55.9^^61^768^42
+ ;;^UTILITY(U,$J,358.3,16172,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,15991,1,3,0)
- ;;=3^Non-Pressure Chr Ulcer of Left Foot w/ Unspec Severity
- ;;^UTILITY(U,$J,358.3,15991,1,4,0)
- ;;=4^L97.529
- ;;^UTILITY(U,$J,358.3,15991,2)
- ;;=^5009554
- ;;^UTILITY(U,$J,358.3,15992,0)
- ;;=L97.911^^88^869^254
- ;;^UTILITY(U,$J,358.3,15992,1,0)
+ ;;^UTILITY(U,$J,358.3,16172,1,3,0)
+ ;;=3^Vitamin D Deficiency,Unspec
+ ;;^UTILITY(U,$J,358.3,16172,1,4,0)
+ ;;=4^E55.9
+ ;;^UTILITY(U,$J,358.3,16172,2)
+ ;;=^5002799
+ ;;^UTILITY(U,$J,358.3,16173,0)
+ ;;=E66.01^^61^768^20
+ ;;^UTILITY(U,$J,358.3,16173,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,15992,1,3,0)
- ;;=3^Non-Pressure Chr Ulcer of Right Lower Leg w/ Breakdown of Skin
- ;;^UTILITY(U,$J,358.3,15992,1,4,0)
- ;;=4^L97.911
- ;;^UTILITY(U,$J,358.3,15992,2)
- ;;=^5133679
- ;;^UTILITY(U,$J,358.3,15993,0)
- ;;=L97.912^^88^869^255
- ;;^UTILITY(U,$J,358.3,15993,1,0)
+ ;;^UTILITY(U,$J,358.3,16173,1,3,0)
+ ;;=3^Morbid Obesity
+ ;;^UTILITY(U,$J,358.3,16173,1,4,0)
+ ;;=4^E66.01
+ ;;^UTILITY(U,$J,358.3,16173,2)
+ ;;=^5002826
+ ;;^UTILITY(U,$J,358.3,16174,0)
+ ;;=E66.8^^61^768^24
+ ;;^UTILITY(U,$J,358.3,16174,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,15993,1,3,0)
- ;;=3^Non-Pressure Chr Ulcer of Right Lower Leg w/ Fat Layer Exposed
- ;;^UTILITY(U,$J,358.3,15993,1,4,0)
- ;;=4^L97.912
- ;;^UTILITY(U,$J,358.3,15993,2)
- ;;=^5133681
- ;;^UTILITY(U,$J,358.3,15994,0)
- ;;=L97.913^^88^869^256
- ;;^UTILITY(U,$J,358.3,15994,1,0)
+ ;;^UTILITY(U,$J,358.3,16174,1,3,0)
+ ;;=3^Obesity NEC
+ ;;^UTILITY(U,$J,358.3,16174,1,4,0)
+ ;;=4^E66.8
+ ;;^UTILITY(U,$J,358.3,16174,2)
+ ;;=^5002831
+ ;;^UTILITY(U,$J,358.3,16175,0)
+ ;;=E66.9^^61^768^25
+ ;;^UTILITY(U,$J,358.3,16175,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,15994,1,3,0)
- ;;=3^Non-Pressure Chr Ulcer of Right Lower Leg w/ Necrosis of Muscle
- ;;^UTILITY(U,$J,358.3,15994,1,4,0)
- ;;=4^L97.913
- ;;^UTILITY(U,$J,358.3,15994,2)
- ;;=^5133683
- ;;^UTILITY(U,$J,358.3,15995,0)
- ;;=L97.914^^88^869^257
- ;;^UTILITY(U,$J,358.3,15995,1,0)
+ ;;^UTILITY(U,$J,358.3,16175,1,3,0)
+ ;;=3^Obesity,Unspec
+ ;;^UTILITY(U,$J,358.3,16175,1,4,0)
+ ;;=4^E66.9
+ ;;^UTILITY(U,$J,358.3,16175,2)
+ ;;=^5002832
+ ;;^UTILITY(U,$J,358.3,16176,0)
+ ;;=E74.39^^61^768^16
+ ;;^UTILITY(U,$J,358.3,16176,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,15995,1,3,0)
- ;;=3^Non-Pressure Chr Ulcer of Right Lower Leg w/ Necrosis of Bone
- ;;^UTILITY(U,$J,358.3,15995,1,4,0)
- ;;=4^L97.914
- ;;^UTILITY(U,$J,358.3,15995,2)
- ;;=^5133685
- ;;^UTILITY(U,$J,358.3,15996,0)
- ;;=L97.919^^88^869^258
- ;;^UTILITY(U,$J,358.3,15996,1,0)
+ ;;^UTILITY(U,$J,358.3,16176,1,3,0)
+ ;;=3^Intestinal Carbohydrate Absorption Disorder NEC
+ ;;^UTILITY(U,$J,358.3,16176,1,4,0)
+ ;;=4^E74.39
+ ;;^UTILITY(U,$J,358.3,16176,2)
+ ;;=^5002928
+ ;;^UTILITY(U,$J,358.3,16177,0)
+ ;;=E83.30^^61^768^28
+ ;;^UTILITY(U,$J,358.3,16177,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,15996,1,3,0)
- ;;=3^Non-Pressure Chr Ulcer of Right Lower Leg w/ Unspec Severity
- ;;^UTILITY(U,$J,358.3,15996,1,4,0)
- ;;=4^L97.919
- ;;^UTILITY(U,$J,358.3,15996,2)
- ;;=^5133688
+ ;;^UTILITY(U,$J,358.3,16177,1,3,0)
+ ;;=3^Phosphorus Metabolism Disorder,Unspec
+ ;;^UTILITY(U,$J,358.3,16177,1,4,0)
+ ;;=4^E83.30
+ ;;^UTILITY(U,$J,358.3,16177,2)
+ ;;=^5002997
+ ;;^UTILITY(U,$J,358.3,16178,0)
+ ;;=E83.51^^61^768^9
+ ;;^UTILITY(U,$J,358.3,16178,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,16178,1,3,0)
+ ;;=3^Hypocalcemia
+ ;;^UTILITY(U,$J,358.3,16178,1,4,0)
+ ;;=4^E83.51
+ ;;^UTILITY(U,$J,358.3,16178,2)
+ ;;=^60542
+ ;;^UTILITY(U,$J,358.3,16179,0)
+ ;;=E83.52^^61^768^7
+ ;;^UTILITY(U,$J,358.3,16179,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,16179,1,3,0)
+ ;;=3^Hypercalcemia
+ ;;^UTILITY(U,$J,358.3,16179,1,4,0)
+ ;;=4^E83.52
+ ;;^UTILITY(U,$J,358.3,16179,2)
+ ;;=^59932

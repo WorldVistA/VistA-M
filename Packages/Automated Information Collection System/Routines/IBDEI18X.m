@@ -1,118 +1,120 @@
-IBDEI18X ; ; 04-FEB-2020
- ;;3.0;IB ENCOUNTER FORM IMP/EXP;;FEB 04, 2020
+IBDEI18X ; ; 01-FEB-2022
+ ;;3.0;IB ENCOUNTER FORM IMP/EXP;;FEB 01, 2022
  Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,999) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
- ;;^UTILITY(U,$J,358.3,19969,1,3,0)
- ;;=3^Disp fx of distal phalanx of left thumb, sequela
- ;;^UTILITY(U,$J,358.3,19969,1,4,0)
- ;;=4^S62.522S
- ;;^UTILITY(U,$J,358.3,19969,2)
- ;;=^5034353
- ;;^UTILITY(U,$J,358.3,19970,0)
- ;;=S62.521S^^93^997^20
- ;;^UTILITY(U,$J,358.3,19970,1,0)
+ ;;^UTILITY(U,$J,358.3,20194,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,19970,1,3,0)
- ;;=3^Disp fx of distal phalanx of right thumb, sequela
- ;;^UTILITY(U,$J,358.3,19970,1,4,0)
- ;;=4^S62.521S
- ;;^UTILITY(U,$J,358.3,19970,2)
- ;;=^5034346
- ;;^UTILITY(U,$J,358.3,19971,0)
- ;;=S62.512S^^93^997^43
- ;;^UTILITY(U,$J,358.3,19971,1,0)
+ ;;^UTILITY(U,$J,358.3,20194,1,3,0)
+ ;;=3^Nondisp dome fx of right talus, sequela
+ ;;^UTILITY(U,$J,358.3,20194,1,4,0)
+ ;;=4^S92.144S
+ ;;^UTILITY(U,$J,358.3,20194,2)
+ ;;=^5044758
+ ;;^UTILITY(U,$J,358.3,20195,0)
+ ;;=S92.025S^^67^884^66
+ ;;^UTILITY(U,$J,358.3,20195,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,19971,1,3,0)
- ;;=3^Disp fx of proximal phalanx of left thumb, sequela
- ;;^UTILITY(U,$J,358.3,19971,1,4,0)
- ;;=4^S62.512S
- ;;^UTILITY(U,$J,358.3,19971,2)
- ;;=^5034311
- ;;^UTILITY(U,$J,358.3,19972,0)
- ;;=S62.511S^^93^997^48
- ;;^UTILITY(U,$J,358.3,19972,1,0)
+ ;;^UTILITY(U,$J,358.3,20195,1,3,0)
+ ;;=3^Nondisp anterior process fx of left calcaneus, sequela
+ ;;^UTILITY(U,$J,358.3,20195,1,4,0)
+ ;;=4^S92.025S
+ ;;^UTILITY(U,$J,358.3,20195,2)
+ ;;=^5044443
+ ;;^UTILITY(U,$J,358.3,20196,0)
+ ;;=S92.024S^^67^884^67
+ ;;^UTILITY(U,$J,358.3,20196,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,19972,1,3,0)
- ;;=3^Disp fx of proximal phalanx of right thumb, sequela
- ;;^UTILITY(U,$J,358.3,19972,1,4,0)
- ;;=4^S62.511S
- ;;^UTILITY(U,$J,358.3,19972,2)
- ;;=^5034304
- ;;^UTILITY(U,$J,358.3,19973,0)
- ;;=S62.525S^^93^997^73
- ;;^UTILITY(U,$J,358.3,19973,1,0)
+ ;;^UTILITY(U,$J,358.3,20196,1,3,0)
+ ;;=3^Nondisp anterior process fx of right calcaneus, sequela
+ ;;^UTILITY(U,$J,358.3,20196,1,4,0)
+ ;;=4^S92.024S
+ ;;^UTILITY(U,$J,358.3,20196,2)
+ ;;=^5044436
+ ;;^UTILITY(U,$J,358.3,20197,0)
+ ;;=S92.015S^^67^884^74
+ ;;^UTILITY(U,$J,358.3,20197,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,19973,1,3,0)
- ;;=3^Nondisp fx of distal phalanx of left thumb, sequela
- ;;^UTILITY(U,$J,358.3,19973,1,4,0)
- ;;=4^S62.525S
- ;;^UTILITY(U,$J,358.3,19973,2)
- ;;=^5034374
- ;;^UTILITY(U,$J,358.3,19974,0)
- ;;=S62.524S^^93^997^78
- ;;^UTILITY(U,$J,358.3,19974,1,0)
+ ;;^UTILITY(U,$J,358.3,20197,1,3,0)
+ ;;=3^Nondisp body of left calcaneus fx, sequela
+ ;;^UTILITY(U,$J,358.3,20197,1,4,0)
+ ;;=4^S92.015S
+ ;;^UTILITY(U,$J,358.3,20197,2)
+ ;;=^5044401
+ ;;^UTILITY(U,$J,358.3,20198,0)
+ ;;=S92.125S^^67^884^75
+ ;;^UTILITY(U,$J,358.3,20198,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,19974,1,3,0)
- ;;=3^Nondisp fx of distal phalanx of right thumb, sequela
- ;;^UTILITY(U,$J,358.3,19974,1,4,0)
- ;;=4^S62.524S
- ;;^UTILITY(U,$J,358.3,19974,2)
- ;;=^5034367
- ;;^UTILITY(U,$J,358.3,19975,0)
- ;;=S62.515S^^93^997^101
- ;;^UTILITY(U,$J,358.3,19975,1,0)
+ ;;^UTILITY(U,$J,358.3,20198,1,3,0)
+ ;;=3^Nondisp body of left talus fx, sequela
+ ;;^UTILITY(U,$J,358.3,20198,1,4,0)
+ ;;=4^S92.125S
+ ;;^UTILITY(U,$J,358.3,20198,2)
+ ;;=^5044681
+ ;;^UTILITY(U,$J,358.3,20199,0)
+ ;;=S92.014S^^67^884^76
+ ;;^UTILITY(U,$J,358.3,20199,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,19975,1,3,0)
- ;;=3^Nondisp fx of proximal phalanx of left thumb, sequela
- ;;^UTILITY(U,$J,358.3,19975,1,4,0)
- ;;=4^S62.515S
- ;;^UTILITY(U,$J,358.3,19975,2)
- ;;=^5034332
- ;;^UTILITY(U,$J,358.3,19976,0)
- ;;=S62.514S^^93^997^106
- ;;^UTILITY(U,$J,358.3,19976,1,0)
+ ;;^UTILITY(U,$J,358.3,20199,1,3,0)
+ ;;=3^Nondisp body of right calcaneus fx, sequela
+ ;;^UTILITY(U,$J,358.3,20199,1,4,0)
+ ;;=4^S92.014S
+ ;;^UTILITY(U,$J,358.3,20199,2)
+ ;;=^5044394
+ ;;^UTILITY(U,$J,358.3,20200,0)
+ ;;=S92.124S^^67^884^77
+ ;;^UTILITY(U,$J,358.3,20200,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,19976,1,3,0)
- ;;=3^Nondisp fx of proximal phalanx of right thumb, sequela
- ;;^UTILITY(U,$J,358.3,19976,1,4,0)
- ;;=4^S62.514S
- ;;^UTILITY(U,$J,358.3,19976,2)
- ;;=^5034325
- ;;^UTILITY(U,$J,358.3,19977,0)
- ;;=S32.462S^^93^998^5
- ;;^UTILITY(U,$J,358.3,19977,1,0)
+ ;;^UTILITY(U,$J,358.3,20200,1,3,0)
+ ;;=3^Nondisp body of right talus fx, sequela
+ ;;^UTILITY(U,$J,358.3,20200,1,4,0)
+ ;;=4^S92.124S
+ ;;^UTILITY(U,$J,358.3,20200,2)
+ ;;=^5044674
+ ;;^UTILITY(U,$J,358.3,20201,0)
+ ;;=S92.115S^^67^884^98
+ ;;^UTILITY(U,$J,358.3,20201,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,19977,1,3,0)
- ;;=3^Disp fx of associated transv/post of left acetabulum, sequela
- ;;^UTILITY(U,$J,358.3,19977,1,4,0)
- ;;=4^S32.462S
- ;;^UTILITY(U,$J,358.3,19977,2)
- ;;=^5024892
- ;;^UTILITY(U,$J,358.3,19978,0)
- ;;=S32.461S^^93^998^6
- ;;^UTILITY(U,$J,358.3,19978,1,0)
+ ;;^UTILITY(U,$J,358.3,20201,1,3,0)
+ ;;=3^Nondisp neck of left talus fx, sequela
+ ;;^UTILITY(U,$J,358.3,20201,1,4,0)
+ ;;=4^S92.115S
+ ;;^UTILITY(U,$J,358.3,20201,2)
+ ;;=^5044639
+ ;;^UTILITY(U,$J,358.3,20202,0)
+ ;;=S92.114S^^67^884^99
+ ;;^UTILITY(U,$J,358.3,20202,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,19978,1,3,0)
- ;;=3^Disp fx of associated transv/post of right acetab, sequela
- ;;^UTILITY(U,$J,358.3,19978,1,4,0)
- ;;=4^S32.461S
- ;;^UTILITY(U,$J,358.3,19978,2)
- ;;=^5024886
- ;;^UTILITY(U,$J,358.3,19979,0)
- ;;=S32.312S^^93^998^7
- ;;^UTILITY(U,$J,358.3,19979,1,0)
+ ;;^UTILITY(U,$J,358.3,20202,1,3,0)
+ ;;=3^Nondisp neck of right talus fx, sequela
+ ;;^UTILITY(U,$J,358.3,20202,1,4,0)
+ ;;=4^S92.114S
+ ;;^UTILITY(U,$J,358.3,20202,2)
+ ;;=^5044632
+ ;;^UTILITY(U,$J,358.3,20203,0)
+ ;;=S92.135S^^67^884^100
+ ;;^UTILITY(U,$J,358.3,20203,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,19979,1,3,0)
- ;;=3^Disp fx of avulsion of left ilium, sequela
- ;;^UTILITY(U,$J,358.3,19979,1,4,0)
- ;;=4^S32.312S
- ;;^UTILITY(U,$J,358.3,19979,2)
- ;;=^5024658
- ;;^UTILITY(U,$J,358.3,19980,0)
- ;;=S32.311S^^93^998^9
- ;;^UTILITY(U,$J,358.3,19980,1,0)
+ ;;^UTILITY(U,$J,358.3,20203,1,3,0)
+ ;;=3^Nondisp posterior process fx of left talus, sequela
+ ;;^UTILITY(U,$J,358.3,20203,1,4,0)
+ ;;=4^S92.135S
+ ;;^UTILITY(U,$J,358.3,20203,2)
+ ;;=^5044723
+ ;;^UTILITY(U,$J,358.3,20204,0)
+ ;;=S92.134S^^67^884^101
+ ;;^UTILITY(U,$J,358.3,20204,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,19980,1,3,0)
- ;;=3^Disp fx of avulsion of right ilium, sequela
- ;;^UTILITY(U,$J,358.3,19980,1,4,0)
- ;;=4^S32.311S
+ ;;^UTILITY(U,$J,358.3,20204,1,3,0)
+ ;;=3^Nondisp posterior process fx of right talus, sequela
+ ;;^UTILITY(U,$J,358.3,20204,1,4,0)
+ ;;=4^S92.134S
+ ;;^UTILITY(U,$J,358.3,20204,2)
+ ;;=^5044716
+ ;;^UTILITY(U,$J,358.3,20205,0)
+ ;;=S92.064S^^67^884^89
+ ;;^UTILITY(U,$J,358.3,20205,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,20205,1,3,0)
+ ;;=3^Nondisp intraarticular fx of right calcaneus, sequela
+ ;;^UTILITY(U,$J,358.3,20205,1,4,0)
+ ;;=4^S92.064S

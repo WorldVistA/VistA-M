@@ -1,128 +1,126 @@
-IBDEI0TU ; ; 04-FEB-2020
- ;;3.0;IB ENCOUNTER FORM IMP/EXP;;FEB 04, 2020
+IBDEI0TU ; ; 01-FEB-2022
+ ;;3.0;IB ENCOUNTER FORM IMP/EXP;;FEB 01, 2022
  Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,999) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
- ;;^UTILITY(U,$J,358.3,13283,1,0)
+ ;;^UTILITY(U,$J,358.3,13426,2)
+ ;;=^5006142
+ ;;^UTILITY(U,$J,358.3,13427,0)
+ ;;=M31.6^^51^636^19
+ ;;^UTILITY(U,$J,358.3,13427,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,13283,1,3,0)
- ;;=3^Pancreatitis w/ Necrosis,Acute
- ;;^UTILITY(U,$J,358.3,13283,1,4,0)
- ;;=4^K85.91
- ;;^UTILITY(U,$J,358.3,13283,2)
- ;;=^5138762
- ;;^UTILITY(U,$J,358.3,13284,0)
- ;;=K86.1^^83^808^71
- ;;^UTILITY(U,$J,358.3,13284,1,0)
+ ;;^UTILITY(U,$J,358.3,13427,1,3,0)
+ ;;=3^Giant Cell Arteritis,Other
+ ;;^UTILITY(U,$J,358.3,13427,1,4,0)
+ ;;=4^M31.6
+ ;;^UTILITY(U,$J,358.3,13427,2)
+ ;;=^5011748
+ ;;^UTILITY(U,$J,358.3,13428,0)
+ ;;=H53.47^^51^636^26
+ ;;^UTILITY(U,$J,358.3,13428,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,13284,1,3,0)
- ;;=3^Pancreatitis,Chronic
- ;;^UTILITY(U,$J,358.3,13284,1,4,0)
- ;;=4^K86.1
- ;;^UTILITY(U,$J,358.3,13284,2)
- ;;=^5008889
- ;;^UTILITY(U,$J,358.3,13285,0)
- ;;=D55.9^^83^809^1
- ;;^UTILITY(U,$J,358.3,13285,1,0)
+ ;;^UTILITY(U,$J,358.3,13428,1,3,0)
+ ;;=3^Heteronymous Bilateral Field Defects
+ ;;^UTILITY(U,$J,358.3,13428,1,4,0)
+ ;;=4^H53.47
+ ;;^UTILITY(U,$J,358.3,13428,2)
+ ;;=^268847
+ ;;^UTILITY(U,$J,358.3,13429,0)
+ ;;=H53.462^^51^636^25
+ ;;^UTILITY(U,$J,358.3,13429,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,13285,1,3,0)
- ;;=3^Anemia d/t Enzyme Disorder,Unspec
- ;;^UTILITY(U,$J,358.3,13285,1,4,0)
- ;;=4^D55.9
- ;;^UTILITY(U,$J,358.3,13285,2)
- ;;=^5002304
- ;;^UTILITY(U,$J,358.3,13286,0)
- ;;=D63.1^^83^809^3
- ;;^UTILITY(U,$J,358.3,13286,1,0)
+ ;;^UTILITY(U,$J,358.3,13429,1,3,0)
+ ;;=3^Homonymous Bilateral Field Defects,Left Side
+ ;;^UTILITY(U,$J,358.3,13429,1,4,0)
+ ;;=4^H53.462
+ ;;^UTILITY(U,$J,358.3,13429,2)
+ ;;=^5006342
+ ;;^UTILITY(U,$J,358.3,13430,0)
+ ;;=H53.461^^51^636^24
+ ;;^UTILITY(U,$J,358.3,13430,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,13286,1,3,0)
- ;;=3^Anemia in Chronic Kidney Disease
- ;;^UTILITY(U,$J,358.3,13286,1,4,0)
- ;;=4^D63.1
- ;;^UTILITY(U,$J,358.3,13286,2)
- ;;=^332908
- ;;^UTILITY(U,$J,358.3,13287,0)
- ;;=D63.0^^83^809^4
- ;;^UTILITY(U,$J,358.3,13287,1,0)
+ ;;^UTILITY(U,$J,358.3,13430,1,3,0)
+ ;;=3^Homonymous Bilateral Field Defects,Right Side
+ ;;^UTILITY(U,$J,358.3,13430,1,4,0)
+ ;;=4^H53.461
+ ;;^UTILITY(U,$J,358.3,13430,2)
+ ;;=^5006341
+ ;;^UTILITY(U,$J,358.3,13431,0)
+ ;;=H47.013^^51^636^9
+ ;;^UTILITY(U,$J,358.3,13431,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,13287,1,3,0)
- ;;=3^Anemia in Neoplastic Disease
- ;;^UTILITY(U,$J,358.3,13287,1,4,0)
- ;;=4^D63.0
- ;;^UTILITY(U,$J,358.3,13287,2)
- ;;=^321978
- ;;^UTILITY(U,$J,358.3,13288,0)
- ;;=D63.8^^83^809^2
- ;;^UTILITY(U,$J,358.3,13288,1,0)
+ ;;^UTILITY(U,$J,358.3,13431,1,3,0)
+ ;;=3^Ischemic Optic Neuropathy,Bilateral
+ ;;^UTILITY(U,$J,358.3,13431,1,4,0)
+ ;;=4^H47.013
+ ;;^UTILITY(U,$J,358.3,13431,2)
+ ;;=^5006107
+ ;;^UTILITY(U,$J,358.3,13432,0)
+ ;;=H47.011^^51^636^7
+ ;;^UTILITY(U,$J,358.3,13432,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,13288,1,3,0)
- ;;=3^Anemia in Chronic Diseases Classified Elsewhere
- ;;^UTILITY(U,$J,358.3,13288,1,4,0)
- ;;=4^D63.8
- ;;^UTILITY(U,$J,358.3,13288,2)
- ;;=^5002343
- ;;^UTILITY(U,$J,358.3,13289,0)
- ;;=D59.9^^83^809^5
- ;;^UTILITY(U,$J,358.3,13289,1,0)
+ ;;^UTILITY(U,$J,358.3,13432,1,3,0)
+ ;;=3^Ischemic Optic Neuropathy,Right Eye
+ ;;^UTILITY(U,$J,358.3,13432,1,4,0)
+ ;;=4^H47.011
+ ;;^UTILITY(U,$J,358.3,13432,2)
+ ;;=^5006105
+ ;;^UTILITY(U,$J,358.3,13433,0)
+ ;;=H47.012^^51^636^8
+ ;;^UTILITY(U,$J,358.3,13433,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,13289,1,3,0)
- ;;=3^Anemia,Acquired Hemolytic,Unspec
- ;;^UTILITY(U,$J,358.3,13289,1,4,0)
- ;;=4^D59.9
- ;;^UTILITY(U,$J,358.3,13289,2)
- ;;=^5002330
- ;;^UTILITY(U,$J,358.3,13290,0)
- ;;=D62.^^83^809^6
- ;;^UTILITY(U,$J,358.3,13290,1,0)
+ ;;^UTILITY(U,$J,358.3,13433,1,3,0)
+ ;;=3^Ischemic Optic Neuropathy,Left Eye
+ ;;^UTILITY(U,$J,358.3,13433,1,4,0)
+ ;;=4^H47.012
+ ;;^UTILITY(U,$J,358.3,13433,2)
+ ;;=^5006106
+ ;;^UTILITY(U,$J,358.3,13434,0)
+ ;;=H47.233^^51^636^6
+ ;;^UTILITY(U,$J,358.3,13434,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,13290,1,3,0)
- ;;=3^Anemia,Acute Posthemorrhagic
- ;;^UTILITY(U,$J,358.3,13290,1,4,0)
- ;;=4^D62.
- ;;^UTILITY(U,$J,358.3,13290,2)
- ;;=^267986
- ;;^UTILITY(U,$J,358.3,13291,0)
- ;;=D61.9^^83^809^7
- ;;^UTILITY(U,$J,358.3,13291,1,0)
+ ;;^UTILITY(U,$J,358.3,13434,1,3,0)
+ ;;=3^Optic Atrophy,Glaucomatous,Bilateral
+ ;;^UTILITY(U,$J,358.3,13434,1,4,0)
+ ;;=4^H47.233
+ ;;^UTILITY(U,$J,358.3,13434,2)
+ ;;=^5006133
+ ;;^UTILITY(U,$J,358.3,13435,0)
+ ;;=H47.231^^51^636^4
+ ;;^UTILITY(U,$J,358.3,13435,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,13291,1,3,0)
- ;;=3^Anemia,Aplastic,Unspec
- ;;^UTILITY(U,$J,358.3,13291,1,4,0)
- ;;=4^D61.9
- ;;^UTILITY(U,$J,358.3,13291,2)
- ;;=^5002342
- ;;^UTILITY(U,$J,358.3,13292,0)
- ;;=D52.9^^83^809^8
- ;;^UTILITY(U,$J,358.3,13292,1,0)
+ ;;^UTILITY(U,$J,358.3,13435,1,3,0)
+ ;;=3^Optic Atrophy,Glaucomatous,Right Eye
+ ;;^UTILITY(U,$J,358.3,13435,1,4,0)
+ ;;=4^H47.231
+ ;;^UTILITY(U,$J,358.3,13435,2)
+ ;;=^5006131
+ ;;^UTILITY(U,$J,358.3,13436,0)
+ ;;=H47.232^^51^636^5
+ ;;^UTILITY(U,$J,358.3,13436,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,13292,1,3,0)
- ;;=3^Anemia,Folate Deficiency,Unspec
- ;;^UTILITY(U,$J,358.3,13292,1,4,0)
- ;;=4^D52.9
- ;;^UTILITY(U,$J,358.3,13292,2)
- ;;=^5002293
- ;;^UTILITY(U,$J,358.3,13293,0)
- ;;=D58.9^^83^809^9
- ;;^UTILITY(U,$J,358.3,13293,1,0)
+ ;;^UTILITY(U,$J,358.3,13436,1,3,0)
+ ;;=3^Optic Atrophy,Glaucomatous,Left Eye
+ ;;^UTILITY(U,$J,358.3,13436,1,4,0)
+ ;;=4^H47.232
+ ;;^UTILITY(U,$J,358.3,13436,2)
+ ;;=^5006132
+ ;;^UTILITY(U,$J,358.3,13437,0)
+ ;;=H46.9^^51^636^19
+ ;;^UTILITY(U,$J,358.3,13437,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,13293,1,3,0)
- ;;=3^Anemia,Herediatary Hemolytic,Unspec
- ;;^UTILITY(U,$J,358.3,13293,1,4,0)
- ;;=4^D58.9
- ;;^UTILITY(U,$J,358.3,13293,2)
- ;;=^5002322
- ;;^UTILITY(U,$J,358.3,13294,0)
- ;;=D50.0^^83^809^10
- ;;^UTILITY(U,$J,358.3,13294,1,0)
+ ;;^UTILITY(U,$J,358.3,13437,1,3,0)
+ ;;=3^Optic Neuritis,Unspec
+ ;;^UTILITY(U,$J,358.3,13437,1,4,0)
+ ;;=4^H46.9
+ ;;^UTILITY(U,$J,358.3,13437,2)
+ ;;=^5006104
+ ;;^UTILITY(U,$J,358.3,13438,0)
+ ;;=H46.03^^51^636^15
+ ;;^UTILITY(U,$J,358.3,13438,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,13294,1,3,0)
- ;;=3^Anemia,Iron Deficiency,Secondary to Blood Loss
- ;;^UTILITY(U,$J,358.3,13294,1,4,0)
- ;;=4^D50.0
- ;;^UTILITY(U,$J,358.3,13294,2)
- ;;=^267971
- ;;^UTILITY(U,$J,358.3,13295,0)
- ;;=D50.9^^83^809^11
- ;;^UTILITY(U,$J,358.3,13295,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,13295,1,3,0)
- ;;=3^Anemia,Iron Deficiency,Unspec
+ ;;^UTILITY(U,$J,358.3,13438,1,3,0)
+ ;;=3^Optic Papillitis,Bilateral
+ ;;^UTILITY(U,$J,358.3,13438,1,4,0)
+ ;;=4^H46.03
+ ;;^UTILITY(U,$J,358.3,13438,2)
+ ;;=^5006099

@@ -1,10 +1,13 @@
-RCDPEWLP ;ALBANY/KML - EDI LOCKBOX ERA and EEOB WORKLIST procedures ;10 Oct 2018 11:49:24
- ;;4.5;Accounts Receivable;**298,303,304,319,332**;Mar 20, 1995;Build 40
+RCDPEWLP ;ALBANY/KML - EDI LOCKBOX ERA and EEOB WORKLIST procedures ; 4/28/22 7:39am
+ ;;4.5;Accounts Receivable;**298,303,304,319,332,345,349,367,411**;Mar 20, 1995;Build 1
  ;Per VA Directive 6402, this routine should not be modified.
  ;
  Q
  ;
  ; PRCA*4.5*298 - handle outstanding EFTs & ERAs with exceptions
+ ; PRCA*4.5*411 - Check if prescription has a 'Delete' status which
+ ;                returns a null value to ^TMP("PSOR") array results
+ ;                in <undefined> error.
  ;
 AGEDEFTS(ERADA,TYPE) ;function, Search medical or pharmacy aged EFTs that have not been posted 
  ; ENTRY point for the Select ERA action on the ERA Worklist screen
@@ -124,9 +127,13 @@ GETEFTS(TYPE,OPTION) ;function, EP from RCDPEUPO for Unposted EFT Override optio
  ;
 CUTOFF() ; Returns EFT Cutoff date
  ; date is 2 months prior to install date of patch 298, ignore aged EFTS older than that
- N RCX S RCX=+$P($G(^RCY(344.61,1,0)),U,9)
- S:RCX=0 RCX=DT
- Q $$FMADD^XLFDT(RCX,-61,0,0)
+ ;PRCA*4.5*367 changed calculation of the cut-off date to 3 years ago to speed up the checking
+ ;             for old EFTs and to avoid EFTs matched to paper check with a receipt that
+ ;             was purged in the nightly process (MAN^RCDPUT)
+ Q $$FMADD^XLFDT(DT,((365*-3)-2),0,0)
+ ;N RCX S RCX=+$P($G(^RCY(344.61,1,0)),U,9)
+ ;S:RCX=0 RCX=DT
+ ;Q $$FMADD^XLFDT(RCX,-61,0,0)
  ;
 EFTDET(RECVDT,TYPE,DAYSLIMT,TRARRY) ; Gather EFT data, Only EFTs that are aged and unposted
  ;Input: 
@@ -150,7 +157,7 @@ CHKEFT(RECVDT,EFTDA,TYPE,DAYSLIMT,TRARRY) ; Check EFT for warnings/errors
  ; DAYSLIMT  - days an EFT can age before post prevention rules apply 
  ; TRARRY    - Array with warning error info
  ;
- N AGED,EFTTYPE,ERAREC,MSTATUS,TRACE
+ N AGED,EFTTYPE,ERAREC,MSTATUS,RCMED,RCPHARM,RCTRIC,TRACE
  Q:$G(^RCY(344.31,EFTDA,0))=""  ; skip, no data
  Q:+$$GET1^DIQ(344.31,EFTDA_",",.07,"I")=0  ; skip, zero payment amt.
  ;
@@ -165,28 +172,29 @@ CHKEFT(RECVDT,EFTDA,TYPE,DAYSLIMT,TRARRY) ; Check EFT for warnings/errors
  S AGED=$$FMDIFF^XLFDT(DT,RECVDT)  ; days aged for EFT
  S TRACE=$$GET1^DIQ(344.31,EFTDA_",",.04,"I")  ; TRACE #
  S:TRACE="" TRACE="(No trace #)"
- ; no ERA, cannot evaluate further
- I 'ERAREC D  Q  ;
- . S EFTTYPE=$S($$ISTYPE^RCDPEU1(344.31,EFTDA,"P"):"P",$$ISTYPE^RCDPEU1(344.31,EFTDA,"T"):"T",1:"M")
- . S TRARRY("WARNING",EFTTYPE,TRACE)="No ERA found"_U_MSTATUS
  ;
- I (TYPE="A")!(TYPE="P"),$$PHARM(ERAREC) D  Q
+ ; PRCA*4.5*345 - Start modified code block - Don't show warning message for unmatched EFTs
+ S RCMED=$S(ERAREC:$$ISTYPE^RCDPEU1(344.4,ERAREC,"M"),1:$$ISTYPE^RCDPEU1(344.31,EFTDA,"M"))
+ S RCPHARM=$S(ERAREC:$$PHARM(ERAREC),1:$$ISTYPE^RCDPEU1(344.31,EFTDA,"P"))
+ S RCTRIC=$S(ERAREC:$$ISTYPE^RCDPEU1(344.4,ERAREC,"T"),1:$$ISTYPE^RCDPEU1(344.31,EFTDA,"T"))
+ ;
+ I (TYPE="A")!(TYPE="P"),RCPHARM D  Q
  . ; Aged, unposted EFT gets error message, no scratchpad for the ERA
  . I AGED>DAYSLIMT("P") S TRARRY("ERROR","P",TRACE)="ERA = "_ERAREC_U_MSTATUS Q
  . ; Aged, unposted PHARMACY EFT display warning message when entering scratchpad with the ERA
  . I '$D(TRARRY("ERROR")),AGED>21 S TRARRY("WARNING","P",TRACE)="ERA = "_ERAREC_U_MSTATUS
  ;
- I (TYPE="A")!(TYPE="T"),$$ISTYPE^RCDPEU1(344.31,EFTDA,"T") D  Q  ; is payer type Tricare?
+ I (TYPE="A")!(TYPE="T"),RCTRIC D  Q  ; is payer type Tricare?
  . ; Aged, unposted EFT gets error message, no scratchpad for the ERA
  . I AGED>DAYSLIMT("T") S TRARRY("ERROR","T",TRACE)="ERA = "_ERAREC_U_MSTATUS Q
  . ; Aged, unposted MEDICAL EFT display warning message when entering scratchpad with the ERA
  . I '$D(TRARRY("ERROR")),AGED>14 S TRARRY("WARNING","T",TRACE)="ERA = "_ERAREC_U_MSTATUS
  ;
- I (TYPE="A")!(TYPE="M"),'$$PHARM(ERAREC) D
+ I (TYPE="A")!(TYPE="M"),'RCPHARM,RCMED D
  . I AGED>DAYSLIMT("M") S TRARRY("ERROR","M",TRACE)="ERA = "_ERAREC_U_MSTATUS Q
  . ; Aged, unposted MEDICAL EFT warning message when entering scratchpad with ERA
  . I '$D(TRARRY("ERROR")),AGED>14 S TRARRY("WARNING","M",TRACE)="ERA = "_ERAREC_U_MSTATUS
- ;
+ ; PRCA*4.5*345 - End modified code block
  Q
  ;
 PROC(EFTDA) ; Check if TR Receipt for an EFT linked to Paper EOB is processed 
@@ -311,11 +319,17 @@ GETPHARM(PRCAIEN,RCARRY) ;prca*4.5*298 return pharmacy data to show on EEOB item
  S RCARRY("FILL")=+$P(RXDATA,U,10)  ; Rx fill#
  S RXIEN=+$P(RXDATA,U,5)  ; Rx IEN in file 52
  D EN^PSOORDER(RCDFN,RXIEN)
- S RCARRY("RX")=$P(^TMP("PSOR",$J,RXIEN,0),U,5)
- I RCARRY("FILL")=0 D
- . S RCARRY("RELEASED STATUS")=$S($P(^TMP("PSOR",$J,RXIEN,0),U,13)]"":"Released",1:"Not Released")   ; determine release status from Rx on the first fill (no refills)
- I RCARRY("FILL")>0 D
- . S RCARRY("RELEASED STATUS")=$S($P($G(^TMP("PSOR",$J,RXIEN,"REF",RCARRY("FILL"),0)),U,8)]"":"Released",1:"Not Released")  ; ; determine release status from Rx refill # ;PRCA319 add $G()
+ ; PRCA*4.5*411 - Check if prescription was deleted.
+ I $D(^TMP("PSOR",$J,RXIEN,0)) D  ;
+ . S RCARRY("RX")=$P(^TMP("PSOR",$J,RXIEN,0),U,5)
+ . I RCARRY("FILL")=0 D
+ . . S RCARRY("RELEASED STATUS")=$S($P(^TMP("PSOR",$J,RXIEN,0),U,13)]"":"Released",1:"Not Released") ; determine release status from Rx on the first fill (no refills)
+ . I RCARRY("FILL")>0 D
+ . . S RCARRY("RELEASED STATUS")=$S($P($G(^TMP("PSOR",$J,RXIEN,"REF",RCARRY("FILL"),0)),U,8)]"":"Released",1:"Not Released") ; ; determine release status from Rx refill # ;PRCA319 add $G()
+ E  D  ;
+ . S RCARRY("RX")="Rx Deleted"
+ . S RCARRY("RELEASED STATUS")="Not Found"
+ ; PRCA*4.5*411 - End modified code block
  Q
  ;
 CV ; Change View action for ERA Worklist
@@ -332,7 +346,8 @@ NOEDIT ; no edit allowed, ERA designated for auto-posting
  W ! D ^DIR W !
  Q
  ;
-VR(ERADA) ; handle auto-posted ERAs, Look at Receipt protocol for standard Worklist
+VR(ERADA) ; EP from RCDPEWL4, RCDPEAA3
+ ; handle auto-posted ERAs, Look at Receipt protocol for standard Worklist
  ; Input: ERADA - IEN from file 344.49 (and 344.4)
  N RCDA,RCZ,RCZ0,EEOBREC
  D SEL^RCDPEWL(.RCDA)  ; Select EEOB off scratchpad
@@ -340,7 +355,9 @@ VR(ERADA) ; handle auto-posted ERAs, Look at Receipt protocol for standard Workl
  Q:'RCZ
  S RCZ0=$G(^RCY(344.49,ERADA,1,RCZ,0))
  S EEOBREC=$P($G(^RCY(344.4,ERADA,1,+$P(RCZ0,U,9),4)),U,3)
- I EEOBREC']"" D NOVIEW Q 
+ I EEOBREC']"" D NOVIEW Q
+ I '$D(^XUSEC("RCDPEPP",DUZ)) D  Q          ; PRCA*4.5*349 - Added AM worklist preview
+ . D EN^VALM("RCDPE EOB RECEIPT PREVIEW AM")
  D EN^VALM("RCDPE AUTO EOB RECEIPT PREVIEW")
  Q
  ;

@@ -1,5 +1,5 @@
-PXRMEVFI ;SLC/PKR - Driver for finding evaluation. ;01/20/2011
- ;;2.0;CLINICAL REMINDERS;**6,18**;Feb 04, 2005;Build 152
+PXRMEVFI ;SLC/PKR - Driver for finding evaluation. ;04/11/2022
+ ;;2.0;CLINICAL REMINDERS;**6,18,42,65**;Feb 04, 2005;Build 438
  ;
  ;=====================================================
 BRANCH(DFN,DEFARR,ENODE,FIEVAL) ;Branch to appropriate evalution routine.
@@ -24,10 +24,16 @@ EVAL(DFN,DEFARR,FIEVAL) ;Evaluate findings, first those that don't have any
  ;date dependencies using the "E"index then those that do have date
  ;dependencies using the "EDEP" index.
  ;index.
- N BDT,EDT,IND,ITEM,ENODE,FINDING,NOCC,TDEFARR
+ N CFPARAM,COND,BDT,EDT,IND,ITEM,ENODE,FINDING,NOCC,TDEFARR
  I $G(PXRMDEBG) D
  . S FINDING=0
- . F  S FINDING=$O(DEFARR(20,FINDING)) Q:FINDING=""  S FIEVAL(FINDING,"BDT")=$P(DEFARR(20,FINDING,0),U,8),FIEVAL(FINDING,"EDT")=$P(DEFARR(20,FINDING,0),U,11)
+ . F  S FINDING=$O(DEFARR(20,FINDING)) Q:FINDING=""  D
+ .. S FIEVAL(FINDING,"BDT")=$P(DEFARR(20,FINDING,0),U,8)
+ .. S FIEVAL(FINDING,"EDT")=$P(DEFARR(20,FINDING,0),U,11)
+ .. S COND=$P($G(DEFARR(20,FINDING,3)),U,1)
+ .. I COND'="" S FIEVAL(FINDING,"CONDITION TEXT")=COND
+ .. S CFPARAM=$G(DEFARR(20,FINDING,15))
+ .. I CFPARAM'="" S FIEVAL(FINDING,"CFP TEXT")=CFPARAM
  S ENODE=""
  F  S ENODE=$O(DEFARR("E",ENODE)) Q:ENODE=""  D BRANCH(DFN,.DEFARR,ENODE,.FIEVAL)
  I '$D(DEFARR("EDEP")) G FF
@@ -56,7 +62,7 @@ EVAL(DFN,DEFARR,FIEVAL) ;Evaluate findings, first those that don't have any
  .;At this point branch to appropriate EVALFI
  . D BRANCH(DFN,.TDEFARR,ENODE,.FIEVAL)
  ;Evaluate function findings.
-FF D EVAL^PXRMFF(DFN,.DEFARR,.FIEVAL)
+FF D EVAL^PXRMFF(.DEFARR,.FIEVAL)
  Q
  ;
  ;=====================================================

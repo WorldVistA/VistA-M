@@ -1,5 +1,5 @@
 SDHL7APU ;MS/TG,PH - TMP HL7 Routine;OCT 16, 2018
- ;;5.3;Scheduling;**704,714**;AUG 17, 2018;Build 80
+ ;;5.3;Scheduling;**704,714,773,780,798,810**;AUG 17, 2018;Build 3
  ;
  ;  Integration Agreements:
  Q
@@ -9,6 +9,7 @@ SDHL7APU ;MS/TG,PH - TMP HL7 Routine;OCT 16, 2018
 MSH(MSH,INP,MSGARY) ;
  S MSGARY("HL7EVENT")=$G(MSH(8,1,2))
  S MSGARY("HLTHISSITE")=+$G(MSH(5,1,1))
+ S ^XTMP("SDTMP",+MSH(9))="",$P(^XTMP("SDTMP",0),U,1)=$$FMADD^XLFDT(DT,7) ;773
  Q
 SCH(SCH,INP,MSGARY) ;
  N TM,TMM,CONSDSC,CANCODE
@@ -27,7 +28,7 @@ SCH(SCH,INP,MSGARY) ;
  S TM=$G(SCH(11,1,4))
  I $G(SDDDT)="" S:$G(SCH(11,1,8))'="" SDDDT=$G(SCH(11,1,8))
  I $G(SDDDT)="" S:$G(SCH(5,1,2))'="" SDDDT=$G(SCH(5,1,2))
- S:$G(TM)'="" SDECSTART=$P(TM,":",1,2)_":00Z"
+ S:$G(TM)'="" SDECSTART=$P(TM,":",1,2)_":00.000Z"
  ;S INP(11)=$G(SDDDT)
  S SDREQBY=$G(SCH(16,1,1))
  N SCHEMAIL S SCHEMAIL=$$LOW^XLFSTR(SCH(13,1,4))
@@ -125,16 +126,15 @@ CHKCHILD ;
  I $P($G(SDAPTYP),"|",1)="R" D  ; if rtc check to see if the child is actually a parent
  .I $G(SDPARENT)="" S:$G(SCH(24,1,1))'="" SDPARENT=$G(SCH(24,1,1))
  .I $G(SDPARENT)="" S:$G(SCH(23,1,1))'="" SDPARENT=$G(SCH(23,1,1))
- .;I $G(SDCHILD)=$G(SDPARENT) 
  .S:$G(SDPARENT)>0 MTC=$P($G(^SDEC(409.85,+$G(SDPARENT),3)),"^",3),SDMRTC=$S(MTC>0:"1",1:0)
- .Q:$G(MTC)=0  ; Not a multi RTC
+ .Q:+$G(MTC)=0  ; Not a multi RTC
  .S:$G(SDCL)>0 RTCCLIN=$P(^SDEC(409.85,$G(SDPARENT),0),"^",9)
  .S DUZ=$G(MSGARY("DUZ"))
  .Q:$G(RTCCLIN)'=SDCL
  .N X12,X13 S (X12,X13)=0 F  S X12=$O(^SDEC(409.85,$G(SDPARENT),2,X12)) Q:X12'>0  S X13=X12
  .Q:$G(X13)=MTC!($G(X13)>MTC)
  .I $G(MTC)>0 F I=1:1:MTC Q:I>MTC  D
- ..S:INP(3)="" INP(3)=DT S INP(25)=SDPARENT,INP(6)=$P(^SDEC(409.85,SDPARENT,0),"^",9),RTN=0
+ ..S:$G(INP(3))="" INP(3)=DT S INP(25)=SDPARENT,INP(6)=$P(^SDEC(409.85,SDPARENT,0),"^",9),RTN=0
  ..S INP(5)="RTC",INP(1)="",INP(14)="YES",INP(15)=$P($G(^SDEC(409.85,SDPARENT,3)),"^",2),INP(16)=I
  ..D ARSET^SDHLAPT1(.RTN,.INP)
  ..I I=1 S:$P($G(RTN),"^",2)>0 FCHILD=$P(RTN,"^",2)
@@ -242,7 +242,7 @@ INP ; set up the INP array for calling ARSET^SDECAR2 to update the RTC orders
  S:$G(SDMRTC)'="" INP(14)=$S(SDMRTC=1:"YES",SDMRTC=0:"NO",1:"")
  ;I $G(SDPARENT)'="" S SDPARENT=$G(MSGARY("SDPARENT"))
  I +$G(SDPARENT)>0 S NODE3=$G(^SDEC(409.85,+SDPARENT,3)),INTV=$P(NODE3,"^",2)
- S INP(1)=$P(SDAPTYP,"|") ;If a new RTC order this will be null so it will be added to the file. If this is not null, an update happens
+ S INP(1)=$P(SDAPTYP,"|",2)    ;If a new RTC order this will be null so it will be added.    810-change 1st piece to use 2nd piece.  IEN for file (#409.85)
  S INP(2)=$G(DFN)
  D NOW^%DTC S NOW=$$HTFM^XLFDT($H),INP(3)=$$FMTE^XLFDT(NOW)
  ;NEEDS THE TEXT INSTITUTION NAME
@@ -338,16 +338,6 @@ ERRLKP(ERRTXT) ;
  . I ERTX1'="",ERTX2'="" I ERTXT[ERTX1 S ERTXT=ERTX2,XSP=1
  . Q
  Q ERTXT
-CONVTIME(TIME,INST) ;Intrinsic Function. Convert XML time to FileMan format
- ;714 - PB if the clinic's division has a time zone in file 4 use it, otherwise default to the site time zone
- N XZ,XOUT,XOUT1
- S XZ=0 I $G(TIME)["Z" S XZ=1 ;Zulu time (GMT)
- S XOUT1=$TR(TIME,"TZ -:","")
- S:$G(INST)'>0 INST=$$KSP^XUPARAM("INST")
- S XOUT=$$HL7TFM^XLFDT(XOUT1)
- I XZ=1 S OFFSET=$P($$UTC^DIUTC(XOUT,,$G(INST),,1),"^",3),XOUT=$$FMADD^XLFDT(XOUT,,OFFSET)
- K %DT(0),INST
- Q XOUT
 CHKAPT(RET,DFN,CLINID) ;
  N XX,STATUS
  Q:$G(DFN)'>0
@@ -416,6 +406,15 @@ DUZ ; send error nak back if user not on system
  D SENDERR^SDHL7APU(ERR)
  K @MSGROOT
  Q
+APPTYPE(CL) ;Determines APPTYPE by STOP CODES associated with CLINIC (SD*5.3*780)
+ ;Returns 1 if STOP CODE indicates Appointment Type equal to 1 (Compensation & Pension)
+ N SCSPTR,SCS,SC0
+ S SC0=$G(^SC(CL,0)),SCSPTR=$P(SC0,U,18),SCS=$$GET1^DIQ(40.7,$G(SCSPTR)_",",1,"I")
+ I SCS>443,SCS<448 Q 1
+ Q 0
+GETSTA(STA) ;Return Parent STA or self if No parent
+ N PSTA S:($E(STA,4,5)="A")!($E(STA,4,5)="B") STA=+STA S PSTA=+$P($$PRNT^XUAF4(STA),U,2)
+ Q $S(PSTA:PSTA,1:STA)
 ERRS ;
  ;;already has appt at^Patient already has an appt at that datetime
  ;;already has appt at^Patient already has an appt

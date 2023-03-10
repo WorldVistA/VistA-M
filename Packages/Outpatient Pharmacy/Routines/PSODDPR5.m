@@ -1,9 +1,9 @@
-PSODDPR5 ;BIR/SAB - displays OP/rdi/pending/nva orders ;09/12/06 11:33am
- ;;7.0;OUTPATIENT PHARMACY;**251,375,379,390,372,416,438,411,484**;DEC 1997;Build 2
+PSODDPR5 ;BIR/SAB - displays OP/rdi/pending/nva orders ;08/23/17  19:46
+ ;;7.0;OUTPATIENT PHARMACY;**251,375,379,390,372,416,438,411,484,441**;DEC 1997;Build 208
  ;External reference to ^PSDRUG( supported by DBIA 4846
  ;External reference to ^PS(50.606 supported by DBIA 2174
  ;External reference to ^PS(50.7 supported by DBIA 2223
- ;External reference to ^PS(55 supported by DBIA 2228 
+ ;External reference to ^PS(55 supported by DBIA 2228
  ;
 EXC ;displays order check exceptions
  N Q,CT,ONT,OT,ON,TD,ERRTY,OP,OPP,ZEXC,ZREA,X,DIWL,DIWR,DIWF,PSOWROTE,ZX
@@ -60,7 +60,9 @@ DUPCP D HD^PSODDPR2():(($Y+5)'>IOSL) S ORT=0,ON=""  F  S ORT=$O(DOCPL(ORT)) Q:'O
  .I $P(ON,";")="O" D
  ..D HD^PSODDPR2():(($Y+5)'>IOSL) Q:$G(PSODLQT)  S ST=$P(^PSRX($P(ON,";",2),"STA"),"^")+1
  ..S STA="ACTIVE^NON-VERIFIED^REFILL^HOLD^NON-VERIFIED^SUSPENDED^^^^^^EXPIRED^DISCONTINUED^^DISCONTINUED BY PROVIDER^DISCONTINUE EDIT^PROVIDER HOLD"
- ..S STAT=$P(STA,"^",ST) W !?2,"Local Rx #"_$P(^PSRX($P(ON,";",2),0),"^")_" ("_STAT_") for "_$P(^PSDRUG($P(^PSRX($P(ON,";",2),0),"^",6),0),"^")
+ ..S STAT=$P(STA,"^",ST) D   ;441 PAPI
+ ...I ST=1,$G(^PSRX($P(ON,";",2),"PARK")) S STAT="PARKED"
+ ...W !?2,"Local Rx #"_$P(^PSRX($P(ON,";",2),0),"^")_" ("_STAT_") for "_$P(^PSDRUG($P(^PSRX($P(ON,";",2),0),"^",6),0),"^")
  .I $P(ON,";")="P" D
  ..D HD^PSODDPR2():(($Y+5)'>IOSL) Q:$G(PSODLQT)
  ..N DNM,DUPRX0 S RXREC=$P(ON,";",2),DNM=$P(^PS(52.41,RXREC,0),"^",9)

@@ -1,5 +1,5 @@
 RORX006A ;HOIFO/BH,SG,VAC - LAB UTILIZATION (QUERY & SORT) ;4/7/09 2:07pm
- ;;1.5;CLINICAL CASE REGISTRIES;**8,13,19,21,31**;Feb 17, 2006;Build 62
+ ;;1.5;CLINICAL CASE REGISTRIES;**8,13,19,21,31,39**;Feb 17, 2006;Build 4
  ;
  ; This routine uses the following IAs:
  ;
@@ -20,6 +20,7 @@ RORX006A ;HOIFO/BH,SG,VAC - LAB UTILIZATION (QUERY & SORT) ;4/7/09 2:07pm
  ;                                       requested.
  ;ROR*1.5*31   MAY 2017    M FERRARESE  Adding PACT, PCP , AGE/DOB as additional
  ;                                       identifiers.
+ ;ROR*1.5*39   JUL 2021    M FERRARESE  Setting SSN and LAST4 to zeros
  ;******************************************************************************
  ;******************************************************************************
  Q
@@ -154,7 +155,7 @@ QUERY(FLAGS) ;
  . I RORCDLIST,'$$CDUTIL^RORXU001(.RORTSK,PATIEN,RORCDSTDT,RORCDENDT) Q
  . ;--- Get the patient's data
  . D VADEM^RORUTL05(PATIEN,1)
- . S RORPNAME=VADM(1),RORLAST4=VA("BID")
+ . S RORPNAME=VADM(1),RORLAST4="0000" ;VA("BID")
  . S RORDOD=$$DATE^RORXU002($P(VADM(6),U)\1)
  . I $$PARAM^RORTSK01("PATIENTS","ICN") S RORICN=$$ICN^RORUTL02(PATIEN)
  . I $$PARAM^RORTSK01("PATIENTS","PACT") S RORPACT=$$PACT^RORUTL02(PATIEN)

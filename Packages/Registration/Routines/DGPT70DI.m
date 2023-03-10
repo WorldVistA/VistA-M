@@ -1,5 +1,5 @@
 DGPT70DI ;ALB/MTC/ADL,HIOFO/FT - Diagnosis edits for 700's - E codes, V codes, gender and ICD9 Diag. ;2/20/15 12:20pm
- ;;5.3;Registration;**510,850,884**;Aug 13, 1993;Build 31
+ ;;5.3;Registration;**510,850,884,1057**;Aug 13, 1993;Build 17
  ;;ADL;Update for CSV Project;;Mar. 24, 2003
  ;
  ; ICDEX APIs - #5747
@@ -11,7 +11,7 @@ EN ;called from DGPT702
  . Q:(DGPTDIA="")!(DGPTPOA="")
  . I DGPTDIA="",DGPTPOA'=" " S DGPTERC=$S(DGPTL3<10:719+DGPTL3,1:787+DGPTL3) ;POA without a DX. using invalid dx error code
  . Q:DGPTDIA=""
- . I "YNUW "'[DGPTPOA S DGPTREC=$S(DGPTL3<10:719+DGPTL3,1:787+DGPTL3) D ERR
+ . I "1YNUW "'[DGPTPOA S DGPTREC=$S(DGPTL3<10:719+DGPTL3,1:787+DGPTL3) D ERR  ; DG*5.3*1057
  . S DGPTERC=0 D DIAG
  Q
  ;

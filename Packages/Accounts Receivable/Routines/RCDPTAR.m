@@ -1,5 +1,5 @@
 RCDPTAR ;ALB/TJB - EFT TRANSACTION AUDIT REPORT ;1/02/15
- ;;4.5;Accounts Receivable;**303,321,326**;Mar 20, 1995;Build 26
+ ;;4.5;Accounts Receivable;**303,321,326,380,371**;Mar 20, 1995;Build 29
  ;;Per VA Directive 6402, this routine should not be modified.
  ;
  Q
@@ -12,7 +12,7 @@ RCDPTAR ;ALB/TJB - EFT TRANSACTION AUDIT REPORT ;1/02/15
 EN ; Main entry point for this report
  ; Ask Summary or Detail output
  ;
- N DIR,X,Y,DUOUT,DTOUT,DIRUT,DIROUT,RCREP
+ N DIR,DIRUT,DIROUT,DTOUT,DUOUT,RCREP,RCREP2,X,Y
  W !
  S DIR(0)="SOA^S:Summary Information Only;D:Detail Report"
  S DIR("A")="(S)ummary or (D)etail Report format? "
@@ -21,9 +21,31 @@ EN ; Main entry point for this report
  I $D(DTOUT)!$D(DUOUT)!(Y="") Q
  S RCREP=Y
  ;
- I RCREP="S" D SUM^RCDPTAR1
+ ; PRCA*4.5*380 - Ask if display sum. rpt. by Dep. Date or Dep. Num.
+ S RCREP2=0
+ S:RCREP="S" RCREP2=$$ASKSUM2()
+ Q:RCREP2=-1
+ ;
+ I RCREP="S",RCREP2=1 D SUM^RCDPTAR1
+ I RCREP="S",RCREP2=2 D SUM2^RCDPTAR1
  I RCREP="D" D DET
  Q
+ ;
+ ; PRCA*4.5*380 - New Subroutine added
+ASKSUM2() ; Ask the user if they want to display the summary report by Deposit Date
+ ; or by Deposit Number
+ ; Input:   None
+ ; Returns: -1 - User quit or timed out
+ ;           1 - Display Summary report by Deposit Date
+ ;           2 - Display Summary report by Deposit Number
+ N DIR,DIRUT,DIROUT,DTOUT,DUOUT,X,Y
+ S DIR(0)="SOA^EFTS:EFTS by Date;DATE:Deposit Number"
+ S DIR("A")="(E)FTs by Date or (D)eposit? "
+ S DIR("B")="DEPOSIT"
+ D ^DIR
+ I $D(DTOUT)!$D(DUOUT) Q -1
+ I $E(Y,1)="E" Q 1
+ Q 2
  ;
 DET ; Entry point for detailed report
  ; Input: variable RCREP defined and equal to "D"
@@ -43,21 +65,25 @@ DET1 ; Prompt for user selection criteria
  S DIR("L")="  4. (T)race #"
  S DIR("A")="Search for EFT by"
  D ^DIR
- I $D(DTOUT)!$D(DUOUT)!(Y="") G DETQ
+ I $D(DTOUT)!$D(DUOUT)!(Y="") Q                 ;PRCA*4.5*371 Changed G DETQ to Q
  S RCDET=Y
  ;
  ; Do lookup of EFTs based on the user selection above
  S RCDATA=""
  D @($S(RCDET="N":"DN",RCDET="D":"DT",RCDET="R":"RC",1:"TR")_"(.RCDATA)")
- I RCDATA=-1 G DETQ
- I RCDATA="" G DET1
+ ;PRCA*4.5*371 Moved lines that were here to new method SHOWONE
+ Q
  ;
-  ; Prompt for device
+SHOWONE(STOP) ; Prompt for device and output data for one EFT
+ ; Input:   STOP    - Initially set to 0
+ ; Output:  STOP    - 1 user entered '^', 0 otherwise
+ ;PRCA*4.5*371 - Added Method
  N %ZIS,ZTSK,ZTRTN,ZTIO,ZTDESC,ZTSAVE,POP
  S %ZIS="QM"
  D ^%ZIS
- I POP G DETQ
- I $D(IO("Q")) D  G DETQ
+ S STOP=POP
+ Q:POP
+ I $D(IO("Q")) D  Q
  . S ZTRTN="RUN^RCDPTAR(RCDATA)"
  . S ZTIO=ION
  . S ZTSAVE("*")=""
@@ -66,11 +92,7 @@ DET1 ; Prompt for user selection criteria
  . W !,$S($D(ZTSK):"REQUEST QUEUED TASK="_ZTSK,1:"REQUEST CANCELLED")
  . D HOME^%ZIS
  U IO
- ;
  D RUN(RCDATA)
- Q
- ;
-DETQ ;
  Q
  ;
 RUN(RCDATA) ; Compile and output the report
@@ -87,13 +109,14 @@ RUN(RCDATA) ; Compile and output the report
  Q
  ;
 DN(RCDATA) ; Lookup by Deposit Number
- ; Input: RCDATA - null on entry
- ; Output: RCDATA passed by refence - see subroutine EFTDA for delimited list of fields
+ ; Input:   RCDATA  - null on entry
+ ; Output:  RCDATA  - passed by refence - see subroutine EFTDATA for delimited list of fields
  ; Note variable RCDEFLUP is needed by LOOKUP^RCDPUDEP, which is called by the .01 field
  ;
- N DIC,DTOUT,DUOUT,Y,RCDEFLUP,LOCKIEN
+ N DIC,DTOUT,DUOUT,LOCKIEN,RCDEFLUP,STOP,USERDN,Y   ;PRCA*4.5*371 Added STOP
+ S STOP=0                                           ;PRCA*4.5*371 Added line
  ;
- ; Lookup Deposit Number
+DN2 ; Lookup Deposit Number                         ;PRCA*4.5*371 Added looping Tag
  W !
  S DIC="^RCY(344.1,",DIC(0)="QEAMn",DIC("A")="Select DEPOSIT: ",DIC("W")="D DICW^RCDPUDEP"
  S RCDEFLUP=1
@@ -101,51 +124,73 @@ DN(RCDATA) ; Lookup by Deposit Number
  I $G(DTOUT)!$G(DUOUT)!(Y=-1) S RCDATA=-1 Q
  ;
  S LOCKIEN=+$O(^RCY(344.3,"ARDEP",+Y,""))
- I 'LOCKIEN W !!,"EFT NOT FOUND - please check Deposit" D PAUSE Q
+ I 'LOCKIEN D  G DN2                                ;PRCA*4.5*371 Changed Q to G DN2
+ . W !!,"EFT NOT FOUND - please check Deposit"
+ . D PAUSE
  ;
  ; Get EFT pointer
  S RCDATA=$$EFT(LOCKIEN)
+ ;
+ ;PRCA*4.5*371 - Added lines Begin
+ Q:RCDATA=-1
+ Q:RCDATA=""                                    ; No EFTs found
+ D SHOWONE(.STOP)                               ; Display output
+ Q:STOP
+ G DN2
+ ;PRCA*4.5*371 - Added lines End
  Q
  ;
 DT(RCDATA) ; Deposit Date
- ; Input: RCDATA - null on entry
- ; Output: RCDATA passed by refence - see subroutine EFTDA for delimited list of fields
+ ; Input:   RCDATA  - null on entry
+ ; Output:  RCDATA  - passed by refence - see subroutine EFTDATA for delimited list of fields
  ;
- N CNT,DATA,DEPIEN,DIR,DIROUT,DIRUT,DTOUT,DUOUT,ITEM,LINE,LIST,RCDT,RCI,RCIEN,X,Y
+ ;PRCA*4.5*371 Added STOP below
+ N CNT,DATA,DEPIEN,DIR,DIROUT,DIRUT,DTOUT,DUOUT,ITEM,LINE,LIST,RCDT,RCI,RCIEN,STOP,X,Y
+ S STOP=0                                       ;PRCA*4.5*371 Added line
  ;
 DT1 ; Ask the user for the Deposit Date
  K DIR
  S DIR(0)="DAO^:"_DT_":APE",DIR("B")="T"
  S DIR("A")="Select DEPOSIT DATE: "
  D ^DIR
- I $D(DTOUT)!$D(DUOUT)!(Y="") S RCDATA=-1 Q
+ I $D(DTOUT)!$D(DUOUT) S RCDATA=-1 Q
  S RCDT=Y
  ;
  ; Build List
  K LIST
- S RCI="",CNT=0 F  S RCI=$O(^RCY(344.3,"ADEP",RCDT,RCI)) Q:RCI=""  D
- . S RCIEN="" F  S RCIEN=$O(^RCY(344.3,"ADEP",RCDT,RCI,RCIEN)) Q:RCIEN=""  D
- .. S DEPIEN=$P($G(^RCY(344.3,RCIEN,0)),U,3)
- .. I DEPIEN="" Q
- .. S DATA=$G(^RCY(344.1,DEPIEN,0))
- .. I DATA="" Q
- .. S CNT=CNT+1
- .. ; Code below is similiar to DICW^RCDPUDEP code
- .. S LINE=$J(CNT,3)_". "_$P(DATA,U,1)
- .. S $E(LINE,19)="by: "_$E($P($G(^VA(200,+$P(DATA,"^",6),0)),"^"),1,15)
- .. I '$P(DATA,"^",7) S $P(DATA,"^",7)="???????"
- .. S $E(LINE,39)="on: "_$E($P(DATA,"^",7),4,5)_"/"_$E($P(DATA,"^",7),6,7)_"/"_$E($P(DATA,"^",7),2,3)
- .. S $E(LINE,52)="amt: $"_$J($P(DATA,"^",4),10,2)
- .. S $E(LINE,70)=$P("N/A^OPEN^DEPOSITED^CONFIRMED^PROCESSED^VOID","^",+$P(DATA,"^",12)+1)
- .. S LIST(CNT)=RCIEN_"^"_$P(DATA,U,1)_"^"_LINE
+ S RCI="",CNT=0
+ F  S RCI=$O(^RCY(344.3,"ADEP",RCDT,RCI)) Q:RCI=""  D
+ . S RCIEN=""
+ . F  S RCIEN=$O(^RCY(344.3,"ADEP",RCDT,RCI,RCIEN)) Q:RCIEN=""  D
+ . . S DEPIEN=$P($G(^RCY(344.3,RCIEN,0)),U,3)
+ . . I DEPIEN="" Q
+ . . S DATA=$G(^RCY(344.1,DEPIEN,0))
+ . . I DATA="" Q
+ . . S CNT=CNT+1
+ . . ; Code below is similiar to DICW^RCDPUDEP code
+ . . S LINE=$J(CNT,3)_". "_$P(DATA,U,1)
+ . . S $E(LINE,19)="by: "_$E($P($G(^VA(200,+$P(DATA,"^",6),0)),"^"),1,15)
+ . . I '$P(DATA,"^",7) S $P(DATA,"^",7)="???????"
+ . . S $E(LINE,39)="on: "_$E($P(DATA,"^",7),4,5)_"/"_$E($P(DATA,"^",7),6,7)_"/"_$E($P(DATA,"^",7),2,3)
+ . . S $E(LINE,52)="amt: $"_$J($P(DATA,"^",4),10,2)
+ . . S $E(LINE,70)=$P("N/A^OPEN^DEPOSITED^CONFIRMED^PROCESSED^VOID","^",+$P(DATA,"^",12)+1)
+ . . S LIST(CNT)=RCIEN_"^"_$P(DATA,U,1)_"^"_LINE
  ;
  ; If no deposits in the LIST, display a message and try again
- I CNT=0 W !,"Date ",$$DATE^RCDPRU(RCDT)," does not have any valid deposits, please try again...",! G DT1
+ I CNT=0 D  G DT1
+ . W !,"Date ",$$DATE^RCDPRU(RCDT)," does not have any valid deposits, please try again...",!
  ;
  ; If only one deposit in the list, use it
- I CNT=1 S RCDATA=$$EFT(+LIST(CNT)) Q
+ I CNT=1 D  Q:STOP  G DT1                       ;PRCA*4.5*371 Changed Q to Q:STOP G DT1
+ . S RCDATA=$$EFT(+LIST(CNT))
+ . ;
+ . ;PRCA*4.5*371 Begin Added lines 
+ . Q:RCDATA=-1
+ . Q:RCDATA=""                                  ; No EFTs found
+ . D SHOWONE(.STOP)                             ; Display output
+ . ;PRCA*4.5*371 End Added lines 
  ;
- ; Multiple entries found so prompt for the one that is wanted
+DT2 ; Multiple entries found so prompt for the one that is wanted ;PRCA*4.5*371 Added looping Tag
  W !!,"Deposits on ",$$DATE^RCDPRU(RCDT)
  K DIR,ITEM
  S DIR(0)="SAO^"
@@ -162,14 +207,23 @@ DT1 ; Ask the user for the Deposit Date
  I $D(DTOUT)!$D(DUOUT) S RCDATA=-1 Q
  I Y="" G DT1
  S RCDATA=$$EFT(ITEM(Y))
+ ;
+ ;PRCA*4.5*371 - Added lines Begin
+ Q:RCDATA=-1
+ Q:RCDATA=""                                    ; No EFTs found
+ D SHOWONE(.STOP)                               ; Display output
+ Q:STOP
+ G DT2
+ ;PRCA*4.5*371 - Added lines End
  Q
  ;
 RC(RCDATA) ; Lookup by Receipt Number
- ; Input: RCDATA - null on entry
- ; Output: RCDATA passed by refence - see subroutine EFTDA for delimited list of fields
+ ; Input:   RCDATA  - null on entry
+ ; Output:  RCDATA  - passed by refence - see subroutine EFTDATA for delimited list of fields
  ;
- N DIC,D,DTOUT,DUOUT,X,Y,RCIEN,RCDTN,RCED
- ;
+ N D,DIC,DTOUT,DUOUT,RCDTN,RCED,RCIEN,STOP,X,Y  ;PRCA*4.5*371 Added Stop
+ S STOP=0                                       ;PRCA*4.5*371 Added line
+RC2 ;                                           ;PRCA*4.5*371 Added looping Tag
  W !
  S DIC="^RCY(344,",DIC(0)="QEAMn",DIC("A")="Select RECEIPT: "
  S DIC("W")="D DICW^RCDPUREC"
@@ -200,15 +254,26 @@ RC(RCDATA) ; Lookup by Receipt Number
  . S EFTIEN=$O(^RCY(344.31,"AERA",ERAIEN,""))
  . I EFTIEN S RCDATA=$$EFTDATA(EFTIEN)
  ;
- I RCDATA="" W !!,"EFT NOT FOUND - please check Receipt" D PAUSE Q
+ I RCDATA="" D  G RC2                           ;PRCA*4.5*371 Changed Q to G RC2
+ . W !!,"EFT NOT FOUND - please check Receipt"
+ . D PAUSE
+ ;
+ ;PRCA*4.5*371 - Added lines Begin
+ Q:RCDATA=-1
+ Q:RCDATA=""                                    ; No EFTs found
+ D SHOWONE(.STOP)                               ; Display output
+ Q:STOP
+ G RC2
+ ;PRCA*4.5*371 - Added lines End
  Q
  ;
 TR(RCDATA) ; Lookup by Trace Number
- ; Input: RCDATA - null on entry
- ; Output: RCDATA passed by refence - see subroutine EFTDA for delimited list of fields
- N DIC,D,Y,X,DTOUT,DUOUT
+ ; Input:   RCDATA  - null on entry
+ ; Output:  RCDATA  - passed by refence - see subroutine EFTDATA for delimited list of fields
+ N D,DIC,DTOUT,DUOUT,STOP,X,Y                   ;PRCA*4.5*371 Added STOP
+ S STOP=0                                       ;PRCA*4.5*371 Added line
  ;
- ; Use "F" index in EDI EFT Detail file
+TR2 ; Use "F" index in EDI EFT Detail file      ;PRCA*4.5*371 Added looping Tag
  W !
  S DIC="^RCY(344.31,",DIC(0)="QEASn",D="F",DIC("A")="Select TRACE: "
  ; DIC("W") may need to be fixed if Trace numbers go over 32 characters. The fields
@@ -217,6 +282,14 @@ TR(RCDATA) ; Lookup by Trace Number
  D IX^DIC
  I $D(DTOUT)!$D(DUOUT)!(Y=-1) S RCDATA=-1 Q
  S RCDATA=$$EFTDATA(+Y)
+ ;
+ ;PRCA*4.5*371 - Added lines Begin
+ Q:RCDATA=-1
+ Q:RCDATA=""                                    ; No EFTs found
+ D SHOWONE(.STOP)                               ; Display output
+ Q:STOP
+ G TR2
+ ;PRCA*4.5*371 - Added lines End
  Q
  ;
 EFT(LOCKIEN) ; Select a single EFT Number
@@ -388,7 +461,8 @@ REPORT(RCDATA) ; Print out the report
  I $D(ZTQUEUED) S ZTREQ="@" Q
  D ^%ZISC
  ;
- I RCPG,RCSCR D PAUSE
+ ; PRCA*4.5*371 - STOP if user enters '^'
+ I RCPG,RCSCR S STOP=$S('$$PAUSE():1,1:0)
  Q
  ;
 HEADER(RCNOW,RCPG,RCHR,RCDATA) ; Print Header Section

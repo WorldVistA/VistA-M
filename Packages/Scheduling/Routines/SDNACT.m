@@ -1,5 +1,5 @@
-SDNACT ;ALB/TMP - INACTIVATE A CLINIC ;JAN 15, 2016
- ;;5.3;Scheduling;**63,380,549,568,622,627,726**;Aug 13, 1993;Build 36
+SDNACT ;ALB/TMP - INACTIVATE A CLINIC ;Mar 25, 2021@15:05:56
+ ;;5.3;Scheduling;**63,380,549,568,622,627,726,781**;Aug 13, 1993;Build 11
  S:'$D(DTIME) DTIME=300 I '$D(DT) D DT^SDUTL
  S SDAY="Sun^Mon^Tues^Wednes^Thurs^Fri^Satur",SDZQ=1
  D DT^DICRW S DIC="^SC(",DIC(0)="AEMZQ",DIC("A")="Select CLINIC NAME: ",DIC("S")="I $P(^(0),""^"",3)=""C"",'$G(^(""OOS""))"
@@ -97,16 +97,22 @@ QUE ; leave job to TaskMan for dates in the future, otherwise deliver
  Q  ; SD*5.3*622 - end of changes
  ;
 SDEC(SC,SDDATE) ;update INACTIVATED DATE/TIME in SDEC RESOURCE   ;alb/sat 627
- N SDFDA,SDI,SDJ,SDRES
- S SDRES=$$GETRES^SDECUTL(SC)
+ N SDFDA,SDI,SDJ,SDRES,SDREACT
+ S SDRES=$$GETRES^SDECUTL(SC,1) ;lab 781 need, "1" sent to assign resource
  Q:SDRES=""
+ ;lab 781 - if inactivated date greater than existing 
+ S SDREACT=$$GET1^DIQ(409.831,SDRES_",",.025,"I")
  S SDFDA(409.831,SDRES_",",.021)=SDDATE
  S SDFDA(409.831,SDRES_",",.022)=DUZ
- D UPDATE^DIE("","SDFDA")
+ I SDREACT<DT D
+ . S SDFDA(409.831,SDRES_",",.025)="@"
+ . S SDFDA(409.831,SDRES_",",.026)="@"
+ D FILE^DIE("","SDFDA")
+ K SDFDA
  ;update SDEC RESOURCE GROUP file
  S SDI="" F  S SDI=$O(^SDEC(409.832,"AB",SDRES,SDI)) Q:SDI=""  D
  .S SDJ="" F  S SDJ=$O(^SDEC(409.832,"AB",SDRES,SDI,SDJ)) Q:SDJ=""  D
  ..K SDFDA
  ..S SDFDA(409.8321,SDJ_","_SDI_",",.01)="@"
- ..D UPDATE^DIE("","SDFDA")
+ ..D FILE^DIE("","SDFDA")
  Q

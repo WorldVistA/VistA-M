@@ -1,5 +1,5 @@
 IBCEMCA1 ;ALB/ESG - Multiple CSA Message Management - Actions ;20-SEP-2005
- ;;2.0;INTEGRATED BILLING;**320**;21-MAR-1994
+ ;;2.0;INTEGRATED BILLING;**320,718**;21-MAR-1994;Build 73
  ;;Per VHA Directive 10-93-142, this routine should not be modified.
  ;
  Q
@@ -176,7 +176,8 @@ RETRAN ; retransmit claims
  . S IB364=+$P($G(^IBM(361,IBDA,0)),U,11)          ; transmit bill 364 ien
  . I 'IBDA!'IB364 Q
  . D UPDEDI^IBCEM(IB364,"R")        ; update EDI files for transmission
- . S Y=$$ADDTBILL^IBCB1(IBIFN,1)    ; add new transmission record
+ . ;JWS;IB*2.0*718;EBILL-2653;add parameter to set [10] of 364 entry for claim resubmission
+ . S Y=$$ADDTBILL^IBCB1(IBIFN,1,1)    ; add new transmission record
  . Q
  W "   ... Done!"
  ;

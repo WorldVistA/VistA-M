@@ -1,5 +1,5 @@
-ORWDXR ;SLC/KCM/JDL - Utilites for Order Actions ;May 30, 2019@11:29
- ;;3.0;ORDER ENTRY/RESULTS REPORTING;**10,85,125,131,134,141,149,187,190,213,243,331,306,349,374,409,397**;Dec 17, 1997;Build 22
+ORWDXR ;SLC/KCM/JDL - Utilites for Order Actions ;Sep 01, 2021@10:05:23
+ ;;3.0;ORDER ENTRY/RESULTS REPORTING;**10,85,125,131,134,141,149,187,190,213,243,331,306,349,374,409,397,405**;Dec 17, 1997;Build 211
  ;
 ACTDCREA(DCIEN) ; Valid DC Reason
  N X
@@ -32,6 +32,8 @@ RENEW(REC,ORIFN,ORVP,ORNP,ORL,FLDS,CPLX,ORAPPT) ; Renew an order
  I $P(X0,U,5)["101.41," D                        ; version 3
  . S ORDIALOG=+$P(X0,U,5),ORCAT=$P(^OR(100,+ORIFN,0),U,12)
  . D GETDLG^ORCD(ORDIALOG),GETORDER^ORCD(+ORIFN)
+ . ; for titration renewals only copy maintenance portion
+ . I $$ISTITR^ORUTL3(+ORIFN) D EDTDLG^ORWTITR(.ORDIALOG,+ORIFN)
  . I CPLX S FSTDOSE=$P($G(ORDIALOG("B","FIRST DOSE")),U,2) S:'FSTDOSE FSTDOSE=$$PTR^ORCD("OR GTX NOW")
  . I FSTDOSE,$G(ORDIALOG(FSTDOSE,1)) K ORDIALOG(FSTDOSE,1)
  E  D                                            ; version 2.5 generic
@@ -61,9 +63,11 @@ RENEW(REC,ORIFN,ORVP,ORNP,ORL,FLDS,CPLX,ORAPPT) ; Renew an order
  . K ORDIALOG($$PTR^ORCD("OR GTX START DATE"),1) ; remove effective dt
  . S ORDIALOG($$PTR^ORCD("OR GTX REFILLS"),1)=$P(FLDS(1),U,4)
  . S ORDIALOG($$PTR^ORCD("OR GTX ROUTING"),1)=$P(FLDS(1),U,5)
+ . S ORDIALOG($$PTR^ORCD("OR GTX DAYS SUPPLY"),1)=$P(FLDS(1),U,6)
+ . S ORDIALOG($$PTR^ORCD("OR GTX QUANTITY"),1)=$P(FLDS(1),U,7)
  . S PRMT=$$PTR^ORCD("OR GTX WORD PROCESSING 1")
  . K ^TMP("ORWORD",$J,PRMT,1)
- . S I=1 F  S I=$O(FLDS(I)) Q:'I  S ^TMP("ORWORD",$J,PRMT,1,I-1,0)=FLDS(I)
+ . N I S I=1 F  S I=$O(FLDS(I)) Q:'I  S ^TMP("ORWORD",$J,PRMT,1,I-1,0)=FLDS(I)
  . S ^TMP("ORWORD",$J,PRMT,1,0)=U_U_(I-1)_U_(I-1)_U_DT_U
  . S ORDIALOG(PRMT,1)=$NA(^TMP("ORWORD",$J,PRMT,1))
  . N SIG,PI,X S SIG=$$PTR^ORCD("OR GTX SIG")
@@ -73,10 +77,15 @@ RENEW(REC,ORIFN,ORVP,ORNP,ORL,FLDS,CPLX,ORAPPT) ; Renew an order
  S REC="" S ORIFN=+ORIFN_";"_ORDA D GETBYIFN^ORWORR(.REC,ORIFN)
  Q
 RNWFLDS(LST,ORIFN) ; Return fields for renew action
- ; LST(0)=RenewType^Start^Stop^Refills^Pickup  LST(n)=Comments
- N X0,DG,PKG,RNWTYPE,START,STOP,REFILLS,OROI
+ ; LST(0)=RenewType^Start^Stop^Refills^Pickup^Days Supply^Quantity^DispUnits^Clozapine
+ ; LST(n)=Comments
+ N X0,DG,PKG,RNWTYPE,START,STOP,REFILLS,OROI,LOC
+ N ORI,ORJ,ORMSG,ORORDTXT,ORQTY,ORTITR,Y
+ S LOC=$P(ORIFN,";",3)
  S ORIFN=+ORIFN,X0=^OR(100,ORIFN,0),DG=$P(X0,U,11),PKG=$P(X0,U,14)
  S PKG=$E($P(^DIC(9.4,PKG,0),U,2),1,2),DG=$P(^ORD(100.98,DG,0),U,3)
+ S ORTITR=$$ISTITR^ORUTL3(+ORIFN)
+ S OROI=$$VAL(ORIFN,"ORDERABLE")
  S LST(0)=$S(PKG="OR":999,PKG="PS"&((DG="O RX")!(DG="SPLY")):140,PKG="PS"&(DG="UD RX"):130,PKG="PS"&(DG="NV RX"):145,1:0)
  I +LST(0)=140 D
  . N ORPICK,ORPREV
@@ -87,19 +96,30 @@ RNWFLDS(LST,ORIFN) ; Return fields for renew action
  .. I $P(D3,"^",3)=11,$P(D3,"^",11)=2 S ORPREV=$P(D3,"^",5) I ORPREV]"" S ORPICK=$$VAL(ORPREV,"PICKUP")
  .. I $P(D3,"^",3)'=11 S ORPICK=$$VAL(ORIFN,"PICKUP")
  .. I ORPICK="" S ORPICK="M^by Mail"
- . S LST(0)=LST(0)_U_U_U_+$$VAL(ORIFN,"REFILLS")_U_ORPICK
+ .;COMMENTED OUT THE LINE OF V32 CODE IN FAVOUR OF THE PAPI CODE 5 LINES DOWN
+ . ;S LST(0)=LST(0)_U_U_U_+$$VAL(ORIFN,"REFILLS")_U_ORPICK
+ . N XXX   ;ADDED THE NEXT FOUR LINES OF PAPI CODE
+ . S XXX=$$GET^XPAR("LOC.`"_$G(LOC)_"^SYS","ORWDPS ROUTING DEFAULT",1,"I")
+ . I XXX="N" S XXX=""
+ . S LST(0)=LST(0)_U_U_U_+$$VAL(ORIFN,"REFILLS")_U_$S(XXX="":$$VAL(ORIFN,"PICKUP"),1:XXX)_U_$$VAL(ORIFN,"SUPPLY")_U_$$VAL(ORIFN,"QTY")_U_$$DISPUNIT(OROI,$$VAL(ORIFN,"DRUG"),"O")
+ . ;
+ . ;for titration renewals, get new Qty and Order Text
+ . I ORTITR D
+ . . S ORQTY=$$RNWFLDS^ORWTITR(.ORORDTXT,.ORMSG,$P(ORIFN,";",1,2))
+ . . S $P(LST(0),U,7)=ORQTY
  . ;D WPVAL(.LST,ORIFN,"COMMENT")
  I +LST(0)=999 S LST(0)=LST(0)_U_$$VAL(ORIFN,"START")_U_$$VAL(ORIFN,"STOP")
  ; make sure start/stop times are relative times, otherwise use NOW, no Stop
  ;I +$P(LST(0),U,2) S $P(LST(0),U,2)="NOW" ;DJE-VM *331 - moved to $$VAL
  ;I +$P(LST(0),U,3)!($P(LST(0),U,3)="0") S $P(LST(0),U,3)=""
  ;NEW STUFF AFTER THIS LINE OR*3*243
+ ;
+ ;Indication for use
+ S Y="" I $D(^OR(100,ORIFN,10)) S Y=$P(^OR(100,ORIFN,10),U,2)
+ S $P(LST(0),U,10)=Y
+ ;
  S $P(LST(0),U,9)=0
- S OROI=$O(^OR(100,+ORIFN,4.5,"ID","ORDERABLE",0))
- Q:'OROI
- S OROI=$G(^OR(100,+ORIFN,4.5,OROI,1))
- Q:'OROI
- S $P(LST(0),U,9)=$$ISCLOZ^ORALWORD(OROI)
+ I OROI S $P(LST(0),U,9)=$$ISCLOZ^ORALWORD(OROI)
  ; add to LST node specifying if patient of ORIFN passes clozapine lab tests
  I $P(LST(0),U,9) D
  .N ORY,ORDFN,ORTMP
@@ -111,7 +131,43 @@ RNWFLDS(LST,ORIFN) ; Return fields for renew action
  .S ORDFN=+ORDFN
  .D ALLWORD^ORALWORD(.ORY,ORDFN,ORIFN,"E")
  .M LST(1)=ORY
+ ;
+ I '$D(ORORDTXT) D
+ . D TEXT^ORQ12(.ORORDTXT,ORIFN,255)
+ I $O(^OR(100,+ORIFN,2,0)) D
+ . S ORI=$O(ORORDTXT(0))
+ . S ORORDTXT(ORI)="+"_ORORDTXT(ORI)
+ I $O(^OR(100,+ORIFN,8,"C","XX",0)) D
+ . S ORI=$O(ORORDTXT(0))
+ . S ORORDTXT(ORI)="*"_ORORDTXT(ORI)
+ ;
+ S ORJ=$O(LST(""),-1)
+ S ORI=0
+ F  S ORI=$O(ORORDTXT(ORI)) Q:'ORI  D
+ . S ORJ=ORJ+1
+ . S LST(ORJ)="~t"_ORORDTXT(ORI)
+ ;
+ S ORI=0
+ F  S ORI=$O(ORMSG(ORI)) Q:'ORI  D
+ . S ORJ=ORJ+1
+ . S LST(ORJ)="~T"_ORMSG(ORI)
+ ;
  Q
+DISPUNIT(OIEN,ORDISPDRG,ORTYPE) ; Returns the dispense unit
+ N UNIT,POIREC,PSIEN,DATA
+ S UNIT=""
+ I +OIEN'>0 Q UNIT
+ I ORTYPE="" Q UNIT
+ S POIREC=$P($G(^ORD(101.43,+OIEN,0)),U,2)
+ I $P(POIREC,";",2)'="99PSP" Q UNIT
+ S PSIEN=+POIREC
+ I PSIEN'>0 Q UNIT
+ D DOSE^PSSOPKI1(.DATA,PSIEN,ORTYPE)
+ ;I 'ORDISPDRG!('$D(DATA("DD",+ORDISPDRG))) D
+ ;. S ORDISPDRG=$O(DATA("DD",0))
+ I 'ORDISPDRG Q UNIT
+ S UNIT=$P($G(DATA("DD",ORDISPDRG)),U,4)
+ Q UNIT
 VAL(ORIFN,ID) ; Return value for order response
  N DA,Y,ORDIALOG,ORDGDA,CAPS,XCODE
  S DA=+$O(^OR(100,ORIFN,4.5,"ID",ID,0))
@@ -127,7 +183,8 @@ VAL(ORIFN,ID) ; Return value for order response
  E  S Y=$G(^OR(100,ORIFN,4.5,DA,1))
  Q $G(Y)
 WPVAL(TXT,ORIFN,ID) ; Return word processing value
- N DA S DA=+$O(^OR(100,ORIFN,4.5,"ID",ID,0))
+ N DA,I
+ S DA=+$O(^OR(100,ORIFN,4.5,"ID",ID,0))
  S I=0 F  S I=$O(^OR(100,ORIFN,4.5,DA,2,I)) Q:'I  S TXT(I)=^(I,0)
  Q
 STR(PTR) ; -- Return word processing text as long string for comparison

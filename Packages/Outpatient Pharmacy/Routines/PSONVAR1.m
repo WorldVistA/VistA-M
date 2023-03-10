@@ -1,10 +1,12 @@
-PSONVAR1 ;BHM/MFR - Non-VA Med Usage Report ;04/10/03
- ;;7.0;OUTPATIENT PHARMACY;**132,118**;13 Feb 97
+PSONVAR1 ;BHM/MFR - Non-VA Med Usage Report ;Mar 13, 2020@16:01:15
+ ;;7.0;OUTPATIENT PHARMACY;**132,118,441**;DEC 1997;Build 208
  ;External reference to File ^PS(55 supported by DBIA 2228
  ;External reference to $$GET1^DIQ is supported by DBIA 2056
  ;External reference to ^VADPT is supported by DBIA 10061
  ;External reference to ^XLFDT is supported by DBIA 10103
  ;External reference to ^%ZISC is supported by DBIA 10089
+ ;
+ ;Add complex orders to NVA Meds
  ;
 EN N DATE,DFN,ORD,PAG,PCNT,PRTD,OINAM,PNAM,I,J,Y,X,C,XX,S1,S2,S3,S4,S5,OCNT
  N OCK,OK,STS,SUB,SP1,SP2,SPF
@@ -66,6 +68,7 @@ NDTP I 'PRTD D HDR W !!?18,"**********   NO DATA TO PRINT   **********"
  . W SP1
  . W !,"Total: ",PCNT," patient",$S(PCNT>1:"s",1:"")
  . W " and ",OCNT," order",$S(OCNT>1:"s",1:""),"."
+ . D HDR Q:$D(DIRUT)  ;pause for reading of total before scrolls away...
  ;
 CLOSE D ^%ZISC S:$D(ZTQUEUED) ZTREQ="@"
 END K ^TMP("PSONV",$J),^TMP("PSOCNT",$J)
@@ -87,13 +90,7 @@ PRINT(DFN,ORD) ; - Print a Non-VA Med Order
  S:'$D(^TMP("PSOCNT",$J,DFN)) PCNT=PCNT+1 S ^TMP("PSOCNT",$J,DFN)=""
  ;
  W !?5,"Non-VA Med: ",OINAM
- W !?2,"Dispense Drug: ",$E(DGNAM,1,37)
- W ?55,"Dosage: ",$E($P(XX,"^",3),1,16)
- W !?7,"Schedule: " S X=$E($P(XX,"^",5),1,30)
- S SCH=$S($L($P(XX,"^",5))>30:$P(X," ",1,$L(X," ")-1),1:X) W SCH
- W ?52,"Med Route: ",$E($P(XX,"^",4),1,35)
- I $E($P(XX,"^",5),$L(SCH)+1,99)'="" D
- . W !?16,$E($P(XX,"^",5),$L(SCH)+1,99)
+ D PRTDDR      ;print dispense drug line(s)
  W !?9,"Status: ",$S('$P(XX,"^",6):"ACTIVE",1:"DISCONTINUED on "_$$DT($P(XX,"^",7)))
  W ?49,"CPRS Order #: ",$P(XX,"^",8)
  W !?2,"Documented By: ",$E($$GET1^DIQ(200,+$P(XX,"^",11),.01),1,29)
@@ -101,6 +98,8 @@ PRINT(DFN,ORD) ; - Print a Non-VA Med Order
  S CLNAM=$$GET1^DIQ(44,+$P(XX,"^",12),.01)
  W !?9,"Clinic: " W:$P(XX,"^",12) $E($P(XX,"^",12)_" - "_CLNAM,1,33)
  W ?51,"Start Date: ",$$DT($P(XX,"^",9)),!
+ W ?5,"Indication: ",$P($G(^PS(55,DFN,"NVA",ORD,2)),"^"),!  ;*441-IND
+ I $Y>(IOSL-4) D HDR Q:$D(DIRUT)  W !
  ;
  ; - Printing "Order Checks" fields
  W:$D(^PS(55,DFN,"NVA",ORD,"OCK")) !
@@ -133,6 +132,35 @@ PRINT(DFN,ORD) ; - Print a Non-VA Med Order
  S PRTD=1,OCNT=OCNT+1
  Q
  ;
+PRTDDR ;Print Dispense Drug item(s) including complex orders with conjunctions from SIG multiple
+ ; This multiple replaces using the parent 0 node fields DD, DOSE, MED RTE, & SCHED for printing, However,
+ ;  if OLD recorsd found, i.e. no new 55.516 multiple, then use OLD print method for backwards compatibility
+ N DDR,DDX,DDR05,DDR15,REC,SCHX,SCHY
+ S REC=$S($O(^PS(55,DFN,"NVA",ORD,3,0)):"NEW",1:"OLD")  ;NEW multiple found or Not, OLD
+ ;Rec=OLD - Data Dic orders created pre *441 version, backwards compatibility
+ I REC="OLD" D  Q
+ . W !?2,"Dispense Drug: ",$E(DGNAM,1,37)
+ . W ?55,"Dosage: ",$E($P(XX,"^",3),1,16)
+ . W !?7,"Schedule: " S X=$E($P(XX,"^",5),1,30)
+ . S SCH=$S($L($P(XX,"^",5))>30:$P(X," ",1,$L(X," ")-1),1:X) W SCH
+ . W ?52,"Med Route: ",$E($P(XX,"^",4),1,35)
+ . I $E($P(XX,"^",5),$L(SCH)+1,99)'="" D
+ . . W !?16,$E($P(XX,"^",5),$L(SCH)+1,99)
+ ;Rec=NEW -Data Dic orders created post
+ S DDR=0
+ F  S DDR=$O(^PS(55,DFN,"NVA",ORD,3,DDR)) Q:'DDR  D
+ . S DDR05=ORD_","_DFN,DDR15=DDR_","_DDR05
+ . S DGNAM="",DDX=+$$GET1^DIQ(55.05,DDR05,"DISPENSE DRUG","I") S:DDX DGNAM=$$GET1^DIQ(50,DDX,.01)
+ . W !?2,"Dispense Drug: ",$E(DGNAM,1,37),?55,"Dosage: ",$E($$GET1^DIQ(55.516,DDR15,"DOSAGE"),1,16) I $Y>(IOSL-4) D HDR Q:$D(DIRUT)  W !
+ . S SCHX=$$GET1^DIQ(55.516,DDR15,"SCHEDULE"),SCHY=$E(SCHX,1,34),SCH=$S($L(SCHX)>34:$P(SCHY," ",1,$L(SCHY," ")-1),1:SCHY)
+ . W !?7,"Schedule: ",SCH,?52,"Med Route: ",$E($$GET1^DIQ(55.516,DDR15,"MEDICATION ROUTE"),1,35) I $Y>(IOSL-4) D HDR Q:$D(DIRUT)  W !
+ . I $E(SCHX,$L(SCH)+1,99)'="" D
+ . . W !?16,$E(SCHX,$L(SCH)+1,99) I $Y>(IOSL-4) D HDR Q:$D(DIRUT)  W !
+ . ;add below 2 new fields to report
+ . W !?7,"Duration: ",$E($$GET1^DIQ(55.516,DDR15,"DURATION"),1,37),?50,"Conjunction: ",$E($$GET1^DIQ(55.516,DDR15,"CONJUNCTION"),1,16)
+ . I $Y>(IOSL-4) D HDR Q:$D(DIRUT)  W !
+ Q
+ ;
 TEXT(TEXT,STR,L) ; Formats STR into TEXT array, lines lenght = L
  N J,WORD,K S K=+$O(TEXT(""),-1) S:'K K=1
  F J=1:1:$L(STR," ") D
@@ -145,7 +173,7 @@ HDR ; - Prints the Header
  I PAG>1,$E(IOST)="C" D  Q:$D(DIRUT)
  . S DIR(0)="E",DIR("A")=" Press ENTER to Continue or ^ to Exit" D ^DIR
  ;
- W @IOF,"Non-VA Meds Usage Report",?74,"Page: ",$J(PAG,3)
+ W @IOF,"Non-VA Meds Usage Report",?70,"Page: ",$J(PAG,3)
  W !,"Sorted by",$$SRT(PSOSRT)
  W !,"Date Range: "_$$DT(PSOSD+1\1)_" - "_$$DT(PSOED\1)
  W ?48,"Run Date: "_$$FMTE^XLFDT($$NOW^XLFDT())

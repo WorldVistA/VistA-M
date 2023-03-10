@@ -1,134 +1,132 @@
-IBDEI0II ; ; 04-FEB-2020
- ;;3.0;IB ENCOUNTER FORM IMP/EXP;;FEB 04, 2020
+IBDEI0II ; ; 01-FEB-2022
+ ;;3.0;IB ENCOUNTER FORM IMP/EXP;;FEB 01, 2022
  Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,999) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
- ;;^UTILITY(U,$J,358.3,8073,1,3,0)
- ;;=3^Necrobiosis Lipoidica NEC
- ;;^UTILITY(U,$J,358.3,8073,1,4,0)
- ;;=4^L92.1
- ;;^UTILITY(U,$J,358.3,8073,2)
- ;;=^5009462
- ;;^UTILITY(U,$J,358.3,8074,0)
- ;;=L20.81^^65^518^8
- ;;^UTILITY(U,$J,358.3,8074,1,0)
+ ;;^UTILITY(U,$J,358.3,8326,1,4,0)
+ ;;=4^K92.2
+ ;;^UTILITY(U,$J,358.3,8326,2)
+ ;;=^5008915
+ ;;^UTILITY(U,$J,358.3,8327,0)
+ ;;=K62.5^^39^397^8
+ ;;^UTILITY(U,$J,358.3,8327,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,8074,1,3,0)
- ;;=3^Neurodermatitis,Atopic
- ;;^UTILITY(U,$J,358.3,8074,1,4,0)
- ;;=4^L20.81
- ;;^UTILITY(U,$J,358.3,8074,2)
- ;;=^5009108
- ;;^UTILITY(U,$J,358.3,8075,0)
- ;;=D48.5^^65^518^7
- ;;^UTILITY(U,$J,358.3,8075,1,0)
+ ;;^UTILITY(U,$J,358.3,8327,1,3,0)
+ ;;=3^BRBPR
+ ;;^UTILITY(U,$J,358.3,8327,1,4,0)
+ ;;=4^K62.5
+ ;;^UTILITY(U,$J,358.3,8327,2)
+ ;;=^5008755
+ ;;^UTILITY(U,$J,358.3,8328,0)
+ ;;=K92.1^^39^397^82
+ ;;^UTILITY(U,$J,358.3,8328,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,8075,1,3,0)
- ;;=3^Neoplasm,Skin,Uncertain Behavior
- ;;^UTILITY(U,$J,358.3,8075,1,4,0)
- ;;=4^D48.5
- ;;^UTILITY(U,$J,358.3,8075,2)
- ;;=^267777
- ;;^UTILITY(U,$J,358.3,8076,0)
- ;;=D49.2^^65^518^6
- ;;^UTILITY(U,$J,358.3,8076,1,0)
+ ;;^UTILITY(U,$J,358.3,8328,1,3,0)
+ ;;=3^Melena/Hematochezia
+ ;;^UTILITY(U,$J,358.3,8328,1,4,0)
+ ;;=4^K92.1
+ ;;^UTILITY(U,$J,358.3,8328,2)
+ ;;=^5008914
+ ;;^UTILITY(U,$J,358.3,8329,0)
+ ;;=R19.5^^39^397^56
+ ;;^UTILITY(U,$J,358.3,8329,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,8076,1,3,0)
- ;;=3^Neoplasm,Bone/Soft Tissue/Skin,Unspec Behavior
- ;;^UTILITY(U,$J,358.3,8076,1,4,0)
- ;;=4^D49.2
- ;;^UTILITY(U,$J,358.3,8076,2)
- ;;=^5002272
- ;;^UTILITY(U,$J,358.3,8077,0)
- ;;=L60.0^^65^518^3
- ;;^UTILITY(U,$J,358.3,8077,1,0)
+ ;;^UTILITY(U,$J,358.3,8329,1,3,0)
+ ;;=3^Fecal Abnormalities NEC
+ ;;^UTILITY(U,$J,358.3,8329,1,4,0)
+ ;;=4^R19.5
+ ;;^UTILITY(U,$J,358.3,8329,2)
+ ;;=^5019274
+ ;;^UTILITY(U,$J,358.3,8330,0)
+ ;;=E53.8^^39^397^92
+ ;;^UTILITY(U,$J,358.3,8330,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,8077,1,3,0)
- ;;=3^Nail,Ingrowing
- ;;^UTILITY(U,$J,358.3,8077,1,4,0)
- ;;=4^L60.0
- ;;^UTILITY(U,$J,358.3,8077,2)
- ;;=^5009234
- ;;^UTILITY(U,$J,358.3,8078,0)
- ;;=L60.9^^65^518^1
- ;;^UTILITY(U,$J,358.3,8078,1,0)
+ ;;^UTILITY(U,$J,358.3,8330,1,3,0)
+ ;;=3^Vitamin B12 Deficiency
+ ;;^UTILITY(U,$J,358.3,8330,1,4,0)
+ ;;=4^E53.8
+ ;;^UTILITY(U,$J,358.3,8330,2)
+ ;;=^5002797
+ ;;^UTILITY(U,$J,358.3,8331,0)
+ ;;=K59.04^^39^397^20
+ ;;^UTILITY(U,$J,358.3,8331,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,8078,1,3,0)
- ;;=3^Nail Disorder,Unspec
- ;;^UTILITY(U,$J,358.3,8078,1,4,0)
- ;;=4^L60.9
- ;;^UTILITY(U,$J,358.3,8078,2)
- ;;=^5009240
- ;;^UTILITY(U,$J,358.3,8079,0)
- ;;=Z91.19^^65^518^10
- ;;^UTILITY(U,$J,358.3,8079,1,0)
+ ;;^UTILITY(U,$J,358.3,8331,1,3,0)
+ ;;=3^Constipation,Chronic Idiopathic
+ ;;^UTILITY(U,$J,358.3,8331,1,4,0)
+ ;;=4^K59.04
+ ;;^UTILITY(U,$J,358.3,8331,2)
+ ;;=^7148177
+ ;;^UTILITY(U,$J,358.3,8332,0)
+ ;;=K59.03^^39^397^21
+ ;;^UTILITY(U,$J,358.3,8332,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,8079,1,3,0)
- ;;=3^Noncompliance w/ Medical Treatment/Regimen
- ;;^UTILITY(U,$J,358.3,8079,1,4,0)
- ;;=4^Z91.19
- ;;^UTILITY(U,$J,358.3,8079,2)
- ;;=^5063618
- ;;^UTILITY(U,$J,358.3,8080,0)
- ;;=Z23.^^65^518^5
- ;;^UTILITY(U,$J,358.3,8080,1,0)
+ ;;^UTILITY(U,$J,358.3,8332,1,3,0)
+ ;;=3^Constipation,Drug Induced
+ ;;^UTILITY(U,$J,358.3,8332,1,4,0)
+ ;;=4^K59.03
+ ;;^UTILITY(U,$J,358.3,8332,2)
+ ;;=^5138744
+ ;;^UTILITY(U,$J,358.3,8333,0)
+ ;;=K52.21^^39^397^51
+ ;;^UTILITY(U,$J,358.3,8333,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,8080,1,3,0)
- ;;=3^Need for Immunization(s)
- ;;^UTILITY(U,$J,358.3,8080,1,4,0)
- ;;=4^Z23.
- ;;^UTILITY(U,$J,358.3,8080,2)
- ;;=^5062795
- ;;^UTILITY(U,$J,358.3,8081,0)
- ;;=E80.1^^65^519^21
- ;;^UTILITY(U,$J,358.3,8081,1,0)
+ ;;^UTILITY(U,$J,358.3,8333,1,3,0)
+ ;;=3^Enterocolitis Synd Induced by Food Protein
+ ;;^UTILITY(U,$J,358.3,8333,1,4,0)
+ ;;=4^K52.21
+ ;;^UTILITY(U,$J,358.3,8333,2)
+ ;;=^5138713
+ ;;^UTILITY(U,$J,358.3,8334,0)
+ ;;=K52.22^^39^397^52
+ ;;^UTILITY(U,$J,358.3,8334,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,8081,1,3,0)
- ;;=3^Porphyria Cutanea Tarda
- ;;^UTILITY(U,$J,358.3,8081,1,4,0)
- ;;=4^E80.1
- ;;^UTILITY(U,$J,358.3,8081,2)
- ;;=^5002982
- ;;^UTILITY(U,$J,358.3,8082,0)
- ;;=L56.4^^65^519^20
- ;;^UTILITY(U,$J,358.3,8082,1,0)
+ ;;^UTILITY(U,$J,358.3,8334,1,3,0)
+ ;;=3^Enterocolopathy Induced by Food Protein
+ ;;^UTILITY(U,$J,358.3,8334,1,4,0)
+ ;;=4^K52.22
+ ;;^UTILITY(U,$J,358.3,8334,2)
+ ;;=^5138714
+ ;;^UTILITY(U,$J,358.3,8335,0)
+ ;;=K58.2^^39^397^80
+ ;;^UTILITY(U,$J,358.3,8335,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,8082,1,3,0)
- ;;=3^Polymorphous Light Eruption
- ;;^UTILITY(U,$J,358.3,8082,1,4,0)
- ;;=4^L56.4
- ;;^UTILITY(U,$J,358.3,8082,2)
- ;;=^5009218
- ;;^UTILITY(U,$J,358.3,8083,0)
- ;;=L10.0^^65^519^4
- ;;^UTILITY(U,$J,358.3,8083,1,0)
+ ;;^UTILITY(U,$J,358.3,8335,1,3,0)
+ ;;=3^Irritable Bowel Syndrome,Mixed
+ ;;^UTILITY(U,$J,358.3,8335,1,4,0)
+ ;;=4^K58.2
+ ;;^UTILITY(U,$J,358.3,8335,2)
+ ;;=^5138742
+ ;;^UTILITY(U,$J,358.3,8336,0)
+ ;;=K58.8^^39^397^81
+ ;;^UTILITY(U,$J,358.3,8336,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,8083,1,3,0)
- ;;=3^Pemphigus Vulgaris
- ;;^UTILITY(U,$J,358.3,8083,1,4,0)
- ;;=4^L10.0
- ;;^UTILITY(U,$J,358.3,8083,2)
- ;;=^91129
- ;;^UTILITY(U,$J,358.3,8084,0)
- ;;=L41.3^^65^519^2
- ;;^UTILITY(U,$J,358.3,8084,1,0)
+ ;;^UTILITY(U,$J,358.3,8336,1,3,0)
+ ;;=3^Irritable Bowel Syndrome,Other
+ ;;^UTILITY(U,$J,358.3,8336,1,4,0)
+ ;;=4^K58.8
+ ;;^UTILITY(U,$J,358.3,8336,2)
+ ;;=^5138743
+ ;;^UTILITY(U,$J,358.3,8337,0)
+ ;;=K58.1^^39^397^77
+ ;;^UTILITY(U,$J,358.3,8337,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,8084,1,3,0)
- ;;=3^Parapsoriasis,Small Plague
- ;;^UTILITY(U,$J,358.3,8084,1,4,0)
- ;;=4^L41.3
- ;;^UTILITY(U,$J,358.3,8084,2)
- ;;=^5009173
- ;;^UTILITY(U,$J,358.3,8085,0)
- ;;=L41.4^^65^519^1
- ;;^UTILITY(U,$J,358.3,8085,1,0)
+ ;;^UTILITY(U,$J,358.3,8337,1,3,0)
+ ;;=3^Irritable Bowel Syndrome w/ Constipation
+ ;;^UTILITY(U,$J,358.3,8337,1,4,0)
+ ;;=4^K58.1
+ ;;^UTILITY(U,$J,358.3,8337,2)
+ ;;=^5138741
+ ;;^UTILITY(U,$J,358.3,8338,0)
+ ;;=K61.39^^39^397^5
+ ;;^UTILITY(U,$J,358.3,8338,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,8085,1,3,0)
- ;;=3^Parapsoriasis,Large Plague
- ;;^UTILITY(U,$J,358.3,8085,1,4,0)
- ;;=4^L41.4
- ;;^UTILITY(U,$J,358.3,8085,2)
- ;;=^5009174
- ;;^UTILITY(U,$J,358.3,8086,0)
- ;;=L28.1^^65^519^34
- ;;^UTILITY(U,$J,358.3,8086,1,0)
+ ;;^UTILITY(U,$J,358.3,8338,1,3,0)
+ ;;=3^Abscess,Ischiorectal NOS
+ ;;^UTILITY(U,$J,358.3,8338,1,4,0)
+ ;;=4^K61.39
+ ;;^UTILITY(U,$J,358.3,8338,2)
+ ;;=^5157385
+ ;;^UTILITY(U,$J,358.3,8339,0)
+ ;;=G43.A1^^39^397^34
+ ;;^UTILITY(U,$J,358.3,8339,1,0)
  ;;=^358.31IA^4^2

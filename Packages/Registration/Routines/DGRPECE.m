@@ -1,5 +1,5 @@
 DGRPECE ;ALB/MRY,ERC,BAJ,NCA - REGISTRATION CATASTROPHIC EDITS ; 10/4/06 3:27pm
- ;;5.3;Registration;**638,682,700,720,653,688,750,831,907,965,1007**;Aug 13, 1993;Build 3
+ ;;5.3;Registration;**638,682,700,720,653,688,750,831,907,965,1007,1033**;Aug 13, 1993;Build 3
  ;
 CEDITS(DFN) ;catastrophic edits  - buffer values, save after check
  ;Input;
@@ -77,13 +77,16 @@ SEX ;buffer - get sex
  S BUFFER("SEX")=Y
  ; DG*5.3*907 - begin of SIGI change in this section
 SIGI ;buffer - get Self-Identified Gender Identity    ; DG*5.3*907
- S DIR(0)="SAB^M:Male;F:Female;TM:Transmale/Transman/Female-to-Male;TF:Transfemale/Transwoman/Male-to-Female;O:Other;N:individual chooses not to answer"
- S DIR("?",1)="Select the code that specifies the patient's preferred gender."
- S DIR("?",2)="This SELF IDENTIFIED GENDER value indicates the patient's view of"
+ S DIR(0)="2,.024ABr"  ;**1033, VAMPI-13 (jfw) - Remove Hard-Coded logic and replace with DD Read Type
+ ;S DIR(0)="SAB^M:Male;F:Female;TM:Transmale/Transman/Female-to-Male;TF:Transfemale/Transwoman/Male-to-Female;O:Other;N:individual chooses not to answer"
+ ;S DIR("?",1)="Select the code that specifies the patient's preferred gender."
+ S DIR("?",1)="This SELF IDENTIFIED GENDER value indicates the patient's view of"
  S DIR("?")="their gender identity, if they choose to provide it."
  S DIR("A")="SELF-IDENTIFIED GENDER IDENTITY: " S:$G(BEFORE("SIGI"))'="" DIR("B")=$$GET1^DIQ(2,+DFN_",",.024)
  D ^DIR
  K DIR("A"),DIR("B"),DIR("?")
+ ;**1033, VAMPI-13 (jfw) - Insert check for deletion to display previous message
+ I X="@" W !,"This is a required response. Enter '^' to exit" G SIGI
  I $D(DIRUT) S BUFFER("SIGI")=BEFORE("SIGI") D CECHECK Q
  S BUFFER("SIGI")=Y
  ; DG*5.3*907 - end-section of SIGI 

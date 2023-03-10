@@ -1,5 +1,5 @@
 PSOORED7 ;ISC-BHAM/MFR - edit orders from backdoor con't ;03/06/95 10:24
- ;;7.0;OUTPATIENT PHARMACY;**148,247,281,289,358,385,584,611**;DEC 1997;Build 6
+ ;;7.0;OUTPATIENT PHARMACY;**148,247,281,289,358,385,584,611,624,562**;DEC 1997;Build 19
  ;called from psooredt. cmop edit checks.
  ;Reference to file #50 supported by IA 221
  ;Reference to $$ECMEON^BPSUTIL supported by IA 4410
@@ -15,8 +15,10 @@ NOCHG S CMRL=1 D CHK1^PSOORED2 I '$G(CMRL) W !,"No editing allowed of "_$S(FLN=9
  .D DAYS^PSODIR1(.PSORXED) I $G(PSORXED("DFLG")) K PSORXED("FLD",8) Q
  .S PSORXED("FLD",8)=PSORXED("DAYS SUPPLY")
  .;PSO*7*611 Prompt the user for the Refills # so it will stay in sync with the Days Supply
- .D REFILL^PSODIR1(.PSORXED) I $G(PSORXED("DFLG")) K PSORXED("FLD",9) Q
- .S PSORXED("FLD",9)=PSORXED("# OF REFILLS")
+ .;PSO*7*624 Only prompt the user for the Refills # if a Clozapine flagged drug with at least 1 registered lab test
+ .I $D(^PSDRUG("ACLOZ",DRGIEN)),$D(^PSDRUG(DRGIEN,"CLOZ2",0)),$O(^PSDRUG(DRGIEN,"CLOZ2",0)),$D(^PSDRUG(DRGIEN,"CLOZ2",$O(^PSDRUG(DRGIEN,"CLOZ2",0)),0)) D
+ ..D REFILL^PSODIR1(.PSORXED) I $G(PSORXED("DFLG")) K PSORXED("FLD",9) Q
+ ..S PSORXED("FLD",9)=PSORXED("# OF REFILLS")
  I FLN=10 D  Q
  .D QTY^PSODIR1(.PSORXED) I $G(PSORXED("DFLG")) K PSORXED("FLD",7) Q
  .S:$G(PSORXED("QTY")) PSORXED("FLD",7)=PSORXED("QTY")
@@ -64,7 +66,7 @@ RESUB ; Resubmits 3rd party claim in case of an edit (Original)
  . . ; Quit if there is an unresolved TRICARE/CHAMPVA non-billable reject code, PSO*7*358
  . . I $$PSOET^PSOREJP3(RX,0) S X="Q" Q
  . . ;- Checking/Handling DUR/79 Rejects
- . . I $$FIND^PSOREJUT(RX,0) S X=$$HDLG^PSOREJU1(RX,0,"79,88","ED","IOQ","Q")
+ . . I $$FIND^PSOREJUT(RX,0) S X=$$HDLG^PSOREJU1(RX,0,"79,88,943","ED","IOQ","Q")
  Q
  ;
 CHANGED(RX,PRIOR) ; - Check if fields have changed and should for 3rd Party Claim resubmission

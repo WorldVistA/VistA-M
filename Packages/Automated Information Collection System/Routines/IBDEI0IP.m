@@ -1,128 +1,136 @@
-IBDEI0IP ; ; 04-FEB-2020
- ;;3.0;IB ENCOUNTER FORM IMP/EXP;;FEB 04, 2020
+IBDEI0IP ; ; 01-FEB-2022
+ ;;3.0;IB ENCOUNTER FORM IMP/EXP;;FEB 01, 2022
  Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,999) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
- ;;^UTILITY(U,$J,358.3,8163,1,3,0)
- ;;=3^Sebaceous Hyperplasia
- ;;^UTILITY(U,$J,358.3,8163,1,4,0)
- ;;=4^D23.9
- ;;^UTILITY(U,$J,358.3,8163,2)
- ;;=^5002076
- ;;^UTILITY(U,$J,358.3,8164,0)
- ;;=L21.9^^65^521^23
- ;;^UTILITY(U,$J,358.3,8164,1,0)
+ ;;^UTILITY(U,$J,358.3,8414,1,4,0)
+ ;;=4^N95.2
+ ;;^UTILITY(U,$J,358.3,8414,2)
+ ;;=^270577
+ ;;^UTILITY(U,$J,358.3,8415,0)
+ ;;=R30.9^^39^398^71
+ ;;^UTILITY(U,$J,358.3,8415,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,8164,1,3,0)
- ;;=3^Seborrhea,Unspec
- ;;^UTILITY(U,$J,358.3,8164,1,4,0)
- ;;=4^L21.9
- ;;^UTILITY(U,$J,358.3,8164,2)
- ;;=^188703
- ;;^UTILITY(U,$J,358.3,8165,0)
- ;;=L91.8^^65^521^39
- ;;^UTILITY(U,$J,358.3,8165,1,0)
+ ;;^UTILITY(U,$J,358.3,8415,1,3,0)
+ ;;=3^Micturition Painful,Unspec
+ ;;^UTILITY(U,$J,358.3,8415,1,4,0)
+ ;;=4^R30.9
+ ;;^UTILITY(U,$J,358.3,8415,2)
+ ;;=^5019324
+ ;;^UTILITY(U,$J,358.3,8416,0)
+ ;;=R30.0^^39^398^30
+ ;;^UTILITY(U,$J,358.3,8416,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,8165,1,3,0)
- ;;=3^Skin Tag
- ;;^UTILITY(U,$J,358.3,8165,1,4,0)
- ;;=4^L91.8
- ;;^UTILITY(U,$J,358.3,8165,2)
- ;;=^5009460
- ;;^UTILITY(U,$J,358.3,8166,0)
- ;;=I83.12^^65^521^43
- ;;^UTILITY(U,$J,358.3,8166,1,0)
+ ;;^UTILITY(U,$J,358.3,8416,1,3,0)
+ ;;=3^Dysuria
+ ;;^UTILITY(U,$J,358.3,8416,1,4,0)
+ ;;=4^R30.0
+ ;;^UTILITY(U,$J,358.3,8416,2)
+ ;;=^5019322
+ ;;^UTILITY(U,$J,358.3,8417,0)
+ ;;=R33.9^^39^398^121
+ ;;^UTILITY(U,$J,358.3,8417,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,8166,1,3,0)
- ;;=3^Stasis Dermatitis.Left Leg
- ;;^UTILITY(U,$J,358.3,8166,1,4,0)
- ;;=4^I83.12
- ;;^UTILITY(U,$J,358.3,8166,2)
- ;;=^5007989
- ;;^UTILITY(U,$J,358.3,8167,0)
- ;;=I83.11^^65^521^42
- ;;^UTILITY(U,$J,358.3,8167,1,0)
+ ;;^UTILITY(U,$J,358.3,8417,1,3,0)
+ ;;=3^Urine Retention,Unspec
+ ;;^UTILITY(U,$J,358.3,8417,1,4,0)
+ ;;=4^R33.9
+ ;;^UTILITY(U,$J,358.3,8417,2)
+ ;;=^5019332
+ ;;^UTILITY(U,$J,358.3,8418,0)
+ ;;=R32.^^39^398^119
+ ;;^UTILITY(U,$J,358.3,8418,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,8167,1,3,0)
- ;;=3^Stasis Dermatitis,Right Leg
- ;;^UTILITY(U,$J,358.3,8167,1,4,0)
- ;;=4^I83.11
- ;;^UTILITY(U,$J,358.3,8167,2)
- ;;=^5007988
- ;;^UTILITY(U,$J,358.3,8168,0)
- ;;=C84.19^^65^521^26
- ;;^UTILITY(U,$J,358.3,8168,1,0)
+ ;;^UTILITY(U,$J,358.3,8418,1,3,0)
+ ;;=3^Urinary Incontinence,Unspec
+ ;;^UTILITY(U,$J,358.3,8418,1,4,0)
+ ;;=4^R32.
+ ;;^UTILITY(U,$J,358.3,8418,2)
+ ;;=^5019329
+ ;;^UTILITY(U,$J,358.3,8419,0)
+ ;;=N39.41^^39^398^117
+ ;;^UTILITY(U,$J,358.3,8419,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,8168,1,3,0)
- ;;=3^Sezary Disease,Extranodal/Solid Organ Sites
- ;;^UTILITY(U,$J,358.3,8168,1,4,0)
- ;;=4^C84.19
- ;;^UTILITY(U,$J,358.3,8168,2)
- ;;=^5001640
- ;;^UTILITY(U,$J,358.3,8169,0)
- ;;=C84.13^^65^521^29
- ;;^UTILITY(U,$J,358.3,8169,1,0)
+ ;;^UTILITY(U,$J,358.3,8419,1,3,0)
+ ;;=3^Urge Incontinence
+ ;;^UTILITY(U,$J,358.3,8419,1,4,0)
+ ;;=4^N39.41
+ ;;^UTILITY(U,$J,358.3,8419,2)
+ ;;=^5015680
+ ;;^UTILITY(U,$J,358.3,8420,0)
+ ;;=R35.0^^39^398^69
+ ;;^UTILITY(U,$J,358.3,8420,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,8169,1,3,0)
- ;;=3^Sezary Disease,Intra-Abdominal Lymph Nodes
- ;;^UTILITY(U,$J,358.3,8169,1,4,0)
- ;;=4^C84.13
- ;;^UTILITY(U,$J,358.3,8169,2)
- ;;=^5001634
- ;;^UTILITY(U,$J,358.3,8170,0)
- ;;=C84.16^^65^521^30
- ;;^UTILITY(U,$J,358.3,8170,1,0)
+ ;;^UTILITY(U,$J,358.3,8420,1,3,0)
+ ;;=3^Micturition Frequency
+ ;;^UTILITY(U,$J,358.3,8420,1,4,0)
+ ;;=4^R35.0
+ ;;^UTILITY(U,$J,358.3,8420,2)
+ ;;=^5019334
+ ;;^UTILITY(U,$J,358.3,8421,0)
+ ;;=R35.1^^39^398^82
+ ;;^UTILITY(U,$J,358.3,8421,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,8170,1,3,0)
- ;;=3^Sezary Disease,Intrapelvic Lymph Nodes
- ;;^UTILITY(U,$J,358.3,8170,1,4,0)
- ;;=4^C84.16
- ;;^UTILITY(U,$J,358.3,8170,2)
- ;;=^5001637
- ;;^UTILITY(U,$J,358.3,8171,0)
- ;;=C84.12^^65^521^31
- ;;^UTILITY(U,$J,358.3,8171,1,0)
+ ;;^UTILITY(U,$J,358.3,8421,1,3,0)
+ ;;=3^Nocturia
+ ;;^UTILITY(U,$J,358.3,8421,1,4,0)
+ ;;=4^R35.1
+ ;;^UTILITY(U,$J,358.3,8421,2)
+ ;;=^5019335
+ ;;^UTILITY(U,$J,358.3,8422,0)
+ ;;=R39.11^^39^398^70
+ ;;^UTILITY(U,$J,358.3,8422,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,8171,1,3,0)
- ;;=3^Sezary Disease,Intrathoracic Lymph Nodes
- ;;^UTILITY(U,$J,358.3,8171,1,4,0)
- ;;=4^C84.12
- ;;^UTILITY(U,$J,358.3,8171,2)
- ;;=^5001633
- ;;^UTILITY(U,$J,358.3,8172,0)
- ;;=C84.14^^65^521^25
- ;;^UTILITY(U,$J,358.3,8172,1,0)
+ ;;^UTILITY(U,$J,358.3,8422,1,3,0)
+ ;;=3^Micturition Hesitancy
+ ;;^UTILITY(U,$J,358.3,8422,1,4,0)
+ ;;=4^R39.11
+ ;;^UTILITY(U,$J,358.3,8422,2)
+ ;;=^5019341
+ ;;^UTILITY(U,$J,358.3,8423,0)
+ ;;=R39.16^^39^398^107
+ ;;^UTILITY(U,$J,358.3,8423,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,8172,1,3,0)
- ;;=3^Sezary Disease,Axilla/Upper Limb Lymph Nodes
- ;;^UTILITY(U,$J,358.3,8172,1,4,0)
- ;;=4^C84.14
- ;;^UTILITY(U,$J,358.3,8172,2)
- ;;=^5001635
- ;;^UTILITY(U,$J,358.3,8173,0)
- ;;=C84.11^^65^521^27
- ;;^UTILITY(U,$J,358.3,8173,1,0)
+ ;;^UTILITY(U,$J,358.3,8423,1,3,0)
+ ;;=3^Straining to Void
+ ;;^UTILITY(U,$J,358.3,8423,1,4,0)
+ ;;=4^R39.16
+ ;;^UTILITY(U,$J,358.3,8423,2)
+ ;;=^5019346
+ ;;^UTILITY(U,$J,358.3,8424,0)
+ ;;=R36.0^^39^398^111
+ ;;^UTILITY(U,$J,358.3,8424,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,8173,1,3,0)
- ;;=3^Sezary Disease,Head/Face/Neck Lymph Nodes
- ;;^UTILITY(U,$J,358.3,8173,1,4,0)
- ;;=4^C84.11
- ;;^UTILITY(U,$J,358.3,8173,2)
- ;;=^5001632
- ;;^UTILITY(U,$J,358.3,8174,0)
- ;;=C84.15^^65^521^28
- ;;^UTILITY(U,$J,358.3,8174,1,0)
+ ;;^UTILITY(U,$J,358.3,8424,1,3,0)
+ ;;=3^Urethral Discharge w/o Blood
+ ;;^UTILITY(U,$J,358.3,8424,1,4,0)
+ ;;=4^R36.0
+ ;;^UTILITY(U,$J,358.3,8424,2)
+ ;;=^5019337
+ ;;^UTILITY(U,$J,358.3,8425,0)
+ ;;=R36.9^^39^398^112
+ ;;^UTILITY(U,$J,358.3,8425,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,8174,1,3,0)
- ;;=3^Sezary Disease,Inguinal Region/LE Lymph Nodes
- ;;^UTILITY(U,$J,358.3,8174,1,4,0)
- ;;=4^C84.15
- ;;^UTILITY(U,$J,358.3,8174,2)
- ;;=^5001636
- ;;^UTILITY(U,$J,358.3,8175,0)
- ;;=C84.18^^65^521^32
- ;;^UTILITY(U,$J,358.3,8175,1,0)
+ ;;^UTILITY(U,$J,358.3,8425,1,3,0)
+ ;;=3^Urethral Discharge,Unspec
+ ;;^UTILITY(U,$J,358.3,8425,1,4,0)
+ ;;=4^R36.9
+ ;;^UTILITY(U,$J,358.3,8425,2)
+ ;;=^5019338
+ ;;^UTILITY(U,$J,358.3,8426,0)
+ ;;=R80.1^^39^398^96
+ ;;^UTILITY(U,$J,358.3,8426,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,8175,1,3,0)
- ;;=3^Sezary Disease,Multiple Site Lymph Nodes
- ;;^UTILITY(U,$J,358.3,8175,1,4,0)
- ;;=4^C84.18
+ ;;^UTILITY(U,$J,358.3,8426,1,3,0)
+ ;;=3^Proteinuria Persistent,Unspec
+ ;;^UTILITY(U,$J,358.3,8426,1,4,0)
+ ;;=4^R80.1
+ ;;^UTILITY(U,$J,358.3,8426,2)
+ ;;=^5019596
+ ;;^UTILITY(U,$J,358.3,8427,0)
+ ;;=R80.0^^39^398^94
+ ;;^UTILITY(U,$J,358.3,8427,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,8427,1,3,0)
+ ;;=3^Proteinuria Isolated
+ ;;^UTILITY(U,$J,358.3,8427,1,4,0)
+ ;;=4^R80.0

@@ -1,120 +1,124 @@
-IBDEI0SS ; ; 04-FEB-2020
- ;;3.0;IB ENCOUNTER FORM IMP/EXP;;FEB 04, 2020
+IBDEI0SS ; ; 01-FEB-2022
+ ;;3.0;IB ENCOUNTER FORM IMP/EXP;;FEB 01, 2022
  Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,999) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
- ;;^UTILITY(U,$J,358.3,12824,1,4,0)
- ;;=4^I83.019
- ;;^UTILITY(U,$J,358.3,12824,2)
- ;;=^5007979
- ;;^UTILITY(U,$J,358.3,12825,0)
- ;;=I83.029^^80^788^12
- ;;^UTILITY(U,$J,358.3,12825,1,0)
+ ;;^UTILITY(U,$J,358.3,12954,0)
+ ;;=H54.415A^^51^625^33
+ ;;^UTILITY(U,$J,358.3,12954,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,12825,1,3,0)
- ;;=3^Varicose Veins of Left Lower Extremity w/ Ulcer
- ;;^UTILITY(U,$J,358.3,12825,1,4,0)
- ;;=4^I83.029
- ;;^UTILITY(U,$J,358.3,12825,2)
- ;;=^5007986
- ;;^UTILITY(U,$J,358.3,12826,0)
- ;;=I83.014^^80^788^13
- ;;^UTILITY(U,$J,358.3,12826,1,0)
+ ;;^UTILITY(U,$J,358.3,12954,1,3,0)
+ ;;=3^OD Blindness Cat 5/OS Normal
+ ;;^UTILITY(U,$J,358.3,12954,1,4,0)
+ ;;=4^H54.415A
+ ;;^UTILITY(U,$J,358.3,12954,2)
+ ;;=^5151365
+ ;;^UTILITY(U,$J,358.3,12955,0)
+ ;;=H54.42A3^^51^625^5
+ ;;^UTILITY(U,$J,358.3,12955,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,12826,1,3,0)
- ;;=3^Varicose Veins of Right Lower Extrem w/ Heel/Midfoot Ulcer
- ;;^UTILITY(U,$J,358.3,12826,1,4,0)
- ;;=4^I83.014
- ;;^UTILITY(U,$J,358.3,12826,2)
- ;;=^5007976
- ;;^UTILITY(U,$J,358.3,12827,0)
- ;;=I83.013^^80^788^14
- ;;^UTILITY(U,$J,358.3,12827,1,0)
+ ;;^UTILITY(U,$J,358.3,12955,1,3,0)
+ ;;=3^OD Normal/OS Blindness Cat 3
+ ;;^UTILITY(U,$J,358.3,12955,1,4,0)
+ ;;=4^H54.42A3
+ ;;^UTILITY(U,$J,358.3,12955,2)
+ ;;=^5151366
+ ;;^UTILITY(U,$J,358.3,12956,0)
+ ;;=H54.42A4^^51^625^6
+ ;;^UTILITY(U,$J,358.3,12956,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,12827,1,3,0)
- ;;=3^Varicose Veins of Right Lower Extrem w/ Ankle Ulcer
- ;;^UTILITY(U,$J,358.3,12827,1,4,0)
- ;;=4^I83.013
- ;;^UTILITY(U,$J,358.3,12827,2)
- ;;=^5007975
- ;;^UTILITY(U,$J,358.3,12828,0)
- ;;=I83.012^^80^788^15
- ;;^UTILITY(U,$J,358.3,12828,1,0)
+ ;;^UTILITY(U,$J,358.3,12956,1,3,0)
+ ;;=3^OD Normal/OS Blindness Cat 4
+ ;;^UTILITY(U,$J,358.3,12956,1,4,0)
+ ;;=4^H54.42A4
+ ;;^UTILITY(U,$J,358.3,12956,2)
+ ;;=^5151367
+ ;;^UTILITY(U,$J,358.3,12957,0)
+ ;;=H54.42A5^^51^625^7
+ ;;^UTILITY(U,$J,358.3,12957,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,12828,1,3,0)
- ;;=3^Varicose Veins of Right Lower Extrem w/ Calf Ulcer
- ;;^UTILITY(U,$J,358.3,12828,1,4,0)
- ;;=4^I83.012
- ;;^UTILITY(U,$J,358.3,12828,2)
- ;;=^5007974
- ;;^UTILITY(U,$J,358.3,12829,0)
- ;;=I83.011^^80^788^16
- ;;^UTILITY(U,$J,358.3,12829,1,0)
+ ;;^UTILITY(U,$J,358.3,12957,1,3,0)
+ ;;=3^OD Normal/OS Blindness Cat 5
+ ;;^UTILITY(U,$J,358.3,12957,1,4,0)
+ ;;=4^H54.42A5
+ ;;^UTILITY(U,$J,358.3,12957,2)
+ ;;=^5151368
+ ;;^UTILITY(U,$J,358.3,12958,0)
+ ;;=H54.1131^^51^625^22
+ ;;^UTILITY(U,$J,358.3,12958,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,12829,1,3,0)
- ;;=3^Varicose Veins of Right Lower Extrem w/ Thigh Ulcer
- ;;^UTILITY(U,$J,358.3,12829,1,4,0)
- ;;=4^I83.011
- ;;^UTILITY(U,$J,358.3,12829,2)
- ;;=^5007973
- ;;^UTILITY(U,$J,358.3,12830,0)
- ;;=I83.018^^80^788^17
- ;;^UTILITY(U,$J,358.3,12830,1,0)
+ ;;^UTILITY(U,$J,358.3,12958,1,3,0)
+ ;;=3^OD Blindness Cat 3/OS Low Vision Cat 1
+ ;;^UTILITY(U,$J,358.3,12958,1,4,0)
+ ;;=4^H54.1131
+ ;;^UTILITY(U,$J,358.3,12958,2)
+ ;;=^5151347
+ ;;^UTILITY(U,$J,358.3,12959,0)
+ ;;=H54.1132^^51^625^23
+ ;;^UTILITY(U,$J,358.3,12959,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,12830,1,3,0)
- ;;=3^Varicose Veins of Right Lower Extrem w/ Lower Leg Ulcer
- ;;^UTILITY(U,$J,358.3,12830,1,4,0)
- ;;=4^I83.018
- ;;^UTILITY(U,$J,358.3,12830,2)
- ;;=^5007978
- ;;^UTILITY(U,$J,358.3,12831,0)
- ;;=I83.015^^80^788^18
- ;;^UTILITY(U,$J,358.3,12831,1,0)
+ ;;^UTILITY(U,$J,358.3,12959,1,3,0)
+ ;;=3^OD Blindness Cat 3/OS Low Vision Cat 2
+ ;;^UTILITY(U,$J,358.3,12959,1,4,0)
+ ;;=4^H54.1132
+ ;;^UTILITY(U,$J,358.3,12959,2)
+ ;;=^5151348
+ ;;^UTILITY(U,$J,358.3,12960,0)
+ ;;=H54.1141^^51^625^28
+ ;;^UTILITY(U,$J,358.3,12960,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,12831,1,3,0)
- ;;=3^Varicose Veins of Right Lower Extrem w/ Foot Ulcer
- ;;^UTILITY(U,$J,358.3,12831,1,4,0)
- ;;=4^I83.015
- ;;^UTILITY(U,$J,358.3,12831,2)
- ;;=^5007977
- ;;^UTILITY(U,$J,358.3,12832,0)
- ;;=I83.019^^80^788^19
- ;;^UTILITY(U,$J,358.3,12832,1,0)
+ ;;^UTILITY(U,$J,358.3,12960,1,3,0)
+ ;;=3^OD Blindness Cat 4/OS Low Vision Cat 1
+ ;;^UTILITY(U,$J,358.3,12960,1,4,0)
+ ;;=4^H54.1141
+ ;;^UTILITY(U,$J,358.3,12960,2)
+ ;;=^5151349
+ ;;^UTILITY(U,$J,358.3,12961,0)
+ ;;=H54.1142^^51^625^29
+ ;;^UTILITY(U,$J,358.3,12961,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,12832,1,3,0)
- ;;=3^Varicose Veins of Right Lower Extrem w/ Ulcer,Unspec Site
- ;;^UTILITY(U,$J,358.3,12832,1,4,0)
- ;;=4^I83.019
- ;;^UTILITY(U,$J,358.3,12832,2)
- ;;=^5007979
- ;;^UTILITY(U,$J,358.3,12833,0)
- ;;=I83.11^^80^788^20
- ;;^UTILITY(U,$J,358.3,12833,1,0)
+ ;;^UTILITY(U,$J,358.3,12961,1,3,0)
+ ;;=3^OD Blindness Cat 4/OS Low Vision Cat 2
+ ;;^UTILITY(U,$J,358.3,12961,1,4,0)
+ ;;=4^H54.1142
+ ;;^UTILITY(U,$J,358.3,12961,2)
+ ;;=^5151350
+ ;;^UTILITY(U,$J,358.3,12962,0)
+ ;;=H54.1152^^51^625^35
+ ;;^UTILITY(U,$J,358.3,12962,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,12833,1,3,0)
- ;;=3^Varicose Veins of Right Lower Extrem w/ Inflammation
- ;;^UTILITY(U,$J,358.3,12833,1,4,0)
- ;;=4^I83.11
- ;;^UTILITY(U,$J,358.3,12833,2)
- ;;=^5007988
- ;;^UTILITY(U,$J,358.3,12834,0)
- ;;=I83.91^^80^788^3
- ;;^UTILITY(U,$J,358.3,12834,1,0)
+ ;;^UTILITY(U,$J,358.3,12962,1,3,0)
+ ;;=3^OD Blindness Cat 5/OS Low Vision Cat 2
+ ;;^UTILITY(U,$J,358.3,12962,1,4,0)
+ ;;=4^H54.1152
+ ;;^UTILITY(U,$J,358.3,12962,2)
+ ;;=^5151352
+ ;;^UTILITY(U,$J,358.3,12963,0)
+ ;;=H54.1151^^51^625^34
+ ;;^UTILITY(U,$J,358.3,12963,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,12834,1,3,0)
- ;;=3^Asymptomatic Varicose Veins of Right Lower Extrem 
- ;;^UTILITY(U,$J,358.3,12834,1,4,0)
- ;;=4^I83.91
- ;;^UTILITY(U,$J,358.3,12834,2)
- ;;=^5008020
- ;;^UTILITY(U,$J,358.3,12835,0)
- ;;=I83.029^^80^788^4
- ;;^UTILITY(U,$J,358.3,12835,1,0)
+ ;;^UTILITY(U,$J,358.3,12963,1,3,0)
+ ;;=3^OD Blindness Cat 5/OS Low Vision Cat 1
+ ;;^UTILITY(U,$J,358.3,12963,1,4,0)
+ ;;=4^H54.1151
+ ;;^UTILITY(U,$J,358.3,12963,2)
+ ;;=^5151351
+ ;;^UTILITY(U,$J,358.3,12964,0)
+ ;;=H54.1213^^51^625^12
+ ;;^UTILITY(U,$J,358.3,12964,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,12835,1,3,0)
- ;;=3^Varicose Veins of Left Lower Extrem w/ Ulcer,Unspec Site
- ;;^UTILITY(U,$J,358.3,12835,1,4,0)
- ;;=4^I83.029
- ;;^UTILITY(U,$J,358.3,12835,2)
- ;;=^5007986
- ;;^UTILITY(U,$J,358.3,12836,0)
- ;;=I83.025^^80^788^5
+ ;;^UTILITY(U,$J,358.3,12964,1,3,0)
+ ;;=3^OD Low Vision Cat 1/OS Blindness Cat 3
+ ;;^UTILITY(U,$J,358.3,12964,1,4,0)
+ ;;=4^H54.1213
+ ;;^UTILITY(U,$J,358.3,12964,2)
+ ;;=^5151353
+ ;;^UTILITY(U,$J,358.3,12965,0)
+ ;;=H54.1214^^51^625^13
+ ;;^UTILITY(U,$J,358.3,12965,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,12965,1,3,0)
+ ;;=3^OD Low Vision Cat 1/OS Blindness Cat 4
+ ;;^UTILITY(U,$J,358.3,12965,1,4,0)
+ ;;=4^H54.1214
+ ;;^UTILITY(U,$J,358.3,12965,2)
+ ;;=^5151354

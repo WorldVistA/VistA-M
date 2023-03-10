@@ -1,126 +1,118 @@
-IBDEI0NA ; ; 04-FEB-2020
- ;;3.0;IB ENCOUNTER FORM IMP/EXP;;FEB 04, 2020
+IBDEI0NA ; ; 01-FEB-2022
+ ;;3.0;IB ENCOUNTER FORM IMP/EXP;;FEB 01, 2022
  Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,999) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
- ;;^UTILITY(U,$J,358.3,10363,1,4,0)
- ;;=4^H40.1123
- ;;^UTILITY(U,$J,358.3,10363,2)
- ;;=^5138544
- ;;^UTILITY(U,$J,358.3,10364,0)
- ;;=H35.3110^^74^677^39
- ;;^UTILITY(U,$J,358.3,10364,1,0)
+ ;;^UTILITY(U,$J,358.3,10490,0)
+ ;;=H0038^^41^468^1^^^^1
+ ;;^UTILITY(U,$J,358.3,10490,1,0)
+ ;;=^358.31IA^3^2
+ ;;^UTILITY(U,$J,358.3,10490,1,2,0)
+ ;;=2^H0038
+ ;;^UTILITY(U,$J,358.3,10490,1,3,0)
+ ;;=3^Peer Support,per 15 min
+ ;;^UTILITY(U,$J,358.3,10491,0)
+ ;;=T74.11XA^^42^469^5
+ ;;^UTILITY(U,$J,358.3,10491,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,10364,1,3,0)
- ;;=3^Nonexudative ARMD,Right Eye
- ;;^UTILITY(U,$J,358.3,10364,1,4,0)
- ;;=4^H35.3110
- ;;^UTILITY(U,$J,358.3,10364,2)
- ;;=^5138500
- ;;^UTILITY(U,$J,358.3,10365,0)
- ;;=H35.3120^^74^677^38
- ;;^UTILITY(U,$J,358.3,10365,1,0)
+ ;;^UTILITY(U,$J,358.3,10491,1,3,0)
+ ;;=3^Adult Physical Abuse,Confirmed,Initial Encounter  
+ ;;^UTILITY(U,$J,358.3,10491,1,4,0)
+ ;;=4^T74.11XA
+ ;;^UTILITY(U,$J,358.3,10491,2)
+ ;;=^5054146
+ ;;^UTILITY(U,$J,358.3,10492,0)
+ ;;=T74.11XD^^42^469^6
+ ;;^UTILITY(U,$J,358.3,10492,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,10365,1,3,0)
- ;;=3^Nonexudative ARMD,Left Eye
- ;;^UTILITY(U,$J,358.3,10365,1,4,0)
- ;;=4^H35.3120
- ;;^UTILITY(U,$J,358.3,10365,2)
- ;;=^5138505
- ;;^UTILITY(U,$J,358.3,10366,0)
- ;;=H35.3210^^74^677^26
- ;;^UTILITY(U,$J,358.3,10366,1,0)
+ ;;^UTILITY(U,$J,358.3,10492,1,3,0)
+ ;;=3^Adult Physical Abuse,Confirmed,Subsequent Encounter 
+ ;;^UTILITY(U,$J,358.3,10492,1,4,0)
+ ;;=4^T74.11XD
+ ;;^UTILITY(U,$J,358.3,10492,2)
+ ;;=^5054147
+ ;;^UTILITY(U,$J,358.3,10493,0)
+ ;;=T76.11XA^^42^469^7
+ ;;^UTILITY(U,$J,358.3,10493,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,10366,1,3,0)
- ;;=3^Exudative ARMD,Right Eye
- ;;^UTILITY(U,$J,358.3,10366,1,4,0)
- ;;=4^H35.3210
- ;;^UTILITY(U,$J,358.3,10366,2)
- ;;=^5138520
- ;;^UTILITY(U,$J,358.3,10367,0)
- ;;=H35.3220^^74^677^25
- ;;^UTILITY(U,$J,358.3,10367,1,0)
+ ;;^UTILITY(U,$J,358.3,10493,1,3,0)
+ ;;=3^Adult Physical Abuse,Suspected,Initial Encounter  
+ ;;^UTILITY(U,$J,358.3,10493,1,4,0)
+ ;;=4^T76.11XA
+ ;;^UTILITY(U,$J,358.3,10493,2)
+ ;;=^5054221
+ ;;^UTILITY(U,$J,358.3,10494,0)
+ ;;=T76.11XD^^42^469^8
+ ;;^UTILITY(U,$J,358.3,10494,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,10367,1,3,0)
- ;;=3^Exudative ARMD,Left Eye
- ;;^UTILITY(U,$J,358.3,10367,1,4,0)
- ;;=4^H35.3220
- ;;^UTILITY(U,$J,358.3,10367,2)
- ;;=^5138524
- ;;^UTILITY(U,$J,358.3,10368,0)
- ;;=E11.3291^^74^677^15
- ;;^UTILITY(U,$J,358.3,10368,1,0)
+ ;;^UTILITY(U,$J,358.3,10494,1,3,0)
+ ;;=3^Adult Physical Abuse,Suspected,Subsequent Encounter  
+ ;;^UTILITY(U,$J,358.3,10494,1,4,0)
+ ;;=4^T76.11XD
+ ;;^UTILITY(U,$J,358.3,10494,2)
+ ;;=^5054222
+ ;;^UTILITY(U,$J,358.3,10495,0)
+ ;;=Z69.11^^42^469^31
+ ;;^UTILITY(U,$J,358.3,10495,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,10368,1,3,0)
- ;;=3^DM Type 2 w/ Mild NPDR w/o Macular Edema,Right Eye
- ;;^UTILITY(U,$J,358.3,10368,1,4,0)
- ;;=4^E11.3291
- ;;^UTILITY(U,$J,358.3,10368,2)
- ;;=^5138335
- ;;^UTILITY(U,$J,358.3,10369,0)
- ;;=E11.3292^^74^677^16
- ;;^UTILITY(U,$J,358.3,10369,1,0)
+ ;;^UTILITY(U,$J,358.3,10495,1,3,0)
+ ;;=3^MH Svc for Victim of Spousal/Partner Neglect
+ ;;^UTILITY(U,$J,358.3,10495,1,4,0)
+ ;;=4^Z69.11
+ ;;^UTILITY(U,$J,358.3,10495,2)
+ ;;=^5063232
+ ;;^UTILITY(U,$J,358.3,10496,0)
+ ;;=Z91.410^^42^469^35
+ ;;^UTILITY(U,$J,358.3,10496,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,10369,1,3,0)
- ;;=3^DM Type 2 w/ Mild NPDR w/o Macular Edema,Left Eye
- ;;^UTILITY(U,$J,358.3,10369,1,4,0)
- ;;=4^E11.3292
- ;;^UTILITY(U,$J,358.3,10369,2)
- ;;=^5138336
- ;;^UTILITY(U,$J,358.3,10370,0)
- ;;=E11.3391^^74^677^17
- ;;^UTILITY(U,$J,358.3,10370,1,0)
+ ;;^UTILITY(U,$J,358.3,10496,1,3,0)
+ ;;=3^Past Hx of Spouse/Partner Violence,Physical 
+ ;;^UTILITY(U,$J,358.3,10496,1,4,0)
+ ;;=4^Z91.410
+ ;;^UTILITY(U,$J,358.3,10496,2)
+ ;;=^5063619
+ ;;^UTILITY(U,$J,358.3,10497,0)
+ ;;=Z69.12^^42^469^27
+ ;;^UTILITY(U,$J,358.3,10497,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,10370,1,3,0)
- ;;=3^DM Type 2 w/ Mod NPDR w/o Macular Edema,Right Eye
- ;;^UTILITY(U,$J,358.3,10370,1,4,0)
- ;;=4^E11.3391
- ;;^UTILITY(U,$J,358.3,10370,2)
- ;;=^5138343
- ;;^UTILITY(U,$J,358.3,10371,0)
- ;;=E11.3392^^74^677^18
- ;;^UTILITY(U,$J,358.3,10371,1,0)
+ ;;^UTILITY(U,$J,358.3,10497,1,3,0)
+ ;;=3^MH Svc for Perpetrator of Spousal/Partner Violence-Physical,Sexual or Psychological
+ ;;^UTILITY(U,$J,358.3,10497,1,4,0)
+ ;;=4^Z69.12
+ ;;^UTILITY(U,$J,358.3,10497,2)
+ ;;=^5063233
+ ;;^UTILITY(U,$J,358.3,10498,0)
+ ;;=T74.21XA^^42^469^13
+ ;;^UTILITY(U,$J,358.3,10498,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,10371,1,3,0)
- ;;=3^DM Type 2 w/ Mod NPDR w/o Macular Edema,Left Eye
- ;;^UTILITY(U,$J,358.3,10371,1,4,0)
- ;;=4^E11.3392
- ;;^UTILITY(U,$J,358.3,10371,2)
- ;;=^5138344
- ;;^UTILITY(U,$J,358.3,10372,0)
- ;;=H35.3230^^74^677^24
- ;;^UTILITY(U,$J,358.3,10372,1,0)
+ ;;^UTILITY(U,$J,358.3,10498,1,3,0)
+ ;;=3^Adult Sexual Abuse,Confirmed,Initial Encounter 
+ ;;^UTILITY(U,$J,358.3,10498,1,4,0)
+ ;;=4^T74.21XA
+ ;;^UTILITY(U,$J,358.3,10498,2)
+ ;;=^5054152
+ ;;^UTILITY(U,$J,358.3,10499,0)
+ ;;=T74.21XD^^42^469^14
+ ;;^UTILITY(U,$J,358.3,10499,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,10372,1,3,0)
- ;;=3^Exudative ARMD,Bilateral
- ;;^UTILITY(U,$J,358.3,10372,1,4,0)
- ;;=4^H35.3230
- ;;^UTILITY(U,$J,358.3,10372,2)
- ;;=^5138528
- ;;^UTILITY(U,$J,358.3,10373,0)
- ;;=H35.3130^^74^677^37
- ;;^UTILITY(U,$J,358.3,10373,1,0)
+ ;;^UTILITY(U,$J,358.3,10499,1,3,0)
+ ;;=3^Adult Sexual Abuse,Confirmed,Subsequent Encounter 
+ ;;^UTILITY(U,$J,358.3,10499,1,4,0)
+ ;;=4^T74.21XD
+ ;;^UTILITY(U,$J,358.3,10499,2)
+ ;;=^5054153
+ ;;^UTILITY(U,$J,358.3,10500,0)
+ ;;=T76.21XA^^42^469^15
+ ;;^UTILITY(U,$J,358.3,10500,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,10373,1,3,0)
- ;;=3^Nonexudative ARMD,Bilateral
- ;;^UTILITY(U,$J,358.3,10373,1,4,0)
- ;;=4^H35.3130
- ;;^UTILITY(U,$J,358.3,10373,2)
- ;;=^5138510
- ;;^UTILITY(U,$J,358.3,10374,0)
- ;;=Z13.5^^74^677^52
- ;;^UTILITY(U,$J,358.3,10374,1,0)
+ ;;^UTILITY(U,$J,358.3,10500,1,3,0)
+ ;;=3^Adult Sexual Abuse,Suspected,Initial Encounter  
+ ;;^UTILITY(U,$J,358.3,10500,1,4,0)
+ ;;=4^T76.21XA
+ ;;^UTILITY(U,$J,358.3,10500,2)
+ ;;=^5054227
+ ;;^UTILITY(U,$J,358.3,10501,0)
+ ;;=T76.21XD^^42^469^16
+ ;;^UTILITY(U,$J,358.3,10501,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,10374,1,3,0)
- ;;=3^Screening for Eye and Ear Disorders
- ;;^UTILITY(U,$J,358.3,10374,1,4,0)
- ;;=4^Z13.5
- ;;^UTILITY(U,$J,358.3,10374,2)
- ;;=^5062706
- ;;^UTILITY(U,$J,358.3,10375,0)
- ;;=Z48.02^^74^677^51
- ;;^UTILITY(U,$J,358.3,10375,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,10375,1,3,0)
- ;;=3^Removal of Sutures
- ;;^UTILITY(U,$J,358.3,10375,1,4,0)
- ;;=4^Z48.02
+ ;;^UTILITY(U,$J,358.3,10501,1,3,0)
+ ;;=3^Adult Sexual Abuse,Suspected,Subsequent Encounter  

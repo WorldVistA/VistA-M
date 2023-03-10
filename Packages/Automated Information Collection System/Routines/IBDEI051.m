@@ -1,690 +1,658 @@
-IBDEI051 ; ; 01-MAY-2020
- ;;3.0;IB ENCOUNTER FORM IMP/EXP;;MAY 01, 2020
+IBDEI051 ; ; 01-AUG-2022
+ ;;3.0;IB ENCOUNTER FORM IMP/EXP;;AUG 01, 2022
  Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,999) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
- ;;^UTILITY(U,$J,358.3,12150,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,12150,1,3,0)
- ;;=3^Back Pain,Lower
- ;;^UTILITY(U,$J,358.3,12150,1,4,0)
- ;;=4^M54.5
- ;;^UTILITY(U,$J,358.3,12150,2)
- ;;=^5012311
- ;;^UTILITY(U,$J,358.3,12151,0)
- ;;=F50.81^^54^586^7
- ;;^UTILITY(U,$J,358.3,12151,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,12151,1,3,0)
- ;;=3^Binge-Eating Disorder
- ;;^UTILITY(U,$J,358.3,12151,1,4,0)
- ;;=4^F50.81
- ;;^UTILITY(U,$J,358.3,12151,2)
- ;;=^8123226
- ;;^UTILITY(U,$J,358.3,12152,0)
- ;;=I50.82^^54^586^8
- ;;^UTILITY(U,$J,358.3,12152,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,12152,1,3,0)
- ;;=3^Biventricular Heart Failure
- ;;^UTILITY(U,$J,358.3,12152,1,4,0)
- ;;=4^I50.82
- ;;^UTILITY(U,$J,358.3,12152,2)
- ;;=^5151389
- ;;^UTILITY(U,$J,358.3,12153,0)
- ;;=F31.10^^54^587^1
- ;;^UTILITY(U,$J,358.3,12153,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,12153,1,3,0)
- ;;=3^Bipolar disord, crnt episode manic w/o psych features, unspec
- ;;^UTILITY(U,$J,358.3,12153,1,4,0)
- ;;=4^F31.10
- ;;^UTILITY(U,$J,358.3,12153,2)
- ;;=^5003495
- ;;^UTILITY(U,$J,358.3,12154,0)
- ;;=F31.30^^54^587^2
- ;;^UTILITY(U,$J,358.3,12154,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,12154,1,3,0)
- ;;=3^Bipolar disord, crnt epsd depress, mild or mod severt, unspec
- ;;^UTILITY(U,$J,358.3,12154,1,4,0)
- ;;=4^F31.30
- ;;^UTILITY(U,$J,358.3,12154,2)
- ;;=^5003500
- ;;^UTILITY(U,$J,358.3,12155,0)
- ;;=F31.60^^54^587^3
- ;;^UTILITY(U,$J,358.3,12155,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,12155,1,3,0)
- ;;=3^Bipolar disorder, current episode mixed, unspec
- ;;^UTILITY(U,$J,358.3,12155,1,4,0)
- ;;=4^F31.60
- ;;^UTILITY(U,$J,358.3,12155,2)
- ;;=^5003505
- ;;^UTILITY(U,$J,358.3,12156,0)
- ;;=F31.9^^54^587^4
- ;;^UTILITY(U,$J,358.3,12156,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,12156,1,3,0)
- ;;=3^Bipolar disorder, unspec
- ;;^UTILITY(U,$J,358.3,12156,1,4,0)
- ;;=4^F31.9
- ;;^UTILITY(U,$J,358.3,12156,2)
- ;;=^331892
- ;;^UTILITY(U,$J,358.3,12157,0)
- ;;=C15.9^^54^588^6
- ;;^UTILITY(U,$J,358.3,12157,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,12157,1,3,0)
- ;;=3^Malig Neop of esophagus, unspec
- ;;^UTILITY(U,$J,358.3,12157,1,4,0)
- ;;=4^C15.9
- ;;^UTILITY(U,$J,358.3,12157,2)
- ;;=^5000919
- ;;^UTILITY(U,$J,358.3,12158,0)
- ;;=C18.9^^54^588^5
- ;;^UTILITY(U,$J,358.3,12158,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,12158,1,3,0)
- ;;=3^Malig Neop of colon, unspec
- ;;^UTILITY(U,$J,358.3,12158,1,4,0)
- ;;=4^C18.9
- ;;^UTILITY(U,$J,358.3,12158,2)
- ;;=^5000929
- ;;^UTILITY(U,$J,358.3,12159,0)
- ;;=C32.9^^54^588^7
- ;;^UTILITY(U,$J,358.3,12159,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,12159,1,3,0)
- ;;=3^Malig Neop of larynx, unspec
- ;;^UTILITY(U,$J,358.3,12159,1,4,0)
- ;;=4^C32.9
- ;;^UTILITY(U,$J,358.3,12159,2)
- ;;=^5000956
- ;;^UTILITY(U,$J,358.3,12160,0)
- ;;=C34.91^^54^588^13
- ;;^UTILITY(U,$J,358.3,12160,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,12160,1,3,0)
- ;;=3^Malig Neop of rt bronchus or lung, unsp part
- ;;^UTILITY(U,$J,358.3,12160,1,4,0)
- ;;=4^C34.91
- ;;^UTILITY(U,$J,358.3,12160,2)
- ;;=^5000967
- ;;^UTILITY(U,$J,358.3,12161,0)
- ;;=C34.92^^54^588^9
- ;;^UTILITY(U,$J,358.3,12161,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,12161,1,3,0)
- ;;=3^Malig Neop of lft bronchus or lung, unsp part
- ;;^UTILITY(U,$J,358.3,12161,1,4,0)
- ;;=4^C34.92
- ;;^UTILITY(U,$J,358.3,12161,2)
- ;;=^5000968
- ;;^UTILITY(U,$J,358.3,12162,0)
- ;;=C44.91^^54^588^1
- ;;^UTILITY(U,$J,358.3,12162,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,12162,1,3,0)
- ;;=3^Basal cell carcinoma of skin, unspec
- ;;^UTILITY(U,$J,358.3,12162,1,4,0)
- ;;=4^C44.91
- ;;^UTILITY(U,$J,358.3,12162,2)
- ;;=^5001092
- ;;^UTILITY(U,$J,358.3,12163,0)
- ;;=C44.99^^54^588^15
- ;;^UTILITY(U,$J,358.3,12163,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,12163,1,3,0)
- ;;=3^Malig Neop of skin, oth spec, unspec
- ;;^UTILITY(U,$J,358.3,12163,1,4,0)
- ;;=4^C44.99
- ;;^UTILITY(U,$J,358.3,12163,2)
- ;;=^5001094
- ;;^UTILITY(U,$J,358.3,12164,0)
- ;;=C50.912^^54^588^8
- ;;^UTILITY(U,$J,358.3,12164,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,12164,1,3,0)
- ;;=3^Malig Neop of lft breast, female, unspec site
- ;;^UTILITY(U,$J,358.3,12164,1,4,0)
- ;;=4^C50.912
- ;;^UTILITY(U,$J,358.3,12164,2)
- ;;=^5001196
- ;;^UTILITY(U,$J,358.3,12165,0)
- ;;=C50.911^^54^588^12
- ;;^UTILITY(U,$J,358.3,12165,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,12165,1,3,0)
- ;;=3^Malig Neop of rt breast, female, unspec site
- ;;^UTILITY(U,$J,358.3,12165,1,4,0)
- ;;=4^C50.911
- ;;^UTILITY(U,$J,358.3,12165,2)
- ;;=^5001195
- ;;^UTILITY(U,$J,358.3,12166,0)
- ;;=C61.^^54^588^11
- ;;^UTILITY(U,$J,358.3,12166,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,12166,1,3,0)
- ;;=3^Malig Neop of prostate
- ;;^UTILITY(U,$J,358.3,12166,1,4,0)
- ;;=4^C61.
- ;;^UTILITY(U,$J,358.3,12166,2)
- ;;=^267239
- ;;^UTILITY(U,$J,358.3,12167,0)
- ;;=C67.9^^54^588^2
- ;;^UTILITY(U,$J,358.3,12167,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,12167,1,3,0)
- ;;=3^Malig Neop of bladder, unspec
- ;;^UTILITY(U,$J,358.3,12167,1,4,0)
- ;;=4^C67.9
- ;;^UTILITY(U,$J,358.3,12167,2)
- ;;=^5001263
- ;;^UTILITY(U,$J,358.3,12168,0)
- ;;=C64.2^^54^588^10
- ;;^UTILITY(U,$J,358.3,12168,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,12168,1,3,0)
- ;;=3^Malig Neop of lft kidney, except renal pelvis
- ;;^UTILITY(U,$J,358.3,12168,1,4,0)
- ;;=4^C64.2
- ;;^UTILITY(U,$J,358.3,12168,2)
- ;;=^5001249
- ;;^UTILITY(U,$J,358.3,12169,0)
- ;;=C64.1^^54^588^14
- ;;^UTILITY(U,$J,358.3,12169,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,12169,1,3,0)
- ;;=3^Malig Neop of rt kidney, except renal pelvis
- ;;^UTILITY(U,$J,358.3,12169,1,4,0)
- ;;=4^C64.1
- ;;^UTILITY(U,$J,358.3,12169,2)
- ;;=^5001248
- ;;^UTILITY(U,$J,358.3,12170,0)
- ;;=C79.51^^54^588^4
- ;;^UTILITY(U,$J,358.3,12170,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,12170,1,3,0)
- ;;=3^Malig Neop of bone, secondary
- ;;^UTILITY(U,$J,358.3,12170,1,4,0)
- ;;=4^C79.51
- ;;^UTILITY(U,$J,358.3,12170,2)
- ;;=^5001350
- ;;^UTILITY(U,$J,358.3,12171,0)
- ;;=C79.52^^54^588^3
- ;;^UTILITY(U,$J,358.3,12171,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,12171,1,3,0)
- ;;=3^Malig Neop of bone marrow, secondary
- ;;^UTILITY(U,$J,358.3,12171,1,4,0)
- ;;=4^C79.52
- ;;^UTILITY(U,$J,358.3,12171,2)
- ;;=^5001351
  ;;^UTILITY(U,$J,358.3,12172,0)
- ;;=C44.92^^54^588^16
+ ;;=M84.478D^^50^545^111
  ;;^UTILITY(U,$J,358.3,12172,1,0)
  ;;=^358.31IA^4^2
  ;;^UTILITY(U,$J,358.3,12172,1,3,0)
- ;;=3^Squamous Cell Carcinoma of Skin,Unspec
+ ;;=3^Pathological Fx, toe(s),left,Subsq
  ;;^UTILITY(U,$J,358.3,12172,1,4,0)
- ;;=4^C44.92
+ ;;=4^M84.478D
  ;;^UTILITY(U,$J,358.3,12172,2)
- ;;=^5001093
+ ;;=^5014005
  ;;^UTILITY(U,$J,358.3,12173,0)
- ;;=K63.5^^54^589^19
+ ;;=M84.477D^^50^545^112
  ;;^UTILITY(U,$J,358.3,12173,1,0)
  ;;=^358.31IA^4^2
  ;;^UTILITY(U,$J,358.3,12173,1,3,0)
- ;;=3^Colon polyp
+ ;;=3^Pathological Fx, toe(s),right,Subsq
  ;;^UTILITY(U,$J,358.3,12173,1,4,0)
- ;;=4^K63.5
+ ;;=4^M84.477D
  ;;^UTILITY(U,$J,358.3,12173,2)
- ;;=^5008765
+ ;;=^5013999
  ;;^UTILITY(U,$J,358.3,12174,0)
- ;;=G56.01^^54^589^9
+ ;;=M84.372D^^50^545^113
  ;;^UTILITY(U,$J,358.3,12174,1,0)
  ;;=^358.31IA^4^2
  ;;^UTILITY(U,$J,358.3,12174,1,3,0)
- ;;=3^Carpal tunnel syndrome, right upper limb
+ ;;=3^Stress Fx, ankle,left,Subsq
  ;;^UTILITY(U,$J,358.3,12174,1,4,0)
- ;;=4^G56.01
+ ;;=4^M84.372D
  ;;^UTILITY(U,$J,358.3,12174,2)
- ;;=^5004018
+ ;;=^5013741
  ;;^UTILITY(U,$J,358.3,12175,0)
- ;;=G56.02^^54^589^8
+ ;;=M84.371D^^50^545^114
  ;;^UTILITY(U,$J,358.3,12175,1,0)
  ;;=^358.31IA^4^2
  ;;^UTILITY(U,$J,358.3,12175,1,3,0)
- ;;=3^Carpal tunnel syndrome, left upper limb
+ ;;=3^Stress Fx, ankle,right,Subsq
  ;;^UTILITY(U,$J,358.3,12175,1,4,0)
- ;;=4^G56.02
+ ;;=4^M84.371D
  ;;^UTILITY(U,$J,358.3,12175,2)
- ;;=^5004019
+ ;;=^5013735
  ;;^UTILITY(U,$J,358.3,12176,0)
- ;;=H26.9^^54^589^10
+ ;;=M84.375D^^50^545^115
  ;;^UTILITY(U,$J,358.3,12176,1,0)
  ;;=^358.31IA^4^2
  ;;^UTILITY(U,$J,358.3,12176,1,3,0)
- ;;=3^Cataract, unspec
+ ;;=3^Stress Fx, foot,left,Subsq
  ;;^UTILITY(U,$J,358.3,12176,1,4,0)
- ;;=4^H26.9
+ ;;=4^M84.375D
  ;;^UTILITY(U,$J,358.3,12176,2)
- ;;=^5005363
+ ;;=^5013759
  ;;^UTILITY(U,$J,358.3,12177,0)
- ;;=I25.10^^54^589^2
+ ;;=M84.374D^^50^545^116
  ;;^UTILITY(U,$J,358.3,12177,1,0)
  ;;=^358.31IA^4^2
  ;;^UTILITY(U,$J,358.3,12177,1,3,0)
- ;;=3^CAD of native coronary artery w/o ang pctrs
+ ;;=3^Stress Fx, foot,right,Subsq
  ;;^UTILITY(U,$J,358.3,12177,1,4,0)
- ;;=4^I25.10
+ ;;=4^M84.374D
  ;;^UTILITY(U,$J,358.3,12177,2)
- ;;=^5007107
+ ;;=^5013753
  ;;^UTILITY(U,$J,358.3,12178,0)
- ;;=I42.8^^54^589^7
+ ;;=M84.378D^^50^545^117
  ;;^UTILITY(U,$J,358.3,12178,1,0)
  ;;=^358.31IA^4^2
  ;;^UTILITY(U,$J,358.3,12178,1,3,0)
- ;;=3^Cardiomyopathies, Oth
+ ;;=3^Stress Fx, toe(s),left,Subsq
  ;;^UTILITY(U,$J,358.3,12178,1,4,0)
- ;;=4^I42.8
+ ;;=4^M84.378D
  ;;^UTILITY(U,$J,358.3,12178,2)
- ;;=^5007199
+ ;;=^5013777
  ;;^UTILITY(U,$J,358.3,12179,0)
- ;;=I50.9^^54^589^3
+ ;;=M84.377D^^50^545^118
  ;;^UTILITY(U,$J,358.3,12179,1,0)
  ;;=^358.31IA^4^2
  ;;^UTILITY(U,$J,358.3,12179,1,3,0)
- ;;=3^CHF, unspec
+ ;;=3^Stress Fx, toe(s),right,Subsq
  ;;^UTILITY(U,$J,358.3,12179,1,4,0)
- ;;=4^I50.9
+ ;;=4^M84.377D
  ;;^UTILITY(U,$J,358.3,12179,2)
- ;;=^5007251
+ ;;=^5013771
  ;;^UTILITY(U,$J,358.3,12180,0)
- ;;=J44.9^^54^589^4
+ ;;=S92.315D^^50^545^55
  ;;^UTILITY(U,$J,358.3,12180,1,0)
  ;;=^358.31IA^4^2
  ;;^UTILITY(U,$J,358.3,12180,1,3,0)
- ;;=3^COPD, unspec
+ ;;=3^Nondisp 1st metatarsal Fx,left foot,Subsq
  ;;^UTILITY(U,$J,358.3,12180,1,4,0)
- ;;=4^J44.9
+ ;;=4^S92.315D
  ;;^UTILITY(U,$J,358.3,12180,2)
- ;;=^5008241
+ ;;=^5045090
  ;;^UTILITY(U,$J,358.3,12181,0)
- ;;=K59.09^^54^589^20
+ ;;=S92.314D^^50^545^56
  ;;^UTILITY(U,$J,358.3,12181,1,0)
  ;;=^358.31IA^4^2
  ;;^UTILITY(U,$J,358.3,12181,1,3,0)
- ;;=3^Constipation, oth
+ ;;=3^Nondisp 1st metatarsal Fx,right foot,Subsq
  ;;^UTILITY(U,$J,358.3,12181,1,4,0)
- ;;=4^K59.09
+ ;;=4^S92.314D
  ;;^UTILITY(U,$J,358.3,12181,2)
- ;;=^323540
+ ;;=^5045083
  ;;^UTILITY(U,$J,358.3,12182,0)
- ;;=K74.60^^54^589^17
+ ;;=S92.325D^^50^545^57
  ;;^UTILITY(U,$J,358.3,12182,1,0)
  ;;=^358.31IA^4^2
  ;;^UTILITY(U,$J,358.3,12182,1,3,0)
- ;;=3^Cirrhosis of liver, unspec
+ ;;=3^Nondisp 2nd metatarsal Fx,left foot,Subsq
  ;;^UTILITY(U,$J,358.3,12182,1,4,0)
- ;;=4^K74.60
+ ;;=4^S92.325D
  ;;^UTILITY(U,$J,358.3,12182,2)
- ;;=^5008822
+ ;;=^5045132
  ;;^UTILITY(U,$J,358.3,12183,0)
- ;;=K80.20^^54^589^6
+ ;;=S92.324D^^50^545^58
  ;;^UTILITY(U,$J,358.3,12183,1,0)
  ;;=^358.31IA^4^2
  ;;^UTILITY(U,$J,358.3,12183,1,3,0)
- ;;=3^Calculus of gallbldr w/o cholecystitis w/o obstrctn
+ ;;=3^Nondisp 2nd metatarsal Fx,right foot,Subsq
  ;;^UTILITY(U,$J,358.3,12183,1,4,0)
- ;;=4^K80.20
+ ;;=4^S92.324D
  ;;^UTILITY(U,$J,358.3,12183,2)
- ;;=^5008846
+ ;;=^5045125
  ;;^UTILITY(U,$J,358.3,12184,0)
- ;;=L03.90^^54^589^15
+ ;;=S92.335D^^50^545^59
  ;;^UTILITY(U,$J,358.3,12184,1,0)
  ;;=^358.31IA^4^2
  ;;^UTILITY(U,$J,358.3,12184,1,3,0)
- ;;=3^Cellulitis, unspec
+ ;;=3^Nondisp 3rd metatarsal Fx,left foot,Subsq
  ;;^UTILITY(U,$J,358.3,12184,1,4,0)
- ;;=4^L03.90
+ ;;=4^S92.335D
  ;;^UTILITY(U,$J,358.3,12184,2)
- ;;=^5009067
+ ;;=^5045174
  ;;^UTILITY(U,$J,358.3,12185,0)
- ;;=R05.^^54^589^21
+ ;;=S92.334D^^50^545^60
  ;;^UTILITY(U,$J,358.3,12185,1,0)
  ;;=^358.31IA^4^2
  ;;^UTILITY(U,$J,358.3,12185,1,3,0)
- ;;=3^Cough
+ ;;=3^Nondisp 3rd metatarsal Fx,right foot,Subsq
  ;;^UTILITY(U,$J,358.3,12185,1,4,0)
- ;;=4^R05.
+ ;;=4^S92.334D
  ;;^UTILITY(U,$J,358.3,12185,2)
- ;;=^5019179
+ ;;=^5045167
  ;;^UTILITY(U,$J,358.3,12186,0)
- ;;=N18.9^^54^589^16
+ ;;=S92.345D^^50^545^61
  ;;^UTILITY(U,$J,358.3,12186,1,0)
  ;;=^358.31IA^4^2
  ;;^UTILITY(U,$J,358.3,12186,1,3,0)
- ;;=3^Chronic kidney disease, unspec
+ ;;=3^Nondisp 4th metatarsal Fx,left foot,Subsq
  ;;^UTILITY(U,$J,358.3,12186,1,4,0)
- ;;=4^N18.9
+ ;;=4^S92.345D
  ;;^UTILITY(U,$J,358.3,12186,2)
- ;;=^332812
+ ;;=^5045216
  ;;^UTILITY(U,$J,358.3,12187,0)
- ;;=L03.011^^54^589^13
+ ;;=S92.344D^^50^545^62
  ;;^UTILITY(U,$J,358.3,12187,1,0)
  ;;=^358.31IA^4^2
  ;;^UTILITY(U,$J,358.3,12187,1,3,0)
- ;;=3^Cellulitis of right finger
+ ;;=3^Nondisp 4th metatarsal Fx,right foot,Subsq
  ;;^UTILITY(U,$J,358.3,12187,1,4,0)
- ;;=4^L03.011
+ ;;=4^S92.344D
  ;;^UTILITY(U,$J,358.3,12187,2)
- ;;=^5009019
+ ;;=^5045209
  ;;^UTILITY(U,$J,358.3,12188,0)
- ;;=L03.012^^54^589^11
+ ;;=S92.355D^^50^545^63
  ;;^UTILITY(U,$J,358.3,12188,1,0)
  ;;=^358.31IA^4^2
  ;;^UTILITY(U,$J,358.3,12188,1,3,0)
- ;;=3^Cellulitis of left finger
+ ;;=3^Nondisp 5th metatarsal Fx,left foot,Subsq
  ;;^UTILITY(U,$J,358.3,12188,1,4,0)
- ;;=4^L03.012
+ ;;=4^S92.355D
  ;;^UTILITY(U,$J,358.3,12188,2)
- ;;=^5009020
+ ;;=^5045258
  ;;^UTILITY(U,$J,358.3,12189,0)
- ;;=L03.031^^54^589^14
+ ;;=S92.354D^^50^545^64
  ;;^UTILITY(U,$J,358.3,12189,1,0)
  ;;=^358.31IA^4^2
  ;;^UTILITY(U,$J,358.3,12189,1,3,0)
- ;;=3^Cellulitis of right toe
+ ;;=3^Nondisp 5th metatarsal Fx,right foot,Subsq
  ;;^UTILITY(U,$J,358.3,12189,1,4,0)
- ;;=4^L03.031
+ ;;=4^S92.354D
  ;;^UTILITY(U,$J,358.3,12189,2)
- ;;=^5009025
+ ;;=^5045251
  ;;^UTILITY(U,$J,358.3,12190,0)
- ;;=L03.032^^54^589^12
+ ;;=S92.025D^^50^545^65
  ;;^UTILITY(U,$J,358.3,12190,1,0)
  ;;=^358.31IA^4^2
  ;;^UTILITY(U,$J,358.3,12190,1,3,0)
- ;;=3^Cellulitis of left toe
+ ;;=3^Nondisp anterior process Fx,left calcaneus,Subsq
  ;;^UTILITY(U,$J,358.3,12190,1,4,0)
- ;;=4^L03.032
+ ;;=4^S92.025D
  ;;^UTILITY(U,$J,358.3,12190,2)
- ;;=^5009026
+ ;;=^5044439
  ;;^UTILITY(U,$J,358.3,12191,0)
- ;;=R25.2^^54^589^22
+ ;;=S92.024D^^50^545^66
  ;;^UTILITY(U,$J,358.3,12191,1,0)
  ;;=^358.31IA^4^2
  ;;^UTILITY(U,$J,358.3,12191,1,3,0)
- ;;=3^Cramp & Spasm
+ ;;=3^Nondisp anterior process Fx,right calcaneus,Subsq
  ;;^UTILITY(U,$J,358.3,12191,1,4,0)
- ;;=4^R25.2
+ ;;=4^S92.024D
  ;;^UTILITY(U,$J,358.3,12191,2)
- ;;=^5019301
+ ;;=^5044432
  ;;^UTILITY(U,$J,358.3,12192,0)
- ;;=I25.810^^54^589^1
+ ;;=S92.155D^^50^545^67
  ;;^UTILITY(U,$J,358.3,12192,1,0)
  ;;=^358.31IA^4^2
  ;;^UTILITY(U,$J,358.3,12192,1,3,0)
- ;;=3^CAD of CABG w/o Angina Pectoris
+ ;;=3^Nondisp avulsion Fx,left talus,Subsq
  ;;^UTILITY(U,$J,358.3,12192,1,4,0)
- ;;=4^I25.810
+ ;;=4^S92.155D
  ;;^UTILITY(U,$J,358.3,12192,2)
- ;;=^5007141
+ ;;=^5044803
  ;;^UTILITY(U,$J,358.3,12193,0)
- ;;=I69.919^^54^589^18
+ ;;=S92.154D^^50^545^68
  ;;^UTILITY(U,$J,358.3,12193,1,0)
  ;;=^358.31IA^4^2
  ;;^UTILITY(U,$J,358.3,12193,1,3,0)
- ;;=3^Cognitive deficits following unsp cerebvasc dz,unsp sx
+ ;;=3^Nondisp avulsion Fx,right talus,Subsq
  ;;^UTILITY(U,$J,358.3,12193,1,4,0)
- ;;=4^I69.919
+ ;;=4^S92.154D
  ;;^UTILITY(U,$J,358.3,12193,2)
- ;;=^5138667
+ ;;=^5044796
  ;;^UTILITY(U,$J,358.3,12194,0)
- ;;=R11.15^^54^589^23
+ ;;=S92.035D^^50^545^69
  ;;^UTILITY(U,$J,358.3,12194,1,0)
  ;;=^358.31IA^4^2
  ;;^UTILITY(U,$J,358.3,12194,1,3,0)
- ;;=3^Cyclical Vomiting Syndrome Unrelated to Migraine
+ ;;=3^Nondisp avulsion tuberosity Fx,left calcaneus,Subsq
  ;;^UTILITY(U,$J,358.3,12194,1,4,0)
- ;;=4^R11.15
+ ;;=4^S92.035D
  ;;^UTILITY(U,$J,358.3,12194,2)
- ;;=^5158141
+ ;;=^5044481
  ;;^UTILITY(U,$J,358.3,12195,0)
- ;;=G43.A1^^54^589^24
+ ;;=S92.034D^^50^545^70
  ;;^UTILITY(U,$J,358.3,12195,1,0)
  ;;=^358.31IA^4^2
  ;;^UTILITY(U,$J,358.3,12195,1,3,0)
- ;;=3^Cyclical Vomiting,in Migraine,Intractable
+ ;;=3^Nondisp avulsion tuberosity Fx,right calcaneus,Subsq
  ;;^UTILITY(U,$J,358.3,12195,1,4,0)
- ;;=4^G43.A1
+ ;;=4^S92.034D
  ;;^UTILITY(U,$J,358.3,12195,2)
- ;;=^5003913
+ ;;=^5044474
  ;;^UTILITY(U,$J,358.3,12196,0)
- ;;=G43.A0^^54^589^25
+ ;;=S82.845D^^50^545^71
  ;;^UTILITY(U,$J,358.3,12196,1,0)
  ;;=^358.31IA^4^2
  ;;^UTILITY(U,$J,358.3,12196,1,3,0)
- ;;=3^Cyclical Vomiting,in Migraine,Not Intractable
+ ;;=3^Nondisp bimalleolar Fx,left lower leg,Subsq
  ;;^UTILITY(U,$J,358.3,12196,1,4,0)
- ;;=4^G43.A0
+ ;;=4^S82.845D
  ;;^UTILITY(U,$J,358.3,12196,2)
- ;;=^5003912
+ ;;=^5042546
  ;;^UTILITY(U,$J,358.3,12197,0)
- ;;=U07.1^^54^589^5
+ ;;=S82.844D^^50^545^72
  ;;^UTILITY(U,$J,358.3,12197,1,0)
  ;;=^358.31IA^4^2
  ;;^UTILITY(U,$J,358.3,12197,1,3,0)
- ;;=3^COVID-19
+ ;;=3^Nondisp bimalleolar Fx,right lower leg,Subsq
  ;;^UTILITY(U,$J,358.3,12197,1,4,0)
- ;;=4^U07.1
+ ;;=4^S82.844D
  ;;^UTILITY(U,$J,358.3,12197,2)
- ;;=^5159070
+ ;;=^5042530
  ;;^UTILITY(U,$J,358.3,12198,0)
- ;;=E86.0^^54^590^1
+ ;;=S92.015D^^50^545^73
  ;;^UTILITY(U,$J,358.3,12198,1,0)
  ;;=^358.31IA^4^2
  ;;^UTILITY(U,$J,358.3,12198,1,3,0)
- ;;=3^Dehydration
+ ;;=3^Nondisp body of calcaneus fx, left,Subsq
  ;;^UTILITY(U,$J,358.3,12198,1,4,0)
- ;;=4^E86.0
+ ;;=4^S92.015D
  ;;^UTILITY(U,$J,358.3,12198,2)
- ;;=^332743
+ ;;=^5044397
  ;;^UTILITY(U,$J,358.3,12199,0)
- ;;=K57.30^^54^590^5
+ ;;=S92.014D^^50^545^74
  ;;^UTILITY(U,$J,358.3,12199,1,0)
  ;;=^358.31IA^4^2
  ;;^UTILITY(U,$J,358.3,12199,1,3,0)
- ;;=3^Dvrtclos of lg int w/o perforation or abscess w/o bleeding
+ ;;=3^Nondisp body of calcaneus fx, right,Subsq
  ;;^UTILITY(U,$J,358.3,12199,1,4,0)
- ;;=4^K57.30
+ ;;=4^S92.014D
  ;;^UTILITY(U,$J,358.3,12199,2)
- ;;=^5008723
+ ;;=^5044390
  ;;^UTILITY(U,$J,358.3,12200,0)
- ;;=L25.9^^54^590^2
+ ;;=S92.125D^^50^545^75
  ;;^UTILITY(U,$J,358.3,12200,1,0)
  ;;=^358.31IA^4^2
  ;;^UTILITY(U,$J,358.3,12200,1,3,0)
- ;;=3^Dermatitis, contact, unspec cause
+ ;;=3^Nondisp body of talus fx, left,Subsq
  ;;^UTILITY(U,$J,358.3,12200,1,4,0)
- ;;=4^L25.9
+ ;;=4^S92.125D
  ;;^UTILITY(U,$J,358.3,12200,2)
- ;;=^5133647
+ ;;=^5044677
  ;;^UTILITY(U,$J,358.3,12201,0)
- ;;=R42.^^54^590^4
+ ;;=S92.124D^^50^545^76
  ;;^UTILITY(U,$J,358.3,12201,1,0)
  ;;=^358.31IA^4^2
  ;;^UTILITY(U,$J,358.3,12201,1,3,0)
- ;;=3^Dizziness & giddiness
+ ;;=3^Nondisp body of talus fx, right,Subsq
  ;;^UTILITY(U,$J,358.3,12201,1,4,0)
- ;;=4^R42.
+ ;;=4^S92.124D
  ;;^UTILITY(U,$J,358.3,12201,2)
- ;;=^5019450
+ ;;=^5044670
  ;;^UTILITY(U,$J,358.3,12202,0)
- ;;=R06.00^^54^590^11
+ ;;=S92.215D^^50^545^77
  ;;^UTILITY(U,$J,358.3,12202,1,0)
  ;;=^358.31IA^4^2
  ;;^UTILITY(U,$J,358.3,12202,1,3,0)
- ;;=3^Dyspnea, unspec
+ ;;=3^Nondisp cuboid bone Fx,left foot,Subsq
  ;;^UTILITY(U,$J,358.3,12202,1,4,0)
- ;;=4^R06.00
+ ;;=4^S92.215D
  ;;^UTILITY(U,$J,358.3,12202,2)
- ;;=^5019180
+ ;;=^5044866
  ;;^UTILITY(U,$J,358.3,12203,0)
- ;;=R13.10^^54^590^10
+ ;;=S92.214D^^50^545^78
  ;;^UTILITY(U,$J,358.3,12203,1,0)
  ;;=^358.31IA^4^2
  ;;^UTILITY(U,$J,358.3,12203,1,3,0)
- ;;=3^Dysphagia, unspec
+ ;;=3^Nondisp cuboid bone Fx,right foot,Subsq
  ;;^UTILITY(U,$J,358.3,12203,1,4,0)
- ;;=4^R13.10
+ ;;=4^S92.214D
  ;;^UTILITY(U,$J,358.3,12203,2)
- ;;=^335307
+ ;;=^5044859
  ;;^UTILITY(U,$J,358.3,12204,0)
- ;;=R19.7^^54^590^3
+ ;;=S92.425D^^50^545^79
  ;;^UTILITY(U,$J,358.3,12204,1,0)
  ;;=^358.31IA^4^2
  ;;^UTILITY(U,$J,358.3,12204,1,3,0)
- ;;=3^Diarrhea, unspec
+ ;;=3^Nondisp distal phalanx Fx,left great toe,Subsq
  ;;^UTILITY(U,$J,358.3,12204,1,4,0)
- ;;=4^R19.7
+ ;;=4^S92.425D
  ;;^UTILITY(U,$J,358.3,12204,2)
- ;;=^5019276
+ ;;=^5045370
  ;;^UTILITY(U,$J,358.3,12205,0)
- ;;=N94.12^^54^590^6
+ ;;=S92.424D^^50^545^81
  ;;^UTILITY(U,$J,358.3,12205,1,0)
  ;;=^358.31IA^4^2
  ;;^UTILITY(U,$J,358.3,12205,1,3,0)
- ;;=3^Dyspareunia,Deep
+ ;;=3^Nondisp distal phalanx Fx,right great toe,Subsq
  ;;^UTILITY(U,$J,358.3,12205,1,4,0)
- ;;=4^N94.12
+ ;;=4^S92.424D
  ;;^UTILITY(U,$J,358.3,12205,2)
- ;;=^5138974
+ ;;=^5045363
  ;;^UTILITY(U,$J,358.3,12206,0)
- ;;=N94.19^^54^590^7
+ ;;=S92.535D^^50^545^80
  ;;^UTILITY(U,$J,358.3,12206,1,0)
  ;;=^358.31IA^4^2
  ;;^UTILITY(U,$J,358.3,12206,1,3,0)
- ;;=3^Dyspareunia,Oth Spec
+ ;;=3^Nondisp distal phalanx Fx,left lesser toe(s),Subsq
  ;;^UTILITY(U,$J,358.3,12206,1,4,0)
- ;;=4^N94.19
+ ;;=4^S92.535D
  ;;^UTILITY(U,$J,358.3,12206,2)
- ;;=^5138975
+ ;;=^5045545
  ;;^UTILITY(U,$J,358.3,12207,0)
- ;;=N94.11^^54^590^8
+ ;;=S92.534D^^50^545^82
  ;;^UTILITY(U,$J,358.3,12207,1,0)
  ;;=^358.31IA^4^2
  ;;^UTILITY(U,$J,358.3,12207,1,3,0)
- ;;=3^Dyspareunia,Superficial
+ ;;=3^Nondisp distal phalanx Fx,right lesser toe(s),Subsq
  ;;^UTILITY(U,$J,358.3,12207,1,4,0)
- ;;=4^N94.11
+ ;;=4^S92.534D
  ;;^UTILITY(U,$J,358.3,12207,2)
- ;;=^5138973
+ ;;=^5045538
  ;;^UTILITY(U,$J,358.3,12208,0)
- ;;=N94.10^^54^590^9
+ ;;=S92.145D^^50^545^83
  ;;^UTILITY(U,$J,358.3,12208,1,0)
  ;;=^358.31IA^4^2
  ;;^UTILITY(U,$J,358.3,12208,1,3,0)
- ;;=3^Dyspareunia,Unspec
+ ;;=3^Nondisp dome Fx,talus,left,Subsq
  ;;^UTILITY(U,$J,358.3,12208,1,4,0)
- ;;=4^N94.10
+ ;;=4^S92.145D
  ;;^UTILITY(U,$J,358.3,12208,2)
- ;;=^5138972
+ ;;=^5044761
  ;;^UTILITY(U,$J,358.3,12209,0)
- ;;=F05.^^54^591^5
+ ;;=S92.144D^^50^545^84
  ;;^UTILITY(U,$J,358.3,12209,1,0)
  ;;=^358.31IA^4^2
  ;;^UTILITY(U,$J,358.3,12209,1,3,0)
- ;;=3^Delirium d/t known physiological condition
+ ;;=3^Nondisp dome Fx,talus,right,Subsq
  ;;^UTILITY(U,$J,358.3,12209,1,4,0)
- ;;=4^F05.
+ ;;=4^S92.144D
  ;;^UTILITY(U,$J,358.3,12209,2)
- ;;=^5003052
+ ;;=^5044754
  ;;^UTILITY(U,$J,358.3,12210,0)
- ;;=F03.90^^54^591^9
+ ;;=S92.235D^^50^545^85
  ;;^UTILITY(U,$J,358.3,12210,1,0)
  ;;=^358.31IA^4^2
  ;;^UTILITY(U,$J,358.3,12210,1,3,0)
- ;;=3^Dementia w/o behavioral disturbance, unspec
+ ;;=3^Nondisp intermed cuneiform Fx,left foot,Subsq
  ;;^UTILITY(U,$J,358.3,12210,1,4,0)
- ;;=4^F03.90
+ ;;=4^S92.235D
  ;;^UTILITY(U,$J,358.3,12210,2)
- ;;=^5003050
+ ;;=^5044950
  ;;^UTILITY(U,$J,358.3,12211,0)
- ;;=F03.91^^54^591^8
+ ;;=S92.234D^^50^545^86
  ;;^UTILITY(U,$J,358.3,12211,1,0)
  ;;=^358.31IA^4^2
  ;;^UTILITY(U,$J,358.3,12211,1,3,0)
- ;;=3^Dementia w/ behavioral disturbances, unspec
+ ;;=3^Nondisp intermed cuneiform Fx,right foot,Subsq
  ;;^UTILITY(U,$J,358.3,12211,1,4,0)
- ;;=4^F03.91
+ ;;=4^S92.234D
  ;;^UTILITY(U,$J,358.3,12211,2)
- ;;=^5133350
+ ;;=^5044943
  ;;^UTILITY(U,$J,358.3,12212,0)
- ;;=G30.9^^54^591^3
+ ;;=S92.065D^^50^545^87
  ;;^UTILITY(U,$J,358.3,12212,1,0)
  ;;=^358.31IA^4^2
  ;;^UTILITY(U,$J,358.3,12212,1,3,0)
- ;;=3^Alzheimer's disease w/ behavioral disturance, unspec
+ ;;=3^Nondisp intraarticular Fx,left calcaneus,Subsq
  ;;^UTILITY(U,$J,358.3,12212,1,4,0)
- ;;=4^G30.9
+ ;;=4^S92.065D
  ;;^UTILITY(U,$J,358.3,12212,2)
- ;;=^5003808^F02.81
+ ;;=^5044579
  ;;^UTILITY(U,$J,358.3,12213,0)
- ;;=G30.9^^54^591^4
+ ;;=S92.064D^^50^545^88
  ;;^UTILITY(U,$J,358.3,12213,1,0)
  ;;=^358.31IA^4^2
  ;;^UTILITY(U,$J,358.3,12213,1,3,0)
- ;;=3^Alzheimer's disease w/o behavioral disturbance, unspec
+ ;;=3^Nondisp intraarticular Fx,right calcaneus,Subsq
  ;;^UTILITY(U,$J,358.3,12213,1,4,0)
- ;;=4^G30.9
+ ;;=4^S92.064D
  ;;^UTILITY(U,$J,358.3,12213,2)
- ;;=^5003808^F02.80
+ ;;=^5044572
  ;;^UTILITY(U,$J,358.3,12214,0)
- ;;=G30.0^^54^591^1
+ ;;=S92.225D^^50^545^89
  ;;^UTILITY(U,$J,358.3,12214,1,0)
  ;;=^358.31IA^4^2
  ;;^UTILITY(U,$J,358.3,12214,1,3,0)
- ;;=3^Alzheimer's Disease w/ Early Onset
+ ;;=3^Nondisp lateral cuneiform Fx,left foot,Subsq
  ;;^UTILITY(U,$J,358.3,12214,1,4,0)
- ;;=4^G30.0
+ ;;=4^S92.225D
  ;;^UTILITY(U,$J,358.3,12214,2)
- ;;=^5003805
+ ;;=^5044908
  ;;^UTILITY(U,$J,358.3,12215,0)
- ;;=G30.1^^54^591^2
+ ;;=S92.224D^^50^545^90
  ;;^UTILITY(U,$J,358.3,12215,1,0)
  ;;=^358.31IA^4^2
  ;;^UTILITY(U,$J,358.3,12215,1,3,0)
- ;;=3^Alzheimer's Disease w/ Late Onset
+ ;;=3^Nondisp lateral cuneiform Fx,right foot,Subsq
  ;;^UTILITY(U,$J,358.3,12215,1,4,0)
- ;;=4^G30.1
+ ;;=4^S92.224D
  ;;^UTILITY(U,$J,358.3,12215,2)
- ;;=^5003806
+ ;;=^5044901
  ;;^UTILITY(U,$J,358.3,12216,0)
- ;;=F02.81^^54^591^6
+ ;;=S92.245D^^50^545^91
  ;;^UTILITY(U,$J,358.3,12216,1,0)
  ;;=^358.31IA^4^2
  ;;^UTILITY(U,$J,358.3,12216,1,3,0)
- ;;=3^Dementia in Diseases Classd Elswhr w/ Behavioral Disturbance
+ ;;=3^Nondisp medial cuneiform Fx,left foot,Subsq
  ;;^UTILITY(U,$J,358.3,12216,1,4,0)
- ;;=4^F02.81
+ ;;=4^S92.245D
  ;;^UTILITY(U,$J,358.3,12216,2)
- ;;=^5003049
+ ;;=^5044992
  ;;^UTILITY(U,$J,358.3,12217,0)
- ;;=F02.80^^54^591^7
+ ;;=S92.244D^^50^545^92
  ;;^UTILITY(U,$J,358.3,12217,1,0)
  ;;=^358.31IA^4^2
  ;;^UTILITY(U,$J,358.3,12217,1,3,0)
- ;;=3^Dementia in Diseases Classd Elswhr w/o Behavioral Disturbance
+ ;;=3^Nondisp medial cuneiform Fx,right foot,Subsq
  ;;^UTILITY(U,$J,358.3,12217,1,4,0)
- ;;=4^F02.80
+ ;;=4^S92.244D
  ;;^UTILITY(U,$J,358.3,12217,2)
- ;;=^5003048
+ ;;=^5044985
  ;;^UTILITY(U,$J,358.3,12218,0)
- ;;=F01.51^^54^591^10
+ ;;=S92.525D^^50^545^93
  ;;^UTILITY(U,$J,358.3,12218,1,0)
  ;;=^358.31IA^4^2
  ;;^UTILITY(U,$J,358.3,12218,1,3,0)
- ;;=3^Vascular Dementia w/ Behavioral Disturbance
+ ;;=3^Nondisp medial phalanx Fx,left lesser toe(s),Subsq
  ;;^UTILITY(U,$J,358.3,12218,1,4,0)
- ;;=4^F01.51
+ ;;=4^S92.525D
+ ;;^UTILITY(U,$J,358.3,12218,2)
+ ;;=^5045503
+ ;;^UTILITY(U,$J,358.3,12219,0)
+ ;;=S92.524D^^50^545^94
+ ;;^UTILITY(U,$J,358.3,12219,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,12219,1,3,0)
+ ;;=3^Nondisp medial phalanx Fx,right lesser toe(s),Subsq
+ ;;^UTILITY(U,$J,358.3,12219,1,4,0)
+ ;;=4^S92.524D
+ ;;^UTILITY(U,$J,358.3,12219,2)
+ ;;=^5045496
+ ;;^UTILITY(U,$J,358.3,12220,0)
+ ;;=S92.225D^^50^545^95
+ ;;^UTILITY(U,$J,358.3,12220,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,12220,1,3,0)
+ ;;=3^Nondisp navicular Fx,left foot,Subsq
+ ;;^UTILITY(U,$J,358.3,12220,1,4,0)
+ ;;=4^S92.225D
+ ;;^UTILITY(U,$J,358.3,12220,2)
+ ;;=^5044908
+ ;;^UTILITY(U,$J,358.3,12221,0)
+ ;;=S92.224D^^50^545^96
+ ;;^UTILITY(U,$J,358.3,12221,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,12221,1,3,0)
+ ;;=3^Nondisp navicular Fx,right foot,Subsq
+ ;;^UTILITY(U,$J,358.3,12221,1,4,0)
+ ;;=4^S92.224D
+ ;;^UTILITY(U,$J,358.3,12221,2)
+ ;;=^5044901
+ ;;^UTILITY(U,$J,358.3,12222,0)
+ ;;=S92.115D^^50^545^97
+ ;;^UTILITY(U,$J,358.3,12222,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,12222,1,3,0)
+ ;;=3^Nondisp neck of left talus fx,Subsq
+ ;;^UTILITY(U,$J,358.3,12222,1,4,0)
+ ;;=4^S92.115D
+ ;;^UTILITY(U,$J,358.3,12222,2)
+ ;;=^5044635
+ ;;^UTILITY(U,$J,358.3,12223,0)
+ ;;=S92.114D^^50^545^98
+ ;;^UTILITY(U,$J,358.3,12223,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,12223,1,3,0)
+ ;;=3^Nondisp neck of right talus fx,Subsq
+ ;;^UTILITY(U,$J,358.3,12223,1,4,0)
+ ;;=4^S92.114D
+ ;;^UTILITY(U,$J,358.3,12223,2)
+ ;;=^5044628
+ ;;^UTILITY(U,$J,358.3,12224,0)
+ ;;=S92.135D^^50^545^99
+ ;;^UTILITY(U,$J,358.3,12224,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,12224,1,3,0)
+ ;;=3^Nondisp posterior process Fx,left talus,Subsq
+ ;;^UTILITY(U,$J,358.3,12224,1,4,0)
+ ;;=4^S92.135D
+ ;;^UTILITY(U,$J,358.3,12224,2)
+ ;;=^5044719
+ ;;^UTILITY(U,$J,358.3,12225,0)
+ ;;=S92.134D^^50^545^100
+ ;;^UTILITY(U,$J,358.3,12225,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,12225,1,3,0)
+ ;;=3^Nondisp posterior process Fx,right talus,Subsq
+ ;;^UTILITY(U,$J,358.3,12225,1,4,0)
+ ;;=4^S92.134D
+ ;;^UTILITY(U,$J,358.3,12225,2)
+ ;;=^5044712
+ ;;^UTILITY(U,$J,358.3,12226,0)
+ ;;=S92.415D^^50^545^101
+ ;;^UTILITY(U,$J,358.3,12226,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,12226,1,3,0)
+ ;;=3^Nondisp proximal phalanx Fx,left great toe,Subsq
+ ;;^UTILITY(U,$J,358.3,12226,1,4,0)
+ ;;=4^S92.415D
+ ;;^UTILITY(U,$J,358.3,12226,2)
+ ;;=^5045328
+ ;;^UTILITY(U,$J,358.3,12227,0)
+ ;;=S92.414D^^50^545^103
+ ;;^UTILITY(U,$J,358.3,12227,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,12227,1,3,0)
+ ;;=3^Nondisp proximal phalanx Fx,right great toe,Subsq
+ ;;^UTILITY(U,$J,358.3,12227,1,4,0)
+ ;;=4^S92.414D
+ ;;^UTILITY(U,$J,358.3,12227,2)
+ ;;=^5045321
+ ;;^UTILITY(U,$J,358.3,12228,0)
+ ;;=S92.515D^^50^545^102
+ ;;^UTILITY(U,$J,358.3,12228,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,12228,1,3,0)
+ ;;=3^Nondisp proximal phalanx Fx,left lesser toe(s),Subsq
+ ;;^UTILITY(U,$J,358.3,12228,1,4,0)
+ ;;=4^S92.515D
+ ;;^UTILITY(U,$J,358.3,12228,2)
+ ;;=^5045461
+ ;;^UTILITY(U,$J,358.3,12229,0)
+ ;;=S92.514D^^50^545^104
+ ;;^UTILITY(U,$J,358.3,12229,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,12229,1,3,0)
+ ;;=3^Nondisp proximal phalanx Fx,right lesser toe(s),Subsq
+ ;;^UTILITY(U,$J,358.3,12229,1,4,0)
+ ;;=4^S92.514D
+ ;;^UTILITY(U,$J,358.3,12229,2)
+ ;;=^5045454
+ ;;^UTILITY(U,$J,358.3,12230,0)
+ ;;=S82.855D^^50^545^105
+ ;;^UTILITY(U,$J,358.3,12230,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,12230,1,3,0)
+ ;;=3^Nondisp trimalleolar Fx,left lower leg,Subsq
+ ;;^UTILITY(U,$J,358.3,12230,1,4,0)
+ ;;=4^S82.855D
+ ;;^UTILITY(U,$J,358.3,12230,2)
+ ;;=^5042642
+ ;;^UTILITY(U,$J,358.3,12231,0)
+ ;;=S82.854D^^50^545^106
+ ;;^UTILITY(U,$J,358.3,12231,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,12231,1,3,0)
+ ;;=3^Nondisp trimalleolar Fx,right lower leg,Subsq
+ ;;^UTILITY(U,$J,358.3,12231,1,4,0)
+ ;;=4^S82.854D
+ ;;^UTILITY(U,$J,358.3,12231,2)
+ ;;=^5042626
+ ;;^UTILITY(U,$J,358.3,12232,0)
+ ;;=M84.445D^^50^546^119
+ ;;^UTILITY(U,$J,358.3,12232,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,12232,1,3,0)
+ ;;=3^Pathological Fx, left finger(s),Subsq
+ ;;^UTILITY(U,$J,358.3,12232,1,4,0)
+ ;;=4^M84.445D
+ ;;^UTILITY(U,$J,358.3,12232,2)
+ ;;=^5013891
+ ;;^UTILITY(U,$J,358.3,12233,0)
+ ;;=M84.444D^^50^546^121
+ ;;^UTILITY(U,$J,358.3,12233,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,12233,1,3,0)
+ ;;=3^Pathological Fx, right finger(s),Subsq
+ ;;^UTILITY(U,$J,358.3,12233,1,4,0)
+ ;;=4^M84.444D
+ ;;^UTILITY(U,$J,358.3,12233,2)
+ ;;=^5013885
+ ;;^UTILITY(U,$J,358.3,12234,0)
+ ;;=M84.442D^^50^546^120
+ ;;^UTILITY(U,$J,358.3,12234,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,12234,1,3,0)
+ ;;=3^Pathological Fx, left hand,Subsq
+ ;;^UTILITY(U,$J,358.3,12234,1,4,0)
+ ;;=4^M84.442D
+ ;;^UTILITY(U,$J,358.3,12234,2)
+ ;;=^5013873
+ ;;^UTILITY(U,$J,358.3,12235,0)
+ ;;=M84.441D^^50^546^122
+ ;;^UTILITY(U,$J,358.3,12235,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,12235,1,3,0)
+ ;;=3^Pathological Fx, right hand,Subsq
+ ;;^UTILITY(U,$J,358.3,12235,1,4,0)
+ ;;=4^M84.441D
+ ;;^UTILITY(U,$J,358.3,12235,2)
+ ;;=^5013867
+ ;;^UTILITY(U,$J,358.3,12236,0)
+ ;;=M84.345D^^50^546^123
+ ;;^UTILITY(U,$J,358.3,12236,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,12236,1,3,0)
+ ;;=3^Stress Fx, left finger(s),Subsq
+ ;;^UTILITY(U,$J,358.3,12236,1,4,0)
+ ;;=4^M84.345D
+ ;;^UTILITY(U,$J,358.3,12236,2)
+ ;;=^5013663
+ ;;^UTILITY(U,$J,358.3,12237,0)
+ ;;=M84.344D^^50^546^125
+ ;;^UTILITY(U,$J,358.3,12237,1,0)
+ ;;=^358.31IA^4^2

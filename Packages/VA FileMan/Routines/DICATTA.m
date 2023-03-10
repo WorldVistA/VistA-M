@@ -1,5 +1,5 @@
-DICATTA ;SFISC/YJK-DD AUDIT ;2014-12-30  10:20 AM
- ;;22.2;VA FileMan;;Jan 05, 2016;Build 42
+DICATTA ;SFISC/YJK - DD AUDIT ; Aug 09, 2022@08:20:56
+ ;;22.2;VA FileMan;**23**;Jan 05, 2016;Build 2
  ;;Per VA Directive 6402, this routine should not be modified.
  ;;Submitted to OSEHRA 5 January 2015 by the VISTA Expertise Network.
  ;;Based on Medsphere Systems Corporation's MSC FileMan 1051.
@@ -44,10 +44,12 @@ DDAUDITQ(FILE) ;ALWAYS DO DD AUDIT
  ;
  ;
  ;
-UPDATED(FILE,FIELD) I $D(^DD(FILE,FIELD,0)) S ^("DT")=DT
+UPDATED(FILE,FIELD) ;
+ I $D(^DD(FILE,FIELD,0)) S ^("DT")=DT
  S ^DD(FILE,0,"DT")=DT
- F  Q:'$G(^DD(FILE,0,"UP"))  S FILE=^("UP")
- S ^DD(FILE,0,"DT")=DT,$P(^DIC(FILE,"%MSC"),U)=$$NOWINT^DIUTL
+ F  Q:'$G(^DD(FILE,0,"UP"))  S FILE=^("UP") ;find the file level, this won't work if KIDS installs a new multiple
+ S ^DD(FILE,0,"DT")=DT
+ I $D(^DIC(FILE,0)) S $P(^DIC(FILE,"%MSC"),U)=$$NOWINT^DIUTL ;p23 verify we are at the file level
  Q
  ;
  ;

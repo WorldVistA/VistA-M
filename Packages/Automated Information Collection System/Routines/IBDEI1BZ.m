@@ -1,124 +1,128 @@
-IBDEI1BZ ; ; 04-FEB-2020
- ;;3.0;IB ENCOUNTER FORM IMP/EXP;;FEB 04, 2020
+IBDEI1BZ ; ; 01-FEB-2022
+ ;;3.0;IB ENCOUNTER FORM IMP/EXP;;FEB 01, 2022
  Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,999) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
- ;;^UTILITY(U,$J,358.3,21263,1,4,0)
- ;;=4^F15.980
- ;;^UTILITY(U,$J,358.3,21263,2)
- ;;=^5003320
- ;;^UTILITY(U,$J,358.3,21264,0)
- ;;=F15.182^^95^1058^4
- ;;^UTILITY(U,$J,358.3,21264,1,0)
+ ;;^UTILITY(U,$J,358.3,21513,1,4,0)
+ ;;=4^H60.502
+ ;;^UTILITY(U,$J,358.3,21513,2)
+ ;;=^5006468
+ ;;^UTILITY(U,$J,358.3,21514,0)
+ ;;=H60.501^^70^920^28
+ ;;^UTILITY(U,$J,358.3,21514,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,21264,1,3,0)
- ;;=3^Caffeine Induced Sleep Disorder w/ Mild Use Disorder
- ;;^UTILITY(U,$J,358.3,21264,1,4,0)
- ;;=4^F15.182
- ;;^UTILITY(U,$J,358.3,21264,2)
- ;;=^5003293
- ;;^UTILITY(U,$J,358.3,21265,0)
- ;;=F15.282^^95^1058^5
- ;;^UTILITY(U,$J,358.3,21265,1,0)
+ ;;^UTILITY(U,$J,358.3,21514,1,3,0)
+ ;;=3^AC Noninfective Otitis Externa,Right Ear,Unspec
+ ;;^UTILITY(U,$J,358.3,21514,1,4,0)
+ ;;=4^H60.501
+ ;;^UTILITY(U,$J,358.3,21514,2)
+ ;;=^5006467
+ ;;^UTILITY(U,$J,358.3,21515,0)
+ ;;=J15.9^^70^920^46
+ ;;^UTILITY(U,$J,358.3,21515,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,21265,1,3,0)
- ;;=3^Caffeine Induced Sleep Disorder w/ Mod/Severe Use Disorder
- ;;^UTILITY(U,$J,358.3,21265,1,4,0)
- ;;=4^F15.282
- ;;^UTILITY(U,$J,358.3,21265,2)
- ;;=^5003308
- ;;^UTILITY(U,$J,358.3,21266,0)
- ;;=F15.982^^95^1058^6
- ;;^UTILITY(U,$J,358.3,21266,1,0)
+ ;;^UTILITY(U,$J,358.3,21515,1,3,0)
+ ;;=3^Bacterial Pneumonia,Unspec
+ ;;^UTILITY(U,$J,358.3,21515,1,4,0)
+ ;;=4^J15.9
+ ;;^UTILITY(U,$J,358.3,21515,2)
+ ;;=^5008178
+ ;;^UTILITY(U,$J,358.3,21516,0)
+ ;;=B97.10^^70^920^58
+ ;;^UTILITY(U,$J,358.3,21516,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,21266,1,3,0)
- ;;=3^Caffeine Induced Sleep Disorder w/o Use Disorder
- ;;^UTILITY(U,$J,358.3,21266,1,4,0)
- ;;=4^F15.982
- ;;^UTILITY(U,$J,358.3,21266,2)
- ;;=^5003322
- ;;^UTILITY(U,$J,358.3,21267,0)
- ;;=F15.99^^95^1058^9
- ;;^UTILITY(U,$J,358.3,21267,1,0)
+ ;;^UTILITY(U,$J,358.3,21516,1,3,0)
+ ;;=3^Enterovirus as Cause of Diseases Classified Elsewhere,Unspec
+ ;;^UTILITY(U,$J,358.3,21516,1,4,0)
+ ;;=4^B97.10
+ ;;^UTILITY(U,$J,358.3,21516,2)
+ ;;=^5000861
+ ;;^UTILITY(U,$J,358.3,21517,0)
+ ;;=J30.0^^70^920^88
+ ;;^UTILITY(U,$J,358.3,21517,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,21267,1,3,0)
- ;;=3^Caffeinie Related Disorder,Unspec
- ;;^UTILITY(U,$J,358.3,21267,1,4,0)
- ;;=4^F15.99
- ;;^UTILITY(U,$J,358.3,21267,2)
- ;;=^5133358
- ;;^UTILITY(U,$J,358.3,21268,0)
- ;;=R45.851^^95^1059^2
- ;;^UTILITY(U,$J,358.3,21268,1,0)
+ ;;^UTILITY(U,$J,358.3,21517,1,3,0)
+ ;;=3^Vasomotor Rhinitis
+ ;;^UTILITY(U,$J,358.3,21517,1,4,0)
+ ;;=4^J30.0
+ ;;^UTILITY(U,$J,358.3,21517,2)
+ ;;=^5008201
+ ;;^UTILITY(U,$J,358.3,21518,0)
+ ;;=B34.9^^70^920^89
+ ;;^UTILITY(U,$J,358.3,21518,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,21268,1,3,0)
- ;;=3^Suicidal Ideations
- ;;^UTILITY(U,$J,358.3,21268,1,4,0)
- ;;=4^R45.851
- ;;^UTILITY(U,$J,358.3,21268,2)
- ;;=^5019474
- ;;^UTILITY(U,$J,358.3,21269,0)
- ;;=Z91.5^^95^1059^1
- ;;^UTILITY(U,$J,358.3,21269,1,0)
+ ;;^UTILITY(U,$J,358.3,21518,1,3,0)
+ ;;=3^Viral Infection,Unspec
+ ;;^UTILITY(U,$J,358.3,21518,1,4,0)
+ ;;=4^B34.9
+ ;;^UTILITY(U,$J,358.3,21518,2)
+ ;;=^5000603
+ ;;^UTILITY(U,$J,358.3,21519,0)
+ ;;=J12.9^^70^920^90
+ ;;^UTILITY(U,$J,358.3,21519,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,21269,1,3,0)
- ;;=3^Personal Hx of One or More Suicide Attempts
- ;;^UTILITY(U,$J,358.3,21269,1,4,0)
- ;;=4^Z91.5
- ;;^UTILITY(U,$J,358.3,21269,2)
- ;;=^5063624
- ;;^UTILITY(U,$J,358.3,21270,0)
- ;;=T14.91XA^^95^1059^3
- ;;^UTILITY(U,$J,358.3,21270,1,0)
+ ;;^UTILITY(U,$J,358.3,21519,1,3,0)
+ ;;=3^Viral Pneumonia,Unspec
+ ;;^UTILITY(U,$J,358.3,21519,1,4,0)
+ ;;=4^J12.9
+ ;;^UTILITY(U,$J,358.3,21519,2)
+ ;;=^5008169
+ ;;^UTILITY(U,$J,358.3,21520,0)
+ ;;=J84.114^^70^921^1
+ ;;^UTILITY(U,$J,358.3,21520,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,21270,1,3,0)
- ;;=3^Suicide Attempt,Initial Encntr
- ;;^UTILITY(U,$J,358.3,21270,1,4,0)
- ;;=4^T14.91XA
- ;;^UTILITY(U,$J,358.3,21270,2)
- ;;=^5151779
- ;;^UTILITY(U,$J,358.3,21271,0)
- ;;=T14.91XD^^95^1059^4
- ;;^UTILITY(U,$J,358.3,21271,1,0)
+ ;;^UTILITY(U,$J,358.3,21520,1,3,0)
+ ;;=3^AC Interstitial Pneumonitis
+ ;;^UTILITY(U,$J,358.3,21520,1,4,0)
+ ;;=4^J84.114
+ ;;^UTILITY(U,$J,358.3,21520,2)
+ ;;=^340536
+ ;;^UTILITY(U,$J,358.3,21521,0)
+ ;;=J84.09^^70^921^2
+ ;;^UTILITY(U,$J,358.3,21521,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,21271,1,3,0)
- ;;=3^Suicide Attempt,Subsequent Encntr
- ;;^UTILITY(U,$J,358.3,21271,1,4,0)
- ;;=4^T14.91XD
- ;;^UTILITY(U,$J,358.3,21271,2)
- ;;=^5151780
- ;;^UTILITY(U,$J,358.3,21272,0)
- ;;=T14.91XS^^95^1059^5
- ;;^UTILITY(U,$J,358.3,21272,1,0)
+ ;;^UTILITY(U,$J,358.3,21521,1,3,0)
+ ;;=3^Alveolar/Parieto-Alveolar Conditions NEC
+ ;;^UTILITY(U,$J,358.3,21521,1,4,0)
+ ;;=4^J84.09
+ ;;^UTILITY(U,$J,358.3,21521,2)
+ ;;=^5008299
+ ;;^UTILITY(U,$J,358.3,21522,0)
+ ;;=J67.2^^70^921^3
+ ;;^UTILITY(U,$J,358.3,21522,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,21272,1,3,0)
- ;;=3^Suicide Attempt,Sequela
- ;;^UTILITY(U,$J,358.3,21272,1,4,0)
- ;;=4^T14.91XS
- ;;^UTILITY(U,$J,358.3,21272,2)
- ;;=^5151781
- ;;^UTILITY(U,$J,358.3,21273,0)
- ;;=F19.14^^95^1060^1
- ;;^UTILITY(U,$J,358.3,21273,1,0)
+ ;;^UTILITY(U,$J,358.3,21522,1,3,0)
+ ;;=3^Bird Fancier's Lung
+ ;;^UTILITY(U,$J,358.3,21522,1,4,0)
+ ;;=4^J67.2
+ ;;^UTILITY(U,$J,358.3,21522,2)
+ ;;=^14840
+ ;;^UTILITY(U,$J,358.3,21523,0)
+ ;;=J68.4^^70^921^5
+ ;;^UTILITY(U,$J,358.3,21523,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,21273,1,3,0)
- ;;=3^Other/Unknown Substance Induced Depressive D/O w/ Mild Use D/O
- ;;^UTILITY(U,$J,358.3,21273,1,4,0)
- ;;=4^F19.14
- ;;^UTILITY(U,$J,358.3,21273,2)
- ;;=^5003421
- ;;^UTILITY(U,$J,358.3,21274,0)
- ;;=F19.24^^95^1060^2
- ;;^UTILITY(U,$J,358.3,21274,1,0)
+ ;;^UTILITY(U,$J,358.3,21523,1,3,0)
+ ;;=3^Chr Resp Cond d/t Chemicals/Gases/Fumes/Vapors
+ ;;^UTILITY(U,$J,358.3,21523,1,4,0)
+ ;;=4^J68.4
+ ;;^UTILITY(U,$J,358.3,21523,2)
+ ;;=^5008285
+ ;;^UTILITY(U,$J,358.3,21524,0)
+ ;;=M34.1^^70^921^4
+ ;;^UTILITY(U,$J,358.3,21524,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,21274,1,3,0)
- ;;=3^Other/Unknown Substance Induced Depressive D/O w/ Mod-Sev Use D/O
- ;;^UTILITY(U,$J,358.3,21274,1,4,0)
- ;;=4^F19.24
- ;;^UTILITY(U,$J,358.3,21274,2)
- ;;=^5003441
- ;;^UTILITY(U,$J,358.3,21275,0)
- ;;=F19.94^^95^1060^3
- ;;^UTILITY(U,$J,358.3,21275,1,0)
+ ;;^UTILITY(U,$J,358.3,21524,1,3,0)
+ ;;=3^CR(E)ST Syndrome
+ ;;^UTILITY(U,$J,358.3,21524,1,4,0)
+ ;;=4^M34.1
+ ;;^UTILITY(U,$J,358.3,21524,2)
+ ;;=^5011779
+ ;;^UTILITY(U,$J,358.3,21525,0)
+ ;;=J84.116^^70^921^6
+ ;;^UTILITY(U,$J,358.3,21525,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,21275,1,3,0)
- ;;=3^Other/Unknown Substance Induced Depressive D/O w/o Use D/O
+ ;;^UTILITY(U,$J,358.3,21525,1,3,0)
+ ;;=3^Cryptogenic Organizing Pneumonia
+ ;;^UTILITY(U,$J,358.3,21525,1,4,0)
+ ;;=4^J84.116
+ ;;^UTILITY(U,$J,358.3,21525,2)
+ ;;=^340539

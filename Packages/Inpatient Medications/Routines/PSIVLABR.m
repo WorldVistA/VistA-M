@@ -1,5 +1,5 @@
 PSIVLABR ;BIR/PR-REPRINT LABELS ;30 May 2001  12:36 PM
- ;;5.0;INPATIENT MEDICATIONS;**58,82,178,184,279,331**;16 DEC 97;Build 15
+ ;;5.0;INPATIENT MEDICATIONS;**58,82,178,184,279,331,364**;16 DEC 97;Build 47
  ;
  ; Reference to ^%ZIS(2 is supported by DBIA 3435.
  ; Reference to ^PS(52.6 is supported by DBIA 1231.
@@ -12,6 +12,8 @@ PSIVLABR ;BIR/PR-REPRINT LABELS ;30 May 2001  12:36 PM
  ;the last fill field.
  ;PSIVCT will be defined if reprinting scheduled labels, the suspense
  ;list, or if printing individual labels and they do not count.
+ ;
+ ;*364 - add Hazardous Handle & Dispose flags alert message.
  ;
 DEM ;Get demographics and see if label is example only
  N X0,PSJIO,I,PSIVCLAB
@@ -67,12 +69,12 @@ RE ;
  ;.I TMPX1]"" S X=TMPX1 D P
  S X=VADM(1) S:$P(PSIVSITE,U,9) X=X_"  "_$S(VAIN(5)]"":VAIN(5),1:"NF") D P S X=" " D P
  I $D(PSIVFLAG) F PSIV=0:0 S PSIV=$O(^PS(55,DFN,"IV",+ON,"AD",PSIV)) Q:'PSIV  S Y=^(PSIV,0),X=$S($D(^PS(52.6,+Y,0)):$P(^(0),"^"),1:"*********")_" "_$P(Y,U,2)_" " S:$P(Y,U,3)]"" X=X_" ("_$P(Y,U,3)_")" D
- . D P,MESS
+ . D P,MESS,HAZ(1)
  G:$D(PSIVFLAG) SOL
  F PSIV=0:0 S PSIV=$O(^PS(55,DFN,"IVBCMA",PSJIDNO,"AD",PSIV)) Q:'PSIV  S Y=^(PSIV,0),X=$S($D(^PS(52.6,+Y,0)):$P(^(0),U),1:"********")_" "_$P(Y,U,2) D
- . D P,MESS
+ . D P,MESS,HAZ(1)
 SOL F PSIV=0:0 S PSIV=$O(^PS(55,DFN,"IVBCMA",PSJIDNO,"SOL",PSIV)) Q:'PSIV  S PSIV=PSIV_"^"_+^(PSIV,0),YY=^(0) D
- . D SOL1,P
+ . D SOL1,P,HAZ(2)
  . S X=$P(^PS(52.7,$P(PSIV,U,2),0),U,4) I X]"" S X="   "_X D P
  I P(23)'=""!(P(4)="S") S X="In Syringe: "_$E($P(^PS(55,DFN,"IV",+ON,2),U,4),1,25) D:P(4)="S"!(P(23)="S") P S X="*CAUTION* - CHEMOTHERAPY" D:P(23)'="" P
  S X=" " D P I PSIV1'>0!'$P(PSIVSITE,U,3)!($P(PSIVSITE,U,3)=1&(P(4)'="P"))!($P(PSIVSITE,U,3)=2&("AH"'[P(4))) G MEDRT
@@ -127,6 +129,16 @@ SOL1 S X=$S($D(^PS(52.7,$P(PSIV,U,2),0)):$P(^(0),"^")_" "_$P(^PS(55,DFN,"IVBCMA"
 MESS ;PSJ*5*184 -make MESS a local array so all messages display for all additives.
  I $P(^PS(52.6,+Y,0),U,9)]"" S MESS($P(^PS(52.6,+Y,0),U,9))=""
  Q
+HAZ(TYP) ; Printing hazardous to handle/dispose warnings                             *364
+ ; TYP=1 ADDITIVES | TYPE=2 SOLUTIONS
+ N DIEN,FIL,HAZ,TSUB,VAR
+ S FIL=$S($G(TYP)=1:52.6,$G(TYP)=2:52.7,1:"") Q:FIL=""  ; No type passed in
+ S TSUB=$S(TYP=1:"AD",TYP=2:"SOL",1:"NONE")
+ S VAR=^PS(55,DFN,"IV",+ON,TSUB,+PSIV,0) S DIEN=$P($G(^PS(FIL,+VAR,0)),"^",2),HAZ=$$HAZ^PSSUTIL(DIEN)
+ S X=$S($P(HAZ,"^"):"<<HAZ Handle>> ",1:"")_$S($P(HAZ,"^",2):"<<HAZ Dispose>>",1:"")
+ I X]"" D P
+ Q
+ ;
 CONVER ;Expand dose to date.dose and set in X
  I P(15)>1440 S X=$$CONVER1^PSIVORE2($P(PSIVDOSE," "),P(15),(PSIV1-1)) Q
  S PDOSE=X S:PSIV1=2 PDATE=$E($P(PSIVDOSE," "),1,7)

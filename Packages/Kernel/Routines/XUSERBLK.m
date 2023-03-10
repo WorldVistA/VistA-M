@@ -1,11 +1,11 @@
 XUSERBLK ;SF/RWF - Bulk user (new person) COMPUTER ACCESS  ;02/26/2008
- ;;8.0;KERNEL;**20,214,230,289,419,490**;Jul 10, 1995;Build 5
+ ;;8.0;KERNEL;**20,214,230,289,419,490,775**;Jul 10, 1995;Build 11
  ; Per VHA Directive 2004-038, this routine should not be modified.
  ; Option: XUSERBLK
  ; This routine allows the Cloning of one person to a group of others.
 A ;
  I $G(DUZ)'>0 W !!,"You are not a known user and can't use this option." Q
- N DIC,X,Y,XUTMP,DA,DIR,XUTERMDT,XUSER,XUY,%ZIS,XUIOP,XMQUIET
+ N DIC,X,Y,XUTMP,DA,DIR,XUTERMDT,XUSER,XUY,%ZIS,XUIOP,XMQUIET,DIRUT,DTOUT,DUOUT,POP
  K ^TMP($J)
 B1 W @IOF,!?26,"Batch Entry of New Persons"
  W !?26,"--------------------------",!!,"Please select a person to copy from"
@@ -21,6 +21,11 @@ B1 W @IOF,!?26,"Batch Entry of New Persons"
  D ^DIR Q:$D(DTOUT)!$D(DUOUT)
  S XUTERMDT=Y
  K XUSER S XUSER=0
+ I $$PSDRPH(DA) D  ; XU*8.0*775
+ . W !!,"The PSDRPH key cannot be allocated / de-allocated by this option. Please"
+ . W !,"use the option 'Allocate/De-Allocate of PSDRPH Key (Audited)' if necessary."
+ . W !,"The PSDRPH key will not be copied to the new user.",!
+ . S DIR(0)="E",DIR("A")="Press ENTER to continue" D ^DIR
 B2 ;
  W !!,?26,"Batch Entry of New Persons",!,?26,"--------------------------",!
  W !,"Clone of: ",XUTMP(0) I XUTERMDT W ?49,"TERMINATION DATE: ",$$FMTE^XLFDT(XUTERMDT)
@@ -77,7 +82,7 @@ C2 ;
  Q
  ;
 BLDFDA ;Build the FDA
- N X2,X3,X4,X5,X6,X7,XUNODE,XU
+ N X2,X3,X4,X5,X6,X7,XUNODE,XU,X1
  S XFDA="^TMP($J,""XFDA"")",XIEN="^TMP($J,""XIEN"")" K ^TMP($J)
  ;Move piece on nodes from list, Build XU only once
  F X2=1:1 S XUNODE=$P($T(DATA+X2),";;",2) Q:XUNODE=""  D
@@ -111,7 +116,9 @@ VCODE ;
  ;
 SUBFILE ;Move subfiles: Subscript, Subfile#, DINUM, Fields
  N XCNT S XCNT=0
-KEY D MULTI(51,200.051,1,".01,3")
+ N XNOCLONE
+ D NOCLONE(.XNOCLONE)
+KEY D MULTI(51,200.051,1,".01,3",.XNOCLONE)
 PATH ;D MULTI(19.8,".01")
 FOF D MULTI("FOF",200.032,1,".01,1,2,3,4,5,6")
 DIV D MULTI(2,200.02,1,".01")
@@ -120,11 +127,12 @@ TAB D MULTI("ORD",200.010113,0,".01,.02,.03")
 PSCLSS I $P($G(XUSER(XU1)),U,5)=1 D PRSNCL(DA)
  Q
  ;
-MULTI(XSS,XSF,XDN,XDD) ;Build new data
+MULTI(XSS,XSF,XDN,XDD,XNOCLONE) ;Build new data
  I XUPURGE D CLEAR(DA,XSS)
  Q:'$D(^VA(200,XUTMP,XSS,0))
  ;S X=^(0),Y=$S($D(^VA(200,DA,X2,0)):^(0),1:"")
  F X1=0:0 S X1=$O(^VA(200,XUTMP,XSS,X1)) Q:X1'>0  S X=^(X1,0) D
+ . Q:$D(XNOCLONE(XSF,X1))  ; 
  . F X2=1:1 S X3=$P(XDD,",",X2) Q:X3=""  D
  . . I X3'=.01 S @XFDA@(XSF,"?+"_XCNT_","_DA_",",X3)=$$VAL(X,X3,XSF) Q
  . . S XCNT=XCNT+1,@XFDA@(XSF,"?+"_XCNT_","_DA_",",.01)=$P(X,U,1)
@@ -185,4 +193,14 @@ PRSNCL(USERIEN) ;
  S XULDATA=$P(XULDATA,"^",3)
  Q:XULDATA'>DT
  S $P(^VA(200,USERIEN,"USC1",XULAST,0),"^",3)=DT
+ Q
+ ;
+PSDRPH(USERIEN) ; Check if source user has PSDRPH key ; XU*8.0*775
+ Q:'$G(USERIEN) 0
+ Q:'$D(^VA(200,USERIEN)) 0
+ Q $$FIND1^DIC(200.051,","_USERIEN_",","X","PSDRPH")
+ ;
+NOCLONE(XNOCLONE) ; Array of items that can't be cloned ; XU*8.0*775
+ N XNOCLOIEN
+ S XNOCLOIEN=$$FIND1^DIC(19.1,,"X","PSDRPH") I XNOCLOIEN S XNOCLONE(200.051,XNOCLOIEN)=""  ; PSDRPH key
  Q

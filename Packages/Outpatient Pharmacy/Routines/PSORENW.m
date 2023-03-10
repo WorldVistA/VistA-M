@@ -1,5 +1,5 @@
-PSORENW ; BIR/SAB - renew main driver ;07/08/19  15:33
- ;;7.0;OUTPATIENT PHARMACY;**11,27,30,46,71,96,100,130,148,206,388,390,417,313,411,504,508,550,457,477**;DEC 1997;Build 187
+PSORENW ; BIR/SAB - renew main driver ;Dec 27, 2021@07:58:50
+ ;;7.0;OUTPATIENT PHARMACY;**11,27,30,46,71,96,100,130,148,206,388,390,417,313,411,504,508,550,457,477,441**;DEC 1997;Build 208
  ;External reference to ^PSDRUG( supported by DBIA 221
  ;External reference to $$L^PSSLOCK supported by DBIA 2789
  ;External reference to UL^PSSLOCK supported by DBIA 2789
@@ -11,12 +11,12 @@ PSORENW ; BIR/SAB - renew main driver ;07/08/19  15:33
  ;External reference to MAIN^TIUEDIT supported by DBIA 2410
  ;
 ASK ;
+ D MW^PSOCMOPA(.PSORENW)
  K PSORENW("FILL DATE"),ZZCOPY D FILLDT^PSODIR2(.PSORENW) S:$G(PSORENW("DFLG")) VALMSG="Renew Rx request cancelled",VALMBCK="R"
  I PSORENW("DFLG")!('$D(PSORENW("FILL DATE"))) S PSORENW("QFLG")=1,PSORENW("DFLG")=0 G ASKX
  S PSORNW("FILL DATE")=PSORENW("FILL DATE")
- D MW^PSOCMOPA(.PSORENW)
  I PSORENW("DFLG") S PSORENW("QFLG")=1,PSORENW("DFLG")=0 G ASKX
- S PSORNW("MAIL/WINDOW")=PSORENW("MAIL/WINDOW") S PSORX("MAIL/WINDOW")=$S(PSORENW("MAIL/WINDOW")="M":"MAIL",1:"WINDOW")
+ S PSORNW("MAIL/WINDOW")=PSORENW("MAIL/WINDOW") S PSORX("MAIL/WINDOW")=$S(PSORENW("MAIL/WINDOW")="M":"MAIL",PSORENW("MAIL/WINDOW")="P":"PARK",1:"WINDOW")
  D NOORE^PSONEW(.PSORENW) S:$G(PSORENW("DFLG")) VALMSG="Renew Rx request cancelled",VALMBCK="R"
  I PSORENW("DFLG")!('$D(PSORENW("FILL DATE"))) S PSORENW("QFLG")=1,PSORENW("DFLG")=0
 ASKX Q
@@ -47,8 +47,9 @@ OERR ;entry for renew backdoor
  ; Checking whether the Provider still qualifies as prescriber for the renewed Rx
  S PSOCHECK=$$CHKRXPRV^PSOUTIL(PSORXIEN)
  I 'PSOCHECK S VALMSG=$P(PSOCHECK,"^",2),VALMBCK="R" W $C(7) Q
- I $$TITRX^PSOUTL(PSORXIEN)="t" D  Q
- . S VALMSG="Cannot Renew a 'Titration Rx'.",VALMBCK="R" W $C(7)
+ ;I $$TITRX^PSOUTL(PSORXIEN)="t" D  Q
+ ;. S VALMSG="Cannot Renew a 'Titration Rx'.",VALMBCK="R" W $C(7)
+ I $$TITRX^PSOUTL(PSORXIEN)="t" D TIMTRX^PSOOTMRX Q  ;P441
  I $$LMREJ^PSOREJU1(PSORXIEN,,.VALMSG,.VALMBCK) Q
  ; PSO*7*508 - check if the Rx is an eRx. If so, inform the user and ask to proceed.
  N ERXORN,ERXIEN,ERXPROC S ERXORN=$$GET1^DIQ(52,$P(PSOLST(ORN),U,2),39.3)
@@ -91,17 +92,22 @@ RENEW(PLACER,PSOCPDRG) ;passes flag to CPRS for front door renews
  I ST,ST'=2,ST'=5,ST'=6,ST'=11,ST'=12,ST'=14 Q "0^Prescription is in a Non-Renewable Status."
  I $P($G(^PSRX(RXN,"OR1")),"^",4) Q "0^Duplicate Rx Renewal Request."
  I $O(^PS(52.41,"AQ",RXN,0)) Q "0^Duplicate Rx Renewal Request."
- N TITMSG
- I $$TITRX^PSOUTL(RXN)="t" D  Q TITMSG
- . S TITMSG="0^Prescription was marked as 'Titration to Maintenance Dose' by Pharmacy and cannot be renewed."
- . S TITMSG=TITMSG_" To repeat the titration, enter a new prescription or copy the prior titration order."
- . S TITMSG=TITMSG_" To continue the maintenance dose, refill this prescription if refills are available"
- . S TITMSG=TITMSG_" or enter a new prescription for the maintenance dose."
+ ;N TITMSG
+ ;I $$TITRX^PSOUTL(RXN)="t" D  Q TITMSG
+ ;. S TITMSG="0^Prescription was marked as 'Titration to Maintenance Dose' by Pharmacy and cannot be renewed."
+ ;. S TITMSG=TITMSG_" To repeat the titration, enter a new prescription or copy the prior titration order."
+ ;. S TITMSG=TITMSG_" To continue the maintenance dose, refill this prescription if refills are available"
+ ;. S TITMSG=TITMSG_" or enter a new prescription for the maintenance dose."
  K PSORFRM,PSOLC,PSODRG,PSODRUG0,RXN,ST,TITMSG
  Q 1_$S($G(PSOIFLAG):"^"_$G(PSONEWOI),1:"")
  ;
 INST1 ;Set Pharmacy Instructions array
  N PSOTZ
+ ;for titration renewal, copy patient instructions from 52.41 - *p441
+ I $$TITRX^PSOUTL(RXN)="t",$G(PSOORRNW),$G(ORD) D  Q
+ .I $O(^PS(52.41,ORD,2,0)) S PHI=^PS(52.41,ORD,2,0),PSOTZ=0 D
+ ..F  S PSOTZ=$O(^PS(52.41,ORD,2,PSOTZ)) Q:'PSOTZ  S PHI(PSOTZ)=^PS(52.41,ORD,2,PSOTZ,0)
+ ;
  I $O(^PSRX(RXN,"PI",0)) S PHI=$G(^PSRX(RXN,"PI",0)),PSOTZ=0 D
  .F  S PSOTZ=$O(^PSRX(RXN,"PI",PSOTZ)) Q:PSOTZ=""  S PHI(PSOTZ)=$G(^PSRX(RXN,"PI",PSOTZ,0))
  Q

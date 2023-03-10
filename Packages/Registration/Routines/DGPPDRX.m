@@ -1,0 +1,305 @@
+DGPPDRX ;SLC/RM - PRESUMPTIVE PSYCHOSIS DETAIL REPORT RELEASED PRESCRIPTION ; January 14, 2021@1:00 pm
+ ;;5.3;Registration;**1035,1047**;Aug 13, 1993;Build 13
+ ;
+ ;Global References      Supported by ICR#     Type
+ ;-----------------      -----------------     ----------
+ ; ^TMP($J               SACC 2.3.2.5.1
+ ;
+  ;External References
+ ;-------------------
+ ; $$GET1^DIQ             2056                 Supported
+ ; $$CPTIER^PSNAPIS       2531                 Supported
+ ; RX^PSO52API            4820                 Supported
+ ; PSS^PSO59              4827                 Supported
+ ; $$FMTE^XLFDT          10103                 Supported
+ ; $$STA^XUAF4            2171                 Supported
+ Q
+ ;
+ ;Entry point for PRESUMPTIVE PSYCHOSIS Released Prescription for the PP Detail Report
+PPRX(DGDFN,DGSORT) ; RR RX Released Prescription
+ D PAUSE^DGPPDRP1(.DGQ) Q:DGQ
+ N FILENO,PPIBDT,PPIBREC,ACCTYP,RESULT,CNTR,PPIBRX,DGPPRTRNSTCK,DGPPRXPRTLFL
+ S DFN=DGDFN
+ S (DGPPRTRNSTCK,DGPPRXPRTLFL)=0
+ S DGSORT("SORTRXBY")=1 ;sorting by released date
+ ;get the medication profile of a patient from PRESCRIPTION file (#52) for this PP patient and adding 1 yr to the TO DATE (fill date+1yr).
+ K ^TMP($J,"DGPPDRX52") D RX^PSO52API(DGDFN,"DGPPDRX52",,,"2,R,P",DGSORT("DGBEG"),$$FMADD^XLFDT(DGSORT("DGEND"),366))
+ ;traverse ^TMP($J,"DGPPIBSTAT" if the dates listed exist in the ^TMP($J,"DGPPDRX52", this is where all the RX's of the patient is stored.
+ S CNTR=0
+ F FILENO=350,399 D  Q:DGQ
+ . Q:$P(^TMP($J,"DGPPIBSTAT",FILENO,DFN,0),U)<1
+ . S PPIBDT="" F  S PPIBDT=$O(^TMP($J,"DGPPIBSTAT",FILENO,PPIBDT)) Q:PPIBDT=""  D  Q:DGQ
+ . . S PPIBREC="" F  S PPIBREC=$O(^TMP($J,"DGPPIBSTAT",FILENO,PPIBDT,DFN,PPIBREC)) Q:PPIBREC=""  D  Q:DGQ
+ . . . Q:'$$CHKDATE(PPIBDT\1,.DGSORT)  ;quit if not within the date range selected by the user
+ . . . I FILENO=350 D  Q:ACCTYP'["RX"
+ . . . . S ACCTYP=$P(^TMP($J,"DGPPIBSTAT",FILENO,PPIBDT,DFN,PPIBREC),U)
+ . . . I FILENO=399 D  Q:$P(ACCTYP,U)'=3
+ . . . . S ACCTYP=$P($P($P(^TMP($J,"DGPPIBSTAT",FILENO,PPIBDT,DFN,PPIBREC),U,5),";"),":")
+ . . . S RESULT=$P(^TMP($J,"DGPPIBSTAT",FILENO,PPIBDT,DFN,PPIBREC),U,5)
+ . . . I $P(RESULT,":")=52 S PPIBRX=+$P(RESULT,":",2) ;file #350 RX IEN 
+ . . . I $P(RESULT,":")=350 S PPIBRX=0
+ . . . I ACCTYP=3 S PPIBRX=$P(RESULT,":",3) ;file #399 RX IEN
+ . . . D RX1
+ . . Q:DGQ
+ . Q:DGQ
+ I DGQ K ^TMP($J,"DGPPDRX52"),^TMP($J,"DGALLPPDRX") Q
+ D RXNOSTAT ;Extract those RX's that has not been charge
+ D PRINTRX
+ K ^TMP($J,"DGPPDRX52"),^TMP($J,"DGALLPPDRX")
+ W !!,"<< end of report >>"
+ Q:DGQ
+ Q
+ ;
+RX1 ;continuation of RX line tag from above
+ N RATETYP,QUIT,DGRXNUM,DGRXIEN,DATA1,DATA2,IB350DIV,IB399DIV,IB362FLNUM,PTSTATUS,DGPRTLTOT,DGPPFLGPRTL
+ S (RATETYP,IB362FLNUM,DGPRTLTOT,DGPPFLGPRTL)=0,PTSTATUS=""
+ S DGPRTLTOT=+$P($G(^TMP($J,"DGPPDRX52",DFN,PPIBRX,"P",0)),U) ;total rx partial fill entry/record
+ I $$RXBSTAT(PPIBRX) D  Q  ;this is the happy path
+ . S DGRXNUM=^TMP($J,"DGPPDRX52",DFN,PPIBRX,.01)
+ . S DGRXIEN=PPIBRX
+ . I FILENO=350 D
+ . . I $P(RESULT,";",2)']"" D SORTORRX ;sort original rx
+ . . I $P(RESULT,";",2)]"" D SORTRFRX ;sort refill rx
+ . I FILENO=399 D
+ . . I $P(RESULT,":",5)=0 D SORTORRX ;sort original rx
+ . . I DGPRTLTOT,$P(RESULT,":",5)["P" S DGPPFLGPRTL=1 D PARTIAL^DGPPOHUT("DGPPDRX52") ;sort partial rx
+ . . I $P(RESULT,":",5)'["P",+$P(RESULT,":",5)>0 D SORTRFRX ;sort refill rx
+ I PPIBRX<1 D  Q
+ . S PTSTATUS="N/A" ;patient status
+ . I FILENO=350 D  ;this means the RX is manually entered and RESULTING FROM field=350
+ . . K DATA1,DATA2,IB350DIV
+ . . S IB350DIV=$P($P(^TMP($J,"DGPPIBSTAT",FILENO,PPIBDT,DFN,PPIBREC),U,8),"-")
+ . . S DATA1="NON-VA"_U_$P($P(RESULT,";",2),":",2)_U_"N/A"_U_"N/A"_U_IB350DIV_U_"N/A"_U_$P($P(RESULT,";",2),":")
+ . . D IBSTAT
+ . . I $P(DGSORT("SORTRXBY"),U)=1 S CNTR=CNTR+1,^TMP($J,"DGALLPPDRX","NA",PPIBDT,IB350DIV,DFN,CNTR)=DATA1_U_DATA2_U_PTSTATUS
+ . . E  S CNTR=CNTR+1,^TMP($J,"DGALLPPDRX","NA",IB350DIV,PPIBDT,DFN,CNTR)=DATA1_U_DATA2_U_PTSTATUS
+ . I FILENO=399 D  ;this means the RX is manually entered in file #399 with no record in file #52 
+ . . K DATA1,DATA2,IB399DIV
+ . . S IB399DIV=$P(^TMP($J,"DGPPIBSTAT",FILENO,PPIBDT,DFN,PPIBREC),U,8)
+ . . S IB399DIV=$$STA^XUAF4($$GET1^DIQ(40.8,IB399DIV_",",.07,"I")),IB362FLNUM=$S($P(RESULT,":",5)>0:"("_$P(RESULT,":",5)_")",1:"")
+ . . S DATA1=$E($P($P(RESULT,":",4),"-"),1,12)_IB362FLNUM_U_"N/A"_U_"N/A"_U_$P($P(RESULT,":",4),"-",2)_U_IB399DIV_U_PPIBDT_U_PPIBDT
+ . . D IBSTAT
+ . . I $P(DGSORT("SORTRXBY"),U)=1 S CNTR=CNTR+1,^TMP($J,"DGALLPPDRX",PPIBRX,PPIBDT,IB399DIV,DFN,CNTR)=DATA1_U_DATA2_U_PTSTATUS
+ . . E  S CNTR=CNTR+1,^TMP($J,"DGALLPPDRX",PPIBRX,IB399DIV,PPIBDT,DFN,CNTR)=DATA1_U_DATA2_U_PTSTATUS
+ I '$$RXBSTAT(PPIBRX) D
+ . ;RX exist in 350 but not in file #52
+ . K ^TMP($J,"PPMSNGRX") D RX^PSO52API(DGDFN,"PPMSNGRX",PPIBRX,,"2,R,P",DGSORT("DGBEG"),$$FMADD^XLFDT(DGSORT("DGEND"),366))
+ . M ^TMP($J,"DGPPDRX52")=^TMP($J,"PPMSNGRX") K ^TMP($J,"PPMSNGRX")
+ . S DGRXNUM=^TMP($J,"DGPPDRX52",DFN,PPIBRX,.01)
+ . S DGRXIEN=PPIBRX,DGPPFLGPRTL=0
+ . I $P(RESULT,";",2)']"" D SORTORRX ;sort original rx
+ . I $P(RESULT,";",2)]"" D SORTRFRX ;sort refill rx
+ . I DGPRTLTOT S DGPPFLGPRTL=1 D PARTIAL^DGPPOHUT("DGPPDRX52") ;sort partial rx
+ Q
+ ;
+RXBSTAT(PPIBRX) ;Rx B Cross Reference in ^TMP($J,"DGPPDRX52"
+ N DGRXNUM,DGRXIEN,FND
+ S FND=0
+ S DGRXNUM="" F  S DGRXNUM=$O(^TMP($J,"DGPPDRX52","B",DGRXNUM)) Q:DGRXNUM=""!(FND)  D
+ . S DGRXIEN="" F  S DGRXIEN=$O(^TMP($J,"DGPPDRX52","B",DGRXNUM,DGRXIEN)) Q:DGRXIEN=""  D
+ . I $D(^TMP($J,"DGPPDRX52","B",DGRXNUM,PPIBRX)) S FND=1
+ Q FND
+ ;
+SORTORRX ;Sort Original RX
+ N DGNUMOFREF,DGDAYSUP,DGFILLDT,DATA1,DATA2,DGCPTIER,DGRXDIV,DGRELDATE,PTSTATUS
+ S DGRELDATE=$P(^TMP($J,"DGPPDRX52",DFN,DGRXIEN,31),U) ;original fill released date
+ I +DGRELDATE<1,+$P(^TMP($J,"DGPPDRX52",DFN,DGRXIEN,32.1),U)>1 S DGRELDATE=$P(^TMP($J,"DGPPDRX52",DFN,DGRXIEN,32.1),U)_"R",DGPPRTRNSTCK=1 ;extract the RETURN TO STOCK date release date/time if the original fill date is missing
+ S DGFILLDT=$P(^TMP($J,"DGPPDRX52",DFN,DGRXIEN,22),U) ;original Fill Date
+ I '$$CHKDATE(+DGRELDATE\1,.DGSORT) Q  ;do not include if released date is null
+ D CPTIER^DGPPDRP1 ;extract the copay tier
+ S DGNUMOFREF=$P(^TMP($J,"DGPPDRX52",DFN,DGRXIEN,9),U) ;# of refills
+ S DGDAYSUP=$P(^TMP($J,"DGPPDRX52",DFN,DGRXIEN,8),U) ;days supply
+ D SITE(0) ;extract the site where Rx's released
+ S PTSTATUS=$P(^TMP($J,"DGPPDRX52",DFN,DGRXIEN,3),U,2) ;Patient status
+ S DATA1=DGRXNUM_U_DGCPTIER_U_DGNUMOFREF_U_DGDAYSUP_U_DGRXDIV_U_DGFILLDT_U_DGRELDATE
+ I $G(PPIBRX) D IBSTAT ;Extract the IB Status in File #350/File #399
+ I $P(DGSORT("SORTRXBY"),U)=1 S CNTR=CNTR+1,^TMP($J,"DGALLPPDRX",DGRXNUM,+PPIBDT,DGRXDIV,DFN,CNTR)=DATA1_$S($G(PPIBRX):U_DATA2,1:"^^^^")_U_PTSTATUS
+ E  S CNTR=CNTR+1,^TMP($J,"DGALLPPDRX",DGRXNUM,DGRXDIV,+PPIBDT,DFN,CNTR)=DATA1_$S($G(PPIBRX):U_DATA2,1:"^^^^")_U_PTSTATUS
+ S $P(^TMP($J,"DGPPDRX52","B",DGRXNUM,DGRXIEN),U)=1 ;marked that this RX already been evaluated
+ Q
+ ;
+IBSTAT ;Extract the IB Status in File #350 and File #399
+ N BILLNO,RXIBSTAT,CHRGAMNT
+ S BILLNO=$P(^TMP($J,"DGPPIBSTAT",FILENO,PPIBDT,DFN,PPIBREC),U,4)
+ I FILENO=350 S BILLNO=$P(BILLNO,"-",2)
+ I FILENO=399 S RATETYP=$P(^TMP($J,"DGPPIBSTAT",FILENO,PPIBDT,DFN,PPIBREC),U,2)
+ S RXIBSTAT=$P(^TMP($J,"DGPPIBSTAT",FILENO,PPIBDT,DFN,PPIBREC),U,7)
+ S CHRGAMNT=$P(^TMP($J,"DGPPIBSTAT",FILENO,PPIBDT,DFN,PPIBREC),U,6)
+ S DATA2=BILLNO_U_$S(FILENO=350:ACCTYP,1:RATETYP)_U_RXIBSTAT_U_CHRGAMNT
+ Q
+ ;
+SORTRFRX ;Sort Refill RX
+ N JJ,DGRFRELDT,DGDSRF,DGFLDTRF,DATA1,DATA2,DGRXDIV,DGDSRF,DGRFRELDT,DGNUMOFREF,PTSTATUS
+ ;if there are any and the released date is within the user specified date range, then include it into the report
+ S DGTOTRF=+$P(^TMP($J,"DGPPDRX52",DFN,DGRXIEN,"RF",0),U)
+ ;quit if no refills found for this Rx
+ Q:+DGTOTRF<1
+ ;rx refill released date/time
+ I FILENO=350 D
+ . S JJ=$P($P(RESULT,";",2),":",2)
+ . S DGRFRELDT=$P(^TMP($J,"DGPPDRX52",DFN,DGRXIEN,"RF",JJ,17),U) ;refill release date/time
+ . I +DGRFRELDT<1,+$P(^TMP($J,"DGPPDRX52",DFN,DGRXIEN,"RF",JJ,14),U)>1 S DGRFRELDT=$P(^TMP($J,"DGPPDRX52",DFN,DGRXIEN,"RF",JJ,14),U)_"R",DGPPRTRNSTCK=1 ;extract the RETURN TO STOCK date release date/time
+ I FILENO=399 D
+ . S JJ=$P(RESULT,":",5)
+ . S DGRFRELDT=PPIBDT
+ ;quit if rx refill released date not within the user specified date range
+ ;or no refill release date
+ Q:'$$CHKDATE^DGOTHFS2(+DGRFRELDT\1,.DGSORT)
+ I +JJ>0 D SETRF
+ Q
+ ;
+SETRF ;set Refill RX
+ S DGNUMOFREF=$P(^TMP($J,"DGPPDRX52",DFN,DGRXIEN,9),U) ;# of refills
+ D CPTIER^DGPPDRP1 ;extract the copay tier
+ S DGDSRF=$P(^TMP($J,"DGPPDRX52",DFN,DGRXIEN,"RF",JJ,1.1),U) ;refill days supply
+ D SITE(1) ;extract the site where Rx's released
+ S DGFLDTRF=$P(^TMP($J,"DGPPDRX52",DFN,DGRXIEN,"RF",JJ,.01),U) ;refill Fill Date
+ S PTSTATUS=$P(^TMP($J,"DGPPDRX52",DFN,DGRXIEN,3),U,2) ;Patient status
+ S DATA1=DGRXNUM_"("_JJ_")"_U_DGCPTIER_U_DGNUMOFREF_U_DGDSRF_U_DGRXDIV_U_DGFLDTRF_U_DGRFRELDT
+ I $G(PPIBRX) D IBSTAT ;Extract the IB Status in File #350/File #399
+ I $P(DGSORT("SORTRXBY"),U)=1 S CNTR=CNTR+1,^TMP($J,"DGALLPPDRX",DGRXNUM,+DGRFRELDT\1,DGRXDIV,DFN,CNTR)=DATA1_$S($G(PPIBRX):U_DATA2,1:"^^^^")_U_PTSTATUS
+ E  S CNTR=CNTR+1,^TMP($J,"DGALLPPDRX",DGRXNUM,DGRXDIV,+DGRFRELDT\1,DFN,CNTR)=DATA1_$S($G(PPIBRX):U_DATA2,1:"^^^^")_U_PTSTATUS
+ S ^TMP($J,"DGPPDRX52","B",DGRXNUM,DGRXIEN,JJ_"R")="" ;marked that this Refill RX already been evaluated
+ Q
+ ;
+RXNOSTAT ;Extract those RX's that has not been charge
+ N DGRXNUM,DGRXIEN,DGRELDATE,DATA1,DATA2,FILENO,DGTOTRF,JJ,PPIBDT,DGRFRELDT,ORGRXSTAT,DGPRTLTOT,DGPPFLGPRTL
+ K PPIBRX
+ S (JJ,DGPRTLTOT,DGPPFLGPRTL)=0
+ S DGRXNUM="" F  S DGRXNUM=$O(^TMP($J,"DGPPDRX52","B",DGRXNUM)) Q:DGRXNUM=""  D  Q:DGQ
+ . S DGRXIEN="" F  S DGRXIEN=$O(^TMP($J,"DGPPDRX52","B",DGRXNUM,DGRXIEN)) Q:DGRXIEN=""  D  Q:DGQ
+ . . K ORGRXSTAT,DGPRTLTOT
+ . . S ORGRXSTAT=$P(^TMP($J,"DGPPDRX52","B",DGRXNUM,DGRXIEN),U)
+ . . I +ORGRXSTAT<1 D RXNOSTA1
+ . . D RXNOSTA2
+ . . S DGPRTLTOT=$P($G(^TMP($J,"DGPPDRX52",DFN,DGRXIEN,"P",0)),U) ;total rx partial fill entry/record
+ . . I +DGPRTLTOT>0 S DGPPFLGPRTL=1 D PARTIAL^DGPPOHUT("DGPPDRX52") ;extract rx partial fill. We are still displaying this info though there are no charges generated
+ Q
+ ;
+RXNOSTA1 ;
+ S DGRELDATE=$P(^TMP($J,"DGPPDRX52",DFN,DGRXIEN,31),U)
+ I +DGRELDATE<1,+$P(^TMP($J,"DGPPDRX52",DFN,DGRXIEN,32.1),U)>1 S DGRELDATE=$P(^TMP($J,"DGPPDRX52",DFN,DGRXIEN,32.1),U)_"R" ;extract the RETURN TO STOCK date release date/time if the original fill date is missing
+ I '$$CHKDATE^DGOTHFS2(DGRELDATE\1,.DGSORT) Q
+ S PPIBDT=DGRELDATE\1
+ D SORTORRX
+ Q
+ ;
+RXNOSTA2 ;
+ ;check if there are any refill charges for this Rx
+ S DGTOTRF=+$P(^TMP($J,"DGPPDRX52",DFN,DGRXIEN,"RF",0),U)
+ I +DGTOTRF>0 D
+ . F JJ=1:1:DGTOTRF D
+ . . Q:$D(^TMP($J,"DGPPDRX52","B",DGRXNUM,DGRXIEN,JJ_"R"))  ; this Refill RX already been evaluated
+ . . K DATA1,DATA2,DGRXDIV,DGDSRF,DGRFRELDT,DGFLDTRF
+ . . ;rx refill released date/time
+ . . S DGRFRELDT=$P(^TMP($J,"DGPPDRX52",DFN,DGRXIEN,"RF",JJ,17),U) ;refill release date/time
+ . . I +DGRFRELDT<1,+$P(^TMP($J,"DGPPDRX52",DFN,DGRXIEN,"RF",JJ,14),U)>1 S DGRFRELDT=$P(^TMP($J,"DGPPDRX52",DFN,DGRXIEN,"RF",JJ,14),U)_"R" ;extract the RETURN TO STOCK date release date/time
+ . . S PPIBDT=DGRFRELDT\1
+ . . Q:'$$CHKDATE^DGOTHFS2(+DGRFRELDT\1,.DGSORT)
+ . . D SETRF
+ Q
+ ;
+PRINTRX ;display all Released Prescription for this PP patient
+ D PTHDR^DGPPDRP1,LINE^DGPPDRP1(0)
+ D RXHDR(0),RXCOL,LINE^DGPPDRP1(1)
+ ;display this piece of information to its own page so that the report will not look cluttered
+ N DGRXNUM,DGRXCNT,DGOLDRXNUM,PPDOS,PPDIV,DGNARX,DGCPYTIER,DGRXTOTCNT,CHRGAMNT,DGTOTALRX,DFN,RXIBBILNO,PRNTDRX,RXNUMBER,RXRELDATE
+ S DGOLDRXNUM="",(DGTOTALRX,DGNARX)=0
+ I $O(^TMP($J,"DGALLPPDRX",""))="" D  Q
+ . W !!,">> No Released Prescription found from "_$$FMTE^XLFDT(DGSORT("DGBEG"),"5ZF")_" TO "_$$FMTE^XLFDT(DGSORT("DGEND"),"5ZF")_"."
+ . W ! D LINE^DGPPDRP1(1) W !
+ . S DGTOTALRX=0
+ . W !,"Total Number of Rx:    ",+DGTOTALRX,!!!
+ ;otherwise, print patient's list of rx's
+ S DGRXNUM="" F  S DGRXNUM=$O(^TMP($J,"DGALLPPDRX",DGRXNUM)) Q:DGRXNUM=""  D  Q:DGQ
+ . S PPDOS="" F  S PPDOS=$O(^TMP($J,"DGALLPPDRX",DGRXNUM,PPDOS)) Q:PPDOS=""  D  Q:DGQ
+ . . S PPDIV="" F  S PPDIV=$O(^TMP($J,"DGALLPPDRX",DGRXNUM,PPDOS,PPDIV)) Q:PPDIV=""  D  Q:DGQ
+ . . . S DFN="" F  S DFN=$O(^TMP($J,"DGALLPPDRX",DGRXNUM,PPDOS,PPDIV,DFN)) Q:DFN=""  D  Q:DGQ
+ . . . . S DGRXCNT="" F  S DGRXCNT=$O(^TMP($J,"DGALLPPDRX",DGRXNUM,PPDOS,PPDIV,DFN,DGRXCNT)) Q:DGRXCNT=""  D  Q:DGQ
+ . . . . . I $Y>(IOSL-4) W ! D PAUSE^DGPPDRP1(.DGQ) Q:DGQ  D PTHDR^DGPPDRP1,LINE^DGPPDRP1(0),RXHDR(1),RXCOL,LINE^DGPPDRP1(1)
+ . . . . . W !
+ . . . . . S RXNUMBER=$P(^TMP($J,"DGALLPPDRX",DGRXNUM,PPDOS,PPDIV,DFN,DGRXCNT),U) ;Rx #
+ . . . . . S RXIBBILNO=$P(^TMP($J,"DGALLPPDRX",DGRXNUM,PPDOS,PPDIV,DFN,DGRXCNT),U,8)
+ . . . . . I RXIBBILNO="" S RXIBBILNO="NON-VA"_DGRXCNT
+ . . . . . S RXRELDATE=$P(^TMP($J,"DGALLPPDRX",DGRXNUM,PPDOS,PPDIV,DFN,DGRXCNT),U,7)\1
+ . . . . . I '$D(PRNTDRX(RXNUMBER,RXRELDATE)) D PRINTRX1,PRINTRX2
+ . . . . . I $D(PRNTDRX(RXNUMBER,+RXRELDATE)) D
+ . . . . . . I RXNUMBER="NON-VA",$G(PRNTDRX(RXNUMBER,+RXRELDATE))'=RXIBBILNO D PRINTRX1,PRINTRX2 Q
+ . . . . . . I RXNUMBER["P",$G(PRNTDRX(RXNUMBER,+RXRELDATE))=1 Q  ;already printed, do no print again
+ . . . . . . I $P(^TMP($J,"DGALLPPDRX",DGRXNUM,PPDOS,PPDIV,DFN,DGRXCNT),U,7)["P",$P(^TMP($J,"DGALLPPDRX",DGRXNUM,PPDOS,PPDIV,DFN,DGRXCNT),U,8)="" D  Q  ;if partial and no bill, display the fill and released date only
+ . . . . . . . I $G(PRNTDRX(RXNUMBER,+RXRELDATE))'=1,DGOLDRXNUM'=RXNUMBER D PRINTRX1,PRINTRX2 Q
+ . . . . . . . W ?41,$$FMTE^XLFDT($P(^TMP($J,"DGALLPPDRX",DGRXNUM,PPDOS,PPDIV,DFN,DGRXCNT),U,6),"5Z") ;fill date
+ . . . . . . . D PRINTRX3
+ . . . . . . D PRINTRX2
+ . . . . . I RXNUMBER="NON-VA",$G(PRNTDRX(RXNUMBER,+RXRELDATE))'=RXIBBILNO S DGNARX=DGNARX+1
+ . . . . . S DGTOTALRX($P($P(^TMP($J,"DGALLPPDRX",DGRXNUM,PPDOS,PPDIV,DFN,DGRXCNT),U),"("))=""
+ . . . . . S PRNTDRX(RXNUMBER,+RXRELDATE)=$S(RXNUMBER="NON-VA":RXIBBILNO,RXNUMBER["P":1,1:"")
+ . . . . . S DGOLDRXNUM=RXNUMBER
+ . . . . Q:DGQ
+ . . . Q:DGQ
+ . . Q:DGQ
+ . Q:DGQ
+ ;if patient had Rx's but the released date is not within date range from the time patient became OTH to PE is verified
+ ;those Rx's will not be included into the report
+ Q:DGQ
+ S DGRXTOTCNT="" F  S DGRXTOTCNT=$O(DGTOTALRX(DGRXTOTCNT)) Q:DGRXTOTCNT=""  D
+ . I DGRXTOTCNT="NON-VA" Q
+ . S DGTOTALRX=DGTOTALRX+1
+ S DGTOTALRX=DGTOTALRX+DGNARX
+ I DGTOTALRX<1,DGNARX<1 W !,">> No Released Prescription found from "_$$FMTE^XLFDT(DGSORT("DGBEG"),"5ZF")_" TO "_$$FMTE^XLFDT(DGSORT("DGEND"),"5ZF")_"."
+ W ! D LINE^DGPPDRP1(1) W !
+ W:DGTOTALRX>0 !,"Total Number of Rx:    ",DGTOTALRX
+ I DGTOTALRX<3 W !!!
+ K PRNTDRX,DGTOTALRX
+ Q
+ ;
+PRINTRX1 ;
+ N TMPRXRLDTE
+ W $E($P(^TMP($J,"DGALLPPDRX",DGRXNUM,PPDOS,PPDIV,DFN,DGRXCNT),U),1,20) ;Rx #
+ I +DGOLDRXNUM'=+RXNUMBER W ?22,$E($P(^TMP($J,"DGALLPPDRX",DGRXNUM,PPDOS,PPDIV,DFN,DGRXCNT),U,12),1,17) ;rx Patient Status
+ W ?41,$$FMTE^XLFDT($P(^TMP($J,"DGALLPPDRX",DGRXNUM,PPDOS,PPDIV,DFN,DGRXCNT),U,6),"5Z") ;fill date
+ D PRINTRX3
+ Q
+ ;
+PRINTRX3 ;
+ S TMPRXRLDTE=$P(^TMP($J,"DGALLPPDRX",DGRXNUM,PPDOS,PPDIV,DFN,DGRXCNT),U,7)
+ W ?53,$$FMTE^XLFDT(+TMPRXRLDTE\1,"5Z") ;rx released date/time
+ I TMPRXRLDTE["R" W "R" ;for return to stock
+ I TMPRXRLDTE["P" W "P" S $P(RXNUMBER,")")=$P(RXNUMBER,")")_"P" ;for rx partial fill
+ Q
+ ;
+PRINTRX2 ;
+ W ?68,$P(^TMP($J,"DGALLPPDRX",DGRXNUM,PPDOS,PPDIV,DFN,DGRXCNT),U,8) ;Bill no
+ S CHRGAMNT=$$DOLLAR^DGPPRRPT($TR($P(^TMP($J,"DGALLPPDRX",DGRXNUM,PPDOS,PPDIV,DFN,DGRXCNT),U,11),"$(),","")) ;format the charge amount
+ W ?83,$J($TR(CHRGAMNT,"$()",""),14) ;charge amount
+ W ?100,$E($P(^TMP($J,"DGALLPPDRX",DGRXNUM,PPDOS,PPDIV,DFN,DGRXCNT),U,10),1,20) ;rx IB STATUS
+ Q
+ ;
+RXCOL ;display Rx column name
+ W !,"Rx #",?22,"Patient Status",?41,"Fill Date",?53,"Released Date",?68,"Bill #",?83,"Charge Amount",?100,"IB Status",!
+ Q
+ ;
+RXHDR(FLAG) ;Released Prescription Header
+ N TITLE
+ S TITLE="PATIENT'S RELEASED PRESCRIPTION"_$S(FLAG:" - Continuation",1:"")
+ W !,?132-$L(TITLE)\2,TITLE,!
+ D DTRANGE^DGPPDRP1
+ I $O(^TMP($J,"DGALLPPDRX",""))'="" D
+ . I $G(DGPPRTRNSTCK)=1,$G(DGPPRXPRTLFL)=1 W ?39,"'R' = Return Medication To Stock    'P' = Partial Fill",!
+ . I $G(DGPPRTRNSTCK)=1,$G(DGPPRXPRTLFL)=0 W ?48,"'R' = Return Medication To Stock",!
+ . I $G(DGPPRTRNSTCK)=0,$G(DGPPRXPRTLFL)=1 W ?55,"'P' = Partial Fill",!
+ D LINE^DGPPDRP1(1)
+ Q
+ ;
+SITE(FLAG) ;site where Rx's released
+ K ^TMP($J,"OTHFSMSITE"),DGRXDIV ;site where RX's released
+ I FLAG<1 S DGRXDIV=$P(^TMP($J,"DGPPDRX52",DFN,DGRXIEN,20),U)
+ E  S DGRXDIV=$P(^TMP($J,"DGPPDRX52",DFN,DGRXIEN,"RF",JJ,8),U)
+ D PSS^PSO59(DGRXDIV,,"OTHFSMSITE")
+ S DGRXDIV=^TMP($J,"OTHFSMSITE",DGRXDIV,.06)
+ K ^TMP($J,"OTHFSMSITE")
+ Q
+ ;
+CHKDATE(DATE,DGSORT) ;check if dates fall within the Begin and End dates
+ Q DGSORT("DGBEG")<=DATE&(DGSORT("DGEND")>=DATE)
+ ;

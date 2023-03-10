@@ -1,5 +1,5 @@
 ECXUTL4 ;ALB/ESD - Utilities for DSS Extracts ;4/24/19  09:44
- ;;3.0;DSS EXTRACTS;**39,41,46,49,78,92,105,112,120,127,154,170,174**;Dec 22,1997;Build 33
+ ;;3.0;DSS EXTRACTS;**39,41,46,49,78,92,105,112,120,127,154,170,174,178,181**;Dec 22,1997;Build 71
  ;
 OBSPAT(ECXIO,ECXTS,DSSID) ;
  ; Get observation patient indicator from DSS TREATING SPECIALTY
@@ -104,8 +104,14 @@ ENCNUM(ECXIO,ECXSSN,ECXADT,ECXVDT,ECXTRT,ECXOBS,ECXEXT,ECXSTP,ECXSTP2) ;
  ... ;
  ... ;- These extracts have predetermined stop code values
  ... I ECXEXT="DEN" S ECXSTCD=180
- ... I ECXEXT="PRE"!(ECXEXT="UDP") S ECXSTCD="PHA" ;170
- ... I ECXEXT="IVP" S ECXSTCD=$S(ECXSTP=0:"PHA","^AN100^AN200^AN300^AN400^AN500^AN600^AN700^AN900^OP900^"[("^"_$G(ECVACL)_"^"):$E(ECXSTP,1,3),1:"PHA") ;170 Set stop code for IVP
+ ... I ECXEXT="UDP"!(ECXEXT="PRE") S ECXSTCD="PHA" ;170
+ ... ;I ECXEXT="IVP" S ECXSTCD=$S(ECXSTP=0:"PHA","^AN100^AN200^AN300^AN400^AN500^AN600^AN700^AN900^OP900^"[("^"_$G(ECVACL)_"^"):$E(ECXSTP,1,3),1:"PHA") ;170 Set stop code for IVP
+ ... I ECXEXT="IVP" D  ;170 Set stop code for IVP
+ .... N DRUGCLAS,DRUGSTCD
+ .... S DRUGCLAS="^AN100^AN200^AN300^AN400^AN500^AN600^AN700^AN900^OP900^" ;List of Chemo Drugs
+ .... S DRUGSTCD="^308^316^329^330^407^" ; List of MCAO-defined Stop Code for patch 178, 181 - Remove 153 from the list
+ .... ;Only set the ECXSTP variable to the Ordering Stop Code for Chemo drugs ordered from this range
+ .... S ECXSTCD=$S(ECXSTP=0:"PHA",DRUGCLAS[("^"_ECVACL_"^"):$S(DRUGSTCD[("^"_ECXSTP_"^"):$E(ECXSTP,1,3),1:"PHA"),1:"PHA") ;170;178
  ... I ECXEXT="LAB"!(ECXEXT="LAR")!(ECXEXT="LBB") S ECXSTCD=108
  ... I ECXEXT="MTL" S ECXSTCD=538
  ... I ECXEXT="NUR" S ECXSTCD=950

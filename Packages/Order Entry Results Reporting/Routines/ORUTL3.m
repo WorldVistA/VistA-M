@@ -1,5 +1,5 @@
-ORUTL3 ;SLC/JLC - OE/RR Utilities ;08/28/17  14:37
- ;;3.0;ORDER ENTRY/RESULTS REPORTING;**111,397**;Dec 17, 1997;Build 22
+ORUTL3 ;SLC/JLC - OE/RR Utilities ;Oct 12, 2021@10:42:54
+ ;;3.0;ORDER ENTRY/RESULTS REPORTING;**111,397,405**;Dec 17, 1997;Build 211
  ;
  ;
  ;
@@ -43,3 +43,25 @@ ISOISPLY(OROIIEN) ;is this orderable item a supply order
  . I '$$ISSUPPLY(+ORDRUG) S ORSPLY=0
  ;
  Q ORSPLY
+ ;
+ISTITR(ORIFN) ; Is this a titration order?
+ ;
+ ; ORIFN is the Order (#100) IEN
+ ;
+ N OR0,ORDG,ORTITR,ORTITRVAL
+ ;
+ S OR0=$G(^OR(100,+ORIFN,0))
+ S ORDG=$P($G(^ORD(100.98,+$P(OR0,U,11),0)),U,3)
+ I ORDG'="O RX" Q 0
+ ;
+ S ORTITR=+$O(^OR(100,+ORIFN,4.5,"ID","TITR",0))
+ I ORTITR D  Q $G(ORTITRVAL)
+ . S ORTITRVAL=+$G(^OR(100,+ORIFN,4.5,ORTITR,1))
+ ;
+ ; also check backdoor pharmacy (in case of orders marked
+ ; in backdoor pharmacy as titrating pre-v32/p405)
+ S PSIFN=$G(^OR(100,+ORIFN,4))
+ I PSIFN["S" Q 0
+ I $$TITRX^PSOUTL(PSIFN)="t" Q 1
+ ;
+ Q 0

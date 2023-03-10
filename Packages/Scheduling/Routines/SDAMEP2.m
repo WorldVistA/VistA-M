@@ -1,5 +1,5 @@
-SDAMEP2 ;ALB/CAW - Extended Display (Patient Data) ; 11/13/02
- ;;5.3;Scheduling;**258,325,441**;Aug 13, 1993;Build 14
+SDAMEP2 ;ALB/CAW - Extended Display (Patient Data) ; Mar 04, 2021@10:12
+ ;;5.3;Scheduling;**258,325,441,777**;Aug 13, 1993;Build 4
  ;
 PDATA ; Patient Data
  F SD=0,.11,.13,.32,.322,.321,.36,.52 S SD(SD)=$G(^DPT(DFN,SD))
@@ -98,7 +98,7 @@ PTPOW ; Prisoner of War Info and Last Admission Date
  D SET^SDAMEP1(X)
 PTAO ; Agent Orange Exposure and Last Discharge Date
  S X="",X=$$SETSTR^VALM1("AO Exp/Loc:",X,9,11)
- S X=$$SETSTR^VALM1($$FYNUNK^SDUTL2($P(SD(.321),U,2))_$S($P(SD(.321),U,13)="V":"/VIET",$P(SD(.321),U,13)="K":"/DMZ",$P(SD(.321),U,13)="O":"/OTH",1:""),X,21,14)
+ S X=$$SETSTR^VALM1($$FYNUNK^SDUTL2($P(SD(.321),U,2))_$S($P(SD(.321),U,13)="V":"/VIET",$P(SD(.321),U,13)="K":"/DMZ",$P(SD(.321),U,13)="O":"/OTH",$P(SD(.321),U,13)="B":"/BWN",1:""),X,21,14) ;SD*5.3*777 - Add BWN
  S X=$$SETSTR^VALM1("Last Disch./Lodger Date:",X,35,24)
  S SDDISCH=+$G(^DGPM(+DGPMVI(17),0))
  I +SDDISCH S X=$$SETSTR^VALM1($$FTIME^VALM1(SDDISCH),X,SDSECCOL,18)

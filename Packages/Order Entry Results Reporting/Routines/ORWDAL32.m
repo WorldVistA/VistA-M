@@ -1,5 +1,16 @@
-ORWDAL32 ; SLC/REV - Allergy calls to support windows ;5/31/05  14:14
- ;;3.0;ORDER ENTRY/RESULTS REPORTING;**10,85,109,190,195,233,243**;Dec 17, 1997;Build 242
+ORWDAL32 ; SLC/REV - Allergy calls to support windows ;Apr 21, 2022@08:43:40
+ ;;3.0;ORDER ENTRY/RESULTS REPORTING;**10,85,109,190,195,233,243,539,405**;Dec 17, 1997;Build 211
+ ;
+ ; DBIA #4531   NAME^PSN50P41
+ ; DBIA #4543   C^PSN50P65
+ ; DBIA #2531   $$B^PSNAPIS, $$T^PSNAPIS
+ ; DBIA #2574   $$TGTOG^PSNAPIS
+ ; DBIA #4829   ALL^PSN5067
+ ; DBIA #4683   GETREC^GMRAGUI
+ ; DBIA #4682   EIE^GMRAGUI1, NKA^GMRAGUI1, UPDATE^GMRAGUI1
+ ; DBIA #4374   $$SENDREQ^GMRAPES0
+ ; DBIA #4684   SITE^GMRAUTL
+ ; DBIA #1234   Direct global read of ^DIC(3.1
  ;
 DEF(LST) ; Get dialog data for allergies
  N ILST,I,X S ILST=0
@@ -91,7 +102,7 @@ SEVERITY ; Severity
  Q
 SYMPTOMS(Y,FROM,DIR) ; Return a subset of symptoms
  ; .Return Array, Starting Text, Direction
- N I,IEN,CNT,X,NAME,SUB S I=0,CNT=44 ;233
+ N I,IEN,CNT,X,NAME,SUB,SYN S I=0,CNT=44 ;233
  K ^TMP($J,"SIGNS") ;233
  ;The following lines were added in 233.  Now accounts for synonyms
  M ^TMP($J,"SIGNS","B")=^GMRD(120.83,"B") ;233
@@ -157,3 +168,105 @@ TRDNAME(NAME,LIST) ;
  .. N J,K S J=$O(^TMP($J,"ORWDAL32","B",I,0)) Q:'J  S K=$$TGTOG^PSNAPIS(I),LIST(J)=K_U_$G(^TMP($J,"ORWDAL32",J,4))
  K ^TMP($J,"ORWDAL32")
  Q
+CHKMEDS(LST,ORDFN,GMRAGNT)  ;Check a newly entered allergy against existing orders
+ N ALST,L,MED,M,AGYLST,ORD,ENT,DFN,ATTEND,MDA,MEDD,MDARRAY,MDARRAY2,FILLID,STATUS,FID,AGYTXT
+ S LST=0
+ S STATUS="^DISCONTINUED^DISCONTINUED (EDIT)^CANCELLED^LAPSED^EXPIRED^COMPLETE^"
+ D ACTIVE^ORWPS(.ALST,ORDFN,DUZ,1,0)
+ S L="" K ORD F  S L=$O(ALST(L)) Q:L=""  I $E(ALST(L))="~" D
+ . I STATUS[$P(ALST(L),U,10) Q
+ . S MED=$P(ALST(L),U,9),MEDD=$P(ALST(L),"^",3) I $D(^OR(100,+MED,.1)) D
+ . . S MDA=0 F  S MDA=$O(^OR(100,+MED,.1,MDA)) Q:MDA=""!(MDA'?1N.N)  I $D(^OR(100,+MED,.1,MDA,0)) D
+ . . . S M=^OR(100,+MED,.1,MDA,0),MDARRAY(M,+MED)=MEDD_U_$$FILLID(+MED)
+ I $D(MDARRAY) D
+ . D CLRALLGY^ORWDXC("",ORDFN)
+ . S M="" F  S M=$O(MDARRAY(M)) Q:M=""  I $D(MDARRAY(M)) D
+ . . S MED=""  F  S MED=$O(MDARRAY(M,MED)) Q:MED=""  D
+ . . . S FID=$P(MDARRAY(M,MED),U,2) I FID="" S FID="PSI"
+ . . . K AGYLST,AGYTXT
+ . . . D ALLERGY^ORWDXC(.AGYLST,ORDFN,FID,"",MED)
+ . . . I $$CHKMEDS2($P(GMRAGNT,U),.AGYLST,.AGYTXT) S MDARRAY2(MED,M)=$P($G(MDARRAY(M,MED)),U,1)_U_AGYTXT
+ . D CLRALLGY^ORWDXC("",ORDFN)
+ . K MDARRAY
+ I $D(MDARRAY2) D
+ . S MED="" F  S MED=$O(MDARRAY2(MED)) Q:MED=""  D
+ . . S ORD=$P($G(^OR(100,MED,0)),U,4),ENT=$P($G(^OR(100,MED,0)),U,6)
+ . . S M="" F  S M=$O(MDARRAY2(MED,M)) Q:M=""  D
+ . . . S LST=LST+1
+ . . . S LST(LST)=MED_U_M_U_$P(MDARRAY2(MED,M),U,1)
+ . . . I ORD]"" S $P(LST(LST),U,4)=ORD_";"_$P(^VA(200,ORD,0),U,1)
+ . . . I ENT]"",ORD'=ENT S $P(LST(LST),U,5)=ENT_";"_$P(^VA(200,ENT,0),U,1)
+ . . . S ATTEND=""
+ . . . S DFN=$P($G(^OR(100,+MED,0)),U,2)
+ . . . I $P(DFN,";",2)="DPT(" S ATTEND=$G(^DPT(DFN,.1041))
+ . . . I ATTEND]"",ORD'=ATTEND S $P(LST(LST),U,6)=ATTEND_";"_$P(^VA(200,ATTEND,0),U,1)
+ . . . S $P(LST(LST),U,7)=$P(MDARRAY2(MED,M),U,2,999)
+ . K MDARRAY2
+ K ALST,AGYLST
+ Q
+CHKMEDS2(AGNT,AGYLST,AGYTXT) ;Scan returned allegy checks against the new allergy agent for a match
+ N MATCH,AGY,LOOP,AGYTXTQ,TXT,AGYSTRT,AGYSTRT1,AGYSTP
+ S MATCH=0,AGY=""
+ F  S AGY=$O(AGYLST(AGY)) Q:AGY=""  I AGYLST(AGY)[AGNT D
+ . S MATCH=1
+ . S AGYTXTQ=0
+ . S TXT=$G(AGYLST(AGY))
+ . S AGYSTRT=$F(TXT,"(")
+ . S AGYSTRT1=$F(TXT,"(",AGYSTRT)
+ . S AGYSTP=$F(TXT,")")
+ . I AGYSTRT1'=0,AGYSTRT1<AGYSTP S AGYSTP=$F(TXT,")",AGYSTP)
+ . ;S TXT=$P($P($G(AGYLST(AGY)),"(",2),")",1)
+ . S TXT=$E(TXT,AGYSTRT,AGYSTP-2)
+ . S LOOP="" F  S LOOP=$O(AGYTXT(LOOP)) Q:LOOP=""  D  Q:AGYTXTQ=1
+ . . I TXT=""!(TXT=$G(AGYTXT(LOOP))) S AGYTXTQ=1
+ . I AGYTXTQ=1 Q
+ . S AGYTXT=$S($G(AGYTXT)'="":$G(AGYTXT)_U,1:"")_$G(TXT)
+ . S AGYTXT(AGY)=$G(TXT)
+ Q MATCH
+GETPROV(LST,ORNUM,ORBDFN) ;return a list of providers related to a list of orders based on parameter option
+ N CNT,ORBADT,ORBATTD,ORBDUZ,ORBENT,ORBNOTIF,ORBPRIM,ORBTDEV,ORBU,ORDGPMA,ORFORCE,ORN,ORPOSIT
+ N ORRECIP,TEXT,TXT4,VA,VA200,VADM,VAIN,X,XQA,RECTITLE
+ K ^XTMP("ORBUSER",$J)
+ S (CNT,ORBADT)=0
+ S (ORDGPMA,ORFORCE)=""
+ S ORNUM=+$G(ORNUM) Q:ORNUM=0
+ S ORBDFN=+$G(ORBDFN) Q:ORBDFN=0
+ S ORBENT=$$ENTITY^ORB31(ORNUM)
+ D
+ . N DFN
+ . S DFN=ORBDFN
+ . S VA200=""
+ . D OERR^VADPT
+ I ('$L($G(VA("BID"))))!('$L($G(VADM(1)))) Q
+ S ORN=88 ;"NEW ALLERGY ENTERED/ACTIVE MED" notification
+ S ORBPRIM=+$P(VAIN(2),U),ORBATTD=+$P(VAIN(11),U)
+ D TITLE^ORB3
+ I $D(XQA)<10 D GETPROVQ Q
+ S X=0
+ F  S X=$O(XQA(X)) Q:+X=0  D
+ . S ORRECIP=$P($G(^VA(200,X,0)),U,1),RECTITLE=$P($G(^(0)),U,9)
+ . I ORRECIP']"" Q
+ . S CNT=CNT+1
+ . S LST(CNT)=X_U_ORRECIP_U_$S(+RECTITLE:$P($G(^DIC(3.1,RECTITLE,0)),U),1:"")
+ S LST=CNT
+GETPROVQ K ^XTMP("ORBUSER",$J)
+ Q
+SENDALRT(Y,ORIFN,PROVLST) ;Send a group of alerts for instances where a user enters a new allergy impacting an existing med order
+ ;ORIFN indicates the order number for which the alert will be sent
+ ;PROVLST contains a list of additional recipients selected by the user
+ ;  Format: DUZ;VA(200^Provider Name
+ S Y=1
+ N ORBT,ORDFN,A,ORLIST
+ I $G(ORIFN)="" S Y=0 Q
+ S ORDFN=+$P($G(^OR(100,ORIFN,0)),"^",2) I ORDFN="" S Y=0 Q
+ S ORBT=$P($G(^ORD(100.9,88,0)),"^",3)
+ S A="" F  S A=$O(PROVLST(A)) Q:A=""  S ORLIST(+PROVLST(A))=""
+ D EN^ORB3(88,ORDFN,ORIFN,.ORLIST,ORBT,"NEW;"_ORIFN)
+ Q
+FILLID(MED) ;
+ N DGRP,VAL,X
+ S VAL=""
+ S DGRP=$P($G(^OR(100,MED,0)),U,11)
+ S X=$P($P($G(^ORD(100.98,DGRP,0)),U,3)," ")
+ I $L(X) S VAL="PS"_$S(X="NV":"H",X="O":"O",X="UD":"I",1:"I")
+ Q VAL

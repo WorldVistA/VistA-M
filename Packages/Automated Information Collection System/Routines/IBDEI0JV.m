@@ -1,134 +1,128 @@
-IBDEI0JV ; ; 04-FEB-2020
- ;;3.0;IB ENCOUNTER FORM IMP/EXP;;FEB 04, 2020
+IBDEI0JV ; ; 01-FEB-2022
+ ;;3.0;IB ENCOUNTER FORM IMP/EXP;;FEB 01, 2022
  Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,999) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
- ;;^UTILITY(U,$J,358.3,8759,1,4,0)
- ;;=4^Z91.15
- ;;^UTILITY(U,$J,358.3,8759,2)
- ;;=^5063617
- ;;^UTILITY(U,$J,358.3,8760,0)
- ;;=Z49.32^^69^598^1
- ;;^UTILITY(U,$J,358.3,8760,1,0)
+ ;;^UTILITY(U,$J,358.3,8939,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,8760,1,3,0)
- ;;=3^Adequacy Testing for Peritoneal Dialysis
- ;;^UTILITY(U,$J,358.3,8760,1,4,0)
- ;;=4^Z49.32
- ;;^UTILITY(U,$J,358.3,8760,2)
- ;;=^5063059
- ;;^UTILITY(U,$J,358.3,8761,0)
- ;;=N18.6^^69^598^2
- ;;^UTILITY(U,$J,358.3,8761,1,0)
+ ;;^UTILITY(U,$J,358.3,8939,1,3,0)
+ ;;=3^Pyogenic Arthritis,Unspec
+ ;;^UTILITY(U,$J,358.3,8939,1,4,0)
+ ;;=4^M00.9
+ ;;^UTILITY(U,$J,358.3,8939,2)
+ ;;=^5009693
+ ;;^UTILITY(U,$J,358.3,8940,0)
+ ;;=M00.00^^39^403^83
+ ;;^UTILITY(U,$J,358.3,8940,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,8761,1,3,0)
- ;;=3^ESRD
- ;;^UTILITY(U,$J,358.3,8761,1,4,0)
- ;;=4^N18.6
- ;;^UTILITY(U,$J,358.3,8761,2)
- ;;=^303986
- ;;^UTILITY(U,$J,358.3,8762,0)
- ;;=I25.10^^69^599^3
- ;;^UTILITY(U,$J,358.3,8762,1,0)
+ ;;^UTILITY(U,$J,358.3,8940,1,3,0)
+ ;;=3^Staphylococcal Arthritis,Unspec Joint
+ ;;^UTILITY(U,$J,358.3,8940,1,4,0)
+ ;;=4^M00.00
+ ;;^UTILITY(U,$J,358.3,8940,2)
+ ;;=^5009597
+ ;;^UTILITY(U,$J,358.3,8941,0)
+ ;;=M00.10^^39^403^69
+ ;;^UTILITY(U,$J,358.3,8941,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,8762,1,3,0)
- ;;=3^Athscl Hrt Disease,Native Coronary Artery w/o Angina Pectoris
- ;;^UTILITY(U,$J,358.3,8762,1,4,0)
- ;;=4^I25.10
- ;;^UTILITY(U,$J,358.3,8762,2)
- ;;=^5007107
- ;;^UTILITY(U,$J,358.3,8763,0)
- ;;=I42.8^^69^599^7
- ;;^UTILITY(U,$J,358.3,8763,1,0)
+ ;;^UTILITY(U,$J,358.3,8941,1,3,0)
+ ;;=3^Pneumococcal Arthritis,Unspec Joint
+ ;;^UTILITY(U,$J,358.3,8941,1,4,0)
+ ;;=4^M00.10
+ ;;^UTILITY(U,$J,358.3,8941,2)
+ ;;=^5009621
+ ;;^UTILITY(U,$J,358.3,8942,0)
+ ;;=M86.20^^39^403^65
+ ;;^UTILITY(U,$J,358.3,8942,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,8763,1,3,0)
- ;;=3^Cardiomyopathy,Other
- ;;^UTILITY(U,$J,358.3,8763,1,4,0)
- ;;=4^I42.8
- ;;^UTILITY(U,$J,358.3,8763,2)
- ;;=^5007199
- ;;^UTILITY(U,$J,358.3,8764,0)
- ;;=I48.91^^69^599^4
- ;;^UTILITY(U,$J,358.3,8764,1,0)
+ ;;^UTILITY(U,$J,358.3,8942,1,3,0)
+ ;;=3^Osteomyelitis,Subacute,Unspec Site
+ ;;^UTILITY(U,$J,358.3,8942,1,4,0)
+ ;;=4^M86.20
+ ;;^UTILITY(U,$J,358.3,8942,2)
+ ;;=^5014535
+ ;;^UTILITY(U,$J,358.3,8943,0)
+ ;;=M86.10^^39^403^61
+ ;;^UTILITY(U,$J,358.3,8943,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,8764,1,3,0)
- ;;=3^Atrial Fibrillation,Unspec
- ;;^UTILITY(U,$J,358.3,8764,1,4,0)
- ;;=4^I48.91
- ;;^UTILITY(U,$J,358.3,8764,2)
- ;;=^5007229
- ;;^UTILITY(U,$J,358.3,8765,0)
- ;;=I49.8^^69^599^6
- ;;^UTILITY(U,$J,358.3,8765,1,0)
+ ;;^UTILITY(U,$J,358.3,8943,1,3,0)
+ ;;=3^Osteomyelitis,Acute,Unspec Site
+ ;;^UTILITY(U,$J,358.3,8943,1,4,0)
+ ;;=4^M86.10
+ ;;^UTILITY(U,$J,358.3,8943,2)
+ ;;=^5014521
+ ;;^UTILITY(U,$J,358.3,8944,0)
+ ;;=M86.00^^39^403^60
+ ;;^UTILITY(U,$J,358.3,8944,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,8765,1,3,0)
- ;;=3^Cardiac Arrhythmias,Other Spec
- ;;^UTILITY(U,$J,358.3,8765,1,4,0)
- ;;=4^I49.8
- ;;^UTILITY(U,$J,358.3,8765,2)
- ;;=^5007236
- ;;^UTILITY(U,$J,358.3,8766,0)
- ;;=R00.1^^69^599^5
- ;;^UTILITY(U,$J,358.3,8766,1,0)
+ ;;^UTILITY(U,$J,358.3,8944,1,3,0)
+ ;;=3^Osteomyelitis,Acute Hematogenous,Unspec Site
+ ;;^UTILITY(U,$J,358.3,8944,1,4,0)
+ ;;=4^M86.00
+ ;;^UTILITY(U,$J,358.3,8944,2)
+ ;;=^5014497
+ ;;^UTILITY(U,$J,358.3,8945,0)
+ ;;=M86.50^^39^403^62
+ ;;^UTILITY(U,$J,358.3,8945,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,8766,1,3,0)
- ;;=3^Bradycardia,Unspec
- ;;^UTILITY(U,$J,358.3,8766,1,4,0)
- ;;=4^R00.1
- ;;^UTILITY(U,$J,358.3,8766,2)
- ;;=^5019164
- ;;^UTILITY(U,$J,358.3,8767,0)
- ;;=I50.9^^69^599^13
- ;;^UTILITY(U,$J,358.3,8767,1,0)
+ ;;^UTILITY(U,$J,358.3,8945,1,3,0)
+ ;;=3^Osteomyelitis,Chronic Hematogenous,Unspec Site
+ ;;^UTILITY(U,$J,358.3,8945,1,4,0)
+ ;;=4^M86.50
+ ;;^UTILITY(U,$J,358.3,8945,2)
+ ;;=^5014607
+ ;;^UTILITY(U,$J,358.3,8946,0)
+ ;;=M86.30^^39^403^63
+ ;;^UTILITY(U,$J,358.3,8946,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,8767,1,3,0)
- ;;=3^Heart Failure,Unspec
- ;;^UTILITY(U,$J,358.3,8767,1,4,0)
- ;;=4^I50.9
- ;;^UTILITY(U,$J,358.3,8767,2)
- ;;=^5007251
- ;;^UTILITY(U,$J,358.3,8768,0)
- ;;=I95.1^^69^599^14
- ;;^UTILITY(U,$J,358.3,8768,1,0)
+ ;;^UTILITY(U,$J,358.3,8946,1,3,0)
+ ;;=3^Osteomyelitis,Chronic Multifocal,Unspec Site
+ ;;^UTILITY(U,$J,358.3,8946,1,4,0)
+ ;;=4^M86.30
+ ;;^UTILITY(U,$J,358.3,8946,2)
+ ;;=^5014559
+ ;;^UTILITY(U,$J,358.3,8947,0)
+ ;;=M86.8X9^^39^403^66
+ ;;^UTILITY(U,$J,358.3,8947,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,8768,1,3,0)
- ;;=3^Hypotension,Orthostatic
- ;;^UTILITY(U,$J,358.3,8768,1,4,0)
- ;;=4^I95.1
- ;;^UTILITY(U,$J,358.3,8768,2)
- ;;=^60741
- ;;^UTILITY(U,$J,358.3,8769,0)
- ;;=R55.^^69^599^17
- ;;^UTILITY(U,$J,358.3,8769,1,0)
+ ;;^UTILITY(U,$J,358.3,8947,1,3,0)
+ ;;=3^Osteomyelitis,Unspec Sites
+ ;;^UTILITY(U,$J,358.3,8947,1,4,0)
+ ;;=4^M86.8X9
+ ;;^UTILITY(U,$J,358.3,8947,2)
+ ;;=^5014655
+ ;;^UTILITY(U,$J,358.3,8948,0)
+ ;;=M86.60^^39^403^64
+ ;;^UTILITY(U,$J,358.3,8948,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,8769,1,3,0)
- ;;=3^Syncope and Collapse
- ;;^UTILITY(U,$J,358.3,8769,1,4,0)
- ;;=4^R55.
- ;;^UTILITY(U,$J,358.3,8769,2)
- ;;=^116707
- ;;^UTILITY(U,$J,358.3,8770,0)
- ;;=R00.0^^69^599^18
- ;;^UTILITY(U,$J,358.3,8770,1,0)
+ ;;^UTILITY(U,$J,358.3,8948,1,3,0)
+ ;;=3^Osteomyelitis,Chronic,Unspec Site
+ ;;^UTILITY(U,$J,358.3,8948,1,4,0)
+ ;;=4^M86.60
+ ;;^UTILITY(U,$J,358.3,8948,2)
+ ;;=^5014630
+ ;;^UTILITY(U,$J,358.3,8949,0)
+ ;;=M86.40^^39^403^59
+ ;;^UTILITY(U,$J,358.3,8949,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,8770,1,3,0)
- ;;=3^Tachycardia,Unspec
- ;;^UTILITY(U,$J,358.3,8770,1,4,0)
- ;;=4^R00.0
- ;;^UTILITY(U,$J,358.3,8770,2)
- ;;=^5019163
- ;;^UTILITY(U,$J,358.3,8771,0)
- ;;=R07.9^^69^599^8
- ;;^UTILITY(U,$J,358.3,8771,1,0)
+ ;;^UTILITY(U,$J,358.3,8949,1,3,0)
+ ;;=3^Osteomyelitis w/ Draining Sinus,Chronic,Unspec Site
+ ;;^UTILITY(U,$J,358.3,8949,1,4,0)
+ ;;=4^M86.40
+ ;;^UTILITY(U,$J,358.3,8949,2)
+ ;;=^5014583
+ ;;^UTILITY(U,$J,358.3,8950,0)
+ ;;=R50.2^^39^403^26
+ ;;^UTILITY(U,$J,358.3,8950,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,8771,1,3,0)
- ;;=3^Chest Pain,Unspec
- ;;^UTILITY(U,$J,358.3,8771,1,4,0)
- ;;=4^R07.9
- ;;^UTILITY(U,$J,358.3,8771,2)
- ;;=^5019201
- ;;^UTILITY(U,$J,358.3,8772,0)
- ;;=I20.0^^69^599^19
- ;;^UTILITY(U,$J,358.3,8772,1,0)
+ ;;^UTILITY(U,$J,358.3,8950,1,3,0)
+ ;;=3^Fever,Drug-Induced
+ ;;^UTILITY(U,$J,358.3,8950,1,4,0)
+ ;;=4^R50.2
+ ;;^UTILITY(U,$J,358.3,8950,2)
+ ;;=^5019507
+ ;;^UTILITY(U,$J,358.3,8951,0)
+ ;;=R50.9^^39^403^30
+ ;;^UTILITY(U,$J,358.3,8951,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,8772,1,3,0)
- ;;=3^Unstable Angina
+ ;;^UTILITY(U,$J,358.3,8951,1,3,0)
+ ;;=3^Fever,Unspec

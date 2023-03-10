@@ -1,18 +1,9 @@
-HBHCXMD ;LR VAMC(IRMS)/MJT - HBHC populate ^HBHC(634) with Discharge Data or ^HBHC(634.3), file of records in ^HBHC(631) containing missing/erroneous data, called by ^HBHCFILE, calls ^HBHCXMD1 ;9/02/09
- ;;1.0;HOSPITAL BASED HOME CARE;**4,6,9,10,13,19,24,25**;NOV 01, 1993;Build 45
+HBHCXMD ;LR VAMC(IRMS)/MJT - HBHC Discharge Transmissions; May 11, 2021@17:45
+ ;;1.0;HOSPITAL BASED HOME CARE;**4,6,9,10,13,19,24,25,32**;NOV 01, 1993;Build 58
  ;
  ; This routine references the following supported ICRs:
  ; 5747    $$CODEC^ICDEX
- ;
- ;******************************************************************************
- ;******************************************************************************
- ;                       --- ROUTINE MODIFICATION LOG ---
- ;        
- ;PKG/PATCH    DATE        DEVELOPER    MODIFICATION
- ;-----------  ----------  -----------  ----------------------------------------
- ;HBH*1.0*25   APR  2012   K GUPTA      Support for ICD-10 Coding System
- ;******************************************************************************
- ;******************************************************************************
+ ; 7024    ^DG(40.8
  ;
  D START^HBHCXMD1
 LOOP ; Loop thru ^HBHC(631) "AF","N" cross-ref to create nodes in ^HBHC(634) => transmit or ^HBHC(634.3) => Discharge Error(s) file
@@ -24,6 +15,13 @@ SETNODE ; Set node in ^HBHC(634) (Transmit) or ^HBHC(634.3) (Discharge Error(s))
  S HBHCNOD0=^HBHC(631,HBHCDFN,0),HBHCNOD1=$G(^HBHC(631,HBHCDFN,1)),HBHCXMT5=$P(HBHCNOD1,U,18)
  ; Quit if discharge date is greater than HBHCLSDT (last date to include in transmit set up in ^HBHCFILE)
  I $P(HBHCNOD0,U,40)>HBHCLSDT S HBHCFLG=0 Q
+ ;HBH*1.0*32 retrieve parent site
+ N HBHCHOSPX
+ D PARENT^HBHCUTL1
+ ;if patient admitted before install of HBH*1.0*32, use the parent site
+ ;previously sent. 
+ I $G(HBHCHOSPX)="" S HBHCHOSPX=HBHCHOSP
+ ;end of HBH*1.0*32
  S (HBHCDR1,HBHCDR2,HBHCDR3,HBHCDR4,HBHCDR5)=""
  S HBHCTFLG=0 S:($P(HBHCNOD0,U,45)]"")!($P(HBHCNOD0,U,46)]"") HBHCTFLG=1
  S HBHCDFLG=0 F HBHCL=47:1:55 Q:HBHCDFLG  S:$P(HBHCNOD0,U,HBHCL)]"" HBHCDFLG=1
@@ -50,7 +48,8 @@ SETNODE ; Set node in ^HBHC(634) (Transmit) or ^HBHC(634.3) (Discharge Error(s))
  S HBHCCONT=1
  S HBHCNAME=$E($P(^DPT($P(HBHCNOD0,U),0),U),1,5) S:$L(HBHCNAME)<HBHCLNTH HBHCNAME=HBHCNAME_$J("",HBHCLNTH-$L(HBHCNAME))
  S HBHCSSN=$P(^DPT($P(HBHCNOD0,U),0),U,9)
- S HBHCREC=HBHCFORM_HBHCHOSP_HBHCSSN_HBHCDSDT_HBHCELGD_HBHCMARD_HBHCLIVD_HBHCSTAT_HBHCDEST_HBHCAGCY_HBHCADDT_HBHCNAME_HBHCICDD_HBHCVISD_HBHCHERD_HBHCEXCD_HBHCRECD_HBHCBTHD_HBHCDRSD_HBHCTLTD_HBHCTRND_HBHCEATD_HBHCWLKD_HBHCBWLD_HBHCBLDD
+ ;HBH*1.0*32: replace HBHCHOSP with HBHCHOSPX
+ S HBHCREC=HBHCFORM_HBHCHOSPX_HBHCSSN_HBHCDSDT_HBHCELGD_HBHCMARD_HBHCLIVD_HBHCSTAT_HBHCDEST_HBHCAGCY_HBHCADDT_HBHCNAME_HBHCICDD_HBHCVISD_HBHCHERD_HBHCEXCD_HBHCRECD_HBHCBTHD_HBHCDRSD_HBHCTLTD_HBHCTRND_HBHCEATD_HBHCWLKD_HBHCBWLD_HBHCBLDD
  S HBHCREC=HBHCREC_HBHCMOBD_HBHCADTD_HBHCBHVD_HBHCDSOD_HBHCMODD_HBHCLMTD_HBHCS129
  Q
 TRANS ; Set node in ^HBHC(634) transmit file & flag record as 'F" (filed for transmit) in ^HBHC(631)

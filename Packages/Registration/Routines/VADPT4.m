@@ -1,5 +1,5 @@
-VADPT4 ;ALB/MRL,MJK,ERC,DIC,PWC - PATIENT VARIABLES ;12 DEC 1988 ;10/13/10 4:43pm
- ;;5.3;Registration;**343,342,528,689,688,790,797,935,952,1007**;Aug 13, 1993;Build 3
+VADPT4 ;ALB/MRL,MJK,ERC,DIC,PWC,ARF - PATIENT VARIABLES ;12 DEC 1988 ;10/13/10 4:43pm
+ ;;5.3;Registration;**343,342,528,689,688,790,797,935,952,1007,1018**;Aug 13, 1993;Build 5
 7 ;Eligibility [ELIG]
  F I=.15,.3,.31,.32,.36,.361,"INE","TYPE","VET" S VAX(I)=$S($D(^DPT(DFN,I)):^(I),1:"")
  S VAZ=$P(VAX(.36),"^",1) S:$D(^DIC(8,+VAZ,0)) VAZ=VAZ_"^"_$P(^(0),"^",1) S @VAV@($P(VAS,"^",1))=VAZ
@@ -56,8 +56,8 @@ VADPT4 ;ALB/MRL,MJK,ERC,DIC,PWC - PATIENT VARIABLES ;12 DEC 1988 ;10/13/10 4:43p
 91 ;date fields
  F VAX(2)=1:1 S VAX(4)=VAX(4)+1,X=+$P(VAX(1),"^",VAX(2)) Q:'X  S X=$P(VAX(VAX("N")),"^",X),VAZ=X,Y=VAZ X:Y]"" ^DD("DD") S @VAV@($P(VAS,"^",VAX(3)),VAX(4))=$S(VAZ]"":VAZ_"^"_Y,1:"")
  Q:VAX(3)=1!(VAX(3)=9)!(VAX(3)=10)
- ;some sets of codes
- I VAX(3)=2 S @VAV@($P(VAS,"^",2),4)=$P(VAX(.321),"^",10) S (X,VAZ)=$P(VAX(.321),"^",13) S:X]"" VAZ=VAZ_"^"_$S(X="K":"KOREAN DMZ",1:"VIETNAM") S @VAV@($P(VAS,"^",2),5)=VAZ Q
+ ;some sets of codes ;DG*5.3*1018 corrected the external code stored in the array for the AGENT ORANGE EXPOSURE LOCATION field (#.3213)
+ I VAX(3)=2 S @VAV@($P(VAS,"^",2),4)=$P(VAX(.321),"^",10) S (X,VAZ)=$P(VAX(.321),"^",13) S:X]"" VAZ=VAZ_"^"_$$GET1^DIQ(2,DFN,.3213,"E") S @VAV@($P(VAS,"^",2),5)=VAZ Q
  I VAX(3)<4 S X=$P(VAX(.321),"^",12),VAZ=X D
  .S:X]"" VAZ=VAZ_"^"_$S(X="2":"HIROSHIMA/NAGASAKI",X="3":"ATMOSPHERIC NUCLEAR TESTING",X="4":"H/N AND ATMOSPHERIC TESTING",X="5":"UNDERGROUND NUCLEAR TESTING",X="6":"EXPOSURE AT NUCLEAR FACILITY",1:"OTHER")
  .S @VAV@($P(VAS,"^",3),2)=VAZ Q

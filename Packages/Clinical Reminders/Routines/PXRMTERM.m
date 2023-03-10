@@ -1,5 +1,5 @@
-PXRMTERM ;SLC/PKR - Handle reminder terms. ;01/13/2017
- ;;2.0;CLINICAL REMINDERS;**4,6,11,18,26,47**;Feb 04, 2005;Build 291
+PXRMTERM ;SLC/PKR - Handle reminder terms. ;03/31/2022
+ ;;2.0;CLINICAL REMINDERS;**4,6,11,18,26,47,42,65**;Feb 04, 2005;Build 438
  ;
  ;=============================================
 COPY(NOCC,SDIR,TFIEVAL,DATEORDR,FINDING,FIEVAL,STF) ;Copy the NOCC date ordered
@@ -54,20 +54,35 @@ EVALFI(DFN,DEFARR,ENODE,FIEVAL) ;Evaluate all reminder terms in a
  N SDIR,TFIND3,TFIND4,TERMARR,TERMIEN,TFI,TFIEVAL,UCIFS
  S TERMIEN=""
  F  S TERMIEN=$O(DEFARR("E",ENODE,TERMIEN)) Q:+TERMIEN=0  D
+ .;If the term does not exist, create a warning and set all the
+ .;definition findings using the term to false.
+ . I '$D(^PXRMD(811.5,TERMIEN)) D  Q
+ .. S ^TMP(PXRMPID,$J,PXRMITEM,"WARNING","NOTERM"_TERMIEN)="Warning: Reminder term IEN="_TERMIEN_" does not exist."
+ .. S FINDING=0
+ .. F  S FINDING=+$O(DEFARR("E",ENODE,TERMIEN,FINDING)) Q:FINDING=0  S FIEVAL(FINDING)=0
+ .;If the term does not have any mapped findings set all the
+ .;definition findings using the term to false.
  . I '$D(^PXRMD(811.5,TERMIEN,20,"E")) D  Q
- .. S ^TMP(PXRMPID,$J,PXRMITEM,"WARNING","NOFI",TERMIEN)="Warning no findings items in reminder term "_$P(^PXRMD(811.5,TERMIEN,0),U,1)
- .. S FINDING=""
- .. F  S FINDING=$O(DEFARR("E",ENODE,TERMIEN,FINDING)) Q:FINDING=""  S FIEVAL(FINDING)=0
+ .. S FINDING=0
+ .. F  S FINDING=+$O(DEFARR("E",ENODE,TERMIEN,FINDING)) Q:FINDING=0  S FIEVAL(FINDING)=0
  . D TERM^PXRMLDR(TERMIEN,.TERMARR)
- . S FINDING=""
- . F  S FINDING=$O(DEFARR("E",ENODE,TERMIEN,FINDING)) Q:+FINDING=0  D
+ . S FINDING=0
+ . F  S FINDING=+$O(DEFARR("E",ENODE,TERMIEN,FINDING)) Q:FINDING=0  D
  .. S FIEVAL(FINDING)=0
  .. S FIEVAL(FINDING,"TERM")=TERMARR(0)
  .. S FIEVAL(FINDING,"TERM IEN")=TERMIEN
  .. K FINDPA,TFIEVAL
  .. M FINDPA=DEFARR(20,FINDING)
  .. D EVALTERM(DFN,.FINDPA,.TERMARR,.TFIEVAL)
- .. I $G(PXRMTDEB) M ^TMP("PXRMTDEB",$J,FINDING)=TFIEVAL
+ .. I $G(PXRMTDEB) D
+ ... N CFPARAM,COND,TFINDING
+ ... S TFINDING=0
+ ... F  S TFINDING=+$O(TERMARR(20,TFINDING)) Q:TFINDING=0  D
+ .... S COND=$P($G(TERMARR(20,TFINDING,3)),U,1)
+ .... I COND'="" S TFIEVAL(TFINDING,"CONDITION TEXT")=COND
+ .... S CFPARAM=$G(TERMARR(20,TFINDING,15))
+ .... I CFPARAM'="" S TFIEVAL(TFINDING,"CFP TEXT")=CFPARAM
+ ... M ^TMP("PXRMTDEB",$J,FINDING)=TFIEVAL
  ..;Set NOCC and SDIR.
  .. S NOCC=$P(FINDPA(0),U,14)
  .. I NOCC="" S NOCC=1
@@ -76,8 +91,15 @@ EVALFI(DFN,DEFARR,ENODE,FIEVAL) ;Evaluate all reminder terms in a
  ..;Order the term findings by date.
  .. D DORDER(.TFIEVAL,.DATEORDR)
  .. D COPY(NOCC,SDIR,.TFIEVAL,.DATEORDR,FINDING,.FIEVAL,1)
+ .. ;If the term contains immunizations, check for contraindications
+ .. ;precautions and refusals and set the C/R value of the term.
+ .. I $D(TERMARR("E","AUTTIMM(")),$D(TFIEVAL("C/R STATUS")) D TERMCRFINDING^PXRMIMM(.TFIEVAL,FINDING,.FIEVAL)
+ .. I FIEVAL(FINDING)=0 Q
+ .. I $G(PXRMDEBG)'=1 Q
  .. S IND=0
- .. F  S IND=+$O(FIEVAL(FINDING,IND)) Q:IND=0  S FIEVAL(FINDING,IND,"TERM FINDING")=$P(TERMARR(20,FIEVAL(FINDING,IND,"TERM FINDING"),0),U,1)
+ .. F  S IND=+$O(FIEVAL(FINDING,IND)) Q:IND=0  D
+ ... I '$D(FIEVAL(FINDING,IND,"TERM FINDING")) Q
+ ... S FIEVAL(FINDING,IND,"TERM FINDING")=$P(TERMARR(20,FIEVAL(FINDING,IND,"TERM FINDING"),0),U,1)
  Q
  ;
  ;=============================================
@@ -115,9 +137,9 @@ IEVALTER(DFN,FINDPA,TERMARR,FINDING,FIEVAL) ;Evaluate an individual
  I $D(PXRMPDEM) G DEMOK
  N PXRMPDEM D DEM^PXRMPINF(DFN,DT,.PXRMPDEM)
  ;Create the local demographic variables for use in Condition.
- N PXRMAGE,PXRMDOB,PXRMDOD,PXRMLAD,PXRMSEX
+ N PXRMAGE,PXRMDOB,PXRMDOD,PXRMLAD,PXRMSEX,PXRMSIG
  S PXRMAGE=PXRMPDEM("AGE"),PXRMDOB=PXRMPDEM("DOB"),PXRMDOD=PXRMPDEM("DOD")
- S PXRMLAD=PXRMPDEM("LAD"),PXRMSEX=PXRMPDEM("SEX")
+ S PXRMLAD=PXRMPDEM("LAD"),PXRMSEX=PXRMPDEM("SEX"),PXRMSIG=PXRMPDEM("SIG")
 DEMOK S FIEVAL(FINDING)=0
  D EVALTERM(DFN,.FINDPA,.TERMARR,.TFIEVAL)
  ;Set NOCC and SDIR.
@@ -128,6 +150,12 @@ DEMOK S FIEVAL(FINDING)=0
  ;Order the term findings by date.
  D DORDER(.TFIEVAL,.DATEORDR)
  D COPY(NOCC,SDIR,.TFIEVAL,.DATEORDR,FINDING,.FIEVAL,0)
+ I FIEVAL(FINDING)=0 Q
+ I $G(PXRMDEBG)'=1 Q
+ S IND=0
+ F  S IND=+$O(FIEVAL(FINDING,IND)) Q:IND=0  D
+ . I '$D(FIEVAL(FINDING,IND,"TERM FINDING")) Q
+ . S FIEVAL(FINDING,IND,"TERM FINDING")=$P(TERMARR(20,FIEVAL(FINDING,IND,"TERM FINDING"),0),U,1)
  K ^TMP($J,"SVC",DFN)
  Q
  ;
@@ -145,9 +173,12 @@ OUTPUT(INDENT,IFIEVAL,NLINES,TEXT) ;Produce the clinical
  ;=============================================
 OPT(INDENT,IFIEVAL,NLINES,TEXT,TYPE) ;General output.
  N DG,DGL,DGN,IEN,IND,JND,KND,INDENTT,FILENUM,TEMP,TIFIEVAL
- ;Build the display grouping.
- S FILENUM=IFIEVAL(1,"FILE NUMBER")
- S IEN=$P(IFIEVAL(1,"FINDING"),";",1)
+ ;Build the display grouping, where all findings of the same type
+ ;are grouped together. DGN is the number of mapped findings and
+ ;DGL is the list of groups, DGL(M)=FILE NUMBER^IEN of the finding.
+ ;DGL(M,N)="", N is the term finding number.
+ S FILENUM=IFIEVAL("FILE NUMBER")
+ S IEN=$P(IFIEVAL("FINDING"),";",1)
  S DG(FILENUM,IEN)=1,DGL(1)=FILENUM_U_IEN,DGL(1,1)=""
  S (DGN,IND)=1
  F  S IND=+$O(IFIEVAL(IND)) Q:IND=0  D
@@ -165,7 +196,9 @@ OPT(INDENT,IFIEVAL,NLINES,TEXT,TYPE) ;General output.
  . K TIFIEVAL
  . S (JND,KND)=0
  . F  S JND=$O(DGL(IND,JND)) Q:JND=""  D
- .. S KND=KND+1
+ ..;For immunizations, it is possible only the contra/refusal portion of
+ ..;the finding exists so check before incrementing KND.
+ .. I $D(IFIEVAL(JND)) S KND=KND+1
  .. I KND=1 M TIFIEVAL=IFIEVAL(JND)
  .. M TIFIEVAL(KND)=IFIEVAL(JND)
  . I TYPE="CM" D FOUT^PXRMOUTC(INDENTT,.TIFIEVAL,.NLINES,.TEXT)

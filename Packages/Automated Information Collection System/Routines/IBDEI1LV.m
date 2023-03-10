@@ -1,130 +1,64 @@
-IBDEI1LV ; ; 04-FEB-2020
- ;;3.0;IB ENCOUNTER FORM IMP/EXP;;FEB 04, 2020
- Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,999) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
+IBDEI1LV ; ; 01-FEB-2022
+ ;;3.0;IB ENCOUNTER FORM IMP/EXP;;FEB 01, 2022
+ Q:'DIFQ(358.4)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,999) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
- ;;^UTILITY(U,$J,358.3,25657,2)
- ;;=^5134179
- ;;^UTILITY(U,$J,358.3,25658,0)
- ;;=R22.41^^107^1223^114
- ;;^UTILITY(U,$J,358.3,25658,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,25658,1,3,0)
- ;;=3^Localized Swelling/Mass/Lump,Right Lower Limb
- ;;^UTILITY(U,$J,358.3,25658,1,4,0)
- ;;=4^R22.41
- ;;^UTILITY(U,$J,358.3,25658,2)
- ;;=^5134178
- ;;^UTILITY(U,$J,358.3,25659,0)
- ;;=R22.43^^107^1223^109
- ;;^UTILITY(U,$J,358.3,25659,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,25659,1,3,0)
- ;;=3^Localized Swelling/Mass/Lump,Bilateral Lower Limb
- ;;^UTILITY(U,$J,358.3,25659,1,4,0)
- ;;=4^R22.43
- ;;^UTILITY(U,$J,358.3,25659,2)
- ;;=^5019291
- ;;^UTILITY(U,$J,358.3,25660,0)
- ;;=R22.9^^107^1223^117
- ;;^UTILITY(U,$J,358.3,25660,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,25660,1,3,0)
- ;;=3^Localized Swelling/Mass/Lump,Unspec
- ;;^UTILITY(U,$J,358.3,25660,1,4,0)
- ;;=4^R22.9
- ;;^UTILITY(U,$J,358.3,25660,2)
- ;;=^5019292
- ;;^UTILITY(U,$J,358.3,25661,0)
- ;;=R23.0^^107^1223^61
- ;;^UTILITY(U,$J,358.3,25661,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,25661,1,3,0)
- ;;=3^Cyanosis
- ;;^UTILITY(U,$J,358.3,25661,1,4,0)
- ;;=4^R23.0
- ;;^UTILITY(U,$J,358.3,25661,2)
- ;;=^5019293
- ;;^UTILITY(U,$J,358.3,25662,0)
- ;;=R23.1^^107^1223^133
- ;;^UTILITY(U,$J,358.3,25662,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,25662,1,3,0)
- ;;=3^Pallor
- ;;^UTILITY(U,$J,358.3,25662,1,4,0)
- ;;=4^R23.1
- ;;^UTILITY(U,$J,358.3,25662,2)
- ;;=^5019294
- ;;^UTILITY(U,$J,358.3,25663,0)
- ;;=R23.2^^107^1223^80
- ;;^UTILITY(U,$J,358.3,25663,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,25663,1,3,0)
- ;;=3^Flushing
- ;;^UTILITY(U,$J,358.3,25663,1,4,0)
- ;;=4^R23.2
- ;;^UTILITY(U,$J,358.3,25663,2)
- ;;=^47184
- ;;^UTILITY(U,$J,358.3,25664,0)
- ;;=R23.4^^107^1223^154
- ;;^UTILITY(U,$J,358.3,25664,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,25664,1,3,0)
- ;;=3^Skin Texture Changes
- ;;^UTILITY(U,$J,358.3,25664,1,4,0)
- ;;=4^R23.4
- ;;^UTILITY(U,$J,358.3,25664,2)
- ;;=^5019296
- ;;^UTILITY(U,$J,358.3,25665,0)
- ;;=R26.0^^107^1223^47
- ;;^UTILITY(U,$J,358.3,25665,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,25665,1,3,0)
- ;;=3^Ataxic Gait
- ;;^UTILITY(U,$J,358.3,25665,1,4,0)
- ;;=4^R26.0
- ;;^UTILITY(U,$J,358.3,25665,2)
- ;;=^5019304
- ;;^UTILITY(U,$J,358.3,25666,0)
- ;;=R26.1^^107^1223^135
- ;;^UTILITY(U,$J,358.3,25666,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,25666,1,3,0)
- ;;=3^Paralytic Gait
- ;;^UTILITY(U,$J,358.3,25666,1,4,0)
- ;;=4^R26.1
- ;;^UTILITY(U,$J,358.3,25666,2)
- ;;=^5019305
- ;;^UTILITY(U,$J,358.3,25667,0)
- ;;=R26.81^^107^1223^163
- ;;^UTILITY(U,$J,358.3,25667,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,25667,1,3,0)
- ;;=3^Unsteadiness on Feet
- ;;^UTILITY(U,$J,358.3,25667,1,4,0)
- ;;=4^R26.81
- ;;^UTILITY(U,$J,358.3,25667,2)
- ;;=^5019307
- ;;^UTILITY(U,$J,358.3,25668,0)
- ;;=R26.89^^107^1223^34
- ;;^UTILITY(U,$J,358.3,25668,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,25668,1,3,0)
- ;;=3^Abnormalities of Gait and Mobility NEC
- ;;^UTILITY(U,$J,358.3,25668,1,4,0)
- ;;=4^R26.89
- ;;^UTILITY(U,$J,358.3,25668,2)
- ;;=^5019308
- ;;^UTILITY(U,$J,358.3,25669,0)
- ;;=R26.9^^107^1223^35
- ;;^UTILITY(U,$J,358.3,25669,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,25669,1,3,0)
- ;;=3^Abnormalities of Gait and Mobility,Unspec
- ;;^UTILITY(U,$J,358.3,25669,1,4,0)
- ;;=4^R26.9
- ;;^UTILITY(U,$J,358.3,25669,2)
- ;;=^5019309
- ;;^UTILITY(U,$J,358.3,25670,0)
- ;;=R27.0^^107^1223^46
- ;;^UTILITY(U,$J,358.3,25670,1,0)
- ;;=^358.31IA^4^2
+ ;;^DIC(358.4,0,"GL")
+ ;;=^IBE(358.4,
+ ;;^DIC("B","IMP/EXP SELECTION GROUP",358.4)
+ ;;=
+ ;;^DIC(358.4,"%D",0)
+ ;;=^^4^4^2940217^
+ ;;^DIC(358.4,"%D",1,0)
+ ;;= 
+ ;;^DIC(358.4,"%D",2,0)
+ ;;=This file is nearly identical to file #357.4. It is used by the
+ ;;^DIC(358.4,"%D",3,0)
+ ;;=Import/Export Utility as a temporary staging area for data from that file
+ ;;^DIC(358.4,"%D",4,0)
+ ;;=that is being imported or exported.
+ ;;^DD(358.4,0)
+ ;;=FIELD^^.04^4
+ ;;^DD(358.4,0,"DDA")
+ ;;=N
+ ;;^DD(358.4,0,"DT")
+ ;;=2950717
+ ;;^DD(358.4,0,"ID",.02)
+ ;;=W "   ",$P(^(0),U,2)
+ ;;^DD(358.4,0,"ID",.03)
+ ;;=S %I=Y,Y=$S('$D(^(0)):"",$D(^IBE(358.2,+$P(^(0),U,3),0))#2:$P(^(0),U,1),1:""),C=$P(^DD(358.2,.01,0),U,2) D Y^DIQ:Y]"" W "   ",Y,@("$E("_DIC_"%I,0),0)") S Y=%I K %I
+ ;;^DD(358.4,0,"IX","APO",358.4,.02)
+ ;;=
+ ;;^DD(358.4,0,"IX","APO1",358.4,.03)
+ ;;=
+ ;;^DD(358.4,0,"IX","B",358.4,.01)
+ ;;=
+ ;;^DD(358.4,0,"IX","D",358.4,.03)
+ ;;=
+ ;;^DD(358.4,0,"NM","IMP/EXP SELECTION GROUP")
+ ;;=
+ ;;^DD(358.4,0,"PT",358.3,.04)
+ ;;=
+ ;;^DD(358.4,0,"VRPK")
+ ;;=IBD
+ ;;^DD(358.4,.01,0)
+ ;;=HEADER^RF^^0;1^K:$L(X)>40!($L(X)<1) X
+ ;;^DD(358.4,.01,1,0)
+ ;;=^.1
+ ;;^DD(358.4,.01,1,1,0)
+ ;;=358.4^B
+ ;;^DD(358.4,.01,1,1,1)
+ ;;=S ^IBE(358.4,"B",$E(X,1,30),DA)=""
+ ;;^DD(358.4,.01,1,1,2)
+ ;;=K ^IBE(358.4,"B",$E(X,1,30),DA)
+ ;;^DD(358.4,.01,3)
+ ;;=What text do you want to appear at the top of this group?
+ ;;^DD(358.4,.01,21,0)
+ ;;=^^2^2^2930604^^^^
+ ;;^DD(358.4,.01,21,1,0)
+ ;;= 
+ ;;^DD(358.4,.01,21,2,0)
+ ;;=The name given to a group of selections appearing on a selection list.
+ ;;^DD(358.4,.01,"DEL",1,0)
+ ;;=I '$G(IBLISTPR) W "...Selection Groups can only be deleted through the Encounter Form Utilities!"
+ ;;^DD(358.4,.01,"DT")
+ ;;=2930604

@@ -1,126 +1,128 @@
-IBDEI11X ; ; 04-FEB-2020
- ;;3.0;IB ENCOUNTER FORM IMP/EXP;;FEB 04, 2020
+IBDEI11X ; ; 01-FEB-2022
+ ;;3.0;IB ENCOUNTER FORM IMP/EXP;;FEB 01, 2022
  Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,999) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
- ;;^UTILITY(U,$J,358.3,16902,2)
- ;;=^91041
- ;;^UTILITY(U,$J,358.3,16903,0)
- ;;=K71.50^^88^882^25
- ;;^UTILITY(U,$J,358.3,16903,1,0)
+ ;;^UTILITY(U,$J,358.3,17087,1,4,0)
+ ;;=4^M70.21
+ ;;^UTILITY(U,$J,358.3,17087,2)
+ ;;=^5013047
+ ;;^UTILITY(U,$J,358.3,17088,0)
+ ;;=M70.22^^61^781^67
+ ;;^UTILITY(U,$J,358.3,17088,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,16903,1,3,0)
- ;;=3^Toxic Liver Disease w/ Chronic Active Hepatitis w/o Ascites
- ;;^UTILITY(U,$J,358.3,16903,1,4,0)
- ;;=4^K71.50
- ;;^UTILITY(U,$J,358.3,16903,2)
- ;;=^5008799
- ;;^UTILITY(U,$J,358.3,16904,0)
- ;;=K71.51^^88^882^26
- ;;^UTILITY(U,$J,358.3,16904,1,0)
+ ;;^UTILITY(U,$J,358.3,17088,1,3,0)
+ ;;=3^Olecranon Bursitis,Left Elbow
+ ;;^UTILITY(U,$J,358.3,17088,1,4,0)
+ ;;=4^M70.22
+ ;;^UTILITY(U,$J,358.3,17088,2)
+ ;;=^5013048
+ ;;^UTILITY(U,$J,358.3,17089,0)
+ ;;=M71.161^^61^781^50
+ ;;^UTILITY(U,$J,358.3,17089,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,16904,1,3,0)
- ;;=3^Toxic Liver Disease w/ Chronic Active Hepatitis w/ Ascites
- ;;^UTILITY(U,$J,358.3,16904,1,4,0)
- ;;=4^K71.51
- ;;^UTILITY(U,$J,358.3,16904,2)
- ;;=^5008800
- ;;^UTILITY(U,$J,358.3,16905,0)
- ;;=K71.7^^88^882^29
- ;;^UTILITY(U,$J,358.3,16905,1,0)
+ ;;^UTILITY(U,$J,358.3,17089,1,3,0)
+ ;;=3^Infective Bursitis,Right Knee
+ ;;^UTILITY(U,$J,358.3,17089,1,4,0)
+ ;;=4^M71.161
+ ;;^UTILITY(U,$J,358.3,17089,2)
+ ;;=^5013139
+ ;;^UTILITY(U,$J,358.3,17090,0)
+ ;;=M71.162^^61^781^49
+ ;;^UTILITY(U,$J,358.3,17090,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,16905,1,3,0)
- ;;=3^Toxic Liver Disease w/ Fibrosis & Cirrhosis of Liver
- ;;^UTILITY(U,$J,358.3,16905,1,4,0)
- ;;=4^K71.7
- ;;^UTILITY(U,$J,358.3,16905,2)
- ;;=^5008802
- ;;^UTILITY(U,$J,358.3,16906,0)
- ;;=K71.8^^88^882^33
- ;;^UTILITY(U,$J,358.3,16906,1,0)
+ ;;^UTILITY(U,$J,358.3,17090,1,3,0)
+ ;;=3^Infective Bursitis,Left Knee
+ ;;^UTILITY(U,$J,358.3,17090,1,4,0)
+ ;;=4^M71.162
+ ;;^UTILITY(U,$J,358.3,17090,2)
+ ;;=^5013140
+ ;;^UTILITY(U,$J,358.3,17091,0)
+ ;;=M72.0^^61^781^122
+ ;;^UTILITY(U,$J,358.3,17091,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,16906,1,3,0)
- ;;=3^Toxic Liver Disease w/ Oth Disorders of Liver
- ;;^UTILITY(U,$J,358.3,16906,1,4,0)
- ;;=4^K71.8
- ;;^UTILITY(U,$J,358.3,16906,2)
- ;;=^5008803
- ;;^UTILITY(U,$J,358.3,16907,0)
- ;;=K71.9^^88^882^34
- ;;^UTILITY(U,$J,358.3,16907,1,0)
+ ;;^UTILITY(U,$J,358.3,17091,1,3,0)
+ ;;=3^Palmar Fascial Fibromatosis
+ ;;^UTILITY(U,$J,358.3,17091,1,4,0)
+ ;;=4^M72.0
+ ;;^UTILITY(U,$J,358.3,17091,2)
+ ;;=^5013233
+ ;;^UTILITY(U,$J,358.3,17092,0)
+ ;;=M75.111^^61^781^167
+ ;;^UTILITY(U,$J,358.3,17092,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,16907,1,3,0)
- ;;=3^Toxic Liver Disease,Unspec
- ;;^UTILITY(U,$J,358.3,16907,1,4,0)
- ;;=4^K71.9
- ;;^UTILITY(U,$J,358.3,16907,2)
- ;;=^5008804
- ;;^UTILITY(U,$J,358.3,16908,0)
- ;;=K75.2^^88^882^20
- ;;^UTILITY(U,$J,358.3,16908,1,0)
+ ;;^UTILITY(U,$J,358.3,17092,1,3,0)
+ ;;=3^Rotator Cuff Syndrome,Right Shoulder
+ ;;^UTILITY(U,$J,358.3,17092,1,4,0)
+ ;;=4^M75.111
+ ;;^UTILITY(U,$J,358.3,17092,2)
+ ;;=^5013245
+ ;;^UTILITY(U,$J,358.3,17093,0)
+ ;;=M75.112^^61^781^166
+ ;;^UTILITY(U,$J,358.3,17093,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,16908,1,3,0)
- ;;=3^Nonspecific Reactive Hepatitis
- ;;^UTILITY(U,$J,358.3,16908,1,4,0)
- ;;=4^K75.2
- ;;^UTILITY(U,$J,358.3,16908,2)
- ;;=^5008826
- ;;^UTILITY(U,$J,358.3,16909,0)
- ;;=K75.3^^88^882^13
- ;;^UTILITY(U,$J,358.3,16909,1,0)
+ ;;^UTILITY(U,$J,358.3,17093,1,3,0)
+ ;;=3^Rotator Cuff Syndrome,Left Shoulder
+ ;;^UTILITY(U,$J,358.3,17093,1,4,0)
+ ;;=4^M75.112
+ ;;^UTILITY(U,$J,358.3,17093,2)
+ ;;=^5013246
+ ;;^UTILITY(U,$J,358.3,17094,0)
+ ;;=M75.51^^61^781^10
+ ;;^UTILITY(U,$J,358.3,17094,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,16909,1,3,0)
- ;;=3^Granulomatous Hepatitis NEC
- ;;^UTILITY(U,$J,358.3,16909,1,4,0)
- ;;=4^K75.3
- ;;^UTILITY(U,$J,358.3,16909,2)
- ;;=^5008827
- ;;^UTILITY(U,$J,358.3,16910,0)
- ;;=K76.6^^88^882^22
- ;;^UTILITY(U,$J,358.3,16910,1,0)
+ ;;^UTILITY(U,$J,358.3,17094,1,3,0)
+ ;;=3^Bursitis of Right Shoulder
+ ;;^UTILITY(U,$J,358.3,17094,1,4,0)
+ ;;=4^M75.51
+ ;;^UTILITY(U,$J,358.3,17094,2)
+ ;;=^5133690
+ ;;^UTILITY(U,$J,358.3,17095,0)
+ ;;=M75.52^^61^781^9
+ ;;^UTILITY(U,$J,358.3,17095,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,16910,1,3,0)
- ;;=3^Portal Hypertension
- ;;^UTILITY(U,$J,358.3,16910,1,4,0)
- ;;=4^K76.6
- ;;^UTILITY(U,$J,358.3,16910,2)
- ;;=^5008834
- ;;^UTILITY(U,$J,358.3,16911,0)
- ;;=F20.3^^88^883^31
- ;;^UTILITY(U,$J,358.3,16911,1,0)
+ ;;^UTILITY(U,$J,358.3,17095,1,3,0)
+ ;;=3^Bursitis of Left Shoulder
+ ;;^UTILITY(U,$J,358.3,17095,1,4,0)
+ ;;=4^M75.52
+ ;;^UTILITY(U,$J,358.3,17095,2)
+ ;;=^5133691
+ ;;^UTILITY(U,$J,358.3,17096,0)
+ ;;=M77.11^^61^781^58
+ ;;^UTILITY(U,$J,358.3,17096,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,16911,1,3,0)
- ;;=3^Undifferentiated/Atypical Schizophrenia
- ;;^UTILITY(U,$J,358.3,16911,1,4,0)
- ;;=4^F20.3
- ;;^UTILITY(U,$J,358.3,16911,2)
- ;;=^5003472
- ;;^UTILITY(U,$J,358.3,16912,0)
- ;;=F20.9^^88^883^27
- ;;^UTILITY(U,$J,358.3,16912,1,0)
+ ;;^UTILITY(U,$J,358.3,17096,1,3,0)
+ ;;=3^Lateral Epicondylitis,Right Elbow
+ ;;^UTILITY(U,$J,358.3,17096,1,4,0)
+ ;;=4^M77.11
+ ;;^UTILITY(U,$J,358.3,17096,2)
+ ;;=^5013304
+ ;;^UTILITY(U,$J,358.3,17097,0)
+ ;;=M77.12^^61^781^57
+ ;;^UTILITY(U,$J,358.3,17097,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,16912,1,3,0)
- ;;=3^Schizophrenia,Unspec
- ;;^UTILITY(U,$J,358.3,16912,1,4,0)
- ;;=4^F20.9
- ;;^UTILITY(U,$J,358.3,16912,2)
- ;;=^5003476
- ;;^UTILITY(U,$J,358.3,16913,0)
- ;;=F31.9^^88^883^6
- ;;^UTILITY(U,$J,358.3,16913,1,0)
+ ;;^UTILITY(U,$J,358.3,17097,1,3,0)
+ ;;=3^Lateral Epicondylitis,Left Elbow
+ ;;^UTILITY(U,$J,358.3,17097,1,4,0)
+ ;;=4^M77.12
+ ;;^UTILITY(U,$J,358.3,17097,2)
+ ;;=^5013305
+ ;;^UTILITY(U,$J,358.3,17098,0)
+ ;;=M79.7^^61^781^40
+ ;;^UTILITY(U,$J,358.3,17098,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,16913,1,3,0)
- ;;=3^Bipolar Disorder,Unspec
- ;;^UTILITY(U,$J,358.3,16913,1,4,0)
- ;;=4^F31.9
- ;;^UTILITY(U,$J,358.3,16913,2)
- ;;=^331892
- ;;^UTILITY(U,$J,358.3,16914,0)
- ;;=F31.72^^88^883^7
- ;;^UTILITY(U,$J,358.3,16914,1,0)
+ ;;^UTILITY(U,$J,358.3,17098,1,3,0)
+ ;;=3^Fibromyalgia
+ ;;^UTILITY(U,$J,358.3,17098,1,4,0)
+ ;;=4^M79.7
+ ;;^UTILITY(U,$J,358.3,17098,2)
+ ;;=^46261
+ ;;^UTILITY(U,$J,358.3,17099,0)
+ ;;=M80.08XA^^61^781^1
+ ;;^UTILITY(U,$J,358.3,17099,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,16914,1,3,0)
- ;;=3^Bipolr Disorder,Full Remis,Most Recent Episode Hypomanic
- ;;^UTILITY(U,$J,358.3,16914,1,4,0)
- ;;=4^F31.72
- ;;^UTILITY(U,$J,358.3,16914,2)
- ;;=^5003512
+ ;;^UTILITY(U,$J,358.3,17099,1,3,0)
+ ;;=3^Age-Related Osteoporosis w/ Vertebra Fx,Init Encntr
+ ;;^UTILITY(U,$J,358.3,17099,1,4,0)
+ ;;=4^M80.08XA
+ ;;^UTILITY(U,$J,358.3,17099,2)
+ ;;=^5013495

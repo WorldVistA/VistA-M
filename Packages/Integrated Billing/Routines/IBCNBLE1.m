@@ -1,5 +1,5 @@
 IBCNBLE1 ;DAOU/ESG - Ins Buffer, Expand Entry, con't ;25-JUN-2002
- ;;2.0;INTEGRATED BILLING;**184,271,416,435,467,516,601**;21-MAR-94;Build 14
+ ;;2.0;INTEGRATED BILLING;**184,271,416,435,467,516,601,668**;21-MAR-94;Build 28
  ;;Per VA Directive 6402, this routine should not be modified.
  ;
  ; Can't be called from the top
@@ -179,21 +179,27 @@ ECNOTEX ;
  Q
  ;
 SIDERR(BUF,PIEN) ;
+ ; dw/IB*668 updated utility as the logic was using a field that was made 
+ ; obsolete many years ago.  It may no longer try to use SSN for the subscriber ID
+ ;
  ; If Subscriber ID is required and SSN cannot be substituted
  ; and buffer does not have a sub id -> return error
  ; BUF = buffer IEN
  ; PIEN = payer IEN
  ;
- N ERR,SID,APPIEN,SIDSTR,SIDREQ,SIDSSN
+ N ERR,SID,APPIEN,SIDREQ
  S ERR=""
  ;S SID=$P($G(^IBA(355.33,BUF,60)),U,4)  ; Patch 516 - baa
  S SID=$$GET1^DIQ(355.33,BUF,90.03)  ; Patch 516 - baa
  I SID]"" G SIDX  ; Subscriber id is populated, further checking is moot
- S APPIEN=$$PYRAPP^IBCNEUT5("IIV",PIEN)
- S SIDSTR=$G(^IBE(365.12,PIEN,1,APPIEN,0))
- S SIDREQ=$P(SIDSTR,U,8) I 'SIDREQ G SIDX  ; if sub id is not req'd - ok
- S SIDSSN=$P(SIDSTR,U,9)
- I 'SIDSSN S ERR=18 ; if ssn cannot be used -> B15 status (IEN = 18)
+ ;IB*668/TAZ - Changed Payer Application from IIV to EIV
+ S APPIEN=$$PYRAPP^IBCNEUT5("EIV",PIEN)
+ ;S SIDSTR=$G(^IBE(365.12,PIEN,1,APPIEN,0)) ;dw/668 field was moved
+ ;S SIDREQ=$P(SIDSTR,U,8) I 'SIDREQ G SIDX  ; if sub id is not req'd - ok  
+ ;S SIDSSN=$P(SIDSTR,U,9) I 'SIDSSN S ERR=18 ; if ssn cannot be used -> B15 status (IEN = 18)
+ S SIDREQ=$$GET1^DIQ(365.121,APPIEN_","_PIEN_",",4.02,"I")
+ I 'SIDREQ G SIDX  ; if sub id is not req'd - ok 
+ S ERR=18 ; missing Subscriber ID and it is required -> B15 status (IEN = 18)
 SIDX Q ERR
  ;
 PIDERR(BUF) ;

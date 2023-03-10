@@ -1,134 +1,130 @@
-IBDEI0IV ; ; 04-FEB-2020
- ;;3.0;IB ENCOUNTER FORM IMP/EXP;;FEB 04, 2020
+IBDEI0IV ; ; 01-FEB-2022
+ ;;3.0;IB ENCOUNTER FORM IMP/EXP;;FEB 01, 2022
  Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,999) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
- ;;^UTILITY(U,$J,358.3,8239,2)
- ;;=^5001917
- ;;^UTILITY(U,$J,358.3,8240,0)
- ;;=D04.61^^65^525^17
- ;;^UTILITY(U,$J,358.3,8240,1,0)
+ ;;^UTILITY(U,$J,358.3,8491,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,8240,1,3,0)
- ;;=3^Carcinoma in Situ Skin Right Upper Limb
- ;;^UTILITY(U,$J,358.3,8240,1,4,0)
- ;;=4^D04.61
- ;;^UTILITY(U,$J,358.3,8240,2)
- ;;=^5001919
- ;;^UTILITY(U,$J,358.3,8241,0)
- ;;=D04.62^^65^525^10
- ;;^UTILITY(U,$J,358.3,8241,1,0)
+ ;;^UTILITY(U,$J,358.3,8491,1,3,0)
+ ;;=3^Rheumatic Heart Diseases NEC
+ ;;^UTILITY(U,$J,358.3,8491,1,4,0)
+ ;;=4^I09.89
+ ;;^UTILITY(U,$J,358.3,8491,2)
+ ;;=^5007060
+ ;;^UTILITY(U,$J,358.3,8492,0)
+ ;;=I47.1^^39^400^24
+ ;;^UTILITY(U,$J,358.3,8492,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,8241,1,3,0)
- ;;=3^Carcinoma in Situ Skin Left Upper Limb
- ;;^UTILITY(U,$J,358.3,8241,1,4,0)
- ;;=4^D04.62
- ;;^UTILITY(U,$J,358.3,8241,2)
- ;;=^5001920
- ;;^UTILITY(U,$J,358.3,8242,0)
- ;;=D04.71^^65^525^15
- ;;^UTILITY(U,$J,358.3,8242,1,0)
+ ;;^UTILITY(U,$J,358.3,8492,1,3,0)
+ ;;=3^Supraventricular Tachycardia
+ ;;^UTILITY(U,$J,358.3,8492,1,4,0)
+ ;;=4^I47.1
+ ;;^UTILITY(U,$J,358.3,8492,2)
+ ;;=^5007223
+ ;;^UTILITY(U,$J,358.3,8493,0)
+ ;;=I48.0^^39^400^15
+ ;;^UTILITY(U,$J,358.3,8493,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,8242,1,3,0)
- ;;=3^Carcinoma in Situ Skin Right Lower Limb
- ;;^UTILITY(U,$J,358.3,8242,1,4,0)
- ;;=4^D04.71
- ;;^UTILITY(U,$J,358.3,8242,2)
- ;;=^5001922
- ;;^UTILITY(U,$J,358.3,8243,0)
- ;;=D04.72^^65^525^8
- ;;^UTILITY(U,$J,358.3,8243,1,0)
+ ;;^UTILITY(U,$J,358.3,8493,1,3,0)
+ ;;=3^Paroxysmal Atrial Fibrillation
+ ;;^UTILITY(U,$J,358.3,8493,1,4,0)
+ ;;=4^I48.0
+ ;;^UTILITY(U,$J,358.3,8493,2)
+ ;;=^90473
+ ;;^UTILITY(U,$J,358.3,8494,0)
+ ;;=I49.5^^39^400^23
+ ;;^UTILITY(U,$J,358.3,8494,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,8243,1,3,0)
- ;;=3^Carcinoma in Situ Skin Left Lower Limb
- ;;^UTILITY(U,$J,358.3,8243,1,4,0)
- ;;=4^D04.72
- ;;^UTILITY(U,$J,358.3,8243,2)
- ;;=^5001923
- ;;^UTILITY(U,$J,358.3,8244,0)
- ;;=D04.8^^65^525^12
- ;;^UTILITY(U,$J,358.3,8244,1,0)
+ ;;^UTILITY(U,$J,358.3,8494,1,3,0)
+ ;;=3^Sick Sinus Syndrome
+ ;;^UTILITY(U,$J,358.3,8494,1,4,0)
+ ;;=4^I49.5
+ ;;^UTILITY(U,$J,358.3,8494,2)
+ ;;=^110404
+ ;;^UTILITY(U,$J,358.3,8495,0)
+ ;;=I49.8^^39^400^3
+ ;;^UTILITY(U,$J,358.3,8495,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,8244,1,3,0)
- ;;=3^Carcinoma in Situ Skin Other Sites
- ;;^UTILITY(U,$J,358.3,8244,1,4,0)
- ;;=4^D04.8
- ;;^UTILITY(U,$J,358.3,8244,2)
- ;;=^5001924
- ;;^UTILITY(U,$J,358.3,8245,0)
- ;;=L72.0^^65^525^42
- ;;^UTILITY(U,$J,358.3,8245,1,0)
+ ;;^UTILITY(U,$J,358.3,8495,1,3,0)
+ ;;=3^Cardiac Arrhythmias
+ ;;^UTILITY(U,$J,358.3,8495,1,4,0)
+ ;;=4^I49.8
+ ;;^UTILITY(U,$J,358.3,8495,2)
+ ;;=^5007236
+ ;;^UTILITY(U,$J,358.3,8496,0)
+ ;;=I49.9^^39^400^2
+ ;;^UTILITY(U,$J,358.3,8496,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,8245,1,3,0)
- ;;=3^Cyst,Epidermal
- ;;^UTILITY(U,$J,358.3,8245,1,4,0)
- ;;=4^L72.0
- ;;^UTILITY(U,$J,358.3,8245,2)
- ;;=^5009277
- ;;^UTILITY(U,$J,358.3,8246,0)
- ;;=L72.11^^65^525^44
- ;;^UTILITY(U,$J,358.3,8246,1,0)
+ ;;^UTILITY(U,$J,358.3,8496,1,3,0)
+ ;;=3^Cardiac Arrhythmia,Unspec
+ ;;^UTILITY(U,$J,358.3,8496,1,4,0)
+ ;;=4^I49.9
+ ;;^UTILITY(U,$J,358.3,8496,2)
+ ;;=^5007237
+ ;;^UTILITY(U,$J,358.3,8497,0)
+ ;;=R00.1^^39^400^1
+ ;;^UTILITY(U,$J,358.3,8497,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,8246,1,3,0)
- ;;=3^Cyst,Pilar
- ;;^UTILITY(U,$J,358.3,8246,1,4,0)
- ;;=4^L72.11
- ;;^UTILITY(U,$J,358.3,8246,2)
- ;;=^5009278
- ;;^UTILITY(U,$J,358.3,8247,0)
- ;;=L72.12^^65^525^46
- ;;^UTILITY(U,$J,358.3,8247,1,0)
+ ;;^UTILITY(U,$J,358.3,8497,1,3,0)
+ ;;=3^Bradycardia,Unspec
+ ;;^UTILITY(U,$J,358.3,8497,1,4,0)
+ ;;=4^R00.1
+ ;;^UTILITY(U,$J,358.3,8497,2)
+ ;;=^5019164
+ ;;^UTILITY(U,$J,358.3,8498,0)
+ ;;=I34.1^^39^400^14
+ ;;^UTILITY(U,$J,358.3,8498,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,8247,1,3,0)
- ;;=3^Cyst,Trichodermal
- ;;^UTILITY(U,$J,358.3,8247,1,4,0)
- ;;=4^L72.12
- ;;^UTILITY(U,$J,358.3,8247,2)
- ;;=^5009279
- ;;^UTILITY(U,$J,358.3,8248,0)
- ;;=L72.3^^65^525^45
- ;;^UTILITY(U,$J,358.3,8248,1,0)
+ ;;^UTILITY(U,$J,358.3,8498,1,3,0)
+ ;;=3^Nonrheumatic Mitral Valve Prolapse
+ ;;^UTILITY(U,$J,358.3,8498,1,4,0)
+ ;;=4^I34.1
+ ;;^UTILITY(U,$J,358.3,8498,2)
+ ;;=^5007170
+ ;;^UTILITY(U,$J,358.3,8499,0)
+ ;;=D68.4^^39^401^1
+ ;;^UTILITY(U,$J,358.3,8499,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,8248,1,3,0)
- ;;=3^Cyst,Sebaceous
- ;;^UTILITY(U,$J,358.3,8248,1,4,0)
- ;;=4^L72.3
- ;;^UTILITY(U,$J,358.3,8248,2)
- ;;=^5009281
- ;;^UTILITY(U,$J,358.3,8249,0)
- ;;=A63.0^^65^525^38
- ;;^UTILITY(U,$J,358.3,8249,1,0)
+ ;;^UTILITY(U,$J,358.3,8499,1,3,0)
+ ;;=3^Acquired Coagulation Factor Deficiency
+ ;;^UTILITY(U,$J,358.3,8499,1,4,0)
+ ;;=4^D68.4
+ ;;^UTILITY(U,$J,358.3,8499,2)
+ ;;=^2235
+ ;;^UTILITY(U,$J,358.3,8500,0)
+ ;;=D59.9^^39^401^2
+ ;;^UTILITY(U,$J,358.3,8500,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,8249,1,3,0)
- ;;=3^Condyloma
- ;;^UTILITY(U,$J,358.3,8249,1,4,0)
- ;;=4^A63.0
- ;;^UTILITY(U,$J,358.3,8249,2)
- ;;=^5000360
- ;;^UTILITY(U,$J,358.3,8250,0)
- ;;=L84.^^65^525^1
- ;;^UTILITY(U,$J,358.3,8250,1,0)
+ ;;^UTILITY(U,$J,358.3,8500,1,3,0)
+ ;;=3^Acquired Hemolytic Anemia,Unspec
+ ;;^UTILITY(U,$J,358.3,8500,1,4,0)
+ ;;=4^D59.9
+ ;;^UTILITY(U,$J,358.3,8500,2)
+ ;;=^5002330
+ ;;^UTILITY(U,$J,358.3,8501,0)
+ ;;=C91.00^^39^401^5
+ ;;^UTILITY(U,$J,358.3,8501,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,8250,1,3,0)
- ;;=3^Callus
- ;;^UTILITY(U,$J,358.3,8250,1,4,0)
- ;;=4^L84.
- ;;^UTILITY(U,$J,358.3,8250,2)
- ;;=^271920
- ;;^UTILITY(U,$J,358.3,8251,0)
- ;;=L03.314^^65^525^24
- ;;^UTILITY(U,$J,358.3,8251,1,0)
+ ;;^UTILITY(U,$J,358.3,8501,1,3,0)
+ ;;=3^Acute Lymphoblastic Leukemia,Not in Remission
+ ;;^UTILITY(U,$J,358.3,8501,1,4,0)
+ ;;=4^C91.00
+ ;;^UTILITY(U,$J,358.3,8501,2)
+ ;;=^5001762
+ ;;^UTILITY(U,$J,358.3,8502,0)
+ ;;=C91.01^^39^401^4
+ ;;^UTILITY(U,$J,358.3,8502,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,8251,1,3,0)
- ;;=3^Cellulitis of Groin
- ;;^UTILITY(U,$J,358.3,8251,1,4,0)
- ;;=4^L03.314
- ;;^UTILITY(U,$J,358.3,8251,2)
- ;;=^5009050
- ;;^UTILITY(U,$J,358.3,8252,0)
- ;;=A63.0^^65^525^39
- ;;^UTILITY(U,$J,358.3,8252,1,0)
+ ;;^UTILITY(U,$J,358.3,8502,1,3,0)
+ ;;=3^Acute Lymphoblastic Leukemia,In Remission
+ ;;^UTILITY(U,$J,358.3,8502,1,4,0)
+ ;;=4^C91.01
+ ;;^UTILITY(U,$J,358.3,8502,2)
+ ;;=^5001763
+ ;;^UTILITY(U,$J,358.3,8503,0)
+ ;;=C92.01^^39^401^7
+ ;;^UTILITY(U,$J,358.3,8503,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,8252,1,3,0)
- ;;=3^Condyloma
- ;;^UTILITY(U,$J,358.3,8252,1,4,0)
- ;;=4^A63.0
+ ;;^UTILITY(U,$J,358.3,8503,1,3,0)
+ ;;=3^Acute Myeloblastic Leukemia,In Remission
+ ;;^UTILITY(U,$J,358.3,8503,1,4,0)
+ ;;=4^C92.01

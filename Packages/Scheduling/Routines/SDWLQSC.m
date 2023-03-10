@@ -1,5 +1,5 @@
-SDWLQSC        ;IOFO BAY PINES/TEH,DMR - WAITING LIST-SC PRIORITY BACKGROUND ;09/02/2004 2:10 PM [4/21/05 8:04pm]
- ;;5.3;scheduling;**327,394,467,446**;AUG 13, 1993;Build 77
+SDWLQSC ;IOFO BAY PINES/TEH,DMR - WAITING LIST-SC PRIORITY BACKGROUND ; Apr 26, 2021@12:47
+ ;;5.3;scheduling;**327,394,467,446,786**;AUG 13, 1993;Build 3
  ;
  ;SD*5.3*327       EWL Updates Phase II - Addition of EWL notification messages.
  ;SD*5.3*394       New Routine for background update of SDWL(409.3) SC priorities.
@@ -13,9 +13,10 @@ SDWLQSC        ;IOFO BAY PINES/TEH,DMR - WAITING LIST-SC PRIORITY BACKGROUND ;09
  ;        427 reference to ^DIC(8)                               
  Q
 EN ;Use SDWL(409.3) to determine SC changes and priority.
+ Q  ;Inactive - SD*5.3*786
  S SDWLDFN=0 F  S SDWLDFN=$O(^SDWL(409.3,"B",SDWLDFN)) Q:SDWLDFN<1  D
  .S SDWLDA=0,SDWLME=0 F  S SDWLDA=$O(^SDWL(409.3,"B",SDWLDFN,SDWLDA)) Q:SDWLDA=""  D
- ..L ^SDWL(409.3,SDWLDA):5 I '$T Q
+ ..L +^SDWL(409.3,SDWLDA):$G(DILOCKTM,5) I '$T Q
  ..I $P($G(^SDWL(409.3,SDWLDA,0)),U,17)["C" Q  ;I EWL entry has been 'CLOSED' don't process.
  ..S SDWLME=SDWLME+1
  ..S SDWLSC1=+$P($G(^SDWL(409.3,SDWLDA,"SC")),U,1)
@@ -31,7 +32,7 @@ EN ;Use SDWL(409.3) to determine SC changes and priority.
  ...I SDWLSC2>49 S SDWLSCX=SDWLSC2 D SET0,SET1 Q  ;Set "SC" node if not defined.
  ...I SDWLSC2<50 S SDWLSC3=1,SDWLSC4=1,DA=SDWLDA,DR="14////^S X=SDWLSC2",DIE=409.3 D ^DIE,SET1
  ..K SDWLSSN,SDWLSC2,SDWLSC1,SDWLSC3,SDWLSCP,SDWLX,SDWLI,SDWLSCX
- ..L  Q
+ ..L -^SDWL(409.3,SDWLDA) Q
  I $D(SDWLSC4),SDWLSC4 D
  .I $D(^TMP("SDWLQSC2",$J)) D MESS1^SDWLMSG
  I $D(^TMP("SDWLQSC1",$J)) D MESS^SDWLMSG

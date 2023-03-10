@@ -1,130 +1,126 @@
-IBDEI1HZ ; ; 04-FEB-2020
- ;;3.0;IB ENCOUNTER FORM IMP/EXP;;FEB 04, 2020
+IBDEI1HZ ; ; 01-FEB-2022
+ ;;3.0;IB ENCOUNTER FORM IMP/EXP;;FEB 01, 2022
  Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,999) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
- ;;^UTILITY(U,$J,358.3,23954,1,3,0)
- ;;=3^Admin Exam NEC
- ;;^UTILITY(U,$J,358.3,23954,1,4,0)
- ;;=4^Z02.89
- ;;^UTILITY(U,$J,358.3,23954,2)
- ;;=^5062645
- ;;^UTILITY(U,$J,358.3,23955,0)
- ;;=Z00.8^^107^1197^8
- ;;^UTILITY(U,$J,358.3,23955,1,0)
+ ;;^UTILITY(U,$J,358.3,24224,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,23955,1,3,0)
- ;;=3^General Exam NEC
- ;;^UTILITY(U,$J,358.3,23955,1,4,0)
- ;;=4^Z00.8
- ;;^UTILITY(U,$J,358.3,23955,2)
- ;;=^5062611
- ;;^UTILITY(U,$J,358.3,23956,0)
- ;;=Z02.1^^107^1197^14
- ;;^UTILITY(U,$J,358.3,23956,1,0)
+ ;;^UTILITY(U,$J,358.3,24224,1,3,0)
+ ;;=3^COPD w/ Acute Lower Resp Infection
+ ;;^UTILITY(U,$J,358.3,24224,1,4,0)
+ ;;=4^J44.0
+ ;;^UTILITY(U,$J,358.3,24224,2)
+ ;;=^5008239
+ ;;^UTILITY(U,$J,358.3,24225,0)
+ ;;=J45.20^^82^1047^3
+ ;;^UTILITY(U,$J,358.3,24225,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,23956,1,3,0)
- ;;=3^Pre-Employment Exam
- ;;^UTILITY(U,$J,358.3,23956,1,4,0)
- ;;=4^Z02.1
- ;;^UTILITY(U,$J,358.3,23956,2)
- ;;=^5062634
- ;;^UTILITY(U,$J,358.3,23957,0)
- ;;=Z01.810^^107^1197^2
- ;;^UTILITY(U,$J,358.3,23957,1,0)
+ ;;^UTILITY(U,$J,358.3,24225,1,3,0)
+ ;;=3^Asthma,Mild Intermittent,Uncompl
+ ;;^UTILITY(U,$J,358.3,24225,1,4,0)
+ ;;=4^J45.20
+ ;;^UTILITY(U,$J,358.3,24225,2)
+ ;;=^5008242
+ ;;^UTILITY(U,$J,358.3,24226,0)
+ ;;=J45.21^^82^1047^1
+ ;;^UTILITY(U,$J,358.3,24226,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,23957,1,3,0)
- ;;=3^Cardiovascular Preprocedural Exam
- ;;^UTILITY(U,$J,358.3,23957,1,4,0)
- ;;=4^Z01.810
- ;;^UTILITY(U,$J,358.3,23957,2)
- ;;=^5062625
- ;;^UTILITY(U,$J,358.3,23958,0)
- ;;=Z01.811^^107^1197^16
- ;;^UTILITY(U,$J,358.3,23958,1,0)
+ ;;^UTILITY(U,$J,358.3,24226,1,3,0)
+ ;;=3^Asthma,Mild Intermittent w/ Acute Exacerbation
+ ;;^UTILITY(U,$J,358.3,24226,1,4,0)
+ ;;=4^J45.21
+ ;;^UTILITY(U,$J,358.3,24226,2)
+ ;;=^5008243
+ ;;^UTILITY(U,$J,358.3,24227,0)
+ ;;=J45.22^^82^1047^2
+ ;;^UTILITY(U,$J,358.3,24227,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,23958,1,3,0)
- ;;=3^Respiratory Preprocedural Exam
- ;;^UTILITY(U,$J,358.3,23958,1,4,0)
- ;;=4^Z01.811
- ;;^UTILITY(U,$J,358.3,23958,2)
- ;;=^5062626
- ;;^UTILITY(U,$J,358.3,23959,0)
- ;;=Z01.812^^107^1197^13
- ;;^UTILITY(U,$J,358.3,23959,1,0)
+ ;;^UTILITY(U,$J,358.3,24227,1,3,0)
+ ;;=3^Asthma,Mild Intermittent w/ Status Asthmaticus
+ ;;^UTILITY(U,$J,358.3,24227,1,4,0)
+ ;;=4^J45.22
+ ;;^UTILITY(U,$J,358.3,24227,2)
+ ;;=^5008244
+ ;;^UTILITY(U,$J,358.3,24228,0)
+ ;;=J45.31^^82^1047^4
+ ;;^UTILITY(U,$J,358.3,24228,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,23959,1,3,0)
- ;;=3^Lab Preprocedural Exam
- ;;^UTILITY(U,$J,358.3,23959,1,4,0)
- ;;=4^Z01.812
- ;;^UTILITY(U,$J,358.3,23959,2)
- ;;=^5062627
- ;;^UTILITY(U,$J,358.3,23960,0)
- ;;=Z01.818^^107^1197^15
- ;;^UTILITY(U,$J,358.3,23960,1,0)
+ ;;^UTILITY(U,$J,358.3,24228,1,3,0)
+ ;;=3^Asthma,Mild Persistent w/ Acute Exacerbation
+ ;;^UTILITY(U,$J,358.3,24228,1,4,0)
+ ;;=4^J45.31
+ ;;^UTILITY(U,$J,358.3,24228,2)
+ ;;=^5008246
+ ;;^UTILITY(U,$J,358.3,24229,0)
+ ;;=J45.32^^82^1047^5
+ ;;^UTILITY(U,$J,358.3,24229,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,23960,1,3,0)
- ;;=3^Preprocedural Exam NEC
- ;;^UTILITY(U,$J,358.3,23960,1,4,0)
- ;;=4^Z01.818
- ;;^UTILITY(U,$J,358.3,23960,2)
- ;;=^5062628
- ;;^UTILITY(U,$J,358.3,23961,0)
- ;;=Z71.0^^107^1197^9
- ;;^UTILITY(U,$J,358.3,23961,1,0)
+ ;;^UTILITY(U,$J,358.3,24229,1,3,0)
+ ;;=3^Asthma,Mild Persistent w/ Status Asthmaticus
+ ;;^UTILITY(U,$J,358.3,24229,1,4,0)
+ ;;=4^J45.32
+ ;;^UTILITY(U,$J,358.3,24229,2)
+ ;;=^5008247
+ ;;^UTILITY(U,$J,358.3,24230,0)
+ ;;=J45.40^^82^1047^6
+ ;;^UTILITY(U,$J,358.3,24230,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,23961,1,3,0)
- ;;=3^Hlth Service to Consult on Behalf of Another
- ;;^UTILITY(U,$J,358.3,23961,1,4,0)
- ;;=4^Z71.0
- ;;^UTILITY(U,$J,358.3,23961,2)
- ;;=^5063242
- ;;^UTILITY(U,$J,358.3,23962,0)
- ;;=Z59.8^^107^1197^10
- ;;^UTILITY(U,$J,358.3,23962,1,0)
+ ;;^UTILITY(U,$J,358.3,24230,1,3,0)
+ ;;=3^Asthma,Mod Persistent,Uncomplicated
+ ;;^UTILITY(U,$J,358.3,24230,1,4,0)
+ ;;=4^J45.40
+ ;;^UTILITY(U,$J,358.3,24230,2)
+ ;;=^5008248
+ ;;^UTILITY(U,$J,358.3,24231,0)
+ ;;=J44.9^^82^1047^13
+ ;;^UTILITY(U,$J,358.3,24231,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,23962,1,3,0)
- ;;=3^Housing/Economic Circumstance Problems
- ;;^UTILITY(U,$J,358.3,23962,1,4,0)
- ;;=4^Z59.8
- ;;^UTILITY(U,$J,358.3,23962,2)
- ;;=^5063137
- ;;^UTILITY(U,$J,358.3,23963,0)
- ;;=I20.0^^107^1198^5
- ;;^UTILITY(U,$J,358.3,23963,1,0)
+ ;;^UTILITY(U,$J,358.3,24231,1,3,0)
+ ;;=3^COPD,Unspec
+ ;;^UTILITY(U,$J,358.3,24231,1,4,0)
+ ;;=4^J44.9
+ ;;^UTILITY(U,$J,358.3,24231,2)
+ ;;=^5008241
+ ;;^UTILITY(U,$J,358.3,24232,0)
+ ;;=I50.1^^82^1048^1
+ ;;^UTILITY(U,$J,358.3,24232,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,23963,1,3,0)
- ;;=3^Unstable Angina
- ;;^UTILITY(U,$J,358.3,23963,1,4,0)
- ;;=4^I20.0
- ;;^UTILITY(U,$J,358.3,23963,2)
- ;;=^5007076
- ;;^UTILITY(U,$J,358.3,23964,0)
- ;;=I25.2^^107^1198^4
- ;;^UTILITY(U,$J,358.3,23964,1,0)
+ ;;^UTILITY(U,$J,358.3,24232,1,3,0)
+ ;;=3^Left Ventricular Failure
+ ;;^UTILITY(U,$J,358.3,24232,1,4,0)
+ ;;=4^I50.1
+ ;;^UTILITY(U,$J,358.3,24232,2)
+ ;;=^5007238
+ ;;^UTILITY(U,$J,358.3,24233,0)
+ ;;=I50.20^^82^1048^2
+ ;;^UTILITY(U,$J,358.3,24233,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,23964,1,3,0)
- ;;=3^Old Myocardial Infarction
- ;;^UTILITY(U,$J,358.3,23964,1,4,0)
- ;;=4^I25.2
- ;;^UTILITY(U,$J,358.3,23964,2)
- ;;=^259884
- ;;^UTILITY(U,$J,358.3,23965,0)
- ;;=I20.8^^107^1198^2
- ;;^UTILITY(U,$J,358.3,23965,1,0)
+ ;;^UTILITY(U,$J,358.3,24233,1,3,0)
+ ;;=3^Heart Failure,Systolic,Unspec
+ ;;^UTILITY(U,$J,358.3,24233,1,4,0)
+ ;;=4^I50.20
+ ;;^UTILITY(U,$J,358.3,24233,2)
+ ;;=^5007239
+ ;;^UTILITY(U,$J,358.3,24234,0)
+ ;;=I50.21^^82^1048^3
+ ;;^UTILITY(U,$J,358.3,24234,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,23965,1,3,0)
- ;;=3^Angina Pectoris,Oth Forms
- ;;^UTILITY(U,$J,358.3,23965,1,4,0)
- ;;=4^I20.8
- ;;^UTILITY(U,$J,358.3,23965,2)
- ;;=^5007078
- ;;^UTILITY(U,$J,358.3,23966,0)
- ;;=I20.1^^107^1198^1
- ;;^UTILITY(U,$J,358.3,23966,1,0)
+ ;;^UTILITY(U,$J,358.3,24234,1,3,0)
+ ;;=3^Heart Failure,Systolic,Acute
+ ;;^UTILITY(U,$J,358.3,24234,1,4,0)
+ ;;=4^I50.21
+ ;;^UTILITY(U,$J,358.3,24234,2)
+ ;;=^5007240
+ ;;^UTILITY(U,$J,358.3,24235,0)
+ ;;=I50.22^^82^1048^4
+ ;;^UTILITY(U,$J,358.3,24235,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,23966,1,3,0)
- ;;=3^Angina Pectoris w/ Documented Spasm
- ;;^UTILITY(U,$J,358.3,23966,1,4,0)
- ;;=4^I20.1
- ;;^UTILITY(U,$J,358.3,23966,2)
- ;;=^5007077
+ ;;^UTILITY(U,$J,358.3,24235,1,3,0)
+ ;;=3^Heart Failure,Systolic,Chronic
+ ;;^UTILITY(U,$J,358.3,24235,1,4,0)
+ ;;=4^I50.22
+ ;;^UTILITY(U,$J,358.3,24235,2)
+ ;;=^5007241
+ ;;^UTILITY(U,$J,358.3,24236,0)
+ ;;=I50.23^^82^1048^5
+ ;;^UTILITY(U,$J,358.3,24236,1,0)
+ ;;=^358.31IA^4^2

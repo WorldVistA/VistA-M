@@ -1,5 +1,5 @@
-DGRPCE ;ALB/MRL,KV,PJR,BRM,ERC,TDM,LBD - CONSISTENCY CHECKER, EDIT INCONSISTENCIES ;10/20/10 3:52pm
- ;;5.3;Registration;**121,122,175,297,342,451,626,689,653,754,797,855,952**;Aug 13, 1993;Build 160
+DGRPCE ;ALB/MRL,KV,PJR,BRM,ERC,TDM,LBD,ARF - CONSISTENCY CHECKER, EDIT INCONSISTENCIES ;10/20/10 3:52pm
+ ;;5.3;Registration;**121,122,175,297,342,451,626,689,653,754,797,855,952,1075**;Aug 13, 1993;Build 13
  ;Per VHA Directive 6402, this routine should not be modified.
  ;
  ;KV;11/15/00;DG*5.3*297;Disable addition of CD Elig Code in Reg. Screens
@@ -73,9 +73,10 @@ MON I $S(I<40:1,I=56:1,1:0) D SAVE Q
 26 ;;
 27 ;;
 28 ;;
-29 ;;.36205;S:X'="Y" Y="@29";I DGVTYN'="Y" W !,"Patient not a veteran-can't claim A&A" S Y=.36205;.36295;@29;
-30 ;;.36215;S:X'="Y" Y="@30";I DGVTYN'="Y" W !,"Patient not a veteran-can't claim HOUSEBOUND" S Y=.36215;.36295;@30;
-31 ;;.36235;S:X'="Y" Y="@31";I DGVTYN'="Y" W !,"Patient not a veteran-can't claim VA PENSION" S Y=.36235;.36295;@31;
+ ;DG*5.3*1075: Set default to NO for NON-VETERANS only at the three receiving prompts: RECEIVING A&A BENEFITS?(#.36205), RECEIVING HOUSEBOUND BENEFITS?(#36215), RECEIVING A VA PENSION?(#.36235)
+29 ;;I DGVTYN'="Y" S Y="@291";.36205;S Y="@292";@291;.36205//NO;@292;S:X'="Y" Y="@29";I DGVTYN'="Y" W !,"Patient not a veteran-can't claim A&A" S Y=.36205;.36295;@29;
+30 ;;I DGVTYN'="Y" S Y="@301";.36215;S Y="@302";@301;.36215//NO;@302;S:X'="Y" Y="@30";I DGVTYN'="Y" W !,"Patient not a veteran-can't claim HOUSEBOUND" S Y=.36215;.36295;@30;
+31 ;;I DGVTYN'="Y" S Y="@311";.36235;S Y="@312";@311;.36235//NO;@312;S:X'="Y" Y="@31";I DGVTYN'="Y" W !,"Patient not a veteran-can't claim VA PENSION" S Y=.36235;.36295;@31;
 32 ;;.36255;S:X'="Y" Y="@32";I DGVTYN'="Y" W !,"Patient not a veteran-can't claim MIL. RET." S Y=.36255;.3625;@32;
 33 ;;
 34 ;;.525;S:X'="Y" Y="@34";I DGVTYN'="Y" W !,"Patient not a veteran-can't claim POW STATUS" S Y=.525;.526:.528;@34;

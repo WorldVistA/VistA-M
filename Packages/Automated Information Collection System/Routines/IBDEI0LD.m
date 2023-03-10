@@ -1,138 +1,122 @@
-IBDEI0LD ; ; 04-FEB-2020
- ;;3.0;IB ENCOUNTER FORM IMP/EXP;;FEB 04, 2020
+IBDEI0LD ; ; 01-FEB-2022
+ ;;3.0;IB ENCOUNTER FORM IMP/EXP;;FEB 01, 2022
  Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,999) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
- ;;^UTILITY(U,$J,358.3,9476,0)
- ;;=E87.2^^72^644^28
- ;;^UTILITY(U,$J,358.3,9476,1,0)
+ ;;^UTILITY(U,$J,358.3,9615,2)
+ ;;=^5003139
+ ;;^UTILITY(U,$J,358.3,9616,0)
+ ;;=F11.281^^39^415^58
+ ;;^UTILITY(U,$J,358.3,9616,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,9476,1,3,0)
- ;;=3^Acidosis
- ;;^UTILITY(U,$J,358.3,9476,1,4,0)
- ;;=4^E87.2
- ;;^UTILITY(U,$J,358.3,9476,2)
- ;;=^5003020
- ;;^UTILITY(U,$J,358.3,9477,0)
- ;;=I95.1^^72^644^20
- ;;^UTILITY(U,$J,358.3,9477,1,0)
+ ;;^UTILITY(U,$J,358.3,9616,1,3,0)
+ ;;=3^Opioid Dependence w/ Opioid-Induced Sexual Dysfunction
+ ;;^UTILITY(U,$J,358.3,9616,1,4,0)
+ ;;=4^F11.281
+ ;;^UTILITY(U,$J,358.3,9616,2)
+ ;;=^5003138
+ ;;^UTILITY(U,$J,358.3,9617,0)
+ ;;=F11.259^^39^415^57
+ ;;^UTILITY(U,$J,358.3,9617,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,9477,1,3,0)
- ;;=3^Hypotension,Orthostatic
- ;;^UTILITY(U,$J,358.3,9477,1,4,0)
- ;;=4^I95.1
- ;;^UTILITY(U,$J,358.3,9477,2)
- ;;=^60741
- ;;^UTILITY(U,$J,358.3,9478,0)
- ;;=N17.9^^72^644^13
- ;;^UTILITY(U,$J,358.3,9478,1,0)
+ ;;^UTILITY(U,$J,358.3,9617,1,3,0)
+ ;;=3^Opioid Dependence w/ Opioid-Induced Psychotic Disorder,Unspec
+ ;;^UTILITY(U,$J,358.3,9617,1,4,0)
+ ;;=4^F11.259
+ ;;^UTILITY(U,$J,358.3,9617,2)
+ ;;=^5003137
+ ;;^UTILITY(U,$J,358.3,9618,0)
+ ;;=F11.251^^39^415^50
+ ;;^UTILITY(U,$J,358.3,9618,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,9478,1,3,0)
- ;;=3^Acute Kidney Failure
- ;;^UTILITY(U,$J,358.3,9478,1,4,0)
- ;;=4^N17.9
- ;;^UTILITY(U,$J,358.3,9478,2)
- ;;=^338532
- ;;^UTILITY(U,$J,358.3,9479,0)
- ;;=N15.9^^72^644^14
- ;;^UTILITY(U,$J,358.3,9479,1,0)
+ ;;^UTILITY(U,$J,358.3,9618,1,3,0)
+ ;;=3^Opioid Depend w/ Opioid-Induc Psychotic Disorder w/ Hallucin
+ ;;^UTILITY(U,$J,358.3,9618,1,4,0)
+ ;;=4^F11.251
+ ;;^UTILITY(U,$J,358.3,9618,2)
+ ;;=^5003136
+ ;;^UTILITY(U,$J,358.3,9619,0)
+ ;;=F11.250^^39^415^51
+ ;;^UTILITY(U,$J,358.3,9619,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,9479,1,3,0)
- ;;=3^Renal Disease
- ;;^UTILITY(U,$J,358.3,9479,1,4,0)
- ;;=4^N15.9
- ;;^UTILITY(U,$J,358.3,9479,2)
- ;;=^5015596
- ;;^UTILITY(U,$J,358.3,9480,0)
- ;;=N18.9^^72^644^15
- ;;^UTILITY(U,$J,358.3,9480,1,0)
+ ;;^UTILITY(U,$J,358.3,9619,1,3,0)
+ ;;=3^Opioid Depend w/ Opioid-Induc Psychotic Disorder w/ Delusions
+ ;;^UTILITY(U,$J,358.3,9619,1,4,0)
+ ;;=4^F11.250
+ ;;^UTILITY(U,$J,358.3,9619,2)
+ ;;=^5003135
+ ;;^UTILITY(U,$J,358.3,9620,0)
+ ;;=F11.24^^39^415^56
+ ;;^UTILITY(U,$J,358.3,9620,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,9480,1,3,0)
- ;;=3^Chronic Kidney Disease
- ;;^UTILITY(U,$J,358.3,9480,1,4,0)
- ;;=4^N18.9
- ;;^UTILITY(U,$J,358.3,9480,2)
- ;;=^332812
- ;;^UTILITY(U,$J,358.3,9481,0)
- ;;=N18.6^^72^644^16
- ;;^UTILITY(U,$J,358.3,9481,1,0)
+ ;;^UTILITY(U,$J,358.3,9620,1,3,0)
+ ;;=3^Opioid Dependence w/ Opioid-Induced Mood Disorder
+ ;;^UTILITY(U,$J,358.3,9620,1,4,0)
+ ;;=4^F11.24
+ ;;^UTILITY(U,$J,358.3,9620,2)
+ ;;=^5003134
+ ;;^UTILITY(U,$J,358.3,9621,0)
+ ;;=F11.23^^39^415^62
+ ;;^UTILITY(U,$J,358.3,9621,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,9481,1,3,0)
- ;;=3^ESRD
- ;;^UTILITY(U,$J,358.3,9481,1,4,0)
- ;;=4^N18.6
- ;;^UTILITY(U,$J,358.3,9481,2)
- ;;=^303986
- ;;^UTILITY(U,$J,358.3,9482,0)
- ;;=N10.^^72^644^30
- ;;^UTILITY(U,$J,358.3,9482,1,0)
+ ;;^UTILITY(U,$J,358.3,9621,1,3,0)
+ ;;=3^Opioid Dependence w/ Withdrawal
+ ;;^UTILITY(U,$J,358.3,9621,1,4,0)
+ ;;=4^F11.23
+ ;;^UTILITY(U,$J,358.3,9621,2)
+ ;;=^5003133
+ ;;^UTILITY(U,$J,358.3,9622,0)
+ ;;=F11.20^^39^415^63
+ ;;^UTILITY(U,$J,358.3,9622,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,9482,1,3,0)
- ;;=3^Acute Pyelonephritis
- ;;^UTILITY(U,$J,358.3,9482,1,4,0)
- ;;=4^N10.
- ;;^UTILITY(U,$J,358.3,9482,2)
- ;;=^5015570
- ;;^UTILITY(U,$J,358.3,9483,0)
- ;;=N13.30^^72^644^31
- ;;^UTILITY(U,$J,358.3,9483,1,0)
+ ;;^UTILITY(U,$J,358.3,9622,1,3,0)
+ ;;=3^Opioid Dependence,Uncomplicated
+ ;;^UTILITY(U,$J,358.3,9622,1,4,0)
+ ;;=4^F11.20
+ ;;^UTILITY(U,$J,358.3,9622,2)
+ ;;=^5003127
+ ;;^UTILITY(U,$J,358.3,9623,0)
+ ;;=F11.229^^39^415^55
+ ;;^UTILITY(U,$J,358.3,9623,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,9483,1,3,0)
- ;;=3^Hydronephrosis
- ;;^UTILITY(U,$J,358.3,9483,1,4,0)
- ;;=4^N13.30
- ;;^UTILITY(U,$J,358.3,9483,2)
- ;;=^5015578
- ;;^UTILITY(U,$J,358.3,9484,0)
- ;;=N13.4^^72^644^32
- ;;^UTILITY(U,$J,358.3,9484,1,0)
+ ;;^UTILITY(U,$J,358.3,9623,1,3,0)
+ ;;=3^Opioid Dependence w/ Intoxication,Unspec
+ ;;^UTILITY(U,$J,358.3,9623,1,4,0)
+ ;;=4^F11.229
+ ;;^UTILITY(U,$J,358.3,9623,2)
+ ;;=^5003132
+ ;;^UTILITY(U,$J,358.3,9624,0)
+ ;;=F11.222^^39^415^53
+ ;;^UTILITY(U,$J,358.3,9624,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,9484,1,3,0)
- ;;=3^Hydroureter
- ;;^UTILITY(U,$J,358.3,9484,1,4,0)
- ;;=4^N13.4
- ;;^UTILITY(U,$J,358.3,9484,2)
- ;;=^186913
- ;;^UTILITY(U,$J,358.3,9485,0)
- ;;=R73.9^^72^644^2
- ;;^UTILITY(U,$J,358.3,9485,1,0)
+ ;;^UTILITY(U,$J,358.3,9624,1,3,0)
+ ;;=3^Opioid Dependence w/ Intoxication w/ Perceptual Disturbance
+ ;;^UTILITY(U,$J,358.3,9624,1,4,0)
+ ;;=4^F11.222
+ ;;^UTILITY(U,$J,358.3,9624,2)
+ ;;=^5003131
+ ;;^UTILITY(U,$J,358.3,9625,0)
+ ;;=F11.221^^39^415^52
+ ;;^UTILITY(U,$J,358.3,9625,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,9485,1,3,0)
- ;;=3^Hyperglycemia
- ;;^UTILITY(U,$J,358.3,9485,1,4,0)
- ;;=4^R73.9
- ;;^UTILITY(U,$J,358.3,9485,2)
- ;;=^5019564
- ;;^UTILITY(U,$J,358.3,9486,0)
- ;;=T82.590A^^72^644^17
- ;;^UTILITY(U,$J,358.3,9486,1,0)
+ ;;^UTILITY(U,$J,358.3,9625,1,3,0)
+ ;;=3^Opioid Dependence w/ Intoxication Delirium
+ ;;^UTILITY(U,$J,358.3,9625,1,4,0)
+ ;;=4^F11.221
+ ;;^UTILITY(U,$J,358.3,9625,2)
+ ;;=^5003130
+ ;;^UTILITY(U,$J,358.3,9626,0)
+ ;;=F11.220^^39^415^54
+ ;;^UTILITY(U,$J,358.3,9626,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,9486,1,3,0)
- ;;=3^Malfunction of AV Fistula
- ;;^UTILITY(U,$J,358.3,9486,1,4,0)
- ;;=4^T82.590A
- ;;^UTILITY(U,$J,358.3,9486,2)
- ;;=^5054884
- ;;^UTILITY(U,$J,358.3,9487,0)
- ;;=T83.022A^^72^644^18
- ;;^UTILITY(U,$J,358.3,9487,1,0)
+ ;;^UTILITY(U,$J,358.3,9626,1,3,0)
+ ;;=3^Opioid Dependence w/ Intoxication,Uncomplicated
+ ;;^UTILITY(U,$J,358.3,9626,1,4,0)
+ ;;=4^F11.220
+ ;;^UTILITY(U,$J,358.3,9626,2)
+ ;;=^5003129
+ ;;^UTILITY(U,$J,358.3,9627,0)
+ ;;=F14.29^^39^415^34
+ ;;^UTILITY(U,$J,358.3,9627,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,9487,1,3,0)
- ;;=3^Displacement of Nephrostomy Catheter
- ;;^UTILITY(U,$J,358.3,9487,1,4,0)
- ;;=4^T83.022A
- ;;^UTILITY(U,$J,358.3,9487,2)
- ;;=^5140060
- ;;^UTILITY(U,$J,358.3,9488,0)
- ;;=T68.XXXA^^72^644^34
- ;;^UTILITY(U,$J,358.3,9488,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,9488,1,3,0)
- ;;=3^Hypothermia
- ;;^UTILITY(U,$J,358.3,9488,1,4,0)
- ;;=4^T68.XXXA
- ;;^UTILITY(U,$J,358.3,9488,2)
- ;;=^5053951
- ;;^UTILITY(U,$J,358.3,9489,0)
- ;;=E11.10^^72^644^5
- ;;^UTILITY(U,$J,358.3,9489,1,0)
- ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,9627,1,3,0)
+ ;;=3^Cocaine Dependence w/ Unspec Cocaine-Induced Disorder

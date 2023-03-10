@@ -1,5 +1,5 @@
-VAFCTF ;BIR/DLR-Utility for capturing patient's Date Last Treated and Event Reason ;9/9/2002
- ;;5.3;Registration;**428,713,766,856**;Aug 13, 1993;Build 5
+VAFCTF ;BIR/DLR-Utility for capturing patient's Date Last Treated and Event Reason ; 5/6/20 5:29pm
+ ;;5.3;Registration;**428,713,766,856,1013**;Aug 13, 1993;Build 2
  Q  ; quit if called from the top
  ;
  ;Reference to ^SCE("ADFN" supported by IA# 2953
@@ -14,9 +14,11 @@ EN1(VAFCDFN,VAFCSUP) ; determine the LAST TREATMENT DATE for a single
  ; output: VAFCDATE - patient's DATE LAST TREATED
  ;         VAFCENVR - event reason
  ;
- N ERR,VAFCSITE,VAFCLAST,VAFCSITE,VAFCADMD,VAFCENDT,VAFCDATE,VAFCENVR,VAFCTYPE
+ N ERR,VAFCSITE,VAFCLAST,VAFCSITE,VAFCADMD,VAFCENDT,VAFCDATE,VAFCENVR,VAFCTYPE,STA
  S U="^"
  S:'$D(VAFCSITE) VAFCSITE=$$KSP^XUPARAM("INST") ;defines the local facility
+ ;**1013 - Story 1260465 (ckn) - HAC specific changes
+ S STA=$$STA^XUAF4(VAFCSITE) I STA=741 S VAFCSITE=$$IEN^XUAF4("741MM"),STA="741MM"
  S (VAFCLAST,VAFCADMD)=$$ADMDIS(VAFCDFN) ; dt_"^"_event type or ""
  S VAFCADMD=$S(VAFCADMD]"":$P(VAFCADMD,"^"),1:"") ; event dt or null
  S:$P(VAFCLAST,"^",2)=3!(VAFCLAST="") VAFCENDT=$$ENCDT(VAFCDFN,VAFCADMD)
@@ -31,7 +33,7 @@ EN1(VAFCDFN,VAFCSUP) ; determine the LAST TREATMENT DATE for a single
  ;
  I +VAFCDATE'>0 S VAFCDATE="",VAFCENVR=""
  I +VAFCDATE>0 S VAFCENVR=$S(VAFCTYPE=1:"A1",VAFCTYPE=3:"A2",1:"A3") ;A1=adm;A2=dis;A3=CO
- N STA,ICN S ICN=$$ICNLC^MPIF001(VAFCDFN),STA=$P($$SITE^VASITE,"^",3)
+ N ICN S ICN=$$ICNLC^MPIF001(VAFCDFN)
  ;**856 adding the new parameters to this FILE^VAFCTFU call
  ;FILE(PDFN,FSTRG,TICN,VAFCSLT,ERROR,IPP,SOURCEID,IDENSTAT,AA,IDTYP)
  D FILE^VAFCTFU(VAFCDFN,VAFCSITE_U_VAFCDATE_U_VAFCENVR,$G(VAFCSUP),1,.ERR,"",VAFCDFN,"A","USVHA","PI") I $D(ERR(STA)) D EXC^RGHLLOG(212,ERR(STA),VAFCDFN)

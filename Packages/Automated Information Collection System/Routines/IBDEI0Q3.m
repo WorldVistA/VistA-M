@@ -1,126 +1,120 @@
-IBDEI0Q3 ; ; 04-FEB-2020
- ;;3.0;IB ENCOUNTER FORM IMP/EXP;;FEB 04, 2020
+IBDEI0Q3 ; ; 01-FEB-2022
+ ;;3.0;IB ENCOUNTER FORM IMP/EXP;;FEB 01, 2022
  Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,999) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
- ;;^UTILITY(U,$J,358.3,11636,1,1,0)
- ;;=1^Problem Focused
- ;;^UTILITY(U,$J,358.3,11636,1,2,0)
- ;;=2^99241
- ;;^UTILITY(U,$J,358.3,11637,0)
- ;;=99242^^78^744^2
- ;;^UTILITY(U,$J,358.3,11637,1,0)
- ;;=^358.31IA^2^2
- ;;^UTILITY(U,$J,358.3,11637,1,1,0)
- ;;=1^Expanded Problem Focus
- ;;^UTILITY(U,$J,358.3,11637,1,2,0)
- ;;=2^99242
- ;;^UTILITY(U,$J,358.3,11638,0)
- ;;=99243^^78^744^3
- ;;^UTILITY(U,$J,358.3,11638,1,0)
- ;;=^358.31IA^2^2
- ;;^UTILITY(U,$J,358.3,11638,1,1,0)
- ;;=1^Detailed
- ;;^UTILITY(U,$J,358.3,11638,1,2,0)
- ;;=2^99243
- ;;^UTILITY(U,$J,358.3,11639,0)
- ;;=99244^^78^744^4
- ;;^UTILITY(U,$J,358.3,11639,1,0)
- ;;=^358.31IA^2^2
- ;;^UTILITY(U,$J,358.3,11639,1,1,0)
- ;;=1^Comprehensive, Moderate
- ;;^UTILITY(U,$J,358.3,11639,1,2,0)
- ;;=2^99244
- ;;^UTILITY(U,$J,358.3,11640,0)
- ;;=99245^^78^744^5
- ;;^UTILITY(U,$J,358.3,11640,1,0)
- ;;=^358.31IA^2^2
- ;;^UTILITY(U,$J,358.3,11640,1,1,0)
- ;;=1^Comprehensive, High
- ;;^UTILITY(U,$J,358.3,11640,1,2,0)
- ;;=2^99245
- ;;^UTILITY(U,$J,358.3,11641,0)
- ;;=19100^^79^745^1
- ;;^UTILITY(U,$J,358.3,11641,1,0)
+ ;;^UTILITY(U,$J,358.3,11727,1,4,0)
+ ;;=4^N02.2
+ ;;^UTILITY(U,$J,358.3,11727,2)
+ ;;=^5015513
+ ;;^UTILITY(U,$J,358.3,11728,0)
+ ;;=N02.3^^46^573^73
+ ;;^UTILITY(U,$J,358.3,11728,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,11641,1,2,0)
- ;;=2^Bx,Breast,needle,w/o imaging
- ;;^UTILITY(U,$J,358.3,11641,1,4,0)
- ;;=4^19100
- ;;^UTILITY(U,$J,358.3,11642,0)
- ;;=11042^^79^745^5^^^^1
- ;;^UTILITY(U,$J,358.3,11642,1,0)
+ ;;^UTILITY(U,$J,358.3,11728,1,3,0)
+ ;;=3^Recur & perst hematur w/ diffus mesangial prolif glomrlneph
+ ;;^UTILITY(U,$J,358.3,11728,1,4,0)
+ ;;=4^N02.3
+ ;;^UTILITY(U,$J,358.3,11728,2)
+ ;;=^5015514
+ ;;^UTILITY(U,$J,358.3,11729,0)
+ ;;=N02.4^^46^573^72
+ ;;^UTILITY(U,$J,358.3,11729,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,11642,1,2,0)
- ;;=2^Debride skin/SQ 20sq cm or <
- ;;^UTILITY(U,$J,358.3,11642,1,4,0)
- ;;=4^11042
- ;;^UTILITY(U,$J,358.3,11643,0)
- ;;=11043^^79^745^4^^^^1
- ;;^UTILITY(U,$J,358.3,11643,1,0)
+ ;;^UTILITY(U,$J,358.3,11729,1,3,0)
+ ;;=3^Recur & perst hematur w/ diffus endocaplry prolif glomrlneph
+ ;;^UTILITY(U,$J,358.3,11729,1,4,0)
+ ;;=4^N02.4
+ ;;^UTILITY(U,$J,358.3,11729,2)
+ ;;=^5015515
+ ;;^UTILITY(U,$J,358.3,11730,0)
+ ;;=N02.5^^46^573^77
+ ;;^UTILITY(U,$J,358.3,11730,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,11643,1,2,0)
- ;;=2^Debride skin-SQ/Muscle 20sq cm or <
- ;;^UTILITY(U,$J,358.3,11643,1,4,0)
- ;;=4^11043
- ;;^UTILITY(U,$J,358.3,11644,0)
- ;;=11045^^79^745^6^^^^1
- ;;^UTILITY(U,$J,358.3,11644,1,0)
+ ;;^UTILITY(U,$J,358.3,11730,1,3,0)
+ ;;=3^Recurrent & perst hematur w/ diffuse mesangiocap glomrlneph
+ ;;^UTILITY(U,$J,358.3,11730,1,4,0)
+ ;;=4^N02.5
+ ;;^UTILITY(U,$J,358.3,11730,2)
+ ;;=^5015516
+ ;;^UTILITY(U,$J,358.3,11731,0)
+ ;;=N02.6^^46^573^74
+ ;;^UTILITY(U,$J,358.3,11731,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,11644,1,2,0)
- ;;=2^Debride skin/SQ,ea addl 20sq cm
- ;;^UTILITY(U,$J,358.3,11644,1,4,0)
- ;;=4^11045
- ;;^UTILITY(U,$J,358.3,11645,0)
- ;;=11046^^79^745^3^^^^1
- ;;^UTILITY(U,$J,358.3,11645,1,0)
+ ;;^UTILITY(U,$J,358.3,11731,1,3,0)
+ ;;=3^Recurrent & perst hematur w/ dense deposit disease
+ ;;^UTILITY(U,$J,358.3,11731,1,4,0)
+ ;;=4^N02.6
+ ;;^UTILITY(U,$J,358.3,11731,2)
+ ;;=^5015517
+ ;;^UTILITY(U,$J,358.3,11732,0)
+ ;;=N02.7^^46^573^75
+ ;;^UTILITY(U,$J,358.3,11732,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,11645,1,2,0)
- ;;=2^Deb skin-SQ/Musc,ea adl 20sq cm
- ;;^UTILITY(U,$J,358.3,11645,1,4,0)
- ;;=4^11046
- ;;^UTILITY(U,$J,358.3,11646,0)
- ;;=97597^^79^745^11^^^^1
- ;;^UTILITY(U,$J,358.3,11646,1,0)
+ ;;^UTILITY(U,$J,358.3,11732,1,3,0)
+ ;;=3^Recurrent & perst hematur w/ diffuse crescentic glomrlneph
+ ;;^UTILITY(U,$J,358.3,11732,1,4,0)
+ ;;=4^N02.7
+ ;;^UTILITY(U,$J,358.3,11732,2)
+ ;;=^5015518
+ ;;^UTILITY(U,$J,358.3,11733,0)
+ ;;=N02.8^^46^573^80
+ ;;^UTILITY(U,$J,358.3,11733,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,11646,1,2,0)
- ;;=2^Rmvl Devital Tis </= 20 Sq Cm
- ;;^UTILITY(U,$J,358.3,11646,1,4,0)
- ;;=4^97597
- ;;^UTILITY(U,$J,358.3,11647,0)
- ;;=97598^^79^745^12^^^^1
- ;;^UTILITY(U,$J,358.3,11647,1,0)
+ ;;^UTILITY(U,$J,358.3,11733,1,3,0)
+ ;;=3^Recurrent & perst hematur w/ oth morphologic changes
+ ;;^UTILITY(U,$J,358.3,11733,1,4,0)
+ ;;=4^N02.8
+ ;;^UTILITY(U,$J,358.3,11733,2)
+ ;;=^5015519
+ ;;^UTILITY(U,$J,358.3,11734,0)
+ ;;=N02.9^^46^573^81
+ ;;^UTILITY(U,$J,358.3,11734,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,11647,1,2,0)
- ;;=2^Rmvl Devital Tis > 20 Sq Cm
- ;;^UTILITY(U,$J,358.3,11647,1,4,0)
- ;;=4^97598
- ;;^UTILITY(U,$J,358.3,11648,0)
- ;;=97602^^79^745^2^^^^1
- ;;^UTILITY(U,$J,358.3,11648,1,0)
+ ;;^UTILITY(U,$J,358.3,11734,1,3,0)
+ ;;=3^Recurrent & perst hematur w/ unsp morphologic changes
+ ;;^UTILITY(U,$J,358.3,11734,1,4,0)
+ ;;=4^N02.9
+ ;;^UTILITY(U,$J,358.3,11734,2)
+ ;;=^5015520
+ ;;^UTILITY(U,$J,358.3,11735,0)
+ ;;=N03.0^^46^573^18
+ ;;^UTILITY(U,$J,358.3,11735,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,11648,1,2,0)
- ;;=2^Deb Non-Select w/ Collagenase
- ;;^UTILITY(U,$J,358.3,11648,1,4,0)
- ;;=4^97602
- ;;^UTILITY(U,$J,358.3,11649,0)
- ;;=11104^^79^745^9^^^^1
- ;;^UTILITY(U,$J,358.3,11649,1,0)
+ ;;^UTILITY(U,$J,358.3,11735,1,3,0)
+ ;;=3^Chr nephritic syndrome w/ minor glomerular abnormality
+ ;;^UTILITY(U,$J,358.3,11735,1,4,0)
+ ;;=4^N03.0
+ ;;^UTILITY(U,$J,358.3,11735,2)
+ ;;=^5015521
+ ;;^UTILITY(U,$J,358.3,11736,0)
+ ;;=N03.1^^46^573^17
+ ;;^UTILITY(U,$J,358.3,11736,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,11649,1,2,0)
- ;;=2^Punch Bx,Skin,1st Lesion
- ;;^UTILITY(U,$J,358.3,11649,1,4,0)
- ;;=4^11104
- ;;^UTILITY(U,$J,358.3,11650,0)
- ;;=11105^^79^745^10^^^^1
- ;;^UTILITY(U,$J,358.3,11650,1,0)
+ ;;^UTILITY(U,$J,358.3,11736,1,3,0)
+ ;;=3^Chr nephritic syndrome w/ focal & seg glomerular lesions
+ ;;^UTILITY(U,$J,358.3,11736,1,4,0)
+ ;;=4^N03.1
+ ;;^UTILITY(U,$J,358.3,11736,2)
+ ;;=^5015522
+ ;;^UTILITY(U,$J,358.3,11737,0)
+ ;;=N03.2^^46^573^14
+ ;;^UTILITY(U,$J,358.3,11737,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,11650,1,2,0)
- ;;=2^Punch Bx,Skin,Ea Addl Lesion
- ;;^UTILITY(U,$J,358.3,11650,1,4,0)
- ;;=4^11105
- ;;^UTILITY(U,$J,358.3,11651,0)
- ;;=11106^^79^745^7^^^^1
- ;;^UTILITY(U,$J,358.3,11651,1,0)
+ ;;^UTILITY(U,$J,358.3,11737,1,3,0)
+ ;;=3^Chr nephritic syndrome w/ diffuse membranous glomrlneph
+ ;;^UTILITY(U,$J,358.3,11737,1,4,0)
+ ;;=4^N03.2
+ ;;^UTILITY(U,$J,358.3,11737,2)
+ ;;=^5015523
+ ;;^UTILITY(U,$J,358.3,11738,0)
+ ;;=N03.3^^46^573^15
+ ;;^UTILITY(U,$J,358.3,11738,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,11651,1,2,0)
- ;;=2^Incisional Bx,Skin,1st Lesion
+ ;;^UTILITY(U,$J,358.3,11738,1,3,0)
+ ;;=3^Chr nephritic syndrome w/ diffuse mesangial prolif glomrlneph
+ ;;^UTILITY(U,$J,358.3,11738,1,4,0)
+ ;;=4^N03.3
+ ;;^UTILITY(U,$J,358.3,11738,2)
+ ;;=^5015524
+ ;;^UTILITY(U,$J,358.3,11739,0)
+ ;;=N03.4^^46^573^13

@@ -1,5 +1,5 @@
-DGMTSCR ;ALB/RMO/CAW - Means Test Screen Read Processor ; 8/1/08 1:21pm
- ;;5.3;Registration;**45,688**;Aug 13, 1993;Build 29
+DGMTSCR ;ALB/RMO/CAW,HM,JAM - Means Test Screen Read Processor ; 8/1/08 1:21pm
+ ;;5.3;Registration;**45,688,1014,1064**;Aug 13, 1993;Build 41
  ;
  ; Input  -- DGRNG    Range of selectable items
  ;           DGMTACT  Means Test Action
@@ -14,6 +14,8 @@ DGMTSCR ;ALB/RMO/CAW - Means Test Screen Read Processor ; 8/1/08 1:21pm
  ;           DGSEL    Column selections available  (ie, V, S, C)
  ;           DGSELTY  User input - column selected  (ie, V or S or C)
  ;
+ ; Reference to XQY0 in ICR #3356
+ ;
 EN K DGDR,DGSEL,DGSELTY,DGX,DGY,I D FEED
  I $G(DGSCR1) S X="" G EN1
  W !,DGVI,"<RET>",DGVO," to CONTINUE," W:DGMTACT'="VEW" " ",DGVI,DGRNG,DGVO," or ",DGVI,"'ALL' ",DGVO,"to EDIT," W DGVI," ^N",DGVO," for screen N, or ",DGVI,"'^'",DGVO," to EXIT: " R X:DTIME S:'$T X="^"
@@ -24,7 +26,11 @@ EN1 K DGSCR1 S DGX=$$UPPER^DGUTL(X)
  I DGMTACT'="VEW",$E(DGX)="A" S X=DGX,Z="^ALL" D IN^DGHELP S:%'=-1 DGX=DGRNG
  I DGX["?" D HLP G Q^DGMTSC:$D(DTOUT)!($D(DUOUT)),@($$ROU^DGMTSCU(DGMTSCI))
  I DGX="",$O(DGMTSC(DGMTSCI)) G @($$ROU^DGMTSCU($O(DGMTSC(DGMTSCI))))
- I DGX="" G Q^DGMTSC
+ ; DG*5.3*1064 - If in View Past Co-Pay Test option, check patient's Indian status to print message
+ I DGX="" D  G Q^DGMTSC
+ . I $P(XQY0,"^",1)="DG CO-PAY TEST VIEW TEST" I $$INDSTATUS^DGENELA2(DFN) D
+ . . D BLD^DIALOG(261134,"","","","F")
+ . . D MSG^DIALOG("WM","","","")
  I DGMTACT'="VEW" D PRO I $D(DGSELTY) S DGX=DGSELTY_DGX
  S:DGMTACT="VEW" DGERR=1 I DGERR D HLP G @($$ROU^DGMTSCU(DGMTSCI))
 Q G @($$ROURET^DGMTSCU(DGMTSCI))
@@ -49,7 +55,9 @@ HLP ;Help display
  I DGMTACT'="VEW" W !,"Enter 'ALL' to edit all available items on the screen."
  W !,"Enter '^N' to jump to a select screen.  Enter '^' to exit."
  W !!,"AVAILABLE SCREENS"
- S I=0 F  S I=$O(DGMTSC(I)) Q:'I  W !,"[",+$$SCR^DGMTSCU(I),"]  ",$P($$SCR^DGMTSCU(I),";",2)
+ S I=0 F  S I=$O(DGMTSC(I)) Q:'I  D
+ .I I=4,DGMTACT'="VEW" Q  ;DG*5.3*1014 do not display screen 4 for help 
+ .W !,"[",+$$SCR^DGMTSCU(I),"]  ",$P($$SCR^DGMTSCU(I),";",2)
  S DGLNE="",DGIOM=$S('IOM:80,1:IOM),$P(DGLNE,"=",(DGIOM-1))=""
  W !,DGLNE S DIR(0)="E" D ^DIR
  Q

@@ -1,5 +1,5 @@
 RCDPBPLM ;WISC/RFJ - bill profile ;1 Jun 99
- ;;4.5;Accounts Receivable;**114,153,159,241,276,303,301,315**;Mar 20, 1995;Build 67
+ ;;4.5;Accounts Receivable;**114,153,159,241,276,303,301,315,388**;Mar 20, 1995;Build 13
  ;;Per VA Directive 6402, this routine should not be modified.
  ;
  ;
@@ -19,12 +19,14 @@ RCDPBPLM ;WISC/RFJ - bill profile ;1 Jun 99
 INIT ;  initialization for list manager list
  ;  requires rcbillda
  N BILLED,COMMDA,DATA,PAID,RCDPDATA,RCFYDA,RCLINE,REPTYPE,X1,X2,RCDEBTOR,DFN
+ N RPIEN,RPDATA  ; PRCA*4.5*388
  K ^TMP("RCDPBPLM",$J),^TMP("VALM VIDEO",$J)
  ;
  ;  fast exit
  I $G(RCDPFXIT) S VALMQUIT=1 Q
  ;
  D DIQ430(RCBILLDA,".01:300")
+ S RPIEN=+$$GET1^DIQ(430,RCBILLDA_",",45,"I") I RPIEN D GETS^DIQ(340.5,RPIEN_",",".01;.03;.05:.07",,"RPDATA")  ; PRCA*4.5*388
  ;
  ;  set the listmanager line number
  S RCLINE=0
@@ -37,7 +39,7 @@ INIT ;  initialization for list manager list
  S RCLINE=RCLINE+1 D SET("   Addr: "_%,RCLINE,1,80)
  S RCLINE=RCLINE+1 D SET("  Phone: "_$P(DATA,"^",10),RCLINE,1,80)
  S RCDEBTOR=$P(^PRCA(430,RCBILLDA,0),U,9)
- I $P(^RCD(340,+RCDEBTOR,0),U)["DPT(" S DFN=+^(0) D
+ I RCDEBTOR,($P(^RCD(340,+RCDEBTOR,0),U)["DPT(") S DFN=+^(0) D  ; Skip D if no Debtor link
  . Q:$$EMGRES^DGUTL(DFN)'["K"
  . S RCLINE=RCLINE+1
  . D SET("EMERGENCY RESPONSE INDICATOR: HURRICANE KATRINA",RCLINE,1,80)
@@ -148,7 +150,7 @@ BILLRJ ;====== BILL PROFILE REJECT INSERTED HERE ;LEG
  I $D(^PRCA(430,RCBILLDA,18)) D REJECT^RCDPBPLI ; prca*4.5*301
  ;
  ;  repayment plan (show only if there)
- I RCDPDATA(430,RCBILLDA,41,"I") D REPAY^RCDPBPLI
+ I RPIEN D REPAY^RCDPBPLI  ; PRCA*4.5*388
  ;
  ;  irs data (show only if there)
  I RCDPDATA(430,RCBILLDA,68.7,"I") D IRS^RCDPBPLI
@@ -198,8 +200,13 @@ EXIT ;  exit list manager option and clean up
  Q
  ;
  ;
-SET(STRING,LINE,COLBEG,COLEND,FIELD,ON,OFF) ;  set array
- I $G(FIELD) S STRING=STRING_$S(STRING="":"",1:": ")_$G(RCDPDATA(430,RCBILLDA,FIELD,"E"))
+SET(STRING,LINE,COLBEG,COLEND,FIELD,ON,OFF,RPFLG) ;  set array
+ S RPFLG=$G(RPFLG,0)  ; PRCA*4.5*388
+ I $G(FIELD) D
+ .S STRING=STRING_$S(STRING="":"",1:": ")
+ .S STRING=STRING_$S(RPFLG:$G(RPDATA(340.5,RPIEN_",",FIELD)),1:$G(RCDPDATA(430,RCBILLDA,FIELD,"E")))
+ .Q
+ ;
  I STRING="",'$G(FIELD) Q
  I '$D(@VALMAR@(LINE,0)) D SET^VALM10(LINE,$J("",80))
  D SET^VALM10(LINE,$$SETSTR^VALM1(STRING,@VALMAR@(LINE,0),COLBEG,COLEND-COLBEG+1))

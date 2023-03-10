@@ -1,126 +1,130 @@
-IBDEI0XK ; ; 04-FEB-2020
- ;;3.0;IB ENCOUNTER FORM IMP/EXP;;FEB 04, 2020
+IBDEI0XK ; ; 01-FEB-2022
+ ;;3.0;IB ENCOUNTER FORM IMP/EXP;;FEB 01, 2022
  Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,999) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
- ;;^UTILITY(U,$J,358.3,14947,1,4,0)
- ;;=4^K85.21
- ;;^UTILITY(U,$J,358.3,14947,2)
- ;;=^5138753
- ;;^UTILITY(U,$J,358.3,14948,0)
- ;;=K85.22^^85^837^17
- ;;^UTILITY(U,$J,358.3,14948,1,0)
+ ;;^UTILITY(U,$J,358.3,15123,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,14948,1,3,0)
- ;;=3^Pancreatitis,Acute Alcohol w/ Infected necrosis
- ;;^UTILITY(U,$J,358.3,14948,1,4,0)
- ;;=4^K85.22
- ;;^UTILITY(U,$J,358.3,14948,2)
- ;;=^5138754
- ;;^UTILITY(U,$J,358.3,14949,0)
- ;;=K85.10^^85^837^19
- ;;^UTILITY(U,$J,358.3,14949,1,0)
+ ;;^UTILITY(U,$J,358.3,15123,1,3,0)
+ ;;=3^Pain,Foot,Left
+ ;;^UTILITY(U,$J,358.3,15123,1,4,0)
+ ;;=4^M79.672
+ ;;^UTILITY(U,$J,358.3,15123,2)
+ ;;=^5013351
+ ;;^UTILITY(U,$J,358.3,15124,0)
+ ;;=M54.31^^58^715^66
+ ;;^UTILITY(U,$J,358.3,15124,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,14949,1,3,0)
- ;;=3^Pancreatitis,Acute Biliary
- ;;^UTILITY(U,$J,358.3,14949,1,4,0)
- ;;=4^K85.10
- ;;^UTILITY(U,$J,358.3,14949,2)
- ;;=^5138749
- ;;^UTILITY(U,$J,358.3,14950,0)
- ;;=K85.11^^85^837^21
- ;;^UTILITY(U,$J,358.3,14950,1,0)
+ ;;^UTILITY(U,$J,358.3,15124,1,3,0)
+ ;;=3^Sciatica,Right
+ ;;^UTILITY(U,$J,358.3,15124,1,4,0)
+ ;;=4^M54.31
+ ;;^UTILITY(U,$J,358.3,15124,2)
+ ;;=^5012306
+ ;;^UTILITY(U,$J,358.3,15125,0)
+ ;;=M54.32^^58^715^65
+ ;;^UTILITY(U,$J,358.3,15125,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,14950,1,3,0)
- ;;=3^Pancreatitis,Acute Biliary w/ Uninfected necrosis
- ;;^UTILITY(U,$J,358.3,14950,1,4,0)
- ;;=4^K85.11
- ;;^UTILITY(U,$J,358.3,14950,2)
- ;;=^5138750
- ;;^UTILITY(U,$J,358.3,14951,0)
- ;;=K85.12^^85^837^20
- ;;^UTILITY(U,$J,358.3,14951,1,0)
+ ;;^UTILITY(U,$J,358.3,15125,1,3,0)
+ ;;=3^Sciatica,Left
+ ;;^UTILITY(U,$J,358.3,15125,1,4,0)
+ ;;=4^M54.32
+ ;;^UTILITY(U,$J,358.3,15125,2)
+ ;;=^5012307
+ ;;^UTILITY(U,$J,358.3,15126,0)
+ ;;=G44.201^^58^715^70
+ ;;^UTILITY(U,$J,358.3,15126,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,14951,1,3,0)
- ;;=3^Pancreatitis,Acute Biliary w/ Infected necrosis
- ;;^UTILITY(U,$J,358.3,14951,1,4,0)
- ;;=4^K85.12
- ;;^UTILITY(U,$J,358.3,14951,2)
- ;;=^5138751
- ;;^UTILITY(U,$J,358.3,14952,0)
- ;;=K85.30^^85^837^22
- ;;^UTILITY(U,$J,358.3,14952,1,0)
+ ;;^UTILITY(U,$J,358.3,15126,1,3,0)
+ ;;=3^Tension Headache,Intractable
+ ;;^UTILITY(U,$J,358.3,15126,1,4,0)
+ ;;=4^G44.201
+ ;;^UTILITY(U,$J,358.3,15126,2)
+ ;;=^5003935
+ ;;^UTILITY(U,$J,358.3,15127,0)
+ ;;=G50.0^^58^715^76
+ ;;^UTILITY(U,$J,358.3,15127,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,14952,1,3,0)
- ;;=3^Pancreatitis,Acute Drug
- ;;^UTILITY(U,$J,358.3,14952,1,4,0)
- ;;=4^K85.30
- ;;^UTILITY(U,$J,358.3,14952,2)
- ;;=^5138755
- ;;^UTILITY(U,$J,358.3,14953,0)
- ;;=K85.31^^85^837^24
- ;;^UTILITY(U,$J,358.3,14953,1,0)
+ ;;^UTILITY(U,$J,358.3,15127,1,3,0)
+ ;;=3^Trigeminal Neuralgia
+ ;;^UTILITY(U,$J,358.3,15127,1,4,0)
+ ;;=4^G50.0
+ ;;^UTILITY(U,$J,358.3,15127,2)
+ ;;=^121978
+ ;;^UTILITY(U,$J,358.3,15128,0)
+ ;;=M79.10^^58^715^28
+ ;;^UTILITY(U,$J,358.3,15128,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,14953,1,3,0)
- ;;=3^Pancreatitis,Acute Drug w/ Uninfected necrosis
- ;;^UTILITY(U,$J,358.3,14953,1,4,0)
- ;;=4^K85.31
- ;;^UTILITY(U,$J,358.3,14953,2)
- ;;=^5138756
- ;;^UTILITY(U,$J,358.3,14954,0)
- ;;=K85.32^^85^837^23
- ;;^UTILITY(U,$J,358.3,14954,1,0)
+ ;;^UTILITY(U,$J,358.3,15128,1,3,0)
+ ;;=3^Myalga,Unspec Site
+ ;;^UTILITY(U,$J,358.3,15128,1,4,0)
+ ;;=4^M79.10
+ ;;^UTILITY(U,$J,358.3,15128,2)
+ ;;=^5157394
+ ;;^UTILITY(U,$J,358.3,15129,0)
+ ;;=M79.11^^58^715^30
+ ;;^UTILITY(U,$J,358.3,15129,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,14954,1,3,0)
- ;;=3^Pancreatitis,Acute Drug w/ Infected necrosis
- ;;^UTILITY(U,$J,358.3,14954,1,4,0)
- ;;=4^K85.32
- ;;^UTILITY(U,$J,358.3,14954,2)
- ;;=^5138757
- ;;^UTILITY(U,$J,358.3,14955,0)
- ;;=K85.00^^85^837^25
- ;;^UTILITY(U,$J,358.3,14955,1,0)
+ ;;^UTILITY(U,$J,358.3,15129,1,3,0)
+ ;;=3^Myalgia,Mastication Muscle
+ ;;^UTILITY(U,$J,358.3,15129,1,4,0)
+ ;;=4^M79.11
+ ;;^UTILITY(U,$J,358.3,15129,2)
+ ;;=^5157395
+ ;;^UTILITY(U,$J,358.3,15130,0)
+ ;;=M79.12^^58^715^29
+ ;;^UTILITY(U,$J,358.3,15130,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,14955,1,3,0)
- ;;=3^Pancreatitis,Acute Idiopathic
- ;;^UTILITY(U,$J,358.3,14955,1,4,0)
- ;;=4^K85.00
- ;;^UTILITY(U,$J,358.3,14955,2)
- ;;=^5138746
- ;;^UTILITY(U,$J,358.3,14956,0)
- ;;=K85.01^^85^837^27
- ;;^UTILITY(U,$J,358.3,14956,1,0)
+ ;;^UTILITY(U,$J,358.3,15130,1,3,0)
+ ;;=3^Myalgia,Auxiliary Muscles,Head/Neck
+ ;;^UTILITY(U,$J,358.3,15130,1,4,0)
+ ;;=4^M79.12
+ ;;^UTILITY(U,$J,358.3,15130,2)
+ ;;=^5157396
+ ;;^UTILITY(U,$J,358.3,15131,0)
+ ;;=M79.18^^58^715^31
+ ;;^UTILITY(U,$J,358.3,15131,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,14956,1,3,0)
- ;;=3^Pancreatitis,Acute Idiopathic w/ Uninfected necrosis
- ;;^UTILITY(U,$J,358.3,14956,1,4,0)
- ;;=4^K85.01
- ;;^UTILITY(U,$J,358.3,14956,2)
- ;;=^5138747
- ;;^UTILITY(U,$J,358.3,14957,0)
- ;;=K85.02^^85^837^26
- ;;^UTILITY(U,$J,358.3,14957,1,0)
+ ;;^UTILITY(U,$J,358.3,15131,1,3,0)
+ ;;=3^Myalgia,Other Site
+ ;;^UTILITY(U,$J,358.3,15131,1,4,0)
+ ;;=4^M79.18
+ ;;^UTILITY(U,$J,358.3,15131,2)
+ ;;=^5157397
+ ;;^UTILITY(U,$J,358.3,15132,0)
+ ;;=R51.0^^58^715^18
+ ;;^UTILITY(U,$J,358.3,15132,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,14957,1,3,0)
- ;;=3^Pancreatitis,Acute Idiopathic w/ Infected necrosis
- ;;^UTILITY(U,$J,358.3,14957,1,4,0)
- ;;=4^K85.02
- ;;^UTILITY(U,$J,358.3,14957,2)
- ;;=^5138748
- ;;^UTILITY(U,$J,358.3,14958,0)
- ;;=R93.3^^85^837^1
- ;;^UTILITY(U,$J,358.3,14958,1,0)
+ ;;^UTILITY(U,$J,358.3,15132,1,3,0)
+ ;;=3^Headache w/ Orthostatic Component
+ ;;^UTILITY(U,$J,358.3,15132,1,4,0)
+ ;;=4^R51.0
+ ;;^UTILITY(U,$J,358.3,15132,2)
+ ;;=^5159305
+ ;;^UTILITY(U,$J,358.3,15133,0)
+ ;;=R51.9^^58^715^19
+ ;;^UTILITY(U,$J,358.3,15133,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,14958,1,3,0)
- ;;=3^Abnormal imaging Pancreas
- ;;^UTILITY(U,$J,358.3,14958,1,4,0)
- ;;=4^R93.3
- ;;^UTILITY(U,$J,358.3,14958,2)
- ;;=^5019716
- ;;^UTILITY(U,$J,358.3,14959,0)
- ;;=Q45.1^^85^837^2
- ;;^UTILITY(U,$J,358.3,14959,1,0)
+ ;;^UTILITY(U,$J,358.3,15133,1,3,0)
+ ;;=3^Headache,Unspec
+ ;;^UTILITY(U,$J,358.3,15133,1,4,0)
+ ;;=4^R51.9
+ ;;^UTILITY(U,$J,358.3,15133,2)
+ ;;=^5159306
+ ;;^UTILITY(U,$J,358.3,15134,0)
+ ;;=Z47.1^^58^716^1
+ ;;^UTILITY(U,$J,358.3,15134,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,14959,1,3,0)
- ;;=3^Annular pancreas
- ;;^UTILITY(U,$J,358.3,14959,1,4,0)
- ;;=4^Q45.1
+ ;;^UTILITY(U,$J,358.3,15134,1,3,0)
+ ;;=3^Aftercare following joint replacement surgery
+ ;;^UTILITY(U,$J,358.3,15134,1,4,0)
+ ;;=4^Z47.1
+ ;;^UTILITY(U,$J,358.3,15134,2)
+ ;;=^5063025
+ ;;^UTILITY(U,$J,358.3,15135,0)
+ ;;=Z96.662^^58^716^2
+ ;;^UTILITY(U,$J,358.3,15135,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,15135,1,3,0)
+ ;;=3^Presence of left artificial ankle joint
+ ;;^UTILITY(U,$J,358.3,15135,1,4,0)
+ ;;=4^Z96.662

@@ -1,5 +1,6 @@
-DGBTUTL1 ;PAV - BENEFICIARY/TRAVEL UTILITY ROUTINES;11/14/11
- ;;1.0;Beneficiary Travel;**20,24**;September 25, 2001;Build 13
+DGBTUTL1 ;PAV - BENEFICIARY/TRAVEL UTILITY ROUTINES ; 11/14/11
+ ;;1.0;Beneficiary Travel;**20,24,39**;September 25, 2001;Build 6
+ ;;Reference to ADD^VADPT supported by ICR #10061
 ELIG(DFN) ;***PAVEL
  ;IBARXEU1 = DBIA1046
  ;DFN - Patient IEN
@@ -187,3 +188,52 @@ MTCHK(DFN,DGBTDTI) ;
  ;
 MTQ ;
  Q RESULT
+ ;
+RESADDR(DGBTADDR) ;dgbt*1.0*39 - residential address
+ ;This api was created to utilize the Veteran's residential address.
+ ;If no residential address exists, default to the mailing address.
+ ;
+ ;DGBTADDR array
+ ; (1) - street address 1
+ ; (2) - street address 2
+ ; (3) - street address 3
+ ; (4) - city
+ ; (5) - state
+ ; (6) - zip code internal^external format
+ ; (7) - county
+ ;
+ N X ;preserve value of x prior to vadpt call
+ I $G(DFN) D ADD^VADPT D  ;ICR #10061
+ . I $D(VAPA(30)) D  Q  ;if residential street address 1, vapa(30), is defined then must have city and zip
+ .. ;set residential address components
+ .. S DGBTADDR(1)=$G(VAPA(30)) ;residential street address 1
+ .. S DGBTADDR(2)=$G(VAPA(31)) ;residential street address 2
+ .. S DGBTADDR(3)=$G(VAPA(32)) ;residential street address 3
+ .. S DGBTADDR(4)=$G(VAPA(33)) ;residential city - required if residential street address 1, vapa(30), defined
+ .. S DGBTADDR(5)=$G(VAPA(34)) ;residential state internal^external format.(e.g., 6^CALIFORNIA)
+ .. I $D(VAPA(35)) D  ;residential zip code
+ ... ;set nine or five digit zip code internal^external format (e.g. 123454444^12345-4444)
+ ... I $L($G(VAPA(35)))>5&($G(VAPA(35))?9N) S DGBTADDR(6)=VAPA(35)_"^"_$E(VAPA(35),1,5)_"-"_$E(VAPA(35),6,9) Q
+ ... S DGBTADDR(6)=$G(VAPA(35))_"^"_$G(VAPA(35)) Q  ;five digit zip code
+ .. S DGBTADDR(7)=$G(VAPA(36)) ;residential county internal^external format.(e.g., 1^ALAMEDA)
+ . ;
+ . Q:$G(DGBTRES)  ;when called from bt dashboard only use residential address
+ . ;
+ . ;default to mailing address components if no residential address
+ . S DGBTADDR(1)=$G(VAPA(1)) ;mailing street address 1
+ . S DGBTADDR(2)=$G(VAPA(2)) ;mailing street address 2
+ . S DGBTADDR(3)=$G(VAPA(3)) ;mailing street address 3
+ . S DGBTADDR(4)=$G(VAPA(4)) ;mailing city
+ . S DGBTADDR(5)=$G(VAPA(5)) ;mailing state internal^external format.(e.g., 6^CALIFORNIA)
+ . S DGBTADDR(6)=$G(VAPA(11)) ;mailing zip code internal^external format (e.g. 123454444^12345-4444)
+ . S DGBTADDR(7)=$G(VAPA(7)) ;mailing county internal^external format.(e.g., 1^ALAMEDA)
+ . Q
+ Q
+ ;
+DASHADDR(DFN) ;dgbt*1.0*39 - function to pull the address for the bt dashboard patient class
+ Q:'$G(DFN)
+ N DGBTRES,DGBTARY
+ S DGBTRES=1
+ D RESADDR(.DGBTARY)
+ ;format - street address 1^street address 2^street address 3^city^internal state^external state^five-digit zipcode
+ Q $G(DGBTARY(1))_"^"_$G(DGBTARY(2))_"^"_$G(DGBTARY(3))_"^"_$G(DGBTARY(4))_"^"_$G(DGBTARY(5))_"^"_$P($P($G(DGBTARY(6)),"-"),"^",2)

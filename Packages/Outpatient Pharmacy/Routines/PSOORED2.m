@@ -1,5 +1,5 @@
-PSOORED2 ;ISC-BHAM/SAB - edit orders from backdoor con't ;03/06/95 10:24
- ;;7.0;OUTPATIENT PHARMACY;**2,51,46,78,102,114,117,133,159,148,247,260,281,289,276,358,251,385,427,538,574**;DEC 1997;Build 53
+PSOORED2 ;ISC-BHAM/SAB - edit orders from backdoor con't ;Jan 20, 2022@11:19:32
+ ;;7.0;OUTPATIENT PHARMACY;**2,51,46,78,102,114,117,133,159,148,247,260,281,289,276,358,251,385,427,538,574,562,441**;DEC 1997;Build 208
  ;Reference to $$DIVNCPDP^BPSBUTL supported by IA 4719
  ;Reference to $$ECMEON^BPSUTIL supported by IA 4410
  ;called from psooredt. cmop edit checks.
@@ -36,13 +36,13 @@ CHK1 I +^PSRX(PSORXED("IRXN"),"STA")=5 D  Q:'$G(CMRL)
  Q
 REF ;shows refill info
  S RFN=0 F N=0:0 S N=$O(^PSRX(PSORXED("IRXN"),1,N)) Q:'N  S RFM=N,RFN=RFN+1
- ;G:RFM=1 SRF 
+ ;G:RFM=1 SRF
  W ! K DA,DR D KV S DIR(0)="Y",DIR("B")="No",DIR("A")="There "_$S(RFN>1:"are ",1:"is ")_RFN_" refill"_$S(RFN>1:"s.",1:".")_"  Do you want to edit"
  D ^DIR D KV Q:'Y
 SRF W !!,"#  Log Date   Refill Date  Qty               Routing  Lot #       Pharmacist",! F I=1:1:80 W "="
  F N=0:0 S N=$O(^PSRX(PSORXED("IRXN"),1,N)) Q:'N  S P1=^(N,0) D
  .S DTT=$P(P1,"^",8)\1 D DAT S LOG=DAT,DTT=$P(P1,"^"),$P(RN," ",10)=" " D DAT
- .W !,N_"  "_LOG_"   "_DAT_"      "_$P(P1,"^",4)_$E("               ",$L($P(P1,"^",4))+1,15)_"  "_$S($P(P1,"^",2)="M":"MAIL  ",1:"WINDOW")_"   "_$P(P1,"^",6)_$E(RN,$L($P(P1,"^",6))+1,12)
+ .W !,N_"  "_LOG_"   "_DAT_"      "_$P(P1,"^",4)_$E("               ",$L($P(P1,"^",4))+1,15)_"  "_$S($P(P1,"^",2)="M":"MAIL  ",$P(P1,"^",2)="P":"PARK  ",1:"WINDOW")_"   "_$P(P1,"^",6)_$E(RN,$L($P(P1,"^",6))+1,12)
  .W $E($S($D(^VA(200,+$P(P1,"^",5),0)):$P(^(0),"^"),1:""),1,16)
  .S PSDIV=$S($D(^PS(59,+$P(P1,"^",9),0)):$P(^(0),"^",6),1:"Unknown") W !,"Division: "_PSDIV_$E("        ",$L(PSDIV)+1,8)_"  "
  .W "Dispensed: "_$S($P(P1,"^",19):$E($P(P1,"^",19),4,5)_"/"_$E($P(P1,"^",19),6,7)_"/"_$E($P(P1,"^",19),2,3),1:"")_"  "
@@ -70,7 +70,14 @@ RFX N RFL,NDC,DAW,FLDS,QUIT,CHGNDC,CHANGED
  .S ^PSRX(DA,"A",IR,0)=NOW_"^D^"_DUZ_"^"_$S(PSORFILL>0&(PSORFILL<6):PSORFILL,1:PSORFILL+1)_"^Refill deleted during Rx edit"
  K FEV,RFN,RFM,X,Y,DR
  I '$G(DA) D REVERSE^PSOBPSU1(PSORXED("IRXN"),RFL,"DE",5) K CMRL,RFED D:$D(PSORX("PSOL"))&($G(DI)=.01) RFD Q
- I 'CMRL,'QUIT S DR="1;1.2:5;8" D ^DIE S QUIT=$D(Y)
+ S PREVMWP=$P($G(^PSRX(PSORXED("IRXN"),1,PSORFILL,0)),"^",2)   ;PAPI 441 BEG
+ I 'CMRL,'QUIT S DR="1;1.2:5;8" D ^DIE S QUIT=$D(Y) ;THIS LINE NOT PAPI CODE
+ S PRKMW=$P($G(^PSRX(PSORXED("IRXN"),1,PSORFILL,0)),"^",2)
+ I PRKMW="P",PREVMWP'="P" S PSOTOPK=1 ; SET VARIABLE FOR CALLING ROUTINE TO FILE PARK LEVEL,"APARK" XREF, AND REMOVE FROM SUSPENSE AND UPDT ACT. LOG RELATED TO PARKING
+ I PREVMWP="P",PRKMW'="P" S PSOFRPK=1 ; CHANGED "FROM" PARK
+ I $G(PSOFRPK)!$G(PSOTOPK) K SAVDA M SAVDA=DA S SAVDIE=DIE,SAVFLD=$G(FLD)
+ I $G(PSOFRPK) K DA S (DA,PSDA)=PSORXED("IRXN") D UNPARK^PSOPRK K DA M DA=SAVDA K Y S DIE=SAVDIE,FLD=SAVFLD
+ I $G(PSOTOPK) K DA S DA=PSORXED("IRXN") D PRK^PSOPRK(DA) K DA M DA=SAVDA K Y S DIE=SAVDIE,FLD=SAVFLD   ;PAPI 441 END
 RFE I '$D(^PSRX(PSORXED("IRXN"),1,RFL)) Q
  ;
  I 'QUIT,$$STATUS^PSOBPSUT(PSORXED("IRXN"),RFL)'="" D
@@ -98,7 +105,7 @@ RFE I '$D(^PSRX(PSORXED("IRXN"),1,RFL)) Q
  . . ; Quit if there is an unresolved TRICARE/CHAMPVA non-billable reject code, PSO*7*358
  . . I $$PSOET^PSOREJP3(RX,RFL) S X="Q" Q
  . . ;- Checking/Handling DUR/79 Rejects
- . . I $$FIND^PSOREJUT(RX,RFL) S X=$$HDLG^PSOREJU1(RX,RFL,"79,88","ED","IOQ","Q")
+ . . I $$FIND^PSOREJUT(RX,RFL) S X=$$HDLG^PSOREJU1(RX,RFL,"79,88,943","ED","IOQ","Q")
  K DIE,CMRL,DA,DR
  Q
 CHANGED(RX,RFL,PRIOR) ; - Check if fields have changed and should for 3rd Party Claim resubmission

@@ -1,5 +1,5 @@
 PSOERXO1 ;ALB/BWF - eRx Outbound Error messages ; 8/3/2016 5:14pm
- ;;7.0;OUTPATIENT PHARMACY;**467,520,508**;DEC 1997;Build 295
+ ;;7.0;OUTPATIENT PHARMACY;**467,520,508,581,617**;DEC 1997;Build 110
  ;
  Q
  ;
@@ -25,7 +25,7 @@ ERRHNDL(DFN) ;handle any errors that may get thrown in call to GET^ORRDI1
  ; OVRESP - override response if the response was built elsewhere
 POST(ERXIEN,PSSOUT,ECODE,DESCODE,DESC,RXVERIFY,INST,OVRESP) ;
  N PSS,PSSERR,PSSFDBRT,PSREQ,GBL,C,PON,RXREFN,VAR,NEWRXIEN,FFILL,TOTREFL,REFL
- N TOQUAL,FRQUAL,TO,FROM,MID,RTMID,ERXIENS,F,PSODAT,RXIEN,LDDATE,NERXIEN,ERRSEQ
+ N TOQUAL,FRQUAL,TO,FROM,MID,RTMID,ERXIENS,F,PSODAT,RXIEN,LDDATE,NERXIEN,ERRSEQ,S2017
  S F=52.49,C=0
  S PSSFDBRT=1
  S INST=$G(INST,"")
@@ -33,11 +33,10 @@ POST(ERXIEN,PSSOUT,ECODE,DESCODE,DESC,RXVERIFY,INST,OVRESP) ;
  Q:'$G(ERXIEN)
  S ERXIENS=ERXIEN_","
  S NEWRXIEN=$$RESOLV^PSOERXU2(ERXIEN)
- ;I NEWRXIEN S RXIEN=$$GET1^DIQ(52.49,NEWRXIEN,.13,"E")
  D GETS^DIQ(F,ERXIENS,".01;.02;.09;.1;.13;22.1:22.4;24.1;25","IE","PSODAT")
  I 'INST S INST=$G(PSODAT(F,ERXIENS,24.1,"I")) I 'INST S PSSOUT(0)=-1_U_"Unable to identify institution. Cannot send message." Q
  ; message ID needs to be unique from vista - Site#.DUZ.erxIEN.date.time??
- S MID=INST_"."_DUZ_"."_ERXIEN_"."_$$NOW^XLFDT
+ S MID=INST_"."_ERXIEN_"."_$$NOW^XLFDT
  ; relates to message ID is the incoming message id from CH for outbound messages.
  S RTMID=$G(PSODAT(F,ERXIENS,25,"E"))
  ; from is TO from the erx.
@@ -52,12 +51,19 @@ POST(ERXIEN,PSSOUT,ECODE,DESCODE,DESC,RXVERIFY,INST,OVRESP) ;
  ; encode XML sensitive characters
  F VAR="TOQUAL","TO","FRQUAL","FROM","RTMID","RXREFN","PON","MID","ECODE","DESCODE","DESC" D
  .S @VAR=$$SYMENC^MXMLUTL($G(@VAR))
- D C S @GBL@(C,0)="<?xml version = '1.0' encoding = 'UTF-8'?><Message version=""010"" release=""006"" xmlns=""http://www.ncpdp.org/schema/SCRIPT"">"
- D C S @GBL@(C,0)="<Header><To Qualifier="""_TOQUAL_""">"_TO_"</To><From Qualifier="""_FRQUAL_""">"_FROM_"</From><MessageID>"_MID_"</MessageID>"
- D C S @GBL@(C,0)="<RelatesToMessageID>"_RTMID_"</RelatesToMessageID><SentTime>"_$$EXTIME()_"</SentTime>"
- I $L(RXREFN) D C S @GBL@(C,0)="<RxReferenceNumber>"_RXREFN_"</RxReferenceNumber>"
- I $L(PON) D C S @GBL@(C,0)="<PrescriberOrderNumber>"_PON_"</PrescriberOrderNumber>"
- D C S @GBL@(C,0)="</Header>"
+ ;/JSG/ POS*7.0*581 - BEGIN CHANGE
+ S S2017=$$GET1^DIQ(52.49,ERXIEN,312.1,"I")
+ I 1 D  ; Always use new header format
+ .D MSG2017(.GBL,.C)
+ .D HDR2017(.GBL,.C,.PSODAT,ERXIEN,TOQUAL,TO,FRQUAL,FROM,MID,RTMID,RXREFN,PON,INST)
+ I 0 D   ; Deprecated
+ .D C S @GBL@(C,0)="<?xml version = '1.0' encoding = 'UTF-8'?><Message version=""010"" release=""006"" xmlns=""http://www.ncpdp.org/schema/SCRIPT"">"
+ .D C S @GBL@(C,0)="<Header><To Qualifier="""_TOQUAL_""">"_TO_"</To><From Qualifier="""_FRQUAL_""">"_FROM_"</From><MessageID>"_MID_"</MessageID>"
+ .D C S @GBL@(C,0)="<RelatesToMessageID>"_RTMID_"</RelatesToMessageID><SentTime>"_$$EXTIME()_"</SentTime>"
+ .I $L(RXREFN) D C S @GBL@(C,0)="<RxReferenceNumber>"_RXREFN_"</RxReferenceNumber>"
+ .I $L(PON) D C S @GBL@(C,0)="<PrescriberOrderNumber>"_PON_"</PrescriberOrderNumber>"
+ .D C S @GBL@(C,0)="</Header>"
+ ; /JSG/ - END CHANGE
  ; PSO*7*520 - /BLB/ - END CHANGE add handling of rxVerify Messages
  ; rxVerify
  I $G(RXVERIFY)=1 D  Q
@@ -116,20 +122,16 @@ RESTPOST(PSSOUT,GBL) ;
  SET PSS("webserviceName")="PSO ERX WEB SERVICE"
  SET PSS("path")="services/rest/vistaoutboundMsg/processXMLMessage"
  SET PSS("parameterName")="xmlRequest"
- ;SET PSS("parameterValue")=PSREQ
  ;
  ; get instance of client REST request object
  SET PSS("restObject")=$$GETREST^XOBWLIB(PSS("webserviceName"),PSS("server"))
  IF $DATA(^TMP($JOB,"OUT","EXCEPTION"))>0 S PSSOUT(0)="-1^"_^TMP($JOB,"OUT","EXCEPTION") K ^TMP($JOB,"OUT","EXCEPTION") Q PSSOUT
  ;
  ; insert XML as parameter
- ;DO PSS("restObject").InsertFormData(PSS("parameterName"),PSS("parameterValue"))
  S PSS("restObject").ContentType="application/xml"
  S GLOOP=0 F  S GLOOP=$O(@GBL@(GLOOP)) Q:'GLOOP  D
  .S GDAT=$G(@GBL@(GLOOP,0))
- .;SET PSS("parameterValue")=$G(PSS("parameterValue"))_$G(@GBL@(GLOOP,0))
  .DO PSS("restObject").EntityBody.Write(GDAT)
- ;DO PSS("restObject").InsertFormData(PSS("parameterName"),PSS("parameterValue"))
  IF $DATA(^TMP($JOB,"OUT","EXCEPTION"))>0 S PSSOUT(0)="-1^"_^TMP($JOB,"OUT","EXCEPTION") K ^TMP($JOB,"OUT","EXCEPTION") QUIT PSSOUT
  ;
  ; execute HTTP Post method
@@ -313,6 +315,7 @@ CMFILE(HUBID,MID,RTMID,TOQUAL,TO,FRQUAL,FROM,RXREFN,PON,RESPONSE,RESTYPE,MTYPE,I
  S FDA(F,"+1,",51.1)=$G(DUZ)
  S FDA(F,"+1,",52.1)=RESTYPE
  S FDA(F,"+1,",52.2)=RESPONSE
+ S FDA(F,"+1,",312.1)=1
  D UPDATE^DIE(,"FDA","NRXIEN","ERR") K FDA
  S NERXIEN=$O(NRXIEN(0)),NERXIEN=$G(NRXIEN(NERXIEN)) Q:'NERXIEN
  S CREQ=$$GETREQ^PSOERXU2(NERXIEN)
@@ -324,4 +327,65 @@ CMFILE(HUBID,MID,RTMID,TOQUAL,TO,FRQUAL,FROM,RXREFN,PON,RESPONSE,RESTYPE,MTYPE,I
  .S FDA(52.49201,"+1,"_NEWRX_",",.01)=NERXIEN D UPDATE^DIE(,"FDA") K FDA
  I '$D(^PS(52.49,NERXIEN,201,"B",NEWRX)) D
  .S FDA(52.49201,"+1,"_NERXIEN_",",.01)=NEWRX D UPDATE^DIE(,"FDA") K FDA
+ Q
+ ;
+MSG2017(GBL,CNT) ; ADAPTED FROM PSOERXX2
+ ;/JSG/ POS*7.0*581 - BEGIN CHANGE
+ N X
+ S X="<?xml version=""1.0"" encoding=""UTF-8""?>"
+ S X=X_"<Message TransportVersion=""20170715"" DatatypesVersion=""20170715"""
+ S X=X_" TransactionDomain=""SCRIPT"" TransactionVersion=""20170715"""
+ S X=X_" StructuresVersion=""20170715"" ECLVersion=""20170715"""
+ S X=X_" xmlns:xsi=""http://www.w3.org/2001/XMLSchema-instance"">"
+ D C S @GBL@(CNT,0)=X
+ ;/JSG/ - END CHANGE
+ Q
+ ;
+HDR2017(GLB,CNT,PSDAT,IEN,TOQUAL,TOVAL,FRQUAL,FRVAL,MID,RTMID,ERXHID,PON,INST) ; ADAPTED FROM PSOERXX2
+ N F,STIME,STERTID,RTERTID,RETREC,REQREF,PSDAT,SSECID,RSECID,IENS
+ S F=52.49
+ S IENS=IEN_","
+ D CONVXML^PSOERXX1("PSDAT")
+ ; return receipt and request reference # currently not stored. Do we need to add a field in 52.49?
+ S RETREC=$G(PSDAT(F,IENS,1,"E"))
+ S REQREF=$G(PSDAT(F,IENS,1,"E"))
+ S RETREC="ACA",REQREF=""
+ S SSECID=$G(PSDAT(F,IENS,24.5,"E"))
+ ; leaving this in place for now CH wanted the tertiary ID to be TECHNATOMY. I suspect this will
+ ; need to be something different in the long run
+ ;S STERTID=$G(PSDAT(F,IENS,24.6,"E"))
+ S STERTID="TECHNATOMY"
+ S RSECID=$G(PSDAT(F,IENS,24.3,"E"))
+ ;S RTERTID=$G(PSDAT(F,IENS,24.4,"E"))
+ S RTERTID="ERXPAD"
+ D C S @GBL@(CNT,0)="<Header><To Qualifier="""_TOQUAL_""">"_TOVAL_"</To>"
+ D C S @GBL@(CNT,0)="<From Qualifier="""_FRQUAL_""">"_FRVAL_"</From>"
+ D C S @GBL@(CNT,0)="<MessageID>"_MID_"</MessageID>"
+ ; relatesToMessageID is the CH messageID - FIELD 25
+ I $L(RTMID) D C S @GBL@(CNT,0)="<RelatesToMessageID>"_RTMID_"</RelatesToMessageID>"
+ D C S @GBL@(CNT,0)="<SentTime>"_$$EXTIME^PSOERXO1()_"</SentTime>"
+ ; bwf - LOOK AT THE SECURITY SECTION AGAIN
+ D C S @GBL@(CNT,0)="<Security>"
+ ; bwf -  missing UsernameToken - consider as part of v3
+ D C S @GBL@(CNT,0)="<Sender>"
+ ; for now we are not using secondary identifications, this will stay in place for future activation.
+ ;I $L(SSECID) D C S @GBL@(CNT,0)="<SecondaryIdentification>"_SSECID_"</SecondaryIdentification>"
+ I $L(STERTID) D C S @GBL@(CNT,0)="<TertiaryIdentification>"_STERTID_"</TertiaryIdentification>"
+ D C S @GBL@(CNT,0)="</Sender>"
+ D C S @GBL@(CNT,0)="<Receiver>"
+ ;I $L(RSECID) D C S @GBL@(CNT,0)="<SecondaryIdentification>"_RSECID_"</SecondaryIdentification>"
+ I $L(RTERTID) D C S @GBL@(CNT,0)="<TertiaryIdentification>"_RTERTID_"</TertiaryIdentification>"
+ D C S @GBL@(CNT,0)="</Receiver>"
+ D C S @GBL@(CNT,0)="</Security>"
+ ;/JSG/ POS*7.0*581 - BEGIN CHANGE
+ D C S @GBL@(CNT,0)="<SenderSoftware>"
+ D C S @GBL@(CNT,0)="<SenderSoftwareDeveloper>VA</SenderSoftwareDeveloper>"
+ D C S @GBL@(CNT,0)="<SenderSoftwareProduct>VA-Inbound eRx</SenderSoftwareProduct>"
+ D C S @GBL@(CNT,0)="<SenderSoftwareVersionRelease>V5.0</SenderSoftwareVersionRelease>"
+ D C S @GBL@(CNT,0)="</SenderSoftware>"
+ ;/JSG/ - END CHANGE
+ ; missing 'Mailbox' - note for future enhancement. Was not needed for CH certification.
+ D C S @GBL@(CNT,0)="<RxReferenceNumber>"_ERXHID_"</RxReferenceNumber>"
+ I $L(PON) D C S @GBL@(CNT,0)="<PrescriberOrderNumber>"_PON_"</PrescriberOrderNumber>"
+ D C S @GBL@(CNT,0)="</Header>"
  Q

@@ -1,5 +1,5 @@
 RCDPEAPP ;OIFO-BAYPINES/PJH - AUTO POST REPORT ;Dec 20, 2014@18:42
- ;;4.5;Accounts Receivable;**298,304,326**;Mar 20, 1995;Build 26
+ ;;4.5;Accounts Receivable;**298,304,326,345**;Mar 20, 1995;Build 34
  ;Per VA Directive 6402, this routine should not be modified.
  ;Read ^DGCR(399) via Private IA 3820
  ;Read ^DG(40.8) via Controlled IA 417
@@ -29,11 +29,10 @@ RPT ; entry point for Auto-Post Report [RCDPE AUTO-POST REPORT]
  ;
  S RCSORT=$$SORTT() Q:RCSORT=-1                     ; Select Sort
  S RCRANGE=$$DTRNG() Q:RCRANGE=0                    ; Select Date Range for Report
- S RCDISP=$$DISPTY() Q:RCDISP=-1                    ; Output to Excel?    
+ I RCTYPE="S" S RCDISP=0                            ; Excel not implemented for summary report - PRCA*4.5*345
+ E  S RCDISP=$$DISPTY() Q:RCDISP=-1                 ; Output to Excel?    
  I RCDISP D INFO^RCDPEM6                            ; Display capture information for Excel
  ;
- ; PRCA*4.5*304 - If not Excel, inform user to make sure printer/screen will display 132
- ; columns
  I 'RCDISP W !,"This report requires 132 column display."
  S %ZIS="QM" D ^%ZIS Q:POP                          ; Select output device
  ;
@@ -219,11 +218,11 @@ DISP ; Format the display for screen/printer or MS Excel
  D LINED(RCDIV,.RCDIVS,.DIVS)                   ; Format Division filter
  D LINEP(RCPAY,.RCPARRAY,RCWHICH,.PAYERS)       ; Format Payer filter
  S SUB="",RCSTOP=0
- F  S SUB=$O(@GLOB@(SUB)) Q:SUB=""  D  Q:RCSTOP
- . D HDR(.DIVS,.PAYERS)                         ; Display Header
+ I RCDISP D HDR(.DIVS,.PAYERS)                  ; Single header for Excel
+ I RCTYPE="D" F  S SUB=$O(@GLOB@(SUB)) Q:SUB=""  D  Q:RCSTOP  ; PRCA*4.5*345 Loop for Detail report
  . I 'RCDISP D
+ . . D HDR(.DIVS,.PAYERS)                         ; Display Header
  . . W !,"DIVISION: ",SUB
- . . W:RCTYPE="S" !,LINE1
  . S SUB1=""                                    ; Division
  . F  S SUB1=$O(@GLOB@(SUB,SUB1)) Q:SUB1=""  D  Q:RCSTOP
  . . S SUB2=""
@@ -243,15 +242,26 @@ DISP ; Format the display for screen/printer or MS Excel
  . . . . . W ?58,$P(RCDATA,U,8)                 ; EFT#
  . . . . . W ?67,$P(RCDATA,U,9)                 ; "TR" Receipt
  . . . . . W ?79,$E($P(RCDATA,U,10),1,12)       ; Bill #
- . . . . . W ?91,$J($P(RCDATA,U,11),8)          ; Original Billed Amount
- . . . . . W ?103,$J($P(RCDATA,U,12),8)         ; Paid Amount
- . . . . . W ?113,$J($P(RCDATA,U,13),8)         ; Balance
- . . . . . W ?123,$P(RCDATA,U,14)               ; % COLLECTED
- . . . . . W !,?8,"TRACE#:",$P(RCDATA,U,15)     ; Trace #
+ . . . . . ; PRCA*4.5*345 - Begin modified code block
+ . . . . . W ?90,$J($P(RCDATA,U,11),10,2)       ; Original Billed Amount
+ . . . . . W $J($P(RCDATA,U,12),10,2)           ; Paid Amount
+ . . . . . W $J($P(RCDATA,U,13),10,2)           ; Balance
+ . . . . . W $J($P(RCDATA,U,14),10,2)           ; % COLLECTED
+ . . . . . W !,?8,"DEP#:",$P(RCDATA,U,16)       ; Deposit #
+ . . . . . W ?25,"TRACE#:",$P(RCDATA,U,15)      ; Trace #
+ . . . . . ; PRCA*4.5*345 - End modified code block
  . . . . . ;
  . . . . . ; Subtotals for Payer on detail report
  . . . . . I 'RCDISP,$O(@GLOB@(SUB,SUB1,SUB2,SUB3))="" D TOTALDP(SUB,SUB1,SUB2)
  . . . . I RCDISP D
+ . . . . . I $L(RCDATA)>255 D  ;
+ . . . . . . N RCPAY,RCTIN
+ . . . . . . S RCPAY=$P(RCDATA,"^",3)
+ . . . . . . S RCTIN=$P(RCPAY,"/",$S(RCSORT=0:2,1:1))
+ . . . . . . S RCPAY=$P(RCPAY,"/",$S(RCSORT=0:1,1:2))
+ . . . . . . S RCPAY=$E(RCPAY,1,$L(RCPAY)-($L(RCDATA)-255))
+ . . . . . . S RCPAY=$S(RCSORT=0:RCPAY_"/"_RCTIN,1:RCTIN_"/"_RCPAY)
+ . . . . . . S $P(RCDATA,"^",3)=RCPAY
  . . . . . W !,RCDATA
  . . . ;
  . . . ; Subtotals for Division on detail report
@@ -296,12 +306,12 @@ HDR(DIVS,PAYERS) ; Print the report header
  ;          RCSTOP      - 1 if display aborted
  N END,LN,MSG,START,XX,Y
  Q:RCSTOP
- S START=$$FMTE^XLFDT($P(RCRANGE,U,2),"2DZ")
- S END=$$FMTE^XLFDT($P(RCRANGE,U,3),"2DZ")
  I RCDISP D  Q          ; Output to Excel
  . S XX="STATION^STATION NUMBER^PAYER^PATIENT NAME/SSN^ERA#^DT REC'D"
- . S XX=XX_"^DT POST^EFT#^RECEIPT#^BILL#^AMT BILLED^AMT PAID^BALANCE^%COLL^TRACE#"
+ . S XX=XX_"^DT POST^EFT#^RECEIPT#^BILL#^AMT BILLED^AMT PAID^BALANCE^%COLL^TRACE#^DEPOSIT#"
  . W !,XX
+ S START=$$FMTE^XLFDT($P(RCRANGE,U,2),"2DZ")
+ S END=$$FMTE^XLFDT($P(RCRANGE,U,3),"2DZ")
  I RCPAGE D ASK(.RCSTOP) Q:RCSTOP
  S RCPAGE=RCPAGE+1
  W @IOF
@@ -323,8 +333,10 @@ HDR(DIVS,PAYERS) ; Print the report header
  S MSG(LN)="AUTOPOST POSTING RESULTS FOR DATE RANGE: "_START_" - "_END
  S LN=LN+1,MSG(LN)=LINE2
  S LN=LN+1
- S MSG(LN)="PATIENT NAME/SSN               ERA#   DT REC'D   DT POST  EFT#     RECEIPT#"
- S MSG(LN)=MSG(LN)_"    BILL#       AMT BILLED  AMT PAID   BALANCE  %COLL"
+ I RCTYPE="D" D  ;
+ . S MSG(LN)="PATIENT NAME/SSN               ERA#   DT REC'D   DT POST  EFT#     RECEIPT#    BILL#"
+ E  S MSG(LN)="                                                                                    "
+ S MSG(LN)=MSG(LN)_"      AMT BILLED  AMT PAID   BALANCE     %COLL"
  S LN=LN+1,MSG(LN)=LINE2
  D EN^DDIOL(.MSG)
  Q
@@ -386,6 +398,8 @@ TOTALS ; Print totals for summary report
  F  D  Q:DIV=""  Q:RCSTOP
  . S DIV=$O(@GLOB@(DIV))
  . Q:DIV=""
+ . D HDR(.DIVS,.PAYERS)                         ; PRCA*4.5*345 Display header
+ . W !,"DIVISION: ",DIV,!,LINE1                 ; PRCA*4.5*345 Display division
  . S PAYIX1=""
  . F  D  Q:PAYIX1=""  Q:RCSTOP
  . . S PAYIX1=$O(@GLOB@(DIV,PAYIX1))
@@ -413,7 +427,7 @@ TOTALD(DIV) ; Display totals for a division
  I 'RCDISP,$Y>(IOSL-6) D HDR(.DIVS,.PAYERS) Q:RCSTOP
  W !,"DIVISION TOTALS FOR ",DIV,?90,$J(DBAMT,10,2)
  W $J(DPAMT,10,2),$J(DBAL,10,2)
- W:DBAMT'=0 $J(DPAMT/DBAMT*100,9,2),"%"
+ W:DBAMT'=0 $J(DPAMT/DBAMT*100,10,2),"%"
  W !,?8,"COUNT",?90,$J(DCNT,10,0),$J(DCNT,10,0),$J(DCNT,10,0)
  W !,?8,"MEAN",?90,$J(DBAMT/DCNT,10,2),$J(DPAMT/DCNT,10,2),$J(DBAL/DCNT,10,2)
  W !,LINE1
@@ -429,14 +443,15 @@ TOTALDP(DIV,PAYIX1,PAYIX2) ; Display totals for a payer within a division
  ;          PAYERS()- Array of selected Payer lines for Header
  ;          RCDISP  - 1 - Output to Excel, 0 otherwise
  ; Output:  RCSTOP  - 1 if display aborted, 0 otherwise
- N DBAL,DBAMT,DCNT,DPAMT
+ N DATA,DBAL,DBAMT,DCNT,DPAMT
  I 'RCDISP,$Y>(IOSL-6) D HDR(.DIVS,.PAYERS) Q:RCSTOP
- S DCNT=$P(@GLOB@(DIV,PAYIX1,PAYIX2),U),DBAMT=$P(@GLOB@(DIV),U,2)
- S DPAMT=$P(@GLOB@(DIV),U,3),DBAL=$P(@GLOB@(DIV),U,4)
- W:RCTYPE="D" !,?92,"---------------------------------------"
+ S DATA=@GLOB@(DIV,PAYIX1,PAYIX2)       ; PRCA*4.5*345 Correct totals by payer
+ S DCNT=$P(DATA,U),DBAMT=$P(DATA,U,2)   ; PRCA*4.5*345
+ S DPAMT=$P(DATA,U,3),DBAL=$P(DATA,U,4) ; PRCA*4.5*345
+ W:RCTYPE="D" !,?90,"-----------------------------------------"
  W !,"SUBTOTALS FOR PAYER: ",PAYIX1,"/",PAYIX2,?90,$J(DBAMT,10,2),$J(DPAMT,10,2)
  W $J(DBAL,10,2)
- W:DBAMT'=0 $J(DPAMT/DBAMT*100,9,2),"%"
+ W:DBAMT'=0 $J(DPAMT/DBAMT*100,10,2),"%"
  W !,?8,"COUNT",?90,$J(DCNT,10,0),$J(DCNT,10,0),$J(DCNT,10,0)
  W !,?8,"MEAN",?90,$J(DBAMT/DCNT,10,2),$J(DPAMT/DCNT,10,2),$J(DBAL/DCNT,10,2)
  W !,LINE1

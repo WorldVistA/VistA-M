@@ -1,128 +1,126 @@
-IBDEI11Q ; ; 04-FEB-2020
- ;;3.0;IB ENCOUNTER FORM IMP/EXP;;FEB 04, 2020
+IBDEI11Q ; ; 01-FEB-2022
+ ;;3.0;IB ENCOUNTER FORM IMP/EXP;;FEB 01, 2022
  Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,999) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
- ;;^UTILITY(U,$J,358.3,16816,1,4,0)
- ;;=4^J20.0
- ;;^UTILITY(U,$J,358.3,16816,2)
- ;;=^5008186
- ;;^UTILITY(U,$J,358.3,16817,0)
- ;;=J20.2^^88^881^6
- ;;^UTILITY(U,$J,358.3,16817,1,0)
+ ;;^UTILITY(U,$J,358.3,17003,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,16817,1,3,0)
- ;;=3^Bonchitis,Acute d/t Streptococcus
- ;;^UTILITY(U,$J,358.3,16817,1,4,0)
- ;;=4^J20.2
- ;;^UTILITY(U,$J,358.3,16817,2)
- ;;=^5008188
- ;;^UTILITY(U,$J,358.3,16818,0)
- ;;=J20.4^^88^881^13
- ;;^UTILITY(U,$J,358.3,16818,1,0)
+ ;;^UTILITY(U,$J,358.3,17003,1,3,0)
+ ;;=3^Reiter's Disease,Unspec Site
+ ;;^UTILITY(U,$J,358.3,17003,1,4,0)
+ ;;=4^M02.30
+ ;;^UTILITY(U,$J,358.3,17003,2)
+ ;;=^5009790
+ ;;^UTILITY(U,$J,358.3,17004,0)
+ ;;=M10.9^^61^781^41
+ ;;^UTILITY(U,$J,358.3,17004,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,16818,1,3,0)
- ;;=3^Bronchitis,Acute d/t Parainfluenza Virus
- ;;^UTILITY(U,$J,358.3,16818,1,4,0)
- ;;=4^J20.4
- ;;^UTILITY(U,$J,358.3,16818,2)
- ;;=^5008190
- ;;^UTILITY(U,$J,358.3,16819,0)
- ;;=J20.3^^88^881^8
- ;;^UTILITY(U,$J,358.3,16819,1,0)
+ ;;^UTILITY(U,$J,358.3,17004,1,3,0)
+ ;;=3^Gout,Unspec
+ ;;^UTILITY(U,$J,358.3,17004,1,4,0)
+ ;;=4^M10.9
+ ;;^UTILITY(U,$J,358.3,17004,2)
+ ;;=^5010404
+ ;;^UTILITY(U,$J,358.3,17005,0)
+ ;;=G90.59^^61^781^35
+ ;;^UTILITY(U,$J,358.3,17005,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,16819,1,3,0)
- ;;=3^Bronchitis,Acute d/t Coxsackievirus
- ;;^UTILITY(U,$J,358.3,16819,1,4,0)
- ;;=4^J20.3
- ;;^UTILITY(U,$J,358.3,16819,2)
- ;;=^5008189
- ;;^UTILITY(U,$J,358.3,16820,0)
- ;;=J20.9^^88^881^7
- ;;^UTILITY(U,$J,358.3,16820,1,0)
+ ;;^UTILITY(U,$J,358.3,17005,1,3,0)
+ ;;=3^Complex Regional Pain Syndrome I,Unspec
+ ;;^UTILITY(U,$J,358.3,17005,1,4,0)
+ ;;=4^G90.59
+ ;;^UTILITY(U,$J,358.3,17005,2)
+ ;;=^5004171
+ ;;^UTILITY(U,$J,358.3,17006,0)
+ ;;=G56.01^^61^781^13
+ ;;^UTILITY(U,$J,358.3,17006,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,16820,1,3,0)
- ;;=3^Bronchitis,Acute Unspec
- ;;^UTILITY(U,$J,358.3,16820,1,4,0)
- ;;=4^J20.9
- ;;^UTILITY(U,$J,358.3,16820,2)
- ;;=^5008195
- ;;^UTILITY(U,$J,358.3,16821,0)
- ;;=J20.8^^88^881^12
- ;;^UTILITY(U,$J,358.3,16821,1,0)
+ ;;^UTILITY(U,$J,358.3,17006,1,3,0)
+ ;;=3^Carpal Tunnel Syndrome,Right Upper Limb
+ ;;^UTILITY(U,$J,358.3,17006,1,4,0)
+ ;;=4^G56.01
+ ;;^UTILITY(U,$J,358.3,17006,2)
+ ;;=^5004018
+ ;;^UTILITY(U,$J,358.3,17007,0)
+ ;;=G56.02^^61^781^12
+ ;;^UTILITY(U,$J,358.3,17007,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,16821,1,3,0)
- ;;=3^Bronchitis,Acute d/t Oth Spec Organisms
- ;;^UTILITY(U,$J,358.3,16821,1,4,0)
- ;;=4^J20.8
- ;;^UTILITY(U,$J,358.3,16821,2)
- ;;=^5008194
- ;;^UTILITY(U,$J,358.3,16822,0)
- ;;=J20.5^^88^881^14
- ;;^UTILITY(U,$J,358.3,16822,1,0)
+ ;;^UTILITY(U,$J,358.3,17007,1,3,0)
+ ;;=3^Carpal Tunnel Syndrome,Left Upper Limb
+ ;;^UTILITY(U,$J,358.3,17007,1,4,0)
+ ;;=4^G56.02
+ ;;^UTILITY(U,$J,358.3,17007,2)
+ ;;=^5004019
+ ;;^UTILITY(U,$J,358.3,17008,0)
+ ;;=G56.21^^61^781^60
+ ;;^UTILITY(U,$J,358.3,17008,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,16822,1,3,0)
- ;;=3^Bronchitis,Acute d/t Respiratory Syncytial Virus
- ;;^UTILITY(U,$J,358.3,16822,1,4,0)
- ;;=4^J20.5
- ;;^UTILITY(U,$J,358.3,16822,2)
- ;;=^5008191
- ;;^UTILITY(U,$J,358.3,16823,0)
- ;;=J20.7^^88^881^9
- ;;^UTILITY(U,$J,358.3,16823,1,0)
+ ;;^UTILITY(U,$J,358.3,17008,1,3,0)
+ ;;=3^Lesion of Ulnar Nerve,Right Upper Limb
+ ;;^UTILITY(U,$J,358.3,17008,1,4,0)
+ ;;=4^G56.21
+ ;;^UTILITY(U,$J,358.3,17008,2)
+ ;;=^5004024
+ ;;^UTILITY(U,$J,358.3,17009,0)
+ ;;=G56.22^^61^781^59
+ ;;^UTILITY(U,$J,358.3,17009,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,16823,1,3,0)
- ;;=3^Bronchitis,Acute d/t Echovirus
- ;;^UTILITY(U,$J,358.3,16823,1,4,0)
- ;;=4^J20.7
- ;;^UTILITY(U,$J,358.3,16823,2)
- ;;=^5008193
- ;;^UTILITY(U,$J,358.3,16824,0)
- ;;=J20.6^^88^881^15
- ;;^UTILITY(U,$J,358.3,16824,1,0)
+ ;;^UTILITY(U,$J,358.3,17009,1,3,0)
+ ;;=3^Lesion of Ulnar Nerve,Left Upper Limb
+ ;;^UTILITY(U,$J,358.3,17009,1,4,0)
+ ;;=4^G56.22
+ ;;^UTILITY(U,$J,358.3,17009,2)
+ ;;=^5004025
+ ;;^UTILITY(U,$J,358.3,17010,0)
+ ;;=L40.52^^61^781^143
+ ;;^UTILITY(U,$J,358.3,17010,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,16824,1,3,0)
- ;;=3^Bronchitis,Acute d/t Rhinovirus
- ;;^UTILITY(U,$J,358.3,16824,1,4,0)
- ;;=4^J20.6
- ;;^UTILITY(U,$J,358.3,16824,2)
- ;;=^5008192
- ;;^UTILITY(U,$J,358.3,16825,0)
- ;;=J18.9^^88^881^67
- ;;^UTILITY(U,$J,358.3,16825,1,0)
+ ;;^UTILITY(U,$J,358.3,17010,1,3,0)
+ ;;=3^Psoriatic Arthritis Mutilans
+ ;;^UTILITY(U,$J,358.3,17010,1,4,0)
+ ;;=4^L40.52
+ ;;^UTILITY(U,$J,358.3,17010,2)
+ ;;=^5009167
+ ;;^UTILITY(U,$J,358.3,17011,0)
+ ;;=L40.53^^61^781^144
+ ;;^UTILITY(U,$J,358.3,17011,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,16825,1,3,0)
- ;;=3^Pneumonia,Unspec Organism
- ;;^UTILITY(U,$J,358.3,16825,1,4,0)
- ;;=4^J18.9
- ;;^UTILITY(U,$J,358.3,16825,2)
- ;;=^95632
- ;;^UTILITY(U,$J,358.3,16826,0)
- ;;=J18.8^^88^881^68
- ;;^UTILITY(U,$J,358.3,16826,1,0)
+ ;;^UTILITY(U,$J,358.3,17011,1,3,0)
+ ;;=3^Psoriatic Spondylitis
+ ;;^UTILITY(U,$J,358.3,17011,1,4,0)
+ ;;=4^L40.53
+ ;;^UTILITY(U,$J,358.3,17011,2)
+ ;;=^5009168
+ ;;^UTILITY(U,$J,358.3,17012,0)
+ ;;=M32.9^^61^781^187
+ ;;^UTILITY(U,$J,358.3,17012,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,16826,1,3,0)
- ;;=3^Pneumonia,Unspec Organism NEC
- ;;^UTILITY(U,$J,358.3,16826,1,4,0)
- ;;=4^J18.8
- ;;^UTILITY(U,$J,358.3,16826,2)
- ;;=^5008185
- ;;^UTILITY(U,$J,358.3,16827,0)
- ;;=J11.00^^88^881^28
- ;;^UTILITY(U,$J,358.3,16827,1,0)
+ ;;^UTILITY(U,$J,358.3,17012,1,3,0)
+ ;;=3^Systemic Lupus Erythematosus,Unspec
+ ;;^UTILITY(U,$J,358.3,17012,1,4,0)
+ ;;=4^M32.9
+ ;;^UTILITY(U,$J,358.3,17012,2)
+ ;;=^5011761
+ ;;^UTILITY(U,$J,358.3,17013,0)
+ ;;=M32.0^^61^781^183
+ ;;^UTILITY(U,$J,358.3,17013,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,16827,1,3,0)
- ;;=3^Flu d/t Unidentified Flu Virus w/ Unspec Type Pneumonia
- ;;^UTILITY(U,$J,358.3,16827,1,4,0)
- ;;=4^J11.00
- ;;^UTILITY(U,$J,358.3,16827,2)
- ;;=^5008156
- ;;^UTILITY(U,$J,358.3,16828,0)
- ;;=J12.9^^88^881^69
- ;;^UTILITY(U,$J,358.3,16828,1,0)
+ ;;^UTILITY(U,$J,358.3,17013,1,3,0)
+ ;;=3^Systemic Lupus Erythematosus,Drug-Induced
+ ;;^UTILITY(U,$J,358.3,17013,1,4,0)
+ ;;=4^M32.0
+ ;;^UTILITY(U,$J,358.3,17013,2)
+ ;;=^5011752
+ ;;^UTILITY(U,$J,358.3,17014,0)
+ ;;=M32.13^^61^781^185
+ ;;^UTILITY(U,$J,358.3,17014,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,16828,1,3,0)
- ;;=3^Pneumonia,Viral Unspec
- ;;^UTILITY(U,$J,358.3,16828,1,4,0)
- ;;=4^J12.9
- ;;^UTILITY(U,$J,358.3,16828,2)
- ;;=^5008169
+ ;;^UTILITY(U,$J,358.3,17014,1,3,0)
+ ;;=3^Systemic Lupus Erythematosus,Lung Involvement
+ ;;^UTILITY(U,$J,358.3,17014,1,4,0)
+ ;;=4^M32.13
+ ;;^UTILITY(U,$J,358.3,17014,2)
+ ;;=^5011756
+ ;;^UTILITY(U,$J,358.3,17015,0)
+ ;;=M32.14^^61^781^184
+ ;;^UTILITY(U,$J,358.3,17015,1,0)
+ ;;=^358.31IA^4^2

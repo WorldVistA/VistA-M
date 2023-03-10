@@ -1,5 +1,5 @@
-MAGDQR04 ;WOIFO/EdM,MLH,JSL,SAF,DAC - Imaging RPCs for Query/Retrieve ; May 28, 2020@09:01:51
- ;;3.0;IMAGING;**51,54,66,123,118,263**;Mar 19, 2002;Build 17
+MAGDQR04 ;WOIFO/EdM,MLH,JSL,SAF,DAC - Imaging RPCs for Query/Retrieve ; Aug 28, 2020@07:26:26
+ ;;3.0;IMAGING;**51,54,66,123,118,263,280**;Mar 19, 2002;Build 2
  ;; Per VHA Directive 2004-038, this routine should not be modified.
  ;; +---------------------------------------------------------------+
  ;; | Property of the US Government.                                |
@@ -203,7 +203,9 @@ INFO(OUT,IMAGE,DBTYPE) ; RPC = MAG IMAGE CURRENT INFO
  . S $P(TAG("0010,1040"),"^",5)=$P($G(VAPA(5)),"^",2)
  . Q
  ;
- S:P TAG("0008,0018")=$$QRNEWUID^MAGDRPC9(IMAGE,DBTYPE)
+ ; P280 DAC - Fixing index mismatch for NEW data structure
+ I DBTYPE="OLD" S:P TAG("0008,0018")=$$QRNEWUID^MAGDRPC9(IMAGE,DBTYPE)
+ I DBTYPE="NEW" S:P TAG("0008,0018")=$$QRNEWUID^MAGDRPC9(SOPIX,DBTYPE)
  ;
  D:DBTYPE="OLD"
  . S TAG("0020,000D")=$P($G(^MAG(2005,$S(P:+P,1:IMAGE),"PACS")),"^",1)

@@ -1,6 +1,7 @@
 GMRAPEM4 ;HIRMFO/WAA-EDIT OF DATA TO HISTORICAL STORAGE ; 12/24/91
- ;;4.0;Adverse Reaction Tracking;;Mar 29, 1996
+ ;;4.0;Adverse Reaction Tracking;**51**;Mar 29, 1996;Build 189
 EDIT ; Add/Edit Reaction data
+ N GMRAOUT1
  W @IOF
  D SITE^GMRAUTL
  S GMRADRUG=$S($P(GMRAPA(0),U,20)["D":1,1:0),GMRACNT=GMRACNT+1
@@ -17,7 +18,7 @@ YNNW I $P(GMRAPA(0),"^",6)]"" W !,"Are you sure you want to make that change" S 
  I $P(GMRAPA(0),"^",6)]"" I %'=1 S GMRAOUT=(%=-1),DIE="^GMR(120.8,",DR="6////"_$P(GMRAPA(0),"^",6),DA=GMRAPA D ^DIE G NEW:%=2 Q
  S $P(GMRAPA(0),"^",6)=$P(GMRANEW(0),"^",6)
 EDAT I $P(GMRAPA(0),"^",6)="o" D EN1^GMRAPEO0
- I $P(GMRAPA(0),"^",6)="h" D EN1^GMRAPEH0
+ I $P(GMRAPA(0),"^",6)="h" S GMRAOUT1=0 D EN1^GMRAPEH0 I GMRAOUT1 S GMRAOUT=1
  K GMRAVER S GMRAVER=0
  I 'GMRAOUT D
  .I '$D(^XUSEC("GMRA-ALLERGY VERIFY",DUZ)) Q 

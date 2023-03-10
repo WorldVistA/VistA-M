@@ -1,5 +1,5 @@
-PXRMXTA ; SLC/PJH - Reminder Reports Template Edit ;01/28/2013
- ;;2.0;CLINICAL REMINDERS;**4,12,26**;Feb 04, 2005;Build 404
+PXRMXTA ; SLC/PJH - Reminder Reports Template Edit ;01/04/2020
+ ;;2.0;CLINICAL REMINDERS;**4,12,26,42**;Feb 04, 2005;Build 245
  ; 
  ; Called from PXRMYD,PXRMXD
  ;
@@ -46,10 +46,10 @@ CHECK ;Check for missing fields
  .S CRCNT=0 F  S CRCNT=$O(^PXRMD(811.7,$P(NODE,U),2,CRCNT)) Q:CRCNT'>0  D
  ..S RIEN=$P($G(^PXRMD(811.7,$P(NODE,U),2,CRCNT,0)),U)
  ..I $D(^PXD(811.9,RIEN))'>0 S QUIT=1 D
- ...W !!,"REMINDER CATEGORY: "_$P(NODE,U,2)_" CONTAINS A POINTER TO ONE OR MORE REMINDERS THAT DO"
- ...W !,"NOT EXIST ON THE SYSTEM!" Q
- I QUIT=1,'PXRMUSER W !!,"THE TEMPLATE NEEDS TO BE EDITED." H 2 G USE
- I QUIT=1,PXRMUSER W !!,"HAVE THE REMINDERS CLINICAL APPLICATION COORDINATOR CORRECT THE TEMPLATE." H 2 Q
+ ...W !!,"Reminder Category: "_$P(NODE,U,2)_" contains a pointer to a reminder that does"
+ ...W !,"not exist on the system, the reminder pointer is ",RIEN,"." Q
+ I QUIT=1,'PXRMUSER W !!,"The template needs to be edited." H 2 G USE
+ I QUIT=1,PXRMUSER W !!,"Have the Reminder Clinical Application Coordinator correct the template." H 2 Q
  ;
 FAC ;Option to combine multifacility report
  I "IRPO"'[PXRMSEL,NFAC>1 D  Q:$D(DTOUT)  I $D(DUOUT) Q:PXRMUSER  G USE

@@ -1,7 +1,10 @@
-PXBDCPT ;ISL/JVS,ESW - DISPLAY CPT ;24 May 2013  10:44 AM
- ;;1.0;PCE PATIENT CARE ENCOUNTER;**11,73,89,108,121,124,199**;Aug 12, 1996;Build 51
+PXBDCPT ;ISL/JVS,ESW - DISPLAY CPT ; Mar 24, 2022@23:05
+ ;;1.0;PCE PATIENT CARE ENCOUNTER;**11,73,89,108,121,124,199,230**;Aug 12, 1996;Build 4
  ;
- ; Reference to LD^ICDEX supported by ICR #5747
+ ;
+ ; Reference to CPT^ICPTCOD in ICR #1995
+ ; Reference to LD^ICDEX in ICR #5747
+ ;
  ;
 EN0 ;---Main entry point
  ;
@@ -26,19 +29,33 @@ HEAD ;--HEADER ON LIST
 ARRAY ;Set all CPT codes and modifiers into ^TMP("PXBDCPT",$J,"DSP"
  ;for display
  ;
- N PXSQ,ENTRY,PXMD,PXDESC,PX124,PXC,PXD,PXDXDATE
+ N PXASTRSK,PXCPTCD,PXCPTDA,PXCPTI,PXSQ,ENTRY,PXMD,PXDESC,PX124,PXC,PXD,PXDXDATE
  S PXTMP="^TMP(""PXBDCPT"""_","_$J_","_"""DSP"")"
  K @PXTMP
+ ;PXBSAM is built by CPT^PXBGCPT which is called in HEADER^PXBMCPT2
+ ;just before EN0^PXBDCPT is called.
  S (PXTLNS,PXSQ)=0
  F  S PXSQ=$O(PXBSAM(PXSQ)) Q:'PXSQ  D
  .S PXTLNS=PXTLNS+1
  .S ENTRY=PXBSAM(PXSQ)
  .S PXBSAM(PXSQ,"LINE")=PXTLNS
+ .;The * is appended for codes added during the checkout interview.
+ .;The added codes are in PXBNCPT.
+ .S PXASTRSK=0
  .I $D(PXBNCPT($P(ENTRY,U))) D
  ..;I PXBNCPT($P(ENTRY,U))]"",'$D(PXBSKY(PXSQ,PXBNCPT($P(ENTRY,U)))) Q
  ..Q:'$D(PXBNCPT($P(ENTRY,U),$O(PXBSKY(PXSQ,0))))
- ..S $P(ENTRY,U)=$P(ENTRY,U)_"*"
- .S @PXTMP@(PXTLNS,0)=PXSQ_U_$P(ENTRY,U)_U_$P(ENTRY,U,2)_U_$P(ENTRY,U,4)_U_$E($P(ENTRY,U,3),1,24)
+ ..;S $P(ENTRY,U)=$P(ENTRY,U)_"*"
+ ..S PXASTRSK=1
+ .S PXCPTI=$P(ENTRY,U,1)
+ .S PXCPTDA=$$CPT^ICPTCOD(+PXCPTI)
+ .;The second piece of PXCPTDA is the code, unless something is wrong, then
+ .;it is the error description.
+ .S PXCPTCD=$P(PXCPTDA,U,2)
+ .;If PXASTRSK is true and there is no CPT code error, append *.
+ .I (PXASTRSK=1),($P(PXCPTDA,U,1)'=-1) S PXCPTCD=PXCPTCD_"*"
+ .;S @PXTMP@(PXTLNS,0)=PXSQ_U_$P(ENTRY,U)_U_$P(ENTRY,U,2)_U_$P(ENTRY,U,4)_U_$E($P(ENTRY,U,3),1,24)
+ .S @PXTMP@(PXTLNS,0)=PXSQ_U_PXCPTCD_U_$P(ENTRY,U,2)_U_$P(ENTRY,U,4)_U_$E($P(ENTRY,U,3),1,24)
  .S PXMD=""
  .F  S PXMD=$O(PXBSAM(PXSQ,"MOD",PXMD)) Q:'PXMD  D
  ..S PXTLNS=PXTLNS+1
@@ -73,7 +90,6 @@ DISCPT1 ;--Display the CPT Data
  W !,"No.",?4,"CPT CODE",?14,"QUANTITY",?25,"DESCRIPTION",?55,"PROVIDER",?75,$C(32)
  W IOEDEOP
  D UNDOFF^PXBCC
- ;
  ;
  S J=0
  F  S J=$O(PXBSAM(J)) Q:J=""  D

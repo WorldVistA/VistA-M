@@ -1,5 +1,5 @@
-ONCOCFL1 ;Hines OIFO/GWB - [CF Automatic Casefinding-Lab Search] ;10/21/11
- ;;2.2;ONCOLOGY;**1,10**;Jul 31, 2013;Build 20
+ONCOCFL1 ;HINES OIFO/GWB - [CF Automatic Casefinding-Lab Search] ;10/21/11
+ ;;2.2;ONCOLOGY;**1,10,15**;Jul 31, 2013;Build 5
  ;
  ;patch 10 - added new eligible cases
  ;

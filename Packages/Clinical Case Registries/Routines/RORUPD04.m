@@ -1,5 +1,5 @@
 RORUPD04 ;HCIOFO/SG - PROCESSING OF THE LAB DATA ;12/8/05 8:20am
- ;;1.5;CLINICAL CASE REGISTRIES;**14**;Feb 17, 2006;Build 24
+ ;;1.5;CLINICAL CASE REGISTRIES;**14,37,38**;Feb 17, 2006;Build 2
  ;
  Q
  ;
@@ -11,6 +11,8 @@ RORUPD04 ;HCIOFO/SG - PROCESSING OF THE LAB DATA ;12/8/05 8:20am
  ;-----------  ----------  -----------  ----------------------------------------
  ;ROR*1.5*14   APR  2011   A SAUNDERS   LAB: added call to new tag HCV to look
  ;                                      for HCV results.
+ ;ROR*1.5*37   NOV 2020    F TRAXLER    Adding UNDET check in CHKIND subroutine
+ ;ROR*1.5*38   APR 2021    F TRAXLER    Fix bug introduced by ROR*1.5*37 change.
  ;******************************************************************************
  ;******************************************************************************
  ;***** CHECKS AN INDICATOR CONDITION
@@ -27,23 +29,24 @@ RORUPD04 ;HCIOFO/SG - PROCESSING OF THE LAB DATA ;12/8/05 8:20am
  ;
 CHKIND(LSI,VAL,RESULT) ;
  S RESULT=$$UP^XLFSTR(RESULT)
- ;--- Reference Range
+ ;--- Reference Range. (Note: See subfile #798.92, field #1(INDICATOR) for LSI values 0-6.
  I LSI=1  D  Q LSI
  . I $G(RESULT("RL"))'=""  Q:RESULT<RESULT("RL")
  . I $G(RESULT("RH"))'=""  Q:RESULT>RESULT("RH")
  . S LSI=0
  ;--- Positive Result
  I LSI=6  S VAL=0  D  Q VAL
+ . I RESULT["UNDET" Q
  . I (RESULT="P")!(RESULT="R")  S VAL=1  Q
- . I RESULT'["POS",RESULT'["REA",RESULT'["DETEC"  Q
- . I RESULT'["NEG",RESULT'["NO",RESULT'["IND"  S VAL=1
+ . I RESULT'["POS",RESULT'["REA",RESULT'["DETEC" Q
+ . I RESULT'["NEG",RESULT'["NO",RESULT'["IND" S VAL=1
  ;--- Compare to the value
  Q:VAL="" 0
- I LSI=3  Q (RESULT>VAL)
- I LSI=4  Q (RESULT<VAL)
+ I LSI=3  Q (RESULT>VAL)  ;greater than
+ I LSI=4  Q (RESULT<VAL)  ;less than
  S VAL=$$UP^XLFSTR(VAL)
- I LSI=2  Q (RESULT[VAL)
- I LSI=5  Q (RESULT=VAL)
+ I LSI=2  Q (RESULT[VAL)  ;contains
+ I LSI=5  Q (RESULT=VAL)  ;equal to
  Q 0
  ;
  ;***** PROCESSING OF THE 'LAB DATA' FILE

@@ -1,5 +1,5 @@
 RCDPEWL7 ;ALB/TMK/KML - EDI LOCKBOX WORKLIST ERA DISPLAY SCREEN ;Jun 06, 2014@19:11:19
- ;;4.5;Accounts Receivable;**208,222,269,276,298,304,318,321,326,332**;Mar 20, 1995;Build 40
+ ;;4.5;Accounts Receivable;**208,222,269,276,298,304,318,321,326,332,349**;Mar 20, 1995;Build 44
  ;Per VA Directive 6402, this routine should not be modified.
  Q
  ;
@@ -175,7 +175,8 @@ INIT ; Entry point for List template to build the display of ERAs
  . D:$D(^TMP($J,"RCERA_LIST")) BLD("DR^N")
  . ; If no ERAs found display the message below in the list area
  . I '$O(^TMP("RCDPE-ERA_WL",$J,0)) D
- . . S ^TMP("RCDPE-ERA_WL",$J,1,0)="THERE ARE NO ERAs MATCHING YOUR SELECTION CRITERIA" S VALMCNT=2
+ . . S ^TMP("RCDPE-ERA_WL",$J,1,0)="THERE ARE NO ERAs MATCHING YOUR SELECTION CRITERIA"
+ . . S VALMCNT=1  ; PRCA*4.5*349 - VALMCNT set correctly to indicate 1 item instead of 2
  I RCQUIT K ^TMP("RCDPE-ERA_WL",$J),^TMP("RCDPE-ERA_WLDX",$J),^TMP($J,"RCERA_LIST") S VALMQUIT=""
  Q
  ;

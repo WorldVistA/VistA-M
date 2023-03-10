@@ -1,6 +1,11 @@
 PRCOE2 ;WISC/DJM-IFCAP SEGMENTS IT,DE ;12/26/02  18:18
-V ;;5.1;IFCAP;**63**;Oct 20, 2000
- ;Per VHA Directive 10-93-142, this routine should not be modified.
+V ;;5.1;IFCAP;**63,221**;Oct 20, 2000;Build 14
+ ;Per VA Directive 6402, this routine should not be modified.
+ ;
+ ;PRC*5.1*221 Modify an item description display to skip '|' logic
+ ;            if description contains a undefined display command
+ ;            like '| IN '
+ ;
  ;;
  ;;THIS ROUTINE AT THE 'IT' ENTRY POINT CREATES ONE 'IT' SEGMENTS FOR EACH
  ;;ITEM IN THE P.O. TRANSACTION.  IT ALSO CREATES ALL THE 'DE' SEGMENTS
@@ -16,10 +21,11 @@ IT(VAR1,VAR2,TOTAL) ;ITEMS INFORMATION SEGMENT
  N AZ,B,C,CN,DC,DE,DELDT,DIS,DIWF,DIWL,DIWR,FOBPOINT,FSC,HAZM,I0,I2
  N I4,INC,INN,ITEM,ITEMCNT,J,LI,LIN,LOT,LPRC,LPRC1,M,MPN,MPNO,N,N1L
  N NSN,UC,UNIT,UP,UPN,VPN,X,TD,SKU,SKUF,SERNO,SEQU,SCH
- N SCHX,RP,PDA,OS,OT,IT,ICNT
+ N SCHX,RP,PDA,OS,OT,IT,ICNT,PURPIPE,PRCHI,PRCHJ   ;PRC*5.1*221
  S (ITEM,ITEMCNT)=0
  S OS=$P($G(^PRC(442,VAR1,7)),"^",1)+0 ; order status
  S TOTAL=$P($G(^PRC(442,VAR1,2,0)),U,4)+7
+ D PIPECK S ITEM=0  ;PRC*5.1*221
  F  S ITEM=$O(^PRC(442,VAR1,2,ITEM)) Q:ITEM'>0  S ITEMCNT=ITEMCNT+1 D  Q:VAR2]""
  .S I0=$G(^PRC(442,VAR1,2,ITEM,0))
  .S I2=$G(^PRC(442,VAR1,2,ITEM,2))
@@ -117,6 +123,7 @@ IT5 .S (IT,ICNT)=0
  .K ^UTILITY($J,"W")
  .F  S DE=$O(^PRC(442,VAR1,2,ITEM,1,DE)) Q:DE=""  D
  . .S X=$G(^PRC(442,VAR1,2,ITEM,1,DE,0))
+ . .S X=$S($D(X):X,1:"") S:PURPIPE DIWF=$G(DIWF)_"|"
  . .D DIWP^PRCUTL($G(DA))
  .S J=$G(^UTILITY($J,"W",1))
  .G:J="" IT6
@@ -159,4 +166,12 @@ IT9 .S B=B_$S(IT:SEQU,1:0)_"^"_$P(INN,U,15)_"^|" ;FIELDS 27, 28, 29
  .S B=^TMP($J,"STRING",1) ;ADD 1 TO HE SEGMENT FIELD 12
  .S $P(B,U,12)=$P(B,U,12)+1
  .S ^TMP($J,"STRING",1)=B
+ Q
+PIPECK ;check for invalid pipe '|IN ' command in item description   ;PRC*5.1*221
+ N PRCITEM
+ S PURPIPE=0,PRCITEM=0
+ F PRCHI=1:1 S PRCITEM=$O(^PRC(442,VAR1,2,PRCITEM)),PRCHDIW=0 Q:'PRCITEM  D  Q:PURPIPE
+ . F PRCHJ=1:1 S PRCHDIW=$O(^PRC(442,VAR1,2,PRCITEM,1,PRCHDIW)) Q:PRCHDIW'>0  S X=$S($D(^(PRCHDIW,0)):^(0),1:"") D  Q:PURPIPE
+ . . I X["| IN " S PURPIPE=1
+ . . Q
  Q

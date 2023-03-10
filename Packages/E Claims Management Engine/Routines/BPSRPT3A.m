@@ -1,5 +1,5 @@
 BPSRPT3A ;AITC/CKB - ECME REPORTS ;9/28/2017
- ;;1.0;E CLAIMS MGMT ENGINE;**23,24**;JUN 2004;Build 43
+ ;;1.0;E CLAIMS MGMT ENGINE;**23,24,28**;JUN 2004;Build 22
  ;;Per VA Directive 6402, this routine should not be modified.
  ;
  Q
@@ -307,4 +307,62 @@ DCSEL(FIELD,FILE,BPSARRAY,DEFAULT) ;
  ; If nothing was selected set BPSARRAY=0
  I '$D(BPSARRAY) S BPSARRAY=0
  Q
+ ;
+SELDUP() ;
+ ; Select one or more Duplicate Claim types
+ ; 
+ ; Return value -> BPDUP("DUP") = 0 - User Entered 'ALL'
+ ;                              = 1 - contain the entries separated by comma's
+ ;                              = "^" - User quit
+BPSDUP ;
+ K BPDUP
+ N DIR,DTOUT,DUOUT,DIRUT,DIROUT,X,Y,P
+ N BPDUP,BPDUPSTR,BPSERR,BPSSEL,BPSX,I
+ ;
+ S BPDUPSTR=",D,Q,S,A,"
+ S DIR(0)="FO^0:7"
+ S DIR("A",1)=""
+ S DIR("A",2)="Select one or more of the following:"
+ S DIR("A",3)=""
+ S DIR("A",4)="     S       DUPLICATE OF APPROVED"
+ S DIR("A",5)="     D       DUPLICATE OF PAID"
+ S DIR("A",6)="     Q       DUPLICATE OF CAPTURED"
+ S DIR("A",7)="     A       ALL"
+ S DIR("A",8)=""
+ S DIR("A")="Display (S)Dup of Approved or (D)Dup of Paid or (Q)Dup of Capture or (A)LL"
+ S DIR("B")="A"
+ S DIR("?",1)="Enter a single response or multiple responses separated by commas."
+ S DIR("?",2)=" Example:"
+ S DIR("?",3)=" D"
+ S DIR("?")=" D,S"
+ D ^DIR K DIR
+ I ($G(DUOUT)=1)!($G(DTOUT)=1)!($D(DIRUT)) Q "^"
+ ;
+ ;Convert any lower case to upper case
+ S X=$TR(X,BPSLC,BPSUC)
+ S BPDUP("DUP")=X
+ ;
+ ;If 'A' was one of the selections, return 0 - ALL selected
+ I X["A" S BPDUP("DUP")=0 G SELDUPEX
+ ;
+ ; Loop through user input (returned in variable X).
+ ; Display warning message if any user input selection is not included
+ ; in the string of acceptable codes (BPDUPSTR) and re-prompt question.
+ ; Assign valid selections to BPDUP array. This array will prevent
+ ; duplicate entries from being saved to the user's profile.
+ ;
+ ; Check for Invalid entries, if found set BPSERR=1
+ S BPSERR=0
+ F I=1:1:$L(X,",") D
+ . S BPSSEL=$P(X,",",I)
+ . I BPDUPSTR'[(","_BPSSEL_",") W !," ",BPSSEL," is not a valid entry." S BPSERR=1 Q
+ ; Invalid entry found prompt again
+ I BPSERR=1 G BPSDUP
+ ;
+ ;User selected one or more duplicate types, display the user selections
+ N I F I=1:1:$L(X,",") S BPSX=$P(X,",",I) D
+ . W !,?5,$S(BPSX="D":"DUPLICATE OF PAID",BPSX="Q":"DUPLICATE OF CAPTURED",BPSX="S":"DUPLICATE OF APPROVED",1:"")
+ ;
+SELDUPEX ;
+ Q BPDUP("DUP")
  ;

@@ -1,5 +1,5 @@
-RCDPEUPO ;ALBANY/KML - Unposted EFT Override ;3 Oct 2018 10:46:35
- ;;4.5;Accounts Receivable;**298,332**;Mar 20, 1995;Build 40
+RCDPEUPO ;ALBANY/KML - Unposted EFT Override ; 6/10/19 12:30pm
+ ;;4.5;Accounts Receivable;**298,332,349**;Mar 20, 1995;Build 44
  ;Per VA Directive 6402, this routine should not be modified.
  Q
  ;
@@ -85,7 +85,7 @@ OVERRIDE(TYPE,TEXT) ; when ERROR state exists, perform the Override
  ;                    (refer to MAIL tag)
  ; Returns: DONE    - 1 - OVERRIDE was performed;  0 - Override was not performed
  ;
- N DIR,DIRUT,DONE,DTTM,DUOUT,RCDFDA,REASON,X1,Y
+ N DIR,DIRUT,DONE,DTTM,DUOUT,IENS,RCDFDA,REASON,X1,XX,Y
  L +^RCY(344.61,1,0):DILOCKTM E  D NOLOCK S DONE=0 G OVERQ
  S DONE=1
  I TYPE="P"!(TYPE="M")!(TYPE="T") D
@@ -120,6 +120,19 @@ OVERRIDE(TYPE,TEXT) ; when ERROR state exists, perform the Override
  S RCDFDA(344.61,"1,",$S(TYPE="M":22,TYPE="P":23,1:27))=DUZ
  S RCDFDA(344.61,"1,",$S(TYPE="M":24,TYPE="P":25,1:28))=REASON
  D FILE^DIE("","RCDFDA")
+ ;
+ ; PRCA*4.5*349 - File override into Override history
+ K RCDFDA
+ S XX=$S(TYPE="M":.06,TYPE="P":.07,1:.13)
+ S XX=$$GET1^DIQ(344.61,"1,",XX,"I")
+ S IENS="+1,1,"
+ S RCDFDA(344.612,IENS,.01)=$P(DTTM,".")
+ S RCDFDA(344.612,IENS,.02)=DUZ
+ S RCDFDA(344.612,IENS,.03)=REASON
+ S RCDFDA(344.612,IENS,.04)=TYPE
+ S RCDFDA(344.612,IENS,.05)=XX
+ D UPDATE^DIE("","RCDFDA")
+ ;
  S X1="" S X1=$O(TEXT(X1),-1)
  S X1=X1+1
  S TEXT(X1)=$S(TYPE="M":"Medical ",TYPE="P":"Pharmacy ",1:"TRICARE ")_"Override Details"

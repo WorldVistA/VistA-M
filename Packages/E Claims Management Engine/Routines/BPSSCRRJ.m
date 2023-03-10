@@ -1,13 +1,13 @@
 BPSSCRRJ ;ALB/ESG - ECME OPECC Reject Information ;02-SEP-2015
- ;;1.0;E CLAIMS MGMT ENGINE;**20,22**;JUN 2004;Build 28
+ ;;1.0;E CLAIMS MGMT ENGINE;**20,22,33**;JUN 2004;Build 5
  ;;Per VA Directive 6402, this routine should not be modified.
  ;
- ; ICR# 4701 for call to $$RXSITE^PSOBPSUT
- ; ICR# 4705 for call to $$GETNDC^PSONDCUT
- ; ICR# 4711 for call to DP^PSORXVW
- ; ICR# 6227 for call to REJCOM^PSOREJU4
- ; ICR# 6228 for call to MP^PSOREJU4 and PI^PSOREJU4
- ; ICR# 6768 for call to $$TAXID^IBCEF75
+ ; Reference to $$RXSITE^PSOBPSUT supported by IA #4701 
+ ; Reference to $$GETNDC^PSONDCUT supported by IA #4705 
+ ; Reference to DP^PSORXVW supported by IA #4711 
+ ; Reference to REJCOM^PSOREJU4 supported by IA #6227 
+ ; Reference to MP^PSOREJU4 and PI^PSOREJU4 supported by IA #6228 
+ ; Reference to $$TAXID^IBCEF75 supported by IA #6768 
  ;
  Q
  ;
@@ -265,7 +265,13 @@ DVINFO(RX,RFL) ; header division data
  S DVINFO="Division : "_$E($$GET1^DIQ(9002313.59,BPORI59,11),1,15) ; Pharmacy Division name from BPS Transaction
  ;Display both NPI and NCPDP numbers
  S DVIEN=+$$RXSITE^PSOBPSUT(RX,RFL)                           ; ICR# 4701
- S NCPNPI=$$DIVNCPDP^BPSBUTL(DVIEN)
+ ;
+ ; Check for Controlled Substance Drug and if a BPS Pharmacy for CS has 
+ ; been defined.  If so, use NCPDP# & NPI for the CS Pharmacy.
+ S NCPNPI=$$CSNPI^BPSUTIL(RX,RFL)
+ ;
+ ; If not a Controlled Substance, use NCDPD# & NPI info based on Division.
+ I +NCPNPI=-1 S NCPNPI=$$DIVNCPDP^BPSBUTL(DVIEN)
  S $E(DVINFO,28)="NPI: "_$P(NCPNPI,U,2)
  S $E(DVINFO,44)="NCPDP: "_$P(NCPNPI,U,1)
  S BPSTAXID=$P($$TAXID^IBCEF75,U,2)                           ; ICR# 6768

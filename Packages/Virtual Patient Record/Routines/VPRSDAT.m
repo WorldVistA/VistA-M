@@ -1,5 +1,5 @@
 VPRSDAT ;SLC/MKB -- SDA TIU utilities ;10/25/18  15:29
- ;;1.0;VIRTUAL PATIENT RECORD;**20**;Sep 01, 2011;Build 9
+ ;;1.0;VIRTUAL PATIENT RECORD;**20,29**;Sep 01, 2011;Build 11
  ;;Per VHA Directive 6402, this routine should not be modified.
  ;
  ; External References          DBIA#
@@ -11,10 +11,10 @@ VPRSDAT ;SLC/MKB -- SDA TIU utilities ;10/25/18  15:29
  ;
 DOC1(IEN) ; -- ID Action for single document
  K VPRTIU S IEN=+$G(IEN) I IEN<1 S DDEOUT=1 Q
- D EXTRACT^TIULQ(IEN,"VPRTIU",,".01:.08;1201;1202;1205;1212;1301;1302;1307;1501:1508;1606;1701;2101",,,"I")
+ D EXTRACT^TIULQ(IEN,"VPRTIU",,".01:.08;1201;1202;1205;1207;1212;1301;1302;1307;1404;1501:1508;1601:1606;1701;2101;15001",,,"I")
  Q
  ;
-TEXT ; -- get note text
+TEXT ; -- return note text in WP(#) array
  N VPRT,STS,TAG,FILE,FIELD,IEN ;protect variables
  S STS=+$G(VPRTIU(DIEN,.05,"I"))
  I STS=15 S WP(1)="This document has been RETRACTED." Q
@@ -31,7 +31,8 @@ TYPE(IEN) ; -- return code^name for document type/class
  . S SVC=$$GET1^DIQ(8926.1,NATL_",",.07) Q:SVC=""
  . I SVC["HISTORY & PHYSICAL"!(SVC["HISTORY AND PHYSICAL") S Y="HP^History & Physical" Q
  . I SVC["COMPENSATION & PENSION" S Y="CM^Compensation & Pension" Q
- S:'$L(Y) Y=X_U_$$TYPE^VPRDJ08(X)
+ I X="" S Y="CD^Clinical Document" ;not in known doc class
+ S:'$L(Y) Y=X_U_$$TYPE^VPRDJ08(X)  ;name of known doc class
  Q Y
  ;
 SIGDT(IEN) ; -- return date of authorization
@@ -42,10 +43,10 @@ SIGDT(IEN) ; -- return date of authorization
  Q Y
  ;
 NATL(IEN) ; -- convert 8925.1 IEN to 8926.1 IEN
+ ;  Expects VPRNATL from VPR DOCUMENT EXTENSION entity
  ;  Returns   DATA = code ^ [description] ^ system
  ;          TIUTTL = local title name
  N TIUNATL S IEN=+$G(IEN),DATA=""
- ; VPRNATL set in VPR DOCUMENT EXTENSION
  S TIUNATL=$S($G(VPRNATL):VPRNATL,1:+$G(^TIU(8925.1,IEN,15)))
  S TIUTTL=$P($G(^TIU(8925.1,IEN,0)),U)
  ; if no national mapping, return local title
@@ -86,13 +87,8 @@ FAC(IEN) ; -- return #4 ien for TIU document
  I FAC="" S FAC=$G(VPRTIU(IEN,1212,"I"))
  Q FAC
  ;
-AD(ID) ; -- get info for one Adv Directive
- K VPRTIU S ID=$G(ID)
- D EXTRACT^TIULQ(+ID,"VPRTIU",,".01:.05;1201;1205;1212;1301;1302",,1,"I")
+AD1(ID) ; -- get info for one Adv Directive
+ K VPRTIU S ID=+$G(ID)
+ D EXTRACT^TIULQ(+ID,"VPRTIU",,".01:.05;1201;1212;1301;1302",,,"I")
  S:'DFN DFN=+$G(VPRTIU(+ID,.02,"I"))
- I DFN,'$D(^TMP("TIUPPCV",$J)) D  ;one, do query
- . N DLIST,I,X
- . D ADVDIR^VPRSDAQ
- . S I=0 F  S I=$O(DLIST(I)) Q:I<1  S X=$G(DLIST(I)) I +X=+ID S ID=X Q
- S VPRADV=ID,ID=+ID
  Q

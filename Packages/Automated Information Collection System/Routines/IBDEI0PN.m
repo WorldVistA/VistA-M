@@ -1,126 +1,126 @@
-IBDEI0PN ; ; 04-FEB-2020
- ;;3.0;IB ENCOUNTER FORM IMP/EXP;;FEB 04, 2020
+IBDEI0PN ; ; 01-FEB-2022
+ ;;3.0;IB ENCOUNTER FORM IMP/EXP;;FEB 01, 2022
  Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,999) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
- ;;^UTILITY(U,$J,358.3,11440,2)
- ;;=^5005787
- ;;^UTILITY(U,$J,358.3,11441,0)
- ;;=H40.1411^^77^734^7
- ;;^UTILITY(U,$J,358.3,11441,1,0)
+ ;;^UTILITY(U,$J,358.3,11527,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,11441,1,3,0)
- ;;=3^Pseudoexf Glaucoma,Mild,Right Eye
- ;;^UTILITY(U,$J,358.3,11441,1,4,0)
- ;;=4^H40.1411
- ;;^UTILITY(U,$J,358.3,11441,2)
- ;;=^5138018
- ;;^UTILITY(U,$J,358.3,11442,0)
- ;;=H40.1421^^77^734^8
- ;;^UTILITY(U,$J,358.3,11442,1,0)
+ ;;^UTILITY(U,$J,358.3,11527,1,3,0)
+ ;;=3^Diabetes Type 2 w/ Hyperglycemia
+ ;;^UTILITY(U,$J,358.3,11527,1,4,0)
+ ;;=4^E11.65
+ ;;^UTILITY(U,$J,358.3,11527,2)
+ ;;=^5002663
+ ;;^UTILITY(U,$J,358.3,11528,0)
+ ;;=E10.65^^46^558^6
+ ;;^UTILITY(U,$J,358.3,11528,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,11442,1,3,0)
- ;;=3^Pseudoexf Glaucoma,Mild,Left Eye
- ;;^UTILITY(U,$J,358.3,11442,1,4,0)
- ;;=4^H40.1421
- ;;^UTILITY(U,$J,358.3,11442,2)
- ;;=^5138023
- ;;^UTILITY(U,$J,358.3,11443,0)
- ;;=H40.1431^^77^734^9
- ;;^UTILITY(U,$J,358.3,11443,1,0)
+ ;;^UTILITY(U,$J,358.3,11528,1,3,0)
+ ;;=3^Diabetes Type 1 w/ Hyperglycemia
+ ;;^UTILITY(U,$J,358.3,11528,1,4,0)
+ ;;=4^E10.65
+ ;;^UTILITY(U,$J,358.3,11528,2)
+ ;;=^5002623
+ ;;^UTILITY(U,$J,358.3,11529,0)
+ ;;=E11.21^^46^558^9
+ ;;^UTILITY(U,$J,358.3,11529,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,11443,1,3,0)
- ;;=3^Pseudoexf Glaucoma,Mild,Bilateral
- ;;^UTILITY(U,$J,358.3,11443,1,4,0)
- ;;=4^H40.1431
- ;;^UTILITY(U,$J,358.3,11443,2)
- ;;=^5138028
- ;;^UTILITY(U,$J,358.3,11444,0)
- ;;=H40.1413^^77^734^10
- ;;^UTILITY(U,$J,358.3,11444,1,0)
+ ;;^UTILITY(U,$J,358.3,11529,1,3,0)
+ ;;=3^Diabetes Type 2 w/ Diabetic Nephropathy
+ ;;^UTILITY(U,$J,358.3,11529,1,4,0)
+ ;;=4^E11.21
+ ;;^UTILITY(U,$J,358.3,11529,2)
+ ;;=^5002629
+ ;;^UTILITY(U,$J,358.3,11530,0)
+ ;;=E10.29^^46^558^3
+ ;;^UTILITY(U,$J,358.3,11530,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,11444,1,3,0)
- ;;=3^Pseudoexf Glaucoma,Severe,Right Eye
- ;;^UTILITY(U,$J,358.3,11444,1,4,0)
- ;;=4^H40.1413
- ;;^UTILITY(U,$J,358.3,11444,2)
- ;;=^5138020
- ;;^UTILITY(U,$J,358.3,11445,0)
- ;;=H40.1423^^77^734^11
- ;;^UTILITY(U,$J,358.3,11445,1,0)
+ ;;^UTILITY(U,$J,358.3,11530,1,3,0)
+ ;;=3^Diabetes Type 1 w/ Diabetic Kidney Complication
+ ;;^UTILITY(U,$J,358.3,11530,1,4,0)
+ ;;=4^E10.29
+ ;;^UTILITY(U,$J,358.3,11530,2)
+ ;;=^5002591
+ ;;^UTILITY(U,$J,358.3,11531,0)
+ ;;=E10.21^^46^558^4
+ ;;^UTILITY(U,$J,358.3,11531,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,11445,1,3,0)
- ;;=3^Pseudoexf Glaucoma,Severe,Left Eye
- ;;^UTILITY(U,$J,358.3,11445,1,4,0)
- ;;=4^H40.1423
- ;;^UTILITY(U,$J,358.3,11445,2)
- ;;=^5138025
- ;;^UTILITY(U,$J,358.3,11446,0)
- ;;=H40.1433^^77^734^12
- ;;^UTILITY(U,$J,358.3,11446,1,0)
+ ;;^UTILITY(U,$J,358.3,11531,1,3,0)
+ ;;=3^Diabetes Type 1 w/ Diabetic Nephropathy
+ ;;^UTILITY(U,$J,358.3,11531,1,4,0)
+ ;;=4^E10.21
+ ;;^UTILITY(U,$J,358.3,11531,2)
+ ;;=^5002589
+ ;;^UTILITY(U,$J,358.3,11532,0)
+ ;;=E11.40^^46^558^10
+ ;;^UTILITY(U,$J,358.3,11532,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,11446,1,3,0)
- ;;=3^Pseudoexf Glaucoma,Severe,Bilateral
- ;;^UTILITY(U,$J,358.3,11446,1,4,0)
- ;;=4^H40.1433
- ;;^UTILITY(U,$J,358.3,11446,2)
- ;;=^5138030
- ;;^UTILITY(U,$J,358.3,11447,0)
- ;;=H40.041^^77^734^13
- ;;^UTILITY(U,$J,358.3,11447,1,0)
+ ;;^UTILITY(U,$J,358.3,11532,1,3,0)
+ ;;=3^Diabetes Type 2 w/ Diabetic Neuropathy
+ ;;^UTILITY(U,$J,358.3,11532,1,4,0)
+ ;;=4^E11.40
+ ;;^UTILITY(U,$J,358.3,11532,2)
+ ;;=^5002644
+ ;;^UTILITY(U,$J,358.3,11533,0)
+ ;;=E10.40^^46^558^5
+ ;;^UTILITY(U,$J,358.3,11533,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,11447,1,3,0)
- ;;=3^Steroid Responsive Glauc,Right Eye
- ;;^UTILITY(U,$J,358.3,11447,1,4,0)
- ;;=4^H40.041
- ;;^UTILITY(U,$J,358.3,11447,2)
- ;;=^5005736
- ;;^UTILITY(U,$J,358.3,11448,0)
- ;;=H40.042^^77^734^14
- ;;^UTILITY(U,$J,358.3,11448,1,0)
+ ;;^UTILITY(U,$J,358.3,11533,1,3,0)
+ ;;=3^Diabetes Type 1 w/ Diabetic Neuropathy
+ ;;^UTILITY(U,$J,358.3,11533,1,4,0)
+ ;;=4^E10.40
+ ;;^UTILITY(U,$J,358.3,11533,2)
+ ;;=^5002604
+ ;;^UTILITY(U,$J,358.3,11534,0)
+ ;;=E10.22^^46^558^2
+ ;;^UTILITY(U,$J,358.3,11534,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,11448,1,3,0)
- ;;=3^Steroid Responsive Glauc,Left Eye
- ;;^UTILITY(U,$J,358.3,11448,1,4,0)
- ;;=4^H40.042
- ;;^UTILITY(U,$J,358.3,11448,2)
- ;;=^5005737
- ;;^UTILITY(U,$J,358.3,11449,0)
- ;;=H40.043^^77^734^15
- ;;^UTILITY(U,$J,358.3,11449,1,0)
+ ;;^UTILITY(U,$J,358.3,11534,1,3,0)
+ ;;=3^Diabetes Type 1 w/ Diabetic CKD
+ ;;^UTILITY(U,$J,358.3,11534,1,4,0)
+ ;;=4^E10.22
+ ;;^UTILITY(U,$J,358.3,11534,2)
+ ;;=^5002590
+ ;;^UTILITY(U,$J,358.3,11535,0)
+ ;;=E10.9^^46^558^7
+ ;;^UTILITY(U,$J,358.3,11535,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,11449,1,3,0)
- ;;=3^Steroid Responsive Glauc,Bilateral
- ;;^UTILITY(U,$J,358.3,11449,1,4,0)
- ;;=4^H40.043
- ;;^UTILITY(U,$J,358.3,11449,2)
- ;;=^5005738
- ;;^UTILITY(U,$J,358.3,11450,0)
- ;;=H40.31X1^^77^734^16
- ;;^UTILITY(U,$J,358.3,11450,1,0)
+ ;;^UTILITY(U,$J,358.3,11535,1,3,0)
+ ;;=3^Diabetes Type 1 w/o Complications
+ ;;^UTILITY(U,$J,358.3,11535,1,4,0)
+ ;;=4^E10.9
+ ;;^UTILITY(U,$J,358.3,11535,2)
+ ;;=^5002626
+ ;;^UTILITY(U,$J,358.3,11536,0)
+ ;;=E11.22^^46^558^8
+ ;;^UTILITY(U,$J,358.3,11536,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,11450,1,3,0)
- ;;=3^Glaucoma d/t Trauma,Mild,Right Eye
- ;;^UTILITY(U,$J,358.3,11450,1,4,0)
- ;;=4^H40.31X1
- ;;^UTILITY(U,$J,358.3,11450,2)
- ;;=^5005853
- ;;^UTILITY(U,$J,358.3,11451,0)
- ;;=H40.32X1^^77^734^17
- ;;^UTILITY(U,$J,358.3,11451,1,0)
+ ;;^UTILITY(U,$J,358.3,11536,1,3,0)
+ ;;=3^Diabetes Type 2 w/ Diabetic CKD
+ ;;^UTILITY(U,$J,358.3,11536,1,4,0)
+ ;;=4^E11.22
+ ;;^UTILITY(U,$J,358.3,11536,2)
+ ;;=^5002630
+ ;;^UTILITY(U,$J,358.3,11537,0)
+ ;;=E11.9^^46^558^12
+ ;;^UTILITY(U,$J,358.3,11537,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,11451,1,3,0)
- ;;=3^Glaucoma d/t Trauma,Mild,Left Eye
- ;;^UTILITY(U,$J,358.3,11451,1,4,0)
- ;;=4^H40.32X1
- ;;^UTILITY(U,$J,358.3,11451,2)
- ;;=^5005857
- ;;^UTILITY(U,$J,358.3,11452,0)
- ;;=H40.33X1^^77^734^18
- ;;^UTILITY(U,$J,358.3,11452,1,0)
+ ;;^UTILITY(U,$J,358.3,11537,1,3,0)
+ ;;=3^Diabetes Type 2 w/o Complications
+ ;;^UTILITY(U,$J,358.3,11537,1,4,0)
+ ;;=4^E11.9
+ ;;^UTILITY(U,$J,358.3,11537,2)
+ ;;=^5002666
+ ;;^UTILITY(U,$J,358.3,11538,0)
+ ;;=E13.22^^46^558^1
+ ;;^UTILITY(U,$J,358.3,11538,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,11452,1,3,0)
- ;;=3^Glaucoma d/t Trauma,Mild,Bilateral
- ;;^UTILITY(U,$J,358.3,11452,1,4,0)
- ;;=4^H40.33X1
- ;;^UTILITY(U,$J,358.3,11452,2)
- ;;=^5005861
+ ;;^UTILITY(U,$J,358.3,11538,1,3,0)
+ ;;=3^DM w/ Diabetic CKD,Other
+ ;;^UTILITY(U,$J,358.3,11538,1,4,0)
+ ;;=4^E13.22
+ ;;^UTILITY(U,$J,358.3,11538,2)
+ ;;=^5002671
+ ;;^UTILITY(U,$J,358.3,11539,0)
+ ;;=E83.30^^46^559^26
+ ;;^UTILITY(U,$J,358.3,11539,1,0)
+ ;;=^358.31IA^4^2

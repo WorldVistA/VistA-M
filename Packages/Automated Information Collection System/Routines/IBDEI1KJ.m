@@ -1,124 +1,128 @@
-IBDEI1KJ ; ; 04-FEB-2020
- ;;3.0;IB ENCOUNTER FORM IMP/EXP;;FEB 04, 2020
+IBDEI1KJ ; ; 01-FEB-2022
+ ;;3.0;IB ENCOUNTER FORM IMP/EXP;;FEB 01, 2022
  Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,999) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
- ;;^UTILITY(U,$J,358.3,25068,0)
- ;;=Z93.0^^107^1212^151
- ;;^UTILITY(U,$J,358.3,25068,1,0)
+ ;;^UTILITY(U,$J,358.3,25432,1,4,0)
+ ;;=4^F64.9
+ ;;^UTILITY(U,$J,358.3,25432,2)
+ ;;=^5003650
+ ;;^UTILITY(U,$J,358.3,25433,0)
+ ;;=Z59.2^^92^1156^1
+ ;;^UTILITY(U,$J,358.3,25433,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,25068,1,3,0)
- ;;=3^Tracheostomy Status
- ;;^UTILITY(U,$J,358.3,25068,1,4,0)
- ;;=4^Z93.0
- ;;^UTILITY(U,$J,358.3,25068,2)
- ;;=^5063642
- ;;^UTILITY(U,$J,358.3,25069,0)
- ;;=Z99.3^^107^1212^156
- ;;^UTILITY(U,$J,358.3,25069,1,0)
+ ;;^UTILITY(U,$J,358.3,25433,1,3,0)
+ ;;=3^Discord w/ Neighbor,Lodger or Landlord
+ ;;^UTILITY(U,$J,358.3,25433,1,4,0)
+ ;;=4^Z59.2
+ ;;^UTILITY(U,$J,358.3,25433,2)
+ ;;=^5063131
+ ;;^UTILITY(U,$J,358.3,25434,0)
+ ;;=Z59.1^^92^1156^13
+ ;;^UTILITY(U,$J,358.3,25434,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,25069,1,3,0)
- ;;=3^Wheelchair Dependence
- ;;^UTILITY(U,$J,358.3,25069,1,4,0)
- ;;=4^Z99.3
- ;;^UTILITY(U,$J,358.3,25069,2)
- ;;=^5063759
- ;;^UTILITY(U,$J,358.3,25070,0)
- ;;=Z83.42^^107^1212^21
- ;;^UTILITY(U,$J,358.3,25070,1,0)
+ ;;^UTILITY(U,$J,358.3,25434,1,3,0)
+ ;;=3^Inadequate Housing
+ ;;^UTILITY(U,$J,358.3,25434,1,4,0)
+ ;;=4^Z59.1
+ ;;^UTILITY(U,$J,358.3,25434,2)
+ ;;=^5063130
+ ;;^UTILITY(U,$J,358.3,25435,0)
+ ;;=Z59.3^^92^1156^17
+ ;;^UTILITY(U,$J,358.3,25435,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,25070,1,3,0)
- ;;=3^Family Hx of Familial Hypercholesterolemia
- ;;^UTILITY(U,$J,358.3,25070,1,4,0)
- ;;=4^Z83.42
- ;;^UTILITY(U,$J,358.3,25070,2)
- ;;=^8132985
- ;;^UTILITY(U,$J,358.3,25071,0)
- ;;=Z98.890^^107^1212^114
- ;;^UTILITY(U,$J,358.3,25071,1,0)
+ ;;^UTILITY(U,$J,358.3,25435,1,3,0)
+ ;;=3^Residential Institution Living Problems
+ ;;^UTILITY(U,$J,358.3,25435,1,4,0)
+ ;;=4^Z59.3
+ ;;^UTILITY(U,$J,358.3,25435,2)
+ ;;=^5063132
+ ;;^UTILITY(U,$J,358.3,25436,0)
+ ;;=Z59.5^^92^1156^2
+ ;;^UTILITY(U,$J,358.3,25436,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,25071,1,3,0)
- ;;=3^Postprocedural States/HX of Surgery NEC
- ;;^UTILITY(U,$J,358.3,25071,1,4,0)
- ;;=4^Z98.890
- ;;^UTILITY(U,$J,358.3,25071,2)
- ;;=^5063754
- ;;^UTILITY(U,$J,358.3,25072,0)
- ;;=Z95.1^^107^1212^115
- ;;^UTILITY(U,$J,358.3,25072,1,0)
+ ;;^UTILITY(U,$J,358.3,25436,1,3,0)
+ ;;=3^Extreme Poverty
+ ;;^UTILITY(U,$J,358.3,25436,1,4,0)
+ ;;=4^Z59.5
+ ;;^UTILITY(U,$J,358.3,25436,2)
+ ;;=^5063134
+ ;;^UTILITY(U,$J,358.3,25437,0)
+ ;;=Z59.6^^92^1156^16
+ ;;^UTILITY(U,$J,358.3,25437,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,25072,1,3,0)
- ;;=3^Presence of Aortocoronary Bypass
- ;;^UTILITY(U,$J,358.3,25072,1,4,0)
- ;;=4^Z95.1
- ;;^UTILITY(U,$J,358.3,25072,2)
- ;;=^5063669
- ;;^UTILITY(U,$J,358.3,25073,0)
- ;;=Z98.2^^107^1212^127
- ;;^UTILITY(U,$J,358.3,25073,1,0)
+ ;;^UTILITY(U,$J,358.3,25437,1,3,0)
+ ;;=3^Low Income
+ ;;^UTILITY(U,$J,358.3,25437,1,4,0)
+ ;;=4^Z59.6
+ ;;^UTILITY(U,$J,358.3,25437,2)
+ ;;=^5063135
+ ;;^UTILITY(U,$J,358.3,25438,0)
+ ;;=Z59.7^^92^1156^14
+ ;;^UTILITY(U,$J,358.3,25438,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,25073,1,3,0)
- ;;=3^Presence of Cerebrospinal Fluid Drainage Device
- ;;^UTILITY(U,$J,358.3,25073,1,4,0)
- ;;=4^Z98.2
- ;;^UTILITY(U,$J,358.3,25073,2)
- ;;=^5063735
- ;;^UTILITY(U,$J,358.3,25074,0)
- ;;=Z97.5^^107^1212^128
- ;;^UTILITY(U,$J,358.3,25074,1,0)
+ ;;^UTILITY(U,$J,358.3,25438,1,3,0)
+ ;;=3^Insufficient Social Insurance/Welfare Support
+ ;;^UTILITY(U,$J,358.3,25438,1,4,0)
+ ;;=4^Z59.7
+ ;;^UTILITY(U,$J,358.3,25438,2)
+ ;;=^5063136
+ ;;^UTILITY(U,$J,358.3,25439,0)
+ ;;=Z59.9^^92^1156^11
+ ;;^UTILITY(U,$J,358.3,25439,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,25074,1,3,0)
- ;;=3^Presence of Contraceptive (Intrauterine) Device
- ;;^UTILITY(U,$J,358.3,25074,1,4,0)
- ;;=4^Z97.5
- ;;^UTILITY(U,$J,358.3,25074,2)
- ;;=^5063731
- ;;^UTILITY(U,$J,358.3,25075,0)
- ;;=Z95.5^^107^1212^129
- ;;^UTILITY(U,$J,358.3,25075,1,0)
+ ;;^UTILITY(U,$J,358.3,25439,1,3,0)
+ ;;=3^Housing/Economic Problems,Unspec
+ ;;^UTILITY(U,$J,358.3,25439,1,4,0)
+ ;;=4^Z59.9
+ ;;^UTILITY(U,$J,358.3,25439,2)
+ ;;=^5063138
+ ;;^UTILITY(U,$J,358.3,25440,0)
+ ;;=Z59.00^^92^1156^6
+ ;;^UTILITY(U,$J,358.3,25440,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,25075,1,3,0)
- ;;=3^Presence of Coronary Angioplasty Implant/Graft
- ;;^UTILITY(U,$J,358.3,25075,1,4,0)
- ;;=4^Z95.5
- ;;^UTILITY(U,$J,358.3,25075,2)
- ;;=^5063673
- ;;^UTILITY(U,$J,358.3,25076,0)
- ;;=Z97.2^^107^1212^130
- ;;^UTILITY(U,$J,358.3,25076,1,0)
+ ;;^UTILITY(U,$J,358.3,25440,1,3,0)
+ ;;=3^Homelessness,Unspec
+ ;;^UTILITY(U,$J,358.3,25440,1,4,0)
+ ;;=4^Z59.00
+ ;;^UTILITY(U,$J,358.3,25440,2)
+ ;;=^5161304
+ ;;^UTILITY(U,$J,358.3,25441,0)
+ ;;=Z59.01^^92^1156^4
+ ;;^UTILITY(U,$J,358.3,25441,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,25076,1,3,0)
- ;;=3^Presence of Dental Prosthetic Device
- ;;^UTILITY(U,$J,358.3,25076,1,4,0)
- ;;=4^Z97.2
- ;;^UTILITY(U,$J,358.3,25076,2)
- ;;=^5063728
- ;;^UTILITY(U,$J,358.3,25077,0)
- ;;=Z97.4^^107^1212^131
- ;;^UTILITY(U,$J,358.3,25077,1,0)
+ ;;^UTILITY(U,$J,358.3,25441,1,3,0)
+ ;;=3^Homelessness,Sheltered
+ ;;^UTILITY(U,$J,358.3,25441,1,4,0)
+ ;;=4^Z59.01
+ ;;^UTILITY(U,$J,358.3,25441,2)
+ ;;=^5161305
+ ;;^UTILITY(U,$J,358.3,25442,0)
+ ;;=Z59.02^^92^1156^5
+ ;;^UTILITY(U,$J,358.3,25442,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,25077,1,3,0)
- ;;=3^Presence of External Hearing Aid
- ;;^UTILITY(U,$J,358.3,25077,1,4,0)
- ;;=4^Z97.4
- ;;^UTILITY(U,$J,358.3,25077,2)
- ;;=^5063730
- ;;^UTILITY(U,$J,358.3,25078,0)
- ;;=Z96.622^^107^1212^117
- ;;^UTILITY(U,$J,358.3,25078,1,0)
+ ;;^UTILITY(U,$J,358.3,25442,1,3,0)
+ ;;=3^Homelessness,Unsheltered
+ ;;^UTILITY(U,$J,358.3,25442,1,4,0)
+ ;;=4^Z59.02
+ ;;^UTILITY(U,$J,358.3,25442,2)
+ ;;=^5161306
+ ;;^UTILITY(U,$J,358.3,25443,0)
+ ;;=Z59.811^^92^1156^7
+ ;;^UTILITY(U,$J,358.3,25443,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,25078,1,3,0)
- ;;=3^Presence of Artificial Elbow Joint,Left
- ;;^UTILITY(U,$J,358.3,25078,1,4,0)
- ;;=4^Z96.622
- ;;^UTILITY(U,$J,358.3,25078,2)
- ;;=^5063696
- ;;^UTILITY(U,$J,358.3,25079,0)
- ;;=Z96.632^^107^1212^122
- ;;^UTILITY(U,$J,358.3,25079,1,0)
+ ;;^UTILITY(U,$J,358.3,25443,1,3,0)
+ ;;=3^Housing Instability,Housed w/ Risk of Homelessness
+ ;;^UTILITY(U,$J,358.3,25443,1,4,0)
+ ;;=4^Z59.811
+ ;;^UTILITY(U,$J,358.3,25443,2)
+ ;;=^5161309
+ ;;^UTILITY(U,$J,358.3,25444,0)
+ ;;=Z59.812^^92^1156^8
+ ;;^UTILITY(U,$J,358.3,25444,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,25079,1,3,0)
- ;;=3^Presence of Artificial Wrist Joint,Left
- ;;^UTILITY(U,$J,358.3,25079,1,4,0)
- ;;=4^Z96.632
- ;;^UTILITY(U,$J,358.3,25079,2)
- ;;=^5063699
+ ;;^UTILITY(U,$J,358.3,25444,1,3,0)
+ ;;=3^Housing Instability,Housed,Homelessness in Past 12 Months
+ ;;^UTILITY(U,$J,358.3,25444,1,4,0)
+ ;;=4^Z59.812
+ ;;^UTILITY(U,$J,358.3,25444,2)
+ ;;=^5161310

@@ -1,5 +1,5 @@
 IBCEDP ;ALB/ESG - EDI CLAIM STATUS REPORT PRINT ;13-DEC-2007
- ;;2.0;INTEGRATED BILLING;**377,592**;21-MAR-94;Build 58
+ ;;2.0;INTEGRATED BILLING;**377,592,641**;21-MAR-94;Build 61
  ;;Per VA Directive 6402, this routine should not be modified.
  ;
  Q
@@ -11,8 +11,8 @@ PRINT ; entry point to print the report
  E  S CRT=0
  ;
  S IBPAGE=0,IBSTOP=0,IBCT=0,NEWHDR=0
- ;
- I '$D(^TMP($J,"IBCEDC")) D HDR W !!?5,"No data found for this report." G PX
+ ;JWS;IB*2.0*641;added End of Report message to be consistent with when valid data is found.
+ I '$D(^TMP($J,"IBCEDC")) D HDR W !!?5,"No data found for this report.",!!,"*** End of Report ***" G PX
  I $G(ZTSTOP) D HDR W !!?5,"This report was halted during compilation by TaskManager Request." G PX
  ;
  D HDR   ; initial header display
@@ -47,6 +47,9 @@ PRT(Z) ; print a line on the report
  N DIV,PAY,ADDR1,TAB  ;JRA IB*2.0*592 Added TAB
  D:$Y>(IOSL-3) HDR G:IBSTOP PRTX
  S IBCT=IBCT+1
+ ;JWS;IB*2.0*641;if summary report, quit after count
+ I $G(^TMP($J,"IBCEDS","SD"))="S" Q
+ ;
  S DIV=$P($G(^DG(40.8,+$P(Z,U,10),0)),U,2)      ; division abbr
  S PAY=$P($G(^DIC(36,+$P(Z,U,12),0)),U,1)       ; payer name
  S ADDR1=$P($G(^DIC(36,+$P(Z,U,12),.11)),U,1)   ; payer address line 1
@@ -87,19 +90,23 @@ HDR ; report header
  I 'IBPAGE,'CRT W $C(13)   ; first printer page - left margin set
  ;
  S IBPAGE=IBPAGE+1
- ;
- W "EDI Claim Status Report",?96,$$FMTE^XLFDT($$NOW^XLFDT),"   Page: ",IBPAGE
- W !,"** A claim may appear multiple times if transmitted more than once. **"
- W !?3,"Sorted by ",$$SD^IBCEDS1($G(IBSORT1))
- I $G(IBSORT2)'="" W ", then by ",$$SD^IBCEDS1(IBSORT2)
- I $G(IBSORT3)'="" W ", then by ",$$SD^IBCEDS1(IBSORT3)
- ;
- ; display column headers
- W !?25,"*-- Statuses --*"
- W !,"Claim",?9,"Form",?14,"Type",?20,"Seq",?25,"EDI",?31,"IB",?39,"AR",?44,"Trans Dt",?56,"Age",?62,"Batch#",?71,"Bal Due"
- W ?81,"Div",?89,"Payer"
- ;
- N Z S Z="",$P(Z,"-",133)="" W !,Z
+ ;JWS;IB*2.0*641;add summary/detail to header
+ W "EDI Claim Status Report",$S($G(^TMP($J,"IBCEDS","SD"))="S":" (Summary)",1:" (Detail)")
+ I $G(^TMP($J,"IBCEDS","SD"))="S" W ?48
+ E  W ?96
+ W $$FMTE^XLFDT($$NOW^XLFDT),"   Page: ",IBPAGE
+ I $G(^TMP($J,"IBCEDS","SD"))'="S" W !,"** A claim may appear multiple times if transmitted more than once. **"
+ I $G(^TMP($J,"IBCEDS","SD"))'="S" D
+ . W !?3,"Sorted by ",$$SD^IBCEDS1($G(IBSORT1))
+ . I $G(IBSORT2)'="" W ", then by ",$$SD^IBCEDS1(IBSORT2)
+ . I $G(IBSORT3)'="" W ", then by ",$$SD^IBCEDS1(IBSORT3)
+ . ;
+ . ; display column headers
+ . W !?25,"*-- Statuses --*"
+ . W !,"Claim",?9,"Form",?14,"Type",?20,"Seq",?25,"EDI",?31,"IB",?39,"AR",?44,"Trans Dt",?56,"Age",?62,"Batch#",?71,"Bal Due"
+ . W ?81,"Div",?89,"Payer"
+ . ;
+ N Z S Z="",$P(Z,"-",$S($G(^TMP($J,"IBCEDS","SD"))="S":80,1:133))="" W !,Z
  ;
  S NEWHDR=1    ; flag indicating a new page header was just printed
  ;
@@ -114,6 +121,8 @@ HDRX ;
  ;
 SD(SV) ; primary sort value display break.  This procedure is to display a break whenever the primary sort value changes
  ; SV - subscript value of the primary sort
+ ;JWS;IB*2.0*641;display summary total only
+ I $G(^TMP($J,"IBCEDS","SD"))="S" Q
  I IBSORT1=4!(IBSORT1=6) G SDX  ; don't display a break for current balance or for claim# primary sorts
  ;
  D:$Y>(IOSL-4) HDR G:IBSTOP SDX

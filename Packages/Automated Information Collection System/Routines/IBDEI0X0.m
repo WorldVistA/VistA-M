@@ -1,124 +1,128 @@
-IBDEI0X0 ; ; 04-FEB-2020
- ;;3.0;IB ENCOUNTER FORM IMP/EXP;;FEB 04, 2020
+IBDEI0X0 ; ; 01-FEB-2022
+ ;;3.0;IB ENCOUNTER FORM IMP/EXP;;FEB 01, 2022
  Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,999) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
- ;;^UTILITY(U,$J,358.3,14693,1,4,0)
- ;;=4^W18.12XD
- ;;^UTILITY(U,$J,358.3,14693,2)
- ;;=^5137984
- ;;^UTILITY(U,$J,358.3,14694,0)
- ;;=W18.11XD^^83^828^22
- ;;^UTILITY(U,$J,358.3,14694,1,0)
+ ;;^UTILITY(U,$J,358.3,14875,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,14694,1,3,0)
- ;;=3^Fall from Toilet,Subsequent
- ;;^UTILITY(U,$J,358.3,14694,1,4,0)
- ;;=4^W18.11XD
- ;;^UTILITY(U,$J,358.3,14694,2)
- ;;=^5059802
- ;;^UTILITY(U,$J,358.3,14695,0)
- ;;=W08.XXXD^^83^828^12
- ;;^UTILITY(U,$J,358.3,14695,1,0)
+ ;;^UTILITY(U,$J,358.3,14875,1,3,0)
+ ;;=3^Stiffness,Rt Foot NEC
+ ;;^UTILITY(U,$J,358.3,14875,1,4,0)
+ ;;=4^M25.674
+ ;;^UTILITY(U,$J,358.3,14875,2)
+ ;;=^5011642
+ ;;^UTILITY(U,$J,358.3,14876,0)
+ ;;=M25.641^^58^711^35
+ ;;^UTILITY(U,$J,358.3,14876,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,14695,1,3,0)
- ;;=3^Fall from Furniture,Subsequent
- ;;^UTILITY(U,$J,358.3,14695,1,4,0)
- ;;=4^W08.XXXD
- ;;^UTILITY(U,$J,358.3,14695,2)
- ;;=^5059566
- ;;^UTILITY(U,$J,358.3,14696,0)
- ;;=W18.2XXD^^83^828^23
- ;;^UTILITY(U,$J,358.3,14696,1,0)
+ ;;^UTILITY(U,$J,358.3,14876,1,3,0)
+ ;;=3^Stiffness,Rt Hand NEC
+ ;;^UTILITY(U,$J,358.3,14876,1,4,0)
+ ;;=4^M25.641
+ ;;^UTILITY(U,$J,358.3,14876,2)
+ ;;=^5011630
+ ;;^UTILITY(U,$J,358.3,14877,0)
+ ;;=M25.651^^58^711^36
+ ;;^UTILITY(U,$J,358.3,14877,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,14696,1,3,0)
- ;;=3^Fall in Shower/Bathtub,Subsequent
- ;;^UTILITY(U,$J,358.3,14696,1,4,0)
- ;;=4^W18.2XXD
- ;;^UTILITY(U,$J,358.3,14696,2)
- ;;=^5059807
- ;;^UTILITY(U,$J,358.3,14697,0)
- ;;=W11.XXXD^^83^828^14
- ;;^UTILITY(U,$J,358.3,14697,1,0)
+ ;;^UTILITY(U,$J,358.3,14877,1,3,0)
+ ;;=3^Stiffness,Rt Hip NEC
+ ;;^UTILITY(U,$J,358.3,14877,1,4,0)
+ ;;=4^M25.651
+ ;;^UTILITY(U,$J,358.3,14877,2)
+ ;;=^5011633
+ ;;^UTILITY(U,$J,358.3,14878,0)
+ ;;=M25.661^^58^711^37
+ ;;^UTILITY(U,$J,358.3,14878,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,14697,1,3,0)
- ;;=3^Fall from Ladder,Subsequent
- ;;^UTILITY(U,$J,358.3,14697,1,4,0)
- ;;=4^W11.XXXD
- ;;^UTILITY(U,$J,358.3,14697,2)
- ;;=^5059596
- ;;^UTILITY(U,$J,358.3,14698,0)
- ;;=W01.10XD^^83^828^2
- ;;^UTILITY(U,$J,358.3,14698,1,0)
+ ;;^UTILITY(U,$J,358.3,14878,1,3,0)
+ ;;=3^Stiffness,Rt Knee NEC
+ ;;^UTILITY(U,$J,358.3,14878,1,4,0)
+ ;;=4^M25.661
+ ;;^UTILITY(U,$J,358.3,14878,2)
+ ;;=^5011636
+ ;;^UTILITY(U,$J,358.3,14879,0)
+ ;;=M25.611^^58^711^38
+ ;;^UTILITY(U,$J,358.3,14879,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,14698,1,3,0)
- ;;=3^Fall Same Level w/ Strike Against Object,Subsequent
- ;;^UTILITY(U,$J,358.3,14698,1,4,0)
- ;;=4^W01.10XD
- ;;^UTILITY(U,$J,358.3,14698,2)
- ;;=^5059526
- ;;^UTILITY(U,$J,358.3,14699,0)
- ;;=W01.0XXD^^83^828^3
- ;;^UTILITY(U,$J,358.3,14699,1,0)
+ ;;^UTILITY(U,$J,358.3,14879,1,3,0)
+ ;;=3^Stiffness,Rt Shoulder NEC
+ ;;^UTILITY(U,$J,358.3,14879,1,4,0)
+ ;;=4^M25.611
+ ;;^UTILITY(U,$J,358.3,14879,2)
+ ;;=^5011621
+ ;;^UTILITY(U,$J,358.3,14880,0)
+ ;;=M25.631^^58^711^39
+ ;;^UTILITY(U,$J,358.3,14880,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,14699,1,3,0)
- ;;=3^Fall Same Level w/o Strike Against Object,Subsequent
- ;;^UTILITY(U,$J,358.3,14699,1,4,0)
- ;;=4^W01.0XXD
- ;;^UTILITY(U,$J,358.3,14699,2)
- ;;=^5059523
- ;;^UTILITY(U,$J,358.3,14700,0)
- ;;=W18.30XD^^83^828^4
- ;;^UTILITY(U,$J,358.3,14700,1,0)
+ ;;^UTILITY(U,$J,358.3,14880,1,3,0)
+ ;;=3^Stiffness,Rt Wrist NEC
+ ;;^UTILITY(U,$J,358.3,14880,1,4,0)
+ ;;=4^M25.631
+ ;;^UTILITY(U,$J,358.3,14880,2)
+ ;;=^5011627
+ ;;^UTILITY(U,$J,358.3,14881,0)
+ ;;=M12.572^^58^711^40
+ ;;^UTILITY(U,$J,358.3,14881,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,14700,1,3,0)
- ;;=3^Fall Same Level,Unspec,Subsequent
- ;;^UTILITY(U,$J,358.3,14700,1,4,0)
- ;;=4^W18.30XD
- ;;^UTILITY(U,$J,358.3,14700,2)
- ;;=^5059810
- ;;^UTILITY(U,$J,358.3,14701,0)
- ;;=W04.XXXD^^83^828^6
- ;;^UTILITY(U,$J,358.3,14701,1,0)
+ ;;^UTILITY(U,$J,358.3,14881,1,3,0)
+ ;;=3^Traumatic Arthropathy,Lt Ankle/Foot
+ ;;^UTILITY(U,$J,358.3,14881,1,4,0)
+ ;;=4^M12.572
+ ;;^UTILITY(U,$J,358.3,14881,2)
+ ;;=^5010638
+ ;;^UTILITY(U,$J,358.3,14882,0)
+ ;;=M12.522^^58^711^41
+ ;;^UTILITY(U,$J,358.3,14882,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,14701,1,3,0)
- ;;=3^Fall While Being Carried by Oth Persons,Subsequent
- ;;^UTILITY(U,$J,358.3,14701,1,4,0)
- ;;=4^W04.XXXD
- ;;^UTILITY(U,$J,358.3,14701,2)
- ;;=^5059548
- ;;^UTILITY(U,$J,358.3,14702,0)
- ;;=W17.89XD^^83^828^18
- ;;^UTILITY(U,$J,358.3,14702,1,0)
+ ;;^UTILITY(U,$J,358.3,14882,1,3,0)
+ ;;=3^Traumatic Arthropathy,Lt Elbow
+ ;;^UTILITY(U,$J,358.3,14882,1,4,0)
+ ;;=4^M12.522
+ ;;^UTILITY(U,$J,358.3,14882,2)
+ ;;=^5010623
+ ;;^UTILITY(U,$J,358.3,14883,0)
+ ;;=M12.542^^58^711^42
+ ;;^UTILITY(U,$J,358.3,14883,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,14702,1,3,0)
- ;;=3^Fall from One Level to Another,Subsequent
- ;;^UTILITY(U,$J,358.3,14702,1,4,0)
- ;;=4^W17.89XD
- ;;^UTILITY(U,$J,358.3,14702,2)
- ;;=^5059788
- ;;^UTILITY(U,$J,358.3,14703,0)
- ;;=W03.XXXD^^83^828^1
- ;;^UTILITY(U,$J,358.3,14703,1,0)
+ ;;^UTILITY(U,$J,358.3,14883,1,3,0)
+ ;;=3^Traumatic Arthropathy,Lt Hand
+ ;;^UTILITY(U,$J,358.3,14883,1,4,0)
+ ;;=4^M12.542
+ ;;^UTILITY(U,$J,358.3,14883,2)
+ ;;=^5010629
+ ;;^UTILITY(U,$J,358.3,14884,0)
+ ;;=M12.552^^58^711^43
+ ;;^UTILITY(U,$J,358.3,14884,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,14703,1,3,0)
- ;;=3^Fall Same Level d/t Collision w/ Another Person,Subsequent
- ;;^UTILITY(U,$J,358.3,14703,1,4,0)
- ;;=4^W03.XXXD
- ;;^UTILITY(U,$J,358.3,14703,2)
- ;;=^5059545
- ;;^UTILITY(U,$J,358.3,14704,0)
- ;;=W18.00XD^^83^828^8
- ;;^UTILITY(U,$J,358.3,14704,1,0)
+ ;;^UTILITY(U,$J,358.3,14884,1,3,0)
+ ;;=3^Traumatic Arthropathy,Lt Hip
+ ;;^UTILITY(U,$J,358.3,14884,1,4,0)
+ ;;=4^M12.552
+ ;;^UTILITY(U,$J,358.3,14884,2)
+ ;;=^5010632
+ ;;^UTILITY(U,$J,358.3,14885,0)
+ ;;=M12.562^^58^711^44
+ ;;^UTILITY(U,$J,358.3,14885,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,14704,1,3,0)
- ;;=3^Fall d/t Striking Unspec Object,Subsequent
- ;;^UTILITY(U,$J,358.3,14704,1,4,0)
- ;;=4^W18.00XD
- ;;^UTILITY(U,$J,358.3,14704,2)
- ;;=^5059791
- ;;^UTILITY(U,$J,358.3,14705,0)
- ;;=W00.9XXD^^83^828^7
- ;;^UTILITY(U,$J,358.3,14705,1,0)
+ ;;^UTILITY(U,$J,358.3,14885,1,3,0)
+ ;;=3^Traumatic Arthropathy,Lt Knee
+ ;;^UTILITY(U,$J,358.3,14885,1,4,0)
+ ;;=4^M12.562
+ ;;^UTILITY(U,$J,358.3,14885,2)
+ ;;=^5010635
+ ;;^UTILITY(U,$J,358.3,14886,0)
+ ;;=M12.512^^58^711^45
+ ;;^UTILITY(U,$J,358.3,14886,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,14705,1,3,0)
- ;;=3^Fall d/t Snow/Ice,Subsequent
+ ;;^UTILITY(U,$J,358.3,14886,1,3,0)
+ ;;=3^Traumatic Arthropathy,Lt Shoulder
+ ;;^UTILITY(U,$J,358.3,14886,1,4,0)
+ ;;=4^M12.512
+ ;;^UTILITY(U,$J,358.3,14886,2)
+ ;;=^5010620
+ ;;^UTILITY(U,$J,358.3,14887,0)
+ ;;=M12.532^^58^711^46
+ ;;^UTILITY(U,$J,358.3,14887,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,14887,1,3,0)
+ ;;=3^Traumatic Arthropathy,Lt Wrist

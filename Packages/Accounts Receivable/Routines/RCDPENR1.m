@@ -1,10 +1,9 @@
 RCDPENR1 ;ALB/SAB - EPay National Reports ;12/10/14
- ;;4.5;Accounts Receivable;**304,359**;Mar 20, 1995;Build 13
+ ;;4.5;Accounts Receivable;**304,359,349**;Mar 20, 1995;Build 44
  ;;Per VA Directive 6402, this routine should not be modified.
  ;
  ;PRCA*4.5*359 Do not process Bill/Claim that is Cancelled
  ;             or does not have Provider pointer.
- ; 
  ;Read ^DGCR(399) via Private IA 3820
  ;Read ^IBA(364) via Private IA 6209
  ;Read ^IBA(364.1) via Private IA 6210
@@ -20,7 +19,7 @@ RCDPENR1 ;ALB/SAB - EPay National Reports ;12/10/14
  S RCDISP=1
  ;
  ; Ask for Division
- S RCRQDIV=$$GETDIV^RCDPENR2(.RCDIV)
+ S RCRQDIV=$$GETDIV^RCDPENR4(.RCDIV) ; PRCA*4.5*349 - Moved from RCDPENR2 to RCDPENR4 due to size
  Q:RCRQDIV=-1
  ;
  S RCEX=$$GETPAY^RCDPENRU(.RCPAYR) Q:'RCEX
@@ -76,7 +75,7 @@ REPORT   ; Trace the ERA file for the given date range
  K ^TMP("RCDPEADP",$J),^TMP("RCDPENR1",$J),^TMP("RCDPENR2",$J)
  ;
  ; Compile list of divisions
- D DIV^RCDPENR2(.RCDIV)
+ D DIV^RCDPENR4(.RCDIV) ; PRCA*4.5*349 - Moved from RCDPENR2 to RCDPENR4 due to size
  ;
  ; Compile the list of payers
  D PYRARY^RCDPENRU(RCPYRLST("START"),RCPYRLST("END"),2)  ; use 835 insurance file payer list
@@ -263,9 +262,9 @@ DIVTXT() ;
  ;
  ; Remove comma at the end. 
  S RCTXT=$E(RCTXT,1,$L(RCTXT)-1)
+ I $L(RCTXT)>35 S RCTXT="SELECTED DIVISIONS"
  ;
- ; Display the first 35 characters of the division text list,
- Q $E(RCTXT,1,35)
+ Q RCTXT
  ;
  ;Determine the text to display for the division prompt
 PAYERTXT(RCFILE) ;

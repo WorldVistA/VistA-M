@@ -1,5 +1,5 @@
 BPSECX0 ;BHAM ISC/FCS/DRS/VA/DLF - Retrieve Claim submission record ;05/17/2004
- ;;1.0;E CLAIMS MGMT ENGINE;**1,5,8,10,15,19,23,24**;JUN 2004;Build 43
+ ;;1.0;E CLAIMS MGMT ENGINE;**1,5,8,10,15,19,23,24,27**;JUN 2004;Build 15
  ;;Per VA Directive 6402, this routine should not be modified.
  ;
  ; This routine is used to pull data from BPS Claims and its multiples
@@ -27,6 +27,7 @@ GETBPS2(CLAIMIEN,BPS) ; called from BPSECA1 > BPSOSQG > BPSOSQ2
  S DIC=9002313.02,DR="101:899;980:997"  ; all fields from 101-899 and 990-997, skip 901-908 (used for BPS overhead)
  S DR=DR_";1022;1043;1045" ;Get alphanumeric NCPDP fields 1022 (A22), 1043 (A23) and 1045 (A45)- BPS*1*15
  S DR=DR_";2008;2009;2038" ;Get alphanumeric NCPDP fields 2008 (B08), 2009 (B09) and 2038 (B38) - BPS*1*19
+ S DR=DR_";2306;2309:2311" ;Get alphanumeric NCPDP fields 2306 (E06), 2309 (E09), 2310 (E10) and 2311 (E11) - BPS*1*27
  S DA=CLAIMIEN,DIQ="BPS",DIQ(0)="I"  ; "I" for internal format
  D EN^DIQ1
  Q
@@ -54,7 +55,7 @@ GETBPS3(CLAIMIEN,TRXIEN,BPS) ;called from BPSECA1
  S DR(9002313.0201)=DR(9002313.0201)_";2147;2149;2150;2151;2160;2190;2191"
  S DR(9002313.0201)=DR(9002313.0201)_";2192;2198;2199;2201;2202;2214;2216"
  S DR(9002313.0201)=DR(9002313.0201)_";2217;2218;2221;2222;2251;2252;2253"
- S DR(9002313.0201)=DR(9002313.0201)_";2257;2260;2261;2263"
+ S DR(9002313.0201)=DR(9002313.0201)_";2257;2260;2261;2263;2312"
  ;
  S DA=CLAIMIEN,DA(9002313.0201)=TRXIEN  ; IEN and sub-file IEN
  S DIQ="BPS",DIQ(0)="I"  ; "I" for internal format

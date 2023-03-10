@@ -1,5 +1,5 @@
 SDREACT ;ALB/TMP - REACTIVATE A CLINIC ;JAN 15, 2016
- ;;5.3;Scheduling;**63,167,380,568,627**;Aug 13, 1993;Build 249
+ ;;5.3;Scheduling;**63,167,380,568,627,781**;Aug 13, 1993;Build 11
  S:'$D(DTIME) DTIME=300 I '$D(DT) D DT^SDUTL
  S DIC="^SC(",DIC(0)="AEMZQ",DIC("A")="Select CLINIC NAME: ",DIC("S")="I $P(^(0),""^"",3)=""C"",'$G(^(""OOS""))"
  D TURNON^DIAUTL(44,".01;8;2502;2503;2505;2506")
@@ -35,6 +35,7 @@ DT R !,"Enter new reactivate date: ",X:DTIME G:"^"[X END S %DT="EX" D ^%DT G:Y<0
  I SDRE>SDX1 D C1
  F I=0:1:6 I $D(^SC(DA,"T"_I,SDO(I),1)) S ^SC(DA,"T"_I,SDN(I),1)=^SC(DA,"T"_I,SDO(I),1),^(0)=SDN(I) I SDN(I)'=SDO(I) K ^SC(DA,"T"_I,SDO(I))
  K IENS,FDA S IENS=DA_",",FDA(44,IENS,2506)=SDRE D FILE^DIE("","FDA")
+ D SDEC(DA,SDRE) ;lab 781 update 409.831
  W !,"Clinic will now be reactivated effective " S Y=SDRE D DTS^SDUTL W Y G END
 C1 F I=SDX-.1:0 S I=$O(^SC(DA,"ST",I)) Q:I'>0!(I'<SDRE)  K ^(I)
  F I=SDX-.1:0 S I=$O(^SC(DA,"T",I)) Q:I'>0!(I'<SDRE)  K ^(I)
@@ -50,6 +51,7 @@ D1 S %=2 W !,"Do you want to delete the reactivate date" D YN^DICN I '% W !,"RES
  F I=SDX1-.1:0 S I=$O(^SC(DA,"OST",I)) Q:I'>0  K ^(I)
  F I=SDX1-.1:0 S I=$O(^SC(DA,"ST",I)) Q:I'>0  K ^(I)
  K IENS,FDA S IENS=DA_",",FDA(44,IENS,2506)="@" D FILE^DIE("","FDA")
+ D DELSDEC(DA) ;lab 781
  W !,*7,"Reactivation date DELETED!!" G END
  ;
 NEW D DOW^SDM0 S SDN(Y)=X F I=1:1:6 S X1=X,X2=1 D C^%DTC,DOW^SDM0 S SDN(Y)=X
@@ -65,5 +67,13 @@ SDEC(SC,SDDATE) ;update REACTIVATED DATE/TIME in SDEC RESOURCE  ;alb/sat 627
  Q:SDRES=""
  S SDFDA(409.831,SDRES_",",.025)=SDDATE
  S SDFDA(409.831,SDRES_",",.026)=DUZ
- D UPDATE^DIE("","SDFDA")
+ D FILE^DIE("","SDFDA") ;lab 781 - changed update to
+ Q
+DELSDEC(SC) ;delete reactavation date (lab 781)
+ N SDFDA,SDRES
+ S SDRES=$$GETRES^SDECUTL(SC,1)
+ Q:SDRES=""
+ S SDFDA(409.831,SDRES_",",.025)="@"
+ S SDFDA(409.831,SDRES_",",.026)="@"
+ D FILE^DIE("","SDFDA")
  Q

@@ -1,130 +1,124 @@
-IBDEI1EG ; ; 04-FEB-2020
- ;;3.0;IB ENCOUNTER FORM IMP/EXP;;FEB 04, 2020
+IBDEI1EG ; ; 01-FEB-2022
+ ;;3.0;IB ENCOUNTER FORM IMP/EXP;;FEB 01, 2022
  Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,999) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
- ;;^UTILITY(U,$J,358.3,22383,1,3,0)
- ;;=3^Osteomyelitis, chronic - NOS
- ;;^UTILITY(U,$J,358.3,22383,1,4,0)
- ;;=4^M86.60
- ;;^UTILITY(U,$J,358.3,22383,2)
- ;;=^5014630
- ;;^UTILITY(U,$J,358.3,22384,0)
- ;;=H60.501^^102^1141^176
- ;;^UTILITY(U,$J,358.3,22384,1,0)
+ ;;^UTILITY(U,$J,358.3,22637,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,22384,1,3,0)
- ;;=3^Otitis, externa, right ear
- ;;^UTILITY(U,$J,358.3,22384,1,4,0)
- ;;=4^H60.501
- ;;^UTILITY(U,$J,358.3,22384,2)
- ;;=^5006467
- ;;^UTILITY(U,$J,358.3,22385,0)
- ;;=H60.502^^102^1141^175
- ;;^UTILITY(U,$J,358.3,22385,1,0)
+ ;;^UTILITY(U,$J,358.3,22637,1,3,0)
+ ;;=3^Merkle Cell CA,Parts of Face,Other
+ ;;^UTILITY(U,$J,358.3,22637,1,4,0)
+ ;;=4^C4A.39
+ ;;^UTILITY(U,$J,358.3,22637,2)
+ ;;=^5001146
+ ;;^UTILITY(U,$J,358.3,22638,0)
+ ;;=C4A.59^^76^974^84
+ ;;^UTILITY(U,$J,358.3,22638,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,22385,1,3,0)
- ;;=3^Otitis, externa, left ear
- ;;^UTILITY(U,$J,358.3,22385,1,4,0)
- ;;=4^H60.502
- ;;^UTILITY(U,$J,358.3,22385,2)
- ;;=^5006468
- ;;^UTILITY(U,$J,358.3,22386,0)
- ;;=H60.503^^102^1141^174
- ;;^UTILITY(U,$J,358.3,22386,1,0)
+ ;;^UTILITY(U,$J,358.3,22638,1,3,0)
+ ;;=3^Merkle Cell CA,Parts of Trunk,Other
+ ;;^UTILITY(U,$J,358.3,22638,1,4,0)
+ ;;=4^C4A.59
+ ;;^UTILITY(U,$J,358.3,22638,2)
+ ;;=^5001150
+ ;;^UTILITY(U,$J,358.3,22639,0)
+ ;;=C4A.8^^76^974^82
+ ;;^UTILITY(U,$J,358.3,22639,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,22386,1,3,0)
- ;;=3^Otitis, externa, bilateral
- ;;^UTILITY(U,$J,358.3,22386,1,4,0)
- ;;=4^H60.503
- ;;^UTILITY(U,$J,358.3,22386,2)
- ;;=^5006469
- ;;^UTILITY(U,$J,358.3,22387,0)
- ;;=H66.91^^102^1141^179
- ;;^UTILITY(U,$J,358.3,22387,1,0)
+ ;;^UTILITY(U,$J,358.3,22639,1,3,0)
+ ;;=3^Merkle Cell CA,Overlapping Sites
+ ;;^UTILITY(U,$J,358.3,22639,1,4,0)
+ ;;=4^C4A.8
+ ;;^UTILITY(U,$J,358.3,22639,2)
+ ;;=^5001157
+ ;;^UTILITY(U,$J,358.3,22640,0)
+ ;;=C4A.9^^76^974^88
+ ;;^UTILITY(U,$J,358.3,22640,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,22387,1,3,0)
- ;;=3^Otitis, media, right ear
- ;;^UTILITY(U,$J,358.3,22387,1,4,0)
- ;;=4^H66.91
- ;;^UTILITY(U,$J,358.3,22387,2)
- ;;=^5006640
- ;;^UTILITY(U,$J,358.3,22388,0)
- ;;=H66.92^^102^1141^178
- ;;^UTILITY(U,$J,358.3,22388,1,0)
+ ;;^UTILITY(U,$J,358.3,22640,1,3,0)
+ ;;=3^Merkle Cell CA,Unspec
+ ;;^UTILITY(U,$J,358.3,22640,1,4,0)
+ ;;=4^C4A.9
+ ;;^UTILITY(U,$J,358.3,22640,2)
+ ;;=^5001158
+ ;;^UTILITY(U,$J,358.3,22641,0)
+ ;;=C84.09^^76^974^93
+ ;;^UTILITY(U,$J,358.3,22641,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,22388,1,3,0)
- ;;=3^Otitis, media, left ear
- ;;^UTILITY(U,$J,358.3,22388,1,4,0)
- ;;=4^H66.92
- ;;^UTILITY(U,$J,358.3,22388,2)
- ;;=^5006641
- ;;^UTILITY(U,$J,358.3,22389,0)
- ;;=H66.93^^102^1141^177
- ;;^UTILITY(U,$J,358.3,22389,1,0)
+ ;;^UTILITY(U,$J,358.3,22641,1,3,0)
+ ;;=3^Mycosis Fungoides,Extranodal/Solid Organ Sites
+ ;;^UTILITY(U,$J,358.3,22641,1,4,0)
+ ;;=4^C84.09
+ ;;^UTILITY(U,$J,358.3,22641,2)
+ ;;=^5001630
+ ;;^UTILITY(U,$J,358.3,22642,0)
+ ;;=C84.03^^76^974^96
+ ;;^UTILITY(U,$J,358.3,22642,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,22389,1,3,0)
- ;;=3^Otitis, media, bilateral
- ;;^UTILITY(U,$J,358.3,22389,1,4,0)
- ;;=4^H66.93
- ;;^UTILITY(U,$J,358.3,22389,2)
- ;;=^5006642
- ;;^UTILITY(U,$J,358.3,22390,0)
- ;;=B89.^^102^1141^181
- ;;^UTILITY(U,$J,358.3,22390,1,0)
+ ;;^UTILITY(U,$J,358.3,22642,1,3,0)
+ ;;=3^Mycosis Fungoides,Intra-Abdominal Lymph Nodes
+ ;;^UTILITY(U,$J,358.3,22642,1,4,0)
+ ;;=4^C84.03
+ ;;^UTILITY(U,$J,358.3,22642,2)
+ ;;=^5001624
+ ;;^UTILITY(U,$J,358.3,22643,0)
+ ;;=C84.06^^76^974^97
+ ;;^UTILITY(U,$J,358.3,22643,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,22390,1,3,0)
- ;;=3^Parasitosis
- ;;^UTILITY(U,$J,358.3,22390,1,4,0)
- ;;=4^B89.
- ;;^UTILITY(U,$J,358.3,22390,2)
- ;;=^5000822
- ;;^UTILITY(U,$J,358.3,22391,0)
- ;;=N73.9^^102^1141^182
- ;;^UTILITY(U,$J,358.3,22391,1,0)
+ ;;^UTILITY(U,$J,358.3,22643,1,3,0)
+ ;;=3^Mycosis Fungoides,Intrapelvic Lymph Nodes
+ ;;^UTILITY(U,$J,358.3,22643,1,4,0)
+ ;;=4^C84.06
+ ;;^UTILITY(U,$J,358.3,22643,2)
+ ;;=^5001627
+ ;;^UTILITY(U,$J,358.3,22644,0)
+ ;;=C84.02^^76^974^98
+ ;;^UTILITY(U,$J,358.3,22644,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,22391,1,3,0)
- ;;=3^Pelvic Inflammatory Disease
- ;;^UTILITY(U,$J,358.3,22391,1,4,0)
- ;;=4^N73.9
- ;;^UTILITY(U,$J,358.3,22391,2)
- ;;=^5015820
- ;;^UTILITY(U,$J,358.3,22392,0)
- ;;=K65.2^^102^1141^184
- ;;^UTILITY(U,$J,358.3,22392,1,0)
+ ;;^UTILITY(U,$J,358.3,22644,1,3,0)
+ ;;=3^Mycosis Fungoides,Intrathoracic Lymph Nodes
+ ;;^UTILITY(U,$J,358.3,22644,1,4,0)
+ ;;=4^C84.02
+ ;;^UTILITY(U,$J,358.3,22644,2)
+ ;;=^5001623
+ ;;^UTILITY(U,$J,358.3,22645,0)
+ ;;=C84.04^^76^974^92
+ ;;^UTILITY(U,$J,358.3,22645,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,22392,1,3,0)
- ;;=3^Peritonitis,Bacterial,Spontaneous
- ;;^UTILITY(U,$J,358.3,22392,1,4,0)
- ;;=4^K65.2
- ;;^UTILITY(U,$J,358.3,22392,2)
- ;;=^332801
- ;;^UTILITY(U,$J,358.3,22393,0)
- ;;=J02.9^^102^1141^188
- ;;^UTILITY(U,$J,358.3,22393,1,0)
+ ;;^UTILITY(U,$J,358.3,22645,1,3,0)
+ ;;=3^Mycosis Fungoides,Axilla/Upper Limb Lymph Nodes
+ ;;^UTILITY(U,$J,358.3,22645,1,4,0)
+ ;;=4^C84.04
+ ;;^UTILITY(U,$J,358.3,22645,2)
+ ;;=^5001625
+ ;;^UTILITY(U,$J,358.3,22646,0)
+ ;;=C84.01^^76^974^94
+ ;;^UTILITY(U,$J,358.3,22646,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,22393,1,3,0)
- ;;=3^Pharyngitis
- ;;^UTILITY(U,$J,358.3,22393,1,4,0)
- ;;=4^J02.9
- ;;^UTILITY(U,$J,358.3,22393,2)
- ;;=^5008130
- ;;^UTILITY(U,$J,358.3,22394,0)
- ;;=J18.9^^102^1141^192
- ;;^UTILITY(U,$J,358.3,22394,1,0)
+ ;;^UTILITY(U,$J,358.3,22646,1,3,0)
+ ;;=3^Mycosis Fungoides,Head/Face/Neck Lymph Nodes
+ ;;^UTILITY(U,$J,358.3,22646,1,4,0)
+ ;;=4^C84.01
+ ;;^UTILITY(U,$J,358.3,22646,2)
+ ;;=^5001622
+ ;;^UTILITY(U,$J,358.3,22647,0)
+ ;;=C84.05^^76^974^95
+ ;;^UTILITY(U,$J,358.3,22647,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,22394,1,3,0)
- ;;=3^Pneumonia, NOS
- ;;^UTILITY(U,$J,358.3,22394,1,4,0)
- ;;=4^J18.9
- ;;^UTILITY(U,$J,358.3,22394,2)
- ;;=^95632
- ;;^UTILITY(U,$J,358.3,22395,0)
- ;;=J13.^^102^1141^193
- ;;^UTILITY(U,$J,358.3,22395,1,0)
+ ;;^UTILITY(U,$J,358.3,22647,1,3,0)
+ ;;=3^Mycosis Fungoides,Inguinal Region/LE Lymph Nodes
+ ;;^UTILITY(U,$J,358.3,22647,1,4,0)
+ ;;=4^C84.05
+ ;;^UTILITY(U,$J,358.3,22647,2)
+ ;;=^5001626
+ ;;^UTILITY(U,$J,358.3,22648,0)
+ ;;=C84.08^^76^974^99
+ ;;^UTILITY(U,$J,358.3,22648,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,22395,1,3,0)
- ;;=3^Pneumonia, Streptococcus pneumoniae
- ;;^UTILITY(U,$J,358.3,22395,1,4,0)
- ;;=4^J13.
- ;;^UTILITY(U,$J,358.3,22395,2)
- ;;=^5008170
+ ;;^UTILITY(U,$J,358.3,22648,1,3,0)
+ ;;=3^Mycosis Fungoides,Multiple Site Lymph Nodes
+ ;;^UTILITY(U,$J,358.3,22648,1,4,0)
+ ;;=4^C84.08
+ ;;^UTILITY(U,$J,358.3,22648,2)
+ ;;=^5001629
+ ;;^UTILITY(U,$J,358.3,22649,0)
+ ;;=C84.07^^76^974^100

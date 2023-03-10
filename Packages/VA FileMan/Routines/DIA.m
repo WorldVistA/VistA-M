@@ -1,5 +1,5 @@
 DIA ;SFISC/GFT-SELECT FIELDS TO EDIT ;8AUF2014
- ;;22.2;VA FileMan;;Jan 05, 2016;Build 42
+ ;;22.2;VA FileMan;**19**;Jan 05, 2016;Build 2
  ;;Per VA Directive 6402, this routine should not be modified.
  ;;Submitted to OSEHRA 5 January 2015 by the VISTA Expertise Network.
  ;;Based on Medsphere Systems Corporation's MSC FileMan 1051.
@@ -16,7 +16,7 @@ GDB S Y=$P(DIAT,";",DB) I "Q"[Y G NDB:Y="" D DB G GDB
  S %=$G(DI(DB,DIARTLVL-1,DI,DIAO)) I %]"" S Y=%
  E  I Y?1"^"1N1"."1.2N S DB=DB+1 G GDB ;WPB-0804-30857
 READ D RW(Y)
- I X="" S X=Y I X="ALL" G ALL^DIA1
+ S:X="" X=Y I X="ALL" G ALL^DIA1 ;p19
 L S DSC=X?1"^".E I DSC S X=$E(X,2,999) I U[X K DR Q
  I $A(X)=64 G X:X'?1P.N,P:$L(X)>1,X:'DB S DB=DB+1 G 2
  K DIC,DIAB D DICS S DV="",J=$P(X,"-",2) I +J=J,$P(X,"-",1)=+X,J>X S D(F)=J K DA D RANGE^DIA1 K D S Y=DA G X:Y="" D DB G 2

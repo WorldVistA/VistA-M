@@ -1,128 +1,126 @@
-IBDEI0MI ; ; 04-FEB-2020
- ;;3.0;IB ENCOUNTER FORM IMP/EXP;;FEB 04, 2020
+IBDEI0MI ; ; 01-FEB-2022
+ ;;3.0;IB ENCOUNTER FORM IMP/EXP;;FEB 01, 2022
  Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,999) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
- ;;^UTILITY(U,$J,358.3,10010,0)
- ;;=T65.291A^^72^659^8
- ;;^UTILITY(U,$J,358.3,10010,1,0)
+ ;;^UTILITY(U,$J,358.3,10116,1,3,0)
+ ;;=3^Emphysema,Unspec
+ ;;^UTILITY(U,$J,358.3,10116,1,4,0)
+ ;;=4^J43.9
+ ;;^UTILITY(U,$J,358.3,10116,2)
+ ;;=^5008238
+ ;;^UTILITY(U,$J,358.3,10117,0)
+ ;;=J44.0^^39^427^23
+ ;;^UTILITY(U,$J,358.3,10117,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,10010,1,3,0)
- ;;=3^Toxic Effect,Tobacco/Nicotine,Accidental,Init Enctr
- ;;^UTILITY(U,$J,358.3,10010,1,4,0)
- ;;=4^T65.291A
- ;;^UTILITY(U,$J,358.3,10010,2)
- ;;=^5053798
- ;;^UTILITY(U,$J,358.3,10011,0)
- ;;=T40.7X1A^^72^659^9
- ;;^UTILITY(U,$J,358.3,10011,1,0)
+ ;;^UTILITY(U,$J,358.3,10117,1,3,0)
+ ;;=3^COPD w/ (Acute) Lower Resp Infection
+ ;;^UTILITY(U,$J,358.3,10117,1,4,0)
+ ;;=4^J44.0
+ ;;^UTILITY(U,$J,358.3,10117,2)
+ ;;=^5008239
+ ;;^UTILITY(U,$J,358.3,10118,0)
+ ;;=J45.20^^39^427^5
+ ;;^UTILITY(U,$J,358.3,10118,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,10011,1,3,0)
- ;;=3^Poisoning by Cannabis (Derivatives),Accidental,Init Enctr
- ;;^UTILITY(U,$J,358.3,10011,1,4,0)
- ;;=4^T40.7X1A
- ;;^UTILITY(U,$J,358.3,10011,2)
- ;;=^5050117
- ;;^UTILITY(U,$J,358.3,10012,0)
- ;;=W10.9XXA^^72^660^1
- ;;^UTILITY(U,$J,358.3,10012,1,0)
+ ;;^UTILITY(U,$J,358.3,10118,1,3,0)
+ ;;=3^Asthma,Mild Intermittent,Uncompl
+ ;;^UTILITY(U,$J,358.3,10118,1,4,0)
+ ;;=4^J45.20
+ ;;^UTILITY(U,$J,358.3,10118,2)
+ ;;=^5008242
+ ;;^UTILITY(U,$J,358.3,10119,0)
+ ;;=J45.21^^39^427^3
+ ;;^UTILITY(U,$J,358.3,10119,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,10012,1,3,0)
- ;;=3^Fall Down Stairs
- ;;^UTILITY(U,$J,358.3,10012,1,4,0)
- ;;=4^W10.9XXA
- ;;^UTILITY(U,$J,358.3,10012,2)
- ;;=^5059592
- ;;^UTILITY(U,$J,358.3,10013,0)
- ;;=W07.XXXA^^72^660^2
- ;;^UTILITY(U,$J,358.3,10013,1,0)
+ ;;^UTILITY(U,$J,358.3,10119,1,3,0)
+ ;;=3^Asthma,Mild Intermittent w/ Acute Exacerbation
+ ;;^UTILITY(U,$J,358.3,10119,1,4,0)
+ ;;=4^J45.21
+ ;;^UTILITY(U,$J,358.3,10119,2)
+ ;;=^5008243
+ ;;^UTILITY(U,$J,358.3,10120,0)
+ ;;=J45.22^^39^427^4
+ ;;^UTILITY(U,$J,358.3,10120,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,10013,1,3,0)
- ;;=3^Fall from Chair
- ;;^UTILITY(U,$J,358.3,10013,1,4,0)
- ;;=4^W07.XXXA
- ;;^UTILITY(U,$J,358.3,10013,2)
- ;;=^5059562
- ;;^UTILITY(U,$J,358.3,10014,0)
- ;;=W18.2XXA^^72^660^3
- ;;^UTILITY(U,$J,358.3,10014,1,0)
+ ;;^UTILITY(U,$J,358.3,10120,1,3,0)
+ ;;=3^Asthma,Mild Intermittent w/ Status Asthmaticus
+ ;;^UTILITY(U,$J,358.3,10120,1,4,0)
+ ;;=4^J45.22
+ ;;^UTILITY(U,$J,358.3,10120,2)
+ ;;=^5008244
+ ;;^UTILITY(U,$J,358.3,10121,0)
+ ;;=J45.31^^39^427^6
+ ;;^UTILITY(U,$J,358.3,10121,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,10014,1,3,0)
- ;;=3^Fall in Shower or Tub
- ;;^UTILITY(U,$J,358.3,10014,1,4,0)
- ;;=4^W18.2XXA
- ;;^UTILITY(U,$J,358.3,10014,2)
- ;;=^5059806
- ;;^UTILITY(U,$J,358.3,10015,0)
- ;;=W11.XXXA^^72^660^4
- ;;^UTILITY(U,$J,358.3,10015,1,0)
+ ;;^UTILITY(U,$J,358.3,10121,1,3,0)
+ ;;=3^Asthma,Mild Persistent w/ Acute Exacerbation
+ ;;^UTILITY(U,$J,358.3,10121,1,4,0)
+ ;;=4^J45.31
+ ;;^UTILITY(U,$J,358.3,10121,2)
+ ;;=^5008246
+ ;;^UTILITY(U,$J,358.3,10122,0)
+ ;;=J45.32^^39^427^7
+ ;;^UTILITY(U,$J,358.3,10122,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,10015,1,3,0)
- ;;=3^Fall from Ladder
- ;;^UTILITY(U,$J,358.3,10015,1,4,0)
- ;;=4^W11.XXXA
- ;;^UTILITY(U,$J,358.3,10015,2)
- ;;=^5059595
- ;;^UTILITY(U,$J,358.3,10016,0)
- ;;=W01.0XXA^^72^660^5
- ;;^UTILITY(U,$J,358.3,10016,1,0)
+ ;;^UTILITY(U,$J,358.3,10122,1,3,0)
+ ;;=3^Asthma,Mild Persistent w/ Status Asthmaticus
+ ;;^UTILITY(U,$J,358.3,10122,1,4,0)
+ ;;=4^J45.32
+ ;;^UTILITY(U,$J,358.3,10122,2)
+ ;;=^5008247
+ ;;^UTILITY(U,$J,358.3,10123,0)
+ ;;=J45.40^^39^427^10
+ ;;^UTILITY(U,$J,358.3,10123,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,10016,1,3,0)
- ;;=3^Trip & Fall,Ground Level
- ;;^UTILITY(U,$J,358.3,10016,1,4,0)
- ;;=4^W01.0XXA
- ;;^UTILITY(U,$J,358.3,10016,2)
- ;;=^5059522
- ;;^UTILITY(U,$J,358.3,10017,0)
- ;;=W17.89XA^^72^660^6
- ;;^UTILITY(U,$J,358.3,10017,1,0)
+ ;;^UTILITY(U,$J,358.3,10123,1,3,0)
+ ;;=3^Asthma,Moderate Persistent,Uncomplicated
+ ;;^UTILITY(U,$J,358.3,10123,1,4,0)
+ ;;=4^J45.40
+ ;;^UTILITY(U,$J,358.3,10123,2)
+ ;;=^5008248
+ ;;^UTILITY(U,$J,358.3,10124,0)
+ ;;=J44.9^^39^427^24
+ ;;^UTILITY(U,$J,358.3,10124,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,10017,1,3,0)
- ;;=3^Fall from a Height
- ;;^UTILITY(U,$J,358.3,10017,1,4,0)
- ;;=4^W17.89XA
- ;;^UTILITY(U,$J,358.3,10017,2)
- ;;=^5059787
- ;;^UTILITY(U,$J,358.3,10018,0)
- ;;=W19.XXXA^^72^660^7
- ;;^UTILITY(U,$J,358.3,10018,1,0)
+ ;;^UTILITY(U,$J,358.3,10124,1,3,0)
+ ;;=3^COPD,Unspec
+ ;;^UTILITY(U,$J,358.3,10124,1,4,0)
+ ;;=4^J44.9
+ ;;^UTILITY(U,$J,358.3,10124,2)
+ ;;=^5008241
+ ;;^UTILITY(U,$J,358.3,10125,0)
+ ;;=J44.1^^39^427^22
+ ;;^UTILITY(U,$J,358.3,10125,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,10018,1,3,0)
- ;;=3^Fall
- ;;^UTILITY(U,$J,358.3,10018,1,4,0)
- ;;=4^W19.XXXA
- ;;^UTILITY(U,$J,358.3,10018,2)
- ;;=^5059833
- ;;^UTILITY(U,$J,358.3,10019,0)
- ;;=V49.9XXA^^72^661^1
- ;;^UTILITY(U,$J,358.3,10019,1,0)
+ ;;^UTILITY(U,$J,358.3,10125,1,3,0)
+ ;;=3^COPD w/ Acute Exacerbation
+ ;;^UTILITY(U,$J,358.3,10125,1,4,0)
+ ;;=4^J44.1
+ ;;^UTILITY(U,$J,358.3,10125,2)
+ ;;=^5008240
+ ;;^UTILITY(U,$J,358.3,10126,0)
+ ;;=J47.0^^39^427^15
+ ;;^UTILITY(U,$J,358.3,10126,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,10019,1,3,0)
- ;;=3^Automobile Traffic Accident Victim
- ;;^UTILITY(U,$J,358.3,10019,1,4,0)
- ;;=4^V49.9XXA
- ;;^UTILITY(U,$J,358.3,10019,2)
- ;;=^5057368
- ;;^UTILITY(U,$J,358.3,10020,0)
- ;;=V49.3XXA^^72^661^2
- ;;^UTILITY(U,$J,358.3,10020,1,0)
+ ;;^UTILITY(U,$J,358.3,10126,1,3,0)
+ ;;=3^Bronchiectasis w/ Acute Lower Resp Infection
+ ;;^UTILITY(U,$J,358.3,10126,1,4,0)
+ ;;=4^J47.0
+ ;;^UTILITY(U,$J,358.3,10126,2)
+ ;;=^5008258
+ ;;^UTILITY(U,$J,358.3,10127,0)
+ ;;=J47.1^^39^427^14
+ ;;^UTILITY(U,$J,358.3,10127,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,10020,1,3,0)
- ;;=3^Automobile Nontraffic Accident Victim
- ;;^UTILITY(U,$J,358.3,10020,1,4,0)
- ;;=4^V49.3XXA
- ;;^UTILITY(U,$J,358.3,10020,2)
- ;;=^5057341
- ;;^UTILITY(U,$J,358.3,10021,0)
- ;;=V29.9XXA^^72^661^3
- ;;^UTILITY(U,$J,358.3,10021,1,0)
+ ;;^UTILITY(U,$J,358.3,10127,1,3,0)
+ ;;=3^Bronchiectasis w/ Acute Exacerbation
+ ;;^UTILITY(U,$J,358.3,10127,1,4,0)
+ ;;=4^J47.1
+ ;;^UTILITY(U,$J,358.3,10127,2)
+ ;;=^5008259
+ ;;^UTILITY(U,$J,358.3,10128,0)
+ ;;=J47.9^^39^427^16
+ ;;^UTILITY(U,$J,358.3,10128,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,10021,1,3,0)
- ;;=3^Motorcycle Accident Victim
- ;;^UTILITY(U,$J,358.3,10021,1,4,0)
- ;;=4^V29.9XXA
- ;;^UTILITY(U,$J,358.3,10021,2)
- ;;=^5056687
- ;;^UTILITY(U,$J,358.3,10022,0)
- ;;=V19.3XXA^^72^661^4
- ;;^UTILITY(U,$J,358.3,10022,1,0)
- ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,10128,1,3,0)
+ ;;=3^Bronchiectasis,Uncomplicated

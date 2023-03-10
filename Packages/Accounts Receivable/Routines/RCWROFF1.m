@@ -1,5 +1,5 @@
 RCWROFF1 ;WISC/RFJ-partial waiver ;1 Feb 2000
- ;;4.5;Accounts Receivable;**168,204,233,301**;Mar 20, 1995;Build 144
+ ;;4.5;Accounts Receivable;**168,204,233,301,377**;Mar 20, 1995;Build 45
  ;;Per VA Directive 6402, this routine should not be modified.
  Q
  ;
@@ -75,6 +75,8 @@ PARTIAL ;  enter a partial waived (menu option)
  .   D PROCESS^RCBEUTRA(RCTRANDA)
  .   ;  update the principal balance on the bill (subtract the waived amount)
  .   D SETBAL^RCBEUBIL(RCTRANDA)
+ .   ;PRCA*4.5*377 - Update active repayment plan attached to bill.
+ .   D UPDBAL^RCRPU1(RCBILLDA,RCTRANDA)
  .   ;  create fms write off document, if not accrued
  .   I '$$ACCK^PRCAACC(RCBILLDA) D FMSDOC^RCWROFF(RCTRANDA)
  .   ;

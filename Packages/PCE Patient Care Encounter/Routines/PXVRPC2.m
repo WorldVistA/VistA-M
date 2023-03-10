@@ -1,5 +1,5 @@
-PXVRPC2 ;BPFO/LMT - PCE RPCs for IMM Source, Route, Site ;02/16/16  13:00
- ;;1.0;PCE PATIENT CARE ENCOUNTER;**215**;Aug 12, 1996;Build 10
+PXVRPC2 ;BPFO/LMT - PCE RPCs for IMM Source, Route, Site ;Jun 04, 2019@12:16:35
+ ;;1.0;PCE PATIENT CARE ENCOUNTER;**215,217**;Aug 12, 1996;Build 134
  ;
  ; Reference to ^DIA(920.X,"C") supported by ICR #2602
  ;
@@ -11,11 +11,14 @@ PXVRPC2 ;BPFO/LMT - PCE RPCs for IMM Source, Route, Site ;02/16/16  13:00
  ;               R:XXX - Return entry with IEN XXX.
  ;               H:XXX - Return entry with HL7 Code XXX.
  ;               N:XXX - Return entry with #.01 field equal to XXX
- ;               S:X   - Return all entries with a status of X.
+ ;               S:XY  - Return all entries with a status of X.
  ;                       Possible values of X:
  ;                         A - Active Entries
  ;                         I - Inactive Entries
  ;                         B - Both active and inactive entries
+ ;                       Possible values of Y (only applies to file 920.1):
+ ;                         A - VA-Administered
+ ;                         H - Historical
  ;
  ;Returns:
  ; PXVRSLT(0)=Count of elements returned (0 if nothing found)
@@ -66,7 +69,7 @@ IMMSITE(PXVRSLT,PXVFLTR,PXVDATE) ;
  ;
 GETDATA(PXVRSLT,PXFILE,PXVFLTR,PXVSITES) ;
  ;
- N PXCNT,PXIEN,PXHL7,PXFKTRSTAT,PXFLTRTYP,PXFLTRVAL,PXFLTRSTAT,PXNAME,PXFLDS,PXSTAT
+ N PXCNT,PXI,PXIEN,PXHL7,PXFKTRSTAT,PXFLTRTYP,PXFLTRVAL,PXFLTRSTAT,PXNAME,PXFLDS,PXSEQARR,PXSKIP,PXSTAT
  S PXCNT=0
  S PXIEN=""
  S PXHL7=""
@@ -82,7 +85,7 @@ GETDATA(PXVRSLT,PXFILE,PXVFLTR,PXVSITES) ;
  . S PXIEN=PXFLTRVAL
  . I 'PXIEN Q
  . I '$D(^PXV(PXFILE,PXIEN)) Q
- . D ADDENTRY(.PXVRSLT,.PXFILE,.PXIEN,$G(PXVSITES),"",.PXCNT)
+ . D ADDENTRY(.PXVRSLT,.PXFILE,.PXIEN,$G(PXVSITES),"","",.PXCNT)
  ;
  I PXFLTRTYP="H" D  S PXVRSLT(0)=PXCNT Q
  . N PXINDEX
@@ -91,32 +94,47 @@ GETDATA(PXVRSLT,PXFILE,PXVFLTR,PXVSITES) ;
  . S PXINDEX="H"
  . I PXFILE=920.3 S PXINDEX="B"
  . S PXIEN=$O(^PXV(PXFILE,PXINDEX,PXHL7,0))
- . D ADDENTRY(.PXVRSLT,.PXFILE,.PXIEN,$G(PXVSITES),"",.PXCNT)
+ . D ADDENTRY(.PXVRSLT,.PXFILE,.PXIEN,$G(PXVSITES),"","",.PXCNT)
  ;
  I PXFLTRTYP="N" D  S PXVRSLT(0)=PXCNT Q
  . S PXNAME=PXFLTRVAL
  . I PXNAME="" Q
  . S PXIEN=$O(^PXV(PXFILE,"B",PXNAME,0))
- . D ADDENTRY(.PXVRSLT,.PXFILE,.PXIEN,$G(PXVSITES),"",.PXCNT)
+ . D ADDENTRY(.PXVRSLT,.PXFILE,.PXIEN,$G(PXVSITES),"","",.PXCNT)
  ;
  ; I PXFLTRTYP="S" D
- I $G(PXFLTRVAL)?1(1"A",1"I",1"B") S PXFLTRSTAT=PXFLTRVAL
+ I $E($G(PXFLTRVAL),1)?1(1"A",1"I",1"B") S PXFLTRSTAT=$E(PXFLTRVAL,1)
+ ;
+ ; Sort entries based off the order defined in the parameter
+ I PXFILE=920.1 D
+ . D GETLST^XPAR(.PXSEQARR,"ALL","PXV INFO SOURCE SEQUENCE","Q")
+ . S PXI=0 F  S PXI=$O(PXSEQARR(PXI)) Q:'PXI  D
+ . . S PXIEN=$P($G(PXSEQARR(PXI)),U,2)
+ . . I 'PXIEN Q
+ . . D ADDENTRY(.PXVRSLT,.PXFILE,.PXIEN,"",.PXFLTRSTAT,.PXFLTRVAL,.PXCNT)
+ . . S PXSKIP(PXFILE,PXIEN)=""
+ ;
+ ; Sort remaining entries in alphabetical order
  S PXNAME=""
  F  S PXNAME=$O(^PXV(PXFILE,"B",PXNAME)) Q:PXNAME=""  D
  . S PXIEN=0
  . F  S PXIEN=$O(^PXV(PXFILE,"B",PXNAME,PXIEN)) Q:'PXIEN  D
  . . I PXFILE=920.3,$G(^PXV(PXFILE,"B",PXNAME,PXIEN))=1 Q  ; cross-ref is on HL7 code - not .01
- . . D ADDENTRY(.PXVRSLT,.PXFILE,.PXIEN,$G(PXVSITES),PXFLTRSTAT,.PXCNT)
+ . . I $D(PXSKIP(PXFILE,PXIEN)) Q
+ . . D ADDENTRY(.PXVRSLT,.PXFILE,.PXIEN,$G(PXVSITES),.PXFLTRSTAT,.PXFLTRVAL,.PXCNT)
  ;
  S PXVRSLT(0)=PXCNT
  ;
  Q
  ;
-ADDENTRY(PXVRSLT,PXFILE,PXIEN,PXVSITES,PXFLTRSTAT,PXCNT) ; Adds entry to PXVRSLT
+ADDENTRY(PXVRSLT,PXFILE,PXIEN,PXVSITES,PXFLTRSTAT,PXFLTRVAL,PXCNT) ; Adds entry to PXVRSLT
  ;
  N PXFLDS,PXSTAT
  ;
  I 'PXIEN Q
+ ;
+ I PXFILE=920.1,$E($G(PXFLTRVAL),2)="A",$P($G(^PXV(PXFILE,PXIEN,0)),U,2)'="00" Q
+ I PXFILE=920.1,$E($G(PXFLTRVAL),2)="H",$P($G(^PXV(PXFILE,PXIEN,0)),U,2)="00" Q
  ;
  S PXFLDS=$$GETFLDS(PXFILE,PXIEN)
  S PXSTAT=$P(PXFLDS,U,4)

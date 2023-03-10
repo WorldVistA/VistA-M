@@ -1,5 +1,5 @@
 RORX002 ;HOIFO/SG,VAC - CURRENT INPATIENT LIST ;4/7/09 2:06pm
- ;;1.5;CLINICAL CASE REGISTRIES;**1,8,19,21,31,32,34**;Feb 17, 2006;Build 45
+ ;;1.5;CLINICAL CASE REGISTRIES;**1,8,19,21,31,32,34,39**;Feb 17, 2006;Build 4
  ;
  ; This routine uses the following IAs:
  ;
@@ -20,6 +20,7 @@ RORX002 ;HOIFO/SG,VAC - CURRENT INPATIENT LIST ;4/7/09 2:06pm
  ;                                       identifiers.
  ;ROR*1.5*32   11/07/17    S ALSAHHAR   Add 'Admitting Diagnosis' column
  ;ROR*1.5*34   09/24/18    F TRAXLER    Add 'Admitting Date' column
+ ;ROR*1.5*39   JUL 2021    M FERRARESE  Setting SSN and LAST4 to zeros
  ;******************************************************************************
  ;
  Q
@@ -137,6 +138,7 @@ PTLIST(REPORT,INPCNT) ;
  Q:BODY<0 BODY
  D ADDATTR^RORTSK11(RORTSK,BODY,"TABLE","PATIENTS")
  D:$D(@RORTMP)>1
+ . S $P(NODE,U,5)="0000"
  . S NODE=RORTMP
  . S FLTLEN=$L(NODE)-1,FLT=$E(NODE,1,FLTLEN)
  . F  S NODE=$Q(@NODE)  Q:$E(NODE,1,FLTLEN)'=FLT  D  Q:RC<0
@@ -183,7 +185,7 @@ QUERY(INPCNT,SFLAGS) ;
  . D INP^VADPT
  . S AGEDOB=$$PARAM^RORTSK01("AGE_RANGE","TYPE") S AGEDOB=$S(AGEDOB="AGE":$P($G(VADM(4)),U),AGEDOB="DOB":$P($G(VADM(3)),U),1:"")
  . S WARD=$P(VAIP(5),U,2)  Q:WARD=""
- . S TMP=$S($G(VA("BID"))'="":VA("BID"),1:"UNKN") ; Last 4 of SSN
+ . S VA("BID")="0000" S TMP=$S($G(VA("BID"))'="":VA("BID"),1:"UNKN") ; Last 4 of SSN
  . S @RORTMP@(WARD,VADM(1),TMP)=IEN_U_DFN_U_$P(VAIP(6),U,2)_U_$P(VADM(6),U)
  . S @RORTMP@(WARD,VADM(1),TMP)=@RORTMP@(WARD,VADM(1),TMP)_U_$$ICN^RORUTL02(DFN)
  . S @RORTMP@(WARD,VADM(1),TMP)=@RORTMP@(WARD,VADM(1),TMP)_U_$$PACT^RORUTL02(DFN)

@@ -1,122 +1,130 @@
-IBDEI0J6 ; ; 04-FEB-2020
- ;;3.0;IB ENCOUNTER FORM IMP/EXP;;FEB 04, 2020
+IBDEI0J6 ; ; 01-FEB-2022
+ ;;3.0;IB ENCOUNTER FORM IMP/EXP;;FEB 01, 2022
  Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,999) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
- ;;^UTILITY(U,$J,358.3,8385,1,2,0)
- ;;=2^10140
- ;;^UTILITY(U,$J,358.3,8385,1,3,0)
- ;;=3^Drainage of Hematoma/Fluid
- ;;^UTILITY(U,$J,358.3,8386,0)
- ;;=10160^^66^540^8^^^^1
- ;;^UTILITY(U,$J,358.3,8386,1,0)
- ;;=^358.31IA^3^2
- ;;^UTILITY(U,$J,358.3,8386,1,2,0)
- ;;=2^10160
- ;;^UTILITY(U,$J,358.3,8386,1,3,0)
- ;;=3^Puncture Drainage of Lesion
- ;;^UTILITY(U,$J,358.3,8387,0)
- ;;=11200^^66^541^7^^^^1
- ;;^UTILITY(U,$J,358.3,8387,1,0)
- ;;=^358.31IA^3^2
- ;;^UTILITY(U,$J,358.3,8387,1,2,0)
- ;;=2^11200
- ;;^UTILITY(U,$J,358.3,8387,1,3,0)
- ;;=3^Removal of Skin Tags,</=15 tags
- ;;^UTILITY(U,$J,358.3,8388,0)
- ;;=11201^^66^541^8^^^^1
- ;;^UTILITY(U,$J,358.3,8388,1,0)
- ;;=^358.31IA^3^2
- ;;^UTILITY(U,$J,358.3,8388,1,2,0)
- ;;=2^11201
- ;;^UTILITY(U,$J,358.3,8388,1,3,0)
- ;;=3^Removal of Skin Tags,Ea Add 10 tags
- ;;^UTILITY(U,$J,358.3,8389,0)
- ;;=11900^^66^541^4^^^^1
- ;;^UTILITY(U,$J,358.3,8389,1,0)
- ;;=^358.31IA^3^2
- ;;^UTILITY(U,$J,358.3,8389,1,2,0)
- ;;=2^11900
- ;;^UTILITY(U,$J,358.3,8389,1,3,0)
- ;;=3^INJ,Intralesional;<8 lesions
- ;;^UTILITY(U,$J,358.3,8390,0)
- ;;=11901^^66^541^5^^^^1
- ;;^UTILITY(U,$J,358.3,8390,1,0)
- ;;=^358.31IA^3^2
- ;;^UTILITY(U,$J,358.3,8390,1,2,0)
- ;;=2^11901
- ;;^UTILITY(U,$J,358.3,8390,1,3,0)
- ;;=3^INJ,intralesional;>7 lesions
- ;;^UTILITY(U,$J,358.3,8391,0)
- ;;=10030^^66^541^6^^^^1
- ;;^UTILITY(U,$J,358.3,8391,1,0)
- ;;=^358.31IA^3^2
- ;;^UTILITY(U,$J,358.3,8391,1,2,0)
- ;;=2^10030
- ;;^UTILITY(U,$J,358.3,8391,1,3,0)
- ;;=3^Image Guided Fluid Collect by Cath Percut
- ;;^UTILITY(U,$J,358.3,8392,0)
- ;;=11770^^66^541^3^^^^1
- ;;^UTILITY(U,$J,358.3,8392,1,0)
- ;;=^358.31IA^3^2
- ;;^UTILITY(U,$J,358.3,8392,1,2,0)
- ;;=2^11770
- ;;^UTILITY(U,$J,358.3,8392,1,3,0)
- ;;=3^Exc Pilonidal Cyst/Sinus;Simple
- ;;^UTILITY(U,$J,358.3,8393,0)
- ;;=11771^^66^541^2^^^^1
- ;;^UTILITY(U,$J,358.3,8393,1,0)
- ;;=^358.31IA^3^2
- ;;^UTILITY(U,$J,358.3,8393,1,2,0)
- ;;=2^11771
- ;;^UTILITY(U,$J,358.3,8393,1,3,0)
- ;;=3^Exc Pilonidal Cyst/Sinus;Extensive
- ;;^UTILITY(U,$J,358.3,8394,0)
- ;;=11772^^66^541^1^^^^1
- ;;^UTILITY(U,$J,358.3,8394,1,0)
- ;;=^358.31IA^3^2
- ;;^UTILITY(U,$J,358.3,8394,1,2,0)
- ;;=2^11772
- ;;^UTILITY(U,$J,358.3,8394,1,3,0)
- ;;=3^Exc Pilonidal Cyst/Sinus;Compl
- ;;^UTILITY(U,$J,358.3,8395,0)
- ;;=11719^^66^542^10^^^^1
- ;;^UTILITY(U,$J,358.3,8395,1,0)
- ;;=^358.31IA^3^2
- ;;^UTILITY(U,$J,358.3,8395,1,2,0)
- ;;=2^11719
- ;;^UTILITY(U,$J,358.3,8395,1,3,0)
- ;;=3^Trim nondystrophic nails, any number
- ;;^UTILITY(U,$J,358.3,8396,0)
- ;;=11720^^66^542^3^^^^1
- ;;^UTILITY(U,$J,358.3,8396,1,0)
- ;;=^358.31IA^3^2
- ;;^UTILITY(U,$J,358.3,8396,1,2,0)
- ;;=2^11720
- ;;^UTILITY(U,$J,358.3,8396,1,3,0)
- ;;=3^Debride of nail(s) any method;1-5
- ;;^UTILITY(U,$J,358.3,8397,0)
- ;;=11721^^66^542^4^^^^1
- ;;^UTILITY(U,$J,358.3,8397,1,0)
- ;;=^358.31IA^3^2
- ;;^UTILITY(U,$J,358.3,8397,1,2,0)
- ;;=2^11721
- ;;^UTILITY(U,$J,358.3,8397,1,3,0)
- ;;=3^Debride of nail(s) any method;6+
- ;;^UTILITY(U,$J,358.3,8398,0)
- ;;=11730^^66^542^2^^^^1
- ;;^UTILITY(U,$J,358.3,8398,1,0)
- ;;=^358.31IA^3^2
- ;;^UTILITY(U,$J,358.3,8398,1,2,0)
- ;;=2^11730
- ;;^UTILITY(U,$J,358.3,8398,1,3,0)
- ;;=3^Avulsion of nail plate,simple;single
- ;;^UTILITY(U,$J,358.3,8399,0)
- ;;=11732^^66^542^1^^^^1
- ;;^UTILITY(U,$J,358.3,8399,1,0)
- ;;=^358.31IA^3^2
- ;;^UTILITY(U,$J,358.3,8399,1,2,0)
- ;;=2^11732
- ;;^UTILITY(U,$J,358.3,8399,1,3,0)
- ;;=3^Avulsion of nail plate,Ea Add nail plate
- ;;^UTILITY(U,$J,358.3,8400,0)
- ;;=11740^^66^542^5^^^^1
+ ;;^UTILITY(U,$J,358.3,8627,2)
+ ;;=^5001846
+ ;;^UTILITY(U,$J,358.3,8628,0)
+ ;;=D61.82^^39^401^180
+ ;;^UTILITY(U,$J,358.3,8628,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,8628,1,3,0)
+ ;;=3^Myelophthisis
+ ;;^UTILITY(U,$J,358.3,8628,1,4,0)
+ ;;=4^D61.82
+ ;;^UTILITY(U,$J,358.3,8628,2)
+ ;;=^334037
+ ;;^UTILITY(U,$J,358.3,8629,0)
+ ;;=D47.9^^39^401^181
+ ;;^UTILITY(U,$J,358.3,8629,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,8629,1,3,0)
+ ;;=3^Neop Lymphoid,Hematopoietic & Related Tissue,Uncertain Behavior
+ ;;^UTILITY(U,$J,358.3,8629,1,4,0)
+ ;;=4^D47.9
+ ;;^UTILITY(U,$J,358.3,8629,2)
+ ;;=^5002260
+ ;;^UTILITY(U,$J,358.3,8630,0)
+ ;;=D53.9^^39^401^185
+ ;;^UTILITY(U,$J,358.3,8630,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,8630,1,3,0)
+ ;;=3^Nutritional Anemia,Unspec
+ ;;^UTILITY(U,$J,358.3,8630,1,4,0)
+ ;;=4^D53.9
+ ;;^UTILITY(U,$J,358.3,8630,2)
+ ;;=^5002298
+ ;;^UTILITY(U,$J,358.3,8631,0)
+ ;;=D47.4^^39^401^186
+ ;;^UTILITY(U,$J,358.3,8631,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,8631,1,3,0)
+ ;;=3^Osteomyelofibrosis
+ ;;^UTILITY(U,$J,358.3,8631,1,4,0)
+ ;;=4^D47.4
+ ;;^UTILITY(U,$J,358.3,8631,2)
+ ;;=^5002259
+ ;;^UTILITY(U,$J,358.3,8632,0)
+ ;;=D51.3^^39^401^210
+ ;;^UTILITY(U,$J,358.3,8632,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,8632,1,3,0)
+ ;;=3^Vitamin B12 Deficiency Anemia,Other
+ ;;^UTILITY(U,$J,358.3,8632,1,4,0)
+ ;;=4^D51.3
+ ;;^UTILITY(U,$J,358.3,8632,2)
+ ;;=^5002287
+ ;;^UTILITY(U,$J,358.3,8633,0)
+ ;;=D77.^^39^401^62
+ ;;^UTILITY(U,$J,358.3,8633,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,8633,1,3,0)
+ ;;=3^Disorder of Blood/Blood-Forming Organs in Diseases Classified Elsewhere,Other
+ ;;^UTILITY(U,$J,358.3,8633,1,4,0)
+ ;;=4^D77.
+ ;;^UTILITY(U,$J,358.3,8633,2)
+ ;;=^5002396
+ ;;^UTILITY(U,$J,358.3,8634,0)
+ ;;=D58.2^^39^401^88
+ ;;^UTILITY(U,$J,358.3,8634,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,8634,1,3,0)
+ ;;=3^Hemoglobinopathies,Other
+ ;;^UTILITY(U,$J,358.3,8634,1,4,0)
+ ;;=4^D58.2
+ ;;^UTILITY(U,$J,358.3,8634,2)
+ ;;=^87629
+ ;;^UTILITY(U,$J,358.3,8635,0)
+ ;;=C88.8^^39^401^110
+ ;;^UTILITY(U,$J,358.3,8635,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,8635,1,3,0)
+ ;;=3^Malig Immunoproliferative Diseases,Other
+ ;;^UTILITY(U,$J,358.3,8635,1,4,0)
+ ;;=4^C88.8
+ ;;^UTILITY(U,$J,358.3,8635,2)
+ ;;=^5001750
+ ;;^UTILITY(U,$J,358.3,8636,0)
+ ;;=D70.8^^39^401^183
+ ;;^UTILITY(U,$J,358.3,8636,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,8636,1,3,0)
+ ;;=3^Neutropenia,Other
+ ;;^UTILITY(U,$J,358.3,8636,1,4,0)
+ ;;=4^D70.8
+ ;;^UTILITY(U,$J,358.3,8636,2)
+ ;;=^334042
+ ;;^UTILITY(U,$J,358.3,8637,0)
+ ;;=D59.4^^39^401^184
+ ;;^UTILITY(U,$J,358.3,8637,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,8637,1,3,0)
+ ;;=3^Nonautoimmune Hemolytic Anemias,Other
+ ;;^UTILITY(U,$J,358.3,8637,1,4,0)
+ ;;=4^D59.4
+ ;;^UTILITY(U,$J,358.3,8637,2)
+ ;;=^5002326
+ ;;^UTILITY(U,$J,358.3,8638,0)
+ ;;=D69.59^^39^401^190
+ ;;^UTILITY(U,$J,358.3,8638,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,8638,1,3,0)
+ ;;=3^Secondary Thrombocytopenia,Other
+ ;;^UTILITY(U,$J,358.3,8638,1,4,0)
+ ;;=4^D69.59
+ ;;^UTILITY(U,$J,358.3,8638,2)
+ ;;=^5002369
+ ;;^UTILITY(U,$J,358.3,8639,0)
+ ;;=C22.7^^39^401^51
+ ;;^UTILITY(U,$J,358.3,8639,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,8639,1,3,0)
+ ;;=3^Carcinomas of Liver,Other Spec
+ ;;^UTILITY(U,$J,358.3,8639,1,4,0)
+ ;;=4^C22.7
+ ;;^UTILITY(U,$J,358.3,8639,2)
+ ;;=^5000938
+ ;;^UTILITY(U,$J,358.3,8640,0)
+ ;;=D75.89^^39^401^61
+ ;;^UTILITY(U,$J,358.3,8640,1,0)
+ ;;=^358.31IA^4^2

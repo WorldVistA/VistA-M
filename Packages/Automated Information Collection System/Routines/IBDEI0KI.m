@@ -1,122 +1,126 @@
-IBDEI0KI ; ; 04-FEB-2020
- ;;3.0;IB ENCOUNTER FORM IMP/EXP;;FEB 04, 2020
+IBDEI0KI ; ; 01-FEB-2022
+ ;;3.0;IB ENCOUNTER FORM IMP/EXP;;FEB 01, 2022
  Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,999) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
- ;;^UTILITY(U,$J,358.3,9047,1,4,0)
- ;;=4^N04.5
- ;;^UTILITY(U,$J,358.3,9047,2)
- ;;=^5015536
- ;;^UTILITY(U,$J,358.3,9048,0)
- ;;=N04.6^^69^617^52
- ;;^UTILITY(U,$J,358.3,9048,1,0)
+ ;;^UTILITY(U,$J,358.3,9226,1,4,0)
+ ;;=4^M20.41
+ ;;^UTILITY(U,$J,358.3,9226,2)
+ ;;=^5011051
+ ;;^UTILITY(U,$J,358.3,9227,0)
+ ;;=M48.061^^39^407^176
+ ;;^UTILITY(U,$J,358.3,9227,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,9048,1,3,0)
- ;;=3^Nephrotic syndrome w/ dense deposit disease
- ;;^UTILITY(U,$J,358.3,9048,1,4,0)
- ;;=4^N04.6
- ;;^UTILITY(U,$J,358.3,9048,2)
- ;;=^5015537
- ;;^UTILITY(U,$J,358.3,9049,0)
- ;;=N04.7^^69^617^53
- ;;^UTILITY(U,$J,358.3,9049,1,0)
+ ;;^UTILITY(U,$J,358.3,9227,1,3,0)
+ ;;=3^Spinal Stenosis,Lumbar Region w/o Neurogenic Caludication
+ ;;^UTILITY(U,$J,358.3,9227,1,4,0)
+ ;;=4^M48.061
+ ;;^UTILITY(U,$J,358.3,9227,2)
+ ;;=^5151513
+ ;;^UTILITY(U,$J,358.3,9228,0)
+ ;;=M48.062^^39^407^175
+ ;;^UTILITY(U,$J,358.3,9228,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,9049,1,3,0)
- ;;=3^Nephrotic syndrome w/ diffuse crescentic glomerulonephritis
- ;;^UTILITY(U,$J,358.3,9049,1,4,0)
- ;;=4^N04.7
- ;;^UTILITY(U,$J,358.3,9049,2)
- ;;=^5015538
- ;;^UTILITY(U,$J,358.3,9050,0)
- ;;=N04.8^^69^617^60
- ;;^UTILITY(U,$J,358.3,9050,1,0)
+ ;;^UTILITY(U,$J,358.3,9228,1,3,0)
+ ;;=3^Spinal Stenosis,Lumbar Region w/ Neurogenic Claudication
+ ;;^UTILITY(U,$J,358.3,9228,1,4,0)
+ ;;=4^M48.062
+ ;;^UTILITY(U,$J,358.3,9228,2)
+ ;;=^5151514
+ ;;^UTILITY(U,$J,358.3,9229,0)
+ ;;=M79.10^^39^407^65
+ ;;^UTILITY(U,$J,358.3,9229,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,9050,1,3,0)
- ;;=3^Nephrotic syndrome w/ other morphologic changes
- ;;^UTILITY(U,$J,358.3,9050,1,4,0)
- ;;=4^N04.8
- ;;^UTILITY(U,$J,358.3,9050,2)
- ;;=^5015539
- ;;^UTILITY(U,$J,358.3,9051,0)
- ;;=N04.9^^69^617^61
- ;;^UTILITY(U,$J,358.3,9051,1,0)
+ ;;^UTILITY(U,$J,358.3,9229,1,3,0)
+ ;;=3^Myalgia,Unspec Site
+ ;;^UTILITY(U,$J,358.3,9229,1,4,0)
+ ;;=4^M79.10
+ ;;^UTILITY(U,$J,358.3,9229,2)
+ ;;=^5157394
+ ;;^UTILITY(U,$J,358.3,9230,0)
+ ;;=M54.50^^39^407^61
+ ;;^UTILITY(U,$J,358.3,9230,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,9051,1,3,0)
- ;;=3^Nephrotic syndrome w/ unspecified morphologic changes
- ;;^UTILITY(U,$J,358.3,9051,1,4,0)
- ;;=4^N04.9
- ;;^UTILITY(U,$J,358.3,9051,2)
- ;;=^5015540
- ;;^UTILITY(U,$J,358.3,9052,0)
- ;;=N05.0^^69^617^49
- ;;^UTILITY(U,$J,358.3,9052,1,0)
+ ;;^UTILITY(U,$J,358.3,9230,1,3,0)
+ ;;=3^Low Back Pain,Unspec
+ ;;^UTILITY(U,$J,358.3,9230,1,4,0)
+ ;;=4^M54.50
+ ;;^UTILITY(U,$J,358.3,9230,2)
+ ;;=^5161215
+ ;;^UTILITY(U,$J,358.3,9231,0)
+ ;;=B02.0^^39^408^47
+ ;;^UTILITY(U,$J,358.3,9231,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,9052,1,3,0)
- ;;=3^Nephritic syndrome unspec w/ minor glomerular abnormality
- ;;^UTILITY(U,$J,358.3,9052,1,4,0)
- ;;=4^N05.0
- ;;^UTILITY(U,$J,358.3,9052,2)
- ;;=^5015541
- ;;^UTILITY(U,$J,358.3,9053,0)
- ;;=N05.1^^69^617^48
- ;;^UTILITY(U,$J,358.3,9053,1,0)
+ ;;^UTILITY(U,$J,358.3,9231,1,3,0)
+ ;;=3^Zoster Encephalitis
+ ;;^UTILITY(U,$J,358.3,9231,1,4,0)
+ ;;=4^B02.0
+ ;;^UTILITY(U,$J,358.3,9231,2)
+ ;;=^5000488
+ ;;^UTILITY(U,$J,358.3,9232,0)
+ ;;=B02.29^^39^408^37
+ ;;^UTILITY(U,$J,358.3,9232,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,9053,1,3,0)
- ;;=3^Nephritic syndrome unspec w/ focal & segmental glomerular lesions
- ;;^UTILITY(U,$J,358.3,9053,1,4,0)
- ;;=4^N05.1
- ;;^UTILITY(U,$J,358.3,9053,2)
- ;;=^5015542
- ;;^UTILITY(U,$J,358.3,9054,0)
- ;;=N05.2^^69^617^45
- ;;^UTILITY(U,$J,358.3,9054,1,0)
+ ;;^UTILITY(U,$J,358.3,9232,1,3,0)
+ ;;=3^Postherpetic Nervous System Involvement,Other
+ ;;^UTILITY(U,$J,358.3,9232,1,4,0)
+ ;;=4^B02.29
+ ;;^UTILITY(U,$J,358.3,9232,2)
+ ;;=^5000492
+ ;;^UTILITY(U,$J,358.3,9233,0)
+ ;;=F03.90^^39^408^11
+ ;;^UTILITY(U,$J,358.3,9233,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,9054,1,3,0)
- ;;=3^Nephritic syndrome unspec w/ diffuse membranous glomrlneph
- ;;^UTILITY(U,$J,358.3,9054,1,4,0)
- ;;=4^N05.2
- ;;^UTILITY(U,$J,358.3,9054,2)
- ;;=^5015543
- ;;^UTILITY(U,$J,358.3,9055,0)
- ;;=N05.3^^69^617^46
- ;;^UTILITY(U,$J,358.3,9055,1,0)
+ ;;^UTILITY(U,$J,358.3,9233,1,3,0)
+ ;;=3^Dementia w/o Behavioral Disturbance,Unspec
+ ;;^UTILITY(U,$J,358.3,9233,1,4,0)
+ ;;=4^F03.90
+ ;;^UTILITY(U,$J,358.3,9233,2)
+ ;;=^5003050
+ ;;^UTILITY(U,$J,358.3,9234,0)
+ ;;=F03.91^^39^408^10
+ ;;^UTILITY(U,$J,358.3,9234,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,9055,1,3,0)
- ;;=3^Nephritic syndrome unspec w/ diffuse mesangial prolif glomrlneph
- ;;^UTILITY(U,$J,358.3,9055,1,4,0)
- ;;=4^N05.3
- ;;^UTILITY(U,$J,358.3,9055,2)
- ;;=^5015544
- ;;^UTILITY(U,$J,358.3,9056,0)
- ;;=N05.4^^69^617^44
- ;;^UTILITY(U,$J,358.3,9056,1,0)
+ ;;^UTILITY(U,$J,358.3,9234,1,3,0)
+ ;;=3^Dementia w/ Behavioral Disturbance,Unspec
+ ;;^UTILITY(U,$J,358.3,9234,1,4,0)
+ ;;=4^F03.91
+ ;;^UTILITY(U,$J,358.3,9234,2)
+ ;;=^5133350
+ ;;^UTILITY(U,$J,358.3,9235,0)
+ ;;=F01.50^^39^408^13
+ ;;^UTILITY(U,$J,358.3,9235,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,9056,1,3,0)
- ;;=3^Nephritic syndrome unspec w/ diffuse endocaplry prolif glomrlneph
- ;;^UTILITY(U,$J,358.3,9056,1,4,0)
- ;;=4^N05.4
- ;;^UTILITY(U,$J,358.3,9056,2)
- ;;=^5015545
- ;;^UTILITY(U,$J,358.3,9057,0)
- ;;=N05.5^^69^617^47
- ;;^UTILITY(U,$J,358.3,9057,1,0)
+ ;;^UTILITY(U,$J,358.3,9235,1,3,0)
+ ;;=3^Dementia,Vascular w/o Behavioral Disturbance
+ ;;^UTILITY(U,$J,358.3,9235,1,4,0)
+ ;;=4^F01.50
+ ;;^UTILITY(U,$J,358.3,9235,2)
+ ;;=^5003046
+ ;;^UTILITY(U,$J,358.3,9236,0)
+ ;;=F10.27^^39^408^12
+ ;;^UTILITY(U,$J,358.3,9236,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,9057,1,3,0)
- ;;=3^Nephritic syndrome unspec w/ diffuse mesangiocap glomrlneph
- ;;^UTILITY(U,$J,358.3,9057,1,4,0)
- ;;=4^N05.5
- ;;^UTILITY(U,$J,358.3,9057,2)
- ;;=^5015546
- ;;^UTILITY(U,$J,358.3,9058,0)
- ;;=N05.6^^69^617^42
- ;;^UTILITY(U,$J,358.3,9058,1,0)
+ ;;^UTILITY(U,$J,358.3,9236,1,3,0)
+ ;;=3^Dementia,Alcohol-Induced/Persist w/ Alcohol Dependence
+ ;;^UTILITY(U,$J,358.3,9236,1,4,0)
+ ;;=4^F10.27
+ ;;^UTILITY(U,$J,358.3,9236,2)
+ ;;=^5003095
+ ;;^UTILITY(U,$J,358.3,9237,0)
+ ;;=F06.1^^39^408^7
+ ;;^UTILITY(U,$J,358.3,9237,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,9058,1,3,0)
- ;;=3^Nephritic syndrome unspec w/ dense deposit disease
- ;;^UTILITY(U,$J,358.3,9058,1,4,0)
- ;;=4^N05.6
- ;;^UTILITY(U,$J,358.3,9058,2)
- ;;=^5015547
- ;;^UTILITY(U,$J,358.3,9059,0)
- ;;=N05.7^^69^617^43
- ;;^UTILITY(U,$J,358.3,9059,1,0)
+ ;;^UTILITY(U,$J,358.3,9237,1,3,0)
+ ;;=3^Catatonic Disorder d/t Known Physiological Condition
+ ;;^UTILITY(U,$J,358.3,9237,1,4,0)
+ ;;=4^F06.1
+ ;;^UTILITY(U,$J,358.3,9237,2)
+ ;;=^5003054
+ ;;^UTILITY(U,$J,358.3,9238,0)
+ ;;=F06.8^^39^408^22
+ ;;^UTILITY(U,$J,358.3,9238,1,0)
  ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,9238,1,3,0)
+ ;;=3^Mental Disorders d/t Known Physiological Condition,Other
+ ;;^UTILITY(U,$J,358.3,9238,1,4,0)
+ ;;=4^F06.8

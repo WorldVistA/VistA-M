@@ -1,5 +1,5 @@
-IBCNEDST ;ALB/YMG - HL7 Registration Message Statistics ;07-MAR-2013
- ;;2.0;INTEGRATED BILLING;**497,506,549,595,659**;21-MAR-94;Build 16
+IBCNEDST ;ALB/YMG - HL7 Registration Message Statistics ; 07-MAR-2013
+ ;;2.0;INTEGRATED BILLING;**497,506,549,595,659,664,668,702**;21-MAR-94;Build 53
  ;;Per VA Directive 6402, this routine should not be modified.
  ;
  Q
@@ -29,8 +29,12 @@ GETSTAT2() ;EP
  S $P(DATA,"^",6)=$$GET1^DIQ(350.9,"1,",51.32,"I") ; MEDICARE Freshness Days  ;/vd - IB*2*659
  Q DATA
  ;
-GETSTAT() ; get statistical data
+GETSTAT(MCAUTO) ; get statistical data
  ; Statistics are to match the eIV Statistical Report (^IBCNEPR8)
+ ;   IB*664/DW Added parameter "MCAUTO" - this will be used to split out the count of
+ ;             Medicare auto-updated responses from the all other eIV responses that
+ ;             were auto updated. We now have two calculated totals.  Medicare and
+ ;             not Medicare eIV responses that were auto-updated.
  ;
  ; returns the following string, delimited by "^":
  ;
@@ -54,7 +58,8 @@ GETSTAT() ; get statistical data
  N BUFINFO,PAYINFO,RESPINFO,STARTDTTM,TQINFO,STATS
  ;
  S STARTDTTM=$$FMADD^XLFDT($$NOW^XLFDT(),,-24) ; set to current date/time - 24 hours
- S RESPINFO=$$RESPINFO(STARTDTTM) ; get data from file 365
+ ; IB*664/DW Added parameter "MCAUTO" to line below
+ S RESPINFO=$$RESPINFO(STARTDTTM,.MCAUTO) ; get data from file 365
  S TQINFO=$$TQINFO() ; get data from file 365.1
  S PAYINFO=$$PAYINFO() ; get data from file 36 & 365.12
  S BUFINFO=$$BUFINFO() ; get data from file 355.33
@@ -62,18 +67,32 @@ GETSTAT() ; get statistical data
  S STATS=STATS_U_BUFINFO_U_$P(PAYINFO,U,3)
  Q STATS
  ;
-RESPINFO(DTTM) ; get data from IIV response file (file 365)
+RESPINFO(DTTM,MCAUTO) ; get data from IIV Response file (file 365)
  ; DTTM - start date/time
+ ; MCAUTO - total # of auto-updated eIV responses that ARE Medicare related
+ ;  IB*664/DW Added parameter "MCAUTO"
  ;
  ; returns the following string, delimited by "^":
  ;   piece 1: number of patients with potential secondary/tertiary insurance as identified by Medicare
  ;   piece 2: Number of automatically updated patient insurance records processed yesterday only
  ;   piece 3: Number of 270 inquiries pending receipt of 271 responses
  ;
+ ; also returns MCAUTO - # of eIV responses from the Medicare payer that were auto-updated
+ ;
  N AUTOUPD,DATE,DFN,EBIEN,IEN,INSNAMES,INSTYPE,INQP,POLICY,PAYER,PAYERWNR,PYRNAME,SECINS,Z
- S (AUTOUPD,SECINS)=0
+ ; IB*2.0*702/DTG- start Added number of outgoing EICD (A1) 270 transactions.
+ ;                      Number of outgoing EICD-triggered (A2) 270 transactions.
+ ;                      Number of outgoing MBI Request 270 transactions.
+ ;                      Number of incoming MBI positive responses that indicated as having returned the MBI (%).
+ N IB1P,IB2D,IB3IEN,IBA1,IBA2,IB40,IBTQ,IBTYP,IBQRY,IBAT1,IBAT2,IBSID,IBMBI,IBMBS
+ S (IB1P,IB2D,IB3IEN,IBA1,IBA2,IB40,IBAT1,IBAT2,IBMBI,IBMBS)=""
+ S DSTATPA=$G(DSTATPA),DSTATI=$G(DSTATI)
+ ; IB*2.0*702/DTG - end Added
+ S SECINS=0
  S PAYERWNR=$P($G(^IBE(350.9,1,51)),U,25) ; get Medicare payer ien from IB site parameters
- S AUTOUPD=$$PATINFO() ; IB*2*595/DM  
+ ;
+ ; IB*664/DW - Added 1st 3 parameters to PATINFO, changed from extrinsic function
+ D PATINFO(.AUTOUPD,PAYERWNR,.MCAUTO) ; IB*2*595/DM rewrote PATINFO
  S DATE=DTTM-0.000001 F  S DATE=$O(^IBCN(365,"AD",DATE)) Q:DATE=""  D
  .;IB*2*595/DM next 4 lines no longer applicable
  .; if response received within the last 24 hrs, check if it auto-updated insurance policy
@@ -96,11 +115,38 @@ RESPINFO(DTTM) ; get data from IIV response file (file 365)
  .....I $$GET1^DIQ(365.02,EBIEN_","_IEN_",",.02)'="R" Q
  .....S PYRNAME=$E($P($G(^IBCN(365,IEN,2,EBIEN,3)),U,3),1,30) ; grab first 30 chars to compare to 36/.01
  .....I PYRNAME'="",'$D(INSNAMES(PYRNAME)) S SECINS=SECINS+1
- .....Q
- ....Q
- ...Q
- ..Q
- .Q
+ . ; IB*2.0*702/DTG- start Added number of outgoing EICD (A1) 270 transactions. number of outgoing EICD-triggered (A2) 270 transactions
+ . ;                   number of outgoing MBI Request 270 transactions
+ . I $G(DSTATI)=1 D  ;<
+ . . S IB1P="" F  S IB1P=$O(^IBCN(365,"AD",DATE,IB1P)) Q:IB1P=""  S IB2D="" D  ;<
+ . . . F  S IB2D=$O(^IBCN(365,"AD",DATE,IB1P,IB2D)) Q:IB2D=""  S IB3IEN="" D  ;<
+ . . . . F  S IB3IEN=$O(^IBCN(365,"AD",DATE,IB1P,IB2D,IB3IEN)) Q:IB3IEN=""  D  ;<
+ . . . . . S IENS=IB3IEN_"," K IB40 D GETS^DIQ(365,IENS,"13.02;.05;.1","IE","IB40")
+ . . . . . I $G(IB40(365,IENS,.1,"I"))'="O" Q
+ . . . . . S IBSID=$G(IB40(365,IENS,13.02,"I"))
+ . . . . . S IBTQ=$G(IB40(365,IENS,.05,"I"))
+ . . . . . S IBTYP=$$GET1^DIQ(365.1,IBTQ_",",.1,"I"),IBQRY=$$GET1^DIQ(365.1,IBTQ_",",.11,"I")
+ . . . . . ; IBMBI - Number of incoming MBI positive responses that indicated as having returned the MBI (%)
+ . . . . . I IBTYP=7&(IBSID'="") S IBMBI=$G(IBMBI)+1 Q
+ ;
+ I $G(DSTATI)=1 D  ;<
+ . S DATE=DTTM-0.000001 F  S DATE=$O(^IBCN(365,"AE",DATE)) Q:DATE=""  D  ;<
+ . . S IB3IEN="" F  S IB3IEN=$O(^IBCN(365,"AE",DATE,IB3IEN)) Q:IB3IEN=""  D  ;<
+ . . . S IENS=IB3IEN_"," K IB40 D GETS^DIQ(365,IENS,"13.02;.05;.1","IE","IB40")
+ . . . I $G(IB40(365,IENS,.1,"I"))'="O" Q
+ . . . S IBSID=$G(IB40(365,IENS,13.02,"I"))
+ . . . S IBTQ=$G(IB40(365,IENS,.05,"I"))
+ . . . S IBTYP=$$GET1^DIQ(365.1,IBTQ_",",.1,"I"),IBQRY=$$GET1^DIQ(365.1,IBTQ_",",.11,"I")
+ . . . ;  IBA1 - Number of outgoing EICD (A1) 270 transactions
+ . . . ;  IBA2 - Number of outgoing EICD-triggered (A2) 270 transactions
+ . . . ; IBMBS - Number of outgoing MBI Request 270 transactions
+ . . . I IBTYP=7 S IBMBS=$G(IBMBS)+1 Q
+ . . . I IBTYP=4 S:IBQRY="I" IBA1=$G(IBA1)+1 S:IBQRY="V" IBA2=$G(IBA2)+1
+ . . ; IB*2.0*702/DTG - end Added
+ ;
+ ; IB*2.0*702/DTG - start Added
+ I $G(DSTATI)=1 S DSTAT3=+$G(IBA1)_DSTATPA_+$G(IBA2)_DSTATPA_+$G(IBMBS)_DSTATPA_+$G(IBMBI)
+ ; IB*2.0*702/DTG - end Added
  ;
  ; Number of 270 inquiries pending receipt of 271 responses
  S (INQP,IEN)=0 F  S IEN=$O(^IBCN(365,"AC",2,IEN)) Q:'IEN  D   ; Transmitted status = 2
@@ -125,13 +171,19 @@ RESPINFO(DTTM) ; get data from IIV response file (file 365)
  ;.Q
  ;Q AUTOUPD
  ;;
-PATINFO() ; IB*2*595/DM 
+PATINFO(IBAUTO,PAYERWNR,MCAUTO) ; IB*2*595/DM 
  ; compile an auto-update count for all patient policies from yesterday
  ; read all response records from yesterday via the "AUTO" cross reference 
- ; return a total count of auto-updated policies
+ ; 
+ ; PAYERWNR - ien of the current Medicare payer from file #350.9
+ ; returns:
+ ; IBAUTO - total count of auto-updated eIV responses that are not Medicare related
+ ; MCAUTO - total count of auto-updated eIV responses that ARE Medicare related
+ ; 
+ ; IB*664/DW added 1st three parameters, added logic to split out Medicare auto-updates
  ;   
- N IBAUTO,IBDATE,IBENDDT,IBPYRIEN,IBPATIEN,IBINSIEN
- S IBAUTO=0
+ N IBAUTOX,IBDATE,IBENDDT,IBIEN,IBPYRIEN,IBPATIEN,IBINSIEN
+ S (IBAUTO,MCAUTO)=0
  S IBDATE=$$FMADD^XLFDT($$DT^XLFDT(),-2,23,59,59)
  S IBENDDT=$$FMADD^XLFDT($$DT^XLFDT(),-1,23,59,59)
  ;
@@ -139,8 +191,15 @@ PATINFO() ; IB*2*595/DM
  .S IBPYRIEN=0 F  S IBPYRIEN=$O(^IBCN(365,"AUTO",IBDATE,IBPYRIEN)) Q:'IBPYRIEN  D
  ..S IBPATIEN=0 F  S IBPATIEN=$O(^IBCN(365,"AUTO",IBDATE,IBPYRIEN,IBPATIEN)) Q:'IBPATIEN  D
  ...S IBINSIEN=0 F  S IBINSIEN=$O(^IBCN(365,"AUTO",IBDATE,IBPYRIEN,IBPATIEN,IBINSIEN)) Q:'IBINSIEN  D
- ....S IBAUTO=IBAUTO+1
- Q IBAUTO
+ ....; IB*2.0*664/DW Count Medicare auto-updates separately
+ ....; IB*664        Added last 2 FOR-LOOPS, original counting was wrong)
+ ....;S IBAUTO=IBAUTO+1
+ ....S IBAUTOX=0 F  S IBAUTOX=$O(^IBCN(365,"AUTO",IBDATE,IBPYRIEN,IBPATIEN,IBINSIEN,IBAUTOX)) Q:'IBAUTOX  D
+ .... .Q:IBAUTOX'=1   ;Auto updated records will be a "1" 
+ .... .S IBIEN=0 F  S IBIEN=$O(^IBCN(365,"AUTO",IBDATE,IBPYRIEN,IBPATIEN,IBINSIEN,IBAUTOX,IBIEN)) Q:'IBIEN  D
+ .... ..I IBPYRIEN=PAYERWNR S MCAUTO=MCAUTO+1 Q
+ .... ..S IBAUTO=IBAUTO+1   ; non-Medicare responses
+ Q
  ; 
 TQINFO() ; get data from transmission queue (file 365.1)
  ; returns the following string, delimited by "^":
@@ -178,7 +237,8 @@ PAYINFO() ; get data from payer (file 365.12) & insurance company (file #36)
  .I $P(DATA,U,2)="" Q  ;Must have National ID
  .;
  .; Check for Locally Disabled
- .S APP=$$PYRAPP^IBCNEUT5("IIV",PAYER) I 'APP Q
+ .;IB*668/TAZ - Changed Payer Application from IIV to EIV
+ .S APP=$$PYRAPP^IBCNEUT5("EIV",PAYER) I 'APP Q
  .S DATA=$G(^IBE(365.12,PAYER,1,APP,0))
  .I $P(DATA,U,2),'$P(DATA,U,3) S LOCDIS=LOCDIS+1 ; nationally active but locally disabled payers
  .Q

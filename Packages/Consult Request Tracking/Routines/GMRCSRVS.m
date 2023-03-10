@@ -1,5 +1,7 @@
 GMRCSRVS ;SLC/DCM,JFR - Add/Edit services in File 123.5. ;6/14/00 12:00
- ;;3.0;CONSULT/REQUEST TRACKING;**1,16,40,53,63**;DEC 27, 1997;Build 10
+ ;;3.0;CONSULT/REQUEST TRACKING;**1,16,40,53,63,186,191**;DEC 27, 1997;Build 17
+ ;
+ ;Jan 5, 2022, Phil Burkhalter - patch GMRC*3.0*186, added code to edit the Community Care Clinic filed if the consult service is for a community care consult
  ;
 EN ;set up services entry point
  ;GMRCOLDU=Service Usage field. If changed, GMRCOLDU shows the change (See ^DD(123.5,2,0) for field description).
@@ -23,6 +25,24 @@ EN ;set up services entry point
  .I $S(GMRCACT="MAD":1,GMRCACT="MUP":1,GMRCACT="MDC":1,1:0) D SVC^GMRC101H(GMRCSRVC,GMRCSSNM,GMRCACT),MSG^XQOR("GMRC ORDERABLE ITEM UPDATE",.GMRCMSG)
  .D PTRCLN^GMRCU
  .Q
+ ;Phil Burkhalter - Jan 10, 2022 patch GMRC*3.0*186 - Change to edit the Related Hospital Location to add a community care clinic
+ I $P(^GMR(123.5,GMRCSRVC,0),"^")["COMMUNITY CARE" D
+ .N XY,CLIN,CLINNAME,LAST S (LAST,XY)=0 F  S XY=$O(^GMR(123.5,GMRCSRVC,123.4,XY)) Q:XY'>0  S LAST=XY
+ .I $G(LAST)'>0 D
+ ..N DIC,Y,X,DLAYGO,DUOUT,DTOUT,CCCLINIC S DIC="^SC(",DIC(0)="QEAB",DIC("S")="I $P(^SC(Y,0),U)[""COM CARE"""
+ ..D ^DIC I $S(Y<0:1,$D(DTOUT):1,$D(DUOUT):1,1:0) K DTOUT,DUOUT,X,Y Q  ;G ASK
+ ..S CCCLINIC=+Y
+ ..;add a new entry so it will be the last entry.
+ ..;routine SDECCRSEN loops thru this multiple and get the last clinic in the list.
+ ..;the SDCCRSEN routine, when pulling the clinic, checks the clinic name to make sure it is a com care clinic
+ ..;if it is not a com care clinic don't use it for scheduling, default to the existing match rules in SDCCRSEN
+ ..N SUBREC,REC S (REC,SUBREC)=0 F  S SUBREC=$O(^GMR(123.5,GMRCSRVC,123.4,SUBREC)) Q:$G(SUBREC)'>0  S REC=SUBREC
+ ..N FDA,FDAIEN S FDAIEN="+1,"_GMRCSRVC_",",FDA(1,123.56,FDAIEN,.01)=CCCLINIC D UPDATE^DIE("","FDA(1)")
+ .I $G(LAST)>0 D
+ ..S CLIN=$P(^GMR(123.5,GMRCSRVC,123.4,LAST,0),"^"),CLINNAME=$P(^SC(CLIN,0),"^")
+ ..N DIE,DR,DA,X,Y S DA=LAST,DA(1)=GMRCSRVC,DIE="^GMR(123.5,"_DA(1)_",123.4,",DR=".01//"_CLINNAME D ^DIE
+ ;end patch GMRC*3.0*186 changes
+ASK ; 
  K GMRCMSG,GMRCSSNM,GMRCSRVS,GMRCOLDN,GMRCOLDS,GMRCOLDU,ND
  ;Ask to continue...
  ;

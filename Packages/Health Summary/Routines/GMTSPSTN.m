@@ -1,5 +1,5 @@
-GMTSPSTN ;BIR/RMS - MED RECON TOOL #1 NO GLOSSARY (MED REC PROFILE) ; 12/5/19 2:57pm
- ;;2.7;Health Summary;**94,127,131,132,135**;Oct 20, 1995;Build 2
+GMTSPSTN ;BIR/RMS - MED RECON TOOL #1 NO GLOSSARY (MED REC PROFILE) ;Apr 16, 2021@16:23:20
+ ;;2.7;Health Summary;**94,127,131,132,135,115**;Oct 20, 1995;Build 190
  ;Reference to COVER^ORWPS supported by IA 4926
  ;References to ^ORRDI1 supported by IA 4659
  ;Reference to ^XTMP("ORRDI","PSOO" supported by IA 4660
@@ -170,7 +170,7 @@ OPTDISP ;Display an Outpatient Prescription Entry
  . D CKP Q:$D(GMTSQIT)
  . D TEXT^ORQ12(.GMTSPSTP,ORDER,60)
  . ;p127 mwa stopped previous instructions from showing, stopped subscript error, and leading space error
- . S ORQLN=1 F  S ORQLN=$O(GMTSPSTP(ORQLN)) Q:'+ORQLN  Q:$E(GMTSPSTP(ORQLN),1,3+$L($P(DRUGNM," ")))=("to "_$P(DRUGNM," ")) 
+ . S ORQLN=1 F  S ORQLN=$O(GMTSPSTP(ORQLN)) Q:'+ORQLN  Q:$E(GMTSPSTP(ORQLN),1,3+$L($P(DRUGNM," ")))=("to "_$P(DRUGNM," "))
  . S:ORQLN="" ORQLN=1
  . F  S ORQLN=$O(GMTSPSTP(ORQLN)) Q:'+ORQLN  Q:(GMTSPSTP(ORQLN)?." "1"Quantity: ".E)  D
  .. W !?IND1,GMTSPSTP(ORQLN)
@@ -213,6 +213,7 @@ OPTDISP ;Display an Outpatient Prescription Entry
  Q:$D(GMTSQIT)
  W !?10,"Rx# "_$G(^TMP($J,"GMTSPSTN",DFN,PACKREF,.01))_" Last Released: "_$$FMTE^XLFDT(LASTREL,"2D"),?50,"Qty/Days Supply: "_$G(^TMP($J,"GMTSPSTN",DFN,PACKREF,7))_"/"_$G(^TMP($J,"GMTSPSTN",DFN,PACKREF,8)) D CKP Q:$D(GMTSQIT)
  W !?10,"Rx Expiration Date: ",$$FMTE^XLFDT(EXPDT,"2D"),?50,"Refills Remaining: ",REFILLS D CKP Q:$D(GMTSQIT)
+ W:$P($G(^TMP($J,"GMTSPSTN",DFN,PACKREF,"IND")),U)]"" !?10,"Indication: "_$P(^TMP($J,"GMTSPSTN",DFN,PACKREF,"IND"),U)
  W ! D CKP
  Q
  ;

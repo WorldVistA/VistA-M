@@ -1,696 +1,706 @@
-IBDEI01B ; ; 01-MAY-2020
- ;;3.0;IB ENCOUNTER FORM IMP/EXP;;MAY 01, 2020
+IBDEI01B ; ; 01-AUG-2022
+ ;;3.0;IB ENCOUNTER FORM IMP/EXP;;AUG 01, 2022
  Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,999) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
+ ;;^UTILITY(U,$J,358.3,2666,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,2666,1,3,0)
+ ;;=3^(PAC) Atrial Premature Depolarization
+ ;;^UTILITY(U,$J,358.3,2666,1,4,0)
+ ;;=4^I49.1
+ ;;^UTILITY(U,$J,358.3,2666,2)
+ ;;=^5007231
+ ;;^UTILITY(U,$J,358.3,2667,0)
+ ;;=I49.3^^20^166^2
+ ;;^UTILITY(U,$J,358.3,2667,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,2667,1,3,0)
+ ;;=3^(PVC) Ventricular Premature Depolarization
+ ;;^UTILITY(U,$J,358.3,2667,1,4,0)
+ ;;=4^I49.3
+ ;;^UTILITY(U,$J,358.3,2667,2)
+ ;;=^5007233
+ ;;^UTILITY(U,$J,358.3,2668,0)
+ ;;=I49.2^^20^166^3
+ ;;^UTILITY(U,$J,358.3,2668,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,2668,1,3,0)
+ ;;=3^Junctional Premature Depolarization
+ ;;^UTILITY(U,$J,358.3,2668,1,4,0)
+ ;;=4^I49.2
+ ;;^UTILITY(U,$J,358.3,2668,2)
+ ;;=^5007232
+ ;;^UTILITY(U,$J,358.3,2669,0)
+ ;;=I49.49^^20^166^5
+ ;;^UTILITY(U,$J,358.3,2669,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,2669,1,3,0)
+ ;;=3^Premature Depolarization,Other
+ ;;^UTILITY(U,$J,358.3,2669,1,4,0)
+ ;;=4^I49.49
+ ;;^UTILITY(U,$J,358.3,2669,2)
+ ;;=^5007235
+ ;;^UTILITY(U,$J,358.3,2670,0)
+ ;;=I49.40^^20^166^6
+ ;;^UTILITY(U,$J,358.3,2670,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,2670,1,3,0)
+ ;;=3^Premature Depolarization,Unspec
+ ;;^UTILITY(U,$J,358.3,2670,1,4,0)
+ ;;=4^I49.40
+ ;;^UTILITY(U,$J,358.3,2670,2)
+ ;;=^5007234
+ ;;^UTILITY(U,$J,358.3,2671,0)
+ ;;=R94.39^^20^167^1
+ ;;^UTILITY(U,$J,358.3,2671,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,2671,1,3,0)
+ ;;=3^Abnormal Cardiovascular Function Study
+ ;;^UTILITY(U,$J,358.3,2671,1,4,0)
+ ;;=4^R94.39
+ ;;^UTILITY(U,$J,358.3,2671,2)
+ ;;=^5019740
+ ;;^UTILITY(U,$J,358.3,2672,0)
+ ;;=R94.31^^20^167^2
+ ;;^UTILITY(U,$J,358.3,2672,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,2672,1,3,0)
+ ;;=3^Abnormal Electrocardiogram
+ ;;^UTILITY(U,$J,358.3,2672,1,4,0)
+ ;;=4^R94.31
+ ;;^UTILITY(U,$J,358.3,2672,2)
+ ;;=^5019739
+ ;;^UTILITY(U,$J,358.3,2673,0)
+ ;;=Z82.49^^20^167^3
+ ;;^UTILITY(U,$J,358.3,2673,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,2673,1,3,0)
+ ;;=3^Family Hx of Ischemic Heart Disease
+ ;;^UTILITY(U,$J,358.3,2673,1,4,0)
+ ;;=4^Z82.49
+ ;;^UTILITY(U,$J,358.3,2673,2)
+ ;;=^5063369
+ ;;^UTILITY(U,$J,358.3,2674,0)
+ ;;=Z79.01^^20^167^5
+ ;;^UTILITY(U,$J,358.3,2674,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,2674,1,3,0)
+ ;;=3^Long Term Current Use of Anticoagulants
+ ;;^UTILITY(U,$J,358.3,2674,1,4,0)
+ ;;=4^Z79.01
+ ;;^UTILITY(U,$J,358.3,2674,2)
+ ;;=^5063330
+ ;;^UTILITY(U,$J,358.3,2675,0)
+ ;;=D68.59^^20^167^4
+ ;;^UTILITY(U,$J,358.3,2675,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,2675,1,3,0)
+ ;;=3^Hypercoagulability
+ ;;^UTILITY(U,$J,358.3,2675,1,4,0)
+ ;;=4^D68.59
+ ;;^UTILITY(U,$J,358.3,2675,2)
+ ;;=^5002360
+ ;;^UTILITY(U,$J,358.3,2676,0)
+ ;;=Z01.810^^20^167^6
+ ;;^UTILITY(U,$J,358.3,2676,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,2676,1,3,0)
+ ;;=3^Pre-Op Cardiac Evaluation
+ ;;^UTILITY(U,$J,358.3,2676,1,4,0)
+ ;;=4^Z01.810
+ ;;^UTILITY(U,$J,358.3,2676,2)
+ ;;=^5062625
+ ;;^UTILITY(U,$J,358.3,2677,0)
+ ;;=I25.6^^20^167^7
+ ;;^UTILITY(U,$J,358.3,2677,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,2677,1,3,0)
+ ;;=3^Silent Myocardial Ischemia
+ ;;^UTILITY(U,$J,358.3,2677,1,4,0)
+ ;;=4^I25.6
+ ;;^UTILITY(U,$J,358.3,2677,2)
+ ;;=^5007116
+ ;;^UTILITY(U,$J,358.3,2678,0)
+ ;;=I47.2^^20^168^3
+ ;;^UTILITY(U,$J,358.3,2678,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,2678,1,3,0)
+ ;;=3^Ventricular Tachycardia
+ ;;^UTILITY(U,$J,358.3,2678,1,4,0)
+ ;;=4^I47.2
+ ;;^UTILITY(U,$J,358.3,2678,2)
+ ;;=^125976
+ ;;^UTILITY(U,$J,358.3,2679,0)
+ ;;=I49.01^^20^168^1
+ ;;^UTILITY(U,$J,358.3,2679,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,2679,1,3,0)
+ ;;=3^Ventricular Fibrillation
+ ;;^UTILITY(U,$J,358.3,2679,1,4,0)
+ ;;=4^I49.01
+ ;;^UTILITY(U,$J,358.3,2679,2)
+ ;;=^125951
+ ;;^UTILITY(U,$J,358.3,2680,0)
+ ;;=I49.02^^20^168^2
+ ;;^UTILITY(U,$J,358.3,2680,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,2680,1,3,0)
+ ;;=3^Ventricular Flutter
+ ;;^UTILITY(U,$J,358.3,2680,1,4,0)
+ ;;=4^I49.02
+ ;;^UTILITY(U,$J,358.3,2680,2)
+ ;;=^265315
+ ;;^UTILITY(U,$J,358.3,2681,0)
+ ;;=R00.1^^20^169^3
+ ;;^UTILITY(U,$J,358.3,2681,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,2681,1,3,0)
+ ;;=3^Bradycardia,Unspec
+ ;;^UTILITY(U,$J,358.3,2681,1,4,0)
+ ;;=4^R00.1
+ ;;^UTILITY(U,$J,358.3,2681,2)
+ ;;=^5019164
+ ;;^UTILITY(U,$J,358.3,2682,0)
+ ;;=R00.0^^20^169^7
+ ;;^UTILITY(U,$J,358.3,2682,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,2682,1,3,0)
+ ;;=3^Tachycardia,Unspec
+ ;;^UTILITY(U,$J,358.3,2682,1,4,0)
+ ;;=4^R00.0
+ ;;^UTILITY(U,$J,358.3,2682,2)
+ ;;=^5019163
+ ;;^UTILITY(U,$J,358.3,2683,0)
+ ;;=I49.5^^20^169^5
+ ;;^UTILITY(U,$J,358.3,2683,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,2683,1,3,0)
+ ;;=3^Sick Sinus Syndrome
+ ;;^UTILITY(U,$J,358.3,2683,1,4,0)
+ ;;=4^I49.5
+ ;;^UTILITY(U,$J,358.3,2683,2)
+ ;;=^110404
+ ;;^UTILITY(U,$J,358.3,2684,0)
+ ;;=I47.1^^20^169^6
+ ;;^UTILITY(U,$J,358.3,2684,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,2684,1,3,0)
+ ;;=3^Supraventricular Tachycardia
+ ;;^UTILITY(U,$J,358.3,2684,1,4,0)
+ ;;=4^I47.1
+ ;;^UTILITY(U,$J,358.3,2684,2)
+ ;;=^5007223
+ ;;^UTILITY(U,$J,358.3,2685,0)
+ ;;=I48.4^^20^169^2
+ ;;^UTILITY(U,$J,358.3,2685,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,2685,1,3,0)
+ ;;=3^Atypical Atrial Flutter
+ ;;^UTILITY(U,$J,358.3,2685,1,4,0)
+ ;;=4^I48.4
+ ;;^UTILITY(U,$J,358.3,2685,2)
+ ;;=^5007228
+ ;;^UTILITY(U,$J,358.3,2686,0)
+ ;;=I48.3^^20^169^8
+ ;;^UTILITY(U,$J,358.3,2686,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,2686,1,3,0)
+ ;;=3^Typical Atrial Flutter
+ ;;^UTILITY(U,$J,358.3,2686,1,4,0)
+ ;;=4^I48.3
+ ;;^UTILITY(U,$J,358.3,2686,2)
+ ;;=^5007227
+ ;;^UTILITY(U,$J,358.3,2687,0)
+ ;;=I48.92^^20^169^1
+ ;;^UTILITY(U,$J,358.3,2687,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,2687,1,3,0)
+ ;;=3^Atrial Flutter,Unspec
+ ;;^UTILITY(U,$J,358.3,2687,1,4,0)
+ ;;=4^I48.92
+ ;;^UTILITY(U,$J,358.3,2687,2)
+ ;;=^5007230
+ ;;^UTILITY(U,$J,358.3,2688,0)
+ ;;=I48.0^^20^169^4
+ ;;^UTILITY(U,$J,358.3,2688,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,2688,1,3,0)
+ ;;=3^Paroxysmal Atrial Fibrillation
+ ;;^UTILITY(U,$J,358.3,2688,1,4,0)
+ ;;=4^I48.0
+ ;;^UTILITY(U,$J,358.3,2688,2)
+ ;;=^90473
+ ;;^UTILITY(U,$J,358.3,2689,0)
+ ;;=I30.0^^20^170^1
+ ;;^UTILITY(U,$J,358.3,2689,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,2689,1,3,0)
+ ;;=3^Acute Nonspecific Idiopathic Pericarditis
+ ;;^UTILITY(U,$J,358.3,2689,1,4,0)
+ ;;=4^I30.0
+ ;;^UTILITY(U,$J,358.3,2689,2)
+ ;;=^5007157
  ;;^UTILITY(U,$J,358.3,2690,0)
- ;;=M71.142^^26^198^38
+ ;;=I30.1^^20^170^6
  ;;^UTILITY(U,$J,358.3,2690,1,0)
  ;;=^358.31IA^4^2
  ;;^UTILITY(U,$J,358.3,2690,1,3,0)
- ;;=3^Infective bursitis, lft hand
+ ;;=3^Infective Pericarditis
  ;;^UTILITY(U,$J,358.3,2690,1,4,0)
- ;;=4^M71.142
+ ;;=4^I30.1
  ;;^UTILITY(U,$J,358.3,2690,2)
- ;;=^5013134
+ ;;=^5007158
  ;;^UTILITY(U,$J,358.3,2691,0)
- ;;=M71.151^^26^198^47
+ ;;=I31.0^^20^170^3
  ;;^UTILITY(U,$J,358.3,2691,1,0)
  ;;=^358.31IA^4^2
  ;;^UTILITY(U,$J,358.3,2691,1,3,0)
- ;;=3^Infective bursitis, rt hip
+ ;;=3^Adhesive Pericarditis,Chronic
  ;;^UTILITY(U,$J,358.3,2691,1,4,0)
- ;;=4^M71.151
+ ;;=4^I31.0
  ;;^UTILITY(U,$J,358.3,2691,2)
- ;;=^5013136
+ ;;=^5007161
  ;;^UTILITY(U,$J,358.3,2692,0)
- ;;=M71.152^^26^198^39
+ ;;=I31.1^^20^170^4
  ;;^UTILITY(U,$J,358.3,2692,1,0)
  ;;=^358.31IA^4^2
  ;;^UTILITY(U,$J,358.3,2692,1,3,0)
- ;;=3^Infective bursitis, lft hip
+ ;;=3^Constrictive Pericarditis,Chronic
  ;;^UTILITY(U,$J,358.3,2692,1,4,0)
- ;;=4^M71.152
+ ;;=4^I31.1
  ;;^UTILITY(U,$J,358.3,2692,2)
- ;;=^5013137
+ ;;=^5007162
  ;;^UTILITY(U,$J,358.3,2693,0)
- ;;=M71.161^^26^198^48
+ ;;=I31.3^^20^170^8
  ;;^UTILITY(U,$J,358.3,2693,1,0)
  ;;=^358.31IA^4^2
  ;;^UTILITY(U,$J,358.3,2693,1,3,0)
- ;;=3^Infective bursitis, rt knee
+ ;;=3^Pericardial Effusion
  ;;^UTILITY(U,$J,358.3,2693,1,4,0)
- ;;=4^M71.161
+ ;;=4^I31.3
  ;;^UTILITY(U,$J,358.3,2693,2)
- ;;=^5013139
+ ;;=^5007164
  ;;^UTILITY(U,$J,358.3,2694,0)
- ;;=M71.162^^26^198^40
+ ;;=I31.4^^20^170^10
  ;;^UTILITY(U,$J,358.3,2694,1,0)
  ;;=^358.31IA^4^2
  ;;^UTILITY(U,$J,358.3,2694,1,3,0)
- ;;=3^Infective bursitis, lft knee
+ ;;=3^Tamponade
  ;;^UTILITY(U,$J,358.3,2694,1,4,0)
- ;;=4^M71.162
+ ;;=4^I31.4
  ;;^UTILITY(U,$J,358.3,2694,2)
- ;;=^5013140
+ ;;=^19587
  ;;^UTILITY(U,$J,358.3,2695,0)
- ;;=M71.171^^26^198^44
+ ;;=I33.0^^20^170^2
  ;;^UTILITY(U,$J,358.3,2695,1,0)
  ;;=^358.31IA^4^2
  ;;^UTILITY(U,$J,358.3,2695,1,3,0)
- ;;=3^Infective bursitis, rt ankle & foot
+ ;;=3^Acute/Subacute Infective Endocarditis
  ;;^UTILITY(U,$J,358.3,2695,1,4,0)
- ;;=4^M71.171
+ ;;=4^I33.0
  ;;^UTILITY(U,$J,358.3,2695,2)
- ;;=^5013142
+ ;;=^5007167
  ;;^UTILITY(U,$J,358.3,2696,0)
- ;;=M71.172^^26^198^36
+ ;;=T82.6XXA^^20^170^9
  ;;^UTILITY(U,$J,358.3,2696,1,0)
  ;;=^358.31IA^4^2
  ;;^UTILITY(U,$J,358.3,2696,1,3,0)
- ;;=3^Infective bursitis, lft ankle & foot
+ ;;=3^Prosthetic Valve Endocarditis
  ;;^UTILITY(U,$J,358.3,2696,1,4,0)
- ;;=4^M71.172
+ ;;=4^T82.6XXA
  ;;^UTILITY(U,$J,358.3,2696,2)
- ;;=^5013143
+ ;;=^5054908
  ;;^UTILITY(U,$J,358.3,2697,0)
- ;;=M71.18^^26^198^1
+ ;;=B37.6^^20^170^5
  ;;^UTILITY(U,$J,358.3,2697,1,0)
  ;;=^358.31IA^4^2
  ;;^UTILITY(U,$J,358.3,2697,1,3,0)
- ;;=3
+ ;;=3^Fungal Endocarditis
  ;;^UTILITY(U,$J,358.3,2697,1,4,0)
- ;;=4^M71.18
+ ;;=4^B37.6
  ;;^UTILITY(U,$J,358.3,2697,2)
- ;;=^5133865
+ ;;=^266872
  ;;^UTILITY(U,$J,358.3,2698,0)
- ;;=M71.19^^26^198^43
+ ;;=I51.4^^20^170^7
  ;;^UTILITY(U,$J,358.3,2698,1,0)
  ;;=^358.31IA^4^2
  ;;^UTILITY(U,$J,358.3,2698,1,3,0)
- ;;=3^Infective bursitis, mltpl sites
+ ;;=3^Myocarditis
  ;;^UTILITY(U,$J,358.3,2698,1,4,0)
- ;;=4^M71.19
+ ;;=4^I51.4
  ;;^UTILITY(U,$J,358.3,2698,2)
- ;;=^5013145
+ ;;=^5007256
  ;;^UTILITY(U,$J,358.3,2699,0)
- ;;=M71.50^^26^198^23
+ ;;=I27.0^^20^171^2
  ;;^UTILITY(U,$J,358.3,2699,1,0)
  ;;=^358.31IA^4^2
  ;;^UTILITY(U,$J,358.3,2699,1,3,0)
- ;;=3^Bursitis, unspec site NEC
+ ;;=3^Primary Pulmonary Hypertension
  ;;^UTILITY(U,$J,358.3,2699,1,4,0)
- ;;=4^M71.50
+ ;;=4^I27.0
  ;;^UTILITY(U,$J,358.3,2699,2)
- ;;=^5013190
+ ;;=^265310
  ;;^UTILITY(U,$J,358.3,2700,0)
- ;;=M71.521^^26^198^18
+ ;;=I27.21^^20^171^6
  ;;^UTILITY(U,$J,358.3,2700,1,0)
  ;;=^358.31IA^4^2
  ;;^UTILITY(U,$J,358.3,2700,1,3,0)
- ;;=3^Bursitis, rt elbow NEC
+ ;;=3^Secondary Pulmonary Hypertension
  ;;^UTILITY(U,$J,358.3,2700,1,4,0)
- ;;=4^M71.521
+ ;;=4^I27.21
  ;;^UTILITY(U,$J,358.3,2700,2)
- ;;=^5013191
+ ;;=^5151377
  ;;^UTILITY(U,$J,358.3,2701,0)
- ;;=M71.522^^26^198^11
+ ;;=I27.81^^20^171^1
  ;;^UTILITY(U,$J,358.3,2701,1,0)
  ;;=^358.31IA^4^2
  ;;^UTILITY(U,$J,358.3,2701,1,3,0)
- ;;=3^Bursitis, lft elbow NEC
+ ;;=3^Cor Pulmonale,Chronic
  ;;^UTILITY(U,$J,358.3,2701,1,4,0)
- ;;=4^M71.522
+ ;;=4^I27.81
  ;;^UTILITY(U,$J,358.3,2701,2)
- ;;=^5013192
+ ;;=^5007152
  ;;^UTILITY(U,$J,358.3,2702,0)
- ;;=M71.531^^26^198^22
+ ;;=I27.89^^20^171^5
  ;;^UTILITY(U,$J,358.3,2702,1,0)
  ;;=^358.31IA^4^2
  ;;^UTILITY(U,$J,358.3,2702,1,3,0)
- ;;=3^Bursitis, rt wrist NEC
+ ;;=3^Pulmonary Heart Disease,Oth Specified
  ;;^UTILITY(U,$J,358.3,2702,1,4,0)
- ;;=4^M71.531
+ ;;=4^I27.89
  ;;^UTILITY(U,$J,358.3,2702,2)
- ;;=^5013194
+ ;;=^5007153
  ;;^UTILITY(U,$J,358.3,2703,0)
- ;;=M71.532^^26^198^15
+ ;;=I26.09^^20^171^3
  ;;^UTILITY(U,$J,358.3,2703,1,0)
  ;;=^358.31IA^4^2
  ;;^UTILITY(U,$J,358.3,2703,1,3,0)
- ;;=3^Bursitis, lft wrist NEC
+ ;;=3^Pulmonary Embolism w/ Acute Cor Pulmonale
  ;;^UTILITY(U,$J,358.3,2703,1,4,0)
- ;;=4^M71.532
+ ;;=4^I26.09
  ;;^UTILITY(U,$J,358.3,2703,2)
- ;;=^5013195
+ ;;=^5007147
  ;;^UTILITY(U,$J,358.3,2704,0)
- ;;=M71.541^^26^198^19
+ ;;=I26.90^^20^171^7
  ;;^UTILITY(U,$J,358.3,2704,1,0)
  ;;=^358.31IA^4^2
  ;;^UTILITY(U,$J,358.3,2704,1,3,0)
- ;;=3^Bursitis, rt hand NEC
+ ;;=3^Septic Pulmonary Embolism w/o Acute Cor Pulmonale
  ;;^UTILITY(U,$J,358.3,2704,1,4,0)
- ;;=4^M71.541
+ ;;=4^I26.90
  ;;^UTILITY(U,$J,358.3,2704,2)
- ;;=^5013197
+ ;;=^5007148
  ;;^UTILITY(U,$J,358.3,2705,0)
- ;;=M71.542^^26^198^12
+ ;;=I26.99^^20^171^4
  ;;^UTILITY(U,$J,358.3,2705,1,0)
  ;;=^358.31IA^4^2
  ;;^UTILITY(U,$J,358.3,2705,1,3,0)
- ;;=3^Bursitis, lft hand NEC
+ ;;=3^Pulmonary Embolism w/o Acute Cor Pulmonale NEC
  ;;^UTILITY(U,$J,358.3,2705,1,4,0)
- ;;=4^M71.542
+ ;;=4^I26.99
  ;;^UTILITY(U,$J,358.3,2705,2)
- ;;=^5013198
+ ;;=^5007150
  ;;^UTILITY(U,$J,358.3,2706,0)
- ;;=M71.551^^26^198^20
+ ;;=Z95.0^^20^172^2
  ;;^UTILITY(U,$J,358.3,2706,1,0)
  ;;=^358.31IA^4^2
  ;;^UTILITY(U,$J,358.3,2706,1,3,0)
- ;;=3^Bursitis, rt hip NEC
+ ;;=3^Presence of Cardiac Pacemaker
  ;;^UTILITY(U,$J,358.3,2706,1,4,0)
- ;;=4^M71.551
+ ;;=4^Z95.0
  ;;^UTILITY(U,$J,358.3,2706,2)
- ;;=^5013200
+ ;;=^5063668
  ;;^UTILITY(U,$J,358.3,2707,0)
- ;;=M71.552^^26^198^13
+ ;;=Z95.810^^20^172^1
  ;;^UTILITY(U,$J,358.3,2707,1,0)
  ;;=^358.31IA^4^2
  ;;^UTILITY(U,$J,358.3,2707,1,3,0)
- ;;=3^Bursitis, lft hip NEC
+ ;;=3^Presence of Automatic Cardiac Defibrillator
  ;;^UTILITY(U,$J,358.3,2707,1,4,0)
- ;;=4^M71.552
+ ;;=4^Z95.810
  ;;^UTILITY(U,$J,358.3,2707,2)
- ;;=^5013201
+ ;;=^5063674
  ;;^UTILITY(U,$J,358.3,2708,0)
- ;;=M71.561^^26^198^21
+ ;;=I50.1^^20^173^14
  ;;^UTILITY(U,$J,358.3,2708,1,0)
  ;;=^358.31IA^4^2
  ;;^UTILITY(U,$J,358.3,2708,1,3,0)
- ;;=3^Bursitis, rt knee NEC
+ ;;=3^Left Ventricular Failure
  ;;^UTILITY(U,$J,358.3,2708,1,4,0)
- ;;=4^M71.561
+ ;;=4^I50.1
  ;;^UTILITY(U,$J,358.3,2708,2)
- ;;=^5013203
+ ;;=^5007238
  ;;^UTILITY(U,$J,358.3,2709,0)
- ;;=M71.562^^26^198^14
+ ;;=I50.20^^20^173^12
  ;;^UTILITY(U,$J,358.3,2709,1,0)
  ;;=^358.31IA^4^2
  ;;^UTILITY(U,$J,358.3,2709,1,3,0)
- ;;=3^Bursitis, lft knee NEC
+ ;;=3^Heart Failure,Systolic,Unspec
  ;;^UTILITY(U,$J,358.3,2709,1,4,0)
- ;;=4^M71.562
+ ;;=4^I50.20
  ;;^UTILITY(U,$J,358.3,2709,2)
- ;;=^5013204
+ ;;=^5007239
  ;;^UTILITY(U,$J,358.3,2710,0)
- ;;=M71.571^^26^198^17
+ ;;=I50.21^^20^173^9
  ;;^UTILITY(U,$J,358.3,2710,1,0)
  ;;=^358.31IA^4^2
  ;;^UTILITY(U,$J,358.3,2710,1,3,0)
- ;;=3^Bursitis, rt ankle & foot NEC
+ ;;=3^Heart Failure,Systolic,Acute
  ;;^UTILITY(U,$J,358.3,2710,1,4,0)
- ;;=4^M71.571
+ ;;=4^I50.21
  ;;^UTILITY(U,$J,358.3,2710,2)
- ;;=^5013206
+ ;;=^5007240
  ;;^UTILITY(U,$J,358.3,2711,0)
- ;;=M71.572^^26^198^10
+ ;;=I50.22^^20^173^11
  ;;^UTILITY(U,$J,358.3,2711,1,0)
  ;;=^358.31IA^4^2
  ;;^UTILITY(U,$J,358.3,2711,1,3,0)
- ;;=3^Bursitis, lft ankle & foot NEC
+ ;;=3^Heart Failure,Systolic,Chronic
  ;;^UTILITY(U,$J,358.3,2711,1,4,0)
- ;;=4^M71.572
+ ;;=4^I50.22
  ;;^UTILITY(U,$J,358.3,2711,2)
- ;;=^5013207
+ ;;=^5007241
  ;;^UTILITY(U,$J,358.3,2712,0)
- ;;=M71.58^^26^198^16
+ ;;=I50.23^^20^173^10
  ;;^UTILITY(U,$J,358.3,2712,1,0)
  ;;=^358.31IA^4^2
  ;;^UTILITY(U,$J,358.3,2712,1,3,0)
- ;;=3^Bursitis, oth site NEC
+ ;;=3^Heart Failure,Systolic,Acute on Chronic
  ;;^UTILITY(U,$J,358.3,2712,1,4,0)
- ;;=4^M71.58
+ ;;=4^I50.23
  ;;^UTILITY(U,$J,358.3,2712,2)
- ;;=^5133867
+ ;;=^5007242
  ;;^UTILITY(U,$J,358.3,2713,0)
- ;;=M66.231^^26^198^99
+ ;;=I50.30^^20^173^4
  ;;^UTILITY(U,$J,358.3,2713,1,0)
  ;;=^358.31IA^4^2
  ;;^UTILITY(U,$J,358.3,2713,1,3,0)
- ;;=3^Spont ruptr of extnsr tendons, rt forearm
+ ;;=3^Heart Failure,Diastolic,Unspec
  ;;^UTILITY(U,$J,358.3,2713,1,4,0)
- ;;=4^M66.231
+ ;;=4^I50.30
  ;;^UTILITY(U,$J,358.3,2713,2)
- ;;=^5012854
+ ;;=^5007243
  ;;^UTILITY(U,$J,358.3,2714,0)
- ;;=M66.232^^26^198^97
+ ;;=I50.31^^20^173^1
  ;;^UTILITY(U,$J,358.3,2714,1,0)
  ;;=^358.31IA^4^2
  ;;^UTILITY(U,$J,358.3,2714,1,3,0)
- ;;=3^Spont ruptr of extnsr tendons, lft forearm
+ ;;=3^Heart Failure,Diastolic,Acute
  ;;^UTILITY(U,$J,358.3,2714,1,4,0)
- ;;=4^M66.232
+ ;;=4^I50.31
  ;;^UTILITY(U,$J,358.3,2714,2)
- ;;=^5012855
+ ;;=^5007244
  ;;^UTILITY(U,$J,358.3,2715,0)
- ;;=M66.241^^26^198^100
+ ;;=I50.32^^20^173^3
  ;;^UTILITY(U,$J,358.3,2715,1,0)
  ;;=^358.31IA^4^2
  ;;^UTILITY(U,$J,358.3,2715,1,3,0)
- ;;=3^Spont ruptr of extnsr tendons, rt hand
+ ;;=3^Heart Failure,Diastolic,Chronic
  ;;^UTILITY(U,$J,358.3,2715,1,4,0)
- ;;=4^M66.241
+ ;;=4^I50.32
  ;;^UTILITY(U,$J,358.3,2715,2)
- ;;=^5012857
+ ;;=^5007245
  ;;^UTILITY(U,$J,358.3,2716,0)
- ;;=M66.242^^26^198^98
+ ;;=I50.33^^20^173^2
  ;;^UTILITY(U,$J,358.3,2716,1,0)
  ;;=^358.31IA^4^2
  ;;^UTILITY(U,$J,358.3,2716,1,3,0)
- ;;=3^Spont ruptr of extnsr tendons, lft hand
+ ;;=3^Heart Failure,Diastolic,Acute on Chronic
  ;;^UTILITY(U,$J,358.3,2716,1,4,0)
- ;;=4^M66.242
+ ;;=4^I50.33
  ;;^UTILITY(U,$J,358.3,2716,2)
- ;;=^5012858
+ ;;=^5007246
  ;;^UTILITY(U,$J,358.3,2717,0)
- ;;=M66.841^^26^198^106
+ ;;=I50.40^^20^173^8
  ;;^UTILITY(U,$J,358.3,2717,1,0)
  ;;=^358.31IA^4^2
  ;;^UTILITY(U,$J,358.3,2717,1,3,0)
- ;;=3^Spont ruptr of other tendons, rt hand
+ ;;=3^Heart Failure,Systolic & Diastolic,Unspec
  ;;^UTILITY(U,$J,358.3,2717,1,4,0)
- ;;=4^M66.841
+ ;;=4^I50.40
  ;;^UTILITY(U,$J,358.3,2717,2)
- ;;=^5012898
+ ;;=^5007247
  ;;^UTILITY(U,$J,358.3,2718,0)
- ;;=M66.842^^26^198^105
+ ;;=I50.41^^20^173^5
  ;;^UTILITY(U,$J,358.3,2718,1,0)
  ;;=^358.31IA^4^2
  ;;^UTILITY(U,$J,358.3,2718,1,3,0)
- ;;=3^Spont ruptr of other tendons, lft hand
+ ;;=3^Heart Failure,Systolic & Diastolic,Acute
  ;;^UTILITY(U,$J,358.3,2718,1,4,0)
- ;;=4^M66.842
+ ;;=4^I50.41
  ;;^UTILITY(U,$J,358.3,2718,2)
- ;;=^5133840
+ ;;=^5007248
  ;;^UTILITY(U,$J,358.3,2719,0)
- ;;=M66.331^^26^198^103
+ ;;=I50.42^^20^173^7
  ;;^UTILITY(U,$J,358.3,2719,1,0)
  ;;=^358.31IA^4^2
  ;;^UTILITY(U,$J,358.3,2719,1,3,0)
- ;;=3^Spont ruptr of flexor tendons, rt forearm
+ ;;=3^Heart Failure,Systolic & Diastolic,Chronic
  ;;^UTILITY(U,$J,358.3,2719,1,4,0)
- ;;=4^M66.331
+ ;;=4^I50.42
  ;;^UTILITY(U,$J,358.3,2719,2)
- ;;=^5012878
+ ;;=^5007249
  ;;^UTILITY(U,$J,358.3,2720,0)
- ;;=M66.332^^26^198^101
+ ;;=I50.43^^20^173^6
  ;;^UTILITY(U,$J,358.3,2720,1,0)
  ;;=^358.31IA^4^2
  ;;^UTILITY(U,$J,358.3,2720,1,3,0)
- ;;=3^Spont ruptr of flexor tendons, lft forearm
+ ;;=3^Heart Failure,Systolic & Diastolic,Acute on Chronic
  ;;^UTILITY(U,$J,358.3,2720,1,4,0)
- ;;=4^M66.332
+ ;;=4^I50.43
  ;;^UTILITY(U,$J,358.3,2720,2)
- ;;=^5012879
+ ;;=^5007250
  ;;^UTILITY(U,$J,358.3,2721,0)
- ;;=M66.341^^26^198^104
+ ;;=I50.9^^20^173^13
  ;;^UTILITY(U,$J,358.3,2721,1,0)
  ;;=^358.31IA^4^2
  ;;^UTILITY(U,$J,358.3,2721,1,3,0)
- ;;=3^Spont ruptr of flexor tendons, rt hand
+ ;;=3^Heart Failure,Unspec
  ;;^UTILITY(U,$J,358.3,2721,1,4,0)
- ;;=4^M66.341
+ ;;=4^I50.9
  ;;^UTILITY(U,$J,358.3,2721,2)
- ;;=^5012881
+ ;;=^5007251
  ;;^UTILITY(U,$J,358.3,2722,0)
- ;;=M66.342^^26^198^102
+ ;;=I09.81^^20^173^15
  ;;^UTILITY(U,$J,358.3,2722,1,0)
  ;;=^358.31IA^4^2
  ;;^UTILITY(U,$J,358.3,2722,1,3,0)
- ;;=3^Spont ruptr of flexor tendons, lft hand
+ ;;=3^Rheumatic Heart Failure
  ;;^UTILITY(U,$J,358.3,2722,1,4,0)
- ;;=4^M66.342
+ ;;=4^I09.81
  ;;^UTILITY(U,$J,358.3,2722,2)
- ;;=^5012882
+ ;;=^5007059
  ;;^UTILITY(U,$J,358.3,2723,0)
- ;;=M67.01^^26^198^96
+ ;;=I10.^^20^174^1
  ;;^UTILITY(U,$J,358.3,2723,1,0)
  ;;=^358.31IA^4^2
  ;;^UTILITY(U,$J,358.3,2723,1,3,0)
- ;;=3^Short Achilles tendon (acquired), rt ankle
+ ;;=3^Essential/Primary Hypertension
  ;;^UTILITY(U,$J,358.3,2723,1,4,0)
- ;;=4^M67.01
+ ;;=4^I10.
  ;;^UTILITY(U,$J,358.3,2723,2)
- ;;=^5012906
+ ;;=^5007062
  ;;^UTILITY(U,$J,358.3,2724,0)
- ;;=M67.02^^26^198^95
+ ;;=I11.0^^20^174^12
  ;;^UTILITY(U,$J,358.3,2724,1,0)
  ;;=^358.31IA^4^2
  ;;^UTILITY(U,$J,358.3,2724,1,3,0)
- ;;=3^Short Achilles tendon (acquired), lft ankle
+ ;;=3^Hypertensive Heart Disease w/ Heart Failure
  ;;^UTILITY(U,$J,358.3,2724,1,4,0)
- ;;=4^M67.02
+ ;;=4^I11.0
  ;;^UTILITY(U,$J,358.3,2724,2)
- ;;=^5012907
+ ;;=^5007063
  ;;^UTILITY(U,$J,358.3,2725,0)
- ;;=M62.40^^26^198^26
+ ;;=I11.9^^20^174^13
  ;;^UTILITY(U,$J,358.3,2725,1,0)
  ;;=^358.31IA^4^2
  ;;^UTILITY(U,$J,358.3,2725,1,3,0)
- ;;=3^Contracture of muscle, unspec site
+ ;;=3^Hypertensive Heart Disease w/o Heart Failure
  ;;^UTILITY(U,$J,358.3,2725,1,4,0)
- ;;=4^M62.40
+ ;;=4^I11.9
  ;;^UTILITY(U,$J,358.3,2725,2)
- ;;=^5012631
+ ;;=^5007064
  ;;^UTILITY(U,$J,358.3,2726,0)
- ;;=M72.0^^26^198^80
+ ;;=I12.0^^20^174^5
  ;;^UTILITY(U,$J,358.3,2726,1,0)
  ;;=^358.31IA^4^2
  ;;^UTILITY(U,$J,358.3,2726,1,3,0)
- ;;=3^Palmar fascial fibromatosis [Dupuytren]
+ ;;=3^Hypertensive CKD w/ Stage 5 CKD or ESRD
  ;;^UTILITY(U,$J,358.3,2726,1,4,0)
- ;;=4^M72.0
+ ;;=4^I12.0
  ;;^UTILITY(U,$J,358.3,2726,2)
- ;;=^5013233
+ ;;=^5007065
  ;;^UTILITY(U,$J,358.3,2727,0)
- ;;=M72.2^^26^198^84
+ ;;=I12.9^^20^174^4
  ;;^UTILITY(U,$J,358.3,2727,1,0)
  ;;=^358.31IA^4^2
  ;;^UTILITY(U,$J,358.3,2727,1,3,0)
- ;;=3^Plantar fascial fibromatosis
+ ;;=3^Hypertensive CKD w/ Stage 1-4 CKD
  ;;^UTILITY(U,$J,358.3,2727,1,4,0)
- ;;=4^M72.2
+ ;;=4^I12.9
  ;;^UTILITY(U,$J,358.3,2727,2)
- ;;=^272598
+ ;;=^5007066
  ;;^UTILITY(U,$J,358.3,2728,0)
- ;;=M62.838^^26^198^69
+ ;;=I13.0^^20^174^8
  ;;^UTILITY(U,$J,358.3,2728,1,0)
  ;;=^358.31IA^4^2
  ;;^UTILITY(U,$J,358.3,2728,1,3,0)
- ;;=3^Muscle spasm, oth
+ ;;=3^Hypertensive HRT & CKD w/ Hrt Fail & Stg 1-4 CKD
  ;;^UTILITY(U,$J,358.3,2728,1,4,0)
- ;;=4^M62.838
+ ;;=4^I13.0
  ;;^UTILITY(U,$J,358.3,2728,2)
- ;;=^5012682
+ ;;=^5007067
  ;;^UTILITY(U,$J,358.3,2729,0)
- ;;=M62.9^^26^198^27
+ ;;=I13.10^^20^174^10
  ;;^UTILITY(U,$J,358.3,2729,1,0)
  ;;=^358.31IA^4^2
  ;;^UTILITY(U,$J,358.3,2729,1,3,0)
- ;;=3^Disorder of muscle, unspec
+ ;;=3^Hypertensive HRT & CKD w/o Hrt Fail & Stg 1-4 CKD
  ;;^UTILITY(U,$J,358.3,2729,1,4,0)
- ;;=4^M62.9
+ ;;=4^I13.10
  ;;^UTILITY(U,$J,358.3,2729,2)
- ;;=^5012684
+ ;;=^5007068
  ;;^UTILITY(U,$J,358.3,2730,0)
- ;;=M79.2^^26^198^74
+ ;;=I13.11^^20^174^11
  ;;^UTILITY(U,$J,358.3,2730,1,0)
  ;;=^358.31IA^4^2
  ;;^UTILITY(U,$J,358.3,2730,1,3,0)
- ;;=3^Neuralgia & neuritis, unspec
+ ;;=3^Hypertensive HRT & CKD w/o Hrt Fail & Stg 5 CKD/ESRD
  ;;^UTILITY(U,$J,358.3,2730,1,4,0)
- ;;=4^M79.2
+ ;;=4^I13.11
  ;;^UTILITY(U,$J,358.3,2730,2)
- ;;=^5013322
+ ;;=^5007069
  ;;^UTILITY(U,$J,358.3,2731,0)
- ;;=M21.751^^26^198^117
+ ;;=I13.2^^20^174^9
  ;;^UTILITY(U,$J,358.3,2731,1,0)
  ;;=^358.31IA^4^2
  ;;^UTILITY(U,$J,358.3,2731,1,3,0)
- ;;=3^Unequal limb length (acq), rt femur
+ ;;=3^Hypertensive HRT & CKD w/ Hrt Fail & Stg 5 CKD/ESRD
  ;;^UTILITY(U,$J,358.3,2731,1,4,0)
- ;;=4^M21.751
+ ;;=4^I13.2
  ;;^UTILITY(U,$J,358.3,2731,2)
- ;;=^5011140
+ ;;=^5007070
  ;;^UTILITY(U,$J,358.3,2732,0)
- ;;=M21.752^^26^198^113
+ ;;=I15.0^^20^174^15
  ;;^UTILITY(U,$J,358.3,2732,1,0)
  ;;=^358.31IA^4^2
  ;;^UTILITY(U,$J,358.3,2732,1,3,0)
- ;;=3^Unequal limb length (acq), lft femur
+ ;;=3^Renovascular Hypertension
  ;;^UTILITY(U,$J,358.3,2732,1,4,0)
- ;;=4^M21.752
+ ;;=4^I15.0
  ;;^UTILITY(U,$J,358.3,2732,2)
- ;;=^5011141
+ ;;=^5007071
  ;;^UTILITY(U,$J,358.3,2733,0)
- ;;=M21.761^^26^198^118
+ ;;=I15.1^^20^174^3
  ;;^UTILITY(U,$J,358.3,2733,1,0)
  ;;=^358.31IA^4^2
  ;;^UTILITY(U,$J,358.3,2733,1,3,0)
- ;;=3^Unequal limb length (acq), rt tibia
+ ;;=3^Hypertension Secondary to Oth Renal Disorders
  ;;^UTILITY(U,$J,358.3,2733,1,4,0)
- ;;=4^M21.761
+ ;;=4^I15.1
  ;;^UTILITY(U,$J,358.3,2733,2)
- ;;=^5011143
+ ;;=^5007072
  ;;^UTILITY(U,$J,358.3,2734,0)
- ;;=M21.762^^26^198^115
+ ;;=I15.2^^20^174^2
  ;;^UTILITY(U,$J,358.3,2734,1,0)
  ;;=^358.31IA^4^2
  ;;^UTILITY(U,$J,358.3,2734,1,3,0)
- ;;=3^Unequal limb length (acq), lft tibia
+ ;;=3^Hypertension Secondary to Endocrine Disorders
  ;;^UTILITY(U,$J,358.3,2734,1,4,0)
- ;;=4^M21.762
+ ;;=4^I15.2
  ;;^UTILITY(U,$J,358.3,2734,2)
- ;;=^5011144
+ ;;=^5007073
  ;;^UTILITY(U,$J,358.3,2735,0)
- ;;=M21.763^^26^198^116
+ ;;=I15.8^^20^174^16
  ;;^UTILITY(U,$J,358.3,2735,1,0)
  ;;=^358.31IA^4^2
  ;;^UTILITY(U,$J,358.3,2735,1,3,0)
- ;;=3^Unequal limb length (acq), right fibula
+ ;;=3^Secondary Hypertension,Oth
  ;;^UTILITY(U,$J,358.3,2735,1,4,0)
- ;;=4^M21.763
+ ;;=4^I15.8
  ;;^UTILITY(U,$J,358.3,2735,2)
- ;;=^5011145
+ ;;=^5007074
  ;;^UTILITY(U,$J,358.3,2736,0)
- ;;=M21.764^^26^198^114
+ ;;=I15.9^^20^174^17
  ;;^UTILITY(U,$J,358.3,2736,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,2736,1,3,0)
- ;;=3^Unequal limb length (acq), lft fibula
- ;;^UTILITY(U,$J,358.3,2736,1,4,0)
- ;;=4^M21.764
- ;;^UTILITY(U,$J,358.3,2736,2)
- ;;=^5011146
- ;;^UTILITY(U,$J,358.3,2737,0)
- ;;=M21.769^^26^198^119
- ;;^UTILITY(U,$J,358.3,2737,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,2737,1,3,0)
- ;;=3^Unequal limb length (acq), tibia/fibula, unspec
- ;;^UTILITY(U,$J,358.3,2737,1,4,0)
- ;;=4^M21.769
- ;;^UTILITY(U,$J,358.3,2737,2)
- ;;=^5011147
- ;;^UTILITY(U,$J,358.3,2738,0)
- ;;=M99.86^^26^198^8
- ;;^UTILITY(U,$J,358.3,2738,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,2738,1,3,0)
- ;;=3^Biomech lesions of lwr extr
- ;;^UTILITY(U,$J,358.3,2738,1,4,0)
- ;;=4^M99.86
- ;;^UTILITY(U,$J,358.3,2738,2)
- ;;=^5015486
- ;;^UTILITY(U,$J,358.3,2739,0)
- ;;=M99.87^^26^198^9
- ;;^UTILITY(U,$J,358.3,2739,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,2739,1,3,0)
- ;;=3^Biomechl lesions of upr extr
- ;;^UTILITY(U,$J,358.3,2739,1,4,0)
- ;;=4^M99.87
- ;;^UTILITY(U,$J,358.3,2739,2)
- ;;=^5015487
- ;;^UTILITY(U,$J,358.3,2740,0)
- ;;=M99.89^^26^198^7
- ;;^UTILITY(U,$J,358.3,2740,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,2740,1,3,0)
- ;;=3^Biomech lesions of abdmn & oth regns
- ;;^UTILITY(U,$J,358.3,2740,1,4,0)
- ;;=4^M99.89
- ;;^UTILITY(U,$J,358.3,2740,2)
- ;;=^5015489
- ;;^UTILITY(U,$J,358.3,2741,0)
- ;;=M79.10^^26^198^73
- ;;^UTILITY(U,$J,358.3,2741,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,2741,1,3,0)
- ;;=3^Myalgia,Unspec Site
- ;;^UTILITY(U,$J,358.3,2741,1,4,0)
- ;;=4^M79.10
- ;;^UTILITY(U,$J,358.3,2741,2)
- ;;=^5157394
- ;;^UTILITY(U,$J,358.3,2742,0)
- ;;=M79.11^^26^198^71
- ;;^UTILITY(U,$J,358.3,2742,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,2742,1,3,0)
- ;;=3^Myalgia,Mastication Muscle
- ;;^UTILITY(U,$J,358.3,2742,1,4,0)
- ;;=4^M79.11
- ;;^UTILITY(U,$J,358.3,2742,2)
- ;;=^5157395
- ;;^UTILITY(U,$J,358.3,2743,0)
- ;;=M79.12^^26^198^70
- ;;^UTILITY(U,$J,358.3,2743,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,2743,1,3,0)
- ;;=3^Myalgia,Auxiliary Muscles,Head/Neck
- ;;^UTILITY(U,$J,358.3,2743,1,4,0)
- ;;=4^M79.12
- ;;^UTILITY(U,$J,358.3,2743,2)
- ;;=^5157396
- ;;^UTILITY(U,$J,358.3,2744,0)
- ;;=M79.18^^26^198^72
- ;;^UTILITY(U,$J,358.3,2744,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,2744,1,3,0)
- ;;=3^Myalgia,Other Site
- ;;^UTILITY(U,$J,358.3,2744,1,4,0)
- ;;=4^M79.18
- ;;^UTILITY(U,$J,358.3,2744,2)
- ;;=^5157397
- ;;^UTILITY(U,$J,358.3,2745,0)
- ;;=M62.830^^26^198^68
- ;;^UTILITY(U,$J,358.3,2745,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,2745,1,3,0)
- ;;=3^Muscle Spasm,Back
- ;;^UTILITY(U,$J,358.3,2745,1,4,0)
- ;;=4^M62.830
- ;;^UTILITY(U,$J,358.3,2745,2)
- ;;=^5012680
- ;;^UTILITY(U,$J,358.3,2746,0)
- ;;=G44.221^^26^199^2
- ;;^UTILITY(U,$J,358.3,2746,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,2746,1,3,0)
- ;;=3^Chronic tension-type headache, intractable
- ;;^UTILITY(U,$J,358.3,2746,1,4,0)
- ;;=4^G44.221
- ;;^UTILITY(U,$J,358.3,2746,2)
- ;;=^5003939
- ;;^UTILITY(U,$J,358.3,2747,0)
- ;;=G44.229^^26^199^3
- ;;^UTILITY(U,$J,358.3,2747,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,2747,1,3,0)
- ;;=3^Chronic tension-type headache, not intractable
- ;;^UTILITY(U,$J,358.3,2747,1,4,0)
- ;;=4^G44.229
- ;;^UTILITY(U,$J,358.3,2747,2)
- ;;=^5003940
- ;;^UTILITY(U,$J,358.3,2748,0)
- ;;=G44.211^^26^199^4
- ;;^UTILITY(U,$J,358.3,2748,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,2748,1,3,0)
- ;;=3^Episodic tension-type headache, intractable
- ;;^UTILITY(U,$J,358.3,2748,1,4,0)
- ;;=4^G44.211
- ;;^UTILITY(U,$J,358.3,2748,2)
- ;;=^5003937
- ;;^UTILITY(U,$J,358.3,2749,0)
- ;;=G44.219^^26^199^5
- ;;^UTILITY(U,$J,358.3,2749,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,2749,1,3,0)
- ;;=3^Episodic tension-type headache, not intractable
- ;;^UTILITY(U,$J,358.3,2749,1,4,0)
- ;;=4^G44.219
- ;;^UTILITY(U,$J,358.3,2749,2)
- ;;=^5003938
- ;;^UTILITY(U,$J,358.3,2750,0)
- ;;=G43.109^^26^199^8
- ;;^UTILITY(U,$J,358.3,2750,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,2750,1,3,0)
- ;;=3^Migraine with aura, not intractable, w/o status migrainosus
- ;;^UTILITY(U,$J,358.3,2750,1,4,0)
- ;;=4^G43.109
- ;;^UTILITY(U,$J,358.3,2750,2)
- ;;=^5003881
- ;;^UTILITY(U,$J,358.3,2751,0)
- ;;=G43.009^^26^199^7
- ;;^UTILITY(U,$J,358.3,2751,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,2751,1,3,0)
- ;;=3^Migraine w/o aura, not intractable, w/o status migrainosus
- ;;^UTILITY(U,$J,358.3,2751,1,4,0)
- ;;=4^G43.009
- ;;^UTILITY(U,$J,358.3,2751,2)
- ;;=^5003877
- ;;^UTILITY(U,$J,358.3,2752,0)
- ;;=G43.D0^^26^199^1
- ;;^UTILITY(U,$J,358.3,2752,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,2752,1,3,0)
- ;;=3^Abdominal migraine, not intractable
- ;;^UTILITY(U,$J,358.3,2752,1,4,0)
- ;;=4^G43.D0
- ;;^UTILITY(U,$J,358.3,2752,2)
- ;;=^5003918
- ;;^UTILITY(U,$J,358.3,2753,0)
- ;;=G43.809^^26^199^9
- ;;^UTILITY(U,$J,358.3,2753,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,2753,1,3,0)
- ;;=3^Migraine, not intractable, w/o status migrainosis, other
- ;;^UTILITY(U,$J,358.3,2753,1,4,0)
- ;;=4^G43.809
- ;;^UTILITY(U,$J,358.3,2753,2)
- ;;=^5003901
- ;;^UTILITY(U,$J,358.3,2754,0)
- ;;=G43.B0^^26^199^11
- ;;^UTILITY(U,$J,358.3,2754,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,2754,1,3,0)
- ;;=3^Ophthalmoplegic migraine, not intractable
- ;;^UTILITY(U,$J,358.3,2754,1,4,0)
- ;;=4^G43.B0
- ;;^UTILITY(U,$J,358.3,2754,2)
- ;;=^5003914
- ;;^UTILITY(U,$J,358.3,2755,0)
- ;;=G35.^^26^199^10
- ;;^UTILITY(U,$J,358.3,2755,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,2755,1,3,0)
- ;;=3^Multiple sclerosis
- ;;^UTILITY(U,$J,358.3,2755,1,4,0)
- ;;=4^G35.
- ;;^UTILITY(U,$J,358.3,2755,2)
- ;;=^79761
- ;;^UTILITY(U,$J,358.3,2756,0)
- ;;=G43.C0^^26^199^12
- ;;^UTILITY(U,$J,358.3,2756,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,2756,1,3,0)
- ;;=3^Periodic headache syndromes in chld/adlt, not intractable
- ;;^UTILITY(U,$J,358.3,2756,1,4,0)
- ;;=4^G43.C0
- ;;^UTILITY(U,$J,358.3,2756,2)
- ;;=^5003916
- ;;^UTILITY(U,$J,358.3,2757,0)
- ;;=G44.201^^26^199^13
- ;;^UTILITY(U,$J,358.3,2757,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,2757,1,3,0)
- ;;=3^Tension-type headache, unspecified, intractable
- ;;^UTILITY(U,$J,358.3,2757,1,4,0)
- ;;=4^G44.201
- ;;^UTILITY(U,$J,358.3,2757,2)
- ;;=^5003935
- ;;^UTILITY(U,$J,358.3,2758,0)
- ;;=G44.209^^26^199^14
- ;;^UTILITY(U,$J,358.3,2758,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,2758,1,3,0)
- ;;=3^Tension-type headache, unspecified, not intractable
- ;;^UTILITY(U,$J,358.3,2758,1,4,0)
- ;;=4^G44.209
- ;;^UTILITY(U,$J,358.3,2758,2)
- ;;=^5003936
- ;;^UTILITY(U,$J,358.3,2759,0)
- ;;=R51.^^26^199^6

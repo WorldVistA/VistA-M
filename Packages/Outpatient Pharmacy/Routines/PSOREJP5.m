@@ -1,5 +1,5 @@
 PSOREJP5 ;ALB/BNT - Third Party Reject Additional Reject Information Screen ;02/14/11
- ;;7.0;OUTPATIENT PHARMACY;**359,421,512,528**;DEC 1997;Build 10
+ ;;7.0;OUTPATIENT PHARMACY;**359,421,512,528,560,561**;DEC 1997;Build 41
  ;
  ; Reference to $$BBILL^BPSBUTL and $$RESUBMIT^BPSBUTL supported by IA 4719
  ; Reference to BPSNCPD3 supported by IA 4560
@@ -37,7 +37,7 @@ HDR ; -- header code
  Q
  ;
 INIT ; -- init variables and list array
- N DATA,LINE,RXCOB,ADDREJ,NDX,I,DURIEN,X
+ N ADDREJ,DATA,DURIEN,I,LINE,NDX,RXCOB,X
  F I=1:1:$G(LASTLN) D RESTORE^VALM10(I)
  K ^TMP("PSOREJP2",$J) S VALMCNT=0,LINE=0
  S DURIEN=$$RESPIEN(RX,REJ)
@@ -56,6 +56,8 @@ INIT ; -- init variables and list array
  S X="",$E(X,$L($$LABEL("PAYER ADDL MSG")))=" "
  S I=1 F  S I=$O(ADDREJ(RXCOB,"PAYER MESSAGE",I)) Q:'I  D
  . D SET("",80-$L($$LABEL("PAYER ADDL MSG")),"",X_ADDREJ(RXCOB,"PAYER MESSAGE",I))
+ ;
+ D BPSRESP^PSOREJP6(DURIEN)
  ;
  S NDX=""
  F  S NDX=$O(ADDREJ(RXCOB,"DUR PPS",NDX)) Q:NDX=""  D
@@ -92,6 +94,23 @@ LABEL(FIELD) ; Sets the label for the field
  I FIELD="OTHER PRESCRIBER INDICATOR" Q "Other Prescriber Indicator: "
  I FIELD="DUR FREE TEXT MESSAGE" Q "DUR Text: "
  I FIELD="DUR ADDITIONAL TEXT" Q "DUR Add Text: "
+ I FIELD="INVALID PROVIDER DATA SOURCE" Q "Invalid Provider Data Source: "
+ I FIELD="FORMULARY ALTERNATIVE EFF DATE" Q "Formulary Alternative Eff Date: "
+ I FIELD="DUR/DUE CO-AGENT DESCRIPTION" Q "DUR/DUE Co-Agent Description: "
+ I FIELD="UNIT OF PRIOR DISPENSED QTY" Q "Unit of Prior Dispensed Quantity: "
+ I FIELD="OTHER PHARMACY ID QUALIFIER" Q "Other Pharmacy ID Qualifier: "
+ I FIELD="OTHER PHARMACY NAME" Q "Other Pharmacy Name: "
+ I FIELD="OTHER PHARMACY TELEPHONE" Q "Other Pharmacy Telephone: "
+ I FIELD="OTHER PRESCRIBER LAST NAME" Q "Other Prescriber Last Name: "
+ I FIELD="OTHER PRESCRIBER ID QUALIFIER" Q "Other Prescriber ID Qualifier: "
+ I FIELD="OTHER PRESCRIBER ID" Q "Other Prescriber ID: "
+ I FIELD="OTHER PRESCRIBER PHONE NUMBER" Q "Other Prescriber Phone Number: "
+ I FIELD="DUR/DUE COMPOUND PRODUCT ID" Q "DUR/DUE Compound Product ID: "
+ I FIELD="DUR/DUE CMPND PRDUCT ID QUALIF" Q "DUR/DUE Compound Product ID Qualifier: "
+ I FIELD="DUR/DUE MAXIMUM DAILY DOSE QTY" Q "DUR/DUE Maximum Daily Dose Quantity: "
+ I FIELD="DUR/DUE MAX DAILY DOSE - UNIT" Q "DUR/DUE Maximum Daily Dose Unit: "
+ I FIELD="DUR/DUE MINIMUM DAILY DOSE QTY" Q "DUR/DUE Minimum Daily Dose Quantity: "
+ I FIELD="DUR/DUE MIN DAILY DOSE - UNIT" Q "DUR/DUE Minimum Daily Dose Unit: "
  Q ""
  ;
 SET(FIELD,L,UND,TXT) ; Sets the lines for fields that require text wrapping
@@ -176,8 +195,17 @@ PSOETEC(RX,FILL) ; Returns flag for TRICARE or CHAMPVA non-billable claims
  ;This function is used to determine how a claim is stored in the PSO AUDIT LOG (file #56.87),
  ;it is not necessary to check to see if the claim has a reject that is resolved or unresolved
  ; Returns: 1 - if rejection code is eT or eC (pseudo-reject code) / 0 - otherwise
+ N PSOQ,PSRXIEN
  I '$G(RX) Q 0
- I $D(^PSRX(RX,"REJ","B","eT")) Q 1
- I $D(^PSRX(RX,"REJ","B","eC")) Q 1
+ I $D(^PSRX(RX,"REJ","B","eT")) D  Q PSOQ
+ . S PSRXIEN=0
+ . S PSOQ=1
+ . F  S PSRXIEN=$O(^PSRX(RX,"REJ","B","eT",PSRXIEN)) Q:'PSRXIEN  D
+ . . I $$GET1^DIQ(52.25,PSRXIEN_","_RX,2)["NOT INSURED" S PSOQ=0
+ I $D(^PSRX(RX,"REJ","B","eC")) D  Q PSOQ
+ . S PSRXIEN=0
+ . S PSOQ=1
+ . F  S PSRXIEN=$O(^PSRX(RX,"REJ","B","eC",PSRXIEN)) Q:'PSRXIEN  D
+ . . I $$GET1^DIQ(52.25,PSRXIEN_","_RX,2)["NOT INSURED" S PSOQ=0
  Q 0
  ;

@@ -1,5 +1,5 @@
 PSOSPML1 ;BIRM/MFR - Export Batch Processing Listman Driver ;10/10/12
- ;;7.0;OUTPATIENT PHARMACY;**408,451**;DEC 1997;Build 114
+ ;;7.0;OUTPATIENT PHARMACY;**408,451,625**;DEC 1997;Build 42
  ;
  N %DT,BATIEN,DIR,DIRUT,X,DIC,DTOUT,DUOUT,STATEIEN,PSOFROM,PSOTO,VALM,VALMCNT,VALMHDR,VALMBCK,VALMSG,PSOLSTLN
  ;
@@ -54,6 +54,7 @@ INIT ; Builds the Body section
  . . S NODE0=$G(^PS(58.42,BATIEN,0))
  . . I $P(NODE0,"^",2)'=STATEIEN Q
  . . S COUNT=COUNT+1,RXCNT=$O(^PS(58.42,BATIEN,"RX",999999),-1)
+ . . S:'$G(RXCNT) RXCNT=0    ;Display '0' for # of RXs for Zero Report
  . . S DSPLINE=$J(COUNT,4)_" "_$J(BATIEN,7),$E(DSPLINE,15)=$$FMTE^XLFDT(BATDT,"2Z")
  . . S $E(DSPLINE,34)=$$FMTE^XLFDT($P(NODE0,"^",5)\1,"2Z")_"-"_$$FMTE^XLFDT($P(NODE0,"^",6)\1,"2Z")
  . . I $P(NODE0,"^",3)="RX" S $E(DSPLINE,34,51)="SINGLE RX         "
@@ -126,12 +127,13 @@ MAN ; Manual Batch Export
  D EXPORT(STATE,BEGINDT,ENDDT,FILLTYPE,RECTYPE)
  Q
  ;
-EXPORT(STATE,FROMDATE,TODATE,FILLTYPE,RECTYPE) ; Export Release CS Rx's to the sate for date range
+EXPORT(STATE,FROMDATE,TODATE,FILLTYPE,RECTYPE,LIST) ; Export Release CS Rx's to the sate for date range
  ;Input: STATE - Pointer to the STATE file (#5)
  ;       FROMDATE - Being Rx Release for Date Range
  ;       TODATE - End Rx Release for Date Range
  ;       FILLTYPE - Rx Fill Type (RL - Released / RS - Returned to Stock) - ASAP 1995 only 
  ;       RECTYPE - Record Type (N - New / R - Revise)
+ ;       LIST - array of IENs that represent PATIENT, DIVISION, PROVIDER, DRUG, or RX
  N RXRLDT,ENDRLDT,XREF,RXCNT,RXIEN,RXFILL,FILL,SPOK,DIR,Y,X,DTOUT,DUOUT,BATCHIEN
  N RTSDT,ENDRTSDT,RTSONLY,PSOMODE
  ;
@@ -147,7 +149,7 @@ EXPORT(STATE,FROMDATE,TODATE,FILLTYPE,RECTYPE) ; Export Release CS Rx's to the s
  ; 
  ; Gathering the prescriptions to be transmitted in the ^TMP("PSOSPMRX",$J) global
  W !!,"Gathering CS prescription fills...(this may take a few minutes)"
- K ^TMP("PSOSPMRX",$J) S RXCNT=$$GATHER^PSOSPMU1(STATE,FROMDATE-.1,TODATE+.24,RECTYPE,RTSONLY)
+ K ^TMP("PSOSPMRX",$J) S RXCNT=$$GATHER^PSOSPMU1(STATE,FROMDATE-.1,TODATE+.24,RECTYPE,RTSONLY,.LIST)
  ;
  I RXCNT'>0 D  Q
  . W !!,"There are no eligible prescriptions for the date range.",$C(7)
@@ -180,6 +182,7 @@ EXPORT(STATE,FROMDATE,TODATE,FILLTYPE,RECTYPE) ; Export Release CS Rx's to the s
  . D ^DIE
  ;
  D PAUSE^PSOSPMU1
+ Q:'$G(VALMCC)
  D INIT,HDR
  Q
  ;

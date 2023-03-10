@@ -1,5 +1,5 @@
-PSOSD0 ;BHAM ISC/SAB - action or informational profile cont. ;6/21/07 8:20am
- ;;7.0;OUTPATIENT PHARMACY;**2,19,40,66,107,110,258,206**;DEC 1997;Build 39
+PSOSD0 ;BHAM ISC/SAB - action or informational profile cont. ;08/24/17  10:10
+ ;;7.0;OUTPATIENT PHARMACY;**2,19,40,66,107,110,258,206,441**;DEC 1997;Build 208
  ;External reference to ^PS(50.605 supported by DBIA 696
  ;External reference to ^SC supported by DBIA 10040
  ;External reference to ^PSDRUG supported by DBIA 221
@@ -92,4 +92,5 @@ RXN3 W ! K RX0,RX3,RX2,PRDT,LABEL,PHYS,PSI,PSII,PSIII,II,Y,SIG,X,FILL,FILLS,PHYS
  Q
 ACTS ;
  S ACTS=$S($P(RX0,"^",15)["PENDING":"PENDING",$P(RX0,"^",15)["Suspended":"Active/Susp",1:$P(RX0,"^",15))
+ I +$G(^PSRX(RXN,"STA"))=0,+$G(^PSRX(RXN,"PARK")) S ACTS="Active/Parked" ;441 PAPI
  Q

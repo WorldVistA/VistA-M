@@ -1,5 +1,5 @@
-PSOLMPAT ;BHAM ISC/SAB - update pharmacy patient data using listman ;03/08/93 8:35
- ;;7.0;OUTPATIENT PHARMACY;**15,117,149,233,268,468**;DEC 1997;Build 48
+PSOLMPAT ;BIR/SAB - update pharmacy patient data using listman ;Dec 09, 2021@14:00
+ ;;7.0;OUTPATIENT PHARMACY;**15,117,149,233,268,468,622,441**;DEC 1997;Build 208
  ;External reference ^PS(55 supported by DBIA 2228
  ;
 EN I '$D(PSOPAR) D ^PSOLSET I '$D(PSOPAR) S VALMSG="Site Parameters must be Defined!" G EX
@@ -21,3 +21,20 @@ EX L -^PS(55,DA),-^DPT(DA) D ^PSOORUT2 S VALMBCK="R"
  K DIC,X,Y,DIE,D0,DA,DFN,PI,DR,%,%Y,%X,C,DI,DIPGM,DQ,PSOFROM
  Q
 MSG S VALMSG="Patient Data is Being Edited by Another User!" Q
+PLST ;PREGNANCY & LACTATION STATUS DISPLAY
+ N PSOVAL,PSOHSTYPE,PSOTYPE
+ S PSOVAL=$G(^TMP("PSOHDR",$J,14,0))
+ I PSOVAL="" D  Q
+ .W !!,"This patient is not pregnant and is not lactating."
+ .D WAIT^VALM1
+ K ^TMP("DIERR",$J)
+ S PSOTYPE("P")="VA-WH PREGNANCY STATUS",PSOTYPE("L")="VA-WH LACTATION STATUS"
+ S PSOTYPE("PL")="VA-WH PREG & LAC STATUS",PSOTYPE("LP")=PSOTYPE("PL")
+ I $D(PSOTYPE(PSOVAL)) D
+ .S PSOHSTYPE=$$FIND1^DIC(142,,"X",PSOTYPE(PSOVAL))
+ .I +PSOHSTYPE=0 D  Q
+ ..W !!,"Could not find the "_PSOTYPE(PSOTYPE)_" health summary type."
+ ..I $D(^TMP("DIERR",$J)) W ! D MSG^DIALOG() K ^TMP("DIERR",$J)
+ ..D WAIT^VALM1
+ .D ENX^GMTSDVR(PSODFN,PSOHSTYPE)
+ Q

@@ -1,5 +1,5 @@
 RORX007 ;HCIOFO/BH,SG - RADIOLOGY UTILIZATION ;10/14/05 1:37pm
- ;;1.5;CLINICAL CASE REGISTRIES;**21,31**;Feb 17, 2006;Build 62
+ ;;1.5;CLINICAL CASE REGISTRIES;**21,31,39**;Feb 17, 2006;Build 4
  ;
  ; This routine uses the following IAs:
  ;
@@ -14,6 +14,7 @@ RORX007 ;HCIOFO/BH,SG - RADIOLOGY UTILIZATION ;10/14/05 1:37pm
  ;                                      additional identifier option selected
  ;ROR*1.5*31   MAY 2017    M FERRARESE  Adding PACT, PCP, and AGE/DOB as additional
  ;                                      identifiers.
+ ;ROR*1.5*39   JUL 2021    M FERRARESE  Setting SSN and LAST4 to zeros
  ;******************************************************************************
  Q
  ;
@@ -136,7 +137,7 @@ SORT(SPCNT) ;
  . S (DPCNT,PRCNT)=0
  . D DEM^VADPT
  . S NAME=$G(VADM(1))  Q:NAME=""
- . S LAST4=$G(VA("BID"))  S:LAST4="" LAST4=" "
+ . S LAST4="0000" ;S LAST4=$G(VA("BID"))  S:LAST4="" LAST4=" "
  . S DOD=$$DATE^RORXU002($P(VADM(6),U)\1)
  . S ICN=$$ICN^RORUTL02(DFN)
  . S PACT=$$PACT^RORUTL02(DFN)

@@ -1,10 +1,11 @@
-ORPRF ;SLC/JLI-Patient record flag ;6/14/06
- ;;3.0;ORDER ENTRY/RESULTS REPORTING;**173,187,190,215,243,472**;Dec 17, 1997;Build 11
+ORPRF ;SLC/JLI/JMC -Patient record flag ;6/14/06
+ ;;3.0;ORDER ENTRY/RESULTS REPORTING;**173,187,190,215,243,472,542**;Dec 17, 1997;Build 11
  ;
-FMT(ROOT,DBRSDATA) ; Format - Convert record flag data to displayable data
+FMT(ROOT,DBRSDATA,DGHIST) ; Format - Convert record flag data to displayable data
  ; Sets ^TMP("ORPRF",$J,NN) with flag data for multiple flags
  ; DBRSDATA - local array with DBRS data
- N IDX,IX,CNT
+ ; DGHIST - local array with PRF history records
+ N IDX,IX,CNT,CURFLAG
  S (IDX,CNT)=0
  F  S IDX=$O(ROOT(IDX)) Q:'IDX  D
  . S ^TMP("ORPRF",$J,IDX,"FLAG")=$P($G(ROOT(IDX,"FLAG")),U,2)
@@ -33,6 +34,22 @@ FMT(ROOT,DBRSDATA) ; Format - Convert record flag data to displayable data
  . . . I $P(ORZDBRSD,U,1)']"" Q
  . . . S CNT=CNT+1,^TMP("ORPRF",$J,IDX,CNT)="DBRS number:             "_$P(ORZDBRSD,U,1)
  . . . I $P(ORZDBRSD,U,2)]"" S CNT=CNT+1,^TMP("ORPRF",$J,IDX,CNT)="Other DBRS data:         "_$P(ORZDBRSD,U,2)
+ . ;check if any history for the PRF flag that is being processed now
+ . S CURFLAG=$P($G(ROOT(IDX,"FLAG")),U,2)
+ . I $O(DGHIST(CURFLAG,0)) D
+ . . N ORPRFHCN,ORPRFHDA,ORPRFSIT,ORQUIT
+ . . S ORPRFSIT="",ORQUIT=0
+ . . S ORPRFHCN=0 F  S ORPRFHCN=+$O(DGHIST(CURFLAG,ORPRFHCN)) Q:ORPRFHCN=0!(ORQUIT=1)  D  Q:ORQUIT=1
+ . . . I $D(DGHIST(CURFLAG,ORPRFHCN)),ORPRFHCN>10 D  Q:ORQUIT=1
+ . . . . S ORQUIT=1
+ . . . . S CNT=CNT+1,^TMP("ORPRF",$J,IDX,CNT)="*** Additional information is in VistA ***"
+ . . . I ORPRFHCN=1 S CNT=CNT+1,^TMP("ORPRF",$J,IDX,CNT)=""
+ . . . I ORPRFHCN=1 S CNT=CNT+1,^TMP("ORPRF",$J,IDX,CNT)="History of Actions Taken:"
+ . . . I ORPRFHCN=1 S CNT=CNT+1,^TMP("ORPRF",$J,IDX,CNT)="Date          Action          Site ID  Site Name"
+ . . . I ORPRFHCN=1 S CNT=CNT+1,^TMP("ORPRF",$J,IDX,CNT)="------------------------------------------------"
+ . . . S ORPRFHDA=$G(DGHIST(CURFLAG,ORPRFHCN)) Q:ORPRFHDA=""
+ . . . ;I ORPRFSIT'=$P(ORPRFHDA,U) S ORPRFSIT=$P(ORPRFHDA,U) S CNT=CNT+1,^TMP("ORPRF",$J,IDX,CNT)=ORPRFSIT_" changes:"
+ . . . S CNT=CNT+1,^TMP("ORPRF",$J,IDX,CNT)=$P($P(ORPRFHDA,U,2),"@",1)_"  "_$$LJ^XLFSTR($P(ORPRFHDA,U,3),15)_" "_$$LJ^XLFSTR($P(ORPRFHDA,U,4),8)_" "_$$LJ^XLFSTR($E($P(ORPRFHDA,U,1),1,20),30)
  K ROOT
  Q
  ;
@@ -49,10 +66,13 @@ HASFLG(ORY,PTDFN) ;Does patient PTDFN has flags
  S ORY=$$GETACT^DGPFAPI(PTDFN,"PRFARR")
  Q:'ORY
  ;
- N DBRSARR
- ;ICR# 6874 - check if DG*5.3*951 installed and then call the API 
+ N DBRSARR,PRFHIST
+ ;ICR# 6874 - check if DG*5.3*951 installed and then call the API to get DBRS information
  I $T(GETDBRS^DGPFDBRS)'="" I $$GETDBRS^DGPFDBRS(PTDFN,.DBRSARR)
- D FMT(.@("PRFARR"),.DBRSARR) ; Sets ^TMP("ORPRF"
+ ;get history records for active PRFs
+ D ACTPRFHS^ORPRFHST(PTDFN,.PRFHIST)
+ ;
+ D FMT(.@("PRFARR"),.DBRSARR,.PRFHIST) ; Sets ^TMP("ORPRF"
  S IDY=0 F  S IDY=$O(^TMP("ORPRF",$J,IDY)) Q:'IDY  D
  . S ORY(IDY)=IDY_U_$G(^TMP("ORPRF",$J,IDY,"FLAG"))
  . S CAT1=0

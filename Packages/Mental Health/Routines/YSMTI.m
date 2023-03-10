@@ -1,5 +1,6 @@
-YSMTI ;ALB.ASF-MUTLIPLE PSYCH TESTS AND INTERVIEWS ;7/23/99  09:50
- ;;5.01;MENTAL HEALTH;**53**;Dec 30, 1994
+YSMTI ;ALB/ASF - MUTLIPLE PSYCH TESTS AND INTERVIEWS ;7/23/99  09:50
+ ;;5.01;MENTAL HEALTH;**53,187**;Dec 30, 1994;Build 73
+ ;
  W @IOF,!?10,"Psychological Testing Mutliple Administraion Reporting",!
 PTALL ; SELECT PT
  W ! K DIC,DIK S YSDFN=0,DIC("A")="Select Patient: ",DIC="^YTD(601.2,",DIC(0)="AEQ" D ^DIC Q:Y'>0  S YSDFN=+Y
@@ -23,7 +24,7 @@ ENTASK ;taskman entry
 HDR ;
  S YSLN="",$P(YSLN,"_",79)=""
  W @IOF,!?7,"**** M U L T I P L E   T E S T   A D M I N I S T R A T I O N S ****"
- W !,VADM(1),?40,"SSN: ",$P(VADM(2),U,2),"  ",$P(VADM(5),U,2),?60,"  DOB: ",$P(VADM(3),U,2)
+ W !,VADM(1),?40,"SSN: xxx-xx-"_$E($P(VADM(2),U,2),8,11),"  ",$P(VADM(5),U,2),?60,"  DOB: ",$P(VADM(3),U,2)
  S X=$P(^YTT(601,YSTEST,"P"),U) W !?(72-$L(X)/2),X
  S X="Scale: "_YSCALET W !,YSLN,!?(72-$L(X)/2),X,!,YSLN
  W !,"Entered:    Days between   Raw   Scaled"

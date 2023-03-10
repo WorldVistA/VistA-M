@@ -1,5 +1,5 @@
 IBCEF11 ;ALB/TMP - FORMATTER SPECIFIC BILL FUNCTIONS - CONT ;30-JAN-96
- ;;2.0;INTEGRATED BILLING;**51,137,155,309,335,348,349,371,432,447,473,516,577,592,608,623**;21-MAR-94;Build 70
+ ;;2.0;INTEGRATED BILLING;**51,137,155,309,335,348,349,371,432,447,473,516,577,592,608,623,641**;21-MAR-94;Build 61
  ;;Per VA Directive 6402, this routine should not be modified.
  ;
 BOX24D(A,IB) ; Returns the lines for boxes 19-24 of the CMS-1500 display
@@ -217,9 +217,12 @@ BATCH() ; Sets up record for and stores/returns the next batch number
  ;Check for batch resubmit - if yes, use same number as original batch
  I $P($G(^TMP("IBRESUBMIT",$J)),U,3)=1 S NUM=$P(^($J),U) G BATCHQ
  ;JWS;IB*2.0*623v24;7/17/19 increased lock timeout to 10 sec from 5
- L +^IBA(364.1,0):10 I '$T Q 0
+ ;JWS;IB*2.0*641v12;5/21/20 testing increase of lock timeout to 30 sec, from 10
+ L +^IBA(364.1,0):30 I '$T Q 0
  S FAC=+$P($$SITE^VASITE(),U,3),NUM=$O(^IBA(364.1,"B",""),-1)
  S NUM=NUM+1
+ ;JWS;IB*2.0*641v8;increase batch# field from 10 to 12
+ ;;I $L(NUM)<12 S NUM=FAC_"00"_$E(NUM,4,10)
  ;I $D(^IBA(364.1,+NUM,0)),$P(^(0),U,2)="" F  D  Q:'NUM!($P($G(^IBA(364.1,+NUM,0)),U,2)'="")
  ;. I $D(^IBA(364.1,NUM,0)) S DA=NUM,DIK="^IBA(364.1," D ^DIK
  ;. S NUM=$O(^IBA(364.1,"B",""),-1)

@@ -1,5 +1,5 @@
-MAGSIXG3 ;WOIFO/SG/NST - LIST OF IMAGES RPCS (CALLBACK) ; NOV 20, 2018@3:52pm
- ;;3.0;IMAGING;**93,117,150,138,167,221**;Mar 19, 2002;Build 30
+MAGSIXG3 ;WOIFO/SG/NST/DAC - LIST OF IMAGES RPCS (CALLBACK) ; Aug 20, 2020@06:55:25
+ ;;3.0;IMAGING;**93,117,150,138,167,221,258**;Mar 19, 2002;Build 21
  ;; Per VHA Directive 2004-038, this routine should not be modified.
  ;; +---------------------------------------------------------------+
  ;; | Property of the US Government.                                |
@@ -245,7 +245,9 @@ FILTER(FLTX,GRPCNTS,PTIEN,IMGIEN,FLAGS,MAGDATA) ;
  I $D(MAGDATA("PKG")),PKG'=""    Q:'$D(MAGDATA("PKG",PKG)) 0
  I $D(MAGDATA("ORIG")),ORIG'=""  Q:'$D(MAGDATA("ORIG",ORIG)) 0
  I $D(MAGDATA("CLS")),CLASS'=""  Q:'$D(MAGDATA("CLS",CLASS)) 0
- I $D(MAGDATA("TYPE")),TYPE      Q:'$D(MAGDATA("TYPE",TYPE)) 0
+ ; P258 DAC - Modified to exclude null types when doing a search with type parameters
+ I $D(MAGDATA("TYPE")) Q:TYPE="" 0
+ I $D(MAGDATA("TYPE")) Q:'$D(MAGDATA("TYPE",TYPE)) 0
  I $D(MAGDATA("CPTCODE")),CPTCODE="" Q 0
  I $D(MAGDATA("MODALITY")),MODALITY="" Q 0
  I $D(MAGDATA("CPTCODE")),CPTCODE'=""  Q:'$D(MAGDATA("CPTCODE",CPTCODE)) 0

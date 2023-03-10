@@ -1,130 +1,120 @@
-IBDEI1GA ; ; 04-FEB-2020
- ;;3.0;IB ENCOUNTER FORM IMP/EXP;;FEB 04, 2020
+IBDEI1GA ; ; 01-FEB-2022
+ ;;3.0;IB ENCOUNTER FORM IMP/EXP;;FEB 01, 2022
  Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,999) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
- ;;^UTILITY(U,$J,358.3,23195,1,4,0)
- ;;=4^E44.0
- ;;^UTILITY(U,$J,358.3,23195,2)
- ;;=^5002787
- ;;^UTILITY(U,$J,358.3,23196,0)
- ;;=E43.^^105^1169^25
- ;;^UTILITY(U,$J,358.3,23196,1,0)
+ ;;^UTILITY(U,$J,358.3,23460,2)
+ ;;=^5054263
+ ;;^UTILITY(U,$J,358.3,23461,0)
+ ;;=T78.06XD^^78^1011^18
+ ;;^UTILITY(U,$J,358.3,23461,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,23196,1,3,0)
- ;;=3^Malnutrition,Unspec Severe Protein Calorie
- ;;^UTILITY(U,$J,358.3,23196,1,4,0)
- ;;=4^E43.
- ;;^UTILITY(U,$J,358.3,23196,2)
- ;;=^5002786
- ;;^UTILITY(U,$J,358.3,23197,0)
- ;;=E42.^^105^1169^26
- ;;^UTILITY(U,$J,358.3,23197,1,0)
+ ;;^UTILITY(U,$J,358.3,23461,1,3,0)
+ ;;=3^Anaphylactic Reaction,Food Additives,Subseq Encntr
+ ;;^UTILITY(U,$J,358.3,23461,1,4,0)
+ ;;=4^T78.06XD
+ ;;^UTILITY(U,$J,358.3,23461,2)
+ ;;=^5054264
+ ;;^UTILITY(U,$J,358.3,23462,0)
+ ;;=T78.06XS^^78^1011^17
+ ;;^UTILITY(U,$J,358.3,23462,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,23197,1,3,0)
- ;;=3^Marasmic Kwashiorkor
- ;;^UTILITY(U,$J,358.3,23197,1,4,0)
- ;;=4^E42.
- ;;^UTILITY(U,$J,358.3,23197,2)
- ;;=^5002785
- ;;^UTILITY(U,$J,358.3,23198,0)
- ;;=E41.^^105^1169^30
- ;;^UTILITY(U,$J,358.3,23198,1,0)
+ ;;^UTILITY(U,$J,358.3,23462,1,3,0)
+ ;;=3^Anaphylactic Reaction,Food Additives,Sequela
+ ;;^UTILITY(U,$J,358.3,23462,1,4,0)
+ ;;=4^T78.06XS
+ ;;^UTILITY(U,$J,358.3,23462,2)
+ ;;=^5054265
+ ;;^UTILITY(U,$J,358.3,23463,0)
+ ;;=T78.07XA^^78^1011^22
+ ;;^UTILITY(U,$J,358.3,23463,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,23198,1,3,0)
- ;;=3^Nutritional Marasmus
- ;;^UTILITY(U,$J,358.3,23198,1,4,0)
- ;;=4^E41.
- ;;^UTILITY(U,$J,358.3,23198,2)
- ;;=^5002784
- ;;^UTILITY(U,$J,358.3,23199,0)
- ;;=K72.90^^105^1169^19
- ;;^UTILITY(U,$J,358.3,23199,1,0)
+ ;;^UTILITY(U,$J,358.3,23463,1,3,0)
+ ;;=3^Anaphylactic Reaction,Milk Products,1st Encntr
+ ;;^UTILITY(U,$J,358.3,23463,1,4,0)
+ ;;=4^T78.07XA
+ ;;^UTILITY(U,$J,358.3,23463,2)
+ ;;=^5054266
+ ;;^UTILITY(U,$J,358.3,23464,0)
+ ;;=T78.07XD^^78^1011^24
+ ;;^UTILITY(U,$J,358.3,23464,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,23199,1,3,0)
- ;;=3^Hepatic Encephalopathy w/o Coma
- ;;^UTILITY(U,$J,358.3,23199,1,4,0)
- ;;=4^K72.90
- ;;^UTILITY(U,$J,358.3,23199,2)
- ;;=^5008809
- ;;^UTILITY(U,$J,358.3,23200,0)
- ;;=K72.91^^105^1169^18
- ;;^UTILITY(U,$J,358.3,23200,1,0)
+ ;;^UTILITY(U,$J,358.3,23464,1,3,0)
+ ;;=3^Anaphylactic Reaction,Milk Products,Subseq Encntr
+ ;;^UTILITY(U,$J,358.3,23464,1,4,0)
+ ;;=4^T78.07XD
+ ;;^UTILITY(U,$J,358.3,23464,2)
+ ;;=^5054267
+ ;;^UTILITY(U,$J,358.3,23465,0)
+ ;;=T78.07XS^^78^1011^23
+ ;;^UTILITY(U,$J,358.3,23465,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,23200,1,3,0)
- ;;=3^Hepatic Encephalopathy w/ Coma
- ;;^UTILITY(U,$J,358.3,23200,1,4,0)
- ;;=4^K72.91
- ;;^UTILITY(U,$J,358.3,23200,2)
- ;;=^5008810
- ;;^UTILITY(U,$J,358.3,23201,0)
- ;;=K65.2^^105^1169^34
- ;;^UTILITY(U,$J,358.3,23201,1,0)
+ ;;^UTILITY(U,$J,358.3,23465,1,3,0)
+ ;;=3^Anaphylactic Reaction,Milk Products,Sequela
+ ;;^UTILITY(U,$J,358.3,23465,1,4,0)
+ ;;=4^T78.07XS
+ ;;^UTILITY(U,$J,358.3,23465,2)
+ ;;=^5054268
+ ;;^UTILITY(U,$J,358.3,23466,0)
+ ;;=T78.08XA^^78^1011^10
+ ;;^UTILITY(U,$J,358.3,23466,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,23201,1,3,0)
- ;;=3^Spontaneous Bacterial Peritonitis
- ;;^UTILITY(U,$J,358.3,23201,1,4,0)
- ;;=4^K65.2
- ;;^UTILITY(U,$J,358.3,23201,2)
- ;;=^332801
- ;;^UTILITY(U,$J,358.3,23202,0)
- ;;=I85.00^^105^1169^11
- ;;^UTILITY(U,$J,358.3,23202,1,0)
+ ;;^UTILITY(U,$J,358.3,23466,1,3,0)
+ ;;=3^Anaphylactic Reaction,Eggs,1st Encntr
+ ;;^UTILITY(U,$J,358.3,23466,1,4,0)
+ ;;=4^T78.08XA
+ ;;^UTILITY(U,$J,358.3,23466,2)
+ ;;=^5054269
+ ;;^UTILITY(U,$J,358.3,23467,0)
+ ;;=T78.08XD^^78^1011^12
+ ;;^UTILITY(U,$J,358.3,23467,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,23202,1,3,0)
- ;;=3^Esophageal Varices w/o Bleed
- ;;^UTILITY(U,$J,358.3,23202,1,4,0)
- ;;=4^I85.00
- ;;^UTILITY(U,$J,358.3,23202,2)
- ;;=^5008023
- ;;^UTILITY(U,$J,358.3,23203,0)
- ;;=I85.01^^105^1169^10
- ;;^UTILITY(U,$J,358.3,23203,1,0)
+ ;;^UTILITY(U,$J,358.3,23467,1,3,0)
+ ;;=3^Anaphylactic Reaction,Eggs,Subseq Encntr
+ ;;^UTILITY(U,$J,358.3,23467,1,4,0)
+ ;;=4^T78.08XD
+ ;;^UTILITY(U,$J,358.3,23467,2)
+ ;;=^5054270
+ ;;^UTILITY(U,$J,358.3,23468,0)
+ ;;=T78.08XS^^78^1011^11
+ ;;^UTILITY(U,$J,358.3,23468,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,23203,1,3,0)
- ;;=3^Esophageal Varices w/ Bleed
- ;;^UTILITY(U,$J,358.3,23203,1,4,0)
- ;;=4^I85.01
- ;;^UTILITY(U,$J,358.3,23203,2)
- ;;=^269835
- ;;^UTILITY(U,$J,358.3,23204,0)
- ;;=N04.9^^105^1170^17
- ;;^UTILITY(U,$J,358.3,23204,1,0)
+ ;;^UTILITY(U,$J,358.3,23468,1,3,0)
+ ;;=3^Anaphylactic Reaction,Eggs,Sequela
+ ;;^UTILITY(U,$J,358.3,23468,1,4,0)
+ ;;=4^T78.08XS
+ ;;^UTILITY(U,$J,358.3,23468,2)
+ ;;=^5054271
+ ;;^UTILITY(U,$J,358.3,23469,0)
+ ;;=T78.09XA^^78^1011^28
+ ;;^UTILITY(U,$J,358.3,23469,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,23204,1,3,0)
- ;;=3^Nephrotic Syndrome w/ Unspec Morphologic Changes
- ;;^UTILITY(U,$J,358.3,23204,1,4,0)
- ;;=4^N04.9
- ;;^UTILITY(U,$J,358.3,23204,2)
- ;;=^5015540
- ;;^UTILITY(U,$J,358.3,23205,0)
- ;;=N17.9^^105^1170^15
- ;;^UTILITY(U,$J,358.3,23205,1,0)
+ ;;^UTILITY(U,$J,358.3,23469,1,3,0)
+ ;;=3^Anaphylactic Reaction,Oth Food Products,1st Encntr
+ ;;^UTILITY(U,$J,358.3,23469,1,4,0)
+ ;;=4^T78.09XA
+ ;;^UTILITY(U,$J,358.3,23469,2)
+ ;;=^5054272
+ ;;^UTILITY(U,$J,358.3,23470,0)
+ ;;=T78.09XD^^78^1011^29
+ ;;^UTILITY(U,$J,358.3,23470,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,23205,1,3,0)
- ;;=3^Kidney Failure,Acute,Unspec
- ;;^UTILITY(U,$J,358.3,23205,1,4,0)
- ;;=4^N17.9
- ;;^UTILITY(U,$J,358.3,23205,2)
- ;;=^338532
- ;;^UTILITY(U,$J,358.3,23206,0)
- ;;=N18.6^^105^1170^10
- ;;^UTILITY(U,$J,358.3,23206,1,0)
+ ;;^UTILITY(U,$J,358.3,23470,1,3,0)
+ ;;=3^Anaphylactic Reaction,Oth Food Products,Subseq Encntr
+ ;;^UTILITY(U,$J,358.3,23470,1,4,0)
+ ;;=4^T78.09XD
+ ;;^UTILITY(U,$J,358.3,23470,2)
+ ;;=^5054273
+ ;;^UTILITY(U,$J,358.3,23471,0)
+ ;;=T78.09XS^^78^1011^30
+ ;;^UTILITY(U,$J,358.3,23471,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,23206,1,3,0)
- ;;=3^ESRD
- ;;^UTILITY(U,$J,358.3,23206,1,4,0)
- ;;=4^N18.6
- ;;^UTILITY(U,$J,358.3,23206,2)
- ;;=^303986
- ;;^UTILITY(U,$J,358.3,23207,0)
- ;;=N20.0^^105^1170^7
- ;;^UTILITY(U,$J,358.3,23207,1,0)
+ ;;^UTILITY(U,$J,358.3,23471,1,3,0)
+ ;;=3^Anaphylactic Reaction,Oth Food Products,Sequela
+ ;;^UTILITY(U,$J,358.3,23471,1,4,0)
+ ;;=4^T78.09XS
+ ;;^UTILITY(U,$J,358.3,23471,2)
+ ;;=^5054274
+ ;;^UTILITY(U,$J,358.3,23472,0)
+ ;;=T78.3XXA^^78^1011^43
+ ;;^UTILITY(U,$J,358.3,23472,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,23207,1,3,0)
- ;;=3^Calculus of Kidney
- ;;^UTILITY(U,$J,358.3,23207,1,4,0)
- ;;=4^N20.0
- ;;^UTILITY(U,$J,358.3,23207,2)
- ;;=^67056
- ;;^UTILITY(U,$J,358.3,23208,0)
- ;;=N11.0^^105^1170^20

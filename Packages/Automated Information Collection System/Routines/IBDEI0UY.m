@@ -1,122 +1,124 @@
-IBDEI0UY ; ; 04-FEB-2020
- ;;3.0;IB ENCOUNTER FORM IMP/EXP;;FEB 04, 2020
+IBDEI0UY ; ; 01-FEB-2022
+ ;;3.0;IB ENCOUNTER FORM IMP/EXP;;FEB 01, 2022
  Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,999) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
- ;;^UTILITY(U,$J,358.3,13779,1,4,0)
- ;;=4^W05.2XXA
- ;;^UTILITY(U,$J,358.3,13779,2)
- ;;=^5059556
- ;;^UTILITY(U,$J,358.3,13780,0)
- ;;=W05.1XXA^^83^817^12
- ;;^UTILITY(U,$J,358.3,13780,1,0)
+ ;;^UTILITY(U,$J,358.3,13970,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,13780,1,3,0)
- ;;=3^Fall from Non-Moving Nonmotorized Scooter,Init Encntr
- ;;^UTILITY(U,$J,358.3,13780,1,4,0)
- ;;=4^W05.1XXA
- ;;^UTILITY(U,$J,358.3,13780,2)
- ;;=^5059553
- ;;^UTILITY(U,$J,358.3,13781,0)
- ;;=W05.0XXA^^83^817^13
- ;;^UTILITY(U,$J,358.3,13781,1,0)
+ ;;^UTILITY(U,$J,358.3,13970,1,3,0)
+ ;;=3^Pain in right foot
+ ;;^UTILITY(U,$J,358.3,13970,1,4,0)
+ ;;=4^M79.671
+ ;;^UTILITY(U,$J,358.3,13970,2)
+ ;;=^5013350
+ ;;^UTILITY(U,$J,358.3,13971,0)
+ ;;=M76.72^^55^666^17
+ ;;^UTILITY(U,$J,358.3,13971,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,13781,1,3,0)
- ;;=3^Fall from Non-Moving Wheelchair,Init Encntr
- ;;^UTILITY(U,$J,358.3,13781,1,4,0)
- ;;=4^W05.0XXA
- ;;^UTILITY(U,$J,358.3,13781,2)
- ;;=^5059550
- ;;^UTILITY(U,$J,358.3,13782,0)
- ;;=W18.12XA^^83^817^15
- ;;^UTILITY(U,$J,358.3,13782,1,0)
+ ;;^UTILITY(U,$J,358.3,13971,1,3,0)
+ ;;=3^Peroneal tendinitis, left leg
+ ;;^UTILITY(U,$J,358.3,13971,1,4,0)
+ ;;=4^M76.72
+ ;;^UTILITY(U,$J,358.3,13971,2)
+ ;;=^5013289
+ ;;^UTILITY(U,$J,358.3,13972,0)
+ ;;=M76.71^^55^666^18
+ ;;^UTILITY(U,$J,358.3,13972,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,13782,1,3,0)
- ;;=3^Fall from Toilet w/ Strike Against Object,Init Encntr
- ;;^UTILITY(U,$J,358.3,13782,1,4,0)
- ;;=4^W18.12XA
- ;;^UTILITY(U,$J,358.3,13782,2)
- ;;=^5059804
- ;;^UTILITY(U,$J,358.3,13783,0)
- ;;=W18.11XA^^83^817^16
- ;;^UTILITY(U,$J,358.3,13783,1,0)
+ ;;^UTILITY(U,$J,358.3,13972,1,3,0)
+ ;;=3^Peroneal tendinitis, right leg
+ ;;^UTILITY(U,$J,358.3,13972,1,4,0)
+ ;;=4^M76.71
+ ;;^UTILITY(U,$J,358.3,13972,2)
+ ;;=^5013288
+ ;;^UTILITY(U,$J,358.3,13973,0)
+ ;;=M72.2^^55^666^19
+ ;;^UTILITY(U,$J,358.3,13973,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,13783,1,3,0)
- ;;=3^Fall from Toilet,Init Encntr
- ;;^UTILITY(U,$J,358.3,13783,1,4,0)
- ;;=4^W18.11XA
- ;;^UTILITY(U,$J,358.3,13783,2)
- ;;=^5059801
- ;;^UTILITY(U,$J,358.3,13784,0)
- ;;=W08.XXXA^^83^817^9
- ;;^UTILITY(U,$J,358.3,13784,1,0)
+ ;;^UTILITY(U,$J,358.3,13973,1,3,0)
+ ;;=3^Plantar fascial fibromatosis
+ ;;^UTILITY(U,$J,358.3,13973,1,4,0)
+ ;;=4^M72.2
+ ;;^UTILITY(U,$J,358.3,13973,2)
+ ;;=^272598
+ ;;^UTILITY(U,$J,358.3,13974,0)
+ ;;=M19.072^^55^666^22
+ ;;^UTILITY(U,$J,358.3,13974,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,13784,1,3,0)
- ;;=3^Fall from Furniture,Init Encntr
- ;;^UTILITY(U,$J,358.3,13784,1,4,0)
- ;;=4^W08.XXXA
- ;;^UTILITY(U,$J,358.3,13784,2)
- ;;=^5059565
- ;;^UTILITY(U,$J,358.3,13785,0)
- ;;=W18.2XXA^^83^817^17
- ;;^UTILITY(U,$J,358.3,13785,1,0)
+ ;;^UTILITY(U,$J,358.3,13974,1,3,0)
+ ;;=3^Primary osteoarthritis, left ankle and foot
+ ;;^UTILITY(U,$J,358.3,13974,1,4,0)
+ ;;=4^M19.072
+ ;;^UTILITY(U,$J,358.3,13974,2)
+ ;;=^5010821
+ ;;^UTILITY(U,$J,358.3,13975,0)
+ ;;=M19.071^^55^666^23
+ ;;^UTILITY(U,$J,358.3,13975,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,13785,1,3,0)
- ;;=3^Fall in Shower/Bathtub,Init Encntr
- ;;^UTILITY(U,$J,358.3,13785,1,4,0)
- ;;=4^W18.2XXA
- ;;^UTILITY(U,$J,358.3,13785,2)
- ;;=^5059806
- ;;^UTILITY(U,$J,358.3,13786,0)
- ;;=W11.XXXA^^83^817^10
- ;;^UTILITY(U,$J,358.3,13786,1,0)
+ ;;^UTILITY(U,$J,358.3,13975,1,3,0)
+ ;;=3^Primary osteoarthritis, right ankle and foot
+ ;;^UTILITY(U,$J,358.3,13975,1,4,0)
+ ;;=4^M19.071
+ ;;^UTILITY(U,$J,358.3,13975,2)
+ ;;=^5010820
+ ;;^UTILITY(U,$J,358.3,13976,0)
+ ;;=G57.52^^55^666^28
+ ;;^UTILITY(U,$J,358.3,13976,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,13786,1,3,0)
- ;;=3^Fall from Ladder,Init Encntr
- ;;^UTILITY(U,$J,358.3,13786,1,4,0)
- ;;=4^W11.XXXA
- ;;^UTILITY(U,$J,358.3,13786,2)
- ;;=^5059595
- ;;^UTILITY(U,$J,358.3,13787,0)
- ;;=W01.10XA^^83^817^2
- ;;^UTILITY(U,$J,358.3,13787,1,0)
+ ;;^UTILITY(U,$J,358.3,13976,1,3,0)
+ ;;=3^Tarsal tunnel syndrome, left lower limb
+ ;;^UTILITY(U,$J,358.3,13976,1,4,0)
+ ;;=4^G57.52
+ ;;^UTILITY(U,$J,358.3,13976,2)
+ ;;=^5004055
+ ;;^UTILITY(U,$J,358.3,13977,0)
+ ;;=G57.51^^55^666^29
+ ;;^UTILITY(U,$J,358.3,13977,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,13787,1,3,0)
- ;;=3^Fall Same Level w/ Strike Against Object,Init Encntr
- ;;^UTILITY(U,$J,358.3,13787,1,4,0)
- ;;=4^W01.10XA
- ;;^UTILITY(U,$J,358.3,13787,2)
- ;;=^5059525
- ;;^UTILITY(U,$J,358.3,13788,0)
- ;;=W01.0XXA^^83^817^3
- ;;^UTILITY(U,$J,358.3,13788,1,0)
+ ;;^UTILITY(U,$J,358.3,13977,1,3,0)
+ ;;=3^Tarsal tunnel syndrome, right lower limb
+ ;;^UTILITY(U,$J,358.3,13977,1,4,0)
+ ;;=4^G57.51
+ ;;^UTILITY(U,$J,358.3,13977,2)
+ ;;=^5004054
+ ;;^UTILITY(U,$J,358.3,13978,0)
+ ;;=M12.572^^55^666^30
+ ;;^UTILITY(U,$J,358.3,13978,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,13788,1,3,0)
- ;;=3^Fall Same Level w/o Strike Against Object,Init Encntr
- ;;^UTILITY(U,$J,358.3,13788,1,4,0)
- ;;=4^W01.0XXA
- ;;^UTILITY(U,$J,358.3,13788,2)
- ;;=^5059522
- ;;^UTILITY(U,$J,358.3,13789,0)
- ;;=W18.30XA^^83^817^18
- ;;^UTILITY(U,$J,358.3,13789,1,0)
+ ;;^UTILITY(U,$J,358.3,13978,1,3,0)
+ ;;=3^Traumatic arthropathy, left ankle and foot
+ ;;^UTILITY(U,$J,358.3,13978,1,4,0)
+ ;;=4^M12.572
+ ;;^UTILITY(U,$J,358.3,13978,2)
+ ;;=^5010638
+ ;;^UTILITY(U,$J,358.3,13979,0)
+ ;;=M12.571^^55^666^31
+ ;;^UTILITY(U,$J,358.3,13979,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,13789,1,3,0)
- ;;=3^Fall on Same Level,Unspec,Init Encntr
- ;;^UTILITY(U,$J,358.3,13789,1,4,0)
- ;;=4^W18.30XA
- ;;^UTILITY(U,$J,358.3,13789,2)
- ;;=^5059809
- ;;^UTILITY(U,$J,358.3,13790,0)
- ;;=W04.XXXA^^83^817^4
- ;;^UTILITY(U,$J,358.3,13790,1,0)
+ ;;^UTILITY(U,$J,358.3,13979,1,3,0)
+ ;;=3^Traumatic arthropathy, right ankle and foot
+ ;;^UTILITY(U,$J,358.3,13979,1,4,0)
+ ;;=4^M12.571
+ ;;^UTILITY(U,$J,358.3,13979,2)
+ ;;=^5010637
+ ;;^UTILITY(U,$J,358.3,13980,0)
+ ;;=M19.171^^55^666^21
+ ;;^UTILITY(U,$J,358.3,13980,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,13790,1,3,0)
- ;;=3^Fall While Being Carried by Oth Persons,Init Encntr
- ;;^UTILITY(U,$J,358.3,13790,1,4,0)
- ;;=4^W04.XXXA
- ;;^UTILITY(U,$J,358.3,13790,2)
- ;;=^5059547
- ;;^UTILITY(U,$J,358.3,13791,0)
- ;;=Z91.81^^83^817^23
- ;;^UTILITY(U,$J,358.3,13791,1,0)
+ ;;^UTILITY(U,$J,358.3,13980,1,3,0)
+ ;;=3^Post-traumatic osteoarthritis, right ankle & foot
+ ;;^UTILITY(U,$J,358.3,13980,1,4,0)
+ ;;=4^M19.171
+ ;;^UTILITY(U,$J,358.3,13980,2)
+ ;;=^5010835
+ ;;^UTILITY(U,$J,358.3,13981,0)
+ ;;=M19.172^^55^666^20
+ ;;^UTILITY(U,$J,358.3,13981,1,0)
  ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,13981,1,3,0)
+ ;;=3^Post-traumatic osteoarthritis, left ankle & foot
+ ;;^UTILITY(U,$J,358.3,13981,1,4,0)
+ ;;=4^M19.172
+ ;;^UTILITY(U,$J,358.3,13981,2)
+ ;;=^5010836
+ ;;^UTILITY(U,$J,358.3,13982,0)
+ ;;=M19.271^^55^666^25

@@ -1,126 +1,128 @@
-IBDEI0Z3 ; ; 04-FEB-2020
- ;;3.0;IB ENCOUNTER FORM IMP/EXP;;FEB 04, 2020
+IBDEI0Z3 ; ; 01-FEB-2022
+ ;;3.0;IB ENCOUNTER FORM IMP/EXP;;FEB 01, 2022
  Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,999) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
- ;;^UTILITY(U,$J,358.3,15658,1,3,0)
- ;;=3^Preprocedural Exam NEC
- ;;^UTILITY(U,$J,358.3,15658,1,4,0)
- ;;=4^Z01.818
- ;;^UTILITY(U,$J,358.3,15658,2)
- ;;=^5062628
- ;;^UTILITY(U,$J,358.3,15659,0)
- ;;=Z71.0^^88^865^9
- ;;^UTILITY(U,$J,358.3,15659,1,0)
+ ;;^UTILITY(U,$J,358.3,15840,1,3,0)
+ ;;=3^Progressive Systemic Sclerosis
+ ;;^UTILITY(U,$J,358.3,15840,1,4,0)
+ ;;=4^M34.0
+ ;;^UTILITY(U,$J,358.3,15840,2)
+ ;;=^5011778
+ ;;^UTILITY(U,$J,358.3,15841,0)
+ ;;=M34.1^^61^765^92
+ ;;^UTILITY(U,$J,358.3,15841,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,15659,1,3,0)
- ;;=3^Hlth Service to Consult on Behalf of Another
- ;;^UTILITY(U,$J,358.3,15659,1,4,0)
- ;;=4^Z71.0
- ;;^UTILITY(U,$J,358.3,15659,2)
- ;;=^5063242
- ;;^UTILITY(U,$J,358.3,15660,0)
- ;;=Z59.8^^88^865^10
- ;;^UTILITY(U,$J,358.3,15660,1,0)
+ ;;^UTILITY(U,$J,358.3,15841,1,3,0)
+ ;;=3^CR(E)ST Syndrome
+ ;;^UTILITY(U,$J,358.3,15841,1,4,0)
+ ;;=4^M34.1
+ ;;^UTILITY(U,$J,358.3,15841,2)
+ ;;=^5011779
+ ;;^UTILITY(U,$J,358.3,15842,0)
+ ;;=M34.2^^61^765^313
+ ;;^UTILITY(U,$J,358.3,15842,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,15660,1,3,0)
- ;;=3^Housing/Economic Circumstance Problems
- ;;^UTILITY(U,$J,358.3,15660,1,4,0)
- ;;=4^Z59.8
- ;;^UTILITY(U,$J,358.3,15660,2)
- ;;=^5063137
- ;;^UTILITY(U,$J,358.3,15661,0)
- ;;=I20.0^^88^866^5
- ;;^UTILITY(U,$J,358.3,15661,1,0)
+ ;;^UTILITY(U,$J,358.3,15842,1,3,0)
+ ;;=3^Systemic Sclerosis Induced by Drug/Chemical
+ ;;^UTILITY(U,$J,358.3,15842,1,4,0)
+ ;;=4^M34.2
+ ;;^UTILITY(U,$J,358.3,15842,2)
+ ;;=^5011780
+ ;;^UTILITY(U,$J,358.3,15843,0)
+ ;;=M34.81^^61^765^315
+ ;;^UTILITY(U,$J,358.3,15843,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,15661,1,3,0)
- ;;=3^Unstable Angina
- ;;^UTILITY(U,$J,358.3,15661,1,4,0)
- ;;=4^I20.0
- ;;^UTILITY(U,$J,358.3,15661,2)
- ;;=^5007076
- ;;^UTILITY(U,$J,358.3,15662,0)
- ;;=I25.2^^88^866^4
- ;;^UTILITY(U,$J,358.3,15662,1,0)
+ ;;^UTILITY(U,$J,358.3,15843,1,3,0)
+ ;;=3^Systemic Sclerosis w/ Lung Involvement
+ ;;^UTILITY(U,$J,358.3,15843,1,4,0)
+ ;;=4^M34.81
+ ;;^UTILITY(U,$J,358.3,15843,2)
+ ;;=^5011781
+ ;;^UTILITY(U,$J,358.3,15844,0)
+ ;;=M34.82^^61^765^316
+ ;;^UTILITY(U,$J,358.3,15844,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,15662,1,3,0)
- ;;=3^Old Myocardial Infarction
- ;;^UTILITY(U,$J,358.3,15662,1,4,0)
- ;;=4^I25.2
- ;;^UTILITY(U,$J,358.3,15662,2)
- ;;=^259884
- ;;^UTILITY(U,$J,358.3,15663,0)
- ;;=I20.8^^88^866^2
- ;;^UTILITY(U,$J,358.3,15663,1,0)
+ ;;^UTILITY(U,$J,358.3,15844,1,3,0)
+ ;;=3^Systemic Sclerosis w/ Myopathy
+ ;;^UTILITY(U,$J,358.3,15844,1,4,0)
+ ;;=4^M34.82
+ ;;^UTILITY(U,$J,358.3,15844,2)
+ ;;=^5011782
+ ;;^UTILITY(U,$J,358.3,15845,0)
+ ;;=M34.83^^61^765^317
+ ;;^UTILITY(U,$J,358.3,15845,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,15663,1,3,0)
- ;;=3^Angina Pectoris,Oth Forms
- ;;^UTILITY(U,$J,358.3,15663,1,4,0)
- ;;=4^I20.8
- ;;^UTILITY(U,$J,358.3,15663,2)
- ;;=^5007078
- ;;^UTILITY(U,$J,358.3,15664,0)
- ;;=I20.1^^88^866^1
- ;;^UTILITY(U,$J,358.3,15664,1,0)
+ ;;^UTILITY(U,$J,358.3,15845,1,3,0)
+ ;;=3^Systemic Sclerosis w/ Polyneuropathy
+ ;;^UTILITY(U,$J,358.3,15845,1,4,0)
+ ;;=4^M34.83
+ ;;^UTILITY(U,$J,358.3,15845,2)
+ ;;=^5011783
+ ;;^UTILITY(U,$J,358.3,15846,0)
+ ;;=M34.89^^61^765^314
+ ;;^UTILITY(U,$J,358.3,15846,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,15664,1,3,0)
- ;;=3^Angina Pectoris w/ Documented Spasm
- ;;^UTILITY(U,$J,358.3,15664,1,4,0)
- ;;=4^I20.1
- ;;^UTILITY(U,$J,358.3,15664,2)
- ;;=^5007077
- ;;^UTILITY(U,$J,358.3,15665,0)
- ;;=I20.9^^88^866^3
- ;;^UTILITY(U,$J,358.3,15665,1,0)
+ ;;^UTILITY(U,$J,358.3,15846,1,3,0)
+ ;;=3^Systemic Sclerosis NEC
+ ;;^UTILITY(U,$J,358.3,15846,1,4,0)
+ ;;=4^M34.89
+ ;;^UTILITY(U,$J,358.3,15846,2)
+ ;;=^5011784
+ ;;^UTILITY(U,$J,358.3,15847,0)
+ ;;=M34.9^^61^765^318
+ ;;^UTILITY(U,$J,358.3,15847,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,15665,1,3,0)
- ;;=3^Angina Pectoris,Unspec
- ;;^UTILITY(U,$J,358.3,15665,1,4,0)
- ;;=4^I20.9
- ;;^UTILITY(U,$J,358.3,15665,2)
- ;;=^5007079
- ;;^UTILITY(U,$J,358.3,15666,0)
- ;;=I65.29^^88^867^31
- ;;^UTILITY(U,$J,358.3,15666,1,0)
+ ;;^UTILITY(U,$J,358.3,15847,1,3,0)
+ ;;=3^Systemic Sclerosis,Unspec
+ ;;^UTILITY(U,$J,358.3,15847,1,4,0)
+ ;;=4^M34.9
+ ;;^UTILITY(U,$J,358.3,15847,2)
+ ;;=^5011785
+ ;;^UTILITY(U,$J,358.3,15848,0)
+ ;;=R21.^^61^765^297
+ ;;^UTILITY(U,$J,358.3,15848,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,15666,1,3,0)
- ;;=3^Occlusion & Stenosis Unspec Carotid Artery
- ;;^UTILITY(U,$J,358.3,15666,1,4,0)
- ;;=4^I65.29
- ;;^UTILITY(U,$J,358.3,15666,2)
- ;;=^5007363
- ;;^UTILITY(U,$J,358.3,15667,0)
- ;;=I65.22^^88^867^29
- ;;^UTILITY(U,$J,358.3,15667,1,0)
+ ;;^UTILITY(U,$J,358.3,15848,1,3,0)
+ ;;=3^Rash/Nonspecific Skin Eruption
+ ;;^UTILITY(U,$J,358.3,15848,1,4,0)
+ ;;=4^R21.
+ ;;^UTILITY(U,$J,358.3,15848,2)
+ ;;=^5019283
+ ;;^UTILITY(U,$J,358.3,15849,0)
+ ;;=R23.3^^61^765^309
+ ;;^UTILITY(U,$J,358.3,15849,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,15667,1,3,0)
- ;;=3^Occlusion & Stenosis Left Carotid Artery
- ;;^UTILITY(U,$J,358.3,15667,1,4,0)
- ;;=4^I65.22
- ;;^UTILITY(U,$J,358.3,15667,2)
- ;;=^5007361
- ;;^UTILITY(U,$J,358.3,15668,0)
- ;;=I65.23^^88^867^28
- ;;^UTILITY(U,$J,358.3,15668,1,0)
+ ;;^UTILITY(U,$J,358.3,15849,1,3,0)
+ ;;=3^Spontaneous Ecchymoses
+ ;;^UTILITY(U,$J,358.3,15849,1,4,0)
+ ;;=4^R23.3
+ ;;^UTILITY(U,$J,358.3,15849,2)
+ ;;=^5019295
+ ;;^UTILITY(U,$J,358.3,15850,0)
+ ;;=L03.113^^61^765^114
+ ;;^UTILITY(U,$J,358.3,15850,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,15668,1,3,0)
- ;;=3^Occlusion & Stenosis Bilateral Carotid Arteries
- ;;^UTILITY(U,$J,358.3,15668,1,4,0)
- ;;=4^I65.23
- ;;^UTILITY(U,$J,358.3,15668,2)
- ;;=^5007362
- ;;^UTILITY(U,$J,358.3,15669,0)
- ;;=I65.21^^88^867^30
- ;;^UTILITY(U,$J,358.3,15669,1,0)
+ ;;^UTILITY(U,$J,358.3,15850,1,3,0)
+ ;;=3^Cellulitis of Right Upper Limb
+ ;;^UTILITY(U,$J,358.3,15850,1,4,0)
+ ;;=4^L03.113
+ ;;^UTILITY(U,$J,358.3,15850,2)
+ ;;=^5009033
+ ;;^UTILITY(U,$J,358.3,15851,0)
+ ;;=L03.114^^61^765^107
+ ;;^UTILITY(U,$J,358.3,15851,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,15669,1,3,0)
- ;;=3^Occlusion & Stenosis Right Carotid Artery
- ;;^UTILITY(U,$J,358.3,15669,1,4,0)
- ;;=4^I65.21
- ;;^UTILITY(U,$J,358.3,15669,2)
- ;;=^5007360
- ;;^UTILITY(U,$J,358.3,15670,0)
- ;;=I70.219^^88^867^7
- ;;^UTILITY(U,$J,358.3,15670,1,0)
+ ;;^UTILITY(U,$J,358.3,15851,1,3,0)
+ ;;=3^Cellulitis of Left Upper Limb
+ ;;^UTILITY(U,$J,358.3,15851,1,4,0)
+ ;;=4^L03.114
+ ;;^UTILITY(U,$J,358.3,15851,2)
+ ;;=^5009034
+ ;;^UTILITY(U,$J,358.3,15852,0)
+ ;;=L03.115^^61^765^111
+ ;;^UTILITY(U,$J,358.3,15852,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,15670,1,3,0)
- ;;=3^Athscl Native Arteries of Extrm w/ Intrmt Claud,Unspec Extrm
+ ;;^UTILITY(U,$J,358.3,15852,1,3,0)
+ ;;=3^Cellulitis of Right Lower Limb
+ ;;^UTILITY(U,$J,358.3,15852,1,4,0)
+ ;;=4^L03.115

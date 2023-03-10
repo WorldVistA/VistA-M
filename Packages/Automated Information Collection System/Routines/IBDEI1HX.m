@@ -1,130 +1,126 @@
-IBDEI1HX ; ; 04-FEB-2020
- ;;3.0;IB ENCOUNTER FORM IMP/EXP;;FEB 04, 2020
+IBDEI1HX ; ; 01-FEB-2022
+ ;;3.0;IB ENCOUNTER FORM IMP/EXP;;FEB 01, 2022
  Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,999) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
- ;;^UTILITY(U,$J,358.3,23929,1,3,0)
- ;;=3^Rash
- ;;^UTILITY(U,$J,358.3,23929,1,4,0)
- ;;=4^R21.
- ;;^UTILITY(U,$J,358.3,23929,2)
- ;;=^5019283
- ;;^UTILITY(U,$J,358.3,23930,0)
- ;;=Z12.11^^107^1196^71
- ;;^UTILITY(U,$J,358.3,23930,1,0)
+ ;;^UTILITY(U,$J,358.3,24199,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,23930,1,3,0)
- ;;=3^Screening,Colon CA
- ;;^UTILITY(U,$J,358.3,23930,1,4,0)
- ;;=4^Z12.11
- ;;^UTILITY(U,$J,358.3,23930,2)
- ;;=^5062681
- ;;^UTILITY(U,$J,358.3,23931,0)
- ;;=Z12.39^^107^1196^69
- ;;^UTILITY(U,$J,358.3,23931,1,0)
+ ;;^UTILITY(U,$J,358.3,24199,1,3,0)
+ ;;=3^Long Term (Current) Use of Anticoagulants
+ ;;^UTILITY(U,$J,358.3,24199,1,4,0)
+ ;;=4^Z79.01
+ ;;^UTILITY(U,$J,358.3,24199,2)
+ ;;=^5063330
+ ;;^UTILITY(U,$J,358.3,24200,0)
+ ;;=Z79.891^^82^1044^42
+ ;;^UTILITY(U,$J,358.3,24200,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,23931,1,3,0)
- ;;=3^Screening,Breast CA
- ;;^UTILITY(U,$J,358.3,23931,1,4,0)
- ;;=4^Z12.39
- ;;^UTILITY(U,$J,358.3,23931,2)
- ;;=^5062686
- ;;^UTILITY(U,$J,358.3,23932,0)
- ;;=Z12.4^^107^1196^70
- ;;^UTILITY(U,$J,358.3,23932,1,0)
+ ;;^UTILITY(U,$J,358.3,24200,1,3,0)
+ ;;=3^Long Term Opiate/Opioid Analgesic Use
+ ;;^UTILITY(U,$J,358.3,24200,1,4,0)
+ ;;=4^Z79.891
+ ;;^UTILITY(U,$J,358.3,24200,2)
+ ;;=^5063342
+ ;;^UTILITY(U,$J,358.3,24201,0)
+ ;;=F52.9^^82^1044^60
+ ;;^UTILITY(U,$J,358.3,24201,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,23932,1,3,0)
- ;;=3^Screening,Cervical CA
- ;;^UTILITY(U,$J,358.3,23932,1,4,0)
- ;;=4^Z12.4
- ;;^UTILITY(U,$J,358.3,23932,2)
- ;;=^5062687
- ;;^UTILITY(U,$J,358.3,23933,0)
- ;;=Z13.6^^107^1196^68
- ;;^UTILITY(U,$J,358.3,23933,1,0)
+ ;;^UTILITY(U,$J,358.3,24201,1,3,0)
+ ;;=3^Sexual Dysfnct Not d/t Substance/Known Physiolo Cond,Unspec
+ ;;^UTILITY(U,$J,358.3,24201,1,4,0)
+ ;;=4^F52.9
+ ;;^UTILITY(U,$J,358.3,24201,2)
+ ;;=^5003625
+ ;;^UTILITY(U,$J,358.3,24202,0)
+ ;;=R37.^^82^1044^62
+ ;;^UTILITY(U,$J,358.3,24202,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,23933,1,3,0)
- ;;=3^Screening,AAA
- ;;^UTILITY(U,$J,358.3,23933,1,4,0)
- ;;=4^Z13.6
- ;;^UTILITY(U,$J,358.3,23933,2)
- ;;=^5062707
- ;;^UTILITY(U,$J,358.3,23934,0)
- ;;=Z11.3^^107^1196^73
- ;;^UTILITY(U,$J,358.3,23934,1,0)
+ ;;^UTILITY(U,$J,358.3,24202,1,3,0)
+ ;;=3^Sexual Dysfunction,Unspec
+ ;;^UTILITY(U,$J,358.3,24202,1,4,0)
+ ;;=4^R37.
+ ;;^UTILITY(U,$J,358.3,24202,2)
+ ;;=^5019339
+ ;;^UTILITY(U,$J,358.3,24203,0)
+ ;;=F52.22^^82^1044^24
+ ;;^UTILITY(U,$J,358.3,24203,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,23934,1,3,0)
- ;;=3^Screening,STI
- ;;^UTILITY(U,$J,358.3,23934,1,4,0)
- ;;=4^Z11.3
- ;;^UTILITY(U,$J,358.3,23934,2)
- ;;=^5062672
- ;;^UTILITY(U,$J,358.3,23935,0)
- ;;=Z13.1^^107^1196^72
- ;;^UTILITY(U,$J,358.3,23935,1,0)
+ ;;^UTILITY(U,$J,358.3,24203,1,3,0)
+ ;;=3^Female Sexual Arousal Disorder
+ ;;^UTILITY(U,$J,358.3,24203,1,4,0)
+ ;;=4^F52.22
+ ;;^UTILITY(U,$J,358.3,24203,2)
+ ;;=^5003621
+ ;;^UTILITY(U,$J,358.3,24204,0)
+ ;;=F52.8^^82^1044^61
+ ;;^UTILITY(U,$J,358.3,24204,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,23935,1,3,0)
- ;;=3^Screening,Diabetes
- ;;^UTILITY(U,$J,358.3,23935,1,4,0)
- ;;=4^Z13.1
- ;;^UTILITY(U,$J,358.3,23935,2)
- ;;=^5062700
- ;;^UTILITY(U,$J,358.3,23936,0)
- ;;=M48.061^^107^1196^78
- ;;^UTILITY(U,$J,358.3,23936,1,0)
+ ;;^UTILITY(U,$J,358.3,24204,1,3,0)
+ ;;=3^Sexual Dysfnct Not d/t Substance/Known Physiolo Cond,Other
+ ;;^UTILITY(U,$J,358.3,24204,1,4,0)
+ ;;=4^F52.8
+ ;;^UTILITY(U,$J,358.3,24204,2)
+ ;;=^5003624
+ ;;^UTILITY(U,$J,358.3,24205,0)
+ ;;=N17.0^^82^1045^3
+ ;;^UTILITY(U,$J,358.3,24205,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,23936,1,3,0)
- ;;=3^Spinal Stenosis,Lumbar Region w/o Neurogenic Claudication
- ;;^UTILITY(U,$J,358.3,23936,1,4,0)
- ;;=4^M48.061
- ;;^UTILITY(U,$J,358.3,23936,2)
- ;;=^5151513
- ;;^UTILITY(U,$J,358.3,23937,0)
- ;;=M48.062^^107^1196^77
- ;;^UTILITY(U,$J,358.3,23937,1,0)
+ ;;^UTILITY(U,$J,358.3,24205,1,3,0)
+ ;;=3^Acute Kidney Failure w/ Tubular Necrosis
+ ;;^UTILITY(U,$J,358.3,24205,1,4,0)
+ ;;=4^N17.0
+ ;;^UTILITY(U,$J,358.3,24205,2)
+ ;;=^5015598
+ ;;^UTILITY(U,$J,358.3,24206,0)
+ ;;=N17.1^^82^1045^1
+ ;;^UTILITY(U,$J,358.3,24206,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,23937,1,3,0)
- ;;=3^Spinal Stenosis,Lumbar Region w/ Neurogenic Claudication
- ;;^UTILITY(U,$J,358.3,23937,1,4,0)
- ;;=4^M48.062
- ;;^UTILITY(U,$J,358.3,23937,2)
- ;;=^5151514
- ;;^UTILITY(U,$J,358.3,23938,0)
- ;;=Z53.21^^107^1196^58
- ;;^UTILITY(U,$J,358.3,23938,1,0)
+ ;;^UTILITY(U,$J,358.3,24206,1,3,0)
+ ;;=3^Acute Kidney Failure w/ Acute Cortical Necrosis
+ ;;^UTILITY(U,$J,358.3,24206,1,4,0)
+ ;;=4^N17.1
+ ;;^UTILITY(U,$J,358.3,24206,2)
+ ;;=^5015599
+ ;;^UTILITY(U,$J,358.3,24207,0)
+ ;;=N17.2^^82^1045^2
+ ;;^UTILITY(U,$J,358.3,24207,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,23938,1,3,0)
- ;;=3^PT left w/o being seen
- ;;^UTILITY(U,$J,358.3,23938,1,4,0)
- ;;=4^Z53.21
- ;;^UTILITY(U,$J,358.3,23938,2)
- ;;=^5063096
- ;;^UTILITY(U,$J,358.3,23939,0)
- ;;=Z78.9^^107^1196^79
- ;;^UTILITY(U,$J,358.3,23939,1,0)
+ ;;^UTILITY(U,$J,358.3,24207,1,3,0)
+ ;;=3^Acute Kidney Failure w/ Medullary Necrosis
+ ;;^UTILITY(U,$J,358.3,24207,1,4,0)
+ ;;=4^N17.2
+ ;;^UTILITY(U,$J,358.3,24207,2)
+ ;;=^5015600
+ ;;^UTILITY(U,$J,358.3,24208,0)
+ ;;=N17.8^^82^1045^4
+ ;;^UTILITY(U,$J,358.3,24208,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,23939,1,3,0)
- ;;=3^Triaged to Primary Care Clinic
- ;;^UTILITY(U,$J,358.3,23939,1,4,0)
- ;;=4^Z78.9
- ;;^UTILITY(U,$J,358.3,23939,2)
- ;;=^5063329
- ;;^UTILITY(U,$J,358.3,23940,0)
- ;;=I48.20^^107^1196^8
- ;;^UTILITY(U,$J,358.3,23940,1,0)
+ ;;^UTILITY(U,$J,358.3,24208,1,3,0)
+ ;;=3^Acute Kidney Failure,Other
+ ;;^UTILITY(U,$J,358.3,24208,1,4,0)
+ ;;=4^N17.8
+ ;;^UTILITY(U,$J,358.3,24208,2)
+ ;;=^5015601
+ ;;^UTILITY(U,$J,358.3,24209,0)
+ ;;=N17.9^^82^1045^5
+ ;;^UTILITY(U,$J,358.3,24209,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,23940,1,3,0)
- ;;=3^Atrial Fibrillation,Chronic,Unspec
- ;;^UTILITY(U,$J,358.3,23940,1,4,0)
- ;;=4^I48.20
- ;;^UTILITY(U,$J,358.3,23940,2)
- ;;=^5158048
- ;;^UTILITY(U,$J,358.3,23941,0)
- ;;=M54.6^^107^1196^61
- ;;^UTILITY(U,$J,358.3,23941,1,0)
+ ;;^UTILITY(U,$J,358.3,24209,1,3,0)
+ ;;=3^Acute Kidney Failure,Unspec
+ ;;^UTILITY(U,$J,358.3,24209,1,4,0)
+ ;;=4^N17.9
+ ;;^UTILITY(U,$J,358.3,24209,2)
+ ;;=^338532
+ ;;^UTILITY(U,$J,358.3,24210,0)
+ ;;=I20.0^^82^1046^4
+ ;;^UTILITY(U,$J,358.3,24210,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,23941,1,3,0)
- ;;=3^Pain in Thoracic Spine
- ;;^UTILITY(U,$J,358.3,23941,1,4,0)
- ;;=4^M54.6
- ;;^UTILITY(U,$J,358.3,23941,2)
- ;;=^272507
+ ;;^UTILITY(U,$J,358.3,24210,1,3,0)
+ ;;=3^Unstable Angina
+ ;;^UTILITY(U,$J,358.3,24210,1,4,0)
+ ;;=4^I20.0
+ ;;^UTILITY(U,$J,358.3,24210,2)
+ ;;=^5007076
+ ;;^UTILITY(U,$J,358.3,24211,0)
+ ;;=I20.1^^82^1046^1
+ ;;^UTILITY(U,$J,358.3,24211,1,0)
+ ;;=^358.31IA^4^2

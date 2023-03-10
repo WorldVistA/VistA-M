@@ -1,128 +1,126 @@
-IBDEI0XR ; ; 04-FEB-2020
- ;;3.0;IB ENCOUNTER FORM IMP/EXP;;FEB 04, 2020
+IBDEI0XR ; ; 01-FEB-2022
+ ;;3.0;IB ENCOUNTER FORM IMP/EXP;;FEB 01, 2022
  Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,999) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
- ;;^UTILITY(U,$J,358.3,15034,1,4,0)
- ;;=4^K56.600
- ;;^UTILITY(U,$J,358.3,15034,2)
- ;;=^5151421
- ;;^UTILITY(U,$J,358.3,15035,0)
- ;;=K56.601^^85^838^45
- ;;^UTILITY(U,$J,358.3,15035,1,0)
+ ;;^UTILITY(U,$J,358.3,15207,1,4,0)
+ ;;=4^M05.451
+ ;;^UTILITY(U,$J,358.3,15207,2)
+ ;;=^5009944
+ ;;^UTILITY(U,$J,358.3,15208,0)
+ ;;=M05.461^^58^717^65
+ ;;^UTILITY(U,$J,358.3,15208,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,15035,1,3,0)
- ;;=3^Obstruction of Sm Int,Complete
- ;;^UTILITY(U,$J,358.3,15035,1,4,0)
- ;;=4^K56.601
- ;;^UTILITY(U,$J,358.3,15035,2)
- ;;=^5151422
- ;;^UTILITY(U,$J,358.3,15036,0)
- ;;=K56.609^^85^838^49
- ;;^UTILITY(U,$J,358.3,15036,1,0)
+ ;;^UTILITY(U,$J,358.3,15208,1,3,0)
+ ;;=3^Rheumatoid Myopathy w/ Rheum Arthritis,Rt Knee
+ ;;^UTILITY(U,$J,358.3,15208,1,4,0)
+ ;;=4^M05.461
+ ;;^UTILITY(U,$J,358.3,15208,2)
+ ;;=^5009947
+ ;;^UTILITY(U,$J,358.3,15209,0)
+ ;;=M05.411^^58^717^66
+ ;;^UTILITY(U,$J,358.3,15209,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,15036,1,3,0)
- ;;=3^Obstruction of Sm Int,Partial or Complete
- ;;^UTILITY(U,$J,358.3,15036,1,4,0)
- ;;=4^K56.609
- ;;^UTILITY(U,$J,358.3,15036,2)
- ;;=^5151423
- ;;^UTILITY(U,$J,358.3,15037,0)
- ;;=K29.81^^85^838^21
- ;;^UTILITY(U,$J,358.3,15037,1,0)
+ ;;^UTILITY(U,$J,358.3,15209,1,3,0)
+ ;;=3^Rheumatoid Myopathy w/ Rheum Arthritis,Rt Shoulder
+ ;;^UTILITY(U,$J,358.3,15209,1,4,0)
+ ;;=4^M05.411
+ ;;^UTILITY(U,$J,358.3,15209,2)
+ ;;=^5009932
+ ;;^UTILITY(U,$J,358.3,15210,0)
+ ;;=M05.431^^58^717^67
+ ;;^UTILITY(U,$J,358.3,15210,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,15037,1,3,0)
- ;;=3^Duodenitis w/ Bleeding
- ;;^UTILITY(U,$J,358.3,15037,1,4,0)
- ;;=4^K29.81
- ;;^UTILITY(U,$J,358.3,15037,2)
- ;;=^5008555
- ;;^UTILITY(U,$J,358.3,15038,0)
- ;;=K29.80^^85^838^22
- ;;^UTILITY(U,$J,358.3,15038,1,0)
+ ;;^UTILITY(U,$J,358.3,15210,1,3,0)
+ ;;=3^Rheumatoid Myopathy w/ Rheum Arthritis,Rt Wrist
+ ;;^UTILITY(U,$J,358.3,15210,1,4,0)
+ ;;=4^M05.431
+ ;;^UTILITY(U,$J,358.3,15210,2)
+ ;;=^5009938
+ ;;^UTILITY(U,$J,358.3,15211,0)
+ ;;=M06.372^^58^717^68
+ ;;^UTILITY(U,$J,358.3,15211,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,15038,1,3,0)
- ;;=3^Duodenitis w/o Bleeding
- ;;^UTILITY(U,$J,358.3,15038,1,4,0)
- ;;=4^K29.80
- ;;^UTILITY(U,$J,358.3,15038,2)
- ;;=^5008554
- ;;^UTILITY(U,$J,358.3,15039,0)
- ;;=K26.7^^85^838^63
- ;;^UTILITY(U,$J,358.3,15039,1,0)
+ ;;^UTILITY(U,$J,358.3,15211,1,3,0)
+ ;;=3^Rheumatoid Nodule,Lt Ankle/Foot
+ ;;^UTILITY(U,$J,358.3,15211,1,4,0)
+ ;;=4^M06.372
+ ;;^UTILITY(U,$J,358.3,15211,2)
+ ;;=^5010116
+ ;;^UTILITY(U,$J,358.3,15212,0)
+ ;;=M06.322^^58^717^69
+ ;;^UTILITY(U,$J,358.3,15212,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,15039,1,3,0)
- ;;=3^Ulcer,Duodenal,Chronic w/o Bleed or Perforation
- ;;^UTILITY(U,$J,358.3,15039,1,4,0)
- ;;=4^K26.7
- ;;^UTILITY(U,$J,358.3,15039,2)
- ;;=^5008526
- ;;^UTILITY(U,$J,358.3,15040,0)
- ;;=B96.81^^85^839^27
- ;;^UTILITY(U,$J,358.3,15040,1,0)
+ ;;^UTILITY(U,$J,358.3,15212,1,3,0)
+ ;;=3^Rheumatoid Nodule,Lt Elbow
+ ;;^UTILITY(U,$J,358.3,15212,1,4,0)
+ ;;=4^M06.322
+ ;;^UTILITY(U,$J,358.3,15212,2)
+ ;;=^5010101
+ ;;^UTILITY(U,$J,358.3,15213,0)
+ ;;=M06.342^^58^717^70
+ ;;^UTILITY(U,$J,358.3,15213,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,15040,1,3,0)
- ;;=3^Helicobacter pylori w/ or w/o complications
- ;;^UTILITY(U,$J,358.3,15040,1,4,0)
- ;;=4^B96.81
- ;;^UTILITY(U,$J,358.3,15040,2)
- ;;=^5000857
- ;;^UTILITY(U,$J,358.3,15041,0)
- ;;=C16.9^^85^839^34
- ;;^UTILITY(U,$J,358.3,15041,1,0)
+ ;;^UTILITY(U,$J,358.3,15213,1,3,0)
+ ;;=3^Rheumatoid Nodule,Lt Hand
+ ;;^UTILITY(U,$J,358.3,15213,1,4,0)
+ ;;=4^M06.342
+ ;;^UTILITY(U,$J,358.3,15213,2)
+ ;;=^5010107
+ ;;^UTILITY(U,$J,358.3,15214,0)
+ ;;=M06.352^^58^717^71
+ ;;^UTILITY(U,$J,358.3,15214,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,15041,1,3,0)
- ;;=3^Malignant neoplasm,Unsp stomach
- ;;^UTILITY(U,$J,358.3,15041,1,4,0)
- ;;=4^C16.9
- ;;^UTILITY(U,$J,358.3,15041,2)
- ;;=^5000923
- ;;^UTILITY(U,$J,358.3,15042,0)
- ;;=I86.4^^85^839^15
- ;;^UTILITY(U,$J,358.3,15042,1,0)
+ ;;^UTILITY(U,$J,358.3,15214,1,3,0)
+ ;;=3^Rheumatoid Nodule,Lt Hip
+ ;;^UTILITY(U,$J,358.3,15214,1,4,0)
+ ;;=4^M06.352
+ ;;^UTILITY(U,$J,358.3,15214,2)
+ ;;=^5010110
+ ;;^UTILITY(U,$J,358.3,15215,0)
+ ;;=M06.362^^58^717^72
+ ;;^UTILITY(U,$J,358.3,15215,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,15042,1,3,0)
- ;;=3^Gastric varices
- ;;^UTILITY(U,$J,358.3,15042,1,4,0)
- ;;=4^I86.4
- ;;^UTILITY(U,$J,358.3,15042,2)
- ;;=^49382
- ;;^UTILITY(U,$J,358.3,15043,0)
- ;;=K25.0^^85^839^39
- ;;^UTILITY(U,$J,358.3,15043,1,0)
+ ;;^UTILITY(U,$J,358.3,15215,1,3,0)
+ ;;=3^Rheumatoid Nodule,Lt Knee
+ ;;^UTILITY(U,$J,358.3,15215,1,4,0)
+ ;;=4^M06.362
+ ;;^UTILITY(U,$J,358.3,15215,2)
+ ;;=^5010113
+ ;;^UTILITY(U,$J,358.3,15216,0)
+ ;;=M06.312^^58^717^73
+ ;;^UTILITY(U,$J,358.3,15216,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,15043,1,3,0)
- ;;=3^Ulcer,Stomach,Acute w/ Bleeding
- ;;^UTILITY(U,$J,358.3,15043,1,4,0)
- ;;=4^K25.0
- ;;^UTILITY(U,$J,358.3,15043,2)
- ;;=^270064
- ;;^UTILITY(U,$J,358.3,15044,0)
- ;;=K29.30^^85^839^22
- ;;^UTILITY(U,$J,358.3,15044,1,0)
+ ;;^UTILITY(U,$J,358.3,15216,1,3,0)
+ ;;=3^Rheumatoid Nodule,Lt Shoulder
+ ;;^UTILITY(U,$J,358.3,15216,1,4,0)
+ ;;=4^M06.312
+ ;;^UTILITY(U,$J,358.3,15216,2)
+ ;;=^5010098
+ ;;^UTILITY(U,$J,358.3,15217,0)
+ ;;=M06.332^^58^717^74
+ ;;^UTILITY(U,$J,358.3,15217,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,15044,1,3,0)
- ;;=3^Gastritis,Chronic superficial w/o bleeding
- ;;^UTILITY(U,$J,358.3,15044,1,4,0)
- ;;=4^K29.30
- ;;^UTILITY(U,$J,358.3,15044,2)
- ;;=^5008546
- ;;^UTILITY(U,$J,358.3,15045,0)
- ;;=K29.20^^85^839^19
- ;;^UTILITY(U,$J,358.3,15045,1,0)
+ ;;^UTILITY(U,$J,358.3,15217,1,3,0)
+ ;;=3^Rheumatoid Nodule,Lt Wrist
+ ;;^UTILITY(U,$J,358.3,15217,1,4,0)
+ ;;=4^M06.332
+ ;;^UTILITY(U,$J,358.3,15217,2)
+ ;;=^5010104
+ ;;^UTILITY(U,$J,358.3,15218,0)
+ ;;=M06.39^^58^717^75
+ ;;^UTILITY(U,$J,358.3,15218,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,15045,1,3,0)
- ;;=3^Gastritis,Alcoholic w/o bleeding
- ;;^UTILITY(U,$J,358.3,15045,1,4,0)
- ;;=4^K29.20
- ;;^UTILITY(U,$J,358.3,15045,2)
- ;;=^5008544
- ;;^UTILITY(U,$J,358.3,15046,0)
- ;;=K31.89^^85^839^37
- ;;^UTILITY(U,$J,358.3,15046,1,0)
+ ;;^UTILITY(U,$J,358.3,15218,1,3,0)
+ ;;=3^Rheumatoid Nodule,Multiple Sites
+ ;;^UTILITY(U,$J,358.3,15218,1,4,0)
+ ;;=4^M06.39
+ ;;^UTILITY(U,$J,358.3,15218,2)
+ ;;=^5010119
+ ;;^UTILITY(U,$J,358.3,15219,0)
+ ;;=M06.371^^58^717^76
+ ;;^UTILITY(U,$J,358.3,15219,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,15046,1,3,0)
- ;;=3^Portal hypertensive gastropathy
- ;;^UTILITY(U,$J,358.3,15046,1,4,0)
- ;;=4^K31.89
- ;;^UTILITY(U,$J,358.3,15046,2)
- ;;=^5008569
+ ;;^UTILITY(U,$J,358.3,15219,1,3,0)
+ ;;=3^Rheumatoid Nodule,Rt Ankle/Foot
+ ;;^UTILITY(U,$J,358.3,15219,1,4,0)
+ ;;=4^M06.371

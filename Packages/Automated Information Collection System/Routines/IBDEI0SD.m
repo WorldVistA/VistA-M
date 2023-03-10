@@ -1,120 +1,122 @@
-IBDEI0SD ; ; 04-FEB-2020
- ;;3.0;IB ENCOUNTER FORM IMP/EXP;;FEB 04, 2020
+IBDEI0SD ; ; 01-FEB-2022
+ ;;3.0;IB ENCOUNTER FORM IMP/EXP;;FEB 01, 2022
  Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,999) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
- ;;^UTILITY(U,$J,358.3,12649,2)
- ;;=^5007597
- ;;^UTILITY(U,$J,358.3,12650,0)
- ;;=I70.244^^80^786^18
- ;;^UTILITY(U,$J,358.3,12650,1,0)
+ ;;^UTILITY(U,$J,358.3,12770,0)
+ ;;=H40.1412^^51^619^32
+ ;;^UTILITY(U,$J,358.3,12770,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,12650,1,3,0)
- ;;=3^Athscl Native Arteries of Left Leg w/ Heel/Midfoot Ulcer
- ;;^UTILITY(U,$J,358.3,12650,1,4,0)
- ;;=4^I70.244
- ;;^UTILITY(U,$J,358.3,12650,2)
- ;;=^5007598
- ;;^UTILITY(U,$J,358.3,12651,0)
- ;;=I70.245^^80^786^17
- ;;^UTILITY(U,$J,358.3,12651,1,0)
+ ;;^UTILITY(U,$J,358.3,12770,1,3,0)
+ ;;=3^Pseudoexfoliative GLC,OD,Moderate Stage
+ ;;^UTILITY(U,$J,358.3,12770,1,4,0)
+ ;;=4^H40.1412
+ ;;^UTILITY(U,$J,358.3,12770,2)
+ ;;=^5138019
+ ;;^UTILITY(U,$J,358.3,12771,0)
+ ;;=H40.1413^^51^619^33
+ ;;^UTILITY(U,$J,358.3,12771,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,12651,1,3,0)
- ;;=3^Athscl Native Arteries of Left Leg w/ Foot Ulcer
- ;;^UTILITY(U,$J,358.3,12651,1,4,0)
- ;;=4^I70.245
- ;;^UTILITY(U,$J,358.3,12651,2)
- ;;=^5007599
- ;;^UTILITY(U,$J,358.3,12652,0)
- ;;=I70.248^^80^786^19
- ;;^UTILITY(U,$J,358.3,12652,1,0)
+ ;;^UTILITY(U,$J,358.3,12771,1,3,0)
+ ;;=3^Pseudoexfoliative GLC,OD,Severe Stage
+ ;;^UTILITY(U,$J,358.3,12771,1,4,0)
+ ;;=4^H40.1413
+ ;;^UTILITY(U,$J,358.3,12771,2)
+ ;;=^5138020
+ ;;^UTILITY(U,$J,358.3,12772,0)
+ ;;=H40.1414^^51^619^34
+ ;;^UTILITY(U,$J,358.3,12772,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,12652,1,3,0)
- ;;=3^Athscl Native Arteries of Left Leg w/ Lower Leg Ulcer
- ;;^UTILITY(U,$J,358.3,12652,1,4,0)
- ;;=4^I70.248
- ;;^UTILITY(U,$J,358.3,12652,2)
- ;;=^5007600
- ;;^UTILITY(U,$J,358.3,12653,0)
- ;;=I70.249^^80^786^21
- ;;^UTILITY(U,$J,358.3,12653,1,0)
+ ;;^UTILITY(U,$J,358.3,12772,1,3,0)
+ ;;=3^Pseudoexfoliative GLC,OD,Indeterminate Stage
+ ;;^UTILITY(U,$J,358.3,12772,1,4,0)
+ ;;=4^H40.1414
+ ;;^UTILITY(U,$J,358.3,12772,2)
+ ;;=^5138021
+ ;;^UTILITY(U,$J,358.3,12773,0)
+ ;;=H40.1421^^51^619^36
+ ;;^UTILITY(U,$J,358.3,12773,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,12653,1,3,0)
- ;;=3^Athscl Native Arteries of Left Leg w/ Ulcer,Unspec Site
- ;;^UTILITY(U,$J,358.3,12653,1,4,0)
- ;;=4^I70.249
- ;;^UTILITY(U,$J,358.3,12653,2)
- ;;=^5007601
- ;;^UTILITY(U,$J,358.3,12654,0)
- ;;=I70.331^^80^786^64
- ;;^UTILITY(U,$J,358.3,12654,1,0)
+ ;;^UTILITY(U,$J,358.3,12773,1,3,0)
+ ;;=3^Pseudoexfoliative GLC,OS,Mild Stage
+ ;;^UTILITY(U,$J,358.3,12773,1,4,0)
+ ;;=4^H40.1421
+ ;;^UTILITY(U,$J,358.3,12773,2)
+ ;;=^5138023
+ ;;^UTILITY(U,$J,358.3,12774,0)
+ ;;=H40.1422^^51^619^37
+ ;;^UTILITY(U,$J,358.3,12774,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,12654,1,3,0)
- ;;=3^Athscl of Bypass Graft of Right Leg w/ Thigh Ulcer
- ;;^UTILITY(U,$J,358.3,12654,1,4,0)
- ;;=4^I70.331
- ;;^UTILITY(U,$J,358.3,12654,2)
- ;;=^5007626
- ;;^UTILITY(U,$J,358.3,12655,0)
- ;;=I70.332^^80^786^65
- ;;^UTILITY(U,$J,358.3,12655,1,0)
+ ;;^UTILITY(U,$J,358.3,12774,1,3,0)
+ ;;=3^Pseudoexfoliative GLC,OS,Moderate Stage
+ ;;^UTILITY(U,$J,358.3,12774,1,4,0)
+ ;;=4^H40.1422
+ ;;^UTILITY(U,$J,358.3,12774,2)
+ ;;=^5138024
+ ;;^UTILITY(U,$J,358.3,12775,0)
+ ;;=H40.1423^^51^619^38
+ ;;^UTILITY(U,$J,358.3,12775,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,12655,1,3,0)
- ;;=3^Athscl of Bypass Graft of Right Leg w/ Calf Ulcer
- ;;^UTILITY(U,$J,358.3,12655,1,4,0)
- ;;=4^I70.332
- ;;^UTILITY(U,$J,358.3,12655,2)
- ;;=^5007627
- ;;^UTILITY(U,$J,358.3,12656,0)
- ;;=I70.333^^80^786^66
- ;;^UTILITY(U,$J,358.3,12656,1,0)
+ ;;^UTILITY(U,$J,358.3,12775,1,3,0)
+ ;;=3^Pseudoexfoliative GLC,OS,Severe Stage
+ ;;^UTILITY(U,$J,358.3,12775,1,4,0)
+ ;;=4^H40.1423
+ ;;^UTILITY(U,$J,358.3,12775,2)
+ ;;=^5138025
+ ;;^UTILITY(U,$J,358.3,12776,0)
+ ;;=H40.1424^^51^619^39
+ ;;^UTILITY(U,$J,358.3,12776,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,12656,1,3,0)
- ;;=3^Athscl of Bypass Graft of Right Leg w/ Ankle Ulcer
- ;;^UTILITY(U,$J,358.3,12656,1,4,0)
- ;;=4^I70.333
- ;;^UTILITY(U,$J,358.3,12656,2)
- ;;=^5007628
- ;;^UTILITY(U,$J,358.3,12657,0)
- ;;=I70.334^^80^786^67
- ;;^UTILITY(U,$J,358.3,12657,1,0)
+ ;;^UTILITY(U,$J,358.3,12776,1,3,0)
+ ;;=3^Pseudoexfoliative GLC,OS,Indeterminate Stage
+ ;;^UTILITY(U,$J,358.3,12776,1,4,0)
+ ;;=4^H40.1424
+ ;;^UTILITY(U,$J,358.3,12776,2)
+ ;;=^5138026
+ ;;^UTILITY(U,$J,358.3,12777,0)
+ ;;=H40.1420^^51^619^40
+ ;;^UTILITY(U,$J,358.3,12777,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,12657,1,3,0)
- ;;=3^Athscl of Bypass Graft of Right Leg w/ Heel/Midfoot Ulcer
- ;;^UTILITY(U,$J,358.3,12657,1,4,0)
- ;;=4^I70.334
- ;;^UTILITY(U,$J,358.3,12657,2)
- ;;=^5007629
- ;;^UTILITY(U,$J,358.3,12658,0)
- ;;=I70.335^^80^786^68
- ;;^UTILITY(U,$J,358.3,12658,1,0)
+ ;;^UTILITY(U,$J,358.3,12777,1,3,0)
+ ;;=3^Pseudoexfoliative GLC,OS,Stage Unspec
+ ;;^UTILITY(U,$J,358.3,12777,1,4,0)
+ ;;=4^H40.1420
+ ;;^UTILITY(U,$J,358.3,12777,2)
+ ;;=^5138022
+ ;;^UTILITY(U,$J,358.3,12778,0)
+ ;;=H40.1431^^51^619^41
+ ;;^UTILITY(U,$J,358.3,12778,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,12658,1,3,0)
- ;;=3^Athscl of Bypass Graft of Right Leg w/ Foot Ulcer
- ;;^UTILITY(U,$J,358.3,12658,1,4,0)
- ;;=4^I70.335
- ;;^UTILITY(U,$J,358.3,12658,2)
- ;;=^5007630
- ;;^UTILITY(U,$J,358.3,12659,0)
- ;;=I70.338^^80^786^69
- ;;^UTILITY(U,$J,358.3,12659,1,0)
+ ;;^UTILITY(U,$J,358.3,12778,1,3,0)
+ ;;=3^Pseudoexfoliative GLC,OU,Mild Stage
+ ;;^UTILITY(U,$J,358.3,12778,1,4,0)
+ ;;=4^H40.1431
+ ;;^UTILITY(U,$J,358.3,12778,2)
+ ;;=^5138028
+ ;;^UTILITY(U,$J,358.3,12779,0)
+ ;;=H40.1432^^51^619^42
+ ;;^UTILITY(U,$J,358.3,12779,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,12659,1,3,0)
- ;;=3^Athscl of Bypass Graft of Right Leg w/ Lower Leg Ulcer
- ;;^UTILITY(U,$J,358.3,12659,1,4,0)
- ;;=4^I70.338
- ;;^UTILITY(U,$J,358.3,12659,2)
- ;;=^5007631
- ;;^UTILITY(U,$J,358.3,12660,0)
- ;;=I70.339^^80^786^70
- ;;^UTILITY(U,$J,358.3,12660,1,0)
+ ;;^UTILITY(U,$J,358.3,12779,1,3,0)
+ ;;=3^Pseudoexfoliative GLC,OU,Moderate Stage
+ ;;^UTILITY(U,$J,358.3,12779,1,4,0)
+ ;;=4^H40.1432
+ ;;^UTILITY(U,$J,358.3,12779,2)
+ ;;=^5138029
+ ;;^UTILITY(U,$J,358.3,12780,0)
+ ;;=H40.1433^^51^619^43
+ ;;^UTILITY(U,$J,358.3,12780,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,12660,1,3,0)
- ;;=3^Athscl of Bypass Graft of Right Leg w/ Ulcer,Unspec Site
- ;;^UTILITY(U,$J,358.3,12660,1,4,0)
- ;;=4^I70.339
- ;;^UTILITY(U,$J,358.3,12660,2)
- ;;=^5007632
- ;;^UTILITY(U,$J,358.3,12661,0)
- ;;=I70.341^^80^786^62
- ;;^UTILITY(U,$J,358.3,12661,1,0)
+ ;;^UTILITY(U,$J,358.3,12780,1,3,0)
+ ;;=3^Pseudoexfoliative GLC,OU,Severe Stage
+ ;;^UTILITY(U,$J,358.3,12780,1,4,0)
+ ;;=4^H40.1433
+ ;;^UTILITY(U,$J,358.3,12780,2)
+ ;;=^5138030
+ ;;^UTILITY(U,$J,358.3,12781,0)
+ ;;=H40.1434^^51^619^44
+ ;;^UTILITY(U,$J,358.3,12781,1,0)
  ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,12781,1,3,0)
+ ;;=3^Pseudoexfoliative GLC,OU,Indeterminate Stage
+ ;;^UTILITY(U,$J,358.3,12781,1,4,0)
+ ;;=4^H40.1434

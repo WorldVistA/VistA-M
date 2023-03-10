@@ -1,5 +1,5 @@
 ECXSCLD1 ;ALB/DAN <CONT> Enter, Print and Edit Entries in 728.44 ;4/4/19  15:52
- ;;3.0;DSS EXTRACTS;**132,136,144,149,154,161,166,174**;Dec 22, 1997;Build 33
+ ;;3.0;DSS EXTRACTS;**132,136,144,149,154,161,166,174,184**;Dec 22, 1997;Build 124
  ;
 HEAD ; header for worksheet 149 - moved from ECXSCLD due to size restraints. 
  D:PG SS Q:QFLG
@@ -11,14 +11,18 @@ HEAD ; header for worksheet 149 - moved from ECXSCLD due to size restraints.
  I (ECALL'="D") D  ;149 
  .W !
  .W !,?1,"CLINIC",?33,"STOP",?42,"CREDIT",?52,"ACTION",?63,"CHAR4",?70,"MCA",?77,"C/N",?87,"DSS",?108,"NON-OR" ;154 CVW,161,166
+ .W ?124,"PROVIDER" ;184
  .W !,?33,"CODE",?42,"STOP",?63,"CODE",?70,"LABOR",?87,"PRODUCT",?108,"DSS" ;161,166
+ .W ?124,"STATION" ;184
  .W !,?42,"CODE",?70,"CODE",?87,"DEPARTMENT",?108,"IDENTIFIER" ;144,149 CVW,161
  .W !,"( * - currently inactive)" ;154 CVW
  .W !,LN
  I (ECALL="D") D  ;149 
  .W !
  .W !,"CLINIC NAME",?32,"CLINIC",?44,"STOP",?50,"CRED",?55,"CHAR4",?61,"MCA",?67,"CLINIC",?76,"DIV" ;154,161,166 CVW
+ .W ?82,"PROVIDER" ;184
  .W !,?32,"IEN",?44,"CODE",?50,"STOP",?55,"CODE",?61,"LABOR",?67,"APPT" ;154,161,166 CVW
+ .W ?82,"LOCATION" ;184
  .W !,?50,"CODE",?61,"CODE",?67,"LENGTH" ;154,161,166 CVW
  .W !,LN
  Q
@@ -62,6 +66,7 @@ SHOWEM ; list clinics for worksheet 149 moved from ECXSCLD due to size.
  W ?33,$P(ECD,U,1),?42,$P(ECD,U,2),?55,$P(ECD,U,5)
  ;F J=1:1:5 W ?$P("28,35,44,50,62",",",J),$S($P(ECD,U,J):$P(ECD,U,J),J<3:"",1:"_____")
  S ECN=$P($G(^ECX(728.441,+$P(ECD,U,7),0)),U) W ?63,$S(ECN]"":ECN,1:"____"),?70,$$GET1^DIQ(728.442,$P(ECD,U,13),.01),?78,ECNON,?87,$P(ECD,U,10),?108,$P(ECD,U,8) ;161
+ W ?124,$$GET1^DIQ(4,$P(ECD,U,14),99,"E") ;184
  Q
 ERRPRNT ;print errors
  I $G(ERR)>0,$D(ECXERR) D
@@ -134,6 +139,7 @@ EDIT1 ;check input & update field #3; allow '@' deletion; allow bypass empty wit
  Q
 EXPORT ;Export clinic review data to spreedsheet
  N DIC,DIR,FLDS,BY,FR,L,DIOBEG,DIR,DIS,Y,DIRUT,POP,DUOUT,DTOUT,DIROUT,X,%ZIS,IOP,CCNT,ECXCLX,APPL,ECXMCA ;144,166
+ N STA6A ;184
  W !!,"Select which clinics to include on the spreadsheet for exporting." ;144
  S DIR(0)="SAO^A:ALL CLINICS;C:ACTIVE CLINICS;D:DUPLICATE CLINICS;I:INACTIVE CLINICS;U:UNREVIEWED CLINICS",DIR("?")="Enter letter associated with the group of clinics to include on the spreadsheet" ;149
  S DIR("A",1)="Select (A)ll, a(C)tive, (D)uplicate, (I)nactive, " ;149
@@ -143,23 +149,24 @@ EXPORT ;Export clinic review data to spreedsheet
  I ECALL'="D" D
  .W !!,"To ensure all data is captured during the export:" ;144
  .;174 Update logging instructions
- .W !!,"1. In reflections, change the row margin by clicking on one of the change margin",!,"   icons with a value of 225 or higher if you have them."
+ .;184 Update the width from 225 to 255 characters.
+ .W !!,"1. In reflections, change the row margin by clicking on one of the change margin",!,"   icons with a value of 255 or higher if you have them."
  .W !,"   You may also set the margin manually by clicking on appearance, expanded",!,"   terminal settings (arrow in lower right corner), set up display settings."
- .W !,"   Scroll to the bottom and change the number of characters per row to 225"
+ .W !,"   Scroll to the bottom and change the number of characters per row to 255"
  .W !,"   or higher.  Click 'OK' to save your change."
  .W !,"2. Click on 'capture setup' or 'tools, logging (arrow in lower right corner)'",!,"   depending on your setup.  Ensure the logging settings form only has 'to disk'",!,"   selected and enter"
  .W " the path and filename where the output should be stored."
  .W !,"3. Click 'start capture' or 'start logging', depending on your interface."
- .W !,"4. The DEVICE input for the columns should also contain a large enough",!,"   parameter (e.g. 225).  The DEVICE prompt is defaulted to 0;225;99999 for you.",!,"   You may change it if need be." ;144
- .W !,"Example: DEVICE: 0;225;99999 *Where 0 is your screen, 225 is the margin width",!?17,"and 99999 is the screen length."
+ .W !,"4. The DEVICE input for the columns should also contain a large enough",!,"   parameter (e.g. 255).  The DEVICE prompt is defaulted to 0;255;99999 for you.",!,"   You may change it if need be." ;144
+ .W !,"Example: DEVICE: 0;255;99999 *Where 0 is your screen, 255 is the margin width",!?17,"and 99999 is the screen length."
  .W !!,"NOTE:  In order for all number fields, such as SSN and Feeder Key, to be",!,"displayed correctly in the spreadsheet, these fields must be formatted as Text",!,"when importing the data into the spreadsheet.",! ;144
  .S DIC="^ECX(728.44,",FLDS="[ECX CLINIC REVIEW EXPORT]",BY="NUMBER",FR="",L=0
  .;The following line has been patched in 136 and 144
  .S DIOBEG="W ""IEN^Clinic^Stop Code^Credit Stop Code^Action^Last Approved Date^CHAR4 Code^MCA Labor Code^Inact Date^React Date^Clinic Type" ;154,166 CVW
- .S DIOBEG=DIOBEG_"^App Len^Div^App Type^Non Cnt^OOS^OOS Calling Pkg^Var Length Appt^DSS Prod Dept^Non-OR DSS ID""" ;161,166
+ .S DIOBEG=DIOBEG_"^App Len^Div^App Type^Non Cnt^OOS^OOS Calling Pkg^Var Length Appt^DSS Prod Dept^Non-OR DSS ID^PROVIDER STATION""" ;161,166,184
  .S DIS(0)=$S(Y="U":"I $P(^ECX(728.44,D0,0),U,7)=""""",Y="I":"I $P(^ECX(728.44,D0,0),U,10)'=""""",Y="C":"I $P(^ECX(728.44,D0,0),U,10)=""""",1:"I 1") ;144
  .S DIS(1)="I $P($G(^SC(D0,0)),U,3)=""C""" ;144 Only include clinics in report
- .S %ZIS="N",%ZIS("B")="0;225;99999" D ^%ZIS Q:POP  S IOP=ION_";"_IOM_";"_IOSL ;144
+ .S %ZIS="N",%ZIS("B")="0;255;99999" D ^%ZIS Q:POP  S IOP=ION_";"_IOM_";"_IOSL ;144
  .D EN1^DIP
  I ECALL="D" D
  .K ^TMP("EC",$J)
@@ -169,12 +176,13 @@ EXPORT ;Export clinic review data to spreedsheet
  ..I $P($G(^SC(DC,0)),U,3)'="C"!($P(^ECX(728.44,DC,0),U,10)'="") Q  ;149 Don't include non clinic types or inactive ones
  ..S STOPC=$P(ECSDC,U,2),CREDSC=$P(ECSDC,U,3),NATC=$P(ECSDC,U,8) ;154 CVW
  ..S DIV=$$GET1^DIQ(44,$P(ECSDC,U),3.5,"I"),APPL=$$GET1^DIQ(44,$P(ECSDC,U),1912,"I"),ECXMCA=$$GET1^DIQ(728.442,$P(ECSDC,U,14),.01) ;166
+ ..S STA6A=$$GET1^DIQ(4,$P(ECSDC,U,15),99,"E") ;184
  ..I 'FIRST D
  ...I $D(^TMP("EC",$J,1_STOPC_CREDSC_NATC_DIV_APPL_ECXMCA)) D  ;166
  ....S ^TMP("EC",$J,1_STOPC_CREDSC_NATC_DIV_APPL_ECXMCA,0)="1" ;166
- ...S ECSC=$P(^SC(DC,0),U),^TMP("EC",$J,1_STOPC_CREDSC_NATC_DIV_APPL_ECXMCA,DC,ECSC)=ECSC_$S($P(ECSDC,U,10)'="":"*",1:"")_U_DC_U_STOPC_U_CREDSC_U_$$GET1^DIQ(728.441,NATC,.01)_U_ECXMCA_U_APPL_U_DIV ;166
+ ...S ECSC=$P(^SC(DC,0),U),^TMP("EC",$J,1_STOPC_CREDSC_NATC_DIV_APPL_ECXMCA,DC,ECSC)=ECSC_$S($P(ECSDC,U,10)'="":"*",1:"")_U_DC_U_STOPC_U_CREDSC_U_$$GET1^DIQ(728.441,NATC,.01)_U_ECXMCA_U_APPL_U_DIV_U_STA6A ;166, 
  ..I FIRST D
- ...S ECSC=$P(^SC(DC,0),U),^TMP("EC",$J,1_STOPC_CREDSC_NATC_DIV_APPL_ECXMCA,DC,ECSC)=ECSC_$S($P(ECSDC,U,10)'="":"*",1:"")_U_DC_U_STOPC_U_CREDSC_U_$$GET1^DIQ(728.441,NATC,.01)_U_ECXMCA_U_APPL_U_DIV,FIRST=0 ;166
+ ...S ECSC=$P(^SC(DC,0),U),^TMP("EC",$J,1_STOPC_CREDSC_NATC_DIV_APPL_ECXMCA,DC,ECSC)=ECSC_$S($P(ECSDC,U,10)'="":"*",1:"")_U_DC_U_STOPC_U_CREDSC_U_$$GET1^DIQ(728.441,NATC,.01)_U_ECXMCA_U_APPL_U_DIV_U_STA6A,FIRST=0 ;166, 184 - Added STA6A
  .K ^TMP($J,"ECXPORT")
  .S ^TMP($J,"ECXPORT",0)="CLINIC NAME^CLINIC IEN^STOP CODE^CREDIT STOP CODE^CHAR4 CODE^MCA LABOR CODE^CLINIC APPOINTMENT LENGTH^DIVISION"
  .S KEY="" F  S KEY=$O(^TMP("EC",$J,KEY)) Q:'+KEY  I $G(^TMP("EC",$J,KEY,0)) D
@@ -190,4 +198,21 @@ EXPORT ;Export clinic review data to spreedsheet
  ..S DIR(0)="E",DIR("A")="Press any key to continue" D ^DIR K DIR
  I IO'=IO(0) D ^%ZISC
  D HOME^%ZIS
+ Q
+EDIT ;Enter/Edit Clinic moved from ECXSCLD 
+  N ECXSTA6A,ECXARR ;184
+ I '$O(^ECX(728.44,0)) W !,"DSS Clinic stop code file does not exist",!! R X:5 K X Q
+ ;patch 142-added for loop to allow for new clinic prompt
+ F  W ! K DIC S DIC=728.44,DIC(0)="QEAMZ",DIC("S")="I $P($G(^SC(Y,0)),U,3)=""C""" D ^DIC Q:Y<0  D  ;149
+ .S CLIEN1=+Y
+ .W !!,"EXISTING CLINIC FILE DATA:" ;,?35,"EXISTING DSS CLINIC FILE DATA:" 154
+ .W !!,"STOP CODE:        ",$P(Y(0),U,2) ;,?35,"DSS STOP CODE :   ",$P(Y(0),U,4) 154
+ .W !,"CREDIT STOP CODE: ",$P(Y(0),U,3) ;,?35,"DSS CREDIT STOP CODE :",$P(Y(0),U,5) 154
+ .S ECXSTA6="",INSTIEN=$P(Y(0),U,15) ;184
+ .I INSTIEN'="" S ECXSTA6=$$GET1^DIQ(4,INSTIEN,99)  ;184
+ .W !,"PROVIDER STATION: ",ECXSTA6 ;184
+ .W !
+ .D ENDCHK^ECXSCLD
+ .;D EDIT1 154 **EDIT1 code was moved to ECXSCLD1 for space
+ D ENDX^ECXSCLD
  Q

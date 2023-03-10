@@ -1,122 +1,132 @@
-IBDEI16B ; ; 04-FEB-2020
- ;;3.0;IB ENCOUNTER FORM IMP/EXP;;FEB 04, 2020
+IBDEI16B ; ; 01-FEB-2022
+ ;;3.0;IB ENCOUNTER FORM IMP/EXP;;FEB 01, 2022
  Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,999) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
- ;;^UTILITY(U,$J,358.3,18858,0)
- ;;=F18.121^^91^965^16
- ;;^UTILITY(U,$J,358.3,18858,1,0)
+ ;;^UTILITY(U,$J,358.3,19041,1,4,0)
+ ;;=4^J70.0
+ ;;^UTILITY(U,$J,358.3,19041,2)
+ ;;=^269982
+ ;;^UTILITY(U,$J,358.3,19042,0)
+ ;;=J63.0^^64^845^2
+ ;;^UTILITY(U,$J,358.3,19042,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,18858,1,3,0)
- ;;=3^Inhalant Intoxication Delirium w/ Mild Use D/O
- ;;^UTILITY(U,$J,358.3,18858,1,4,0)
- ;;=4^F18.121
- ;;^UTILITY(U,$J,358.3,18858,2)
- ;;=^5003382
- ;;^UTILITY(U,$J,358.3,18859,0)
- ;;=F18.221^^91^965^17
- ;;^UTILITY(U,$J,358.3,18859,1,0)
+ ;;^UTILITY(U,$J,358.3,19042,1,3,0)
+ ;;=3^Aluminosis of Lung
+ ;;^UTILITY(U,$J,358.3,19042,1,4,0)
+ ;;=4^J63.0
+ ;;^UTILITY(U,$J,358.3,19042,2)
+ ;;=^5008265
+ ;;^UTILITY(U,$J,358.3,19043,0)
+ ;;=J63.1^^64^845^3
+ ;;^UTILITY(U,$J,358.3,19043,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,18859,1,3,0)
- ;;=3^Inhalant Intoxication Delirium w/ Mod/Sev Use D/O
- ;;^UTILITY(U,$J,358.3,18859,1,4,0)
- ;;=4^F18.221
- ;;^UTILITY(U,$J,358.3,18859,2)
- ;;=^5003395
- ;;^UTILITY(U,$J,358.3,18860,0)
- ;;=F18.921^^91^965^18
- ;;^UTILITY(U,$J,358.3,18860,1,0)
+ ;;^UTILITY(U,$J,358.3,19043,1,3,0)
+ ;;=3^Bauxite Fibrosis of Lung
+ ;;^UTILITY(U,$J,358.3,19043,1,4,0)
+ ;;=4^J63.1
+ ;;^UTILITY(U,$J,358.3,19043,2)
+ ;;=^5008266
+ ;;^UTILITY(U,$J,358.3,19044,0)
+ ;;=J63.2^^64^845^4
+ ;;^UTILITY(U,$J,358.3,19044,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,18860,1,3,0)
- ;;=3^Inhalant Intoxication Delirium w/o Use D/O
- ;;^UTILITY(U,$J,358.3,18860,1,4,0)
- ;;=4^F18.921
- ;;^UTILITY(U,$J,358.3,18860,2)
- ;;=^5003407
- ;;^UTILITY(U,$J,358.3,18861,0)
- ;;=F18.129^^91^965^19
- ;;^UTILITY(U,$J,358.3,18861,1,0)
+ ;;^UTILITY(U,$J,358.3,19044,1,3,0)
+ ;;=3^Berylliosis
+ ;;^UTILITY(U,$J,358.3,19044,1,4,0)
+ ;;=4^J63.2
+ ;;^UTILITY(U,$J,358.3,19044,2)
+ ;;=^13594
+ ;;^UTILITY(U,$J,358.3,19045,0)
+ ;;=J60.^^64^845^5
+ ;;^UTILITY(U,$J,358.3,19045,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,18861,1,3,0)
- ;;=3^Inhalant Intoxication w/ Mild Use D/O
- ;;^UTILITY(U,$J,358.3,18861,1,4,0)
- ;;=4^F18.129
- ;;^UTILITY(U,$J,358.3,18861,2)
- ;;=^5003383
- ;;^UTILITY(U,$J,358.3,18862,0)
- ;;=F18.229^^91^965^20
- ;;^UTILITY(U,$J,358.3,18862,1,0)
+ ;;^UTILITY(U,$J,358.3,19045,1,3,0)
+ ;;=3^Coalworker's Pneumoconiosis
+ ;;^UTILITY(U,$J,358.3,19045,1,4,0)
+ ;;=4^J60.
+ ;;^UTILITY(U,$J,358.3,19045,2)
+ ;;=^5008261
+ ;;^UTILITY(U,$J,358.3,19046,0)
+ ;;=J63.3^^64^845^9
+ ;;^UTILITY(U,$J,358.3,19046,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,18862,1,3,0)
- ;;=3^Inhalant Intoxication w/ Mod/Sev Use D/O
- ;;^UTILITY(U,$J,358.3,18862,1,4,0)
- ;;=4^F18.229
- ;;^UTILITY(U,$J,358.3,18862,2)
- ;;=^5003396
- ;;^UTILITY(U,$J,358.3,18863,0)
- ;;=F18.929^^91^965^21
- ;;^UTILITY(U,$J,358.3,18863,1,0)
+ ;;^UTILITY(U,$J,358.3,19046,1,3,0)
+ ;;=3^Graphite Fibrosis of Lung
+ ;;^UTILITY(U,$J,358.3,19046,1,4,0)
+ ;;=4^J63.3
+ ;;^UTILITY(U,$J,358.3,19046,2)
+ ;;=^5008267
+ ;;^UTILITY(U,$J,358.3,19047,0)
+ ;;=J65.^^64^845^10
+ ;;^UTILITY(U,$J,358.3,19047,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,18863,1,3,0)
- ;;=3^Inhalant Intoxication w/o Use D/O
- ;;^UTILITY(U,$J,358.3,18863,1,4,0)
- ;;=4^F18.929
- ;;^UTILITY(U,$J,358.3,18863,2)
- ;;=^5003408
- ;;^UTILITY(U,$J,358.3,18864,0)
- ;;=F18.180^^91^965^1
- ;;^UTILITY(U,$J,358.3,18864,1,0)
+ ;;^UTILITY(U,$J,358.3,19047,1,3,0)
+ ;;=3^Pneumoconiosis Associated w/ Tuberculosis
+ ;;^UTILITY(U,$J,358.3,19047,1,4,0)
+ ;;=4^J65.
+ ;;^UTILITY(U,$J,358.3,19047,2)
+ ;;=^5008272
+ ;;^UTILITY(U,$J,358.3,19048,0)
+ ;;=J61.^^64^845^11
+ ;;^UTILITY(U,$J,358.3,19048,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,18864,1,3,0)
- ;;=3^Inhalant Induced Anxiety D/O w/ Mild Use D/O
- ;;^UTILITY(U,$J,358.3,18864,1,4,0)
- ;;=4^F18.180
- ;;^UTILITY(U,$J,358.3,18864,2)
- ;;=^5003389
- ;;^UTILITY(U,$J,358.3,18865,0)
- ;;=F18.280^^91^965^2
- ;;^UTILITY(U,$J,358.3,18865,1,0)
+ ;;^UTILITY(U,$J,358.3,19048,1,3,0)
+ ;;=3^Pneumoconiosis d/t Asbestos/Oth Mineral Fibers
+ ;;^UTILITY(U,$J,358.3,19048,1,4,0)
+ ;;=4^J61.
+ ;;^UTILITY(U,$J,358.3,19048,2)
+ ;;=^5008262
+ ;;^UTILITY(U,$J,358.3,19049,0)
+ ;;=J62.8^^64^845^12
+ ;;^UTILITY(U,$J,358.3,19049,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,18865,1,3,0)
- ;;=3^Inhalant Induced Anxiety D/O w/ Mod/Sev Use D/O
- ;;^UTILITY(U,$J,358.3,18865,1,4,0)
- ;;=4^F18.280
- ;;^UTILITY(U,$J,358.3,18865,2)
- ;;=^5003402
- ;;^UTILITY(U,$J,358.3,18866,0)
- ;;=F18.980^^91^965^3
- ;;^UTILITY(U,$J,358.3,18866,1,0)
+ ;;^UTILITY(U,$J,358.3,19049,1,3,0)
+ ;;=3^Pneumoconiosis d/t Dust Containing Silica
+ ;;^UTILITY(U,$J,358.3,19049,1,4,0)
+ ;;=4^J62.8
+ ;;^UTILITY(U,$J,358.3,19049,2)
+ ;;=^5008264
+ ;;^UTILITY(U,$J,358.3,19050,0)
+ ;;=J62.0^^64^845^13
+ ;;^UTILITY(U,$J,358.3,19050,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,18866,1,3,0)
- ;;=3^Inhalant Induced Anxiety D/O w/o Use D/O
- ;;^UTILITY(U,$J,358.3,18866,1,4,0)
- ;;=4^F18.980
- ;;^UTILITY(U,$J,358.3,18866,2)
- ;;=^5003414
- ;;^UTILITY(U,$J,358.3,18867,0)
- ;;=F18.94^^91^965^6
- ;;^UTILITY(U,$J,358.3,18867,1,0)
+ ;;^UTILITY(U,$J,358.3,19050,1,3,0)
+ ;;=3^Pneumoconiosis d/t Talc Dust
+ ;;^UTILITY(U,$J,358.3,19050,1,4,0)
+ ;;=4^J62.0
+ ;;^UTILITY(U,$J,358.3,19050,2)
+ ;;=^5008263
+ ;;^UTILITY(U,$J,358.3,19051,0)
+ ;;=J63.4^^64^845^15
+ ;;^UTILITY(U,$J,358.3,19051,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,18867,1,3,0)
- ;;=3^Inhalant Induced Depressive D/O w/o Use D/O
- ;;^UTILITY(U,$J,358.3,18867,1,4,0)
- ;;=4^F18.94
- ;;^UTILITY(U,$J,358.3,18867,2)
- ;;=^5003409
- ;;^UTILITY(U,$J,358.3,18868,0)
- ;;=F18.17^^91^965^7
- ;;^UTILITY(U,$J,358.3,18868,1,0)
+ ;;^UTILITY(U,$J,358.3,19051,1,3,0)
+ ;;=3^Siderosis
+ ;;^UTILITY(U,$J,358.3,19051,1,4,0)
+ ;;=4^J63.4
+ ;;^UTILITY(U,$J,358.3,19051,2)
+ ;;=^5008268
+ ;;^UTILITY(U,$J,358.3,19052,0)
+ ;;=J63.5^^64^845^16
+ ;;^UTILITY(U,$J,358.3,19052,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,18868,1,3,0)
- ;;=3^Inhalant Induced Maj Neurocog D/O w/ Mild Use D/O
- ;;^UTILITY(U,$J,358.3,18868,1,4,0)
- ;;=4^F18.17
- ;;^UTILITY(U,$J,358.3,18868,2)
- ;;=^5003388
- ;;^UTILITY(U,$J,358.3,18869,0)
- ;;=F18.27^^91^965^8
- ;;^UTILITY(U,$J,358.3,18869,1,0)
+ ;;^UTILITY(U,$J,358.3,19052,1,3,0)
+ ;;=3^Stannosis
+ ;;^UTILITY(U,$J,358.3,19052,1,4,0)
+ ;;=4^J63.5
+ ;;^UTILITY(U,$J,358.3,19052,2)
+ ;;=^5008269
+ ;;^UTILITY(U,$J,358.3,19053,0)
+ ;;=J64.^^64^845^14
+ ;;^UTILITY(U,$J,358.3,19053,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,18869,1,3,0)
- ;;=3^Inhalant Induced Maj Neurocog D/O w/ Mod/Sev Use D/O
- ;;^UTILITY(U,$J,358.3,18869,1,4,0)
- ;;=4^F18.27
+ ;;^UTILITY(U,$J,358.3,19053,1,3,0)
+ ;;=3^Pneumoconiosis,Unspec
+ ;;^UTILITY(U,$J,358.3,19053,1,4,0)
+ ;;=4^J64.
+ ;;^UTILITY(U,$J,358.3,19053,2)
+ ;;=^5008271
+ ;;^UTILITY(U,$J,358.3,19054,0)
+ ;;=J82.81^^64^845^8
+ ;;^UTILITY(U,$J,358.3,19054,1,0)
+ ;;=^358.31IA^4^2

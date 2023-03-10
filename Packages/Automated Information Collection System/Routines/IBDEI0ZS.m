@@ -1,116 +1,128 @@
-IBDEI0ZS ; ; 04-FEB-2020
- ;;3.0;IB ENCOUNTER FORM IMP/EXP;;FEB 04, 2020
+IBDEI0ZS ; ; 01-FEB-2022
+ ;;3.0;IB ENCOUNTER FORM IMP/EXP;;FEB 01, 2022
  Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,999) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
- ;;^UTILITY(U,$J,358.3,15963,1,4,0)
- ;;=4^L97.312
- ;;^UTILITY(U,$J,358.3,15963,2)
- ;;=^5009516
- ;;^UTILITY(U,$J,358.3,15964,0)
- ;;=L97.313^^88^869^224
- ;;^UTILITY(U,$J,358.3,15964,1,0)
+ ;;^UTILITY(U,$J,358.3,16142,1,3,0)
+ ;;=3^Epistaxis
+ ;;^UTILITY(U,$J,358.3,16142,1,4,0)
+ ;;=4^R04.0
+ ;;^UTILITY(U,$J,358.3,16142,2)
+ ;;=^5019173
+ ;;^UTILITY(U,$J,358.3,16143,0)
+ ;;=R09.82^^61^767^21
+ ;;^UTILITY(U,$J,358.3,16143,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,15964,1,3,0)
- ;;=3^Non-Pressure Chr Ulcer of Right Ankle w/ Necrosis of Muscle
- ;;^UTILITY(U,$J,358.3,15964,1,4,0)
- ;;=4^L97.313
- ;;^UTILITY(U,$J,358.3,15964,2)
- ;;=^5009517
- ;;^UTILITY(U,$J,358.3,15965,0)
- ;;=L97.314^^88^869^225
- ;;^UTILITY(U,$J,358.3,15965,1,0)
+ ;;^UTILITY(U,$J,358.3,16143,1,3,0)
+ ;;=3^Postnasal Drip
+ ;;^UTILITY(U,$J,358.3,16143,1,4,0)
+ ;;=4^R09.82
+ ;;^UTILITY(U,$J,358.3,16143,2)
+ ;;=^97058
+ ;;^UTILITY(U,$J,358.3,16144,0)
+ ;;=K12.30^^61^767^20
+ ;;^UTILITY(U,$J,358.3,16144,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,15965,1,3,0)
- ;;=3^Non-Pressure Chr Ulcer of Right Ankle w/ Necrosis of Bone
- ;;^UTILITY(U,$J,358.3,15965,1,4,0)
- ;;=4^L97.314
- ;;^UTILITY(U,$J,358.3,15965,2)
- ;;=^5009518
- ;;^UTILITY(U,$J,358.3,15966,0)
- ;;=L97.319^^88^869^226
- ;;^UTILITY(U,$J,358.3,15966,1,0)
+ ;;^UTILITY(U,$J,358.3,16144,1,3,0)
+ ;;=3^Oral Mucositis,Unspec
+ ;;^UTILITY(U,$J,358.3,16144,1,4,0)
+ ;;=4^K12.30
+ ;;^UTILITY(U,$J,358.3,16144,2)
+ ;;=^5008486
+ ;;^UTILITY(U,$J,358.3,16145,0)
+ ;;=J30.1^^61^767^10
+ ;;^UTILITY(U,$J,358.3,16145,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,15966,1,3,0)
- ;;=3^Non-Pressure Chr Ulcer of Right Ankle w/ Unspec Severity
- ;;^UTILITY(U,$J,358.3,15966,1,4,0)
- ;;=4^L97.319
- ;;^UTILITY(U,$J,358.3,15966,2)
- ;;=^5009519
- ;;^UTILITY(U,$J,358.3,15967,0)
- ;;=L97.321^^88^869^177
- ;;^UTILITY(U,$J,358.3,15967,1,0)
+ ;;^UTILITY(U,$J,358.3,16145,1,3,0)
+ ;;=3^Allergic Rhinitis d/t Pollen
+ ;;^UTILITY(U,$J,358.3,16145,1,4,0)
+ ;;=4^J30.1
+ ;;^UTILITY(U,$J,358.3,16145,2)
+ ;;=^269906
+ ;;^UTILITY(U,$J,358.3,16146,0)
+ ;;=R09.81^^61^767^18
+ ;;^UTILITY(U,$J,358.3,16146,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,15967,1,3,0)
- ;;=3^Non-Pressure Chr Ulcer of Left Ankle w/ Breakdown of Skin
- ;;^UTILITY(U,$J,358.3,15967,1,4,0)
- ;;=4^L97.321
- ;;^UTILITY(U,$J,358.3,15967,2)
- ;;=^5009520
- ;;^UTILITY(U,$J,358.3,15968,0)
- ;;=L97.322^^88^869^178
- ;;^UTILITY(U,$J,358.3,15968,1,0)
+ ;;^UTILITY(U,$J,358.3,16146,1,3,0)
+ ;;=3^Nasal Congestion
+ ;;^UTILITY(U,$J,358.3,16146,1,4,0)
+ ;;=4^R09.81
+ ;;^UTILITY(U,$J,358.3,16146,2)
+ ;;=^5019203
+ ;;^UTILITY(U,$J,358.3,16147,0)
+ ;;=I69.928^^61^767^22
+ ;;^UTILITY(U,$J,358.3,16147,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,15968,1,3,0)
- ;;=3^Non-Pressure Chr Ulcer of Left Ankle w/ Fat Layer Exposed
- ;;^UTILITY(U,$J,358.3,15968,1,4,0)
- ;;=4^L97.322
- ;;^UTILITY(U,$J,358.3,15968,2)
- ;;=^5009521
- ;;^UTILITY(U,$J,358.3,15969,0)
- ;;=L97.323^^88^869^179
- ;;^UTILITY(U,$J,358.3,15969,1,0)
+ ;;^UTILITY(U,$J,358.3,16147,1,3,0)
+ ;;=3^Speech/Lang Deficit Following Cerebvasc Disease
+ ;;^UTILITY(U,$J,358.3,16147,1,4,0)
+ ;;=4^I69.928
+ ;;^UTILITY(U,$J,358.3,16147,2)
+ ;;=^5007557
+ ;;^UTILITY(U,$J,358.3,16148,0)
+ ;;=I69.328^^61^767^23
+ ;;^UTILITY(U,$J,358.3,16148,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,15969,1,3,0)
- ;;=3^Non-Pressure Chr Ulcer of Left Ankle w/ Necrosis of Muscle
- ;;^UTILITY(U,$J,358.3,15969,1,4,0)
- ;;=4^L97.323
- ;;^UTILITY(U,$J,358.3,15969,2)
- ;;=^5009522
- ;;^UTILITY(U,$J,358.3,15970,0)
- ;;=L97.324^^88^869^180
- ;;^UTILITY(U,$J,358.3,15970,1,0)
+ ;;^UTILITY(U,$J,358.3,16148,1,3,0)
+ ;;=3^Speech/Lang Deficit Following Cerebvasc Infarc
+ ;;^UTILITY(U,$J,358.3,16148,1,4,0)
+ ;;=4^I69.328
+ ;;^UTILITY(U,$J,358.3,16148,2)
+ ;;=^5007495
+ ;;^UTILITY(U,$J,358.3,16149,0)
+ ;;=H81.4^^61^767^25
+ ;;^UTILITY(U,$J,358.3,16149,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,15970,1,3,0)
- ;;=3^Non-Pressure Chr Ulcer of Left Ankle w/ Necrosis of Bone
- ;;^UTILITY(U,$J,358.3,15970,1,4,0)
- ;;=4^L97.324
- ;;^UTILITY(U,$J,358.3,15970,2)
- ;;=^5009523
- ;;^UTILITY(U,$J,358.3,15971,0)
- ;;=L97.329^^88^869^181
- ;;^UTILITY(U,$J,358.3,15971,1,0)
+ ;;^UTILITY(U,$J,358.3,16149,1,3,0)
+ ;;=3^Vertigo of Central Origin
+ ;;^UTILITY(U,$J,358.3,16149,1,4,0)
+ ;;=4^H81.4
+ ;;^UTILITY(U,$J,358.3,16149,2)
+ ;;=^269484
+ ;;^UTILITY(U,$J,358.3,16150,0)
+ ;;=E04.0^^61^768^21
+ ;;^UTILITY(U,$J,358.3,16150,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,15971,1,3,0)
- ;;=3^Non-Pressure Chr Ulcer of Left Ankle w/ Unspec Severity
- ;;^UTILITY(U,$J,358.3,15971,1,4,0)
- ;;=4^L97.329
- ;;^UTILITY(U,$J,358.3,15971,2)
- ;;=^5009524
- ;;^UTILITY(U,$J,358.3,15972,0)
- ;;=L97.411^^88^869^246
- ;;^UTILITY(U,$J,358.3,15972,1,0)
+ ;;^UTILITY(U,$J,358.3,16150,1,3,0)
+ ;;=3^Nontoxic Diffuse Goiter
+ ;;^UTILITY(U,$J,358.3,16150,1,4,0)
+ ;;=4^E04.0
+ ;;^UTILITY(U,$J,358.3,16150,2)
+ ;;=^5002477
+ ;;^UTILITY(U,$J,358.3,16151,0)
+ ;;=E04.1^^61^768^23
+ ;;^UTILITY(U,$J,358.3,16151,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,15972,1,3,0)
- ;;=3^Non-Pressure Chr Ulcer of Right Heel/Midfoot w/ Breakdown of Skin
- ;;^UTILITY(U,$J,358.3,15972,1,4,0)
- ;;=4^L97.411
- ;;^UTILITY(U,$J,358.3,15972,2)
- ;;=^5009530
- ;;^UTILITY(U,$J,358.3,15973,0)
- ;;=L97.412^^88^869^247
- ;;^UTILITY(U,$J,358.3,15973,1,0)
+ ;;^UTILITY(U,$J,358.3,16151,1,3,0)
+ ;;=3^Nontoxic Single Thyroid Nodule
+ ;;^UTILITY(U,$J,358.3,16151,1,4,0)
+ ;;=4^E04.1
+ ;;^UTILITY(U,$J,358.3,16151,2)
+ ;;=^5002478
+ ;;^UTILITY(U,$J,358.3,16152,0)
+ ;;=E04.2^^61^768^22
+ ;;^UTILITY(U,$J,358.3,16152,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,15973,1,3,0)
- ;;=3^Non-Pressure Chr Ulcer of Right Heel/Midfoot w/ Fat Layer Exposed
- ;;^UTILITY(U,$J,358.3,15973,1,4,0)
- ;;=4^L97.412
- ;;^UTILITY(U,$J,358.3,15973,2)
- ;;=^5009531
- ;;^UTILITY(U,$J,358.3,15974,0)
- ;;=L97.413^^88^869^248
- ;;^UTILITY(U,$J,358.3,15974,1,0)
+ ;;^UTILITY(U,$J,358.3,16152,1,3,0)
+ ;;=3^Nontoxic Multinodular Goiter
+ ;;^UTILITY(U,$J,358.3,16152,1,4,0)
+ ;;=4^E04.2
+ ;;^UTILITY(U,$J,358.3,16152,2)
+ ;;=^267790
+ ;;^UTILITY(U,$J,358.3,16153,0)
+ ;;=E01.1^^61^768^17
+ ;;^UTILITY(U,$J,358.3,16153,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,15974,1,3,0)
- ;;=3^Non-Pressure Chr Ulcer of Right Heel/Midfoot w/ Necrosis of Muscle
- ;;^UTILITY(U,$J,358.3,15974,1,4,0)
- ;;=4^L97.413
+ ;;^UTILITY(U,$J,358.3,16153,1,3,0)
+ ;;=3^Iodine-Deficiency Related Multinodular (Endemic) Goiter
+ ;;^UTILITY(U,$J,358.3,16153,1,4,0)
+ ;;=4^E01.1
+ ;;^UTILITY(U,$J,358.3,16153,2)
+ ;;=^5002465
+ ;;^UTILITY(U,$J,358.3,16154,0)
+ ;;=E05.00^^61^768^39
+ ;;^UTILITY(U,$J,358.3,16154,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,16154,1,3,0)
+ ;;=3^Thyrotoxicosis w/ Diffuse Goiter w/o Thyrotoxic Crisis
+ ;;^UTILITY(U,$J,358.3,16154,1,4,0)
+ ;;=4^E05.00

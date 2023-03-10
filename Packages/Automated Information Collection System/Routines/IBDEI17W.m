@@ -1,118 +1,124 @@
-IBDEI17W ; ; 04-FEB-2020
- ;;3.0;IB ENCOUNTER FORM IMP/EXP;;FEB 04, 2020
+IBDEI17W ; ; 01-FEB-2022
+ ;;3.0;IB ENCOUNTER FORM IMP/EXP;;FEB 01, 2022
  Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,999) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
- ;;^UTILITY(U,$J,358.3,19545,1,3,0)
- ;;=3^Diffuse TBI w LOC >24 hr w/o ret consc w surv, sequela
- ;;^UTILITY(U,$J,358.3,19545,1,4,0)
- ;;=4^S06.2X6S
- ;;^UTILITY(U,$J,358.3,19545,2)
- ;;=^5020746
- ;;^UTILITY(U,$J,358.3,19546,0)
- ;;=S06.2X3S^^93^994^42
- ;;^UTILITY(U,$J,358.3,19546,1,0)
+ ;;^UTILITY(U,$J,358.3,19765,1,3,0)
+ ;;=3^Rheu myopathy w rheu arthrit of right  elbow
+ ;;^UTILITY(U,$J,358.3,19765,1,4,0)
+ ;;=4^M05.421
+ ;;^UTILITY(U,$J,358.3,19765,2)
+ ;;=^5009935
+ ;;^UTILITY(U,$J,358.3,19766,0)
+ ;;=M05.441^^67^880^128
+ ;;^UTILITY(U,$J,358.3,19766,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,19546,1,3,0)
- ;;=3^Diffuse TBI w LOC of 1-5 hrs 59 min, sequela
- ;;^UTILITY(U,$J,358.3,19546,1,4,0)
- ;;=4^S06.2X3S
- ;;^UTILITY(U,$J,358.3,19546,2)
- ;;=^5020737
- ;;^UTILITY(U,$J,358.3,19547,0)
- ;;=S06.2X1S^^93^994^43
- ;;^UTILITY(U,$J,358.3,19547,1,0)
+ ;;^UTILITY(U,$J,358.3,19766,1,3,0)
+ ;;=3^Rheu myopathy w rheu arthrit of right hand    
+ ;;^UTILITY(U,$J,358.3,19766,1,4,0)
+ ;;=4^M05.441
+ ;;^UTILITY(U,$J,358.3,19766,2)
+ ;;=^5009941
+ ;;^UTILITY(U,$J,358.3,19767,0)
+ ;;=M05.451^^67^880^129
+ ;;^UTILITY(U,$J,358.3,19767,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,19547,1,3,0)
- ;;=3^Diffuse TBI w LOC of 30 minutes or less, sequela
- ;;^UTILITY(U,$J,358.3,19547,1,4,0)
- ;;=4^S06.2X1S
- ;;^UTILITY(U,$J,358.3,19547,2)
- ;;=^5020731
- ;;^UTILITY(U,$J,358.3,19548,0)
- ;;=S06.2X2S^^93^994^44
- ;;^UTILITY(U,$J,358.3,19548,1,0)
+ ;;^UTILITY(U,$J,358.3,19767,1,3,0)
+ ;;=3^Rheu myopathy w rheu arthrit of right hip  
+ ;;^UTILITY(U,$J,358.3,19767,1,4,0)
+ ;;=4^M05.451
+ ;;^UTILITY(U,$J,358.3,19767,2)
+ ;;=^5009944
+ ;;^UTILITY(U,$J,358.3,19768,0)
+ ;;=M05.461^^67^880^130
+ ;;^UTILITY(U,$J,358.3,19768,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,19548,1,3,0)
- ;;=3^Diffuse TBI w LOC of 31-59 min, sequela
- ;;^UTILITY(U,$J,358.3,19548,1,4,0)
- ;;=4^S06.2X2S
- ;;^UTILITY(U,$J,358.3,19548,2)
- ;;=^5020734
- ;;^UTILITY(U,$J,358.3,19549,0)
- ;;=S06.2X4S^^93^994^45
- ;;^UTILITY(U,$J,358.3,19549,1,0)
+ ;;^UTILITY(U,$J,358.3,19768,1,3,0)
+ ;;=3^Rheu myopathy w rheu arthrit of right knee  
+ ;;^UTILITY(U,$J,358.3,19768,1,4,0)
+ ;;=4^M05.461
+ ;;^UTILITY(U,$J,358.3,19768,2)
+ ;;=^5009947
+ ;;^UTILITY(U,$J,358.3,19769,0)
+ ;;=M05.411^^67^880^131
+ ;;^UTILITY(U,$J,358.3,19769,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,19549,1,3,0)
- ;;=3^Diffuse TBI w LOC of 6 hours to 24 hours, sequela
- ;;^UTILITY(U,$J,358.3,19549,1,4,0)
- ;;=4^S06.2X4S
- ;;^UTILITY(U,$J,358.3,19549,2)
- ;;=^5020740
- ;;^UTILITY(U,$J,358.3,19550,0)
- ;;=S06.2X9S^^93^994^46
- ;;^UTILITY(U,$J,358.3,19550,1,0)
+ ;;^UTILITY(U,$J,358.3,19769,1,3,0)
+ ;;=3^Rheu myopathy w rheu arthrit of right shoulder   
+ ;;^UTILITY(U,$J,358.3,19769,1,4,0)
+ ;;=4^M05.411
+ ;;^UTILITY(U,$J,358.3,19769,2)
+ ;;=^5009932
+ ;;^UTILITY(U,$J,358.3,19770,0)
+ ;;=M05.431^^67^880^132
+ ;;^UTILITY(U,$J,358.3,19770,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,19550,1,3,0)
- ;;=3^Diffuse TBI w LOC of unsp duration, sequela
- ;;^UTILITY(U,$J,358.3,19550,1,4,0)
- ;;=4^S06.2X9S
- ;;^UTILITY(U,$J,358.3,19550,2)
- ;;=^5020755
- ;;^UTILITY(U,$J,358.3,19551,0)
- ;;=S06.2X0S^^93^994^47
- ;;^UTILITY(U,$J,358.3,19551,1,0)
+ ;;^UTILITY(U,$J,358.3,19770,1,3,0)
+ ;;=3^Rheu myopathy w rheu arthrit of right wrist
+ ;;^UTILITY(U,$J,358.3,19770,1,4,0)
+ ;;=4^M05.431
+ ;;^UTILITY(U,$J,358.3,19770,2)
+ ;;=^5009938
+ ;;^UTILITY(U,$J,358.3,19771,0)
+ ;;=M06.372^^67^880^163
+ ;;^UTILITY(U,$J,358.3,19771,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,19551,1,3,0)
- ;;=3^Diffuse TBI w/o LOC, sequela
- ;;^UTILITY(U,$J,358.3,19551,1,4,0)
- ;;=4^S06.2X0S
- ;;^UTILITY(U,$J,358.3,19551,2)
- ;;=^5020728
- ;;^UTILITY(U,$J,358.3,19552,0)
- ;;=S06.4X5S^^93^994^48
- ;;^UTILITY(U,$J,358.3,19552,1,0)
+ ;;^UTILITY(U,$J,358.3,19771,1,3,0)
+ ;;=3^Rheumatoid nodule, left ankle and foot
+ ;;^UTILITY(U,$J,358.3,19771,1,4,0)
+ ;;=4^M06.372
+ ;;^UTILITY(U,$J,358.3,19771,2)
+ ;;=^5010116
+ ;;^UTILITY(U,$J,358.3,19772,0)
+ ;;=M06.322^^67^880^164
+ ;;^UTILITY(U,$J,358.3,19772,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,19552,1,3,0)
- ;;=3^Epidural hemorrhage w LOC >24 hr w ret consc lev, sequela
- ;;^UTILITY(U,$J,358.3,19552,1,4,0)
- ;;=4^S06.4X5S
- ;;^UTILITY(U,$J,358.3,19552,2)
- ;;=^5021043
- ;;^UTILITY(U,$J,358.3,19553,0)
- ;;=S06.4X6S^^93^994^49
- ;;^UTILITY(U,$J,358.3,19553,1,0)
+ ;;^UTILITY(U,$J,358.3,19772,1,3,0)
+ ;;=3^Rheumatoid nodule, left elbow
+ ;;^UTILITY(U,$J,358.3,19772,1,4,0)
+ ;;=4^M06.322
+ ;;^UTILITY(U,$J,358.3,19772,2)
+ ;;=^5010101
+ ;;^UTILITY(U,$J,358.3,19773,0)
+ ;;=M06.342^^67^880^165
+ ;;^UTILITY(U,$J,358.3,19773,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,19553,1,3,0)
- ;;=3^Epidural hemorrhage w LOC >24 hr w/o ret consc w surv, sequela
- ;;^UTILITY(U,$J,358.3,19553,1,4,0)
- ;;=4^S06.4X6S
- ;;^UTILITY(U,$J,358.3,19553,2)
- ;;=^5021046
- ;;^UTILITY(U,$J,358.3,19554,0)
- ;;=S06.4X3S^^93^994^50
- ;;^UTILITY(U,$J,358.3,19554,1,0)
+ ;;^UTILITY(U,$J,358.3,19773,1,3,0)
+ ;;=3^Rheumatoid nodule, left hand
+ ;;^UTILITY(U,$J,358.3,19773,1,4,0)
+ ;;=4^M06.342
+ ;;^UTILITY(U,$J,358.3,19773,2)
+ ;;=^5010107
+ ;;^UTILITY(U,$J,358.3,19774,0)
+ ;;=M06.352^^67^880^166
+ ;;^UTILITY(U,$J,358.3,19774,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,19554,1,3,0)
- ;;=3^Epidural hemorrhage w LOC of 1-5 hrs 59 min, sequela
- ;;^UTILITY(U,$J,358.3,19554,1,4,0)
- ;;=4^S06.4X3S
- ;;^UTILITY(U,$J,358.3,19554,2)
- ;;=^5021037
- ;;^UTILITY(U,$J,358.3,19555,0)
- ;;=S06.4X1S^^93^994^51
- ;;^UTILITY(U,$J,358.3,19555,1,0)
+ ;;^UTILITY(U,$J,358.3,19774,1,3,0)
+ ;;=3^Rheumatoid nodule, left hip
+ ;;^UTILITY(U,$J,358.3,19774,1,4,0)
+ ;;=4^M06.352
+ ;;^UTILITY(U,$J,358.3,19774,2)
+ ;;=^5010110
+ ;;^UTILITY(U,$J,358.3,19775,0)
+ ;;=M06.362^^67^880^167
+ ;;^UTILITY(U,$J,358.3,19775,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,19555,1,3,0)
- ;;=3^Epidural hemorrhage w LOC of 30 minutes or less, sequela
- ;;^UTILITY(U,$J,358.3,19555,1,4,0)
- ;;=4^S06.4X1S
- ;;^UTILITY(U,$J,358.3,19555,2)
- ;;=^5021031
- ;;^UTILITY(U,$J,358.3,19556,0)
- ;;=S06.4X2S^^93^994^52
- ;;^UTILITY(U,$J,358.3,19556,1,0)
+ ;;^UTILITY(U,$J,358.3,19775,1,3,0)
+ ;;=3^Rheumatoid nodule, left knee
+ ;;^UTILITY(U,$J,358.3,19775,1,4,0)
+ ;;=4^M06.362
+ ;;^UTILITY(U,$J,358.3,19775,2)
+ ;;=^5010113
+ ;;^UTILITY(U,$J,358.3,19776,0)
+ ;;=M06.312^^67^880^168
+ ;;^UTILITY(U,$J,358.3,19776,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,19556,1,3,0)
- ;;=3^Epidural hemorrhage w LOC of 31-59 min, sequela
- ;;^UTILITY(U,$J,358.3,19556,1,4,0)
- ;;=4^S06.4X2S
+ ;;^UTILITY(U,$J,358.3,19776,1,3,0)
+ ;;=3^Rheumatoid nodule, left shoulder
+ ;;^UTILITY(U,$J,358.3,19776,1,4,0)
+ ;;=4^M06.312
+ ;;^UTILITY(U,$J,358.3,19776,2)
+ ;;=^5010098
+ ;;^UTILITY(U,$J,358.3,19777,0)
+ ;;=M06.332^^67^880^169
+ ;;^UTILITY(U,$J,358.3,19777,1,0)
+ ;;=^358.31IA^4^2

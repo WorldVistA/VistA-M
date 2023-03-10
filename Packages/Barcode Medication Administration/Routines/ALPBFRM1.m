@@ -1,5 +1,5 @@
-ALPBFRM1 ;OIFO-DALLAS MW,SED,KC -STANDARD PRINT FORMATTING UTIL ;03/06/16 3:06pm
- ;;3.0;BAR CODE MED ADMIN;**8,48,69,59,73,87,125**;Mar 2004;Build 9
+ALPBFRM1 ;DAL/SED -STANDARD PRINT FORMATTING UTIL ;Feb 6, 2021@15:27
+ ;;3.0;BAR CODE MED ADMIN;**8,48,69,59,73,87,125,108,135**;Mar 2004;Build 5
  ;;Per VHA Directive 2004-038, this routine should not be modified.
  ;
  ;*69 move code to print Long Wp special istructions lines near end of
@@ -7,6 +7,8 @@ ALPBFRM1 ;OIFO-DALLAS MW,SED,KC -STANDARD PRINT FORMATTING UTIL ;03/06/16 3:06pm
  ;*73 - add code to print Clinc Name above meds in detail lines and
  ;      Location in heading.
  ;*87 - add Remove timing string to print on grid from new Db RM fld.
+ ;*108- add display of order items that are hazardous to handle and/or 
+ ; hazardous to dispose
  ;
 F132(DATA,DAYS,MLCNT,RESULTS,ALPPAT) ; format data into a 132-column
  ; output array...
@@ -23,7 +25,7 @@ F132(DATA,DAYS,MLCNT,RESULTS,ALPPAT) ; format data into a 132-column
  I $D(DATA)="" Q
  ;
  N ALPBADM,ALPBDAYS,ALPBDRUG,ALPBIBOX,ALPBNBOX,ALPBPBOX,ALPBSTOP,ALPBTEXT,ALPBTIME,ALPBX,DATE,LINE,BOLDON,BOLDOFF,X,ALPBPRNG,ALPBFLG,ALPBPRN,ALPBMLC,ALPBTSTART
- N AD,AINDX,ALPBRM,ALPBDOA,REMTIM       ;*87
+ N AD,AINDX,ALPBRM,ALPBDOA,REMTIM,ALPBNOAS,I,J      ;*87,*135
  ; to use BOLD, comment out the next line and remove comments from
  ; the following five lines...
  S BOLDON="<<",BOLDOFF=">>"
@@ -86,7 +88,12 @@ REMOV S ALPBRM=$P($G(DATA(4.5)),U)    ;define remove string *87
  .F  S ALPBX=$O(DATA(7,ALPBX)) Q:'ALPBX  D
  ..S ALPBDRUG=$G(BOLDON)_$P(DATA(7,ALPBX,0),"^",2)_$G(BOLDOFF)
  ..;S RESULTS(LINE)=$G(RESULTS(LINE))_$P(DATA(7,ALPBX,0),"^",2)
+ ..N HZ,TAB,SPC S HZ=""                                                   ;*108
+ ..S $P(HZ,"|",1)=$S($G(DATA("HAZTOHAND")):"<<HAZ Handle>>",1:$J("",12))  ;*108
+ ..I $G(DATA("HAZTODISP")) S $P(HZ,"|",2)="<<HAZ Dispose>>"               ;*108
  ..S RESULTS(LINE)=$G(RESULTS(LINE))_ALPBDRUG
+ ..I HZ]"" S LINE=LINE+1,RESULTS(LINE)=$J("",5)_$TR(HZ,"|"," ")           ;*108 
+ ..S LINE=LINE+1,RESULTS(LINE)=$J("",66)
  ..K ALPBDRUG
  ..I +$O(DATA(7,ALPBX)) S LINE=LINE+1
  ; any additives...
@@ -142,7 +149,7 @@ REMOV S ALPBRM=$P($G(DATA(4.5)),U)    ;define remove string *87
  .S RESULTS(LINE)=" Verified by: "_$P(DATA(2),"^",3)
  ; order number and type...
  S LINE=LINE+1
- S RESULTS(LINE)="      Type: "_$$OTYP^ALPBUTL($P($G(DATA(3)),"^"))
+ S RESULTS(LINE)="        Type: "_$$OTYP^ALPBUTL($P($G(DATA(3)),"^"))
  ; order status...
  S LINE=LINE+1
  S RESULTS(LINE)="      Status: "_$P($P(DATA(0),"^",3),"~",2)
@@ -226,13 +233,14 @@ ADMTIM F I=1:1:ALPBADM D    ;build admin/remove times grid
  .S RESULTS(I+3)=RESULTS(I+3)_$S($L(ALPBADMT)=2:ALPBADMT_"00",1:ALPBADMT)
  .S RESULTS(I+3)=$$PAD^ALPBUTL(RESULTS(I+3),74)_"|"
  .F J=1:1:DAYS D
- ..I ALPBADMT="    " S ALPBTSTART=$P($P($G(DATA(1)),"^",1),".",1),ALPBSTOP=$P($P($G(DATA(1)),"^",2),".",1)
- ..S ALPBDAY=+(ALPBDAYS(J)_"."_ALPBADMT)   ;125 - add + to trim insignificant trailing 0's   
+ ..S ALPBNOAS=$S(+ALPBADMT:1,ALPBPRNG:0,$$OTYP^ALPBUTL($P($G(DATA(3)),"^"))="IV":0,1:1) ;P135 PRN or IV
+ ..I ALPBADMT="    "&ALPBNOAS S ALPBTSTART=$P($P($G(DATA(1)),"^",1),".",1),ALPBSTOP=$P($P($G(DATA(1)),"^",2),".",1) ;P135
+ ..S ALPBDAY=+(ALPBDAYS(J)_"."_ALPBADMT)   ;125 - add + to trim insignificant trailing 0's
  ..S ALPBPBOX=ALPBIBOX
 ASTER ..;prints asterisks in boxes if start date is in the future
  ..;and if the stop date has already expired
  ..I AD D      ;on an admin line
- ...I ALPBDAY<ALPBTSTART S ALPBPBOX=ALPBNBOX
+ ...I ALPBDAY<ALPBTSTART&(ALPBNOAS) S ALPBPBOX=ALPBNBOX ;P135
  ...I ALPBDAY>ALPBSTOP!(ALPBDAY=ALPBSTOP) S ALPBPBOX=ALPBNBOX
  ..E  D        ;on a remove line calc orig admin for this remove time
  ...I ALPBDAY["Remove" S ALPBPBOX=ALPBNBOX Q   ;Remove lbl line = *

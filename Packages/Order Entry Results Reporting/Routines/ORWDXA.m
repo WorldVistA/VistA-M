@@ -1,8 +1,10 @@
-ORWDXA ; SLC/KCM/JLI - Utilites for Order Actions ;02/17/20  12:21
- ;;3.0;ORDER ENTRY/RESULTS REPORTING;**10,85,116,132,148,141,149,187,213,195,215,243,280,306,390,421,436,434,397,377**;Dec 17, 1997;Build 582
+ORWDXA ; SLC/KCM/JLI - Utilites for Order Actions ;Feb 10, 2021@13:25:42
+ ;;3.0;ORDER ENTRY/RESULTS REPORTING;**10,85,116,132,148,141,149,187,213,195,215,243,280,306,390,421,436,434,397,377,539,405**;Dec 17, 1997;Build 211
  ;Per VA Directive 6402, this routine should not be modified.
  ;
- ;
+ ; $$PARK^PSO52EX DBIA #4902ZERO^PSS50 DBIA #4533
+ ; ZERO^PSS50 DBIA #4533
+ ; SDAUTHCL^SDAMA203 DBIA #4133
  ;
 VALID(VAL,ORID,ACTION,ORNP,ORWNAT) ; Is action valid for order?
  N DG,ORACT,ORVP,ORVER,ORIFN,PRTID S VAL="",PRTID=0
@@ -45,11 +47,22 @@ VALID(VAL,ORID,ACTION,ORNP,ORWNAT) ; Is action valid for order?
  .. I $D(A(ORDG)),TYPE="C" S B=1 D SDAUTHCL^SDAMA203(PATLOC,.B) I B=1 S VAL="Cannot use a Clinic Location for this change. Please check your encounter location."
  S DG=$P(^OR(100,+ORID,0),U,11)
  I DG,($P(^ORD(100.98,DG,0),U,3)="CSDAM"),$P($G(^OR(100,+ORID,3)),U,3)=9 S VAL="Partial Return to Clinic Orders cannot be discontinued." Q
- N OREBUILD
- ;I (ACTION="RW")!(ACTION="XFR")!(ACTION="RN") D ISVALIV^ORWDPS33(.VAL,ORID,ACTION) I $L(VAL)>0 Q
+ N OREBUILD,ORSTA
  I $$VALID^ORCACT0(ORID,ACTION,.VAL,$G(ORWNAT)) S VAL="" ; VAL=error
  I ACTION="RN",$$UPCTCHK(ORID) S VAL="Cannot renew this order due to an illegal character ""^"" in the comments or patient instructions."
  I ACTION="RW",$$UPCTCHK(ORID) S VAL="Cannot copy this order due to an illegal character ""^"" in the comments or patient instructions."
+ S ORSTA=$P($G(^OR(100,+ORID,3)),U,3)  ;p405
+ I ACTION="PK" D
+ . N ORDA,ORDEA,ORDRG,ORIEN
+ . K ^TMP($J,"ORWDXA")
+ . I ORSTA'=6,ORSTA'=15 S VAL="Can only park an active order " Q
+ . S ORDEA="" D  I ORDEA["D" S VAL="This drug is not allowed to be parked" Q
+ .. S ORIEN="",ORIEN=$O(^OR(100,+ORID,4.5,"ID","DRUG",ORIEN)),ORDRG=$G(^OR(100,+ORID,4.5,+ORIEN,1)) ;NEW ARF CODE
+ .. D ZERO^PSS50(+ORDRG,,,,,"ORWDXA")
+ .. S ORDEA=$G(^TMP($J,"ORWDXA",+ORDRG,3))
+ .. K ^TMP($J,"ORWDXA")
+ I ACTION="UP" D
+ . I ORSTA'=6,+$$PARK^PSO52EX(+ORID)=0 S VAL="Order is not parked "
  Q
  ;
 HOLD(REC,ORID,ORNP) ; Place order on hold
@@ -75,7 +88,6 @@ DC(REC,ORID,ORNP,ORL,REASON,DCORIG,ISNEWORD) ; Discontinue/Cancel/Delete order
  ;change the way create work to support forcing signature for all DC
  ;reasons
  S CREATE=1,PRINT=$$PRINT^ORCACT2(NATURE)
- ;S CREATE=$$CREATE^ORX1(NATURE)
  S X3=$G(^OR(100,+ORID,3))
  S CURRACT=$P(X3,U,7) S:CURRACT<1 CURRACT=+$O(^OR(100,+ORID,8,"?"),-1)
  I '$D(^OR(100,+ORID,8,+$P(ORID,";",2),0)) D
@@ -131,9 +143,6 @@ DCREQIEN(VAL) ; Return IEN for Req Phys Cancelled reason
  S VAL=$O(^ORD(100.03,"S","REQ",0))
  Q
 COMPLETE(REC,ORID,ESCODE) ; Complete order (generic)
- ;N X S X=+$E($$NOW^XLFDT,1,12)
- ;D DATES^ORCSAVE2(+ORID,,X)
- ;D STATUS^ORCSAVE2(+ORID,2)
  ; validate ESCode
  D COMP^ORCSAVE2(ORID)
  D COMP^ORMBLDOR(ORID)
@@ -156,17 +165,33 @@ ALERT(DUMMY,ORID,ORDUZ) ; alert user (ORDUZ) when order (ORID) resulted
  I $L($G(ORDUZ))<1 S ORDUZ=DUZ
  S DUMMY=1,$P(^OR(100,+ORID,3),U,10)=ORDUZ
  Q
-FLAG(REC,ORIFN,OREASON,ORNP) ; Flag order
+FLAG(REC,ORIFN,OREASON,ORNP,OREXP,ORLIST) ; Flag order ;p539
  ;variable XMZ is not defined by this section, but passed in (if available)
- N ORB,ORVP,DA,ORPS,ORNOW
+ ; need to look at re-ordering this so we don't have to process the ORNP array multiple times
+ N ORB,ORVP,DA,ORPS,ORNOW,ORFH
+ N ORFIENS,ORFDA,FDAIEN,ERR,ORUSR,USR,I,IEN
  S ORNOW=$$NOW^XLFDT
  D BULLETIN
  S DA=$P(ORIFN,";",2),ORVP=+$P(^OR(100,+ORIFN,0),U,2)
+ D FLGHST^ORWDXA1(.ORFH,ORIFN)
+ I $D(ORFH) D SAVFLG(ORIFN,.ORFH)
  K ^OR(100,+ORIFN,8,DA,3) S ^(3)="1^"_$G(XMZ)_U_+$E($$NOW^XLFDT,1,12)_U_DUZ_U_OREASON_$S($G(ORNP):"^^^^"_+ORNP,1:"")
+ K ^OR(100,+ORIFN,8,DA,6),^OR(100,+ORIFN,8,DA,9)
+ I $G(OREXP)'="" D
+ . S ORFDA(100.008,DA_","_+ORIFN_",",44)=OREXP
+ . D UPDATE^DIE("","ORFDA")
+ . D SCHALRT^ORWDXA1(ORVP,ORIFN,OREXP)
+ S I=0 F  S I=$O(ORLIST(I)) Q:'I  S USR=+ORLIST(I) I USR S ORUSR(USR)=""
+ S ORFIENS="?+1"_","_DA_","_+ORIFN_",",IEN=0
+ F  S IEN=$O(ORUSR(IEN)) Q:'IEN  D
+ . S ORFDA(100.842,ORFIENS,.01)=IEN
+ . S ORFDA(100.842,ORFIENS,1)=ORNOW
+ . S ORFDA(100.842,ORFIENS,2)=DUZ
+ . D UPDATE^DIE("","ORFDA")
  D KILL^XM,MSG^ORCFLAG(ORIFN)
  S $P(^OR(100,+ORIFN,3),U)=ORNOW ; Last Activity
- I +$G(ORNP)<1 S ORNP=+$P($G(^OR(100,+ORIFN,8,DA,0)),U,3)
- S ORB=+ORVP_U_+ORIFN_U_ORNP_"^1" D EN^OCXOERR(ORB) ; notification
+ I '$D(ORUSR),$G(ORNP)="" S ORNP=+$P($G(^OR(100,+ORIFN,8,DA,0)),U,3)
+ S USR=$S($G(ORNP):ORNP,1:$O(ORUSR(""))) I USR'="" S ORB=+ORVP_U_+ORIFN_U_USR_"^1" D EN^OCXOERR(ORB) ; notification
  D GETBYIFN^ORWORR(.REC,ORIFN)
  Q
 BULLETIN ; flagged order bulletin
@@ -190,21 +215,35 @@ BULLETIN ; flagged order bulletin
  S XMB(11)=$P($G(^ORD(100.01,+$P(OR3,U,3),0)),U)
  D EN^XMB
  Q
-UNFLAG(REC,ORIFN,OREASON) ; Unflag order
- N DA,ORB,ORNP,ORVP,ORPS,ORNOW
+UNFLAG(REC,ORIFN,OREASON) ; Unflag order ;p539
+ N DA,ORB,ORNP,ORVP,ORPS,ORNOW,ORUSR,I,IEN,USR,ORFB
  S ORNOW=$$NOW^XLFDT
  S DA=$P(ORIFN,";",2),ORVP=+$P(^OR(100,+ORIFN,0),U,2)
  S $P(^OR(100,+ORIFN,8,DA,3),U)=0,$P(^(3),U,6,8)=+$E($$NOW^XLFDT,1,12)_U_DUZ_U_OREASON D MSG^ORCFLAG(ORIFN)
  S $P(^OR(100,+ORIFN,3),U)=ORNOW  ; Last Activity
- S ORNP=+$P($G(^OR(100,+ORIFN,8,DA,0)),U,3)
+ ; provider and flagged by user
+ S ORNP=+$P($G(^OR(100,+ORIFN,8,+$P(ORIFN,";",2),0)),U,3)
  S ORB=+ORVP_U_+ORIFN_U_ORNP_"^0" D EN^OCXOERR(ORB) ; notification
  D GETBYIFN^ORWORR(.REC,ORIFN)
+ D CHOREXP^ORWDXA1(+ORIFN)  ;check if entry in file #100.97 needs to be deleted
  Q
 FLAGTXT(LST,ORID) ; flag reason
- N FLAG
+ N FLAG,CNT,I,ORUSR,ORCOM,F
  S FLAG=$G(^OR(100,+ORID,8,$P(ORID,";",2),3))
  S LST(1)="FLAGGED: "_$$FMTE^XLFDT($P(FLAG,U,3))_" by "_$P($G(^VA(200,+$P(FLAG,U,4),0)),U)
  S LST(2)=$P(FLAG,U,5) ; reason
+ S CNT=2
+ I $P(FLAG,U,10)'="" S CNT=CNT+1,LST(CNT)="NO ACTION ALERT: "_$$FMTE^XLFDT($P(FLAG,U,10))
+ D FLAGRCPT^ORWDXA1(.ORUSR,ORID) ; recipients ;p539
+ S (I,F)=0
+ F  S I=$O(ORUSR(I)) Q:'I  I +ORUSR(I) D
+ . S CNT=CNT+1,LST(CNT)=$S('F:"RECIPIENTS:"_$C(9),1:$C(9)_$C(9))_$P(ORUSR(I),U,2),F=1
+ D FLGCOM^ORWDXA1(.ORCOM,ORID) ; comments ;p539
+ S (I,F)=0
+ F  S I=$O(ORCOM(I)) Q:'I  I ORCOM(I)="<COMMENT>" S I=$O(ORCOM(I)) D
+ . S CNT=CNT+1,LST(CNT)=$S('F:"COMMENTS:"_$C(9),1:$C(9)_$C(9))_$P($P(ORCOM(I),U,2),";",2)_" on "_$P($P(ORCOM(I),U),";",2),F=1
+ . F  S I=$O(ORCOM(I)) Q:ORCOM(I)="</COMMENT>"  D
+ . . S CNT=CNT+1,LST(CNT)=$C(9)_ORCOM(I)
  Q
 WCGET(LST,ORID) ; ward comments
  N I,ORIFN,ACT S ORIFN=+ORID,ACT=+$P(ORID,";",2)
@@ -252,3 +291,15 @@ UPCTCHK(ORID) ;
  I PIID S WPCNT=0 F  S WPCNT=$O(^OR(100,+ORID,4.5,PIID,2,WPCNT)) Q:'WPCNT!(RET)  D
  .I $G(^OR(100,+ORID,4.5,PIID,2,WPCNT,0))["^" S RET=1
  Q RET
+SAVFLG(ORIFN,ORFH) ;File flag history ;p539
+ N ORNOW,ORFDA,ORFNM,ORFIENS
+ S ORNOW=$$NOW^XLFDT
+ S ORFIENS="?+1"_","_$P(ORIFN,";",2)_","_+ORIFN_","
+ S ORFDA(100.845,ORFIENS,.01)=ORNOW
+ S ORFDA(100.845,ORFIENS,2)=DUZ
+ D UPDATE^DIE("","ORFDA","ORFNM")
+ ;file comments
+ K ^TMP($J,"WP")
+ D WP^DIE(100.845,ORFNM(1)_","_$P(ORIFN,";",2)_","_+ORIFN_",",1,,"ORFH")
+ K ^TMP($J,"WP"),ORFDA,ORFNM
+ Q

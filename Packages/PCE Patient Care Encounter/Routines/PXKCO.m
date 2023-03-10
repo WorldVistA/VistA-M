@@ -1,5 +1,5 @@
-PXKCO ;ISL/JVS,ESW - Provider-Dx-CPT-VSIT at check-out ; 11/20/02 4:43pm
- ;;1.0;PCE PATIENT CARE ENCOUNTER;**28,41,96**;Aug 12, 1996
+PXKCO ;ISL/JVS,ESW - Provider-Dx-CPT-VSIT at check-out ; 01/27/2021
+ ;;1.0;PCE PATIENT CARE ENCOUNTER;**28,41,96,211**;Aug 12, 1996;Build 454
  ;Routine-set varibles-Check-out
  ; VARIABLE LIST
  ;
@@ -80,7 +80,8 @@ SVC(SVC,DSS,PXKIO,LOC) ;
  I $P(^DIC(40.7,+DSS,0),"^",1)["TELE" S SVC="T" G SVCQ ;any TELEphone
  I $O(^VSIT(150.1,"B",$P(^DIC(40.7,+DSS,0),"^",2),0)) S SVC="X"
  I SVC="",+DSS=$P($G(^SC(+LOC,0)),"^",7) S SVC="A"
- I SVC="" S SVC="X"
+ ;Default changes from "X" to "A" in PX*1.0*211.
+ I SVC="" S SVC="A"
  I PXKIO S SVC=$S(SVC="A":"I",SVC="X":"D",1:SVC)
  E  S SVC=$S(SVC="I":"A",SVC="D":"X",1:SVC)
 SVCQ Q SVC

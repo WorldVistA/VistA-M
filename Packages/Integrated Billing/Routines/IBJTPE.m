@@ -1,5 +1,5 @@
 IBJTPE ;ALB/TJB - TP ERA/835 PRINT EEOB INFORMATIN SCREEN ;20-MAY-2015
- ;;2.0;INTEGRATED BILLING;**530,609,633**;21-MAR-94;Build 21
+ ;;2.0;INTEGRATED BILLING;**530,609,633,642**;21-MAR-94;Build 22
  ;;Per VA Directive 6402, this routine should not be modified.
  ;; ;
 EN ; -- main entry point for IBJT 835 EEOB PRINT
@@ -185,8 +185,11 @@ EBO ; Display the EOB DATA for IBEIEN
  ... I RCFLD>1 F II=2:1:RCFLD D SET("                      "_RCFLD(II)) Q:IBQUIT
  . ; Display RARC Codes for this Line Item
  . I $D(IBCL(361.1154))'=0 S QQ=EE,RCMD="" F  S QQ=$O(IBCL(361.1154,QQ)) Q:$E(QQ,1,$L(EE))'=EE  D  Q:IBQUIT
+ .. K IBERR,RCRDC,RCFLD
  .. S RMIEN=$$FIND1^DIC(346,"","BX",IBCL(361.1154,QQ,.02,"E"),"","","IBERR")
- .. I RMIEN'="" K IBPERR,RCRDC,RCFLD S RCXY=$$GET1^DIQ(346,RMIEN_",",4,"","RCRDC","IBPERR") D DLN^IBJTEP1("RCRDC","RCFLD",50,68)
+ .. ; avoid "undefined" if RMIEN could not be found *642
+ .. I 'RMIEN S RCFLD=1,RCFLD(1)="*["_IBCL(361.1154,QQ,.02,"E")_"] code is not on file."
+ .. I RMIEN S RCXY=$$GET1^DIQ(346,RMIEN_",",4,"","RCRDC","IBPERR") D DLN^IBJTEP1("RCRDC","RCFLD",50,68)
  .. D SET("  --- RARC: "_IBCL(361.1154,QQ,.02,"E")_" - "_RCFLD(1)) Q:IBQUIT
  .. I RCFLD>1 F II=2:1:RCFLD D SET("          "_RCFLD(II)) Q:IBQUIT
  . D:ACNT'=0 SET(" ") Q:IBQUIT

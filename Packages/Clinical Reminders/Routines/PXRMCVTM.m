@@ -1,5 +1,5 @@
-PXRMCVTM ;SLC/AGP - CPRS Coversheet timer test. ;02/21/2019
- ;;2.0;CLINICAL REMINDERS;**45**;Feb 04, 2005;Build 566
+PXRMCVTM ;SLC/AGP - CPRS Coversheet timer test. ;10/14/2020
+ ;;2.0;CLINICAL REMINDERS;**45,42**;Feb 04, 2005;Build 245
  ;
  ;===============
 EN ;Prompt for patient and reminder by name input component.
@@ -26,7 +26,7 @@ GUSER ;
  ;
 GLOC ;
  K Y
- S DIC=44,DIC("A")="Select Location "
+ S DIC=44,DIC("A")="Select Location: "
  S DIC(0)="AEQMZ"
  D ^DIC
  I $D(DIROUT)!$D(DIRUT) Q
@@ -35,13 +35,19 @@ GLOC ;
  I LOC=-1 G GLOC
  ;
 GCVL ;
+ S NL=1,OUTPUT(NL)="Patient: "_$P(^DPT(DFN,0),U,1)
+ S NL=NL+1,OUTPUT(NL)="User: "_$P(^VA(200,USER,0),U,1)
+ S NL=NL+1,OUTPUT(NL)="Location: "_$P(^SC(LOC,0),U,1)
+ S NL=NL+1,OUTPUT(NL)=""
  S CLOCKS=$H
  D REMLIST^PXRMCVRL(.REMS,USER,LOC)
+ S IDX=+$O(REMS(""))
+ I IDX=0 D  G REPORT
+ . S NL=NL+1,OUTPUT(NL)="There are no cover sheet reminders defined for this user and location."
  S CLOCKE=$H
- S NL=1,OUTPUT(NL)="Total time to build reminder list: "_$$HDIFF^XLFDT(CLOCKE,CLOCKS,2)_" seconds"
- S (CNT,CPUTMAX,TOTTM,WCMAX)=0,IDX=""
- S IDX=$O(REMS(""))
+ S NL=NL+1,OUTPUT(NL)="Total time to build reminder list: "_$$HDIFF^XLFDT(CLOCKE,CLOCKS,2)_" seconds"
  S (IENMAXC,IENMAXW)=$P(REMS(IDX),U,2)
+ S (CNT,CPUTMAX,TOTTM,WCMAX)=0,IDX=""
  S CLOCKS=$H
  S CNT=0,IDX=""
  F  S IDX=$O(REMS(IDX)) Q:IDX=""  D
@@ -56,7 +62,7 @@ GCVL ;
  S NL=NL+1,OUTPUT(NL)="Total number of reminders evaluated: "_CNT
  S NL=NL+1,OUTPUT(NL)=""
  S NL=NL+1,OUTPUT(NL)="Elapsed wall clock time: "_$$HDIFF^XLFDT(CLOCKE,CLOCKS,2)_" seconds"
- S NL=NL+1,OUTPUT(NL)="Total CPU coversheet evaluation time: "_TOTTM_" milliseconds"
+ S NL=NL+1,OUTPUT(NL)="Total CPU cover sheet evaluation time: "_TOTTM_" milliseconds"
  S NL=NL+1,OUTPUT(NL)=""
  S NL=NL+1,OUTPUT(NL)="Longest CPU evaluation time"
  S NL=NL+1,OUTPUT(NL)="Reminder: "_$P(^PXD(811.9,IENMAXC,0),U)_" (IEN="_IENMAXC_")"
@@ -66,11 +72,12 @@ GCVL ;
  S NL=NL+1,OUTPUT(NL)="Reminder: "_$P(^PXD(811.9,IENMAXW,0),U)_" (IEN="_IENMAXW_")"
  S NL=NL+1,OUTPUT(NL)="Reminder wall clock evaluation time: "_WCMAX_" seconds"
  S NL=NL+1,OUTPUT(NL)=""
+REPORT ; Display the report.
  S BOP=$$BORP^PXRMUTIL("B")
  I BOP="B" D
  . S X="IORESET"
  . D ENDR^%ZISS
- . D BROWSE^DDBR("OUTPUT","NR","CPRS Coversheet Timing Test")
+ . D BROWSE^DDBR("OUTPUT","NR","CPRS Cover Sheet Timing Test")
  . W IORESET
  . D KILL^%ZISS
  I BOP="P" D GPRINT^PXRMUTIL("OUTPUT")

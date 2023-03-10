@@ -1,12 +1,14 @@
-PXRMOUTC ; SLC/PKR - Clinical Maintenance output. ;05/14/2020
- ;;2.0;CLINICAL REMINDERS;**4,6,17,26,47,46**;Feb 04, 2005;Build 236
+PXRMOUTC ; SLC/PKR - Clinical Maintenance output. ;05/26/2022
+ ;;2.0;CLINICAL REMINDERS;**4,6,17,26,47,46,42,65**;Feb 04, 2005;Build 438
  ;================================================
 CM(DEFARR,PXRMPDEM,PCLOGIC,RESLOGIC,RESDATE,FIEVAL,OUTTYPE) ;Prepare the 
  ;Clinical maintenance (OUTTYPE=5) and order check (OUTTPYPE=55)
  ;output.
- N IND,JND,FINDING,FLIST,FTYPE
- N HDR,NHDR,IFIEVAL,LIST,NFLINES,NTXT,NUM
+ N DISPLAY,IND,JND,FINDING,FLIST,FLISTNODE,FTYPE
+ N HDR,NHDR,IFIEVAL,LIST,NFLINES,NTXT,NUM,NUMLINES
  N TEMP,TEXT
+ S FLISTNODE("PCL")=32,FLISTNODE("RES")=36,FLISTNODE("AGE")=40,FLISTNODE("INFO")=42
+ S FLISTNODE("CONTRA")=81,FLISTNODE("REFUSED")=91
  S NTXT=0
  ;Check for a dead patient
  I +$G(PXRMPDEM("DOD"))>0 D
@@ -19,8 +21,8 @@ CM(DEFARR,PXRMPDEM,PCLOGIC,RESLOGIC,RESDATE,FIEVAL,OUTTYPE) ;Prepare the
  D AGE^PXRMFNFT(PXRMPDEM("DFN"),.DEFARR,.FIEVAL,.NTXT)
  ;Process the findings in the order: patient cohort, resolution,
  ;age, and informational.
- F FTYPE="PCL","RES","AGE","INFO" D
- . S LIST=$S(FTYPE="PCL":DEFARR(32),FTYPE="RES":DEFARR(36),FTYPE="AGE":DEFARR(40),FTYPE="INFO":DEFARR(42))
+ F FTYPE="PCL","RES","AGE","CONTRA","REFUSED","INFO" D
+ . S LIST=DEFARR(FLISTNODE(FTYPE))
  .;Output the general logic text.
  . I FTYPE="PCL" D LOGIC^PXRMFNFT(PXRMPDEM("DFN"),PCLOGIC,FTYPE,"D",.DEFARR,.FIEVAL,.NTXT)
  . I FTYPE="RES",$P(PCLOGIC,U,1) D LOGIC^PXRMFNFT(PXRMPDEM("DFN"),RESLOGIC,FTYPE,"D",.DEFARR,.FIEVAL,.NTXT)
@@ -42,10 +44,8 @@ CM(DEFARR,PXRMPDEM,PCLOGIC,RESLOGIC,RESDATE,FIEVAL,OUTTYPE) ;Prepare the
  ...;Remove any false occurrences so they are not displayed.
  ... S JND=0
  ... F  S JND=+$O(IFIEVAL(JND)) Q:JND=0  K:'IFIEVAL(JND) IFIEVAL(JND)
- .. E  S IFIEVAL=0
- ..;If the regular finding is false all we need to do is process the
- ..;not found text. If it is true we also need to output the finding
- ..;information.
+ .. E  D
+ ... S IFIEVAL=0
  ..;Function findings are processed as a group.
  .. I IFIEVAL,FINDING'["FF" D FOUT(1,.IFIEVAL,.NFLINES,.TEXT)
  ..;Output the found/not found text for the finding.
@@ -58,8 +58,38 @@ CM(DEFARR,PXRMPDEM,PCLOGIC,RESLOGIC,RESDATE,FIEVAL,OUTTYPE) ;Prepare the
  .;Output the header and the finding text.
  . D ADDTXTA^PXRMOUTU(1,PXRMRM,.NTXT,NHDR,.HDR)
  . D COPYTXT^PXRMOUTU(.NTXT,NFLINES,.TEXT)
+ ;If there are any contraindications, precautions, or refusals output them.
+ ;Use CRSTATUS and the line counts to determine if the CONTRAINDICATED and
+ ;REFUSED true and false text should be output.
+ I (CRSTATUS="CONTRA") D
+ . S NUMLINES=$P(DEFARR(85),U,1)
+ . I NUMLINES>0 D CRLOGIC^PXRMFNFT(PXRMPDEM("DFN"),NUMLINES,83,.NTXT)
+ I (CRSTATUS'="CONTRA") D
+ . S NUMLINES=$P(DEFARR(85),U,2)
+ . I NUMLINES>0 D CRLOGIC^PXRMFNFT(PXRMPDEM("DFN"),NUMLINES,84,.NTXT)
+ I (CRSTATUS="REFUSED") D
+ . S NUMLINES=$P(DEFARR(95),U,1)
+ . I NUMLINES>0 D CRLOGIC^PXRMFNFT(PXRMPDEM("DFN"),NUMLINES,93,.NTXT)
+ I (CRSTATUS'="CONTRA"),(CRSTATUS'="REFUSED") D
+ . S NUMLINES=$P(DEFARR(95),U,2)
+ . I NUMLINES>0 D CRLOGIC^PXRMFNFT(PXRMPDEM("DFN"),NUMLINES,94,.NTXT)
+ ;
+ I $D(FIEVAL("CONTRA")) D OUTPUTCONREF^PXRMIMM(1,"CONTRA",.DEFARR,.FIEVAL,.NTXT)
+ I $D(FIEVAL("REFUSED")) D OUTPUTCONREF^PXRMIMM(1,"REFUSED",.DEFARR,.FIEVAL,.NTXT)
+ I $D(FIEVAL("PRECAUTION")) D OUTPUTCONREF^PXRMIMM(1,"PRECAUTION",.DEFARR,.FIEVAL,.NTXT)
  ;Output INFO nodes
  D INFO^PXRMOUTU(PXRMITEM,.NTXT)
+ ;Check for term warnings.
+ I '$D(^TMP(PXRMPID,$J,PXRMITEM,"WARNING")) Q
+ N DESC,NTW
+ K TEXT
+ S DESC="NOTERM",NTW=2
+ F  S DESC=$O(^TMP(PXRMPID,$J,PXRMITEM,"WARNING",DESC)) Q:DESC'["NOTERM"  D
+ . S NTW=NTW+1,TEXT(NTW)=$P(^TMP(PXRMPID,$J,PXRMITEM,"WARNING",DESC),":",2)_"\\"
+ I NTW>2 D
+ . S TEXT(1)=""
+ . S TEXT(2)="Term Warnings:\\"
+ . D ADDTXTA^PXRMOUTU(1,PXRMRM,.NTXT,NTW,.TEXT)
  Q
  ;
  ;================================================
@@ -93,6 +123,7 @@ FOUT(INDENT,IFIEVAL,NLINES,TEXT) ;Do output for individual findings
  ;
  ;================================================
 FFOUT(INDENT,NUM,FLIST,FIEVAL,NLINES,TEXT) ;Output for function findings.
+ ;Only display the Function Finding in Reminder Test.
  I '$D(PXRMDEBG) Q
  N IND,FFNUM,FFLIST,FFTEXT,FINDING,NOUT,TEXTOUT
  F IND=1:1:NUM D
@@ -104,9 +135,9 @@ FFOUT(INDENT,NUM,FLIST,FIEVAL,NLINES,TEXT) ;Output for function findings.
  S FFTEXT="FF("_FFNUM_")="_FIEVAL("FF"_FFNUM)
  F  S FFNUM=$O(FFLIST(FFNUM)) Q:FFNUM=""  D
  . S FFTEXT=FFTEXT_", FF("_FFNUM_")="_FIEVAL("FF"_FFNUM)
- S NLINES=NLINES+1,TEXT(NLINES)=""
  D FORMATS^PXRMTEXT(INDENT,PXRMRM,FFTEXT,.NOUT,.TEXTOUT)
  F IND=1:1:NOUT S NLINES=NLINES+1,TEXT(NLINES)=TEXTOUT(IND)
+ S NLINES=NLINES+1,TEXT(NLINES)=""
  Q
  ;
  ;================================================
@@ -144,19 +175,12 @@ HEADER(FTYPE,NLINES,RESDATE,NHDR,HDR) ;Create a finding header.
  .. S HDR(1)="\\"
  ;
  I NLINES=0 Q
- I FTYPE="PCL" D  Q
- . S NHDR=2
- . S HDR(1)="\\"
- . S HDR(2)="Cohort:"
- ;
- I FTYPE="AGE" D  Q
- . S NHDR=2
- . S HDR(1)="\\"
- . S HDR(2)="Age/Frequency:"
- ;
- I FTYPE="INFO" D  Q
- . S NHDR=2
- . S HDR(1)="\\"
- . S HDR(2)="Information:"
+ S NHDR=2
+ S HDR(1)="\\"
+ I FTYPE="PCL" S HDR(2)="Cohort:"  Q
+ I FTYPE="AGE" S HDR(2)="Age/Frequency:"  Q
+ I FTYPE="CONTRA" S HDR(2)="Contraindicated:"  Q
+ I FTYPE="REFUSED" S HDR(2)="Refused:"  Q
+ I FTYPE="INFO" S HDR(2)="Information:"
  Q
  ;

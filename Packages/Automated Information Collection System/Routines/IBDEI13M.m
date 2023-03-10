@@ -1,130 +1,118 @@
-IBDEI13M ; ; 04-FEB-2020
- ;;3.0;IB ENCOUNTER FORM IMP/EXP;;FEB 04, 2020
+IBDEI13M ; ; 01-FEB-2022
+ ;;3.0;IB ENCOUNTER FORM IMP/EXP;;FEB 01, 2022
  Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,999) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
- ;;^UTILITY(U,$J,358.3,17653,0)
- ;;=N60.32^^88^895^48
- ;;^UTILITY(U,$J,358.3,17653,1,0)
+ ;;^UTILITY(U,$J,358.3,17836,1,3,0)
+ ;;=3^Fall from Pedestrian Conveyance,Subs Encntr
+ ;;^UTILITY(U,$J,358.3,17836,1,4,0)
+ ;;=4^V00.891D
+ ;;^UTILITY(U,$J,358.3,17836,2)
+ ;;=^5055965
+ ;;^UTILITY(U,$J,358.3,17837,0)
+ ;;=V00.892A^^61^794^108
+ ;;^UTILITY(U,$J,358.3,17837,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,17653,1,3,0)
- ;;=3^Fibrosclerosis,Left Breast
- ;;^UTILITY(U,$J,358.3,17653,1,4,0)
- ;;=4^N60.32
- ;;^UTILITY(U,$J,358.3,17653,2)
- ;;=^5015780
- ;;^UTILITY(U,$J,358.3,17654,0)
- ;;=N60.31^^88^895^49
- ;;^UTILITY(U,$J,358.3,17654,1,0)
+ ;;^UTILITY(U,$J,358.3,17837,1,3,0)
+ ;;=3^Pedestrian Conveyance Colliding w/ Stationary Obj,Init Encntr
+ ;;^UTILITY(U,$J,358.3,17837,1,4,0)
+ ;;=4^V00.892A
+ ;;^UTILITY(U,$J,358.3,17837,2)
+ ;;=^5055967
+ ;;^UTILITY(U,$J,358.3,17838,0)
+ ;;=V00.892D^^61^794^109
+ ;;^UTILITY(U,$J,358.3,17838,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,17654,1,3,0)
- ;;=3^Fibrosclerosis,Right Breast
- ;;^UTILITY(U,$J,358.3,17654,1,4,0)
- ;;=4^N60.31
- ;;^UTILITY(U,$J,358.3,17654,2)
- ;;=^5015779
- ;;^UTILITY(U,$J,358.3,17655,0)
- ;;=Z01.411^^88^895^50
- ;;^UTILITY(U,$J,358.3,17655,1,0)
+ ;;^UTILITY(U,$J,358.3,17838,1,3,0)
+ ;;=3^Pedestrian Conveyance Colliding w/ Stationary Obj,Subs Encntr
+ ;;^UTILITY(U,$J,358.3,17838,1,4,0)
+ ;;=4^V00.892D
+ ;;^UTILITY(U,$J,358.3,17838,2)
+ ;;=^5055968
+ ;;^UTILITY(U,$J,358.3,17839,0)
+ ;;=V00.898A^^61^794^106
+ ;;^UTILITY(U,$J,358.3,17839,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,17655,1,3,0)
- ;;=3^GYN Exam w/ Abnormal Findings
- ;;^UTILITY(U,$J,358.3,17655,1,4,0)
- ;;=4^Z01.411
- ;;^UTILITY(U,$J,358.3,17655,2)
- ;;=^5062622
- ;;^UTILITY(U,$J,358.3,17656,0)
- ;;=Z01.419^^88^895^1
- ;;^UTILITY(U,$J,358.3,17656,1,0)
+ ;;^UTILITY(U,$J,358.3,17839,1,3,0)
+ ;;=3^Pedestrian Conveyance Accident NEC,Init Encntr
+ ;;^UTILITY(U,$J,358.3,17839,1,4,0)
+ ;;=4^V00.898A
+ ;;^UTILITY(U,$J,358.3,17839,2)
+ ;;=^5055970
+ ;;^UTILITY(U,$J,358.3,17840,0)
+ ;;=V00.898D^^61^794^107
+ ;;^UTILITY(U,$J,358.3,17840,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,17656,1,3,0)
- ;;=3
- ;;^UTILITY(U,$J,358.3,17656,1,4,0)
- ;;=4^Z01.419
- ;;^UTILITY(U,$J,358.3,17656,2)
- ;;=^5062623
- ;;^UTILITY(U,$J,358.3,17657,0)
- ;;=Z01.419^^88^895^51
- ;;^UTILITY(U,$J,358.3,17657,1,0)
+ ;;^UTILITY(U,$J,358.3,17840,1,3,0)
+ ;;=3^Pedestrian Conveyance Accident NEC,Subs Encntr
+ ;;^UTILITY(U,$J,358.3,17840,1,4,0)
+ ;;=4^V00.898D
+ ;;^UTILITY(U,$J,358.3,17840,2)
+ ;;=^5055971
+ ;;^UTILITY(U,$J,358.3,17841,0)
+ ;;=W00.0XXA^^61^794^84
+ ;;^UTILITY(U,$J,358.3,17841,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,17657,1,3,0)
- ;;=3^GYN Exam w/ Normal Findings
- ;;^UTILITY(U,$J,358.3,17657,1,4,0)
- ;;=4^Z01.419
- ;;^UTILITY(U,$J,358.3,17657,2)
- ;;=^5062623
- ;;^UTILITY(U,$J,358.3,17658,0)
- ;;=R87.613^^88^895^53
- ;;^UTILITY(U,$J,358.3,17658,1,0)
+ ;;^UTILITY(U,$J,358.3,17841,1,3,0)
+ ;;=3^Fall on Same Level d/t Ice/Snow,Init Encntr
+ ;;^UTILITY(U,$J,358.3,17841,1,4,0)
+ ;;=4^W00.0XXA
+ ;;^UTILITY(U,$J,358.3,17841,2)
+ ;;=^5059510
+ ;;^UTILITY(U,$J,358.3,17842,0)
+ ;;=W00.0XXD^^61^794^85
+ ;;^UTILITY(U,$J,358.3,17842,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,17658,1,3,0)
- ;;=3^HGSIL
- ;;^UTILITY(U,$J,358.3,17658,1,4,0)
- ;;=4^R87.613
- ;;^UTILITY(U,$J,358.3,17658,2)
- ;;=^5019671
- ;;^UTILITY(U,$J,358.3,17659,0)
- ;;=R87.612^^88^895^63
- ;;^UTILITY(U,$J,358.3,17659,1,0)
+ ;;^UTILITY(U,$J,358.3,17842,1,3,0)
+ ;;=3^Fall on Same Level d/t Ice/Snow,Subs Encntr
+ ;;^UTILITY(U,$J,358.3,17842,1,4,0)
+ ;;=4^W00.0XXD
+ ;;^UTILITY(U,$J,358.3,17842,2)
+ ;;=^5059511
+ ;;^UTILITY(U,$J,358.3,17843,0)
+ ;;=W00.1XXA^^61^794^64
+ ;;^UTILITY(U,$J,358.3,17843,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,17659,1,3,0)
- ;;=3^LGSIL
- ;;^UTILITY(U,$J,358.3,17659,1,4,0)
- ;;=4^R87.612
- ;;^UTILITY(U,$J,358.3,17659,2)
- ;;=^5019670
- ;;^UTILITY(U,$J,358.3,17660,0)
- ;;=R92.1^^88^895^66
- ;;^UTILITY(U,$J,358.3,17660,1,0)
+ ;;^UTILITY(U,$J,358.3,17843,1,3,0)
+ ;;=3^Fall from Stairs/Steps d/t Ice/Snow,Init Encntr
+ ;;^UTILITY(U,$J,358.3,17843,1,4,0)
+ ;;=4^W00.1XXA
+ ;;^UTILITY(U,$J,358.3,17843,2)
+ ;;=^5059513
+ ;;^UTILITY(U,$J,358.3,17844,0)
+ ;;=W00.1XXD^^61^794^65
+ ;;^UTILITY(U,$J,358.3,17844,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,17660,1,3,0)
- ;;=3^Mammographic Calcification on Dx Breast Image
- ;;^UTILITY(U,$J,358.3,17660,1,4,0)
- ;;=4^R92.1
- ;;^UTILITY(U,$J,358.3,17660,2)
- ;;=^5019710
- ;;^UTILITY(U,$J,358.3,17661,0)
- ;;=R92.0^^88^895^67
- ;;^UTILITY(U,$J,358.3,17661,1,0)
+ ;;^UTILITY(U,$J,358.3,17844,1,3,0)
+ ;;=3^Fall from Stairs/Steps d/t Ice/Snow,Subs Encntr
+ ;;^UTILITY(U,$J,358.3,17844,1,4,0)
+ ;;=4^W00.1XXD
+ ;;^UTILITY(U,$J,358.3,17844,2)
+ ;;=^5059514
+ ;;^UTILITY(U,$J,358.3,17845,0)
+ ;;=W00.2XXA^^61^794^58
+ ;;^UTILITY(U,$J,358.3,17845,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,17661,1,3,0)
- ;;=3^Mammographic Microcalcification on Dx Breast Image
- ;;^UTILITY(U,$J,358.3,17661,1,4,0)
- ;;=4^R92.0
- ;;^UTILITY(U,$J,358.3,17661,2)
- ;;=^5019709
- ;;^UTILITY(U,$J,358.3,17662,0)
- ;;=N89.8^^88^895^72
- ;;^UTILITY(U,$J,358.3,17662,1,0)
+ ;;^UTILITY(U,$J,358.3,17845,1,3,0)
+ ;;=3^Fall from One Level to Another d/t Ice/Snow,Init Encntr
+ ;;^UTILITY(U,$J,358.3,17845,1,4,0)
+ ;;=4^W00.2XXA
+ ;;^UTILITY(U,$J,358.3,17845,2)
+ ;;=^5059516
+ ;;^UTILITY(U,$J,358.3,17846,0)
+ ;;=W00.2XXD^^61^794^59
+ ;;^UTILITY(U,$J,358.3,17846,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,17662,1,3,0)
- ;;=3^Noninflammatory Vaginal Disorder,Oth Spec
- ;;^UTILITY(U,$J,358.3,17662,1,4,0)
- ;;=4^N89.8
- ;;^UTILITY(U,$J,358.3,17662,2)
- ;;=^88111
- ;;^UTILITY(U,$J,358.3,17663,0)
- ;;=R10.2^^88^895^82
- ;;^UTILITY(U,$J,358.3,17663,1,0)
+ ;;^UTILITY(U,$J,358.3,17846,1,3,0)
+ ;;=3^Fall from One Level to Another d/t Ice/Snow,Subs Encntr
+ ;;^UTILITY(U,$J,358.3,17846,1,4,0)
+ ;;=4^W00.2XXD
+ ;;^UTILITY(U,$J,358.3,17846,2)
+ ;;=^5059517
+ ;;^UTILITY(U,$J,358.3,17847,0)
+ ;;=W00.9XXA^^61^794^30
+ ;;^UTILITY(U,$J,358.3,17847,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,17663,1,3,0)
- ;;=3^Pelvic & Perineal Pain
- ;;^UTILITY(U,$J,358.3,17663,1,4,0)
- ;;=4^R10.2
- ;;^UTILITY(U,$J,358.3,17663,2)
- ;;=^5019209
- ;;^UTILITY(U,$J,358.3,17664,0)
- ;;=N94.89^^88^895^83
- ;;^UTILITY(U,$J,358.3,17664,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,17664,1,3,0)
- ;;=3^Pelvic Congestion Syndrome
- ;;^UTILITY(U,$J,358.3,17664,1,4,0)
- ;;=4^N94.89
- ;;^UTILITY(U,$J,358.3,17664,2)
- ;;=^5015925
- ;;^UTILITY(U,$J,358.3,17665,0)
- ;;=Z85.3^^88^895^57
- ;;^UTILITY(U,$J,358.3,17665,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,17665,1,3,0)
- ;;=3^Hx of Breast CA
+ ;;^UTILITY(U,$J,358.3,17847,1,3,0)
+ ;;=3^Fall d/t Ice/Snow,Unspec,Init Encntr
+ ;;^UTILITY(U,$J,358.3,17847,1,4,0)
+ ;;=4^W00.9XXA

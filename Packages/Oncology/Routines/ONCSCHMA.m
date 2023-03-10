@@ -1,5 +1,5 @@
-ONCSCHMA ;Hines OIFO/RTK - Schema derivation and related code ;04/27/18
- ;;2.2;ONCOLOGY;**10,12**;Jul 31, 2013;Build 8
+ONCSCHMA ;HINES OIFO/RTK - Schema derivation and related code ;04/27/18
+ ;;2.2;ONCOLOGY;**10,12,13**;Jul 31, 2013;Build 7
  ;
 DER ;Derive the correct SCHEMA ID for the abstract based on Primary Site,
  ;  Histology and possibly Schema Discriminators and Sex
@@ -121,7 +121,9 @@ SCMA ; go through until hit is found, else return ONCSCMA=0
  ;CERVIX: C530,C531,C538,C539 H8000-8700,8720-8790,8805,8933,8980,9110
  ;  9581,9700,9701
  I "C530^C531^C538^C539"[ONCTPCD D  I ONCSCMA'=0 Q
- .I ((HST14>7999)&(HST14<8701))!((HST14>8719)&(HST14<8791))!(HST14=8805)!(HST14=8933)!(HST14=8980)!(HST14=9110)!(HST14=9581)!(HST14=9700)!(HST14=9701) S ONCSCMA="00520"
+ .I ((HST14>7999)&(HST14<8701))!((HST14>8719)&(HST14<8791))!(HST14=8805)!(HST14=8933)!(HST14=8980)!(HST14=9110)!(HST14=9581)!(HST14=9700)!(HST14=9701) D
+ ..I DATEDX<3210000 S ONCSCMA="00520"
+ ..I DATEDX>3201231 S ONCSCMA="09520"
  ;
  ;CNS OTHER: https://staging.seer.cancer.gov/eod_public/schema/1.7/cns_other/?breadcrumbs=(~schema_list~)
  I "C701^C709^C720^C721^C728^C729"[ONCTPCD D  I ONCSCMA'=0 Q

@@ -1,6 +1,6 @@
 IBR ;ALB/AAS - INTEGRATED BILLING - A/R INTERFACE ;25-FEB-91
-V ;;2.0;INTEGRATED BILLING;**52,70,93,113,132,51**;21-MAR-94
- ;;Per VHA Directive 10-93-142, this routine should not be modified.
+V ;;2.0;INTEGRATED BILLING;**52,70,93,113,132,51,715**;21-MAR-94;Build 25
+ ;;Per VA Directive 6402, this routine should not be modified.
  ;
  ;  - handles calls to AR
  ;  -  input   IBSEQNO = 1,2, or 3
@@ -27,17 +27,12 @@ V ;;2.0;INTEGRATED BILLING;**52,70,93,113,132,51**;21-MAR-94
  F I=1:1 S IBN=$P(IBNOS,"^",I) Q:'IBN  D UP1,UP3:IBSEQNO=3
  Q
 UP1 ;  -update IB data and reindex
- N DIERR
+ N DIERR,FDA
  S FDA(350,IBN_",",.05)=$S(IBERR="":3,1:9)
  S FDA(350,IBN_",",.11)=IBIL
  S FDA(350,IBN_",",.12)=IBTRAN
  D FILE^DIE("K","FDA")
  I $G(DIERR) S IBERR="IB020;"_IBERR
- ;S DIE="^IB(",DA=IBN,DR=".05////"_$S(IBERR="":3,1:9)_";.11////"_IBIL_";.12////"_IBTRAN
- ;D ^DIE K DIE,DR,DA
- ;I $D(Y) S IBERR="IB020;"_IBERR
- ;S DA=IBN,DIK="^IB(" D IX^DIK
- ;K DIK,DA
  Q
 2 S IBTOTL=0 N IBNOW
  F I=1:1 S IBN=$P(IBNOS,"^",I) Q:'IBN  S X=$S($D(^IB(IBN,0)):^(0),1:"") S:X="" IBERR="IB018;"_IBERR S:$P($G(^IB(+$P(X,"^",9),0)),"^",5)'=8 IBTOTL=IBTOTL+$P(X,"^",7)
@@ -53,6 +48,7 @@ UP1 ;  -update IB data and reindex
  F I=1:1 S IBN=$P(IBNOS,"^",I) Q:'IBN  D UP2
  Q
 UP2 ;  -update IB data and reindex
+ N IBPARNT,IBCRES
  S DIE="^IB(",DA=IBN,DR=".05////"_$S(IBERR="":3,1:9)
  D ^DIE K DIE,DR,DA
  I $D(Y) S IBERR="IB020;"_IBERR
@@ -70,6 +66,18 @@ UP3 ;  -update status of all previous bills to updated
  ;
  N IBI,IBJ
  S IBJ="" F IBI=0:0 S IBJ=$O(^IB("AD",$P(^IB(IBN,0),"^",9),IBJ)) Q:'IBJ  I $D(^IB(IBJ,0)),$P(^(0),"^",5)=3,IBN'=IBJ S DIE="^IB(",DA=IBJ,DR=".05////4" D ^DIE
+ Q
+ ;
+UP4(IBN,IBIL) ; update field 350/.11 and "ABIL" xref  IB*2.0*715
+ ;
+ ; IBN - file 350 ien
+ ; IBIL - AR bill #
+ ;
+ N FDA
+ S FDA(350,IBN_",",.11)=IBIL
+ L +^IB(IBN):5 I '$T Q
+ D FILE^DIE("","FDA")
+ L -^IB(IBN)
  Q
  ;
 ERR D ^IBAERR:$D(ZTQUEUED) Q
@@ -117,11 +125,7 @@ REL ; Release the charge to AR.
  S PRCASV("FY")=$$FY^IBOUTL(IBFR)_"^"_IBCHG
  ;
  D ^PRCASVC6
- I PRCASV("OKAY") D
- .S (IBTRAN,IBERR)="",IBIL=PRCASV("ARBIL")
- .D UP1
- .;
- .D REL^PRCASVC
+ I PRCASV("OKAY") D UP4($G(IBN),PRCASV("ARBIL")),REL^PRCASVC S IBERR="",IBIL=PRCASV("ARBIL"),IBTRAN=$G(PRCASV("IBTRAN")) D UP1  ; IB*2.0*715
  ;
  I 'PRCASV("OKAY") D  G RELQ
  .W:$G(IBJOB)=4 !," >> Unable to establish this receivable in AR!  Please investigate before",!,"    trying to re-bill this patient."
@@ -130,10 +134,6 @@ REL ; Release the charge to AR.
  ; - update the receivable status to Active
  S PRCASV("STATUS")=16
  D STATUS^PRCASVC1
- ;
- ; - update charge status
- ;S (IBTRAN,IBERR)="",IBIL=PRCASV("ARBIL")
- ;D UP1
  ;
 RELQ K PRCASV,IBTRAN,IBIL,IBERR
  Q

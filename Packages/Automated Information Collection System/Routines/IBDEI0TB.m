@@ -1,126 +1,128 @@
-IBDEI0TB ; ; 04-FEB-2020
- ;;3.0;IB ENCOUNTER FORM IMP/EXP;;FEB 04, 2020
+IBDEI0TB ; ; 01-FEB-2022
+ ;;3.0;IB ENCOUNTER FORM IMP/EXP;;FEB 01, 2022
  Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,999) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
- ;;^UTILITY(U,$J,358.3,13042,1,0)
+ ;;^UTILITY(U,$J,358.3,13190,1,3,0)
+ ;;=3^POAG,OD,Stage Unspec
+ ;;^UTILITY(U,$J,358.3,13190,1,4,0)
+ ;;=4^H40.1110
+ ;;^UTILITY(U,$J,358.3,13190,2)
+ ;;=^5138536
+ ;;^UTILITY(U,$J,358.3,13191,0)
+ ;;=H40.1111^^51^630^7
+ ;;^UTILITY(U,$J,358.3,13191,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,13042,1,3,0)
- ;;=3^Incisional Hernia w/ Obs w/o Gangrene
- ;;^UTILITY(U,$J,358.3,13042,1,4,0)
- ;;=4^K43.0
- ;;^UTILITY(U,$J,358.3,13042,2)
- ;;=^5008607
- ;;^UTILITY(U,$J,358.3,13043,0)
- ;;=K43.1^^80^793^22
- ;;^UTILITY(U,$J,358.3,13043,1,0)
+ ;;^UTILITY(U,$J,358.3,13191,1,3,0)
+ ;;=3^POAG,OD,Mild Stage
+ ;;^UTILITY(U,$J,358.3,13191,1,4,0)
+ ;;=4^H40.1111
+ ;;^UTILITY(U,$J,358.3,13191,2)
+ ;;=^5138537
+ ;;^UTILITY(U,$J,358.3,13192,0)
+ ;;=H40.1112^^51^630^8
+ ;;^UTILITY(U,$J,358.3,13192,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,13043,1,3,0)
- ;;=3^Incisional Hernia w/ Gangrene
- ;;^UTILITY(U,$J,358.3,13043,1,4,0)
- ;;=4^K43.1
- ;;^UTILITY(U,$J,358.3,13043,2)
- ;;=^5008608
- ;;^UTILITY(U,$J,358.3,13044,0)
- ;;=K43.2^^80^793^24
- ;;^UTILITY(U,$J,358.3,13044,1,0)
+ ;;^UTILITY(U,$J,358.3,13192,1,3,0)
+ ;;=3^POAG,OD,Moderate Stage
+ ;;^UTILITY(U,$J,358.3,13192,1,4,0)
+ ;;=4^H40.1112
+ ;;^UTILITY(U,$J,358.3,13192,2)
+ ;;=^5138538
+ ;;^UTILITY(U,$J,358.3,13193,0)
+ ;;=H40.1113^^51^630^9
+ ;;^UTILITY(U,$J,358.3,13193,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,13044,1,3,0)
- ;;=3^Incisional Hernia w/o Obs or Gangrene
- ;;^UTILITY(U,$J,358.3,13044,1,4,0)
- ;;=4^K43.2
- ;;^UTILITY(U,$J,358.3,13044,2)
- ;;=^5008609
- ;;^UTILITY(U,$J,358.3,13045,0)
- ;;=K43.3^^80^793^26
- ;;^UTILITY(U,$J,358.3,13045,1,0)
+ ;;^UTILITY(U,$J,358.3,13193,1,3,0)
+ ;;=3^POAG,OD,Severe Stage
+ ;;^UTILITY(U,$J,358.3,13193,1,4,0)
+ ;;=4^H40.1113
+ ;;^UTILITY(U,$J,358.3,13193,2)
+ ;;=^5138539
+ ;;^UTILITY(U,$J,358.3,13194,0)
+ ;;=H40.1114^^51^630^10
+ ;;^UTILITY(U,$J,358.3,13194,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,13045,1,3,0)
- ;;=3^Parastomal Hernia w/ Obs w/o Gangrene
- ;;^UTILITY(U,$J,358.3,13045,1,4,0)
- ;;=4^K43.3
- ;;^UTILITY(U,$J,358.3,13045,2)
- ;;=^5008610
- ;;^UTILITY(U,$J,358.3,13046,0)
- ;;=K43.4^^80^793^25
- ;;^UTILITY(U,$J,358.3,13046,1,0)
+ ;;^UTILITY(U,$J,358.3,13194,1,3,0)
+ ;;=3^POAG,OD,Indeterminate Stage
+ ;;^UTILITY(U,$J,358.3,13194,1,4,0)
+ ;;=4^H40.1114
+ ;;^UTILITY(U,$J,358.3,13194,2)
+ ;;=^5138540
+ ;;^UTILITY(U,$J,358.3,13195,0)
+ ;;=H40.033^^51^631^15
+ ;;^UTILITY(U,$J,358.3,13195,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,13046,1,3,0)
- ;;=3^Parastomal Hernia w/ Gangrene
- ;;^UTILITY(U,$J,358.3,13046,1,4,0)
- ;;=4^K43.4
- ;;^UTILITY(U,$J,358.3,13046,2)
- ;;=^5008611
- ;;^UTILITY(U,$J,358.3,13047,0)
- ;;=K43.5^^80^793^27
- ;;^UTILITY(U,$J,358.3,13047,1,0)
+ ;;^UTILITY(U,$J,358.3,13195,1,3,0)
+ ;;=3^Anatomical Narrow Angle,OU
+ ;;^UTILITY(U,$J,358.3,13195,1,4,0)
+ ;;=4^H40.033
+ ;;^UTILITY(U,$J,358.3,13195,2)
+ ;;=^5005734
+ ;;^UTILITY(U,$J,358.3,13196,0)
+ ;;=H40.031^^51^631^13
+ ;;^UTILITY(U,$J,358.3,13196,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,13047,1,3,0)
- ;;=3^Parastomal Hernia w/o Obs or Gangrene
- ;;^UTILITY(U,$J,358.3,13047,1,4,0)
- ;;=4^K43.5
- ;;^UTILITY(U,$J,358.3,13047,2)
- ;;=^5008612
- ;;^UTILITY(U,$J,358.3,13048,0)
- ;;=K43.6^^80^793^44
- ;;^UTILITY(U,$J,358.3,13048,1,0)
+ ;;^UTILITY(U,$J,358.3,13196,1,3,0)
+ ;;=3^Anatomical Narrow Angle,OD
+ ;;^UTILITY(U,$J,358.3,13196,1,4,0)
+ ;;=4^H40.031
+ ;;^UTILITY(U,$J,358.3,13196,2)
+ ;;=^5005732
+ ;;^UTILITY(U,$J,358.3,13197,0)
+ ;;=H40.032^^51^631^14
+ ;;^UTILITY(U,$J,358.3,13197,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,13048,1,3,0)
- ;;=3^Ventral Hernia w/ Obs w/o Gangrene,Other and Unspec
- ;;^UTILITY(U,$J,358.3,13048,1,4,0)
- ;;=4^K43.6
- ;;^UTILITY(U,$J,358.3,13048,2)
- ;;=^5008613
- ;;^UTILITY(U,$J,358.3,13049,0)
- ;;=K43.7^^80^793^43
- ;;^UTILITY(U,$J,358.3,13049,1,0)
+ ;;^UTILITY(U,$J,358.3,13197,1,3,0)
+ ;;=3^Anatomical Narrow Angle,OS
+ ;;^UTILITY(U,$J,358.3,13197,1,4,0)
+ ;;=4^H40.032
+ ;;^UTILITY(U,$J,358.3,13197,2)
+ ;;=^5005733
+ ;;^UTILITY(U,$J,358.3,13198,0)
+ ;;=H40.013^^51^631^9
+ ;;^UTILITY(U,$J,358.3,13198,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,13049,1,3,0)
- ;;=3^Ventral Hernia w/ Gangrene,Other and Unspec
- ;;^UTILITY(U,$J,358.3,13049,1,4,0)
- ;;=4^K43.7
- ;;^UTILITY(U,$J,358.3,13049,2)
- ;;=^5008614
- ;;^UTILITY(U,$J,358.3,13050,0)
- ;;=K43.9^^80^793^45
- ;;^UTILITY(U,$J,358.3,13050,1,0)
+ ;;^UTILITY(U,$J,358.3,13198,1,3,0)
+ ;;=3^OAG w/ Boderline Findings,Low Risk,OU
+ ;;^UTILITY(U,$J,358.3,13198,1,4,0)
+ ;;=4^H40.013
+ ;;^UTILITY(U,$J,358.3,13198,2)
+ ;;=^5005726
+ ;;^UTILITY(U,$J,358.3,13199,0)
+ ;;=H40.012^^51^631^8
+ ;;^UTILITY(U,$J,358.3,13199,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,13050,1,3,0)
- ;;=3^Ventral Hernia w/o Obs or Gangrene
- ;;^UTILITY(U,$J,358.3,13050,1,4,0)
- ;;=4^K43.9
- ;;^UTILITY(U,$J,358.3,13050,2)
- ;;=^5008615
- ;;^UTILITY(U,$J,358.3,13051,0)
- ;;=K44.0^^80^793^20
- ;;^UTILITY(U,$J,358.3,13051,1,0)
+ ;;^UTILITY(U,$J,358.3,13199,1,3,0)
+ ;;=3^OAG w/ Boderline Findings,Low Risk,OS
+ ;;^UTILITY(U,$J,358.3,13199,1,4,0)
+ ;;=4^H40.012
+ ;;^UTILITY(U,$J,358.3,13199,2)
+ ;;=^5005725
+ ;;^UTILITY(U,$J,358.3,13200,0)
+ ;;=H40.011^^51^631^7
+ ;;^UTILITY(U,$J,358.3,13200,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,13051,1,3,0)
- ;;=3^Diaphragmatic Hernia w/ Obs w/o Gangrene
- ;;^UTILITY(U,$J,358.3,13051,1,4,0)
- ;;=4^K44.0
- ;;^UTILITY(U,$J,358.3,13051,2)
- ;;=^5008616
- ;;^UTILITY(U,$J,358.3,13052,0)
- ;;=K44.1^^80^793^19
- ;;^UTILITY(U,$J,358.3,13052,1,0)
+ ;;^UTILITY(U,$J,358.3,13200,1,3,0)
+ ;;=3^OAG w/ Boderline Findings,Low Risk,OD
+ ;;^UTILITY(U,$J,358.3,13200,1,4,0)
+ ;;=4^H40.011
+ ;;^UTILITY(U,$J,358.3,13200,2)
+ ;;=^5005724
+ ;;^UTILITY(U,$J,358.3,13201,0)
+ ;;=H40.023^^51^631^12
+ ;;^UTILITY(U,$J,358.3,13201,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,13052,1,3,0)
- ;;=3^Diaphragmatic Hernia w/ Gangrene
- ;;^UTILITY(U,$J,358.3,13052,1,4,0)
- ;;=4^K44.1
- ;;^UTILITY(U,$J,358.3,13052,2)
- ;;=^270225
- ;;^UTILITY(U,$J,358.3,13053,0)
- ;;=K44.9^^80^793^21
- ;;^UTILITY(U,$J,358.3,13053,1,0)
+ ;;^UTILITY(U,$J,358.3,13201,1,3,0)
+ ;;=3^OAG w/ Boderline Findings,High Risk,OU
+ ;;^UTILITY(U,$J,358.3,13201,1,4,0)
+ ;;=4^H40.023
+ ;;^UTILITY(U,$J,358.3,13201,2)
+ ;;=^5005730
+ ;;^UTILITY(U,$J,358.3,13202,0)
+ ;;=H40.021^^51^631^10
+ ;;^UTILITY(U,$J,358.3,13202,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,13053,1,3,0)
- ;;=3^Diaphragmatic Hernia w/o Obs or Gangrene
- ;;^UTILITY(U,$J,358.3,13053,1,4,0)
- ;;=4^K44.9
- ;;^UTILITY(U,$J,358.3,13053,2)
- ;;=^5008617
- ;;^UTILITY(U,$J,358.3,13054,0)
- ;;=K45.0^^80^793^3
- ;;^UTILITY(U,$J,358.3,13054,1,0)
- ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,13202,1,3,0)
+ ;;=3^OAG w/ Boderline Findings,High Risk,OD
+ ;;^UTILITY(U,$J,358.3,13202,1,4,0)
+ ;;=4^H40.021

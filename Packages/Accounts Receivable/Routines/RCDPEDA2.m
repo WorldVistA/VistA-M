@@ -1,5 +1,5 @@
 RCDPEDA2 ;AITC/DW - ACTIVITY REPORT ;Feb 17, 2017@10:37:00
- ;;4.5;Accounts Receivable;**318,321,326**;Mar 20, 1995;Build 26
+ ;;4.5;Accounts Receivable;**318,321,326,380**;Mar 20, 1995;Build 14
  ;Per VA Directive 6402, this routine should not be modified.
  Q
  ;
@@ -77,7 +77,7 @@ RPT2(INPUT) ;EP from RCDPEDAR
  . . . S XX=$G(^TMP($J,"TOTALS","FMS","D",-1))
  . . . S ^TMP($J,"TOTALS","FMS","D",-1)=XX+TOTDEP
  . . . S ^TMP($J,"TOTALS","FMS")="STATUS MISSING"
- . . S XX=$E($P(YY," "),1,10)                   ; First Word of the status
+ . . S XX=$E($P(YY," "),1,10)
  . . S ^TMP($J,"TOTALS","FMS")=XX               ; First Word of the status
  . . S Q=$E(YY,1)                               ; First Character of the status
  . . S Q=$S(Q="E"!(Q="R"):0,Q="Q":2,1:1)        ; Q=0 - Reject or Error, 2 - Queued, 1 - good
@@ -197,14 +197,22 @@ DETLN(INPUT,IEN3443,TOTDEP) ; Display detail line
  ;                                      A6 - Stop Flag
  ;                                      A8 - Updated Line Counter
  ;
- N DTADD,DETL,LSTMAN,NJ,X,XX,YY
+ N DEPDT,DEPNUM,DETL,DTADD,LSTMAN,MULT,NJ,X,XX,YY
  S LSTMAN=$P(INPUT,"^",2),NJ=$P(INPUT,"^",1)
  S DETL=$P(INPUT,"^",3)
- S XX=$$GET1^DIQ(344.3,IEN3443,.06,"I")         ; Deposit Number
+ ;PRCA*4.5*380 - Check for multiple mail messages on this deposit
+ S:$O(^RCY(344.3,IEN3443,3,0))'="" MULT="*"
+ ;PRCA*4.5*380 - Check if prior deposits exist
+ S DEPNUM=$$GET1^DIQ(344.3,IEN3443,.06,"I"),DEPDT=$$GET1^DIQ(344.3,IEN3443,.07,"I")
+ S XX=$O(^RCY(344.3,"ADEP2",DEPNUM,DEPDT,0)),XX=$O(^RCY(344.3,"ADEP2",DEPNUM,DEPDT,XX))
+ S:XX'="" MULT=$G(MULT)_"+"
+ S XX=DEPNUM ; Deposit Number
  ;
  S X=$$SETSTR^VALM1(XX,"",1,9)
  ;
- S YY=$$GET1^DIQ(344.3,IEN3443,.07,"I")         ; Deposit Date
+ S YY=DEPDT ; Deposit Date
+ ;PRCA*4.5*380 - Include multi-mail message indicator with date
+ ;S X=$$SETSTR^VALM1($$FMTE^XLFDT(YY\1,"2Z")_$G(MULT),X,12,10)
  S X=$$SETSTR^VALM1($$FMTE^XLFDT(YY\1,"2Z"),X,12,10)
  ;
  S X=$$SETSTR^VALM1("",X,23,8)
@@ -292,7 +300,7 @@ EFTDTL(INPUT,IEN3443,IEN34431,RCFMS1,EFTCTR)   ; Display EFT Detail
  ; Output:  INPUT                   - See RPT2 for details
  ;          ^TMP($J,ONEDEP,0,1)     - Deposit Detail line
  ;          ^TMP($J,ONEDEP,EFTCTR)  - # of lines for EFT
- ;          ^TMP($J,ONEDEP,EFTCTR,xx)- EFT Deposit Lines ;PRCA*4.5*321 capture display to ^TMP($J,"ONEDEP",EFTRCR) including line cnt
+ ;          ^TMP($J,ONEDEP,EFTCTR,xx)- EFT Deposit Lines
  N EFTLN,MDT,PAY,PAYER,PAYID,X,XX,YY,ZZ
  S XX=$$GET1^DIQ(344.31,IEN34431,.01,"E")       ; EFT Transaction detail - PRCA*4.5*326
  S X=$$SETSTR^VALM1(XX,"",3,9)
@@ -370,4 +378,3 @@ DUP(INPUT,IEN34431,EFTCTR) ; Check to see if the EFT was a duplicate
  S ^TMP($J,"ONEDEP",EFTCTR,EFTLN)=" "
  Q
  ;
-FMSTAT(IEN344) ; Calculate FMS Document status

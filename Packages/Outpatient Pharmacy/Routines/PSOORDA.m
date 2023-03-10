@@ -1,5 +1,5 @@
-PSOORDA ;ISC-BHAM/LC - build detailed allergy list ;12/10/04 8:29am
- ;;7.0;OUTPATIENT PHARMACY;**44,139,152,186**;DEC 1997
+PSOORDA ;ISC-BHAM/LC - build detailed allergy list ;Aug 05, 2021@09:28:21
+ ;;7.0;OUTPATIENT PHARMACY;**44,139,152,186,441**;DEC 1997;Build 208
  ;External reference to EN1^GMRADPT supported by DBIA 10099
  ;External reference to EN1^GMRAOR2 supported by DBIA 2422
  ;
@@ -80,11 +80,17 @@ DSPLY(DFN) ;build detailed allergy display
  S IEN=IEN+1,^TMP(PSONSP,$J,IEN,0)="  Causative Agent: "_$P(AGNL,"^")
  S IEN=IEN+1,^TMP(PSONSP,$J,IEN,0)="                                  "
  S ^TMP(PSONSP,$J,IEN,0)=^TMP(PSONSP,$J,IEN,0)_"                  Severity: "
- S I="" F  S I=$O(AGNL("O",I)) Q:I=""  D
- . I $P(AGNL("O",I),"^",2)="" Q
- . S X=$$DT(+AGNL("O",I))_" "_$P(AGNL("O",I),"^",2)
- . I I=$O(AGNL("O","")) S ^TMP(PSONSP,$J,IEN,0)=^TMP(PSONSP,$J,IEN,0)_X Q
- . S IEN=IEN+1,$E(^TMP(PSONSP,$J,IEN,0),63)=X
+ I $D(AGNL("O")) D
+ . S I="" F  S I=$O(AGNL("O",I)) Q:I=""  D
+ . . I $P(AGNL("O",I),"^",2)="" Q
+ . . S X=$$DT(+AGNL("O",I))_" "_$P(AGNL("O",I),"^",2)
+ . . I I=$O(AGNL("O","")) S ^TMP(PSONSP,$J,IEN,0)=^TMP(PSONSP,$J,IEN,0)_X Q
+ . . S IEN=IEN+1,$E(^TMP(PSONSP,$J,IEN,0),63)=X
+ I $D(AGNL("H")) D
+ . S X=$S(+$G(AGNL("H")):$$DT(+AGNL("H"))_" ",1:"")
+ . S X=X_$P(AGNL("H"),"^",2)
+ . S ^TMP(PSONSP,$J,IEN,0)=^TMP(PSONSP,$J,IEN,0)_X Q
+ . ;S IEN=IEN+1,$E(^TMP(PSONSP,$J,IEN,0),63)=X
  ;get ingredients
  S (ING,ING1)="" I $D(AGNL("I")) F IT=0:1 S IN=$O(AGNL("I",IT)) Q:'IN  D
  .S:$L(ING_";"_$P($G(AGNL("I",IN)),"^"))>230 ING1=ING1_";"_$P($G(AGNL("I",IN)),"^")

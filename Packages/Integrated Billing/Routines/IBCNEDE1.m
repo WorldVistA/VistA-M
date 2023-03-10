@@ -1,5 +1,5 @@
 IBCNEDE1 ;DAOU/DAC - eIV INSURANCE BUFFER EXTRACT ;04-JUN-2002
- ;;2.0;INTEGRATED BILLING;**184,271,416,438,435,467,497,528,549,601**;21-MAR-94;Build 14
+ ;;2.0;INTEGRATED BILLING;**184,271,416,438,435,467,497,528,549,601,664,668**;21-MAR-94;Build 28
  ;;Per VA Directive 6402, this routine should not be modified.
  ;
  ;**Program Description**
@@ -7,25 +7,29 @@ IBCNEDE1 ;DAOU/DAC - eIV INSURANCE BUFFER EXTRACT ;04-JUN-2002
  ; creates eIV transaction queue entries when appropriate.
  ; Periodically check for stop request for background task
  ;
+ ;/vd-IB*2*668 - Removed the SSVI logic introduced with IB*2*528 in its entirety within VistA.
+ ;
  Q   ; no direct calls allowed
  ;
 EN ; Loop through designated cross-references for updates
  ; Insurance Buffer Extract
  ;
+ ;/vd-IB*2*664 - Added the variable EHRSRC
  N TODAYSDT,FRESHDAY,LOOPDT,IEN,OVRFRESH,FRESHDT
  N DFN,PDOD,SRVICEDT,VERIFDDT,PAYERSTR,PAYERID,SYMBOL,PAYRNAME
  N PIEN,PNIEN,TQIEN,TRIEN,TRSRVCDT,TQCRTDT,TRANSNO,DISYS
  N ORIGINSR,ORGRPSTR,ORGRPNUM,ORGRPNAM,ORGSUBCR
  N MAXCNT,CNT,ISYMBOLM,DATA1,DATA2,ORIG,SETSTR,ISYMBOL,IBCNETOT
  N SIDDATA,SID,SIDACT,BSID,FDA,PASSBUF,SIDCNT,SIDARRAY
- N TQDT,TQIENS,TQOK,STATIEN,PATID,MCAREFLG,INSNAME,PREL,IFSRC
+ N TQDT,TQIENS,TQOK,STATIEN,PATID,MCAREFLG,INSNAME,PREL,EHRSRC,SOURCE,AMCMS
  ;
  S SETSTR=$$SETTINGS^IBCNEDE7(1) ; Returns buffer extract settings
  I 'SETSTR Q                    ; Quit if extract is not active
  S MAXCNT=$P(SETSTR,U,4)        ; Max # TQ entries that may be created
  S:MAXCNT="" MAXCNT=9999999999
  ;
- S IFSRC=$O(^IBE(355.12,"C","INTERFACILITY INS UPDATE",""))  ;10/24/14 *528* baa
+ S EHRSRC=$O(^IBE(355.12,"C","ELECTRONIC HEALTH RECORD",""))  ;vd/IB*2*664 -  Used to identify EHR buffer entries.
+ S AMCMS=$O(^IBE(355.12,"C","ADV MED COST MGMT SOLUTION","")) ;IB*668/DW - AMCMS entries.
  ;
  S FRESHDAY=$P($G(^IBE(350.9,1,51)),U,1) ; System freshness days
  ;
@@ -37,10 +41,8 @@ EN ; Loop through designated cross-references for updates
  . S IEN=""
  . F  S IEN=$O(^IBA(355.33,"AEST","E",LOOPDT,IEN)) Q:IEN=""!(CNT=MAXCNT)  D  Q:$G(ZTSTOP)
  .. ;
- .. ; IBCN 10/24/14 *528* baa
- .. ;  prevent when SOURCE OF INFORMATION field = "Inter-facility Insurance update.
- .. I $P($G(^IBA(355.33,IEN,0)),U,3)=IFSRC Q
- .. ; IBCN END MOD
+ .. S SOURCE=$$GET1^DIQ(355.33,IEN_",",.03,"I") ;IB*668/DW set variable SOURCE
+ .. I (SOURCE=EHRSRC)!(SOURCE=AMCMS) Q   ;IB*664/VD & IB*668/DW - Skip buffer entry
  .. ;
  .. ; Update count for periodic check
  .. S IBCNETOT=IBCNETOT+1

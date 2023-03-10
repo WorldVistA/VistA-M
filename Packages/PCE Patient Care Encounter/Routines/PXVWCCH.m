@@ -1,0 +1,291 @@
+PXVWCCH ;ISP/LMT - ICE Cache Utilities ;Aug 23, 2021@11:28:52
+ ;;1.0;PCE PATIENT CARE ENCOUNTER;**217**;Aug 12, 1996;Build 134
+ ;
+ ;
+STAT(DFN) ;
+ ;
+ N PXBUILDINGDT,PXNOW,PXPURGEDT,PXRETURN,PXSUB,PXVMRCHASH,PXVMRHASH
+ ;
+ S PXSUB=$$SUB(DFN)
+ S PXNOW=$$NOW^XLFDT
+ S PXRETURN=0
+ ;
+ I '$D(^XTMP(PXSUB)) Q PXRETURN
+ ;
+ S PXPURGEDT=$P($G(^XTMP(PXSUB,0)),U,1)
+ I (PXPURGEDT<PXNOW)!('$D(^XTMP(PXSUB,"VMR")))!('$D(^XTMP(PXSUB,"ICE"))) D  Q PXRETURN
+ . S PXBUILDINGDT=$G(^XTMP(PXSUB,"BUILDING"))
+ . I PXBUILDINGDT,$$HDIFF^XLFDT($H,PXBUILDINGDT,2)<21 D  Q
+ . . S PXRETURN=2
+ . D PURGE(DFN)
+ ;
+ S PXVMRHASH=$$HASH^PXVWVMR
+ S PXVMRCHASH=$G(^XTMP(PXSUB,"VMR","HASH"))
+ I PXVMRHASH'="",PXVMRHASH=PXVMRCHASH D  Q PXRETURN
+ . S ^XTMP(PXSUB,"DT")=PXNOW
+ . S PXRETURN=1
+ ;
+ Q PXRETURN
+ ;
+ ;
+EXIST(DFN) ;
+ ;
+ N PXPURGEDT,PXSUB
+ ;
+ S PXSUB=$$SUB(DFN)
+ ;
+ S PXPURGEDT=$P($G(^XTMP(PXSUB,0)),U,1)
+ ;
+ Q $$NOW^XLFDT()<PXPURGEDT
+ ;
+ ;
+LOAD(DFN) ;
+ ;
+ N PXSUB
+ ;
+ S PXSUB=$$SUB(DFN)
+ ;
+ M ^TMP("PXICEWEB",$J)=^XTMP(PXSUB,"ICE")
+ ;
+ Q
+ ;
+ ;
+BLDNG(DFN) ;Set flag that cache is in middle of building
+ ;
+ N PXSUB
+ ;
+ S PXSUB=$$SUB(DFN)
+ ;
+ I '$D(^XTMP(PXSUB,0)) D
+ . S ^XTMP(PXSUB,0)=DT_".24"_U_($H)_U_"ICE Cache for "_DFN
+ ;
+ S ^XTMP(PXSUB,"BUILDING")=$H
+ ;
+ Q
+ ;
+ ;
+ISBLDNG(DFN) ;
+ ;
+ N PXBUILDINGDT,PXRETURN,PXSUB
+ ;
+ S PXSUB=$$SUB(DFN)
+ S PXRETURN=0
+ ;
+ S PXBUILDINGDT=$G(^XTMP(PXSUB,"BUILDING"))
+ I PXBUILDINGDT,$$HDIFF^XLFDT($H,PXBUILDINGDT,2)<21 S PXRETURN=1
+ ;
+ Q PXRETURN
+ ;
+ ;
+CLRBLDNG(DFN) ;
+ ;
+ N PXSUB
+ ;
+ S PXSUB=$$SUB(DFN)
+ K ^XTMP(PXSUB,"BUILDING")
+ ;
+ Q
+ ;
+ ;
+SAVE(DFN,PXCREATEDT) ;
+ ;
+ N PXBDAY,PXPURGEDT,PXSUB,PXVMRHASH
+ ;
+ S PXSUB=$$SUB(DFN)
+ ;
+ ; when ICE sends back version num (and purge cache when version chahnges), then set purge date to 24 days;
+ ; except for: age<17 or birthday<24 days
+ S PXPURGEDT=DT_".24"
+ ;S PXBDAY=$$BDAY(DFN)
+ ;I PXBDAY<PXPURGEDT S PXPURGEDT=PXBDAY
+ ;
+ S ^XTMP(PXSUB,0)=PXPURGEDT_U_PXCREATEDT_U_"ICE Cache for "_DFN
+ ;
+ S PXVMRHASH=$$HASH^PXVWVMR
+ S ^XTMP(PXSUB,"VMR","HASH")=PXVMRHASH
+ ;
+ M ^XTMP(PXSUB,"ICE")=^TMP("PXICEWEB",$J)
+ ;
+ S ^XTMP(PXSUB,"DT")=PXCREATEDT
+ ;
+ K ^XTMP(PXSUB,"BUILDING")
+ ;
+ Q
+ ;
+ ;
+PURGE(DFN) ;
+ ;
+ N PXSUB
+ ;
+ S PXSUB=$$SUB(DFN)
+ K ^XTMP(PXSUB)
+ ;
+ Q
+ ;
+ ;
+SUB(DFN) ;
+ Q "PXVWICE-"_DFN
+ ;
+ ;
+UPDATE ; Update cache for patients with upcoming appointments or admissions
+ ;
+ ; ZEXCEPT: ZTREQ
+ ;
+ S ZTREQ="@"
+ N DFN,PXCHKCACHE,PXDT,PXMIDNIGHT,PXNOW,PXPURGEDT,PXRETURN,PXSUB
+ ;
+ K ^TMP("PXVWCCH-DFN",$J)
+ ;
+ S PXNOW=$$NOW^XLFDT
+ S PXMIDNIGHT=DT_".24"
+ D GETLIST(PXNOW)
+ ;
+ S PXDT=0
+ F  S PXDT=$O(^TMP("PXVWCCH-DFN",$J,PXDT)) Q:'PXDT  D
+ . S DFN=0
+ . F  S DFN=$O(^TMP("PXVWCCH-DFN",$J,PXDT,DFN)) Q:'DFN  D
+ . . S PXSUB=$$SUB(DFN)
+ . . S PXPURGEDT=$P($G(^XTMP(PXSUB,0)),U,1)
+ . . S PXCHKCACHE=1
+ . . ; if cache is expiring before midnight, then force update to cache
+ . . I PXPURGEDT<PXMIDNIGHT S PXCHKCACHE=0
+ . . D EN^PXVWICE(.PXRETURN,DFN,PXCHKCACHE,1)
+ ;
+ I $G(PXRETURN)'="" K @PXRETURN
+ K ^TMP("PXVWCCH-DFN",$J)
+ ;
+ Q
+ ;
+ ;
+GETLIST(PXNOW) ; get list of patients with upcoming appoitments or admissions
+ ;
+ N PXDT,PXHR,PXLISTDT,PXTIME
+ ;
+ S PXDT=$P(PXNOW,".",1)
+ S PXTIME=$P(PXNOW,".",2)
+ S PXHR=$E(PXTIME,1,2)
+ ; Get tomorrow's appointments/admissions
+ ;S PXLISTDT=$$FMADD^XLFDT(PXDT,1)
+ ; If running before 8am, get today's appointments/admissions
+ ; TODO: what time should cut-off be?
+ ;I PXHR<8 S PXLISTDT=PXDT
+ S PXLISTDT=PXDT
+ ;
+ D GETAPPT(PXLISTDT)
+ D GETADM(PXLISTDT)
+ D GETINP
+ K ^TMP("PXVWCCH-DFN",$J,"C")
+ Q
+ ;
+GETAPPT(PXAPPTDT) ; get upcoming appointments
+ ;
+ N DFN,PXARRAY,PXCOUNT,PXSTOPCODES
+ ;
+ K ^TMP($J,"SDAMA301")
+ ;
+ S PXARRAY(1)=PXAPPTDT_";"_PXAPPTDT
+ S PXARRAY(3)="R;I"
+ S PXSTOPCODES=$$GET^XPAR("ALL","PXV ICE WEB STOP CODE FILTER")
+ I PXSTOPCODES'="" S PXARRAY(13)=PXSTOPCODES
+ S PXARRAY("FLDS")="1;2;3;10;13"
+ S PXARRAY("SORT")="P"
+ S PXCOUNT=$$SDAPI^SDAMA301(.PXARRAY)
+ ;
+ S DFN=0
+ F  S DFN=$O(^TMP($J,"SDAMA301",DFN)) Q:'DFN  D
+ . S PXAPPTDT=$O(^TMP($J,"SDAMA301",DFN,0))
+ . S ^TMP("PXVWCCH-DFN",$J,PXAPPTDT,DFN)=""
+ . S ^TMP("PXVWCCH-DFN",$J,"C",DFN,PXAPPTDT)=""
+ ;
+ K ^TMP($J,"SDAMA301")
+ ;
+ Q
+ ;
+GETADM(PXADMDT) ; get scheduled admissions
+ ;
+ N DFN,PXDT,PXENDDT,PXIEN,PXNODE,PXRESDT
+ ;
+ ; TOTO: get ICR for 41.1 (perhaps subscribe to ICR #429)
+ S PXENDDT=PXADMDT_".24"
+ S PXRESDT=PXADMDT-.0000001
+ F  S PXRESDT=$O(^DGS(41.1,"C",PXRESDT)) Q:(('PXRESDT)!(PXRESDT>PXENDDT))  D
+ . S PXIEN=0
+ . F  S PXIEN=$O(^DGS(41.1,"C",PXRESDT,PXIEN)) Q:'PXIEN  D
+ . . S PXNODE=$G(^DGS(41.1,PXIEN,0))
+ . . I $P(PXNODE,U,13) Q  ;cancelled
+ . . S DFN=$P(PXNODE,U,1)
+ . . I $D(^TMP("PXVWCCH-DFN",$J,"C",DFN)) D  Q:'PXRESDT
+ . . . S PXDT=$O(^TMP("PXVWCCH-DFN",$J,"C",DFN,0))
+ . . . I PXDT<PXRESDT S PXRESDT=0 Q
+ . . . K ^TMP("PXVWCCH-DFN",$J,PXDT,DFN)
+ . . . K ^TMP("PXVWCCH-DFN",$J,"C",DFN,PXDT)
+ . . S ^TMP("PXVWCCH-DFN",$J,PXRESDT,DFN)=""
+ . . S ^TMP("PXVWCCH-DFN",$J,"C",DFN,PXRESDT)=""
+ ;
+ Q
+ ;
+ ;
+GETINP ; get current inpatients
+ ;
+ N DFN,PXWARD
+ ;
+ S PXWARD=""
+ F  S PXWARD=$O(^DPT("CN",PXWARD)) Q:PXWARD=""  D  ;ICR #10035
+ . S DFN=0 F  S DFN=$O(^DPT("CN",PXWARD,DFN)) Q:'DFN  D
+ . . I $D(^TMP("PXVWCCH-DFN",$J,"C",DFN)) Q
+ . . S ^TMP("PXVWCCH-DFN",$J,DT,DFN)=""
+ Q
+ ;
+ ;
+UPDPAT(PXRETURN,DFN) ;Check, and if needed update, the cache for a given patient
+ ;
+ N PXCREATEDT,PXLASTDT,PXSUB,PXTASK,PXVOTH
+ ;
+ S PXRETURN=1
+ ;
+ S PXSUB=$$SUB(DFN)
+ ;
+ S PXLASTDT=$G(^XTMP(PXSUB,"DT"))
+ ; If cache was already validated today, no need to update it again.
+ I $P(PXLASTDT,".",1)=DT Q
+ ;
+ S PXVOTH("ZTDTH")=$H
+ S PXTASK=$$NODEV^XUTMDEVQ("UPDPTTSK^PXVWCCH","Update ICE Cache for DFN "_DFN,"DFN",.PXVOTH)
+ ;
+ Q
+ ;
+UPDPTTSK ; Tasked job to update cache
+ ;
+ ; ZEXCEPT: DFN,ZTREQ
+ ;
+ S ZTREQ="@"
+ N PXCHKCACHE,PXPURGEDT,PXRETURN,PXSUB
+ ;
+ S PXSUB=$$SUB(DFN)
+ S PXPURGEDT=$P($G(^XTMP(PXSUB,0)),U,1)
+ S PXCHKCACHE=1
+ ; if cache is expiring before midnight, then force update to cache
+ I PXPURGEDT<(DT_".24") S PXCHKCACHE=0
+ ;
+ D EN^PXVWICE(.PXRETURN,DFN,PXCHKCACHE,1)
+ ;
+ I $G(PXRETURN)'="" K @PXRETURN
+ ;
+ Q
+ ;
+ ;
+AGE(DFN) ; Patient's age
+ N VADM,VAHOW,VAPTYP,VAROOT
+ D DEM^VADPT
+ Q VADM(4)
+ ;
+BDAY(DFN) ; Patient's next birthday
+ ;
+ N PXDOB,PXDT,PXYR,VADM,VAHOW,VAPTYP,VAROOT
+ ;
+ D DEM^VADPT
+ S PXDOB=$P(VADM(3),U,1)
+ S PXDT=$$DT^XLFDT
+ S PXYR=$E(PXDT,1,3)+1
+ I $E(PXDOB,4,7)>$E(PXDT,4,7) S PXYR=$E(PXDT,1,3)
+ Q PXYR_$E(PXDOB,4,7)

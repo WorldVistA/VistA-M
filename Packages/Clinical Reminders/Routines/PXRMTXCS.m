@@ -1,5 +1,5 @@
-PXRMTXCS ; SLC/PKR - Taxonomy code search routines. ;07/24/2013
- ;;2.0;CLINICAL REMINDERS;**26**;Feb 04, 2005;Build 404
+PXRMTXCS ; SLC/PKR - Taxonomy code search routines. ;05/13/2021
+ ;;2.0;CLINICAL REMINDERS;**26,65**;Feb 04, 2005;Build 438
  ;
  ;=====================================================
 CSEARCH(CODESYS,CODE,NFOUND,TAXLIST) ; Search all taxonomies to see if they
@@ -38,4 +38,33 @@ GCODE W !
  F  S TAX=$O(TAXLIST(TAX)) Q:TAX=""  W !," ",TAX
  G GCODE
  Q
- ; 
+ ;
+ ;=====================================================
+UIDSEARCH(CODESYS,CODE,ENCOUNTERDT,CODELIST) ; Find all taxonomies that have this coding
+ ;system code pair marked as UID and return all the active, on the encounter date, UID
+ ;codes from that coding system that are marked as UID in those taxonomies. If the encounter
+ ;date is not passed, the active check is skipped. The list is returned in CODELIST.
+ ;CODELIST(UIDCODE)=Code Description
+ ;CODELIST(UIDCODE,"TAX",TAXONOMY IEN)=""
+ N ACTDT,ENCDATE,IEN,INACTDT,INACTIVE,NINACTDT,UIDCODE
+ K CODELIST
+ S ENCDATE=$P(+$G(ENCOUNTERDT),".",1)
+ S IEN=0
+ F  S IEN=+$O(^PXD(811.2,IEN)) Q:IEN=0  D
+ . I $D(^PXD(811.2,IEN,20,"AUID",CODESYS,CODE)) D
+ .. S UIDCODE=""
+ .. F  S UIDCODE=$O(^PXD(811.2,IEN,20,"AUID",CODESYS,UIDCODE)) Q:UIDCODE=""  D
+ ... S ACTDT=$O(^PXD(811.2,IEN,20,"AUID",CODESYS,UIDCODE,""))
+ ... S INACTDT=$O(^PXD(811.2,IEN,20,"AUID",CODESYS,UIDCODE,ACTDT,""))
+ ...;Make sure the code is active on the encounter date. If the
+ ...;encounter date is in the future no codes will be returned.
+ ... S INACTIVE=0
+ ... I ENCDATE>0 D
+ .... I ENCDATE<ACTDT S INACTIVE=1 Q
+ .... S NINACTDT=$S(INACTDT="DT":DT,1:INACTDT)
+ .... I ENCDATE>NINACTDT S INACTIVE=1
+ ... I INACTIVE Q
+ ... S CODELIST(UIDCODE)=^PXD(811.2,IEN,20,"AUID",CODESYS,UIDCODE,ACTDT,INACTDT)
+ ... S CODELIST(UIDCODE,"TAX",IEN)=""
+ Q
+ ;

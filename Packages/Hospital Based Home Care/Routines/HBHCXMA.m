@@ -1,18 +1,9 @@
-HBHCXMA ;LR VAMC(IRMS)/MJT - HBHC populate ^HBHC(634) with Evaluation/Admission Data or ^HBHC(634.1), file of records in ^HBHC(631) containing missing/erroneous data, called by ^HBHCFILE, calls ^HBHCXMA1 ;9/02/09
- ;;1.0;HOSPITAL BASED HOME CARE;**1,6,9,19,24,25**;NOV 01, 1993;Build 45
+HBHCXMA ;LR VAMC(IRMS)/MJT - HBHC Evaluation/Admission Transactions; May 11, 2021@17:03
+ ;;1.0;HOSPITAL BASED HOME CARE;**1,6,9,19,24,25,32**;NOV 01, 1993;Build 58
  ;
  ; This routine references the following supported ICRs:
  ; 5747    $$CODEC^ICDEX
- ;
- ;******************************************************************************
- ;******************************************************************************
- ;                       --- ROUTINE MODIFICATION LOG ---
- ;        
- ;PKG/PATCH    DATE        DEVELOPER    MODIFICATION
- ;-----------  ----------  -----------  ----------------------------------------
- ;HBH*1.0*25   APR  2012   K GUPTA      Support for ICD-10 Coding System
- ;******************************************************************************
- ;******************************************************************************
+ ; 7024    ^DG(40.8
  ;
  D START^HBHCXMA1
 LOOP ; Loop thru ^HBHC(631) "AE","N" cross-ref to create nodes in ^HBHC(634) => transmit or ^HBHC(634.1) => Evaluation/Admission Error(s) file
@@ -24,6 +15,13 @@ SETNODE ; Set node in ^HBHC(634) (Transmit) or ^HBHC(634.1) Evaluation/Admission
  S HBHCINFO=^HBHC(631,HBHCDFN,0),HBHCXMT3=$P($G(^HBHC(631,HBHCDFN,1)),U,17)
  ; Quit if admission date is greater than HBHCLSDT (last date to include in transmit set up in ^HBHCFILE)
  I $P(HBHCINFO,U,18)>HBHCLSDT S HBHCFLG=0 Q
+ ;HBH*1.0*32 retrieve parent site
+ N HBHCHOSPX
+ D PARENT^HBHCUTL1
+ ;if patient admitted before install of HBH*1.0*32, use the parent site
+ ;previously sent. 
+ I $G(HBHCHOSPX)="" S HBHCHOSPX=HBHCHOSP
+ ;end of HBH*1.0*32
  S HBHCDPT0=^DPT(+HBHCINFO,0),HBHCDR=""
  S DFN=+HBHCINFO K VADM D DEM^VADPT D RACE,ETH
  S HBHCAFLG=0 F HBHCK=19:1:37 Q:HBHCAFLG  S:$P(HBHCINFO,U,HBHCK)]"" HBHCAFLG=1
@@ -65,7 +63,8 @@ NOW ; Get time NOW, repeat until Hours/Minutes/Seconds = 6 digits in length
  D NOW^%DTC S HBHCX=$P(%,".",2) G:($L(HBHCX)'=6) NOW S HBHCCDTS=($E(%,4,5))_($E(%,6,7))_($S($E(%)=2:19,1:20))_($E(%,2,3))_HBHCX
  S HBHCNAME=$P(^DPT($P(HBHCINFO,U),0),U) S:$L(HBHCNAME)<HBHCLNTH HBHCNAME=HBHCNAME_$J("",HBHCLNTH-$L(HBHCNAME))
  S HBHCSSN=$P(^DPT($P(HBHCINFO,U),0),U,9)
- S HBHCREC=HBHCFORM_HBHCHOSP_HBHCSSN_HBHCADDT_HBHCST_HBHCCNTY_HBHCZIP_HBHCELGE_HBHCBYR_HBHCPSRV_HBHCSEX_HBHCRC_HBHCMARE_HBHCLIVE_HBHCCARE_HBHCTYPE_HBHCRFIN_HBHCACTN_HBHCREJ_HBHCREJD_HBHCNAME_HBHCICDA_HBHCVISA_HBHCHERA_HBHCEXCA
+ ;HBH*1.0*32 replace HBHCHOSP with HBHCHOSPX
+ S HBHCREC=HBHCFORM_HBHCHOSPX_HBHCSSN_HBHCADDT_HBHCST_HBHCCNTY_HBHCZIP_HBHCELGE_HBHCBYR_HBHCPSRV_HBHCSEX_HBHCRC_HBHCMARE_HBHCLIVE_HBHCCARE_HBHCTYPE_HBHCRFIN_HBHCACTN_HBHCREJ_HBHCREJD_HBHCNAME_HBHCICDA_HBHCVISA_HBHCHERA_HBHCEXCA
  S HBHCREC=HBHCREC_HBHCRECA_HBHCBTHA_HBHCDRSA_HBHCTLTA_HBHCTRNA_HBHCEATA_HBHCWLKA_HBHCBWLA_HBHCBLDA_HBHCMOBA_HBHCADTA_HBHCBHVA_HBHCDSOA_HBHCMODA_HBHCLMTA_HBHCRACE_HBHCETH_HBHCMPT_HBHCIEN_HBHCRTDT_HBHCRTPD_HBHCCDTS_HBHCSP14
  Q
 RACE ; Race Jan 2003 mandate: 7 Race codes (w/corresponding Collection Method codes) exist, 4 additional 'slots' are for future expansion = 11 total for loop counter for data fill in transmit record

@@ -1,5 +1,5 @@
 DID2 ;SFISC/GFT-MODIFIED DD ;25JUL2011
- ;;22.2;VA FileMan;;Jan 05, 2016;Build 42
+ ;;22.2;VA FileMan;**19**;Jan 05, 2016;Build 2
  ;;Per VA Directive 6402, this routine should not be modified.
  ;;Submitted to OSEHRA 5 January 2015 by the VISTA Expertise Network.
  ;;Based on Medsphere Systems Corporation's MSC FileMan 1051.
@@ -12,6 +12,7 @@ DZ ;
  I $D(^("DT")) S Y=^("DT") D D^DIQ W !?DDL1,"LAST EDITED: " S W=Y D W1^DIDH1 G Q:M=U
 H K W I $D(^DD(F(Z),DJ(Z),3)),^(3)]"" W !?DDL1,"HELP-PROMPT:" S W=^(3) D W1^DIDH1 G Q:M=U
 EGP F %Y=0:0 S %Y=$O(^DD(F(Z),DJ(Z),.009,%Y)) Q:'%Y  I $D(^(%Y,0)) S W="("_^(0)_")" W ! D W1^DIDH1 G Q:M=U ;**CCO/NI  FOREIGN-LANGUAGE HELP-PROMPTS
+ I $$CHKWP^DID1(F(Z),DJ(Z)),$O(^DD(F(Z),DJ(Z),23,0))>0 S %Y=23 D DE^DIDH1 G Q:M=U,SC ;p19 only Technical Description for WP
  F %Y=21,23 I $O(^DD(F(Z),DJ(Z),%Y,0))>0 D DE^DIDH1 G:M=U Q
 SC ;
  I $D(^DD(F(Z),DJ(Z),12.1)),'$D(DINM) I X["P"!(X["S") W !?DDL1,"SCREEN:" S W=^(12.1) D W I $D(^(12)) W !?DDL1,"EXPLANATION:" S W=^(12) D W G Q:M=U

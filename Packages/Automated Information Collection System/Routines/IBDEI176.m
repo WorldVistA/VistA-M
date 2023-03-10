@@ -1,126 +1,120 @@
-IBDEI176 ; ; 04-FEB-2020
- ;;3.0;IB ENCOUNTER FORM IMP/EXP;;FEB 04, 2020
+IBDEI176 ; ; 01-FEB-2022
+ ;;3.0;IB ENCOUNTER FORM IMP/EXP;;FEB 01, 2022
  Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,999) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
- ;;^UTILITY(U,$J,358.3,19236,1,3,0)
- ;;=3^Cardiomyopathy, unspecified
- ;;^UTILITY(U,$J,358.3,19236,1,4,0)
- ;;=4^I42.9
- ;;^UTILITY(U,$J,358.3,19236,2)
- ;;=^5007200
- ;;^UTILITY(U,$J,358.3,19237,0)
- ;;=I50.42^^93^990^14
- ;;^UTILITY(U,$J,358.3,19237,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,19237,1,3,0)
- ;;=3^Chronic combined systolic and diastolic hrt fail
- ;;^UTILITY(U,$J,358.3,19237,1,4,0)
- ;;=4^I50.42
- ;;^UTILITY(U,$J,358.3,19237,2)
- ;;=^5007249
- ;;^UTILITY(U,$J,358.3,19238,0)
- ;;=I50.32^^93^990^15
- ;;^UTILITY(U,$J,358.3,19238,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,19238,1,3,0)
- ;;=3^Chronic diastolic (congestive) heart failure
- ;;^UTILITY(U,$J,358.3,19238,1,4,0)
- ;;=4^I50.32
- ;;^UTILITY(U,$J,358.3,19238,2)
- ;;=^5007245
- ;;^UTILITY(U,$J,358.3,19239,0)
- ;;=J44.1^^93^990^16
- ;;^UTILITY(U,$J,358.3,19239,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,19239,1,3,0)
- ;;=3^Chronic obstructive pulmonary disease w (acute) exacerbation
- ;;^UTILITY(U,$J,358.3,19239,1,4,0)
- ;;=4^J44.1
- ;;^UTILITY(U,$J,358.3,19239,2)
- ;;=^5008240
- ;;^UTILITY(U,$J,358.3,19240,0)
- ;;=J44.9^^93^990^17
- ;;^UTILITY(U,$J,358.3,19240,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,19240,1,3,0)
- ;;=3^Chronic obstructive pulmonary disease, unspecified
- ;;^UTILITY(U,$J,358.3,19240,1,4,0)
- ;;=4^J44.9
- ;;^UTILITY(U,$J,358.3,19240,2)
- ;;=^5008241
- ;;^UTILITY(U,$J,358.3,19241,0)
- ;;=I50.22^^93^990^18
- ;;^UTILITY(U,$J,358.3,19241,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,19241,1,3,0)
- ;;=3^Chronic systolic (congestive) heart failure
- ;;^UTILITY(U,$J,358.3,19241,1,4,0)
- ;;=4^I50.22
- ;;^UTILITY(U,$J,358.3,19241,2)
- ;;=^5007241
- ;;^UTILITY(U,$J,358.3,19242,0)
- ;;=Z98.61^^93^990^20
- ;;^UTILITY(U,$J,358.3,19242,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,19242,1,3,0)
- ;;=3^Coronary angioplasty status
- ;;^UTILITY(U,$J,358.3,19242,1,4,0)
- ;;=4^Z98.61
- ;;^UTILITY(U,$J,358.3,19242,2)
- ;;=^5063742
- ;;^UTILITY(U,$J,358.3,19243,0)
- ;;=I42.0^^93^990^22
- ;;^UTILITY(U,$J,358.3,19243,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,19243,1,3,0)
- ;;=3^Dilated cardiomyopathy
- ;;^UTILITY(U,$J,358.3,19243,1,4,0)
- ;;=4^I42.0
- ;;^UTILITY(U,$J,358.3,19243,2)
- ;;=^5007194
- ;;^UTILITY(U,$J,358.3,19244,0)
- ;;=J43.9^^93^990^23
- ;;^UTILITY(U,$J,358.3,19244,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,19244,1,3,0)
- ;;=3^Emphysema, unspecified
- ;;^UTILITY(U,$J,358.3,19244,1,4,0)
- ;;=4^J43.9
- ;;^UTILITY(U,$J,358.3,19244,2)
- ;;=^5008238
- ;;^UTILITY(U,$J,358.3,19245,0)
- ;;=Z82.49^^93^990^24
- ;;^UTILITY(U,$J,358.3,19245,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,19245,1,3,0)
- ;;=3^Family hx of ischem heart dis and oth dis of the circ sys
- ;;^UTILITY(U,$J,358.3,19245,1,4,0)
- ;;=4^Z82.49
- ;;^UTILITY(U,$J,358.3,19245,2)
- ;;=^5063369
- ;;^UTILITY(U,$J,358.3,19246,0)
- ;;=I50.9^^93^990^25
- ;;^UTILITY(U,$J,358.3,19246,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,19246,1,3,0)
- ;;=3^Heart failure, unspecified
- ;;^UTILITY(U,$J,358.3,19246,1,4,0)
- ;;=4^I50.9
- ;;^UTILITY(U,$J,358.3,19246,2)
- ;;=^5007251
- ;;^UTILITY(U,$J,358.3,19247,0)
- ;;=I25.2^^93^990^27
- ;;^UTILITY(U,$J,358.3,19247,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,19247,1,3,0)
- ;;=3^Old myocardial infarction
- ;;^UTILITY(U,$J,358.3,19247,1,4,0)
- ;;=4^I25.2
- ;;^UTILITY(U,$J,358.3,19247,2)
- ;;=^259884
- ;;^UTILITY(U,$J,358.3,19248,0)
- ;;=I42.8^^93^990^12
- ;;^UTILITY(U,$J,358.3,19248,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,19248,1,3,0)
- ;;=3^Cardiomyopathies NEC
+ ;;^UTILITY(U,$J,358.3,19452,1,3,0)
+ ;;=3^97814
+ ;;^UTILITY(U,$J,358.3,19453,0)
+ ;;=20606^^66^872^1^^^^1
+ ;;^UTILITY(U,$J,358.3,19453,1,0)
+ ;;=^358.31IA^3^2
+ ;;^UTILITY(U,$J,358.3,19453,1,2,0)
+ ;;=2^Asp/Inj Intermediate Jt w/ US
+ ;;^UTILITY(U,$J,358.3,19453,1,3,0)
+ ;;=3^20606
+ ;;^UTILITY(U,$J,358.3,19454,0)
+ ;;=20605^^66^872^2^^^^1
+ ;;^UTILITY(U,$J,358.3,19454,1,0)
+ ;;=^358.31IA^3^2
+ ;;^UTILITY(U,$J,358.3,19454,1,2,0)
+ ;;=2^Asp/Inj Intermediate Jt w/o US
+ ;;^UTILITY(U,$J,358.3,19454,1,3,0)
+ ;;=3^20605
+ ;;^UTILITY(U,$J,358.3,19455,0)
+ ;;=20611^^66^872^4^^^^1
+ ;;^UTILITY(U,$J,358.3,19455,1,0)
+ ;;=^358.31IA^3^2
+ ;;^UTILITY(U,$J,358.3,19455,1,2,0)
+ ;;=2^Asp/Inj Major Jt w/ US (Viscosupplementation)
+ ;;^UTILITY(U,$J,358.3,19455,1,3,0)
+ ;;=3^20611
+ ;;^UTILITY(U,$J,358.3,19456,0)
+ ;;=20610^^66^872^3^^^^1
+ ;;^UTILITY(U,$J,358.3,19456,1,0)
+ ;;=^358.31IA^3^2
+ ;;^UTILITY(U,$J,358.3,19456,1,2,0)
+ ;;=2^Asp/Inj Maj Jt w/o US (Viscosupplementation)
+ ;;^UTILITY(U,$J,358.3,19456,1,3,0)
+ ;;=3^20610
+ ;;^UTILITY(U,$J,358.3,19457,0)
+ ;;=20604^^66^872^5^^^^1
+ ;;^UTILITY(U,$J,358.3,19457,1,0)
+ ;;=^358.31IA^3^2
+ ;;^UTILITY(U,$J,358.3,19457,1,2,0)
+ ;;=2^Asp/Inj Small Jt w/ US
+ ;;^UTILITY(U,$J,358.3,19457,1,3,0)
+ ;;=3^20604
+ ;;^UTILITY(U,$J,358.3,19458,0)
+ ;;=20600^^66^872^6^^^^1
+ ;;^UTILITY(U,$J,358.3,19458,1,0)
+ ;;=^358.31IA^3^2
+ ;;^UTILITY(U,$J,358.3,19458,1,2,0)
+ ;;=2^Asp/Inj Small Jt w/o US
+ ;;^UTILITY(U,$J,358.3,19458,1,3,0)
+ ;;=3^20600
+ ;;^UTILITY(U,$J,358.3,19459,0)
+ ;;=20550^^66^872^9^^^^1
+ ;;^UTILITY(U,$J,358.3,19459,1,0)
+ ;;=^358.31IA^3^2
+ ;;^UTILITY(U,$J,358.3,19459,1,2,0)
+ ;;=2^Inject Tendon/Ligament/Cyst
+ ;;^UTILITY(U,$J,358.3,19459,1,3,0)
+ ;;=3^20550
+ ;;^UTILITY(U,$J,358.3,19460,0)
+ ;;=64490^^66^872^7^^^^1
+ ;;^UTILITY(U,$J,358.3,19460,1,0)
+ ;;=^358.31IA^3^2
+ ;;^UTILITY(U,$J,358.3,19460,1,2,0)
+ ;;=2^Cervical/Thoracic Inj,1st Level
+ ;;^UTILITY(U,$J,358.3,19460,1,3,0)
+ ;;=3^64490
+ ;;^UTILITY(U,$J,358.3,19461,0)
+ ;;=64480^^66^872^8^^^^1
+ ;;^UTILITY(U,$J,358.3,19461,1,0)
+ ;;=^358.31IA^3^2
+ ;;^UTILITY(U,$J,358.3,19461,1,2,0)
+ ;;=2^Cervical/Thoracic Inj,Ea Addl Level
+ ;;^UTILITY(U,$J,358.3,19461,1,3,0)
+ ;;=3^64480
+ ;;^UTILITY(U,$J,358.3,19462,0)
+ ;;=64483^^66^872^16^^^^1
+ ;;^UTILITY(U,$J,358.3,19462,1,0)
+ ;;=^358.31IA^3^2
+ ;;^UTILITY(U,$J,358.3,19462,1,2,0)
+ ;;=2^Lumbar/Sacral Inj,1st Level
+ ;;^UTILITY(U,$J,358.3,19462,1,3,0)
+ ;;=3^64483
+ ;;^UTILITY(U,$J,358.3,19463,0)
+ ;;=64484^^66^872^17^^^^1
+ ;;^UTILITY(U,$J,358.3,19463,1,0)
+ ;;=^358.31IA^3^2
+ ;;^UTILITY(U,$J,358.3,19463,1,2,0)
+ ;;=2^Lumbar/Sacral Inj,Ea Addl Level
+ ;;^UTILITY(U,$J,358.3,19463,1,3,0)
+ ;;=3^64484
+ ;;^UTILITY(U,$J,358.3,19464,0)
+ ;;=64490^^66^872^10^^^^1
+ ;;^UTILITY(U,$J,358.3,19464,1,0)
+ ;;=^358.31IA^3^2
+ ;;^UTILITY(U,$J,358.3,19464,1,2,0)
+ ;;=2^Intraarticular Jt or MBB Cervical/Thoracic,1st Level
+ ;;^UTILITY(U,$J,358.3,19464,1,3,0)
+ ;;=3^64490
+ ;;^UTILITY(U,$J,358.3,19465,0)
+ ;;=64491^^66^872^11^^^^1
+ ;;^UTILITY(U,$J,358.3,19465,1,0)
+ ;;=^358.31IA^3^2
+ ;;^UTILITY(U,$J,358.3,19465,1,2,0)
+ ;;=2^Intraarticular Jt or MBB Cervical/Thoracic,2nd Level
+ ;;^UTILITY(U,$J,358.3,19465,1,3,0)
+ ;;=3^64491
+ ;;^UTILITY(U,$J,358.3,19466,0)
+ ;;=64492^^66^872^12^^^^1
+ ;;^UTILITY(U,$J,358.3,19466,1,0)
+ ;;=^358.31IA^3^2
+ ;;^UTILITY(U,$J,358.3,19466,1,2,0)
+ ;;=2^Intraarticular Jt or MBB Cervical/Thoracic,3rd Level
+ ;;^UTILITY(U,$J,358.3,19466,1,3,0)
+ ;;=3^64492
+ ;;^UTILITY(U,$J,358.3,19467,0)
+ ;;=64493^^66^872^13^^^^1

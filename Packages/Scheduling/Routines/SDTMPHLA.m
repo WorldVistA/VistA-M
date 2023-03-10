@@ -1,36 +1,30 @@
 SDTMPHLA ;MS/PB - TMP HL7 Routine;May 29, 2018
- ;;5.3;Scheduling;**704,733**;SEP 26, 2018;Build 72
+ ;;5.3;Scheduling;**704,733,773,780,798,812,821**;SEP 26, 2018;Build 9
  Q
+ ;        ;
 EN(DFN,APTTM) ; Entry to the routine to build an HL7 message
  ;notification to TMP about a new appointment in a TeleHealth Clinic
  ;
- ;put in check for this to be a telehealth clinic. if not a telehealth clinic quit
- ;Call API to create MSH segment
  Q:$G(DFN)=""
  Q:$G(APTTM)=""
  N PARMS,SEG,WHOTO,SNODE,ANODE,CNODE,CLINODE,ERROR,MSG,ANODE1
  S (SSTOP,PSTOP,STOP)=0
  K CLINID
  S RTN=0,CAN=0
- ;Q:'$D(^DPT(DFN,"S",APTTM,0))
  S ANODE=$G(^DPT(DFN,"S",APTTM,0))
  S ANODE1=$G(^DPT(DFN,"S",APTTM,1))
- ;If this appointment was made by the TMP application, stop
- Q:$P(ANODE1,U,3)="TMP"
+ ;If this appointment was made by the TMP application, stop 773
+ I $G(MSH(9)),$D(^XTMP("SDTMP",+MSH(9))) Q
  S CLINID=$P(ANODE,U,1)
  S CLINODE=$G(^SC(CLINID,0))
  S XX=0 F  S XX=$O(^SC(CLINID,"S",APTTM,1,XX)) Q:XX'>0  D  ;Get the correct appointment node for the patient
  .I $P(^SC(CLINID,"S",APTTM,1,XX,0),"^")=DFN S SNODE=$G(^SC(CLINID,"S",APTTM,1,XX,0)),CNODE=$P($G(^SC(CLINID,"S",APTTM,1,XX,"CONS")),"^")
- ;Q:$G(SNODE)=""  ; If the appointment is not in the Hospital Location File stop. 
- ;S PSTOP=$P(SNODE,"^",7),SSTOP=$P(SNODE,"^",18)
  S PSTOP=$P(CLINODE,"^",7),SSTOP=$P(CLINODE,"^",18)
  ;If both stop codes are null, stop the check, we know it is not a tele health clinic
  Q:($G(PSTOP)="")&(($G(SSTOP))="")
  S STOP=$$CHKCLIN(PSTOP) ;if STOP=0, primary stop code is not a tele health stop code so check secondary stop code to see if it is a tele health clinic
- ;I $G(STOP)=0,($$CHKCLIN(SSTOP)=0) Q  ;if primary stop code is not tele health check secondary stop code if secondary not tele health stop
- I $G(STOP)=0 Q:$Q(SSTOP)'>0  S STOP=$$CHKCLIN(SSTOP) ; if primary stop code is not tele health check secondary stop code if secondary not tele health stop
+ I $G(STOP)=0 Q:$G(SSTOP)'>0  S STOP=$$CHKCLIN(SSTOP) ; if primary stop code is not tele health check secondary stop code if secondary not tele health stop   ;773
  Q:$G(STOP)=0  ; Double check for either primary or secondary stop code to be a tele health clinic
- ; need code to stop processing if the appointment was made by TMP
  I $P($G(ANODE),"^",2)["C" S CAN=1
  S SNODE=$G(^SC(CLINID,"S",APTTM,1,1,0))
  S APTSTATUS=$$GET1^DIQ(2.98,APTTM_","_DFN_",",9.5,"E")
@@ -91,7 +85,7 @@ PID(DFN,SEQ,SEG) ;
  ; set the address into PID-11
  D SETAD^HLOAPI4(.SEG,.ADDRESS,11)
  Q
-PD1 ; Not needed right now
+PD1      ; Not needed right now
  Q
 PV1(DFN,SEQ,SEG) ;
  N FAC
@@ -111,12 +105,14 @@ PV1(DFN,SEQ,SEG) ;
  K CLASS
  Q
 SCH(DFN,SEQ,SEG,ANODE,SNODE)  ; update for new appointments
- N APTSTATUS,LENGTH,TMUNITS,SCHED,ENTEREDBY,STATUS,START,CONNM,PREMAIL
- ;S LENGTH=$P(^SC(CLINID,"SL"),"^",1),TMUNITS="M"
+ N APTSTATUS,LENGTH,TMUNITS,SCHED,ENTEREDBY,STATUS,START,CONNM,PREMAIL,END
  S:$G(SNODE)'="" LENGTH=$P($G(SNODE),"^",2)
  S TMUNITS="M"
- S:$G(LENGTH)="" LENGTH=$G(SDECC("LEN"))
- S START=$$TMCONV(APTTM),END=$$FMADD^XLFDT(APTTM,0,0,LENGTH,0),END=$$TMCONV(END)
+ ;821 Create best default LENGTH variable.  Also, the main value will be found in SDECLEN variable that is
+ ;used by SDEC07 & 08A APIs, as a key param. If not there, use the new best default variable.
+ N LENDEF S:$G(SDECAPPTID) LENDEF=$P(^SDEC(409.84,SDECAPPTID,0),U,18) S:'$G(LENDEF) LENDEF=$P(^SC(CLINID,"SL"),U)
+ S:$G(LENGTH)="" LENGTH=$S($G(SDECLEN):SDECLEN,1:LENDEF)
+ S START=$$TMCONV(APTTM,$$INST(CLINID)),END=$$FMADD^XLFDT(APTTM,0,0,LENGTH,0),END=$$TMCONV(END,$$INST(CLINID))
  S:$G(CNODE)>0 CONNM=$P(^GMR(123.5,$P(^GMR(123,CNODE,0),"^",5),0),"^")
  S PROVID=$P(^SC(CLINID,0),"^",13) S:$G(PROVID)>0 PROVNM=$P(^VA(200,PROVID,0),"^"),PREMAIL=$P($G(^VA(200,PROVID,.15)),"^")
  K XS S (STATUS("ID"))=$S($P(ANODE,"^",2)="":"S",1:$P(ANODE,"^",2)) S:STATUS("ID")="S" STATUS("TEXT")="SCHEDULED"
@@ -129,7 +125,6 @@ SCH(DFN,SEQ,SEG,ANODE,SNODE)  ; update for new appointments
  D SET^HLOAPI(.SEG,SEQ,1) ; Set the SCH-1
  D SET^HLOAPI(.SEG,APTSTATUS,6)  ;Field 6, Appointment status
  D:$G(CNODE)>0 SET^HLOAPI(.SEG,CNODE,7,1)  ;Consult ID if this is for a consult request
- ;D:$G(CONNM)'="" SET^HLOAPI(.SEG,CONNM,7,2)  ;Consult name
  D SET^HLOAPI(.SEG,LENGTH,9)  ;Field 9, Apt Length
  D SET^HLOAPI(.SEG,TMUNITS,10)  ; Field 10, time units
  D SET^HLOAPI(.SEG,START,11,4,1,1)  ; Field 11, appointment start and end time
@@ -142,13 +137,13 @@ SCH(DFN,SEQ,SEG,ANODE,SNODE)  ; update for new appointments
  D SETCE^HLOAPI4(.SEG,.STATUS,25)  ; Field 25, current status of the appointment
  Q
 SCHCAN(DFN,SEQ,SEG,ANODE,SNODE,CNODE)  ; update for cancelled appointments
- N APTSTATUS,LENGTH,TMUNITS,SCHED,ENTEREDBY,STATUS,START,PREMAIL
+ N APTSTATUS,LENGTH,TMUNITS,SCHED,ENTEREDBY,STATUS,START,PREMAIL,END
  Q:$G(SNODE)=""  ;SNODE=SNODE=$G(^SC(CLINID,"S",APTTM,1,XX,0))
  S:$G(DUZ)="" DUZ=.5
  S:$G(DUZ(2))="" DUZ=$$KSP^XUPARAM("SITE")
  S LENGTH=$P(^SC(CLINID,"SL"),"^",1),TMUNITS="M"
- S START=$$TMCONV(APTTM),END=$$FMADD^XLFDT(APTTM,0,0,LENGTH,0),END=$$TMCONV(END)
- S:$G(CNODE)>0 CONNM=$$GET1^DIQ(123,CNODE_",",1,"E")   ;CONNM=$P(GMR(123.5,$P(^GMR(123,CNODE,0),"^",5),0),"^")
+ S START=$$TMCONV(APTTM,$$INST(CLINID)),END=$$FMADD^XLFDT(APTTM,0,0,LENGTH,0),END=$$TMCONV(END,$$INST(CLINID))
+ S:$G(CNODE)>0 CONNM=$$GET1^DIQ(123,CNODE_",",1,"E")
  S PROVID=$P(^SC(CLINID,0),"^",13) S:$G(PROVID)>0 PROVNM=$P(^VA(200,PROVID,0),"^"),PREMAIL=$P($G(^VA(200,PROVID,.15)),"^")
  K XS S (STATUS("ID"),XS)=$S($P(ANODE,"^",2)="":"S",1:$P(ANODE,"^",2)) S:STATUS("ID")="S" STATUS("TEXT")="SCHEDULED"
  N X,X1 S STATUS("TEXT")=$$STATUS(STATUS("ID"))
@@ -159,7 +154,6 @@ SCHCAN(DFN,SEQ,SEG,ANODE,SNODE,CNODE)  ; update for cancelled appointments
  D SET^HLOAPI(.SEG,SEQ,1) ; Set the SCH-1
  D SET^HLOAPI(.SEG,APTSTATUS,6)  ;Field 6, Appointment status
  D:$G(CNODE)>0 SET^HLOAPI(.SEG,CNODE,7,1)  ;Consult ID if this is for a consult request
- ;D:$G(CONNM)'="" SET^HLOAPI(.SEG,CONNM,7,2)  ;Consult name
  D SET^HLOAPI(.SEG,LENGTH,9)  ;Field 9, Apt Length
  D SET^HLOAPI(.SEG,TMUNITS,10)  ; Field 10, time units
  D SET^HLOAPI(.SEG,START,11,4,1,1)  ; Field 11, appointment start and end time
@@ -172,15 +166,15 @@ SCHCAN(DFN,SEQ,SEG,ANODE,SNODE,CNODE)  ; update for cancelled appointments
  D SETCE^HLOAPI4(.SEG,.STATUS,25)  ; Field 25, current status of the appointment
  K SCHEMAIL
  Q
-PV2 ; Not needed right now
+PV2      ; Not needed right now
  Q
-OBX1 ; Not needed right now
+OBX1     ; Not needed right now
  Q
-OBX2 ; Not needed right now
+OBX2     ; Not needed right now
  Q
-OBX3 ; Not needed right now
+OBX3     ; Not needed right now
  Q
-OBX4 ; Not needed right now
+OBX4     ; Not needed right now
  Q
 RGS1(FLAG,SEQ,SEG) ; At least one RGS segment is required
  N GRP
@@ -190,7 +184,7 @@ RGS1(FLAG,SEQ,SEG) ; At least one RGS segment is required
  D SET^HLOAPI(.SEG,FLAG,2)
  D SET^HLOAPI(.SEG,GRP,3)
  Q
-AIS1 ;
+AIS1     ;
  Q
 NTE(SEQ,SEG) ;
  N NOTES,CLINID,CLINNM
@@ -202,26 +196,27 @@ NTE(SEQ,SEG) ;
  Q
 AIL1(ANODE,SEQ,SEG) ;
  K LOC
- S LOC("ID")=$P(ANODE,"^",1),LOC("TEXT")=$P(^SC(LOC("ID"),0),"^"),LOC("SYSTEM")="44",CODE="A"   ;^HOSPITAL LOCATIION",CODE="A"
+ S LOC("ID")=$P(ANODE,"^",1),LOC("TEXT")=$P(^SC(LOC("ID"),0),"^"),LOC("SYSTEM")="44",CODE="A"
+ S LOC("ALTERNATE ID")=$$STATION(CLINID) ;780
  D SET^HLOAPI(.SEG,"AIL",0)
  D SET^HLOAPI(.SEG,SEQ,1)
  D SET^HLOAPI(.SEG,CODE,2)
  D SETCE^HLOAPI4(.SEG,.LOC,4)
  K LOC,CODE
  Q
-TMCONV(X) ;
- ;convert time to Zulu timezone
- N TZONE,DIFF,UTC,UTC1,UTC2
- S TZONE=$$GET1^DIQ(4.3,"1,",1,"I"),DIFF=$$GET1^DIQ(4.4,$G(TZONE)_",",2,"E")*(-1)
- S UTC=$$FMADD^XLFDT(X,,$G(DIFF),,),UTC2=$$FMTHL7^XLFDT(UTC)
- S UTC1=$E(UTC2,1,4)_"-"_$E(UTC2,5,6)_"-"_$E(UTC2,7,8)_"T"_$E(UTC2,9,10)_":"_$E(UTC2,11,12)_":00.000Z"
- Q UTC1
-TEST ;
- N ST,EN,START,END
- S ST="3180508.0900",EN="3180508.0945"
- S START=$$TMCONV(ST),END=$$TMCONV(EN)
- W !,START,"  ",END
- Q
+TMCONV(X,INST) ;Uses division/institution to determine tz instead of mailman files / 773
+ ;convert FileMan local time to Zulu timezone in JSON format: YYYY-MM-DDTHH:MM:00.000Z
+ ;Inputs:
+ ; X = Time
+ ; INST = Institution
+ ;Output:
+ ; Zulu Time in JSON format
+ N OFFSET,UTC,UTC1,UTC2
+ I X#1=0 S X=X+.000001 ;Add 1 second if midnight to avoid midnight problem in DIUTC. The second is not included in UTC2
+ S OFFSET=$P($$UTC^DIUTC(X,,$G(INST),,1),"^",3)
+ S UTC=$$FMADD^XLFDT(X,,-$G(OFFSET),,),UTC1=$$FMTHL7^XLFDT(UTC)
+ S UTC2=$E(UTC1,1,4)_"-"_$E(UTC1,5,6)_"-"_$E(UTC1,7,8)_"T"_$E(UTC1,9,10)_":"_$E(UTC1,11,12)_":00.000Z"
+ Q UTC2
 CHKCLIN(X) ; check to see if this is a primary or secondary stop code for a tele health clinic
  I $G(X)'>0 S STOP=0 Q STOP
  S STOP=0
@@ -243,47 +238,40 @@ STATUS(X) ; a $Select to convert code to text too many characters in a single li
  S:X="NT" X1="NO ACTION TAKEN"
  S:X="S" X1="SCHEDULED"
  Q X1
-EDIT406 ; Add/edit the stop code entries in file 40.6
- N Y,X,STOPCODE,X1,GOOD,TMPERR
- S GOOD=0,X1=0,DEL=""
- K DIR(0),DIR("A"),DIR("?"),DIRUT,DUOUT,DTOUT,DIROUT,DIR("B")
- S DIR(0)="N",DIR("A")="Enter Stop Code"
- S DIR("?")="This is the stop code to added or deleted"
- D ^DIR K DIR S STOPCODE=Y G:$D(DIRUT)!($D(DUOUT))!($D(DTOUT))!($D(DIROUT)) EXIT
- S GOOD=$$CHKSTOP(STOPCODE) ;check to see if valid stop code in 40.7, message to user and quit if not valid
- I GOOD'>0 S TEXT="NOT A VALID STOP CODE" D MSG(TEXT) Q  ; Need to add code to give user an error message
- S X1=$O(^SD(40.6,"B",STOPCODE,""))
- D:X1>0 ASKDEL
- D:$G(DEL)="0" MSG("Do you want to edit another stop code")
- D UPD(DEL,STOPCODE)
- S TEXT=$G(TMPERR)
- D MSG("Do you want to edit another stop code")
- Q
-UPD(DEL,STOPCODE) ;
- N FDA
- I DEL="1" S FDA(40.6,X1_",",.01)="@"
- E  S FDA(40.6,"+1,",.01)=STOPCODE
- D UPDATE^DIE("","FDA","TMPERR")
- Q
-ASKDEL ;
- D EX1
- S DIR(0)="Y",DIR("A")="This stop code is already in the file, do you want to delete it",DIR("B")="NO"
- D ^DIR K DIR S DEL=Y G:$D(DIRUT)!($D(DUOUT))!($D(DTOUT))!($D(DIROUT)) EXIT
- Q
-CHKSTOP(STOPCODE) ;
- N XX
- S XX=$O(^DIC(40.7,"C",STOPCODE,"")) ; check to be sure it is valid stop code
- Q XX
-EX1 ;
- K DIR(0),DIR("A"),DIR("?"),DIRUT,DUOUT,DTOUT,DIROUT,X,Y
- Q
-EXIT ;
- K DIR(0),DIR("A"),DIR("?"),DIRUT,DUOUT,DTOUT,DIROUT,X,X1,Y,STOPCODE
- Q
-MSG(TEXT) ; give user error message if stop code is not valid
- D EX1
- S DIR(0)="Y",DIR("A")=$G(TEXT)  ;,DIR("A")="Do you want to edit another stop code"
- S DIR("B")="NO" D ^DIR
- G:$G(Y)=0 EXIT
- G:$G(Y)=1 EDIT406
- Q
+ ;
+INST(CLNC) ;Derives the institution value for the clinic
+ ;Inputs:
+ ; CLNC = Clinic IEN from the Hospital Location (#44) file
+ ;Output:
+ ; INST = Institution IEN from the Institution (#4) file. Null indicates an error.
+ I CLNC="" Q ""
+ N DIV,INST,MCD0,NEWINST,TZ
+ S MCD0=$G(^SC(CLNC,0))
+ I MCD0="" Q ""  ;No entry in the Hospital Location (#44) file
+ S INST=$P(MCD0,U,4)
+ I INST S TZ=$P($G(^DIC(4,INST,8)),U,1) I TZ Q INST
+ S DIV=$P(MCD0,U,15) I 'DIV Q ""
+ S INST=$P($G(^DG(40.8,DIV,0)),U,7)
+ S NEWINST=$$CHKINST(INST)
+ Q NEWINST
+ ;
+CHKINST(INST) ;Derives the parent institution if the passed-in institution does not have a time zone
+ I 'INST Q ""
+ N TZ,AS
+ S TZ=$P($G(^DIC(4,INST,8)),U,1) I TZ Q INST
+ S AS=$O(^DIC(4,INST,7,"B",2,"")) I AS S INST=$P(^DIC(4,INST,7,AS,0),U,2)
+ I INST S TZ=$P($G(^DIC(4,INST,8)),U,1)
+ I TZ Q INST
+ Q ""  ;Never found an institution with a timezone
+ ;
+STATION(CLNC) ;Derives the station number from the clinic - 780
+ ;Inputs:
+ ; CLNC = Clinic IEN from the Hospital Location (#44) file
+ ;Output:
+ ; STATN = Station number from the Institution (#4) file. Null indicates an error.
+ I CLNC="" Q ""
+ N INST,MCD,MCD0,STATN,Z
+ S MCD0=$G(^SC(CLNC,0)) I MCD0="" Q ""  ;No entry in the Hospital Location (#44) file
+ S INST=$P(MCD0,U,4) I INST]"" S STATN=$P($G(^DIC(4,INST,99)),U,1) I STATN Q STATN        ;quit if found Stn#
+ S MCD=$P(MCD0,U,15) I MCD]"" S Z=$G(^DG(40.8,MCD,0)) S STATN=$P(Z,U,2) I STATN Q STATN   ;quit if found Stn#
+ Q ""  ;Could not locate station number

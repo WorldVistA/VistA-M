@@ -1,664 +1,672 @@
-IBDEI08D ; ; 01-MAY-2020
- ;;3.0;IB ENCOUNTER FORM IMP/EXP;;MAY 01, 2020
+IBDEI08D ; ; 01-AUG-2022
+ ;;3.0;IB ENCOUNTER FORM IMP/EXP;;AUG 01, 2022
  Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,999) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
+ ;;^UTILITY(U,$J,358.3,20406,1,3,0)
+ ;;=3^Cervicalgia
+ ;;^UTILITY(U,$J,358.3,20406,1,4,0)
+ ;;=4^M54.2
+ ;;^UTILITY(U,$J,358.3,20406,2)
+ ;;=^5012304
+ ;;^UTILITY(U,$J,358.3,20407,0)
+ ;;=M51.06^^68^843^21
+ ;;^UTILITY(U,$J,358.3,20407,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,20407,1,3,0)
+ ;;=3^Intvrt Disc D/O w/ Myelopathy,Lumbar Region
+ ;;^UTILITY(U,$J,358.3,20407,1,4,0)
+ ;;=4^M51.06
+ ;;^UTILITY(U,$J,358.3,20407,2)
+ ;;=^5012241
+ ;;^UTILITY(U,$J,358.3,20408,0)
+ ;;=M51.04^^68^843^22
+ ;;^UTILITY(U,$J,358.3,20408,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,20408,1,3,0)
+ ;;=3^Intvrt Disc D/O w/ Myelopathy,Thoracic Region
+ ;;^UTILITY(U,$J,358.3,20408,1,4,0)
+ ;;=4^M51.04
+ ;;^UTILITY(U,$J,358.3,20408,2)
+ ;;=^5012239
+ ;;^UTILITY(U,$J,358.3,20409,0)
+ ;;=M51.05^^68^843^23
+ ;;^UTILITY(U,$J,358.3,20409,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,20409,1,3,0)
+ ;;=3^Intvrt Disc D/O w/ Myelopathy,Thoracolumbar Region
+ ;;^UTILITY(U,$J,358.3,20409,1,4,0)
+ ;;=4^M51.05
+ ;;^UTILITY(U,$J,358.3,20409,2)
+ ;;=^5012240
+ ;;^UTILITY(U,$J,358.3,20410,0)
+ ;;=M48.22^^68^843^24
+ ;;^UTILITY(U,$J,358.3,20410,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,20410,1,3,0)
+ ;;=3^Kissing Spine,Cervical Region
+ ;;^UTILITY(U,$J,358.3,20410,1,4,0)
+ ;;=4^M48.22
+ ;;^UTILITY(U,$J,358.3,20410,2)
+ ;;=^5012108
+ ;;^UTILITY(U,$J,358.3,20411,0)
+ ;;=M48.26^^68^843^25
+ ;;^UTILITY(U,$J,358.3,20411,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,20411,1,3,0)
+ ;;=3^Kissing Spine,Lumbar Region
+ ;;^UTILITY(U,$J,358.3,20411,1,4,0)
+ ;;=4^M48.26
+ ;;^UTILITY(U,$J,358.3,20411,2)
+ ;;=^5012112
+ ;;^UTILITY(U,$J,358.3,20412,0)
+ ;;=M48.27^^68^843^26
+ ;;^UTILITY(U,$J,358.3,20412,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,20412,1,3,0)
+ ;;=3^Kissing Spine,Lumbosacral Region
+ ;;^UTILITY(U,$J,358.3,20412,1,4,0)
+ ;;=4^M48.27
+ ;;^UTILITY(U,$J,358.3,20412,2)
+ ;;=^5012113
+ ;;^UTILITY(U,$J,358.3,20413,0)
+ ;;=M48.21^^68^843^27
+ ;;^UTILITY(U,$J,358.3,20413,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,20413,1,3,0)
+ ;;=3^Kissing Spine,Occipito-Atlanto-Axial Region
+ ;;^UTILITY(U,$J,358.3,20413,1,4,0)
+ ;;=4^M48.21
+ ;;^UTILITY(U,$J,358.3,20413,2)
+ ;;=^5012107
+ ;;^UTILITY(U,$J,358.3,20414,0)
+ ;;=M48.25^^68^843^29
+ ;;^UTILITY(U,$J,358.3,20414,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,20414,1,3,0)
+ ;;=3^Kissing Spine,Thoracolumbar Region
+ ;;^UTILITY(U,$J,358.3,20414,1,4,0)
+ ;;=4^M48.25
+ ;;^UTILITY(U,$J,358.3,20414,2)
+ ;;=^5012111
+ ;;^UTILITY(U,$J,358.3,20415,0)
+ ;;=M48.24^^68^843^28
+ ;;^UTILITY(U,$J,358.3,20415,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,20415,1,3,0)
+ ;;=3^Kissing Spine,Thoracic Region
+ ;;^UTILITY(U,$J,358.3,20415,1,4,0)
+ ;;=4^M48.24
+ ;;^UTILITY(U,$J,358.3,20415,2)
+ ;;=^5012110
+ ;;^UTILITY(U,$J,358.3,20416,0)
+ ;;=M54.6^^68^843^33
+ ;;^UTILITY(U,$J,358.3,20416,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,20416,1,3,0)
+ ;;=3^Pain,Thoracic Spine
+ ;;^UTILITY(U,$J,358.3,20416,1,4,0)
+ ;;=4^M54.6
+ ;;^UTILITY(U,$J,358.3,20416,2)
+ ;;=^272507
+ ;;^UTILITY(U,$J,358.3,20417,0)
+ ;;=M96.1^^68^843^34
+ ;;^UTILITY(U,$J,358.3,20417,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,20417,1,3,0)
+ ;;=3^Postlaminectomy Syndrome NEC
+ ;;^UTILITY(U,$J,358.3,20417,1,4,0)
+ ;;=4^M96.1
+ ;;^UTILITY(U,$J,358.3,20417,2)
+ ;;=^5015374
+ ;;^UTILITY(U,$J,358.3,20418,0)
+ ;;=M54.16^^68^843^35
+ ;;^UTILITY(U,$J,358.3,20418,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,20418,1,3,0)
+ ;;=3^Radiculopathy,Lumbar Region
+ ;;^UTILITY(U,$J,358.3,20418,1,4,0)
+ ;;=4^M54.16
+ ;;^UTILITY(U,$J,358.3,20418,2)
+ ;;=^5012301
+ ;;^UTILITY(U,$J,358.3,20419,0)
+ ;;=M54.17^^68^843^36
+ ;;^UTILITY(U,$J,358.3,20419,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,20419,1,3,0)
+ ;;=3^Radiculopathy,Lumbosacral Region
+ ;;^UTILITY(U,$J,358.3,20419,1,4,0)
+ ;;=4^M54.17
+ ;;^UTILITY(U,$J,358.3,20419,2)
+ ;;=^5012302
+ ;;^UTILITY(U,$J,358.3,20420,0)
+ ;;=M54.14^^68^843^37
+ ;;^UTILITY(U,$J,358.3,20420,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,20420,1,3,0)
+ ;;=3^Radiculopathy,Thoracic Region
+ ;;^UTILITY(U,$J,358.3,20420,1,4,0)
+ ;;=4^M54.14
+ ;;^UTILITY(U,$J,358.3,20420,2)
+ ;;=^5012299
+ ;;^UTILITY(U,$J,358.3,20421,0)
+ ;;=M54.15^^68^843^38
+ ;;^UTILITY(U,$J,358.3,20421,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,20421,1,3,0)
+ ;;=3^Radiculopathy,Thoracolumbar Region
+ ;;^UTILITY(U,$J,358.3,20421,1,4,0)
+ ;;=4^M54.15
+ ;;^UTILITY(U,$J,358.3,20421,2)
+ ;;=^5012300
+ ;;^UTILITY(U,$J,358.3,20422,0)
+ ;;=M46.1^^68^843^39
+ ;;^UTILITY(U,$J,358.3,20422,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,20422,1,3,0)
+ ;;=3^Sacroiliitis NEC
+ ;;^UTILITY(U,$J,358.3,20422,1,4,0)
+ ;;=4^M46.1
+ ;;^UTILITY(U,$J,358.3,20422,2)
+ ;;=^5011980
+ ;;^UTILITY(U,$J,358.3,20423,0)
+ ;;=M46.02^^68^843^41
+ ;;^UTILITY(U,$J,358.3,20423,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,20423,1,3,0)
+ ;;=3^Spinal Enthesopathy,Cervical Region
+ ;;^UTILITY(U,$J,358.3,20423,1,4,0)
+ ;;=4^M46.02
+ ;;^UTILITY(U,$J,358.3,20423,2)
+ ;;=^5011972
+ ;;^UTILITY(U,$J,358.3,20424,0)
+ ;;=M46.06^^68^843^43
+ ;;^UTILITY(U,$J,358.3,20424,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,20424,1,3,0)
+ ;;=3^Spinal Enthesopathy,Lumbar Region
+ ;;^UTILITY(U,$J,358.3,20424,1,4,0)
+ ;;=4^M46.06
+ ;;^UTILITY(U,$J,358.3,20424,2)
+ ;;=^5011976
+ ;;^UTILITY(U,$J,358.3,20425,0)
+ ;;=M46.01^^68^843^45
+ ;;^UTILITY(U,$J,358.3,20425,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,20425,1,3,0)
+ ;;=3^Spinal Enthesopathy,Occipito-Atlanto-Axial Region
+ ;;^UTILITY(U,$J,358.3,20425,1,4,0)
+ ;;=4^M46.01
+ ;;^UTILITY(U,$J,358.3,20425,2)
+ ;;=^5011971
+ ;;^UTILITY(U,$J,358.3,20426,0)
+ ;;=M46.07^^68^843^44
+ ;;^UTILITY(U,$J,358.3,20426,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,20426,1,3,0)
+ ;;=3^Spinal Enthesopathy,Lumbosacral Region
+ ;;^UTILITY(U,$J,358.3,20426,1,4,0)
+ ;;=4^M46.07
+ ;;^UTILITY(U,$J,358.3,20426,2)
+ ;;=^5011977
+ ;;^UTILITY(U,$J,358.3,20427,0)
+ ;;=M46.05^^68^843^47
+ ;;^UTILITY(U,$J,358.3,20427,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,20427,1,3,0)
+ ;;=3^Spinal Enthesopathy,Thoracolumbar Region
+ ;;^UTILITY(U,$J,358.3,20427,1,4,0)
+ ;;=4^M46.05
+ ;;^UTILITY(U,$J,358.3,20427,2)
+ ;;=^5011975
+ ;;^UTILITY(U,$J,358.3,20428,0)
+ ;;=M46.03^^68^843^42
+ ;;^UTILITY(U,$J,358.3,20428,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,20428,1,3,0)
+ ;;=3^Spinal Enthesopathy,Cervicothoracic Region
+ ;;^UTILITY(U,$J,358.3,20428,1,4,0)
+ ;;=4^M46.03
+ ;;^UTILITY(U,$J,358.3,20428,2)
+ ;;=^5011973
+ ;;^UTILITY(U,$J,358.3,20429,0)
+ ;;=M46.04^^68^843^46
+ ;;^UTILITY(U,$J,358.3,20429,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,20429,1,3,0)
+ ;;=3^Spinal Enthesopathy,Thoracic Region
+ ;;^UTILITY(U,$J,358.3,20429,1,4,0)
+ ;;=4^M46.04
+ ;;^UTILITY(U,$J,358.3,20429,2)
+ ;;=^5011974
+ ;;^UTILITY(U,$J,358.3,20430,0)
+ ;;=M48.9^^68^843^56
+ ;;^UTILITY(U,$J,358.3,20430,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,20430,1,3,0)
+ ;;=3^Spondylopathy,Unspec
+ ;;^UTILITY(U,$J,358.3,20430,1,4,0)
+ ;;=4^M48.9
+ ;;^UTILITY(U,$J,358.3,20430,2)
+ ;;=^5012204
+ ;;^UTILITY(U,$J,358.3,20431,0)
+ ;;=M47.812^^68^843^69
+ ;;^UTILITY(U,$J,358.3,20431,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,20431,1,3,0)
+ ;;=3^Spondyls w/o Myelopathy/Radiculopathy,Cervical Region
+ ;;^UTILITY(U,$J,358.3,20431,1,4,0)
+ ;;=4^M47.812
+ ;;^UTILITY(U,$J,358.3,20431,2)
+ ;;=^5012069
+ ;;^UTILITY(U,$J,358.3,20432,0)
+ ;;=M47.816^^68^843^71
+ ;;^UTILITY(U,$J,358.3,20432,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,20432,1,3,0)
+ ;;=3^Spondyls w/o Myelopathy/Radiculopathy,Lumbar Region
+ ;;^UTILITY(U,$J,358.3,20432,1,4,0)
+ ;;=4^M47.816
+ ;;^UTILITY(U,$J,358.3,20432,2)
+ ;;=^5012073
+ ;;^UTILITY(U,$J,358.3,20433,0)
+ ;;=M47.817^^68^843^72
+ ;;^UTILITY(U,$J,358.3,20433,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,20433,1,3,0)
+ ;;=3^Spondyls w/o Myelopathy/Radiculopathy,Lumbosacral Region
+ ;;^UTILITY(U,$J,358.3,20433,1,4,0)
+ ;;=4^M47.817
+ ;;^UTILITY(U,$J,358.3,20433,2)
+ ;;=^5012074
+ ;;^UTILITY(U,$J,358.3,20434,0)
+ ;;=M47.811^^68^843^73
+ ;;^UTILITY(U,$J,358.3,20434,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,20434,1,3,0)
+ ;;=3^Spondyls w/o Myelopathy/Radiculopathy,Occipt-Atlan-Ax Region
+ ;;^UTILITY(U,$J,358.3,20434,1,4,0)
+ ;;=4^M47.811
+ ;;^UTILITY(U,$J,358.3,20434,2)
+ ;;=^5012068
+ ;;^UTILITY(U,$J,358.3,20435,0)
+ ;;=M47.818^^68^843^74
+ ;;^UTILITY(U,$J,358.3,20435,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,20435,1,3,0)
+ ;;=3^Spondyls w/o Myelopathy/Radiculopathy,Sacral/Sacrocycgl Region
+ ;;^UTILITY(U,$J,358.3,20435,1,4,0)
+ ;;=4^M47.818
+ ;;^UTILITY(U,$J,358.3,20435,2)
+ ;;=^5012075
  ;;^UTILITY(U,$J,358.3,20436,0)
- ;;=L89.40^^70^876^1
+ ;;=M47.814^^68^843^75
  ;;^UTILITY(U,$J,358.3,20436,1,0)
  ;;=^358.31IA^4^2
  ;;^UTILITY(U,$J,358.3,20436,1,3,0)
- ;;=3^Pressure Ulcer Contiguous Site Back,Buttock & Hip,Stage Unspec
+ ;;=3^Spondyls w/o Myelopathy/Radiculopathy,Thoracic Region
  ;;^UTILITY(U,$J,358.3,20436,1,4,0)
- ;;=4^L89.40
+ ;;=4^M47.814
  ;;^UTILITY(U,$J,358.3,20436,2)
- ;;=^5009404
+ ;;=^5012071
  ;;^UTILITY(U,$J,358.3,20437,0)
- ;;=L89.41^^70^876^2
+ ;;=M47.815^^68^843^76
  ;;^UTILITY(U,$J,358.3,20437,1,0)
  ;;=^358.31IA^4^2
  ;;^UTILITY(U,$J,358.3,20437,1,3,0)
- ;;=3^Pressure Ulcer Contiguous Site Back,Buttock & Hip,Stage 1
+ ;;=3^Spondyls w/o Myelopathy/Radiculopathy,Thoracolumb Region
  ;;^UTILITY(U,$J,358.3,20437,1,4,0)
- ;;=4^L89.41
+ ;;=4^M47.815
  ;;^UTILITY(U,$J,358.3,20437,2)
- ;;=^5009405
+ ;;=^5012072
  ;;^UTILITY(U,$J,358.3,20438,0)
- ;;=L89.42^^70^876^3
+ ;;=M47.813^^68^843^70
  ;;^UTILITY(U,$J,358.3,20438,1,0)
  ;;=^358.31IA^4^2
  ;;^UTILITY(U,$J,358.3,20438,1,3,0)
- ;;=3^Pressure Ulcer Contiguous Site Back,Buttock & Hip,Stage 2
+ ;;=3^Spondyls w/o Myelopathy/Radiculopathy,Cervicothor Region
  ;;^UTILITY(U,$J,358.3,20438,1,4,0)
- ;;=4^L89.42
+ ;;=4^M47.813
  ;;^UTILITY(U,$J,358.3,20438,2)
- ;;=^5009406
+ ;;=^5012070
  ;;^UTILITY(U,$J,358.3,20439,0)
- ;;=L89.43^^70^876^4
+ ;;=M48.32^^68^843^77
  ;;^UTILITY(U,$J,358.3,20439,1,0)
  ;;=^358.31IA^4^2
  ;;^UTILITY(U,$J,358.3,20439,1,3,0)
- ;;=3^Pressure Ulcer Contiguous Site Back,Buttock & Hip,Stage 3
+ ;;=3^Traumatic Spondylopathy,Cervical Region
  ;;^UTILITY(U,$J,358.3,20439,1,4,0)
- ;;=4^L89.43
+ ;;=4^M48.32
  ;;^UTILITY(U,$J,358.3,20439,2)
- ;;=^5009407
+ ;;=^5012116
  ;;^UTILITY(U,$J,358.3,20440,0)
- ;;=L89.44^^70^876^5
+ ;;=M48.36^^68^843^79
  ;;^UTILITY(U,$J,358.3,20440,1,0)
  ;;=^358.31IA^4^2
  ;;^UTILITY(U,$J,358.3,20440,1,3,0)
- ;;=3^Pressure Ulcer Contiguous Site Back,Buttock & Hip,Stage 4
+ ;;=3^Traumatic Spondylopathy,Lumbar Region
  ;;^UTILITY(U,$J,358.3,20440,1,4,0)
- ;;=4^L89.44
+ ;;=4^M48.36
  ;;^UTILITY(U,$J,358.3,20440,2)
- ;;=^5009408
+ ;;=^5012120
  ;;^UTILITY(U,$J,358.3,20441,0)
- ;;=L89.45^^70^876^6
+ ;;=M48.37^^68^843^80
  ;;^UTILITY(U,$J,358.3,20441,1,0)
  ;;=^358.31IA^4^2
  ;;^UTILITY(U,$J,358.3,20441,1,3,0)
- ;;=3^Pressure Ulcer Contiguous Site Back,Buttock & Hip,Unstageable
+ ;;=3^Traumatic Spondylopathy,Lumbosacral Region
  ;;^UTILITY(U,$J,358.3,20441,1,4,0)
- ;;=4^L89.45
+ ;;=4^M48.37
  ;;^UTILITY(U,$J,358.3,20441,2)
- ;;=^5009409
+ ;;=^5012121
  ;;^UTILITY(U,$J,358.3,20442,0)
- ;;=L89.510^^70^876^66
+ ;;=M48.31^^68^843^81
  ;;^UTILITY(U,$J,358.3,20442,1,0)
  ;;=^358.31IA^4^2
  ;;^UTILITY(U,$J,358.3,20442,1,3,0)
- ;;=3^Pressure Ulcer Right Ankle,Unstageable
+ ;;=3^Traumatic Spondylopathy,Occipito-Atlanto-Axial Region
  ;;^UTILITY(U,$J,358.3,20442,1,4,0)
- ;;=4^L89.510
+ ;;=4^M48.31
  ;;^UTILITY(U,$J,358.3,20442,2)
- ;;=^5009415
+ ;;=^5012115
  ;;^UTILITY(U,$J,358.3,20443,0)
- ;;=L89.511^^70^876^61
+ ;;=M48.38^^68^843^82
  ;;^UTILITY(U,$J,358.3,20443,1,0)
  ;;=^358.31IA^4^2
  ;;^UTILITY(U,$J,358.3,20443,1,3,0)
- ;;=3^Pressure Ulcer Right Ankle,Stage 1
+ ;;=3^Traumatic Spondylopathy,Sacral/Sacrococcygeal Region
  ;;^UTILITY(U,$J,358.3,20443,1,4,0)
- ;;=4^L89.511
+ ;;=4^M48.38
  ;;^UTILITY(U,$J,358.3,20443,2)
- ;;=^5009416
+ ;;=^5012122
  ;;^UTILITY(U,$J,358.3,20444,0)
- ;;=L89.512^^70^876^62
+ ;;=M48.35^^68^843^84
  ;;^UTILITY(U,$J,358.3,20444,1,0)
  ;;=^358.31IA^4^2
  ;;^UTILITY(U,$J,358.3,20444,1,3,0)
- ;;=3^Pressure Ulcer Right Ankle,Stage 2
+ ;;=3^Traumatic Spondylopathy,Thoracolumbar Region
  ;;^UTILITY(U,$J,358.3,20444,1,4,0)
- ;;=4^L89.512
+ ;;=4^M48.35
  ;;^UTILITY(U,$J,358.3,20444,2)
- ;;=^5009417
+ ;;=^5012119
  ;;^UTILITY(U,$J,358.3,20445,0)
- ;;=L89.513^^70^876^63
+ ;;=M48.33^^68^843^78
  ;;^UTILITY(U,$J,358.3,20445,1,0)
  ;;=^358.31IA^4^2
  ;;^UTILITY(U,$J,358.3,20445,1,3,0)
- ;;=3^Pressure Ulcer Right Ankle,Stage 3
+ ;;=3^Traumatic Spondylopathy,Cervicothoracic Region
  ;;^UTILITY(U,$J,358.3,20445,1,4,0)
- ;;=4^L89.513
+ ;;=4^M48.33
  ;;^UTILITY(U,$J,358.3,20445,2)
- ;;=^5009418
+ ;;=^5012117
  ;;^UTILITY(U,$J,358.3,20446,0)
- ;;=L89.514^^70^876^64
+ ;;=M48.34^^68^843^83
  ;;^UTILITY(U,$J,358.3,20446,1,0)
  ;;=^358.31IA^4^2
  ;;^UTILITY(U,$J,358.3,20446,1,3,0)
- ;;=3^Pressure Ulcer Right Ankle,Stage 4
+ ;;=3^Traumatic Spondylopathy,Thoracic Region
  ;;^UTILITY(U,$J,358.3,20446,1,4,0)
- ;;=4^L89.514
+ ;;=4^M48.34
  ;;^UTILITY(U,$J,358.3,20446,2)
- ;;=^5009419
+ ;;=^5012118
  ;;^UTILITY(U,$J,358.3,20447,0)
- ;;=L89.519^^70^876^65
+ ;;=M48.061^^68^843^51
  ;;^UTILITY(U,$J,358.3,20447,1,0)
  ;;=^358.31IA^4^2
  ;;^UTILITY(U,$J,358.3,20447,1,3,0)
- ;;=3^Pressure Ulcer Right Ankle,Stage Unspec
+ ;;=3^Spinal Stenosis,Lumbar Region w/o Neurogenic Claudication
  ;;^UTILITY(U,$J,358.3,20447,1,4,0)
- ;;=4^L89.519
+ ;;=4^M48.061
  ;;^UTILITY(U,$J,358.3,20447,2)
- ;;=^5133673
+ ;;=^5151513
  ;;^UTILITY(U,$J,358.3,20448,0)
- ;;=L89.520^^70^876^18
+ ;;=M48.062^^68^843^50
  ;;^UTILITY(U,$J,358.3,20448,1,0)
  ;;=^358.31IA^4^2
  ;;^UTILITY(U,$J,358.3,20448,1,3,0)
- ;;=3^Pressure Ulcer Left Ankle,Unstageable
+ ;;=3^Spinal Stenosis,Lumbar Region w/ Neurogenic Claudication
  ;;^UTILITY(U,$J,358.3,20448,1,4,0)
- ;;=4^L89.520
+ ;;=4^M48.062
  ;;^UTILITY(U,$J,358.3,20448,2)
- ;;=^5009420
+ ;;=^5151514
  ;;^UTILITY(U,$J,358.3,20449,0)
- ;;=L89.521^^70^876^13
+ ;;=M41.9^^68^843^40
  ;;^UTILITY(U,$J,358.3,20449,1,0)
  ;;=^358.31IA^4^2
  ;;^UTILITY(U,$J,358.3,20449,1,3,0)
- ;;=3^Pressure Ulcer Left Ankle,Stage 1
+ ;;=3^Scoliosis,Idiopathic
  ;;^UTILITY(U,$J,358.3,20449,1,4,0)
- ;;=4^L89.521
+ ;;=4^M41.9
  ;;^UTILITY(U,$J,358.3,20449,2)
- ;;=^5009421
+ ;;=^5011889
  ;;^UTILITY(U,$J,358.3,20450,0)
- ;;=L89.522^^70^876^14
+ ;;=M54.50^^68^843^31
  ;;^UTILITY(U,$J,358.3,20450,1,0)
  ;;=^358.31IA^4^2
  ;;^UTILITY(U,$J,358.3,20450,1,3,0)
- ;;=3^Pressure Ulcer Left Ankle,Stage 2
+ ;;=3^Low Back Pain,Unspec
  ;;^UTILITY(U,$J,358.3,20450,1,4,0)
- ;;=4^L89.522
+ ;;=4^M54.50
  ;;^UTILITY(U,$J,358.3,20450,2)
- ;;=^5009422
+ ;;=^5161215
  ;;^UTILITY(U,$J,358.3,20451,0)
- ;;=L89.523^^70^876^15
+ ;;=M54.51^^68^843^32
  ;;^UTILITY(U,$J,358.3,20451,1,0)
  ;;=^358.31IA^4^2
  ;;^UTILITY(U,$J,358.3,20451,1,3,0)
- ;;=3^Pressure Ulcer Left Ankle,Stage 3
+ ;;=3^Low Back Pain,Vertebrogenic
  ;;^UTILITY(U,$J,358.3,20451,1,4,0)
- ;;=4^L89.523
+ ;;=4^M54.51
  ;;^UTILITY(U,$J,358.3,20451,2)
- ;;=^5009423
+ ;;=^5161216
  ;;^UTILITY(U,$J,358.3,20452,0)
- ;;=L89.524^^70^876^16
+ ;;=M54.59^^68^843^30
  ;;^UTILITY(U,$J,358.3,20452,1,0)
  ;;=^358.31IA^4^2
  ;;^UTILITY(U,$J,358.3,20452,1,3,0)
- ;;=3^Pressure Ulcer Left Ankle,Stage 4
+ ;;=3^Low Back Pain,Other
  ;;^UTILITY(U,$J,358.3,20452,1,4,0)
- ;;=4^L89.524
+ ;;=4^M54.59
  ;;^UTILITY(U,$J,358.3,20452,2)
- ;;=^5009424
+ ;;=^5161217
  ;;^UTILITY(U,$J,358.3,20453,0)
- ;;=L89.529^^70^876^17
+ ;;=M47.12^^68^843^57
  ;;^UTILITY(U,$J,358.3,20453,1,0)
  ;;=^358.31IA^4^2
  ;;^UTILITY(U,$J,358.3,20453,1,3,0)
- ;;=3^Pressure Ulcer Left Ankle,Stage Unspec
+ ;;=3^Spondyls w/ Myelopathy,Cervical Region
  ;;^UTILITY(U,$J,358.3,20453,1,4,0)
- ;;=4^L89.529
+ ;;=4^M47.12
  ;;^UTILITY(U,$J,358.3,20453,2)
- ;;=^5133674
+ ;;=^5012052
  ;;^UTILITY(U,$J,358.3,20454,0)
- ;;=L89.610^^70^876^84
+ ;;=M47.13^^68^843^58
  ;;^UTILITY(U,$J,358.3,20454,1,0)
  ;;=^358.31IA^4^2
  ;;^UTILITY(U,$J,358.3,20454,1,3,0)
- ;;=3^Pressure Ulcer Right Heel,Unstageable
+ ;;=3^Spondyls w/ Myelopathy,Cervicothoracic Region
  ;;^UTILITY(U,$J,358.3,20454,1,4,0)
- ;;=4^L89.610
+ ;;=4^M47.13
  ;;^UTILITY(U,$J,358.3,20454,2)
- ;;=^5009430
+ ;;=^5012053
  ;;^UTILITY(U,$J,358.3,20455,0)
- ;;=L89.611^^70^876^79
+ ;;=M47.14^^68^843^60
  ;;^UTILITY(U,$J,358.3,20455,1,0)
  ;;=^358.31IA^4^2
  ;;^UTILITY(U,$J,358.3,20455,1,3,0)
- ;;=3^Pressure Ulcer Right Heel,Stage 1
+ ;;=3^Spondyls w/ Myelopathy,Thoracic Region
  ;;^UTILITY(U,$J,358.3,20455,1,4,0)
- ;;=4^L89.611
+ ;;=4^M47.14
  ;;^UTILITY(U,$J,358.3,20455,2)
- ;;=^5009431
+ ;;=^5012054
  ;;^UTILITY(U,$J,358.3,20456,0)
- ;;=L89.612^^70^876^80
+ ;;=M47.15^^68^843^61
  ;;^UTILITY(U,$J,358.3,20456,1,0)
  ;;=^358.31IA^4^2
  ;;^UTILITY(U,$J,358.3,20456,1,3,0)
- ;;=3^Pressure Ulcer Right Heel,Stage 2
+ ;;=3^Spondyls w/ Myelopathy,Thoracolumbar Region
  ;;^UTILITY(U,$J,358.3,20456,1,4,0)
- ;;=4^L89.612
+ ;;=4^M47.15
  ;;^UTILITY(U,$J,358.3,20456,2)
- ;;=^5009432
+ ;;=^5012055
  ;;^UTILITY(U,$J,358.3,20457,0)
- ;;=L89.613^^70^876^81
+ ;;=M47.16^^68^843^59
  ;;^UTILITY(U,$J,358.3,20457,1,0)
  ;;=^358.31IA^4^2
  ;;^UTILITY(U,$J,358.3,20457,1,3,0)
- ;;=3^Pressure Ulcer Right Heel,Stage 3
+ ;;=3^Spondyls w/ Myelopathy,Lumbar Region
  ;;^UTILITY(U,$J,358.3,20457,1,4,0)
- ;;=4^L89.613
+ ;;=4^M47.16
  ;;^UTILITY(U,$J,358.3,20457,2)
- ;;=^5009433
+ ;;=^5012056
  ;;^UTILITY(U,$J,358.3,20458,0)
- ;;=L89.614^^70^876^82
+ ;;=M47.22^^68^843^62
  ;;^UTILITY(U,$J,358.3,20458,1,0)
  ;;=^358.31IA^4^2
  ;;^UTILITY(U,$J,358.3,20458,1,3,0)
- ;;=3^Pressure Ulcer Right Heel,Stage 4
+ ;;=3^Spondyls w/ Radiculopathy,Cervical Region
  ;;^UTILITY(U,$J,358.3,20458,1,4,0)
- ;;=4^L89.614
+ ;;=4^M47.22
  ;;^UTILITY(U,$J,358.3,20458,2)
- ;;=^5009434
+ ;;=^5012061
  ;;^UTILITY(U,$J,358.3,20459,0)
- ;;=L89.619^^70^876^83
+ ;;=M47.23^^68^843^63
  ;;^UTILITY(U,$J,358.3,20459,1,0)
  ;;=^358.31IA^4^2
  ;;^UTILITY(U,$J,358.3,20459,1,3,0)
- ;;=3^Pressure Ulcer Right Heel,Stage Unspec
+ ;;=3^Spondyls w/ Radiculopathy,Cervicothoracic Region
  ;;^UTILITY(U,$J,358.3,20459,1,4,0)
- ;;=4^L89.619
+ ;;=4^M47.23
  ;;^UTILITY(U,$J,358.3,20459,2)
- ;;=^5133676
+ ;;=^5012062
  ;;^UTILITY(U,$J,358.3,20460,0)
- ;;=L89.620^^70^876^36
+ ;;=M47.24^^68^843^67
  ;;^UTILITY(U,$J,358.3,20460,1,0)
  ;;=^358.31IA^4^2
  ;;^UTILITY(U,$J,358.3,20460,1,3,0)
- ;;=3^Pressure Ulcer Left Heel,Unstageable
+ ;;=3^Spondyls w/ Radiculopathy,Thoracic Region
  ;;^UTILITY(U,$J,358.3,20460,1,4,0)
- ;;=4^L89.620
+ ;;=4^M47.24
  ;;^UTILITY(U,$J,358.3,20460,2)
- ;;=^5009435
+ ;;=^5012063
  ;;^UTILITY(U,$J,358.3,20461,0)
- ;;=L89.621^^70^876^31
+ ;;=M47.25^^68^843^68
  ;;^UTILITY(U,$J,358.3,20461,1,0)
  ;;=^358.31IA^4^2
  ;;^UTILITY(U,$J,358.3,20461,1,3,0)
- ;;=3^Pressure Ulcer Left Heel,Stage 1
+ ;;=3^Spondyls w/ Radiculopathy,Thoracolumbar Region
  ;;^UTILITY(U,$J,358.3,20461,1,4,0)
- ;;=4^L89.621
+ ;;=4^M47.25
  ;;^UTILITY(U,$J,358.3,20461,2)
- ;;=^5009436
+ ;;=^5012064
  ;;^UTILITY(U,$J,358.3,20462,0)
- ;;=L89.622^^70^876^32
+ ;;=M47.26^^68^843^64
  ;;^UTILITY(U,$J,358.3,20462,1,0)
  ;;=^358.31IA^4^2
  ;;^UTILITY(U,$J,358.3,20462,1,3,0)
- ;;=3^Pressure Ulcer Left Heel,Stage 2
+ ;;=3^Spondyls w/ Radiculopathy,Lumbar Region
  ;;^UTILITY(U,$J,358.3,20462,1,4,0)
- ;;=4^L89.622
+ ;;=4^M47.26
  ;;^UTILITY(U,$J,358.3,20462,2)
- ;;=^5009437
+ ;;=^5012065
  ;;^UTILITY(U,$J,358.3,20463,0)
- ;;=L89.623^^70^876^33
+ ;;=M47.27^^68^843^65
  ;;^UTILITY(U,$J,358.3,20463,1,0)
  ;;=^358.31IA^4^2
  ;;^UTILITY(U,$J,358.3,20463,1,3,0)
- ;;=3^Pressure Ulcer Left Heel,Stage 3
+ ;;=3^Spondyls w/ Radiculopathy,Lumbosacral Region
  ;;^UTILITY(U,$J,358.3,20463,1,4,0)
- ;;=4^L89.623
+ ;;=4^M47.27
  ;;^UTILITY(U,$J,358.3,20463,2)
- ;;=^5009438
+ ;;=^5012066
  ;;^UTILITY(U,$J,358.3,20464,0)
- ;;=L89.624^^70^876^34
+ ;;=M47.28^^68^843^66
  ;;^UTILITY(U,$J,358.3,20464,1,0)
  ;;=^358.31IA^4^2
  ;;^UTILITY(U,$J,358.3,20464,1,3,0)
- ;;=3^Pressure Ulcer Left Heel,Stage 4
+ ;;=3^Spondyls w/ Radiculopathy,Sacral/Sacroccygeal Region
  ;;^UTILITY(U,$J,358.3,20464,1,4,0)
- ;;=4^L89.624
+ ;;=4^M47.28
  ;;^UTILITY(U,$J,358.3,20464,2)
- ;;=^5009439
+ ;;=^5012067
  ;;^UTILITY(U,$J,358.3,20465,0)
- ;;=L89.629^^70^876^35
+ ;;=M48.02^^68^843^48
  ;;^UTILITY(U,$J,358.3,20465,1,0)
  ;;=^358.31IA^4^2
  ;;^UTILITY(U,$J,358.3,20465,1,3,0)
- ;;=3^Pressure Ulcer Left Heel,Stage Unspec
+ ;;=3^Spinal Stenosis,Cervical Region
  ;;^UTILITY(U,$J,358.3,20465,1,4,0)
- ;;=4^L89.629
+ ;;=4^M48.02
  ;;^UTILITY(U,$J,358.3,20465,2)
- ;;=^5133677
+ ;;=^5012089
  ;;^UTILITY(U,$J,358.3,20466,0)
- ;;=L89.810^^70^876^12
+ ;;=M48.03^^68^843^49
  ;;^UTILITY(U,$J,358.3,20466,1,0)
  ;;=^358.31IA^4^2
  ;;^UTILITY(U,$J,358.3,20466,1,3,0)
- ;;=3^Pressure Ulcer Head,Unstageable
+ ;;=3^Spinal Stenosis,Cervicothoracic Region
  ;;^UTILITY(U,$J,358.3,20466,1,4,0)
- ;;=4^L89.810
+ ;;=4^M48.03
  ;;^UTILITY(U,$J,358.3,20466,2)
- ;;=^5009440
+ ;;=^5012090
  ;;^UTILITY(U,$J,358.3,20467,0)
- ;;=L89.811^^70^876^7
+ ;;=M48.04^^68^843^54
  ;;^UTILITY(U,$J,358.3,20467,1,0)
  ;;=^358.31IA^4^2
  ;;^UTILITY(U,$J,358.3,20467,1,3,0)
- ;;=3^Pressure Ulcer Head,Stage 1
+ ;;=3^Spinal Stenosis,Thoracic Region
  ;;^UTILITY(U,$J,358.3,20467,1,4,0)
- ;;=4^L89.811
+ ;;=4^M48.04
  ;;^UTILITY(U,$J,358.3,20467,2)
- ;;=^5009441
+ ;;=^5012091
  ;;^UTILITY(U,$J,358.3,20468,0)
- ;;=L89.812^^70^876^8
+ ;;=M48.05^^68^843^55
  ;;^UTILITY(U,$J,358.3,20468,1,0)
  ;;=^358.31IA^4^2
  ;;^UTILITY(U,$J,358.3,20468,1,3,0)
- ;;=3^Pressure Ulcer Head,Stage 2
+ ;;=3^Spinal Stenosis,Thoracolumbar Region
  ;;^UTILITY(U,$J,358.3,20468,1,4,0)
- ;;=4^L89.812
+ ;;=4^M48.05
  ;;^UTILITY(U,$J,358.3,20468,2)
- ;;=^5009442
+ ;;=^5012092
  ;;^UTILITY(U,$J,358.3,20469,0)
- ;;=L89.813^^70^876^9
+ ;;=M48.07^^68^843^52
  ;;^UTILITY(U,$J,358.3,20469,1,0)
  ;;=^358.31IA^4^2
  ;;^UTILITY(U,$J,358.3,20469,1,3,0)
- ;;=3^Pressure Ulcer Head,Stage 3
+ ;;=3^Spinal Stenosis,Lumbosacral Region
  ;;^UTILITY(U,$J,358.3,20469,1,4,0)
- ;;=4^L89.813
+ ;;=4^M48.07
  ;;^UTILITY(U,$J,358.3,20469,2)
- ;;=^5009443
+ ;;=^5012094
  ;;^UTILITY(U,$J,358.3,20470,0)
- ;;=L89.814^^70^876^10
+ ;;=M48.08^^68^843^53
  ;;^UTILITY(U,$J,358.3,20470,1,0)
  ;;=^358.31IA^4^2
  ;;^UTILITY(U,$J,358.3,20470,1,3,0)
- ;;=3^Pressure Ulcer Head,Stage 4
+ ;;=3^Spinal Stenosis,Sacrococcygeal Region
  ;;^UTILITY(U,$J,358.3,20470,1,4,0)
- ;;=4^L89.814
+ ;;=4^M48.08
  ;;^UTILITY(U,$J,358.3,20470,2)
- ;;=^5009444
+ ;;=^5012095
  ;;^UTILITY(U,$J,358.3,20471,0)
- ;;=L89.819^^70^876^11
+ ;;=R47.01^^68^844^1
  ;;^UTILITY(U,$J,358.3,20471,1,0)
  ;;=^358.31IA^4^2
  ;;^UTILITY(U,$J,358.3,20471,1,3,0)
- ;;=3^Pressure Ulcer Head,Stage Unspec
+ ;;=3^Aphasia NEC
  ;;^UTILITY(U,$J,358.3,20471,1,4,0)
- ;;=4^L89.819
+ ;;=4^R47.01
  ;;^UTILITY(U,$J,358.3,20471,2)
- ;;=^5009445
+ ;;=^5019488
  ;;^UTILITY(U,$J,358.3,20472,0)
- ;;=L89.890^^70^876^60
+ ;;=I69.920^^68^844^5
  ;;^UTILITY(U,$J,358.3,20472,1,0)
  ;;=^358.31IA^4^2
  ;;^UTILITY(U,$J,358.3,20472,1,3,0)
- ;;=3^Pressure Ulcer Other Site,Unstageable
+ ;;=3^Aphasia after unspec cerebrovascular disease
  ;;^UTILITY(U,$J,358.3,20472,1,4,0)
- ;;=4^L89.890
+ ;;=4^I69.920
  ;;^UTILITY(U,$J,358.3,20472,2)
- ;;=^5009446
+ ;;=^5007553
  ;;^UTILITY(U,$J,358.3,20473,0)
- ;;=L89.891^^70^876^55
- ;;^UTILITY(U,$J,358.3,20473,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,20473,1,3,0)
- ;;=3^Pressure Ulcer Other Site,Stage 1
- ;;^UTILITY(U,$J,358.3,20473,1,4,0)
- ;;=4^L89.891
- ;;^UTILITY(U,$J,358.3,20473,2)
- ;;=^5009447
- ;;^UTILITY(U,$J,358.3,20474,0)
- ;;=L89.892^^70^876^56
- ;;^UTILITY(U,$J,358.3,20474,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,20474,1,3,0)
- ;;=3^Pressure Ulcer Other Site,Stage 2
- ;;^UTILITY(U,$J,358.3,20474,1,4,0)
- ;;=4^L89.892
- ;;^UTILITY(U,$J,358.3,20474,2)
- ;;=^5009448
- ;;^UTILITY(U,$J,358.3,20475,0)
- ;;=L89.893^^70^876^57
- ;;^UTILITY(U,$J,358.3,20475,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,20475,1,3,0)
- ;;=3^Pressure Ulcer Other Site,Stage 3
- ;;^UTILITY(U,$J,358.3,20475,1,4,0)
- ;;=4^L89.893
- ;;^UTILITY(U,$J,358.3,20475,2)
- ;;=^5009449
- ;;^UTILITY(U,$J,358.3,20476,0)
- ;;=L89.894^^70^876^58
- ;;^UTILITY(U,$J,358.3,20476,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,20476,1,3,0)
- ;;=3^Pressure Ulcer Other Site,Stage 4
- ;;^UTILITY(U,$J,358.3,20476,1,4,0)
- ;;=4^L89.894
- ;;^UTILITY(U,$J,358.3,20476,2)
- ;;=^5009450
- ;;^UTILITY(U,$J,358.3,20477,0)
- ;;=L89.899^^70^876^59
- ;;^UTILITY(U,$J,358.3,20477,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,20477,1,3,0)
- ;;=3^Pressure Ulcer Other Site,Stage Unspec
- ;;^UTILITY(U,$J,358.3,20477,1,4,0)
- ;;=4^L89.899
- ;;^UTILITY(U,$J,358.3,20477,2)
- ;;=^5133663
- ;;^UTILITY(U,$J,358.3,20478,0)
- ;;=L89.91^^70^876^109
- ;;^UTILITY(U,$J,358.3,20478,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,20478,1,3,0)
- ;;=3^Pressure Ulcer Site Unspec,Stage 1
- ;;^UTILITY(U,$J,358.3,20478,1,4,0)
- ;;=4^L89.91
- ;;^UTILITY(U,$J,358.3,20478,2)
- ;;=^5133664
- ;;^UTILITY(U,$J,358.3,20479,0)
- ;;=L89.92^^70^876^110
- ;;^UTILITY(U,$J,358.3,20479,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,20479,1,3,0)
- ;;=3^Pressure Ulcer Site Unspec,Stage 2
- ;;^UTILITY(U,$J,358.3,20479,1,4,0)
- ;;=4^L89.92
- ;;^UTILITY(U,$J,358.3,20479,2)
- ;;=^5133667
- ;;^UTILITY(U,$J,358.3,20480,0)
- ;;=L89.93^^70^876^111
- ;;^UTILITY(U,$J,358.3,20480,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,20480,1,3,0)
- ;;=3^Pressure Ulcer Site Unspec,Stage 3
- ;;^UTILITY(U,$J,358.3,20480,1,4,0)
- ;;=4^L89.93
- ;;^UTILITY(U,$J,358.3,20480,2)
- ;;=^5133668
- ;;^UTILITY(U,$J,358.3,20481,0)
- ;;=L89.94^^70^876^112
- ;;^UTILITY(U,$J,358.3,20481,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,20481,1,3,0)
- ;;=3^Pressure Ulcer Site Unspec,Stage 4
- ;;^UTILITY(U,$J,358.3,20481,1,4,0)
- ;;=4^L89.94
- ;;^UTILITY(U,$J,358.3,20481,2)
- ;;=^5133669
- ;;^UTILITY(U,$J,358.3,20482,0)
- ;;=L89.95^^70^876^113
- ;;^UTILITY(U,$J,358.3,20482,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,20482,1,3,0)
- ;;=3^Pressure Ulcer Site Unspec,Unstageable
- ;;^UTILITY(U,$J,358.3,20482,1,4,0)
- ;;=4^L89.95
- ;;^UTILITY(U,$J,358.3,20482,2)
- ;;=^5133660
- ;;^UTILITY(U,$J,358.3,20483,0)
- ;;=L89.46^^70^876^114
- ;;^UTILITY(U,$J,358.3,20483,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,20483,1,3,0)
- ;;=3^Pressure-Induced Deep Tiss Damag of Contig Site of Back/Buttock/Hip
- ;;^UTILITY(U,$J,358.3,20483,1,4,0)
- ;;=4^L89.46
- ;;^UTILITY(U,$J,358.3,20483,2)
- ;;=^5158091
- ;;^UTILITY(U,$J,358.3,20484,0)
- ;;=L89.816^^70^876^115
- ;;^UTILITY(U,$J,358.3,20484,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,20484,1,3,0)
- ;;=3^Pressure-Induced Deep Tissue Damage of Head
- ;;^UTILITY(U,$J,358.3,20484,1,4,0)
- ;;=4^L89.816
- ;;^UTILITY(U,$J,358.3,20484,2)
- ;;=^5158098
- ;;^UTILITY(U,$J,358.3,20485,0)
- ;;=L89.526^^70^876^116
- ;;^UTILITY(U,$J,358.3,20485,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,20485,1,3,0)
- ;;=3^Pressure-Induced Deep Tissue Damage of Left Ankle
- ;;^UTILITY(U,$J,358.3,20485,1,4,0)
- ;;=4^L89.526
- ;;^UTILITY(U,$J,358.3,20485,2)
- ;;=^5158094
- ;;^UTILITY(U,$J,358.3,20486,0)
- ;;=L89.326^^70^876^117
- ;;^UTILITY(U,$J,358.3,20486,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,20486,1,3,0)
- ;;=3^Pressure-Induced Deep Tissue Damage of Left Buttock
- ;;^UTILITY(U,$J,358.3,20486,1,4,0)
- ;;=4^L89.326
- ;;^UTILITY(U,$J,358.3,20486,2)
- ;;=^5158090
- ;;^UTILITY(U,$J,358.3,20487,0)
- ;;=L89.026^^70^876^118
- ;;^UTILITY(U,$J,358.3,20487,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,20487,1,3,0)
- ;;=3^Pressure-Induced Deep Tissue Damage of Left Elbow
- ;;^UTILITY(U,$J,358.3,20487,1,4,0)
- ;;=4^L89.026
- ;;^UTILITY(U,$J,358.3,20487,2)
- ;;=^5158078
- ;;^UTILITY(U,$J,358.3,20488,0)
- ;;=L89.626^^70^876^119
- ;;^UTILITY(U,$J,358.3,20488,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,20488,1,3,0)
- ;;=3^Pressure-Induced Deep Tissue Damage of Left Heel
- ;;^UTILITY(U,$J,358.3,20488,1,4,0)
- ;;=4^L89.626
- ;;^UTILITY(U,$J,358.3,20488,2)
- ;;=^5158097
- ;;^UTILITY(U,$J,358.3,20489,0)
- ;;=L89.226^^70^876^120
- ;;^UTILITY(U,$J,358.3,20489,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,20489,1,3,0)
- ;;=3^Pressure-Induced Deep Tissue Damage of Left Hip
- ;;^UTILITY(U,$J,358.3,20489,1,4,0)
- ;;=4^L89.226
- ;;^UTILITY(U,$J,358.3,20489,2)
- ;;=^5158087
- ;;^UTILITY(U,$J,358.3,20490,0)
- ;;=L89.146^^70^876^121
- ;;^UTILITY(U,$J,358.3,20490,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,20490,1,3,0)
- ;;=3^Pressure-Induced Deep Tissue Damage of Left Lower Back
- ;;^UTILITY(U,$J,358.3,20490,1,4,0)
- ;;=4^L89.146
- ;;^UTILITY(U,$J,358.3,20490,2)
- ;;=^5158083
- ;;^UTILITY(U,$J,358.3,20491,0)
- ;;=L89.126^^70^876^122
- ;;^UTILITY(U,$J,358.3,20491,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,20491,1,3,0)
- ;;=3^Pressure-Induced Deep Tissue Damage of Left Upper Back
- ;;^UTILITY(U,$J,358.3,20491,1,4,0)
- ;;=4^L89.126
- ;;^UTILITY(U,$J,358.3,20491,2)
- ;;=^5158081
- ;;^UTILITY(U,$J,358.3,20492,0)
- ;;=L89.896^^70^876^123
- ;;^UTILITY(U,$J,358.3,20492,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,20492,1,3,0)
- ;;=3^Pressure-Induced Deep Tissue Damage of Oth Site
- ;;^UTILITY(U,$J,358.3,20492,1,4,0)
- ;;=4^L89.896
- ;;^UTILITY(U,$J,358.3,20492,2)
- ;;=^5158099
- ;;^UTILITY(U,$J,358.3,20493,0)
- ;;=L89.96^^70^876^124
- ;;^UTILITY(U,$J,358.3,20493,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,20493,1,3,0)
- ;;=3^Pressure-Induced Deep Tissue Damage of Unspec Site
- ;;^UTILITY(U,$J,358.3,20493,1,4,0)
- ;;=4^L89.96
- ;;^UTILITY(U,$J,358.3,20493,2)
- ;;=^5158100
- ;;^UTILITY(U,$J,358.3,20494,0)
- ;;=L89.516^^70^876^125
- ;;^UTILITY(U,$J,358.3,20494,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,20494,1,3,0)
- ;;=3^Pressure-Induced Deep Tissue Damage of Right Ankle
- ;;^UTILITY(U,$J,358.3,20494,1,4,0)
- ;;=4^L89.516
- ;;^UTILITY(U,$J,358.3,20494,2)
- ;;=^5158093
- ;;^UTILITY(U,$J,358.3,20495,0)
- ;;=L89.316^^70^876^126
- ;;^UTILITY(U,$J,358.3,20495,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,20495,1,3,0)
- ;;=3^Pressure-Induced Deep Tissue Damage of Right Buttock
- ;;^UTILITY(U,$J,358.3,20495,1,4,0)
- ;;=4^L89.316
- ;;^UTILITY(U,$J,358.3,20495,2)
- ;;=^5158089
- ;;^UTILITY(U,$J,358.3,20496,0)
- ;;=L89.016^^70^876^127
- ;;^UTILITY(U,$J,358.3,20496,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,20496,1,3,0)
- ;;=3^Pressure-Induced Deep Tissue Damage of Right Elbow
- ;;^UTILITY(U,$J,358.3,20496,1,4,0)
- ;;=4^L89.016
- ;;^UTILITY(U,$J,358.3,20496,2)
- ;;=^5158077
- ;;^UTILITY(U,$J,358.3,20497,0)
- ;;=L89.616^^70^876^128
- ;;^UTILITY(U,$J,358.3,20497,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,20497,1,3,0)
- ;;=3^Pressure-Induced Deep Tissue Damage of Right Heel
- ;;^UTILITY(U,$J,358.3,20497,1,4,0)
- ;;=4^L89.616
- ;;^UTILITY(U,$J,358.3,20497,2)
- ;;=^5158096
- ;;^UTILITY(U,$J,358.3,20498,0)
- ;;=L89.216^^70^876^129
- ;;^UTILITY(U,$J,358.3,20498,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,20498,1,3,0)
- ;;=3^Pressure-Induced Deep Tissue Damage of Right Hip
- ;;^UTILITY(U,$J,358.3,20498,1,4,0)
- ;;=4^L89.216
- ;;^UTILITY(U,$J,358.3,20498,2)
- ;;=^5158086
- ;;^UTILITY(U,$J,358.3,20499,0)
- ;;=L89.136^^70^876^130
- ;;^UTILITY(U,$J,358.3,20499,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,20499,1,3,0)
- ;;=3^Pressure-Induced Deep Tissue Damage of Right Lower Back
- ;;^UTILITY(U,$J,358.3,20499,1,4,0)
- ;;=4^L89.136
- ;;^UTILITY(U,$J,358.3,20499,2)
- ;;=^5158082
- ;;^UTILITY(U,$J,358.3,20500,0)
- ;;=L89.116^^70^876^131
- ;;^UTILITY(U,$J,358.3,20500,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,20500,1,3,0)
- ;;=3^Pressure-Induced Deep Tissue Damage of Right Upper Back
- ;;^UTILITY(U,$J,358.3,20500,1,4,0)
- ;;=4^L89.116
- ;;^UTILITY(U,$J,358.3,20500,2)
- ;;=^5158080
- ;;^UTILITY(U,$J,358.3,20501,0)
- ;;=L89.156^^70^876^132
- ;;^UTILITY(U,$J,358.3,20501,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,20501,1,3,0)
- ;;=3^Pressure-Induced Deep Tissue Damage of Sacral Region
- ;;^UTILITY(U,$J,358.3,20501,1,4,0)
- ;;=4^L89.156
- ;;^UTILITY(U,$J,358.3,20501,2)
- ;;=^5158084
+ ;;=I69.991^^68^844^10

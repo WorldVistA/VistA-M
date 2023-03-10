@@ -1,5 +1,5 @@
 DGREGTED ;ALB/BAJ,BDB,JAM - Temporary & Confidential Address Edits API ;23 May 2017  12:48 PM
- ;;5.3;Registration;**688,851,941**;Aug 13, 1993;Build 73
+ ;;5.3;Registration;**688,851,941,1014,1040**;Aug 13, 1993;Build 15
  ;
 EN(DFN,TYPE,RET) ;Entry point
  ; This routine controls Edits to Temporary & Confidential addresses
@@ -10,8 +10,8 @@ EN(DFN,TYPE,RET) ;Entry point
  ;       RET  = Flag to signal return to first prompt
  ;       
  ; Output
- ;       RET  0 = Return to first prompt
- ;            1 = Do not return
+ ;       RET  0 = Return to first prompt in the address edit group 
+ ;            1 = Do not return (address was saved)
  ;       
  N DGINPUT,FORGN,FSTR,ICNTRY,CNTRY,PSTR,DGCMP,DGOLD,DR,DIE
  N FSLINE1,FSLINE2,FSLINE3,FCITY,FSTATE,FCOUNTY,FZIP,FPHONE
@@ -22,9 +22,53 @@ EN(DFN,TYPE,RET) ;Entry point
  D INIT^DGREGTE2  I $P($G(^DPT(DFN,FNODE1)),U,9)="N" Q
  D GETOLD^DGREGTE2(.DGCMP,DFN,TYPE) M DGOLD=DGCMP("OLD") K DGCMP
  S CNTRY="",ICNTRY=$P($G(^DPT(DFN,FNODE2)),"^",CPEICE) I ICNTRY="" S ICNTRY=1    ;default US if NULL
- S FORGN=$$FOREIGN^DGADDUTL(DFN,ICNTRY,2,FCNTRY,.CNTRY) Q:$G(CNTRY)=""  I FORGN=-1 S RET=0 Q
+ ;
+ ; DG*5.3*1014; jam; ** Start changes **
+ ; RETRY tag added below
+RETRY ; Tag for reentering the address
+ S FORGN=$$FOREIGN^DGADDUTL(DFN,ICNTRY,2,FCNTRY,.CNTRY) I FORGN=-1 S RET=0,DGTMOT=1 Q
+ Q:$G(CNTRY)=""
  S FSTR=$$INPT1^DGREGTE2(DFN,FORGN,.PSTR),DGINPUT=1 D INPUT(.DGINPUT,DFN,FSTR)
  I $G(DGINPUT)=-1 S RET=0 Q
+ ;
+ ; DG*5.3*1014; jam; For confidential address, if required fields are missing, we can't call the validation service - force user to correct the address
+ I TYPE="CONF",DGINPUT(.1411)=""!(DGINPUT(.1414)="")!(($G(DGINPUT(.1416))="")&('FORGN)) D  G RETRY
+ . I 'FORGN W !!?3,*7,"CONFIDENTIAL ADDRESS [LINE 1], CITY, and ZIP CODE fields are required."
+ . I FORGN W !!?3,*7,"CONFIDENTIAL ADDRESS [LINE 1] and CITY fields are required."
+ ; DG*5.3*1014; jam; Address Validation service for confidential address only - TEMP address will skip over this
+ I TYPE'="CONF" G SVADD
+ ; Place the country code and name into the DGINPUT array
+ S DGINPUT(FCNTRY)=$O(^HL(779.004,"B",CNTRY,""))_"^"_CNTRY
+ ; DG*5.3*1014; Display address entered - user may reenter the address or continue to Validation service.
+ W !
+ N DGNEWADD
+ M DGNEWADD("NEW")=DGINPUT
+ I FORGN D DISPFGN(.DGNEWADD,"NEW")
+ I 'FORGN D DISPUS(.DGNEWADD,"NEW")
+ K DGNEWADD
+CHK ; DG*5.3*1014; Prompt user and allow them to correct the address or continue to Validation service
+ N DIR
+ S DIR("A",1)="If address is ready for validation enter <RET> to continue, 'E' to Edit"
+ S DIR("A")=" or '^' to quit"
+ S DIR(0)="FO"
+ S DIR("?")="Enter 'E' to edit the address, <RET> to continue to address validation or '^' to exit and cancel the address entry/edit.."
+ D ^DIR K DIR
+ ; DG*5.3*1040 - Set variable DGTMOT=1, if timeout and QUIT
+ I $D(DTOUT) S DGTMOT=1 Q
+ ; DG*5.3*1040 - Remove the DTOUT check
+ I $D(DUOUT) W !,"Address changes not saved." D EOP Q  ;Exiting - Not saving address
+ I X="E"!(X="e") G RETRY  ; re-enter address
+ I X'="" G CHK  ; at this point, any response but <RET> will not be accepted
+ ; DG*5.3*1014; jam; Add call to Address Validation service
+ N DGADVRET
+ S DGADVRET=$$EN^DGADDVAL(.DGINPUT,"C")
+ ; DG*5.3*1040; if return is -1 timeout occurred
+ I DGADVRET=-1 S DGTMOT=1 Q
+ ; if return is 0 - address could not be validated
+ I 'DGADVRET W !!,"No Results - UAM Address Validation Service is unable to validate the address.",!,"Please verify the address entered. " D EOP Q:+$G(DGTMOT)  ; DG*5.3*1040 - Check EOP timeout and QUIT
+ ; DGINPUT array contains the address that is validated/accepted or what the user entered if the validation service failed
+ ;
+SVADD ; Save the address - SVADD tag added for DG*5.3*1014; jam; ** End of 1014 changes **
  D SAVE(.DGINPUT,DFN,FSTR,CNTRY)
  Q
  ;
@@ -41,11 +85,15 @@ INPUT(DGINPUT,DFN,FSTR) ;Let user input address changes
  F L=1:1:$L(FSTR,",") S DGN=$P(FSTR,",",L) Q:DGINPUT=-1  D
  . S REP=0
  . I $$SKIP^DGREGTE2(DGN,.DGINPUT) Q
- . I DGN=FZIP D ZIPINP(.DGINPUT,DFN) Q  ;DG*5.3*851
+ . ; DG*5.3*1040 - Set variable DGTMOT to 1 to track ZIP timeout
+ . I DGN=FZIP D ZIPINP(.DGINPUT,DFN) S:DGINPUT=-1 DGTMOT=1 Q  ;DG*5.3*851
  . S SUCCESS=$$READ(DFN,.DGOLD,DGN,.Y,.REP) I 'SUCCESS D  Q
- . . I 'REP S DGINPUT=-1 Q
+ . . ; DG*5.3*1040 - Set variable DGTMOT to 1 to track field timeout
+ . . I 'REP S DGINPUT=-1,DGTMOT=1 Q
  . . ; repeat the question so we have to set the counter back
  . . S L=L-1
+ . ; DG*5.3*1014 ;jam; prevent the @ from getting into the array
+ . I $G(Y)="@" S Y=""
  . S DGINPUT(DGN)=$G(Y)
 READ(DFN,DGOLD,DGN,Y,REP) ;Read input, return success
  ; Input:
@@ -134,13 +182,18 @@ ANSW(YIN,DGOLD,DGN,MSG,YOUT,REP,RET,REVERSE) ;analyze input commands
  D @ACT
  Q
 REVERSE ;
- N MSUB
- S MSUB=$S(DGN=FSLINE1:"LINE",1:"REVERSE")
- W !,RMSG(MSUB)
+ ; DG*5.3*1040; LINE message for NULL "FSLINE1" is moved to REPEAT
+ ;N MSUB
+ ;S MSUB=$S(DGN=FSLINE1:"LINE",1:"REVERSE")
+ ;W !,RMSG(MSUB)
+ W !,RMSG("REVERSE")
  S REVERSE=1
  Q
 REPEAT ;
- W !,RMSG("REPEAT")
+ ;W !,RMSG("REPEAT")
+ N MSUB
+ S MSUB=$S(DGN=FSLINE1:"LINE",1:"REPEAT")
+ W !,RMSG(MSUB)
  S REP=1
  Q
 OK ;
@@ -173,12 +226,16 @@ EOP ;End of page prompt
  S DIR(0)="E"
  S DIR("A")="Press ENTER to continue"
  D ^DIR
+ ; DG*5.3*1040 - Set variable DGTMOT=1, if timeout
+ S:$D(DTOUT) DGTMOT=1
  Q
  ; DG*5.3*851
 ZIPINP(DGINPUT,DFN) ;get ZIP+4 input
  N DGR,DGX
  D EN^DGREGTZL(.DGR,DFN)
- I $G(DGR)=-1 Q
+ ;DG*5.3*1014 - Zip entry failed (due to timeout, or ^ entry, or input error) - before the Quit, set DGINPUT=-1
+ ;I $G(DGR)=-1 Q
+ I $G(DGR)=-1 S DGINPUT=-1 Q
  M DGINPUT=DGR
  S DGX=DGINPUT(FCOUNTY),DGINPUT(FCOUNTY)=$P(DGX,"^",2)_"^"_$P(DGX,"^",1)
  S DGX=DGINPUT(FSTATE),DGINPUT(FSTATE)=$P(DGX,"^",2)_"^"_$P(DGX,"^",1)
@@ -192,4 +249,36 @@ SKIP(DGN,DGINPUT,FLG) ; determine whether or not to skip this step
  Q SKIP
 UPCT ;Indicate "^" or "^^" are unacceptable inputs.
  W !,"EXIT NOT ALLOWED ??"
+ Q
+ ;
+ ; DG*5.3*1014;jam;  Added these tags to display the address prior to calling the Validation service
+DISPUS(DGCMP,DGM) ;tag to display US data
+ N DGCNTRY
+ ;    "AddressLine1,AddressLine2,AddressLine3,City,State,County,Zip,Province,PostalCode^Country"
+ ;        ".1411,.1412,.1413,.1414,.1415,.14111,.1416,.14114,.14115,.14116"  ; Confidential address fields
+ W !,?2,"[",DGM," CONFIDENTIAL ADDRESS]"
+ W !?16,$G(DGCMP(DGM,.1411))
+ I $G(DGCMP(DGM,.1412))'="" W !,?16,$G(DGCMP(DGM,.1412))
+ I $G(DGCMP(DGM,.1413))'="" W !,?16,$G(DGCMP(DGM,.1413))
+ W !,?16,$G(DGCMP(DGM,.1414))
+ W:($G(DGCMP(DGM,.1414))'="")!($P($G(DGCMP(DGM,.1415)),U,2)'="") ","
+ W $P($G(DGCMP(DGM,.1415)),U,2)
+ W " ",$G(DGCMP(DGM,.1416))
+ S DGCNTRY=$$CNTRYI^DGADDUTL($P($G(DGCMP(DGM,.14116)),U))
+ I DGCNTRY]"",(DGCNTRY'=-1) W !?16,DGCNTRY
+ I $P($G(DGCMP(DGM,.14111)),U)'="" W !,?6,"  County: ",$P($G(DGCMP(DGM,.14111)),U,2)
+ W !
+ Q
+ ;
+DISPFGN(DGCMP,DGM) ;tag to display Foreign data
+ N DGCNTRY
+ W !,?2,"[",DGM," CONFIDENTIAL ADDRESS]"
+ W !?16,$G(DGCMP(DGM,.1411))
+ I $G(DGCMP(DGM,.1412))'="" W !,?16,$G(DGCMP(DGM,.1412))
+ I $G(DGCMP(DGM,.1413))'="" W !,?16,$G(DGCMP(DGM,.1413))
+ W !,?16,$G(DGCMP(DGM,.1414))_" "_$G(DGCMP(DGM,.14114))_" "_$G(DGCMP(DGM,.14115))
+ S DGCNTRY=$$CNTRYI^DGADDUTL($P($G(DGCMP(DGM,.14116)),U))
+ S DGCNTRY=$S(DGCNTRY="":"UNSPECIFIED COUNTRY",DGCNTRY=-1:"UNKNOWN COUNTRY",1:DGCNTRY)
+ I DGCNTRY]"" W !?16,DGCNTRY
+ W !
  Q

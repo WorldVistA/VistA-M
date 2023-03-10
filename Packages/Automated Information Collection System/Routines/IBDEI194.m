@@ -1,116 +1,120 @@
-IBDEI194 ; ; 04-FEB-2020
- ;;3.0;IB ENCOUNTER FORM IMP/EXP;;FEB 04, 2020
+IBDEI194 ; ; 01-FEB-2022
+ ;;3.0;IB ENCOUNTER FORM IMP/EXP;;FEB 01, 2022
  Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,999) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
- ;;^UTILITY(U,$J,358.3,20049,0)
- ;;=S42.361S^^93^999^42
- ;;^UTILITY(U,$J,358.3,20049,1,0)
+ ;;^UTILITY(U,$J,358.3,20274,1,4,0)
+ ;;=4^S62.245S
+ ;;^UTILITY(U,$J,358.3,20274,2)
+ ;;=^5033702
+ ;;^UTILITY(U,$J,358.3,20275,0)
+ ;;=S62.244S^^67^885^108
+ ;;^UTILITY(U,$J,358.3,20275,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,20049,1,3,0)
- ;;=3^Disp fx of segmental shaft of humerus, right arm, sequela 
- ;;^UTILITY(U,$J,358.3,20049,1,4,0)
- ;;=4^S42.361S
- ;;^UTILITY(U,$J,358.3,20049,2)
- ;;=^5027237
- ;;^UTILITY(U,$J,358.3,20050,0)
- ;;=S42.412S^^93^999^45
- ;;^UTILITY(U,$J,358.3,20050,1,0)
+ ;;^UTILITY(U,$J,358.3,20275,1,3,0)
+ ;;=3^Nondisp fx of shaft of 1st MC bone, right hand, sequela
+ ;;^UTILITY(U,$J,358.3,20275,1,4,0)
+ ;;=4^S62.244S
+ ;;^UTILITY(U,$J,358.3,20275,2)
+ ;;=^5033695
+ ;;^UTILITY(U,$J,358.3,20276,0)
+ ;;=S62.355S^^67^885^113
+ ;;^UTILITY(U,$J,358.3,20276,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,20050,1,3,0)
- ;;=3^Disp fx of simple suprcndl w/o intrcndl fx l humerus, sequela
- ;;^UTILITY(U,$J,358.3,20050,1,4,0)
- ;;=4^S42.412S
- ;;^UTILITY(U,$J,358.3,20050,2)
- ;;=^5027314
- ;;^UTILITY(U,$J,358.3,20051,0)
- ;;=S42.411S^^93^999^46
- ;;^UTILITY(U,$J,358.3,20051,1,0)
+ ;;^UTILITY(U,$J,358.3,20276,1,3,0)
+ ;;=3^Nondisp fx of shaft of 4th MC bone, left hand, sequela
+ ;;^UTILITY(U,$J,358.3,20276,1,4,0)
+ ;;=4^S62.355S
+ ;;^UTILITY(U,$J,358.3,20276,2)
+ ;;=^5034150
+ ;;^UTILITY(U,$J,358.3,20277,0)
+ ;;=S62.354S^^67^885^114
+ ;;^UTILITY(U,$J,358.3,20277,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,20051,1,3,0)
- ;;=3^Disp fx of simple suprcndl w/o intrcndl fx r humerus, sequela
- ;;^UTILITY(U,$J,358.3,20051,1,4,0)
- ;;=4^S42.411S
- ;;^UTILITY(U,$J,358.3,20051,2)
- ;;=^5027307
- ;;^UTILITY(U,$J,358.3,20052,0)
- ;;=S42.342S^^93^999^47
- ;;^UTILITY(U,$J,358.3,20052,1,0)
+ ;;^UTILITY(U,$J,358.3,20277,1,3,0)
+ ;;=3^Nondisp fx of shaft of 4th MC bone, right hand, sequela
+ ;;^UTILITY(U,$J,358.3,20277,1,4,0)
+ ;;=4^S62.354S
+ ;;^UTILITY(U,$J,358.3,20277,2)
+ ;;=^5034143
+ ;;^UTILITY(U,$J,358.3,20278,0)
+ ;;=S62.351S^^67^885^109
+ ;;^UTILITY(U,$J,358.3,20278,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,20052,1,3,0)
- ;;=3^Disp fx of spiral shaft of humerus, left arm, sequela 
- ;;^UTILITY(U,$J,358.3,20052,1,4,0)
- ;;=4^S42.342S
- ;;^UTILITY(U,$J,358.3,20052,2)
- ;;=^5027160
- ;;^UTILITY(U,$J,358.3,20053,0)
- ;;=S42.341S^^93^999^48
- ;;^UTILITY(U,$J,358.3,20053,1,0)
+ ;;^UTILITY(U,$J,358.3,20278,1,3,0)
+ ;;=3^Nondisp fx of shaft of 2nd MC bone, left hand, sequela
+ ;;^UTILITY(U,$J,358.3,20278,1,4,0)
+ ;;=4^S62.351S
+ ;;^UTILITY(U,$J,358.3,20278,2)
+ ;;=^5034122
+ ;;^UTILITY(U,$J,358.3,20279,0)
+ ;;=S62.350S^^67^885^110
+ ;;^UTILITY(U,$J,358.3,20279,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,20053,1,3,0)
- ;;=3^Disp fx of spiral shaft of humerus, right arm, sequela
- ;;^UTILITY(U,$J,358.3,20053,1,4,0)
- ;;=4^S42.341S
- ;;^UTILITY(U,$J,358.3,20053,2)
- ;;=^5027153
- ;;^UTILITY(U,$J,358.3,20054,0)
- ;;=S42.472S^^93^999^49
- ;;^UTILITY(U,$J,358.3,20054,1,0)
+ ;;^UTILITY(U,$J,358.3,20279,1,3,0)
+ ;;=3^Nondisp fx of shaft of 2nd MC bone, right hand, sequela
+ ;;^UTILITY(U,$J,358.3,20279,1,4,0)
+ ;;=4^S62.350S
+ ;;^UTILITY(U,$J,358.3,20279,2)
+ ;;=^5034115
+ ;;^UTILITY(U,$J,358.3,20280,0)
+ ;;=S62.353S^^67^885^111
+ ;;^UTILITY(U,$J,358.3,20280,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,20054,1,3,0)
- ;;=3^Disp fx of transcondylar of left humerus, sequela 
- ;;^UTILITY(U,$J,358.3,20054,1,4,0)
- ;;=4^S42.472S
- ;;^UTILITY(U,$J,358.3,20054,2)
- ;;=^5027587
- ;;^UTILITY(U,$J,358.3,20055,0)
- ;;=S42.471S^^93^999^50
- ;;^UTILITY(U,$J,358.3,20055,1,0)
+ ;;^UTILITY(U,$J,358.3,20280,1,3,0)
+ ;;=3^Nondisp fx of shaft of 3rd MC bone, left hand, sequela
+ ;;^UTILITY(U,$J,358.3,20280,1,4,0)
+ ;;=4^S62.353S
+ ;;^UTILITY(U,$J,358.3,20280,2)
+ ;;=^5034136
+ ;;^UTILITY(U,$J,358.3,20281,0)
+ ;;=S62.352S^^67^885^112
+ ;;^UTILITY(U,$J,358.3,20281,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,20055,1,3,0)
- ;;=3^Disp fx of transcondylar of right humerus, sequela 
- ;;^UTILITY(U,$J,358.3,20055,1,4,0)
- ;;=4^S42.471S
- ;;^UTILITY(U,$J,358.3,20055,2)
- ;;=^5027580
- ;;^UTILITY(U,$J,358.3,20056,0)
- ;;=S42.322S^^93^999^51
- ;;^UTILITY(U,$J,358.3,20056,1,0)
+ ;;^UTILITY(U,$J,358.3,20281,1,3,0)
+ ;;=3^Nondisp fx of shaft of 3rd MC bone, right hand, sequela
+ ;;^UTILITY(U,$J,358.3,20281,1,4,0)
+ ;;=4^S62.352S
+ ;;^UTILITY(U,$J,358.3,20281,2)
+ ;;=^5034129
+ ;;^UTILITY(U,$J,358.3,20282,0)
+ ;;=S62.225S^^67^885^117
+ ;;^UTILITY(U,$J,358.3,20282,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,20056,1,3,0)
- ;;=3^Disp fx of transverse shaft of humerus, left arm, sequela
- ;;^UTILITY(U,$J,358.3,20056,1,4,0)
- ;;=4^S42.322S
- ;;^UTILITY(U,$J,358.3,20056,2)
- ;;=^5027076
- ;;^UTILITY(U,$J,358.3,20057,0)
- ;;=S42.321S^^93^999^52
- ;;^UTILITY(U,$J,358.3,20057,1,0)
+ ;;^UTILITY(U,$J,358.3,20282,1,3,0)
+ ;;=3^Nondisp rolando's fx, left hand, sequela
+ ;;^UTILITY(U,$J,358.3,20282,1,4,0)
+ ;;=4^S62.225S
+ ;;^UTILITY(U,$J,358.3,20282,2)
+ ;;=^5033618
+ ;;^UTILITY(U,$J,358.3,20283,0)
+ ;;=S62.224S^^67^885^118
+ ;;^UTILITY(U,$J,358.3,20283,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,20057,1,3,0)
- ;;=3^Disp fx of transverse shaft of humerus, right arm, sequela
- ;;^UTILITY(U,$J,358.3,20057,1,4,0)
- ;;=4^S42.321S
- ;;^UTILITY(U,$J,358.3,20057,2)
- ;;=^5027069
- ;;^UTILITY(U,$J,358.3,20058,0)
- ;;=S42.312S^^93^999^53
- ;;^UTILITY(U,$J,358.3,20058,1,0)
+ ;;^UTILITY(U,$J,358.3,20283,1,3,0)
+ ;;=3^Nondisp rolando's fx, right hand, sequela
+ ;;^UTILITY(U,$J,358.3,20283,1,4,0)
+ ;;=4^S62.224S
+ ;;^UTILITY(U,$J,358.3,20283,2)
+ ;;=^5033611
+ ;;^UTILITY(U,$J,358.3,20284,0)
+ ;;=M84.442S^^67^885^120
+ ;;^UTILITY(U,$J,358.3,20284,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,20058,1,3,0)
- ;;=3^Greenstick fracture of shaft of humerus, left arm, sequela
- ;;^UTILITY(U,$J,358.3,20058,1,4,0)
- ;;=4^S42.312S
- ;;^UTILITY(U,$J,358.3,20058,2)
- ;;=^5027056
- ;;^UTILITY(U,$J,358.3,20059,0)
- ;;=S42.311S^^93^999^54
- ;;^UTILITY(U,$J,358.3,20059,1,0)
+ ;;^UTILITY(U,$J,358.3,20284,1,3,0)
+ ;;=3^Pathological fracture, left hand, sequela
+ ;;^UTILITY(U,$J,358.3,20284,1,4,0)
+ ;;=4^M84.442S
+ ;;^UTILITY(U,$J,358.3,20284,2)
+ ;;=^5013877
+ ;;^UTILITY(U,$J,358.3,20285,0)
+ ;;=M84.441S^^67^885^122
+ ;;^UTILITY(U,$J,358.3,20285,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,20059,1,3,0)
- ;;=3^Greenstick fracture of shaft of humerus, right arm, sequela
- ;;^UTILITY(U,$J,358.3,20059,1,4,0)
- ;;=4^S42.311S
- ;;^UTILITY(U,$J,358.3,20059,2)
- ;;=^5027050
- ;;^UTILITY(U,$J,358.3,20060,0)
- ;;=S42.448S^^93^999^55
+ ;;^UTILITY(U,$J,358.3,20285,1,3,0)
+ ;;=3^Pathological fracture, right hand, sequela
+ ;;^UTILITY(U,$J,358.3,20285,1,4,0)
+ ;;=4^M84.441S
+ ;;^UTILITY(U,$J,358.3,20285,2)
+ ;;=^5013871
+ ;;^UTILITY(U,$J,358.3,20286,0)
+ ;;=M84.342S^^67^885^124

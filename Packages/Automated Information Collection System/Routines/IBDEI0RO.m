@@ -1,120 +1,124 @@
-IBDEI0RO ; ; 04-FEB-2020
- ;;3.0;IB ENCOUNTER FORM IMP/EXP;;FEB 04, 2020
+IBDEI0RO ; ; 01-FEB-2022
+ ;;3.0;IB ENCOUNTER FORM IMP/EXP;;FEB 01, 2022
  Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,999) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
- ;;^UTILITY(U,$J,358.3,12348,2)
- ;;=^5021506
- ;;^UTILITY(U,$J,358.3,12349,0)
- ;;=S11.90XA^^80^778^32
- ;;^UTILITY(U,$J,358.3,12349,1,0)
+ ;;^UTILITY(U,$J,358.3,12458,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,12349,1,3,0)
- ;;=3^Open Wound of Neck,Unspec,Init Encntr
- ;;^UTILITY(U,$J,358.3,12349,1,4,0)
- ;;=4^S11.90XA
- ;;^UTILITY(U,$J,358.3,12349,2)
- ;;=^5021527
- ;;^UTILITY(U,$J,358.3,12350,0)
- ;;=S31.819A^^80^778^37
- ;;^UTILITY(U,$J,358.3,12350,1,0)
+ ;;^UTILITY(U,$J,358.3,12458,1,3,0)
+ ;;=3^Glaucoma,Primary Open-Angle,Lt Eye,Severe Stage
+ ;;^UTILITY(U,$J,358.3,12458,1,4,0)
+ ;;=4^H40.1123
+ ;;^UTILITY(U,$J,358.3,12458,2)
+ ;;=^5138544
+ ;;^UTILITY(U,$J,358.3,12459,0)
+ ;;=H40.1124^^49^601^10
+ ;;^UTILITY(U,$J,358.3,12459,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,12350,1,3,0)
- ;;=3^Open Wound of Right Buttock,Init Encntr
- ;;^UTILITY(U,$J,358.3,12350,1,4,0)
- ;;=4^S31.819A
- ;;^UTILITY(U,$J,358.3,12350,2)
- ;;=^5024308
- ;;^UTILITY(U,$J,358.3,12351,0)
- ;;=S31.829A^^80^778^6
- ;;^UTILITY(U,$J,358.3,12351,1,0)
+ ;;^UTILITY(U,$J,358.3,12459,1,3,0)
+ ;;=3^Glaucoma,Primary Open-Angle,Lt Eye,Indeterminate Stage
+ ;;^UTILITY(U,$J,358.3,12459,1,4,0)
+ ;;=4^H40.1124
+ ;;^UTILITY(U,$J,358.3,12459,2)
+ ;;=^5138545
+ ;;^UTILITY(U,$J,358.3,12460,0)
+ ;;=H40.1130^^49^601^8
+ ;;^UTILITY(U,$J,358.3,12460,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,12351,1,3,0)
- ;;=3^Open Wound of Left Buttock,Init Encntr
- ;;^UTILITY(U,$J,358.3,12351,1,4,0)
- ;;=4^S31.829A
- ;;^UTILITY(U,$J,358.3,12351,2)
- ;;=^5024320
- ;;^UTILITY(U,$J,358.3,12352,0)
- ;;=S31.100A^^80^778^35
- ;;^UTILITY(U,$J,358.3,12352,1,0)
+ ;;^UTILITY(U,$J,358.3,12460,1,3,0)
+ ;;=3^Glaucoma,Primary Open-Angle,Bilateral,Stage Unspec
+ ;;^UTILITY(U,$J,358.3,12460,1,4,0)
+ ;;=4^H40.1130
+ ;;^UTILITY(U,$J,358.3,12460,2)
+ ;;=^5138546
+ ;;^UTILITY(U,$J,358.3,12461,0)
+ ;;=H40.1131^^49^601^6
+ ;;^UTILITY(U,$J,358.3,12461,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,12352,1,3,0)
- ;;=3^Open Wound of RUQ of Abd Wall w/o Penet Perit Cav,Init Encntr
- ;;^UTILITY(U,$J,358.3,12352,1,4,0)
- ;;=4^S31.100A
- ;;^UTILITY(U,$J,358.3,12352,2)
- ;;=^5024023
- ;;^UTILITY(U,$J,358.3,12353,0)
- ;;=S31.101A^^80^778^4
- ;;^UTILITY(U,$J,358.3,12353,1,0)
+ ;;^UTILITY(U,$J,358.3,12461,1,3,0)
+ ;;=3^Glaucoma,Primary Open-Angle,Bilateral,Mild Stage
+ ;;^UTILITY(U,$J,358.3,12461,1,4,0)
+ ;;=4^H40.1131
+ ;;^UTILITY(U,$J,358.3,12461,2)
+ ;;=^5138547
+ ;;^UTILITY(U,$J,358.3,12462,0)
+ ;;=H40.1132^^49^601^7
+ ;;^UTILITY(U,$J,358.3,12462,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,12353,1,3,0)
- ;;=3^Open Wound of LUQ Abd Wall w/o Penet Perit Cav,Init Encntr
- ;;^UTILITY(U,$J,358.3,12353,1,4,0)
- ;;=4^S31.101A
- ;;^UTILITY(U,$J,358.3,12353,2)
- ;;=^5024026
- ;;^UTILITY(U,$J,358.3,12354,0)
- ;;=S31.103A^^80^778^34
- ;;^UTILITY(U,$J,358.3,12354,1,0)
+ ;;^UTILITY(U,$J,358.3,12462,1,3,0)
+ ;;=3^Glaucoma,Primary Open-Angle,Bilateral,Moderate Stage
+ ;;^UTILITY(U,$J,358.3,12462,1,4,0)
+ ;;=4^H40.1132
+ ;;^UTILITY(U,$J,358.3,12462,2)
+ ;;=^5138548
+ ;;^UTILITY(U,$J,358.3,12463,0)
+ ;;=H40.1133^^49^601^9
+ ;;^UTILITY(U,$J,358.3,12463,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,12354,1,3,0)
- ;;=3^Open Wound of RLQ of Abd Wall w/o Penet Perit Cav,Init Encntr
- ;;^UTILITY(U,$J,358.3,12354,1,4,0)
- ;;=4^S31.103A
- ;;^UTILITY(U,$J,358.3,12354,2)
- ;;=^5024032
- ;;^UTILITY(U,$J,358.3,12355,0)
- ;;=S31.104A^^80^778^3
- ;;^UTILITY(U,$J,358.3,12355,1,0)
+ ;;^UTILITY(U,$J,358.3,12463,1,3,0)
+ ;;=3^Glaucoma,Primary Open-Angle,Bilateral,Severe Stage
+ ;;^UTILITY(U,$J,358.3,12463,1,4,0)
+ ;;=4^H40.1133
+ ;;^UTILITY(U,$J,358.3,12463,2)
+ ;;=^5138549
+ ;;^UTILITY(U,$J,358.3,12464,0)
+ ;;=H40.1134^^49^601^5
+ ;;^UTILITY(U,$J,358.3,12464,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,12355,1,3,0)
- ;;=3^Open Wound of LLQ of Abd Wall w/o Penet Perit Cav,Init Encntr
- ;;^UTILITY(U,$J,358.3,12355,1,4,0)
- ;;=4^S31.104A
- ;;^UTILITY(U,$J,358.3,12355,2)
- ;;=^5134415
- ;;^UTILITY(U,$J,358.3,12356,0)
- ;;=S41.001A^^80^778^57
- ;;^UTILITY(U,$J,358.3,12356,1,0)
+ ;;^UTILITY(U,$J,358.3,12464,1,3,0)
+ ;;=3^Glaucoma,Primary Open-Angle,Bilateral,Indeterminate Stage
+ ;;^UTILITY(U,$J,358.3,12464,1,4,0)
+ ;;=4^H40.1134
+ ;;^UTILITY(U,$J,358.3,12464,2)
+ ;;=^5138550
+ ;;^UTILITY(U,$J,358.3,12465,0)
+ ;;=B18.2^^49^602^10
+ ;;^UTILITY(U,$J,358.3,12465,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,12356,1,3,0)
- ;;=3^Open Wound of Right Shoulder,Init Encntr
- ;;^UTILITY(U,$J,358.3,12356,1,4,0)
- ;;=4^S41.001A
- ;;^UTILITY(U,$J,358.3,12356,2)
- ;;=^5026291
- ;;^UTILITY(U,$J,358.3,12357,0)
- ;;=S41.002A^^80^778^26
- ;;^UTILITY(U,$J,358.3,12357,1,0)
+ ;;^UTILITY(U,$J,358.3,12465,1,3,0)
+ ;;=3^Chr Viral Hepatitis C
+ ;;^UTILITY(U,$J,358.3,12465,1,4,0)
+ ;;=4^B18.2
+ ;;^UTILITY(U,$J,358.3,12465,2)
+ ;;=^5000548
+ ;;^UTILITY(U,$J,358.3,12466,0)
+ ;;=D12.6^^49^602^9
+ ;;^UTILITY(U,$J,358.3,12466,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,12357,1,3,0)
- ;;=3^Open Wound of Left Shoulder,Init Encntr
- ;;^UTILITY(U,$J,358.3,12357,1,4,0)
- ;;=4^S41.002A
- ;;^UTILITY(U,$J,358.3,12357,2)
- ;;=^5026294
- ;;^UTILITY(U,$J,358.3,12358,0)
- ;;=S51.001A^^80^778^39
- ;;^UTILITY(U,$J,358.3,12358,1,0)
+ ;;^UTILITY(U,$J,358.3,12466,1,3,0)
+ ;;=3^Benign Neop of Colon,Unspec
+ ;;^UTILITY(U,$J,358.3,12466,1,4,0)
+ ;;=4^D12.6
+ ;;^UTILITY(U,$J,358.3,12466,2)
+ ;;=^5001969
+ ;;^UTILITY(U,$J,358.3,12467,0)
+ ;;=D12.0^^49^602^8
+ ;;^UTILITY(U,$J,358.3,12467,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,12358,1,3,0)
- ;;=3^Open Wound of Right Elbow,Init Encntr
- ;;^UTILITY(U,$J,358.3,12358,1,4,0)
- ;;=4^S51.001A
- ;;^UTILITY(U,$J,358.3,12358,2)
- ;;=^5028620
- ;;^UTILITY(U,$J,358.3,12359,0)
- ;;=S51.002A^^80^778^8
- ;;^UTILITY(U,$J,358.3,12359,1,0)
+ ;;^UTILITY(U,$J,358.3,12467,1,3,0)
+ ;;=3^Benign Neop of Cecum
+ ;;^UTILITY(U,$J,358.3,12467,1,4,0)
+ ;;=4^D12.0
+ ;;^UTILITY(U,$J,358.3,12467,2)
+ ;;=^5001963
+ ;;^UTILITY(U,$J,358.3,12468,0)
+ ;;=K63.5^^49^602^12
+ ;;^UTILITY(U,$J,358.3,12468,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,12359,1,3,0)
- ;;=3^Open Wound of Left Elbow,Init Encntr
- ;;^UTILITY(U,$J,358.3,12359,1,4,0)
- ;;=4^S51.002A
- ;;^UTILITY(U,$J,358.3,12359,2)
- ;;=^5028623
- ;;^UTILITY(U,$J,358.3,12360,0)
- ;;=S61.501A^^80^778^61
- ;;^UTILITY(U,$J,358.3,12360,1,0)
+ ;;^UTILITY(U,$J,358.3,12468,1,3,0)
+ ;;=3^Colon Polyp
+ ;;^UTILITY(U,$J,358.3,12468,1,4,0)
+ ;;=4^K63.5
+ ;;^UTILITY(U,$J,358.3,12468,2)
+ ;;=^5008765
+ ;;^UTILITY(U,$J,358.3,12469,0)
+ ;;=D12.1^^49^602^7
+ ;;^UTILITY(U,$J,358.3,12469,1,0)
  ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,12469,1,3,0)
+ ;;=3^Benign Neop of Appendix
+ ;;^UTILITY(U,$J,358.3,12469,1,4,0)
+ ;;=4^D12.1
+ ;;^UTILITY(U,$J,358.3,12469,2)
+ ;;=^5001964
+ ;;^UTILITY(U,$J,358.3,12470,0)
+ ;;=K64.9^^49^602^16

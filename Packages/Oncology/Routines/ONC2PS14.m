@@ -1,0 +1,24 @@
+ONC2PS14 ;HINES OIFO/RTK - Post-Install Routine for Patch ONC*2.2*14 ;01/04/22
+ ;;2.2;ONCOLOGY;**14**;Jul 31, 2013;Build 8
+ ;
+ D SET38001
+ N RC
+ ;DC production server Patch ##
+ ;S RC=$$UPDCSURL^ONCSAPIU("http://127.0.0.1:83/cgi_bin/oncsrv.exe")
+ ;DC PRODUCTION SERVER V21
+ S RC=$$UPDCSURL^ONCSAPIU("http://127.0.0.1:86/cgi_bin/oncsrv.exe")
+ ;test server uRL V21
+ ;S RC=$$UPDCSURL^ONCSAPIU("http://127.0.0.1:81/cgi_bin/oncsrv.exe")
+ Q
+ ;
+SET38001 ;Set the value for field 3800.1 for 2018+ cases
+ N ONCDXVP,IEN,ONCGRIEN,ONCSKNM
+ S ONCDXVP=3171231 F  S ONCDXVP=$O(^ONCO(165.5,"ADX",ONCDXVP)) Q:ONCDXVP'>0  D
+ .S IEN=0 F  S IEN=$O(^ONCO(165.5,"ADX",ONCDXVP,IEN)) Q:IEN'>0  D
+ ..S ONCZSCMA=$P($G(^ONCO(165.5,IEN,"SSD1")),"^",1) I ONCZSCMA="" Q
+ ..S ONCGRIEN=$O(^ONCO(164.44,"C",ONCZSCMA,"")) I ONCGRIEN="" Q
+ ..S ONCSKNM=$O(^ONCO(164.44,ONCGRIEN,1,"B",ONCZSCMA,"")) I ONCSKNM="" Q
+ ..S $P(^ONCO(165.5,IEN,"SSD5"),"^",6)=$P($G(^ONCO(164.44,ONCGRIEN,1,ONCSKNM,0)),U,1)_": "_$E($P($G(^ONCO(164.44,ONCGRIEN,1,ONCSKNM,0)),U,2),1,60)
+ ..Q
+ .Q
+ K ONCZSCMA Q

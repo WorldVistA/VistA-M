@@ -1,5 +1,5 @@
-VAFCQRY1 ;BIR/DLR-Query for patient demographics ; 4/19/19 2:15pm
- ;;5.3;Registration;**428,474,477,575,627,648,698,711,707,837,874,937,974,981**;Aug 13, 1993;Build 1
+VAFCQRY1 ;BIR/DLR-Query for patient demographics ;7/19/21  10:44
+ ;;5.3;Registration;**428,474,477,575,627,648,698,711,707,837,874,937,974,981,1059**;Aug 13, 1993;Build 6
  ;
  ;Reference to $$GETDFNS^MPIF002 supported by IA #3634.
  ;
@@ -61,10 +61,12 @@ BLDPID(DFN,CNT,SEQ,PID,HL,ERR) ;build PID from File #2
  .I $G(SSN)'="" S APID(4)=APID(4)_$S(APID(4)'="":REP,1:"")_SSN_COMP_COMP_COMP_"USSSA"_SUBCOMP_SUBCOMP_"0363"_COMP_"SS"_COMP_"VA FACILITY ID"_SUBCOMP_STN_SUBCOMP_"L"
  .S NXTC=0,LVL=0 ;**837,MVI_879: Move here, so that LVL gets set before pulling in TIN and FIN
  .;**837,MVI_879: Get TIN and FIN from Patient file and put in PID-3
- .N TIN,FIN,REF
- .S TIN=$P(VAFCMN,"^",8),FIN=$P(VAFCMN,"^",9),REF=$NA(APID(4))
+ .;**1059, VAMPI-11120 (dri) Get ITIN from Patient file and put in PID-3
+ .N TIN,FIN,ITIN,REF
+ .S TIN=$P(VAFCMN,"^",8),FIN=$P(VAFCMN,"^",9),ITIN=$P(VAFCMN,"^",11),REF=$NA(APID(4))
  .D ADDLINE($S(TIN="":HLQ,1:TIN)_COMP_COMP_COMP_"USDOD"_SUBCOMP_SUBCOMP_"0363"_COMP_"TIN"_COMP_"VA FACILITY ID"_SUBCOMP_STN_SUBCOMP_"L",.LVL,REF,REP)
  .D ADDLINE($S(FIN="":HLQ,1:FIN)_COMP_COMP_COMP_"USDOD"_SUBCOMP_SUBCOMP_"0363"_COMP_"FIN"_COMP_"VA FACILITY ID"_SUBCOMP_STN_SUBCOMP_"L",.LVL,REF,REP)
+ .D ADDLINE($S(ITIN="":HLQ,1:ITIN)_COMP_COMP_COMP_"USIRS"_SUBCOMP_SUBCOMP_"0363"_COMP_"NI"_COMP_"VA FACILITY ID"_SUBCOMP_STN_SUBCOMP_"L",.LVL,REF,REP)
  .I $G(DFN)'="" D
  ..D ADDLINE(DFN_COMP_COMP_COMP_"USVHA"_SUBCOMP_SUBCOMP_"0363"_COMP_"PI"_COMP_"VA FACILITY ID"_SUBCOMP_STN_SUBCOMP_"L",.LVL,REF,REP)
  ..;CLAIM# **707 moved dfn and claim number up here since Alias SSN could be many
@@ -154,6 +156,7 @@ MOTHER ;mother's maiden name  (last^first^middle^suffix^prefix^^"M" for maiden n
  D CONT^VAFCQRY3(DFN,.APID,.PID,.HL,HLES,.SARY,SEQ,.ERR,REP,COMP,SSN,VAFCMN)
  D KVA^VADPT
  Q
+ ;
 HL7TXT(HL7STRG,HL,HLES) ; Replace occurrences of embedded HL7 delimiters with
  ; HL7 escape sequence
  ;
@@ -197,3 +200,4 @@ ADDLINE(NXT,LVL,REF,REP) ; Prepend REP to NXT and add it to the @REF
  I $L($G(@CURREF))+$L(NXT)'>245 S @CURREF=$G(@CURREF)_NXT
  E  S LNGTH=245-$L(@CURREF),@CURREF=@CURREF_$E(NXT,1,LNGTH),LVL=LVL+1,@REF@(LVL)=$E(NXT,LNGTH+1,$L(NXT))
  Q
+ ;

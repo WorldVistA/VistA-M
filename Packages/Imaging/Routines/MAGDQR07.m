@@ -1,5 +1,5 @@
-MAGDQR07 ;WOIFO/EdM,MLH,BT - Imaging RPCs for Query/Retrieve ; 10 May 2012 11:55 AM
- ;;3.0;IMAGING;**54,118,138**;Mar 19, 2002;Build 5380;Sep 03, 2013
+MAGDQR07 ;WOIFO/EDM,MLH,BT - Imaging RPCs for Query/Retrieve ; Feb 15, 2022@10:25:44
+ ;;3.0;IMAGING;**54,118,138,305**;Mar 19, 2002;Build 3
  ;; Per VHA Directive 2004-038, this routine should not be modified.
  ;; +---------------------------------------------------------------+
  ;; | Property of the US Government.                                |
@@ -24,6 +24,7 @@ ACCNUM(REQ,T,ACC,ANY) ; TAG = 0008,0050  R  Accession Number
  . S ANY=1
  . D ACCNEW^MAGDQR71(.REQ,T,P,.ACC) ; first look in the new database structure
  . D ACCRAD^MAGDQR72(.REQ,T,P,.ACC) ; then look for old radiology images
- . D ACCCON^MAGDQR73(.REQ,T,P,.ACC) ; finally look for old consult images
+ . D ACCCON^MAGDQR73(.REQ,T,P,.ACC) ; then look for old consult images
+ . D ACCLAB^MAGDQR75(.REQ,T,P,.ACC) ; finally look for lab images - P305 PMK 01/03/2022
  . Q
  Q

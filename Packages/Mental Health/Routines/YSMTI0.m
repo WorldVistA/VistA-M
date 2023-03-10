@@ -1,5 +1,6 @@
-YSMTI0 ;ALB.ASF-MUTLIPLE PSYCH TESTS FULL PROFILES ;7/23/99  10:36
- ;;5.01;MENTAL HEALTH;**53**;Dec 30, 1994
+YSMTI0 ;ALB/ASF - MUTLIPLE PSYCH TESTS FULL PROFILES ;7/23/99  10:36
+ ;;5.01;MENTAL HEALTH;**53,187**;Dec 30, 1994;Build 73
+ ;
  K IOP S %ZIS="Q" D ^%ZIS Q:POP
  I $D(IO("Q")) K IO("Q") S ZTRTN="ENTASK^YSMTI0",ZTDESC="YSMTI0" S ZTSAVE("YS*")="" D ^%ZTLOAD W !,$S($D(ZTSK):"QUEUED",1:"Not queued"),$C(7)
  U IO D DATES,TOP,LP,HOME^%ZIS D ^%ZISC U IO
@@ -10,7 +11,7 @@ ENTASK ;taskman entry
 TOP ;
  S YSLN="",$P(YSLN,"_",79)=""
  W @IOF,!?10,"**** M U L T I P L E   T E S T   A D M I N I S T R A T I O N S ***"
- W !,VADM(1),?40,"SSN: ",$P(VADM(2),U,2),"  ",$P(VADM(5),U,2),?60,"  DOB: ",$P(VADM(3),U,2)
+ W !,VADM(1),?40,"SSN: xxx-xx-"_$E($P(VADM(2),U,2),8,11),"  ",$P(VADM(5),U,2),?60,"  DOB: ",$P(VADM(3),U,2)
  S X=$P(^YTT(601,YSTEST,"P"),U) W !?(72-$L(X)/2),X
  W !,YSLN
  W !,"Scales",?15,"Administrations",!,YSLN,!?4

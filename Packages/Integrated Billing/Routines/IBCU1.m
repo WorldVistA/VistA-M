@@ -1,5 +1,5 @@
 IBCU1 ;ALB/MRL - BILLING UTILITY ROUTINE (CONTINUED) ;01 JUN 88 12:00
- ;;2.0;INTEGRATED BILLING;**27,52,106,138,51,182,210,266,309,320,347,405,592**;21-MAR-94;Build 58
+ ;;2.0;INTEGRATED BILLING;**27,52,106,138,51,182,210,266,309,320,347,405,592,665**;21-MAR-94;Build 28
  ;;Per VA Directive 6402, this routine should not be modified.
  ;
  ;MAP TO DGCRU1
@@ -18,7 +18,8 @@ RCD ;Revenue Code Display
  W !
  I $D(DIC(0)) S DIC(0)=DIC(0)_"N"
  Q
-DISRC N Z0 W !?1,DGIFN,?4,$P(^DGCR(399.2,+Z,0),"^"),"-",$E($P(^DGCR(399.2,+Z,0),"^",2),1,19)
+ ;JWS;IB*2.0*665;US40781;changed ?4 to ?6 for display of >99 line count
+DISRC N Z0 W !?1,DGIFN,?6,$P(^DGCR(399.2,+Z,0),"^"),"-",$E($P(^DGCR(399.2,+Z,0),"^",2),1,19)
  I +$P(Z,U,6) W ?28,$P($$CPT^ICPTCOD(+$P(Z,U,6)),U,2)
  W ?36,$P(Z,"^",3),?40 S X=$P(Z,"^",2),X2="2$" D COMMA^%DTC W X
  I $$FT^IBCEF(IBIFN)=3,$P(Z,U,9)'="" S X=$P(Z,U,9),X2="2$" D COMMA^%DTC W ?51,X

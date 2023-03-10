@@ -1,5 +1,5 @@
 IBCNBAR ;ALB/ARH-Ins Buffer: process Accept and Reject ;15 Jan 2009
- ;;2.0;INTEGRATED BILLING;**82,240,345,413,416,497,528,554,595,631**;21-MAR-94;Build 23
+ ;;2.0;INTEGRATED BILLING;**82,240,345,413,416,497,528,554,595,631,687**;21-MAR-94;Build 88
  ;Per VA Directive 6402, this routine should not be modified.
  ;
  ;
@@ -103,6 +103,11 @@ CLEANUP ; general updates and checks done whenever insurance is added/edited and
  ;
  ; IB*2.0*631/TAZ Add CREATION TO PROCESSING Tracking
  D TRACK
+ ;
+ ;IB*687/TAZ - File Accepted policy in INTERFACILITY INSURANCE UPDATE File (#365.19)
+ ;IBCNICB was set in routine IBCNICB. It will let us know if the buffer entry in file #355.33 was processed by
+ ; the COTS ICB product. This field will be used set ICB PROCESSED BUFFER (#365.19,1.08).
+ D LOC^IBCNIUF(DFN,IBINSDA,IBPOLDA,,IBBUFDA,$$GET1^DIQ(355.33,IBBUFDA_",",.03,"E"),$G(IBCNICB))
  ;
  ; IB*2*595/DM if SOI is eIV, update insurance record IEN field in response file (#365/.12)
  I $P(^IBA(355.33,IBBUFDA,0),U,3)=$$FIND1^DIC(355.12,,,"eIV","C") D UPDIREC^IBCNEHL3($O(^IBCN(365,"AF",IBBUFDA,"")),IBPOLDA)

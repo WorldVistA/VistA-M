@@ -1,5 +1,7 @@
-SD44AUDI ;ALB/DHE - Audit print of file 44 fields ;4/29/14  16:51
- ;;5.3;Scheduling;**568,616**;Aug 13, 1993;Build 3
+SD44AUDI ;ALB/MGD - Audit print of file 44 fields ;3/11/22
+ ;;5.3;Scheduling;**568,616,809**;Aug 13, 1993;Build 10
+ ;;Per VHA Directive 6402, this routine should not be modified
+ ;
 EN ;entry point from option
  ;Init variables and sort array
  N QFLG,SORT,SDX,SDNAM,SDSD,SDED,SDDT,SDNAME,SDST,SDSEQ,STCODE,D0,SDXPORT ;616
@@ -22,14 +24,15 @@ GETSORT ;Prompt for sorting order for report
  I $D(DIRUT) S QFLG=1 Q
  S SORT=Y
  Q
-PRINT ;Print report using fileman EN1^DIP 
+PRINT ;Print report using fileman EN1^DIP
  N L,DIR,DIC,DIA,FLDS,DHD,BY,FR,TO,DIOBEG,SDFIL,PG,SDFLG,IOP ;616
  S SDFIL=44,SDFLG=0
- S L=0,DIC="^DIA("_SDFIL_"," S DIOBEG=$S('$G(SDXPORT):"I $E(IOST,1,2)=""C-"" W @IOF",1:"W ""USER NAME^DATE/TIME CHANGED^CLINIC IEN^CLINIC NAME^FIELD NAME^OLD VALUE^NEW VALUE""") ;616
+ S L=0,DIC="^DIA("_SDFIL_"," S DIOBEG=$S('$G(SDXPORT):"I $E(IOST,1,2)=""C-"" W @IOF",1:"W ""USER NAME^DATE/TIME CHANGED^CLINIC IEN^CLINIC NAME^FIELD NAME^OLD VALUE^NEW VALUE""")
  I '$G(SDXPORT) D  ;616
- .S FLDS=".04;L23,.02;C25;L20,D CLINIEN^SD44AUDI;C47;L10,D CLINM^SD44AUDI;C59;L18," ;616
- .S FLDS=FLDS_"1.1;C79;L10,D STCODE^SD44AUDI(2);C90;L19,D STCODE^SD44AUDI(3);C110;L15" ;616
- I $G(SDXPORT) S FLDS=".04;X,""^"",.02;X,""^"",D CLINIEN^SD44AUDI;X,""^"",D CLINM^SD44AUDI;X,""^"",1.1;X;L40,""^"",D STCODE^SD44AUDI(2);X,""^"",D STCODE^SD44AUDI(3);X" ;616
+ .S FLDS=".04;L23,.02;C25;L20,D CLINIEN^SD44AUDI;C47;L10,D CLINM^SD44AUDI;C59;L30," ;616
+ .S FLDS=FLDS_"1.1;C91;L10,D STCODE^SD44AUDI(2);C102;L30"
+ .S FLDS(1)="D STCODE^SD44AUDI(3);C102;L30"
+ I $G(SDXPORT) S FLDS=".04;X,""^"",.02;X,""^"",D CLINIEN^SD44AUDI;X,""^"",D CLINM^SD44AUDI;X,""^"",1.1;X;L40,""^"",D STCODE^SD44AUDI(2);X,""^"",D STCODE^SD44AUDI(3);X"
  S DHD=$S('$G(SDXPORT):"W ?0 D RPTHDR^SD44AUDI",1:"@@") ;616
  I SORT=1 D
  .S BY=".04,.02",FR="A,"_SDSD,TO="Zz,"_SDED
@@ -49,7 +52,7 @@ PRINT ;Print report using fileman EN1^DIP
  ;
 CLINM ;Clinic name
  I $G(X) D
- . W $E($P($G(^SC(+X,0)),"^"),1,18)
+ . W $E($P($G(^SC(+X,0)),"^"),1,30)
  Q
 CLINIEN ;section added in 616
  W +X Q
@@ -72,7 +75,7 @@ STCODE(FLD) ;Get AMIS Stop Code #
  . . I STCODE="" S STCODE=^DIA(44,D0,FLD)
  . . W $E(STCODE,1,18)
  . E  D
- . . W $E(^DIA(44,D0,FLD),1,18)
+ . . W $E(^DIA(44,D0,FLD),1,30)
  Q
 RPTHDR ;report header
  N LN
@@ -80,7 +83,7 @@ RPTHDR ;report header
  W "CLINIC EDIT LOG ",?115,"Page ",PG,!
  W "Printed on ",$$HTE^XLFDT($H)," for ",SDSD," to ",SDED,!
  W "USER NAME",?24,"DATE/TIME CHANGED",?46,"CLINIC IEN",?58
- W "CLINIC NAME",?78,"FIELD NAME",?89,"OLD VALUE",?109,"NEW VALUE",!
+ W "CLINIC NAME",?90,"FIELD NAME",?101,"OLD VALUE",!,?101,"NEW VALUE",!
  S $P(LN,"-",130)="" W LN,!
  Q
 DTRNG ;report date range

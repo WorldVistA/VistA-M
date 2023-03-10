@@ -1,10 +1,16 @@
-IBCNETST ;DAOU/ALA - eIV Gate-keeper test scenarios ;11-OCT-2017
- ;;2.0;INTEGRATED BILLING;**601**;21-MAR-94;Build 14
+IBCNETST ;DAOU/ALA - eIV Gate-keeper test scenarios ; 11-OCT-2017
+ ;;2.0;INTEGRATED BILLING;**601,732**;21-MAR-94;Build 13
  ;;Per VA Directive 6402, this routine should not be modified.
  ;
  ;**Program Description**
- ;  This program contains some general utilities or functions
+ ;This program serves as a gate-keeper to protect FSC from receiving unexpected
+ ;transmissions from a test account via the electronic Insurance Verification
+ ;interface. Unexpected transmission have been known to take down their test
+ ;systems. DO NOT alter or remove this routine.
+ ;
  ; IB*2*601/DM XMITOK() Gate-keeper routine moved from IBCNEUT7
+ ; IB*2*732/TZ added Test patients for auto-update with no group number
+ ; IB*2*732/CKB added Test patients for 'Blues'
  ;
  Q
  ;
@@ -17,13 +23,27 @@ XMITOK(TQIEN) ;EP
  ; Input:   TQIEN   - IEN of the IIV Transmission Queue entry
  ; Returns: 1       - Ok to add item to the eIV queue
  ;          0       - Not ok to add item to the eIV queue
- N GOOD,GRPNUM,IBIEN,IBCNMPI,IENS,IVPIEN,MCARE,PATDOB,PATID,PATNM,PATSEX,PAYRNM,PIEN
+ ;
+ N DFN,GOOD,GRPNUM,IBIEN,IBCNMPI,IENS,IVPIEN,MCARE,PATDOB,PATID,PATNM,PATSEX,PAYRNM,PIEN
  N SUBID,SUBNM,TSITE,XX
+ ;
+ ; First check to see if the site is a test or a production site
+ S TSITE=$S($$PROD^XUPROD(1):0,1:1)
+ Q:'TSITE 1                                  ; Production site no checks done
+ ;Q 0 ;Don't send anything
+ ;
  S MCARE=$$GET1^DIQ(350.9,"1,",51.25,"E")    ; Medicare Payer Name
- S XX=$G(^IBCN(365.1,TQIEN,0))
+ ;S XX=$G(^IBCN(365.1,TQIEN,0))              ; IB*732 - invalid code
  S (GRPNUM,PATID,SUBID,SUBNM)=""
- S DFN=$$GET1^DIQ(365.1,TQIEN_",",.02,"I")   ; Patient IEN                   
+ S DFN=$$GET1^DIQ(365.1,TQIEN_",",.02,"I")   ; Patient IEN
+ S PATNM=$$GET1^DIQ(2,DFN_",",.01,"I")       ; Patient Name
  S IBCNMPI=$$GET1^DIQ(2,DFN_",",991.01,"I")  ; Integration Control Number MPI
+ ; Quit if the Integration Control Number MPI is null - MUST be present
+ Q:IBCNMPI="" 0
+ ;
+ ; If the patient name contains "EICD" they are test scenario's for the "EICD" process.
+ I PATNM["EICD" Q 1
+ ;
  S PIEN=$$GET1^DIQ(365.1,TQIEN_",",.03,"I")  ; Payer IEN
  S IBIEN=$$GET1^DIQ(365.1,TQIEN_",",.13,"I") ; Insurance multiple number
  ;
@@ -42,13 +62,6 @@ XMITOK(TQIEN) ;EP
  . S PATID=$$GET1^DIQ(2.312,IENS,5.01)       ; Patient ID
  . S SUBID=$$GET1^DIQ(2.312,IENS,1)          ; Subscriber ID
  . S SUBNM=$$GET1^DIQ(2.312,IENS,7.01)       ; Subscriber NM
- ;
- ; First check to see if the site is a test or a production site
- S TSITE=$S($$PROD^XUPROD(1):0,1:1)
- Q:'TSITE 1                                  ; Production site no checks done
- ;
- ; Quit if the Integration Control Number MPI is null - MUST be present
- Q:IBCNMPI="" 0
  ;
  I (SUBID="")!(SUBNM="") Q 0                 ; Key elements not defined
  S XX=$$GET1^DIQ(2,DFN_",",.03,"I")          ; Internal Patient DOB
@@ -97,20 +110,48 @@ XMITOK(TQIEN) ;EP
  . Q:PATSEX'="M"
  . S GOOD=1
  ; 
- ; Added for testing "Stop trigger of EIV Response"
+ ; Added for testing "Stop trigger of EIV Response", FSC's initial response
+ ; indicates no insurance identified therefore there are no policies to reverify
+ ; automatically.
  I PAYRNM="AETNA",GRPNUM="GRP NUM 13805",SUBID="222222AE" D  Q:GOOD 1
  . Q:SUBNM'="IBSUB,CANNOTFIND"
  . Q:PATDOB'="19220707"
  . Q:PATSEX'="M"
  . S GOOD=1
  ;
- ; Added for testing payers that begin with numeric values
  I PAYRNM="CIGNA",GRPNUM="GRP NUM 5442",SUBID="222222CI" D  Q:GOOD 1
  . Q:SUBNM'="IBSUB,ACTIVE"
  . Q:PATDOB'="19220202"
  . Q:PATSEX'="M"
  . S GOOD=1
  ;
+ ; IB*2*732/TAZ - Added Non-medicare patient scenario for auto-update, no group number
+ I PAYRNM="CIGNA",GRPNUM="GRP NUM 5337",SUBID="555555NO" D  Q:GOOD 1
+ . Q:SUBNM'="IBSUB,NOGROUPNUM"
+ . Q:PATDOB'="19380311"
+ . Q:PATSEX'="M"
+ . S GOOD=1
+ ;
+ ; IB*2*732/TAZ - Added Medicare patient scenario for auto-update, no group number
+ I PAYRNM="CMS",GRPNUM="PART A",SUBID="12345678" D  Q:GOOD 1
+ . Q:SUBNM'="IB,MEDICARENOGRP"
+ . Q:PATDOB'="19381110"
+ . Q:PATSEX'="F"
+ . S GOOD=1
+ ;
+ ; IB*2*732/CKB - Added patient scenario for 'Blues' testing
+ I PAYRNM="BCBS OF COLORADO",GRPNUM="BLU1234",SUBID="COL98765" D  Q:GOOD 1
+ . Q:SUBNM'="IBSUB,BLUECROSS WGRP"
+ . Q:PATDOB'="19420826"
+ . Q:PATSEX'="M"
+ . S GOOD=1
+ ;
+ ; IB*2*732/CKB - Added patient scenario for 'Blues' testing
+ I PAYRNM="BCBS OF COLORADO",GRPNUM="BLU1234",SUBID="COL56789" D  Q:GOOD 1
+ . Q:SUBNM'="IBSUB,BLUECROSS WOGRP"
+ . Q:PATDOB'="19420101"
+ . Q:PATSEX'="M"
+ . S GOOD=1
  Q 0
  ;
 MBI ;
@@ -140,7 +181,7 @@ MBI ;
  . S GOOD=1
  ;
  I PAYRNM="CMS MBI ONLY",SUBID="MBIrequest" D  Q:GOOD 1
- . Q:SUBNM'="IB,"   ;Q:SUBNM'="IB,MBIPATIENTFIVE"   ;** melanie needed request w/ missing first name to go to FSC at FSC's request
+ . Q:SUBNM'="IB,"   ;Q:SUBNM'="IB,MBIPATIENTFIVE"   ;** melanie needed request w/missing first name to go to FSC at FSC's request
  . Q:PATDOB'="19500827"
  . Q:PATSEX'="M"
  . S GOOD=1
@@ -176,4 +217,3 @@ MBI ;
  . S GOOD=1
  ;
  Q 0
- ;

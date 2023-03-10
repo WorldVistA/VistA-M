@@ -1,13 +1,18 @@
 IBJDF4 ;ALB/RB - FIRST PARTY FOLLOW-UP REPORT ;15-APR-00
- ;;2.0;INTEGRATED BILLING;**123,204,220,568,618**;21-MAR-94;Build 61
+ ;;2.0;INTEGRATED BILLING;**123,204,220,568,618,705**;21-MAR-94;Build 8
  ;;Per VA Directive 6402, this routine should not be modified.
+ ;
+ ; ICR #7321 for getting suspension codes from AR (file 433.001)
  ; 
 EN ; - Option entry point.
  S IBEXCEL=0
- N X,XX,I,CH,LAST
+ ; get suspension types from file 433.001 IB*2.0*705
+ N I,LAST,SUSCODE,SUSIEN,X
  K IBSUS
- S XX=$$GET1^DID(433,90,,"POINTER")   ; current list of AR suspension types, fileman set of codes and descriptions
- F I=1:1 S CH=$P(XX,";",I) Q:CH=""  S IBSUS($P(CH,":",1))=$P(CH,":",2)
+ S SUSCODE="" F  S SUSCODE=$O(^PRCA(433.001,"B",SUSCODE)) Q:SUSCODE=""  D
+ .S SUSIEN=$O(^PRCA(433.001,"B",SUSCODE,"")) Q:'SUSIEN
+ .S IBSUS(SUSCODE)=$$GET1^DIQ(433.001,SUSIEN_",",.02)
+ .Q
  S LAST=$O(IBSUS(""),-1),IBSUS(LAST+1)="NONE"
  S LAST=LAST+2,IBSUS(LAST)="ALL OF THE ABOVE"
  ;
@@ -36,8 +41,8 @@ SUSTYP ;If SUSPENDED is chosen, prompt for which suspended bills to display IB*2
  I IBSTA="S",IBSELST="" G ENQ
  ;
  ; - Select a detailed or summary report.
- D DS^IBJD G ENQ:IBRPT["^"
- I IBRPT="S" D  G RC
+ D DS G ENQ:IBRPT["^"
+ I IBRPT="S"!(IBRPT="O") D  G RC
  . S IBSN="N",IBSNA="ALL",IBSNF="",IBSNL="zzzzz",IBSMN="A"
  ;
  ; - Determine sorting (By name or Last 4 SSN)
@@ -181,3 +186,15 @@ PRPT S MLTP="",ALL=+$G(ALL)
  ;
 QT I MLTP'="" S MLTP=","_MLTP
  Q MLTP
+ ;
+DS ; Print a (S)ummary,(O)verall Summary or (D)etail Report?
+ S DIR(0)="SA^S:SUMMARY;D:DETAILED;O:OVERALL SUMMARY;"
+ S DIR("A")="Do you wish to print a (S)ummary, (O)verall Summary or (D)etailed Report? "
+ S DIR("?")="^D HDS^IBJDF4"  ; IB*2.0*705
+ W ! D ^DIR K DIR S IBRPT=Y
+ Q
+ ;
+HDS ; Help for Summary/Detail prompt.  ; IB*2.0*705
+ W !,"Please enter 'S' for 'Summary', 'O' for 'Overall Summary' or 'D' for a Detailed Report."
+ W !,"Note that if you select the Detailed report, Summary and Overall Summary will also print."
+ Q

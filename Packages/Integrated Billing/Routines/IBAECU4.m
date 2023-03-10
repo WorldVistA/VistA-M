@@ -1,5 +1,5 @@
-IBAECU4 ;WOIFO/SS-LTC PHASE 2 UTILITIES ; 20-FEB-02
- ;;2.0;INTEGRATED BILLING;**171,176**;21-MAR-94
+IBAECU4 ;WOIFO/SS - LTC PHASE 2 UTILITIES ; 20-FEB-02
+ ;;2.0;INTEGRATED BILLING;**171,176,728**;21-MAR-94;Build 14
  ;;Per VHA Directive 10-93-142, this routine should not be modified.
  ;** LTC Clock related utilities **
  ;Makes FM date from any date of month or YEAR_MONTH and Day #
@@ -233,3 +233,15 @@ DELEXDAY(IBIEN,IBN) ;
  S IBFDA(351.811,IBIENS,.01)="@"
  D FILE^DIE("","IBFDA")
  Q
+ ;
+FNDOPEN(DFN) ; find last open LTC clock for the patient  IB*2.0*728
+ ;
+ ; DFN - patient DFN
+ ;
+ ; returns IEN of the open clock (file 351.81), or 0 if none was found
+ ;
+ N IBCL,IBFOUND,IBX
+ S IBFOUND=0,IBX=9999999 F  S IBX=$O(^IBA(351.81,"AE",DFN,IBX),-1) Q:'IBX!IBFOUND  D
+ .S IBCL=0 F  S IBCL=$O(^IBA(351.81,"AE",DFN,IBX,IBCL)) Q:'IBCL!IBFOUND  I +$P(^IBA(351.81,IBCL,0),U,5)=1 S IBFOUND=IBCL
+ .Q
+ Q IBFOUND

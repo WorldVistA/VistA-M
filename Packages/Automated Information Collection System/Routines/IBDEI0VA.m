@@ -1,126 +1,116 @@
-IBDEI0VA ; ; 04-FEB-2020
- ;;3.0;IB ENCOUNTER FORM IMP/EXP;;FEB 04, 2020
+IBDEI0VA ; ; 01-FEB-2022
+ ;;3.0;IB ENCOUNTER FORM IMP/EXP;;FEB 01, 2022
  Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,999) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
- ;;^UTILITY(U,$J,358.3,13928,1,4,0)
- ;;=4^T83.511S
- ;;^UTILITY(U,$J,358.3,13928,2)
- ;;=^5140140
- ;;^UTILITY(U,$J,358.3,13929,0)
- ;;=T83.512A^^83^818^54
- ;;^UTILITY(U,$J,358.3,13929,1,0)
+ ;;^UTILITY(U,$J,358.3,14114,1,3,0)
+ ;;=3^Derang Ant Horn Lateral Mensc d/t Old Tear/Inj,Left Knee
+ ;;^UTILITY(U,$J,358.3,14114,1,4,0)
+ ;;=4^M23.242
+ ;;^UTILITY(U,$J,358.3,14114,2)
+ ;;=^5011226
+ ;;^UTILITY(U,$J,358.3,14115,0)
+ ;;=M23.251^^55^670^29
+ ;;^UTILITY(U,$J,358.3,14115,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,13929,1,3,0)
- ;;=3^Infection d/t Nephrostomy Catheter,Init Encntr
- ;;^UTILITY(U,$J,358.3,13929,1,4,0)
- ;;=4^T83.512A
- ;;^UTILITY(U,$J,358.3,13929,2)
- ;;=^5140141
- ;;^UTILITY(U,$J,358.3,13930,0)
- ;;=T83.512D^^83^818^56
- ;;^UTILITY(U,$J,358.3,13930,1,0)
+ ;;^UTILITY(U,$J,358.3,14115,1,3,0)
+ ;;=3^Derang Post Horn Lateral Mensc d/t Old Tear/Inj,Right Knee
+ ;;^UTILITY(U,$J,358.3,14115,1,4,0)
+ ;;=4^M23.251
+ ;;^UTILITY(U,$J,358.3,14115,2)
+ ;;=^5011228
+ ;;^UTILITY(U,$J,358.3,14116,0)
+ ;;=M23.252^^55^670^30
+ ;;^UTILITY(U,$J,358.3,14116,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,13930,1,3,0)
- ;;=3^Infection d/t Nephrostomy Catheter,Subs Encntr
- ;;^UTILITY(U,$J,358.3,13930,1,4,0)
- ;;=4^T83.512D
- ;;^UTILITY(U,$J,358.3,13930,2)
- ;;=^5140142
- ;;^UTILITY(U,$J,358.3,13931,0)
- ;;=T83.512S^^83^818^55
- ;;^UTILITY(U,$J,358.3,13931,1,0)
+ ;;^UTILITY(U,$J,358.3,14116,1,3,0)
+ ;;=3^Derang Post Horn Lateral Mensc d/t Old Tear/Inj,Left Knee
+ ;;^UTILITY(U,$J,358.3,14116,1,4,0)
+ ;;=4^M23.252
+ ;;^UTILITY(U,$J,358.3,14116,2)
+ ;;=^5011229
+ ;;^UTILITY(U,$J,358.3,14117,0)
+ ;;=S83.114A^^55^670^39
+ ;;^UTILITY(U,$J,358.3,14117,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,13931,1,3,0)
- ;;=3^Infection d/t Nephrostomy Catheter,Sequela
- ;;^UTILITY(U,$J,358.3,13931,1,4,0)
- ;;=4^T83.512S
- ;;^UTILITY(U,$J,358.3,13931,2)
- ;;=^5140143
- ;;^UTILITY(U,$J,358.3,13932,0)
- ;;=R97.20^^83^818^28
- ;;^UTILITY(U,$J,358.3,13932,1,0)
+ ;;^UTILITY(U,$J,358.3,14117,1,3,0)
+ ;;=3^Dislocation Ant Proximal End of Tibia,Right Knee,Init Encntr
+ ;;^UTILITY(U,$J,358.3,14117,1,4,0)
+ ;;=4^S83.114A
+ ;;^UTILITY(U,$J,358.3,14117,2)
+ ;;=^5042956
+ ;;^UTILITY(U,$J,358.3,14118,0)
+ ;;=S83.114D^^55^670^40
+ ;;^UTILITY(U,$J,358.3,14118,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,13932,1,3,0)
- ;;=3^Elevated PSA
- ;;^UTILITY(U,$J,358.3,13932,1,4,0)
- ;;=4^R97.20
- ;;^UTILITY(U,$J,358.3,13932,2)
- ;;=^334262
- ;;^UTILITY(U,$J,358.3,13933,0)
- ;;=R97.21^^83^818^29
- ;;^UTILITY(U,$J,358.3,13933,1,0)
+ ;;^UTILITY(U,$J,358.3,14118,1,3,0)
+ ;;=3^Dislocation Ant Proximal End of Tibia,Right Knee,Subs Encntr
+ ;;^UTILITY(U,$J,358.3,14118,1,4,0)
+ ;;=4^S83.114D
+ ;;^UTILITY(U,$J,358.3,14118,2)
+ ;;=^5042957
+ ;;^UTILITY(U,$J,358.3,14119,0)
+ ;;=S83.115D^^55^670^37
+ ;;^UTILITY(U,$J,358.3,14119,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,13933,1,3,0)
- ;;=3^Elevated PSA Following Trtmnt for Prostate Cancer
- ;;^UTILITY(U,$J,358.3,13933,1,4,0)
- ;;=4^R97.21
- ;;^UTILITY(U,$J,358.3,13933,2)
- ;;=^5139228
- ;;^UTILITY(U,$J,358.3,13934,0)
- ;;=N35.911^^83^818^109
- ;;^UTILITY(U,$J,358.3,13934,1,0)
+ ;;^UTILITY(U,$J,358.3,14119,1,3,0)
+ ;;=3^Dislocation Ant Proximal End of Tibia,Left Knee,Subs Encntr
+ ;;^UTILITY(U,$J,358.3,14119,1,4,0)
+ ;;=4^S83.115D
+ ;;^UTILITY(U,$J,358.3,14119,2)
+ ;;=^5042960
+ ;;^UTILITY(U,$J,358.3,14120,0)
+ ;;=S83.115A^^55^670^38
+ ;;^UTILITY(U,$J,358.3,14120,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,13934,1,3,0)
- ;;=3^Urethral Stricture,Male,Unspec
- ;;^UTILITY(U,$J,358.3,13934,1,4,0)
- ;;=4^N35.911
- ;;^UTILITY(U,$J,358.3,13934,2)
- ;;=^5157407
- ;;^UTILITY(U,$J,358.3,13935,0)
- ;;=N35.92^^83^818^108
- ;;^UTILITY(U,$J,358.3,13935,1,0)
+ ;;^UTILITY(U,$J,358.3,14120,1,3,0)
+ ;;=3^Dislocation Ant Proximal End of Tibia,Left Knee,Init Encntr
+ ;;^UTILITY(U,$J,358.3,14120,1,4,0)
+ ;;=4^S83.115A
+ ;;^UTILITY(U,$J,358.3,14120,2)
+ ;;=^5042959
+ ;;^UTILITY(U,$J,358.3,14121,0)
+ ;;=S83.124A^^55^670^51
+ ;;^UTILITY(U,$J,358.3,14121,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,13935,1,3,0)
- ;;=3^Urethral Stricture,Female,Unspec
- ;;^UTILITY(U,$J,358.3,13935,1,4,0)
- ;;=4^N35.92
- ;;^UTILITY(U,$J,358.3,13935,2)
- ;;=^5157413
- ;;^UTILITY(U,$J,358.3,13936,0)
- ;;=A49.9^^83^819^1
- ;;^UTILITY(U,$J,358.3,13936,1,0)
+ ;;^UTILITY(U,$J,358.3,14121,1,3,0)
+ ;;=3^Dislocation Post Proximal End of Tibia,Right Knee,Init Encntr
+ ;;^UTILITY(U,$J,358.3,14121,1,4,0)
+ ;;=4^S83.124A
+ ;;^UTILITY(U,$J,358.3,14121,2)
+ ;;=^5042974
+ ;;^UTILITY(U,$J,358.3,14122,0)
+ ;;=S83.124D^^55^670^52
+ ;;^UTILITY(U,$J,358.3,14122,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,13936,1,3,0)
- ;;=3^Infection,Bacterial,Unspec
- ;;^UTILITY(U,$J,358.3,13936,1,4,0)
- ;;=4^A49.9
- ;;^UTILITY(U,$J,358.3,13936,2)
- ;;=^5000241
- ;;^UTILITY(U,$J,358.3,13937,0)
- ;;=B37.9^^83^819^2
- ;;^UTILITY(U,$J,358.3,13937,1,0)
+ ;;^UTILITY(U,$J,358.3,14122,1,3,0)
+ ;;=3^Dislocation Post Proximal End of Tibia,Right Knee,Subs Encntr
+ ;;^UTILITY(U,$J,358.3,14122,1,4,0)
+ ;;=4^S83.124D
+ ;;^UTILITY(U,$J,358.3,14122,2)
+ ;;=^5042975
+ ;;^UTILITY(U,$J,358.3,14123,0)
+ ;;=S83.125A^^55^670^53
+ ;;^UTILITY(U,$J,358.3,14123,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,13937,1,3,0)
- ;;=3^Infection,Candidiasis,Unspec
- ;;^UTILITY(U,$J,358.3,13937,1,4,0)
- ;;=4^B37.9
- ;;^UTILITY(U,$J,358.3,13937,2)
- ;;=^5000624
- ;;^UTILITY(U,$J,358.3,13938,0)
- ;;=Z20.9^^83^819^3
- ;;^UTILITY(U,$J,358.3,13938,1,0)
+ ;;^UTILITY(U,$J,358.3,14123,1,3,0)
+ ;;=3^Dislocation Post Proximal End of Tibia,Left Knee,Init Encntr
+ ;;^UTILITY(U,$J,358.3,14123,1,4,0)
+ ;;=4^S83.125A
+ ;;^UTILITY(U,$J,358.3,14123,2)
+ ;;=^5042977
+ ;;^UTILITY(U,$J,358.3,14124,0)
+ ;;=S83.125D^^55^670^54
+ ;;^UTILITY(U,$J,358.3,14124,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,13938,1,3,0)
- ;;=3^Infection,Communicable Disease,Unspec
- ;;^UTILITY(U,$J,358.3,13938,1,4,0)
- ;;=4^Z20.9
- ;;^UTILITY(U,$J,358.3,13938,2)
- ;;=^5062776
- ;;^UTILITY(U,$J,358.3,13939,0)
- ;;=B30.9^^83^819^4
- ;;^UTILITY(U,$J,358.3,13939,1,0)
+ ;;^UTILITY(U,$J,358.3,14124,1,3,0)
+ ;;=3^Dislocation Post Proximal End of Tibia,Left Knee,Subs Encntr
+ ;;^UTILITY(U,$J,358.3,14124,1,4,0)
+ ;;=4^S83.125D
+ ;;^UTILITY(U,$J,358.3,14124,2)
+ ;;=^5042978
+ ;;^UTILITY(U,$J,358.3,14125,0)
+ ;;=S83.134A^^55^670^49
+ ;;^UTILITY(U,$J,358.3,14125,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,13939,1,3,0)
- ;;=3^Infection,Conjunctivitis,Viral,Unspec
- ;;^UTILITY(U,$J,358.3,13939,1,4,0)
- ;;=4^B30.9
- ;;^UTILITY(U,$J,358.3,13939,2)
- ;;=^5000586
- ;;^UTILITY(U,$J,358.3,13940,0)
- ;;=B25.9^^83^819^5
- ;;^UTILITY(U,$J,358.3,13940,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,13940,1,3,0)
- ;;=3^Infection,Cytomegaloviral Disease,Unspec
- ;;^UTILITY(U,$J,358.3,13940,1,4,0)
- ;;=4^B25.9
+ ;;^UTILITY(U,$J,358.3,14125,1,3,0)
+ ;;=3^Dislocation Med Proximal End of Tibia,Right Knee,Init Encntr

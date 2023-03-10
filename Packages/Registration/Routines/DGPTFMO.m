@@ -1,5 +1,5 @@
 DGPTFMO ;ALB/JDS/ADL,HIOFO/FT - DGPTF PRINT TEMPLATE ;10/15/14 2:25pm
- ;;5.3;Registration;**195,397,510,590,594,606,683,729,664,850,884**;Aug 13, 1993;Build 31
+ ;;5.3;Registration;**195,397,510,590,594,606,683,729,664,850,884,1057**;Aug 13, 1993;Build 17
  ;;ADL;Updated for CSV Project;;Mar 4, 2003
  ;
  ; ICDEX APIs - #5747
@@ -101,7 +101,9 @@ PROC ;
  . W $S(+DGPTTMP<1!('$P(DGPTTMP,U,10)):"*",1:"")
  K DG601
  Q
-DXLS D HEAD:$Y>(IOSL-16)
+DXLS ;
+ N DGIDTS
+ D HEAD:$Y>(IOSL-16)
  S DGPOA1=$P($G(^DGPT(D0,82)),U,1) ;POA for principal DX
  I +$P(DGPT,U,10) D
  . S DGPTTMP=$$ICDDATA^ICDXCODE("DIAG",+$P(DGPT,U,10),EFFDATE),DXLS=$S(+DGPTTMP>0:$P(DGPTTMP,U,2,99),1:"")
@@ -124,6 +126,12 @@ DXLS D HEAD:$Y>(IOSL-16)
  ;-- display expanded code information
  S DG300=$S($D(^DGPT(D0,300)):^(300),1:"") D:DG300]"" PRN2^DGPTFM8 K DG300
  D EN2^DGPTF4 ;calls ^DGPTFD to get DX/OP codes and then calls DGPTICD to calculate & store DRG value in PTF CLOSE OUT (#45.84) file.
+ ; display initial date of service  DG*5.3*1057
+ S DGIDTS=+$P(^DGPT(D0,0),U,14) I DGIDTS>0 D
+ .W !,"*Initial Date Of Service: "_$$EXTERNAL^DILFD(45,14,,$G(DGIDTS))
+ .W !," *Utilize section 1 on the 101 screen for editing."
+ .Q
+ ;
  Q
 Q Q
 Q1 K ^UTILITY(U,$J),DG1

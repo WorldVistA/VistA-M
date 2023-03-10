@@ -1,5 +1,5 @@
 PSJBCMA ;BIR/MV-RETURN INPATIENT ACTIVE MEDS (CONDENSED) ; 5/4/16 10:51am
- ;;5.0;INPATIENT MEDICATIONS ;**32,41,46,57,63,66,56,69,58,81,91,104,111,112,186,159,173,190,113,225,253,267,279,308,318,315**;16 DEC 97;Build 73
+ ;;5.0;INPATIENT MEDICATIONS ;**32,41,46,57,63,66,56,69,58,81,91,104,111,112,186,159,173,190,113,225,253,267,279,308,318,315,364**;16 DEC 97;Build 47
  ;;Per VHA Directive 2004-038, this routine should not be modified.
  ; Reference to ^PS(50.7 is supported by DBIA 2180.
  ; Reference to ^PS(51 is supported by DBIA 2176.
@@ -18,6 +18,7 @@ PSJBCMA ;BIR/MV-RETURN INPATIENT ACTIVE MEDS (CONDENSED) ; 5/4/16 10:51am
  ;*279 - add Clinic name, IEN to pieces 11, 12 of TMP("PSJ",$J,0)
  ;     - add High Risk drug Witness indicator to Results 7th piece
  ;*315 - add BCMA removal flag to 7th piece of 700 node
+ ;*364 - add Hazardous Handle & Dispose flags to Unit Dose and IV drug TMP globals
  ;
 EN(DFN,BDT,OTDATE)         ; return condensed list of inpatient meds
  NEW CNT,DN,F,FON,ON,PST,WBDT,X,X1,X2,Y,%
@@ -59,6 +60,7 @@ ORDER ;Loop thru orders.
  ... S FON=ON_"V" D:'$D(PSJON(FON)) IVVAR
  K PSJON,PSJBCID
  Q
+ ;
 UDVAR ;Set ^TMP for Unit dose & Pending orders
  N CLINIC
  D UDPEND I '$$CLINICS($G(CLINIC)) Q
@@ -75,11 +77,14 @@ UDVAR ;Set ^TMP for Unit dose & Pending orders
  . S $P(^TMP("PSJ",$J,PSJINX,700,CNT,0),U,6)=$$GET1^DIQ(50.7,PSJ("OI"),1,"I")
  . ;add Prompt For Removal In BCMA fld to 7th                    ;*315
  . S $P(^TMP("PSJ",$J,PSJINX,700,CNT,0),U,7)=+PSJ("MRRFL")
+ . ;add Haz Handle & Dispose flags at 8 & 9th pieces              *364
+ . S $P(^TMP("PSJ",$J,PSJINX,700,CNT,0),U,8,9)=$P($$HAZ^PSSUTIL(+PSJDD),U,1,2)
  S:CNT ^TMP("PSJ",$J,PSJINX,700,0)=CNT
  K PSJ,PSJDD
  Q
+ ;
 IVVAR ;Set variables for IV and pending orders
- NEW ND,X,Y,CLINIC
+ NEW ND,X,Y,CLINIC,DDIEN
  I FON["P" D UDPEND Q:'$$CLINICS(CLINIC)  S PSJ("INFRATE")=$P($P($G(^PS(53.1,ON,8)),U,5),"@")
  I FON["V" D  Q:'$$CLINICS(CLINIC)
  . S X=$G(^PS(55,DFN,"IV",ON,0)),CLINIC=$G(^("DSS")) Q:'$$CLINICS(CLINIC)
@@ -112,12 +117,18 @@ IVVAR ;Set variables for IV and pending orders
  . S CNT=CNT+1,^TMP("PSJ",$J,PSJINX,850,CNT,0)=+ND_U_$P(DN,U)_U_$P(ND,U,2)_U_$P(ND,U,3)
  . ;add High Risk field to 6th piece of 850 (additv)             ;*279
  . S $P(^TMP("PSJ",$J,PSJINX,850,CNT,0),U,6)=$$HRFLG(+ND,"A")
+ . ;add Haz Handle & Dispose flags at 7 & 8th pieces of additive  *364
+ . S DDIEN=+$P($G(^PS(52.6,+ND,0)),U,2)
+ . S $P(^TMP("PSJ",$J,PSJINX,850,CNT,0),U,7,8)=$P($$HAZ^PSSUTIL(DDIEN),U,1,2)
  S:CNT ^TMP("PSJ",$J,PSJINX,850,0)=CNT,CNT=0
  F X=0:0 S X=$O(@(F_ON_",""SOL"","_X_")")) Q:'X  D
  . S ND=$G(@(F_ON_",""SOL"","_X_",0)")),DN=$G(^PS(52.7,+ND,0))
  . S CNT=CNT+1,^TMP("PSJ",$J,PSJINX,950,CNT,0)=+ND_U_$P(DN,U)_U_$P(ND,U,2)_U_$P(DN,U,4)
  . ;add High Risk field to 6th piece of 950 (sol)                ;*279
  . S $P(^TMP("PSJ",$J,PSJINX,950,CNT,0),U,6)=$$HRFLG(+ND,"S")
+ . ;add Haz Handle & Dispose flags at 7 & 8th pieces of additive  *364
+ . S DDIEN=+$P($G(^PS(52.7,+ND,0)),U,2)
+ . S $P(^TMP("PSJ",$J,PSJINX,950,CNT,0),U,7,8)=$P($$HAZ^PSSUTIL(DDIEN),U,1,2)
  S:CNT ^TMP("PSJ",$J,PSJINX,950,0)=CNT
  K PSJ
  S X1=0
@@ -135,6 +146,7 @@ IVVAR ;Set variables for IV and pending orders
  .. S $P(^TMP("PSJ",$J,PSJINX,900,PSJBCID,I),U,6)=$$HRFLG(+X,"S")
  . I I>1 S ^TMP("PSJ",$J,PSJINX,900,PSJBCID,0)=I-1
  Q
+ ;
 UDPEND ;
  S X=$G(@(F_ON_",0)")) I $P(F,",")[53.1 S CLINIC=$G(@(F_ON_",""DSS"")")) Q:'$$CLINICS(CLINIC)
  I $P(F,",")[55 S CLINIC=$G(@(F_ON_",8)")) Q:'$$CLINICS(CLINIC)
@@ -171,6 +183,7 @@ UDPEND ;
  S PSJ("STC")=PSJ("ST")
  I PSJ("ST")="R"!(PSJ("ST")="C") S PSJ("STC")=$S(PSJ("SCHD")["PRN":"P",$$ONCALL(PSJ("SCHD")):"OC",$$ONE(DFN,FON,PSJ("SCHD"))="O":"O",1:"C")
  Q
+ ;
 TMP ;Setup ^TMP that have common fields between IV and U/D
  N A,CLNAME,CLNAMPTR                                             ;*279
  S PSJINX=PSJINX+1
@@ -201,6 +214,7 @@ TMP ;Setup ^TMP that have common fields between IV and U/D
  S A=$$SNDTSTA^PSJHL4A(PSJ("PRI"),PSJ("SCHD"))
  S ^TMP("PSJ",$J,PSJINX,5)=$S(A=1:0,1:1)_U_PSJ("FLG")_U_PSJ("SRC")_U_PSJ("COM")
  Q
+ ;
 SIOPI ; Use provider comments if order is pending and there is no SI
  NEW X,Y,Z
  I FON["P",(PSJ("SIOPI")=""),$O(^PS(53.1,+ON,12,0)) D
@@ -209,11 +223,13 @@ SIOPI ; Use provider comments if order is pending and there is no SI
  .. S:Y+$L(Z)'>179 PSJ("SIOPI")=PSJ("SIOPI")_Z_""
  . I Y+$L(Z)>179 S PSJ("SIOPI")="SEE PROVIDER COMMENTS"
  Q
+ ;
 ENSET(X) ; expands SPECIAL INSTRUCTIONS field contained in X into Y
  N X1,X2,Y S Y=""
  F X1=1:1:$L(X," ") S X2=$P(X," ",X1) I X2]"" S Y=Y_$S($L(X2)>30:X2,'$D(^PS(51,+$O(^PS(51,"B",X2,0)),0)):X2,$P(^(0),"^",2)]""&$P(^(0),"^",4):$P(^(0),"^",2),1:X2)_" "
  S Y=$E(Y,1,$L(Y)-1)
  Q Y
+ ;
 ONE(DFN,ORD,SCH,START,STOP) ;Determine if order is one-time, and return schedule type
  ; Input:  DFN - patient's IEN
  ;         ORD - order number
@@ -291,4 +307,3 @@ HRFLG(IEN,ADDSOL) ;Get High Risk flag for this Orderable Item
  S:ADDSOL="A" OIIEN=+$$GET1^DIQ(52.6,IEN,15,"I")
  S:ADDSOL="S" OIIEN=+$$GET1^DIQ(52.7,IEN,9,"I")
  Q +$$GET1^DIQ(50.7,OIIEN,1,"I")
- ;

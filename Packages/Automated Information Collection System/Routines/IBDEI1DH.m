@@ -1,128 +1,126 @@
-IBDEI1DH ; ; 04-FEB-2020
- ;;3.0;IB ENCOUNTER FORM IMP/EXP;;FEB 04, 2020
+IBDEI1DH ; ; 01-FEB-2022
+ ;;3.0;IB ENCOUNTER FORM IMP/EXP;;FEB 01, 2022
  Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,999) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
- ;;^UTILITY(U,$J,358.3,21935,1,4,0)
- ;;=4^L72.3
- ;;^UTILITY(U,$J,358.3,21935,2)
- ;;=^5009281
- ;;^UTILITY(U,$J,358.3,21936,0)
- ;;=R06.02^^99^1117^5
- ;;^UTILITY(U,$J,358.3,21936,1,0)
+ ;;^UTILITY(U,$J,358.3,22202,1,3,0)
+ ;;=3^SCI T7-T10 Unspec Injury,Sequela
+ ;;^UTILITY(U,$J,358.3,22202,1,4,0)
+ ;;=4^S24.103S
+ ;;^UTILITY(U,$J,358.3,22202,2)
+ ;;=^5023281
+ ;;^UTILITY(U,$J,358.3,22203,0)
+ ;;=S24.104S^^73^957^26
+ ;;^UTILITY(U,$J,358.3,22203,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,21936,1,3,0)
- ;;=3^Shortness of breath
- ;;^UTILITY(U,$J,358.3,21936,1,4,0)
- ;;=4^R06.02
- ;;^UTILITY(U,$J,358.3,21936,2)
- ;;=^5019181
- ;;^UTILITY(U,$J,358.3,21937,0)
- ;;=J01.90^^99^1117^6
- ;;^UTILITY(U,$J,358.3,21937,1,0)
+ ;;^UTILITY(U,$J,358.3,22203,1,3,0)
+ ;;=3^SCI T11-T12 Unspec Injury,Sequela
+ ;;^UTILITY(U,$J,358.3,22203,1,4,0)
+ ;;=4^S24.104S
+ ;;^UTILITY(U,$J,358.3,22203,2)
+ ;;=^5023284
+ ;;^UTILITY(U,$J,358.3,22204,0)
+ ;;=S24.109S^^73^957^35
+ ;;^UTILITY(U,$J,358.3,22204,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,21937,1,3,0)
- ;;=3^Sinusitis, acute, unspec
- ;;^UTILITY(U,$J,358.3,21937,1,4,0)
- ;;=4^J01.90
- ;;^UTILITY(U,$J,358.3,21937,2)
- ;;=^5008127
- ;;^UTILITY(U,$J,358.3,21938,0)
- ;;=G47.9^^99^1117^9
- ;;^UTILITY(U,$J,358.3,21938,1,0)
+ ;;^UTILITY(U,$J,358.3,22204,1,3,0)
+ ;;=3^SCI Unspec Thoracic,Unspec Injury,Sequela
+ ;;^UTILITY(U,$J,358.3,22204,1,4,0)
+ ;;=4^S24.109S
+ ;;^UTILITY(U,$J,358.3,22204,2)
+ ;;=^5134384
+ ;;^UTILITY(U,$J,358.3,22205,0)
+ ;;=S34.111S^^73^957^4
+ ;;^UTILITY(U,$J,358.3,22205,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,21938,1,3,0)
- ;;=3^Sleep disorder, unspec
- ;;^UTILITY(U,$J,358.3,21938,1,4,0)
- ;;=4^G47.9
- ;;^UTILITY(U,$J,358.3,21938,2)
- ;;=^5003990
- ;;^UTILITY(U,$J,358.3,21939,0)
- ;;=G47.30^^99^1117^8
- ;;^UTILITY(U,$J,358.3,21939,1,0)
+ ;;^UTILITY(U,$J,358.3,22205,1,3,0)
+ ;;=3^SCI L1 Complete Lesion,Sequela
+ ;;^UTILITY(U,$J,358.3,22205,1,4,0)
+ ;;=4^S34.111S
+ ;;^UTILITY(U,$J,358.3,22205,2)
+ ;;=^5025207
+ ;;^UTILITY(U,$J,358.3,22206,0)
+ ;;=S34.112S^^73^957^7
+ ;;^UTILITY(U,$J,358.3,22206,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,21939,1,3,0)
- ;;=3^Sleep apnea, unspec
- ;;^UTILITY(U,$J,358.3,21939,1,4,0)
- ;;=4^G47.30
- ;;^UTILITY(U,$J,358.3,21939,2)
- ;;=^5003977
- ;;^UTILITY(U,$J,358.3,21940,0)
- ;;=M46.90^^99^1117^18
- ;;^UTILITY(U,$J,358.3,21940,1,0)
+ ;;^UTILITY(U,$J,358.3,22206,1,3,0)
+ ;;=3^SCI L2 Complete Lesion,Sequela
+ ;;^UTILITY(U,$J,358.3,22206,1,4,0)
+ ;;=4^S34.112S
+ ;;^UTILITY(U,$J,358.3,22206,2)
+ ;;=^5025210
+ ;;^UTILITY(U,$J,358.3,22207,0)
+ ;;=S34.113S^^73^957^10
+ ;;^UTILITY(U,$J,358.3,22207,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,21940,1,3,0)
- ;;=3^Spondylopathy, inflammatory, unspec, site unspec
- ;;^UTILITY(U,$J,358.3,21940,1,4,0)
- ;;=4^M46.90
- ;;^UTILITY(U,$J,358.3,21940,2)
- ;;=^5012030
- ;;^UTILITY(U,$J,358.3,21941,0)
- ;;=M47.819^^99^1117^19
- ;;^UTILITY(U,$J,358.3,21941,1,0)
+ ;;^UTILITY(U,$J,358.3,22207,1,3,0)
+ ;;=3^SCI L3 Complete Lesion,Sequela
+ ;;^UTILITY(U,$J,358.3,22207,1,4,0)
+ ;;=4^S34.113S
+ ;;^UTILITY(U,$J,358.3,22207,2)
+ ;;=^5025213
+ ;;^UTILITY(U,$J,358.3,22208,0)
+ ;;=S34.114S^^73^957^13
+ ;;^UTILITY(U,$J,358.3,22208,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,21941,1,3,0)
- ;;=3^Spondylosis w/o mylpthy/rdculopthy, site unspec
- ;;^UTILITY(U,$J,358.3,21941,1,4,0)
- ;;=4^M47.819
- ;;^UTILITY(U,$J,358.3,21941,2)
- ;;=^5012076
- ;;^UTILITY(U,$J,358.3,21942,0)
- ;;=F43.0^^99^1117^21
- ;;^UTILITY(U,$J,358.3,21942,1,0)
+ ;;^UTILITY(U,$J,358.3,22208,1,3,0)
+ ;;=3^SCI L4 Complete Lesion,Sequela
+ ;;^UTILITY(U,$J,358.3,22208,1,4,0)
+ ;;=4^S34.114S
+ ;;^UTILITY(U,$J,358.3,22208,2)
+ ;;=^5025216
+ ;;^UTILITY(U,$J,358.3,22209,0)
+ ;;=S34.115S^^73^957^16
+ ;;^UTILITY(U,$J,358.3,22209,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,21942,1,3,0)
- ;;=3^Stress reaction, acute
- ;;^UTILITY(U,$J,358.3,21942,1,4,0)
- ;;=4^F43.0
- ;;^UTILITY(U,$J,358.3,21942,2)
- ;;=^5003569
- ;;^UTILITY(U,$J,358.3,21943,0)
- ;;=R55.^^99^1117^22
- ;;^UTILITY(U,$J,358.3,21943,1,0)
+ ;;^UTILITY(U,$J,358.3,22209,1,3,0)
+ ;;=3^SCI L5 Complete Lesion,Sequela
+ ;;^UTILITY(U,$J,358.3,22209,1,4,0)
+ ;;=4^S34.115S
+ ;;^UTILITY(U,$J,358.3,22209,2)
+ ;;=^5025219
+ ;;^UTILITY(U,$J,358.3,22210,0)
+ ;;=S34.121S^^73^957^5
+ ;;^UTILITY(U,$J,358.3,22210,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,21943,1,3,0)
- ;;=3^Syncope & collapse
- ;;^UTILITY(U,$J,358.3,21943,1,4,0)
- ;;=4^R55.
- ;;^UTILITY(U,$J,358.3,21943,2)
- ;;=^116707
- ;;^UTILITY(U,$J,358.3,21944,0)
- ;;=I69.928^^99^1117^10
- ;;^UTILITY(U,$J,358.3,21944,1,0)
+ ;;^UTILITY(U,$J,358.3,22210,1,3,0)
+ ;;=3^SCI L1 Incomplete Lesion,Sequela
+ ;;^UTILITY(U,$J,358.3,22210,1,4,0)
+ ;;=4^S34.121S
+ ;;^UTILITY(U,$J,358.3,22210,2)
+ ;;=^5025225
+ ;;^UTILITY(U,$J,358.3,22211,0)
+ ;;=S34.122S^^73^957^8
+ ;;^UTILITY(U,$J,358.3,22211,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,21944,1,3,0)
- ;;=3^Speech/Lang Deficits following Cerebvasc Dz
- ;;^UTILITY(U,$J,358.3,21944,1,4,0)
- ;;=4^I69.928
- ;;^UTILITY(U,$J,358.3,21944,2)
- ;;=^5007557
- ;;^UTILITY(U,$J,358.3,21945,0)
- ;;=S13.4XXA^^99^1117^20
- ;;^UTILITY(U,$J,358.3,21945,1,0)
+ ;;^UTILITY(U,$J,358.3,22211,1,3,0)
+ ;;=3^SCI L2 Incomplete Lesion,Sequela
+ ;;^UTILITY(U,$J,358.3,22211,1,4,0)
+ ;;=4^S34.122S
+ ;;^UTILITY(U,$J,358.3,22211,2)
+ ;;=^5025228
+ ;;^UTILITY(U,$J,358.3,22212,0)
+ ;;=S34.123S^^73^957^11
+ ;;^UTILITY(U,$J,358.3,22212,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,21945,1,3,0)
- ;;=3^Sprain of Ligaments Cervical Spine,Init Encrtr
- ;;^UTILITY(U,$J,358.3,21945,1,4,0)
- ;;=4^S13.4XXA
- ;;^UTILITY(U,$J,358.3,21945,2)
- ;;=^5022028
- ;;^UTILITY(U,$J,358.3,21946,0)
- ;;=J32.9^^99^1117^7
- ;;^UTILITY(U,$J,358.3,21946,1,0)
+ ;;^UTILITY(U,$J,358.3,22212,1,3,0)
+ ;;=3^SCI L3 Incomplete Lesion,Sequela
+ ;;^UTILITY(U,$J,358.3,22212,1,4,0)
+ ;;=4^S34.123S
+ ;;^UTILITY(U,$J,358.3,22212,2)
+ ;;=^5025231
+ ;;^UTILITY(U,$J,358.3,22213,0)
+ ;;=S34.124S^^73^957^14
+ ;;^UTILITY(U,$J,358.3,22213,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,21946,1,3,0)
- ;;=3^Sinusitis,Chronic,Unspec
- ;;^UTILITY(U,$J,358.3,21946,1,4,0)
- ;;=4^J32.9
- ;;^UTILITY(U,$J,358.3,21946,2)
- ;;=^5008207
- ;;^UTILITY(U,$J,358.3,21947,0)
- ;;=M48.02^^99^1117^15
- ;;^UTILITY(U,$J,358.3,21947,1,0)
+ ;;^UTILITY(U,$J,358.3,22213,1,3,0)
+ ;;=3^SCI L4 Incomplete Lesion,Sequela
+ ;;^UTILITY(U,$J,358.3,22213,1,4,0)
+ ;;=4^S34.124S
+ ;;^UTILITY(U,$J,358.3,22213,2)
+ ;;=^5025234
+ ;;^UTILITY(U,$J,358.3,22214,0)
+ ;;=S34.125S^^73^957^17
+ ;;^UTILITY(U,$J,358.3,22214,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,21947,1,3,0)
- ;;=3^Spinal stenosis, cervical region
- ;;^UTILITY(U,$J,358.3,21947,1,4,0)
- ;;=4^M48.02
- ;;^UTILITY(U,$J,358.3,21947,2)
- ;;=^5012089
+ ;;^UTILITY(U,$J,358.3,22214,1,3,0)
+ ;;=3^SCI L5 Incomplete Lesion,Sequela

@@ -1,126 +1,128 @@
-IBDEI15N ; ; 04-FEB-2020
- ;;3.0;IB ENCOUNTER FORM IMP/EXP;;FEB 04, 2020
+IBDEI15N ; ; 01-FEB-2022
+ ;;3.0;IB ENCOUNTER FORM IMP/EXP;;FEB 01, 2022
  Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,999) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
- ;;^UTILITY(U,$J,358.3,18569,0)
- ;;=E66.9^^91^947^6
- ;;^UTILITY(U,$J,358.3,18569,1,0)
+ ;;^UTILITY(U,$J,358.3,18747,1,4,0)
+ ;;=4^J20.3
+ ;;^UTILITY(U,$J,358.3,18747,2)
+ ;;=^5008189
+ ;;^UTILITY(U,$J,358.3,18748,0)
+ ;;=J20.7^^64^840^8
+ ;;^UTILITY(U,$J,358.3,18748,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,18569,1,3,0)
- ;;=3^Overweight or Obesity
- ;;^UTILITY(U,$J,358.3,18569,1,4,0)
- ;;=4^E66.9
- ;;^UTILITY(U,$J,358.3,18569,2)
- ;;=^5002832
- ;;^UTILITY(U,$J,358.3,18570,0)
- ;;=Z76.5^^91^947^3
- ;;^UTILITY(U,$J,358.3,18570,1,0)
+ ;;^UTILITY(U,$J,358.3,18748,1,3,0)
+ ;;=3^AC Bronchitis d/t Echovirus
+ ;;^UTILITY(U,$J,358.3,18748,1,4,0)
+ ;;=4^J20.7
+ ;;^UTILITY(U,$J,358.3,18748,2)
+ ;;=^5008193
+ ;;^UTILITY(U,$J,358.3,18749,0)
+ ;;=J20.1^^64^840^9
+ ;;^UTILITY(U,$J,358.3,18749,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,18570,1,3,0)
- ;;=3^Malingering
- ;;^UTILITY(U,$J,358.3,18570,1,4,0)
- ;;=4^Z76.5
- ;;^UTILITY(U,$J,358.3,18570,2)
- ;;=^5063302
- ;;^UTILITY(U,$J,358.3,18571,0)
- ;;=R41.83^^91^947^2
- ;;^UTILITY(U,$J,358.3,18571,1,0)
+ ;;^UTILITY(U,$J,358.3,18749,1,3,0)
+ ;;=3^AC Bronchitis d/t Hemophilus Influenzae
+ ;;^UTILITY(U,$J,358.3,18749,1,4,0)
+ ;;=4^J20.1
+ ;;^UTILITY(U,$J,358.3,18749,2)
+ ;;=^5008187
+ ;;^UTILITY(U,$J,358.3,18750,0)
+ ;;=J20.0^^64^840^10
+ ;;^UTILITY(U,$J,358.3,18750,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,18571,1,3,0)
- ;;=3^Borderline Intellectual Functioning
- ;;^UTILITY(U,$J,358.3,18571,1,4,0)
- ;;=4^R41.83
- ;;^UTILITY(U,$J,358.3,18571,2)
- ;;=^5019442
- ;;^UTILITY(U,$J,358.3,18572,0)
- ;;=Z56.82^^91^947^4
- ;;^UTILITY(U,$J,358.3,18572,1,0)
+ ;;^UTILITY(U,$J,358.3,18750,1,3,0)
+ ;;=3^AC Bronchitis d/t Mycoplasma Pneumoniae
+ ;;^UTILITY(U,$J,358.3,18750,1,4,0)
+ ;;=4^J20.0
+ ;;^UTILITY(U,$J,358.3,18750,2)
+ ;;=^5008186
+ ;;^UTILITY(U,$J,358.3,18751,0)
+ ;;=J20.8^^64^840^14
+ ;;^UTILITY(U,$J,358.3,18751,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,18572,1,3,0)
- ;;=3^Military Deployment Status,Current
- ;;^UTILITY(U,$J,358.3,18572,1,4,0)
- ;;=4^Z56.82
- ;;^UTILITY(U,$J,358.3,18572,2)
- ;;=^5063115
- ;;^UTILITY(U,$J,358.3,18573,0)
- ;;=Z62.811^^91^947^12
- ;;^UTILITY(U,$J,358.3,18573,1,0)
+ ;;^UTILITY(U,$J,358.3,18751,1,3,0)
+ ;;=3^AC Bronchitis d/t Specified Organisms
+ ;;^UTILITY(U,$J,358.3,18751,1,4,0)
+ ;;=4^J20.8
+ ;;^UTILITY(U,$J,358.3,18751,2)
+ ;;=^5008194
+ ;;^UTILITY(U,$J,358.3,18752,0)
+ ;;=J20.4^^64^840^11
+ ;;^UTILITY(U,$J,358.3,18752,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,18573,1,3,0)
- ;;=3^Personal Hx of Childhood Psychological Abuse
- ;;^UTILITY(U,$J,358.3,18573,1,4,0)
- ;;=4^Z62.811
- ;;^UTILITY(U,$J,358.3,18573,2)
- ;;=^5063154
- ;;^UTILITY(U,$J,358.3,18574,0)
- ;;=Z62.812^^91^947^10
- ;;^UTILITY(U,$J,358.3,18574,1,0)
+ ;;^UTILITY(U,$J,358.3,18752,1,3,0)
+ ;;=3^AC Bronchitis d/t Parainfluenza Virus
+ ;;^UTILITY(U,$J,358.3,18752,1,4,0)
+ ;;=4^J20.4
+ ;;^UTILITY(U,$J,358.3,18752,2)
+ ;;=^5008190
+ ;;^UTILITY(U,$J,358.3,18753,0)
+ ;;=J20.5^^64^840^12
+ ;;^UTILITY(U,$J,358.3,18753,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,18574,1,3,0)
- ;;=3^Personal Hx of Childhood Neglect
- ;;^UTILITY(U,$J,358.3,18574,1,4,0)
- ;;=4^Z62.812
- ;;^UTILITY(U,$J,358.3,18574,2)
- ;;=^5063155
- ;;^UTILITY(U,$J,358.3,18575,0)
- ;;=Z62.810^^91^947^11
- ;;^UTILITY(U,$J,358.3,18575,1,0)
+ ;;^UTILITY(U,$J,358.3,18753,1,3,0)
+ ;;=3^AC Bronchitis d/t Respiratory Syncytial Virus
+ ;;^UTILITY(U,$J,358.3,18753,1,4,0)
+ ;;=4^J20.5
+ ;;^UTILITY(U,$J,358.3,18753,2)
+ ;;=^5008191
+ ;;^UTILITY(U,$J,358.3,18754,0)
+ ;;=J20.6^^64^840^13
+ ;;^UTILITY(U,$J,358.3,18754,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,18575,1,3,0)
- ;;=3^Personal Hx of Childhood Phys/Sexual Abuse
- ;;^UTILITY(U,$J,358.3,18575,1,4,0)
- ;;=4^Z62.810
- ;;^UTILITY(U,$J,358.3,18575,2)
- ;;=^5063153
- ;;^UTILITY(U,$J,358.3,18576,0)
- ;;=Z91.83^^91^947^22
- ;;^UTILITY(U,$J,358.3,18576,1,0)
+ ;;^UTILITY(U,$J,358.3,18754,1,3,0)
+ ;;=3^AC Bronchitis d/t Rhinovirus
+ ;;^UTILITY(U,$J,358.3,18754,1,4,0)
+ ;;=4^J20.6
+ ;;^UTILITY(U,$J,358.3,18754,2)
+ ;;=^5008192
+ ;;^UTILITY(U,$J,358.3,18755,0)
+ ;;=J20.2^^64^840^15
+ ;;^UTILITY(U,$J,358.3,18755,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,18576,1,3,0)
- ;;=3^Wandering Associated w/ a Mental Disorder
- ;;^UTILITY(U,$J,358.3,18576,1,4,0)
- ;;=4^Z91.83
- ;;^UTILITY(U,$J,358.3,18576,2)
- ;;=^5063627
- ;;^UTILITY(U,$J,358.3,18577,0)
- ;;=Z91.412^^91^947^7
- ;;^UTILITY(U,$J,358.3,18577,1,0)
+ ;;^UTILITY(U,$J,358.3,18755,1,3,0)
+ ;;=3^AC Bronchitis d/t Streptococcus
+ ;;^UTILITY(U,$J,358.3,18755,1,4,0)
+ ;;=4^J20.2
+ ;;^UTILITY(U,$J,358.3,18755,2)
+ ;;=^5008188
+ ;;^UTILITY(U,$J,358.3,18756,0)
+ ;;=J20.9^^64^840^16
+ ;;^UTILITY(U,$J,358.3,18756,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,18577,1,3,0)
- ;;=3^Personal Hx of Adult Neglect
- ;;^UTILITY(U,$J,358.3,18577,1,4,0)
- ;;=4^Z91.412
- ;;^UTILITY(U,$J,358.3,18577,2)
- ;;=^5063621
- ;;^UTILITY(U,$J,358.3,18578,0)
- ;;=Z91.411^^91^947^9
- ;;^UTILITY(U,$J,358.3,18578,1,0)
+ ;;^UTILITY(U,$J,358.3,18756,1,3,0)
+ ;;=3^AC Bronchitis,Unspec
+ ;;^UTILITY(U,$J,358.3,18756,1,4,0)
+ ;;=4^J20.9
+ ;;^UTILITY(U,$J,358.3,18756,2)
+ ;;=^5008195
+ ;;^UTILITY(U,$J,358.3,18757,0)
+ ;;=H60.523^^64^840^17
+ ;;^UTILITY(U,$J,358.3,18757,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,18578,1,3,0)
- ;;=3^Personal Hx of Adult Psych Abuse
- ;;^UTILITY(U,$J,358.3,18578,1,4,0)
- ;;=4^Z91.411
- ;;^UTILITY(U,$J,358.3,18578,2)
- ;;=^5063620
- ;;^UTILITY(U,$J,358.3,18579,0)
- ;;=Z91.410^^91^947^8
- ;;^UTILITY(U,$J,358.3,18579,1,0)
+ ;;^UTILITY(U,$J,358.3,18757,1,3,0)
+ ;;=3^AC Chemical Otitis Externa,Bilateral
+ ;;^UTILITY(U,$J,358.3,18757,1,4,0)
+ ;;=4^H60.523
+ ;;^UTILITY(U,$J,358.3,18757,2)
+ ;;=^5006476
+ ;;^UTILITY(U,$J,358.3,18758,0)
+ ;;=H60.522^^64^840^18
+ ;;^UTILITY(U,$J,358.3,18758,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,18579,1,3,0)
- ;;=3^Personal Hx of Adult Phys/Sexual Abuse
- ;;^UTILITY(U,$J,358.3,18579,1,4,0)
- ;;=4^Z91.410
- ;;^UTILITY(U,$J,358.3,18579,2)
- ;;=^5063619
- ;;^UTILITY(U,$J,358.3,18580,0)
- ;;=Z75.3^^91^947^20
- ;;^UTILITY(U,$J,358.3,18580,1,0)
+ ;;^UTILITY(U,$J,358.3,18758,1,3,0)
+ ;;=3^AC Chemical Otitis Externa,Left Ear
+ ;;^UTILITY(U,$J,358.3,18758,1,4,0)
+ ;;=4^H60.522
+ ;;^UTILITY(U,$J,358.3,18758,2)
+ ;;=^5006475
+ ;;^UTILITY(U,$J,358.3,18759,0)
+ ;;=H60.521^^64^840^19
+ ;;^UTILITY(U,$J,358.3,18759,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,18580,1,3,0)
- ;;=3^Unavailable/Inaccessible to Health Care Facilities
- ;;^UTILITY(U,$J,358.3,18580,1,4,0)
- ;;=4^Z75.3
- ;;^UTILITY(U,$J,358.3,18580,2)
- ;;=^5063292
- ;;^UTILITY(U,$J,358.3,18581,0)
- ;;=Z75.4^^91^947^21
+ ;;^UTILITY(U,$J,358.3,18759,1,3,0)
+ ;;=3^AC Chemical Otitis Externa,Right Ear
+ ;;^UTILITY(U,$J,358.3,18759,1,4,0)
+ ;;=4^H60.521
+ ;;^UTILITY(U,$J,358.3,18759,2)
+ ;;=^5006474

@@ -1,5 +1,5 @@
-WVRPCGF1 ;ISP/AGP - APIs for Clinical Reminders ;10/22/2019
- ;;1.0;WOMEN'S HEALTH;**24**;Sep 30, 1998;Build 582
+WVRPCGF1 ;ISP/AGP - APIs for Clinical Reminders ;04/01/2021
+ ;;1.0;WOMEN'S HEALTH;**24,26**;Sep 30, 1998;Build 624
  ;
  ;
 ACOPY(REF,OUTPUT) ;Copy all the descendants of the array reference into a linear
@@ -31,9 +31,10 @@ ACOPY(REF,OUTPUT) ;Copy all the descendants of the array reference into a linear
  ;
  ;build error message array
 BLDMSG(PAT,SUBJ,NUM) ;
- N CNT,ERR,XMDUZ,XMSUB,XMTEXT,Y
+ N CNT,ERR,GROUP,XMDUZ,XMSUB,XMTEXT,Y
  K ^TMP("WV MSG",$J),XMY
- S CNT=0,XMDUZ=DUZ,XMSUB=SUBJ,XMTEXT="^TMP(""WV MSG"",$J,",XMY(DUZ)="",XMY("G.OR CACS")=""
+ S GROUP=$$GETMAILG^WVUTL4()
+ S CNT=0,XMDUZ=DUZ,XMSUB=SUBJ,XMTEXT="^TMP(""WV MSG"",$J,",XMY(DUZ)="",XMY("G."_GROUP)=""
  S NUM=NUM+1,^TMP("WV MSG",$J,NUM,0)="Patient DFN: "_PAT
  S NUM=NUM+1,^TMP("WV MSG",$J,NUM,0)="ERROR:"
  D ACOPY("WVERR","ERR()")
@@ -83,6 +84,9 @@ PRINT(RESULT,WVDFN,WVPURPTX) ;
  S DIWF="^WV(790.404,WVPURP,1,"
  S DIWF(1)=790
  S BY="INTERNAL(#.01)="_WVDFN
+ D GADD^WVUTL9(WVDFN) ;get current complete address
+ D SADD^WVUTL9(WVDFN) ;set complete address in File 790
+ D KVAR^WVUTL9 ;clean-up VADPT variables used
  D EN2^DIWF
  S GBL="^TMP(""WVLETTER"",$J,1,0)"
  S GBL=$NA(@GBL)
@@ -171,18 +175,35 @@ V7901(RESULT,DATA,PAT,FINDVAL) ;
  Q
  ;
 GETWVP(DFN,ITEM,TEXT) ;
- N ACCESS,CNT,DATE,ID,NODE,TCNT,TEMP,WVNTXT,X
+ N ACCESS,CNT,DATE,DIAGNS,ERROR,FUDATE,ID,NODE,PREVDT,PREVIEN,PREVDX,SECDX,TCNT,TEMP
+ N WVIENS,WVNTXT,WVRPTIEN,WVSECDXS,X
  S NODE=$G(^WV(790.1,+ITEM,0))
+ D RADCASE^WVALERTR(+ITEM,.DIAGNS,.WVIENS,.WVRPTIEN,.WVSECDXS)
  S TCNT=0
  S ACCESS=$P(NODE,U),TCNT=TCNT+1,TEXT(TCNT)="Accession #: "_ACCESS
  S TEMP=$P(NODE,U,4) I TEMP'="" D
  .S TCNT=TCNT+1,TEXT(TCNT)="Procedure: "_$P($G(^WV(790.2,TEMP,0)),U)
  S TEMP=$P(NODE,U,12) I TEMP'="" D
  .S TCNT=TCNT+1,TEXT(TCNT)="Date of Procedure: "_$$FMTE^XLFDT(TEMP)
+ I $P(NODE,U,14)="e" D  Q
+ .S TCNT=TCNT+1,TEXT(TCNT)="Outside Procedure marked ENTER IN ERROR"
+ S TCNT=TCNT+1,TEXT(TCNT)=""
  S TEMP=$P(NODE,U,5) I TEMP'="" D
  .S TCNT=TCNT+1,TEXT(TCNT)="Primary Result: "_$P($G(^WV(790.31,TEMP,0)),U)
- S TEMP=$P(NODE,U,6) I TEMP'="" D
- .S TCNT=TCNT+1,TEXT(TCNT)="Secondary Result: "_$P($G(^WV(790.31,TEMP,0)),U)
+ I $D(WVSECDXS)>1 D
+ .S SECDX="" F  S SECDX=$O(WVSECDXS(SECDX)) Q:SECDX=""  D
+ ..S TCNT=TCNT+1,TEXT(TCNT)="Secondary Result(s): "_SECDX
+ ;AGP TODO BEGIN display previous diagnosis if set
+ I $D(^WV(790.1,+ITEM,11,"D")) D
+ .S TCNT=TCNT+1,TEXT(TCNT)="Radiology report changed; prior report result was:"
+ .S PREVDT=""
+ .F  S PREVDT=$O(^WV(790.1,+ITEM,11,"D",PREVDT)) Q:PREVDT=""  D
+ ..S PREVIEN=0
+ ..F  S PREVIEN=$O(^WV(790.1,+ITEM,11,"D",PREVDT,PREVIEN)) Q:PREVIEN=""  D
+ ...S PREVDX=+$P($G(^WV(790.1,+ITEM,11,PREVIEN,0)),U) I PREVDX=0 Q
+ ...S TCNT=TCNT+1,TEXT(TCNT)=$P($G(^WV(790.31,PREVDX,0)),U)_"  changed on "_$$FMTE^XLFDT(PREVDT)
+ ;AGP TODO END
+ S TCNT=TCNT+1,TEXT(TCNT)=""
  I +$P(NODE,U,36)=1 S TCNT=TCNT+1,TEXT(TCNT)="Outside Report: True"
  I +$P(NODE,U,36)'=1 D
  .S TCNT=TCNT+1,TEXT(TCNT)="Radiology Case#: "_$P(NODE,U,15)
@@ -196,7 +217,11 @@ GETWVP(DFN,ITEM,TEXT) ;
  ..S TEMP="" F  S TEMP=$O(^WV(790.1,+ITEM,10,"DATE",DATE,TEMP)) Q:TEMP=""  D
  ...S TCNT=TCNT+1,TEXT(TCNT)=TEMP
  ...S ID=$O(^WV(790.1,+ITEM,10,"DATE",DATE,TEMP,"")) Q:ID=""
- ...I $G(^WV(790.1,+ITEM,10,ID,1))'="" S TCNT=TCNT+1,TEXT(TCNT)="Comment: "_$G(^WV(790.1,+ITEM,10,ID,1))
+ ...S ERROR=$S($P($G(^WV(790.1,+ITEM,10,ID,0)),U,5)="Y":1,1:0)
+ ...S FUDATE=+$P($G(^WV(790.1,+ITEM,10,ID,0)),U,6)
+ ...I FUDATE>0 S TEXT(TCNT)=TEXT(TCNT)_" by "_$$FMTE^XLFDT(FUDATE)
+ ...I ERROR S TEXT(TCNT)=TEXT(TCNT)_" marked ENTER IN ERROR"
+ ...I 'ERROR,$G(^WV(790.1,+ITEM,10,ID,1))'="" S TCNT=TCNT+1,TEXT(TCNT)="Comment: "_$G(^WV(790.1,+ITEM,10,ID,1))
  ;
  D GETWVN(DFN,ACCESS,.WVNTXT)
  S TCNT=TCNT+1,TEXT(TCNT)=""
@@ -204,32 +229,28 @@ GETWVP(DFN,ITEM,TEXT) ;
  Q
  ;
 GETWVN(DFN,ITEM,TEXT) ;
- N DATE,IEN,FIRST,METHOD,NAME,NODE,PURIEN,PUR,TCNT,TEMP,WHO
+ N DATE,IEN,ERROR,FIRST,METHOD,NAME,NODE,PURIEN,PUR,TCNT,TEMP,WHO
  S TCNT=0,FIRST=1
- S TCNT=TCNT+1,TEXT(TCNT)="Patient communication on file:"
+ S TCNT=TCNT+1,TEXT(TCNT)="Prior Patient communication details:"
  S IEN=0 F  S IEN=$O(^WV(790.4,"C",ITEM,IEN)) Q:IEN'>0  D
  .S NODE=$G(^WV(790.4,IEN,0))
+ .I $P(NODE,U,14)="e" Q
  .S PURIEN=$P(NODE,U,4) Q:PURIEN'>0
  .S PUR=$P($G(^WV(790.404,PURIEN,0)),U)
- .I PUR'="" D
- .. I FIRST=1 S TCNT=TCNT+1,TEXT(TCNT)=$$RJ^XLFSTR("Communication content: ",23)_PUR,FIRST=0 Q
- .. S TCNT=TCNT+1,TEXT(TCNT)=$$RJ^XLFSTR(" ",23)_PUR
- .;S TEMP=$P(NODE,U,3) I TEMP="" S TCNT=TCNT+1,TEXT(TCNT)="Communication method: Unable to contact the patient." Q
  .S TEMP=$P(NODE,U,3) I TEMP="" Q
- .;I TEMP'="" S TCNT=TCNT+1,TEXT(TCNT)="Communication method: "_$P($G(^WV(790.403,TEMP,0)),U)
- .I TEMP'="" S NAME=$P($G(^WV(790.403,TEMP,0)),U),METHOD(NAME)=""
- .I $P($G(^WV(790.4,IEN,1)),U)="" D  Q
- ..S DATE=+$P(NODE,U,8)
- ..;I +DATE>0 S TEXT(TCNT)=TEXT(TCNT)_" on "_$$FMTE^XLFDT(DATE) Q
- ..I +DATE>0 S METHOD(NAME)=U_$$FMTE^XLFDT(DATE) Q
- .;S NODE=$G(^WV(790.4,IEN,1)) I NODE'=U S TCNT=TCNT+1,TEXT(TCNT)="Communication detail: Spoke to "_$P(NODE,U)_" on "_$$FMTE^XLFDT($P(NODE,U,2))
- .S NODE=$G(^WV(790.4,IEN,1)) I NODE'=U S METHOD(NAME)=$P(NODE,U)_U_$$FMTE^XLFDT($P(NODE,U,2))
- I TCNT>1,$D(METHOD) D  Q
- .S NAME=$O(METHOD("")) S TCNT=TCNT+1,TEXT(TCNT)="Communication method: "_$P($G(^WV(790.403,TEMP,0)),U)
- .S WHO=$P(METHOD(NAME),U),DATE=$P(METHOD(NAME),U,2)
- .I DATE'="",WHO="" S TEXT(TCNT)=TEXT(TCNT)_" on "_$$FMTE^XLFDT(DATE) Q
- .I WHO'="" S TCNT=TCNT+1,TEXT(TCNT)="Communication detail: Spoke to "_WHO_" on "_DATE Q
- I TCNT>1,'$D(METHOD) S TCNT=TCNT+1,TEXT(TCNT)="Communication method: Unable to contact the patient." Q 
+ .I TEMP'="" S NAME=$P($G(^WV(790.403,TEMP,0)),U)
+ .S DATE=+$P(NODE,U,8)
+ .I $P($G(^WV(790.4,IEN,1)),U)'="" D  Q
+ ..;I +DATE>0 S METHOD(NAME)=U_$$FMTE^XLFDT(DATE) Q
+ ..;S NODE=$G(^WV(790.4,IEN,1)) I NODE'=U S TCNT=TCNT+1,TEXT(TCNT)="Communication detail: Spoke to "_$P(NODE,U)_" on "_$$FMTE^XLFDT($P(NODE,U,2))
+ ..;S NODE=$G(^WV(790.4,IEN,1)) I NODE'=U S TCNT=TCNT+1,TEXT(TCNT)="Spoke to "_$P(NODE,U)_" on "_$$FMTE^XLFDT($P(NODE,U,2)) Q
+ ..S NODE=$G(^WV(790.4,IEN,1)) I NODE'=U S METHOD("Spoke to "_$P(NODE,U)_" on "_$$FMTE^XLFDT($P(NODE,U,2)))="" Q
+ ..;S TCNT=TCNT+1,TEXT(TCNT)=NAME_$S(DATE>0:" "_$$FMTE^XLFDT(DATE),1:"")
+ ..S METHOD(NAME_$S(DATE>0:" "_$$FMTE^XLFDT(DATE),1:""))=""
+ .;S TCNT=TCNT+1,TEXT(TCNT)=NAME_$S(DATE>0:" "_$$FMTE^XLFDT(DATE),1:"")
+ .S METHOD(NAME_$S(DATE>0:" "_$$FMTE^XLFDT(DATE),1:""))=""
+ S TEMP="" F  S TEMP=$O(METHOD(TEMP)) Q:TEMP=""  D
+ .S TCNT=TCNT+1,TEXT(TCNT)=TEMP
  I TCNT=1 S TCNT=TCNT+1,TEXT(TCNT)="None on file"
  Q
  ;

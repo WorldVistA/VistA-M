@@ -1,128 +1,128 @@
-IBDEI1DY ; ; 04-FEB-2020
- ;;3.0;IB ENCOUNTER FORM IMP/EXP;;FEB 04, 2020
+IBDEI1DY ; ; 01-FEB-2022
+ ;;3.0;IB ENCOUNTER FORM IMP/EXP;;FEB 01, 2022
  Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,999) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
- ;;^UTILITY(U,$J,358.3,22146,1,0)
+ ;;^UTILITY(U,$J,358.3,22412,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,22146,1,3,0)
- ;;=3^Above the Knee Amputation,Left
- ;;^UTILITY(U,$J,358.3,22146,1,4,0)
- ;;=4^Z89.612
- ;;^UTILITY(U,$J,358.3,22146,2)
- ;;=^5063573
- ;;^UTILITY(U,$J,358.3,22147,0)
- ;;=Z89.611^^99^1129^2
- ;;^UTILITY(U,$J,358.3,22147,1,0)
+ ;;^UTILITY(U,$J,358.3,22412,1,3,0)
+ ;;=3^Rising PSA After Tx for Prostate CA
+ ;;^UTILITY(U,$J,358.3,22412,1,4,0)
+ ;;=4^R97.21
+ ;;^UTILITY(U,$J,358.3,22412,2)
+ ;;=^5139228
+ ;;^UTILITY(U,$J,358.3,22413,0)
+ ;;=R82.81^^73^961^85
+ ;;^UTILITY(U,$J,358.3,22413,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,22147,1,3,0)
- ;;=3^Above the Knee Amputation,Right
- ;;^UTILITY(U,$J,358.3,22147,1,4,0)
- ;;=4^Z89.611
- ;;^UTILITY(U,$J,358.3,22147,2)
- ;;=^5063572
- ;;^UTILITY(U,$J,358.3,22148,0)
- ;;=Z98.0^^99^1129^3
- ;;^UTILITY(U,$J,358.3,22148,1,0)
+ ;;^UTILITY(U,$J,358.3,22413,1,3,0)
+ ;;=3^Pyuria
+ ;;^UTILITY(U,$J,358.3,22413,1,4,0)
+ ;;=4^R82.81
+ ;;^UTILITY(U,$J,358.3,22413,2)
+ ;;=^101879
+ ;;^UTILITY(U,$J,358.3,22414,0)
+ ;;=I25.118^^73^961^8
+ ;;^UTILITY(U,$J,358.3,22414,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,22148,1,3,0)
- ;;=3^Anastomosis
- ;;^UTILITY(U,$J,358.3,22148,1,4,0)
- ;;=4^Z98.0
- ;;^UTILITY(U,$J,358.3,22148,2)
- ;;=^5063733
- ;;^UTILITY(U,$J,358.3,22149,0)
- ;;=Z98.61^^99^1129^5
- ;;^UTILITY(U,$J,358.3,22149,1,0)
+ ;;^UTILITY(U,$J,358.3,22414,1,3,0)
+ ;;=3^Athscl Hrt Dis of Native Cor Art w/ Oth Angina
+ ;;^UTILITY(U,$J,358.3,22414,1,4,0)
+ ;;=4^I25.118
+ ;;^UTILITY(U,$J,358.3,22414,2)
+ ;;=^5007110
+ ;;^UTILITY(U,$J,358.3,22415,0)
+ ;;=J44.0^^73^961^17
+ ;;^UTILITY(U,$J,358.3,22415,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,22149,1,3,0)
- ;;=3^Angioplasty,Coronary w/o Stent
- ;;^UTILITY(U,$J,358.3,22149,1,4,0)
- ;;=4^Z98.61
- ;;^UTILITY(U,$J,358.3,22149,2)
- ;;=^5063742
- ;;^UTILITY(U,$J,358.3,22150,0)
- ;;=Z95.5^^99^1129^4
- ;;^UTILITY(U,$J,358.3,22150,1,0)
+ ;;^UTILITY(U,$J,358.3,22415,1,3,0)
+ ;;=3^COPD w/ Lower Respiratory Infection
+ ;;^UTILITY(U,$J,358.3,22415,1,4,0)
+ ;;=4^J44.0
+ ;;^UTILITY(U,$J,358.3,22415,2)
+ ;;=^5008239
+ ;;^UTILITY(U,$J,358.3,22416,0)
+ ;;=J44.1^^73^961^16
+ ;;^UTILITY(U,$J,358.3,22416,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,22150,1,3,0)
- ;;=3^Angioplasty,Coronary w/ Stent
- ;;^UTILITY(U,$J,358.3,22150,1,4,0)
- ;;=4^Z95.5
- ;;^UTILITY(U,$J,358.3,22150,2)
- ;;=^5063673
- ;;^UTILITY(U,$J,358.3,22151,0)
- ;;=Z98.62^^99^1129^7
- ;;^UTILITY(U,$J,358.3,22151,1,0)
+ ;;^UTILITY(U,$J,358.3,22416,1,3,0)
+ ;;=3^COPD w/ Acute Exacerbation
+ ;;^UTILITY(U,$J,358.3,22416,1,4,0)
+ ;;=4^J44.1
+ ;;^UTILITY(U,$J,358.3,22416,2)
+ ;;=^5008240
+ ;;^UTILITY(U,$J,358.3,22417,0)
+ ;;=I50.22^^73^961^15
+ ;;^UTILITY(U,$J,358.3,22417,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,22151,1,3,0)
- ;;=3^Angioplasty,Peripheral Vascular w/o Stent
- ;;^UTILITY(U,$J,358.3,22151,1,4,0)
- ;;=4^Z98.62
- ;;^UTILITY(U,$J,358.3,22151,2)
- ;;=^5063743
- ;;^UTILITY(U,$J,358.3,22152,0)
- ;;=Z89.512^^99^1129^8
- ;;^UTILITY(U,$J,358.3,22152,1,0)
+ ;;^UTILITY(U,$J,358.3,22417,1,3,0)
+ ;;=3^CHF-Systolic (HFrEF),Chronic
+ ;;^UTILITY(U,$J,358.3,22417,1,4,0)
+ ;;=4^I50.22
+ ;;^UTILITY(U,$J,358.3,22417,2)
+ ;;=^5007241
+ ;;^UTILITY(U,$J,358.3,22418,0)
+ ;;=I50.32^^73^961^13
+ ;;^UTILITY(U,$J,358.3,22418,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,22152,1,3,0)
- ;;=3^Below the Knee Amputation,Left
- ;;^UTILITY(U,$J,358.3,22152,1,4,0)
- ;;=4^Z89.512
- ;;^UTILITY(U,$J,358.3,22152,2)
- ;;=^5063567
- ;;^UTILITY(U,$J,358.3,22153,0)
- ;;=Z89.511^^99^1129^9
- ;;^UTILITY(U,$J,358.3,22153,1,0)
+ ;;^UTILITY(U,$J,358.3,22418,1,3,0)
+ ;;=3^CHF-Diastolic (HFpEF),Chronic
+ ;;^UTILITY(U,$J,358.3,22418,1,4,0)
+ ;;=4^I50.32
+ ;;^UTILITY(U,$J,358.3,22418,2)
+ ;;=^5007245
+ ;;^UTILITY(U,$J,358.3,22419,0)
+ ;;=I50.42^^73^961^12
+ ;;^UTILITY(U,$J,358.3,22419,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,22153,1,3,0)
- ;;=3^Below the Knee Amputation,Right
- ;;^UTILITY(U,$J,358.3,22153,1,4,0)
- ;;=4^Z89.511
- ;;^UTILITY(U,$J,358.3,22153,2)
- ;;=^5063566
- ;;^UTILITY(U,$J,358.3,22154,0)
- ;;=Z98.82^^99^1129^11
- ;;^UTILITY(U,$J,358.3,22154,1,0)
+ ;;^UTILITY(U,$J,358.3,22419,1,3,0)
+ ;;=3^CHF-Combined Systolic & Diastolic,Chronic
+ ;;^UTILITY(U,$J,358.3,22419,1,4,0)
+ ;;=4^I50.42
+ ;;^UTILITY(U,$J,358.3,22419,2)
+ ;;=^5007249
+ ;;^UTILITY(U,$J,358.3,22420,0)
+ ;;=I50.84^^73^961^14
+ ;;^UTILITY(U,$J,358.3,22420,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,22154,1,3,0)
- ;;=3^Breast Implant (Bilat/Status Post)
- ;;^UTILITY(U,$J,358.3,22154,1,4,0)
- ;;=4^Z98.82
- ;;^UTILITY(U,$J,358.3,22154,2)
- ;;=^5063747
- ;;^UTILITY(U,$J,358.3,22155,0)
- ;;=Z98.86^^99^1129^10
- ;;^UTILITY(U,$J,358.3,22155,1,0)
+ ;;^UTILITY(U,$J,358.3,22420,1,3,0)
+ ;;=3^CHF-End Stage
+ ;;^UTILITY(U,$J,358.3,22420,1,4,0)
+ ;;=4^I50.84
+ ;;^UTILITY(U,$J,358.3,22420,2)
+ ;;=^5151391
+ ;;^UTILITY(U,$J,358.3,22421,0)
+ ;;=E11.22^^73^961^27
+ ;;^UTILITY(U,$J,358.3,22421,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,22155,1,3,0)
- ;;=3^Breast Implant (Bilat/Removed/Hx Of)
- ;;^UTILITY(U,$J,358.3,22155,1,4,0)
- ;;=4^Z98.86
- ;;^UTILITY(U,$J,358.3,22155,2)
- ;;=^5063751
- ;;^UTILITY(U,$J,358.3,22156,0)
- ;;=Z95.1^^99^1129^17
- ;;^UTILITY(U,$J,358.3,22156,1,0)
+ ;;^UTILITY(U,$J,358.3,22421,1,3,0)
+ ;;=3^DM Type 2 w/ Chronic Kidney Disease
+ ;;^UTILITY(U,$J,358.3,22421,1,4,0)
+ ;;=4^E11.22
+ ;;^UTILITY(U,$J,358.3,22421,2)
+ ;;=^5002630
+ ;;^UTILITY(U,$J,358.3,22422,0)
+ ;;=E11.21^^73^961^28
+ ;;^UTILITY(U,$J,358.3,22422,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,22156,1,3,0)
- ;;=3^Coronary Artery Bypass Graft
- ;;^UTILITY(U,$J,358.3,22156,1,4,0)
- ;;=4^Z95.1
- ;;^UTILITY(U,$J,358.3,22156,2)
- ;;=^5063669
- ;;^UTILITY(U,$J,358.3,22157,0)
- ;;=Z98.42^^99^1129^12
- ;;^UTILITY(U,$J,358.3,22157,1,0)
+ ;;^UTILITY(U,$J,358.3,22422,1,3,0)
+ ;;=3^DM Type 2 w/ Nephropathy,Unspec
+ ;;^UTILITY(U,$J,358.3,22422,1,4,0)
+ ;;=4^E11.21
+ ;;^UTILITY(U,$J,358.3,22422,2)
+ ;;=^5002629
+ ;;^UTILITY(U,$J,358.3,22423,0)
+ ;;=E11.42^^73^961^32
+ ;;^UTILITY(U,$J,358.3,22423,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,22157,1,3,0)
- ;;=3^Cataract Extraction,Left Eye
- ;;^UTILITY(U,$J,358.3,22157,1,4,0)
- ;;=4^Z98.42
- ;;^UTILITY(U,$J,358.3,22157,2)
- ;;=^5063738
- ;;^UTILITY(U,$J,358.3,22158,0)
- ;;=Z98.41^^99^1129^13
- ;;^UTILITY(U,$J,358.3,22158,1,0)
+ ;;^UTILITY(U,$J,358.3,22423,1,3,0)
+ ;;=3^DM Type 2 w/ Peripheral Neuropathy
+ ;;^UTILITY(U,$J,358.3,22423,1,4,0)
+ ;;=4^E11.42
+ ;;^UTILITY(U,$J,358.3,22423,2)
+ ;;=^5002646
+ ;;^UTILITY(U,$J,358.3,22424,0)
+ ;;=E11.43^^73^961^26
+ ;;^UTILITY(U,$J,358.3,22424,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,22158,1,3,0)
- ;;=3^Cataract Extraction,Right Eye
+ ;;^UTILITY(U,$J,358.3,22424,1,3,0)
+ ;;=3^DM Type 2 w/ Autonomic Neuropathy

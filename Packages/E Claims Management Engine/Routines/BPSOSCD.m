@@ -1,5 +1,5 @@
 BPSOSCD ;BHAM ISC/FCS/DRS/DLF - Set BPS() "RX" nodes for current medication ;06/01/2004
- ;;1.0;E CLAIMS MGMT ENGINE;**1,3,2,5,7,8,10,11,15,19,20,23,24**;JUN 2004;Build 43
+ ;;1.0;E CLAIMS MGMT ENGINE;**1,3,2,5,7,8,10,11,15,19,20,23,24,27**;JUN 2004;Build 15
  ;;Per VA Directive 6402, this routine should not be modified.
  ;
  ; reference to $$ACPHONE^IBNCPDPI supported by DBIA 4721
@@ -55,6 +55,7 @@ MEDINFO(IEN59,IEN5902,MEDN) ;
  .D NAMECOMP^XLFNAME(.X)
  .S BPS("RX",MEDN,"Prescriber Last Name")=X("FAMILY")
  .S BPS("RX",MEDN,"Prescriber First Name")=X("GIVEN")  ; NCPDP field 364-2J
+ .S BPS("RX",MEDN,"Prescriber Middle Name")=X("MIDDLE") ; NCPDP field E12-0F
  .S BPS("RX",MEDN,"Prescriber Phone #")=$$ACPHONE^IBNCPDPI ; DBIA 4721, Agent Cashier Phone Number
  .S BPS("RX",MEDN,"Prescriber Billing Location")=""
  .S NPI=$$NPI^BPSNPI("Individual_ID",+PROVIEN)

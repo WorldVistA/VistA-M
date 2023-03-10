@@ -1,5 +1,5 @@
 DGPTFM6 ;ALB/BOK/ADL/PLT - 601 SCREEN: PROCEDURE ENTER/EDIT ;21 JUL 88 @ 0900
- ;;5.3;Registration;**164,510,729,850,898,884**;Aug 13, 1993;Build 31
+ ;;5.3;Registration;**164,510,729,850,898,884,1057**;Aug 13, 1993;Build 17
  ;;Per VA Directive 6402, this routine should not be modified.
  ;
  ;;ADL;Update for CSV Project;;Mar 26, 2003
@@ -20,7 +20,9 @@ SET D MOB:'$D(P) S:'$D(DGZP) DGZP=1 S P(DGZP,1)=$S($D(P(DGZP,1)):P(DGZP,1),1:"")
 WRT ;
  N EFFDATE,IMPDATE
  D EFFDATE^DGPTIC10(PTF)
- G:'$D(^DGPT(PTF,"P",P(DGZP,1),0)) ^DGPTFM S DGPROCI=^(0) W @IOF,HEAD,?68 S Z="<601-"_DGZP_">" W @DGVI,Z,@DGVO,!! S (Y,L)=+P(DGZP),Z=1 D D^DGPTUTL,Z^DGPTFM5 W $J("Date of Proc:  ",32),Y,!,$J("Specialty:  ",35)
+ G:'$D(^DGPT(PTF,"P",P(DGZP,1),0)) ^DGPTFM S DGPROCI=^(0) W @IOF,HEAD,?68 S Z="<601-"_DGZP_">" W @DGVI,Z,@DGVO
+ W !,?30,"Initial Date Of Service: ",$$EXTERNAL^DILFD(45,14,,$G(DGIDTS))  ; DG*5.3*1057
+ W !! S (Y,L)=+P(DGZP),Z=1 D D^DGPTUTL,Z^DGPTFM5 W $J("Date of Proc:  ",32),Y,!,$J("Specialty:  ",35)
  W $S($D(^DIC(42.4,+$P(P(DGZP),U,2),0)):$P(^(0),U),1:""),! I $P(P(DGZP),U,4) W "   Number of Dialysis Treatments:  ",$P(P(DGZP),U,4),!
  W !! S Z=2 D Z^DGPTFM5 W "  Procedures: ",$$GETLABEL^DGPTIC10(EFFDATE,"P")
  ;F I=1:1:5 S L=$P(P(DGZP),U,4+I) I L D
@@ -92,12 +94,15 @@ BADDT(DGPROCD) ; Check patients admit date and entered date against census DATE
  ; checks to see if Patient has been discharged or has a closed census and returns false 
  ; If not discharged or closed and the admit and procedure date is within census date range then return false
  ; If admit date and procedure date is past the date range then return true
- S:$G(DGADM)="" DGADM=$P(^DGPT(DA(1),0),U,2) ; DGADM gets killed at end of option
- I $G(DGPROCD,0)<DGADM D EN^DDIOL("Not Before Admission ") Q 1
+ N DGADM,DGI,DGIDS  ; DG*5.3*1057
+ S DGADM=$P(^DGPT(DA(1),0),U,2) ; DG*5.3*1057
+ S DGIDS=$P(^DGPT(DA(1),0),U,14) ; initial date of service DG*5.3*1057
+ I DGIDS>0,$G(DGPROCD,0)<DGIDS D EN^DDIOL("Must be on or after initial date of service") Q 1  ; DG*5.3*1057
+ I DGIDS'>0,($G(DGPROCD,0)<$$FMADD^XLFDT(DGADM,,-72)) D EN^DDIOL("Must be at most 72 hrs prior to admission") Q 1  ; DG*5.3*1057
  I $G(DGPROCD,0)>($S($D(^DGPT(DA(1),70)):$S(+^(70):+^(70),1:9999999),1:9999999)) D EN^DDIOL("Not After discharge") Q 1
  I (DGADM>DGPTDAT) Q 0 ; Admit date is after census date
  I ($G(DGADM,$P(^DGPT(PTF,0),U,2))>DGPTDAT) Q 0 ; Admit date is after census date
- K DGI N DG601DT
+ N DG601DT
  F DGI=0:0 S DGI=$O(^DGPT("ACENSUS",PTF,DGI)) Q:'DGI  I $D(^DGPT(DGI,0)),$P(^(0),U,12)=PTF,$D(^DG(45.86,+$P(^(0),U,13),0)) S Y=+^(0) X ^DD("DD") S DGI(DGI)=Y
  Q:($D(DGI)>1) 0 ;Closed Census
  I $D(^DGPT(PTF,70)),$P($G(^(70)),U)'="" Q 0 ; Patient has been discharged

@@ -1,5 +1,5 @@
 IBNCPEV1 ;DALOI/SS - NCPDP BILLING EVENTS REPORT ;21-MAR-2006
- ;;2.0;INTEGRATED BILLING;**342,339,363,411,435,452,516,550**;21-MAR-94;Build 25
+ ;;2.0;INTEGRATED BILLING;**342,339,363,411,435,452,516,550,647**;21-MAR-94;Build 10
  ;;Per VA Directive 6402, this routine should not be modified.
  ;
  ;IA# 10155 is used to read ^DD(file,field,0) node
@@ -65,6 +65,8 @@ DSTAT(IBD0,IBD2,IBD3,IBD4,IBINS,IBD7) ; finish event/IB Billing Determination ev
  . I 'IB1ST W "," I $X>70 D CHKP^IBNCPEV Q:IBQ  W !?10 S IB1ST=1
  . W " ",IBSC,":",$S(IBEXMPV=1:"Yes",IBEXMPV=0:"No",IBEXMPV=2:"No Answer",1:"?") S IB1ST=0
  Q:IBQ
+ ;
+ I $P(IBD4,U,9) W !?10,"ACTIVE DUTY: Yes"
  ;
  I $P(IBD2,U,4) D CHKP^IBNCPEV Q:IBQ  W !?10,"DRUG:",$$DRUGNAM(+$P(IBD2,U,4))
  ;

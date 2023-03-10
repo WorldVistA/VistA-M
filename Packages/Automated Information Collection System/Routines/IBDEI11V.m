@@ -1,128 +1,120 @@
-IBDEI11V ; ; 04-FEB-2020
- ;;3.0;IB ENCOUNTER FORM IMP/EXP;;FEB 04, 2020
+IBDEI11V ; ; 01-FEB-2022
+ ;;3.0;IB ENCOUNTER FORM IMP/EXP;;FEB 01, 2022
  Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,999) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
- ;;^UTILITY(U,$J,358.3,16878,1,0)
+ ;;^UTILITY(U,$J,358.3,17063,1,4,0)
+ ;;=4^M47.814
+ ;;^UTILITY(U,$J,358.3,17063,2)
+ ;;=^5012071
+ ;;^UTILITY(U,$J,358.3,17064,0)
+ ;;=M47.817^^61^781^179
+ ;;^UTILITY(U,$J,358.3,17064,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,16878,1,3,0)
- ;;=3^Alcoholic Hepatitis w/ Ascites
- ;;^UTILITY(U,$J,358.3,16878,1,4,0)
- ;;=4^K70.11
- ;;^UTILITY(U,$J,358.3,16878,2)
- ;;=^5008786
- ;;^UTILITY(U,$J,358.3,16879,0)
- ;;=K70.10^^88^882^8
- ;;^UTILITY(U,$J,358.3,16879,1,0)
+ ;;^UTILITY(U,$J,358.3,17064,1,3,0)
+ ;;=3^Spondylosis w/o Myelopathy/Radiculopathy,Lumbosacral Region
+ ;;^UTILITY(U,$J,358.3,17064,1,4,0)
+ ;;=4^M47.817
+ ;;^UTILITY(U,$J,358.3,17064,2)
+ ;;=^5012074
+ ;;^UTILITY(U,$J,358.3,17065,0)
+ ;;=M48.50XA^^61^781^22
+ ;;^UTILITY(U,$J,358.3,17065,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,16879,1,3,0)
- ;;=3^Alcoholic Hepatitis w/o Ascites
- ;;^UTILITY(U,$J,358.3,16879,1,4,0)
- ;;=4^K70.10
- ;;^UTILITY(U,$J,358.3,16879,2)
- ;;=^5008785
- ;;^UTILITY(U,$J,358.3,16880,0)
- ;;=K70.2^^88^882^4
- ;;^UTILITY(U,$J,358.3,16880,1,0)
+ ;;^UTILITY(U,$J,358.3,17065,1,3,0)
+ ;;=3^Collapsed Vertebra NEC,Site Unspec,Init Encntr
+ ;;^UTILITY(U,$J,358.3,17065,1,4,0)
+ ;;=4^M48.50XA
+ ;;^UTILITY(U,$J,358.3,17065,2)
+ ;;=^5012159
+ ;;^UTILITY(U,$J,358.3,17066,0)
+ ;;=M48.50XD^^61^781^23
+ ;;^UTILITY(U,$J,358.3,17066,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,16880,1,3,0)
- ;;=3^Alcoholic Fibrosis & Sclerosis of Liver
- ;;^UTILITY(U,$J,358.3,16880,1,4,0)
- ;;=4^K70.2
- ;;^UTILITY(U,$J,358.3,16880,2)
- ;;=^5008787
- ;;^UTILITY(U,$J,358.3,16881,0)
- ;;=K70.30^^88^882^2
- ;;^UTILITY(U,$J,358.3,16881,1,0)
+ ;;^UTILITY(U,$J,358.3,17066,1,3,0)
+ ;;=3^Collapsed Vertebra NEC,Site Unspec,Subs Encntr
+ ;;^UTILITY(U,$J,358.3,17066,1,4,0)
+ ;;=4^M48.50XD
+ ;;^UTILITY(U,$J,358.3,17066,2)
+ ;;=^5012160
+ ;;^UTILITY(U,$J,358.3,17067,0)
+ ;;=M48.52XA^^61^781^24
+ ;;^UTILITY(U,$J,358.3,17067,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,16881,1,3,0)
- ;;=3^Alcoholic Cirrhosis of Liver w/o Ascites
- ;;^UTILITY(U,$J,358.3,16881,1,4,0)
- ;;=4^K70.30
- ;;^UTILITY(U,$J,358.3,16881,2)
- ;;=^5008788
- ;;^UTILITY(U,$J,358.3,16882,0)
- ;;=K70.31^^88^882^1
- ;;^UTILITY(U,$J,358.3,16882,1,0)
+ ;;^UTILITY(U,$J,358.3,17067,1,3,0)
+ ;;=3^Collapsed Vertebra,Cervical Region,Init Encntr
+ ;;^UTILITY(U,$J,358.3,17067,1,4,0)
+ ;;=4^M48.52XA
+ ;;^UTILITY(U,$J,358.3,17067,2)
+ ;;=^5012167
+ ;;^UTILITY(U,$J,358.3,17068,0)
+ ;;=M48.52XD^^61^781^25
+ ;;^UTILITY(U,$J,358.3,17068,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,16882,1,3,0)
- ;;=3^Alcoholic Cirrhosis of Liver w/ Ascites
- ;;^UTILITY(U,$J,358.3,16882,1,4,0)
- ;;=4^K70.31
- ;;^UTILITY(U,$J,358.3,16882,2)
- ;;=^5008789
- ;;^UTILITY(U,$J,358.3,16883,0)
- ;;=K70.9^^88^882^9
- ;;^UTILITY(U,$J,358.3,16883,1,0)
+ ;;^UTILITY(U,$J,358.3,17068,1,3,0)
+ ;;=3^Collapsed Vertebra,Cervical Region,Subs Encntr,Rt Healing
+ ;;^UTILITY(U,$J,358.3,17068,1,4,0)
+ ;;=4^M48.52XD
+ ;;^UTILITY(U,$J,358.3,17068,2)
+ ;;=^5012168
+ ;;^UTILITY(U,$J,358.3,17069,0)
+ ;;=M48.54XA^^61^781^33
+ ;;^UTILITY(U,$J,358.3,17069,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,16883,1,3,0)
- ;;=3^Alcoholic Liver Disease,Unspec
- ;;^UTILITY(U,$J,358.3,16883,1,4,0)
- ;;=4^K70.9
- ;;^UTILITY(U,$J,358.3,16883,2)
- ;;=^5008792
- ;;^UTILITY(U,$J,358.3,16884,0)
- ;;=K70.40^^88^882^6
- ;;^UTILITY(U,$J,358.3,16884,1,0)
+ ;;^UTILITY(U,$J,358.3,17069,1,3,0)
+ ;;=3^Collapsed Vertebra,Throacic Region,Init Encntr
+ ;;^UTILITY(U,$J,358.3,17069,1,4,0)
+ ;;=4^M48.54XA
+ ;;^UTILITY(U,$J,358.3,17069,2)
+ ;;=^5012175
+ ;;^UTILITY(U,$J,358.3,17070,0)
+ ;;=M48.54XD^^61^781^34
+ ;;^UTILITY(U,$J,358.3,17070,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,16884,1,3,0)
- ;;=3^Alcoholic Hepatic Failure w/o Coma
- ;;^UTILITY(U,$J,358.3,16884,1,4,0)
- ;;=4^K70.40
- ;;^UTILITY(U,$J,358.3,16884,2)
- ;;=^5008790
- ;;^UTILITY(U,$J,358.3,16885,0)
- ;;=K70.41^^88^882^5
- ;;^UTILITY(U,$J,358.3,16885,1,0)
+ ;;^UTILITY(U,$J,358.3,17070,1,3,0)
+ ;;=3^Collapsed Vertebra,Throacic Region,Subs Encntr
+ ;;^UTILITY(U,$J,358.3,17070,1,4,0)
+ ;;=4^M48.54XD
+ ;;^UTILITY(U,$J,358.3,17070,2)
+ ;;=^5012176
+ ;;^UTILITY(U,$J,358.3,17071,0)
+ ;;=M48.57XA^^61^781^26
+ ;;^UTILITY(U,$J,358.3,17071,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,16885,1,3,0)
- ;;=3^Alcoholic Hepatic Failure w/ Coma
- ;;^UTILITY(U,$J,358.3,16885,1,4,0)
- ;;=4^K70.41
- ;;^UTILITY(U,$J,358.3,16885,2)
- ;;=^5008791
- ;;^UTILITY(U,$J,358.3,16886,0)
- ;;=K73.0^^88^882^15
- ;;^UTILITY(U,$J,358.3,16886,1,0)
+ ;;^UTILITY(U,$J,358.3,17071,1,3,0)
+ ;;=3^Collapsed Vertebra,Lumbosacral Region,Init Encntr
+ ;;^UTILITY(U,$J,358.3,17071,1,4,0)
+ ;;=4^M48.57XA
+ ;;^UTILITY(U,$J,358.3,17071,2)
+ ;;=^5012187
+ ;;^UTILITY(U,$J,358.3,17072,0)
+ ;;=M48.57XD^^61^781^27
+ ;;^UTILITY(U,$J,358.3,17072,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,16886,1,3,0)
- ;;=3^Hepatitis, Chronic Persistent NEC
- ;;^UTILITY(U,$J,358.3,16886,1,4,0)
- ;;=4^K73.0
- ;;^UTILITY(U,$J,358.3,16886,2)
- ;;=^5008811
- ;;^UTILITY(U,$J,358.3,16887,0)
- ;;=K74.0^^88^882^14
- ;;^UTILITY(U,$J,358.3,16887,1,0)
+ ;;^UTILITY(U,$J,358.3,17072,1,3,0)
+ ;;=3^Collapsed Vertebra,Lumbosacral Region,Subs Encntr,Rt Healing
+ ;;^UTILITY(U,$J,358.3,17072,1,4,0)
+ ;;=4^M48.57XD
+ ;;^UTILITY(U,$J,358.3,17072,2)
+ ;;=^5012188
+ ;;^UTILITY(U,$J,358.3,17073,0)
+ ;;=M50.30^^61^781^14
+ ;;^UTILITY(U,$J,358.3,17073,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,16887,1,3,0)
- ;;=3^Hepatic Fibrosis
- ;;^UTILITY(U,$J,358.3,16887,1,4,0)
- ;;=4^K74.0
- ;;^UTILITY(U,$J,358.3,16887,2)
- ;;=^5008816
- ;;^UTILITY(U,$J,358.3,16888,0)
- ;;=K74.69^^88^882^10
- ;;^UTILITY(U,$J,358.3,16888,1,0)
+ ;;^UTILITY(U,$J,358.3,17073,1,3,0)
+ ;;=3^Cervical Disc Degeneration,Unspec Region
+ ;;^UTILITY(U,$J,358.3,17073,1,4,0)
+ ;;=4^M50.30
+ ;;^UTILITY(U,$J,358.3,17073,2)
+ ;;=^5012227
+ ;;^UTILITY(U,$J,358.3,17074,0)
+ ;;=M51.14^^61^781^55
+ ;;^UTILITY(U,$J,358.3,17074,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,16888,1,3,0)
- ;;=3^Cirrhosis of Liver,Oth
- ;;^UTILITY(U,$J,358.3,16888,1,4,0)
- ;;=4^K74.69
- ;;^UTILITY(U,$J,358.3,16888,2)
- ;;=^5008823
- ;;^UTILITY(U,$J,358.3,16889,0)
- ;;=K74.60^^88^882^11
- ;;^UTILITY(U,$J,358.3,16889,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,16889,1,3,0)
- ;;=3^Cirrhosis of Liver,Unspec
- ;;^UTILITY(U,$J,358.3,16889,1,4,0)
- ;;=4^K74.60
- ;;^UTILITY(U,$J,358.3,16889,2)
- ;;=^5008822
- ;;^UTILITY(U,$J,358.3,16890,0)
- ;;=K76.0^^88^882^12
- ;;^UTILITY(U,$J,358.3,16890,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,16890,1,3,0)
- ;;=3^Fatty Liver NEC
+ ;;^UTILITY(U,$J,358.3,17074,1,3,0)
+ ;;=3^Intvrt Disc Disorder w/ Radiculopathy,Thoracic Region
+ ;;^UTILITY(U,$J,358.3,17074,1,4,0)
+ ;;=4^M51.14
+ ;;^UTILITY(U,$J,358.3,17074,2)
+ ;;=^5012243
+ ;;^UTILITY(U,$J,358.3,17075,0)
+ ;;=M51.17^^61^781^54

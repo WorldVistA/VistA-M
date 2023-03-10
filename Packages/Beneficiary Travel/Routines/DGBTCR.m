@@ -1,5 +1,5 @@
-DGBTCR ;ALB/SCK - BENEFICIARY TRAVEL FORM 70-3542d VARIABLES ;6/11/93@09:30
- ;;1.0;Beneficiary Travel;**7,14,20,28,34**;September 25, 2001;Build 3
+DGBTCR ;ALB/SCK - BENEFICIARY TRAVEL FORM 70-3542d VARIABLES ; 6/11/93@09:30
+ ;;1.0;Beneficiary Travel;**7,14,20,28,34,39**;September 25, 2001;Build 6
  ;Modification of AIVBTPRT / pmg / GRAND ISLAND ; 07 Jul 88 12:02 PM
 START Q:'$D(DGBTDT)
  N DGBTDIV ;dgbt*1.0*34 - new dgbtdiv rather than kill to preserve previous value
@@ -19,7 +19,7 @@ QUIT ;
 PRINT ;
  U IO D SET,PRINT^DGBTCR1,PRINT^DGBTCR2,KVAR^VADPT
  Q
-SET S DFN=$P(^DGBT(392,DGBTDT,0),"^",2) D 6^VADPT S (DGBTFCTY,DGBTTCTY)=""
+SET S DFN=$P(^DGBT(392,DGBTDT,0),"^",2) D 6^VADPT,RESADDR^DGBTUTL1(.DGBTADDR) S (DGBTFCTY,DGBTTCTY)=""  ;*39 - call to resaddr to get values for address
 NODES F I=0,"A","C","D","M","R","T" S DGBTVAR(I)=$S($D(^DGBT(392,DGBTDT,I)):^(I),1:"")
  I $D(^DG(43.1,$O(^DG(43.1,(9999999.99999-DGBTDT))),"BT")) S DGBTRATE=^("BT"),DGBTM7=$S($P(DGBTVAR("A"),"^",3)=1:$P(DGBTRATE,"^",5),1:$P(DGBTRATE,"^",3))
  I $P(DGBTVAR("D"),"^",4)]"" S DGBTCNA=$P(DGBTVAR("D"),"^",4) D CITY I DGBTCSZ[DGBTCNA D
@@ -29,7 +29,7 @@ NODES F I=0,"A","C","D","M","R","T" S DGBTVAR(I)=$S($D(^DGBT(392,DGBTDT,I)):^(I)
  I $P(DGBTVAR("T"),"^",4)]"" S DGBTCNA=$P(DGBTVAR("T"),U,4) D CITY^DGBTCR S:DGBTCSZ[DGBTCNA DGBTCSZ=DGBTCNA_", "_$S(+$P(DGBTVAR("T"),"^",5)>0:$P(^DIC(5,$P(DGBTVAR("T"),"^",5),0),U,2),1:"")_"  "_$P(DGBTVAR("T"),U,6) S DGBTTCTY=DGBTCSZ
 DIV S DGBTDIV=$P(DGBTVAR(0),"^",11) I +DGBTDIV S DGBTDIV=$P(^DG(40.8,DGBTDIV,0),"^",7) S (DGBTCC,DGBTST)=""
  I $D(^DIC(4,+DGBTDIV,0)) S DGBTINS=^(0),DGBTINS1=$S($D(^DIC(4,DGBTDIV,1)):^(1),1:""),DGBTINS2=$S(DGBTINS1]"":$P(DGBTINS1,"^",3)_",",1:"UNSPECIFIED")_" "_$S($D(^DIC(5,+$P(DGBTINS,U,2),0)):$P(^(0),U,2),1:"")_"  "_$P(DGBTINS1,"^",4)
- I VAPA(5)&(VAPA(7)) S DGBTCC=$S($D(^DIC(5,+VAPA(5),1,+VAPA(7),0)):$P(^(0),"^",3),1:""),DGBTST=$P(^DIC(5,+VAPA(5),0),"^",2)
+ I DGBTADDR(5)&(DGBTADDR(7)) S DGBTCC=$S($D(^DIC(5,+DGBTADDR(5),1,+DGBTADDR(7),0)):$P(^(0),"^",3),1:""),DGBTST=$P(^DIC(5,+DGBTADDR(5),0),"^",2) ;*39 - updated to use residential address
  D PID^VADPT6 S DGBTSSN=VA("PID"),DGBTDOB=$E(VADM(3),4,7)_($E(VADM(3),1,3)+1700)
  S DGBTSCP=$S($L($P(VAEL(3),"^",2)<3):"0",1:"")_$P(VAEL(3),"^",2)
 MILES S DGBTM6=$P(DGBTVAR("M"),"^")*$P(DGBTVAR("M"),"^",2)
@@ -50,8 +50,9 @@ CERT S VADAT("W")=DGBTDT D ^VADATE S DGBTM15=VADATE("E")
  S DGBTM17=$P($P(DGBTVAR("A"),"^",2),",",2)_" "_$P($P(DGBTVAR("A"),"^",2),",")
  Q
 CITY S DGBTCSZ=DGBTCNA
- S:VAPA(5)'="" DGBTCNU=$O(^DGBT(392.1,"ACS",DGBTCNA,+VAPA(5),0))
- I $D(DGBTCNU),(DGBTCNU'="") S DGBTCSZ=$P(^DGBT(392.1,DGBTCNU,0),"^")_", "_($P(^DIC(5,+VAPA(5),0),"^",2))_"  "_($P(^DGBT(392.1,DGBTCNU,0),"^",4))
+ D RESADDR^DGBTUTL1(.DGBTADDR) ;*39 - call to resaddr to get values for address
+ S:DGBTADDR(5)'="" DGBTCNU=$O(^DGBT(392.1,"ACS",DGBTCNA,+DGBTADDR(5),0)) ;*39 - updated to use residential address
+ I $D(DGBTCNU),(DGBTCNU'="") S DGBTCSZ=$P(^DGBT(392.1,DGBTCNU,0),"^")_", "_($P(^DIC(5,+DGBTADDR(5),0),"^",2))_"  "_($P(^DGBT(392.1,DGBTCNU,0),"^",4)) ;*39 - updated to use residential address
  Q
 QUE ;
  N I

@@ -1,13 +1,13 @@
-RAORDR2 ;ABV/SCR/MKN - Refer Pending/Hold Requests Reason for Request ; Oct 25, 2019@14:59:27
- ;;5.0;Radiology/Nuclear Medicine;**148,161**;Mar 16, 1998;Build 1
+RAORDR2 ;ABV/SCR/MKN - Refer Pending/Hold Requests Reason for Request ; Jul 08, 2022@13:00:02
+ ;;5.0;Radiology/Nuclear Medicine;**148,161,170,190**;Mar 16, 1998;Build 1
  ;
- ; Routine              IA          Type
+ ; Routine/File         IA          Type
  ; -------------------------------------
- ; DETAIL^ORWOR        TBR
+ ; DETAIL^ORWOR        NONE
  ; ^OR(100             5771,6475     (C)
  ;
  ;
-GETREAS ;
+GETREAS ;Get Reason
  N RAARRAY,RACOUNT,RAERR,RAFILE,RAI,RAL,RAMED,RANEXT,RARTRN1
  S RAIENS=RAOIFN_","
  S RAFILE=100.008 ;get order actions
@@ -33,15 +33,13 @@ GETREAS ;
  S RACOUNT=RACOUNT+2
  D GETINFO^RAORDR(.RAARAY) Q:RAQUIT
  S ORDIALOG("WP",RAWPN,1,RACOUNT,0)="  Justification for Community Care:"
- S RACOUNT=RACOUNT+1,ORDIALOG("WP",RAWPN,1,RACOUNT,0)="    "_$P(RAARAY("JUSTIFICATION"),U,2)
- I $G(RAARAY("JUSTIFICATION EXPLANATION"))]"" D  ;Medical Reason or other reason from main menu selection
- .K RAL D BRKLINE^RAORDR(.RAL,"    "_RAARAY("JUSTIFICATION EXPLANATION"),70)
+ S RACOUNT=RACOUNT+1
+ ;P170 - CC Justifications redone
+ S ORDIALOG("WP",RAWPN,1,RACOUNT,0)="    "_$P(RAREAS,U,2)
+ I $D(RAEXP) D
+ .K RAL D BRKLINE^RAORDR(.RAL,"    "_RAEXP,70)
  .D SETLINES
- I RAANS2 D  ;There is a sub-question answer
- .S RAMED=$G(RAARAY("JUSTIFICATION SUBMENU SELECTION")) D:RAMED]""
- ..K RAL D BRKLINE^RAORDR(.RAL,RAMED,70),SETLINES
- .S RAMED=$G(RAARAY("JUSTIFICATION SUBMENU EXPLANATION")) D:RAMED]""
- ..K RAL D BRKLINE^RAORDR(.RAL,RAMED,70),SETLINES
+ .Q
  S ORDIALOG("WP",RAWPN,1,RACOUNT+1,0)=""
  S RACOUNT=RACOUNT+2
  S ORDIALOG("WP",RAWPN,1,RACOUNT,0)="  Type of Service: "_$P(RAARAY("TYPEOFSERVICE"),U,2)
@@ -99,6 +97,31 @@ SETLINES ;
  S RAI="" F  S RAI=$O(RAL(RAI)) Q:'RAI  S RACOUNT=RACOUNT+1,ORDIALOG("WP",RAWPN,1,RACOUNT,0)="    "_RAL(RAI)
  Q
  ;
+GETILOC(RAITYP) ;p170 returns imaging location
+ ;It's possible for the order to not have a 'submit to' location, in which case we'll try to
+ ;determine a location based on imaging type and user's division or prompt the user.
+ ;Also come here if I-LOC from order has no CCC
+ ;RAITYP   :Imaging Type from the radiology order (#79.2)
+ ;Returns an Imaging Location (#79.1)
+ Q:'$D(RAITYP)
+ N RAOILOC,RAIL,RAILS,RAS,RASOC,RAUDIV S RAUDIV=DUZ(2) I $D(RAUDIV) D
+ .S RAIL="" F  Q:$G(RAOILOC)]""  S RAIL=$O(^RA(79,RAUDIV,"L","B",RAIL)) Q:RAIL=""  D
+ ..I RAITYP=$$GET1^DIQ(79.1,RAIL,6,"I")&($O(^RA(79.1,RAIL,"CON",0))) S RAOILOC=RAIL
+ ..Q
+ .Q
+ I $G(RAOILOC)="" D  ;still no location?  Lets prompt the user...
+ .D LOCSCRN
+ .I $D(RAILS) D
+ ..W !,"Please select the "_$$GET1^DIQ(79.2,RAITYP,.01)_" location you want to use.",!
+ ..S (RAS,RASOC)="" F  S RAS=$O(RAILS(RAS)) Q:RAS=""  D
+ ...S RASOC=RASOC_RAS
+ ...Q
+ ..N DIR,Y,DIRUT S DIR(0)="S^"_RASOC D ^DIR Q:$D(DIRUT)
+ ..S RAOILOC=$G(RAILS(+Y_":"_Y(0)_";"))
+ ..Q
+ .E  W !!,"There are no consult titles associated with "_$$GET1^DIQ(79.2,RAITYP,.01)_".",!,"Please contact your Radiology ADPAC." Q
+ .Q
+ Q $S($G(RAOILOC)>0:RAOILOC,1:0)
 CCCHK(RADA,RAY) ;p161 -input transform for entering cc consults to the Imaging Location
  ;Matched on I-TYPE for location and Naming Convention.
  ;Ex: COMMUNITY CARE-IMAGING GENERAL RADIOLOGY-AUTO
@@ -111,3 +134,12 @@ CCCHK(RADA,RAY) ;p161 -input transform for entering cc consults to the Imaging L
  I RAITYP="MAMMOGRAPHY" Q $S(($P(RASTR," DIAGNOSTIC-AUTO",1)=RACON)!($P(RASTR," SCREEN-AUTO",1)=RACON):1,1:0)
  E  Q $S($P(RASTR,"-AUTO",1)=RACON:1,1:0)
  ;
+LOCSCRN() ;Screen for user prompt to select the i-loc for the order referral
+ N RAI,RAC S (RAI,RAC)=0
+ F  S RAI=$O(^RA(79.1,"BIMG",RAITYP,RAI)) Q:RAI=""  D
+ .Q:$P(^RA(79.1,RAI,0),U,19)]""  ;inactive
+ .Q:'$O(^RA(79.1,RAI,"CON",0))  ;no CCC
+ .S RAC=RAC+1 ;ctr
+ .S RAILS(RAC_":"_$$GET1^DIQ(79.1,RAI,.01)_";")=RAI
+ .Q
+ Q

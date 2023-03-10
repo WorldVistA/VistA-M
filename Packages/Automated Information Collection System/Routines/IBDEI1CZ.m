@@ -1,126 +1,130 @@
-IBDEI1CZ ; ; 04-FEB-2020
- ;;3.0;IB ENCOUNTER FORM IMP/EXP;;FEB 04, 2020
+IBDEI1CZ ; ; 01-FEB-2022
+ ;;3.0;IB ENCOUNTER FORM IMP/EXP;;FEB 01, 2022
  Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,999) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
- ;;^UTILITY(U,$J,358.3,21711,1,4,0)
- ;;=4^R04.0
- ;;^UTILITY(U,$J,358.3,21711,2)
- ;;=^5019173
- ;;^UTILITY(U,$J,358.3,21712,0)
- ;;=H60.03^^99^1106^24
- ;;^UTILITY(U,$J,358.3,21712,1,0)
+ ;;^UTILITY(U,$J,358.3,21955,0)
+ ;;=N39.41^^70^933^76
+ ;;^UTILITY(U,$J,358.3,21955,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,21712,1,3,0)
- ;;=3^External Ear Abscess,Bilateral
- ;;^UTILITY(U,$J,358.3,21712,1,4,0)
- ;;=4^H60.03
- ;;^UTILITY(U,$J,358.3,21712,2)
- ;;=^5006438
- ;;^UTILITY(U,$J,358.3,21713,0)
- ;;=H60.02^^99^1106^25
- ;;^UTILITY(U,$J,358.3,21713,1,0)
+ ;;^UTILITY(U,$J,358.3,21955,1,3,0)
+ ;;=3^Urge Incontinence
+ ;;^UTILITY(U,$J,358.3,21955,1,4,0)
+ ;;=4^N39.41
+ ;;^UTILITY(U,$J,358.3,21955,2)
+ ;;=^5015680
+ ;;^UTILITY(U,$J,358.3,21956,0)
+ ;;=G44.1^^70^933^77
+ ;;^UTILITY(U,$J,358.3,21956,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,21713,1,3,0)
- ;;=3^External Ear Abscess,Left
- ;;^UTILITY(U,$J,358.3,21713,1,4,0)
- ;;=4^H60.02
- ;;^UTILITY(U,$J,358.3,21713,2)
- ;;=^5006437
- ;;^UTILITY(U,$J,358.3,21714,0)
- ;;=H60.01^^99^1106^26
- ;;^UTILITY(U,$J,358.3,21714,1,0)
+ ;;^UTILITY(U,$J,358.3,21956,1,3,0)
+ ;;=3^Vascular Headache NEC
+ ;;^UTILITY(U,$J,358.3,21956,1,4,0)
+ ;;=4^G44.1
+ ;;^UTILITY(U,$J,358.3,21956,2)
+ ;;=^5003934
+ ;;^UTILITY(U,$J,358.3,21957,0)
+ ;;=R53.1^^70^933^78
+ ;;^UTILITY(U,$J,358.3,21957,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,21714,1,3,0)
- ;;=3^External Ear Abscess,Right
- ;;^UTILITY(U,$J,358.3,21714,1,4,0)
- ;;=4^H60.01
- ;;^UTILITY(U,$J,358.3,21714,2)
- ;;=^5006436
- ;;^UTILITY(U,$J,358.3,21715,0)
- ;;=H60.13^^99^1106^27
- ;;^UTILITY(U,$J,358.3,21715,1,0)
+ ;;^UTILITY(U,$J,358.3,21957,1,3,0)
+ ;;=3^Weakness
+ ;;^UTILITY(U,$J,358.3,21957,1,4,0)
+ ;;=4^R53.1
+ ;;^UTILITY(U,$J,358.3,21957,2)
+ ;;=^5019516
+ ;;^UTILITY(U,$J,358.3,21958,0)
+ ;;=B02.9^^70^933^79
+ ;;^UTILITY(U,$J,358.3,21958,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,21715,1,3,0)
- ;;=3^External Ear Cellulitis,Bilateral
- ;;^UTILITY(U,$J,358.3,21715,1,4,0)
- ;;=4^H60.13
- ;;^UTILITY(U,$J,358.3,21715,2)
- ;;=^5006442
- ;;^UTILITY(U,$J,358.3,21716,0)
- ;;=H60.12^^99^1106^28
- ;;^UTILITY(U,$J,358.3,21716,1,0)
+ ;;^UTILITY(U,$J,358.3,21958,1,3,0)
+ ;;=3^Zoster w/o Complications
+ ;;^UTILITY(U,$J,358.3,21958,1,4,0)
+ ;;=4^B02.9
+ ;;^UTILITY(U,$J,358.3,21958,2)
+ ;;=^5000501
+ ;;^UTILITY(U,$J,358.3,21959,0)
+ ;;=K52.21^^70^933^36
+ ;;^UTILITY(U,$J,358.3,21959,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,21716,1,3,0)
- ;;=3^External Ear Cellulitis,Left
- ;;^UTILITY(U,$J,358.3,21716,1,4,0)
- ;;=4^H60.12
- ;;^UTILITY(U,$J,358.3,21716,2)
- ;;=^5006441
- ;;^UTILITY(U,$J,358.3,21717,0)
- ;;=H60.11^^99^1106^29
- ;;^UTILITY(U,$J,358.3,21717,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,21717,1,3,0)
- ;;=3^External Ear Cellulitis,Right
- ;;^UTILITY(U,$J,358.3,21717,1,4,0)
- ;;=4^H60.11
- ;;^UTILITY(U,$J,358.3,21717,2)
- ;;=^5006440
- ;;^UTILITY(U,$J,358.3,21718,0)
- ;;=G40.909^^99^1106^9
- ;;^UTILITY(U,$J,358.3,21718,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,21718,1,3,0)
- ;;=3^Epilepsy,Not Intractable w/o Status Epilepticus
- ;;^UTILITY(U,$J,358.3,21718,1,4,0)
- ;;=4^G40.909
- ;;^UTILITY(U,$J,358.3,21718,2)
- ;;=^5003865
- ;;^UTILITY(U,$J,358.3,21719,0)
- ;;=M77.9^^99^1106^8
- ;;^UTILITY(U,$J,358.3,21719,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,21719,1,3,0)
- ;;=3^Enthesopathy,Unspec
- ;;^UTILITY(U,$J,358.3,21719,1,4,0)
- ;;=4^M77.9
- ;;^UTILITY(U,$J,358.3,21719,2)
- ;;=^5013319
- ;;^UTILITY(U,$J,358.3,21720,0)
- ;;=K52.21^^99^1106^4
- ;;^UTILITY(U,$J,358.3,21720,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,21720,1,3,0)
- ;;=3^Enterocolitis Synd Induced by Food Protein
- ;;^UTILITY(U,$J,358.3,21720,1,4,0)
+ ;;^UTILITY(U,$J,358.3,21959,1,3,0)
+ ;;=3^Food Protein Induced Enterocolitis Syndrome
+ ;;^UTILITY(U,$J,358.3,21959,1,4,0)
  ;;=4^K52.21
- ;;^UTILITY(U,$J,358.3,21720,2)
+ ;;^UTILITY(U,$J,358.3,21959,2)
  ;;=^5138713
- ;;^UTILITY(U,$J,358.3,21721,0)
- ;;=K52.22^^99^1106^7
- ;;^UTILITY(U,$J,358.3,21721,1,0)
+ ;;^UTILITY(U,$J,358.3,21960,0)
+ ;;=K52.22^^70^933^37
+ ;;^UTILITY(U,$J,358.3,21960,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,21721,1,3,0)
- ;;=3^Enterocolopathy Induced by Food Protein
- ;;^UTILITY(U,$J,358.3,21721,1,4,0)
+ ;;^UTILITY(U,$J,358.3,21960,1,3,0)
+ ;;=3^Food Protein Induced Enteropathy
+ ;;^UTILITY(U,$J,358.3,21960,1,4,0)
  ;;=4^K52.22
- ;;^UTILITY(U,$J,358.3,21721,2)
+ ;;^UTILITY(U,$J,358.3,21960,2)
  ;;=^5138714
- ;;^UTILITY(U,$J,358.3,21722,0)
- ;;=N52.36^^99^1106^11
- ;;^UTILITY(U,$J,358.3,21722,1,0)
+ ;;^UTILITY(U,$J,358.3,21961,0)
+ ;;=K52.29^^70^933^5
+ ;;^UTILITY(U,$J,358.3,21961,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,21722,1,3,0)
- ;;=3^Erectile Dysfunction After Interstitial Seed Therapy
- ;;^UTILITY(U,$J,358.3,21722,1,4,0)
- ;;=4^N52.36
- ;;^UTILITY(U,$J,358.3,21722,2)
- ;;=^5138933
- ;;^UTILITY(U,$J,358.3,21723,0)
- ;;=N52.37^^99^1106^12
- ;;^UTILITY(U,$J,358.3,21723,1,0)
+ ;;^UTILITY(U,$J,358.3,21961,1,3,0)
+ ;;=3^Allergic/Dietetic Gastroenteritis/Colitis,Other
+ ;;^UTILITY(U,$J,358.3,21961,1,4,0)
+ ;;=4^K52.29
+ ;;^UTILITY(U,$J,358.3,21961,2)
+ ;;=^5138715
+ ;;^UTILITY(U,$J,358.3,21962,0)
+ ;;=R51.0^^70^933^39
+ ;;^UTILITY(U,$J,358.3,21962,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,21723,1,3,0)
- ;;=3^Erectile Dysfunction After Prostate Ablative Therapy
- ;;^UTILITY(U,$J,358.3,21723,1,4,0)
- ;;=4^N52.37
+ ;;^UTILITY(U,$J,358.3,21962,1,3,0)
+ ;;=3^Headache w/ Orthostatic Component,NEC
+ ;;^UTILITY(U,$J,358.3,21962,1,4,0)
+ ;;=4^R51.0
+ ;;^UTILITY(U,$J,358.3,21962,2)
+ ;;=^5159305
+ ;;^UTILITY(U,$J,358.3,21963,0)
+ ;;=R51.9^^70^933^40
+ ;;^UTILITY(U,$J,358.3,21963,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,21963,1,3,0)
+ ;;=3^Headache,Unspecified
+ ;;^UTILITY(U,$J,358.3,21963,1,4,0)
+ ;;=4^R51.9
+ ;;^UTILITY(U,$J,358.3,21963,2)
+ ;;=^5159306
+ ;;^UTILITY(U,$J,358.3,21964,0)
+ ;;=R05.9^^70^933^23
+ ;;^UTILITY(U,$J,358.3,21964,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,21964,1,3,0)
+ ;;=3^Cough,Unspec
+ ;;^UTILITY(U,$J,358.3,21964,1,4,0)
+ ;;=4^R05.9
+ ;;^UTILITY(U,$J,358.3,21964,2)
+ ;;=^5161232
+ ;;^UTILITY(U,$J,358.3,21965,0)
+ ;;=R45.851^^70^934^3
+ ;;^UTILITY(U,$J,358.3,21965,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,21965,1,3,0)
+ ;;=3^Suicidal Ideations
+ ;;^UTILITY(U,$J,358.3,21965,1,4,0)
+ ;;=4^R45.851
+ ;;^UTILITY(U,$J,358.3,21965,2)
+ ;;=^5019474
+ ;;^UTILITY(U,$J,358.3,21966,0)
+ ;;=T14.91XA^^70^934^4
+ ;;^UTILITY(U,$J,358.3,21966,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,21966,1,3,0)
+ ;;=3^Suicide Attempt,Initial Encntr
+ ;;^UTILITY(U,$J,358.3,21966,1,4,0)
+ ;;=4^T14.91XA
+ ;;^UTILITY(U,$J,358.3,21966,2)
+ ;;=^5151779
+ ;;^UTILITY(U,$J,358.3,21967,0)
+ ;;=T14.91XD^^70^934^6
+ ;;^UTILITY(U,$J,358.3,21967,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,21967,1,3,0)
+ ;;=3^Suicide Attempt,Subsequent Encntr

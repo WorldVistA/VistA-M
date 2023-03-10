@@ -1,6 +1,9 @@
 PRCPRUS2 ;WISC/VAC-usage increase,decrease usage report ; 11/29/06 2:04pm
-V ;;5.1;IFCAP;**98**;Oct 20, 2000;Build 37
- ;Per VHA Directive 2004-038, this routine should not be modified.
+V ;;5.1;IFCAP;**98,228** ; Oct 20, 2000;Build 3
+ ;Per VA Directive 6402, this routine should not be modified.
+ ;
+ ;PRC*5.1*228 Correct requested time period calculation
+ ;
  ;This routine is called from PRCPRUS1 and was modified to work only
  ;   with Primary and Secondary inventory points.  To call this
  ;   directly, first run ^PRCPUSEL to set location points
@@ -36,7 +39,7 @@ DESC ; Insert prompt for sort order by item number or name
  .   S ZTSAVE("GROUP*")="",ZTSAVE("^TMP($J,""PRCPURS1"",")="",ZTSAVE("TYP*")=""
  W !!,"<*> please wait <*>"
 DQ ;queue comes here
- K ^TMP($J,"USAGE2") S X1=ENDDT_"00",X2=STARTDT_"00" D ^%DTC S MONTHS=(X+12)\30 S:'MONTHS MONTHS=1
+ K ^TMP($J,"USAGE2") S X1=ENDDT_"00",X2=STARTDT_"00" D ^%DTC S MONTHS=(X+12)\30+1 S:'MONTHS MONTHS=1   ;PRC*5.1*228
  S ITEMDA=0 F  S ITEMDA=$O(^PRCP(445,PRCP("I"),1,ITEMDA)) Q:+ITEMDA=0  D
  .   S DATA2=$G(^PRCP(445,PRCP("I"),1,ITEMDA,0)) Q:DATA2=""
  .   S GROUP=+$P(DATA2,"^",21)

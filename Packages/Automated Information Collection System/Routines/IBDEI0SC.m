@@ -1,118 +1,126 @@
-IBDEI0SC ; ; 04-FEB-2020
- ;;3.0;IB ENCOUNTER FORM IMP/EXP;;FEB 04, 2020
+IBDEI0SC ; ; 01-FEB-2022
+ ;;3.0;IB ENCOUNTER FORM IMP/EXP;;FEB 01, 2022
  Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,999) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
- ;;^UTILITY(U,$J,358.3,12638,1,3,0)
- ;;=3^Diabetes d/t Underlying Condition w/ Foot Ulcer
- ;;^UTILITY(U,$J,358.3,12638,1,4,0)
- ;;=4^E08.621
- ;;^UTILITY(U,$J,358.3,12638,2)
- ;;=^5002534
- ;;^UTILITY(U,$J,358.3,12639,0)
- ;;=E09.621^^80^786^85
- ;;^UTILITY(U,$J,358.3,12639,1,0)
+ ;;^UTILITY(U,$J,358.3,12757,2)
+ ;;=^5005779
+ ;;^UTILITY(U,$J,358.3,12758,0)
+ ;;=H40.1320^^51^619^25
+ ;;^UTILITY(U,$J,358.3,12758,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,12639,1,3,0)
- ;;=3^Diabetes d/t Drug/Chemical Induced w/ Foot Ulcer
- ;;^UTILITY(U,$J,358.3,12639,1,4,0)
- ;;=4^E09.621
- ;;^UTILITY(U,$J,358.3,12639,2)
- ;;=^5002576
- ;;^UTILITY(U,$J,358.3,12640,0)
- ;;=I70.231^^80^786^22
- ;;^UTILITY(U,$J,358.3,12640,1,0)
+ ;;^UTILITY(U,$J,358.3,12758,1,3,0)
+ ;;=3^Pigmentary GLC,OS,Stage Unspec
+ ;;^UTILITY(U,$J,358.3,12758,1,4,0)
+ ;;=4^H40.1320
+ ;;^UTILITY(U,$J,358.3,12758,2)
+ ;;=^5005780
+ ;;^UTILITY(U,$J,358.3,12759,0)
+ ;;=H40.1321^^51^619^21
+ ;;^UTILITY(U,$J,358.3,12759,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,12640,1,3,0)
- ;;=3^Athscl Native Arteries of Right Leg w/ Thigh Ulcer
- ;;^UTILITY(U,$J,358.3,12640,1,4,0)
- ;;=4^I70.231
- ;;^UTILITY(U,$J,358.3,12640,2)
- ;;=^5007588
- ;;^UTILITY(U,$J,358.3,12641,0)
- ;;=I70.232^^80^786^23
- ;;^UTILITY(U,$J,358.3,12641,1,0)
+ ;;^UTILITY(U,$J,358.3,12759,1,3,0)
+ ;;=3^Pigmentary GLC,OS,Mild Stage
+ ;;^UTILITY(U,$J,358.3,12759,1,4,0)
+ ;;=4^H40.1321
+ ;;^UTILITY(U,$J,358.3,12759,2)
+ ;;=^5005781
+ ;;^UTILITY(U,$J,358.3,12760,0)
+ ;;=H40.1322^^51^619^22
+ ;;^UTILITY(U,$J,358.3,12760,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,12641,1,3,0)
- ;;=3^Athscl Native Arteries of Right Leg w/ Calf Ulcer
- ;;^UTILITY(U,$J,358.3,12641,1,4,0)
- ;;=4^I70.232
- ;;^UTILITY(U,$J,358.3,12641,2)
- ;;=^5007589
- ;;^UTILITY(U,$J,358.3,12642,0)
- ;;=I70.233^^80^786^24
- ;;^UTILITY(U,$J,358.3,12642,1,0)
+ ;;^UTILITY(U,$J,358.3,12760,1,3,0)
+ ;;=3^Pigmentary GLC,OS,Moderate Stage
+ ;;^UTILITY(U,$J,358.3,12760,1,4,0)
+ ;;=4^H40.1322
+ ;;^UTILITY(U,$J,358.3,12760,2)
+ ;;=^5005782
+ ;;^UTILITY(U,$J,358.3,12761,0)
+ ;;=H40.1323^^51^619^23
+ ;;^UTILITY(U,$J,358.3,12761,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,12642,1,3,0)
- ;;=3^Athscl Native Arteries of Right Leg w/ Ankle Ulcer
- ;;^UTILITY(U,$J,358.3,12642,1,4,0)
- ;;=4^I70.233
- ;;^UTILITY(U,$J,358.3,12642,2)
- ;;=^5007590
- ;;^UTILITY(U,$J,358.3,12643,0)
- ;;=I70.234^^80^786^25
- ;;^UTILITY(U,$J,358.3,12643,1,0)
+ ;;^UTILITY(U,$J,358.3,12761,1,3,0)
+ ;;=3^Pigmentary GLC,OS,Severe Stage
+ ;;^UTILITY(U,$J,358.3,12761,1,4,0)
+ ;;=4^H40.1323
+ ;;^UTILITY(U,$J,358.3,12761,2)
+ ;;=^5133495
+ ;;^UTILITY(U,$J,358.3,12762,0)
+ ;;=H40.1324^^51^619^24
+ ;;^UTILITY(U,$J,358.3,12762,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,12643,1,3,0)
- ;;=3^Athscl Native Arteries of Right Leg w/ Heel/Midfoot Ulcer
- ;;^UTILITY(U,$J,358.3,12643,1,4,0)
- ;;=4^I70.234
- ;;^UTILITY(U,$J,358.3,12643,2)
- ;;=^5007591
- ;;^UTILITY(U,$J,358.3,12644,0)
- ;;=I70.235^^80^786^26
- ;;^UTILITY(U,$J,358.3,12644,1,0)
+ ;;^UTILITY(U,$J,358.3,12762,1,3,0)
+ ;;=3^Pigmentary GLC,OS,Indeterminate Stage
+ ;;^UTILITY(U,$J,358.3,12762,1,4,0)
+ ;;=4^H40.1324
+ ;;^UTILITY(U,$J,358.3,12762,2)
+ ;;=^5005783
+ ;;^UTILITY(U,$J,358.3,12763,0)
+ ;;=H40.1330^^51^619^30
+ ;;^UTILITY(U,$J,358.3,12763,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,12644,1,3,0)
- ;;=3^Athscl Native Arteries of Right Leg w/ Foot Ulcer
- ;;^UTILITY(U,$J,358.3,12644,1,4,0)
- ;;=4^I70.235
- ;;^UTILITY(U,$J,358.3,12644,2)
- ;;=^5007592
- ;;^UTILITY(U,$J,358.3,12645,0)
- ;;=I70.238^^80^786^27
- ;;^UTILITY(U,$J,358.3,12645,1,0)
+ ;;^UTILITY(U,$J,358.3,12763,1,3,0)
+ ;;=3^Pigmentary GLC,OU,Stage Unspec
+ ;;^UTILITY(U,$J,358.3,12763,1,4,0)
+ ;;=4^H40.1330
+ ;;^UTILITY(U,$J,358.3,12763,2)
+ ;;=^5005784
+ ;;^UTILITY(U,$J,358.3,12764,0)
+ ;;=H40.1331^^51^619^26
+ ;;^UTILITY(U,$J,358.3,12764,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,12645,1,3,0)
- ;;=3^Athscl Native Arteries of Right Leg w/ Lower Leg Ulcer
- ;;^UTILITY(U,$J,358.3,12645,1,4,0)
- ;;=4^I70.238
- ;;^UTILITY(U,$J,358.3,12645,2)
- ;;=^5007593
- ;;^UTILITY(U,$J,358.3,12646,0)
- ;;=I70.239^^80^786^28
- ;;^UTILITY(U,$J,358.3,12646,1,0)
+ ;;^UTILITY(U,$J,358.3,12764,1,3,0)
+ ;;=3^Pigmentary GLC,OU,Mild Stage
+ ;;^UTILITY(U,$J,358.3,12764,1,4,0)
+ ;;=4^H40.1331
+ ;;^UTILITY(U,$J,358.3,12764,2)
+ ;;=^5005785
+ ;;^UTILITY(U,$J,358.3,12765,0)
+ ;;=H40.1332^^51^619^27
+ ;;^UTILITY(U,$J,358.3,12765,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,12646,1,3,0)
- ;;=3^Athscl Native Arteries of Right Leg w/ Ulcer,Unspec Site
- ;;^UTILITY(U,$J,358.3,12646,1,4,0)
- ;;=4^I70.239
- ;;^UTILITY(U,$J,358.3,12646,2)
- ;;=^5007594
- ;;^UTILITY(U,$J,358.3,12647,0)
- ;;=I70.241^^80^786^20
- ;;^UTILITY(U,$J,358.3,12647,1,0)
+ ;;^UTILITY(U,$J,358.3,12765,1,3,0)
+ ;;=3^Pigmentary GLC,OU,Moderate Stage
+ ;;^UTILITY(U,$J,358.3,12765,1,4,0)
+ ;;=4^H40.1332
+ ;;^UTILITY(U,$J,358.3,12765,2)
+ ;;=^5005786
+ ;;^UTILITY(U,$J,358.3,12766,0)
+ ;;=H40.1333^^51^619^28
+ ;;^UTILITY(U,$J,358.3,12766,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,12647,1,3,0)
- ;;=3^Athscl Native Arteries of Left Leg w/ Thigh Ulcer
- ;;^UTILITY(U,$J,358.3,12647,1,4,0)
- ;;=4^I70.241
- ;;^UTILITY(U,$J,358.3,12647,2)
- ;;=^5007595
- ;;^UTILITY(U,$J,358.3,12648,0)
- ;;=I70.242^^80^786^16
- ;;^UTILITY(U,$J,358.3,12648,1,0)
+ ;;^UTILITY(U,$J,358.3,12766,1,3,0)
+ ;;=3^Pigmentary GLC,OU,Severe Stage
+ ;;^UTILITY(U,$J,358.3,12766,1,4,0)
+ ;;=4^H40.1333
+ ;;^UTILITY(U,$J,358.3,12766,2)
+ ;;=^5005787
+ ;;^UTILITY(U,$J,358.3,12767,0)
+ ;;=H40.1334^^51^619^29
+ ;;^UTILITY(U,$J,358.3,12767,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,12648,1,3,0)
- ;;=3^Athscl Native Arteries of Left Leg w/ Calf Ulcer
- ;;^UTILITY(U,$J,358.3,12648,1,4,0)
- ;;=4^I70.242
- ;;^UTILITY(U,$J,358.3,12648,2)
- ;;=^5007596
- ;;^UTILITY(U,$J,358.3,12649,0)
- ;;=I70.243^^80^786^15
- ;;^UTILITY(U,$J,358.3,12649,1,0)
+ ;;^UTILITY(U,$J,358.3,12767,1,3,0)
+ ;;=3^Pigmentary GLC,OU,Indeterminate Stage
+ ;;^UTILITY(U,$J,358.3,12767,1,4,0)
+ ;;=4^H40.1334
+ ;;^UTILITY(U,$J,358.3,12767,2)
+ ;;=^5005788
+ ;;^UTILITY(U,$J,358.3,12768,0)
+ ;;=H40.1410^^51^619^35
+ ;;^UTILITY(U,$J,358.3,12768,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,12649,1,3,0)
- ;;=3^Athscl Native Arteries of Left Leg w/ Ankle Ulcer
- ;;^UTILITY(U,$J,358.3,12649,1,4,0)
- ;;=4^I70.243
+ ;;^UTILITY(U,$J,358.3,12768,1,3,0)
+ ;;=3^Pseudoexfoliative GLC,OD,Stage Unspec
+ ;;^UTILITY(U,$J,358.3,12768,1,4,0)
+ ;;=4^H40.1410
+ ;;^UTILITY(U,$J,358.3,12768,2)
+ ;;=^5138017
+ ;;^UTILITY(U,$J,358.3,12769,0)
+ ;;=H40.1411^^51^619^31
+ ;;^UTILITY(U,$J,358.3,12769,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,12769,1,3,0)
+ ;;=3^Pseudoexfoliative GLC,OD,Mild Stage
+ ;;^UTILITY(U,$J,358.3,12769,1,4,0)
+ ;;=4^H40.1411
+ ;;^UTILITY(U,$J,358.3,12769,2)
+ ;;=^5138018

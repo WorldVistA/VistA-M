@@ -1,5 +1,5 @@
 IBNCPDP1 ;OAK/ELZ - IB BILLING DETERMINATION PROCESSING FOR NEW RX REQUESTS ;5/22/08
- ;;2.0;INTEGRATED BILLING;**223,276,339,363,383,405,384,411,434,437,435,455,452,473,494,534,550,617,624,636**;21-MAR-94;Build 19
+ ;;2.0;INTEGRATED BILLING;**223,276,339,363,383,405,384,411,434,437,435,455,452,473,494,534,550,617,624,636,647,648,649**;21-MAR-94;Build 19
  ;;Per VA Directive 6402, this routine should not be modified.
  ;
  ; Reference to CL^SDCO21 supported by IA# 406
@@ -90,7 +90,7 @@ RX(DFN,IBD) ; pharmacy package call, passing in IBD by ref
  D GETINDIC^IBNCPUT2(+IBD("IEN"),.IBD)
  ; Process patient exemptions if any and if not already resolved
  S IBNEEDS=0 ;flag will be set to 1 if at least one of the questions wasn't answered
- I $G(IBD("SC/EI OVR"))'=1,'IBACDUTY D
+ I ($G(IBD("SC/EI OVR"))'=1&'IBACDUTY)&($G(IBD("ACT DTY OVR"))'=1) D
  . D CL^SDCO21(DFN,IBADT,"",.IBARR)
  . I $D(IBARR)>9 F IBX=2:1 S IBT=$P($T(EXEMPT+IBX),";;",2) Q:IBT=""  D:$D(IBARR(+IBT))
  . . I $G(IBD($P(IBT,U,2)))=0 Q
@@ -220,7 +220,11 @@ RATEPRIC ; determine rates/prices to use
 RXQ ; final processing
  ; set the 3rd piece of IBRES (default Vet)
  S $P(IBRES,U,3)=$S($L($P($G(IBRT),U,3)):$P(IBRT,U,3),1:"V")
- ;
+ ; If patient does not have active insurance and is TRICARE/CHAMPVA,
+ ; set the 3rd piece of IBRES to the patient type.
+ I $G(IBD("NO ECME INSURANCE")),((IBPTYP="C")!(IBPTYP="T")) D
+ . S $P(IBRES,U,3)=IBPTYP
+ . S IBD("PATIENT TYPE")=IBPTYP
  ; possibly add entries to files 366.14 and 366.15 (not for eligibility verification requests)
  I 'IBELIG D
  . I IBRES D START^IBNCPDP6(IBRXN_";"_IBFIL,$P(IBRES,U,3),+IBRT)

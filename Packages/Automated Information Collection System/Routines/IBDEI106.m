@@ -1,130 +1,122 @@
-IBDEI106 ; ; 04-FEB-2020
- ;;3.0;IB ENCOUNTER FORM IMP/EXP;;FEB 04, 2020
+IBDEI106 ; ; 01-FEB-2022
+ ;;3.0;IB ENCOUNTER FORM IMP/EXP;;FEB 01, 2022
  Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,999) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
- ;;^UTILITY(U,$J,358.3,16128,2)
- ;;=^5002482
- ;;^UTILITY(U,$J,358.3,16129,0)
- ;;=E05.90^^88^872^41
- ;;^UTILITY(U,$J,358.3,16129,1,0)
+ ;;^UTILITY(U,$J,358.3,16314,0)
+ ;;=F52.0^^61^772^62
+ ;;^UTILITY(U,$J,358.3,16314,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,16129,1,3,0)
- ;;=3^Thyrotoxicosis,Unspec w/o Thyrotoxic Crisis/Storm
- ;;^UTILITY(U,$J,358.3,16129,1,4,0)
- ;;=4^E05.90
- ;;^UTILITY(U,$J,358.3,16129,2)
- ;;=^5002492
- ;;^UTILITY(U,$J,358.3,16130,0)
- ;;=E05.91^^88^872^40
- ;;^UTILITY(U,$J,358.3,16130,1,0)
+ ;;^UTILITY(U,$J,358.3,16314,1,3,0)
+ ;;=3^Hypoactive Sexual Desire Disorder
+ ;;^UTILITY(U,$J,358.3,16314,1,4,0)
+ ;;=4^F52.0
+ ;;^UTILITY(U,$J,358.3,16314,2)
+ ;;=^5003618
+ ;;^UTILITY(U,$J,358.3,16315,0)
+ ;;=F52.22^^61^772^105
+ ;;^UTILITY(U,$J,358.3,16315,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,16130,1,3,0)
- ;;=3^Thyrotoxicosis,Unspec w/ Thyrotoxic Crisis/Storm
- ;;^UTILITY(U,$J,358.3,16130,1,4,0)
- ;;=4^E05.91
- ;;^UTILITY(U,$J,358.3,16130,2)
- ;;=^5002493
- ;;^UTILITY(U,$J,358.3,16131,0)
- ;;=E89.0^^88^872^32
- ;;^UTILITY(U,$J,358.3,16131,1,0)
+ ;;^UTILITY(U,$J,358.3,16315,1,3,0)
+ ;;=3^Sexual Arousal Disorder,Female
+ ;;^UTILITY(U,$J,358.3,16315,1,4,0)
+ ;;=4^F52.22
+ ;;^UTILITY(U,$J,358.3,16315,2)
+ ;;=^5003621
+ ;;^UTILITY(U,$J,358.3,16316,0)
+ ;;=F52.8^^61^772^106
+ ;;^UTILITY(U,$J,358.3,16316,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,16131,1,3,0)
- ;;=3^Postprocedural Hypothyroidism
- ;;^UTILITY(U,$J,358.3,16131,1,4,0)
- ;;=4^E89.0
- ;;^UTILITY(U,$J,358.3,16131,2)
- ;;=^5003035
- ;;^UTILITY(U,$J,358.3,16132,0)
- ;;=E03.2^^88^872^13
- ;;^UTILITY(U,$J,358.3,16132,1,0)
+ ;;^UTILITY(U,$J,358.3,16316,1,3,0)
+ ;;=3^Sexual Dysfnct Not d/t Substance/Known Physiological Cond
+ ;;^UTILITY(U,$J,358.3,16316,1,4,0)
+ ;;=4^F52.8
+ ;;^UTILITY(U,$J,358.3,16316,2)
+ ;;=^5003624
+ ;;^UTILITY(U,$J,358.3,16317,0)
+ ;;=F52.21^^61^772^35
+ ;;^UTILITY(U,$J,358.3,16317,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,16132,1,3,0)
- ;;=3^Hypothyroidism d/t Meds/Oth Exogenous Substances
- ;;^UTILITY(U,$J,358.3,16132,1,4,0)
- ;;=4^E03.2
- ;;^UTILITY(U,$J,358.3,16132,2)
- ;;=^5002471
- ;;^UTILITY(U,$J,358.3,16133,0)
- ;;=E03.9^^88^872^14
- ;;^UTILITY(U,$J,358.3,16133,1,0)
+ ;;^UTILITY(U,$J,358.3,16317,1,3,0)
+ ;;=3^Erectile Disorder,Male (Psychogenic)
+ ;;^UTILITY(U,$J,358.3,16317,1,4,0)
+ ;;=4^F52.21
+ ;;^UTILITY(U,$J,358.3,16317,2)
+ ;;=^5003620
+ ;;^UTILITY(U,$J,358.3,16318,0)
+ ;;=I12.9^^61^772^61
+ ;;^UTILITY(U,$J,358.3,16318,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,16133,1,3,0)
- ;;=3^Hypothyroidism,Unspec
- ;;^UTILITY(U,$J,358.3,16133,1,4,0)
- ;;=4^E03.9
- ;;^UTILITY(U,$J,358.3,16133,2)
- ;;=^5002476
- ;;^UTILITY(U,$J,358.3,16134,0)
- ;;=E06.0^^88^872^36
- ;;^UTILITY(U,$J,358.3,16134,1,0)
+ ;;^UTILITY(U,$J,358.3,16318,1,3,0)
+ ;;=3^Hypertensive Kidney Disease Chronic w/ Stg 1-4
+ ;;^UTILITY(U,$J,358.3,16318,1,4,0)
+ ;;=4^I12.9
+ ;;^UTILITY(U,$J,358.3,16318,2)
+ ;;=^5007066
+ ;;^UTILITY(U,$J,358.3,16319,0)
+ ;;=N04.9^^61^772^78
+ ;;^UTILITY(U,$J,358.3,16319,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,16134,1,3,0)
- ;;=3^Thyroiditis,Acute
- ;;^UTILITY(U,$J,358.3,16134,1,4,0)
- ;;=4^E06.0
- ;;^UTILITY(U,$J,358.3,16134,2)
- ;;=^2692
- ;;^UTILITY(U,$J,358.3,16135,0)
- ;;=E06.1^^88^872^37
- ;;^UTILITY(U,$J,358.3,16135,1,0)
+ ;;^UTILITY(U,$J,358.3,16319,1,3,0)
+ ;;=3^Nephrotic Syndrome w/ Unspec Morphologic Changes
+ ;;^UTILITY(U,$J,358.3,16319,1,4,0)
+ ;;=4^N04.9
+ ;;^UTILITY(U,$J,358.3,16319,2)
+ ;;=^5015540
+ ;;^UTILITY(U,$J,358.3,16320,0)
+ ;;=N02.9^^61^772^55
+ ;;^UTILITY(U,$J,358.3,16320,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,16135,1,3,0)
- ;;=3^Thyroiditis,Subacute
- ;;^UTILITY(U,$J,358.3,16135,1,4,0)
- ;;=4^E06.1
- ;;^UTILITY(U,$J,358.3,16135,2)
- ;;=^119376
- ;;^UTILITY(U,$J,358.3,16136,0)
- ;;=C73.^^88^872^19
- ;;^UTILITY(U,$J,358.3,16136,1,0)
+ ;;^UTILITY(U,$J,358.3,16320,1,3,0)
+ ;;=3^Hematuria w/ Unspec Morphologic Changes,Recurrent & Persistent
+ ;;^UTILITY(U,$J,358.3,16320,1,4,0)
+ ;;=4^N02.9
+ ;;^UTILITY(U,$J,358.3,16320,2)
+ ;;=^5015520
+ ;;^UTILITY(U,$J,358.3,16321,0)
+ ;;=N06.9^^61^772^95
+ ;;^UTILITY(U,$J,358.3,16321,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,16136,1,3,0)
- ;;=3^Malig Neop of Thyroid Gland
- ;;^UTILITY(U,$J,358.3,16136,1,4,0)
- ;;=4^C73.
- ;;^UTILITY(U,$J,358.3,16136,2)
- ;;=^267296
- ;;^UTILITY(U,$J,358.3,16137,0)
- ;;=E16.2^^88^872^10
- ;;^UTILITY(U,$J,358.3,16137,1,0)
+ ;;^UTILITY(U,$J,358.3,16321,1,3,0)
+ ;;=3^Proteinuria Isolated w/ Unspec Morphologic Lesion
+ ;;^UTILITY(U,$J,358.3,16321,1,4,0)
+ ;;=4^N06.9
+ ;;^UTILITY(U,$J,358.3,16321,2)
+ ;;=^5015558
+ ;;^UTILITY(U,$J,358.3,16322,0)
+ ;;=N05.9^^61^772^75
+ ;;^UTILITY(U,$J,358.3,16322,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,16137,1,3,0)
- ;;=3^Hypoglycemia,Unspec
- ;;^UTILITY(U,$J,358.3,16137,1,4,0)
- ;;=4^E16.2
- ;;^UTILITY(U,$J,358.3,16137,2)
- ;;=^5002708
- ;;^UTILITY(U,$J,358.3,16138,0)
- ;;=E20.0^^88^872^15
- ;;^UTILITY(U,$J,358.3,16138,1,0)
+ ;;^UTILITY(U,$J,358.3,16322,1,3,0)
+ ;;=3^Nephritic Syndrome w/ Unspec Morphologic Changes
+ ;;^UTILITY(U,$J,358.3,16322,1,4,0)
+ ;;=4^N05.9
+ ;;^UTILITY(U,$J,358.3,16322,2)
+ ;;=^5134086
+ ;;^UTILITY(U,$J,358.3,16323,0)
+ ;;=N07.9^^61^772^77
+ ;;^UTILITY(U,$J,358.3,16323,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,16138,1,3,0)
- ;;=3^Idiopathic Hypoparathyroidism
- ;;^UTILITY(U,$J,358.3,16138,1,4,0)
- ;;=4^E20.0
- ;;^UTILITY(U,$J,358.3,16138,2)
- ;;=^5002712
- ;;^UTILITY(U,$J,358.3,16139,0)
- ;;=E20.9^^88^872^11
- ;;^UTILITY(U,$J,358.3,16139,1,0)
+ ;;^UTILITY(U,$J,358.3,16323,1,3,0)
+ ;;=3^Nephropathy Hereditary w/ Unspec Morphologic Lesions
+ ;;^UTILITY(U,$J,358.3,16323,1,4,0)
+ ;;=4^N07.9
+ ;;^UTILITY(U,$J,358.3,16323,2)
+ ;;=^5015568
+ ;;^UTILITY(U,$J,358.3,16324,0)
+ ;;=N15.9^^61^772^102
+ ;;^UTILITY(U,$J,358.3,16324,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,16139,1,3,0)
- ;;=3^Hypoparathyroidism,Unspec
- ;;^UTILITY(U,$J,358.3,16139,1,4,0)
- ;;=4^E20.9
- ;;^UTILITY(U,$J,358.3,16139,2)
- ;;=^5002714
- ;;^UTILITY(U,$J,358.3,16140,0)
- ;;=E23.0^^88^872^12
- ;;^UTILITY(U,$J,358.3,16140,1,0)
+ ;;^UTILITY(U,$J,358.3,16324,1,3,0)
+ ;;=3^Renal Tubulo-Interstitial Disease,Unspec
+ ;;^UTILITY(U,$J,358.3,16324,1,4,0)
+ ;;=4^N15.9
+ ;;^UTILITY(U,$J,358.3,16324,2)
+ ;;=^5015596
+ ;;^UTILITY(U,$J,358.3,16325,0)
+ ;;=N17.9^^61^772^67
+ ;;^UTILITY(U,$J,358.3,16325,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,16140,1,3,0)
- ;;=3^Hypopituitarism
- ;;^UTILITY(U,$J,358.3,16140,1,4,0)
- ;;=4^E23.0
- ;;^UTILITY(U,$J,358.3,16140,2)
- ;;=^60685
- ;;^UTILITY(U,$J,358.3,16141,0)
- ;;=E27.1^^88^872^34
- ;;^UTILITY(U,$J,358.3,16141,1,0)
- ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,16325,1,3,0)
+ ;;=3^Kidney Failure,Acute,Unspec
+ ;;^UTILITY(U,$J,358.3,16325,1,4,0)
+ ;;=4^N17.9

@@ -1,5 +1,5 @@
 YTS ;SLC/DKG,TGA,HIOFO/FT - START TESTS, QUESTIONNAIRES & REPORTS ;9/29/11 17:01
- ;;5.01;MENTAL HEALTH;**37,54,60**;Dec 30, 1994;Build 47
+ ;;5.01;MENTAL HEALTH;**37,54,60,187**;Dec 30, 1994;Build 73
  ;
  ;Reference to ^XUSEC( supported by DBIA #10076
  ;Reference to ^DPT( supported by DBIA #10035
@@ -20,7 +20,7 @@ RPT ; Called by MENU option YSPRINT
  Q  D ^YSLRP G:YSDFN<1 END S YSNO=1 D NX G ^YTDP
 NX ;
  S %=$H>21549+$H-.1,%Y=%\365.25+141,%=%#365.25\1,YSPTD=%+306#(%Y#4=0+365)#153#61#31+1,YSPTM=%-YSPTD\29+1,Y=%Y_"00"+YSPTM_"00"+YSPTD,YSDT(0)=$$FMTE^XLFDT(Y,"5ZD")
- S YSSX=YSSEX,YSBL="           ",YSHDR=YSSSN_"  "_YSNM_YSBL_YSBL_YSBL,YSHDR=$E(YSHDR,1,44)_YSSX_" AGE "_YSAGE_" "_YSDT(0),YSHD=DT
+ S YSSX=YSSEX,YSBL="           ",YSHDR=$$MASKSSN(YSSSN)_"  "_YSNM_YSBL_YSBL_YSBL,YSHDR=$E(YSHDR,1,44)_YSSX_" AGE "_YSAGE_" "_YSDT(0),YSHD=DT
  S YSRSLMT=$P($G(^YSA(602,1,0)),U,3)
  I $G(A9)="A" G NX1
  W @IOF,!!?2,YSHDR
@@ -93,3 +93,5 @@ MMPI ; Called by YTAR -> MMPI msg.
  .  W !,"instrument will be administered in its place.",!
  .  S YSTESTN="MMPI2"
  Q
+MASKSSN(YSSSN) ; return only last 4 of SSN
+ Q "xxx-xx-"_$E(YSSSN,$L(YSSSN)-3,$L(YSSSN))

@@ -1,5 +1,5 @@
 MAGNU003 ;WOIFO/NST - Misc fuctions for image list ; 16 Jan 2018 3:42 AM
- ;;3.0;IMAGING;**185**;Mar 19, 2002;Build 2002;Feb 28, 2011
+ ;;3.0;IMAGING;**185,269**;Mar 19, 2002;Build 8;Feb 28, 2011
  ;; Per VHA Directive 2004-038, this routine should not be modified.
  ;; +---------------------------------------------------------------+
  ;; | Property of the US Government.                                |
@@ -168,7 +168,9 @@ RACPRS(REFIEN) ; Return Radiology CRPS context by Report IEN in file #74
  I REFIEN'>0 Q ""
  N DAYCASE,CASE,DATETIME,INVDAT,ENT,CONTEXT
  S DAYCASE=$$GET1^DIQ(74,REFIEN,.01)
+ Q:DAYCASE="" "" ;*ZEB 269 prevent subscript error if study deleted
  S DFN=$$GET1^DIQ(74,REFIEN,2,"I")
+ Q:DFN="" "" ;*ZEB 269 prevent subscript error if study deleted
  S DATETIME=$$GET1^DIQ(74,REFIEN,3,"I")
  S INVDAT=9999999.9999-DATETIME
  S CASE=$$GET1^DIQ(74,REFIEN,4)

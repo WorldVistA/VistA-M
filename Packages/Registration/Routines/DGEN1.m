@@ -1,25 +1,15 @@
-DGEN1 ;ALB/RMO - Patient Enrollment Protocols;16 JUN 1997 01:30 pm
- ;;5.3;Registration;**121,147,624**;08/13/93
+DGEN1 ;ALB/RMO,RN - Patient Enrollment Protocols;16 JUN 1997 01:30 pm ; 17 Dec 2014  4:04 PM
+ ;;5.3;Registration;**121,147,624,1027**;08/13/93;Build 70
  ;
 EP ;Entry point for DGEN ENROLL PATIENT protocol 
+ ; Disabled the DGEN PATIENT ENROLLEMNT protocol(EP) with DG*5.3*1027
  ; Input  -- DFN      Patient IEN
  ; Output -- VALMBCK  R   =Refresh screen
  ;
  ;send an enrollment/eligibility query
- I $$SEND^DGENQRY1(DFN) W !!,"Enrollment/Eligibility Query sent...",!!
- ;
- N DGENOUT
- S VALMBCK=""
- D FULL^VALM1
- ;
- ;Enroll patient
- I '$$ENRPAT^DGEN(DFN,.DGENOUT) D
- . I '$G(DGENOUT) D
- . . W !!,">>> Patient enrollment record was not created."
- . . D PAUSE^VALM1
- ELSE  D
- . ;Re-build enrollment screen
- . D BLD^DGENL
+ W !!,">>> Use the Enrollment System to complete the enrollment process."
+ D PAUSE^VALM1
+ D BLD^DGENL
  D MESSAGE^DGENL(DFN)
  S VALMBCK="R"
  Q

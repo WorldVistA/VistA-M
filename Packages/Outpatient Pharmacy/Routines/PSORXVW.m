@@ -1,14 +1,15 @@
-PSORXVW ;BHAM ISC/SAB - listman view of a prescription ;6/7/12 7:00pm
- ;;7.0;OUTPATIENT PHARMACY;**14,35,46,96,103,88,117,131,146,156,185,210,148,233,260,264,281,359,385,400,391,313,427,504**;DEC 1997;Build 15
- ;External reference to File ^PS(55 supported by DBIA 2228
- ;External reference to ^PS(50.7 supported by DBIA 2223
- ;External reference ^PSDRUG( supported by DBIA 221
- ;External reference to ^VA(200 supported by DBIA 10060
- ;External reference to ^SC supported by DBIA 10040
- ;External reference to ^DPT supported by DBIA 10035
- ;External reference to ^PS(50.606 supported by DBIA 2174
- ;External reference to GMRADPT supported by DBIA 10099
- ;External reference to $$BADADR^DGUTL3 supported by DBIA 4080
+PSORXVW ;BIR/SAB - ListMan View of a Prescription ;Dec 13, 2021@09:48
+ ;;7.0;OUTPATIENT PHARMACY;**14,35,46,96,103,88,117,131,146,156,185,210,148,233,260,264,281,359,385,400,391,313,427,504,622,441,651**;DEC 1997;Build 30
+ ; Reference to ^PS(55 in ICR #2228
+ ; Reference to ^PS(50.7 in ICR #2223
+ ; Reference to ^PSDRUG( in ICR #221
+ ; Reference to ^VA(200 in ICR #10060
+ ; Reference to ^SC in ICR #10040
+ ; Reference to ^DPT in ICR #10035
+ ; Reference to ^PS(50.606 in ICR #2174
+ ; Reference to GMRADPT in ICR #10099
+ ; Reference to $$BADADR^DGUTL3 in ICR #4080
+ ; Reference to $$POSTSHRT^WVRPCOR in ICR #6174
  ;
  S PS="VIEW"
 A1 ; - Prescription prompt
@@ -36,6 +37,7 @@ DP ; DBIA #4711 entry point from ECME
  S ^TMP("PSOHDR",$J,6,0)=$S(+$P(WT,"^",8):$P(WT,"^",9)_" ("_$P(WT,"^")_")",1:"_______ (______)")
  S ^TMP("PSOHDR",$J,7,0)=$S($P(HT,"^",8):$P(HT,"^",9)_" ("_$P(HT,"^")_")",1:"_______ (______)") K VM,WT,HT S PSOHD=7
  S GMRA="0^0^111" D EN1^GMRADPT S ^TMP("PSOHDR",$J,8,0)=+$G(GMRAL)
+ S ^TMP("PSOHDR",$J,14,0)=$$POSTSHRT^WVRPCOR(PSODFN)
  D DEM^VADPT I +VADM(6) D
  .S SSN=$P(^DPT(PSODFN,0),"^",9) W !,$C(7),?10,$P(^DPT(PSODFN,0),"^")_" ("_$E(SSN,1,3)_"-"_$E(SSN,4,5)_"-"_$E(SSN,6,9)_") DIED "_$P(VADM(6),"^",2),!
  .W "All Active Medications will be Autocanceled!",! H 2 S PSODEATH=1
@@ -64,7 +66,9 @@ DP ; DBIA #4711 entry point from ECME
  .. S MIG=^PSRX(RXN,"INS1",I,0)
  .. D WORDWRAP^PSOUTLA2(MIG,.IEN,$NA(^TMP("PSOAL",$J)),21)
  K MIG,SG
- I $P($G(^PS(55,PSODFN,"LAN")),"^") S IEN=IEN+1,^TMP("PSOAL",$J,IEN,0)="  Other Pat. Instruc: "_$S($G(^PSRX(RXN,"INSS"))]"":^PSRX(RXN,"INSS"),1:"")
+ S IEN=IEN+1,^TMP("PSOAL",$J,IEN,0)="         Indications: "_$P($G(^PSRX(RXN,"IND")),"^")  ;*441-IND
+ I $P($G(^PS(55,PSODFN,"LAN")),"^") S IEN=IEN+1,^TMP("PSOAL",$J,IEN,0)="  Other Pat. Instruc: "_$S($G(^PSRX(RXN,"INSS"))]"":^PSRX(RXN,"INSS"),1:"") D
+ . S IEN=IEN+1,^TMP("PSOAL",$J,IEN,0)="   Other Indications: "_$P($G(^PSRX(RXN,"IND")),"^",3)  ;*441-IND
  S IEN=IEN+1,^TMP("PSOAL",$J,IEN,0)="                 SIG:"
  I '$P($G(^PSRX(RXN,"SIG")),"^",2) D  G PTST
  . S X=$P($G(^PSRX(RXN,"SIG")),"^") D SIGONE^PSOHELP S SIG=$E($G(INS1),2,250)
@@ -78,8 +82,8 @@ PTST S $P(RN," ",25)=" ",PTST=$S($G(^PS(53,+$P(RX0,"^",3),0))]"":$P($G(^PS(53,+$
  S ^TMP("PSOAL",$J,IEN,0)="      Patient Status: "_PTST_$E(RN,$L(PTST)+1,25)
  S IEN=IEN+1,^TMP("PSOAL",$J,IEN,0)="          Issue Date: "_$E($P(RX0,"^",13),4,5)_"/"_$E($P(RX0,"^",13),6,7)_"/"_$E($P(RX0,"^",13),2,3)
  S ^TMP("PSOAL",$J,IEN,0)=^TMP("PSOAL",$J,IEN,0)_"                 Fill Date: "_$E($P(RX2,"^",2),4,5)_"/"_$E($P(RX2,"^",2),6,7)_"/"_$E($P(RX2,"^",2),2,3)
- S ROU=$S($P(RX0,"^",11)="W":"Window",1:"Mail")
- S REFL=$P(RX0,"^",9),I=0 F  S I=$O(^PSRX(RXN,1,I)) Q:'I  S REFL=REFL-1,ROU=$S($P(^PSRX(RXN,1,I,0),"^",2)="W":"Window",1:"Mail")
+ S ROU=$S($P(RX0,"^",11)="W":"Window",$P(RX0,"^",11)="P":"Parked",1:"Mail")  ;441 PAPI
+ S REFL=$P(RX0,"^",9),I=0 F  S I=$O(^PSRX(RXN,1,I)) Q:'I  S REFL=REFL-1,ROU=$S($P(^PSRX(RXN,1,I,0),"^",2)="W":"Window",$P(^PSRX(RXN,1,I,0),"^",2)="P":"Parked",1:"Mail")  ;441 PAPI
  S IEN=IEN+1,^TMP("PSOAL",$J,IEN,0)="      Last Fill Date: "_$E($P(RX3,"^"),4,5)_"/"_$E($P(RX3,"^"),6,7)_"/"_$E($P(RX3,"^"),2,3)
  D CMOP^PSOORNE3 S DA=RXN
  S ^TMP("PSOAL",$J,IEN,0)=^TMP("PSOAL",$J,IEN,0)_" ("_ROU_$S($G(PSOCMOP)]"":", "_PSOCMOP,1:"")_")" K ROU,PSOCMOP
@@ -101,7 +105,7 @@ PTST S $P(RN," ",25)=" ",PTST=$S($G(^PS(53,+$P(RX0,"^",3),0))]"":$P($G(^PS(53,+$
  S IEN=IEN+1,^TMP("PSOAL",$J,IEN,0)="            Provider: "_$S($D(^VA(200,$P(RX0,"^",4),0)):$P(^VA(200,$P(RX0,"^",4),0),"^"),1:"UNKNOWN")
  N DEAV S DEAV=+$P($G(^PSDRUG(+$P(RX0,"^",6),0)),"^",3) I DEAV>1,DEAV<6 D PRV K DEAV
  I $P(RX3,"^",3) S IEN=IEN+1,^TMP("PSOAL",$J,IEN,0)="        Cos-Provider: "_$P(^VA(200,$P(RX3,"^",3),0),"^")
- S IEN=IEN+1,^TMP("PSOAL",$J,IEN,0)="             Routing: "_$S($P(RX0,"^",11)="W":"Window",1:"Mail")
+ S IEN=IEN+1,^TMP("PSOAL",$J,IEN,0)="             Routing: "_$S($P(RX0,"^",11)="W":"Window",$P(RX0,"^",11)="P":"Parked",1:"Mail")  ;441 PAPI
  S IEN=IEN+1,^TMP("PSOAL",$J,IEN,0)="              Copies: "_$S($P(RX0,"^",18):$P(RX0,"^",18),1:1)
  S:$P(RX0,"^",11)="W" IEN=IEN+1,^TMP("PSOAL",$J,IEN,0)="    Method of Pickup: "_$G(^PSRX(RXN,"MP"))
  S IEN=IEN+1,^TMP("PSOAL",$J,IEN,0)="              Clinic: "_$S($D(^SC(+$P(RX0,"^",5),0)):$P(^SC($P(RX0,"^",5),0),"^"),1:"Not on File")
@@ -116,6 +120,7 @@ PTST S $P(RN," ",25)=" ",PTST=$S($G(^PS(53,+$P(RX0,"^",3),0))]"":$P($G(^PS(53,+$
  I ST<12,$P(RX2,"^",6)<DT S ST=11
  S VALM("TITLE")="Rx View "_"("_$P("Error^Active^Non-Verified^Refill^Hold^Non-Verified^Suspended^^^^^Done^Expired^Discontinued^Deleted^Discontinued^Discontinued (Edit)^Provider Hold^","^",ST+2)_")"
  S:$P($G(^PSRX(DA,"PKI")),"^") VALMSG="Digitally Signed Order"
+ S:$P($G(^PSRX(DA,"PKI")),"^",3) VALMSG="Digitally Signed eRx Order"
  ;
  ; pso*7*385 - esg - if being called by the BPSVRX routine, call HDR^PSOLMUTL to build the VALMHDR array and then Quit
  I $G(BPSVRX) D HDR^PSOLMUTL Q

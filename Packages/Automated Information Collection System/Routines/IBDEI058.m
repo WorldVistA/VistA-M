@@ -1,722 +1,650 @@
-IBDEI058 ; ; 01-MAY-2020
- ;;3.0;IB ENCOUNTER FORM IMP/EXP;;MAY 01, 2020
+IBDEI058 ; ; 01-AUG-2022
+ ;;3.0;IB ENCOUNTER FORM IMP/EXP;;AUG 01, 2022
  Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,999) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
+ ;;^UTILITY(U,$J,358.3,12625,0)
+ ;;=S89.322D^^50^549^84
+ ;;^UTILITY(U,$J,358.3,12625,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,12625,1,3,0)
+ ;;=3^Sltr-haris Type II physeal fx lower end,lt fibula,Subsq
+ ;;^UTILITY(U,$J,358.3,12625,1,4,0)
+ ;;=4^S89.322D
+ ;;^UTILITY(U,$J,358.3,12625,2)
+ ;;=^5137374
+ ;;^UTILITY(U,$J,358.3,12626,0)
+ ;;=S89.321D^^50^549^97
+ ;;^UTILITY(U,$J,358.3,12626,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,12626,1,3,0)
+ ;;=3^Srtr-haris Type II physeal fx lower end,rt fibula,Subsq
+ ;;^UTILITY(U,$J,358.3,12626,1,4,0)
+ ;;=4^S89.321D
+ ;;^UTILITY(U,$J,358.3,12626,2)
+ ;;=^5043830
+ ;;^UTILITY(U,$J,358.3,12627,0)
+ ;;=S89.022D^^50^549^85
+ ;;^UTILITY(U,$J,358.3,12627,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,12627,1,3,0)
+ ;;=3^Sltr-haris Type II physeal fx upper end,lt tibia,Subsq
+ ;;^UTILITY(U,$J,358.3,12627,1,4,0)
+ ;;=4^S89.022D
+ ;;^UTILITY(U,$J,358.3,12627,2)
+ ;;=^5043668
+ ;;^UTILITY(U,$J,358.3,12628,0)
+ ;;=S89.021D^^50^549^98
+ ;;^UTILITY(U,$J,358.3,12628,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,12628,1,3,0)
+ ;;=3^Srtr-haris Type II physeal fx upper end,rt tibia,Subsq
+ ;;^UTILITY(U,$J,358.3,12628,1,4,0)
+ ;;=4^S89.021D
+ ;;^UTILITY(U,$J,358.3,12628,2)
+ ;;=^5043662
+ ;;^UTILITY(U,$J,358.3,12629,0)
+ ;;=S89.221D^^50^549^86
+ ;;^UTILITY(U,$J,358.3,12629,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,12629,1,3,0)
+ ;;=3^Sltr-haris Type II physeal fx upper end,rt fibula,Subsq
+ ;;^UTILITY(U,$J,358.3,12629,1,4,0)
+ ;;=4^S89.221D
+ ;;^UTILITY(U,$J,358.3,12629,2)
+ ;;=^5043788
+ ;;^UTILITY(U,$J,358.3,12630,0)
+ ;;=S89.222D^^50^549^87
+ ;;^UTILITY(U,$J,358.3,12630,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,12630,1,3,0)
+ ;;=3^Sltr-haris Type II physeal fx upper end,lt fibula,Subsq
+ ;;^UTILITY(U,$J,358.3,12630,1,4,0)
+ ;;=4^S89.222D
+ ;;^UTILITY(U,$J,358.3,12630,2)
+ ;;=^5043794
+ ;;^UTILITY(U,$J,358.3,12631,0)
+ ;;=S89.132D^^50^549^88
+ ;;^UTILITY(U,$J,358.3,12631,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,12631,1,3,0)
+ ;;=3^Sltr-haris Type III physeal fx lower end,lt tibia,Subsq
+ ;;^UTILITY(U,$J,358.3,12631,1,4,0)
+ ;;=4^S89.132D
  ;;^UTILITY(U,$J,358.3,12631,2)
- ;;=^5002686
+ ;;=^5137302
  ;;^UTILITY(U,$J,358.3,12632,0)
- ;;=E10.621^^54^614^3
+ ;;=S89.131D^^50^549^99
  ;;^UTILITY(U,$J,358.3,12632,1,0)
  ;;=^358.31IA^4^2
  ;;^UTILITY(U,$J,358.3,12632,1,3,0)
- ;;=3^Type 1 DM w/ Foot Ulcer
+ ;;=3^Srtr-haris Type III physeal fx lower end,lt tibia,Subsq
  ;;^UTILITY(U,$J,358.3,12632,1,4,0)
- ;;=4^E10.621
+ ;;=4^S89.131D
  ;;^UTILITY(U,$J,358.3,12632,2)
- ;;=^5002616
+ ;;=^5043746
  ;;^UTILITY(U,$J,358.3,12633,0)
- ;;=E10.649^^54^614^5
+ ;;=S89.032D^^50^549^89
  ;;^UTILITY(U,$J,358.3,12633,1,0)
  ;;=^358.31IA^4^2
  ;;^UTILITY(U,$J,358.3,12633,1,3,0)
- ;;=3^Type 1 DM w/ Hypoglycemia w/o Coma
+ ;;=3^Sltr-haris Type III physeal fx upper end,lt tibia,Subsq
  ;;^UTILITY(U,$J,358.3,12633,1,4,0)
- ;;=4^E10.649
+ ;;=4^S89.032D
  ;;^UTILITY(U,$J,358.3,12633,2)
- ;;=^5002622
+ ;;=^5043686
  ;;^UTILITY(U,$J,358.3,12634,0)
- ;;=E11.621^^54^614^8
+ ;;=S89.031D^^50^549^100
  ;;^UTILITY(U,$J,358.3,12634,1,0)
  ;;=^358.31IA^4^2
  ;;^UTILITY(U,$J,358.3,12634,1,3,0)
- ;;=3^Type 2 DM w/ Foot Ulcer
+ ;;=3^Srtr-haris Type III physeal fx upper end,lt tibia,Subsq
  ;;^UTILITY(U,$J,358.3,12634,1,4,0)
- ;;=4^E11.621
+ ;;=4^S89.031D
  ;;^UTILITY(U,$J,358.3,12634,2)
- ;;=^5002656
+ ;;=^5043680
  ;;^UTILITY(U,$J,358.3,12635,0)
- ;;=E11.649^^54^614^10
+ ;;=S89.142D^^50^549^90
  ;;^UTILITY(U,$J,358.3,12635,1,0)
  ;;=^358.31IA^4^2
  ;;^UTILITY(U,$J,358.3,12635,1,3,0)
- ;;=3^Type 2 DM w/ Hypoglycemia w/o Coma
+ ;;=3^Sltr-haris Type IV physeal fx lower end,lt tibia,Subsq
  ;;^UTILITY(U,$J,358.3,12635,1,4,0)
- ;;=4^E11.649
+ ;;=4^S89.142D
  ;;^UTILITY(U,$J,358.3,12635,2)
- ;;=^5002662
+ ;;=^5137308
  ;;^UTILITY(U,$J,358.3,12636,0)
- ;;=E11.11^^54^614^11
+ ;;=S89.141D^^50^549^101
  ;;^UTILITY(U,$J,358.3,12636,1,0)
  ;;=^358.31IA^4^2
  ;;^UTILITY(U,$J,358.3,12636,1,3,0)
- ;;=3^Type 2 DM w/ Ketoacidosis w/ Coma
+ ;;=3^Srtr-haris Type IV physeal fx lower end,lt tibia,Subsq
  ;;^UTILITY(U,$J,358.3,12636,1,4,0)
- ;;=4^E11.11
+ ;;=4^S89.141D
  ;;^UTILITY(U,$J,358.3,12636,2)
- ;;=^5151301
+ ;;=^5043752
  ;;^UTILITY(U,$J,358.3,12637,0)
- ;;=E11.10^^54^614^12
+ ;;=S89.042D^^50^549^91
  ;;^UTILITY(U,$J,358.3,12637,1,0)
  ;;=^358.31IA^4^2
  ;;^UTILITY(U,$J,358.3,12637,1,3,0)
- ;;=3^Type 2 DM w/ Ketoacidosis w/o Coma
+ ;;=3^Sltr-haris Type IV physeal fx upper end,lt tibia,Subsq
  ;;^UTILITY(U,$J,358.3,12637,1,4,0)
- ;;=4^E11.10
+ ;;=4^S89.042D
  ;;^UTILITY(U,$J,358.3,12637,2)
- ;;=^5151300
+ ;;=^5043704
  ;;^UTILITY(U,$J,358.3,12638,0)
- ;;=Z85.828^^54^615^21
+ ;;=S89.041D^^50^549^102
  ;;^UTILITY(U,$J,358.3,12638,1,0)
  ;;=^358.31IA^4^2
  ;;^UTILITY(U,$J,358.3,12638,1,3,0)
- ;;=3^Skin (BCC/SCC)
+ ;;=3^Srtr-haris Type IV physeal fx upper end,lt tibia,Subsq
  ;;^UTILITY(U,$J,358.3,12638,1,4,0)
- ;;=4^Z85.828
+ ;;=4^S89.041D
  ;;^UTILITY(U,$J,358.3,12638,2)
- ;;=^5063443
+ ;;=^5043698
  ;;^UTILITY(U,$J,358.3,12639,0)
- ;;=Z85.51^^54^615^1
+ ;;=M84.364D^^50^549^103
  ;;^UTILITY(U,$J,358.3,12639,1,0)
  ;;=^358.31IA^4^2
  ;;^UTILITY(U,$J,358.3,12639,1,3,0)
- ;;=3^Bladder
+ ;;=3^Stress Fx, left fibula,Subsq
  ;;^UTILITY(U,$J,358.3,12639,1,4,0)
- ;;=4^Z85.51
+ ;;=4^M84.364D
  ;;^UTILITY(U,$J,358.3,12639,2)
- ;;=^5063428
+ ;;=^5013723
  ;;^UTILITY(U,$J,358.3,12640,0)
- ;;=Z85.830^^54^615^2
+ ;;=M84.363D^^50^549^105
  ;;^UTILITY(U,$J,358.3,12640,1,0)
  ;;=^358.31IA^4^2
  ;;^UTILITY(U,$J,358.3,12640,1,3,0)
- ;;=3^Bone
+ ;;=3^Stress Fx, right fibula,Subsq
  ;;^UTILITY(U,$J,358.3,12640,1,4,0)
- ;;=4^Z85.830
+ ;;=4^M84.363D
  ;;^UTILITY(U,$J,358.3,12640,2)
- ;;=^5063444
+ ;;=^5013717
  ;;^UTILITY(U,$J,358.3,12641,0)
- ;;=Z85.841^^54^615^3
+ ;;=M84.362D^^50^549^104
  ;;^UTILITY(U,$J,358.3,12641,1,0)
  ;;=^358.31IA^4^2
  ;;^UTILITY(U,$J,358.3,12641,1,3,0)
- ;;=3^Brain
+ ;;=3^Stress Fx, left tibia,Subsq
  ;;^UTILITY(U,$J,358.3,12641,1,4,0)
- ;;=4^Z85.841
+ ;;=4^M84.362D
  ;;^UTILITY(U,$J,358.3,12641,2)
- ;;=^5063447
+ ;;=^5013711
  ;;^UTILITY(U,$J,358.3,12642,0)
- ;;=Z85.3^^54^615^4
+ ;;=M84.361D^^50^549^106
  ;;^UTILITY(U,$J,358.3,12642,1,0)
  ;;=^358.31IA^4^2
  ;;^UTILITY(U,$J,358.3,12642,1,3,0)
- ;;=3^Breast
+ ;;=3^Stress Fx, right tibia,Subsq
  ;;^UTILITY(U,$J,358.3,12642,1,4,0)
- ;;=4^Z85.3
+ ;;=4^M84.361D
  ;;^UTILITY(U,$J,358.3,12642,2)
- ;;=^5063416
+ ;;=^5013705
  ;;^UTILITY(U,$J,358.3,12643,0)
- ;;=Z85.118^^54^615^5
+ ;;=S82.822D^^50^549^107
  ;;^UTILITY(U,$J,358.3,12643,1,0)
  ;;=^358.31IA^4^2
  ;;^UTILITY(U,$J,358.3,12643,1,3,0)
- ;;=3^Bronchus & Lung
+ ;;=3^Torus Fx,lower end,left fibula,Subsq
  ;;^UTILITY(U,$J,358.3,12643,1,4,0)
- ;;=4^Z85.118
+ ;;=4^S82.822D
  ;;^UTILITY(U,$J,358.3,12643,2)
- ;;=^5063408
+ ;;=^5136939
  ;;^UTILITY(U,$J,358.3,12644,0)
- ;;=Z85.41^^54^615^6
+ ;;=S82.821D^^50^549^109
  ;;^UTILITY(U,$J,358.3,12644,1,0)
  ;;=^358.31IA^4^2
  ;;^UTILITY(U,$J,358.3,12644,1,3,0)
- ;;=3^Cervix
+ ;;=3^Torus Fx,lower end,right fibula,Subsq
  ;;^UTILITY(U,$J,358.3,12644,1,4,0)
- ;;=4^Z85.41
+ ;;=4^S82.821D
  ;;^UTILITY(U,$J,358.3,12644,2)
- ;;=^5063418
+ ;;=^5042426
  ;;^UTILITY(U,$J,358.3,12645,0)
- ;;=Z85.038^^54^615^7
+ ;;=S82.312D^^50^549^108
  ;;^UTILITY(U,$J,358.3,12645,1,0)
  ;;=^358.31IA^4^2
  ;;^UTILITY(U,$J,358.3,12645,1,3,0)
- ;;=3^Colon/Large Intestine
+ ;;=3^Torus Fx,lower end,left tibia,Subsq
  ;;^UTILITY(U,$J,358.3,12645,1,4,0)
- ;;=4^Z85.038
+ ;;=4^S82.312D
  ;;^UTILITY(U,$J,358.3,12645,2)
- ;;=^5063399
+ ;;=^5136887
  ;;^UTILITY(U,$J,358.3,12646,0)
- ;;=Z85.48^^54^615^8
+ ;;=S82.311D^^50^549^110
  ;;^UTILITY(U,$J,358.3,12646,1,0)
  ;;=^358.31IA^4^2
  ;;^UTILITY(U,$J,358.3,12646,1,3,0)
- ;;=3^Epididymis
+ ;;=3^Torus Fx,lower end,right tibia,Subsq
  ;;^UTILITY(U,$J,358.3,12646,1,4,0)
- ;;=4^Z85.48
+ ;;=4^S82.311D
  ;;^UTILITY(U,$J,358.3,12646,2)
- ;;=^5063425
+ ;;=^5041667
  ;;^UTILITY(U,$J,358.3,12647,0)
- ;;=Z85.01^^54^615^9
+ ;;=S82.812D^^50^549^111
  ;;^UTILITY(U,$J,358.3,12647,1,0)
  ;;=^358.31IA^4^2
  ;;^UTILITY(U,$J,358.3,12647,1,3,0)
- ;;=3^Esophagus
+ ;;=3^Torus Fx,upper end,left fibula,Subsq
  ;;^UTILITY(U,$J,358.3,12647,1,4,0)
- ;;=4^Z85.01
+ ;;=4^S82.812D
  ;;^UTILITY(U,$J,358.3,12647,2)
- ;;=^5063395
+ ;;=^5042414
  ;;^UTILITY(U,$J,358.3,12648,0)
- ;;=Z85.840^^54^615^10
+ ;;=S82.811D^^50^549^113
  ;;^UTILITY(U,$J,358.3,12648,1,0)
  ;;=^358.31IA^4^2
  ;;^UTILITY(U,$J,358.3,12648,1,3,0)
- ;;=3^Eye
+ ;;=3^Torus Fx,upper end,right fibula,Subsq
  ;;^UTILITY(U,$J,358.3,12648,1,4,0)
- ;;=4^Z85.840
+ ;;=4^S82.811D
  ;;^UTILITY(U,$J,358.3,12648,2)
- ;;=^5063446
+ ;;=^5042408
  ;;^UTILITY(U,$J,358.3,12649,0)
- ;;=Z85.528^^54^615^11
+ ;;=S82.162D^^50^549^112
  ;;^UTILITY(U,$J,358.3,12649,1,0)
  ;;=^358.31IA^4^2
  ;;^UTILITY(U,$J,358.3,12649,1,3,0)
- ;;=3^Kidney/Renal Pelvis
+ ;;=3^Torus Fx,upper end,left tibia,Subsq
  ;;^UTILITY(U,$J,358.3,12649,1,4,0)
- ;;=4^Z85.528
+ ;;=4^S82.162D
  ;;^UTILITY(U,$J,358.3,12649,2)
- ;;=^5063430
+ ;;=^5041070
  ;;^UTILITY(U,$J,358.3,12650,0)
- ;;=Z85.21^^54^615^12
+ ;;=S82.161D^^50^549^114
  ;;^UTILITY(U,$J,358.3,12650,1,0)
  ;;=^358.31IA^4^2
  ;;^UTILITY(U,$J,358.3,12650,1,3,0)
- ;;=3^Larynx
+ ;;=3^Torus Fx,upper end,right tibia,Subsq
  ;;^UTILITY(U,$J,358.3,12650,1,4,0)
- ;;=4^Z85.21
+ ;;=4^S82.161D
  ;;^UTILITY(U,$J,358.3,12650,2)
- ;;=^5063411
+ ;;=^5041064
  ;;^UTILITY(U,$J,358.3,12651,0)
- ;;=Z85.05^^54^615^13
+ ;;=S12.110D^^50^550^1
  ;;^UTILITY(U,$J,358.3,12651,1,0)
  ;;=^358.31IA^4^2
  ;;^UTILITY(U,$J,358.3,12651,1,3,0)
- ;;=3^Liver
+ ;;=3^Anterior displaced Type II dens Fx,Subsq
  ;;^UTILITY(U,$J,358.3,12651,1,4,0)
- ;;=4^Z85.05
+ ;;=4^S12.110D
  ;;^UTILITY(U,$J,358.3,12651,2)
- ;;=^5063402
+ ;;=^5021619
  ;;^UTILITY(U,$J,358.3,12652,0)
- ;;=Z85.820^^54^615^14
+ ;;=M48.52XD^^50^550^2
  ;;^UTILITY(U,$J,358.3,12652,1,0)
  ;;=^358.31IA^4^2
  ;;^UTILITY(U,$J,358.3,12652,1,3,0)
- ;;=3^Melanoma (Skin)
+ ;;=3^Collapsed vertebra, NEC, cervical region,Subsq
  ;;^UTILITY(U,$J,358.3,12652,1,4,0)
- ;;=4^Z85.820
+ ;;=4^M48.52XD
  ;;^UTILITY(U,$J,358.3,12652,2)
- ;;=^5063441
+ ;;=^5012168
  ;;^UTILITY(U,$J,358.3,12653,0)
- ;;=Z85.819^^54^615^15
+ ;;=M48.53XD^^50^550^3
  ;;^UTILITY(U,$J,358.3,12653,1,0)
  ;;=^358.31IA^4^2
  ;;^UTILITY(U,$J,358.3,12653,1,3,0)
- ;;=3^Nasopharynx/Oropharynx/Pharynx
+ ;;=3^Collapsed vertebra, NEC, cervicothoracic region,Subsq
  ;;^UTILITY(U,$J,358.3,12653,1,4,0)
- ;;=4^Z85.819
+ ;;=4^M48.53XD
  ;;^UTILITY(U,$J,358.3,12653,2)
- ;;=^5063440
+ ;;=^5012172
  ;;^UTILITY(U,$J,358.3,12654,0)
- ;;=Z85.43^^54^615^16
+ ;;=M48.57XD^^50^550^4
  ;;^UTILITY(U,$J,358.3,12654,1,0)
  ;;=^358.31IA^4^2
  ;;^UTILITY(U,$J,358.3,12654,1,3,0)
- ;;=3^Ovary
+ ;;=3^Collapsed vertebra, NEC, lumbosacral region,Subsq
  ;;^UTILITY(U,$J,358.3,12654,1,4,0)
- ;;=4^Z85.43
+ ;;=4^M48.57XD
  ;;^UTILITY(U,$J,358.3,12654,2)
- ;;=^5063420
+ ;;=^5012188
  ;;^UTILITY(U,$J,358.3,12655,0)
- ;;=Z85.07^^54^615^17
+ ;;=M48.51XD^^50^550^5
  ;;^UTILITY(U,$J,358.3,12655,1,0)
  ;;=^358.31IA^4^2
  ;;^UTILITY(U,$J,358.3,12655,1,3,0)
- ;;=3^Pancreas
+ ;;=3^Collapsed vertebra, NEC, occipt-atlan-ax region,Subsq
  ;;^UTILITY(U,$J,358.3,12655,1,4,0)
- ;;=4^Z85.07
+ ;;=4^M48.51XD
  ;;^UTILITY(U,$J,358.3,12655,2)
- ;;=^5063405
+ ;;=^5012164
  ;;^UTILITY(U,$J,358.3,12656,0)
- ;;=Z85.29^^54^615^18
+ ;;=M48.58XD^^50^550^6
  ;;^UTILITY(U,$J,358.3,12656,1,0)
  ;;=^358.31IA^4^2
  ;;^UTILITY(U,$J,358.3,12656,1,3,0)
- ;;=3^Pleura
+ ;;=3^Collapsed vertebra, NEC, sacr/sacrocygl region,Subsq
  ;;^UTILITY(U,$J,358.3,12656,1,4,0)
- ;;=4^Z85.29
+ ;;=4^M48.58XD
  ;;^UTILITY(U,$J,358.3,12656,2)
- ;;=^5063415
+ ;;=^5012192
  ;;^UTILITY(U,$J,358.3,12657,0)
- ;;=Z85.46^^54^615^19
+ ;;=M48.54XD^^50^550^7
  ;;^UTILITY(U,$J,358.3,12657,1,0)
  ;;=^358.31IA^4^2
  ;;^UTILITY(U,$J,358.3,12657,1,3,0)
- ;;=3^Prostate
+ ;;=3^Collapsed vertebra, NEC, thoracic region,Subsq
  ;;^UTILITY(U,$J,358.3,12657,1,4,0)
- ;;=4^Z85.46
+ ;;=4^M48.54XD
  ;;^UTILITY(U,$J,358.3,12657,2)
- ;;=^5063423
+ ;;=^5012176
  ;;^UTILITY(U,$J,358.3,12658,0)
- ;;=Z85.048^^54^615^20
+ ;;=M48.55XD^^50^550^8
  ;;^UTILITY(U,$J,358.3,12658,1,0)
  ;;=^358.31IA^4^2
  ;;^UTILITY(U,$J,358.3,12658,1,3,0)
- ;;=3^Rectum/Rectosig Junct/Anus
+ ;;=3^Collapsed vertebra, NEC, thoracolumbar region,Subsq
  ;;^UTILITY(U,$J,358.3,12658,1,4,0)
- ;;=4^Z85.048
+ ;;=4^M48.55XD
  ;;^UTILITY(U,$J,358.3,12658,2)
- ;;=^5063401
+ ;;=^5012180
  ;;^UTILITY(U,$J,358.3,12659,0)
- ;;=Z85.068^^54^615^22
+ ;;=S12.040D^^50^550^9
  ;;^UTILITY(U,$J,358.3,12659,1,0)
  ;;=^358.31IA^4^2
  ;;^UTILITY(U,$J,358.3,12659,1,3,0)
- ;;=3^Small Intestine
+ ;;=3^Displaced lateral mass fx first cervcal vertebra,Subsq
  ;;^UTILITY(U,$J,358.3,12659,1,4,0)
- ;;=4^Z85.068
+ ;;=4^S12.040D
  ;;^UTILITY(U,$J,358.3,12659,2)
- ;;=^5063404
+ ;;=^5021583
  ;;^UTILITY(U,$J,358.3,12660,0)
- ;;=Z85.028^^54^615^23
+ ;;=S12.030D^^50^550^10
  ;;^UTILITY(U,$J,358.3,12660,1,0)
  ;;=^358.31IA^4^2
  ;;^UTILITY(U,$J,358.3,12660,1,3,0)
- ;;=3^Stomach
+ ;;=3^Displaced posterior arch fx first cervcal vertebra,Subsq
  ;;^UTILITY(U,$J,358.3,12660,1,4,0)
- ;;=4^Z85.028
+ ;;=4^S12.030D
  ;;^UTILITY(U,$J,358.3,12660,2)
- ;;=^5063397
+ ;;=^5021571
  ;;^UTILITY(U,$J,358.3,12661,0)
- ;;=Z85.47^^54^615^24
+ ;;=M48.42XD^^50^550^11
  ;;^UTILITY(U,$J,358.3,12661,1,0)
  ;;=^358.31IA^4^2
  ;;^UTILITY(U,$J,358.3,12661,1,3,0)
- ;;=3^Testis
+ ;;=3^Fatigue Fx of vertebra, cervical region,Subsq
  ;;^UTILITY(U,$J,358.3,12661,1,4,0)
- ;;=4^Z85.47
+ ;;=4^M48.42XD
  ;;^UTILITY(U,$J,358.3,12661,2)
- ;;=^5063424
+ ;;=^5012132
  ;;^UTILITY(U,$J,358.3,12662,0)
- ;;=Z85.850^^54^615^25
+ ;;=M48.43XD^^50^550^12
  ;;^UTILITY(U,$J,358.3,12662,1,0)
  ;;=^358.31IA^4^2
  ;;^UTILITY(U,$J,358.3,12662,1,3,0)
- ;;=3^Thyroid
+ ;;=3^Fatigue Fx of vertebra, cervicothoracic region,Subsq
  ;;^UTILITY(U,$J,358.3,12662,1,4,0)
- ;;=4^Z85.850
+ ;;=4^M48.43XD
  ;;^UTILITY(U,$J,358.3,12662,2)
- ;;=^5063449
+ ;;=^5012136
  ;;^UTILITY(U,$J,358.3,12663,0)
- ;;=Z85.810^^54^615^26
+ ;;=M48.46XD^^50^550^13
  ;;^UTILITY(U,$J,358.3,12663,1,0)
  ;;=^358.31IA^4^2
  ;;^UTILITY(U,$J,358.3,12663,1,3,0)
- ;;=3^Tongue
+ ;;=3^Fatigue Fx of vertebra, lumbar region,Subsq
  ;;^UTILITY(U,$J,358.3,12663,1,4,0)
- ;;=4^Z85.810
+ ;;=4^M48.46XD
  ;;^UTILITY(U,$J,358.3,12663,2)
- ;;=^5063438
+ ;;=^5012148
  ;;^UTILITY(U,$J,358.3,12664,0)
- ;;=Z85.12^^54^615^27
+ ;;=M48.47XD^^50^550^14
  ;;^UTILITY(U,$J,358.3,12664,1,0)
  ;;=^358.31IA^4^2
  ;;^UTILITY(U,$J,358.3,12664,1,3,0)
- ;;=3^Trachea
+ ;;=3^Fatigue Fx of vertebra, lumbosacral region,Subsq
  ;;^UTILITY(U,$J,358.3,12664,1,4,0)
- ;;=4^Z85.12
+ ;;=4^M48.47XD
  ;;^UTILITY(U,$J,358.3,12664,2)
- ;;=^5063409
+ ;;=^5012152
  ;;^UTILITY(U,$J,358.3,12665,0)
- ;;=Z85.59^^54^615^28
+ ;;=M48.41XD^^50^550^15
  ;;^UTILITY(U,$J,358.3,12665,1,0)
  ;;=^358.31IA^4^2
  ;;^UTILITY(U,$J,358.3,12665,1,3,0)
- ;;=3^Ureter/Urethra
+ ;;=3^Fatigue Fx of vertebra, occipt-atlan-ax region,Subsq
  ;;^UTILITY(U,$J,358.3,12665,1,4,0)
- ;;=4^Z85.59
+ ;;=4^M48.41XD
  ;;^UTILITY(U,$J,358.3,12665,2)
- ;;=^5063433
+ ;;=^5012128
  ;;^UTILITY(U,$J,358.3,12666,0)
- ;;=Z85.42^^54^615^29
+ ;;=M48.48XD^^50^550^16
  ;;^UTILITY(U,$J,358.3,12666,1,0)
  ;;=^358.31IA^4^2
  ;;^UTILITY(U,$J,358.3,12666,1,3,0)
- ;;=3^Uterine Adnexa/Body
+ ;;=3^Fatigue Fx of vertebra, sacr/sacrocygl region,Subsq
  ;;^UTILITY(U,$J,358.3,12666,1,4,0)
- ;;=4^Z85.42
+ ;;=4^M48.48XD
  ;;^UTILITY(U,$J,358.3,12666,2)
- ;;=^5063419
+ ;;=^5012156
  ;;^UTILITY(U,$J,358.3,12667,0)
- ;;=Z85.44^^54^615^30
+ ;;=M48.44XD^^50^550^17
  ;;^UTILITY(U,$J,358.3,12667,1,0)
  ;;=^358.31IA^4^2
  ;;^UTILITY(U,$J,358.3,12667,1,3,0)
- ;;=3^Vagina/Vulva
+ ;;=3^Fatigue Fx of vertebra, thoracic region,Subsq
  ;;^UTILITY(U,$J,358.3,12667,1,4,0)
- ;;=4^Z85.44
+ ;;=4^M48.44XD
  ;;^UTILITY(U,$J,358.3,12667,2)
- ;;=^5063421
+ ;;=^5012140
  ;;^UTILITY(U,$J,358.3,12668,0)
- ;;=Z89.612^^54^616^1
+ ;;=M48.45XD^^50^550^18
  ;;^UTILITY(U,$J,358.3,12668,1,0)
  ;;=^358.31IA^4^2
  ;;^UTILITY(U,$J,358.3,12668,1,3,0)
- ;;=3^Above the Knee Amputation,Left
+ ;;=3^Fatigue Fx of vertebra, thoracolumbar region,Subsq
  ;;^UTILITY(U,$J,358.3,12668,1,4,0)
- ;;=4^Z89.612
+ ;;=4^M48.45XD
  ;;^UTILITY(U,$J,358.3,12668,2)
- ;;=^5063573
+ ;;=^5012144
  ;;^UTILITY(U,$J,358.3,12669,0)
- ;;=Z89.611^^54^616^2
+ ;;=S32.2XXD^^50^550^19
  ;;^UTILITY(U,$J,358.3,12669,1,0)
  ;;=^358.31IA^4^2
  ;;^UTILITY(U,$J,358.3,12669,1,3,0)
- ;;=3^Above the Knee Amputation,Right
+ ;;=3^Fx of coccyx,Subsq
  ;;^UTILITY(U,$J,358.3,12669,1,4,0)
- ;;=4^Z89.611
+ ;;=4^S32.2XXD
  ;;^UTILITY(U,$J,358.3,12669,2)
- ;;=^5063572
+ ;;=^5024631
  ;;^UTILITY(U,$J,358.3,12670,0)
- ;;=Z98.0^^54^616^3
+ ;;=S32.111D^^50^550^20
  ;;^UTILITY(U,$J,358.3,12670,1,0)
  ;;=^358.31IA^4^2
  ;;^UTILITY(U,$J,358.3,12670,1,3,0)
- ;;=3^Anastomosis
+ ;;=3^Minimally displaced Zone I Fx of sacrum,Subsq
  ;;^UTILITY(U,$J,358.3,12670,1,4,0)
- ;;=4^Z98.0
+ ;;=4^S32.111D
  ;;^UTILITY(U,$J,358.3,12670,2)
- ;;=^5063733
+ ;;=^5024535
  ;;^UTILITY(U,$J,358.3,12671,0)
- ;;=Z98.61^^54^616^5
+ ;;=S32.121D^^50^550^21
  ;;^UTILITY(U,$J,358.3,12671,1,0)
  ;;=^358.31IA^4^2
  ;;^UTILITY(U,$J,358.3,12671,1,3,0)
- ;;=3^Angioplasty,Coronary w/o Stent
+ ;;=3^Minimally displaced Zone II Fx of sacrum,Subsq
  ;;^UTILITY(U,$J,358.3,12671,1,4,0)
- ;;=4^Z98.61
+ ;;=4^S32.121D
  ;;^UTILITY(U,$J,358.3,12671,2)
- ;;=^5063742
+ ;;=^5024559
  ;;^UTILITY(U,$J,358.3,12672,0)
- ;;=Z95.5^^54^616^4
+ ;;=S32.131D^^50^550^22
  ;;^UTILITY(U,$J,358.3,12672,1,0)
  ;;=^358.31IA^4^2
  ;;^UTILITY(U,$J,358.3,12672,1,3,0)
- ;;=3^Angioplasty,Coronary w/ Stent
+ ;;=3^Minimally displaced Zone III Fx of sacrum,Subsq
  ;;^UTILITY(U,$J,358.3,12672,1,4,0)
- ;;=4^Z95.5
+ ;;=4^S32.131D
  ;;^UTILITY(U,$J,358.3,12672,2)
- ;;=^5063673
+ ;;=^5024583
  ;;^UTILITY(U,$J,358.3,12673,0)
- ;;=Z98.62^^54^616^7
+ ;;=S12.112D^^50^550^23
  ;;^UTILITY(U,$J,358.3,12673,1,0)
  ;;=^358.31IA^4^2
  ;;^UTILITY(U,$J,358.3,12673,1,3,0)
- ;;=3^Angioplasty,Peripheral Vascular w/o Stent
+ ;;=3^Nondisp Type II dens Fx,Subsq
  ;;^UTILITY(U,$J,358.3,12673,1,4,0)
- ;;=4^Z98.62
+ ;;=4^S12.112D
  ;;^UTILITY(U,$J,358.3,12673,2)
- ;;=^5063743
+ ;;=^5021631
  ;;^UTILITY(U,$J,358.3,12674,0)
- ;;=Z89.512^^54^616^8
+ ;;=S32.110D^^50^550^24
  ;;^UTILITY(U,$J,358.3,12674,1,0)
  ;;=^358.31IA^4^2
  ;;^UTILITY(U,$J,358.3,12674,1,3,0)
- ;;=3^Below the Knee Amputation,Left
+ ;;=3^Nondisp Zone I Fx of sacrum,Subsq
  ;;^UTILITY(U,$J,358.3,12674,1,4,0)
- ;;=4^Z89.512
+ ;;=4^S32.110D
  ;;^UTILITY(U,$J,358.3,12674,2)
- ;;=^5063567
+ ;;=^5024529
  ;;^UTILITY(U,$J,358.3,12675,0)
- ;;=Z89.511^^54^616^9
+ ;;=S32.120D^^50^550^25
  ;;^UTILITY(U,$J,358.3,12675,1,0)
  ;;=^358.31IA^4^2
  ;;^UTILITY(U,$J,358.3,12675,1,3,0)
- ;;=3^Below the Knee Amputation,Right
+ ;;=3^Nondisp Zone II Fx of sacrum,Subsq
  ;;^UTILITY(U,$J,358.3,12675,1,4,0)
- ;;=4^Z89.511
+ ;;=4^S32.120D
  ;;^UTILITY(U,$J,358.3,12675,2)
- ;;=^5063566
+ ;;=^5024553
  ;;^UTILITY(U,$J,358.3,12676,0)
- ;;=Z98.82^^54^616^11
+ ;;=S32.130D^^50^550^26
  ;;^UTILITY(U,$J,358.3,12676,1,0)
  ;;=^358.31IA^4^2
  ;;^UTILITY(U,$J,358.3,12676,1,3,0)
- ;;=3^Breast Implant (Bilat/Status Post)
+ ;;=3^Nondisp Zone III Fx of sacrum,Subsq
  ;;^UTILITY(U,$J,358.3,12676,1,4,0)
- ;;=4^Z98.82
+ ;;=4^S32.130D
  ;;^UTILITY(U,$J,358.3,12676,2)
- ;;=^5063747
+ ;;=^5024577
  ;;^UTILITY(U,$J,358.3,12677,0)
- ;;=Z98.86^^54^616^10
+ ;;=S12.041D^^50^550^27
  ;;^UTILITY(U,$J,358.3,12677,1,0)
  ;;=^358.31IA^4^2
  ;;^UTILITY(U,$J,358.3,12677,1,3,0)
- ;;=3^Breast Implant (Bilat/Removed/Hx Of)
+ ;;=3^Nondisp lateral mass fx first cervcal vertebra,Subsq
  ;;^UTILITY(U,$J,358.3,12677,1,4,0)
- ;;=4^Z98.86
+ ;;=4^S12.041D
  ;;^UTILITY(U,$J,358.3,12677,2)
- ;;=^5063751
+ ;;=^5021589
  ;;^UTILITY(U,$J,358.3,12678,0)
- ;;=Z95.1^^54^616^17
+ ;;=S12.031D^^50^550^28
  ;;^UTILITY(U,$J,358.3,12678,1,0)
  ;;=^358.31IA^4^2
  ;;^UTILITY(U,$J,358.3,12678,1,3,0)
- ;;=3^Coronary Artery Bypass Graft
+ ;;=3^Nondisp posterior arch fx first cervcal vertebra,Subsq
  ;;^UTILITY(U,$J,358.3,12678,1,4,0)
- ;;=4^Z95.1
+ ;;=4^S12.031D
  ;;^UTILITY(U,$J,358.3,12678,2)
- ;;=^5063669
+ ;;=^5021577
  ;;^UTILITY(U,$J,358.3,12679,0)
- ;;=Z98.42^^54^616^12
+ ;;=S12.111D^^50^550^29
  ;;^UTILITY(U,$J,358.3,12679,1,0)
  ;;=^358.31IA^4^2
  ;;^UTILITY(U,$J,358.3,12679,1,3,0)
- ;;=3^Cataract Extraction,Left Eye
+ ;;=3^Posterior displaced Type II dens Fx,Subsq
  ;;^UTILITY(U,$J,358.3,12679,1,4,0)
- ;;=4^Z98.42
+ ;;=4^S12.111D
  ;;^UTILITY(U,$J,358.3,12679,2)
- ;;=^5063738
+ ;;=^5021625
  ;;^UTILITY(U,$J,358.3,12680,0)
- ;;=Z98.41^^54^616^13
+ ;;=S32.112D^^50^550^30
  ;;^UTILITY(U,$J,358.3,12680,1,0)
  ;;=^358.31IA^4^2
  ;;^UTILITY(U,$J,358.3,12680,1,3,0)
- ;;=3^Cataract Extraction,Right Eye
+ ;;=3^Severely displaced Zone I Fx of sacrum,Subsq
  ;;^UTILITY(U,$J,358.3,12680,1,4,0)
- ;;=4^Z98.41
+ ;;=4^S32.112D
  ;;^UTILITY(U,$J,358.3,12680,2)
- ;;=^5063737
+ ;;=^5024541
  ;;^UTILITY(U,$J,358.3,12681,0)
- ;;=Z92.21^^54^616^14
+ ;;=S32.122D^^50^550^31
  ;;^UTILITY(U,$J,358.3,12681,1,0)
  ;;=^358.31IA^4^2
  ;;^UTILITY(U,$J,358.3,12681,1,3,0)
- ;;=3^Chemotherapy
+ ;;=3^Severely displaced Zone II Fx of sacrum,Subsq
  ;;^UTILITY(U,$J,358.3,12681,1,4,0)
- ;;=4^Z92.21
+ ;;=4^S32.122D
  ;;^UTILITY(U,$J,358.3,12681,2)
- ;;=^5063630
+ ;;=^5024565
  ;;^UTILITY(U,$J,358.3,12682,0)
- ;;=Z90.49^^54^616^15
+ ;;=S32.132D^^50^550^32
  ;;^UTILITY(U,$J,358.3,12682,1,0)
  ;;=^358.31IA^4^2
  ;;^UTILITY(U,$J,358.3,12682,1,3,0)
- ;;=3^Cholecystectomy/Colectomy
+ ;;=3^Severely displaced Zone III Fx of sacrum,Subsq
  ;;^UTILITY(U,$J,358.3,12682,1,4,0)
- ;;=4^Z90.49
+ ;;=4^S32.132D
  ;;^UTILITY(U,$J,358.3,12682,2)
- ;;=^5063589
+ ;;=^5024589
  ;;^UTILITY(U,$J,358.3,12683,0)
- ;;=Z93.3^^54^616^16
+ ;;=S22.081D^^50^550^33
  ;;^UTILITY(U,$J,358.3,12683,1,0)
  ;;=^358.31IA^4^2
  ;;^UTILITY(U,$J,358.3,12683,1,3,0)
- ;;=3^Colostomy
+ ;;=3^Stable burst Fx of T11-T12 vertebra,Subsq
  ;;^UTILITY(U,$J,358.3,12683,1,4,0)
- ;;=4^Z93.3
+ ;;=4^S22.081D
  ;;^UTILITY(U,$J,358.3,12683,2)
- ;;=^5063645
+ ;;=^5023053
  ;;^UTILITY(U,$J,358.3,12684,0)
- ;;=Z90.6^^54^616^18
+ ;;=S22.051D^^50^550^34
  ;;^UTILITY(U,$J,358.3,12684,1,0)
  ;;=^358.31IA^4^2
  ;;^UTILITY(U,$J,358.3,12684,1,3,0)
- ;;=3^Cystectomy
+ ;;=3^Stable burst Fx of T5-T6 vertebra,Subsq
  ;;^UTILITY(U,$J,358.3,12684,1,4,0)
- ;;=4^Z90.6
+ ;;=4^S22.051D
  ;;^UTILITY(U,$J,358.3,12684,2)
- ;;=^322063
+ ;;=^5022963
  ;;^UTILITY(U,$J,358.3,12685,0)
- ;;=Z95.810^^54^616^19
+ ;;=S22.061D^^50^550^35
  ;;^UTILITY(U,$J,358.3,12685,1,0)
  ;;=^358.31IA^4^2
  ;;^UTILITY(U,$J,358.3,12685,1,3,0)
- ;;=3^Defibrillatory w/ Synchronous Pacemaker
+ ;;=3^Stable burst Fx of T7-T8 vertebra,Subsq
  ;;^UTILITY(U,$J,358.3,12685,1,4,0)
- ;;=4^Z95.810
+ ;;=4^S22.061D
  ;;^UTILITY(U,$J,358.3,12685,2)
- ;;=^5063674
+ ;;=^5022993
  ;;^UTILITY(U,$J,358.3,12686,0)
- ;;=Z99.2^^54^616^20
+ ;;=S22.071D^^50^550^36
  ;;^UTILITY(U,$J,358.3,12686,1,0)
  ;;=^358.31IA^4^2
  ;;^UTILITY(U,$J,358.3,12686,1,3,0)
- ;;=3^Dialysis
+ ;;=3^Stable burst Fx of T9-T10 vertebra,Subsq
  ;;^UTILITY(U,$J,358.3,12686,1,4,0)
- ;;=4^Z99.2
+ ;;=4^S22.071D
  ;;^UTILITY(U,$J,358.3,12686,2)
- ;;=^5063758
+ ;;=^5023023
  ;;^UTILITY(U,$J,358.3,12687,0)
- ;;=Z90.3^^54^616^21
+ ;;=S32.051D^^50^550^37
  ;;^UTILITY(U,$J,358.3,12687,1,0)
  ;;=^358.31IA^4^2
  ;;^UTILITY(U,$J,358.3,12687,1,3,0)
- ;;=3^Gastrectomy
+ ;;=3^Stable burst Fx of fifth lumbar vertebra,Subsq
  ;;^UTILITY(U,$J,358.3,12687,1,4,0)
- ;;=4^Z90.3
+ ;;=4^S32.051D
  ;;^UTILITY(U,$J,358.3,12687,2)
- ;;=^5063586
+ ;;=^5024499
  ;;^UTILITY(U,$J,358.3,12688,0)
- ;;=Z98.84^^54^616^22
+ ;;=S12.01XD^^50^550^38
  ;;^UTILITY(U,$J,358.3,12688,1,0)
  ;;=^358.31IA^4^2
  ;;^UTILITY(U,$J,358.3,12688,1,3,0)
- ;;=3^Gastric Bypass
+ ;;=3^Stable burst Fx of first cervical vertebra,Subsq
  ;;^UTILITY(U,$J,358.3,12688,1,4,0)
- ;;=4^Z98.84
+ ;;=4^S12.01XD
  ;;^UTILITY(U,$J,358.3,12688,2)
- ;;=^5063749
+ ;;=^5021559
  ;;^UTILITY(U,$J,358.3,12689,0)
- ;;=Z94.3^^54^616^23
+ ;;=S32.011D^^50^550^39
  ;;^UTILITY(U,$J,358.3,12689,1,0)
  ;;=^358.31IA^4^2
  ;;^UTILITY(U,$J,358.3,12689,1,3,0)
- ;;=3^Heart & Lung Transplant
- ;;^UTILITY(U,$J,358.3,12689,1,4,0)
- ;;=4^Z94.3
- ;;^UTILITY(U,$J,358.3,12689,2)
- ;;=^5063657
- ;;^UTILITY(U,$J,358.3,12690,0)
- ;;=Z94.1^^54^616^24
- ;;^UTILITY(U,$J,358.3,12690,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,12690,1,3,0)
- ;;=3^Heart Transplant
- ;;^UTILITY(U,$J,358.3,12690,1,4,0)
- ;;=4^Z94.1
- ;;^UTILITY(U,$J,358.3,12690,2)
- ;;=^5063655
- ;;^UTILITY(U,$J,358.3,12691,0)
- ;;=Z95.3^^54^616^26
- ;;^UTILITY(U,$J,358.3,12691,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,12691,1,3,0)
- ;;=3^Heart Valve Replacement (Porcine)
- ;;^UTILITY(U,$J,358.3,12691,1,4,0)
- ;;=4^Z95.3
- ;;^UTILITY(U,$J,358.3,12691,2)
- ;;=^5063671
- ;;^UTILITY(U,$J,358.3,12692,0)
- ;;=Z95.4^^54^616^27
- ;;^UTILITY(U,$J,358.3,12692,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,12692,1,3,0)
- ;;=3^Heart Valve Replacement (Tissue Graft)
- ;;^UTILITY(U,$J,358.3,12692,1,4,0)
- ;;=4^Z95.4
- ;;^UTILITY(U,$J,358.3,12692,2)
- ;;=^5063672
- ;;^UTILITY(U,$J,358.3,12693,0)
- ;;=Z96.643^^54^616^28
- ;;^UTILITY(U,$J,358.3,12693,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,12693,1,3,0)
- ;;=3^Hip Replacement,Bilateral
- ;;^UTILITY(U,$J,358.3,12693,1,4,0)
- ;;=4^Z96.643
- ;;^UTILITY(U,$J,358.3,12693,2)
- ;;=^5063703
- ;;^UTILITY(U,$J,358.3,12694,0)
- ;;=Z96.642^^54^616^29
- ;;^UTILITY(U,$J,358.3,12694,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,12694,1,3,0)
- ;;=3^Hip Replacement,Left
- ;;^UTILITY(U,$J,358.3,12694,1,4,0)
- ;;=4^Z96.642
- ;;^UTILITY(U,$J,358.3,12694,2)
- ;;=^5063702
- ;;^UTILITY(U,$J,358.3,12695,0)
- ;;=Z96.641^^54^616^30
- ;;^UTILITY(U,$J,358.3,12695,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,12695,1,3,0)
- ;;=3^Hip Replacement,Right
- ;;^UTILITY(U,$J,358.3,12695,1,4,0)
- ;;=4^Z96.641
- ;;^UTILITY(U,$J,358.3,12695,2)
- ;;=^5063701
- ;;^UTILITY(U,$J,358.3,12696,0)
- ;;=Z90.711^^54^616^31
- ;;^UTILITY(U,$J,358.3,12696,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,12696,1,3,0)
- ;;=3^Hysterectomy (Cervical Stump Remaining)
- ;;^UTILITY(U,$J,358.3,12696,1,4,0)
- ;;=4^Z90.711
- ;;^UTILITY(U,$J,358.3,12696,2)
- ;;=^5063592
- ;;^UTILITY(U,$J,358.3,12697,0)
- ;;=Z90.710^^54^616^32
- ;;^UTILITY(U,$J,358.3,12697,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,12697,1,3,0)
- ;;=3^Hysterectomy (Cervix & Uterus)
- ;;^UTILITY(U,$J,358.3,12697,1,4,0)
- ;;=4^Z90.710
- ;;^UTILITY(U,$J,358.3,12697,2)
- ;;=^5063591
- ;;^UTILITY(U,$J,358.3,12698,0)
- ;;=Z93.2^^54^616^33
- ;;^UTILITY(U,$J,358.3,12698,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,12698,1,3,0)
- ;;=3^Ileostomy
- ;;^UTILITY(U,$J,358.3,12698,1,4,0)
- ;;=4^Z93.2
- ;;^UTILITY(U,$J,358.3,12698,2)
- ;;=^5063644
- ;;^UTILITY(U,$J,358.3,12699,0)
- ;;=Z96.1^^54^616^34
- ;;^UTILITY(U,$J,358.3,12699,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,12699,1,3,0)
- ;;=3^Intraocular Lens
- ;;^UTILITY(U,$J,358.3,12699,1,4,0)
- ;;=4^Z96.1
- ;;^UTILITY(U,$J,358.3,12699,2)
- ;;=^5063682
- ;;^UTILITY(U,$J,358.3,12700,0)
- ;;=Z94.0^^54^616^35
- ;;^UTILITY(U,$J,358.3,12700,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,12700,1,3,0)
- ;;=3^Kidney Transplant
- ;;^UTILITY(U,$J,358.3,12700,1,4,0)
- ;;=4^Z94.0
- ;;^UTILITY(U,$J,358.3,12700,2)
- ;;=^5063654
- ;;^UTILITY(U,$J,358.3,12701,0)
- ;;=Z96.653^^54^616^36
- ;;^UTILITY(U,$J,358.3,12701,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,12701,1,3,0)
- ;;=3^Knee Replacement,Bilateral
- ;;^UTILITY(U,$J,358.3,12701,1,4,0)
- ;;=4^Z96.653
- ;;^UTILITY(U,$J,358.3,12701,2)
- ;;=^5063707
- ;;^UTILITY(U,$J,358.3,12702,0)
- ;;=Z96.652^^54^616^37
- ;;^UTILITY(U,$J,358.3,12702,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,12702,1,3,0)
- ;;=3^Knee Replacement,Left
- ;;^UTILITY(U,$J,358.3,12702,1,4,0)
- ;;=4^Z96.652
- ;;^UTILITY(U,$J,358.3,12702,2)
- ;;=^5063706
- ;;^UTILITY(U,$J,358.3,12703,0)
- ;;=Z96.651^^54^616^38
- ;;^UTILITY(U,$J,358.3,12703,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,12703,1,3,0)
- ;;=3^Knee Replacement,Right
+ ;;=3^Stable burst Fx of first lumbar vertebra,Subsq

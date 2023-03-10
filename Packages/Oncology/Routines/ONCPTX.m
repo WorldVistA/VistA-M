@@ -1,5 +1,5 @@
-ONCPTX ;Hines OIFO/GWB - First Course of Treatment ;10/05/11
- ;;2.2;ONCOLOGY;**1,5,6,10**;Jul 31, 2013;Build 20
+ONCPTX ;HINES OIFO/GWB - First Course of Treatment ;10/05/11
+ ;;2.2;ONCOLOGY;**1,5,6,10,15**;Jul 31, 2013;Build 5
  ;
  N DATEDX
  S DATEDX=$P($G(^ONCO(165.5,D0,0)),U,16)
@@ -98,7 +98,7 @@ FORDS ;Surgical Procedures (FORDS)
  W !," Surgery of primary @fac...(F): ",$E(ONC(165.5,D0,50.3),1,6)_$E(ONC(165.5,D0,50.3),9,10),?41,TXT1
  W:TXT2'="" !?41,TXT2
  W !," Surgical margins.............: ",ONC(165.5,DA,59)
- W:DATEDX>3091231 !," Approach.....................: ",ONC(165.5,DA,234)
+ W:DATEDX>3091231 !," RX Hosp--Surg App 2010.......: ",ONC(165.5,DA,234)
  S TXT=ONC(165.5,D0,138.4),LEN=38 D TXT
  W !," Scope of ln surgery.......(F): ",$E(ONC(165.5,D0,138.2),1,6)_$E(ONC(165.5,D0,138.2),9,10),?41,TXT1
  W:TXT2'="" !?41,TXT2

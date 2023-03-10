@@ -1,5 +1,5 @@
-PSOBGMG3 ;BHAM ISC/LC - BINGO BOARD MANAGER (CONT'D) ; 06/19/96
- ;;7.0;OUTPATIENT PHARMACY;**11,77**;DEC 1997
+PSOBGMG3 ;BHAM ISC/LC - BINGO BOARD MANAGER (CONT'D) ;03/02/15  18:05
+ ;;7.0;OUTPATIENT PHARMACY;**11,77,441**;DEC 1997;Build 208
  ;External reference to PS(50.7 is supported by DBIA 2223
  ;External reference to PSDRUG( is supported by DBIA 221
  ;
@@ -50,7 +50,7 @@ PRSE1 ;PENDING
  ;
  W !!,"Pending: ",!,?3,"Orderable Item: "_$P(^PS(50.7,OI,0),"^"),?52,"Provider: "_$P(^VA(200,PROV,0),"^")
  W !,?3,"Entered By: "_$P(^VA(200,EBY,0),"^"),?52,"Time In: "_LOGDT
- W !,?3,"Drug: "_$S($G(DRG):$P(^PSDRUG(DRG,0),"^"),1:""),?52,"Routing: "_$S($G(MW)="M":"MAIL",1:"WINDOW")
+ W !,?3,"Drug: "_$S($G(DRG):$P(^PSDRUG(DRG,0),"^"),1:""),?52,"Routing: "_$S($G(MW)="M":"MAIL",$G(MW)="P":"PARK",1:"WINDOW")  ;441 PAPI
  I $Y+6>IOSL D ENPG Q:$G(EXT)
 STEX1 K DA,DIC,DIK,PN,ODTP,EBY,PROV,DRG,LOGDT,MW,XX,XX1,Y
  S PAS1=1

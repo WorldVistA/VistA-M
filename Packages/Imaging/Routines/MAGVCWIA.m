@@ -1,5 +1,5 @@
-MAGVCWIA ;WOIFO/MAT,DAC - DICOM Storage Commit RPCs  ; 20 Nov 2015  8:58 PM
- ;;3.0;IMAGING;**138,162**;Mar 19, 2002;Build 22;Nov 20, 2015
+MAGVCWIA ;WOIFO/MAT,DAC - DICOM Storage Commit RPCs  ; Nov 05, 2020@07:23:38
+ ;;3.0;IMAGING;**138,162,283**;Mar 19, 2002;Build 5;Nov 20, 2015
  ;; Per VHA Directive 2004-038, this routine should not be modified.
  ;; +---------------------------------------------------------------+
  ;; | Property of the US Government.                                |
@@ -123,6 +123,7 @@ ACTCRE8(RETURN,MSGTAGS,STAT) ;
  N CRTUSR,PLACEID S CRTUSR=DUZ,PLACEID=DUZ(2) ;--- Service Account User.
  N CRTAPP,SUBTYPE,TYPE S (CRTAPP,SUBTYPE,TYPE)="StorageCommit"
  N PRIORITY S PRIORITY="0"
+ S PLACEID=$$STA^XUAF4(PLACEID) ; P283 DAC - the MAG WORK ITEM will now only accept Station Numbers
  ;--- Post entry to the MAG WORK ITEM & MAG WORK ITEM HISTORY files.
  D CRTITEM^MAGVIM01(.OUT,TYPE,SUBTYPE,STATUS,PLACEID,PRIORITY,.MSGTAGS,CRTUSR,CRTAPP)
  ;
@@ -385,4 +386,3 @@ ZUPD8FLG(OUT,WIIEN,TAGIN) ;
  . Q
  Q
  ;
- ; MAGVCWIA

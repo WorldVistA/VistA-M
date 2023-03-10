@@ -1,126 +1,124 @@
-IBDEI0RL ; ; 04-FEB-2020
- ;;3.0;IB ENCOUNTER FORM IMP/EXP;;FEB 04, 2020
+IBDEI0RL ; ; 01-FEB-2022
+ ;;3.0;IB ENCOUNTER FORM IMP/EXP;;FEB 01, 2022
  Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,999) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
- ;;^UTILITY(U,$J,358.3,12312,1,3,0)
- ;;=3^Melanoma in Situ of Left Lower Limb
- ;;^UTILITY(U,$J,358.3,12312,1,4,0)
- ;;=4^D03.72
- ;;^UTILITY(U,$J,358.3,12312,2)
- ;;=^5001906
- ;;^UTILITY(U,$J,358.3,12313,0)
- ;;=D03.8^^80^776^30
- ;;^UTILITY(U,$J,358.3,12313,1,0)
+ ;;^UTILITY(U,$J,358.3,12421,1,4,0)
+ ;;=4^E11.311
+ ;;^UTILITY(U,$J,358.3,12421,2)
+ ;;=^5002632
+ ;;^UTILITY(U,$J,358.3,12422,0)
+ ;;=E11.319^^49^600^22
+ ;;^UTILITY(U,$J,358.3,12422,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,12313,1,3,0)
- ;;=3^Melanoma in Situ of Other Sites
- ;;^UTILITY(U,$J,358.3,12313,1,4,0)
- ;;=4^D03.8
- ;;^UTILITY(U,$J,358.3,12313,2)
- ;;=^5001907
- ;;^UTILITY(U,$J,358.3,12314,0)
- ;;=C43.121^^80^776^6
- ;;^UTILITY(U,$J,358.3,12314,1,0)
+ ;;^UTILITY(U,$J,358.3,12422,1,3,0)
+ ;;=3^DM Type 2 w/ Unspec Diabetic Retinopathy w/o Macular Edema
+ ;;^UTILITY(U,$J,358.3,12422,1,4,0)
+ ;;=4^E11.319
+ ;;^UTILITY(U,$J,358.3,12422,2)
+ ;;=^5002633
+ ;;^UTILITY(U,$J,358.3,12423,0)
+ ;;=E11.40^^49^600^11
+ ;;^UTILITY(U,$J,358.3,12423,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,12314,1,3,0)
- ;;=3^Malig Melanoma of Left Upper Eyelid
- ;;^UTILITY(U,$J,358.3,12314,1,4,0)
- ;;=4^C43.121
- ;;^UTILITY(U,$J,358.3,12314,2)
- ;;=^5157251
- ;;^UTILITY(U,$J,358.3,12315,0)
- ;;=C43.122^^80^776^4
- ;;^UTILITY(U,$J,358.3,12315,1,0)
+ ;;^UTILITY(U,$J,358.3,12423,1,3,0)
+ ;;=3^DM Type 2 w/ Diabetic Neuropathy,Unspec
+ ;;^UTILITY(U,$J,358.3,12423,1,4,0)
+ ;;=4^E11.40
+ ;;^UTILITY(U,$J,358.3,12423,2)
+ ;;=^5002644
+ ;;^UTILITY(U,$J,358.3,12424,0)
+ ;;=E11.41^^49^600^10
+ ;;^UTILITY(U,$J,358.3,12424,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,12315,1,3,0)
- ;;=3^Malig Melanoma of Left Lower Eyelid
- ;;^UTILITY(U,$J,358.3,12315,1,4,0)
- ;;=4^C43.122
- ;;^UTILITY(U,$J,358.3,12315,2)
- ;;=^5157252
- ;;^UTILITY(U,$J,358.3,12316,0)
- ;;=C43.111^^80^776^14
- ;;^UTILITY(U,$J,358.3,12316,1,0)
+ ;;^UTILITY(U,$J,358.3,12424,1,3,0)
+ ;;=3^DM Type 2 w/ Diabetic Mononeuropathy
+ ;;^UTILITY(U,$J,358.3,12424,1,4,0)
+ ;;=4^E11.41
+ ;;^UTILITY(U,$J,358.3,12424,2)
+ ;;=^5002645
+ ;;^UTILITY(U,$J,358.3,12425,0)
+ ;;=E11.42^^49^600^14
+ ;;^UTILITY(U,$J,358.3,12425,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,12316,1,3,0)
- ;;=3^Malig Melanoma of Right Upper Eyelid
- ;;^UTILITY(U,$J,358.3,12316,1,4,0)
- ;;=4^C43.111
- ;;^UTILITY(U,$J,358.3,12316,2)
- ;;=^5157249
- ;;^UTILITY(U,$J,358.3,12317,0)
- ;;=C43.112^^80^776^12
- ;;^UTILITY(U,$J,358.3,12317,1,0)
+ ;;^UTILITY(U,$J,358.3,12425,1,3,0)
+ ;;=3^DM Type 2 w/ Diabetic Polyneuropathy
+ ;;^UTILITY(U,$J,358.3,12425,1,4,0)
+ ;;=4^E11.42
+ ;;^UTILITY(U,$J,358.3,12425,2)
+ ;;=^5002646
+ ;;^UTILITY(U,$J,358.3,12426,0)
+ ;;=E11.43^^49^600^8
+ ;;^UTILITY(U,$J,358.3,12426,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,12317,1,3,0)
- ;;=3^Malig Melanoma of Right Lower Eyelid
- ;;^UTILITY(U,$J,358.3,12317,1,4,0)
- ;;=4^C43.112
- ;;^UTILITY(U,$J,358.3,12317,2)
- ;;=^5157250
- ;;^UTILITY(U,$J,358.3,12318,0)
- ;;=D03.121^^80^776^27
- ;;^UTILITY(U,$J,358.3,12318,1,0)
+ ;;^UTILITY(U,$J,358.3,12426,1,3,0)
+ ;;=3^DM Type 2 w/ Diabetic Autonomic Polyneuropathy
+ ;;^UTILITY(U,$J,358.3,12426,1,4,0)
+ ;;=4^E11.43
+ ;;^UTILITY(U,$J,358.3,12426,2)
+ ;;=^5002647
+ ;;^UTILITY(U,$J,358.3,12427,0)
+ ;;=E11.51^^49^600^12
+ ;;^UTILITY(U,$J,358.3,12427,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,12318,1,3,0)
- ;;=3^Melanoma in Situ of Left Upper Eyelid
- ;;^UTILITY(U,$J,358.3,12318,1,4,0)
- ;;=4^D03.121
- ;;^UTILITY(U,$J,358.3,12318,2)
- ;;=^5157280
- ;;^UTILITY(U,$J,358.3,12319,0)
- ;;=D03.122^^80^776^25
- ;;^UTILITY(U,$J,358.3,12319,1,0)
+ ;;^UTILITY(U,$J,358.3,12427,1,3,0)
+ ;;=3^DM Type 2 w/ Diabetic Peripheral Angiopathy w/o Gangrene
+ ;;^UTILITY(U,$J,358.3,12427,1,4,0)
+ ;;=4^E11.51
+ ;;^UTILITY(U,$J,358.3,12427,2)
+ ;;=^5002650
+ ;;^UTILITY(U,$J,358.3,12428,0)
+ ;;=E11.52^^49^600^13
+ ;;^UTILITY(U,$J,358.3,12428,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,12319,1,3,0)
- ;;=3^Melanoma in Situ of Left Lower Eyelid
- ;;^UTILITY(U,$J,358.3,12319,1,4,0)
- ;;=4^D03.122
- ;;^UTILITY(U,$J,358.3,12319,2)
- ;;=^5157281
- ;;^UTILITY(U,$J,358.3,12320,0)
- ;;=D03.111^^80^776^34
- ;;^UTILITY(U,$J,358.3,12320,1,0)
+ ;;^UTILITY(U,$J,358.3,12428,1,3,0)
+ ;;=3^DM Type 2 w/ Diabetic Peripheral Angiopathy w/ Gangrene
+ ;;^UTILITY(U,$J,358.3,12428,1,4,0)
+ ;;=4^E11.52
+ ;;^UTILITY(U,$J,358.3,12428,2)
+ ;;=^5002651
+ ;;^UTILITY(U,$J,358.3,12429,0)
+ ;;=E11.621^^49^600^15
+ ;;^UTILITY(U,$J,358.3,12429,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,12320,1,3,0)
- ;;=3^Melanoma in Situ of Right Upper Eyelid
- ;;^UTILITY(U,$J,358.3,12320,1,4,0)
- ;;=4^D03.111
- ;;^UTILITY(U,$J,358.3,12320,2)
- ;;=^5157278
- ;;^UTILITY(U,$J,358.3,12321,0)
- ;;=D03.112^^80^776^32
- ;;^UTILITY(U,$J,358.3,12321,1,0)
+ ;;^UTILITY(U,$J,358.3,12429,1,3,0)
+ ;;=3^DM Type 2 w/ Foot Ulcer
+ ;;^UTILITY(U,$J,358.3,12429,1,4,0)
+ ;;=4^E11.621
+ ;;^UTILITY(U,$J,358.3,12429,2)
+ ;;=^5002656
+ ;;^UTILITY(U,$J,358.3,12430,0)
+ ;;=E11.641^^49^600^17
+ ;;^UTILITY(U,$J,358.3,12430,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,12321,1,3,0)
- ;;=3^Melanoma in Situ of Right Lower Eyelid
- ;;^UTILITY(U,$J,358.3,12321,1,4,0)
- ;;=4^D03.112
- ;;^UTILITY(U,$J,358.3,12321,2)
- ;;=^5157279
- ;;^UTILITY(U,$J,358.3,12322,0)
- ;;=C4A.0^^80^777^9
- ;;^UTILITY(U,$J,358.3,12322,1,0)
+ ;;^UTILITY(U,$J,358.3,12430,1,3,0)
+ ;;=3^DM Type 2 w/ Hypoglycemia w/ Coma
+ ;;^UTILITY(U,$J,358.3,12430,1,4,0)
+ ;;=4^E11.641
+ ;;^UTILITY(U,$J,358.3,12430,2)
+ ;;=^5002661
+ ;;^UTILITY(U,$J,358.3,12431,0)
+ ;;=E11.649^^49^600^18
+ ;;^UTILITY(U,$J,358.3,12431,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,12322,1,3,0)
- ;;=3^Merkel Cell Carcinoma of Lip
- ;;^UTILITY(U,$J,358.3,12322,1,4,0)
- ;;=4^C4A.0
- ;;^UTILITY(U,$J,358.3,12322,2)
- ;;=^5001137
- ;;^UTILITY(U,$J,358.3,12323,0)
- ;;=C4A.21^^80^777^12
- ;;^UTILITY(U,$J,358.3,12323,1,0)
+ ;;^UTILITY(U,$J,358.3,12431,1,3,0)
+ ;;=3^DM Type 2 w/ Hypoglycemia w/o Coma
+ ;;^UTILITY(U,$J,358.3,12431,1,4,0)
+ ;;=4^E11.649
+ ;;^UTILITY(U,$J,358.3,12431,2)
+ ;;=^5002662
+ ;;^UTILITY(U,$J,358.3,12432,0)
+ ;;=E78.01^^49^600^24
+ ;;^UTILITY(U,$J,358.3,12432,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,12323,1,3,0)
- ;;=3^Merkel Cell Carcinoma of Right Ear/External Auric Canal
- ;;^UTILITY(U,$J,358.3,12323,1,4,0)
- ;;=4^C4A.21
- ;;^UTILITY(U,$J,358.3,12323,2)
- ;;=^5001142
- ;;^UTILITY(U,$J,358.3,12324,0)
- ;;=C4A.22^^80^777^4
- ;;^UTILITY(U,$J,358.3,12324,1,0)
+ ;;^UTILITY(U,$J,358.3,12432,1,3,0)
+ ;;=3^Familial Hypercholesterolemia
+ ;;^UTILITY(U,$J,358.3,12432,1,4,0)
+ ;;=4^E78.01
+ ;;^UTILITY(U,$J,358.3,12432,2)
+ ;;=^7570555
+ ;;^UTILITY(U,$J,358.3,12433,0)
+ ;;=E78.00^^49^600^33
+ ;;^UTILITY(U,$J,358.3,12433,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,12324,1,3,0)
- ;;=3^Merkel Cell Carcinoma of Left Ear/External Auric Canal
+ ;;^UTILITY(U,$J,358.3,12433,1,3,0)
+ ;;=3^Pure Hypercholesterolemia,Unspec

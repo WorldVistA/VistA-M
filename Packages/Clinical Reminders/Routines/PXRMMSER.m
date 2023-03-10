@@ -1,7 +1,7 @@
-PXRMMSER ;SLC/PKR,AJB - Computed findings for military service information. ;12/11/2013
- ;;2.0;CLINICAL REMINDERS;**11,12,21,24,26**;Feb 04, 2005;Build 404
+PXRMMSER ;SLC/PKR,AJB - Computed findings for military service information. ;12/17/2019
+ ;;2.0;CLINICAL REMINDERS;**11,12,21,24,26,42**;Feb 04, 2005;Build 245
  ;
- ;======================================================
+ ;===============
 AORANGE(DFN,NGET,BDT,EDT,NFOUND,TEST,DATE,DATA,TEXT) ;This computed
  ;finding will be true if the agent orange exposure registration
  ;date is in the date range specified by Beginning Date/Time
@@ -19,7 +19,7 @@ AORANGE(DFN,NGET,BDT,EDT,NFOUND,TEST,DATE,DATA,TEXT) ;This computed
  S TEXT(NFOUND)="Agent orange exposure registration date: "_$$FMTE^XLFDT(RDATE,"5Z")_"; location: "_DATA(NFOUND,"LOCATION")
  Q
  ;
- ;======================================================
+ ;===============
 COMBAT(DFN,NGET,BDT,EDT,NFOUND,TEST,DATE,DATA,TEXT) ;This computed
  ;finding will be true if combat service is found in the
  ;date range the date range specified by Beginning Date/Time
@@ -38,7 +38,7 @@ COMBAT(DFN,NGET,BDT,EDT,NFOUND,TEST,DATE,DATA,TEXT) ;This computed
  S TEXT(NFOUND)="Combat service from "_$$FMTE^XLFDT(FDATE,"5Z")_" to "_$$FMTE^XLFDT(TDATE,"5Z")_"; location: "_DATA(NFOUND,"LOCATION")
  Q
  ;
- ;======================================================
+ ;===============
 CVELIG(DFN,NGET,BDT,EDT,NFOUND,TEST,DATE,DATA,TEXT) ;Computed finding for
  ;combat vet eligiblity data. VA-COMBAT VET ELIGIBILITY.
  N CV,EDATE,ELIG,RESULT
@@ -60,24 +60,69 @@ CVELIG(DFN,NGET,BDT,EDT,NFOUND,TEST,DATE,DATA,TEXT) ;Computed finding for
  S DATA(NFOUND,"STATUS")=DATA(NFOUND,"VALUE")
  Q
  ;
- ;======================================================
+ ;===============
 DISCHDT(DFN,NGET,BDT,EDT,NFOUND,TEST,DATE,DATA,TEXT) ;
- ; This computed finding returns the service separation date.
- ; CF.VA-SERVICE SEPARATION DATES
+ ;This computed finding returns the service separation date.
+ ;CF.VA-SERVICE SEPARATION DATES
  N IND
  D MSDATA(DFN,NGET,BDT,EDT,.NFOUND,.TEST,.DATE,.DATA,.TEXT,1)
  F IND=1:1:NFOUND S DATA(IND,"VALUE")=DATE(IND)
  Q
  ;
- ;======================================================
+ ;===============
+ELIG(DFN,TEST,DATE,DATA,TEXT) ;
+ ;This computed finding gets a list of the patient's eligibilities
+ ;using ELIG^VADPT. The Computed Finding Parameter can be used to
+ ;check for a particular eligibility.
+ ;CF.VA-ELIGIBILITY
+ N DONE,CFPARAM,DEFTEXT,P1,P2,PARAM,SUB,SUB1,SUB2,VAEL,VAERR,VAL
+ S CFPARAM=TEST
+ I CFPARAM="" S TEST=0 Q
+ S PARAM=$P(CFPARAM,"|",1)
+ S DEFTEXT=$P(CFPARAM,"|",2)
+ S DATE=$$NOW^PXRMDATE
+ D ELIG^VADPT
+ ;Initialize undefined VAEL elements in CFPARAM.
+ S (DONE,P1)=0
+ F  Q:DONE  D
+ . S P1=$F(PARAM,"VAEL(",P1)
+ . I P1=0 S DONE=1 Q
+ . S P2=$F(PARAM,")",P1)
+ . S SUB=$E(PARAM,P1,P2-2)
+ . I SUB'["," D  Q
+ .. I '$D(VAEL(SUB)) S VAEL(SUB)=""
+ . S SUB1=$P(SUB,",",1),SUB2=$P(SUB,",",2)
+ . I '$D(VAEL(SUB1,SUB2)) S VAEL(SUB1,SUB2)=""
+ I $G(PXRMDEBG)=1 D
+ . K ^TMP("PXRMELIG",$J)
+ . M ^TMP("PXRMELIG",$J)=VAEL
+ I VAERR=1 S TEST=0 Q
+ S TEST=0
+ I @PARAM D
+ . I DEFTEXT'="" S TEXT=DEFTEXT_"\\"_" CFPARAM="_PARAM
+ . E  S TEXT="CFPARAM="_PARAM
+ . S TEST=1
+ . S (DONE,P1)=0
+ . F  Q:DONE  D
+ .. S P1=$F(PARAM,"VAEL(",P1)
+ .. I P1=0 S DONE=1 Q
+ .. S P2=$F(PARAM,")",P1)
+ .. S SUB=$E(PARAM,P1,P2-2)
+ .. S VAL=$S(SUB'[",":VAEL(SUB),1:VAEL($P(SUB,",",1),$P(SUB,",",2)))
+ .. S TEXT=TEXT_"\\"_" VAEL("_SUB_")="_VAL
+ D KVAR^VADPT
+ Q
+ ;
+ ;===============
 GETSVCD(DFN) ;Get the SVC^VADPT service data.
  I $D(^TMP($J,"SVC",DFN)) Q
  N VAERR,VAROOT
  S VAROOT="^TMP($J,""SVC"",DFN)"
  D SVC^VADPT
+ D KVAR^VADPT
  Q
  ;
- ;======================================================
+ ;===============
 MSDATA(DFN,NGET,BDT,EDT,NFOUND,TEST,DATE,DATA,TEXT,SEPDTR) ;This computed
  ;finding will return service branch information.
  ;CF.VA-SERVICE BRANCH.
@@ -86,7 +131,7 @@ MSDATA(DFN,NGET,BDT,EDT,NFOUND,TEST,DATE,DATA,TEXT,SEPDTR) ;This computed
  D MSDATA^DGMSE(DFN,.NEPS,.ENTRYDTA,.MSDATA)
  I NEPS=0 S NFOUND=0 Q
  N BRANCH,DISTYPE,ENTRYDT,ENTRYDTO,IND,NOW
- N SCOMP,SDIR,SEPDT,SEPDTC,SEPDTCO
+ N SCOMP,SDIR,SEPDT,SEPDTC,SEPDTO
  S NOW=$$NOW^PXRMDATE
  S SDIR=$S(NGET>0:-1,1:1)
  S NGET=$S(NGET<0:-NGET,1:NGET)
@@ -117,7 +162,7 @@ MSDATA(DFN,NGET,BDT,EDT,NFOUND,TEST,DATE,DATA,TEXT,SEPDTR) ;This computed
  . S TEXT(NFOUND)="Service from "_ENTRYDTO_" to "_SEPDTO_" in "_BRANCH_"; service component "_SCOMP_"; discharge "_DISTYPE_"."
  Q
  ;
- ;======================================================
+ ;===============
 OEF(DFN,NGET,BDT,EDT,NFOUND,TEST,DATE,DATA,TEXT) ;This computed
  ;finding will return OEF service information in the date range
  ;specified by Beginning Date/Time and Ending Date/Time.
@@ -145,7 +190,7 @@ OEF(DFN,NGET,BDT,EDT,NFOUND,TEST,DATE,DATA,TEXT) ;This computed
  . S TEXT(NFOUND)=TEMP(FDATE,"TEXT")
  Q
  ;
- ;======================================================
+ ;===============
 OEIF(NGET,BDT,EDT,TGLIST,PARAM) ;List computed finding to build patient
  ;list based on OEF/OIF/UNK data.
  ;VA-OEF/OIF
@@ -175,7 +220,7 @@ OEIF(NGET,BDT,EDT,TGLIST,PARAM) ;List computed finding to build patient
  K ^TMP($J,"OEIF")
  Q
  ;
- ;======================================================
+ ;===============
 OIF(DFN,NGET,BDT,EDT,NFOUND,TEST,DATE,DATA,TEXT) ;This computed
  ;finding will return OIF service information in the date range
  ;specified by Beginning Date/Time and Ending Date/Time.
@@ -203,7 +248,7 @@ OIF(DFN,NGET,BDT,EDT,NFOUND,TEST,DATE,DATA,TEXT) ;This computed
  . S TEXT(NFOUND)=TEMP(FDATE,"TEXT")
  Q
  ;
- ;======================================================
+ ;===============
 PHEART(DFN,TEST,DATE,VALUE,TEXT) ;Single value computed finding for
  ;purple heart data. VA-PURPLE HEART.
  N CV,EDATE,ELIG,RESULT
@@ -215,7 +260,7 @@ PHEART(DFN,TEST,DATE,VALUE,TEXT) ;Single value computed finding for
  S TEXT="Patient is a Purple Heart recipient."
  Q
  ;
- ;======================================================
+ ;===============
 POW(DFN,NGET,BDT,EDT,NFOUND,TEST,DATE,DATA,TEXT) ;This computed
  ;finding will be true if the patient was a POW in the date range
  ;specified by Beginning Date/Time and Ending Date/Time.
@@ -234,7 +279,7 @@ POW(DFN,NGET,BDT,EDT,NFOUND,TEST,DATE,DATA,TEXT) ;This computed
  S TEXT(NFOUND)="Patient was a POW from "_$$FMTE^XLFDT(FDATE,"5Z")_" to "_$$FMTE^XLFDT(TDATE,"5Z")_"; location: "_DATA(NFOUND,"LOCATION")
  Q
  ;
- ;======================================================
+ ;===============
 RADEXP(DFN,NGET,BDT,EDT,NFOUND,TEST,DATE,DATA,TEXT) ;;This computed
  ;finding will be true if the radiation exposure registration
  ;date is in the date range specified by Beginning Date/Time
@@ -252,7 +297,7 @@ RADEXP(DFN,NGET,BDT,EDT,NFOUND,TEST,DATE,DATA,TEXT) ;;This computed
  S TEXT(NFOUND)="Radiation exposure registration date: "_$$FMTE^XLFDT(RDATE,"5Z")_"; exposure method: "_DATA(NFOUND,"EXPOSURE METHOD")
  Q
  ;
- ;======================================================
+ ;===============
 SBRANCH(DFN,NGET,BDT,EDT,NFOUND,TEST,DATE,DATA,TEXT) ;This computed
  ;finding will return service branch information.
  ;CF.VA-SERVICE BRANCH.
@@ -261,7 +306,7 @@ SBRANCH(DFN,NGET,BDT,EDT,NFOUND,TEST,DATE,DATA,TEXT) ;This computed
  F IND=1:1:NFOUND S DATA(IND,"VALUE")=DATA(IND,"BRANCH")
  Q
  ;
- ;======================================================
+ ;===============
 UNKOEIF(DFN,NGET,BDT,EDT,NFOUND,TEST,DATE,DATA,TEXT) ;This computed
  ;finding will return unknown OEF/OIF service information in the date
  ;range specified by Beginning Date/Time and Ending Date/Time.
@@ -289,7 +334,7 @@ UNKOEIF(DFN,NGET,BDT,EDT,NFOUND,TEST,DATE,DATA,TEXT) ;This computed
  . S TEXT(NFOUND)=TEMP(FDATE,"TEXT")
  Q
  ;
- ;======================================================
+ ;===============
 VETERAN(DFN,TEST,DATE,VALUE,TEXT) ;Computed finding for checking if a
  ;patient is a veteran. VA-VETERAN.
  N VAEL
@@ -297,10 +342,10 @@ VETERAN(DFN,TEST,DATE,VALUE,TEXT) ;Computed finding for checking if a
  D ELIG^VADPT
  S TEST=VAEL(4)
  S VALUE=""
- D KVA^VADPT
+ D KVAR^VADPT
  Q
  ;
- ;======================================================
+ ;===============
 VIET(DFN,NGET,BDT,EDT,NFOUND,TEST,DATE,DATA,TEXT) ;This computed will be
  ;true if Vietnam service in the date range specified by BDT and EDT
  ;is found. Note even though it is a multi structure it can only

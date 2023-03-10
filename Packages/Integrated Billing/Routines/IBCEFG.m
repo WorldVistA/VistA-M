@@ -1,7 +1,8 @@
 IBCEFG ;ALB/TMP - OUTPUT FORMATTER EXTRACT ;17-JAN-96
- ;;2.0;INTEGRATED BILLING;**52,51**;21-MAR-94
+ ;;2.0;INTEGRATED BILLING;**52,51,718**;21-MAR-94;Build 73
  ;
-EXTRACT(IBXFORM,IBXIEN,IBXREC,IBXPARM) ; Extract entry into global by rec #/pg/ln/col
+ ;EXTRACT(IBXFORM,IBXIEN,IBXREC,IBXPARM) ; Extract entry into global by rec #/pg/ln/col ; WCJ;IB718v22
+EXTRACT(IBXFORM,IBXIEN,IBXREC,IBXPARM,IBXPOSTWA) ; Extract entry into global by rec #/pg/ln/col; WCJ;IB718v22
  ; IBXFORM  (required) Form id pointer to file #353
  ; IBXIEN   (required) entry # in form's base file to output
  ; IBXREC   (optional) record # in extract file - if not defined - 1 used
@@ -11,6 +12,7 @@ EXTRACT(IBXFORM,IBXIEN,IBXREC,IBXPARM) ; Extract entry into global by rec #/pg/l
  ;          form field to be extracted
  ;          IBXPARM(1) should contain a code to identify the
  ;          type of form being processed (see $$ELE^IBCEFG0 function)
+ ; IBXPOSTWA (optional) = 1 if the post processing of workarounds should be executed ; WCJ;IB718v22
  ; Returns total # of bytes of data extracted if extract successful
  ;  or 0 if extract not successful
  ;

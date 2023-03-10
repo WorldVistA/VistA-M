@@ -1,134 +1,130 @@
-IBDEI0LL ; ; 04-FEB-2020
- ;;3.0;IB ENCOUNTER FORM IMP/EXP;;FEB 04, 2020
+IBDEI0LL ; ; 01-FEB-2022
+ ;;3.0;IB ENCOUNTER FORM IMP/EXP;;FEB 01, 2022
  Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,999) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
- ;;^UTILITY(U,$J,358.3,9580,1,3,0)
- ;;=3^Psychoactive Substance Use
- ;;^UTILITY(U,$J,358.3,9580,1,4,0)
- ;;=4^F19.90
- ;;^UTILITY(U,$J,358.3,9580,2)
- ;;=^5003451
- ;;^UTILITY(U,$J,358.3,9581,0)
- ;;=R44.0^^72^647^27
- ;;^UTILITY(U,$J,358.3,9581,1,0)
+ ;;^UTILITY(U,$J,358.3,9714,2)
+ ;;=^5015906
+ ;;^UTILITY(U,$J,358.3,9715,0)
+ ;;=N91.5^^39^417^75
+ ;;^UTILITY(U,$J,358.3,9715,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,9581,1,3,0)
- ;;=3^Auditory Hallucinations
- ;;^UTILITY(U,$J,358.3,9581,1,4,0)
- ;;=4^R44.0
- ;;^UTILITY(U,$J,358.3,9581,2)
- ;;=^5019455
- ;;^UTILITY(U,$J,358.3,9582,0)
- ;;=F33.9^^72^647^29
- ;;^UTILITY(U,$J,358.3,9582,1,0)
+ ;;^UTILITY(U,$J,358.3,9715,1,3,0)
+ ;;=3^Oligomenorrhea,Unspec
+ ;;^UTILITY(U,$J,358.3,9715,1,4,0)
+ ;;=4^N91.5
+ ;;^UTILITY(U,$J,358.3,9715,2)
+ ;;=^5015907
+ ;;^UTILITY(U,$J,358.3,9716,0)
+ ;;=N92.0^^39^417^40
+ ;;^UTILITY(U,$J,358.3,9716,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,9582,1,3,0)
- ;;=3^Major Depressive Disorder,Recurrent
- ;;^UTILITY(U,$J,358.3,9582,1,4,0)
- ;;=4^F33.9
- ;;^UTILITY(U,$J,358.3,9582,2)
- ;;=^5003537
- ;;^UTILITY(U,$J,358.3,9583,0)
- ;;=F41.9^^72^647^30
- ;;^UTILITY(U,$J,358.3,9583,1,0)
+ ;;^UTILITY(U,$J,358.3,9716,1,3,0)
+ ;;=3^Excessive/Frequent Menstruation w/ Regular Cycle
+ ;;^UTILITY(U,$J,358.3,9716,1,4,0)
+ ;;=4^N92.0
+ ;;^UTILITY(U,$J,358.3,9716,2)
+ ;;=^5015908
+ ;;^UTILITY(U,$J,358.3,9717,0)
+ ;;=N92.6^^39^417^62
+ ;;^UTILITY(U,$J,358.3,9717,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,9583,1,3,0)
- ;;=3^Anxiety Disorder
- ;;^UTILITY(U,$J,358.3,9583,1,4,0)
- ;;=4^F41.9
- ;;^UTILITY(U,$J,358.3,9583,2)
- ;;=^5003567
- ;;^UTILITY(U,$J,358.3,9584,0)
- ;;=F20.0^^72^647^32
- ;;^UTILITY(U,$J,358.3,9584,1,0)
+ ;;^UTILITY(U,$J,358.3,9717,1,3,0)
+ ;;=3^Irregular Menstruation,Unspec
+ ;;^UTILITY(U,$J,358.3,9717,1,4,0)
+ ;;=4^N92.6
+ ;;^UTILITY(U,$J,358.3,9717,2)
+ ;;=^5015913
+ ;;^UTILITY(U,$J,358.3,9718,0)
+ ;;=N92.5^^39^417^61
+ ;;^UTILITY(U,$J,358.3,9718,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,9584,1,3,0)
- ;;=3^Paranoid Schizophrenia
- ;;^UTILITY(U,$J,358.3,9584,1,4,0)
- ;;=4^F20.0
- ;;^UTILITY(U,$J,358.3,9584,2)
- ;;=^5003469
- ;;^UTILITY(U,$J,358.3,9585,0)
- ;;=F30.9^^72^647^33
- ;;^UTILITY(U,$J,358.3,9585,1,0)
+ ;;^UTILITY(U,$J,358.3,9718,1,3,0)
+ ;;=3^Irregular Menstruation,Other Spec
+ ;;^UTILITY(U,$J,358.3,9718,1,4,0)
+ ;;=4^N92.5
+ ;;^UTILITY(U,$J,358.3,9718,2)
+ ;;=^5015912
+ ;;^UTILITY(U,$J,358.3,9719,0)
+ ;;=N92.3^^39^417^80
+ ;;^UTILITY(U,$J,358.3,9719,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,9585,1,3,0)
- ;;=3^Manic Episode
- ;;^UTILITY(U,$J,358.3,9585,1,4,0)
- ;;=4^F30.9
- ;;^UTILITY(U,$J,358.3,9585,2)
- ;;=^5003493
- ;;^UTILITY(U,$J,358.3,9586,0)
- ;;=F23.^^72^647^31
- ;;^UTILITY(U,$J,358.3,9586,1,0)
+ ;;^UTILITY(U,$J,358.3,9719,1,3,0)
+ ;;=3^Ovulation Bleeding
+ ;;^UTILITY(U,$J,358.3,9719,1,4,0)
+ ;;=4^N92.3
+ ;;^UTILITY(U,$J,358.3,9719,2)
+ ;;=^270570
+ ;;^UTILITY(U,$J,358.3,9720,0)
+ ;;=N89.7^^39^417^54
+ ;;^UTILITY(U,$J,358.3,9720,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,9586,1,3,0)
- ;;=3^Brief Psychotic Disorder
- ;;^UTILITY(U,$J,358.3,9586,1,4,0)
- ;;=4^F23.
- ;;^UTILITY(U,$J,358.3,9586,2)
- ;;=^5003479
- ;;^UTILITY(U,$J,358.3,9587,0)
- ;;=F39.^^72^647^35
- ;;^UTILITY(U,$J,358.3,9587,1,0)
+ ;;^UTILITY(U,$J,358.3,9720,1,3,0)
+ ;;=3^Hematocolpos
+ ;;^UTILITY(U,$J,358.3,9720,1,4,0)
+ ;;=4^N89.7
+ ;;^UTILITY(U,$J,358.3,9720,2)
+ ;;=^5015889
+ ;;^UTILITY(U,$J,358.3,9721,0)
+ ;;=N93.8^^39^417^5
+ ;;^UTILITY(U,$J,358.3,9721,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,9587,1,3,0)
- ;;=3^Mood Disorder
- ;;^UTILITY(U,$J,358.3,9587,1,4,0)
- ;;=4^F39.
- ;;^UTILITY(U,$J,358.3,9587,2)
- ;;=^5003541
- ;;^UTILITY(U,$J,358.3,9588,0)
- ;;=F02.81^^72^647^37
- ;;^UTILITY(U,$J,358.3,9588,1,0)
+ ;;^UTILITY(U,$J,358.3,9721,1,3,0)
+ ;;=3^Abnormal Uterine/Vaginal Bleeding,Other Spec
+ ;;^UTILITY(U,$J,358.3,9721,1,4,0)
+ ;;=4^N93.8
+ ;;^UTILITY(U,$J,358.3,9721,2)
+ ;;=^5015915
+ ;;^UTILITY(U,$J,358.3,9722,0)
+ ;;=N93.9^^39^417^6
+ ;;^UTILITY(U,$J,358.3,9722,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,9588,1,3,0)
- ;;=3^Dementia w/ Behavioral Disturbance
- ;;^UTILITY(U,$J,358.3,9588,1,4,0)
- ;;=4^F02.81
- ;;^UTILITY(U,$J,358.3,9588,2)
- ;;=^5003049
- ;;^UTILITY(U,$J,358.3,9589,0)
- ;;=Z76.5^^72^647^38
- ;;^UTILITY(U,$J,358.3,9589,1,0)
+ ;;^UTILITY(U,$J,358.3,9722,1,3,0)
+ ;;=3^Abnormal Uterine/Vaginal Bleeding,Unspec
+ ;;^UTILITY(U,$J,358.3,9722,1,4,0)
+ ;;=4^N93.9
+ ;;^UTILITY(U,$J,358.3,9722,2)
+ ;;=^5015916
+ ;;^UTILITY(U,$J,358.3,9723,0)
+ ;;=N92.4^^39^417^38
+ ;;^UTILITY(U,$J,358.3,9723,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,9589,1,3,0)
- ;;=3^Malingerer
- ;;^UTILITY(U,$J,358.3,9589,1,4,0)
- ;;=4^Z76.5
- ;;^UTILITY(U,$J,358.3,9589,2)
- ;;=^5063302
- ;;^UTILITY(U,$J,358.3,9590,0)
- ;;=Z91.5^^72^647^14
- ;;^UTILITY(U,$J,358.3,9590,1,0)
+ ;;^UTILITY(U,$J,358.3,9723,1,3,0)
+ ;;=3^Excessive Bleeding in Premenopausal Period
+ ;;^UTILITY(U,$J,358.3,9723,1,4,0)
+ ;;=4^N92.4
+ ;;^UTILITY(U,$J,358.3,9723,2)
+ ;;=^5015911
+ ;;^UTILITY(U,$J,358.3,9724,0)
+ ;;=N95.0^^39^417^89
+ ;;^UTILITY(U,$J,358.3,9724,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,9590,1,3,0)
- ;;=3^Personal Hx of Suicide Attempt(s)
- ;;^UTILITY(U,$J,358.3,9590,1,4,0)
- ;;=4^Z91.5
- ;;^UTILITY(U,$J,358.3,9590,2)
- ;;=^5063624
- ;;^UTILITY(U,$J,358.3,9591,0)
- ;;=T14.91XS^^72^647^13
- ;;^UTILITY(U,$J,358.3,9591,1,0)
+ ;;^UTILITY(U,$J,358.3,9724,1,3,0)
+ ;;=3^Postmenopausal Bleeding
+ ;;^UTILITY(U,$J,358.3,9724,1,4,0)
+ ;;=4^N95.0
+ ;;^UTILITY(U,$J,358.3,9724,2)
+ ;;=^97040
+ ;;^UTILITY(U,$J,358.3,9725,0)
+ ;;=N95.1^^39^417^69
+ ;;^UTILITY(U,$J,358.3,9725,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,9591,1,3,0)
- ;;=3^Suicide Attempt,Sequela
- ;;^UTILITY(U,$J,358.3,9591,1,4,0)
- ;;=4^T14.91XS
- ;;^UTILITY(U,$J,358.3,9591,2)
- ;;=^5151781
- ;;^UTILITY(U,$J,358.3,9592,0)
- ;;=T14.91XD^^72^647^12
- ;;^UTILITY(U,$J,358.3,9592,1,0)
+ ;;^UTILITY(U,$J,358.3,9725,1,3,0)
+ ;;=3^Menopausal/Female Climacteric States
+ ;;^UTILITY(U,$J,358.3,9725,1,4,0)
+ ;;=4^N95.1
+ ;;^UTILITY(U,$J,358.3,9725,2)
+ ;;=^5015927
+ ;;^UTILITY(U,$J,358.3,9726,0)
+ ;;=N97.0^^39^417^45
+ ;;^UTILITY(U,$J,358.3,9726,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,9592,1,3,0)
- ;;=3^Suicide Attempt,Subsequent Encntr
- ;;^UTILITY(U,$J,358.3,9592,1,4,0)
- ;;=4^T14.91XD
- ;;^UTILITY(U,$J,358.3,9592,2)
- ;;=^5151780
- ;;^UTILITY(U,$J,358.3,9593,0)
- ;;=T14.91XA^^72^647^11
- ;;^UTILITY(U,$J,358.3,9593,1,0)
+ ;;^UTILITY(U,$J,358.3,9726,1,3,0)
+ ;;=3^Female Infertility Associated w/ Anovulation
+ ;;^UTILITY(U,$J,358.3,9726,1,4,0)
+ ;;=4^N97.0
+ ;;^UTILITY(U,$J,358.3,9726,2)
+ ;;=^5015931
+ ;;^UTILITY(U,$J,358.3,9727,0)
+ ;;=N97.9^^39^417^46
+ ;;^UTILITY(U,$J,358.3,9727,1,0)
  ;;=^358.31IA^4^2

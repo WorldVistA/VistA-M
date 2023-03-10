@@ -1,5 +1,5 @@
 DIKZ ;SFISC/XAK-XREF COMPILER ;1JUN2010
- ;;22.2;VA FileMan;;Jan 05, 2016;Build 42
+ ;;22.2;VA FileMan;**19**;Jan 05, 2016;Build 2
  ;;Per VA Directive 6402, this routine should not be modified.
  ;;Submitted to OSEHRA 5 January 2015 by the VISTA Expertise Network.
  ;;Based on Medsphere Systems Corporation's MSC FileMan 1051.
@@ -17,10 +17,10 @@ FILE K DIC S DMAX=X,DIC="^DIC(",DIC(0)="AEQ" D ^DIC G Q1:Y'>0 N DIPZ S DIPZ=+Y
 EN ;
  S Y(1)=$$EZBLD^DIALOG(8036),Y(3)=Y D BLD^DIALOG(8024,.Y,"","DIR") W:'$G(DIKZS) !!,DIR,! K Y(1),Y(3)
  K ^UTILITY($J),^UTILITY("DIK",$J) N DIK,DIFILENO
- S DNM=X,(DH,DIFILENO)=+Y I $D(^DIC(+Y,0,"GL")) S DIK2=^("GL")
+ S DNM=X,(DH,DIFILENO)=+Y,DIKZQ=0 I $D(^DIC(+Y,0,"GL")) S DIK2=^("GL") ;p19 set DIKZQ
  I '$D(DIK2)!(DMAX<2400) G Q
  S X=DH D DELETROU^DIEZ(DNM),A^DIU21,WAIT^DICD:'$G(DIKZS),DT^DICRW ;DELETE OLD ROUTINES, DELETE "DIK" NODES
- S (DRN,DIKZQ,T)=0,DMAX=DMAX-100
+ S (DRN,T)=0,DMAX=DMAX-100
  ;
  ;Load indexes defined in Index file
  N DIXRLIST,DIKMF

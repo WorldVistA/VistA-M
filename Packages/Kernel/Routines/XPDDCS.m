@@ -1,5 +1,5 @@
 XPDDCS ;SFISC/RSD - Display Checksum for a package ;05/05/2008
- ;;8.0;KERNEL;**2,44,108,202,393,511,547**;Jul 10, 1995;Build 15
+ ;;8.0;KERNEL;**2,44,108,202,393,511,547,738**;Jul 10, 1995;Build 5
  ;Per VHA Directive 2004-038, this routine should not be modified.
  Q
 EN1 ;Verify checksums in Transport Global
@@ -88,8 +88,8 @@ SUM(XPDR,Z,XPD,XPDBS) ;check checksum
  ;first char. is the sum tag used in XPDRSUM
  I XPD'?1U1.N W !,XPDR,?10,"ERROR in Checksum" S XPDE=XPDE+1 Q
  S @("Y=$$SUM"_$E(XPD)_"^XPDRSUM(Z)"),XPD=$E(XPD,2,255)
- I Y=XPD,XPDSHW W !,XPDR,?10,"Calculated "_$J(XPD,10)
- I Y'=XPD W !,XPDR,?10,"Calculated "_$C(7)_$J(Y,10)_", expected value "_XPD S XPDE=XPDE+1
+ I Y=XPD,XPDSHW W !,XPDR,?18,"Calculated  "_$J(XPD,10) ;p738 change 10 to 18
+ I Y'=XPD W !,XPDR,?18,"Calculated  "_$C(7)_$J(Y,10)_", expected value "_XPD S XPDE=XPDE+1
  Q
  ;
 BEFORE(RN,SUM) ;Check a before Checksum
@@ -101,7 +101,7 @@ BEFORE(RN,SUM) ;Check a before Checksum
  X ^%ZOSF("LOAD")
  S DIF=$NA(^TMP($J,"XPDDCS",RN))
  S @("Y=$$SUM"_$E(SUM)_"^XPDRSUM(DIF)"),SUM=$E(SUM,2,255)
- I Y'=SUM W !,RN,?10,"Before Checksum Calculated "_Y_" expected value "_SUM
+ I Y'=SUM W !,RN,?18,"Before Checksum Calculated  "_Y_" expected value "_SUM ;p738
  Q
  ;
 CHK(Y) ;Y=excess lines, return 1 to exit

@@ -1,5 +1,5 @@
-TIUCOP ;SLC/TDP - Copy/Paste API(s) and RPC(s) ;02/13/20  14:00
- ;;1.0;TEXT INTEGRATION UTILITIES;**290**;Jun 20, 1997;Build 548
+TIUCOP ;SLC/TDP - Copy/Paste API(s) and RPC(s) ;Jul 29, 2020@10:13:01
+ ;;1.0;TEXT INTEGRATION UTILITIES;**290,336**;Jun 20, 1997;Build 4
  ;
  ; External Reference
  ;   DBIA  2051  $$FIND1^DIC
@@ -20,7 +20,7 @@ WORDS(INST) ;Return the number of words required to begin tracking
  ;       Error condition "-1^Error Msg"
  ;
  N IEN,WRDS,MAXLNG
- I $G(INST)="" Q "-1^Institution is required"
+ I $G(INST)="" S INST=$G(DUZ(2))
  I +INST<1 Q "-1^Invalid institution"
  S INST=$$FIND1^DIC(4,"","","`"_INST,"","","ERR")
  I +INST<1 Q "-1^Invalid institution"
@@ -49,7 +49,7 @@ PCT(INST) ;Return the Copy/Paste verification percentage
  ;       Error condition "-1^Error Msg"
  ;
  N IEN,PCT
- I $G(INST)="" Q "-1^Institution is required"
+ I $G(INST)="" S INST=$G(DUZ(2))
  I +INST<1 Q "-1^Invalid institution"
  S INST=$$FIND1^DIC(4,"","","`"_INST,"","","ERR")
  I +INST<1 Q "-1^Invalid institution"
@@ -71,7 +71,7 @@ DAYS(INST) ;Return the number of days to save copied text information
  ;       Error condition "-1^Error Msg"
  ;
  N IEN,DAYS
- I $G(INST)="" Q "-1^Institution is required"
+ I $G(INST)="" S INST=$G(DUZ(2))
  I +INST<1 Q "-1^Invalid institution"
  S INST=$$FIND1^DIC(4,"","","`"_INST,"","","ERR")
  I +INST<1 Q "-1^Invalid institution"
@@ -114,8 +114,8 @@ EXC(TIUDA) ;Return whether or not note is excluded from copy/paste tracking
  Q EX
  ;
 EXCLST(TIULST) ;Returns a list of all copy/paste excluded note titles
- N CNT,DOCTTL,DOCCLS
- S (CNT,CNT1,DOCCLS)=0
+ N CNT,DOCTTL,DOCCLS,DOCIEN,DOCNM,TIUND0
+ S (CNT,DOCCLS)=0
  F  S DOCCLS=$O(^TIU(8925.95,"AC",DOCCLS)) Q:DOCCLS=""  D
  . S TIUND0=$G(^TIU(8925.1,DOCCLS,0))
  . ;Track list of documents to return
@@ -139,7 +139,7 @@ VIEW(USER,IEN,INST) ;Is user allowed to view copy/paste
  ;   RSLT=
  ;      0 - User is not allowed to view copy/paste information
  ;      1 - User is AUTHOR and note is UNSIGNED, or user is COSIGNER who has yet to
- ;          SIGN the note and the AUTHOR has SIGNED the note.
+ ;          SIGN the note.
  ;      2 - User has a user class of "CHIEF, MIS", or "CHIEF, HIMS",
  ;          or "PRIVACY ACT OFFICER", or one of the user classes designated
  ;          at the site.
@@ -147,6 +147,7 @@ VIEW(USER,IEN,INST) ;Is user allowed to view copy/paste
  N USRCLS,X
  S FIN=""
  I +USER=0 Q 0 ;Not a valid user, so not allowed to view
+ S INST=$G(DUZ(2))
  I +INST=0 Q 0 ;Institution is required
  S CMIS="CHIEF, MIS"
  S CHIM="CHIEF, HIMS"
@@ -174,11 +175,13 @@ VIEW(USER,IEN,INST) ;Is user allowed to view copy/paste
  ;
 PUTCOPY(INST,ARY,ERR) ;Save to copy buffer
  N SAVE
+ S INST=$G(DUZ(2))
  S SAVE=$$PUTCOPY^TIUCOPC(INST,.ARY,.ERR)
  Q SAVE
  ;
 GETCOPY(INST,DFN,ARY,STRT) ;Retrieve copy buffer
  I $G(STRT)="" S STRT=""
+ S INST=$G(DUZ(2))
  D GETCOPY^TIUCOPC(INST,DFN,.ARY,STRT,1)
  Q
  ;
@@ -212,10 +215,12 @@ GETCOPY1 ;Retrieve copy buffer in background
  L -^XTMP(NODE)
  Q
 CHKPASTE(INST,DOC) ;Check note document for pasted text data
+ S INST=$G(DUZ(2))
  Q $$CHKPASTE^TIUCOPP(DOC,INST)
  ;
 PUTPASTE(RSLT,INST,ARY,ERR) ;Save pasted text SVARY
  N CNTR,DIV,PIEN,RSLT1,SAVE,SVARY
+ S INST=$G(DUZ(2))
  S SAVE=""
  S SVARY=1
  S SAVE=$$PUTPASTE^TIUCOPP(INST,.ARY,.ERR,.SVARY)
@@ -234,11 +239,13 @@ PUTPASTE(RSLT,INST,ARY,ERR) ;Save pasted text SVARY
  Q SAVE
  ;
 GETPASTE(TIUIEN,INST,APP,ARY) ;Retrieve pasted text
+ S INST=$G(DUZ(2))
  D GETPASTE^TIUCOPP(TIUIEN,INST,APP,.ARY,0)
  Q
  ;
 START(VAL,DFN,IP,HWND,DIV) ;Start copy buffer build in background
  N DT,NODE,ZTDESC,ZTDTH,ZTIO,ZTRTN,ZTSAVE,ZTSK ;,ORHTIME
+ S DIV=$G(DUZ(2))
  S VAL=0
  S DT=$$DT^XLFDT
  S NODE="TIUCOP "_IP_"-"_HWND_"-"_DFN

@@ -1,126 +1,126 @@
-IBDEI0JD ; ; 04-FEB-2020
- ;;3.0;IB ENCOUNTER FORM IMP/EXP;;FEB 04, 2020
+IBDEI0JD ; ; 01-FEB-2022
+ ;;3.0;IB ENCOUNTER FORM IMP/EXP;;FEB 01, 2022
  Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,999) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
- ;;^UTILITY(U,$J,358.3,8487,1,0)
- ;;=^358.31IA^3^2
- ;;^UTILITY(U,$J,358.3,8487,1,2,0)
- ;;=2^12057
- ;;^UTILITY(U,$J,358.3,8487,1,3,0)
- ;;=3^Interm Repair Face; over 30 cm
- ;;^UTILITY(U,$J,358.3,8488,0)
- ;;=97605^^66^557^3^^^^1
- ;;^UTILITY(U,$J,358.3,8488,1,0)
- ;;=^358.31IA^3^2
- ;;^UTILITY(U,$J,358.3,8488,1,2,0)
- ;;=2^97605
- ;;^UTILITY(U,$J,358.3,8488,1,3,0)
- ;;=3^Neg Press Wound Tx <= 50 cm,using wnd vac
- ;;^UTILITY(U,$J,358.3,8489,0)
- ;;=97606^^66^557^5^^^^1
- ;;^UTILITY(U,$J,358.3,8489,1,0)
- ;;=^358.31IA^3^2
- ;;^UTILITY(U,$J,358.3,8489,1,2,0)
- ;;=2^97606
- ;;^UTILITY(U,$J,358.3,8489,1,3,0)
- ;;=3^Neg Press Wound Tx > 50 cm,using wnd vac
- ;;^UTILITY(U,$J,358.3,8490,0)
- ;;=97598^^66^557^7^^^^1
- ;;^UTILITY(U,$J,358.3,8490,1,0)
- ;;=^358.31IA^3^2
- ;;^UTILITY(U,$J,358.3,8490,1,2,0)
- ;;=2^97598
- ;;^UTILITY(U,$J,358.3,8490,1,3,0)
- ;;=3^Rmvl Devital Tiss,Addl 20 cm
- ;;^UTILITY(U,$J,358.3,8491,0)
- ;;=97597^^66^557^6^^^^1
- ;;^UTILITY(U,$J,358.3,8491,1,0)
- ;;=^358.31IA^3^2
- ;;^UTILITY(U,$J,358.3,8491,1,2,0)
- ;;=2^97597
- ;;^UTILITY(U,$J,358.3,8491,1,3,0)
- ;;=3^Rmvl Devital Tiss < 20 cm
- ;;^UTILITY(U,$J,358.3,8492,0)
- ;;=29580^^66^557^1^^^^1
- ;;^UTILITY(U,$J,358.3,8492,1,0)
- ;;=^358.31IA^3^2
- ;;^UTILITY(U,$J,358.3,8492,1,2,0)
- ;;=2^29580
- ;;^UTILITY(U,$J,358.3,8492,1,3,0)
- ;;=3^Application of UNNA Boot
- ;;^UTILITY(U,$J,358.3,8493,0)
- ;;=97607^^66^557^2^^^^1
- ;;^UTILITY(U,$J,358.3,8493,1,0)
- ;;=^358.31IA^3^2
- ;;^UTILITY(U,$J,358.3,8493,1,2,0)
- ;;=2^97607
- ;;^UTILITY(U,$J,358.3,8493,1,3,0)
- ;;=3^Neg Press Wound Tx <= 50 cm
- ;;^UTILITY(U,$J,358.3,8494,0)
- ;;=97608^^66^557^4^^^^1
- ;;^UTILITY(U,$J,358.3,8494,1,0)
- ;;=^358.31IA^3^2
- ;;^UTILITY(U,$J,358.3,8494,1,2,0)
- ;;=2^97608
- ;;^UTILITY(U,$J,358.3,8494,1,3,0)
- ;;=3^Neg Press Wound Tx > 50 cm
- ;;^UTILITY(U,$J,358.3,8495,0)
- ;;=95028^^66^558^1^^^^1
- ;;^UTILITY(U,$J,358.3,8495,1,0)
- ;;=^358.31IA^3^2
- ;;^UTILITY(U,$J,358.3,8495,1,2,0)
- ;;=2^95028
- ;;^UTILITY(U,$J,358.3,8495,1,3,0)
- ;;=3^ID Allergy Test-Delayed Type
- ;;^UTILITY(U,$J,358.3,8496,0)
- ;;=95044^^66^558^2^^^^1
- ;;^UTILITY(U,$J,358.3,8496,1,0)
- ;;=^358.31IA^3^2
- ;;^UTILITY(U,$J,358.3,8496,1,2,0)
- ;;=2^95044
- ;;^UTILITY(U,$J,358.3,8496,1,3,0)
- ;;=3^Patch/Applic Test
- ;;^UTILITY(U,$J,358.3,8497,0)
- ;;=88104^^66^559^2^^^^1
- ;;^UTILITY(U,$J,358.3,8497,1,0)
- ;;=^358.31IA^3^2
- ;;^UTILITY(U,$J,358.3,8497,1,2,0)
- ;;=2^88104
- ;;^UTILITY(U,$J,358.3,8497,1,3,0)
- ;;=3^Cytopath Fl Nongyn Smears
- ;;^UTILITY(U,$J,358.3,8498,0)
- ;;=88106^^66^559^1^^^^1
- ;;^UTILITY(U,$J,358.3,8498,1,0)
- ;;=^358.31IA^3^2
- ;;^UTILITY(U,$J,358.3,8498,1,2,0)
- ;;=2^88106
- ;;^UTILITY(U,$J,358.3,8498,1,3,0)
- ;;=3^Cytopath Fl Nongyn Filter
- ;;^UTILITY(U,$J,358.3,8499,0)
- ;;=Q0112^^66^559^3^^^^1
- ;;^UTILITY(U,$J,358.3,8499,1,0)
- ;;=^358.31IA^3^2
- ;;^UTILITY(U,$J,358.3,8499,1,2,0)
- ;;=2^Q0112
- ;;^UTILITY(U,$J,358.3,8499,1,3,0)
- ;;=3^Potassium Hydroxide Preps
- ;;^UTILITY(U,$J,358.3,8500,0)
- ;;=87220^^66^559^4^^^^1
- ;;^UTILITY(U,$J,358.3,8500,1,0)
- ;;=^358.31IA^3^2
- ;;^UTILITY(U,$J,358.3,8500,1,2,0)
- ;;=2^87220
- ;;^UTILITY(U,$J,358.3,8500,1,3,0)
- ;;=3^Tissue Exam for Fungi
- ;;^UTILITY(U,$J,358.3,8501,0)
- ;;=17311^^66^560^1^^^^1
- ;;^UTILITY(U,$J,358.3,8501,1,0)
- ;;=^358.31IA^3^2
- ;;^UTILITY(U,$J,358.3,8501,1,2,0)
- ;;=2^17311
- ;;^UTILITY(U,$J,358.3,8501,1,3,0)
- ;;=3^MOHS 1 Stage H/N/HF/G
- ;;^UTILITY(U,$J,358.3,8502,0)
- ;;=17312^^66^560^2^^^^1
- ;;^UTILITY(U,$J,358.3,8502,1,0)
- ;;=^358.31IA^3^2
+ ;;^UTILITY(U,$J,358.3,8714,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,8714,1,3,0)
+ ;;=3^Personal Hx of Malig Neop of Lip,Oral Cavity & Pharynx,Unspec
+ ;;^UTILITY(U,$J,358.3,8714,1,4,0)
+ ;;=4^Z85.819
+ ;;^UTILITY(U,$J,358.3,8714,2)
+ ;;=^5063440
+ ;;^UTILITY(U,$J,358.3,8715,0)
+ ;;=Z85.01^^39^402^82
+ ;;^UTILITY(U,$J,358.3,8715,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,8715,1,3,0)
+ ;;=3^Personal Hx of Malig Neop of Esophagus
+ ;;^UTILITY(U,$J,358.3,8715,1,4,0)
+ ;;=4^Z85.01
+ ;;^UTILITY(U,$J,358.3,8715,2)
+ ;;=^5063395
+ ;;^UTILITY(U,$J,358.3,8716,0)
+ ;;=Z85.028^^39^402^93
+ ;;^UTILITY(U,$J,358.3,8716,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,8716,1,3,0)
+ ;;=3^Personal Hx of Malig Neop of Stomach
+ ;;^UTILITY(U,$J,358.3,8716,1,4,0)
+ ;;=4^Z85.028
+ ;;^UTILITY(U,$J,358.3,8716,2)
+ ;;=^5063397
+ ;;^UTILITY(U,$J,358.3,8717,0)
+ ;;=Z85.038^^39^402^84
+ ;;^UTILITY(U,$J,358.3,8717,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,8717,1,3,0)
+ ;;=3^Personal Hx of Malig Neop of Large Intestine
+ ;;^UTILITY(U,$J,358.3,8717,1,4,0)
+ ;;=4^Z85.038
+ ;;^UTILITY(U,$J,358.3,8717,2)
+ ;;=^5063399
+ ;;^UTILITY(U,$J,358.3,8718,0)
+ ;;=Z85.048^^39^402^91
+ ;;^UTILITY(U,$J,358.3,8718,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,8718,1,3,0)
+ ;;=3^Personal Hx of Malig Neop of Rectum,Rectosig Junct & Anus
+ ;;^UTILITY(U,$J,358.3,8718,1,4,0)
+ ;;=4^Z85.048
+ ;;^UTILITY(U,$J,358.3,8718,2)
+ ;;=^5063401
+ ;;^UTILITY(U,$J,358.3,8719,0)
+ ;;=Z85.118^^39^402^80
+ ;;^UTILITY(U,$J,358.3,8719,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,8719,1,3,0)
+ ;;=3^Personal Hx of Malig Neop of Bronchus & Lung
+ ;;^UTILITY(U,$J,358.3,8719,1,4,0)
+ ;;=4^Z85.118
+ ;;^UTILITY(U,$J,358.3,8719,2)
+ ;;=^5063408
+ ;;^UTILITY(U,$J,358.3,8720,0)
+ ;;=Z85.21^^39^402^85
+ ;;^UTILITY(U,$J,358.3,8720,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,8720,1,3,0)
+ ;;=3^Personal Hx of Malig Neop of Larynx
+ ;;^UTILITY(U,$J,358.3,8720,1,4,0)
+ ;;=4^Z85.21
+ ;;^UTILITY(U,$J,358.3,8720,2)
+ ;;=^5063411
+ ;;^UTILITY(U,$J,358.3,8721,0)
+ ;;=Z85.3^^39^402^79
+ ;;^UTILITY(U,$J,358.3,8721,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,8721,1,3,0)
+ ;;=3^Personal Hx of Malig Neop of Breast
+ ;;^UTILITY(U,$J,358.3,8721,1,4,0)
+ ;;=4^Z85.3
+ ;;^UTILITY(U,$J,358.3,8721,2)
+ ;;=^5063416
+ ;;^UTILITY(U,$J,358.3,8722,0)
+ ;;=Z85.41^^39^402^81
+ ;;^UTILITY(U,$J,358.3,8722,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,8722,1,3,0)
+ ;;=3^Personal Hx of Malig Neop of Cervix Uteri
+ ;;^UTILITY(U,$J,358.3,8722,1,4,0)
+ ;;=4^Z85.41
+ ;;^UTILITY(U,$J,358.3,8722,2)
+ ;;=^5063418
+ ;;^UTILITY(U,$J,358.3,8723,0)
+ ;;=Z85.43^^39^402^89
+ ;;^UTILITY(U,$J,358.3,8723,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,8723,1,3,0)
+ ;;=3^Personal Hx of Malig Neop of Ovary
+ ;;^UTILITY(U,$J,358.3,8723,1,4,0)
+ ;;=4^Z85.43
+ ;;^UTILITY(U,$J,358.3,8723,2)
+ ;;=^5063420
+ ;;^UTILITY(U,$J,358.3,8724,0)
+ ;;=Z85.46^^39^402^90
+ ;;^UTILITY(U,$J,358.3,8724,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,8724,1,3,0)
+ ;;=3^Personal Hx of Malig Neop of Prostate
+ ;;^UTILITY(U,$J,358.3,8724,1,4,0)
+ ;;=4^Z85.46
+ ;;^UTILITY(U,$J,358.3,8724,2)
+ ;;=^5063423
+ ;;^UTILITY(U,$J,358.3,8725,0)
+ ;;=Z85.47^^39^402^94
+ ;;^UTILITY(U,$J,358.3,8725,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,8725,1,3,0)
+ ;;=3^Personal Hx of Malig Neop of Testis
+ ;;^UTILITY(U,$J,358.3,8725,1,4,0)
+ ;;=4^Z85.47
+ ;;^UTILITY(U,$J,358.3,8725,2)
+ ;;=^5063424
+ ;;^UTILITY(U,$J,358.3,8726,0)
+ ;;=Z85.51^^39^402^78
+ ;;^UTILITY(U,$J,358.3,8726,1,0)
+ ;;=^358.31IA^4^2

@@ -1,5 +1,5 @@
-WVRPCPR ;HIOFO/FT-WV PROCEDURE file (790.1) RPCs (cont.) ;9/29/03  15:15
- ;;1.0;WOMEN'S HEALTH;**16**;Sep 30, 1998
+WVRPCPR ;HIOFO/FT-WV PROCEDURE file (790.1) RPCs (cont.) ;07/06/2020
+ ;;1.0;WOMEN'S HEALTH;**16,26**;Sep 30, 1998;Build 624
  ;
  ; This routine uses the following IAs:
  ; #10103 - ^XLFDT calls           (supported)
@@ -121,7 +121,7 @@ LATEST(RESULT,WVDFN,WVPTYPE,WVDATES,WVMAX,WVDX) ; Returns the Pap Smear or
  ..I WVCOUNT=WVMAX S WVOUT=1 Q  ;max # reached, stop looking
  ..S WVCOUNT=WVCOUNT+1
  ..S WVSTATUS=$P(WVNODE,U,14)
- ..S WVSTATUS=$S(WVSTATUS="o":"OPEN",WVSTATUS="c":"CLOSED",1:"OPEN")
+ ..S WVSTATUS=$S(WVSTATUS="o":"OPEN",WVSTATUS="c":"CLOSED",WVSTATUS="e":"ENTER IN ERROR",1:"OPEN")
  ..S WVTYPE=$$TYPENAME(+$P(WVNODE,U,4))
  ..S WVRESULT=$$DXNAME^WVRPCPR1($P(WVNODE,U,5))
  ..S WVNORM=$S(WVNORM=0:"Normal",WVNORM=1:"Abnormal",WVNORM=2:"Unsatisfactory",1:"Pending")

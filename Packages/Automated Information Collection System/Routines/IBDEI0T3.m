@@ -1,116 +1,130 @@
-IBDEI0T3 ; ; 04-FEB-2020
- ;;3.0;IB ENCOUNTER FORM IMP/EXP;;FEB 04, 2020
+IBDEI0T3 ; ; 01-FEB-2022
+ ;;3.0;IB ENCOUNTER FORM IMP/EXP;;FEB 01, 2022
  Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,999) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
- ;;^UTILITY(U,$J,358.3,12950,2)
- ;;=^5020168
- ;;^UTILITY(U,$J,358.3,12951,0)
- ;;=S01.431A^^80^791^39
- ;;^UTILITY(U,$J,358.3,12951,1,0)
+ ;;^UTILITY(U,$J,358.3,13090,0)
+ ;;=H11.001^^51^628^4
+ ;;^UTILITY(U,$J,358.3,13090,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,12951,1,3,0)
- ;;=3^Puncture Wound w/o FB of Right Cheek/TMJ Area,Init Encntr
- ;;^UTILITY(U,$J,358.3,12951,1,4,0)
- ;;=4^S01.431A
- ;;^UTILITY(U,$J,358.3,12951,2)
- ;;=^5020165
- ;;^UTILITY(U,$J,358.3,12952,0)
- ;;=S01.83XA^^80^791^1
- ;;^UTILITY(U,$J,358.3,12952,1,0)
+ ;;^UTILITY(U,$J,358.3,13090,1,3,0)
+ ;;=3^Pterygium,OD
+ ;;^UTILITY(U,$J,358.3,13090,1,4,0)
+ ;;=4^H11.001
+ ;;^UTILITY(U,$J,358.3,13090,2)
+ ;;=^5004717
+ ;;^UTILITY(U,$J,358.3,13091,0)
+ ;;=H11.002^^51^628^5
+ ;;^UTILITY(U,$J,358.3,13091,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,12952,1,3,0)
- ;;=3^Puncture Wound w/o FB of Head,Oth Part,Init Encntr
- ;;^UTILITY(U,$J,358.3,12952,1,4,0)
- ;;=4^S01.83XA
- ;;^UTILITY(U,$J,358.3,12952,2)
- ;;=^5020231
- ;;^UTILITY(U,$J,358.3,12953,0)
- ;;=S01.93XA^^80^791^2
- ;;^UTILITY(U,$J,358.3,12953,1,0)
+ ;;^UTILITY(U,$J,358.3,13091,1,3,0)
+ ;;=3^Pterytgium,OS
+ ;;^UTILITY(U,$J,358.3,13091,1,4,0)
+ ;;=4^H11.002
+ ;;^UTILITY(U,$J,358.3,13091,2)
+ ;;=^5004718
+ ;;^UTILITY(U,$J,358.3,13092,0)
+ ;;=H11.9^^51^628^29
+ ;;^UTILITY(U,$J,358.3,13092,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,12953,1,3,0)
- ;;=3^Puncture Wound w/o FB of Head,Unspec Part,Init Encntr
- ;;^UTILITY(U,$J,358.3,12953,1,4,0)
- ;;=4^S01.93XA
- ;;^UTILITY(U,$J,358.3,12953,2)
- ;;=^5020246
- ;;^UTILITY(U,$J,358.3,12954,0)
- ;;=S11.83XA^^80^791^32
- ;;^UTILITY(U,$J,358.3,12954,1,0)
+ ;;^UTILITY(U,$J,358.3,13092,1,3,0)
+ ;;=3^Unspec Disorder of Conjunctiva
+ ;;^UTILITY(U,$J,358.3,13092,1,4,0)
+ ;;=4^H11.9
+ ;;^UTILITY(U,$J,358.3,13092,2)
+ ;;=^123827
+ ;;^UTILITY(U,$J,358.3,13093,0)
+ ;;=H15.9^^51^628^33
+ ;;^UTILITY(U,$J,358.3,13093,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,12954,1,3,0)
- ;;=3^Puncture Wound w/o FB of Neck,Oth Part,Init Encntr
- ;;^UTILITY(U,$J,358.3,12954,1,4,0)
- ;;=4^S11.83XA
- ;;^UTILITY(U,$J,358.3,12954,2)
- ;;=^5021515
- ;;^UTILITY(U,$J,358.3,12955,0)
- ;;=S11.93XA^^80^791^33
- ;;^UTILITY(U,$J,358.3,12955,1,0)
+ ;;^UTILITY(U,$J,358.3,13093,1,3,0)
+ ;;=3^Unspec Disorder of Sclera
+ ;;^UTILITY(U,$J,358.3,13093,1,4,0)
+ ;;=4^H15.9
+ ;;^UTILITY(U,$J,358.3,13093,2)
+ ;;=^5004866
+ ;;^UTILITY(U,$J,358.3,13094,0)
+ ;;=H11.411^^51^628^20
+ ;;^UTILITY(U,$J,358.3,13094,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,12955,1,3,0)
- ;;=3^Puncture Wound w/o FB of Neck,Unspec Part,Init Encntr
- ;;^UTILITY(U,$J,358.3,12955,1,4,0)
- ;;=4^S11.93XA
- ;;^UTILITY(U,$J,358.3,12955,2)
- ;;=^5021536
- ;;^UTILITY(U,$J,358.3,12956,0)
- ;;=S31.813A^^80^791^38
- ;;^UTILITY(U,$J,358.3,12956,1,0)
+ ;;^UTILITY(U,$J,358.3,13094,1,3,0)
+ ;;=3^Vascular Abnormalities of Conj,OD
+ ;;^UTILITY(U,$J,358.3,13094,1,4,0)
+ ;;=4^H11.411
+ ;;^UTILITY(U,$J,358.3,13094,2)
+ ;;=^5004785
+ ;;^UTILITY(U,$J,358.3,13095,0)
+ ;;=H11.412^^51^628^21
+ ;;^UTILITY(U,$J,358.3,13095,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,12956,1,3,0)
- ;;=3^Puncture Wound w/o FB of Right Buttock,Init Encntr
- ;;^UTILITY(U,$J,358.3,12956,1,4,0)
- ;;=4^S31.813A
- ;;^UTILITY(U,$J,358.3,12956,2)
- ;;=^5024302
- ;;^UTILITY(U,$J,358.3,12957,0)
- ;;=S31.133A^^80^791^35
- ;;^UTILITY(U,$J,358.3,12957,1,0)
+ ;;^UTILITY(U,$J,358.3,13095,1,3,0)
+ ;;=3^Vascular Abnormalities of Conj,OS
+ ;;^UTILITY(U,$J,358.3,13095,1,4,0)
+ ;;=4^H11.412
+ ;;^UTILITY(U,$J,358.3,13095,2)
+ ;;=^5004786
+ ;;^UTILITY(U,$J,358.3,13096,0)
+ ;;=H11.413^^51^628^22
+ ;;^UTILITY(U,$J,358.3,13096,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,12957,1,3,0)
- ;;=3^Puncture Wound w/o FB of RLQ of Abd Wall w/o Penet Perit Cav,Init Encntr
- ;;^UTILITY(U,$J,358.3,12957,1,4,0)
- ;;=4^S31.133A
- ;;^UTILITY(U,$J,358.3,12957,2)
- ;;=^5024080
- ;;^UTILITY(U,$J,358.3,12958,0)
- ;;=S31.134A^^80^791^3
- ;;^UTILITY(U,$J,358.3,12958,1,0)
+ ;;^UTILITY(U,$J,358.3,13096,1,3,0)
+ ;;=3^Vascular Abnormalities of Conj,OU
+ ;;^UTILITY(U,$J,358.3,13096,1,4,0)
+ ;;=4^H11.413
+ ;;^UTILITY(U,$J,358.3,13096,2)
+ ;;=^5004787
+ ;;^UTILITY(U,$J,358.3,13097,0)
+ ;;=H11.151^^51^628^1
+ ;;^UTILITY(U,$J,358.3,13097,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,12958,1,3,0)
- ;;=3^Puncture Wound w/o FB of LLQ of Abd Wall w/o Penet Perit Cav,Init Encntr
- ;;^UTILITY(U,$J,358.3,12958,1,4,0)
- ;;=4^S31.134A
- ;;^UTILITY(U,$J,358.3,12958,2)
- ;;=^5134457
- ;;^UTILITY(U,$J,358.3,12959,0)
- ;;=S31.823A^^80^791^6
- ;;^UTILITY(U,$J,358.3,12959,1,0)
+ ;;^UTILITY(U,$J,358.3,13097,1,3,0)
+ ;;=3^Pinguecula,OD
+ ;;^UTILITY(U,$J,358.3,13097,1,4,0)
+ ;;=4^H11.151
+ ;;^UTILITY(U,$J,358.3,13097,2)
+ ;;=^5004761
+ ;;^UTILITY(U,$J,358.3,13098,0)
+ ;;=H57.02^^51^629^1
+ ;;^UTILITY(U,$J,358.3,13098,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,12959,1,3,0)
- ;;=3^Puncture Wound w/o FB of Left Buttock,Init Encntr
- ;;^UTILITY(U,$J,358.3,12959,1,4,0)
- ;;=4^S31.823A
- ;;^UTILITY(U,$J,358.3,12959,2)
- ;;=^5024314
- ;;^UTILITY(U,$J,358.3,12960,0)
- ;;=S31.130A^^80^791^36
- ;;^UTILITY(U,$J,358.3,12960,1,0)
+ ;;^UTILITY(U,$J,358.3,13098,1,3,0)
+ ;;=3^Anisocoria
+ ;;^UTILITY(U,$J,358.3,13098,1,4,0)
+ ;;=4^H57.02
+ ;;^UTILITY(U,$J,358.3,13098,2)
+ ;;=^7834
+ ;;^UTILITY(U,$J,358.3,13099,0)
+ ;;=H57.00^^51^629^2
+ ;;^UTILITY(U,$J,358.3,13099,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,12960,1,3,0)
- ;;=3^Puncture Wound w/o FB of RUQ of Abd Wall w/o Penet Perit Cav,Init Encntr
- ;;^UTILITY(U,$J,358.3,12960,1,4,0)
- ;;=4^S31.130A
- ;;^UTILITY(U,$J,358.3,12960,2)
- ;;=^5024071
- ;;^UTILITY(U,$J,358.3,12961,0)
- ;;=S31.131A^^80^791^4
- ;;^UTILITY(U,$J,358.3,12961,1,0)
+ ;;^UTILITY(U,$J,358.3,13099,1,3,0)
+ ;;=3^Anomaly of Pupillary Function,Unspec
+ ;;^UTILITY(U,$J,358.3,13099,1,4,0)
+ ;;=4^H57.00
+ ;;^UTILITY(U,$J,358.3,13099,2)
+ ;;=^5006375
+ ;;^UTILITY(U,$J,358.3,13100,0)
+ ;;=H21.512^^51^629^4
+ ;;^UTILITY(U,$J,358.3,13100,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,12961,1,3,0)
- ;;=3^Puncture Wound w/o FB of LUQ of Abd Wall w/o Penet Perit Cav,Init Encntr
- ;;^UTILITY(U,$J,358.3,12961,1,4,0)
- ;;=4^S31.131A
- ;;^UTILITY(U,$J,358.3,12961,2)
- ;;=^5024074
+ ;;^UTILITY(U,$J,358.3,13100,1,3,0)
+ ;;=3^Anterior Synchiae (Iris),OS
+ ;;^UTILITY(U,$J,358.3,13100,1,4,0)
+ ;;=4^H21.512
+ ;;^UTILITY(U,$J,358.3,13100,2)
+ ;;=^5005240
+ ;;^UTILITY(U,$J,358.3,13101,0)
+ ;;=H21.511^^51^629^3
+ ;;^UTILITY(U,$J,358.3,13101,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,13101,1,3,0)
+ ;;=3^Anterior Synchiae (Iris),OD
+ ;;^UTILITY(U,$J,358.3,13101,1,4,0)
+ ;;=4^H21.511
+ ;;^UTILITY(U,$J,358.3,13101,2)
+ ;;=^5005239
+ ;;^UTILITY(U,$J,358.3,13102,0)
+ ;;=H18.413^^51^629^7
+ ;;^UTILITY(U,$J,358.3,13102,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,13102,1,3,0)
+ ;;=3^Arcus Senilis,OU

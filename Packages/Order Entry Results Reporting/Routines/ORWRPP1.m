@@ -1,5 +1,5 @@
-ORWRPP1 ; slc/dcm - Background Report Prints (cont.) ;07/21/17  09:27
- ;;3.0;ORDER ENTRY/RESULTS REPORTING;**109,160,192,263,449**;Dec 17, 1997;Build 3
+ORWRPP1 ; SLC/DCM - Background Report Prints (cont.) ;Dec 02, 2021@12:51:43
+ ;;3.0;ORDER ENTRY/RESULTS REPORTING;**109,160,192,263,449,405**;Dec 17, 1997;Build 211
  ;;Per VHA Directive 6402, this routine should not be modified.
  ;
  ;
@@ -13,8 +13,9 @@ MEDB(ROOT,ORDFN,OREXAMID,ORALPHA,OROMEGA,ORDTRNG,REMOTE,ORMAX,ORFHIE)  ;Print Me
  K ^TMP("MCAR",$J)
  Q
 HSB(ROOT,ORDFN,ORHSTYPE,ORALPHA,OROMEGA,ORDTRNG,REMOTE,ORMAX,ORFHIE)   ;Print Health Summary report
- IF $O(ORCOMP(0)) D SITE^ORWRPP($G(STATION)),PREPORT^ORWRP2(.ROOT,.ORCOMP,.ORDFN) Q
- D SITE^ORWRPP($G(STATION)),HSB^ORWRP1(.ROOT,.ORDFN,.ORHSTYPE,.ORALPHA,.OROMEGA,.ORDTRNG,.REMOTE,.ORMAX,.ORFHIE)
+ ;replaced SITE^ORWRPP references with LRSITE^ORWRPP to print facility address at header of all Health Summary reports
+ IF $O(ORCOMP(0)) D LRSITE^ORWRPP($G(STATION)),PREPORT^ORWRP2(.ROOT,.ORCOMP,.ORDFN) Q
+ D LRSITE^ORWRPP($G(STATION)),HSB^ORWRP1(.ROOT,.ORDFN,.ORHSTYPE,.ORALPHA,.OROMEGA,.ORDTRNG,.REMOTE,.ORMAX,.ORFHIE)
  Q
 HSTYPEB(ROOT,ORDFN,ORHSTYPE,ORALPHA,OROMEGA,ORDTRNG,REMOTE,ORMAX,ORFHIE)       ;Print Health Summary type report
  D HSTYPEB^ORWRP1(.ROOT,.ORDFN,$P(ORHSTYPE,";",3),.ORALPHA,.OROMEGA,.ORDTRNG,.REMOTE,.ORMAX,.ORFHIE)
@@ -90,6 +91,20 @@ HEAD(ORDFN,PAGE,TITLE,STATION) ;Print a patient header
  S X="Printed: "_$$DATE^ORU($$NOW^XLFDT,"MM/DD/CCYY HR:MIN")
  W !?27,"*** WORK COPY ONLY ***",?(IOM-($L(X))-1),X
  Q
+LRHEAD(ORDFN,PAGE,TITLE,STATION) ; modified patient header to add facility address for lab rpts
+ Q:'$G(ORDFN)
+ N %,%H,%I,DISYS,ORAGE,ORDOB,ORHLINE,ORL,ORNP,ORPNM,ORPV,ORSEX,ORSSN,ORTS,ORWARD,VA,X,ORI
+ S:'$L($G(TITLE)) TITLE="PATIENT REPORT"
+ D PAT^ORPR03(ORDFN)
+ D LRSITE^ORWRPP($G(STATION))
+ W !,TITLE,?(IOM-$L("Page "_PAGE)),"Page "_PAGE
+ S X=ORDOB_" ("_ORAGE_")"
+ W !,ORPNM_"   "_ORSSN,?39,$G(ORL(0))_$S($L($G(ORL(1))):"/"_ORL(1),1:""),?(79-$L(X)),X
+ S $P(ORHLINE,"=",IOM+1)=""
+ W !,ORHLINE
+ S X="Printed: "_$$DATE^ORU($$NOW^XLFDT,"MM/DD/CCYY HR:MIN")
+ W !?27,"*** WORK COPY ONLY ***",?(IOM-($L(X))-1),X
+ Q
 HURL(Y,ORDFN,TITLE,FORMAT,STATION,READ) ;Write out the file
  ;FORMAT tells me which node to go after
  N L,NOHURL,A,OUT
@@ -102,6 +117,34 @@ HURL(Y,ORDFN,TITLE,FORMAT,STATION,READ) ;Write out the file
  .. W @IOF
  .. I $G(IOT)["HFS" S $Y=0
  .. D HEAD(ORDFN,PAGE,$G(TITLE),$G(STATION))
+ .. W !,"(...continued)"
+ . I $G(FORMAT) D  Q
+ .. Q:'$D(@Y@(L))
+ .. I NOHURL,$P(@Y@(L),"^")'="[REPORT TEXT]" Q
+ .. I NOHURL,$P(@Y@(L),"^")="[REPORT TEXT]" S NOHURL=0 Q
+ .. I $P(@Y@(L),"^")="[HIDDEN TEXT]" S NOHURL=1 Q
+ .. I @Y@(L)["**PAGE BREAK**" Q
+ .. W !,@Y@(L)
+ . Q:'$D(@Y@(L,0))
+ . I NOHURL,$P(@Y@(L,0),"^")'="[REPORT TEXT]" Q
+ . I NOHURL,$P(@Y@(L,0),"^")="[REPORT TEXT]" S NOHURL=0 Q
+ . I $P(@Y@(L,0),"^")="[HIDDEN TEXT]" S NOHURL=1 Q
+ . I @Y@(L,0)["**PAGE BREAK**" Q
+ . W !,@Y@(L,0)
+ W !?27,"*** WORK COPY ONLY ***"
+ Q
+LRHURL(Y,ORDFN,TITLE,FORMAT,STATION,READ) ; modified patient header to add facility address for lab rpts
+ ;FORMAT tells me which node to go after
+ N L,NOHURL,A,OUT
+ S OUT=0,L="",NOHURL=0
+ F  S L=$O(@Y@(L)) Q:L=""  Q:OUT  D
+ . I $Y+4>IOSL D
+ .. S PAGE=PAGE+1
+ .. W !?27,"*** WORK COPY ONLY ***     (continued...)"
+ .. I $G(READ),$G(IOT)'["HFS" R !,"^ TO STOP: ",A:DTIME I A["^" S OUT=1 Q
+ .. W @IOF
+ .. I $G(IOT)["HFS" S $Y=0
+ .. D LRHEAD(ORDFN,PAGE,$G(TITLE),$G(STATION))
  .. W !,"(...continued)"
  . I $G(FORMAT) D  Q
  .. Q:'$D(@Y@(L))

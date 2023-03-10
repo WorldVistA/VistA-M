@@ -1,6 +1,13 @@
-ORWDX2 ;SLC/JM/AGP - Order dialog utilities ;11/09/2006
- ;;3.0;ORDER ENTRY/RESULTS REPORTING;**246,243,280,331**;Dec 17, 1997;Build 30
+ORWDX2 ;SLC/JM/AGP - Order dialog utilities ;Oct 12, 2021@10:22:16
+ ;;3.0;ORDER ENTRY/RESULTS REPORTING;**246,243,280,331,405**;Dec 17, 1997;Build 211
  ;Per VHA Directive 2004-038, this routine should not be modified.
+ ;
+ ;Reference to $$DOSE^PSSORUTE supported by IA #4555
+ ;Reference to ^DIC(9.4 supported by IA #2058
+ ;Reference to ^DPT( supported by IA #10035
+ ;Reference to ^XMD supported by IA #10070
+ ;Reference to $$PATCH^XPDUTL supported by IA #10141
+ ;
  ;
  Q
  ;
@@ -16,7 +23,7 @@ EXTVAL(IVAL,DLG) ; External value given a dlg ptr
  Q $$EXT^ORCD(DLG,1)  ; all others
  ;
 XROOT ; Part of LOADRSP^ORWDX - moved here because of routine size
- N CHKDOSE,DOSE,INSTR
+ N CHKDOSE,DOSE,INSTR,X
  S (ILST,I)=0,CHKDOSE=$$CHKDOSES
  F  S I=$O(@ROOT@(I)) Q:I'>0  D
  . S DLG=$P(@ROOT@(I,0),U,2),INST=$P(^(0),U,3)
@@ -33,7 +40,27 @@ XROOT ; Part of LOADRSP^ORWDX - moved here because of routine size
  .. I $E(RSPID)?1U,'$G(TRANS),ID="COMMENT",'$$DRAFT(RSPID) D FORMID^ORWDX(.X,+$E(RSPID,2,99)) Q:X=140
  .. S J=0 F  S J=$O(@ROOT@(I,2,J)) Q:J'>0  D
  ... S LST($$NXT)="t"_$G(@ROOT@(I,2,J,0))
+ I $G(ORADDTITRRESP) D TITR(.LST,.ILST)
  I CHKDOSE D FIXDOSES
+ I ROOT["^OR(100," D
+ . N ORIFN,OVRIDE,REMCOM,RET
+ . S ORIFN=$P(ROOT,",",2) Q:+ORIFN<1
+ . I "^14^13^11^10^"[(U_$P($G(^OR(100,ORIFN,3)),U,3)_U) D GETOC3^OROCAPI1(ORIFN,"ACCEPTANCE_CPRS",.RET)
+ . I "^14^13^11^10^"'[(U_$P($G(^OR(100,ORIFN,3)),U,3)_U) D GETOC3^OROCAPI1(ORIFN,"SIGNATURE_CPRS",.RET)
+ . Q:'$D(RET)
+ . S (OVRIDE,REMCOM)=""
+ . N IEN S IEN=0 F  S IEN=$O(RET(ORIFN,IEN)) Q:'IEN  D  Q:((OVRIDE'="")&(REMCOM'=""))
+ .. I OVRIDE="" S OVRIDE=$G(^ORD(100.05,IEN,3,1,0))
+ .. N X S X=0 F  S X=$O(^ORD(100.05,IEN,4,X)) Q:+X=0  D  Q:REMCOM'=""
+ ... I REMCOM="" S REMCOM=$G(^ORD(100.05,IEN,4,X,4))
+ . I OVRIDE'="" D
+ .. S LST($$NXT)="~^^OVERRIDE"
+ .. S LST($$NXT)="t"_OVRIDE
+ . I REMCOM'="" D
+ .. S LST($$NXT)="~^^ORREMCOMMENT"
+ .. S LST($$NXT)="t"_REMCOM
+ I $E(ROOT,1,15)="^TMP(""ORWTITR""," D  Q
+ . K ^TMP("ORWTITR",$J)
  I $E(ROOT,1,4)="^TMP" K ^TMP("ORWDXMQ",$J)
  Q
  ;
@@ -46,6 +73,12 @@ DRAFT(ID) ; -- Return 1 or 0 if editing an unsigned/unreleased or pending order
  I STS=11 Q 1
  I STS=10,ES=2 Q 1
  Q 0
+ ;
+TITR(LST,ILST) ; Add titration response (when changing old titration order)
+ S LST($$NXT)="~"_$$PTR^ORWDXM1("TITRATION")_"^1^TITR"
+ S LST($$NXT)="i1"
+ S LST($$NXT)="eYES"
+ Q
  ;
 CHKDOSES() ; Returns true if doses may need to be modified
  Q $$PATCH^XPDUTL("PSS*1.0*78")&($T(DOSE^PSSORUTE)'="")
@@ -72,7 +105,7 @@ FIXDOSES ; Update doses for those saved before PSS*1*78 was installed
  ... F IDX=0:1:1 D
  .... S $P(LST(DOSE(IIDX)+IDX),"&",5)=NEWDOSE
  Q
- ;       
+ ;
 DCREASON(LST)   ; Return a list of DC reasons
  N ARRAY,CNT,ERROR,IEN,ILST,NAME,SEQARR,X
  S ILST=1,LST(ILST)="~DCReason"

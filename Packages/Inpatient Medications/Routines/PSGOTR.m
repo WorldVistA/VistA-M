@@ -1,5 +1,5 @@
 PSGOTR ;BIR/CML3 - TRANSFERS RENEW DATA FROM 53.1 TO 55 ;23 SEP 03 / 7:54 AM
- ;;5.0;INPATIENT MEDICATIONS;**110,127,133,129,267,257,255,315,343**;16 DEC 97;Build 2
+ ;;5.0;INPATIENT MEDICATIONS;**110,127,133,129,267,257,255,315,343,413**;16 DEC 97;Build 9
  ;;Per VHA Directive 2004-038, this routine should not be modified.
  ; Reference to ^PS(55 supported by DBIA 2191.
  ;
@@ -13,6 +13,12 @@ START(ODA,DA) ; lock record, and write
  . N DR,DIE
  . S DR="1////^S X=PSGPV",DIE="^PS(55,"_PSGP_",5,",DA(1)=PSGP D ^DIE
  ;End PSJ*5*255
+ ;*413 Begin - Clinic location
+ I $P($G(^PS(53.1,+ODA,"DSS")),U,1)'="" D
+ . N DR,DIE,LCLIN
+ . S LCLIN=$P($G(^PS(53.1,+ODA,"DSS")),U,1)
+ . S DR="130////^S X=LCLIN",DIE="^PS(55,"_PSGP_",5,",DA(1)=PSGP D ^DIE
+ ;*413 End
  F X=6,7 I $D(^PS(53.1,+ODA,X)) S ^PS(55,PSGP,5,DA,X)=^(X)
  I $O(^PS(53.1,+ODA,1,0)) D
  .K ^PS(55,PSGP,5,DA,1)

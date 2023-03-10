@@ -1,5 +1,14 @@
-ECUERPC2 ;ALB/JAM;Event Capture Data Entry Broker Utilities ;3/6/18  09:26
- ;;2.0;EVENT CAPTURE;**41,39,50,72,134,139**;8 May 96;Build 7
+ECUERPC2 ;ALB/JAM  - Event Capture Data Entry Broker Util ;3/6/18  09:26
+ ;;2.0;EVENT CAPTURE;**41,39,50,72,134,139,156**;8 May 96;Build 28
+ ;
+ ; Reference to 2^VADPT supported by ICR #10061
+ ; Reference to $$GET^XUA4A72 supported by ICR #1625
+ ; Reference to ^DIC(4) supported by ICR #10090
+ ; Reference to $$DT^XLFDT) supported by ICR #10103
+ ; Reference to LIST^GMPLUTL2 supported by ICR #2741
+ ; Reference to DETAIL^GMPLUTL2 supported by ICR #2741
+ ; Reference to $$GET1^DIQ supported by ICR #2056
+ ; Reference to ^TMP supported by SACC 2.3.2.5.1
  ;
 ECDOD(RESULTS,ECARY) ;RPC Broker entry point to get a patient's date of death
  ;        RPC: EC DIEDON
@@ -45,7 +54,7 @@ VISINFO(RESULTS,ECARY) ;
  S RESULTS=ECLOC_U_LOC_U_ECUNT_U_UNT_U_DSSF_U_ECPXDT_U_Y_U_ECDFN
  Q
 PATPRV(ECIEN) ;
- ;Returns to broker a patient providers (primary & secondary) entries 
+ ;Returns to broker a patient providers (primary & secondary) entries
  ;from EVENT CAPTURE PATIENT FILE #721
  ;INPUTS   ECIEN - Event Capture Patient ien
  ;
@@ -83,3 +92,28 @@ CHK(NUM) ;134 Section added to find default provider
  I +ECINFO>0 Q NUM_U_$$GET1^DIQ(200,NUM_",",.01)_U_$P(ECINFO,U,2,4)
  I +ECINFO<0,DSSUPCE="N",$D(^EC(722,"B",NUM)) Q NUM_U_$$GET1^DIQ(200,NUM_",",.01)
  Q -1_"^"
+ ;
+GETPLST(RESULTS,ECARY) ;156 - Broker call entry point to get a patient's problem list
+ ;RPC: EC GETPRBLST
+ ;INPUTS   ECARY - Contains the following elements as input
+ ;          ECDFN - Patient DFN
+ ;          ECSTAT - Status of the problem: Active/Inactive or null
+ ;
+ ;OUTPUTS  RESULTS - Array of Patient's problems contains
+ ;          Problem Status^ICD Code^ICD Code Description^Onset Date^Last Modified Date^Provider^Service
+ ;
+ N ECGMPL,I,ECIEN,ECSTAT,CNT,ICDDESC,PRBLST,GMPL,PRBIEN
+ S ECIEN=$P(ECARY,U),ECSTAT=$P(ECARY,U,2)
+ D LIST^GMPLUTL2(.PRBLST,ECIEN,ECSTAT) ;ICR #2741
+ I $G(PRBLST(0))<1 S RESULTS="0^No Problem List found for Patient" Q
+ S CNT=0
+ F  S CNT=$O(PRBLST(CNT)) Q:CNT=""  D
+ . S PRBIEN=$P(PRBLST(CNT),U)
+ . K GMPL
+ . D DETAIL^GMPLUTL2(PRBIEN,.GMPL) ;ICR #2741
+ . S ECGMPL(CNT)=$G(GMPL("STATUS"))_U_$G(GMPL("DIAGNOSIS"))_U_$G(GMPL("ICDD"))_U_$G(GMPL("ONSET"))_U_$G(GMPL("MODIFIED"))_U
+ . S ECGMPL(CNT)=ECGMPL(CNT)_$G(GMPL("PROVIDER"))_U_$G(GMPL("SERVICE"))
+ S ECGMPL(0)=PRBLST(0)
+ M ^TMP($J,"ECPLIST")=ECGMPL
+ S RESULTS=$NA(^TMP($J,"ECPLIST"))
+ Q

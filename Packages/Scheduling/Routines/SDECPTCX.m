@@ -1,5 +1,6 @@
-SDECPTCX ;ALB/SAT - VISTA SCHEDULING RPCS ;MAR 15, 2017
- ;;5.3;Scheduling;**627,658**;Aug 13, 1993;Build 23
+SDECPTCX ;ALB/SAT,LAB - VISTA SCHEDULING RPCS ;JUL 25,2022
+ ;;5.3;Scheduling;**627,658,823**;Aug 13, 1993;Build 9
+ ;;Per VHA Directive 6402, this routine should not be modified
  ;
  Q
  ;
@@ -12,7 +13,8 @@ PTINFO(DATA,DFN,SLCT) ;
  K ^TMP("ORWPCE",$J)
  Q:'$D(^DPT(+DFN,0))
  S X=^DPT(DFN,0),WL=$P($G(^(.1)),U),RB=$P($G(^(.101)),U),CA=+$G(^(.105)),TS=+$G(^(.103)),DOD=+$G(^(.35)),AT=+$G(^(.1041)),VT=$G(^("VET"))
- S DATA=$P(X,U,1,3)_U_$$FMTSSN($P(X,U,9))_U_U_WL_U_RB
+ ;S DATA=$P(X,U,1,3)_U_$$FMTSSN($P(X,U,9))_U_U_WL_U_RB
+ S DATA=$P(X,U,1,3)_U_$$LAST4SSN^SDESINPUTVALUTL(DFN)_U_U_WL_U_RB
  S:$L(WL) $P(DATA,U,5)=+$G(^DIC(42,+$O(^DIC(42,"B",WL,0)),44))
  S $P(DATA,U,8)=VT="Y"
  S $P(DATA,U,9)=$$ISSENS(DFN)

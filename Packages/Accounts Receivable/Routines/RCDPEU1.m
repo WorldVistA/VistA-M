@@ -1,5 +1,5 @@
-RCDPEU1 ;AITC/CJE - ELECTRONIC PAYER UTILITIES ;05-NOV-02
- ;;4.5;Accounts Receivable;**326,332**;Mar 20, 1995;Build 40
+RCDPEU1 ;AITC/CJE - ELECTRONIC PAYER UTILITIES ; 7/1/19 1:08pm
+ ;;4.5;Accounts Receivable;**326,332,349**;Mar 20, 1995;Build 44
  ;Per VA Directive 6402, this routine should not be modified.
  Q
 SELPAY(PARAM) ; EP
@@ -258,6 +258,26 @@ RTYPE(DEF) ;EP
  I (RETURN="T"&('$D(^RCY(344.6,"ATR",1)))) D WARN("tricare")
  Q RETURN
  ;
+CLOSEDC(DEF) ;EP
+ ; PRCA*4.5*349 - Added subroutine
+ ; Input:   DEF     - Value to use a default
+ ;                    Optional, Defaults to ""
+ ; Returns: -1      - User ^ or timed out
+ ;           A      - User selected ALL
+ ;           C      - User selected CLOSED
+ N DA,DIR,DIROUT,DIRUT,DTOUT,DUOUT,RCCLM,RETURN,X,Y
+ S RCCLM=""
+ S DIR("?")="Enter ALL to select all claims or CLOSED to select only closed claims."
+ S DIR(0)="SA^A:ALL;C:CLOSED"
+ S DIR("A")="Inlcude (A)LL Claims or only (C)LOSED Claims: "
+ S DIR("B")=$S($G(DEF)'="":DEF,1:"ALL")
+ D ^DIR
+ K DIR
+ I $D(DTOUT)!$D(DUOUT) Q -1
+ Q:Y="" "A"
+ S RETURN=$E(Y)
+ Q RETURN
+ ;
 PAYTYPE(NAME,TIN,TYPE) ; EP
  ; Is a payer Medical, Pharmacy or Tricare based on flags in the payer exclusion file.
  ; Inputs: NAME - The free text name of the payer
@@ -413,3 +433,40 @@ WARN(TYPE) ; Warn user that no payers of TYPE have been flagged
  W !!,"WARNING - There are no "_TYPE_" payers flagged in the system."
  W !,"          Please use the Identify Payers option to flag payers.",*7
  Q
+ ;
+ASKAUTO(DEF) ; EP from RCDPENR2 - added for PRCA*4.5*349
+ ; Input:   DEF     - Value to use a default, optional, defaults to "BOTH"
+ ; Returns: -1      - User ^ or timed out
+ ;           A      - Include autoposted only
+ ;           N      - Include manually posted only
+ ;           B      - Include both types
+ ;
+ N DA,DIR,DTOUT,DUOUT,X,Y,DIRUT,DIROUT,RCTYPE,RETURN
+ S RCTYPE=""
+ S DIR("?",1)="Enter 'A' to include only auto-posted entries"
+ S DIR("?",2)="      'M' to include only manually posted entries"
+ S DIR("?")="      'B' to include both"
+ S DIR(0)="SA^A:AUTO-POSTED;M:MANUALLY POSTED;B:BOTH"
+ S DIR("A")="(A)UTO-POSTED, (M)ANUALLY POSTED, (B)OTH: "
+ S DIR("B")=$S($G(DEF)'="":DEF,1:"BOTH")
+ D ^DIR
+ K DIR
+ I $D(DTOUT)!$D(DUOUT) Q -1
+ Q:Y="" "B"
+ S RETURN=$E(Y)
+ Q $S(RETURN="M":"N",1:RETURN)  ; N=NON-AUTO-POSTED same as MANUAL
+ ;
+CHKEFT(EFTDA) ; EP from RCDPENR3 - Check to see if a EFT is posted - added for PRCA*4.5*349
+ ; Input EFTDA - Internal entru number from 344.31
+ ; Returns 1 if EFT is posted, otherwise 0
+ ;
+ N ERAREC,IEN344,RETURN,POSTSTAT
+ S RETURN=0
+ S ERAREC=+$$GET1^DIQ(344.31,EFTDA_",",.1,"I")  ; Pointer to ERA record
+ I ERAREC D  ;
+ . S POSTSTAT=$$GET1^DIQ(344.4,ERAREC_",",.14,"I")
+ . I POSTSTAT,"125"[POSTSTAT S RETURN=1 ;  Matched to posted, manually posted or partialy posted ERA
+ E  I $$GET1^DIQ(344.31,EFTDA_",",.08,"I")=2 D  ; EFT matched to Paper EOB, check if receipt is processed
+ . S IEN344=$O(^RCY(344,"AEFT",EFTDA,0))
+ . I IEN344,$$GET1^DIQ(344,IEN344_",",.14,"I")'=1 S RETURN=1
+ Q RETURN

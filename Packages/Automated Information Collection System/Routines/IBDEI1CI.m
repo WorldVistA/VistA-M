@@ -1,124 +1,132 @@
-IBDEI1CI ; ; 04-FEB-2020
- ;;3.0;IB ENCOUNTER FORM IMP/EXP;;FEB 04, 2020
+IBDEI1CI ; ; 01-FEB-2022
+ ;;3.0;IB ENCOUNTER FORM IMP/EXP;;FEB 01, 2022
  Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,999) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
- ;;^UTILITY(U,$J,358.3,21491,1,0)
+ ;;^UTILITY(U,$J,358.3,21745,1,3,0)
+ ;;=3^Eosinophilic Pneumonia,Chronic
+ ;;^UTILITY(U,$J,358.3,21745,1,4,0)
+ ;;=4^J82.81
+ ;;^UTILITY(U,$J,358.3,21745,2)
+ ;;=^24374
+ ;;^UTILITY(U,$J,358.3,21746,0)
+ ;;=J82.82^^70^925^7
+ ;;^UTILITY(U,$J,358.3,21746,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,21491,1,3,0)
- ;;=3^Medical Services Not Available in Home
- ;;^UTILITY(U,$J,358.3,21491,1,4,0)
- ;;=4^Z75.0
- ;;^UTILITY(U,$J,358.3,21491,2)
- ;;=^5063289
- ;;^UTILITY(U,$J,358.3,21492,0)
- ;;=Z75.1^^95^1079^4
- ;;^UTILITY(U,$J,358.3,21492,1,0)
+ ;;^UTILITY(U,$J,358.3,21746,1,3,0)
+ ;;=3^Eosinophilic Pneumonia,Acute
+ ;;^UTILITY(U,$J,358.3,21746,1,4,0)
+ ;;=4^J82.82
+ ;;^UTILITY(U,$J,358.3,21746,2)
+ ;;=^5159205
+ ;;^UTILITY(U,$J,358.3,21747,0)
+ ;;=J82.83^^70^925^6
+ ;;^UTILITY(U,$J,358.3,21747,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,21492,1,3,0)
- ;;=3^Pt Awaiting Admission to Adequate Facility Elsewhere
- ;;^UTILITY(U,$J,358.3,21492,1,4,0)
- ;;=4^Z75.1
- ;;^UTILITY(U,$J,358.3,21492,2)
- ;;=^5063290
- ;;^UTILITY(U,$J,358.3,21493,0)
- ;;=Z75.4^^95^1079^6
- ;;^UTILITY(U,$J,358.3,21493,1,0)
+ ;;^UTILITY(U,$J,358.3,21747,1,3,0)
+ ;;=3^Eosinophilic Asthma
+ ;;^UTILITY(U,$J,358.3,21747,1,4,0)
+ ;;=4^J82.83
+ ;;^UTILITY(U,$J,358.3,21747,2)
+ ;;=^5159206
+ ;;^UTILITY(U,$J,358.3,21748,0)
+ ;;=G89.22^^70^926^2
+ ;;^UTILITY(U,$J,358.3,21748,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,21493,1,3,0)
- ;;=3^Unavailability/Inaccessibility of Helping Agencies
- ;;^UTILITY(U,$J,358.3,21493,1,4,0)
- ;;=4^Z75.4
- ;;^UTILITY(U,$J,358.3,21493,2)
- ;;=^5063293
- ;;^UTILITY(U,$J,358.3,21494,0)
- ;;=Z75.8^^95^1079^2
- ;;^UTILITY(U,$J,358.3,21494,1,0)
+ ;;^UTILITY(U,$J,358.3,21748,1,3,0)
+ ;;=3^Chr Post-Thoracotomy Pain
+ ;;^UTILITY(U,$J,358.3,21748,1,4,0)
+ ;;=4^G89.22
+ ;;^UTILITY(U,$J,358.3,21748,2)
+ ;;=^5004156
+ ;;^UTILITY(U,$J,358.3,21749,0)
+ ;;=G89.3^^70^926^4
+ ;;^UTILITY(U,$J,358.3,21749,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,21494,1,3,0)
- ;;=3^Medical Facilities/Health Care Problems
- ;;^UTILITY(U,$J,358.3,21494,1,4,0)
- ;;=4^Z75.8
- ;;^UTILITY(U,$J,358.3,21494,2)
- ;;=^5063295
- ;;^UTILITY(U,$J,358.3,21495,0)
- ;;=Z71.9^^95^1079^1
- ;;^UTILITY(U,$J,358.3,21495,1,0)
+ ;;^UTILITY(U,$J,358.3,21749,1,3,0)
+ ;;=3^Neoplasm Related Pain
+ ;;^UTILITY(U,$J,358.3,21749,1,4,0)
+ ;;=4^G89.3
+ ;;^UTILITY(U,$J,358.3,21749,2)
+ ;;=^5004159
+ ;;^UTILITY(U,$J,358.3,21750,0)
+ ;;=G89.18^^70^926^1
+ ;;^UTILITY(U,$J,358.3,21750,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,21495,1,3,0)
- ;;=3^Counseling,Unspec
- ;;^UTILITY(U,$J,358.3,21495,1,4,0)
- ;;=4^Z71.9
- ;;^UTILITY(U,$J,358.3,21495,2)
- ;;=^5063254
- ;;^UTILITY(U,$J,358.3,21496,0)
- ;;=Z89.201^^95^1080^10
- ;;^UTILITY(U,$J,358.3,21496,1,0)
+ ;;^UTILITY(U,$J,358.3,21750,1,3,0)
+ ;;=3^Acute Postprocedural Pain
+ ;;^UTILITY(U,$J,358.3,21750,1,4,0)
+ ;;=4^G89.18
+ ;;^UTILITY(U,$J,358.3,21750,2)
+ ;;=^5004154
+ ;;^UTILITY(U,$J,358.3,21751,0)
+ ;;=G89.29^^70^926^3
+ ;;^UTILITY(U,$J,358.3,21751,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,21496,1,3,0)
- ;;=3^Acquired Absence of Right Upper Limb,Unspec Level
- ;;^UTILITY(U,$J,358.3,21496,1,4,0)
- ;;=4^Z89.201
- ;;^UTILITY(U,$J,358.3,21496,2)
- ;;=^5063543
- ;;^UTILITY(U,$J,358.3,21497,0)
- ;;=Z89.202^^95^1080^4
- ;;^UTILITY(U,$J,358.3,21497,1,0)
+ ;;^UTILITY(U,$J,358.3,21751,1,3,0)
+ ;;=3^Chronic Pain
+ ;;^UTILITY(U,$J,358.3,21751,1,4,0)
+ ;;=4^G89.29
+ ;;^UTILITY(U,$J,358.3,21751,2)
+ ;;=^5004158
+ ;;^UTILITY(U,$J,358.3,21752,0)
+ ;;=J94.1^^70^927^1
+ ;;^UTILITY(U,$J,358.3,21752,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,21497,1,3,0)
- ;;=3^Acquired Absence of Left Upper Limb,Unspec Level
- ;;^UTILITY(U,$J,358.3,21497,1,4,0)
- ;;=4^Z89.202
- ;;^UTILITY(U,$J,358.3,21497,2)
- ;;=^5063544
- ;;^UTILITY(U,$J,358.3,21498,0)
- ;;=Z89.111^^95^1080^6
- ;;^UTILITY(U,$J,358.3,21498,1,0)
+ ;;^UTILITY(U,$J,358.3,21752,1,3,0)
+ ;;=3^Fibrothorax
+ ;;^UTILITY(U,$J,358.3,21752,1,4,0)
+ ;;=4^J94.1
+ ;;^UTILITY(U,$J,358.3,21752,2)
+ ;;=^5008317
+ ;;^UTILITY(U,$J,358.3,21753,0)
+ ;;=C45.0^^70^927^2
+ ;;^UTILITY(U,$J,358.3,21753,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,21498,1,3,0)
- ;;=3^Acquired Absence of Right Hand
- ;;^UTILITY(U,$J,358.3,21498,1,4,0)
- ;;=4^Z89.111
- ;;^UTILITY(U,$J,358.3,21498,2)
- ;;=^5063537
- ;;^UTILITY(U,$J,358.3,21499,0)
- ;;=Z89.112^^95^1080^1
- ;;^UTILITY(U,$J,358.3,21499,1,0)
+ ;;^UTILITY(U,$J,358.3,21753,1,3,0)
+ ;;=3^Pleura Mesothelioma
+ ;;^UTILITY(U,$J,358.3,21753,1,4,0)
+ ;;=4^C45.0
+ ;;^UTILITY(U,$J,358.3,21753,2)
+ ;;=^5001095
+ ;;^UTILITY(U,$J,358.3,21754,0)
+ ;;=J94.8^^70^927^4
+ ;;^UTILITY(U,$J,358.3,21754,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,21499,1,3,0)
- ;;=3^Acquired Absence of Left Hand
- ;;^UTILITY(U,$J,358.3,21499,1,4,0)
- ;;=4^Z89.112
- ;;^UTILITY(U,$J,358.3,21499,2)
- ;;=^5063538
- ;;^UTILITY(U,$J,358.3,21500,0)
- ;;=Z89.121^^95^1080^11
- ;;^UTILITY(U,$J,358.3,21500,1,0)
+ ;;^UTILITY(U,$J,358.3,21754,1,3,0)
+ ;;=3^Pleural Conditions NEC
+ ;;^UTILITY(U,$J,358.3,21754,1,4,0)
+ ;;=4^J94.8
+ ;;^UTILITY(U,$J,358.3,21754,2)
+ ;;=^5008319
+ ;;^UTILITY(U,$J,358.3,21755,0)
+ ;;=J94.9^^70^927^3
+ ;;^UTILITY(U,$J,358.3,21755,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,21500,1,3,0)
- ;;=3^Acquired Absence of Right Wrist
- ;;^UTILITY(U,$J,358.3,21500,1,4,0)
- ;;=4^Z89.121
- ;;^UTILITY(U,$J,358.3,21500,2)
- ;;=^5063540
- ;;^UTILITY(U,$J,358.3,21501,0)
- ;;=Z89.122^^95^1080^5
- ;;^UTILITY(U,$J,358.3,21501,1,0)
+ ;;^UTILITY(U,$J,358.3,21755,1,3,0)
+ ;;=3^Pleural Condition,Unspec
+ ;;^UTILITY(U,$J,358.3,21755,1,4,0)
+ ;;=4^J94.9
+ ;;^UTILITY(U,$J,358.3,21755,2)
+ ;;=^5008320
+ ;;^UTILITY(U,$J,358.3,21756,0)
+ ;;=J91.8^^70^927^6
+ ;;^UTILITY(U,$J,358.3,21756,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,21501,1,3,0)
- ;;=3^Acquired Absence of Left Wrist
- ;;^UTILITY(U,$J,358.3,21501,1,4,0)
- ;;=4^Z89.122
- ;;^UTILITY(U,$J,358.3,21501,2)
- ;;=^5063541
- ;;^UTILITY(U,$J,358.3,21502,0)
- ;;=Z89.211^^95^1080^9
- ;;^UTILITY(U,$J,358.3,21502,1,0)
+ ;;^UTILITY(U,$J,358.3,21756,1,3,0)
+ ;;=3^Pleural Effusion in Conditions Classified Elsewhere
+ ;;^UTILITY(U,$J,358.3,21756,1,4,0)
+ ;;=4^J91.8
+ ;;^UTILITY(U,$J,358.3,21756,2)
+ ;;=^5008311
+ ;;^UTILITY(U,$J,358.3,21757,0)
+ ;;=J90.^^70^927^5
+ ;;^UTILITY(U,$J,358.3,21757,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,21502,1,3,0)
- ;;=3^Acquired Absence of Right Upper Limb Below Elbow
- ;;^UTILITY(U,$J,358.3,21502,1,4,0)
- ;;=4^Z89.211
- ;;^UTILITY(U,$J,358.3,21502,2)
- ;;=^5063545
- ;;^UTILITY(U,$J,358.3,21503,0)
- ;;=Z89.212^^95^1080^12
+ ;;^UTILITY(U,$J,358.3,21757,1,3,0)
+ ;;=3^Pleural Effusion NEC
+ ;;^UTILITY(U,$J,358.3,21757,1,4,0)
+ ;;=4^J90.
+ ;;^UTILITY(U,$J,358.3,21757,2)
+ ;;=^5008310
+ ;;^UTILITY(U,$J,358.3,21758,0)
+ ;;=J92.0^^70^927^7

@@ -1,5 +1,5 @@
-ORCMEDT8 ;SLC/JM-QO, Generate quick order CRC ;04/14/09  08:41
- ;;3.0;ORDER ENTRY/RESULTS REPORTING;**245,243,280**;Dec 17, 1997;Build 85
+ORCMEDT8 ;SLC/JM-QO, Generate quick order CRC ;Oct 20, 2021@13:26:11
+ ;;3.0;ORDER ENTRY/RESULTS REPORTING;**245,243,280,405**;Dec 17, 1997;Build 211
  Q
  ;
 UPDQNAME(ORIEN) ; Rename personal quick order name if needed
@@ -204,12 +204,12 @@ FORMTBL ; Form Table - Forms allowing personal quick orders, as of CPRS GUI v26 
  ;;                ;BBK;   ;00.ORD.QTY.MDF.SPC.
  ;;                ;BBX;   ;00.RES.
  ;;Inpatient Meds  ;130;   ;00.ORD.DRG.INS.ROU.SCH.URG.COM.SCT.ADM
- ;;Generic Meds    ;135;   ;01.ORD.INS.DRG.DOS.STR.NAM.ROU.SCH.URG.COM.SUP.QTY.REF.SC0.PCK.PI0.SIG.
+ ;;Generic Meds    ;135;   ;01.ORD.INS.DRG.DOS.STR.NAM.ROU.SCH.URG.COM.SUP.QTY.REF.SC0.PCK.PI0.SIG.IND.
  ;;                ;INP;   ;00.ORD.INS.DRG.DOS.STR.NAM.ROU.SCH.URG.COM.NOW.SIG.
- ;;                ;OPX;   ;00.ORD.STR.NAM.DRG.ZZZ.URG.COM.SUP.QTY.REF.SC0.PCK.PI0.SIG.
+ ;;                ;OPX;   ;00.ORD.STR.NAM.DRG.ZZZ.URG.COM.SUP.QTY.REF.SC0.PCK.PI0.SIG.TTR.
  ;;                ;INX;   ;00.ORD.STR.NAM.DRG.ZZZ.URG.COM.NOW.SIG.
  ;;                ;MDX;   ;00.INS.DOS.ROU.SCH.DAY.CNJ.
- ;;Outpatient Meds ;140;   ;00.ORD.DRG.INS.MSC.ROU.SCH.QTY.REF.PCK.URG.COM.SC0.
+ ;;Outpatient Meds ;140;   ;00.ORD.DRG.INS.MSC.ROU.SCH.QTY.REF.PCK.URG.COM.SC0.TTR.
  ;;Non-VA Meds     ;145;   ;03.ORD.INS.DRG.DOS.STR.NAM.ROU.SCH.URG.COM.STT.STA.NOW.SIG.
  ;;Radiology       ;160;   ;00.ORD.STT.URG.MOD.CLS.IML.PRG.YN0.PRE.COM.MDF.PRV.CON.RSH.LOC.
  ;;IV Meds         ;180;   ;02.ZZZ.RAT.URG.DAY.COM.SCH.TYP.ADM
@@ -232,6 +232,7 @@ IDTABLE ; ID table - returns codes used in the form table IDINFO("LONGNAME")=SHO
  ;;DRG;DRUG
  ;;ERD;EARLIEST
  ;;IML;IMLOC
+ ;;IND;INDICATION
  ;;INS;INSTR
  ;;ISO;ISOLATION
  ;;LAB;LAB
@@ -270,6 +271,7 @@ IDTABLE ; ID table - returns codes used in the form table IDINFO("LONGNAME")=SHO
  ;;STR;STRENGTH
  ;;SUP;SUPPLY
  ;;TIM;TIME
+ ;;TTR:TITR
  ;;TYP:TYPE
  ;;UNT;UNITS
  ;;URG;URGENCY

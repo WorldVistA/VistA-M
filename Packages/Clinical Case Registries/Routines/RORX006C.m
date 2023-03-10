@@ -1,5 +1,5 @@
 RORX006C ;HCIOFO/BH,SG - LAB UTILIZATION (STORE) ;9/19/05 9:39am
- ;;1.5;CLINICAL CASE REGISTRIES;**21,31**;Feb 17, 2006;Build 62
+ ;;1.5;CLINICAL CASE REGISTRIES;**21,31,39**;Feb 17, 2006;Build 4
  ;
  ;******************************************************************************
  ;******************************************************************************
@@ -11,6 +11,7 @@ RORX006C ;HCIOFO/BH,SG - LAB UTILIZATION (STORE) ;9/19/05 9:39am
  ;                                       requested.
  ;ROR*1.5*31   MAY 2017    M FERRARESE  Adding PACT, PCP, AGE/DOB as additional
  ;                                       identifiers.
+ ;ROR*1.5*39   JUL 2021    M FERRARESE  Setting SSN and LAST4 to zeros
  ;******************************************************************************
  Q
  ;
@@ -44,7 +45,7 @@ PATIENTS(PRNTELMT,NODE) ;
  . . . S COUNT=COUNT+1  I COUNT>MAXUTNUM  S RC=1  Q
  . . . S ITEM=$$ADDVAL^RORTSK11(RORTSK,"PATIENT",,TABLE)
  . . . D ADDVAL^RORTSK11(RORTSK,"NAME",NAME,ITEM,1)
- . . . S TMP=$G(@NODE@("PAT",DFN))
+ . . . S TMP="0000" ;S TMP=$G(@NODE@("PAT",DFN))
  . . . D ADDVAL^RORTSK11(RORTSK,"LAST4",$P(TMP,U),ITEM,2)
  . . . I AGETYPE'="ALL" D ADDVAL^RORTSK11(RORTSK,AGETYPE,$P(TMP,U,6),ITEM,1)
  . . . D ADDVAL^RORTSK11(RORTSK,"DOD",$P(TMP,U,2),ITEM,1)

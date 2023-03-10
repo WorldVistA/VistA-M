@@ -1,130 +1,124 @@
-IBDEI0QS ; ; 04-FEB-2020
- ;;3.0;IB ENCOUNTER FORM IMP/EXP;;FEB 04, 2020
+IBDEI0QS ; ; 01-FEB-2022
+ ;;3.0;IB ENCOUNTER FORM IMP/EXP;;FEB 01, 2022
  Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,999) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
- ;;^UTILITY(U,$J,358.3,11955,1,4,0)
- ;;=4^M67.421
- ;;^UTILITY(U,$J,358.3,11955,2)
- ;;=^5012960
- ;;^UTILITY(U,$J,358.3,11956,0)
- ;;=M67.411^^80^767^14
- ;;^UTILITY(U,$J,358.3,11956,1,0)
+ ;;^UTILITY(U,$J,358.3,12071,1,3,0)
+ ;;=3^Pressure Ulcer Left Upper Back,Stage Unspec
+ ;;^UTILITY(U,$J,358.3,12071,1,4,0)
+ ;;=4^L89.129
+ ;;^UTILITY(U,$J,358.3,12071,2)
+ ;;=^5133652
+ ;;^UTILITY(U,$J,358.3,12072,0)
+ ;;=L89.130^^49^595^96
+ ;;^UTILITY(U,$J,358.3,12072,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,11956,1,3,0)
- ;;=3^Ganglion,Right Shoulder
- ;;^UTILITY(U,$J,358.3,11956,1,4,0)
- ;;=4^M67.411
- ;;^UTILITY(U,$J,358.3,11956,2)
- ;;=^5012957
- ;;^UTILITY(U,$J,358.3,11957,0)
- ;;=M67.471^^80^767^9
- ;;^UTILITY(U,$J,358.3,11957,1,0)
+ ;;^UTILITY(U,$J,358.3,12072,1,3,0)
+ ;;=3^Pressure Ulcer Right Lower Back,Unstageable
+ ;;^UTILITY(U,$J,358.3,12072,1,4,0)
+ ;;=4^L89.130
+ ;;^UTILITY(U,$J,358.3,12072,2)
+ ;;=^5009363
+ ;;^UTILITY(U,$J,358.3,12073,0)
+ ;;=L89.131^^49^595^91
+ ;;^UTILITY(U,$J,358.3,12073,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,11957,1,3,0)
- ;;=3^Ganglion,Right Ankle/Foot
- ;;^UTILITY(U,$J,358.3,11957,1,4,0)
- ;;=4^M67.471
- ;;^UTILITY(U,$J,358.3,11957,2)
- ;;=^5012975
- ;;^UTILITY(U,$J,358.3,11958,0)
- ;;=M67.461^^80^767^13
- ;;^UTILITY(U,$J,358.3,11958,1,0)
+ ;;^UTILITY(U,$J,358.3,12073,1,3,0)
+ ;;=3^Pressure Ulcer Right Lower Back,Stage 1
+ ;;^UTILITY(U,$J,358.3,12073,1,4,0)
+ ;;=4^L89.131
+ ;;^UTILITY(U,$J,358.3,12073,2)
+ ;;=^5009364
+ ;;^UTILITY(U,$J,358.3,12074,0)
+ ;;=L89.132^^49^595^92
+ ;;^UTILITY(U,$J,358.3,12074,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,11958,1,3,0)
- ;;=3^Ganglion,Right Knee
- ;;^UTILITY(U,$J,358.3,11958,1,4,0)
- ;;=4^M67.461
- ;;^UTILITY(U,$J,358.3,11958,2)
- ;;=^5012972
- ;;^UTILITY(U,$J,358.3,11959,0)
- ;;=M67.451^^80^767^12
- ;;^UTILITY(U,$J,358.3,11959,1,0)
+ ;;^UTILITY(U,$J,358.3,12074,1,3,0)
+ ;;=3^Pressure Ulcer Right Lower Back,Stage 2
+ ;;^UTILITY(U,$J,358.3,12074,1,4,0)
+ ;;=4^L89.132
+ ;;^UTILITY(U,$J,358.3,12074,2)
+ ;;=^5009365
+ ;;^UTILITY(U,$J,358.3,12075,0)
+ ;;=L89.133^^49^595^93
+ ;;^UTILITY(U,$J,358.3,12075,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,11959,1,3,0)
- ;;=3^Ganglion,Right Hip
- ;;^UTILITY(U,$J,358.3,11959,1,4,0)
- ;;=4^M67.451
- ;;^UTILITY(U,$J,358.3,11959,2)
- ;;=^5012969
- ;;^UTILITY(U,$J,358.3,11960,0)
- ;;=M67.441^^80^767^11
- ;;^UTILITY(U,$J,358.3,11960,1,0)
+ ;;^UTILITY(U,$J,358.3,12075,1,3,0)
+ ;;=3^Pressure Ulcer Right Lower Back,Stage 3
+ ;;^UTILITY(U,$J,358.3,12075,1,4,0)
+ ;;=4^L89.133
+ ;;^UTILITY(U,$J,358.3,12075,2)
+ ;;=^5009366
+ ;;^UTILITY(U,$J,358.3,12076,0)
+ ;;=L89.134^^49^595^94
+ ;;^UTILITY(U,$J,358.3,12076,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,11960,1,3,0)
- ;;=3^Ganglion,Right Hand
- ;;^UTILITY(U,$J,358.3,11960,1,4,0)
- ;;=4^M67.441
- ;;^UTILITY(U,$J,358.3,11960,2)
- ;;=^5012966
- ;;^UTILITY(U,$J,358.3,11961,0)
- ;;=M67.431^^80^767^15
- ;;^UTILITY(U,$J,358.3,11961,1,0)
+ ;;^UTILITY(U,$J,358.3,12076,1,3,0)
+ ;;=3^Pressure Ulcer Right Lower Back,Stage 4
+ ;;^UTILITY(U,$J,358.3,12076,1,4,0)
+ ;;=4^L89.134
+ ;;^UTILITY(U,$J,358.3,12076,2)
+ ;;=^5009367
+ ;;^UTILITY(U,$J,358.3,12077,0)
+ ;;=L89.139^^49^595^95
+ ;;^UTILITY(U,$J,358.3,12077,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,11961,1,3,0)
- ;;=3^Ganglion,Right Wrist
- ;;^UTILITY(U,$J,358.3,11961,1,4,0)
- ;;=4^M67.431
- ;;^UTILITY(U,$J,358.3,11961,2)
- ;;=^5012963
- ;;^UTILITY(U,$J,358.3,11962,0)
- ;;=M67.49^^80^767^8
- ;;^UTILITY(U,$J,358.3,11962,1,0)
+ ;;^UTILITY(U,$J,358.3,12077,1,3,0)
+ ;;=3^Pressure Ulcer Right Lower Back,Stage Unspec
+ ;;^UTILITY(U,$J,358.3,12077,1,4,0)
+ ;;=4^L89.139
+ ;;^UTILITY(U,$J,358.3,12077,2)
+ ;;=^5133653
+ ;;^UTILITY(U,$J,358.3,12078,0)
+ ;;=L89.140^^49^595^48
+ ;;^UTILITY(U,$J,358.3,12078,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,11962,1,3,0)
- ;;=3^Ganglion,Mult Sites
- ;;^UTILITY(U,$J,358.3,11962,1,4,0)
- ;;=4^M67.49
- ;;^UTILITY(U,$J,358.3,11962,2)
- ;;=^5012979
- ;;^UTILITY(U,$J,358.3,11963,0)
- ;;=E09.52^^80^768^18
- ;;^UTILITY(U,$J,358.3,11963,1,0)
+ ;;^UTILITY(U,$J,358.3,12078,1,3,0)
+ ;;=3^Pressure Ulcer Left Lower Back,Unstageable
+ ;;^UTILITY(U,$J,358.3,12078,1,4,0)
+ ;;=4^L89.140
+ ;;^UTILITY(U,$J,358.3,12078,2)
+ ;;=^5133655
+ ;;^UTILITY(U,$J,358.3,12079,0)
+ ;;=L89.141^^49^595^43
+ ;;^UTILITY(U,$J,358.3,12079,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,11963,1,3,0)
- ;;=3^Drug/Chem Diabetes w/ Diabetic Prph Angiopathy w/ Gangrene
- ;;^UTILITY(U,$J,358.3,11963,1,4,0)
- ;;=4^E09.52
- ;;^UTILITY(U,$J,358.3,11963,2)
- ;;=^5002571
- ;;^UTILITY(U,$J,358.3,11964,0)
- ;;=I96.^^80^768^19
- ;;^UTILITY(U,$J,358.3,11964,1,0)
+ ;;^UTILITY(U,$J,358.3,12079,1,3,0)
+ ;;=3^Pressure Ulcer Left Lower Back,Stage 1
+ ;;^UTILITY(U,$J,358.3,12079,1,4,0)
+ ;;=4^L89.141
+ ;;^UTILITY(U,$J,358.3,12079,2)
+ ;;=^5133656
+ ;;^UTILITY(U,$J,358.3,12080,0)
+ ;;=L89.142^^49^595^44
+ ;;^UTILITY(U,$J,358.3,12080,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,11964,1,3,0)
- ;;=3^Gangrene NEC
- ;;^UTILITY(U,$J,358.3,11964,1,4,0)
- ;;=4^I96.
- ;;^UTILITY(U,$J,358.3,11964,2)
- ;;=^5008081
- ;;^UTILITY(U,$J,358.3,11965,0)
- ;;=I73.01^^80^768^20
- ;;^UTILITY(U,$J,358.3,11965,1,0)
+ ;;^UTILITY(U,$J,358.3,12080,1,3,0)
+ ;;=3^Pressure Ulcer Left Lower Back,Stage 2
+ ;;^UTILITY(U,$J,358.3,12080,1,4,0)
+ ;;=4^L89.142
+ ;;^UTILITY(U,$J,358.3,12080,2)
+ ;;=^5133657
+ ;;^UTILITY(U,$J,358.3,12081,0)
+ ;;=L89.143^^49^595^45
+ ;;^UTILITY(U,$J,358.3,12081,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,11965,1,3,0)
- ;;=3^Raynaud's Syndrome w/ Gangrene
- ;;^UTILITY(U,$J,358.3,11965,1,4,0)
- ;;=4^I73.01
- ;;^UTILITY(U,$J,358.3,11965,2)
- ;;=^5007797
- ;;^UTILITY(U,$J,358.3,11966,0)
- ;;=I70.763^^80^768^4
- ;;^UTILITY(U,$J,358.3,11966,1,0)
+ ;;^UTILITY(U,$J,358.3,12081,1,3,0)
+ ;;=3^Pressure Ulcer Left Lower Back,Stage 3
+ ;;^UTILITY(U,$J,358.3,12081,1,4,0)
+ ;;=4^L89.143
+ ;;^UTILITY(U,$J,358.3,12081,2)
+ ;;=^5133658
+ ;;^UTILITY(U,$J,358.3,12082,0)
+ ;;=L89.144^^49^595^46
+ ;;^UTILITY(U,$J,358.3,12082,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,11966,1,3,0)
- ;;=3^Athscl of Bypass Graft,Bilateral Legs w/ Gangrene
- ;;^UTILITY(U,$J,358.3,11966,1,4,0)
- ;;=4^I70.763
- ;;^UTILITY(U,$J,358.3,11966,2)
- ;;=^5007778
- ;;^UTILITY(U,$J,358.3,11967,0)
- ;;=I70.762^^80^768^5
- ;;^UTILITY(U,$J,358.3,11967,1,0)
+ ;;^UTILITY(U,$J,358.3,12082,1,3,0)
+ ;;=3^Pressure Ulcer Left Lower Back,Stage 4
+ ;;^UTILITY(U,$J,358.3,12082,1,4,0)
+ ;;=4^L89.144
+ ;;^UTILITY(U,$J,358.3,12082,2)
+ ;;=^5133659
+ ;;^UTILITY(U,$J,358.3,12083,0)
+ ;;=L89.149^^49^595^47
+ ;;^UTILITY(U,$J,358.3,12083,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,11967,1,3,0)
- ;;=3^Athscl of Bypass Graft,Left Leg w/ Gangrene
- ;;^UTILITY(U,$J,358.3,11967,1,4,0)
- ;;=4^I70.762
- ;;^UTILITY(U,$J,358.3,11967,2)
- ;;=^5133608
- ;;^UTILITY(U,$J,358.3,11968,0)
- ;;=I70.761^^80^768^6

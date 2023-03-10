@@ -1,5 +1,5 @@
 RCDPRLIS ;WISC/RFJ - list of receipts report ;1 Jun 99
- ;;4.5;Accounts Receivable;**114,304,321,332**;Mar 20, 1995;Build 40
+ ;;4.5;Accounts Receivable;**114,304,321,332,349**;Mar 20, 1995;Build 44
  ;;Per VA Directive 6402, this routine should not be modified.
  ;
  N %ZIS,DATEEND,DATESTRT,POP,RCFILTF,RCFILTT,RCLSTMGR,RCSORT
@@ -41,7 +41,9 @@ RCDPRLIS ;WISC/RFJ - list of receipts report ;1 Jun 99
 DQ ;  queued report starts here
  ; PRCA*4.5*321 Extensive changes to this subroutine for filter/sort/ListMan
  N %,%I,CNT,DATA,DATE,DATEDIS1,DATEDIS2,FMSDOCNO,FMSTATUS,NOW,PAGE,PTYPE,RCDK,RCDPDATA
- N RCDPFPRE,RCIX,RCRECTDA,RCRJFLAG,RCRJLINE,RCUSER,SCREEN,SPACE,TOTALS,TYPE,X,XX,Y,ZZ ; PRCA*4.5*332
+ ;
+ ; PRCA*4.5*349 - Added RCTTL
+ N RCDPFPRE,RCIX,RCRECTDA,RCRJFLAG,RCRJLINE,RCTTL,RCUSER,SCREEN,SPACE,TOTALS,TYPE,X,XX,Y,ZZ ; PRCA*4.5*332
  K ^TMP($J,"RCDPRLIS")
  S SPACE=$J("",80)
  S RCDK=$$FMADD^XLFDT(DATESTRT,-1)_".24" ; Initialize start date for first $ORDER
@@ -50,24 +52,25 @@ DQ ;  queued report starts here
  . S RCRECTDA=0 F  S RCRECTDA=$O(^RCY(344,"AO",RCDK,RCRECTDA)) Q:'RCRECTDA  D
  . . K RCDPDATA
  . . D DIQ344^RCDPRPLM(RCRECTDA,".01:200")
- . . ;  get fms document ^ status ^ pre lockbox patch
- . . S FMSDOCNO=$$FMSSTAT^RCDPUREC(RCRECTDA)
- . . ; Apply filter by FMS Status
- . . S FMSTATUS=$P(FMSDOCNO,"^",2)
- . . I RCFILTF,FMSTATUS'="",'$D(RCFILTF(FMSTATUS)) Q  ; this status not included
- . . ; Apply filter by Payment Type
- . . S PTYPE=RCDPDATA(344,RCRECTDA,.04,"E")
- . . I RCFILTT,PTYPE'="",'$D(RCFILTT(PTYPE)) Q  ; this status not included
+ . . S FMSDOCNO=$$FMSSTAT^RCDPUREC(RCRECTDA)            ; get FMS Document^Status^Pre lockbox patch
+ . . S FMSTATUS=$P(FMSDOCNO,"^",2)                      ; Apply filter by FMS Status
+ . . I RCFILTF,FMSTATUS'="",'$D(RCFILTF(FMSTATUS)) Q    ; Status not included
+ . . S PTYPE=RCDPDATA(344,RCRECTDA,.04,"E")             ; Apply filter by Payment Type
+ . . I RCFILTT,PTYPE'="",'$D(RCFILTT(PTYPE)) Q          ; Status not included
+ . . S RCTTL=$$RCPTTL(RCRECTDA)                         ; PRCA*4.5*349 - Total of receipt
  . . ;
- . . ;  compute totals by type
+ . . ; Compute totals by type
  . . I RCDPDATA(344,RCRECTDA,.04,"E")="" S RCDPDATA(344,RCRECTDA,.04,"E")="UNKNOWN"
  . . S $P(TOTALS(PTYPE),"^",1)=$P($G(TOTALS(PTYPE)),"^",1)+RCDPDATA(344,RCRECTDA,101,"E")
- . . S $P(TOTALS(PTYPE),"^",2)=$P($G(TOTALS(PTYPE)),"^",2)+RCDPDATA(344,RCRECTDA,.15,"E")
- . . S $P(TOTALS,"^",1)=$P($G(TOTALS),"^",1)+RCDPDATA(344,RCRECTDA,101,"E")
- . . S $P(TOTALS,"^",2)=$P($G(TOTALS),"^",2)+RCDPDATA(344,RCRECTDA,.15,"E")
  . . ;
- . . ;  opened by
- . . I RCDPDATA(344,RCRECTDA,.02,"I")=.5 D  ;
+ . . ; PRCA*4.5*349 - Changed RCDPDATA(344,RCRECTDA,.15,"E") to RCTTL below
+ . . S $P(TOTALS(PTYPE),"^",2)=$P($G(TOTALS(PTYPE)),"^",2)+RCTTL
+ . . S $P(TOTALS,"^",1)=$P($G(TOTALS),"^",1)+RCDPDATA(344,RCRECTDA,101,"E")
+ . . ;
+ . . ; PRCA*4.5*349 - Changed RCDPDATA(344,RCRECTDA,.15,"E") to RCTTL below
+ . . S $P(TOTALS,"^",2)=$P($G(TOTALS),"^",2)+RCTTL
+ . . ;
+ . . I RCDPDATA(344,RCRECTDA,.02,"I")=.5 D              ; Opened by
  . . . S RCUSER="ar"
  . . ; PRCA*4.5*332 Begin modified code block
  . . E  D  ;
@@ -81,7 +84,9 @@ DQ ;  queued report starts here
  . . S DATA=DATA_"^"_ZZ                               ; Payment type
  . . S DATA=DATA_"^"_RCUSER                           ; User initials
  . . S DATA=DATA_"^"_RCDPDATA(344,RCRECTDA,101,"E")   ; Payment count
- . . S DATA=DATA_"^"_RCDPDATA(344,RCRECTDA,.15,"E")   ; Payment amount
+ . . ;
+ . . ; PRCA*4.5*349 - Changed RCDPDATA(344,RCRECTDA,.15,"E") to RCTTL below
+ . . S DATA=DATA_"^"_RCTTL                            ; Payment amount
  . . S DATA=DATA_"^"_$S($P(FMSDOCNO,"^",3):"*",1:" ") ; Pre lockbox
  . . S DATA=DATA_"^"_$P(FMSDOCNO,"^")                 ; FMS CR document
  . . S ZZ=$$STATUS($P(FMSDOCNO,"^",2))                ; FMS CR doc status
@@ -152,8 +157,19 @@ DQ ;  queued report starts here
  I SCREEN U IO(0) R !,"Press RETURN to continue:",%:DTIME
  ;
  I '$G(RCLSTMGR) D CLEAN
- Q
+ Q 
  ;
+RCPTTL(RCRECTDA) ; Returns the Total Amount of all of the Receipt Transactions
+ ; PRCA*4.5*349 - Added Method
+ ; Input:   RCRECTDA    - IEN of the Receipt (#344)
+ ; Returns: Total Amount of all of the Receipt Transactions
+ N TOTAL,X
+ S X=0,TOTAL=0
+ F  D  Q:'X
+ . S X=$O(^RCY(344,+$G(RCRECTDA),1,X)) Q:'X
+ . S TOTAL=TOTAL+$P($G(^(X,0)),"^",4)
+ Q TOTAL
+ ; 
 TYPE(AREVENT) ; Returns an abbreviated type of the AR EVENT - PRCA*4.5*332 Subroutine added
  ; Input:   AREVENT - External AR Event Type (file 344, field .04)
  ; Returns: 6 character (max) event type abbreviation

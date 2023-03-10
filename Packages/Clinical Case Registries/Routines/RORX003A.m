@@ -1,5 +1,5 @@
 RORX003A ;HCIOFO/SG - GENERAL UTILIZATION AND DEMOGRAPHICS ;11/14/06 8:50am
- ;;1.5;CLINICAL CASE REGISTRIES;**1,21,30,31**;Feb 17, 2006;Build 62
+ ;;1.5;CLINICAL CASE REGISTRIES;**1,21,30,31,39**;Feb 17, 2006;Build 4
  ;
  ; This routine uses the following IAs:
  ;
@@ -13,7 +13,8 @@ RORX003A ;HCIOFO/SG - GENERAL UTILIZATION AND DEMOGRAPHICS ;11/14/06 8:50am
  ;ROR*1.5*30   OCT 2016   M FERRARESE   Changing the display for "Sex" to "Birth Sex"
  ;
  ;ROR*1.5*31   MAY 2017   M FERRARESE   Adding PACT and PCP as additional identifiers.
- ;                                                                           
+ ;
+ ;ROR*1.5*39   JUL 2021    M FERRARESE  Setting SSN and LAST4 to zeros                                                                           
  ;**
  ;***** INCREMENTS SUMMARY COUNTER
 INCSUM(SUMMARY,VAL) ;
@@ -61,8 +62,8 @@ PATIENT(IENS,PARTAG) ;
  D ADDVAL^RORTSK11(RORTSK,"NAME",VADM(1),PTAG,1)
  ;--- SSN or LAST4
  I $$OPTCOL^RORXU006("SSN")  D
- . D ADDVAL^RORTSK11(RORTSK,"SSN",$P(VADM(2),U),PTAG,2)
- E  D ADDVAL^RORTSK11(RORTSK,"LAST4",VA("BID"),PTAG,2)
+ .S $P(VADM(2),U)="000000000"  D ADDVAL^RORTSK11(RORTSK,"SSN",$P(VADM(2),U),PTAG,2)
+ E  S VA("BID")="0000"  D ADDVAL^RORTSK11(RORTSK,"LAST4",VA("BID"),PTAG,2)
  ;
  ;--- Date of Birth
  D:$$OPTCOL^RORXU006("DOB")

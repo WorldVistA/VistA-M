@@ -1,172 +1,181 @@
-XOBVLL ;; mjk/alb - VistALink Listen and Spawn Code ; 07/27/2002  13:00
- ;;1.6;VistALink;;May 08, 2009;Build 15
- ;Per VHA directive 2004-038, this routine should not be modified.
- QUIT
+XOBVLL ;MJK/ALB - VistALink Listen and Spawn Code ; 07/27/2002  13:00
+ ;;1.6;VistALink;**4,6**;Apr 5,2017;Build 33
+ ;Per VA Directive 6402, this routine should not be modified.
+ Q
  ;
  ; ***deprecated*** tag ; Use START^XOBVTCP instead
 START(SOCKET) ; -- start listener
- DO START^XOBVTCP(SOCKET)
- QUIT
+ D START^XOBVTCP(SOCKET)
+ Q
  ;
  ; ***deprecated*** tag ; Use UCX^XOBVTCP instead
 UCX ; -- VMS TCPIP (UCX) multi-thread entry point
  ; -- Called from VistALink .com files
- GOTO UCX^XOBVTCP
+ G UCX^XOBVTCP
  ;
 SPAWN ; -- spawned process
- NEW X,XOBSTOP,XOBPORT,XOBHDLR,XOBLASTR,XOBCMREF
+ N X,XOBSTOP,XOBPORT,XOBHDLR,XOBLASTR,XOBCMREF
  ;
- SET XOBSTOP=0
- SET XOBPORT=IO
- SET U="^"
+ S XOBSTOP=0
+ S XOBPORT=IO
+ S U="^"
  ;
  ; -- initialize timestamp for last time request made (used for debugging)
- SET XOBLASTR=0
+ S XOBLASTR=0
  ;
  ; -- set error trap
  ;Set up the error trap
- SET $ETRAP="DO ^%ZTER HALT"
+ ; * * *
+ ;S $ET="D APPERROR^%ZTER(""VistALink Error $P(XOBMSG,"": "",2 "") HALT" ;*4
+ S $ET="D APPERROR^%ZTER(""VistALink Error ""_$P(XOBMSG,"": "",2)) HALT" ;*6
+ ; * * *
  ;
  ; -- attempt to share the license; must have TCP port open first
- USE XOBPORT IF $TEXT(SHARELIC^%ZOSV)'="" DO SHARELIC^%ZOSV(1)
+ U XOBPORT I $T(SHARELIC^%ZOSV)'="" D SHARELIC^%ZOSV(1)
  ;
  ; -- start RUM for VistALink Handler
- DO LOGRSRC^%ZOSV("$VISTALINK HANDLER$",2,1)
+ D LOGRSRC^%ZOSV("$VISTALINK HANDLER$",2,1)
  ;
  ; -- cache/initialize startup request handlers 
- SET X=$$CACHE^XOBVRH(.XOBHDLR)
- IF 'X DO RMERR^XOBVRM(184001,$PIECE(X,U,2)) QUIT
+ S X=$$CACHE^XOBVRH(.XOBHDLR)
+ I 'X D RMERR^XOBVRM(184001,$P(X,U,2)) Q
  ;
  ; -- initialize tcp processing variables
- DO INIT^XOBVSKT
+ D INIT^XOBVSKT
  ;
  ; -- change job name if possible
- DO SETNM^%ZOSV("VLink_"_$$CNV^XLFUTL($J,16))
+ D SETNM^%ZOSV("VLink_"_$$CNV^XLFUTL($J,16))
  ;
  ; -- setup for Connection Mgr: get ref; kill data @ ref
- SET XOBCMREF=$$GETREF^XOBUZAP1()
- DO KILL^XOBUZAP0(XOBCMREF)
+ S XOBCMREF=$$GETREF^XOBUZAP1()
+ D KILL^XOBUZAP0(XOBCMREF)
  ;
  ; -- loop until told to stop
- FOR  DO NXTCALL QUIT:XOBSTOP
+ F  D NXTCALL Q:XOBSTOP
  ;
  ; -- kill ^XTMP ref node
- DO KILL^XOBUZAP0(XOBCMREF)
+ D KILL^XOBUZAP0(XOBCMREF)
  ;
  ; -- final/clean tcp processing variables
- DO FINAL^XOBVSKT
+ D FINAL^XOBVSKT
  ;
  ; -- stop RUM for VistALink Handler
- DO LOGRSRC^%ZOSV("$VISTALINK HANDLER$",2,2)
+ D LOGRSRC^%ZOSV("$VISTALINK HANDLER$",2,2)
  ;
- QUIT
+ Q
  ;
 NXTCALL ; -- do next call
- NEW X,XOBROOT,XOBREAD,XOBTO,XOBFIRST,XOBOK,XOBRL,XOBDATA
+ N X,XOBROOT,XOBREAD,XOBTO,XOBFIRST,XOBOK,XOBRL,XOBDATA
  ;
  ; -- set up error trap
- NEW $ESTACK SET $ETRAP="DO SYSERR^XOBVLL"
+ N $ES S $ET="DO SYSERR^XOBVLL"
  ;
  ; -- setup environment variables
- NEW DIQUIET SET DIQUIET=1
- SET U="^",DTIME=$GET(DTIME,900),DT=$$DT^XLFDT()
+ N DIQUIET S DIQUIET=1
+ S U="^",DTIME=$G(DTIME,900),DT=$$DT^XLFDT()
  ;
  ; -- set ^XTMP for Connection Mgr usage if DUZ not 1st piece
- IF '$$GETDUZ^XOBUZAP0(XOBCMREF) DO
- . NEW XOBDUZ,XOBIP
- . SET XOBDUZ=$GET(XOBSYS("DUZ"),$GET(DUZ))
- . SET XOBIP=$GET(IO("IP"))
- . DO SETVI^XOBUZAP0(XOBCMREF,XOBDUZ,XOBIP,$$GETDESC^XOBUZAP1())
+ I '$$GETDUZ^XOBUZAP0(XOBCMREF) D
+ . N XOBDUZ,XOBIP
+ . S XOBDUZ=$G(XOBSYS("DUZ"),$G(DUZ))
+ . S XOBIP=$G(IO("IP"))
+ . D SETVI^XOBUZAP0(XOBCMREF,XOBDUZ,XOBIP,$$GETDESC^XOBUZAP1())
  ;
  ; -- initialize 'current' request handler to empty string
- SET XOBHDLR=""
+ S XOBHDLR=""
  ;
  ; -- # of chars to get on first read / read 11 for Broker initial read
- SET XOBREAD=11
+ S XOBREAD=11
  ;
  ; -- get J2SE heartbeat rate for timeout plus network latency factor
- SET XOBTO=$$GETRATE^XOBVLIB()+$$GETDELTA^XOBVLIB()
+ S XOBTO=$$GETRATE^XOBVLIB()+$$GETDELTA^XOBVLIB()
  ;
  ; -- get J2EE timeout value for app serv environment
- IF $GET(XOBSYS("ENV"))="j2ee" SET XOBTO=$$GETASTO^XOBVLIB()
+ I $G(XOBSYS("ENV"))="j2ee" S XOBTO=$$GETASTO^XOBVLIB()
  ;
  ; -- set first read flag
- SET XOBFIRST=1
+ S XOBFIRST=1
  ;
  ; -- setup intake global
- SET XOBROOT=$NAME(^TMP("XOBVLL",$JOB))
- KILL @XOBROOT
+ S XOBROOT=$NA(^TMP("XOBVLL",$J))
+ K @XOBROOT
  ;
  ; -- read from socket port
- USE XOBPORT
- SET XOBOK=$$READ^XOBVSKT(XOBROOT,.XOBREAD,.XOBTO,.XOBFIRST,.XOBSTOP,.XOBDATA,.XOBHDLR)
+ U XOBPORT
+ S XOBOK=$$READ^XOBVSKT(XOBROOT,.XOBREAD,.XOBTO,.XOBFIRST,.XOBSTOP,.XOBDATA,.XOBHDLR)
  ;
  ; -- timed out ; cleanup user and exit
- IF 'XOBOK!(XOBSTOP) DO  GOTO NXTCALLQ
- . IF $GET(DUZ) DO CLEAN^XOBSCAV1
- . SET XOBSTOP=1
+ I 'XOBOK!(XOBSTOP) D  G NXTCALLQ
+ . I $G(DUZ) D CLEAN^XOBSCAV1
+ . S XOBSTOP=1
  ;
  ; -- need null device
- IF '$DATA(XOBNULL) DO ERROR(181002,$$EZBLD^DIALOG(181002),XOBPORT) SET XOBSTOP=1 GOTO NXTCALLQ
+ ; * * *
+ ;I '$D(XOBNULL) D ERROR(181002,$$EZBLD^DIALOG(181002),XOBPORT) S XOBSTOP=1 G NXTCALLQ
+ I '$D(XOBNULL) D ERROR(181002,$$EZBLD^DIALOG(181002,$$EC^%ZOSV),XOBPORT) S XOBSTOP=1 G NXTCALLQ ;*6
+ ; * * *
  ;
  ; -- call request manager                   
- SET XOBOK=$$EN^XOBVRM(XOBROOT,.XOBDATA,.XOBHDLR)
+ S XOBOK=$$EN^XOBVRM(XOBROOT,.XOBDATA,.XOBHDLR)
  ; -- timestamp last time request made
- SET XOBLASTR=$$NOW^XLFDT()
+ S XOBLASTR=$$NOW^XLFDT()
  ; -- cleanup intake global
- KILL @XOBROOT
+ K @XOBROOT
  ;
 NXTCALLQ ; -- exit
- QUIT
+ Q
  ;
  ; ----------------------------------------------------------------------------------
  ;                                System Error Handler
  ; ----------------------------------------------------------------------------------
 SYSERR ; -- send system error message
  ; -- If we get an error in the error handler just Halt
- SET $ETRAP="D ^%ZTER HALT"
- ;
- DO ERROR(181001,$$EZBLD^DIALOG(181001,$$EC^%ZOSV),XOBPORT)      ; -- Get the error code
- QUIT
+ S $ET="D APPERROR^%ZTER(""VistALink Error 181001"") HALT" ;*4
+ D ERROR(181001,$$EZBLD^DIALOG(181001,$$EC^%ZOSV),XOBPORT)      ; -- Get the error code
+ Q
  ;
 ERROR(XOBEC,XOBMSG,XOBPORT) ; -- send error message
- NEW XOBDAT
+ N XOBDAT
  ;
  ; -- If we get an error in the error handler just Halt
- SET $ETRAP="D ^%ZTER HALT"
  ;
+ ; * * *
+ ;S $ET="D APPERROR^%ZTER(""VistALink Error_$G(XOBDAT(""ERRORS"_",1,"_"""CODE"""_"),180000)"_") HALT" ;*4
+ S $ET="D APPERROR^%ZTER(""VistALink Error ""_$G(XOBDAT(""ERRORS"""_",1,"_"""CODE"")"_",180000)) HALT" ;*6
+ ; * * *
  ; -- set up error info
- SET XOBDAT("MESSAGE TYPE")=3
- SET XOBDAT("ERRORS",1,"CODE")=XOBEC
- SET XOBDAT("ERRORS",1,"ERROR TYPE")="system"
- SET XOBDAT("ERRORS",1,"FAULT STRING")="System Error"
- SET XOBDAT("ERRORS",1,"CDATA")=1
- SET XOBDAT("ERRORS",1,"MESSAGE",1)=XOBMSG
+ S XOBDAT("MESSAGE TYPE")=3
+ S XOBDAT("ERRORS",1,"CODE")=XOBEC
+ S XOBDAT("ERRORS",1,"ERROR TYPE")="system"
+ S XOBDAT("ERRORS",1,"FAULT STRING")="System Error"
+ S XOBDAT("ERRORS",1,"CDATA")=1
+ S XOBDAT("ERRORS",1,"MESSAGE",1)=XOBMSG
  ;
  ; -- if serious error, save error info, logout, and halt
- IF XOBMSG["<READ>"!(XOBMSG["<WRITE>")!(XOBMSG["<SYSTEM>")!(XOBMSG["READERR")!(XOBMSG["WRITERR")!(XOBMSG["SYSERR") DO  HALT
- . DO ^%ZTER
- . IF $GET(DUZ) DO CLEAN^XOBSCAV1
+ I (XOBMSG["<DSCON>")!(XOBMSG["<READ>")!(XOBMSG["<WRITE>")!(XOBMSG["<SYSTEM>")!(XOBMSG["READERR")!(XOBMSG["WRITERR")!(XOBMSG["SYSERR") D  H
+ . D APPERROR^%ZTER($S(XOBMSG["<DSCON>":$P(XOBMSG,":",2),1:"VistALink Error "_XOBEC)) ;*4
+ . I $G(DUZ) D CLEAN^XOBSCAV1
+ .Q
  ;
  ; -- send error back to client
- USE XOBPORT
- DO ERROR^XOBVLIB(.XOBDAT)
+ U XOBPORT
+ D ERROR^XOBVLIB(.XOBDAT)
  ;
  ; -- just quit if no slots are available or logins are disabled
- IF (XOBEC=181003)!(XOBEC=181004) QUIT
+ I (XOBEC=181003)!(XOBEC=181004) Q
  ;
  ; -- need to make sure any locks are released since code aborted ungracefully
- LOCK
+ L
  ;
  ; -- Save off the error
- DO ^%ZTER
+ D APPERROR^%ZTER($P(XOBMSG,": ",2)) ;*4
  ;
  ; -- go back to listening
- SET $ETRAP="Q:($ESTACK&'$QUIT)  Q:$ESTACK -9 S $ECODE="""" DO KILL^XOBVLL G NXTCALLQ^XOBVLL",$ECODE=",U99,"
- QUIT
+ S $ET="Q:($ESTACK&'$QUIT)  Q:$ESTACK -9 S $ECODE="""" DO KILL^XOBVLL G NXTCALLQ^XOBVLL",$EC=",U99,"
+ Q
  ;
 KILL ; -- new VistALink variables and then do big KILL
- NEW XOBPORT,XOBSTOP,XOBNULL,XOBOS,XOBSYS,XOBHDLR,XOBOK,XOBLASTR,XOBCMREF
- DO KILL^XUSCLEAN
- QUIT
+ N XOBPORT,XOBSTOP,XOBNULL,XOBOS,XOBSYS,XOBHDLR,XOBOK,XOBLASTR,XOBCMREF
+ D KILL^XUSCLEAN
+ Q
  ;

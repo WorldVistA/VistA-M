@@ -1,124 +1,126 @@
-IBDEI1JE ; ; 04-FEB-2020
- ;;3.0;IB ENCOUNTER FORM IMP/EXP;;FEB 04, 2020
+IBDEI1JE ; ; 01-FEB-2022
+ ;;3.0;IB ENCOUNTER FORM IMP/EXP;;FEB 01, 2022
  Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,999) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
- ;;^UTILITY(U,$J,358.3,24568,0)
- ;;=K59.03^^107^1207^21
- ;;^UTILITY(U,$J,358.3,24568,1,0)
+ ;;^UTILITY(U,$J,358.3,24876,1,4,0)
+ ;;=4^K08.89
+ ;;^UTILITY(U,$J,358.3,24876,2)
+ ;;=^5008467
+ ;;^UTILITY(U,$J,358.3,24877,0)
+ ;;=B97.89^^85^1095^7
+ ;;^UTILITY(U,$J,358.3,24877,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,24568,1,3,0)
- ;;=3^Constipation,Drug Induced
- ;;^UTILITY(U,$J,358.3,24568,1,4,0)
- ;;=4^K59.03
- ;;^UTILITY(U,$J,358.3,24568,2)
- ;;=^5138744
- ;;^UTILITY(U,$J,358.3,24569,0)
- ;;=K52.21^^107^1207^51
- ;;^UTILITY(U,$J,358.3,24569,1,0)
+ ;;^UTILITY(U,$J,358.3,24877,1,3,0)
+ ;;=3^Viral Agents as the Cause of Diseases Classified Elsewhere
+ ;;^UTILITY(U,$J,358.3,24877,1,4,0)
+ ;;=4^B97.89
+ ;;^UTILITY(U,$J,358.3,24877,2)
+ ;;=^5000879
+ ;;^UTILITY(U,$J,358.3,24878,0)
+ ;;=H54.7^^85^1095^8
+ ;;^UTILITY(U,$J,358.3,24878,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,24569,1,3,0)
- ;;=3^Enterocolitis Synd Induced by Food Protein
- ;;^UTILITY(U,$J,358.3,24569,1,4,0)
- ;;=4^K52.21
- ;;^UTILITY(U,$J,358.3,24569,2)
- ;;=^5138713
- ;;^UTILITY(U,$J,358.3,24570,0)
- ;;=K52.22^^107^1207^52
- ;;^UTILITY(U,$J,358.3,24570,1,0)
+ ;;^UTILITY(U,$J,358.3,24878,1,3,0)
+ ;;=3^Visual Loss,Unspec
+ ;;^UTILITY(U,$J,358.3,24878,1,4,0)
+ ;;=4^H54.7
+ ;;^UTILITY(U,$J,358.3,24878,2)
+ ;;=^5006368
+ ;;^UTILITY(U,$J,358.3,24879,0)
+ ;;=I83.91^^85^1095^5
+ ;;^UTILITY(U,$J,358.3,24879,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,24570,1,3,0)
- ;;=3^Enterocolopathy Induced by Food Protein
- ;;^UTILITY(U,$J,358.3,24570,1,4,0)
- ;;=4^K52.22
- ;;^UTILITY(U,$J,358.3,24570,2)
- ;;=^5138714
- ;;^UTILITY(U,$J,358.3,24571,0)
- ;;=K58.2^^107^1207^79
- ;;^UTILITY(U,$J,358.3,24571,1,0)
+ ;;^UTILITY(U,$J,358.3,24879,1,3,0)
+ ;;=3^Varicose Veins,Asymptomatic,Right Lower Extremity
+ ;;^UTILITY(U,$J,358.3,24879,1,4,0)
+ ;;=4^I83.91
+ ;;^UTILITY(U,$J,358.3,24879,2)
+ ;;=^5008020
+ ;;^UTILITY(U,$J,358.3,24880,0)
+ ;;=I83.92^^85^1095^4
+ ;;^UTILITY(U,$J,358.3,24880,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,24571,1,3,0)
- ;;=3^Irritable Bowel Syndrome,Mixed
- ;;^UTILITY(U,$J,358.3,24571,1,4,0)
- ;;=4^K58.2
- ;;^UTILITY(U,$J,358.3,24571,2)
- ;;=^5138742
- ;;^UTILITY(U,$J,358.3,24572,0)
- ;;=K58.8^^107^1207^80
- ;;^UTILITY(U,$J,358.3,24572,1,0)
+ ;;^UTILITY(U,$J,358.3,24880,1,3,0)
+ ;;=3^Varicose Veins,Asymptomatic,Left Lower Extremity
+ ;;^UTILITY(U,$J,358.3,24880,1,4,0)
+ ;;=4^I83.92
+ ;;^UTILITY(U,$J,358.3,24880,2)
+ ;;=^5008021
+ ;;^UTILITY(U,$J,358.3,24881,0)
+ ;;=I83.93^^85^1095^3
+ ;;^UTILITY(U,$J,358.3,24881,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,24572,1,3,0)
- ;;=3^Irritable Bowel Syndrome,Other
- ;;^UTILITY(U,$J,358.3,24572,1,4,0)
- ;;=4^K58.8
- ;;^UTILITY(U,$J,358.3,24572,2)
- ;;=^5138743
- ;;^UTILITY(U,$J,358.3,24573,0)
- ;;=K58.1^^107^1207^76
- ;;^UTILITY(U,$J,358.3,24573,1,0)
+ ;;^UTILITY(U,$J,358.3,24881,1,3,0)
+ ;;=3^Varicose Veins,Asymptomatic,Bilateral Lower Extremities
+ ;;^UTILITY(U,$J,358.3,24881,1,4,0)
+ ;;=4^I83.93
+ ;;^UTILITY(U,$J,358.3,24881,2)
+ ;;=^5008022
+ ;;^UTILITY(U,$J,358.3,24882,0)
+ ;;=R53.1^^85^1095^9
+ ;;^UTILITY(U,$J,358.3,24882,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,24573,1,3,0)
- ;;=3^Irritable Bowel Syndrome w/ Constipation
- ;;^UTILITY(U,$J,358.3,24573,1,4,0)
- ;;=4^K58.1
- ;;^UTILITY(U,$J,358.3,24573,2)
- ;;=^5138741
- ;;^UTILITY(U,$J,358.3,24574,0)
- ;;=K61.39^^107^1207^5
- ;;^UTILITY(U,$J,358.3,24574,1,0)
+ ;;^UTILITY(U,$J,358.3,24882,1,3,0)
+ ;;=3^Weakness
+ ;;^UTILITY(U,$J,358.3,24882,1,4,0)
+ ;;=4^R53.1
+ ;;^UTILITY(U,$J,358.3,24882,2)
+ ;;=^5019516
+ ;;^UTILITY(U,$J,358.3,24883,0)
+ ;;=R63.4^^85^1095^10
+ ;;^UTILITY(U,$J,358.3,24883,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,24574,1,3,0)
- ;;=3^Abscess,Ischiorectal NOS
- ;;^UTILITY(U,$J,358.3,24574,1,4,0)
- ;;=4^K61.39
- ;;^UTILITY(U,$J,358.3,24574,2)
- ;;=^5157385
- ;;^UTILITY(U,$J,358.3,24575,0)
- ;;=G43.A1^^107^1207^34
- ;;^UTILITY(U,$J,358.3,24575,1,0)
+ ;;^UTILITY(U,$J,358.3,24883,1,3,0)
+ ;;=3^Weight Loss,Abnormal
+ ;;^UTILITY(U,$J,358.3,24883,1,4,0)
+ ;;=4^R63.4
+ ;;^UTILITY(U,$J,358.3,24883,2)
+ ;;=^5019542
+ ;;^UTILITY(U,$J,358.3,24884,0)
+ ;;=B02.9^^85^1095^11
+ ;;^UTILITY(U,$J,358.3,24884,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,24575,1,3,0)
- ;;=3^Cyclical Vomiting,In Migraine,Intractable
- ;;^UTILITY(U,$J,358.3,24575,1,4,0)
- ;;=4^G43.A1
- ;;^UTILITY(U,$J,358.3,24575,2)
- ;;=^5003913
- ;;^UTILITY(U,$J,358.3,24576,0)
- ;;=G43.A0^^107^1207^35
- ;;^UTILITY(U,$J,358.3,24576,1,0)
+ ;;^UTILITY(U,$J,358.3,24884,1,3,0)
+ ;;=3^Zoster w/o Complications
+ ;;^UTILITY(U,$J,358.3,24884,1,4,0)
+ ;;=4^B02.9
+ ;;^UTILITY(U,$J,358.3,24884,2)
+ ;;=^5000501
+ ;;^UTILITY(U,$J,358.3,24885,0)
+ ;;=I49.3^^85^1095^6
+ ;;^UTILITY(U,$J,358.3,24885,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,24576,1,3,0)
- ;;=3^Cyclical Vomiting,In Migraine,Not intractable
- ;;^UTILITY(U,$J,358.3,24576,1,4,0)
- ;;=4^G43.A0
- ;;^UTILITY(U,$J,358.3,24576,2)
- ;;=^5003912
- ;;^UTILITY(U,$J,358.3,24577,0)
- ;;=R11.15^^107^1207^33
- ;;^UTILITY(U,$J,358.3,24577,1,0)
+ ;;^UTILITY(U,$J,358.3,24885,1,3,0)
+ ;;=3^Vetricular Premature Depolarization
+ ;;^UTILITY(U,$J,358.3,24885,1,4,0)
+ ;;=4^I49.3
+ ;;^UTILITY(U,$J,358.3,24885,2)
+ ;;=^5007233
+ ;;^UTILITY(U,$J,358.3,24886,0)
+ ;;=I83.019^^85^1095^2
+ ;;^UTILITY(U,$J,358.3,24886,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,24577,1,3,0)
- ;;=3^Cyclical Vomiting Syndrome,Unrelated to Migraine
- ;;^UTILITY(U,$J,358.3,24577,1,4,0)
- ;;=4^R11.15
- ;;^UTILITY(U,$J,358.3,24577,2)
- ;;=^5158141
- ;;^UTILITY(U,$J,358.3,24578,0)
- ;;=A54.00^^107^1208^50
- ;;^UTILITY(U,$J,358.3,24578,1,0)
+ ;;^UTILITY(U,$J,358.3,24886,1,3,0)
+ ;;=3^Varicose Veins Right Lower Extrem w/ Ulcer Unspec Site
+ ;;^UTILITY(U,$J,358.3,24886,1,4,0)
+ ;;=4^I83.019
+ ;;^UTILITY(U,$J,358.3,24886,2)
+ ;;=^5007979
+ ;;^UTILITY(U,$J,358.3,24887,0)
+ ;;=I83.029^^85^1095^1
+ ;;^UTILITY(U,$J,358.3,24887,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,24578,1,3,0)
- ;;=3^Gonococcal Infection Lower Genitourinary Tract,Unspec
- ;;^UTILITY(U,$J,358.3,24578,1,4,0)
- ;;=4^A54.00
- ;;^UTILITY(U,$J,358.3,24578,2)
- ;;=^5000311
- ;;^UTILITY(U,$J,358.3,24579,0)
- ;;=A54.09^^107^1208^51
- ;;^UTILITY(U,$J,358.3,24579,1,0)
+ ;;^UTILITY(U,$J,358.3,24887,1,3,0)
+ ;;=3^Varicose Veins Left Lower Extrem w/ Ulcer Unspec Site
+ ;;^UTILITY(U,$J,358.3,24887,1,4,0)
+ ;;=4^I83.029
+ ;;^UTILITY(U,$J,358.3,24887,2)
+ ;;=^5007986
+ ;;^UTILITY(U,$J,358.3,24888,0)
+ ;;=Z01.818^^85^1096^3
+ ;;^UTILITY(U,$J,358.3,24888,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,24579,1,3,0)
- ;;=3^Gonococcal Infection Lower Genitourinary Tract,Other
- ;;^UTILITY(U,$J,358.3,24579,1,4,0)
- ;;=4^A54.09
- ;;^UTILITY(U,$J,358.3,24579,2)
- ;;=^5000315
+ ;;^UTILITY(U,$J,358.3,24888,1,3,0)
+ ;;=3^Preporcedural Exam NEC
+ ;;^UTILITY(U,$J,358.3,24888,1,4,0)
+ ;;=4^Z01.818

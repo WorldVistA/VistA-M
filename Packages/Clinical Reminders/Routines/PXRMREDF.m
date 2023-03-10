@@ -1,5 +1,8 @@
-PXRMREDF ; SLC/PJH - Edit PXRM reminder findings. ;04/28/2020
- ;;2.0;CLINICAL REMINDERS;**4,6,12,26,47,46**;Feb 04, 2005;Build 236
+PXRMREDF ; SLC/PJH - Edit PXRM reminder findings. ;06/01/2021
+ ;;2.0;CLINICAL REMINDERS;**4,6,12,26,47,46,65**;Feb 04, 2005;Build 438
+ ;
+ ;   API             ICR
+ ;$$FILE^XLFSHAN     6157
  ;
  ; Called by PXRMREDT which newes and initializes DEF, DEF1, DEF2.
  ;
@@ -60,7 +63,6 @@ FEDIT(IEN) ;
  .I TERMSTAT'=0 S DR=DR_";10",STATUS=1
  I TYPE="RT" D
  .S TERMTYPE=$$TERMTYPE(TIEN)
- .;I TERMTYPE["H" S DR=DR_";11"
  .I TERMTYPE["H" S DR=DR_";11//0"
  ;Health Factor - within category rank
  I TYPE="HF" S DR=DR_";11//0"
@@ -69,6 +71,8 @@ FEDIT(IEN) ;
  I TYPE="RT",$P(TERMTYPE,U,2)="VF" S VF=1
  I VF S DR=DR_";28"
  ;
+ ;Immunization - Immunization Search Criteria
+ I TYPE="IM" S DR=DR_";29"
  ;Mental Health - scale
  I TYPE="MH" S DR=DR_";13"
  ;Radiology procedure.
@@ -85,6 +89,7 @@ FEDIT(IEN) ;
  ;
  I TYPE="RT" D
  . I TERMTYPE["D" S DR=DR_";16;27",STATUS=1
+ . I TERMTYPE["I" S DR=DR_";29"
  . I TERMTYPE["O" S DR=DR_";27",STATUS=1
  . I TERMTYPE["R" S STATUS=1
  . I TERMTYPE["T" S STATUS=1
@@ -240,11 +245,11 @@ TERMS(TIEN,RIEN) ;
  ;Check term for finding item to edit status item
 TERMTYPE(TIEN) ;
  N DRUG,FOUND,HF,ORD,OTHER,RAD,RESULT,TAX,TYPE,VF
- S (DRUG,FOUND,HF,ORD,OTHER,RAD,RESULT,TAX,VF)=0
+ S (DRUG,FOUND,HF,IMM,ORD,OTHER,RAD,RESULT,TAX,VF)=0
  S TYPE="" F  S TYPE=$O(^PXRMD(811.5,TIEN,20,"B",TYPE)) Q:TYPE=""  D
  . I TYPE["AUTTEDT(" S (OTHER,VF)=1 Q
  . I TYPE["AUTTHF(" S (HF,OTHER,VF)=1 Q
- . I TYPE["AUTTIMM(" S (OTHER,VF)=1 Q
+ . I TYPE["AUTTIMM(" S (IMM,OTHER,VF)=1 Q
  . I TYPE["AUTTSK(" S (OTHER,VF)=1 Q
  . I TYPE["ORD" S (ORD,FOUND)=1 Q
  . I TYPE["PS" S (DRUG,FOUND)=1 Q
@@ -258,6 +263,7 @@ TERMTYPE(TIEN) ;
  I OTHER=1 S RESULT=1 I FOUND=1 S RESULT=2
  I RESULT="T" S RESULT=$$TAXTYPE^PXRMSTA1(TIEN,"")
  I HF=1 S RESULT="H"_RESULT
+ I IMM=1 S RESULT="I"_RESULT
  I VF=1 S RESULT=RESULT_U_"VF"
  Q RESULT
  ;

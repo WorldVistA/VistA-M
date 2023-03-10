@@ -1,6 +1,6 @@
 BPSUSCR1 ;BHAM ISC/FLS - STRANDED SUBMISSIONS SCREEN (cont) ;10-MAR-2005
- ;;1.0;E CLAIMS MGMT ENGINE;**1,5,7,10,11**;JUN 2004;Build 27
- ;;Per VHA Directive 2004-038, this routine should not be modified.
+ ;;1.0;E CLAIMS MGMT ENGINE;**1,5,7,10,11,27**;JUN 2004;Build 15
+ ;;Per VA Directive 6402, this routine should not be modified.
  ;
  ; Fileman read of New Person file (VA(200)) supported by IA10060
  ; Call to MSGSTAT^HLUTIL supported by IA3098
@@ -52,7 +52,7 @@ EDATE(DATE) ;
  ;
 ALL ; Unstrand all submissions currently selected.
  D FULL^VALM1
- N D0,SEQ,LAST,TMP,TMP2,RET
+ N BPSD0,SEQ,LAST,TMP,TMP2,RET
  N DIR,X,Y,DTOUT,DUOUT,DIRUT,DIROUT
  S LAST=+$O(^TMP("BPSUSCR-2",$J,""),-1)
  I LAST=0 D  Q
@@ -70,9 +70,9 @@ ALL ; Unstrand all submissions currently selected.
  W !,"Please wait..."
  S SEQ=0,RET=0
  F  S SEQ=$O(^TMP("BPSUSCR-2",$J,SEQ)) Q:'SEQ  D
- .  S D0=""
- .  F  S D0=$O(^TMP("BPSUSCR-2",$J,SEQ,D0)) Q:'D0  D
- .  .  S X=$$UNSTRAND(D0,$G(^TMP("BPSUSCR-2",$J,SEQ,D0)))
+ .  S BPSD0=""
+ .  F  S BPSD0=$O(^TMP("BPSUSCR-2",$J,SEQ,BPSD0)) Q:'BPSD0  D
+ .  .  S X=$$UNSTRAND(BPSD0,$G(^TMP("BPSUSCR-2",$J,SEQ,BPSD0)))
  .  .  I 'X S RET=1
  .  .  Q
  .  Q

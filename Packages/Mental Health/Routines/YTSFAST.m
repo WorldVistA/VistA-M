@@ -1,8 +1,7 @@
 YTSFAST ;SLC/PIJ - Score FAST ; 01/08/2016
- ;;5.01;MENTAL HEALTH;**123**;DEC 30,1994;Build 73
+ ;;5.01;MENTAL HEALTH;**123,202**;DEC 30,1994;Build 47
  ;
- ;Public, Supported ICRs
- ; #2056 - Fileman API - $$GET1^DIQ
+ ; Reference to GET1^DIQ in ICR #2056
  ;
  Q
  ;
@@ -15,29 +14,42 @@ DATA1 ;
  .S YSCDA=$P($G(DATA),U,3)
  .D DESGNTR^YTSCORE(YSQN,.DES)
  .S LEG=$$GET1^DIQ(601.75,YSCDA_",",4,"I")
- .I (DES=1),(LEG="Y") S STAGE=1 Q
- .I (DES=2),(LEG="Y") S STAGE=2 Q
- .I (DES=3),(STAGE=2),(LEG="Y") S STAGE=3 Q
- .I (DES=4),(STAGE=3),(LEG="Y") S STAGE=4 Q
- .I (DES=5),(STAGE=4),(LEG="Y") S STAGE=5 Q
- .I (DES="6a"),(STAGE=5),(LEG="Y") S STAGE=6 Q
- .I (DES="6b"),(STAGE=6),(LEG="Y") S STAGE=7 Q
- .I (DES="6c"),(STAGE=7),(LEG="Y") S STAGE=8 Q
- .I (DES="6d"),(STAGE=8),(LEG="Y") S STAGE=9 Q
- .I (DES="6e"),(STAGE=9),(LEG="Y") S STAGE=10 Q
- .I (DES="7a"),(STAGE=10),(LEG="Y") S STAGE=11 Q
- .I (DES="7b"),(STAGE=11),(LEG="Y") S STAGE=12 Q
- .I (DES="7c"),(STAGE=12),(LEG="Y") S STAGE=13 Q
- .I (DES="7d"),(STAGE=13),(LEG="Y") S STAGE=14 Q
- .I (DES="7e"),(STAGE=14),(LEG="Y") S STAGE=15 Q
- .I (DES="7f"),(STAGE=15),(LEG="Y") S STAGE=16 Q
+ .I (DES=2),(LEG="Y") S:STAGE<2 STAGE=2
+ .I (DES=3),(LEG="Y") S:STAGE<3 STAGE=3
+ .I (DES=4),(LEG="Y") S:STAGE<4 STAGE=4
+ .I (DES=5),(LEG="Y") S:STAGE<5 STAGE=5
+ .I ($E(DES)=6),(LEG="Y") S:STAGE<6 STAGE=6
+ .I ($E(DES)=7),(LEG="Y") S:STAGE<7 STAGE=7
  Q
  ;
-STRING ;
- I (STAGE>5),(STAGE<11) S STAGE=6,STRING=STAGE Q
- I (STAGE>10),(STAGE<17) S STAGE=7,STRING=STAGE Q
- S STRING=STAGE
- Q
+ ; --- BEGIN OLD ALGORITHM ---
+ ; The lines below were the previous algorithm for scoring.  They assumed
+ ; that the stages were additive, so scoring stopped at the first negative
+ ; answer, even if later answers were positive
+ ;.I (DES=1),(LEG="Y") S STAGE=1 Q
+ ;.I (DES=2),(LEG="Y") S STAGE=2 Q
+ ;.I (DES=3),(STAGE=2),(LEG="Y") S STAGE=3 Q
+ ;.I (DES=4),(STAGE=3),(LEG="Y") S STAGE=4 Q
+ ;.I (DES=5),(STAGE=4),(LEG="Y") S STAGE=5 Q
+ ;.I (DES="6a"),(STAGE=5),(LEG="Y") S STAGE=6 Q
+ ;.I (DES="6b"),(STAGE=6),(LEG="Y") S STAGE=7 Q
+ ;.I (DES="6c"),(STAGE=7),(LEG="Y") S STAGE=8 Q
+ ;.I (DES="6d"),(STAGE=8),(LEG="Y") S STAGE=9 Q
+ ;.I (DES="6e"),(STAGE=9),(LEG="Y") S STAGE=10 Q
+ ;.I (DES="7a"),(STAGE=10),(LEG="Y") S STAGE=11 Q
+ ;.I (DES="7b"),(STAGE=11),(LEG="Y") S STAGE=12 Q
+ ;.I (DES="7c"),(STAGE=12),(LEG="Y") S STAGE=13 Q
+ ;.I (DES="7d"),(STAGE=13),(LEG="Y") S STAGE=14 Q
+ ;.I (DES="7e"),(STAGE=14),(LEG="Y") S STAGE=15 Q
+ ;.I (DES="7f"),(STAGE=15),(LEG="Y") S STAGE=16 Q
+ ;Q
+ ;
+ ;STRING ;
+ ; I (STAGE>5),(STAGE<11) S STAGE=6,STRING=STAGE Q
+ ; I (STAGE>10),(STAGE<17) S STAGE=7,STRING=STAGE Q
+ ; S STRING=STAGE
+ ; Q
+ ; --- END OLD ALGORITM ---
  ;
 SCORESV ;
  I $D(^TMP($J,"YSG",1)),^TMP($J,"YSG",1)="[ERROR]" D  Q  ;-->out
@@ -55,14 +67,12 @@ DLLSTR(YSDATA,YS,YSTRNG) ;
  ;  YSTRNG = 1 Score Instrument
  ;  YSTRNG = 2 get Report Answers and Text
  N DATA,DES,LEG,NODE,STAGE,YSQN
- N YSCDA,YSSCNAM,YSINSNAM,STRING
+ N YSCDA,YSSCNAM,YSINSNAM
  ;
  ; FAST returns a scale score which is calculated and stored, no special text in report
  I YSTRNG=2 Q
  ;
- S STRING=""
  S STAGE=1
  D DATA1
- D STRING
  D SCORESV
  Q

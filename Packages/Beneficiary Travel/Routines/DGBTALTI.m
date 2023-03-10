@@ -1,5 +1,5 @@
-DGBTALTI ;PAV - BENEFICIARY/TRAVEL Alternate Income Enter/Edit;4/23/2012@1130
- ;;1.0;Beneficiary Travel;**20,24**;September 25, 2001;Build 13
+DGBTALTI ;PAV - BENEFICIARY/TRAVEL Alternate Income Enter/Edit ; 4/23/2012@1130
+ ;;1.0;Beneficiary Travel;**20,24,39**;September 25, 2001;Build 6
 ALT ;BT Alternate Income Enter/Edit
  D KILL S DGBTIME=300 S:'$D(DTIME) DTIME=DGBTIME S:'$D(U) U="^"
  I '$D(DT)#2 S %DT="",S="T" D ^%DT S DT=Y
@@ -92,8 +92,9 @@ PI(DFN,DGBTDTI,XX) ;Return Patient info in XX
  Q
 PD ;Display patient information
  W @IOF
- D PID^VADPT6 W !!?8,"Name: ",VADM(1),?40,"PT ID: ",VA("PID"),?64,"DOB: ",$P(VADM(3),"^",2)
- W !!?5,"Address: ",VAPA(1) W:VAPA(2)]"" !?14,VAPA(2) W:VAPA(3)]"" !?14,VAPA(3) W !?14,VAPA(4),$S(VAPA(4)]"":", "_$P(VAPA(5),"^",2)_"  "_$P(VAPA(11),U,2),1:"UNSPECIFIED")
+ D PID^VADPT6,RESADDR^DGBTUTL1(.DGBTADDR) W !!?8,"Name: ",VADM(1),?40,"PT ID: ",VA("PID"),?64,"DOB: ",$P(VADM(3),"^",2)
+ W !!?5,"Address: ",DGBTADDR(1) W:DGBTADDR(2)]"" !?14,DGBTADDR(2)
+ W:DGBTADDR(3)]"" !?14,DGBTADDR(3) W !?14,DGBTADDR(4),$S(DGBTADDR(4)]"":", "_$P(DGBTADDR(5),"^",2)_"  "_$P(DGBTADDR(6),"^",2),1:"UNSPECIFIED") ;*39 - updated to use residential address
  ;  if move in current info for elig, sc%
  S DGBTELG=VAEL(1),DGBTCSC=VAEL(3)
  I +DGBTELG=3,'$E(DGBTCSC)=1 S DGBTCSC=1
@@ -146,4 +147,4 @@ EXITE ; Exit Menu
 KILL ;Kill Local variable.. Dont use NEW, because of return to Patient Prompt
  K DGBTTOUT,DGBTAI,DGBTAIE,DGBTR,DGBTHAR,DGBTELG,VAEL,DGBTCSC,VAPA,VASV,DGBTDEP,DGBTIFL,DGBTINC,IENC,DGBTDTI,DGBTERR,DGBTMTS,DGBTDTY,TXT
  K DGBTINCA,DAYFLG,RXDAYS,RXCPST,LOWINC,DGNOTEST,RXCP,DDD
- K X,Y,I,I1,I2,I3,X2,DFN,DIC,Y,EXP,DA,DR,DIE,FDA,XX,XXX,DIR,EXIT,%DT
+ K X,Y,I,I1,I2,I3,X2,DFN,DIC,Y,EXP,DA,DR,DIE,FDA,XX,XXX,DIR,EXIT,%DT,DGBTADDR ;*39 kill dgbtaddr

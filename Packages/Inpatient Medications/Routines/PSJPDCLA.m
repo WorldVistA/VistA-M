@@ -1,5 +1,5 @@
 PSJPDCLA ;BIR/MA/MC - PADE HL7 - CLINIC CHECK ;07/08/15
- ;;5.0;INPATIENT MEDICATIONS;**317,337,362**;16 DEC 97;Build 2
+ ;;5.0;INPATIENT MEDICATIONS;**317,337,362,432**;16 DEC 97;Build 18
  ;Reference to EN^VAFCPID supported by DBIA 3015
  ;Reference to IN^VAFHLPV1 supported by DBIA 3018
  ;Reference to $$PIVCHK^VAFHPIVT supported by DBIA 6606
@@ -81,6 +81,10 @@ CLCI ;
  . D PV19^PSJPDAPP M HLA("HLS")=NSEG
  . D GENERATE^HLMA(SNM,"LM",1,.PSJSND,"",.HLP)
  . D LOG^PSJPADE
+ . ;check for O11 re-send
+ . D GETPSARS^PSJPDAPP(XX,DFN,3)  ; Build PADE clinics/send areas per parameter info
+ . D RESNDORDS^PSJPDCLA(DFN,PSJOR,PSJDIV,XX,2) ; Resend all orders for the input CLINIC's SEND AREA
+ D KILLTMP^PSJPDAPP
  Q
  ;
 SEND ;
@@ -346,3 +350,32 @@ LOGPIVOT(DFN,PSJON) ; Get pivot for Patient DFN, order PSJON, from log file
  I $G(PSPIVTMP) S PSJPIVOT=PSPIVTMP
  I '$G(PSPIVTMP) S PSJPIVOT=-1
  Q PSJPIVOT
+ ;
+RESNDORDS(DFN,PSJOR,PSJDIV,PDSYS,FILTER) ; Resend all orders for the input CLINIC's SEND AREA 
+ ;INPUT:
+ ;    DFN: Patient Identifier from PATIENT file #2
+ ;  PSJOR: Clinic IEN from HOSPITAL LOCATION file #44
+ ; PSJORN: Clinic NAME from HOSPITAL LOCATION file #44
+ ; PSJDIV: PADE Division
+ ;  PDSYS: PADE System from file #58.7
+ ;
+ N PCLSAS,SENDAREA,RESNDCL,PSJSYDIV,PTSNDLOG
+ ;
+ ; Re-send orders for checked-in clinic
+ S PCLSAS=$$GETSAR^PSJPDAPP(PDSYS,PSJDIV,PSJOR,FILTER)
+ I $L(PCLSAS) D
+ . D GETPTO^PSJPADE(DFN,PSJOR)
+ . S ^TMP($J,"PSJCLSA",PDSYS,"DFN",DFN,"CL",PSJOR)=1  ; Orders sent for this patient/clinic, don't send again
+ ; 
+ ; Get SEND AREA for checked-in clinic
+ S PCLSAS=$$GETSAR^PSJPDAPP(PDSYS,PSJDIV,PSJOR,0)
+ S SENDAREA=$P(PCLSAS,"^",6)
+ Q:'SENDAREA
+ ;
+ ; Send orders in SEND AREA of checked-in clinic
+ S PSJSYDIV=0 F  S PSJSYDIV=$O(^TMP($J,"PSJCLSA",PDSYS,PSJSYDIV)) Q:'PSJSYDIV  D
+ . S RESNDCL=0 F  S RESNDCL=$O(^TMP($J,"PSJCLSA",PDSYS,PSJSYDIV,"SA",SENDAREA,RESNDCL)) Q:'RESNDCL  D
+ .. Q:$G(^TMP($J,"PSJCLSA",PDSYS,"DFN",DFN,"CL",RESNDCL))   ; Don't send orders for patient/clinic if already sent
+ .. D GETPTO^PSJPADE(DFN,RESNDCL)
+ .. S ^TMP($J,"PSJCLSA",PDSYS,"DFN",DFN,"CL",RESNDCL)=1     ; Orders sent for this patient/clinic, don't send again
+ Q

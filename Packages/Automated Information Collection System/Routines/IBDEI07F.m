@@ -1,692 +1,648 @@
-IBDEI07F ; ; 01-MAY-2020
- ;;3.0;IB ENCOUNTER FORM IMP/EXP;;MAY 01, 2020
+IBDEI07F ; ; 01-AUG-2022
+ ;;3.0;IB ENCOUNTER FORM IMP/EXP;;AUG 01, 2022
  Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,999) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
+ ;;^UTILITY(U,$J,358.3,18078,2)
+ ;;=^5017471
+ ;;^UTILITY(U,$J,358.3,18079,0)
+ ;;=O46.012^^62^733^2
+ ;;^UTILITY(U,$J,358.3,18079,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,18079,1,3,0)
+ ;;=3^Antepartum hemorrhage w afibrinogenemia, second trimester
+ ;;^UTILITY(U,$J,358.3,18079,1,4,0)
+ ;;=4^O46.012
+ ;;^UTILITY(U,$J,358.3,18079,2)
+ ;;=^5017472
+ ;;^UTILITY(U,$J,358.3,18080,0)
+ ;;=O46.013^^62^733^3
+ ;;^UTILITY(U,$J,358.3,18080,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,18080,1,3,0)
+ ;;=3^Antepartum hemorrhage w afibrinogenemia, third trimester
+ ;;^UTILITY(U,$J,358.3,18080,1,4,0)
+ ;;=4^O46.013
+ ;;^UTILITY(U,$J,358.3,18080,2)
+ ;;=^5017473
+ ;;^UTILITY(U,$J,358.3,18081,0)
+ ;;=O46.021^^62^733^7
+ ;;^UTILITY(U,$J,358.3,18081,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,18081,1,3,0)
+ ;;=3^Antepartum hemorrhage w dissem intravasc coag, first trimester
+ ;;^UTILITY(U,$J,358.3,18081,1,4,0)
+ ;;=4^O46.021
+ ;;^UTILITY(U,$J,358.3,18081,2)
+ ;;=^5017475
+ ;;^UTILITY(U,$J,358.3,18082,0)
+ ;;=O46.022^^62^733^8
+ ;;^UTILITY(U,$J,358.3,18082,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,18082,1,3,0)
+ ;;=3^Antepartum hemorrhage w dissem intravasc coag, second trimester
+ ;;^UTILITY(U,$J,358.3,18082,1,4,0)
+ ;;=4^O46.022
+ ;;^UTILITY(U,$J,358.3,18082,2)
+ ;;=^5017476
+ ;;^UTILITY(U,$J,358.3,18083,0)
+ ;;=O46.023^^62^733^9
+ ;;^UTILITY(U,$J,358.3,18083,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,18083,1,3,0)
+ ;;=3^Antepartum hemorrhage w dissem intravasc coag, third trimester
+ ;;^UTILITY(U,$J,358.3,18083,1,4,0)
+ ;;=4^O46.023
+ ;;^UTILITY(U,$J,358.3,18083,2)
+ ;;=^5017477
+ ;;^UTILITY(U,$J,358.3,18084,0)
+ ;;=O46.091^^62^733^10
+ ;;^UTILITY(U,$J,358.3,18084,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,18084,1,3,0)
+ ;;=3^Antepartum hemorrhage w oth coag defect, first trimester
+ ;;^UTILITY(U,$J,358.3,18084,1,4,0)
+ ;;=4^O46.091
+ ;;^UTILITY(U,$J,358.3,18084,2)
+ ;;=^5017479
+ ;;^UTILITY(U,$J,358.3,18085,0)
+ ;;=O46.092^^62^733^11
  ;;^UTILITY(U,$J,358.3,18085,1,0)
  ;;=^358.31IA^4^2
  ;;^UTILITY(U,$J,358.3,18085,1,3,0)
- ;;=3^Somatization Disorder
+ ;;=3^Antepartum hemorrhage w oth coag defect, second trimester
  ;;^UTILITY(U,$J,358.3,18085,1,4,0)
- ;;=4^F45.0
+ ;;=4^O46.092
  ;;^UTILITY(U,$J,358.3,18085,2)
- ;;=^112280
+ ;;=^5017480
  ;;^UTILITY(U,$J,358.3,18086,0)
- ;;=F69.^^65^773^2
+ ;;=O46.093^^62^733^12
  ;;^UTILITY(U,$J,358.3,18086,1,0)
  ;;=^358.31IA^4^2
  ;;^UTILITY(U,$J,358.3,18086,1,3,0)
- ;;=3^Adult Personality and Behavior Disorder,Unspec
+ ;;=3^Antepartum hemorrhage w oth coag defect, third trimester
  ;;^UTILITY(U,$J,358.3,18086,1,4,0)
- ;;=4^F69.
+ ;;=4^O46.093
  ;;^UTILITY(U,$J,358.3,18086,2)
- ;;=^5003667
+ ;;=^5017481
  ;;^UTILITY(U,$J,358.3,18087,0)
- ;;=F60.9^^65^773^23
+ ;;=O44.41^^62^733^27
  ;;^UTILITY(U,$J,358.3,18087,1,0)
  ;;=^358.31IA^4^2
  ;;^UTILITY(U,$J,358.3,18087,1,3,0)
- ;;=3^Personality Disorder,Unspec
+ ;;=3^Placenta Previa,Low Lying w/o Hemorrhage,1st Trimester
  ;;^UTILITY(U,$J,358.3,18087,1,4,0)
- ;;=4^F60.9
+ ;;=4^O44.41
  ;;^UTILITY(U,$J,358.3,18087,2)
- ;;=^5003639
+ ;;=^5139071
  ;;^UTILITY(U,$J,358.3,18088,0)
- ;;=F32.9^^65^773^16
+ ;;=O44.42^^62^733^28
  ;;^UTILITY(U,$J,358.3,18088,1,0)
  ;;=^358.31IA^4^2
  ;;^UTILITY(U,$J,358.3,18088,1,3,0)
- ;;=3^MDD,Single Episode,Unspec
+ ;;=3^Placenta Previa,Low Lying w/o Hemorrhage,2nd Trimester
  ;;^UTILITY(U,$J,358.3,18088,1,4,0)
- ;;=4^F32.9
+ ;;=4^O44.42
  ;;^UTILITY(U,$J,358.3,18088,2)
- ;;=^5003528
+ ;;=^5139072
  ;;^UTILITY(U,$J,358.3,18089,0)
- ;;=F40.231^^65^773^12
+ ;;=O44.43^^62^733^29
  ;;^UTILITY(U,$J,358.3,18089,1,0)
  ;;=^358.31IA^4^2
  ;;^UTILITY(U,$J,358.3,18089,1,3,0)
- ;;=3^Fear of Injections/Transfusions
+ ;;=3^Placenta Previa,Low Lying w/o Hemorrhage,3rd Trimester
  ;;^UTILITY(U,$J,358.3,18089,1,4,0)
- ;;=4^F40.231
+ ;;=4^O44.43
  ;;^UTILITY(U,$J,358.3,18089,2)
- ;;=^5003551
+ ;;=^5139073
  ;;^UTILITY(U,$J,358.3,18090,0)
- ;;=F40.240^^65^773^8
+ ;;=O44.51^^62^733^24
  ;;^UTILITY(U,$J,358.3,18090,1,0)
  ;;=^358.31IA^4^2
  ;;^UTILITY(U,$J,358.3,18090,1,3,0)
- ;;=3^Claustrophobia
+ ;;=3^Placenta Previa,Low Lying w/ Hemorrhage,1st Trimester
  ;;^UTILITY(U,$J,358.3,18090,1,4,0)
- ;;=4^F40.240
+ ;;=4^O44.51
  ;;^UTILITY(U,$J,358.3,18090,2)
- ;;=^5003554
+ ;;=^5139075
  ;;^UTILITY(U,$J,358.3,18091,0)
- ;;=F43.21^^65^773^13
+ ;;=O44.52^^62^733^25
  ;;^UTILITY(U,$J,358.3,18091,1,0)
  ;;=^358.31IA^4^2
  ;;^UTILITY(U,$J,358.3,18091,1,3,0)
- ;;=3^Grief Reaction
+ ;;=3^Placenta Previa,Low Lying w/ Hemorrhage,2nd Trimester
  ;;^UTILITY(U,$J,358.3,18091,1,4,0)
- ;;=4^F43.21
+ ;;=4^O44.52
  ;;^UTILITY(U,$J,358.3,18091,2)
- ;;=^331948
+ ;;=^5139076
  ;;^UTILITY(U,$J,358.3,18092,0)
- ;;=F43.10^^65^773^22
+ ;;=O44.53^^62^733^26
  ;;^UTILITY(U,$J,358.3,18092,1,0)
  ;;=^358.31IA^4^2
  ;;^UTILITY(U,$J,358.3,18092,1,3,0)
- ;;=3^PTSD,Unspec
+ ;;=3^Placenta Previa,Low Lying w/ Hemorrhage,3rd Trimester
  ;;^UTILITY(U,$J,358.3,18092,1,4,0)
- ;;=4^F43.10
+ ;;=4^O44.53
  ;;^UTILITY(U,$J,358.3,18092,2)
- ;;=^5003570
+ ;;=^5139077
  ;;^UTILITY(U,$J,358.3,18093,0)
- ;;=F43.11^^65^773^20
+ ;;=O44.21^^62^733^33
  ;;^UTILITY(U,$J,358.3,18093,1,0)
  ;;=^358.31IA^4^2
  ;;^UTILITY(U,$J,358.3,18093,1,3,0)
- ;;=3^PTSD,Acute
+ ;;=3^Placenta Previa,Partial w/o Hemorrhage,1st Trimester
  ;;^UTILITY(U,$J,358.3,18093,1,4,0)
- ;;=4^F43.11
+ ;;=4^O44.21
  ;;^UTILITY(U,$J,358.3,18093,2)
- ;;=^5003571
+ ;;=^5139063
  ;;^UTILITY(U,$J,358.3,18094,0)
- ;;=F43.12^^65^773^21
+ ;;=O44.22^^62^733^34
  ;;^UTILITY(U,$J,358.3,18094,1,0)
  ;;=^358.31IA^4^2
  ;;^UTILITY(U,$J,358.3,18094,1,3,0)
- ;;=3^PTSD,Chronic
+ ;;=3^Placenta Previa,Partial w/o Hemorrhage,2nd Trimester
  ;;^UTILITY(U,$J,358.3,18094,1,4,0)
- ;;=4^F43.12
+ ;;=4^O44.22
  ;;^UTILITY(U,$J,358.3,18094,2)
- ;;=^5003572
+ ;;=^5139064
  ;;^UTILITY(U,$J,358.3,18095,0)
- ;;=F43.21^^65^773^1
+ ;;=O44.23^^62^733^35
  ;;^UTILITY(U,$J,358.3,18095,1,0)
  ;;=^358.31IA^4^2
  ;;^UTILITY(U,$J,358.3,18095,1,3,0)
- ;;=3^Adjustment Disorder w/ Depressed Mood
+ ;;=3^Placenta Previa,Partial w/o Hemorrhage,3rd Trimester
  ;;^UTILITY(U,$J,358.3,18095,1,4,0)
- ;;=4^F43.21
+ ;;=4^O44.23
  ;;^UTILITY(U,$J,358.3,18095,2)
- ;;=^331948
+ ;;=^5139065
  ;;^UTILITY(U,$J,358.3,18096,0)
- ;;=F45.9^^65^773^30
+ ;;=O44.31^^62^733^30
  ;;^UTILITY(U,$J,358.3,18096,1,0)
  ;;=^358.31IA^4^2
  ;;^UTILITY(U,$J,358.3,18096,1,3,0)
- ;;=3^Somatoform Disorder,Unspec
+ ;;=3^Placenta Previa,Partial w/ Hemorrhage,1st Trimester
  ;;^UTILITY(U,$J,358.3,18096,1,4,0)
- ;;=4^F45.9
+ ;;=4^O44.31
  ;;^UTILITY(U,$J,358.3,18096,2)
- ;;=^5003592
+ ;;=^5139067
  ;;^UTILITY(U,$J,358.3,18097,0)
- ;;=F48.2^^65^773^24
+ ;;=O44.32^^62^733^31
  ;;^UTILITY(U,$J,358.3,18097,1,0)
  ;;=^358.31IA^4^2
  ;;^UTILITY(U,$J,358.3,18097,1,3,0)
- ;;=3^Pseudobulbar Affect
+ ;;=3^Placenta Previa,Partial w/ Hemorrhage,2nd Trimester
  ;;^UTILITY(U,$J,358.3,18097,1,4,0)
- ;;=4^F48.2
+ ;;=4^O44.32
  ;;^UTILITY(U,$J,358.3,18097,2)
- ;;=^5003594
+ ;;=^5139068
  ;;^UTILITY(U,$J,358.3,18098,0)
- ;;=G47.00^^65^773^15
+ ;;=O44.33^^62^733^32
  ;;^UTILITY(U,$J,358.3,18098,1,0)
  ;;=^358.31IA^4^2
  ;;^UTILITY(U,$J,358.3,18098,1,3,0)
- ;;=3^Insomnia,Unspec
+ ;;=3^Placenta Previa,Partial w/ Hemorrhage,3rd Trimester
  ;;^UTILITY(U,$J,358.3,18098,1,4,0)
- ;;=4^G47.00
+ ;;=4^O44.33
  ;;^UTILITY(U,$J,358.3,18098,2)
- ;;=^332924
+ ;;=^5139069
  ;;^UTILITY(U,$J,358.3,18099,0)
- ;;=F40.11^^65^773^28
+ ;;=O10.011^^62^734^34
  ;;^UTILITY(U,$J,358.3,18099,1,0)
  ;;=^358.31IA^4^2
  ;;^UTILITY(U,$J,358.3,18099,1,3,0)
- ;;=3^Social Phobia,Generalized
+ ;;=3^Pre-existing essential htn comp pregnancy, first trimester
  ;;^UTILITY(U,$J,358.3,18099,1,4,0)
- ;;=4^F40.11
+ ;;=4^O10.011
  ;;^UTILITY(U,$J,358.3,18099,2)
- ;;=^5003545
+ ;;=^5016108
  ;;^UTILITY(U,$J,358.3,18100,0)
- ;;=F42.4^^65^773^11
+ ;;=O10.012^^62^734^35
  ;;^UTILITY(U,$J,358.3,18100,1,0)
  ;;=^358.31IA^4^2
  ;;^UTILITY(U,$J,358.3,18100,1,3,0)
- ;;=3^Excoriation (Skin-Picking) Disorder
+ ;;=3^Pre-existing essential htn comp pregnancy, second trimester
  ;;^UTILITY(U,$J,358.3,18100,1,4,0)
- ;;=4^F42.4
+ ;;=4^O10.012
  ;;^UTILITY(U,$J,358.3,18100,2)
- ;;=^5138446
+ ;;=^5016109
  ;;^UTILITY(U,$J,358.3,18101,0)
- ;;=F42.3^^65^773^14
+ ;;=O10.013^^62^734^36
  ;;^UTILITY(U,$J,358.3,18101,1,0)
  ;;=^358.31IA^4^2
  ;;^UTILITY(U,$J,358.3,18101,1,3,0)
- ;;=3^Hoarding Disorder
+ ;;=3^Pre-existing essential htn comp pregnancy, third trimester
  ;;^UTILITY(U,$J,358.3,18101,1,4,0)
- ;;=4^F42.3
+ ;;=4^O10.013
  ;;^UTILITY(U,$J,358.3,18101,2)
- ;;=^5138445
+ ;;=^5016110
  ;;^UTILITY(U,$J,358.3,18102,0)
- ;;=F42.2^^65^773^17
+ ;;=O10.03^^62^734^37
  ;;^UTILITY(U,$J,358.3,18102,1,0)
  ;;=^358.31IA^4^2
  ;;^UTILITY(U,$J,358.3,18102,1,3,0)
- ;;=3^Mixed Obsessional Thoughts & Acts
+ ;;=3^Pre-existing essential htn comp the puerperium
  ;;^UTILITY(U,$J,358.3,18102,1,4,0)
- ;;=4^F42.2
+ ;;=4^O10.03
  ;;^UTILITY(U,$J,358.3,18102,2)
- ;;=^5138444
+ ;;=^5016113
  ;;^UTILITY(U,$J,358.3,18103,0)
- ;;=F42.9^^65^773^19
+ ;;=O10.411^^62^734^40
  ;;^UTILITY(U,$J,358.3,18103,1,0)
  ;;=^358.31IA^4^2
  ;;^UTILITY(U,$J,358.3,18103,1,3,0)
- ;;=3^Obsessive-Compulsive Disorder,Unspec
+ ;;=3^Pre-existing secondary htn comp pregnancy, first trimester
  ;;^UTILITY(U,$J,358.3,18103,1,4,0)
- ;;=4^F42.9
+ ;;=4^O10.411
  ;;^UTILITY(U,$J,358.3,18103,2)
- ;;=^5138448
+ ;;=^5016132
  ;;^UTILITY(U,$J,358.3,18104,0)
- ;;=F42.8^^65^773^18
+ ;;=O10.412^^62^734^41
  ;;^UTILITY(U,$J,358.3,18104,1,0)
  ;;=^358.31IA^4^2
  ;;^UTILITY(U,$J,358.3,18104,1,3,0)
- ;;=3^Obsessive-Compulsive Disorder,Other
+ ;;=3^Pre-existing secondary htn comp pregnancy, second trimester
  ;;^UTILITY(U,$J,358.3,18104,1,4,0)
- ;;=4^F42.8
+ ;;=4^O10.412
  ;;^UTILITY(U,$J,358.3,18104,2)
- ;;=^5138447
+ ;;=^5016133
  ;;^UTILITY(U,$J,358.3,18105,0)
- ;;=F50.89^^65^773^10
+ ;;=O10.413^^62^734^42
  ;;^UTILITY(U,$J,358.3,18105,1,0)
  ;;=^358.31IA^4^2
  ;;^UTILITY(U,$J,358.3,18105,1,3,0)
- ;;=3^Eating Disorder,Oth Specified
+ ;;=3^Pre-existing secondary htn comp pregnancy, third trimester
  ;;^UTILITY(U,$J,358.3,18105,1,4,0)
- ;;=4^F50.89
+ ;;=4^O10.413
  ;;^UTILITY(U,$J,358.3,18105,2)
- ;;=^5138449
+ ;;=^5016134
  ;;^UTILITY(U,$J,358.3,18106,0)
- ;;=R41.0^^65^773^9
+ ;;=O10.43^^62^734^43
  ;;^UTILITY(U,$J,358.3,18106,1,0)
  ;;=^358.31IA^4^2
  ;;^UTILITY(U,$J,358.3,18106,1,3,0)
- ;;=3^Delirium,Disorientation NOS
+ ;;=3^Pre-existing secondary htn comp the puerperium
  ;;^UTILITY(U,$J,358.3,18106,1,4,0)
- ;;=4^R41.0
+ ;;=4^O10.43
  ;;^UTILITY(U,$J,358.3,18106,2)
- ;;=^5019436
+ ;;=^5016137
  ;;^UTILITY(U,$J,358.3,18107,0)
- ;;=R56.00^^65^774^6
+ ;;=O10.111^^62^734^29
  ;;^UTILITY(U,$J,358.3,18107,1,0)
  ;;=^358.31IA^4^2
  ;;^UTILITY(U,$J,358.3,18107,1,3,0)
- ;;=3^Simple Febrile Convulsions
+ ;;=3^Pre-exist hyp heart disease comp pregnancy, first trimester
  ;;^UTILITY(U,$J,358.3,18107,1,4,0)
- ;;=4^R56.00
+ ;;=4^O10.111
  ;;^UTILITY(U,$J,358.3,18107,2)
- ;;=^5019522
+ ;;=^5016114
  ;;^UTILITY(U,$J,358.3,18108,0)
- ;;=R56.9^^65^774^4
+ ;;=O10.211^^62^734^22
  ;;^UTILITY(U,$J,358.3,18108,1,0)
  ;;=^358.31IA^4^2
  ;;^UTILITY(U,$J,358.3,18108,1,3,0)
- ;;=3^Convulsions,Unspec
+ ;;=3^Pre-exist hyp chronic kidney disease comp preg, first tri
  ;;^UTILITY(U,$J,358.3,18108,1,4,0)
- ;;=4^R56.9
+ ;;=4^O10.211
  ;;^UTILITY(U,$J,358.3,18108,2)
- ;;=^5019524
+ ;;=^5016120
  ;;^UTILITY(U,$J,358.3,18109,0)
- ;;=R25.0^^65^774^1
+ ;;=O10.212^^62^734^23
  ;;^UTILITY(U,$J,358.3,18109,1,0)
  ;;=^358.31IA^4^2
  ;;^UTILITY(U,$J,358.3,18109,1,3,0)
- ;;=3^Abnormal Head Movements
+ ;;=3^Pre-exist hyp chronic kidney disease comp preg, second tri
  ;;^UTILITY(U,$J,358.3,18109,1,4,0)
- ;;=4^R25.0
+ ;;=4^O10.212
  ;;^UTILITY(U,$J,358.3,18109,2)
- ;;=^5019299
+ ;;=^5016121
  ;;^UTILITY(U,$J,358.3,18110,0)
- ;;=R25.1^^65^774^7
+ ;;=O10.213^^62^734^24
  ;;^UTILITY(U,$J,358.3,18110,1,0)
  ;;=^358.31IA^4^2
  ;;^UTILITY(U,$J,358.3,18110,1,3,0)
- ;;=3^Tremor,Unspec
+ ;;=3^Pre-exist hyp chronic kidney disease comp preg, third tri
  ;;^UTILITY(U,$J,358.3,18110,1,4,0)
- ;;=4^R25.1
+ ;;=4^O10.213
  ;;^UTILITY(U,$J,358.3,18110,2)
- ;;=^5019300
+ ;;=^5016122
  ;;^UTILITY(U,$J,358.3,18111,0)
- ;;=R25.9^^65^774^3
+ ;;=O10.311^^62^734^25
  ;;^UTILITY(U,$J,358.3,18111,1,0)
  ;;=^358.31IA^4^2
  ;;^UTILITY(U,$J,358.3,18111,1,3,0)
- ;;=3^Abnormal Involuntary Movements,Unspec
+ ;;=3^Pre-exist hyp heart and chr kidney dis comp preg, first tri
  ;;^UTILITY(U,$J,358.3,18111,1,4,0)
- ;;=4^R25.9
+ ;;=4^O10.311
  ;;^UTILITY(U,$J,358.3,18111,2)
- ;;=^5019303
+ ;;=^5016126
  ;;^UTILITY(U,$J,358.3,18112,0)
- ;;=R25.3^^65^774^5
+ ;;=O10.312^^62^734^26
  ;;^UTILITY(U,$J,358.3,18112,1,0)
  ;;=^358.31IA^4^2
  ;;^UTILITY(U,$J,358.3,18112,1,3,0)
- ;;=3^Fasciculation/Twitching
+ ;;=3^Pre-exist hyp heart and chr kidney dis comp preg, second tri
  ;;^UTILITY(U,$J,358.3,18112,1,4,0)
- ;;=4^R25.3
+ ;;=4^O10.312
  ;;^UTILITY(U,$J,358.3,18112,2)
- ;;=^44985
+ ;;=^5016127
  ;;^UTILITY(U,$J,358.3,18113,0)
- ;;=R25.8^^65^774^2
+ ;;=O10.313^^62^734^27
  ;;^UTILITY(U,$J,358.3,18113,1,0)
  ;;=^358.31IA^4^2
  ;;^UTILITY(U,$J,358.3,18113,1,3,0)
- ;;=3^Abnormal Involuntary Movements,Other
+ ;;=3^Pre-exist hyp heart and chr kidney dis comp preg, third tri
  ;;^UTILITY(U,$J,358.3,18113,1,4,0)
- ;;=4^R25.8
+ ;;=4^O10.313
  ;;^UTILITY(U,$J,358.3,18113,2)
- ;;=^5019302
+ ;;=^5016128
  ;;^UTILITY(U,$J,358.3,18114,0)
- ;;=M02.30^^65^775^147
+ ;;=O11.1^^62^734^31
  ;;^UTILITY(U,$J,358.3,18114,1,0)
  ;;=^358.31IA^4^2
  ;;^UTILITY(U,$J,358.3,18114,1,3,0)
- ;;=3^Reiter's Disease,Unspec Site
+ ;;=3^Pre-existing HTN w/ Pre-Eclampsia,1st Trimester
  ;;^UTILITY(U,$J,358.3,18114,1,4,0)
- ;;=4^M02.30
+ ;;=4^O11.1
  ;;^UTILITY(U,$J,358.3,18114,2)
- ;;=^5009790
+ ;;=^5016142
  ;;^UTILITY(U,$J,358.3,18115,0)
- ;;=M10.9^^65^775^41
+ ;;=O11.2^^62^734^32
  ;;^UTILITY(U,$J,358.3,18115,1,0)
  ;;=^358.31IA^4^2
  ;;^UTILITY(U,$J,358.3,18115,1,3,0)
- ;;=3^Gout,Unspec
+ ;;=3^Pre-existing HTN w/ Pre-Eclampsia,2nd Trimester
  ;;^UTILITY(U,$J,358.3,18115,1,4,0)
- ;;=4^M10.9
+ ;;=4^O11.2
  ;;^UTILITY(U,$J,358.3,18115,2)
- ;;=^5010404
+ ;;=^5016143
  ;;^UTILITY(U,$J,358.3,18116,0)
- ;;=G90.59^^65^775^35
+ ;;=O11.3^^62^734^33
  ;;^UTILITY(U,$J,358.3,18116,1,0)
  ;;=^358.31IA^4^2
  ;;^UTILITY(U,$J,358.3,18116,1,3,0)
- ;;=3^Complex Regional Pain Syndrome I,Unspec
+ ;;=3^Pre-existing HTN w/ Pre-Eclampsia,3rd Trimester
  ;;^UTILITY(U,$J,358.3,18116,1,4,0)
- ;;=4^G90.59
+ ;;=4^O11.3
  ;;^UTILITY(U,$J,358.3,18116,2)
- ;;=^5004171
+ ;;=^5016144
  ;;^UTILITY(U,$J,358.3,18117,0)
- ;;=G56.01^^65^775^13
+ ;;=O10.13^^62^734^39
  ;;^UTILITY(U,$J,358.3,18117,1,0)
  ;;=^358.31IA^4^2
  ;;^UTILITY(U,$J,358.3,18117,1,3,0)
- ;;=3^Carpal Tunnel Syndrome,Right Upper Limb
+ ;;=3^Pre-existing hypertensive heart disease comp the puerperium
  ;;^UTILITY(U,$J,358.3,18117,1,4,0)
- ;;=4^G56.01
+ ;;=4^O10.13
  ;;^UTILITY(U,$J,358.3,18117,2)
- ;;=^5004018
+ ;;=^5016119
  ;;^UTILITY(U,$J,358.3,18118,0)
- ;;=G56.02^^65^775^12
+ ;;=O10.23^^62^734^38
  ;;^UTILITY(U,$J,358.3,18118,1,0)
  ;;=^358.31IA^4^2
  ;;^UTILITY(U,$J,358.3,18118,1,3,0)
- ;;=3^Carpal Tunnel Syndrome,Left Upper Limb
+ ;;=3^Pre-existing hyp chronic kidney disease comp the puerperium
  ;;^UTILITY(U,$J,358.3,18118,1,4,0)
- ;;=4^G56.02
+ ;;=4^O10.23
  ;;^UTILITY(U,$J,358.3,18118,2)
- ;;=^5004019
+ ;;=^5016125
  ;;^UTILITY(U,$J,358.3,18119,0)
- ;;=G56.21^^65^775^60
+ ;;=O10.33^^62^734^28
  ;;^UTILITY(U,$J,358.3,18119,1,0)
  ;;=^358.31IA^4^2
  ;;^UTILITY(U,$J,358.3,18119,1,3,0)
- ;;=3^Lesion of Ulnar Nerve,Right Upper Limb
+ ;;=3^Pre-exist hyp heart and chr kidney disease comp the puerp
  ;;^UTILITY(U,$J,358.3,18119,1,4,0)
- ;;=4^G56.21
+ ;;=4^O10.33
  ;;^UTILITY(U,$J,358.3,18119,2)
- ;;=^5004024
+ ;;=^5016131
  ;;^UTILITY(U,$J,358.3,18120,0)
- ;;=G56.22^^65^775^59
+ ;;=O13.1^^62^734^5
  ;;^UTILITY(U,$J,358.3,18120,1,0)
  ;;=^358.31IA^4^2
  ;;^UTILITY(U,$J,358.3,18120,1,3,0)
- ;;=3^Lesion of Ulnar Nerve,Left Upper Limb
+ ;;=3^Gestational HTN w/o significant proteinuria,1st Trimester
  ;;^UTILITY(U,$J,358.3,18120,1,4,0)
- ;;=4^G56.22
+ ;;=4^O13.1
  ;;^UTILITY(U,$J,358.3,18120,2)
- ;;=^5004025
+ ;;=^5016158
  ;;^UTILITY(U,$J,358.3,18121,0)
- ;;=L40.52^^65^775^143
+ ;;=O13.2^^62^734^6
  ;;^UTILITY(U,$J,358.3,18121,1,0)
  ;;=^358.31IA^4^2
  ;;^UTILITY(U,$J,358.3,18121,1,3,0)
- ;;=3^Psoriatic Arthritis Mutilans
+ ;;=3^Gestational HTN w/o significant proteinuria,2nd Trimester
  ;;^UTILITY(U,$J,358.3,18121,1,4,0)
- ;;=4^L40.52
+ ;;=4^O13.2
  ;;^UTILITY(U,$J,358.3,18121,2)
- ;;=^5009167
+ ;;=^5016159
  ;;^UTILITY(U,$J,358.3,18122,0)
- ;;=L40.53^^65^775^144
+ ;;=O13.3^^62^734^7
  ;;^UTILITY(U,$J,358.3,18122,1,0)
  ;;=^358.31IA^4^2
  ;;^UTILITY(U,$J,358.3,18122,1,3,0)
- ;;=3^Psoriatic Spondylitis
+ ;;=3^Gestational HTN w/o significant proteinuria,3rd Trimester
  ;;^UTILITY(U,$J,358.3,18122,1,4,0)
- ;;=4^L40.53
+ ;;=4^O13.3
  ;;^UTILITY(U,$J,358.3,18122,2)
- ;;=^5009168
+ ;;=^5016160
  ;;^UTILITY(U,$J,358.3,18123,0)
- ;;=M32.9^^65^775^187
+ ;;=O16.1^^62^734^13
  ;;^UTILITY(U,$J,358.3,18123,1,0)
  ;;=^358.31IA^4^2
  ;;^UTILITY(U,$J,358.3,18123,1,3,0)
- ;;=3^Systemic Lupus Erythematosus,Unspec
+ ;;=3^Maternal HTN,1st Trimester
  ;;^UTILITY(U,$J,358.3,18123,1,4,0)
- ;;=4^M32.9
+ ;;=4^O16.1
  ;;^UTILITY(U,$J,358.3,18123,2)
- ;;=^5011761
+ ;;=^5016180
  ;;^UTILITY(U,$J,358.3,18124,0)
- ;;=M32.0^^65^775^183
+ ;;=O16.2^^62^734^14
  ;;^UTILITY(U,$J,358.3,18124,1,0)
  ;;=^358.31IA^4^2
  ;;^UTILITY(U,$J,358.3,18124,1,3,0)
- ;;=3^Systemic Lupus Erythematosus,Drug-Induced
+ ;;=3^Maternal HTN,2nd Trimester
  ;;^UTILITY(U,$J,358.3,18124,1,4,0)
- ;;=4^M32.0
+ ;;=4^O16.2
  ;;^UTILITY(U,$J,358.3,18124,2)
- ;;=^5011752
+ ;;=^5016181
  ;;^UTILITY(U,$J,358.3,18125,0)
- ;;=M32.13^^65^775^185
+ ;;=O16.3^^62^734^15
  ;;^UTILITY(U,$J,358.3,18125,1,0)
  ;;=^358.31IA^4^2
  ;;^UTILITY(U,$J,358.3,18125,1,3,0)
- ;;=3^Systemic Lupus Erythematosus,Lung Involvement
+ ;;=3^Maternal HTN,3rd Trimester
  ;;^UTILITY(U,$J,358.3,18125,1,4,0)
- ;;=4^M32.13
+ ;;=4^O16.3
  ;;^UTILITY(U,$J,358.3,18125,2)
- ;;=^5011756
+ ;;=^5016182
  ;;^UTILITY(U,$J,358.3,18126,0)
- ;;=M32.14^^65^775^184
+ ;;=O14.02^^62^734^17
  ;;^UTILITY(U,$J,358.3,18126,1,0)
  ;;=^358.31IA^4^2
  ;;^UTILITY(U,$J,358.3,18126,1,3,0)
- ;;=3^Systemic Lupus Erythematosus,Glomerular Disease
+ ;;=3^Mild to Moderate Pre-Eclampsia,2nd Trimester
  ;;^UTILITY(U,$J,358.3,18126,1,4,0)
- ;;=4^M32.14
+ ;;=4^O14.02
  ;;^UTILITY(U,$J,358.3,18126,2)
- ;;=^5011757
+ ;;=^5016163
  ;;^UTILITY(U,$J,358.3,18127,0)
- ;;=M32.12^^65^775^186
+ ;;=O14.03^^62^734^18
  ;;^UTILITY(U,$J,358.3,18127,1,0)
  ;;=^358.31IA^4^2
  ;;^UTILITY(U,$J,358.3,18127,1,3,0)
- ;;=3^Systemic Lupus Erythematosus,Pericarditis
+ ;;=3^Mild to Moderate Pre-Eclampsia,3rd Trimester
  ;;^UTILITY(U,$J,358.3,18127,1,4,0)
- ;;=4^M32.12
+ ;;=4^O14.03
  ;;^UTILITY(U,$J,358.3,18127,2)
- ;;=^5011755
+ ;;=^5016164
  ;;^UTILITY(U,$J,358.3,18128,0)
- ;;=M05.59^^65^775^165
+ ;;=O14.92^^62^734^20
  ;;^UTILITY(U,$J,358.3,18128,1,0)
  ;;=^358.31IA^4^2
  ;;^UTILITY(U,$J,358.3,18128,1,3,0)
- ;;=3^Rheumatoid Polyneuropathy w/ Rheumatoid Arthritis of Mult Sites
+ ;;=3^Pre-Eclampsia,2nd Trimester
  ;;^UTILITY(U,$J,358.3,18128,1,4,0)
- ;;=4^M05.59
+ ;;=4^O14.92
  ;;^UTILITY(U,$J,358.3,18128,2)
- ;;=^5009976
+ ;;=^5016172
  ;;^UTILITY(U,$J,358.3,18129,0)
- ;;=M05.711^^65^775^159
+ ;;=O14.93^^62^734^21
  ;;^UTILITY(U,$J,358.3,18129,1,0)
  ;;=^358.31IA^4^2
  ;;^UTILITY(U,$J,358.3,18129,1,3,0)
- ;;=3^Rheumatoid Arthritis of Right Shoulder
+ ;;=3^Pre-Eclampsia,3rd Trimester
  ;;^UTILITY(U,$J,358.3,18129,1,4,0)
- ;;=4^M05.711
+ ;;=4^O14.93
  ;;^UTILITY(U,$J,358.3,18129,2)
- ;;=^5010001
+ ;;=^5016173
  ;;^UTILITY(U,$J,358.3,18130,0)
- ;;=M05.712^^65^775^152
+ ;;=O15.2^^62^734^3
  ;;^UTILITY(U,$J,358.3,18130,1,0)
  ;;=^358.31IA^4^2
  ;;^UTILITY(U,$J,358.3,18130,1,3,0)
- ;;=3^Rheumatoid Arthritis of Left Shoulder
+ ;;=3^Eclampsia Complicating the Puerperium
  ;;^UTILITY(U,$J,358.3,18130,1,4,0)
- ;;=4^M05.712
+ ;;=4^O15.2
  ;;^UTILITY(U,$J,358.3,18130,2)
- ;;=^5010002
+ ;;=^5016178
  ;;^UTILITY(U,$J,358.3,18131,0)
- ;;=M05.731^^65^775^160
+ ;;=O14.12^^62^734^45
  ;;^UTILITY(U,$J,358.3,18131,1,0)
  ;;=^358.31IA^4^2
  ;;^UTILITY(U,$J,358.3,18131,1,3,0)
- ;;=3^Rheumatoid Arthritis of Right Wrist
+ ;;=3^Severe Pre-Eclampsia,2nd Trimester
  ;;^UTILITY(U,$J,358.3,18131,1,4,0)
- ;;=4^M05.731
+ ;;=4^O14.12
  ;;^UTILITY(U,$J,358.3,18131,2)
- ;;=^5010007
+ ;;=^5016166
  ;;^UTILITY(U,$J,358.3,18132,0)
- ;;=M05.732^^65^775^153
+ ;;=O14.13^^62^734^46
  ;;^UTILITY(U,$J,358.3,18132,1,0)
  ;;=^358.31IA^4^2
  ;;^UTILITY(U,$J,358.3,18132,1,3,0)
- ;;=3^Rheumatoid Arthritis of Left Wrist
+ ;;=3^Severe Pre-Eclampsia,3rd Trimester
  ;;^UTILITY(U,$J,358.3,18132,1,4,0)
- ;;=4^M05.732
+ ;;=4^O14.13
  ;;^UTILITY(U,$J,358.3,18132,2)
- ;;=^5010008
+ ;;=^5016167
  ;;^UTILITY(U,$J,358.3,18133,0)
- ;;=M05.741^^65^775^156
+ ;;=O14.22^^62^734^10
  ;;^UTILITY(U,$J,358.3,18133,1,0)
  ;;=^358.31IA^4^2
  ;;^UTILITY(U,$J,358.3,18133,1,3,0)
- ;;=3^Rheumatoid Arthritis of Right Hand
+ ;;=3^HELLP Syndrome,2nd Trimester
  ;;^UTILITY(U,$J,358.3,18133,1,4,0)
- ;;=4^M05.741
+ ;;=4^O14.22
  ;;^UTILITY(U,$J,358.3,18133,2)
- ;;=^5010010
+ ;;=^5016169
  ;;^UTILITY(U,$J,358.3,18134,0)
- ;;=M05.742^^65^775^149
+ ;;=O14.23^^62^734^11
  ;;^UTILITY(U,$J,358.3,18134,1,0)
  ;;=^358.31IA^4^2
  ;;^UTILITY(U,$J,358.3,18134,1,3,0)
- ;;=3^Rheumatoid Arthritis of Left Hand
+ ;;=3^HELLP Syndrome,3rd Trimester
  ;;^UTILITY(U,$J,358.3,18134,1,4,0)
- ;;=4^M05.742
+ ;;=4^O14.23
  ;;^UTILITY(U,$J,358.3,18134,2)
- ;;=^5010011
+ ;;=^5016170
  ;;^UTILITY(U,$J,358.3,18135,0)
- ;;=M05.751^^65^775^157
+ ;;=O15.02^^62^734^1
  ;;^UTILITY(U,$J,358.3,18135,1,0)
  ;;=^358.31IA^4^2
  ;;^UTILITY(U,$J,358.3,18135,1,3,0)
- ;;=3^Rheumatoid Arthritis of Right Hip
+ ;;=3^Eclampsia Complicating Pregnancy,2nd Trimester
  ;;^UTILITY(U,$J,358.3,18135,1,4,0)
- ;;=4^M05.751
+ ;;=4^O15.02
  ;;^UTILITY(U,$J,358.3,18135,2)
- ;;=^5010013
+ ;;=^5016175
  ;;^UTILITY(U,$J,358.3,18136,0)
- ;;=M05.752^^65^775^150
+ ;;=O15.03^^62^734^2
  ;;^UTILITY(U,$J,358.3,18136,1,0)
  ;;=^358.31IA^4^2
  ;;^UTILITY(U,$J,358.3,18136,1,3,0)
- ;;=3^Rheumatoid Arthritis of Left Hip
+ ;;=3^Eclampsia Complicating Pregnancy,3rd Trimester
  ;;^UTILITY(U,$J,358.3,18136,1,4,0)
- ;;=4^M05.752
+ ;;=4^O15.03
  ;;^UTILITY(U,$J,358.3,18136,2)
- ;;=^5010014
+ ;;=^5016176
  ;;^UTILITY(U,$J,358.3,18137,0)
- ;;=M05.761^^65^775^158
+ ;;=O14.15^^62^734^44
  ;;^UTILITY(U,$J,358.3,18137,1,0)
  ;;=^358.31IA^4^2
  ;;^UTILITY(U,$J,358.3,18137,1,3,0)
- ;;=3^Rheumatoid Arthritis of Right Knee
+ ;;=3^Severe Pre-Eclampsia Complicating the Puerperium
  ;;^UTILITY(U,$J,358.3,18137,1,4,0)
- ;;=4^M05.761
+ ;;=4^O14.15
  ;;^UTILITY(U,$J,358.3,18137,2)
- ;;=^5010016
+ ;;=^5139017
  ;;^UTILITY(U,$J,358.3,18138,0)
- ;;=M05.762^^65^775^151
+ ;;=O11.5^^62^734^30
  ;;^UTILITY(U,$J,358.3,18138,1,0)
  ;;=^358.31IA^4^2
  ;;^UTILITY(U,$J,358.3,18138,1,3,0)
- ;;=3^Rheumatoid Arthritis of Left Knee
+ ;;=3^Pre-existing HTN w/ Pre-Eclampsia Comp the Puerperium
  ;;^UTILITY(U,$J,358.3,18138,1,4,0)
- ;;=4^M05.762
+ ;;=4^O11.5
  ;;^UTILITY(U,$J,358.3,18138,2)
- ;;=^5010017
+ ;;=^5139005
  ;;^UTILITY(U,$J,358.3,18139,0)
- ;;=M05.771^^65^775^155
+ ;;=O14.95^^62^734^19
  ;;^UTILITY(U,$J,358.3,18139,1,0)
  ;;=^358.31IA^4^2
  ;;^UTILITY(U,$J,358.3,18139,1,3,0)
- ;;=3^Rheumatoid Arthritis of Right Ankle
+ ;;=3^Pre-Eclampsia Complicating the Puerperium
  ;;^UTILITY(U,$J,358.3,18139,1,4,0)
- ;;=4^M05.771
+ ;;=4^O14.95
  ;;^UTILITY(U,$J,358.3,18139,2)
- ;;=^5010019
+ ;;=^5139021
  ;;^UTILITY(U,$J,358.3,18140,0)
- ;;=M05.772^^65^775^148
+ ;;=O14.05^^62^734^16
  ;;^UTILITY(U,$J,358.3,18140,1,0)
  ;;=^358.31IA^4^2
  ;;^UTILITY(U,$J,358.3,18140,1,3,0)
- ;;=3^Rheumatoid Arthritis of Left Ankle
+ ;;=3^Mild to Moderate Pre-Eclampsia Complicating the Puerperium
  ;;^UTILITY(U,$J,358.3,18140,1,4,0)
- ;;=4^M05.772
+ ;;=4^O14.05
  ;;^UTILITY(U,$J,358.3,18140,2)
- ;;=^5010020
+ ;;=^5139015
  ;;^UTILITY(U,$J,358.3,18141,0)
- ;;=M05.79^^65^775^154
+ ;;=O16.5^^62^734^12
  ;;^UTILITY(U,$J,358.3,18141,1,0)
  ;;=^358.31IA^4^2
  ;;^UTILITY(U,$J,358.3,18141,1,3,0)
- ;;=3^Rheumatoid Arthritis of Multiple Sites
+ ;;=3^Maternal HTN Complicating the Puerperium
  ;;^UTILITY(U,$J,358.3,18141,1,4,0)
- ;;=4^M05.79
+ ;;=4^O16.5
  ;;^UTILITY(U,$J,358.3,18141,2)
- ;;=^5010022
+ ;;=^5139028
  ;;^UTILITY(U,$J,358.3,18142,0)
- ;;=M06.00^^65^775^161
+ ;;=O14.25^^62^734^9
  ;;^UTILITY(U,$J,358.3,18142,1,0)
  ;;=^358.31IA^4^2
  ;;^UTILITY(U,$J,358.3,18142,1,3,0)
- ;;=3^Rheumatoid Arthritis w/o Rhematoid Factor,Unspec Site
+ ;;=3^HELLP Syndrome Complicating the Puerperium
  ;;^UTILITY(U,$J,358.3,18142,1,4,0)
- ;;=4^M06.00
+ ;;=4^O14.25
  ;;^UTILITY(U,$J,358.3,18142,2)
- ;;=^5010047
+ ;;=^5139019
  ;;^UTILITY(U,$J,358.3,18143,0)
- ;;=M06.30^^65^775^164
- ;;^UTILITY(U,$J,358.3,18143,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,18143,1,3,0)
- ;;=3^Rheumatoid Nodule,Unspec Site
- ;;^UTILITY(U,$J,358.3,18143,1,4,0)
- ;;=4^M06.30
- ;;^UTILITY(U,$J,358.3,18143,2)
- ;;=^5010096
- ;;^UTILITY(U,$J,358.3,18144,0)
- ;;=M06.4^^65^775^51
- ;;^UTILITY(U,$J,358.3,18144,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,18144,1,3,0)
- ;;=3^Inflammatory Polyarthropathy
- ;;^UTILITY(U,$J,358.3,18144,1,4,0)
- ;;=4^M06.4
- ;;^UTILITY(U,$J,358.3,18144,2)
- ;;=^5010120
- ;;^UTILITY(U,$J,358.3,18145,0)
- ;;=M06.39^^65^775^163
- ;;^UTILITY(U,$J,358.3,18145,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,18145,1,3,0)
- ;;=3^Rheumatoid Nodule,Mult Sites
- ;;^UTILITY(U,$J,358.3,18145,1,4,0)
- ;;=4^M06.39
- ;;^UTILITY(U,$J,358.3,18145,2)
- ;;=^5010119
- ;;^UTILITY(U,$J,358.3,18146,0)
- ;;=M15.0^^65^775^127
- ;;^UTILITY(U,$J,358.3,18146,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,18146,1,3,0)
- ;;=3^Primary Generalized Osteoarthritis
- ;;^UTILITY(U,$J,358.3,18146,1,4,0)
- ;;=4^M15.0
- ;;^UTILITY(U,$J,358.3,18146,2)
- ;;=^5010762
- ;;^UTILITY(U,$J,358.3,18147,0)
- ;;=M06.9^^65^775^162
- ;;^UTILITY(U,$J,358.3,18147,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,18147,1,3,0)
- ;;=3^Rheumatoid Arthritis,Unspec
- ;;^UTILITY(U,$J,358.3,18147,1,4,0)
- ;;=4^M06.9
- ;;^UTILITY(U,$J,358.3,18147,2)
- ;;=^5010145
- ;;^UTILITY(U,$J,358.3,18148,0)
- ;;=M16.0^^65^775^130
- ;;^UTILITY(U,$J,358.3,18148,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,18148,1,3,0)
- ;;=3^Primary Osteoarthritis of Hip,Bilateral
- ;;^UTILITY(U,$J,358.3,18148,1,4,0)
- ;;=4^M16.0
- ;;^UTILITY(U,$J,358.3,18148,2)
- ;;=^5010769
- ;;^UTILITY(U,$J,358.3,18149,0)
- ;;=M16.11^^65^775^139
- ;;^UTILITY(U,$J,358.3,18149,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,18149,1,3,0)
- ;;=3^Primary Osteoarthritis of Right Hip
- ;;^UTILITY(U,$J,358.3,18149,1,4,0)
- ;;=4^M16.11
- ;;^UTILITY(U,$J,358.3,18149,2)
- ;;=^5010771
- ;;^UTILITY(U,$J,358.3,18150,0)
- ;;=M16.12^^65^775^133
- ;;^UTILITY(U,$J,358.3,18150,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,18150,1,3,0)
- ;;=3^Primary Osteoarthritis of Left Hip
- ;;^UTILITY(U,$J,358.3,18150,1,4,0)
- ;;=4^M16.12
- ;;^UTILITY(U,$J,358.3,18150,2)
- ;;=^5010772
- ;;^UTILITY(U,$J,358.3,18151,0)
- ;;=M17.0^^65^775^129
- ;;^UTILITY(U,$J,358.3,18151,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,18151,1,3,0)
- ;;=3^Primary Osteoarthritis of Bilateral Knees
- ;;^UTILITY(U,$J,358.3,18151,1,4,0)
- ;;=4^M17.0
- ;;^UTILITY(U,$J,358.3,18151,2)
- ;;=^5010784
- ;;^UTILITY(U,$J,358.3,18152,0)
- ;;=M17.11^^65^775^140
- ;;^UTILITY(U,$J,358.3,18152,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,18152,1,3,0)
- ;;=3^Primary Osteoarthritis of Right Knee
- ;;^UTILITY(U,$J,358.3,18152,1,4,0)
- ;;=4^M17.11
- ;;^UTILITY(U,$J,358.3,18152,2)
- ;;=^5010786
- ;;^UTILITY(U,$J,358.3,18153,0)
- ;;=M17.12^^65^775^134
- ;;^UTILITY(U,$J,358.3,18153,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,18153,1,3,0)
- ;;=3^Primary Osteoarthritis of Left Knee
- ;;^UTILITY(U,$J,358.3,18153,1,4,0)
- ;;=4^M17.12
- ;;^UTILITY(U,$J,358.3,18153,2)
- ;;=^5010787
+ ;;=O13.5^^62^734^4

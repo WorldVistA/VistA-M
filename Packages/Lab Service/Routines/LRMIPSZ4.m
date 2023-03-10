@@ -1,5 +1,5 @@
-LRMIPSZ4 ;DALOI/RBN - MICRO PATIENT REPORT - AFB, FUNGUS ;09/02/10  15:21
- ;;5.2;LAB SERVICE;**350**;Sep 27, 1994;Build 230
+LRMIPSZ4 ;DALOI/RBN - MICRO PATIENT REPORT - AFB, FUNGUS ;Jul 15, 2021@13:13
+ ;;5.2;LAB SERVICE;**350,547**;Sep 27, 1994;Build 10
  ;
  ;Reference to ^DD supported by ICR #999
  ;
@@ -15,7 +15,12 @@ TB ;
  . M ^TMP("LRMI",$J,LRDFN,"MI",LRIDT)=^LR(LRDFN,"MI",LRIDT)
  . K ^TMP("LRMI",$J,LRDFN,"MI",LRIDT,32)
  ;
- I $P(^TMP("LRMI",$J,LRDFN,"MI",LRIDT,11),U)="",'$G(LRLABKY) S:'$D(LRWRDVEW) LRQUIT=1 S:LRSB'=11 LRQUIT=1
+ I $P(^TMP("LRMI",$J,LRDFN,"MI",LRIDT,11),U)="",'$G(LRLABKY) D  S:'$D(LRWRDVEW) LRQUIT=1 S:LRSB'=11 LRQUIT=1
+ . Q:'$D(^XTMP("LRMICRO EDIT",LRDFN,LRIDT,11))
+ . ;LR*5.2*547: Display informational message if accession/test is currently being edited
+ . ;            and results had previously been verified.
+ . N LR7SB S LR7SB=11
+ . D MES^LRMIPSZ2
  ;
  I LRQUIT D  Q
  . I LRBLDTMP K ^TMP("LRMI",$J,LRDFN,"MI",LRIDT)
@@ -116,7 +121,12 @@ FUNG ;
  . M ^TMP("LRMI",$J,LRDFN,"MI",LRIDT)=^LR(LRDFN,"MI",LRIDT)
  . K ^TMP("LRMI",$J,LRDFN,"MI",LRIDT,32)
  ;
- I $P(^TMP("LRMI",$J,LRDFN,"MI",LRIDT,8),U)="",'$G(LRLABKY) S:'$D(LRWRDVEW) LRQUIT=1 S:LRSB'=8 LRQUIT=1
+ I $P(^TMP("LRMI",$J,LRDFN,"MI",LRIDT,8),U)="",'$G(LRLABKY) D  S:'$D(LRWRDVEW) LRQUIT=1 S:LRSB'=8 LRQUIT=1
+ . Q:'$D(^XTMP("LRMICRO EDIT",LRDFN,LRIDT,8))
+ . ;LR*5.2*547: Display informational message if accession/test is currently being edited
+ . ;            and results had previously been verified.
+ . N LR7SB S LR7SB=8
+ . D MES^LRMIPSZ2
  ;
  I LRQUIT D  Q
  . I LRBLDTMP K ^TMP("LRMI",$J,LRDFN,"MI",LRIDT)

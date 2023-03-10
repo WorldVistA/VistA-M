@@ -1,5 +1,5 @@
 IBCBB2 ;ALB/ARH - CONTINUATION OF EDIT CHECKS ROUTINE (CMS-1500) ;04/14/92
- ;;2.0;INTEGRATED BILLING;**51,137,210,245,232,296,320,349,371,403,432,447,473,488,461,623**;21-MAR-94;Build 70
+ ;;2.0;INTEGRATED BILLING;**51,137,210,245,232,296,320,349,371,403,432,447,473,488,461,623,641,665,702**;21-MAR-94;Build 53
  ;;Per VA Directive 6402, this routine should not be modified.
  ;
  ;MAP TO DGCRBB2
@@ -42,8 +42,18 @@ EN ;
  ; ejk *296* Change # of diagnoses codes from 4 to 8 on CMS-1500 Claims. 
  ; baa *488* Change # of diagnoses codes from 8 to 12.
  ; vd *623-US4055* Modified the logic for dental claims to check for # of diagnosis codes greater than 4.
- I IBTX,$$FT^IBCEF(IBIFN)'=7 S IBI=12 F  S IBI=$O(IBDXO(IBI)) Q:'IBI  S Z=+$G(IBDX(+$G(IBDXO(IBI)))) I Z,$D(IBCPTL(Z)) D WARN^IBCBB11("Too many diagnoses for claim & will be rejected - consider printing locally")
- I $$FT^IBCEF(IBIFN)=7,$P($G(IBDXO),U,2)>4 D WARN^IBCBB11("Only 4 diagnosis codes are allowed on a dental transaction")
+ ;
+ ;IB*2.0*702;JWS;remove 665 fatal error for Professional claims with >12 Diagnosis Codes, make it a warning
+ ;WCJ;IB*2.0*665v4;more than 12 diag on CMS-1500 is an error PERIOD
+ ;I IBTX,$$FT^IBCEF(IBIFN)'=7 S IBI=12 F  S IBI=$O(IBDXO(IBI)) Q:'IBI  S Z=+$G(IBDX(+$G(IBDXO(IBI)))) I Z,$D(IBCPTL(Z)) D WARN^IBCBB11("Too many diagnoses for claim & will be rejected - consider printing locally")
+ ;I IBTX,$$FT^IBCEF(IBIFN)'=7,$O(IBDXO(12)) S IBER=IBER_"IB397;"
+ I IBTX,$$FT^IBCEF(IBIFN)'=7,$O(IBDXO(12)) D WARN^IBCBB11("A HIPAA Compliant EDI Professional claim cannot contain more than 12"),WARN^IBCBB11("diagnosis codes.")
+ ;
+ ;IB*2.0*702;JWS;remove 665 fatal error for Dental claims with >4 Diagnosis Codes, make it a warning
+ ;WCJ;IB*2.0*665v4;more than 4 diag on Dental (J-something something) is an error PERIOD
+ ;I $$FT^IBCEF(IBIFN)=7,$P($G(IBDXO),U,2)>4 D WARN^IBCBB11("Only 4 diagnosis codes are allowed on a dental transaction")
+ ;I $$FT^IBCEF(IBIFN)=7,$O(IBDXO(4)) S IBER=IBER_"IB398;"
+ I $$FT^IBCEF(IBIFN)=7,$O(IBDXO(4)) D WARN^IBCBB11("A HIPAA Compliant EDI Dental claim cannot contain more than 4"),WARN^IBCBB11("diagnosis codes.")
  ;
  I $$WNRBILL^IBEFUNC(IBIFN),$$MRATYPE^IBEFUNC(IBIFN)'="B" S IBER=IBER_"IB087;"
  ;
@@ -79,8 +89,9 @@ EN ;
  . I $G(IBER)'["IB310" I $D(IBXDATA(IBI,"A")) S IBER=IBER_"IB310;" Q
  . I $D(IBXDATA(IBI,"ARX")),IBER'["311;" S IBER=IBER_"IB311;" Q
  . I $P(IBXDATA(IBI),U,14) S IBOLAB=IBOLAB+1
+ . ;JWS;IB*2.0*641v9; put back the edit for Place of Service
  . ; Place of service required => remove edit below for IB*2.0*488 ; baa
- . ;I $G(IBER)'["IB314;",$P(IBXDATA(IBI),U,3)="" S IBER=IBER_"IB314;"
+ . I $G(IBER)'["IB314;",$P(IBXDATA(IBI),U,3)="" S IBER=IBER_"IB314;"
  . ; Type of service required => remove edit below for IB*2.0*488 ; baa
  . ;I $G(IBER)'["IB313;",$P(IBXDATA(IBI),U,4)="" S IBER=IBER_"IB313;"
  . ; 43 and 53 are invalid types of service

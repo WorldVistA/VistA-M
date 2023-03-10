@@ -1,5 +1,5 @@
-RAPCE1 ;HIRMFO/GJC-Interface with PCE APIs for workload, visits;6/4/96  15:03 ;5/28/97  12:59
- ;;5.0;Radiology/Nuclear Medicine;**17,21**;Mar 16, 1998
+RAPCE1 ;HIRMFO/GJC-Interface with PCE APIs for workload, visits;6/4/96  15:03 ; Apr 28, 2022@08:43:27
+ ;;5.0;Radiology/Nuclear Medicine;**17,21,189**;Mar 16, 1998;Build 1
  Q
 UNCOMPL(RADFN,RADTI,RACNI) ; When an exam backs out of a complete status
  ;back out all credit, visit pointers for all rad exams on this d/t
@@ -103,4 +103,23 @@ D9 I $G(RAVSIT)="" G DUNL ; no valid vst ptr to delete
  D DELVST
  W:$G(RASENT)&('$D(ZTQUEUED)) !?5,"Visit credited for duplicate procedure."
 DUNL L -^RADPT(RADFN,"DT",RADTI)
+ Q
+RSCRFLR ;p189/KLM Resend credit failure to PCE (PX211 work around)
+ K RAVSIT,RASULT,PXAERR,PXKERROR("VISIT")
+ H 1 S RASULT=$$DATA2PCE^PXAPI("^TMP(""RAPXAPI"",$J)",RAPKG,"RAD/NUC MED",.RAVSIT,"","","","",.@RAEARRY)
+ I $G(RAVSIT)>0 D  ;Visit file pointer, set 'Credit recorded' to yes. 
+ . W:'$D(ZTQUEUED)&('$D(RARECMPL)) !?5,"Visit credited.",!
+ . D:'RAXAMSET VISIT^RAPCE(RADFN,RADTI,RACNI,RAVSIT)
+ . D:'RAXAMSET RECDCS^RAPCE(RADFN,RADTI,RACNI) ; only one exam, not a set
+ . D:RAXAMSET MULCS^RAPCE(RADFN,RADTI) ; set, update all exams!
+ . S RASENT=1 ; sent to PCE was okay
+ . Q
+ E  D
+ . N RAWHOERR S RAWHOERR=""
+ . W:'$D(ZTQUEUED)&('$D(RARECMPL)) !?5,$C(7),"Unable to credit.",!
+ . I '$G(RAXAMSET) D FAILBUL^RAPCE2(RADFN,RADTI,RACNI,$S($G(RADUZ):RADUZ,1:DUZ))
+ . I $G(RAXAMSET) D
+ .. S RACNI=0 F  S RACNI=$O(^RADPT(RADFN,"DT",RADTI,"P",RACNI)) Q:RACNI'>0  D FAILBUL^RAPCE2(RADFN,RADTI,RACNI,$S($G(RADUZ):RADUZ,1:DUZ))
+ .. Q
+ . Q
  Q

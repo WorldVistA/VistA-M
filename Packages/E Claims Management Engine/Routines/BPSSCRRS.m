@@ -1,5 +1,5 @@
 BPSSCRRS ;BHAM ISC/SS - ECME SCREEN RESUBMIT ;05-APR-05
- ;;1.0;E CLAIMS MGMT ENGINE;**1,3,5,7,8,10,11,20,26**;JUN 2004;Build 24
+ ;;1.0;E CLAIMS MGMT ENGINE;**1,3,5,7,8,10,11,20,26,31**;JUN 2004;Build 16
  ;;Per VA Directive 6402, this routine should not be modified.
  Q
  ;IA 4702
@@ -99,6 +99,10 @@ RESUBMIT(RXI,BPRSNRV) ;*/
  . ;can't resubmit a closed claim. The user must reopen first.
  . I $$CLOSED^BPSSCRU1(BP59) D  Q
  . . W !!,">> Cannot Resubmit ",!,$G(@VALMAR@(+$G(RXI(BP59)),0)),!," because the claim is Closed. Reopen the claim and try again.",! Q
+ . ;
+ . ; can't resubmit an unreleased, auto reversed claim.
+ . I '$$RELEASED^BPSRPT1(RXIEN,RXR),$$AUTOREV^BPSRPT1(BP59) D  Q
+ . . W !!,">> Cannot Resubmit ",!,$G(@VALMAR@(+$G(RXI(BP59)),0)),!," because the claim is Unreleased and Auto Reversed.",! Q
  . ;
  . S BPSTATUS=$P($$CLAIMST^BPSSCRU3(BP59),U)
  . S BPSCOB=$$COB59^BPSUTIL2(BP59) ;get COB for the BPS TRANSACTION IEN

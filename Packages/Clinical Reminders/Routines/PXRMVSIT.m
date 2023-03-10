@@ -1,7 +1,7 @@
-PXRMVSIT ;SLC/PKR - Visit related info for reminders. ;03/02/2012
- ;;2.0;CLINICAL REMINDERS;**4,6,18,24**;Feb 04, 2005;Build 193
+PXRMVSIT ;SLC/PKR - Visit related info for reminders. ;08/20/2020
+ ;;2.0;CLINICAL REMINDERS;**4,6,18,24,42**;Feb 04, 2005;Build 245
  ;
- ;======================================================
+ ;===============
 GETDATA(DA,DATA,SVALUE) ;Return data for a specific Visit file entry.
  ;DBIA #2028 for Visit file.
  N DONE,IEN,HLOCIEN,HTEMP,LOE,TEMP
@@ -10,6 +10,7 @@ GETDATA(DA,DATA,SVALUE) ;Return data for a specific Visit file entry.
  S DATA("DATE VISIT CREATED")=$P(TEMP,U,2)
  S DATA("DFN")=$P(TEMP,U,5)
  S (DATA("LOC. OF ENCOUNTER"),LOE)=$P(TEMP,U,6)
+ S DATA("VISIT ID")=$P(^AUPNVSIT(DA,150),U,1)
  ;DBIA #10090
  S DATA("STATION NUMBER")=$$GET1^DIQ(4,LOE,99)
  S DATA("OFFICAL VA NAME")=$$GET1^DIQ(4,LOE,100)
@@ -37,13 +38,13 @@ GETDATA(DA,DATA,SVALUE) ;Return data for a specific Visit file entry.
  . I $P(TEMP,U,4)="P" S DATA("PRIMARY PROVIDER")=$P(TEMP,U,1),DONE=1
  Q
  ;
- ;======================================================
+ ;===============
 GAPSTAT(VIEN) ;Return the status of the appointment associated with the
  ;visit.
  ;DBIA #4850
  Q $$STATUS^SDPCE(VIEN)
  ;
- ;======================================================
+ ;===============
 HENC(VIEN,INDENT,NLINES,TEXT) ;Display location and comment for historical
  ;encounters associated with the V files.
  N COMMENT,HLOC,LOCATION,OLOC,NIN,TEXTIN,VDATA
@@ -71,13 +72,13 @@ HENC(VIEN,INDENT,NLINES,TEXT) ;Display location and comment for historical
  . F JND=1:1:NOUT S NLINES=NLINES+1,TEXT(NLINES)=TEXTOUT(JND)
  Q
  ;
- ;======================================================
+ ;===============
 ISHIST(VIEN) ;Return true if the encounter was historical.
  ;DBIA #2028
  I $P($G(^AUPNVSIT(VIEN,0)),U,7)="E" Q 1
  Q 0
  ;
- ;======================================================
+ ;===============
 VAPSTAT(VIEN) ;Return true if the appointment associated with
  ;the visit has a valid appointment status.
  ;Return false if the status is one of the following:

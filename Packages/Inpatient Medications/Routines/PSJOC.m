@@ -1,8 +1,10 @@
 PSJOC ;BIR/MV - NEW ORDER CHECKS DRIVER ; 9/10/14 10:53pm
- ;;5.0;INPATIENT MEDICATIONS;**181,260,252,257,281,256**;16 DEC 97;Build 34
+ ;;5.0;INPATIENT MEDICATIONS;**181,260,252,257,281,256,364,426**;16 DEC 97;Build 4
  ;
  ; Reference to ^PSODDPR4 is supported by DBIA# 5366.
  ; Reference to ^PSSHRQ2 is supported by DBIA# 5369.
+ ;
+ ;*364 - add Hazardous Handle & Dispose flags alert message.
  ;
 OC(PSPDRG,PSJPTYP) ;
  ;PSPDRG - Drug array in format of PDRG(n)=IEN (#50) ^ Drug Name
@@ -53,11 +55,11 @@ DISPLAY ;
  Q:$G(PSGORQF)
  I '$G(PSJDERF2)&('$G(PSJDRGIF))&('$G(PSJDUPTF)) K PSJPAUSE H 2
  I $G(PSJDERF2)&('$G(PSJDRGIF))&('$G(PSJDUPTF))&(($Y+3)<IOSL) S PSJPAUSE=1 ;error but no drug interaction or dup therapy
- ;I ($G(PSGCOPY)!($G(PSIVCOPY))) S PSJPAUSE=1
  I '$D(PSJDGCK) D:$G(PSJPAUSE) PAUSE^PSJLMUT1
  Q
  ;
 GMRAOC ;Display allergy & CPRS OC regardless if FDB is connected
+ D HAZCHK                ;Add Hazardous to Handle/Dispose warning messages       *364
  D ALLERGY Q:$G(PSGORQF)
  D CPRS^PSJOCOR(.PSPDRG)
  Q
@@ -127,7 +129,7 @@ DRUGERR ;Display drug level errors
  S PSJDSPFG=0
  S PSJPERR=$$PROSPERR()
  I PSJPERR D  Q
- . I PSJDSPFG&(($Y+4)>IOSL) D PAUSE^PSJLMUT1 W @IOF
+ . I PSJDSPFG D PAUSE^PSJLMUT1
  I $D(PSJEXCPT("PROFILE")),'$G(PSJDGCK) Q
  S PSJPON="" F  S PSJPON=$O(^TMP($J,"PSJPRE","OUT","EXCEPTIONS",PSJPON)) Q:PSJPON=""  D
  . F PSJN=0:0 S PSJN=$O(^TMP($J,"PSJPRE","OUT","EXCEPTIONS",PSJPON,PSJN)) Q:'PSJN  D
@@ -137,7 +139,7 @@ DRUGERR ;Display drug level errors
  .. I ($P(PSJPON,";",3)'="PROFILE") Q
  .. I '$$ERRCHK("PROFILE",$P(PSJNV,U,3)_$P(PSJNV,U,10)) Q
  .. D DSPDRGER()
- I PSJDSPFG&(($Y+4)>IOSL) D PAUSE^PSJLMUT1 W @IOF S PSJDERR2=1
+ I PSJDSPFG D PAUSE^PSJLMUT1 S PSJDERR2=1
  Q
 DSPDRGER(PSJDSFLG) ;
  NEW PSJTXT
@@ -198,3 +200,70 @@ PROSPERR() ;Display exceptions for prospective drug
  . I $D(^TMP($J,"PSJPRE","OUT","EXCEPTIONS",PSJPON)) Q
  . S (PSJDSPFG,PSJPERR)=0
  Q PSJPERR
+ ;
+HAZCHK ;Check for a hazardous drug component and display soft error type warning roll and scroll alert     *364
+ N PSORDN,HDG,HAZ,HAZH,HAZD,HZAR,HTXT,LL,DRGIEN,TOP
+ S (HAZH,HAZD)=0
+ I $G(ON),'$G(PSGDRG),(($G(NAME)["PSJ LM UD")!($G(NAME)["PSJU LM")!($G(NAME)["PSJ LM PENDING")) D  ;Unit Dose
+ . I $G(PSGORD)["P" S PSORDN="^PS(53.1,"_+PSGORD_","
+ . I '$G(PSGORD),ON["P" S PSORDN="^PS(53.1,"_+ON_","
+ . I $G(PSGORD),ON["U" S PSORDN="^PS(55,"_DFN_",5,"_+ON_","
+ . Q:'$D(PSORDN)
+ . D HAZDRUG(PSORDN,.HZAR)
+ I '$D(PSJALLGY),$G(PSGDRG),$G(NAME)'["PSJ LM IV" D                                                              ;IV new dispense only
+ . S HZAR(PSGDRG)=$$HAZ^PSSUTIL(PSGDRG)
+ I '$D(PSJALLGY),$G(PSJORD),$G(NAME)["PSJ LM IV" D                                                               ;IV pending or edit
+ . S:PSJORD["P" PSORDN="^PS(53.1,"_+PSJORD_","
+ . S:PSJORD["V" PSORDN="^PS(55,"_DFN_",""IV"","_+PSJORD_","
+ . Q:'$D(PSORDN)
+ . D HAZDRUG(PSORDN,.HZAR)
+ I $D(PSJALLGY) F DRGIEN=0:0 S DRGIEN=$O(PSJALLGY(DRGIEN)) Q:'DRGIEN  D    ;IV new order add mix 
+ . S HZAR(DRGIEN)=$$HAZ^PSSUTIL(DRGIEN)
+ ;display warning text(s)
+ S HAZ=0,HDG=1,$P(LL,"-",80)="-"
+ F DRGIEN=0:0 S DRGIEN=$O(HZAR(DRGIEN)) Q:'DRGIEN  D
+ . S HAZH=$P(HZAR(DRGIEN),U),HAZD=$P(HZAR(DRGIEN),U,2)
+ . Q:'(HAZH!HAZD)!('$D(DRGIEN))
+ . D HAZWARNG^PSSUTIL(DRGIEN,"I",HAZH,HAZD,.HTXT) S HAZ=1
+ . I HDG W #,$C(7),LL,!,$J("***** WARNING *****",47) S HDG=0   ;header
+ . D WRAPTEXT(HTXT,65,5) W !                                   ;body
+ D:HAZ                                                         ;footer
+ . W LL,!
+ . K DIR S DIR(0)="E",DIR("?")="Press Return to continue",DIR("A")="Press Return to continue" D ^DIR
+ Q
+ ;
+HAZDRUG(FILE,AR) ;Get Hazardous to Handle and Hazardous to Dispose fields per component and return Haz array by DRUG IEN     *364
+ ; FILE = file root + Order Num from inpatient variables during workflow;  Example VAR contains: "^PS(55,DFN,5,ON," or "(PS(53.1,ON," or "^PS(55,DFN,"IV",ON,"
+ ;         (build ROOT to the multiple level to find all Disp Drugs or Additives or Solution and get HAZ flags)
+ ; AR   = array of component's IEN and their Haz flag settings
+ N QQ,ROOT,NXTROOT,NXT,IFN,GL
+ ;check IF Unit Dose Disp Drug exists for this order, then get IEN(s) and Haz flags
+ I FILE[",5," F QQ=0:0 S ROOT=FILE_"1,"_QQ_")" S QQ=$O(@ROOT) Q:'QQ  D
+ . S NXTROOT=FILE_"1,"_QQ_")" S NXT=$O(@NXTROOT) S GL=$E(NXTROOT,1,$L(ROOT)-1),IFN=+@(GL_",0)")
+ . S AR(IFN)=$$HAZ^PSSUTIL(IFN)
+ . ;check IF IV additives exist for this order, then get IEN(s) and Haz flags
+ I FILE[",""IV""," F QQ=0:0 S ROOT=FILE_"""AD"","_QQ_")" S QQ=$O(@ROOT) Q:'QQ  D
+ . S NXTROOT=FILE_"""AD"","_QQ_")" S NXT=$O(@NXTROOT) S GL=$E(NXTROOT,1,$L(ROOT)-1),IFN=+@(GL_",0)")
+ . I IFN S IFN=+$P($G(^PS(52.6,IFN,0)),U,2),AR(IFN)=$$HAZ^PSSUTIL(IFN)
+ . ;check IF IV solutions exist for this order, then get IEN(s) and Haz flags
+ I FILE[",""IV""," F QQ=0:0 S ROOT=FILE_"""SOL"","_QQ_")" S QQ=$O(@ROOT) Q:'QQ  D
+ . S NXTROOT=FILE_"""SOL"","_QQ_")" S NXT=$O(@NXTROOT) S GL=$E(NXTROOT,1,$L(ROOT)-1),IFN=+@(GL_",0)")
+ . I IFN S IFN=+$P($G(^PS(52.7,IFN,0)),U,2),AR(IFN)=$$HAZ^PSSUTIL(IFN)
+ Q
+ ;
+WRAPTEXT(TEXT,LIMIT,CSPACES) ;Wrap text util copied in from a PSO routine originally                  *364
+ ;;FUNCTION TO DISPLAY (WRITE) TEXT WRAPPED TO A CERTAIN COLUMN LENGTH
+ ;;DEFAULT=74 CHARACTERS WITH NO SPACES IN FRONT
+ N WORDS,COUNT,LINE,NEXTWORD
+ Q:$G(TEXT)']"" ""
+ S LIMIT=$G(LIMIT,74)
+ S CSPACES=$S($G(CSPACES):CSPACES,1:0)
+ S WORDS=$L(TEXT," ")
+ W !,$$REPEAT^XLFSTR(" ",CSPACES)
+ F COUNT=1:1:WORDS D
+ . S NEXTWORD=$P(TEXT," ",COUNT)
+ . Q:NEXTWORD=""  ;TO REMOVE LEADING OR DOUBLE SPACES
+ . S LINE=$G(LINE)_NEXTWORD_" "
+ . I $L($G(LINE))>LIMIT W !,$$REPEAT^XLFSTR(" ",CSPACES) K LINE
+ . W NEXTWORD_" "
+ Q

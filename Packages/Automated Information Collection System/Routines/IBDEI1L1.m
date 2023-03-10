@@ -1,122 +1,124 @@
-IBDEI1L1 ; ; 04-FEB-2020
- ;;3.0;IB ENCOUNTER FORM IMP/EXP;;FEB 04, 2020
+IBDEI1L1 ; ; 01-FEB-2022
+ ;;3.0;IB ENCOUNTER FORM IMP/EXP;;FEB 01, 2022
  Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,999) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
- ;;^UTILITY(U,$J,358.3,25289,0)
- ;;=M17.11^^107^1217^140
- ;;^UTILITY(U,$J,358.3,25289,1,0)
+ ;;^UTILITY(U,$J,358.3,25652,1,3,0)
+ ;;=3^Cannabis Induced Sleep D/O w/o Use D/O
+ ;;^UTILITY(U,$J,358.3,25652,1,4,0)
+ ;;=4^F12.988
+ ;;^UTILITY(U,$J,358.3,25652,2)
+ ;;=^5003187
+ ;;^UTILITY(U,$J,358.3,25653,0)
+ ;;=F12.929^^92^1171^17
+ ;;^UTILITY(U,$J,358.3,25653,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,25289,1,3,0)
- ;;=3^Primary Osteoarthritis of Right Knee
- ;;^UTILITY(U,$J,358.3,25289,1,4,0)
- ;;=4^M17.11
- ;;^UTILITY(U,$J,358.3,25289,2)
- ;;=^5010786
- ;;^UTILITY(U,$J,358.3,25290,0)
- ;;=M17.12^^107^1217^134
- ;;^UTILITY(U,$J,358.3,25290,1,0)
+ ;;^UTILITY(U,$J,358.3,25653,1,3,0)
+ ;;=3^Cannabis Intox w/o Percep Disturb w/o Use D/O
+ ;;^UTILITY(U,$J,358.3,25653,1,4,0)
+ ;;=4^F12.929
+ ;;^UTILITY(U,$J,358.3,25653,2)
+ ;;=^5003182
+ ;;^UTILITY(U,$J,358.3,25654,0)
+ ;;=F12.180^^92^1171^1
+ ;;^UTILITY(U,$J,358.3,25654,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,25290,1,3,0)
- ;;=3^Primary Osteoarthritis of Left Knee
- ;;^UTILITY(U,$J,358.3,25290,1,4,0)
- ;;=4^M17.12
- ;;^UTILITY(U,$J,358.3,25290,2)
- ;;=^5010787
- ;;^UTILITY(U,$J,358.3,25291,0)
- ;;=M18.0^^107^1217^128
- ;;^UTILITY(U,$J,358.3,25291,1,0)
+ ;;^UTILITY(U,$J,358.3,25654,1,3,0)
+ ;;=3^Cannabis Induced Anxiety D/O w/ Mild Use D/O
+ ;;^UTILITY(U,$J,358.3,25654,1,4,0)
+ ;;=4^F12.180
+ ;;^UTILITY(U,$J,358.3,25654,2)
+ ;;=^5003163
+ ;;^UTILITY(U,$J,358.3,25655,0)
+ ;;=F12.280^^92^1171^2
+ ;;^UTILITY(U,$J,358.3,25655,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,25291,1,3,0)
- ;;=3^Primary Osteoarthritis of Bilateral 1st Carpometacarp Jts
- ;;^UTILITY(U,$J,358.3,25291,1,4,0)
- ;;=4^M18.0
- ;;^UTILITY(U,$J,358.3,25291,2)
- ;;=^5010795
- ;;^UTILITY(U,$J,358.3,25292,0)
- ;;=M18.11^^107^1217^138
- ;;^UTILITY(U,$J,358.3,25292,1,0)
+ ;;^UTILITY(U,$J,358.3,25655,1,3,0)
+ ;;=3^Cannabis Induced Anxiety D/O w/ Mod/Sev Use D/O
+ ;;^UTILITY(U,$J,358.3,25655,1,4,0)
+ ;;=4^F12.280
+ ;;^UTILITY(U,$J,358.3,25655,2)
+ ;;=^5003175
+ ;;^UTILITY(U,$J,358.3,25656,0)
+ ;;=F12.188^^92^1171^7
+ ;;^UTILITY(U,$J,358.3,25656,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,25292,1,3,0)
- ;;=3^Primary Osteoarthritis of Right Hand 1st Carpometacarp Jt
- ;;^UTILITY(U,$J,358.3,25292,1,4,0)
- ;;=4^M18.11
- ;;^UTILITY(U,$J,358.3,25292,2)
- ;;=^5010797
- ;;^UTILITY(U,$J,358.3,25293,0)
- ;;=M18.12^^107^1217^132
- ;;^UTILITY(U,$J,358.3,25293,1,0)
+ ;;^UTILITY(U,$J,358.3,25656,1,3,0)
+ ;;=3^Cannabis Induced Sleep D/O w/ Mild Use D/O
+ ;;^UTILITY(U,$J,358.3,25656,1,4,0)
+ ;;=4^F12.188
+ ;;^UTILITY(U,$J,358.3,25656,2)
+ ;;=^5003164
+ ;;^UTILITY(U,$J,358.3,25657,0)
+ ;;=F12.288^^92^1171^8
+ ;;^UTILITY(U,$J,358.3,25657,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,25293,1,3,0)
- ;;=3^Primary Osteoarthritis of Left Hand 1st Carpometacarp Jt
- ;;^UTILITY(U,$J,358.3,25293,1,4,0)
- ;;=4^M18.12
- ;;^UTILITY(U,$J,358.3,25293,2)
- ;;=^5010798
- ;;^UTILITY(U,$J,358.3,25294,0)
- ;;=M19.011^^107^1217^141
- ;;^UTILITY(U,$J,358.3,25294,1,0)
+ ;;^UTILITY(U,$J,358.3,25657,1,3,0)
+ ;;=3^Cannabis Induced Sleep D/O w/ Mod/Sev Use D/O
+ ;;^UTILITY(U,$J,358.3,25657,1,4,0)
+ ;;=4^F12.288
+ ;;^UTILITY(U,$J,358.3,25657,2)
+ ;;=^5003176
+ ;;^UTILITY(U,$J,358.3,25658,0)
+ ;;=F12.99^^92^1171^18
+ ;;^UTILITY(U,$J,358.3,25658,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,25294,1,3,0)
- ;;=3^Primary Osteoarthritis of Right Shoulder
- ;;^UTILITY(U,$J,358.3,25294,1,4,0)
- ;;=4^M19.011
- ;;^UTILITY(U,$J,358.3,25294,2)
- ;;=^5010808
- ;;^UTILITY(U,$J,358.3,25295,0)
- ;;=M19.012^^107^1217^135
- ;;^UTILITY(U,$J,358.3,25295,1,0)
+ ;;^UTILITY(U,$J,358.3,25658,1,3,0)
+ ;;=3^Cannabis Related D/O,Unspec
+ ;;^UTILITY(U,$J,358.3,25658,1,4,0)
+ ;;=4^F12.99
+ ;;^UTILITY(U,$J,358.3,25658,2)
+ ;;=^5003188
+ ;;^UTILITY(U,$J,358.3,25659,0)
+ ;;=F12.21^^92^1171^24
+ ;;^UTILITY(U,$J,358.3,25659,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,25295,1,3,0)
- ;;=3^Primary Osteoarthritis of Left Shoulder
- ;;^UTILITY(U,$J,358.3,25295,1,4,0)
- ;;=4^M19.012
- ;;^UTILITY(U,$J,358.3,25295,2)
- ;;=^5010809
- ;;^UTILITY(U,$J,358.3,25296,0)
- ;;=M19.031^^107^1217^142
- ;;^UTILITY(U,$J,358.3,25296,1,0)
+ ;;^UTILITY(U,$J,358.3,25659,1,3,0)
+ ;;=3^Cannabis Use D/O,Mod/Sev,In Remission
+ ;;^UTILITY(U,$J,358.3,25659,1,4,0)
+ ;;=4^F12.21
+ ;;^UTILITY(U,$J,358.3,25659,2)
+ ;;=^5003167
+ ;;^UTILITY(U,$J,358.3,25660,0)
+ ;;=F12.23^^92^1171^23
+ ;;^UTILITY(U,$J,358.3,25660,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,25296,1,3,0)
- ;;=3^Primary Osteoarthritis of Right Wrist
- ;;^UTILITY(U,$J,358.3,25296,1,4,0)
- ;;=4^M19.031
- ;;^UTILITY(U,$J,358.3,25296,2)
- ;;=^5010814
- ;;^UTILITY(U,$J,358.3,25297,0)
- ;;=M19.032^^107^1217^136
- ;;^UTILITY(U,$J,358.3,25297,1,0)
+ ;;^UTILITY(U,$J,358.3,25660,1,3,0)
+ ;;=3^Cannabis Use D/O,Mod/Sev w/ WD
+ ;;^UTILITY(U,$J,358.3,25660,1,4,0)
+ ;;=4^F12.23
+ ;;^UTILITY(U,$J,358.3,25660,2)
+ ;;=^5157301
+ ;;^UTILITY(U,$J,358.3,25661,0)
+ ;;=F12.129^^92^1171^19
+ ;;^UTILITY(U,$J,358.3,25661,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,25297,1,3,0)
- ;;=3^Primary Osteoarthritis of Left Wrist
- ;;^UTILITY(U,$J,358.3,25297,1,4,0)
- ;;=4^M19.032
- ;;^UTILITY(U,$J,358.3,25297,2)
- ;;=^5010815
- ;;^UTILITY(U,$J,358.3,25298,0)
- ;;=M19.041^^107^1217^137
- ;;^UTILITY(U,$J,358.3,25298,1,0)
+ ;;^UTILITY(U,$J,358.3,25661,1,3,0)
+ ;;=3^Cannabis Use D/O Mild w/ Intoxication
+ ;;^UTILITY(U,$J,358.3,25661,1,4,0)
+ ;;=4^F12.129
+ ;;^UTILITY(U,$J,358.3,25661,2)
+ ;;=^5003159
+ ;;^UTILITY(U,$J,358.3,25662,0)
+ ;;=F12.93^^92^1171^26
+ ;;^UTILITY(U,$J,358.3,25662,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,25298,1,3,0)
- ;;=3^Primary Osteoarthritis of Right Hand
- ;;^UTILITY(U,$J,358.3,25298,1,4,0)
- ;;=4^M19.041
- ;;^UTILITY(U,$J,358.3,25298,2)
- ;;=^5010817
- ;;^UTILITY(U,$J,358.3,25299,0)
- ;;=M19.042^^107^1217^131
- ;;^UTILITY(U,$J,358.3,25299,1,0)
+ ;;^UTILITY(U,$J,358.3,25662,1,3,0)
+ ;;=3^Cannabis Withdrawal w/o Use D/O
+ ;;^UTILITY(U,$J,358.3,25662,1,4,0)
+ ;;=4^F12.93
+ ;;^UTILITY(U,$J,358.3,25662,2)
+ ;;=^5157302
+ ;;^UTILITY(U,$J,358.3,25663,0)
+ ;;=F12.11^^92^1171^21
+ ;;^UTILITY(U,$J,358.3,25663,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,25299,1,3,0)
- ;;=3^Primary Osteoarthritis of Left Hand
- ;;^UTILITY(U,$J,358.3,25299,1,4,0)
- ;;=4^M19.042
- ;;^UTILITY(U,$J,358.3,25299,2)
- ;;=^5010818
- ;;^UTILITY(U,$J,358.3,25300,0)
- ;;=M19.90^^107^1217^72
- ;;^UTILITY(U,$J,358.3,25300,1,0)
+ ;;^UTILITY(U,$J,358.3,25663,1,3,0)
+ ;;=3^Cannabis Use D/O,Mild,In Early Remission
+ ;;^UTILITY(U,$J,358.3,25663,1,4,0)
+ ;;=4^F12.11
+ ;;^UTILITY(U,$J,358.3,25663,2)
+ ;;=^268236
+ ;;^UTILITY(U,$J,358.3,25664,0)
+ ;;=F16.10^^92^1172^19
+ ;;^UTILITY(U,$J,358.3,25664,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,25300,1,3,0)
- ;;=3^Osteoarthritis,Unspec
- ;;^UTILITY(U,$J,358.3,25300,1,4,0)
- ;;=4^M19.90

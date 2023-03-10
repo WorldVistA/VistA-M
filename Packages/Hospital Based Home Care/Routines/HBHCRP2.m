@@ -1,18 +1,8 @@
-HBHCRP2 ;LR VAMC(IRMS)/MJT - HBHC report on file 631, individual patient evaluation/admission data, includes all fields, plus Case Manager ;2/5/98  15:18
- ;;1.0;HOSPITAL BASED HOME CARE;**1,2,5,6,9,19,22,25**;NOV 01, 1993;Build 45
+HBHCRP2 ;LR VAMC(IRMS)/MJT - HBHC report on file 631; May 22, 2021@14:49
+ ;;1.0;HOSPITAL BASED HOME CARE;**1,2,5,6,9,19,22,25,32**;NOV 01, 1993;Build 58
  ;
  ; This routine references the following supported ICRs:
  ; 5747    $$CODEC^ICDEX
- ;
- ;******************************************************************************
- ;******************************************************************************
- ;                       --- ROUTINE MODIFICATION LOG ---
- ;        
- ;PKG/PATCH    DATE        DEVELOPER    MODIFICATION
- ;-----------  ----------  -----------  ----------------------------------------
- ;HBH*1.0*25   FEB  2012   K GUPTA      Support for ICD-10 Coding System
- ;******************************************************************************
- ;******************************************************************************
  ;
 PROMPT ; Prompt user for patient name
  K DIC S DIC="^HBHC(631,",DIC(0)="AEMQZ" D ^DIC
@@ -21,13 +11,23 @@ PROMPT ; Prompt user for patient name
  I $D(IO("Q")) S ZTRTN="DQ^HBHCRP2",ZTDESC="HBPC Patient Evaluation/Admission Data Report",ZTSAVE("HBHC*")="" D ^%ZTLOAD G EXIT
 DQ ; De-queue
  U IO
+ N HBHCHOSPX
+ S HBHCHOSPX=""
+ ;Find patient's parent site
+ D PARENT^HBHCUTL1
+ ;strip off spaces added by HBHCUTL1
+ S HBHCHOSPX=$P(HBHCHOSPX," ")
+ ;If patient does not have a parent site, use default site.
+ ;(The patient might have been admitted before the install of HBH*1.0*32.)
+ I HBHCHOSPX="" S HBHCHOSPX=$S($P(^HBHC(631.9,1,0),U,5)]"":$E($P($G(^DIC(4,$P(^HBHC(631.9,1,0),U,5),99)),U),1,7),1:"")
  S $P(HBHCY,"-",81)="",HBHCHEAD="Patient Evaluation/Admission Data",HBHCCOLM=(80-(20+$L(HBHCHEAD))\2) S:HBHCCOLM'>0 HBHCCOLM=1
  D TODAY^HBHCUTL
  W ?HBHCCOLM,">>> HBPC ",HBHCHEAD," Report <<<" W !!,"Run Date: ",HBHCTDY,!!,HBHCZ
 PROCESS ; Process record
  S HBHCDPT0=^DPT(+(HBHCY0),0),HBHCNOD1=$G(^HBHC(631,HBHCDFN,1))
  W !,"Patient Name:  ",$P(HBHCDPT0,U),?46,"Last Four:",?58,$E($P(HBHCDPT0,U,9),6,9),!,HBHCZ
- W !," 1.  Hospital Number:",?29,$J($S($P(^HBHC(631.9,1,0),U,5)]"":$E($P($G(^DIC(4,$P(^HBHC(631.9,1,0),U,5),99)),U),1,7),1:""),7)
+ ;HBH*1.0*32 - Display patient's parent site as Hospital Number.
+ W !," 1.  Hospital Number:",?29,$J(HBHCHOSPX,7)
  W ?38,"|",?41,"20.  Primary Diagnosis @ Adm:",?72,$J($S($P(HBHCY0,U,19)]"":$$CODEC^ICDEX(80,$P(HBHCY0,U,19)),1:""),8),!,HBHCY
  W !," 2.  Date:",?28,$S($P(HBHCY0,U,18)]"":$E($P(HBHCY0,U,18),4,5)_"-"_$E($P(HBHCY0,U,18),6,7)_"-"_$E($P(HBHCY0,U,18),2,3),$P(HBHCY0,U,2)]"":$E($P(HBHCY0,U,2),4,5)_"-"_$E($P(HBHCY0,U,2),6,7)_"-"_$E($P(HBHCY0,U,2),2,3),1:"")
  W ?38,"|",?41,"21.  Secondary Diagnoses @ Adm:" I HBHCNOD1]"" W:$P(HBHCNOD1,U,14)]"" !?38,"|",?46,$P(HBHCNOD1,U,14)

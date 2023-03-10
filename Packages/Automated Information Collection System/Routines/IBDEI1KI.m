@@ -1,122 +1,128 @@
-IBDEI1KI ; ; 04-FEB-2020
- ;;3.0;IB ENCOUNTER FORM IMP/EXP;;FEB 04, 2020
+IBDEI1KI ; ; 01-FEB-2022
+ ;;3.0;IB ENCOUNTER FORM IMP/EXP;;FEB 01, 2022
  Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,999) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
- ;;^UTILITY(U,$J,358.3,25056,1,0)
+ ;;^UTILITY(U,$J,358.3,25420,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,25056,1,3,0)
- ;;=3^Family Hx of Malig Neop of Kidney
- ;;^UTILITY(U,$J,358.3,25056,1,4,0)
- ;;=4^Z80.51
- ;;^UTILITY(U,$J,358.3,25056,2)
- ;;=^321159
- ;;^UTILITY(U,$J,358.3,25057,0)
- ;;=Z83.41^^107^1212^36
- ;;^UTILITY(U,$J,358.3,25057,1,0)
+ ;;^UTILITY(U,$J,358.3,25420,1,3,0)
+ ;;=3^Problems Related to Current Military Deployment Status
+ ;;^UTILITY(U,$J,358.3,25420,1,4,0)
+ ;;=4^Z56.82
+ ;;^UTILITY(U,$J,358.3,25420,2)
+ ;;=^5063115
+ ;;^UTILITY(U,$J,358.3,25421,0)
+ ;;=Z56.0^^92^1154^11
+ ;;^UTILITY(U,$J,358.3,25421,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,25057,1,3,0)
- ;;=3^Family Hx of Mult Endocrine Neoplasia Syndrome
- ;;^UTILITY(U,$J,358.3,25057,1,4,0)
- ;;=4^Z83.41
- ;;^UTILITY(U,$J,358.3,25057,2)
- ;;=^5063380
- ;;^UTILITY(U,$J,358.3,25058,0)
- ;;=Z81.8^^107^1212^43
- ;;^UTILITY(U,$J,358.3,25058,1,0)
+ ;;^UTILITY(U,$J,358.3,25421,1,3,0)
+ ;;=3^Unemployment,Unspec
+ ;;^UTILITY(U,$J,358.3,25421,1,4,0)
+ ;;=4^Z56.0
+ ;;^UTILITY(U,$J,358.3,25421,2)
+ ;;=^5063107
+ ;;^UTILITY(U,$J,358.3,25422,0)
+ ;;=Z56.1^^92^1154^2
+ ;;^UTILITY(U,$J,358.3,25422,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,25058,1,3,0)
- ;;=3^Family Hx of Substance Abuse/Dependence,Psychoactive
- ;;^UTILITY(U,$J,358.3,25058,1,4,0)
- ;;=4^Z81.8
- ;;^UTILITY(U,$J,358.3,25058,2)
- ;;=^5063363
- ;;^UTILITY(U,$J,358.3,25059,0)
- ;;=Z81.4^^107^1212^44
- ;;^UTILITY(U,$J,358.3,25059,1,0)
+ ;;^UTILITY(U,$J,358.3,25422,1,3,0)
+ ;;=3^Change of Job
+ ;;^UTILITY(U,$J,358.3,25422,1,4,0)
+ ;;=4^Z56.1
+ ;;^UTILITY(U,$J,358.3,25422,2)
+ ;;=^5063108
+ ;;^UTILITY(U,$J,358.3,25423,0)
+ ;;=Z56.2^^92^1154^9
+ ;;^UTILITY(U,$J,358.3,25423,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,25059,1,3,0)
- ;;=3^Family Hx of Substance Abuse/Dependence NEC
- ;;^UTILITY(U,$J,358.3,25059,1,4,0)
- ;;=4^Z81.4
- ;;^UTILITY(U,$J,358.3,25059,2)
- ;;=^5063362
- ;;^UTILITY(U,$J,358.3,25060,0)
- ;;=Z98.0^^107^1212^55
- ;;^UTILITY(U,$J,358.3,25060,1,0)
+ ;;^UTILITY(U,$J,358.3,25423,1,3,0)
+ ;;=3^Threat of Job Loss
+ ;;^UTILITY(U,$J,358.3,25423,1,4,0)
+ ;;=4^Z56.2
+ ;;^UTILITY(U,$J,358.3,25423,2)
+ ;;=^5063109
+ ;;^UTILITY(U,$J,358.3,25424,0)
+ ;;=Z56.3^^92^1154^8
+ ;;^UTILITY(U,$J,358.3,25424,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,25060,1,3,0)
- ;;=3^Intestinal Bypass/Anastomosis Status
- ;;^UTILITY(U,$J,358.3,25060,1,4,0)
- ;;=4^Z98.0
- ;;^UTILITY(U,$J,358.3,25060,2)
- ;;=^5063733
- ;;^UTILITY(U,$J,358.3,25061,0)
- ;;=Z91.128^^107^1212^54
- ;;^UTILITY(U,$J,358.3,25061,1,0)
+ ;;^UTILITY(U,$J,358.3,25424,1,3,0)
+ ;;=3^Stressful Work Schedule
+ ;;^UTILITY(U,$J,358.3,25424,1,4,0)
+ ;;=4^Z56.3
+ ;;^UTILITY(U,$J,358.3,25424,2)
+ ;;=^5063110
+ ;;^UTILITY(U,$J,358.3,25425,0)
+ ;;=Z56.4^^92^1154^3
+ ;;^UTILITY(U,$J,358.3,25425,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,25061,1,3,0)
- ;;=3^Intentional Underdose of Meds d/t Other Reasons
- ;;^UTILITY(U,$J,358.3,25061,1,4,0)
- ;;=4^Z91.128
- ;;^UTILITY(U,$J,358.3,25061,2)
- ;;=^5063613
- ;;^UTILITY(U,$J,358.3,25062,0)
- ;;=Z77.120^^107^1212^60
- ;;^UTILITY(U,$J,358.3,25062,1,0)
+ ;;^UTILITY(U,$J,358.3,25425,1,3,0)
+ ;;=3^Discord w/ Boss and Workmates
+ ;;^UTILITY(U,$J,358.3,25425,1,4,0)
+ ;;=4^Z56.4
+ ;;^UTILITY(U,$J,358.3,25425,2)
+ ;;=^5063111
+ ;;^UTILITY(U,$J,358.3,25426,0)
+ ;;=Z56.5^^92^1154^10
+ ;;^UTILITY(U,$J,358.3,25426,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,25062,1,3,0)
- ;;=3^Mold (Toxic) Contact/Exposure
- ;;^UTILITY(U,$J,358.3,25062,1,4,0)
- ;;=4^Z77.120
- ;;^UTILITY(U,$J,358.3,25062,2)
- ;;=^5063318
- ;;^UTILITY(U,$J,358.3,25063,0)
- ;;=Z86.74^^107^1212^104
- ;;^UTILITY(U,$J,358.3,25063,1,0)
+ ;;^UTILITY(U,$J,358.3,25426,1,3,0)
+ ;;=3^Uncongenial Work Environment
+ ;;^UTILITY(U,$J,358.3,25426,1,4,0)
+ ;;=4^Z56.5
+ ;;^UTILITY(U,$J,358.3,25426,2)
+ ;;=^5063112
+ ;;^UTILITY(U,$J,358.3,25427,0)
+ ;;=Z56.6^^92^1154^4
+ ;;^UTILITY(U,$J,358.3,25427,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,25063,1,3,0)
- ;;=3^Personal Hx of Sudden Cardiac Arrest 
- ;;^UTILITY(U,$J,358.3,25063,1,4,0)
- ;;=4^Z86.74
- ;;^UTILITY(U,$J,358.3,25063,2)
- ;;=^5063478
- ;;^UTILITY(U,$J,358.3,25064,0)
- ;;=Z86.718^^107^1212^111
- ;;^UTILITY(U,$J,358.3,25064,1,0)
+ ;;^UTILITY(U,$J,358.3,25427,1,3,0)
+ ;;=3^Physical & Mental Strain Related to Work,Other
+ ;;^UTILITY(U,$J,358.3,25427,1,4,0)
+ ;;=4^Z56.6
+ ;;^UTILITY(U,$J,358.3,25427,2)
+ ;;=^5063113
+ ;;^UTILITY(U,$J,358.3,25428,0)
+ ;;=Z56.89^^92^1154^6
+ ;;^UTILITY(U,$J,358.3,25428,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,25064,1,3,0)
- ;;=3^Personal Hx of Venous Thrombosis/Embolism (DVT)
- ;;^UTILITY(U,$J,358.3,25064,1,4,0)
- ;;=4^Z86.718
- ;;^UTILITY(U,$J,358.3,25064,2)
- ;;=^5063475
- ;;^UTILITY(U,$J,358.3,25065,0)
- ;;=Z96.1^^107^1212^133
- ;;^UTILITY(U,$J,358.3,25065,1,0)
+ ;;^UTILITY(U,$J,358.3,25428,1,3,0)
+ ;;=3^Problems Related to Employment,Other
+ ;;^UTILITY(U,$J,358.3,25428,1,4,0)
+ ;;=4^Z56.89
+ ;;^UTILITY(U,$J,358.3,25428,2)
+ ;;=^5063116
+ ;;^UTILITY(U,$J,358.3,25429,0)
+ ;;=Z56.9^^92^1154^7
+ ;;^UTILITY(U,$J,358.3,25429,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,25065,1,3,0)
- ;;=3^Presence of Intraocular Lens
- ;;^UTILITY(U,$J,358.3,25065,1,4,0)
- ;;=4^Z96.1
- ;;^UTILITY(U,$J,358.3,25065,2)
- ;;=^5063682
- ;;^UTILITY(U,$J,358.3,25066,0)
- ;;=Z96.612^^107^1212^138
- ;;^UTILITY(U,$J,358.3,25066,1,0)
+ ;;^UTILITY(U,$J,358.3,25429,1,3,0)
+ ;;=3^Problems Related to Employment,Unspec
+ ;;^UTILITY(U,$J,358.3,25429,1,4,0)
+ ;;=4^Z56.9
+ ;;^UTILITY(U,$J,358.3,25429,2)
+ ;;=^5063117
+ ;;^UTILITY(U,$J,358.3,25430,0)
+ ;;=F64.1^^92^1155^1
+ ;;^UTILITY(U,$J,358.3,25430,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,25066,1,3,0)
- ;;=3^Presence of Left Artificial Shoulder Joint
- ;;^UTILITY(U,$J,358.3,25066,1,4,0)
- ;;=4^Z96.612
- ;;^UTILITY(U,$J,358.3,25066,2)
- ;;=^5063693
- ;;^UTILITY(U,$J,358.3,25067,0)
- ;;=Z96.611^^107^1212^143
- ;;^UTILITY(U,$J,358.3,25067,1,0)
+ ;;^UTILITY(U,$J,358.3,25430,1,3,0)
+ ;;=3^Gender Dysphoria in Adolescents & Adults
+ ;;^UTILITY(U,$J,358.3,25430,1,4,0)
+ ;;=4^F64.1
+ ;;^UTILITY(U,$J,358.3,25430,2)
+ ;;=^5003647
+ ;;^UTILITY(U,$J,358.3,25431,0)
+ ;;=F64.8^^92^1155^2
+ ;;^UTILITY(U,$J,358.3,25431,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,25067,1,3,0)
- ;;=3^Presence of Right Artificial Shoulder Joint
- ;;^UTILITY(U,$J,358.3,25067,1,4,0)
- ;;=4^Z96.611
- ;;^UTILITY(U,$J,358.3,25067,2)
- ;;=^5063692
+ ;;^UTILITY(U,$J,358.3,25431,1,3,0)
+ ;;=3^Gender Dysphoria,Other Specified
+ ;;^UTILITY(U,$J,358.3,25431,1,4,0)
+ ;;=4^F64.8
+ ;;^UTILITY(U,$J,358.3,25431,2)
+ ;;=^5003649
+ ;;^UTILITY(U,$J,358.3,25432,0)
+ ;;=F64.9^^92^1155^3
+ ;;^UTILITY(U,$J,358.3,25432,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,25432,1,3,0)
+ ;;=3^Transsexualism

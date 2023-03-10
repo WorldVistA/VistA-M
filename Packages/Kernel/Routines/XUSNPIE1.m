@@ -1,5 +1,5 @@
-XUSNPIE1 ;FO-OAKLAND/JLI - NATIONAL PROVIDER IDENTIFIER DATA CAPTURE ;5/13/08  17:32
- ;;8.0;KERNEL;**420,410,435,454,462,480**; July 10, 1995;Build 38
+XUSNPIE1 ;FO-OAKLAND/JLI - NATIONAL PROVIDER IDENTIFIER DATA CAPTURE ;3/31/2021
+ ;;8.0;KERNEL;**420,410,435,454,462,480,753**; July 10, 1995;Build 1
  ;;Per VHA Directive 2004-038, this routine should not be modified
  Q
  ;
@@ -92,6 +92,7 @@ CHKDGT(XUSNPI,XUSDA,XUSQI) ; INPUT TRANSFORM
  I NPIUSED=1 Q 0
  ; If a warning was encountered, quit 1 (Person on file 200 and 355.93 can share NPI)
  I NPIUSED=2 Q 1
+ I XUSDA=$P(XUSQIK,"^",2) Q 1  ; p753
  ; If current provider previously had this NPI, make sure the NPI being added is the most
  ; current one in the EFFECTIVE DATE/TIME multiple (history).
  N XUSROOT S XUSROOT=$$GET^XPAR("PKG.KERNEL","XUSNPI QUALIFIED IDENTIFIER",XUSQI)

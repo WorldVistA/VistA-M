@@ -1,5 +1,5 @@
-PSGON ;BIR/CML3 - SELECT ORDERS ;Oct 22, 2019@09:46:41
- ;;5.0;INPATIENT MEDICATIONS ;**2,22,54,327,319**;16 DEC 97;Build 31
+PSGON ;BIR/CML3 - SELECT ORDERS ;Jan 11, 2021@17:05:23
+ ;;5.0;INPATIENT MEDICATIONS ;**2,22,54,327,319,411,399**;16 DEC 97;Build 64
 ENCHK ;
  K PSGODDD S PSGODDD=1,PSGODDD(1)="" W:X="-" "  (ALL)" I X="ALL"!(X="-") S X="1-"_PSGLMT
  E  S:$E(X)="-" X=1_X S:$E(X,$L(X))="-" X=X_PSGLMT
@@ -69,7 +69,10 @@ H2 ;
  .W !?3," (6) Schedule Type",!?3," (7) Self Med",!?3,"*(8) Schedule"
  .W !?3," (9) Admin Times",!?3,"*(10) Provider",!?3," (11) Special "
  .W "Instructions",!?3," (12) Dispense Drug"
- .I $D(PSJCMO)!($D(P("CLIN"))&($D(P("APPT")))) W !?3," (13) Visit Location",!?3," (14) Date/Time of Visit" ;*p319
+ .W !?3," (13) Comment"
+ .W !?3," (14) Indication" ;*399-IND
+ .I $G(PSJCMO)!$G(PSJCM01)!(($G(P("CLIN"))'="")&($G(P("APPT"))'="")) D
+ ..W !?3," (15) Visit Location",!?3," (16) Visit Date" ;*p319/p411
  E  D
  .Q:'$D(PSGEFN)
  .N PS S PS=$S($G(PSJORD)["P":1,$G(PSJORD)["V":2,1:2)
@@ -79,7 +82,9 @@ H2 ;
  .I $G(P(4))="P"!($G(P("DTYP"))=0) D
  ..W !?3,"*(10) Orderable Item",!?3," (11) Other Print",!?3," (12) Remarks"
  .E  W !?3," (10) Other Print",!?3," (11) Remarks"
- .I $D(PSJCMO)!($D(P("CLIN"))&($D(P("APPT")))) W !?3," (13) Visit Location",!?3," (14) Date/Time of Visit" ;*p319
+ .W !?3," (14) Indication" ;*399-IND
+ .I $G(PSJCMO)!$G(PSJCM01)!(($G(P("CLIN"))'="")&($G(P("APPT"))'="")) D
+ ..W !?3," (15) Visit Location",!?3," (16) Visit Date" ;*p319/p411
  W ! K DIR S DIR(0)="E" D ^DIR K DIR
  Q
  ;

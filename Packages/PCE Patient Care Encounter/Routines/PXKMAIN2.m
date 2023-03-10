@@ -1,5 +1,5 @@
-PXKMAIN2 ;ISL/JVS - Special Routine ;04/06/16  08:10
- ;;1.0;PCE PATIENT CARE ENCOUNTER;**69,186,215**;Aug 12, 1996;Build 10
+PXKMAIN2 ;ISL/JVS - Special Routine ;Oct 23, 2018@12:50
+ ;;1.0;PCE PATIENT CARE ENCOUNTER;**69,186,215,217**;Aug 12, 1996;Build 134
  ;  VARIABLES
  ; See variables lists under each line tag
  ;
@@ -67,7 +67,7 @@ SPEC2 ;
  ; As of PX*1*215, this entry point replaces SPEC.
  ; We now use the Coding System multiple instead of the PCE Code Mapping file.
  ;
- N PXCIEN,PXCODE,PXCODESYS,PXCOUNT,PXCSIEN,PXFROMENTRY,PXGLBL,PXKROU,PXKX,PXKXX,PXVISIT,PXVSC
+ N PXCODE,PXCODESYS,PXFROMENTRY,PXGLBL,PXKROU,PXKX,PXKXX,PXSKTYP,PXVISIT,PXVSC
  ;
  I PXKFGED=1 Q
  ;
@@ -84,19 +84,19 @@ SPEC2 ;
  S PXVSC=$P($G(^AUPNVSIT(+PXVISIT,0)),U,7)
  I "AHISORD"'[PXVSC Q
  ;
+ ; Is this a skin test placement ("A") or reading ("R")?
+ I PXKCAT="SK" D
+ . N X
+ . S X=$S(PXKFGAD=1:$G(PXKAV(12,8)),PXKFGDE=1:$P($G(@PXKREF@(PXKCAT,PXKSEQ,12,"BEFORE")),U,8),1:"")
+ . S PXSKTYP=$S(X:"R",1:"A")
+ ;
  F PXCODESYS="CPT","10D" D
- . S PXCSIEN=$O(@PXGLBL@(3,"B",PXCODESYS,0))
- . I 'PXCSIEN Q
  . ;
- . S PXCODE=""
- . S PXCOUNT=0
- . S PXCIEN=0
- . F  S PXCIEN=$O(@PXGLBL@(3,PXCSIEN,1,PXCIEN)) Q:'PXCIEN  D
- . . S PXCODE=$P($G(@PXGLBL@(3,PXCSIEN,1,PXCIEN,0)),U,1)
- . . S PXCOUNT=PXCOUNT+1
+ . ; For Immunizations, don't delete ICD-10 code unless there are no more immunizations for the Visit
+ . I PXKCAT="IMM",PXKFGDE=1,PXCODESYS="10D",$O(^AUPNVIMM("AD",+PXVISIT,0)) Q
  . ;
- . ; Only file, when there is one code mapped to the IMM/SK entry
- . I PXCOUNT'=1 Q
+ . S PXCODE=$$GETCODE(PXKCAT,PXGLBL,PXCODESYS,$G(PXSKTYP))
+ . I PXCODE="" Q
  . ;
  . I PXCODESYS="CPT" S PXCODE=$$CODEN^ICPTCOD(PXCODE)
  . I PXCODESYS="10D" S PXCODE=+$$CODEN^ICDEX(PXCODE,80) ;IA 5747
@@ -115,6 +115,30 @@ SPEC2 ;
  . S PXKNORG("VSTIEN")=$G(^TMP("PXK",$J,"VST",1,"IEN"))
  ;
  Q
+ ;
+ ;
+GETCODE(PXKCAT,PXGLBL,PXCODESYS,PXSKTYP) ;
+ ;
+ N PXCIEN,PXCODE,PXCOUNT,PXCSIEN
+ ;
+ ; For skin test reading, get CPT code from the PXV SKIN TEST READING CPT parameter
+ I PXKCAT="SK",$G(PXSKTYP)="R",PXCODESYS="CPT" D  Q PXCODE
+ . S PXCODE=$$GET^XPAR("ALL","PXV SKIN TEST READING CPT",1,"I")
+ ;
+ S PXCSIEN=$O(@PXGLBL@(3,"B",PXCODESYS,0))
+ I 'PXCSIEN Q ""
+ ;
+ S PXCODE=""
+ S PXCOUNT=0
+ S PXCIEN=0
+ F  S PXCIEN=$O(@PXGLBL@(3,PXCSIEN,1,PXCIEN)) Q:'PXCIEN  D
+ . S PXCODE=$P($G(@PXGLBL@(3,PXCSIEN,1,PXCIEN,0)),U,1)
+ . S PXCOUNT=PXCOUNT+1
+ ;
+ ; Only file, when there is one code mapped to the IMM/SK entry
+ I PXCOUNT'=1 Q ""
+ ;
+ Q PXCODE
  ;
  ;
 RECALL ; Recall PXKMAIN to populate special circumstances

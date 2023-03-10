@@ -1,5 +1,5 @@
-SDRRCLR  ;10N20/MAH - Reminder Recall CLEAN UP ;APR 08, 2016
- ;;5.3;Scheduling;**536,642**;Aug 13, 1993;Build 23
+SDRRCLR  ;10N20/MAH/JLS - Reminder Recall CLEAN UP ;APR 08, 2016
+ ;;5.3;Scheduling;**536,642,790**;Aug 13, 1993;Build 11
  ; Option: SDRR CLEAN-UP
 EN ;Entry point
  ;Will look at the "D" in file SD(403.5 - and loop through file 2 
@@ -13,6 +13,7 @@ EN ;Entry point
  ;CK1 = IS THE APPT DATE MINUS TIME
  ;CAP = DIFFERENCE BETWEEN RECALL DATE AND APPT DATE - LOOKS AT -30 TO +30
 DIV Q:'$D(^SD(403.53,0))
+ Q  ;SD*5.3*790 - Decom Menu Option
  N SDCL,SDKF,SDRRCS,SDRRCRS    ;alb/sat 642
  S CRP=0 F  S CRP=$O(^SD(403.53,CRP)) Q:'CRP  D
  . S PDT=$P($G(^SD(403.53,CRP,0)),"^",5) Q:PDT=""

@@ -1,118 +1,58 @@
-IBDEI1MU ; ; 04-FEB-2020
- ;;3.0;IB ENCOUNTER FORM IMP/EXP;;FEB 04, 2020
- Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,999) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
+IBDEI1MU ; ; 01-FEB-2022
+ ;;3.0;IB ENCOUNTER FORM IMP/EXP;;FEB 01, 2022
+ Q:'DIFQ(358.7)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,999) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
- ;;^UTILITY(U,$J,358.3,26080,0)
- ;;=W00.2XXD^^107^1230^59
- ;;^UTILITY(U,$J,358.3,26080,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,26080,1,3,0)
- ;;=3^Fall from One Level to Another d/t Ice/Snow,Subs Encntr
- ;;^UTILITY(U,$J,358.3,26080,1,4,0)
- ;;=4^W00.2XXD
- ;;^UTILITY(U,$J,358.3,26080,2)
- ;;=^5059517
- ;;^UTILITY(U,$J,358.3,26081,0)
- ;;=W00.9XXA^^107^1230^30
- ;;^UTILITY(U,$J,358.3,26081,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,26081,1,3,0)
- ;;=3^Fall d/t Ice/Snow,Unspec,Init Encntr
- ;;^UTILITY(U,$J,358.3,26081,1,4,0)
- ;;=4^W00.9XXA
- ;;^UTILITY(U,$J,358.3,26081,2)
- ;;=^5059519
- ;;^UTILITY(U,$J,358.3,26082,0)
- ;;=W00.9XXD^^107^1230^31
- ;;^UTILITY(U,$J,358.3,26082,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,26082,1,3,0)
- ;;=3^Fall d/t Ice/Snow,Unspec,Subs Encntr
- ;;^UTILITY(U,$J,358.3,26082,1,4,0)
- ;;=4^W00.9XXD
- ;;^UTILITY(U,$J,358.3,26082,2)
- ;;=^5059520
- ;;^UTILITY(U,$J,358.3,26083,0)
- ;;=W01.0XXA^^107^1230^92
- ;;^UTILITY(U,$J,358.3,26083,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,26083,1,3,0)
- ;;=3^Fall,Same Level,From Slip/Trip w/o Strike Against Obj,Init Encntr
- ;;^UTILITY(U,$J,358.3,26083,1,4,0)
- ;;=4^W01.0XXA
- ;;^UTILITY(U,$J,358.3,26083,2)
- ;;=^5059522
- ;;^UTILITY(U,$J,358.3,26084,0)
- ;;=W01.0XXD^^107^1230^93
- ;;^UTILITY(U,$J,358.3,26084,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,26084,1,3,0)
- ;;=3^Fall,Same Level,From Slip/Trip w/o Strike Against Obj,Subs Encntr
- ;;^UTILITY(U,$J,358.3,26084,1,4,0)
- ;;=4^W01.0XXD
- ;;^UTILITY(U,$J,358.3,26084,2)
- ;;=^5059523
- ;;^UTILITY(U,$J,358.3,26085,0)
- ;;=W03.XXXA^^107^1230^90
- ;;^UTILITY(U,$J,358.3,26085,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,26085,1,3,0)
- ;;=3^Fall,Same Level d/t Collision w/ Another Person,Init Encntr
- ;;^UTILITY(U,$J,358.3,26085,1,4,0)
- ;;=4^W03.XXXA
- ;;^UTILITY(U,$J,358.3,26085,2)
- ;;=^5059544
- ;;^UTILITY(U,$J,358.3,26086,0)
- ;;=W03.XXXD^^107^1230^91
- ;;^UTILITY(U,$J,358.3,26086,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,26086,1,3,0)
- ;;=3^Fall,Same Level d/t Collision w/ Another Person,Subs Encntr
- ;;^UTILITY(U,$J,358.3,26086,1,4,0)
- ;;=4^W03.XXXD
- ;;^UTILITY(U,$J,358.3,26086,2)
- ;;=^5059545
- ;;^UTILITY(U,$J,358.3,26087,0)
- ;;=W05.0XXA^^107^1230^56
- ;;^UTILITY(U,$J,358.3,26087,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,26087,1,3,0)
- ;;=3^Fall from Non-Moving Wheelchair,Init Encntr
- ;;^UTILITY(U,$J,358.3,26087,1,4,0)
- ;;=4^W05.0XXA
- ;;^UTILITY(U,$J,358.3,26087,2)
- ;;=^5059550
- ;;^UTILITY(U,$J,358.3,26088,0)
- ;;=W05.0XXD^^107^1230^57
- ;;^UTILITY(U,$J,358.3,26088,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,26088,1,3,0)
- ;;=3^Fall from Non-Moving Wheelchair,Subs Encntr
- ;;^UTILITY(U,$J,358.3,26088,1,4,0)
- ;;=4^W05.0XXD
- ;;^UTILITY(U,$J,358.3,26088,2)
- ;;=^5059551
- ;;^UTILITY(U,$J,358.3,26089,0)
- ;;=W05.1XXA^^107^1230^54
- ;;^UTILITY(U,$J,358.3,26089,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,26089,1,3,0)
- ;;=3^Fall from Non-Moving Non-Motorized Scooter,Init Encntr
- ;;^UTILITY(U,$J,358.3,26089,1,4,0)
- ;;=4^W05.1XXA
- ;;^UTILITY(U,$J,358.3,26089,2)
- ;;=^5059553
- ;;^UTILITY(U,$J,358.3,26090,0)
- ;;=W05.1XXD^^107^1230^55
- ;;^UTILITY(U,$J,358.3,26090,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,26090,1,3,0)
- ;;=3^Fall from Non-Moving Non-Motorized Scooter,Subs Encntr
- ;;^UTILITY(U,$J,358.3,26090,1,4,0)
- ;;=4^W05.1XXD
- ;;^UTILITY(U,$J,358.3,26090,2)
- ;;=^5059554
- ;;^UTILITY(U,$J,358.3,26091,0)
- ;;=W05.2XXA^^107^1230^52
- ;;^UTILITY(U,$J,358.3,26091,1,0)
- ;;=^358.31IA^4^2
+ ;;^DIC(358.7,0,"GL")
+ ;;=^IBE(358.7,
+ ;;^DIC("B","IMP/EXP FORM LINE",358.7)
+ ;;=
+ ;;^DIC(358.7,"%D",0)
+ ;;=^^3^3^2940217^
+ ;;^DIC(358.7,"%D",1,0)
+ ;;=This file is nearly identical to file #357.7. It is used by the
+ ;;^DIC(358.7,"%D",2,0)
+ ;;=Import/Export Utility as a temporary staging area for data from that file
+ ;;^DIC(358.7,"%D",3,0)
+ ;;=that is being imported or exported.
+ ;;^DD(358.7,0)
+ ;;=FIELD^^.08^8
+ ;;^DD(358.7,0,"DDA")
+ ;;=N
+ ;;^DD(358.7,0,"DT")
+ ;;=2950717
+ ;;^DD(358.7,0,"ID",.02)
+ ;;=W " STARTING COL=",$P(^(0),U,2)+1
+ ;;^DD(358.7,0,"ID",.03)
+ ;;=W " STARTING ROW=",$P(^(0),U,3)+1
+ ;;^DD(358.7,0,"ID",.06)
+ ;;=W ""
+ ;;^DD(358.7,0,"IX","B",358.7,.01)
+ ;;=
+ ;;^DD(358.7,0,"IX","C",358.7,.06)
+ ;;=
+ ;;^DD(358.7,0,"NM","IMP/EXP FORM LINE")
+ ;;=
+ ;;^DD(358.7,0,"VRPK")
+ ;;=IBD
+ ;;^DD(358.7,.01,0)
+ ;;=NAME^RF^^0;1^K:$L(X)>30!(X?.N)!($L(X)<3)!'(X'?1P.E) X
+ ;;^DD(358.7,.01,1,0)
+ ;;=^.1
+ ;;^DD(358.7,.01,1,1,0)
+ ;;=358.7^B
+ ;;^DD(358.7,.01,1,1,1)
+ ;;=S ^IBE(358.7,"B",$E(X,1,30),DA)=""
+ ;;^DD(358.7,.01,1,1,2)
+ ;;=K ^IBE(358.7,"B",$E(X,1,30),DA)
+ ;;^DD(358.7,.01,3)
+ ;;=NAME MUST BE 3-30 CHARACTERS, NOT NUMERIC OR STARTING WITH PUNCTUATION
+ ;;^DD(358.7,.01,21,0)
+ ;;=^^4^4^2930527^
+ ;;^DD(358.7,.01,21,1,0)
+ ;;= 
+ ;;^DD(358.7,.01,21,2,0)
+ ;;=The name given to the line. Lines should be given names that will allow
+ ;;^DD(358.7,.01,21,3,0)
+ ;;=them to be identifies, such as V(1,1), meaning a vertical line starting at
+ ;;^DD(358.7,.01,21,4,0)
+ ;;=coordinates (1,1).

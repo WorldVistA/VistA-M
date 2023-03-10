@@ -1,5 +1,5 @@
-ORCMEDT0 ;SLC/MKB-Dialog Utilities ;09/16/15  06:50
- ;;3.0;ORDER ENTRY/RESULTS REPORTING;**46,60,190,215,243,296,389**;Dec 17, 1997;Build 17
+ORCMEDT0 ;SLC/MKB-Dialog Utilities ;Jun 17, 2022@14:32:43
+ ;;3.0;ORDER ENTRY/RESULTS REPORTING;**46,60,190,215,243,296,389,539,569**;Dec 17, 1997;Build 23
 DIALOG(TYPE) ; -- Get Dialog file entry
  N X,Y,Z,D,DIC,DIE,DIK,DA,DR,DLAYGO,ORPKG,ORDLG,ORIT,OROI,I,IDX
  ;389/WAT - Sites have deleted entries in 101.41 w/o also removing pointers ergo reusing IENs can result in other file entries pointing back to
@@ -21,6 +21,7 @@ D0 S D="AB" D IX^DIC I Y'>0 S ORDLG="^" G DQ
  I TYPE="Q" D  G DQ ;new quick order
  . S DIC="^ORD(100.98,",DIC(0)="AEQM",DIC("S")="I $P(^(0),U,4)"
  . S DIC("A")="TYPE OF QUICK ORDER: " D ^DIC
+ . ;I Y>0,$P($G(^ORD(100.98,+Y,0)),U)="ANATOMIC PATHOLOGY" S Y=0 W !,!,"ANATOMIC PATHOLOGY does not support quick orders at this time.",!
  . I Y>0 S ORDG=+Y,$P(^ORD(101.41,ORDLG,0),U,5)=+Y Q
  . W !,$P(^ORD(101.41,ORDLG,0),U)_" quick order dialog DELETED!",!
  . S DA=ORDLG,DIK="^ORD(101.41,",ORDLG="^" D ^DIK

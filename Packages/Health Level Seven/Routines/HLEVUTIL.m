@@ -1,5 +1,5 @@
 HLEVUTIL ;O-OIFO/LJA - Event Monitor UTILITIES ;02/04/2004 14:42
- ;;1.6;HEALTH LEVEL SEVEN;**109**;Oct 13, 1995
+ ;;1.6;HEALTH LEVEL SEVEN;**109,173**;Oct 13, 1995;Build 14
  ;
 SLM() ; Return info to Systems Link Monitor [HLCSMON1]...
  N BAD,DATA,DATE,DAY,DOWN,FIEN,HR,IEN,IOBON,IOBOFF,LASTDT,MIN,SEC,X
@@ -111,7 +111,7 @@ UNQ(IEN7762,TASKNO,REASON) ; Unqueue Taskman task and mark 776.2 properly...
  Q
  ;
 PURGEV(HLEVIENM) ; Purge master job entries...
- N CUTIME,IEN,LOOPTM,NOPURG,RETHRM
+ N CUTIME,IEN,LOOPTM,NOPURG,RETHRM,HLPRGTM
  ;
  S NOPURG=0
  ;
@@ -121,11 +121,12 @@ PURGEV(HLEVIENM) ; Purge master job entries...
  S RETHRM=$S(RETHRM>0:RETHRM,1:96) ; Default to 96 hours
  ;
  ; Cutoff time...
- S CUTIME=$$FMADD^XLFDT($$NOW^XLFDT,0,-RETHRM)
+ S CUTIME=$$FMADD^XLFDT($$NOW^XLFDT,0,-RETHRM),HLPRGTM=CUTIME
  ;
  F  S CUTIME=$O(^HLEV(776,"B",CUTIME),-1) Q:CUTIME'>0  D
  .  S IEN=0
  .  F  S IEN=$O(^HLEV(776,"B",CUTIME,IEN)) Q:IEN'>0  D
+ .  .  I $G(HLPRGTM),$P($G(^HLEV(776,+IEN,0)),U)>HLPRGTM Q  ;HL*1.6*173 - Ensure a newer recycled IEN is not purged
  .  .  S NOPURG=NOPURG+1
  .  .  D DELETE(776,+IEN)
  ;
@@ -138,6 +139,7 @@ PURGEME(IEN7762) ; Purge events "pointed to" by 776.2...
  F  S MIEN=$O(^HLEV(776.2,+IEN7762,51,MIEN)) Q:'MIEN  D
  .  S DATA=$G(^HLEV(776.2,+IEN7762,51,MIEN,0)) Q:DATA']""  ;->
  .  S IEN776=+DATA QUIT:$G(^HLEV(776,+IEN776,0))']""  ;->
+ .  I $G(RETHRM),$P($G(^HLEV(776,+IEN776,0)),U)>RETHRM Q  ;HL*1.6*173 - Ensure a newer recycled IEN is not purged
  .  D DELETE(776,+IEN776)
  .  S NOPURG=$G(NOPURG)+1
  Q

@@ -1,5 +1,5 @@
-MAGDHOW0 ;WOIFO/PMK,DAC - Capture Consult/Request data ; 10 Oct 2016 3:30 PM
- ;;3.0;IMAGING;**138,174**;Mar 19, 2002;Build 30
+MAGDHOW0 ;WOIFO/PMK,DAC - Capture Consult/Request data ; Oct 04, 2021@12:30:55
+ ;;3.0;IMAGING;**138,174,305**;Mar 19, 2002;Build 3
  ;; Per VHA Directive 2004-038, this routine should not be modified.
  ;; +---------------------------------------------------------------+
  ;; | Property of the US Government.                                |
@@ -52,7 +52,8 @@ NEWTIU(GMRCIEN) ; check if this is a TIU note to be linked to an image group
  . . S $P(^MAG(2005,MAGIEN,2),"^",6,8)=CROSSREF
  . . Q
  . ; remove entries from ^MAG(2006.5839) & decrement the counter
- . K ^MAG(2006.5839,D0),^MAG(2006.5839,"C",123,GMRCIEN,D0)
+ . K ^MAG(2006.5839,D0),^MAG(2006.5839,"B",123,D0) ; P305 PMK 10/04/2021
+ . K ^MAG(2006.5839,"C",123,GMRCIEN,D0)
  . L +^MAG(2006.5839):1E9 ; Background process MUST wait
  . S $P(^MAG(2006.5839,0),"^",4)=$P(^MAG(2006.5839,0),"^",4)-1
  . L -^MAG(2006.5839)

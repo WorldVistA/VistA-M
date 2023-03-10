@@ -1,5 +1,5 @@
-MAGGTU4C ;WOIFO/GEK/SG/NST/JSL/DAC - VERSION CONTROL (CLINICAL CAPTURE) ; Jun 09, 2020@09:22:16
- ;;3.0;IMAGING;**93,94,106,117,122,129,140,151,178,189,211,215,223,233,226,264**;Mar 19, 2002;Build 9
+MAGGTU4C ;WOIFO/GEK/SG/NST/JSL/DAC/JSJ - VERSION CONTROL (CLINICAL CAPTURE) ; May 20, 2022@10:13:54
+ ;;3.0;IMAGING;**93,94,106,117,122,129,140,151,178,189,211,215,223,233,226,264,267,321**;Mar 19, 2002;Build 27
  ;; Per VHA Directive 2004-038, this routine should not be modified.
  ;; +---------------------------------------------------------------+
  ;; | Property of the US Government.                                |
@@ -24,9 +24,9 @@ CLVERCT ;***** VERSION CONTROL TABLE FOR THE CLINICAL CAPTURE CLIENTS
  ;;==================================================================
  ;;| Version |Build|Seq #|                Comment                   |
  ;;|---------+-----+------------------------------------------------|
- ;;| 3.0.264 |   1 |  ?? | Jun 2020                                 |
- ;;| 3.0.226 |   2 |  84 | Sep 2019                                 |
- ;;| 3.0.233 |   1 |  83 | Apr 2019                                 |
+ ;;| 3.0.321 |   2 |  ?? | Apr 2022                                 |
+ ;;| 3.0.267 |   2 |  86 | Apr 2021                                 |
+ ;;| 3.0.264 |   1 |  85 | Jul 2020                                 |
  ;;==================================================================
  ;
  ; Each row of the version control table contains the version and
@@ -35,9 +35,11 @@ CLVERCT ;***** VERSION CONTROL TABLE FOR THE CLINICAL CAPTURE CLIENTS
  ; Sort order of the rows does not matter. However, the reversed
  ; order of patch sequential numbers is recommended.
  ; NOTE:
- ;  Patch 264 removed support for
- ;     3.0.233 |   1 |  83 | Sep 2019
- ;  Patch 251 removed support for
+ ;  Patch 321 removed support for
+ ;     3.0.226 |   2 |  84 | Sep 2019                                 |
+ ;  Patch 267 removed support for
+ ;     3.0.251 |   3 |  86 | Dec 2020
+ ;  Patch 251 removed support for (deleted patch)
  ;     3.0.223 |   1 |  82 | Oct 2018
  ;  Patch 226 removed support for
  ;     3.0.215 |   1 |  81 | Jun 2018

@@ -1,126 +1,120 @@
-IBDEI0Y5 ; ; 04-FEB-2020
- ;;3.0;IB ENCOUNTER FORM IMP/EXP;;FEB 04, 2020
+IBDEI0Y5 ; ; 01-FEB-2022
+ ;;3.0;IB ENCOUNTER FORM IMP/EXP;;FEB 01, 2022
  Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,999) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
- ;;^UTILITY(U,$J,358.3,15209,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,15209,1,3,0)
- ;;=3^Hyperbilirubinemia,Familial nonhemolytic
- ;;^UTILITY(U,$J,358.3,15209,1,4,0)
- ;;=4^E80.4
- ;;^UTILITY(U,$J,358.3,15209,2)
- ;;=^5002987
- ;;^UTILITY(U,$J,358.3,15210,0)
- ;;=C24.1^^85^843^25
- ;;^UTILITY(U,$J,358.3,15210,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,15210,1,3,0)
- ;;=3^Malignant neoplasm,Ampulla
- ;;^UTILITY(U,$J,358.3,15210,1,4,0)
- ;;=4^C24.1
- ;;^UTILITY(U,$J,358.3,15210,2)
- ;;=^267100
- ;;^UTILITY(U,$J,358.3,15211,0)
- ;;=C22.1^^85^843^23
- ;;^UTILITY(U,$J,358.3,15211,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,15211,1,3,0)
- ;;=3^Intrahepatic Bile Duct Carcinoma
- ;;^UTILITY(U,$J,358.3,15211,1,4,0)
- ;;=4^C22.1
- ;;^UTILITY(U,$J,358.3,15211,2)
- ;;=^5000934
- ;;^UTILITY(U,$J,358.3,15212,0)
- ;;=C24.8^^85^843^28
- ;;^UTILITY(U,$J,358.3,15212,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,15212,1,3,0)
- ;;=3^Malignant neoplasm,Overlapping bile duct
- ;;^UTILITY(U,$J,358.3,15212,1,4,0)
- ;;=4^C24.8
- ;;^UTILITY(U,$J,358.3,15212,2)
- ;;=^5000941
- ;;^UTILITY(U,$J,358.3,15213,0)
- ;;=K83.1^^85^843^29
- ;;^UTILITY(U,$J,358.3,15213,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,15213,1,3,0)
- ;;=3^Obstruction,Ampulla or Bile duct
- ;;^UTILITY(U,$J,358.3,15213,1,4,0)
- ;;=4^K83.1
- ;;^UTILITY(U,$J,358.3,15213,2)
- ;;=^5008876
- ;;^UTILITY(U,$J,358.3,15214,0)
- ;;=K82.9^^85^843^20
- ;;^UTILITY(U,$J,358.3,15214,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,15214,1,3,0)
- ;;=3^Disease of Gallbladder,unspec
- ;;^UTILITY(U,$J,358.3,15214,1,4,0)
- ;;=4^K82.9
- ;;^UTILITY(U,$J,358.3,15214,2)
- ;;=^5008875
- ;;^UTILITY(U,$J,358.3,15215,0)
- ;;=K80.36^^85^843^6
- ;;^UTILITY(U,$J,358.3,15215,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,15215,1,3,0)
- ;;=3^Calculus,Bile Duct w/ Chr Cholangitis No Obstruction,Acute/Chr
- ;;^UTILITY(U,$J,358.3,15215,1,4,0)
- ;;=4^K80.36
- ;;^UTILITY(U,$J,358.3,15215,2)
- ;;=^5008854
- ;;^UTILITY(U,$J,358.3,15216,0)
- ;;=K80.37^^85^843^5
- ;;^UTILITY(U,$J,358.3,15216,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,15216,1,3,0)
- ;;=3^Calculus,Bile Duct w/ Chr Cholangitis & Obstruction,Acute/Chr
- ;;^UTILITY(U,$J,358.3,15216,1,4,0)
- ;;=4^K80.37
- ;;^UTILITY(U,$J,358.3,15216,2)
- ;;=^5008855
- ;;^UTILITY(U,$J,358.3,15217,0)
- ;;=K80.51^^85^843^7
- ;;^UTILITY(U,$J,358.3,15217,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,15217,1,3,0)
- ;;=3^Calculus,Bile Duct w/ Obstruction no cholangitis
- ;;^UTILITY(U,$J,358.3,15217,1,4,0)
- ;;=4^K80.51
- ;;^UTILITY(U,$J,358.3,15217,2)
- ;;=^5008864
- ;;^UTILITY(U,$J,358.3,15218,0)
- ;;=K80.50^^85^843^8
- ;;^UTILITY(U,$J,358.3,15218,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,15218,1,3,0)
- ;;=3^Calculus,Bile Duct,Uncomplicated
- ;;^UTILITY(U,$J,358.3,15218,1,4,0)
- ;;=4^K80.50
- ;;^UTILITY(U,$J,358.3,15218,2)
- ;;=^5008863
- ;;^UTILITY(U,$J,358.3,15219,0)
- ;;=K82.4^^85^843^16
- ;;^UTILITY(U,$J,358.3,15219,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,15219,1,3,0)
- ;;=3^Cholesterolosis of Gallbladder
- ;;^UTILITY(U,$J,358.3,15219,1,4,0)
- ;;=4^K82.4
- ;;^UTILITY(U,$J,358.3,15219,2)
- ;;=^265888
- ;;^UTILITY(U,$J,358.3,15220,0)
- ;;=K83.8^^85^843^18
- ;;^UTILITY(U,$J,358.3,15220,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,15220,1,3,0)
- ;;=3^Dilated bile duct,Acquired
- ;;^UTILITY(U,$J,358.3,15220,1,4,0)
- ;;=4^K83.8
- ;;^UTILITY(U,$J,358.3,15220,2)
- ;;=^5008880
- ;;^UTILITY(U,$J,358.3,15221,0)
- ;;=K83.09^^85^843^14
- ;;^UTILITY(U,$J,358.3,15221,1,0)
- ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,15389,1,0)
+ ;;=^358.31IA^3^2
+ ;;^UTILITY(U,$J,358.3,15389,1,2,0)
+ ;;=2^96375
+ ;;^UTILITY(U,$J,358.3,15389,1,3,0)
+ ;;=3^IV Push,Ea Addl Hr
+ ;;^UTILITY(U,$J,358.3,15390,0)
+ ;;=17000^^59^731^15^^^^1
+ ;;^UTILITY(U,$J,358.3,15390,1,0)
+ ;;=^358.31IA^3^2
+ ;;^UTILITY(U,$J,358.3,15390,1,2,0)
+ ;;=2^17000
+ ;;^UTILITY(U,$J,358.3,15390,1,3,0)
+ ;;=3^Destr ben les, any method, 1st les
+ ;;^UTILITY(U,$J,358.3,15391,0)
+ ;;=17003^^59^731^16^^^^1
+ ;;^UTILITY(U,$J,358.3,15391,1,0)
+ ;;=^358.31IA^3^2
+ ;;^UTILITY(U,$J,358.3,15391,1,2,0)
+ ;;=2^17003
+ ;;^UTILITY(U,$J,358.3,15391,1,3,0)
+ ;;=3^Destr ben les, any method,ea addl les (2-14)
+ ;;^UTILITY(U,$J,358.3,15392,0)
+ ;;=17004^^59^731^17^^^^1
+ ;;^UTILITY(U,$J,358.3,15392,1,0)
+ ;;=^358.31IA^3^2
+ ;;^UTILITY(U,$J,358.3,15392,1,2,0)
+ ;;=2^17004
+ ;;^UTILITY(U,$J,358.3,15392,1,3,0)
+ ;;=3^Destr ben les,15 or more
+ ;;^UTILITY(U,$J,358.3,15393,0)
+ ;;=10060^^59^731^22^^^^1
+ ;;^UTILITY(U,$J,358.3,15393,1,0)
+ ;;=^358.31IA^3^2
+ ;;^UTILITY(U,$J,358.3,15393,1,2,0)
+ ;;=2^10060
+ ;;^UTILITY(U,$J,358.3,15393,1,3,0)
+ ;;=3^I&D Abscess
+ ;;^UTILITY(U,$J,358.3,15394,0)
+ ;;=10061^^59^731^23^^^^1
+ ;;^UTILITY(U,$J,358.3,15394,1,0)
+ ;;=^358.31IA^3^2
+ ;;^UTILITY(U,$J,358.3,15394,1,2,0)
+ ;;=2^10061
+ ;;^UTILITY(U,$J,358.3,15394,1,3,0)
+ ;;=3^I&D Complicated Abscess
+ ;;^UTILITY(U,$J,358.3,15395,0)
+ ;;=12001^^59^731^40^^^^1
+ ;;^UTILITY(U,$J,358.3,15395,1,0)
+ ;;=^358.31IA^3^2
+ ;;^UTILITY(U,$J,358.3,15395,1,2,0)
+ ;;=2^12001
+ ;;^UTILITY(U,$J,358.3,15395,1,3,0)
+ ;;=3^Suture Simple Wound,Trunk/Ext 2.5 cm or <
+ ;;^UTILITY(U,$J,358.3,15396,0)
+ ;;=12002^^59^731^41^^^^1
+ ;;^UTILITY(U,$J,358.3,15396,1,0)
+ ;;=^358.31IA^3^2
+ ;;^UTILITY(U,$J,358.3,15396,1,2,0)
+ ;;=2^12002
+ ;;^UTILITY(U,$J,358.3,15396,1,3,0)
+ ;;=3^Suture Simple Wound,Trunk/Ext 2.6-7.5 cm
+ ;;^UTILITY(U,$J,358.3,15397,0)
+ ;;=11042^^59^731^14^^^^1
+ ;;^UTILITY(U,$J,358.3,15397,1,0)
+ ;;=^358.31IA^3^2
+ ;;^UTILITY(U,$J,358.3,15397,1,2,0)
+ ;;=2^11042
+ ;;^UTILITY(U,$J,358.3,15397,1,3,0)
+ ;;=3^Debridement, Skin & Subcu. Tissue,1st 20sq cm
+ ;;^UTILITY(U,$J,358.3,15398,0)
+ ;;=20550^^59^731^26^^^^1
+ ;;^UTILITY(U,$J,358.3,15398,1,0)
+ ;;=^358.31IA^3^2
+ ;;^UTILITY(U,$J,358.3,15398,1,2,0)
+ ;;=2^20550
+ ;;^UTILITY(U,$J,358.3,15398,1,3,0)
+ ;;=3^Injection,Tendon Sheath,Ligament,Ganglion Cyst
+ ;;^UTILITY(U,$J,358.3,15399,0)
+ ;;=20551^^59^731^25^^^^1
+ ;;^UTILITY(U,$J,358.3,15399,1,0)
+ ;;=^358.31IA^3^2
+ ;;^UTILITY(U,$J,358.3,15399,1,2,0)
+ ;;=2^20551
+ ;;^UTILITY(U,$J,358.3,15399,1,3,0)
+ ;;=3^Injection,Tendon Origin/Insertion
+ ;;^UTILITY(U,$J,358.3,15400,0)
+ ;;=20552^^59^731^27^^^^1
+ ;;^UTILITY(U,$J,358.3,15400,1,0)
+ ;;=^358.31IA^3^2
+ ;;^UTILITY(U,$J,358.3,15400,1,2,0)
+ ;;=2^20552
+ ;;^UTILITY(U,$J,358.3,15400,1,3,0)
+ ;;=3^Injection,Trigger Point, 1 or 2 Muscle groups
+ ;;^UTILITY(U,$J,358.3,15401,0)
+ ;;=20600^^59^731^10^^^^1
+ ;;^UTILITY(U,$J,358.3,15401,1,0)
+ ;;=^358.31IA^3^2
+ ;;^UTILITY(U,$J,358.3,15401,1,2,0)
+ ;;=2^20600
+ ;;^UTILITY(U,$J,358.3,15401,1,3,0)
+ ;;=3^Arthrocentesis,Small Jt w/o US Guidance
+ ;;^UTILITY(U,$J,358.3,15402,0)
+ ;;=20605^^59^731^6^^^^1
+ ;;^UTILITY(U,$J,358.3,15402,1,0)
+ ;;=^358.31IA^3^2
+ ;;^UTILITY(U,$J,358.3,15402,1,2,0)
+ ;;=2^20605
+ ;;^UTILITY(U,$J,358.3,15402,1,3,0)
+ ;;=3^Arthrocentesis,Intermediate Jt w/o US Guidance
+ ;;^UTILITY(U,$J,358.3,15403,0)
+ ;;=20610^^59^731^8^^^^1
+ ;;^UTILITY(U,$J,358.3,15403,1,0)
+ ;;=^358.31IA^3^2
+ ;;^UTILITY(U,$J,358.3,15403,1,2,0)
+ ;;=2^20610

@@ -1,6 +1,8 @@
-RCCPCPS1 ;WISC/RFJ-build description for patient statement ;08 Aug 2001
- ;;4.5;Accounts Receivable;**34,48,104,170,176,192,265,362,360**;Mar 20, 1995;Build 10
+RCCPCPS1 ;WISC/RFJ - build description for patient statement ;08 Aug 2001
+ ;;4.5;Accounts Receivable;**34,48,104,170,176,192,265,362,360,392**;Mar 20, 1995;Build 10
  ;;Per VHA Directive 6402, this routine should not be modified.
+ ;
+ ; Reference to FILE #350 in ICR #4541
  Q
  ;
  ;
@@ -87,7 +89,7 @@ TRANDESC(RCTRANDA,RCWIDTH) ;  build the description array for a transaction
  I TRANTYPE'=1 Q
  ;
  ;  increase to c means test, ltc or rx-copay, get data from ib
- I RCCATEG=18!(RCCATEG=22)!(RCCATEG=23)!((RCCATEG>32)&(RCCATEG<40)) D  Q     ;PRCA*4.5*362 - added quit, no longer the last check
+ I RCCATEG=18!(RCCATEG=22)!(RCCATEG=23)!(RCCATEG=31)!((RCCATEG>32)&(RCCATEG<40)) D  Q     ;  PRCA*4.5*392
  .   S X="IBRFN1" X ^%ZOSF("TEST") I '$T Q
  .   K ^TMP("IBRFN1",$J)
  .   D STMT^IBRFN1(RCTRANDA)
@@ -134,10 +136,12 @@ BILLDESC(RCBILLDA,RCWIDTH) ;
  ;
  ;
 IBDATA ;  get data from IB for description
- N IBDATA,IBJ,IBIEN
+ N IBACNM,IBDATA,IBJ,IBIEN
  ;
  ;  show IB data
  S IBJ=0 F  S IBJ=$O(^TMP("IBRFN1",$J,IBJ)) Q:'IBJ  S IBDATA=^TMP("IBRFN1",$J,IBJ) D
+ .   S IBIEN=$O(^IB("B",$P(IBDATA,U),0)),IBACNM=$$GET1^DIQ(350,IBIEN_",",.03)  ; PRCA*4.5*392
+ .   I IBACNM["TRICARE RX" D:$P(IBDATA,U,2) SETDESC("FD:"_$$DATE($P(IBDATA,U,2))) Q  ; PRCA*4.5*392
  .   ;
  .   ;  if no drug or bill date returned from IB, then it is outpatient
  .   ;PRCA*4.5*362 - finish completing line 1 of the Transaction for Community Care copays
@@ -156,9 +160,6 @@ IBDATA ;  get data from IB for description
  .   ;Start PRCA*4.5*360 - Split CC PER DIEM and CC INPT into different displays
  .   ;
  .   I RCDESC(1)["COMMUNITY CARE INPT" D
- .   . S IBIEN=$O(^IB("B",$P(IBDATA,U),0))
- .   . ;S IBATIEN=$$GET1^DIQ(350,IBIEN_",",.01)
- .   . S IBACNM=$$GET1^DIQ(350,IBIEN_",",.03)
  .   . I IBACNM["PER DIEM" D SETDESC("PER DIEM")
  .   ;END PRCA*4.5*360
  .   ;

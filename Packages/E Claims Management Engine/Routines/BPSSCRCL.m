@@ -1,5 +1,5 @@
 BPSSCRCL ;BHAM ISC/SS - ECME SCREEN CLOSE CLAIMS ;05-APR-05
- ;;1.0;E CLAIMS MGMT ENGINE;**1,3,5,7,8,11,15,19,20**;JUN 2004;Build 27
+ ;;1.0;E CLAIMS MGMT ENGINE;**1,3,5,7,8,11,15,19,20,30,31**;JUN 2004;Build 16
  ;;Per VA Directive 6402, this routine should not be modified.
  ;
  ; Reference to FIND^PSOREJUT supported by ICR #4706
@@ -160,12 +160,14 @@ ASKQUEST(BPRELCOP,BPREAZ,BPCOMZ,BP90ANSZ,BPRCOPAZ) ;*/
  ;/**
  ;ask for the close reason
  ;return:
- ;   ptr to #356.8 ^ CLOSE REASON NAME ^ ECME FLAG ^ ECME PAPER FLAG
+ ;   ptr to #356.8 ^ CLOSE REASON NAME ^ ECME FLAG ^ ECME PAPER FLAG ^ CODE ^ INACTIVE
+ ;
+ ; Allow the user to select an entry that has ECME FLAG set to 1 and INACTIVE flag not set to 1
 REASON() ;
  N DIC,BPREASNM,BP3568,Y
  ; - Asks for REASON for Closing
  S DIC="^IBE(356.8,",DIC(0)="AEQMZ"
- S DIC("S")="I $P(^(0),U,2)=1"
+ S DIC("S")="I ($P(^(0),U,2)=1),($P(^(0),U,5)'=1)"
  D ^DIC
  I Y=-1 Q "^"
  Q +Y_U_Y(0)
@@ -209,7 +211,7 @@ CLOSEIT(BPSTRA,REASON,BPSCLCM,BPDROP,BPRELCOP) ;
  L +^BPSC(BPSCLA):0
  I $T S BPLCK=1
  E  W !,"       *** CLAIM ",$$GET1^DIQ(9002313.02,BPSCLA,.01)," IN USE ***" Q 0
- D CLOSE^BPSBUTL(BPSCLA,BPSTRA,REASON,$S($G(BPDROP)="D":1,1:0),BPRELCOP,BPSCLCM,.ERROR)
+ D CLOSE^BPSBUTL(BPSCLA,BPSTRA,REASON,$S($G(BPDROP)="D":1,1:0),BPRELCOP,BPSCLCM,.ERROR,1)
  I $D(ERROR) W "NOT OK" D DSPERR(ERROR) D  Q 0
  . I BPLCK=1 L -^BPSC(BPSCLA)
  S DIE="^BPSC(",DA=BPSCLA,DR="901///1;902///"_$$NOW^XLFDT()_";903////"_DUZ_";904///"_REASON_";905////"_BPDROP D ^DIE

@@ -1,5 +1,5 @@
-RAMAGU12 ;HCIOFO/SG - ORDERS/EXAMS API (REPORT UTILS) ; 2/6/09 11:48am
- ;;5.0;Radiology/Nuclear Medicine;**90**;Mar 16, 1998;Build 20
+RAMAGU12 ;HCIOFO/SG - ORDERS/EXAMS API (REPORT UTILS) ; Sep 10, 2020@09:29:33
+ ;;5.0;Radiology/Nuclear Medicine;**90,174**;Mar 16, 1998;Build 2
  ;
  Q
  ;
@@ -162,6 +162,8 @@ UPDRPTST(RPTIEN,STATUS,PROBSTAT) ;
  . ;--- Update the record
  . D FILE^DIE(,"RAFDA","RAMSG")
  . S:$G(DIERR) RARC=$$DBS^RAERR("RAMSG",-9,74,IENS)
+ . ;p174 KLM: add link to Women's Health
+ . I $P(^RARPT(RPTIEN,0),U,5)="EF"!($P(^RARPT(RPTIEN,0),U,5)="V") D CREATE^WVRALINK(RADFN,RADTI,RACNI)
  ;
  ;--- Error handling and cleanup
  D UNLOCKFM^RALOCK(.RALOCK)

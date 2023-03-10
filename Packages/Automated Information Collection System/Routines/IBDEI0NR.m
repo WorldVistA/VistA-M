@@ -1,124 +1,126 @@
-IBDEI0NR ; ; 04-FEB-2020
- ;;3.0;IB ENCOUNTER FORM IMP/EXP;;FEB 04, 2020
+IBDEI0NR ; ; 01-FEB-2022
+ ;;3.0;IB ENCOUNTER FORM IMP/EXP;;FEB 01, 2022
  Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,999) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
- ;;^UTILITY(U,$J,358.3,10571,2)
- ;;=^5005737
- ;;^UTILITY(U,$J,358.3,10572,0)
- ;;=H40.043^^74^684^15
- ;;^UTILITY(U,$J,358.3,10572,1,0)
+ ;;^UTILITY(U,$J,358.3,10692,1,4,0)
+ ;;=4^F64.8
+ ;;^UTILITY(U,$J,358.3,10692,2)
+ ;;=^5003649
+ ;;^UTILITY(U,$J,358.3,10693,0)
+ ;;=F64.9^^42^477^3
+ ;;^UTILITY(U,$J,358.3,10693,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,10572,1,3,0)
- ;;=3^Steroid Responsive Glauc,Bilateral
- ;;^UTILITY(U,$J,358.3,10572,1,4,0)
- ;;=4^H40.043
- ;;^UTILITY(U,$J,358.3,10572,2)
- ;;=^5005738
- ;;^UTILITY(U,$J,358.3,10573,0)
- ;;=H40.31X1^^74^684^16
- ;;^UTILITY(U,$J,358.3,10573,1,0)
+ ;;^UTILITY(U,$J,358.3,10693,1,3,0)
+ ;;=3^Gender Dysphoria,Unspec
+ ;;^UTILITY(U,$J,358.3,10693,1,4,0)
+ ;;=4^F64.9
+ ;;^UTILITY(U,$J,358.3,10693,2)
+ ;;=^5003650
+ ;;^UTILITY(U,$J,358.3,10694,0)
+ ;;=G21.19^^42^478^10
+ ;;^UTILITY(U,$J,358.3,10694,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,10573,1,3,0)
- ;;=3^Glaucoma d/t Trauma,Mild,Right Eye
- ;;^UTILITY(U,$J,358.3,10573,1,4,0)
- ;;=4^H40.31X1
- ;;^UTILITY(U,$J,358.3,10573,2)
- ;;=^5005853
- ;;^UTILITY(U,$J,358.3,10574,0)
- ;;=H40.32X1^^74^684^17
- ;;^UTILITY(U,$J,358.3,10574,1,0)
+ ;;^UTILITY(U,$J,358.3,10694,1,3,0)
+ ;;=3^Medication-Induced Parkinsonism,Other
+ ;;^UTILITY(U,$J,358.3,10694,1,4,0)
+ ;;=4^G21.19
+ ;;^UTILITY(U,$J,358.3,10694,2)
+ ;;=^5003773
+ ;;^UTILITY(U,$J,358.3,10695,0)
+ ;;=G21.11^^42^478^13
+ ;;^UTILITY(U,$J,358.3,10695,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,10574,1,3,0)
- ;;=3^Glaucoma d/t Trauma,Mild,Left Eye
- ;;^UTILITY(U,$J,358.3,10574,1,4,0)
- ;;=4^H40.32X1
- ;;^UTILITY(U,$J,358.3,10574,2)
- ;;=^5005857
- ;;^UTILITY(U,$J,358.3,10575,0)
- ;;=H40.33X1^^74^684^18
- ;;^UTILITY(U,$J,358.3,10575,1,0)
+ ;;^UTILITY(U,$J,358.3,10695,1,3,0)
+ ;;=3^Neuroleptic-Induced Parkinsonism
+ ;;^UTILITY(U,$J,358.3,10695,1,4,0)
+ ;;=4^G21.11
+ ;;^UTILITY(U,$J,358.3,10695,2)
+ ;;=^5003772
+ ;;^UTILITY(U,$J,358.3,10696,0)
+ ;;=G24.01^^42^478^15
+ ;;^UTILITY(U,$J,358.3,10696,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,10575,1,3,0)
- ;;=3^Glaucoma d/t Trauma,Mild,Bilateral
- ;;^UTILITY(U,$J,358.3,10575,1,4,0)
- ;;=4^H40.33X1
- ;;^UTILITY(U,$J,358.3,10575,2)
- ;;=^5005861
- ;;^UTILITY(U,$J,358.3,10576,0)
- ;;=H40.31X3^^74^684^19
- ;;^UTILITY(U,$J,358.3,10576,1,0)
+ ;;^UTILITY(U,$J,358.3,10696,1,3,0)
+ ;;=3^Tardive Dyskinesia
+ ;;^UTILITY(U,$J,358.3,10696,1,4,0)
+ ;;=4^G24.01
+ ;;^UTILITY(U,$J,358.3,10696,2)
+ ;;=^5003784
+ ;;^UTILITY(U,$J,358.3,10697,0)
+ ;;=G24.09^^42^478^16
+ ;;^UTILITY(U,$J,358.3,10697,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,10576,1,3,0)
- ;;=3^Glaucoma d/t Trauma,Severe,Right Eye
- ;;^UTILITY(U,$J,358.3,10576,1,4,0)
- ;;=4^H40.31X3
- ;;^UTILITY(U,$J,358.3,10576,2)
- ;;=^5133503
- ;;^UTILITY(U,$J,358.3,10577,0)
- ;;=H40.32X3^^74^684^20
- ;;^UTILITY(U,$J,358.3,10577,1,0)
+ ;;^UTILITY(U,$J,358.3,10697,1,3,0)
+ ;;=3^Tardive Dystonia
+ ;;^UTILITY(U,$J,358.3,10697,1,4,0)
+ ;;=4^G24.09
+ ;;^UTILITY(U,$J,358.3,10697,2)
+ ;;=^5003786
+ ;;^UTILITY(U,$J,358.3,10698,0)
+ ;;=G25.1^^42^478^11
+ ;;^UTILITY(U,$J,358.3,10698,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,10577,1,3,0)
- ;;=3^Glaucoma d/t Trauma,Severe,Left Eye
- ;;^UTILITY(U,$J,358.3,10577,1,4,0)
- ;;=4^H40.32X3
- ;;^UTILITY(U,$J,358.3,10577,2)
- ;;=^5133504
- ;;^UTILITY(U,$J,358.3,10578,0)
- ;;=H40.33X3^^74^684^21
- ;;^UTILITY(U,$J,358.3,10578,1,0)
+ ;;^UTILITY(U,$J,358.3,10698,1,3,0)
+ ;;=3^Medication-Induced Postural Tremor
+ ;;^UTILITY(U,$J,358.3,10698,1,4,0)
+ ;;=4^G25.1
+ ;;^UTILITY(U,$J,358.3,10698,2)
+ ;;=^5003792
+ ;;^UTILITY(U,$J,358.3,10699,0)
+ ;;=G25.71^^42^478^14
+ ;;^UTILITY(U,$J,358.3,10699,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,10578,1,3,0)
- ;;=3^Glaucoma d/t Trauma,Severe,Bilateral
- ;;^UTILITY(U,$J,358.3,10578,1,4,0)
- ;;=4^H40.33X3
- ;;^UTILITY(U,$J,358.3,10578,2)
- ;;=^5005863
- ;;^UTILITY(U,$J,358.3,10579,0)
- ;;=H40.41X1^^74^684^22
- ;;^UTILITY(U,$J,358.3,10579,1,0)
+ ;;^UTILITY(U,$J,358.3,10699,1,3,0)
+ ;;=3^Tardive Akathisia
+ ;;^UTILITY(U,$J,358.3,10699,1,4,0)
+ ;;=4^G25.71
+ ;;^UTILITY(U,$J,358.3,10699,2)
+ ;;=^5003799
+ ;;^UTILITY(U,$J,358.3,10700,0)
+ ;;=G25.79^^42^478^9
+ ;;^UTILITY(U,$J,358.3,10700,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,10579,1,3,0)
- ;;=3^Glaucoma d/t Uveitis,Mild,Right Eye
- ;;^UTILITY(U,$J,358.3,10579,1,4,0)
- ;;=4^H40.41X1
- ;;^UTILITY(U,$J,358.3,10579,2)
- ;;=^5005871
- ;;^UTILITY(U,$J,358.3,10580,0)
- ;;=H40.42X1^^74^684^23
- ;;^UTILITY(U,$J,358.3,10580,1,0)
+ ;;^UTILITY(U,$J,358.3,10700,1,3,0)
+ ;;=3^Medication-Induced Movement Disorder,Other
+ ;;^UTILITY(U,$J,358.3,10700,1,4,0)
+ ;;=4^G25.79
+ ;;^UTILITY(U,$J,358.3,10700,2)
+ ;;=^5003800
+ ;;^UTILITY(U,$J,358.3,10701,0)
+ ;;=T43.205A^^42^478^4
+ ;;^UTILITY(U,$J,358.3,10701,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,10580,1,3,0)
- ;;=3^Glaucoma d/t Uveitis,Mild,Left Eye
- ;;^UTILITY(U,$J,358.3,10580,1,4,0)
- ;;=4^H40.42X1
- ;;^UTILITY(U,$J,358.3,10580,2)
- ;;=^5005875
- ;;^UTILITY(U,$J,358.3,10581,0)
- ;;=H40.43X1^^74^684^24
- ;;^UTILITY(U,$J,358.3,10581,1,0)
+ ;;^UTILITY(U,$J,358.3,10701,1,3,0)
+ ;;=3^Antidepressant Discontinuation Syndrome,Init Encntr
+ ;;^UTILITY(U,$J,358.3,10701,1,4,0)
+ ;;=4^T43.205A
+ ;;^UTILITY(U,$J,358.3,10701,2)
+ ;;=^5050540
+ ;;^UTILITY(U,$J,358.3,10702,0)
+ ;;=T43.205D^^42^478^5
+ ;;^UTILITY(U,$J,358.3,10702,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,10581,1,3,0)
- ;;=3^Glaucoma d/t Uveitis,Mild,Bilateral
- ;;^UTILITY(U,$J,358.3,10581,1,4,0)
- ;;=4^H40.43X1
- ;;^UTILITY(U,$J,358.3,10581,2)
- ;;=^5005879
- ;;^UTILITY(U,$J,358.3,10582,0)
- ;;=H40.41X3^^74^684^25
- ;;^UTILITY(U,$J,358.3,10582,1,0)
+ ;;^UTILITY(U,$J,358.3,10702,1,3,0)
+ ;;=3^Antidepressant Discontinuation Syndrome,Subseq Encntr
+ ;;^UTILITY(U,$J,358.3,10702,1,4,0)
+ ;;=4^T43.205D
+ ;;^UTILITY(U,$J,358.3,10702,2)
+ ;;=^5050541
+ ;;^UTILITY(U,$J,358.3,10703,0)
+ ;;=T43.205S^^42^478^6
+ ;;^UTILITY(U,$J,358.3,10703,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,10582,1,3,0)
- ;;=3^Glaucoma d/t Uveitis,Severe,Right Eye
- ;;^UTILITY(U,$J,358.3,10582,1,4,0)
- ;;=4^H40.41X3
- ;;^UTILITY(U,$J,358.3,10582,2)
- ;;=^5133505
- ;;^UTILITY(U,$J,358.3,10583,0)
- ;;=H40.42X3^^74^684^26
- ;;^UTILITY(U,$J,358.3,10583,1,0)
+ ;;^UTILITY(U,$J,358.3,10703,1,3,0)
+ ;;=3^Antidepressant Discontinuation Syndrome,Sequela
+ ;;^UTILITY(U,$J,358.3,10703,1,4,0)
+ ;;=4^T43.205S
+ ;;^UTILITY(U,$J,358.3,10703,2)
+ ;;=^5050542
+ ;;^UTILITY(U,$J,358.3,10704,0)
+ ;;=G25.71^^42^478^7
+ ;;^UTILITY(U,$J,358.3,10704,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,10583,1,3,0)
- ;;=3^Glaucoma d/t Uveitis,Severe,Left Eye
- ;;^UTILITY(U,$J,358.3,10583,1,4,0)
- ;;=4^H40.42X3
+ ;;^UTILITY(U,$J,358.3,10704,1,3,0)
+ ;;=3^Medication-Induced Acute Akathisia
+ ;;^UTILITY(U,$J,358.3,10704,1,4,0)
+ ;;=4^G25.71

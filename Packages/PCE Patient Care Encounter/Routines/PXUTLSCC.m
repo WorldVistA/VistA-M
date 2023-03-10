@@ -1,12 +1,28 @@
-PXUTLSCC ;ISL/dee,ISA/KWP - Validates and corrects the Service Connected Conditions ;6/06/05
- ;;1.0;PCE PATIENT CARE ENCOUNTER;**74,107,111,130,168**;Aug 12, 1996;Build 14
+PXUTLSCC ;ISL/dee,ISA/KWP - Validates and corrects the Service Connected Conditions ;11/21/2019
+ ;;1.0;PCE PATIENT CARE ENCOUNTER;**74,107,111,130,168,211**;Aug 12, 1996;Build 454
+ Q
+ ;
+CLEANMSG(ERRMSG) ;Cleanup the error message by removing fields with no error.
+ N CORR,CORRFLD,FIELD,IND,JND,TEMP,TEXT
+ S (CORR,IND,JND)=0
+ F  S IND=$O(ERRMSG("DIERR",1,"TEXT",IND)) Q:IND=""  D
+ . S TEMP=ERRMSG("DIERR",1,"TEXT",IND)
+ . I TEMP="" Q
+ . I TEMP["Corrected to" S CORR=1,JND=JND+1,TEXT(JND)=TEMP
+ . I TEMP["No error" Q
+ . I CORR=0 S JND=JND+1,TEXT(JND)=TEMP,CORRFLD($P(TEMP,".",1))=""
+ . I CORR=1 D
+ .. S FIELD=$P(TEMP,".",1)
+ .. I $D(CORRFLD(FIELD)) S JND=JND+1,TEXT(JND)=TEMP
+ K ERRMSG("DIERR")
+ M ERRMSG("DIERR",1,"TEXT")=TEXT
  Q
  ;
 SCC(PXUPAT,PXUDT,PXUHLOC,PXUTLVST,PXUIN,PXUOUT,PXUERR) ;
  ;+Input Parameters:
  ;+  PXUPAT   IEN of patient
  ;+  PXUDT    date and time of the encounter
- ;+  PXUHLOC  Hospital Location of the enocunter
+ ;+  PXUHLOC  Hospital Location of the encounter
  ;+  PXUTLVST (optional) pointer to the visit that is being used
  ;+  PXUIN    service connected^agent orange^ionizing radiation
  ;+             ^enviromental contaminants^military sexual trauma
@@ -23,7 +39,7 @@ SCC(PXUPAT,PXUDT,PXUHLOC,PXUTLVST,PXUIN,PXUOUT,PXUERR) ;
  ;+     -2   ::= value must be null
  ;+     -3   ::= must be null because SC is yes
  ;
- N PXUITEM,PXUPSCC,PXUSC,PXUAO,PXUIR,PXUEC,PXUMST,PXUHNC,PXUSHAD
+ N PXUCV,PXUITEM,PXUPSCC,PXUSC,PXUAO,PXUIR,PXUEC,PXUMST,PXUHNC,PXUSHAD
  D SCCOND(PXUPAT,PXUDT,PXUHLOC,$G(PXUTLVST),.PXUPSCC) ;Set up array of the patients SCC
  S PXUOUT=PXUIN
  S PXUERR="0^0^0^0^0^0^0^0"
@@ -97,8 +113,8 @@ SCCOND(DFN,APPDT,HLOC,VISIT,PXUDATA) ;Set up array of the patients
  ;  VISIT    (optional) The visit that is being used
  ;
  ;Output Parameters:
- ;  PXUDATA  this is an array subscriped by "SC","AO","IR","EC","MST","HNC"
- ;           that contains to piece each
+ ;  PXUDATA  this is an array subscripted by "SC","AO","IR","EC","MST",
+ ;           "HNC" that contains to piece each
  ;    first: 1 if the condition can be answered
  ;           0 if it should be null
  ;   second: the answer that Scheduling has if it has one
@@ -117,7 +133,7 @@ SCCOND(DFN,APPDT,HLOC,VISIT,PXUDATA) ;Set up array of the patients
  ..S OUTENC=$P(XX,U,20)
  .Q:OUTENC
  .;
- .; Find an Outpatient encouter matching DFN APPDT,HLOC if any.
+ .; Find an Outpatient encounter matching DFN APPDT,HLOC if any.
  .S OUTENC=$$EXAE^SDOE(DFN,APPDT,APPDT) D VEROUT
  ;
  ;Do Outpatient Encounter checks

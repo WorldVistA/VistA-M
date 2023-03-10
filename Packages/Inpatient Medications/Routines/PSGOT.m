@@ -1,5 +1,5 @@
-PSGOT ;BIR/CML3-TRANSFERS DATA FROM 53.1 TO 55 ;Jul 26, 2017@18:04:02
- ;;5.0;INPATIENT MEDICATIONS;**13,68,90,110,173,134,161,254,267,257,315,327**;16 DEC 97;Build 114
+PSGOT ;BIR/CML3 - TRANSFERS DATA FROM 53.1 TO 55 ;Jun 17, 2020@15:27:28
+ ;;5.0;INPATIENT MEDICATIONS;**13,68,90,110,173,134,161,254,267,257,315,327,399**;16 DEC 97;Build 64
  ;
  ; Reference to ^PS(55 supported by DBIA 2191.
  ; Reference to ^PSUHL supported by DBIA 4803.
@@ -15,6 +15,7 @@ START ; get internal record number, lock record, and write
  S X=^PS(55,PSGP,0) I $P(X,"^",7)="" S $P(X,"^",7)=$P($P(ND0,"^",16),"."),$P(X,"^",8)="A",^(0)=X D LOGDFN^PSUHL(PSGP)
  I $P($G(^PS(55,PSGP,5,DA,2)),"^",6)="" S $P(^PS(55,PSGP,5,DA,2),"^",6)=$S($G(PSGS0XT)'="":PSGS0XT,$P($G(ZZND),"^",3)'="":$P(ZZND,"^",3),1:""),$P(^PS(53.1,ODA,2),"^",6)=$P(^PS(55,PSGP,5,DA,2),"^",6)
  F X=6,7,13 I $D(^PS(53.1,ODA,X)) S ^PS(55,PSGP,5,DA,X)=^(X)
+ S ^PS(55,PSGP,5,DA,18)=$G(^PS(53.1,ODA,18)) ;*399-IND
  I $D(^PS(53.1,ODA,"DSS")) S ^PS(55,PSGP,5,DA,8)=^("DSS") D CIMOU^PSJIMO1(PSGP,DA,"",ODA)
  I $O(^PS(53.1,ODA,1,0)) S (C,X)=0 F  S X=$O(^PS(53.1,ODA,1,X)) Q:'X  S:$D(^(X,0)) C=C+1,^PS(55,PSGP,5,DA,1,C,0)=^(0),^PS(55,PSGP,5,DA,1,"B",+$P($G(^(0)),U),C)=""
  I $O(^PS(53.1,ODA,1,0)) S ^PS(55,PSGP,5,DA,1,0)="^55.07P^"_C_"^"_C

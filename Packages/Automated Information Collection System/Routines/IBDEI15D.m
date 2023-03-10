@@ -1,126 +1,130 @@
-IBDEI15D ; ; 04-FEB-2020
- ;;3.0;IB ENCOUNTER FORM IMP/EXP;;FEB 04, 2020
+IBDEI15D ; ; 01-FEB-2022
+ ;;3.0;IB ENCOUNTER FORM IMP/EXP;;FEB 01, 2022
  Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,999) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
- ;;^UTILITY(U,$J,358.3,18445,1,0)
+ ;;^UTILITY(U,$J,358.3,18624,1,4,0)
+ ;;=4^I35.2
+ ;;^UTILITY(U,$J,358.3,18624,2)
+ ;;=^5007176
+ ;;^UTILITY(U,$J,358.3,18625,0)
+ ;;=I35.9^^64^833^74
+ ;;^UTILITY(U,$J,358.3,18625,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,18445,1,3,0)
- ;;=3^Bipolar D/O,Current Episode Mixed,Severe w/o Psychotic Feat
- ;;^UTILITY(U,$J,358.3,18445,1,4,0)
- ;;=4^F31.63
- ;;^UTILITY(U,$J,358.3,18445,2)
- ;;=^5003508
- ;;^UTILITY(U,$J,358.3,18446,0)
- ;;=F31.64^^91^937^8
- ;;^UTILITY(U,$J,358.3,18446,1,0)
+ ;;^UTILITY(U,$J,358.3,18625,1,3,0)
+ ;;=3^Nonrheumatic Aortic Valve Disorder,Unspec
+ ;;^UTILITY(U,$J,358.3,18625,1,4,0)
+ ;;=4^I35.9
+ ;;^UTILITY(U,$J,358.3,18625,2)
+ ;;=^5007178
+ ;;^UTILITY(U,$J,358.3,18626,0)
+ ;;=I21.4^^64^833^73
+ ;;^UTILITY(U,$J,358.3,18626,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,18446,1,3,0)
- ;;=3^Bipolar D/O,Current Episode Mixed,Severe w/ Psychotic Feat
- ;;^UTILITY(U,$J,358.3,18446,1,4,0)
- ;;=4^F31.64
- ;;^UTILITY(U,$J,358.3,18446,2)
- ;;=^5003509
- ;;^UTILITY(U,$J,358.3,18447,0)
- ;;=A81.00^^91^938^8
- ;;^UTILITY(U,$J,358.3,18447,1,0)
+ ;;^UTILITY(U,$J,358.3,18626,1,3,0)
+ ;;=3^NSTEMI Myocardial Infarction
+ ;;^UTILITY(U,$J,358.3,18626,1,4,0)
+ ;;=4^I21.4
+ ;;^UTILITY(U,$J,358.3,18626,2)
+ ;;=^5007088
+ ;;^UTILITY(U,$J,358.3,18627,0)
+ ;;=I42.8^^64^833^52
+ ;;^UTILITY(U,$J,358.3,18627,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,18447,1,3,0)
- ;;=3^Creutzfeldt-Jakob Disease,Unspec
- ;;^UTILITY(U,$J,358.3,18447,1,4,0)
- ;;=4^A81.00
- ;;^UTILITY(U,$J,358.3,18447,2)
- ;;=^5000409
- ;;^UTILITY(U,$J,358.3,18448,0)
- ;;=A81.09^^91^938^7
- ;;^UTILITY(U,$J,358.3,18448,1,0)
+ ;;^UTILITY(U,$J,358.3,18627,1,3,0)
+ ;;=3^Cardiomypathies NEC
+ ;;^UTILITY(U,$J,358.3,18627,1,4,0)
+ ;;=4^I42.8
+ ;;^UTILITY(U,$J,358.3,18627,2)
+ ;;=^5007199
+ ;;^UTILITY(U,$J,358.3,18628,0)
+ ;;=I20.8^^64^833^9
+ ;;^UTILITY(U,$J,358.3,18628,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,18448,1,3,0)
- ;;=3^Creutzfeldt-Jakob Disease,Other
- ;;^UTILITY(U,$J,358.3,18448,1,4,0)
- ;;=4^A81.09
- ;;^UTILITY(U,$J,358.3,18448,2)
- ;;=^5000410
- ;;^UTILITY(U,$J,358.3,18449,0)
- ;;=A81.2^^91^938^29
- ;;^UTILITY(U,$J,358.3,18449,1,0)
+ ;;^UTILITY(U,$J,358.3,18628,1,3,0)
+ ;;=3^Angina Pectoris NEC
+ ;;^UTILITY(U,$J,358.3,18628,1,4,0)
+ ;;=4^I20.8
+ ;;^UTILITY(U,$J,358.3,18628,2)
+ ;;=^5007078
+ ;;^UTILITY(U,$J,358.3,18629,0)
+ ;;=I42.2^^64^833^68
+ ;;^UTILITY(U,$J,358.3,18629,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,18449,1,3,0)
- ;;=3^Progressive Multifocal Leukoencephalopathy
- ;;^UTILITY(U,$J,358.3,18449,1,4,0)
- ;;=4^A81.2
- ;;^UTILITY(U,$J,358.3,18449,2)
- ;;=^5000411
- ;;^UTILITY(U,$J,358.3,18450,0)
- ;;=F01.51^^91^938^32
- ;;^UTILITY(U,$J,358.3,18450,1,0)
+ ;;^UTILITY(U,$J,358.3,18629,1,3,0)
+ ;;=3^Hypertrophic Cardiomyopathy NEC
+ ;;^UTILITY(U,$J,358.3,18629,1,4,0)
+ ;;=4^I42.2
+ ;;^UTILITY(U,$J,358.3,18629,2)
+ ;;=^340521
+ ;;^UTILITY(U,$J,358.3,18630,0)
+ ;;=I35.8^^64^833^75
+ ;;^UTILITY(U,$J,358.3,18630,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,18450,1,3,0)
- ;;=3^Vascular Dementia w/ Behav Disturb
- ;;^UTILITY(U,$J,358.3,18450,1,4,0)
- ;;=4^F01.51
- ;;^UTILITY(U,$J,358.3,18450,2)
- ;;=^5003047
- ;;^UTILITY(U,$J,358.3,18451,0)
- ;;=G30.9^^91^938^4
- ;;^UTILITY(U,$J,358.3,18451,1,0)
+ ;;^UTILITY(U,$J,358.3,18630,1,3,0)
+ ;;=3^Nonrheumatic Aortic Valve Disorders NEC
+ ;;^UTILITY(U,$J,358.3,18630,1,4,0)
+ ;;=4^I35.8
+ ;;^UTILITY(U,$J,358.3,18630,2)
+ ;;=^5007177
+ ;;^UTILITY(U,$J,358.3,18631,0)
+ ;;=I42.5^^64^833^81
+ ;;^UTILITY(U,$J,358.3,18631,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,18451,1,3,0)
- ;;=3^Alzheimer's Disease,Unspec
- ;;^UTILITY(U,$J,358.3,18451,1,4,0)
- ;;=4^G30.9
- ;;^UTILITY(U,$J,358.3,18451,2)
- ;;=^5003808
- ;;^UTILITY(U,$J,358.3,18452,0)
- ;;=G31.01^^91^938^27
- ;;^UTILITY(U,$J,358.3,18452,1,0)
+ ;;^UTILITY(U,$J,358.3,18631,1,3,0)
+ ;;=3^Restrictive Cardiomyopathy NEC
+ ;;^UTILITY(U,$J,358.3,18631,1,4,0)
+ ;;=4^I42.5
+ ;;^UTILITY(U,$J,358.3,18631,2)
+ ;;=^5007196
+ ;;^UTILITY(U,$J,358.3,18632,0)
+ ;;=I05.8^^64^833^85
+ ;;^UTILITY(U,$J,358.3,18632,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,18452,1,3,0)
- ;;=3^Pick's Disease
- ;;^UTILITY(U,$J,358.3,18452,1,4,0)
- ;;=4^G31.01
- ;;^UTILITY(U,$J,358.3,18452,2)
- ;;=^329915
- ;;^UTILITY(U,$J,358.3,18453,0)
- ;;=G94.^^91^938^6
- ;;^UTILITY(U,$J,358.3,18453,1,0)
+ ;;^UTILITY(U,$J,358.3,18632,1,3,0)
+ ;;=3^Rheumatic Mitral Valve Diseases NEC
+ ;;^UTILITY(U,$J,358.3,18632,1,4,0)
+ ;;=4^I05.8
+ ;;^UTILITY(U,$J,358.3,18632,2)
+ ;;=^5007043
+ ;;^UTILITY(U,$J,358.3,18633,0)
+ ;;=I08.8^^64^833^86
+ ;;^UTILITY(U,$J,358.3,18633,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,18453,1,3,0)
- ;;=3^Brain D/O in Diseases Classified Elsewhere NEC
- ;;^UTILITY(U,$J,358.3,18453,1,4,0)
- ;;=4^G94.
- ;;^UTILITY(U,$J,358.3,18453,2)
- ;;=^5004187
- ;;^UTILITY(U,$J,358.3,18454,0)
- ;;=G31.83^^91^938^17
- ;;^UTILITY(U,$J,358.3,18454,1,0)
+ ;;^UTILITY(U,$J,358.3,18633,1,3,0)
+ ;;=3^Rheumatic Multiple Valve Diseases NEC
+ ;;^UTILITY(U,$J,358.3,18633,1,4,0)
+ ;;=4^I08.8
+ ;;^UTILITY(U,$J,358.3,18633,2)
+ ;;=^5007056
+ ;;^UTILITY(U,$J,358.3,18634,0)
+ ;;=I47.9^^64^833^79
+ ;;^UTILITY(U,$J,358.3,18634,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,18454,1,3,0)
- ;;=3^Dementia w/ Lewy Bodies
- ;;^UTILITY(U,$J,358.3,18454,1,4,0)
- ;;=4^G31.83
- ;;^UTILITY(U,$J,358.3,18454,2)
- ;;=^329888
- ;;^UTILITY(U,$J,358.3,18455,0)
- ;;=G31.89^^91^938^11
- ;;^UTILITY(U,$J,358.3,18455,1,0)
+ ;;^UTILITY(U,$J,358.3,18634,1,3,0)
+ ;;=3^Paroxysmal Tachycardia,Unspec
+ ;;^UTILITY(U,$J,358.3,18634,1,4,0)
+ ;;=4^I47.9
+ ;;^UTILITY(U,$J,358.3,18634,2)
+ ;;=^5007224
+ ;;^UTILITY(U,$J,358.3,18635,0)
+ ;;=I05.1^^64^833^82
+ ;;^UTILITY(U,$J,358.3,18635,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,18455,1,3,0)
- ;;=3^Degenerative Diseases of Nervous System NEC
- ;;^UTILITY(U,$J,358.3,18455,1,4,0)
- ;;=4^G31.89
- ;;^UTILITY(U,$J,358.3,18455,2)
- ;;=^5003814
- ;;^UTILITY(U,$J,358.3,18456,0)
- ;;=G31.9^^91^938^12
- ;;^UTILITY(U,$J,358.3,18456,1,0)
+ ;;^UTILITY(U,$J,358.3,18635,1,3,0)
+ ;;=3^Rheumatic Mitral Insufficiency
+ ;;^UTILITY(U,$J,358.3,18635,1,4,0)
+ ;;=4^I05.1
+ ;;^UTILITY(U,$J,358.3,18635,2)
+ ;;=^269568
+ ;;^UTILITY(U,$J,358.3,18636,0)
+ ;;=I05.0^^64^833^83
+ ;;^UTILITY(U,$J,358.3,18636,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,18456,1,3,0)
- ;;=3^Degenerative Diseases of Nervous System,Unspec
- ;;^UTILITY(U,$J,358.3,18456,1,4,0)
- ;;=4^G31.9
- ;;^UTILITY(U,$J,358.3,18456,2)
- ;;=^5003815
- ;;^UTILITY(U,$J,358.3,18457,0)
- ;;=G23.8^^91^938^10
- ;;^UTILITY(U,$J,358.3,18457,1,0)
- ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,18636,1,3,0)
+ ;;=3^Rheumatic Mitral Stenosis
+ ;;^UTILITY(U,$J,358.3,18636,1,4,0)
+ ;;=4^I05.0
+ ;;^UTILITY(U,$J,358.3,18636,2)
+ ;;=^5007041
+ ;;^UTILITY(U,$J,358.3,18637,0)
+ ;;=I05.9^^64^833^84

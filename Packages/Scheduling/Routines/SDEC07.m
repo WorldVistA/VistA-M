@@ -1,17 +1,15 @@
-SDEC07 ;ALB/SAT,PC - VISTA SCHEDULING RPCS ;Feb 12, 2020@15:22
- ;;5.3;Scheduling;**627,642,651,658,665,669,671,672,701,686,740,694**;Aug 13, 1993;Build 61
- ;;Per VHA Directive 2004-038, this routine should not be modified
+SDEC07 ;ALB/SAT,PC,KML,MGD - ADD NEW APPOINTMENT ;June 17, 2022
+ ;;5.3;Scheduling;**627,642,651,658,665,669,671,672,701,686,740,694,785,788,790,799,801,805,816,819**;Aug 13, 1993;Build 5
+ ;;Per VHA Directive 6402, this routine should not be modified
  ;
- ;Reference is made to ICR #4837
+ ; Reference to ^GMR(123 is supported by IA #4837
  Q
- ;
-APPADD(SDECY,SDECSTART,SDECEND,DFN,SDECRES,SDECLEN,SDECNOTE,SDECATID,SDECCR,SDMRTC,SDDDT,SDREQBY,SDLAB,PROVIEN,SDID,SDAPTYP,SDSVCP,SDSVCPR,SDCL,SDEKG,SDXRAY,APPTYPE,EESTAT,OVB,SDPARENT,SDEL) ;ADD NEW APPOINTMENT
- ;
+APPADD(SDECY,SDECSTART,SDECEND,DFN,SDECRES,SDECLEN,SDECNOTE,SDECATID,SDECCR,SDMRTC,SDDDT,SDREQBY,SDLAB,PROVIEN,SDID,SDAPTYP,SDSVCP,SDSVCPR,SDCL,SDEKG,SDXRAY,APPTYPE,EESTAT,OVB,SDPARENT,SDEL,EAS) ;
  N SDAPPTYP
  N SDECERR,SDECIEN,SDECDEP,SDECI,SDECJ,SDECAPPTI,SDECDJ,SDECRESD,SDECRNOD,SDECC,SDECERR,SDECWKIN
  N SDECNOEV,SDECDEV,SDECDERR,SDECTMP,SAVESTRT,SDAREQ0
  N %DT,X,Y,DGQUIET,OBM,RET
- N SDOE  ;alb/sat 672
+ N SDOE
  S SDECNOEV=1 ;Don't execute SDEC ADD APPOINTMENT protocol
  K ^TMP("SDEC07",$J)
  S SDECERR=0
@@ -20,49 +18,43 @@ APPADD(SDECY,SDECSTART,SDECEND,DFN,SDECRES,SDECLEN,SDECNOTE,SDECATID,SDECCR,SDMR
  S ^TMP("SDEC07",$J,SDECI)="I00020APPOINTMENTID^T00020ERRORID"_$C(30)
  S SDECI=SDECI+1
  ;Check input data for errors
- S SDAPTYP=$G(SDAPTYP) I SDAPTYP="" D ERR(SDECI+1,"SDEC07 Error: Invalid Appointment Type",,0) Q             ;BI/SD*5.3*740
+ S SDAPTYP=$G(SDAPTYP) I SDAPTYP="" D ERR(SDECI+1,"SDEC07 Error: Invalid Appointment Type",,0) Q
  S SDAREQ0=$G(^SDEC(409.85,+$P(SDAPTYP,"|",2),0))
  ;  Only check if RTC is closed if request is APPT. 686 12/17/18 WTC
- I $P(SDAPTYP,"|",1)="A" S SDAREQ0=$G(^SDEC(409.85,+$P(SDAPTYP,"|",2),0)) I $P(SDAREQ0,U,5)="RTC",$P(SDAREQ0,U,17)="C" D ERR(SDECI+1,"SDEC07 Error: This RTC request has been closed.",,0) Q  ;BI/SD*5.3*740
+ I $P(SDAPTYP,"|",1)="A" S SDAREQ0=$G(^SDEC(409.85,+$P(SDAPTYP,"|",2),0)) I $P(SDAREQ0,U,5)="RTC",$P(SDAREQ0,U,17)="C" D ERR(SDECI+1,"SDEC07 Error: This RTC request has been closed.",,0) Q
  S SAVESTRT=SDECSTART         ;MGH save date/time for consult request
- ;  Change date/time conversion so midnight is handled properly.  wtc 694 4/24/18
- ;
- ;S:SDECSTART["@0000" SDECSTART=$P(SDECSTART,"@")
- ;S:SDECEND["@0000" SDECEND=$P(SDECEND,"@")
- ;S %DT="RXT",X=SDECSTART D ^%DT S SDECSTART=Y
- S SDECSTART=$$NETTOFM^SDECDATE(SDECSTART,"Y") ;
- I SDECSTART=-1 D ERR(SDECI+1,"SDEC07 Error: Invalid Start Time",,0) Q                                       ;BI/SD*5.3*740
- ;S %DT="RXT",X=SDECEND D ^%DT S SDECEND=Y
- S SDECEND=$$NETTOFM^SDECDATE(SDECEND,"Y") ;
- I SDECEND=-1 D ERR(SDECI+1,"SDEC07 Error: Invalid End Time",,0) Q                                           ;BI/SD*5.3*740
- I $L(SDECEND,".")=1 D ERR(SDECI+1,"SDEC07 Error: Invalid End Time",,0) Q                                    ;BI/SD*5.3*740
+ S SDECSTART=$$NETTOFM^SDECDATE(SDECSTART,"Y")
+ I SDECSTART=-1 D ERR(SDECI+1,"SDEC07 Error: Invalid Start Time",,0) Q
+ S SDECEND=$$NETTOFM^SDECDATE(SDECEND,"Y")
+ I SDECEND=-1 D ERR(SDECI+1,"SDEC07 Error: Invalid End Time",,0) Q
+ I $L(SDECEND,".")=1 D ERR(SDECI+1,"SDEC07 Error: Invalid End Time",,0) Q
  I SDECSTART>SDECEND S SDECTMP=SDECEND,SDECEND=SDECSTART,SDECSTART=SDECTMP
  S DFN=$G(DFN)
- I DFN="" D ERR(SDECI+1,"SDEC07: Patient ID required.",,0) Q                                                 ;BI/SD*5.3*740
- I '$D(^DPT(DFN,0)) D ERR(SDECI+1,"SDEC07 Error: Invalid Patient ID",,0) Q                                   ;BI/SD*5.3*740
- L +^DPT(DFN):3 I '$T D ERR(SDECI+1,"Patient is being edited. Try again later.",,0) Q   ;alb/sat 665         ;BI/SD*5.3*740
- ;  Reject if another appointment already scheduled at the same time.  wtc 686 11/30/18
- I $D(^DPT(DFN,"S",SDECSTART)),$P(^(SDECSTART,0),U,2)'="C",$P(^(0),U,2)'="PC" D ERR(SDECI+1,"Appointment in "_$P(^SC($P(^(0),U,1),0),U,1)_" already scheduled at the same time.",DFN,1) Q  ;BI/SD*5.3*740
+ I DFN="" D ERR(SDECI+1,"SDEC07: Patient ID required.",,0) Q
+ I '$D(^DPT(DFN,0)) D ERR(SDECI+1,"SDEC07 Error: Invalid Patient ID",,0) Q
+ L +^DPT(DFN):3 I '$T D ERR(SDECI+1,"Patient is being edited. Try again later.",,0) Q
+ N POP S POP=$$ORDERLOCKCHECK^SDEC07C($P(SDAREQ0,"^",5),$P(SDAPTYP,"|",2),.SDECI,DFN)
+ Q:POP
+ ;  Reject if another appointment scheduled at same time.
+ I $D(^DPT(DFN,"S",SDECSTART)),$P(^(SDECSTART,0),U,2)'="C",$P(^(0),U,2)'="PC" D ERR(SDECI+1,"Appointment in "_$P(^SC($P(^(0),U,1),0),U,1)_" already scheduled at the same time.",DFN,1) Q  ;SD,740
  ;Validate Resource
  S SDECERR=0 K SDECRESD
- S SDECRES=$G(SDECRES) I SDECRES="" D ERR(SDECI+1,"SDEC07 Error: Invalid Resource ID",DFN,1) Q               ;BI/SD*5.3*740
- I +SDECRES,'$D(^SDEC(409.831,SDECRES,0)) D ERR(SDECI+1,"SDEC07 Error: Invalid Resource ID",DFN,1) Q         ;BI/SD*5.3*740
- I '+SDECRES,'$D(^SDEC(409.831,"B",SDECRES)) D ERR(SDECI+1,"SDEC07 Error: Invalid Resource ID",DFN,1) Q      ;BI/SD*5.3*740
+ S SDECRES=$G(SDECRES) I SDECRES="" D ERR(SDECI+1,"SDEC07 Error: Invalid Resource ID",DFN,1) Q
+ I +SDECRES,'$D(^SDEC(409.831,SDECRES,0)) D ERR(SDECI+1,"SDEC07 Error: Invalid Resource ID",DFN,1) Q
+ I '+SDECRES,'$D(^SDEC(409.831,"B",SDECRES)) D ERR(SDECI+1,"SDEC07 Error: Invalid Resource ID",DFN,1) Q
  S SDECRESD=$S(+SDECRES:+SDECRES,1:$O(^SDEC(409.831,"B",SDECRES,0)))
  S SDECRNOD=$G(^SDEC(409.831,SDECRESD,0))
- I SDECRNOD="" D ERR(SDECI+1,"SDEC07 Error: Unable to add appointment -- invalid Resource entry.",DFN,1) Q   ;BI/SD*5.3*740
+ I SDECRNOD="" D ERR(SDECI+1,"SDEC07 Error: Unable to add appointment -- invalid Resource entry.",DFN,1) Q
  ;  Check that appointment date is not later than clinic permits or 390 days in future if no limit in clinic file (#44).
- ;  wtc 6/18/18 SD*5.3*701
- N PTR44,MAXDAYS S PTR44=$P(SDECRNOD,"^",4),MAXDAYS=390 ;
- I +PTR44,$D(^SC(PTR44,"SDP")) S MAXDAYS=$P(^("SDP"),"^",2) S:MAXDAYS="" MAXDAYS=390 ;
- I SDECSTART>$$FMADD^XLFDT($$NOW^XLFDT(),MAXDAYS) D ERR(SDECI+1,"Appointment date too far in the future",DFN,1) Q  ;BI/SD*5.3*740
+ N PTR44,MAXDAYS S PTR44=$P(SDECRNOD,"^",4),MAXDAYS=390
+ I +PTR44,$D(^SC(PTR44,"SDP")) S MAXDAYS=$P(^("SDP"),"^",2) S:MAXDAYS="" MAXDAYS=390
+ I SDECSTART>$$FMADD^XLFDT($$NOW^XLFDT(),MAXDAYS) D ERR(SDECI+1,"Appointment date too far in the future",DFN,1) Q
  S SDECWKIN=0
  S SDECATID=$G(SDECATID)
  I SDECATID="WALKIN" S SDECWKIN=1
  I SDECATID'?.N&(SDECATID'="WALKIN") S SDECATID=""
- ;validate appointment length - if passed in, must be 5-120
+ ;validate appt length - if passed in, must be 5-120
  S SDECLEN=$G(SDECLEN)
- ;I SDECLEN'="",(+SDECLEN<5)!(SDECLEN>120) D ERR(SDECI+1,"SDEC07 Error: Appointment length must be between 5 - 120.") Q
  ;validate MTRC flag (optional)
  S SDMRTC=$$UP^XLFSTR($G(SDMRTC))
  S SDMRTC=$S(SDMRTC="TRUE":1,1:0)
@@ -89,8 +81,8 @@ APPADD(SDECY,SDECSTART,SDECEND,DFN,SDECRES,SDECLEN,SDECNOTE,SDECATID,SDECCR,SDMR
   S SDCL=$G(SDCL)
  I SDCL'="" I '$D(^SC(SDCL,0)) S SDCL=""
  I SDCL="" S SDCL=$$GET1^DIQ(409.831,SDECRESD_",",.04,"I")   ;clinic ID   ;support for single HOSPITAL LOCATION in SDEC RESOURCE
- S OVB=+$G(OVB)  ;alb/sat 665
- I 'OVB S OBM=$$OBM1^SDEC57(SDCL,SDECSTART,SDMRTC,,+SDECWKIN) I OBM'="",+OBM'=1 S SDECAPPTID=0 D ERR(SDECI+1,"OBM"_OBM,DFN,1) Q   ;alb/sat 658 check if overbook ;alb/sat 665 clear SDECAPPTID  ;BI/SD*5.3*740
+ S OVB=+$G(OVB)
+ I 'OVB S OBM=$$OBM1^SDEC57(SDCL,SDECSTART,SDMRTC,,+SDECWKIN) I OBM'="",+OBM'=1 S SDECAPPTID=0 D ERR(SDECI+1,"OBM"_OBM,DFN,1) Q   ;alb/sat 658 check if overbook ;alb/sat 665 clear SDECAPPTID  ;SD,740
  ;validate appt request type (required)
  S SDAPTYP=$G(SDAPTYP)
  I SDAPTYP'="" D
@@ -98,17 +90,16 @@ APPADD(SDECY,SDECSTART,SDECEND,DFN,SDECRES,SDECLEN,SDECNOTE,SDECATID,SDECCR,SDMR
  .I $P(SDAPTYP,"|",1)="R" I '$D(^SD(403.5,+$P(SDAPTYP,"|",2),0)) S SDAPTYP=""
  .I $P(SDAPTYP,"|",1)="C" I '$D(^GMR(123,+$P(SDAPTYP,"|",2),0)) S SDAPTYP=""  ;ICR 4837
  .I $P(SDAPTYP,"|",1)="A" I '$D(^SDEC(409.85,+$P(SDAPTYP,"|",2),0)) S SDAPTYP=""
- .;I SDAPTYP="" D ERR(SDECI+1,"SDEC07 Error: Invalid appointment request type.") Q   ;support for multiple HOSPITAL LOCATIONs are implemented in SDEC RESOURCE
  I SDCL="" D
  .S:$P(SDAPTYP,"|",1)="E" SDCL=$$GET1^DIQ(409.3,$P(SDAPTYP,"|",2)_",",13.2,"I")
  .S:$P(SDAPTYP,"|",1)="R" SDCL=$$GET1^DIQ(403.5,$P(SDAPTYP,"|",2)_",",4.5,"I")
  .S:$P(SDAPTYP,"|",1)="C" SDCL=$P($G(^GMR(123,+$P(SDAPTYP,"|",2),0)),U,4)       ;ICR 4837 ICR states 'Zero node read into variable'
  .S:$P(SDAPTYP,"|",1)="A" SDCL=$$GET1^DIQ(409.85,$P(SDAPTYP,"|",2)_",",8,"I")
- I SDCL="" D ERR(SDECI+1,"SDEC07 Error: Invalid clinic ID.",DFN,1) Q   ;BI/SD*5.3*740
- I $$INACTIVE^SDEC32(SDCL) D ERR(SDECI+1,"SDEC07 Error: "_$$GET1^DIQ(44,SDCL_",",.01)_" is an inactive clinic.",DFN,1) Q   ;BI/SD*5.3*740
+ I SDCL="" D ERR(SDECI+1,"SDEC07 Error: Invalid clinic ID.",DFN,1) Q
+ I $$INACTIVE^SDEC32(SDCL) D ERR(SDECI+1,"SDEC07 Error: "_$$GET1^DIQ(44,SDCL_",",.01)_" is an inactive clinic.",DFN,1) Q   ;SD,740
  ;Reject if consult is not active or pending.  SD*5.3*686
  I $P(SDAPTYP,"|",1)="C" N CNSLTSTS,NOTOK S CNSLTSTS=$P($G(^GMR(123,+$P(SDAPTYP,"|",2),0)),U,12),NOTOK=0 D  Q:NOTOK  ;
- . I CNSLTSTS'=5,CNSLTSTS'=6 D ERR(SDECI+1,"Consult status is not PENDING or ACTIVE.  It cannot be scheduled.",DFN,1) S NOTOK=1 Q  ;BI/SD*5.3*740
+ . I CNSLTSTS'=5,CNSLTSTS'=6 D ERR(SDECI+1,"Consult status is not PENDING or ACTIVE.  It cannot be scheduled.",DFN,1) S NOTOK=1 Q  ;SD,740
  ;validate service connected
  S SDSVCPR=$G(SDSVCPR)
  I SDSVCPR'="" S:(+SDSVCPR<0)!(+SDSVCPR>100) SDSVCPR=""
@@ -135,27 +126,30 @@ APPADD(SDECY,SDECSTART,SDECEND,DFN,SDECRES,SDECLEN,SDECNOTE,SDECATID,SDECCR,SDMR
  ..I $P(SDAPTYP,"|",1)="A" S SDAPPTYP=$$GET1^DIQ(409.85,+$P(SDAPTYP,"|",2)_",",8.7,"I")
  ..I $P(SDAPTYP,"|",1)="C",+APPTYPE S SDAPPTYP=+APPTYPE
  .S:'SDAPPTYP SDAPPTYP=$O(^SD(409.1,"B","REGULAR",0))
+ S EAS=$TR($G(EAS),"^"," ")
+ I $L(EAS) S EAS=$$EASVALIDATE^SDESUTIL(EAS)
+ I EAS=-1 D ERR(SDECI+1,"SDEC07 Error: Invalid EAS Tracking Number",,0) Q
+ S SDECAPPTID=$$SDECADD(SDECSTART,SDECEND,DFN,SDECRESD,SDECATID,SDDDT,SDID,SDAPTYP,PROVIEN,SDCL,SDECNOTE,SAVESTRT,SDECRES,SDAPPTYP,EESTAT,1,+SDECLEN,EAS)  ;alb/sat 665 add SDECLEN
+ I 'SDECAPPTID D ERR(SDECI+1,"SDEC07 Error: Unable to add appointment to SDEC APPOINTMENT file.",DFN,2) Q   ;SD,740
  ;Lock SDEC node
- L +^SDEC(409.84,DFN):5 I '$T D ERR(SDECI+1,"Another user is working with this patient's record.  Please try again later",DFN,1) Q   ;BI/SD*5.3*740
- S SDECAPPTID=$$SDECADD(SDECSTART,SDECEND,DFN,SDECRESD,SDECATID,SDDDT,SDID,SDAPTYP,PROVIEN,SDCL,SDECNOTE,SAVESTRT,SDECRES,SDAPPTYP,EESTAT,1,+SDECLEN)  ;alb/sat 665 add SDECLEN
- I 'SDECAPPTID D ERR(SDECI+1,"SDEC07 Error: Unable to add appointment to SDEC APPOINTMENT file.",DFN,2) Q   ;BI/SD*5.3*740
- ;Save the Appointment
+ L +^SDEC(409.84,SDECAPPTID):5 I '$T D ERR(SDECI+1,"Another user is working with this patient's record.  Please try again later",DFN,1) Q  ; Fixed Lock *790
+ ;Save the appt
  ; call chart request
- S SDECDEV=""  ;$$GET1^DIQ(9009020.2,$$DIV^SDECU,.05) I SDECDEV="" S SDECDERR="SDEC07 Error: No file room printer is defined for the chart request."
+ S SDECDEV=""
  I SDECATID="WALKIN",$G(SDECCR),$G(SDECDEV)'="" S DGQUIET=1 D WISD^SDECRT(DFN,$P(SDECSTART,"."),"",SDECDEV)
  I SDECNOTE]"" D SDECWP(SDECAPPTID,SDECNOTE)
- ;Create Appointment in VistA ;TODO: have this call APPVISTA^SDEC07B
- I +SDCL,$D(^SC(SDCL,0)) D  I +SDECERR D ERR(SDECI+1,$P(SDECERR,U,2),DFN,2)  ;BI/SD*5.3*740
+ ;Create appt in VistA ;TODO: have this call APPVISTA^SDEC07B
+ I +SDCL,$D(^SC(SDCL,0)) D  I +SDECERR D ERR(SDECI+1,$P(SDECERR,U,2),DFN,2)
  . S SDECC("PAT")=DFN
  . S SDECC("CLN")=SDCL
  . S SDECC("TYP")=$S(+SDECWKIN:4,SDAPPTYP=1:1,1:3)  ;3 for scheduled appts, 4 for walkins
- . S SDECC("COL")=$S(SDAPPTYP=7:1,1:"")             ;collateral visit if appointment type is COLLATERAL OF VET.
+ . S SDECC("COL")=$S(SDAPPTYP=7:1,1:"") ;collateral visit if appointment type is COLLATERAL OF VET.
  . S SDECC("APT")=SDAPPTYP
  . S SDECC("ADT")=SDECSTART
  . S SDECC("LEN")=SDECLEN
- . S SDECC("OI")=$E($G(SDECNOTE),1,150)             ;File 44 has 150 character limit on OTHER field
- . S SDECC("OI")=$TR(SDECC("OI"),";"," ")           ;No semicolons allowed
- . S SDECC("OI")=$$STRIP(SDECC("OI"))               ;Strip control characters from note
+ . S SDECC("OI")=$E($G(SDECNOTE),1,150) ;File 44 has 150 character limit on OTHER field
+ . S SDECC("OI")=$TR(SDECC("OI"),";"," ") ;No semicolons allowed
+ . S SDECC("OI")=$$STRIP(SDECC("OI")) ;Strip control characters from note
  . S SDECC("RES")=SDECRESD
  . S SDECC("USR")=DUZ
  . S SDECC("MTR")=$G(SDMRTC)
@@ -164,28 +158,27 @@ APPADD(SDECY,SDECSTART,SDECEND,DFN,SDECRES,SDECLEN,SDECNOTE,SDECATID,SDECCR,SDMR
  . S SDECC("LAB")=SDLAB
  . S SDECC("XRA")=SDXRAY
  . S SDECC("EKG")=SDEKG
- . S SDECC("OVB")=+OVB
+ . ; OVB: 2: Not an Overbook don't perform OB validation, 1:Overbook, don't perform OB validation, 0:Not an Overbook but perform OB validation
+ . S SDECC("OVB")=$S(OVB=1:1,1:0)
  . S SDECC("ELG")=SDEL
  . S:$P(SDAPTYP,"|",1)="C" SDECC("CON")=$P(SDAPTYP,"|",2)
  . S SDECERR=$$MAKE^SDEC07B(.SDECC)
  . Q:SDECERR
- . ;Update Clinic availability
- . D AVUPDT^SDEC07C(SDCL,SDECSTART,SDECLEN)  ; Changed because AVUPDT moved to SDEC07C to keep SDEC07 XINDEX-compliant - *694 wtc 2/4/10
+ . D AVUPDT^SDEC07C(SDCL,SDECSTART,SDECLEN)
  . Q
  ;update wait list
  I $P(SDAPTYP,"|",1)="E" D EWL^SDEC07A($P(SDAPTYP,"|",2),SDECSTART,SDCL,SDSVCPR,SDSVCP,,SDAPPTYP)  ;alb/sat 658 do not pass note
  ;update appt request
  I $P(SDAPTYP,"|",1)="A" D
- .D UPDATE^SDECAR2($P(SDAPTYP,"|",2),SDECSTART,SDCL,SDSVCPR,SDSVCP,,SDAPPTYP)  ;alb/sat 658 do not pass note
+ .D UPDATE^SDECAR2($P(SDAPTYP,"|",2),SDECSTART,SDCL,SDSVCPR,SDSVCP,,SDAPPTYP,EAS)  ;alb/sat 658 do not pass note
  .I $G(SDMRTC),$G(SDPARENT) D AR433^SDECAR2(SDPARENT,SDECAPPTID_"~"_$P(SDAPTYP,"|",2))
  .D:$G(SDPARENT) AR438^SDECAR2($P(SDAPTYP,"|",2),SDPARENT)
  N SDT S SDT=SDECSTART
- ;add entry to OUTPATIENT ENCOUNTER file (#409.68)  ;alb/sat 672
+ ;add entry to OUTPATIENT ENCOUNTER file (#409.68)
  I $$NOW^XLFDT>SDT,$$NEW^SDPCE(SDT) D
- .;ajf ;Added test for future appointment; 052218 sd*5.3*694 
  .N SDCOED
  .S SDOE=$$GETAPT^SDVSIT2(DFN,SDT,SDCL)
- L -^SDEC(409.84,DFN)
+ L -^SDEC(409.84,SDECAPPTID) ; Fixed Lock *790
  L -^DPT(DFN)
  S SDECI=SDECI+1
  S ^TMP("SDEC07",$J,SDECI)=SDECAPPTID_"^"_$G(SDECDERR)_$C(30)
@@ -193,16 +186,16 @@ APPADD(SDECY,SDECSTART,SDECEND,DFN,SDECRES,SDECLEN,SDECNOTE,SDECATID,SDECCR,SDMR
  S ^TMP("SDEC07",$J,SDECI)=$C(31)
  Q
  ;
- ;ADD SDEC APPOINTMENT ENTRY
-SDECADD(SDECSTART,SDECEND,DFN,SDECRESD,SDECATID,SDDDT,SDID,SDAPTYP,PROVIEN,SDCL,SDECNOTE,SAVESTRT,SDECRES,SDAPPTYP,EESTAT,SDF,SDECLEN) ;alb/sat 665 add SDECLEN
+ ;ADD SDEC APPT ENTRY
+SDECADD(SDECSTART,SDECEND,DFN,SDECRESD,SDECATID,SDDDT,SDID,SDAPTYP,PROVIEN,SDCL,SDECNOTE,SAVESTRT,SDECRES,SDAPPTYP,EESTAT,SDF,SDECLEN,EAS) ;alb/sat 665 add SDECLEN
  ;SDF - (optional) flags
  ;  1. called from GUI (update consult only if called from GUI)
  ;Returns ien in SDECAPPT or 0 if failed
  ;called from SDEC APPADD rpc and from VistA via SDM1A
  ;Create entry in SDEC APPOINTMENT
- N SDIEN,SDECAPPTID,SDECFDA,SDECIEN,SDECMSG,SL,X,SDDFN
+ N SDIEN,SDECAPPTID,SDECFDA,SDECIEN,SDECMSG,SL,X,SDDFN,FDA,ERR,REQIEN
  S SDECSTART=$G(SDECSTART)
- S SAVESTRT=$G(SAVESTRT),SDECRES=$G(SDECRES)         ;MGH save date/time for consult request
+ S SAVESTRT=$G(SAVESTRT),SDECRES=$G(SDECRES)  ;MGH save date/time for consult request
  S DFN=$G(DFN),SDDFN=DFN
  S SDECRESD=$G(SDECRESD)
  S SDECATID=$G(SDECATID)
@@ -213,20 +206,21 @@ SDECADD(SDECSTART,SDECEND,DFN,SDECRESD,SDECATID,SDDDT,SDID,SDAPTYP,PROVIEN,SDCL,
  S PROVIEN=$G(PROVIEN)
  S SDCL=$G(SDCL)
  S SDECEND=$G(SDECEND)
- ;alb/sat 665 begin modification
+ I $P(SDAPTYP,"|",1)="R" D
+ .S PROVIEN=$$GET1^DIQ(403.54,PROVIEN,.01,"I")
  S SDECLEN=$G(SDECLEN)
  I SDECLEN="",SDECEND="" S SDECLEN=+$G(^SC(SDCL,"SL")) S:'+SDECLEN SDECLEN=30 S SDECEND=$$FMADD^XLFDT(SDECSTART,,,+SDECLEN)   ;no length or end date/time
  I SDECLEN="",SDECEND'="" S SDECLEN=$$FMDIFF^XLFDT(SDECEND,SDECSTART,2)\60  ;no length
  I SDECLEN'="",SDECEND="" S SDECEND=$$FMADD^XLFDT(SDECSTART,,,+SDECLEN)  ;no end date/time
- ;alb/sat 665 end modification
  S SDECNOTE=$G(SDECNOTE)
  S SDF=$G(SDF,0)
+ S EAS=$G(EAS)
  I PROVIEN="" S PROVIEN=$$GET1^DIQ(44,SDCL_",",16,"I")
  S SDIEN=$$APPTGET^SDECUTL(DFN,SDECSTART,SDCL)
  S SDIEN=$S(SDIEN'="":SDIEN_",",1:"+1,")
  S SDECFDA(409.84,SDIEN,.01)=SDECSTART
  S SDECFDA(409.84,SDIEN,.02)=SDECEND
- S SDECFDA(409.84,SDIEN,.03)="@" ;*zeb+22 686 3/20/19 clear data from overlaid appointments
+ S SDECFDA(409.84,SDIEN,.03)="@" ;*zeb+22 686 3/20/19 clear data from overlaid appts
  S SDECFDA(409.84,SDIEN,.04)="@"
  S SDECFDA(409.84,SDIEN,.05)=DFN
  S SDECFDA(409.84,SDIEN,.06)=$S(+SDAPPTYP:SDAPPTYP,1:"@")
@@ -249,20 +243,41 @@ SDECADD(SDECSTART,SDECEND,DFN,SDECRESD,SDECATID,SDDDT,SDID,SDAPTYP,PROVIEN,SDCL,
  S SDECFDA(409.84,SDIEN,.21)=$S($G(SDID)'="":SDID,1:"@")
  S SDECFDA(409.84,SDIEN,.22)=$S(SDAPTYP'="":$P(SDAPTYP,"|",2)_";"_$S($P(SDAPTYP,"|",1)="E":"SDWL(409.3,",$P(SDAPTYP,"|",1)="C":"GMR(123,",$P(SDAPTYP,"|",1)="R":"SD(403.5,",$P(SDAPTYP,"|",1)="A":"SDEC(409.85,",1:""),1:"@")
  S SDECFDA(409.84,SDIEN,.23)=$S($G(EESTAT)'="":EESTAT,1:"@")
+ S:EAS'="" SDECFDA(409.84,SDIEN,100)=EAS
  K SDECIEN,SDECMSG
  D UPDATE^DIE("","SDECFDA","SDECIEN","SDECMSG")
+ ;File appt req PID history
+ I $P(SDAPTYP,"|",1)="A"!($P(SDAPTYP,"|",1)="R") D
+ .S REQIEN=$P(SDAPTYP,"|",2)
+ .I $$LASTPIDCHECK^SDECAR2(REQIEN,SDDDT) D
+ ..S FDA(409.854,"+1,"_REQIEN_",",.01)=$$NOW^XLFDT
+ ..S FDA(409.854,"+1,"_REQIEN_",",1)=SDDDT
+ ..S FDA(409.854,"+1,"_REQIEN_",",2)=$$GET1^DIQ(200,DUZ,.01,"E")
+ ..D UPDATE^DIE(,"FDA",,"ERR") K FDA
  S SDECAPPTID=$S(SDIEN'="+1,":+SDIEN,1:+$G(SDECIEN(1)))
  K SDECMSG
  I SDECNOTE="" D WP^DIE(409.84,$S(+$G(SDECAPPTID):SDECAPPTID_",",1:SDIEN_","),1,"","@","SDECMSG")
  I SDECNOTE'="" N ARR D WP^SDECUTL(.ARR,SDECNOTE) D WP^DIE(409.84,$S(+$G(SDECAPPTID):SDECAPPTID_",",1:SDIEN_","),1,"","ARR","SDECMSG")
- ;
  I SDECAPPTID'="" D
  .I $P(SDAPTYP,"|",1)="C",SDF D
+ ..D CONSULTPID^SDEC07PID(SDAPTYP,DFN,PROVIEN,SAVESTRT,SDDDT,SDDFN,SDECNOTE,SDECRES)
+ .;
+ .I $P(SDAPTYP,"|",1)="R" D  ; VSE-863 ;6/9/2021
+ .. N SDCOMM,SDRET,SDRIEN1,SDRRFTR
  .. S SDRIEN1=$P(SDAPTYP,"|",2)
- ..D REQSET^SDEC07A($P(SDAPTYP,"|",2),PROVIEN,"",1,"",SDECNOTE,SAVESTRT,SDECRES,SDDFN)   ;MGH added 3 parameters to this call
- ;
+ .. S SDCOMM=$$GET1^DIQ(403.5,SDRIEN1,2.5)
+ .. S SDRRFTR="APPT SCHEDULED" ; "7"
+ .. D RECDSET^SDEC52A(.SDRET,SDRIEN1,SDRRFTR,SDCOMM)
+ .;
  Q SDECAPPTID
  ;
+CONSPIDCHECK(SDRIEN1,SDDDT) ;
+ N CHIEN,CHSIEN,OLDPID
+ S CHIEN=$O(^SDEC(409.87,"B",SDRIEN1,0))
+ S CHSIEN=$O(^SDEC(409.87,CHIEN,1,9999999),-1)
+ S OLDPID=$$GET1^DIQ(409.871,CHSIEN_","_CHIEN_",",1,"I")
+ I OLDPID'=$G(SDDDT) Q 1
+ Q 0
 SDECWP(SDECAPPTID,SDECNOTE) ;
  ;Add WP field
  I SDECNOTE]"" S SDECNOTE(.5)=SDECNOTE,SDECNOTE=""
@@ -304,7 +319,7 @@ STRIP(SDECZ) ;Replace control characters with spaces
  F SDECI=1:1:$L(SDECZ) I (32>$A($E(SDECZ,SDECI))) S SDECZ=$E(SDECZ,1,SDECI-1)_" "_$E(SDECZ,SDECI+1,999)
  Q SDECZ
  ;
-ERR(SDECI,SDECERR,DFN,LOCK) ;Error processing  BI/SD*5.3*740
+ERR(SDECI,SDECERR,DFN,LOCK) ;Error processing  SD,740
  S DFN=$G(DFN)
  S SDECI=SDECI+1
  S SDECERR=$TR(SDECERR,"^","~")
@@ -312,7 +327,8 @@ ERR(SDECI,SDECERR,DFN,LOCK) ;Error processing  BI/SD*5.3*740
  S SDECI=SDECI+1
  S ^TMP("SDEC07",$J,SDECI)=$C(31)
  I $G(LOCK)=1 L -^DPT(DFN)
- I $G(LOCK)=2 L -^DPT(DFN),-^SDEC(409.84,DFN)
+ I $G(LOCK)=2 L -^DPT(DFN)
+ I +$G(SDECAPPTID) L -^SDEC(409.84,SDECAPPTID)
  Q
  ;
 ETRAP ;EP Error trap entry

@@ -1,5 +1,5 @@
-ONCOCFP ;Hines OIFO/GWB - [PT Automatic Casefinding-PTF Search] ;05/03/12
- ;;2.2;ONCOLOGY;**1,7,5**;Jul 31, 2013;Build 6
+ONCOCFP ;HINES OIFO/GWB - [PT Automatic Casefinding-PTF Search] ;05/03/12
+ ;;2.2;ONCOLOGY;**1,7,5,13**;Jul 31, 2013;Build 7
  ;
  ; rvd - 0403/12 p56. Use ICD API (#3990) instead of direct global call
  ; P2.2*7 - icd10 CASEFINDING
@@ -51,18 +51,18 @@ ED K DIR
  ;
  ;Include Squamous and Basal cell neoplasms (Y/N?)
  W !
- S SBCIND="NO"
- K DIR
- S DIR(0)="Y"
- S DIR("A")="          Include Squamous and Basal cell neoplasms"
- S DIR("B")="Yes"
- S DIR("?")=" "
- S DIR("?",1)=" Answer 'YES' if you want to include squamous and basal cell neoplasms."
- S DIR("?",2)=" Answer  'NO' if you want to exclude these neoplasms."
- D ^DIR
- G EX:(Y="")!(Y[U)
- S:Y=1 SBCIND="YES"
- K DIR
+ ;S SBCIND="NO"
+ ;K DIR
+ ;S DIR(0)="Y"
+ ;S DIR("A")="          Include Squamous and Basal cell neoplasms"
+ ;S DIR("B")="Yes"
+ ;S DIR("?")=" "
+ ;S DIR("?",1)=" Answer 'YES' if you want to include squamous and basal cell neoplasms."
+ ;S DIR("?",2)=" Answer  'NO' if you want to exclude these neoplasms."
+ ;D ^DIR
+ ;G EX:(Y="")!(Y[U)
+ ;S:Y=1 SBCIND="YES"
+ ;K DIR
  ;
  W !!?3,"The following ICD codes will be searched for:"
  W !

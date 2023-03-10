@@ -1,116 +1,128 @@
-IBDEI1I9 ; ; 04-FEB-2020
- ;;3.0;IB ENCOUNTER FORM IMP/EXP;;FEB 04, 2020
+IBDEI1I9 ; ; 01-FEB-2022
+ ;;3.0;IB ENCOUNTER FORM IMP/EXP;;FEB 01, 2022
  Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,999) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
- ;;^UTILITY(U,$J,358.3,24073,1,4,0)
- ;;=4^I70.544
- ;;^UTILITY(U,$J,358.3,24073,2)
- ;;=^5007712
- ;;^UTILITY(U,$J,358.3,24074,0)
- ;;=I70.545^^107^1201^60
- ;;^UTILITY(U,$J,358.3,24074,1,0)
+ ;;^UTILITY(U,$J,358.3,24346,2)
+ ;;=^5000061
+ ;;^UTILITY(U,$J,358.3,24347,0)
+ ;;=J12.0^^82^1054^1
+ ;;^UTILITY(U,$J,358.3,24347,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,24074,1,3,0)
- ;;=3^Athscl Nonaut Bio Bypass of Left Leg w/ Ulcer of Oth Part of Foot
- ;;^UTILITY(U,$J,358.3,24074,1,4,0)
- ;;=4^I70.545
- ;;^UTILITY(U,$J,358.3,24074,2)
- ;;=^5007713
- ;;^UTILITY(U,$J,358.3,24075,0)
- ;;=I70.631^^107^1201^71
- ;;^UTILITY(U,$J,358.3,24075,1,0)
+ ;;^UTILITY(U,$J,358.3,24347,1,3,0)
+ ;;=3^Adenoviral Pneumonia
+ ;;^UTILITY(U,$J,358.3,24347,1,4,0)
+ ;;=4^J12.0
+ ;;^UTILITY(U,$J,358.3,24347,2)
+ ;;=^5008164
+ ;;^UTILITY(U,$J,358.3,24348,0)
+ ;;=J12.1^^82^1054^31
+ ;;^UTILITY(U,$J,358.3,24348,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,24075,1,3,0)
- ;;=3^Athscl Nonbiol Bypass of Right Leg w/ Ulcer of Thigh
- ;;^UTILITY(U,$J,358.3,24075,1,4,0)
- ;;=4^I70.631
- ;;^UTILITY(U,$J,358.3,24075,2)
- ;;=^5007740
- ;;^UTILITY(U,$J,358.3,24076,0)
- ;;=I70.632^^107^1201^72
- ;;^UTILITY(U,$J,358.3,24076,1,0)
+ ;;^UTILITY(U,$J,358.3,24348,1,3,0)
+ ;;=3^Respiratory Syncytial Virus Pneumonia
+ ;;^UTILITY(U,$J,358.3,24348,1,4,0)
+ ;;=4^J12.1
+ ;;^UTILITY(U,$J,358.3,24348,2)
+ ;;=^5008165
+ ;;^UTILITY(U,$J,358.3,24349,0)
+ ;;=J12.2^^82^1054^4
+ ;;^UTILITY(U,$J,358.3,24349,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,24076,1,3,0)
- ;;=3^Athscl Nonbiol Bypass of Right Leg w/ Ulcer of Calf
- ;;^UTILITY(U,$J,358.3,24076,1,4,0)
- ;;=4^I70.632
- ;;^UTILITY(U,$J,358.3,24076,2)
- ;;=^5007741
- ;;^UTILITY(U,$J,358.3,24077,0)
- ;;=I70.633^^107^1201^73
- ;;^UTILITY(U,$J,358.3,24077,1,0)
+ ;;^UTILITY(U,$J,358.3,24349,1,3,0)
+ ;;=3^Parainfluenza Virus Pneumonia
+ ;;^UTILITY(U,$J,358.3,24349,1,4,0)
+ ;;=4^J12.2
+ ;;^UTILITY(U,$J,358.3,24349,2)
+ ;;=^5008166
+ ;;^UTILITY(U,$J,358.3,24350,0)
+ ;;=J12.3^^82^1054^3
+ ;;^UTILITY(U,$J,358.3,24350,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,24077,1,3,0)
- ;;=3^Athscl Nonbiol Bypass of Right Leg w/ Ulcer of Ankle
- ;;^UTILITY(U,$J,358.3,24077,1,4,0)
- ;;=4^I70.633
- ;;^UTILITY(U,$J,358.3,24077,2)
- ;;=^5007742
- ;;^UTILITY(U,$J,358.3,24078,0)
- ;;=I70.634^^107^1201^74
- ;;^UTILITY(U,$J,358.3,24078,1,0)
+ ;;^UTILITY(U,$J,358.3,24350,1,3,0)
+ ;;=3^Human Metapneumovirus Pneumonia
+ ;;^UTILITY(U,$J,358.3,24350,1,4,0)
+ ;;=4^J12.3
+ ;;^UTILITY(U,$J,358.3,24350,2)
+ ;;=^5008167
+ ;;^UTILITY(U,$J,358.3,24351,0)
+ ;;=J12.81^^82^1054^18
+ ;;^UTILITY(U,$J,358.3,24351,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,24078,1,3,0)
- ;;=3^Athscl Nonbiol Bypass of Right Leg w/ Ulcer of Heel/Midfoot
- ;;^UTILITY(U,$J,358.3,24078,1,4,0)
- ;;=4^I70.634
- ;;^UTILITY(U,$J,358.3,24078,2)
- ;;=^5007743
- ;;^UTILITY(U,$J,358.3,24079,0)
- ;;=I70.635^^107^1201^75
- ;;^UTILITY(U,$J,358.3,24079,1,0)
+ ;;^UTILITY(U,$J,358.3,24351,1,3,0)
+ ;;=3^Pneumonia d/t SARS-Associated Coronavirus
+ ;;^UTILITY(U,$J,358.3,24351,1,4,0)
+ ;;=4^J12.81
+ ;;^UTILITY(U,$J,358.3,24351,2)
+ ;;=^329925
+ ;;^UTILITY(U,$J,358.3,24352,0)
+ ;;=J12.89^^82^1054^29
+ ;;^UTILITY(U,$J,358.3,24352,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,24079,1,3,0)
- ;;=3^Athscl Nonbiol Bypass of Right Leg w/ Ulcer of Oth Part of Foot
- ;;^UTILITY(U,$J,358.3,24079,1,4,0)
- ;;=4^I70.635
- ;;^UTILITY(U,$J,358.3,24079,2)
- ;;=^5007744
- ;;^UTILITY(U,$J,358.3,24080,0)
- ;;=I70.641^^107^1201^66
- ;;^UTILITY(U,$J,358.3,24080,1,0)
+ ;;^UTILITY(U,$J,358.3,24352,1,3,0)
+ ;;=3^Pneumonia,Viral,Other
+ ;;^UTILITY(U,$J,358.3,24352,1,4,0)
+ ;;=4^J12.89
+ ;;^UTILITY(U,$J,358.3,24352,2)
+ ;;=^5008168
+ ;;^UTILITY(U,$J,358.3,24353,0)
+ ;;=J12.9^^82^1054^30
+ ;;^UTILITY(U,$J,358.3,24353,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,24080,1,3,0)
- ;;=3^Athscl Nonbiol Bypass of Left Leg w/ Ulcer of Thigh
- ;;^UTILITY(U,$J,358.3,24080,1,4,0)
- ;;=4^I70.641
- ;;^UTILITY(U,$J,358.3,24080,2)
- ;;=^5007747
- ;;^UTILITY(U,$J,358.3,24081,0)
- ;;=I70.642^^107^1201^67
- ;;^UTILITY(U,$J,358.3,24081,1,0)
+ ;;^UTILITY(U,$J,358.3,24353,1,3,0)
+ ;;=3^Pneumonia,Viral,Unspec
+ ;;^UTILITY(U,$J,358.3,24353,1,4,0)
+ ;;=4^J12.9
+ ;;^UTILITY(U,$J,358.3,24353,2)
+ ;;=^5008169
+ ;;^UTILITY(U,$J,358.3,24354,0)
+ ;;=J13.^^82^1054^20
+ ;;^UTILITY(U,$J,358.3,24354,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,24081,1,3,0)
- ;;=3^Athscl Nonbiol Bypass of Left Leg w/ Ulcer of Calf
- ;;^UTILITY(U,$J,358.3,24081,1,4,0)
- ;;=4^I70.642
- ;;^UTILITY(U,$J,358.3,24081,2)
- ;;=^5007748
- ;;^UTILITY(U,$J,358.3,24082,0)
- ;;=I70.643^^107^1201^68
- ;;^UTILITY(U,$J,358.3,24082,1,0)
+ ;;^UTILITY(U,$J,358.3,24354,1,3,0)
+ ;;=3^Pneumonia d/t Streptococcus Pneumoniae
+ ;;^UTILITY(U,$J,358.3,24354,1,4,0)
+ ;;=4^J13.
+ ;;^UTILITY(U,$J,358.3,24354,2)
+ ;;=^5008170
+ ;;^UTILITY(U,$J,358.3,24355,0)
+ ;;=J14.^^82^1054^7
+ ;;^UTILITY(U,$J,358.3,24355,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,24082,1,3,0)
- ;;=3^Athscl Nonbiol Bypass of Left Leg w/ Ulcer of Ankle
- ;;^UTILITY(U,$J,358.3,24082,1,4,0)
- ;;=4^I70.643
- ;;^UTILITY(U,$J,358.3,24082,2)
- ;;=^5007749
- ;;^UTILITY(U,$J,358.3,24083,0)
- ;;=I70.644^^107^1201^69
- ;;^UTILITY(U,$J,358.3,24083,1,0)
+ ;;^UTILITY(U,$J,358.3,24355,1,3,0)
+ ;;=3^Pneumonia d/t Hemophilus Influenzae
+ ;;^UTILITY(U,$J,358.3,24355,1,4,0)
+ ;;=4^J14.
+ ;;^UTILITY(U,$J,358.3,24355,2)
+ ;;=^5008171
+ ;;^UTILITY(U,$J,358.3,24356,0)
+ ;;=J15.0^^82^1054^8
+ ;;^UTILITY(U,$J,358.3,24356,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,24083,1,3,0)
- ;;=3^Athscl Nonbiol Bypass of Left Leg w/ Ulcer of Heel/Midfoot
- ;;^UTILITY(U,$J,358.3,24083,1,4,0)
- ;;=4^I70.644
- ;;^UTILITY(U,$J,358.3,24083,2)
- ;;=^5007750
- ;;^UTILITY(U,$J,358.3,24084,0)
- ;;=I70.645^^107^1201^70
- ;;^UTILITY(U,$J,358.3,24084,1,0)
+ ;;^UTILITY(U,$J,358.3,24356,1,3,0)
+ ;;=3^Pneumonia d/t Klebsiella Pneumoniae
+ ;;^UTILITY(U,$J,358.3,24356,1,4,0)
+ ;;=4^J15.0
+ ;;^UTILITY(U,$J,358.3,24356,2)
+ ;;=^269931
+ ;;^UTILITY(U,$J,358.3,24357,0)
+ ;;=J15.1^^82^1054^17
+ ;;^UTILITY(U,$J,358.3,24357,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,24084,1,3,0)
- ;;=3^Athscl Nonbiol Bypass of Left Leg w/ Ulcer of Oth Part of Foot
- ;;^UTILITY(U,$J,358.3,24084,1,4,0)
- ;;=4^I70.645
+ ;;^UTILITY(U,$J,358.3,24357,1,3,0)
+ ;;=3^Pneumonia d/t Pseudomonas
+ ;;^UTILITY(U,$J,358.3,24357,1,4,0)
+ ;;=4^J15.1
+ ;;^UTILITY(U,$J,358.3,24357,2)
+ ;;=^269932
+ ;;^UTILITY(U,$J,358.3,24358,0)
+ ;;=J15.20^^82^1054^19
+ ;;^UTILITY(U,$J,358.3,24358,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,24358,1,3,0)
+ ;;=3^Pneumonia d/t Staphylococcus,Unspec
+ ;;^UTILITY(U,$J,358.3,24358,1,4,0)
+ ;;=4^J15.20
+ ;;^UTILITY(U,$J,358.3,24358,2)
+ ;;=^321179
+ ;;^UTILITY(U,$J,358.3,24359,0)
+ ;;=J15.211^^82^1054^10

@@ -1,120 +1,118 @@
-IBDEI1AI ; ; 04-FEB-2020
- ;;3.0;IB ENCOUNTER FORM IMP/EXP;;FEB 04, 2020
+IBDEI1AI ; ; 01-FEB-2022
+ ;;3.0;IB ENCOUNTER FORM IMP/EXP;;FEB 01, 2022
  Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,999) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
- ;;^UTILITY(U,$J,358.3,20628,1,2,0)
- ;;=2^96164
- ;;^UTILITY(U,$J,358.3,20628,1,3,0)
- ;;=3^Hlth/Behav Intrvn,Grp,1st 30 min
- ;;^UTILITY(U,$J,358.3,20629,0)
- ;;=96165^^94^1012^7^^^^1
- ;;^UTILITY(U,$J,358.3,20629,1,0)
- ;;=^358.31IA^3^2
- ;;^UTILITY(U,$J,358.3,20629,1,2,0)
- ;;=2^96165
- ;;^UTILITY(U,$J,358.3,20629,1,3,0)
- ;;=3^Hlth/Behav Intrvn,Grp,Ea Addl 15 min
- ;;^UTILITY(U,$J,358.3,20630,0)
- ;;=96167^^94^1012^2^^^^1
- ;;^UTILITY(U,$J,358.3,20630,1,0)
- ;;=^358.31IA^3^2
- ;;^UTILITY(U,$J,358.3,20630,1,2,0)
- ;;=2^96167
- ;;^UTILITY(U,$J,358.3,20630,1,3,0)
- ;;=3^Hlth/Behav Intrvn,Fam w/ Pt,1st 30 min
- ;;^UTILITY(U,$J,358.3,20631,0)
- ;;=96168^^94^1012^3^^^^1
- ;;^UTILITY(U,$J,358.3,20631,1,0)
- ;;=^358.31IA^3^2
- ;;^UTILITY(U,$J,358.3,20631,1,2,0)
- ;;=2^96168
- ;;^UTILITY(U,$J,358.3,20631,1,3,0)
- ;;=3^Hlth/Behav Intrvn,Fam w/ Pt,Ea Addl 15 min
- ;;^UTILITY(U,$J,358.3,20632,0)
- ;;=96170^^94^1012^4^^^^1
- ;;^UTILITY(U,$J,358.3,20632,1,0)
- ;;=^358.31IA^3^2
- ;;^UTILITY(U,$J,358.3,20632,1,2,0)
- ;;=2^96170
- ;;^UTILITY(U,$J,358.3,20632,1,3,0)
- ;;=3^Hlth/Behav Intrvn,Fam w/o Pt,1st 30 min
- ;;^UTILITY(U,$J,358.3,20633,0)
- ;;=96171^^94^1012^5^^^^1
- ;;^UTILITY(U,$J,358.3,20633,1,0)
- ;;=^358.31IA^3^2
- ;;^UTILITY(U,$J,358.3,20633,1,2,0)
- ;;=2^96171
- ;;^UTILITY(U,$J,358.3,20633,1,3,0)
- ;;=3^Hlth/Behav Intrvn,Fam w/o Pt,Ea Addl 15 min
- ;;^UTILITY(U,$J,358.3,20634,0)
- ;;=S9445^^94^1013^4^^^^1
- ;;^UTILITY(U,$J,358.3,20634,1,0)
- ;;=^358.31IA^3^2
- ;;^UTILITY(U,$J,358.3,20634,1,2,0)
- ;;=2^S9445
- ;;^UTILITY(U,$J,358.3,20634,1,3,0)
- ;;=3^Pt Educ,Individual,NOS
- ;;^UTILITY(U,$J,358.3,20635,0)
- ;;=97537^^94^1013^3^^^^1
- ;;^UTILITY(U,$J,358.3,20635,1,0)
- ;;=^358.31IA^3^2
- ;;^UTILITY(U,$J,358.3,20635,1,2,0)
- ;;=2^97537
- ;;^UTILITY(U,$J,358.3,20635,1,3,0)
- ;;=3^Community/Work Reintegration Training
- ;;^UTILITY(U,$J,358.3,20636,0)
- ;;=3085F^^94^1013^5^^^^1
- ;;^UTILITY(U,$J,358.3,20636,1,0)
- ;;=^358.31IA^3^2
- ;;^UTILITY(U,$J,358.3,20636,1,2,0)
- ;;=2^3085F
- ;;^UTILITY(U,$J,358.3,20636,1,3,0)
- ;;=3^Suicide Risk Assessment
- ;;^UTILITY(U,$J,358.3,20637,0)
- ;;=99497^^94^1013^1^^^^1
- ;;^UTILITY(U,$J,358.3,20637,1,0)
- ;;=^358.31IA^3^2
- ;;^UTILITY(U,$J,358.3,20637,1,2,0)
- ;;=2^99497
- ;;^UTILITY(U,$J,358.3,20637,1,3,0)
- ;;=3^Advance Care Planning,1st 30 min
- ;;^UTILITY(U,$J,358.3,20638,0)
- ;;=99498^^94^1013^2^^^^1
- ;;^UTILITY(U,$J,358.3,20638,1,0)
- ;;=^358.31IA^3^2
- ;;^UTILITY(U,$J,358.3,20638,1,2,0)
- ;;=2^99498
- ;;^UTILITY(U,$J,358.3,20638,1,3,0)
- ;;=3^Advance Care Planning,Ea Addl 30 min
- ;;^UTILITY(U,$J,358.3,20639,0)
- ;;=99366^^94^1014^1^^^^1
- ;;^UTILITY(U,$J,358.3,20639,1,0)
- ;;=^358.31IA^3^2
- ;;^UTILITY(U,$J,358.3,20639,1,2,0)
- ;;=2^99366
- ;;^UTILITY(U,$J,358.3,20639,1,3,0)
- ;;=3^Non-Phy Team Conf w/ Pt &/or Fam,30 min+
- ;;^UTILITY(U,$J,358.3,20640,0)
- ;;=90833^^94^1015^1^^^^1
- ;;^UTILITY(U,$J,358.3,20640,1,0)
- ;;=^358.31IA^3^2
- ;;^UTILITY(U,$J,358.3,20640,1,2,0)
- ;;=2^90833
- ;;^UTILITY(U,$J,358.3,20640,1,3,0)
- ;;=3^Psychotherapy Services,30 min
- ;;^UTILITY(U,$J,358.3,20641,0)
- ;;=90836^^94^1015^2^^^^1
- ;;^UTILITY(U,$J,358.3,20641,1,0)
- ;;=^358.31IA^3^2
- ;;^UTILITY(U,$J,358.3,20641,1,2,0)
- ;;=2^90836
- ;;^UTILITY(U,$J,358.3,20641,1,3,0)
- ;;=3^Psychotherapy Services,45 min
- ;;^UTILITY(U,$J,358.3,20642,0)
- ;;=90838^^94^1015^3^^^^1
- ;;^UTILITY(U,$J,358.3,20642,1,0)
- ;;=^358.31IA^3^2
- ;;^UTILITY(U,$J,358.3,20642,1,2,0)
- ;;=2^90838
- ;;^UTILITY(U,$J,358.3,20642,1,3,0)
- ;;=3^Psychotherapy Services,60 min
+ ;;^UTILITY(U,$J,358.3,20843,0)
+ ;;=S52.261S^^67^890^50
+ ;;^UTILITY(U,$J,358.3,20843,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,20843,1,3,0)
+ ;;=3^Disp fx of segmental shaft of ulna, right arm, sequela
+ ;;^UTILITY(U,$J,358.3,20843,1,4,0)
+ ;;=4^S52.261S
+ ;;^UTILITY(U,$J,358.3,20843,2)
+ ;;=^5029714
+ ;;^UTILITY(U,$J,358.3,20844,0)
+ ;;=S52.242S^^67^890^53
+ ;;^UTILITY(U,$J,358.3,20844,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,20844,1,3,0)
+ ;;=3^Disp fx of spiral shaft of ulna, left arm, sequela    
+ ;;^UTILITY(U,$J,358.3,20844,1,4,0)
+ ;;=4^S52.242S
+ ;;^UTILITY(U,$J,358.3,20844,2)
+ ;;=^5029538
+ ;;^UTILITY(U,$J,358.3,20845,0)
+ ;;=S52.241S^^67^890^54
+ ;;^UTILITY(U,$J,358.3,20845,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,20845,1,3,0)
+ ;;=3^Disp fx of spiral shaft of ulna, right arm, sequela   
+ ;;^UTILITY(U,$J,358.3,20845,1,4,0)
+ ;;=4^S52.241S
+ ;;^UTILITY(U,$J,358.3,20845,2)
+ ;;=^5029522
+ ;;^UTILITY(U,$J,358.3,20846,0)
+ ;;=S52.222S^^67^890^56
+ ;;^UTILITY(U,$J,358.3,20846,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,20846,1,3,0)
+ ;;=3^Disp fx of transverse shaft of left ulna, sequela
+ ;;^UTILITY(U,$J,358.3,20846,1,4,0)
+ ;;=4^S52.222S
+ ;;^UTILITY(U,$J,358.3,20846,2)
+ ;;=^5029346
+ ;;^UTILITY(U,$J,358.3,20847,0)
+ ;;=S52.221S^^67^890^58
+ ;;^UTILITY(U,$J,358.3,20847,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,20847,1,3,0)
+ ;;=3^Disp fx of transverse shaft of right ulna, sequela    
+ ;;^UTILITY(U,$J,358.3,20847,1,4,0)
+ ;;=4^S52.221S
+ ;;^UTILITY(U,$J,358.3,20847,2)
+ ;;=^5029330
+ ;;^UTILITY(U,$J,358.3,20848,0)
+ ;;=S52.212S^^67^890^68
+ ;;^UTILITY(U,$J,358.3,20848,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,20848,1,3,0)
+ ;;=3^Greenstick fracture of shaft of left ulna, sequela
+ ;;^UTILITY(U,$J,358.3,20848,1,4,0)
+ ;;=4^S52.212S
+ ;;^UTILITY(U,$J,358.3,20848,2)
+ ;;=^5029308
+ ;;^UTILITY(U,$J,358.3,20849,0)
+ ;;=S52.211S^^67^890^70
+ ;;^UTILITY(U,$J,358.3,20849,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,20849,1,3,0)
+ ;;=3^Greenstick fracture of shaft of right ulna, sequela
+ ;;^UTILITY(U,$J,358.3,20849,1,4,0)
+ ;;=4^S52.211S
+ ;;^UTILITY(U,$J,358.3,20849,2)
+ ;;=^5029302
+ ;;^UTILITY(U,$J,358.3,20850,0)
+ ;;=S52.272S^^67^890^71
+ ;;^UTILITY(U,$J,358.3,20850,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,20850,1,3,0)
+ ;;=3^Monteggia's fracture of left ulna, sequela
+ ;;^UTILITY(U,$J,358.3,20850,1,4,0)
+ ;;=4^S52.272S
+ ;;^UTILITY(U,$J,358.3,20850,2)
+ ;;=^5029826
+ ;;^UTILITY(U,$J,358.3,20851,0)
+ ;;=S52.271S^^67^890^72
+ ;;^UTILITY(U,$J,358.3,20851,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,20851,1,3,0)
+ ;;=3^Monteggia's fracture of right ulna, sequela
+ ;;^UTILITY(U,$J,358.3,20851,1,4,0)
+ ;;=4^S52.271S
+ ;;^UTILITY(U,$J,358.3,20851,2)
+ ;;=^5029810
+ ;;^UTILITY(U,$J,358.3,20852,0)
+ ;;=S52.255S^^67^890^79
+ ;;^UTILITY(U,$J,358.3,20852,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,20852,1,3,0)
+ ;;=3^Nondisp fx of comminuted shaft of ulna, left arm, sequela
+ ;;^UTILITY(U,$J,358.3,20852,1,4,0)
+ ;;=4^S52.255S
+ ;;^UTILITY(U,$J,358.3,20852,2)
+ ;;=^5029682
+ ;;^UTILITY(U,$J,358.3,20853,0)
+ ;;=S52.254S^^67^890^80
+ ;;^UTILITY(U,$J,358.3,20853,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,20853,1,3,0)
+ ;;=3^Nondisp fx of comminuted shaft of ulna, right arm, sequela
+ ;;^UTILITY(U,$J,358.3,20853,1,4,0)
+ ;;=4^S52.254S
+ ;;^UTILITY(U,$J,358.3,20853,2)
+ ;;=^5029666
+ ;;^UTILITY(U,$J,358.3,20854,0)
+ ;;=S52.045S^^67^890^81
+ ;;^UTILITY(U,$J,358.3,20854,1,0)
+ ;;=^358.31IA^4^2

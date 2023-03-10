@@ -1,5 +1,5 @@
-MAGGTU4D ;WOIFO/SG/NST/JSL/GEK/DAC - VERSION CONTROL (CLINICAL DISPLAY) ; 24 Jul 2019  4:57 PM
- ;;3.0;IMAGING;**93,94,106,117,122,131,149,138,156,161,167,181,191,188,216,234,225**;Mar 19, 2002;Build 5
+MAGGTU4D ;WOIFO/SG/NST/JSL/GEK/DAC/JSJ - VERSION CONTROL (CLINICAL DISPLAY); Aug 23, 2022@11:45:50
+ ;;3.0;IMAGING;**93,94,106,117,122,131,149,138,156,161,167,181,191,188,216,234,225,256,258,316,290,315**;Mar 19, 2002;Build 13
  ;; Per VHA Directive 2004-038, this routine should not be modified.
  ;; +---------------------------------------------------------------+
  ;; | Property of the US Government.                                |
@@ -23,9 +23,9 @@ CLVERCT ;***** VERSION CONTROL TABLE FOR THE CLINICAL DISPLAY CLIENTS
  ;;==================================================================
  ;;| Version |Build|Seq #|                Comment                   |
  ;;|---------+-----+------------------------------------------------|
- ;;| 3.0.225 |   1 |  ?? | Aug 2019                                 |
- ;;| 3.0.234 |   1 |  91 | Mar 2019                                 |
- ;;| 3.0.216 |   1 |  90 | Aug 2018                                 |
+ ;;| 3.0.315 |   3 |  202| Oct 2022                                 |
+ ;;| 3.0.290 |   2 |  201| Jun 2022                                 |
+ ;;| 3.0.316 |   1 |  200| Oct 2021                                 |                                |
  ;;==================================================================
  ;
  ; Each row of the version control table contains the version and
@@ -35,13 +35,16 @@ CLVERCT ;***** VERSION CONTROL TABLE FOR THE CLINICAL DISPLAY CLIENTS
  ; Sort order of the rows does not matter. However, the reversed
  ; order of patch sequential numbers is recommended.
  ; NOTE:
- ;
- ;  Patch 225 removed support for
+ ;  Patch 315 removed support for patch 258
+ ;  Patch 290 removed support for patch 256
+ ;  Patch 316 removed support for patch 290 (will be released after patch 316)
+ ;  Patch 258 removed support for patch 234
+ ;  Patch 256 removed support for patch 216
+ ;  Patch 225 removed patches prior to patch 216
  ;        - Patch 191
  ;        - Patch 181
  ;        - Patch 167
  ;        - Patch 161
- ;
  ;  Patch 234 Did not remove support for any Clients
  ;
  ;  Patch 216 removed support for   149 and 130

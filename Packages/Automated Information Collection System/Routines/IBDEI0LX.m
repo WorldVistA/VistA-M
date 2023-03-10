@@ -1,134 +1,122 @@
-IBDEI0LX ; ; 04-FEB-2020
- ;;3.0;IB ENCOUNTER FORM IMP/EXP;;FEB 04, 2020
+IBDEI0LX ; ; 01-FEB-2022
+ ;;3.0;IB ENCOUNTER FORM IMP/EXP;;FEB 01, 2022
  Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,999) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
- ;;^UTILITY(U,$J,358.3,9737,1,3,0)
- ;;=3^Aortic Aneurysm w/ Rupture
- ;;^UTILITY(U,$J,358.3,9737,1,4,0)
- ;;=4^I78.8
- ;;^UTILITY(U,$J,358.3,9737,2)
- ;;=^5007815
- ;;^UTILITY(U,$J,358.3,9738,0)
- ;;=I70.0^^72^651^27
- ;;^UTILITY(U,$J,358.3,9738,1,0)
+ ;;^UTILITY(U,$J,358.3,9864,0)
+ ;;=V00.811D^^39^420^51
+ ;;^UTILITY(U,$J,358.3,9864,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,9738,1,3,0)
- ;;=3^Atherosclerosis of Aorta
- ;;^UTILITY(U,$J,358.3,9738,1,4,0)
- ;;=4^I70.0
- ;;^UTILITY(U,$J,358.3,9738,2)
- ;;=^269759
- ;;^UTILITY(U,$J,358.3,9739,0)
- ;;=I71.00^^72^651^28
- ;;^UTILITY(U,$J,358.3,9739,1,0)
+ ;;^UTILITY(U,$J,358.3,9864,1,3,0)
+ ;;=3^Fall from Moving Wheelchair (pwered),Subs Encntr
+ ;;^UTILITY(U,$J,358.3,9864,1,4,0)
+ ;;=4^V00.811D
+ ;;^UTILITY(U,$J,358.3,9864,2)
+ ;;=^5055938
+ ;;^UTILITY(U,$J,358.3,9865,0)
+ ;;=V00.812A^^39^420^142
+ ;;^UTILITY(U,$J,358.3,9865,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,9739,1,3,0)
- ;;=3^Aortic Dissection
- ;;^UTILITY(U,$J,358.3,9739,1,4,0)
- ;;=4^I71.00
- ;;^UTILITY(U,$J,358.3,9739,2)
- ;;=^35660
- ;;^UTILITY(U,$J,358.3,9740,0)
- ;;=K55.059^^72^651^29
- ;;^UTILITY(U,$J,358.3,9740,1,0)
+ ;;^UTILITY(U,$J,358.3,9865,1,3,0)
+ ;;=3^Wheelchair Colliding w/ Stationary Obj,Init Encntr
+ ;;^UTILITY(U,$J,358.3,9865,1,4,0)
+ ;;=4^V00.812A
+ ;;^UTILITY(U,$J,358.3,9865,2)
+ ;;=^5055940
+ ;;^UTILITY(U,$J,358.3,9866,0)
+ ;;=V00.812D^^39^420^143
+ ;;^UTILITY(U,$J,358.3,9866,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,9740,1,3,0)
- ;;=3^Acute Ischemia of Intestine
- ;;^UTILITY(U,$J,358.3,9740,1,4,0)
- ;;=4^K55.059
- ;;^UTILITY(U,$J,358.3,9740,2)
- ;;=^5138733
- ;;^UTILITY(U,$J,358.3,9741,0)
- ;;=C79.9^^72^651^30
- ;;^UTILITY(U,$J,358.3,9741,1,0)
+ ;;^UTILITY(U,$J,358.3,9866,1,3,0)
+ ;;=3^Wheelchair Colliding w/ Stationary Obj,Subs Encntr
+ ;;^UTILITY(U,$J,358.3,9866,1,4,0)
+ ;;=4^V00.812D
+ ;;^UTILITY(U,$J,358.3,9866,2)
+ ;;=^5055941
+ ;;^UTILITY(U,$J,358.3,9867,0)
+ ;;=V00.818A^^39^420^140
+ ;;^UTILITY(U,$J,358.3,9867,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,9741,1,3,0)
- ;;=3^Metastatses
- ;;^UTILITY(U,$J,358.3,9741,1,4,0)
- ;;=4^C79.9
- ;;^UTILITY(U,$J,358.3,9741,2)
- ;;=^5133344
- ;;^UTILITY(U,$J,358.3,9742,0)
- ;;=C71.9^^72^651^31
- ;;^UTILITY(U,$J,358.3,9742,1,0)
+ ;;^UTILITY(U,$J,358.3,9867,1,3,0)
+ ;;=3^Wheelchair Accident NEC,Init Encntr
+ ;;^UTILITY(U,$J,358.3,9867,1,4,0)
+ ;;=4^V00.818A
+ ;;^UTILITY(U,$J,358.3,9867,2)
+ ;;=^5055943
+ ;;^UTILITY(U,$J,358.3,9868,0)
+ ;;=V00.818D^^39^420^141
+ ;;^UTILITY(U,$J,358.3,9868,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,9742,1,3,0)
- ;;=3^Malig Neopl of Brain
- ;;^UTILITY(U,$J,358.3,9742,1,4,0)
- ;;=4^C71.9
- ;;^UTILITY(U,$J,358.3,9742,2)
- ;;=^5001297
- ;;^UTILITY(U,$J,358.3,9743,0)
- ;;=C76.0^^72^651^32
- ;;^UTILITY(U,$J,358.3,9743,1,0)
+ ;;^UTILITY(U,$J,358.3,9868,1,3,0)
+ ;;=3^Wheelchair Accident NEC,Subs Encntr
+ ;;^UTILITY(U,$J,358.3,9868,1,4,0)
+ ;;=4^V00.818D
+ ;;^UTILITY(U,$J,358.3,9868,2)
+ ;;=^5055944
+ ;;^UTILITY(U,$J,358.3,9869,0)
+ ;;=V00.831A^^39^420^48
+ ;;^UTILITY(U,$J,358.3,9869,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,9743,1,3,0)
- ;;=3^Malig Neopl of Head/Face/Neck
- ;;^UTILITY(U,$J,358.3,9743,1,4,0)
- ;;=4^C76.0
- ;;^UTILITY(U,$J,358.3,9743,2)
- ;;=^5001324
- ;;^UTILITY(U,$J,358.3,9744,0)
- ;;=C34.10^^72^651^33
- ;;^UTILITY(U,$J,358.3,9744,1,0)
+ ;;^UTILITY(U,$J,358.3,9869,1,3,0)
+ ;;=3^Fall from Mobility Scooter,Init Encntr
+ ;;^UTILITY(U,$J,358.3,9869,1,4,0)
+ ;;=4^V00.831A
+ ;;^UTILITY(U,$J,358.3,9869,2)
+ ;;=^5055955
+ ;;^UTILITY(U,$J,358.3,9870,0)
+ ;;=V00.831D^^39^420^49
+ ;;^UTILITY(U,$J,358.3,9870,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,9744,1,3,0)
- ;;=3^Malig Neopl of Lung or Bronchus
- ;;^UTILITY(U,$J,358.3,9744,1,4,0)
- ;;=4^C34.10
- ;;^UTILITY(U,$J,358.3,9744,2)
- ;;=^5000960
- ;;^UTILITY(U,$J,358.3,9745,0)
- ;;=C18.9^^72^651^34
- ;;^UTILITY(U,$J,358.3,9745,1,0)
+ ;;^UTILITY(U,$J,358.3,9870,1,3,0)
+ ;;=3^Fall from Mobility Scooter,Subs Encntr
+ ;;^UTILITY(U,$J,358.3,9870,1,4,0)
+ ;;=4^V00.831D
+ ;;^UTILITY(U,$J,358.3,9870,2)
+ ;;=^5055956
+ ;;^UTILITY(U,$J,358.3,9871,0)
+ ;;=V00.832A^^39^420^100
+ ;;^UTILITY(U,$J,358.3,9871,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,9745,1,3,0)
- ;;=3^Malig Neopl of Colon
- ;;^UTILITY(U,$J,358.3,9745,1,4,0)
- ;;=4^C18.9
- ;;^UTILITY(U,$J,358.3,9745,2)
- ;;=^5000929
- ;;^UTILITY(U,$J,358.3,9746,0)
- ;;=C20.^^72^651^35
- ;;^UTILITY(U,$J,358.3,9746,1,0)
+ ;;^UTILITY(U,$J,358.3,9871,1,3,0)
+ ;;=3^Mobility Scooter Colliding w/ Stationary Obj,Init Encntr
+ ;;^UTILITY(U,$J,358.3,9871,1,4,0)
+ ;;=4^V00.832A
+ ;;^UTILITY(U,$J,358.3,9871,2)
+ ;;=^5055958
+ ;;^UTILITY(U,$J,358.3,9872,0)
+ ;;=V00.832D^^39^420^101
+ ;;^UTILITY(U,$J,358.3,9872,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,9746,1,3,0)
- ;;=3^Malig Neopl of Rectum
- ;;^UTILITY(U,$J,358.3,9746,1,4,0)
- ;;=4^C20.
- ;;^UTILITY(U,$J,358.3,9746,2)
- ;;=^267090
- ;;^UTILITY(U,$J,358.3,9747,0)
- ;;=C22.8^^72^651^36
- ;;^UTILITY(U,$J,358.3,9747,1,0)
+ ;;^UTILITY(U,$J,358.3,9872,1,3,0)
+ ;;=3^Mobility Scooter Colliding w/ Stationary Obj,Subs Encntr
+ ;;^UTILITY(U,$J,358.3,9872,1,4,0)
+ ;;=4^V00.832D
+ ;;^UTILITY(U,$J,358.3,9872,2)
+ ;;=^5055959
+ ;;^UTILITY(U,$J,358.3,9873,0)
+ ;;=V00.838A^^39^420^98
+ ;;^UTILITY(U,$J,358.3,9873,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,9747,1,3,0)
- ;;=3^Malig Neopl of Liver
- ;;^UTILITY(U,$J,358.3,9747,1,4,0)
- ;;=4^C22.8
- ;;^UTILITY(U,$J,358.3,9747,2)
- ;;=^5000939
- ;;^UTILITY(U,$J,358.3,9748,0)
- ;;=C25.9^^72^651^37
- ;;^UTILITY(U,$J,358.3,9748,1,0)
+ ;;^UTILITY(U,$J,358.3,9873,1,3,0)
+ ;;=3^Mobility Scooter Accident NEC,Init Encntr
+ ;;^UTILITY(U,$J,358.3,9873,1,4,0)
+ ;;=4^V00.838A
+ ;;^UTILITY(U,$J,358.3,9873,2)
+ ;;=^5055961
+ ;;^UTILITY(U,$J,358.3,9874,0)
+ ;;=V00.838D^^39^420^99
+ ;;^UTILITY(U,$J,358.3,9874,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,9748,1,3,0)
- ;;=3^Malig Neopl of Pancreas
- ;;^UTILITY(U,$J,358.3,9748,1,4,0)
- ;;=4^C25.9
- ;;^UTILITY(U,$J,358.3,9748,2)
- ;;=^5000946
- ;;^UTILITY(U,$J,358.3,9749,0)
- ;;=C64.9^^72^651^38
- ;;^UTILITY(U,$J,358.3,9749,1,0)
+ ;;^UTILITY(U,$J,358.3,9874,1,3,0)
+ ;;=3^Mobility Scooter Accident NEC,Subs Encntr
+ ;;^UTILITY(U,$J,358.3,9874,1,4,0)
+ ;;=4^V00.838D
+ ;;^UTILITY(U,$J,358.3,9874,2)
+ ;;=^5055962
+ ;;^UTILITY(U,$J,358.3,9875,0)
+ ;;=V00.891A^^39^420^62
+ ;;^UTILITY(U,$J,358.3,9875,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,9749,1,3,0)
- ;;=3^Malig Neopl of Kidney
- ;;^UTILITY(U,$J,358.3,9749,1,4,0)
- ;;=4^C64.9
- ;;^UTILITY(U,$J,358.3,9749,2)
- ;;=^5001250
- ;;^UTILITY(U,$J,358.3,9750,0)
- ;;=C67.9^^72^651^39
- ;;^UTILITY(U,$J,358.3,9750,1,0)
- ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,9875,1,3,0)
+ ;;=3^Fall from Pedestrian Conveyance,Init Encntr
+ ;;^UTILITY(U,$J,358.3,9875,1,4,0)
+ ;;=4^V00.891A

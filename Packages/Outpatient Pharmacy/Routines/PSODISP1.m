@@ -1,5 +1,5 @@
-PSODISP1 ;BHAM ISC/SAB,PDW - Rx released/unrelease report ;08 Oct 1999  9:58 AM
- ;;7.0;OUTPATIENT PHARMACY;**15,9,33,391**;DEC 1997;Build 13
+PSODISP1 ;BHAM ISC/SAB,PDW - Rx released/unrelease report ;Dec 13, 2021@07:59:07
+ ;;7.0;OUTPATIENT PHARMACY;**15,9,33,391,617,441**;DEC 1997;Build 208
  ;External reference to ^PS(59.7 supported by DBIA 694
  ;External reference to ^PSDRUG( supported by DBIA 221
  I '$D(PSOPAR) D ^PSOLSET I '$D(PSOPAR) W $C(7),!!,"Pharmacy Division must be selected!",! G EXIT
@@ -39,6 +39,7 @@ CS ; ask CS selection criteria - store in DUD1
  .D ^%ZTLOAD W:$D(ZTSK) !,"Report Queued to Print !!",! K ZTSK,IO("Q")
  ;
 BC S PG=1,(REL,UNREL,CP)=0 U IO D HD,RPT
+ W !!,"& Indicates eRx Prescription" ; PSO-617
  W !!,"# of Released Fills - "_REL_"  # of Unreleased Fills - "_UNREL_"  # of Copay Fills - "_CP
  I $E($G(IOST),1,2)'["C-" W !,@IOF
 EXIT D ^%ZISC K PG,LIN,G,REL,RPT,UNREL,BEG,BEGDT,END,ENDDT,DR,X,X1,X2,Y,REC,DIR,DIRUT,DUOUT,I,Y,RXN,NODE,PAR,BDT,PSX,PSXZ,SCH,CSDEA
@@ -55,8 +56,16 @@ RPT2 I $P($G(^PSRX(RXN,2)),"^",13),DUD Q
  I $P($G(^PSRX(RXN,2)),"^",9)'=SITE Q
  S XY=$P(^PSRX(RXN,"STA"),"^") I (XY=3)!(XY=4)!(XY=13)!(XY=16) Q
  S CSDEA=$$CSDEA(RXN) I CSDEA=0 Q  ; quit if CS Criteria fails
- I $P(^PSRX(RXN,2),"^",13) W !,$P(^PSRX(RXN,0),"^"),?16,$E($$GET1^DIQ(50,$P(^PSRX(RXN,0),"^",6),.01),1,30),?48,"0" S Y=$P(^PSRX(RXN,2),"^",13) W ?52,$P($$FMTE^XLFDT(Y,"2Z"),"@"),?62,$$SCH($P(CSDEA,"^",2)) S REL=REL+1 D CP1 Q
- I '$P(^PSRX(RXN,2),"^",13) D  Q:('$G(LBLP)&($G(PSX(0))']""))  W !,$P(^PSRX(RXN,0),"^"),?16,$E($$GET1^DIQ(50,$P(^PSRX(RXN,0),"^",6),.01),1,30),?48,"0",?62,$$SCH($P(CSDEA,"^",2)) S UNREL=UNREL+1 D CP1
+ S PARKED=0 I XY=0,$G(^PSRX(RXN,"PARK")) S PARKED=1    ;441 PAPI
+ ; if eRx, prepend "& " to Rx #   PSO-617
+ N ERXIND S ERXIND=$$ERXIEN^PSOERXUT(RXN)
+ I $P(^PSRX(RXN,2),"^",13) D  QUIT
+ . W !,$S(ERXIND'="":"&",1:" "),$P(^PSRX(RXN,0),"^"),?16,$E($$GET1^DIQ(50,$P(^PSRX(RXN,0),"^",6),.01),1,30),?48,"0"
+ . S Y=$P(^PSRX(RXN,2),"^",13)
+ . W ?52,$P($$FMTE^XLFDT(Y,"2Z"),"@"),?62,$$SCH($P(CSDEA,"^",2))
+ . S REL=REL+1
+ . D CP1
+ I '$P(^PSRX(RXN,2),"^",13) D  Q:('$G(LBLP)&($G(PSX(0))']""))  W !,$S(ERXIND'="":"&",1:" "),$P(^PSRX(RXN,0),"^"),?16,$E($$GET1^DIQ(50,$P(^PSRX(RXN,0),"^",6),.01),1,30),?48,"0",?62,$$SCH($P(CSDEA,"^",2)) S UNREL=UNREL+1 D CP1
  .F LB=0:0 S LB=$O(^PSRX(RXN,"L",LB)) Q:'LB  I '$P(^PSRX(RXN,"L",LB,0),"^",2),$P(^(0),"^",3)'["INTERACTION",'$P(^(0),"^",5) S LBLP=1 Q
  Q
 REF ;
@@ -65,15 +74,19 @@ REF ;
  I $P($G(^PSRX(RXN,$S('$G(PAR):1,1:"P"),NODE,0)),"^",16)]"" Q
  S XY=$P(^PSRX(RXN,"STA"),"^") I (XY=3)!(XY=4)!(XY>12) Q
  S CSDEA=$$CSDEA(RXN) I CSDEA=0 Q  ; quit if CS Criteria fails
+ S PARKED=0 I XY=0,$G(^PSRX(RXN,"PARK")) S PARKED=1    ;441 PAPI
+ ; if eRx, prepend "& " to Rx #   PSO-617
+ N ERXIND S ERXIND=$$ERXIEN^PSOERXUT(RXN)
  I $P($G(^PSRX(RXN,$S('$G(PAR):1,1:"P"),NODE,0)),"^",$S('$G(PAR):18,1:19)) D  G CP1
- .W !,$P(^PSRX(RXN,0),"^"),?16,$E($$GET1^DIQ(50,$P(^PSRX(RXN,0),"^",6),.01),1,30),?48,$S('$G(PAR):"",1:"P"),NODE S REL=REL+1
+ .W !,$S(ERXIND'="":"&",1:" "),$P(^PSRX(RXN,0),"^"),?16,$E($$GET1^DIQ(50,$P(^PSRX(RXN,0),"^",6),.01),1,30),?48,$S('$G(PAR):"",1:"P"),NODE S REL=REL+1
  .S Y=$P(^PSRX(RXN,$S('$G(PAR):1,1:"P"),NODE,0),"^",$S('$G(PAR):18,1:19)) W ?52,$P($$FMTE^XLFDT(Y,"2Z"),"@"),?62,$$SCH($P(CSDEA,"^",2))
  I '$P(^PSRX(RXN,$S('$G(PAR):1,1:"P"),NODE,0),"^",$S('$G(PAR):18,1:19)) S RPT=0 D  Q:'RPT
  .F LB=0:0 S LB=$O(^PSRX(RXN,"L",LB)) Q:'LB  I $P(^PSRX(RXN,"L",LB,0),"^",2)=$S('$G(PAR):NODE,1:99-NODE) S LBLP=1 Q
  .Q:('$G(LBLP)&($G(PSX(NODE))']""))
  .D TEST Q:'$G(LBLP)&($G(PSOLCMF))
- .S RPT=1 W !,$P(^PSRX(RXN,0),"^"),?16,$E($$GET1^DIQ(50,$P(^PSRX(RXN,0),"^",6),.01),1,30),?48,$S('$G(PAR):"",1:"P"),NODE,?62,$$SCH($P(CSDEA,"^",2)) S UNREL=UNREL+1
-CP1 W ?68,$S(XY=1:"NV",XY=2:"Ref",XY=3!(XY=16):"HLD",XY=5:"SUSP",XY=10:"DONE",XY=11:"EXP",XY=12!(XY=14)!(XY=15):"DC",1:"ACT")
+ .S RPT=1 W !,$S(ERXIND'="":"&",1:" "),$P(^PSRX(RXN,0),"^"),?16,$E($$GET1^DIQ(50,$P(^PSRX(RXN,0),"^",6),.01),1,30),?48,$S('$G(PAR):"",1:"P"),NODE,?62,$$SCH($P(CSDEA,"^",2)) S UNREL=UNREL+1
+CP1 I 'PARKED W ?68,$S(XY=1:"NV",XY=2:"Ref",XY=3!(XY=16):"HLD",XY=5:"SUSP",XY=10:"DONE",XY=11:"EXP",XY=12!(XY=14)!(XY=15):"DC",1:"ACT")
+ I PARKED W ?68,"PARKED"   ;441 PAPI ADDED PARKED TO THESE TWO LINES
  Q:$G(PAR)  I $P($G(^PSRX(RXN,"IB")),"^") W ?77,"Y" S CP=CP+1
  I $G(PSX(NODE))]"" W ?85,"Y",?95,$S(PSX(NODE)=0:"Transmitted",PSX(NODE)=1:"Dispensed",PSX(NODE)=2:"Retransmitted",PSX(NODE)=3:"Not Dispensed",1:"Unknown")
  Q
@@ -97,7 +110,7 @@ TESTX K PSOLCR,PSOLCMR
 CSDEA(X) ;CS Criteria .. returns a 1 if both DEA on drug & criteria 'N/C/B' are satisfied
  N DEA,DRUGDA
  S DRUGDA=$$GET1^DIQ(52,X,6,"I"),DEA=$$GET1^DIQ(50,DRUGDA,3)
- I DUD1="B" Q 1_"^"_+DEA ;both CS & non CS (all) 
+ I DUD1="B" Q 1_"^"_+DEA ;both CS & non CS (all)
  ;CS
  I DUD1="C" Q $S('+DEA:0,'$D(SCH(+DEA)):0,1:1_"^"_+DEA)
  ;Non CS

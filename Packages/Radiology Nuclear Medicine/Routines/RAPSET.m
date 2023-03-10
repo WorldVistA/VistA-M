@@ -1,5 +1,5 @@
-RAPSET ;HISC/CAH,FPT,GJC AISC/MJK,RMO-Set Sign-on parameters ;5/22/97  14:22
- ;;5.0;Radiology/Nuclear Medicine;**21**;Mar 16, 1998
+RAPSET ;HISC/CAH,FPT,GJC AISC/MJK,RMO-Set Sign-on parameters ; Aug 25, 2021@13:21:09
+ ;;5.0;Radiology/Nuclear Medicine;**21,184**;Mar 16, 1998;Build 2
  D CHKSP^RAUTL2
  I 'RADV!('RALC) W !!,*7,"You must initialize at least one Radiology/Nuclear Medicine Division",!,"and one Imaging Location to proceed.",!,"Refer to the Radiology/Nuclear Medicine ADPAC Guide.",!! K RADV,RALC S XQUIT="" Q
  K RADV,RALC S (RADIV,RALOC,RADEV,DIV,LOC,DEV)="" G LOC:$D(^RA(79.2,"AC","E"))
@@ -33,7 +33,8 @@ LOC1 D:'$D(RACCESS(DUZ)) VARACC^RAUTL6(DUZ) ; Setup user's access
  K DIC("A"),DIC("S") I $D(DTOUT)!($D(DUOUT)) S XQUIT="" G Q^RAPSET1
  I Y<0 W !?3,*7,"You must choose an Imaging 'Location' to continue...",!?3,"or enter '^' to stop.",! G LOC1
  S LOC=+Y,DIV=$O(^RA(79,"AL",LOC,0))
- I DIV'>0!('$D(^RA(79,+DIV,0))) W !,*7,"Radiology/Nuclear Medicine Division definition error. Call your site manager." S XQUIT="" G Q^RAPSET1
+ ;RA184/KLM - Change next line so we don't boot the user out of VistA if the ILOC isn't assign a division.
+ I DIV'>0!('$D(^RA(79,+DIV,0))) W !!,$C(7),"***Selected location is not assigned to a division!***",! G LOC1
  S RADIV=^RA(79,DIV,0),RALOC=$S($D(^RA(79.1,LOC,0)):^(0),1:"")
  I RALOC']"" W !!,*7,"Imaging Location definition error. Call your site manager." S XQUIT="" G Q^RAPSET1
  ;

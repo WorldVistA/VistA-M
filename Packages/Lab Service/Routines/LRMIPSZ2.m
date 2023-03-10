@@ -1,5 +1,5 @@
-LRMIPSZ2 ;DALOI/STAFF - MICRO PATIENT REPORT - BACTERIA, SIC/SBC, MIC ;03/15/13  10:01
- ;;5.2;LAB SERVICE;**388,350,427**;Sep 27, 1994;Build 33
+LRMIPSZ2 ;DALOI/STAFF - MICRO PATIENT REPORT - BACTERIA, SIC/SBC, MIC ;Jul 15, 2021@13:13
+ ;;5.2;LAB SERVICE;**388,350,427,547**;Sep 27, 1994;Build 10
  ;
  ;
  Q
@@ -15,10 +15,23 @@ ANTI ;
  . . W !,$P(^TMP("LRMI",$J,LRDFN,"MI",LRIDT,14,B,0),U),?20,$P(^(0),U,3),?42,$$EXTERNAL^DILFD(63.42,1,"",$P(^(0),U,2))
  Q
  ;
+MES ;LR*5.2*547: Display informational message if accession/test is currently being edited.
+ Q:'$G(LR7SB)
+ N LR7AREA
+ S LR7AREA=$S(LR7SB=1:"Bacteriology",LR7SB=5:"Parasitology",LR7SB=8:"Mycology",LR7SB=11:"Mycobacteriology",1:"Virology")
+ Q:'$D(^XTMP("LRMICRO EDIT",LRDFN,LRIDT,LR7SB))
+ W !,?22,"**** ATTENTION ****",!,?10,"The "_LR7AREA_" Report is being edited",!,?10,"by tech code ",^XTMP("LRMICRO EDIT",LRDFN,LRIDT,LR7SB)
+ W " and current results",!,?10,"may not be visible until approved.",!
+ Q
  ;
 BACT ;
  ; from LRMIPSZ1
- I $P(^TMP("LRMI",$J,LRDFN,"MI",LRIDT,1),U)="",'$G(LRLABKY) Q:'$D(LRWRDVEW)  Q:LRSB'=1
+ I $P(^TMP("LRMI",$J,LRDFN,"MI",LRIDT,1),U)="",'$G(LRLABKY) D  Q:'$D(LRWRDVEW)  Q:LRSB'=1
+ . Q:'$D(^XTMP("LRMICRO EDIT",LRDFN,LRIDT,1))
+ . ;LR*5.2*547: Display informational message if accession/test is currently being edited
+ . ;            and results had previously been verified.
+ . N LR7SB S LR7SB=1
+ . D MES
  D BUG
  I $D(^TMP("LRMI",$J,LRDFN,"MI",LRIDT,2)) D  Q:LRABORT  ;
  . D NP Q:LRABORT

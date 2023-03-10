@@ -1,12 +1,13 @@
 IBCNRDV ;OAKFO/ELZ - INSURANCE INFORMATION EXCHANGE VIA RDV ;27-MAR-03
- ;;2.0;INTEGRATED BILLING;**214,231,361,371,452,593,631**;21-MAR-94;Build 23
+ ;;2.0;INTEGRATED BILLING;**214,231,361,371,452,593,631,664**;21-MAR-94;Build 29
  ;;Per VA Directive 6402, this routine should not be modified.
  ;
  ; This routine is used to exchange insurance information between
  ; facilities.
 OPT ; Menu option entry point.  This is used to select a patient to request
  ; information about from the remote treating facilities.
- N DFN,DIC,X,Y,DTOUT,DUOUT,IBT,%,%Y,IBX,VADM,IBB,IBD,IBH,IBI,IBICN,IBR,IBRZ,IBX,IBY,IBZ,IBWAIT,IBL,DO,IBTYPE,IB1
+ ;IB*2.0*664/TAZ - Add CTR to New List
+ N CTR,DFN,DIC,X,Y,DTOUT,DUOUT,IBT,%,%Y,IBX,VADM,IBB,IBD,IBFASTXT,IBH,IBI,IBICN,IBR,IBRZ,IBX,IBY,IBZ,IBWAIT,IBL,DO,IBTYPE,IB1
  ;
  ; prompt for patient
 AGAIN S DIC="^DPT(",DIC(0)="AEMNQ" D ^DIC Q:Y<1  S DFN=+Y
@@ -37,7 +38,8 @@ BACKGND ; background/tasked entry point
  I $D(IBT)<9 Q
  ;
  ;Create Duplicate Check Index
- D INDEX(DFN)
+ ;IB*2.0*664/TAZ - Only build index for Background calls
+ I $D(IBTYPE) D INDEX(DFN)
  ;
  ; go through every IBT()
  S IBP="|",IBX=0 F  S IBX=$O(IBT(IBX)) Q:IBX<1!($D(IBT)<9)  D
@@ -64,14 +66,11 @@ BACKGND ; background/tasked entry point
  ... ;IB*2.0*631/TAZ - Insurance data comes in multiples of 7
  ... I $P(IBT,IBP,3)=$S(IBY#7:IBY#7,1:7) S IBZ=$P(IBR(IBY),"^",$P(IBT,IBP,4)) I $L(IBZ) D
  .... ;
- .... ; xecute code to change external to internal
+ .... ; execute code to change external to internal
  .... X:$L($P(IBT,IBP,7)) $P(IBT,IBP,7)
  .... ;
  .... ; put the info in the array for the buffer file
  .... S:$D(IBZ) IBB($P(IBT,IBP,5))=IBZ
- .. ;
- .. ; need to avoid duplicates if possible.
- .. ;I $G(IBB(20.01))["MEDICARE (WNR)" S X=0 F  S X=$O(^DPT(DFN,.312,X)) Q:X<1  I $P($G(^DIC(36,+$P($G(^DPT(DFN,.312,X,0)),"^"),0)),"^")["MEDICARE (WNR)" K IBB Q
  .. ;
  .. ; file in the buffer file & where else needed
  .. ;IB*2.0*631/TAZ - File on the 7th multiple line (i.e. 7,14,21...)
@@ -81,25 +80,35 @@ BACKGND ; background/tasked entry point
  .... S IBB(.14)=$$IEN^XUAF4(+IBT(IBX))
  .... S IBB(.03)=$O(^IBE(355.12,"C","INSURANCE IMPORT",""))
  .... D VCHECK(.IBB) I 'IBOK Q
+ .... ;IB*2.0*664/TAZ - Set up ^TMP Array for input to ListMan screen if interactive
+ .... I '$D(IBTYPE) D  Q
+ ..... S CTR=$O(^TMP($J,"IBCNRDV",""),-1)+1
+ ..... M ^TMP($J,"IBCNRDV",CTR)=IBB
  .... S IBB=$$ADDSTF^IBCNBES($G(IBB(.03),1),DFN,.IBB)
- ... I '$D(IB1),$D(IBTYPE),$L($G(IBB(20.01))) D SCH^IBTUTL2(DFN,$G(IBSAVEI),$G(IBSAVEJ)):IBTYPE="TRKR",ADM^IBTUTL($G(IBSAVE1),$G(IBSAVE2),$G(IBSAVE3),$G(IBSAVE4)):IBTYPE="ADM" S IB1=1
- ... W:'$D(IBTYPE)&($L($G(IBB(20.01)))) !,$P($G(IBB),"^")," Buffer File entry for ",$G(IBB(20.01))
+ .... ;IB*2.0*664/TAZ - Moved the following line into this dotted Do struction since it only executed if $L($G(IBB(20.01)))
+ .... I '$D(IB1),$D(IBTYPE) D SCH^IBTUTL2(DFN,$G(IBSAVEI),$G(IBSAVEJ)):IBTYPE="TRKR",ADM^IBTUTL($G(IBSAVE1),$G(IBSAVE2),$G(IBSAVE3),$G(IBSAVE4)):IBTYPE="ADM" S IB1=1
  ... K IBB
+ ;
+ ;IB*2.0*664/TAZ - Branch to ListMan screen if interactive
+ I '$D(IBTYPE),$D(^TMP($J,"IBCNRDV")) H 3 D EN^IBCNRDV1
  ;
  ; flag so I don't do this patient again within 90 days
  S ^IBT(356,"ARDV",DFN,$$FMADD^XLFDT(DT,90))=""
  ;
  ; Clean up ^TMP global
- K ^TMP("IBCNRDV",$J)
+ K ^TMP($J,"IBCNRDV")
  ;
  Q
  ;
 VCHECK(IBB) ; Check to make sure the record is not duplicate and passes validity check.
  ;
  ;Check for duplicates
- I $$DUP(.IBB) S IBOK=0 G VCHECKX
+ ;IB*2.0*664/TAZ - Only check for duplicates when processing in background
+ I $D(IBTYPE),$$DUP(.IBB) S IBOK=0 G VCHECKX
  ; Validate entries to insure we are only getting the data we want.
  I '$$VALID(.IBB) S IBOK=0 G VCHECKX
+ ;IB*2.0*664/TAZ - Only add to INDEX for background processing
+ I '$D(IBTYPE) G VCHECKX
  ;Add to index
  N IBDOB,IBGRP,IBINSNM,IBNAME,IBSUBID
  S IBINSNM=$G(IBB(20.01)) I IBINSNM']"" S IBINSNM=" "

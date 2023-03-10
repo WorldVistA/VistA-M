@@ -1,5 +1,5 @@
-ORCSAVE2 ;SLC/MKB-Utilities to update an order ;02/19/2020
- ;;3.0;ORDER ENTRY/RESULTS REPORTING;**4,27,56,70,94,116,190,157,215,265,243,293,280,346,269,421,382,377**;Dec 17, 1997;Build 582
+ORCSAVE2 ;SLC/MKB-Utilities to update an order ;Jun 03, 2020@15:21:13
+ ;;3.0;ORDER ENTRY/RESULTS REPORTING;**4,27,56,70,94,116,190,157,215,265,243,293,280,346,269,421,382,377,405**;Dec 17, 1997;Build 211
  ;Per VA Directive 6402, this routine should not be modified.
  ;
  ;Nov 12, 2015 PB - modified to do a sync for a saved order
@@ -184,7 +184,10 @@ OC ; -- Save order checks in ORCHECK() in ^OR(100,+ORIFN,9) ON SIGNATURE IN CPRS
  . . S CNT=CNT+1
  . . S ORK(CNT,1)=+ORIFN_U_"SIGNATURE_CPRS"_U_DUZ_U_$$NOW^XLFDT_U_+OC_U_I
  . . S ORK(CNT,2,1)=$P(OC,U,3)
- . . S ORK(CNT,3)=$S(I=1:$G(ORCHECK("OK")),1:"")
+ . . ;TDP - Modified to handle ORREASONS input
+ . . S ORK(CNT,3)=$S(((I=1)&($G(ORCHECK("OK")))):$G(ORCHECK("OK")),$D(ORREASONS(+ORIFN)):$G(ORREASONS(+ORIFN)),1:"")
+ . . ;TDP - Modified to accept ORCOMMENTS
+ . . S ORK(CNT,4)=$S($D(ORCOMMENTS(+ORIFN)):$G(ORCOMMENTS(+ORIFN)),1:"")
  . . I $E(ORK(CNT,2,1),0,2)="||" D
  . . . N ORGLOB,ORRULE,ORI,ORICNT
  . . . S ORGLOB=$P($P(ORK(CNT,2,1),"||",2),"&"),ORRULE=$P($P(ORK(CNT,2,1),"||",2),"&",2)

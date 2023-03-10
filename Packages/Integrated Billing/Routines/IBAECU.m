@@ -1,5 +1,5 @@
-IBAECU ;ALB/BGA-LTC UTILITIES DETERMINE LTC ELIG ; 25-SEPT-01
- ;;2.0;INTEGRATED BILLING;**164,171,176,198,188,454,660**;21-MAR-94;Build 4
+IBAECU ;ALB/BGA - LTC UTILITIES DETERMINE LTC ELIG ; 25-SEPT-01
+ ;;2.0;INTEGRATED BILLING;**164,171,176,198,188,454,660,728**;21-MAR-94;Build 14
  ;; Per VHA Directive 10-93-142, this routine should not be modified.
  ;
  ; This routine contains the following utilities in support of the
@@ -218,7 +218,7 @@ TOT ; calculates the total charged for a patient (for the month)
  . I $P($G(^IBE(350.1,+$P(IBZ,"^",3),0)),"^",5)=2 Q
  . ;
  . S IBT=IBT+$P(^IB(IBX,0),"^",7)
- . I $E(^IBE(350.1,$P(IBZ,"^",3),0),8,11)="INPT" S IBTYP="I"
+ . I $P(^IBE(350.1,IBAT,0),U,11)=9 S IBTYP="I"  ; IB*2.0*728
  ;
  Q
  ;

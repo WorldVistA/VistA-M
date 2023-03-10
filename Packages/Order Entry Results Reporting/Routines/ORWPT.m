@@ -1,5 +1,5 @@
-ORWPT ; SLC/KCM/REV - Patient Lookup Functions ; 12/28/17 1:28pm
- ;;3.0;ORDER ENTRY/RESULTS REPORTING;**10,85,132,149,206,187,190,215,243,280,306,311,441**;Dec 17, 1997;Build 52
+ORWPT ;SLC/KCM/REV - Patient Lookup Functions ;Apr 15, 2022@11:15:28
+ ;;3.0;ORDER ENTRY/RESULTS REPORTING;**10,85,132,149,206,187,190,215,243,280,306,311,441,528,519,544,405**;Dec 17, 1997;Build 211
  ;
  ; Ref. to ^UTILITY via IA 10061
  ; DBIA 10096  ^%ZOSF()
@@ -26,6 +26,7 @@ ORWPT ; SLC/KCM/REV - Patient Lookup Functions ; 12/28/17 1:28pm
  ; DBIA 10006  ^VA(200
  ; DBIA 10035  ^DPT(
  ; DBIA  2762  ^DPT(
+ ; DBIA  7109  DEMUPD^VADPT
  ;
 IDINFO(REC,DFN) ; Return identifying information for a patient
  ; PID^DOB^SEX^VET^SC%^WARD^RM-BED^NAME
@@ -72,10 +73,12 @@ SELECT(REC,DFN) ; Selects patient & returns key information
  ; for CCOW (RV - 2/27/03)  name="-1", location=error message
  I '$D(^DPT(+DFN,0)) S REC="-1^^^^^Patient is unknown to CPRS." Q
  ;
- N X
+ N X,ORPREF,VADEMO
  I $G(XWB("2","RPC"))="ORWPT SELECT" K ^TMP($J,"OC-OPOS") ; delete once per order session order checks
  K ^TMP("ORWPCE",$J) ; delete PCE 'cache' when switching patients
- S X=^DPT(DFN,0),REC=$P(X,U,1,3)_U_$P(X,U,9)_U_U_$G(^(.1))_U_$G(^(.101))
+ K ^TMP("ORALLERGYCHK",$J) ; delete all temp allergy data for current session
+ D DEMUPD^VADPT S ORPREF=$P(VADEMO(1,1),"^")
+ S X=^DPT(DFN,0),REC=$P(X,U,1)_$S(ORPREF="":"",1:" ("_ORPREF_")")_"^"_$P(X,U,2,3)_U_$P(X,U,9)_U_U_$G(^(.1))_U_$G(^(.101))
  S X=$P(REC,U,6) I $L(X) S $P(REC,U,5)=+$G(^DIC(42,+$O(^DIC(42,"B",X,0)),44))
  S $P(REC,U,8)=$$CWAD^ORQPT2(DFN)_U_$$EN1^ORQPT2(DFN)
  ; I $P(REC,U,9) D EN2^ORQPT2(DFN)  ;update DG security log ; DG249
@@ -113,6 +116,7 @@ LAST5(LST,ID) ; Return a list of patients matching A9999 identifiers
  N I,IEN,XREF
  S (I,IEN)=0,XREF=$S($L(ID)=5:"BS5",1:"BS")
  F  S IEN=$O(^DPT(XREF,ID,IEN)) Q:'IEN  D
+ . Q:'$D(^DPT(IEN,0))  ;Added Patch OR*3*544
  . S I=I+1,LST(I)=IEN_U_$P(^DPT(IEN,0),U)_U_$$DOB^DPTLK1(IEN,2)_U_$$SSN^DPTLK1(IEN)  ; DG249
  Q
  ;
@@ -265,5 +269,9 @@ AGE(DFN,BEG) ; returns age based on date of birth and date of death (or DT)
  S END=+$G(^DPT(DFN,.35)),END=$S(END:END,1:DT)
  S X=$E(END,1,3)-$E(BEG,1,3)-($E(END,4,7)<$E(BEG,4,7))
  Q X
+GETFICN(ORWRSLT,DFN) ;returns ICN plus checksum for a DFN
+ S ORWRSLT="-1^UNKNOWN ERROR"
+ S ORWRSLT=$$GETICN^MPIF001(DFN)
+ Q
 ROK(X) ; Routine OK (in UCI) (NDBI)
  S X=$G(X) Q:'$L(X) 0  Q:$L(X)>8 0  X ^%ZOSF("TEST") Q:$T 1  Q 0

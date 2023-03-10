@@ -1,5 +1,5 @@
-MAGDRPCC ;WOIFO/PMK- Imaging RPCs ; 31 Jul 2013 11:17 AM
- ;;3.0;IMAGING;**138**;Mar 19, 2002;Build 5380;Sep 03, 2013
+MAGDRPCC ;WOIFO/PMK - Imaging RPCs ; Mar 07, 2022@09:43:28
+ ;;3.0;IMAGING;**138,305**;Mar 19, 2002;Build 3
  ;; Per VHA Directive 2004-038, this routine should not be modified.
  ;; +---------------------------------------------------------------+
  ;; | Property of the US Government.                                |
@@ -25,7 +25,6 @@ CONLKUP(OUT,ACNUMB) ; RPC = MAG DICOM LOOKUP CON STUDY
  N CPTNAME ;-- CPT name for the procedure
  N CPTSCHM ;-- CPT coding scheme
  N DATETIME ;- timestamp
- N DIVISION ;- pointer to INSTITUTION file (#4)
  N DFN ;------ patient pointer
  N EXAMSTS ;-- exam status (don't post images to CANCELLED exams)
  N GMRCIEN ;-- IEN for REQUEST/CONSULTATION file (#123)
@@ -103,4 +102,18 @@ CONLKUP(OUT,ACNUMB) ; RPC = MAG DICOM LOOKUP CON STUDY
  S OUT(13)=$$STATNUMB^MAGDFCNV()
  S OUT(14)=$$GMRCACN^MAGDFCNV(GMRCIEN)
  S OUT(15)=GMRCIEN
+ Q
+ ;
+XMITSTAT(OUT,D0) ; RPC = MAG DICOM GET XMIT STATS
+ ; return statistics array for a DICOM Export
+ N D1,STATUS,X
+ K OUT
+ I '$G(D0) S OUT="-1,IEN for DICOM OBJECT EXPORT file (#2006.574) is missing" Q
+ I '$D(^MAGDOUTP(2006.574,D0)) S OUT="-2,No entry #"_D0_" in DICOM OBJECT EXPORT file (#2006.574)" Q
+ S OUT=1 ; indicate output
+ S D1=0 F  S D1=$O(^MAGDOUTP(2006.574,D0,1,D1)) Q:'D1  D
+ . S X=$G(^MAGDOUTP(2006.574,D0,1,D1,0))
+ . S STATUS=$P(X,"^",2)
+ . S OUT(STATUS)=($P($G(OUT(STATUS)),"^",1)+1)_"^"_STATUS
+ . Q
  Q

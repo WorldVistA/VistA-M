@@ -1,7 +1,7 @@
-PXRMVCPT ; SLC/PKR - Code to handle VCPT data. ;04/16/2015
- ;;2.0;CLINICAL REMINDERS;**4,26,47**;Feb 04, 2005;Build 291
+PXRMVCPT ; SLC/PKR - Code to handle V CPT data. ;07/23/2020
+ ;;2.0;CLINICAL REMINDERS;**4,26,47,42**;Feb 04, 2005;Build 245
  ;
- ;===============================================
+ ;===============
 FPDAT(DFN,TAXARR,NGET,SDIR,BDT,EDT,FLIST) ;Find data for a patient.
  N CODESYS,CSYST,DATE,DS,EDTT,IND,NFOUND,NNODES,TLIST
  S NNODES=TAXARR("APDS",9000010.18,"NNODES")
@@ -25,7 +25,7 @@ FPDAT(DFN,TAXARR,NGET,SDIR,BDT,EDT,FLIST) ;Find data for a patient.
  .. S FLIST(DATE,NFOUND,9000010.18)=TLIST(DATE,IND)
  Q
  ;
- ;===============================================
+ ;===============
 FPDP81(DFN,CODESYS,TAXARR,NNODES,NGET,BDT,EDTT,DS,SDIR,TLIST) ;Find data for a
  ;patient for pointers to file 81.
  N CODE,CODEP,DAS,DATE,NFOUND,NODE,TDATE,TIND
@@ -47,7 +47,7 @@ FPDP81(DFN,CODESYS,TAXARR,NNODES,NGET,BDT,EDTT,DS,SDIR,TLIST) ;Find data for a
  .... K TLIST(TDATE,TIND)
  Q
  ;
- ;===============================================
+ ;===============
 FPDCSYS(DFN,CODESYS,TAXARR,NNODES,NGET,BDT,EDTT,DS,SDIR,TLIST) ;Find data for
  ;a patient for coding systems not stored as a pointer.
  N CODE,DAS,DATE,NFOUND,NODE,TDATE,TIND
@@ -70,30 +70,30 @@ FPDCSYS(DFN,CODESYS,TAXARR,NNODES,NGET,BDT,EDTT,DS,SDIR,TLIST) ;Find data for
  .... K TLIST(TDATE,TIND)
  Q
  ;
- ;===============================================
+ ;===============
 GETDATA(DAS,FIEVT) ;Return data for a specified V CPT entry.
  ;DBIA #4250.
  D VCPT^PXPXRM(DAS,.FIEVT)
  Q
  ;
- ;===============================================
+ ;===============
 GPLIST(TAXARR,NOCC,BDT,EDT,PLIST) ;Build patient list for V CPT entries.
  N CODE,CODEP,CODESYS,DAS,DATE,DFN,DS,NFOUND,NODE,NNODES,TEMP,TLIST
  S NNODES=TAXARR("APDS",9000010.18,"NNODES")
  I NNODES=0 Q
  I $G(^PXRMINDX(9000010.18,"DATE BUILT"))="" D  Q
  . D NOINDEX^PXRMERRH("TX",TAXARR("IEN"),9000010.18)
- S TLIST="GPLIST_PXRMVPOV"
+ S TLIST="GPLIST_PXRMVCPT"
  K ^TMP($J,TLIST)
  S DS=$S(EDT[".":EDT+.0000001,1:EDT+.240001)
  S CODESYS=""
  F  S CODESYS=$O(TAXARR("AE",CODESYS)) Q:CODESYS=""  D
  . S CODE=""
  . F  S CODE=$O(TAXARR("AE",CODESYS,CODE)) Q:(CODE="")  D
- .. I (CODESYS="CPT") D
- ... S CODEP=$P(TAXARR("AE","CPT",CODE),U,1)
- ... I $D(^PXRMINDX(9000010.18,"IPP",CODEP)) D GPLCPT4(CODE,CODEP,.TAXARR,NNODES,BDT,DS,TLIST)
- .. I (CODESYS'="CPT"),$D(^PXRMINDX(9000010.18,CODESYS,"IPP",CODE)) D GPLCSYS(CODESYS,CODE,.TAXARR,NNODES,BDT,DS,TLIST)
+ .. S CODEP=$P(TAXARR("AE",CODESYS,CODE),U,1)
+ .. I $D(^PXRMINDX(9000010.18,"IPP",CODEP)) D GPLCPT4(CODE,CODEP,.TAXARR,NNODES,BDT,DS,TLIST) Q
+ ..;This is in case other coding systems are ever added to file #81.
+ .. I $D(^PXRMINDX(9000010.18,CODESYS,"IPP",CODE)) D GPLCSYS(CODESYS,CODE,.TAXARR,NNODES,BDT,DS,TLIST)
  ;Return up to NOCC of the most recent entries for each patient.
  S DFN=0
  F  S DFN=$O(^TMP($J,TLIST,DFN)) Q:DFN=""  D
@@ -107,9 +107,9 @@ GPLIST(TAXARR,NOCC,BDT,EDT,PLIST) ;Build patient list for V CPT entries.
  K ^TMP($J,TLIST)
  Q
  ;
- ;===============================================
-GPLCPT4(CODE,CODEP,TAXARR,NNODES,BDT,DS,TLIST) ;Build patient list for V CPT for
- ;CPT-4.
+ ;===============
+GPLCPT4(CODE,CODEP,TAXARR,NNODES,BDT,DS,TLIST) ;Build patient list for V CPT
+ ;for CPT-4 and HCPCS.
  N DAS,DATE,DFN,IND,NODE,TEMP
  F IND=1:1:NNODES D
  . S NODE=TAXARR("APDS",9000010.18,IND)
@@ -122,7 +122,7 @@ GPLCPT4(CODE,CODEP,TAXARR,NNODES,BDT,DS,TLIST) ;Build patient list for V CPT for
  ... S ^TMP($J,TLIST,DFN,DATE,DAS)="CPT"_U_CODE_U_NODE
  Q
  ;
- ;===============================================
+ ;===============
 GPLCSYS(CODESYS,CODE,TAXARR,NNODES,BDT,DS,TLIST) ;Build patient list for V CPT
  ;for coding systems other than CPT-4.
  N DAS,DATE,DFN,IND,NODE,TEMP
@@ -137,7 +137,7 @@ GPLCSYS(CODESYS,CODE,TAXARR,NNODES,BDT,DS,TLIST) ;Build patient list for V CPT
  ... S ^TMP($J,TLIST,DFN,DATE,DAS)=CODESYS_U_CODE_U_NODE
  Q
  ;
- ;===============================================
+ ;===============
 MHVOUT(INDENT,OCCLIST,IFIEVAL,NLINES,TEXT) ;Produce the MHV output.
  N CDATA,CODE,CODESYS,IND,JND,NAME,NIN,NOUT
  N PN,PP,RESULT,TEMP,TEXTOUT,VDATE
@@ -156,7 +156,7 @@ MHVOUT(INDENT,OCCLIST,IFIEVAL,NLINES,TEXT) ;Produce the MHV output.
  S NLINES=NLINES+1,TEXT(NLINES)=""
  Q
  ;
- ;===============================================
+ ;===============
 OUTPUT(INDENT,OCCLIST,IFIEVAL,NLINES,TEXT) ;Produce the clinical
  ;maintenance output.
  N CDATA,CODE,CODESYS,CODESYSN,D0,IND,JND,NIN,NOUT

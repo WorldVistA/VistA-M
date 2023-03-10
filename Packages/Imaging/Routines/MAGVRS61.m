@@ -1,5 +1,5 @@
-MAGVRS61 ;WOIFO/DAC - RPC calls for DICOM file processing ; 20 Nov 2015 11:20 AM
- ;;3.0;IMAGING;**118,162**;Mar 19, 2002;Build 22;Nov 20, 2015
+MAGVRS61 ;WOIFO/DAC,JSJ - RPC calls for DICOM file processing ; 20 Nov 2015 11:20 AM
+ ;;3.0;IMAGING;**118,162,307**;Mar 19, 2002;Build 28
  ;; Per VHA Directive 2004-038, this routine should not be modified.
  ;; +---------------------------------------------------------------+
  ;; | Property of the US Government.                                |
@@ -15,6 +15,9 @@ MAGVRS61 ;WOIFO/DAC - RPC calls for DICOM file processing ; 20 Nov 2015 11:20 AM
  ;; | to be a violation of US Federal Statutes.                     |
  ;; +---------------------------------------------------------------+
  ;;
+ ;
+ ; Reference to GET1^DIQ in ICR #2056
+ ;
  Q
 DUPUID(OUT,ACCESSION,DFN,TYPE,UID,STUDUID,SERUID) ; Check for duplicate UIDs in the new structure
  ; OUT - Duplicate message output
@@ -72,7 +75,7 @@ DUPSOP(DFN,ACCESSION,STUDUID,SERUID,UID)  ; Check for duplicate SOP UID
  D DUPUID(.OUT,ACCESSION,DFN,TYPE,UID,STUDUID,SERUID)
  Q OUT
 LINKED(ACCESSION,DFN,UID,UIDTYPE,STUDUIDA,SERUIDA) ; Check if duplicate UID is linked to the same procedure, patient, and parent Study, Series, SOP IENS
- N LINK,IEN,PROCIEN,STUDYIEN,SERIESIEN,SOPIEN,PROCCASE,PRIEN,PRDFN,STATUS,STUDUIDB,SOPUIDB,PATPROC,SERUIDB,AOF
+ N LINK,IEN,PROCIEN,STUDYIEN,SERIESIEN,SOPIEN,PROCCASE,PRIEN,PRDFN,STATUS,STUDUIDB,SOPUIDB,PATPROC,SERUIDB,AOF,STUDUIDO  ;P307 add STUDDUI0 (original study UID)
  S LINK=0
  I UIDTYPE="STUDY" D
  . ; Check if the Study IEN is linked to the procedure IEN with the Accession #
@@ -118,10 +121,12 @@ LINKED(ACCESSION,DFN,UID,UIDTYPE,STUDUIDA,SERUIDA) ; Check if duplicate UID is l
  I $G(PRIEN)="" Q LINK  ; Not linked to a procedure ref
  S PROCCASE=$P(^MAGV(2005.61,PROCIEN,0),U,1)
  S PRDFN=$P($G(^MAGV(2005.6,PRIEN,0)),U,1)
+ S STUDUIDO=$P($G(^MAGV(2005.62,STUDYIEN,0)),U,2)  ;P307 get original study UID
+ I (STUDUIDO]""),(STUDUIDA'=STUDUIDB) S STUDUIDB=STUDUIDO  ;P307 replace study UID with original study UID for compare
  I PRDFN=DFN,ACCESSION=PROCCASE S LINK=1
- I TYPE="SERIES",LINK,STUDUIDA'=STUDUIDB S LINK=0
- I TYPE="SOP",LINK,((STUDUIDA'=STUDUIDB)!(SERUIDA'=SERUIDB)) S LINK=0
- I LINK=1,TYPE="SOP",AOF'=1 S LINK="NOT AOF" Q LINK
+ I UIDTYPE="SERIES",LINK,STUDUIDA'=STUDUIDB S LINK=0  ;P307 use UIDTYPE passed rather than TYPE that falls through
+ I UIDTYPE="SOP",LINK,((STUDUIDA'=STUDUIDB)!(SERUIDA'=SERUIDB)) S LINK=0  ;P307 use UIDTYPE
+ I LINK=1,UIDTYPE="SOP",AOF'=1 S LINK="NOT AOF" Q LINK  ;P307 use UIDTYPE
  I $G(STATUS)="I" Q 2  ; P162 DAC - Check Status after AOF check. No accessible record found.
  Q LINK
 LOGDUP(ORIGUID,NEWUID,ACCESSION,DFN,TYPE,STUDYUID,SERUID)  ; Log duplicate UIDs

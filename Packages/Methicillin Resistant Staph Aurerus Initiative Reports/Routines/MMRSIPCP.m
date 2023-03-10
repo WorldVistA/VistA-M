@@ -1,5 +1,5 @@
 MMRSIPCP ;MIA/LMT/TCK,LAB - SETUP MDRO TOOLS SOFTWARE PARAMETERS ;May 22, 2019@09:15:23
- ;;1.0;MRSA PROGRAM TOOLS;**1,3,4,8**;Mar 22, 2009;Build 2
+ ;;1.0;MRSA PROGRAM TOOLS;**1,3,4,8,9**;Mar 22, 2009;Build 1
  ;
 DIV ;Add a division and setup business rules
  N DIC,X,DINUM,DLAYGO,MMRSDIV,DIR,DIE,DA,DR,DIDEL,Y
@@ -144,7 +144,7 @@ LAB ;Entry to setup the Lab Search/Extract Parameters
  .S DIC="^MMRS(104.1,"
  .S DIC(0)="F"
  .S X=MDRO
- .S DIC("DR")="1///"_MMRSDIV ;MMRS*1.0*8
+ .S DIC("DR")="1////"_MMRSDIV ;MMRS*1.0*9
  .D FILE^DICN
  .I Y=-1 S EXTFLG=1 Q
  .S DA=+Y
@@ -172,7 +172,7 @@ WARDMAP ;Entry to setup the Ward Mappings
  .S DIC="^MMRS(104.3,"
  .S DIC(0)="AELMQ"
  .S DIC("A")="Select Geographical Unit: "
- .S DIC("DR")="1///"_MMRSDIV_";3;4" ;MMRS*1.0*8
+ .S DIC("DR")="1////"_MMRSDIV_";3;4" ;MMRS*1.0*9
  .S DLAYGO=104.3
  .W !! D ^DIC
  .K DLAYGO

@@ -1,5 +1,5 @@
 RORX020 ;BPOIFO/ACS - RENAL FUNCTION BY RANGE ;6/2/11 4:19pm
- ;;1.5;CLINICAL CASE REGISTRIES;**10,13,14,15,19,21,31,33**;Feb 17, 2006;Build 81
+ ;;1.5;CLINICAL CASE REGISTRIES;**10,13,14,15,19,21,31,33,39**;Feb 17, 2006;Build 4
  ;
  ; This routine uses the following IAs:
  ;
@@ -28,7 +28,7 @@ RORX020 ;BPOIFO/ACS - RENAL FUNCTION BY RANGE ;6/2/11 4:19pm
  ;                                       requested.
  ;ROR*1.5*31   MAY 2017   M FERRARESE   Adding PACT ,PCP,and AGE/DOB as additional
  ;ROR*1.5*33   APR 2018   F TRAXLER     Add FUT_APPT column if requested
- ;
+ ;ROR*1.5*39   JUN 2021   F TRAXLER     Replace real SSN with zeroes.
  ;******************************************************************************
  ;******************************************************************************
  Q
@@ -226,7 +226,7 @@ PATIENT(DFN,PTAG,RORDATA,RORPTIEN,RORLC) ;
  Q:'RORDATA("COMPLETE") 1  ;continue only if 'complete' report is requested
  ;--- Get patient data and put into the report
  N VADM,VA,RORDOD,TTAG,RTAG,TMP,AGETYPE,AGE
- D VADEM^RORUTL05(DFN,1)
+ D VADEM^RORUTL05(DFN,1) S VA("BID")="0000"
  ;--- The <PATIENT> tag
  S PTAG=$$ADDVAL^RORTSK11(RORTSK,"PATIENT",,PTAG,,DFN)
  I PTAG<0 Q PTAG

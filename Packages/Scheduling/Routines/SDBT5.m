@@ -1,4 +1,4 @@
-SDBT5 ; ;10/24/19
+SDBT5 ; ;10/12/21
  ;;
 1 N X,X1,X2 S DIXR=1353 D X1(U) K X2 M X2=X D X1("F") K X1 M X1=X
  I $G(X(1))]"",$G(X(2))]"" D

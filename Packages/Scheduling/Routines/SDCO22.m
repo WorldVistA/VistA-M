@@ -1,12 +1,12 @@
-SDCO22 ;ALB/RMO/MRY - Classification Cont. - Screen - Check Out;9 MAY 2005  11:15 PM ; 8/30/01 11:19am
- ;;5.3;Scheduling;**150,222,244,325,394,441,544**;Aug 13, 1993;Build 11
+SDCO22 ;ALB/RMO/MRY - Classification Cont. - Screen - Check Out ; Mar 04, 2021@10:12
+ ;;5.3;Scheduling;**150,222,244,325,394,441,544,777**;Aug 13, 1993;Build 4
  ;
 AO(DFN,SDOE) ;Ask Agent Orange Exposure Classification
  ; Input  -- DFN      Patient file IEN  
  ;           SDOE     Outpatient Encounter file IEN  [Optional]
  ; Output -- 1=Yes and 0=No
  N SDELG0,Y
- I $P($G(^DPT(DFN,.321)),"^",2)="Y",$P($G(^DPT(DFN,.321)),"^",13)="V" D  ;SD/441
+ I $P($G(^DPT(DFN,.321)),"^",2)="Y",($P($G(^DPT(DFN,.321)),"^",13)="V"!($P($G(^DPT(DFN,.321)),"^",13)="B")) D  ;SD/441, SD*5.3*777 - add BWN
  . S SDELG0=$$EL(DFN,$G(SDOE))
  . I $P(SDELG0,"^",5)="Y","^1^2^3^4^5^"[("^"_$P(SDELG0,"^",4)_"^") S Y=1
  . I $G(Y),$G(SDOE) D

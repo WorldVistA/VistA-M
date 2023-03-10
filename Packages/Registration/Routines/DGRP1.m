@@ -1,5 +1,5 @@
-DGRP1 ;ALB/MRL,ERC,BAJ,PWC,JAM,JAM - DEMOGRAPHIC DATA ;19 Jul 2017  3:02 PM
- ;;5.3;Registration;**109,161,506,244,546,570,629,638,649,700,653,688,750,851,907,925,941,985**;Aug 13, 1993;Build 15
+DGRP1 ;ALB/MRL,ERC,BAJ,PWC,JAM,JAM,ARF - DEMOGRAPHIC DATA ;19 Jul 2017  3:02 PM
+ ;;5.3;Registration;**109,161,506,244,546,570,629,638,649,700,653,688,750,851,907,925,941,985,1014,1033,1056**;Aug 13, 1993;Build 18
  ;
 EN ;
  ; JAM - Patch DG*5.3*941, Reformatting Registration screen 1.  New field layout.
@@ -58,8 +58,9 @@ LANGUAGE ;Get language data *///*
  K DGLANGDT,DGPRFLAN,DGLANG0,DGLANGDA
  ;
 L1 W ! S Z=5,DGRPW=1.1 D WW^DGRPV ;*///*  ;DG*5.3*941 - remove extra line feed
- W ?4,"Language Date/Time: ",$S(DGRP(1)="":"UNANSWERED",1:DGRP(1))
- W !?4,"Preferred Language: ",$S(DGRP(2)="":"UNANSWERED",1:DGRP(2))
+ ;W ?4,"Language Date/Time: ",$S(DGRP(1)="":"UNANSWERED",1:DGRP(1))  ;ARF-DG*5.3*1014 Preferred Language prompts
+ ;W !?4,"Preferred Language: ",$S(DGRP(2)="":"UNANSWERED",1:DGRP(2)) ;                on to the same line
+ W " Pref Lang: ",$E($S(DGRP(2)="":"UNANSWERED",1:DGRP(2)),1,34)," Date/Time: ",$S(DGRP(1)="":"UNANSWERED",1:DGRP(1))
  ;
  ; ***  Additional displays added for Pre-Registration
  I $G(DGPRFLG)=1 D
@@ -71,7 +72,8 @@ L1 W ! S Z=5,DGRPW=1.1 D WW^DGRPV ;*///*  ;DG*5.3*941 - remove extra line feed
  . W:$D(SA1)>0 !," [STREET ADDRESS LAST CHANGED:] "_$$FMTE^XLFDT(SA1,"5D")
  . I $D(^DIA(2,"B",DFN)) S X2="" F I=1:1 S X2=$O(^DIA(2,"B",DFN,X2)) Q:X2<1  S:$P(^DIA(2,X2,0),U,3)=.131 TP1=$P(^DIA(2,X2,0),U,2)
  . S ADDRDTTM=$P($G(^DPT(DFN,.11)),"^",13)
- . I ADDRDTTM'="" W !," [PERMANENT ADDRESS LAST CHANGED:] "_$$FMTE^XLFDT(ADDRDTTM,"5D")
+ . ;DG*5.3*1056 replaced PERMANENT with MAILING for the following displayed message
+ . I ADDRDTTM'="" W !," [MAILING ADDRESS LAST CHANGED:] "_$$FMTE^XLFDT(ADDRDTTM,"5D")
  . W:$D(TP1)>0 !," [HOME PHONE NUMBER CHANGED:] "_$$FMTE^XLFDT(TP1,"5D")
  . I $D(^DIA(2,"B",DFN)) S X3="" F I=1:1 S X3=$O(^DIA(2,"B",DFN,X3)) Q:X3<1  S:$P(^DIA(2,X3,0),U,3)=.31115 ES1=$P(^DIA(2,X3,0),U,2)
  . W:$D(ES1)>0 !," [EMPLOYMENT STATUS CHANGED:] "_$$FMTE^XLFDT(ES1,"5D")
@@ -116,7 +118,9 @@ A2 .S DGA=$O(^DPT(DFN,.01,DGA))
  ;*** display Self-Identified Gender Identity DG*5.3*907
  ;Get node with SIGI in it already done at EN+1
  W !?3,"Self-Identified Gender Identity: "
- S X=$P(DGRP(.24),"^",4),Z=$S(X="M":"MALE",X="F":"FEMALE",X="TM":"TRANSMALE/TRANSMAN/FEMALE-TO-MALE",X="TF":"TRANSFEMALE/TRANSWOMAN/MALE-TO-FEMALE",X="O":"OTHER",X="N":"INDIVIDUAL CHOOSES NOT TO ANSWER",1:DGRPU) W Z ;D WW1^DGRPV
+ ;**1033, VAMPI-13 (jfw) - Remove Hard-Coded logic and replace with FM call to DD
+ S X=$P(DGRP(.24),"^",4),Z=$$EXTERNAL^DILFD(2,.024,,X) W $S(Z'="":Z,1:DGRPU)
+ ;,Z=$S(X="M":"MALE",X="F":"FEMALE",X="TM":"TRANSMALE/TRANSMAN/FEMALE-TO-MALE",X="TF":"TRANSFEMALE/TRANSWOMAN/MALE-TO-FEMALE",X="O":"OTHER",X="N":"INDIVIDUAL CHOOSES NOT TO ANSWER",1:DGRPU) W Z ;D WW1^DGRPV
  ; *** end of change 
  Q
 GETSTAT(SSNV) ;get SSN VERIFIED STATUS DG*5.3*688 BAJ 11/22/2005

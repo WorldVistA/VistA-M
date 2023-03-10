@@ -1,122 +1,116 @@
-IBDEI1AA ; ; 04-FEB-2020
- ;;3.0;IB ENCOUNTER FORM IMP/EXP;;FEB 04, 2020
+IBDEI1AA ; ; 01-FEB-2022
+ ;;3.0;IB ENCOUNTER FORM IMP/EXP;;FEB 01, 2022
  Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,999) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
- ;;^UTILITY(U,$J,358.3,20526,1,3,0)
- ;;=3^Fracture of symphysis of mandible, sequela
- ;;^UTILITY(U,$J,358.3,20526,1,4,0)
- ;;=4^S02.66XS
- ;;^UTILITY(U,$J,358.3,20526,2)
- ;;=^5020413
- ;;^UTILITY(U,$J,358.3,20527,0)
- ;;=S22.43XS^^93^1003^9
- ;;^UTILITY(U,$J,358.3,20527,1,0)
+ ;;^UTILITY(U,$J,358.3,20751,1,4,0)
+ ;;=4^S52.334S
+ ;;^UTILITY(U,$J,358.3,20751,2)
+ ;;=^5030126
+ ;;^UTILITY(U,$J,358.3,20752,0)
+ ;;=S52.365S^^67^890^111
+ ;;^UTILITY(U,$J,358.3,20752,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,20527,1,3,0)
- ;;=3^Multiple fractures of ribs, bilateral, sequela
- ;;^UTILITY(U,$J,358.3,20527,1,4,0)
- ;;=4^S22.43XS
- ;;^UTILITY(U,$J,358.3,20527,2)
- ;;=^5023140
- ;;^UTILITY(U,$J,358.3,20528,0)
- ;;=S22.42XS^^93^1003^10
- ;;^UTILITY(U,$J,358.3,20528,1,0)
+ ;;^UTILITY(U,$J,358.3,20752,1,3,0)
+ ;;=3^Nondisp fx of segmental shaft of radius, left arm, sequela
+ ;;^UTILITY(U,$J,358.3,20752,1,4,0)
+ ;;=4^S52.365S
+ ;;^UTILITY(U,$J,358.3,20752,2)
+ ;;=^5030430
+ ;;^UTILITY(U,$J,358.3,20753,0)
+ ;;=S52.364S^^67^890^112
+ ;;^UTILITY(U,$J,358.3,20753,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,20528,1,3,0)
- ;;=3^Multiple fractures of ribs, left side, sequela
- ;;^UTILITY(U,$J,358.3,20528,1,4,0)
- ;;=4^S22.42XS
- ;;^UTILITY(U,$J,358.3,20528,2)
- ;;=^5023134
- ;;^UTILITY(U,$J,358.3,20529,0)
- ;;=S22.41XS^^93^1003^11
- ;;^UTILITY(U,$J,358.3,20529,1,0)
+ ;;^UTILITY(U,$J,358.3,20753,1,3,0)
+ ;;=3^Nondisp fx of segmental shaft of radius, right arm, sequela
+ ;;^UTILITY(U,$J,358.3,20753,1,4,0)
+ ;;=4^S52.364S
+ ;;^UTILITY(U,$J,358.3,20753,2)
+ ;;=^5030414
+ ;;^UTILITY(U,$J,358.3,20754,0)
+ ;;=S52.345S^^67^890^115
+ ;;^UTILITY(U,$J,358.3,20754,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,20529,1,3,0)
- ;;=3^Multiple fractures of ribs, right side, sequela
- ;;^UTILITY(U,$J,358.3,20529,1,4,0)
- ;;=4^S22.41XS
- ;;^UTILITY(U,$J,358.3,20529,2)
- ;;=^5023128
- ;;^UTILITY(U,$J,358.3,20530,0)
- ;;=S22.23XS^^93^1003^12
- ;;^UTILITY(U,$J,358.3,20530,1,0)
+ ;;^UTILITY(U,$J,358.3,20754,1,3,0)
+ ;;=3^Nondisp fx of spiral shaft of radius, left arm, sequela
+ ;;^UTILITY(U,$J,358.3,20754,1,4,0)
+ ;;=4^S52.345S
+ ;;^UTILITY(U,$J,358.3,20754,2)
+ ;;=^5030238
+ ;;^UTILITY(U,$J,358.3,20755,0)
+ ;;=S52.344S^^67^890^116
+ ;;^UTILITY(U,$J,358.3,20755,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,20530,1,3,0)
- ;;=3^Sternal manubrial dissociation, sequela
- ;;^UTILITY(U,$J,358.3,20530,1,4,0)
- ;;=4^S22.23XS
- ;;^UTILITY(U,$J,358.3,20530,2)
- ;;=^5023098
- ;;^UTILITY(U,$J,358.3,20531,0)
- ;;=S02.11AS^^93^1003^14
- ;;^UTILITY(U,$J,358.3,20531,1,0)
+ ;;^UTILITY(U,$J,358.3,20755,1,3,0)
+ ;;=3^Nondisp fx of spiral shaft of radius, right arm, sequela
+ ;;^UTILITY(U,$J,358.3,20755,1,4,0)
+ ;;=4^S52.344S
+ ;;^UTILITY(U,$J,358.3,20755,2)
+ ;;=^5030222
+ ;;^UTILITY(U,$J,358.3,20756,0)
+ ;;=S52.325S^^67^890^119
+ ;;^UTILITY(U,$J,358.3,20756,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,20531,1,3,0)
- ;;=3^Type I Occupital Condyle Fx,Seq,Right Side
- ;;^UTILITY(U,$J,358.3,20531,1,4,0)
- ;;=4^S02.11AS
- ;;^UTILITY(U,$J,358.3,20531,2)
- ;;=^5139276
- ;;^UTILITY(U,$J,358.3,20532,0)
- ;;=S02.11CS^^93^1003^16
- ;;^UTILITY(U,$J,358.3,20532,1,0)
+ ;;^UTILITY(U,$J,358.3,20756,1,3,0)
+ ;;=3^Nondisp fx of transverse shaft of left radius, sequela
+ ;;^UTILITY(U,$J,358.3,20756,1,4,0)
+ ;;=4^S52.325S
+ ;;^UTILITY(U,$J,358.3,20756,2)
+ ;;=^5030046
+ ;;^UTILITY(U,$J,358.3,20757,0)
+ ;;=S52.324S^^67^890^121
+ ;;^UTILITY(U,$J,358.3,20757,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,20532,1,3,0)
- ;;=3^Type II Occupital Condyle Fx,Seq,Right Side
- ;;^UTILITY(U,$J,358.3,20532,1,4,0)
- ;;=4^S02.11CS
- ;;^UTILITY(U,$J,358.3,20532,2)
- ;;=^5139288
- ;;^UTILITY(U,$J,358.3,20533,0)
- ;;=S02.11ES^^93^1003^18
- ;;^UTILITY(U,$J,358.3,20533,1,0)
+ ;;^UTILITY(U,$J,358.3,20757,1,3,0)
+ ;;=3^Nondisp fx of transverse shaft of r radius, sequela
+ ;;^UTILITY(U,$J,358.3,20757,1,4,0)
+ ;;=4^S52.324S
+ ;;^UTILITY(U,$J,358.3,20757,2)
+ ;;=^5030030
+ ;;^UTILITY(U,$J,358.3,20758,0)
+ ;;=M84.434S^^67^890^129
+ ;;^UTILITY(U,$J,358.3,20758,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,20533,1,3,0)
- ;;=3^Type III Occupital Condyle Fx,Seq,Right Side
- ;;^UTILITY(U,$J,358.3,20533,1,4,0)
- ;;=4^S02.11ES
- ;;^UTILITY(U,$J,358.3,20533,2)
- ;;=^5139300
- ;;^UTILITY(U,$J,358.3,20534,0)
- ;;=S02.11BS^^93^1003^13
- ;;^UTILITY(U,$J,358.3,20534,1,0)
+ ;;^UTILITY(U,$J,358.3,20758,1,3,0)
+ ;;=3^Pathological fracture, left radius, sequela
+ ;;^UTILITY(U,$J,358.3,20758,1,4,0)
+ ;;=4^M84.434S
+ ;;^UTILITY(U,$J,358.3,20758,2)
+ ;;=^5013859
+ ;;^UTILITY(U,$J,358.3,20759,0)
+ ;;=M84.433S^^67^890^131
+ ;;^UTILITY(U,$J,358.3,20759,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,20534,1,3,0)
- ;;=3^Type I Occupital Condyle Fx,Seq,Left Side
- ;;^UTILITY(U,$J,358.3,20534,1,4,0)
- ;;=4^S02.11BS
- ;;^UTILITY(U,$J,358.3,20534,2)
- ;;=^5139282
- ;;^UTILITY(U,$J,358.3,20535,0)
- ;;=S02.11DS^^93^1003^15
- ;;^UTILITY(U,$J,358.3,20535,1,0)
+ ;;^UTILITY(U,$J,358.3,20759,1,3,0)
+ ;;=3^Pathological fracture, right radius, sequela
+ ;;^UTILITY(U,$J,358.3,20759,1,4,0)
+ ;;=4^M84.433S
+ ;;^UTILITY(U,$J,358.3,20759,2)
+ ;;=^5013853
+ ;;^UTILITY(U,$J,358.3,20760,0)
+ ;;=S59.212S^^67^890^134
+ ;;^UTILITY(U,$J,358.3,20760,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,20535,1,3,0)
- ;;=3^Type II Occupital Condyle Fx,Seq,Left Side
- ;;^UTILITY(U,$J,358.3,20535,1,4,0)
- ;;=4^S02.11DS
- ;;^UTILITY(U,$J,358.3,20535,2)
- ;;=^5139294
- ;;^UTILITY(U,$J,358.3,20536,0)
- ;;=S02.11FS^^93^1003^17
- ;;^UTILITY(U,$J,358.3,20536,1,0)
+ ;;^UTILITY(U,$J,358.3,20760,1,3,0)
+ ;;=3^Sltr-haris Type I physl fx lower end radius, left arm, sqla
+ ;;^UTILITY(U,$J,358.3,20760,1,4,0)
+ ;;=4^S59.212S
+ ;;^UTILITY(U,$J,358.3,20760,2)
+ ;;=^5135626
+ ;;^UTILITY(U,$J,358.3,20761,0)
+ ;;=S59.211S^^67^890^135
+ ;;^UTILITY(U,$J,358.3,20761,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,20536,1,3,0)
- ;;=3^Type III Occupital Condyle Fx,Seq,Left Side
- ;;^UTILITY(U,$J,358.3,20536,1,4,0)
- ;;=4^S02.11FS
- ;;^UTILITY(U,$J,358.3,20536,2)
- ;;=^5139306
- ;;^UTILITY(U,$J,358.3,20537,0)
- ;;=G89.29^^93^1004^5
- ;;^UTILITY(U,$J,358.3,20537,1,0)
+ ;;^UTILITY(U,$J,358.3,20761,1,3,0)
+ ;;=3^Sltr-haris Type I physl fx lower end radius, right arm, sqla
+ ;;^UTILITY(U,$J,358.3,20761,1,4,0)
+ ;;=4^S59.211S
+ ;;^UTILITY(U,$J,358.3,20761,2)
+ ;;=^5032152
+ ;;^UTILITY(U,$J,358.3,20762,0)
+ ;;=S59.112S^^67^890^137
+ ;;^UTILITY(U,$J,358.3,20762,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,20537,1,3,0)
- ;;=3^Pain,Chronic,Other
- ;;^UTILITY(U,$J,358.3,20537,1,4,0)
- ;;=4^G89.29
- ;;^UTILITY(U,$J,358.3,20537,2)
- ;;=^5004158
- ;;^UTILITY(U,$J,358.3,20538,0)
- ;;=G89.21^^93^1004^4
+ ;;^UTILITY(U,$J,358.3,20762,1,3,0)
+ ;;=3^Sltr-haris Type I physl fx upper end radius, left arm, sqla
+ ;;^UTILITY(U,$J,358.3,20762,1,4,0)
+ ;;=4^S59.112S

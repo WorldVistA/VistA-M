@@ -1,128 +1,126 @@
-IBDEI111 ; ; 04-FEB-2020
- ;;3.0;IB ENCOUNTER FORM IMP/EXP;;FEB 04, 2020
+IBDEI111 ; ; 01-FEB-2022
+ ;;3.0;IB ENCOUNTER FORM IMP/EXP;;FEB 01, 2022
  Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,999) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
- ;;^UTILITY(U,$J,358.3,16509,1,0)
+ ;;^UTILITY(U,$J,358.3,16694,1,4,0)
+ ;;=4^Z65.8
+ ;;^UTILITY(U,$J,358.3,16694,2)
+ ;;=^5063185
+ ;;^UTILITY(U,$J,358.3,16695,0)
+ ;;=Z86.11^^61^776^109
+ ;;^UTILITY(U,$J,358.3,16695,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,16509,1,3,0)
- ;;=3^Enlarged Lymph Nodes,Localized
- ;;^UTILITY(U,$J,358.3,16509,1,4,0)
- ;;=4^R59.0
- ;;^UTILITY(U,$J,358.3,16509,2)
- ;;=^5019529
- ;;^UTILITY(U,$J,358.3,16510,0)
- ;;=C83.59^^88^879^104
- ;;^UTILITY(U,$J,358.3,16510,1,0)
+ ;;^UTILITY(U,$J,358.3,16695,1,3,0)
+ ;;=3^Personal Hx of Tuberculosis
+ ;;^UTILITY(U,$J,358.3,16695,1,4,0)
+ ;;=4^Z86.11
+ ;;^UTILITY(U,$J,358.3,16695,2)
+ ;;=^5063461
+ ;;^UTILITY(U,$J,358.3,16696,0)
+ ;;=Z86.13^^61^776^76
+ ;;^UTILITY(U,$J,358.3,16696,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,16510,1,3,0)
- ;;=3^Lymphoblastic Lymphoma,Extranodal/Solid Organ Sites
- ;;^UTILITY(U,$J,358.3,16510,1,4,0)
- ;;=4^C83.59
- ;;^UTILITY(U,$J,358.3,16510,2)
- ;;=^5001590
- ;;^UTILITY(U,$J,358.3,16511,0)
- ;;=C83.50^^88^879^105
- ;;^UTILITY(U,$J,358.3,16511,1,0)
+ ;;^UTILITY(U,$J,358.3,16696,1,3,0)
+ ;;=3^Personal Hx of Malaria
+ ;;^UTILITY(U,$J,358.3,16696,1,4,0)
+ ;;=4^Z86.13
+ ;;^UTILITY(U,$J,358.3,16696,2)
+ ;;=^5063463
+ ;;^UTILITY(U,$J,358.3,16697,0)
+ ;;=Z86.73^^61^776^106
+ ;;^UTILITY(U,$J,358.3,16697,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,16511,1,3,0)
- ;;=3^Lymphoblastic Lymphoma,Unspec Site
- ;;^UTILITY(U,$J,358.3,16511,1,4,0)
- ;;=4^C83.50
- ;;^UTILITY(U,$J,358.3,16511,2)
- ;;=^5001581
- ;;^UTILITY(U,$J,358.3,16512,0)
- ;;=C43.9^^88^879^108
- ;;^UTILITY(U,$J,358.3,16512,1,0)
+ ;;^UTILITY(U,$J,358.3,16697,1,3,0)
+ ;;=3^Personal Hx of TIA & Cereb Infrc w/o Residual Deficits
+ ;;^UTILITY(U,$J,358.3,16697,1,4,0)
+ ;;=4^Z86.73
+ ;;^UTILITY(U,$J,358.3,16697,2)
+ ;;=^5063477
+ ;;^UTILITY(U,$J,358.3,16698,0)
+ ;;=Z86.79^^61^776^69
+ ;;^UTILITY(U,$J,358.3,16698,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,16512,1,3,0)
- ;;=3^Malig Melanoma of Skin,Unspec Site
- ;;^UTILITY(U,$J,358.3,16512,1,4,0)
- ;;=4^C43.9
- ;;^UTILITY(U,$J,358.3,16512,2)
- ;;=^5001015
- ;;^UTILITY(U,$J,358.3,16513,0)
- ;;=C31.9^^88^879^109
- ;;^UTILITY(U,$J,358.3,16513,1,0)
+ ;;^UTILITY(U,$J,358.3,16698,1,3,0)
+ ;;=3^Personal Hx of Circulatory System Diseases
+ ;;^UTILITY(U,$J,358.3,16698,1,4,0)
+ ;;=4^Z86.79
+ ;;^UTILITY(U,$J,358.3,16698,2)
+ ;;=^5063479
+ ;;^UTILITY(U,$J,358.3,16699,0)
+ ;;=Z91.040^^61^776^57
+ ;;^UTILITY(U,$J,358.3,16699,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,16513,1,3,0)
- ;;=3^Malig Neop Accessory Sinus,Unspec
- ;;^UTILITY(U,$J,358.3,16513,1,4,0)
- ;;=4^C31.9
- ;;^UTILITY(U,$J,358.3,16513,2)
- ;;=^5000953
- ;;^UTILITY(U,$J,358.3,16514,0)
- ;;=C24.1^^88^879^111
- ;;^UTILITY(U,$J,358.3,16514,1,0)
+ ;;^UTILITY(U,$J,358.3,16699,1,3,0)
+ ;;=3^Latex Allergy Status
+ ;;^UTILITY(U,$J,358.3,16699,1,4,0)
+ ;;=4^Z91.040
+ ;;^UTILITY(U,$J,358.3,16699,2)
+ ;;=^5063607
+ ;;^UTILITY(U,$J,358.3,16700,0)
+ ;;=Z92.3^^61^776^73
+ ;;^UTILITY(U,$J,358.3,16700,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,16514,1,3,0)
- ;;=3^Malig Neop Ampulla of Vater
- ;;^UTILITY(U,$J,358.3,16514,1,4,0)
- ;;=4^C24.1
- ;;^UTILITY(U,$J,358.3,16514,2)
- ;;=^267100
- ;;^UTILITY(U,$J,358.3,16515,0)
- ;;=C21.0^^88^879^112
- ;;^UTILITY(U,$J,358.3,16515,1,0)
+ ;;^UTILITY(U,$J,358.3,16700,1,3,0)
+ ;;=3^Personal Hx of Irradiation
+ ;;^UTILITY(U,$J,358.3,16700,1,4,0)
+ ;;=4^Z92.3
+ ;;^UTILITY(U,$J,358.3,16700,2)
+ ;;=^5063637
+ ;;^UTILITY(U,$J,358.3,16701,0)
+ ;;=Z91.120^^61^776^53
+ ;;^UTILITY(U,$J,358.3,16701,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,16515,1,3,0)
- ;;=3^Malig Neop Anus,Unspec
- ;;^UTILITY(U,$J,358.3,16515,1,4,0)
- ;;=4^C21.0
- ;;^UTILITY(U,$J,358.3,16515,2)
- ;;=^5000930
- ;;^UTILITY(U,$J,358.3,16516,0)
- ;;=C67.9^^88^879^115
- ;;^UTILITY(U,$J,358.3,16516,1,0)
+ ;;^UTILITY(U,$J,358.3,16701,1,3,0)
+ ;;=3^Intentional Underdose of Meds d/t Financial Hardship
+ ;;^UTILITY(U,$J,358.3,16701,1,4,0)
+ ;;=4^Z91.120
+ ;;^UTILITY(U,$J,358.3,16701,2)
+ ;;=^5063612
+ ;;^UTILITY(U,$J,358.3,16702,0)
+ ;;=Z91.11^^61^776^62
+ ;;^UTILITY(U,$J,358.3,16702,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,16516,1,3,0)
- ;;=3^Malig Neop Bladder,Unspec
- ;;^UTILITY(U,$J,358.3,16516,1,4,0)
- ;;=4^C67.9
- ;;^UTILITY(U,$J,358.3,16516,2)
- ;;=^5001263
- ;;^UTILITY(U,$J,358.3,16517,0)
- ;;=C71.9^^88^879^119
- ;;^UTILITY(U,$J,358.3,16517,1,0)
+ ;;^UTILITY(U,$J,358.3,16702,1,3,0)
+ ;;=3^Noncompliance w/ Dietary Regimen
+ ;;^UTILITY(U,$J,358.3,16702,1,4,0)
+ ;;=4^Z91.11
+ ;;^UTILITY(U,$J,358.3,16702,2)
+ ;;=^5063611
+ ;;^UTILITY(U,$J,358.3,16703,0)
+ ;;=Z87.891^^61^776^97
+ ;;^UTILITY(U,$J,358.3,16703,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,16517,1,3,0)
- ;;=3^Malig Neop Brain,Unspec
- ;;^UTILITY(U,$J,358.3,16517,1,4,0)
- ;;=4^C71.9
- ;;^UTILITY(U,$J,358.3,16517,2)
- ;;=^5001297
- ;;^UTILITY(U,$J,358.3,16518,0)
- ;;=C18.9^^88^879^121
- ;;^UTILITY(U,$J,358.3,16518,1,0)
+ ;;^UTILITY(U,$J,358.3,16703,1,3,0)
+ ;;=3^Personal Hx of Nicotine Dependence
+ ;;^UTILITY(U,$J,358.3,16703,1,4,0)
+ ;;=4^Z87.891
+ ;;^UTILITY(U,$J,358.3,16703,2)
+ ;;=^5063518
+ ;;^UTILITY(U,$J,358.3,16704,0)
+ ;;=Z77.090^^61^776^3
+ ;;^UTILITY(U,$J,358.3,16704,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,16518,1,3,0)
- ;;=3^Malig Neop Colon,Unspec
- ;;^UTILITY(U,$J,358.3,16518,1,4,0)
- ;;=4^C18.9
- ;;^UTILITY(U,$J,358.3,16518,2)
- ;;=^5000929
- ;;^UTILITY(U,$J,358.3,16519,0)
- ;;=C49.9^^88^879^122
- ;;^UTILITY(U,$J,358.3,16519,1,0)
+ ;;^UTILITY(U,$J,358.3,16704,1,3,0)
+ ;;=3^Asbestos Contact/Exposure
+ ;;^UTILITY(U,$J,358.3,16704,1,4,0)
+ ;;=4^Z77.090
+ ;;^UTILITY(U,$J,358.3,16704,2)
+ ;;=^5063312
+ ;;^UTILITY(U,$J,358.3,16705,0)
+ ;;=Z57.8^^61^776^65
+ ;;^UTILITY(U,$J,358.3,16705,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,16519,1,3,0)
- ;;=3^Malig Neop Connective/Soft Tissue,Unspec
- ;;^UTILITY(U,$J,358.3,16519,1,4,0)
- ;;=4^C49.9
- ;;^UTILITY(U,$J,358.3,16519,2)
- ;;=^5001136
- ;;^UTILITY(U,$J,358.3,16520,0)
- ;;=C62.12^^88^879^123
- ;;^UTILITY(U,$J,358.3,16520,1,0)
+ ;;^UTILITY(U,$J,358.3,16705,1,3,0)
+ ;;=3^Occupational Exposure to Other Risk Factors
+ ;;^UTILITY(U,$J,358.3,16705,1,4,0)
+ ;;=4^Z57.8
+ ;;^UTILITY(U,$J,358.3,16705,2)
+ ;;=^5063127
+ ;;^UTILITY(U,$J,358.3,16706,0)
+ ;;=Z77.21^^61^776^46
+ ;;^UTILITY(U,$J,358.3,16706,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,16520,1,3,0)
- ;;=3^Malig Neop Descended Left Testis
- ;;^UTILITY(U,$J,358.3,16520,1,4,0)
- ;;=4^C62.12
- ;;^UTILITY(U,$J,358.3,16520,2)
- ;;=^5001235
- ;;^UTILITY(U,$J,358.3,16521,0)
- ;;=C62.11^^88^879^124
- ;;^UTILITY(U,$J,358.3,16521,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,16521,1,3,0)
- ;;=3^Malig Neop Descended Right Testis
+ ;;^UTILITY(U,$J,358.3,16706,1,3,0)
+ ;;=3^Hazardous Body Fluid Contact/Exposure
+ ;;^UTILITY(U,$J,358.3,16706,1,4,0)
+ ;;=4^Z77.21

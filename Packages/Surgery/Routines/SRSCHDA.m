@@ -1,5 +1,5 @@
-SRSCHDA ;B'HAM ISC/MAM - SCHEDULE ANESTHESIA PERSONNEL ; [ 01/31/01  7:58 AM ]
- ;;3.0; Surgery ;**77,50,100**;24 Jun 93
+SRSCHDA ;B'HAM ISC/MAM - SCHEDULE ANESTHESIA PERSONNEL;[JAN 31,2001@07:58]
+ ;;3.0;Surgery ;**77,50,100,201**;24 Jun 93;Build 5
  I $D(SRTN) S SRCASE=SRTN
 DATE W ! K %DT S %DT="AEFX",%DT("A")="Schedule Anesthesia Personnel for which Date ?  " D ^%DT G:Y<0 END S SRSDATE=+Y K %DT
  S X1=SRSDATE,X2="+1" D C^%DTC S SRSD1=X
@@ -21,10 +21,11 @@ LIST ; set variables and list case
  W @IOF,!!,"Scheduled Operations for "_SROR("N"),! F LINE=1:1:80 W "-"
  W !!,"Case # "_SRTN_"   Patient: "_SRNM,!,"From: "_SRST_"  To: "_SRET,!,SROPS(1) I $D(SROPS(2)) W !,?5,SROPS(2) I $D(SROPS(3)) W !,?5,SROPS(3)
  K DR,SRODR
- I '$$LOCK^SROUTL(SRTN) G MORE
+ ;Modified for SR*3.0*201: call to SRSCHD1 LOCK/UNLOCK procedures
+ I '$$LOCK^SRSCHD1(SRTN) G MORE
  W !! S DA=SRTN,DIE=130,DR="1.01T;.31T//"_SRANES(1)_";S SRANES(1)=$S(X:$P(^VA(200,X,0),""^""),1:X);.34T//"_SRANES(2)_";S SRANES(2)=$S(X:$P(^VA(200,X,0),""^""),1:X)" D ^DIE K DR
  I $D(SRODR) S SRNOCON=1 D ^SROCON1 K SRNOCON
- D UNLOCK^SROUTL(SRTN)
+ D UNLOCK^SRSCHD1(SRTN)
 MORE W !!!,"Press RETURN to continue, or '^' to quit:  " R X:DTIME S:'$T X="^" I X["?" W !!,"Enter RETURN to continue scheduling other cases, or '^' to leave this option.",!! G MORE
  I X["^" S SRZ=1
  Q

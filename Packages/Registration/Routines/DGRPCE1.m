@@ -1,5 +1,5 @@
-DGRPCE1 ;ALB/MIR/BRM/LBD,BAJ,TDM - CONSISTENCY CHECKER EDIT ;10/20/10 4:16pm
- ;;5.3;Registration;**108,226,470,454,489,505,522,451,632,689,657,688,804,754,797,855,903,952**;Aug 13, 1993;Build 160
+DGRPCE1 ;ALB/MIR/BRM/LBD,BAJ,TDM,JAM - CONSISTENCY CHECKER EDIT ;10/20/10 4:16pm
+ ;;5.3;Registration;**108,226,470,454,489,505,522,451,632,689,657,688,804,754,797,855,903,952,1075**;Aug 13, 1993;Build 13
  ;Per VHA Directive 6402, this routine should not be modified.
  ;
  ;DG*5.3*855
@@ -108,7 +108,9 @@ ELIG ;eligibility code...if M11+, use compiled template, otherwise DR string
 504 ;;.32102;
 505 ;;.32103;
 506 ;;.322013;
-507 ;;.32103;.3212;
+ ; DG*5.3*1075 - If Radiation Indicated? field (#.32103) is not Yes, skip to end.   
+ ;             - Add "R" to Radiation Method field (#.3212), making it Required
+507 ;;.32103;S:X'="Y" Y="@50";.3212R;@50;
 516 ;;.03;
 517 ;;.03;
  ;

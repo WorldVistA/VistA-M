@@ -1,5 +1,5 @@
-RART1 ;HISC/GJC,SWM-Reporting Menu (Part 2) ;05/13/09  08:05
- ;;5.0;Radiology/Nuclear Medicine;**8,16,15,21,23,27,34,99,47**;Mar 16, 1998;Build 21
+RART1 ;HISC/GJC,SWM-Reporting Menu (Part 2) ; Aug 25, 2020@14:04
+ ;;5.0;Radiology/Nuclear Medicine;**8,16,15,21,23,27,34,99,47,173**;Mar 16, 1998;Build 1
  ;Print Report By Patient has been moved to 4^RART2!
  ;these sections are moved to ^RART3 : QRPT, PHYS, MODSET, OUT1
  ;RVD P99, add pregnancy screen and commment if populated for female pt.
@@ -164,6 +164,8 @@ CHKDUPHX ; Check Duplicate History in file 70 and 74.
  S RADUPHX=0
  ; Quit if H node does not exist.  Could have been purged.
  I '$D(^RARPT(RARPT,"H")) S RADUPHX=1 Q
+ ;p173/KLM Quit if no CH on exam, flag set to take CH from report.
+ I '$D(^RADPT(RADFN,"DT",RADTI,"P",RACNI,"H")) S RADUPHX=0 Q
  S RA74=$O(^RARPT(RARPT,"H",""),-1)
  S RA70=$O(^RADPT(RADFN,"DT",RADTI,"P",RACNI,"H",""),-1),RA701=$O(^(0))
  S RAX=RA74-RA70+1 Q:RAX'=1  ; begin comparison

@@ -1,128 +1,124 @@
-IBDEI0WO ; ; 04-FEB-2020
- ;;3.0;IB ENCOUNTER FORM IMP/EXP;;FEB 04, 2020
+IBDEI0WO ; ; 01-FEB-2022
+ ;;3.0;IB ENCOUNTER FORM IMP/EXP;;FEB 01, 2022
  Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,999) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
- ;;^UTILITY(U,$J,358.3,14548,2)
- ;;=^5062600
- ;;^UTILITY(U,$J,358.3,14549,0)
- ;;=Z00.00^^83^826^61
- ;;^UTILITY(U,$J,358.3,14549,1,0)
+ ;;^UTILITY(U,$J,358.3,14729,1,4,0)
+ ;;=4^M46.1
+ ;;^UTILITY(U,$J,358.3,14729,2)
+ ;;=^5011980
+ ;;^UTILITY(U,$J,358.3,14730,0)
+ ;;=M46.02^^58^706^41
+ ;;^UTILITY(U,$J,358.3,14730,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,14549,1,3,0)
- ;;=3^General Medical Exam w/o Abnormal Findings
- ;;^UTILITY(U,$J,358.3,14549,1,4,0)
- ;;=4^Z00.00
- ;;^UTILITY(U,$J,358.3,14549,2)
- ;;=^5062599
- ;;^UTILITY(U,$J,358.3,14550,0)
- ;;=Z23.^^83^826^69
- ;;^UTILITY(U,$J,358.3,14550,1,0)
+ ;;^UTILITY(U,$J,358.3,14730,1,3,0)
+ ;;=3^Spinal Enthesopathy,Cervical Region
+ ;;^UTILITY(U,$J,358.3,14730,1,4,0)
+ ;;=4^M46.02
+ ;;^UTILITY(U,$J,358.3,14730,2)
+ ;;=^5011972
+ ;;^UTILITY(U,$J,358.3,14731,0)
+ ;;=M46.06^^58^706^43
+ ;;^UTILITY(U,$J,358.3,14731,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,14550,1,3,0)
- ;;=3^Immunization Encounter
- ;;^UTILITY(U,$J,358.3,14550,1,4,0)
- ;;=4^Z23.
- ;;^UTILITY(U,$J,358.3,14550,2)
- ;;=^5062795
- ;;^UTILITY(U,$J,358.3,14551,0)
- ;;=Z03.89^^83^826^81
- ;;^UTILITY(U,$J,358.3,14551,1,0)
+ ;;^UTILITY(U,$J,358.3,14731,1,3,0)
+ ;;=3^Spinal Enthesopathy,Lumbar Region
+ ;;^UTILITY(U,$J,358.3,14731,1,4,0)
+ ;;=4^M46.06
+ ;;^UTILITY(U,$J,358.3,14731,2)
+ ;;=^5011976
+ ;;^UTILITY(U,$J,358.3,14732,0)
+ ;;=M46.01^^58^706^45
+ ;;^UTILITY(U,$J,358.3,14732,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,14551,1,3,0)
- ;;=3^Observation for Suspected Diseases/Ruled Out Conditions
- ;;^UTILITY(U,$J,358.3,14551,1,4,0)
- ;;=4^Z03.89
- ;;^UTILITY(U,$J,358.3,14551,2)
- ;;=^5062656
- ;;^UTILITY(U,$J,358.3,14552,0)
- ;;=Z04.9^^83^826^82
- ;;^UTILITY(U,$J,358.3,14552,1,0)
+ ;;^UTILITY(U,$J,358.3,14732,1,3,0)
+ ;;=3^Spinal Enthesopathy,Occipito-Atlanto-Axial Region
+ ;;^UTILITY(U,$J,358.3,14732,1,4,0)
+ ;;=4^M46.01
+ ;;^UTILITY(U,$J,358.3,14732,2)
+ ;;=^5011971
+ ;;^UTILITY(U,$J,358.3,14733,0)
+ ;;=M46.07^^58^706^44
+ ;;^UTILITY(U,$J,358.3,14733,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,14552,1,3,0)
- ;;=3^Observation/Exam,Unspec Reason
- ;;^UTILITY(U,$J,358.3,14552,1,4,0)
- ;;=4^Z04.9
- ;;^UTILITY(U,$J,358.3,14552,2)
- ;;=^5062666
- ;;^UTILITY(U,$J,358.3,14553,0)
- ;;=Z51.5^^83^826^94
- ;;^UTILITY(U,$J,358.3,14553,1,0)
+ ;;^UTILITY(U,$J,358.3,14733,1,3,0)
+ ;;=3^Spinal Enthesopathy,Lumbosacral Region
+ ;;^UTILITY(U,$J,358.3,14733,1,4,0)
+ ;;=4^M46.07
+ ;;^UTILITY(U,$J,358.3,14733,2)
+ ;;=^5011977
+ ;;^UTILITY(U,$J,358.3,14734,0)
+ ;;=M46.05^^58^706^47
+ ;;^UTILITY(U,$J,358.3,14734,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,14553,1,3,0)
- ;;=3^Palliative Care Encounter
- ;;^UTILITY(U,$J,358.3,14553,1,4,0)
- ;;=4^Z51.5
- ;;^UTILITY(U,$J,358.3,14553,2)
- ;;=^5063063
- ;;^UTILITY(U,$J,358.3,14554,0)
- ;;=Z12.9^^83^826^162
- ;;^UTILITY(U,$J,358.3,14554,1,0)
+ ;;^UTILITY(U,$J,358.3,14734,1,3,0)
+ ;;=3^Spinal Enthesopathy,Thoracolumbar Region
+ ;;^UTILITY(U,$J,358.3,14734,1,4,0)
+ ;;=4^M46.05
+ ;;^UTILITY(U,$J,358.3,14734,2)
+ ;;=^5011975
+ ;;^UTILITY(U,$J,358.3,14735,0)
+ ;;=M46.03^^58^706^42
+ ;;^UTILITY(U,$J,358.3,14735,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,14554,1,3,0)
- ;;=3^Screening for Malig Neop,Unspec Site
- ;;^UTILITY(U,$J,358.3,14554,1,4,0)
- ;;=4^Z12.9
- ;;^UTILITY(U,$J,358.3,14554,2)
- ;;=^5062698
- ;;^UTILITY(U,$J,358.3,14555,0)
- ;;=Z13.9^^83^826^163
- ;;^UTILITY(U,$J,358.3,14555,1,0)
+ ;;^UTILITY(U,$J,358.3,14735,1,3,0)
+ ;;=3^Spinal Enthesopathy,Cervicothoracic Region
+ ;;^UTILITY(U,$J,358.3,14735,1,4,0)
+ ;;=4^M46.03
+ ;;^UTILITY(U,$J,358.3,14735,2)
+ ;;=^5011973
+ ;;^UTILITY(U,$J,358.3,14736,0)
+ ;;=M46.04^^58^706^46
+ ;;^UTILITY(U,$J,358.3,14736,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,14555,1,3,0)
- ;;=3^Screening,Unspec
- ;;^UTILITY(U,$J,358.3,14555,1,4,0)
- ;;=4^Z13.9
- ;;^UTILITY(U,$J,358.3,14555,2)
- ;;=^5062721
- ;;^UTILITY(U,$J,358.3,14556,0)
- ;;=Z48.89^^83^826^164
- ;;^UTILITY(U,$J,358.3,14556,1,0)
+ ;;^UTILITY(U,$J,358.3,14736,1,3,0)
+ ;;=3^Spinal Enthesopathy,Thoracic Region
+ ;;^UTILITY(U,$J,358.3,14736,1,4,0)
+ ;;=4^M46.04
+ ;;^UTILITY(U,$J,358.3,14736,2)
+ ;;=^5011974
+ ;;^UTILITY(U,$J,358.3,14737,0)
+ ;;=M48.9^^58^706^50
+ ;;^UTILITY(U,$J,358.3,14737,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,14556,1,3,0)
- ;;=3^Surgical Aftercare Encounter,Other Spec
- ;;^UTILITY(U,$J,358.3,14556,1,4,0)
- ;;=4^Z48.89
- ;;^UTILITY(U,$J,358.3,14556,2)
- ;;=^5063055
- ;;^UTILITY(U,$J,358.3,14557,0)
- ;;=Z51.81^^83^826^167
- ;;^UTILITY(U,$J,358.3,14557,1,0)
+ ;;^UTILITY(U,$J,358.3,14737,1,3,0)
+ ;;=3^Spondylopathy,Unspec
+ ;;^UTILITY(U,$J,358.3,14737,1,4,0)
+ ;;=4^M48.9
+ ;;^UTILITY(U,$J,358.3,14737,2)
+ ;;=^5012204
+ ;;^UTILITY(U,$J,358.3,14738,0)
+ ;;=M47.812^^58^706^51
+ ;;^UTILITY(U,$J,358.3,14738,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,14557,1,3,0)
- ;;=3^Therapeutic Drug Level Monitoring
- ;;^UTILITY(U,$J,358.3,14557,1,4,0)
- ;;=4^Z51.81
- ;;^UTILITY(U,$J,358.3,14557,2)
- ;;=^5063064
- ;;^UTILITY(U,$J,358.3,14558,0)
- ;;=Z77.9^^83^826^55
- ;;^UTILITY(U,$J,358.3,14558,1,0)
+ ;;^UTILITY(U,$J,358.3,14738,1,3,0)
+ ;;=3^Spondyls w/o Myelopathy/Radiculopathy,Cervical Region
+ ;;^UTILITY(U,$J,358.3,14738,1,4,0)
+ ;;=4^M47.812
+ ;;^UTILITY(U,$J,358.3,14738,2)
+ ;;=^5012069
+ ;;^UTILITY(U,$J,358.3,14739,0)
+ ;;=M47.816^^58^706^53
+ ;;^UTILITY(U,$J,358.3,14739,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,14558,1,3,0)
- ;;=3^Exposures/Contact with Hazardous Substances
- ;;^UTILITY(U,$J,358.3,14558,1,4,0)
- ;;=4^Z77.9
- ;;^UTILITY(U,$J,358.3,14558,2)
- ;;=^5063326
- ;;^UTILITY(U,$J,358.3,14559,0)
- ;;=R50.9^^83^826^57
- ;;^UTILITY(U,$J,358.3,14559,1,0)
+ ;;^UTILITY(U,$J,358.3,14739,1,3,0)
+ ;;=3^Spondyls w/o Myelopathy/Radiculopathy,Lumbar Region
+ ;;^UTILITY(U,$J,358.3,14739,1,4,0)
+ ;;=4^M47.816
+ ;;^UTILITY(U,$J,358.3,14739,2)
+ ;;=^5012073
+ ;;^UTILITY(U,$J,358.3,14740,0)
+ ;;=M47.817^^58^706^54
+ ;;^UTILITY(U,$J,358.3,14740,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,14559,1,3,0)
- ;;=3^Fever,Unspec
- ;;^UTILITY(U,$J,358.3,14559,1,4,0)
- ;;=4^R50.9
- ;;^UTILITY(U,$J,358.3,14559,2)
- ;;=^5019512
- ;;^UTILITY(U,$J,358.3,14560,0)
- ;;=Z96.9^^83^826^58
- ;;^UTILITY(U,$J,358.3,14560,1,0)
+ ;;^UTILITY(U,$J,358.3,14740,1,3,0)
+ ;;=3^Spondyls w/o Myelopathy/Radiculopathy,Lumbosacral Region
+ ;;^UTILITY(U,$J,358.3,14740,1,4,0)
+ ;;=4^M47.817
+ ;;^UTILITY(U,$J,358.3,14740,2)
+ ;;=^5012074
+ ;;^UTILITY(U,$J,358.3,14741,0)
+ ;;=M47.811^^58^706^55
+ ;;^UTILITY(U,$J,358.3,14741,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,14560,1,3,0)
- ;;=3^Functional Implant,Unspec
- ;;^UTILITY(U,$J,358.3,14560,1,4,0)
- ;;=4^Z96.9
- ;;^UTILITY(U,$J,358.3,14560,2)
- ;;=^5063719
- ;;^UTILITY(U,$J,358.3,14561,0)
- ;;=Z72.6^^83^826^59
+ ;;^UTILITY(U,$J,358.3,14741,1,3,0)
+ ;;=3^Spondyls w/o Myelopathy/Radiculopathy,Occipt-Atlan-Ax Region

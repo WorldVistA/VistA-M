@@ -1,5 +1,5 @@
 XINDX10 ;ISC/GRK - assemble DD executable code ;11/12/2002  11:40
- ;;7.3;TOOLKIT;**20,27,66,68,132**;Apr 25, 1995;Build 13
+ ;;7.3;TOOLKIT;**20,27,66,68,132,153**;Apr 25, 1995;Build 3
  ; Per VHA Directive 2004-038, this routine should not be modified.
 ASK ;Ask for Build, Install, or Package file.
  N X,Y,P,V,RN
@@ -7,7 +7,8 @@ ASK ;Ask for Build, Install, or Package file.
  S:$D(^DD(9.6,0)) P=9.6,Y=$$BUILD^XTRUTL1 Q:$D(DUOUT)  D:Y>0  I Y<0 S:$D(^DD(9.7,0)) P=9.7,Y=$$INSTALL^XTRUTL1 D:Y>0
  . S INP(10)=P,DA=+Y,X=$P(Y,"^",2),V=$$VER^XTRUTL1(X)
  . S INP(11)="I $P(LIN,"";"",3)'["""_V_""" D E^XINDX1(44)",INP(11.1)=V
- . I $L($P(X,"*",3)) S INP(12)="I $P(LIN,"";"",5)'?.E1P1"""_$P(X,"*",3)_"""1P.E S ERR=56,ERR(1)=INP(12.1) D E^XINDX1(.ERR)",INP(12.1)=$P(X,"*",3)
+ . ;p153 don't setup check if patch is zero
+ . I $P(X,"*",3) S INP(12)="I $P(LIN,"";"",5)'?.E1P1"""_$P(X,"*",3)_"""1P.E S ERR=56,ERR(1)=INP(12.1) D E^XINDX1(.ERR)",INP(12.1)=$P(X,"*",3)
  . Q
  K DIC Q:$D(DUOUT)
  I $D(^DD(9.4,0)),'DA S DIC="^DIC(9.4,",DIC(0)="AEQMZ" D ^DIC S INP(10)=9.4,DA=+Y

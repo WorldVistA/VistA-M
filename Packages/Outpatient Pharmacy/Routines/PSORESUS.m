@@ -1,5 +1,5 @@
-PSORESUS ;BIR/EJW Queue/Requeue an Rx to CMOP ;07/25/07
- ;;7.0;OUTPATIENT PHARMACY;**264,462**;DEC 1997;Build 30
+PSORESUS ;BIR/EJW Queue/Requeue an Rx to CMOP ;Jan 04, 2022@07:41:19
+ ;;7.0;OUTPATIENT PHARMACY;**264,462,441**;DEC 1997;Build 208
  ;
  ;This routine will allow the last unreleased fill of an Rx to be suspended or resuspended to CMOP.
  ;Examples of when this may be used are if the patient was previously marked as "DO NOT MAIL",
@@ -29,7 +29,13 @@ OS K DIR,DUOUT,DIRUT S DIR("A")="Select Orders by number",DIR(0)="LO^1:"_PSOCNT 
  S PSOOELSE=1 D FULL^VALM1
  S PPL="" F ORD=1:1:$L(LST,",") Q:$P(LST,",",ORD)']""  D
  .S ORN=$P(LST,",",ORD),PSOIEN=$P(PSOLST(ORN),"^",2) I $P(PSOLST(ORN),"^",3)'="PENDING" D
- ..S PSOSTA=$P($G(^PSRX(PSOIEN,"STA")),"^") I PSOSTA'=0,PSOSTA'=5 W !!,$P(^PSRX(PSOIEN,0),"^")," is not active or suspended" H 2 Q
+ ..;S PSOSTA=$P($G(^PSRX(PSOIEN,"STA")),"^") I PSOSTA'=0,PSOSTA'=5 W !!,$P(^PSRX(PSOIEN,0),"^")," is not active or suspended" H 2 Q
+ ..N PSOQUIT
+ ..S PSOSTA=$P($G(^PSRX(PSOIEN,"STA")),"^") D  Q:PSOQUIT
+ ... S PSOQUIT=1
+ ... I PSOSTA'=0,PSOSTA'=5 W !!,$P(^PSRX(PSOIEN,0),"^")," is not active or suspended" H 2 Q
+ ... I $D(^PSRX(PSOIEN,"PARK")) W !!,$P(^PSRX(PSOIEN,0),"^")," is not active or suspended.  Prescription must be unparked to be filled." H 2 Q  ;#441 PAPI
+ ... S PSOQUIT=0
  ..I $P($G(^PSRX(PSOIEN,0)),"^",2) S PPL=$S(PPL:PPL_",",1:"")_PSOIEN
  ..S VALMBCK="R"
  I +PPL S SAVEPPL=PPL F II=1:1 S PSOIEN=$P(SAVEPPL,",",II) Q:PSOIEN=""  D

@@ -1,5 +1,5 @@
 GMRCCCR1 ;MJ - Receive HL7 Message for HCP ;3/21/18 09:00
- ;;3.0;CONSULT/REQUEST TRACKING;**99,106,112,123,134,146,158**;JUN 1, 2018;Build 16
+ ;;3.0;CONSULT/REQUEST TRACKING;**99,106,112,123,134,146,158,173**;JUN 1, 2018;Build 9
  ;
  ;DBIA# Supported Reference
  ;----- --------------------------------
@@ -10,6 +10,7 @@ GMRCCCR1 ;MJ - Receive HL7 Message for HCP ;3/21/18 09:00
  ; MJ - 4/02/2019 patch 123 updated to find VistA user from HSRM message and create NAK if invalid
  ; MJ - 7/30/2019 patch 134 fix control character issue in TIU notes
  ; MJ - 9/20/2019 patch 146 clear space-only address fields
+ ; PB - 6/22/2021 patch 173 to pull the EDIPI and add it to the PID segment
  ;
  Q
  ;
@@ -209,4 +210,33 @@ ACK ;
  . . . S ERRARY(ERRI,3)=$P($P($G(GMRCMSG(I,1)),"|",6),"^",4)_"^"_$P($P($G(GMRCMSG(I,1)),"|",6),"^",5)
  . . S ERRARY(ERRI,3)=$P($G(GMRCMSG(I,1)),"|",4)
  I $D(ERRARY) D MESSAGE(MSGID,.ERRARY)
- Q 
+ Q
+EDIPI(LST,DFN,GMRCP) ;
+ N EDIPI,ICN,PT,LST,XX,HSRMEDIPI,PIDSEG,PID,YY,LCNT,NUMSEGS,PIDLEN,SEGCNT,PIDLEN1,PATID,NGMRCP,FIELDS,FIELDS1
+ Q:$G(DFN)'>0
+ Q:$G(GMRCP(1))=""
+ S ICN=$$GETICN^MPIF001(DFN),EDIPI=""
+ Q:$G(ICN)=""
+ S PT=ICN_"^NI^USVHA^200M"
+ D TFL^VAFCTFU2(.LST,PT)
+ I $P(LST(1),"^")=-1 S PT=DFN_"^PI^USVHA^"_$$KSP^XUPARAM("INST")
+ Q:$P(LST(1),"^")=-1
+ S XX=0 F  S XX=$O(LST(XX)) Q:XX'>0  D
+ .I $P(LST(XX),"^",3)="USDOD" S EDIPI=$P(LST(XX),"^")
+ Q:$G(EDIPI)=""
+ N HSRMEDIPI
+ S HSRMEDIPI=EDIPI_"^^^USDOD&&0363^EDIPI^VA FACILITY&200DOD&L"
+ K XX
+ K PID,PIDSEG
+ S PID="",(NGMRCP,XX)=0 F  S XX=$O(GMRCP(XX)) Q:$G(XX)'>0  D
+ .S NGMRCP=NGMRCP+1
+ .S PID=PID_$G(GMRCP(XX))
+ K I S (FIELDS1,FIELDS,NUMSEGS,SEGCNT)=0,LCNT=1
+ S PIDLEN=$L(PID)  F I=1:1:PIDLEN I $E(PID,I)="|" S FIELDS=FIELDS+1
+ S PATID=HSRMEDIPI_"~"_$P(PID,"|",4)
+ S:PATID'="" $P(PID,"|",4)=PATID
+ S PIDLEN1=$L(PID)  F I=1:1:PIDLEN1 I $E(PID,I)="|" S FIELDS1=FIELDS1+1
+ K I F I=1:1:NGMRCP ;K GMRCP(I)
+ S NUMSEGS=PIDLEN1/240 I $P(NUMSEGS,".",2)>0 S SEGCNT=$P(NUMSEGS,".",1)+1
+ K I F I=1:1:PIDLEN1 Q:LCNT>SEGCNT  S TMPGMRCP(LCNT)=$E(PID,I,I+240),I=I+240,LCNT=LCNT+1
+ Q

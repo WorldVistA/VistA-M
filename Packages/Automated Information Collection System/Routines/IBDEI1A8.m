@@ -1,118 +1,120 @@
-IBDEI1A8 ; ; 04-FEB-2020
- ;;3.0;IB ENCOUNTER FORM IMP/EXP;;FEB 04, 2020
+IBDEI1A8 ; ; 01-FEB-2022
+ ;;3.0;IB ENCOUNTER FORM IMP/EXP;;FEB 01, 2022
  Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,999) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
- ;;^UTILITY(U,$J,358.3,20503,1,0)
+ ;;^UTILITY(U,$J,358.3,20728,1,4,0)
+ ;;=4^S52.122S
+ ;;^UTILITY(U,$J,358.3,20728,2)
+ ;;=^5029078
+ ;;^UTILITY(U,$J,358.3,20729,0)
+ ;;=S52.121S^^67^890^23
+ ;;^UTILITY(U,$J,358.3,20729,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,20503,1,3,0)
- ;;=3^Sltr-haris Type II physl fx lower end ulna, left arm, sqla
- ;;^UTILITY(U,$J,358.3,20503,1,4,0)
- ;;=4^S59.022S
- ;;^UTILITY(U,$J,358.3,20503,2)
- ;;=^5032002
- ;;^UTILITY(U,$J,358.3,20504,0)
- ;;=S59.021S^^93^1002^142
- ;;^UTILITY(U,$J,358.3,20504,1,0)
+ ;;^UTILITY(U,$J,358.3,20729,1,3,0)
+ ;;=3^Disp fx of head of right radius, sequela     
+ ;;^UTILITY(U,$J,358.3,20729,1,4,0)
+ ;;=4^S52.121S
+ ;;^UTILITY(U,$J,358.3,20729,2)
+ ;;=^5029062
+ ;;^UTILITY(U,$J,358.3,20730,0)
+ ;;=S52.132S^^67^890^32
+ ;;^UTILITY(U,$J,358.3,20730,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,20504,1,3,0)
- ;;=3^Sltr-haris Type II physl fx lower end ulna, right arm, sqla
- ;;^UTILITY(U,$J,358.3,20504,1,4,0)
- ;;=4^S59.021S
- ;;^UTILITY(U,$J,358.3,20504,2)
- ;;=^5031996
- ;;^UTILITY(U,$J,358.3,20505,0)
- ;;=S59.032S^^93^1002^147
- ;;^UTILITY(U,$J,358.3,20505,1,0)
+ ;;^UTILITY(U,$J,358.3,20730,1,3,0)
+ ;;=3^Disp fx of neck of left radius, sequela      
+ ;;^UTILITY(U,$J,358.3,20730,1,4,0)
+ ;;=4^S52.132S
+ ;;^UTILITY(U,$J,358.3,20730,2)
+ ;;=^5029174
+ ;;^UTILITY(U,$J,358.3,20731,0)
+ ;;=S52.131S^^67^890^33
+ ;;^UTILITY(U,$J,358.3,20731,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,20505,1,3,0)
- ;;=3^Sltr-haris Type III physl fx lower end ulna, left arm, sqla
- ;;^UTILITY(U,$J,358.3,20505,1,4,0)
- ;;=4^S59.032S
- ;;^UTILITY(U,$J,358.3,20505,2)
- ;;=^5032020
- ;;^UTILITY(U,$J,358.3,20506,0)
- ;;=S59.031S^^93^1002^148
- ;;^UTILITY(U,$J,358.3,20506,1,0)
+ ;;^UTILITY(U,$J,358.3,20731,1,3,0)
+ ;;=3^Disp fx of neck of right radius, sequela     
+ ;;^UTILITY(U,$J,358.3,20731,1,4,0)
+ ;;=4^S52.131S
+ ;;^UTILITY(U,$J,358.3,20731,2)
+ ;;=^5029158
+ ;;^UTILITY(U,$J,358.3,20732,0)
+ ;;=S52.332S^^67^890^34
+ ;;^UTILITY(U,$J,358.3,20732,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,20506,1,3,0)
- ;;=3^Sltr-haris Type III physl fx lower end ulna, right arm, sqla
- ;;^UTILITY(U,$J,358.3,20506,1,4,0)
- ;;=4^S59.031S
- ;;^UTILITY(U,$J,358.3,20506,2)
- ;;=^5032014
- ;;^UTILITY(U,$J,358.3,20507,0)
- ;;=S59.042S^^93^1002^153
- ;;^UTILITY(U,$J,358.3,20507,1,0)
+ ;;^UTILITY(U,$J,358.3,20732,1,3,0)
+ ;;=3^Disp fx of oblique shaft of left radius, sequela
+ ;;^UTILITY(U,$J,358.3,20732,1,4,0)
+ ;;=4^S52.332S
+ ;;^UTILITY(U,$J,358.3,20732,2)
+ ;;=^5030094
+ ;;^UTILITY(U,$J,358.3,20733,0)
+ ;;=S52.331S^^67^890^36
+ ;;^UTILITY(U,$J,358.3,20733,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,20507,1,3,0)
- ;;=3^Sltr-haris Type IV physl fx lower end ulna, left arm, sqla
- ;;^UTILITY(U,$J,358.3,20507,1,4,0)
- ;;=4^S59.042S
- ;;^UTILITY(U,$J,358.3,20507,2)
- ;;=^5032038
- ;;^UTILITY(U,$J,358.3,20508,0)
- ;;=S59.041S^^93^1002^154
- ;;^UTILITY(U,$J,358.3,20508,1,0)
+ ;;^UTILITY(U,$J,358.3,20733,1,3,0)
+ ;;=3^Disp fx of oblique shaft of right radius, sequela
+ ;;^UTILITY(U,$J,358.3,20733,1,4,0)
+ ;;=4^S52.331S
+ ;;^UTILITY(U,$J,358.3,20733,2)
+ ;;=^5030078
+ ;;^UTILITY(U,$J,358.3,20734,0)
+ ;;=S52.362S^^67^890^47
+ ;;^UTILITY(U,$J,358.3,20734,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,20508,1,3,0)
- ;;=3^Sltr-haris Type IV physl fx lower end ulna, right arm, sqla
- ;;^UTILITY(U,$J,358.3,20508,1,4,0)
- ;;=4^S59.041S
- ;;^UTILITY(U,$J,358.3,20508,2)
- ;;=^5032032
- ;;^UTILITY(U,$J,358.3,20509,0)
- ;;=M84.332S^^93^1002^160
- ;;^UTILITY(U,$J,358.3,20509,1,0)
+ ;;^UTILITY(U,$J,358.3,20734,1,3,0)
+ ;;=3^Disp fx of segmental shaft of radius, left arm, sequela
+ ;;^UTILITY(U,$J,358.3,20734,1,4,0)
+ ;;=4^S52.362S
+ ;;^UTILITY(U,$J,358.3,20734,2)
+ ;;=^5030382
+ ;;^UTILITY(U,$J,358.3,20735,0)
+ ;;=S52.361S^^67^890^48
+ ;;^UTILITY(U,$J,358.3,20735,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,20509,1,3,0)
- ;;=3^Stress fracture, left ulna, sequela
- ;;^UTILITY(U,$J,358.3,20509,1,4,0)
- ;;=4^M84.332S
- ;;^UTILITY(U,$J,358.3,20509,2)
- ;;=^5013619
- ;;^UTILITY(U,$J,358.3,20510,0)
- ;;=M84.331S^^93^1002^162
- ;;^UTILITY(U,$J,358.3,20510,1,0)
+ ;;^UTILITY(U,$J,358.3,20735,1,3,0)
+ ;;=3^Disp fx of segmental shaft of radius, right arm, sequela
+ ;;^UTILITY(U,$J,358.3,20735,1,4,0)
+ ;;=4^S52.361S
+ ;;^UTILITY(U,$J,358.3,20735,2)
+ ;;=^5030366
+ ;;^UTILITY(U,$J,358.3,20736,0)
+ ;;=S52.342S^^67^890^51
+ ;;^UTILITY(U,$J,358.3,20736,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,20510,1,3,0)
- ;;=3^Stress fracture, right ulna, sequela
- ;;^UTILITY(U,$J,358.3,20510,1,4,0)
- ;;=4^M84.331S
- ;;^UTILITY(U,$J,358.3,20510,2)
- ;;=^5013613
- ;;^UTILITY(U,$J,358.3,20511,0)
- ;;=S52.622S^^93^1002^164
- ;;^UTILITY(U,$J,358.3,20511,1,0)
+ ;;^UTILITY(U,$J,358.3,20736,1,3,0)
+ ;;=3^Disp fx of spiral shaft of radius, left arm, sequela 
+ ;;^UTILITY(U,$J,358.3,20736,1,4,0)
+ ;;=4^S52.342S
+ ;;^UTILITY(U,$J,358.3,20736,2)
+ ;;=^5030190
+ ;;^UTILITY(U,$J,358.3,20737,0)
+ ;;=S52.341S^^67^890^52
+ ;;^UTILITY(U,$J,358.3,20737,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,20511,1,3,0)
- ;;=3^Torus fracture of lower end of left ulna, sequela
- ;;^UTILITY(U,$J,358.3,20511,1,4,0)
- ;;=4^S52.622S
- ;;^UTILITY(U,$J,358.3,20511,2)
- ;;=^5135339
- ;;^UTILITY(U,$J,358.3,20512,0)
- ;;=S52.621S^^93^1002^166
- ;;^UTILITY(U,$J,358.3,20512,1,0)
+ ;;^UTILITY(U,$J,358.3,20737,1,3,0)
+ ;;=3^Disp fx of spiral shaft of radius, right arm, sequela
+ ;;^UTILITY(U,$J,358.3,20737,1,4,0)
+ ;;=4^S52.341S
+ ;;^UTILITY(U,$J,358.3,20737,2)
+ ;;=^5030174
+ ;;^UTILITY(U,$J,358.3,20738,0)
+ ;;=S52.322S^^67^890^55
+ ;;^UTILITY(U,$J,358.3,20738,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,20512,1,3,0)
- ;;=3^Torus fracture of lower end of right ulna, sequela
- ;;^UTILITY(U,$J,358.3,20512,1,4,0)
- ;;=4^S52.621S
- ;;^UTILITY(U,$J,358.3,20512,2)
- ;;=^5031136
- ;;^UTILITY(U,$J,358.3,20513,0)
- ;;=S52.012S^^93^1002^168
- ;;^UTILITY(U,$J,358.3,20513,1,0)
+ ;;^UTILITY(U,$J,358.3,20738,1,3,0)
+ ;;=3^Disp fx of transverse shaft of left radius, sequela   
+ ;;^UTILITY(U,$J,358.3,20738,1,4,0)
+ ;;=4^S52.322S
+ ;;^UTILITY(U,$J,358.3,20738,2)
+ ;;=^5029998
+ ;;^UTILITY(U,$J,358.3,20739,0)
+ ;;=S52.321S^^67^890^57
+ ;;^UTILITY(U,$J,358.3,20739,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,20513,1,3,0)
- ;;=3^Torus fracture of upper end of left ulna, sequela
- ;;^UTILITY(U,$J,358.3,20513,1,4,0)
- ;;=4^S52.012S
- ;;^UTILITY(U,$J,358.3,20513,2)
- ;;=^5028746
- ;;^UTILITY(U,$J,358.3,20514,0)
- ;;=S52.011S^^93^1002^170
- ;;^UTILITY(U,$J,358.3,20514,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,20514,1,3,0)
- ;;=3^Torus fracture of upper end of right ulna, sequela
+ ;;^UTILITY(U,$J,358.3,20739,1,3,0)
+ ;;=3^Disp fx of transverse shaft of right radius, sequela
+ ;;^UTILITY(U,$J,358.3,20739,1,4,0)
+ ;;=4^S52.321S
+ ;;^UTILITY(U,$J,358.3,20739,2)
+ ;;=^5029982
+ ;;^UTILITY(U,$J,358.3,20740,0)
+ ;;=S52.372S^^67^890^65

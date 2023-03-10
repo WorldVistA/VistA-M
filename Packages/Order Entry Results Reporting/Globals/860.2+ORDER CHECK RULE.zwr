@@ -31,6 +31,7 @@ ZWR
 ^OCXS(860.2,5,"R",0)="^860.22I^1^1"
 ^OCXS(860.2,5,"R",1,0)="1^^6"
 ^OCXS(860.2,5,"R",1,"E")="ORDER FLAGGED"
+^OCXS(860.2,5,"R",1,"MCODE")="N I,USR S I=0 F  S I=$O(ORLIST(I)) Q:'I  S USR=+ORLIST(I) I USR S OCXDUZ(USR)="""""
 ^OCXS(860.2,5,"R",1,"MSG")="Order(s) needing clarification: Flagged |CURRENT DATE/TIME|."
 ^OCXS(860.2,5,"R",2,0)=2
 ^OCXS(860.2,5,"R",2,"E")="ORDER UNFLAGGED"

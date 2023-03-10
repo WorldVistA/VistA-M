@@ -1,124 +1,128 @@
-IBDEI12J ; ; 04-FEB-2020
- ;;3.0;IB ENCOUNTER FORM IMP/EXP;;FEB 04, 2020
+IBDEI12J ; ; 01-FEB-2022
+ ;;3.0;IB ENCOUNTER FORM IMP/EXP;;FEB 01, 2022
  Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,999) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
- ;;^UTILITY(U,$J,358.3,17172,1,0)
+ ;;^UTILITY(U,$J,358.3,17359,1,4,0)
+ ;;=4^N39.3
+ ;;^UTILITY(U,$J,358.3,17359,2)
+ ;;=^5015679
+ ;;^UTILITY(U,$J,358.3,17360,0)
+ ;;=R26.2^^61^787^61
+ ;;^UTILITY(U,$J,358.3,17360,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,17172,1,3,0)
- ;;=3^Bell's Palsy
- ;;^UTILITY(U,$J,358.3,17172,1,4,0)
- ;;=4^G51.0
- ;;^UTILITY(U,$J,358.3,17172,2)
- ;;=^13238
- ;;^UTILITY(U,$J,358.3,17173,0)
- ;;=G57.10^^88^886^23
- ;;^UTILITY(U,$J,358.3,17173,1,0)
+ ;;^UTILITY(U,$J,358.3,17360,1,3,0)
+ ;;=3^Difficulty in Walking NEC
+ ;;^UTILITY(U,$J,358.3,17360,1,4,0)
+ ;;=4^R26.2
+ ;;^UTILITY(U,$J,358.3,17360,2)
+ ;;=^5019306
+ ;;^UTILITY(U,$J,358.3,17361,0)
+ ;;=M54.6^^61^787^160
+ ;;^UTILITY(U,$J,358.3,17361,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,17173,1,3,0)
- ;;=3^Meralgia Paresthetica Lower Limb,Unspec
- ;;^UTILITY(U,$J,358.3,17173,1,4,0)
- ;;=4^G57.10
- ;;^UTILITY(U,$J,358.3,17173,2)
- ;;=^5004041
- ;;^UTILITY(U,$J,358.3,17174,0)
- ;;=G57.12^^88^886^24
- ;;^UTILITY(U,$J,358.3,17174,1,0)
+ ;;^UTILITY(U,$J,358.3,17361,1,3,0)
+ ;;=3^Thoracic Spine Pain
+ ;;^UTILITY(U,$J,358.3,17361,1,4,0)
+ ;;=4^M54.6
+ ;;^UTILITY(U,$J,358.3,17361,2)
+ ;;=^272507
+ ;;^UTILITY(U,$J,358.3,17362,0)
+ ;;=E66.8^^61^787^129
+ ;;^UTILITY(U,$J,358.3,17362,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,17174,1,3,0)
- ;;=3^Meralgia Paresthetica,Left Lower Limb
- ;;^UTILITY(U,$J,358.3,17174,1,4,0)
- ;;=4^G57.12
- ;;^UTILITY(U,$J,358.3,17174,2)
- ;;=^5004043
- ;;^UTILITY(U,$J,358.3,17175,0)
- ;;=G57.11^^88^886^25
- ;;^UTILITY(U,$J,358.3,17175,1,0)
+ ;;^UTILITY(U,$J,358.3,17362,1,3,0)
+ ;;=3^Obesity NEC
+ ;;^UTILITY(U,$J,358.3,17362,1,4,0)
+ ;;=4^E66.8
+ ;;^UTILITY(U,$J,358.3,17362,2)
+ ;;=^5002831
+ ;;^UTILITY(U,$J,358.3,17363,0)
+ ;;=E66.9^^61^787^130
+ ;;^UTILITY(U,$J,358.3,17363,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,17175,1,3,0)
- ;;=3^Meralgia Paresthetica,Right Lower Limb
- ;;^UTILITY(U,$J,358.3,17175,1,4,0)
- ;;=4^G57.11
- ;;^UTILITY(U,$J,358.3,17175,2)
- ;;=^5004042
- ;;^UTILITY(U,$J,358.3,17176,0)
- ;;=G60.8^^88^886^33
- ;;^UTILITY(U,$J,358.3,17176,1,0)
+ ;;^UTILITY(U,$J,358.3,17363,1,3,0)
+ ;;=3^Obesity,Unspec
+ ;;^UTILITY(U,$J,358.3,17363,1,4,0)
+ ;;=4^E66.9
+ ;;^UTILITY(U,$J,358.3,17363,2)
+ ;;=^5002832
+ ;;^UTILITY(U,$J,358.3,17364,0)
+ ;;=F18.120^^61^787^98
+ ;;^UTILITY(U,$J,358.3,17364,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,17176,1,3,0)
- ;;=3^Neuropathies,Oth Hereditary and Idiopathic
- ;;^UTILITY(U,$J,358.3,17176,1,4,0)
- ;;=4^G60.8
- ;;^UTILITY(U,$J,358.3,17176,2)
- ;;=^5004070
- ;;^UTILITY(U,$J,358.3,17177,0)
- ;;=G60.9^^88^886^34
- ;;^UTILITY(U,$J,358.3,17177,1,0)
+ ;;^UTILITY(U,$J,358.3,17364,1,3,0)
+ ;;=3^Inhalant Abuse w/ Intoxication,Uncomplicated
+ ;;^UTILITY(U,$J,358.3,17364,1,4,0)
+ ;;=4^F18.120
+ ;;^UTILITY(U,$J,358.3,17364,2)
+ ;;=^5003381
+ ;;^UTILITY(U,$J,358.3,17365,0)
+ ;;=G44.1^^61^787^163
+ ;;^UTILITY(U,$J,358.3,17365,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,17177,1,3,0)
- ;;=3^Neuropathy,Hereditary and Idiopathic Unspec
- ;;^UTILITY(U,$J,358.3,17177,1,4,0)
- ;;=4^G60.9
- ;;^UTILITY(U,$J,358.3,17177,2)
- ;;=^5004071
- ;;^UTILITY(U,$J,358.3,17178,0)
- ;;=I69.959^^88^886^19
- ;;^UTILITY(U,$J,358.3,17178,1,0)
+ ;;^UTILITY(U,$J,358.3,17365,1,3,0)
+ ;;=3^Vascular Headache NEC
+ ;;^UTILITY(U,$J,358.3,17365,1,4,0)
+ ;;=4^G44.1
+ ;;^UTILITY(U,$J,358.3,17365,2)
+ ;;=^5003934
+ ;;^UTILITY(U,$J,358.3,17366,0)
+ ;;=G93.3^^61^787^148
+ ;;^UTILITY(U,$J,358.3,17366,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,17178,1,3,0)
- ;;=3^Hemplg/Hemprs d/t Cerebvasc Diz Aff Unspec Side
- ;;^UTILITY(U,$J,358.3,17178,1,4,0)
- ;;=4^I69.959
- ;;^UTILITY(U,$J,358.3,17178,2)
- ;;=^5007563
- ;;^UTILITY(U,$J,358.3,17179,0)
- ;;=I69.359^^88^886^20
- ;;^UTILITY(U,$J,358.3,17179,1,0)
+ ;;^UTILITY(U,$J,358.3,17366,1,3,0)
+ ;;=3^Postviral Fatigue Syndrome
+ ;;^UTILITY(U,$J,358.3,17366,1,4,0)
+ ;;=4^G93.3
+ ;;^UTILITY(U,$J,358.3,17366,2)
+ ;;=^5004181
+ ;;^UTILITY(U,$J,358.3,17367,0)
+ ;;=K08.101^^61^787^55
+ ;;^UTILITY(U,$J,358.3,17367,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,17179,1,3,0)
- ;;=3^Hemplg/Hemprs d/t Cerebvasc Infrc Aff Unspec Side
- ;;^UTILITY(U,$J,358.3,17179,1,4,0)
- ;;=4^I69.359
- ;;^UTILITY(U,$J,358.3,17179,2)
- ;;=^5007508
- ;;^UTILITY(U,$J,358.3,17180,0)
- ;;=S14.109S^^88^886^40
- ;;^UTILITY(U,$J,358.3,17180,1,0)
+ ;;^UTILITY(U,$J,358.3,17367,1,3,0)
+ ;;=3^Complete Loss of Teeth,Unspec,Class I
+ ;;^UTILITY(U,$J,358.3,17367,1,4,0)
+ ;;=4^K08.101
+ ;;^UTILITY(U,$J,358.3,17367,2)
+ ;;=^5008406
+ ;;^UTILITY(U,$J,358.3,17368,0)
+ ;;=K08.102^^61^787^56
+ ;;^UTILITY(U,$J,358.3,17368,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,17180,1,3,0)
- ;;=3^Sequela of Unspec Injury to Cervical Spinal Cord
- ;;^UTILITY(U,$J,358.3,17180,1,4,0)
- ;;=4^S14.109S
- ;;^UTILITY(U,$J,358.3,17180,2)
- ;;=^5134243
- ;;^UTILITY(U,$J,358.3,17181,0)
- ;;=S34.109S^^88^886^41
- ;;^UTILITY(U,$J,358.3,17181,1,0)
+ ;;^UTILITY(U,$J,358.3,17368,1,3,0)
+ ;;=3^Complete Loss of Teeth,Unspec,Class II
+ ;;^UTILITY(U,$J,358.3,17368,1,4,0)
+ ;;=4^K08.102
+ ;;^UTILITY(U,$J,358.3,17368,2)
+ ;;=^5008407
+ ;;^UTILITY(U,$J,358.3,17369,0)
+ ;;=K08.103^^61^787^57
+ ;;^UTILITY(U,$J,358.3,17369,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,17181,1,3,0)
- ;;=3^Sequela of Unspec Injury to Lumbar Spinal Cord
- ;;^UTILITY(U,$J,358.3,17181,1,4,0)
- ;;=4^S34.109S
- ;;^UTILITY(U,$J,358.3,17181,2)
- ;;=^5134570
- ;;^UTILITY(U,$J,358.3,17182,0)
- ;;=S24.109S^^88^886^42
- ;;^UTILITY(U,$J,358.3,17182,1,0)
+ ;;^UTILITY(U,$J,358.3,17369,1,3,0)
+ ;;=3^Complete Loss of Teeth,Unspec,Class III
+ ;;^UTILITY(U,$J,358.3,17369,1,4,0)
+ ;;=4^K08.103
+ ;;^UTILITY(U,$J,358.3,17369,2)
+ ;;=^5008408
+ ;;^UTILITY(U,$J,358.3,17370,0)
+ ;;=K08.104^^61^787^58
+ ;;^UTILITY(U,$J,358.3,17370,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,17182,1,3,0)
- ;;=3^Sequela of Unspec Injury to Thoracic Spinal Cord
- ;;^UTILITY(U,$J,358.3,17182,1,4,0)
- ;;=4^S24.109S
- ;;^UTILITY(U,$J,358.3,17182,2)
- ;;=^5134384
- ;;^UTILITY(U,$J,358.3,17183,0)
- ;;=I69.393^^88^886^5
- ;;^UTILITY(U,$J,358.3,17183,1,0)
+ ;;^UTILITY(U,$J,358.3,17370,1,3,0)
+ ;;=3^Complete Loss of Teeth,Unspec,Class IV
+ ;;^UTILITY(U,$J,358.3,17370,1,4,0)
+ ;;=4^K08.104
+ ;;^UTILITY(U,$J,358.3,17370,2)
+ ;;=^5008409
+ ;;^UTILITY(U,$J,358.3,17371,0)
+ ;;=K08.109^^61^787^59
+ ;;^UTILITY(U,$J,358.3,17371,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,17183,1,3,0)
- ;;=3^Ataxia following Cerebral Infarction
- ;;^UTILITY(U,$J,358.3,17183,1,4,0)
- ;;=4^I69.393
- ;;^UTILITY(U,$J,358.3,17183,2)
- ;;=^5007518
- ;;^UTILITY(U,$J,358.3,17184,0)
- ;;=G89.0^^88^887^1
+ ;;^UTILITY(U,$J,358.3,17371,1,3,0)
+ ;;=3^Complete Loss of Teeth,Unspec,Class Unspec
+ ;;^UTILITY(U,$J,358.3,17371,1,4,0)
+ ;;=4^K08.109
+ ;;^UTILITY(U,$J,358.3,17371,2)
+ ;;=^5008410

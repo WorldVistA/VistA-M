@@ -1,126 +1,136 @@
-IBDEI0HO ; ; 04-FEB-2020
- ;;3.0;IB ENCOUNTER FORM IMP/EXP;;FEB 04, 2020
+IBDEI0HO ; ; 01-FEB-2022
+ ;;3.0;IB ENCOUNTER FORM IMP/EXP;;FEB 01, 2022
  Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,999) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
- ;;^UTILITY(U,$J,358.3,7695,1,0)
+ ;;^UTILITY(U,$J,358.3,7959,1,4,0)
+ ;;=4^L60.2
+ ;;^UTILITY(U,$J,358.3,7959,2)
+ ;;=^5009235
+ ;;^UTILITY(U,$J,358.3,7960,0)
+ ;;=L60.3^^39^391^176
+ ;;^UTILITY(U,$J,358.3,7960,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,7695,1,3,0)
- ;;=3^Nonrheumatic Mitral Valve Insufficiency
- ;;^UTILITY(U,$J,358.3,7695,1,4,0)
- ;;=4^I34.0
- ;;^UTILITY(U,$J,358.3,7695,2)
- ;;=^5007169
- ;;^UTILITY(U,$J,358.3,7696,0)
- ;;=I34.8^^63^498^63
- ;;^UTILITY(U,$J,358.3,7696,1,0)
+ ;;^UTILITY(U,$J,358.3,7960,1,3,0)
+ ;;=3^Nail Dystrophy
+ ;;^UTILITY(U,$J,358.3,7960,1,4,0)
+ ;;=4^L60.3
+ ;;^UTILITY(U,$J,358.3,7960,2)
+ ;;=^5009236
+ ;;^UTILITY(U,$J,358.3,7961,0)
+ ;;=L60.4^^39^391^89
+ ;;^UTILITY(U,$J,358.3,7961,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,7696,1,3,0)
- ;;=3^Nonrheumatic Mitral Valve Disorders,Oth Type
- ;;^UTILITY(U,$J,358.3,7696,1,4,0)
- ;;=4^I34.8
- ;;^UTILITY(U,$J,358.3,7696,2)
- ;;=^5007172
- ;;^UTILITY(U,$J,358.3,7697,0)
- ;;=I70.211^^63^498^16
- ;;^UTILITY(U,$J,358.3,7697,1,0)
+ ;;^UTILITY(U,$J,358.3,7961,1,3,0)
+ ;;=3^Beau's Lines
+ ;;^UTILITY(U,$J,358.3,7961,1,4,0)
+ ;;=4^L60.4
+ ;;^UTILITY(U,$J,358.3,7961,2)
+ ;;=^5009237
+ ;;^UTILITY(U,$J,358.3,7962,0)
+ ;;=L60.5^^39^391^330
+ ;;^UTILITY(U,$J,358.3,7962,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,7697,1,3,0)
- ;;=3^Athscl Native Art of Right Leg w/ Intrmt Claud
- ;;^UTILITY(U,$J,358.3,7697,1,4,0)
- ;;=4^I70.211
- ;;^UTILITY(U,$J,358.3,7697,2)
- ;;=^5007578
- ;;^UTILITY(U,$J,358.3,7698,0)
- ;;=I70.212^^63^498^13
- ;;^UTILITY(U,$J,358.3,7698,1,0)
+ ;;^UTILITY(U,$J,358.3,7962,1,3,0)
+ ;;=3^Yellow Nail Syndrome
+ ;;^UTILITY(U,$J,358.3,7962,1,4,0)
+ ;;=4^L60.5
+ ;;^UTILITY(U,$J,358.3,7962,2)
+ ;;=^5009238
+ ;;^UTILITY(U,$J,358.3,7963,0)
+ ;;=L60.8^^39^391^174
+ ;;^UTILITY(U,$J,358.3,7963,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,7698,1,3,0)
- ;;=3^Athscl Native Art of Left Leg w/ Intrmt Claud
- ;;^UTILITY(U,$J,358.3,7698,1,4,0)
- ;;=4^I70.212
- ;;^UTILITY(U,$J,358.3,7698,2)
- ;;=^5007579
- ;;^UTILITY(U,$J,358.3,7699,0)
- ;;=I70.213^^63^498^9
- ;;^UTILITY(U,$J,358.3,7699,1,0)
+ ;;^UTILITY(U,$J,358.3,7963,1,3,0)
+ ;;=3^Nail Disorders NEC
+ ;;^UTILITY(U,$J,358.3,7963,1,4,0)
+ ;;=4^L60.8
+ ;;^UTILITY(U,$J,358.3,7963,2)
+ ;;=^5009239
+ ;;^UTILITY(U,$J,358.3,7964,0)
+ ;;=L62.^^39^391^175
+ ;;^UTILITY(U,$J,358.3,7964,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,7699,1,3,0)
- ;;=3^Athscl Native Art of Bilateral Legs w/ Intrmt Claud
- ;;^UTILITY(U,$J,358.3,7699,1,4,0)
- ;;=4^I70.213
- ;;^UTILITY(U,$J,358.3,7699,2)
- ;;=^5007580
- ;;^UTILITY(U,$J,358.3,7700,0)
- ;;=I70.261^^63^498^15
- ;;^UTILITY(U,$J,358.3,7700,1,0)
+ ;;^UTILITY(U,$J,358.3,7964,1,3,0)
+ ;;=3^Nail Disorders in Diseases Classified Elsewhere
+ ;;^UTILITY(U,$J,358.3,7964,1,4,0)
+ ;;=4^L62.
+ ;;^UTILITY(U,$J,358.3,7964,2)
+ ;;=^5009241
+ ;;^UTILITY(U,$J,358.3,7965,0)
+ ;;=L64.9^^39^391^34
+ ;;^UTILITY(U,$J,358.3,7965,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,7700,1,3,0)
- ;;=3^Athscl Native Art of Right Leg w/ Gangrene
- ;;^UTILITY(U,$J,358.3,7700,1,4,0)
- ;;=4^I70.261
- ;;^UTILITY(U,$J,358.3,7700,2)
- ;;=^5007603
- ;;^UTILITY(U,$J,358.3,7701,0)
- ;;=I70.262^^63^498^12
- ;;^UTILITY(U,$J,358.3,7701,1,0)
+ ;;^UTILITY(U,$J,358.3,7965,1,3,0)
+ ;;=3^Androgenic Alopecia,Unspec
+ ;;^UTILITY(U,$J,358.3,7965,1,4,0)
+ ;;=4^L64.9
+ ;;^UTILITY(U,$J,358.3,7965,2)
+ ;;=^5009249
+ ;;^UTILITY(U,$J,358.3,7966,0)
+ ;;=L65.9^^39^391^269
+ ;;^UTILITY(U,$J,358.3,7966,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,7701,1,3,0)
- ;;=3^Athscl Native Art of Left Leg w/ Gangrene
- ;;^UTILITY(U,$J,358.3,7701,1,4,0)
- ;;=4^I70.262
- ;;^UTILITY(U,$J,358.3,7701,2)
- ;;=^5007604
- ;;^UTILITY(U,$J,358.3,7702,0)
- ;;=I70.263^^63^498^10
- ;;^UTILITY(U,$J,358.3,7702,1,0)
+ ;;^UTILITY(U,$J,358.3,7966,1,3,0)
+ ;;=3^Nonscarring Hair Loss,Unspec
+ ;;^UTILITY(U,$J,358.3,7966,1,4,0)
+ ;;=4^L65.9
+ ;;^UTILITY(U,$J,358.3,7966,2)
+ ;;=^5009252
+ ;;^UTILITY(U,$J,358.3,7967,0)
+ ;;=L70.0^^39^391^7
+ ;;^UTILITY(U,$J,358.3,7967,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,7702,1,3,0)
- ;;=3^Athscl Native Art of Bilateral Legs w/ Gangrene
- ;;^UTILITY(U,$J,358.3,7702,1,4,0)
- ;;=4^I70.263
- ;;^UTILITY(U,$J,358.3,7702,2)
- ;;=^5007605
- ;;^UTILITY(U,$J,358.3,7703,0)
- ;;=I70.221^^63^498^17
- ;;^UTILITY(U,$J,358.3,7703,1,0)
+ ;;^UTILITY(U,$J,358.3,7967,1,3,0)
+ ;;=3^Acne Vulgaris
+ ;;^UTILITY(U,$J,358.3,7967,1,4,0)
+ ;;=4^L70.0
+ ;;^UTILITY(U,$J,358.3,7967,2)
+ ;;=^5009268
+ ;;^UTILITY(U,$J,358.3,7968,0)
+ ;;=L70.1^^39^391^2
+ ;;^UTILITY(U,$J,358.3,7968,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,7703,1,3,0)
- ;;=3^Athscl Native Art of Right Leg w/ Rest Pain
- ;;^UTILITY(U,$J,358.3,7703,1,4,0)
- ;;=4^I70.221
- ;;^UTILITY(U,$J,358.3,7703,2)
- ;;=^5007583
- ;;^UTILITY(U,$J,358.3,7704,0)
- ;;=I70.222^^63^498^14
- ;;^UTILITY(U,$J,358.3,7704,1,0)
+ ;;^UTILITY(U,$J,358.3,7968,1,3,0)
+ ;;=3^Acne Conglobata
+ ;;^UTILITY(U,$J,358.3,7968,1,4,0)
+ ;;=4^L70.1
+ ;;^UTILITY(U,$J,358.3,7968,2)
+ ;;=^5009269
+ ;;^UTILITY(U,$J,358.3,7969,0)
+ ;;=L70.3^^39^391^6
+ ;;^UTILITY(U,$J,358.3,7969,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,7704,1,3,0)
- ;;=3^Athscl Native Art of Left Leg w/ Rest Pain
- ;;^UTILITY(U,$J,358.3,7704,1,4,0)
- ;;=4^I70.222
- ;;^UTILITY(U,$J,358.3,7704,2)
- ;;=^5007584
- ;;^UTILITY(U,$J,358.3,7705,0)
- ;;=I70.223^^63^498^11
- ;;^UTILITY(U,$J,358.3,7705,1,0)
+ ;;^UTILITY(U,$J,358.3,7969,1,3,0)
+ ;;=3^Acne Tropica
+ ;;^UTILITY(U,$J,358.3,7969,1,4,0)
+ ;;=4^L70.3
+ ;;^UTILITY(U,$J,358.3,7969,2)
+ ;;=^5009270
+ ;;^UTILITY(U,$J,358.3,7970,0)
+ ;;=L70.5^^39^391^3
+ ;;^UTILITY(U,$J,358.3,7970,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,7705,1,3,0)
- ;;=3^Athscl Native Art of Bilateral Legs w/ Rest Pain
- ;;^UTILITY(U,$J,358.3,7705,1,4,0)
- ;;=4^I70.223
- ;;^UTILITY(U,$J,358.3,7705,2)
- ;;=^5007585
- ;;^UTILITY(U,$J,358.3,7706,0)
- ;;=I73.9^^63^498^65
- ;;^UTILITY(U,$J,358.3,7706,1,0)
+ ;;^UTILITY(U,$J,358.3,7970,1,3,0)
+ ;;=3^Acne Excoriee des Jeunes Filles
+ ;;^UTILITY(U,$J,358.3,7970,1,4,0)
+ ;;=4^L70.5
+ ;;^UTILITY(U,$J,358.3,7970,2)
+ ;;=^5009272
+ ;;^UTILITY(U,$J,358.3,7971,0)
+ ;;=L70.8^^39^391^5
+ ;;^UTILITY(U,$J,358.3,7971,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,7706,1,3,0)
- ;;=3^PVD,Unspec
- ;;^UTILITY(U,$J,358.3,7706,1,4,0)
- ;;=4^I73.9
- ;;^UTILITY(U,$J,358.3,7706,2)
- ;;=^184182
- ;;^UTILITY(U,$J,358.3,7707,0)
- ;;=I74.3^^63^498^39
- ;;^UTILITY(U,$J,358.3,7707,1,0)
+ ;;^UTILITY(U,$J,358.3,7971,1,3,0)
+ ;;=3^Acne NEC
+ ;;^UTILITY(U,$J,358.3,7971,1,4,0)
+ ;;=4^L70.8
+ ;;^UTILITY(U,$J,358.3,7971,2)
+ ;;=^87239
+ ;;^UTILITY(U,$J,358.3,7972,0)
+ ;;=L70.9^^39^391^8
+ ;;^UTILITY(U,$J,358.3,7972,1,0)
  ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,7972,1,3,0)
+ ;;=3^Acne,Unspec
+ ;;^UTILITY(U,$J,358.3,7972,1,4,0)
+ ;;=4^L70.9

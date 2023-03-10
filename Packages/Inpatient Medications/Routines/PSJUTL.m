@@ -1,5 +1,5 @@
 PSJUTL ;BIR/MLM - MISC. INPATIENT UTILITIES ; 10/7/08 1:22pm
- ;;5.0;INPATIENT MEDICATIONS;**9,47,58,80,110,136,157,177,134,179,267,349,361**;16 DEC 97;Build 7
+ ;;5.0;INPATIENT MEDICATIONS;**9,47,58,80,110,136,157,177,134,179,267,349,361,416,434**;16 DEC 97;Build 3
  ;
  ; Reference to ^DIC(42 is supported by DBIA 10039.
  ; Reference to ^PS(50.7 is supported by DBIA 2180.
@@ -106,10 +106,9 @@ ENPCHLP2(Y,X) ;
 ENBCMA(PSJTYP)  ;
  N DIR,X,Y
  I $G(PSJTYP)="V" Q:'$L($G(^PS(53.45,+$G(PSJSYSP),6,0))) ""
- I $G(PSJTYP)="V" Q:($G(^PS(53.45,+$G(PSJSYSP),6,0))<0) ""
  I $G(PSJTYP)="U" Q:'$L($G(^PS(53.45,+$G(PSJSYSP),5,0))) ""
  W !!,"Would you like to flag the ",$$ENFIELD(PSJTYP)," field for display in a BCMA",!,"Message box?"
- W ! S DIR(0)="S^Y:Yes;N:No",DIR("A")="Flag the "_$$ENFIELD(PSJTYP)_" (Yes/No)" D ^DIR
+ W ! S DIR(0)="S^Y:Yes;N:No",DIR("A")="Flag the "_$$ENFIELD(PSJTYP)_" (Yes/No)" D ^DIR I X="^" S DONE=1     ;P434 added quit
  K PSJCOMSI I $G(PSJCOM),$G(PSJORD)'["P" N TEXT S TEXT=$S(PSJTYP="U":$G(PSGSI),1:$G(P("OPI"))) S PSJCOMSI=$$COMSI(PSJCOM,TEXT)
  Q:Y="Y" $S($G(PSJTYP)="U":$P(PSGSI,"^")_"^1",1:$P(P("OPI"),"^")_"^1")
  Q $S(PSJTYP="U":PSGSI,1:P("OPI"))

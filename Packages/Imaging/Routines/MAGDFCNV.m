@@ -1,5 +1,5 @@
-MAGDFCNV ;WOIFO/PMK - Read HL7 and generate DICOM ; 03 Sep 2013 10:12 AM
- ;;3.0;IMAGING;**11,51,141,138**;Mar 19, 2002;Build 5380;Sep 03, 2013
+MAGDFCNV ;WOIFO/PMK - Read HL7 and generate DICOM ; Mar 31, 2020@15:52:30
+ ;;3.0;IMAGING;**11,51,141,138,231**;Mar 19, 2002;Build 9;Sep 03, 2013
  ;; Per VHA Directive 2004-038, this routine should not be modified.
  ;; +---------------------------------------------------------------+
  ;; | Property of the US Government.                                |
@@ -16,12 +16,10 @@ MAGDFCNV ;WOIFO/PMK - Read HL7 and generate DICOM ; 03 Sep 2013 10:12 AM
  ;; +---------------------------------------------------------------+
  ;;
  ;
- ; This routine needs to be on both the Gateway and on the VistA HIS.
- ;
- ; The M-to-M Broker Gateway can't use $$CONSOLID^MAGBAPI since is
- ; doesn't have DDP.
- ;
- ; Note: The ^MAGOSFIL routine can never be on the VistA HIS.
+ ; Supported IA #2171 reference $$STA^XUAF4 function call
+ ; Supported IA #2541 reference $$KSP^XUPARAM function call
+ ; Supported IA #2051 reference $$FIND1^DIC function call
+ ; Supported IA #2056 reference $$GET1^DIQ function call
  ;
 CONSOLID() ; check if this is a consolidated site or not
  ; return 0 = non-consolidated (normal) site
@@ -70,9 +68,21 @@ STATNUMB() ; return numeric 3-digit station number for the VA
 GMRCACN(GMRCIEN) ; return a site-specific accession number for clinical specialties
  ; GMRCIEN is the CPRS Consult Request Tracking GMRC IEN - REQUEST/CONSULTATION file(#123)
  N ACNUMB ; accession number for a consult/procedure request
- ; Format: <sss>-GMR-<gmrcien>, where <sss> is station number, and <gmrcien>
- ;         is the internal entry number of the request, up to 8 digits (100 million) 
- S ACNUMB=$$STATNUMB()_"-GMR-"_GMRCIEN
+ N EXAMDATE ; date of exam
+ N P162DATE ; installation date for MAG*3.0*162, when site-specific accession numbers started
+ N INSTALLIEN
+ S INSTALLIEN=$$FIND1^DIC(9.7,"","B","MAG*3.0*162")
+ S P162DATE=$$GET1^DIQ(9.7,INSTALLIEN,17,"I") ; install complete date & time
+ S EXAMDATE=$$GET1^DIQ(123,GMRCIEN,.01,"I")
+ I EXAMDATE<P162DATE D  ; legacy accession number format
+ . ; Format: GMRC-<gmrcien>, where <gmrcien> is the internal entry number of the request 
+ . S ACNUMB="GMRC-"_GMRCIEN
+ . Q 
+ E  D  ; site-specific accession number format
+ . ; Format: <sss>-GMR-<gmrcien>, where <sss> is station number, and <gmrcien>
+ . ;         is the internal entry number of the request, up to 8 digits (100 million) 
+ . S ACNUMB=$$STATNUMB()_"-GMR-"_GMRCIEN
+ . Q
  Q ACNUMB
  ;
 GMRCIEN(ACNUMB) ; return the GMRC IEN, given a consult/procedure accession number
@@ -85,3 +95,6 @@ GMRCIEN(ACNUMB) ; return the GMRC IEN, given a consult/procedure accession numbe
  E  I ACNUMB?1N.N1"-GMR-"1N.N S GMRCIEN=$P(ACNUMB,"-",3) ; return the third piece
  E  S GMRCIEN="" ; invalid consult request tracking accession number format
  Q GMRCIEN
+ ;
+HOSTNAME() ;
+ Q $P(##class(%SYS.System).GetNodeName(),".",1)

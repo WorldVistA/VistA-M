@@ -1,124 +1,126 @@
-IBDEI0KW ; ; 04-FEB-2020
- ;;3.0;IB ENCOUNTER FORM IMP/EXP;;FEB 04, 2020
+IBDEI0KW ; ; 01-FEB-2022
+ ;;3.0;IB ENCOUNTER FORM IMP/EXP;;FEB 01, 2022
  Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,999) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
- ;;^UTILITY(U,$J,358.3,9240,1,3,0)
- ;;=3^GTube Change Bedside (Simple)
- ;;^UTILITY(U,$J,358.3,9241,0)
- ;;=43763^^70^628^5^^^^1
- ;;^UTILITY(U,$J,358.3,9241,1,0)
- ;;=^358.31IA^3^2
- ;;^UTILITY(U,$J,358.3,9241,1,2,0)
- ;;=2^43763
- ;;^UTILITY(U,$J,358.3,9241,1,3,0)
- ;;=3^GTube Change Bedside (Complicated)
- ;;^UTILITY(U,$J,358.3,9242,0)
- ;;=69200^^70^629^3^^^^1
- ;;^UTILITY(U,$J,358.3,9242,1,0)
- ;;=^358.31IA^3^2
- ;;^UTILITY(U,$J,358.3,9242,1,2,0)
- ;;=2^69200
- ;;^UTILITY(U,$J,358.3,9242,1,3,0)
- ;;=3^Remove FB,External Ear Canal
- ;;^UTILITY(U,$J,358.3,9243,0)
- ;;=69209^^70^629^4^^^^1
- ;;^UTILITY(U,$J,358.3,9243,1,0)
- ;;=^358.31IA^3^2
- ;;^UTILITY(U,$J,358.3,9243,1,2,0)
- ;;=2^69209
- ;;^UTILITY(U,$J,358.3,9243,1,3,0)
- ;;=3^Remove Impacted Ear Wax w/ Lavage,Unilat
- ;;^UTILITY(U,$J,358.3,9244,0)
- ;;=62270^^70^629^1^^^^1
- ;;^UTILITY(U,$J,358.3,9244,1,0)
- ;;=^358.31IA^3^2
- ;;^UTILITY(U,$J,358.3,9244,1,2,0)
- ;;=2^62270
- ;;^UTILITY(U,$J,358.3,9244,1,3,0)
- ;;=3^Lumbar Puncture
- ;;^UTILITY(U,$J,358.3,9245,0)
- ;;=64450^^70^629^2^^^^1
- ;;^UTILITY(U,$J,358.3,9245,1,0)
- ;;=^358.31IA^3^2
- ;;^UTILITY(U,$J,358.3,9245,1,2,0)
- ;;=2^64450
- ;;^UTILITY(U,$J,358.3,9245,1,3,0)
- ;;=3^Peripheral Nerve Block
- ;;^UTILITY(U,$J,358.3,9246,0)
- ;;=31505^^70^629^5^^^^1
- ;;^UTILITY(U,$J,358.3,9246,1,0)
- ;;=^358.31IA^3^2
- ;;^UTILITY(U,$J,358.3,9246,1,2,0)
- ;;=2^31505
- ;;^UTILITY(U,$J,358.3,9246,1,3,0)
- ;;=3^Indirect Laryngoscopy
- ;;^UTILITY(U,$J,358.3,9247,0)
- ;;=42809^^70^629^6^^^^1
- ;;^UTILITY(U,$J,358.3,9247,1,0)
- ;;=^358.31IA^3^2
- ;;^UTILITY(U,$J,358.3,9247,1,2,0)
- ;;=2^42809
- ;;^UTILITY(U,$J,358.3,9247,1,3,0)
- ;;=3^Remove FB,Pharynx
- ;;^UTILITY(U,$J,358.3,9248,0)
- ;;=30901^^70^629^7^^^^1
- ;;^UTILITY(U,$J,358.3,9248,1,0)
- ;;=^358.31IA^3^2
- ;;^UTILITY(U,$J,358.3,9248,1,2,0)
- ;;=2^30901
- ;;^UTILITY(U,$J,358.3,9248,1,3,0)
- ;;=3^Control Nosebleed,Ant Simple (Packing)
- ;;^UTILITY(U,$J,358.3,9249,0)
- ;;=30905^^70^629^8^^^^1
- ;;^UTILITY(U,$J,358.3,9249,1,0)
- ;;=^358.31IA^3^2
- ;;^UTILITY(U,$J,358.3,9249,1,2,0)
- ;;=2^30905
- ;;^UTILITY(U,$J,358.3,9249,1,3,0)
- ;;=3^Control Nosebleed,Post,Init
- ;;^UTILITY(U,$J,358.3,9250,0)
- ;;=65220^^70^629^9^^^^1
- ;;^UTILITY(U,$J,358.3,9250,1,0)
- ;;=^358.31IA^3^2
- ;;^UTILITY(U,$J,358.3,9250,1,2,0)
- ;;=2^65220
- ;;^UTILITY(U,$J,358.3,9250,1,3,0)
- ;;=3^Remove FB,Cornea w/o Slit Lamp
- ;;^UTILITY(U,$J,358.3,9251,0)
- ;;=65222^^70^629^10^^^^1
- ;;^UTILITY(U,$J,358.3,9251,1,0)
- ;;=^358.31IA^3^2
- ;;^UTILITY(U,$J,358.3,9251,1,2,0)
- ;;=2^65222
- ;;^UTILITY(U,$J,358.3,9251,1,3,0)
- ;;=3^Remove FB,Cornea w/ Slit Lamp
- ;;^UTILITY(U,$J,358.3,9252,0)
- ;;=65205^^70^629^11^^^^1
- ;;^UTILITY(U,$J,358.3,9252,1,0)
- ;;=^358.31IA^3^2
- ;;^UTILITY(U,$J,358.3,9252,1,2,0)
- ;;=2^65205
- ;;^UTILITY(U,$J,358.3,9252,1,3,0)
- ;;=3^Remove FB,External Eye/Conjuctiva
- ;;^UTILITY(U,$J,358.3,9253,0)
- ;;=65210^^70^629^12^^^^1
- ;;^UTILITY(U,$J,358.3,9253,1,0)
- ;;=^358.31IA^3^2
- ;;^UTILITY(U,$J,358.3,9253,1,2,0)
- ;;=2^65210
- ;;^UTILITY(U,$J,358.3,9253,1,3,0)
- ;;=3^Remove FB,External Eye/Conjuctivl-Embedded
- ;;^UTILITY(U,$J,358.3,9254,0)
- ;;=12051^^70^630^14^^^^1
- ;;^UTILITY(U,$J,358.3,9254,1,0)
- ;;=^358.31IA^3^2
- ;;^UTILITY(U,$J,358.3,9254,1,2,0)
- ;;=2^12051
- ;;^UTILITY(U,$J,358.3,9254,1,3,0)
- ;;=3^Intermd < 2.5cm Face/Ears/Eyelids/Mucous Membranes
- ;;^UTILITY(U,$J,358.3,9255,0)
- ;;=12052^^70^630^15^^^^1
- ;;^UTILITY(U,$J,358.3,9255,1,0)
- ;;=^358.31IA^3^2
- ;;^UTILITY(U,$J,358.3,9255,1,2,0)
- ;;=2^12052
+ ;;^UTILITY(U,$J,358.3,9404,0)
+ ;;=F18.120^^39^413^98
+ ;;^UTILITY(U,$J,358.3,9404,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,9404,1,3,0)
+ ;;=3^Inhalant Abuse w/ Intoxication,Uncomplicated
+ ;;^UTILITY(U,$J,358.3,9404,1,4,0)
+ ;;=4^F18.120
+ ;;^UTILITY(U,$J,358.3,9404,2)
+ ;;=^5003381
+ ;;^UTILITY(U,$J,358.3,9405,0)
+ ;;=G44.1^^39^413^163
+ ;;^UTILITY(U,$J,358.3,9405,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,9405,1,3,0)
+ ;;=3^Vascular Headache NEC
+ ;;^UTILITY(U,$J,358.3,9405,1,4,0)
+ ;;=4^G44.1
+ ;;^UTILITY(U,$J,358.3,9405,2)
+ ;;=^5003934
+ ;;^UTILITY(U,$J,358.3,9406,0)
+ ;;=G93.3^^39^413^148
+ ;;^UTILITY(U,$J,358.3,9406,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,9406,1,3,0)
+ ;;=3^Postviral Fatigue Syndrome
+ ;;^UTILITY(U,$J,358.3,9406,1,4,0)
+ ;;=4^G93.3
+ ;;^UTILITY(U,$J,358.3,9406,2)
+ ;;=^5004181
+ ;;^UTILITY(U,$J,358.3,9407,0)
+ ;;=K08.101^^39^413^55
+ ;;^UTILITY(U,$J,358.3,9407,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,9407,1,3,0)
+ ;;=3^Complete Loss of Teeth,Unspec,Class I
+ ;;^UTILITY(U,$J,358.3,9407,1,4,0)
+ ;;=4^K08.101
+ ;;^UTILITY(U,$J,358.3,9407,2)
+ ;;=^5008406
+ ;;^UTILITY(U,$J,358.3,9408,0)
+ ;;=K08.102^^39^413^56
+ ;;^UTILITY(U,$J,358.3,9408,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,9408,1,3,0)
+ ;;=3^Complete Loss of Teeth,Unspec,Class II
+ ;;^UTILITY(U,$J,358.3,9408,1,4,0)
+ ;;=4^K08.102
+ ;;^UTILITY(U,$J,358.3,9408,2)
+ ;;=^5008407
+ ;;^UTILITY(U,$J,358.3,9409,0)
+ ;;=K08.103^^39^413^57
+ ;;^UTILITY(U,$J,358.3,9409,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,9409,1,3,0)
+ ;;=3^Complete Loss of Teeth,Unspec,Class III
+ ;;^UTILITY(U,$J,358.3,9409,1,4,0)
+ ;;=4^K08.103
+ ;;^UTILITY(U,$J,358.3,9409,2)
+ ;;=^5008408
+ ;;^UTILITY(U,$J,358.3,9410,0)
+ ;;=K08.104^^39^413^58
+ ;;^UTILITY(U,$J,358.3,9410,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,9410,1,3,0)
+ ;;=3^Complete Loss of Teeth,Unspec,Class IV
+ ;;^UTILITY(U,$J,358.3,9410,1,4,0)
+ ;;=4^K08.104
+ ;;^UTILITY(U,$J,358.3,9410,2)
+ ;;=^5008409
+ ;;^UTILITY(U,$J,358.3,9411,0)
+ ;;=K08.109^^39^413^59
+ ;;^UTILITY(U,$J,358.3,9411,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,9411,1,3,0)
+ ;;=3^Complete Loss of Teeth,Unspec,Class Unspec
+ ;;^UTILITY(U,$J,358.3,9411,1,4,0)
+ ;;=4^K08.109
+ ;;^UTILITY(U,$J,358.3,9411,2)
+ ;;=^5008410
+ ;;^UTILITY(U,$J,358.3,9412,0)
+ ;;=K08.401^^39^413^137
+ ;;^UTILITY(U,$J,358.3,9412,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,9412,1,3,0)
+ ;;=3^Partial Loss of Teeth,Unspec,Class I
+ ;;^UTILITY(U,$J,358.3,9412,1,4,0)
+ ;;=4^K08.401
+ ;;^UTILITY(U,$J,358.3,9412,2)
+ ;;=^5008432
+ ;;^UTILITY(U,$J,358.3,9413,0)
+ ;;=K08.402^^39^413^138
+ ;;^UTILITY(U,$J,358.3,9413,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,9413,1,3,0)
+ ;;=3^Partial Loss of Teeth,Unspec,Class II
+ ;;^UTILITY(U,$J,358.3,9413,1,4,0)
+ ;;=4^K08.402
+ ;;^UTILITY(U,$J,358.3,9413,2)
+ ;;=^5008433
+ ;;^UTILITY(U,$J,358.3,9414,0)
+ ;;=K08.403^^39^413^139
+ ;;^UTILITY(U,$J,358.3,9414,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,9414,1,3,0)
+ ;;=3^Partial Loss of Teeth,Unspec,Class III
+ ;;^UTILITY(U,$J,358.3,9414,1,4,0)
+ ;;=4^K08.403
+ ;;^UTILITY(U,$J,358.3,9414,2)
+ ;;=^5008434
+ ;;^UTILITY(U,$J,358.3,9415,0)
+ ;;=K08.404^^39^413^140
+ ;;^UTILITY(U,$J,358.3,9415,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,9415,1,3,0)
+ ;;=3^Partial Loss of Teeth,Unspec,Class IV
+ ;;^UTILITY(U,$J,358.3,9415,1,4,0)
+ ;;=4^K08.404
+ ;;^UTILITY(U,$J,358.3,9415,2)
+ ;;=^5008435
+ ;;^UTILITY(U,$J,358.3,9416,0)
+ ;;=K08.409^^39^413^141

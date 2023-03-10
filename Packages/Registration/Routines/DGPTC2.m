@@ -1,5 +1,5 @@
 DGPTC2 ;ALN/MJ/PLT - Census Record Processing ;4/14/15 4:14pm
- ;;5.3;Registration;**58,189,643,850,884**;Aug 13, 1993;Build 31
+ ;;5.3;Registration;**58,189,643,850,884,1083**;Aug 13, 1993;Build 3
  ;;Per VA Directive 6402, this routine should not be modified.
  ;
 SETP ; -- P node processing
@@ -64,8 +64,8 @@ ONE ; -- find last mvt before census date
  ;;Following code added to transmit GAF scores in Census Record
  ;;Code added by EDS-GRR 6/4/1998
  ;;
- M ^DGPT(DGCI,"M",M,300)=^DGPT(PTF,"M",M,300)
- M ^DGPT(DGCI,"M",M,81)=^DGPT(PTF,"M",M,81)
+ M ^DGPT(DGCI,"M",1,300)=^DGPT(PTF,"M",M,300)
+ M ^DGPT(DGCI,"M",1,81)=^DGPT(PTF,"M",M,81)
  ;poa data copied after reindex the new census entry
  ;M ^DGPT(DGCI,"M",M,82)=^DGPT(PTF,"M",M,82) ; move POA fields to Census
  ;;

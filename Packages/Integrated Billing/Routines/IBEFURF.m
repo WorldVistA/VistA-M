@@ -1,5 +1,5 @@
 IBEFURF ;ALB/ARH - UTILITY: FIND RELATED FIRST PARTY BILLS ;3/7/00
- ;;2.0;INTEGRATED BILLING;**130,347,459,604,618**;21-MAR-94;Build 61
+ ;;2.0;INTEGRATED BILLING;**130,347,459,604,618,728,748**;21-MAR-94;Build 1
  ;;Per VA Directive 6402, this routine should not be modified.
  ;
  ; the following procedures search for First Party charges for specific events, matchs are returned in TMP
@@ -19,6 +19,25 @@ FPINPT(DFN,ADMDT,XRF) ; given a patient and admission date, find any Inpatient C
  .. S IBFPIFN=0 F  S IBFPIFN=$O(^IB("AF",IBEVIFN,IBFPIFN)) Q:'IBFPIFN  D
  ... S IB0=$G(^IB(IBFPIFN,0)) Q:IB0=""  I $P($G(^IBE(350.1,+$P(IB0,U,3),0)),U,1)["OPT" Q
  ... D FPONE(IBFPIFN,$G(XRF))
+ Q
+ ;
+FPINPT1(DFN,IBFROM,IBTO,XRF) ; find inpatient charges for a given patient IB*2.0*728
+ ;
+ ; DFN - patient DFN
+ ; IBFROM - date statement covers from (399/151)
+ ; IBTO - date statement covers to (399/152)
+ ; XRF - 1st subscript to use in output global (file 399 ien)
+ ;
+ N IB0,IBACT,IBFRDT,IBIEN
+ S IBIEN=0 F  S IBIEN=$O(^IB("C",DFN,IBIEN)) Q:'IBIEN  D
+ .S IB0=^IB(IBIEN,0)
+ .S IBFRDT=$P(IB0,U,14) Q:'IBFRDT
+ .I IBFRDT<IBFROM Q  ; 350/.14 is prior to 399/151
+ .I IBFRDT>IBTO Q  ; 350/.14 is after 399/152
+ .S IBACT=$P($G(^IBE(350.1,+$P(IB0,U,3),0)),U,1)
+ .I IBACT["OPT"!(IBACT["RX") Q  ; IB*2.0*748
+ .D FPONE(IBIEN,$G(XRF))
+ .Q
  Q
  ;
 FPOPV(DFN,DT1,DT2,XRF) ; given a patient and date range, find any Outpatient Charges

@@ -1,7 +1,9 @@
 PSOCLADD ;BHAM ISC/DMA - Clozapine Registration Pharmacy Auto Update ;18 May 2020 12:29:40
- ;;7.0;OUTPATIENT PHARMACY;**612**;DEC 1997;Build 23
- ;External reference ^YSCL(603.01 supported by DBIA 2697
- ;External reference ^PS(55 supported by DBIA 2228
+ ;;7.0;OUTPATIENT PHARMACY;**612,613**;DEC 1997;Build 10
+ ;
+ ; External reference ^YSCL(603.01 supported by DBIA 2697
+ ; External reference ^PS(55 supported by DBIA 2228
+ ; External reference ^XUSEC( is supported by DBIA 10076
  ;
  ;
 TRGR(DFN,PSOCLZNW) ; Register/Re-Register Clozapine Patient
@@ -39,7 +41,7 @@ SAVE ; Save new NCCC number and Active status to File 55
  N PSOFDA
  S PSOFDA(55,DFN_",",53)=PSOCLZNW
  S PSOFDA(55,DFN_",",54)="A"
- S PSOFDA(55,DFN_",",58)=$$NOW^XLFDT
+ S PSOFDA(55,DFN_",",58)=$$DT^XLFDT ; $$NOW^XLFDT - PSO*7*613
  D FILE^DIE("","PSOFDA","PSOERMSG")
  I $D(PSOERMSG)=10!($D(PSOERMSG)=11) D ADD2TXT(PSOCLZNW_" could not be registered to patient "_PSONAME_" ("_PSOSSN_")") D
  .N TXTLN S TXTLN=0 F  S TXTLN=$O(PSOERMSG("DIERR",1,"TEXT",TXTLN)) Q:'TXTLN  D ADD2TXT(PSOERMSG("DIERR",1,"TEXT",TXTLN))
@@ -69,4 +71,42 @@ SEND ; Send Message to PSOCLZAU mail group
  ; Mail the errors and successes to the local Clozapine Pharmacy Registration Mail Group
  D SENDMSG^XMXAPI(DUZ,XMSUB,$NA(^TMP($J,"PSOCLMSG")),.XMY,"",.YSXMZ)
  K ^TMP($J,"PSOCLMSG")
+ Q
+ ; PSO*7*613 - Called from AC Cross Reference of file 52.52
+OVR5252(B5252,RXIEN) ; File fields into CLOZAPINE PRESCRIPTION OVERRIDES file (#52.52)
+ ; Input:  B5252 = IEN of current entry from CLOZAPINE PRESCRIPTION OVERRIDES (#52.52)
+ ;         RXIEN = IEN from PRESCRIPTION file #52 associated with current entry from CLOZAPINE PRESCRIPTRION OVERRIDES (#52.52)
+ ; Output: OVERRIDE PROVIDER Field (#8) in CLOZAPINE PRESCRIPTION OVERRIDES (#52.52)
+ ;         ORDER Field (#9) CLOZAPINE PRESCRIPTION OVERRIDES (#52.52)
+ N PSI5252,PSFDA,X,Y,DIC,DIR,PSOVRTM
+ N PSORX,PSERR,PSOPR,PSOPRCHK,PSORN,PSORNCHK
+ Q:'$G(RXIEN)  Q:'$G(^PSRX(RXIEN,0))
+ S PSI5252=$O(^PS(52.52,"B",$G(B5252),0))  ; $$FIND1^DIC(52.52,,"BOX",B5252,"B")
+ Q:'PSI5252  Q:$P($G(^PS(52.52,PSI5252,0)),"^",2)'=RXIEN   ; Only updating existing records
+ S PSOPR="",PSORN=""
+ D FIND^DIC(52,,"@;1I;4I;39.3I","Q","`"_RXIEN,,"B",,,"PSORX","PSERR")
+ S PSOPRCHK=$$GET1^DIQ(200,$G(PSORX("DILIST","ID",1,4)),.01)
+ I $L(PSOPRCHK)>2 S PSOPR=$G(PSORX("DILIST","ID",1,4))
+ S PSORNCHK=$$GET1^DIQ(100,$G(PSORX("DILIST","ID",1,39.3)),33,"I")
+ I PSORNCHK>0 S PSORN=PSORX("DILIST","ID",1,39.3)
+ D OVERONE(PSI5252,RXIEN,PSOPR,PSORN,.PSOVRTM)
+ Q:'$G(PSOVRTM)&'$G(PSOPR)&'$G(PSORN)  ; Nothing to file
+ I $G(PSOVRTM) S PSFDA(52.52,PSI5252_",",7)=PSOVRTM
+ I $G(PSOPR) S PSFDA(52.52,PSI5252_",",8)=PSOPR
+ I $G(PSORN) S PSFDA(52.52,PSI5252_",",9)=PSORN
+ D FILE^DIE(,"PSFDA") K PSFDA
+ Q
+ ;
+OVERONE(PSI5252,RXIEN,PSOPR,PSORN,PSOVRTM) ; Update previously filed override entry for the same RX
+ N PS1IEN52,PS1RXIEN,PSFDA
+ S PS1IEN52=$O(^PS(52.52,"A",RXIEN,PSI5252),-1)
+ S PS1RXIEN=$$GET1^DIQ(52.52,PS1IEN52,1,"I")
+ Q:'$G(PS1RXIEN)  Q:'$G(^PSRX(PS1RXIEN,0))
+ Q:PS1RXIEN'=RXIEN  ; Quit if not associated with same prescription RXIEN
+ Q:'$G(PSOPR)&'$G(PSORN)  ; Nothing to file
+ I $G(PSOPR) S PSFDA(52.52,PS1IEN52_",",8)=PSOPR
+ I $G(PSORN) S PSFDA(52.52,PS1IEN52_",",9)=PSORN
+ D FILE^DIE(,"PSFDA")
+ ; Get Override Team Member from first entry for this Rx
+ S PSOVRTM=$$GET1^DIQ(52.52,PS1IEN52,7,"I")
  Q

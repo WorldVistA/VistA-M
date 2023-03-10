@@ -1,128 +1,128 @@
-IBDEI15H ; ; 04-FEB-2020
- ;;3.0;IB ENCOUNTER FORM IMP/EXP;;FEB 04, 2020
+IBDEI15H ; ; 01-FEB-2022
+ ;;3.0;IB ENCOUNTER FORM IMP/EXP;;FEB 01, 2022
  Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,999) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
- ;;^UTILITY(U,$J,358.3,18494,1,0)
+ ;;^UTILITY(U,$J,358.3,18674,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,18494,1,3,0)
- ;;=3^MDD,Recurrent Episode,In Full Remission
- ;;^UTILITY(U,$J,358.3,18494,1,4,0)
- ;;=4^F33.42
- ;;^UTILITY(U,$J,358.3,18494,2)
- ;;=^5003535
- ;;^UTILITY(U,$J,358.3,18495,0)
- ;;=F34.1^^91^939^20
- ;;^UTILITY(U,$J,358.3,18495,1,0)
+ ;;^UTILITY(U,$J,358.3,18674,1,3,0)
+ ;;=3^Long Term (Current) Use of Oral Hypoglycemics
+ ;;^UTILITY(U,$J,358.3,18674,1,4,0)
+ ;;=4^Z79.84
+ ;;^UTILITY(U,$J,358.3,18674,2)
+ ;;=^5140432
+ ;;^UTILITY(U,$J,358.3,18675,0)
+ ;;=H60.03^^64^835^1
+ ;;^UTILITY(U,$J,358.3,18675,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,18495,1,3,0)
- ;;=3^Persistent Depressive Disorder (Dysthmia)
- ;;^UTILITY(U,$J,358.3,18495,1,4,0)
- ;;=4^F34.1
- ;;^UTILITY(U,$J,358.3,18495,2)
- ;;=^331913
- ;;^UTILITY(U,$J,358.3,18496,0)
- ;;=F06.34^^91^939^3
- ;;^UTILITY(U,$J,358.3,18496,1,0)
+ ;;^UTILITY(U,$J,358.3,18675,1,3,0)
+ ;;=3^Abscess Bilateral External Ear
+ ;;^UTILITY(U,$J,358.3,18675,1,4,0)
+ ;;=4^H60.03
+ ;;^UTILITY(U,$J,358.3,18675,2)
+ ;;=^5006438
+ ;;^UTILITY(U,$J,358.3,18676,0)
+ ;;=H60.02^^64^835^2
+ ;;^UTILITY(U,$J,358.3,18676,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,18496,1,3,0)
- ;;=3^Depress D/O d/t Anth Med Cond w/ Mixed Feat
- ;;^UTILITY(U,$J,358.3,18496,1,4,0)
- ;;=4^F06.34
- ;;^UTILITY(U,$J,358.3,18496,2)
- ;;=^5003060
- ;;^UTILITY(U,$J,358.3,18497,0)
- ;;=F32.9^^91^939^5
- ;;^UTILITY(U,$J,358.3,18497,1,0)
+ ;;^UTILITY(U,$J,358.3,18676,1,3,0)
+ ;;=3^Abscess Left External Ear
+ ;;^UTILITY(U,$J,358.3,18676,1,4,0)
+ ;;=4^H60.02
+ ;;^UTILITY(U,$J,358.3,18676,2)
+ ;;=^5006437
+ ;;^UTILITY(U,$J,358.3,18677,0)
+ ;;=H60.01^^64^835^3
+ ;;^UTILITY(U,$J,358.3,18677,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,18497,1,3,0)
- ;;=3^Depressive D/O,Unsp
- ;;^UTILITY(U,$J,358.3,18497,1,4,0)
- ;;=4^F32.9
- ;;^UTILITY(U,$J,358.3,18497,2)
- ;;=^5003528
- ;;^UTILITY(U,$J,358.3,18498,0)
- ;;=F32.89^^91^939^4
- ;;^UTILITY(U,$J,358.3,18498,1,0)
+ ;;^UTILITY(U,$J,358.3,18677,1,3,0)
+ ;;=3^Abscess Right External Ear
+ ;;^UTILITY(U,$J,358.3,18677,1,4,0)
+ ;;=4^H60.01
+ ;;^UTILITY(U,$J,358.3,18677,2)
+ ;;=^5006436
+ ;;^UTILITY(U,$J,358.3,18678,0)
+ ;;=H60.13^^64^835^5
+ ;;^UTILITY(U,$J,358.3,18678,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,18498,1,3,0)
- ;;=3^Depressive D/O,Other Specified
- ;;^UTILITY(U,$J,358.3,18498,1,4,0)
- ;;=4^F32.89
- ;;^UTILITY(U,$J,358.3,18498,2)
- ;;=^5138442
- ;;^UTILITY(U,$J,358.3,18499,0)
- ;;=F34.81^^91^939^6
- ;;^UTILITY(U,$J,358.3,18499,1,0)
+ ;;^UTILITY(U,$J,358.3,18678,1,3,0)
+ ;;=3^Cellulitis Bilateral External Ear
+ ;;^UTILITY(U,$J,358.3,18678,1,4,0)
+ ;;=4^H60.13
+ ;;^UTILITY(U,$J,358.3,18678,2)
+ ;;=^5006442
+ ;;^UTILITY(U,$J,358.3,18679,0)
+ ;;=H60.12^^64^835^6
+ ;;^UTILITY(U,$J,358.3,18679,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,18499,1,3,0)
- ;;=3^Disruptive Mood Dysregulation Disorder
- ;;^UTILITY(U,$J,358.3,18499,1,4,0)
- ;;=4^F34.81
- ;;^UTILITY(U,$J,358.3,18499,2)
- ;;=^8313905
- ;;^UTILITY(U,$J,358.3,18500,0)
- ;;=F32.81^^91^939^21
- ;;^UTILITY(U,$J,358.3,18500,1,0)
+ ;;^UTILITY(U,$J,358.3,18679,1,3,0)
+ ;;=3^Cellulitis Left External Ear
+ ;;^UTILITY(U,$J,358.3,18679,1,4,0)
+ ;;=4^H60.12
+ ;;^UTILITY(U,$J,358.3,18679,2)
+ ;;=^5006441
+ ;;^UTILITY(U,$J,358.3,18680,0)
+ ;;=H60.11^^64^835^7
+ ;;^UTILITY(U,$J,358.3,18680,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,18500,1,3,0)
- ;;=3^Premenstrual Dysphoric Disorder
- ;;^UTILITY(U,$J,358.3,18500,1,4,0)
- ;;=4^F32.81
- ;;^UTILITY(U,$J,358.3,18500,2)
- ;;=^7000885
- ;;^UTILITY(U,$J,358.3,18501,0)
- ;;=F44.81^^91^940^6
- ;;^UTILITY(U,$J,358.3,18501,1,0)
+ ;;^UTILITY(U,$J,358.3,18680,1,3,0)
+ ;;=3^Cellulitis Right External Ear
+ ;;^UTILITY(U,$J,358.3,18680,1,4,0)
+ ;;=4^H60.11
+ ;;^UTILITY(U,$J,358.3,18680,2)
+ ;;=^5006440
+ ;;^UTILITY(U,$J,358.3,18681,0)
+ ;;=H60.323^^64^835^8
+ ;;^UTILITY(U,$J,358.3,18681,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,18501,1,3,0)
- ;;=3^Dissociative Identity D/O
- ;;^UTILITY(U,$J,358.3,18501,1,4,0)
- ;;=4^F44.81
- ;;^UTILITY(U,$J,358.3,18501,2)
- ;;=^331909
- ;;^UTILITY(U,$J,358.3,18502,0)
- ;;=F44.9^^91^940^5
- ;;^UTILITY(U,$J,358.3,18502,1,0)
+ ;;^UTILITY(U,$J,358.3,18681,1,3,0)
+ ;;=3^Hemorrhagic Bilateral Otitis Externa
+ ;;^UTILITY(U,$J,358.3,18681,1,4,0)
+ ;;=4^H60.323
+ ;;^UTILITY(U,$J,358.3,18681,2)
+ ;;=^5006453
+ ;;^UTILITY(U,$J,358.3,18682,0)
+ ;;=H60.322^^64^835^9
+ ;;^UTILITY(U,$J,358.3,18682,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,18502,1,3,0)
- ;;=3^Dissociative D/O,Unspec
- ;;^UTILITY(U,$J,358.3,18502,1,4,0)
- ;;=4^F44.9
- ;;^UTILITY(U,$J,358.3,18502,2)
- ;;=^5003584
- ;;^UTILITY(U,$J,358.3,18503,0)
- ;;=F44.0^^91^940^2
- ;;^UTILITY(U,$J,358.3,18503,1,0)
+ ;;^UTILITY(U,$J,358.3,18682,1,3,0)
+ ;;=3^Hemorrhagic Left Otitis Externa
+ ;;^UTILITY(U,$J,358.3,18682,1,4,0)
+ ;;=4^H60.322
+ ;;^UTILITY(U,$J,358.3,18682,2)
+ ;;=^5006452
+ ;;^UTILITY(U,$J,358.3,18683,0)
+ ;;=H60.321^^64^835^10
+ ;;^UTILITY(U,$J,358.3,18683,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,18503,1,3,0)
- ;;=3^Dissociative Amnesia
- ;;^UTILITY(U,$J,358.3,18503,1,4,0)
- ;;=4^F44.0
- ;;^UTILITY(U,$J,358.3,18503,2)
- ;;=^5003577
- ;;^UTILITY(U,$J,358.3,18504,0)
- ;;=F48.1^^91^940^1
- ;;^UTILITY(U,$J,358.3,18504,1,0)
+ ;;^UTILITY(U,$J,358.3,18683,1,3,0)
+ ;;=3^Hemorrhagic Right Otitis Externa
+ ;;^UTILITY(U,$J,358.3,18683,1,4,0)
+ ;;=4^H60.321
+ ;;^UTILITY(U,$J,358.3,18683,2)
+ ;;=^5006451
+ ;;^UTILITY(U,$J,358.3,18684,0)
+ ;;=H60.393^^64^835^11
+ ;;^UTILITY(U,$J,358.3,18684,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,18504,1,3,0)
- ;;=3^Depersonalization/Derealization D/O
- ;;^UTILITY(U,$J,358.3,18504,1,4,0)
- ;;=4^F48.1
- ;;^UTILITY(U,$J,358.3,18504,2)
- ;;=^5003593
- ;;^UTILITY(U,$J,358.3,18505,0)
- ;;=F44.89^^91^940^4
- ;;^UTILITY(U,$J,358.3,18505,1,0)
+ ;;^UTILITY(U,$J,358.3,18684,1,3,0)
+ ;;=3^Infective Bilateral Otitis Externa NEC
+ ;;^UTILITY(U,$J,358.3,18684,1,4,0)
+ ;;=4^H60.393
+ ;;^UTILITY(U,$J,358.3,18684,2)
+ ;;=^5006461
+ ;;^UTILITY(U,$J,358.3,18685,0)
+ ;;=H60.392^^64^835^12
+ ;;^UTILITY(U,$J,358.3,18685,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,18505,1,3,0)
- ;;=3^Dissociative D/O,Other Specified
- ;;^UTILITY(U,$J,358.3,18505,1,4,0)
- ;;=4^F44.89
- ;;^UTILITY(U,$J,358.3,18505,2)
- ;;=^5003583
- ;;^UTILITY(U,$J,358.3,18506,0)
- ;;=F44.1^^91^940^3
- ;;^UTILITY(U,$J,358.3,18506,1,0)
+ ;;^UTILITY(U,$J,358.3,18685,1,3,0)
+ ;;=3^Infective Left Otitis Externa
+ ;;^UTILITY(U,$J,358.3,18685,1,4,0)
+ ;;=4^H60.392
+ ;;^UTILITY(U,$J,358.3,18685,2)
+ ;;=^5006460
+ ;;^UTILITY(U,$J,358.3,18686,0)
+ ;;=H60.391^^64^835^13
+ ;;^UTILITY(U,$J,358.3,18686,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,18506,1,3,0)
- ;;=3^Dissociative Amnesia w/ Dissociative Fugue
+ ;;^UTILITY(U,$J,358.3,18686,1,3,0)
+ ;;=3^Infective Right Otitis Externa

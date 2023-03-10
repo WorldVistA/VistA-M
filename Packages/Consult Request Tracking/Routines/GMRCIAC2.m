@@ -1,8 +1,9 @@
-GMRCIAC2 ;SLC/JFR - FILE IFC ACTIVITIES CONT'D ;08/16/10  08:34
- ;;3.0;CONSULT/REQUEST TRACKING;**22,28,35,66**;DEC 27, 1997;Build 30
+GMRCIAC2 ;SLC/JFR - FILE IFC ACTIVITIES CONT'D ; Feb 03, 2022@16:30:18
+ ;;3.0;CONSULT/REQUEST TRACKING;**22,28,35,66,154,184**;DEC 27, 1997;Build 22
  ;;ICRs in use
  ;;#2053 DIE, #2171 XUAF4, #10103 XLFDT, #2541 $$KSP^XUPARAM, #2165 HLMA1
  Q  ;can't start here
+ ;
 FILRES(GMRCO,GMRCOBX) ;file or delete results
  N GMRCRES,GMRCFIL,GMRCSITE,GMRCROOT,RESIEN,GMRCERR
  S GMRCRES=+$P(GMRCOBX,"|",5)
@@ -23,7 +24,6 @@ FILRES(GMRCO,GMRCOBX) ;file or delete results
  I '$D(FDA) Q
  D UPDATE^DIE("","FDA(1)",,"GMRCERR")
  Q
- ;
 UPDORD(GMRCDA,GMRC40) ; update CPRS order if action on placer order.
  ; Input:
  ;  GMRCDA   = ien from file 123
@@ -38,12 +38,14 @@ UPDORD(GMRCDA,GMRC40) ; update CPRS order if action on placer order.
  S GMRCOC=$S(AC=6:"OD",AC=19:"OC",AC=10:"RE",AC=9:"RE",AC=8:"ZC",1:"SC")
  D EN^GMRCHL7(GMRCDFN,GMRCDA,"","",GMRCOC,"","",.GMRCMT,,GMRCAD)
  Q
-FILEACT(GMRCO,GMRCLAST,GMRCFR,GMRCAR) ;file REQUEST PROCESSING ACTIVITY
+FILEACT(GMRCO,GMRCLAST,GMRCFR,GMRCAR,GMRCCRNR,GMRCROUT) ;file REQUEST PROCESSING ACTIVITY - P184
  ; Input:
  ;  GMRCO     = ien from file 123
  ;  GMRCLAST  = last action taken on request
  ;  GMRCFR    = service that consult was forwarded from
  ;  GMRCAR    = name of the array containing the message
+ ;  GMRCCRNR  = 1 if from Cerner [OPTIONAL]
+ ;  GMRCROUT  = Routine station [OPTIONAL]
  ;
  N GMRCORC,GMRCFDA,GMRCRP,GMRCEP,GMRCACT,GMRCERR,FDA
  M ^TMP("GMRCFIL",$J)=@GMRCAR
@@ -58,6 +60,7 @@ FILEACT(GMRCO,GMRCLAST,GMRCFR,GMRCAR) ;file REQUEST PROCESSING ACTIVITY
  S GMRCFDA(.21)=GMRCEP
  S GMRCFDA(.22)=GMRCRP
  S GMRCFDA(.23)=$P($G(^TMP("GMRCFIL",$J,"OBX",5,1)),"|",5)
+ I $G(GMRCCRNR) S GMRCFDA(.32)=1,GMRCFDA(.33)=$G(GMRCROUT) ; WTC P184
  I $D(GMRCFR) S GMRCFDA(.31)=GMRCFR
  I $D(^TMP("GMRCFIL",$J,"OBX",4)) D
  . N RFIL,RSLT,DESC,GMRCOBX,ROOT,RSITE
@@ -139,15 +142,34 @@ GETDA(GMRCORC) ; determine what local Consult ien to work on
  ;
  N GMRCORC2,GMRCORC3
  S GMRCORC2=$P(GMRCORC,"|",2),GMRCORC3=$P(GMRCORC,"|",3)
+ ;
+ ; JCH-EHRM-GMRC*3*154 - Allow inbound Cerner Updates to use Placer (ORC-3) Order 
+ ; as Vista Consults Order # where following conditions are true
+ ;   1) IF filler station # (ORC-3.2) = placer station # (ORC-2.2)
+ ;       - 1.1) hould be unique to EHRM Prosthetics
+ ;   2) AND if OBR-4 contains "Prosthetics IFC" or "(PSAS)"
+ ;       - 2.1) Cerner specific - Vista does not send OBR when ORC-3 populated
+ ;   3) AND if Filler station # (ORC-3.2) = local station # (ORC-2.2)
+ ;       - 3.1) Must be associated with local station
+ ;   4) AND if ORC-3.1 Filler Order Number exists in ^GMR(123
+ ;       - 4.1) Order exists ^GMR(123,GMRCDA,0) 
+ ;       - 4.2) this will cause hard error if not true (in OTHER+13^GMRCIACT)
+ ; THEN always use ORC-3.1 as local consult Order # 
+ ;
+ N GMRCOBR4 S GMRCOBR4=$P($G(^TMP("GMRCIN",$J,"OBR")),"|",4)
+ I ($P(GMRCORC2,U,2)=$P(GMRCORC3,U,2)),((GMRCOBR4["PROSTHETICS IFC")!(GMRCOBR4["PSAS")),$$IEN^XUAF4($P(GMRCORC2,U,2))=$$KSP^XUPARAM("INST"),$D(^GMR(123,+GMRCORC3,0)) Q +GMRCORC3
+ ;
  I $$IEN^XUAF4($P(GMRCORC2,U,2))=$$KSP^XUPARAM("INST") Q +GMRCORC2
  Q +GMRCORC3
  ;
-DUPACT(GMRCO,ACTVT,ORC,OBX) ;check to see if activity is a dup transmission
+DUPACT(GMRCO,ACTVT,ORC,OBX,CRNR,MSGI) ;check to see if activity is a dup transmission ;MKN added CRNR and MSGI
  ;Input:
  ;  GMRCO = ien of consult
  ;  ACTVT = ien of activity from file 123.1
  ;  ORC   = ORC segment from message
  ;  OBX   = OBX segment containing result
+ ;  CRNR  = 1 if message came from Cerner
+ ;  MSGI  = message ID
  ;
  ;Output:
  ;  0  = activity is not a duplicate of one on file already
@@ -157,6 +179,7 @@ DUPACT(GMRCO,ACTVT,ORC,OBX) ;check to see if activity is a dup transmission
  S GMRCIFDT=+$$HL7TFM^XLFDT($P(ORC,"|",9))
  S GMRCIADT=+$$HL7TFM^XLFDT($P(ORC,"|",15))
  S DUP=0
+ S CRNR=$G(CRNR,0),MSGI=$G(MSGI) ; MKN GMRC*3.0*154
  I $D(^GMR(123,GMRCO,40,"AC",ACTVT,GMRCIFDT,GMRCIADT)) D  Q DUP ;dupl.
  . N RSLT,RFIL,RSITE,ROOT
  . I $L($G(OBX)) D  Q:'$G(DUP)
@@ -169,22 +192,76 @@ DUPACT(GMRCO,ACTVT,ORC,OBX) ;check to see if activity is a dup transmission
  .. I ACTVT'=12,'$D(^GMR(123,GMRCO,51,"AR",RSLT,RSITE)) Q  ;no dup
  .. S DUP=1
  . S DUP=1
- . D APPACK(GMRCO,"AR",802) ;send app. ACK and unlock record
+ . D APPACK(GMRCO,"AR",802,CRNR,MSGI) ;send app. ACK and unlock record
  Q 0
  ;
-APPACK(GMRCO,ACK,ERR) ;send application acknowledgement for all cases
+APPACK(GMRCO,ACK,ERR,CRNR,MSGID) ;send application acknowledgement for all cases ;MKN GMRC*3*154 added CRNR and MSGID
  ;Input:
  ;  GMRCO = ien from file 123
  ;  ACK   = ACK code to include  ("AA"=accept or "AR"=reject)
  ;  ERR   = error code to return if there is one (optional)
+ ;  CRNR  = 1 message came from Cerner  ELSE  message did not come from Cerner
+ ;  MSGID = HL7 message ID
  ;
  ; Output: none
  ;
  ;send appl ACK
  N GMRCRSLT
  I '$G(ERR) S ERR=""
+ S CRNR=$G(CRNR,0),MSGID=$G(MSGID)
  D RESP^GMRCIUTL(ACK,HL("MID"),,,ERR) ;build HLA("HLA", array
  D GENACK^HLMA1(HL("EID"),HLMTIENS,HL("EIDS"),"LM",1,.GMRCRSLT)
  ;
  D UNLKREC^GMRCUTL1(GMRCO) ;unlock record
+ ;
+ ;MKN GMRC*3*154 - If message came from Cerner, MailMan messages should be sent to GMRC CRNR, and GMRC TIER II mail group(S) for this error code - see tag CRNR below
+ Q:'CRNR!('$T(@+ERR))
+ D MGMSG(ERR,MSGID)
  Q
+ ;
+MGMSG(ERR,MSGID) ;Send message to required mail groups
+ N GMRCERR,GMRCMG,GMRCMGN,GMRCMGNA,GMRCORG,GMRCPAR,GMRCX
+ S GMRCMG=$T(@ERR),GMRCERR=$P(GMRCMG,";",6),MSGID=$G(MSGID) F GMRCMGN=2:1 S GMRCX=$P(GMRCMG,";",GMRCMGN) Q:GMRCX=""  D:GMRCX
+ . S GMRCPAR=$P($T(CRNR),";",GMRCMGN),GMRCMGNA=$$GET^XPAR("SYS",GMRCPAR)
+ . I GMRCMGNA S GMRCORG=$$GET1^DIQ(3.8,GMRCMGNA,5,"I"),GMRCMGNA=$$GET1^DIQ(3.8,GMRCMGNA,.01) D:GMRCMGNA]"" SENDMSG(GMRCMGNA,ERR,GMRCERR,MSGID)
+ Q
+ ;
+SENDMSG(GRP,ERR,ERRTEXT,MSGID) ; Send a MailMan Message with the errors
+ N GRPIEN,MEM,XMDUZ,XMSUB,XMTEXT,XMY
+ S XMSUB="Failed IFC transaction: "_ERRTEXT,XMTEXT="XMTEXT("
+ D:$G(MSGID)]""
+ . S XMTEXT(1)="HL7 Message ID: "_$P(MSGID,U)
+ . S XMTEXT(2)="Date and time of message: "_$P(MSGID,U,2)
+ . S XMTEXT(3)="Error # "_ERR_" ("_ERRTEXT_")"
+ D:$G(MSGID)=""
+ . S XMTEXT(1)="Error # "_ERR_" ("_ERRTEXT_")"
+ S GRPIEN=$O(^XMB(3.8,"B",GRP,"")) Q:'GRPIEN
+ ;Set up XMY for MEMBERS
+ S MEM=0 F  S MEM=$O(^XMB(3.8,GRPIEN,1,MEM)) Q:'MEM  S XMY($P(^XMB(3.8,GRPIEN,1,MEM,0),U))=""
+ ;Set up XMY for MEMBERS REMOTE
+ S MEM=0 F  S MEM=$O(^XMB(3.8,GRPIEN,6,MEM)) Q:'MEM  S XMY($P(^XMB(3.8,GRPIEN,6,MEM,0),U))=""
+ Q:'$D(XMY)
+ S XMDUZ=GRP
+ D XMZ^XMA2 ; call Create Message Module
+ D EN1^XMD
+ Q
+ ;
+CRNR ;GMRC CRNR IFC ERRORS;GMRC CRNR IFC TECH ERRORS;GMRC CRNR IFC CLIN ERRORS;GMRC TIER II CRNR IFC ERRORS
+101 ;1;1;0;1;Unknown Consult/Procedure request
+202 ;1;0;1;1;Local or Unknown MPI Identifiers
+301 ;1;0;1;1;Service not Matched to Receiving Facility
+401 ;1;0;1;1;Procedure not Matched to Receiving Facility
+501 ;1;0;1;1;Error in Procedure Name
+601 ;1;0;1;1;Multiple Services Matched to Procedure
+701 ;1;0;1;1;Error in Service Name
+702 ;1;0;1;1;Service is Disabled
+703 ;1;0;1;1;Procedure is Inactive
+801 ;1;1;0;1;Inappropriate Action for Specified Request
+802 ;1;0;0;1;Duplicate, activity not filed
+901 ;1;0;0;1;Unable to Update Record Successfully
+902 ;1;0;0;1;Earlier Pending Transactions
+903 ;0;0;0;0;HL Logical Link not Found - will not hit the APPACK API
+904 ;0;0;0;0;VistA HL7 Unable to Send Transaction - will not hit the APPACK API
+201 ;0;0;0;0;Unknown Patient - will not hit the APPACK API
+ ;End of MKN GMRC*3*154
+ ;

@@ -1,128 +1,120 @@
-IBDEI0YX ; ; 04-FEB-2020
- ;;3.0;IB ENCOUNTER FORM IMP/EXP;;FEB 04, 2020
+IBDEI0YX ; ; 01-FEB-2022
+ ;;3.0;IB ENCOUNTER FORM IMP/EXP;;FEB 01, 2022
  Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,999) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
- ;;^UTILITY(U,$J,358.3,15583,0)
- ;;=R73.01^^88^864^44
- ;;^UTILITY(U,$J,358.3,15583,1,0)
+ ;;^UTILITY(U,$J,358.3,15769,1,3,0)
+ ;;=3^Cellulitis of Bilateral Orbits
+ ;;^UTILITY(U,$J,358.3,15769,1,4,0)
+ ;;=4^H05.013
+ ;;^UTILITY(U,$J,358.3,15769,2)
+ ;;=^5004562
+ ;;^UTILITY(U,$J,358.3,15770,0)
+ ;;=I70.331^^61^765^51
+ ;;^UTILITY(U,$J,358.3,15770,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,15583,1,3,0)
- ;;=3^Impaired Fasting Glucose
- ;;^UTILITY(U,$J,358.3,15583,1,4,0)
- ;;=4^R73.01
- ;;^UTILITY(U,$J,358.3,15583,2)
- ;;=^5019561
- ;;^UTILITY(U,$J,358.3,15584,0)
- ;;=R74.8^^88^864^1
- ;;^UTILITY(U,$J,358.3,15584,1,0)
+ ;;^UTILITY(U,$J,358.3,15770,1,3,0)
+ ;;=3^Athscl Bypass of Right Leg w/ Ulcer of Thigh
+ ;;^UTILITY(U,$J,358.3,15770,1,4,0)
+ ;;=4^I70.331
+ ;;^UTILITY(U,$J,358.3,15770,2)
+ ;;=^5007626
+ ;;^UTILITY(U,$J,358.3,15771,0)
+ ;;=I70.332^^61^765^52
+ ;;^UTILITY(U,$J,358.3,15771,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,15584,1,3,0)
- ;;=3^Abnormal Levels of Serum Enzymes
- ;;^UTILITY(U,$J,358.3,15584,1,4,0)
- ;;=4^R74.8
- ;;^UTILITY(U,$J,358.3,15584,2)
- ;;=^5019566
- ;;^UTILITY(U,$J,358.3,15585,0)
- ;;=R03.0^^88^864^25
- ;;^UTILITY(U,$J,358.3,15585,1,0)
+ ;;^UTILITY(U,$J,358.3,15771,1,3,0)
+ ;;=3^Athscl Bypass of Right Leg w/ Ulcer of Calf
+ ;;^UTILITY(U,$J,358.3,15771,1,4,0)
+ ;;=4^I70.332
+ ;;^UTILITY(U,$J,358.3,15771,2)
+ ;;=^5007627
+ ;;^UTILITY(U,$J,358.3,15772,0)
+ ;;=I70.333^^61^765^53
+ ;;^UTILITY(U,$J,358.3,15772,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,15585,1,3,0)
- ;;=3^Elevated BP Reading w/o Diagnosis of HTN
- ;;^UTILITY(U,$J,358.3,15585,1,4,0)
- ;;=4^R03.0
- ;;^UTILITY(U,$J,358.3,15585,2)
- ;;=^5019171
- ;;^UTILITY(U,$J,358.3,15586,0)
- ;;=Z91.19^^88^864^51
- ;;^UTILITY(U,$J,358.3,15586,1,0)
+ ;;^UTILITY(U,$J,358.3,15772,1,3,0)
+ ;;=3^Athscl Bypass of Right Leg w/ Ulcer of Ankle
+ ;;^UTILITY(U,$J,358.3,15772,1,4,0)
+ ;;=4^I70.333
+ ;;^UTILITY(U,$J,358.3,15772,2)
+ ;;=^5007628
+ ;;^UTILITY(U,$J,358.3,15773,0)
+ ;;=I70.334^^61^765^54
+ ;;^UTILITY(U,$J,358.3,15773,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,15586,1,3,0)
- ;;=3^Noncompliance w/ Medical Treatment/Regimen
- ;;^UTILITY(U,$J,358.3,15586,1,4,0)
- ;;=4^Z91.19
- ;;^UTILITY(U,$J,358.3,15586,2)
- ;;=^5063618
- ;;^UTILITY(U,$J,358.3,15587,0)
- ;;=E66.01^^88^864^52
- ;;^UTILITY(U,$J,358.3,15587,1,0)
+ ;;^UTILITY(U,$J,358.3,15773,1,3,0)
+ ;;=3^Athscl Bypass of Right Leg w/ Ulcer of Heel/Midfoot
+ ;;^UTILITY(U,$J,358.3,15773,1,4,0)
+ ;;=4^I70.334
+ ;;^UTILITY(U,$J,358.3,15773,2)
+ ;;=^5007629
+ ;;^UTILITY(U,$J,358.3,15774,0)
+ ;;=I70.335^^61^765^55
+ ;;^UTILITY(U,$J,358.3,15774,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,15587,1,3,0)
- ;;=3^Obesity,Morbid
- ;;^UTILITY(U,$J,358.3,15587,1,4,0)
- ;;=4^E66.01
- ;;^UTILITY(U,$J,358.3,15587,2)
- ;;=^5002826
- ;;^UTILITY(U,$J,358.3,15588,0)
- ;;=F43.11^^88^864^59
- ;;^UTILITY(U,$J,358.3,15588,1,0)
+ ;;^UTILITY(U,$J,358.3,15774,1,3,0)
+ ;;=3^Athscl Bypass of Right Leg w/ Ulcer of Oth Part of Foot
+ ;;^UTILITY(U,$J,358.3,15774,1,4,0)
+ ;;=4^I70.335
+ ;;^UTILITY(U,$J,358.3,15774,2)
+ ;;=^5007630
+ ;;^UTILITY(U,$J,358.3,15775,0)
+ ;;=I70.341^^61^765^50
+ ;;^UTILITY(U,$J,358.3,15775,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,15588,1,3,0)
- ;;=3^PTSD,Acute
- ;;^UTILITY(U,$J,358.3,15588,1,4,0)
- ;;=4^F43.11
- ;;^UTILITY(U,$J,358.3,15588,2)
- ;;=^5003571
- ;;^UTILITY(U,$J,358.3,15589,0)
- ;;=F43.12^^88^864^60
- ;;^UTILITY(U,$J,358.3,15589,1,0)
+ ;;^UTILITY(U,$J,358.3,15775,1,3,0)
+ ;;=3^Athscl Bypass of Left Leg w/ Ulcer of Thigh
+ ;;^UTILITY(U,$J,358.3,15775,1,4,0)
+ ;;=4^I70.341
+ ;;^UTILITY(U,$J,358.3,15775,2)
+ ;;=^5007633
+ ;;^UTILITY(U,$J,358.3,15776,0)
+ ;;=I70.342^^61^765^47
+ ;;^UTILITY(U,$J,358.3,15776,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,15589,1,3,0)
- ;;=3^PTSD,Chronic
- ;;^UTILITY(U,$J,358.3,15589,1,4,0)
- ;;=4^F43.12
- ;;^UTILITY(U,$J,358.3,15589,2)
- ;;=^5003572
- ;;^UTILITY(U,$J,358.3,15590,0)
- ;;=I25.119^^88^864^5
- ;;^UTILITY(U,$J,358.3,15590,1,0)
+ ;;^UTILITY(U,$J,358.3,15776,1,3,0)
+ ;;=3^Athscl Bypass of Left Leg w/ Ulcer of Calf
+ ;;^UTILITY(U,$J,358.3,15776,1,4,0)
+ ;;=4^I70.342
+ ;;^UTILITY(U,$J,358.3,15776,2)
+ ;;=^5007634
+ ;;^UTILITY(U,$J,358.3,15777,0)
+ ;;=I70.343^^61^765^46
+ ;;^UTILITY(U,$J,358.3,15777,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,15590,1,3,0)
- ;;=3^Athscl Hrt Dis of Native Cor Art w/ Ang Pctrs,Unspec
- ;;^UTILITY(U,$J,358.3,15590,1,4,0)
- ;;=4^I25.119
- ;;^UTILITY(U,$J,358.3,15590,2)
- ;;=^5007111
- ;;^UTILITY(U,$J,358.3,15591,0)
- ;;=I25.10^^88^864^6
- ;;^UTILITY(U,$J,358.3,15591,1,0)
+ ;;^UTILITY(U,$J,358.3,15777,1,3,0)
+ ;;=3^Athscl Bypass of Left Leg w/ Ulcer of Ankle
+ ;;^UTILITY(U,$J,358.3,15777,1,4,0)
+ ;;=4^I70.343
+ ;;^UTILITY(U,$J,358.3,15777,2)
+ ;;=^5007635
+ ;;^UTILITY(U,$J,358.3,15778,0)
+ ;;=I70.344^^61^765^48
+ ;;^UTILITY(U,$J,358.3,15778,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,15591,1,3,0)
- ;;=3^Athscl Hrt Dis of Native Cor Art w/o Ang Pctrs
- ;;^UTILITY(U,$J,358.3,15591,1,4,0)
- ;;=4^I25.10
- ;;^UTILITY(U,$J,358.3,15591,2)
- ;;=^5007107
- ;;^UTILITY(U,$J,358.3,15592,0)
- ;;=F17.219^^88^864^49
- ;;^UTILITY(U,$J,358.3,15592,1,0)
+ ;;^UTILITY(U,$J,358.3,15778,1,3,0)
+ ;;=3^Athscl Bypass of Left Leg w/ Ulcer of Heel/Midfoot
+ ;;^UTILITY(U,$J,358.3,15778,1,4,0)
+ ;;=4^I70.344
+ ;;^UTILITY(U,$J,358.3,15778,2)
+ ;;=^5007636
+ ;;^UTILITY(U,$J,358.3,15779,0)
+ ;;=I70.345^^61^765^49
+ ;;^UTILITY(U,$J,358.3,15779,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,15592,1,3,0)
- ;;=3^Nicotine Dependence,Cigarettes
- ;;^UTILITY(U,$J,358.3,15592,1,4,0)
- ;;=4^F17.219
- ;;^UTILITY(U,$J,358.3,15592,2)
- ;;=^5003369
- ;;^UTILITY(U,$J,358.3,15593,0)
- ;;=Z51.5^^88^864^62
- ;;^UTILITY(U,$J,358.3,15593,1,0)
+ ;;^UTILITY(U,$J,358.3,15779,1,3,0)
+ ;;=3^Athscl Bypass of Left Leg w/ Ulcer of Oth Part of Foot
+ ;;^UTILITY(U,$J,358.3,15779,1,4,0)
+ ;;=4^I70.345
+ ;;^UTILITY(U,$J,358.3,15779,2)
+ ;;=^5007637
+ ;;^UTILITY(U,$J,358.3,15780,0)
+ ;;=I70.431^^61^765^41
+ ;;^UTILITY(U,$J,358.3,15780,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,15593,1,3,0)
- ;;=3^Palliative Care Encounter
- ;;^UTILITY(U,$J,358.3,15593,1,4,0)
- ;;=4^Z51.5
- ;;^UTILITY(U,$J,358.3,15593,2)
- ;;=^5063063
- ;;^UTILITY(U,$J,358.3,15594,0)
- ;;=Z23.^^88^864^26
- ;;^UTILITY(U,$J,358.3,15594,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,15594,1,3,0)
- ;;=3^Encounter for Immunization(s)
- ;;^UTILITY(U,$J,358.3,15594,1,4,0)
- ;;=4^Z23.
- ;;^UTILITY(U,$J,358.3,15594,2)
- ;;=^5062795
- ;;^UTILITY(U,$J,358.3,15595,0)
- ;;=E11.65^^88^864^18
- ;;^UTILITY(U,$J,358.3,15595,1,0)
- ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,15780,1,3,0)
+ ;;=3^Athscl Autol Vein Bypass of Right Leg w/ Ulcer of Thigh
+ ;;^UTILITY(U,$J,358.3,15780,1,4,0)
+ ;;=4^I70.431
+ ;;^UTILITY(U,$J,358.3,15780,2)
+ ;;=^5007664

@@ -1,20 +1,26 @@
-IBARXMN ;LL/ELZ-PHARMCAY COPAY CAP RX PROCESSING ;17-NOV-2000
- ;;2.0;INTEGRATED BILLING;**150,158,156,186,308,563**;21-MAR-94;Build 12
+IBARXMN ;LL/ELZ-PHARMCAY COPAY CAP RX PROCESSING ; 15 Jun 2021  11:46 AM
+ ;;2.0;INTEGRATED BILLING;**150,158,156,186,308,563,676**;21-MAR-94;Build 34
  ;;Per VA Directive 6402, this routine should not be modified.
  ;
 TRACK(DFN) ; checks out patient if tracked already
+ ;
  I '$D(^IBAM(354.7,DFN,0)) D QUERY(DFN,$E(DT,1,5)_"00")
  Q
  ;
 QUERY(DFN,IBDT) ; if there are treating facilities, perform query
  N IBT,IBX,IBS,IBD,IBB,DIE,DA,DR,X,IBA,IBP,IBZ,IBY,IBFD,IBTD
  S IBB=0,IBP=$$PRIORITY^IBARXMU(DFN)
+ ;
  D ADD^IBARXMU(DFN) Q:'IBP
- S IBT=$$TFL^IBARXMU(DFN,.IBT) Q:'IBT
+ S IBT=$$TFL^IBARXMU(DFN,.IBT,2) Q:'IBT
  D CAP^IBARXMC(IBDT,IBP,.IBZ,.IBY,.IBFD,.IBTD) I 'IBY,'IBZ Q
  I 'IBFD!('IBTD) Q
  W !!,"This patient has never had billing information tracked before",!,"Now querying other facilities..."
  S IBX=0 F  S IBX=$O(IBT(IBX)) Q:IBX<1  W !,"Now sending query to ",$P(IBT(IBX),"^",2)," ..." D
+ . ;
+ . ;676;BL; Need to check for Cerner, if found send to IBARXCQR and quit
+ . I $P(IBT(IBX),"^",1)["200CRNR" D  Q
+ . . D EN^IBARXCQR(DFN,$E(IBDT,1,5)_"00")
  . ;
  . ; need to query every month in the cap billing period
  . S IBDT=IBFD D  F  S IBDT=$$NEXTMO^IBARXMC(IBDT) Q:IBDT>IBTD  D
@@ -24,7 +30,7 @@ QUERY(DFN,IBDT) ; if there are treating facilities, perform query
  .. I -1=+$G(IBD,"-1") Q
  .. ;
  .. ; loop through query and file data
- .. S X=0 F  S X=$O(IBD(X)) Q:X<1  S:$E(IBD(X),1,4)=+IBT(IBX)_"-" IBA=$$ADD(DFN,IBD(X)),IBB=IBB+$P(IBD(X),"^",11)
+ .. S X=0 F  S X=$O(IBD(X)) Q:X<1  S:$E(IBD(X),1,4)=(+IBT(IBX)_"-") IBA=$$ADD(DFN,IBD(X)),IBB=IBB+$P(IBD(X),"^",11)
  .. K IBD
  ;
  Q
@@ -118,13 +124,14 @@ ADD(DFN,IBD,IBT,IBPFSS) ; adds a transaction to 354.71
  ; returns ien in 354.71
  ; IBPFSS optional to indicate came from PFSS system
  ;
- N IBA,DIC,X,IBS,IBN
+ N IBA,DIC,X,IBS,IBN,NEW
+ S NEW=0
  Q:'$G(DFN)
  D ADD^IBARXMU(DFN)
  I $P(IBD,"^") S IBA=$O(^IBAM(354.71,"B",$P(IBD,"^"),0)) D  Q IBA
  . ;I IBA D TRANF(DFN,IBA,IBD,$G(IBT)) Q
- . I 'IBA S DIC="^IBAM(354.71,",DIC(0)="",X=$P(IBD,"^") D FILE^DICN S IBA=+Y
- . I IBA>0 D TRANF(DFN,IBA,IBD,$G(IBT)),ACCT(DFN,$P(IBD,"^",11),$P(IBD,"^",12),$P(IBD,"^",3))
+ . I 'IBA S DIC="^IBAM(354.71,",DIC(0)="",X=$P(IBD,"^") D FILE^DICN S IBA=+Y,NEW=1
+ . I IBA>0 D TRANF(DFN,IBA,IBD,$G(IBT)) I NEW D ACCT(DFN,$P(IBD,"^",11),$P(IBD,"^",12),$P(IBD,"^",3))
  K DO S DIC="^IBAM(354.71,",DIC(0)="",IBS=+$P($$SITE^IBARXMU,"^",3)
  ;
  ; get next number and file

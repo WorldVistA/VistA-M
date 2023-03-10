@@ -1,130 +1,122 @@
-IBDEI0UQ ; ; 04-FEB-2020
- ;;3.0;IB ENCOUNTER FORM IMP/EXP;;FEB 04, 2020
+IBDEI0UQ ; ; 01-FEB-2022
+ ;;3.0;IB ENCOUNTER FORM IMP/EXP;;FEB 01, 2022
  Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,999) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
- ;;^UTILITY(U,$J,358.3,13685,0)
- ;;=E53.9^^83^815^109
- ;;^UTILITY(U,$J,358.3,13685,1,0)
+ ;;^UTILITY(U,$J,358.3,13876,0)
+ ;;=M25.571^^55^663^30
+ ;;^UTILITY(U,$J,358.3,13876,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,13685,1,3,0)
- ;;=3^Vitamin B Deficiency,Unspec
- ;;^UTILITY(U,$J,358.3,13685,1,4,0)
- ;;=4^E53.9
- ;;^UTILITY(U,$J,358.3,13685,2)
- ;;=^5002798
- ;;^UTILITY(U,$J,358.3,13686,0)
- ;;=E54.^^83^815^110
- ;;^UTILITY(U,$J,358.3,13686,1,0)
+ ;;^UTILITY(U,$J,358.3,13876,1,3,0)
+ ;;=3^Pain in right ankle & joints of right foot
+ ;;^UTILITY(U,$J,358.3,13876,1,4,0)
+ ;;=4^M25.571
+ ;;^UTILITY(U,$J,358.3,13876,2)
+ ;;=^5011617
+ ;;^UTILITY(U,$J,358.3,13877,0)
+ ;;=G56.22^^55^664^23
+ ;;^UTILITY(U,$J,358.3,13877,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,13686,1,3,0)
- ;;=3^Vitamin C Deficiency
- ;;^UTILITY(U,$J,358.3,13686,1,4,0)
- ;;=4^E54.
- ;;^UTILITY(U,$J,358.3,13686,2)
- ;;=^10777
- ;;^UTILITY(U,$J,358.3,13687,0)
- ;;=E55.9^^83^815^111
- ;;^UTILITY(U,$J,358.3,13687,1,0)
+ ;;^UTILITY(U,$J,358.3,13877,1,3,0)
+ ;;=3^Lesion of ulnar nerve, left upper limb
+ ;;^UTILITY(U,$J,358.3,13877,1,4,0)
+ ;;=4^G56.22
+ ;;^UTILITY(U,$J,358.3,13877,2)
+ ;;=^5004025
+ ;;^UTILITY(U,$J,358.3,13878,0)
+ ;;=G56.21^^55^664^24
+ ;;^UTILITY(U,$J,358.3,13878,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,13687,1,3,0)
- ;;=3^Vitamin D Deficiency,Unspec
- ;;^UTILITY(U,$J,358.3,13687,1,4,0)
- ;;=4^E55.9
- ;;^UTILITY(U,$J,358.3,13687,2)
- ;;=^5002799
- ;;^UTILITY(U,$J,358.3,13688,0)
- ;;=E52.^^83^815^82
- ;;^UTILITY(U,$J,358.3,13688,1,0)
+ ;;^UTILITY(U,$J,358.3,13878,1,3,0)
+ ;;=3^Lesion of ulnar nerve, right upper limb
+ ;;^UTILITY(U,$J,358.3,13878,1,4,0)
+ ;;=4^G56.21
+ ;;^UTILITY(U,$J,358.3,13878,2)
+ ;;=^5004024
+ ;;^UTILITY(U,$J,358.3,13879,0)
+ ;;=M00.822^^55^664^1
+ ;;^UTILITY(U,$J,358.3,13879,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,13688,1,3,0)
- ;;=3^Niacin Deficiency
- ;;^UTILITY(U,$J,358.3,13688,1,4,0)
- ;;=4^E52.
- ;;^UTILITY(U,$J,358.3,13688,2)
- ;;=^5002796
- ;;^UTILITY(U,$J,358.3,13689,0)
- ;;=E51.9^^83^815^106
- ;;^UTILITY(U,$J,358.3,13689,1,0)
+ ;;^UTILITY(U,$J,358.3,13879,1,3,0)
+ ;;=3^Arthritis due to other bacteria, left elbow
+ ;;^UTILITY(U,$J,358.3,13879,1,4,0)
+ ;;=4^M00.822
+ ;;^UTILITY(U,$J,358.3,13879,2)
+ ;;=^5009674
+ ;;^UTILITY(U,$J,358.3,13880,0)
+ ;;=M00.821^^55^664^2
+ ;;^UTILITY(U,$J,358.3,13880,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,13689,1,3,0)
- ;;=3^Thiamine Deficiency,Unspec
- ;;^UTILITY(U,$J,358.3,13689,1,4,0)
- ;;=4^E51.9
- ;;^UTILITY(U,$J,358.3,13689,2)
- ;;=^5002795
- ;;^UTILITY(U,$J,358.3,13690,0)
- ;;=E56.9^^83^815^112
- ;;^UTILITY(U,$J,358.3,13690,1,0)
+ ;;^UTILITY(U,$J,358.3,13880,1,3,0)
+ ;;=3^Arthritis due to other bacteria, right elbow
+ ;;^UTILITY(U,$J,358.3,13880,1,4,0)
+ ;;=4^M00.821
+ ;;^UTILITY(U,$J,358.3,13880,2)
+ ;;=^5009673
+ ;;^UTILITY(U,$J,358.3,13881,0)
+ ;;=M24.522^^55^664^3
+ ;;^UTILITY(U,$J,358.3,13881,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,13690,1,3,0)
- ;;=3^Vitamin Deficiency,Unspec
- ;;^UTILITY(U,$J,358.3,13690,1,4,0)
- ;;=4^E56.9
- ;;^UTILITY(U,$J,358.3,13690,2)
- ;;=^5002803
- ;;^UTILITY(U,$J,358.3,13691,0)
- ;;=E56.0^^83^815^113
- ;;^UTILITY(U,$J,358.3,13691,1,0)
+ ;;^UTILITY(U,$J,358.3,13881,1,3,0)
+ ;;=3^Contracture, left elbow
+ ;;^UTILITY(U,$J,358.3,13881,1,4,0)
+ ;;=4^M24.522
+ ;;^UTILITY(U,$J,358.3,13881,2)
+ ;;=^5011406
+ ;;^UTILITY(U,$J,358.3,13882,0)
+ ;;=M24.521^^55^664^4
+ ;;^UTILITY(U,$J,358.3,13882,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,13691,1,3,0)
- ;;=3^Vitamin E Deficiency
- ;;^UTILITY(U,$J,358.3,13691,1,4,0)
- ;;=4^E56.0
- ;;^UTILITY(U,$J,358.3,13691,2)
- ;;=^5002800
- ;;^UTILITY(U,$J,358.3,13692,0)
- ;;=E56.1^^83^815^114
- ;;^UTILITY(U,$J,358.3,13692,1,0)
+ ;;^UTILITY(U,$J,358.3,13882,1,3,0)
+ ;;=3^Contracture, right elbow
+ ;;^UTILITY(U,$J,358.3,13882,1,4,0)
+ ;;=4^M24.521
+ ;;^UTILITY(U,$J,358.3,13882,2)
+ ;;=^5011405
+ ;;^UTILITY(U,$J,358.3,13883,0)
+ ;;=S50.02XA^^55^664^5
+ ;;^UTILITY(U,$J,358.3,13883,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,13692,1,3,0)
- ;;=3^Vitamin K Deficiency
- ;;^UTILITY(U,$J,358.3,13692,1,4,0)
- ;;=4^E56.1
- ;;^UTILITY(U,$J,358.3,13692,2)
- ;;=^5002801
- ;;^UTILITY(U,$J,358.3,13693,0)
- ;;=R63.5^^83^815^115
- ;;^UTILITY(U,$J,358.3,13693,1,0)
+ ;;^UTILITY(U,$J,358.3,13883,1,3,0)
+ ;;=3^Contusion of left elbow, initial encounter
+ ;;^UTILITY(U,$J,358.3,13883,1,4,0)
+ ;;=4^S50.02XA
+ ;;^UTILITY(U,$J,358.3,13883,2)
+ ;;=^5028488
+ ;;^UTILITY(U,$J,358.3,13884,0)
+ ;;=S50.01XA^^55^664^7
+ ;;^UTILITY(U,$J,358.3,13884,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,13693,1,3,0)
- ;;=3^Weight Gain,Abnormal
- ;;^UTILITY(U,$J,358.3,13693,1,4,0)
- ;;=4^R63.5
- ;;^UTILITY(U,$J,358.3,13693,2)
- ;;=^5019543
- ;;^UTILITY(U,$J,358.3,13694,0)
- ;;=R63.4^^83^815^116
- ;;^UTILITY(U,$J,358.3,13694,1,0)
+ ;;^UTILITY(U,$J,358.3,13884,1,3,0)
+ ;;=3^Contusion of right elbow, initial encounter
+ ;;^UTILITY(U,$J,358.3,13884,1,4,0)
+ ;;=4^S50.01XA
+ ;;^UTILITY(U,$J,358.3,13884,2)
+ ;;=^5028485
+ ;;^UTILITY(U,$J,358.3,13885,0)
+ ;;=S52.122A^^55^664^9
+ ;;^UTILITY(U,$J,358.3,13885,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,13694,1,3,0)
- ;;=3^Weight Loss,Abnormal
- ;;^UTILITY(U,$J,358.3,13694,1,4,0)
- ;;=4^R63.4
- ;;^UTILITY(U,$J,358.3,13694,2)
- ;;=^5019542
- ;;^UTILITY(U,$J,358.3,13695,0)
- ;;=E11.3211^^83^815^23
- ;;^UTILITY(U,$J,358.3,13695,1,0)
+ ;;^UTILITY(U,$J,358.3,13885,1,3,0)
+ ;;=3^Disp fx of head of left radius, init for clos fx
+ ;;^UTILITY(U,$J,358.3,13885,1,4,0)
+ ;;=4^S52.122A
+ ;;^UTILITY(U,$J,358.3,13885,2)
+ ;;=^5029063
+ ;;^UTILITY(U,$J,358.3,13886,0)
+ ;;=S52.121A^^55^664^11
+ ;;^UTILITY(U,$J,358.3,13886,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,13695,1,3,0)
- ;;=3^Diabetes Type 2 w/ Mild Nonp Rtnop w/ Macular Edema,Right Eye
- ;;^UTILITY(U,$J,358.3,13695,1,4,0)
- ;;=4^E11.3211
- ;;^UTILITY(U,$J,358.3,13695,2)
- ;;=^5138331
- ;;^UTILITY(U,$J,358.3,13696,0)
- ;;=E11.3212^^83^815^24
- ;;^UTILITY(U,$J,358.3,13696,1,0)
+ ;;^UTILITY(U,$J,358.3,13886,1,3,0)
+ ;;=3^Disp fx of head of right radius, init for clos fx
+ ;;^UTILITY(U,$J,358.3,13886,1,4,0)
+ ;;=4^S52.121A
+ ;;^UTILITY(U,$J,358.3,13886,2)
+ ;;=^5029047
+ ;;^UTILITY(U,$J,358.3,13887,0)
+ ;;=S52.032A^^55^664^13
+ ;;^UTILITY(U,$J,358.3,13887,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,13696,1,3,0)
- ;;=3^Diabetes Type 2 w/ Mild Nonp Rtnop w/ Macular Edema,Left Eye
- ;;^UTILITY(U,$J,358.3,13696,1,4,0)
- ;;=4^E11.3212
- ;;^UTILITY(U,$J,358.3,13696,2)
- ;;=^5138332
- ;;^UTILITY(U,$J,358.3,13697,0)
- ;;=E11.3213^^83^815^25
- ;;^UTILITY(U,$J,358.3,13697,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,13697,1,3,0)
- ;;=3^Diabetes Type 2 w/ Mild Nonp Rtnop w/ Macular Edema,Bilateral
+ ;;^UTILITY(U,$J,358.3,13887,1,3,0)
+ ;;=3^Disp fx of olecran pro w intartic extn left ulna, init
+ ;;^UTILITY(U,$J,358.3,13887,1,4,0)
+ ;;=4^S52.032A

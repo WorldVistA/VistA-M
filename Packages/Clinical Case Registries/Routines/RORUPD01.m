@@ -1,5 +1,5 @@
 RORUPD01 ;HCIOFO/SG - PROCESSING OF THE FILES ;7/21/03 10:19am
- ;;1.5;CLINICAL CASE REGISTRIES;**14,26**;Feb 17, 2006;Build 53
+ ;;1.5;CLINICAL CASE REGISTRIES;**14,26,37**;Feb 17, 2006;Build 9
  ;
  ; This routine uses the following IA's:
  ;
@@ -20,6 +20,8 @@ RORUPD01 ;HCIOFO/SG - PROCESSING OF THE FILES ;7/21/03 10:19am
  ;                                      timeframe, it will immediately suspend
  ;                                      until the suspend stop time has been
  ;                                      reached.  (SUSPEND tag)
+ ;ROR*1.5*37   SEP 2020    F TRAXLER    Added call to LAST2YRS^RORUPDUT to update
+ ;                                      STATUS field for VA RECENT PATIENTS registry.
  ;******************************************************************************
  ;******************************************************************************
  ;
@@ -181,8 +183,8 @@ PROCPAT(PATIEN,NOUPD) ;
  ;
  N RORERRDL      ; Default error location
  ;
- N PATIENS,RC,RLST,RORMSG,SDSDT,TMP,UPDREG,UPDSTART
- S PATIENS=PATIEN_","
+ N PATIENS,RC,RLST,RORMSG,RORRECENT,SDSDT,TMP,UPDREG,UPDSTART
+ S PATIENS=PATIEN_",",RORRECENT=$$REGIEN^RORUTL02("VA RECENT PATIENTS")
  ;--- Initialize the variables
  D CLEAR^RORERR("PROCPAT^RORUPD01"),CLREC^RORUPDUT
  K RORVALS ; Clear all calculated values
@@ -219,6 +221,8 @@ PROCPAT(PATIEN,NOUPD) ;
  . ;
  . ;--- Apply "after" rules
  . S RC=$$APLRULES^RORUPDUT(2,PATIENS,"A")  Q:RC
+ . I +$$PRRIEN^RORUTL01(PATIEN,RORRECENT)_"," D
+ . . S RC=$$LAST2YRS^RORUPDUT(PATIEN) ;Q:RC
  ;
  ;--- Update the registries if necessary
  I UPDREG  S RC=$$UPDREG^RORUPD50(PATIEN)  G:RC<0 PPEX

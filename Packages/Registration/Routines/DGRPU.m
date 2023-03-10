@@ -1,5 +1,5 @@
-DGRPU ;ALB/MRL,TMK,BAJ,DJE,JAM,JAM - REGISTRATION UTILITY ROUTINE ;12/20/2005  5:37PM
- ;;5.3;Registration;**33,114,489,624,672,689,688,935,941,997**;Aug 13, 1993;Build 42
+DGRPU ;ALB/MRL,TMK,BAJ,DJE,JAM,JAM,ARF - REGISTRATION UTILITY ROUTINE ;12/20/2005  5:37PM
+ ;;5.3;Registration;**33,114,489,624,672,689,688,935,941,997,1014**;Aug 13, 1993;Build 42
  ;
 H ;Screen Header
  ;I DGRPS'=1.1 W @IOF S Z=$P($T(H1+DGRPS),";;",2)_", SCREEN <"_DGRPS_">"_$S($D(DGRPH):" HELP",1:""),X=79-$L(Z)\2 D W
@@ -8,9 +8,40 @@ H ;Screen Header
  ;ASF; DG*5.3*997; add 11.5 screen
  I DGRPS?1"11.5" W @IOF S Z="ADDITIONAL ELIGIBILITY VERIFICATION DATA, SCREEN <"_DGRPS_">"_$S($D(DGRPH):" HELP",1:""),X=79-$L(Z)\2 D W
  S X=$$SSNNM(DFN)
- I '$D(DGRPH) W !,X S X=$S($D(DGRPTYPE):$P(DGRPTYPE,"^",1),1:"PATIENT TYPE UNKNOWN"),X1=79-$L(X) W ?X1,X
+ ;ARF - DG*5.3*1014 standardize heading and add DOB and PREFERRED NAME
+ ;I '$D(DGRPH) W !,X S X=$S($D(DGRPTYPE):$P(DGRPTYPE,"^",1),1:"PATIENT TYPE UNKNOWN"),X1=79-$L(X) W ?X1,X
+ I '$D(DGRPH) D  ;DG*5.3*1014 begin
+ .N DGDOB,DGSSN,DGSSNSTR,DGPREFNM,DGPTYPE,DGNAME,DGMEMID,VADEMO ;DG*5.3*1014 - ARF - updating banner with standard patient data
+ .D DEMUPD^VADPT
+ .S DGNAME=VADEMO(1)
+ .S DGPREFNM=$S(VADEMO(1,1)'="":"("_VADEMO(1,1)_")",1:"")
+ .S DGDOB=$P(VADEMO(3),U,2)
+ .S DGSSN=$P(VADEMO(2),U,2)
+ .S DGSSNSTR=$$SSNNM^DGRPU(DFN)
+ .S DGPTYPE=$$GET1^DIQ(391,$$GET1^DIQ(2,DFN_",",391,"I")_",",.01)
+ .S:DGPTYPE="" DGPTYPE="PATIENT TYPE UNKNOWN"
+ .S DGMEMID=$S($P($P(DGSSNSTR,";",2)," ",2)'="":$E($P($P(DGSSNSTR,";",2)," ",2),1,40)_"    ",1:"")
+ .W !,DGNAME W:DGPREFNM'="" " "_DGPREFNM W "    "_DGDOB
+ .W ! W:DGMEMID'="" DGMEMID W DGSSN_"    "_DGPTYPE ;DG*5.3*1014 end
  S X="",$P(X,"=",80)="" W !,X Q
  Q
+LISTHDR(DGFIRST) ;sets patient data for banners of list manager screens - DG*5.3*1014
+ ;DGFIRST - Is the first subscript of VALMHDR array where the patient data should
+ ;        be stored. This value is increased for the second line of patient data
+ ;        VALMHDR(DGFIRST)="NAME (PREFERRED NAME)    MON DD, YYYY" note: the date is the DOB
+ ;        VALMHDR(DGFIRST+1)="EDI/PI    ###-##-####    PATIENT TYPE" note: if there isn't a EDP/PI(member ID) the
+ ;                                                                 SSN (###-##-####) begins in the first column
+ N DGSSNSTR,DGPTYPE,DGSSN,DGDOB
+ S:+DGFIRST=0 DGFIRST=1
+ S DGSSNSTR=$$SSNNM^DGRPU(DFN)
+ S DGSSN=$P($P(DGSSNSTR,";",2)," ",3)
+ S DGDOB=$$GET1^DIQ(2,DFN,.03,"I")
+ S DGDOB=$$UP^XLFSTR($$FMTE^XLFDT($E(DGDOB,1,12),1))
+ S DGPTYPE=$$GET1^DIQ(391,$$GET1^DIQ(2,DFN_",",391,"I")_",",.01)
+ S:DGPTYPE="" DGPTYPE="PATIENT TYPE UNKNOWN"
+ S VALMHDR(DGFIRST)=$P(DGSSNSTR,";",1)_$S($$GET1^DIQ(2,DFN,.2405)'="":" ("_$$GET1^DIQ(2,DFN,.2405)_")",1:"")_"    "_DGDOB
+ S VALMHDR(DGFIRST+1)=$S($P($P(DGSSNSTR,";",2)," ",2)'="":$E($P($P(DGSSNSTR,";",2)," ",2),1,40)_"    ",1:"")_DGSSN_"    "_DGPTYPE
+ Q 
 AL(DGLEN) ;DGLEN= Available length of line
 A ;Format address(es)
  ; DG*5.3*688 BAJ 12/20/2005 modified for foreign address

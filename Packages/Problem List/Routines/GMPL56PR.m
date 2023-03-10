@@ -1,0 +1,16 @@
+GMPL56PR ;BP/KAM - Pre-init Driver, patch GMPL*2.0*56 ; 7/17/20 7:40am
+VERSION ;;2.0;Problem List;**56**;Aug 25, 1994;Build 3
+ ; Backup the OR PROBLEM NTRT BULLETIN
+ Q
+PRE ;
+ I '$D(^XTMP("OR PROBLEM NTRT BULLETIN BACKUP")) D
+ . N X1,X2,X
+ . S X1=DT,X2=180 D C^%DTC
+ . S ^XTMP("OR PROBLEM NTRT BULLETIN BACKUP",0)=$G(X)_"^"_$G(DT)_"^"_"Backup of the OR PROBLEM NTRT BULLETIN Patch GMPL*2*56"
+ . D EN^DDIOL("Backing up OR PROBLEM NTRT BULLETIN to ^XTMP.","","!!?1")
+ . S X=0
+ . S X=$O(^XMB(3.6,"B","OR PROBLEM NTRT BULLETIN",X))
+ . M ^XTMP("OR PROBLEM NTRT BULLETIN BACKUP",3.6,X)=^XMB(3.6,X)
+ . D EN^DDIOL("Backup complete","","!!?1")
+ Q
+ ;

@@ -1,5 +1,5 @@
 SROAUTL4 ;BIR/ADM - RISK ASSESSMENT UTILITY ;07/19/2011
- ;;3.0;Surgery;**38,71,95,125,153,160,164,166,174,175,176,182,184**;24 Jun 93;Build 35
+ ;;3.0;Surgery;**38,71,95,125,153,160,164,166,174,175,176,182,184,200**;24 Jun 93;Build 9
  N SRZZ,SRXX,SRX1
  S SRZ=0 F  S SRZ=$O(SRY(130,SRTN,SRZ)) Q:'SRZ  D
  .I SRY(130,SRTN,SRZ,"I")="" D TR S (SRX1,X)=$T(@SRP),SRFLD=$P(X,";;",2) D
@@ -88,6 +88,7 @@ APAC ;;1.13^ASA Class^ASA Classification^;;4-03
 DAD ;;414^Cardiac Surgical Priority^Surgical Priority^;;4-04
 DADPA ;;414.1^Date/Time of Cardiac Surgical Priority^Date/Time of Cardiac Surgical Priority^;;4-05
 APJI ;;1.09^Wound Classification^Wound Classification^;;4-06
+BJJF ;;2006^Robotic Assistance (Y/N);;4-07
 DHA ;;481^Bridge to transplant/Device;;5-25
 DEA ;;451^Total CPB Time;;5-26
 DEJ ;;450^Total Ischemic Time;;5-27

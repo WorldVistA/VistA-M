@@ -1,128 +1,114 @@
-IBDEI0ZG ; ; 04-FEB-2020
- ;;3.0;IB ENCOUNTER FORM IMP/EXP;;FEB 04, 2020
+IBDEI0ZG ; ; 01-FEB-2022
+ ;;3.0;IB ENCOUNTER FORM IMP/EXP;;FEB 01, 2022
  Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,999) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
- ;;^UTILITY(U,$J,358.3,15814,1,4,0)
- ;;=4^M34.1
- ;;^UTILITY(U,$J,358.3,15814,2)
- ;;=^5011779
- ;;^UTILITY(U,$J,358.3,15815,0)
- ;;=M34.2^^88^869^313
- ;;^UTILITY(U,$J,358.3,15815,1,0)
+ ;;^UTILITY(U,$J,358.3,16000,2)
+ ;;=^5009531
+ ;;^UTILITY(U,$J,358.3,16001,0)
+ ;;=L97.413^^61^765^248
+ ;;^UTILITY(U,$J,358.3,16001,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,15815,1,3,0)
- ;;=3^Systemic Sclerosis Induced by Drug/Chemical
- ;;^UTILITY(U,$J,358.3,15815,1,4,0)
- ;;=4^M34.2
- ;;^UTILITY(U,$J,358.3,15815,2)
- ;;=^5011780
- ;;^UTILITY(U,$J,358.3,15816,0)
- ;;=M34.81^^88^869^315
- ;;^UTILITY(U,$J,358.3,15816,1,0)
+ ;;^UTILITY(U,$J,358.3,16001,1,3,0)
+ ;;=3^Non-Pressure Chr Ulcer of Right Heel/Midfoot w/ Necrosis of Muscle
+ ;;^UTILITY(U,$J,358.3,16001,1,4,0)
+ ;;=4^L97.413
+ ;;^UTILITY(U,$J,358.3,16001,2)
+ ;;=^5009532
+ ;;^UTILITY(U,$J,358.3,16002,0)
+ ;;=L97.414^^61^765^249
+ ;;^UTILITY(U,$J,358.3,16002,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,15816,1,3,0)
- ;;=3^Systemic Sclerosis w/ Lung Involvement
- ;;^UTILITY(U,$J,358.3,15816,1,4,0)
- ;;=4^M34.81
- ;;^UTILITY(U,$J,358.3,15816,2)
- ;;=^5011781
- ;;^UTILITY(U,$J,358.3,15817,0)
- ;;=M34.82^^88^869^316
- ;;^UTILITY(U,$J,358.3,15817,1,0)
+ ;;^UTILITY(U,$J,358.3,16002,1,3,0)
+ ;;=3^Non-Pressure Chr Ulcer of Right Heel/Midfoot w/ Necrosis of Bone
+ ;;^UTILITY(U,$J,358.3,16002,1,4,0)
+ ;;=4^L97.414
+ ;;^UTILITY(U,$J,358.3,16002,2)
+ ;;=^5009533
+ ;;^UTILITY(U,$J,358.3,16003,0)
+ ;;=L97.419^^61^765^250
+ ;;^UTILITY(U,$J,358.3,16003,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,15817,1,3,0)
- ;;=3^Systemic Sclerosis w/ Myopathy
- ;;^UTILITY(U,$J,358.3,15817,1,4,0)
- ;;=4^M34.82
- ;;^UTILITY(U,$J,358.3,15817,2)
- ;;=^5011782
- ;;^UTILITY(U,$J,358.3,15818,0)
- ;;=M34.83^^88^869^317
- ;;^UTILITY(U,$J,358.3,15818,1,0)
+ ;;^UTILITY(U,$J,358.3,16003,1,3,0)
+ ;;=3^Non-Pressure Chr Ulcer of Right Heel/Midfoot w/ Unspec Severity
+ ;;^UTILITY(U,$J,358.3,16003,1,4,0)
+ ;;=4^L97.419
+ ;;^UTILITY(U,$J,358.3,16003,2)
+ ;;=^5009534
+ ;;^UTILITY(U,$J,358.3,16004,0)
+ ;;=L97.421^^61^765^201
+ ;;^UTILITY(U,$J,358.3,16004,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,15818,1,3,0)
- ;;=3^Systemic Sclerosis w/ Polyneuropathy
- ;;^UTILITY(U,$J,358.3,15818,1,4,0)
- ;;=4^M34.83
- ;;^UTILITY(U,$J,358.3,15818,2)
- ;;=^5011783
- ;;^UTILITY(U,$J,358.3,15819,0)
- ;;=M34.89^^88^869^314
- ;;^UTILITY(U,$J,358.3,15819,1,0)
+ ;;^UTILITY(U,$J,358.3,16004,1,3,0)
+ ;;=3^Non-Pressure Chr Ulcer of Left Heel/Midfoot w/ Breakdown of Skin
+ ;;^UTILITY(U,$J,358.3,16004,1,4,0)
+ ;;=4^L97.421
+ ;;^UTILITY(U,$J,358.3,16004,2)
+ ;;=^5009535
+ ;;^UTILITY(U,$J,358.3,16005,0)
+ ;;=L97.422^^61^765^202
+ ;;^UTILITY(U,$J,358.3,16005,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,15819,1,3,0)
- ;;=3^Systemic Sclerosis NEC
- ;;^UTILITY(U,$J,358.3,15819,1,4,0)
- ;;=4^M34.89
- ;;^UTILITY(U,$J,358.3,15819,2)
- ;;=^5011784
- ;;^UTILITY(U,$J,358.3,15820,0)
- ;;=M34.9^^88^869^318
- ;;^UTILITY(U,$J,358.3,15820,1,0)
+ ;;^UTILITY(U,$J,358.3,16005,1,3,0)
+ ;;=3^Non-Pressure Chr Ulcer of Left Heel/Midfoot w/ Fat Layer Exposed
+ ;;^UTILITY(U,$J,358.3,16005,1,4,0)
+ ;;=4^L97.422
+ ;;^UTILITY(U,$J,358.3,16005,2)
+ ;;=^5009536
+ ;;^UTILITY(U,$J,358.3,16006,0)
+ ;;=L97.423^^61^765^203
+ ;;^UTILITY(U,$J,358.3,16006,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,15820,1,3,0)
- ;;=3^Systemic Sclerosis,Unspec
- ;;^UTILITY(U,$J,358.3,15820,1,4,0)
- ;;=4^M34.9
- ;;^UTILITY(U,$J,358.3,15820,2)
- ;;=^5011785
- ;;^UTILITY(U,$J,358.3,15821,0)
- ;;=R21.^^88^869^297
- ;;^UTILITY(U,$J,358.3,15821,1,0)
+ ;;^UTILITY(U,$J,358.3,16006,1,3,0)
+ ;;=3^Non-Pressure Chr Ulcer of Left Heel/Midfoot w/ Necrosis of Muscle
+ ;;^UTILITY(U,$J,358.3,16006,1,4,0)
+ ;;=4^L97.423
+ ;;^UTILITY(U,$J,358.3,16006,2)
+ ;;=^5009537
+ ;;^UTILITY(U,$J,358.3,16007,0)
+ ;;=L97.424^^61^765^204
+ ;;^UTILITY(U,$J,358.3,16007,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,15821,1,3,0)
- ;;=3^Rash/Nonspecific Skin Eruption
- ;;^UTILITY(U,$J,358.3,15821,1,4,0)
- ;;=4^R21.
- ;;^UTILITY(U,$J,358.3,15821,2)
- ;;=^5019283
- ;;^UTILITY(U,$J,358.3,15822,0)
- ;;=R23.3^^88^869^309
- ;;^UTILITY(U,$J,358.3,15822,1,0)
+ ;;^UTILITY(U,$J,358.3,16007,1,3,0)
+ ;;=3^Non-Pressure Chr Ulcer of Left Heel/Midfoot w/ Necrosis of Bone
+ ;;^UTILITY(U,$J,358.3,16007,1,4,0)
+ ;;=4^L97.424
+ ;;^UTILITY(U,$J,358.3,16007,2)
+ ;;=^5009538
+ ;;^UTILITY(U,$J,358.3,16008,0)
+ ;;=L97.429^^61^765^205
+ ;;^UTILITY(U,$J,358.3,16008,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,15822,1,3,0)
- ;;=3^Spontaneous Ecchymoses
- ;;^UTILITY(U,$J,358.3,15822,1,4,0)
- ;;=4^R23.3
- ;;^UTILITY(U,$J,358.3,15822,2)
- ;;=^5019295
- ;;^UTILITY(U,$J,358.3,15823,0)
- ;;=L03.113^^88^869^114
- ;;^UTILITY(U,$J,358.3,15823,1,0)
+ ;;^UTILITY(U,$J,358.3,16008,1,3,0)
+ ;;=3^Non-Pressure Chr Ulcer of Left Heel/Midfoot w/ Unspec Severity
+ ;;^UTILITY(U,$J,358.3,16008,1,4,0)
+ ;;=4^L97.429
+ ;;^UTILITY(U,$J,358.3,16008,2)
+ ;;=^5009539
+ ;;^UTILITY(U,$J,358.3,16009,0)
+ ;;=L97.511^^61^765^238
+ ;;^UTILITY(U,$J,358.3,16009,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,15823,1,3,0)
- ;;=3^Cellulitis of Right Upper Limb
- ;;^UTILITY(U,$J,358.3,15823,1,4,0)
- ;;=4^L03.113
- ;;^UTILITY(U,$J,358.3,15823,2)
- ;;=^5009033
- ;;^UTILITY(U,$J,358.3,15824,0)
- ;;=L03.114^^88^869^107
- ;;^UTILITY(U,$J,358.3,15824,1,0)
+ ;;^UTILITY(U,$J,358.3,16009,1,3,0)
+ ;;=3^Non-Pressure Chr Ulcer of Right Foot w/ Breakdown of Skin
+ ;;^UTILITY(U,$J,358.3,16009,1,4,0)
+ ;;=4^L97.511
+ ;;^UTILITY(U,$J,358.3,16009,2)
+ ;;=^5009545
+ ;;^UTILITY(U,$J,358.3,16010,0)
+ ;;=L97.512^^61^765^239
+ ;;^UTILITY(U,$J,358.3,16010,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,15824,1,3,0)
- ;;=3^Cellulitis of Left Upper Limb
- ;;^UTILITY(U,$J,358.3,15824,1,4,0)
- ;;=4^L03.114
- ;;^UTILITY(U,$J,358.3,15824,2)
- ;;=^5009034
- ;;^UTILITY(U,$J,358.3,15825,0)
- ;;=L03.115^^88^869^111
- ;;^UTILITY(U,$J,358.3,15825,1,0)
+ ;;^UTILITY(U,$J,358.3,16010,1,3,0)
+ ;;=3^Non-Pressure Chr Ulcer of Right Foot w/ Fat Layer Exposed
+ ;;^UTILITY(U,$J,358.3,16010,1,4,0)
+ ;;=4^L97.512
+ ;;^UTILITY(U,$J,358.3,16010,2)
+ ;;=^5009546
+ ;;^UTILITY(U,$J,358.3,16011,0)
+ ;;=L97.513^^61^765^240
+ ;;^UTILITY(U,$J,358.3,16011,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,15825,1,3,0)
- ;;=3^Cellulitis of Right Lower Limb
- ;;^UTILITY(U,$J,358.3,15825,1,4,0)
- ;;=4^L03.115
- ;;^UTILITY(U,$J,358.3,15825,2)
- ;;=^5009035
- ;;^UTILITY(U,$J,358.3,15826,0)
- ;;=L03.116^^88^869^104
- ;;^UTILITY(U,$J,358.3,15826,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,15826,1,3,0)
- ;;=3^Cellulitis of Left Lower Limb
- ;;^UTILITY(U,$J,358.3,15826,1,4,0)
- ;;=4^L03.116
- ;;^UTILITY(U,$J,358.3,15826,2)
- ;;=^5133645
+ ;;^UTILITY(U,$J,358.3,16011,1,3,0)
+ ;;=3^Non-Pressure Chr Ulcer of Right Foot w/ Necrosis of Muscle
+ ;;^UTILITY(U,$J,358.3,16011,1,4,0)
+ ;;=4^L97.513

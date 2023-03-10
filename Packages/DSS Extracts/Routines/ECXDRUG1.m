@@ -1,5 +1,5 @@
 ECXDRUG1 ;ALB/TMD-Pharmacy Extracts Incomplete Feeder Key Report ;5/9/19  16:47
- ;;3.0;DSS EXTRACTS;**40,68,144,166,170,174**;Dec 22, 1997;Build 33
+ ;;3.0;DSS EXTRACTS;**40,68,144,166,170,174,178**;Dec 22, 1997;Build 67
  ;
 EN ; entry point
  N X,Y,DATE,ECRUN,ECXTL,ECSTART,ECEND,ECXDESC,ECXSAVE,ECXOPT,ECSD1,ECED,ECXERR,QFLG,ECXPORT,CNT,ECXRPT ;144,170
@@ -32,10 +32,11 @@ BEGIN ; display report description
  W !!,"This report is broken into 3 sections as follows:"
  W !!,"Section 1:  No PSNDF VA Product Name Entry (first 5 digits are zero)."
  W !!,"Section 2:  No National Drug Code (NDC) (last 12 digits are zero) or the NDC",!,?12,"is prefixed with an 'S', indicating possible supply item number",!,?12,"or UPC."
- W !!,"Section 3:  No PSNDF VA Product Name Entry, and"
- W !,?14,"a. no NDC (all 17 digits are zero), or"
- W !,?14,"b. The NDC is prefixed with an 'S', indicating possible supply",!,?17,"item number or UPC."
- W !,"Section 3:  No PSNDF VA Product Name Entry or NDC."
+ ;178 - Commented out the following 3  lines
+ ;W !!,"Section 3:  No PSNDF VA Product Name Entry, and"
+ ;W !,?14,"a. no NDC (all 17 digits are zero), or"
+ ;W !,?14,"b. The NDC is prefixed with an 'S', indicating possible supply",!,?17,"item number or UPC."
+ W !!,"Section 3:  No PSNDF VA Product Name Entry or NDC."
  W !!,"Run times for this report will vary depending upon the size of the extract and",!,"could take as long as 30 minutes or more to complete.  This report has no effect",!,"on the actual extracts and can be run as needed."
  S DIR(0)="E" W ! D ^DIR K DIR I 'Y S QFLG=1 Q
  W:$Y!($E(IOST)="C") @IOF,!!

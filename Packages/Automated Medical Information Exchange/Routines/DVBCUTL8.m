@@ -1,5 +1,6 @@
-DVBCUTL8 ;ALB/GTS-AMIE C&P APPT LINK FILE MNT RTNS 2 ; 10/20/94  3:30 PM
- ;;2.7;AMIE;**193**;Apr 10, 1995;Build 84
+DVBCUTL8 ;ALB/GTS-AMIE C&P APPT LINK FILE MNT RTNS 2 ; 9/29/21 11:46pm
+ ;;2.7;AMIE;**193,227**;Apr 10, 1995;Build 21
+ ;Per VHA Directive 2004-038, this routine should not be modified.
  ;
  ;** NOTICE: This routine is part of an implementation of a Nationally
  ;**         Controlled Procedure.  Local modifications to this routine
@@ -212,7 +213,7 @@ RINFO(RTN,RIEN) ;AJF; Returns reroute information for a given 2507 Request
  ;  REROUTE TO^REROUTE DATE^REROUTE STATUS^STATUS DATE^REROUTED FROM^ REROUTE REASON ^ REJECT REASON
  ;  ^ 0 for site A/ 1 for site B or C
  ;
- N RTD,RTF,RTO,RTS,RTSD,RRD,RRD,J1,J2,J10,J20,J4
+ N RTD,RTF,RTO,RTS,RTSD,RRD,J1,J2,J10,J20,J4
  N REJR,RRW1,RRW2,RUSR,RDIV,RTDIV,RFDIV,CST,CRQ
  I RIEN="" S RTN="0^Missing 2507 Request IEN" Q
  I '$D(^DVB(396.3,RIEN,0)) S RTN="0^Not a valid 2507 Request IEN" Q
@@ -230,7 +231,7 @@ RINFO(RTN,RIEN) ;AJF; Returns reroute information for a given 2507 Request
  S RTSD=$$EXTERNAL^DILFD(396.341,.01,,$P(J20,"^",1))
  S RTS=$$EXTERNAL^DILFD(396.341,1,,$P(J20,"^",2))
  S RRR=$$EXTERNAL^DILFD(396.34,4,,$P(J10,"^",5))
- S RRD=$G(^DVB(396.3,RIEN,6,J1,1))
+ S RRD=$P(J10,"^",6)
  S RTDIV=$$EXTERNAL^DILFD(396.3,24,,$P(^DVB(396.3,RIEN,1),"^",4))
  S RFDIV=$$EXTERNAL^DILFD(396.34,8,,$P(J10,"^",9))
  ;
@@ -238,19 +239,20 @@ RINFO(RTN,RIEN) ;AJF; Returns reroute information for a given 2507 Request
  I CSITE=$P(J4,"^",1)&(CSITE=$P(J4,"^",3)) S RRW1=1
  S RRW2=$S(RRW1:1,CSITE=$P(J4,"^",3):0,1:1)
  S CST=$S(RRW2=0:0,CRQ=14:1,CRQ=11:1,1:0)
+ I (RRW2=1)&(CRQ=16) S CST=0
  ;
  S RTN(1)=RTO_"^"_RTD_"^"_RTS_"^"_RTSD_"^"_RTF_"^"_RRR_"^"_CST_"^"_RFDIV_"^"_RTDIV
  S RTN(2)=RRD
  S RTN(3)=REJR
  ;
  Q
-RPRO(RTN,RIEN,RRST,RRR) ; AJF; 7/25/2016; Update Reroute Status
+RPRO(RTN,RIEN,RRST,RRR,RMAS) ; AJF; 7/25/2016; Update Reroute Status
  ;RPC: DVBA CAPRI REROUTE STATUS
  ;Input:
  ;  RIEN = 2507 Request IEN
  ;  RRST = Reroute status
  ;  RRR = Reject Reason
- ;
+ ;  RMAS=Date Reported to MAS
  ;Output:
  ;  RTN = 0 for Failure
  ;        1 for Success
@@ -261,6 +263,7 @@ RPRO(RTN,RIEN,RRST,RRR) ; AJF; 7/25/2016; Update Reroute Status
  I '$D(^DVB(396.3,RIEN,6,0)) S RTN="0^This 2507 Request has not been rerouted" Q
  ;
  S RRR=$G(RRR)
+ S RMAS=$G(RMAS)
  S J1=$O(^DVB(396.3,RIEN,6,99999),-1)
  S J2=$O(^DVB(396.3,RIEN,6,J1,99999),-1)
  I J2="" S RTN="0^This 2507 Request has not been rerouted" Q
@@ -278,20 +281,29 @@ RPRO(RTN,RIEN,RRST,RRR) ; AJF; 7/25/2016; Update Reroute Status
  . K DIE,DA
  ; Check to see if this the original site
  I CSITE=OSITE D
- . I RRST="A" S DR="6////"_RRDT_";17////13" Q
- . I RRST="R" S DR="17////1",REJM=1 D EXSET(RIEN,"O") S ^DVB(396.3,"AR",RRDT,RIEN)=""
+ .S DIE="^DVB(396.3,",DA=RIEN
+ . I RRST="A" S DR="6////"_RRDT_";17////13" D ^DIE K DIE,DA Q
+ . I RRST="R" S DR="17////1" D ^DIE S REJM=1 D EXSET(RIEN,"O") S ^DVB(396.3,"AR",RRDT,RIEN)="" K DIE,DA
  I CSITE'=OSITE D
- . I RRST="A" S DR="17////2" Q
- . I RRST="R" S DR="6////"_RRDT_";17////12" D EXSET(RIEN,"T")
+ .S DIE="^DVB(396.3,",DA=RIEN
+ . I RRST="A" S DR="17////2" D ^DIE K DIE,DA Q
+ . I RRST="R" S DR="6////"_RRDT_";17////12" D ^DIE D EXSET(RIEN,"T")
+ . K DIE,DA
  I CSITE=OSITE,CSITE=NSITE D
- . I RRST="A" S DR="17////2" Q
+ .S DIE="^DVB(396.3,",DA=RIEN
+ . I RRST="A" S DR="17////2" D ^DIE K DIE,DA Q
  . I RRST="R" S DR="17////1;24////"_DIV1,^DVB(396.3,"AR",RRDT,RIEN)=""
- S DA=RIEN,DIE="^DVB(396.3,"
- D ^DIE
+ .D ^DIE K DIE,DA
+ S DIE="^DVB(396.3,",DA=RIEN
+ S DR="4////"_RMAS
+ D ^DIE K DIE,DA
  ;
  ; Send Reject Message to DVBA C 2507 Reroute Group
  D:RRST="R" MSG^DVBAB1C(RIEN)
  ; 
+ ;Send Acceptance Message to DVBA C 2507 ReRoute Group
+ D:RRST="A" AMSG^DVBAB1C(RIEN)
+ ;
  I CSITE=OSITE S RTN="1^Reroute status updated" Q
  ;
  S OIEN=$P(R0,"^",2)

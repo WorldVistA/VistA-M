@@ -1,128 +1,130 @@
-IBDEI0HQ ; ; 04-FEB-2020
- ;;3.0;IB ENCOUNTER FORM IMP/EXP;;FEB 04, 2020
+IBDEI0HQ ; ; 01-FEB-2022
+ ;;3.0;IB ENCOUNTER FORM IMP/EXP;;FEB 01, 2022
  Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,999) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
- ;;^UTILITY(U,$J,358.3,7720,0)
- ;;=I13.2^^63^498^46
- ;;^UTILITY(U,$J,358.3,7720,1,0)
+ ;;^UTILITY(U,$J,358.3,7985,2)
+ ;;=^303311
+ ;;^UTILITY(U,$J,358.3,7986,0)
+ ;;=L82.1^^39^391^304
+ ;;^UTILITY(U,$J,358.3,7986,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,7720,1,3,0)
- ;;=3^Hypertensive Hrt Dis & CKD V/ESRD w/ CHF
- ;;^UTILITY(U,$J,358.3,7720,1,4,0)
- ;;=4^I13.2
- ;;^UTILITY(U,$J,358.3,7720,2)
- ;;=^5007070
- ;;^UTILITY(U,$J,358.3,7721,0)
- ;;=I13.10^^63^498^49
- ;;^UTILITY(U,$J,358.3,7721,1,0)
+ ;;^UTILITY(U,$J,358.3,7986,1,3,0)
+ ;;=3^Seborrheic Keratosis NEC
+ ;;^UTILITY(U,$J,358.3,7986,1,4,0)
+ ;;=4^L82.1
+ ;;^UTILITY(U,$J,358.3,7986,2)
+ ;;=^303312
+ ;;^UTILITY(U,$J,358.3,7987,0)
+ ;;=L84.^^39^391^118
+ ;;^UTILITY(U,$J,358.3,7987,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,7721,1,3,0)
- ;;=3^Hypertensive Hrt Dis & CKD w/o CHF
- ;;^UTILITY(U,$J,358.3,7721,1,4,0)
- ;;=4^I13.10
- ;;^UTILITY(U,$J,358.3,7721,2)
- ;;=^5007068
- ;;^UTILITY(U,$J,358.3,7722,0)
- ;;=I13.11^^63^498^47
- ;;^UTILITY(U,$J,358.3,7722,1,0)
+ ;;^UTILITY(U,$J,358.3,7987,1,3,0)
+ ;;=3^Corns and Callosities
+ ;;^UTILITY(U,$J,358.3,7987,1,4,0)
+ ;;=4^L84.
+ ;;^UTILITY(U,$J,358.3,7987,2)
+ ;;=^271920
+ ;;^UTILITY(U,$J,358.3,7988,0)
+ ;;=L85.0^^39^391^9
+ ;;^UTILITY(U,$J,358.3,7988,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,7722,1,3,0)
- ;;=3^Hypertensive Hrt Dis & CKD V/ESRD w/o CHF
- ;;^UTILITY(U,$J,358.3,7722,1,4,0)
- ;;=4^I13.11
- ;;^UTILITY(U,$J,358.3,7722,2)
- ;;=^5007069
- ;;^UTILITY(U,$J,358.3,7723,0)
- ;;=I50.21^^63^498^76
- ;;^UTILITY(U,$J,358.3,7723,1,0)
+ ;;^UTILITY(U,$J,358.3,7988,1,3,0)
+ ;;=3^Acquired Ichthyosis
+ ;;^UTILITY(U,$J,358.3,7988,1,4,0)
+ ;;=4^L85.0
+ ;;^UTILITY(U,$J,358.3,7988,2)
+ ;;=^5009320
+ ;;^UTILITY(U,$J,358.3,7989,0)
+ ;;=L85.1^^39^391^11
+ ;;^UTILITY(U,$J,358.3,7989,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,7723,1,3,0)
- ;;=3^Systolic Congestive Heart Failure,Acute
- ;;^UTILITY(U,$J,358.3,7723,1,4,0)
- ;;=4^I50.21
- ;;^UTILITY(U,$J,358.3,7723,2)
- ;;=^5007240
- ;;^UTILITY(U,$J,358.3,7724,0)
- ;;=I50.22^^63^498^77
- ;;^UTILITY(U,$J,358.3,7724,1,0)
+ ;;^UTILITY(U,$J,358.3,7989,1,3,0)
+ ;;=3^Acquired Keratosis Palmaris et Plantaris
+ ;;^UTILITY(U,$J,358.3,7989,1,4,0)
+ ;;=4^L85.1
+ ;;^UTILITY(U,$J,358.3,7989,2)
+ ;;=^5009321
+ ;;^UTILITY(U,$J,358.3,7990,0)
+ ;;=L85.2^^39^391^169
+ ;;^UTILITY(U,$J,358.3,7990,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,7724,1,3,0)
- ;;=3^Systolic Congestive Heart Failure,Chronic
- ;;^UTILITY(U,$J,358.3,7724,1,4,0)
- ;;=4^I50.22
- ;;^UTILITY(U,$J,358.3,7724,2)
- ;;=^5007241
- ;;^UTILITY(U,$J,358.3,7725,0)
- ;;=I20.0^^63^498^4
- ;;^UTILITY(U,$J,358.3,7725,1,0)
+ ;;^UTILITY(U,$J,358.3,7990,1,3,0)
+ ;;=3^Keratosis Punctata
+ ;;^UTILITY(U,$J,358.3,7990,1,4,0)
+ ;;=4^L85.2
+ ;;^UTILITY(U,$J,358.3,7990,2)
+ ;;=^5009322
+ ;;^UTILITY(U,$J,358.3,7991,0)
+ ;;=L85.3^^39^391^329
+ ;;^UTILITY(U,$J,358.3,7991,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,7725,1,3,0)
- ;;=3^Angina,Unstable
- ;;^UTILITY(U,$J,358.3,7725,1,4,0)
- ;;=4^I20.0
- ;;^UTILITY(U,$J,358.3,7725,2)
- ;;=^5007076
- ;;^UTILITY(U,$J,358.3,7726,0)
- ;;=I25.110^^63^498^7
- ;;^UTILITY(U,$J,358.3,7726,1,0)
+ ;;^UTILITY(U,$J,358.3,7991,1,3,0)
+ ;;=3^Xerosis Cutis
+ ;;^UTILITY(U,$J,358.3,7991,1,4,0)
+ ;;=4^L85.3
+ ;;^UTILITY(U,$J,358.3,7991,2)
+ ;;=^5009323
+ ;;^UTILITY(U,$J,358.3,7992,0)
+ ;;=L86.^^39^391^167
+ ;;^UTILITY(U,$J,358.3,7992,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,7726,1,3,0)
- ;;=3^Athscl Hrt Disease Native Coronary Artery w/ Unstable Ang Pctrs
- ;;^UTILITY(U,$J,358.3,7726,1,4,0)
- ;;=4^I25.110
- ;;^UTILITY(U,$J,358.3,7726,2)
- ;;=^5007108
- ;;^UTILITY(U,$J,358.3,7727,0)
- ;;=I25.119^^63^498^8
- ;;^UTILITY(U,$J,358.3,7727,1,0)
+ ;;^UTILITY(U,$J,358.3,7992,1,3,0)
+ ;;=3^Keratoderma in Diseases Classified Elsewhere
+ ;;^UTILITY(U,$J,358.3,7992,1,4,0)
+ ;;=4^L86.
+ ;;^UTILITY(U,$J,358.3,7992,2)
+ ;;=^5009326
+ ;;^UTILITY(U,$J,358.3,7993,0)
+ ;;=L87.0^^39^391^168
+ ;;^UTILITY(U,$J,358.3,7993,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,7727,1,3,0)
- ;;=3^Athscl Hrt Disease Native Coronary Artery w/ Unspec Ang Pctrs
- ;;^UTILITY(U,$J,358.3,7727,1,4,0)
- ;;=4^I25.119
- ;;^UTILITY(U,$J,358.3,7727,2)
- ;;=^5007111
- ;;^UTILITY(U,$J,358.3,7728,0)
- ;;=I50.82^^63^498^26
- ;;^UTILITY(U,$J,358.3,7728,1,0)
+ ;;^UTILITY(U,$J,358.3,7993,1,3,0)
+ ;;=3^Keratosis Follicularis et Parafollicularis in Cutem Penetrans
+ ;;^UTILITY(U,$J,358.3,7993,1,4,0)
+ ;;=4^L87.0
+ ;;^UTILITY(U,$J,358.3,7993,2)
+ ;;=^5009327
+ ;;^UTILITY(U,$J,358.3,7994,0)
+ ;;=L87.2^^39^391^144
+ ;;^UTILITY(U,$J,358.3,7994,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,7728,1,3,0)
- ;;=3^Biventricular Heart Failure
- ;;^UTILITY(U,$J,358.3,7728,1,4,0)
- ;;=4^I50.82
- ;;^UTILITY(U,$J,358.3,7728,2)
- ;;=^5151389
- ;;^UTILITY(U,$J,358.3,7729,0)
- ;;=I50.84^^63^498^40
- ;;^UTILITY(U,$J,358.3,7729,1,0)
+ ;;^UTILITY(U,$J,358.3,7994,1,3,0)
+ ;;=3^Elastosis Perforans Serpiginosa
+ ;;^UTILITY(U,$J,358.3,7994,1,4,0)
+ ;;=4^L87.2
+ ;;^UTILITY(U,$J,358.3,7994,2)
+ ;;=^5009329
+ ;;^UTILITY(U,$J,358.3,7995,0)
+ ;;=L89.300^^39^391^282
+ ;;^UTILITY(U,$J,358.3,7995,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,7729,1,3,0)
- ;;=3^End Stage Heart Failure
- ;;^UTILITY(U,$J,358.3,7729,1,4,0)
- ;;=4^I50.84
- ;;^UTILITY(U,$J,358.3,7729,2)
- ;;=^5151391
- ;;^UTILITY(U,$J,358.3,7730,0)
- ;;=I50.83^^63^498^42
- ;;^UTILITY(U,$J,358.3,7730,1,0)
+ ;;^UTILITY(U,$J,358.3,7995,1,3,0)
+ ;;=3^Pressure Ulcer of Buttock,Unstageable
+ ;;^UTILITY(U,$J,358.3,7995,1,4,0)
+ ;;=4^L89.300
+ ;;^UTILITY(U,$J,358.3,7995,2)
+ ;;=^5009389
+ ;;^UTILITY(U,$J,358.3,7996,0)
+ ;;=L89.301^^39^391^277
+ ;;^UTILITY(U,$J,358.3,7996,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,7730,1,3,0)
- ;;=3^High Output Heart Failure
- ;;^UTILITY(U,$J,358.3,7730,1,4,0)
- ;;=4^I50.83
- ;;^UTILITY(U,$J,358.3,7730,2)
- ;;=^5151390
- ;;^UTILITY(U,$J,358.3,7731,0)
- ;;=I21.A1^^63^498^56
- ;;^UTILITY(U,$J,358.3,7731,1,0)
+ ;;^UTILITY(U,$J,358.3,7996,1,3,0)
+ ;;=3^Pressure Ulcer of Buttock,Stage 1
+ ;;^UTILITY(U,$J,358.3,7996,1,4,0)
+ ;;=4^L89.301
+ ;;^UTILITY(U,$J,358.3,7996,2)
+ ;;=^5009390
+ ;;^UTILITY(U,$J,358.3,7997,0)
+ ;;=L89.302^^39^391^278
+ ;;^UTILITY(U,$J,358.3,7997,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,7731,1,3,0)
- ;;=3^Myocardial Infarction Type 2
- ;;^UTILITY(U,$J,358.3,7731,1,4,0)
- ;;=4^I21.A1
- ;;^UTILITY(U,$J,358.3,7731,2)
- ;;=^5151374
- ;;^UTILITY(U,$J,358.3,7732,0)
- ;;=I50.811^^63^498^68
- ;;^UTILITY(U,$J,358.3,7732,1,0)
+ ;;^UTILITY(U,$J,358.3,7997,1,3,0)
+ ;;=3^Pressure Ulcer of Buttock,Stage 2
+ ;;^UTILITY(U,$J,358.3,7997,1,4,0)
+ ;;=4^L89.302
+ ;;^UTILITY(U,$J,358.3,7997,2)
+ ;;=^5009391
+ ;;^UTILITY(U,$J,358.3,7998,0)
+ ;;=L89.303^^39^391^279
+ ;;^UTILITY(U,$J,358.3,7998,1,0)
  ;;=^358.31IA^4^2

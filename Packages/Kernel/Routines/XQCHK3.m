@@ -1,5 +1,5 @@
-XQCHK3 ; OAK-BY/BDT - This routine for XQCHK; 5/20/08
- ;;8.0;KERNEL;**503**;Jul 10, 1995;Build 2
+XQCHK3 ; OAK-BY/BDT - This routine for XQCHK; Feb 17, 2022@07:03:39
+ ;;8.0;KERNEL;**503,766**;Jul 10, 1995;Build 4
  ;;"Per VHA Directive 2004-038, this routine should not be modified".
  ;
  Q
@@ -37,10 +37,10 @@ ACCESS(%XQUSR,%XQOP) ;Find out if a user has access to a particular option
  ;;where 'tree' is the menu where access WOULD be allowed
  ;;and 'key' is the key preventing access
  ;;
- ;;1^OpIEN^^: Access allowed through Primary Menu
+ ;;1^OpIEN^^: Access allowed through the Primary Menu
  ;;2^OpIEN^codes^: Access found in the Common Options
- ;;3^OpIEN^codes^: Access found in top level of secondary option
- ;;4^OpIEN^codes^: Access through a the secondary menu tree OpIEN.
+ ;;3^OpIEN^codes^: Access found in the top level of secondary option
+ ;;4^OpIEN^codes^: Access through the secondary menu tree OpIEN.
  ;;
  ;;XQCODES can contain:
  ;;N=No Primary Menu in the User File (warning only)
@@ -77,7 +77,7 @@ ACCESS(%XQUSR,%XQOP) ;Find out if a user has access to a particular option
  I XQRT1="" S XQRT1=0
  Q XQRT1
  ;
-CKPM(XQUSR,XQIEN) ;
+CKPM(XQUSR,XQIEN) ; Access allowed through the Primary Menu
  ;Look in the user's primary menu tree
  ;take in XQUSR = IEN in New Person file; XQIEN = IEN in the Option file
  ;Return = access ^ menu tree IEN ^ a set of codes ^ key
@@ -96,8 +96,7 @@ CKPM(XQUSR,XQIEN) ;
  I XQRT="OK" Q "1^"_XQPM
  Q "0^"_XQPM_"^"_XQRT
  ;
-CKCM(XQUSR,XQIEN) ;
- ;Look in the user's primary menu tree
+CKCM(XQUSR,XQIEN) ; Access found in the Common Options
  ;take in XQUSR = IEN in New Person file; XQIEN = IEN in the Option file
  ;Return = access ^ menu tree IEN ^ a set of codes ^ key
  N XQTL,XQDIC,XQCOM,XQRT
@@ -110,21 +109,20 @@ CKCM(XQUSR,XQIEN) ;
  I XQRT="OK" Q "2^"_"^^^"_XQCOM
  Q "0^"_"^"_XQRT_"^"_XQCOM
  ;
-CKTSM(XQUSR,XQIEN) ;
- ;Look in the user's primary menu tree
+CKTSM(XQUSR,XQIEN) ; Access found in the top level of secondary option
  ;take in XQUSR = IEN in New Person file; XQIEN = IEN in the Option file
  ;Return = access ^ menu tree IEN ^ a set of codes ^ key
  N XQDIC,XQRT,XQTL
  S XQDIC="U"_XQUSR
  I '$D(^VA(200,XQUSR,203,"B",XQIEN)) Q "N"
  S XQTL=$P($G(^XUTL("XQO",XQDIC,"^",XQIEN)),"^",2,99)
- I XQTL="" Q ""
+ I XQTL="" D SET^XQSET S XQTL=$P($G(^DIC(19,XQIEN,0)),"^") ;P766 rebuilds the secondary menu
+ I XQTL="" Q "N"
  S XQRT=$$KEYS(XQTL,XQUSR)
  I XQRT="OK" Q "3^"_XQIEN
  Q "0^"_XQIEN_"^"_XQRT
  ;
-CKTESM(XQUSR,XQIEN) ;
- ;Look in the user's primary menu tree
+CKTESM(XQUSR,XQIEN) ; Access through the secondary menu tree OpIEN
  ;take in XQUSR = IEN in New Person file; XQIEN = IEN in the Option file
  ;Return = access ^ menu tree IEN ^ a set of codes ^ key
  N XQI,XQY,XQRT,XQDIC,XQTL S XQI=0,XQRT="",XQY=""

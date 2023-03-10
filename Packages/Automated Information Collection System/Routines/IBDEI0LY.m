@@ -1,138 +1,122 @@
-IBDEI0LY ; ; 04-FEB-2020
- ;;3.0;IB ENCOUNTER FORM IMP/EXP;;FEB 04, 2020
+IBDEI0LY ; ; 01-FEB-2022
+ ;;3.0;IB ENCOUNTER FORM IMP/EXP;;FEB 01, 2022
  Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,999) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
- ;;^UTILITY(U,$J,358.3,9750,1,3,0)
- ;;=3^Malig Neopl of Bladder
- ;;^UTILITY(U,$J,358.3,9750,1,4,0)
- ;;=4^C67.9
- ;;^UTILITY(U,$J,358.3,9750,2)
- ;;=^5001263
- ;;^UTILITY(U,$J,358.3,9751,0)
- ;;=C61.^^72^651^40
- ;;^UTILITY(U,$J,358.3,9751,1,0)
+ ;;^UTILITY(U,$J,358.3,9875,2)
+ ;;=^5055964
+ ;;^UTILITY(U,$J,358.3,9876,0)
+ ;;=V00.891D^^39^420^63
+ ;;^UTILITY(U,$J,358.3,9876,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,9751,1,3,0)
- ;;=3^Malig Neopl of Prostate
- ;;^UTILITY(U,$J,358.3,9751,1,4,0)
- ;;=4^C61.
- ;;^UTILITY(U,$J,358.3,9751,2)
- ;;=^267239
- ;;^UTILITY(U,$J,358.3,9752,0)
- ;;=C56.9^^72^651^41
- ;;^UTILITY(U,$J,358.3,9752,1,0)
+ ;;^UTILITY(U,$J,358.3,9876,1,3,0)
+ ;;=3^Fall from Pedestrian Conveyance,Subs Encntr
+ ;;^UTILITY(U,$J,358.3,9876,1,4,0)
+ ;;=4^V00.891D
+ ;;^UTILITY(U,$J,358.3,9876,2)
+ ;;=^5055965
+ ;;^UTILITY(U,$J,358.3,9877,0)
+ ;;=V00.892A^^39^420^108
+ ;;^UTILITY(U,$J,358.3,9877,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,9752,1,3,0)
- ;;=3^Malig Neopl of Ovary
- ;;^UTILITY(U,$J,358.3,9752,1,4,0)
- ;;=4^C56.9
- ;;^UTILITY(U,$J,358.3,9752,2)
- ;;=^5001214
- ;;^UTILITY(U,$J,358.3,9753,0)
- ;;=C43.9^^72^651^42
- ;;^UTILITY(U,$J,358.3,9753,1,0)
+ ;;^UTILITY(U,$J,358.3,9877,1,3,0)
+ ;;=3^Pedestrian Conveyance Colliding w/ Stationary Obj,Init Encntr
+ ;;^UTILITY(U,$J,358.3,9877,1,4,0)
+ ;;=4^V00.892A
+ ;;^UTILITY(U,$J,358.3,9877,2)
+ ;;=^5055967
+ ;;^UTILITY(U,$J,358.3,9878,0)
+ ;;=V00.892D^^39^420^109
+ ;;^UTILITY(U,$J,358.3,9878,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,9753,1,3,0)
- ;;=3^Melanoma
- ;;^UTILITY(U,$J,358.3,9753,1,4,0)
- ;;=4^C43.9
- ;;^UTILITY(U,$J,358.3,9753,2)
- ;;=^5001015
- ;;^UTILITY(U,$J,358.3,9754,0)
- ;;=J06.9^^72^652^1
- ;;^UTILITY(U,$J,358.3,9754,1,0)
+ ;;^UTILITY(U,$J,358.3,9878,1,3,0)
+ ;;=3^Pedestrian Conveyance Colliding w/ Stationary Obj,Subs Encntr
+ ;;^UTILITY(U,$J,358.3,9878,1,4,0)
+ ;;=4^V00.892D
+ ;;^UTILITY(U,$J,358.3,9878,2)
+ ;;=^5055968
+ ;;^UTILITY(U,$J,358.3,9879,0)
+ ;;=V00.898A^^39^420^106
+ ;;^UTILITY(U,$J,358.3,9879,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,9754,1,3,0)
- ;;=3^Acute Upper Respiratory Infection
- ;;^UTILITY(U,$J,358.3,9754,1,4,0)
- ;;=4^J06.9
- ;;^UTILITY(U,$J,358.3,9754,2)
- ;;=^5008143
- ;;^UTILITY(U,$J,358.3,9755,0)
- ;;=J20.9^^72^652^2
- ;;^UTILITY(U,$J,358.3,9755,1,0)
+ ;;^UTILITY(U,$J,358.3,9879,1,3,0)
+ ;;=3^Pedestrian Conveyance Accident NEC,Init Encntr
+ ;;^UTILITY(U,$J,358.3,9879,1,4,0)
+ ;;=4^V00.898A
+ ;;^UTILITY(U,$J,358.3,9879,2)
+ ;;=^5055970
+ ;;^UTILITY(U,$J,358.3,9880,0)
+ ;;=V00.898D^^39^420^107
+ ;;^UTILITY(U,$J,358.3,9880,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,9755,1,3,0)
- ;;=3^Acute Bronchitis
- ;;^UTILITY(U,$J,358.3,9755,1,4,0)
- ;;=4^J20.9
- ;;^UTILITY(U,$J,358.3,9755,2)
- ;;=^5008195
- ;;^UTILITY(U,$J,358.3,9756,0)
- ;;=J18.9^^72^652^3
- ;;^UTILITY(U,$J,358.3,9756,1,0)
+ ;;^UTILITY(U,$J,358.3,9880,1,3,0)
+ ;;=3^Pedestrian Conveyance Accident NEC,Subs Encntr
+ ;;^UTILITY(U,$J,358.3,9880,1,4,0)
+ ;;=4^V00.898D
+ ;;^UTILITY(U,$J,358.3,9880,2)
+ ;;=^5055971
+ ;;^UTILITY(U,$J,358.3,9881,0)
+ ;;=W00.0XXA^^39^420^84
+ ;;^UTILITY(U,$J,358.3,9881,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,9756,1,3,0)
- ;;=3^Pneumonia
- ;;^UTILITY(U,$J,358.3,9756,1,4,0)
- ;;=4^J18.9
- ;;^UTILITY(U,$J,358.3,9756,2)
- ;;=^95632
- ;;^UTILITY(U,$J,358.3,9757,0)
- ;;=J11.1^^72^652^4
- ;;^UTILITY(U,$J,358.3,9757,1,0)
+ ;;^UTILITY(U,$J,358.3,9881,1,3,0)
+ ;;=3^Fall on Same Level d/t Ice/Snow,Init Encntr
+ ;;^UTILITY(U,$J,358.3,9881,1,4,0)
+ ;;=4^W00.0XXA
+ ;;^UTILITY(U,$J,358.3,9881,2)
+ ;;=^5059510
+ ;;^UTILITY(U,$J,358.3,9882,0)
+ ;;=W00.0XXD^^39^420^85
+ ;;^UTILITY(U,$J,358.3,9882,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,9757,1,3,0)
- ;;=3^Flu w/ Respiratory Manifestations
- ;;^UTILITY(U,$J,358.3,9757,1,4,0)
- ;;=4^J11.1
- ;;^UTILITY(U,$J,358.3,9757,2)
- ;;=^5008158
- ;;^UTILITY(U,$J,358.3,9758,0)
- ;;=J01.90^^72^652^5
- ;;^UTILITY(U,$J,358.3,9758,1,0)
+ ;;^UTILITY(U,$J,358.3,9882,1,3,0)
+ ;;=3^Fall on Same Level d/t Ice/Snow,Subs Encntr
+ ;;^UTILITY(U,$J,358.3,9882,1,4,0)
+ ;;=4^W00.0XXD
+ ;;^UTILITY(U,$J,358.3,9882,2)
+ ;;=^5059511
+ ;;^UTILITY(U,$J,358.3,9883,0)
+ ;;=W00.1XXA^^39^420^64
+ ;;^UTILITY(U,$J,358.3,9883,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,9758,1,3,0)
- ;;=3^Acute Sinusitis
- ;;^UTILITY(U,$J,358.3,9758,1,4,0)
- ;;=4^J01.90
- ;;^UTILITY(U,$J,358.3,9758,2)
- ;;=^5008127
- ;;^UTILITY(U,$J,358.3,9759,0)
- ;;=J02.9^^72^652^6
- ;;^UTILITY(U,$J,358.3,9759,1,0)
+ ;;^UTILITY(U,$J,358.3,9883,1,3,0)
+ ;;=3^Fall from Stairs/Steps d/t Ice/Snow,Init Encntr
+ ;;^UTILITY(U,$J,358.3,9883,1,4,0)
+ ;;=4^W00.1XXA
+ ;;^UTILITY(U,$J,358.3,9883,2)
+ ;;=^5059513
+ ;;^UTILITY(U,$J,358.3,9884,0)
+ ;;=W00.1XXD^^39^420^65
+ ;;^UTILITY(U,$J,358.3,9884,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,9759,1,3,0)
- ;;=3^Acute Pharyngitis
- ;;^UTILITY(U,$J,358.3,9759,1,4,0)
- ;;=4^J02.9
- ;;^UTILITY(U,$J,358.3,9759,2)
- ;;=^5008130
- ;;^UTILITY(U,$J,358.3,9760,0)
- ;;=J02.0^^72^652^7
- ;;^UTILITY(U,$J,358.3,9760,1,0)
+ ;;^UTILITY(U,$J,358.3,9884,1,3,0)
+ ;;=3^Fall from Stairs/Steps d/t Ice/Snow,Subs Encntr
+ ;;^UTILITY(U,$J,358.3,9884,1,4,0)
+ ;;=4^W00.1XXD
+ ;;^UTILITY(U,$J,358.3,9884,2)
+ ;;=^5059514
+ ;;^UTILITY(U,$J,358.3,9885,0)
+ ;;=W00.2XXA^^39^420^58
+ ;;^UTILITY(U,$J,358.3,9885,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,9760,1,3,0)
- ;;=3^Streptococcal Pharyngitis
- ;;^UTILITY(U,$J,358.3,9760,1,4,0)
- ;;=4^J02.0
- ;;^UTILITY(U,$J,358.3,9760,2)
- ;;=^114607
- ;;^UTILITY(U,$J,358.3,9761,0)
- ;;=N39.0^^72^652^8
- ;;^UTILITY(U,$J,358.3,9761,1,0)
+ ;;^UTILITY(U,$J,358.3,9885,1,3,0)
+ ;;=3^Fall from One Level to Another d/t Ice/Snow,Init Encntr
+ ;;^UTILITY(U,$J,358.3,9885,1,4,0)
+ ;;=4^W00.2XXA
+ ;;^UTILITY(U,$J,358.3,9885,2)
+ ;;=^5059516
+ ;;^UTILITY(U,$J,358.3,9886,0)
+ ;;=W00.2XXD^^39^420^59
+ ;;^UTILITY(U,$J,358.3,9886,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,9761,1,3,0)
- ;;=3^UTI
- ;;^UTILITY(U,$J,358.3,9761,1,4,0)
- ;;=4^N39.0
- ;;^UTILITY(U,$J,358.3,9761,2)
- ;;=^124436
- ;;^UTILITY(U,$J,358.3,9762,0)
- ;;=N10.^^72^652^9
- ;;^UTILITY(U,$J,358.3,9762,1,0)
+ ;;^UTILITY(U,$J,358.3,9886,1,3,0)
+ ;;=3^Fall from One Level to Another d/t Ice/Snow,Subs Encntr
+ ;;^UTILITY(U,$J,358.3,9886,1,4,0)
+ ;;=4^W00.2XXD
+ ;;^UTILITY(U,$J,358.3,9886,2)
+ ;;=^5059517
+ ;;^UTILITY(U,$J,358.3,9887,0)
+ ;;=W00.9XXA^^39^420^30
+ ;;^UTILITY(U,$J,358.3,9887,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,9762,1,3,0)
- ;;=3^Acute Pyelonephritis
- ;;^UTILITY(U,$J,358.3,9762,1,4,0)
- ;;=4^N10.
- ;;^UTILITY(U,$J,358.3,9762,2)
- ;;=^5015570
- ;;^UTILITY(U,$J,358.3,9763,0)
- ;;=R78.81^^72^652^10
- ;;^UTILITY(U,$J,358.3,9763,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,9763,1,3,0)
- ;;=3^Bacteremia
- ;;^UTILITY(U,$J,358.3,9763,1,4,0)
- ;;=4^R78.81
+ ;;^UTILITY(U,$J,358.3,9887,1,3,0)
+ ;;=3^Fall d/t Ice/Snow,Unspec,Init Encntr

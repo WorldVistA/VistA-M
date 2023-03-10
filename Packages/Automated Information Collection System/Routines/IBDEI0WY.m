@@ -1,124 +1,126 @@
-IBDEI0WY ; ; 04-FEB-2020
- ;;3.0;IB ENCOUNTER FORM IMP/EXP;;FEB 04, 2020
+IBDEI0WY ; ; 01-FEB-2022
+ ;;3.0;IB ENCOUNTER FORM IMP/EXP;;FEB 01, 2022
  Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,999) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
- ;;^UTILITY(U,$J,358.3,14669,1,4,0)
- ;;=4^W05.0XXS
- ;;^UTILITY(U,$J,358.3,14669,2)
- ;;=^5059552
- ;;^UTILITY(U,$J,358.3,14670,0)
- ;;=W18.12XS^^83^827^19
- ;;^UTILITY(U,$J,358.3,14670,1,0)
+ ;;^UTILITY(U,$J,358.3,14850,1,3,0)
+ ;;=3^Complication of surgical and medical care, unsp, sequela
+ ;;^UTILITY(U,$J,358.3,14850,1,4,0)
+ ;;=4^T88.9XXS
+ ;;^UTILITY(U,$J,358.3,14850,2)
+ ;;=^5055819
+ ;;^UTILITY(U,$J,358.3,14851,0)
+ ;;=M86.672^^58^711^2
+ ;;^UTILITY(U,$J,358.3,14851,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,14670,1,3,0)
- ;;=3^Fall from Toilet w/ Strike Against Object,Sequela
- ;;^UTILITY(U,$J,358.3,14670,1,4,0)
- ;;=4^W18.12XS
- ;;^UTILITY(U,$J,358.3,14670,2)
- ;;=^5059805
- ;;^UTILITY(U,$J,358.3,14671,0)
- ;;=W18.11XS^^83^827^20
- ;;^UTILITY(U,$J,358.3,14671,1,0)
+ ;;^UTILITY(U,$J,358.3,14851,1,3,0)
+ ;;=3^Chr Osteomyelitis,Lt Ankle/Foot NEC
+ ;;^UTILITY(U,$J,358.3,14851,1,4,0)
+ ;;=4^M86.672
+ ;;^UTILITY(U,$J,358.3,14851,2)
+ ;;=^5014642
+ ;;^UTILITY(U,$J,358.3,14852,0)
+ ;;=M86.642^^58^711^3
+ ;;^UTILITY(U,$J,358.3,14852,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,14671,1,3,0)
- ;;=3^Fall from Toilet,Sequela
- ;;^UTILITY(U,$J,358.3,14671,1,4,0)
- ;;=4^W18.11XS
- ;;^UTILITY(U,$J,358.3,14671,2)
- ;;=^5059803
- ;;^UTILITY(U,$J,358.3,14672,0)
- ;;=W08.XXXS^^83^827^10
- ;;^UTILITY(U,$J,358.3,14672,1,0)
+ ;;^UTILITY(U,$J,358.3,14852,1,3,0)
+ ;;=3^Chr Osteomyelitis,Lt Hand NEC
+ ;;^UTILITY(U,$J,358.3,14852,1,4,0)
+ ;;=4^M86.642
+ ;;^UTILITY(U,$J,358.3,14852,2)
+ ;;=^5134074
+ ;;^UTILITY(U,$J,358.3,14853,0)
+ ;;=M86.622^^58^711^4
+ ;;^UTILITY(U,$J,358.3,14853,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,14672,1,3,0)
- ;;=3^Fall from Furniture,Sequela
- ;;^UTILITY(U,$J,358.3,14672,1,4,0)
- ;;=4^W08.XXXS
- ;;^UTILITY(U,$J,358.3,14672,2)
- ;;=^5059567
- ;;^UTILITY(U,$J,358.3,14673,0)
- ;;=W18.2XXS^^83^827^21
- ;;^UTILITY(U,$J,358.3,14673,1,0)
+ ;;^UTILITY(U,$J,358.3,14853,1,3,0)
+ ;;=3^Chr Osteomyelitis,Lt Humerus NEC
+ ;;^UTILITY(U,$J,358.3,14853,1,4,0)
+ ;;=4^M86.622
+ ;;^UTILITY(U,$J,358.3,14853,2)
+ ;;=^5134070
+ ;;^UTILITY(U,$J,358.3,14854,0)
+ ;;=M86.632^^58^711^5
+ ;;^UTILITY(U,$J,358.3,14854,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,14673,1,3,0)
- ;;=3^Fall in Shower/Bathtub,Sequela
- ;;^UTILITY(U,$J,358.3,14673,1,4,0)
- ;;=4^W18.2XXS
- ;;^UTILITY(U,$J,358.3,14673,2)
- ;;=^5059808
- ;;^UTILITY(U,$J,358.3,14674,0)
- ;;=W11.XXXS^^83^827^12
- ;;^UTILITY(U,$J,358.3,14674,1,0)
+ ;;^UTILITY(U,$J,358.3,14854,1,3,0)
+ ;;=3^Chr Osteomyelitis,Lt Radius/Ulna NEC
+ ;;^UTILITY(U,$J,358.3,14854,1,4,0)
+ ;;=4^M86.632
+ ;;^UTILITY(U,$J,358.3,14854,2)
+ ;;=^5134072
+ ;;^UTILITY(U,$J,358.3,14855,0)
+ ;;=M86.612^^58^711^6
+ ;;^UTILITY(U,$J,358.3,14855,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,14674,1,3,0)
- ;;=3^Fall from Ladder,Sequela
- ;;^UTILITY(U,$J,358.3,14674,1,4,0)
- ;;=4^W11.XXXS
- ;;^UTILITY(U,$J,358.3,14674,2)
- ;;=^5059597
- ;;^UTILITY(U,$J,358.3,14675,0)
- ;;=W01.10XS^^83^827^2
- ;;^UTILITY(U,$J,358.3,14675,1,0)
+ ;;^UTILITY(U,$J,358.3,14855,1,3,0)
+ ;;=3^Chr Osteomyelitis,Lt Shoulder NEC
+ ;;^UTILITY(U,$J,358.3,14855,1,4,0)
+ ;;=4^M86.612
+ ;;^UTILITY(U,$J,358.3,14855,2)
+ ;;=^5014632
+ ;;^UTILITY(U,$J,358.3,14856,0)
+ ;;=M86.652^^58^711^7
+ ;;^UTILITY(U,$J,358.3,14856,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,14675,1,3,0)
- ;;=3^Fall Same Level w/ Strike Against Object,Sequela
- ;;^UTILITY(U,$J,358.3,14675,1,4,0)
- ;;=4^W01.10XS
- ;;^UTILITY(U,$J,358.3,14675,2)
- ;;=^5059527
- ;;^UTILITY(U,$J,358.3,14676,0)
- ;;=W01.0XXS^^83^827^3
- ;;^UTILITY(U,$J,358.3,14676,1,0)
+ ;;^UTILITY(U,$J,358.3,14856,1,3,0)
+ ;;=3^Chr Osteomyelitis,Lt Thigh NEC
+ ;;^UTILITY(U,$J,358.3,14856,1,4,0)
+ ;;=4^M86.652
+ ;;^UTILITY(U,$J,358.3,14856,2)
+ ;;=^5014638
+ ;;^UTILITY(U,$J,358.3,14857,0)
+ ;;=M86.662^^58^711^8
+ ;;^UTILITY(U,$J,358.3,14857,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,14676,1,3,0)
- ;;=3^Fall Same Level w/o Strike Against Object,Sequela
- ;;^UTILITY(U,$J,358.3,14676,1,4,0)
- ;;=4^W01.0XXS
- ;;^UTILITY(U,$J,358.3,14676,2)
- ;;=^5059524
- ;;^UTILITY(U,$J,358.3,14677,0)
- ;;=W18.30XS^^83^827^22
- ;;^UTILITY(U,$J,358.3,14677,1,0)
+ ;;^UTILITY(U,$J,358.3,14857,1,3,0)
+ ;;=3^Chr Osteomyelitis,Lt Tibia/Fibula NEC
+ ;;^UTILITY(U,$J,358.3,14857,1,4,0)
+ ;;=4^M86.662
+ ;;^UTILITY(U,$J,358.3,14857,2)
+ ;;=^5134076
+ ;;^UTILITY(U,$J,358.3,14858,0)
+ ;;=M86.671^^58^711^9
+ ;;^UTILITY(U,$J,358.3,14858,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,14677,1,3,0)
- ;;=3^Fall on Same Level,Unspec,Sequela
- ;;^UTILITY(U,$J,358.3,14677,1,4,0)
- ;;=4^W18.30XS
- ;;^UTILITY(U,$J,358.3,14677,2)
- ;;=^5059811
- ;;^UTILITY(U,$J,358.3,14678,0)
- ;;=W04.XXXS^^83^827^4
- ;;^UTILITY(U,$J,358.3,14678,1,0)
+ ;;^UTILITY(U,$J,358.3,14858,1,3,0)
+ ;;=3^Chr Osteomyelitis,Rt Ankle/Foot NEC
+ ;;^UTILITY(U,$J,358.3,14858,1,4,0)
+ ;;=4^M86.671
+ ;;^UTILITY(U,$J,358.3,14858,2)
+ ;;=^5014641
+ ;;^UTILITY(U,$J,358.3,14859,0)
+ ;;=M86.641^^58^711^10
+ ;;^UTILITY(U,$J,358.3,14859,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,14678,1,3,0)
- ;;=3^Fall While Being Carried by Oth Persons,Sequela
- ;;^UTILITY(U,$J,358.3,14678,1,4,0)
- ;;=4^W04.XXXS
- ;;^UTILITY(U,$J,358.3,14678,2)
- ;;=^5059549
- ;;^UTILITY(U,$J,358.3,14679,0)
- ;;=W17.89XS^^83^827^16
- ;;^UTILITY(U,$J,358.3,14679,1,0)
+ ;;^UTILITY(U,$J,358.3,14859,1,3,0)
+ ;;=3^Chr Osteomyelitis,Rt Hand
+ ;;^UTILITY(U,$J,358.3,14859,1,4,0)
+ ;;=4^M86.641
+ ;;^UTILITY(U,$J,358.3,14859,2)
+ ;;=^5014636
+ ;;^UTILITY(U,$J,358.3,14860,0)
+ ;;=M86.621^^58^711^11
+ ;;^UTILITY(U,$J,358.3,14860,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,14679,1,3,0)
- ;;=3^Fall from One Level to Another,Sequela
- ;;^UTILITY(U,$J,358.3,14679,1,4,0)
- ;;=4^W17.89XS
- ;;^UTILITY(U,$J,358.3,14679,2)
- ;;=^5059789
- ;;^UTILITY(U,$J,358.3,14680,0)
- ;;=W03.XXXS^^83^827^1
- ;;^UTILITY(U,$J,358.3,14680,1,0)
+ ;;^UTILITY(U,$J,358.3,14860,1,3,0)
+ ;;=3^Chr Osteomyelitis,Rt Humerus NEC
+ ;;^UTILITY(U,$J,358.3,14860,1,4,0)
+ ;;=4^M86.621
+ ;;^UTILITY(U,$J,358.3,14860,2)
+ ;;=^5014634
+ ;;^UTILITY(U,$J,358.3,14861,0)
+ ;;=M86.631^^58^711^12
+ ;;^UTILITY(U,$J,358.3,14861,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,14680,1,3,0)
- ;;=3^Fall Same Level d/t Collision w/ Another Person,Sequela
- ;;^UTILITY(U,$J,358.3,14680,1,4,0)
- ;;=4^W03.XXXS
- ;;^UTILITY(U,$J,358.3,14680,2)
- ;;=^5059546
- ;;^UTILITY(U,$J,358.3,14681,0)
- ;;=W18.00XS^^83^827^6
- ;;^UTILITY(U,$J,358.3,14681,1,0)
+ ;;^UTILITY(U,$J,358.3,14861,1,3,0)
+ ;;=3^Chr Osteomyelitis,Rt Radius/Ulna NEC
+ ;;^UTILITY(U,$J,358.3,14861,1,4,0)
+ ;;=4^M86.631
+ ;;^UTILITY(U,$J,358.3,14861,2)
+ ;;=^5014635
+ ;;^UTILITY(U,$J,358.3,14862,0)
+ ;;=M86.611^^58^711^13
+ ;;^UTILITY(U,$J,358.3,14862,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,14681,1,3,0)
- ;;=3^Fall d/t Striking Unspec Object,Sequela
+ ;;^UTILITY(U,$J,358.3,14862,1,3,0)
+ ;;=3^Chr Osteomyelitis,Rt Shoulder NEC

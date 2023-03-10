@@ -1,5 +1,5 @@
 PSIVHYPR ;BIR/PR-REPRINT LABELS ;26 FEB 97 / 3:20 PM
- ;;5.0;INPATIENT MEDICATIONS;**58,88,96,178,184,279**;16 DEC 97;Build 150
+ ;;5.0;INPATIENT MEDICATIONS;**58,88,96,178,184,279,364**;16 DEC 97;Build 47
  ;
  ; Reference to ^%ZIS(2 is supported by DBIA 3435.
  ; Reference to ^PS(50.4 is supported by DBIA 2175.
@@ -10,6 +10,8 @@ PSIVHYPR ;BIR/PR-REPRINT LABELS ;26 FEB 97 / 3:20 PM
  ;
  ;NEEDS DFN, ON AND PSIVNOL (Total number of labels to print) and
  ;PSIVCT - $D(PSIVCT) NO COUNT LABEL
+ ;*364 - add Hazardous Handle & Dispose flags alert message.
+ ;
 SSWARD ;Get patient SS# and ward location
  N X0,PSJIO,I,PSIVCLAB
  S I=0 F  S I=$O(^%ZIS(2,IOST(0),55,I)) Q:'I  S X0=^(I,0),PSJIO($P(X0,"^"))=^(1)
@@ -56,13 +58,13 @@ RE ;I PSIV1 S:P(15)>2880!('P(15)) P(15)=2880 S P(16)=P16+PSIV1#(1440/P(15)+.5\1)
  D:$P(PSIVSITE,U,12) TVOL
  S X="",$P(X,"=",PSIVRM-1)="" D PRNTL
  I $D(PSIVFLAG) F PSIV=0:0 S PSIV=$O(^PS(55,DFN,"IV",+ON,"AD",PSIV)) Q:'PSIV  S Y=^(PSIV,0),X=$S($D(^PS(52.6,+Y,0)):$P(^(0),U),1:"*********")_" "_$P(Y,U,2)_" " S:$P(Y,U,3)]"" X=X_" ("_$P(Y,U,3)_")" D
- . D PRNTL,MESS
+ . D PRNTL,HAZ(1),MESS     ;*364
  I $D(PSIVFLAG) F PSIV=0:0 S PSIV=$O(^PS(55,DFN,"IV",+ON,"SOL",PSIV)) Q:'PSIV  S PSIV=PSIV_"^"_+^(PSIV,0),YY=^(0) D
- . D SOL1,PRNTL
+ . D SOL1,PRNTL,HAZ(2)     ;*364
  . S X=$P(^PS(52.7,$P(PSIV,U,2),0),U,4) I X]"" S X="   "_X D PRNTL
  G:$D(PSIVFLAG) SOL
  F PSIV=0:0 S PSIV=$O(^PS(55,DFN,"IVBCMA",PSJIDNO,"SOL",PSIV)) Q:'PSIV  S PSIV=PSIV_"^"_+^(PSIV,0),YY=^(0) D
- . D SOL1,PRNTL
+ . D SOL1,PRNTL,HAZ(2)    ;*364
  . S X=$P(^PS(52.7,$P(PSIV,U,2),0),U,4) I X]"" S X="   "_X D PRNTL
  F I=0:0 S I=$O(HYPL(I)) Q:'I  S PSIV="" F I=I:0 S PSIV=$O(HYPL(I,PSIV)) Q:PSIV=""  D
  . F Z="" S Z=$O(HYPL(I,PSIV,Z)) Q:Z=""  S PSIVA=$S(I=50.4:PSIV,I=52.7:+^PS(55,DFN,"IVBCMA",PSJIDNO,"SOL",+$P(HYPL(I,PSIV,Z),U,2),0),1:+^PS(55,DFN,"IVBCMA",PSJIDNO,"AD",+$P(HYPL(I,PSIV,Z),U,2),0)) D HYP
@@ -85,6 +87,17 @@ INF S X=$P(P(8),"@") D:X]"" PRNTL
  I $D(^PS(59.5,PSIVSN,4)) S Y=^(4) F PSIV=1:1 S X=$P(Y,U,PSIV) Q:X=""  D PRNTL
  S X=$S('+$G(PSIV1):"0[0]",1:PSIVBAG) D PRNTL
  Q
+ ;
+HAZ(TYP) ; Printing hazardous to handle/dispose warnings                         *364
+ ; TYP=1 ADDITIVES | TYPE=2 SOLUTIONS
+ N DIEN,FIL,HAZ,TSUB,VAR
+ S FIL=$S($G(TYP)=1:52.6,$G(TYP)=2:52.7,1:"") Q:FIL=""  ; No type passed in
+ S TSUB=$S(TYP=1:"AD",TYP=2:"SOL",1:"NONE")
+ S VAR=^PS(55,DFN,"IV",+ON,TSUB,+PSIV,0) S DIEN=$P($G(^PS(FIL,+VAR,0)),"^",2),HAZ=$$HAZ^PSSUTIL(DIEN)
+ S X=$S($P(HAZ,"^"):"<<HAZ Handle>> ",1:"")_$S($P(HAZ,"^",2):"<<HAZ Dispose>>",1:"")
+ I X]"" D PRNTL
+ Q
+ ;
 PRNTL N I F LINE=LINE+1:1 D  Q:$L(X)<1
  . I LINE>PSIVSITE D
  .. S LINE=1
@@ -123,7 +136,7 @@ HYP ;
  I PSIV="*" S X="*** Error in "_$S(I=50.4:"electrolyte",I=52.7:"solution",1:"additive") D PRNTL Q
  S X=+HYPL(I,PSIV,Z)
  S X=$S($D(^PS(I,PSIVA,0)):$P(^(0),U),1:"Undefined "_$S(I=50.4:"electrolyte",I=52.7:"solution",1:"additive"))_" "_(X+.005\.01/100)_" "_$P($P(HYPL(I,PSIV,Z),U)," ",2)
- D PRNTL
+ D PRNTL,HAZ(1):I=52.6,HAZ(2):I=52.7     ;*364
  Q
 SETP S Y=^PS(55,DFN,"IV",+ON,0) F X=1:1:23 S P(X)=$P(Y,U,X)
  Q

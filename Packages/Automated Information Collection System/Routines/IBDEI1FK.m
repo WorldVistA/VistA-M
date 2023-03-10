@@ -1,112 +1,130 @@
-IBDEI1FK ; ; 04-FEB-2020
- ;;3.0;IB ENCOUNTER FORM IMP/EXP;;FEB 04, 2020
+IBDEI1FK ; ; 01-FEB-2022
+ ;;3.0;IB ENCOUNTER FORM IMP/EXP;;FEB 01, 2022
  Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,999) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
- ;;^UTILITY(U,$J,358.3,22891,1,3,0)
- ;;=3^Dsplcmnt of Implnt Elect Neurostim,Brain,Init Encntr
- ;;^UTILITY(U,$J,358.3,22891,1,4,0)
- ;;=4^T85.120A
- ;;^UTILITY(U,$J,358.3,22891,2)
- ;;=^5055502
- ;;^UTILITY(U,$J,358.3,22892,0)
- ;;=T85.121A^^105^1166^38
- ;;^UTILITY(U,$J,358.3,22892,1,0)
+ ;;^UTILITY(U,$J,358.3,23136,0)
+ ;;=N28.9^^78^1002^7
+ ;;^UTILITY(U,$J,358.3,23136,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,22892,1,3,0)
- ;;=3^Dsplcmnt of Implnt Elect Neurostim,Periph Nrv,Init Encntr
- ;;^UTILITY(U,$J,358.3,22892,1,4,0)
- ;;=4^T85.121A
- ;;^UTILITY(U,$J,358.3,22892,2)
- ;;=^5055505
- ;;^UTILITY(U,$J,358.3,22893,0)
- ;;=T85.122A^^105^1166^39
- ;;^UTILITY(U,$J,358.3,22893,1,0)
+ ;;^UTILITY(U,$J,358.3,23136,1,3,0)
+ ;;=3^Kidney & Ureter Disorder,Unspec
+ ;;^UTILITY(U,$J,358.3,23136,1,4,0)
+ ;;=4^N28.9
+ ;;^UTILITY(U,$J,358.3,23136,2)
+ ;;=^5015630
+ ;;^UTILITY(U,$J,358.3,23137,0)
+ ;;=N20.0^^78^1002^2
+ ;;^UTILITY(U,$J,358.3,23137,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,22893,1,3,0)
- ;;=3^Dsplcmnt of Implnt Elect Neurostim,Spinal Cord,Init Encntr
- ;;^UTILITY(U,$J,358.3,22893,1,4,0)
- ;;=4^T85.122A
- ;;^UTILITY(U,$J,358.3,22893,2)
- ;;=^5055508
- ;;^UTILITY(U,$J,358.3,22894,0)
- ;;=T85.128A^^105^1166^40
- ;;^UTILITY(U,$J,358.3,22894,1,0)
+ ;;^UTILITY(U,$J,358.3,23137,1,3,0)
+ ;;=3^Calculus of Kidney
+ ;;^UTILITY(U,$J,358.3,23137,1,4,0)
+ ;;=4^N20.0
+ ;;^UTILITY(U,$J,358.3,23137,2)
+ ;;=^67056
+ ;;^UTILITY(U,$J,358.3,23138,0)
+ ;;=N32.0^^78^1002^1
+ ;;^UTILITY(U,$J,358.3,23138,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,22894,1,3,0)
- ;;=3^Dsplcmnt of Implnt Elect Stim,Nrv Sys,Init Encntr
- ;;^UTILITY(U,$J,358.3,22894,1,4,0)
- ;;=4^T85.128A
- ;;^UTILITY(U,$J,358.3,22894,2)
- ;;=^5055511
- ;;^UTILITY(U,$J,358.3,22895,0)
- ;;=T85.190A^^105^1166^153
- ;;^UTILITY(U,$J,358.3,22895,1,0)
+ ;;^UTILITY(U,$J,358.3,23138,1,3,0)
+ ;;=3^Bladder-Neck Obstruction
+ ;;^UTILITY(U,$J,358.3,23138,1,4,0)
+ ;;=4^N32.0
+ ;;^UTILITY(U,$J,358.3,23138,2)
+ ;;=^5015649
+ ;;^UTILITY(U,$J,358.3,23139,0)
+ ;;=N34.1^^78^1002^18
+ ;;^UTILITY(U,$J,358.3,23139,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,22895,1,3,0)
- ;;=3^Mech Compl of Implanted Electronic Neurostim of Brain,Init Encntr
- ;;^UTILITY(U,$J,358.3,22895,1,4,0)
- ;;=4^T85.190A
- ;;^UTILITY(U,$J,358.3,22895,2)
- ;;=^5055514
- ;;^UTILITY(U,$J,358.3,22896,0)
- ;;=T85.191A^^105^1166^154
- ;;^UTILITY(U,$J,358.3,22896,1,0)
+ ;;^UTILITY(U,$J,358.3,23139,1,3,0)
+ ;;=3^Urethritis, nonspecific
+ ;;^UTILITY(U,$J,358.3,23139,1,4,0)
+ ;;=4^N34.1
+ ;;^UTILITY(U,$J,358.3,23139,2)
+ ;;=^5015655
+ ;;^UTILITY(U,$J,358.3,23140,0)
+ ;;=N39.0^^78^1002^19
+ ;;^UTILITY(U,$J,358.3,23140,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,22896,1,3,0)
- ;;=3^Mech Compl of Implanted Electronic Neurostim of Periph Nrv,Init Encntr
- ;;^UTILITY(U,$J,358.3,22896,1,4,0)
- ;;=4^T85.191A
- ;;^UTILITY(U,$J,358.3,22896,2)
- ;;=^5055517
- ;;^UTILITY(U,$J,358.3,22897,0)
- ;;=T85.192A^^105^1166^155
- ;;^UTILITY(U,$J,358.3,22897,1,0)
+ ;;^UTILITY(U,$J,358.3,23140,1,3,0)
+ ;;=3^Urinary tract infection
+ ;;^UTILITY(U,$J,358.3,23140,1,4,0)
+ ;;=4^N39.0
+ ;;^UTILITY(U,$J,358.3,23140,2)
+ ;;=^124436
+ ;;^UTILITY(U,$J,358.3,23141,0)
+ ;;=N40.0^^78^1002^5
+ ;;^UTILITY(U,$J,358.3,23141,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,22897,1,3,0)
- ;;=3^Mech Compl of Implanted Electronic Neurostim of Spinal Cord,Init Encntr
- ;;^UTILITY(U,$J,358.3,22897,1,4,0)
- ;;=4^T85.192A
- ;;^UTILITY(U,$J,358.3,22897,2)
- ;;=^5055520
- ;;^UTILITY(U,$J,358.3,22898,0)
- ;;=T85.199A^^105^1166^156
- ;;^UTILITY(U,$J,358.3,22898,1,0)
+ ;;^UTILITY(U,$J,358.3,23141,1,3,0)
+ ;;=3^Enlarged Prostate w/o LUTS
+ ;;^UTILITY(U,$J,358.3,23141,1,4,0)
+ ;;=4^N40.0
+ ;;^UTILITY(U,$J,358.3,23141,2)
+ ;;=^5015689
+ ;;^UTILITY(U,$J,358.3,23142,0)
+ ;;=N40.1^^78^1002^4
+ ;;^UTILITY(U,$J,358.3,23142,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,22898,1,3,0)
- ;;=3^Mech Compl of Implanted Electronic Stim of Nervous Sys,Init Encntr
- ;;^UTILITY(U,$J,358.3,22898,1,4,0)
- ;;=4^T85.199A
- ;;^UTILITY(U,$J,358.3,22898,2)
- ;;=^5055523
- ;;^UTILITY(U,$J,358.3,22899,0)
- ;;=T83.498A^^105^1166^159
- ;;^UTILITY(U,$J,358.3,22899,1,0)
+ ;;^UTILITY(U,$J,358.3,23142,1,3,0)
+ ;;=3^Enlarged Prostate w/ LUTS
+ ;;^UTILITY(U,$J,358.3,23142,1,4,0)
+ ;;=4^N40.1
+ ;;^UTILITY(U,$J,358.3,23142,2)
+ ;;=^5015690
+ ;;^UTILITY(U,$J,358.3,23143,0)
+ ;;=N43.3^^78^1002^6
+ ;;^UTILITY(U,$J,358.3,23143,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,22899,1,3,0)
- ;;=3^Mech Compl of Prosthetic Device/Implant/Graft of Genital Tract,Init Encntr
- ;;^UTILITY(U,$J,358.3,22899,1,4,0)
- ;;=4^T83.498A
- ;;^UTILITY(U,$J,358.3,22899,2)
- ;;=^5055055
- ;;^UTILITY(U,$J,358.3,22900,0)
- ;;=T85.398A^^105^1166^160
- ;;^UTILITY(U,$J,358.3,22900,1,0)
+ ;;^UTILITY(U,$J,358.3,23143,1,3,0)
+ ;;=3^Hydrocele, unspecified
+ ;;^UTILITY(U,$J,358.3,23143,1,4,0)
+ ;;=4^N43.3
+ ;;^UTILITY(U,$J,358.3,23143,2)
+ ;;=^5015700
+ ;;^UTILITY(U,$J,358.3,23144,0)
+ ;;=N52.9^^78^1002^17
+ ;;^UTILITY(U,$J,358.3,23144,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,22900,1,3,0)
- ;;=3^Mech Compl of Prosthetic Device/Implant/Graft of Ocular,Init Encntr
- ;;^UTILITY(U,$J,358.3,22900,1,4,0)
- ;;=4^T85.398A
- ;;^UTILITY(U,$J,358.3,22900,2)
- ;;=^5055559
- ;;^UTILITY(U,$J,358.3,22901,0)
- ;;=T85.590A^^105^1166^161
- ;;^UTILITY(U,$J,358.3,22901,1,0)
+ ;;^UTILITY(U,$J,358.3,23144,1,3,0)
+ ;;=3^Male erectile dysfunction, unspecified
+ ;;^UTILITY(U,$J,358.3,23144,1,4,0)
+ ;;=4^N52.9
+ ;;^UTILITY(U,$J,358.3,23144,2)
+ ;;=^5015763
+ ;;^UTILITY(U,$J,358.3,23145,0)
+ ;;=N18.1^^78^1002^8
+ ;;^UTILITY(U,$J,358.3,23145,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,22901,1,3,0)
- ;;=3^Mech Compl of Prosthetic Device/Implant/Graft of Bile Duct,Init Encntr
- ;;^UTILITY(U,$J,358.3,22901,1,4,0)
- ;;=4^T85.590A
- ;;^UTILITY(U,$J,358.3,22901,2)
- ;;=^5055595
- ;;^UTILITY(U,$J,358.3,22902,0)
- ;;=T85.692A^^105^1166^158
+ ;;^UTILITY(U,$J,358.3,23145,1,3,0)
+ ;;=3^Kidney Disease,Chr,Stage 1
+ ;;^UTILITY(U,$J,358.3,23145,1,4,0)
+ ;;=4^N18.1
+ ;;^UTILITY(U,$J,358.3,23145,2)
+ ;;=^5015602
+ ;;^UTILITY(U,$J,358.3,23146,0)
+ ;;=N18.2^^78^1002^9
+ ;;^UTILITY(U,$J,358.3,23146,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,23146,1,3,0)
+ ;;=3^Kidney Disease,Chr,Stage 2 (Mild)
+ ;;^UTILITY(U,$J,358.3,23146,1,4,0)
+ ;;=4^N18.2
+ ;;^UTILITY(U,$J,358.3,23146,2)
+ ;;=^5015603
+ ;;^UTILITY(U,$J,358.3,23147,0)
+ ;;=N18.30^^78^1002^10
+ ;;^UTILITY(U,$J,358.3,23147,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,23147,1,3,0)
+ ;;=3^Kidney Disease,Chr,Stage 3,Unspec
+ ;;^UTILITY(U,$J,358.3,23147,1,4,0)
+ ;;=4^N18.30
+ ;;^UTILITY(U,$J,358.3,23147,2)
+ ;;=^5159286
+ ;;^UTILITY(U,$J,358.3,23148,0)
+ ;;=N18.31^^78^1002^11
+ ;;^UTILITY(U,$J,358.3,23148,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,23148,1,3,0)
+ ;;=3^Kidney Disease,Chr,Stage 3a

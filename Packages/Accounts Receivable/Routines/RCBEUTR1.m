@@ -1,5 +1,5 @@
 RCBEUTR1 ;WISC/RFJ-add int,admin chg or increase,decrease principal  ;1 Jun 00
- ;;4.5;Accounts Receivable;**153,169,192,226,270,276,301,315**;Mar 20, 1995;Build 67
+ ;;4.5;Accounts Receivable;**153,169,192,226,270,276,301,315,377**;Mar 20, 1995;Build 45
  ;;Per VA Directive 6402, this routine should not be modified.
  Q
  ;
@@ -40,6 +40,10 @@ INTADM(RCBILLDA,RCVALUE,RCCOMMNT,RCDATE) ;  add an intererst/admin charge (trans
  ;
  ;  update the bill file with the balance of the transaction
  D SETBAL^RCBEUBIL(RCTRANDA)
+ ;
+ ;PRCA*4.5*377
+ ;  Update Repayment Plan if one is attached to the bill
+ D UPDBAL^RCRPU1(RCBILLDA,RCTRANDA)
  ;
  ;  if the bill has no balance, close or cancel it
  D CLOSEIT(RCBILLDA)
@@ -128,6 +132,10 @@ INCDEC(RCBILLDA,RCVALUE,RCCOMMNT,RCDATE,RCPREPAY,RCONTADJ,RCCRD) ;
  ;
  ;  if the bill has no balance, close or cancel it
  D CLOSEIT(RCBILLDA)
+ ;
+ ;PRCA*4.5*377 - add hook for repayment plan updates
+ ;  if the bill is in a repayment plan, update the plan with the increase or decrease
+ D UPDBAL^RCRPU1(RCBILLDA,RCTRANDA)
  ;
  ;  send FMS document if non-accrued (redo this later on)
  I '$$ACCK^PRCAACC(RCBILLDA) D

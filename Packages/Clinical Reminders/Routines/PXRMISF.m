@@ -1,5 +1,5 @@
-PXRMISF ; SLC/PKR - Index size estimating scale factor routines. ;11/02/2009
- ;;2.0;CLINICAL REMINDERS;**17**;Feb 04, 2005;Build 102
+PXRMISF ;SLC/PKR - Index size estimating scale factor routines. ;09/09/2020
+ ;;2.0;CLINICAL REMINDERS;**17,42**;Feb 04, 2005;Build 245
  ;
  ;===============================================================
 ERRORMSG(SF) ;Send an error message indicating the estimate could not
@@ -55,7 +55,7 @@ LSF(SF) ;Load the blocks/index entry scale factors.
  S SFD(9000010.23)=0.082573858
  S VERSION=$$VERSION^%ZOSV(1)
  S VERSION=$$UP^XLFSTR(VERSION)
- I VERSION["CACHE" M SF=SFC S VERSION="",SF=1
+ I (VERSION["IRIS")!(VERSION["CACHE") M SF=SFC S VERSION="",SF=1
  I VERSION["DSM" M SF=SFD S VERSION="",SF=1
  I VERSION'="" D
  . W !,VERSION," is an unknown system cannot make size estimate!"

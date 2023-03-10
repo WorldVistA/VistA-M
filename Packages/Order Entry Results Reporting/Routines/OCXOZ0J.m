@@ -1,4 +1,4 @@
-OCXOZ0J ;SLC/RJS,CLA - Order Check Scan ;SEP 30,2019 at 10:36
+OCXOZ0J ;SLC/RJS,CLA - Order Check Scan ;JUL 1,2021 at 11:27
  ;;3.0;ORDER ENTRY/RESULTS REPORTING;**32,221,243**;Dec 17,1997;Build 242
  ;;  ;;ORDER CHECK EXPERT version 1.01 released OCT 29,1998
  ;
@@ -25,6 +25,10 @@ R5R1B ; Send Order Check, Notication messages and/or Execute code for  Rule #5 '
  S OCXCMSG=""
  S OCXNMSG="Order(s) needing clarification: Flagged "_$$GETDATA(DFN,"44^",115)_"."
  ;
+ ;
+ ; Run Execute Code
+ ;
+ N I,USR S I=0 F  S I=$O(ORLIST(I)) Q:'I  S USR=+ORLIST(I) I USR S OCXDUZ(USR)=""
  Q:$G(OCXOERR)
  ;
  ; Send Notification

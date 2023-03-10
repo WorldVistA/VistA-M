@@ -1,5 +1,5 @@
-MAGVIM02 ;WOIFO/MAT,PMK - Utilities for RPC calls for DICOM file processing ; 25 Jul 2013 4:49 PM
- ;;3.0;IMAGING;**118,138**;Mar 19, 2002;Build 5380;Sep 03, 2013
+MAGVIM02 ;WOIFO/MAT,PMK - Utilities for RPC calls for DICOM file processing ; Feb 15, 2022@09:33:55
+ ;;3.0;IMAGING;**118,138,305**;Mar 19, 2002;Build 3
  ;; Per VHA Directive 2004-038, this routine should not be modified.
  ;; +---------------------------------------------------------------+
  ;; | Property of the US Government.                                |
@@ -76,7 +76,7 @@ GETORD(MAGVRY,PIDENT,PIDTYPE,PIDAUTHN,PIDCR8OR,ORDRTYPE,ORDTSTRT,ORDTSTOP) ;
  S:PIDCR8OR="" PIDCR8OR="Unknown." ;???_Lookup_in_^MAGV(2005.62,_Field_#.03
  ;
  ;--- Filter consults by ORDER STATUS file (#100.01) IEN's.
- N ORDRSTAT S ORDRSTAT="3,4,5,6,8,9,10,15,16"
+ N ORDRSTAT S ORDRSTAT="2,3,4,5,6,8,9,10,15,16" ; P305 PMK 8/19/2021
  ;
  ;--- Branch to processor.
  D:ORDRTYPE["CON" GETORCON(PIDENT,"",ORDTSTRT,ORDTSTOP,ORDRSTAT,ORDRTYPE)

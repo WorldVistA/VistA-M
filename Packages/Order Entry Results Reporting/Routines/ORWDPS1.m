@@ -1,5 +1,5 @@
-ORWDPS1 ;SLC/KCM,JLI,TC - Pharmacy Calls for Windows Dialog ;Mar 29, 2018@09:29
- ;;3.0;ORDER ENTRY/RESULTS REPORTING;**85,132,141,163,215,255,243,306,350,435,377**;Dec 17, 1997;Build 582
+ORWDPS1 ;SLC/KCM,JLI,TC - Pharmacy Calls for Windows Dialog ;Apr 05, 2018@07:01
+ ;;3.0;ORDER ENTRY/RESULTS REPORTING;**85,132,141,163,215,255,243,306,350,435,377,405**;Dec 17, 1997;Build 211
  ;
 ODSLCT(LST,PSTYPE,DFN,LOC) ; return default lists for dialog
  ; PSTYPE: pharmacy type (U=unit dose, F=IV fluids, O=outpatient)
@@ -71,6 +71,7 @@ DEFPICK(LOC)       ; return default routing
  I X="C" S X="C^in Clinic" G XPICK
  I X="M" S X="M^by Mail"   G XPICK
  I X="W" S X="W^at Window" G XPICK
+ I X="P" S X="P^Park" G XPICK    ;ADDED PAPI CODE
  I X="N" S X=""            G XPICK
  I X=""  S X=$S($D(^PSX(550,"C")):"M^by Mail",1:"W^at Window")
 XPICK Q X
@@ -195,6 +196,7 @@ LOCPICK(Y,LOC) ; return default Location level routing
  I Y="C" S Y="C^in Clinic"
  I Y="M" S Y="M^by Mail"
  I Y="W" S Y="W^at Window"
+ I Y="P" S Y="P^Park"     ;ADDED PAPI CODE
  I Y="N" S Y=""
  Q
 HASOIPI(Y,QOID) ; Check if QO put orderable item's PI into Sig

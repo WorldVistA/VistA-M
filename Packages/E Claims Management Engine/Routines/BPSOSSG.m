@@ -1,5 +1,5 @@
 BPSOSSG ;BHAM ISC/SD/lwj/FLS - Special gets for formats ;06/01/2004
- ;;1.0;E CLAIMS MGMT ENGINE;**1,5,10,11,20,24**;JUN 2004;Build 43
+ ;;1.0;E CLAIMS MGMT ENGINE;**1,5,10,11,20,24,28**;JUN 2004;Build 22
  ;;Per VA Directive 6402, this routine should not be modified.
  ;
  Q
@@ -123,7 +123,8 @@ FLDD02 ; Total Prescribed Quantity Remaining field (D02-KW)
  ;
  ; Determine if any previous fills were returned to stock.
  S RXIEN=$G(BPS("RX",BPS(9002313.0201),"RX IEN"))
- I RXIEN S RTS=0,I=0 D
+ S RTS=0
+ I RXIEN S I=0 D
  . F  S I=$O(^PSRX(RXIEN,"RTS",I)) Q:'I  S RTS=RTS+1
  ;
  ; Subtract and return to stock fills (RTS) from the number of previous fills (PREVFILLS).

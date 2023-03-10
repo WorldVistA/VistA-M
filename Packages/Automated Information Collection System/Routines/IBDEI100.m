@@ -1,126 +1,122 @@
-IBDEI100 ; ; 04-FEB-2020
- ;;3.0;IB ENCOUNTER FORM IMP/EXP;;FEB 04, 2020
+IBDEI100 ; ; 01-FEB-2022
+ ;;3.0;IB ENCOUNTER FORM IMP/EXP;;FEB 01, 2022
  Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,999) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
- ;;^UTILITY(U,$J,358.3,16053,1,4,0)
- ;;=4^L89.46
- ;;^UTILITY(U,$J,358.3,16053,2)
- ;;=^5158091
- ;;^UTILITY(U,$J,358.3,16054,0)
- ;;=L02.818^^88^869^128
- ;;^UTILITY(U,$J,358.3,16054,1,0)
+ ;;^UTILITY(U,$J,358.3,16241,2)
+ ;;=^5008570
+ ;;^UTILITY(U,$J,358.3,16242,0)
+ ;;=K40.90^^61^771^76
+ ;;^UTILITY(U,$J,358.3,16242,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,16054,1,3,0)
- ;;=3^Cutaneous Abscess of Other Sites
- ;;^UTILITY(U,$J,358.3,16054,1,4,0)
- ;;=4^L02.818
- ;;^UTILITY(U,$J,358.3,16054,2)
- ;;=^5009011
- ;;^UTILITY(U,$J,358.3,16055,0)
- ;;=H65.03^^88^870^3
- ;;^UTILITY(U,$J,358.3,16055,1,0)
+ ;;^UTILITY(U,$J,358.3,16242,1,3,0)
+ ;;=3^Inguinal Hernia,Unilat w/o Obst or Gangrene
+ ;;^UTILITY(U,$J,358.3,16242,1,4,0)
+ ;;=4^K40.90
+ ;;^UTILITY(U,$J,358.3,16242,2)
+ ;;=^5008591
+ ;;^UTILITY(U,$J,358.3,16243,0)
+ ;;=K40.20^^61^771^75
+ ;;^UTILITY(U,$J,358.3,16243,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,16055,1,3,0)
- ;;=3^Acute Serous Otitis Media,Bilateral
- ;;^UTILITY(U,$J,358.3,16055,1,4,0)
- ;;=4^H65.03
- ;;^UTILITY(U,$J,358.3,16055,2)
- ;;=^5006572
- ;;^UTILITY(U,$J,358.3,16056,0)
- ;;=H65.01^^88^870^5
- ;;^UTILITY(U,$J,358.3,16056,1,0)
+ ;;^UTILITY(U,$J,358.3,16243,1,3,0)
+ ;;=3^Inguinal Hernia,Bilat w/o Obst or Gangrene
+ ;;^UTILITY(U,$J,358.3,16243,1,4,0)
+ ;;=4^K40.20
+ ;;^UTILITY(U,$J,358.3,16243,2)
+ ;;=^5008585
+ ;;^UTILITY(U,$J,358.3,16244,0)
+ ;;=K44.9^^61^771^36
+ ;;^UTILITY(U,$J,358.3,16244,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,16056,1,3,0)
- ;;=3^Acute Serous Otitis Media,Right Ear
- ;;^UTILITY(U,$J,358.3,16056,1,4,0)
- ;;=4^H65.01
- ;;^UTILITY(U,$J,358.3,16056,2)
- ;;=^5006570
- ;;^UTILITY(U,$J,358.3,16057,0)
- ;;=H65.23^^88^870^15
- ;;^UTILITY(U,$J,358.3,16057,1,0)
+ ;;^UTILITY(U,$J,358.3,16244,1,3,0)
+ ;;=3^Diaphragmatic Hernia w/o Obst or Gangrene
+ ;;^UTILITY(U,$J,358.3,16244,1,4,0)
+ ;;=4^K44.9
+ ;;^UTILITY(U,$J,358.3,16244,2)
+ ;;=^5008617
+ ;;^UTILITY(U,$J,358.3,16245,0)
+ ;;=K46.9^^61^771^1
+ ;;^UTILITY(U,$J,358.3,16245,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,16057,1,3,0)
- ;;=3^Chronic Serous Otitis Media,Bilateral
- ;;^UTILITY(U,$J,358.3,16057,1,4,0)
- ;;=4^H65.23
- ;;^UTILITY(U,$J,358.3,16057,2)
- ;;=^5006596
- ;;^UTILITY(U,$J,358.3,16058,0)
- ;;=H65.22^^88^870^16
- ;;^UTILITY(U,$J,358.3,16058,1,0)
+ ;;^UTILITY(U,$J,358.3,16245,1,3,0)
+ ;;=3^Abdominal Hernia w/o Obst or Gangrene,Unspec
+ ;;^UTILITY(U,$J,358.3,16245,1,4,0)
+ ;;=4^K46.9
+ ;;^UTILITY(U,$J,358.3,16245,2)
+ ;;=^5008623
+ ;;^UTILITY(U,$J,358.3,16246,0)
+ ;;=K50.90^^61^771^31
+ ;;^UTILITY(U,$J,358.3,16246,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,16058,1,3,0)
- ;;=3^Chronic Serous Otitis Media,Left Ear
- ;;^UTILITY(U,$J,358.3,16058,1,4,0)
- ;;=4^H65.22
- ;;^UTILITY(U,$J,358.3,16058,2)
- ;;=^5006595
- ;;^UTILITY(U,$J,358.3,16059,0)
- ;;=H65.21^^88^870^17
- ;;^UTILITY(U,$J,358.3,16059,1,0)
+ ;;^UTILITY(U,$J,358.3,16246,1,3,0)
+ ;;=3^Crohn's Disease w/o Complications,Unspec
+ ;;^UTILITY(U,$J,358.3,16246,1,4,0)
+ ;;=4^K50.90
+ ;;^UTILITY(U,$J,358.3,16246,2)
+ ;;=^5008645
+ ;;^UTILITY(U,$J,358.3,16247,0)
+ ;;=K50.911^^61^771^29
+ ;;^UTILITY(U,$J,358.3,16247,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,16059,1,3,0)
- ;;=3^Chronic Serous Otitis Media,Right Ear
- ;;^UTILITY(U,$J,358.3,16059,1,4,0)
- ;;=4^H65.21
- ;;^UTILITY(U,$J,358.3,16059,2)
- ;;=^5006594
- ;;^UTILITY(U,$J,358.3,16060,0)
- ;;=H66.012^^88^870^6
- ;;^UTILITY(U,$J,358.3,16060,1,0)
+ ;;^UTILITY(U,$J,358.3,16247,1,3,0)
+ ;;=3^Crohn's Disease w/ Rectal Bleeding,Unspec
+ ;;^UTILITY(U,$J,358.3,16247,1,4,0)
+ ;;=4^K50.911
+ ;;^UTILITY(U,$J,358.3,16247,2)
+ ;;=^5008646
+ ;;^UTILITY(U,$J,358.3,16248,0)
+ ;;=K50.912^^61^771^27
+ ;;^UTILITY(U,$J,358.3,16248,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,16060,1,3,0)
- ;;=3^Acute Suppr Otitis Media w/ Spon Rupt Ear Drum,Left Ear
- ;;^UTILITY(U,$J,358.3,16060,1,4,0)
- ;;=4^H66.012
- ;;^UTILITY(U,$J,358.3,16060,2)
- ;;=^5133534
- ;;^UTILITY(U,$J,358.3,16061,0)
- ;;=H66.011^^88^870^7
- ;;^UTILITY(U,$J,358.3,16061,1,0)
+ ;;^UTILITY(U,$J,358.3,16248,1,3,0)
+ ;;=3^Crohn's Disease w/ Intestinal Obstruction,Unspec
+ ;;^UTILITY(U,$J,358.3,16248,1,4,0)
+ ;;=4^K50.912
+ ;;^UTILITY(U,$J,358.3,16248,2)
+ ;;=^5008647
+ ;;^UTILITY(U,$J,358.3,16249,0)
+ ;;=K50.919^^61^771^30
+ ;;^UTILITY(U,$J,358.3,16249,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,16061,1,3,0)
- ;;=3^Acute Suppr Otitis Media w/ Spon Rupt Ear Drum,Right Ear
- ;;^UTILITY(U,$J,358.3,16061,1,4,0)
- ;;=4^H66.011
- ;;^UTILITY(U,$J,358.3,16061,2)
- ;;=^5006621
- ;;^UTILITY(U,$J,358.3,16062,0)
- ;;=H66.91^^88^870^36
- ;;^UTILITY(U,$J,358.3,16062,1,0)
+ ;;^UTILITY(U,$J,358.3,16249,1,3,0)
+ ;;=3^Crohn's Disease w/ Unspec Complications,Unspec
+ ;;^UTILITY(U,$J,358.3,16249,1,4,0)
+ ;;=4^K50.919
+ ;;^UTILITY(U,$J,358.3,16249,2)
+ ;;=^5008651
+ ;;^UTILITY(U,$J,358.3,16250,0)
+ ;;=K50.914^^61^771^25
+ ;;^UTILITY(U,$J,358.3,16250,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,16062,1,3,0)
- ;;=3^Otitis Media,Unspec,Right Ear
- ;;^UTILITY(U,$J,358.3,16062,1,4,0)
- ;;=4^H66.91
- ;;^UTILITY(U,$J,358.3,16062,2)
- ;;=^5006640
- ;;^UTILITY(U,$J,358.3,16063,0)
- ;;=H66.92^^88^870^35
- ;;^UTILITY(U,$J,358.3,16063,1,0)
+ ;;^UTILITY(U,$J,358.3,16250,1,3,0)
+ ;;=3^Crohn's Disease w/ Abscess,Unspec
+ ;;^UTILITY(U,$J,358.3,16250,1,4,0)
+ ;;=4^K50.914
+ ;;^UTILITY(U,$J,358.3,16250,2)
+ ;;=^5008649
+ ;;^UTILITY(U,$J,358.3,16251,0)
+ ;;=K50.913^^61^771^26
+ ;;^UTILITY(U,$J,358.3,16251,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,16063,1,3,0)
- ;;=3^Otitis Media,Unspec,Left Ear
- ;;^UTILITY(U,$J,358.3,16063,1,4,0)
- ;;=4^H66.92
- ;;^UTILITY(U,$J,358.3,16063,2)
- ;;=^5006641
- ;;^UTILITY(U,$J,358.3,16064,0)
- ;;=H66.93^^88^870^34
- ;;^UTILITY(U,$J,358.3,16064,1,0)
+ ;;^UTILITY(U,$J,358.3,16251,1,3,0)
+ ;;=3^Crohn's Disease w/ Fistula,Unspec
+ ;;^UTILITY(U,$J,358.3,16251,1,4,0)
+ ;;=4^K50.913
+ ;;^UTILITY(U,$J,358.3,16251,2)
+ ;;=^5008648
+ ;;^UTILITY(U,$J,358.3,16252,0)
+ ;;=K50.918^^61^771^28
+ ;;^UTILITY(U,$J,358.3,16252,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,16064,1,3,0)
- ;;=3^Otitis Media,Unspec,Bilateral
- ;;^UTILITY(U,$J,358.3,16064,1,4,0)
- ;;=4^H66.93
- ;;^UTILITY(U,$J,358.3,16064,2)
- ;;=^5006642
- ;;^UTILITY(U,$J,358.3,16065,0)
- ;;=H81.10^^88^870^37
- ;;^UTILITY(U,$J,358.3,16065,1,0)
+ ;;^UTILITY(U,$J,358.3,16252,1,3,0)
+ ;;=3^Crohn's Disease w/ Oth Complication,Unspec
+ ;;^UTILITY(U,$J,358.3,16252,1,4,0)
+ ;;=4^K50.918
+ ;;^UTILITY(U,$J,358.3,16252,2)
+ ;;=^5008650
+ ;;^UTILITY(U,$J,358.3,16253,0)
+ ;;=K51.90^^61^771^91
+ ;;^UTILITY(U,$J,358.3,16253,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,16065,1,3,0)
- ;;=3^Paroxysmal Veritgo,Benign,Unspec Ear
- ;;^UTILITY(U,$J,358.3,16065,1,4,0)
- ;;=4^H81.10
+ ;;^UTILITY(U,$J,358.3,16253,1,3,0)
+ ;;=3^Ulcerative Colitis w/o Complications,Unspec

@@ -1,5 +1,5 @@
 PSJLMUT1 ;BIR/MLM - DRUG NAME DISPLAY ;Jul 05, 2018@08:53
- ;;5.0;INPATIENT MEDICATIONS;**4,27,29,49,58,107,110,146,175,201,181,281,329,373**;16 DEC 97;Build 3
+ ;;5.0;INPATIENT MEDICATIONS;**4,27,29,49,58,107,110,146,175,201,181,281,329,373,426**;16 DEC 97;Build 4
  ;
  ; Reference to ^PS(55 is supported by DBIA# 2191.
  ; Reference to ^PS(50.7 is supported by DBIA# 2180.
@@ -165,5 +165,5 @@ WRITE(TYPE)        ;Display order check description
  I TYPE="DI" W !!,"This patient is receiving the following medication",$S(PSJOC>1:"s",1:"")," that ha",$S(PSJOC>1:"ve",1:"s")," an interaction",!,"with ",$P($G(^PSDRUG(PSJDD,0)),U),":",!
  Q
 PAUSE ;
- K DIR W ! S DIR(0)="EA",DIR("A")="Press Return to continue...",DIR("?")="Press Return to continue..." D ^DIR W !
+ K DIR W ! S DIR(0)="EA",DIR("A")="Press Return to continue..." D ^DIR W !
  Q

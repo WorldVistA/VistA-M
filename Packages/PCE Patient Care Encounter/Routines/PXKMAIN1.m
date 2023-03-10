@@ -1,5 +1,5 @@
-PXKMAIN1 ;ISL/JVS,ISA/Zoltan - Main Routine for Data Capture ;06/17/16  13:52
- ;;1.0;PCE PATIENT CARE ENCOUNTER;**22,73,124,178,210,216**;Aug 12, 1996;Build 11
+PXKMAIN1 ;ISL/JVS,ISA/Zoltan - Main Routine for Data Capture ;Jul 26, 2021@09:35:17
+ ;;1.0;PCE PATIENT CARE ENCOUNTER;**22,73,124,178,210,216,211,217**;Aug 12, 1996;Build 134
  ;+This routine is responsible for:
  ;+ - creating new entries in PCE files,
  ;+ - processing modifications to existing entries,
@@ -11,19 +11,19 @@ PXKMAIN1 ;ISL/JVS,ISA/Zoltan - Main Routine for Data Capture ;06/17/16  13:52
  ;+
  ;+LOCAL VARIABLE LIST
  ;+ MOST VARIABLES ARE DEFINED AT THE TOP OF  PXKMAIN
- ;+ PXKSEQ   = Sequence number in PXK tmp global
+ ;+ PXKSEQ   = Sequence number in PXK TMP global
  ;+ PXKCAT   = Category of entry (CPT,MSR,VST...)
  ;+ PXKREF   = Root of temp global
  ;+ PXKPIEN  = IEN of v file
  ;+ PXKAUDIT = data located in the audit field of the v file
- ;+ PXKER    = field data use to build the dr string (eg .04///^S X=$G()
- ;+ PXKFLD   = field number gleened from the file routines
+ ;+ PXKER    = field data use to build the DR string (e.g., .04///^S X=$G()
+ ;+ PXKFLD   = field number gleaned from the file routines
  ;+ PXKNOD   = same as the subscript in a global node
  ;+ PXKPCE   = the piece where the data is found on that node
  ;
  ;
  W !,"This is not an entry point" Q
-LOOP ;+Copy delimited strings into sub-arrays.
+LOOP ;+Copy delimited strings into sub-arrays. PXKSUB is the node.
  F PXKI=1:1:$L(PXKAFT(PXKSUB),"^") I $P(PXKAFT(PXKSUB),"^",PXKI)'="" S PXKAV(PXKSUB,PXKI)=$P(PXKAFT(PXKSUB),"^",PXKI)
  F PXKI=1:1:$L(PXKBEF(PXKSUB),"^") I $P(PXKBEF(PXKSUB),"^",PXKI)'="" S PXKBV(PXKSUB,PXKI)=$P(PXKBEF(PXKSUB),"^",PXKI)
  K PXKI,PXKJ ; Not sure if NEW would be OK.
@@ -36,15 +36,15 @@ ERROR ;+Check for missing required fields
  D EN1^@PXKRTN
  S PXKER=$P(PXKER," * ",1)
  I PXKER="" Q
+ N PXJ,PXKFD,PXKFLD
  F PXJ=1:1:$L(PXKER,",") D
  . S PXJJ=$P(PXKER,",",PXJ)
  . I '$D(PXKAV(PXKNOD,PXJJ)) D
- . . S PXKPCE=PXJJ
- . . D EN2^@PXKRTN
- . . S PXKFLD=$P(PXKFD,"/",1)
- . . S:PXKFLD["*" PXKFLD=$P(PXKFLD," * ",2)
- . . S PXKERROR(PXKCAT,PXKSEQ,0,PXKFLD)="Missing Required Fields"
- K PXK,PXJJ,PXKFLD,PXKFD ; Not sure about use of NEW here.
+ .. S PXKPCE=PXJJ
+ .. D EN2^@PXKRTN
+ .. S PXKFLD=$P(PXKFD,"/",1)
+ .. S:PXKFLD["*" PXKFLD=$P(PXKFLD," * ",2)
+ .. S PXKERROR(PXKCAT,PXKSEQ,0,PXKFLD)="Missing Required Fields"
  Q
  ;
 CLEAN ;--Clean out the PXKAV array
@@ -120,8 +120,8 @@ DRDIE ;--Set the DR string and DO DIE
  . I PXKFGED=1 S PXKPCE=0
  . I PXKCAT="CPT",PXKNOD=1 D  Q
  .. D DIE
- .. I $G(^TMP("PXK",$J,PXKCAT,PXKSEQ,"IEN"))]"" Q
- .. D UPD^PXKMOD
+ .. ;I $G(^TMP("PXK",$J,PXKCAT,PXKSEQ,"IEN"))]"" Q
+ .. D UPD^PXKMOD(PXKPIEN)
  . ;
  . I PXKCAT="IMM",PXKNOD?1(1"2",1"3",1"11") D DIE^PXKIMM Q
  . ;
@@ -139,14 +139,12 @@ DRDIE ;--Set the DR string and DO DIE
  ..I $G(PXKER)'="" S DR=DR_PXKER_"PXKAV("_PXKNOD_","_PXKPCE_"));"
  ..I $L(DR)>200 D DIE
  D DIE
- I PXKCAT="IMM",$G(PXVNEWIM) D STOCK^PXVXR K PXVNEWIM ; PX*1*210
  K DIE,PXKLR,DIC(0)
  D ER
  Q
-DIE ;+Lock global and invoke FM ^DIE call.
- L +@PXKLR:10
+ ;
+DIE ;Invoke FM ^DIE call.
  D ^DIE
- L -@PXKLR
  K DR
  S DR=""
  Q
@@ -216,8 +214,15 @@ DUP ;+Code to check for duplicates
  ..F PXJ=1:1:$L(PXKER,",") S PXJJ=$P(PXKER,",",PXJ) D
  ...I $P($G(@PXKVRTN@(PX,$P(PXJJ,"+",1))),"^",$P(PXJJ,"+",2))=$G(PXKAV($P(PXJJ,"+",1),$P(PXJJ,"+",2))),PX'=PXKPIEN S PXJJJ=PXJJJ+1
  ..I $L(PXKER,",")=PXJJJ S PXFG=1
- ;PXKHLR Is not killed because it is a flag comming from another routine
+ ;PXKHLR Is not killed because it is a flag coming from another routine
  Q
+ ;
+CPTMOD(VCPTIEN,MODIEN) ;
+ N IND,VCPTE
+ S IND=$O(^AUPNVCPT(VCPTIEN,1,"B",MODIEN,""))
+ I IND="" S IND=1
+ S VCPTE="^AUPNVCPT("_VCPTIEN_",1,"_IND_",0)"
+ Q VCPTE
  ;
 ER ;--PXKERROR MAKING IF NOT POPULATED CORRECTLY
  N PXKRT,PXKMOD,PXKSTR
@@ -228,7 +233,7 @@ ER ;--PXKERROR MAKING IF NOT POPULATED CORRECTLY
  . S PXKP=""
  . F  S PXKP=$O(PXKAV(PXKN,PXKP)) Q:PXKP=""  D
  .. S PXKRRT=$P($T(GLOBAL^@PXKRTN),";;",2)_"("_DA_","
- .. I PXKN=1,PXKCAT="CPT" S PXKRRT=PXKRRT_PXKN_","_PXKP_","_0_")"
+ .. I PXKN=1,PXKCAT="CPT" S PXKRRT=$$CPTMOD(PXKPIEN,PXKAV(PXKN,PXKP))
  .. E  S PXKRRT=PXKRRT_PXKN_")"
  .. I PXKAV(PXKN,PXKP)'=$P($G(@PXKRRT),"^",$S(PXKN=1:1,1:PXKP)) D
  ... Q:PXKAV(PXKN,PXKP)["@"
@@ -243,3 +248,4 @@ ER ;--PXKERROR MAKING IF NOT POPULATED CORRECTLY
  .... S PXKSTR=PXKERROR(PXKCAT,PXKSEQ,DA,PXKFLD)_","_PXKAV(PXKN,PXKP)
  ... S PXKERROR(PXKCAT,PXKSEQ,DA,PXKFLD)=PXKSTR
  Q
+ ;

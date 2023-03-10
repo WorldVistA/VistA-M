@@ -1,5 +1,5 @@
 RORX014A ;HOIFO/BH,SG,VAC - REGISTRY MEDS REPORT (QUERY & SORT) ;4/7/09 2:09pm
- ;;1.5;CLINICAL CASE REGISTRIES;**8,13,19,21,31**;Feb 17, 2006;Build 62
+ ;;1.5;CLINICAL CASE REGISTRIES;**8,13,19,21,31,39**;Feb 17, 2006;Build 4
  ;
  ;******************************************************************************
  ;******************************************************************************
@@ -16,6 +16,7 @@ RORX014A ;HOIFO/BH,SG,VAC - REGISTRY MEDS REPORT (QUERY & SORT) ;4/7/09 2:09pm
  ;                                      additional identifier option selected
  ;ROR*1.5*31   MAY 2017    M FERRARESE  Adding PACT ,PCP,and AGE/DOB as additional
  ;                                      identifiers.
+ ;ROR*1.5*39   JUL 2021    M FERRARESE  Setting SSN and LAST4 to zeros
  ;******************************************************************************
  ;******************************************************************************
  Q
@@ -192,7 +193,7 @@ STORE(REPORT,NRXC) ;
  . . . S BUF=@NODE@("RXC",RXCIEN,"P",PATIEN)
  . . . S ITEM=$$ADDVAL^RORTSK11(RORTSK,"PATIENT",,TABLE,,PATIEN)
  . . . D ADDVAL^RORTSK11(RORTSK,"NAME",$P(BUF,U,2),ITEM,1)
- . . . D ADDVAL^RORTSK11(RORTSK,"LAST4",$P(BUF,U),ITEM,2)
+ . . . S $P(BUF,U)="0000" D ADDVAL^RORTSK11(RORTSK,"LAST4",$P(BUF,U),ITEM,2)
  . . . ;
  . . . S AGETYPE=$$PARAM^RORTSK01("AGE_RANGE","TYPE") I AGETYPE'="ALL" D
  . . . . D ADDVAL^RORTSK11(RORTSK,AGETYPE,$P(BUF,U,7),ITEM,1)

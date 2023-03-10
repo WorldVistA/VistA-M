@@ -1,5 +1,5 @@
 PSJUTL3 ;BIR/MLM-MISC. INPATIENT UTILITIES ;29 OCT 01 / 4:29 PM
- ;;5.0;INPATIENT MEDICATIONS;**58,353*;16 DEC 97;Build 49
+ ;;5.0;INPATIENT MEDICATIONS;**58,353,426*;16 DEC 97;Build 4
  ;
  ; Reference to ^PS(55 is supported by DBIA# 2191.
  ; Reference to ^PSSLOCK is supported by DBIA# 2789.
@@ -160,4 +160,13 @@ SHOWVP  ;Entry point to Display Provider hidden action info (via defaulted IFN)
  W !!,"PROVIDER SPECIALTY:  ",$$GET1^DIQ(200,IFN_",","PROVIDER CLASS"),!,"                     "_$$GET1^DIQ(200,IFN_",","SERVICE/SECTION")
  K Y
  G PICKVP
+ Q
+ ;
+DELNV(DFN,ORDER) ; Deletes/Resets Nurse Verification in PHARMACY PATIENT file (#55), used by BCMA
+ ;Input: DFN   - Pointer the PATIENT file (#2)
+ ;       ORDER - Pointer to ORDER sub-file in file #55 (e.g., "124U", "321V")
+ I $P($G(^PS(55,+$G(DFN),$S(ORDER["V":"IV",1:5),+$G(ORDER),4)),"^",10) D
+ . S $P(^PS(55,DFN,$S(ORDER["V":"IV",1:5),+ORDER,4),"^",1)=""
+ . S $P(^PS(55,DFN,$S(ORDER["V":"IV",1:5),+ORDER,4),"^",2)=""
+ . S $P(^PS(55,DFN,$S(ORDER["V":"IV",1:5),+ORDER,4),"^",10)=0
  Q

@@ -1,126 +1,126 @@
-IBDEI115 ; ; 04-FEB-2020
- ;;3.0;IB ENCOUNTER FORM IMP/EXP;;FEB 04, 2020
+IBDEI115 ; ; 01-FEB-2022
+ ;;3.0;IB ENCOUNTER FORM IMP/EXP;;FEB 01, 2022
  Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,999) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
- ;;^UTILITY(U,$J,358.3,16559,0)
- ;;=D53.9^^88^879^181
- ;;^UTILITY(U,$J,358.3,16559,1,0)
+ ;;^UTILITY(U,$J,358.3,16743,1,3,0)
+ ;;=3^Family Hx of Colonic Polyps
+ ;;^UTILITY(U,$J,358.3,16743,1,4,0)
+ ;;=4^Z83.71
+ ;;^UTILITY(U,$J,358.3,16743,2)
+ ;;=^5063386
+ ;;^UTILITY(U,$J,358.3,16744,0)
+ ;;=Z84.81^^61^776^22
+ ;;^UTILITY(U,$J,358.3,16744,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,16559,1,3,0)
- ;;=3^Nutritional Anemia,Unspec
- ;;^UTILITY(U,$J,358.3,16559,1,4,0)
- ;;=4^D53.9
- ;;^UTILITY(U,$J,358.3,16559,2)
- ;;=^5002298
- ;;^UTILITY(U,$J,358.3,16560,0)
- ;;=D47.4^^88^879^182
- ;;^UTILITY(U,$J,358.3,16560,1,0)
+ ;;^UTILITY(U,$J,358.3,16744,1,3,0)
+ ;;=3^Family Hx of Genetic Disease
+ ;;^UTILITY(U,$J,358.3,16744,1,4,0)
+ ;;=4^Z84.81
+ ;;^UTILITY(U,$J,358.3,16744,2)
+ ;;=^5063392
+ ;;^UTILITY(U,$J,358.3,16745,0)
+ ;;=Z86.010^^61^776^70
+ ;;^UTILITY(U,$J,358.3,16745,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,16560,1,3,0)
- ;;=3^Osteomyelofibrosis
- ;;^UTILITY(U,$J,358.3,16560,1,4,0)
- ;;=4^D47.4
- ;;^UTILITY(U,$J,358.3,16560,2)
- ;;=^5002259
- ;;^UTILITY(U,$J,358.3,16561,0)
- ;;=D59.1^^88^879^29
- ;;^UTILITY(U,$J,358.3,16561,1,0)
+ ;;^UTILITY(U,$J,358.3,16745,1,3,0)
+ ;;=3^Personal Hx of Colonic Polyps
+ ;;^UTILITY(U,$J,358.3,16745,1,4,0)
+ ;;=4^Z86.010
+ ;;^UTILITY(U,$J,358.3,16745,2)
+ ;;=^5063456
+ ;;^UTILITY(U,$J,358.3,16746,0)
+ ;;=Z86.14^^61^776^75
+ ;;^UTILITY(U,$J,358.3,16746,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,16561,1,3,0)
- ;;=3^Autoimmune Hemolytic Anemia,Other
- ;;^UTILITY(U,$J,358.3,16561,1,4,0)
- ;;=4^D59.1
- ;;^UTILITY(U,$J,358.3,16561,2)
- ;;=^5002324
- ;;^UTILITY(U,$J,358.3,16562,0)
- ;;=D51.3^^88^879^196
- ;;^UTILITY(U,$J,358.3,16562,1,0)
+ ;;^UTILITY(U,$J,358.3,16746,1,3,0)
+ ;;=3^Personal Hx of MRSA Infection
+ ;;^UTILITY(U,$J,358.3,16746,1,4,0)
+ ;;=4^Z86.14
+ ;;^UTILITY(U,$J,358.3,16746,2)
+ ;;=^5063464
+ ;;^UTILITY(U,$J,358.3,16747,0)
+ ;;=Z86.31^^61^776^71
+ ;;^UTILITY(U,$J,358.3,16747,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,16562,1,3,0)
- ;;=3^Vitamin B12 Deficiency Anemia,Other
- ;;^UTILITY(U,$J,358.3,16562,1,4,0)
- ;;=4^D51.3
- ;;^UTILITY(U,$J,358.3,16562,2)
- ;;=^5002287
- ;;^UTILITY(U,$J,358.3,16563,0)
- ;;=D77.^^88^879^58
- ;;^UTILITY(U,$J,358.3,16563,1,0)
+ ;;^UTILITY(U,$J,358.3,16747,1,3,0)
+ ;;=3^Personal Hx of Diabetic Foot Ulcer
+ ;;^UTILITY(U,$J,358.3,16747,1,4,0)
+ ;;=4^Z86.31
+ ;;^UTILITY(U,$J,358.3,16747,2)
+ ;;=^5063467
+ ;;^UTILITY(U,$J,358.3,16748,0)
+ ;;=Z86.711^^61^776^101
+ ;;^UTILITY(U,$J,358.3,16748,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,16563,1,3,0)
- ;;=3^Disorder of Blood/Blood-Forming Organs in Diseases Classified Elsewhere,Other
- ;;^UTILITY(U,$J,358.3,16563,1,4,0)
- ;;=4^D77.
- ;;^UTILITY(U,$J,358.3,16563,2)
- ;;=^5002396
- ;;^UTILITY(U,$J,358.3,16564,0)
- ;;=D58.2^^88^879^84
- ;;^UTILITY(U,$J,358.3,16564,1,0)
+ ;;^UTILITY(U,$J,358.3,16748,1,3,0)
+ ;;=3^Personal Hx of Pulmonary Embolism
+ ;;^UTILITY(U,$J,358.3,16748,1,4,0)
+ ;;=4^Z86.711
+ ;;^UTILITY(U,$J,358.3,16748,2)
+ ;;=^5063474
+ ;;^UTILITY(U,$J,358.3,16749,0)
+ ;;=Z86.72^^61^776^107
+ ;;^UTILITY(U,$J,358.3,16749,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,16564,1,3,0)
- ;;=3^Hemoglobinopathies,Other
- ;;^UTILITY(U,$J,358.3,16564,1,4,0)
- ;;=4^D58.2
- ;;^UTILITY(U,$J,358.3,16564,2)
- ;;=^87629
- ;;^UTILITY(U,$J,358.3,16565,0)
- ;;=C88.8^^88^879^106
- ;;^UTILITY(U,$J,358.3,16565,1,0)
+ ;;^UTILITY(U,$J,358.3,16749,1,3,0)
+ ;;=3^Personal Hx of Thrombophlebitis
+ ;;^UTILITY(U,$J,358.3,16749,1,4,0)
+ ;;=4^Z86.72
+ ;;^UTILITY(U,$J,358.3,16749,2)
+ ;;=^5063476
+ ;;^UTILITY(U,$J,358.3,16750,0)
+ ;;=Z87.310^^61^776^99
+ ;;^UTILITY(U,$J,358.3,16750,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,16565,1,3,0)
- ;;=3^Malig Immunoproliferative Diseases,Other
- ;;^UTILITY(U,$J,358.3,16565,1,4,0)
- ;;=4^C88.8
- ;;^UTILITY(U,$J,358.3,16565,2)
- ;;=^5001750
- ;;^UTILITY(U,$J,358.3,16566,0)
- ;;=D70.8^^88^879^179
- ;;^UTILITY(U,$J,358.3,16566,1,0)
+ ;;^UTILITY(U,$J,358.3,16750,1,3,0)
+ ;;=3^Personal Hx of Osteoporosis Fx
+ ;;^UTILITY(U,$J,358.3,16750,1,4,0)
+ ;;=4^Z87.310
+ ;;^UTILITY(U,$J,358.3,16750,2)
+ ;;=^5063485
+ ;;^UTILITY(U,$J,358.3,16751,0)
+ ;;=Z87.442^^61^776^110
+ ;;^UTILITY(U,$J,358.3,16751,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,16566,1,3,0)
- ;;=3^Neutropenia,Other
- ;;^UTILITY(U,$J,358.3,16566,1,4,0)
- ;;=4^D70.8
- ;;^UTILITY(U,$J,358.3,16566,2)
- ;;=^334042
- ;;^UTILITY(U,$J,358.3,16567,0)
- ;;=D59.4^^88^879^180
- ;;^UTILITY(U,$J,358.3,16567,1,0)
+ ;;^UTILITY(U,$J,358.3,16751,1,3,0)
+ ;;=3^Personal Hx of Urinary Calculi
+ ;;^UTILITY(U,$J,358.3,16751,1,4,0)
+ ;;=4^Z87.442
+ ;;^UTILITY(U,$J,358.3,16751,2)
+ ;;=^5063497
+ ;;^UTILITY(U,$J,358.3,16752,0)
+ ;;=Z87.81^^61^776^108
+ ;;^UTILITY(U,$J,358.3,16752,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,16567,1,3,0)
- ;;=3^Nonautoimmune Hemolytic Anemias,Other
- ;;^UTILITY(U,$J,358.3,16567,1,4,0)
- ;;=4^D59.4
- ;;^UTILITY(U,$J,358.3,16567,2)
- ;;=^5002326
- ;;^UTILITY(U,$J,358.3,16568,0)
- ;;=D69.59^^88^879^186
- ;;^UTILITY(U,$J,358.3,16568,1,0)
+ ;;^UTILITY(U,$J,358.3,16752,1,3,0)
+ ;;=3^Personal Hx of Traumatic Fx (Healed)
+ ;;^UTILITY(U,$J,358.3,16752,1,4,0)
+ ;;=4^Z87.81
+ ;;^UTILITY(U,$J,358.3,16752,2)
+ ;;=^5063513
+ ;;^UTILITY(U,$J,358.3,16753,0)
+ ;;=Z87.890^^61^776^102
+ ;;^UTILITY(U,$J,358.3,16753,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,16568,1,3,0)
- ;;=3^Secondary Thrombocytopenia,Other
- ;;^UTILITY(U,$J,358.3,16568,1,4,0)
- ;;=4^D69.59
- ;;^UTILITY(U,$J,358.3,16568,2)
- ;;=^5002369
- ;;^UTILITY(U,$J,358.3,16569,0)
- ;;=C22.7^^88^879^47
- ;;^UTILITY(U,$J,358.3,16569,1,0)
+ ;;^UTILITY(U,$J,358.3,16753,1,3,0)
+ ;;=3^Personal Hx of Sex Reassignment
+ ;;^UTILITY(U,$J,358.3,16753,1,4,0)
+ ;;=4^Z87.890
+ ;;^UTILITY(U,$J,358.3,16753,2)
+ ;;=^5063517
+ ;;^UTILITY(U,$J,358.3,16754,0)
+ ;;=Z87.892^^61^776^68
+ ;;^UTILITY(U,$J,358.3,16754,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,16569,1,3,0)
- ;;=3^Carcinomas of Liver,Other Spec
- ;;^UTILITY(U,$J,358.3,16569,1,4,0)
- ;;=4^C22.7
- ;;^UTILITY(U,$J,358.3,16569,2)
- ;;=^5000938
- ;;^UTILITY(U,$J,358.3,16570,0)
- ;;=D75.89^^88^879^57
- ;;^UTILITY(U,$J,358.3,16570,1,0)
+ ;;^UTILITY(U,$J,358.3,16754,1,3,0)
+ ;;=3^Personal Hx of Anaphylaxis
+ ;;^UTILITY(U,$J,358.3,16754,1,4,0)
+ ;;=4^Z87.892
+ ;;^UTILITY(U,$J,358.3,16754,2)
+ ;;=^5063519
+ ;;^UTILITY(U,$J,358.3,16755,0)
+ ;;=Z87.39^^61^776^96
+ ;;^UTILITY(U,$J,358.3,16755,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,16570,1,3,0)
- ;;=3^Diseases of Blood/Blood-Forming Organs,Other Spec
- ;;^UTILITY(U,$J,358.3,16570,1,4,0)
- ;;=4^D75.89
- ;;^UTILITY(U,$J,358.3,16570,2)
- ;;=^5002392
- ;;^UTILITY(U,$J,358.3,16571,0)
- ;;=D47.Z9^^88^879^178
+ ;;^UTILITY(U,$J,358.3,16755,1,3,0)
+ ;;=3^Personal Hx of Musculoskeletal/Connective Tissue Disease

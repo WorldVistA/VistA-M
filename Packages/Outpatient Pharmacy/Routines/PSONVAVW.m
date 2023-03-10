@@ -1,5 +1,5 @@
-PSONVAVW ;BHM/MFR - View Non-VA Med - Listmanager ;10/20/06
- ;;7.0;OUTPATIENT PHARMACY;**260,500**;13 Feb 97;Build 9
+PSONVAVW ;BHM/MFR - View Non-VA Med - Listmanager ;Mar 17, 2020@14:29:11
+ ;;7.0;OUTPATIENT PHARMACY;**260,500,441**;DEC 1997;Build 208
  ;Reference to File ^PS(55 supported by DBIA 2228
  ;Reference to $$GET1^DIQ is supported by DBIA 2056
  ;Reference to DEM^VADPT is supported by DBIA 10061
@@ -51,6 +51,7 @@ INIT ;
  S CLNAM=$$GET1^DIQ(44,+$P(XX,"^",12),.01)
  S LINE=LINE+1,^TMP(NMSPC,$J,LINE,0)=$J("Clinic: ",23)_$S($P(XX,"^",12):$P(XX,"^",12)_" - "_CLNAM,1:"")
  S LINE=LINE+1,^TMP(NMSPC,$J,LINE,0)=$J("Start Date: ",23)_$$DT($P(XX,"^",9))
+ S LINE=LINE+1,^TMP(NMSPC,$J,LINE,0)=$J("Indication: ",23)_$P($G(^PS(55,PSODFN,"NVA",PSORD,2)),"^")  ;*441-IND
  ;
  ; - "Order Checks" fields
  W:$D(^PS(55,PSODFN,"NVA",PSORD,"OCK")) !

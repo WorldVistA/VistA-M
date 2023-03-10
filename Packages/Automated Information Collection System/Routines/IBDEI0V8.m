@@ -1,128 +1,124 @@
-IBDEI0V8 ; ; 04-FEB-2020
- ;;3.0;IB ENCOUNTER FORM IMP/EXP;;FEB 04, 2020
+IBDEI0V8 ; ; 01-FEB-2022
+ ;;3.0;IB ENCOUNTER FORM IMP/EXP;;FEB 01, 2022
  Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,999) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
- ;;^UTILITY(U,$J,358.3,13904,1,0)
+ ;;^UTILITY(U,$J,358.3,14090,1,4,0)
+ ;;=4^M17.32
+ ;;^UTILITY(U,$J,358.3,14090,2)
+ ;;=^5010791
+ ;;^UTILITY(U,$J,358.3,14091,0)
+ ;;=M17.4^^55^670^7
+ ;;^UTILITY(U,$J,358.3,14091,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,13904,1,3,0)
- ;;=3^Vagina Noninflammatory Disorder,Unspec
- ;;^UTILITY(U,$J,358.3,13904,1,4,0)
- ;;=4^N89.9
- ;;^UTILITY(U,$J,358.3,13904,2)
- ;;=^5015890
- ;;^UTILITY(U,$J,358.3,13905,0)
- ;;=N76.0^^83^818^136
- ;;^UTILITY(U,$J,358.3,13905,1,0)
+ ;;^UTILITY(U,$J,358.3,14091,1,3,0)
+ ;;=3^Bilateral secondary osteoarthritis of knee
+ ;;^UTILITY(U,$J,358.3,14091,1,4,0)
+ ;;=4^M17.4
+ ;;^UTILITY(U,$J,358.3,14091,2)
+ ;;=^5010792
+ ;;^UTILITY(U,$J,358.3,14092,0)
+ ;;=M17.5^^55^670^88
+ ;;^UTILITY(U,$J,358.3,14092,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,13905,1,3,0)
- ;;=3^Vaginitis,Acute
- ;;^UTILITY(U,$J,358.3,13905,1,4,0)
- ;;=4^N76.0
- ;;^UTILITY(U,$J,358.3,13905,2)
- ;;=^5015826
- ;;^UTILITY(U,$J,358.3,13906,0)
- ;;=N76.1^^83^818^137
- ;;^UTILITY(U,$J,358.3,13906,1,0)
+ ;;^UTILITY(U,$J,358.3,14092,1,3,0)
+ ;;=3^Unilateral secondary osteoarthritis of knee
+ ;;^UTILITY(U,$J,358.3,14092,1,4,0)
+ ;;=4^M17.5
+ ;;^UTILITY(U,$J,358.3,14092,2)
+ ;;=^5010793
+ ;;^UTILITY(U,$J,358.3,14093,0)
+ ;;=S83.095D^^55^670^46
+ ;;^UTILITY(U,$J,358.3,14093,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,13906,1,3,0)
- ;;=3^Vaginitis,Subacute/Chronic
- ;;^UTILITY(U,$J,358.3,13906,1,4,0)
- ;;=4^N76.1
- ;;^UTILITY(U,$J,358.3,13906,2)
- ;;=^5015827
- ;;^UTILITY(U,$J,358.3,13907,0)
- ;;=N90.9^^83^818^138
- ;;^UTILITY(U,$J,358.3,13907,1,0)
+ ;;^UTILITY(U,$J,358.3,14093,1,3,0)
+ ;;=3^Dislocation Left Patella, subsequent encounter
+ ;;^UTILITY(U,$J,358.3,14093,1,4,0)
+ ;;=4^S83.095D
+ ;;^UTILITY(U,$J,358.3,14093,2)
+ ;;=^5137020
+ ;;^UTILITY(U,$J,358.3,14094,0)
+ ;;=S83.094D^^55^670^56
+ ;;^UTILITY(U,$J,358.3,14094,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,13907,1,3,0)
- ;;=3^Vulva/Perineum Noninflammaotory Disorder,Unspec
- ;;^UTILITY(U,$J,358.3,13907,1,4,0)
- ;;=4^N90.9
- ;;^UTILITY(U,$J,358.3,13907,2)
- ;;=^5015901
- ;;^UTILITY(U,$J,358.3,13908,0)
- ;;=N39.491^^83^818^22
- ;;^UTILITY(U,$J,358.3,13908,1,0)
+ ;;^UTILITY(U,$J,358.3,14094,1,3,0)
+ ;;=3^Dislocation Right Patella, subsequent encounter
+ ;;^UTILITY(U,$J,358.3,14094,1,4,0)
+ ;;=4^S83.094D
+ ;;^UTILITY(U,$J,358.3,14094,2)
+ ;;=^5042933
+ ;;^UTILITY(U,$J,358.3,14095,0)
+ ;;=S83.282D^^55^670^79
+ ;;^UTILITY(U,$J,358.3,14095,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,13908,1,3,0)
- ;;=3^Coital Incontinence
- ;;^UTILITY(U,$J,358.3,13908,1,4,0)
- ;;=4^N39.491
- ;;^UTILITY(U,$J,358.3,13908,2)
- ;;=^5138920
- ;;^UTILITY(U,$J,358.3,13909,0)
- ;;=N39.492^^83^818^82
- ;;^UTILITY(U,$J,358.3,13909,1,0)
+ ;;^UTILITY(U,$J,358.3,14095,1,3,0)
+ ;;=3^Tear of lat mensc, current injury, left knee, subs
+ ;;^UTILITY(U,$J,358.3,14095,1,4,0)
+ ;;=4^S83.282D
+ ;;^UTILITY(U,$J,358.3,14095,2)
+ ;;=^5137065
+ ;;^UTILITY(U,$J,358.3,14096,0)
+ ;;=S83.281D^^55^670^80
+ ;;^UTILITY(U,$J,358.3,14096,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,13909,1,3,0)
- ;;=3^Postural Urinary Incontinence
- ;;^UTILITY(U,$J,358.3,13909,1,4,0)
- ;;=4^N39.492
- ;;^UTILITY(U,$J,358.3,13909,2)
- ;;=^5138921
- ;;^UTILITY(U,$J,358.3,13910,0)
- ;;=N42.30^^83^818^26
- ;;^UTILITY(U,$J,358.3,13910,1,0)
+ ;;^UTILITY(U,$J,358.3,14096,1,3,0)
+ ;;=3^Tear of lat mensc, current injury, right knee, subs
+ ;;^UTILITY(U,$J,358.3,14096,1,4,0)
+ ;;=4^S83.281D
+ ;;^UTILITY(U,$J,358.3,14096,2)
+ ;;=^5043092
+ ;;^UTILITY(U,$J,358.3,14097,0)
+ ;;=S83.241D^^55^670^81
+ ;;^UTILITY(U,$J,358.3,14097,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,13910,1,3,0)
- ;;=3^Dysplasia of Prostate,Unspec
- ;;^UTILITY(U,$J,358.3,13910,1,4,0)
- ;;=4^N42.30
- ;;^UTILITY(U,$J,358.3,13910,2)
- ;;=^5138924
- ;;^UTILITY(U,$J,358.3,13911,0)
- ;;=N50.811^^83^818^102
- ;;^UTILITY(U,$J,358.3,13911,1,0)
+ ;;^UTILITY(U,$J,358.3,14097,1,3,0)
+ ;;=3^Tear of medial meniscus, current injury, r knee, subs
+ ;;^UTILITY(U,$J,358.3,14097,1,4,0)
+ ;;=4^S83.241D
+ ;;^UTILITY(U,$J,358.3,14097,2)
+ ;;=^5043062
+ ;;^UTILITY(U,$J,358.3,14098,0)
+ ;;=M24.661^^55^670^2
+ ;;^UTILITY(U,$J,358.3,14098,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,13911,1,3,0)
- ;;=3^Testicular Pain,Right
- ;;^UTILITY(U,$J,358.3,13911,1,4,0)
- ;;=4^N50.811
- ;;^UTILITY(U,$J,358.3,13911,2)
- ;;=^5138927
- ;;^UTILITY(U,$J,358.3,13912,0)
- ;;=N50.812^^83^818^101
- ;;^UTILITY(U,$J,358.3,13912,1,0)
+ ;;^UTILITY(U,$J,358.3,14098,1,3,0)
+ ;;=3^Ankylosis,Right Knee
+ ;;^UTILITY(U,$J,358.3,14098,1,4,0)
+ ;;=4^M24.661
+ ;;^UTILITY(U,$J,358.3,14098,2)
+ ;;=^5011442
+ ;;^UTILITY(U,$J,358.3,14099,0)
+ ;;=M24.662^^55^670^1
+ ;;^UTILITY(U,$J,358.3,14099,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,13912,1,3,0)
- ;;=3^Testicular Pain,Left
- ;;^UTILITY(U,$J,358.3,13912,1,4,0)
- ;;=4^N50.812
- ;;^UTILITY(U,$J,358.3,13912,2)
- ;;=^5138928
- ;;^UTILITY(U,$J,358.3,13913,0)
- ;;=N50.82^^83^818^96
- ;;^UTILITY(U,$J,358.3,13913,1,0)
+ ;;^UTILITY(U,$J,358.3,14099,1,3,0)
+ ;;=3^Ankylosis,Left Knee
+ ;;^UTILITY(U,$J,358.3,14099,1,4,0)
+ ;;=4^M24.662
+ ;;^UTILITY(U,$J,358.3,14099,2)
+ ;;=^5011443
+ ;;^UTILITY(U,$J,358.3,14100,0)
+ ;;=G90.521^^55^670^16
+ ;;^UTILITY(U,$J,358.3,14100,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,13913,1,3,0)
- ;;=3^Scrotal Pain
- ;;^UTILITY(U,$J,358.3,13913,1,4,0)
- ;;=4^N50.82
- ;;^UTILITY(U,$J,358.3,13913,2)
- ;;=^5138930
- ;;^UTILITY(U,$J,358.3,13914,0)
- ;;=N52.35^^83^818^36
- ;;^UTILITY(U,$J,358.3,13914,1,0)
+ ;;^UTILITY(U,$J,358.3,14100,1,3,0)
+ ;;=3^Complex Regional Pain Syndrome,I of Right Lower Limb
+ ;;^UTILITY(U,$J,358.3,14100,1,4,0)
+ ;;=4^G90.521
+ ;;^UTILITY(U,$J,358.3,14100,2)
+ ;;=^5004168
+ ;;^UTILITY(U,$J,358.3,14101,0)
+ ;;=G90.522^^55^670^15
+ ;;^UTILITY(U,$J,358.3,14101,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,13914,1,3,0)
- ;;=3^Erectile Dysfunction Following Radiation Therapy
- ;;^UTILITY(U,$J,358.3,13914,1,4,0)
- ;;=4^N52.35
- ;;^UTILITY(U,$J,358.3,13914,2)
- ;;=^5138932
- ;;^UTILITY(U,$J,358.3,13915,0)
- ;;=N52.36^^83^818^34
- ;;^UTILITY(U,$J,358.3,13915,1,0)
+ ;;^UTILITY(U,$J,358.3,14101,1,3,0)
+ ;;=3^Complex Regional Pain Syndrome,I of Left Lower Limb
+ ;;^UTILITY(U,$J,358.3,14101,1,4,0)
+ ;;=4^G90.522
+ ;;^UTILITY(U,$J,358.3,14101,2)
+ ;;=^5133371
+ ;;^UTILITY(U,$J,358.3,14102,0)
+ ;;=G90.523^^55^670^14
+ ;;^UTILITY(U,$J,358.3,14102,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,13915,1,3,0)
- ;;=3^Erectile Dysfunction Following Interstitial Seed Therapy
- ;;^UTILITY(U,$J,358.3,13915,1,4,0)
- ;;=4^N52.36
- ;;^UTILITY(U,$J,358.3,13915,2)
- ;;=^5138933
- ;;^UTILITY(U,$J,358.3,13916,0)
- ;;=N52.37^^83^818^35
- ;;^UTILITY(U,$J,358.3,13916,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,13916,1,3,0)
- ;;=3^Erectile Dysfunction Following Prostate Ablative Therapy
+ ;;^UTILITY(U,$J,358.3,14102,1,3,0)
+ ;;=3^Complex Regional Pain Syndrome,I of Bilateral Lower Limbs

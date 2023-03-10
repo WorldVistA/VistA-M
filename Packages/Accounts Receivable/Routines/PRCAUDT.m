@@ -1,15 +1,27 @@
 PRCAUDT ;SF - ISC/YJK-AUDIT A NEW BILL/EDIT INCOMPLETE AR ;10/17/96  5:33 PM
-V ;;4.5;Accounts Receivable;**1,21,57,97,143,107,173,321,342**;Mar 20, 1995;Build 7
+V ;;4.5;Accounts Receivable;**1,21,57,97,143,107,173,321,342,349**;Mar 20, 1995;Build 44
  ;Per VA Directive 6402, this routine should not be modified.
- NEW X,Y,LOOP,DIR
+ NEW DIR,LOOP,RTYPES,X,Y
  W ! S DIR("B")="YES",DIR("A")="Do you want to loop thru 'NEW BILLS'",DIR(0)="Y" D ^DIR K DIR G:$D(DIRUT) END S LOOP=+Y
- D AUDITB(0,0,LOOP)
+ ; PRCA*4.5*349 - New prompt to allow user to filter for rate type
+ I LOOP D  Q:$G(DTOUT)!$G(DUOUT)
+ . N DIR,X,Y
+ . W !!,"Select rate types to loop through, or hit 'Enter' for all rate types.",!
+ . F  D  Q:$G(DTOUT)!$G(DUOUT)!(X="")
+ .. S DIR(0)="PO^399.3:AE",DIR("A")="Select Rate Types to Include"
+ .. D ^DIR
+ .. I X]"" D
+ ... S:'$D(RTYPES(+U)) RTYPES(+Y)=$P(Y,U,2)
+ G:$G(DTOUT)!$G(DUOUT) END
+ ; PRCA*4.5*349 - End new code
+ D AUDITB(0,0,LOOP,.RTYPES)  ; PRCA*4.5*349 - Add rate types filter list
  Q
  ;
-AUDITB(PRCABN,PRAUTOA,LOOP) ;
+AUDITB(PRCABN,PRAUTOA,LOOP,RTYPES) ;
  ; PRCABN = the ien of the entry to audit or 0 for batch entry above
  ; PRAUTOA = 1 for auto-audit
  ; LOOP = 1 if looping through bills, 0 if not
+ ; RTYPES = Array of rate types to display (if not defined, show all rate types) (PRCA*4.5*349)
  N PRCA,PRCASEG,PREND,PRQUIT,X,XX,Y ; PRCA*4.5*321
  S PREND=0,PRCA("AUTO_AUDIT")=PRAUTOA
  F  D  Q:$S(PREND:1,PRAUTOA:1,1:0)
@@ -20,6 +32,13 @@ AUDITB(PRCABN,PRAUTOA,LOOP) ;
  . I PRAUTOA S PRCA("CKSITE")="",PRCA("SITE")=$P($$BILL(PRCABN),"-") K PRCAT
  . I '$D(PRCA("CKSITE")) D CKSITE K:$D(PRCA("CKSITE")) PRCAT I '$D(PRCA("CKSITE")) S PREND=1 Q
  . I LOOP S PRCABN=$O(^PRCA(430,"AC",18,PRCABN)) I 'PRCABN S PREND=1 Q
+ . ; PRCA*4.5*349 - If filtering by rate types, do not audit claims that do not match selected rate types
+ . I LOOP,$D(RTYPES)>1 D  Q:PRQUIT
+ .. N RATETYPE
+ .. S RATETYPE=$$GET1^DIQ(399,PRCABN_",",.07,"I")
+ .. I RATETYPE="" S PRQUIT=1 Q
+ .. S:'$D(RTYPES(RATETYPE)) PRQUIT=1
+ . ; PRCA*4.5*349 - End new code
  . I LOOP!PRAUTOA D  Q:PRQUIT
  .. I $$BILLREJ(PRCABN) S PRQUIT=1 Q   ; PRCA*4.5*321 - claim has reject messages, do not audit
  .. S PRCATY=$P(^PRCA(430,PRCABN,0),U,2),PRCA("SEG")=$S(+$P(^(0),U,21)>240:$P(^(0),U,21),1:"")
@@ -149,12 +168,14 @@ BILL(PRCABN) ; Returns AR bill number in external format
  Q $P($G(^PRCA(430,+$G(PRCABN),0)),U)
  ;
 BILLREJ(PRCABN) ; EP Check if bill has reject messages. Added for PRCA*4.5*321
+ ; Changed for PRCA*4.5*349 to only return 1 if there any reject messages with
+ ; uncompleted reviews instead of if there were any reject messages at all
  ; Input - PRCABN - Internal Entry number from ACCOUNTS RECEIVABLE file [#430]
  ; (Note - file #399 has same IEN as file #430)
  ; Output - 1 - Reject messages 0 - No Reject messages
  N BILLNO,RETURN
  S BILLNO=$$GET1^DIQ(399,PRCABN_",",.01,"I")
- S RETURN=$$BILLREJ^IBJTU6(BILLNO) ; API call covered by IA 6060
+ S RETURN=$$BILLREJ2^IBJTU6(BILLNO) ; API call covered by IA 7092 - PRCA*4.5*349
  Q RETURN
  ;
 PAUSE(MSG) ; Display message and pause till user responds

@@ -1,5 +1,5 @@
 IBECEAU3 ;ALB/CPM - Cancel/Edit/Add... Add New IB Action; 11-MAR-93
- ;;2.0;INTEGRATED BILLING;**132,150,167,183,341,563,618,656,663,653**;21-MAR-94;Build 19
+ ;;2.0;INTEGRATED BILLING;**132,150,167,183,341,563,618,656,663,653,682**;21-MAR-94;Build 15
  ;;Per VA Directive 6402, this routine should not be modified.
  ;
 ADD ; Add a new Integrated Billing Action entry.
@@ -59,6 +59,7 @@ ADDQ Q
  ;
 CTBB ; Charge to be billed
  ; Check Outpat. Fee Service less than 20% Outpat Co Pay
+ S:$G(IBREBILL("CHRGAMT"))'="" IBCHG=IBREBILL("CHRGAMT") ; IB*2.0*682
  D:$G(IBAFEE) FEE^IBECEAU5 Q:IBY<1
  I $G(IBDESC)["RX COPAY",$$CHKHRFS^IBAMTS3(DFN,$G(IBEFDT)) S IBCHG=IBUNIT*2  ;IB*2.0*653 charge $2.00 per unit ( 1 Unit = 30 day supply), no Tier rates.
  W !!,"Charge to be billed --> $",$J(IBCHG,0,2)

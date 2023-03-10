@@ -1,126 +1,128 @@
-IBDEI0HF ; ; 04-FEB-2020
- ;;3.0;IB ENCOUNTER FORM IMP/EXP;;FEB 04, 2020
+IBDEI0HF ; ; 01-FEB-2022
+ ;;3.0;IB ENCOUNTER FORM IMP/EXP;;FEB 01, 2022
  Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,999) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
- ;;^UTILITY(U,$J,358.3,7582,1,3,0)
- ;;=3^Transient Cerebral Ischemic Attack,Unspec
- ;;^UTILITY(U,$J,358.3,7582,1,4,0)
- ;;=4^G45.9
- ;;^UTILITY(U,$J,358.3,7582,2)
- ;;=^5003959
- ;;^UTILITY(U,$J,358.3,7583,0)
- ;;=I62.00^^63^495^26
- ;;^UTILITY(U,$J,358.3,7583,1,0)
+ ;;^UTILITY(U,$J,358.3,7844,2)
+ ;;=^5007744
+ ;;^UTILITY(U,$J,358.3,7845,0)
+ ;;=I70.641^^39^391^66
+ ;;^UTILITY(U,$J,358.3,7845,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,7583,1,3,0)
- ;;=3^Nontraumatic Subdural Hemorrhage,Unspec
- ;;^UTILITY(U,$J,358.3,7583,1,4,0)
- ;;=4^I62.00
- ;;^UTILITY(U,$J,358.3,7583,2)
- ;;=^5007289
- ;;^UTILITY(U,$J,358.3,7584,0)
- ;;=C79.31^^63^495^12
- ;;^UTILITY(U,$J,358.3,7584,1,0)
+ ;;^UTILITY(U,$J,358.3,7845,1,3,0)
+ ;;=3^Athscl Nonbiol Bypass of Left Leg w/ Ulcer of Thigh
+ ;;^UTILITY(U,$J,358.3,7845,1,4,0)
+ ;;=4^I70.641
+ ;;^UTILITY(U,$J,358.3,7845,2)
+ ;;=^5007747
+ ;;^UTILITY(U,$J,358.3,7846,0)
+ ;;=I70.642^^39^391^67
+ ;;^UTILITY(U,$J,358.3,7846,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,7584,1,3,0)
- ;;=3^Mets Malig Neop of Brain
- ;;^UTILITY(U,$J,358.3,7584,1,4,0)
- ;;=4^C79.31
- ;;^UTILITY(U,$J,358.3,7584,2)
- ;;=^5001347
- ;;^UTILITY(U,$J,358.3,7585,0)
- ;;=R40.0^^63^495^30
- ;;^UTILITY(U,$J,358.3,7585,1,0)
+ ;;^UTILITY(U,$J,358.3,7846,1,3,0)
+ ;;=3^Athscl Nonbiol Bypass of Left Leg w/ Ulcer of Calf
+ ;;^UTILITY(U,$J,358.3,7846,1,4,0)
+ ;;=4^I70.642
+ ;;^UTILITY(U,$J,358.3,7846,2)
+ ;;=^5007748
+ ;;^UTILITY(U,$J,358.3,7847,0)
+ ;;=I70.643^^39^391^68
+ ;;^UTILITY(U,$J,358.3,7847,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,7585,1,3,0)
- ;;=3^Somnolence
- ;;^UTILITY(U,$J,358.3,7585,1,4,0)
- ;;=4^R40.0
- ;;^UTILITY(U,$J,358.3,7585,2)
- ;;=^5019352
- ;;^UTILITY(U,$J,358.3,7586,0)
- ;;=R40.1^^63^495^31
- ;;^UTILITY(U,$J,358.3,7586,1,0)
+ ;;^UTILITY(U,$J,358.3,7847,1,3,0)
+ ;;=3^Athscl Nonbiol Bypass of Left Leg w/ Ulcer of Ankle
+ ;;^UTILITY(U,$J,358.3,7847,1,4,0)
+ ;;=4^I70.643
+ ;;^UTILITY(U,$J,358.3,7847,2)
+ ;;=^5007749
+ ;;^UTILITY(U,$J,358.3,7848,0)
+ ;;=I70.644^^39^391^69
+ ;;^UTILITY(U,$J,358.3,7848,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,7586,1,3,0)
- ;;=3^Stupor
- ;;^UTILITY(U,$J,358.3,7586,1,4,0)
- ;;=4^R40.1
- ;;^UTILITY(U,$J,358.3,7586,2)
- ;;=^5019353
- ;;^UTILITY(U,$J,358.3,7587,0)
- ;;=I61.0^^63^495^16
- ;;^UTILITY(U,$J,358.3,7587,1,0)
+ ;;^UTILITY(U,$J,358.3,7848,1,3,0)
+ ;;=3^Athscl Nonbiol Bypass of Left Leg w/ Ulcer of Heel/Midfoot
+ ;;^UTILITY(U,$J,358.3,7848,1,4,0)
+ ;;=4^I70.644
+ ;;^UTILITY(U,$J,358.3,7848,2)
+ ;;=^5007750
+ ;;^UTILITY(U,$J,358.3,7849,0)
+ ;;=I70.645^^39^391^70
+ ;;^UTILITY(U,$J,358.3,7849,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,7587,1,3,0)
- ;;=3^Nontraumatic Intracerebral Hemorrhage in Hemisphere,Subcortical
- ;;^UTILITY(U,$J,358.3,7587,1,4,0)
- ;;=4^I61.0
- ;;^UTILITY(U,$J,358.3,7587,2)
- ;;=^5007280
- ;;^UTILITY(U,$J,358.3,7588,0)
- ;;=I61.1^^63^495^17
- ;;^UTILITY(U,$J,358.3,7588,1,0)
+ ;;^UTILITY(U,$J,358.3,7849,1,3,0)
+ ;;=3^Athscl Nonbiol Bypass of Left Leg w/ Ulcer of Oth Part of Foot
+ ;;^UTILITY(U,$J,358.3,7849,1,4,0)
+ ;;=4^I70.645
+ ;;^UTILITY(U,$J,358.3,7849,2)
+ ;;=^5007751
+ ;;^UTILITY(U,$J,358.3,7850,0)
+ ;;=K12.0^^39^391^298
+ ;;^UTILITY(U,$J,358.3,7850,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,7588,1,3,0)
- ;;=3^Nontraumatic Intracerebral Hemorrhage in Hemisphere,Cortical
- ;;^UTILITY(U,$J,358.3,7588,1,4,0)
- ;;=4^I61.1
- ;;^UTILITY(U,$J,358.3,7588,2)
- ;;=^5007281
- ;;^UTILITY(U,$J,358.3,7589,0)
- ;;=I61.2^^63^495^18
- ;;^UTILITY(U,$J,358.3,7589,1,0)
+ ;;^UTILITY(U,$J,358.3,7850,1,3,0)
+ ;;=3^Recurrent Oral Aphthae
+ ;;^UTILITY(U,$J,358.3,7850,1,4,0)
+ ;;=4^K12.0
+ ;;^UTILITY(U,$J,358.3,7850,2)
+ ;;=^5008483
+ ;;^UTILITY(U,$J,358.3,7851,0)
+ ;;=K12.1^^39^391^311
+ ;;^UTILITY(U,$J,358.3,7851,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,7589,1,3,0)
- ;;=3^Nontraumatic Intracerebral Hemorrhage in Hemisphere,Unspec
- ;;^UTILITY(U,$J,358.3,7589,1,4,0)
- ;;=4^I61.2
- ;;^UTILITY(U,$J,358.3,7589,2)
- ;;=^5007282
- ;;^UTILITY(U,$J,358.3,7590,0)
- ;;=I61.3^^63^495^19
- ;;^UTILITY(U,$J,358.3,7590,1,0)
+ ;;^UTILITY(U,$J,358.3,7851,1,3,0)
+ ;;=3^Stomatitis NEC
+ ;;^UTILITY(U,$J,358.3,7851,1,4,0)
+ ;;=4^K12.1
+ ;;^UTILITY(U,$J,358.3,7851,2)
+ ;;=^5008484
+ ;;^UTILITY(U,$J,358.3,7852,0)
+ ;;=K12.2^^39^391^95
+ ;;^UTILITY(U,$J,358.3,7852,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,7590,1,3,0)
- ;;=3^Nontraumatic Intracerebral Hemorrhage in Brain Stem
- ;;^UTILITY(U,$J,358.3,7590,1,4,0)
- ;;=4^I61.3
- ;;^UTILITY(U,$J,358.3,7590,2)
- ;;=^5007283
- ;;^UTILITY(U,$J,358.3,7591,0)
- ;;=I61.4^^63^495^20
- ;;^UTILITY(U,$J,358.3,7591,1,0)
+ ;;^UTILITY(U,$J,358.3,7852,1,3,0)
+ ;;=3^Cellulitis & Abscess of Mouth
+ ;;^UTILITY(U,$J,358.3,7852,1,4,0)
+ ;;=4^K12.2
+ ;;^UTILITY(U,$J,358.3,7852,2)
+ ;;=^5008485
+ ;;^UTILITY(U,$J,358.3,7853,0)
+ ;;=L02.01^^39^391^122
+ ;;^UTILITY(U,$J,358.3,7853,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,7591,1,3,0)
- ;;=3^Nontraumatic Intracerebral Hemorrhage in Cerebellum
- ;;^UTILITY(U,$J,358.3,7591,1,4,0)
- ;;=4^I61.4
- ;;^UTILITY(U,$J,358.3,7591,2)
- ;;=^5007284
- ;;^UTILITY(U,$J,358.3,7592,0)
- ;;=I61.5^^63^495^21
- ;;^UTILITY(U,$J,358.3,7592,1,0)
+ ;;^UTILITY(U,$J,358.3,7853,1,3,0)
+ ;;=3^Cutaneous Abscess of Face
+ ;;^UTILITY(U,$J,358.3,7853,1,4,0)
+ ;;=4^L02.01
+ ;;^UTILITY(U,$J,358.3,7853,2)
+ ;;=^5008944
+ ;;^UTILITY(U,$J,358.3,7854,0)
+ ;;=L02.11^^39^391^127
+ ;;^UTILITY(U,$J,358.3,7854,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,7592,1,3,0)
- ;;=3^Nontraumatic Intracerebral Hemorrhage,Intraventricular
- ;;^UTILITY(U,$J,358.3,7592,1,4,0)
- ;;=4^I61.5
- ;;^UTILITY(U,$J,358.3,7592,2)
- ;;=^5007285
- ;;^UTILITY(U,$J,358.3,7593,0)
- ;;=I61.6^^63^495^22
- ;;^UTILITY(U,$J,358.3,7593,1,0)
+ ;;^UTILITY(U,$J,358.3,7854,1,3,0)
+ ;;=3^Cutaneous Abscess of Neck
+ ;;^UTILITY(U,$J,358.3,7854,1,4,0)
+ ;;=4^L02.11
+ ;;^UTILITY(U,$J,358.3,7854,2)
+ ;;=^5008947
+ ;;^UTILITY(U,$J,358.3,7855,0)
+ ;;=L02.211^^39^391^119
+ ;;^UTILITY(U,$J,358.3,7855,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,7593,1,3,0)
- ;;=3^Nontraumatic Intracerebral Hemorrhage,Mult Localized
- ;;^UTILITY(U,$J,358.3,7593,1,4,0)
- ;;=4^I61.6
- ;;^UTILITY(U,$J,358.3,7593,2)
- ;;=^5007286
- ;;^UTILITY(U,$J,358.3,7594,0)
- ;;=I61.8^^63^495^23
- ;;^UTILITY(U,$J,358.3,7594,1,0)
+ ;;^UTILITY(U,$J,358.3,7855,1,3,0)
+ ;;=3^Cutaneous Abscess of Abdominal Wall
+ ;;^UTILITY(U,$J,358.3,7855,1,4,0)
+ ;;=4^L02.211
+ ;;^UTILITY(U,$J,358.3,7855,2)
+ ;;=^5008950
+ ;;^UTILITY(U,$J,358.3,7856,0)
+ ;;=L02.212^^39^391^120
+ ;;^UTILITY(U,$J,358.3,7856,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,7594,1,3,0)
- ;;=3^Nontraumatic Intracerebral Hemorrhage,Other
+ ;;^UTILITY(U,$J,358.3,7856,1,3,0)
+ ;;=3^Cutaneous Abscess of Back
+ ;;^UTILITY(U,$J,358.3,7856,1,4,0)
+ ;;=4^L02.212
+ ;;^UTILITY(U,$J,358.3,7856,2)
+ ;;=^5008951
+ ;;^UTILITY(U,$J,358.3,7857,0)
+ ;;=L02.213^^39^391^121

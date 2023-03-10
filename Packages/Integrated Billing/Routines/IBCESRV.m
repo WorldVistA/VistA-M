@@ -1,5 +1,5 @@
 IBCESRV ;ALB/TMP - Server interface to IB from Austin ;8/6/03 10:04am
- ;;2.0;INTEGRATED BILLING;**137,181,196,232,296,320,407,623**;21-MAR-94;Build 70
+ ;;2.0;INTEGRATED BILLING;**137,181,196,232,296,320,407,623,641**;21-MAR-94;Build 61
  ;;Per VA Directive 6402, this routine should not be modified.
 SERVER ; Entry point for server option to process EDI msgs received from Austin
  ;
@@ -56,10 +56,16 @@ MSG(XMER,IBTDA,IBXMZ) ; Read/Store message lines
  .. S IBERR=3
  .. S ^TMP("IBERR",$J,"MSG",1)=IBHD
  .. S ^TMP("IBERR",$J,"MSG",2)=$G(XMRG)
- . S IBTXN=XMRG
- . S IBBTCH=+$O(^IBA(364.1,"MSG",+$P(IBTXN,"#",2)\1,""),-1)
- . ;;JWS IB*2.0*623 - looking for original message #, but there won't be one, so check if FHIR
- . I 'IBBTCH S IBBTCH=$P($P(IBTXN,"#",2),")")
+ . ;JWS;IB*2.0*641;initialize IBBTCH=0
+ . S IBTXN=XMRG,IBBTCH=0
+ . ;JWS;IB*2.0*641v15;don't want to take chance if value matches in FHIR, check if FHIR is off
+ . I '$$GET1^DIQ(350.9,"1,",8.21,"I") S IBBTCH=+$O(^IBA(364.1,"MSG",+$P(IBTXN,"#",2)\1,""),-1)
+ . ;;JWS;IB*2.0*623 - looking for original message #, but there won't be one
+ . ;;JWS;IB*2.0*641v14;wrong value was being passed as Batch number pointer
+ . ;; old 623 I 'IBBTCH S IBBTCH=$P($P(IBTXN,"#",2),")")
+ . ;;JWS;IB*2.0*641v15;clean up getting IBBTCH internal pointer value, check for 837 FHIR on
+ . I $$GET1^DIQ(350.9,"1,",8.21,"I") S IBBTCH=+$P(IBTXN,"(",3) I IBBTCH S IBBTCH=$O(^IBA(364.1,"B",IBBTCH,0))
+ . ;I 'IBBTCH S IBBTCH=$P($P($P(IBTXN,"#",2),"(",2),")") I IBBTCH S IBBTCH=$O(^IBA(364.1,"B",IBBTCH,0))
  . I 'IBBTCH S IBERR=6 D REST(.IBTXN,IBGBL) Q  ;No msgs match conf recpt
  . S IBTXN("BATCH",IBBTCH,0)="837REC0^"_IBD("MSG#")_U_+$E($P(IBD("SUBJ")," "),4,14)_"^^"_IBBTCH_U_IBDATE
  . X XMREC ;Get second line of the message

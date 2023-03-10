@@ -1,126 +1,122 @@
-IBDEI1JX ; ; 04-FEB-2020
- ;;3.0;IB ENCOUNTER FORM IMP/EXP;;FEB 04, 2020
+IBDEI1JX ; ; 01-FEB-2022
+ ;;3.0;IB ENCOUNTER FORM IMP/EXP;;FEB 01, 2022
  Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,999) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
- ;;^UTILITY(U,$J,358.3,24800,1,3,0)
- ;;=3^Hypergammaglobulenemia,Unspec
- ;;^UTILITY(U,$J,358.3,24800,1,4,0)
- ;;=4^D89.2
- ;;^UTILITY(U,$J,358.3,24800,2)
- ;;=^5002455
- ;;^UTILITY(U,$J,358.3,24801,0)
- ;;=D05.12^^107^1211^94
- ;;^UTILITY(U,$J,358.3,24801,1,0)
+ ;;^UTILITY(U,$J,358.3,25145,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,24801,1,3,0)
- ;;=3^Intraductal Carcinoma in Situ,Left Breast
- ;;^UTILITY(U,$J,358.3,24801,1,4,0)
- ;;=4^D05.12
- ;;^UTILITY(U,$J,358.3,24801,2)
- ;;=^5001931
- ;;^UTILITY(U,$J,358.3,24802,0)
- ;;=D05.11^^107^1211^95
- ;;^UTILITY(U,$J,358.3,24802,1,0)
+ ;;^UTILITY(U,$J,358.3,25145,1,2,0)
+ ;;=2^High Intensity Bhv Counsel for STD Prev,30 min
+ ;;^UTILITY(U,$J,358.3,25145,1,4,0)
+ ;;=4^G0445
+ ;;^UTILITY(U,$J,358.3,25146,0)
+ ;;=G0459^^88^1130^41^^^^1
+ ;;^UTILITY(U,$J,358.3,25146,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,24802,1,3,0)
- ;;=3^Intraductal Carcinoma in Situ,Right Breast
- ;;^UTILITY(U,$J,358.3,24802,1,4,0)
- ;;=4^D05.11
- ;;^UTILITY(U,$J,358.3,24802,2)
- ;;=^5001930
- ;;^UTILITY(U,$J,358.3,24803,0)
- ;;=D05.10^^107^1211^96
- ;;^UTILITY(U,$J,358.3,24803,1,0)
+ ;;^UTILITY(U,$J,358.3,25146,1,2,0)
+ ;;=2^Inpt TH Pharm Mgmt
+ ;;^UTILITY(U,$J,358.3,25146,1,4,0)
+ ;;=4^G0459
+ ;;^UTILITY(U,$J,358.3,25147,0)
+ ;;=G0446^^88^1130^7^^^^1
+ ;;^UTILITY(U,$J,358.3,25147,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,24803,1,3,0)
- ;;=3^Intraductal Carcinoma in Situ,Unspec Breast
- ;;^UTILITY(U,$J,358.3,24803,1,4,0)
- ;;=4^D05.10
- ;;^UTILITY(U,$J,358.3,24803,2)
- ;;=^5001929
- ;;^UTILITY(U,$J,358.3,24804,0)
- ;;=D50.0^^107^1211^97
- ;;^UTILITY(U,$J,358.3,24804,1,0)
+ ;;^UTILITY(U,$J,358.3,25147,1,2,0)
+ ;;=2^Annual Intense Bhv Tx for Cardio Dx,15 min
+ ;;^UTILITY(U,$J,358.3,25147,1,4,0)
+ ;;=4^G0446
+ ;;^UTILITY(U,$J,358.3,25148,0)
+ ;;=G0447^^88^1130^13^^^^1
+ ;;^UTILITY(U,$J,358.3,25148,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,24804,1,3,0)
- ;;=3^Iron Deficiency Anemia Secondary to Blood Loss
- ;;^UTILITY(U,$J,358.3,24804,1,4,0)
- ;;=4^D50.0
- ;;^UTILITY(U,$J,358.3,24804,2)
- ;;=^267971
- ;;^UTILITY(U,$J,358.3,24805,0)
- ;;=D50.9^^107^1211^98
- ;;^UTILITY(U,$J,358.3,24805,1,0)
+ ;;^UTILITY(U,$J,358.3,25148,1,2,0)
+ ;;=2^Bhv Counsel for Obesity,15 min
+ ;;^UTILITY(U,$J,358.3,25148,1,4,0)
+ ;;=4^G0447
+ ;;^UTILITY(U,$J,358.3,25149,0)
+ ;;=G0506^^88^1130^17^^^^1
+ ;;^UTILITY(U,$J,358.3,25149,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,24805,1,3,0)
- ;;=3^Iron Deficiency Anemia,Unspec
- ;;^UTILITY(U,$J,358.3,24805,1,4,0)
- ;;=4^D50.9
- ;;^UTILITY(U,$J,358.3,24805,2)
- ;;=^5002283
- ;;^UTILITY(U,$J,358.3,24806,0)
- ;;=C46.9^^107^1211^99
- ;;^UTILITY(U,$J,358.3,24806,1,0)
+ ;;^UTILITY(U,$J,358.3,25149,1,2,0)
+ ;;=2^Comp Assmt Care Plan CCM Svc
+ ;;^UTILITY(U,$J,358.3,25149,1,4,0)
+ ;;=4^G0506
+ ;;^UTILITY(U,$J,358.3,25150,0)
+ ;;=G0513^^88^1130^57^^^^1
+ ;;^UTILITY(U,$J,358.3,25150,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,24806,1,3,0)
- ;;=3^Kaposi's Sarcoma,Unspec
- ;;^UTILITY(U,$J,358.3,24806,1,4,0)
- ;;=4^C46.9
- ;;^UTILITY(U,$J,358.3,24806,2)
- ;;=^5001108
- ;;^UTILITY(U,$J,358.3,24807,0)
- ;;=C22.0^^107^1211^100
- ;;^UTILITY(U,$J,358.3,24807,1,0)
+ ;;^UTILITY(U,$J,358.3,25150,1,2,0)
+ ;;=2^Prolong Prev Outpt Svc,1st 30 min
+ ;;^UTILITY(U,$J,358.3,25150,1,4,0)
+ ;;=4^G0513
+ ;;^UTILITY(U,$J,358.3,25151,0)
+ ;;=G0514^^88^1130^58^^^^1
+ ;;^UTILITY(U,$J,358.3,25151,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,24807,1,3,0)
- ;;=3^Liver Cell Carcinoma
- ;;^UTILITY(U,$J,358.3,24807,1,4,0)
- ;;=4^C22.0
- ;;^UTILITY(U,$J,358.3,24807,2)
- ;;=^5000933
- ;;^UTILITY(U,$J,358.3,24808,0)
- ;;=D05.02^^107^1211^101
- ;;^UTILITY(U,$J,358.3,24808,1,0)
+ ;;^UTILITY(U,$J,358.3,25151,1,2,0)
+ ;;=2^Prolong Prev Outpt Svc,Ea Addl 30 min
+ ;;^UTILITY(U,$J,358.3,25151,1,4,0)
+ ;;=4^G0514
+ ;;^UTILITY(U,$J,358.3,25152,0)
+ ;;=G2086^^88^1130^51^^^^1
+ ;;^UTILITY(U,$J,358.3,25152,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,24808,1,3,0)
- ;;=3^Lobular Carcinoma in Situ,Left Breast
- ;;^UTILITY(U,$J,358.3,24808,1,4,0)
- ;;=4^D05.02
- ;;^UTILITY(U,$J,358.3,24808,2)
- ;;=^5001928
- ;;^UTILITY(U,$J,358.3,24809,0)
- ;;=D05.01^^107^1211^102
- ;;^UTILITY(U,$J,358.3,24809,1,0)
+ ;;^UTILITY(U,$J,358.3,25152,1,2,0)
+ ;;=2^Outpt Based Opioid Tx,70 min
+ ;;^UTILITY(U,$J,358.3,25152,1,4,0)
+ ;;=4^G2086
+ ;;^UTILITY(U,$J,358.3,25153,0)
+ ;;=G2087^^88^1130^50^^^^1
+ ;;^UTILITY(U,$J,358.3,25153,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,24809,1,3,0)
- ;;=3^Lobular Carcinoma in Situ,Right Breast
- ;;^UTILITY(U,$J,358.3,24809,1,4,0)
- ;;=4^D05.01
- ;;^UTILITY(U,$J,358.3,24809,2)
- ;;=^5001927
- ;;^UTILITY(U,$J,358.3,24810,0)
- ;;=D05.00^^107^1211^103
- ;;^UTILITY(U,$J,358.3,24810,1,0)
+ ;;^UTILITY(U,$J,358.3,25153,1,2,0)
+ ;;=2^Outpt Based Opioid Tx,60 min
+ ;;^UTILITY(U,$J,358.3,25153,1,4,0)
+ ;;=4^G2087
+ ;;^UTILITY(U,$J,358.3,25154,0)
+ ;;=G2088^^88^1130^52^^^^1
+ ;;^UTILITY(U,$J,358.3,25154,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,24810,1,3,0)
- ;;=3^Lobular Carcinoma in Situ,Unspec Breast
- ;;^UTILITY(U,$J,358.3,24810,1,4,0)
- ;;=4^D05.00
- ;;^UTILITY(U,$J,358.3,24810,2)
- ;;=^5001926
- ;;^UTILITY(U,$J,358.3,24811,0)
- ;;=R59.0^^107^1211^62
- ;;^UTILITY(U,$J,358.3,24811,1,0)
+ ;;^UTILITY(U,$J,358.3,25154,1,2,0)
+ ;;=2^Outpt Based Opioid Tx,Ea Addl 30 min 
+ ;;^UTILITY(U,$J,358.3,25154,1,4,0)
+ ;;=4^G2088
+ ;;^UTILITY(U,$J,358.3,25155,0)
+ ;;=U07.1^^89^1131^1
+ ;;^UTILITY(U,$J,358.3,25155,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,24811,1,3,0)
- ;;=3^Enlarged Lymph Nodes,Localized
- ;;^UTILITY(U,$J,358.3,24811,1,4,0)
- ;;=4^R59.0
- ;;^UTILITY(U,$J,358.3,24811,2)
- ;;=^5019529
- ;;^UTILITY(U,$J,358.3,24812,0)
- ;;=C83.59^^107^1211^104
- ;;^UTILITY(U,$J,358.3,24812,1,0)
+ ;;^UTILITY(U,$J,358.3,25155,1,3,0)
+ ;;=3^Confirmed COVID-19
+ ;;^UTILITY(U,$J,358.3,25155,1,4,0)
+ ;;=4^U07.1
+ ;;^UTILITY(U,$J,358.3,25155,2)
+ ;;=^5159070
+ ;;^UTILITY(U,$J,358.3,25156,0)
+ ;;=U09.9^^89^1131^2
+ ;;^UTILITY(U,$J,358.3,25156,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,24812,1,3,0)
- ;;=3^Lymphoblastic Lymphoma,Extranodal/Solid Organ Sites
+ ;;^UTILITY(U,$J,358.3,25156,1,3,0)
+ ;;=3^Post COVID-19 Condition,Unspec
+ ;;^UTILITY(U,$J,358.3,25156,1,4,0)
+ ;;=4^U09.9
+ ;;^UTILITY(U,$J,358.3,25156,2)
+ ;;=^5161298
+ ;;^UTILITY(U,$J,358.3,25157,0)
+ ;;=Z20.822^^89^1132^1
+ ;;^UTILITY(U,$J,358.3,25157,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,25157,1,3,0)
+ ;;=3^Contact w/ & Exposure to COVID-19
+ ;;^UTILITY(U,$J,358.3,25157,1,4,0)
+ ;;=4^Z20.822
+ ;;^UTILITY(U,$J,358.3,25157,2)
+ ;;=^5160187
+ ;;^UTILITY(U,$J,358.3,25158,0)
+ ;;=J20.8^^89^1133^1
+ ;;^UTILITY(U,$J,358.3,25158,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,25158,1,3,0)
+ ;;=3^Bronchitis,Acute d/t Other Spec Organisms
+ ;;^UTILITY(U,$J,358.3,25158,1,4,0)
+ ;;=4^J20.8
+ ;;^UTILITY(U,$J,358.3,25158,2)
+ ;;=^5008194

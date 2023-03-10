@@ -1,122 +1,52 @@
-IBDEI1MZ ; ; 04-FEB-2020
- ;;3.0;IB ENCOUNTER FORM IMP/EXP;;FEB 04, 2020
- Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,999) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
+IBDEI1MZ ; ; 01-FEB-2022
+ ;;3.0;IB ENCOUNTER FORM IMP/EXP;;FEB 01, 2022
+ Q:'DIFQ(358.93)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,999) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
- ;;^UTILITY(U,$J,358.3,26138,1,4,0)
- ;;=4^W18.42XD
- ;;^UTILITY(U,$J,358.3,26138,2)
- ;;=^5059825
- ;;^UTILITY(U,$J,358.3,26139,0)
- ;;=W18.43XA^^107^1230^112
- ;;^UTILITY(U,$J,358.3,26139,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,26139,1,3,0)
- ;;=3^Slipping/Tripping w/o Fall d/t Step from One Level to Another,Init Encntr
- ;;^UTILITY(U,$J,358.3,26139,1,4,0)
- ;;=4^W18.43XA
- ;;^UTILITY(U,$J,358.3,26139,2)
- ;;=^5059827
- ;;^UTILITY(U,$J,358.3,26140,0)
- ;;=W18.43XD^^107^1230^113
- ;;^UTILITY(U,$J,358.3,26140,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,26140,1,3,0)
- ;;=3^Slipping/Tripping w/o Fall d/t Step from One Level to Another,Subs Encntr
- ;;^UTILITY(U,$J,358.3,26140,1,4,0)
- ;;=4^W18.43XD
- ;;^UTILITY(U,$J,358.3,26140,2)
- ;;=^5059828
- ;;^UTILITY(U,$J,358.3,26141,0)
- ;;=W18.49XA^^107^1230^120
- ;;^UTILITY(U,$J,358.3,26141,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,26141,1,3,0)
- ;;=3^Slipping/Tripping/Stumbling w/o Falling NEC,Init Encntr
- ;;^UTILITY(U,$J,358.3,26141,1,4,0)
- ;;=4^W18.49XA
- ;;^UTILITY(U,$J,358.3,26141,2)
- ;;=^5059830
- ;;^UTILITY(U,$J,358.3,26142,0)
- ;;=W18.49XD^^107^1230^121
- ;;^UTILITY(U,$J,358.3,26142,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,26142,1,3,0)
- ;;=3^Slipping/Tripping/Stumbling w/o Falling NEC,Subs Encntr
- ;;^UTILITY(U,$J,358.3,26142,1,4,0)
- ;;=4^W18.49XD
- ;;^UTILITY(U,$J,358.3,26142,2)
- ;;=^5059831
- ;;^UTILITY(U,$J,358.3,26143,0)
- ;;=W19.XXXA^^107^1230^94
- ;;^UTILITY(U,$J,358.3,26143,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,26143,1,3,0)
- ;;=3^Fall,Unspec,Init Encntr
- ;;^UTILITY(U,$J,358.3,26143,1,4,0)
- ;;=4^W19.XXXA
- ;;^UTILITY(U,$J,358.3,26143,2)
- ;;=^5059833
- ;;^UTILITY(U,$J,358.3,26144,0)
- ;;=W19.XXXD^^107^1230^95
- ;;^UTILITY(U,$J,358.3,26144,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,26144,1,3,0)
- ;;=3^Fall,Unspec,Subs Encntr
- ;;^UTILITY(U,$J,358.3,26144,1,4,0)
- ;;=4^W19.XXXD
- ;;^UTILITY(U,$J,358.3,26144,2)
- ;;=^5059834
- ;;^UTILITY(U,$J,358.3,26145,0)
- ;;=W54.0XXA^^107^1230^11
- ;;^UTILITY(U,$J,358.3,26145,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,26145,1,3,0)
- ;;=3^Bitten by Dog,Init Encntr
- ;;^UTILITY(U,$J,358.3,26145,1,4,0)
- ;;=4^W54.0XXA
- ;;^UTILITY(U,$J,358.3,26145,2)
- ;;=^5060256
- ;;^UTILITY(U,$J,358.3,26146,0)
- ;;=W54.0XXD^^107^1230^12
- ;;^UTILITY(U,$J,358.3,26146,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,26146,1,3,0)
- ;;=3^Bitten by Dog,Subs Encntr
- ;;^UTILITY(U,$J,358.3,26146,1,4,0)
- ;;=4^W54.0XXD
- ;;^UTILITY(U,$J,358.3,26146,2)
- ;;=^5060257
- ;;^UTILITY(U,$J,358.3,26147,0)
- ;;=W55.01XA^^107^1230^9
- ;;^UTILITY(U,$J,358.3,26147,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,26147,1,3,0)
- ;;=3^Bitten by Cat,Init Encntr
- ;;^UTILITY(U,$J,358.3,26147,1,4,0)
- ;;=4^W55.01XA
- ;;^UTILITY(U,$J,358.3,26147,2)
- ;;=^5060265
- ;;^UTILITY(U,$J,358.3,26148,0)
- ;;=W55.01XD^^107^1230^10
- ;;^UTILITY(U,$J,358.3,26148,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,26148,1,3,0)
- ;;=3^Bitten by Cat,Subs Encntr
- ;;^UTILITY(U,$J,358.3,26148,1,4,0)
- ;;=4^W55.01XD
- ;;^UTILITY(U,$J,358.3,26148,2)
- ;;=^5060266
- ;;^UTILITY(U,$J,358.3,26149,0)
- ;;=W55.03XA^^107^1230^110
- ;;^UTILITY(U,$J,358.3,26149,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,26149,1,3,0)
- ;;=3^Scratched by Cat,Init Encntr
- ;;^UTILITY(U,$J,358.3,26149,1,4,0)
- ;;=4^W55.03XA
- ;;^UTILITY(U,$J,358.3,26149,2)
- ;;=^5060268
- ;;^UTILITY(U,$J,358.3,26150,0)
- ;;=W55.03XD^^107^1230^111
- ;;^UTILITY(U,$J,358.3,26150,1,0)
- ;;=^358.31IA^4^2
+ ;;^DIC(358.93,0,"GL")
+ ;;=^IBE(358.93,
+ ;;^DIC("B","IMP/EXP MULTIPLE CHOICE FIELD",358.93)
+ ;;=
+ ;;^DIC(358.93,"%D",0)
+ ;;=^^2^2^2951024^^^
+ ;;^DIC(358.93,"%D",1,0)
+ ;;=This file is used as a work space for the import/export utility of the
+ ;;^DIC(358.93,"%D",2,0)
+ ;;=encounter form utilities.
+ ;;^DD(358.93,0)
+ ;;=FIELD^^1^9
+ ;;^DD(358.93,0,"DDA")
+ ;;=N
+ ;;^DD(358.93,0,"DT")
+ ;;=2960119
+ ;;^DD(358.93,0,"IX","A",358.931,.01)
+ ;;=
+ ;;^DD(358.93,0,"IX","A1",358.931,.02)
+ ;;=
+ ;;^DD(358.93,0,"IX","B",358.93,.01)
+ ;;=
+ ;;^DD(358.93,0,"IX","C",358.93,.08)
+ ;;=
+ ;;^DD(358.93,0,"NM","IMP/EXP MULTIPLE CHOICE FIELD")
+ ;;=
+ ;;^DD(358.93,0,"VRPK")
+ ;;=IBD
+ ;;^DD(358.93,.01,0)
+ ;;=NAME^RF^^0;1^K:$L(X)>30!(X?.N)!($L(X)<3)!'(X'?1P.E) X
+ ;;^DD(358.93,.01,1,0)
+ ;;=^.1
+ ;;^DD(358.93,.01,1,1,0)
+ ;;=358.93^B
+ ;;^DD(358.93,.01,1,1,1)
+ ;;=S ^IBE(358.93,"B",$E(X,1,30),DA)=""
+ ;;^DD(358.93,.01,1,1,2)
+ ;;=K ^IBE(358.93,"B",$E(X,1,30),DA)
+ ;;^DD(358.93,.01,3)
+ ;;=NAME MUST BE 3-30 CHARACTERS, NOT NUMERIC OR STARTING WITH PUNCTUATION
+ ;;^DD(358.93,.01,21,0)
+ ;;=^^2^2^2930623^^^^
+ ;;^DD(358.93,.01,21,1,0)
+ ;;= 
+ ;;^DD(358.93,.01,21,2,0)
+ ;;=The division the setup is for.
+ ;;^DD(358.93,.01,"DT")
+ ;;=2930518

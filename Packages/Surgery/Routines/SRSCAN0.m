@@ -1,5 +1,5 @@
-SRSCAN0 ;BIR/MAM - CANCEL SCHEDULED OPERATIONS (CONT) ;08/10/2011
- ;;3.0;Surgery;**34,42,67,103,107,114,100,144,175,176,182,184,188**;24 Jun 93;Build 2
+SRSCAN0 ;BIR/MAM - CANCEL SCHEDULED OPERATIONS (CONT);[AUG 10,2011@14:19]
+ ;;3.0;Surgery;**34,42,67,103,107,114,100,144,175,176,182,184,188,201**;24 Jun 93;Build 5
  ;
  G SWAP ; change of SR*3*176
 CUT S X1=SRSDATE,X2=-1 D C^%DTC S SRSDT=X,X=$P($G(^SRO(133,SRSITE,0)),"^",12) S SRTIME=SRSDT_"."_$S(X'="":X,1:1500)
@@ -23,7 +23,8 @@ ASK S SRBOTH=0 W !!,"There is a concurrent case associated with this operation. 
  I "YyNn"'[SRYN W !!,"If you want to remove both cases from the schedule, enter 'YES'.  If you",!,"answer 'NO', the cases will no longer be associated with each other." G ASK
  I "Yy"[SRYN S SRTN=$P(^SRF(SRTN,"CON"),"^") G REQ
 NOCC ; no longer concurrent cases
- S DA=$P(^SRF(SRTN,"CON"),"^"),DIE=130,DR="35///@" D ^DIE S SROERR=DA D ^SROERR0 S DA=SRTN D ^DIE,OERR,UNLOCK^SROUTL(DA)
+ ;Modified for SR*3.0*201: call to SRSCHD1 UNLOCK procedure
+ S DA=$P(^SRF(SRTN,"CON"),"^"),DIE=130,DR="35///@" D ^DIE S SROERR=DA D ^SROERR0 S DA=SRTN D ^DIE,OERR,UNLOCK^SRSCHD1(DA)
  Q
 SWAP ; move data into a new entry and set up the cancel date in the old
  W ! K DIR S DIR(0)="130,17.5",DIR("A")="Cancellation Timeframe" D ^DIR S SRTF=$P(Y,"^") I $D(DIRUT) W !!,"Case NOT cancelled." D PRESS G END
@@ -40,7 +41,8 @@ SWAP2 K:SRSCHST&SRSOR ^SRF("AMM",SRSOR,SRSCHST,SRTN) D NOW^%DTC S $P(^SRF(SRTN,3
 CON I '$D(SRSCC),$D(^SRF(SRTN,"CON")),$P(^("CON"),"^")'="" D CANCC^SRSUTL2 Q:SRBOTH="^"!SRSOUT  I SRBOTH=1 G CON1
  I SRCON'=0,SRTNEW'=SRCON K DR S DA=SRTNEW,DIE=130,DR="35////"_SRCON D ^DIE S DA=SRCON,DR="35////"_SRTNEW D ^DIE K DR S SROERR=SRCON D ^SROERR0
  I $G(SRDEAD)=0,$G(SRBOTH)=1,$G(SRSCC)=1 S SROERR=$P(^SRF(SRTN,"CON"),"^") D ^SROERR0 S SROERR=SRTN D ^SROERR0
-END D UNLOCK^SROUTL(SRTN),^SRSKILL K SRTN W @IOF
+ ;Modified for SR*3.0*201: call to SRSCHD1 UNLOCK procedure
+END D UNLOCK^SRSCHD1(SRTN),^SRSKILL K SRTN W @IOF
  Q
 CON1 I SRDEAD=0 G SWAP2
  K DR S DA=SRTN,DR=".02///@;102///@;235///@;284///@;323///@;17.5////"_SRTF_";18///"_$P(^SRO(135,SRSCAN,0),"^")_";67///"_AVOID_";70////"_DUZ,DIE=130 D ^DIE

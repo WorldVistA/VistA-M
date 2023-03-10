@@ -1,5 +1,7 @@
 ALPBUTL2 ;OIFO-DALLAS MW,SED,KC-BCBU BACKUP REPORT FUNCTIONS AND UTILITIES  ;01/01/03
- ;;3.0;BAR CODE MED ADMIN;**8**;Mar 2004
+ ;;3.0;BAR CODE MED ADMIN;**8,108**;Mar 2004;Build 33
+ ;
+ ;*108 - add ZZZ segment for Hazardous drug flags
  ;
 DELALG(IEN) ; delete allergies...
  ; IEN = the patient's record number in file 53.7
@@ -51,6 +53,17 @@ GETORC(DATA,FS,CS,RESULTS) ; retrieve order number, date, type, and
  S RESULTS(3)=+$P(DATA,FS,3)
  ; order type...
  S RESULTS(4)=$E(RESULTS(1),$L(RESULTS(1)))
+ Q
+ ;
+GETZZZ(DATA,FS,CS,RESULTS) ; retrieve HAZ flags   *108
+ ; HAZARDOUS FLAGS segment...
+ ; DATA    = HL7 data string
+ ; FS      = HL7 field separator character
+ ; CS      = HL7 component separator character
+ ; RESULTS = an array passed by reference into which retrieved data
+ ;           is returned order action
+ S RESULTS(1)=$S($P(DATA,FS,5)="Y":1,1:0)   ;Haz to Handle
+ S RESULTS(2)=$S($P(DATA,FS,6)="Y":1,1:0)   ;Haz to Dispose
  Q
  ;
 DELERR(IEN) ; delete an entry from the Error Log...

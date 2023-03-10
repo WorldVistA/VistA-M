@@ -1,126 +1,124 @@
-IBDEI0MQ ; ; 04-FEB-2020
- ;;3.0;IB ENCOUNTER FORM IMP/EXP;;FEB 04, 2020
+IBDEI0MQ ; ; 01-FEB-2022
+ ;;3.0;IB ENCOUNTER FORM IMP/EXP;;FEB 01, 2022
  Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,999) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
- ;;^UTILITY(U,$J,358.3,10119,1,3,0)
- ;;=3^Branch Retinal Artery Occlusion,Right Eye
- ;;^UTILITY(U,$J,358.3,10119,1,4,0)
- ;;=4^H34.231
- ;;^UTILITY(U,$J,358.3,10119,2)
- ;;=^5005564
- ;;^UTILITY(U,$J,358.3,10120,0)
- ;;=H34.232^^74^670^2
- ;;^UTILITY(U,$J,358.3,10120,1,0)
+ ;;^UTILITY(U,$J,358.3,10214,2)
+ ;;=^5002665
+ ;;^UTILITY(U,$J,358.3,10215,0)
+ ;;=E11.9^^39^431^35
+ ;;^UTILITY(U,$J,358.3,10215,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,10120,1,3,0)
- ;;=3^Branch Retinal Artery Occlusion,Left Eye
- ;;^UTILITY(U,$J,358.3,10120,1,4,0)
- ;;=4^H34.232
- ;;^UTILITY(U,$J,358.3,10120,2)
- ;;=^5005565
- ;;^UTILITY(U,$J,358.3,10121,0)
- ;;=H35.031^^74^670^17
- ;;^UTILITY(U,$J,358.3,10121,1,0)
+ ;;^UTILITY(U,$J,358.3,10215,1,3,0)
+ ;;=3^DM Type 2 w/o Complications
+ ;;^UTILITY(U,$J,358.3,10215,1,4,0)
+ ;;=4^E11.9
+ ;;^UTILITY(U,$J,358.3,10215,2)
+ ;;=^5002666
+ ;;^UTILITY(U,$J,358.3,10216,0)
+ ;;=E11.29^^39^431^27
+ ;;^UTILITY(U,$J,358.3,10216,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,10121,1,3,0)
- ;;=3^Hypertensive Retinopathy,Right Eye
- ;;^UTILITY(U,$J,358.3,10121,1,4,0)
- ;;=4^H35.031
- ;;^UTILITY(U,$J,358.3,10121,2)
- ;;=^5005590
- ;;^UTILITY(U,$J,358.3,10122,0)
- ;;=H35.032^^74^670^18
- ;;^UTILITY(U,$J,358.3,10122,1,0)
+ ;;^UTILITY(U,$J,358.3,10216,1,3,0)
+ ;;=3^DM Type 2 w/ Oth Diab Kidney Compl
+ ;;^UTILITY(U,$J,358.3,10216,1,4,0)
+ ;;=4^E11.29
+ ;;^UTILITY(U,$J,358.3,10216,2)
+ ;;=^5002631
+ ;;^UTILITY(U,$J,358.3,10217,0)
+ ;;=E11.311^^39^431^14
+ ;;^UTILITY(U,$J,358.3,10217,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,10122,1,3,0)
- ;;=3^Hypertensive Retinopathy,Left Eye
- ;;^UTILITY(U,$J,358.3,10122,1,4,0)
- ;;=4^H35.032
- ;;^UTILITY(U,$J,358.3,10122,2)
- ;;=^5005591
- ;;^UTILITY(U,$J,358.3,10123,0)
- ;;=H35.033^^74^670^19
- ;;^UTILITY(U,$J,358.3,10123,1,0)
+ ;;^UTILITY(U,$J,358.3,10217,1,3,0)
+ ;;=3^DM Type 2 w/ Diab Rtnop w/ Macular Edema
+ ;;^UTILITY(U,$J,358.3,10217,1,4,0)
+ ;;=4^E11.311
+ ;;^UTILITY(U,$J,358.3,10217,2)
+ ;;=E11.319^5002632
+ ;;^UTILITY(U,$J,358.3,10218,0)
+ ;;=E11.319^^39^431^15
+ ;;^UTILITY(U,$J,358.3,10218,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,10123,1,3,0)
- ;;=3^Hypertensive Retinopathy,Bilateral
- ;;^UTILITY(U,$J,358.3,10123,1,4,0)
- ;;=4^H35.033
- ;;^UTILITY(U,$J,358.3,10123,2)
- ;;=^5005592
- ;;^UTILITY(U,$J,358.3,10124,0)
- ;;=H35.82^^74^670^23
- ;;^UTILITY(U,$J,358.3,10124,1,0)
+ ;;^UTILITY(U,$J,358.3,10218,1,3,0)
+ ;;=3^DM Type 2 w/ Diab Rtnop w/o Macular Edema
+ ;;^UTILITY(U,$J,358.3,10218,1,4,0)
+ ;;=4^E11.319
+ ;;^UTILITY(U,$J,358.3,10218,2)
+ ;;=^5002633
+ ;;^UTILITY(U,$J,358.3,10219,0)
+ ;;=E11.3211^^39^431^22
+ ;;^UTILITY(U,$J,358.3,10219,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,10124,1,3,0)
- ;;=3^Retinal Ischemia/Cotton Wool Spot
- ;;^UTILITY(U,$J,358.3,10124,1,4,0)
- ;;=4^H35.82
- ;;^UTILITY(U,$J,358.3,10124,2)
- ;;=^5005716
- ;;^UTILITY(U,$J,358.3,10125,0)
- ;;=H35.61^^74^670^21
- ;;^UTILITY(U,$J,358.3,10125,1,0)
+ ;;^UTILITY(U,$J,358.3,10219,1,3,0)
+ ;;=3^DM Type 2 w/ Mild Nonp Rtnop w/ Macular Edema,Rt Eye
+ ;;^UTILITY(U,$J,358.3,10219,1,4,0)
+ ;;=4^E11.3211
+ ;;^UTILITY(U,$J,358.3,10219,2)
+ ;;=^5138331
+ ;;^UTILITY(U,$J,358.3,10220,0)
+ ;;=E11.3212^^39^431^23
+ ;;^UTILITY(U,$J,358.3,10220,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,10125,1,3,0)
- ;;=3^Retinal Hemorrhage,Right Eye
- ;;^UTILITY(U,$J,358.3,10125,1,4,0)
- ;;=4^H35.61
- ;;^UTILITY(U,$J,358.3,10125,2)
- ;;=^5005699
- ;;^UTILITY(U,$J,358.3,10126,0)
- ;;=H35.62^^74^670^22
- ;;^UTILITY(U,$J,358.3,10126,1,0)
+ ;;^UTILITY(U,$J,358.3,10220,1,3,0)
+ ;;=3^DM Type 2 w/ Mild Nonp Rtnop w/ Macular Edema,Lt Eye
+ ;;^UTILITY(U,$J,358.3,10220,1,4,0)
+ ;;=4^E11.3212
+ ;;^UTILITY(U,$J,358.3,10220,2)
+ ;;=^5138332
+ ;;^UTILITY(U,$J,358.3,10221,0)
+ ;;=E11.3213^^39^431^24
+ ;;^UTILITY(U,$J,358.3,10221,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,10126,1,3,0)
- ;;=3^Retinal Hemorrhage,Left Eye
- ;;^UTILITY(U,$J,358.3,10126,1,4,0)
- ;;=4^H35.62
- ;;^UTILITY(U,$J,358.3,10126,2)
- ;;=^5005700
- ;;^UTILITY(U,$J,358.3,10127,0)
- ;;=H35.051^^74^670^24
- ;;^UTILITY(U,$J,358.3,10127,1,0)
+ ;;^UTILITY(U,$J,358.3,10221,1,3,0)
+ ;;=3^DM Type 2 w/ Mild Nonp Rtnop w/ Macular Edema,Bilat
+ ;;^UTILITY(U,$J,358.3,10221,1,4,0)
+ ;;=4^E11.3213
+ ;;^UTILITY(U,$J,358.3,10221,2)
+ ;;=^5138333
+ ;;^UTILITY(U,$J,358.3,10222,0)
+ ;;=E11.40^^39^431^10
+ ;;^UTILITY(U,$J,358.3,10222,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,10127,1,3,0)
- ;;=3^Retinal Neovascularization,Right Eye
- ;;^UTILITY(U,$J,358.3,10127,1,4,0)
- ;;=4^H35.051
- ;;^UTILITY(U,$J,358.3,10127,2)
- ;;=^5005598
- ;;^UTILITY(U,$J,358.3,10128,0)
- ;;=H35.052^^74^670^25
- ;;^UTILITY(U,$J,358.3,10128,1,0)
+ ;;^UTILITY(U,$J,358.3,10222,1,3,0)
+ ;;=3^DM Type 2 w/ Diab Neuropathy,Unspec
+ ;;^UTILITY(U,$J,358.3,10222,1,4,0)
+ ;;=4^E11.40
+ ;;^UTILITY(U,$J,358.3,10222,2)
+ ;;=^5002644
+ ;;^UTILITY(U,$J,358.3,10223,0)
+ ;;=E11.51^^39^431^12
+ ;;^UTILITY(U,$J,358.3,10223,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,10128,1,3,0)
- ;;=3^Retinal Neovascularization,Left Eye
- ;;^UTILITY(U,$J,358.3,10128,1,4,0)
- ;;=4^H35.052
- ;;^UTILITY(U,$J,358.3,10128,2)
- ;;=^5005599
- ;;^UTILITY(U,$J,358.3,10129,0)
- ;;=H35.071^^74^670^26
- ;;^UTILITY(U,$J,358.3,10129,1,0)
+ ;;^UTILITY(U,$J,358.3,10223,1,3,0)
+ ;;=3^DM Type 2 w/ Diab Periph Angiopathy w/o Gangrene
+ ;;^UTILITY(U,$J,358.3,10223,1,4,0)
+ ;;=4^E11.51
+ ;;^UTILITY(U,$J,358.3,10223,2)
+ ;;=^5002650
+ ;;^UTILITY(U,$J,358.3,10224,0)
+ ;;=E11.52^^39^431^11
+ ;;^UTILITY(U,$J,358.3,10224,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,10129,1,3,0)
- ;;=3^Retinal Telangiectasis,Right Eye
- ;;^UTILITY(U,$J,358.3,10129,1,4,0)
- ;;=4^H35.071
- ;;^UTILITY(U,$J,358.3,10129,2)
- ;;=^5005606
- ;;^UTILITY(U,$J,358.3,10130,0)
- ;;=H35.072^^74^670^27
- ;;^UTILITY(U,$J,358.3,10130,1,0)
+ ;;^UTILITY(U,$J,358.3,10224,1,3,0)
+ ;;=3^DM Type 2 w/ Diab Periph Angiopathy w/ Gangrene
+ ;;^UTILITY(U,$J,358.3,10224,1,4,0)
+ ;;=4^E11.52
+ ;;^UTILITY(U,$J,358.3,10224,2)
+ ;;=^5002651
+ ;;^UTILITY(U,$J,358.3,10225,0)
+ ;;=E11.620^^39^431^5
+ ;;^UTILITY(U,$J,358.3,10225,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,10130,1,3,0)
- ;;=3^Retinal Telangiectasis,Left Eye
- ;;^UTILITY(U,$J,358.3,10130,1,4,0)
- ;;=4^H35.072
- ;;^UTILITY(U,$J,358.3,10130,2)
- ;;=^5005607
- ;;^UTILITY(U,$J,358.3,10131,0)
- ;;=H35.061^^74^670^28
- ;;^UTILITY(U,$J,358.3,10131,1,0)
+ ;;^UTILITY(U,$J,358.3,10225,1,3,0)
+ ;;=3^DM Type 2 w/ Diab Dermatitis
+ ;;^UTILITY(U,$J,358.3,10225,1,4,0)
+ ;;=4^E11.620
+ ;;^UTILITY(U,$J,358.3,10225,2)
+ ;;=^5002655
+ ;;^UTILITY(U,$J,358.3,10226,0)
+ ;;=E11.36^^39^431^4
+ ;;^UTILITY(U,$J,358.3,10226,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,10131,1,3,0)
- ;;=3^Retinal Vasculitis,Right Eye
+ ;;^UTILITY(U,$J,358.3,10226,1,3,0)
+ ;;=3^DM Type 2 w/ Diab Cataract
+ ;;^UTILITY(U,$J,358.3,10226,1,4,0)
+ ;;=4^E11.36

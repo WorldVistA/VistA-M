@@ -1,5 +1,5 @@
-DGMTSCC ;ALB/RMO,CAW,LBD,EG,LMD - Means Test Screen Completion ;03/24/2006
- ;;5.3;Registration;**33,45,130,438,332,433,462,456,610,624,611,890**;Aug 13, 1993;Build 40
+DGMTSCC ;ALB/RMO,CAW,LBD,EG,LMD,HM,JAM - Means Test Screen Completion ;03/24/2006
+ ;;5.3;Registration;**33,45,130,438,332,433,462,456,610,624,611,890,1014,1064**;Aug 13, 1993;Build 41
  ;
  ; Input  -- DFN      Patient IEN
  ;           DGMTACT  Means Test Action
@@ -33,6 +33,11 @@ EN N DGCAT,DGCOMF,DGDC,DGDET,DGIN0,DGIN1,DGIN2,DGINT,DGINTF,DGMTS,DGNC,DGND,DGNW
  . N DATA S (DATA(.01),DATA(.07))=DT,DATA(2)=1 I $$UPD^DGENDBS(408.31,DGMTI,.DATA)
  W:DGMTYPT=1 !?3,"...means test status is ",$P($$MTS^DGMTU(DFN,DGMTS),"^"),"..."
  W:DGMTYPT=2 !?3,"...copay test status is ",$S(DGCAT="E":"EXEMPT",DGCAT="M":"NON-EXEMPT",DGCAT="P":"PENDING ADJUDICATION",1:"INCOMPLETE"),"..."
+ ;jam; DG*5.3*1064
+ I $$INDSTATUS^DGENELA2(DFN) D
+ . D BLD^DIALOG(261134,"","","","F")
+ . D MSG^DIALOG("WM","","","")
+ ;
  D PRT
  ;
 Q K DGFIN,DTOUT,DUOUT,Y
@@ -74,7 +79,9 @@ CHK ;Check if means test can be completed
  I DGD']"" W !?3,"Dependent Children section must be completed." S DGERR=1
  I DGD,'$D(DGREL("C")) W !?3,"Dependent Children is 'YES'.  No active children exist." S DGERR=1
  I 'DGD,$D(DGREL("C")) W !?3,"Active children exist.  Dependent Children should be 'YES'." S DGERR=1
- I DGMTYPT=1,'$D(DGREF),DGTYC="M",'DGNWTF W !?3,"A status of ",$$GETNAME^DGMTH(DGMTS)," requires property information." S DGERR=1
+ I DGMTYPT=1,'$D(DGREF),DGTYC="M",'DGNWTF D
+ .;DG*5.3*1014 check if entry point in screen was from edit, add, or complete a means test
+ .I DGMTACT'="EDT"&(DGMTACT'="ADD")&(DGMTACT'="COM") W !?3,"A status of ",$$GETNAME^DGMTH(DGMTS)," requires property information." S DGERR=1
  I DGMTYPT=2,'DGNWTF,DGCAT="E",$$ASKNW^DGMTCOU W !?3,"Patient is in an 'EXEMPT' status and requires property information." S DGERR=1
  I DGDET>DGINT W !?3,"Patient's deductible expenses cannot exceed income." S DGERR=1
  Q:$G(DGERR)
@@ -87,6 +94,7 @@ CHK ;Check if means test can be completed
  Q
  ;
 ADJ ;Adjudicate the means test
+ I DGMTACT="EDT"!(DGMTACT="ADD")!(DGMTACT="COM") Q  ;DG*5.3*1014
  N DIR,Y
  S DIR("?",1)="Since assets exceed the threshold, the "_$S(DGMTYPT=1:"means",1:"copay")_" test can"
  S DIR("?",2)="be sent to adjudication.  If the "_$S(DGMTYPT=1:"means",1:"copay")_" test is not"

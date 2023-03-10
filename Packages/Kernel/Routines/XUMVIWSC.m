@@ -1,0 +1,120 @@
+XUMVIWSC ;ALB/CMC - MPI HEALTHEVET WEB SERVICES CLIENT TOOLS ;10/6/21  10:53
+ ;;8.0;KERNEL;**757**;Jul 10, 1995;Build 2
+ ;Per VA Directive 6402, this routine should not be modified.
+ ;
+ ;**757 VAMPI-11972 (dri) - moving routine ^MPIFWSC to Kernel Namespace
+ENV ; - environment check entry (first time with this patch only)"
+ ; this tag area can be removed with future patches
+ ; future patches can call the $$CKSETUP^XUMVIWSC entry for environment
+ ; check
+ ;
+ ; if MPIF*1.0*63 already installed or the MPI, don't need to do this again
+ I $$PATCH^XPDUTL("MPIF*1.0*63")!($P($$SITE^VASITE,"^",3)="200M") Q
+ ;
+ S X=$$CKSETUP("VISTAWEBSERVICE.WSDL")
+ Q
+ ;
+POSTINIT ; -- setup (first time with this patch only)
+ ; this tag area can be removed with future patches
+ ; future patches can call the DO SETUP^XUMVIWSC entry for post-init
+ ; to setup a new HWSC 18.02 entry
+ ;
+ ; if MPIF*1.0*63 already installed or the MPI, don't need to do this again
+ I $$PATCH^XPDUTL("MPIF*1.0*63")!($P($$SITE^VASITE,"^",3)="200M") Q
+ ;
+ D SETUP("VISTAWEBSERVICE.WSDL","MPI_PSIM_NEW EXECUTE")
+ Q
+ ;
+CKSETUP(MPIWSDL) ; - used to check the environment
+ ; returns the path to be used that was verified or 0 if it fails
+ ;
+ ; $$DEFDIR^%ZISH,$$LIST^%ZISH - #2320
+ ; BMES^XPDUTL - #10141
+ ;
+ N MPISTAT,MPIPATH,MPIFILE
+ S MPIPATH=$$DEFDIR^%ZISH()
+ S MPIFILE(MPIWSDL)=""
+ S MPISTAT=$$LIST^%ZISH(MPIPATH,"MPIFILE","MPISTAT")
+ I 'MPISTAT!($D(MPISTAT)'=11),'$D(XPDENV) D  Q 0
+ . D BMES^XPDUTL("**** Error cannot find file "_MPIPATH_MPIWSDL)
+ I 'MPISTAT!($D(MPISTAT)'=11) D  Q 0
+ . W !!,"**** WSDL file "_MPIWSDL_" not found in "_MPIPATH_"."
+ . W !,"     You will need that prior to install."
+ . S XPDQUIT=2
+ Q MPIPATH
+ ;
+SETUP(MPIWSDL,MPISERV) ;  -- call to setup hwsc
+ ;MPIWSDL - call with the wsdl file to setup, must be in the
+ ;          kernel default directory
+ ;
+ ; IA# 5421 FOR $$GENPORT^XOBWLIB
+ ; IA# 6408 FOR ALL 18.12 REFERENCES
+ ;          FOR "B" X-REF ON 18.02
+ ;
+ N MPISTAT,MPIPATH,MPIARR
+ S MPIPATH=$$CKSETUP(MPIWSDL) I MPIPATH=0 Q
+ S MPIFILE(MPIWSDL)=""
+ S MPIARR("WSDL FILE")=MPIPATH_MPIWSDL
+ S MPIARR("CACHE PACKAGE NAME")="MPIPSIM"
+ S MPIARR("WEB SERVICE NAME")=MPISERV
+ S MPIARR("AVAILABILITY RESOURCE")="?wsdl"
+ S MPISTAT=$$GENPORT^XOBWLIB(.MPIARR)
+ ;
+ I 'MPISTAT D BMES^XPDUTL("**** Error creating Web Service (#18.02)"_MPISERV),MES^XPDUTL(MPISTAT) Q
+ D BMES^XPDUTL(">>> "_MPISERV_" entry added to WEB SERVICE file #18.02")
+ ;
+ K DD,DO
+ N DIC,DA,X,Y,DTOUT,DUOUT
+ S DIC="^XOB(18.12,",DIC(0)="ELMQZX"
+ S DIC("DR")="3.03///"_XPDQUES("POST1 Port Number")_";.04///"_XPDQUES("POST2 Web Server Name")_";.06///1;.07///30;1.01///1;3.01///1;3.02///encrypt_only"
+ S X="MPI_PSIM_NEW EXECUTE"
+ D FILE^DICN
+ K DA
+ S DA=+Y,DA(1)=DA
+ K DD,DO,DIC,X,DTOUT,DUOUT,Y
+ S DIC="^XOB(18.12,"_DA(1)_",100,",DIC(0)="LZ"
+ S DIC("P")=$P(^DD(18.12,100,0),"^",2)
+ S X=$O(^XOB(18.02,"B","MPI_PSIM_NEW EXECUTE",0)),DIC("DR")=".06///1"
+ D FILE^DICN
+ Q
+ ;
+ ;**MPIF*1.0*70 STORY 864667 adding new parameters
+ ;**MPIF*1.0*77 VAMPI-9996 (jfw) = Added SSL Configuration Parameter (SSL/RETURN(6))
+CHANGE(RETURN,USER,PASS,SWITCH,SERV,PORT,SSL) ;
+ ;IA #6408
+ ;Called by RPC - MPI VISTA HWS CONFIG
+ ;PASS - PASSWORD TO BE USED FOR THE WEB SERVER MPI_PSIM_NEW EXECUTE
+ ;SWITCH - TO SET FOR HTTP (0) OR HTTPS (1)
+ ;SERV - SERVER IP
+ ;PORT - SSL PORT
+ ;SSL  - SSL CONFIGURATION (File #18.12 / Field #3.02)
+ I $O(^XOB(18.12,"B","MPI_PSIM_NEW EXECUTE",""))="" S RETURN(0)="-1^NO WEB SERVER ENTRY FOR MPI_PSIM_NEW EXECUTE" Q
+ N I,IEN F I=1:1:6  S RETURN(I)=0
+ S IEN=$O(^XOB(18.12,"B","MPI_PSIM_NEW EXECUTE",""))
+ I $G(USER)'="" D
+ .S RETURN(2)="1^SUCCESS USER"
+ .N MPIFERR,FDA S FDA(18.12,IEN_",",200)=USER
+ .D FILE^DIE("E","FDA","MPIFERR") I $D(MPIFERR("DIERR")) S RETURN(2)="-1^ERROR SETTING USER" Q
+ I $G(PASS)'="" D
+ .S RETURN(1)="1^SUCCESS PASSWORD"
+ .N MPIFERR,FDA S FDA(18.12,IEN_",",300)=$$ENCRYP^XUSRB1(PASS)
+ .D FILE^DIE("E","FDA","MPIFERR") I $D(MPIFERR("DIERR")) S RETURN(1)="-1^ERROR SETTING PASSWORD" Q
+ ;I $G(SWITCH)'="" D
+ ;.S RETURN(3)="1^SUCCESS SWITCH"
+ ;.N MPIFIEN,HTTPS S MPIFIEN=$O(^MPIF(984.8,"B","TWO","")) I MPIFIEN="" S RETURN(3)="-1^NO ENTRY 'TWO' IN FILE 984.8" Q
+ ;.S HTTPS=$P($G(^MPIF(984.8,MPIFIEN,0)),"^",4)
+ ;.I HTTPS'=SWITCH S $P(^MPIF(984.8,MPIFIEN,0),"^",4)=SWITCH S RETURN(3)="1^SUCCESSFULLY SET HTTPS TO "_SWITCH
+ I $G(SERV)'="" D
+ .S RETURN(4)="1^SUCCESS SERVER"
+ .N MPIFERR,FDA S FDA(18.12,IEN_",",.04)=SERV
+ .D FILE^DIE("E","FDA","MPIFERR") I $D(MPIFERR("DIERR")) S RETURN(4)="-1^ERROR SETTING NEW SERVER" Q
+ I $G(PORT)'="" D
+ .S RETURN(5)="1^SUCCESS SSL PORT"
+ .N MPIFERR,FDA S FDA(18.12,IEN_",",3.03)=PORT
+ .D FILE^DIE("E","FDA","MPIFERR") I $D(MPIFERR("DIERR")) S RETURN(5)="-1^ERROR SETTING NEW SSL PORT" Q
+ I $G(SSL)'="" D
+ .S RETURN(6)="1^SUCCESS SSL CONFIGURATION"
+ .N MPIFERR,FDA S FDA(18.12,IEN_",",3.02)=SSL
+ .D FILE^DIE("E","FDA","MPIFERR") I $D(MPIFERR("DIERR")) S RETURN(6)="-1^ERROR SETTING SSL CONFIGURATION" Q
+ Q
+ ;

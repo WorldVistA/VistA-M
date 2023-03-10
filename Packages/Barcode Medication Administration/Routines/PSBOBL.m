@@ -1,15 +1,18 @@
-PSBOBL ;BIRMINGHAM/EFC-BAR CODE LABELS (ZEBRA SPECIFIC) ; 5/12/14 2:45pm
- ;;3.0;BAR CODE MED ADMIN;**70,81**;Mar 2004;Build 6
+PSBOBL ;BIRMINGHAM/EFC-BAR CODE LABELS (ZEBRA SPECIFIC) ;8/18/21  18:50
+ ;;3.0;BAR CODE MED ADMIN;**70,81,106,131**;Mar 2004;Build 11
  ;;Per VA Directive 6402, this routine should not be modified.
  ;
  ; Reference/IA
  ; File 50/221
  ;
  ;*70 - 1459: Adding clinic to BL and BZ chui labels.
+ ;*106- add Hazardous to Handle & Dispose alert text
+ ;*131 - Restore y coordinate of first line of label to '25' so as to not be truncated
  ;
 EN ;
  N PSBIENS,PSBBAR,PSBDRUG,PSBQTY,PSBDOSE,PSBNAME,PSBWARD,PSBLOT
  N PSBEXP,PSBMFG,PSBFCB,PSBSYM,PSBCNT,PSBANS,PSBORD,PSBCLIN   ;[*70-1459]
+ N PSBDD,HAZ,PSBHAZ                                                                     ;*106
  S PSBIENS=PSBRPT_","
  S PSBBAR=$P($P($G(^PSB(53.69,PSBRPT,.3)),U,1),"~",2)
  ;
@@ -19,6 +22,7 @@ EN ;
  S PSBDRUG=$$GET1^DIQ(53.69,PSBIENS,.31)
  S PSBQTY=+$$GET1^DIQ(53.69,PSBIENS,.35)
  S:PSBQTY PSBDRUG=PSBDRUG_" (Qty: "_PSBQTY_")"
+ S PSBDD=$$GET1^DIQ(53.69,PSBIENS,.31,"I"),HAZ=$$HAZ^PSSUTIL($P(PSBDD,"~",2))           ;*106
  S PSBDOSE=$$GET1^DIQ(53.69,PSBIENS,.39)
  S PSBNAME=$$GET1^DIQ(53.69,PSBIENS,.12)
  I PSBNAME]"" S PSBNAME=PSBNAME_" ("_$S(DUZ("AG")="I":$$HRN^AUPNPAT($P($G(^PSB(53.69,+PSBIENS,.1)),U,2),$P(^(0),U,4)),1:$E($$GET1^DIQ(53.69,PSBIENS,.121),6,9))_")" ;add code for IHS, PSB*3*81
@@ -37,7 +41,17 @@ LABEL ; Print the Label
  W !,"^LH0,0^FS"
  W $$DATA(20,25,"Drug:")
  W $$DATA(100,25,PSBDRUG)
- I PSBDOSE]"" W $$DATA(20,60,"Dosage:") W $$DATA(100,60,PSBDOSE)
+ S PSBHAZ=$S($P(HAZ,U):"<<HAZ Handle>> ",1:"") S:$P(HAZ,U,2) PSBHAZ=PSBHAZ_"<<HAZ Dispose>>"   ;*106
+ ; *131 - Tweaking the spacing of the dosage label and description to accommodate <HAZ> text
+ ;W:$G(PSBHAZ)]"" $$DATA(20,35,PSBHAZ) ;*106
+ ;I PSBDOSE]"" W $$DATA(20,60,"Dosage:") W $$DATA(100,60,PSBDOSE)
+ S HASHAZ=$G(PSBHAZ)]""
+ I HASHAZ D
+ . W $$DATA(20,50,PSBHAZ)
+ . I PSBDOSE]"" W $$DATA(20,75,"Dosage:") W $$DATA(100,75,PSBDOSE)
+ ; If no HAZ text, keep the 'pre-106' x,y coordinates
+ I 'HASHAZ D
+ . I PSBDOSE]"" W $$DATA(20,60,"Dosage:") W $$DATA(100,60,PSBDOSE)
  I PSBNAME]"" W $$DATA(350,60,PSBNAME)
  I PSBCLIN]"" W $$DATA(350,90,"Clinic:") W $$DATA(400,90,PSBCLIN)            ;[*70-1459]
  I PSBCLIN="",PSBWARD]"" W $$DATA(350,90,"Ward:") W $$DATA(400,90,PSBWARD)   ;[*70-1459]
@@ -46,14 +60,20 @@ LABEL ; Print the Label
  I PSBMFG]"" W $$DATA(350,150,"Mfg:") W $$DATA(400,150,PSBMFG)
  W $$DATA(350,180,"Filled/Checked By:") W $$DATA(520,180,PSBFCB)
  ;
- ; Code 39
- I PSBSYM="C39" W !,"^BY2,3.0^FO20,100^B3N,N,80,Y,N^FR^FD"_PSBBAR_"^FS"
+ ; Code 39 - Adjust spacing to accommodate <HAZ> text if it exists
+ I PSBSYM="C39" D
+ . I HASHAZ W !,"^BY2,3.0^FO20,107^B3N,N,70,Y,N^FR^FD"_PSBBAR_"^FS"
+ . I 'HASHAZ W !,"^BY2,3.0^FO20,100^B3N,N,80,Y,N^FR^FD"_PSBBAR_"^FS"
  ;
- ; Code 128
- I PSBSYM="128" W !,"^BY2,3.0^FO20,100^BCN,80,Y,N,N^FR^FD>:"_PSBBAR_"^FS"
+ ; Code 128  - Adjust spacing to accommodate <HAZ> text if it exists
+ I PSBSYM="128" D
+ . I HASHAZ W !,"^BY2,3.0^FO20,107^BCN,70,Y,N,N^FR^FD>:"_PSBBAR_"^FS"
+ . I 'HASHAZ W !,"^BY2,3.0^FO20,100^BCN,80,Y,N,N^FR^FD>:"_PSBBAR_"^FS"
  ;
- ; Code I 2 of 5
- I PSBSYM="I25" W !,"^BY2,3.0^FO20,100^B2N,80,Y,N,N^FR^FD"_PSBBAR_"^FS"
+ ; Code I 2 of 5  - Adjust spacing to accommodate <HAZ> text if it exists
+ I PSBSYM="I25" D
+ . I HASHAZ W !,"^BY2,3.0^FO20,107^B2N,70,Y,N,N^FR^FD>:"_PSBBAR_"^FS"
+ . I 'HASHAZ W !,"^BY2,3.0^FO20,100^B2N,80,Y,N,N^FR^FD>:"_PSBBAR_"^FS"
  ;
  I PSBSYM="" W $$DATA(20,100,"PSB DEFAULT BARCODE FORMAT Undefined.")
  ;

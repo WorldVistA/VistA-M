@@ -1,5 +1,5 @@
 YTSCORE ;SLC/KCM - Scoring for complex instruments ; 9/15/2015
- ;;5.01;MENTAL HEALTH;**119,123,142**;Dec 30, 1994;Build 14
+ ;;5.01;MENTAL HEALTH;**119,123,142,141,217**;Dec 30, 1994;Build 12
  ;
  ;
  Q
@@ -99,7 +99,7 @@ LDSCORES(YSDATA,YS) ;  new call for patch 123
  F  S YSCALE=$O(^YTT(601.92,"AC",YSAD,YSCALE))  Q:'YSCALE  D
  .S G=$G(^YTT(601.92,YSCALE,0))
  .S SCALE=$P(G,U,3),N=N+1
- .S ^TMP($J,"YSCOR",N)=SCALE_"="_$P(G,U,4)
+ .S ^TMP($J,"YSCOR",N)=SCALE_"="_$P(G,U,4)_$S($P(G,U,5):U_$P(G,U,5),1:"")
  Q
  ;
 UPDSCORE(YSDATA,YS) ; files entries in MH RESULTS (601.92)
@@ -154,18 +154,23 @@ ADDAUDIT(YSC,YSG) ; add entry in AUDIT node, update value in existing MH RESULTS
  Q
  ;
 ADDSCRE ;add score to MH RESULTS
- N FDA,FDAIEN,DIERR,STR,YSRNEW
- S YSRNEW=$$NEW^YTQLIB(601.92)
- S STR=$P(YSG,"=",2)
- S FDAIEN(1)=YSRNEW
- S FDA(601.92,"+1,",.01)=YSRNEW
- S FDA(601.92,"+1,",1)=YSAD
- S FDA(601.92,"+1,",2)=$P(YSG,"=",1)
- S FDA(601.92,"+1,",3)=$P(STR,U,1)                  ; raw score
- S:$L($P(STR,U,2)) FDA(601.92,"+1,",4)=$P(STR,U,2)  ; transformed score 1
- S:$L($P(STR,U,3)) FDA(601.92,"+1,",5)=$P(STR,U,3)  ; transformed score 2
- S:$L($P(STR,U,4)) FDA(601.92,"+1,",6)=$P(STR,U,4)  ; transformed score 3
- D UPDATE^DIE("","FDA","FDAIEN")
+ N FDA,FDAIEN,DIERR,STR,YSRNEW,YSRFND
+ S YSRNEW=$P($G(^YTT(601.92,0)),U,3),YSRFND=0
+ S:YSRNEW<100000 YSRNEW=100000
+ F  Q:YSRFND  D:'$D(^YTT(601.92,YSRNEW))  S YSRNEW=YSRNEW+1
+ . L +^YTT(601.92,YSRNEW):DILOCKTM Q:'$T
+ . S STR=$P(YSG,"=",2)
+ . S FDAIEN(1)=YSRNEW
+ . S FDA(601.92,"+1,",.01)=YSRNEW
+ . S FDA(601.92,"+1,",1)=YSAD
+ . S FDA(601.92,"+1,",2)=$P(YSG,"=",1)
+ . S FDA(601.92,"+1,",3)=$P(STR,U,1)                  ; raw score
+ . S:$L($P(STR,U,2)) FDA(601.92,"+1,",4)=$P(STR,U,2)  ; transformed score 1
+ . S:$L($P(STR,U,3)) FDA(601.92,"+1,",5)=$P(STR,U,3)  ; transformed score 2
+ . S:$L($P(STR,U,4)) FDA(601.92,"+1,",6)=$P(STR,U,4)  ; transformed score 3
+ . D UPDATE^DIE("","FDA","FDAIEN")
+ . L -^YTT(601.92,YSRNEW)
+ . S YSRFND=1
  I $D(DIERR) S ^TMP($J,"YSCOR",1)="[ERROR]",^TMP($J,"YSCOR",2)="Did not add MH RESULTS entry" Q
  Q
  ; 

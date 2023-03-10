@@ -1,124 +1,128 @@
-IBDEI1J7 ; ; 04-FEB-2020
- ;;3.0;IB ENCOUNTER FORM IMP/EXP;;FEB 04, 2020
+IBDEI1J7 ; ; 01-FEB-2022
+ ;;3.0;IB ENCOUNTER FORM IMP/EXP;;FEB 01, 2022
  Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,999) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
- ;;^UTILITY(U,$J,358.3,24483,1,4,0)
- ;;=4^T15.02XA
- ;;^UTILITY(U,$J,358.3,24483,2)
- ;;=^5046387
- ;;^UTILITY(U,$J,358.3,24484,0)
- ;;=T15.01XA^^107^1206^2
- ;;^UTILITY(U,$J,358.3,24484,1,0)
+ ;;^UTILITY(U,$J,358.3,24790,0)
+ ;;=M79.642^^85^1091^16
+ ;;^UTILITY(U,$J,358.3,24790,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,24484,1,3,0)
- ;;=3^Foreign Body in Cornea,Right Eye,Init Encntr
- ;;^UTILITY(U,$J,358.3,24484,1,4,0)
- ;;=4^T15.01XA
- ;;^UTILITY(U,$J,358.3,24484,2)
- ;;=^5046384
- ;;^UTILITY(U,$J,358.3,24485,0)
- ;;=S00.252A^^107^1206^5
- ;;^UTILITY(U,$J,358.3,24485,1,0)
+ ;;^UTILITY(U,$J,358.3,24790,1,3,0)
+ ;;=3^Pain,Left Hand
+ ;;^UTILITY(U,$J,358.3,24790,1,4,0)
+ ;;=4^M79.642
+ ;;^UTILITY(U,$J,358.3,24790,2)
+ ;;=^5013339
+ ;;^UTILITY(U,$J,358.3,24791,0)
+ ;;=M25.551^^85^1091^30
+ ;;^UTILITY(U,$J,358.3,24791,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,24485,1,3,0)
- ;;=3^Superficial FB of Left Eyelid/Periocular Area,Init Encntr
- ;;^UTILITY(U,$J,358.3,24485,1,4,0)
- ;;=4^S00.252A
- ;;^UTILITY(U,$J,358.3,24485,2)
- ;;=^5019820
- ;;^UTILITY(U,$J,358.3,24486,0)
- ;;=S00.251A^^107^1206^6
- ;;^UTILITY(U,$J,358.3,24486,1,0)
+ ;;^UTILITY(U,$J,358.3,24791,1,3,0)
+ ;;=3^Pain,Right Hip
+ ;;^UTILITY(U,$J,358.3,24791,1,4,0)
+ ;;=4^M25.551
+ ;;^UTILITY(U,$J,358.3,24791,2)
+ ;;=^5011611
+ ;;^UTILITY(U,$J,358.3,24792,0)
+ ;;=M25.552^^85^1091^17
+ ;;^UTILITY(U,$J,358.3,24792,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,24486,1,3,0)
- ;;=3^Superficial FB of Right Eyelid/Periocular Area,Init Encntr
- ;;^UTILITY(U,$J,358.3,24486,1,4,0)
- ;;=4^S00.251A
- ;;^UTILITY(U,$J,358.3,24486,2)
- ;;=^5019817
- ;;^UTILITY(U,$J,358.3,24487,0)
- ;;=B96.81^^107^1207^63
- ;;^UTILITY(U,$J,358.3,24487,1,0)
+ ;;^UTILITY(U,$J,358.3,24792,1,3,0)
+ ;;=3^Pain,Left Hip
+ ;;^UTILITY(U,$J,358.3,24792,1,4,0)
+ ;;=4^M25.552
+ ;;^UTILITY(U,$J,358.3,24792,2)
+ ;;=^5011612
+ ;;^UTILITY(U,$J,358.3,24793,0)
+ ;;=M25.561^^85^1091^31
+ ;;^UTILITY(U,$J,358.3,24793,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,24487,1,3,0)
- ;;=3^H. Pylori as the Cause of Diseases Classified Elsewhere
- ;;^UTILITY(U,$J,358.3,24487,1,4,0)
- ;;=4^B96.81
- ;;^UTILITY(U,$J,358.3,24487,2)
- ;;=^5000857
- ;;^UTILITY(U,$J,358.3,24488,0)
- ;;=B15.9^^107^1207^65
- ;;^UTILITY(U,$J,358.3,24488,1,0)
+ ;;^UTILITY(U,$J,358.3,24793,1,3,0)
+ ;;=3^Pain,Right Knee
+ ;;^UTILITY(U,$J,358.3,24793,1,4,0)
+ ;;=4^M25.561
+ ;;^UTILITY(U,$J,358.3,24793,2)
+ ;;=^5011614
+ ;;^UTILITY(U,$J,358.3,24794,0)
+ ;;=M25.562^^85^1091^18
+ ;;^UTILITY(U,$J,358.3,24794,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,24488,1,3,0)
- ;;=3^Hepatitis A,Acute w/o Hepatic Coma
- ;;^UTILITY(U,$J,358.3,24488,1,4,0)
- ;;=4^B15.9
- ;;^UTILITY(U,$J,358.3,24488,2)
- ;;=^5000536
- ;;^UTILITY(U,$J,358.3,24489,0)
- ;;=B16.9^^107^1207^66
- ;;^UTILITY(U,$J,358.3,24489,1,0)
+ ;;^UTILITY(U,$J,358.3,24794,1,3,0)
+ ;;=3^Pain,Left Knee
+ ;;^UTILITY(U,$J,358.3,24794,1,4,0)
+ ;;=4^M25.562
+ ;;^UTILITY(U,$J,358.3,24794,2)
+ ;;=^5011615
+ ;;^UTILITY(U,$J,358.3,24795,0)
+ ;;=M25.571^^85^1091^24
+ ;;^UTILITY(U,$J,358.3,24795,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,24489,1,3,0)
- ;;=3^Hepatitis B,Acute w/o Delta-Agent & w/o Hepatic Coma
- ;;^UTILITY(U,$J,358.3,24489,1,4,0)
- ;;=4^B16.9
- ;;^UTILITY(U,$J,358.3,24489,2)
- ;;=^5000540
- ;;^UTILITY(U,$J,358.3,24490,0)
- ;;=B19.10^^107^1207^68
- ;;^UTILITY(U,$J,358.3,24490,1,0)
+ ;;^UTILITY(U,$J,358.3,24795,1,3,0)
+ ;;=3^Pain,Right Ankle & Joints Right Foot
+ ;;^UTILITY(U,$J,358.3,24795,1,4,0)
+ ;;=4^M25.571
+ ;;^UTILITY(U,$J,358.3,24795,2)
+ ;;=^5011617
+ ;;^UTILITY(U,$J,358.3,24796,0)
+ ;;=M25.572^^85^1091^12
+ ;;^UTILITY(U,$J,358.3,24796,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,24490,1,3,0)
- ;;=3^Hepatitis B,Viral w/o Hepatic Coma,Unspec
- ;;^UTILITY(U,$J,358.3,24490,1,4,0)
- ;;=4^B19.10
- ;;^UTILITY(U,$J,358.3,24490,2)
- ;;=^5000552
- ;;^UTILITY(U,$J,358.3,24491,0)
- ;;=B18.1^^107^1207^67
- ;;^UTILITY(U,$J,358.3,24491,1,0)
+ ;;^UTILITY(U,$J,358.3,24796,1,3,0)
+ ;;=3^Pain,Left Ankle & Joints Left Foot
+ ;;^UTILITY(U,$J,358.3,24796,1,4,0)
+ ;;=4^M25.572
+ ;;^UTILITY(U,$J,358.3,24796,2)
+ ;;=^5011618
+ ;;^UTILITY(U,$J,358.3,24797,0)
+ ;;=R10.2^^85^1091^23
+ ;;^UTILITY(U,$J,358.3,24797,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,24491,1,3,0)
- ;;=3^Hepatitis B,Chronic Viral w/o Delta-Agent
- ;;^UTILITY(U,$J,358.3,24491,1,4,0)
- ;;=4^B18.1
- ;;^UTILITY(U,$J,358.3,24491,2)
- ;;=^5000547
- ;;^UTILITY(U,$J,358.3,24492,0)
- ;;=B17.10^^107^1207^69
- ;;^UTILITY(U,$J,358.3,24492,1,0)
+ ;;^UTILITY(U,$J,358.3,24797,1,3,0)
+ ;;=3^Pain,Pelvic & Perineal
+ ;;^UTILITY(U,$J,358.3,24797,1,4,0)
+ ;;=4^R10.2
+ ;;^UTILITY(U,$J,358.3,24797,2)
+ ;;=^5019209
+ ;;^UTILITY(U,$J,358.3,24798,0)
+ ;;=Z51.5^^85^1091^35
+ ;;^UTILITY(U,$J,358.3,24798,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,24492,1,3,0)
- ;;=3^Hepatitis C,Acute w/o Hepatic Coma
- ;;^UTILITY(U,$J,358.3,24492,1,4,0)
- ;;=4^B17.10
- ;;^UTILITY(U,$J,358.3,24492,2)
- ;;=^5000542
- ;;^UTILITY(U,$J,358.3,24493,0)
- ;;=B18.2^^107^1207^70
- ;;^UTILITY(U,$J,358.3,24493,1,0)
+ ;;^UTILITY(U,$J,358.3,24798,1,3,0)
+ ;;=3^Palliative Care Encounter
+ ;;^UTILITY(U,$J,358.3,24798,1,4,0)
+ ;;=4^Z51.5
+ ;;^UTILITY(U,$J,358.3,24798,2)
+ ;;=^5063063
+ ;;^UTILITY(U,$J,358.3,24799,0)
+ ;;=Z95.3^^85^1091^54
+ ;;^UTILITY(U,$J,358.3,24799,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,24493,1,3,0)
- ;;=3^Hepatitis C,Chronic Viral
- ;;^UTILITY(U,$J,358.3,24493,1,4,0)
- ;;=4^B18.2
- ;;^UTILITY(U,$J,358.3,24493,2)
- ;;=^5000548
- ;;^UTILITY(U,$J,358.3,24494,0)
- ;;=B18.8^^107^1207^72
- ;;^UTILITY(U,$J,358.3,24494,1,0)
+ ;;^UTILITY(U,$J,358.3,24799,1,3,0)
+ ;;=3^Presence of Xenogenic Heart Valve
+ ;;^UTILITY(U,$J,358.3,24799,1,4,0)
+ ;;=4^Z95.3
+ ;;^UTILITY(U,$J,358.3,24799,2)
+ ;;=^5063671
+ ;;^UTILITY(U,$J,358.3,24800,0)
+ ;;=Z95.1^^85^1091^53
+ ;;^UTILITY(U,$J,358.3,24800,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,24494,1,3,0)
- ;;=3^Hepatitis,Oth Chronic Viral
- ;;^UTILITY(U,$J,358.3,24494,1,4,0)
- ;;=4^B18.8
- ;;^UTILITY(U,$J,358.3,24494,2)
- ;;=^5000549
- ;;^UTILITY(U,$J,358.3,24495,0)
- ;;=B17.8^^107^1207^73
- ;;^UTILITY(U,$J,358.3,24495,1,0)
+ ;;^UTILITY(U,$J,358.3,24800,1,3,0)
+ ;;=3^Presence of Aortocoronary Bypass Graft
+ ;;^UTILITY(U,$J,358.3,24800,1,4,0)
+ ;;=4^Z95.1
+ ;;^UTILITY(U,$J,358.3,24800,2)
+ ;;=^5063669
+ ;;^UTILITY(U,$J,358.3,24801,0)
+ ;;=I80.201^^85^1091^43
+ ;;^UTILITY(U,$J,358.3,24801,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,24495,1,3,0)
- ;;=3^Hepatitis,Oth Spec Acute Viral
+ ;;^UTILITY(U,$J,358.3,24801,1,3,0)
+ ;;=3^Phlebitis & Thrombophlebitis Deep Vessels Right Lower Extremity
+ ;;^UTILITY(U,$J,358.3,24801,1,4,0)
+ ;;=4^I80.201
+ ;;^UTILITY(U,$J,358.3,24801,2)
+ ;;=^5007828
+ ;;^UTILITY(U,$J,358.3,24802,0)
+ ;;=I80.202^^85^1091^44
+ ;;^UTILITY(U,$J,358.3,24802,1,0)
+ ;;=^358.31IA^4^2

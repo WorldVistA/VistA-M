@@ -1,5 +1,5 @@
-PSGOE82 ;BIR/CML3 - NON-VERIFIED ORDER EDIT (CONT.) ;Sep 12, 2019@11:09:14
- ;;5.0;INPATIENT MEDICATIONS ;**2,35,50,67,58,81,127,168,181,276,317,366,327,319**;16 DEC 97;Build 31
+PSGOE82 ;BIR/CML3 - NON-VERIFIED ORDER EDIT (CONT.) ;Oct 14, 2020@16:44:24
+ ;;5.0;INPATIENT MEDICATIONS ;**2,35,50,67,58,81,127,168,181,276,317,366,327,319,411**;16 DEC 97;Build 4
  ;
  ; Reference to ^DD(53.1 is supported by DBIA #2256.
  ; Reference to ^VA(200 is supported by DBIA #10060.
@@ -134,7 +134,7 @@ DDOC(PSGX) ; Order check on additional dispense drug for allergy and adv. reacti
  ;
 50 N DIR,X,Y,CLN
  S MSG=0,PSGF2=50 S:$G(PSGOEEF(PSGF2)) BACK="50^PSGOE82"
- S DIR(0)="P^44:EMZ",DIR("A")="Visit Location",DIR("S")="I $P($G(^SC(Y,0)),U,3)=""C"",$$ACTLOC^PSJOE1(Y),$$IMOLOC^PSJOE1(Y,$G(PSGOP))>-1"
+ S DIR(0)="P^44:EMZ",DIR("A")="Visit Location",DIR("S")="I $P($G(^SC(Y,0)),U,3)=""C"",$$ACTLOC^PSJOE1(Y),$$IMOLOC^PSJOE1(Y,$G(PSGP))>-1"
  S CLN=$S($G(PSJCLAPP):+PSJCLAPP,$G(P("CLIN")):P("CLIN"),1:0) I CLN S DIR("B")=$P(^SC(CLN,0),U)
  D ^DIR
  I $D(DIRUT) S PSGOEE=0 G DONE

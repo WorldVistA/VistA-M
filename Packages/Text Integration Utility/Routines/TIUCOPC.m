@@ -1,5 +1,5 @@
-TIUCOPC ;SLC/TDP - Copy/Paste Copy Tracking ;08/06/19  12:00
- ;;1.0;TEXT INTEGRATION UTILITIES;**290**;Jun 20, 1997;Build 548
+TIUCOPC ;SLC/TDP - Copy/Paste Copy Tracking ;Jul 29, 2020@10:19:38
+ ;;1.0;TEXT INTEGRATION UTILITIES;**290,336**;Jun 20, 1997;Build 4
  ;
  ; External Reference
  ;   DBIA 10000  NOW^%DTC
@@ -50,7 +50,7 @@ PUTCOPY(INST,ARY,ERR) ;Save to copy buffer
  ;
  N %,%H,%I,CDT,CDTM,DATA,DATA0,DAYS,DFN,TIUCNT,TIUCPDT,TMPARY,IEN,PKG
  N PRFX,SAVE,TIUACNT,TIUNMSPC,TODATE,TXT,X,X1,X2,TIUCPRCD,TIUERR,TIULN
- N TIULNG,TXTDATA,FRETXT,FAC,CAPP,Y
+ N TIULNG,TXTDATA,TXTHASH,FRETXT,CAPP,Y
  S FRETXT=""
  S PKG=""
  S TIUERR=""
@@ -59,9 +59,8 @@ PUTCOPY(INST,ARY,ERR) ;Save to copy buffer
  D NOW^%DTC
  S CDTM=%
  S CDT=X
- I $G(INST)="" S TIUERR="-1^Institution is required" G SVQ
+ I $G(INST)="" S INST=$G(DUZ(2))
  I +INST<1 S TIUERR="-1^Invalid institution" G SVQ
- S FAC=INST
  S INST=$$FIND1^DIC(4,"","","`"_INST,"","","ERR")
  I +INST<1 S TIUERR="-1^Invalid institution" G SVQ
  I '$D(ARY) S TIUERR="-1^Input array does not exist." G SVQ
@@ -119,7 +118,7 @@ SVQ I $G(TIUERR)'="" D
  ;
 NWDTENT(CDT,TIUNMSPC) ;Add a new entry date (zero node) for COPY/PASTE in ^XTMP.
  N %H,X,X1,X2,DAYS,TODATE
- ;S DAYS=$$DAYS^TIUCOP(FAC) I +DAYS=-1 S TIUERR=DAYS
+ ;S DAYS=$$DAYS^TIUCOP(INST) I +DAYS=-1 S TIUERR=DAYS
  ;S X2=DAYS
  S X2=1 ;Only save for 1 days
  S X1=CDT
@@ -162,13 +161,12 @@ GETCOPY(INST,DFN,ARY,STRTFRM,LIMIT) ;Retrieve copy buffer
  ;     Below array info not used after switch to Hash Value:
  ;     ARY("1..n,1..n") - Copied text
  ;
- N %,%H,%I,CAPP,CDT,CNT,DAYS,DONE,DT,DT1,FAC,LN,LNTTL,MAXLN,NODE0 ;,PRFX
+ N %,%H,%I,CAPP,CDT,CNT,DAYS,DONE,DT,DT1,LN,LNTTL,MAXLN,NODE0 ;,PRFX
  N CAPP1,FIRST,STRT,TIUERR,TIUNMSPC,X,X1,X2
  S (CDT,TIUERR)=""
  I $G(ARY)'["" S TIUERR="-1^Return array is required." G GETQ
- I $G(INST)="" S TIUERR="-1^Institution is required" G GETQ
+ I $G(INST)="" S INST=$G(DUZ(2))
  I +INST<1 S TIUERR="-1^Invalid institution" G GETQ
- S FAC=INST
  S INST=$$FIND1^DIC(4,"","","`"_INST,"","","ERR")
  I +INST<1 S TIUERR="-1^Invalid institution" G GETQ
  I $G(DFN)="" S TIUERR="-1^User dfn is required." G GETQ
@@ -185,7 +183,7 @@ GETCOPY(INST,DFN,ARY,STRTFRM,LIMIT) ;Retrieve copy buffer
  I FIRST=0 D
  . D NOW^%DTC
  . S CDT=X K X
- . ;S DAYS=$$DAYS^TIUCOP(FAC) I +DAYS=-1 S TIUERR=DAYS G GETQ
+ . ;S DAYS=$$DAYS^TIUCOP(INST) I +DAYS=-1 S TIUERR=DAYS G GETQ
  . S DAYS=2
  . S X2=-DAYS
  . S X1=CDT
@@ -227,7 +225,7 @@ GETQ ;I TIUERR'="" S ARY("0,0")=TIUERR
  Q
  ;
 CHKCOPY(INST,DFN) ;Patient has copy buffer data
- ;   Call using GETCOPY^TIUCOPC(INSTITUTION IEN,USER DFN,.ARY)
+ ;   Call using CHKCOPY^TIUCOPC(INSTITUTION IEN,USER DFN,.ARY)
  ;
  ;   Input
  ;     INST - Institution ien
@@ -236,12 +234,11 @@ CHKCOPY(INST,DFN) ;Patient has copy buffer data
  ;   Output
  ;     Returns a 1 if patient has copy data, a 0 if not
  ;
- N %,%H,%I,CAPP,CDT,DAYS,DT,FAC,RSLT,TIUNMSPC,X,X1,X2
+ N %,%H,%I,CAPP,CDT,DAYS,DT,RSLT,TIUNMSPC,X,X1,X2
  S RSLT=0
  ;S TIUERR=""
- I $G(INST)="" Q 0
+ I $G(INST)="" S INST=$G(DUZ(2))
  I +INST<1 Q 0
- S FAC=INST
  S INST=$$FIND1^DIC(4,"","","`"_INST,"","","ERR")
  I +INST<1 Q 0
  I $G(DFN)="" Q 0
@@ -249,7 +246,7 @@ CHKCOPY(INST,DFN) ;Patient has copy buffer data
  D NOW^%DTC
  S CDT=X K X
  ;S CNT=0
- S DAYS=$$DAYS^TIUCOP(FAC) I +DAYS=-1 Q 0
+ S DAYS=$$DAYS^TIUCOP(INST) I +DAYS=-1 Q 0
  S DAYS=DAYS+2
  S X2=-DAYS
  S X1=CDT

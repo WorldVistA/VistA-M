@@ -1,5 +1,5 @@
-IBCNERP1 ;DAOU/BHS - IBCNE USER IF eIV RESPONSE REPORT ;03-JUN-2002
- ;;2.0;INTEGRATED BILLING;**184,271,416,528,549**;21-MAR-94;Build 54
+IBCNERP1 ;DAOU/BHS - IBCNE USER IF eIV RESPONSE REPORT ; 03-JUN-2002
+ ;;2.0;INTEGRATED BILLING;**184,271,416,528,549,668,702**;21-MAR-94;Build 53
  ;;Per VA Directive 6402, this routine should not be modified.
  ;
  ; eIV - Insurance Verification Interface
@@ -27,6 +27,8 @@ IBCNERP1 ;DAOU/BHS - IBCNE USER IF eIV RESPONSE REPORT ;03-JUN-2002
 EN(IPRF) ; Main entry pt
  ; Init vars
  N IBCNERTN,IBCNESPC,IBOUT,POP,STOP
+ N IBSTOP ; IB*702 to control initial quit point
+ S IPRF=$G(IPRF) ; IB*702
  S IBCNESPC("RFLAG")=$G(IPRF)
  ;
  S STOP=0
@@ -34,10 +36,16 @@ EN(IPRF) ; Main entry pt
  W @IOF
  W !,"eIV ",$S(IPRF=1:"Inactive Policy",IPRF=2:"Ambiguous Policy",1:"Response")," Report",!
  I $G(IPRF) D
- . W !,"Please select a date range to view ",$S(IPRF=1:"inactive",1:"ambiguous")," policy information that the eIV"
- . W !,"process turned up while attempting to discover previously unknown"
- . W !,"insurance policies. (Date range selection is based on the date that"
- . W !,"eIV receives the response from the payer.)"
+ . ; IB*702/DTG start update initial report statement
+ . ;W !,"Please select a date range to view ",$S(IPRF=1:"inactive",1:"ambiguous")," policy information that the eIV"
+ . ;W !,"process turned up while attempting to discover previously unknown"
+ . ;W !,"insurance policies. (Date range selection is based on the date that"
+ . ;W !,"eIV receives the response from the payer.)"
+ . ;
+ . W !,"Please select a date range in which ",$S(IPRF=1:"inactive",1:"ambiguous")," responses were received to view"
+ . W !,"the associated response detail. Date range selection is based on the date"
+ . W !,"that eIV receives the response from the payer."
+ . ; IB*702/DTG end update initial report statement
  ;
  I '$G(IPRF) D
  . W !,"Insurance verification responses are received daily."
@@ -50,22 +58,35 @@ R05 I '$G(IPRF) D RTYPE I STOP G:$$STOP EXIT G R05
  ; If rpt by Trace # - no other criteria is necessary
  I $G(IBCNESPC("TRCN")) G R60
  ; Date Range params
-R10 D DTRANGE I STOP G:$$STOP EXIT G R05
+ ; IB*702/DTG start exit if up caret on start date for inactive/ambiguous
+R10 ;D DTRANGE I STOP G:$$STOP EXIT G R05
+ S IBSTOP=0 D DTRANGE
+ I IBSTOP&(IPRF) G EXIT
+ I STOP G:$$STOP EXIT G R05
+ ; IB*702/DTG end exit if up caret on start date for inactiver/ambiguous
  ; Payer Selection param
 R20 D PYRSEL I STOP G:$$STOP EXIT G R10
  ; Patient Selection param
 R30 D PTSEL I STOP G:$$STOP EXIT G R20
  ; Type of data to return param
 R40 D TYPE I STOP G:$$STOP EXIT G R30
+ ; IB*702/DTG start remove policy exp date
  ; How far back do you want the expiration date
-R45 I $G(IPRF)=1 D DTEXP I STOP G:$$STOP EXIT G R40
+R45 ; I $G(IPRF)=1 D DTEXP I STOP G:$$STOP EXIT G R40
+ S IBCNESPC("DTEXP")=""
  ; Sort by param - Payer or Patient
-R50 D SORT I STOP G:$$STOP EXIT G R45
+R50 ;D SORT I STOP G:$$STOP EXIT G R45
+ D SORT I STOP G:$$STOP EXIT G R40
+ ; IB*702/DTG end remove policy exp date
  ; Select the output type
 R60 S IBOUT=$$OUT I STOP G:$$STOP EXIT G R50
  I IBOUT="E" W !!,"To avoid undesired wrapping, please enter '0;256;999' at the 'DEVICE:' prompt.",!
  ; Select output device
-R100 D DEVICE(IBCNERTN,.IBCNESPC,IBOUT) I STOP Q:+$G(IBFRB)&($G(IBOUT)="E")  G:$$STOP EXIT G:$G(IBCNESPC("TRCN"))'="" R05 G R50
+ ; IB*702/DTG start go back 1 if up caret and no to quit
+R100 ;D DEVICE(IBCNERTN,.IBCNESPC,IBOUT) I STOP Q:+$G(IBFRB)&($G(IBOUT)="E")  G:$$STOP EXIT G:$G(IBCNESPC("TRCN"))'="" R05 G R50
+ D DEVICE(IBCNERTN,.IBCNESPC,IBOUT)
+ I STOP Q:+$G(IBFRB)&($G(IBOUT)="E")  G:$$STOP EXIT G:$G(IBCNESPC("TRCN"))'="" R05 G R60
+ ; IB*702/DTG start go back 1 if up caret and no to quit
  G EXIT
  ;
 EXIT ; Exit pt
@@ -128,7 +149,12 @@ DTRANGE ; Determine start and end dates for date range param
  S DIR("?",1)="   Please enter a valid date for which an eIV Response"
  S DIR("?")="   would have been received. Future dates are not allowed."
  D ^DIR K DIR
- I $D(DIRUT) S STOP=1 G DTRANGX
+ ; IB*702/DTG start exit if up caret on start date for inactive/ambiguous
+ ;I $D(DIRUT) S STOP=1 G DTRANGX
+ I $D(DIRUT) D  G DTRANGX
+ . I $G(IPRF)=1!($G(IPRF)=2) S IBSTOP=1 Q
+ . S STOP=1
+ ; IB*702/DTG end exit if up caret on start date for inactive/ambiguous
  S IBCNESPC("BEGDT")=Y
  ; End date
 DTRANG1 S DIR(0)="DA^"_Y_":-NOW:EX"
@@ -151,7 +177,8 @@ PYRSEL ; Select one payer or ALL - File #365.12
  S DIC(0)="ABEQ"
  S DIC("A")=$$FO^IBCNEUT1("Payer or <Return> for All Payers: ",40,"R")
  ; Do not allow selection of '~NO PAYER' and non-eIV payers
- S DIC("S")="I ($P(^(0),U,1)'=""~NO PAYER""),$$PYRAPP^IBCNEUT5(""IIV"",$G(Y))'="""""
+ ;IB*668/TAZ - Changed Payer Application from IIV to EIV
+ S DIC("S")="I ($P(^(0),U,1)'=""~NO PAYER""),$$PYRAPP^IBCNEUT5(""EIV"",$G(Y))'="""""
  S DIC="^IBE(365.12,"
  D ^DIC
  I $D(DUOUT)!$D(DTOUT) S STOP=1 G PYRSELX
@@ -254,6 +281,8 @@ RTYPE ; Prompt to allow users to report by date range or Trace #
  W !
  S DIC(0)="AEVZSQ"
  S DIC="^IBCN(365,",D="C",DIC("A")="Enter Trace # for report: "
+ ; IB*702/TAZ,CKB - added screen for transactions with a "WH" prefix on the Trace #
+ S DIC("S")="I $E($P($G(^(0)),U,9),1,2)'=""WH"""
  S DIC("W")="N IBX S IBX=$P($G(^(0)),U,2,3) W:$P(IBX,U,1) $P($G(^DPT($P(IBX,U,1),0)),U,1) W:$P(IBX,U,2) ""  ""_$P($G(^IBE(365.12,$P(IBX,U,2),0)),U,1)"
  D IX^DIC K DIC
  I $D(DTOUT)!$D(DUOUT) S STOP=1 G RTYPEX

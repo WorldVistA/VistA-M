@@ -1,5 +1,5 @@
-MAGDTR03 ;WOIFO/PMK/NST - Read a DICOM image file ; 12 Apr 2012 1:24 PM
- ;;3.0;IMAGING;**46,54,127**;Mar 19, 2002;Build 4231;Apr 01, 2013
+MAGDTR03 ;WOIFO/PMK/NST - Read a DICOM image file ; October 27, 2022
+ ;;3.0;IMAGING;**46,54,127,328**;Mar 19, 2002;Build 5
  ;; Per VHA Directive 2004-038, this routine should not be modified.
  ;; +---------------------------------------------------------------+
  ;; | Property of the US Government.                                |
@@ -114,6 +114,7 @@ FINISH ; finalize resulted or cancelled consult
  ; record who resulted or cancelled the consult
  ;
  I $G(MODE)="REPAIR" G REPAIR ; set in ^MAGDTRLU
+ Q:$$GET1^DIQ(2006.5849,UNREAD,11)]""  ; P328 - quit when READER is already on file
  ;
  ; process the transaction
  I $D(HLNEXT) D  ; IFC - data comes from HL7 message

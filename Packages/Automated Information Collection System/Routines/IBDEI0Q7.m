@@ -1,122 +1,118 @@
-IBDEI0Q7 ; ; 04-FEB-2020
- ;;3.0;IB ENCOUNTER FORM IMP/EXP;;FEB 04, 2020
+IBDEI0Q7 ; ; 01-FEB-2022
+ ;;3.0;IB ENCOUNTER FORM IMP/EXP;;FEB 01, 2022
  Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,999) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
- ;;^UTILITY(U,$J,358.3,11697,0)
- ;;=21932^^79^749^6^^^^1
- ;;^UTILITY(U,$J,358.3,11697,1,0)
+ ;;^UTILITY(U,$J,358.3,11773,1,4,0)
+ ;;=4^N06.8
+ ;;^UTILITY(U,$J,358.3,11773,2)
+ ;;=^5015557
+ ;;^UTILITY(U,$J,358.3,11774,0)
+ ;;=N06.9^^46^573^41
+ ;;^UTILITY(U,$J,358.3,11774,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,11697,1,2,0)
- ;;=2^Exc Back Tumor Deep < 5 CM
- ;;^UTILITY(U,$J,358.3,11697,1,4,0)
- ;;=4^21932
- ;;^UTILITY(U,$J,358.3,11698,0)
- ;;=21012^^79^749^10^^^^1
- ;;^UTILITY(U,$J,358.3,11698,1,0)
+ ;;^UTILITY(U,$J,358.3,11774,1,3,0)
+ ;;=3^Isolated proteinuria w/ unspecified morphologic lesion
+ ;;^UTILITY(U,$J,358.3,11774,1,4,0)
+ ;;=4^N06.9
+ ;;^UTILITY(U,$J,358.3,11774,2)
+ ;;=^5015558
+ ;;^UTILITY(U,$J,358.3,11775,0)
+ ;;=N07.0^^46^573^29
+ ;;^UTILITY(U,$J,358.3,11775,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,11698,1,2,0)
- ;;=2^Exc Face Tumor 2 CM or >
- ;;^UTILITY(U,$J,358.3,11698,1,4,0)
- ;;=4^21012
- ;;^UTILITY(U,$J,358.3,11699,0)
- ;;=21011^^79^749^11^^^^1
- ;;^UTILITY(U,$J,358.3,11699,1,0)
+ ;;^UTILITY(U,$J,358.3,11775,1,3,0)
+ ;;=3^Hereditary nephropathy, NEC w/ minor glomerular abnormality
+ ;;^UTILITY(U,$J,358.3,11775,1,4,0)
+ ;;=4^N07.0
+ ;;^UTILITY(U,$J,358.3,11775,2)
+ ;;=^5015559
+ ;;^UTILITY(U,$J,358.3,11776,0)
+ ;;=N07.1^^46^573^28
+ ;;^UTILITY(U,$J,358.3,11776,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,11699,1,2,0)
- ;;=2^Exc Face Tumor < 2 CM
- ;;^UTILITY(U,$J,358.3,11699,1,4,0)
- ;;=4^21011
- ;;^UTILITY(U,$J,358.3,11700,0)
- ;;=27632^^79^749^16^^^^1
- ;;^UTILITY(U,$J,358.3,11700,1,0)
+ ;;^UTILITY(U,$J,358.3,11776,1,3,0)
+ ;;=3^Hereditary nephropathy, NEC w/ focal & seg glomerular lesions
+ ;;^UTILITY(U,$J,358.3,11776,1,4,0)
+ ;;=4^N07.1
+ ;;^UTILITY(U,$J,358.3,11776,2)
+ ;;=^5015560
+ ;;^UTILITY(U,$J,358.3,11777,0)
+ ;;=N07.2^^46^573^24
+ ;;^UTILITY(U,$J,358.3,11777,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,11700,1,2,0)
- ;;=2^Exc Leg/Ankle Tumor 3 CM or >
- ;;^UTILITY(U,$J,358.3,11700,1,4,0)
- ;;=4^27632
- ;;^UTILITY(U,$J,358.3,11701,0)
- ;;=27618^^79^749^17^^^^1
- ;;^UTILITY(U,$J,358.3,11701,1,0)
+ ;;^UTILITY(U,$J,358.3,11777,1,3,0)
+ ;;=3^Hereditary nephropathy, NEC w/ diffuse membranous glomrlneph
+ ;;^UTILITY(U,$J,358.3,11777,1,4,0)
+ ;;=4^N07.2
+ ;;^UTILITY(U,$J,358.3,11777,2)
+ ;;=^5015561
+ ;;^UTILITY(U,$J,358.3,11778,0)
+ ;;=N07.3^^46^573^25
+ ;;^UTILITY(U,$J,358.3,11778,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,11701,1,2,0)
- ;;=2^Exc Leg/Ankle Tumor < 3 CM
- ;;^UTILITY(U,$J,358.3,11701,1,4,0)
- ;;=4^27618
- ;;^UTILITY(U,$J,358.3,11702,0)
- ;;=11403^^79^749^22^^^^1
- ;;^UTILITY(U,$J,358.3,11702,1,0)
+ ;;^UTILITY(U,$J,358.3,11778,1,3,0)
+ ;;=3^Hereditary nephropathy, NEC w/ diffuse mesangial prolif glomrlneph
+ ;;^UTILITY(U,$J,358.3,11778,1,4,0)
+ ;;=4^N07.3
+ ;;^UTILITY(U,$J,358.3,11778,2)
+ ;;=^5015562
+ ;;^UTILITY(U,$J,358.3,11779,0)
+ ;;=N07.4^^46^573^23
+ ;;^UTILITY(U,$J,358.3,11779,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,11702,1,2,0)
- ;;=2^Exc Trunk-Ext B9+Marg 2.1-3 CM
- ;;^UTILITY(U,$J,358.3,11702,1,4,0)
- ;;=4^11403
- ;;^UTILITY(U,$J,358.3,11703,0)
- ;;=11404^^79^749^23^^^^1
- ;;^UTILITY(U,$J,358.3,11703,1,0)
+ ;;^UTILITY(U,$J,358.3,11779,1,3,0)
+ ;;=3^Hereditary nephropathy, NEC w/ diffus endocaplry prolif glomrlneph
+ ;;^UTILITY(U,$J,358.3,11779,1,4,0)
+ ;;=4^N07.4
+ ;;^UTILITY(U,$J,358.3,11779,2)
+ ;;=^5015563
+ ;;^UTILITY(U,$J,358.3,11780,0)
+ ;;=N07.5^^46^573^26
+ ;;^UTILITY(U,$J,358.3,11780,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,11703,1,2,0)
- ;;=2^Exc Trunk-Ext B9+Marg 3.1-4 CM
- ;;^UTILITY(U,$J,358.3,11703,1,4,0)
- ;;=4^11404
- ;;^UTILITY(U,$J,358.3,11704,0)
- ;;=11406^^79^749^24^^^^1
- ;;^UTILITY(U,$J,358.3,11704,1,0)
+ ;;^UTILITY(U,$J,358.3,11780,1,3,0)
+ ;;=3^Hereditary nephropathy, NEC w/ diffuse mesangiocap glomrlneph
+ ;;^UTILITY(U,$J,358.3,11780,1,4,0)
+ ;;=4^N07.5
+ ;;^UTILITY(U,$J,358.3,11780,2)
+ ;;=^5015564
+ ;;^UTILITY(U,$J,358.3,11781,0)
+ ;;=N07.6^^46^573^22
+ ;;^UTILITY(U,$J,358.3,11781,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,11704,1,2,0)
- ;;=2^Exc Trunk-Ext B9+Marg > 4.0 CM
- ;;^UTILITY(U,$J,358.3,11704,1,4,0)
- ;;=4^11406
- ;;^UTILITY(U,$J,358.3,11705,0)
- ;;=21601^^79^749^7^^^^1
- ;;^UTILITY(U,$J,358.3,11705,1,0)
+ ;;^UTILITY(U,$J,358.3,11781,1,3,0)
+ ;;=3^Hereditary nephropathy, NEC w/ dense deposit disease
+ ;;^UTILITY(U,$J,358.3,11781,1,4,0)
+ ;;=4^N07.6
+ ;;^UTILITY(U,$J,358.3,11781,2)
+ ;;=^5015565
+ ;;^UTILITY(U,$J,358.3,11782,0)
+ ;;=N07.7^^46^573^27
+ ;;^UTILITY(U,$J,358.3,11782,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,11705,1,2,0)
- ;;=2^Exc Chest Wall Tumor Incl Ribs
- ;;^UTILITY(U,$J,358.3,11705,1,4,0)
- ;;=4^21601
- ;;^UTILITY(U,$J,358.3,11706,0)
- ;;=21602^^79^749^9^^^^1
- ;;^UTILITY(U,$J,358.3,11706,1,0)
+ ;;^UTILITY(U,$J,358.3,11782,1,3,0)
+ ;;=3^Hereditary nephropathy, NEC w/ diffuse crescentic glomrlneph
+ ;;^UTILITY(U,$J,358.3,11782,1,4,0)
+ ;;=4^N07.7
+ ;;^UTILITY(U,$J,358.3,11782,2)
+ ;;=^5015566
+ ;;^UTILITY(U,$J,358.3,11783,0)
+ ;;=N07.8^^46^573^30
+ ;;^UTILITY(U,$J,358.3,11783,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,11706,1,2,0)
- ;;=2^Exc Chest Wall Tumor w/ Plastic Recons
- ;;^UTILITY(U,$J,358.3,11706,1,4,0)
- ;;=4^21602
- ;;^UTILITY(U,$J,358.3,11707,0)
- ;;=21603^^79^749^8^^^^1
- ;;^UTILITY(U,$J,358.3,11707,1,0)
+ ;;^UTILITY(U,$J,358.3,11783,1,3,0)
+ ;;=3^Hereditary nephropathy, NEC w/ oth morphologic lesions
+ ;;^UTILITY(U,$J,358.3,11783,1,4,0)
+ ;;=4^N07.8
+ ;;^UTILITY(U,$J,358.3,11783,2)
+ ;;=^5015567
+ ;;^UTILITY(U,$J,358.3,11784,0)
+ ;;=N07.9^^46^573^31
+ ;;^UTILITY(U,$J,358.3,11784,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,11707,1,2,0)
- ;;=2^Exc Chest Wall Tumor w/ Lymphadenectomy
- ;;^UTILITY(U,$J,358.3,11707,1,4,0)
- ;;=4^21603
- ;;^UTILITY(U,$J,358.3,11708,0)
- ;;=46320^^79^750^3^^^^1
- ;;^UTILITY(U,$J,358.3,11708,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,11708,1,2,0)
- ;;=2^Removal Hemorrhoid Clot
- ;;^UTILITY(U,$J,358.3,11708,1,4,0)
- ;;=4^46320
- ;;^UTILITY(U,$J,358.3,11709,0)
- ;;=29581^^79^750^1^^^^1
- ;;^UTILITY(U,$J,358.3,11709,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,11709,1,2,0)
- ;;=2^Apply Multlay Comprs,Lower Leg
- ;;^UTILITY(U,$J,358.3,11709,1,4,0)
- ;;=4^29581
- ;;^UTILITY(U,$J,358.3,11710,0)
- ;;=A6407^^79^750^2^^^^1
- ;;^UTILITY(U,$J,358.3,11710,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,11710,1,2,0)
- ;;=2^Packing Strips,Non-Impreg,to 2"
- ;;^UTILITY(U,$J,358.3,11710,1,4,0)
- ;;=4^A6407
- ;;^UTILITY(U,$J,358.3,11711,0)
- ;;=43762^^79^751^1^^^^1
- ;;^UTILITY(U,$J,358.3,11711,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,11711,1,2,0)
- ;;=2^Change PEG Tube
+ ;;^UTILITY(U,$J,358.3,11784,1,3,0)
+ ;;=3^Hereditary nephropathy, NEC w/ unsp morphologic lesions
+ ;;^UTILITY(U,$J,358.3,11784,1,4,0)
+ ;;=4^N07.9
+ ;;^UTILITY(U,$J,358.3,11784,2)
+ ;;=^5015568

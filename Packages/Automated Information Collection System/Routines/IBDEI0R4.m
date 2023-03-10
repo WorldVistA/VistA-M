@@ -1,128 +1,128 @@
-IBDEI0R4 ; ; 04-FEB-2020
- ;;3.0;IB ENCOUNTER FORM IMP/EXP;;FEB 04, 2020
+IBDEI0R4 ; ; 01-FEB-2022
+ ;;3.0;IB ENCOUNTER FORM IMP/EXP;;FEB 01, 2022
  Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,999) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
- ;;^UTILITY(U,$J,358.3,12106,1,3,0)
- ;;=3^Benign Neop of Descending Colon
- ;;^UTILITY(U,$J,358.3,12106,1,4,0)
- ;;=4^D12.4
- ;;^UTILITY(U,$J,358.3,12106,2)
- ;;=^5001967
- ;;^UTILITY(U,$J,358.3,12107,0)
- ;;=D12.5^^80^770^15
- ;;^UTILITY(U,$J,358.3,12107,1,0)
+ ;;^UTILITY(U,$J,358.3,12216,0)
+ ;;=L03.212^^49^596^30
+ ;;^UTILITY(U,$J,358.3,12216,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,12107,1,3,0)
- ;;=3^Benign Neop of Sigmoid Colon
- ;;^UTILITY(U,$J,358.3,12107,1,4,0)
- ;;=4^D12.5
- ;;^UTILITY(U,$J,358.3,12107,2)
- ;;=^5001968
- ;;^UTILITY(U,$J,358.3,12108,0)
- ;;=D12.6^^80^770^13
- ;;^UTILITY(U,$J,358.3,12108,1,0)
+ ;;^UTILITY(U,$J,358.3,12216,1,3,0)
+ ;;=3^Lymphagnitis of Face,Acute
+ ;;^UTILITY(U,$J,358.3,12216,1,4,0)
+ ;;=4^L03.212
+ ;;^UTILITY(U,$J,358.3,12216,2)
+ ;;=^5009044
+ ;;^UTILITY(U,$J,358.3,12217,0)
+ ;;=L03.211^^49^596^20
+ ;;^UTILITY(U,$J,358.3,12217,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,12108,1,3,0)
- ;;=3^Benign Neop of Colon,Unspec
- ;;^UTILITY(U,$J,358.3,12108,1,4,0)
- ;;=4^D12.6
- ;;^UTILITY(U,$J,358.3,12108,2)
- ;;=^5001969
- ;;^UTILITY(U,$J,358.3,12109,0)
- ;;=E66.01^^80^770^87
- ;;^UTILITY(U,$J,358.3,12109,1,0)
+ ;;^UTILITY(U,$J,358.3,12217,1,3,0)
+ ;;=3^Cellulitis of Face
+ ;;^UTILITY(U,$J,358.3,12217,1,4,0)
+ ;;=4^L03.211
+ ;;^UTILITY(U,$J,358.3,12217,2)
+ ;;=^5009043
+ ;;^UTILITY(U,$J,358.3,12218,0)
+ ;;=L03.311^^49^596^16
+ ;;^UTILITY(U,$J,358.3,12218,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,12109,1,3,0)
- ;;=3^Morbid Obesity d/t Excess Calories
- ;;^UTILITY(U,$J,358.3,12109,1,4,0)
- ;;=4^E66.01
- ;;^UTILITY(U,$J,358.3,12109,2)
- ;;=^5002826
- ;;^UTILITY(U,$J,358.3,12110,0)
- ;;=E66.9^^80^770^88
- ;;^UTILITY(U,$J,358.3,12110,1,0)
+ ;;^UTILITY(U,$J,358.3,12218,1,3,0)
+ ;;=3^Cellulitis of Abdominal Wall
+ ;;^UTILITY(U,$J,358.3,12218,1,4,0)
+ ;;=4^L03.311
+ ;;^UTILITY(U,$J,358.3,12218,2)
+ ;;=^5009047
+ ;;^UTILITY(U,$J,358.3,12219,0)
+ ;;=L03.312^^49^596^17
+ ;;^UTILITY(U,$J,358.3,12219,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,12110,1,3,0)
- ;;=3^Obesity,Unspec
- ;;^UTILITY(U,$J,358.3,12110,1,4,0)
- ;;=4^E66.9
- ;;^UTILITY(U,$J,358.3,12110,2)
- ;;=^5002832
- ;;^UTILITY(U,$J,358.3,12111,0)
- ;;=K21.9^^80^770^38
- ;;^UTILITY(U,$J,358.3,12111,1,0)
+ ;;^UTILITY(U,$J,358.3,12219,1,3,0)
+ ;;=3^Cellulitis of Back (except buttock)
+ ;;^UTILITY(U,$J,358.3,12219,1,4,0)
+ ;;=4^L03.312
+ ;;^UTILITY(U,$J,358.3,12219,2)
+ ;;=^5009048
+ ;;^UTILITY(U,$J,358.3,12220,0)
+ ;;=L03.313^^49^596^19
+ ;;^UTILITY(U,$J,358.3,12220,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,12111,1,3,0)
- ;;=3^Gastro-Esophageal Reflux Disease w/o Esophagitis
- ;;^UTILITY(U,$J,358.3,12111,1,4,0)
- ;;=4^K21.9
- ;;^UTILITY(U,$J,358.3,12111,2)
- ;;=^5008505
- ;;^UTILITY(U,$J,358.3,12112,0)
- ;;=K22.10^^80^770^35
- ;;^UTILITY(U,$J,358.3,12112,1,0)
+ ;;^UTILITY(U,$J,358.3,12220,1,3,0)
+ ;;=3^Cellulitis of Chest Wall
+ ;;^UTILITY(U,$J,358.3,12220,1,4,0)
+ ;;=4^L03.313
+ ;;^UTILITY(U,$J,358.3,12220,2)
+ ;;=^5009049
+ ;;^UTILITY(U,$J,358.3,12221,0)
+ ;;=L03.314^^49^596^21
+ ;;^UTILITY(U,$J,358.3,12221,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,12112,1,3,0)
- ;;=3^Esophagus Ulcer w/o Bleeding
- ;;^UTILITY(U,$J,358.3,12112,1,4,0)
- ;;=4^K22.10
- ;;^UTILITY(U,$J,358.3,12112,2)
- ;;=^329929
- ;;^UTILITY(U,$J,358.3,12113,0)
- ;;=K22.2^^80^770^34
- ;;^UTILITY(U,$J,358.3,12113,1,0)
+ ;;^UTILITY(U,$J,358.3,12221,1,3,0)
+ ;;=3^Cellulitis of Groin
+ ;;^UTILITY(U,$J,358.3,12221,1,4,0)
+ ;;=4^L03.314
+ ;;^UTILITY(U,$J,358.3,12221,2)
+ ;;=^5009050
+ ;;^UTILITY(U,$J,358.3,12222,0)
+ ;;=L03.315^^49^596^22
+ ;;^UTILITY(U,$J,358.3,12222,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,12113,1,3,0)
- ;;=3^Esophageal Obstruction
- ;;^UTILITY(U,$J,358.3,12113,1,4,0)
- ;;=4^K22.2
- ;;^UTILITY(U,$J,358.3,12113,2)
- ;;=^5008507
- ;;^UTILITY(U,$J,358.3,12114,0)
- ;;=K25.9^^80^770^37
- ;;^UTILITY(U,$J,358.3,12114,1,0)
+ ;;^UTILITY(U,$J,358.3,12222,1,3,0)
+ ;;=3^Cellulitis of Perineum
+ ;;^UTILITY(U,$J,358.3,12222,1,4,0)
+ ;;=4^L03.315
+ ;;^UTILITY(U,$J,358.3,12222,2)
+ ;;=^5009051
+ ;;^UTILITY(U,$J,358.3,12223,0)
+ ;;=L03.316^^49^596^24
+ ;;^UTILITY(U,$J,358.3,12223,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,12114,1,3,0)
- ;;=3^Gastric Ulcer w/o Hemorrhage/Perforation
- ;;^UTILITY(U,$J,358.3,12114,1,4,0)
- ;;=4^K25.9
- ;;^UTILITY(U,$J,358.3,12114,2)
- ;;=^5008522
- ;;^UTILITY(U,$J,358.3,12115,0)
- ;;=K27.9^^80^770^89
- ;;^UTILITY(U,$J,358.3,12115,1,0)
+ ;;^UTILITY(U,$J,358.3,12223,1,3,0)
+ ;;=3^Cellulitis of Umbilicus
+ ;;^UTILITY(U,$J,358.3,12223,1,4,0)
+ ;;=4^L03.316
+ ;;^UTILITY(U,$J,358.3,12223,2)
+ ;;=^5009052
+ ;;^UTILITY(U,$J,358.3,12224,0)
+ ;;=L03.317^^49^596^18
+ ;;^UTILITY(U,$J,358.3,12224,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,12115,1,3,0)
- ;;=3^Peptic Ulcer w/o Hemorrhage/Perforation
- ;;^UTILITY(U,$J,358.3,12115,1,4,0)
- ;;=4^K27.9
- ;;^UTILITY(U,$J,358.3,12115,2)
- ;;=^5008536
- ;;^UTILITY(U,$J,358.3,12116,0)
- ;;=K40.20^^80^770^17
- ;;^UTILITY(U,$J,358.3,12116,1,0)
+ ;;^UTILITY(U,$J,358.3,12224,1,3,0)
+ ;;=3^Cellulitis of Buttock
+ ;;^UTILITY(U,$J,358.3,12224,1,4,0)
+ ;;=4^L03.317
+ ;;^UTILITY(U,$J,358.3,12224,2)
+ ;;=^5009053
+ ;;^UTILITY(U,$J,358.3,12225,0)
+ ;;=L03.319^^49^596^23
+ ;;^UTILITY(U,$J,358.3,12225,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,12116,1,3,0)
- ;;=3^Bilateral Inguinal Hernia
- ;;^UTILITY(U,$J,358.3,12116,1,4,0)
- ;;=4^K40.20
- ;;^UTILITY(U,$J,358.3,12116,2)
- ;;=^5008585
- ;;^UTILITY(U,$J,358.3,12117,0)
- ;;=K40.90^^80^770^96
- ;;^UTILITY(U,$J,358.3,12117,1,0)
+ ;;^UTILITY(U,$J,358.3,12225,1,3,0)
+ ;;=3^Cellulitis of Trunk,Unspec
+ ;;^UTILITY(U,$J,358.3,12225,1,4,0)
+ ;;=4^L03.319
+ ;;^UTILITY(U,$J,358.3,12225,2)
+ ;;=^5009054
+ ;;^UTILITY(U,$J,358.3,12226,0)
+ ;;=L97.321^^49^596^34
+ ;;^UTILITY(U,$J,358.3,12226,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,12117,1,3,0)
- ;;=3^Unilateral Inguinal Hernia
- ;;^UTILITY(U,$J,358.3,12117,1,4,0)
- ;;=4^K40.90
- ;;^UTILITY(U,$J,358.3,12117,2)
- ;;=^5008591
- ;;^UTILITY(U,$J,358.3,12118,0)
- ;;=K42.9^^80^770^95
- ;;^UTILITY(U,$J,358.3,12118,1,0)
+ ;;^UTILITY(U,$J,358.3,12226,1,3,0)
+ ;;=3^Non-Pressure Chr Ulcer Lt Ankle Limited to Brkdwn of Skin
+ ;;^UTILITY(U,$J,358.3,12226,1,4,0)
+ ;;=4^L97.321
+ ;;^UTILITY(U,$J,358.3,12226,2)
+ ;;=^5009520
+ ;;^UTILITY(U,$J,358.3,12227,0)
+ ;;=L97.322^^49^596^36
+ ;;^UTILITY(U,$J,358.3,12227,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,12118,1,3,0)
- ;;=3^Umbilical Hernia w/o Obstruction/Gangrene
- ;;^UTILITY(U,$J,358.3,12118,1,4,0)
- ;;=4^K42.9
+ ;;^UTILITY(U,$J,358.3,12227,1,3,0)
+ ;;=3^Non-Pressure Chr Ulcer Lt Ankle w/ Fat Layer Exposed
+ ;;^UTILITY(U,$J,358.3,12227,1,4,0)
+ ;;=4^L97.322
+ ;;^UTILITY(U,$J,358.3,12227,2)
+ ;;=^5009521
+ ;;^UTILITY(U,$J,358.3,12228,0)
+ ;;=L97.323^^49^596^38
+ ;;^UTILITY(U,$J,358.3,12228,1,0)
+ ;;=^358.31IA^4^2

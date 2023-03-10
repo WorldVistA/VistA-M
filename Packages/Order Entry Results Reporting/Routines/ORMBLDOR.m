@@ -1,5 +1,5 @@
 ORMBLDOR ; SLC/MKB,ASMR/BL - Build outgoing OR msgs ; 10/16/15 1:36pm
- ;;3.0;ORDER ENTRY/RESULTS REPORTING;**97,390**;Dec 17, 1997;Build 425
+ ;;3.0;ORDER ENTRY/RESULTS REPORTING;**97,390,538**;Dec 17, 1997;Build 1
  ;Per VA Directive 6402, this routine should not be modified.
  ;
 EN ; -- Generic orders: Activity, Nursing, Diagnosis, Condition, Vitals
@@ -44,5 +44,18 @@ VER(IFN) ; -- Send msg for verified orders
  S ORMSG(1)=$$MSH^ORMBLD("ORM","OR"),ORMSG(2)=$$PID^ORMBLD($P(OR0,U,2))
  S ORMSG(3)=$$PV1^ORMBLD($P(OR0,U,2),$P(OR0,U,12),+$P(OR0,U,10))
  S ORMSG(4)="ORC|ZV|"_IFN_"^OR|"_$G(^OR(100,+IFN,4))_U_$$NMSP^ORCD($P(OR0,U,14))_"||||||||"_DUZ_"||||"_$$FMTHL7^XLFDT($$NOW^XLFDT)
+ D MSG^XQOR("OR EVSEND VPR",.ORMSG)
+ Q
+ ;
+MSG(IFN,CC) ; -- send message for updated orders
+ ; Can be used for any change that doesn't fire another application event
+ N OR0,OR3,STS,ORPKG,ORMSG
+ S IFN=$G(IFN),CC=$G(CC,"ZZ")
+ S OR0=$G(^OR(100,+IFN,0)),OR3=$G(^(3))
+ S STS=+$P(OR3,U,3) Q:STS=10!(STS=11)  ;do NOT post unreleased orders
+ S ORPKG=$$NMSP^ORCD($P(OR0,U,14))
+ S ORMSG(1)=$$MSH^ORMBLD("ORM","OR"),ORMSG(2)=$$PID^ORMBLD($P(OR0,U,2))
+ S ORMSG(3)=$$PV1^ORMBLD($P(OR0,U,2),$P(OR0,U,12),+$P(OR0,U,10))
+ S ORMSG(4)="ORC|"_CC_"|"_+IFN_"^OR|"_$G(^OR(100,+IFN,4))_U_ORPKG_"||||||||"_DUZ_"||||"_$$FMTHL7^XLFDT($$NOW^XLFDT)
  D MSG^XQOR("OR EVSEND VPR",.ORMSG)
  Q

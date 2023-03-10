@@ -1,5 +1,5 @@
-DGRP61 ;ALB/PJH,LBD,DJS,JAM,JAM - Patient MSDS History - List Manager Screen ;16 Oct 2017 16:04:16
- ;;5.3;Registration;**797,909,935,947,966**;Aug 13,1993;Build 8
+DGRP61 ;ALB/PJH,LBD,DJS,JAM,JAM,ARF - Patient MSDS History - List Manager Screen ;16 Oct 2017 16:04:16
+ ;;5.3;Registration;**797,909,935,947,966,1014,1044**;Aug 13,1993;Build 13
  ;
 EN(DFN) ;Main entry point to invoke the DGEN MSDS PATIENT list
  ; Input  -- DFN      Patient IEN
@@ -9,16 +9,19 @@ EN(DFN) ;Main entry point to invoke the DGEN MSDS PATIENT list
  Q
  ;
 HDR ;Header code
- N DGPREFNM,X,VA,VAERR
+ N X
  S VALMHDR(1)=$J("",25)_"MILITARY SERVICE DATA, SCREEN <6.1>"
- D PID^VADPT
- S VALMHDR(2)=$E("Patient: "_$P($G(^DPT(DFN,0)),U),1,30)
- S VALMHDR(2)=VALMHDR(2)_" ("_VA("BID")_")"
- S X="PATIENT TYPE UNKNOWN"
- I $D(^DPT(DFN,"TYPE")),$D(^DG(391,+^("TYPE"),0)) S X=$P(^(0),U,1)
- S VALMHDR(2)=$$SETSTR^VALM1(X,VALMHDR(2),60,80)
- S VALMHDR(3)=$J("",4)_"Service Branch/Component  Service #"
- S VALMHDR(3)=VALMHDR(3)_"        Entered    Separated   Discharge"
+ D LISTHDR^DGRPU(2) ;DG*5.3*1014 - ARF - sets patient data in the 2nd and 3rd entries in VALMHDR array
+ ;D PID^VADPT                                                      ;DG*5.3*1014 begin comment previous code
+ ;S VALMHDR(2)=$E("Patient: "_$P($G(^DPT(DFN,0)),U),1,30)
+ ;S VALMHDR(2)=VALMHDR(2)_" ("_VA("BID")_")"
+ ;S X="PATIENT TYPE UNKNOWN"
+ ;I $D(^DPT(DFN,"TYPE")),$D(^DG(391,+^("TYPE"),0)) S X=$P(^(0),U,1)
+ ;S VALMHDR(2)=$$SETSTR^VALM1(X,VALMHDR(2),60,80)
+ ;S VALMHDR(3)=$J("",4)_"Service Branch/Component  Service #"
+ ;S VALMHDR(3)=VALMHDR(3)_"        Entered    Separated   Discharge" ;DG*5.3*1014 end comment previous code
+ S VALMHDR(4)=$J("",4)_"Service Branch/Component  Service #"
+ S VALMHDR(4)=VALMHDR(4)_"        Entered    Separated   Discharge"
  Q
  ;
 INIT ;Build patient MSDS screen
@@ -236,8 +239,8 @@ WARN(DIPA,Y) ;Warns that the Service Branch was changed so the
  ;
 CMP(X) ; Function to determine if service component is valid for
  ; branch of service ien in X   0 = invalid  1 = valid  
- ; Component only valid for ARMY/AIR FORCE/MARINES/COAST GUARD/NOAA/USPHS
- Q $S('$G(X):0,X'>5!(X=9)!(X=10):1,1:0)
+ ; Component only valid for ARMY/AIR FORCE/MARINES/COAST GUARD/NOAA/USPHS/SPACE FORCE
+ Q $S('$G(X):0,X'>5!(X=9)!(X=10)!(X=15):1,1:0)  ;DG*5.3*1044 - added 15 for SPACE FORCE branch of service
  ;
 RUSURE() ; Confirmation prompt for deleting episode
  N DIR,Y,X,DIRUT,DIROUT,DTOUT,DUOUT

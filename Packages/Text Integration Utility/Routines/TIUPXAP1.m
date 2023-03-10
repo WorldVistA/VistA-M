@@ -1,8 +1,7 @@
-TIUPXAP1 ; SLC/JER - Interface w/PCE/Visit Tracking ;28-OCT-2003 16:45:37 [8/18/04 11:24am]
- ;;1.0;TEXT INTEGRATION UTILITIES;**15,29,20,89,82,107,117,126,124,149,179,205,295,314**;Jun 20, 1997;Build 1
+TIUPXAP1 ;SLC/JER - Interface w/PCE/Visit Tracking ;Nov 09, 2018@09:27
+ ;;1.0;TEXT INTEGRATION UTILITIES;**15,29,20,89,82,107,117,126,124,149,179,205,295,314,289**;Jun 20, 1997;Build 200
  ;Per VHA Directive 2004-038, this routine should not be modified
-QUE ; Use a RESOURCE to post visit tracking information in background
- N ZTDTH,ZTIO,ZTSAVE,ZTSK,ZTRTN,ZTDESC
+QUE ; Post visit tracking information
  ; if there is already a visit, and no workload data quit
  ; *295 Skip defer logic if from reassign (TIURD3)
  ; *314 move check for call from TIURD3 to the Quit condition
@@ -10,12 +9,7 @@ QUE ; Use a RESOURCE to post visit tracking information in background
  . D DEFER($S(+$G(TIUDA):+$G(TIUDA),1:+$G(DA)))
  I +$G(TIU("VISIT")),($D(CPT)'>9) Q
  I +$P($G(^TIU(8925,$S(+$G(TIUDA):+$G(TIUDA),1:+$G(DA)),0)),U,3),($D(CPT)'>9) Q
- S (ZTSAVE("TIU("),ZTSAVE("DFN"),ZTSAVE("TIUDA"),ZTSAVE("DA"))=""
- S (ZTSAVE("DUZ("),ZTSAVE("ICD("),ZTSAVE("CPT("),ZTSAVE("SC("))=""
- S (ZTSAVE("TIUPRLST("),ZTSAVE("XWBOS"))=""
- S ZTDTH=$H,ZTIO="TIU/PXAPI RESOURCE",ZTRTN="ENQ^TIUPXAP1"
- S ZTDESC="TIU/PCE/AmbCare API Call" D ^%ZTLOAD
- I '$D(ZTSK) D ENQ ; If can't get Resource, Run PXAPI call in foreground
+ D ENQ
  Q
 WORKOK(DA) ; Evaluate whether workload collection is appropriate
  N TIUD0 S TIUD0=$G(^TIU(8925,DA,0))

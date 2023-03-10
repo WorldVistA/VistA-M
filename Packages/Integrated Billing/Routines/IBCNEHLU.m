@@ -1,5 +1,5 @@
 IBCNEHLU ;DAOU/ALA - HL7 Utilities ;10-JUN-2002  ; Compiled December 16, 2004 15:36:12
- ;;2.0;INTEGRATED BILLING;**184,300,416,438,497,549**;21-MAR-94;Build 54
+ ;;2.0;INTEGRATED BILLING;**184,300,416,438,497,549,702**;21-MAR-94;Build 53
  ;;Per VA Directive 6402, this routine should not be modified.
  ;
 HLP(PROTOCOL) ;  Find the Protocol IEN
@@ -136,12 +136,17 @@ ONEPOL(PIEN,IEN2) ; check if patient has only one policy on file for a given pay
  ; IEN2 - patient ien (file 2)
  ;
  ; returns 1 if only one policy is found, 0 otherwise
- N CNT,IEN36,IEN312,RES
+ N CNT,DAYS,EXPDT,IEN36,IEN312,RES
  S (CNT,RES)=0
  I +$G(PIEN)'>0!(+$G(IEN2)'>0) Q RES
+ ;IB*702/TAZ - Get EIV NO GRP NUM A/U
+ S DAYS=$$GET1^DIQ(350.9,"1,",51.34,"I")
  S IEN36="" F  S IEN36=$O(^DIC(36,"AC",PIEN,IEN36)) Q:IEN36=""  D
- .S IEN312="" F  S IEN312=$O(^DPT(IEN2,.312,"B",IEN36,IEN312)) Q:IEN312=""  S CNT=CNT+1
- .Q
+ . S IEN312="" F  S IEN312=$O(^DPT(IEN2,.312,"B",IEN36,IEN312)) Q:IEN312=""  D
+ .. ;IB*702/TAZ - Compare EIV NO GRP NUM A/U with current date
+ .. S EXPDT=$$GET1^DIQ(2.312,IEN312_","_IEN2_",",3,"I")
+ .. I +EXPDT,$$FMDIFF^XLFDT(DT,EXPDT)>DAYS Q   ;don't count for auto-update purposes
+ .. S CNT=CNT+1
  I CNT=1 S RES=1
  Q RES
  ;

@@ -1,5 +1,7 @@
-HBHCUTL5 ; LR VAMC(IRMS)/MJT-HBHC Medical Foster Home (MFH) Rate Paid report utility module; Entry points:  EN, EXIT, MFH, PT, PRTPT, PRTMFH; called by: ^HBHCRP28 & ^HBHCTXT ; Dec 2007
- ;;1.0;HOSPITAL BASED HOME CARE;**24**;NOV 01, 1993;Build 201
+HBHCUTL5 ; LR VAMC(IRMS)/MJT - HBHC Medical Foster Home (MFH) Rate Paid report utility module; Dec 2007
+ ;;1.0;HOSPITAL BASED HOME CARE;**24,33**;NOV 01, 1993;Build 4
+ ; Entry points: EN, EXIT, MFH, PT, PRTPT, PRTMFH
+ ; Called by: ^HBHCRP28 & ^HBHCTXT
 EN ; Entry point; user selects: patient or MFH; active only, individual, or all pts or MFHs; current rate paid only or entire rate paid history
  ; Prompt for patient or MFH report 
  K DIR S DIR(0)="SB^P:Patient;M:Medical Foster Home (MFH)",DIR("A")="Sort by Patient or Medical Foster Home (MFH)",DIR("?")="Enter P for Patient or M for Medical Foster Home (MFH) for sorting the report." D ^DIR
@@ -59,6 +61,7 @@ ALLMFH ; Process All or Active ONLY Medical Foster Homes (MFH)
 RATE ; Process Rate Multiple
  ; MFH sort => Q:Discharged patients are to be omitted
  I HBHCXREF="AK" I HBHCYN="N" Q:($P(^HBHC(631,HBHCI,0),U,40)]"")
+ S HBHCCURJ="3000000" ;initialize to "00-00-00" for no date
  D:HBHC="A" ALLRATE
  D:HBHC="C" CURRATE
  Q
@@ -67,14 +70,15 @@ ALLRATE ; Process All Rates
  Q
 CURRATE ; Process Current Rate Only
  S HBHCJ=0 F  S HBHCJ=$O(^HBHC(631,HBHCI,4,"B",HBHCJ)) Q:HBHCJ'>0  S HBHCCURJ=HBHCJ,HBHCK=0 F  S HBHCK=$O(^HBHC(631,HBHCI,4,"B",HBHCJ,HBHCK)) Q:HBHCK'>0  S HBHCCURK=HBHCK
- D REPORT
+ S:'$D(HBHCCURK) HBHCCURK=0 D REPORT
  Q
 REPORT ; Set TMP for report format
  S HBHCDPT0=$G(^DPT($P(^HBHC(631,HBHCI,0),U),0))
  S:HBHCXREF="AJ" HBHCMFHP=$P($G(^HBHC(631,HBHCI,3)),U,2)
- I HBHCXREF="AJ" S:HBHCDPT0]"" ^TMP("HBHC",$J,$P(HBHCDPT0,U),HBHCI,$S(HBHC="A":HBHCJ,1:HBHCCURJ),$S(HBHC="A":HBHCK,1:HBHCCURK))=$P(^HBHC(631,HBHCI,4,$S(HBHC="A":HBHCK,1:HBHCCURK),0),U,2)_U_$E($P(HBHCDPT0,U,9),6,9)_U_HBHCMFHP
+ ;HBH*1.01*33 - Add $G for ^HBHC(631 references
+ I HBHCXREF="AJ" S:HBHCDPT0]"" ^TMP("HBHC",$J,$P(HBHCDPT0,U),HBHCI,$S(HBHC="A":HBHCJ,1:HBHCCURJ),$S(HBHC="A":HBHCK,1:HBHCCURK))=$P($G(^HBHC(631,HBHCI,4,$S(HBHC="A":HBHCK,1:HBHCCURK),0)),U,2)_U_$E($P(HBHCDPT0,U,9),6,9)_U_HBHCMFHP
  S:(HBHCXREF="AK")&(HBHCDPT0]"") HBHCMFHN=$P($G(^HBHC(633.2,$S(HBHC="A":HBHCL,1:HBHCCURL),0)),U)
- I HBHCXREF="AK" S:(HBHCDPT0]"")&(HBHCMFHN]"") ^TMP("HBHC",$J,HBHCMFHN,$P(HBHCDPT0,U),HBHCI,$S(HBHC="A":HBHCJ,1:HBHCCURJ),$S(HBHC="A":HBHCK,1:HBHCCURK))=$P(^HBHC(631,HBHCI,4,$S(HBHC="A":HBHCK,1:HBHCCURK),0),U,2)_U_$E($P(HBHCDPT0,U,9),6,9)
+ I HBHCXREF="AK" S:(HBHCDPT0]"")&(HBHCMFHN]"") ^TMP("HBHC",$J,HBHCMFHN,$P(HBHCDPT0,U),HBHCI,$S(HBHC="A":HBHCJ,1:HBHCCURJ),$S(HBHC="A":HBHCK,1:HBHCCURK))=$P($G(^HBHC(631,HBHCI,4,$S(HBHC="A":HBHCK,1:HBHCCURK),0)),U,2)_U_$E($P(HBHCDPT0,U,9),6,9)
  Q
 PRTPT ; Print loop for Patient sort
  S HBHCM="" F  S HBHCM=$O(^TMP("HBHC",$J,HBHCM)) Q:HBHCM=""  S HBHCI="" F  S HBHCI=$O(^TMP("HBHC",$J,HBHCM,HBHCI)) Q:HBHCI=""  W:(HBHCCNT>0)&('$D(HBHCTXT)) !,HBHCY S HBHCJ="" F  S HBHCJ=$O(^TMP("HBHC",$J,HBHCM,HBHCI,HBHCJ)) Q:HBHCJ=""  D CONTPT

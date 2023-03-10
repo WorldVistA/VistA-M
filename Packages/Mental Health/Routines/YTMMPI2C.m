@@ -1,5 +1,5 @@
 YTMMPI2C ;DALISC/LJA - Show Comments ;11/09/93 10:37
- ;;5.01;MENTAL HEALTH;;Dec 30, 1994
+ ;;5.01;MENTAL HEALTH;**187**;Dec 30, 1994;Build 73
  ;
 COMM ;  YSDFN,YSET,YSED -- req
  QUIT:'($G(YSDFN)*$G(YSET)*$G(YSED))  ;->
@@ -86,12 +86,15 @@ WAIT ;
 COMMBT ;
  F  QUIT:(IOSL-$Y)<4  W !
  S X="",$P(X,"-",IOM+1)="" W X,!
- W YSSSN,?20,YSNM,?55,YSSEX,$S(YSSEX="F":"emale",1:"ale"),?70,"Age: ",YSAGE
+ W $$MASKSSN(YSSSN),?20,YSNM,?55,YSSEX,$S(YSSEX="F":"emale",1:"ale"),?70,"Age: ",YSAGE
  QUIT
  ;
 COMMHEAD ;
  W:$Y>1 !
  W YTCDT,?15,"Author: ",$E(YTCA,1,20),?45,"Transcriber: ",$E(YTCT,1,20),!
  QUIT
+ ;
+MASKSSN(YSSSN) ; return only last 4 of SSN
+ Q "xxx-xx-"_$E(YSSSN,$L(YSSSN)-3,$L(YSSSN))
  ;
 EOR ;YTMMPI2C - Show Comments ;11/8/93 15:40

@@ -1,5 +1,5 @@
-RAO7PC1 ;HISC/GJC,SS-Procedure Call utilities. ; Feb 21, 2020@10:08:19
- ;;5.0;Radiology/Nuclear Medicine;**1,16,18,26,36,45,75,143,156,166**;Mar 16, 1998;Build 2
+RAO7PC1 ;HISC/GJC,SS-Procedure Call utilities. ; Jan 12, 2021@08:36:20
+ ;;5.0;Radiology/Nuclear Medicine;**1,16,18,26,36,45,75,143,156,166,178**;Mar 16, 1998;Build 2
  ;
 EN1(RADFN,RABDT,RAEDT,RAEXN,RACINC) ;
  ;
@@ -193,12 +193,14 @@ EN4(RABBRV,RAARY) ; Return Imaging Locations
  ;
  Q:RABBRV']""  ; quit no I-Type abbreviation
  Q:RAARY']""  ;  quit no data storage array
- N RADIV,RAITY,RALOC,RAX
+ N RADIV,RAITY,RALOC,RAX,RASUP
  S RAITY=+$O(^RA(79.2,"C",RABBRV,0)) Q:'RAITY
  S RAX=0 F  S RAX=$O(^RA(79.1,"BIMG",RAITY,RAX)) Q:RAX'>0  D
  . S RADIV(79)=$G(^RA(79.1,RAX,"DIV"))
  . S RALOC(0)=$G(^RA(79.1,RAX,0))
  . Q:$P(RALOC(0),"^",19)]""  ;inactive DT present, can't be a future DT
+ . ;p178/KML - Check new I-LOC parameter to suppress sumbitting orders to it in CPRS
+ . S RASUP=$$GET1^DIQ(79.1,RAX,.1) Q:$G(RASUP)["Y"
  . S RALOC=$P($G(^SC(+RALOC(0),0)),U)
  . S RALOC=$S(RALOC]"":RALOC,1:"Unknown")
  . S RADIV=+$P($G(^RA(79,+RADIV(79),0)),U),RADIV(4)=$G(^DIC(4,RADIV,0))

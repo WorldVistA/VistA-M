@@ -1,8 +1,32 @@
 IBMFNHLI ;ALB/YMG - HL7 Process Incoming MFN Messages ;14-SEP-2015
- ;;2.0;INTEGRATED BILLING;**517**;21-MAR-94;Build 240
+ ;;2.0;INTEGRATED BILLING;**517,668**;21-MAR-94;Build 28
  ;;Per VA Directive 6402, this routine should not be modified.
  ;
 EN ; entry point
+ Q   ; dw/IB*2.0*668  . April 2021 ... Added this quit & took the option
+ ; " Health Care Services Review (HCSR) Worklist "
+ ; [IBT HCSR WORKLIST] out of order.  We also added the instructions
+ ; below which need to be reviewed and considered before this
+ ; routine is restored.
+ ;
+ ; BEFORE RESTORING THIS ROUTINE, review the file #365.12 as the
+ ; layout changed.  The following fields moved or were dropped
+ ; as obsolete.  PAYER file #365.12, subfile APPLICATION #365.121
+ ; fields (#.07, .08, .09, .1, .11, .12, .14, .15).    Renamed the following fields
+ ; on the PAYER file: (#365.121,.02), (#365.121, .03), 
+ ; (#365.1212, 2) and (#365.1213, 3).
+ ; 
+ ; The file PAYER APPLICATION #365.13 changed ... the application "IIV" was renamed 
+ ; to "EIV" with IB*2.0*668
+ ;
+ ; This routine has code to update file #350.9. This should be 
+ ; reconsidered as no one recalls that being in the original scope
+ ; of the purpose of this routine for X12 278 logic.  Discuss this X12 278
+ ; logic with eBiz eBilling and eInsurance business teams BEFORE
+ ; restoring this routine and the associated option listed above.
+ ;
+ ;  end of changes IB*2.0*668
+ ;
  N APP,CNT,DATA,DATAMFK,DESC,FLN,FSVDY,HCT,HEDI,HLECH,HLFS,HLREP,IBCNACT,IBCNADT,IBSEG,ID,MSG,MSGID,NAFLG
  N NEWID,NPFLG,PEDI,PSVDY,REQSUB,SEG,SEGCNT,STAT,STOPFLG,SUBJ,TRUSTED,TSSN,X12TABLE,Z
  ;

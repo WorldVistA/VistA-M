@@ -1,130 +1,122 @@
-IBDEI15K ; ; 04-FEB-2020
- ;;3.0;IB ENCOUNTER FORM IMP/EXP;;FEB 04, 2020
+IBDEI15K ; ; 01-FEB-2022
+ ;;3.0;IB ENCOUNTER FORM IMP/EXP;;FEB 01, 2022
  Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,999) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
- ;;^UTILITY(U,$J,358.3,18531,2)
- ;;=^5063130
- ;;^UTILITY(U,$J,358.3,18532,0)
- ;;=Z59.3^^91^944^10
- ;;^UTILITY(U,$J,358.3,18532,1,0)
+ ;;^UTILITY(U,$J,358.3,18710,2)
+ ;;=^5015556
+ ;;^UTILITY(U,$J,358.3,18711,0)
+ ;;=N06.1^^64^837^14
+ ;;^UTILITY(U,$J,358.3,18711,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,18532,1,3,0)
- ;;=3^Residential Institution Living Problems
- ;;^UTILITY(U,$J,358.3,18532,1,4,0)
- ;;=4^Z59.3
- ;;^UTILITY(U,$J,358.3,18532,2)
- ;;=^5063132
- ;;^UTILITY(U,$J,358.3,18533,0)
- ;;=Z59.4^^91^944^8
- ;;^UTILITY(U,$J,358.3,18533,1,0)
+ ;;^UTILITY(U,$J,358.3,18711,1,3,0)
+ ;;=3^Isolated Proteinuria w/ Focal/Segmental Glomerular Lesions
+ ;;^UTILITY(U,$J,358.3,18711,1,4,0)
+ ;;=4^N06.1
+ ;;^UTILITY(U,$J,358.3,18711,2)
+ ;;=^5015550
+ ;;^UTILITY(U,$J,358.3,18712,0)
+ ;;=N06.0^^64^837^15
+ ;;^UTILITY(U,$J,358.3,18712,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,18533,1,3,0)
- ;;=3^Lack of Adequate Food or Safe Drinking Water
- ;;^UTILITY(U,$J,358.3,18533,1,4,0)
- ;;=4^Z59.4
- ;;^UTILITY(U,$J,358.3,18533,2)
- ;;=^5063133
- ;;^UTILITY(U,$J,358.3,18534,0)
- ;;=Z59.5^^91^944^2
- ;;^UTILITY(U,$J,358.3,18534,1,0)
+ ;;^UTILITY(U,$J,358.3,18712,1,3,0)
+ ;;=3^Isolated Proteinuria w/ Minor Glomerular Abnormality
+ ;;^UTILITY(U,$J,358.3,18712,1,4,0)
+ ;;=4^N06.0
+ ;;^UTILITY(U,$J,358.3,18712,2)
+ ;;=^5015549
+ ;;^UTILITY(U,$J,358.3,18713,0)
+ ;;=N06.8^^64^837^16
+ ;;^UTILITY(U,$J,358.3,18713,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,18534,1,3,0)
- ;;=3^Extreme Poverty
- ;;^UTILITY(U,$J,358.3,18534,1,4,0)
- ;;=4^Z59.5
- ;;^UTILITY(U,$J,358.3,18534,2)
- ;;=^5063134
- ;;^UTILITY(U,$J,358.3,18535,0)
- ;;=Z59.6^^91^944^9
- ;;^UTILITY(U,$J,358.3,18535,1,0)
+ ;;^UTILITY(U,$J,358.3,18713,1,3,0)
+ ;;=3^Isolated Proteinuria w/ Morphologic Lesion
+ ;;^UTILITY(U,$J,358.3,18713,1,4,0)
+ ;;=4^N06.8
+ ;;^UTILITY(U,$J,358.3,18713,2)
+ ;;=^5015557
+ ;;^UTILITY(U,$J,358.3,18714,0)
+ ;;=N14.3^^64^837^25
+ ;;^UTILITY(U,$J,358.3,18714,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,18535,1,3,0)
- ;;=3^Low Income
- ;;^UTILITY(U,$J,358.3,18535,1,4,0)
- ;;=4^Z59.6
- ;;^UTILITY(U,$J,358.3,18535,2)
- ;;=^5063135
- ;;^UTILITY(U,$J,358.3,18536,0)
- ;;=Z59.7^^91^944^7
- ;;^UTILITY(U,$J,358.3,18536,1,0)
+ ;;^UTILITY(U,$J,358.3,18714,1,3,0)
+ ;;=3^Nephropathy Induced by Heavy Metals
+ ;;^UTILITY(U,$J,358.3,18714,1,4,0)
+ ;;=4^N14.3
+ ;;^UTILITY(U,$J,358.3,18714,2)
+ ;;=^5015593
+ ;;^UTILITY(U,$J,358.3,18715,0)
+ ;;=N14.1^^64^837^24
+ ;;^UTILITY(U,$J,358.3,18715,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,18536,1,3,0)
- ;;=3^Insufficient Social Insurance/Welfare Support
- ;;^UTILITY(U,$J,358.3,18536,1,4,0)
- ;;=4^Z59.7
- ;;^UTILITY(U,$J,358.3,18536,2)
- ;;=^5063136
- ;;^UTILITY(U,$J,358.3,18537,0)
- ;;=Z59.9^^91^944^5
- ;;^UTILITY(U,$J,358.3,18537,1,0)
+ ;;^UTILITY(U,$J,358.3,18715,1,3,0)
+ ;;=3^Nephropathy Induced by Drug/Meds/Biol Subst
+ ;;^UTILITY(U,$J,358.3,18715,1,4,0)
+ ;;=4^N14.1
+ ;;^UTILITY(U,$J,358.3,18715,2)
+ ;;=^5015591
+ ;;^UTILITY(U,$J,358.3,18716,0)
+ ;;=N29.^^64^837^17
+ ;;^UTILITY(U,$J,358.3,18716,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,18537,1,3,0)
- ;;=3^Housing/Economic Problems,Unspec
- ;;^UTILITY(U,$J,358.3,18537,1,4,0)
- ;;=4^Z59.9
- ;;^UTILITY(U,$J,358.3,18537,2)
- ;;=^5063138
- ;;^UTILITY(U,$J,358.3,18538,0)
- ;;=Z59.8^^91^944^4
- ;;^UTILITY(U,$J,358.3,18538,1,0)
+ ;;^UTILITY(U,$J,358.3,18716,1,3,0)
+ ;;=3^Kidney and Ureter Disorders in Diseases Classd Elsewhr
+ ;;^UTILITY(U,$J,358.3,18716,1,4,0)
+ ;;=4^N29.
+ ;;^UTILITY(U,$J,358.3,18716,2)
+ ;;=^5015631
+ ;;^UTILITY(U,$J,358.3,18717,0)
+ ;;=N15.8^^64^837^26
+ ;;^UTILITY(U,$J,358.3,18717,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,18538,1,3,0)
- ;;=3^Housing/Economic Problems,Other
- ;;^UTILITY(U,$J,358.3,18538,1,4,0)
- ;;=4^Z59.8
- ;;^UTILITY(U,$J,358.3,18538,2)
- ;;=^5063137
- ;;^UTILITY(U,$J,358.3,18539,0)
- ;;=G21.19^^91^945^10
- ;;^UTILITY(U,$J,358.3,18539,1,0)
+ ;;^UTILITY(U,$J,358.3,18717,1,3,0)
+ ;;=3^Renal Tubulo-Interstitial Diseases
+ ;;^UTILITY(U,$J,358.3,18717,1,4,0)
+ ;;=4^N15.8
+ ;;^UTILITY(U,$J,358.3,18717,2)
+ ;;=^5015595
+ ;;^UTILITY(U,$J,358.3,18718,0)
+ ;;=N14.4^^64^837^27
+ ;;^UTILITY(U,$J,358.3,18718,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,18539,1,3,0)
- ;;=3^Medication-Induced Parkinsonism,Other
- ;;^UTILITY(U,$J,358.3,18539,1,4,0)
- ;;=4^G21.19
- ;;^UTILITY(U,$J,358.3,18539,2)
- ;;=^5003773
- ;;^UTILITY(U,$J,358.3,18540,0)
- ;;=G21.11^^91^945^13
- ;;^UTILITY(U,$J,358.3,18540,1,0)
+ ;;^UTILITY(U,$J,358.3,18718,1,3,0)
+ ;;=3^Toxic Nephropathy NEC
+ ;;^UTILITY(U,$J,358.3,18718,1,4,0)
+ ;;=4^N14.4
+ ;;^UTILITY(U,$J,358.3,18718,2)
+ ;;=^5015594
+ ;;^UTILITY(U,$J,358.3,18719,0)
+ ;;=N05.6^^64^837^19
+ ;;^UTILITY(U,$J,358.3,18719,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,18540,1,3,0)
- ;;=3^Neuroleptic-Induced Parkinsonism
- ;;^UTILITY(U,$J,358.3,18540,1,4,0)
- ;;=4^G21.11
- ;;^UTILITY(U,$J,358.3,18540,2)
- ;;=^5003772
- ;;^UTILITY(U,$J,358.3,18541,0)
- ;;=G24.01^^91^945^15
- ;;^UTILITY(U,$J,358.3,18541,1,0)
+ ;;^UTILITY(U,$J,358.3,18719,1,3,0)
+ ;;=3^Nephritic Syndrome w/ Dense Deposit Disease,Unspec
+ ;;^UTILITY(U,$J,358.3,18719,1,4,0)
+ ;;=4^N05.6
+ ;;^UTILITY(U,$J,358.3,18719,2)
+ ;;=^5015547
+ ;;^UTILITY(U,$J,358.3,18720,0)
+ ;;=N05.7^^64^837^20
+ ;;^UTILITY(U,$J,358.3,18720,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,18541,1,3,0)
- ;;=3^Tardive Dyskinesia
- ;;^UTILITY(U,$J,358.3,18541,1,4,0)
- ;;=4^G24.01
- ;;^UTILITY(U,$J,358.3,18541,2)
- ;;=^5003784
- ;;^UTILITY(U,$J,358.3,18542,0)
- ;;=G24.09^^91^945^16
- ;;^UTILITY(U,$J,358.3,18542,1,0)
+ ;;^UTILITY(U,$J,358.3,18720,1,3,0)
+ ;;=3^Nephritic Syndrome w/ Diffuse Crescentic Glomerulonephritis,Unspec
+ ;;^UTILITY(U,$J,358.3,18720,1,4,0)
+ ;;=4^N05.7
+ ;;^UTILITY(U,$J,358.3,18720,2)
+ ;;=^5015548
+ ;;^UTILITY(U,$J,358.3,18721,0)
+ ;;=N05.1^^64^837^21
+ ;;^UTILITY(U,$J,358.3,18721,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,18542,1,3,0)
- ;;=3^Tardive Dystonia
- ;;^UTILITY(U,$J,358.3,18542,1,4,0)
- ;;=4^G24.09
- ;;^UTILITY(U,$J,358.3,18542,2)
- ;;=^5003786
- ;;^UTILITY(U,$J,358.3,18543,0)
- ;;=G25.1^^91^945^11
- ;;^UTILITY(U,$J,358.3,18543,1,0)
+ ;;^UTILITY(U,$J,358.3,18721,1,3,0)
+ ;;=3^Nephritic Syndrome w/ Focal/Segmental Glomerular Lesions,Unspec
+ ;;^UTILITY(U,$J,358.3,18721,1,4,0)
+ ;;=4^N05.1
+ ;;^UTILITY(U,$J,358.3,18721,2)
+ ;;=^5015542
+ ;;^UTILITY(U,$J,358.3,18722,0)
+ ;;=N05.0^^64^837^22
+ ;;^UTILITY(U,$J,358.3,18722,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,18543,1,3,0)
- ;;=3^Medication-Induced Postural Tremor
- ;;^UTILITY(U,$J,358.3,18543,1,4,0)
- ;;=4^G25.1
- ;;^UTILITY(U,$J,358.3,18543,2)
- ;;=^5003792
- ;;^UTILITY(U,$J,358.3,18544,0)
- ;;=G25.71^^91^945^14
- ;;^UTILITY(U,$J,358.3,18544,1,0)
- ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,18722,1,3,0)
+ ;;=3^Nephritic Syndrome w/ Minor Glomerular Abnormality,Unspec

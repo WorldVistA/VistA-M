@@ -1,5 +1,5 @@
 PSOERX1A ;ALB/BWF - eRx Utilities/RPC's ; 8/3/2016 5:14pm
- ;;7.0;OUTPATIENT PHARMACY;**467,527,508,551**;DEC 1997;Build 37
+ ;;7.0;OUTPATIENT PHARMACY;**467,527,508,551,581,617,669**;DEC 1997;Build 3
  ;
  Q
  ; select an item
@@ -47,19 +47,16 @@ L(DFN,DIS) ;
  I $G(PSONOLCK) Q 1
  N FLAG S ^XTMP("PSOERXLOCK",0)=$$PDATE
  ; if a lock is already established for this patient and is associated with the current user
- ;/BLB/ PSO*7.0*551 - BEGIN CHANHE
  I $P($G(^XTMP("PSOERXLOCK",DFN)),"^",1)=DUZ D  Q FLAG
  .L +^XTMP("PSOERXLOCK",DFN):$S($G(DILOCKTM)>0:DILOCKTM,1:3) S FLAG=$S($T=1:$T,1:0)
  .I 'FLAG W !,"You have this patient locked in another open session"
  I '$D(^XTMP("PSOERXLOCK",DFN)) D  Q FLAG
- . ;D NOW^%DTC S ^XTMP("PSOERXLOCK",DFN)=DUZ_"^"_%
  . L +^XTMP("PSOERXLOCK",DFN):$S($G(DILOCKTM)>0:DILOCKTM,1:3) S FLAG=$S($T=1:$T,1:0)
  . I FLAG D
  . . D NOW^%DTC S ^XTMP("PSOERXLOCK",DFN)=DUZ_"^"_%
  . . S FDA(52.46,DFN_",",6)=DUZ
  . . D UPDATE^DIE(,"FDA") K FDA
  I $D(^XTMP("PSOERXLOCK",DFN)) Q $$R
- ;/BLB/ PSO*7.0*551 - END CHANGE
 UL(DFN) ; unlock
  I $G(PSONOLCK) Q
  L -^XTMP("PSOERXLOCK",DFN) K ^XTMP("PSOERXLOCK",DFN)
@@ -101,16 +98,34 @@ ADDITEM(TEXT,HDR,DATA,STRT,LEN) ;
  Q
  ; provider information display
 PROV ;
+ D FULL^VALM1 I $$DONOTFIL^PSOERXUT(PSOIEN) S VALMBCK="R" Q
+ N STAT,RESVAL
+ S RESVAL=$$GET1^DIQ(52.49,PSOIEN,52.1,"I")
+ S STAT=$$GET1^DIQ(52.49,PSOIEN,1,"E")
+ I STAT="RXE",'$$RXEPRMT^PSOERXU7(PSOIEN) Q
+ I STAT="CXE",(RESVAL="A"!(RESVAL="AWC"))!(RESVAL="V"),'$$RXEPRMT^PSOERXU7(PSOIEN) Q
  I '$$GET1^DIQ(52.49,PSOIEN,2.3,"I") S XQORM("B")="Edit"
  D EN^PSOERXR1
  Q
  ; patient information display
 PAT ;
+ D FULL^VALM1 I $$DONOTFIL^PSOERXUT(PSOIEN) S VALMBCK="R" Q
+ N STAT,RESVAL
+ S RESVAL=$$GET1^DIQ(52.49,PSOIEN,52.1,"I")
+ S STAT=$$GET1^DIQ(52.49,PSOIEN,1,"E")
+ I STAT="RXE",'$$RXEPRMT^PSOERXU7(PSOIEN) Q
+ I STAT="CXE",(RESVAL="A"!(RESVAL="AWC"))!(RESVAL="V"),'$$RXEPRMT^PSOERXU7(PSOIEN) Q
  I '$$GET1^DIQ(52.49,PSOIEN,.05,"I") S XQORM("B")="Edit"
  D EN^PSOERXP1
  Q
  ; drug information display
 DRUG ;
+ D FULL^VALM1 I $$DONOTFIL^PSOERXUT(PSOIEN) S VALMBCK="R" Q
+ N STAT,RESVAL
+ S RESVAL=$$GET1^DIQ(52.49,PSOIEN,52.1,"I")
+ S STAT=$$GET1^DIQ(52.49,PSOIEN,1,"E")
+ I STAT="RXE",'$$RXEPRMT^PSOERXU7(PSOIEN) Q
+ I STAT="CXE",(RESVAL="A"!(RESVAL="AWC"))!(RESVAL="V"),'$$RXEPRMT^PSOERXU7(PSOIEN) Q
  I '$$GET1^DIQ(52.49,PSOIEN,3.2,"I") S XQORM("B")="Edit"
  D EN^PSOERXD1
  Q
@@ -139,8 +154,8 @@ EDIT(EDTYP,SBN) ;
  Q
  ; edit provider
 VPROV ;
- N EXPRVIEN,VAPRVIEN,MANVAL,PRVDAT,EXPRNAME,EXPRLNAM,EXPRFNAM,PSOIENS
- N EXPRIENS,SELPRV,QUIT,VAPNM,NEWPIEN,VANPI,MTYPE
+ N EXPRVIEN,VAPRVIEN,MANVAL,PRVDAT,EXPRNAME,EXPRLNAM,EXPRFNAM,PSOIENS,ERXMMFLG
+ N EXPRIENS,SELPRV,QUIT,VAPNM,NEWPIEN,VANPI,MTYPE,RESTYPE,ERXSTAT,NEWVAL,DONE
  S PSOIENS=PSOIEN_","
  S VAPNM=$$GET1^DIQ(52.49,PSOIEN,2.3,"E")
  S EXPRVIEN=$$GET1^DIQ(52.49,PSOIEN,2.1,"I")
@@ -152,58 +167,86 @@ VPROV ;
  S MANVAL=$$GET1^DIQ(52.49,PSOIEN,1.3,"I")
  S MTYPE=$$GET1^DIQ(52.49,PSOIEN,.08,"I")
  S VAPIEN=$$GET1^DIQ(52.49,PSOIEN,2.3,"I")
+ S RESTYPE=$$GET1^DIQ(52.49,PSOIEN,52.1,"I")
+ S ERXSTAT=$$GET1^DIQ(52.49,PSOIEN,1,"E")
  I VAPIEN D  Q
  .W !,"Current Vista provider: "_VAPNM,!
  .S DIR(0)="YO",DIR("A")="Would you like to modify the current provider"
  .I MANVAL S DIR("A",1)="This provider has already been validated."
  .S DIR("B")="NO" D ^DIR
  .Q:'Y
- .S DIC=200,DIC("A")="Select PROVIDER NAME: ",DIC(0)="AEMQ",DIC("S")="I $$CHKPRV2^PSOERX1A(Y)" D ^DIC
+ .S DONE=0
+ .F  D  Q:DONE  Q:Y<1
+ ..S DIC=200,DIC("A")="Select PROVIDER NAME: ",DIC(0)="AEMQ",DIC("S")="I $$CHKPRV2^PSOERX1A(Y)" D ^DIC
+ ..Q:Y<1
+ ..S NEWPIEN=$P(Y,U)
+ ..L +^VA(200,NEWPIEN):1 I '$T D
+ ...N ERXPRV S ERXPRV=$$GET1^DIQ(200,NEWPIEN,31)
+ ...I ERXPRV'="" W $C(7),!!,"Provider is being edited by ",ERXPRV,! Q
+ ...W $C(7),!!,"Provider is being edited by an unknown user or has been deleted"
+ ..E  S DONE=1 L -^VA(200,NEWPIEN)
  .Q:Y<1
- .S NEWPIEN=$P(Y,U) K Y
- .S ERXMMFLG=$$PRVWARN(PSOIEN,VAPIEN)
+ .S ERXMMFLG=$$PRVWARN("EP",PSOIEN,NEWPIEN) I 'ERXMMFLG D PAUSE^PSOERXUT Q
  .S DIR(0)="Y",DIR("A")="Would you like to use this provider"
  .S DIR("A",1)="You have selected provider: "_$$GET1^DIQ(200,NEWPIEN,.01,"E")
- .S DIR("B")=$S(ERXMMFLG:"NO",1:"YES") D ^DIR
+ .S DIR("B")=$S(ERXMMFLG=2:"NO",1:"YES") D ^DIR
  .I Y<1 S QUIT=1 Q
  .; change existing entry
  .S FDA(52.49,PSOIENS,2.3)=NEWPIEN
- .; if the provider is different, clear manual validation
+ .; if the provider is different
  .I VAPIEN'=NEWPIEN D  Q
- ..S FDA(52.49,PSOIENS,1.3)="",FDA(52.49,PSOIENS,1.8)="",FDA(52.49,PSOIENS,1.9)=""
+ ..;Setting the eRx Audit Log
+ ..S NEWVAL(1)=$$GET1^DIQ(200,NEWPIEN,.01)_" (DEA#: "_$$DEA^XUSER(0,NEWPIEN)_")"
+ ..D AUDLOG^PSOERXUT(+PSOIENS,"PROVIDER",DUZ,.NEWVAL)
+ ..;Removing Manual Validation fields
+ ..S FDA(52.49,PSOIENS,1.3)="",FDA(52.49,PSOIENS,1.8)="@",FDA(52.49,PSOIENS,1.9)="@"
  ..D FILE^DIE(,"FDA") K FDA
  ..I MTYPE="N" D UPDSTAT^PSOERXU1(PSOIEN,"I")
+ ..I MTYPE="RE",RESTYPE="R" D UPDSTAT^PSOERXU1(PSOIEN,"RXI") Q
  ..I MTYPE="RE" D UPDSTAT^PSOERXU1(PSOIEN,"RXW")
+ ..I MTYPE="CX" D UPDSTAT^PSOERXU1(PSOIEN,"CXI")
  ; for now, only list providers that are authorized to write med orders and whose dea is not expired
+VPROV1 ;
  S DIC=200,DIC("A")="Select PROVIDER NAME: ",DIC(0)="AEMQ",DIC("S")="I $$CHKPRV2^PSOERX1A(Y)" D ^DIC
  Q:Y<1
  S SELPRV=$P(Y,U)
- S ERXMMFLG=$$PRVWARN(PSOIEN,SELPRV)
+ L +^VA(200,SELPRV):1 I '$T D  G VPROV1
+ .N ERXPRV S ERXPRV=$$GET1^DIQ(200,SELPRV,31)
+ .I ERXPRV'="" W $C(7),!!,"Provider is being edited by ",ERXPRV,! Q
+ .W $C(7),!!,"Provider is being edited by an unknown user or has been deleted"
+ L -^VA(200,SELPRV)
+ S ERXMMFLG=$$PRVWARN("EP",PSOIEN,SELPRV) I 'ERXMMFLG  D PAUSE^PSOERXUT Q
  S DIR(0)="Y",DIR("A")="Would you like to use this provider"
  S DIR("A",1)="You have selected provider: "_$$GET1^DIQ(200,SELPRV,.01,"E")
- S DIR("B")=$S(ERXMMFLG:"NO",1:"YES") D ^DIR
+ S DIR("B")=$S(ERXMMFLG=2:"NO",1:"YES") D ^DIR
  Q:Y<1
+ ;Setting the eRx Audit Log
+ S NEWVAL(1)=$$GET1^DIQ(200,+SELPRV,.01)_" (DEA#: "_$$DEA^XUSER(0,+SELPRV)_")"
+ D AUDLOG^PSOERXUT(+PSOIENS,"PROVIDER",DUZ,.NEWVAL)
+ ;Saving Provider
  S FDA(52.49,PSOIENS,2.3)=$P(SELPRV,U)
  D FILE^DIE(,"FDA","ERR") K FDA
  I $$GET1^DIQ(52.49,PSOIEN,1,"E")="N" D UPDSTAT^PSOERXU1(PSOIEN,"I")
- ; PSO*7*508 - update status of refill response to RXI - refill response in progress
- I $$GET1^DIQ(52.49,PSOIEN,.08,"I")="RE",$$GET1^DIQ(52.49,PSOIEN,1,"E")="RRN" D UPDSTAT^PSOERXU1(PSOIEN,"RXW")
+ I MTYPE="RE",RESTYPE="R",ERXSTAT="RXR" D UPDSTAT^PSOERXU1(PSOIEN,"RXI") Q
+ I MTYPE="RE",ERXSTAT="RRN" D UPDSTAT^PSOERXU1(PSOIEN,"RXW")
+ I MTYPE="CX" D UPDSTAT^PSOERXU1(PSOIEN,"CXI")
  Q
-PRVWARN(PSOIEN,VAPIEN) ;
- N EXPRVNPI,VANPI,ERXDEA,VADEA,ERXMMFLG,I,ERXMSG,ERXPIEN,EXPRVDEA
- S ERXMMFLG=0
+PRVWARN(ACTION,PSOIEN,VAPIEN) ; Check whether the Provider Select is valid or not
+ ; Input:(r)ACTION - Ation being peformed ("EP": Edit Provider | "VP": Validate Provider)
+ ;       (r)PSOIEN - Pointer to the ERX HOLDING QUEUE file (#52.49)
+ ;       (r)VAPIEN - Provider -Pointer to the NEW PERSON file (#200)
+ ;Output: 1 - No Issues Found with Provider Selected | 2 - Issues Found With Provider Select by Ok to to proceed | 0 - Invalid Provider Selection
+ N EXPRVNPI,VANPI,ERXDEA,VADEA,I,ERXMSG,ERXPIEN,EXPRVDEA,ERXDRIEN
  S ERXPIEN=$$GET1^DIQ(52.49,PSOIEN,2.1,"I")
- S EXPRVNPI=$$GET1^DIQ(52.48,ERXPIEN,1.5,"E")
- S EXPRVDEA=$$GET1^DIQ(52.48,ERXPIEN,1.6,"E")
+ S ERXDRIEN=+$$GET1^DIQ(52.49,PSOIEN,3.2,"I")
  I '$G(VAPIEN) S VAPIEN=$$GET1^DIQ(52.49,PSOIEN,2.3,"I") I '$G(VAPIEN) Q 0
- I EXPRVNPI]"",'$D(^VA(200,"ANPI",EXPRVNPI,VAPIEN)) S ERXMMFLG=1,ERXMSG(1)="Provider NPI Mismatch."
- I EXPRVDEA]"",'$D(^VA(200,"PS1",EXPRVDEA,VAPIEN)) S ERXMMFLG=1,ERXMSG(2)="Provider DEA Mismatch."
- I 'ERXMMFLG Q ERXMMFLG
- W !!,"******************************WARNING********************************"
- S I=0 F  S I=$O(ERXMSG(I)) Q:'I  D
- .W !,$G(ERXMSG(I))
- W !,"*********************************************************************"
- Q ERXMMFLG
+ D PRDRVAL^PSOERXUT(.ERXMSG,ACTION,PSOIEN,VAPIEN,ERXDRIEN)
+ I +ERXMSG Q 1
+ W !!,"*******************************",$S($P(ERXMSG,"^",2)="W":"   WARNING(S)   ",1:"INVALID PROVIDER"),"*********************************"
+ S I=0 F  S I=$O(ERXMSG(I)) Q:'I  W !,$P(ERXMSG(I),"^")
+ W !,"********************************************************************************"
+ I $P(ERXMSG,"^",2)="W" Q 2
+ Q 0
 CHKPRV2(Y) ;
  ;Ref. to ^VA(200 supp. by IA 224
  I '$P($G(^VA(200,Y,"PS")),U) Q 0
@@ -229,7 +272,6 @@ PLSTRNG(LOW,HIGH,EDIT,SBN) ;
  ..S DIR("B")="A"
  ..D ^DIR K DIR
  ..I Y="^" S DONE=1 Q
- .;/BLB/ PSO*7.0*527 - BEGIN CHANGE - PREVENTING INVALID VALUES FROM BEING ENTERED IN VD
  .I SBN']"",Y["-",Y["," D  Q
  ..W !!,"Invalid Response."
  ..W !,"Answer must be numeric (1-10), a series of numbers (3,5,7), 'A' or 'ALL'."
@@ -239,7 +281,6 @@ PLSTRNG(LOW,HIGH,EDIT,SBN) ;
  ..W !,"Answer must be numeric (1-10), a series of numbers (3,5,7), 'A' or 'ALL'."
  ..S DIR(0)="E" D ^DIR K DIR
  ..I Y'[" " K Y
- .;/BLB/ PSO*7.0*527 - END CHANGE
  .I SBN]"",'$D(Y) S Y=SBN
  .Q:Y["."
  .I Y="^" S DONE=1 Q
@@ -268,17 +309,20 @@ PLSTRNG(LOW,HIGH,EDIT,SBN) ;
  .W !,"Invalid Response."
  .W !,"Answer must be numeric (1-10), a series of numbers (3,5,7), 'A' or 'ALL'."
  .S DIR(0)="E" D ^DIR K Y,DIR
- .;S DONE=1
  Q
  ; validate patient
 VPAT ;
  N ERXPIEN,VAPIEN,MANVAL,ERXLNAME,ERXFNAME,DIR,Y,PSOIENS,VAPIEN,MANVAL,DIR,DIC,SELPAT,PDONE,DFN,I,VADM
+ N ERXSTAT,RESTYPE,MTYPE
  S PSOIENS=PSOIEN_","
  S ERXPIEN=$$GET1^DIQ(52.49,PSOIEN,.04,"I")
  S ERXLNAME=$$GET1^DIQ(52.46,ERXPIEN,.02,"E")
  S ERXFNAME=$$GET1^DIQ(52.46,ERXPIEN,.03,"E")
  S VAPIEN=$$GET1^DIQ(52.49,PSOIEN,.05,"I")
  S MANVAL=$$GET1^DIQ(52.49,PSOIEN,1.7,"I")
+ S RESTYPE=$$GET1^DIQ(52.49,PSOIEN,52.1)
+ S ERXSTAT=$$GET1^DIQ(52.49,PSOIEN,1,"E")
+ S MTYPE=$$GET1^DIQ(52.49,PSOIEN,.08,"I")
  ; if there is a patient currently defined
  I VAPIEN D  Q
  .W !,"Current Vista patient: "_$$GET1^DIQ(2,VAPIEN,.01,"E"),!
@@ -289,7 +333,7 @@ VPAT ;
  .S DIC(0)="AEMQ",SELPAT=$$PATPRMT() K DUOUT Q:'SELPAT
  .S DFN=SELPAT D DEM^VADPT
  .I $P($G(VADM(6)),U)]"" W "[PATIENT DIED ON "_$P($G(VADM(6)),U,2)_"]" Q
- .S ERXMMFLG=$$PATWARN(PSOIEN,SELPAT)
+ .S ERXMMFLG=$$PATWARN("EP",PSOIEN,SELPAT)
  .S DIR(0)="Y",DIR("A")="Would you like to use this patient"
  .S DIR("A",1)="You have selected patient: "_$$GET1^DIQ(2,SELPAT,.01,"E")
  .S DIR("B")=$S($G(ERXMMFLG):"NO",1:"YES") D ^DIR
@@ -297,25 +341,45 @@ VPAT ;
  .; change existing entry
  .S FDA(52.49,PSOIENS,.05)=SELPAT
  .I SELPAT'=VAPIEN D  Q
+ ..;Setting the eRx Audit Log
+ ..N NEWVAL S NEWVAL(1)=$$GET1^DIQ(2,SELPAT,.01)_" (L4SSN: "_$P($P(VADM(2),"^",2),"-",3)_" | DOB: "_$P(VADM(3),"^",2)_")"
+ ..D AUDLOG^PSOERXUT(PSOIENS,"PATIENT",DUZ,.NEWVAL)
+ ..;Updating eRx Record w/ New Patient
  ..S FDA(52.49,PSOIENS,1.7)="",FDA(52.49,PSOIENS,1.13)="",FDA(52.49,PSOIENS,1.14)=""
  ..D FILE^DIE(,"FDA") K FDA
- ..D UPDSTAT^PSOERXU1(PSOIEN,"I")
- .I $$GET1^DIQ(52.49,PSOIEN,1,"E")="N" D UPDSTAT^PSOERXU1(PSOIEN,"I")
+ ..;Updating eRx Status to In Progress 
+ ..I MTYPE="N" D UPDSTAT^PSOERXU1(PSOIEN,"I")
+ ..I MTYPE="RE" D UPDSTAT^PSOERXU1(PSOIEN,"RXI")
+ ..I MTYPE="CX" D UPDSTAT^PSOERXU1(PSOIEN,"CXI")
+ .I MTYPE="RE" D UPDSTAT^PSOERXU1(PSOIEN,"RXI")
+ .I MTYPE="CX" D UPDSTAT^PSOERXU1(PSOIEN,"CXI")
+ .I ERXSTAT="N" D UPDSTAT^PSOERXU1(PSOIEN,"I")
  S DIC(0)="AEMQ",SELPAT=$$PATPRMT() K DUOUT I 'SELPAT S XQORM("B")="Edit" Q
  S DFN=SELPAT D DEM^VADPT
  I $P($G(VADM(6)),U)]"" W "[PATIENT DIED ON "_$P($G(VADM(6)),U,2)_"]" S DIR(0)="E" D ^DIR K DIR Q
- S ERXMMFLG=$$PATWARN(PSOIEN,SELPAT)
+ S ERXMMFLG=$$PATWARN("EP",PSOIEN,SELPAT)
  S DIR(0)="Y",DIR("A")="Would you like to use this patient"
  S DIR("A",1)="You have selected patient: "_$$GET1^DIQ(2,SELPAT,.01,"E")
  S DIR("B")=$S($G(ERXMMFLG):"NO",1:"YES") D ^DIR
  I Y'=1 S XQORM("B")="Edit" Q
+ ;Setting the eRx Audit Log
+ N NEWVAL S NEWVAL(1)=$$GET1^DIQ(2,SELPAT,.01)_" (L4SSN: "_$P($P(VADM(2),"^",2),"-",3)_" | DOB: "_$P(VADM(3),"^",2)_")"
+ D AUDLOG^PSOERXUT(PSOIEN,"PATIENT",DUZ,.NEWVAL)
+ ;Saving Patient
  S FDA(52.49,PSOIENS,.05)=SELPAT
  D FILE^DIE(,"FDA") K FDA
- I $$GET1^DIQ(52.49,PSOIEN,1,"E")="N" D UPDSTAT^PSOERXU1(PSOIEN,"I")
+ ;Updating eRx Status to In Progress
+ I MTYPE="CX" D UPDSTAT^PSOERXU1(PSOIEN,"CXI")
+ I MTYPE="RE" D UPDSTAT^PSOERXU1(PSOIEN,"RXI")
+ I ERXSTAT="N" D UPDSTAT^PSOERXU1(PSOIEN,"I")
  Q
-PATWARN(PSOIEN,SELPAT) ;
- N ERXPIEN,ERXSSN,ERXDOB,ERXGEN,ERXMMFLG,ERXMSG,EXPRVDEA
- S ERXMMFLG=0
+PATWARN(ACTION,PSOIEN,SELPAT) ; Check whether the Patient Select is valid or not
+ ; Input:(r)ACTION - Ation being peformed ("EP": Edit Patient | "VP": Validate Patient)
+ ;       (r)PSOIEN - Pointer to the ERX HOLDING QUEUE file (#52.49)
+ ;       (r)SELPAT - Patient -Pointer to the PATIENT file (#2)
+ ;Output: 1 - No Issues Found with Patient Selected | 2 - Issues Found With Patient selected but Ok to proceed | 0 - Invalid Patient Selection
+ N ERXPIEN,ERXSSN,ERXDOB,ERXGEN,ERXMMFLG,ERXMSG,EXPRVDEA,ERXCNT,I,VADM
+ S ERXCNT=0,ERXMMFLG=1
  S ERXPIEN=$$GET1^DIQ(52.49,PSOIEN,.04,"I")
  S ERXSSN=$$GET1^DIQ(52.46,ERXPIEN,1.4,"E"),ERXSSN=$TR(ERXSSN,"-","")
  S ERXDOB=$$GET1^DIQ(52.46,ERXPIEN,.08,"I")
@@ -323,16 +387,23 @@ PATWARN(PSOIEN,SELPAT) ;
  ; if the selected patient is not defined, use the va matched patient because we are doing this check
  ; during accept validation
  I '$G(SELPAT) S SELPAT=$$GET1^DIQ(52.49,PSOIEN,.05,"I") Q:'$G(SELPAT) 0
- I '$D(VADM) S DFN=SELPAT D DEM^VADPT
- I ERXSSN,'$D(^DPT("SSN",ERXSSN,SELPAT)) S ERXMMFLG=1,ERXMSG(1)="SSN mismatch."
- I ERXDOB,'$D(^DPT("ADOB",ERXDOB,SELPAT)) S ERXMMFLG=1,ERXMSG(2)="Date of Birth mismatch."
- I ERXGEN]"",$P($G(VADM(5)),U)'=ERXGEN S ERXMMFLG=1,ERXMSG(3)="Gender mismatch."
- Q:'ERXMMFLG 0
- W !!,"******************************WARNING********************************"
- S I=0 F  S I=$O(ERXMSG(I)) Q:'I  D
- .W !,$G(ERXMSG(I))
- W !,"*********************************************************************"
- Q 1
+ S DFN=SELPAT D DEM^VADPT
+ I ERXSSN,'$D(^DPT("SSN",ERXSSN,SELPAT)) S ERXMMFLG=2,ERXCNT=ERXCNT+1,ERXMSG(ERXCNT)="SSN mismatch."
+ I ERXDOB,'$D(^DPT("ADOB",ERXDOB,SELPAT)) S ERXMMFLG=2,ERXCNT=ERXCNT+1,ERXMSG(ERXCNT)="Date of Birth mismatch."
+ I ERXGEN]"",$P($G(VADM(5)),U)'=ERXGEN S ERXMMFLG=2,ERXCNT=ERXCNT+1,ERXMSG(ERXCNT)="Gender mismatch."
+ ; Warning/Block for Patient w/out valid Address (CS prescriptions only)
+ I $$GET1^DIQ(52.49,ERXIEN,95.1,"I"),'$$VALPTADD^PSOERXUT(SELPAT) D
+ . S ERXMMFLG=1,ERXCNT=ERXCNT+1,ERXMSG(ERXCNT)="Patient does not have a current mailing or residential address on file."
+ . S ERXMMFLG=$S(ACTION="EP":2,1:0)
+ ;
+ I $O(ERXMSG(0)) D
+ . W !!,"*******************************",$S(ERXMMFLG:"   WARNING(S)  ",1:"INVALID PATIENT"),"*******************************"
+ . S I=0 F  S I=$O(ERXMSG(I)) Q:'I  D
+ . . W !,$G(ERXMSG(I))
+ . W !,"*****************************************************************************"
+ ;
+ Q ERXMMFLG
+ ;
 PATPRMT() ;
  N Y
  D ^DPTLK

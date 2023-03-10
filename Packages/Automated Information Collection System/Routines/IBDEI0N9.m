@@ -1,126 +1,120 @@
-IBDEI0N9 ; ; 04-FEB-2020
- ;;3.0;IB ENCOUNTER FORM IMP/EXP;;FEB 04, 2020
+IBDEI0N9 ; ; 01-FEB-2022
+ ;;3.0;IB ENCOUNTER FORM IMP/EXP;;FEB 01, 2022
  Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,999) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
- ;;^UTILITY(U,$J,358.3,10351,1,3,0)
- ;;=3^Dermatochalasis,Left Upper Eyelid
- ;;^UTILITY(U,$J,358.3,10351,1,4,0)
- ;;=4^H02.834
- ;;^UTILITY(U,$J,358.3,10351,2)
- ;;=^5004421
- ;;^UTILITY(U,$J,358.3,10352,0)
- ;;=H10.31^^74^677^14
- ;;^UTILITY(U,$J,358.3,10352,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,10352,1,3,0)
- ;;=3^Conjunctivitis,Acute,Right Eye
- ;;^UTILITY(U,$J,358.3,10352,1,4,0)
- ;;=4^H10.31
- ;;^UTILITY(U,$J,358.3,10352,2)
- ;;=^5133458
- ;;^UTILITY(U,$J,358.3,10353,0)
- ;;=H10.32^^74^677^13
- ;;^UTILITY(U,$J,358.3,10353,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,10353,1,3,0)
- ;;=3^Conjunctivitis,Acute,Left Eye
- ;;^UTILITY(U,$J,358.3,10353,1,4,0)
- ;;=4^H10.32
- ;;^UTILITY(U,$J,358.3,10353,2)
- ;;=^5133459
- ;;^UTILITY(U,$J,358.3,10354,0)
- ;;=H00.11^^74^677^12
- ;;^UTILITY(U,$J,358.3,10354,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,10354,1,3,0)
- ;;=3^Chalazion,Right Upper Eyelid
- ;;^UTILITY(U,$J,358.3,10354,1,4,0)
- ;;=4^H00.11
- ;;^UTILITY(U,$J,358.3,10354,2)
- ;;=^5004233
- ;;^UTILITY(U,$J,358.3,10355,0)
- ;;=H00.14^^74^677^11
- ;;^UTILITY(U,$J,358.3,10355,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,10355,1,3,0)
- ;;=3^Chalazion,Left Upper Eyelid
- ;;^UTILITY(U,$J,358.3,10355,1,4,0)
- ;;=4^H00.14
- ;;^UTILITY(U,$J,358.3,10355,2)
- ;;=^5004236
- ;;^UTILITY(U,$J,358.3,10356,0)
- ;;=H20.00^^74^677^34
- ;;^UTILITY(U,$J,358.3,10356,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,10356,1,3,0)
- ;;=3^Iridocyclitis,Acute/Subacute,Unspec
- ;;^UTILITY(U,$J,358.3,10356,1,4,0)
- ;;=4^H20.00
- ;;^UTILITY(U,$J,358.3,10356,2)
- ;;=^5005133
- ;;^UTILITY(U,$J,358.3,10357,0)
- ;;=B00.59^^74^677^32
- ;;^UTILITY(U,$J,358.3,10357,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,10357,1,3,0)
- ;;=3^Herpes Viral Eye Disease NEC
- ;;^UTILITY(U,$J,358.3,10357,1,4,0)
- ;;=4^B00.59
- ;;^UTILITY(U,$J,358.3,10357,2)
- ;;=^5000476
- ;;^UTILITY(U,$J,358.3,10358,0)
- ;;=Z01.00^^74^677^30
- ;;^UTILITY(U,$J,358.3,10358,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,10358,1,3,0)
- ;;=3^Eye/Vision Exam w/o Abnormal Findings
- ;;^UTILITY(U,$J,358.3,10358,1,4,0)
- ;;=4^Z01.00
- ;;^UTILITY(U,$J,358.3,10358,2)
- ;;=^5062612
- ;;^UTILITY(U,$J,358.3,10359,0)
- ;;=Z01.01^^74^677^29
- ;;^UTILITY(U,$J,358.3,10359,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,10359,1,3,0)
- ;;=3^Eye/Vision Exam w/ Abnormal Findings
- ;;^UTILITY(U,$J,358.3,10359,1,4,0)
- ;;=4^Z01.01
- ;;^UTILITY(U,$J,358.3,10359,2)
- ;;=^5062613
- ;;^UTILITY(U,$J,358.3,10360,0)
- ;;=H52.213^^74^677^2
- ;;^UTILITY(U,$J,358.3,10360,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,10360,1,3,0)
- ;;=3^Astigmatism,Irregular,Bilateral
- ;;^UTILITY(U,$J,358.3,10360,1,4,0)
- ;;=4^H52.213
- ;;^UTILITY(U,$J,358.3,10360,2)
- ;;=^5006272
- ;;^UTILITY(U,$J,358.3,10361,0)
- ;;=H52.223^^74^677^3
- ;;^UTILITY(U,$J,358.3,10361,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,10361,1,3,0)
- ;;=3^Astigmatism,Regular,Bilateral
- ;;^UTILITY(U,$J,358.3,10361,1,4,0)
- ;;=4^H52.223
- ;;^UTILITY(U,$J,358.3,10361,2)
- ;;=^5006276
- ;;^UTILITY(U,$J,358.3,10362,0)
- ;;=H40.1113^^74^677^49
- ;;^UTILITY(U,$J,358.3,10362,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,10362,1,3,0)
- ;;=3^Primary Open-Angle Glaucoma,Severe Stage,Right Eye
- ;;^UTILITY(U,$J,358.3,10362,1,4,0)
- ;;=4^H40.1113
- ;;^UTILITY(U,$J,358.3,10362,2)
- ;;=^5138539
- ;;^UTILITY(U,$J,358.3,10363,0)
- ;;=H40.1123^^74^677^50
- ;;^UTILITY(U,$J,358.3,10363,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,10363,1,3,0)
- ;;=3^Primary Open-Angle Glaucoma,Severe Stage,Left Eye
+ ;;^UTILITY(U,$J,358.3,10475,1,2,0)
+ ;;=2^99497
+ ;;^UTILITY(U,$J,358.3,10475,1,3,0)
+ ;;=3^Advance Care Planning,1st 30 min
+ ;;^UTILITY(U,$J,358.3,10476,0)
+ ;;=99498^^41^462^2^^^^1
+ ;;^UTILITY(U,$J,358.3,10476,1,0)
+ ;;=^358.31IA^3^2
+ ;;^UTILITY(U,$J,358.3,10476,1,2,0)
+ ;;=2^99498
+ ;;^UTILITY(U,$J,358.3,10476,1,3,0)
+ ;;=3^Advance Care Planning,Ea Addl 30 min
+ ;;^UTILITY(U,$J,358.3,10477,0)
+ ;;=99366^^41^463^1^^^^1
+ ;;^UTILITY(U,$J,358.3,10477,1,0)
+ ;;=^358.31IA^3^2
+ ;;^UTILITY(U,$J,358.3,10477,1,2,0)
+ ;;=2^99366
+ ;;^UTILITY(U,$J,358.3,10477,1,3,0)
+ ;;=3^Non-Phy Team Conf w/ Pt &/or Fam,30 min+
+ ;;^UTILITY(U,$J,358.3,10478,0)
+ ;;=90833^^41^464^1^^^^1
+ ;;^UTILITY(U,$J,358.3,10478,1,0)
+ ;;=^358.31IA^3^2
+ ;;^UTILITY(U,$J,358.3,10478,1,2,0)
+ ;;=2^90833
+ ;;^UTILITY(U,$J,358.3,10478,1,3,0)
+ ;;=3^Psychotherapy Services,30 min (w/ E&M)
+ ;;^UTILITY(U,$J,358.3,10479,0)
+ ;;=90836^^41^464^2^^^^1
+ ;;^UTILITY(U,$J,358.3,10479,1,0)
+ ;;=^358.31IA^3^2
+ ;;^UTILITY(U,$J,358.3,10479,1,2,0)
+ ;;=2^90836
+ ;;^UTILITY(U,$J,358.3,10479,1,3,0)
+ ;;=3^Psychotherapy Services,45 min (w/ E&M)
+ ;;^UTILITY(U,$J,358.3,10480,0)
+ ;;=90838^^41^464^3^^^^1
+ ;;^UTILITY(U,$J,358.3,10480,1,0)
+ ;;=^358.31IA^3^2
+ ;;^UTILITY(U,$J,358.3,10480,1,2,0)
+ ;;=2^90838
+ ;;^UTILITY(U,$J,358.3,10480,1,3,0)
+ ;;=3^Psychotherapy Services,60 min (w/ E&M)
+ ;;^UTILITY(U,$J,358.3,10481,0)
+ ;;=99354^^41^465^1^^^^1
+ ;;^UTILITY(U,$J,358.3,10481,1,0)
+ ;;=^358.31IA^3^2
+ ;;^UTILITY(U,$J,358.3,10481,1,2,0)
+ ;;=2^99354
+ ;;^UTILITY(U,$J,358.3,10481,1,3,0)
+ ;;=3^Prolonged Svc Office/Outpt;1st hr
+ ;;^UTILITY(U,$J,358.3,10482,0)
+ ;;=99355^^41^465^2^^^^1
+ ;;^UTILITY(U,$J,358.3,10482,1,0)
+ ;;=^358.31IA^3^2
+ ;;^UTILITY(U,$J,358.3,10482,1,2,0)
+ ;;=2^99355
+ ;;^UTILITY(U,$J,358.3,10482,1,3,0)
+ ;;=3^Prolonged Svc Office/Outpt;Ea Addl 30min
+ ;;^UTILITY(U,$J,358.3,10483,0)
+ ;;=99356^^41^465^3^^^^1
+ ;;^UTILITY(U,$J,358.3,10483,1,0)
+ ;;=^358.31IA^3^2
+ ;;^UTILITY(U,$J,358.3,10483,1,2,0)
+ ;;=2^99356
+ ;;^UTILITY(U,$J,358.3,10483,1,3,0)
+ ;;=3^Prolonged Svc,INPT/OBS,1st Hr
+ ;;^UTILITY(U,$J,358.3,10484,0)
+ ;;=99357^^41^465^4^^^^1
+ ;;^UTILITY(U,$J,358.3,10484,1,0)
+ ;;=^358.31IA^3^2
+ ;;^UTILITY(U,$J,358.3,10484,1,2,0)
+ ;;=2^99357
+ ;;^UTILITY(U,$J,358.3,10484,1,3,0)
+ ;;=3^Prolonged Svc,INPT/OBS,Ea Addl 30 min
+ ;;^UTILITY(U,$J,358.3,10485,0)
+ ;;=90847^^41^466^1^^^^1
+ ;;^UTILITY(U,$J,358.3,10485,1,0)
+ ;;=^358.31IA^3^2
+ ;;^UTILITY(U,$J,358.3,10485,1,2,0)
+ ;;=2^90847
+ ;;^UTILITY(U,$J,358.3,10485,1,3,0)
+ ;;=3^Family Psychotherapy w/ Patient
+ ;;^UTILITY(U,$J,358.3,10486,0)
+ ;;=90853^^41^466^3^^^^1
+ ;;^UTILITY(U,$J,358.3,10486,1,0)
+ ;;=^358.31IA^3^2
+ ;;^UTILITY(U,$J,358.3,10486,1,2,0)
+ ;;=2^90853
+ ;;^UTILITY(U,$J,358.3,10486,1,3,0)
+ ;;=3^Group Psychotherapy
+ ;;^UTILITY(U,$J,358.3,10487,0)
+ ;;=S9446^^41^466^4^^^^1
+ ;;^UTILITY(U,$J,358.3,10487,1,0)
+ ;;=^358.31IA^3^2
+ ;;^UTILITY(U,$J,358.3,10487,1,2,0)
+ ;;=2^S9446
+ ;;^UTILITY(U,$J,358.3,10487,1,3,0)
+ ;;=3^Patient Educ NOC Non-Phy Grp Session
+ ;;^UTILITY(U,$J,358.3,10488,0)
+ ;;=H0005^^41^466^2^^^^1
+ ;;^UTILITY(U,$J,358.3,10488,1,0)
+ ;;=^358.31IA^3^2
+ ;;^UTILITY(U,$J,358.3,10488,1,2,0)
+ ;;=2^H0005
+ ;;^UTILITY(U,$J,358.3,10488,1,3,0)
+ ;;=3^Group Counseling w/ Alcohol and Drug Tx Focus
+ ;;^UTILITY(U,$J,358.3,10489,0)
+ ;;=99368^^41^467^1^^^^1
+ ;;^UTILITY(U,$J,358.3,10489,1,0)
+ ;;=^358.31IA^3^2
+ ;;^UTILITY(U,$J,358.3,10489,1,2,0)
+ ;;=2^99368
+ ;;^UTILITY(U,$J,358.3,10489,1,3,0)
+ ;;=3^Non-Phy Team Conf w/o Pt &/or Fam;30 min+

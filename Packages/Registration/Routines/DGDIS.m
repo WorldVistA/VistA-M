@@ -1,5 +1,5 @@
-DGDIS ;ALB/JDS - DISPOSITION A REGISTRATION ; 8/6/04 3:17pm
- ;;5.3;Registration;**108,121,161,151,459,604,993**;Aug 13, 1993;Build 92
+DGDIS ;ALB/JDS,RN - DISPOSITION A REGISTRATION ; 8/6/04 3:17pm
+ ;;5.3;Registration;**108,121,161,151,459,604,993,1031,1027,1052**;Aug 13, 1993;Build 7
  ;
  D LO^DGUTL
 GETL S L=^DG(43,1,0),DISL=+$P(L,"^",7) S:DISL=0 DISL=24 N SDISHDL
@@ -16,12 +16,15 @@ ANS ;
  I $$GET^DGENPTA($G(DFN),.DGENPTA) S DGINELIG=$G(DGENPTA("INELDATE"))
  I STATUS=25 S DGENRYN=0
  N SEEN S SEEN=$$GET1^DIQ(2.101,DFN1_","_DFN_",",7,"I")
- I STATUS=25,SEEN=0 W !! S DR="1//2;2;2.1;13;5//NOW;D CHT^DGDIS;8"_$S(DUZ'="":";9////"_DUZ,1:""),DIE="^DPT("_DFN_",""DIS"",",DA(1)=DFN,DP=2.101 D ^DIE I $S('$D(^DPT(DFN,"DIS",DA,0)):1,'$P(^(0),"^",6):1,1:0) G DEL
- I STATUS=25,SEEN=1 W !! S DR="1//0;2;2.1;13;5//NOW;D CHT^DGDIS;8"_$S(DUZ'="":";9////"_DUZ,1:""),DIE="^DPT("_DFN_",""DIS"",",DA(1)=DFN,DP=2.101 D ^DIE I $S('$D(^DPT(DFN,"DIS",DA,0)):1,'$P(^(0),"^",6):1,1:0) G DEL
+ ; DG*5.3*1031 - added "+"SEEN so NULL value for SEEN is treated as a ZERO
+ I '$G(DGINELIG),STATUS=25 D
+ . I +SEEN=0 W !! S DR="1//2;2;2.1;13;5//NOW;D CHT^DGDIS;8"_$S(DUZ'="":";9////"_DUZ,1:""),DIE="^DPT("_DFN_",""DIS"",",DA(1)=DFN,DP=2.101 D ^DIE I $S('$D(^DPT(DFN,"DIS",DA,0)):1,'$P(^(0),"^",6):1,1:0) G DEL
+ . I SEEN=1 W !! S DR="1//0;2;2.1;13;5//NOW;D CHT^DGDIS;8"_$S(DUZ'="":";9////"_DUZ,1:""),DIE="^DPT("_DFN_",""DIS"",",DA(1)=DFN,DP=2.101 D ^DIE I $S('$D(^DPT(DFN,"DIS",DA,0)):1,'$P(^(0),"^",6):1,1:0) G DEL
  I STATUS'=25 W !! S DR="1;2;2.1;13;5//NOW;D CHT^DGDIS;8"_$S(DUZ'="":";9////"_DUZ,1:""),DIE="^DPT("_DFN_",""DIS"",",DA(1)=DFN,DP=2.101 D ^DIE I $S('$D(^DPT(DFN,"DIS",DA,0)):1,'$P(^(0),"^",6):1,1:0) G DEL  ; Original code
  I $G(DGINELIG),STATUS=25 D
  . W !! S DR="1;2;2.1;13;5//NOW;D CHT^DGDIS;8"_$S(DUZ'="":";9////"_DUZ,1:""),DIE="^DPT("_DFN_",""DIS"",",DA(1)=DFN,DP=2.101 D ^DIE I $S('$D(^DPT(DFN,"DIS",DA,0)):1,'$P(^(0),"^",6):1,1:0) G DEL
  N DGPOSX,DGELIGX,DGSTRX
+ I '$D(DFN) D Q Q
  S DGELIGX=$S('$D(^DPT(DFN,.36)):1,$P(^(.36),"^",1)']"":1,1:0)
  S DGPOSX=$S('$D(^DPT(DFN,.32)):1,$P(^(.32),"^",3)']"":1,1:0)
  I (DGELIGX)&(DGPOSX) W !!,"Primary Eligibility Code and Period of Service are unspecified." K DGPOSX,DGELIGX,DGSTRX G DEL
@@ -29,8 +32,10 @@ ANS ;
  I ('DGELIGX)&(DGPOSX) W !!,"Period of Service is unspecified." K DGPOSX,DGELIGX,DGSTRX G DEL
  ;S DGXXXD=0 D EL^DGREGE
 DISP   ;**DG*5.3*993; Decoupling project
- I STATUS=25 D
- . I SEEN=0 D
+ ; DG*5.3*1027 - Made code changes to prevent duplicate prompt "Select the type of disposition:"
+ I '$G(DGINELIG),STATUS=25 D
+ . ; DG*5.3*1031 - added "+"SEEN so NULL value for SEEN is treated as a ZERO
+ . I +SEEN=0 D
  . . W ! S DIC="^DIC(37,",DIC(0)="AEQMZ",DIC("A")="Select the type of disposition: ",DIC("S")="I '$P(^(0),""^"",10)"
  . . S DIC("B")="CANCEL WITHOUT EXAM" D ^DIC K DIC("A"),DIC("B") I Y'>0 G DEL:X?1"^".E W !!,"A disposition must be entered to continue.",!!,*7,*7 G DISP
  . I SEEN=1 D
@@ -39,6 +44,7 @@ DISP   ;**DG*5.3*993; Decoupling project
  I STATUS'=25 W ! S DIC="^DIC(37,",DIC(0)="AEQMZ",DIC("A")="Select the type of disposition: ",DIC("S")="I '$P(^(0),""^"",10)" D ^DIC K DIC("A"),DIC("B") I Y'>0 G DEL:X?1"^".E W !!,"A disposition must be entered to continue.",!!,*7,*7 G DISP
  I $G(DGINELIG),STATUS=25 D
  . W ! S DIC="^DIC(37,",DIC(0)="AEQMZ",DIC("A")="Select the type of disposition: ",DIC("S")="I '$P(^(0),""^"",10)" D ^DIC K DIC("A"),DIC("B") I Y'>0 G DEL:X?1"^".E W !!,"A disposition must be entered to continue.",!!,*7,*7 G DISP
+ I '$D(Y) D Q Q
  D ODS
  S DR="" I $P(Y(0),"^",1)["INELIG" S DIE("NO^")="",DR="2.1;"
  S DR=DR_"S:'DGODS Y=6;11500.01////1;11500.02////^S X=$S(DGODSE>0:DGODSE,1:"""");"

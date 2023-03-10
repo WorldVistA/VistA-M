@@ -1,5 +1,5 @@
 VAFCTFU ;ALB/JLU-UTILITIES FOR THE TREATING FACILITY FILE 391.91 ; 5/23/12 12:58pm
- ;;5.3;Registration;**149,240,261,255,316,392,440,428,474,520,697,800,821,837,856**;Aug 13, 1993;Build 5
+ ;;5.3;Registration;**149,240,261,255,316,392,440,428,474,520,697,800,821,837,856,1079**;Aug 13, 1993;Build 2
  ;
  ;Reference to EXC^RGHLLOG and STOP^RGHLLOG supported by IA #2796
  ;Reference to $$UPDATE^ MPIFAPI supported by IA #2706
@@ -100,7 +100,7 @@ FILEQ Q
  ;
 FILENEW(PDFN,FAC,PDLT,EVNTR,VAFCSLT,ERROR,IPP,SOURCEID,IDENSTAT,AA,IDTYP) ;
  N DGSENFLG ;**240 added y
- K DD,DO,DIC,DA,RESULT
+ K DD,DO,DIC,DA,RESULT,DGRSLT
  S DGSENFLG=""
  N FDA,FDAIEN,ERR S ERR=""
  I $G(EVNTR)'="" D CHK^DIE(391.91,.07,"",EVNTR,.RESULT) I +RESULT>0 S EVNTR=RESULT
@@ -119,6 +119,8 @@ FILENEW(PDFN,FAC,PDLT,EVNTR,VAFCSLT,ERROR,IPP,SOURCEID,IDENSTAT,AA,IDTYP) ;
  ;**837 (ckn) - MVI_791 - No more Source ID multiple
  ;I $G(SOURCEID)'="",$G(FDAIEN(1))'="" D UPDSID(PDFN,FAC,SOURCEID,IDENSTAT,FDAIEN(1))  ;Update SourceID multiple
  ;removed code to add a subscription
+ ;**1079 CALL PTF QUERY FOR CORRELATION BEING ADDED - JUST VISTA's include Cerner (all flavors), not station 200, Not local station at and only for PATIENTS (PI)
+ I $$GET1^DIQ(4,FAC_",",13)'="OTHER"&($$STA^XUAF4(FAC)'=200)&($$STA^XUAF4(FAC)'=$P($$SITE^VASITE(),"^",3))&($G(IDTYP)="PI") S DGRSLT=$$SNDQRY^DGPFHLS(PDFN,$$QRYON^DGPFPARM(),$$STA^XUAF4(FAC))
  L -^DGCN(391.91,0)
  K DIC,DD,DO,DA
  Q
@@ -211,8 +213,7 @@ DELETE(TFIEN) ;the actual deletion code
  D ^DIK K DIK,DA
  Q
  ;
-DELALLTF(PAT) ;Entry point to delete all Treating Facilities for a single
- ;patient.
+DELALLTF(PAT) ;Entry point to delete all Treating Facilities for a single patient.
  ;INPUT  PAT - The patient's ICN
  ;OUTPUT 0 (zero) - If no errors
  ;       1^error description if an error
@@ -224,8 +225,7 @@ DELALLTF(PAT) ;Entry point to delete all Treating Facilities for a single
  S PDFN=$$GETDFN^MPIF001(PAT)
  I PDFN<0 Q "1^No patient DFN."
  F LP=0:0 S LP=$O(^DGCN(391.91,"APAT",PDFN,LP)) Q:LP'>0  D
- . S TFIEN=0
- . F  S TFIEN=$O(^DGCN(391.91,"APAT",PDFN,LP,TFIEN)) Q:TFIEN'>0  D DELETE(TFIEN)
+ .S TFIEN=0 F  S TFIEN=$O(^DGCN(391.91,"APAT",PDFN,LP,TFIEN)) Q:TFIEN'>0  D DELETE(TFIEN)
  ;
  Q VAFCER
  ;

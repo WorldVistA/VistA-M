@@ -1,128 +1,128 @@
-IBDEI0V1 ; ; 04-FEB-2020
- ;;3.0;IB ENCOUNTER FORM IMP/EXP;;FEB 04, 2020
+IBDEI0V1 ; ; 01-FEB-2022
+ ;;3.0;IB ENCOUNTER FORM IMP/EXP;;FEB 01, 2022
  Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,999) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
- ;;^UTILITY(U,$J,358.3,13816,1,0)
+ ;;^UTILITY(U,$J,358.3,14006,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,13816,1,3,0)
- ;;=3^Cervix Uteri,Inflammatory Disease
- ;;^UTILITY(U,$J,358.3,13816,1,4,0)
- ;;=4^N72.
- ;;^UTILITY(U,$J,358.3,13816,2)
- ;;=^5015812
- ;;^UTILITY(U,$J,358.3,13817,0)
- ;;=N88.9^^83^818^21
- ;;^UTILITY(U,$J,358.3,13817,1,0)
+ ;;^UTILITY(U,$J,358.3,14006,1,3,0)
+ ;;=3^Instability, left hand NEC
+ ;;^UTILITY(U,$J,358.3,14006,1,4,0)
+ ;;=4^M25.342
+ ;;^UTILITY(U,$J,358.3,14006,2)
+ ;;=^5011561
+ ;;^UTILITY(U,$J,358.3,14007,0)
+ ;;=M25.341^^55^668^12
+ ;;^UTILITY(U,$J,358.3,14007,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,13817,1,3,0)
- ;;=3^Cervix Uteri,Noninflammatory Disorder,Unspec
- ;;^UTILITY(U,$J,358.3,13817,1,4,0)
- ;;=4^N88.9
- ;;^UTILITY(U,$J,358.3,13817,2)
- ;;=^5015884
- ;;^UTILITY(U,$J,358.3,13818,0)
- ;;=N30.91^^83^818^23
- ;;^UTILITY(U,$J,358.3,13818,1,0)
+ ;;^UTILITY(U,$J,358.3,14007,1,3,0)
+ ;;=3^Instability, right hand NEC
+ ;;^UTILITY(U,$J,358.3,14007,1,4,0)
+ ;;=4^M25.341
+ ;;^UTILITY(U,$J,358.3,14007,2)
+ ;;=^5011560
+ ;;^UTILITY(U,$J,358.3,14008,0)
+ ;;=M79.645^^55^668^15
+ ;;^UTILITY(U,$J,358.3,14008,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,13818,1,3,0)
- ;;=3^Cystitis w/ Hematuria,Unspec
- ;;^UTILITY(U,$J,358.3,13818,1,4,0)
- ;;=4^N30.91
- ;;^UTILITY(U,$J,358.3,13818,2)
- ;;=^5015643
- ;;^UTILITY(U,$J,358.3,13819,0)
- ;;=N30.90^^83^818^24
- ;;^UTILITY(U,$J,358.3,13819,1,0)
+ ;;^UTILITY(U,$J,358.3,14008,1,3,0)
+ ;;=3^Pain in left finger(s)
+ ;;^UTILITY(U,$J,358.3,14008,1,4,0)
+ ;;=4^M79.645
+ ;;^UTILITY(U,$J,358.3,14008,2)
+ ;;=^5013342
+ ;;^UTILITY(U,$J,358.3,14009,0)
+ ;;=M79.642^^55^668^16
+ ;;^UTILITY(U,$J,358.3,14009,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,13819,1,3,0)
- ;;=3^Cystitis w/o Hematuria,Unspec
- ;;^UTILITY(U,$J,358.3,13819,1,4,0)
- ;;=4^N30.90
- ;;^UTILITY(U,$J,358.3,13819,2)
- ;;=^5015642
- ;;^UTILITY(U,$J,358.3,13820,0)
- ;;=R30.0^^83^818^27
- ;;^UTILITY(U,$J,358.3,13820,1,0)
+ ;;^UTILITY(U,$J,358.3,14009,1,3,0)
+ ;;=3^Pain in left hand
+ ;;^UTILITY(U,$J,358.3,14009,1,4,0)
+ ;;=4^M79.642
+ ;;^UTILITY(U,$J,358.3,14009,2)
+ ;;=^5013339
+ ;;^UTILITY(U,$J,358.3,14010,0)
+ ;;=M79.644^^55^668^17
+ ;;^UTILITY(U,$J,358.3,14010,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,13820,1,3,0)
- ;;=3^Dysuria
- ;;^UTILITY(U,$J,358.3,13820,1,4,0)
- ;;=4^R30.0
- ;;^UTILITY(U,$J,358.3,13820,2)
- ;;=^5019322
- ;;^UTILITY(U,$J,358.3,13821,0)
- ;;=N80.9^^83^818^30
- ;;^UTILITY(U,$J,358.3,13821,1,0)
+ ;;^UTILITY(U,$J,358.3,14010,1,3,0)
+ ;;=3^Pain in right finger(s)
+ ;;^UTILITY(U,$J,358.3,14010,1,4,0)
+ ;;=4^M79.644
+ ;;^UTILITY(U,$J,358.3,14010,2)
+ ;;=^5013341
+ ;;^UTILITY(U,$J,358.3,14011,0)
+ ;;=M79.641^^55^668^18
+ ;;^UTILITY(U,$J,358.3,14011,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,13821,1,3,0)
- ;;=3^Endometriosis,Unspec
- ;;^UTILITY(U,$J,358.3,13821,1,4,0)
- ;;=4^N80.9
- ;;^UTILITY(U,$J,358.3,13821,2)
- ;;=^5015837
- ;;^UTILITY(U,$J,358.3,13822,0)
- ;;=N45.1^^83^818^31
- ;;^UTILITY(U,$J,358.3,13822,1,0)
+ ;;^UTILITY(U,$J,358.3,14011,1,3,0)
+ ;;=3^Pain in right hand
+ ;;^UTILITY(U,$J,358.3,14011,1,4,0)
+ ;;=4^M79.641
+ ;;^UTILITY(U,$J,358.3,14011,2)
+ ;;=^5013338
+ ;;^UTILITY(U,$J,358.3,14012,0)
+ ;;=M72.0^^55^668^19
+ ;;^UTILITY(U,$J,358.3,14012,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,13822,1,3,0)
- ;;=3^Epididymitis
- ;;^UTILITY(U,$J,358.3,13822,1,4,0)
- ;;=4^N45.1
- ;;^UTILITY(U,$J,358.3,13822,2)
- ;;=^41396
- ;;^UTILITY(U,$J,358.3,13823,0)
- ;;=N45.3^^83^818^33
- ;;^UTILITY(U,$J,358.3,13823,1,0)
+ ;;^UTILITY(U,$J,358.3,14012,1,3,0)
+ ;;=3^Palmar fascial fibromatosis [Dupuytren]
+ ;;^UTILITY(U,$J,358.3,14012,1,4,0)
+ ;;=4^M72.0
+ ;;^UTILITY(U,$J,358.3,14012,2)
+ ;;=^5013233
+ ;;^UTILITY(U,$J,358.3,14013,0)
+ ;;=M19.042^^55^668^22
+ ;;^UTILITY(U,$J,358.3,14013,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,13823,1,3,0)
- ;;=3^Epididymo-orchitis
- ;;^UTILITY(U,$J,358.3,13823,1,4,0)
- ;;=4^N45.3
- ;;^UTILITY(U,$J,358.3,13823,2)
- ;;=^5015707
- ;;^UTILITY(U,$J,358.3,13824,0)
- ;;=N52.9^^83^818^37
- ;;^UTILITY(U,$J,358.3,13824,1,0)
+ ;;^UTILITY(U,$J,358.3,14013,1,3,0)
+ ;;=3^Primary osteoarthritis, left hand
+ ;;^UTILITY(U,$J,358.3,14013,1,4,0)
+ ;;=4^M19.042
+ ;;^UTILITY(U,$J,358.3,14013,2)
+ ;;=^5010818
+ ;;^UTILITY(U,$J,358.3,14014,0)
+ ;;=M19.041^^55^668^23
+ ;;^UTILITY(U,$J,358.3,14014,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,13824,1,3,0)
- ;;=3^Erectile Dysfunction,Male,Unspec
- ;;^UTILITY(U,$J,358.3,13824,1,4,0)
- ;;=4^N52.9
- ;;^UTILITY(U,$J,358.3,13824,2)
- ;;=^5015763
- ;;^UTILITY(U,$J,358.3,13825,0)
- ;;=N83.9^^83^818^38
- ;;^UTILITY(U,$J,358.3,13825,1,0)
+ ;;^UTILITY(U,$J,358.3,14014,1,3,0)
+ ;;=3^Primary osteoarthritis, right hand
+ ;;^UTILITY(U,$J,358.3,14014,1,4,0)
+ ;;=4^M19.041
+ ;;^UTILITY(U,$J,358.3,14014,2)
+ ;;=^5010817
+ ;;^UTILITY(U,$J,358.3,14015,0)
+ ;;=M12.542^^55^668^26
+ ;;^UTILITY(U,$J,358.3,14015,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,13825,1,3,0)
- ;;=3^Fallopion & Broad Ligament Noninflammatory Disorder of Ovary,Unspec
- ;;^UTILITY(U,$J,358.3,13825,1,4,0)
- ;;=4^N83.9
- ;;^UTILITY(U,$J,358.3,13825,2)
- ;;=^5015865
- ;;^UTILITY(U,$J,358.3,13826,0)
- ;;=N82.9^^83^818^39
- ;;^UTILITY(U,$J,358.3,13826,1,0)
+ ;;^UTILITY(U,$J,358.3,14015,1,3,0)
+ ;;=3^Traumatic arthropathy, left hand
+ ;;^UTILITY(U,$J,358.3,14015,1,4,0)
+ ;;=4^M12.542
+ ;;^UTILITY(U,$J,358.3,14015,2)
+ ;;=^5010629
+ ;;^UTILITY(U,$J,358.3,14016,0)
+ ;;=M12.541^^55^668^27
+ ;;^UTILITY(U,$J,358.3,14016,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,13826,1,3,0)
- ;;=3^Fistulae,Female Genital Tract,Unspec
- ;;^UTILITY(U,$J,358.3,13826,1,4,0)
- ;;=4^N82.9
- ;;^UTILITY(U,$J,358.3,13826,2)
- ;;=^5015853
- ;;^UTILITY(U,$J,358.3,13827,0)
- ;;=N49.9^^83^818^41
- ;;^UTILITY(U,$J,358.3,13827,1,0)
+ ;;^UTILITY(U,$J,358.3,14016,1,3,0)
+ ;;=3^Traumatic arthropathy, right hand
+ ;;^UTILITY(U,$J,358.3,14016,1,4,0)
+ ;;=4^M12.541
+ ;;^UTILITY(U,$J,358.3,14016,2)
+ ;;=^5010628
+ ;;^UTILITY(U,$J,358.3,14017,0)
+ ;;=M65.322^^55^668^28
+ ;;^UTILITY(U,$J,358.3,14017,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,13827,1,3,0)
- ;;=3^Genital Organ Inflammatory Disorder,Male,Unspec
- ;;^UTILITY(U,$J,358.3,13827,1,4,0)
- ;;=4^N49.9
- ;;^UTILITY(U,$J,358.3,13827,2)
- ;;=^5015749
- ;;^UTILITY(U,$J,358.3,13828,0)
- ;;=N50.9^^83^818^40
- ;;^UTILITY(U,$J,358.3,13828,1,0)
+ ;;^UTILITY(U,$J,358.3,14017,1,3,0)
+ ;;=3^Trigger finger, left index finger
+ ;;^UTILITY(U,$J,358.3,14017,1,4,0)
+ ;;=4^M65.322
+ ;;^UTILITY(U,$J,358.3,14017,2)
+ ;;=^5012781
+ ;;^UTILITY(U,$J,358.3,14018,0)
+ ;;=M65.352^^55^668^29
+ ;;^UTILITY(U,$J,358.3,14018,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,13828,1,3,0)
- ;;=3^Genital Organ Disorder,Male,Unspec
+ ;;^UTILITY(U,$J,358.3,14018,1,3,0)
+ ;;=3^Trigger finger, left little finger

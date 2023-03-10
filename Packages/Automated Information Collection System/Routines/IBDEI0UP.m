@@ -1,132 +1,118 @@
-IBDEI0UP ; ; 04-FEB-2020
- ;;3.0;IB ENCOUNTER FORM IMP/EXP;;FEB 04, 2020
+IBDEI0UP ; ; 01-FEB-2022
+ ;;3.0;IB ENCOUNTER FORM IMP/EXP;;FEB 01, 2022
  Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,999) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
- ;;^UTILITY(U,$J,358.3,13672,1,0)
+ ;;^UTILITY(U,$J,358.3,13864,1,4,0)
+ ;;=4^S82.52XD
+ ;;^UTILITY(U,$J,358.3,13864,2)
+ ;;=^5042234
+ ;;^UTILITY(U,$J,358.3,13865,0)
+ ;;=S82.51XD^^55^663^8
+ ;;^UTILITY(U,$J,358.3,13865,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,13672,1,3,0)
- ;;=3^Obesity-BMI 50.0-59.9
- ;;^UTILITY(U,$J,358.3,13672,1,4,0)
- ;;=4^Z68.43
- ;;^UTILITY(U,$J,358.3,13672,2)
- ;;=^5063221
- ;;^UTILITY(U,$J,358.3,13673,0)
- ;;=Z68.44^^83^815^98
- ;;^UTILITY(U,$J,358.3,13673,1,0)
+ ;;^UTILITY(U,$J,358.3,13865,1,3,0)
+ ;;=3^Disp fx of medial malleolus of right tibia, subs encntr
+ ;;^UTILITY(U,$J,358.3,13865,1,4,0)
+ ;;=4^S82.51XD
+ ;;^UTILITY(U,$J,358.3,13865,2)
+ ;;=^5042218
+ ;;^UTILITY(U,$J,358.3,13866,0)
+ ;;=S82.92XD^^55^663^10
+ ;;^UTILITY(U,$J,358.3,13866,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,13673,1,3,0)
- ;;=3^Obesity-BMI 60.0-69.9
- ;;^UTILITY(U,$J,358.3,13673,1,4,0)
- ;;=4^Z68.44
- ;;^UTILITY(U,$J,358.3,13673,2)
- ;;=^5063222
- ;;^UTILITY(U,$J,358.3,13674,0)
- ;;=Z68.45^^83^815^99
- ;;^UTILITY(U,$J,358.3,13674,1,0)
+ ;;^UTILITY(U,$J,358.3,13866,1,3,0)
+ ;;=3^Fracture of left lower leg, subs encntr
+ ;;^UTILITY(U,$J,358.3,13866,1,4,0)
+ ;;=4^S82.92XD
+ ;;^UTILITY(U,$J,358.3,13866,2)
+ ;;=^5136968
+ ;;^UTILITY(U,$J,358.3,13867,0)
+ ;;=S82.91XD^^55^663^12
+ ;;^UTILITY(U,$J,358.3,13867,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,13674,1,3,0)
- ;;=3^Obesity-BMI 70 or Greater
- ;;^UTILITY(U,$J,358.3,13674,1,4,0)
- ;;=4^Z68.45
- ;;^UTILITY(U,$J,358.3,13674,2)
- ;;=^5063223
- ;;^UTILITY(U,$J,358.3,13675,0)
- ;;=E66.01^^83^815^81
- ;;^UTILITY(U,$J,358.3,13675,1,0)
+ ;;^UTILITY(U,$J,358.3,13867,1,3,0)
+ ;;=3^Fracture of right lower leg, subs encntr
+ ;;^UTILITY(U,$J,358.3,13867,1,4,0)
+ ;;=4^S82.91XD
+ ;;^UTILITY(U,$J,358.3,13867,2)
+ ;;=^5136967
+ ;;^UTILITY(U,$J,358.3,13868,0)
+ ;;=S82.65XD^^55^663^20
+ ;;^UTILITY(U,$J,358.3,13868,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,13675,1,3,0)
- ;;=3^Morbid Obesity d/t Excess Calories
- ;;^UTILITY(U,$J,358.3,13675,1,4,0)
- ;;=4^E66.01
- ;;^UTILITY(U,$J,358.3,13675,2)
- ;;=^5002826
- ;;^UTILITY(U,$J,358.3,13676,0)
- ;;=E66.9^^83^815^84
- ;;^UTILITY(U,$J,358.3,13676,1,0)
+ ;;^UTILITY(U,$J,358.3,13868,1,3,0)
+ ;;=3^Nondisp fx of lateral malleolus of left fibula, subs encntr
+ ;;^UTILITY(U,$J,358.3,13868,1,4,0)
+ ;;=4^S82.65XD
+ ;;^UTILITY(U,$J,358.3,13868,2)
+ ;;=^5042378
+ ;;^UTILITY(U,$J,358.3,13869,0)
+ ;;=S82.64XD^^55^663^22
+ ;;^UTILITY(U,$J,358.3,13869,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,13676,1,3,0)
- ;;=3^Obesity,Unspec
- ;;^UTILITY(U,$J,358.3,13676,1,4,0)
- ;;=4^E66.9
- ;;^UTILITY(U,$J,358.3,13676,2)
- ;;=^5002832
- ;;^UTILITY(U,$J,358.3,13677,0)
- ;;=E83.30^^83^815^101
- ;;^UTILITY(U,$J,358.3,13677,1,0)
+ ;;^UTILITY(U,$J,358.3,13869,1,3,0)
+ ;;=3^Nondisp fx of lateral malleolus of right fibula, subs encntr
+ ;;^UTILITY(U,$J,358.3,13869,1,4,0)
+ ;;=4^S82.64XD
+ ;;^UTILITY(U,$J,358.3,13869,2)
+ ;;=^5042362
+ ;;^UTILITY(U,$J,358.3,13870,0)
+ ;;=S82.55XD^^55^663^24
+ ;;^UTILITY(U,$J,358.3,13870,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,13677,1,3,0)
- ;;=3^Phosphorus Metabolism Disorder,Unspec
- ;;^UTILITY(U,$J,358.3,13677,1,4,0)
- ;;=4^E83.30
- ;;^UTILITY(U,$J,358.3,13677,2)
- ;;=^5002997
- ;;^UTILITY(U,$J,358.3,13678,0)
- ;;=R63.1^^83^815^102
- ;;^UTILITY(U,$J,358.3,13678,1,0)
+ ;;^UTILITY(U,$J,358.3,13870,1,3,0)
+ ;;=3^Nondisp fx of medial malleolus of left tibia, subs encntr
+ ;;^UTILITY(U,$J,358.3,13870,1,4,0)
+ ;;=4^S82.55XD
+ ;;^UTILITY(U,$J,358.3,13870,2)
+ ;;=^5042282
+ ;;^UTILITY(U,$J,358.3,13871,0)
+ ;;=S82.54XD^^55^663^26
+ ;;^UTILITY(U,$J,358.3,13871,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,13678,1,3,0)
- ;;=3^Polydipsia
- ;;^UTILITY(U,$J,358.3,13678,1,4,0)
- ;;=4^R63.1
- ;;^UTILITY(U,$J,358.3,13678,2)
- ;;=^186699
- ;;^UTILITY(U,$J,358.3,13679,0)
- ;;=R63.2^^83^815^103
- ;;^UTILITY(U,$J,358.3,13679,1,0)
+ ;;^UTILITY(U,$J,358.3,13871,1,3,0)
+ ;;=3^Nondisp fx of medial malleolus of right tibia, subs encntr
+ ;;^UTILITY(U,$J,358.3,13871,1,4,0)
+ ;;=4^S82.54XD
+ ;;^UTILITY(U,$J,358.3,13871,2)
+ ;;=^5042266
+ ;;^UTILITY(U,$J,358.3,13872,0)
+ ;;=M19.171^^55^663^34
+ ;;^UTILITY(U,$J,358.3,13872,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,13679,1,3,0)
- ;;=3^Polyphagia
- ;;^UTILITY(U,$J,358.3,13679,1,4,0)
- ;;=4^R63.2
- ;;^UTILITY(U,$J,358.3,13679,2)
- ;;=^5019540
- ;;^UTILITY(U,$J,358.3,13680,0)
- ;;=L75.9^^83^815^104
- ;;^UTILITY(U,$J,358.3,13680,1,0)
+ ;;^UTILITY(U,$J,358.3,13872,1,3,0)
+ ;;=3^Post-traumatic osteoarthritis, right ankle & foot
+ ;;^UTILITY(U,$J,358.3,13872,1,4,0)
+ ;;=4^M19.171
+ ;;^UTILITY(U,$J,358.3,13872,2)
+ ;;=^5010835
+ ;;^UTILITY(U,$J,358.3,13873,0)
+ ;;=M19.172^^55^663^33
+ ;;^UTILITY(U,$J,358.3,13873,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,13680,1,3,0)
- ;;=3^Sweat Disorder,Apocrine,Unspec
- ;;^UTILITY(U,$J,358.3,13680,1,4,0)
- ;;=4^L75.9
- ;;^UTILITY(U,$J,358.3,13680,2)
- ;;=^5009301
- ;;^UTILITY(U,$J,358.3,13681,0)
- ;;=L74.9^^83^815^105
- ;;^UTILITY(U,$J,358.3,13681,1,0)
+ ;;^UTILITY(U,$J,358.3,13873,1,3,0)
+ ;;=3^Post-traumatic osteoarthritis, left ankle & foot
+ ;;^UTILITY(U,$J,358.3,13873,1,4,0)
+ ;;=4^M19.172
+ ;;^UTILITY(U,$J,358.3,13873,2)
+ ;;=^5010836
+ ;;^UTILITY(U,$J,358.3,13874,0)
+ ;;=S93.402D^^55^663^41
+ ;;^UTILITY(U,$J,358.3,13874,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,13681,1,3,0)
- ;;=3^Sweat Disorder,Eccrine,Unspec
- ;;^UTILITY(U,$J,358.3,13681,1,4,0)
- ;;=4^L74.9
- ;;^UTILITY(U,$J,358.3,13681,2)
- ;;=^5009296
- ;;^UTILITY(U,$J,358.3,13682,0)
- ;;=R61.^^83^815^65
- ;;^UTILITY(U,$J,358.3,13682,1,0)
+ ;;^UTILITY(U,$J,358.3,13874,1,3,0)
+ ;;=3^Sprain of unspec ligament of left ankle, subs encntr
+ ;;^UTILITY(U,$J,358.3,13874,1,4,0)
+ ;;=4^S93.402D
+ ;;^UTILITY(U,$J,358.3,13874,2)
+ ;;=^5045778
+ ;;^UTILITY(U,$J,358.3,13875,0)
+ ;;=S93.401D^^55^663^42
+ ;;^UTILITY(U,$J,358.3,13875,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,13682,1,3,0)
- ;;=3^Hyperhidrosis,Generalized
- ;;^UTILITY(U,$J,358.3,13682,1,4,0)
- ;;=4^R61.
- ;;^UTILITY(U,$J,358.3,13682,2)
- ;;=^331970
- ;;^UTILITY(U,$J,358.3,13683,0)
- ;;=R63.6^^83^815^107
- ;;^UTILITY(U,$J,358.3,13683,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,13683,1,3,0)
- ;;=3^Underweight
- ;;^UTILITY(U,$J,358.3,13683,1,4,0)
- ;;=4^R63.6
- ;;^UTILITY(U,$J,358.3,13683,2)
- ;;=^322007
- ;;^UTILITY(U,$J,358.3,13684,0)
- ;;=E50.9^^83^815^108
- ;;^UTILITY(U,$J,358.3,13684,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,13684,1,3,0)
- ;;=3^Vitamin A Deficiency,Unspec
- ;;^UTILITY(U,$J,358.3,13684,1,4,0)
- ;;=4^E50.9
- ;;^UTILITY(U,$J,358.3,13684,2)
- ;;=^5002791
+ ;;^UTILITY(U,$J,358.3,13875,1,3,0)
+ ;;=3^Sprain of unspec ligament of right ankle, subs encntr
+ ;;^UTILITY(U,$J,358.3,13875,1,4,0)
+ ;;=4^S93.401D
+ ;;^UTILITY(U,$J,358.3,13875,2)
+ ;;=^5045775

@@ -1,11 +1,11 @@
 XPDTC ;SFISC/RSD - Transport calls ;10/15/2008
- ;;8.0;KERNEL;**10,15,21,39,41,44,58,83,92,95,100,108,124,131,463,511,517,559,672,713**;Jul 10, 1995;Build 15
+ ;;8.0;KERNEL;**10,15,21,39,41,44,58,83,92,95,100,108,124,131,463,511,517,559,672,713,750**;Jul 10, 1995;Build 6
  ;Per VHA Directive 2004-038, this routine should not be modified.
  Q
  ;^XTMP("XPDT",XPDA,data type,file #,
  ;XPDA=ien of File 9.6, XPDNM=.01 field
 DD ;build DD
- N FILE,FGR,FNAM,Z2,Z3,Z4
+ N DIERR,FILE,FGR,FNAM,Z2,Z3,Z4
  S FILE=0,FGR="^XTMP(""XPDT"",XPDA)",FNAM=$NA(^XPD(9.6,XPDA,4,"APDD"))
  F  S FILE=$O(^XPD(9.6,XPDA,4,FILE)) Q:'FILE  D
  .S Z2=$G(^XPD(9.6,XPDA,4,FILE,222)),Z3=$G(^(223)),Z4=$G(^(224))
@@ -103,6 +103,7 @@ BLD ;build Build file, Package file and Order Parameter file
  ;XPD(1)=root of description field
  S:$D(^XTMP("XPDT",XPDA,"BLD",XPDA,1)) XPD(1)=$NA(^(1))
  S ^XTMP("XPDT",XPDA,"PKG",XPDI,0)=^DIC(9.4,XPDI,0),^XTMP("XPDT",XPDA,"PKG",XPDI,22,0)="^"_$P(^DD(9.4,22,0),U,2)_"^1^1"
+ I $E(XPDNM,$L(XPDNM))="b" D BCK G VER  ;Backup Build, don't update the Package file ;p750
  ;XPDNM'["*" is a version release
  I XPDNM'["*" D
  .S XPDV=$$PKGVER^XPDIP(XPDI,.XPD)
@@ -122,10 +123,20 @@ BLD ;build Build file, Package file and Order Parameter file
  .M ^XTMP("XPDT",XPDA,"PKG",XPDI,22,1,"PAH",1)=^DIC(9.4,XPDI,22,+XPDV,"PAH",+$P(XPDV,U,2))
  .;if CURRENT VERSION was updated in $$PKGPAT, save to TG
  .I $P(XPDV,U,3) S ^XTMP("XPDT",XPDA,"PKG",XPDI,"VERSION")=$P(XPDV,U,3)
- ;save the version ien^patch ien on -1 node
+VER ;save the version ien^patch ien on -1 node
  S ^XTMP("XPDT",XPDA,"PKG",XPDI,-1)="1^1"
  ;resolve Primary Help Frame (0;4)
  S %=+$P(^DIC(9.4,XPDI,0),U,4) S:% $P(^XTMP("XPDT",XPDA,"PKG",XPDI,0),U,4)=$$PT^XPDTA("^DIC(9.2)",%)
+ Q
+ ;
+BCK ;Create Package file for Backup Build ;p750
+ S ^XTMP("XPDT",XPDA,"PKG",XPDI,22,1,0)=XPD
+ I XPDNM["*" D  Q  ;Patch Application History
+ .S ^XTMP("XPDT",XPDA,"PKG",XPDI,22,1,"PAH",1,0)=$P(XPDNM,"*",3)_"^"_DT
+ .M ^XTMP("XPDT",XPDA,"PKG",XPDI,22,1,"PAH",1,1)=@XPD(1)
+ .Q
+ ;Version Description
+ M ^XTMP("XPDT",XPDA,"PKG",XPDI,22,1,1)=@XPD(1)
  Q
  ;
 ACT(%) ;execute action

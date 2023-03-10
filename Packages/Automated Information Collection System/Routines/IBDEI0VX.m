@@ -1,126 +1,124 @@
-IBDEI0VX ; ; 04-FEB-2020
- ;;3.0;IB ENCOUNTER FORM IMP/EXP;;FEB 04, 2020
+IBDEI0VX ; ; 01-FEB-2022
+ ;;3.0;IB ENCOUNTER FORM IMP/EXP;;FEB 01, 2022
  Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,999) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
- ;;^UTILITY(U,$J,358.3,14211,1,0)
+ ;;^UTILITY(U,$J,358.3,14383,2)
+ ;;=^5010714
+ ;;^UTILITY(U,$J,358.3,14384,0)
+ ;;=Z96.622^^55^679^7
+ ;;^UTILITY(U,$J,358.3,14384,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,14211,1,3,0)
- ;;=3^Emotional Shock/Stress,Unspec
- ;;^UTILITY(U,$J,358.3,14211,1,4,0)
- ;;=4^R45.7
- ;;^UTILITY(U,$J,358.3,14211,2)
- ;;=^5019468
- ;;^UTILITY(U,$J,358.3,14212,0)
- ;;=R45.89^^83^822^62
- ;;^UTILITY(U,$J,358.3,14212,1,0)
+ ;;^UTILITY(U,$J,358.3,14384,1,3,0)
+ ;;=3^Presence of left artificial elbow joint
+ ;;^UTILITY(U,$J,358.3,14384,1,4,0)
+ ;;=4^Z96.622
+ ;;^UTILITY(U,$J,358.3,14384,2)
+ ;;=^5063696
+ ;;^UTILITY(U,$J,358.3,14385,0)
+ ;;=Z96.642^^55^679^8
+ ;;^UTILITY(U,$J,358.3,14385,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,14212,1,3,0)
- ;;=3^Emotional State,Other Symptoms/Signs
- ;;^UTILITY(U,$J,358.3,14212,1,4,0)
- ;;=4^R45.89
- ;;^UTILITY(U,$J,358.3,14212,2)
- ;;=^5019477
- ;;^UTILITY(U,$J,358.3,14213,0)
- ;;=G92.^^83^822^63
- ;;^UTILITY(U,$J,358.3,14213,1,0)
+ ;;^UTILITY(U,$J,358.3,14385,1,3,0)
+ ;;=3^Presence of left artificial hip joint
+ ;;^UTILITY(U,$J,358.3,14385,1,4,0)
+ ;;=4^Z96.642
+ ;;^UTILITY(U,$J,358.3,14385,2)
+ ;;=^5063702
+ ;;^UTILITY(U,$J,358.3,14386,0)
+ ;;=Z96.652^^55^679^9
+ ;;^UTILITY(U,$J,358.3,14386,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,14213,1,3,0)
- ;;=3^Encephalopathy,Toxic
- ;;^UTILITY(U,$J,358.3,14213,1,4,0)
- ;;=4^G92.
- ;;^UTILITY(U,$J,358.3,14213,2)
- ;;=^259061
- ;;^UTILITY(U,$J,358.3,14214,0)
- ;;=G93.40^^83^822^64
- ;;^UTILITY(U,$J,358.3,14214,1,0)
+ ;;^UTILITY(U,$J,358.3,14386,1,3,0)
+ ;;=3^Presence of left artificial knee joint
+ ;;^UTILITY(U,$J,358.3,14386,1,4,0)
+ ;;=4^Z96.652
+ ;;^UTILITY(U,$J,358.3,14386,2)
+ ;;=^5063706
+ ;;^UTILITY(U,$J,358.3,14387,0)
+ ;;=Z96.612^^55^679^10
+ ;;^UTILITY(U,$J,358.3,14387,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,14214,1,3,0)
- ;;=3^Encephalopathy,Unspec
- ;;^UTILITY(U,$J,358.3,14214,1,4,0)
- ;;=4^G93.40
- ;;^UTILITY(U,$J,358.3,14214,2)
- ;;=^329917
- ;;^UTILITY(U,$J,358.3,14215,0)
- ;;=Z13.858^^83^822^99
- ;;^UTILITY(U,$J,358.3,14215,1,0)
+ ;;^UTILITY(U,$J,358.3,14387,1,3,0)
+ ;;=3^Presence of left artificial shoulder joint
+ ;;^UTILITY(U,$J,358.3,14387,1,4,0)
+ ;;=4^Z96.612
+ ;;^UTILITY(U,$J,358.3,14387,2)
+ ;;=^5063693
+ ;;^UTILITY(U,$J,358.3,14388,0)
+ ;;=Z96.621^^55^679^11
+ ;;^UTILITY(U,$J,358.3,14388,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,14215,1,3,0)
- ;;=3^Nervous System Disorder Screening
- ;;^UTILITY(U,$J,358.3,14215,1,4,0)
- ;;=4^Z13.858
- ;;^UTILITY(U,$J,358.3,14215,2)
- ;;=^5062718
- ;;^UTILITY(U,$J,358.3,14216,0)
- ;;=G40.911^^83^822^65
- ;;^UTILITY(U,$J,358.3,14216,1,0)
+ ;;^UTILITY(U,$J,358.3,14388,1,3,0)
+ ;;=3^Presence of right artificial elbow joint
+ ;;^UTILITY(U,$J,358.3,14388,1,4,0)
+ ;;=4^Z96.621
+ ;;^UTILITY(U,$J,358.3,14388,2)
+ ;;=^5063695
+ ;;^UTILITY(U,$J,358.3,14389,0)
+ ;;=Z96.641^^55^679^12
+ ;;^UTILITY(U,$J,358.3,14389,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,14216,1,3,0)
- ;;=3^Epilepsy,Intractable w/ Status Epilepticus,Unspec
- ;;^UTILITY(U,$J,358.3,14216,1,4,0)
- ;;=4^G40.911
- ;;^UTILITY(U,$J,358.3,14216,2)
- ;;=^5003866
- ;;^UTILITY(U,$J,358.3,14217,0)
- ;;=G40.919^^83^822^66
- ;;^UTILITY(U,$J,358.3,14217,1,0)
+ ;;^UTILITY(U,$J,358.3,14389,1,3,0)
+ ;;=3^Presence of right artificial hip joint
+ ;;^UTILITY(U,$J,358.3,14389,1,4,0)
+ ;;=4^Z96.641
+ ;;^UTILITY(U,$J,358.3,14389,2)
+ ;;=^5063701
+ ;;^UTILITY(U,$J,358.3,14390,0)
+ ;;=Z96.651^^55^679^13
+ ;;^UTILITY(U,$J,358.3,14390,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,14217,1,3,0)
- ;;=3^Epilepsy,Intractable w/o Status Epilepticus,Unspec
- ;;^UTILITY(U,$J,358.3,14217,1,4,0)
- ;;=4^G40.919
- ;;^UTILITY(U,$J,358.3,14217,2)
- ;;=^5003867
- ;;^UTILITY(U,$J,358.3,14218,0)
- ;;=G40.901^^83^822^67
- ;;^UTILITY(U,$J,358.3,14218,1,0)
+ ;;^UTILITY(U,$J,358.3,14390,1,3,0)
+ ;;=3^Presence of right artificial knee joint
+ ;;^UTILITY(U,$J,358.3,14390,1,4,0)
+ ;;=4^Z96.651
+ ;;^UTILITY(U,$J,358.3,14390,2)
+ ;;=^5063705
+ ;;^UTILITY(U,$J,358.3,14391,0)
+ ;;=Z96.611^^55^679^14
+ ;;^UTILITY(U,$J,358.3,14391,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,14218,1,3,0)
- ;;=3^Epilepsy,Not Intractable w/ Status Epilepticus,Unspec
- ;;^UTILITY(U,$J,358.3,14218,1,4,0)
- ;;=4^G40.901
- ;;^UTILITY(U,$J,358.3,14218,2)
- ;;=^5003864
- ;;^UTILITY(U,$J,358.3,14219,0)
- ;;=G40.909^^83^822^68
- ;;^UTILITY(U,$J,358.3,14219,1,0)
+ ;;^UTILITY(U,$J,358.3,14391,1,3,0)
+ ;;=3^Presence of right artificial shoulder joint
+ ;;^UTILITY(U,$J,358.3,14391,1,4,0)
+ ;;=4^Z96.611
+ ;;^UTILITY(U,$J,358.3,14391,2)
+ ;;=^5063692
+ ;;^UTILITY(U,$J,358.3,14392,0)
+ ;;=Z47.1^^55^679^1
+ ;;^UTILITY(U,$J,358.3,14392,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,14219,1,3,0)
- ;;=3^Epilepsy,Not Intractable w/o Status Epilepticus,Unspec
- ;;^UTILITY(U,$J,358.3,14219,1,4,0)
- ;;=4^G40.909
- ;;^UTILITY(U,$J,358.3,14219,2)
- ;;=^5003865
- ;;^UTILITY(U,$J,358.3,14220,0)
- ;;=G25.0^^83^822^69
- ;;^UTILITY(U,$J,358.3,14220,1,0)
+ ;;^UTILITY(U,$J,358.3,14392,1,3,0)
+ ;;=3^Aftercare Following Joint Replacement Surgery
+ ;;^UTILITY(U,$J,358.3,14392,1,4,0)
+ ;;=4^Z47.1
+ ;;^UTILITY(U,$J,358.3,14392,2)
+ ;;=^5063025
+ ;;^UTILITY(U,$J,358.3,14393,0)
+ ;;=Z48.01^^55^679^2
+ ;;^UTILITY(U,$J,358.3,14393,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,14220,1,3,0)
- ;;=3^Essential Tremor
- ;;^UTILITY(U,$J,358.3,14220,1,4,0)
- ;;=4^G25.0
- ;;^UTILITY(U,$J,358.3,14220,2)
- ;;=^5003791
- ;;^UTILITY(U,$J,358.3,14221,0)
- ;;=G25.9^^83^822^70
- ;;^UTILITY(U,$J,358.3,14221,1,0)
+ ;;^UTILITY(U,$J,358.3,14393,1,3,0)
+ ;;=3^Change/Remove Surgical Wound Dressing
+ ;;^UTILITY(U,$J,358.3,14393,1,4,0)
+ ;;=4^Z48.01
+ ;;^UTILITY(U,$J,358.3,14393,2)
+ ;;=^5063034
+ ;;^UTILITY(U,$J,358.3,14394,0)
+ ;;=Z48.02^^55^679^15
+ ;;^UTILITY(U,$J,358.3,14394,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,14221,1,3,0)
- ;;=3^Extrapyramidal/Movement Disorder,Unspec
- ;;^UTILITY(U,$J,358.3,14221,1,4,0)
- ;;=4^G25.9
- ;;^UTILITY(U,$J,358.3,14221,2)
- ;;=^5003803
- ;;^UTILITY(U,$J,358.3,14222,0)
- ;;=R29.810^^83^822^71
- ;;^UTILITY(U,$J,358.3,14222,1,0)
+ ;;^UTILITY(U,$J,358.3,14394,1,3,0)
+ ;;=3^Suture Removal
+ ;;^UTILITY(U,$J,358.3,14394,1,4,0)
+ ;;=4^Z48.02
+ ;;^UTILITY(U,$J,358.3,14394,2)
+ ;;=^5063035
+ ;;^UTILITY(U,$J,358.3,14395,0)
+ ;;=Z46.89^^55^679^4
+ ;;^UTILITY(U,$J,358.3,14395,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,14222,1,3,0)
- ;;=3^Facial Weakness
- ;;^UTILITY(U,$J,358.3,14222,1,4,0)
- ;;=4^R29.810
- ;;^UTILITY(U,$J,358.3,14222,2)
- ;;=^329954
- ;;^UTILITY(U,$J,358.3,14223,0)
- ;;=R25.3^^83^822^72
- ;;^UTILITY(U,$J,358.3,14223,1,0)
- ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,14395,1,3,0)
+ ;;=3^Fitting/Adjustment of Brace/Cast/Corset/Shoe
+ ;;^UTILITY(U,$J,358.3,14395,1,4,0)
+ ;;=4^Z46.89

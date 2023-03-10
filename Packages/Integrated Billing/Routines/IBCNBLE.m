@@ -1,5 +1,5 @@
 IBCNBLE ;ALB/ARH - Ins Buffer: LM buffer entry screen ;1-Jun-97
- ;;2.0;INTEGRATED BILLING;**82,231,184,251,371,416,435,452,497,519,516,528**;21-MAR-94;Build 163
+ ;;2.0;INTEGRATED BILLING;**82,231,184,251,371,416,435,452,497,519,516,528,687**;21-MAR-94;Build 88
  ;;Per VA Directive 6402, this routine should not be modified.
  ;
 EN ; - main entry point for list manager display
@@ -71,7 +71,8 @@ BLD ; display buffer entry
  D SET(IBLINE) S IBLINE=""
  S IBL="Precert Phone: ",IBY=$P(IB20,U,4) S IBLINE=$$SETL(IBLINE,IBY,IBL,57,20)
  D SET(IBLINE) S IBLINE=""
- S IBL="Remote Query From: ",IBY=$$EXTERNAL^DILFD(355.33,.14,"",$P(IB0,"^",14)) S IBLINE=$$SETL(IBLINE,IBY,IBL,57,20)
+ ;IB*687/ckb Changed "Remote Query From" to "Received From"
+ S IBL="Received From: ",IBY=$$EXTERNAL^DILFD(355.33,.14,"",$P(IB0,"^",14)) S IBLINE=$$SETL(IBLINE,IBY,IBL,57,20)
  D SET(IBLINE) S IBLINE="" D ADDR(21,1)
  S IBL="Address: ",IBY=ADDR(1) S IBLINE=$$SETL(IBLINE,IBY,IBL,10,69)
  D SET(IBLINE) S IBLINE=""

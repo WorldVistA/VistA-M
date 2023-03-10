@@ -1,5 +1,5 @@
 IBECEA39 ;EDE/WCJ-Multi-site maintain UC VISIT TRACKING FILE (#351.82) - PULL; 2-DEC-19
- ;;2.0;INTEGRATED BILLING;**669,678**;21-MAR-94;Build 7
+ ;;2.0;INTEGRATED BILLING;**669,678,696**;21-MAR-94;Build 3
  ;;Per VA Directive 6402, this routine should not be modified.
  ;; DBIA#1621 %ZTER (ERROR RECORDING)
  ;; DBIA#2729 MESSAGE ACTION API
@@ -98,7 +98,9 @@ PARSEPULL(IBPD,IBDFN,ERR) ; parse the record being pulled from the originating s
  ; and then add it, update it, or punt.
  ;
  N IBUID,IBOS,IBIEN,IBRETURN
- N IBICN,IBED,IBST,IBRS,IBBN,IBEG,IBADDED,IBUPDATED
+ ;WCJ;IB696;date added variable
+ ;N IBICN,IBED,IBST,IBRS,IBBN,IBEG,IBADDED,IBUPDATED
+ N IBICN,IBED,IBST,IBRS,IBBN,IBEG,IBADDED,IBUPDATED,IBDADDRS,IBDADDHERE
  ;
  ; get the patient from their ICN and compare for grins - probably undeeded code but kind of fun - don't ya think
  S IBICN=$P(IBPD,U,11) ; ICN
@@ -118,8 +120,16 @@ PARSEPULL(IBPD,IBDFN,ERR) ; parse the record being pulled from the originating s
  S IBBN=$P(IBPD,U,7)  ; bill number
  S IBRS=$P(IBPD,U,8)  ; reason
  S IBEG=$P(IBPD,U,12)  ; eligibilty group
+ D
+ . N X
+ . S X=$P(IBPD,U,13)
+ . D ^%DT
+ . S IBDADDRS=$S(+Y:Y,1:"")   ;date added to patient file at the Remote System
+ S IBDADDHERE=$$GET1^DIQ(2,IBDFN,.097,"I")  ; date patient added to this system aka HERE.
  ;
- I IBEG'=$$GETELGP^IBECEA36(IBDFN,IBED) D  Q
+ ;WCJ;IB696;checking if the event date was before the patient was added to the remote system
+ ;I IBEG'=$$GETELGP^IBECEA36(IBDFN,IBED) D  Q
+ I IBEG'=$$GETELGP^IBECEA36(IBDFN,IBED),$S('IBDADDHERE:1,IBED<IBDADDHERE:0,1:1) D  Q
  . N Y S Y=IBED X ^DD("DD")
  . S ERR(1)="-1^Patient's eligibility group differs between sites for date of service "_Y_"."
  . S ERR(2)="-1^Current Site = "_$$GETELGP^IBECEA36(IBDFN,IBED)

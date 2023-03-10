@@ -1,5 +1,5 @@
 IBCNBLL ;ALB/ARH - Ins Buffer: LM main screen, list buffer entries ;1 Jun 97
- ;;2.0;INTEGRATED BILLING;**82,149,153,183,184,271,345,416,438,435,506,519,528,549,601,595,631**;21-MAR-94;Build 23
+ ;;2.0;INTEGRATED BILLING;**82,149,153,183,184,271,345,416,438,435,506,519,528,549,601,595,631,664,668**;21-MAR-94;Build 28
  ;;Per VA Directive 6402, this routine should not be modified.
  ;
  ; DBIA# 642 for call to $$LST^DGMTU
@@ -73,6 +73,9 @@ HELP ;  list manager help
  W !,"   S - Insurance Verification"
  W !,"   A - Veteran Appt Request"
  W !,"   J - MYVA Health Journal"
+ ;/vd - IB*2*664 - Added "W" for Electronic Health Record
+ W !,"   W - Electronic Health Record"
+ W !,"   G - Adv Med Cost Mgmt Solution" ;IB*668/DW Added
  D PAUSE^VALM1 I 'Y Q
  ;
  I VIEW'=5 D     ; IB*2*435
@@ -299,13 +302,14 @@ UPDLN(IBBUFDA,ACTION) ; *** called by any action that modifies a buffer entry, s
  ;
 SRCCNV(SRC) ; convert Source of Info acronym from field 355.12/.03 into 1 char code
  ; IB*2*595/DM T,U,B,O,N,S,A,K,J translations added
+ ; IB*2*664/DW updated "U" for Community Care Network - should be CCN and not PCC
+ ; IB*2*664/VD added "W" for Electronic Health Record
+ ; IB*2*668/DW added "G" for Adv Med Cost Mgmt Solution
  N SRCSTR,CODE
  Q:SRC="" ""
- S SRCSTR="INTVW;I^DMTCH;D^IVM;V^PreRg;P^eIV;E^HMS;H^MCR;M^ICB;R^CS;C^eRxEL;X^IIU;F^INSPT;T^PCC;U^PCFB;B^PCOTR;O^INSIN;N^INSVR;S^VAR;A^KSK;K^MVAH;J"
+ S SRCSTR="INTVW;I^DMTCH;D^IVM;V^PreRg;P^eIV;E^HMS;H^MCR;M^ICB;R^CS;C^eRxEL;X^IIU;F^INSPT;T^CCN;U^PCFB;B^PCOTR;O^INSIN;N^INSVR;S^VAR;A^KSK;K^MVAH;J^EHR;W^AMCMS;G"
  S CODE=$P($P(SRCSTR,SRC_";",2),U,1)
  Q CODE
- ;
- ;
  ;
 GETKEYS(DUZ) ; 
  ;Make sure that user has the INSURANCE EDIT key and/or the GROUP/PLAN EDIT key.  User

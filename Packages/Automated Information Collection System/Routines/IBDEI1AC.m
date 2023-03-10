@@ -1,132 +1,120 @@
-IBDEI1AC ; ; 04-FEB-2020
- ;;3.0;IB ENCOUNTER FORM IMP/EXP;;FEB 04, 2020
+IBDEI1AC ; ; 01-FEB-2022
+ ;;3.0;IB ENCOUNTER FORM IMP/EXP;;FEB 01, 2022
  Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,999) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
- ;;^UTILITY(U,$J,358.3,20551,1,0)
+ ;;^UTILITY(U,$J,358.3,20774,0)
+ ;;=S59.142S^^67^890^155
+ ;;^UTILITY(U,$J,358.3,20774,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,20551,1,3,0)
- ;;=3^Pain,Left Thigh
- ;;^UTILITY(U,$J,358.3,20551,1,4,0)
- ;;=4^M79.652
- ;;^UTILITY(U,$J,358.3,20551,2)
- ;;=^5013345
- ;;^UTILITY(U,$J,358.3,20552,0)
- ;;=M79.601^^93^1004^16
- ;;^UTILITY(U,$J,358.3,20552,1,0)
+ ;;^UTILITY(U,$J,358.3,20774,1,3,0)
+ ;;=3^Sltr-haris Type IV physl fx upper end radius, left arm, sqla
+ ;;^UTILITY(U,$J,358.3,20774,1,4,0)
+ ;;=4^S59.142S
+ ;;^UTILITY(U,$J,358.3,20774,2)
+ ;;=^5032128
+ ;;^UTILITY(U,$J,358.3,20775,0)
+ ;;=S59.141S^^67^890^156
+ ;;^UTILITY(U,$J,358.3,20775,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,20552,1,3,0)
- ;;=3^Pain,Right Arm
- ;;^UTILITY(U,$J,358.3,20552,1,4,0)
- ;;=4^M79.601
- ;;^UTILITY(U,$J,358.3,20552,2)
- ;;=^5013325
- ;;^UTILITY(U,$J,358.3,20553,0)
- ;;=M79.671^^93^1004^17
- ;;^UTILITY(U,$J,358.3,20553,1,0)
+ ;;^UTILITY(U,$J,358.3,20775,1,3,0)
+ ;;=3^Sltr-haris Type IV physl fx upper end rad, right arm, sqla
+ ;;^UTILITY(U,$J,358.3,20775,1,4,0)
+ ;;=4^S59.141S
+ ;;^UTILITY(U,$J,358.3,20775,2)
+ ;;=^5032122
+ ;;^UTILITY(U,$J,358.3,20776,0)
+ ;;=S52.542S^^67^890^157
+ ;;^UTILITY(U,$J,358.3,20776,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,20553,1,3,0)
- ;;=3^Pain,Right Foot
- ;;^UTILITY(U,$J,358.3,20553,1,4,0)
- ;;=4^M79.671
- ;;^UTILITY(U,$J,358.3,20553,2)
- ;;=^5013350
- ;;^UTILITY(U,$J,358.3,20554,0)
- ;;=M79.631^^93^1004^18
- ;;^UTILITY(U,$J,358.3,20554,1,0)
+ ;;^UTILITY(U,$J,358.3,20776,1,3,0)
+ ;;=3^Smith's fracture of left radius, sequela
+ ;;^UTILITY(U,$J,358.3,20776,1,4,0)
+ ;;=4^S52.542S
+ ;;^UTILITY(U,$J,358.3,20776,2)
+ ;;=^5030800
+ ;;^UTILITY(U,$J,358.3,20777,0)
+ ;;=S52.541S^^67^890^158
+ ;;^UTILITY(U,$J,358.3,20777,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,20554,1,3,0)
- ;;=3^Pain,Right Forearm
- ;;^UTILITY(U,$J,358.3,20554,1,4,0)
- ;;=4^M79.631
- ;;^UTILITY(U,$J,358.3,20554,2)
- ;;=^5013335
- ;;^UTILITY(U,$J,358.3,20555,0)
- ;;=M79.641^^93^1004^19
- ;;^UTILITY(U,$J,358.3,20555,1,0)
+ ;;^UTILITY(U,$J,358.3,20777,1,3,0)
+ ;;=3^Smith's fracture of right radius, sequela
+ ;;^UTILITY(U,$J,358.3,20777,1,4,0)
+ ;;=4^S52.541S
+ ;;^UTILITY(U,$J,358.3,20777,2)
+ ;;=^5030784
+ ;;^UTILITY(U,$J,358.3,20778,0)
+ ;;=M84.334S^^67^890^159
+ ;;^UTILITY(U,$J,358.3,20778,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,20555,1,3,0)
- ;;=3^Pain,Right Hand
- ;;^UTILITY(U,$J,358.3,20555,1,4,0)
- ;;=4^M79.641
- ;;^UTILITY(U,$J,358.3,20555,2)
- ;;=^5013338
- ;;^UTILITY(U,$J,358.3,20556,0)
- ;;=M79.604^^93^1004^20
- ;;^UTILITY(U,$J,358.3,20556,1,0)
+ ;;^UTILITY(U,$J,358.3,20778,1,3,0)
+ ;;=3^Stress fracture, left radius, sequela
+ ;;^UTILITY(U,$J,358.3,20778,1,4,0)
+ ;;=4^M84.334S
+ ;;^UTILITY(U,$J,358.3,20778,2)
+ ;;=^5013631
+ ;;^UTILITY(U,$J,358.3,20779,0)
+ ;;=M84.333S^^67^890^161
+ ;;^UTILITY(U,$J,358.3,20779,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,20556,1,3,0)
- ;;=3^Pain,Right Leg
- ;;^UTILITY(U,$J,358.3,20556,1,4,0)
- ;;=4^M79.604
- ;;^UTILITY(U,$J,358.3,20556,2)
- ;;=^5013328
- ;;^UTILITY(U,$J,358.3,20557,0)
- ;;=M79.661^^93^1004^21
- ;;^UTILITY(U,$J,358.3,20557,1,0)
+ ;;^UTILITY(U,$J,358.3,20779,1,3,0)
+ ;;=3^Stress fracture, right radius, sequela
+ ;;^UTILITY(U,$J,358.3,20779,1,4,0)
+ ;;=4^M84.333S
+ ;;^UTILITY(U,$J,358.3,20779,2)
+ ;;=^5013625
+ ;;^UTILITY(U,$J,358.3,20780,0)
+ ;;=S52.522S^^67^890^163
+ ;;^UTILITY(U,$J,358.3,20780,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,20557,1,3,0)
- ;;=3^Pain,Right Lower Leg
- ;;^UTILITY(U,$J,358.3,20557,1,4,0)
- ;;=4^M79.661
- ;;^UTILITY(U,$J,358.3,20557,2)
- ;;=^5013347
- ;;^UTILITY(U,$J,358.3,20558,0)
- ;;=M79.651^^93^1004^22
- ;;^UTILITY(U,$J,358.3,20558,1,0)
+ ;;^UTILITY(U,$J,358.3,20780,1,3,0)
+ ;;=3^Torus fracture of lower end of left radius, sequela
+ ;;^UTILITY(U,$J,358.3,20780,1,4,0)
+ ;;=4^S52.522S
+ ;;^UTILITY(U,$J,358.3,20780,2)
+ ;;=^5135272
+ ;;^UTILITY(U,$J,358.3,20781,0)
+ ;;=S52.521S^^67^890^165
+ ;;^UTILITY(U,$J,358.3,20781,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,20558,1,3,0)
- ;;=3^Pain,Right Thigh
- ;;^UTILITY(U,$J,358.3,20558,1,4,0)
- ;;=4^M79.651
- ;;^UTILITY(U,$J,358.3,20558,2)
- ;;=^5013344
- ;;^UTILITY(U,$J,358.3,20559,0)
- ;;=M54.10^^93^1004^24
- ;;^UTILITY(U,$J,358.3,20559,1,0)
+ ;;^UTILITY(U,$J,358.3,20781,1,3,0)
+ ;;=3^Torus fracture of lower end of right radius, sequela
+ ;;^UTILITY(U,$J,358.3,20781,1,4,0)
+ ;;=4^S52.521S
+ ;;^UTILITY(U,$J,358.3,20781,2)
+ ;;=^5030720
+ ;;^UTILITY(U,$J,358.3,20782,0)
+ ;;=S52.111S^^67^890^169
+ ;;^UTILITY(U,$J,358.3,20782,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,20559,1,3,0)
- ;;=3^Radiculopathy,Site Unspec
- ;;^UTILITY(U,$J,358.3,20559,1,4,0)
- ;;=4^M54.10
- ;;^UTILITY(U,$J,358.3,20559,2)
- ;;=^5012295
- ;;^UTILITY(U,$J,358.3,20560,0)
- ;;=M54.6^^93^1004^23
- ;;^UTILITY(U,$J,358.3,20560,1,0)
+ ;;^UTILITY(U,$J,358.3,20782,1,3,0)
+ ;;=3^Torus fracture of upper end of right radius, sequela
+ ;;^UTILITY(U,$J,358.3,20782,1,4,0)
+ ;;=4^S52.111S
+ ;;^UTILITY(U,$J,358.3,20782,2)
+ ;;=^5029034
+ ;;^UTILITY(U,$J,358.3,20783,0)
+ ;;=S52.112S^^67^890^167
+ ;;^UTILITY(U,$J,358.3,20783,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,20560,1,3,0)
- ;;=3^Pain,Thoracic Spine
- ;;^UTILITY(U,$J,358.3,20560,1,4,0)
- ;;=4^M54.6
- ;;^UTILITY(U,$J,358.3,20560,2)
- ;;=^272507
- ;;^UTILITY(U,$J,358.3,20561,0)
- ;;=G95.89^^93^1005^13
- ;;^UTILITY(U,$J,358.3,20561,1,0)
+ ;;^UTILITY(U,$J,358.3,20783,1,3,0)
+ ;;=3^Torus fracture of upper end of left radius, sequela
+ ;;^UTILITY(U,$J,358.3,20783,1,4,0)
+ ;;=4^S52.112S
+ ;;^UTILITY(U,$J,358.3,20783,2)
+ ;;=^5029040
+ ;;^UTILITY(U,$J,358.3,20784,0)
+ ;;=S62.142S^^67^890^9
+ ;;^UTILITY(U,$J,358.3,20784,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,20561,1,3,0)
- ;;=3^Spinal Cord Diseases,Other Spec
- ;;^UTILITY(U,$J,358.3,20561,1,4,0)
- ;;=4^G95.89
- ;;^UTILITY(U,$J,358.3,20561,2)
- ;;=^5004193
- ;;^UTILITY(U,$J,358.3,20562,0)
- ;;=G82.21^^93^1005^1
- ;;^UTILITY(U,$J,358.3,20562,1,0)
+ ;;^UTILITY(U,$J,358.3,20784,1,3,0)
+ ;;=3^Disp fx of body of hamate bone, left wrist, sequela
+ ;;^UTILITY(U,$J,358.3,20784,1,4,0)
+ ;;=4^S62.142S
+ ;;^UTILITY(U,$J,358.3,20784,2)
+ ;;=^5033352
+ ;;^UTILITY(U,$J,358.3,20785,0)
+ ;;=S62.141S^^67^890^10
+ ;;^UTILITY(U,$J,358.3,20785,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,20562,1,3,0)
- ;;=3^Paraplegia,Complete
- ;;^UTILITY(U,$J,358.3,20562,1,4,0)
- ;;=4^G82.21
- ;;^UTILITY(U,$J,358.3,20562,2)
- ;;=^5004126
- ;;^UTILITY(U,$J,358.3,20563,0)
- ;;=G82.22^^93^1005^2
- ;;^UTILITY(U,$J,358.3,20563,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,20563,1,3,0)
- ;;=3^Paraplegia,Incomplete
- ;;^UTILITY(U,$J,358.3,20563,1,4,0)
- ;;=4^G82.22
- ;;^UTILITY(U,$J,358.3,20563,2)
- ;;=^5004127
+ ;;^UTILITY(U,$J,358.3,20785,1,3,0)
+ ;;=3^Disp fx of body of hamate bone, right wrist, sequela

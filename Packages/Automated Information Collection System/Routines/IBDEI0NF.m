@@ -1,128 +1,118 @@
-IBDEI0NF ; ; 04-FEB-2020
- ;;3.0;IB ENCOUNTER FORM IMP/EXP;;FEB 04, 2020
+IBDEI0NF ; ; 01-FEB-2022
+ ;;3.0;IB ENCOUNTER FORM IMP/EXP;;FEB 01, 2022
  Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,999) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
- ;;^UTILITY(U,$J,358.3,10425,0)
- ;;=H16.402^^74^679^7
- ;;^UTILITY(U,$J,358.3,10425,1,0)
+ ;;^UTILITY(U,$J,358.3,10549,1,3,0)
+ ;;=3^Selective Mutism
+ ;;^UTILITY(U,$J,358.3,10549,1,4,0)
+ ;;=4^F94.0
+ ;;^UTILITY(U,$J,358.3,10549,2)
+ ;;=^331954
+ ;;^UTILITY(U,$J,358.3,10550,0)
+ ;;=F06.33^^42^471^1
+ ;;^UTILITY(U,$J,358.3,10550,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,10425,1,3,0)
- ;;=3^Corneal Neovascularization,Left Eye
- ;;^UTILITY(U,$J,358.3,10425,1,4,0)
- ;;=4^H16.402
- ;;^UTILITY(U,$J,358.3,10425,2)
- ;;=^5004966
- ;;^UTILITY(U,$J,358.3,10426,0)
- ;;=H18.20^^74^679^8
- ;;^UTILITY(U,$J,358.3,10426,1,0)
+ ;;^UTILITY(U,$J,358.3,10550,1,3,0)
+ ;;=3^Bipolar & Related Disorder d/t Med Cond w/ Manic Features
+ ;;^UTILITY(U,$J,358.3,10550,1,4,0)
+ ;;=4^F06.33
+ ;;^UTILITY(U,$J,358.3,10550,2)
+ ;;=^5003059
+ ;;^UTILITY(U,$J,358.3,10551,0)
+ ;;=F06.34^^42^471^2
+ ;;^UTILITY(U,$J,358.3,10551,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,10426,1,3,0)
- ;;=3^Corneal Edema
- ;;^UTILITY(U,$J,358.3,10426,1,4,0)
- ;;=4^H18.20
- ;;^UTILITY(U,$J,358.3,10426,2)
- ;;=^5005035
- ;;^UTILITY(U,$J,358.3,10427,0)
- ;;=H18.231^^74^679^9
- ;;^UTILITY(U,$J,358.3,10427,1,0)
+ ;;^UTILITY(U,$J,358.3,10551,1,3,0)
+ ;;=3^Bipolar & Related Disorder d/t Med Cond w/ Mixed Features
+ ;;^UTILITY(U,$J,358.3,10551,1,4,0)
+ ;;=4^F06.34
+ ;;^UTILITY(U,$J,358.3,10551,2)
+ ;;=^5003060
+ ;;^UTILITY(U,$J,358.3,10552,0)
+ ;;=F31.11^^42^471^6
+ ;;^UTILITY(U,$J,358.3,10552,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,10427,1,3,0)
- ;;=3^Corneal Edema,Right Eye,Secondary
- ;;^UTILITY(U,$J,358.3,10427,1,4,0)
- ;;=4^H18.231
- ;;^UTILITY(U,$J,358.3,10427,2)
- ;;=^5005044
- ;;^UTILITY(U,$J,358.3,10428,0)
- ;;=H18.232^^74^679^10
- ;;^UTILITY(U,$J,358.3,10428,1,0)
+ ;;^UTILITY(U,$J,358.3,10552,1,3,0)
+ ;;=3^Bipolar I Disorder,Current/Recent Episode Manic,Mild
+ ;;^UTILITY(U,$J,358.3,10552,1,4,0)
+ ;;=4^F31.11
+ ;;^UTILITY(U,$J,358.3,10552,2)
+ ;;=^5003496
+ ;;^UTILITY(U,$J,358.3,10553,0)
+ ;;=F31.12^^42^471^7
+ ;;^UTILITY(U,$J,358.3,10553,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,10428,1,3,0)
- ;;=3^Corneal Edema,Left Eye,Secondary
- ;;^UTILITY(U,$J,358.3,10428,1,4,0)
- ;;=4^H18.232
- ;;^UTILITY(U,$J,358.3,10428,2)
- ;;=^5005045
- ;;^UTILITY(U,$J,358.3,10429,0)
- ;;=H18.11^^74^679^11
- ;;^UTILITY(U,$J,358.3,10429,1,0)
+ ;;^UTILITY(U,$J,358.3,10553,1,3,0)
+ ;;=3^Bipolar I Disorder,Current/Recent Episode Manic,Moderate
+ ;;^UTILITY(U,$J,358.3,10553,1,4,0)
+ ;;=4^F31.12
+ ;;^UTILITY(U,$J,358.3,10553,2)
+ ;;=^5003497
+ ;;^UTILITY(U,$J,358.3,10554,0)
+ ;;=F31.13^^42^471^8
+ ;;^UTILITY(U,$J,358.3,10554,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,10429,1,3,0)
- ;;=3^Bullous Keratopathy,Right Eye
- ;;^UTILITY(U,$J,358.3,10429,1,4,0)
- ;;=4^H18.11
- ;;^UTILITY(U,$J,358.3,10429,2)
- ;;=^5005032
- ;;^UTILITY(U,$J,358.3,10430,0)
- ;;=H18.12^^74^679^12
- ;;^UTILITY(U,$J,358.3,10430,1,0)
+ ;;^UTILITY(U,$J,358.3,10554,1,3,0)
+ ;;=3^Bipolar I Disorder,Current/Recent Episode Manic,Severe
+ ;;^UTILITY(U,$J,358.3,10554,1,4,0)
+ ;;=4^F31.13
+ ;;^UTILITY(U,$J,358.3,10554,2)
+ ;;=^5003498
+ ;;^UTILITY(U,$J,358.3,10555,0)
+ ;;=F31.2^^42^471^9
+ ;;^UTILITY(U,$J,358.3,10555,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,10430,1,3,0)
- ;;=3^Bullous Keratopathy,Left Eye
- ;;^UTILITY(U,$J,358.3,10430,1,4,0)
- ;;=4^H18.12
- ;;^UTILITY(U,$J,358.3,10430,2)
- ;;=^5005033
- ;;^UTILITY(U,$J,358.3,10431,0)
- ;;=H18.51^^74^679^13
- ;;^UTILITY(U,$J,358.3,10431,1,0)
+ ;;^UTILITY(U,$J,358.3,10555,1,3,0)
+ ;;=3^Bipolar I Disorder,Current/Recent Episode Manic,w/ Psychotic Features
+ ;;^UTILITY(U,$J,358.3,10555,1,4,0)
+ ;;=4^F31.2
+ ;;^UTILITY(U,$J,358.3,10555,2)
+ ;;=^5003499
+ ;;^UTILITY(U,$J,358.3,10556,0)
+ ;;=F31.73^^42^471^10
+ ;;^UTILITY(U,$J,358.3,10556,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,10431,1,3,0)
- ;;=3^Endothelial Corneal Dystrophy
- ;;^UTILITY(U,$J,358.3,10431,1,4,0)
- ;;=4^H18.51
- ;;^UTILITY(U,$J,358.3,10431,2)
- ;;=^268988
- ;;^UTILITY(U,$J,358.3,10432,0)
- ;;=H18.50^^74^679^14
- ;;^UTILITY(U,$J,358.3,10432,1,0)
+ ;;^UTILITY(U,$J,358.3,10556,1,3,0)
+ ;;=3^Bipolar I Disorder,Current/Recent Episode Manic,In Partial Remission
+ ;;^UTILITY(U,$J,358.3,10556,1,4,0)
+ ;;=4^F31.73
+ ;;^UTILITY(U,$J,358.3,10556,2)
+ ;;=^5003513
+ ;;^UTILITY(U,$J,358.3,10557,0)
+ ;;=F31.74^^42^471^11
+ ;;^UTILITY(U,$J,358.3,10557,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,10432,1,3,0)
- ;;=3^Hereditary Corneal Dystrophies
- ;;^UTILITY(U,$J,358.3,10432,1,4,0)
- ;;=4^H18.50
- ;;^UTILITY(U,$J,358.3,10432,2)
- ;;=^5005084
- ;;^UTILITY(U,$J,358.3,10433,0)
- ;;=H18.601^^74^679^15
- ;;^UTILITY(U,$J,358.3,10433,1,0)
+ ;;^UTILITY(U,$J,358.3,10557,1,3,0)
+ ;;=3^Bipolar I Disorder,Current/Recent Episode Manic,In Full Remission
+ ;;^UTILITY(U,$J,358.3,10557,1,4,0)
+ ;;=4^F31.74
+ ;;^UTILITY(U,$J,358.3,10557,2)
+ ;;=^5003514
+ ;;^UTILITY(U,$J,358.3,10558,0)
+ ;;=F31.31^^42^471^13
+ ;;^UTILITY(U,$J,358.3,10558,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,10433,1,3,0)
- ;;=3^Keratoconus,Right Eye
- ;;^UTILITY(U,$J,358.3,10433,1,4,0)
- ;;=4^H18.601
- ;;^UTILITY(U,$J,358.3,10433,2)
- ;;=^5005089
- ;;^UTILITY(U,$J,358.3,10434,0)
- ;;=H18.602^^74^679^16
- ;;^UTILITY(U,$J,358.3,10434,1,0)
+ ;;^UTILITY(U,$J,358.3,10558,1,3,0)
+ ;;=3^Bipolar I Disorder,Current/Recent Episode Depressed,Mild
+ ;;^UTILITY(U,$J,358.3,10558,1,4,0)
+ ;;=4^F31.31
+ ;;^UTILITY(U,$J,358.3,10558,2)
+ ;;=^5003501
+ ;;^UTILITY(U,$J,358.3,10559,0)
+ ;;=F31.32^^42^471^14
+ ;;^UTILITY(U,$J,358.3,10559,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,10434,1,3,0)
- ;;=3^Keratoconus,Left Eye
- ;;^UTILITY(U,$J,358.3,10434,1,4,0)
- ;;=4^H18.602
- ;;^UTILITY(U,$J,358.3,10434,2)
- ;;=^5005090
- ;;^UTILITY(U,$J,358.3,10435,0)
- ;;=H18.423^^74^679^17
- ;;^UTILITY(U,$J,358.3,10435,1,0)
+ ;;^UTILITY(U,$J,358.3,10559,1,3,0)
+ ;;=3^Bipolar I Disorder,Current/Recent Episode Depressed,Moderate
+ ;;^UTILITY(U,$J,358.3,10559,1,4,0)
+ ;;=4^F31.32
+ ;;^UTILITY(U,$J,358.3,10559,2)
+ ;;=^5003502
+ ;;^UTILITY(U,$J,358.3,10560,0)
+ ;;=F31.4^^42^471^15
+ ;;^UTILITY(U,$J,358.3,10560,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,10435,1,3,0)
- ;;=3^Band Keratopathy,Bilateral
- ;;^UTILITY(U,$J,358.3,10435,1,4,0)
- ;;=4^H18.423
- ;;^UTILITY(U,$J,358.3,10435,2)
- ;;=^5005068
- ;;^UTILITY(U,$J,358.3,10436,0)
- ;;=H16.213^^74^679^18
- ;;^UTILITY(U,$J,358.3,10436,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,10436,1,3,0)
- ;;=3^Exposure Keratoconjunctivitis,Bilateral
- ;;^UTILITY(U,$J,358.3,10436,1,4,0)
- ;;=4^H16.213
- ;;^UTILITY(U,$J,358.3,10436,2)
- ;;=^5004922
- ;;^UTILITY(U,$J,358.3,10437,0)
- ;;=H18.833^^74^679^19
- ;;^UTILITY(U,$J,358.3,10437,1,0)
- ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,10560,1,3,0)
+ ;;=3^Bipolar I Disorder,Current/Recent Episode Depressed,Severe
+ ;;^UTILITY(U,$J,358.3,10560,1,4,0)
+ ;;=4^F31.4

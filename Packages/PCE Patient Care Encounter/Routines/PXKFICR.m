@@ -1,5 +1,5 @@
-PXKFICR ;BPFO/LMT - Fields for V IMM CONTRA/REFUSAL EVENTS file ;11/17/15  14:46
- ;;1.0;PCE PATIENT CARE ENCOUNTER;**215**;Aug 12, 1996;Build 10
+PXKFICR ;BPFO/LMT - Fields for V IMM CONTRA/REFUSAL EVENTS file ;May 26, 2021@13:25:28
+ ;;1.0;PCE PATIENT CARE ENCOUNTER;**215,217**;Aug 12, 1996;Build 134
  ;
  ;  Adding or Editing of data in a particular field can be controlled
  ;by adding a ~ as a delimiter and the letters A and/or E to the
@@ -55,6 +55,7 @@ ADD ;Add an entry to the file
  ;;
  ;;
  ;;1204////^S X=$G(
+ ;;1205////^S X=$G(
 801 ;;
  ;;80101///^S X=1;
  ;;80102///^S X=$G(PXKAUDIT);

@@ -1,5 +1,5 @@
-PSOHCSUM ;BHAM ISC/SAB - gather data for outpatient rx health care summary ;03/01/96 8:29
- ;;7.0;OUTPATIENT PHARMACY;**4,35,48,54,46,103,132,214,200**;DEC 1997;Build 7
+PSOHCSUM ;BHAM ISC/SAB - gather data for outpatient rx health care summary ;08/23/17  20:00
+ ;;7.0;OUTPATIENT PHARMACY;**4,35,48,54,46,103,132,214,200,441**;DEC 1997;Build 208
  ;External reference to File ^PS(55 supported by DBIA 2228
  ;External reference to File ^PSDRUG supported by DBIA 221
  ;External reference to File ^PS(50.7 supported by DBIA 2223
@@ -32,6 +32,7 @@ EN K ^TMP("PSOO",$J),PSONV
  .S ^TMP("PSOO",$J,"NVA",PSONV,1,0)=$P(NVA,"^",3)_"^"_$P(NVA,"^",4)_"^"_$P(NVA,"^",5)_"^"_$S($P(NVA,"^",2):$P(NVA,"^",2)_";"_$P(^PSDRUG($P(NVA,"^",2),0),"^"),1:"")_"^"
  .S ^TMP("PSOO",$J,"NVA",PSONV,1,0)=^TMP("PSOO",$J,"NVA",PSONV,1,0)_$S($D(^SC(+$P(NVA,"^",12),0)):$P(NVA,"^",12)_";"_$P(^SC($P(NVA,"^",12),0),"^"),1:"")
  .F S=0:0 S S=$O(^PS(55,DFN,"NVA",I,"DSC",S)) Q:'S  S ^TMP("PSOO",$J,"NVA",PSONV,"DSC",S,0)=^PS(55,DFN,"NVA",I,"DSC",S,0)
+ .S:$P($G(^PS(55,DFN,"NVA",I,2)),"^")]"" ^TMP("PSOO",$J,"NVA",PSONV,"IND")=$P(^PS(55,DFN,"NVA",I,2),"^")
  ;
 END K PSODT,PSOST,PSORXX,PSO0,PSO2,PSOIDD,PSOFD,PSODR,PSOPR,PSOREF,PSORFL,PSOI,PSOJ,PSOX,PSOCF,I,PSONV,NVA,PSOPN,PSORS
  Q
@@ -47,6 +48,7 @@ GET Q:$P($G(^PSRX(PSORXX,"STA")),"^")=13  S PSO0=^PSRX(PSORXX,0),PSO2=$G(^(2)),P
  S PSOX=$S($D(^PSDRUG(PSODR,0)):$P(^(0),"^"),1:"NOT ON FILE"),PSODR=PSODR_";"_PSOX
  S PSOX=$G(^VA(200,PSOPR,0)) S PSOPR=PSOPR_";"_$P(PSOX,"^")
  S PSOX="A;ACTIVE" S:$D(^PS(52.4,PSORXX,0)) PSOX="N;NON-VERIFIED" S:$O(^PS(52.5,"B",PSORXX,0))&($G(^PS(52.5,+$O(^PS(52.5,"B",PSORXX,0)),"P"))'=1) PSOX="S;SUSPENDED"
+ I $G(^PSRX(PSORXX,"STA"))=0,$G(^PSRX(PSORXX,"PARK")) S PSOX="P;ACTIVE/PARKED"  ;441 PAPI
  I PSOX["SUSPENDED",$G(ACS) S PSOX="S;ACTIVE/SUSP"
  S:PSODT<DT PSOX="E;EXPIRED" S:PSOST=4 PSOX="N;NON-VERIFIED" S:PSOST=3!(PSOST=16) PSOX="H;HOLD"
  S:PSOST=12!(PSOST=14)!(PSOST=15) PSOX="DC;DISCONTINUED"
@@ -57,6 +59,7 @@ GET Q:$P($G(^PSRX(PSORXX,"STA")),"^")=13  S PSO0=^PSRX(PSORXX,0),PSO2=$G(^(2)),P
  S:PSORS="R" ^TMP("PSOO",$J,PSOJ,0)=^TMP("PSOO",$J,PSOJ,0)_"^"_PSORS
  I '$P(^PSRX(PSORXX,"SIG"),"^",2) D SIG Q
  F I=0:0 S I=$O(^PSRX(PSORXX,"SIG1",I)) Q:'I  S ^TMP("PSOO",$J,PSOJ,I,0)=^PSRX(PSORXX,"SIG1",I,0)
+ S:$P($G(^PSRX(PSORXX,"IND")),"^")]"" ^TMP("PSOO",$J,PSOJ,"IND")=$P(^PSRX(PSORXX,"IND"),"^",1,2)
  Q
 SIG ;formats backdoor SIG
  S X=$P(^PSRX(PSORXX,"SIG"),"^") D SIGONE^PSOHELP S SIG=$E($G(INS1),2,250),ENT=1

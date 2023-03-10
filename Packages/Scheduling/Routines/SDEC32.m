@@ -1,6 +1,6 @@
-SDEC32 ;ALB/SAT - VISTA SCHEDULING RPCS ;JUL 26, 2017
- ;;5.3;Scheduling;**627,643,642,658,665,672,679**;Aug 13, 1993;Build 17
- ;;Per VHA Directive 2004-038, this routine should not be modified
+SDEC32 ;ALB/SAT,DMR - VISTA SCHEDULING RPCS ;JUL 26, 2017
+ ;;5.3;Scheduling;**627,643,642,658,665,672,679,781,796,797**;Aug 13, 1993;Build 8
+ ;;Per VHA Directive 6402, this routine should not be modified
  Q
  ;
  ;
@@ -84,7 +84,7 @@ CLINSET(SDECY,SDNOSLOT,SDIENS,SDECP,SDNOLET,MAXREC) ;Returns CLINIC SETUP PARAME
  ;             1 = no (only return clinics with a Recall Letter
  ;                    defined)
  ;Returns CLINIC SETUP PARAMETERS file entries for clinics which
- ;are active in ^SC
+ ;are active in ^SC (#44)
  ;MGH Added SDIENS as input parameter to for hospital location IENs
  ;MGH Added SDECP for partial name lookup
  ;RETURN
@@ -113,7 +113,11 @@ CLINSET(SDECY,SDNOSLOT,SDIENS,SDECP,SDNOLET,MAXREC) ;Returns CLINIC SETUP PARAME
  ;                                  6=10-MIN
  ;18. HOLIDAYS             - 1918.5 Schedule on Holidays?  Y=YES
  ;19. SPECIAL              - 1910 SPECIAL INSTRUCTIONS separated by $C(13,10)
- ;20. CLINIC_STOP          - Stop code Number pointer to CLINIC STOP file 40.7
+ ;20. CLINIC_STOP          - 8 Stop code Number pointer to CLINIC STOP in file 40.7
+ ;21. ABBREVIATION         - 1 Abbrevation
+ ;22. not used ??
+ ;23. DEFAULT_VIEW         - Scheduling default view
+ ;24. VVC Indicator        - Inicator if this clinic is considered a VVC clinic (1=Yes 0=No)
  N SDA,SDAPLEN,SDAR,SDDATA,SDF,SDFIELDS,SDI,SDJ,SDK,SDSLOTS,SDVAPL,SDECI,SDECIEN,SDECNOD,SDECNAM,SDECINA,SDECREA,SDTMP  ;alb/sat 665 - add SDF
  N SDECCRV,SDECDAT,SDECDATN,SDECVSC,SDECMULT,SDECREQ,SDECPCC,SDECMOB,SDECHPRV,SDECPROT,SDECNAM,SDCNT,SDL,SDMAX          ;alb/sat 665 - add vars
  N SDARR1,SDREF,SDXT,SDV   ;alb/sat 672
@@ -133,6 +137,8 @@ CLINSET(SDECY,SDNOSLOT,SDIENS,SDECP,SDNOLET,MAXREC) ;Returns CLINIC SETUP PARAME
  S SDTMP=SDTMP_"^B00001PROTECTED^T00030HOUR_DISPLAY_BEGIN^T00030DISPLAY_INCREMENTS^T00030HOLIDAYS^T00030SPECIAL^T00030CLINIC_STOP"
  ;                     21         22         23
  S SDTMP=SDTMP_"^T00030ABBR^T00030MORE^T00030DEFAULT_VIEW"   ;alb/sat 672 - add DEFAULT_VIEW
+ ;                     24
+ S SDTMP=SDTMP_"^T00030VVC_CLINIC"   ;  VVC_Indicator
  S ^TMP("SDEC",$J,SDECI)=SDTMP_$C(30)
  ;
  S (SDECDAT,SDECDATN)=""
@@ -180,13 +186,14 @@ PART  ;partial name lookup  ;alb/sat 672
 PROCESS(SDECIEN) ;Process an individual clinic
  ;MGH broke this out to do all locations or individual ones
  N SDECABR,SDECNAM,SDI,SDI1,SDDI,SDH,SDHDB,SDSP,SDSTOP
+ N SDVVC,SDCRSTOP
  Q:'$D(^SC(+SDECIEN,0))
- Q:$$INACTIVE(+SDECIEN)
+ ;Q:$$INACTIVE(+SDECIEN) ;SD,796
  I SDNOLET,'$O(^SD(403.52,"B",+SDECIEN,0)) Q
  D RESCLIN1^SDEC01B(SDECIEN)
  S SDSLOTS=""
  K SDDATA,SDMSG
- S SDFIELDS=".01;1;2;8;50.01;1912;1913;1914;1917;1918;1918.5"_$S(SDNOSLOT:"",1:";1920*")_";2505;2506;2507"  ;alb/sat 665 - add abbreviation
+ S SDFIELDS=".01;1;2;8;50.01;1912;1913;1914;1917;1918;1918.5"_$S(SDNOSLOT:"",1:";1920*")_";2503;2505;2506;2507"  ;alb/sat 665 - add abbreviation
  D GETS^DIQ(44,SDECIEN_",",SDFIELDS,"IE","SDDATA","SDMSG")
  Q:$G(SDDATA(44,SDECIEN_",",2,"I"))'="C"
  Q:+$G(SDDATA(44,SDECIEN_",",50.01,"I"))=1  ;OOS?
@@ -219,12 +226,18 @@ PROCESS(SDECIEN) ;Process an individual clinic
  S SDSP="" S SDI=0 F  S SDI=$O(^SC(+SDECIEN,"SI",SDI)) Q:SDI'>0  S SDI1=$G(^SC(+SDECIEN,"SI",SDI,0)) S:SDI1'="" SDSP=$S(SDSP'="":SDSP_$C(13,10),1:"")_SDI1
  S:SDECNAM'="" SDV=$$GET^XPAR("PKG.SCHEDULING","SDEC VS GUI CLINIC VIEW",SDECNAM,"B")   ;alb/sat 672
  S SDV=$S(SDV'="":$P(SDV,U,1),1:"W")  ;alb/sat 672
+ S SDVVC=0
+ S SDCRSTOP=@SDA@(2503,"I")      ;CREDIT STOP CODE NUMBER
+ I SDSTOP S SDVVC=$$VVCSTPCD(SDSTOP)
+ I 'SDVVC,SDCRSTOP S SDVVC=$$VVCSTPCD(SDCRSTOP)
  ;       1         2         3         4         5          6         7         8
  S SDTMP=SDECIEN_U_SDECNAM_U_SDECCRV_U_SDECVSC_U_SDECMULT_U_SDECREQ_U_SDECPCC_U_SDECMOB
  ;               9         10         11        12           13       14         15
  S SDTMP=SDTMP_U_SDECDAT_U_SDECDATN_U_+SDAPLEN_U_SDVAPL_U_SDSLOTS_U_SDECHPRV_U_SDECPROT
  ;               16      17     18    19     20       21       22 23
  S SDTMP=SDTMP_U_SDHDB_U_SDDI_U_SDH_U_SDSP_U_SDSTOP_U_SDECABR_U_U_SDV    ;alb/sat 672 - add SDV
+ ;               24
+ S SDTMP=SDTMP_U_SDVVC    ; ??? - add SDVVC
  S SDAR(SDF["FULL",SDECNAM,SDECIEN)=SDTMP
  S SDCNT=SDCNT+1
  Q
@@ -299,3 +312,19 @@ BOOKHLDY(SDECY,SDECCL) ;  Returns can book on holiday flag for a clinic.  12/1/1
  S SDECY=$P($G(^SC(SDECCL,"SL")),"^",8) ;
  Q  ;
  ;
+VVCSTPCD(STOPCD) ;
+ ; Called from PROCES tag above
+ ;
+ ;Input:
+ ; STOPCD - a stop code
+ ;
+ ;Return:
+ ; 1 = Stop code is found in the SDEC SETTING file (#409.98) field 7 VVC STOP CODE
+ Q:'$G(STOPCD)
+ N RETURN,STOP
+ ;
+ S RETURN=0
+ S STOP="" S STOP=$$GET1^DIQ(40.7,STOPCD,1)
+ I STOP>0 D
+ .I $D(^SDEC(409.98,1,3,"B",STOP)) S RETURN=1
+ Q RETURN

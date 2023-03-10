@@ -1,126 +1,118 @@
-IBDEI17E ; ; 04-FEB-2020
- ;;3.0;IB ENCOUNTER FORM IMP/EXP;;FEB 04, 2020
+IBDEI17E ; ; 01-FEB-2022
+ ;;3.0;IB ENCOUNTER FORM IMP/EXP;;FEB 01, 2022
  Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,999) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
- ;;^UTILITY(U,$J,358.3,19332,1,3,0)
- ;;=3^Palmar fascial fibromatosis [Dupuytren]
- ;;^UTILITY(U,$J,358.3,19332,1,4,0)
- ;;=4^M72.0
- ;;^UTILITY(U,$J,358.3,19332,2)
- ;;=^5013233
- ;;^UTILITY(U,$J,358.3,19333,0)
- ;;=M76.52^^93^992^67
- ;;^UTILITY(U,$J,358.3,19333,1,0)
+ ;;^UTILITY(U,$J,358.3,19553,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,19333,1,3,0)
- ;;=3^Patellar tendinitis, left knee
- ;;^UTILITY(U,$J,358.3,19333,1,4,0)
- ;;=4^M76.52
- ;;^UTILITY(U,$J,358.3,19333,2)
- ;;=^5013283
- ;;^UTILITY(U,$J,358.3,19334,0)
- ;;=M72.2^^93^992^73
- ;;^UTILITY(U,$J,358.3,19334,1,0)
+ ;;^UTILITY(U,$J,358.3,19553,1,3,0)
+ ;;=3^Hemiplga fol ntrm intcrbl hemor aff right dominant side
+ ;;^UTILITY(U,$J,358.3,19553,1,4,0)
+ ;;=4^I69.151
+ ;;^UTILITY(U,$J,358.3,19553,2)
+ ;;=^5007441
+ ;;^UTILITY(U,$J,358.3,19554,0)
+ ;;=I69.152^^67^877^39
+ ;;^UTILITY(U,$J,358.3,19554,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,19334,1,3,0)
- ;;=3^Plantar fascial fibromatosis
- ;;^UTILITY(U,$J,358.3,19334,1,4,0)
- ;;=4^M72.2
- ;;^UTILITY(U,$J,358.3,19334,2)
- ;;=^272598
- ;;^UTILITY(U,$J,358.3,19335,0)
- ;;=M15.0^^93^992^86
- ;;^UTILITY(U,$J,358.3,19335,1,0)
+ ;;^UTILITY(U,$J,358.3,19554,1,3,0)
+ ;;=3^Hemiplga fol ntrm intcrbl hemor aff left dominant side
+ ;;^UTILITY(U,$J,358.3,19554,1,4,0)
+ ;;=4^I69.152
+ ;;^UTILITY(U,$J,358.3,19554,2)
+ ;;=^5007442
+ ;;^UTILITY(U,$J,358.3,19555,0)
+ ;;=I69.153^^67^877^42
+ ;;^UTILITY(U,$J,358.3,19555,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,19335,1,3,0)
- ;;=3^Primary Generalized Osteoarthritis
- ;;^UTILITY(U,$J,358.3,19335,1,4,0)
- ;;=4^M15.0
- ;;^UTILITY(U,$J,358.3,19335,2)
- ;;=^5010762
- ;;^UTILITY(U,$J,358.3,19336,0)
- ;;=M19.072^^93^992^78
- ;;^UTILITY(U,$J,358.3,19336,1,0)
+ ;;^UTILITY(U,$J,358.3,19555,1,3,0)
+ ;;=3^Hemiplga fol ntrm intcrbl hemor aff right nondom side
+ ;;^UTILITY(U,$J,358.3,19555,1,4,0)
+ ;;=4^I69.153
+ ;;^UTILITY(U,$J,358.3,19555,2)
+ ;;=^5007443
+ ;;^UTILITY(U,$J,358.3,19556,0)
+ ;;=I69.154^^67^877^40
+ ;;^UTILITY(U,$J,358.3,19556,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,19336,1,3,0)
- ;;=3^Prim Osteoarth,Left Ankle & Foot
- ;;^UTILITY(U,$J,358.3,19336,1,4,0)
- ;;=4^M19.072
- ;;^UTILITY(U,$J,358.3,19336,2)
- ;;=^5010821
- ;;^UTILITY(U,$J,358.3,19337,0)
- ;;=M19.071^^93^992^82
- ;;^UTILITY(U,$J,358.3,19337,1,0)
+ ;;^UTILITY(U,$J,358.3,19556,1,3,0)
+ ;;=3^Hemiplga fol ntrm intcrbl hemor aff left nondom side
+ ;;^UTILITY(U,$J,358.3,19556,1,4,0)
+ ;;=4^I69.154
+ ;;^UTILITY(U,$J,358.3,19556,2)
+ ;;=^5007444
+ ;;^UTILITY(U,$J,358.3,19557,0)
+ ;;=I69.851^^67^877^47
+ ;;^UTILITY(U,$J,358.3,19557,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,19337,1,3,0)
- ;;=3^Prim Osteoarth,Right Ankle & Foot
- ;;^UTILITY(U,$J,358.3,19337,1,4,0)
- ;;=4^M19.071
- ;;^UTILITY(U,$J,358.3,19337,2)
- ;;=^5010820
- ;;^UTILITY(U,$J,358.3,19338,0)
- ;;=M19.042^^93^992^79
- ;;^UTILITY(U,$J,358.3,19338,1,0)
+ ;;^UTILITY(U,$J,358.3,19557,1,3,0)
+ ;;=3^Hemiplga fol oth cerebvasc disease aff right dominant side
+ ;;^UTILITY(U,$J,358.3,19557,1,4,0)
+ ;;=4^I69.851
+ ;;^UTILITY(U,$J,358.3,19557,2)
+ ;;=^5007535
+ ;;^UTILITY(U,$J,358.3,19558,0)
+ ;;=I69.852^^67^877^48
+ ;;^UTILITY(U,$J,358.3,19558,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,19338,1,3,0)
- ;;=3^Prim Osteoarth,Left Hand
- ;;^UTILITY(U,$J,358.3,19338,1,4,0)
- ;;=4^M19.042
- ;;^UTILITY(U,$J,358.3,19338,2)
- ;;=^5010818
- ;;^UTILITY(U,$J,358.3,19339,0)
- ;;=M19.012^^93^992^80
- ;;^UTILITY(U,$J,358.3,19339,1,0)
+ ;;^UTILITY(U,$J,358.3,19558,1,3,0)
+ ;;=3^Hemiplga fol oth cerebvasc disease aff left dominant side
+ ;;^UTILITY(U,$J,358.3,19558,1,4,0)
+ ;;=4^I69.852
+ ;;^UTILITY(U,$J,358.3,19558,2)
+ ;;=^5007536
+ ;;^UTILITY(U,$J,358.3,19559,0)
+ ;;=I69.853^^67^877^49
+ ;;^UTILITY(U,$J,358.3,19559,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,19339,1,3,0)
- ;;=3^Prim Osteoarth,Left Shoulder
- ;;^UTILITY(U,$J,358.3,19339,1,4,0)
- ;;=4^M19.012
- ;;^UTILITY(U,$J,358.3,19339,2)
- ;;=^5010809
- ;;^UTILITY(U,$J,358.3,19340,0)
- ;;=M19.011^^93^992^84
- ;;^UTILITY(U,$J,358.3,19340,1,0)
+ ;;^UTILITY(U,$J,358.3,19559,1,3,0)
+ ;;=3^Hemiplga fol oth cerebvasc disease aff right nondom side
+ ;;^UTILITY(U,$J,358.3,19559,1,4,0)
+ ;;=4^I69.853
+ ;;^UTILITY(U,$J,358.3,19559,2)
+ ;;=^5007537
+ ;;^UTILITY(U,$J,358.3,19560,0)
+ ;;=I69.854^^67^877^50
+ ;;^UTILITY(U,$J,358.3,19560,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,19340,1,3,0)
- ;;=3^Prim Osteoarth,Right Shoulder
- ;;^UTILITY(U,$J,358.3,19340,1,4,0)
- ;;=4^M19.011
- ;;^UTILITY(U,$J,358.3,19340,2)
- ;;=^5010808
- ;;^UTILITY(U,$J,358.3,19341,0)
- ;;=M76.12^^93^992^87
- ;;^UTILITY(U,$J,358.3,19341,1,0)
+ ;;^UTILITY(U,$J,358.3,19560,1,3,0)
+ ;;=3^Hemiplga fol oth cerebvasc disease aff left nondom side
+ ;;^UTILITY(U,$J,358.3,19560,1,4,0)
+ ;;=4^I69.854
+ ;;^UTILITY(U,$J,358.3,19560,2)
+ ;;=^5007538
+ ;;^UTILITY(U,$J,358.3,19561,0)
+ ;;=I69.251^^67^877^51
+ ;;^UTILITY(U,$J,358.3,19561,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,19341,1,3,0)
- ;;=3^Psoas tendinitis, left hip
- ;;^UTILITY(U,$J,358.3,19341,1,4,0)
- ;;=4^M76.12
- ;;^UTILITY(U,$J,358.3,19341,2)
- ;;=^5013271
- ;;^UTILITY(U,$J,358.3,19342,0)
- ;;=M76.11^^93^992^88
- ;;^UTILITY(U,$J,358.3,19342,1,0)
+ ;;^UTILITY(U,$J,358.3,19561,1,3,0)
+ ;;=3^Hemiplga fol oth ntrm intcrn hemor aff right dominant side
+ ;;^UTILITY(U,$J,358.3,19561,1,4,0)
+ ;;=4^I69.251
+ ;;^UTILITY(U,$J,358.3,19561,2)
+ ;;=^5007473
+ ;;^UTILITY(U,$J,358.3,19562,0)
+ ;;=I69.252^^67^877^52
+ ;;^UTILITY(U,$J,358.3,19562,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,19342,1,3,0)
- ;;=3^Psoas tendinitis, right hip
- ;;^UTILITY(U,$J,358.3,19342,1,4,0)
- ;;=4^M76.11
- ;;^UTILITY(U,$J,358.3,19342,2)
- ;;=^5013270
- ;;^UTILITY(U,$J,358.3,19343,0)
- ;;=M65.4^^93^992^89
- ;;^UTILITY(U,$J,358.3,19343,1,0)
+ ;;^UTILITY(U,$J,358.3,19562,1,3,0)
+ ;;=3^Hemiplga fol oth ntrm intcrn hemor aff left dominant side
+ ;;^UTILITY(U,$J,358.3,19562,1,4,0)
+ ;;=4^I69.252
+ ;;^UTILITY(U,$J,358.3,19562,2)
+ ;;=^5007474
+ ;;^UTILITY(U,$J,358.3,19563,0)
+ ;;=I69.253^^67^877^53
+ ;;^UTILITY(U,$J,358.3,19563,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,19343,1,3,0)
- ;;=3^Radial styloid tenosynovitis [de Quervain]
- ;;^UTILITY(U,$J,358.3,19343,1,4,0)
- ;;=4^M65.4
- ;;^UTILITY(U,$J,358.3,19343,2)
- ;;=^5012792
- ;;^UTILITY(U,$J,358.3,19344,0)
- ;;=M54.18^^93^992^90
- ;;^UTILITY(U,$J,358.3,19344,1,0)
+ ;;^UTILITY(U,$J,358.3,19563,1,3,0)
+ ;;=3^Hemiplga fol oth ntrm intcrn hemor aff right nondom side
+ ;;^UTILITY(U,$J,358.3,19563,1,4,0)
+ ;;=4^I69.253
+ ;;^UTILITY(U,$J,358.3,19563,2)
+ ;;=^5007475
+ ;;^UTILITY(U,$J,358.3,19564,0)
+ ;;=I69.254^^67^877^54
+ ;;^UTILITY(U,$J,358.3,19564,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,19344,1,3,0)
- ;;=3^Radiculopathy, sacral and sacrococcygeal region
+ ;;^UTILITY(U,$J,358.3,19564,1,3,0)
+ ;;=3^Hemiplga fol oth ntrm intcrn hemor aff left nondom side

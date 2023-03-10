@@ -1,5 +1,5 @@
-ORCACT0 ;SLC/MKB - Validate order action ;06/08/20  08:29
- ;;3.0;ORDER ENTRY/RESULTS REPORTING;**7,27,48,72,86,92,94,141,165,177,173,190,215,243,289,204,306,350,425,434,377,413**;Dec 17, 1997;Build 32
+ORCACT0 ;SLC/MKB - Validate order action ;Mar 24, 2021@10:21:55
+ ;;3.0;ORDER ENTRY/RESULTS REPORTING;**7,27,48,72,86,92,94,141,165,177,173,190,215,243,289,204,306,350,425,434,377,413,539**;Dec 17, 1997;Build 41
  ;
  ;Reference to REFILL^PSOREF supported by IA #2399
  ;Reference to OEL^PSOORRL supported by IA 2400
@@ -24,9 +24,29 @@ CM ;I ACTION="CM" S ERROR="This action is no longer available!" G VQ ; ward comm
 FL I ACTION="FL" D  G VQ ; flag
  . I PKG="SD" S ERROR="Flagging not allowed on Scheduling orders!" Q
  . I +$G(^OR(100,+IFN,8,AIFN,3)) S ERROR="This order is already flagged!" Q
-UF I ACTION="UF" D  G VQ ; unflag
+UF I ACTION="UF"!(ACTION="FC") D  G VQ ; unflag/flag comment
  . I PKG="SD" S ERROR="Un-Flagging not allowed on Scheduling orders!" Q
  . I '+$G(^OR(100,+IFN,8,AIFN,3)) S ERROR="This order is not flagged!" Q
+ . ; *539 - checks if user is authorized to unflag/add comments
+ . N DA,X3,RECP,AMG
+ . S AMG=$$GET^XPAR("DIV^SYS^PKG","OR UNFLAGGING MESSAGE",1)
+ . S DA=$P(IFN,";",2),X3=$G(^OR(100,+IFN,8,+DA,3))
+ . S RECP=$S($D(^OR(100,+IFN,8,+DA,6,"B",DUZ)):1,$P(X3,"^",4)=DUZ:1,$P(X3,"^",9)=DUZ:1,1:0)
+ . I RECP Q
+ . I ACTION="FC" S ERROR="You are not authorized to add comments as you are not the initiator or a recipient"_$S(AMG]"":U_AMG,1:"") Q
+ . Q:$D(^XUSEC("ORES",DUZ))  ; No restrictions if user holds ORES key to unflag
+ . Q:'$$GET^XPAR("DIV^SYS^PKG","OR UNFLAGGING RESTRICTIONS",1)  ; quit if no restrictions
+ . ; Check Security Key multiple in Display Group file and compare with user
+ . N DGP,DGSK,ORSKP,SFND,DGSQ S DGP=+$P(OR0,U,11),SFND=0
+ . D MAP^ORWDXA1(.DGSQ)  ;map to the right display group
+ . I DGP,$G(DGSQ(DGP)) S DGP=+DGSQ(DGP)
+ . I $D(^ORD(100.98,DGP,2)) D
+ . . S DGSK=0 F  S DGSK=$O(^ORD(100.98,DGP,2,DGSK)) Q:DGSK=""!(DGSK'?1N.N)  I $D(^ORD(100.98,DGP,2,DGSK,0)) D
+ . . . S ORSKP=^ORD(100.98,DGP,2,DGSK,0)
+ . . . I $D(^XUSEC($$GET1^DIQ(19.1,ORSKP_",",.01,"E"),DUZ)) S SFND=1
+ . ; If user doesn't hold proper security key(s), send this message along with site desired help text
+ . I 'SFND D  Q
+ . . S ERROR="You are not authorized to unflag this order based on your security keys and the order type."_$S(AMG]"":U_AMG,1:"")
 DC1 I ACTION="DC",ACTSTS D  G VQ ; discontinue/cancel unrel or canc order
  . I (ACTSTS=11)!(ACTSTS=10) D  Q  ; unreleased
  .. I 'MEDPARM S ERROR="You are not authorized to cancel med orders!" Q
@@ -53,6 +73,7 @@ VR I ACTION="VR" D  G VQ ; verify
  ....I $P(ORARR(ORNUM,0),U,3)=22000 S ORFIN=1
  ...I 'ORFIN D
  ....S ERROR="NON-VERIFIED status not Finished by Nurse with Authorized Key."
+ .. K ^TMP("PS",$J) ;p539
  . I $G(ORVER)="C",$P(ORA0,U,11) S ERROR="This order has been verified!" Q
  . I $G(ORVER)="R",$P(ORA0,U,19) S ERROR="This order has been reviewed!" Q
  . I (ACTSTS=11)!(ACTSTS=10) S ERROR="This order has not been released to the service." Q
@@ -90,7 +111,7 @@ DC2 I ACTION="DC",ACTSTS="" D  G VQ ; DC released order
  .. I $$COLLECTD S ERROR="Lab orders that have been collected may not be discontinued!" Q
  .. I $G(NATR)="A","^12^38^"'[(U_$P($G(DGPMA),U,18)_U),$$VALUE^ORX8(+IFN,"COLLECT")="SP",$P(OR0,U,8)'<DT S ERROR="Future Send Patient orders may not be auto-discontinued!" Q
  . I PKG="GMRC",ORDSTS=9 S ERROR="Consults orders with partial results cannot be discontinued!" Q
- .I DG="DO",$G(DGPMT)'=3,ORDSTS=6 S ERROR="Active Diets cannot be discontinued; please order a new diet!" Q
+ . I DG="DO",$G(DGPMT)'=3,ORDSTS=6 S ERROR="Active Diets cannot be discontinued; please order a new diet!" Q
 RL I ACTION="RL" D  G VQ  ; release hold
  . I ORDSTS'=3 D  Q
  ..I $P(ORA0,U,4)=2 S ERROR="Providers has not yet signed the hold order and therefor it cannot yet be released" Q

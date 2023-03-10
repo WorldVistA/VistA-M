@@ -1,5 +1,10 @@
 SDEC45 ;ALB/SAT - VISTA SCHEDULING RPCS ;MAR 15, 2017
- ;;5.3;Scheduling;**627,642,658**;Aug 13, 1993;Build 23
+ ;;5.3;Scheduling;**627,642,658,756**;Aug 13, 1993;Build 43
+ ;
+ ;  ICR
+ ;  ---
+ ;    ACCESS TO HOLIDAY FILE SUPPORTED BY ICR 10
+ ;  ACCESS TO FILE #200 New Person SUPPORTED BY ICR 10060
  ;
  Q
  ;
@@ -40,6 +45,43 @@ CANREAS(SDECY,SDECIN) ;return active/inactive entries from the CANCELLATION REAS
  . . S SDECI=SDECI+1 S ^TMP("SDEC",$J,SDECI)=SDECC_U_$P(SDECNOD,U,1)_U_SDTYPE_$C(30)
  S ^TMP("SDEC",$J,SDECI)=^TMP("SDEC",$J,SDECI)_$C(31)
  Q
+ ;
+CANCMT(SDECY,TYPE) ;return entries from the SDEC CANCELLATION COMMENT file (#409.88)
+ ;
+ ;  SDEC CNCMT RPC - SD*5.3*756 wtc 6/8/2020
+ ;
+ ;  TYPE = "NATIONAL" or "LOCAL" [REQUIRED]
+ ;
+ ;  Returns list of canned comment hashtags, type and text equivalent or -1^error text
+ ;
+ N SDIEN,SDECI,SDECTAG ;
+ ;
+ K ^TMP("SDEC",$J) S SDECY="^TMP(""SDEC"","_$J_")" ;
+ S SDECI=0,^TMP("SDEC",$J,0)="T00020CANCELLATION_COMMENT_HASHTAG^T00020TYPE^T00080CANCELLATION_COMMENT_TEXT"_$C(30) ;
+ ;
+ I $G(TYPE)="" D ERR("-1^Missing type") Q  ;
+ I TYPE'="NATIONAL",TYPE'="LOCAL" D ERR("-1^Invalid type") Q  ;
+ ;
+ ;  Scan SDEC CANCELLATION COMMENT file (#409.88) in hash tag (field #.01) order and load in output array.
+ ;
+ S SDECI=0,SDECTAG="" ;
+ F  S SDECTAG=$O(^SDEC(409.88,"B",SDECTAG)) Q:SDECTAG=""  S SDIEN=0 F  S SDIEN=$O(^SDEC(409.88,"B",SDECTAG,SDIEN)) Q:'SDIEN  D  ;
+ . I TYPE="NATIONAL" Q:$P(^SDEC(409.88,SDIEN,0),U,3)'=1  ;
+ . I TYPE="LOCAL" Q:$P(^SDEC(409.88,SDIEN,0),U,3)=1  ;
+ . ;
+ . S SDECI=SDECI+1,^TMP("SDEC",$J,SDECI)=SDECTAG_U_TYPE_U_$P(^SDEC(409.88,SDIEN,0),U,2)_$C(30) ;
+ ;
+ S ^(SDECI)=^TMP("SDEC",$J,SDECI)_$C(31) ;
+ Q
+ ;
+CANCMOPT ;
+ ;
+ ; Create/edit local SDEC CANCELLATION COMMENT option - wtc 756 6/23/2020
+ ;
+ N DIC,Y,DIE,DA,DR ;
+ S DIC=409.88,DIC(0)="AEL",DIC("S")="I $P(^(0),U,3)'=1" D ^DIC Q:Y<0  ;
+ S DIE="^SDEC(409.88,",DA=+Y,DR=".01;1;2///0" D ^DIE ;
+ Q  ;
  ;
 NEWPERS(SDECY,SDCLASS,SDPART,MAXREC,LSUB,INACT) ;return entries from the USR CLASS MEMBERSHIP file that have the 'PROVIDER' USR CLASS
  ;NEWPERS(SDECY,SDCLASS)  external parameter tag is in SDEC
@@ -92,14 +134,19 @@ PC(USR,SDT,EFFDT,EXPDT,SDF) ;is USR active - does USR have an active PERSON CLAS
  N RET,SDI,TD,EFF,EXP
  S SDF=$G(SDF,0)
  S RET=1
- I '$E(SDF) S TD=$$GET1^DIQ(200,USR_",",9.2,"I") I TD'="",TD'>DT G:+RET PCX
+ I '$E(SDF) S TD=$$GET1^DIQ(200,USR_",",9.2,"I") I TD'="",TD'>DT G:+RET PCX ; ICR #10060 wtc 756 7/12/2019
  S (EFFDT,EXPDT)=""
  I $G(USR)="" Q 1
  S SDT=$G(SDT) I SDT="" S SDT=DT
  I SDT'?7N Q RET
  S SDI=0 F  S SDI=$O(^VA(200,USR,"USC1",SDI)) Q:SDI'>0  D  Q:RET=0
- .S EFF=$P(^VA(200,USR,"USC1",SDI,0),U,2)
- .S EXP=$P(^VA(200,USR,"USC1",SDI,0),U,3)
+ . ;
+ . ;  Replaced lines below with ICR-compliant lines.  wtc 756 7/12/2019
+ . ;
+ . ;S EFF=$P(^VA(200,USR,"USC1",SDI,0),U,2)
+ . ;S EXP=$P(^VA(200,USR,"USC1",SDI,0),U,3)
+ . S EFF=$$GET1^DIQ(200.05,SDI_","_USR_",",2,"I") ; ICR #10060 wtc 756 7/12/2019
+ . S EXP=$$GET1^DIQ(200.05,SDI_","_USR_",",3,"I") ; ICR #10060 wtc 756 7/12/2019
  .I EFF'="",EFF>EFFDT S EFFDT=EFF
  .I EXP'="",EXP>EXPDT S EXPDT=EXP
  .I SDT'<EFF,(EXP="")!(SDT<EXP) S RET=0 S EFFDT=EFF S EXPDT=$S(EXP'="":EXP,1:"")
@@ -187,7 +234,7 @@ GET1 ;
  N TD
  S SDECNOD=^SDEC(409.833,SDECC,0)
  ;Q:$$PC($P(SDECNOD,U,2))
- S TD=$$GET1^DIQ(200,$P(SDECNOD,U,2)_",",9.2,"I") I TD'="",TD'>DT Q
+ S TD=$$GET1^DIQ(200,$P(SDECNOD,U,2)_",",9.2,"I") I TD'="",TD'>DT Q  ; ICR #10060 wtc 756 7/12/2019
  S SDECTMP=SDECC                                           ;1. resource user ID
  S SDECTMP=SDECTMP_U_$$GET1^DIQ(409.833,SDECC_",",.01)     ;2. resource name
  S SDECTMP=SDECTMP_U_$P(SDECNOD,U,1)                       ;3. resource ID - pointer to SDEC RESOURCE
@@ -219,8 +266,8 @@ HOLIDAY(SDECY,SDECBD) ;return all entries from the HOLIDAY file 40.5
  S SDECN=SDECBD-1
  F  S SDECN=$O(^HOLIDAY("B",SDECN)) Q:SDECN=""  D
  . S SDECC=$O(^HOLIDAY("B",SDECN,""))
- . S SDECTMP=$$FMTE^XLFDT($P(^HOLIDAY(SDECC,0),"^",1),5)  ;holiday date
- . S SDECTMP=SDECTMP_U_$$GET1^DIQ(40.5,SDECC_",",2)       ;holiday name
+ . S SDECTMP=$$FMTE^XLFDT($P(^HOLIDAY(SDECC,0),"^",1),5)  ;holiday date ;  ICR #10 wtc 756 7/12/2019
+ . S SDECTMP=SDECTMP_U_$$GET1^DIQ(40.5,SDECC_",",2)       ;holiday name ;  ICR #10 wtc 756 7/12/2019
  . S SDECI=SDECI+1 S ^TMP("SDEC",$J,SDECI)=SDECTMP_$C(30)
  S ^TMP("SDEC",$J,SDECI)=^TMP("SDEC",$J,SDECI)_$C(31)
  Q
@@ -242,7 +289,7 @@ CLINPROV(SDECY,SDECCL) ;return all providers for a given clinic from the HOSPITA
  . S SDECNOD=^SC(SDECCL,"PR",SDECC,0)
  . S SDECTMP=$P(SDECNOD,U,1)                            ;provider IEN
  . D RESPRV1^SDEC01B(SDECTMP,SDECCL)
- . S $P(SDECTMP,U,2)=$$GET1^DIQ(200,SDECTMP_",",.01)    ;provider name
+ . S $P(SDECTMP,U,2)=$$GET1^DIQ(200,SDECTMP_",",.01)    ;provider name ; ICR #10060 wtc 756 7/12/2019
  . S $P(SDECTMP,U,3)=$S($P(SDECNOD,U,2)=1:"YES",1:"NO") ;default provider
  . S SDECI=SDECI+1 S ^TMP("SDEC",$J,SDECI)=SDECTMP_$C(30)
  S ^TMP("SDEC",$J,SDECI)=^TMP("SDEC",$J,SDECI)_$C(31)
@@ -266,7 +313,7 @@ PROVALL(SDECY,SDECCL) ;return all providers for a given clinic from the HOSPITAL
  . . D RESPRV1^SDEC01B(SDECTMP,SDECCL)
  . . S SDECARRI(SDECTMP)="" ; Save array of Provider IENs
  S SDECTMP="" F  S SDECTMP=$O(SDECARRI(SDECTMP)) Q:SDECTMP=""  D
- . S SDECPRNM=$$GET1^DIQ(200,SDECTMP_",",.01)
+ . S SDECPRNM=$$GET1^DIQ(200,SDECTMP_",",.01) ;  ICR #10060 wtc 756 7/12/2019
  . S:SDECPRNM'="" SDECARRN(SDECPRNM)=SDECTMP
  S SDECPRNM="" F  S SDECPRNM=$O(SDECARRN(SDECPRNM)) Q:SDECPRNM=""  D
  . S SDECIEN=SDECARRN(SDECPRNM)

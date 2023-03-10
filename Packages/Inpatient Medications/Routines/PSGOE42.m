@@ -1,5 +1,5 @@
-PSGOE42 ;BIR/CML3-REGULAR ORDER ENTRY (CONT.) ;13 May 2019 18:44:10
- ;;5.0;INPATIENT MEDICATIONS ;**366,327**;16 DEC 97;Build 114
+PSGOE42 ;BIR/CML3 - REGULAR ORDER ENTRY (CONT.) ; Feb 02, 2022
+ ;;5.0;INPATIENT MEDICATIONS ;**366,327,399**;16 DEC 97;Build 64
  ;
  ;
 1 I $G(PSGCLOZ) K PSGCLOZ Q  ;NCC remediation *327/RJS QUIT IF STOP DATE HAS BEEN MODIFIED AND PROCESS
@@ -67,3 +67,73 @@ YN ; yes/no as a set of codes
  I $G(PSGFOK(13)) Q
  G @FB
  ;
+IND(OI) ;*399-IND
+INDA ;
+ N INDLST,DIR,SEL,I,INDCAT,CHK,CNT K DUOUT,DTOUT,DIROUT,DIRUT
+ S (CHK,CNT)=0,PSGF2=132
+ I '$G(OI) S Y=99,PSGIND="" G CIND
+ D INDCATN^PSS50P7(OI,"PSJDIND")
+ I '$O(^TMP($J,"PSJDIND",0)) S Y=99 G CIND
+ S (SEL,I)="" F  S I=$O(^TMP($J,"PSJDIND",I)) Q:'I  D
+ . S INDCAT=$P($G(^TMP($J,"PSJDIND",I)),"^")
+ . I $G(PSGIND)]"",INDCAT=PSGIND S CHK=1
+ . S CNT=CNT+1,INDLST(CNT)=INDCAT,DIR("L",CNT)="  "_CNT_"   "_INDCAT S:CNT=1 SEL=CNT_":"_INDCAT S:CNT>1 SEL=SEL_";"_CNT_":"_INDCAT
+ W !,"INDICATION:"
+ S DIR(0)="SO^"_SEL_";99:Free Text entry",DIR("A")="Select INDICATION from the list"
+ S DIR("L")="  99  Free Text entry"
+ S:CHK DIR("B")=PSGIND S:'CHK&(PSGIND]"") DIR("B")=99
+ S DIR("?")="This field contains the Indication For Use and must be 3-40 characters in length"
+ D ^DIR
+ I X="^"!($G(DTOUT))!($G(DIROUT)) S:'$G(PSGOEE) PSGOROE1=1 Q
+ I Y=99 S:CHK PSGIND="" G CIND
+ I X="@",$G(PSGIND)]"" D DEL G:%'=1 INDA S PSGIND="" Q
+ I X="@" S PSGIND="" G INDA
+ S PSGFOK(132)=""
+ S:Y>0 PSGIND=Y(0)
+ Q
+CIND ;
+ I Y=99 N I,J,IND,DA D  G:$G(Y)=99 CIND
+ . K X,Y,DIRUT,DTOUT,DUOUT,DIROUT,DIR
+ . S:$G(PSGIND)]"" DIR("B")=PSGIND
+ . S DIR(0)="53.1,132",DIR("A")="INDICATION" D ^DIR
+ . I X="^"!($G(DTOUT))!($G(DIROUT)) S:'$G(PSGOEE) PSGOROE1=1 Q
+ . I X="@",$G(PSGIND)]"" D DEL G:%'=1 INDA S PSGIND="" Q
+ . I X="@" S PSGIND="" G INDA
+ . I $L(X," ")=1,$L(X)>32 W $C(7),!?5,"MAX OF 32 CHARACTERS ALLOWED WITHOUT SPACES.",! S Y=99 Q
+ . S IND="" F I=1:1:$L(X," ") Q:I=""  S J=$P(X," ",I) D  I '$D(X) S Y=99 Q
+ . .I $L(J)>32 W $C(7),!?5,"MAX OF 32 CHARACTERS ALLOWED BETWEEN SPACES.",! K X Q
+ . .S:J]"" IND=$S($G(IND)]"":IND_" ",1:"")_J
+ . Q:$G(Y)=99
+ . S PSGIND=$$ENLU^PSGMI(IND)
+ . S PSGFOK(132)=""
+ Q
+ ;
+ ;do we have any changes for indication?
+ ;compare indication passed in PSJNEWVL parameter with value stored in the field (#132) of the file (#53.1) with the IEN=+PSJORD
+DIFFIND(PSJDFN,PSJORD,PSJNEWVL) ;
+ ; PSJDFN = IEN of #2 (not required for non-verified orders)
+ ; PSJORD = IEN of #53.1/55 + indication like "P","U","V", example = "4033P"
+ ; PSJNEWVL the new value after editing
+ ; returns:
+ ; piece #1 
+ ;   1=different than the previous value
+ ;   0=no changes
+ ;  -1=new record, no previous values
+ ; piece #2 = value before editing if any (current value in DB)
+ ; piece #3 = new value
+ N CURRVAL S CURRVAL=""
+ N STATUS S STATUS=0
+ S PSJNEWVL=$G(PSJNEWVL)
+ ; if this is non-verified order
+ I PSJORD["P" D  Q STATUS_U_$G(CURRVAL)_U_PSJNEWVL
+ . ;if node does not exist then return -1
+ . I '$D(^PS(53.1,+PSJORD,18)) S STATUS=-1,CURRVAL="" Q
+ . S CURRVAL=$$GET1^DIQ(53.1,+PSJORD,132,"E")
+ . S STATUS=$S(PSJNEWVL=CURRVAL:0,1:1)
+ ; if this is Unit Dose verified order
+ I PSJORD["U",+$G(PSJDFN) D  Q STATUS_U_$G(CURRVAL)_U_PSJNEWVL
+ . ;if node does not exist then return -1
+ . I '$D(^PS(55,+PSJDFN,5,+PSJORD,18)) S STATUS=-1,CURRVAL="" Q
+ . S CURRVAL=$$GET1^DIQ(55.06,+PSJORD_","_+PSJDFN_",",141)
+ . S STATUS=$S(PSJNEWVL=CURRVAL:0,1:1)
+ Q 0  ; there is no difference by default

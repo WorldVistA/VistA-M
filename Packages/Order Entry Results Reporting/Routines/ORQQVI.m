@@ -1,5 +1,5 @@
-ORQQVI ; slc/STAFF - Functions which return patient vital and I/O data ; 7/10/17 5:45pm
- ;;3.0;ORDER ENTRY/RESULTS REPORTING;**10,198,215,250,260,285,286,414**;Dec 17, 1997;Build 8
+ORQQVI ; slc/STAFF - Functions which return patient vital and I/O data ;Jun 29, 2021@11:08
+ ;;3.0;ORDER ENTRY/RESULTS REPORTING;**10,198,215,250,260,285,286,414,524,557,560**;Dec 17, 1997;Build 1
  ;Per VA Directive 6402, this routine should not be modified.
  ;
  ;DBIA reference section
@@ -7,6 +7,7 @@ ORQQVI ; slc/STAFF - Functions which return patient vital and I/O data ; 7/10/17
  ;  3647   ^GMVPXRM
  ; 10061   ^UTILITY
  ;  2051   FIND1^DIC
+ ;  4114   ^PXRMINDX
  ;
 VITALS(ORY,DFN,ORSDT,OREDT) ; return patient's vital measurements taken between start date/time and end date/time
  ;ORY: return variable, results are returned in the format:
@@ -95,10 +96,12 @@ FASTVIT(ORY,DFN,F1,F2) ; return patient's most recent vital measurements
  D LSTVITAL("CENTRAL VENOUS PRESSURE","CVP",DFN,.ORY,.CNT,DT1,DT2)
  D LSTVITAL("CIRCUMFERENCE/GIRTH","CG",DFN,.ORY,.CNT,DT1,DT2)
  D LSTVITAL("BODY MASS INDEX","BMI",DFN,.ORY,.CNT,DT1,DT2)
+ ;I $$GET^XPAR("ALL","ORQQVI METRIC FIRST",1,"I") D SWAP(.ORY)
+ ;leaving in the commented code since this feature is coming back in EP1
  Q
  ;
 VITAL(VITAL,ABBREV,DFN,ORY,CNT,F1,F2) ;
- ; get most recent *valid* vital measurement 
+ ; get most recent *valid* vital measurement
  N STOP
  S STOP=0 F  D  Q:STOP
  .D LSTVITAL(VITAL,ABBREV,DFN,.ORY,.CNT,F1,F2)
@@ -175,4 +178,12 @@ LSTVITAL(VITAL,ABBREV,DFN,ORY,CNT,F1,F2) ;
  ...S MVAL=$J((MVAL*2.54),3,1)
  ...S ORY(CNT)=ORY(CNT)_" in^("_MVAL_" cm)"
  ..S $P(ORY(CNT),U,7)=QUALS(CNT)
+ Q
+SWAP(ORREC) ;
+ I '$D(ORREC) Q
+ N S1,A,B S S1=0
+ F  S S1=$O(ORREC(S1)) Q:'S1  D
+ . I $P(ORREC(S1),"^",6)="" Q
+ . S A="("_$P(ORREC(S1),"^",5)_")",B=$P(ORREC(S1),"^",6),B=$E(B,2,$L(B)-1)
+ . S $P(ORREC(S1),"^",3)=+B,$P(ORREC(S1),"^",5)=B,$P(ORREC(S1),"^",6)=A
  Q

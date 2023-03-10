@@ -1,120 +1,130 @@
-IBDEI0SX ; ; 04-FEB-2020
- ;;3.0;IB ENCOUNTER FORM IMP/EXP;;FEB 04, 2020
+IBDEI0SX ; ; 01-FEB-2022
+ ;;3.0;IB ENCOUNTER FORM IMP/EXP;;FEB 01, 2022
  Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,999) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
- ;;^UTILITY(U,$J,358.3,12881,1,4,0)
- ;;=4^D78.12
- ;;^UTILITY(U,$J,358.3,12881,2)
- ;;=^5002400
- ;;^UTILITY(U,$J,358.3,12882,0)
- ;;=I97.811^^80^789^14
- ;;^UTILITY(U,$J,358.3,12882,1,0)
+ ;;^UTILITY(U,$J,358.3,13015,0)
+ ;;=H01.119^^51^627^4
+ ;;^UTILITY(U,$J,358.3,13015,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,12882,1,3,0)
- ;;=3^Intraoperative Cerebrovascular Infarction During Surgery
- ;;^UTILITY(U,$J,358.3,12882,1,4,0)
- ;;=4^I97.811
- ;;^UTILITY(U,$J,358.3,12882,2)
- ;;=^5008108
- ;;^UTILITY(U,$J,358.3,12883,0)
- ;;=S31.154A^^80^790^3
- ;;^UTILITY(U,$J,358.3,12883,1,0)
+ ;;^UTILITY(U,$J,358.3,13015,1,3,0)
+ ;;=3^Allergic Dermatitis,Unspec Eyelid
+ ;;^UTILITY(U,$J,358.3,13015,1,4,0)
+ ;;=4^H01.119
+ ;;^UTILITY(U,$J,358.3,13015,2)
+ ;;=^5133387
+ ;;^UTILITY(U,$J,358.3,13016,0)
+ ;;=H35.3120^^51^627^2
+ ;;^UTILITY(U,$J,358.3,13016,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,12883,1,3,0)
- ;;=3^Open Bite of LLQ of Abd Wall w/o Penet Perit Cav,Init Encntr
- ;;^UTILITY(U,$J,358.3,12883,1,4,0)
- ;;=4^S31.154A
- ;;^UTILITY(U,$J,358.3,12883,2)
- ;;=^5134487
- ;;^UTILITY(U,$J,358.3,12884,0)
- ;;=S31.151A^^80^790^4
- ;;^UTILITY(U,$J,358.3,12884,1,0)
+ ;;^UTILITY(U,$J,358.3,13016,1,3,0)
+ ;;=3^AMD Nonexudative,Lt Eye
+ ;;^UTILITY(U,$J,358.3,13016,1,4,0)
+ ;;=4^H35.3120
+ ;;^UTILITY(U,$J,358.3,13016,2)
+ ;;=^5138505
+ ;;^UTILITY(U,$J,358.3,13017,0)
+ ;;=H35.3110^^51^627^3
+ ;;^UTILITY(U,$J,358.3,13017,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,12884,1,3,0)
- ;;=3^Open Bite of LUQ of Abd Wall w/o Penet Perit Cav,Init Cav
- ;;^UTILITY(U,$J,358.3,12884,1,4,0)
- ;;=4^S31.151A
- ;;^UTILITY(U,$J,358.3,12884,2)
- ;;=^5024104
- ;;^UTILITY(U,$J,358.3,12885,0)
- ;;=S31.153A^^80^790^35
- ;;^UTILITY(U,$J,358.3,12885,1,0)
+ ;;^UTILITY(U,$J,358.3,13017,1,3,0)
+ ;;=3^AMD Nonexudative,Rt Eye 
+ ;;^UTILITY(U,$J,358.3,13017,1,4,0)
+ ;;=4^H35.3110
+ ;;^UTILITY(U,$J,358.3,13017,2)
+ ;;=^5138500
+ ;;^UTILITY(U,$J,358.3,13018,0)
+ ;;=H35.3130^^51^627^1
+ ;;^UTILITY(U,$J,358.3,13018,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,12885,1,3,0)
- ;;=3^Open Bite of RLQ of Abd Wall w/o Penet Perit Cav,Init Encntr
- ;;^UTILITY(U,$J,358.3,12885,1,4,0)
- ;;=4^S31.153A
- ;;^UTILITY(U,$J,358.3,12885,2)
- ;;=^5024110
- ;;^UTILITY(U,$J,358.3,12886,0)
- ;;=S31.150A^^80^790^36
- ;;^UTILITY(U,$J,358.3,12886,1,0)
+ ;;^UTILITY(U,$J,358.3,13018,1,3,0)
+ ;;=3^AMD Nonexudative,Bilateral
+ ;;^UTILITY(U,$J,358.3,13018,1,4,0)
+ ;;=4^H35.3130
+ ;;^UTILITY(U,$J,358.3,13018,2)
+ ;;=^5138510
+ ;;^UTILITY(U,$J,358.3,13019,0)
+ ;;=H01.009^^51^627^5
+ ;;^UTILITY(U,$J,358.3,13019,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,12886,1,3,0)
- ;;=3^Open Bite of RUQ of Abd Wall w/o Penet Perit Cav,Init Encntr
- ;;^UTILITY(U,$J,358.3,12886,1,4,0)
- ;;=4^S31.150A
- ;;^UTILITY(U,$J,358.3,12886,2)
- ;;=^5024101
- ;;^UTILITY(U,$J,358.3,12887,0)
- ;;=S91.052A^^80^790^5
- ;;^UTILITY(U,$J,358.3,12887,1,0)
+ ;;^UTILITY(U,$J,358.3,13019,1,3,0)
+ ;;=3^Blepharitis,Unspec
+ ;;^UTILITY(U,$J,358.3,13019,1,4,0)
+ ;;=4^H01.009
+ ;;^UTILITY(U,$J,358.3,13019,2)
+ ;;=^5133381
+ ;;^UTILITY(U,$J,358.3,13020,0)
+ ;;=H25.019^^51^627^7
+ ;;^UTILITY(U,$J,358.3,13020,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,12887,1,3,0)
- ;;=3^Open Bite of Left Ankle,Init Encntr
- ;;^UTILITY(U,$J,358.3,12887,1,4,0)
- ;;=4^S91.052A
- ;;^UTILITY(U,$J,358.3,12887,2)
- ;;=^5044162
- ;;^UTILITY(U,$J,358.3,12888,0)
- ;;=S31.825A^^80^790^6
- ;;^UTILITY(U,$J,358.3,12888,1,0)
+ ;;^UTILITY(U,$J,358.3,13020,1,3,0)
+ ;;=3^Cataract,Cortical,Unspec Eye
+ ;;^UTILITY(U,$J,358.3,13020,1,4,0)
+ ;;=4^H25.019
+ ;;^UTILITY(U,$J,358.3,13020,2)
+ ;;=^5005270
+ ;;^UTILITY(U,$J,358.3,13021,0)
+ ;;=H25.12^^51^627^8
+ ;;^UTILITY(U,$J,358.3,13021,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,12888,1,3,0)
- ;;=3^Open Bite of Left Buttock,Init Encntr
- ;;^UTILITY(U,$J,358.3,12888,1,4,0)
- ;;=4^S31.825A
- ;;^UTILITY(U,$J,358.3,12888,2)
- ;;=^5024317
- ;;^UTILITY(U,$J,358.3,12889,0)
- ;;=S01.452A^^80^790^7
- ;;^UTILITY(U,$J,358.3,12889,1,0)
+ ;;^UTILITY(U,$J,358.3,13021,1,3,0)
+ ;;=3^Cataract,Nuclear,Lt Eye
+ ;;^UTILITY(U,$J,358.3,13021,1,4,0)
+ ;;=4^H25.12
+ ;;^UTILITY(U,$J,358.3,13021,2)
+ ;;=^5005285
+ ;;^UTILITY(U,$J,358.3,13022,0)
+ ;;=H25.11^^51^627^9
+ ;;^UTILITY(U,$J,358.3,13022,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,12889,1,3,0)
- ;;=3^Open Bite of Left Cheek/Temporomandibular Area,Init Encntr
- ;;^UTILITY(U,$J,358.3,12889,1,4,0)
- ;;=4^S01.452A
- ;;^UTILITY(U,$J,358.3,12889,2)
- ;;=^5020180
- ;;^UTILITY(U,$J,358.3,12890,0)
- ;;=S01.352A^^80^790^8
- ;;^UTILITY(U,$J,358.3,12890,1,0)
+ ;;^UTILITY(U,$J,358.3,13022,1,3,0)
+ ;;=3^Cataract,Nuclear,Rt Eye
+ ;;^UTILITY(U,$J,358.3,13022,1,4,0)
+ ;;=4^H25.11
+ ;;^UTILITY(U,$J,358.3,13022,2)
+ ;;=^5005284
+ ;;^UTILITY(U,$J,358.3,13023,0)
+ ;;=H25.049^^51^627^10
+ ;;^UTILITY(U,$J,358.3,13023,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,12890,1,3,0)
- ;;=3^Open Bite of Left Ear,Init Encntr
- ;;^UTILITY(U,$J,358.3,12890,1,4,0)
- ;;=4^S01.352A
- ;;^UTILITY(U,$J,358.3,12890,2)
- ;;=^5020141
- ;;^UTILITY(U,$J,358.3,12891,0)
- ;;=S51.052A^^80^790^9
- ;;^UTILITY(U,$J,358.3,12891,1,0)
+ ;;^UTILITY(U,$J,358.3,13023,1,3,0)
+ ;;=3^Cataract,PSC,Unspec Eye
+ ;;^UTILITY(U,$J,358.3,13023,1,4,0)
+ ;;=4^H25.049
+ ;;^UTILITY(U,$J,358.3,13023,2)
+ ;;=^5005278
+ ;;^UTILITY(U,$J,358.3,13024,0)
+ ;;=H00.14^^51^627^11
+ ;;^UTILITY(U,$J,358.3,13024,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,12891,1,3,0)
- ;;=3^Open Bite of Left Elbow,Init Encntr
- ;;^UTILITY(U,$J,358.3,12891,1,4,0)
- ;;=4^S51.052A
- ;;^UTILITY(U,$J,358.3,12891,2)
- ;;=^5028653
- ;;^UTILITY(U,$J,358.3,12892,0)
- ;;=S91.352A^^80^790^10
- ;;^UTILITY(U,$J,358.3,12892,1,0)
+ ;;^UTILITY(U,$J,358.3,13024,1,3,0)
+ ;;=3^Chalazion,Lt Upper Eyelid
+ ;;^UTILITY(U,$J,358.3,13024,1,4,0)
+ ;;=4^H00.14
+ ;;^UTILITY(U,$J,358.3,13024,2)
+ ;;=^5004236
+ ;;^UTILITY(U,$J,358.3,13025,0)
+ ;;=H00.11^^51^627^12
+ ;;^UTILITY(U,$J,358.3,13025,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,12892,1,3,0)
- ;;=3^Open Bite of Left Foot,Init Encntr
- ;;^UTILITY(U,$J,358.3,12892,1,4,0)
- ;;=4^S91.352A
- ;;^UTILITY(U,$J,358.3,12892,2)
- ;;=^5044347
- ;;^UTILITY(U,$J,358.3,12893,0)
- ;;=S91.252A^^80^790^11
+ ;;^UTILITY(U,$J,358.3,13025,1,3,0)
+ ;;=3^Chalazion,Rt Upper Eyelid
+ ;;^UTILITY(U,$J,358.3,13025,1,4,0)
+ ;;=4^H00.11
+ ;;^UTILITY(U,$J,358.3,13025,2)
+ ;;=^5004233
+ ;;^UTILITY(U,$J,358.3,13026,0)
+ ;;=H59.039^^51^627^6
+ ;;^UTILITY(U,$J,358.3,13026,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,13026,1,3,0)
+ ;;=3^CME Mac Edema,Unspec Eye
+ ;;^UTILITY(U,$J,358.3,13026,1,4,0)
+ ;;=4^H59.039
+ ;;^UTILITY(U,$J,358.3,13026,2)
+ ;;=^5006396
+ ;;^UTILITY(U,$J,358.3,13027,0)
+ ;;=H10.32^^51^627^13
+ ;;^UTILITY(U,$J,358.3,13027,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,13027,1,3,0)
+ ;;=3^Conjunctivitis,Acute,Lt Eye

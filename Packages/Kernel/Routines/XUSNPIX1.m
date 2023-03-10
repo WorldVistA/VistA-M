@@ -1,5 +1,5 @@
-XUSNPIX1 ;OAK_BP/CMW - NPI EXTRACT REPORT ;7/9/08  18:18
- ;;8.0;KERNEL;**438,452,453,481,528,548**; Jul 10, 1995;Build 24
+XUSNPIX1 ;OAK_BP/CMW - NPI EXTRACT REPORT ; Aug 30, 2022@04:49:29
+ ;;8.0;KERNEL;**438,452,453,481,528,548,774**; Jul 10, 1995;Build 2
  ;;Per VHA Directive 2004-038, this routine should not be modified.
  ;
  ; Direct access to ^IBE(350.9, fields .02, 1.05, 19;.02, 19;1.01, 19;1.02, 19;1.03, 19;,1.04, 19;1.05 authorized by
@@ -104,18 +104,11 @@ MAILTO(XMY) ;sets the MailMan recipients based on need (XU*8.0*548)
  ;When you don't want data to go out to Austin's FSC but you need it to 
  ;stay within the VistA's MailMan for internal testing, comment out setting
  ;the XMY("XXX@Q-NPS.DOMAIN.EXT) array and add your own MailMan address that
- ;is present in the VistA account your are on.  An example of an email address
- ;for testing purposes is below.
- ;
- ;S XMY("TJERNAGEL.STEVE@MNTVBB.FO-ALBANY.DOMAIN.EXT")="" ; for testing only
- ;S XMY("TJERNAGEL.STEVE@CHEY65.FO-BAYPINES.DOMAIN.EXT")="" ;for CHEY65 testing only
- ;S XMY("NULL.RODGER_B@MNTVBB.FO-ALBANY.DOMAIN.EXT")="" ; for testing only
- ;S XMY("NULL.RODGER@CHEY65.FO-BAYPINES.DOMAIN.EXT")="" ; for CHEY65 testing only
- ;S XMY("WHITE.DARLENE@MNTVBB.FO-ALBANY.DOMAIN.EXT")="" ; for testing only
- ;S XMY("WHITE.DARLENE@CHEY65.FO-BAYPINES.DOMAIN.EXT")="" ; for CHEY65 testing only
- ;
+ ;is present in the VistA account your are on. 
  ;When you want data to go out to Austin's FSC group, uncomment this line.
- S XMY("XXX@Q-NPS.DOMAIN.EXT")=""                         ;uncomment to run for live ***
+ ;S XMY("XXX@Q-NPS.DOMAIN.EXT")=""                         ;uncomment to run for live ***
+ S XUWHO606=$G(XUWHO606,"XXX@Q-NPS.DOMAIN.EXT") ;p774
+ S XMY(XUWHO606)=""
  Q
  ;
 INST(XUSRTN,XUSVER,INSMAIL) ;Pull station and Institution info
@@ -172,8 +165,9 @@ PROC1(XUSRTN,XUSPROD,XUSVER,DTTM,INSMAIL) ;Process all New Person records
  . ; Break name into components
  . I XUSNAME'="" D
  . . S XLFNC=XUSNAME D FORMAT^XLFNAME7(.XLFNC,,,,0)
- . . S XUSNP(2)=XLFNC("GIVEN"),XUSNP(3)=XLFNC("MIDDLE"),XUSNP(4)=XLFNC("FAMILY")
- . . I XLFNC("SUFFIX")'="" S XUSNP(4)=XUSNP(4)_" "_XLFNC("SUFFIX")
+ . . I $G(XLFNC("FAMILY"))="" S XLFNC("FAMILY")=$G(XUSNAME) ;p774
+ . . S XUSNP(2)=$G(XLFNC("GIVEN")),XUSNP(3)=$G(XLFNC("MIDDLE")),XUSNP(4)=$G(XLFNC("FAMILY")) ;p774
+ . . I $G(XLFNC("SUFFIX"))'="" S XUSNP(4)=XUSNP(4)_" "_XLFNC("SUFFIX")
  . . K XLFNC
  . S XUSDATA1=XUSDATA1_U_XUSNP(2)_U_XUSNP(3)_U_XUSNP(4)
  . ;

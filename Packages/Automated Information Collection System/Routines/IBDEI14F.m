@@ -1,130 +1,126 @@
-IBDEI14F ; ; 04-FEB-2020
- ;;3.0;IB ENCOUNTER FORM IMP/EXP;;FEB 04, 2020
+IBDEI14F ; ; 01-FEB-2022
+ ;;3.0;IB ENCOUNTER FORM IMP/EXP;;FEB 01, 2022
  Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,999) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
- ;;^UTILITY(U,$J,358.3,17999,2)
- ;;=^269946
- ;;^UTILITY(U,$J,358.3,18000,0)
- ;;=J41.1^^88^905^19
- ;;^UTILITY(U,$J,358.3,18000,1,0)
+ ;;^UTILITY(U,$J,358.3,18185,0)
+ ;;=E11.620^^61^805^5
+ ;;^UTILITY(U,$J,358.3,18185,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,18000,1,3,0)
- ;;=3^Bronchitis,Mucopurulent Chronic
- ;;^UTILITY(U,$J,358.3,18000,1,4,0)
- ;;=4^J41.1
- ;;^UTILITY(U,$J,358.3,18000,2)
- ;;=^269949
- ;;^UTILITY(U,$J,358.3,18001,0)
- ;;=J41.8^^88^905^18
- ;;^UTILITY(U,$J,358.3,18001,1,0)
+ ;;^UTILITY(U,$J,358.3,18185,1,3,0)
+ ;;=3^DM Type 2 w/ Diab Dermatitis
+ ;;^UTILITY(U,$J,358.3,18185,1,4,0)
+ ;;=4^E11.620
+ ;;^UTILITY(U,$J,358.3,18185,2)
+ ;;=^5002655
+ ;;^UTILITY(U,$J,358.3,18186,0)
+ ;;=E11.36^^61^805^4
+ ;;^UTILITY(U,$J,358.3,18186,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,18001,1,3,0)
- ;;=3^Bronchitis,Mixed Simple & Mucopurulent Chronic
- ;;^UTILITY(U,$J,358.3,18001,1,4,0)
- ;;=4^J41.8
- ;;^UTILITY(U,$J,358.3,18001,2)
- ;;=^5008233
- ;;^UTILITY(U,$J,358.3,18002,0)
- ;;=J42.^^88^905^21
- ;;^UTILITY(U,$J,358.3,18002,1,0)
+ ;;^UTILITY(U,$J,358.3,18186,1,3,0)
+ ;;=3^DM Type 2 w/ Diab Cataract
+ ;;^UTILITY(U,$J,358.3,18186,1,4,0)
+ ;;=4^E11.36
+ ;;^UTILITY(U,$J,358.3,18186,2)
+ ;;=^5002642
+ ;;^UTILITY(U,$J,358.3,18187,0)
+ ;;=I10.^^61^806^1
+ ;;^UTILITY(U,$J,358.3,18187,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,18002,1,3,0)
- ;;=3^Bronchitis,Unspec Chronic
- ;;^UTILITY(U,$J,358.3,18002,1,4,0)
- ;;=4^J42.
- ;;^UTILITY(U,$J,358.3,18002,2)
- ;;=^5008234
- ;;^UTILITY(U,$J,358.3,18003,0)
- ;;=J43.0^^88^905^29
- ;;^UTILITY(U,$J,358.3,18003,1,0)
+ ;;^UTILITY(U,$J,358.3,18187,1,3,0)
+ ;;=3^Essential/Primary Hypertension
+ ;;^UTILITY(U,$J,358.3,18187,1,4,0)
+ ;;=4^I10.
+ ;;^UTILITY(U,$J,358.3,18187,2)
+ ;;=^5007062
+ ;;^UTILITY(U,$J,358.3,18188,0)
+ ;;=I11.0^^61^806^12
+ ;;^UTILITY(U,$J,358.3,18188,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,18003,1,3,0)
- ;;=3^Emphysema,Pulmonary,Unilateral
- ;;^UTILITY(U,$J,358.3,18003,1,4,0)
- ;;=4^J43.0
- ;;^UTILITY(U,$J,358.3,18003,2)
- ;;=^5008235
- ;;^UTILITY(U,$J,358.3,18004,0)
- ;;=J43.1^^88^905^28
- ;;^UTILITY(U,$J,358.3,18004,1,0)
+ ;;^UTILITY(U,$J,358.3,18188,1,3,0)
+ ;;=3^Hypertensive Heart Disease w/ Heart Failure
+ ;;^UTILITY(U,$J,358.3,18188,1,4,0)
+ ;;=4^I11.0
+ ;;^UTILITY(U,$J,358.3,18188,2)
+ ;;=^5007063
+ ;;^UTILITY(U,$J,358.3,18189,0)
+ ;;=I11.9^^61^806^13
+ ;;^UTILITY(U,$J,358.3,18189,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,18004,1,3,0)
- ;;=3^Emphysema,Panlobular
- ;;^UTILITY(U,$J,358.3,18004,1,4,0)
- ;;=4^J43.1
- ;;^UTILITY(U,$J,358.3,18004,2)
- ;;=^5008236
- ;;^UTILITY(U,$J,358.3,18005,0)
- ;;=J43.2^^88^905^26
- ;;^UTILITY(U,$J,358.3,18005,1,0)
+ ;;^UTILITY(U,$J,358.3,18189,1,3,0)
+ ;;=3^Hypertensive Heart Disease w/o Heart Failure
+ ;;^UTILITY(U,$J,358.3,18189,1,4,0)
+ ;;=4^I11.9
+ ;;^UTILITY(U,$J,358.3,18189,2)
+ ;;=^5007064
+ ;;^UTILITY(U,$J,358.3,18190,0)
+ ;;=I12.0^^61^806^5
+ ;;^UTILITY(U,$J,358.3,18190,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,18005,1,3,0)
- ;;=3^Emphysema,Centrilobular
- ;;^UTILITY(U,$J,358.3,18005,1,4,0)
- ;;=4^J43.2
- ;;^UTILITY(U,$J,358.3,18005,2)
- ;;=^5008237
- ;;^UTILITY(U,$J,358.3,18006,0)
- ;;=J43.8^^88^905^27
- ;;^UTILITY(U,$J,358.3,18006,1,0)
+ ;;^UTILITY(U,$J,358.3,18190,1,3,0)
+ ;;=3^Hypertensive CKD w/ Stage 5 CKD or ESRD
+ ;;^UTILITY(U,$J,358.3,18190,1,4,0)
+ ;;=4^I12.0
+ ;;^UTILITY(U,$J,358.3,18190,2)
+ ;;=^5007065
+ ;;^UTILITY(U,$J,358.3,18191,0)
+ ;;=I12.9^^61^806^4
+ ;;^UTILITY(U,$J,358.3,18191,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,18006,1,3,0)
- ;;=3^Emphysema,Other
- ;;^UTILITY(U,$J,358.3,18006,1,4,0)
- ;;=4^J43.8
- ;;^UTILITY(U,$J,358.3,18006,2)
- ;;=^87569
- ;;^UTILITY(U,$J,358.3,18007,0)
- ;;=J43.9^^88^905^30
- ;;^UTILITY(U,$J,358.3,18007,1,0)
+ ;;^UTILITY(U,$J,358.3,18191,1,3,0)
+ ;;=3^Hypertensive CKD w/ Stage 1-4 CKD
+ ;;^UTILITY(U,$J,358.3,18191,1,4,0)
+ ;;=4^I12.9
+ ;;^UTILITY(U,$J,358.3,18191,2)
+ ;;=^5007066
+ ;;^UTILITY(U,$J,358.3,18192,0)
+ ;;=I13.0^^61^806^8
+ ;;^UTILITY(U,$J,358.3,18192,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,18007,1,3,0)
- ;;=3^Emphysema,Unspec
- ;;^UTILITY(U,$J,358.3,18007,1,4,0)
- ;;=4^J43.9
- ;;^UTILITY(U,$J,358.3,18007,2)
- ;;=^5008238
- ;;^UTILITY(U,$J,358.3,18008,0)
- ;;=J44.0^^88^905^23
- ;;^UTILITY(U,$J,358.3,18008,1,0)
+ ;;^UTILITY(U,$J,358.3,18192,1,3,0)
+ ;;=3^Hypertensive HRT & CKD w/ Hrt Fail & Stg 1-4 CKD
+ ;;^UTILITY(U,$J,358.3,18192,1,4,0)
+ ;;=4^I13.0
+ ;;^UTILITY(U,$J,358.3,18192,2)
+ ;;=^5007067
+ ;;^UTILITY(U,$J,358.3,18193,0)
+ ;;=I13.10^^61^806^10
+ ;;^UTILITY(U,$J,358.3,18193,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,18008,1,3,0)
- ;;=3^COPD w/ (Acute) Lower Resp Infection
- ;;^UTILITY(U,$J,358.3,18008,1,4,0)
- ;;=4^J44.0
- ;;^UTILITY(U,$J,358.3,18008,2)
- ;;=^5008239
- ;;^UTILITY(U,$J,358.3,18009,0)
- ;;=J45.20^^88^905^5
- ;;^UTILITY(U,$J,358.3,18009,1,0)
+ ;;^UTILITY(U,$J,358.3,18193,1,3,0)
+ ;;=3^Hypertensive HRT & CKD w/o Hrt Fail & Stg 1-4 CKD
+ ;;^UTILITY(U,$J,358.3,18193,1,4,0)
+ ;;=4^I13.10
+ ;;^UTILITY(U,$J,358.3,18193,2)
+ ;;=^5007068
+ ;;^UTILITY(U,$J,358.3,18194,0)
+ ;;=I13.11^^61^806^11
+ ;;^UTILITY(U,$J,358.3,18194,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,18009,1,3,0)
- ;;=3^Asthma,Mild Intermittent,Uncompl
- ;;^UTILITY(U,$J,358.3,18009,1,4,0)
- ;;=4^J45.20
- ;;^UTILITY(U,$J,358.3,18009,2)
- ;;=^5008242
- ;;^UTILITY(U,$J,358.3,18010,0)
- ;;=J45.21^^88^905^3
- ;;^UTILITY(U,$J,358.3,18010,1,0)
+ ;;^UTILITY(U,$J,358.3,18194,1,3,0)
+ ;;=3^Hypertensive HRT & CKD w/o Hrt Fail & Stg 5 CKD/ESRD
+ ;;^UTILITY(U,$J,358.3,18194,1,4,0)
+ ;;=4^I13.11
+ ;;^UTILITY(U,$J,358.3,18194,2)
+ ;;=^5007069
+ ;;^UTILITY(U,$J,358.3,18195,0)
+ ;;=I13.2^^61^806^9
+ ;;^UTILITY(U,$J,358.3,18195,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,18010,1,3,0)
- ;;=3^Asthma,Mild Intermittent w/ Acute Exacerbation
- ;;^UTILITY(U,$J,358.3,18010,1,4,0)
- ;;=4^J45.21
- ;;^UTILITY(U,$J,358.3,18010,2)
- ;;=^5008243
- ;;^UTILITY(U,$J,358.3,18011,0)
- ;;=J45.22^^88^905^4
- ;;^UTILITY(U,$J,358.3,18011,1,0)
+ ;;^UTILITY(U,$J,358.3,18195,1,3,0)
+ ;;=3^Hypertensive HRT & CKD w/ Hrt Fail & Stg 5 CKD/ESRD
+ ;;^UTILITY(U,$J,358.3,18195,1,4,0)
+ ;;=4^I13.2
+ ;;^UTILITY(U,$J,358.3,18195,2)
+ ;;=^5007070
+ ;;^UTILITY(U,$J,358.3,18196,0)
+ ;;=I15.0^^61^806^15
+ ;;^UTILITY(U,$J,358.3,18196,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,18011,1,3,0)
- ;;=3^Asthma,Mild Intermittent w/ Status Asthmaticus
- ;;^UTILITY(U,$J,358.3,18011,1,4,0)
- ;;=4^J45.22
- ;;^UTILITY(U,$J,358.3,18011,2)
- ;;=^5008244
- ;;^UTILITY(U,$J,358.3,18012,0)
- ;;=J45.31^^88^905^6
- ;;^UTILITY(U,$J,358.3,18012,1,0)
- ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,18196,1,3,0)
+ ;;=3^Renovascular Hypertension
+ ;;^UTILITY(U,$J,358.3,18196,1,4,0)
+ ;;=4^I15.0
+ ;;^UTILITY(U,$J,358.3,18196,2)
+ ;;=^5007071
+ ;;^UTILITY(U,$J,358.3,18197,0)
+ ;;=I15.1^^61^806^3

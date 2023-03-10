@@ -1,6 +1,8 @@
 PRCHAMYB ;WISC/DJM-MOVING AMENDMENT INFO FROM 443.6 TO 442 ;4/4/95  10:57 AM
-V ;;5.1;IFCAP;**79,100**;Oct 20, 2000
- ;Per VHA Directive 10-93-142, this routine should not be modified.
+V ;;5.1;IFCAP;**79,100,220**;Oct 20, 2000;Build 23
+ ;Per VA Directive 6402, this routine should not be modified.
+ ;
+ ;PRC*5.1*220 Comment out line related to FPDS message generation
  ;
  N PRCIEN,PRCIEN1,PRCDSL,PAT,PRCDS,PRCDATA,PRCAS,FLAG,DIC,X,DIK,PRCHIEN,LAST,%X,%Y,LOOP,LOOPVAL,DA,MESSG1,CHECKSUM,PRCHPO1,PRCHPOX,PRCHPO2,STATUS,FCP,IMF,O0,O1,PODATE,Y,PRCOPODA
  S PRCIEN=0 F  S PRCIEN=$O(^PRC(442,PRCHPO,6,PRCHAM,3,PRCIEN)) Q:PRCIEN'>0  D
@@ -67,7 +69,7 @@ STATUS ;NOW TO UPDATE THE 'SUPPLY STATUS', FIELD .5.  THIS WILL UPDATE
  . I $D(^PRC(442,PRCHPO,6,0)) D
  .. S PRCMN=$P(^PRC(442,PRCHPO,6,0),U,3)
  .. I $P(^PRC(442,PRCHPO,6,PRCMN,0),U,3)=0,$P(^PRC(442,PRCHPO,7),U,2)'=45 S PRCQ=1
- . D:$G(PRCQ)'=1 EN^DDIOL("...now generating the FPDS message for the AAC...","","!!"),EN^DDIOL(" ")
+ . ;D:$G(PRCQ)'=1 EN^DDIOL("...now generating the FPDS message for the AAC...","","!!"),EN^DDIOL(" ")    PRC*5.1*220
  . D:$G(PRCQ)'=1 AAC^PRCHAAC
  ; End of changes for PRC*5.1*79
 OUT1 K PRCOPODA,PRCQ,PRCMN

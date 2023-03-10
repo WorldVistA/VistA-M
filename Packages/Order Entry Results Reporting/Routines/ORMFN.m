@@ -1,5 +1,5 @@
-ORMFN ; SLC/MKB - MFN msg router ;June 03, 2018@20:00
- ;;3.0;ORDER ENTRY/RESULTS REPORTING;**26,97,94,176,215,243,280,350,471,487**;Dec 17, 1997;Build 2
+ORMFN ; SLC/MKB - MFN msg router ;Nov 23, 2020@15:02:34
+ ;;3.0;ORDER ENTRY/RESULTS REPORTING;**26,97,94,176,215,243,280,350,471,487,539**;Dec 17, 1997;Build 41
  ;
  ;
  ;
@@ -88,7 +88,7 @@ QO ;replace quick order restriction(s)
  . S DR="2///YES",DIE="^ORD(101.43,"_DA(1)_",9,"
  . D ^DIE
  K ^TMP($J,"ORCM QO",ORDIFN)
- Q 
+ Q
  ;
 NMSP(NAME) ; -- returns namespace for package
  I NAME="RADIOLOGY" Q "RA"
@@ -130,6 +130,8 @@ LR ; -- Laboratory
  S X=$P(ZPKG,"|",8),ORFLD(6)=$S(X="":"@",1:X)
  S X=$P(ZPKG,"|",9),ORFLD(60.7)=$S(X="":"@",1:X)
  F NUM=6,60.1,60.2,60.4,60.5,60.6,60.7 D VAL^DIE(101.43,ORFIEN,NUM,"F",ORFLD(NUM),.ORY,"ORFDA")
+ I $G(ORFLD(60.6))?1(1"SP",1"CY",1"EM") D
+ . S ORFDA(101.43,ORFIEN,5)=$O(^ORD(100.98,"B","ANATOMIC PATHOLOGY",0))
  Q
  ;
 PS ; -- Pharmacy

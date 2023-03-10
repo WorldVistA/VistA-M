@@ -1,10 +1,10 @@
 DICATTDM ;SFISC/GFT - SUBSCRIPT AND PIECE-POSITION FOR STORAGE OF SINGLE-VALUED DATA IN SCREENMAN ;23JUN2017
- ;;22.2;VA FileMan;**2,13**;Jan 05, 2016;Build 4
+ ;;22.2;VA FileMan;**2,13,20**;Jan 05, 2016;Build 2
  ;;Per VA Directive 6402, this routine should not be modified.
  ;;Submitted to OSEHRA 5 January 2015 by the VISTA Expertise Network.
  ;;Based on Medsphere Systems Corporation's MSC FileMan 1051.
  ;;Licensed under the terms of the Apache License, Version 2.0.
- ;;GFT;**42,118,1014,1044**
+ ;;GFT;**42,118,1014,1044,1062**
  ;
  ;
 SUBDEF ;EXECUTABLE DEFAULT for FIELD 16 (SUBSCRIPT)
@@ -42,7 +42,8 @@ CHKSUB(X,DISHORT) ;used as INPUT TRANSFORM for Fields 16 (SUBSCRIPT) & 76 (MUL S
  S M=$$GET^DDSVALF(20.5,"DICATT",1,"","") ;'Is this field Multiple?'
  I $D(^DD(DICATTA,"GL",X)),M Q "Another Field is already stored at '"_X_"'"
  I $D(^(X,0)) Q "A multiple field is already stored at '"_X_"'"
- I $O(^(0)),$$ESTORE^DICATT1($G(DICATT2N)) Q "Can't this kind of data in this subscript"
+ I $O(^(0)),$$ESTORE^DICATT1($G(DICATT2N)) Q "Can't store this kind of data in this subscript"
+ I X<0 Q "Negative subscripts are not allowed"  ;p20
  I '$G(DICATTLN) Q 1 ;if we do not have a current length for the field, we are OK
  S M=$S($G(DISHORT):250,1:$G(^DD("STRING_LIMIT"),255)-5) I $$MAX(DICATTLN,X)>M Q "Too much to store at the '"_X_"' subscript"
  Q 1

@@ -1,5 +1,10 @@
 ECRRPT2 ;ALB/DAN - Event Capture Report RPC Broker (Cont) ;9/28/17  14:16
- ;;2.0;EVENT CAPTURE;**112,131,139**;8 May 96;Build 7
+ ;;2.0;EVENT CAPTURE;**112,131,139,156**;8 May 96;Build 28
+ ;
+ ; Reference to ^TMP supported by SACC 2.3.2.5.1
+ ; Reference to ^XUSEC(KEY) supported by ICR #10076
+ ; Reference to ^DIC supported by ICR #10006
+ ; Reference to ^VA(200, supported by ICR #10060
  ;
 ECRDSSUA ;List users with access to DSS Units
  ;     Variables passed in
@@ -244,4 +249,48 @@ ECLATESH ;139 Possible Late State Home Entries Report
  . S ECDESC="Possible Late State Home Entries Report"
  . D QUEUE^ECRRPT
  D START^ECLATESH
+ Q
+ ;
+ECRPROC ;156 - Procedure Used Report
+ ;     Variables passed in
+ ;       ECPROC - IEN of the Procedure Code for file #81 or #725:100217;ICPT(^B4154  EF SPEC METABOLIC NONINHERIT"/3291;EC(725,^NU079  NUTR GP, 11-20 PT 1ST 30M
+ ;       ECU    - All or single IEN for file 200
+ ;       ECL0   - All, 1, or many locations
+ ;       ECD0   - All, 1, or many DSS units
+ ;       ECSD   - Start Date or Report
+ ;       ECED   - End Date or Report
+ ;       ECPTYP - Where to send output (P)rinter, (D)evice or screen
+ ;                or (E)xport
+ ;
+ ;     Variable return
+ ;       ^TMP($J,"ECRPT",n)=report output or to print device.
+ N ECV,ECDATE,ECUN,ECROU,ECDESC,DIC,X,Y,ECSAVE,ECPROC,ECLOC,ECDSSU,NUM
+ N ECNT,ECI,ECX
+ S ECV="ECU^ECLPC0^ECSD^ECED^ECL0^ECD0^ECPTYP" D REQCHK^ECRRPT(ECV) I ECERR Q
+ I ECU="ALL" S ECUN="ALL"
+ I ECU'="ALL" S DIC=200,DIC(0)="QNZX",X=ECU D ^DIC D:Y<0  Q:Y<0  S ECUN=$P(Y,U,2)
+ . S ^TMP("ECMSG",$J)="1^Invalid Provider."
+ D DATECHK^ECRRPT(.ECSD,.ECED)
+ D  I '$D(ECPROC)&(ECLPC0'="ALL") S ^TMP("ECMSG",$J)="1^Invalid Procedure Code." Q
+ . I ECLPC0="ALL" Q
+ . S ECI=0 F ECI=0:1 S ECX="ECLPC"_ECI Q:'$D(@ECX)  D
+ . . S ECPROC(@ECX)=""
+ D  I '$D(ECLOC) S ^TMP("ECMSG",$J)="1^Invalid Location." Q
+ . D LOCARRY^ECRUTL I ECL0="ALL" Q
+ . S ECNT=0,DIC=4,DIC(0)="QNZX" F I=0:1 S LIEN=$G(@("ECL"_I)) Q:'+LIEN  D
+ .. S X=LIEN D ^DIC Q:Y<0
+ .. S ECNT=ECNT+1,ECLOC(ECNT)=+Y_"^"_$P(Y,U,2)
+ D  I '$D(ECDSSU) S ^TMP("ECMSG",$J)="1^Invalid DSS Unit." Q
+ . I ECD0="ALL" D  Q
+ . . I '$D(ECDUZ) Q
+ . . S ECKEY=$S($D(^XUSEC("ECALLU",ECDUZ)):1,1:0) D ALLU^ECRUTL
+ . S (ECI,ECNT)=0 F ECI=0:1 S ECX="ECD"_ECI Q:'$D(@ECX)  D
+ . . K DIC S DIC=724,DIC(0)="QNZX",X=@ECX D ^DIC I Y<0 Q
+ . . S ECNT=ECNT+1,ECDSSU(ECNT)=Y
+ I ECPTYP="P" D  Q
+ . S ECV="ECU^ECUN^ECLPC0^ECSD^ECED^ECDATE^ECL0^ECD0^ECPTYP"
+ . S (ECSAVE("ECLOC("),ECSAVE("ECDSSU("))="",ECSAVE("ECPROC(")=""
+ . S ECROU="EN^ECRPROC",ECDESC="Event Capture Procedure Used Report"
+ . D QUEUE^ECRRPT
+ D EN^ECRPROC
  Q

@@ -1,8 +1,5 @@
-MBAAAPI1 ;OIT-PD/VSL - SCHEDULING CONSULT API ;02/10/2016
- ;;1.0;Scheduling Calendar View;**1**;Feb 10, 2016;Build 85
- ;
- ;Associated ICRs
- ;  ICR#
+MBAAAPI1 ;OIT-PD/VSL,LAB - SCHEDULING CONSULT API ;06/23/2022
+ ;;1.0;Scheduling Calendar View;**1,12**;Feb 10, 2016;Build 1
  ;
  ;code below is not being used in the initial release of MBAA. It will be released at a later date in a future release of MBAA
  ;GETAPCNS(RETURN,DFN,STPCOD) ; Get active/pending consult requests
@@ -67,7 +64,7 @@ CANCEL(RETURN,CONS,SC,SD,IFN,RMK,WHO,ADM,AUTO,CNDIE,CNDA) ; appt was cancelled t
  Q:'+CONSULT 0
  S SDPATNT=$G(CAPT(.01,"I"))
  D GETCONS^MBAADAL1(.CNS,CONSULT,"IE")
- S CPRSSTAT=$G(CNS(8,"E")) I CPRSSTAT'="" Q:CPRSSTAT'="SCHEDULED"
+ S CPRSSTAT=$G(CNS(8,"E")) I CPRSSTAT'="" Q:CPRSSTAT'="SCHEDULED" RETURN
  S SNDPRV=$G(CNS(10,"I"))
  S USER=$G(CNS(10,"E")),Y=SD
  D DD^%DT S APPT=$E(SD,4,5)_"/"_$E(SD,6,7)_"/"_$E(SD,2,3)_" @ "_$P(Y,"@",2)

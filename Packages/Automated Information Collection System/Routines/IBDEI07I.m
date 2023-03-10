@@ -1,680 +1,634 @@
-IBDEI07I ; ; 01-MAY-2020
- ;;3.0;IB ENCOUNTER FORM IMP/EXP;;MAY 01, 2020
+IBDEI07I ; ; 01-AUG-2022
+ ;;3.0;IB ENCOUNTER FORM IMP/EXP;;AUG 01, 2022
  Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,999) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
+ ;;^UTILITY(U,$J,358.3,18272,1,3,0)
+ ;;=3^Twin pregnancy, monochorionic/monoamniotic, second trimester
+ ;;^UTILITY(U,$J,358.3,18272,1,4,0)
+ ;;=4^O30.012
+ ;;^UTILITY(U,$J,358.3,18272,2)
+ ;;=^5016433
+ ;;^UTILITY(U,$J,358.3,18273,0)
+ ;;=O30.013^^62^739^73
+ ;;^UTILITY(U,$J,358.3,18273,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,18273,1,3,0)
+ ;;=3^Twin pregnancy, monochorionic/monoamniotic, third trimester
+ ;;^UTILITY(U,$J,358.3,18273,1,4,0)
+ ;;=4^O30.013
+ ;;^UTILITY(U,$J,358.3,18273,2)
+ ;;=^5016434
+ ;;^UTILITY(U,$J,358.3,18274,0)
+ ;;=O30.021^^62^739^1
+ ;;^UTILITY(U,$J,358.3,18274,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,18274,1,3,0)
+ ;;=3^Conjoined twin pregnancy, first trimester
+ ;;^UTILITY(U,$J,358.3,18274,1,4,0)
+ ;;=4^O30.021
+ ;;^UTILITY(U,$J,358.3,18274,2)
+ ;;=^5016436
+ ;;^UTILITY(U,$J,358.3,18275,0)
+ ;;=O30.022^^62^739^2
+ ;;^UTILITY(U,$J,358.3,18275,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,18275,1,3,0)
+ ;;=3^Conjoined twin pregnancy, second trimester
+ ;;^UTILITY(U,$J,358.3,18275,1,4,0)
+ ;;=4^O30.022
+ ;;^UTILITY(U,$J,358.3,18275,2)
+ ;;=^5016437
+ ;;^UTILITY(U,$J,358.3,18276,0)
+ ;;=O30.023^^62^739^3
+ ;;^UTILITY(U,$J,358.3,18276,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,18276,1,3,0)
+ ;;=3^Conjoined twin pregnancy, third trimester
+ ;;^UTILITY(U,$J,358.3,18276,1,4,0)
+ ;;=4^O30.023
+ ;;^UTILITY(U,$J,358.3,18276,2)
+ ;;=^5016438
+ ;;^UTILITY(U,$J,358.3,18277,0)
+ ;;=O30.031^^62^739^68
+ ;;^UTILITY(U,$J,358.3,18277,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,18277,1,3,0)
+ ;;=3^Twin pregnancy, monochorionic/diamniotic, first trimester
+ ;;^UTILITY(U,$J,358.3,18277,1,4,0)
+ ;;=4^O30.031
+ ;;^UTILITY(U,$J,358.3,18277,2)
+ ;;=^5016440
+ ;;^UTILITY(U,$J,358.3,18278,0)
+ ;;=O30.032^^62^739^69
+ ;;^UTILITY(U,$J,358.3,18278,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,18278,1,3,0)
+ ;;=3^Twin pregnancy, monochorionic/diamniotic, second trimester
+ ;;^UTILITY(U,$J,358.3,18278,1,4,0)
+ ;;=4^O30.032
+ ;;^UTILITY(U,$J,358.3,18278,2)
+ ;;=^5016441
+ ;;^UTILITY(U,$J,358.3,18279,0)
+ ;;=O30.033^^62^739^70
+ ;;^UTILITY(U,$J,358.3,18279,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,18279,1,3,0)
+ ;;=3^Twin pregnancy, monochorionic/diamniotic, third trimester
+ ;;^UTILITY(U,$J,358.3,18279,1,4,0)
+ ;;=4^O30.033
+ ;;^UTILITY(U,$J,358.3,18279,2)
+ ;;=^5016442
+ ;;^UTILITY(U,$J,358.3,18280,0)
+ ;;=O30.041^^62^739^65
+ ;;^UTILITY(U,$J,358.3,18280,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,18280,1,3,0)
+ ;;=3^Twin pregnancy, dichorionic/diamniotic, first trimester
+ ;;^UTILITY(U,$J,358.3,18280,1,4,0)
+ ;;=4^O30.041
+ ;;^UTILITY(U,$J,358.3,18280,2)
+ ;;=^5016444
+ ;;^UTILITY(U,$J,358.3,18281,0)
+ ;;=O30.042^^62^739^66
+ ;;^UTILITY(U,$J,358.3,18281,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,18281,1,3,0)
+ ;;=3^Twin pregnancy, dichorionic/diamniotic, second trimester
+ ;;^UTILITY(U,$J,358.3,18281,1,4,0)
+ ;;=4^O30.042
+ ;;^UTILITY(U,$J,358.3,18281,2)
+ ;;=^5016445
+ ;;^UTILITY(U,$J,358.3,18282,0)
+ ;;=O30.043^^62^739^67
+ ;;^UTILITY(U,$J,358.3,18282,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,18282,1,3,0)
+ ;;=3^Twin pregnancy, dichorionic/diamniotic, third trimester
+ ;;^UTILITY(U,$J,358.3,18282,1,4,0)
+ ;;=4^O30.043
+ ;;^UTILITY(U,$J,358.3,18282,2)
+ ;;=^5016446
+ ;;^UTILITY(U,$J,358.3,18283,0)
+ ;;=O30.091^^62^739^74
+ ;;^UTILITY(U,$J,358.3,18283,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,18283,1,3,0)
+ ;;=3^Twin,undeterm num plcnta,amino sacs,1st tri
+ ;;^UTILITY(U,$J,358.3,18283,1,4,0)
+ ;;=4^O30.091
+ ;;^UTILITY(U,$J,358.3,18283,2)
+ ;;=^5016448
+ ;;^UTILITY(U,$J,358.3,18284,0)
+ ;;=O30.092^^62^739^75
+ ;;^UTILITY(U,$J,358.3,18284,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,18284,1,3,0)
+ ;;=3^Twin,undeterm num plcnta,amino sacs,2nd tri
+ ;;^UTILITY(U,$J,358.3,18284,1,4,0)
+ ;;=4^O30.092
+ ;;^UTILITY(U,$J,358.3,18284,2)
+ ;;=^5016449
+ ;;^UTILITY(U,$J,358.3,18285,0)
+ ;;=O30.093^^62^739^76
+ ;;^UTILITY(U,$J,358.3,18285,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,18285,1,3,0)
+ ;;=3^Twin,undeterm num plcnta,amino sacs,3rd tri
+ ;;^UTILITY(U,$J,358.3,18285,1,4,0)
+ ;;=4^O30.093
+ ;;^UTILITY(U,$J,358.3,18285,2)
+ ;;=^5016450
+ ;;^UTILITY(U,$J,358.3,18286,0)
+ ;;=O30.101^^62^739^62
+ ;;^UTILITY(U,$J,358.3,18286,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,18286,1,3,0)
+ ;;=3^Triplet preg, unsp num plcnta & amnio sacs, first trimester
+ ;;^UTILITY(U,$J,358.3,18286,1,4,0)
+ ;;=4^O30.101
+ ;;^UTILITY(U,$J,358.3,18286,2)
+ ;;=^5016452
+ ;;^UTILITY(U,$J,358.3,18287,0)
+ ;;=O30.102^^62^739^63
+ ;;^UTILITY(U,$J,358.3,18287,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,18287,1,3,0)
+ ;;=3^Triplet preg, unsp num plcnta & amnio sacs, second trimester
+ ;;^UTILITY(U,$J,358.3,18287,1,4,0)
+ ;;=4^O30.102
+ ;;^UTILITY(U,$J,358.3,18287,2)
+ ;;=^5016453
+ ;;^UTILITY(U,$J,358.3,18288,0)
+ ;;=O30.103^^62^739^64
+ ;;^UTILITY(U,$J,358.3,18288,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,18288,1,3,0)
+ ;;=3^Triplet preg, unsp num plcnta & amnio sacs, third trimester
+ ;;^UTILITY(U,$J,358.3,18288,1,4,0)
+ ;;=4^O30.103
+ ;;^UTILITY(U,$J,358.3,18288,2)
+ ;;=^5016454
+ ;;^UTILITY(U,$J,358.3,18289,0)
+ ;;=O30.111^^62^739^56
+ ;;^UTILITY(U,$J,358.3,18289,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,18289,1,3,0)
+ ;;=3^Triplet preg w two or more monochorionic fetuses, first tri
  ;;^UTILITY(U,$J,358.3,18289,1,4,0)
- ;;=4^M85.851
+ ;;=4^O30.111
  ;;^UTILITY(U,$J,358.3,18289,2)
- ;;=^5014486
+ ;;=^5016455
  ;;^UTILITY(U,$J,358.3,18290,0)
- ;;=M85.821^^65^775^99
+ ;;=O30.112^^62^739^57
  ;;^UTILITY(U,$J,358.3,18290,1,0)
  ;;=^358.31IA^4^2
  ;;^UTILITY(U,$J,358.3,18290,1,3,0)
- ;;=3^Osteopenia,Right Upper Arm
+ ;;=3^Triplet preg w two or more monochorionic fetuses, second tri
  ;;^UTILITY(U,$J,358.3,18290,1,4,0)
- ;;=4^M85.821
+ ;;=4^O30.112
  ;;^UTILITY(U,$J,358.3,18290,2)
- ;;=^5014477
+ ;;=^5016456
  ;;^UTILITY(U,$J,358.3,18291,0)
- ;;=M85.80^^65^775^100
+ ;;=O30.113^^62^739^58
  ;;^UTILITY(U,$J,358.3,18291,1,0)
  ;;=^358.31IA^4^2
  ;;^UTILITY(U,$J,358.3,18291,1,3,0)
- ;;=3^Osteopenia,Unspec Site
+ ;;=3^Triplet preg w two or more monochorionic fetuses, third tri
  ;;^UTILITY(U,$J,358.3,18291,1,4,0)
- ;;=4^M85.80
+ ;;=4^O30.113
  ;;^UTILITY(U,$J,358.3,18291,2)
- ;;=^5014473
+ ;;=^5016457
  ;;^UTILITY(U,$J,358.3,18292,0)
- ;;=G56.03^^65^775^11
+ ;;=O30.121^^62^739^53
  ;;^UTILITY(U,$J,358.3,18292,1,0)
  ;;=^358.31IA^4^2
  ;;^UTILITY(U,$J,358.3,18292,1,3,0)
- ;;=3^Carpal Tunnel Syndrome,Bilat Upper Limbs
+ ;;=3^Triplet preg w two or more monoamnio fetuses, first tri
  ;;^UTILITY(U,$J,358.3,18292,1,4,0)
- ;;=4^G56.03
+ ;;=4^O30.121
  ;;^UTILITY(U,$J,358.3,18292,2)
- ;;=^5138452
+ ;;=^5016459
  ;;^UTILITY(U,$J,358.3,18293,0)
- ;;=M26.609^^65^775^188
+ ;;=O30.122^^62^739^54
  ;;^UTILITY(U,$J,358.3,18293,1,0)
  ;;=^358.31IA^4^2
  ;;^UTILITY(U,$J,358.3,18293,1,3,0)
- ;;=3^Temporomandibular Joint Disorder,Unspec
+ ;;=3^Triplet preg w two or more monoamnio fetuses, second tri
  ;;^UTILITY(U,$J,358.3,18293,1,4,0)
- ;;=4^M26.609
+ ;;=4^O30.122
  ;;^UTILITY(U,$J,358.3,18293,2)
- ;;=^5138795
+ ;;=^5016460
  ;;^UTILITY(U,$J,358.3,18294,0)
- ;;=M51.86^^65^775^56
+ ;;=O30.123^^62^739^55
  ;;^UTILITY(U,$J,358.3,18294,1,0)
  ;;=^358.31IA^4^2
  ;;^UTILITY(U,$J,358.3,18294,1,3,0)
- ;;=3^Intvrt Disc Disorder,Lumbar Region,Other
+ ;;=3^Triplet preg w two or more monoamnio fetuses, third tri
  ;;^UTILITY(U,$J,358.3,18294,1,4,0)
- ;;=4^M51.86
+ ;;=4^O30.123
  ;;^UTILITY(U,$J,358.3,18294,2)
- ;;=^5012261
+ ;;=^5016461
  ;;^UTILITY(U,$J,358.3,18295,0)
- ;;=M54.6^^65^775^121
+ ;;=O30.191^^62^739^59
  ;;^UTILITY(U,$J,358.3,18295,1,0)
  ;;=^358.31IA^4^2
  ;;^UTILITY(U,$J,358.3,18295,1,3,0)
- ;;=3^Pain in Thoracic Spine
+ ;;=3^Triplet preg, unable to dtrm num plcnta & amnio sacs, first tri
  ;;^UTILITY(U,$J,358.3,18295,1,4,0)
- ;;=4^M54.6
+ ;;=4^O30.191
  ;;^UTILITY(U,$J,358.3,18295,2)
- ;;=^272507
+ ;;=^5016463
  ;;^UTILITY(U,$J,358.3,18296,0)
- ;;=M72.2^^65^775^125
+ ;;=O30.192^^62^739^60
  ;;^UTILITY(U,$J,358.3,18296,1,0)
  ;;=^358.31IA^4^2
  ;;^UTILITY(U,$J,358.3,18296,1,3,0)
- ;;=3^Plantar Fascial Fibromatosis
+ ;;=3^Triplet preg, unable to dtrm num plcnta & amnio sacs, second tri
  ;;^UTILITY(U,$J,358.3,18296,1,4,0)
- ;;=4^M72.2
+ ;;=4^O30.192
  ;;^UTILITY(U,$J,358.3,18296,2)
- ;;=^272598
+ ;;=^5016464
  ;;^UTILITY(U,$J,358.3,18297,0)
- ;;=M20.42^^65^775^42
+ ;;=O30.193^^62^739^61
  ;;^UTILITY(U,$J,358.3,18297,1,0)
  ;;=^358.31IA^4^2
  ;;^UTILITY(U,$J,358.3,18297,1,3,0)
- ;;=3^Hammer Toe(s),Acquired,Left Foot
+ ;;=3^Triplet preg, unable to dtrm num plcnta & amnio sacs, third tri
  ;;^UTILITY(U,$J,358.3,18297,1,4,0)
- ;;=4^M20.42
+ ;;=4^O30.193
  ;;^UTILITY(U,$J,358.3,18297,2)
- ;;=^5011052
+ ;;=^5016465
  ;;^UTILITY(U,$J,358.3,18298,0)
- ;;=M20.41^^65^775^43
+ ;;=O30.201^^62^739^50
  ;;^UTILITY(U,$J,358.3,18298,1,0)
  ;;=^358.31IA^4^2
  ;;^UTILITY(U,$J,358.3,18298,1,3,0)
- ;;=3^Hammer Toe(s),Acquired,Right Foot
+ ;;=3^Quad preg, unsp num plcnta & amnio sacs, first trimester
  ;;^UTILITY(U,$J,358.3,18298,1,4,0)
- ;;=4^M20.41
+ ;;=4^O30.201
  ;;^UTILITY(U,$J,358.3,18298,2)
- ;;=^5011051
+ ;;=^5016467
  ;;^UTILITY(U,$J,358.3,18299,0)
- ;;=M48.061^^65^775^176
+ ;;=O30.202^^62^739^51
  ;;^UTILITY(U,$J,358.3,18299,1,0)
  ;;=^358.31IA^4^2
  ;;^UTILITY(U,$J,358.3,18299,1,3,0)
- ;;=3^Spinal Stenosis,Lumbar Region w/o Neurogenic Caludication
+ ;;=3^Quad preg, unsp num plcnta & amnio sacs, second trimester
  ;;^UTILITY(U,$J,358.3,18299,1,4,0)
- ;;=4^M48.061
+ ;;=4^O30.202
  ;;^UTILITY(U,$J,358.3,18299,2)
- ;;=^5151513
+ ;;=^5016468
  ;;^UTILITY(U,$J,358.3,18300,0)
- ;;=M48.062^^65^775^175
+ ;;=O30.203^^62^739^52
  ;;^UTILITY(U,$J,358.3,18300,1,0)
  ;;=^358.31IA^4^2
  ;;^UTILITY(U,$J,358.3,18300,1,3,0)
- ;;=3^Spinal Stenosis,Lumbar Region w/ Neurogenic Claudication
+ ;;=3^Quad preg, unsp num plcnta & amnio sacs, third trimester
  ;;^UTILITY(U,$J,358.3,18300,1,4,0)
- ;;=4^M48.062
+ ;;=4^O30.203
  ;;^UTILITY(U,$J,358.3,18300,2)
- ;;=^5151514
+ ;;=^5016469
  ;;^UTILITY(U,$J,358.3,18301,0)
- ;;=M79.10^^65^775^65
+ ;;=O30.211^^62^739^44
  ;;^UTILITY(U,$J,358.3,18301,1,0)
  ;;=^358.31IA^4^2
  ;;^UTILITY(U,$J,358.3,18301,1,3,0)
- ;;=3^Myalgia,Unspec Site
+ ;;=3^Quad preg w two or more monochorionic fetuses, first tri
  ;;^UTILITY(U,$J,358.3,18301,1,4,0)
- ;;=4^M79.10
+ ;;=4^O30.211
  ;;^UTILITY(U,$J,358.3,18301,2)
- ;;=^5157394
+ ;;=^5016470
  ;;^UTILITY(U,$J,358.3,18302,0)
- ;;=B02.0^^65^776^47
+ ;;=O30.212^^62^739^45
  ;;^UTILITY(U,$J,358.3,18302,1,0)
  ;;=^358.31IA^4^2
  ;;^UTILITY(U,$J,358.3,18302,1,3,0)
- ;;=3^Zoster Encephalitis
+ ;;=3^Quad preg w two or more monochorionic fetuses, second tri
  ;;^UTILITY(U,$J,358.3,18302,1,4,0)
- ;;=4^B02.0
+ ;;=4^O30.212
  ;;^UTILITY(U,$J,358.3,18302,2)
- ;;=^5000488
+ ;;=^5016471
  ;;^UTILITY(U,$J,358.3,18303,0)
- ;;=B02.29^^65^776^37
+ ;;=O30.213^^62^739^46
  ;;^UTILITY(U,$J,358.3,18303,1,0)
  ;;=^358.31IA^4^2
  ;;^UTILITY(U,$J,358.3,18303,1,3,0)
- ;;=3^Postherpetic Nervous System Involvement,Other
+ ;;=3^Quad preg w two or more monochorionic fetuses, third tri
  ;;^UTILITY(U,$J,358.3,18303,1,4,0)
- ;;=4^B02.29
+ ;;=4^O30.213
  ;;^UTILITY(U,$J,358.3,18303,2)
- ;;=^5000492
+ ;;=^5016472
  ;;^UTILITY(U,$J,358.3,18304,0)
- ;;=F03.90^^65^776^11
+ ;;=O30.221^^62^739^41
  ;;^UTILITY(U,$J,358.3,18304,1,0)
  ;;=^358.31IA^4^2
  ;;^UTILITY(U,$J,358.3,18304,1,3,0)
- ;;=3^Dementia w/o Behavioral Disturbance,Unspec
+ ;;=3^Quad preg w two or more monoamnio fetuses, first trimester
  ;;^UTILITY(U,$J,358.3,18304,1,4,0)
- ;;=4^F03.90
+ ;;=4^O30.221
  ;;^UTILITY(U,$J,358.3,18304,2)
- ;;=^5003050
+ ;;=^5016474
  ;;^UTILITY(U,$J,358.3,18305,0)
- ;;=F03.91^^65^776^10
+ ;;=O30.222^^62^739^42
  ;;^UTILITY(U,$J,358.3,18305,1,0)
  ;;=^358.31IA^4^2
  ;;^UTILITY(U,$J,358.3,18305,1,3,0)
- ;;=3^Dementia w/ Behavioral Disturbance,Unspec
+ ;;=3^Quad preg w two or more monoamnio fetuses, second trimester
  ;;^UTILITY(U,$J,358.3,18305,1,4,0)
- ;;=4^F03.91
+ ;;=4^O30.222
  ;;^UTILITY(U,$J,358.3,18305,2)
- ;;=^5133350
+ ;;=^5016475
  ;;^UTILITY(U,$J,358.3,18306,0)
- ;;=F01.50^^65^776^13
+ ;;=O30.223^^62^739^43
  ;;^UTILITY(U,$J,358.3,18306,1,0)
  ;;=^358.31IA^4^2
  ;;^UTILITY(U,$J,358.3,18306,1,3,0)
- ;;=3^Dementia,Vascular w/o Behavioral Disturbance
+ ;;=3^Quad preg w two or more monoamnio fetuses, third trimester
  ;;^UTILITY(U,$J,358.3,18306,1,4,0)
- ;;=4^F01.50
+ ;;=4^O30.223
  ;;^UTILITY(U,$J,358.3,18306,2)
- ;;=^5003046
+ ;;=^5016476
  ;;^UTILITY(U,$J,358.3,18307,0)
- ;;=F10.27^^65^776^12
+ ;;=O30.291^^62^739^47
  ;;^UTILITY(U,$J,358.3,18307,1,0)
  ;;=^358.31IA^4^2
  ;;^UTILITY(U,$J,358.3,18307,1,3,0)
- ;;=3^Dementia,Alcohol-Induced/Persist w/ Alcohol Dependence
+ ;;=3^Quad preg, unable to dtrm num plcnta & amnio sacs, 1st tri
  ;;^UTILITY(U,$J,358.3,18307,1,4,0)
- ;;=4^F10.27
+ ;;=4^O30.291
  ;;^UTILITY(U,$J,358.3,18307,2)
- ;;=^5003095
+ ;;=^5016478
  ;;^UTILITY(U,$J,358.3,18308,0)
- ;;=F06.1^^65^776^7
+ ;;=O30.292^^62^739^48
  ;;^UTILITY(U,$J,358.3,18308,1,0)
  ;;=^358.31IA^4^2
  ;;^UTILITY(U,$J,358.3,18308,1,3,0)
- ;;=3^Catatonic Disorder d/t Known Physiological Condition
+ ;;=3^Quad preg, unable to dtrm num plcnta & amnio sacs, 2nd tri
  ;;^UTILITY(U,$J,358.3,18308,1,4,0)
- ;;=4^F06.1
+ ;;=4^O30.292
  ;;^UTILITY(U,$J,358.3,18308,2)
- ;;=^5003054
+ ;;=^5016479
  ;;^UTILITY(U,$J,358.3,18309,0)
- ;;=F06.8^^65^776^22
+ ;;=O30.293^^62^739^49
  ;;^UTILITY(U,$J,358.3,18309,1,0)
  ;;=^358.31IA^4^2
  ;;^UTILITY(U,$J,358.3,18309,1,3,0)
- ;;=3^Mental Disorders d/t Known Physiological Condition,Other
+ ;;=3^Quad preg, unable to dtrm num plcnta & amnio sacs, 3rd tri
  ;;^UTILITY(U,$J,358.3,18309,1,4,0)
- ;;=4^F06.8
+ ;;=4^O30.293
  ;;^UTILITY(U,$J,358.3,18309,2)
- ;;=^5003062
+ ;;=^5016480
  ;;^UTILITY(U,$J,358.3,18310,0)
- ;;=F06.0^^65^776^38
+ ;;=O31.11X0^^62^739^22
  ;;^UTILITY(U,$J,358.3,18310,1,0)
  ;;=^358.31IA^4^2
  ;;^UTILITY(U,$J,358.3,18310,1,3,0)
- ;;=3^Psychotic Disorder w/ Hallucin d/t Known Physiol Condition
+ ;;=3^Cont post spont abort,1 fts or more,1st tri,unsp fts
  ;;^UTILITY(U,$J,358.3,18310,1,4,0)
- ;;=4^F06.0
+ ;;=4^O31.11X0
  ;;^UTILITY(U,$J,358.3,18310,2)
- ;;=^5003053
+ ;;=^5016537
  ;;^UTILITY(U,$J,358.3,18311,0)
- ;;=G44.209^^65^776^43
+ ;;=O31.11X1^^62^739^23
  ;;^UTILITY(U,$J,358.3,18311,1,0)
  ;;=^358.31IA^4^2
  ;;^UTILITY(U,$J,358.3,18311,1,3,0)
- ;;=3^Tension-Type Headache,Not Intractable,Unspec
+ ;;=3^Cont post spont abort,1 fts or more,1st tri,fts 1
  ;;^UTILITY(U,$J,358.3,18311,1,4,0)
- ;;=4^G44.209
+ ;;=4^O31.11X1
  ;;^UTILITY(U,$J,358.3,18311,2)
- ;;=^5003936
+ ;;=^5016538
  ;;^UTILITY(U,$J,358.3,18312,0)
- ;;=F09.^^65^776^21
+ ;;=O31.11X2^^62^739^24
  ;;^UTILITY(U,$J,358.3,18312,1,0)
  ;;=^358.31IA^4^2
  ;;^UTILITY(U,$J,358.3,18312,1,3,0)
- ;;=3^Mental Disorder d/t Known Physiological Condition,Unspec
+ ;;=3^Cont post spont abort,1 fts or more,1st tri,fts 2
  ;;^UTILITY(U,$J,358.3,18312,1,4,0)
- ;;=4^F09.
+ ;;=4^O31.11X2
  ;;^UTILITY(U,$J,358.3,18312,2)
- ;;=^5003067
+ ;;=^5016539
  ;;^UTILITY(U,$J,358.3,18313,0)
- ;;=F07.9^^65^776^36
+ ;;=O31.12X1^^62^739^28
  ;;^UTILITY(U,$J,358.3,18313,1,0)
  ;;=^358.31IA^4^2
  ;;^UTILITY(U,$J,358.3,18313,1,3,0)
- ;;=3^Personality & Behavrl Disorder d/t Known Physiol Cond,Unspec
+ ;;=3^Cont post spont abort,1 fts or more,2nd tri,fts 1
  ;;^UTILITY(U,$J,358.3,18313,1,4,0)
- ;;=4^F07.9
+ ;;=4^O31.12X1
  ;;^UTILITY(U,$J,358.3,18313,2)
- ;;=^5003066
+ ;;=^5016545
  ;;^UTILITY(U,$J,358.3,18314,0)
- ;;=G30.0^^65^776^1
+ ;;=O31.12X2^^62^739^29
  ;;^UTILITY(U,$J,358.3,18314,1,0)
  ;;=^358.31IA^4^2
  ;;^UTILITY(U,$J,358.3,18314,1,3,0)
- ;;=3^Alzheimer's Disease w/ Early Onset
+ ;;=3^Cont post spont abort,1 fts or more,2nd tri,fts 2
  ;;^UTILITY(U,$J,358.3,18314,1,4,0)
- ;;=4^G30.0
+ ;;=4^O31.12X2
  ;;^UTILITY(U,$J,358.3,18314,2)
- ;;=^5003805
+ ;;=^5016546
  ;;^UTILITY(U,$J,358.3,18315,0)
- ;;=G30.8^^65^776^3
+ ;;=O31.13X1^^62^739^33
  ;;^UTILITY(U,$J,358.3,18315,1,0)
  ;;=^358.31IA^4^2
  ;;^UTILITY(U,$J,358.3,18315,1,3,0)
- ;;=3^Alzheimer's Disease,Other
+ ;;=3^Cont post spont abort,1 fts or more,3rd tri,fts 1
  ;;^UTILITY(U,$J,358.3,18315,1,4,0)
- ;;=4^G30.8
+ ;;=4^O31.13X1
  ;;^UTILITY(U,$J,358.3,18315,2)
- ;;=^5003807
+ ;;=^5016552
  ;;^UTILITY(U,$J,358.3,18316,0)
- ;;=G30.1^^65^776^2
+ ;;=O31.13X2^^62^739^34
  ;;^UTILITY(U,$J,358.3,18316,1,0)
  ;;=^358.31IA^4^2
  ;;^UTILITY(U,$J,358.3,18316,1,3,0)
- ;;=3^Alzheimer's Disease w/ Late Onset
+ ;;=3^Cont post spont abort,1 fts or more,3rd tri,fts 2
  ;;^UTILITY(U,$J,358.3,18316,1,4,0)
- ;;=4^G30.1
+ ;;=4^O31.13X2
  ;;^UTILITY(U,$J,358.3,18316,2)
- ;;=^5003806
+ ;;=^5016553
  ;;^UTILITY(U,$J,358.3,18317,0)
- ;;=G30.9^^65^776^4
+ ;;=O31.11X3^^62^739^25
  ;;^UTILITY(U,$J,358.3,18317,1,0)
  ;;=^358.31IA^4^2
  ;;^UTILITY(U,$J,358.3,18317,1,3,0)
- ;;=3^Alzheimer's Disease,Unspec
+ ;;=3^Cont post spont abort,1 fts or more,1st tri,fts 3
  ;;^UTILITY(U,$J,358.3,18317,1,4,0)
- ;;=4^G30.9
+ ;;=4^O31.11X3
  ;;^UTILITY(U,$J,358.3,18317,2)
- ;;=^5003808
+ ;;=^5016540
  ;;^UTILITY(U,$J,358.3,18318,0)
- ;;=G21.4^^65^776^46
+ ;;=O31.12X3^^62^739^30
  ;;^UTILITY(U,$J,358.3,18318,1,0)
  ;;=^358.31IA^4^2
  ;;^UTILITY(U,$J,358.3,18318,1,3,0)
- ;;=3^Vascular Parkinsonism
+ ;;=3^Cont post spont abort,1 fts or more,2nd tri,fts 3
  ;;^UTILITY(U,$J,358.3,18318,1,4,0)
- ;;=4^G21.4
+ ;;=4^O31.12X3
  ;;^UTILITY(U,$J,358.3,18318,2)
- ;;=^5003776
+ ;;=^5016547
  ;;^UTILITY(U,$J,358.3,18319,0)
- ;;=G20.^^65^776^35
+ ;;=O31.13X3^^62^739^35
  ;;^UTILITY(U,$J,358.3,18319,1,0)
  ;;=^358.31IA^4^2
  ;;^UTILITY(U,$J,358.3,18319,1,3,0)
- ;;=3^Parkinson's Disease
+ ;;=3^Cont post spont abort,1 fts or more,3rd tri,fts 3
  ;;^UTILITY(U,$J,358.3,18319,1,4,0)
- ;;=4^G20.
+ ;;=4^O31.13X3
  ;;^UTILITY(U,$J,358.3,18319,2)
- ;;=^5003770
+ ;;=^5016554
  ;;^UTILITY(U,$J,358.3,18320,0)
- ;;=G25.0^^65^776^16
+ ;;=O31.11X4^^62^739^26
  ;;^UTILITY(U,$J,358.3,18320,1,0)
  ;;=^358.31IA^4^2
  ;;^UTILITY(U,$J,358.3,18320,1,3,0)
- ;;=3^Essential Tremor
+ ;;=3^Cont post spont abort,1 fts or more,1st tri,fts 4
  ;;^UTILITY(U,$J,358.3,18320,1,4,0)
- ;;=4^G25.0
+ ;;=4^O31.11X4
  ;;^UTILITY(U,$J,358.3,18320,2)
- ;;=^5003791
+ ;;=^5016541
  ;;^UTILITY(U,$J,358.3,18321,0)
- ;;=G25.2^^65^776^45
+ ;;=O31.12X4^^62^739^31
  ;;^UTILITY(U,$J,358.3,18321,1,0)
  ;;=^358.31IA^4^2
  ;;^UTILITY(U,$J,358.3,18321,1,3,0)
- ;;=3^Tremor,Other Spec Forms
+ ;;=3^Cont post spont abort,1 fts or more,2nd tri,fts 4
  ;;^UTILITY(U,$J,358.3,18321,1,4,0)
- ;;=4^G25.2
+ ;;=4^O31.12X4
  ;;^UTILITY(U,$J,358.3,18321,2)
- ;;=^5003793
+ ;;=^5016548
  ;;^UTILITY(U,$J,358.3,18322,0)
- ;;=G25.1^^65^776^44
+ ;;=O31.13X4^^62^739^36
  ;;^UTILITY(U,$J,358.3,18322,1,0)
  ;;=^358.31IA^4^2
  ;;^UTILITY(U,$J,358.3,18322,1,3,0)
- ;;=3^Tremor,Drug-Induced
+ ;;=3^Cont post spont abort,1 fts or more,3rd tri,fts 4
  ;;^UTILITY(U,$J,358.3,18322,1,4,0)
- ;;=4^G25.1
+ ;;=4^O31.13X4
  ;;^UTILITY(U,$J,358.3,18322,2)
- ;;=^5003792
+ ;;=^5016555
  ;;^UTILITY(U,$J,358.3,18323,0)
- ;;=G25.81^^65^776^39
+ ;;=O31.11X5^^62^739^27
  ;;^UTILITY(U,$J,358.3,18323,1,0)
  ;;=^358.31IA^4^2
  ;;^UTILITY(U,$J,358.3,18323,1,3,0)
- ;;=3^Restless Legs Syndrome
+ ;;=3^Cont post spont abort,1 fts or more,1st tri,fts 5
  ;;^UTILITY(U,$J,358.3,18323,1,4,0)
- ;;=4^G25.81
+ ;;=4^O31.11X5
  ;;^UTILITY(U,$J,358.3,18323,2)
- ;;=^5003801
+ ;;=^5016542
  ;;^UTILITY(U,$J,358.3,18324,0)
- ;;=G35.^^65^776^32
+ ;;=O31.12X5^^62^739^32
  ;;^UTILITY(U,$J,358.3,18324,1,0)
  ;;=^358.31IA^4^2
  ;;^UTILITY(U,$J,358.3,18324,1,3,0)
- ;;=3^Multiple Sclerosis
+ ;;=3^Cont post spont abort,1 fts or more,2nd tri,fts 5
  ;;^UTILITY(U,$J,358.3,18324,1,4,0)
- ;;=4^G35.
+ ;;=4^O31.12X5
  ;;^UTILITY(U,$J,358.3,18324,2)
- ;;=^79761
+ ;;=^5016549
  ;;^UTILITY(U,$J,358.3,18325,0)
- ;;=G40.901^^65^776^14
+ ;;=O31.13X5^^62^739^37
  ;;^UTILITY(U,$J,358.3,18325,1,0)
  ;;=^358.31IA^4^2
  ;;^UTILITY(U,$J,358.3,18325,1,3,0)
- ;;=3^Epilepsy,Not Intractable w/ Status Epilepticus,Unspec
+ ;;=3^Cont post spont abort,1 fts or more,3rd tri,fts 5
  ;;^UTILITY(U,$J,358.3,18325,1,4,0)
- ;;=4^G40.901
+ ;;=4^O31.13X5
  ;;^UTILITY(U,$J,358.3,18325,2)
- ;;=^5003864
+ ;;=^5016556
  ;;^UTILITY(U,$J,358.3,18326,0)
- ;;=G40.909^^65^776^15
+ ;;=O31.31X0^^62^739^4
  ;;^UTILITY(U,$J,358.3,18326,1,0)
  ;;=^358.31IA^4^2
  ;;^UTILITY(U,$J,358.3,18326,1,3,0)
- ;;=3^Epilepsy,Not Intractable w/o Status Epilepticus,Unspec
+ ;;=3^Cont post elctv fetl rdct 1 fts or more,1st tri,unsp fts
  ;;^UTILITY(U,$J,358.3,18326,1,4,0)
- ;;=4^G40.909
+ ;;=4^O31.31X0
  ;;^UTILITY(U,$J,358.3,18326,2)
- ;;=^5003865
+ ;;=^5016593
  ;;^UTILITY(U,$J,358.3,18327,0)
- ;;=G43.809^^65^776^29
+ ;;=O31.32X0^^62^739^5
  ;;^UTILITY(U,$J,358.3,18327,1,0)
  ;;=^358.31IA^4^2
  ;;^UTILITY(U,$J,358.3,18327,1,3,0)
- ;;=3^Migraine,Not Intractable w/o Status Migrainosus,Other
+ ;;=3^Cont post elctv fetl rdct 1 fts or more,2nd tri,unsp fts
  ;;^UTILITY(U,$J,358.3,18327,1,4,0)
- ;;=4^G43.809
+ ;;=4^O31.32X0
  ;;^UTILITY(U,$J,358.3,18327,2)
- ;;=^5003901
+ ;;=^5016600
  ;;^UTILITY(U,$J,358.3,18328,0)
- ;;=G43.B0^^65^776^31
+ ;;=O31.33X0^^62^739^6
  ;;^UTILITY(U,$J,358.3,18328,1,0)
  ;;=^358.31IA^4^2
  ;;^UTILITY(U,$J,358.3,18328,1,3,0)
- ;;=3^Migraine,Ophthalmoplegic Not Intractable
+ ;;=3^Cont post elctv fetl rdct 1 fts or more,3rd tri,unsp fts
  ;;^UTILITY(U,$J,358.3,18328,1,4,0)
- ;;=4^G43.B0
+ ;;=4^O31.33X0
  ;;^UTILITY(U,$J,358.3,18328,2)
- ;;=^5003914
+ ;;=^5016607
  ;;^UTILITY(U,$J,358.3,18329,0)
- ;;=G43.C0^^65^776^18
+ ;;=O31.31X1^^62^739^7
  ;;^UTILITY(U,$J,358.3,18329,1,0)
  ;;=^358.31IA^4^2
  ;;^UTILITY(U,$J,358.3,18329,1,3,0)
- ;;=3^Headache Syndromes,Periodic Not Intractable
+ ;;=3^Cont post elctv fetl rdct 1 fts or more,1st tri,fts 1
  ;;^UTILITY(U,$J,358.3,18329,1,4,0)
- ;;=4^G43.C0
+ ;;=4^O31.31X1
  ;;^UTILITY(U,$J,358.3,18329,2)
- ;;=^5003916
+ ;;=^5016594
  ;;^UTILITY(U,$J,358.3,18330,0)
- ;;=G43.A0^^65^776^9
+ ;;=O31.32X1^^62^739^8
  ;;^UTILITY(U,$J,358.3,18330,1,0)
  ;;=^358.31IA^4^2
  ;;^UTILITY(U,$J,358.3,18330,1,3,0)
- ;;=3^Cyclical Vomiting Not Intractable
+ ;;=3^Cont post elctv fetl rdct 1 fts or more,2nd tri,fts 1
  ;;^UTILITY(U,$J,358.3,18330,1,4,0)
- ;;=4^G43.A0
+ ;;=4^O31.32X1
  ;;^UTILITY(U,$J,358.3,18330,2)
- ;;=^5003912
+ ;;=^5016601
  ;;^UTILITY(U,$J,358.3,18331,0)
- ;;=G43.C1^^65^776^17
+ ;;=O31.33X1^^62^739^9
  ;;^UTILITY(U,$J,358.3,18331,1,0)
  ;;=^358.31IA^4^2
  ;;^UTILITY(U,$J,358.3,18331,1,3,0)
- ;;=3^Headache Syndromes,Periodic Intractable
+ ;;=3^Cont post elctv fetl rdct 1 fts or more,3rd tri,fts 1
  ;;^UTILITY(U,$J,358.3,18331,1,4,0)
- ;;=4^G43.C1
+ ;;=4^O31.33X1
  ;;^UTILITY(U,$J,358.3,18331,2)
- ;;=^5003917
+ ;;=^5016608
  ;;^UTILITY(U,$J,358.3,18332,0)
- ;;=G43.B1^^65^776^30
+ ;;=O31.31X2^^62^739^10
  ;;^UTILITY(U,$J,358.3,18332,1,0)
  ;;=^358.31IA^4^2
  ;;^UTILITY(U,$J,358.3,18332,1,3,0)
- ;;=3^Migraine,Ophthalmoplegic Intractable
+ ;;=3^Cont post elctv fetl rdct 1 fts or more,1st tri,fts 2
  ;;^UTILITY(U,$J,358.3,18332,1,4,0)
- ;;=4^G43.B1
+ ;;=4^O31.31X2
  ;;^UTILITY(U,$J,358.3,18332,2)
- ;;=^5003915
+ ;;=^5016595
  ;;^UTILITY(U,$J,358.3,18333,0)
- ;;=G43.A1^^65^776^8
+ ;;=O31.32X2^^62^739^11
  ;;^UTILITY(U,$J,358.3,18333,1,0)
  ;;=^358.31IA^4^2
  ;;^UTILITY(U,$J,358.3,18333,1,3,0)
- ;;=3^Cyclical Vomiting Intractable
+ ;;=3^Cont post elctv fetl rdct 1 fts or more,2nd tri,fts 2
  ;;^UTILITY(U,$J,358.3,18333,1,4,0)
- ;;=4^G43.A1
+ ;;=4^O31.32X2
  ;;^UTILITY(U,$J,358.3,18333,2)
- ;;=^5003913
+ ;;=^5016602
  ;;^UTILITY(U,$J,358.3,18334,0)
- ;;=G43.819^^65^776^26
+ ;;=O31.33X2^^62^739^12
  ;;^UTILITY(U,$J,358.3,18334,1,0)
  ;;=^358.31IA^4^2
  ;;^UTILITY(U,$J,358.3,18334,1,3,0)
- ;;=3^Migraine Intractable w/o Status Migrainosus,Other
+ ;;=3^Cont post elctv fetl rdct 1 fts or more,3rd tri,fts 2
  ;;^UTILITY(U,$J,358.3,18334,1,4,0)
- ;;=4^G43.819
+ ;;=4^O31.33X2
  ;;^UTILITY(U,$J,358.3,18334,2)
- ;;=^5003903
+ ;;=^5016609
  ;;^UTILITY(U,$J,358.3,18335,0)
- ;;=G43.909^^65^776^28
+ ;;=O31.31X3^^62^739^13
  ;;^UTILITY(U,$J,358.3,18335,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,18335,1,3,0)
- ;;=3^Migraine Not Intractable w/o Status Migrainosus,Unspec
- ;;^UTILITY(U,$J,358.3,18335,1,4,0)
- ;;=4^G43.909
- ;;^UTILITY(U,$J,358.3,18335,2)
- ;;=^5003909
- ;;^UTILITY(U,$J,358.3,18336,0)
- ;;=G43.919^^65^776^27
- ;;^UTILITY(U,$J,358.3,18336,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,18336,1,3,0)
- ;;=3^Migraine Intractable w/o Status Migrainosus,Unspec
- ;;^UTILITY(U,$J,358.3,18336,1,4,0)
- ;;=4^G43.919
- ;;^UTILITY(U,$J,358.3,18336,2)
- ;;=^5003911
- ;;^UTILITY(U,$J,358.3,18337,0)
- ;;=G51.0^^65^776^6
- ;;^UTILITY(U,$J,358.3,18337,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,18337,1,3,0)
- ;;=3^Bell's Palsy
- ;;^UTILITY(U,$J,358.3,18337,1,4,0)
- ;;=4^G51.0
- ;;^UTILITY(U,$J,358.3,18337,2)
- ;;=^13238
- ;;^UTILITY(U,$J,358.3,18338,0)
- ;;=G57.10^^65^776^23
- ;;^UTILITY(U,$J,358.3,18338,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,18338,1,3,0)
- ;;=3^Meralgia Paresthetica Lower Limb,Unspec
- ;;^UTILITY(U,$J,358.3,18338,1,4,0)
- ;;=4^G57.10
- ;;^UTILITY(U,$J,358.3,18338,2)
- ;;=^5004041
- ;;^UTILITY(U,$J,358.3,18339,0)
- ;;=G57.12^^65^776^24
- ;;^UTILITY(U,$J,358.3,18339,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,18339,1,3,0)
- ;;=3^Meralgia Paresthetica,Left Lower Limb
- ;;^UTILITY(U,$J,358.3,18339,1,4,0)
- ;;=4^G57.12
- ;;^UTILITY(U,$J,358.3,18339,2)
- ;;=^5004043
- ;;^UTILITY(U,$J,358.3,18340,0)
- ;;=G57.11^^65^776^25
- ;;^UTILITY(U,$J,358.3,18340,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,18340,1,3,0)
- ;;=3^Meralgia Paresthetica,Right Lower Limb
- ;;^UTILITY(U,$J,358.3,18340,1,4,0)
- ;;=4^G57.11
- ;;^UTILITY(U,$J,358.3,18340,2)
- ;;=^5004042
- ;;^UTILITY(U,$J,358.3,18341,0)
- ;;=G60.8^^65^776^33
- ;;^UTILITY(U,$J,358.3,18341,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,18341,1,3,0)
- ;;=3^Neuropathies,Oth Hereditary and Idiopathic
- ;;^UTILITY(U,$J,358.3,18341,1,4,0)
- ;;=4^G60.8
- ;;^UTILITY(U,$J,358.3,18341,2)
- ;;=^5004070
- ;;^UTILITY(U,$J,358.3,18342,0)
- ;;=G60.9^^65^776^34
- ;;^UTILITY(U,$J,358.3,18342,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,18342,1,3,0)
- ;;=3^Neuropathy,Hereditary and Idiopathic Unspec
- ;;^UTILITY(U,$J,358.3,18342,1,4,0)
- ;;=4^G60.9
- ;;^UTILITY(U,$J,358.3,18342,2)
- ;;=^5004071
- ;;^UTILITY(U,$J,358.3,18343,0)
- ;;=I69.959^^65^776^19
- ;;^UTILITY(U,$J,358.3,18343,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,18343,1,3,0)
- ;;=3^Hemplg/Hemprs d/t Cerebvasc Diz Aff Unspec Side
- ;;^UTILITY(U,$J,358.3,18343,1,4,0)
- ;;=4^I69.959
- ;;^UTILITY(U,$J,358.3,18343,2)
- ;;=^5007563
- ;;^UTILITY(U,$J,358.3,18344,0)
- ;;=I69.359^^65^776^20
- ;;^UTILITY(U,$J,358.3,18344,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,18344,1,3,0)
- ;;=3^Hemplg/Hemprs d/t Cerebvasc Infrc Aff Unspec Side
- ;;^UTILITY(U,$J,358.3,18344,1,4,0)
- ;;=4^I69.359
- ;;^UTILITY(U,$J,358.3,18344,2)
- ;;=^5007508
- ;;^UTILITY(U,$J,358.3,18345,0)
- ;;=S14.109S^^65^776^40
- ;;^UTILITY(U,$J,358.3,18345,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,18345,1,3,0)
- ;;=3^Sequela of Unspec Injury to Cervical Spinal Cord
- ;;^UTILITY(U,$J,358.3,18345,1,4,0)
- ;;=4^S14.109S
- ;;^UTILITY(U,$J,358.3,18345,2)
- ;;=^5134243
- ;;^UTILITY(U,$J,358.3,18346,0)
- ;;=S34.109S^^65^776^41
- ;;^UTILITY(U,$J,358.3,18346,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,18346,1,3,0)
- ;;=3^Sequela of Unspec Injury to Lumbar Spinal Cord
- ;;^UTILITY(U,$J,358.3,18346,1,4,0)
- ;;=4^S34.109S
- ;;^UTILITY(U,$J,358.3,18346,2)
- ;;=^5134570
- ;;^UTILITY(U,$J,358.3,18347,0)
- ;;=S24.109S^^65^776^42
- ;;^UTILITY(U,$J,358.3,18347,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,18347,1,3,0)
- ;;=3^Sequela of Unspec Injury to Thoracic Spinal Cord
- ;;^UTILITY(U,$J,358.3,18347,1,4,0)
- ;;=4^S24.109S
- ;;^UTILITY(U,$J,358.3,18347,2)
- ;;=^5134384
- ;;^UTILITY(U,$J,358.3,18348,0)
- ;;=I69.393^^65^776^5
- ;;^UTILITY(U,$J,358.3,18348,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,18348,1,3,0)
- ;;=3^Ataxia following Cerebral Infarction
- ;;^UTILITY(U,$J,358.3,18348,1,4,0)
- ;;=4^I69.393
- ;;^UTILITY(U,$J,358.3,18348,2)
- ;;=^5007518
- ;;^UTILITY(U,$J,358.3,18349,0)
- ;;=G89.0^^65^777^1
- ;;^UTILITY(U,$J,358.3,18349,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,18349,1,3,0)
- ;;=3^Central Pain Syndrome
- ;;^UTILITY(U,$J,358.3,18349,1,4,0)
- ;;=4^G89.0
- ;;^UTILITY(U,$J,358.3,18349,2)
- ;;=^334189
- ;;^UTILITY(U,$J,358.3,18350,0)
- ;;=G89.11^^65^777^11
- ;;^UTILITY(U,$J,358.3,18350,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,18350,1,3,0)
- ;;=3^Pain d/t Trauma,Acute
- ;;^UTILITY(U,$J,358.3,18350,1,4,0)
- ;;=4^G89.11
- ;;^UTILITY(U,$J,358.3,18350,2)
- ;;=^5004152
- ;;^UTILITY(U,$J,358.3,18351,0)
- ;;=G89.12^^65^777^15
- ;;^UTILITY(U,$J,358.3,18351,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,18351,1,3,0)
- ;;=3^Post-Thoracotomy Pain,Acute
- ;;^UTILITY(U,$J,358.3,18351,1,4,0)
- ;;=4^G89.12
- ;;^UTILITY(U,$J,358.3,18351,2)
- ;;=^5004153
- ;;^UTILITY(U,$J,358.3,18352,0)
- ;;=G89.18^^65^777^17
- ;;^UTILITY(U,$J,358.3,18352,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,18352,1,3,0)
- ;;=3^Postprocedural Pain,Oth Acute
- ;;^UTILITY(U,$J,358.3,18352,1,4,0)
- ;;=4^G89.18
- ;;^UTILITY(U,$J,358.3,18352,2)
- ;;=^5004154
- ;;^UTILITY(U,$J,358.3,18353,0)
- ;;=R52.^^65^777^13
- ;;^UTILITY(U,$J,358.3,18353,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,18353,1,3,0)
- ;;=3^Pain,Unspec
- ;;^UTILITY(U,$J,358.3,18353,1,4,0)
- ;;=4^R52.
- ;;^UTILITY(U,$J,358.3,18353,2)
- ;;=^5019514
- ;;^UTILITY(U,$J,358.3,18354,0)
- ;;=G89.21^^65^777^12
- ;;^UTILITY(U,$J,358.3,18354,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,18354,1,3,0)
- ;;=3^Pain d/t Trauma,Chronic
- ;;^UTILITY(U,$J,358.3,18354,1,4,0)
- ;;=4^G89.21
- ;;^UTILITY(U,$J,358.3,18354,2)
- ;;=^5004155
- ;;^UTILITY(U,$J,358.3,18355,0)
- ;;=G89.22^^65^777^16
- ;;^UTILITY(U,$J,358.3,18355,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,18355,1,3,0)
- ;;=3^Post-Thoracotomy Pain,Chronic
- ;;^UTILITY(U,$J,358.3,18355,1,4,0)
- ;;=4^G89.22
- ;;^UTILITY(U,$J,358.3,18355,2)
- ;;=^5004156
- ;;^UTILITY(U,$J,358.3,18356,0)
- ;;=G89.28^^65^777^18
- ;;^UTILITY(U,$J,358.3,18356,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,18356,1,3,0)
- ;;=3^Postprocedural Pain,Oth Chronic
- ;;^UTILITY(U,$J,358.3,18356,1,4,0)
- ;;=4^G89.28
- ;;^UTILITY(U,$J,358.3,18356,2)
- ;;=^5004157
- ;;^UTILITY(U,$J,358.3,18357,0)
- ;;=G89.3^^65^777^10

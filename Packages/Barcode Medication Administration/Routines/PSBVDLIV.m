@@ -1,5 +1,5 @@
 PSBVDLIV ;BIRMINGHAM/EFC-BCMA IV VIRTUAL DUE LIST ;03/06/16 3:06pm
- ;;3.0;BAR CODE MED ADMIN;**6,38,32,58,70,83**;Mar 2004;Build 89
+ ;;3.0;BAR CODE MED ADMIN;**6,38,32,58,70,83,106**;Mar 2004;Build 43
  ;Per VHA Directive 2004-038 (or future revisions regarding same), this routine should not be modified.
  ;
  ; Reference/IA
@@ -13,6 +13,7 @@ PSBVDLIV ;BIRMINGHAM/EFC-BCMA IV VIRTUAL DUE LIST ;03/06/16 3:06pm
  ;    - add 33rd piece to Results for Clinic ien ptr to file #44
  ;*83 - Clinic Orders should show up on VDL's when start order date
  ;      is Today now ignores the time portion of that field.
+ ;*106- add Hazardous to Handle & Dispose flags 36 & 37
  ;
 EN(DFN,PSBDT) ; Default Order List Return for Today
  ;
@@ -140,6 +141,8 @@ OK .S PSBSTRT=PSBOST ; Order Start Date/Time
  .;       piece 31 reserved by IVPB tab for injection flag
  .S $P(PSBREC,U,32)=$G(PSBCLORD)                 ;clinic name          *70
  .S $P(PSBREC,U,33)=$G(PSBCLIEN)                 ;clinic ien ptr       *70
+ .S $P(PSBREC,U,36)=$G(PSBHAZHN)  ;Hazardous to Handle    *106
+ .S $P(PSBREC,U,37)=$G(PSBHAZDS)  ;Hazardous to Dispose   *106
  .;
  .; Gather Dispense Drugs
  .D NOW^%DTC

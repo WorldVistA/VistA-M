@@ -1,116 +1,132 @@
-IBDEI0ZR ; ; 04-FEB-2020
- ;;3.0;IB ENCOUNTER FORM IMP/EXP;;FEB 04, 2020
+IBDEI0ZR ; ; 01-FEB-2022
+ ;;3.0;IB ENCOUNTER FORM IMP/EXP;;FEB 01, 2022
  Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,999) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
- ;;^UTILITY(U,$J,358.3,15952,1,3,0)
- ;;=3^Non-Pressure Chr Ulcer of Right Calf w/ Breakdown of Skin
- ;;^UTILITY(U,$J,358.3,15952,1,4,0)
- ;;=4^L97.211
- ;;^UTILITY(U,$J,358.3,15952,2)
- ;;=^5009500
- ;;^UTILITY(U,$J,358.3,15953,0)
- ;;=L97.212^^88^869^231
- ;;^UTILITY(U,$J,358.3,15953,1,0)
+ ;;^UTILITY(U,$J,358.3,16129,1,4,0)
+ ;;=4^J01.10
+ ;;^UTILITY(U,$J,358.3,16129,2)
+ ;;=^5008118
+ ;;^UTILITY(U,$J,358.3,16130,0)
+ ;;=J02.9^^61^767^7
+ ;;^UTILITY(U,$J,358.3,16130,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,15953,1,3,0)
- ;;=3^Non-Pressure Chr Ulcer of Right Calf w/ Fat Layer Exposed
- ;;^UTILITY(U,$J,358.3,15953,1,4,0)
- ;;=4^L97.212
- ;;^UTILITY(U,$J,358.3,15953,2)
- ;;=^5009501
- ;;^UTILITY(U,$J,358.3,15954,0)
- ;;=L97.213^^88^869^232
- ;;^UTILITY(U,$J,358.3,15954,1,0)
+ ;;^UTILITY(U,$J,358.3,16130,1,3,0)
+ ;;=3^Acute Pharyngitis,Unspec
+ ;;^UTILITY(U,$J,358.3,16130,1,4,0)
+ ;;=4^J02.9
+ ;;^UTILITY(U,$J,358.3,16130,2)
+ ;;=^5008130
+ ;;^UTILITY(U,$J,358.3,16131,0)
+ ;;=J03.91^^61^767^8
+ ;;^UTILITY(U,$J,358.3,16131,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,15954,1,3,0)
- ;;=3^Non-Pressure Chr Ulcer of Right Calf w/ Necrosis of Muscle
- ;;^UTILITY(U,$J,358.3,15954,1,4,0)
- ;;=4^L97.213
- ;;^UTILITY(U,$J,358.3,15954,2)
- ;;=^5009502
- ;;^UTILITY(U,$J,358.3,15955,0)
- ;;=L97.214^^88^869^233
- ;;^UTILITY(U,$J,358.3,15955,1,0)
+ ;;^UTILITY(U,$J,358.3,16131,1,3,0)
+ ;;=3^Acute Recurrent Tonsillitis,Unspec
+ ;;^UTILITY(U,$J,358.3,16131,1,4,0)
+ ;;=4^J03.91
+ ;;^UTILITY(U,$J,358.3,16131,2)
+ ;;=^5008136
+ ;;^UTILITY(U,$J,358.3,16132,0)
+ ;;=J04.0^^61^767^3
+ ;;^UTILITY(U,$J,358.3,16132,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,15955,1,3,0)
- ;;=3^Non-Pressure Chr Ulcer of Right Calf w/ Necrosis of Bone
- ;;^UTILITY(U,$J,358.3,15955,1,4,0)
- ;;=4^L97.214
- ;;^UTILITY(U,$J,358.3,15955,2)
- ;;=^5009503
- ;;^UTILITY(U,$J,358.3,15956,0)
- ;;=L97.219^^88^869^234
- ;;^UTILITY(U,$J,358.3,15956,1,0)
+ ;;^UTILITY(U,$J,358.3,16132,1,3,0)
+ ;;=3^Acute Laryngitis
+ ;;^UTILITY(U,$J,358.3,16132,1,4,0)
+ ;;=4^J04.0
+ ;;^UTILITY(U,$J,358.3,16132,2)
+ ;;=^5008137
+ ;;^UTILITY(U,$J,358.3,16133,0)
+ ;;=J06.0^^61^767^4
+ ;;^UTILITY(U,$J,358.3,16133,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,15956,1,3,0)
- ;;=3^Non-Pressure Chr Ulcer of Right Calf w/ Unspec Severity
- ;;^UTILITY(U,$J,358.3,15956,1,4,0)
- ;;=4^L97.219
- ;;^UTILITY(U,$J,358.3,15956,2)
- ;;=^5009504
- ;;^UTILITY(U,$J,358.3,15957,0)
- ;;=L97.221^^88^869^185
- ;;^UTILITY(U,$J,358.3,15957,1,0)
+ ;;^UTILITY(U,$J,358.3,16133,1,3,0)
+ ;;=3^Acute Laryngopharyngitis
+ ;;^UTILITY(U,$J,358.3,16133,1,4,0)
+ ;;=4^J06.0
+ ;;^UTILITY(U,$J,358.3,16133,2)
+ ;;=^269876
+ ;;^UTILITY(U,$J,358.3,16134,0)
+ ;;=J06.9^^61^767^9
+ ;;^UTILITY(U,$J,358.3,16134,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,15957,1,3,0)
- ;;=3^Non-Pressure Chr Ulcer of Left Calf w/ Breakdown of Skin
- ;;^UTILITY(U,$J,358.3,15957,1,4,0)
- ;;=4^L97.221
- ;;^UTILITY(U,$J,358.3,15957,2)
- ;;=^5009505
- ;;^UTILITY(U,$J,358.3,15958,0)
- ;;=L97.222^^88^869^186
- ;;^UTILITY(U,$J,358.3,15958,1,0)
+ ;;^UTILITY(U,$J,358.3,16134,1,3,0)
+ ;;=3^Acute Upper Respiratory Infection,Unspec
+ ;;^UTILITY(U,$J,358.3,16134,1,4,0)
+ ;;=4^J06.9
+ ;;^UTILITY(U,$J,358.3,16134,2)
+ ;;=^5008143
+ ;;^UTILITY(U,$J,358.3,16135,0)
+ ;;=J33.9^^61^767^19
+ ;;^UTILITY(U,$J,358.3,16135,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,15958,1,3,0)
- ;;=3^Non-Pressure Chr Ulcer of Left Calf w/ Fat Layer Exposed
- ;;^UTILITY(U,$J,358.3,15958,1,4,0)
- ;;=4^L97.222
- ;;^UTILITY(U,$J,358.3,15958,2)
- ;;=^5009506
- ;;^UTILITY(U,$J,358.3,15959,0)
- ;;=L97.223^^88^869^187
- ;;^UTILITY(U,$J,358.3,15959,1,0)
+ ;;^UTILITY(U,$J,358.3,16135,1,3,0)
+ ;;=3^Nasal Polyp,Unspec
+ ;;^UTILITY(U,$J,358.3,16135,1,4,0)
+ ;;=4^J33.9
+ ;;^UTILITY(U,$J,358.3,16135,2)
+ ;;=^5008208
+ ;;^UTILITY(U,$J,358.3,16136,0)
+ ;;=J32.0^^61^767^15
+ ;;^UTILITY(U,$J,358.3,16136,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,15959,1,3,0)
- ;;=3^Non-Pressure Chr Ulcer of Left Calf w/ Necrosis of Muscle
- ;;^UTILITY(U,$J,358.3,15959,1,4,0)
- ;;=4^L97.223
- ;;^UTILITY(U,$J,358.3,15959,2)
- ;;=^5009507
- ;;^UTILITY(U,$J,358.3,15960,0)
- ;;=L97.224^^88^869^188
- ;;^UTILITY(U,$J,358.3,15960,1,0)
+ ;;^UTILITY(U,$J,358.3,16136,1,3,0)
+ ;;=3^Chronic Maxillary Sinusitis
+ ;;^UTILITY(U,$J,358.3,16136,1,4,0)
+ ;;=4^J32.0
+ ;;^UTILITY(U,$J,358.3,16136,2)
+ ;;=^24407
+ ;;^UTILITY(U,$J,358.3,16137,0)
+ ;;=J32.1^^61^767^14
+ ;;^UTILITY(U,$J,358.3,16137,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,15960,1,3,0)
- ;;=3^Non-Pressure Chr Ulcer of Left Calf w/ Necrosis of Bone
- ;;^UTILITY(U,$J,358.3,15960,1,4,0)
- ;;=4^L97.224
- ;;^UTILITY(U,$J,358.3,15960,2)
- ;;=^5009508
- ;;^UTILITY(U,$J,358.3,15961,0)
- ;;=L97.229^^88^869^189
- ;;^UTILITY(U,$J,358.3,15961,1,0)
+ ;;^UTILITY(U,$J,358.3,16137,1,3,0)
+ ;;=3^Chronic Frontal Sinusitis
+ ;;^UTILITY(U,$J,358.3,16137,1,4,0)
+ ;;=4^J32.1
+ ;;^UTILITY(U,$J,358.3,16137,2)
+ ;;=^24380
+ ;;^UTILITY(U,$J,358.3,16138,0)
+ ;;=J32.9^^61^767^16
+ ;;^UTILITY(U,$J,358.3,16138,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,15961,1,3,0)
- ;;=3^Non-Pressure Chr Ulcer of Left Calf w/ Unspec Severity
- ;;^UTILITY(U,$J,358.3,15961,1,4,0)
- ;;=4^L97.229
- ;;^UTILITY(U,$J,358.3,15961,2)
- ;;=^5009509
- ;;^UTILITY(U,$J,358.3,15962,0)
- ;;=L97.311^^88^869^222
- ;;^UTILITY(U,$J,358.3,15962,1,0)
+ ;;^UTILITY(U,$J,358.3,16138,1,3,0)
+ ;;=3^Chronic Sinusitis,Unspec
+ ;;^UTILITY(U,$J,358.3,16138,1,4,0)
+ ;;=4^J32.9
+ ;;^UTILITY(U,$J,358.3,16138,2)
+ ;;=^5008207
+ ;;^UTILITY(U,$J,358.3,16139,0)
+ ;;=J30.9^^61^767^11
+ ;;^UTILITY(U,$J,358.3,16139,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,15962,1,3,0)
- ;;=3^Non-Pressure Chr Ulcer of Right Ankle w/ Breakdown of Skin
- ;;^UTILITY(U,$J,358.3,15962,1,4,0)
- ;;=4^L97.311
- ;;^UTILITY(U,$J,358.3,15962,2)
- ;;=^5009515
- ;;^UTILITY(U,$J,358.3,15963,0)
- ;;=L97.312^^88^869^223
- ;;^UTILITY(U,$J,358.3,15963,1,0)
+ ;;^UTILITY(U,$J,358.3,16139,1,3,0)
+ ;;=3^Allergic Rhinitis,Unspec
+ ;;^UTILITY(U,$J,358.3,16139,1,4,0)
+ ;;=4^J30.9
+ ;;^UTILITY(U,$J,358.3,16139,2)
+ ;;=^5008205
+ ;;^UTILITY(U,$J,358.3,16140,0)
+ ;;=J30.0^^61^767^24
+ ;;^UTILITY(U,$J,358.3,16140,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,15963,1,3,0)
- ;;=3^Non-Pressure Chr Ulcer of Right Ankle w/ Fat Layer Exposed
+ ;;^UTILITY(U,$J,358.3,16140,1,3,0)
+ ;;=3^Vasomotor Rhinitis
+ ;;^UTILITY(U,$J,358.3,16140,1,4,0)
+ ;;=4^J30.0
+ ;;^UTILITY(U,$J,358.3,16140,2)
+ ;;=^5008201
+ ;;^UTILITY(U,$J,358.3,16141,0)
+ ;;=K05.00^^61^767^2
+ ;;^UTILITY(U,$J,358.3,16141,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,16141,1,3,0)
+ ;;=3^Acute Gingivitis,Plaque Induced
+ ;;^UTILITY(U,$J,358.3,16141,1,4,0)
+ ;;=4^K05.00
+ ;;^UTILITY(U,$J,358.3,16141,2)
+ ;;=^334192
+ ;;^UTILITY(U,$J,358.3,16142,0)
+ ;;=R04.0^^61^767^17
+ ;;^UTILITY(U,$J,358.3,16142,1,0)
+ ;;=^358.31IA^4^2

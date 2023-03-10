@@ -1,688 +1,642 @@
-IBDEI09N ; ; 01-MAY-2020
- ;;3.0;IB ENCOUNTER FORM IMP/EXP;;MAY 01, 2020
+IBDEI09N ; ; 01-AUG-2022
+ ;;3.0;IB ENCOUNTER FORM IMP/EXP;;AUG 01, 2022
  Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,999) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
+ ;;^UTILITY(U,$J,358.3,23582,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,23582,1,3,0)
+ ;;=3^Coma Scale,Eyes Open,to Pain,Emger Dept
+ ;;^UTILITY(U,$J,358.3,23582,1,4,0)
+ ;;=4^R40.2122
+ ;;^UTILITY(U,$J,358.3,23582,2)
+ ;;=^5019362
+ ;;^UTILITY(U,$J,358.3,23583,0)
+ ;;=R40.2124^^71^932^31
+ ;;^UTILITY(U,$J,358.3,23583,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,23583,1,3,0)
+ ;;=3^Coma Scale,Eyes Open,to Pain,24+ Hrs
+ ;;^UTILITY(U,$J,358.3,23583,1,4,0)
+ ;;=4^R40.2124
+ ;;^UTILITY(U,$J,358.3,23583,2)
+ ;;=^5019364
+ ;;^UTILITY(U,$J,358.3,23584,0)
+ ;;=R40.2211^^71^932^17
+ ;;^UTILITY(U,$J,358.3,23584,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,23584,1,3,0)
+ ;;=3^Coma Scale,Best Verbal Response,None,in the Field
+ ;;^UTILITY(U,$J,358.3,23584,1,4,0)
+ ;;=4^R40.2211
+ ;;^UTILITY(U,$J,358.3,23584,2)
+ ;;=^5019376
+ ;;^UTILITY(U,$J,358.3,23585,0)
+ ;;=R40.2210^^71^932^16
+ ;;^UTILITY(U,$J,358.3,23585,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,23585,1,3,0)
+ ;;=3^Coma Scale,Best Verbal Response,None,Unspec Time
+ ;;^UTILITY(U,$J,358.3,23585,1,4,0)
+ ;;=4^R40.2210
+ ;;^UTILITY(U,$J,358.3,23585,2)
+ ;;=^5019375
+ ;;^UTILITY(U,$J,358.3,23586,0)
+ ;;=R40.2224^^71^932^18
+ ;;^UTILITY(U,$J,358.3,23586,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,23586,1,3,0)
+ ;;=3^Coma Scale,Best Verbal,Incomprehensible Words,24+ Hrs
+ ;;^UTILITY(U,$J,358.3,23586,1,4,0)
+ ;;=4^R40.2224
+ ;;^UTILITY(U,$J,358.3,23586,2)
+ ;;=^5019384
+ ;;^UTILITY(U,$J,358.3,23587,0)
+ ;;=R40.2223^^71^932^19
+ ;;^UTILITY(U,$J,358.3,23587,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,23587,1,3,0)
+ ;;=3^Coma Scale,Best Verbal,Incomprehensible Words,at Hospital Admission
+ ;;^UTILITY(U,$J,358.3,23587,1,4,0)
+ ;;=4^R40.2223
+ ;;^UTILITY(U,$J,358.3,23587,2)
+ ;;=^5019383
+ ;;^UTILITY(U,$J,358.3,23588,0)
+ ;;=R40.2222^^71^932^20
+ ;;^UTILITY(U,$J,358.3,23588,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,23588,1,3,0)
+ ;;=3^Coma Scale,Best Verbal,Incomprehensible Words,Emger Dept
+ ;;^UTILITY(U,$J,358.3,23588,1,4,0)
+ ;;=4^R40.2222
+ ;;^UTILITY(U,$J,358.3,23588,2)
+ ;;=^5019382
+ ;;^UTILITY(U,$J,358.3,23589,0)
+ ;;=R40.2221^^71^932^21
+ ;;^UTILITY(U,$J,358.3,23589,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,23589,1,3,0)
+ ;;=3^Coma Scale,Best Verbal,Incomprehensible Words,in the Field
+ ;;^UTILITY(U,$J,358.3,23589,1,4,0)
+ ;;=4^R40.2221
+ ;;^UTILITY(U,$J,358.3,23589,2)
+ ;;=^5019381
+ ;;^UTILITY(U,$J,358.3,23590,0)
+ ;;=R40.2220^^71^932^22
+ ;;^UTILITY(U,$J,358.3,23590,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,23590,1,3,0)
+ ;;=3^Coma Scale,Best Verbal,Incomprehensible Words,Unspec Time
+ ;;^UTILITY(U,$J,358.3,23590,1,4,0)
+ ;;=4^R40.2220
+ ;;^UTILITY(U,$J,358.3,23590,2)
+ ;;=^5019380
+ ;;^UTILITY(U,$J,358.3,23591,0)
+ ;;=R40.2214^^71^932^23
+ ;;^UTILITY(U,$J,358.3,23591,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,23591,1,3,0)
+ ;;=3^Coma Scale,Best Verbal,None,24+ Hrs
+ ;;^UTILITY(U,$J,358.3,23591,1,4,0)
+ ;;=4^R40.2214
+ ;;^UTILITY(U,$J,358.3,23591,2)
+ ;;=^5019379
+ ;;^UTILITY(U,$J,358.3,23592,0)
+ ;;=R40.2213^^71^932^25
+ ;;^UTILITY(U,$J,358.3,23592,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,23592,1,3,0)
+ ;;=3^Coma Scale,Best Verbal,None,at Hospital Admission
+ ;;^UTILITY(U,$J,358.3,23592,1,4,0)
+ ;;=4^R40.2213
+ ;;^UTILITY(U,$J,358.3,23592,2)
+ ;;=^5019378
+ ;;^UTILITY(U,$J,358.3,23593,0)
+ ;;=R40.2212^^71^932^24
+ ;;^UTILITY(U,$J,358.3,23593,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,23593,1,3,0)
+ ;;=3^Coma Scale,Best Verbal,None,Emger Dept
+ ;;^UTILITY(U,$J,358.3,23593,1,4,0)
+ ;;=4^R40.2212
+ ;;^UTILITY(U,$J,358.3,23593,2)
+ ;;=^5019377
+ ;;^UTILITY(U,$J,358.3,23594,0)
+ ;;=R40.2344^^71^932^6
+ ;;^UTILITY(U,$J,358.3,23594,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,23594,1,3,0)
+ ;;=3^Coma Scale,Best Motor Resp,Flexion Withdrawal,24+ Hrs
+ ;;^UTILITY(U,$J,358.3,23594,1,4,0)
+ ;;=4^R40.2344
+ ;;^UTILITY(U,$J,358.3,23594,2)
+ ;;=^5019419
+ ;;^UTILITY(U,$J,358.3,23595,0)
+ ;;=R40.2343^^71^932^7
+ ;;^UTILITY(U,$J,358.3,23595,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,23595,1,3,0)
+ ;;=3^Coma Scale,Best Motor Resp,Flexion Withdrawal,at Hospital Admission
+ ;;^UTILITY(U,$J,358.3,23595,1,4,0)
+ ;;=4^R40.2343
+ ;;^UTILITY(U,$J,358.3,23595,2)
+ ;;=^5019418
  ;;^UTILITY(U,$J,358.3,23596,0)
- ;;=Z89.122^^73^962^43
+ ;;=R40.2342^^71^932^8
  ;;^UTILITY(U,$J,358.3,23596,1,0)
  ;;=^358.31IA^4^2
  ;;^UTILITY(U,$J,358.3,23596,1,3,0)
- ;;=3^Acquired Absence of Wrist,Left
+ ;;=3^Coma Scale,Best Motor Resp,Flexion Withdrawal,Emger Dept
  ;;^UTILITY(U,$J,358.3,23596,1,4,0)
- ;;=4^Z89.122
+ ;;=4^R40.2342
  ;;^UTILITY(U,$J,358.3,23596,2)
- ;;=^5063541
+ ;;=^5019417
  ;;^UTILITY(U,$J,358.3,23597,0)
- ;;=Z90.2^^73^962^24
+ ;;=R40.2341^^71^932^9
  ;;^UTILITY(U,$J,358.3,23597,1,0)
  ;;=^358.31IA^4^2
  ;;^UTILITY(U,$J,358.3,23597,1,3,0)
- ;;=3^Acquired Absence of Lung (part of)
+ ;;=3^Coma Scale,Best Motor Resp,Flexion Withdrawal,in the Field
  ;;^UTILITY(U,$J,358.3,23597,1,4,0)
- ;;=4^Z90.2
+ ;;=4^R40.2341
  ;;^UTILITY(U,$J,358.3,23597,2)
- ;;=^5063585
+ ;;=^5019416
  ;;^UTILITY(U,$J,358.3,23598,0)
- ;;=Z90.79^^73^962^31
+ ;;=R40.2340^^71^932^10
  ;;^UTILITY(U,$J,358.3,23598,1,0)
  ;;=^358.31IA^4^2
  ;;^UTILITY(U,$J,358.3,23598,1,3,0)
- ;;=3^Acquired Absence of Prostate
+ ;;=3^Coma Scale,Best Motor Resp,Flexion Withdrawal,Unspec Time
  ;;^UTILITY(U,$J,358.3,23598,1,4,0)
- ;;=4^Z90.79
+ ;;=4^R40.2340
  ;;^UTILITY(U,$J,358.3,23598,2)
- ;;=^5063596
+ ;;=^5019415
  ;;^UTILITY(U,$J,358.3,23599,0)
- ;;=Z90.722^^73^962^27
+ ;;=R40.2324^^71^932^1
  ;;^UTILITY(U,$J,358.3,23599,1,0)
  ;;=^358.31IA^4^2
  ;;^UTILITY(U,$J,358.3,23599,1,3,0)
- ;;=3^Acquired Absence of Ovaries,Bilateral
+ ;;=3^Coma Scale,Best Motor Resp,Extension,24+ Hrs
  ;;^UTILITY(U,$J,358.3,23599,1,4,0)
- ;;=4^Z90.722
+ ;;=4^R40.2324
  ;;^UTILITY(U,$J,358.3,23599,2)
- ;;=^5063595
+ ;;=^5019409
  ;;^UTILITY(U,$J,358.3,23600,0)
- ;;=Z90.721^^73^962^28
+ ;;=R40.2323^^71^932^4
  ;;^UTILITY(U,$J,358.3,23600,1,0)
  ;;=^358.31IA^4^2
  ;;^UTILITY(U,$J,358.3,23600,1,3,0)
- ;;=3^Acquired Absence of Ovaries,Unilateral
+ ;;=3^Coma Scale,Best Motor Resp,Extension,at Hospital Admission
  ;;^UTILITY(U,$J,358.3,23600,1,4,0)
- ;;=4^Z90.721
+ ;;=4^R40.2323
  ;;^UTILITY(U,$J,358.3,23600,2)
- ;;=^5063594
+ ;;=^5019408
  ;;^UTILITY(U,$J,358.3,23601,0)
- ;;=Z90.411^^73^962^29
+ ;;=R40.2322^^71^932^2
  ;;^UTILITY(U,$J,358.3,23601,1,0)
  ;;=^358.31IA^4^2
  ;;^UTILITY(U,$J,358.3,23601,1,3,0)
- ;;=3^Acquired Absence of Pancreas,Partial
+ ;;=3^Coma Scale,Best Motor Resp,Extension,Emger Dept
  ;;^UTILITY(U,$J,358.3,23601,1,4,0)
- ;;=4^Z90.411
+ ;;=4^R40.2322
  ;;^UTILITY(U,$J,358.3,23601,2)
- ;;=^5063588
+ ;;=^5019407
  ;;^UTILITY(U,$J,358.3,23602,0)
- ;;=Z90.410^^73^962^30
+ ;;=R40.2321^^71^932^5
  ;;^UTILITY(U,$J,358.3,23602,1,0)
  ;;=^358.31IA^4^2
  ;;^UTILITY(U,$J,358.3,23602,1,3,0)
- ;;=3^Acquired Absence of Pancreas,Total
+ ;;=3^Coma Scale,Best Motor Resp,Extension,in the Field
  ;;^UTILITY(U,$J,358.3,23602,1,4,0)
- ;;=4^Z90.410
+ ;;=4^R40.2321
  ;;^UTILITY(U,$J,358.3,23602,2)
- ;;=^5063587
+ ;;=^5019406
  ;;^UTILITY(U,$J,358.3,23603,0)
- ;;=Z89.441^^73^962^2
+ ;;=R40.2320^^71^932^3
  ;;^UTILITY(U,$J,358.3,23603,1,0)
  ;;=^358.31IA^4^2
  ;;^UTILITY(U,$J,358.3,23603,1,3,0)
- ;;=3^Acquired Absence of Ankle,Right
+ ;;=3^Coma Scale,Best Motor Resp,Extension,Unspec Time
  ;;^UTILITY(U,$J,358.3,23603,1,4,0)
- ;;=4^Z89.441
+ ;;=4^R40.2320
  ;;^UTILITY(U,$J,358.3,23603,2)
- ;;=^5063563
+ ;;=^5019405
  ;;^UTILITY(U,$J,358.3,23604,0)
- ;;=Z90.11^^73^962^4
+ ;;=R40.2314^^71^932^11
  ;;^UTILITY(U,$J,358.3,23604,1,0)
  ;;=^358.31IA^4^2
  ;;^UTILITY(U,$J,358.3,23604,1,3,0)
- ;;=3^Acquired Absence of Breast & Nipple,Right
+ ;;=3^Coma Scale,Best Motor Resp,None,24+ Hrs
  ;;^UTILITY(U,$J,358.3,23604,1,4,0)
- ;;=4^Z90.11
+ ;;=4^R40.2314
  ;;^UTILITY(U,$J,358.3,23604,2)
- ;;=^5063582
+ ;;=^5019404
  ;;^UTILITY(U,$J,358.3,23605,0)
- ;;=Z89.021^^73^962^9
+ ;;=R40.2313^^71^932^14
  ;;^UTILITY(U,$J,358.3,23605,1,0)
  ;;=^358.31IA^4^2
  ;;^UTILITY(U,$J,358.3,23605,1,3,0)
- ;;=3^Acquired Absence of Finger(s),Right
+ ;;=3^Coma Scale,Best Motor Resp,None,at Hospital Admission
  ;;^UTILITY(U,$J,358.3,23605,1,4,0)
- ;;=4^Z89.021
+ ;;=4^R40.2313
  ;;^UTILITY(U,$J,358.3,23605,2)
- ;;=^5063534
+ ;;=^5019403
  ;;^UTILITY(U,$J,358.3,23606,0)
- ;;=Z89.431^^73^962^11
+ ;;=R40.2312^^71^932^12
  ;;^UTILITY(U,$J,358.3,23606,1,0)
  ;;=^358.31IA^4^2
  ;;^UTILITY(U,$J,358.3,23606,1,3,0)
- ;;=3^Acquired Absence of Foot,Right
+ ;;=3^Coma Scale,Best Motor Resp,None,Emerg Dept
  ;;^UTILITY(U,$J,358.3,23606,1,4,0)
- ;;=4^Z89.431
+ ;;=4^R40.2312
  ;;^UTILITY(U,$J,358.3,23606,2)
- ;;=^5063560
+ ;;=^5019402
  ;;^UTILITY(U,$J,358.3,23607,0)
- ;;=Z89.411^^73^962^13
+ ;;=R40.2311^^71^932^15
  ;;^UTILITY(U,$J,358.3,23607,1,0)
  ;;=^358.31IA^4^2
  ;;^UTILITY(U,$J,358.3,23607,1,3,0)
- ;;=3^Acquired Absence of Great Toe,Right
+ ;;=3^Coma Scale,Best Motor Resp,None,in the Field
  ;;^UTILITY(U,$J,358.3,23607,1,4,0)
- ;;=4^Z89.411
+ ;;=4^R40.2311
  ;;^UTILITY(U,$J,358.3,23607,2)
- ;;=^5063554
+ ;;=^5019401
  ;;^UTILITY(U,$J,358.3,23608,0)
- ;;=Z89.111^^73^962^15
+ ;;=R40.2310^^71^932^13
  ;;^UTILITY(U,$J,358.3,23608,1,0)
  ;;=^358.31IA^4^2
  ;;^UTILITY(U,$J,358.3,23608,1,3,0)
- ;;=3^Acquired Absence of Hand,Right
+ ;;=3^Coma Scale,Best Motor Resp,None,Unspec Time
  ;;^UTILITY(U,$J,358.3,23608,1,4,0)
- ;;=4^Z89.111
+ ;;=4^R40.2310
  ;;^UTILITY(U,$J,358.3,23608,2)
- ;;=^5063537
+ ;;=^5019400
  ;;^UTILITY(U,$J,358.3,23609,0)
- ;;=Z89.621^^73^962^17
+ ;;=R40.4^^71^932^38
  ;;^UTILITY(U,$J,358.3,23609,1,0)
  ;;=^358.31IA^4^2
  ;;^UTILITY(U,$J,358.3,23609,1,3,0)
- ;;=3^Acquired Absence of Hip Joint,Right
+ ;;=3^Transient Alteration of Awareness
  ;;^UTILITY(U,$J,358.3,23609,1,4,0)
- ;;=4^Z89.621
+ ;;=4^R40.4
  ;;^UTILITY(U,$J,358.3,23609,2)
- ;;=^5063575
+ ;;=^5019435
  ;;^UTILITY(U,$J,358.3,23610,0)
- ;;=Z89.611^^73^962^21
+ ;;=V00.811A^^71^933^50
  ;;^UTILITY(U,$J,358.3,23610,1,0)
  ;;=^358.31IA^4^2
  ;;^UTILITY(U,$J,358.3,23610,1,3,0)
- ;;=3^Acquired Absence of Leg Above Knee,Right
+ ;;=3^Fall from Moving Wheelchair (pwered),Init Encntr
  ;;^UTILITY(U,$J,358.3,23610,1,4,0)
- ;;=4^Z89.611
+ ;;=4^V00.811A
  ;;^UTILITY(U,$J,358.3,23610,2)
- ;;=^5063572
+ ;;=^5055937
  ;;^UTILITY(U,$J,358.3,23611,0)
- ;;=Z89.511^^73^962^23
+ ;;=V00.811D^^71^933^51
  ;;^UTILITY(U,$J,358.3,23611,1,0)
  ;;=^358.31IA^4^2
  ;;^UTILITY(U,$J,358.3,23611,1,3,0)
- ;;=3^Acquired Absence of Leg Below Knee,Right
+ ;;=3^Fall from Moving Wheelchair (pwered),Subs Encntr
  ;;^UTILITY(U,$J,358.3,23611,1,4,0)
- ;;=4^Z89.511
+ ;;=4^V00.811D
  ;;^UTILITY(U,$J,358.3,23611,2)
- ;;=^5063566
+ ;;=^5055938
  ;;^UTILITY(U,$J,358.3,23612,0)
- ;;=Z89.231^^73^962^33
+ ;;=V00.812A^^71^933^142
  ;;^UTILITY(U,$J,358.3,23612,1,0)
  ;;=^358.31IA^4^2
  ;;^UTILITY(U,$J,358.3,23612,1,3,0)
- ;;=3^Acquired Absence of Shoulder,Right
+ ;;=3^Wheelchair Colliding w/ Stationary Obj,Init Encntr
  ;;^UTILITY(U,$J,358.3,23612,1,4,0)
- ;;=4^Z89.231
+ ;;=4^V00.812A
  ;;^UTILITY(U,$J,358.3,23612,2)
- ;;=^5063551
+ ;;=^5055940
  ;;^UTILITY(U,$J,358.3,23613,0)
- ;;=Z89.011^^73^962^37
+ ;;=V00.812D^^71^933^143
  ;;^UTILITY(U,$J,358.3,23613,1,0)
  ;;=^358.31IA^4^2
  ;;^UTILITY(U,$J,358.3,23613,1,3,0)
- ;;=3^Acquired Absence of Thumb,Right
+ ;;=3^Wheelchair Colliding w/ Stationary Obj,Subs Encntr
  ;;^UTILITY(U,$J,358.3,23613,1,4,0)
- ;;=4^Z89.011
+ ;;=4^V00.812D
  ;;^UTILITY(U,$J,358.3,23613,2)
- ;;=^5063531
+ ;;=^5055941
  ;;^UTILITY(U,$J,358.3,23614,0)
- ;;=Z89.421^^73^962^26
+ ;;=V00.818A^^71^933^140
  ;;^UTILITY(U,$J,358.3,23614,1,0)
  ;;=^358.31IA^4^2
  ;;^UTILITY(U,$J,358.3,23614,1,3,0)
- ;;=3^Acquired Absence of Oth Toe(s),Right
+ ;;=3^Wheelchair Accident NEC,Init Encntr
  ;;^UTILITY(U,$J,358.3,23614,1,4,0)
- ;;=4^Z89.421
+ ;;=4^V00.818A
  ;;^UTILITY(U,$J,358.3,23614,2)
- ;;=^5063557
+ ;;=^5055943
  ;;^UTILITY(U,$J,358.3,23615,0)
- ;;=Z89.221^^73^962^39
+ ;;=V00.818D^^71^933^141
  ;;^UTILITY(U,$J,358.3,23615,1,0)
  ;;=^358.31IA^4^2
  ;;^UTILITY(U,$J,358.3,23615,1,3,0)
- ;;=3^Acquired Absence of Upper Limb Above Elbow,Right
+ ;;=3^Wheelchair Accident NEC,Subs Encntr
  ;;^UTILITY(U,$J,358.3,23615,1,4,0)
- ;;=4^Z89.221
+ ;;=4^V00.818D
  ;;^UTILITY(U,$J,358.3,23615,2)
- ;;=^5063548
+ ;;=^5055944
  ;;^UTILITY(U,$J,358.3,23616,0)
- ;;=Z89.211^^73^962^41
+ ;;=V00.831A^^71^933^48
  ;;^UTILITY(U,$J,358.3,23616,1,0)
  ;;=^358.31IA^4^2
  ;;^UTILITY(U,$J,358.3,23616,1,3,0)
- ;;=3^Acquired Absence of Upper Limb Below Elbow,Right
+ ;;=3^Fall from Mobility Scooter,Init Encntr
  ;;^UTILITY(U,$J,358.3,23616,1,4,0)
- ;;=4^Z89.211
+ ;;=4^V00.831A
  ;;^UTILITY(U,$J,358.3,23616,2)
- ;;=^5063545
+ ;;=^5055955
  ;;^UTILITY(U,$J,358.3,23617,0)
- ;;=Z89.121^^73^962^44
+ ;;=V00.831D^^71^933^49
  ;;^UTILITY(U,$J,358.3,23617,1,0)
  ;;=^358.31IA^4^2
  ;;^UTILITY(U,$J,358.3,23617,1,3,0)
- ;;=3^Acquired Absence of Wrist,Right
+ ;;=3^Fall from Mobility Scooter,Subs Encntr
  ;;^UTILITY(U,$J,358.3,23617,1,4,0)
- ;;=4^Z89.121
+ ;;=4^V00.831D
  ;;^UTILITY(U,$J,358.3,23617,2)
- ;;=^5063540
+ ;;=^5055956
  ;;^UTILITY(U,$J,358.3,23618,0)
- ;;=Z90.81^^73^962^34
+ ;;=V00.832A^^71^933^100
  ;;^UTILITY(U,$J,358.3,23618,1,0)
  ;;=^358.31IA^4^2
  ;;^UTILITY(U,$J,358.3,23618,1,3,0)
- ;;=3^Acquired Absence of Spleen
+ ;;=3^Mobility Scooter Colliding w/ Stationary Obj,Init Encntr
  ;;^UTILITY(U,$J,358.3,23618,1,4,0)
- ;;=4^Z90.81
+ ;;=4^V00.832A
  ;;^UTILITY(U,$J,358.3,23618,2)
- ;;=^5063597
+ ;;=^5055958
  ;;^UTILITY(U,$J,358.3,23619,0)
- ;;=Z90.3^^73^962^35
+ ;;=V00.832D^^71^933^101
  ;;^UTILITY(U,$J,358.3,23619,1,0)
  ;;=^358.31IA^4^2
  ;;^UTILITY(U,$J,358.3,23619,1,3,0)
- ;;=3^Acquired Absence of Stomach (part of)
+ ;;=3^Mobility Scooter Colliding w/ Stationary Obj,Subs Encntr
  ;;^UTILITY(U,$J,358.3,23619,1,4,0)
- ;;=4^Z90.3
+ ;;=4^V00.832D
  ;;^UTILITY(U,$J,358.3,23619,2)
- ;;=^5063586
+ ;;=^5055959
  ;;^UTILITY(U,$J,358.3,23620,0)
- ;;=Z91.5^^73^963^1
+ ;;=V00.838A^^71^933^98
  ;;^UTILITY(U,$J,358.3,23620,1,0)
  ;;=^358.31IA^4^2
  ;;^UTILITY(U,$J,358.3,23620,1,3,0)
- ;;=3^Personal Hx of Suicide Attempt(s)
+ ;;=3^Mobility Scooter Accident NEC,Init Encntr
  ;;^UTILITY(U,$J,358.3,23620,1,4,0)
- ;;=4^Z91.5
+ ;;=4^V00.838A
  ;;^UTILITY(U,$J,358.3,23620,2)
- ;;=^5063624
+ ;;=^5055961
  ;;^UTILITY(U,$J,358.3,23621,0)
- ;;=R45.851^^73^963^2
+ ;;=V00.838D^^71^933^99
  ;;^UTILITY(U,$J,358.3,23621,1,0)
  ;;=^358.31IA^4^2
  ;;^UTILITY(U,$J,358.3,23621,1,3,0)
- ;;=3^Suicidal Ideations
+ ;;=3^Mobility Scooter Accident NEC,Subs Encntr
  ;;^UTILITY(U,$J,358.3,23621,1,4,0)
- ;;=4^R45.851
+ ;;=4^V00.838D
  ;;^UTILITY(U,$J,358.3,23621,2)
- ;;=^5019474
+ ;;=^5055962
  ;;^UTILITY(U,$J,358.3,23622,0)
- ;;=T14.91XA^^73^963^3
+ ;;=V00.891A^^71^933^62
  ;;^UTILITY(U,$J,358.3,23622,1,0)
  ;;=^358.31IA^4^2
  ;;^UTILITY(U,$J,358.3,23622,1,3,0)
- ;;=3^Suicide Attempt,Initial Encntr
+ ;;=3^Fall from Pedestrian Conveyance,Init Encntr
  ;;^UTILITY(U,$J,358.3,23622,1,4,0)
- ;;=4^T14.91XA
+ ;;=4^V00.891A
  ;;^UTILITY(U,$J,358.3,23622,2)
- ;;=^5151779
+ ;;=^5055964
  ;;^UTILITY(U,$J,358.3,23623,0)
- ;;=T14.91XD^^73^963^4
+ ;;=V00.891D^^71^933^63
  ;;^UTILITY(U,$J,358.3,23623,1,0)
  ;;=^358.31IA^4^2
  ;;^UTILITY(U,$J,358.3,23623,1,3,0)
- ;;=3^Suicide Attempt,Subsequent Encntr
+ ;;=3^Fall from Pedestrian Conveyance,Subs Encntr
  ;;^UTILITY(U,$J,358.3,23623,1,4,0)
- ;;=4^T14.91XD
+ ;;=4^V00.891D
  ;;^UTILITY(U,$J,358.3,23623,2)
- ;;=^5151780
+ ;;=^5055965
  ;;^UTILITY(U,$J,358.3,23624,0)
- ;;=T14.91XS^^73^963^5
+ ;;=V00.892A^^71^933^108
  ;;^UTILITY(U,$J,358.3,23624,1,0)
  ;;=^358.31IA^4^2
  ;;^UTILITY(U,$J,358.3,23624,1,3,0)
- ;;=3^Suicide Attempt,Sequela
+ ;;=3^Pedestrian Conveyance Colliding w/ Stationary Obj,Init Encntr
  ;;^UTILITY(U,$J,358.3,23624,1,4,0)
- ;;=4^T14.91XS
+ ;;=4^V00.892A
  ;;^UTILITY(U,$J,358.3,23624,2)
- ;;=^5151781
+ ;;=^5055967
  ;;^UTILITY(U,$J,358.3,23625,0)
- ;;=N17.0^^73^964^3
+ ;;=V00.892D^^71^933^109
  ;;^UTILITY(U,$J,358.3,23625,1,0)
  ;;=^358.31IA^4^2
  ;;^UTILITY(U,$J,358.3,23625,1,3,0)
- ;;=3^Acute Kidney Failure w/ Tubular Necrosis
+ ;;=3^Pedestrian Conveyance Colliding w/ Stationary Obj,Subs Encntr
  ;;^UTILITY(U,$J,358.3,23625,1,4,0)
- ;;=4^N17.0
+ ;;=4^V00.892D
  ;;^UTILITY(U,$J,358.3,23625,2)
- ;;=^5015598
+ ;;=^5055968
  ;;^UTILITY(U,$J,358.3,23626,0)
- ;;=N17.1^^73^964^1
+ ;;=V00.898A^^71^933^106
  ;;^UTILITY(U,$J,358.3,23626,1,0)
  ;;=^358.31IA^4^2
  ;;^UTILITY(U,$J,358.3,23626,1,3,0)
- ;;=3^Acute Kidney Failure w/ Acute Cortical Necrosis
+ ;;=3^Pedestrian Conveyance Accident NEC,Init Encntr
  ;;^UTILITY(U,$J,358.3,23626,1,4,0)
- ;;=4^N17.1
+ ;;=4^V00.898A
  ;;^UTILITY(U,$J,358.3,23626,2)
- ;;=^5015599
+ ;;=^5055970
  ;;^UTILITY(U,$J,358.3,23627,0)
- ;;=N17.2^^73^964^2
+ ;;=V00.898D^^71^933^107
  ;;^UTILITY(U,$J,358.3,23627,1,0)
  ;;=^358.31IA^4^2
  ;;^UTILITY(U,$J,358.3,23627,1,3,0)
- ;;=3^Acute Kidney Failure w/ Medullary Necrosis
+ ;;=3^Pedestrian Conveyance Accident NEC,Subs Encntr
  ;;^UTILITY(U,$J,358.3,23627,1,4,0)
- ;;=4^N17.2
+ ;;=4^V00.898D
  ;;^UTILITY(U,$J,358.3,23627,2)
- ;;=^5015600
+ ;;=^5055971
  ;;^UTILITY(U,$J,358.3,23628,0)
- ;;=N17.8^^73^964^4
+ ;;=W00.0XXA^^71^933^84
  ;;^UTILITY(U,$J,358.3,23628,1,0)
  ;;=^358.31IA^4^2
  ;;^UTILITY(U,$J,358.3,23628,1,3,0)
- ;;=3^Acute Kidney Failure,Other
+ ;;=3^Fall on Same Level d/t Ice/Snow,Init Encntr
  ;;^UTILITY(U,$J,358.3,23628,1,4,0)
- ;;=4^N17.8
+ ;;=4^W00.0XXA
  ;;^UTILITY(U,$J,358.3,23628,2)
- ;;=^5015601
+ ;;=^5059510
  ;;^UTILITY(U,$J,358.3,23629,0)
- ;;=N17.9^^73^964^5
+ ;;=W00.0XXD^^71^933^85
  ;;^UTILITY(U,$J,358.3,23629,1,0)
  ;;=^358.31IA^4^2
  ;;^UTILITY(U,$J,358.3,23629,1,3,0)
- ;;=3^Acute Kidney Failure,Unspec
+ ;;=3^Fall on Same Level d/t Ice/Snow,Subs Encntr
  ;;^UTILITY(U,$J,358.3,23629,1,4,0)
- ;;=4^N17.9
+ ;;=4^W00.0XXD
  ;;^UTILITY(U,$J,358.3,23629,2)
- ;;=^338532
+ ;;=^5059511
  ;;^UTILITY(U,$J,358.3,23630,0)
- ;;=I20.0^^73^965^4
+ ;;=W00.1XXA^^71^933^64
  ;;^UTILITY(U,$J,358.3,23630,1,0)
  ;;=^358.31IA^4^2
  ;;^UTILITY(U,$J,358.3,23630,1,3,0)
- ;;=3^Unstable Angina
+ ;;=3^Fall from Stairs/Steps d/t Ice/Snow,Init Encntr
  ;;^UTILITY(U,$J,358.3,23630,1,4,0)
- ;;=4^I20.0
+ ;;=4^W00.1XXA
  ;;^UTILITY(U,$J,358.3,23630,2)
- ;;=^5007076
+ ;;=^5059513
  ;;^UTILITY(U,$J,358.3,23631,0)
- ;;=I20.1^^73^965^1
+ ;;=W00.1XXD^^71^933^65
  ;;^UTILITY(U,$J,358.3,23631,1,0)
  ;;=^358.31IA^4^2
  ;;^UTILITY(U,$J,358.3,23631,1,3,0)
- ;;=3^Angina Pectoris w/ Documented Spasm
+ ;;=3^Fall from Stairs/Steps d/t Ice/Snow,Subs Encntr
  ;;^UTILITY(U,$J,358.3,23631,1,4,0)
- ;;=4^I20.1
+ ;;=4^W00.1XXD
  ;;^UTILITY(U,$J,358.3,23631,2)
- ;;=^5007077
+ ;;=^5059514
  ;;^UTILITY(U,$J,358.3,23632,0)
- ;;=I20.8^^73^965^2
+ ;;=W00.2XXA^^71^933^58
  ;;^UTILITY(U,$J,358.3,23632,1,0)
  ;;=^358.31IA^4^2
  ;;^UTILITY(U,$J,358.3,23632,1,3,0)
- ;;=3^Angina Pectoris,Other Forms
+ ;;=3^Fall from One Level to Another d/t Ice/Snow,Init Encntr
  ;;^UTILITY(U,$J,358.3,23632,1,4,0)
- ;;=4^I20.8
+ ;;=4^W00.2XXA
  ;;^UTILITY(U,$J,358.3,23632,2)
- ;;=^5007078
+ ;;=^5059516
  ;;^UTILITY(U,$J,358.3,23633,0)
- ;;=I20.9^^73^965^3
+ ;;=W00.2XXD^^71^933^59
  ;;^UTILITY(U,$J,358.3,23633,1,0)
  ;;=^358.31IA^4^2
  ;;^UTILITY(U,$J,358.3,23633,1,3,0)
- ;;=3^Angina Pectoris,Unspec
+ ;;=3^Fall from One Level to Another d/t Ice/Snow,Subs Encntr
  ;;^UTILITY(U,$J,358.3,23633,1,4,0)
- ;;=4^I20.9
+ ;;=4^W00.2XXD
  ;;^UTILITY(U,$J,358.3,23633,2)
- ;;=^5007079
+ ;;=^5059517
  ;;^UTILITY(U,$J,358.3,23634,0)
- ;;=J40.^^73^966^17
+ ;;=W00.9XXA^^71^933^30
  ;;^UTILITY(U,$J,358.3,23634,1,0)
  ;;=^358.31IA^4^2
  ;;^UTILITY(U,$J,358.3,23634,1,3,0)
- ;;=3^Bronchitis
+ ;;=3^Fall d/t Ice/Snow,Unspec,Init Encntr
  ;;^UTILITY(U,$J,358.3,23634,1,4,0)
- ;;=4^J40.
+ ;;=4^W00.9XXA
  ;;^UTILITY(U,$J,358.3,23634,2)
- ;;=^17164
+ ;;=^5059519
  ;;^UTILITY(U,$J,358.3,23635,0)
- ;;=J41.0^^73^966^20
+ ;;=W00.9XXD^^71^933^31
  ;;^UTILITY(U,$J,358.3,23635,1,0)
  ;;=^358.31IA^4^2
  ;;^UTILITY(U,$J,358.3,23635,1,3,0)
- ;;=3^Bronchitis,Simple Chronic
+ ;;=3^Fall d/t Ice/Snow,Unspec,Subs Encntr
  ;;^UTILITY(U,$J,358.3,23635,1,4,0)
- ;;=4^J41.0
+ ;;=4^W00.9XXD
  ;;^UTILITY(U,$J,358.3,23635,2)
- ;;=^269946
+ ;;=^5059520
  ;;^UTILITY(U,$J,358.3,23636,0)
- ;;=J41.1^^73^966^19
+ ;;=W01.0XXA^^71^933^92
  ;;^UTILITY(U,$J,358.3,23636,1,0)
  ;;=^358.31IA^4^2
  ;;^UTILITY(U,$J,358.3,23636,1,3,0)
- ;;=3^Bronchitis,Mucopurulent Chronic
+ ;;=3^Fall,Same Level,From Slip/Trip w/o Strike Against Obj,Init Encntr
  ;;^UTILITY(U,$J,358.3,23636,1,4,0)
- ;;=4^J41.1
+ ;;=4^W01.0XXA
  ;;^UTILITY(U,$J,358.3,23636,2)
- ;;=^269949
+ ;;=^5059522
  ;;^UTILITY(U,$J,358.3,23637,0)
- ;;=J41.8^^73^966^18
+ ;;=W01.0XXD^^71^933^93
  ;;^UTILITY(U,$J,358.3,23637,1,0)
  ;;=^358.31IA^4^2
  ;;^UTILITY(U,$J,358.3,23637,1,3,0)
- ;;=3^Bronchitis,Mixed Simple & Mucopurulent Chronic
+ ;;=3^Fall,Same Level,From Slip/Trip w/o Strike Against Obj,Subs Encntr
  ;;^UTILITY(U,$J,358.3,23637,1,4,0)
- ;;=4^J41.8
+ ;;=4^W01.0XXD
  ;;^UTILITY(U,$J,358.3,23637,2)
- ;;=^5008233
+ ;;=^5059523
  ;;^UTILITY(U,$J,358.3,23638,0)
- ;;=J42.^^73^966^21
+ ;;=W03.XXXA^^71^933^90
  ;;^UTILITY(U,$J,358.3,23638,1,0)
  ;;=^358.31IA^4^2
  ;;^UTILITY(U,$J,358.3,23638,1,3,0)
- ;;=3^Bronchitis,Unspec Chronic
+ ;;=3^Fall,Same Level d/t Collision w/ Another Person,Init Encntr
  ;;^UTILITY(U,$J,358.3,23638,1,4,0)
- ;;=4^J42.
+ ;;=4^W03.XXXA
  ;;^UTILITY(U,$J,358.3,23638,2)
- ;;=^5008234
+ ;;=^5059544
  ;;^UTILITY(U,$J,358.3,23639,0)
- ;;=J43.0^^73^966^29
+ ;;=W03.XXXD^^71^933^91
  ;;^UTILITY(U,$J,358.3,23639,1,0)
  ;;=^358.31IA^4^2
  ;;^UTILITY(U,$J,358.3,23639,1,3,0)
- ;;=3^Emphysema,Pulmonary,Unilateral
+ ;;=3^Fall,Same Level d/t Collision w/ Another Person,Subs Encntr
  ;;^UTILITY(U,$J,358.3,23639,1,4,0)
- ;;=4^J43.0
+ ;;=4^W03.XXXD
  ;;^UTILITY(U,$J,358.3,23639,2)
- ;;=^5008235
+ ;;=^5059545
  ;;^UTILITY(U,$J,358.3,23640,0)
- ;;=J43.1^^73^966^28
+ ;;=W05.0XXA^^71^933^56
  ;;^UTILITY(U,$J,358.3,23640,1,0)
  ;;=^358.31IA^4^2
  ;;^UTILITY(U,$J,358.3,23640,1,3,0)
- ;;=3^Emphysema,Panlobular
+ ;;=3^Fall from Non-Moving Wheelchair,Init Encntr
  ;;^UTILITY(U,$J,358.3,23640,1,4,0)
- ;;=4^J43.1
+ ;;=4^W05.0XXA
  ;;^UTILITY(U,$J,358.3,23640,2)
- ;;=^5008236
+ ;;=^5059550
  ;;^UTILITY(U,$J,358.3,23641,0)
- ;;=J43.2^^73^966^26
+ ;;=W05.0XXD^^71^933^57
  ;;^UTILITY(U,$J,358.3,23641,1,0)
  ;;=^358.31IA^4^2
  ;;^UTILITY(U,$J,358.3,23641,1,3,0)
- ;;=3^Emphysema,Centrilobular
+ ;;=3^Fall from Non-Moving Wheelchair,Subs Encntr
  ;;^UTILITY(U,$J,358.3,23641,1,4,0)
- ;;=4^J43.2
+ ;;=4^W05.0XXD
  ;;^UTILITY(U,$J,358.3,23641,2)
- ;;=^5008237
+ ;;=^5059551
  ;;^UTILITY(U,$J,358.3,23642,0)
- ;;=J43.8^^73^966^27
+ ;;=W05.1XXA^^71^933^54
  ;;^UTILITY(U,$J,358.3,23642,1,0)
  ;;=^358.31IA^4^2
  ;;^UTILITY(U,$J,358.3,23642,1,3,0)
- ;;=3^Emphysema,Other
+ ;;=3^Fall from Non-Moving Non-Motorized Scooter,Init Encntr
  ;;^UTILITY(U,$J,358.3,23642,1,4,0)
- ;;=4^J43.8
+ ;;=4^W05.1XXA
  ;;^UTILITY(U,$J,358.3,23642,2)
- ;;=^87569
+ ;;=^5059553
  ;;^UTILITY(U,$J,358.3,23643,0)
- ;;=J43.9^^73^966^30
+ ;;=W05.1XXD^^71^933^55
  ;;^UTILITY(U,$J,358.3,23643,1,0)
  ;;=^358.31IA^4^2
  ;;^UTILITY(U,$J,358.3,23643,1,3,0)
- ;;=3^Emphysema,Unspec
+ ;;=3^Fall from Non-Moving Non-Motorized Scooter,Subs Encntr
  ;;^UTILITY(U,$J,358.3,23643,1,4,0)
- ;;=4^J43.9
+ ;;=4^W05.1XXD
  ;;^UTILITY(U,$J,358.3,23643,2)
- ;;=^5008238
+ ;;=^5059554
  ;;^UTILITY(U,$J,358.3,23644,0)
- ;;=J44.0^^73^966^23
+ ;;=W05.2XXA^^71^933^52
  ;;^UTILITY(U,$J,358.3,23644,1,0)
  ;;=^358.31IA^4^2
  ;;^UTILITY(U,$J,358.3,23644,1,3,0)
- ;;=3^COPD w/ (Acute) Lower Resp Infection
+ ;;=3^Fall from Non-Moving Motorized Scooter,Init Encntr
  ;;^UTILITY(U,$J,358.3,23644,1,4,0)
- ;;=4^J44.0
+ ;;=4^W05.2XXA
  ;;^UTILITY(U,$J,358.3,23644,2)
- ;;=^5008239
+ ;;=^5059556
  ;;^UTILITY(U,$J,358.3,23645,0)
- ;;=J45.20^^73^966^5
+ ;;=W05.2XXD^^71^933^53
  ;;^UTILITY(U,$J,358.3,23645,1,0)
  ;;=^358.31IA^4^2
  ;;^UTILITY(U,$J,358.3,23645,1,3,0)
- ;;=3^Asthma,Mild Intermittent,Uncompl
+ ;;=3^Fall from Non-Moving Motorized Scooter,Subs Encntr
  ;;^UTILITY(U,$J,358.3,23645,1,4,0)
- ;;=4^J45.20
+ ;;=4^W05.2XXD
  ;;^UTILITY(U,$J,358.3,23645,2)
- ;;=^5008242
- ;;^UTILITY(U,$J,358.3,23646,0)
- ;;=J45.21^^73^966^3
- ;;^UTILITY(U,$J,358.3,23646,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,23646,1,3,0)
- ;;=3^Asthma,Mild Intermittent w/ Acute Exacerbation
- ;;^UTILITY(U,$J,358.3,23646,1,4,0)
- ;;=4^J45.21
- ;;^UTILITY(U,$J,358.3,23646,2)
- ;;=^5008243
- ;;^UTILITY(U,$J,358.3,23647,0)
- ;;=J45.22^^73^966^4
- ;;^UTILITY(U,$J,358.3,23647,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,23647,1,3,0)
- ;;=3^Asthma,Mild Intermittent w/ Status Asthmaticus
- ;;^UTILITY(U,$J,358.3,23647,1,4,0)
- ;;=4^J45.22
- ;;^UTILITY(U,$J,358.3,23647,2)
- ;;=^5008244
- ;;^UTILITY(U,$J,358.3,23648,0)
- ;;=J45.31^^73^966^6
- ;;^UTILITY(U,$J,358.3,23648,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,23648,1,3,0)
- ;;=3^Asthma,Mild Persistent w/ Acute Exacerbation
- ;;^UTILITY(U,$J,358.3,23648,1,4,0)
- ;;=4^J45.31
- ;;^UTILITY(U,$J,358.3,23648,2)
- ;;=^5008246
- ;;^UTILITY(U,$J,358.3,23649,0)
- ;;=J45.32^^73^966^7
- ;;^UTILITY(U,$J,358.3,23649,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,23649,1,3,0)
- ;;=3^Asthma,Mild Persistent w/ Status Asthmaticus
- ;;^UTILITY(U,$J,358.3,23649,1,4,0)
- ;;=4^J45.32
- ;;^UTILITY(U,$J,358.3,23649,2)
- ;;=^5008247
- ;;^UTILITY(U,$J,358.3,23650,0)
- ;;=J45.40^^73^966^10
- ;;^UTILITY(U,$J,358.3,23650,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,23650,1,3,0)
- ;;=3^Asthma,Moderate Persistent,Uncomplicated
- ;;^UTILITY(U,$J,358.3,23650,1,4,0)
- ;;=4^J45.40
- ;;^UTILITY(U,$J,358.3,23650,2)
- ;;=^5008248
- ;;^UTILITY(U,$J,358.3,23651,0)
- ;;=J44.9^^73^966^24
- ;;^UTILITY(U,$J,358.3,23651,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,23651,1,3,0)
- ;;=3^COPD,Unspec
- ;;^UTILITY(U,$J,358.3,23651,1,4,0)
- ;;=4^J44.9
- ;;^UTILITY(U,$J,358.3,23651,2)
- ;;=^5008241
- ;;^UTILITY(U,$J,358.3,23652,0)
- ;;=J44.1^^73^966^22
- ;;^UTILITY(U,$J,358.3,23652,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,23652,1,3,0)
- ;;=3^COPD w/ Acute Exacerbation
- ;;^UTILITY(U,$J,358.3,23652,1,4,0)
- ;;=4^J44.1
- ;;^UTILITY(U,$J,358.3,23652,2)
- ;;=^5008240
- ;;^UTILITY(U,$J,358.3,23653,0)
- ;;=J47.0^^73^966^15
- ;;^UTILITY(U,$J,358.3,23653,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,23653,1,3,0)
- ;;=3^Bronchiectasis w/ Acute Lower Resp Infection
- ;;^UTILITY(U,$J,358.3,23653,1,4,0)
- ;;=4^J47.0
- ;;^UTILITY(U,$J,358.3,23653,2)
- ;;=^5008258
- ;;^UTILITY(U,$J,358.3,23654,0)
- ;;=J47.1^^73^966^14
- ;;^UTILITY(U,$J,358.3,23654,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,23654,1,3,0)
- ;;=3^Bronchiectasis w/ Acute Exacerbation
- ;;^UTILITY(U,$J,358.3,23654,1,4,0)
- ;;=4^J47.1
- ;;^UTILITY(U,$J,358.3,23654,2)
- ;;=^5008259
- ;;^UTILITY(U,$J,358.3,23655,0)
- ;;=J47.9^^73^966^16
- ;;^UTILITY(U,$J,358.3,23655,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,23655,1,3,0)
- ;;=3^Bronchiectasis,Uncomplicated
- ;;^UTILITY(U,$J,358.3,23655,1,4,0)
- ;;=4^J47.9
- ;;^UTILITY(U,$J,358.3,23655,2)
- ;;=^5008260
- ;;^UTILITY(U,$J,358.3,23656,0)
- ;;=J45.41^^73^966^8
- ;;^UTILITY(U,$J,358.3,23656,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,23656,1,3,0)
- ;;=3^Asthma,Moderate Persistent w/ Acute Exacerbation
- ;;^UTILITY(U,$J,358.3,23656,1,4,0)
- ;;=4^J45.41
- ;;^UTILITY(U,$J,358.3,23656,2)
- ;;=^5008249
- ;;^UTILITY(U,$J,358.3,23657,0)
- ;;=J45.42^^73^966^9
- ;;^UTILITY(U,$J,358.3,23657,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,23657,1,3,0)
- ;;=3^Asthma,Moderate Persistent w/ Status Asthmaticus
- ;;^UTILITY(U,$J,358.3,23657,1,4,0)
- ;;=4^J45.42
- ;;^UTILITY(U,$J,358.3,23657,2)
- ;;=^5008250
- ;;^UTILITY(U,$J,358.3,23658,0)
- ;;=J45.51^^73^966^12
- ;;^UTILITY(U,$J,358.3,23658,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,23658,1,3,0)
- ;;=3^Asthma,Severe Persistent w/ Acute Exacerbation
- ;;^UTILITY(U,$J,358.3,23658,1,4,0)
- ;;=4^J45.51
- ;;^UTILITY(U,$J,358.3,23658,2)
- ;;=^5008252
- ;;^UTILITY(U,$J,358.3,23659,0)
- ;;=J45.52^^73^966^13
- ;;^UTILITY(U,$J,358.3,23659,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,23659,1,3,0)
- ;;=3^Asthma,Severe Persistent w/ Status Asthmaticus
- ;;^UTILITY(U,$J,358.3,23659,1,4,0)
- ;;=4^J45.52
- ;;^UTILITY(U,$J,358.3,23659,2)
- ;;=^5008253
- ;;^UTILITY(U,$J,358.3,23660,0)
- ;;=J45.901^^73^966^1
- ;;^UTILITY(U,$J,358.3,23660,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,23660,1,3,0)
- ;;=3^Asthma w/ Acute Exacerbation,Unspec
- ;;^UTILITY(U,$J,358.3,23660,1,4,0)
- ;;=4^J45.901
- ;;^UTILITY(U,$J,358.3,23660,2)
- ;;=^5008254
- ;;^UTILITY(U,$J,358.3,23661,0)
- ;;=J45.902^^73^966^2
- ;;^UTILITY(U,$J,358.3,23661,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,23661,1,3,0)
- ;;=3^Asthma w/ Status Asthmaticus,Unspec
- ;;^UTILITY(U,$J,358.3,23661,1,4,0)
- ;;=4^J45.902
- ;;^UTILITY(U,$J,358.3,23661,2)
- ;;=^5008255
- ;;^UTILITY(U,$J,358.3,23662,0)
- ;;=J45.990^^73^966^31
- ;;^UTILITY(U,$J,358.3,23662,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,23662,1,3,0)
- ;;=3^Exercised Induced Bronchospasm
- ;;^UTILITY(U,$J,358.3,23662,1,4,0)
- ;;=4^J45.990
- ;;^UTILITY(U,$J,358.3,23662,2)
- ;;=^329926
- ;;^UTILITY(U,$J,358.3,23663,0)
- ;;=J45.998^^73^966^11
- ;;^UTILITY(U,$J,358.3,23663,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,23663,1,3,0)
- ;;=3^Asthma,Other
- ;;^UTILITY(U,$J,358.3,23663,1,4,0)
- ;;=4^J45.998
- ;;^UTILITY(U,$J,358.3,23663,2)
- ;;=^5008257
- ;;^UTILITY(U,$J,358.3,23664,0)
- ;;=J45.991^^73^966^25
- ;;^UTILITY(U,$J,358.3,23664,1,0)
- ;;=^358.31IA^4^2
+ ;;=^5059557

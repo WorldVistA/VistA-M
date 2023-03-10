@@ -1,5 +1,5 @@
 IBCBB1 ;ALB/AAS - CONTINUATION OF EDIT CHECK ROUTINE ;2-NOV-89
- ;;2.0;INTEGRATED BILLING;**27,52,80,93,106,51,151,148,153,137,232,280,155,320,343,349,363,371,395,384,432,447,488,554,577,592,608,623**;21-MAR-94;Build 70
+ ;;2.0;INTEGRATED BILLING;**27,52,80,93,106,51,151,148,153,137,232,280,155,320,343,349,363,371,395,384,432,447,488,554,577,592,608,623,641,665,702**;21-MAR-94;Build 53
  ;Per VA Directive 6402, this routine should not be modified.
  ;
  ; *** Begin IB*2.0*488 VD  (Issue 46 RBN)
@@ -53,6 +53,8 @@ IBCBB1 ;ALB/AAS - CONTINUATION OF EDIT CHECK ROUTINE ;2-NOV-89
  ;Total Charges
  ; IB*2.0*447/TAZ Removed this error so that zero dollar revenue codes can process on the 837
  ;I +IBTC'>0!(+IBTC'=IBTC) S IBER=IBER_"IB064;"
+ ; IB*2.0*641 v9/WCJ added back so $0 claims won't go out
+ I +IBTC'>0 S IBER=IBER_"IB064;"
  ;
  ;Billable charges for secondary claim
  I $$MCRONBIL^IBEFUNC(IBIFN)&(($P(IBNDU1,U,1)-$P(IBNDU1,U,2))'>0) S IBER=IBER_"IB094;"
@@ -247,7 +249,8 @@ IBCBB1 ;ALB/AAS - CONTINUATION OF EDIT CHECK ROUTINE ;2-NOV-89
  I $$IBMICN^IBCBB13(IBIFN) S IBER=IBER_"IB346;"
  ;
  ;Test for a ZERO charge amounts. IB*2.0*447 BI
- I $$IBRCCHK^IBCBB13(IBIFN) D WARN^IBCBB11("Claim contains revenue codes with no associated charges.")
+ ;no use looking for a warning when you already flagged a fatal edit for a similar issue;WCJ;IB*2.0*641 v9;added check for IB064
+ I IBER'["IB064;",$$IBRCCHK^IBCBB13(IBIFN) D WARN^IBCBB11("Claim contains revenue codes with no associated charges.")
  ;
  ;Test for missing "Patient reason for visit". IB*2.0*447 BI
  I $$FT^IBCEF(IBIFN)=3,'$$INPAT^IBCEF(IBIFN),$$IBPRV3^IBCBB13(IBIFN) S IBER=IBER_"IB347;"
@@ -258,7 +261,49 @@ IBCBB1 ;ALB/AAS - CONTINUATION OF EDIT CHECK ROUTINE ;2-NOV-89
  I $$IBMPID^IBCBB13(IBIFN) D WARN^IBCBB11("Not all payers have Payer IDs.")
  ;
  ;Test for missing "Priority (Type) of Admission" for UB-04. IB*2.0*447 BI
- I $$FT^IBCEF(IBIFN)=3,$$GET1^DIQ(399,IBIFN_",",158)="" S IBER=IBER_"IB349;"
+ ;IB*2.0*665v1;JWS;Institutional Claims - prevent > 24 codes to be entered
+ I $$FT^IBCEF(IBIFN)=3 D
+ . I $$GET1^DIQ(399,IBIFN_",",158)="" S IBER=IBER_"IB349;"
+ . I '$$GET1^DIQ(399,IBIFN_",",27,"I") D
+ .. N X,I,IS
+ .. S (I,IS,X)=0 F  S X=$O(^DGCR(399,IBIFN,"OC",X)) Q:X'=+X  S:$P(^(X,0),"^",4)="" I=$G(I)+1 I $P(^(0),"^",4)'="" S IS=$G(IS)+1
+ .. ;IB*2.0*702;JWS;remove 665 fatal error for Occ Codes > 24, make it a warning
+ .. ;I I>24 S IBER=IBER_"IB383;" I '$$MCRWNR^IBEFUNC(+$$CURR^IBCEF2(IBIFN)) S IBER=IBER_"IB384;"
+ .. I I>24,'$$GET1^DIQ(399,IBIFN_",",27,"I") D
+ ... D WARN^IBCBB11("A HIPAA Compliant EDI Claim cannot contain more than 24 Occurrence Codes.")
+ ... ;;D WARN^IBCBB11("If this claim is sent electronically, only the first 24 Occurrence Codes will be submitted.")
+ .. ;IB*2.0*702;JWS;remove 665 fatal error for Occ Span Codes > 24, make it a warning
+ .. ;I IS>24 S IBER=IBER_"IB385;" I '$$MCRWNR^IBEFUNC(+$$CURR^IBCEF2(IBIFN)) S IBER=IBER_"IB386;"
+ .. I IS>24,'$$GET1^DIQ(399,IBIFN_",",27,"I") D
+ ... D WARN^IBCBB11("A HIPAA Compliant EDI Claim cannot contain more than 24 Occurrence Span"),WARN^IBCBB11("Codes.")
+ ... ;;D WARN^IBCBB11("If this claim is sent electronically, only the first 24 Occurrence Span Codes will be submitted.")
+ .. ;IB*2.0*702;JWS;remove 665 fatal error for Value Codes > 23, make it a warning
+ .. ;I $P($G(^DGCR(399,IBIFN,"CV",0)),U,4)>23 S IBER=IBER_"IB389;" I '$$MCRWNR^IBEFUNC(+$$CURR^IBCEF2(IBIFN)) S IBER=IBER_"IB390;"  ;IB*2.0*665v2
+ .. I $P($G(^DGCR(399,IBIFN,"CV",0)),U,4)>23,'$$GET1^DIQ(399,IBIFN_",",27,"I") D
+ ... D WARN^IBCBB11("A HIPAA Compliant EDI Claim cannot contain more than 23 Value Codes.")
+ ... ;;D WARN^IBCBB11("If this claim is sent electronically, only the first 23 Value Codes will be submitted.")
+ .. Q
+ ;IB*2.0*665v1;end
+ ;
+ ;IB*2.0*665v2; Inpatient Institutional Claims - prevent > 25 procedure codes electronically
+ I $$INPAT^IBCEF(IBIFN,1),$$INSPRF^IBCEF(IBIFN),'$$GET1^DIQ(399,IBIFN_",",27,"I") D
+ . N IBPROC,IBXIEN,Z
+ . S IBXIEN=IBIFN
+ . D PROCX^IBCVA1
+ . ;IB*2.0*702;JWS;remove 665 fatal error for Inpatient Institutional Procedure Codes > 25, make it a warning
+ . ;I $G(IBPROC)>25 S IBER=IBER_"IB387;" I '$$MCRWNR^IBEFUNC(+$$CURR^IBCEF2(IBIFN)) S IBER=IBER_"IB388;"
+ . I $G(IBPROC)>25,'$$GET1^DIQ(399,IBIFN_",",27,"I") D
+ .. D WARN^IBCBB11("A HIPAA Compliant EDI Institutional Claim cannot contain more than"),WARN^IBCBB11("25 Procedure Codes. If this claim is submitted electronically,")
+ .. D WARN^IBCBB11("only the first 25 Procedure Codes will be included on the claim.")
+ ;IB*2.0*665v2;end 
+ ;IB*2.0*702;end
+ ;
+ ;IB*2.0*702;JWS;remove 665 fatal error for Condition Codes > 24, make it a warning
+ ;IB*2.0*665v5;WCJ;prevent > 24 condition codes to be entered unless going to paper.
+ ;I $P($G(^DGCR(399,IBIFN,"CC",0)),U,4)>24,'$$GET1^DIQ(399,IBIFN_",",27,"I") S IBER=IBER_"IB391;" I '$$MCRWNR^IBEFUNC(+$$CURR^IBCEF2(IBIFN)) S IBER=IBER_"IB392;"  ;IB*2.0*665v5
+ I $P($G(^DGCR(399,IBIFN,"CC",0)),U,4)>24,'$$GET1^DIQ(399,IBIFN_",",27,"I") D
+ . D WARN^IBCBB11("A HIPAA Compliant EDI Claim cannot contain more than 24 Condition Codes.")
+ . ;;D WARN^IBCBB11("If this claim is sent electronically, only the first 24 Condition Codes will be submitted.")
  ;
  I $$FT^IBCEF(IBIFN)=2 S IBER=IBER_$$CMNCHK^IBCBB13(IBIFN)  ;JRA;IB*2.0*608 Check for missing CMN info
  ;

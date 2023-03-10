@@ -1,5 +1,5 @@
 XPDT ;SFISC/RSD - Transport a package ;02/12/2009
- ;;8.0;KERNEL;**2,10,28,41,44,51,58,66,68,85,100,108,393,511,539,547,672,713**;Jul 10, 1995;Build 15
+ ;;8.0;KERNEL;**2,10,28,41,44,51,58,66,68,85,100,108,393,511,539,547,672,713,738,750**;Jul 10, 1995;Build 6
  ;Per VHA Directive 2004-038, this routine should not be modified.
 EN ;build XTMP("XPDT",ien, XPDA=ien,XPDNM=name
  ;XPDT(seq #)=ien^name^1=use current transport global^required in multi-package^don't send PAH^Version#
@@ -92,8 +92,9 @@ DEV N FIL,DIR,IOP,X,Y,%ZIS W !
  ;if no file, then quit
  Q:Y=""  S FIL=Y
  S DIR(0)="F^3:200",DIR("A")="Header Comment",DIR("?")="Enter a comment between 3 and 200 characters.",DIR("B")=XPDH
- D ^DIR I $D(DIRUT) S POP=1 Q
- S XPDH=Y,%ZIS="",%ZIS("HFSNAME")=FIL,%ZIS("HFSMODE")="W",IOP="HFS",(XPDSIZ,XPDSIZA)=0,XPDSEQ=1
+ D ^DIR I $D(DTOUT)!$D(DUOUT) S POP=1 Q
+ S XPDH=Y
+ S %ZIS="",%ZIS("HFSNAME")=FIL,%ZIS("HFSMODE")="W",IOP="HFS",(XPDSIZ,XPDSIZA)=0,XPDSEQ=1
  D ^%ZIS I POP W !!,"**Incorrect Host File name**",!,$C(7) Q
  ;write date and comment header
  S XPDHD="KIDS Distribution saved on "_$$HTE^XLFDT($H)
@@ -205,10 +206,10 @@ PRET ;Pre-Transport Routine
  D @Y
  Q
  ;
-DISP ;display packages, RETURN: DIRUT  ;p713
+DISP ;display packages, RETURN: DIRUT  ;p713 ;p750
  N DIR,X,Y
- W !!,"ORDER    PACKAGE",?25,"VERSION #",!
- F XPDT=1:1:XPDT W ?2,XPDT,?9,$P(XPDT(XPDT),U,2),?28,$P(XPDT(XPDT),U,6) D  W !
+ W !!,"ORDER    PACKAGE",?45,"VERSION #",!
+ F XPDT=1:1:XPDT W ?2,XPDT,?9,$P(XPDT(XPDT),U,2),?47," ",$P(XPDT(XPDT),U,6) D  W !
  .W:$P(XPDT(XPDT),U,3) ?25,"       **will use current Transport Global**"
  .;check if New and single package, has Package File Link, Package App. History
  .I $P(XPDT(XPDT),U,2)["*"!'$$PAH(+XPDT(XPDT))!($P(XPDT(XPDT),U,5)) Q

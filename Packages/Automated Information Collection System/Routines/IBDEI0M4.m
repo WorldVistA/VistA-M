@@ -1,132 +1,126 @@
-IBDEI0M4 ; ; 04-FEB-2020
- ;;3.0;IB ENCOUNTER FORM IMP/EXP;;FEB 04, 2020
+IBDEI0M4 ; ; 01-FEB-2022
+ ;;3.0;IB ENCOUNTER FORM IMP/EXP;;FEB 01, 2022
  Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,999) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
- ;;^UTILITY(U,$J,358.3,9828,1,4,0)
- ;;=4^M54.30
- ;;^UTILITY(U,$J,358.3,9828,2)
- ;;=^5012305
- ;;^UTILITY(U,$J,358.3,9829,0)
- ;;=S22.39XA^^72^653^36
- ;;^UTILITY(U,$J,358.3,9829,1,0)
+ ;;^UTILITY(U,$J,358.3,9947,1,3,0)
+ ;;=3^Slipping/Tripping/Stumbling w/o Falling NEC,Init Encntr
+ ;;^UTILITY(U,$J,358.3,9947,1,4,0)
+ ;;=4^W18.49XA
+ ;;^UTILITY(U,$J,358.3,9947,2)
+ ;;=^5059830
+ ;;^UTILITY(U,$J,358.3,9948,0)
+ ;;=W18.49XD^^39^420^121
+ ;;^UTILITY(U,$J,358.3,9948,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,9829,1,3,0)
- ;;=3^Rib Fracture,One
- ;;^UTILITY(U,$J,358.3,9829,1,4,0)
- ;;=4^S22.39XA
- ;;^UTILITY(U,$J,358.3,9829,2)
- ;;=^5023117
- ;;^UTILITY(U,$J,358.3,9830,0)
- ;;=S22.49XA^^72^653^37
- ;;^UTILITY(U,$J,358.3,9830,1,0)
+ ;;^UTILITY(U,$J,358.3,9948,1,3,0)
+ ;;=3^Slipping/Tripping/Stumbling w/o Falling NEC,Subs Encntr
+ ;;^UTILITY(U,$J,358.3,9948,1,4,0)
+ ;;=4^W18.49XD
+ ;;^UTILITY(U,$J,358.3,9948,2)
+ ;;=^5059831
+ ;;^UTILITY(U,$J,358.3,9949,0)
+ ;;=W19.XXXA^^39^420^94
+ ;;^UTILITY(U,$J,358.3,9949,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,9830,1,3,0)
- ;;=3^Rib Fracture,Multiple
- ;;^UTILITY(U,$J,358.3,9830,1,4,0)
- ;;=4^S22.49XA
- ;;^UTILITY(U,$J,358.3,9830,2)
- ;;=^5023141
- ;;^UTILITY(U,$J,358.3,9831,0)
- ;;=S27.1XXA^^72^653^38
- ;;^UTILITY(U,$J,358.3,9831,1,0)
+ ;;^UTILITY(U,$J,358.3,9949,1,3,0)
+ ;;=3^Fall,Unspec,Init Encntr
+ ;;^UTILITY(U,$J,358.3,9949,1,4,0)
+ ;;=4^W19.XXXA
+ ;;^UTILITY(U,$J,358.3,9949,2)
+ ;;=^5059833
+ ;;^UTILITY(U,$J,358.3,9950,0)
+ ;;=W19.XXXD^^39^420^95
+ ;;^UTILITY(U,$J,358.3,9950,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,9831,1,3,0)
- ;;=3^Hemothorax,Traumatic
- ;;^UTILITY(U,$J,358.3,9831,1,4,0)
- ;;=4^S27.1XXA
- ;;^UTILITY(U,$J,358.3,9831,2)
- ;;=^5023585
- ;;^UTILITY(U,$J,358.3,9832,0)
- ;;=S20.319A^^72^653^39
- ;;^UTILITY(U,$J,358.3,9832,1,0)
+ ;;^UTILITY(U,$J,358.3,9950,1,3,0)
+ ;;=3^Fall,Unspec,Subs Encntr
+ ;;^UTILITY(U,$J,358.3,9950,1,4,0)
+ ;;=4^W19.XXXD
+ ;;^UTILITY(U,$J,358.3,9950,2)
+ ;;=^5059834
+ ;;^UTILITY(U,$J,358.3,9951,0)
+ ;;=W54.0XXA^^39^420^11
+ ;;^UTILITY(U,$J,358.3,9951,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,9832,1,3,0)
- ;;=3^Chest Abrasion
- ;;^UTILITY(U,$J,358.3,9832,1,4,0)
- ;;=4^S20.319A
- ;;^UTILITY(U,$J,358.3,9832,2)
- ;;=^5022505
- ;;^UTILITY(U,$J,358.3,9833,0)
- ;;=S30.811A^^72^653^42
- ;;^UTILITY(U,$J,358.3,9833,1,0)
+ ;;^UTILITY(U,$J,358.3,9951,1,3,0)
+ ;;=3^Bitten by Dog,Init Encntr
+ ;;^UTILITY(U,$J,358.3,9951,1,4,0)
+ ;;=4^W54.0XXA
+ ;;^UTILITY(U,$J,358.3,9951,2)
+ ;;=^5060256
+ ;;^UTILITY(U,$J,358.3,9952,0)
+ ;;=W54.0XXD^^39^420^12
+ ;;^UTILITY(U,$J,358.3,9952,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,9833,1,3,0)
- ;;=3^Abdominal Wall Abrasion
- ;;^UTILITY(U,$J,358.3,9833,1,4,0)
- ;;=4^S30.811A
- ;;^UTILITY(U,$J,358.3,9833,2)
- ;;=^5023831
- ;;^UTILITY(U,$J,358.3,9834,0)
- ;;=S30.1XXA^^72^653^43
- ;;^UTILITY(U,$J,358.3,9834,1,0)
+ ;;^UTILITY(U,$J,358.3,9952,1,3,0)
+ ;;=3^Bitten by Dog,Subs Encntr
+ ;;^UTILITY(U,$J,358.3,9952,1,4,0)
+ ;;=4^W54.0XXD
+ ;;^UTILITY(U,$J,358.3,9952,2)
+ ;;=^5060257
+ ;;^UTILITY(U,$J,358.3,9953,0)
+ ;;=W55.01XA^^39^420^9
+ ;;^UTILITY(U,$J,358.3,9953,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,9834,1,3,0)
- ;;=3^Abdominal Wall Contusion
- ;;^UTILITY(U,$J,358.3,9834,1,4,0)
- ;;=4^S30.1XXA
- ;;^UTILITY(U,$J,358.3,9834,2)
- ;;=^5023807
- ;;^UTILITY(U,$J,358.3,9835,0)
- ;;=M48.061^^72^653^34
- ;;^UTILITY(U,$J,358.3,9835,1,0)
+ ;;^UTILITY(U,$J,358.3,9953,1,3,0)
+ ;;=3^Bitten by Cat,Init Encntr
+ ;;^UTILITY(U,$J,358.3,9953,1,4,0)
+ ;;=4^W55.01XA
+ ;;^UTILITY(U,$J,358.3,9953,2)
+ ;;=^5060265
+ ;;^UTILITY(U,$J,358.3,9954,0)
+ ;;=W55.01XD^^39^420^10
+ ;;^UTILITY(U,$J,358.3,9954,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,9835,1,3,0)
- ;;=3^Spinal Stenosis,Lumbar Region w/o Neurogenic Claudication
- ;;^UTILITY(U,$J,358.3,9835,1,4,0)
- ;;=4^M48.061
- ;;^UTILITY(U,$J,358.3,9835,2)
- ;;=^5151513
- ;;^UTILITY(U,$J,358.3,9836,0)
- ;;=M48.062^^72^653^35
- ;;^UTILITY(U,$J,358.3,9836,1,0)
+ ;;^UTILITY(U,$J,358.3,9954,1,3,0)
+ ;;=3^Bitten by Cat,Subs Encntr
+ ;;^UTILITY(U,$J,358.3,9954,1,4,0)
+ ;;=4^W55.01XD
+ ;;^UTILITY(U,$J,358.3,9954,2)
+ ;;=^5060266
+ ;;^UTILITY(U,$J,358.3,9955,0)
+ ;;=W55.03XA^^39^420^110
+ ;;^UTILITY(U,$J,358.3,9955,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,9836,1,3,0)
- ;;=3^Spinal Stenosis,Lumbar Region w/ Neurogenic Claudication
- ;;^UTILITY(U,$J,358.3,9836,1,4,0)
- ;;=4^M48.062
- ;;^UTILITY(U,$J,358.3,9836,2)
- ;;=^5151514
- ;;^UTILITY(U,$J,358.3,9837,0)
- ;;=S20.211A^^72^653^40
- ;;^UTILITY(U,$J,358.3,9837,1,0)
+ ;;^UTILITY(U,$J,358.3,9955,1,3,0)
+ ;;=3^Scratched by Cat,Init Encntr
+ ;;^UTILITY(U,$J,358.3,9955,1,4,0)
+ ;;=4^W55.03XA
+ ;;^UTILITY(U,$J,358.3,9955,2)
+ ;;=^5060268
+ ;;^UTILITY(U,$J,358.3,9956,0)
+ ;;=W55.03XD^^39^420^111
+ ;;^UTILITY(U,$J,358.3,9956,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,9837,1,3,0)
- ;;=3^Chest Contusion,RT Side
- ;;^UTILITY(U,$J,358.3,9837,1,4,0)
- ;;=4^S20.211A
- ;;^UTILITY(U,$J,358.3,9837,2)
- ;;=^5022475
- ;;^UTILITY(U,$J,358.3,9838,0)
- ;;=S20.212A^^72^653^41
- ;;^UTILITY(U,$J,358.3,9838,1,0)
+ ;;^UTILITY(U,$J,358.3,9956,1,3,0)
+ ;;=3^Scratched by Cat,Subs Encntr
+ ;;^UTILITY(U,$J,358.3,9956,1,4,0)
+ ;;=4^W55.03XD
+ ;;^UTILITY(U,$J,358.3,9956,2)
+ ;;=^5060269
+ ;;^UTILITY(U,$J,358.3,9957,0)
+ ;;=X00.8XXA^^39^420^22
+ ;;^UTILITY(U,$J,358.3,9957,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,9838,1,3,0)
- ;;=3^Chest Contusion,LT Side
- ;;^UTILITY(U,$J,358.3,9838,1,4,0)
- ;;=4^S20.212A
- ;;^UTILITY(U,$J,358.3,9838,2)
- ;;=^5022478
- ;;^UTILITY(U,$J,358.3,9839,0)
- ;;=R51.^^72^654^1
- ;;^UTILITY(U,$J,358.3,9839,1,0)
+ ;;^UTILITY(U,$J,358.3,9957,1,3,0)
+ ;;=3^Exp to Uncontrolled Bldg Fire,Init Encntr
+ ;;^UTILITY(U,$J,358.3,9957,1,4,0)
+ ;;=4^X00.8XXA
+ ;;^UTILITY(U,$J,358.3,9957,2)
+ ;;=^5060679
+ ;;^UTILITY(U,$J,358.3,9958,0)
+ ;;=X00.8XXD^^39^420^23
+ ;;^UTILITY(U,$J,358.3,9958,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,9839,1,3,0)
- ;;=3^Headache
- ;;^UTILITY(U,$J,358.3,9839,1,4,0)
- ;;=4^R51.
- ;;^UTILITY(U,$J,358.3,9839,2)
- ;;=^5019513
- ;;^UTILITY(U,$J,358.3,9840,0)
- ;;=G43.901^^72^654^2
- ;;^UTILITY(U,$J,358.3,9840,1,0)
+ ;;^UTILITY(U,$J,358.3,9958,1,3,0)
+ ;;=3^Exp to Uncontrolled Bldg Fire,Subs Encntr
+ ;;^UTILITY(U,$J,358.3,9958,1,4,0)
+ ;;=4^X00.8XXD
+ ;;^UTILITY(U,$J,358.3,9958,2)
+ ;;=^5060680
+ ;;^UTILITY(U,$J,358.3,9959,0)
+ ;;=X32.XXXA^^39^420^20
+ ;;^UTILITY(U,$J,358.3,9959,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,9840,1,3,0)
- ;;=3^Migraine < 72 hrs,Not Intractable
- ;;^UTILITY(U,$J,358.3,9840,1,4,0)
- ;;=4^G43.901
- ;;^UTILITY(U,$J,358.3,9840,2)
- ;;=^5003908
- ;;^UTILITY(U,$J,358.3,9841,0)
- ;;=G43.001^^72^654^3
- ;;^UTILITY(U,$J,358.3,9841,1,0)
- ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,9959,1,3,0)
+ ;;=3^Exp to Sunlight,Init Encntr

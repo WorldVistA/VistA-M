@@ -1,5 +1,5 @@
 PSORXPR ;BHAM ISC/SAB - view individual prescription ;08/23/96  8:15 am
- ;;7.0;OUTPATIENT PHARMACY;**131,156,148,251,422**;DEC 1997;Build 132
+ ;;7.0;OUTPATIENT PHARMACY;**131,156,148,251,422,441**;DEC 1997;Build 208
  ;Reference to ^PS(55 supported by DBIA 2228
  ;Reference ^PSDRUG( supported by DBIA 221
  ;Reference to ^SC supported by DBIA 10040
@@ -31,7 +31,7 @@ DTT S DTT=$P(RX0,"^",13) D DAT W !?4,"ISSUED: ",DAT
  S PHYS=$S(+Y:$P(Y,"^",2),1:"UNKNOWN") W ?41,"PROVIDER: "_PHYS S DTT=$P(RX2,"^")\1
  I $P(R3,"^",3),+Y W !?41,"COSIGNER: "_$P(Y,"^",2)
  D DAT W !?4,"LOGGED: ",DAT,?43,"CLINIC: ",$S($D(^SC(+$P(RX0,"^",5),0)):$P(^(0),"^"),1:"NOT ON FILE")
- W !?3,"EXPIRES: ",PSEXDT,?41,"DIVISION: ",PSDIV,!?7,"CAP: ",$P("NON-^","^",$S($D(^PS(55,DFN,0)):+$P(^(0),"^",2),1:0)),"SAFETY",?42,"ROUTING: " S X=$F("MWI",$P(RX0,"^",11))-1 W:X $P("MAIL^WINDOW^INPATIENT","^",X)
+ W !?3,"EXPIRES: ",PSEXDT,?41,"DIVISION: ",PSDIV,!?7,"CAP: ",$P("NON-^","^",$S($D(^PS(55,DFN,0)):+$P(^(0),"^",2),1:0)),"SAFETY",?42,"ROUTING: " S X=$F("MWIP",$P(RX0,"^",11))-1 W:X $P("MAIL^WINDOW^INPATIENT^PARK","^",X) ;441 PAPI
  K DIC,X,Y S DIC="^VA(200,",DIC(0)="N,Z",X=+$P(RX0,"^",16) D ^DIC
  W !?2,"ENTRY BY: ",$S(+Y:$P(Y,"^",2),1:$P(RX0,"^",16))
  K DIC,X,Y S DIC="^VA(200,",DIC(0)="N,Z",X=+$P(RX2,"^",10) D ^DIC

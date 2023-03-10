@@ -1,10 +1,10 @@
 IBCNSJ51 ;ALB/TMP - INSURANCE PLAN MAINTENANCE ACTION PROCESSING  (continued); 15-AUG-95
- ;;2.0;INTEGRATED BILLING;**43,631**;21-MAR-94;Build 23
+ ;;2.0;INTEGRATED BILLING;**43,631,664**;21-MAR-94;Build 29
  ;;Per VA Directive 6402, this routine should not be modified.
  ;
 EDCOV ; Add/edit limitations of coverage for a plan in IBCPOL
  ;/IB*2.0*631/vd - Added the variables IBALL and OPTN (for US4555)
- N DIC,DIE,DR,DONE,DONE1,IB1,IBALL,IBCOV,IBCNT,IBEDT,IBOK,IBOUT,IBQUIT,IBTYP,OPTN,Z
+ N DIC,DIE,DR,DONE,DONE1,IB1,IBALL,IBCOV,IBCNT,IBEDT,IBEDT1,IBOK,IBOUT,IBQUIT,IBTYP,OPTN,Z
  G:'$G(IBCPOL) EDCOVEX
  D FULL^VALM1
  ;
@@ -16,8 +16,27 @@ EDCOV ; Add/edit limitations of coverage for a plan in IBCPOL
  .S DIR(0)="DO",DIR("A")="Select EFFECTIVE DATE",DIR("?")="^D COVDTH^IBCNSJ51" S:$D(IBEDT) DIR("B")=$$DAT1^IBOUTL(IBEDT)
  .D ^DIR W:$D(Y(0)) "  ",Y(0) K DIR
  .I $D(DIRUT) S DONE=1 Q
- .S IBEDT=Y\1,IBCNT=0
+ .;IB*2.0*664/TAZ - Initialize IBEDT1 to equal the selected Effective Date.
+ .S (IBEDT,IBEDT1)=Y\1,IBCNT=0
  .K IBTYP
+ .;IB*2.0*664/TAZ - Check for imprecise date and prompt for a precise date for filing.
+ .I '$$PRECISE(DT,IBEDT) D  I DONE S DONE=0 Q   ; Reset DONE to not Quit out totally on BAD DATES.
+ .. I $$EXISTS(IBCPOL,IBEDT) D  Q   ; Check to see if there are any categories for the selected policy and imprecise date.
+ ... S IBALL="ALL",DA=""
+ ... K IBTYP S IBTYP=0
+ ... F  S IBTYP=$O(^IBE(355.31,IBTYP)) Q:'IBTYP  D
+ .... I $D(^IBA(355.32,"APCD",+IBCPOL,IBTYP,-IBEDT)) S IBTYP(IBTYP)=""
+ ... D DELETE(IBALL,IBEDT,DA)  ; Check if the existing categories should be deleted for the imprecise date.
+ ... S DONE=1
+ ... Q
+ ..;
+ .. S DIR("A")="Enter a new precise EFFECTIVE DATE"
+ .. S DIR("A",1)="You have entered an imprecise date.  You must enter a precise date to"
+ .. S DIR("A",2)="edit/add a Coverage Limitation."
+ .. S DIR("A",4)=""
+ .. S DIR(0)="D^::EX"
+ .. D ^DIR K DIR I $D(DTOUT)!$D(DUOUT)!$D(DIRUT)!$D(DIROUT) S DONE=1 Q
+ .. S (IBEDT,IBEDT1)=Y\1
  .;
  .S DONE1=0
  .F  D  Q:DONE1!(OPTN<0)  ; Coverage category type selection
@@ -29,11 +48,10 @@ EDCOV ; Add/edit limitations of coverage for a plan in IBCPOL
  ..I $D(DUOUT)!$D(DTOUT) S DONE1=1 Q
  ..;
  ..S IBALL=Y        ;/IB*2.0*631 - vd - Preserving the 'Y' variable in the IBALL variable so it won't get stepped on.
- ..;/IB*2.0*631 - vd - Added some new prompting and deleting capabilities below, for US4555.
+ ..;/IB*2.0*631 - vd - Added some new prompting and deleting capabilities below.
  ..I IBALL="ALL" D
  ...S OPTN="E",IBTYP=0   ; Default OPTN to EDIT...if no categories exist for date...we just want to ADD. No need to ask 'Edit or Delete' question.
- ...F  S IBTYP=$O(^IBE(355.31,IBTYP)) Q:'IBTYP  D  Q:(OPTN="")
- ....I $D(^IBA(355.32,"APCD",+IBCPOL,IBTYP,-IBEDT)) S OPTN=""   ; Found a category with this date...so able to ask 'Edit or Delete' question.
+ ...I $$EXISTS(IBCPOL,IBEDT) S OPTN=""    ; Check to see if there are existing categories for the date entered.
  ...I OPTN="" S OPTN=$$ASK(0) Q:(OPTN<0)
  ..I IBALL'="" D  Q:$TR(IBCNT,"al","AL")'="ALL"
  ...I 'IBCNT,IBALL="ALL" D  Q
@@ -54,7 +72,8 @@ EDCOV ; Add/edit limitations of coverage for a plan in IBCPOL
  ..S IBTYP=""
  ..F  S IBTYP=$O(IBTYP(IBTYP)) Q:IBTYP=""  D  Q:DONE1!(OPTN<0)
  ...K ^TMP($J,"IBCAT")
- ...W !!,"Effective Date: ",$$DAT1^IBOUTL(IBEDT),"   Coverage Category: ",$P($G(^IBE(355.31,+IBTYP,0)),U)
+ ...;IB*2.0*664/TAZ - Display the proper date to be filed.
+ ...W !!,"Effective Date: ",$$DAT1^IBOUTL(IBEDT1),"   Coverage Category: ",$P($G(^IBE(355.31,+IBTYP,0)),U)
  ...S OPTN="",DA=$O(^IBA(355.32,"APCD",+IBCPOL,IBTYP,-IBEDT,""))
  ...;/IB*2.0*631 - vd - Added some new prompting and deleting capabilities below, for US4555.
  ...I 'DA S OPTN="E"
@@ -66,7 +85,8 @@ EDCOV ; Add/edit limitations of coverage for a plan in IBCPOL
  ....S DIR("A")="Is this OK",DIR("B")="YES" D ^DIR K DIR
  ....I Y'=1 S:$$QUIT() (DONE,DONE1)=1 Q
  ....K DO,DD
- ....S DIC="^IBA(355.32,",DIC(0)="L",X=IBCPOL,DIC("DR")=".02////"_IBTYP_";.03////"_IBEDT_";.04////1" D FILE^DICN
+ ....;IB*2.0*664/TAZ - File the proper (precise) date
+ ....S DIC="^IBA(355.32,",DIC(0)="L",X=IBCPOL,DIC("DR")=".02////"_IBTYP_";.03////"_IBEDT1_";.04////1" D FILE^DICN
  ....S DA=$S(Y>0:+Y,1:0)
  ....W:DA !,"New record added.",!
  ...;
@@ -185,3 +205,14 @@ DELETIT(DA) ; Delete a coverage category for a selected date.
  K DIK
  Q
  ;
+PRECISE(X1,X2) ;Check to make sure the date entered is a precise date.
+ N %Y
+ D ^%DTC
+ Q %Y
+ ;
+EXISTS(IBCPOL,IBEDT) ; Check to see if there are any categories for the selected policy and date.
+ N EXISTS,IBTYP
+ S (EXISTS,IBTYP)=0
+ F  S IBTYP=$O(^IBE(355.31,IBTYP)) Q:'IBTYP  D  Q:+EXISTS
+ .I $D(^IBA(355.32,"APCD",+IBCPOL,IBTYP,-IBEDT)) S EXISTS=1   ; Found a category with this date...so able to ask 'Edit or Delete' question.
+ Q EXISTS

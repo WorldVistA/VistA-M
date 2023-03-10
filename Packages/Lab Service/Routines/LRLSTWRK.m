@@ -1,5 +1,5 @@
 LRLSTWRK ;SLC/CJS/DALISC/DRH - BRIEF ACCESSION LIST ;2/19/91  10:44 ;
- ;;5.2;LAB SERVICE;**153,381**;Sep 27, 1994;Build 1
+ ;;5.2;LAB SERVICE;**153,381,536**;Sep 27, 1994;Build 18
 EN ;
  K ^TMP($J),LRTEST,LR,LRTSTS,LRAA
  D ADATE^LRWU3
@@ -51,9 +51,31 @@ L12 Q:'$D(^LRO(68,LRAA(LRAA),1,LRAD,1,LRAN,0))#2
  Q
 L13 S T(1)=$P(X,U,6),LRURG=+$P(X,U,2),LRURG=$S($D(LRURG(LRURG)):LRURG(LRURG),1:""),T(3)=$P(X,U,5),LRTS=+X
  I $G(LRURG)>49,'$P($G(LRPARAM),U,3) Q
+ ;LR*5.2*536 - additional logic for Microbiology
+ ;A Microbiology test may have a complete date/time in file 68 but the
+ ;[area] RPT DATE APPROVED field might be null - which means results are
+ ;not displaying in CPRS, and the accession is pending
+ I T(3),$P(^LRO(68,LRAA(LRAA),0),U,2)="MI" D MICRO
  S T(4)=$S(T(3):"done",$L(T(1)):"#"_$J(T(1),3),LRURG["STAT":"Spen",1:" pen"),LRSPEC=$S($D(^LRO(68,LRAA(LRAA),1,LRAD,1,LRAN,5,1,0)):+^(0),1:""),S4=$S($D(^LAB(60,LRTS,0)):$P(^(0),U,5),1:""),T4=T(4)
  D STORE I LREX S LRTEST=LRTS,LRTSTLM=100 D ^LREXPD S JJ=0 F  S JJ=$O(LRORD(JJ)) Q:JJ<1  S LRTS=LRORD(JJ),S4=$P(^LAB(60,LRTS,0),U,5) D STORE
- K JJ,LRORD,^TMP("LR",$J,"T") Q
+ K JJ,LRORD,^TMP("LR",$J,"T")
+ Q
+ ;
+MICRO ;further evaluation for Microbiology test
+ N LRDFNX,LRIDTX,LREXCODE,LRMIAREA
+ S LRDFNX=$P(^LRO(68,LRAA(LRAA),1,LRAD,1,LRAN,0),U)
+ S LRIDTX=$P($G(^LRO(68,LRAA(LRAA),1,LRAD,1,LRAN,3)),U,5)
+ S LREXCODE=$P($G(^LAB(60,II,0)),"^",14)
+ Q:'LREXCODE
+ S LREXCODE=$G(^LAB(62.07,LREXCODE,.1))
+ ;Logic below is the same as the logic in result verification
+ ;routine LRMIEDZ2 which determines which Microbiology area is
+ ;defined for a Microbiology test
+ S LRMIAREA=$S(LREXCODE["11.5":1,LREXCODE["23":11,LREXCODE["19":8,LREXCODE["15":5,LREXCODE["34":16,1:"")
+ ;If the [area] RPT DATE APPROVED field is null, display this test as "pending"
+ I $D(^LR(LRDFNX,"MI",LRIDTX,LRMIAREA)),$P(^(LRMIAREA),U)="" S T(3)=""
+ Q
+ ;
 STORE S:'$D(LRTEST("B",LRTS)) LRTEST(0)=LRTEST(0)+1,LRTEST(LRTEST(0))=$S($D(^LAB(60,LRTS,0)):$P(^(0),U,1),1:"deleted test"),LRTEST("B",LRTS)=LRTEST(0),LRNTP=LRTEST(0)-1\LRNTPP+1
  S LRSS=$P(S4,";",1),S2=$P(S4,";",2),S3=$P(S4,";",3),T(4)=T4
  I $L(S4) D

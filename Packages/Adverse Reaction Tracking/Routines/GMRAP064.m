@@ -1,0 +1,36 @@
+GMRAP064 ;ISP/RFR - PATCH 53 INSTALL CODE ;Dec 04, 2020@11:32
+ ;;4.0;Adverse Reaction Tracking;**64**;Mar 29, 1996;Build 2
+ Q
+POST ;POST-INSTALLATION
+ D BMES^XPDUTL("  Creating new-style index AC...")
+ N GMRAXR,GMRARES,GMRAOUT
+ S GMRAXR("FILE")=120.86
+ S GMRAXR("NAME")="AC"
+ S GMRAXR("TYPE")="MU"
+ S GMRAXR("USE")="A"
+ S GMRAXR("EXECUTION")="R"
+ S GMRAXR("SHORT DESCR")="Notify packages when an entry is acted upon."
+ S GMRAXR("DESCR",1)="This cross-reference will notify subscribing packages via protocol GMRA "
+ S GMRAXR("DESCR",2)="ASSESSMENT CHANGE when an entry in this file is added, modified or "
+ S GMRAXR("DESCR",3)="removed."
+ S GMRAXR("SET")="D ASSESS^GMRAVPR(.X1,.X2,.DA,""SET"")"
+ S GMRAXR("KILL")="D ASSESS^GMRAVPR(.X1,.X2,.DA,""KILL"")"
+ S GMRAXR("VAL",1)=.01
+ S GMRAXR("VAL",1,"COLLATION")="F"
+ S GMRAXR("VAL",2)=1
+ S GMRAXR("VAL",2,"COLLATION")="F"
+ S GMRAXR("VAL",3)=2
+ S GMRAXR("VAL",3,"COLLATION")="F"
+ S GMRAXR("VAL",4)=3
+ S GMRAXR("VAL",4,"COLLATION")="F"
+ D CREIXN^DDMOD(.GMRAXR,"W",.GMRARES,"GMRAOUT"),CHECK(.GMRARES)
+ Q
+CHECK(RESULT) ;CHECK STATUS OF INDEX CREATION
+ N MESSAGE,LINE,OUTPUT
+ I RESULT="" D
+ .S MESSAGE(1)="    Index creation failed;"
+ .D MSG^DIALOG("AE",.OUTPUT,75)
+ .S LINE=0 F  S LINE=$O(OUTPUT(LINE)) Q:'+LINE  S MESSAGE(LINE+1)="    "_OUTPUT(LINE)
+ I +RESULT>0 S MESSAGE(1)="    Index creation succeeded"
+ D MES^XPDUTL(.MESSAGE)
+ Q

@@ -1,134 +1,128 @@
-IBDEI0LI ; ; 04-FEB-2020
- ;;3.0;IB ENCOUNTER FORM IMP/EXP;;FEB 04, 2020
+IBDEI0LI ; ; 01-FEB-2022
+ ;;3.0;IB ENCOUNTER FORM IMP/EXP;;FEB 01, 2022
  Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,999) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
- ;;^UTILITY(U,$J,358.3,9541,1,4,0)
- ;;=4^I85.01
- ;;^UTILITY(U,$J,358.3,9541,2)
- ;;=^269835
- ;;^UTILITY(U,$J,358.3,9542,0)
- ;;=K70.10^^72^646^32
- ;;^UTILITY(U,$J,358.3,9542,1,0)
+ ;;^UTILITY(U,$J,358.3,9676,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,9542,1,3,0)
- ;;=3^Alcoholic Hepatitis w/o Ascites
- ;;^UTILITY(U,$J,358.3,9542,1,4,0)
- ;;=4^K70.10
- ;;^UTILITY(U,$J,358.3,9542,2)
- ;;=^5008785
- ;;^UTILITY(U,$J,358.3,9543,0)
- ;;=K74.60^^72^646^33
- ;;^UTILITY(U,$J,358.3,9543,1,0)
+ ;;^UTILITY(U,$J,358.3,9676,1,3,0)
+ ;;=3^Varicose Veins Right Lower Extrem w/ Ulcer & Inflam,Unspec
+ ;;^UTILITY(U,$J,358.3,9676,1,4,0)
+ ;;=4^I83.219
+ ;;^UTILITY(U,$J,358.3,9676,2)
+ ;;=^5008003
+ ;;^UTILITY(U,$J,358.3,9677,0)
+ ;;=I83.029^^39^416^1
+ ;;^UTILITY(U,$J,358.3,9677,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,9543,1,3,0)
- ;;=3^Cirrhosis of Liver
- ;;^UTILITY(U,$J,358.3,9543,1,4,0)
- ;;=4^K74.60
- ;;^UTILITY(U,$J,358.3,9543,2)
- ;;=^5008822
- ;;^UTILITY(U,$J,358.3,9544,0)
- ;;=R18.8^^72^646^34
- ;;^UTILITY(U,$J,358.3,9544,1,0)
+ ;;^UTILITY(U,$J,358.3,9677,1,3,0)
+ ;;=3^Varicose Veins Left Lower Extrem w/ Ulcer,Unspec
+ ;;^UTILITY(U,$J,358.3,9677,1,4,0)
+ ;;=4^I83.029
+ ;;^UTILITY(U,$J,358.3,9677,2)
+ ;;=^5007986
+ ;;^UTILITY(U,$J,358.3,9678,0)
+ ;;=I83.229^^39^416^2
+ ;;^UTILITY(U,$J,358.3,9678,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,9544,1,3,0)
- ;;=3^Ascites
- ;;^UTILITY(U,$J,358.3,9544,1,4,0)
- ;;=4^R18.8
- ;;^UTILITY(U,$J,358.3,9544,2)
- ;;=^5019253
- ;;^UTILITY(U,$J,358.3,9545,0)
- ;;=K72.90^^72^646^35
- ;;^UTILITY(U,$J,358.3,9545,1,0)
+ ;;^UTILITY(U,$J,358.3,9678,1,3,0)
+ ;;=3^Varicose Veins Left Lower Extrem w/ Ulcer & Inflam,Unspec
+ ;;^UTILITY(U,$J,358.3,9678,1,4,0)
+ ;;=4^I83.229
+ ;;^UTILITY(U,$J,358.3,9678,2)
+ ;;=^5008010
+ ;;^UTILITY(U,$J,358.3,9679,0)
+ ;;=B00.81^^39^417^55
+ ;;^UTILITY(U,$J,358.3,9679,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,9545,1,3,0)
- ;;=3^Liver Failure w/o Coma
- ;;^UTILITY(U,$J,358.3,9545,1,4,0)
- ;;=4^K72.90
- ;;^UTILITY(U,$J,358.3,9545,2)
- ;;=^5008809
- ;;^UTILITY(U,$J,358.3,9546,0)
- ;;=K72.91^^72^646^36
- ;;^UTILITY(U,$J,358.3,9546,1,0)
+ ;;^UTILITY(U,$J,358.3,9679,1,3,0)
+ ;;=3^Herpesviral Hepatitis
+ ;;^UTILITY(U,$J,358.3,9679,1,4,0)
+ ;;=4^B00.81
+ ;;^UTILITY(U,$J,358.3,9679,2)
+ ;;=^5000478
+ ;;^UTILITY(U,$J,358.3,9680,0)
+ ;;=D25.9^^39^417^64
+ ;;^UTILITY(U,$J,358.3,9680,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,9546,1,3,0)
- ;;=3^Hepatic Encephalopathy
- ;;^UTILITY(U,$J,358.3,9546,1,4,0)
- ;;=4^K72.91
- ;;^UTILITY(U,$J,358.3,9546,2)
- ;;=^5008810
- ;;^UTILITY(U,$J,358.3,9547,0)
- ;;=K40.90^^72^646^37
- ;;^UTILITY(U,$J,358.3,9547,1,0)
+ ;;^UTILITY(U,$J,358.3,9680,1,3,0)
+ ;;=3^Leiomyoma of Uterus,Unspec
+ ;;^UTILITY(U,$J,358.3,9680,1,4,0)
+ ;;=4^D25.9
+ ;;^UTILITY(U,$J,358.3,9680,2)
+ ;;=^5002081
+ ;;^UTILITY(U,$J,358.3,9681,0)
+ ;;=F52.9^^39^417^103
+ ;;^UTILITY(U,$J,358.3,9681,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,9547,1,3,0)
- ;;=3^Inguinal Hernia w/o Obstruction
- ;;^UTILITY(U,$J,358.3,9547,1,4,0)
- ;;=4^K40.90
- ;;^UTILITY(U,$J,358.3,9547,2)
- ;;=^5008591
- ;;^UTILITY(U,$J,358.3,9548,0)
- ;;=K46.0^^72^646^38
- ;;^UTILITY(U,$J,358.3,9548,1,0)
+ ;;^UTILITY(U,$J,358.3,9681,1,3,0)
+ ;;=3^Sexual Dysfnct Not d/t a Sub/Known Physiol Cond,Unspec
+ ;;^UTILITY(U,$J,358.3,9681,1,4,0)
+ ;;=4^F52.9
+ ;;^UTILITY(U,$J,358.3,9681,2)
+ ;;=^5003625
+ ;;^UTILITY(U,$J,358.3,9682,0)
+ ;;=R37.^^39^417^104
+ ;;^UTILITY(U,$J,358.3,9682,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,9548,1,3,0)
- ;;=3^Hernia w/ Obstruction w/o Gangrene
- ;;^UTILITY(U,$J,358.3,9548,1,4,0)
- ;;=4^K46.0
- ;;^UTILITY(U,$J,358.3,9548,2)
- ;;=^5008621
- ;;^UTILITY(U,$J,358.3,9549,0)
- ;;=K46.1^^72^646^39
- ;;^UTILITY(U,$J,358.3,9549,1,0)
+ ;;^UTILITY(U,$J,358.3,9682,1,3,0)
+ ;;=3^Sexual Dysfunction,Unspec
+ ;;^UTILITY(U,$J,358.3,9682,1,4,0)
+ ;;=4^R37.
+ ;;^UTILITY(U,$J,358.3,9682,2)
+ ;;=^5019339
+ ;;^UTILITY(U,$J,358.3,9683,0)
+ ;;=N60.01^^39^417^107
+ ;;^UTILITY(U,$J,358.3,9683,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,9549,1,3,0)
- ;;=3^Hernia w/ Obstruction w/ Gangrene
- ;;^UTILITY(U,$J,358.3,9549,1,4,0)
- ;;=4^K46.1
- ;;^UTILITY(U,$J,358.3,9549,2)
- ;;=^5008622
- ;;^UTILITY(U,$J,358.3,9550,0)
- ;;=K55.069^^72^646^43
- ;;^UTILITY(U,$J,358.3,9550,1,0)
+ ;;^UTILITY(U,$J,358.3,9683,1,3,0)
+ ;;=3^Solitary Cyst of Right Breast
+ ;;^UTILITY(U,$J,358.3,9683,1,4,0)
+ ;;=4^N60.01
+ ;;^UTILITY(U,$J,358.3,9683,2)
+ ;;=^5015770
+ ;;^UTILITY(U,$J,358.3,9684,0)
+ ;;=N60.02^^39^417^106
+ ;;^UTILITY(U,$J,358.3,9684,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,9550,1,3,0)
- ;;=3^Acute Infarction of Intestine
- ;;^UTILITY(U,$J,358.3,9550,1,4,0)
- ;;=4^K55.069
- ;;^UTILITY(U,$J,358.3,9550,2)
- ;;=^5138736
- ;;^UTILITY(U,$J,358.3,9551,0)
- ;;=K65.0^^72^646^44
- ;;^UTILITY(U,$J,358.3,9551,1,0)
+ ;;^UTILITY(U,$J,358.3,9684,1,3,0)
+ ;;=3^Solitary Cyst of Left Breast
+ ;;^UTILITY(U,$J,358.3,9684,1,4,0)
+ ;;=4^N60.02
+ ;;^UTILITY(U,$J,358.3,9684,2)
+ ;;=^5015771
+ ;;^UTILITY(U,$J,358.3,9685,0)
+ ;;=N60.09^^39^417^108
+ ;;^UTILITY(U,$J,358.3,9685,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,9551,1,3,0)
- ;;=3^Generalized Acute Peritonitis
- ;;^UTILITY(U,$J,358.3,9551,1,4,0)
- ;;=4^K65.0
- ;;^UTILITY(U,$J,358.3,9551,2)
- ;;=^332799
- ;;^UTILITY(U,$J,358.3,9552,0)
- ;;=K94.03^^72^646^19
- ;;^UTILITY(U,$J,358.3,9552,1,0)
+ ;;^UTILITY(U,$J,358.3,9685,1,3,0)
+ ;;=3^Solitary Cyst of Unspec Breast
+ ;;^UTILITY(U,$J,358.3,9685,1,4,0)
+ ;;=4^N60.09
+ ;;^UTILITY(U,$J,358.3,9685,2)
+ ;;=^5015772
+ ;;^UTILITY(U,$J,358.3,9686,0)
+ ;;=N60.11^^39^417^27
+ ;;^UTILITY(U,$J,358.3,9686,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,9552,1,3,0)
- ;;=3^Colostomy Malfunction
- ;;^UTILITY(U,$J,358.3,9552,1,4,0)
- ;;=4^K94.03
- ;;^UTILITY(U,$J,358.3,9552,2)
- ;;=^5008921
- ;;^UTILITY(U,$J,358.3,9553,0)
- ;;=K85.90^^72^646^12
- ;;^UTILITY(U,$J,358.3,9553,1,0)
+ ;;^UTILITY(U,$J,358.3,9686,1,3,0)
+ ;;=3^Diffuse Cystic Mastopathy of Right Breast
+ ;;^UTILITY(U,$J,358.3,9686,1,4,0)
+ ;;=4^N60.11
+ ;;^UTILITY(U,$J,358.3,9686,2)
+ ;;=^5015773
+ ;;^UTILITY(U,$J,358.3,9687,0)
+ ;;=N60.12^^39^417^26
+ ;;^UTILITY(U,$J,358.3,9687,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,9553,1,3,0)
- ;;=3^Acute Pancreatitis
- ;;^UTILITY(U,$J,358.3,9553,1,4,0)
- ;;=4^K85.90
- ;;^UTILITY(U,$J,358.3,9553,2)
- ;;=^5138761
- ;;^UTILITY(U,$J,358.3,9554,0)
- ;;=K56.609^^72^646^40
- ;;^UTILITY(U,$J,358.3,9554,1,0)
+ ;;^UTILITY(U,$J,358.3,9687,1,3,0)
+ ;;=3^Diffuse Cystic Mastopathy of Left Breast
+ ;;^UTILITY(U,$J,358.3,9687,1,4,0)
+ ;;=4^N60.12
+ ;;^UTILITY(U,$J,358.3,9687,2)
+ ;;=^5015774
+ ;;^UTILITY(U,$J,358.3,9688,0)
+ ;;=N64.4^^39^417^68
+ ;;^UTILITY(U,$J,358.3,9688,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,9554,1,3,0)
- ;;=3^Intestinal Obstruction,Unspec as Partial or Complete Obst
+ ;;^UTILITY(U,$J,358.3,9688,1,3,0)
+ ;;=3^Mastodynia

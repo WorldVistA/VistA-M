@@ -1,0 +1,84 @@
+DVBCTOG ;ALB/FSB - TOGGLE RPCS ROUTINE; APR 18, 2022@11:00
+ ;;2.7;AMIE;**238**;Apr 10, 1995;Build 16
+ ;
+ Q
+ ;
+CLNDCURL(DVBURLS) ;
+ ;obtain URL parameters and priority
+ ;      DVBURLS(0) node will return the PIV URL
+ ;      DVBURLS(1) node will return the proxy URL
+ ;      DVBURLS(2) node will return the priority
+ ;      DVBURLS(3) node will return the snippet of the PIV resource URL
+ ;      DVBURLS(4) node will return the snippet of the proxy resource URL
+ ;      if any of these nodes returns null then the parameter does not exist or the value is null
+ N DVBPVURL,DVBPXURL,DVBPRIO,DVBPVRES,DVBPXRES
+ S DVBPVURL=$$GET^XPAR("PKG","DVBAB CAPRI PIV URL",1,"Q")
+ S DVBPXURL=$$GET^XPAR("PKG","DVBAB CAPRI PROXY URL",1,"Q")
+ S DVBPRIO=$$GET^XPAR("PKG","DVBAB TRANSMISSION PRIORITY",1,"Q")
+ S DVBPVRES=$$GET^XPAR("PKG","DVBAB PIV RESOURCE",1,"Q")
+ S DVBPXRES=$$GET^XPAR("PKG","DVBAB PROXY RESOURCE",1,"Q")
+ S DVBURLS(0)=DVBPVURL,DVBURLS(1)=DVBPXURL,DVBURLS(2)=DVBPRIO,DVBURLS(3)=DVBPVRES,DVBURLS(4)=DVBPXRES
+ Q
+GETTOG(DVBVALUE,DVBTOG) ;
+ ;this returns the internal value of any parameter that meets the following criteria:
+ ;      Entity defined is a package
+ ;      Instance does not apply
+ I $G(DVBTOG)="" S DVBVALUE="" Q
+ S DVBVALUE=$$GET^XPAR("PKG",DVBTOG,1,"Q")
+ Q
+TRDATE ; TRANSMISSION DATE INPUT FROM USER THROUGH VISTA
+ N DVBSDT,DVBEDT,DIRUT,DTOUT,DUOUT,X,Y
+ D EN^DDIOL("CAPRI Metrics Data Report","","?25"),EN^DDIOL("","","!!")
+ K DIR,X,Y
+ S DIR(0)="DA^:DT:EX",DIR("A")="Enter Start Date (Oldest): "
+ S DIR("??")="Enter the earliest date from when you want this report to start"
+ D ^DIR K DIR Q:$D(DIRUT)!($D(DTOUT))
+ S DVBSDT=Y
+ ;
+ K DIR,X,Y
+ S DIR(0)="DAO^:DT:EX",DIR("A")="Enter End Date (Newest) or Press Enter: "
+ S DIR("??")="Enter the latest date from when you want this report to end"
+ D ^DIR K DIR Q:$D(DUOUT)!($D(DTOUT))
+ S DVBEDT=Y
+ I Y="" S DVBEDT=DVBSDT
+ I DVBSDT>DVBEDT D EN^DDIOL("Start date cannot be greater than the end date.","","!!"),EN^DDIOL("","","!!"),TRDATE Q
+ D METRPT(,DVBSDT,DVBEDT)
+ Q
+RPCENTRY(DVBDATA,DVBSDT,DVBEDT) ; ENTRY POINT FOR RPC
+ S X=$G(DVBSDT) D ^%DT S DVBSDT=Y
+ I DVBSDT=-1 S DVBDATA(0)="Beginning date was not entered." Q
+ I $G(DVBEDT)="" S DVBEDT=DVBSDT
+ E  S X=DVBEDT D ^%DT S DVBEDT=Y
+ D METRPT(.DVBDATA,DVBSDT,DVBEDT,1)
+ Q
+METRPT(DVBDATA,DVBSDT,DVBEDT,DVBFLAG) ; TRANSMISSION METRICS DATA REPORT
+ N DVBFLD,DVBBRD,DVBREC,DVBAS,DVBPAT,DVBTP,DVBTS,DVBERRC,DVBRPTD,DVBDT,DVBSCS,DVBFAIL,DVBSREC,DVBPG,DVBDTI,DVBHDR
+ I $G(DVBFLAG)="" S DVBFLAG=0
+ S DVBSCS=0,DVBFAIL=0,DVBPG=0
+ S DVBREC=0 F  S DVBREC=$O(^DVB(396.21,DVBREC)) Q:'+DVBREC  D
+ .S DVBHDR="Transmission Metrics Data Report"
+ .S DVBDTI=$P($G(^DVB(396.21,DVBREC,0)),"^",1),DVBDT=$$FMTE^XLFDT(DVBDTI),DVBDTI=$P(DVBDTI,".",1)
+ .I DVBDTI>=DVBSDT&(DVBDTI<=DVBEDT) D
+ ..S DVBAS=$$GET1^DIQ(200,$P(^DVB(396.21,DVBREC,0),"^",2),.01) ;getting Authorized Sender name
+ ..S DVBPAT=$$GET1^DIQ(2,$P(^DVB(396.21,DVBREC,0),"^",3),.01) ;getting Patient name
+ ..S DVBTP=$$UP^XLFSTR($P($G(^DVB(396.21,DVBREC,0)),"^",4))
+ ..S DVBTS=$P($G(^DVB(396.21,DVBREC,0)),"^",5) D
+ ...I DVBTS=1 S DVBSCS=DVBSCS+1
+ ...I DVBTS=0 S DVBFAIL=DVBFAIL+1
+ ..I DVBTS=1 S DVBTS="Success"
+ ..I DVBTS=0 S DVBTS="Fail"
+ ..S DVBERRC=$P($G(^DVB(396.21,DVBREC,1)),"^",1)
+ ..S DVBSREC=0,DVBRPTD="" F  S DVBSREC=$O(^DVB(396.21,DVBREC,2,DVBSREC)) Q:'+DVBSREC  D
+ ...I DVBRPTD'="" S DVBRPTD=DVBRPTD_", "_$P($G(^DVB(396.21,DVBREC,2,DVBSREC,0)),"^",1)
+ ...I DVBRPTD="" S DVBRPTD=$P($G(^DVB(396.21,DVBREC,2,DVBSREC,0)),"^",1)
+ ..S DVBFLD(1)="TRANSMISSION DATE/TIME: "_DVBDT,DVBFLD(2)="AUTHORIZED SENDER: "_DVBAS,DVBFLD(3)="PATIENT: "_DVBPAT,DVBFLD(4)="TRANSMISSION PATH: "_DVBTP
+ ..S DVBFLD(5)="TRANSMISSION STATUS: "_DVBTS,DVBFLD(6)="ERROR CODE: "_DVBERRC,DVBFLD(7)="REPORT DETAILS: "_DVBRPTD
+ ..S DVBFLD(1,"F")="!!",DVBFLD(2,"F")="!!",DVBFLD(3,"F")="?40",DVBFLD(4,"F")="!",DVBFLD(5,"F")="!",DVBFLD(6,"F")="?40",DVBFLD(7,"F")="!"
+ ..S DVBPG=DVBPG+1
+ ..S DVBDATA(DVBPG)=DVBDT_"^"_DVBAS_"^"_DVBPAT_"^"_DVBTP_"^"_DVBTS_"^"_DVBERRC_"^"_DVBRPTD
+ ..S DVBBRD=$$REPEAT^XLFSTR("-",80)
+ ..I DVBFLAG=0 D EN^DDIOL(DVBHDR,"","!?25"),EN^DDIOL("Page "_DVBPG,"","?70"),EN^DDIOL(.DVBFLD),EN^DDIOL(DVBBRD)
+ I DVBPG=0,DVBFLAG=0 S DVBDATA(0)="No metrics found." D EN^DDIOL(DVBDATA(0),"","!!")
+ S DVBDATA(DVBPG+1)="Success Count: "_DVBSCS,DVBDATA(DVBPG+2)="Fail Count: "_DVBFAIL
+ I DVBFLAG=0 D EN^DDIOL("Success Count: "_DVBSCS,"","!"),EN^DDIOL("Fail Count: "_DVBFAIL,"","!")
+ Q

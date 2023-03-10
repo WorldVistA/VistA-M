@@ -1,122 +1,128 @@
-IBDEI0P0 ; ; 04-FEB-2020
- ;;3.0;IB ENCOUNTER FORM IMP/EXP;;FEB 04, 2020
+IBDEI0P0 ; ; 01-FEB-2022
+ ;;3.0;IB ENCOUNTER FORM IMP/EXP;;FEB 01, 2022
  Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,999) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
- ;;^UTILITY(U,$J,358.3,11160,1,4,0)
- ;;=4^H43.391
- ;;^UTILITY(U,$J,358.3,11160,2)
- ;;=^5005949
- ;;^UTILITY(U,$J,358.3,11161,0)
- ;;=H43.392^^77^724^16
- ;;^UTILITY(U,$J,358.3,11161,1,0)
+ ;;^UTILITY(U,$J,358.3,11226,0)
+ ;;=Z59.1^^42^514^12
+ ;;^UTILITY(U,$J,358.3,11226,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,11161,1,3,0)
- ;;=3^Vitreous Opacities,Left Eye NEC
- ;;^UTILITY(U,$J,358.3,11161,1,4,0)
- ;;=4^H43.392
- ;;^UTILITY(U,$J,358.3,11161,2)
- ;;=^5005950
- ;;^UTILITY(U,$J,358.3,11162,0)
- ;;=S05.31XA^^77^725^1
- ;;^UTILITY(U,$J,358.3,11162,1,0)
+ ;;^UTILITY(U,$J,358.3,11226,1,3,0)
+ ;;=3^Inadequate Housing
+ ;;^UTILITY(U,$J,358.3,11226,1,4,0)
+ ;;=4^Z59.1
+ ;;^UTILITY(U,$J,358.3,11226,2)
+ ;;=^5063130
+ ;;^UTILITY(U,$J,358.3,11227,0)
+ ;;=Z59.5^^42^514^3
+ ;;^UTILITY(U,$J,358.3,11227,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,11162,1,3,0)
- ;;=3^Ocular Laceration w/o Loss of Intraoc Tissue,Right Eye,Init Encntr
- ;;^UTILITY(U,$J,358.3,11162,1,4,0)
- ;;=4^S05.31XA
- ;;^UTILITY(U,$J,358.3,11162,2)
- ;;=^5020606
- ;;^UTILITY(U,$J,358.3,11163,0)
- ;;=S05.32XA^^77^725^2
- ;;^UTILITY(U,$J,358.3,11163,1,0)
+ ;;^UTILITY(U,$J,358.3,11227,1,3,0)
+ ;;=3^Extreme Poverty
+ ;;^UTILITY(U,$J,358.3,11227,1,4,0)
+ ;;=4^Z59.5
+ ;;^UTILITY(U,$J,358.3,11227,2)
+ ;;=^5063134
+ ;;^UTILITY(U,$J,358.3,11228,0)
+ ;;=Z60.2^^42^514^18
+ ;;^UTILITY(U,$J,358.3,11228,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,11163,1,3,0)
- ;;=3^Ocular Laceration w/o Loss of Intraoc Tissue,Left Eye,Init Encntr
- ;;^UTILITY(U,$J,358.3,11163,1,4,0)
- ;;=4^S05.32XA
- ;;^UTILITY(U,$J,358.3,11163,2)
- ;;=^5020609
- ;;^UTILITY(U,$J,358.3,11164,0)
- ;;=S01.121A^^77^725^3
- ;;^UTILITY(U,$J,358.3,11164,1,0)
+ ;;^UTILITY(U,$J,358.3,11228,1,3,0)
+ ;;=3^Problems Related to Living Alone
+ ;;^UTILITY(U,$J,358.3,11228,1,4,0)
+ ;;=4^Z60.2
+ ;;^UTILITY(U,$J,358.3,11228,2)
+ ;;=^5063140
+ ;;^UTILITY(U,$J,358.3,11229,0)
+ ;;=Z74.2^^42^514^1
+ ;;^UTILITY(U,$J,358.3,11229,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,11164,1,3,0)
- ;;=3^Laceration w/ FB,Right Eyelid,Init Encntr
- ;;^UTILITY(U,$J,358.3,11164,1,4,0)
- ;;=4^S01.121A
- ;;^UTILITY(U,$J,358.3,11164,2)
- ;;=^5020066
- ;;^UTILITY(U,$J,358.3,11165,0)
- ;;=S01.122A^^77^725^4
- ;;^UTILITY(U,$J,358.3,11165,1,0)
+ ;;^UTILITY(U,$J,358.3,11229,1,3,0)
+ ;;=3^Assistance at Home Needed
+ ;;^UTILITY(U,$J,358.3,11229,1,4,0)
+ ;;=4^Z74.2
+ ;;^UTILITY(U,$J,358.3,11229,2)
+ ;;=^5063285
+ ;;^UTILITY(U,$J,358.3,11230,0)
+ ;;=Z75.5^^42^514^5
+ ;;^UTILITY(U,$J,358.3,11230,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,11165,1,3,0)
- ;;=3^Laceration w/ FB,Left Eyelid,Init Encntr
- ;;^UTILITY(U,$J,358.3,11165,1,4,0)
- ;;=4^S01.122A
- ;;^UTILITY(U,$J,358.3,11165,2)
- ;;=^5134190
- ;;^UTILITY(U,$J,358.3,11166,0)
- ;;=S01.111A^^77^725^5
- ;;^UTILITY(U,$J,358.3,11166,1,0)
+ ;;^UTILITY(U,$J,358.3,11230,1,3,0)
+ ;;=3^Holiday Relief Care
+ ;;^UTILITY(U,$J,358.3,11230,1,4,0)
+ ;;=4^Z75.5
+ ;;^UTILITY(U,$J,358.3,11230,2)
+ ;;=^5063294
+ ;;^UTILITY(U,$J,358.3,11231,0)
+ ;;=Z59.3^^42^514^19
+ ;;^UTILITY(U,$J,358.3,11231,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,11166,1,3,0)
- ;;=3^Laceration w/o FB,Right Eyelid,Init Encntr
- ;;^UTILITY(U,$J,358.3,11166,1,4,0)
- ;;=4^S01.111A
- ;;^UTILITY(U,$J,358.3,11166,2)
- ;;=^5020057
- ;;^UTILITY(U,$J,358.3,11167,0)
- ;;=S01.112A^^77^725^6
- ;;^UTILITY(U,$J,358.3,11167,1,0)
+ ;;^UTILITY(U,$J,358.3,11231,1,3,0)
+ ;;=3^Problems Related to Living in Residential Institution
+ ;;^UTILITY(U,$J,358.3,11231,1,4,0)
+ ;;=4^Z59.3
+ ;;^UTILITY(U,$J,358.3,11231,2)
+ ;;=^5063132
+ ;;^UTILITY(U,$J,358.3,11232,0)
+ ;;=Z63.8^^42^514^15
+ ;;^UTILITY(U,$J,358.3,11232,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,11167,1,3,0)
- ;;=3^Laceration w/o FB,Left Eyelid,Init Encntr
- ;;^UTILITY(U,$J,358.3,11167,1,4,0)
- ;;=4^S01.112A
- ;;^UTILITY(U,$J,358.3,11167,2)
- ;;=^5020060
- ;;^UTILITY(U,$J,358.3,11168,0)
- ;;=S01.141A^^77^725^7
- ;;^UTILITY(U,$J,358.3,11168,1,0)
+ ;;^UTILITY(U,$J,358.3,11232,1,3,0)
+ ;;=3^Primary Support Group Problems
+ ;;^UTILITY(U,$J,358.3,11232,1,4,0)
+ ;;=4^Z63.8
+ ;;^UTILITY(U,$J,358.3,11232,2)
+ ;;=^5063174
+ ;;^UTILITY(U,$J,358.3,11233,0)
+ ;;=Z59.00^^42^514^8
+ ;;^UTILITY(U,$J,358.3,11233,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,11168,1,3,0)
- ;;=3^Puncture Wound w/ FB,Right Eyelid,Init Encntr
- ;;^UTILITY(U,$J,358.3,11168,1,4,0)
- ;;=4^S01.141A
- ;;^UTILITY(U,$J,358.3,11168,2)
- ;;=^5020078
- ;;^UTILITY(U,$J,358.3,11169,0)
- ;;=S01.142A^^77^725^8
- ;;^UTILITY(U,$J,358.3,11169,1,0)
+ ;;^UTILITY(U,$J,358.3,11233,1,3,0)
+ ;;=3^Homelessness,Unspec
+ ;;^UTILITY(U,$J,358.3,11233,1,4,0)
+ ;;=4^Z59.00
+ ;;^UTILITY(U,$J,358.3,11233,2)
+ ;;=^5161304
+ ;;^UTILITY(U,$J,358.3,11234,0)
+ ;;=Z59.01^^42^514^6
+ ;;^UTILITY(U,$J,358.3,11234,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,11169,1,3,0)
- ;;=3^Puncture Wound w/ FB,Left Eyelid,Init Encntr
- ;;^UTILITY(U,$J,358.3,11169,1,4,0)
- ;;=4^S01.142A
- ;;^UTILITY(U,$J,358.3,11169,2)
- ;;=^5134196
- ;;^UTILITY(U,$J,358.3,11170,0)
- ;;=S01.131A^^77^725^9
- ;;^UTILITY(U,$J,358.3,11170,1,0)
+ ;;^UTILITY(U,$J,358.3,11234,1,3,0)
+ ;;=3^Homelessness,Sheltered
+ ;;^UTILITY(U,$J,358.3,11234,1,4,0)
+ ;;=4^Z59.01
+ ;;^UTILITY(U,$J,358.3,11234,2)
+ ;;=^5161305
+ ;;^UTILITY(U,$J,358.3,11235,0)
+ ;;=Z59.02^^42^514^7
+ ;;^UTILITY(U,$J,358.3,11235,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,11170,1,3,0)
- ;;=3^Puncture Wound w/o FB,Right Eyelid,Init Encntr
- ;;^UTILITY(U,$J,358.3,11170,1,4,0)
- ;;=4^S01.131A
- ;;^UTILITY(U,$J,358.3,11170,2)
- ;;=^5020069
- ;;^UTILITY(U,$J,358.3,11171,0)
- ;;=S01.132A^^77^725^10
- ;;^UTILITY(U,$J,358.3,11171,1,0)
+ ;;^UTILITY(U,$J,358.3,11235,1,3,0)
+ ;;=3^Homelessness,Unsheltered
+ ;;^UTILITY(U,$J,358.3,11235,1,4,0)
+ ;;=4^Z59.02
+ ;;^UTILITY(U,$J,358.3,11235,2)
+ ;;=^5161306
+ ;;^UTILITY(U,$J,358.3,11236,0)
+ ;;=Z59.811^^42^514^9
+ ;;^UTILITY(U,$J,358.3,11236,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,11171,1,3,0)
- ;;=3^Puncture Wound w/o FB,Left Eyelid,Init Encntr
- ;;^UTILITY(U,$J,358.3,11171,1,4,0)
- ;;=4^S01.132A
- ;;^UTILITY(U,$J,358.3,11171,2)
- ;;=^5020072
- ;;^UTILITY(U,$J,358.3,11172,0)
- ;;=S05.41XA^^77^725^11
- ;;^UTILITY(U,$J,358.3,11172,1,0)
+ ;;^UTILITY(U,$J,358.3,11236,1,3,0)
+ ;;=3^Housing Instability,Housed w/ Risk of Homelessness
+ ;;^UTILITY(U,$J,358.3,11236,1,4,0)
+ ;;=4^Z59.811
+ ;;^UTILITY(U,$J,358.3,11236,2)
+ ;;=^5161309
+ ;;^UTILITY(U,$J,358.3,11237,0)
+ ;;=Z59.812^^42^514^10
+ ;;^UTILITY(U,$J,358.3,11237,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,11237,1,3,0)
+ ;;=3^Housing Instability,Housed,Homelessness in Past 12 Months
+ ;;^UTILITY(U,$J,358.3,11237,1,4,0)
+ ;;=4^Z59.812
+ ;;^UTILITY(U,$J,358.3,11237,2)
+ ;;=^5161310
+ ;;^UTILITY(U,$J,358.3,11238,0)
+ ;;=Z59.819^^42^514^11
+ ;;^UTILITY(U,$J,358.3,11238,1,0)
  ;;=^358.31IA^4^2

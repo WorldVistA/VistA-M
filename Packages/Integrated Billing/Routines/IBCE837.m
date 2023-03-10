@@ -1,5 +1,5 @@
 IBCE837 ;ALB/TMP - OUTPUT FOR 837 TRANSMISSION ;8/6/03 10:48am
- ;;2.0;INTEGRATED BILLING;**137,191,197,232,296,349,547,592,623**;21-MAR-94;Build 70
+ ;;2.0;INTEGRATED BILLING;**137,191,197,232,296,349,547,592,623,641,718**;21-MAR-94;Build 73
  ;;Per VA Directive 6402, this routine should not be modified.
  ;
 EN ; Auto-txmt
@@ -29,6 +29,9 @@ SETUP(IBEXTRP) ; Txmn set up
  .. S IBXERR=1,^TMP("IBXERR",$J,1)="A PREVIOUS EDI EXTRACT IS RUNNING - ANOTHER CANNOT BE STARTED "_$$FMTE^XLFDT($$NOW^XLFDT(),2)
  ;
  I $D(^TMP("IBRESUBMIT",$J)) D  Q:$D(IBXERR)
+ .;JWS;IB*2.0*641v6;issue with resubmit of claim, batch # not generated until submitted
+ .;                ;in FHIR, transaction does not get transmitted immediately, so no need to check batch# lock
+ .I $$GET1^DIQ(350.9,"1,",8.21,"I") Q
  .N Z,Z0
  .S Z0=$P($G(^TMP("IBRESUBMIT",$J)),U,2),Z=$$LOCK^IBCEM02(364.1,Z0)
  .I 'Z D
@@ -133,9 +136,11 @@ OUTPUT ; 837
  ..... Q
  .... ;IB*2.0*623;end
  .... D BILLPARM^IBCEFG0(+IBREF,.IBPARMS)
- .... S IBSIZEM=$$EXTRACT^IBCEFG(IB837,+IBREF,1,.IBPARMS)
+ .... ; JWS;EBILL-2667;add 5th parameter to output formatter call to conditionally execute FSC workarounds post execute
+ .... S IBSIZEM=$$EXTRACT^IBCEFG(IB837,+IBREF,1,.IBPARMS,1)
  .... I (IBSIZEM+IBSIZE)>30000,IBSIZE D  ; exceeds max size
- ..... D MAILIT^IBCE837A(IBQ,.IBBILL,.IBCTM,"",IBDESC,IBBTYP,IBINS) S IBSIZE=0 K ^TMP("IBXDATA",$J) S IBSIZEM=$$EXTRACT^IBCEFG(IB837,+IBREF,1,.IBPARMS)
+ ..... ; JWS;EBILL-2667;add 5th parameter to output formatter call to conditionally execute FSC workarounds post execute
+ ..... D MAILIT^IBCE837A(IBQ,.IBBILL,.IBCTM,"",IBDESC,IBBTYP,IBINS) S IBSIZE=0 K ^TMP("IBXDATA",$J) S IBSIZEM=$$EXTRACT^IBCEFG(IB837,+IBREF,1,.IBPARMS,1)
  .... I 'IBSIZEM D:'IBCTM  Q
  ..... D CHKBTCH^IBCE837A(+$G(^TMP("IBHDR",$J))) K ^TMP("IBHDR",$J)
  .... S IBCT=IBCT+1,IBCTM=IBCTM+1

@@ -1,120 +1,124 @@
-IBDEI184 ; ; 04-FEB-2020
- ;;3.0;IB ENCOUNTER FORM IMP/EXP;;FEB 04, 2020
+IBDEI184 ; ; 01-FEB-2022
+ ;;3.0;IB ENCOUNTER FORM IMP/EXP;;FEB 01, 2022
  Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,999) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
- ;;^UTILITY(U,$J,358.3,19636,1,4,0)
- ;;=4^S72.112S
- ;;^UTILITY(U,$J,358.3,19636,2)
- ;;=^5037658
- ;;^UTILITY(U,$J,358.3,19637,0)
- ;;=S72.114S^^93^995^67
- ;;^UTILITY(U,$J,358.3,19637,1,0)
+ ;;^UTILITY(U,$J,358.3,19861,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,19637,1,3,0)
- ;;=3^Nondisp greater trochanter fx of right femur, sequela
- ;;^UTILITY(U,$J,358.3,19637,1,4,0)
- ;;=4^S72.114S
- ;;^UTILITY(U,$J,358.3,19637,2)
- ;;=^5037690
- ;;^UTILITY(U,$J,358.3,19638,0)
- ;;=S72.115S^^93^995^66
- ;;^UTILITY(U,$J,358.3,19638,1,0)
+ ;;^UTILITY(U,$J,358.3,19861,1,3,0)
+ ;;=3^Fit/adjst of complete right artificial arm
+ ;;^UTILITY(U,$J,358.3,19861,1,4,0)
+ ;;=4^Z44.011
+ ;;^UTILITY(U,$J,358.3,19861,2)
+ ;;=^5062971
+ ;;^UTILITY(U,$J,358.3,19862,0)
+ ;;=Z44.022^^67^881^10
+ ;;^UTILITY(U,$J,358.3,19862,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,19638,1,3,0)
- ;;=3^Nondisp greater trochanter fx of left femur, sequela
- ;;^UTILITY(U,$J,358.3,19638,1,4,0)
- ;;=4^S72.115S
- ;;^UTILITY(U,$J,358.3,19638,2)
- ;;=^5037706
- ;;^UTILITY(U,$J,358.3,19639,0)
- ;;=S72.121S^^93^995^25
- ;;^UTILITY(U,$J,358.3,19639,1,0)
+ ;;^UTILITY(U,$J,358.3,19862,1,3,0)
+ ;;=3^Fit/adjst of partial artificial left arm
+ ;;^UTILITY(U,$J,358.3,19862,1,4,0)
+ ;;=4^Z44.022
+ ;;^UTILITY(U,$J,358.3,19862,2)
+ ;;=^5062975
+ ;;^UTILITY(U,$J,358.3,19863,0)
+ ;;=Z44.021^^67^881^12
+ ;;^UTILITY(U,$J,358.3,19863,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,19639,1,3,0)
- ;;=3^Displaced lesser trochanter fx of right femur, sequela
- ;;^UTILITY(U,$J,358.3,19639,1,4,0)
- ;;=4^S72.121S
- ;;^UTILITY(U,$J,358.3,19639,2)
- ;;=^5037738
- ;;^UTILITY(U,$J,358.3,19640,0)
- ;;=S72.122S^^93^995^24
- ;;^UTILITY(U,$J,358.3,19640,1,0)
+ ;;^UTILITY(U,$J,358.3,19863,1,3,0)
+ ;;=3^Fit/adjst of partial artificial right arm
+ ;;^UTILITY(U,$J,358.3,19863,1,4,0)
+ ;;=4^Z44.021
+ ;;^UTILITY(U,$J,358.3,19863,2)
+ ;;=^5062974
+ ;;^UTILITY(U,$J,358.3,19864,0)
+ ;;=Z44.112^^67^881^5
+ ;;^UTILITY(U,$J,358.3,19864,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,19640,1,3,0)
- ;;=3^Displaced lesser trochanter fx of left femur, sequela
- ;;^UTILITY(U,$J,358.3,19640,1,4,0)
- ;;=4^S72.122S
- ;;^UTILITY(U,$J,358.3,19640,2)
- ;;=^5037754
- ;;^UTILITY(U,$J,358.3,19641,0)
- ;;=S72.124S^^93^995^73
- ;;^UTILITY(U,$J,358.3,19641,1,0)
+ ;;^UTILITY(U,$J,358.3,19864,1,3,0)
+ ;;=3^Fit/adjst of complete left artificial leg
+ ;;^UTILITY(U,$J,358.3,19864,1,4,0)
+ ;;=4^Z44.112
+ ;;^UTILITY(U,$J,358.3,19864,2)
+ ;;=^5062981
+ ;;^UTILITY(U,$J,358.3,19865,0)
+ ;;=Z44.111^^67^881^7
+ ;;^UTILITY(U,$J,358.3,19865,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,19641,1,3,0)
- ;;=3^Nondisp lesser trochanter fx of right femur, sequela
- ;;^UTILITY(U,$J,358.3,19641,1,4,0)
- ;;=4^S72.124S
- ;;^UTILITY(U,$J,358.3,19641,2)
- ;;=^5037786
- ;;^UTILITY(U,$J,358.3,19642,0)
- ;;=S72.125S^^93^995^72
- ;;^UTILITY(U,$J,358.3,19642,1,0)
+ ;;^UTILITY(U,$J,358.3,19865,1,3,0)
+ ;;=3^Fit/adjst of complete right artificial leg
+ ;;^UTILITY(U,$J,358.3,19865,1,4,0)
+ ;;=4^Z44.111
+ ;;^UTILITY(U,$J,358.3,19865,2)
+ ;;=^5062980
+ ;;^UTILITY(U,$J,358.3,19866,0)
+ ;;=Z44.122^^67^881^11
+ ;;^UTILITY(U,$J,358.3,19866,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,19642,1,3,0)
- ;;=3^Nondisp lesser trochanter fx of left femur, sequela
- ;;^UTILITY(U,$J,358.3,19642,1,4,0)
- ;;=4^S72.125S
- ;;^UTILITY(U,$J,358.3,19642,2)
- ;;=^5037802
- ;;^UTILITY(U,$J,358.3,19643,0)
- ;;=S72.131S^^93^995^7
- ;;^UTILITY(U,$J,358.3,19643,1,0)
+ ;;^UTILITY(U,$J,358.3,19866,1,3,0)
+ ;;=3^Fit/adjst of partial artificial left leg
+ ;;^UTILITY(U,$J,358.3,19866,1,4,0)
+ ;;=4^Z44.122
+ ;;^UTILITY(U,$J,358.3,19866,2)
+ ;;=^5062984
+ ;;^UTILITY(U,$J,358.3,19867,0)
+ ;;=Z44.121^^67^881^13
+ ;;^UTILITY(U,$J,358.3,19867,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,19643,1,3,0)
- ;;=3^Displaced apophyseal fx of right femur, sequela
- ;;^UTILITY(U,$J,358.3,19643,1,4,0)
- ;;=4^S72.131S
- ;;^UTILITY(U,$J,358.3,19643,2)
- ;;=^5037834
- ;;^UTILITY(U,$J,358.3,19644,0)
- ;;=S72.132S^^93^995^6
- ;;^UTILITY(U,$J,358.3,19644,1,0)
+ ;;^UTILITY(U,$J,358.3,19867,1,3,0)
+ ;;=3^Fit/adjst of partial artificial right leg
+ ;;^UTILITY(U,$J,358.3,19867,1,4,0)
+ ;;=4^Z44.121
+ ;;^UTILITY(U,$J,358.3,19867,2)
+ ;;=^5062983
+ ;;^UTILITY(U,$J,358.3,19868,0)
+ ;;=Z44.8^^67^881^8
+ ;;^UTILITY(U,$J,358.3,19868,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,19644,1,3,0)
- ;;=3^Displaced apophyseal fx of left femur, sequela
- ;;^UTILITY(U,$J,358.3,19644,1,4,0)
- ;;=4^S72.132S
- ;;^UTILITY(U,$J,358.3,19644,2)
- ;;=^5037850
- ;;^UTILITY(U,$J,358.3,19645,0)
- ;;=S72.134S^^93^995^55
- ;;^UTILITY(U,$J,358.3,19645,1,0)
+ ;;^UTILITY(U,$J,358.3,19868,1,3,0)
+ ;;=3^Fit/adjst of external prosthetic devices
+ ;;^UTILITY(U,$J,358.3,19868,1,4,0)
+ ;;=4^Z44.8
+ ;;^UTILITY(U,$J,358.3,19868,2)
+ ;;=^5062992
+ ;;^UTILITY(U,$J,358.3,19869,0)
+ ;;=Z46.89^^67^881^9
+ ;;^UTILITY(U,$J,358.3,19869,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,19645,1,3,0)
- ;;=3^Nondisp apophyseal fx of right femur, sequela
- ;;^UTILITY(U,$J,358.3,19645,1,4,0)
- ;;=4^S72.134S
- ;;^UTILITY(U,$J,358.3,19645,2)
- ;;=^5037882
- ;;^UTILITY(U,$J,358.3,19646,0)
- ;;=S72.135S^^93^995^54
- ;;^UTILITY(U,$J,358.3,19646,1,0)
+ ;;^UTILITY(U,$J,358.3,19869,1,3,0)
+ ;;=3^Fit/adjst of oth devices
+ ;;^UTILITY(U,$J,358.3,19869,1,4,0)
+ ;;=4^Z46.89
+ ;;^UTILITY(U,$J,358.3,19869,2)
+ ;;=^5063023
+ ;;^UTILITY(U,$J,358.3,19870,0)
+ ;;=Z47.81^^67^881^16
+ ;;^UTILITY(U,$J,358.3,19870,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,19646,1,3,0)
- ;;=3^Nondisp apophyseal fx of left femur, sequela
- ;;^UTILITY(U,$J,358.3,19646,1,4,0)
- ;;=4^S72.135S
- ;;^UTILITY(U,$J,358.3,19646,2)
- ;;=^5037898
- ;;^UTILITY(U,$J,358.3,19647,0)
- ;;=S72.141S^^93^995^21
- ;;^UTILITY(U,$J,358.3,19647,1,0)
+ ;;^UTILITY(U,$J,358.3,19870,1,3,0)
+ ;;=3^Ortho aftercare following surgical amp
+ ;;^UTILITY(U,$J,358.3,19870,1,4,0)
+ ;;=4^Z47.81
+ ;;^UTILITY(U,$J,358.3,19870,2)
+ ;;=^5063030
+ ;;^UTILITY(U,$J,358.3,19871,0)
+ ;;=Z47.82^^67^881^15
+ ;;^UTILITY(U,$J,358.3,19871,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,19647,1,3,0)
- ;;=3^Displaced intertrochanteric fx of right femur, sequela
- ;;^UTILITY(U,$J,358.3,19647,1,4,0)
- ;;=4^S72.141S
- ;;^UTILITY(U,$J,358.3,19647,2)
- ;;=^5037930
- ;;^UTILITY(U,$J,358.3,19648,0)
- ;;=S72.142S^^93^995^20
+ ;;^UTILITY(U,$J,358.3,19871,1,3,0)
+ ;;=3^Ortho aftercare following scoliosis surgery
+ ;;^UTILITY(U,$J,358.3,19871,1,4,0)
+ ;;=4^Z47.82
+ ;;^UTILITY(U,$J,358.3,19871,2)
+ ;;=^5063031
+ ;;^UTILITY(U,$J,358.3,19872,0)
+ ;;=Z47.89^^67^881^14
+ ;;^UTILITY(U,$J,358.3,19872,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,19872,1,3,0)
+ ;;=3^Ortho Aftercare NEC
+ ;;^UTILITY(U,$J,358.3,19872,1,4,0)
+ ;;=4^Z47.89
+ ;;^UTILITY(U,$J,358.3,19872,2)
+ ;;=^5063032
+ ;;^UTILITY(U,$J,358.3,19873,0)
+ ;;=Z51.89^^67^881^2

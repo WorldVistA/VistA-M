@@ -1,5 +1,5 @@
-PXRMRPCD ;SLC/PJH - PXRM REMINDER DIALOG ;05/26/2015  13:48
- ;;2.0;CLINICAL REMINDERS;**16,45**;Feb 04, 2005;Build 566
+PXRMRPCD ;SLC/PJH - PXRM REMINDER DIALOG ;Oct 23, 2018@06:19
+ ;;2.0;CLINICAL REMINDERS;**16,45,65**;Feb 04, 2005;Build 438
  ;
  ; Used by CPRS - see DBIA #3295/#3296/#3332
  ;
@@ -51,7 +51,7 @@ CATEGORY(ORY,CIEN) ;Get category information
  .S IC=IC+1,ORY(IC)="C"_U_SUB_U_NAME
  Q
  ;
-DIALOG(ORY,ORDLG,DFN) ;Load dialog
+DIALOG(ORY,ORDLG,DFN,VISITID) ;Load dialog
  ;
  ; Input parameter ORDLG - dialog ien [#801.41]
  ;
@@ -66,7 +66,7 @@ DIALOG(ORY,ORDLG,DFN) ;Load dialog
  I $P(DATA,U,3) S ORY(1)="-1^reminder dialog disabled" Q
  ;
  ;Load dialog lines into local array
- D LOAD^PXRMDLL(ORDLG,$G(DFN))
+ D LOAD^PXRMDLL(ORDLG,$G(DFN),VISITID)
  S ORY(0)=0_U_+$P($G(^PXRMD(801.41,ORDLG,0)),U,17)
  Q
  ;

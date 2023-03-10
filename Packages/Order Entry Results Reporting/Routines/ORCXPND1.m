@@ -1,5 +1,5 @@
-ORCXPND1 ; SLC/MKB - Expanded Display cont ;Jul 30, 2019@14:21:22
- ;;3.0;ORDER ENTRY/RESULTS REPORTING;**26,67,75,89,92,94,148,159,188,172,215,243,280,340,306,350,423,514,527**;Dec 17, 1997;Build 19
+ORCXPND1 ; SLC/MKB - Expanded Display cont ;May 3, 2021@21:00
+ ;;3.0;ORDER ENTRY/RESULTS REPORTING;**26,67,75,89,92,94,148,159,188,172,215,243,280,340,306,350,423,514,527,539,513,585**;Dec 17, 1997;Build 2
  ;
  ; External References
  ;   DBIA  2387  ^LAB(60
@@ -29,6 +29,8 @@ ORCXPND1 ; SLC/MKB - Expanded Display cont ;Jul 30, 2019@14:21:22
  ;   DBIA  4192  EXTCAT^DGENA4 and CATEGORY^DGENA4
  ;   DBIA  3812  FINDCUR^DGENA and GET^DGENA
  ;   DBIA  3880  CPRS^VBECA3B
+ ;   DBIA  7203  EN^VBECRPT
+ ;   DBIA  7249  GET^VAFCREL
  ;
 COVER ; -- Cover Sheet
  N PKG S PKG=$P($G(^TMP("OR",$J,ORTAB,"IDX",NUM)),U,4)
@@ -54,8 +56,8 @@ MEDS ; -- Pharmacy
 LABS ; -- Laboratory [RESULTS ONLY for ID=OE order #]
  N ORIFN,X,SUB,TEST,NAME,SS,IDE,IVDT,TST,CCNT,ORCY,IG,TCNT,XT
  K ^TMP("LRRR",$J)  ;DBIA 2503
- I (ID?2.5E1" "2N1" "1.N1"-"7N1"."1.4N)!(ID?2.5E1" "2N1" "1.N1"-"7N) D AP^ORCXPND3 Q  ;ID=Accession #-Date/time specimen taken
  S ORIFN=+ID,IDE=$G(^OR(100,+ID,4)) Q:'$L(IDE)  ; OE# -> Lab#
+ I $G(DFN),$P(IDE,";",4)?1(1"SP",1"CY",1"EM") N XQADATA S XQADATA=$P(IDE,";",4)_U_U_$P(IDE,";",5) D AP^ORCXPND3 Q  ;coversheet and orders result display
  I $P(IDE,";",5) D RR^LR7OR1(+ORVP,,9999999-$P(IDE,";",5),9999999-$P(IDE,";",5),$P(IDE,";",4)) ;lookup on file 63 first
  I '$P(IDE,";",5),+IDE D RR^LR7OR1(+ORVP,IDE) I '$D(^TMP("LRRR",$J,+ORVP)) S $P(IDE,";",1,3)=";;"
  K ORCY D TEXT^ORQ12(.ORCY,ORIFN,80)
@@ -67,7 +69,7 @@ LABS ; -- Laboratory [RESULTS ONLY for ID=OE order #]
  .. I $$GET^XPAR("DIV^SYS^PKG","OR VBECS ON",1,"Q"),$L($T(EN^ORWLR1)),$L($T(CPRS^VBECA3B)) D  Q  ;Transition to VBEC's interface
  ... K ^TMP("ORLRC",$J)
  ... ;D EN^ORWLR1(DFN) ;RLM
- ... D EN^VBECRPT(DFN) ;RLM
+ ... D EN^VBECRPT ;RLM
  ... I '$O(^TMP("ORLRC",$J,0)) S ^TMP("ORLRC",$J,1,0)="",^TMP("ORLRC",$J,2,0)="No Blood Bank report available..."
  ... N I S I=0 F  S I=$O(^TMP("ORLRC",$J,I)) Q:I<1  S X=^(I,0),LCNT=LCNT+1,^TMP("ORXPND",$J,LCNT,0)=X
  ... K ^TMP("ORLRC",$J)
@@ -90,7 +92,9 @@ LABS ; -- Laboratory [RESULTS ONLY for ID=OE order #]
  .... D:$D(IOUON) SETVIDEO^ORCXPND(LCNT,1,70,IOUON,IOUOFF)
  ... I TST S XT=TEST(SS,IVDT,TST),CCNT=0 I +XT D
  .... S NAME=$S($L($P(^LAB(60,+XT,0),U))>25:$S($L($P($G(^(.1)),U)):$P(^(.1),U),1:$E($P(^(0),U),1,25)),1:$E($P(^(0),U),1,25))
- .... S LINE=$$S(1,CCNT,NAME)_$$S(25,CCNT,$J($P(XT,U,2),20))_$$S(31,CCNT,$S($L($P(XT,U,3)):$P(XT,U,3),1:""))_$$S(48,CCNT,$P(XT,U,4))_$$S(58,CCNT,$J($P(XT,U,5),15))
+ .... ;OR*3.0*585: Adjusted spacing in line below - $$S(24... instead of $$S(25...
+ .... ;            and add " " before $$S(31
+ .... S LINE=$$S(1,CCNT,NAME)_$$S(24,CCNT,$J($P(XT,U,2),20))_" "_$$S(31,CCNT,$S($L($P(XT,U,3)):$P(XT,U,3),1:""))_$$S(48,CCNT,$P(XT,U,4))_$$S(58,CCNT,$J($P(XT,U,5),15))
  .... D SETLINE(LINE,.LCNT)
  .... I $P(XT,U,20) S ^TMP("ORPLS",$J,$P(XT,U,20))=""
  .... I $L($P(XT,U,3)),$D(IOINHI) D SETVIDEO^ORCXPND(LCNT,26,8,IOINHI,IOINORM)
@@ -195,6 +199,33 @@ DGINQB(DFN) ; Build Patient Inquiry
  N CONTACT,ORDOC,ORTEAM,ORMHP,ORVP,XQORNOD,ORSSTRT,ORSSTOPT,VAOA,CPRSGUI,ORINP,ORATP,ORASS,ORENRI,ORENRD,ORENC,ORESG,A
  S ORVP=DFN_";DPT(",XQORNOD=1,CPRSGUI=1
  D EN^DGRPD ; MAS Patient Inquiry
+ I $$GET^XPAR("ALL","ORWPT SHOW CAREGIVER") D
+ . W !!,"Caregiver Information:"
+ . N ORRET,ORRETS,ORPRIM,ORSEC,ORGEN,ORA,ORD
+ . W ! D GET^VAFCREL(.ORRET,DFN)
+ . I $P(ORRET(0),"^")=-1 W "Caregiver information not currently available: ",$P(ORRET(0),"^",2),! Q
+ . I $P(ORRET(0),"^")=0 W "No Caregiver information returned." Q
+ . S ORRETS=0,ORPRIM="",ORSEC="",ORGEN=""
+ . F  S ORRETS=$O(ORRET(ORRETS)) Q:'ORRETS  D
+ .. S ORA=$G(ORRET(ORRETS)) I ORA="" Q
+ .. I $P(ORA,"^",2)="CGP",$P(ORA,"^",5)="ACTIVE" S ORD("PRIM",ORRETS)=$P(ORA,"^",8) Q
+ .. I $P(ORA,"^",2)="CGS",$P(ORA,"^",5)="ACTIVE" S ORD("SEC",ORRETS)=$P(ORA,"^",8) Q
+ .. I $P(ORA,"^",2)="CGG",$P(ORA,"^",5)="ACTIVE" S ORD("GEN",ORRETS)=$P(ORA,"^",8)
+ .. Q
+ . I $D(ORD("PRIM")) D
+ .. W ?5,"Primary Caregiver: "
+ .. S ORRETS=0
+ .. F  S ORRETS=$O(ORD("PRIM",ORRETS)) Q:'ORRETS  W ?24,ORD("PRIM",ORRETS),!
+ .. W !
+ . I $D(ORD("SEC")) D
+ .. W ?3,"Secondary Caregiver: "
+ .. S ORRETS=0
+ .. F  S ORRETS=$O(ORD("SEC",ORRETS)) Q:'ORRETS  W ?24,ORD("SEC",ORRETS),!
+ .. W !
+ . I $D(ORD("GEN")) D
+ .. W ?5,"General Caregiver: "
+ .. S ORRETS=0
+ .. F  S ORRETS=$O(ORD("GEN",ORRETS)) Q:'ORRETS  W ?24,ORD("GEN",ORRETS),!
  S ORENRI=$$FINDCUR^DGENA(DFN),A=$$GET^DGENA(ORENRI,.ORENRD),ORENC=$$CATEGORY^DGENA4(DFN),ORESG=$S($G(ORENRD("SUBGRP"))]"":$$EXT^DGENU("SUBGRP",ORENRD("SUBGRP")),1:"")
  W !!!,"Enrollment Priority: ",$S($G(ORENRD("PRIORITY"))]"":"GROUP "_$G(ORENRD("PRIORITY")),1:"")_ORESG,?40,"Category: ",$$EXTCAT^DGENA4(ORENC),!!
  K CPRSGUI

@@ -1,5 +1,5 @@
-DIE ;SFISC/GFT,XAK-PROC.DR-STR ;14AUG2006
- ;;22.2;VA FileMan;;Jan 05, 2016;Build 42
+DIE ;SFISC/GFT,XAK - PROC.DR-STR ; Dec 06, 2021@13:17:17
+ ;;22.2;VA FileMan;**21**;Jan 05, 2016;Build 4
  ;;Per VA Directive 6402, this routine should not be modified.
  ;;Submitted to OSEHRA 5 January 2015 by the VISTA Expertise Network.
  ;;Based on Medsphere Systems Corporation's MSC FileMan 1051.
@@ -59,10 +59,10 @@ E S DK=DK-1,(DI,DM)=1
 D G DQ^DIED
  ;
 H S DI=DI_U G D
- ;Multiple field
+ ;Multiple field & WP
 M S Y=$P(DQ(DQ),U,2)_U_DG G DC:DW<9
  I $D(DSC(+Y))#2,$P(DSC(+Y),"I $D(^UTILITY(",1)="" S D=DIEL+1 D D1 X DSC(+Y) S D=$O(^(0)) S:D="" D=-1 S @DC S DC=$O(^(DG,0)) S:DC="" DC=-1 G DE
- I $D(^(DG,0)) S D=$P(^(0),U,3,4) S:$P(^(0),U,2)'=$P(Y,U) $P(^(0),U,2)=$P(Y,U) ;HMMM
+ I $D(^(DG,0)) S D=$P(^(0),U,3,4) S:$P(^(0),U,2)'=$P(Y,U)&(+Y'=.001) $P(^(0),U,2)=$P(Y,U) ;p21 don't set subDD number if ref. to ^DD(0,.001
  E  S D=$O(^(0)) S:D="" D=-1
 DE I D>0 S Y=Y_U_D I DP(0)-Y!($P(DP(0),U,2)-DK),$D(^(+D,0)) S DE(DQ)=$P(^(0),U) ;Default value if this isn't same multiple we were down in before
 DC S DC=$P(^DD(+Y,0),U,4)_U_Y,%=DQ(DQ),Y=^(.01,0)

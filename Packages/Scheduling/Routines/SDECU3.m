@@ -1,5 +1,6 @@
-SDECU3 ;ALB/SAT - VISTA SCHEDULING RPCS ;MAR 15, 2017
- ;;5.3;Scheduling;**658**;Aug 13, 1993;Build 23
+SDECU3 ;ALB/SAT,LAB - VISTA SCHEDULING RPCS ;JUL 27,2022
+ ;;5.3;Scheduling;**658,823**;Aug 13, 1993;Build 9
+ ;;Per VHA Directive 6402, this routine should not be modified
  ;
  Q
  ;
@@ -235,6 +236,6 @@ SIM(DFN)  ;get similar patient data
  S MI=1 F  S MI=$O(RET(MI)) Q:MI=""  D
  .S NOD=RET(MI)
  .I $P(NOD,U,1)=0 S MSG=MSG_$S(MSG'="":" ",1:"")_$P(NOD,U,2)
- .I $P(NOD,U,1)=1 S PATS=PATS_$S(PATS'="":";;",1:"")_$TR($P(NOD,U,2,5),U,"~") S:(MSG'="")&($E(MSG,$L(MSG))'=".") MSG=MSG_"."
- S SIM=MSG_"|"_PATS
+ .I $P(NOD,U,1)=1 S PATS=PATS_$S(PATS'="":";;",1:"")_$TR($P(NOD,U,2,4),U,"~")_"~"_$E($P(NOD,U,5),6,$L($P(NOD,U,5))) S:(MSG'="")&($E(MSG,$L(MSG))'=".") MSG=MSG_"."
+  S SIM=MSG_"|"_PATS
  Q SIM

@@ -1,124 +1,124 @@
-IBDEI1G8 ; ; 04-FEB-2020
- ;;3.0;IB ENCOUNTER FORM IMP/EXP;;FEB 04, 2020
+IBDEI1G8 ; ; 01-FEB-2022
+ ;;3.0;IB ENCOUNTER FORM IMP/EXP;;FEB 01, 2022
  Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,999) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
- ;;^UTILITY(U,$J,358.3,23171,1,0)
+ ;;^UTILITY(U,$J,358.3,23437,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,23171,1,3,0)
- ;;=3^Gastric Ulcer w/o Hemorrhage/Perforation
- ;;^UTILITY(U,$J,358.3,23171,1,4,0)
- ;;=4^K25.9
- ;;^UTILITY(U,$J,358.3,23171,2)
- ;;=^5008522
- ;;^UTILITY(U,$J,358.3,23172,0)
- ;;=K27.9^^105^1169^32
- ;;^UTILITY(U,$J,358.3,23172,1,0)
+ ;;^UTILITY(U,$J,358.3,23437,1,3,0)
+ ;;=3^Allergic Rhinitis,Food
+ ;;^UTILITY(U,$J,358.3,23437,1,4,0)
+ ;;=4^J30.5
+ ;;^UTILITY(U,$J,358.3,23437,2)
+ ;;=^321989
+ ;;^UTILITY(U,$J,358.3,23438,0)
+ ;;=J30.9^^78^1011^6
+ ;;^UTILITY(U,$J,358.3,23438,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,23172,1,3,0)
- ;;=3^Peptic Ulcer w/o Hemorrhage/Perforation
- ;;^UTILITY(U,$J,358.3,23172,1,4,0)
- ;;=4^K27.9
- ;;^UTILITY(U,$J,358.3,23172,2)
- ;;=^5008536
- ;;^UTILITY(U,$J,358.3,23173,0)
- ;;=K29.70^^105^1169^16
- ;;^UTILITY(U,$J,358.3,23173,1,0)
+ ;;^UTILITY(U,$J,358.3,23438,1,3,0)
+ ;;=3^Allergic Rhinitis,Unspec
+ ;;^UTILITY(U,$J,358.3,23438,1,4,0)
+ ;;=4^J30.9
+ ;;^UTILITY(U,$J,358.3,23438,2)
+ ;;=^5008205
+ ;;^UTILITY(U,$J,358.3,23439,0)
+ ;;=T78.2XXA^^78^1011^40
+ ;;^UTILITY(U,$J,358.3,23439,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,23173,1,3,0)
- ;;=3^Gastritis w/o Bleeding
- ;;^UTILITY(U,$J,358.3,23173,1,4,0)
- ;;=4^K29.70
- ;;^UTILITY(U,$J,358.3,23173,2)
- ;;=^5008552
- ;;^UTILITY(U,$J,358.3,23174,0)
- ;;=K50.90^^105^1169^5
- ;;^UTILITY(U,$J,358.3,23174,1,0)
+ ;;^UTILITY(U,$J,358.3,23439,1,3,0)
+ ;;=3^Anaphylaxis,Unspec,1st Encntr
+ ;;^UTILITY(U,$J,358.3,23439,1,4,0)
+ ;;=4^T78.2XXA
+ ;;^UTILITY(U,$J,358.3,23439,2)
+ ;;=^5054278
+ ;;^UTILITY(U,$J,358.3,23440,0)
+ ;;=T78.2XXD^^78^1011^42
+ ;;^UTILITY(U,$J,358.3,23440,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,23174,1,3,0)
- ;;=3^Crohn's Disease w/o Complications
- ;;^UTILITY(U,$J,358.3,23174,1,4,0)
- ;;=4^K50.90
- ;;^UTILITY(U,$J,358.3,23174,2)
- ;;=^5008645
- ;;^UTILITY(U,$J,358.3,23175,0)
- ;;=K52.89^^105^1169^29
- ;;^UTILITY(U,$J,358.3,23175,1,0)
+ ;;^UTILITY(U,$J,358.3,23440,1,3,0)
+ ;;=3^Anaphylaxis,Unspec,Subseq Encntr
+ ;;^UTILITY(U,$J,358.3,23440,1,4,0)
+ ;;=4^T78.2XXD
+ ;;^UTILITY(U,$J,358.3,23440,2)
+ ;;=^5054279
+ ;;^UTILITY(U,$J,358.3,23441,0)
+ ;;=T78.2XXS^^78^1011^41
+ ;;^UTILITY(U,$J,358.3,23441,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,23175,1,3,0)
- ;;=3^Noninfective Gastroenteritis NEC & Colitis
- ;;^UTILITY(U,$J,358.3,23175,1,4,0)
- ;;=4^K52.89
- ;;^UTILITY(U,$J,358.3,23175,2)
- ;;=^5008703
- ;;^UTILITY(U,$J,358.3,23176,0)
- ;;=K52.9^^105^1169^28
- ;;^UTILITY(U,$J,358.3,23176,1,0)
+ ;;^UTILITY(U,$J,358.3,23441,1,3,0)
+ ;;=3^Anaphylaxis,Unspec,Sequela
+ ;;^UTILITY(U,$J,358.3,23441,1,4,0)
+ ;;=4^T78.2XXS
+ ;;^UTILITY(U,$J,358.3,23441,2)
+ ;;=^5054280
+ ;;^UTILITY(U,$J,358.3,23442,0)
+ ;;=T78.00XA^^78^1011^37
+ ;;^UTILITY(U,$J,358.3,23442,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,23176,1,3,0)
- ;;=3^Noninfective Gastroenteritis & Colitis,Unspec
- ;;^UTILITY(U,$J,358.3,23176,1,4,0)
- ;;=4^K52.9
- ;;^UTILITY(U,$J,358.3,23176,2)
- ;;=^5008704
- ;;^UTILITY(U,$J,358.3,23177,0)
- ;;=K57.30^^105^1169^8
- ;;^UTILITY(U,$J,358.3,23177,1,0)
+ ;;^UTILITY(U,$J,358.3,23442,1,3,0)
+ ;;=3^Anaphylactic Reaction,Unspec Food,1st Encntr
+ ;;^UTILITY(U,$J,358.3,23442,1,4,0)
+ ;;=4^T78.00XA
+ ;;^UTILITY(U,$J,358.3,23442,2)
+ ;;=^5054245
+ ;;^UTILITY(U,$J,358.3,23443,0)
+ ;;=T78.00XD^^78^1011^39
+ ;;^UTILITY(U,$J,358.3,23443,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,23177,1,3,0)
- ;;=3^Diverticulosis Lg Intestine w/o Abscess or Bleeding
- ;;^UTILITY(U,$J,358.3,23177,1,4,0)
- ;;=4^K57.30
- ;;^UTILITY(U,$J,358.3,23177,2)
- ;;=^5008723
- ;;^UTILITY(U,$J,358.3,23178,0)
- ;;=K57.32^^105^1169^6
- ;;^UTILITY(U,$J,358.3,23178,1,0)
+ ;;^UTILITY(U,$J,358.3,23443,1,3,0)
+ ;;=3^Anaphylactic Reaction,Unspec Food,Subseq Encntr
+ ;;^UTILITY(U,$J,358.3,23443,1,4,0)
+ ;;=4^T78.00XD
+ ;;^UTILITY(U,$J,358.3,23443,2)
+ ;;=^5054246
+ ;;^UTILITY(U,$J,358.3,23444,0)
+ ;;=T78.00XS^^78^1011^38
+ ;;^UTILITY(U,$J,358.3,23444,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,23178,1,3,0)
- ;;=3^Diverticulitis Lg Intestine w/o Abscess or Bleeding
- ;;^UTILITY(U,$J,358.3,23178,1,4,0)
- ;;=4^K57.32
- ;;^UTILITY(U,$J,358.3,23178,2)
- ;;=^5008725
- ;;^UTILITY(U,$J,358.3,23179,0)
- ;;=K57.31^^105^1169^9
- ;;^UTILITY(U,$J,358.3,23179,1,0)
+ ;;^UTILITY(U,$J,358.3,23444,1,3,0)
+ ;;=3^Anaphylactic Reaction,Unspec Food,Sequela
+ ;;^UTILITY(U,$J,358.3,23444,1,4,0)
+ ;;=4^T78.00XS
+ ;;^UTILITY(U,$J,358.3,23444,2)
+ ;;=^5054247
+ ;;^UTILITY(U,$J,358.3,23445,0)
+ ;;=T78.01XA^^78^1011^31
+ ;;^UTILITY(U,$J,358.3,23445,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,23179,1,3,0)
- ;;=3^Diverticulosis Lg Intestine w/o Abscess w/ Bleeding
- ;;^UTILITY(U,$J,358.3,23179,1,4,0)
- ;;=4^K57.31
- ;;^UTILITY(U,$J,358.3,23179,2)
- ;;=^5008724
- ;;^UTILITY(U,$J,358.3,23180,0)
- ;;=K57.33^^105^1169^7
- ;;^UTILITY(U,$J,358.3,23180,1,0)
+ ;;^UTILITY(U,$J,358.3,23445,1,3,0)
+ ;;=3^Anaphylactic Reaction,Peanuts,1st Encntr
+ ;;^UTILITY(U,$J,358.3,23445,1,4,0)
+ ;;=4^T78.01XA
+ ;;^UTILITY(U,$J,358.3,23445,2)
+ ;;=^5054248
+ ;;^UTILITY(U,$J,358.3,23446,0)
+ ;;=T78.01XD^^78^1011^33
+ ;;^UTILITY(U,$J,358.3,23446,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,23180,1,3,0)
- ;;=3^Diverticulitis Lg Intestine w/o Abscess w/ Bleeding
- ;;^UTILITY(U,$J,358.3,23180,1,4,0)
- ;;=4^K57.33
- ;;^UTILITY(U,$J,358.3,23180,2)
- ;;=^5008726
- ;;^UTILITY(U,$J,358.3,23181,0)
- ;;=K59.00^^105^1169^4
- ;;^UTILITY(U,$J,358.3,23181,1,0)
+ ;;^UTILITY(U,$J,358.3,23446,1,3,0)
+ ;;=3^Anaphylactic Reaction,Peanuts,Subseq Encntr
+ ;;^UTILITY(U,$J,358.3,23446,1,4,0)
+ ;;=4^T78.01XD
+ ;;^UTILITY(U,$J,358.3,23446,2)
+ ;;=^5054249
+ ;;^UTILITY(U,$J,358.3,23447,0)
+ ;;=T78.01XS^^78^1011^32
+ ;;^UTILITY(U,$J,358.3,23447,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,23181,1,3,0)
- ;;=3^Constipation,Unspec
- ;;^UTILITY(U,$J,358.3,23181,1,4,0)
- ;;=4^K59.00
- ;;^UTILITY(U,$J,358.3,23181,2)
- ;;=^323537
- ;;^UTILITY(U,$J,358.3,23182,0)
- ;;=K74.60^^105^1169^3
- ;;^UTILITY(U,$J,358.3,23182,1,0)
+ ;;^UTILITY(U,$J,358.3,23447,1,3,0)
+ ;;=3^Anaphylactic Reaction,Peanuts,Sequela
+ ;;^UTILITY(U,$J,358.3,23447,1,4,0)
+ ;;=4^T78.01XS
+ ;;^UTILITY(U,$J,358.3,23447,2)
+ ;;=^5054250
+ ;;^UTILITY(U,$J,358.3,23448,0)
+ ;;=T78.02XA^^78^1011^34
+ ;;^UTILITY(U,$J,358.3,23448,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,23182,1,3,0)
- ;;=3^Cirrhosis of Liver,Unspec
- ;;^UTILITY(U,$J,358.3,23182,1,4,0)
- ;;=4^K74.60
- ;;^UTILITY(U,$J,358.3,23182,2)
- ;;=^5008822
- ;;^UTILITY(U,$J,358.3,23183,0)
- ;;=K76.0^^105^1169^13
+ ;;^UTILITY(U,$J,358.3,23448,1,3,0)
+ ;;=3^Anaphylactic Reaction,Shellfish,1st Encntr
+ ;;^UTILITY(U,$J,358.3,23448,1,4,0)
+ ;;=4^T78.02XA
+ ;;^UTILITY(U,$J,358.3,23448,2)
+ ;;=^5054251
+ ;;^UTILITY(U,$J,358.3,23449,0)
+ ;;=T78.02XD^^78^1011^36

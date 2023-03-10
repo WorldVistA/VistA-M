@@ -1,5 +1,5 @@
 IBCNEDEP ;DAOU/ALA - Process Transaction Records ;14-OCT-2015
- ;;2.0;INTEGRATED BILLING;**184,271,300,416,438,506,533,549,601,621**;21-MAR-94;Build 14
+ ;;2.0;INTEGRATED BILLING;**184,271,300,416,438,506,533,549,601,621,713**;21-MAR-94;Build 12
  ;;Per VA Directive 6402, this routine should not be modified.
  ;
  ;  This program finds records needing HL7 msg creation
@@ -161,12 +161,13 @@ FIN ; Prioritize requests for statuses 'Retry' and 'Ready to Transmit'
  .. I OVRIDE'="" D
  ... I PAYR=$$FIND1^DIC(365.12,,"X","~NO PAYER") S VNUM=2 Q
  ... S VNUM=1
- .. S ^TMP("IBQUERY",$J,VNUM,DFN,IEN)=""
+ .. S ^TMP("IBQUERY",$J,VNUM,DFN,IEN)=""   ; VNUM = Priority of output
  ;
 LP ;  Loop through priorities, process as either verifications
  ;  or identifications
+ ;IB*713/DW add GOOGMSG variable to skip & cancel bad msgs (foreign chars)
  N IHCNT,IBSTOP
- S VNUM="",IHCNT=0
+ S VNUM="",IHCNT=0    ; VNUM = Priority of output
  F  S VNUM=$O(^TMP("IBQUERY",$J,VNUM)) Q:VNUM=""  D  Q:$G(ZTSTOP)!$G(QFL)=1!($G(IBSTOP)=1)
  . I VNUM=1!(VNUM=3) D VER Q
  . D ID
@@ -186,6 +187,7 @@ VER ;  Initialize HL7 variables protocol for Verifications
  D INIT^IBCNEHLO
  ;
  S DFN=""
+ ; VNUM = Priority of output
  F  S DFN=$O(^TMP("IBQUERY",$J,VNUM,DFN)) Q:DFN=""  D  Q:$G(ZTSTOP)!($G(IBSTOP)=1)
  . ;
  . ;  If the INQUIRE SECONDARY INSURANCES flag is 'yes',
@@ -204,7 +206,8 @@ VER ;  Initialize HL7 variables protocol for Verifications
  .. ; Check for request to stop background job, periodically
  .. I $D(ZTQUEUED),IBCNETOT#100=0,$$S^%ZTLOAD() S ZTSTOP=1 Q
  .. ;
- .. D PROC I PID="" Q
+ .. ;IB*713/TAZ - Convert to function and quit if no HL7 message created
+ .. I '$$PROC Q
  .. ;
  .. I BNDL S HLP("CONTPTR")=$G(OMSGID)
  .. D GENERATE^HLMA(IBCNHLP,"GM",1,.HLRESLT,"",.HLP)
@@ -230,6 +233,7 @@ ID ;  Send Identification Msgs
  D INIT^IBCNEHLO
  ;
  S DFN=""
+ ; VNUM = Priority of output
  F  S DFN=$O(^TMP("IBQUERY",$J,VNUM,DFN)) Q:DFN=""  D  Q:$G(ZTSTOP)!QFL
  . ; Update count for periodic check
  . S IBCNETOT=IBCNETOT+1
@@ -246,7 +250,8 @@ ID ;  Send Identification Msgs
  .. ;IB*2.0*621 - quit if test site and not a valid test case
  .. Q:'$$XMITOK^IBCNETST(IEN)
  .. ;
- .. D PROC
+ .. ;IB*713/TAZ - Convert to function call and quit if no HL7 message created
+ .. I '$$PROC Q
  .. ;
  .. ;I VNUM=4 S HLP("CONTPTR")=$G(OMSGID) ; IB*621 - HAN
  .. D GENERATE^HLMA(IBCNHLP,"GM",1,.HLRESLT,"",.HLP)
@@ -263,7 +268,12 @@ ID ;  Send Identification Msgs
  ;
  Q
  ;
-PROC ;  Process TQ record
+ ;IB*713/TAZ - Convert to function call
+PROC() ;  Process TQ record
+ ;Output:
+ ;    1 - OK to create HL7 message
+ ;    0 - Do not create hl7 message
+ ;
  S TRANSR=$G(^IBCN(365.1,IEN,0))
  S DFN=$P(TRANSR,U,2),PAYR=$P(TRANSR,U,3),BUFF=$P(TRANSR,U,5)
  S QUERY=$P(TRANSR,U,11),EXT=$P(TRANSR,U,10),SRVDT=$P(TRANSR,U,12)
@@ -278,11 +288,22 @@ PROC ;  Process TQ record
  D GT1^IBCNEHLQ I GT1'="",GT1'?."*" S HCT=HCT+1,^TMP("HLS",$J,HCT)=$TR(GT1,"*","")
  D IN1^IBCNEHLQ I IN1'="",IN1'?."*" D
  . S HCT=HCT+1
- . I VNUM=1 S ^TMP("HLS",$J,HCT)=$TR(IN1,"*","") Q
+ . I VNUM=1 S ^TMP("HLS",$J,HCT)=$TR(IN1,"*","") Q   ; VNUM = Priority of output
  . I VNUM=2,'BNDL S ^TMP("HLS",$J,HCT)=$TR(IN1,"*","") Q
  . S CNT=CNT+1 I TOT=0 S TOT=1
  . S $P(IN1,HLFS,22)=TOT,$P(IN1,HLFS,21)=CNT
  . S ^TMP("HLS",$J,HCT)=$TR(IN1,"*","")
+ ;
+ ;IB*713/TAZ - Check to see if we should continue building HL7 message
+ ;NOTE:  BADMSG Returns 1 if processing is to stop.
+ ;
+ I $$BADMSG^IBCNEUT2(EXT,QUERY) D  Q 0
+ . N STIEN
+ . D SST^IBCNEUT2(IEN,7) ; set TQ status to 'Cancelled'
+ . ;If BUFF is defined, set Buffer Symbol to B17 to force manual processing of entry. 
+ . I $G(BUFF) D
+ . . S STIEN=$$FIND1^DIC(365.15,,"X","B17","B")
+ . . D BUFF^IBCNEUT2(BUFF,STIEN)
  ;
  ;  Build multi-field NTE segment
  D NTE^IBCNEHLQ(1)
@@ -305,7 +326,7 @@ PROC ;  Process TQ record
  S HCT=HCT+1,^TMP("HLS",$J,HCT)=$TR(NTE,"*","")
  ; IB*621 - End HAN
  K NTE
- Q
+ Q 1
  ;
  ; The tag HLD was found at the top of this routine.  It was moved
  ; to its own procedure because it isn't needed anymore at this time.

@@ -1,6 +1,7 @@
 GMRCXR ; ALB/SAT - GMR DD UTILITY ;AUG 25, 2016
- ;;3.0;CONSULT/REQUEST TRACKING;**83,86**;Dec 27, 1997;Build 18
+ ;;3.0;CONSULT/REQUEST TRACKING;**83,86,169**;Dec 27, 1997;Build 23
  ;DD support for VISTA SCHEDULING ENHANCEMENT SD*5.3*627
+ ;New x-ref utility for GMRC*3*169
  ;Reference is made to ICR #6184
  ;
  Q
@@ -160,3 +161,30 @@ XREF  ;create and build NEW style AG for all REQUEST/CONSULTATION entries in fil
  S GMRCXR("VAL",1,"COLLATION")="F"
  D CREIXN^DDMOD(.GMRCXR,"S",.GMRCRES,"GMRCOUT")
  Q
+ ;
+ ;
+POST169 ;post install for GMRC*3*169
+ D AIFC
+ Q
+AIFC ;create and build NEW style AIFC for all REQUEST/CONSULTATION entries in file 123
+ ;;Built with DIKCBLD
+ N GMRCXR,GMRCRES,GMRCOUT
+ S GMRCXR("FILE")=123
+ S GMRCXR("NAME")="AIFC"
+ S GMRCXR("TYPE")="R"
+ S GMRCXR("USE")="S"
+ S GMRCXR("DESCR",1)="This cross reference is used to look up IFC, process actions on IFC, and process IFC HL7."
+ S GMRCXR("EXECUTION")="R"
+ S GMRCXR("ACTIVITY")="IR"
+ S GMRCXR("SHORT DESCR")="Index on ROUTING FACILITY & REMOTE CONSULT #"
+ S GMRCXR("VAL",1)=.07
+ S GMRCXR("VAL",1,"SUBSCRIPT")=1
+ S GMRCXR("VAL",1,"LENGTH")=5
+ S GMRCXR("VAL",1,"COLLATION")="F"
+ S GMRCXR("VAL",2)=.06
+ S GMRCXR("VAL",2,"SUBSCRIPT")=2
+ S GMRCXR("VAL",2,"LENGTH")=12    ;modified to correct field length - was 9
+ S GMRCXR("VAL",2,"COLLATION")="F"
+ D CREIXN^DDMOD(.GMRCXR,"SW",.GMRCRES,"GMRCOUT")
+ Q
+ ;

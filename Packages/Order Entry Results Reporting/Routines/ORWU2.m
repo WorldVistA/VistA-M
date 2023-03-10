@@ -1,10 +1,13 @@
-ORWU2 ;SLC/JEH,AJB - General Utilities for Windows Calls ;Jul 15, 2020@10:11:45
- ;;3.0;ORDER ENTRY/RESULTS REPORTING;**243,533**;Dec 17, 1997;Build 11
+ORWU2 ; SLC/JEH,AJB - General Utilities for Windows Calls ;May 05, 2021@13:34:59
+ ;;3.0;ORDER ENTRY/RESULTS REPORTING;**243,533,539**;Dec 17, 1997;Build 41
  ;
  Q
  ;
+ ; $$REQCOSIG^TIULP  DBIA #2322
+ ; $$ISA^USRLM       DBIA #1544
+ ;
  ; Return a set of names from the NEW PERSON file.
-COSIGNER(ORY,ORFROM,ORDIR,ORDATE,ORTIUTYP,ORTIUDA) ;
+COSIGNER(ORY,ORFROM,ORDIR,ORDATE,ORTIUTYP,ORTIUDA,ORSIM) ;
  ; (Set up for the DC Summary)
  ;  (to use TIU doc requirments and USR PROVIDER)
  ;
@@ -14,23 +17,42 @@ COSIGNER(ORY,ORFROM,ORDIR,ORDATE,ORTIUTYP,ORTIUDA) ;
  ;  ORDIR=Direction to move through the x-ref with $O.
  ;  ORDATE=Checks for an USR PROVIDER on this date (optional).
  ;  ORTIUTYP is + of the 0 node of the 8925 docmt.
- ;  ORTIUDA is the docmt IEN,
+ ;  ORTIUDA is the docmt IEN.
+ ;  ORSIM = If true, this indicates that this is a Similar Provider RPC call NSR#20110606 (539)
  ;
  ;
  ;
  N ORDD,ORDIV,ORDUP,ORGOOD,ORI,ORIEN1,ORIEN2,ORLAST,ORMAX,ORMRK,ORMULTI,ORNPI,ORPREV,ORSRV,ORTTL,ORERR
- ;
- S ORI=0,ORMAX=44,(ORLAST,ORPREV)="",ORDATE=$G(ORDATE) ;ORKEY=$G(ORKEY)
- I +$G(ORTIUDA) S ORTIUTYP=+$G(^TIU(8925,+$G(ORTIUDA),0))
+ N ORFNM,ORFNMLEN,ORLNM,OPTIEN,ORDUPNM ; Add first and last names, the provider IEN and first name length
+ S ORI=0,ORMAX=44,(ORLAST,ORPREV,ORDUPNM)="",ORDATE=$G(ORDATE),ORSIM=$G(ORSIM)
+ S OPTIEN=$$LKOPT^XPDMENU("OR CPRS GUI CHART") ;Set IEN to option file for GUI Chart for Similar Provider calls
  S ORMULTI=$$ALL^VASITE ; IA# 10112.  Do once at beginning of call.
+ I +ORSIM D  ; ** NSR 20110606/539 - If ORSIM, ORFROM is IEN and needs to be changed to name.  Also get first name, its length and last name **
+ .N LASTCHAR,ORFIEN,ORFROM1,XFNM,XFNMLEN
+ .S ORFIEN=ORFROM
+ .S (ORFROM,ORFROM1)=$P(^VA(200,ORFROM,0),U),$P(ORFROM,",",2)=$E($P(ORFROM,",",2),1,2)
+ .S ORFNM=$P(ORFROM,",",2),ORFNMLEN=$L(ORFNM),ORLNM=$P(ORFROM,",") ; ** NSR 20110606/539 - Add ORFNM, ORFNMLEN and ORLNM **
+ .I ORFNM]"" D
+ ..S XFNM=$P(ORFROM,",",2),XFNMLEN=$L(XFNM),LASTCHAR=$C($A(XFNM,XFNMLEN)-1),XFNM=$E(XFNM,1,XFNMLEN-1)_LASTCHAR_$C(126)
+ ..S $P(ORFROM,",",2)=XFNM
+ .S ORI=ORI+1,ORY(ORI)=ORFIEN_"^"_$$NAMEFMT^XLFNAME(ORFROM1,"F","DcMPC")
+ .S ORDUPNM(ORFIEN)=""
+ .S ORIEN2=ORFIEN
+ .;Using COS2 instead of COS4(0) in case duplicate (same but different) entry found later
+ .D COS2
+ E  D
+ .S (ORFNM,ORFNMLEN,ORLNM)=""
  ;
- F  Q:ORI'<ORMAX  S ORFROM=$O(^VA(200,"AUSER",ORFROM),ORDIR) Q:ORFROM=""  D
+ND I +$G(ORTIUDA) S ORTIUTYP=+$G(^TIU(8925,+$G(ORTIUDA),0))
+ ;
+ F  Q:ORI'<ORMAX  S ORFROM=$O(^VA(200,"AUSER",ORFROM),ORDIR) Q:ORFROM=""!'$$CHKORSIM(ORSIM,ORFNM,ORFNMLEN,ORFROM,ORLNM)  D  ;Check for quitting with ORSIM and names comparison (539)
  .S ORIEN1=""
  .F  S ORIEN1=$O(^VA(200,"AUSER",ORFROM,ORIEN1),ORDIR) Q:'ORIEN1  D
- ..;
+ ..I $D(ORDUPNM(ORIEN1)) Q
  ..I '$$PROVIDER^XUSER(ORIEN1,1) Q   ; Terminated?
  ..I '$$ISA^USRLM(+ORIEN1,"PROVIDER",.ORERR,ORDATE) Q  ;(USR PROVIDER CLASS CHECK?)
 TIU .. I $$REQCOSIG^TIULP(ORTIUTYP,ORTIUDA,ORIEN1,ORDATE) Q  ; User requiers cosigner
+ ..I ORSIM,('+$$ACCESS^XQCHK(ORIEN1,OPTIEN)!'$$FIND1^DIC(200.010113,","_ORIEN1_",","","COR")) Q    ;Check if Similar Provider call
  ..;I ($L(ORKEY)),(ORKEY'="COSIGNER"),('$D(^XUSEC(ORKEY,+ORIEN1))) Q       ; Check for key?
  ..;I ORDATE>0,$$GET^XUA4A72(ORIEN1,ORDATE)<1 Q    ; Check date?
  ..S ORI=ORI+1,ORY(ORI)=ORIEN1_"^"_$$NAMEFMT^XLFNAME(ORFROM,"F","DcMPC")
@@ -121,3 +143,8 @@ COS4(ORSS) ; Retrieve Title or Title and Service/Section.
  ;
  Q
  ;
+CHKORSIM(ORSIM,ORFNM,ORFNMLEN,ORFROM,ORLNM) ; If this is a Similiar Provider call check for matching names - 539
+ I 'ORSIM Q 1 ; If 'ORSIM, no additional restrictions
+ I $E(ORFROM,1,$L(ORLNM))'=ORLNM Q 0 ; If last names don't match, quit now
+ I $E($P(ORFROM,",",2),1,ORFNMLEN)'=ORFNM Q 0 ; If first name portions don't match, quit now
+ Q 1 ; All checks passed

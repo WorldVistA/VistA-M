@@ -1,16 +1,22 @@
-XPDID ;SFISC/VYD,RSD - Display Install Progress ;05/14/98  10:29
- ;;8.0;KERNEL;**81**;Jul 10, 1995
- ;;
+XPDID ;SFISC/VYD,RSD - Display Install Progress ; Mar 28, 2022@12:48
+ ;;8.0;KERNEL;**81,768**;Jul 10, 1995;Build 8
+ ;Per VHA Directive 2004-038, this routine should not be modified.
  Q
 INIT ;initialize progress screen
  N X,XPDSTR
- I IO'=IO(0)!(IOST'["C-VT") S XPDIDVT=0 Q
- I $T(PREP^XGF)="" S XPDIDVT=0 Q
+ S XPDIDVT=0 ;turn off graphic
+ ;If not C-VT, quit
+ Q:IO'=IO(0)!(IOST'["C-VT")
+ S X="IOSTBM",XPDSTR="             25             50             75     "
+ D ENDR^%ZISS
+ ;If bottom margin is null, quit
+ Q:$G(IOSTBM)=""  ;p768
+ ;if graphic routine is missing, quit
+ Q:$T(PREP^XGF)=""
  ;S X="XGF" X ^%ZOSF("TEST") E  S XPDIDVT=0 Q
  D PREP^XGF
- S XPDIDVT=1,X="IOSTBM",XPDSTR="             25             50             75               "
- D ENDR^%ZISS
- S IOTM=3,IOBM=IOSL-4
+ ;everything looks good, turn on graphic
+ S IOTM=3,IOBM=IOSL-4,XPDIDVT=1
  W @IOSTBM
  D FRAME^XGF(IOTM-2,0,IOTM-2,IOM-1)
  D FRAME^XGF(IOBM,0,IOBM,IOM-1)
@@ -24,7 +30,7 @@ INIT ;initialize progress screen
 EXIT(XPDM) ;exit progress screen restore screen to normal
  I $G(XPDIDVT) D
  .S IOTM=1,IOBM=IOSL
- .W @IOSTBM,@IOF
+ .W:IOSTBM]"" @IOSTBM W:IOF]"" @IOF ;p768
  .W:$G(XPDM)]"" !!,XPDM,!!
  .D CLEAN^XGF
  K IOTM,IOBM,IOSTBM,XPDIDCNT,XPDIDMOD,XPDIDTOT,XPDIDVT

@@ -1,126 +1,130 @@
-IBDEI12A ; ; 04-FEB-2020
- ;;3.0;IB ENCOUNTER FORM IMP/EXP;;FEB 04, 2020
+IBDEI12A ; ; 01-FEB-2022
+ ;;3.0;IB ENCOUNTER FORM IMP/EXP;;FEB 01, 2022
  Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,999) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
- ;;^UTILITY(U,$J,358.3,17061,1,3,0)
- ;;=3^Secondary Osteonecrosis,Right Shoulder
- ;;^UTILITY(U,$J,358.3,17061,1,4,0)
- ;;=4^M87.311
- ;;^UTILITY(U,$J,358.3,17061,2)
- ;;=^5014788
- ;;^UTILITY(U,$J,358.3,17062,0)
- ;;=M87.312^^88^885^171
- ;;^UTILITY(U,$J,358.3,17062,1,0)
+ ;;^UTILITY(U,$J,358.3,17247,0)
+ ;;=G89.4^^61^783^2
+ ;;^UTILITY(U,$J,358.3,17247,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,17062,1,3,0)
- ;;=3^Secondary Osteonecrosis,Left Shoulder
- ;;^UTILITY(U,$J,358.3,17062,1,4,0)
- ;;=4^M87.312
- ;;^UTILITY(U,$J,358.3,17062,2)
- ;;=^5014789
- ;;^UTILITY(U,$J,358.3,17063,0)
- ;;=M87.350^^88^885^172
- ;;^UTILITY(U,$J,358.3,17063,1,0)
+ ;;^UTILITY(U,$J,358.3,17247,1,3,0)
+ ;;=3^Chronic Pain Syndrome
+ ;;^UTILITY(U,$J,358.3,17247,1,4,0)
+ ;;=4^G89.4
+ ;;^UTILITY(U,$J,358.3,17247,2)
+ ;;=^334079
+ ;;^UTILITY(U,$J,358.3,17248,0)
+ ;;=M27.0^^61^783^3
+ ;;^UTILITY(U,$J,358.3,17248,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,17063,1,3,0)
- ;;=3^Secondary Osteonecrosis,Pelvis
- ;;^UTILITY(U,$J,358.3,17063,1,4,0)
- ;;=4^M87.350
- ;;^UTILITY(U,$J,358.3,17063,2)
- ;;=^5014809
- ;;^UTILITY(U,$J,358.3,17064,0)
- ;;=M87.351^^88^885^173
- ;;^UTILITY(U,$J,358.3,17064,1,0)
+ ;;^UTILITY(U,$J,358.3,17248,1,3,0)
+ ;;=3^Developmental Disorder of Jaws
+ ;;^UTILITY(U,$J,358.3,17248,1,4,0)
+ ;;=4^M27.0
+ ;;^UTILITY(U,$J,358.3,17248,2)
+ ;;=^5011722
+ ;;^UTILITY(U,$J,358.3,17249,0)
+ ;;=M27.9^^61^783^4
+ ;;^UTILITY(U,$J,358.3,17249,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,17064,1,3,0)
- ;;=3^Secondary Osteonecrosis,Right Femur
- ;;^UTILITY(U,$J,358.3,17064,1,4,0)
- ;;=4^M87.351
- ;;^UTILITY(U,$J,358.3,17064,2)
- ;;=^5014810
- ;;^UTILITY(U,$J,358.3,17065,0)
- ;;=M87.352^^88^885^170
- ;;^UTILITY(U,$J,358.3,17065,1,0)
+ ;;^UTILITY(U,$J,358.3,17249,1,3,0)
+ ;;=3^Disease of Jaws,Unspec
+ ;;^UTILITY(U,$J,358.3,17249,1,4,0)
+ ;;=4^M27.9
+ ;;^UTILITY(U,$J,358.3,17249,2)
+ ;;=^5011737
+ ;;^UTILITY(U,$J,358.3,17250,0)
+ ;;=R68.84^^61^783^8
+ ;;^UTILITY(U,$J,358.3,17250,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,17065,1,3,0)
- ;;=3^Secondary Osteonecrosis,Left Femur
- ;;^UTILITY(U,$J,358.3,17065,1,4,0)
- ;;=4^M87.352
- ;;^UTILITY(U,$J,358.3,17065,2)
- ;;=^5014811
- ;;^UTILITY(U,$J,358.3,17066,0)
- ;;=M87.811^^88^885^83
- ;;^UTILITY(U,$J,358.3,17066,1,0)
+ ;;^UTILITY(U,$J,358.3,17250,1,3,0)
+ ;;=3^Jaw Pain
+ ;;^UTILITY(U,$J,358.3,17250,1,4,0)
+ ;;=4^R68.84
+ ;;^UTILITY(U,$J,358.3,17250,2)
+ ;;=^5019556
+ ;;^UTILITY(U,$J,358.3,17251,0)
+ ;;=N48.9^^61^783^6
+ ;;^UTILITY(U,$J,358.3,17251,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,17066,1,3,0)
- ;;=3^Osteonecrosis,Right Shoulder
- ;;^UTILITY(U,$J,358.3,17066,1,4,0)
- ;;=4^M87.811
- ;;^UTILITY(U,$J,358.3,17066,2)
- ;;=^5014831
- ;;^UTILITY(U,$J,358.3,17067,0)
- ;;=M87.812^^88^885^80
- ;;^UTILITY(U,$J,358.3,17067,1,0)
+ ;;^UTILITY(U,$J,358.3,17251,1,3,0)
+ ;;=3^Disorder of Penis,Unspec
+ ;;^UTILITY(U,$J,358.3,17251,1,4,0)
+ ;;=4^N48.9
+ ;;^UTILITY(U,$J,358.3,17251,2)
+ ;;=^5015743
+ ;;^UTILITY(U,$J,358.3,17252,0)
+ ;;=N50.9^^61^783^5
+ ;;^UTILITY(U,$J,358.3,17252,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,17067,1,3,0)
- ;;=3^Osteonecrosis,Left Shoulder
- ;;^UTILITY(U,$J,358.3,17067,1,4,0)
- ;;=4^M87.812
- ;;^UTILITY(U,$J,358.3,17067,2)
- ;;=^5014832
- ;;^UTILITY(U,$J,358.3,17068,0)
- ;;=M87.850^^88^885^81
- ;;^UTILITY(U,$J,358.3,17068,1,0)
+ ;;^UTILITY(U,$J,358.3,17252,1,3,0)
+ ;;=3^Disorder of Male Genital Organs,Unspec
+ ;;^UTILITY(U,$J,358.3,17252,1,4,0)
+ ;;=4^N50.9
+ ;;^UTILITY(U,$J,358.3,17252,2)
+ ;;=^5015751
+ ;;^UTILITY(U,$J,358.3,17253,0)
+ ;;=R10.2^^61^783^14
+ ;;^UTILITY(U,$J,358.3,17253,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,17068,1,3,0)
- ;;=3^Osteonecrosis,Pelvis
- ;;^UTILITY(U,$J,358.3,17068,1,4,0)
- ;;=4^M87.850
- ;;^UTILITY(U,$J,358.3,17068,2)
- ;;=^5014852
- ;;^UTILITY(U,$J,358.3,17069,0)
- ;;=M87.851^^88^885^82
- ;;^UTILITY(U,$J,358.3,17069,1,0)
+ ;;^UTILITY(U,$J,358.3,17253,1,3,0)
+ ;;=3^Pelvic/Perineal Pain
+ ;;^UTILITY(U,$J,358.3,17253,1,4,0)
+ ;;=4^R10.2
+ ;;^UTILITY(U,$J,358.3,17253,2)
+ ;;=^5019209
+ ;;^UTILITY(U,$J,358.3,17254,0)
+ ;;=N94.89^^61^783^7
+ ;;^UTILITY(U,$J,358.3,17254,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,17069,1,3,0)
- ;;=3^Osteonecrosis,Right Femur
- ;;^UTILITY(U,$J,358.3,17069,1,4,0)
- ;;=4^M87.851
- ;;^UTILITY(U,$J,358.3,17069,2)
- ;;=^5014853
- ;;^UTILITY(U,$J,358.3,17070,0)
- ;;=M87.852^^88^885^79
- ;;^UTILITY(U,$J,358.3,17070,1,0)
+ ;;^UTILITY(U,$J,358.3,17254,1,3,0)
+ ;;=3^Female Genital Organs/Menstrual Cycle,Oth Cond
+ ;;^UTILITY(U,$J,358.3,17254,1,4,0)
+ ;;=4^N94.89
+ ;;^UTILITY(U,$J,358.3,17254,2)
+ ;;=^5015925
+ ;;^UTILITY(U,$J,358.3,17255,0)
+ ;;=N23.^^61^783^19
+ ;;^UTILITY(U,$J,358.3,17255,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,17070,1,3,0)
- ;;=3^Osteonecrosis,Left Femur
- ;;^UTILITY(U,$J,358.3,17070,1,4,0)
- ;;=4^M87.852
- ;;^UTILITY(U,$J,358.3,17070,2)
- ;;=^5014854
- ;;^UTILITY(U,$J,358.3,17071,0)
- ;;=M88.0^^88^885^70
- ;;^UTILITY(U,$J,358.3,17071,1,0)
+ ;;^UTILITY(U,$J,358.3,17255,1,3,0)
+ ;;=3^Renal Colic,Unspec
+ ;;^UTILITY(U,$J,358.3,17255,1,4,0)
+ ;;=4^N23.
+ ;;^UTILITY(U,$J,358.3,17255,2)
+ ;;=^5015615
+ ;;^UTILITY(U,$J,358.3,17256,0)
+ ;;=Z79.891^^61^783^9
+ ;;^UTILITY(U,$J,358.3,17256,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,17071,1,3,0)
- ;;=3^Osteitis Deformans of Skull
- ;;^UTILITY(U,$J,358.3,17071,1,4,0)
- ;;=4^M88.0
- ;;^UTILITY(U,$J,358.3,17071,2)
- ;;=^5014874
- ;;^UTILITY(U,$J,358.3,17072,0)
- ;;=M88.1^^88^885^71
- ;;^UTILITY(U,$J,358.3,17072,1,0)
+ ;;^UTILITY(U,$J,358.3,17256,1,3,0)
+ ;;=3^Long Term Opiate/Opioid Analgesic Use
+ ;;^UTILITY(U,$J,358.3,17256,1,4,0)
+ ;;=4^Z79.891
+ ;;^UTILITY(U,$J,358.3,17256,2)
+ ;;=^5063342
+ ;;^UTILITY(U,$J,358.3,17257,0)
+ ;;=Z71.89^^61^784^1
+ ;;^UTILITY(U,$J,358.3,17257,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,17072,1,3,0)
- ;;=3^Osteitis Deformans of Vertebrae
- ;;^UTILITY(U,$J,358.3,17072,1,4,0)
- ;;=4^M88.1
- ;;^UTILITY(U,$J,358.3,17072,2)
- ;;=^5014875
- ;;^UTILITY(U,$J,358.3,17073,0)
- ;;=M88.89^^88^885^69
- ;;^UTILITY(U,$J,358.3,17073,1,0)
+ ;;^UTILITY(U,$J,358.3,17257,1,3,0)
+ ;;=3^Activity/Exercise Counseling
+ ;;^UTILITY(U,$J,358.3,17257,1,4,0)
+ ;;=4^Z71.89
+ ;;^UTILITY(U,$J,358.3,17257,2)
+ ;;=^5063253
+ ;;^UTILITY(U,$J,358.3,17258,0)
+ ;;=Z13.89^^61^784^2
+ ;;^UTILITY(U,$J,358.3,17258,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,17073,1,3,0)
- ;;=3^Osteitis Deformans of Mult Sites
+ ;;^UTILITY(U,$J,358.3,17258,1,3,0)
+ ;;=3^Alcohol Use Screen
+ ;;^UTILITY(U,$J,358.3,17258,1,4,0)
+ ;;=4^Z13.89
+ ;;^UTILITY(U,$J,358.3,17258,2)
+ ;;=^5062720
+ ;;^UTILITY(U,$J,358.3,17259,0)
+ ;;=Z12.39^^61^784^3
+ ;;^UTILITY(U,$J,358.3,17259,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,17259,1,3,0)
+ ;;=3^Breast Malignant Neoplasm Screen

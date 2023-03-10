@@ -1,720 +1,690 @@
-IBDEI03Q ; ; 01-MAY-2020
- ;;3.0;IB ENCOUNTER FORM IMP/EXP;;MAY 01, 2020
+IBDEI03Q ; ; 01-AUG-2022
+ ;;3.0;IB ENCOUNTER FORM IMP/EXP;;AUG 01, 2022
  Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,999) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
- ;;^UTILITY(U,$J,358.3,8908,1,3,0)
- ;;=3^Cellulitis of Right Upper Limb
- ;;^UTILITY(U,$J,358.3,8908,1,4,0)
- ;;=4^L03.113
- ;;^UTILITY(U,$J,358.3,8908,2)
- ;;=^5009033
- ;;^UTILITY(U,$J,358.3,8909,0)
- ;;=L03.114^^48^478^107
- ;;^UTILITY(U,$J,358.3,8909,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,8909,1,3,0)
- ;;=3^Cellulitis of Left Upper Limb
- ;;^UTILITY(U,$J,358.3,8909,1,4,0)
- ;;=4^L03.114
- ;;^UTILITY(U,$J,358.3,8909,2)
- ;;=^5009034
- ;;^UTILITY(U,$J,358.3,8910,0)
- ;;=L03.115^^48^478^111
- ;;^UTILITY(U,$J,358.3,8910,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,8910,1,3,0)
- ;;=3^Cellulitis of Right Lower Limb
- ;;^UTILITY(U,$J,358.3,8910,1,4,0)
- ;;=4^L03.115
- ;;^UTILITY(U,$J,358.3,8910,2)
- ;;=^5009035
- ;;^UTILITY(U,$J,358.3,8911,0)
- ;;=L03.116^^48^478^104
- ;;^UTILITY(U,$J,358.3,8911,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,8911,1,3,0)
- ;;=3^Cellulitis of Left Lower Limb
- ;;^UTILITY(U,$J,358.3,8911,1,4,0)
- ;;=4^L03.116
- ;;^UTILITY(U,$J,358.3,8911,2)
- ;;=^5133645
- ;;^UTILITY(U,$J,358.3,8912,0)
- ;;=L03.123^^48^478^28
- ;;^UTILITY(U,$J,358.3,8912,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,8912,1,3,0)
- ;;=3^Acute Lymphangitis of Right Upper Limb
- ;;^UTILITY(U,$J,358.3,8912,1,4,0)
- ;;=4^L03.123
- ;;^UTILITY(U,$J,358.3,8912,2)
- ;;=^5009039
- ;;^UTILITY(U,$J,358.3,8913,0)
- ;;=L03.124^^48^478^22
- ;;^UTILITY(U,$J,358.3,8913,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,8913,1,3,0)
- ;;=3^Acute Lymphangitis of Left Upper Limb
- ;;^UTILITY(U,$J,358.3,8913,1,4,0)
- ;;=4^L03.124
- ;;^UTILITY(U,$J,358.3,8913,2)
- ;;=^5009040
- ;;^UTILITY(U,$J,358.3,8914,0)
- ;;=L03.125^^48^478^26
- ;;^UTILITY(U,$J,358.3,8914,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,8914,1,3,0)
- ;;=3^Acute Lymphangitis of Right Lower Limb
- ;;^UTILITY(U,$J,358.3,8914,1,4,0)
- ;;=4^L03.125
- ;;^UTILITY(U,$J,358.3,8914,2)
- ;;=^5009041
- ;;^UTILITY(U,$J,358.3,8915,0)
- ;;=L03.126^^48^478^20
- ;;^UTILITY(U,$J,358.3,8915,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,8915,1,3,0)
- ;;=3^Acute Lymphangitis of Left Lower Limb
- ;;^UTILITY(U,$J,358.3,8915,1,4,0)
- ;;=4^L03.126
- ;;^UTILITY(U,$J,358.3,8915,2)
- ;;=^5133646
- ;;^UTILITY(U,$J,358.3,8916,0)
- ;;=L03.211^^48^478^101
- ;;^UTILITY(U,$J,358.3,8916,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,8916,1,3,0)
- ;;=3^Cellulitis of Face
- ;;^UTILITY(U,$J,358.3,8916,1,4,0)
- ;;=4^L03.211
- ;;^UTILITY(U,$J,358.3,8916,2)
- ;;=^5009043
- ;;^UTILITY(U,$J,358.3,8917,0)
- ;;=L03.212^^48^478^17
- ;;^UTILITY(U,$J,358.3,8917,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,8917,1,3,0)
- ;;=3^Acute Lymphangitis of Face
- ;;^UTILITY(U,$J,358.3,8917,1,4,0)
- ;;=4^L03.212
- ;;^UTILITY(U,$J,358.3,8917,2)
- ;;=^5009044
- ;;^UTILITY(U,$J,358.3,8918,0)
- ;;=L03.221^^48^478^108
- ;;^UTILITY(U,$J,358.3,8918,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,8918,1,3,0)
- ;;=3^Cellulitis of Neck
- ;;^UTILITY(U,$J,358.3,8918,1,4,0)
- ;;=4^L03.221
- ;;^UTILITY(U,$J,358.3,8918,2)
- ;;=^5009045
- ;;^UTILITY(U,$J,358.3,8919,0)
- ;;=L03.222^^48^478^23
- ;;^UTILITY(U,$J,358.3,8919,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,8919,1,3,0)
- ;;=3^Acute Lymphangitis of Neck
- ;;^UTILITY(U,$J,358.3,8919,1,4,0)
- ;;=4^L03.222
- ;;^UTILITY(U,$J,358.3,8919,2)
- ;;=^5009046
- ;;^UTILITY(U,$J,358.3,8920,0)
- ;;=L03.311^^48^478^97
- ;;^UTILITY(U,$J,358.3,8920,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,8920,1,3,0)
- ;;=3^Cellulitis of Abdominal Wall
- ;;^UTILITY(U,$J,358.3,8920,1,4,0)
- ;;=4^L03.311
- ;;^UTILITY(U,$J,358.3,8920,2)
- ;;=^5009047
- ;;^UTILITY(U,$J,358.3,8921,0)
- ;;=L03.312^^48^478^98
- ;;^UTILITY(U,$J,358.3,8921,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,8921,1,3,0)
- ;;=3^Cellulitis of Back
- ;;^UTILITY(U,$J,358.3,8921,1,4,0)
- ;;=4^L03.312
- ;;^UTILITY(U,$J,358.3,8921,2)
- ;;=^5009048
- ;;^UTILITY(U,$J,358.3,8922,0)
- ;;=L03.313^^48^478^100
- ;;^UTILITY(U,$J,358.3,8922,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,8922,1,3,0)
- ;;=3^Cellulitis of Chest Wall
- ;;^UTILITY(U,$J,358.3,8922,1,4,0)
- ;;=4^L03.313
- ;;^UTILITY(U,$J,358.3,8922,2)
- ;;=^5009049
- ;;^UTILITY(U,$J,358.3,8923,0)
- ;;=L03.314^^48^478^102
- ;;^UTILITY(U,$J,358.3,8923,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,8923,1,3,0)
- ;;=3^Cellulitis of Groin
- ;;^UTILITY(U,$J,358.3,8923,1,4,0)
- ;;=4^L03.314
- ;;^UTILITY(U,$J,358.3,8923,2)
- ;;=^5009050
- ;;^UTILITY(U,$J,358.3,8924,0)
- ;;=L03.315^^48^478^109
- ;;^UTILITY(U,$J,358.3,8924,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,8924,1,3,0)
- ;;=3^Cellulitis of Perineum
- ;;^UTILITY(U,$J,358.3,8924,1,4,0)
- ;;=4^L03.315
- ;;^UTILITY(U,$J,358.3,8924,2)
- ;;=^5009051
- ;;^UTILITY(U,$J,358.3,8925,0)
- ;;=L03.316^^48^478^116
- ;;^UTILITY(U,$J,358.3,8925,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,8925,1,3,0)
- ;;=3^Cellulitis of Umbilicus
- ;;^UTILITY(U,$J,358.3,8925,1,4,0)
- ;;=4^L03.316
- ;;^UTILITY(U,$J,358.3,8925,2)
- ;;=^5009052
- ;;^UTILITY(U,$J,358.3,8926,0)
- ;;=L03.319^^48^478^115
- ;;^UTILITY(U,$J,358.3,8926,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,8926,1,3,0)
- ;;=3^Cellulitis of Trunk,Unspec
- ;;^UTILITY(U,$J,358.3,8926,1,4,0)
- ;;=4^L03.319
- ;;^UTILITY(U,$J,358.3,8926,2)
- ;;=^5009054
- ;;^UTILITY(U,$J,358.3,8927,0)
- ;;=L03.321^^48^478^14
- ;;^UTILITY(U,$J,358.3,8927,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,8927,1,3,0)
- ;;=3^Acute Lymphangitis of Abdominal Wall
- ;;^UTILITY(U,$J,358.3,8927,1,4,0)
- ;;=4^L03.321
- ;;^UTILITY(U,$J,358.3,8927,2)
- ;;=^5009055
- ;;^UTILITY(U,$J,358.3,8928,0)
- ;;=L03.322^^48^478^15
- ;;^UTILITY(U,$J,358.3,8928,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,8928,1,3,0)
- ;;=3^Acute Lymphangitis of Back
- ;;^UTILITY(U,$J,358.3,8928,1,4,0)
- ;;=4^L03.322
- ;;^UTILITY(U,$J,358.3,8928,2)
- ;;=^5009056
- ;;^UTILITY(U,$J,358.3,8929,0)
- ;;=L03.323^^48^478^16
- ;;^UTILITY(U,$J,358.3,8929,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,8929,1,3,0)
- ;;=3^Acute Lymphangitis of Chest Wall
- ;;^UTILITY(U,$J,358.3,8929,1,4,0)
- ;;=4^L03.323
- ;;^UTILITY(U,$J,358.3,8929,2)
- ;;=^5009057
- ;;^UTILITY(U,$J,358.3,8930,0)
- ;;=L03.324^^48^478^18
- ;;^UTILITY(U,$J,358.3,8930,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,8930,1,3,0)
- ;;=3^Acute Lymphangitis of Groin
- ;;^UTILITY(U,$J,358.3,8930,1,4,0)
- ;;=4^L03.324
- ;;^UTILITY(U,$J,358.3,8930,2)
- ;;=^5009058
- ;;^UTILITY(U,$J,358.3,8931,0)
- ;;=L03.325^^48^478^24
- ;;^UTILITY(U,$J,358.3,8931,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,8931,1,3,0)
- ;;=3^Acute Lymphangitis of Perineum
- ;;^UTILITY(U,$J,358.3,8931,1,4,0)
- ;;=4^L03.325
- ;;^UTILITY(U,$J,358.3,8931,2)
- ;;=^5009059
- ;;^UTILITY(U,$J,358.3,8932,0)
- ;;=L03.326^^48^478^30
- ;;^UTILITY(U,$J,358.3,8932,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,8932,1,3,0)
- ;;=3^Acute Lymphangitis of Umbilicus
- ;;^UTILITY(U,$J,358.3,8932,1,4,0)
- ;;=4^L03.326
- ;;^UTILITY(U,$J,358.3,8932,2)
- ;;=^5009060
- ;;^UTILITY(U,$J,358.3,8933,0)
- ;;=L03.329^^48^478^29
- ;;^UTILITY(U,$J,358.3,8933,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,8933,1,3,0)
- ;;=3^Acute Lymphangitis of Trunk,Unspec
- ;;^UTILITY(U,$J,358.3,8933,1,4,0)
- ;;=4^L03.329
- ;;^UTILITY(U,$J,358.3,8933,2)
- ;;=^5009062
- ;;^UTILITY(U,$J,358.3,8934,0)
- ;;=L08.9^^48^478^171
- ;;^UTILITY(U,$J,358.3,8934,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,8934,1,3,0)
- ;;=3^Local Infection of Skin/Subcutaneous Tissue,Unspec
- ;;^UTILITY(U,$J,358.3,8934,1,4,0)
- ;;=4^L08.9
- ;;^UTILITY(U,$J,358.3,8934,2)
- ;;=^5009082
- ;;^UTILITY(U,$J,358.3,8935,0)
- ;;=L11.0^^48^478^10
- ;;^UTILITY(U,$J,358.3,8935,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,8935,1,3,0)
- ;;=3^Acquired Keratosis Follicularis
- ;;^UTILITY(U,$J,358.3,8935,1,4,0)
- ;;=4^L11.0
- ;;^UTILITY(U,$J,358.3,8935,2)
- ;;=^5009091
- ;;^UTILITY(U,$J,358.3,8936,0)
- ;;=L20.0^^48^478^91
- ;;^UTILITY(U,$J,358.3,8936,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,8936,1,3,0)
- ;;=3^Besnier's Prurigo
- ;;^UTILITY(U,$J,358.3,8936,1,4,0)
- ;;=4^L20.0
- ;;^UTILITY(U,$J,358.3,8936,2)
- ;;=^5009107
- ;;^UTILITY(U,$J,358.3,8937,0)
- ;;=L20.81^^48^478^88
- ;;^UTILITY(U,$J,358.3,8937,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,8937,1,3,0)
- ;;=3^Atopic Neurodermatitis
- ;;^UTILITY(U,$J,358.3,8937,1,4,0)
- ;;=4^L20.81
- ;;^UTILITY(U,$J,358.3,8937,2)
- ;;=^5009108
- ;;^UTILITY(U,$J,358.3,8938,0)
- ;;=L20.82^^48^478^153
- ;;^UTILITY(U,$J,358.3,8938,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,8938,1,3,0)
- ;;=3^Flexural Eczema
- ;;^UTILITY(U,$J,358.3,8938,1,4,0)
- ;;=4^L20.82
- ;;^UTILITY(U,$J,358.3,8938,2)
- ;;=^5009109
- ;;^UTILITY(U,$J,358.3,8939,0)
- ;;=L20.84^^48^478^165
- ;;^UTILITY(U,$J,358.3,8939,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,8939,1,3,0)
- ;;=3^Intrinsic Eczema
- ;;^UTILITY(U,$J,358.3,8939,1,4,0)
- ;;=4^L20.84
- ;;^UTILITY(U,$J,358.3,8939,2)
- ;;=^5009111
- ;;^UTILITY(U,$J,358.3,8940,0)
- ;;=L20.89^^48^478^86
- ;;^UTILITY(U,$J,358.3,8940,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,8940,1,3,0)
- ;;=3^Atopic Dermatitis NEC
- ;;^UTILITY(U,$J,358.3,8940,1,4,0)
- ;;=4^L20.89
- ;;^UTILITY(U,$J,358.3,8940,2)
- ;;=^5009112
- ;;^UTILITY(U,$J,358.3,8941,0)
- ;;=L20.9^^48^478^87
- ;;^UTILITY(U,$J,358.3,8941,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,8941,1,3,0)
- ;;=3^Atopic Dermatitis,Unspec
- ;;^UTILITY(U,$J,358.3,8941,1,4,0)
- ;;=4^L20.9
- ;;^UTILITY(U,$J,358.3,8941,2)
- ;;=^5009113
- ;;^UTILITY(U,$J,358.3,8942,0)
- ;;=L21.8^^48^478^302
- ;;^UTILITY(U,$J,358.3,8942,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,8942,1,3,0)
- ;;=3^Seborrheic Dermatitis NEC
  ;;^UTILITY(U,$J,358.3,8942,1,4,0)
- ;;=4^L21.8
+ ;;=4^D63.0
  ;;^UTILITY(U,$J,358.3,8942,2)
- ;;=^303310
+ ;;=^321978
  ;;^UTILITY(U,$J,358.3,8943,0)
- ;;=L21.9^^48^478^303
+ ;;=D63.8^^45^431^22
  ;;^UTILITY(U,$J,358.3,8943,1,0)
  ;;=^358.31IA^4^2
  ;;^UTILITY(U,$J,358.3,8943,1,3,0)
- ;;=3^Seborrheic Dermatitis,Unspec
+ ;;=3^Anemia in Chronic Diseases Classified Elsewhere
  ;;^UTILITY(U,$J,358.3,8943,1,4,0)
- ;;=4^L21.9
+ ;;=4^D63.8
  ;;^UTILITY(U,$J,358.3,8943,2)
- ;;=^188703
+ ;;=^5002343
  ;;^UTILITY(U,$J,358.3,8944,0)
- ;;=L23.7^^48^478^31
+ ;;=C22.3^^45^431^27
  ;;^UTILITY(U,$J,358.3,8944,1,0)
  ;;=^358.31IA^4^2
  ;;^UTILITY(U,$J,358.3,8944,1,3,0)
- ;;=3^Allergic Contact Dermatitis d/t Plants
+ ;;=3^Angiosarcoma of Liver
  ;;^UTILITY(U,$J,358.3,8944,1,4,0)
- ;;=4^L23.7
+ ;;=4^C22.3
  ;;^UTILITY(U,$J,358.3,8944,2)
- ;;=^5009122
+ ;;=^5000936
  ;;^UTILITY(U,$J,358.3,8945,0)
- ;;=L23.9^^48^478^32
+ ;;=D61.9^^45^431^28
  ;;^UTILITY(U,$J,358.3,8945,1,0)
  ;;=^358.31IA^4^2
  ;;^UTILITY(U,$J,358.3,8945,1,3,0)
- ;;=3^Allergic Contact Dermatitis,Unspec
+ ;;=3^Aplastic Anemia,Unspec
  ;;^UTILITY(U,$J,358.3,8945,1,4,0)
- ;;=4^L23.9
+ ;;=4^D61.9
  ;;^UTILITY(U,$J,358.3,8945,2)
- ;;=^5009125
+ ;;=^5002342
  ;;^UTILITY(U,$J,358.3,8946,0)
- ;;=L24.9^^48^478^166
+ ;;=D56.1^^45^431^34
  ;;^UTILITY(U,$J,358.3,8946,1,0)
  ;;=^358.31IA^4^2
  ;;^UTILITY(U,$J,358.3,8946,1,3,0)
- ;;=3^Irritant Contact Dermatitis,Unspec
+ ;;=3^Beta Thalassemia
  ;;^UTILITY(U,$J,358.3,8946,1,4,0)
- ;;=4^L24.9
+ ;;=4^D56.1
  ;;^UTILITY(U,$J,358.3,8946,2)
- ;;=^5009136
+ ;;=^340495
  ;;^UTILITY(U,$J,358.3,8947,0)
- ;;=L25.9^^48^478^117
+ ;;=C83.79^^45^431^36
  ;;^UTILITY(U,$J,358.3,8947,1,0)
  ;;=^358.31IA^4^2
  ;;^UTILITY(U,$J,358.3,8947,1,3,0)
- ;;=3^Contact Dermatitis,Unspec
+ ;;=3^Burkitt Lymphoma,Extranodal/Solid Organ Sites
  ;;^UTILITY(U,$J,358.3,8947,1,4,0)
- ;;=4^L25.9
+ ;;=4^C83.79
  ;;^UTILITY(U,$J,358.3,8947,2)
- ;;=^5133647
+ ;;=^5001600
  ;;^UTILITY(U,$J,358.3,8948,0)
- ;;=L26.^^48^478^151
+ ;;=C83.70^^45^431^37
  ;;^UTILITY(U,$J,358.3,8948,1,0)
  ;;=^358.31IA^4^2
  ;;^UTILITY(U,$J,358.3,8948,1,3,0)
- ;;=3^Exfoliative Dermatitis
+ ;;=3^Burkitt Lymphoma,Unspec Site
  ;;^UTILITY(U,$J,358.3,8948,1,4,0)
- ;;=4^L26.
+ ;;=4^C83.70
  ;;^UTILITY(U,$J,358.3,8948,2)
- ;;=^263886
+ ;;=^5001591
  ;;^UTILITY(U,$J,358.3,8949,0)
- ;;=L27.0^^48^478^305
+ ;;=D09.0^^45^431^44
  ;;^UTILITY(U,$J,358.3,8949,1,0)
  ;;=^358.31IA^4^2
  ;;^UTILITY(U,$J,358.3,8949,1,3,0)
- ;;=3^Skin Eruption d/t Drugs/Meds,Generalized
+ ;;=3^Carcinoma in Situ of Bladder
  ;;^UTILITY(U,$J,358.3,8949,1,4,0)
- ;;=4^L27.0
+ ;;=4^D09.0
  ;;^UTILITY(U,$J,358.3,8949,2)
- ;;=^5009144
+ ;;=^267742
  ;;^UTILITY(U,$J,358.3,8950,0)
- ;;=L27.1^^48^478^306
+ ;;=D06.9^^45^431^45
  ;;^UTILITY(U,$J,358.3,8950,1,0)
  ;;=^358.31IA^4^2
  ;;^UTILITY(U,$J,358.3,8950,1,3,0)
- ;;=3^Skin Eruption d/t Drugs/Meds,Localized
+ ;;=3^Carcinoma in Situ of Cervix
  ;;^UTILITY(U,$J,358.3,8950,1,4,0)
- ;;=4^L27.1
+ ;;=4^D06.9
  ;;^UTILITY(U,$J,358.3,8950,2)
- ;;=^5009145
+ ;;=^5001941
  ;;^UTILITY(U,$J,358.3,8951,0)
- ;;=L29.0^^48^478^290
+ ;;=D06.0^^45^431^47
  ;;^UTILITY(U,$J,358.3,8951,1,0)
  ;;=^358.31IA^4^2
  ;;^UTILITY(U,$J,358.3,8951,1,3,0)
- ;;=3^Pruritus Ani
+ ;;=3^Carcinoma in Situ of Endocervix
  ;;^UTILITY(U,$J,358.3,8951,1,4,0)
- ;;=4^L29.0
+ ;;=4^D06.0
  ;;^UTILITY(U,$J,358.3,8951,2)
- ;;=^100061
+ ;;=^5001938
  ;;^UTILITY(U,$J,358.3,8952,0)
- ;;=L29.9^^48^478^291
+ ;;=D06.1^^45^431^48
  ;;^UTILITY(U,$J,358.3,8952,1,0)
  ;;=^358.31IA^4^2
  ;;^UTILITY(U,$J,358.3,8952,1,3,0)
- ;;=3^Pruritus,Unspec
+ ;;=3^Carcinoma in Situ of Exocervix
  ;;^UTILITY(U,$J,358.3,8952,1,4,0)
- ;;=4^L29.9
+ ;;=4^D06.1
  ;;^UTILITY(U,$J,358.3,8952,2)
- ;;=^5009153
+ ;;=^5001939
  ;;^UTILITY(U,$J,358.3,8953,0)
- ;;=L30.0^^48^478^270
+ ;;=D06.7^^45^431^46
  ;;^UTILITY(U,$J,358.3,8953,1,0)
  ;;=^358.31IA^4^2
  ;;^UTILITY(U,$J,358.3,8953,1,3,0)
- ;;=3^Nummular Dermatitis
+ ;;=3^Carcinoma in Situ of Cervix,Other Parts
  ;;^UTILITY(U,$J,358.3,8953,1,4,0)
- ;;=4^L30.0
+ ;;=4^D06.7
  ;;^UTILITY(U,$J,358.3,8953,2)
- ;;=^186823
+ ;;=^5001940
  ;;^UTILITY(U,$J,358.3,8954,0)
- ;;=L30.1^^48^478^143
+ ;;=D04.9^^45^431^49
  ;;^UTILITY(U,$J,358.3,8954,1,0)
  ;;=^358.31IA^4^2
  ;;^UTILITY(U,$J,358.3,8954,1,3,0)
- ;;=3^Dyshidrosis
+ ;;=3^Carcinoma in Situ of Skin
  ;;^UTILITY(U,$J,358.3,8954,1,4,0)
- ;;=4^L30.1
+ ;;=4^D04.9
  ;;^UTILITY(U,$J,358.3,8954,2)
- ;;=^5009154
+ ;;=^5001925
  ;;^UTILITY(U,$J,358.3,8955,0)
- ;;=L30.2^^48^478^135
+ ;;=C91.11^^45^431^52
  ;;^UTILITY(U,$J,358.3,8955,1,0)
  ;;=^358.31IA^4^2
  ;;^UTILITY(U,$J,358.3,8955,1,3,0)
- ;;=3^Cutaneous Autosensitization
+ ;;=3^Chronic Lymphocytic Leukemia of B-Cell Type,In Remission
  ;;^UTILITY(U,$J,358.3,8955,1,4,0)
- ;;=4^L30.2
+ ;;=4^C91.11
  ;;^UTILITY(U,$J,358.3,8955,2)
- ;;=^5009155
+ ;;=^5001766
  ;;^UTILITY(U,$J,358.3,8956,0)
- ;;=L30.4^^48^478^147
+ ;;=C91.10^^45^431^53
  ;;^UTILITY(U,$J,358.3,8956,1,0)
  ;;=^358.31IA^4^2
  ;;^UTILITY(U,$J,358.3,8956,1,3,0)
- ;;=3^Erythema Intertrigo
+ ;;=3^Chronic Lymphocytic Leukemia of B-Cell Type,Not in Remission
  ;;^UTILITY(U,$J,358.3,8956,1,4,0)
- ;;=4^L30.4
+ ;;=4^C91.10
  ;;^UTILITY(U,$J,358.3,8956,2)
- ;;=^5009157
+ ;;=^5001765
  ;;^UTILITY(U,$J,358.3,8957,0)
- ;;=L30.8^^48^478^138
+ ;;=C92.11^^45^431^54
  ;;^UTILITY(U,$J,358.3,8957,1,0)
  ;;=^358.31IA^4^2
  ;;^UTILITY(U,$J,358.3,8957,1,3,0)
- ;;=3^Dermatitis NEC
+ ;;=3^Chronic Myeloid Leukemia,BCR/ABL-Positive,In Remission
  ;;^UTILITY(U,$J,358.3,8957,1,4,0)
- ;;=4^L30.8
+ ;;=4^C92.11
  ;;^UTILITY(U,$J,358.3,8957,2)
- ;;=^5009158
+ ;;=^5001793
  ;;^UTILITY(U,$J,358.3,8958,0)
- ;;=L30.9^^48^478^139
+ ;;=C92.10^^45^431^55
  ;;^UTILITY(U,$J,358.3,8958,1,0)
  ;;=^358.31IA^4^2
  ;;^UTILITY(U,$J,358.3,8958,1,3,0)
- ;;=3^Dermatitis,Unspec
+ ;;=3^Chronic Myeloid Leukemia,BCR/ABL-Positive,Not in Remission
  ;;^UTILITY(U,$J,358.3,8958,1,4,0)
- ;;=4^L30.9
+ ;;=4^C92.10
  ;;^UTILITY(U,$J,358.3,8958,2)
- ;;=^5009159
+ ;;=^5001792
  ;;^UTILITY(U,$J,358.3,8959,0)
- ;;=L40.0^^48^478^293
+ ;;=D47.1^^45^431^56
  ;;^UTILITY(U,$J,358.3,8959,1,0)
  ;;=^358.31IA^4^2
  ;;^UTILITY(U,$J,358.3,8959,1,3,0)
- ;;=3^Psoriasis Vulgaris
+ ;;=3^Chronic Myeloproliferative Disease
  ;;^UTILITY(U,$J,358.3,8959,1,4,0)
- ;;=4^L40.0
+ ;;=4^D47.1
  ;;^UTILITY(U,$J,358.3,8959,2)
- ;;=^5009160
+ ;;=^5002256
  ;;^UTILITY(U,$J,358.3,8960,0)
- ;;=L40.1^^48^478^296
+ ;;=C82.69^^45^431^57
  ;;^UTILITY(U,$J,358.3,8960,1,0)
  ;;=^358.31IA^4^2
  ;;^UTILITY(U,$J,358.3,8960,1,3,0)
- ;;=3^Pustulosis Psoriasis,Generalized
+ ;;=3^Cutaneous Follicle Center Lymphoma,Extranodal/Solid Organ Sites
  ;;^UTILITY(U,$J,358.3,8960,1,4,0)
- ;;=4^L40.1
+ ;;=4^C82.69
  ;;^UTILITY(U,$J,358.3,8960,2)
- ;;=^5009161
+ ;;=^5001530
  ;;^UTILITY(U,$J,358.3,8961,0)
- ;;=L40.2^^48^478^12
+ ;;=C82.60^^45^431^58
  ;;^UTILITY(U,$J,358.3,8961,1,0)
  ;;=^358.31IA^4^2
  ;;^UTILITY(U,$J,358.3,8961,1,3,0)
- ;;=3^Acrodermatitis Continua
+ ;;=3^Cutaneous Follicle Center Lymphoma,Unspec Site
  ;;^UTILITY(U,$J,358.3,8961,1,4,0)
- ;;=4^L40.2
+ ;;=4^C82.60
  ;;^UTILITY(U,$J,358.3,8961,2)
- ;;=^5009162
+ ;;=^5001521
  ;;^UTILITY(U,$J,358.3,8962,0)
- ;;=L40.3^^48^478^295
+ ;;=D56.2^^45^431^59
  ;;^UTILITY(U,$J,358.3,8962,1,0)
  ;;=^358.31IA^4^2
  ;;^UTILITY(U,$J,358.3,8962,1,3,0)
- ;;=3^Pustulosis Palmaris et Plantaris
+ ;;=3^Delta-Beta Thalassemia
  ;;^UTILITY(U,$J,358.3,8962,1,4,0)
- ;;=4^L40.3
+ ;;=4^D56.2
  ;;^UTILITY(U,$J,358.3,8962,2)
- ;;=^5009163
+ ;;=^340496
  ;;^UTILITY(U,$J,358.3,8963,0)
- ;;=L40.4^^48^478^160
+ ;;=D75.9^^45^431^60
  ;;^UTILITY(U,$J,358.3,8963,1,0)
  ;;=^358.31IA^4^2
  ;;^UTILITY(U,$J,358.3,8963,1,3,0)
- ;;=3^Guttate Psoriasis
+ ;;=3^Disease of Blood/Blood-Forming Organs,Unspec
  ;;^UTILITY(U,$J,358.3,8963,1,4,0)
- ;;=4^L40.4
+ ;;=4^D75.9
  ;;^UTILITY(U,$J,358.3,8963,2)
- ;;=^5009164
+ ;;=^5002393
  ;;^UTILITY(U,$J,358.3,8964,0)
- ;;=L40.8^^48^478^292
+ ;;=D59.0^^45^431^63
  ;;^UTILITY(U,$J,358.3,8964,1,0)
  ;;=^358.31IA^4^2
  ;;^UTILITY(U,$J,358.3,8964,1,3,0)
- ;;=3^Psoriasis NEC
+ ;;=3^Drug-Induced Autoimmune Hemolytic Anemia
  ;;^UTILITY(U,$J,358.3,8964,1,4,0)
- ;;=4^L40.8
+ ;;=4^D59.0
  ;;^UTILITY(U,$J,358.3,8964,2)
- ;;=^271917
+ ;;=^5002323
  ;;^UTILITY(U,$J,358.3,8965,0)
- ;;=L40.9^^48^478^294
+ ;;=D59.2^^45^431^64
  ;;^UTILITY(U,$J,358.3,8965,1,0)
  ;;=^358.31IA^4^2
  ;;^UTILITY(U,$J,358.3,8965,1,3,0)
- ;;=3^Psoriasis,Unspec
+ ;;=3^Drug-Induced Nonautoimmune Hemolytic Anemia
  ;;^UTILITY(U,$J,358.3,8965,1,4,0)
- ;;=4^L40.9
+ ;;=4^D59.2
  ;;^UTILITY(U,$J,358.3,8965,2)
- ;;=^5009171
+ ;;=^5002325
  ;;^UTILITY(U,$J,358.3,8966,0)
- ;;=L50.9^^48^478^326
+ ;;=R59.9^^45^431^67
  ;;^UTILITY(U,$J,358.3,8966,1,0)
  ;;=^358.31IA^4^2
  ;;^UTILITY(U,$J,358.3,8966,1,3,0)
- ;;=3^Urticaria,Unspec
+ ;;=3^Enlarged Lymph Nodes,Unspec
  ;;^UTILITY(U,$J,358.3,8966,1,4,0)
- ;;=4^L50.9
+ ;;=4^R59.9
  ;;^UTILITY(U,$J,358.3,8966,2)
- ;;=^5009204
+ ;;=^5019531
  ;;^UTILITY(U,$J,358.3,8967,0)
- ;;=L53.8^^48^478^150
+ ;;=D47.3^^45^431^68
  ;;^UTILITY(U,$J,358.3,8967,1,0)
  ;;=^358.31IA^4^2
  ;;^UTILITY(U,$J,358.3,8967,1,3,0)
- ;;=3^Erythematous Conditions NEC
+ ;;=3^Essential Thrombocythemia
  ;;^UTILITY(U,$J,358.3,8967,1,4,0)
- ;;=4^L53.8
+ ;;=4^D47.3
  ;;^UTILITY(U,$J,358.3,8967,2)
- ;;=^88044
+ ;;=^5002258
  ;;^UTILITY(U,$J,358.3,8968,0)
- ;;=L53.9^^48^478^149
+ ;;=C82.09^^45^431^69
  ;;^UTILITY(U,$J,358.3,8968,1,0)
  ;;=^358.31IA^4^2
  ;;^UTILITY(U,$J,358.3,8968,1,3,0)
- ;;=3^Erythematous Condition,Unspec
+ ;;=3^Follicular Lymphoma Grade I,Extranodal/Solid Organ Sites
  ;;^UTILITY(U,$J,358.3,8968,1,4,0)
- ;;=4^L53.9
+ ;;=4^C82.09
  ;;^UTILITY(U,$J,358.3,8968,2)
- ;;=^5009210
+ ;;=^5001470
  ;;^UTILITY(U,$J,358.3,8969,0)
- ;;=L54.^^48^478^148
+ ;;=C82.00^^45^431^70
  ;;^UTILITY(U,$J,358.3,8969,1,0)
  ;;=^358.31IA^4^2
  ;;^UTILITY(U,$J,358.3,8969,1,3,0)
- ;;=3^Erythema in Diseases Classified Elsewhere
+ ;;=3^Follicular Lymphoma Grade I,Unspec Site
  ;;^UTILITY(U,$J,358.3,8969,1,4,0)
- ;;=4^L54.
+ ;;=4^C82.00
  ;;^UTILITY(U,$J,358.3,8969,2)
- ;;=^5009211
+ ;;=^5001461
  ;;^UTILITY(U,$J,358.3,8970,0)
- ;;=L56.0^^48^478^142
+ ;;=C82.19^^45^431^71
  ;;^UTILITY(U,$J,358.3,8970,1,0)
  ;;=^358.31IA^4^2
  ;;^UTILITY(U,$J,358.3,8970,1,3,0)
- ;;=3^Drug Phototoxic Response
+ ;;=3^Follicular Lymphoma Grade II,Extranodal/Solid Organ Sites
  ;;^UTILITY(U,$J,358.3,8970,1,4,0)
- ;;=4^L56.0
+ ;;=4^C82.19
  ;;^UTILITY(U,$J,358.3,8970,2)
- ;;=^5009214
+ ;;=^5001480
  ;;^UTILITY(U,$J,358.3,8971,0)
- ;;=L56.1^^48^478^141
+ ;;=C82.10^^45^431^72
  ;;^UTILITY(U,$J,358.3,8971,1,0)
  ;;=^358.31IA^4^2
  ;;^UTILITY(U,$J,358.3,8971,1,3,0)
- ;;=3^Drug Photoallergic Response
+ ;;=3^Follicular Lymphoma Grade II,Unspec Site
  ;;^UTILITY(U,$J,358.3,8971,1,4,0)
- ;;=4^L56.1
+ ;;=4^C82.10
  ;;^UTILITY(U,$J,358.3,8971,2)
- ;;=^5009215
+ ;;=^5001471
  ;;^UTILITY(U,$J,358.3,8972,0)
- ;;=L56.2^^48^478^274
+ ;;=C82.29^^45^431^73
  ;;^UTILITY(U,$J,358.3,8972,1,0)
  ;;=^358.31IA^4^2
  ;;^UTILITY(U,$J,358.3,8972,1,3,0)
- ;;=3^Photocontact Dermatitis
+ ;;=3^Follicular Lymphoma Grade III,Extranodal/Solid Organ Sites
  ;;^UTILITY(U,$J,358.3,8972,1,4,0)
- ;;=4^L56.2
+ ;;=4^C82.29
  ;;^UTILITY(U,$J,358.3,8972,2)
- ;;=^5009216
+ ;;=^5001490
  ;;^UTILITY(U,$J,358.3,8973,0)
- ;;=L56.3^^48^478^308
+ ;;=C82.20^^45^431^74
  ;;^UTILITY(U,$J,358.3,8973,1,0)
  ;;=^358.31IA^4^2
  ;;^UTILITY(U,$J,358.3,8973,1,3,0)
- ;;=3^Solar Urticaria
+ ;;=3^Follicular Lymphoma Grade III,Unspec Site
  ;;^UTILITY(U,$J,358.3,8973,1,4,0)
- ;;=4^L56.3
+ ;;=4^C82.20
  ;;^UTILITY(U,$J,358.3,8973,2)
- ;;=^5009217
+ ;;=^5001481
  ;;^UTILITY(U,$J,358.3,8974,0)
- ;;=L57.0^^48^478^13
+ ;;=C82.39^^45^431^75
  ;;^UTILITY(U,$J,358.3,8974,1,0)
  ;;=^358.31IA^4^2
  ;;^UTILITY(U,$J,358.3,8974,1,3,0)
- ;;=3^Actinic Keratosis
+ ;;=3^Follicular Lymphoma Grade IIIa,Extranodal/Solid Organ Sites
  ;;^UTILITY(U,$J,358.3,8974,1,4,0)
- ;;=4^L57.0
+ ;;=4^C82.39
  ;;^UTILITY(U,$J,358.3,8974,2)
- ;;=^66900
+ ;;=^5001500
  ;;^UTILITY(U,$J,358.3,8975,0)
- ;;=L60.0^^48^478^164
+ ;;=C82.30^^45^431^76
  ;;^UTILITY(U,$J,358.3,8975,1,0)
  ;;=^358.31IA^4^2
  ;;^UTILITY(U,$J,358.3,8975,1,3,0)
- ;;=3^Ingrowing Nail
+ ;;=3^Follicular Lymphoma Grade IIIa,Unspec Site
  ;;^UTILITY(U,$J,358.3,8975,1,4,0)
- ;;=4^L60.0
+ ;;=4^C82.30
  ;;^UTILITY(U,$J,358.3,8975,2)
- ;;=^5009234
+ ;;=^5001491
  ;;^UTILITY(U,$J,358.3,8976,0)
- ;;=L60.1^^48^478^272
+ ;;=C82.49^^45^431^77
  ;;^UTILITY(U,$J,358.3,8976,1,0)
  ;;=^358.31IA^4^2
  ;;^UTILITY(U,$J,358.3,8976,1,3,0)
- ;;=3^Onycholysis
+ ;;=3^Follicular Lymphoma Grade IIIb,Extranodal/Solid Organ Sites
  ;;^UTILITY(U,$J,358.3,8976,1,4,0)
- ;;=4^L60.1
+ ;;=4^C82.49
  ;;^UTILITY(U,$J,358.3,8976,2)
- ;;=^186837
+ ;;=^5001510
  ;;^UTILITY(U,$J,358.3,8977,0)
- ;;=L60.2^^48^478^271
+ ;;=C82.40^^45^431^78
  ;;^UTILITY(U,$J,358.3,8977,1,0)
  ;;=^358.31IA^4^2
  ;;^UTILITY(U,$J,358.3,8977,1,3,0)
- ;;=3^Onychogryphosis
+ ;;=3^Follicular Lymphoma Grade IIIb,Unspec Site
  ;;^UTILITY(U,$J,358.3,8977,1,4,0)
- ;;=4^L60.2
+ ;;=4^C82.40
  ;;^UTILITY(U,$J,358.3,8977,2)
- ;;=^5009235
+ ;;=^5001501
  ;;^UTILITY(U,$J,358.3,8978,0)
- ;;=L60.3^^48^478^176
+ ;;=C82.99^^45^431^79
  ;;^UTILITY(U,$J,358.3,8978,1,0)
  ;;=^358.31IA^4^2
  ;;^UTILITY(U,$J,358.3,8978,1,3,0)
- ;;=3^Nail Dystrophy
+ ;;=3^Follicular Lymphoma Unspec,Extranodal/Solid Organ Sites
  ;;^UTILITY(U,$J,358.3,8978,1,4,0)
- ;;=4^L60.3
+ ;;=4^C82.99
  ;;^UTILITY(U,$J,358.3,8978,2)
- ;;=^5009236
+ ;;=^5001550
  ;;^UTILITY(U,$J,358.3,8979,0)
- ;;=L60.4^^48^478^89
+ ;;=C82.90^^45^431^80
  ;;^UTILITY(U,$J,358.3,8979,1,0)
  ;;=^358.31IA^4^2
  ;;^UTILITY(U,$J,358.3,8979,1,3,0)
- ;;=3^Beau's Lines
+ ;;=3^Follicular Lymphoma Unspec,Unspec Site
  ;;^UTILITY(U,$J,358.3,8979,1,4,0)
- ;;=4^L60.4
+ ;;=4^C82.90
  ;;^UTILITY(U,$J,358.3,8979,2)
- ;;=^5009237
+ ;;=^5001541
+ ;;^UTILITY(U,$J,358.3,8980,0)
+ ;;=R59.1^^45^431^65
+ ;;^UTILITY(U,$J,358.3,8980,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,8980,1,3,0)
+ ;;=3^Enlarged Lymph Nodes,Generalized
+ ;;^UTILITY(U,$J,358.3,8980,1,4,0)
+ ;;=4^R59.1
+ ;;^UTILITY(U,$J,358.3,8980,2)
+ ;;=^5019530
+ ;;^UTILITY(U,$J,358.3,8981,0)
+ ;;=C91.40^^45^431^84
+ ;;^UTILITY(U,$J,358.3,8981,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,8981,1,3,0)
+ ;;=3^Hairy Cell Leukemia,Not in Remission
+ ;;^UTILITY(U,$J,358.3,8981,1,4,0)
+ ;;=4^C91.40
+ ;;^UTILITY(U,$J,358.3,8981,2)
+ ;;=^5001771
+ ;;^UTILITY(U,$J,358.3,8982,0)
+ ;;=C91.42^^45^431^82
+ ;;^UTILITY(U,$J,358.3,8982,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,8982,1,3,0)
+ ;;=3^Hairy Cell Leukemia,In Relapse
+ ;;^UTILITY(U,$J,358.3,8982,1,4,0)
+ ;;=4^C91.42
+ ;;^UTILITY(U,$J,358.3,8982,2)
+ ;;=^5001773
+ ;;^UTILITY(U,$J,358.3,8983,0)
+ ;;=C91.41^^45^431^83
+ ;;^UTILITY(U,$J,358.3,8983,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,8983,1,3,0)
+ ;;=3^Hairy Cell Leukemia,In Remission
+ ;;^UTILITY(U,$J,358.3,8983,1,4,0)
+ ;;=4^C91.41
+ ;;^UTILITY(U,$J,358.3,8983,2)
+ ;;=^5001772
+ ;;^UTILITY(U,$J,358.3,8984,0)
+ ;;=D57.01^^45^431^85
+ ;;^UTILITY(U,$J,358.3,8984,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,8984,1,3,0)
+ ;;=3^Hb-SS Disease w/ Acute Chest Syndrome
+ ;;^UTILITY(U,$J,358.3,8984,1,4,0)
+ ;;=4^D57.01
+ ;;^UTILITY(U,$J,358.3,8984,2)
+ ;;=^5002307
+ ;;^UTILITY(U,$J,358.3,8985,0)
+ ;;=D57.00^^45^431^86
+ ;;^UTILITY(U,$J,358.3,8985,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,8985,1,3,0)
+ ;;=3^Hb-SS Disease w/ Crisis,Unspec
+ ;;^UTILITY(U,$J,358.3,8985,1,4,0)
+ ;;=4^D57.00
+ ;;^UTILITY(U,$J,358.3,8985,2)
+ ;;=^5002306
+ ;;^UTILITY(U,$J,358.3,8986,0)
+ ;;=D57.02^^45^431^87
+ ;;^UTILITY(U,$J,358.3,8986,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,8986,1,3,0)
+ ;;=3^Hb-SS Disease w/ Splenic Sequestration
+ ;;^UTILITY(U,$J,358.3,8986,1,4,0)
+ ;;=4^D57.02
+ ;;^UTILITY(U,$J,358.3,8986,2)
+ ;;=^5002308
+ ;;^UTILITY(U,$J,358.3,8987,0)
+ ;;=D68.32^^45^431^89
+ ;;^UTILITY(U,$J,358.3,8987,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,8987,1,3,0)
+ ;;=3^Hemorrhagic Disorder d/t Extrinsic Circulating Anticoagulants
+ ;;^UTILITY(U,$J,358.3,8987,1,4,0)
+ ;;=4^D68.32
+ ;;^UTILITY(U,$J,358.3,8987,2)
+ ;;=^5002357
+ ;;^UTILITY(U,$J,358.3,8988,0)
+ ;;=C22.2^^45^431^90
+ ;;^UTILITY(U,$J,358.3,8988,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,8988,1,3,0)
+ ;;=3^Hepatoblastoma
+ ;;^UTILITY(U,$J,358.3,8988,1,4,0)
+ ;;=4^C22.2
+ ;;^UTILITY(U,$J,358.3,8988,2)
+ ;;=^5000935
+ ;;^UTILITY(U,$J,358.3,8989,0)
+ ;;=D58.9^^45^431^92
+ ;;^UTILITY(U,$J,358.3,8989,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,8989,1,3,0)
+ ;;=3^Hereditary Hemolytic Anemia,Unspec
+ ;;^UTILITY(U,$J,358.3,8989,1,4,0)
+ ;;=4^D58.9
+ ;;^UTILITY(U,$J,358.3,8989,2)
+ ;;=^5002322
+ ;;^UTILITY(U,$J,358.3,8990,0)
+ ;;=C81.99^^45^431^93
+ ;;^UTILITY(U,$J,358.3,8990,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,8990,1,3,0)
+ ;;=3^Hodgkin Lymphoma,Extranodal/Solid Organ Sites
+ ;;^UTILITY(U,$J,358.3,8990,1,4,0)
+ ;;=4^C81.99
+ ;;^UTILITY(U,$J,358.3,8990,2)
+ ;;=^5001460
+ ;;^UTILITY(U,$J,358.3,8991,0)
+ ;;=C81.90^^45^431^94
+ ;;^UTILITY(U,$J,358.3,8991,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,8991,1,3,0)
+ ;;=3^Hodgkin Lymphoma,Unspec Site
+ ;;^UTILITY(U,$J,358.3,8991,1,4,0)
+ ;;=4^C81.90
+ ;;^UTILITY(U,$J,358.3,8991,2)
+ ;;=^5001451
+ ;;^UTILITY(U,$J,358.3,8992,0)
+ ;;=D89.2^^45^431^95
+ ;;^UTILITY(U,$J,358.3,8992,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,8992,1,3,0)
+ ;;=3^Hypergammaglobulenemia,Unspec
+ ;;^UTILITY(U,$J,358.3,8992,1,4,0)
+ ;;=4^D89.2
+ ;;^UTILITY(U,$J,358.3,8992,2)
+ ;;=^5002455
+ ;;^UTILITY(U,$J,358.3,8993,0)
+ ;;=D05.12^^45^431^98
+ ;;^UTILITY(U,$J,358.3,8993,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,8993,1,3,0)
+ ;;=3^Intraductal Carcinoma in Situ,Left Breast
+ ;;^UTILITY(U,$J,358.3,8993,1,4,0)
+ ;;=4^D05.12
+ ;;^UTILITY(U,$J,358.3,8993,2)
+ ;;=^5001931
+ ;;^UTILITY(U,$J,358.3,8994,0)
+ ;;=D05.11^^45^431^99
+ ;;^UTILITY(U,$J,358.3,8994,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,8994,1,3,0)
+ ;;=3^Intraductal Carcinoma in Situ,Right Breast
+ ;;^UTILITY(U,$J,358.3,8994,1,4,0)
+ ;;=4^D05.11
+ ;;^UTILITY(U,$J,358.3,8994,2)
+ ;;=^5001930
+ ;;^UTILITY(U,$J,358.3,8995,0)
+ ;;=D05.10^^45^431^100
+ ;;^UTILITY(U,$J,358.3,8995,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,8995,1,3,0)
+ ;;=3^Intraductal Carcinoma in Situ,Unspec Breast
+ ;;^UTILITY(U,$J,358.3,8995,1,4,0)
+ ;;=4^D05.10
+ ;;^UTILITY(U,$J,358.3,8995,2)
+ ;;=^5001929
+ ;;^UTILITY(U,$J,358.3,8996,0)
+ ;;=D50.0^^45^431^101
+ ;;^UTILITY(U,$J,358.3,8996,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,8996,1,3,0)
+ ;;=3^Iron Deficiency Anemia Secondary to Blood Loss
+ ;;^UTILITY(U,$J,358.3,8996,1,4,0)
+ ;;=4^D50.0
+ ;;^UTILITY(U,$J,358.3,8996,2)
+ ;;=^267971
+ ;;^UTILITY(U,$J,358.3,8997,0)
+ ;;=D50.9^^45^431^102
+ ;;^UTILITY(U,$J,358.3,8997,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,8997,1,3,0)
+ ;;=3^Iron Deficiency Anemia,Unspec
+ ;;^UTILITY(U,$J,358.3,8997,1,4,0)
+ ;;=4^D50.9
+ ;;^UTILITY(U,$J,358.3,8997,2)
+ ;;=^5002283
+ ;;^UTILITY(U,$J,358.3,8998,0)
+ ;;=C46.9^^45^431^103
+ ;;^UTILITY(U,$J,358.3,8998,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,8998,1,3,0)
+ ;;=3^Kaposi's Sarcoma,Unspec
+ ;;^UTILITY(U,$J,358.3,8998,1,4,0)
+ ;;=4^C46.9
+ ;;^UTILITY(U,$J,358.3,8998,2)
+ ;;=^5001108
+ ;;^UTILITY(U,$J,358.3,8999,0)
+ ;;=C22.0^^45^431^104
+ ;;^UTILITY(U,$J,358.3,8999,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,8999,1,3,0)
+ ;;=3^Liver Cell Carcinoma
+ ;;^UTILITY(U,$J,358.3,8999,1,4,0)
+ ;;=4^C22.0
+ ;;^UTILITY(U,$J,358.3,8999,2)
+ ;;=^5000933
+ ;;^UTILITY(U,$J,358.3,9000,0)
+ ;;=D05.02^^45^431^105
+ ;;^UTILITY(U,$J,358.3,9000,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,9000,1,3,0)
+ ;;=3^Lobular Carcinoma in Situ,Left Breast
+ ;;^UTILITY(U,$J,358.3,9000,1,4,0)
+ ;;=4^D05.02
+ ;;^UTILITY(U,$J,358.3,9000,2)
+ ;;=^5001928
+ ;;^UTILITY(U,$J,358.3,9001,0)
+ ;;=D05.01^^45^431^106
+ ;;^UTILITY(U,$J,358.3,9001,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,9001,1,3,0)
+ ;;=3^Lobular Carcinoma in Situ,Right Breast
+ ;;^UTILITY(U,$J,358.3,9001,1,4,0)
+ ;;=4^D05.01
+ ;;^UTILITY(U,$J,358.3,9001,2)
+ ;;=^5001927
+ ;;^UTILITY(U,$J,358.3,9002,0)
+ ;;=D05.00^^45^431^107
+ ;;^UTILITY(U,$J,358.3,9002,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,9002,1,3,0)
+ ;;=3^Lobular Carcinoma in Situ,Unspec Breast
+ ;;^UTILITY(U,$J,358.3,9002,1,4,0)
+ ;;=4^D05.00
+ ;;^UTILITY(U,$J,358.3,9002,2)
+ ;;=^5001926
+ ;;^UTILITY(U,$J,358.3,9003,0)
+ ;;=R59.0^^45^431^66
+ ;;^UTILITY(U,$J,358.3,9003,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,9003,1,3,0)
+ ;;=3^Enlarged Lymph Nodes,Localized
+ ;;^UTILITY(U,$J,358.3,9003,1,4,0)
+ ;;=4^R59.0
+ ;;^UTILITY(U,$J,358.3,9003,2)
+ ;;=^5019529
+ ;;^UTILITY(U,$J,358.3,9004,0)
+ ;;=C83.59^^45^431^108
+ ;;^UTILITY(U,$J,358.3,9004,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,9004,1,3,0)
+ ;;=3^Lymphoblastic Lymphoma,Extranodal/Solid Organ Sites
+ ;;^UTILITY(U,$J,358.3,9004,1,4,0)
+ ;;=4^C83.59
+ ;;^UTILITY(U,$J,358.3,9004,2)
+ ;;=^5001590
+ ;;^UTILITY(U,$J,358.3,9005,0)
+ ;;=C83.50^^45^431^109
+ ;;^UTILITY(U,$J,358.3,9005,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,9005,1,3,0)
+ ;;=3^Lymphoblastic Lymphoma,Unspec Site
+ ;;^UTILITY(U,$J,358.3,9005,1,4,0)
+ ;;=4^C83.50
+ ;;^UTILITY(U,$J,358.3,9005,2)
+ ;;=^5001581
+ ;;^UTILITY(U,$J,358.3,9006,0)
+ ;;=C43.9^^45^431^112
+ ;;^UTILITY(U,$J,358.3,9006,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,9006,1,3,0)
+ ;;=3^Malig Melanoma of Skin,Unspec Site
+ ;;^UTILITY(U,$J,358.3,9006,1,4,0)
+ ;;=4^C43.9
+ ;;^UTILITY(U,$J,358.3,9006,2)
+ ;;=^5001015
+ ;;^UTILITY(U,$J,358.3,9007,0)
+ ;;=C31.9^^45^431^113
+ ;;^UTILITY(U,$J,358.3,9007,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,9007,1,3,0)
+ ;;=3^Malig Neop Accessory Sinus,Unspec
+ ;;^UTILITY(U,$J,358.3,9007,1,4,0)
+ ;;=4^C31.9
+ ;;^UTILITY(U,$J,358.3,9007,2)
+ ;;=^5000953
+ ;;^UTILITY(U,$J,358.3,9008,0)
+ ;;=C24.1^^45^431^115
+ ;;^UTILITY(U,$J,358.3,9008,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,9008,1,3,0)
+ ;;=3^Malig Neop Ampulla of Vater
+ ;;^UTILITY(U,$J,358.3,9008,1,4,0)
+ ;;=4^C24.1
+ ;;^UTILITY(U,$J,358.3,9008,2)
+ ;;=^267100
+ ;;^UTILITY(U,$J,358.3,9009,0)
+ ;;=C21.0^^45^431^116
+ ;;^UTILITY(U,$J,358.3,9009,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,9009,1,3,0)
+ ;;=3^Malig Neop Anus,Unspec
+ ;;^UTILITY(U,$J,358.3,9009,1,4,0)
+ ;;=4^C21.0
+ ;;^UTILITY(U,$J,358.3,9009,2)
+ ;;=^5000930
+ ;;^UTILITY(U,$J,358.3,9010,0)
+ ;;=C67.9^^45^431^119
+ ;;^UTILITY(U,$J,358.3,9010,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,9010,1,3,0)
+ ;;=3^Malig Neop Bladder,Unspec
+ ;;^UTILITY(U,$J,358.3,9010,1,4,0)
+ ;;=4^C67.9
+ ;;^UTILITY(U,$J,358.3,9010,2)
+ ;;=^5001263
+ ;;^UTILITY(U,$J,358.3,9011,0)
+ ;;=C71.9^^45^431^123

@@ -1,5 +1,5 @@
 PRCAHIS ;WASH-ISC@ALTOONA,PA/LDB-Transaction History Report ;9/27/93  4:32 PM
-V ;;4.5;Accounts Receivable;**110,198,233,315,340**;Mar 20, 1995;Build 9
+V ;;4.5;Accounts Receivable;**110,198,233,315,340,377,381**;Mar 20, 1995;Build 28
  ;;Per VA Directive 6402, this routine should not be modified.
  ;
 EN ;Ask debtor and date range for transaction history
@@ -21,7 +21,7 @@ EN ;Ask debtor and date range for transaction history
  D ^DIR S:Y="" Y=DT I $D(DIRUT)&'Y G EXIT1 Q
  S EDATE=Y
  K DIR
-TYPE S DIC="^PRCA(430.3,",DIC(0)="QEMZ",DIC("S")="I +Y,(+Y<15!(""^25^29^34^35^40^41^43^45^47^51^53^54^55^56^57^60^64^65^66^67^68^70^71^72^73^74^75^76^79^80^83^84^85^""[(""^""_+Y_""^"")))"
+TYPE S DIC="^PRCA(430.3,",DIC(0)="QEMZ",DIC("S")="I +Y,(+Y<15!(""^25^29^34^35^40^41^43^45^47^51^53^54^55^56^57^60^64^65^66^67^68^70^71^72^73^74^75^76^79^80^83^84^85^90^91^92^""[(""^""_+Y_""^"")))"  ; PRCA*4.5*377/381
  S Y=0 R !,"TRANSACTION TYPE: ALL//",X:DTIME I '$T!(X="^") Q
  I X]"",X'="ALL" D ^DIC
  I X["?" W !!,"Enter 'ALL' for all types of transactions in the AR TRANSACTION TYPE FILE",!,"including COMMENTS and STATEMENT DATES.",! G TYPE

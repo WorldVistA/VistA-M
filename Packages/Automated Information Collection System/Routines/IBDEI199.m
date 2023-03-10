@@ -1,118 +1,118 @@
-IBDEI199 ; ; 04-FEB-2020
- ;;3.0;IB ENCOUNTER FORM IMP/EXP;;FEB 04, 2020
+IBDEI199 ; ; 01-FEB-2022
+ ;;3.0;IB ENCOUNTER FORM IMP/EXP;;FEB 01, 2022
  Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,999) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
- ;;^UTILITY(U,$J,358.3,20105,0)
- ;;=S49.141S^^93^999^120
- ;;^UTILITY(U,$J,358.3,20105,1,0)
+ ;;^UTILITY(U,$J,358.3,20331,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,20105,1,3,0)
- ;;=3^Sltr-haris Type IV physl fx lower end humer, right arm, sqla
- ;;^UTILITY(U,$J,358.3,20105,1,4,0)
- ;;=4^S49.141S
- ;;^UTILITY(U,$J,358.3,20105,2)
- ;;=^5028466
- ;;^UTILITY(U,$J,358.3,20106,0)
- ;;=S49.042S^^93^999^121
- ;;^UTILITY(U,$J,358.3,20106,1,0)
+ ;;^UTILITY(U,$J,358.3,20331,1,3,0)
+ ;;=3^Nondisp fx of proximal phalanx of left ring finger, sequela
+ ;;^UTILITY(U,$J,358.3,20331,1,4,0)
+ ;;=4^S62.645S
+ ;;^UTILITY(U,$J,358.3,20331,2)
+ ;;=^5034703
+ ;;^UTILITY(U,$J,358.3,20332,0)
+ ;;=S62.640S^^67^885^102
+ ;;^UTILITY(U,$J,358.3,20332,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,20106,1,3,0)
- ;;=3^Sltr-haris Type IV physl fx upper end humer, left arm, sqla
- ;;^UTILITY(U,$J,358.3,20106,1,4,0)
- ;;=4^S49.042S
- ;;^UTILITY(U,$J,358.3,20106,2)
- ;;=^5028418
- ;;^UTILITY(U,$J,358.3,20107,0)
- ;;=S49.041S^^93^999^122
- ;;^UTILITY(U,$J,358.3,20107,1,0)
+ ;;^UTILITY(U,$J,358.3,20332,1,3,0)
+ ;;=3^Nondisp fx of proximal phalanx of r idx fngr, sequela
+ ;;^UTILITY(U,$J,358.3,20332,1,4,0)
+ ;;=4^S62.640S
+ ;;^UTILITY(U,$J,358.3,20332,2)
+ ;;=^5034668
+ ;;^UTILITY(U,$J,358.3,20333,0)
+ ;;=S62.646S^^67^885^103
+ ;;^UTILITY(U,$J,358.3,20333,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,20107,1,3,0)
- ;;=3^Sltr-haris Type IV physl fx upper end humer, right arm, sqla
- ;;^UTILITY(U,$J,358.3,20107,1,4,0)
- ;;=4^S49.041S
- ;;^UTILITY(U,$J,358.3,20107,2)
- ;;=^5028412
- ;;^UTILITY(U,$J,358.3,20108,0)
- ;;=M84.322S^^93^999^123
- ;;^UTILITY(U,$J,358.3,20108,1,0)
+ ;;^UTILITY(U,$J,358.3,20333,1,3,0)
+ ;;=3^Nondisp fx of proximal phalanx of r little finger, sequela
+ ;;^UTILITY(U,$J,358.3,20333,1,4,0)
+ ;;=4^S62.646S
+ ;;^UTILITY(U,$J,358.3,20333,2)
+ ;;=^5034710
+ ;;^UTILITY(U,$J,358.3,20334,0)
+ ;;=S62.642S^^67^885^104
+ ;;^UTILITY(U,$J,358.3,20334,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,20108,1,3,0)
- ;;=3^Stress fracture, left humerus, sequela
- ;;^UTILITY(U,$J,358.3,20108,1,4,0)
- ;;=4^M84.322S
- ;;^UTILITY(U,$J,358.3,20108,2)
- ;;=^5013601
- ;;^UTILITY(U,$J,358.3,20109,0)
- ;;=M84.321S^^93^999^125
- ;;^UTILITY(U,$J,358.3,20109,1,0)
+ ;;^UTILITY(U,$J,358.3,20334,1,3,0)
+ ;;=3^Nondisp fx of proximal phalanx of r mid finger, sequela
+ ;;^UTILITY(U,$J,358.3,20334,1,4,0)
+ ;;=4^S62.642S
+ ;;^UTILITY(U,$J,358.3,20334,2)
+ ;;=^5034682
+ ;;^UTILITY(U,$J,358.3,20335,0)
+ ;;=S62.644S^^67^885^105
+ ;;^UTILITY(U,$J,358.3,20335,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,20109,1,3,0)
- ;;=3^Stress fracture, right humerus, sequela
- ;;^UTILITY(U,$J,358.3,20109,1,4,0)
- ;;=4^M84.321S
- ;;^UTILITY(U,$J,358.3,20109,2)
- ;;=^5013595
- ;;^UTILITY(U,$J,358.3,20110,0)
- ;;=S42.482S^^93^999^127
- ;;^UTILITY(U,$J,358.3,20110,1,0)
+ ;;^UTILITY(U,$J,358.3,20335,1,3,0)
+ ;;=3^Nondisp fx of proximal phalanx of right ring finger, sequela
+ ;;^UTILITY(U,$J,358.3,20335,1,4,0)
+ ;;=4^S62.644S
+ ;;^UTILITY(U,$J,358.3,20335,2)
+ ;;=^5034696
+ ;;^UTILITY(U,$J,358.3,20336,0)
+ ;;=M84.445S^^67^885^119
+ ;;^UTILITY(U,$J,358.3,20336,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,20110,1,3,0)
- ;;=3^Torus fracture of lower end of left humerus, sequela
- ;;^UTILITY(U,$J,358.3,20110,1,4,0)
- ;;=4^S42.482S
- ;;^UTILITY(U,$J,358.3,20110,2)
- ;;=^5134732
- ;;^UTILITY(U,$J,358.3,20111,0)
- ;;=S42.481S^^93^999^128
- ;;^UTILITY(U,$J,358.3,20111,1,0)
+ ;;^UTILITY(U,$J,358.3,20336,1,3,0)
+ ;;=3^Pathological fracture, left finger(s), sequela
+ ;;^UTILITY(U,$J,358.3,20336,1,4,0)
+ ;;=4^M84.445S
+ ;;^UTILITY(U,$J,358.3,20336,2)
+ ;;=^5013895
+ ;;^UTILITY(U,$J,358.3,20337,0)
+ ;;=M84.444S^^67^885^121
+ ;;^UTILITY(U,$J,358.3,20337,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,20111,1,3,0)
- ;;=3^Torus fracture of lower end of right humerus, sequela
- ;;^UTILITY(U,$J,358.3,20111,1,4,0)
- ;;=4^S42.481S
- ;;^UTILITY(U,$J,358.3,20111,2)
- ;;=^5027621
- ;;^UTILITY(U,$J,358.3,20112,0)
- ;;=S42.272S^^93^999^129
- ;;^UTILITY(U,$J,358.3,20112,1,0)
+ ;;^UTILITY(U,$J,358.3,20337,1,3,0)
+ ;;=3^Pathological fracture, right finger(s), sequela
+ ;;^UTILITY(U,$J,358.3,20337,1,4,0)
+ ;;=4^M84.444S
+ ;;^UTILITY(U,$J,358.3,20337,2)
+ ;;=^5013889
+ ;;^UTILITY(U,$J,358.3,20338,0)
+ ;;=M84.345S^^67^885^123
+ ;;^UTILITY(U,$J,358.3,20338,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,20112,1,3,0)
- ;;=3^Torus fracture of upper end of left humerus, sequela
- ;;^UTILITY(U,$J,358.3,20112,1,4,0)
- ;;=4^S42.272S
- ;;^UTILITY(U,$J,358.3,20112,2)
- ;;=^5026982
- ;;^UTILITY(U,$J,358.3,20113,0)
- ;;=S42.271S^^93^999^130
- ;;^UTILITY(U,$J,358.3,20113,1,0)
+ ;;^UTILITY(U,$J,358.3,20338,1,3,0)
+ ;;=3^Stress fracture, left finger(s), sequela
+ ;;^UTILITY(U,$J,358.3,20338,1,4,0)
+ ;;=4^M84.345S
+ ;;^UTILITY(U,$J,358.3,20338,2)
+ ;;=^5013667
+ ;;^UTILITY(U,$J,358.3,20339,0)
+ ;;=M84.344S^^67^885^125
+ ;;^UTILITY(U,$J,358.3,20339,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,20113,1,3,0)
- ;;=3^Torus fracture of upper end of right humerus, sequela
- ;;^UTILITY(U,$J,358.3,20113,1,4,0)
- ;;=4^S42.271S
- ;;^UTILITY(U,$J,358.3,20113,2)
- ;;=^5026976
- ;;^UTILITY(U,$J,358.3,20114,0)
- ;;=S42.122S^^93^999^8
- ;;^UTILITY(U,$J,358.3,20114,1,0)
+ ;;^UTILITY(U,$J,358.3,20339,1,3,0)
+ ;;=3^Stress fracture, right finger(s), sequela
+ ;;^UTILITY(U,$J,358.3,20339,1,4,0)
+ ;;=4^M84.344S
+ ;;^UTILITY(U,$J,358.3,20339,2)
+ ;;=^5013661
+ ;;^UTILITY(U,$J,358.3,20340,0)
+ ;;=S62.522S^^67^885^15
+ ;;^UTILITY(U,$J,358.3,20340,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,20114,1,3,0)
- ;;=3^Disp fx of acromial process, left shoulder, sequela
- ;;^UTILITY(U,$J,358.3,20114,1,4,0)
- ;;=4^S42.122S
- ;;^UTILITY(U,$J,358.3,20114,2)
- ;;=^5026599
- ;;^UTILITY(U,$J,358.3,20115,0)
- ;;=S42.121S^^93^999^9
- ;;^UTILITY(U,$J,358.3,20115,1,0)
+ ;;^UTILITY(U,$J,358.3,20340,1,3,0)
+ ;;=3^Disp fx of distal phalanx of left thumb, sequela
+ ;;^UTILITY(U,$J,358.3,20340,1,4,0)
+ ;;=4^S62.522S
+ ;;^UTILITY(U,$J,358.3,20340,2)
+ ;;=^5034353
+ ;;^UTILITY(U,$J,358.3,20341,0)
+ ;;=S62.521S^^67^885^20
+ ;;^UTILITY(U,$J,358.3,20341,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,20115,1,3,0)
- ;;=3^Disp fx of acromial process, right shoulder, sequela
- ;;^UTILITY(U,$J,358.3,20115,1,4,0)
- ;;=4^S42.121S
- ;;^UTILITY(U,$J,358.3,20115,2)
- ;;=^5026592
- ;;^UTILITY(U,$J,358.3,20116,0)
- ;;=S42.112S^^93^999^12
- ;;^UTILITY(U,$J,358.3,20116,1,0)
+ ;;^UTILITY(U,$J,358.3,20341,1,3,0)
+ ;;=3^Disp fx of distal phalanx of right thumb, sequela
+ ;;^UTILITY(U,$J,358.3,20341,1,4,0)
+ ;;=4^S62.521S
+ ;;^UTILITY(U,$J,358.3,20341,2)
+ ;;=^5034346
+ ;;^UTILITY(U,$J,358.3,20342,0)
+ ;;=S62.512S^^67^885^43
+ ;;^UTILITY(U,$J,358.3,20342,1,0)
  ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,20342,1,3,0)
+ ;;=3^Disp fx of proximal phalanx of left thumb, sequela

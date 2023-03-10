@@ -1,122 +1,122 @@
-IBDEI1LP ; ; 04-FEB-2020
- ;;3.0;IB ENCOUNTER FORM IMP/EXP;;FEB 04, 2020
+IBDEI1LP ; ; 01-FEB-2022
+ ;;3.0;IB ENCOUNTER FORM IMP/EXP;;FEB 01, 2022
  Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,999) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
- ;;^UTILITY(U,$J,358.3,25583,0)
- ;;=T74.21XS^^107^1222^9
- ;;^UTILITY(U,$J,358.3,25583,1,0)
+ ;;^UTILITY(U,$J,358.3,25938,2)
+ ;;=^5003282
+ ;;^UTILITY(U,$J,358.3,25939,0)
+ ;;=F15.20^^92^1188^65
+ ;;^UTILITY(U,$J,358.3,25939,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,25583,1,3,0)
- ;;=3^Adult Sexual Abuse,Confirmed,Sequela
- ;;^UTILITY(U,$J,358.3,25583,1,4,0)
- ;;=4^T74.21XS
- ;;^UTILITY(U,$J,358.3,25583,2)
- ;;=^5054154
- ;;^UTILITY(U,$J,358.3,25584,0)
- ;;=T76.21XD^^107^1222^11
- ;;^UTILITY(U,$J,358.3,25584,1,0)
+ ;;^UTILITY(U,$J,358.3,25939,1,3,0)
+ ;;=3^Oth Stimulant Mod/Sev Use D/O,Uncomplicated
+ ;;^UTILITY(U,$J,358.3,25939,1,4,0)
+ ;;=4^F15.20
+ ;;^UTILITY(U,$J,358.3,25939,2)
+ ;;=^5003295
+ ;;^UTILITY(U,$J,358.3,25940,0)
+ ;;=F14.180^^92^1188^1
+ ;;^UTILITY(U,$J,358.3,25940,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,25584,1,3,0)
- ;;=3^Adult Sexual Abuse,Suspected,Sub Encntr
- ;;^UTILITY(U,$J,358.3,25584,1,4,0)
- ;;=4^T76.21XD
- ;;^UTILITY(U,$J,358.3,25584,2)
- ;;=^5054228
- ;;^UTILITY(U,$J,358.3,25585,0)
- ;;=T76.21XS^^107^1222^12
- ;;^UTILITY(U,$J,358.3,25585,1,0)
+ ;;^UTILITY(U,$J,358.3,25940,1,3,0)
+ ;;=3^Cocaine Induced Anxiety D/O w/ Mild Use D/O
+ ;;^UTILITY(U,$J,358.3,25940,1,4,0)
+ ;;=4^F14.180
+ ;;^UTILITY(U,$J,358.3,25940,2)
+ ;;=^5003248
+ ;;^UTILITY(U,$J,358.3,25941,0)
+ ;;=F14.280^^92^1188^2
+ ;;^UTILITY(U,$J,358.3,25941,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,25585,1,3,0)
- ;;=3^Adult Sexual Abuse,Suspected,Sequela
- ;;^UTILITY(U,$J,358.3,25585,1,4,0)
- ;;=4^T76.21XS
- ;;^UTILITY(U,$J,358.3,25585,2)
- ;;=^5054229
- ;;^UTILITY(U,$J,358.3,25586,0)
- ;;=Y07.53^^107^1222^13
- ;;^UTILITY(U,$J,358.3,25586,1,0)
+ ;;^UTILITY(U,$J,358.3,25941,1,3,0)
+ ;;=3^Cocaine Induced Anxiety D/O w/ Mod/Sev Use D/O
+ ;;^UTILITY(U,$J,358.3,25941,1,4,0)
+ ;;=4^F14.280
+ ;;^UTILITY(U,$J,358.3,25941,2)
+ ;;=^5003264
+ ;;^UTILITY(U,$J,358.3,25942,0)
+ ;;=F14.980^^92^1188^3
+ ;;^UTILITY(U,$J,358.3,25942,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,25586,1,3,0)
- ;;=3^Instructor,Perpetrator of MST
- ;;^UTILITY(U,$J,358.3,25586,1,4,0)
- ;;=4^Y07.53
- ;;^UTILITY(U,$J,358.3,25586,2)
- ;;=^5061207
- ;;^UTILITY(U,$J,358.3,25587,0)
- ;;=Y07.59^^107^1222^14
- ;;^UTILITY(U,$J,358.3,25587,1,0)
+ ;;^UTILITY(U,$J,358.3,25942,1,3,0)
+ ;;=3^Cocaine Induced Anxiety D/O w/o Use D/O
+ ;;^UTILITY(U,$J,358.3,25942,1,4,0)
+ ;;=4^F14.980
+ ;;^UTILITY(U,$J,358.3,25942,2)
+ ;;=^5003278
+ ;;^UTILITY(U,$J,358.3,25943,0)
+ ;;=F14.14^^92^1188^4
+ ;;^UTILITY(U,$J,358.3,25943,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,25587,1,3,0)
- ;;=3^Non-Family Member,Perpetrator of MST/Abuse NEC
- ;;^UTILITY(U,$J,358.3,25587,1,4,0)
- ;;=4^Y07.59
- ;;^UTILITY(U,$J,358.3,25587,2)
- ;;=^5061208
- ;;^UTILITY(U,$J,358.3,25588,0)
- ;;=T74.51XA^^107^1222^1
- ;;^UTILITY(U,$J,358.3,25588,1,0)
+ ;;^UTILITY(U,$J,358.3,25943,1,3,0)
+ ;;=3^Cocaine Induced Mood D/O w/ Mild Use D/O
+ ;;^UTILITY(U,$J,358.3,25943,1,4,0)
+ ;;=4^F14.14
+ ;;^UTILITY(U,$J,358.3,25943,2)
+ ;;=^5003244
+ ;;^UTILITY(U,$J,358.3,25944,0)
+ ;;=F14.24^^92^1188^5
+ ;;^UTILITY(U,$J,358.3,25944,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,25588,1,3,0)
- ;;=3^Adult Forced Sexual Exploit,Confirmed,Init enctr
- ;;^UTILITY(U,$J,358.3,25588,1,4,0)
- ;;=4^T74.51XA
- ;;^UTILITY(U,$J,358.3,25588,2)
- ;;=^5157560
- ;;^UTILITY(U,$J,358.3,25589,0)
- ;;=T74.51XD^^107^1222^2
- ;;^UTILITY(U,$J,358.3,25589,1,0)
+ ;;^UTILITY(U,$J,358.3,25944,1,3,0)
+ ;;=3^Cocaine Induced Mood D/O w/ Mod/Sev Use D/O
+ ;;^UTILITY(U,$J,358.3,25944,1,4,0)
+ ;;=4^F14.24
+ ;;^UTILITY(U,$J,358.3,25944,2)
+ ;;=^5003260
+ ;;^UTILITY(U,$J,358.3,25945,0)
+ ;;=F14.94^^92^1188^6
+ ;;^UTILITY(U,$J,358.3,25945,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,25589,1,3,0)
- ;;=3^Adult Forced Sexual Exploit,Confirmed,Subs
- ;;^UTILITY(U,$J,358.3,25589,1,4,0)
- ;;=4^T74.51XD
- ;;^UTILITY(U,$J,358.3,25589,2)
- ;;=^5157561
- ;;^UTILITY(U,$J,358.3,25590,0)
- ;;=T74.51XS^^107^1222^3
- ;;^UTILITY(U,$J,358.3,25590,1,0)
+ ;;^UTILITY(U,$J,358.3,25945,1,3,0)
+ ;;=3^Cocaine Induced Mood D/O w/o Use D/O
+ ;;^UTILITY(U,$J,358.3,25945,1,4,0)
+ ;;=4^F14.94
+ ;;^UTILITY(U,$J,358.3,25945,2)
+ ;;=^5003274
+ ;;^UTILITY(U,$J,358.3,25946,0)
+ ;;=F14.188^^92^1188^7
+ ;;^UTILITY(U,$J,358.3,25946,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,25590,1,3,0)
- ;;=3^Adult Forced Sexual Exploit,Confirmed,Sequela
- ;;^UTILITY(U,$J,358.3,25590,1,4,0)
- ;;=4^T74.51XS
- ;;^UTILITY(U,$J,358.3,25590,2)
- ;;=^5157562
- ;;^UTILITY(U,$J,358.3,25591,0)
- ;;=T76.51XA^^107^1222^4
- ;;^UTILITY(U,$J,358.3,25591,1,0)
+ ;;^UTILITY(U,$J,358.3,25946,1,3,0)
+ ;;=3^Cocaine Induced Obess-Compul & Rel D/O w/ Mild Use D/O
+ ;;^UTILITY(U,$J,358.3,25946,1,4,0)
+ ;;=4^F14.188
+ ;;^UTILITY(U,$J,358.3,25946,2)
+ ;;=^5003251
+ ;;^UTILITY(U,$J,358.3,25947,0)
+ ;;=F14.288^^92^1188^8
+ ;;^UTILITY(U,$J,358.3,25947,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,25591,1,3,0)
- ;;=3^Adult Forced Sexual Exploit,Suspected,Init 
- ;;^UTILITY(U,$J,358.3,25591,1,4,0)
- ;;=4^T76.51XA
- ;;^UTILITY(U,$J,358.3,25591,2)
- ;;=^5157572
- ;;^UTILITY(U,$J,358.3,25592,0)
- ;;=T76.51XD^^107^1222^5
- ;;^UTILITY(U,$J,358.3,25592,1,0)
+ ;;^UTILITY(U,$J,358.3,25947,1,3,0)
+ ;;=3^Cocaine Induced Obess-Compul & Rel D/O w/ Mod/Sev Use D/O
+ ;;^UTILITY(U,$J,358.3,25947,1,4,0)
+ ;;=4^F14.288
+ ;;^UTILITY(U,$J,358.3,25947,2)
+ ;;=^5003267
+ ;;^UTILITY(U,$J,358.3,25948,0)
+ ;;=F14.988^^92^1188^9
+ ;;^UTILITY(U,$J,358.3,25948,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,25592,1,3,0)
- ;;=3^Adult Forced Sexual Exploit,Suspected,Subs
- ;;^UTILITY(U,$J,358.3,25592,1,4,0)
- ;;=4^T76.51XD
- ;;^UTILITY(U,$J,358.3,25592,2)
- ;;=^5157573
- ;;^UTILITY(U,$J,358.3,25593,0)
- ;;=T76.51XS^^107^1222^6
- ;;^UTILITY(U,$J,358.3,25593,1,0)
+ ;;^UTILITY(U,$J,358.3,25948,1,3,0)
+ ;;=3^Cocaine Induced Obess-Compul & Rel D/O w/o Use D/O
+ ;;^UTILITY(U,$J,358.3,25948,1,4,0)
+ ;;=4^F14.988
+ ;;^UTILITY(U,$J,358.3,25948,2)
+ ;;=^5003281
+ ;;^UTILITY(U,$J,358.3,25949,0)
+ ;;=F14.159^^92^1188^10
+ ;;^UTILITY(U,$J,358.3,25949,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,25593,1,3,0)
- ;;=3^Adult Forced Sexual Exploit,Suspected,Sequela
- ;;^UTILITY(U,$J,358.3,25593,1,4,0)
- ;;=4^T76.51XS
- ;;^UTILITY(U,$J,358.3,25593,2)
- ;;=^5157574
- ;;^UTILITY(U,$J,358.3,25594,0)
- ;;=E66.01^^107^1223^125
- ;;^UTILITY(U,$J,358.3,25594,1,0)
+ ;;^UTILITY(U,$J,358.3,25949,1,3,0)
+ ;;=3^Cocaine Induced Psychotic D/O w/ Mild Use D/O
+ ;;^UTILITY(U,$J,358.3,25949,1,4,0)
+ ;;=4^F14.159
+ ;;^UTILITY(U,$J,358.3,25949,2)
+ ;;=^5003247
+ ;;^UTILITY(U,$J,358.3,25950,0)
+ ;;=F14.259^^92^1188^11
+ ;;^UTILITY(U,$J,358.3,25950,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,25594,1,3,0)
- ;;=3^Morbid Obesity
- ;;^UTILITY(U,$J,358.3,25594,1,4,0)
- ;;=4^E66.01
+ ;;^UTILITY(U,$J,358.3,25950,1,3,0)
+ ;;=3^Cocaine Induced Psychotic D/O w/ Mod/Sev Use D/O

@@ -1,17 +1,19 @@
 IBCF ;ALB/RLW - task 1500/UB printing ;12-JUN-92
- ;;2.0;INTEGRATED BILLING;**33,63,52,121,51,137,349**;21-MAR-94;Build 46
- ;;Per VHA Directive 2004-038, this routine should not be modified.
+ ;;2.0;INTEGRATED BILLING;**33,63,52,121,51,137,349,641**;21-MAR-94;Build 61
+ ;;Per VA Directive 6402, this routine should not be modified.
  ;
-EN1 ; call appropriate print routine for the claim form type to be printed
+EN1(IBABORT) ; call appropriate print routine for the claim form type to be printed   ;WCJ;US3380;ADDED IBABORT
  K IBRESUB
+ G EN1TAG  ;WCJ;US3380;added GOTO;you think of a better way
  ;
-EN1X ; Entrypoint for reprint (IBRESUB will be defined)
- N IBF,IB,IBFORM,IBJ
+EN1X(IBABORT) ; Entrypoint for reprint (IBRESUB will be defined);WCJ;US3380;added parameter
+ ;
+EN1TAG N IBF,IB,IBFORM,IBJ ;WCJ;US3380; added tag;you think of a better way
  S IB=$$FT^IBCU3(IBIFN)    ; form type ien (2 or 3)
  S IBFT=$$FTN^IBCU3(IB)    ; form type name
  S IBF=$P($G(^IBE(353,+IB,2)),U,8)
  S:IBF="" IBF=IB ;Forces the use of the output formatter to print bills
- D ENFMT(IBIFN,IB,IBF,,$G(IBRESUB))
+ D ENFMT(IBIFN,IB,IBF,,$G(IBRESUB),.IBABORT)   ;WCJ;US3380;ADDED IBABORT
 END K IBFT,IBRESUB
  Q
  ;
@@ -51,12 +53,14 @@ EN5 ;queue 1500 Rx Addendum to Follow-up (AR) printer, IBIFN must be defined - n
  D ^%ZTLOAD
  Q
  ;
-ENFMT(IBIFN,IB,IBF,ZTIO,IBRESUB) ; Use formatter to print bill IBIFN
+ENFMT(IBIFN,IB,IBF,ZTIO,IBRESUB,IBABORT) ; Use formatter to print bill IBIFN
+ ; WCJ;USS3380;added IBABORT which will be set to 1 if they went in to print but dint
  N IBFT,IBFTP,IBFORM,IBJ
  S (IBFT,IBFORM)=IB,IBFTP="IBCFP"_IB,IBJ=$J
  K ^XTMP(IBFTP,$J),^TMP("IBQONE",$J)
  S ^XTMP(IBFTP,$J,1,1,1,IBIFN)="",^TMP("IBQONE",$J)=""
- D FORM^IBCEFG7(IBF,$G(ZTIO))
+ ;D FORM^IBCEFG7(IBF,$G(ZTIO))  ;WCJ;US3380
+ D FORM^IBCEFG7(IBF,$G(ZTIO),,,,.IBABORT)   ;WCJ;US3380;ADDED IBABORT
  I $G(IBRESUB) D
  . N IBDA
  . S IBDA=$$LAST364^IBCEF4(IBIFN)

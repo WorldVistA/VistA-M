@@ -1,5 +1,5 @@
 SRONRPT4 ;BIR/SJA - NURSE INTRAOP REPORT ;04/27/2015
- ;;3.0;Surgery;**184**;24 Jun 93;Build 35
+ ;;3.0;Surgery;**184,200**;24 Jun 93;Build 9
  ;** NOTICE: This routine is part of an implementation of a nationally
  ;**         controlled procedure.  Local modifications to this routine
  ;**         are prohibited.
@@ -41,7 +41,7 @@ LAS135 ; laser Performed
  .D LINE(1) S @SRG@(SRI)="    Interval/Repetition Rate: "_$S(INTVL'="":INTVL,1:"N/A"),@SRG@(SRI)=@SRG@(SRI)_$$SPACE(40)_"Total Joules Delivered: "_$S(JOULES'="":JOULES,1:"N/A")
  .D LINE(1) S @SRG@(SRI)="    Watts Delivered: "_$S(WATTSD'="":WATTSD,1:"N/A"),@SRG@(SRI)=@SRG@(SRI)_$$SPACE(40)_"Wave Form: "_$S(WAVE'="":WAVE,1:"N/A")
  .D LINE(1) S @SRG@(SRI)="    Pulse Width: "_$S(PULSE'="":PULSE,1:"N/A"),@SRG@(SRI)=@SRG@(SRI)_$$SPACE(40)_"Energy Joules: "_$S(EJOULES'="":EJOULES,1:"N/A")
- .D LINE(1) S @SRG@(SRI)="    Duration: "_$S(DUR'="":DUR_" min.",1:"N/A")
+ .D LINE(1) S @SRG@(SRI)="    Duration: "_$S(DUR'="":DUR_" seconds",1:"N/A")
  .D LINE(1) S @SRG@(SRI)="    Laser On Standby: "_$S(LAON'="":LAON,1:"N/A"),@SRG@(SRI)=@SRG@(SRI)_$$SPACE(40)_"Laser Off and Key Secured : "_$S(LASOFF'="":LASOFF,1:"N/A")
  .I '$O(^SRF(SRTN,56,LAS,1,0)) D LINE(1) S @SRG@(SRI)="    Patient Precautions: N/A",@SRG@(SRI)=@SRG@(SRI)
  .S (II,III)=0

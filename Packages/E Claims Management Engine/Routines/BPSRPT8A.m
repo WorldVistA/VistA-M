@@ -1,0 +1,218 @@
+BPSRPT8A ;AITC/CKB - ECME REPORTS ;3/9/2020
+ ;;1.0;E CLAIMS MGMT ENGINE;**28**;JUN 2004;Build 22
+ ;;Per VA Directive 6402, this routine should not be modified.
+ ;
+ ;
+ Q
+ ;
+ ;Print Excel Header - moved from BPSRPT8
+ ;
+HDR(BPRTYPE) ;
+ ;
+ ;Check if header already printed
+ I $G(BPSDATA) Q
+ S BPSDATA=1
+ ;
+ ;Division
+ W !,"DIVISION",U
+ ;
+ I BPRTYPE'=5,BPRTYPE'=6 W "INSURANCE",U
+ I (",2,")[BPRTYPE W "BIN",U
+ ;
+ I (",5,8,")[BPRTYPE W "PATIENT NAME",U,"Pt.ID",U
+ I (",1,2,3,4,7,9,")[BPRTYPE W "PATIENT",U,"Pt.ID",U
+ ;
+ I BPRTYPE=1 D  Q
+ . W "ELIG",U
+ . W "RX#",U
+ . W "REF/ECME#",U
+ . W "DATE",U
+ . W "VA ING. COST",U
+ . W "VA DISP. FEE",U
+ . W "$BILLED",U
+ . W "INGREDIENT COST PAID",U
+ . W "DISPENSING FEE PAID",U
+ . W "PATIENT RESP (INS)",U
+ . W "$INS RESPONSE",U
+ . W "$COLLECT",U
+ . W "DRUG",U
+ . W "NDC",U
+ . W "RELEASED",U
+ . W "LOCATION",U
+ . W "TYPE",U
+ . W "STATUS",U
+ . W "REJECTED",U
+ . W "BILL#",U
+ . W "COB"
+ ;
+ I BPRTYPE=4 D  Q
+ . W "ELIG",U
+ . W "RX#",U
+ . W "REF/ECME#",U
+ . W "DATE",U
+ . W "VA ING. COST",U
+ . W "VA DISP. FEE",U
+ . W "$BILLED",U
+ . W "ING. COST PAID",U
+ . W "DIS. FEE PAID",U
+ . W "PATIENT RESP (INS)",U
+ . W "$INS RESPONSE",U
+ . W "$COLLECT",U
+ . W "DRUG",U
+ . W "NDC",U
+ . W "RELEASED",U
+ . W "LOCATION",U
+ . W "TYPE",U
+ . W "STATUS",U
+ . W "COB",U
+ . W "REJECTED",U
+ . W "REVERSAL METHOD",U
+ . W "RETURN STATUS",U
+ . W "REASON"
+ ;
+ I BPRTYPE=2 D  Q
+ . W "ELIG",U
+ . W "RX#",U
+ . W "REF/ECME#",U
+ . W "DATE",U
+ . W "RELEASED",U
+ . W "LOCATION",U
+ . W "TYPE",U
+ . W "STATUS",U
+ . W "COB",U
+ . W "OPEN/CLOSED",U
+ . W "GROUP ID",U
+ . W "VA ING. COST",U
+ . W "VA DISP. FEE",U
+ . W "$BILLED",U
+ . W "QTY",U
+ . W "NDC#",U
+ . W "DRUG",U
+ . W "PRESCRIBER ID",U
+ . W "PRESCRIBER",U
+ . W "MULT REJ",U
+ . W "REJECT CODE",U
+ . W "REJECT EXPLANATION"
+ ;
+ I BPRTYPE=3 D  Q
+ . W "RX#",U
+ . W "REF/ECME#",U
+ . W "DATE",U
+ . W "VA ING. COST",U
+ . W "VA DISP. FEE",U
+ . W "$BILLED",U
+ . W "INGREDIENT COST PAID",U
+ . W "DISPENSING FEE PAID",U
+ . W "PATIENT RESP (INS)",U
+ . W "$INS RESPONSE",U
+ . W "DRUG",U
+ . W "NDC",U
+ . W "LOCATION",U
+ . W "TYPE",U
+ . W "STATUS",U
+ . W "COB",U
+ . W "ELIG",U
+ . W "REJECTED"
+ ;
+ I BPRTYPE=5 D  Q
+ . W "RX#",U
+ . W "REF/ECME#",U
+ . W "COMPLETED",U
+ . W "TRANS TYPE",U
+ . W "PAYER RESPONSE",U
+ . W "RX COB",U
+ . W "DRUG",U
+ . W "NDC",U
+ . W "FILL LOCATION",U
+ . W "FILL TYPE",U
+ . W "STATUS",U
+ . W "REJECTED",U
+ . W "INSURANCE",U
+ . W "ELAP TIME IN SECONDS"
+ ;
+ I BPRTYPE=6 D  Q
+ .W "DATE",U
+ .W "#CLAIMS",U
+ .W "AMOUNT SUBMITTED",U
+ .W "RETURNED REJECTED",U
+ .W "RETURNED PAYABLE",U
+ .W "AMOUNT TO RECEIVE",U
+ .W "DIFFERENCE"
+ ;
+ I BPRTYPE=7 D  Q
+ . W "ELIG",U
+ . W "RX#",U
+ . W "REF/ECME#",U
+ . W "LOCATION",U
+ . W "TYPE",U
+ . W "STATUS",U
+ . W "REJECTED",U
+ . W "DRUG",U
+ . W "NDC",U
+ . W "GROUP ID",U
+ . W "$BILLED",U
+ . W "CLOSE DATE/TIME",U
+ . W "CLOSED BY",U
+ . W "CLOSE REASON",U
+ . W "CLAIM ID",U
+ . W "MULTI REJ",U
+ . W "REJECT CODE",U
+ . W "REJECT EXPLANATION"
+ ;
+ I BPRTYPE=8 D  Q
+ . W "RX#",U
+ . W "REF/ECME#",U
+ . W "DATE",U
+ . W "$BILLED",U
+ . W "$INS RESPONSE",U
+ . W "$COLLECT",U
+ . W "DRUG",U
+ . W "RX INFO",U
+ . W "INS GROUP#",U
+ . W "INS GROUP NAME",U
+ . W "BILL#",U
+ . W "$PROVIDER NETWORK",U
+ . W "$BRAND DRUG",U
+ . W "$NON-PREF FORM",U
+ . W "$BRAND NON-PREF FORM",U
+ . W "$COVERAGE GAP",U
+ . W "$HEALTH ASST",U
+ . W "$SPEND ACCT REMAINING",U
+ ;
+ I BPRTYPE=9 D  Q
+ . W "ELIG",U
+ . W "RX#",U
+ . W "REF",U
+ . W "DATE",U
+ . W "$DRUG COST",U
+ . W "DRUG",U
+ . W "NDC",U
+ . W "RELEASED ON",U
+ . W "LOCATION",U
+ . W "STATUS",U
+ . W "NON-BILLABLE STATUS REASON"
+ ;
+ I BPRTYPE=10 D  Q
+ . W "PATIENT",U
+ . W "PT. ID",U
+ . W "ELIG",U
+ . W "RX#",U
+ . W "REF/ECME#",U
+ . W "DATE",U
+ . W "VA ING. COST",U
+ . W "VA DISP. FEE",U
+ . W "$BILLED",U
+ . W "INGREDIENT COST PAID",U
+ . W "DISPENSING FEE PAID",U
+ . W "PATIENT RESP (INS)",U
+ . W "$INS RESPONSE",U
+ . W "$COLLECT",U
+ . W "DRUG",U
+ . W "NDC",U
+ . W "RELEASED",U
+ . W "RX INFO",U
+ . W "BILL#",U
+ . W "COB",U
+ . W "STATUS"
+ Q
+ ;

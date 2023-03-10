@@ -1,5 +1,5 @@
 RORX009C ;HCIOFO/SG - PRESCRIPTION UTILIZ. (STORE) ;12/16/05 9:19am
- ;;1.5;CLINICAL CASE REGISTRIES;**21,31**;Feb 17, 2006;Build 62
+ ;;1.5;CLINICAL CASE REGISTRIES;**21,31,39**;Feb 17, 2006;Build 4
  ;
  ;******************************************************************************
  ;                       --- ROUTINE MODIFICATION LOG ---
@@ -10,6 +10,7 @@ RORX009C ;HCIOFO/SG - PRESCRIPTION UTILIZ. (STORE) ;12/16/05 9:19am
  ;                                      additional identifier option selected
  ;ROR*1.5*31   MAY 2017    M FERRARESE  Adding PACT, PCP, and AGE/DOB as additional
  ;                                      identifiers.
+ ;ROR*1.5*39   JUL 2021    M FERRARESE  Setting SSN and LAST4 to zeros
  ;******************************************************************************
  ;
  Q
@@ -127,7 +128,7 @@ STOREIP(PRNTELMT,NODE) ;
  . . . S DFN=""
  . . . F  S DFN=$O(@NODE@("IPRX",NRX,NAME,DFN))  Q:DFN=""  D  Q:RC
  . . . . S COUNT=COUNT+1  I COUNT>MAXUTNUM  S RC=1  Q
- . . . . S BUF=$G(@NODE@("IP",DFN))
+ . . . . S BUF=$G(@NODE@("IP",DFN)) S $P(BUF,U)="0000"
  . . . . S ITEM=$$ADDVAL^RORTSK11(RORTSK,"PATIENT",,TABLE)
  . . . . D ADDVAL^RORTSK11(RORTSK,"NAME",NAME,ITEM,1)
  . . . . D ADDVAL^RORTSK11(RORTSK,"LAST4",$P(BUF,U),ITEM,2)
@@ -190,7 +191,7 @@ STOREOP(PRNTELMT,NODE) ;
  . . . S DFN=""
  . . . F  S DFN=$O(@NODE@("OPRX",NRX,NAME,DFN))  Q:DFN=""  D  Q:RC
  . . . . S COUNT=COUNT+1  I COUNT>MAXUTNUM  S RC=1  Q
- . . . . S BUF=$G(@NODE@("OP",DFN))
+ . . . . S BUF=$G(@NODE@("OP",DFN)) S $P(BUF,U)="0000"
  . . . . S ITEM=$$ADDVAL^RORTSK11(RORTSK,"PATIENT",,TABLE)
  . . . . D ADDVAL^RORTSK11(RORTSK,"NAME",NAME,ITEM,1)
  . . . . D ADDVAL^RORTSK11(RORTSK,"LAST4",$P(BUF,U),ITEM,2)
@@ -244,7 +245,7 @@ STORESUM(PRNTELMT,NODE) ;
  . . F  S DFN=$O(@NODE@("SUMRX",NRX,NAME,DFN))  Q:DFN=""  D  Q:RC
  . . . S ITEM=$$ADDVAL^RORTSK11(RORTSK,"PATIENT",,TABLE)
  . . . S (IPNRX,OPNRX)=0
- . . . S BUF=$G(@NODE@("OP",DFN))
+ . . . S BUF=$G(@NODE@("OP",DFN)) S $P(BUF,U)="0000"
  . . . S:BUF'="" LAST4=$P(BUF,U),DOD=$P(BUF,U,3),OPNRX=$P(BUF,U,4),ICN=$P(BUF,U,6),PACT=$P(BUF,U,7),PCP=$P(BUF,U,8),AGE=$P(BUF,U,9)
  . . . S BUF=$G(@NODE@("IP",DFN))
  . . . S:BUF'="" LAST4=$P(BUF,U),DOD=$P(BUF,U,3),IPNRX=$P(BUF,U,4),ICN=$P(BUF,U,6),PACT=$P(BUF,U,7),PCP=$P(BUF,U,8),AGE=$P(BUF,U,9)

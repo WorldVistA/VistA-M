@@ -1,5 +1,5 @@
-RAWKLU2 ;HISC/GJC-physician wRVU (scaled too) by procedure ;10/26/05  14:57
- ;;5.0;Radiology/Nuclear Medicine;**64,77,91**;Mar 16, 1998;Build 1
+RAWKLU2 ;HISC/GJC-physician wRVU (scaled too) by procedure ; Sep 09, 2021@08:05:17
+ ;;5.0;Radiology/Nuclear Medicine;**64,77,91,184**;Mar 16, 1998;Build 2
  ;01/23/08 BAY/KAM Remedy Call 227583 Patch *91 Change RVU Reports to
  ;         use Report End Date instead of Current date when setting
  ;         the flag to determine if necessary to use last year's RVU
@@ -158,9 +158,9 @@ SETARRY ;find the wRVU value (either un-scaled or scaled) for a particular CPT
  . S RAWRVU=$$RVU^FBRVU(RACPT,26,$S((9999999.9999-RARPTVDT)<2990101:2990101,RACYFLG:(9999999.9999-RARPTVDT)-10000,1:(9999999.9999-RARPTVDT)))
  I $P(RAWRVU,U)=1 D
  .;apply bilateral multiplier if appropriate
- .S:RABILAT RAWRVU=$P(RAWRVU,U,2)*2
+ .S:RABILAT RAWRVU=+$P(RAWRVU,U,2)*2 ;p184/KLM plus to convert NULL value to 0 (prevents error)
  .;or not...
- .S:'RABILAT RAWRVU=$P(RAWRVU,U,2)
+ .S:'RABILAT RAWRVU=+$P(RAWRVU,U,2) ;p184
  .I RASCLD S RAWRVU=RAWRVU*$$SFCTR^RAWRVUP($P(RA7002,U,2),RAXAMDT)
  .Q
  ;

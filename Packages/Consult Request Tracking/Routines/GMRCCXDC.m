@@ -1,11 +1,11 @@
-GMRCCXDC ;ABV/MKN - Convert cancelled consults to discontinued after 31 days ;8/14/2018 9:35
- ;;3.0;CONSULT/REQUEST TRACKING;**113**;DEC 27, 1997;Build 50
+GMRCCXDC ;ABV/MKN - Convert cancelled consults to discontinued after 31 days ;Dec 09, 2020@18:08
+ ;;3.0;CONSULT/REQUEST TRACKING;**113,170**;DEC 27, 1997;Build 1
  ;
  ;;ICR Invoked
  ;;10103, ^XLFDT - $$FMADD, $$NOW
 EN ;Overnight Taskman job that runs from option GMRC CHANGE STATUS X TO DC
  N DA,GMRCACT,GMRCCOM,GMRCCT,GMRCCX,GMRCDA,GMRCDT1,GMRCDT2,GMRCDTMP,GMRCIEN,GMRCNA,GMRCNOW,GMRCORN
- N GMRCPROV,GMRCSTOP,X,X1,X2,XTMP,XTMPCT,Y
+ N GMRCPROV,GMRCSTOP,X,X1,X2,XTMP,XTMPCT,Y,GMRCDAX,GMRCIENX
  S X=$E($$GET^XPAR("PKG.CONSULT/REQUEST TRACKING","CSLT CANCELLED TO DISCONTINUED","Is the overnight cancelled to discontinued job active?","E"))
  I X="" S X=$$TRYLST()
  Q:$E(X)'="Y"
@@ -19,7 +19,8 @@ EN ;Overnight Taskman job that runs from option GMRC CHANGE STATUS X TO DC
  I GMRCDT1="" S XTMPCT=XTMPCT+1,@XTMP@(XTMPCT)="From Days entry not found in parameter CSLT CANCELLED TO DISCONTINUED ... job quitting..." Q
  S GMRCDT2=$$GET^XPAR("PKG.CONSULT/REQUEST TRACKING","CSLT CANCELLED TO DISCONTINUED","How many days back to end with?","E")
  I GMRCDT2="" S XTMPCT=XTMPCT+1,@XTMP@(XTMPCT)="To Days entry not found in parameter CSLT CANCELLED TO DISCONTINUED ... assuming "_(GMRCDT1+30) S GMRCDT2=GMRCDT1+30
- S X=$$NOW^XLFDT,X1=X,X2=-GMRCDT1 D C^%DTC S GMRCDA=$P(X,".")_".2399",GMRCCT=0
+ ;GMRC*3*170: Variable GMRCDAX used in CANC logic.
+ S X=$$NOW^XLFDT,X1=X,X2=-GMRCDT1 D C^%DTC S (GMRCDA,GMRCDAX)=$P(X,".")_".2399",GMRCCT=0
  S X=$$NOW^XLFDT,X1=X,X2=-GMRCDT2 D C^%DTC S GMRCSTOP=$P(X,".")
  S GMRCCOM(1)="ADC:Consult automatically discontinued "_GMRCDT1_" days after cancellation"
  S XTMPCT=0,GMRCCX=$O(^GMR(123.1,"B","CANCELLED",""))
@@ -28,6 +29,8 @@ EN ;Overnight Taskman job that runs from option GMRC CHANGE STATUS X TO DC
  F  S GMRCDA=$O(^GMR(123,"ASTATUS",GMRCDA),-1) Q:GMRCDA'?1.N.".".N!(GMRCDA<GMRCSTOP)  D
  .S GMRCIEN="" F  S GMRCIEN=$O(^GMR(123,"ASTATUS",GMRCDA,GMRCCX,GMRCIEN)) Q:'GMRCIEN  D
  ..Q:$$GET1^DIQ(123,GMRCIEN_",",8)'="CANCELLED"
+ ..;GMRC*3*170: check for a more recent cancellation before proceeding to discontinue
+ ..Q:$$CANC(GMRCIEN)
  ..S GMRCORN=$$GET1^DIQ(123,GMRCIEN_",",.03,"I"),GMRCNA=$$GET1^DIQ(123,GMRCIEN_",",.02,"E")
  ..S GMRCACT="" F  S GMRCACT=$O(^GMR(123,"ASTATUS",GMRCDA,GMRCCX,GMRCIEN,GMRCACT)) Q:'GMRCACT  D
  ...S GMRCPROV=$$GET1^DIQ(123.02,GMRCACT_","_GMRCIEN_",",3,"I")
@@ -43,6 +46,21 @@ EX ;
  S @XTMP@(XTMPCT)=@XTMP@(XTMPCT)_" "_$S(GMRCCT=1:"was",1:"were")_" discontinued"
  ZW @XTMP
  Q
+ ;
+CANC(GMRCIENX) ;check for multiple cancellations
+ N GMRCACTX,GMRCHITX,GMRCCANX
+ S GMRCACTX="A",(GMRCHITX,GMRCCANX)=0
+ ;Search back starting with most recent activity.
+ F  S GMRCACTX=$O(^GMR(123,GMRCIENX,40,GMRCACTX),-1) Q:'GMRCACTX  Q:GMRCHITX  D
+ . ;activity was not "cancelled", so quit
+ . Q:$$GET1^DIQ(123.02,GMRCACTX_","_GMRCIENX_",",1)'="CANCELLED"
+ . ;Search has gone past the starting date of the search, so quit since
+ . ;no recent cancellations have been found.
+ . I $$GET1^DIQ(123.02,GMRCACTX_","_GMRCIENX_",",.01,"I")'>GMRCDAX S GMRCHITX=1 Q
+ . ;If got this far, have found a cancellation which occurred after
+ . ;the cancellation found by the original search at EN+25
+ . S (GMRCCANX,GMRCHITX)=1
+ Q GMRCCANX
  ;
 UPDPARM ;Run with menu option GMRC CX TO DC PARAMETER EDIT
  N D1,D2,D3,DAY1,DAY2,DIR,DIRUT,ERR,I,N,OUT,X,X1,X2,Y

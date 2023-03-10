@@ -1,122 +1,124 @@
-IBDEI1I6 ; ; 04-FEB-2020
- ;;3.0;IB ENCOUNTER FORM IMP/EXP;;FEB 04, 2020
+IBDEI1I6 ; ; 01-FEB-2022
+ ;;3.0;IB ENCOUNTER FORM IMP/EXP;;FEB 01, 2022
  Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,999) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
- ;;^UTILITY(U,$J,358.3,24039,1,0)
+ ;;^UTILITY(U,$J,358.3,24309,1,4,0)
+ ;;=4^E11.40
+ ;;^UTILITY(U,$J,358.3,24309,2)
+ ;;=^5002644
+ ;;^UTILITY(U,$J,358.3,24310,0)
+ ;;=E11.51^^82^1051^11
+ ;;^UTILITY(U,$J,358.3,24310,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,24039,1,3,0)
- ;;=3^Benign Lipomatous Neop,Unspec
- ;;^UTILITY(U,$J,358.3,24039,1,4,0)
- ;;=4^D17.9
- ;;^UTILITY(U,$J,358.3,24039,2)
- ;;=^5002020
- ;;^UTILITY(U,$J,358.3,24040,0)
- ;;=E08.621^^107^1201^137
- ;;^UTILITY(U,$J,358.3,24040,1,0)
+ ;;^UTILITY(U,$J,358.3,24310,1,3,0)
+ ;;=3^DM Type 2 w/ Diab Periph Angiopathy w/o Gangrene
+ ;;^UTILITY(U,$J,358.3,24310,1,4,0)
+ ;;=4^E11.51
+ ;;^UTILITY(U,$J,358.3,24310,2)
+ ;;=^5002650
+ ;;^UTILITY(U,$J,358.3,24311,0)
+ ;;=E11.52^^82^1051^10
+ ;;^UTILITY(U,$J,358.3,24311,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,24040,1,3,0)
- ;;=3^DM d/t Underlying Condition w/ Foot Ulcer
- ;;^UTILITY(U,$J,358.3,24040,1,4,0)
- ;;=4^E08.621
- ;;^UTILITY(U,$J,358.3,24040,2)
- ;;=^5002534
- ;;^UTILITY(U,$J,358.3,24041,0)
- ;;=E09.621^^107^1201^136
- ;;^UTILITY(U,$J,358.3,24041,1,0)
+ ;;^UTILITY(U,$J,358.3,24311,1,3,0)
+ ;;=3^DM Type 2 w/ Diab Periph Angiopathy w/ Gangrene
+ ;;^UTILITY(U,$J,358.3,24311,1,4,0)
+ ;;=4^E11.52
+ ;;^UTILITY(U,$J,358.3,24311,2)
+ ;;=^5002651
+ ;;^UTILITY(U,$J,358.3,24312,0)
+ ;;=E11.620^^82^1051^4
+ ;;^UTILITY(U,$J,358.3,24312,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,24041,1,3,0)
- ;;=3^DM d/t Drug/Chemical w/ Foot Ulcer
- ;;^UTILITY(U,$J,358.3,24041,1,4,0)
- ;;=4^E09.621
- ;;^UTILITY(U,$J,358.3,24041,2)
- ;;=^5002576
- ;;^UTILITY(U,$J,358.3,24042,0)
- ;;=H05.011^^107^1201^112
- ;;^UTILITY(U,$J,358.3,24042,1,0)
+ ;;^UTILITY(U,$J,358.3,24312,1,3,0)
+ ;;=3^DM Type 2 w/ Diab Dermatitis
+ ;;^UTILITY(U,$J,358.3,24312,1,4,0)
+ ;;=4^E11.620
+ ;;^UTILITY(U,$J,358.3,24312,2)
+ ;;=^5002655
+ ;;^UTILITY(U,$J,358.3,24313,0)
+ ;;=I10.^^82^1052^1
+ ;;^UTILITY(U,$J,358.3,24313,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,24042,1,3,0)
- ;;=3^Cellulitis of Right Orbit
- ;;^UTILITY(U,$J,358.3,24042,1,4,0)
- ;;=4^H05.011
- ;;^UTILITY(U,$J,358.3,24042,2)
- ;;=^5004560
- ;;^UTILITY(U,$J,358.3,24043,0)
- ;;=H05.012^^107^1201^105
- ;;^UTILITY(U,$J,358.3,24043,1,0)
+ ;;^UTILITY(U,$J,358.3,24313,1,3,0)
+ ;;=3^Essential/Primary Hypertension
+ ;;^UTILITY(U,$J,358.3,24313,1,4,0)
+ ;;=4^I10.
+ ;;^UTILITY(U,$J,358.3,24313,2)
+ ;;=^5007062
+ ;;^UTILITY(U,$J,358.3,24314,0)
+ ;;=I11.0^^82^1052^12
+ ;;^UTILITY(U,$J,358.3,24314,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,24043,1,3,0)
- ;;=3^Cellulitis of Left Orbit
- ;;^UTILITY(U,$J,358.3,24043,1,4,0)
- ;;=4^H05.012
- ;;^UTILITY(U,$J,358.3,24043,2)
- ;;=^5004561
- ;;^UTILITY(U,$J,358.3,24044,0)
- ;;=H05.013^^107^1201^99
- ;;^UTILITY(U,$J,358.3,24044,1,0)
+ ;;^UTILITY(U,$J,358.3,24314,1,3,0)
+ ;;=3^Hypertensive Heart Disease w/ Heart Failure
+ ;;^UTILITY(U,$J,358.3,24314,1,4,0)
+ ;;=4^I11.0
+ ;;^UTILITY(U,$J,358.3,24314,2)
+ ;;=^5007063
+ ;;^UTILITY(U,$J,358.3,24315,0)
+ ;;=I11.9^^82^1052^13
+ ;;^UTILITY(U,$J,358.3,24315,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,24044,1,3,0)
- ;;=3^Cellulitis of Bilateral Orbits
- ;;^UTILITY(U,$J,358.3,24044,1,4,0)
- ;;=4^H05.013
- ;;^UTILITY(U,$J,358.3,24044,2)
- ;;=^5004562
- ;;^UTILITY(U,$J,358.3,24045,0)
- ;;=I70.331^^107^1201^51
- ;;^UTILITY(U,$J,358.3,24045,1,0)
+ ;;^UTILITY(U,$J,358.3,24315,1,3,0)
+ ;;=3^Hypertensive Heart Disease w/o Heart Failure
+ ;;^UTILITY(U,$J,358.3,24315,1,4,0)
+ ;;=4^I11.9
+ ;;^UTILITY(U,$J,358.3,24315,2)
+ ;;=^5007064
+ ;;^UTILITY(U,$J,358.3,24316,0)
+ ;;=I12.0^^82^1052^5
+ ;;^UTILITY(U,$J,358.3,24316,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,24045,1,3,0)
- ;;=3^Athscl Bypass of Right Leg w/ Ulcer of Thigh
- ;;^UTILITY(U,$J,358.3,24045,1,4,0)
- ;;=4^I70.331
- ;;^UTILITY(U,$J,358.3,24045,2)
- ;;=^5007626
- ;;^UTILITY(U,$J,358.3,24046,0)
- ;;=I70.332^^107^1201^52
- ;;^UTILITY(U,$J,358.3,24046,1,0)
+ ;;^UTILITY(U,$J,358.3,24316,1,3,0)
+ ;;=3^Hypertensive CKD w/ Stage 5 CKD or ESRD
+ ;;^UTILITY(U,$J,358.3,24316,1,4,0)
+ ;;=4^I12.0
+ ;;^UTILITY(U,$J,358.3,24316,2)
+ ;;=^5007065
+ ;;^UTILITY(U,$J,358.3,24317,0)
+ ;;=I12.9^^82^1052^4
+ ;;^UTILITY(U,$J,358.3,24317,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,24046,1,3,0)
- ;;=3^Athscl Bypass of Right Leg w/ Ulcer of Calf
- ;;^UTILITY(U,$J,358.3,24046,1,4,0)
- ;;=4^I70.332
- ;;^UTILITY(U,$J,358.3,24046,2)
- ;;=^5007627
- ;;^UTILITY(U,$J,358.3,24047,0)
- ;;=I70.333^^107^1201^53
- ;;^UTILITY(U,$J,358.3,24047,1,0)
+ ;;^UTILITY(U,$J,358.3,24317,1,3,0)
+ ;;=3^Hypertensive CKD w/ Stage 1-4 CKD
+ ;;^UTILITY(U,$J,358.3,24317,1,4,0)
+ ;;=4^I12.9
+ ;;^UTILITY(U,$J,358.3,24317,2)
+ ;;=^5007066
+ ;;^UTILITY(U,$J,358.3,24318,0)
+ ;;=I13.0^^82^1052^8
+ ;;^UTILITY(U,$J,358.3,24318,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,24047,1,3,0)
- ;;=3^Athscl Bypass of Right Leg w/ Ulcer of Ankle
- ;;^UTILITY(U,$J,358.3,24047,1,4,0)
- ;;=4^I70.333
- ;;^UTILITY(U,$J,358.3,24047,2)
- ;;=^5007628
- ;;^UTILITY(U,$J,358.3,24048,0)
- ;;=I70.334^^107^1201^54
- ;;^UTILITY(U,$J,358.3,24048,1,0)
+ ;;^UTILITY(U,$J,358.3,24318,1,3,0)
+ ;;=3^Hypertensive HRT & CKD w/ Hrt Fail & Stg 1-4 CKD
+ ;;^UTILITY(U,$J,358.3,24318,1,4,0)
+ ;;=4^I13.0
+ ;;^UTILITY(U,$J,358.3,24318,2)
+ ;;=^5007067
+ ;;^UTILITY(U,$J,358.3,24319,0)
+ ;;=I13.10^^82^1052^10
+ ;;^UTILITY(U,$J,358.3,24319,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,24048,1,3,0)
- ;;=3^Athscl Bypass of Right Leg w/ Ulcer of Heel/Midfoot
- ;;^UTILITY(U,$J,358.3,24048,1,4,0)
- ;;=4^I70.334
- ;;^UTILITY(U,$J,358.3,24048,2)
- ;;=^5007629
- ;;^UTILITY(U,$J,358.3,24049,0)
- ;;=I70.335^^107^1201^55
- ;;^UTILITY(U,$J,358.3,24049,1,0)
+ ;;^UTILITY(U,$J,358.3,24319,1,3,0)
+ ;;=3^Hypertensive HRT & CKD w/o Hrt Fail & Stg 1-4 CKD
+ ;;^UTILITY(U,$J,358.3,24319,1,4,0)
+ ;;=4^I13.10
+ ;;^UTILITY(U,$J,358.3,24319,2)
+ ;;=^5007068
+ ;;^UTILITY(U,$J,358.3,24320,0)
+ ;;=I13.11^^82^1052^11
+ ;;^UTILITY(U,$J,358.3,24320,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,24049,1,3,0)
- ;;=3^Athscl Bypass of Right Leg w/ Ulcer of Oth Part of Foot
- ;;^UTILITY(U,$J,358.3,24049,1,4,0)
- ;;=4^I70.335
- ;;^UTILITY(U,$J,358.3,24049,2)
- ;;=^5007630
- ;;^UTILITY(U,$J,358.3,24050,0)
- ;;=I70.341^^107^1201^50
- ;;^UTILITY(U,$J,358.3,24050,1,0)
+ ;;^UTILITY(U,$J,358.3,24320,1,3,0)
+ ;;=3^Hypertensive HRT & CKD w/o Hrt Fail & Stg 5 CKD/ESRD
+ ;;^UTILITY(U,$J,358.3,24320,1,4,0)
+ ;;=4^I13.11
+ ;;^UTILITY(U,$J,358.3,24320,2)
+ ;;=^5007069
+ ;;^UTILITY(U,$J,358.3,24321,0)
+ ;;=I13.2^^82^1052^9
+ ;;^UTILITY(U,$J,358.3,24321,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,24050,1,3,0)
- ;;=3^Athscl Bypass of Left Leg w/ Ulcer of Thigh
- ;;^UTILITY(U,$J,358.3,24050,1,4,0)
- ;;=4^I70.341
- ;;^UTILITY(U,$J,358.3,24050,2)
- ;;=^5007633
+ ;;^UTILITY(U,$J,358.3,24321,1,3,0)
+ ;;=3^Hypertensive HRT & CKD w/ Hrt Fail & Stg 5 CKD/ESRD

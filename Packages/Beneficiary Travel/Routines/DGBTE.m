@@ -1,5 +1,5 @@
-DGBTE ;ALB/SCK/BLD - BENEFICIARY TRAVEL SETUP/MAIN ENTRY CALL UP; 11/20/92@1000; 11/25/92
- ;;1.0;Beneficiary Travel;**2,19,20,22,25,28**;September 25, 2001;Build 12
+DGBTE ;ALB/SCK/BLD - BENEFICIARY TRAVEL SETUP/MAIN ENTRY CALL UP ; 11/20/92@1000; 11/25/92
+ ;;1.0;Beneficiary Travel;**2,19,20,22,25,28,39**;September 25, 2001;Build 6
 START ;
  N TRNSMDE,REMARKS,CLMTYPE,INSTIT,SPMODE,DGBTCMTY,DGBTDIVI,DGBTDIV,DGBTDIVN,DGANS,DGBTINCA,DGBTDTY,DGBTAPPTYP,DGBTDCLM,IOM,PATCHDT,DGBTPDIV
  ;DGBTINCA = Alternate Income
@@ -32,7 +32,7 @@ PATIENT ; patient lookup, quit if patient doesn't exist
  W !! D ^DIC K DIC I +Y'>0 D EXIT S DGANS="Q" Q
  ; get patient information#, call return patient return variables routine and set whether new claim or not
  S:DGBTDIVI'=DGBTPDIV DGBTDIVI=DGBTPDIV ;dbe patch DGBT*1*22 - restore selected division from previous claim editing
- S DFN=+Y D 6^VADPT,KVAR^DGBTEND,PID^VADPT
+ S DFN=+Y D 6^VADPT,KVAR^DGBTEND,PID^VADPT,RESADDR^DGBTUTL1(.DGBTADDR) ;*39 - call resaddr to get values for address
  S DGBTNEW=$S($D(^DGBT(392,"C",DFN)):0,1:1)
  S SPCOMPLETE=0,DGBTAPPTYP=0
  S DGBTNSC=$$NSC^DGBTUTL

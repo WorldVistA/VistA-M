@@ -1,5 +1,5 @@
-PXRMCDEF ;SLC/AGP - Computed findings for Reminder Definition. ;Nov 06, 2019@13:55
- ;;2.0;CLINICAL REMINDERS;**4,18,24,26,47,45**;Feb 04, 2005;Build 566
+PXRMCDEF ;SLC/AGP - Computed findings for Reminder Definition. ;06/30/2020
+ ;;2.0;CLINICAL REMINDERS;**4,18,24,26,47,45,42**;Feb 04, 2005;Build 245
  ;
  ;======================================================
 RDEF(DFN,TEST,DATE,VALUE,TEXT) ;Computed finding for returning a Reminder
@@ -14,12 +14,13 @@ RDEF(DFN,TEST,DATE,VALUE,TEXT) ;Computed finding for returning a Reminder
  S NAME=$P(TEST,U,1)
  I NAME="" D  Q
  . S ^TMP(PXRMPID,$J,PXRMITEM,"FERROR","CF.VA-REMINDER DEFINITION")="No reminder definition."
- I +NAME=NAME S RIEN=+NAME
+ I +NAME=NAME S RIEN=+NAME,NAME=$P(^PXD(811.9,RIEN,0),U,1)
  E  S RIEN=+$O(^PXD(811.9,"B",NAME,""))
  I RIEN=0 D  Q
  . S ^TMP(PXRMPID,$J,PXRMITEM,"FERROR","CF.VA-REMINDER DEFINITION")="The reminder definition does not exist."
  I +$P(^PXD(811.9,RIEN,0),U,6)=1 D  Q
  . S ^TMP(PXRMPID,$J,PXRMITEM,"FERROR","CF.VA-REMINDER DEFINITION")="The reminder definition is inactive."
+ . S TEST=0
  S PARAM=$P(TEST,U,2),PARAM=$P($G(PARAM),"=",2),SAVETMP=+$P(TEST,U,3),OUTTYPE=$P(TEST,U,4)
  I OUTTYPE="" S OUTTYPE=1
  S TEST=0,DATE=$$NOW^PXRMDATE

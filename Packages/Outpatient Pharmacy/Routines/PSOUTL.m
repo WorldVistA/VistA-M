@@ -1,5 +1,5 @@
 PSOUTL ;BHAM ISC/SAB - PSO utility routine ;Jun 22, 2018@08:18
- ;;7.0;OUTPATIENT PHARMACY;**1,21,126,174,218,259,324,390,313,411,466,477**;DEC 1997;Build 187
+ ;;7.0;OUTPATIENT PHARMACY;**1,21,126,174,218,259,324,390,313,411,466,477,626,639,692**;DEC 1997;Build 4
  ;External reference to $$SERV^IBARX1 supported by DBIA 2245
  ;External reference to ^PS(55 supported by DBIA 2228
  ;External reference to ^PSSDIUTL supported by DBIA 5737
@@ -74,9 +74,9 @@ KILL N DFN
  S ^PSRX(DA(1),"A",CNT,0)=^PSRX(DA(1),"A",CNT,0)_$S($G(RESK):"returned to stock.",$G(PSOPSDAL):"deleted during Controlled Subs release.",$G(PSOXX)=1:"Partial deleted from suspense file.",1:"deleted during Rx edit.") K CNT,SUB
  Q
 CID ;calculates six months limit on issue dates
- S PSID=X,X="T-6M",%DT="X" D ^%DT S %DT(0)=Y,X=PSID,%DT="EX" D ^%DT K PSID
+ S PSID=X,X=$S($$CSID():"T-6M",1:"T-12M"),%DT="X" D ^%DT S %DT(0)=Y,X=PSID,%DT="EX" D ^%DT K PSID
  Q
-CIDH S X="T-6M",%DT="X" D ^%DT X ^DD("DD") D EN^DDIOL("Issue Date must be greater or equal to "_Y,"","!")
+CIDH S X=$S($$CSID():"T-6M",1:"T-12M"),%DT="X" D ^%DT X ^DD("DD") D EN^DDIOL("Issue Date must be greater or equal to "_Y,"","!")
  Q
 SPR F RF=0:0 S RF=$O(^PSRX(DA(1),1,RF)) Q:'RF  S NODE=RF
  I NODE=1 S $P(^PSRX(DA(1),3),"^",4)=$P(^PSRX(DA(1),2),"^",2) Q
@@ -344,4 +344,27 @@ CONJ(PSOCRX) ;Looks for EXCEPT conjunction;  EXCEPT conjunction disabled with PS
  . S DOSE1=^PSRX(PSOCRX,6,DOSEIEN,0)
  . I $P(DOSE1,"^",6)="X" S EXCEPT=1
  Q:$G(EXCEPT) 1
+ Q 0
+ ;
+CSID() ; Determinte if the ISSUE DATE is for a CS or non-CS (Internal to this routine only)
+ ;Output: 1 - CS | 0 - non-CS
+ N CSID,DRGIEN,DEA S CSID=0
+ ; DA will be defined when called from DD Input Transform for ISSUE DATE field (#1) on the PRESCRIPTION file (#52), except DIR call
+ I $G(DA),$D(^PSRX(DA,0)) S DRGIEN=$$GET1^DIQ(52,DA,6,"I")
+ ; PSODRUG("IEN") would be defined during New Order entry
+ I '$G(DRGIEN),$G(PSODRUG("IEN")) S DRGIEN=PSODRUG("IEN")
+ ;
+ I $G(DRGIEN) D
+ . S DEA=$$GET1^DIQ(50,DRGIEN,3)
+ . I (DEA["2")!(DEA["3")!(DEA["4")!(DEA["5") S CSID=1
+ ;
+ Q CSID
+ ;
+CSRX(RXIEN) ; Controlled Substance Rx?
+ ; Input: RXIEN - PRESCRIPTION file (#52) pointer
+ ;Output: $$CS  - 1:YES / 0:NO
+ N DRGIEN,DEA
+ S DRGIEN=$$GET1^DIQ(52,RXIEN,6,"I") I 'DRGIEN Q 0
+ S DEA=$$GET1^DIQ(50,DRGIEN,3)
+ I (DEA["2")!(DEA["3")!(DEA["4")!(DEA["5") Q 1
  Q 0

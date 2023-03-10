@@ -1,128 +1,118 @@
-IBDEI0R8 ; ; 04-FEB-2020
- ;;3.0;IB ENCOUNTER FORM IMP/EXP;;FEB 04, 2020
+IBDEI0R8 ; ; 01-FEB-2022
+ ;;3.0;IB ENCOUNTER FORM IMP/EXP;;FEB 01, 2022
  Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,999) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
- ;;^UTILITY(U,$J,358.3,12157,0)
- ;;=K85.81^^80^770^4
- ;;^UTILITY(U,$J,358.3,12157,1,0)
+ ;;^UTILITY(U,$J,358.3,12262,1,3,0)
+ ;;=3^Non-Pressure Chr Ulcer Lt Thigh w/ Fat Layer Exposed
+ ;;^UTILITY(U,$J,358.3,12262,1,4,0)
+ ;;=4^L97.122
+ ;;^UTILITY(U,$J,358.3,12262,2)
+ ;;=^5009491
+ ;;^UTILITY(U,$J,358.3,12263,0)
+ ;;=L97.123^^49^596^78
+ ;;^UTILITY(U,$J,358.3,12263,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,12157,1,3,0)
- ;;=3^Acute Pancreatitis w/ Uninfected Necrosis,Other
- ;;^UTILITY(U,$J,358.3,12157,1,4,0)
- ;;=4^K85.81
- ;;^UTILITY(U,$J,358.3,12157,2)
- ;;=^5138759
- ;;^UTILITY(U,$J,358.3,12158,0)
- ;;=K85.82^^80^770^2
- ;;^UTILITY(U,$J,358.3,12158,1,0)
+ ;;^UTILITY(U,$J,358.3,12263,1,3,0)
+ ;;=3^Non-Pressure Chr Ulcer Lt Thigh w/ Necrosis of Msl
+ ;;^UTILITY(U,$J,358.3,12263,1,4,0)
+ ;;=4^L97.123
+ ;;^UTILITY(U,$J,358.3,12263,2)
+ ;;=^5009492
+ ;;^UTILITY(U,$J,358.3,12264,0)
+ ;;=L97.124^^49^596^79
+ ;;^UTILITY(U,$J,358.3,12264,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,12158,1,3,0)
- ;;=3^Acute Pancreatitis w/ Infected Necrosis,Other
- ;;^UTILITY(U,$J,358.3,12158,1,4,0)
- ;;=4^K85.82
- ;;^UTILITY(U,$J,358.3,12158,2)
- ;;=^5138760
- ;;^UTILITY(U,$J,358.3,12159,0)
- ;;=K85.90^^80^770^6
- ;;^UTILITY(U,$J,358.3,12159,1,0)
+ ;;^UTILITY(U,$J,358.3,12264,1,3,0)
+ ;;=3^Non-Pressure Chr Ulcer Lt Thigh w/ Necrosis of Bone
+ ;;^UTILITY(U,$J,358.3,12264,1,4,0)
+ ;;=4^L97.124
+ ;;^UTILITY(U,$J,358.3,12264,2)
+ ;;=^5009493
+ ;;^UTILITY(U,$J,358.3,12265,0)
+ ;;=L97.125^^49^596^77
+ ;;^UTILITY(U,$J,358.3,12265,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,12159,1,3,0)
- ;;=3^Acute Pancreatitis,Unspec
- ;;^UTILITY(U,$J,358.3,12159,1,4,0)
- ;;=4^K85.90
- ;;^UTILITY(U,$J,358.3,12159,2)
- ;;=^5138761
- ;;^UTILITY(U,$J,358.3,12160,0)
- ;;=K85.91^^80^770^5
- ;;^UTILITY(U,$J,358.3,12160,1,0)
+ ;;^UTILITY(U,$J,358.3,12265,1,3,0)
+ ;;=3^Non-Pressure Chr Ulcer Lt Thigh w/ Msl Invl w/o Necrosis
+ ;;^UTILITY(U,$J,358.3,12265,1,4,0)
+ ;;=4^L97.125
+ ;;^UTILITY(U,$J,358.3,12265,2)
+ ;;=^5151436
+ ;;^UTILITY(U,$J,358.3,12266,0)
+ ;;=L97.126^^49^596^75
+ ;;^UTILITY(U,$J,358.3,12266,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,12160,1,3,0)
- ;;=3^Acute Pancreatitis w/ Uninfected Necrosis
- ;;^UTILITY(U,$J,358.3,12160,1,4,0)
- ;;=4^K85.91
- ;;^UTILITY(U,$J,358.3,12160,2)
- ;;=^5138762
- ;;^UTILITY(U,$J,358.3,12161,0)
- ;;=K85.92^^80^770^3
- ;;^UTILITY(U,$J,358.3,12161,1,0)
+ ;;^UTILITY(U,$J,358.3,12266,1,3,0)
+ ;;=3^Non-Pressure Chr Ulcer Lt Thigh w/ Bone Invl w/o Necrosis
+ ;;^UTILITY(U,$J,358.3,12266,1,4,0)
+ ;;=4^L97.126
+ ;;^UTILITY(U,$J,358.3,12266,2)
+ ;;=^5151437
+ ;;^UTILITY(U,$J,358.3,12267,0)
+ ;;=L97.128^^49^596^80
+ ;;^UTILITY(U,$J,358.3,12267,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,12161,1,3,0)
- ;;=3^Acute Pancreatitis w/ Infected Necrosis
- ;;^UTILITY(U,$J,358.3,12161,1,4,0)
- ;;=4^K85.92
- ;;^UTILITY(U,$J,358.3,12161,2)
- ;;=^5138763
- ;;^UTILITY(U,$J,358.3,12162,0)
- ;;=K61.39^^80^770^50
- ;;^UTILITY(U,$J,358.3,12162,1,0)
+ ;;^UTILITY(U,$J,358.3,12267,1,3,0)
+ ;;=3^Non-Pressure Chr Ulcer Lt Thigh w/ Oth Severity
+ ;;^UTILITY(U,$J,358.3,12267,1,4,0)
+ ;;=4^L97.128
+ ;;^UTILITY(U,$J,358.3,12267,2)
+ ;;=^5151438
+ ;;^UTILITY(U,$J,358.3,12268,0)
+ ;;=L97.311^^49^596^82
+ ;;^UTILITY(U,$J,358.3,12268,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,12162,1,3,0)
- ;;=3^Ischiorectal Abscess,Other
- ;;^UTILITY(U,$J,358.3,12162,1,4,0)
- ;;=4^K61.39
- ;;^UTILITY(U,$J,358.3,12162,2)
- ;;=^5157385
- ;;^UTILITY(U,$J,358.3,12163,0)
- ;;=C44.500^^80^771^12
- ;;^UTILITY(U,$J,358.3,12163,1,0)
+ ;;^UTILITY(U,$J,358.3,12268,1,3,0)
+ ;;=3^Non-Pressure Chr Ulcer Rt Ankle Limited to Brkdwn Skin
+ ;;^UTILITY(U,$J,358.3,12268,1,4,0)
+ ;;=4^L97.311
+ ;;^UTILITY(U,$J,358.3,12268,2)
+ ;;=^5009515
+ ;;^UTILITY(U,$J,358.3,12269,0)
+ ;;=L97.312^^49^596^84
+ ;;^UTILITY(U,$J,358.3,12269,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,12163,1,3,0)
- ;;=3^Malig Neop Anal Skin
- ;;^UTILITY(U,$J,358.3,12163,1,4,0)
- ;;=4^C44.500
- ;;^UTILITY(U,$J,358.3,12163,2)
- ;;=^5001051
- ;;^UTILITY(U,$J,358.3,12164,0)
- ;;=C44.509^^80^771^15
- ;;^UTILITY(U,$J,358.3,12164,1,0)
+ ;;^UTILITY(U,$J,358.3,12269,1,3,0)
+ ;;=3^Non-Pressure Chr Ulcer Rt Ankle w/ Fat Layer Exposed
+ ;;^UTILITY(U,$J,358.3,12269,1,4,0)
+ ;;=4^L97.312
+ ;;^UTILITY(U,$J,358.3,12269,2)
+ ;;=^5009516
+ ;;^UTILITY(U,$J,358.3,12270,0)
+ ;;=L97.313^^49^596^86
+ ;;^UTILITY(U,$J,358.3,12270,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,12164,1,3,0)
- ;;=3^Malig Neop of Skin of Trunk NEC
- ;;^UTILITY(U,$J,358.3,12164,1,4,0)
- ;;=4^C44.509
- ;;^UTILITY(U,$J,358.3,12164,2)
- ;;=^5001053
- ;;^UTILITY(U,$J,358.3,12165,0)
- ;;=D25.9^^80^771^11
- ;;^UTILITY(U,$J,358.3,12165,1,0)
+ ;;^UTILITY(U,$J,358.3,12270,1,3,0)
+ ;;=3^Non-Pressure Chr Ulcer Rt Ankle w/ Necrosis of Msl
+ ;;^UTILITY(U,$J,358.3,12270,1,4,0)
+ ;;=4^L97.313
+ ;;^UTILITY(U,$J,358.3,12270,2)
+ ;;=^5009517
+ ;;^UTILITY(U,$J,358.3,12271,0)
+ ;;=L97.314^^49^596^87
+ ;;^UTILITY(U,$J,358.3,12271,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,12165,1,3,0)
- ;;=3^Leiomyoma of Uterus,Unspec
- ;;^UTILITY(U,$J,358.3,12165,1,4,0)
- ;;=4^D25.9
- ;;^UTILITY(U,$J,358.3,12165,2)
- ;;=^5002081
- ;;^UTILITY(U,$J,358.3,12166,0)
- ;;=N39.3^^80^771^20
- ;;^UTILITY(U,$J,358.3,12166,1,0)
+ ;;^UTILITY(U,$J,358.3,12271,1,3,0)
+ ;;=3^Non-Pressure Chr Ulcer Rt Ankle w/ Necrosis of Bone
+ ;;^UTILITY(U,$J,358.3,12271,1,4,0)
+ ;;=4^L97.314
+ ;;^UTILITY(U,$J,358.3,12271,2)
+ ;;=^5009518
+ ;;^UTILITY(U,$J,358.3,12272,0)
+ ;;=L97.315^^49^596^85
+ ;;^UTILITY(U,$J,358.3,12272,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,12166,1,3,0)
- ;;=3^Stress Incontinence
- ;;^UTILITY(U,$J,358.3,12166,1,4,0)
- ;;=4^N39.3
- ;;^UTILITY(U,$J,358.3,12166,2)
- ;;=^5015679
- ;;^UTILITY(U,$J,358.3,12167,0)
- ;;=N76.0^^80^771^3
- ;;^UTILITY(U,$J,358.3,12167,1,0)
+ ;;^UTILITY(U,$J,358.3,12272,1,3,0)
+ ;;=3^Non-Pressure Chr Ulcer Rt Ankle w/ Msl Invl w/o Necrosis
+ ;;^UTILITY(U,$J,358.3,12272,1,4,0)
+ ;;=4^L97.315
+ ;;^UTILITY(U,$J,358.3,12272,2)
+ ;;=^5151451
+ ;;^UTILITY(U,$J,358.3,12273,0)
+ ;;=L97.316^^49^596^83
+ ;;^UTILITY(U,$J,358.3,12273,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,12167,1,3,0)
- ;;=3^Acute Vaginitis
- ;;^UTILITY(U,$J,358.3,12167,1,4,0)
- ;;=4^N76.0
- ;;^UTILITY(U,$J,358.3,12167,2)
- ;;=^5015826
- ;;^UTILITY(U,$J,358.3,12168,0)
- ;;=N76.1^^80^771^21
- ;;^UTILITY(U,$J,358.3,12168,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,12168,1,3,0)
- ;;=3^Subacute/Chronic Vaginitis
- ;;^UTILITY(U,$J,358.3,12168,1,4,0)
- ;;=4^N76.1
- ;;^UTILITY(U,$J,358.3,12168,2)
- ;;=^5015827
- ;;^UTILITY(U,$J,358.3,12169,0)
- ;;=N76.2^^80^771^4
- ;;^UTILITY(U,$J,358.3,12169,1,0)
- ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,12273,1,3,0)
+ ;;=3^Non-Pressure Chr Ulcer Rt Ankle w/ Bone Invl w/o Necrosis
+ ;;^UTILITY(U,$J,358.3,12273,1,4,0)
+ ;;=4^L97.316

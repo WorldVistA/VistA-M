@@ -1,128 +1,128 @@
-IBDEI0XH ; ; 04-FEB-2020
- ;;3.0;IB ENCOUNTER FORM IMP/EXP;;FEB 04, 2020
+IBDEI0XH ; ; 01-FEB-2022
+ ;;3.0;IB ENCOUNTER FORM IMP/EXP;;FEB 01, 2022
  Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,999) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
- ;;^UTILITY(U,$J,358.3,14910,0)
- ;;=K31.89^^85^836^78
- ;;^UTILITY(U,$J,358.3,14910,1,0)
+ ;;^UTILITY(U,$J,358.3,15085,0)
+ ;;=G43.909^^58^715^26
+ ;;^UTILITY(U,$J,358.3,15085,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,14910,1,3,0)
- ;;=3^Portal hypertension gastropathy
- ;;^UTILITY(U,$J,358.3,14910,1,4,0)
- ;;=4^K31.89
- ;;^UTILITY(U,$J,358.3,14910,2)
- ;;=^5008569
- ;;^UTILITY(U,$J,358.3,14911,0)
- ;;=I81.^^85^836^79
- ;;^UTILITY(U,$J,358.3,14911,1,0)
+ ;;^UTILITY(U,$J,358.3,15085,1,3,0)
+ ;;=3^Migraine, unsp, not intractable, without status migrainosus
+ ;;^UTILITY(U,$J,358.3,15085,1,4,0)
+ ;;=4^G43.909
+ ;;^UTILITY(U,$J,358.3,15085,2)
+ ;;=^5003909
+ ;;^UTILITY(U,$J,358.3,15086,0)
+ ;;=M79.2^^58^715^33
+ ;;^UTILITY(U,$J,358.3,15086,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,14911,1,3,0)
- ;;=3^Portal vein thrombosis
- ;;^UTILITY(U,$J,358.3,14911,1,4,0)
- ;;=4^I81.
- ;;^UTILITY(U,$J,358.3,14911,2)
- ;;=^269815
- ;;^UTILITY(U,$J,358.3,14912,0)
- ;;=K74.4^^85^836^81
- ;;^UTILITY(U,$J,358.3,14912,1,0)
+ ;;^UTILITY(U,$J,358.3,15086,1,3,0)
+ ;;=3^Neuralgia and neuritis, unspecified
+ ;;^UTILITY(U,$J,358.3,15086,1,4,0)
+ ;;=4^M79.2
+ ;;^UTILITY(U,$J,358.3,15086,2)
+ ;;=^5013322
+ ;;^UTILITY(U,$J,358.3,15087,0)
+ ;;=E66.9^^58^715^35
+ ;;^UTILITY(U,$J,358.3,15087,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,14912,1,3,0)
- ;;=3^Secondary biliary cirrhosis
- ;;^UTILITY(U,$J,358.3,14912,1,4,0)
- ;;=4^K74.4
- ;;^UTILITY(U,$J,358.3,14912,2)
- ;;=^5008820
- ;;^UTILITY(U,$J,358.3,14913,0)
- ;;=K65.2^^85^836^83
- ;;^UTILITY(U,$J,358.3,14913,1,0)
+ ;;^UTILITY(U,$J,358.3,15087,1,3,0)
+ ;;=3^Obesity, unspecified
+ ;;^UTILITY(U,$J,358.3,15087,1,4,0)
+ ;;=4^E66.9
+ ;;^UTILITY(U,$J,358.3,15087,2)
+ ;;=^5002832
+ ;;^UTILITY(U,$J,358.3,15088,0)
+ ;;=M72.2^^58^715^63
+ ;;^UTILITY(U,$J,358.3,15088,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,14913,1,3,0)
- ;;=3^Spontaneous bacterial peritonitis
- ;;^UTILITY(U,$J,358.3,14913,1,4,0)
- ;;=4^K65.2
- ;;^UTILITY(U,$J,358.3,14913,2)
- ;;=^332801
- ;;^UTILITY(U,$J,358.3,14914,0)
- ;;=K71.2^^85^836^85
- ;;^UTILITY(U,$J,358.3,14914,1,0)
+ ;;^UTILITY(U,$J,358.3,15088,1,3,0)
+ ;;=3^Plantar fascial fibromatosis
+ ;;^UTILITY(U,$J,358.3,15088,1,4,0)
+ ;;=4^M72.2
+ ;;^UTILITY(U,$J,358.3,15088,2)
+ ;;=^272598
+ ;;^UTILITY(U,$J,358.3,15089,0)
+ ;;=R20.9^^58^715^68
+ ;;^UTILITY(U,$J,358.3,15089,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,14914,1,3,0)
- ;;=3^Toxic liver disease w/ Acute Hepatitis
- ;;^UTILITY(U,$J,358.3,14914,1,4,0)
- ;;=4^K71.2
- ;;^UTILITY(U,$J,358.3,14914,2)
- ;;=^5008796
- ;;^UTILITY(U,$J,358.3,14915,0)
- ;;=K71.3^^85^836^87
- ;;^UTILITY(U,$J,358.3,14915,1,0)
+ ;;^UTILITY(U,$J,358.3,15089,1,3,0)
+ ;;=3^Skin sensation disturbances,unspec
+ ;;^UTILITY(U,$J,358.3,15089,1,4,0)
+ ;;=4^R20.9
+ ;;^UTILITY(U,$J,358.3,15089,2)
+ ;;=^5019282
+ ;;^UTILITY(U,$J,358.3,15090,0)
+ ;;=G82.50^^58^715^64
+ ;;^UTILITY(U,$J,358.3,15090,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,14915,1,3,0)
- ;;=3^Toxic liver disease w/ Chronic Hepatitis
- ;;^UTILITY(U,$J,358.3,14915,1,4,0)
- ;;=4^K71.3
- ;;^UTILITY(U,$J,358.3,14915,2)
- ;;=^5008797
- ;;^UTILITY(U,$J,358.3,14916,0)
- ;;=K71.0^^85^836^86
- ;;^UTILITY(U,$J,358.3,14916,1,0)
+ ;;^UTILITY(U,$J,358.3,15090,1,3,0)
+ ;;=3^Quadriplegia, unspecified
+ ;;^UTILITY(U,$J,358.3,15090,1,4,0)
+ ;;=4^G82.50
+ ;;^UTILITY(U,$J,358.3,15090,2)
+ ;;=^5004128
+ ;;^UTILITY(U,$J,358.3,15091,0)
+ ;;=G47.9^^58^715^69
+ ;;^UTILITY(U,$J,358.3,15091,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,14916,1,3,0)
- ;;=3^Toxic liver disease w/ Cholestasis
- ;;^UTILITY(U,$J,358.3,14916,1,4,0)
- ;;=4^K71.0
- ;;^UTILITY(U,$J,358.3,14916,2)
- ;;=^5008793
- ;;^UTILITY(U,$J,358.3,14917,0)
- ;;=K71.10^^85^836^89
- ;;^UTILITY(U,$J,358.3,14917,1,0)
+ ;;^UTILITY(U,$J,358.3,15091,1,3,0)
+ ;;=3^Sleep disorder, unspecified
+ ;;^UTILITY(U,$J,358.3,15091,1,4,0)
+ ;;=4^G47.9
+ ;;^UTILITY(U,$J,358.3,15091,2)
+ ;;=^5003990
+ ;;^UTILITY(U,$J,358.3,15092,0)
+ ;;=G44.209^^58^715^71
+ ;;^UTILITY(U,$J,358.3,15092,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,14917,1,3,0)
- ;;=3^Toxic liver disease w/ Hepatic Necrosis
- ;;^UTILITY(U,$J,358.3,14917,1,4,0)
- ;;=4^K71.10
- ;;^UTILITY(U,$J,358.3,14917,2)
- ;;=^5008794
- ;;^UTILITY(U,$J,358.3,14918,0)
- ;;=K71.6^^85^836^90
- ;;^UTILITY(U,$J,358.3,14918,1,0)
+ ;;^UTILITY(U,$J,358.3,15092,1,3,0)
+ ;;=3^Tension-type headache, unspecified, not intractable
+ ;;^UTILITY(U,$J,358.3,15092,1,4,0)
+ ;;=4^G44.209
+ ;;^UTILITY(U,$J,358.3,15092,2)
+ ;;=^5003936
+ ;;^UTILITY(U,$J,358.3,15093,0)
+ ;;=R32.^^58^715^77
+ ;;^UTILITY(U,$J,358.3,15093,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,14918,1,3,0)
- ;;=3^Toxic liver disease w/ Hepatitis
- ;;^UTILITY(U,$J,358.3,14918,1,4,0)
- ;;=4^K71.6
- ;;^UTILITY(U,$J,358.3,14918,2)
- ;;=^5008801
- ;;^UTILITY(U,$J,358.3,14919,0)
- ;;=K71.11^^85^836^88
- ;;^UTILITY(U,$J,358.3,14919,1,0)
+ ;;^UTILITY(U,$J,358.3,15093,1,3,0)
+ ;;=3^Urinary incontinence,unspec
+ ;;^UTILITY(U,$J,358.3,15093,1,4,0)
+ ;;=4^R32.
+ ;;^UTILITY(U,$J,358.3,15093,2)
+ ;;=^5019329
+ ;;^UTILITY(U,$J,358.3,15094,0)
+ ;;=R53.1^^58^715^78
+ ;;^UTILITY(U,$J,358.3,15094,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,14919,1,3,0)
- ;;=3^Toxic liver disease w/ Coma
- ;;^UTILITY(U,$J,358.3,14919,1,4,0)
- ;;=4^K71.11
- ;;^UTILITY(U,$J,358.3,14919,2)
- ;;=^5008795
- ;;^UTILITY(U,$J,358.3,14920,0)
- ;;=K71.9^^85^836^91
- ;;^UTILITY(U,$J,358.3,14920,1,0)
+ ;;^UTILITY(U,$J,358.3,15094,1,3,0)
+ ;;=3^Weakness
+ ;;^UTILITY(U,$J,358.3,15094,1,4,0)
+ ;;=4^R53.1
+ ;;^UTILITY(U,$J,358.3,15094,2)
+ ;;=^5019516
+ ;;^UTILITY(U,$J,358.3,15095,0)
+ ;;=G47.63^^58^715^3
+ ;;^UTILITY(U,$J,358.3,15095,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,14920,1,3,0)
- ;;=3^Toxic liver disease,Uncomplicated
- ;;^UTILITY(U,$J,358.3,14920,1,4,0)
- ;;=4^K71.9
- ;;^UTILITY(U,$J,358.3,14920,2)
- ;;=^5008804
- ;;^UTILITY(U,$J,358.3,14921,0)
- ;;=E83.01^^85^836^92
- ;;^UTILITY(U,$J,358.3,14921,1,0)
+ ;;^UTILITY(U,$J,358.3,15095,1,3,0)
+ ;;=3^Bruxism
+ ;;^UTILITY(U,$J,358.3,15095,1,4,0)
+ ;;=4^G47.63
+ ;;^UTILITY(U,$J,358.3,15095,2)
+ ;;=^332783
+ ;;^UTILITY(U,$J,358.3,15096,0)
+ ;;=G56.01^^58^715^6
+ ;;^UTILITY(U,$J,358.3,15096,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,14921,1,3,0)
- ;;=3^Wilson's disease
- ;;^UTILITY(U,$J,358.3,14921,1,4,0)
- ;;=4^E83.01
- ;;^UTILITY(U,$J,358.3,14921,2)
- ;;=^5002991
- ;;^UTILITY(U,$J,358.3,14922,0)
- ;;=K76.9^^85^836^24
- ;;^UTILITY(U,$J,358.3,14922,1,0)
+ ;;^UTILITY(U,$J,358.3,15096,1,3,0)
+ ;;=3^Carpal Tunnel Syndrome,Right Upper Limb
+ ;;^UTILITY(U,$J,358.3,15096,1,4,0)
+ ;;=4^G56.01
+ ;;^UTILITY(U,$J,358.3,15096,2)
+ ;;=^5004018
+ ;;^UTILITY(U,$J,358.3,15097,0)
+ ;;=G56.02^^58^715^5
+ ;;^UTILITY(U,$J,358.3,15097,1,0)
  ;;=^358.31IA^4^2

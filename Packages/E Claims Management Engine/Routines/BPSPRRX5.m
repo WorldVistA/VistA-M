@@ -1,5 +1,5 @@
 BPSPRRX5 ;ALB/SS - ePharmacy secondary billing ;12-DEC-08
- ;;1.0;E CLAIMS MGMT ENGINE;**8,10,11,20**;JUN 2004;Build 27
+ ;;1.0;E CLAIMS MGMT ENGINE;**8,10,11,20,28**;JUN 2004;Build 22
  ;;Per VA Directive 6402, this routine should not be modified.
  ;
  ;
@@ -197,6 +197,8 @@ SECNOPRM(BPSRX,BPSRF,BPSDOS,BPSDFN,BPDISPPR) ;
  ;
  ; Set the flag that indicates to BPSNCPDP that it should not recompile the data from BPS Transactions
  S BPSECOND("NEW COB DATA")=1
+ ;
+ D ACTDTY^BPSPRRX7(BPSRX,BPSRF,BPSDFN,BPSDOS)
  ;
  ; Set BWHERE dependent on resubmit or not
  I BPRESUBM=0 S BPSWHERE="P2"

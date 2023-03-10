@@ -1,5 +1,5 @@
 PXRMDEV ;SLC/PKR - This is a driver for testing Clinical Reminders. ;06/23/2020
- ;;2.0;CLINICAL REMINDERS;**4,6,11,16,18,24,26,47,45,46**;Feb 04, 2005;Build 236
+ ;;2.0;CLINICAL REMINDERS;**4,6,11,16,18,24,26,47,45,46,42**;Feb 04, 2005;Build 245
  ;
  ;===============
 DEB ;Prompt for patient and reminder by name input component.
@@ -64,7 +64,7 @@ GREM2 D ^DIC
  S PXRMITEM=+$P(Y,U,1)
  I PXRMITEM=-1 G GREM2
  S PXRHM=5
- S DIR(0)="DA^"_0_"::ETX"
+ S DIR(0)="DA^"_0_"::ET"
  S DIR("A")="Enter date for reminder evaluation: "
  S DIR("B")=$$FMTE^XLFDT($$DT^XLFDT,"D")
  S DIR("PRE")="S X=$$DCHECK^PXRMDATE(X) K:X=-1 X"
@@ -185,14 +185,14 @@ DOREM(DFN,PXRMITEM,PXRHM,DATE) ;Do the reminder
  . F  S IND=$O(TTEXT(IND)) Q:IND=""  S NL=NL+1,OUTPUT(NL)=TTEXT(IND)
  ;
  ;Display the demographic variables.
- ;S NL=NL+1,OUTPUT(NL)="",NL=NL+1,OUTPUT(NL)=""
- ;S NL=NL+1,OUTPUT(NL)="The demographic variables are:"
- ;S IND=""
- ;F  S IND=$O(^TMP("PXRMDEM",$J,IND)) Q:IND=""  D
- ;. S TEXT=^TMP("PXRMDEM",$J,IND)
- ;. I (IND="DOB")!(IND="DOD")!(IND="LAD") S TEXT=$$FMTE^XLFDT(TEXT,"5Z")
- ;. S NL=NL+1,OUTPUT(NL)=IND_"="_TEXT
- ;K ^TMP("PXRMDEM",$J)
+ S NL=NL+1,OUTPUT(NL)="",NL=NL+1,OUTPUT(NL)=""
+ S NL=NL+1,OUTPUT(NL)="The demographic variables are:"
+ S IND=""
+ F  S IND=$O(^TMP("PXRMDEM",$J,IND)) Q:IND=""  D
+ . S TEXT=^TMP("PXRMDEM",$J,IND)
+ . I (IND="DOB")!(IND="DOD")!(IND="LAD") S TEXT=$$FMTE^XLFDT(TEXT,"5Z")
+ . S NL=NL+1,OUTPUT(NL)=IND_"="_TEXT
+ K ^TMP("PXRMDEM",$J)
  ;
  I $D(^TMP(PXRMID,$J)) D
  . S NL=NL+1,OUTPUT(NL)="",NL=NL+1,OUTPUT(NL)=""

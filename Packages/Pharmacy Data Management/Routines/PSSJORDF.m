@@ -1,22 +1,22 @@
-PSSJORDF ;BIR/MV-RETURN MED ROUTES(MR) AND INSTRUCTIONS(INS) ;06/26/98
- ;;1.0;PHARMACY DATA MANAGEMENT;**5,13,34,38,69,113,94,140,142,159**;9/30/97;Build 29
+PSSJORDF ;BIR/MV - RETURN MED ROUTES(MR) AND INSTRUCTIONS(INS) ;May 25, 2021@07:40:03
+ ;;1.0;PHARMACY DATA MANAGEMENT;**5,13,34,38,69,113,94,140,142,159,187**;9/30/97;Build 27
  ;;
  ; Reference to ^PS(50.7 is supported by DBIA 2180.
  ; Reference to ^PS(51.2 is supported by DBIA 2178.
  ; Reference to ^PS(50.606 is supported by DBIA 2174.
- ; 
- ;* PSJORD is the Orderable Item IEN pass to Pharmacy by OE/RR.  
- ;* 1. If the dosage form is valid, this routine will return: 
- ;*    If the orderable item has a default med route in the DEFAULT MED ROUTE field #.06 in 
+ ;
+ ;* PSJORD is the Orderable Item IEN pass to Pharmacy by OE/RR.
+ ;* 1. If the dosage form is valid, this routine will return:
+ ;*    If the orderable item has a default med route in the DEFAULT MED ROUTE field #.06 in
  ;*    file #50.7 set it as the default;  and then get the other med routes from the POSSIBLE MED ROUTES
- ;*    field #11 if the USE DOSAGE FORM MED ROUTE LIST field #10 is set to "NO". 
+ ;*    field #11 if the USE DOSAGE FORM MED ROUTE LIST field #10 is set to "NO".
  ;*    If the orderable item has a default med route in the DEFAULT MED ROUTE field #.06 in file #50.7
- ;*    set it as the default;  and then get the other med routes from the Dosage Form med routes if the 
- ;*    USE DOSAGE FORM MED ROUTE LIST field #10 is set to "YES". 
+ ;*    set it as the default;  and then get the other med routes from the Dosage Form med routes if the
+ ;*    USE DOSAGE FORM MED ROUTE LIST field #10 is set to "YES".
  ;*    Otherwise, use existing functionality.
  ;  2. If the dose form is null, this routine will return all med routes
  ;*    that exist in the medication routes file.
- ; 
+ ;
  ;* 3. ^TMP format:
  ;*    ^TMP("PSJMR",$J,#)=MED ROUTE^MED ROUTE ABREVATION^IEN^OUTPATIENT
  ;*                       EXPANSION^IV FLAG^DEFAULT FLAG
@@ -33,7 +33,7 @@ START(PSJORD,PSJOPAC) ;
 SCPASS ;
  I $G(^PS(50.606,PSJDFNO,0))="" D NOD Q:$D(^TMP("PSJMR",$J,1))  D MEDROUTE Q
  K ^TMP("PSJMR",$J),^TMP("PSJNOUN",$J)
- D DF
+ D DF,IND ;*187
  Q
  ;
 DF ;* Loop thru DF node to find all available med routes, nouns, and instructions.
@@ -65,12 +65,12 @@ START1(PSJORD,PSJQOF) ;Entry point for IV dialog PSS*1*94
  ; This is the new entry point for the IV Dialog box from CPRS GUI 27.  PSJORD will be an array
  ; sent by CPRS that contains all the IENS for all orderable items that are part of the order.  The zero node of the array
  ; will contain the total number of orderable items in the order.
- ; 
+ ;
  ; PSJQOF is the quick order flag.  0=not a quick order 1=quick order
- ; 
+ ;
  ; If there is only one orderable item, any default defined in the Pharmacy Orderable Item file (50.7) will be
  ; marked with a D at the end of the data string.
- ; 
+ ;
  ; PSS*1*142
  ; If there is more than one orderable item in the order,
  ; and if all orderable items share the same default med route, the med route will be denoted
@@ -78,10 +78,10 @@ START1(PSJORD,PSJQOF) ;Entry point for IV dialog PSS*1*94
  ; of the med routes will be returned.  For example if Dextrose can be given IV or IM, and the Ampicillin is only
  ; given IM, IM is the only med route that will be returned because it is the only overlapping med route between
  ; the two orderable items.  If there is no overlapping med route to be returned, then a NULL will be returned to CPRS.
- ; 
+ ;
  ; If the quick order flag PSJQOF is set to 1, then CPRS is expecting the overlapping med routes for the orderable items
  ; as well as the entire list of med routes that are flagged for IV's.
- ; 
+ ;
  I PSJQOF="" S PSJQOF=0
  K PSJORD1,^TMP("PSJMR",$J)
  I $G(PSJORD(0))=1 S PSJOPAC="I" D  Q
@@ -188,4 +188,14 @@ MULTIDEF(PSJORD,PSJORD1) ; PSS*1*142
  S ZZX=""
  F  S ZZX=$O(PSJORD1(ZZX)) Q:ZZX=""  D
  . I $P($G(PSJORD1(ZZX)),"^",1)=$P($G(SAMEDEF),"^",2) S PSJORD1(ZZX)=PSJORD1(ZZX)_"D"
+ Q
+ ;
+IND ;*187 - indications for use
+ K ^TMP("PSJIND",$J)
+ N IND,I,ARR,K S K=0,I=""
+ I $P($G(^PS(50.7,PSJORD,4)),"^",2)]"" S K=K+1,^TMP("PSJIND",$J,K)=$$ENLU^PSSGMI($P(^PS(50.7,PSJORD,4),"^",2))_"^d"
+ F  S I=$O(^PS(50.7,PSJORD,"IND","B",I)) Q:I=""  D
+ .S IND=$$ENLU^PSSGMI(I) ;convert to uppercase
+ .I '$D(ARR(IND)) S ARR(IND)=""
+ S I="" F  S I=$O(ARR(I)) Q:I=""  S K=K+1,^TMP("PSJIND",$J,K)=I
  Q

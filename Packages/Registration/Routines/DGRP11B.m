@@ -1,5 +1,5 @@
-DGRP11B ;ALB/JAM - REGISTRATION SCREEN 11.5.1/VERIFICATION INFORMATION ;Mar 09, 2020@12:34
- ;;5.3;Registration;**997**;AUG 13, 1993;Build 42
+DGRP11B ;ALB/JAM,ARF - REGISTRATION SCREEN 11.5.1/VERIFICATION INFORMATION ;Mar 09, 2020@12:34
+ ;;5.3;Registration;**997,1014**;AUG 13, 1993;Build 42
  ;IA's:
  ; GETDFN^MPIF001 - Supported #2701 ;retrieves DFN from ICN via MPI
  ;
@@ -12,12 +12,13 @@ EN(DFN) ;Main entry point to invoke the DGEN CGP DETAIL list
  ;
 HDR ;Header code
  N X
- D PID^VADPT
- S VALMHDR(1)=$E("Patient: "_$P($G(^DPT(DFN,0)),U),1,30)
- S VALMHDR(1)=VALMHDR(1)_" ("_VA("BID")_")"
- S X="PATIENT TYPE UNKNOWN"
- I $D(^DPT(DFN,"TYPE")),$D(^DG(391,+^("TYPE"),0)) S X=$P(^(0),U,1)
- S VALMHDR(1)=$$SETSTR^VALM1(X,VALMHDR(1),60,80)
+ D LISTHDR^DGRPU(1) ;DG*5.3*1014 - ARF - sets patient data in the 1st and 2nd entries in VALMHDR array 
+ ;D PID^VADPT                                             ;DG*5.3*1014 begin - comment previous code 
+ ;S VALMHDR(1)=$E("Patient: "_$P($G(^DPT(DFN,0)),U),1,30)
+ ;S VALMHDR(1)=VALMHDR(1)_" ("_VA("BID")_")"
+ ;S X="PATIENT TYPE UNKNOWN"
+ ;I $D(^DPT(DFN,"TYPE")),$D(^DG(391,+^("TYPE"),0)) S X=$P(^(0),U,1)
+ ;S VALMHDR(1)=$$SETSTR^VALM1(X,VALMHDR(1),60,80)     ;DG*5.3*1014 end - comment previous code
  Q
  ;
 INIT ;Build patient Caregiver screen

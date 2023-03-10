@@ -1,13 +1,15 @@
 DVBHQUT ;ISC-ALBANY/PKE-stuff entry in suspense file 20 JUN 85  3:50 pm ; 9/4/87  14:43 ;
- ;;V4.0;HINQ;**12**;03/25/92 
+ ;;4.0;HINQ;**12,71**;03/25/92 ;Build 13
  S DVBNOWRT=""
-EN Q:'$D(DUZ)  Q:DUZ<1  D:'$D(DT) DT^DICRW I 1
+EN W !,"Patch DVB*4.0*71 marks HINQ requests out of order due to WEBHINQ transition" Q
+ Q:'$D(DUZ)  Q:DUZ<1  D:'$D(DT) DT^DICRW I 1
  I $D(DFN),+DFN S U="^",DVBP="" D BYPASS^DVBHIQD I 1
  E  Q
-EN1 Q:'$D(^DPT(DFN,0))
+EN1 W !,"Patch DVB*4.0*71 marks HINQ requests out of order due to WEBHINQ transition" Q
+ Q:'$D(^DPT(DFN,0))
  I '$D(DVBZ) W *7,!,"No HINQ string created entry not entered." Q
  S %=$P($H,",",2),Z=DT_(%\60#60/100+(%\3600)+(%#60/10000)/100)
- L +^DVB(395.5,DFN) S ^DVB(395.5,"D",DUZ,DFN,DUZ)=""
+ L +^DVB(395.5,DFN):$G(DILOCKTM,3) S ^DVB(395.5,"D",DUZ,DFN,DUZ)=""
  I $D(^DVB(395.5,DFN,0)) D ENT2 I 1
  E  D ENT
  L -^DVB(395.5,DFN)
@@ -15,7 +17,7 @@ EN1 Q:'$D(^DPT(DFN,0))
  ;This is left over referrence
 SET Q:'$D(DFN)  Q:'DFN  S U="^",X="N",%DT="T" D ^%DT S DVBTMX=Y,DVBTX=9999999-DVBTMX
  Q:'$D(^DVB(395.5,DFN,0))
- L +^DVB(395.5,DFN) S DVBOTMX=+$P(^DVB(395.5,DFN,0),U,3),$P(^DVB(395.5,DFN,0),U,3)=DVBTMX
+ L +^DVB(395.5,DFN):$G(DILOCKTM,3) S DVBOTMX=+$P(^DVB(395.5,DFN,0),U,3),$P(^DVB(395.5,DFN,0),U,3)=DVBTMX
  I '$D(DVBMM1) S $P(^DVB(395.5,DFN,0),U,4)=$S($D(DVBSTATS):DVBSTATS,1:"")
  D KIL
  I $D(DVBIXMZ) S $P(^DVB(395.5,DFN,0),U,7,8)=DVBIXMZ_"^"_DVBTMX

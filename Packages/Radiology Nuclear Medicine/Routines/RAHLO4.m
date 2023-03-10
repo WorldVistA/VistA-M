@@ -1,5 +1,5 @@
-RAHLO4 ;HIRMFO/GJC-File rpt (data from bridge program) ;7/21/99  11:45
- ;;5.0;Radiology/Nuclear Medicine;**4,8,81,84**;Mar 16, 1998;Build 13
+RAHLO4 ;HIRMFO/GJC-File rpt (data from bridge program) ; Feb 03, 2021@10:32:37
+ ;;5.0;Radiology/Nuclear Medicine;**4,8,81,84,175**;Mar 16, 1998;Build 2
  ;
  ;Integration Agreements
  ;----------------------
@@ -23,13 +23,25 @@ VOICE ; voice dictation auto-print (background process)
  Q
  ;
 UPMEM ;copy (prim:dx,stf,res),rpt ien to other members of same print set
- ; first clear those fields
+ ;
+ ;Note: updated w/RA5_0P175 & called from only RAHLO1.
+ ;      no IAs dedicated to this tag^routine
+ ; variable: RAMDV set in EDTCHK^RAHLQ (required) RAMDV=.1
+ ; node of division (#79) translated from "YyNn" to "1100"
+ ;
  K DIE,DA,DR S DA=RACNI,DA(1)=RADTI,DA(2)=RADFN
+ ; first clear those fields.
  S DIE="^RADPT("_DA(2)_",""DT"","_DA(1)_",""P"","
  S DR="13///@;12///@;15///@" D ^DIE
  ; now set those fields based on lead case of printset
  S DR="13////"_RA13_";12////"_RA12_";15////"_RA15 D ^DIE K DA,DR,DIE
- ; now set the report pointer (uneditable, thus must hard set)
+ ; if the study has been canceled check if rpts are allowed.
+ N RAY3,RASTATUS S RAY3=$G(^RADPT(RADFN,"DT",RADTI,"P",RACNI,0))
+ S RASTATUS=$P($G(^RA(72,+$P(RAY3,U,3),0)),"^",3) ;order value
+ ; Note: if canceled and division does not allow rpts on canceled
+ ;       studies quit.
+ I RASTATUS=0,($P(RAMDV,"^",22)'=1) Q
+ ; hard set the report pointer to the study
  S $P(^RADPT(RADFN,"DT",RADTI,"P",RACNI,0),"^",17)=RARPT
  Q
 SETPHYS ;set Primary Resident or Staff, either piece 12 or piece 15 of case

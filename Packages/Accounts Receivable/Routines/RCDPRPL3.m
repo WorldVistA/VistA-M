@@ -1,5 +1,5 @@
 RCDPRPL3 ;WISC/RFJ-receipt profile listmanager options ;1 Jun 99
- ;;4.5;Accounts Receivable;**114,148,153,173,301,326**;Mar 20, 1995;Build 26
+ ;;4.5;Accounts Receivable;**114,148,153,173,301,326,367,371**;Mar 20, 1995;Build 29
  ;;Per VA Directive 6402, this routine should not be modified.
  Q
  ;
@@ -22,7 +22,7 @@ EDITREC ;  option: edit the receipt, deposit #
  ;
  ;
 PROCESS ;  option: process receipt
- N RCNE,RCOK,RCEFT,RCEFT1,RCHAC,RC,RCERA,RCAMT,RCQUIT,CRTR,Z  ;PRCA*4.5*326 added RCNE
+ N CRTR,RC,RCAMT,RCHMP,RCEFT,RCEFT1,RCERA,RCHAC,RCOK,RCQUIT,X,Z
  D FULL^VALM1
  S VALMBCK="R"
  ;
@@ -63,11 +63,24 @@ PROCESS ;  option: process receipt
  . I $P($G(^RCY(344.3,+$G(^RCY(344.31,+RCEFT,0)),0)),U,8),$P($G(^RCY(344.31,+RCEFT,0)),U,7) D  Q:'RCOK1
  .. N RCRECTDA,RCDEPDA
  .. S RCDEPDA=+$P($G(^RCY(344.3,+$G(^RCY(344.31,+RCEFT,0)),0)),U,3),RCRECTDA=+$O(^RCY(344,"AD",+RCDEPDA,0)) ; Get deposit and its receipt
- .. I RCRECTDA S Z=$P($$FMSSTAT^RCDPUREC(RCRECTDA),U,2) Q:$E(Z)="A"  ; EFT Accepted by FMS
+ .. I RCRECTDA S Z=$P($$FMSSTAT^RCDPUREC(RCRECTDA),U,2) Q:$E(Z)="A"  Q:$E(Z)="O"  ; EFT Accepted by FMS or ON-LINE ENTRY - PRCA*4.5*326
  .. W !,"This receipt cannot be processed yet - the EFT's deposit has not been",!," successfully sent to FMS.  Status currently is "_Z
  .. S VALMSG="EDI LOCKBOX EFT not yet posted",RCOK1=0
  .. D RET^RCDPEWL2
  . S RCOK=1
+ ;
+ ; PRCA*4.5*367 - If CHAMPVA receipt, check against receipt total field
+ S RCHMP=$$ISCHMPVA^RCDPUREC(+$P($G(^RCY(344,RCRECTDA,0)),U,4))
+ I RCHMP D  Q:RCQUIT
+ . N I,RCTOT,TXTOT
+ . S RCTOT=+$P($G(^RCY(344,RCRECTDA,0)),U,22),TXTOT=0
+ . S I=0 F  S I=$O(^RCY(344,RCRECTDA,1,I)) Q:'+I  D
+ .. S TXTOT=TXTOT+$P(^RCY(344,RCRECTDA,1,I,0),U,4)
+ . I RCTOT'=TXTOT D
+ .. S RCQUIT=1
+ .. W !,"This receipt cannot be processed because the RECEIPT TOTAL does not equal",!," does not equal the total amount on the receipt ("_$J(RCAMT,"",2)_")"
+ .. S VALMSG="Receipt total not match RECEIPT TOTAL"
+ .. D RET^RCDPEWL2
  ;
  I +$P($G(^RCY(344,RCRECTDA,0)),U,6),+$P(^(0),U,17) D  Q:'RCOK
  . S RCOK=0
@@ -139,7 +152,9 @@ PROCESS ;  option: process receipt
  ;
  ;  check for critical fields, deposit ticket, date of deposit
  ; No deposit ticket is OK for ERA not related to an EFT or for HAC ERA
- I 'RCDEPTDA,$S('$G(RCDPDATA(344,RCRECTDA,.18,"I")):1,$$EDILB^RCDPEU(RCRECTDA)=2:0,1:'$$HAC^RCDPURE1(RCRECTDA)) D
+ ; PRCA*4.5*367 - Do not create deposit ticket for CHAMPVA receipts
+ ; PRCA*4.5*371 - EDI LOCKBOX type Receipts have an EFT and don't need a deposit #
+ I 'RCEFT,'RCHMP,'RCDEPTDA,$S('$G(RCDPDATA(344,RCRECTDA,.18,"I")):1,$$EDILB^RCDPEU(RCRECTDA)=2:0,1:'$$HAC^RCDPURE1(RCRECTDA)) D
  .   W !!,"WARNING, Deposit Ticket is missing.  If you continue with processing,"
  .   W !,"the AR accounts will be updated and a cash receipt (CR) document will"
  .   W !,"NOT be sent to FMS.  You have the option to add the Deposit Ticket now."

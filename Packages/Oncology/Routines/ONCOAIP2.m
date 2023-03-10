@@ -1,5 +1,5 @@
-ONCOAIP2 ;Hines OIFO/GWB,RTK - ONCO ABSTRACT-I SUB-ROUTINES ;04/12/01
- ;;2.2;ONCOLOGY;**1,4,5,6,10,12**;Jul 31, 2013;Build 8
+ONCOAIP2 ;HINES OIFO/GWB,RTK - ONCO ABSTRACT-I SUB-ROUTINES ;04/12/01
+ ;;2.2;ONCOLOGY;**1,4,5,6,10,12,13**;Jul 31, 2013;Build 7
  ;
 LEUKEMIA(REC) ;Systemic diseases
  N H,HISTNAM,HSTFLD,ICDFILE,ICDNUM
@@ -77,7 +77,8 @@ EDTMOD ;EXTRACT EDITS THAT NEED TO BE MANUALLY FIXED TO PASS
  S DA=D0,DIQ="ONC" D EN^DIQ1
  ;S X=ONC(165.5,D0,91) D UCASE^ONCPCI S ONC(165.5,D0,91)=X
  W !," Address at DX--State........: ",ONC(165.5,D0,999.26),?40,"Address at DX--Country......: ",ONC(165.5,D0,999.27)
- W !," Address Current--State .....: ",ONC(165.5,D0,999.28),?40,"Address Current--Country....: ",ONC(165.5,D0,999.29)
+ W !," Address Current--State......: ",ONC(165.5,D0,999.28),?40,"Address Current--Country....: ",ONC(165.5,D0,999.29)
+ W !," Address Current--Postal Code: ",ONC(165.5,D0,999.289)
  W !!," Date of Diagnosis Flag......: ",ONC(165.5,D0,999.1),?40,"RX Date-Systemic Flag.......: ",ONC(165.5,D0,999.14)
  W !," Date Conclusive DX Flag.....: ",ONC(165.5,D0,999.2),?40,"RX Date-Chemo Flag..........: ",ONC(165.5,D0,999.15)
  W !," Date of Mult Tumors Flag....: ",ONC(165.5,D0,999.3),?40,"RX Date-Hormone Flag........: ",ONC(165.5,D0,999.16)
@@ -109,52 +110,13 @@ UDFMOD ;ALLOW USERS TO ENTER/EDIT USER-DEFINED FIELDS
  W !,DASHES
  Q
  ;
-EXTLN ;Display retired EOD Extension & LN fields for 2018-19 cases
- N DI,DIC,DR,DA,DIQ,ONC
- S DIC="^ONCO(165.5,"
- S DR="30;31"
- S DA=D0,DIQ="ONC" D EN^DIQ1
- W !!,"*** Display of two retired EOD values for reference ***"
- W !," Extension.............: ",ONC(165.5,D0,30)
- W !," Lymph Nodes...........: ",ONC(165.5,D0,31)
- W !
+EXTLN ;Display retired <2018 EOD Extension & LN fields (removed this in P13) 
  Q
-CLINTNM ;Display retired Clinical TNM fields for 2018-19 cases
- N DI,DIC,DR,DA,DIQ,ONC
- S DIC="^ONCO(165.5,"
- S DR="37.1:38"
- S DA=D0,DIQ="ONC" D EN^DIQ1
- W !,"*** Display of four retired Clinical TNM values for reference ***"
- W !," Clinical T............: ",ONC(165.5,D0,37.1)
- W !," Clinical N............: ",ONC(165.5,D0,37.2)
- W !," Clinical M............: ",ONC(165.5,D0,37.3)
- W !," Clinical Stage Group..: ",ONC(165.5,D0,38)
- W !
+CLINTNM ;Display retired <2018 Clin TNM fields (removed this in P13)
  Q
-PATHTNM ;Display retired Pathological TNM fields for 2018-19 cases
- N DI,DIC,DR,DA,DIQ,ONC
- S DIC="^ONCO(165.5,"
- S DR="85:88"
- S DA=D0,DIQ="ONC" D EN^DIQ1
- W !,"*** Display of four retired Pathologic TNM values for reference ***"
- W !," Pathologic T............: ",ONC(165.5,D0,85)
- W !," Pathologic N............: ",ONC(165.5,D0,86)
- W !," Pathologic M............: ",ONC(165.5,D0,87)
- W !," Pathologic Stage Group..: ",ONC(165.5,D0,88)
- W !
+PATHTNM ;Display retired <2018 Path TNM fields (removed this in P13)
  Q
-RADRET ;Display retired Radiology fields for 2018,19 cases
- N DI,DIC,DR,DA,DIQ,ONC
- S DIC="^ONCO(165.5,"
- S DR="56;125;363:363.1;442:443"
- S DA=D0,DIQ="ONC" D EN^DIQ1
- W !!,"*** Display of six retired Radiology fields for reference ***"
- W !," Radiation Treatment Volume....: ",ONC(165.5,D0,125)
- W !," Regional Treatment Modality...: ",ONC(165.5,D0,363)
- W !," Regional Dose: cGy............: ",ONC(165.5,D0,442)
- W !," Boost Treatment Modality......: ",ONC(165.5,D0,363.1)
- W !," Boost dose: cGy...............: ",ONC(165.5,D0,443)
- W !," Number of TXS to this volume..: ",ONC(165.5,D0,56)
+RADRET ;Display retired <2018 Rad fields (removed this in P13)
  Q
 RADSKP ;
  I $P($G(^ONCO(165.5,D0,"RAD18")),"^",1)'="" Q

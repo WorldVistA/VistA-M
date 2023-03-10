@@ -1,5 +1,5 @@
 PSOORNE6 ;ISC-BHAM/SAB-display  orders from backdoor ;5/23/05 2:08pm
- ;;7.0;OUTPATIENT PHARMACY;**46,103,117,156,210,488,505,508**;DEC 1997;Build 295
+ ;;7.0;OUTPATIENT PHARMACY;**46,103,117,156,210,488,505,508,617**;DEC 1997;Build 110
  ;External reference to MAIN^TIUEDIT is supported by DBIA 2410
  ;PSO*210 add call to WORDWRAP api
  ;
@@ -125,5 +125,7 @@ DISP ;
  S $P(RN," ",35)=" ",IEN=IEN+1,^TMP("PSOAO",$J,IEN,0)="   Entry By: "_$P(^VA(200,$P(RX0,"^",16),0),"^")_$E(RN,$L($P(^VA(200,$P(RX0,"^",16),0),"^"))+1,35)
  S Y=$P(RX2,"^") X ^DD("DD")
  S ^TMP("PSOAO",$J,IEN,0)=^TMP("PSOAO",$J,IEN,0)_"Entry Date: "_$E($P(RX2,"^"),4,5)_"/"_$E($P(RX2,"^"),6,7)_"/"_$E($P(RX2,"^"),2,3)_" "_$P(Y,"@",2) K RN
- S (VALMCNT,PSOPF)=IEN S:$P($G(^PSRX(RXN,"PKI")),"^") VALMSG="Digitally Signed Order"
+ S (VALMCNT,PSOPF)=IEN
+ I $P($G(^PSRX(RXN,"PKI")),"^") S VALMSG="Digitally Signed Order"
+ I $P($G(^PSRX(RXN,"PKI")),"^",3) S VALMSG="Digitally Signed eRx Order"
  Q

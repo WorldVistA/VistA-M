@@ -1,15 +1,16 @@
-PXRMLDR ;SLC/PKR - Load Definitions and terms for evaluation. ;04/19/2017
- ;;2.0;CLINICAL REMINDERS;**18,26,47**;Feb 04, 2005;Build 291
+PXRMLDR ;SLC/PKR - Load Definitions and terms for evaluation. ;04/01/2022
+ ;;2.0;CLINICAL REMINDERS;**18,26,47,42,65**;Feb 04, 2005;Build 438
  ;
  ;===================================
 DEF(DEFID,DEFARR) ;Load those portions of the definition needed for
  ;evaluation.
  N DEFIEN
  K DEFARR
+ I DEFID="" S DEFARR("DNE")=1,DEFARR("IEN")="NULL" Q
  S DEFIEN=$S(+DEFID>0:DEFID,1:$O(^PXD(811.9,"B",DEFID,"")))
- I DEFIEN="" S DEFARR("DNE")="" Q
+ I DEFIEN="" S DEFARR("DNE")=1,DEFARR("IEN")="NULL" Q
  S DEFARR("IEN")=DEFIEN
- I '$D(^PXD(811.9,DEFIEN)) S DEFARR("DNE")="" Q
+ I '$D(^PXD(811.9,DEFIEN)) S DEFARR("DNE")=1 Q
  N FTYPE,IND,JND,STL
  S STL=0
  S DEFARR(0)=^PXD(811.9,DEFIEN,0)
@@ -43,17 +44,23 @@ DEF(DEFID,DEFARR) ;Load those portions of the definition needed for
  S DEFARR(36)=$G(^PXD(811.9,DEFIEN,36))
  S DEFARR(40)=$G(^PXD(811.9,DEFIEN,40))
  S DEFARR(42)=$G(^PXD(811.9,DEFIEN,42))
+ S DEFARR(80)=$G(^PXD(811.9,DEFIEN,80))
+ S DEFARR(81)=$G(^PXD(811.9,DEFIEN,81))
+ S DEFARR(90)=$G(^PXD(811.9,DEFIEN,90))
+ S DEFARR(91)=$G(^PXD(811.9,DEFIEN,91))
  ;Load the custom date due fields.
  S DEFARR(45)=$G(^PXD(811.9,DEFIEN,45))
  I $L(DEFARR(45))>0 D
  . M DEFARR(46)=^PXD(811.9,DEFIEN,46)
  . M DEFARR(47)=^PXD(811.9,DEFIEN,47)
  . K DEFARR(47,0),DEFARR(47,"B")
- ;Load the logic found/not found text fields.
+ ;Load the logic found/not found text line count fields.
  S DEFARR(62)=$G(^PXD(811.9,DEFIEN,62))
  S DEFARR(67)=$G(^PXD(811.9,DEFIEN,67))
  S DEFARR(72)=$G(^PXD(811.9,DEFIEN,72))
  S DEFARR(77)=$G(^PXD(811.9,DEFIEN,77))
+ S DEFARR(85)=$G(^PXD(811.9,DEFIEN,85))
+ S DEFARR(95)=$G(^PXD(811.9,DEFIEN,95))
  ;Check for finding list strings too long.
  I DEFARR(32)=-1 S STL=1,FTYPE="cohort"
  I DEFARR(36)=-1 S STL=1,FTYPE="resolution"
@@ -80,10 +87,11 @@ EDITFM0(FINDING,FIELD,VALUE,FARR) ;For finding number FINDING set the
 TAX(TAXID,TAXARR) ;Load a taxonomy into TAXARR for evaluation.
  N TAXIEN
  K TAXARR
+ I TAXID="" S TAXARR("DNE")=1,TAXARR("IEN")="NULL" Q
  S TAXIEN=$S(+TAXID>0:TAXID,1:$O(^PXD(811.2,"B",TAXID,"")))
- I TAXIEN="" S TAXARR("DNE")="" Q
- I '$D(^PXD(811.2,TAXIEN)) S TAXARR("DNE")="" Q
+ I TAXIEN="" S TAXARR("DNE")=1,TAXARR("IEN")="NULL" Q
  S TAXARR("IEN")=TAXIEN
+ I '$D(^PXD(811.2,TAXIEN)) S TAXARR("DNE")=1 Q
  M TAXARR("AE")=^PXD(811.2,TAXIEN,20,"AE")
  M TAXARR("APDS")=^PXD(811.2,TAXIEN,"APDS")
  S TAXARR(0)=^PXD(811.2,TAXIEN,0)
@@ -95,9 +103,11 @@ TERM(TERMID,TERMARR) ;Load those portions of the term needed for
  ;evaluation.
  N TERMIEN
  K TERMARR
+ I TERMID="" S TERMARR("DNE")=1,TERMARR("IEN")="NULL" Q
  S TERMIEN=$S(+TERMID>0:TERMID,1:$O(^PXRMD(811.5,"B",TERMID,"")))
- I TERMIEN="" S TERMARR("DNE")="" Q
- I '$D(^PXRMD(811.5,TERMIEN)) S TERMARR("DNE")="" Q
+ I TERMIEN="" S TERMARR("DNE")=1,TERMARR("IEN")="NULL" Q
+ S TERMARR("IEN")=TERMIEN
+ I '$D(^PXRMD(811.5,TERMIEN)) S TERMARR("DNE")=1 Q
  N IND,JND
  S TERMARR(0)=^PXRMD(811.5,TERMIEN,0)
  ;Load the findings multiple.

@@ -1,6 +1,6 @@
 IBCNEPM2 ;DAOU/ESG - PAYER MAINTENANCE ENTRY POINT ;22-JAN-2003
- ;;2.0;INTEGRATED BILLING;**184**;21-MAR-94
- ;;Per VHA Directive 10-93-142, this routine should not be modified.
+ ;;2.0;INTEGRATED BILLING;**184,668**;21-MAR-94;Build 28
+ ;;Per VA Directive 6402, this routine should not be modified.
  ;
  Q
 EN ; -- main entry point
@@ -8,7 +8,7 @@ EN ; -- main entry point
  W @IOF,!?22,"Payer Maintenance"
  W !!," This option will allow you to manage and maintain the entries"
  W !," in the Payer File for those Payers that were added to your system"
- W !," that are Nationally Active and who have potential missing links"
+ W !," that are Nationally Enabled and who have potential missing links"
  W !," to active insurance companies."
  W !!," Potential missing links is defined as active insurance companies"
  W !," whose Professional and/or Institutional ID matches that of the "

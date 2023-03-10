@@ -1,5 +1,5 @@
 PSOOTMRX ;BIR/MFR - Titration/Maintenance Dose Prescription ;10/17/96
- ;;7.0;OUTPATIENT PHARMACY;**313,505,517**;DEC 1997;Build 15
+ ;;7.0;OUTPATIENT PHARMACY;**313,505,517,441**;DEC 1997;Build 208
  ;External reference to ULK^ORX2 supported by DBIA 867
  ;External reference to UL^PSSLOCK supported by DBIA 2789
  ;
@@ -60,7 +60,13 @@ MARKTIT ; Mark Rx as 'Titration' Hidden Action Entry Point
  I 'CHECK D  Q
  . S VALMBCK="R",VALMSG=$P(CHECK,"^",2) W $C(7)
  ;
- I $G(PSORXIEN) D MARK(PSORXIEN,1)
+ ;I $G(PSORXIEN) D MARK(PSORXIEN,1)
+ I $G(PSORXIEN) D
+ .N PSOTITO,PSOTITN
+ .S PSOTITO=$P($G(^PSRX(PSORXIEN,"TIT")),"^",3)
+ .D MARK(PSORXIEN,1)
+ .S PSOTITN=$P($G(^PSRX(PSORXIEN,"TIT")),"^",3) I PSOTITO=PSOTITN Q  ;P441
+ .D EN^PSOHLSN1(PSORXIEN,"XX","","Order edited")
  Q
  ;
 END ;
@@ -75,6 +81,7 @@ MARK(PSORXIEN,REFRESH) ; Mark a non-refillable Rx as Titration
  W !
  S DIR("A")="Do you want to "_$S($$TITRX^PSOUTL(PSORXIEN)="t":"UN",1:"")_"MARK this Rx as 'Titration'? "
  I $$TITRX^PSOUTL(PSORXIEN)'="t" S (DIR("?"),DIR("??"))="^D TITHLP^PSOOTMRX"
+ I $G(PSOTITRF) S DIR("B")="No" ;P441 default set for CPRS orders only
  S DIR(0)="YA" D ^DIR I Y'>0 D UNLK S VALMBCK="R" Q
  ;
  W !!,"Updating..."

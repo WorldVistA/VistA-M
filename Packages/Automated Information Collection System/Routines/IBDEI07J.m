@@ -1,702 +1,640 @@
-IBDEI07J ; ; 01-MAY-2020
- ;;3.0;IB ENCOUNTER FORM IMP/EXP;;MAY 01, 2020
+IBDEI07J ; ; 01-AUG-2022
+ ;;3.0;IB ENCOUNTER FORM IMP/EXP;;AUG 01, 2022
  Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,999) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
+ ;;^UTILITY(U,$J,358.3,18335,1,3,0)
+ ;;=3^Cont post elctv fetl rdct 1 fts or more,1st tri,fts 3
+ ;;^UTILITY(U,$J,358.3,18335,1,4,0)
+ ;;=4^O31.31X3
+ ;;^UTILITY(U,$J,358.3,18335,2)
+ ;;=^5016596
+ ;;^UTILITY(U,$J,358.3,18336,0)
+ ;;=O31.32X3^^62^739^14
+ ;;^UTILITY(U,$J,358.3,18336,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,18336,1,3,0)
+ ;;=3^Cont post elctv fetl rdct 1 fts or more,2nd tri,fts 3
+ ;;^UTILITY(U,$J,358.3,18336,1,4,0)
+ ;;=4^O31.32X3
+ ;;^UTILITY(U,$J,358.3,18336,2)
+ ;;=^5016603
+ ;;^UTILITY(U,$J,358.3,18337,0)
+ ;;=O31.33X3^^62^739^15
+ ;;^UTILITY(U,$J,358.3,18337,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,18337,1,3,0)
+ ;;=3^Cont post elctv fetl rdct 1 fts or more,3rd tri,fts 3
+ ;;^UTILITY(U,$J,358.3,18337,1,4,0)
+ ;;=4^O31.33X3
+ ;;^UTILITY(U,$J,358.3,18337,2)
+ ;;=^5016610
+ ;;^UTILITY(U,$J,358.3,18338,0)
+ ;;=O31.31X4^^62^739^16
+ ;;^UTILITY(U,$J,358.3,18338,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,18338,1,3,0)
+ ;;=3^Cont post elctv fetl rdct 1 fts or more,1st tri,fts 4
+ ;;^UTILITY(U,$J,358.3,18338,1,4,0)
+ ;;=4^O31.31X4
+ ;;^UTILITY(U,$J,358.3,18338,2)
+ ;;=^5016597
+ ;;^UTILITY(U,$J,358.3,18339,0)
+ ;;=O31.32X4^^62^739^17
+ ;;^UTILITY(U,$J,358.3,18339,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,18339,1,3,0)
+ ;;=3^Cont post elctv fetl rdct 1 fts or more,2nd tri,fts 4
+ ;;^UTILITY(U,$J,358.3,18339,1,4,0)
+ ;;=4^O31.32X4
+ ;;^UTILITY(U,$J,358.3,18339,2)
+ ;;=^5016604
+ ;;^UTILITY(U,$J,358.3,18340,0)
+ ;;=O31.33X4^^62^739^18
+ ;;^UTILITY(U,$J,358.3,18340,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,18340,1,3,0)
+ ;;=3^Cont post elctv fetl rdct 1 fts or more,3rd tri,fts 4
+ ;;^UTILITY(U,$J,358.3,18340,1,4,0)
+ ;;=4^O31.33X4
+ ;;^UTILITY(U,$J,358.3,18340,2)
+ ;;=^5016611
+ ;;^UTILITY(U,$J,358.3,18341,0)
+ ;;=O31.31X5^^62^739^19
+ ;;^UTILITY(U,$J,358.3,18341,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,18341,1,3,0)
+ ;;=3^Cont post elctv fetl rdct 1 fts or more,1st tri,fts 5
+ ;;^UTILITY(U,$J,358.3,18341,1,4,0)
+ ;;=4^O31.31X5
+ ;;^UTILITY(U,$J,358.3,18341,2)
+ ;;=^5016598
+ ;;^UTILITY(U,$J,358.3,18342,0)
+ ;;=O31.32X5^^62^739^20
+ ;;^UTILITY(U,$J,358.3,18342,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,18342,1,3,0)
+ ;;=3^Cont post elctv fetl rdct 1 fts or more,2nd tri,fts 5
+ ;;^UTILITY(U,$J,358.3,18342,1,4,0)
+ ;;=4^O31.32X5
+ ;;^UTILITY(U,$J,358.3,18342,2)
+ ;;=^5016605
+ ;;^UTILITY(U,$J,358.3,18343,0)
+ ;;=O31.33X5^^62^739^21
+ ;;^UTILITY(U,$J,358.3,18343,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,18343,1,3,0)
+ ;;=3^Cont post elctv fetl rdct 1 fts or more,3rd tri,fts 5
+ ;;^UTILITY(U,$J,358.3,18343,1,4,0)
+ ;;=4^O31.33X5
+ ;;^UTILITY(U,$J,358.3,18343,2)
+ ;;=^5016612
+ ;;^UTILITY(U,$J,358.3,18344,0)
+ ;;=O31.31X9^^62^739^38
+ ;;^UTILITY(U,$J,358.3,18344,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,18344,1,3,0)
+ ;;=3^Cont preg aft elctv fetl rdct of 1 fts or more, 1st tri, oth
+ ;;^UTILITY(U,$J,358.3,18344,1,4,0)
+ ;;=4^O31.31X9
+ ;;^UTILITY(U,$J,358.3,18344,2)
+ ;;=^5016599
+ ;;^UTILITY(U,$J,358.3,18345,0)
+ ;;=O31.32X9^^62^739^39
+ ;;^UTILITY(U,$J,358.3,18345,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,18345,1,3,0)
+ ;;=3^Cont preg aft elctv fetl rdct of 1 fts or more, 2nd tri, oth
+ ;;^UTILITY(U,$J,358.3,18345,1,4,0)
+ ;;=4^O31.32X9
+ ;;^UTILITY(U,$J,358.3,18345,2)
+ ;;=^5016606
+ ;;^UTILITY(U,$J,358.3,18346,0)
+ ;;=O31.33X9^^62^739^40
+ ;;^UTILITY(U,$J,358.3,18346,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,18346,1,3,0)
+ ;;=3^Cont preg aft elctv fetl rdct of 1 fts or more, 3rd tri, oth
+ ;;^UTILITY(U,$J,358.3,18346,1,4,0)
+ ;;=4^O31.33X9
+ ;;^UTILITY(U,$J,358.3,18346,2)
+ ;;=^5016613
+ ;;^UTILITY(U,$J,358.3,18347,0)
+ ;;=O35.0XX0^^62^740^73
+ ;;^UTILITY(U,$J,358.3,18347,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,18347,1,3,0)
+ ;;=3^Maternal care for CNS malform in fetus, unsp
+ ;;^UTILITY(U,$J,358.3,18347,1,4,0)
+ ;;=4^O35.0XX0
+ ;;^UTILITY(U,$J,358.3,18347,2)
+ ;;=^5016775
+ ;;^UTILITY(U,$J,358.3,18348,0)
+ ;;=O35.0XX1^^62^740^74
+ ;;^UTILITY(U,$J,358.3,18348,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,18348,1,3,0)
+ ;;=3^Maternal care for CNS malform in fetus, fetus 1
+ ;;^UTILITY(U,$J,358.3,18348,1,4,0)
+ ;;=4^O35.0XX1
+ ;;^UTILITY(U,$J,358.3,18348,2)
+ ;;=^5016776
+ ;;^UTILITY(U,$J,358.3,18349,0)
+ ;;=O35.0XX2^^62^740^75
+ ;;^UTILITY(U,$J,358.3,18349,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,18349,1,3,0)
+ ;;=3^Maternal care for CNS malform in fetus, fetus 2
+ ;;^UTILITY(U,$J,358.3,18349,1,4,0)
+ ;;=4^O35.0XX2
+ ;;^UTILITY(U,$J,358.3,18349,2)
+ ;;=^5016777
+ ;;^UTILITY(U,$J,358.3,18350,0)
+ ;;=O35.0XX3^^62^740^76
+ ;;^UTILITY(U,$J,358.3,18350,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,18350,1,3,0)
+ ;;=3^Maternal care for CNS malform in fetus, fetus 3
+ ;;^UTILITY(U,$J,358.3,18350,1,4,0)
+ ;;=4^O35.0XX3
+ ;;^UTILITY(U,$J,358.3,18350,2)
+ ;;=^5016778
+ ;;^UTILITY(U,$J,358.3,18351,0)
+ ;;=O35.0XX4^^62^740^77
+ ;;^UTILITY(U,$J,358.3,18351,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,18351,1,3,0)
+ ;;=3^Maternal care for CNS malform in fetus, fetus 4
+ ;;^UTILITY(U,$J,358.3,18351,1,4,0)
+ ;;=4^O35.0XX4
+ ;;^UTILITY(U,$J,358.3,18351,2)
+ ;;=^5016779
+ ;;^UTILITY(U,$J,358.3,18352,0)
+ ;;=O35.0XX5^^62^740^78
+ ;;^UTILITY(U,$J,358.3,18352,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,18352,1,3,0)
+ ;;=3^Maternal care for CNS malform in fetus, fetus 5
+ ;;^UTILITY(U,$J,358.3,18352,1,4,0)
+ ;;=4^O35.0XX5
+ ;;^UTILITY(U,$J,358.3,18352,2)
+ ;;=^5016780
+ ;;^UTILITY(U,$J,358.3,18353,0)
+ ;;=O35.1XX0^^62^740^115
+ ;;^UTILITY(U,$J,358.3,18353,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,18353,1,3,0)
+ ;;=3^Maternal care,chromosoml fetal abn,unsp fts
+ ;;^UTILITY(U,$J,358.3,18353,1,4,0)
+ ;;=4^O35.1XX0
+ ;;^UTILITY(U,$J,358.3,18353,2)
+ ;;=^5016782
+ ;;^UTILITY(U,$J,358.3,18354,0)
+ ;;=O35.1XX1^^62^740^110
+ ;;^UTILITY(U,$J,358.3,18354,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,18354,1,3,0)
+ ;;=3^Maternal care,chromosoml fetal abn,fts 1
+ ;;^UTILITY(U,$J,358.3,18354,1,4,0)
+ ;;=4^O35.1XX1
+ ;;^UTILITY(U,$J,358.3,18354,2)
+ ;;=^5016783
+ ;;^UTILITY(U,$J,358.3,18355,0)
+ ;;=O35.1XX2^^62^740^111
+ ;;^UTILITY(U,$J,358.3,18355,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,18355,1,3,0)
+ ;;=3^Maternal care,chromosoml fetal abn,fts 2
+ ;;^UTILITY(U,$J,358.3,18355,1,4,0)
+ ;;=4^O35.1XX2
+ ;;^UTILITY(U,$J,358.3,18355,2)
+ ;;=^5016784
+ ;;^UTILITY(U,$J,358.3,18356,0)
+ ;;=O35.1XX3^^62^740^112
+ ;;^UTILITY(U,$J,358.3,18356,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,18356,1,3,0)
+ ;;=3^Maternal care,chromosoml fetal abn,fts 3
+ ;;^UTILITY(U,$J,358.3,18356,1,4,0)
+ ;;=4^O35.1XX3
+ ;;^UTILITY(U,$J,358.3,18356,2)
+ ;;=^5016785
+ ;;^UTILITY(U,$J,358.3,18357,0)
+ ;;=O35.1XX4^^62^740^113
  ;;^UTILITY(U,$J,358.3,18357,1,0)
  ;;=^358.31IA^4^2
  ;;^UTILITY(U,$J,358.3,18357,1,3,0)
- ;;=3^Neoplasm Related Pain,Acute/Chronic
+ ;;=3^Maternal care,chromosoml fetal abn,fts 4
  ;;^UTILITY(U,$J,358.3,18357,1,4,0)
- ;;=4^G89.3
+ ;;=4^O35.1XX4
  ;;^UTILITY(U,$J,358.3,18357,2)
- ;;=^5004159
+ ;;=^5016786
  ;;^UTILITY(U,$J,358.3,18358,0)
- ;;=G89.4^^65^777^2
+ ;;=O35.1XX5^^62^740^114
  ;;^UTILITY(U,$J,358.3,18358,1,0)
  ;;=^358.31IA^4^2
  ;;^UTILITY(U,$J,358.3,18358,1,3,0)
- ;;=3^Chronic Pain Syndrome
+ ;;=3^Maternal care,chromosoml fetal abn,fts 5
  ;;^UTILITY(U,$J,358.3,18358,1,4,0)
- ;;=4^G89.4
+ ;;=4^O35.1XX5
  ;;^UTILITY(U,$J,358.3,18358,2)
- ;;=^334079
+ ;;=^5016787
  ;;^UTILITY(U,$J,358.3,18359,0)
- ;;=M27.0^^65^777^3
+ ;;=O35.2XX0^^62^740^98
  ;;^UTILITY(U,$J,358.3,18359,1,0)
  ;;=^358.31IA^4^2
  ;;^UTILITY(U,$J,358.3,18359,1,3,0)
- ;;=3^Developmental Disorder of Jaws
+ ;;=3^Maternal care for hereditary disease in fetus, unsp
  ;;^UTILITY(U,$J,358.3,18359,1,4,0)
- ;;=4^M27.0
+ ;;=4^O35.2XX0
  ;;^UTILITY(U,$J,358.3,18359,2)
- ;;=^5011722
+ ;;=^5016789
  ;;^UTILITY(U,$J,358.3,18360,0)
- ;;=M27.9^^65^777^4
+ ;;=O35.2XX1^^62^740^99
  ;;^UTILITY(U,$J,358.3,18360,1,0)
  ;;=^358.31IA^4^2
  ;;^UTILITY(U,$J,358.3,18360,1,3,0)
- ;;=3^Disease of Jaws,Unspec
+ ;;=3^Maternal care for hereditary disease in fetus, fetus 1
  ;;^UTILITY(U,$J,358.3,18360,1,4,0)
- ;;=4^M27.9
+ ;;=4^O35.2XX1
  ;;^UTILITY(U,$J,358.3,18360,2)
- ;;=^5011737
+ ;;=^5016790
  ;;^UTILITY(U,$J,358.3,18361,0)
- ;;=R68.84^^65^777^8
+ ;;=O35.2XX2^^62^740^100
  ;;^UTILITY(U,$J,358.3,18361,1,0)
  ;;=^358.31IA^4^2
  ;;^UTILITY(U,$J,358.3,18361,1,3,0)
- ;;=3^Jaw Pain
+ ;;=3^Maternal care for hereditary disease in fetus, fetus 2
  ;;^UTILITY(U,$J,358.3,18361,1,4,0)
- ;;=4^R68.84
+ ;;=4^O35.2XX2
  ;;^UTILITY(U,$J,358.3,18361,2)
- ;;=^5019556
+ ;;=^5016791
  ;;^UTILITY(U,$J,358.3,18362,0)
- ;;=N48.9^^65^777^6
+ ;;=O35.2XX3^^62^740^101
  ;;^UTILITY(U,$J,358.3,18362,1,0)
  ;;=^358.31IA^4^2
  ;;^UTILITY(U,$J,358.3,18362,1,3,0)
- ;;=3^Disorder of Penis,Unspec
+ ;;=3^Maternal care for hereditary disease in fetus, fetus 3
  ;;^UTILITY(U,$J,358.3,18362,1,4,0)
- ;;=4^N48.9
+ ;;=4^O35.2XX3
  ;;^UTILITY(U,$J,358.3,18362,2)
- ;;=^5015743
+ ;;=^5016792
  ;;^UTILITY(U,$J,358.3,18363,0)
- ;;=N50.9^^65^777^5
+ ;;=O35.2XX4^^62^740^102
  ;;^UTILITY(U,$J,358.3,18363,1,0)
  ;;=^358.31IA^4^2
  ;;^UTILITY(U,$J,358.3,18363,1,3,0)
- ;;=3^Disorder of Male Genital Organs,Unspec
+ ;;=3^Maternal care for hereditary disease in fetus, fetus 4
  ;;^UTILITY(U,$J,358.3,18363,1,4,0)
- ;;=4^N50.9
+ ;;=4^O35.2XX4
  ;;^UTILITY(U,$J,358.3,18363,2)
- ;;=^5015751
+ ;;=^5016793
  ;;^UTILITY(U,$J,358.3,18364,0)
- ;;=R10.2^^65^777^14
+ ;;=O35.2XX5^^62^740^103
  ;;^UTILITY(U,$J,358.3,18364,1,0)
  ;;=^358.31IA^4^2
  ;;^UTILITY(U,$J,358.3,18364,1,3,0)
- ;;=3^Pelvic/Perineal Pain
+ ;;=3^Maternal care for hereditary disease in fetus, fetus 5
  ;;^UTILITY(U,$J,358.3,18364,1,4,0)
- ;;=4^R10.2
+ ;;=4^O35.2XX5
  ;;^UTILITY(U,$J,358.3,18364,2)
- ;;=^5019209
+ ;;=^5016794
  ;;^UTILITY(U,$J,358.3,18365,0)
- ;;=N94.89^^65^777^7
+ ;;=O35.3XX0^^62^740^116
  ;;^UTILITY(U,$J,358.3,18365,1,0)
  ;;=^358.31IA^4^2
  ;;^UTILITY(U,$J,358.3,18365,1,3,0)
- ;;=3^Female Genital Organs/Menstrual Cycle,Oth Cond
+ ;;=3^Maternal care,damag to fts from vrl dis in mother,unsp
  ;;^UTILITY(U,$J,358.3,18365,1,4,0)
- ;;=4^N94.89
+ ;;=4^O35.3XX0
  ;;^UTILITY(U,$J,358.3,18365,2)
- ;;=^5015925
+ ;;=^5016796
  ;;^UTILITY(U,$J,358.3,18366,0)
- ;;=N23.^^65^777^19
+ ;;=O35.3XX1^^62^740^117
  ;;^UTILITY(U,$J,358.3,18366,1,0)
  ;;=^358.31IA^4^2
  ;;^UTILITY(U,$J,358.3,18366,1,3,0)
- ;;=3^Renal Colic,Unspec
+ ;;=3^Maternal care,damag to fts from vrl dis in mother,fts 1
  ;;^UTILITY(U,$J,358.3,18366,1,4,0)
- ;;=4^N23.
+ ;;=4^O35.3XX1
  ;;^UTILITY(U,$J,358.3,18366,2)
- ;;=^5015615
+ ;;=^5016797
  ;;^UTILITY(U,$J,358.3,18367,0)
- ;;=Z79.891^^65^777^9
+ ;;=O35.3XX2^^62^740^118
  ;;^UTILITY(U,$J,358.3,18367,1,0)
  ;;=^358.31IA^4^2
  ;;^UTILITY(U,$J,358.3,18367,1,3,0)
- ;;=3^Long Term Opiate/Opioid Analgesic Use
+ ;;=3^Maternal care,damag to fts from vrl dis in mother,fts 2
  ;;^UTILITY(U,$J,358.3,18367,1,4,0)
- ;;=4^Z79.891
+ ;;=4^O35.3XX2
  ;;^UTILITY(U,$J,358.3,18367,2)
- ;;=^5063342
+ ;;=^5016798
  ;;^UTILITY(U,$J,358.3,18368,0)
- ;;=Z71.89^^65^778^1
+ ;;=O35.3XX3^^62^740^119
  ;;^UTILITY(U,$J,358.3,18368,1,0)
  ;;=^358.31IA^4^2
  ;;^UTILITY(U,$J,358.3,18368,1,3,0)
- ;;=3^Activity/Exercise Counseling
+ ;;=3^Maternal care,damag to fts from vrl dis in mother,fts 3
  ;;^UTILITY(U,$J,358.3,18368,1,4,0)
- ;;=4^Z71.89
+ ;;=4^O35.3XX3
  ;;^UTILITY(U,$J,358.3,18368,2)
- ;;=^5063253
+ ;;=^5016799
  ;;^UTILITY(U,$J,358.3,18369,0)
- ;;=Z13.89^^65^778^2
+ ;;=O35.3XX4^^62^740^120
  ;;^UTILITY(U,$J,358.3,18369,1,0)
  ;;=^358.31IA^4^2
  ;;^UTILITY(U,$J,358.3,18369,1,3,0)
- ;;=3^Alcohol Use Screen
+ ;;=3^Maternal care,damag to fts from vrl dis in mother,fts 4
  ;;^UTILITY(U,$J,358.3,18369,1,4,0)
- ;;=4^Z13.89
+ ;;=4^O35.3XX4
  ;;^UTILITY(U,$J,358.3,18369,2)
- ;;=^5062720
+ ;;=^5016800
  ;;^UTILITY(U,$J,358.3,18370,0)
- ;;=Z12.39^^65^778^3
+ ;;=O35.3XX5^^62^740^121
  ;;^UTILITY(U,$J,358.3,18370,1,0)
  ;;=^358.31IA^4^2
  ;;^UTILITY(U,$J,358.3,18370,1,3,0)
- ;;=3^Breast Malignant Neoplasm Screen
+ ;;=3^Maternal care,damag to fts from vrl dis in mother,fts 5
  ;;^UTILITY(U,$J,358.3,18370,1,4,0)
- ;;=4^Z12.39
+ ;;=4^O35.3XX5
  ;;^UTILITY(U,$J,358.3,18370,2)
- ;;=^5062686
+ ;;=^5016801
  ;;^UTILITY(U,$J,358.3,18371,0)
- ;;=Z12.4^^65^778^5
+ ;;=O35.4XX0^^62^740^92
  ;;^UTILITY(U,$J,358.3,18371,1,0)
  ;;=^358.31IA^4^2
  ;;^UTILITY(U,$J,358.3,18371,1,3,0)
- ;;=3^Cervix Malignant Neoplasm Screen
+ ;;=3^Maternal care for damage to fetus from alcohol, unsp
  ;;^UTILITY(U,$J,358.3,18371,1,4,0)
- ;;=4^Z12.4
+ ;;=4^O35.4XX0
  ;;^UTILITY(U,$J,358.3,18371,2)
- ;;=^5062687
+ ;;=^5016803
  ;;^UTILITY(U,$J,358.3,18372,0)
- ;;=Z13.5^^65^778^8
+ ;;=O35.4XX1^^62^740^93
  ;;^UTILITY(U,$J,358.3,18372,1,0)
  ;;=^358.31IA^4^2
  ;;^UTILITY(U,$J,358.3,18372,1,3,0)
- ;;=3^Eye and Ear Disorder Screen
+ ;;=3^Maternal care for damage to fetus from alcohol, fetus 1
  ;;^UTILITY(U,$J,358.3,18372,1,4,0)
- ;;=4^Z13.5
+ ;;=4^O35.4XX1
  ;;^UTILITY(U,$J,358.3,18372,2)
- ;;=^5062706
+ ;;=^5016804
  ;;^UTILITY(U,$J,358.3,18373,0)
- ;;=Z01.89^^65^778^6
+ ;;=O35.4XX2^^62^740^94
  ;;^UTILITY(U,$J,358.3,18373,1,0)
  ;;=^358.31IA^4^2
  ;;^UTILITY(U,$J,358.3,18373,1,3,0)
- ;;=3^Diabetic Foot Exam
+ ;;=3^Maternal care for damage to fetus from alcohol, fetus 2
  ;;^UTILITY(U,$J,358.3,18373,1,4,0)
- ;;=4^Z01.89
+ ;;=4^O35.4XX2
  ;;^UTILITY(U,$J,358.3,18373,2)
- ;;=^5062632
+ ;;=^5016805
  ;;^UTILITY(U,$J,358.3,18374,0)
- ;;=Z11.59^^65^778^17
+ ;;=O35.4XX3^^62^740^95
  ;;^UTILITY(U,$J,358.3,18374,1,0)
  ;;=^358.31IA^4^2
  ;;^UTILITY(U,$J,358.3,18374,1,3,0)
- ;;=3^Viral Diseases Screen
+ ;;=3^Maternal care for damage to fetus from alcohol, fetus 3
  ;;^UTILITY(U,$J,358.3,18374,1,4,0)
- ;;=4^Z11.59
+ ;;=4^O35.4XX3
  ;;^UTILITY(U,$J,358.3,18374,2)
- ;;=^5062675
+ ;;=^5016806
  ;;^UTILITY(U,$J,358.3,18375,0)
- ;;=Z13.6^^65^778^4
+ ;;=O35.4XX4^^62^740^96
  ;;^UTILITY(U,$J,358.3,18375,1,0)
  ;;=^358.31IA^4^2
  ;;^UTILITY(U,$J,358.3,18375,1,3,0)
- ;;=3^Cardiovascular Disorder Screen
+ ;;=3^Maternal care for damage to fetus from alcohol, fetus 4
  ;;^UTILITY(U,$J,358.3,18375,1,4,0)
- ;;=4^Z13.6
+ ;;=4^O35.4XX4
  ;;^UTILITY(U,$J,358.3,18375,2)
- ;;=^5062707
+ ;;=^5016807
  ;;^UTILITY(U,$J,358.3,18376,0)
- ;;=Z12.12^^65^778^15
+ ;;=O35.4XX5^^62^740^97
  ;;^UTILITY(U,$J,358.3,18376,1,0)
  ;;=^358.31IA^4^2
  ;;^UTILITY(U,$J,358.3,18376,1,3,0)
- ;;=3^Rectum Malignant Neoplasm Screen
+ ;;=3^Maternal care for damage to fetus from alcohol, fetus 5
  ;;^UTILITY(U,$J,358.3,18376,1,4,0)
- ;;=4^Z12.12
+ ;;=4^O35.4XX5
  ;;^UTILITY(U,$J,358.3,18376,2)
- ;;=^5062682
+ ;;=^5016808
  ;;^UTILITY(U,$J,358.3,18377,0)
- ;;=Z71.89^^65^778^13
+ ;;=O35.8XX0^^62^740^145
  ;;^UTILITY(U,$J,358.3,18377,1,0)
  ;;=^358.31IA^4^2
  ;;^UTILITY(U,$J,358.3,18377,1,3,0)
- ;;=3^Other Specified Counseling
+ ;;=3^Maternal care,oth ftl abn,unsp
  ;;^UTILITY(U,$J,358.3,18377,1,4,0)
- ;;=4^Z71.89
+ ;;=4^O35.8XX0
  ;;^UTILITY(U,$J,358.3,18377,2)
- ;;=^5063253
+ ;;=^5016830
  ;;^UTILITY(U,$J,358.3,18378,0)
- ;;=Z12.5^^65^778^14
+ ;;=O35.8XX1^^62^740^140
  ;;^UTILITY(U,$J,358.3,18378,1,0)
  ;;=^358.31IA^4^2
  ;;^UTILITY(U,$J,358.3,18378,1,3,0)
- ;;=3^Prostate Malignant Neoplasm Screen
+ ;;=3^Maternal care,oth ftl abn,fts 1
  ;;^UTILITY(U,$J,358.3,18378,1,4,0)
- ;;=4^Z12.5
+ ;;=4^O35.8XX1
  ;;^UTILITY(U,$J,358.3,18378,2)
- ;;=^5062688
+ ;;=^5016831
  ;;^UTILITY(U,$J,358.3,18379,0)
- ;;=Z00.00^^65^778^10
+ ;;=O35.8XX2^^62^740^141
  ;;^UTILITY(U,$J,358.3,18379,1,0)
  ;;=^358.31IA^4^2
  ;;^UTILITY(U,$J,358.3,18379,1,3,0)
- ;;=3^General Adult Medical Exam w/o Abnormal Findings
+ ;;=3^Maternal care,oth ftl abn,fts 2
  ;;^UTILITY(U,$J,358.3,18379,1,4,0)
- ;;=4^Z00.00
+ ;;=4^O35.8XX2
  ;;^UTILITY(U,$J,358.3,18379,2)
- ;;=^5062599
+ ;;=^5016832
  ;;^UTILITY(U,$J,358.3,18380,0)
- ;;=Z02.79^^65^778^12
+ ;;=O35.8XX3^^62^740^142
  ;;^UTILITY(U,$J,358.3,18380,1,0)
  ;;=^358.31IA^4^2
  ;;^UTILITY(U,$J,358.3,18380,1,3,0)
- ;;=3^Medical Certificate Encounter
+ ;;=3^Maternal care,oth ftl abn,fts 3
  ;;^UTILITY(U,$J,358.3,18380,1,4,0)
- ;;=4^Z02.79
+ ;;=4^O35.8XX3
  ;;^UTILITY(U,$J,358.3,18380,2)
- ;;=^5062641
+ ;;=^5016833
  ;;^UTILITY(U,$J,358.3,18381,0)
- ;;=Z71.3^^65^778^7
+ ;;=O35.8XX4^^62^740^143
  ;;^UTILITY(U,$J,358.3,18381,1,0)
  ;;=^358.31IA^4^2
  ;;^UTILITY(U,$J,358.3,18381,1,3,0)
- ;;=3^Dietary Counseling
+ ;;=3^Maternal care,oth ftl abn,fts 4
  ;;^UTILITY(U,$J,358.3,18381,1,4,0)
- ;;=4^Z71.3
+ ;;=4^O35.8XX4
  ;;^UTILITY(U,$J,358.3,18381,2)
- ;;=^5063245
+ ;;=^5016834
  ;;^UTILITY(U,$J,358.3,18382,0)
- ;;=Z71.7^^65^778^11
+ ;;=O35.8XX5^^62^740^144
  ;;^UTILITY(U,$J,358.3,18382,1,0)
  ;;=^358.31IA^4^2
  ;;^UTILITY(U,$J,358.3,18382,1,3,0)
- ;;=3^HIV Counseling
+ ;;=3^Maternal care,oth ftl abn,fts 5
  ;;^UTILITY(U,$J,358.3,18382,1,4,0)
- ;;=4^Z71.7
+ ;;=4^O35.8XX5
  ;;^UTILITY(U,$J,358.3,18382,2)
- ;;=^5063251
+ ;;=^5016835
  ;;^UTILITY(U,$J,358.3,18383,0)
- ;;=Z71.6^^65^778^16
+ ;;=O35.5XX0^^62^740^79
  ;;^UTILITY(U,$J,358.3,18383,1,0)
  ;;=^358.31IA^4^2
  ;;^UTILITY(U,$J,358.3,18383,1,3,0)
- ;;=3^Tobacco Abuse Counseling
+ ;;=3^Maternal care for damage to fetus by drugs, unsp
  ;;^UTILITY(U,$J,358.3,18383,1,4,0)
- ;;=4^Z71.6
+ ;;=4^O35.5XX0
  ;;^UTILITY(U,$J,358.3,18383,2)
- ;;=^5063250
+ ;;=^5016810
  ;;^UTILITY(U,$J,358.3,18384,0)
- ;;=Z00.01^^65^778^9
+ ;;=O35.5XX1^^62^740^80
  ;;^UTILITY(U,$J,358.3,18384,1,0)
  ;;=^358.31IA^4^2
  ;;^UTILITY(U,$J,358.3,18384,1,3,0)
- ;;=3^General Adult Medical Exam w/ Abnormal Findings
+ ;;=3^Maternal care for damage to fetus by drugs, fetus 1
  ;;^UTILITY(U,$J,358.3,18384,1,4,0)
- ;;=4^Z00.01
+ ;;=4^O35.5XX1
  ;;^UTILITY(U,$J,358.3,18384,2)
- ;;=^5062600
+ ;;=^5016811
  ;;^UTILITY(U,$J,358.3,18385,0)
- ;;=D86.0^^65^779^45
+ ;;=O35.5XX2^^62^740^81
  ;;^UTILITY(U,$J,358.3,18385,1,0)
  ;;=^358.31IA^4^2
  ;;^UTILITY(U,$J,358.3,18385,1,3,0)
- ;;=3^Sarcoidosis of Lung
+ ;;=3^Maternal care for damage to fetus by drugs, fetus 2
  ;;^UTILITY(U,$J,358.3,18385,1,4,0)
- ;;=4^D86.0
+ ;;=4^O35.5XX2
  ;;^UTILITY(U,$J,358.3,18385,2)
- ;;=^5002442
+ ;;=^5016812
  ;;^UTILITY(U,$J,358.3,18386,0)
- ;;=D86.1^^65^779^47
+ ;;=O35.5XX3^^62^740^82
  ;;^UTILITY(U,$J,358.3,18386,1,0)
  ;;=^358.31IA^4^2
  ;;^UTILITY(U,$J,358.3,18386,1,3,0)
- ;;=3^Sarcoidosis of Lymph nodes
+ ;;=3^Maternal care for damage to fetus by drugs, fetus 3
  ;;^UTILITY(U,$J,358.3,18386,1,4,0)
- ;;=4^D86.1
+ ;;=4^O35.5XX3
  ;;^UTILITY(U,$J,358.3,18386,2)
- ;;=^5002443
+ ;;=^5016813
  ;;^UTILITY(U,$J,358.3,18387,0)
- ;;=D86.2^^65^779^46
+ ;;=O35.5XX4^^62^740^83
  ;;^UTILITY(U,$J,358.3,18387,1,0)
  ;;=^358.31IA^4^2
  ;;^UTILITY(U,$J,358.3,18387,1,3,0)
- ;;=3^Sarcoidosis of Lung w/ Sarcoidosis of Lymph Nodes
+ ;;=3^Maternal care for damage to fetus by drugs, fetus 4
  ;;^UTILITY(U,$J,358.3,18387,1,4,0)
- ;;=4^D86.2
+ ;;=4^O35.5XX4
  ;;^UTILITY(U,$J,358.3,18387,2)
- ;;=^5002444
+ ;;=^5016814
  ;;^UTILITY(U,$J,358.3,18388,0)
- ;;=D86.89^^65^779^48
+ ;;=O35.5XX5^^62^740^84
  ;;^UTILITY(U,$J,358.3,18388,1,0)
  ;;=^358.31IA^4^2
  ;;^UTILITY(U,$J,358.3,18388,1,3,0)
- ;;=3^Sarcoidosis of Other Sites
+ ;;=3^Maternal care for damage to fetus by drugs, fetus 5
  ;;^UTILITY(U,$J,358.3,18388,1,4,0)
- ;;=4^D86.89
+ ;;=4^O35.5XX5
  ;;^UTILITY(U,$J,358.3,18388,2)
- ;;=^5002453
+ ;;=^5016815
  ;;^UTILITY(U,$J,358.3,18389,0)
- ;;=D86.9^^65^779^51
+ ;;=O35.5XX9^^62^740^85
  ;;^UTILITY(U,$J,358.3,18389,1,0)
  ;;=^358.31IA^4^2
  ;;^UTILITY(U,$J,358.3,18389,1,3,0)
- ;;=3^Sarcoidosis,Unspec
+ ;;=3^Maternal care for damage to fetus by drugs NEC
  ;;^UTILITY(U,$J,358.3,18389,1,4,0)
- ;;=4^D86.9
+ ;;=4^O35.5XX9
  ;;^UTILITY(U,$J,358.3,18389,2)
- ;;=^5002454
+ ;;=^5016816
  ;;^UTILITY(U,$J,358.3,18390,0)
- ;;=D86.86^^65^779^39
+ ;;=O35.6XX0^^62^740^86
  ;;^UTILITY(U,$J,358.3,18390,1,0)
  ;;=^358.31IA^4^2
  ;;^UTILITY(U,$J,358.3,18390,1,3,0)
- ;;=3^Sarcoid Arthropathy
+ ;;=3^Maternal care for damage to fetus by radiation, unsp
  ;;^UTILITY(U,$J,358.3,18390,1,4,0)
- ;;=4^D86.86
+ ;;=4^O35.6XX0
  ;;^UTILITY(U,$J,358.3,18390,2)
- ;;=^5002451
+ ;;=^5016817
  ;;^UTILITY(U,$J,358.3,18391,0)
- ;;=D86.87^^65^779^43
+ ;;=O35.6XX1^^62^740^87
  ;;^UTILITY(U,$J,358.3,18391,1,0)
  ;;=^358.31IA^4^2
  ;;^UTILITY(U,$J,358.3,18391,1,3,0)
- ;;=3^Sarcoid Myositis
+ ;;=3^Maternal care for damage to fetus by radiation, fetus 1
  ;;^UTILITY(U,$J,358.3,18391,1,4,0)
- ;;=4^D86.87
+ ;;=4^O35.6XX1
  ;;^UTILITY(U,$J,358.3,18391,2)
- ;;=^5002452
+ ;;=^5016818
  ;;^UTILITY(U,$J,358.3,18392,0)
- ;;=D86.3^^65^779^49
+ ;;=O35.6XX2^^62^740^88
  ;;^UTILITY(U,$J,358.3,18392,1,0)
  ;;=^358.31IA^4^2
  ;;^UTILITY(U,$J,358.3,18392,1,3,0)
- ;;=3^Sarcoidosis of Skin
+ ;;=3^Maternal care for damage to fetus by radiation, fetus 2
  ;;^UTILITY(U,$J,358.3,18392,1,4,0)
- ;;=4^D86.3
+ ;;=4^O35.6XX2
  ;;^UTILITY(U,$J,358.3,18392,2)
- ;;=^5002445
+ ;;=^5016819
  ;;^UTILITY(U,$J,358.3,18393,0)
- ;;=D86.81^^65^779^41
+ ;;=O35.6XX3^^62^740^89
  ;;^UTILITY(U,$J,358.3,18393,1,0)
  ;;=^358.31IA^4^2
  ;;^UTILITY(U,$J,358.3,18393,1,3,0)
- ;;=3^Sarcoid Meningitis
+ ;;=3^Maternal care for damage to fetus by radiation, fetus 3
  ;;^UTILITY(U,$J,358.3,18393,1,4,0)
- ;;=4^D86.81
+ ;;=4^O35.6XX3
  ;;^UTILITY(U,$J,358.3,18393,2)
- ;;=^5002446
+ ;;=^5016820
  ;;^UTILITY(U,$J,358.3,18394,0)
- ;;=D86.82^^65^779^50
+ ;;=O35.6XX4^^62^740^90
  ;;^UTILITY(U,$J,358.3,18394,1,0)
  ;;=^358.31IA^4^2
  ;;^UTILITY(U,$J,358.3,18394,1,3,0)
- ;;=3^Sarcoidosis,Multiple Cranial Nerve Palsies
+ ;;=3^Maternal care for damage to fetus by radiation, fetus 4
  ;;^UTILITY(U,$J,358.3,18394,1,4,0)
- ;;=4^D86.82
+ ;;=4^O35.6XX4
  ;;^UTILITY(U,$J,358.3,18394,2)
- ;;=^5002447
+ ;;=^5016821
  ;;^UTILITY(U,$J,358.3,18395,0)
- ;;=D86.84^^65^779^44
+ ;;=O35.6XX5^^62^740^91
  ;;^UTILITY(U,$J,358.3,18395,1,0)
  ;;=^358.31IA^4^2
  ;;^UTILITY(U,$J,358.3,18395,1,3,0)
- ;;=3^Sarcoid Pyelonephritis
+ ;;=3^Maternal care for damage to fetus by radiation, fetus 5
  ;;^UTILITY(U,$J,358.3,18395,1,4,0)
- ;;=4^D86.84
+ ;;=4^O35.6XX5
  ;;^UTILITY(U,$J,358.3,18395,2)
- ;;=^5002449
+ ;;=^5016822
  ;;^UTILITY(U,$J,358.3,18396,0)
- ;;=D86.85^^65^779^42
+ ;;=O36.8120^^62^740^19
  ;;^UTILITY(U,$J,358.3,18396,1,0)
  ;;=^358.31IA^4^2
  ;;^UTILITY(U,$J,358.3,18396,1,3,0)
- ;;=3^Sarcoid Myocarditis
+ ;;=3^Decreased fetal movements, second trimester, unsp
  ;;^UTILITY(U,$J,358.3,18396,1,4,0)
- ;;=4^D86.85
+ ;;=4^O36.8120
  ;;^UTILITY(U,$J,358.3,18396,2)
- ;;=^5002450
+ ;;=^5017089
  ;;^UTILITY(U,$J,358.3,18397,0)
- ;;=D86.83^^65^779^40
+ ;;=O36.8130^^62^740^25
  ;;^UTILITY(U,$J,358.3,18397,1,0)
  ;;=^358.31IA^4^2
  ;;^UTILITY(U,$J,358.3,18397,1,3,0)
- ;;=3^Sarcoid Iridocyclitis
+ ;;=3^Decreased fetal movements, third trimester, unsp
  ;;^UTILITY(U,$J,358.3,18397,1,4,0)
- ;;=4^D86.83
+ ;;=4^O36.8130
  ;;^UTILITY(U,$J,358.3,18397,2)
- ;;=^5002448
+ ;;=^5017096
  ;;^UTILITY(U,$J,358.3,18398,0)
- ;;=D84.1^^65^779^16
+ ;;=O36.8121^^62^740^20
  ;;^UTILITY(U,$J,358.3,18398,1,0)
  ;;=^358.31IA^4^2
  ;;^UTILITY(U,$J,358.3,18398,1,3,0)
- ;;=3^Defects in Complement System
+ ;;=3^Decreased fetal movements, second trimester, fetus 1
  ;;^UTILITY(U,$J,358.3,18398,1,4,0)
- ;;=4^D84.1
+ ;;=4^O36.8121
  ;;^UTILITY(U,$J,358.3,18398,2)
- ;;=^5002439
- ;;^UTILITY(U,$J,358.3,18399,0)
- ;;=D81.810^^65^779^5
- ;;^UTILITY(U,$J,358.3,18399,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,18399,1,3,0)
- ;;=3^Biotinidase Deficiency
- ;;^UTILITY(U,$J,358.3,18399,1,4,0)
- ;;=4^D81.810
- ;;^UTILITY(U,$J,358.3,18399,2)
- ;;=^5002422
- ;;^UTILITY(U,$J,358.3,18400,0)
- ;;=E88.01^^65^779^2
- ;;^UTILITY(U,$J,358.3,18400,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,18400,1,3,0)
- ;;=3^Apha-1 Antitrypsin Deficiency
- ;;^UTILITY(U,$J,358.3,18400,1,4,0)
- ;;=4^E88.01
- ;;^UTILITY(U,$J,358.3,18400,2)
- ;;=^331442
- ;;^UTILITY(U,$J,358.3,18401,0)
- ;;=J09.X1^^65^779^25
- ;;^UTILITY(U,$J,358.3,18401,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,18401,1,3,0)
- ;;=3^Influenza d/t Indent Novel Influenza A Virus w/ Pneumonia
- ;;^UTILITY(U,$J,358.3,18401,1,4,0)
- ;;=4^J09.X1
- ;;^UTILITY(U,$J,358.3,18401,2)
- ;;=^5008144
- ;;^UTILITY(U,$J,358.3,18402,0)
- ;;=J09.X2^^65^779^26
- ;;^UTILITY(U,$J,358.3,18402,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,18402,1,3,0)
- ;;=3^Influenza d/t Indent Novel Influenza A Virus w/ Resp Manifest
- ;;^UTILITY(U,$J,358.3,18402,1,4,0)
- ;;=4^J09.X2
- ;;^UTILITY(U,$J,358.3,18402,2)
- ;;=^5008145
- ;;^UTILITY(U,$J,358.3,18403,0)
- ;;=J09.X3^^65^779^27
- ;;^UTILITY(U,$J,358.3,18403,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,18403,1,3,0)
- ;;=3^Influenza d/t Indent Novel Influenza A Virus w/ GI Manifest
- ;;^UTILITY(U,$J,358.3,18403,1,4,0)
- ;;=4^J09.X3
- ;;^UTILITY(U,$J,358.3,18403,2)
- ;;=^5008146
- ;;^UTILITY(U,$J,358.3,18404,0)
- ;;=J09.X9^^65^779^28
- ;;^UTILITY(U,$J,358.3,18404,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,18404,1,3,0)
- ;;=3^Influenza d/t Indent Novel Influenza A Virus w/ Oth Manifest
- ;;^UTILITY(U,$J,358.3,18404,1,4,0)
- ;;=4^J09.X9
- ;;^UTILITY(U,$J,358.3,18404,2)
- ;;=^5008147
- ;;^UTILITY(U,$J,358.3,18405,0)
- ;;=J44.9^^65^779^14
- ;;^UTILITY(U,$J,358.3,18405,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,18405,1,3,0)
- ;;=3^COPD,Unspec
- ;;^UTILITY(U,$J,358.3,18405,1,4,0)
- ;;=4^J44.9
- ;;^UTILITY(U,$J,358.3,18405,2)
- ;;=^5008241
- ;;^UTILITY(U,$J,358.3,18406,0)
- ;;=J44.1^^65^779^12
- ;;^UTILITY(U,$J,358.3,18406,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,18406,1,3,0)
- ;;=3^COPD w/ Acute Exacerbation
- ;;^UTILITY(U,$J,358.3,18406,1,4,0)
- ;;=4^J44.1
- ;;^UTILITY(U,$J,358.3,18406,2)
- ;;=^5008240
- ;;^UTILITY(U,$J,358.3,18407,0)
- ;;=J42.^^65^779^10
- ;;^UTILITY(U,$J,358.3,18407,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,18407,1,3,0)
- ;;=3^Bronchitis,Unspec Chronic
- ;;^UTILITY(U,$J,358.3,18407,1,4,0)
- ;;=4^J42.
- ;;^UTILITY(U,$J,358.3,18407,2)
- ;;=^5008234
- ;;^UTILITY(U,$J,358.3,18408,0)
- ;;=J43.9^^65^779^22
- ;;^UTILITY(U,$J,358.3,18408,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,18408,1,3,0)
- ;;=3^Emphysema,Unspec
- ;;^UTILITY(U,$J,358.3,18408,1,4,0)
- ;;=4^J43.9
- ;;^UTILITY(U,$J,358.3,18408,2)
- ;;=^5008238
- ;;^UTILITY(U,$J,358.3,18409,0)
- ;;=J43.0^^65^779^30
- ;;^UTILITY(U,$J,358.3,18409,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,18409,1,3,0)
- ;;=3^MacLeod's Syndrome
- ;;^UTILITY(U,$J,358.3,18409,1,4,0)
- ;;=4^J43.0
- ;;^UTILITY(U,$J,358.3,18409,2)
- ;;=^5008235
- ;;^UTILITY(U,$J,358.3,18410,0)
- ;;=J43.1^^65^779^21
- ;;^UTILITY(U,$J,358.3,18410,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,18410,1,3,0)
- ;;=3^Emphysema,Panlobular
- ;;^UTILITY(U,$J,358.3,18410,1,4,0)
- ;;=4^J43.1
- ;;^UTILITY(U,$J,358.3,18410,2)
- ;;=^5008236
- ;;^UTILITY(U,$J,358.3,18411,0)
- ;;=J43.2^^65^779^19
- ;;^UTILITY(U,$J,358.3,18411,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,18411,1,3,0)
- ;;=3^Emphysema,Centrilobular
- ;;^UTILITY(U,$J,358.3,18411,1,4,0)
- ;;=4^J43.2
- ;;^UTILITY(U,$J,358.3,18411,2)
- ;;=^5008237
- ;;^UTILITY(U,$J,358.3,18412,0)
- ;;=J43.8^^65^779^20
- ;;^UTILITY(U,$J,358.3,18412,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,18412,1,3,0)
- ;;=3^Emphysema,Other
- ;;^UTILITY(U,$J,358.3,18412,1,4,0)
- ;;=4^J43.8
- ;;^UTILITY(U,$J,358.3,18412,2)
- ;;=^87569
- ;;^UTILITY(U,$J,358.3,18413,0)
- ;;=J45.902^^65^779^4
- ;;^UTILITY(U,$J,358.3,18413,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,18413,1,3,0)
- ;;=3^Asthma w/ Status Asthmaticus,Unspec
- ;;^UTILITY(U,$J,358.3,18413,1,4,0)
- ;;=4^J45.902
- ;;^UTILITY(U,$J,358.3,18413,2)
- ;;=^5008255
- ;;^UTILITY(U,$J,358.3,18414,0)
- ;;=J45.901^^65^779^3
- ;;^UTILITY(U,$J,358.3,18414,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,18414,1,3,0)
- ;;=3^Asthma w/ Acute Exacerbation,Unspec
- ;;^UTILITY(U,$J,358.3,18414,1,4,0)
- ;;=4^J45.901
- ;;^UTILITY(U,$J,358.3,18414,2)
- ;;=^5008254
- ;;^UTILITY(U,$J,358.3,18415,0)
- ;;=J47.9^^65^779^9
- ;;^UTILITY(U,$J,358.3,18415,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,18415,1,3,0)
- ;;=3^Bronchiectasis,Uncomplicated
- ;;^UTILITY(U,$J,358.3,18415,1,4,0)
- ;;=4^J47.9
- ;;^UTILITY(U,$J,358.3,18415,2)
- ;;=^5008260
- ;;^UTILITY(U,$J,358.3,18416,0)
- ;;=J47.1^^65^779^7
- ;;^UTILITY(U,$J,358.3,18416,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,18416,1,3,0)
- ;;=3^Bronchiectasis w/ Acute Exacerbation
- ;;^UTILITY(U,$J,358.3,18416,1,4,0)
- ;;=4^J47.1
- ;;^UTILITY(U,$J,358.3,18416,2)
- ;;=^5008259
- ;;^UTILITY(U,$J,358.3,18417,0)
- ;;=J47.0^^65^779^8
- ;;^UTILITY(U,$J,358.3,18417,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,18417,1,3,0)
- ;;=3^Bronchiectasis w/ Acute Lower Respiratory Infection
- ;;^UTILITY(U,$J,358.3,18417,1,4,0)
- ;;=4^J47.0
- ;;^UTILITY(U,$J,358.3,18417,2)
- ;;=^5008258
- ;;^UTILITY(U,$J,358.3,18418,0)
- ;;=R09.1^^65^779^37
- ;;^UTILITY(U,$J,358.3,18418,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,18418,1,3,0)
- ;;=3^Pleurisy
- ;;^UTILITY(U,$J,358.3,18418,1,4,0)
- ;;=4^R09.1
- ;;^UTILITY(U,$J,358.3,18418,2)
- ;;=^95428
- ;;^UTILITY(U,$J,358.3,18419,0)
- ;;=J94.9^^65^779^33
- ;;^UTILITY(U,$J,358.3,18419,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,18419,1,3,0)
- ;;=3^Pleural Condition,Unspec
- ;;^UTILITY(U,$J,358.3,18419,1,4,0)
- ;;=4^J94.9
- ;;^UTILITY(U,$J,358.3,18419,2)
- ;;=^5008320
- ;;^UTILITY(U,$J,358.3,18420,0)
- ;;=J92.9^^65^779^36
- ;;^UTILITY(U,$J,358.3,18420,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,18420,1,3,0)
- ;;=3^Pleural Plaque w/o Asbestos
- ;;^UTILITY(U,$J,358.3,18420,1,4,0)
- ;;=4^J92.9
- ;;^UTILITY(U,$J,358.3,18420,2)
- ;;=^5008313
- ;;^UTILITY(U,$J,358.3,18421,0)
- ;;=J94.8^^65^779^34
- ;;^UTILITY(U,$J,358.3,18421,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,18421,1,3,0)
- ;;=3^Pleural Conditions,Other Spec
- ;;^UTILITY(U,$J,358.3,18421,1,4,0)
- ;;=4^J94.8
- ;;^UTILITY(U,$J,358.3,18421,2)
- ;;=^5008319
- ;;^UTILITY(U,$J,358.3,18422,0)
- ;;=J86.9^^65^779^38
- ;;^UTILITY(U,$J,358.3,18422,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,18422,1,3,0)
- ;;=3^Pyothorax w/o Fistula
- ;;^UTILITY(U,$J,358.3,18422,1,4,0)
- ;;=4^J86.9
- ;;^UTILITY(U,$J,358.3,18422,2)
- ;;=^5008309
- ;;^UTILITY(U,$J,358.3,18423,0)
- ;;=J91.8^^65^779^35
- ;;^UTILITY(U,$J,358.3,18423,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,18423,1,3,0)
- ;;=3^Pleural Effusion in Other Conditions
- ;;^UTILITY(U,$J,358.3,18423,1,4,0)
- ;;=4^J91.8
- ;;^UTILITY(U,$J,358.3,18423,2)
- ;;=^5008311
- ;;^UTILITY(U,$J,358.3,18424,0)
- ;;=J84.9^^65^779^29
- ;;^UTILITY(U,$J,358.3,18424,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,18424,1,3,0)
- ;;=3^Interstitial Pulmonary Disease/Pneumonia,Unspec
- ;;^UTILITY(U,$J,358.3,18424,1,4,0)
- ;;=4^J84.9
- ;;^UTILITY(U,$J,358.3,18424,2)
- ;;=^5008304
- ;;^UTILITY(U,$J,358.3,18425,0)
- ;;=J98.01^^65^779^11
- ;;^UTILITY(U,$J,358.3,18425,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,18425,1,3,0)
- ;;=3^Bronchospasm,Acute
- ;;^UTILITY(U,$J,358.3,18425,1,4,0)
- ;;=4^J98.01
- ;;^UTILITY(U,$J,358.3,18425,2)
- ;;=^334092
- ;;^UTILITY(U,$J,358.3,18426,0)
- ;;=G47.30^^65^779^53
- ;;^UTILITY(U,$J,358.3,18426,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,18426,1,3,0)
- ;;=3^Sleep Apnea,Unspec
- ;;^UTILITY(U,$J,358.3,18426,1,4,0)
- ;;=4^G47.30
- ;;^UTILITY(U,$J,358.3,18426,2)
- ;;=^5003977
+ ;;=^5017090

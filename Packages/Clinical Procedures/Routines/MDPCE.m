@@ -1,7 +1,8 @@
-MDPCE ; HIRMFO/NCA - Routine For Data Extract ;6/9/08  13:29
- ;;1.0;CLINICAL PROCEDURES;**5,21**;Apr 01, 2004;Build 30
+MDPCE ; HIRMFO/NCA - Routine For Data Extract ;Sep 24, 2021@12:35
+ ;;1.0;CLINICAL PROCEDURES;**5,21,80**;Apr 01, 2004;Build 3
  ; Integration Agreements:
  ; IA# 1889 [Subscription] Create New Visit
+ ; IA# 10060 NEW PERSON (#200) file
  ;
 EN1(MDINST,MDPDTE,MDPR,MDTYP,MDETYP) ; [Function] PCE Visit Creation
  ; Input parameters
@@ -26,7 +27,16 @@ EN1(MDINST,MDPDTE,MDPR,MDTYP,MDETYP) ; [Function] PCE Visit Creation
  S ^TMP("MDPXAPI",$J,"ENCOUNTER",MDJ,"HOS LOC")=MDCLOC
  S ^TMP("MDPXAPI",$J,"ENCOUNTER",MDJ,"SERVICE CATEGORY")=MDTYP
  S ^TMP("MDPXAPI",$J,"ENCOUNTER",MDJ,"ENCOUNTER TYPE")=MDETYP
- S MDRES=$$DATA2PCE^PXAPI("^TMP(""MDPXAPI"",$J)",MDPKG,"CLINICAL PROCEDURES",.MDVISIT,"","",1,"",.MDPERR)
+ ;MD*1.0*80: If DUZ not defined, zero, not numeric, or null,
+ ;           send DUZ for proxy service. (Considered also validating
+ ;           whether a numeric DUZ sent in by upstream logic exists
+ ;           in file 200. If a numeric DUZ is not in file 200, PCE
+ ;           will send back a processing error of "not a valid pointer
+ ;           to the New Person file #200". This might indicate a
+ ;           configuration issue which the site needs to be aware of.
+ ;           Since PCE performs this validation, there shouldn't be a
+ ;           need for MDPCE* routines to.)
+ S MDRES=$$DATA2PCE^PXAPI("^TMP(""MDPXAPI"",$J)",MDPKG,"CLINICAL PROCEDURES",.MDVISIT,$S('$G(DUZ):$$FINDD(),1:""),"",1,"",.MDPERR)
  I MDRES D  Q MDOUT
  .S MDOUT=MDVISIT_"^"_MDCLOC_";"_MDPDTE_";"_MDTYP
  .S MDFDA(702,MDINST_",",.07)=MDTYP_";"_MDPDTE_";"_MDCLOC
@@ -35,3 +45,7 @@ EN1(MDINST,MDPDTE,MDPR,MDTYP,MDETYP) ; [Function] PCE Visit Creation
  K ^TMP("MDPXAPI",$J)
  S MDOUT="-1^PCE Visit Creation Error."
  Q MDOUT
+ ;
+FINDD() ; Find the internal entry number of Clinical, Device Proxy Service
+ ;added by MD*1.0*80
+ Q $$FIND1^DIC(200,,"X","CLINICAL,DEVICE PROXY SERVICE","B")

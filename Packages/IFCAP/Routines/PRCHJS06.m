@@ -1,6 +1,6 @@
-PRCHJS06 ;OI&T/KCL - IFCAP/ECMS INTERFACE 2237 SEND SEG BUILDERS CONT.;6/12/12
- ;;5.1;IFCAP;**167**;Oct 20, 2000;Build 17
- ;Per VHA Directive 2004-38, this routine should not be modified.
+PRCHJS06 ;OI&T/KCL - IFCAP/ECMS INTERFACE 2237 SEND SEG BUILDERS CONT.;6/12/12 ;1/26/22  12:36
+ ;;5.1;IFCAP;**167,227**;Oct 20, 2000;Build 1
+ ;Per VHA Directive 6402, this routine should not be modified.
  ;
 NTE(PRCWRK,PRCHLO,PRCER) ;Build NTE segments
  ;This function builds repeating NTE segments for the 2237
@@ -172,6 +172,7 @@ ZZ2(PRCWRK,PRCHLO,PRCER,PRCTOARY) ;Build ZZ2 segment
  D SET^HLOAPI(.PRCSEG,$P($G(@PRCWRK@("VFMSNM")),U,2),13)
  D SET^HLOAPI(.PRCSEG,$P($G(@PRCWRK@("VFAX")),U,2),14)
  D SET^HLOAPI(.PRCSEG,$P($G(@PRCWRK@("VID")),U,2),15)
+ D SET^HLOAPI(.PRCSEG,$P($G(@PRCWRK@("VUEI")),U,2),16)
  ;
  ;add segment to message being built
  I '$$ADDSEG^HLOAPI(.PRCHLO,.PRCSEG,.PRCER,.PRCTOARY) D

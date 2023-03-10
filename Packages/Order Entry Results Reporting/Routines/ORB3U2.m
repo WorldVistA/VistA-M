@@ -1,5 +1,5 @@
-ORB3U2 ; slc/CLA - OE/RR 3 Notifications Utilities routine two ;5/19/97  11:07 [ 04/02/97  2:09 PM ]
- ;;3.0;ORDER ENTRY/RESULTS REPORTING;**9,74,105,179**;Dec 17, 1997
+ORB3U2 ; SLC/CLA - OE/RR 3 Notifications Utilities routine two ;Dec 06, 2021@15:40
+ ;;3.0;ORDER ENTRY/RESULTS REPORTING;**9,74,105,179,498,405**;Dec 17, 1997;Build 211
  Q
 USRNOTS(ORBUSR) ;  generate a list of notifs indicating user's recip status
  I +$G(ORBUSR)<1 S ORBUSR=DUZ
@@ -151,4 +151,81 @@ LABTHR(ORBADUZ,ORBDFN,ORNUM) ;returns Lab Threshold notif recipients
  ..I $L(ORPVAL) D
  ...I $P(ORPENT,";",2)="VA(200,",@(ORSLT_OROP_ORPVAL) D
  ....S ORBADUZ(+ORPENT)=""
+ Q
+WHRECIP(ORBADUZ,ORN,ORBDFN,ORBU) ;returns Women's Health notif recipients
+ N ORSOURCE,ORTYPE,ORREF,ORPROV,ORDIV,ORSTATUS,ORPKG,ORSUBSCRIPT,ORINVDATE
+ N ORLABDFN,OREXIT,DIR,X,Y,DTOUT,DUOUT,DIRUT,DIROUT
+ I $G(ORN)=86 D  Q:$D(DUOUT) 0
+ .F  D  Q:($G(ORDIV)>0)!($G(OREXIT))
+ ..S DIR(0)="NAO"_U_"::2"_U,DIR("A")="ORDER NUMBER: "
+ ..S DIR("?",1)="When a laboratory pregnancy test result indicates a status that conflicts with"
+ ..S DIR("?",2)="the pregnancy status stored in the Women's health package, the PREGNANCY STATUS"
+ ..S DIR("?",3)="REVIEW notification uses the order associated with that result to determine"
+ ..S DIR("?",4)="alert recipients. Enter the order number associated with the laboratory"
+ ..S DIR("?",5)="pregnancy test result. Order number must be entered as a whole number"
+ ..S DIR("?")="(e.g. 458829) and is optional."
+ ..S DIR(0)=DIR(0)_"I ($P($G(^OR(100,X,0)),U,2)'="""_ORBDFN_";DPT("")"
+ ..S ORSTATUS=+$O(^ORD(100.01,"B","COMPLETE",0))
+ ..I ORSTATUS<1 D  Q
+ ...W !,"Could not find an entry named COMPLETE in the ORDER STATUS file (#100.01).",!
+ ...W "Selection of a laboratory order is not possible at this time.",!
+ ...S OREXIT=1
+ ..S DIR(0)=DIR(0)_"!($P($G(^OR(100,X,3)),U,3)'="_ORSTATUS_")"
+ ..S ORPKG=$$FIND1^DIC(9.4,"","","LAB SERVICE")
+ ..I ORPKG="" D  Q
+ ...D MSG^DIALOG("WE")
+ ...K ^TMP("DIERR",$J)
+ ...W !,"Selection of a laboratory order is not possible at this time.",!
+ ...S OREXIT=1
+ ..S DIR(0)=DIR(0)_"!($P($G(^OR(100,X,0)),U,14)'="_ORPKG_")"
+ ..S DIR(0)=DIR(0)_"!($P($G(^OR(100,X,4)),"";"",4)="""")"
+ ..S DIR(0)=DIR(0)_"!($P($G(^OR(100,X,4)),"";"",5)="""") K X"
+ ..D ^DIR
+ ..I +Y<1 S OREXIT=1 Q
+ ..S ORREF=$G(^OR(100,+Y,4)),ORPROV=+$P($G(^OR(100,+Y,0)),U,4)
+ ..K DIR,X,Y
+ ..I ORPROV>0 S ORBADUZ(ORPROV)="ORDERING PROVIDER"
+ ..S ORLABDFN=+$G(^DPT(ORBDFN,"LR"))
+ ..I (ORLABDFN=0)!('$D(^LR(ORLABDFN))) D  Q
+ ...W !,"Could not find the patient's entry in the LAB DATA file (#63).",!
+ ...W "Selection of a laboratory order is not possible at this time.",!
+ ...S OREXIT=1
+ ..S ORSUBSCRIPT=$P(ORREF,";",4),ORINVDATE=$P(ORREF,";",5)
+ ..S ORDIV=+$G(^LR(ORLABDFN,ORSUBSCRIPT,ORINVDATE,"RF"))
+ ..I ORDIV<1 D  Q
+ ...W !,"Could not retrieve the releasing site from the LAB DATA file (#63).",!
+ ...K ORDIV
+ ..S ORSOURCE="LAB"
+ I $G(ORSOURCE)="" D  Q:$D(DIRUT) 0
+ .S DIR(0)="PA"_U_"44:EQV",DIR("A")="LOCATION FOR CURRENT ACTIVITY (req'd): "
+ .S DIR("?",1)="When an ICD code is added to an encounter or a problem is added to the problem"
+ .S DIR("?",2)="list, the notification uses the location for current activities at the time of"
+ .S DIR("?",3)="addition to determine the alert recipients. Enter the location associated with"
+ .S DIR("?")="the hypothetical activity."
+ .S DIR("S")="I (""C""[$P($G(^SC(Y,0)),U,3)),($$ACTLOC^ORWU(Y))"
+ .D ^DIR
+ .Q:$D(DIRUT)
+ .S ORDIV=$P($G(^SC(+Y,0)),U,4)
+ .I +ORDIV<1 D
+ ..S ORDIV=+$$SITE^VASITE(,+$P($G(^SC(+Y,0)),U,15))
+ ..I ORDIV>0 Q
+ ..W !,"Unable to obtain a valid location; using your sign-on division instead.",!
+ ..S ORDIV=DUZ(2)
+ .S ORSOURCE="CODE"
+ S ORTYPE=$E($P($G(^ORD(100.9,ORN,0)),U,1),1)
+ D GETRECIPS^WVRPCPT1(.ORBADUZ,ORBDFN,ORSOURCE,ORTYPE,1,$G(ORDIV))
+ I $G(ORBADUZ(0))'="" D
+ .S ORBU=1+$G(ORBU),ORBU(ORBU)="WOMEN'S HEALTH: "_$P(ORBADUZ(0),U,2)
+ .K ORBADUZ(0)
+ Q 1
+GETRCPNT(ORY,ALERTID) ;
+ N I,IDX,USERNAME,XQALUSRS,FIRST,SORT
+ D USERLIST^XQALBUTL(ALERTID)
+ S IDX=0,FIRST=1
+ S I=0 F  S I=$O(XQALUSRS(I)) Q:'I  D
+ . S USERNAME=$P(XQALUSRS(I),U,2)
+ . I $L(USERNAME) D
+ . . I FIRST S FIRST=0,IDX=IDX+1,ORY(IDX)="Alert Recipients:"
+ . . S SORT(USERNAME)=""
+ I $D(SORT) S I="" F  S I=$O(SORT(I)) Q:I=""  S IDX=IDX+1,ORY(IDX)="  "_I
  Q

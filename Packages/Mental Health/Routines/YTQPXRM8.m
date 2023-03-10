@@ -1,5 +1,5 @@
 YTQPXRM8 ;ALB/ASF - PSYCH TEST API FOR CLINICAL REMINDERS ; 8/27/08 3:39pm
- ;;5.01;MENTAL HEALTH;**98,123**;Dec 30, 1994;Build 73
+ ;;5.01;MENTAL HEALTH;**98,123,141**;Dec 30, 1994;Build 85
  Q
 SETSCR(YSDATA,YS) ;save  scratch CR
  ;input: DFN = Patient ien
@@ -193,7 +193,7 @@ CMPLX ;
  F I=2:1 Q:'$D(^TMP($J,"YSCOR",I))  D
  .S SCA=^TMP($J,"YSCOR",I)
  .S SNM=$P(SCA,"=",1)
- .I $D(SCARR(SNM)) S N=N+1,^TMP($J,"YSSCR",N)="*"_SCARR(SNM)_"~"_$P(SCA,"=",2)
+ .I $D(SCARR(SNM)) S N=N+1,^TMP($J,"YSSCR",N)="*"_SCARR(SNM)_"~"_$P($P(SCA,"=",2),U)
  K ^TMP($J,"YSG"),^TMP($J,"YSCOR")
  Q
 SETARR(SCARR,NODE) ;

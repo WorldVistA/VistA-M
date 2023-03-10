@@ -1,120 +1,128 @@
-IBDEI16K ; ; 04-FEB-2020
- ;;3.0;IB ENCOUNTER FORM IMP/EXP;;FEB 04, 2020
+IBDEI16K ; ; 01-FEB-2022
+ ;;3.0;IB ENCOUNTER FORM IMP/EXP;;FEB 01, 2022
  Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,999) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
- ;;^UTILITY(U,$J,358.3,18968,2)
- ;;=^5003444
- ;;^UTILITY(U,$J,358.3,18969,0)
- ;;=F19.959^^91^975^12
- ;;^UTILITY(U,$J,358.3,18969,1,0)
+ ;;^UTILITY(U,$J,358.3,19153,1,4,0)
+ ;;=4^J45.20
+ ;;^UTILITY(U,$J,358.3,19153,2)
+ ;;=^5008242
+ ;;^UTILITY(U,$J,358.3,19154,0)
+ ;;=J45.21^^64^851^18
+ ;;^UTILITY(U,$J,358.3,19154,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,18969,1,3,0)
- ;;=3^Oth/Unk Substance Induced Psychotic D/O w/o Use D/O
- ;;^UTILITY(U,$J,358.3,18969,1,4,0)
- ;;=4^F19.959
- ;;^UTILITY(U,$J,358.3,18969,2)
- ;;=^5003463
- ;;^UTILITY(U,$J,358.3,18970,0)
- ;;=F19.181^^91^975^13
- ;;^UTILITY(U,$J,358.3,18970,1,0)
+ ;;^UTILITY(U,$J,358.3,19154,1,3,0)
+ ;;=3^Mild Intermittent Asthma w/ Exacerbation
+ ;;^UTILITY(U,$J,358.3,19154,1,4,0)
+ ;;=4^J45.21
+ ;;^UTILITY(U,$J,358.3,19154,2)
+ ;;=^5008243
+ ;;^UTILITY(U,$J,358.3,19155,0)
+ ;;=J45.31^^64^851^21
+ ;;^UTILITY(U,$J,358.3,19155,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,18970,1,3,0)
- ;;=3^Oth/Unk Substance Induced Sexual Dysfunc w/ Mild Use D/O
- ;;^UTILITY(U,$J,358.3,18970,1,4,0)
- ;;=4^F19.181
- ;;^UTILITY(U,$J,358.3,18970,2)
- ;;=^5003428
- ;;^UTILITY(U,$J,358.3,18971,0)
- ;;=F19.281^^91^975^14
- ;;^UTILITY(U,$J,358.3,18971,1,0)
+ ;;^UTILITY(U,$J,358.3,19155,1,3,0)
+ ;;=3^Mild Persistent Asthma w/ Exacerbation
+ ;;^UTILITY(U,$J,358.3,19155,1,4,0)
+ ;;=4^J45.31
+ ;;^UTILITY(U,$J,358.3,19155,2)
+ ;;=^5008246
+ ;;^UTILITY(U,$J,358.3,19156,0)
+ ;;=J45.32^^64^851^22
+ ;;^UTILITY(U,$J,358.3,19156,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,18971,1,3,0)
- ;;=3^Oth/Unk Substance Induced Sexual Dysfunc w/ Mod/Sev Use D/O
- ;;^UTILITY(U,$J,358.3,18971,1,4,0)
- ;;=4^F19.281
- ;;^UTILITY(U,$J,358.3,18971,2)
- ;;=^5003448
- ;;^UTILITY(U,$J,358.3,18972,0)
- ;;=F19.981^^91^975^15
- ;;^UTILITY(U,$J,358.3,18972,1,0)
+ ;;^UTILITY(U,$J,358.3,19156,1,3,0)
+ ;;=3^Mild Persistent Asthma w/ Status Asthmaticus
+ ;;^UTILITY(U,$J,358.3,19156,1,4,0)
+ ;;=4^J45.32
+ ;;^UTILITY(U,$J,358.3,19156,2)
+ ;;=^5008247
+ ;;^UTILITY(U,$J,358.3,19157,0)
+ ;;=J45.30^^64^851^23
+ ;;^UTILITY(U,$J,358.3,19157,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,18972,1,3,0)
- ;;=3^Oth/Unk Substance Induced Sexual Dysfunc w/ o Use D/O
- ;;^UTILITY(U,$J,358.3,18972,1,4,0)
- ;;=4^F19.981
- ;;^UTILITY(U,$J,358.3,18972,2)
- ;;=^5003467
- ;;^UTILITY(U,$J,358.3,18973,0)
- ;;=F19.182^^91^975^16
- ;;^UTILITY(U,$J,358.3,18973,1,0)
+ ;;^UTILITY(U,$J,358.3,19157,1,3,0)
+ ;;=3^Mild Persistent Asthma,Uncomplicated
+ ;;^UTILITY(U,$J,358.3,19157,1,4,0)
+ ;;=4^J45.30
+ ;;^UTILITY(U,$J,358.3,19157,2)
+ ;;=^5008245
+ ;;^UTILITY(U,$J,358.3,19158,0)
+ ;;=J45.41^^64^851^24
+ ;;^UTILITY(U,$J,358.3,19158,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,18973,1,3,0)
- ;;=3^Oth/Unk Substance Induced Sleep D/O w/ Mild Use D/O
- ;;^UTILITY(U,$J,358.3,18973,1,4,0)
- ;;=4^F19.182
- ;;^UTILITY(U,$J,358.3,18973,2)
- ;;=^5003429
- ;;^UTILITY(U,$J,358.3,18974,0)
- ;;=F19.282^^91^975^17
- ;;^UTILITY(U,$J,358.3,18974,1,0)
+ ;;^UTILITY(U,$J,358.3,19158,1,3,0)
+ ;;=3^Moderate Persistent Asthma w/ Exacerbation
+ ;;^UTILITY(U,$J,358.3,19158,1,4,0)
+ ;;=4^J45.41
+ ;;^UTILITY(U,$J,358.3,19158,2)
+ ;;=^5008249
+ ;;^UTILITY(U,$J,358.3,19159,0)
+ ;;=J45.42^^64^851^25
+ ;;^UTILITY(U,$J,358.3,19159,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,18974,1,3,0)
- ;;=3^Oth/Unk Substance Induced Sleep D/O w/ Mod/Sev Use D/O
- ;;^UTILITY(U,$J,358.3,18974,1,4,0)
- ;;=4^F19.282
- ;;^UTILITY(U,$J,358.3,18974,2)
- ;;=^5003449
- ;;^UTILITY(U,$J,358.3,18975,0)
- ;;=F19.982^^91^975^18
- ;;^UTILITY(U,$J,358.3,18975,1,0)
+ ;;^UTILITY(U,$J,358.3,19159,1,3,0)
+ ;;=3^Moderate Persistent Asthma w/ Status Asthmaticus
+ ;;^UTILITY(U,$J,358.3,19159,1,4,0)
+ ;;=4^J45.42
+ ;;^UTILITY(U,$J,358.3,19159,2)
+ ;;=^5008250
+ ;;^UTILITY(U,$J,358.3,19160,0)
+ ;;=J45.40^^64^851^26
+ ;;^UTILITY(U,$J,358.3,19160,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,18975,1,3,0)
- ;;=3^Oth/Unk Substance Induced Sleep D/O w/o Use D/O
- ;;^UTILITY(U,$J,358.3,18975,1,4,0)
- ;;=4^F19.982
- ;;^UTILITY(U,$J,358.3,18975,2)
- ;;=^5003468
- ;;^UTILITY(U,$J,358.3,18976,0)
- ;;=F19.129^^91^975^22
- ;;^UTILITY(U,$J,358.3,18976,1,0)
+ ;;^UTILITY(U,$J,358.3,19160,1,3,0)
+ ;;=3^Moderate Persistent Asthma,Uncomplicated
+ ;;^UTILITY(U,$J,358.3,19160,1,4,0)
+ ;;=4^J45.40
+ ;;^UTILITY(U,$J,358.3,19160,2)
+ ;;=^5008248
+ ;;^UTILITY(U,$J,358.3,19161,0)
+ ;;=J41.1^^64^851^27
+ ;;^UTILITY(U,$J,358.3,19161,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,18976,1,3,0)
- ;;=3^Oth/Unk Substance Intox w/ Mild Use D/O
- ;;^UTILITY(U,$J,358.3,18976,1,4,0)
- ;;=4^F19.129
- ;;^UTILITY(U,$J,358.3,18976,2)
- ;;=^5003420
- ;;^UTILITY(U,$J,358.3,18977,0)
- ;;=F19.229^^91^975^23
- ;;^UTILITY(U,$J,358.3,18977,1,0)
+ ;;^UTILITY(U,$J,358.3,19161,1,3,0)
+ ;;=3^Mucopurulent Chr Bronchitis
+ ;;^UTILITY(U,$J,358.3,19161,1,4,0)
+ ;;=4^J41.1
+ ;;^UTILITY(U,$J,358.3,19161,2)
+ ;;=^269949
+ ;;^UTILITY(U,$J,358.3,19162,0)
+ ;;=J45.998^^64^851^2
+ ;;^UTILITY(U,$J,358.3,19162,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,18977,1,3,0)
- ;;=3^Oth/Unk Substance Intox w/ Mod/Sev Use D/O
- ;;^UTILITY(U,$J,358.3,18977,1,4,0)
- ;;=4^F19.229
- ;;^UTILITY(U,$J,358.3,18977,2)
- ;;=^5003436
- ;;^UTILITY(U,$J,358.3,18978,0)
- ;;=F19.929^^91^975^24
- ;;^UTILITY(U,$J,358.3,18978,1,0)
+ ;;^UTILITY(U,$J,358.3,19162,1,3,0)
+ ;;=3^Asthma NEC
+ ;;^UTILITY(U,$J,358.3,19162,1,4,0)
+ ;;=4^J45.998
+ ;;^UTILITY(U,$J,358.3,19162,2)
+ ;;=^5008257
+ ;;^UTILITY(U,$J,358.3,19163,0)
+ ;;=J43.8^^64^851^15
+ ;;^UTILITY(U,$J,358.3,19163,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,18978,1,3,0)
- ;;=3^Oth/Unk Substance Intox w/o Use D/O
- ;;^UTILITY(U,$J,358.3,18978,1,4,0)
- ;;=4^F19.929
- ;;^UTILITY(U,$J,358.3,18978,2)
- ;;=^5003455
- ;;^UTILITY(U,$J,358.3,18979,0)
- ;;=F19.121^^91^975^19
- ;;^UTILITY(U,$J,358.3,18979,1,0)
+ ;;^UTILITY(U,$J,358.3,19163,1,3,0)
+ ;;=3^Emphysema NEC
+ ;;^UTILITY(U,$J,358.3,19163,1,4,0)
+ ;;=4^J43.8
+ ;;^UTILITY(U,$J,358.3,19163,2)
+ ;;=^87569
+ ;;^UTILITY(U,$J,358.3,19164,0)
+ ;;=J43.1^^64^851^28
+ ;;^UTILITY(U,$J,358.3,19164,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,18979,1,3,0)
- ;;=3^Oth/Unk Substance Intox Delirium w/ Mild Use D/O
- ;;^UTILITY(U,$J,358.3,18979,1,4,0)
- ;;=4^F19.121
- ;;^UTILITY(U,$J,358.3,18979,2)
- ;;=^5003418
- ;;^UTILITY(U,$J,358.3,18980,0)
- ;;=F19.221^^91^975^20
- ;;^UTILITY(U,$J,358.3,18980,1,0)
+ ;;^UTILITY(U,$J,358.3,19164,1,3,0)
+ ;;=3^Panlobular Emphysema
+ ;;^UTILITY(U,$J,358.3,19164,1,4,0)
+ ;;=4^J43.1
+ ;;^UTILITY(U,$J,358.3,19164,2)
+ ;;=^5008236
+ ;;^UTILITY(U,$J,358.3,19165,0)
+ ;;=J45.51^^64^851^29
+ ;;^UTILITY(U,$J,358.3,19165,1,0)
  ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,19165,1,3,0)
+ ;;=3^Severe Persistent Asthma w/ Exacerbation
+ ;;^UTILITY(U,$J,358.3,19165,1,4,0)
+ ;;=4^J45.51
+ ;;^UTILITY(U,$J,358.3,19165,2)
+ ;;=^5008252

@@ -1,122 +1,128 @@
-IBDEI165 ; ; 04-FEB-2020
- ;;3.0;IB ENCOUNTER FORM IMP/EXP;;FEB 04, 2020
+IBDEI165 ; ; 01-FEB-2022
+ ;;3.0;IB ENCOUNTER FORM IMP/EXP;;FEB 01, 2022
  Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,999) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
- ;;^UTILITY(U,$J,358.3,18787,2)
- ;;=^5003130
- ;;^UTILITY(U,$J,358.3,18788,0)
- ;;=F11.229^^91^961^20
- ;;^UTILITY(U,$J,358.3,18788,1,0)
+ ;;^UTILITY(U,$J,358.3,18968,1,4,0)
+ ;;=4^M06.272
+ ;;^UTILITY(U,$J,358.3,18968,2)
+ ;;=^5010092
+ ;;^UTILITY(U,$J,358.3,18969,0)
+ ;;=M06.222^^64^842^111
+ ;;^UTILITY(U,$J,358.3,18969,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,18788,1,3,0)
- ;;=3^Opioid Intox w/o Percep Disturb w/ Mod/Sev Use D/O
- ;;^UTILITY(U,$J,358.3,18788,1,4,0)
- ;;=4^F11.229
- ;;^UTILITY(U,$J,358.3,18788,2)
- ;;=^5003132
- ;;^UTILITY(U,$J,358.3,18789,0)
- ;;=F11.929^^91^961^21
- ;;^UTILITY(U,$J,358.3,18789,1,0)
+ ;;^UTILITY(U,$J,358.3,18969,1,3,0)
+ ;;=3^Rheumatoid Bursitis Left Elbow
+ ;;^UTILITY(U,$J,358.3,18969,1,4,0)
+ ;;=4^M06.222
+ ;;^UTILITY(U,$J,358.3,18969,2)
+ ;;=^5010077
+ ;;^UTILITY(U,$J,358.3,18970,0)
+ ;;=M06.242^^64^842^112
+ ;;^UTILITY(U,$J,358.3,18970,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,18789,1,3,0)
- ;;=3^Opioid Intox w/o Percep Disturb w/o Use D/O
- ;;^UTILITY(U,$J,358.3,18789,1,4,0)
- ;;=4^F11.929
- ;;^UTILITY(U,$J,358.3,18789,2)
- ;;=^5003146
- ;;^UTILITY(U,$J,358.3,18790,0)
- ;;=F11.122^^91^961^17
- ;;^UTILITY(U,$J,358.3,18790,1,0)
+ ;;^UTILITY(U,$J,358.3,18970,1,3,0)
+ ;;=3^Rheumatoid Bursitis Left Hand
+ ;;^UTILITY(U,$J,358.3,18970,1,4,0)
+ ;;=4^M06.242
+ ;;^UTILITY(U,$J,358.3,18970,2)
+ ;;=^5010083
+ ;;^UTILITY(U,$J,358.3,18971,0)
+ ;;=M06.252^^64^842^113
+ ;;^UTILITY(U,$J,358.3,18971,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,18790,1,3,0)
- ;;=3^Opioid Intox w/ Percep Disturb w/ Mild Use D/O
- ;;^UTILITY(U,$J,358.3,18790,1,4,0)
- ;;=4^F11.122
- ;;^UTILITY(U,$J,358.3,18790,2)
- ;;=^5003117
- ;;^UTILITY(U,$J,358.3,18791,0)
- ;;=F11.222^^91^961^18
- ;;^UTILITY(U,$J,358.3,18791,1,0)
+ ;;^UTILITY(U,$J,358.3,18971,1,3,0)
+ ;;=3^Rheumatoid Bursitis Left Hip
+ ;;^UTILITY(U,$J,358.3,18971,1,4,0)
+ ;;=4^M06.252
+ ;;^UTILITY(U,$J,358.3,18971,2)
+ ;;=^5010086
+ ;;^UTILITY(U,$J,358.3,18972,0)
+ ;;=M06.262^^64^842^114
+ ;;^UTILITY(U,$J,358.3,18972,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,18791,1,3,0)
- ;;=3^Opioid Intox w/ Percep Disturb w/ Mod/Sev Use D/O
- ;;^UTILITY(U,$J,358.3,18791,1,4,0)
- ;;=4^F11.222
- ;;^UTILITY(U,$J,358.3,18791,2)
- ;;=^5003131
- ;;^UTILITY(U,$J,358.3,18792,0)
- ;;=F11.922^^91^961^19
- ;;^UTILITY(U,$J,358.3,18792,1,0)
+ ;;^UTILITY(U,$J,358.3,18972,1,3,0)
+ ;;=3^Rheumatoid Bursitis Left Knee
+ ;;^UTILITY(U,$J,358.3,18972,1,4,0)
+ ;;=4^M06.262
+ ;;^UTILITY(U,$J,358.3,18972,2)
+ ;;=^5010089
+ ;;^UTILITY(U,$J,358.3,18973,0)
+ ;;=M06.212^^64^842^115
+ ;;^UTILITY(U,$J,358.3,18973,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,18792,1,3,0)
- ;;=3^Opioid Intox w/ Percep Disturb w/o Use D/O
- ;;^UTILITY(U,$J,358.3,18792,1,4,0)
- ;;=4^F11.922
- ;;^UTILITY(U,$J,358.3,18792,2)
- ;;=^5003145
- ;;^UTILITY(U,$J,358.3,18793,0)
- ;;=F11.99^^91^961^23
- ;;^UTILITY(U,$J,358.3,18793,1,0)
+ ;;^UTILITY(U,$J,358.3,18973,1,3,0)
+ ;;=3^Rheumatoid Bursitis Left Shoulder
+ ;;^UTILITY(U,$J,358.3,18973,1,4,0)
+ ;;=4^M06.212
+ ;;^UTILITY(U,$J,358.3,18973,2)
+ ;;=^5010074
+ ;;^UTILITY(U,$J,358.3,18974,0)
+ ;;=M06.232^^64^842^116
+ ;;^UTILITY(U,$J,358.3,18974,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,18793,1,3,0)
- ;;=3^Opioid Related D/O,Unspec
- ;;^UTILITY(U,$J,358.3,18793,1,4,0)
- ;;=4^F11.99
- ;;^UTILITY(U,$J,358.3,18793,2)
- ;;=^5133352
- ;;^UTILITY(U,$J,358.3,18794,0)
- ;;=F11.21^^91^961^27
- ;;^UTILITY(U,$J,358.3,18794,1,0)
+ ;;^UTILITY(U,$J,358.3,18974,1,3,0)
+ ;;=3^Rheumatoid Bursitis Left Wrist
+ ;;^UTILITY(U,$J,358.3,18974,1,4,0)
+ ;;=4^M06.232
+ ;;^UTILITY(U,$J,358.3,18974,2)
+ ;;=^5010080
+ ;;^UTILITY(U,$J,358.3,18975,0)
+ ;;=M06.29^^64^842^117
+ ;;^UTILITY(U,$J,358.3,18975,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,18794,1,3,0)
- ;;=3^Opioid Use DO,Mod/Sev,In Remiss
- ;;^UTILITY(U,$J,358.3,18794,1,4,0)
- ;;=4^F11.21
- ;;^UTILITY(U,$J,358.3,18794,2)
- ;;=^5003128
- ;;^UTILITY(U,$J,358.3,18795,0)
- ;;=Z79.891^^91^961^1
- ;;^UTILITY(U,$J,358.3,18795,1,0)
+ ;;^UTILITY(U,$J,358.3,18975,1,3,0)
+ ;;=3^Rheumatoid Bursitis Mult Sites
+ ;;^UTILITY(U,$J,358.3,18975,1,4,0)
+ ;;=4^M06.29
+ ;;^UTILITY(U,$J,358.3,18975,2)
+ ;;=^5010095
+ ;;^UTILITY(U,$J,358.3,18976,0)
+ ;;=M06.271^^64^842^118
+ ;;^UTILITY(U,$J,358.3,18976,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,18795,1,3,0)
- ;;=3^Long Term Opiate/Opioid Analgesic Use
- ;;^UTILITY(U,$J,358.3,18795,1,4,0)
- ;;=4^Z79.891
- ;;^UTILITY(U,$J,358.3,18795,2)
- ;;=^5063342
- ;;^UTILITY(U,$J,358.3,18796,0)
- ;;=F11.11^^91^961^24
- ;;^UTILITY(U,$J,358.3,18796,1,0)
+ ;;^UTILITY(U,$J,358.3,18976,1,3,0)
+ ;;=3^Rheumatoid Bursitis Right Ankle/Foot
+ ;;^UTILITY(U,$J,358.3,18976,1,4,0)
+ ;;=4^M06.271
+ ;;^UTILITY(U,$J,358.3,18976,2)
+ ;;=^5010091
+ ;;^UTILITY(U,$J,358.3,18977,0)
+ ;;=M06.221^^64^842^119
+ ;;^UTILITY(U,$J,358.3,18977,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,18796,1,3,0)
- ;;=3^Opioid Use DO,Mild,In Remiss
- ;;^UTILITY(U,$J,358.3,18796,1,4,0)
- ;;=4^F11.11
- ;;^UTILITY(U,$J,358.3,18796,2)
- ;;=^268246
- ;;^UTILITY(U,$J,358.3,18797,0)
- ;;=F13.180^^91^962^1
- ;;^UTILITY(U,$J,358.3,18797,1,0)
+ ;;^UTILITY(U,$J,358.3,18977,1,3,0)
+ ;;=3^Rheumatoid Bursitis Right Elbow
+ ;;^UTILITY(U,$J,358.3,18977,1,4,0)
+ ;;=4^M06.221
+ ;;^UTILITY(U,$J,358.3,18977,2)
+ ;;=^5010076
+ ;;^UTILITY(U,$J,358.3,18978,0)
+ ;;=M06.241^^64^842^120
+ ;;^UTILITY(U,$J,358.3,18978,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,18797,1,3,0)
- ;;=3^Sedative/Hypnotic/Anxiolytic Induced Anxiety D/O w/ Mild Use D/O
- ;;^UTILITY(U,$J,358.3,18797,1,4,0)
- ;;=4^F13.180
- ;;^UTILITY(U,$J,358.3,18797,2)
- ;;=^5003197
- ;;^UTILITY(U,$J,358.3,18798,0)
- ;;=F13.280^^91^962^2
- ;;^UTILITY(U,$J,358.3,18798,1,0)
+ ;;^UTILITY(U,$J,358.3,18978,1,3,0)
+ ;;=3^Rheumatoid Bursitis Right Hand
+ ;;^UTILITY(U,$J,358.3,18978,1,4,0)
+ ;;=4^M06.241
+ ;;^UTILITY(U,$J,358.3,18978,2)
+ ;;=^5010082
+ ;;^UTILITY(U,$J,358.3,18979,0)
+ ;;=M06.251^^64^842^121
+ ;;^UTILITY(U,$J,358.3,18979,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,18798,1,3,0)
- ;;=3^Sedative/Hypnotic/Anxiolytic Induced Anxiety D/O w/ Mod-Sev Use D/O
- ;;^UTILITY(U,$J,358.3,18798,1,4,0)
- ;;=4^F13.280
- ;;^UTILITY(U,$J,358.3,18798,2)
- ;;=^5003216
- ;;^UTILITY(U,$J,358.3,18799,0)
- ;;=F13.980^^91^962^3
- ;;^UTILITY(U,$J,358.3,18799,1,0)
+ ;;^UTILITY(U,$J,358.3,18979,1,3,0)
+ ;;=3^Rheumatoid Bursitis Right Hip
+ ;;^UTILITY(U,$J,358.3,18979,1,4,0)
+ ;;=4^M06.251
+ ;;^UTILITY(U,$J,358.3,18979,2)
+ ;;=^5010085
+ ;;^UTILITY(U,$J,358.3,18980,0)
+ ;;=M06.261^^64^842^122
+ ;;^UTILITY(U,$J,358.3,18980,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,18799,1,3,0)
- ;;=3^Sedative/Hypnotic/Anxiolytic Induced Anxiety D/O w/o Use D/O
+ ;;^UTILITY(U,$J,358.3,18980,1,3,0)
+ ;;=3^Rheumatoid Bursitis Right Knee
+ ;;^UTILITY(U,$J,358.3,18980,1,4,0)
+ ;;=4^M06.261
+ ;;^UTILITY(U,$J,358.3,18980,2)
+ ;;=^5010088

@@ -1,5 +1,5 @@
-ORCDPS ;SLC/MKB - Pharmacy dialog utilities ;5/1/2012 14:30
- ;;3.0;ORDER ENTRY/RESULTS REPORTING;**4,38,62,86,94,129,350,440**;Dec 17, 1997;Build 4
+ORCDPS ;SLC/MKB - Pharmacy dialog utilities ;Oct 19, 2022@13:32:56
+ ;;3.0;ORDER ENTRY/RESULTS REPORTING;**4,38,62,86,94,129,350,440,594**;Dec 17, 1997;Build 1
  ;
  ; ** Keep for backwards compatibility, just in case:
  ;
@@ -125,7 +125,9 @@ RESETID ; -- Reset ORDIALOG(DOSE) nodes for new ORDRUG
  S ORID=$$PTR("DOSE"),STR=+$P(DRUG,U,5),UNT=$P(DRUG,U,6)
  S FORM="1.N.""."".N."" ""1"""_UNT_""""
  S I=0 F  S I=$O(ORDIALOG(PROMPT,I)) Q:I'>0  D
- . S DOSE=$G(ORDIALOG(PROMPT,I)),X=$G(ORDOSE("DD",+ORDRUG,DOSE))
+ . S DOSE=$G(ORDIALOG(PROMPT,I))
+ . I DOSE="" Q
+ . S X=$G(ORDOSE("DD",+ORDRUG,DOSE))
  . I '$L(X),STR,DOSE?@FORM D
  .. N UD,NOUN S UD=+DOSE/STR,NOUN=$P($G(ORDOSE(1)),U,4)
  .. I UD>1,$E(NOUN,$L(NOUN))'="S" S NOUN=NOUN_"S"

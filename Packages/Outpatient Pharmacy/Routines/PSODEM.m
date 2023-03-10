@@ -1,16 +1,16 @@
-PSODEM ;BHAM ISC/SAB - PATIENT DEMOGRAPHICS ; 02/17/93 12:29
- ;;7.0;OUTPATIENT PHARMACY;**5,19,233,258,326,390,411,402,500,452,556**;DEC 1997;Build 2
+PSODEM ;BIR/SAB - PATIENT DEMOGRAPHICS ;Jan 21, 2021@16:15
+ ;;7.0;OUTPATIENT PHARMACY;**5,19,233,258,326,390,411,402,500,452,556,622**;DEC 1997;Build 44
  ;External reference to ^GMRADPT supported by DBIA 10099
  ;External reference to ^DIC(31 supported by DBIA 658
  ;External reference to $$BSA^PSSDSAPI supported by DBIA 5425
  ;
  ;RTW BEGIN PATIENT DEMOGRAPHIC CHANGE INFORMATION---------------------------
- ;EPIP NSR20151001 PATIENT DEMOGRAPHICS and Clinical Alerts added  
+ ;EPIP NSR20151001 PATIENT DEMOGRAPHICS and Clinical Alerts added
  ;output, which will appear right after the Pharmacy Narrative:
  ;   * Primary Care Team and their office Phone
  ;   * PC Provider and Position
  ;   * PC Provider's pager and office phone number
- ;   * Current facility (or institution) of the Patient based on PC Team or appointment & visit history}  
+ ;   * Current facility (or institution) of the Patient based on PC Team or appointment & visit history}
  ;   * Patient file REMARKS
  ;   * Clinical Alerts (for example, when a patient part of a researh study)
  ;   * then pause the screen until the user pressed the <ENTER> key
@@ -48,6 +48,7 @@ MA K SC W !,"DISABILITIES: " S PSLC=PSLC+2
  .X:($X+$L(PSDIS)+7)>(IOM-8) "W !?14 S PSLC=PSLC+1" W PSDIS,"-",PSCNT,"% (",$S($P(I1,"^",3):"SC",1:"NSC"),"), "
  .I $E(IOST)="C",$Y+4>IOSL,$D(PSTYPE) K DIR S DIR(0)="E",DIR("A")="Press Return to Continue" D ^DIR K DIR,DTOUT W @IOF,?13
  X "N X S X=""GMRADPT"" X ^%ZOSF(""TEST"") Q" I $T D:'$D(PSOPTPST) GMRA
+ D WH
 Q  K SC,I1,VAROOT,Y,AL,I,X,Y,PSCNT,PSLC,PSDIS D:$G(PSTYPE)']"" KVA^VADPT Q
 GMRA K ^TMP($J,"AL") S GMRA="0^0^111" D ^GMRADPT I GMRAL D
  .F DR=0:0 S DR=$O(GMRAL(DR)) Q:'DR  S ^TMP($J,"AL",$S('$P(GMRAL(DR),"^",5):1,1:2),$P(GMRAL(DR),"^",7),$P(GMRAL(DR),"^",2))=""
@@ -58,3 +59,6 @@ GMRA K ^TMP($J,"AL") S GMRA="0^0^111" D ^GMRADPT I GMRAL D
  I $G(GMRAL)']"" F AD="ALLERGIES:","ADVERSE REACTIONS:" W !!,AD I $G(PSOFROM)="" F ADL=1:1:IOM-($L(AD)+5) W "_"
  I GMRAL=0 W !!,"ALLERGIES: NKA",!!,"ADVERSE REACTIONS:"
  W ! K TY,D,I,GMRA,GMRAL,DR,AD,ADL,^TMP($J,"AL") Q
+WH ; WOMEN'S HEALTH
+ I $P(VADM(5),U,1)="F" W !,"WOMEN'S HEALTH: ",$$GETSTATUS^WVRPCPT(DFN),!
+ Q

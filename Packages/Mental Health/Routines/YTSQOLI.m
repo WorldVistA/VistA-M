@@ -1,5 +1,5 @@
 YTSQOLI ;SLC/PIJ - Score QOLI ; 01/08/2016
- ;;5.01;MENTAL HEALTH;**123,142**;DEC 30,1994;Build 14
+ ;;5.01;MENTAL HEALTH;**123,142,141**;DEC 30,1994;Build 85
  ;
  ;Public, Supported ICRs
  ; #2056 - Fileman API - $$GET1^DIQ
@@ -140,8 +140,8 @@ SCORANS ;
  .E  D
  ..I (TMPSCALE(DES-1)="-99")!(TMPSCALE(DES)="-99") D
  ...S SCALE(DES/2)="-99"
- .E  D
- ..S SCALE(DES/2)=(TMPSCALE(DES-1)*TMPSCALE(DES))
+ ..E  D
+ ...S SCALE(DES/2)=(TMPSCALE(DES-1)*TMPSCALE(DES))
  .; compute the raw score and determine if a valid importance item (odd # question)
  .I SCALE(DES/2)'="-99" D
  ..S RAWSCORE=RAWSCORE+(SCALE(DES/2))

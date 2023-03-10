@@ -1,5 +1,5 @@
 XINDX51 ;ISC/REL,GRK,RWF - PRINT ROUTINE ;06/24/08  16:06
- ;;7.3;TOOLKIT;**20,48,61,110,133,140**;Apr 25, 1995;Build 40
+ ;;7.3;TOOLKIT;**20,48,61,110,133,140,149,151**;Apr 25, 1995;Build 1
  ; Per VHA Directive 2004-038, this routine should not be modified.
  ;Setup Local IO paramiters
 B S RTN="",INL(1)=IOM-2,INL(2)=IOSL-4,INL(3)=("C"=$E(IOST)),INL(4)=IOM-1,PG=0,INL(5)="Compiled list of Errors and Warnings "
@@ -77,7 +77,11 @@ P(LOC,SYM) ;
  S L="",PC="",TAB=$S("XG"[LOC:23,"O"[LOC:35,1:16) D HD Q:$D(IND("QUIT"))
 P1 S L=$O(^UTILITY($J,1,RTN,LOC,L)) G:L="" PX
  I LOC="X",L?1L.LNP Q
- S PC(1)=$G(^UTILITY($J,1,RTN,LOC,$P(L,"(")))_$S("^DT^DUZ^DTIME^IO^IOF^ION^IOM^IOSL^IOST^U^"[("^"_$P(L,"(")_"^"):"!",1:" ")
+ ;p151 check for Kernel variables only if "L"ocal
+ S X=$S($G(^UTILITY($J,1,RTN,LOC,L))]"":^(L),$G(^UTILITY($J,1,RTN,LOC,$P(L,"(")))]"":^($P(L,"(")),1:"")
+ I LOC="L" S PC(1)=X_$S("^DT^DTIME^DILOCKTM^DUZ^IO^IOF^ION^IOM^IOSL^IOST^U^"[("^"_L_"^"):"!",1:" ")
+ E  S PC(1)=X_" "
+ ;S PC(1)=$G(^UTILITY($J,1,RTN,LOC,$P(L,"(")))_$S("^DT^DTIME^DILOCKTM^DUZ^IO^IOF^ION^IOM^IOSL^IOST^U^"[("^"_$P(L,"(")_"^"):"!",1:" ") ;p149 added DILOCKTM
  S PC(1)=(PC(1)["!")!(PC(1)["~"),PC="*"
  F J=0:1 S X=$S($D(^UTILITY($J,1,RTN,LOC,L,J)):^(J),1:"") Q:X=""!$D(IND("QUIT"))  D P2,P3
  G P1

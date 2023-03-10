@@ -1,5 +1,5 @@
-RCDPRSEA ;WISC/RFJ,PJH,hrub - extended search ;31 Oct 2018 18:43:20
- ;;4.5;Accounts Receivable;**114,148,208,269,304,332**;Mar 20, 1995;Build 40
+RCDPRSEA ;WISC/RFJ,PJH,hrub - extended search ;4 Feb 2019 09:24:27
+ ;;4.5;Accounts Receivable;**114,148,208,269,304,332,345**;Mar 20, 1995;Build 34
  ;Per VA Directive 6402, this routine should not be modified.
  ;
  ; enter at top for [RCDP EXTENDED CHECK/CC SEARCH] option
@@ -226,3 +226,4 @@ CHKTRACE(TYPE,TRACE,TARGET,DUP) ; Check if Trace# is a match
 SBSCRPT(X) Q $S(X=1:"Check#",X=2:"CredCard",1:"Trace#")
  ; function, uppercase
 UP(T) Q $TR(T,"abcdefghijklmnopqrstuvwxyz","ABCDEFGHIJKLMNOPQRSTUVWXYZ")
+ ;

@@ -1,128 +1,126 @@
-IBDEI14U ; ; 04-FEB-2020
- ;;3.0;IB ENCOUNTER FORM IMP/EXP;;FEB 04, 2020
+IBDEI14U ; ; 01-FEB-2022
+ ;;3.0;IB ENCOUNTER FORM IMP/EXP;;FEB 01, 2022
  Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,999) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
- ;;^UTILITY(U,$J,358.3,18185,1,0)
+ ;;^UTILITY(U,$J,358.3,18388,1,2,0)
+ ;;=2^99212
+ ;;^UTILITY(U,$J,358.3,18389,0)
+ ;;=99213^^63^825^3
+ ;;^UTILITY(U,$J,358.3,18389,1,0)
+ ;;=^358.31IA^2^2
+ ;;^UTILITY(U,$J,358.3,18389,1,1,0)
+ ;;=1^Low MDM or 20-29 mins
+ ;;^UTILITY(U,$J,358.3,18389,1,2,0)
+ ;;=2^99213
+ ;;^UTILITY(U,$J,358.3,18390,0)
+ ;;=99214^^63^825^4
+ ;;^UTILITY(U,$J,358.3,18390,1,0)
+ ;;=^358.31IA^2^2
+ ;;^UTILITY(U,$J,358.3,18390,1,1,0)
+ ;;=1^Moderate MDM or 30-39 mins
+ ;;^UTILITY(U,$J,358.3,18390,1,2,0)
+ ;;=2^99214
+ ;;^UTILITY(U,$J,358.3,18391,0)
+ ;;=99215^^63^825^5
+ ;;^UTILITY(U,$J,358.3,18391,1,0)
+ ;;=^358.31IA^2^2
+ ;;^UTILITY(U,$J,358.3,18391,1,1,0)
+ ;;=1^High MDM or 40-54 mins
+ ;;^UTILITY(U,$J,358.3,18391,1,2,0)
+ ;;=2^99215
+ ;;^UTILITY(U,$J,358.3,18392,0)
+ ;;=99241^^63^826^1
+ ;;^UTILITY(U,$J,358.3,18392,1,0)
+ ;;=^358.31IA^2^2
+ ;;^UTILITY(U,$J,358.3,18392,1,1,0)
+ ;;=1^Problem Focused Hx/PE & SF MDM
+ ;;^UTILITY(U,$J,358.3,18392,1,2,0)
+ ;;=2^99241
+ ;;^UTILITY(U,$J,358.3,18393,0)
+ ;;=99242^^63^826^2
+ ;;^UTILITY(U,$J,358.3,18393,1,0)
+ ;;=^358.31IA^2^2
+ ;;^UTILITY(U,$J,358.3,18393,1,1,0)
+ ;;=1^Exp Problem Focused Hx/PE & SF MDM
+ ;;^UTILITY(U,$J,358.3,18393,1,2,0)
+ ;;=2^99242
+ ;;^UTILITY(U,$J,358.3,18394,0)
+ ;;=99243^^63^826^3
+ ;;^UTILITY(U,$J,358.3,18394,1,0)
+ ;;=^358.31IA^2^2
+ ;;^UTILITY(U,$J,358.3,18394,1,1,0)
+ ;;=1^Detailed Hx/PE & Low Complex MDM
+ ;;^UTILITY(U,$J,358.3,18394,1,2,0)
+ ;;=2^99243
+ ;;^UTILITY(U,$J,358.3,18395,0)
+ ;;=99244^^63^826^4
+ ;;^UTILITY(U,$J,358.3,18395,1,0)
+ ;;=^358.31IA^2^2
+ ;;^UTILITY(U,$J,358.3,18395,1,1,0)
+ ;;=1^Comprehensive Hx/PE & Moderate Complex MDM
+ ;;^UTILITY(U,$J,358.3,18395,1,2,0)
+ ;;=2^99244
+ ;;^UTILITY(U,$J,358.3,18396,0)
+ ;;=99245^^63^826^5
+ ;;^UTILITY(U,$J,358.3,18396,1,0)
+ ;;=^358.31IA^2^2
+ ;;^UTILITY(U,$J,358.3,18396,1,1,0)
+ ;;=1^Comprehensive Hx/PE & High Complex MDM
+ ;;^UTILITY(U,$J,358.3,18396,1,2,0)
+ ;;=2^99245
+ ;;^UTILITY(U,$J,358.3,18397,0)
+ ;;=99024^^63^827^1
+ ;;^UTILITY(U,$J,358.3,18397,1,0)
+ ;;=^358.31IA^2^2
+ ;;^UTILITY(U,$J,358.3,18397,1,1,0)
+ ;;=1^Post-Op Follow-Up Care
+ ;;^UTILITY(U,$J,358.3,18397,1,2,0)
+ ;;=2^99024
+ ;;^UTILITY(U,$J,358.3,18398,0)
+ ;;=R91.8^^64^828^2
+ ;;^UTILITY(U,$J,358.3,18398,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,18185,1,3,0)
- ;;=3^Acute Tubulo-Interstitial Nephritis
- ;;^UTILITY(U,$J,358.3,18185,1,4,0)
- ;;=4^N10.
- ;;^UTILITY(U,$J,358.3,18185,2)
- ;;=^5015570
- ;;^UTILITY(U,$J,358.3,18186,0)
- ;;=N11.9^^88^913^4
- ;;^UTILITY(U,$J,358.3,18186,1,0)
+ ;;^UTILITY(U,$J,358.3,18398,1,3,0)
+ ;;=3^Abnormal Finding of Lung Field
+ ;;^UTILITY(U,$J,358.3,18398,1,4,0)
+ ;;=4^R91.8
+ ;;^UTILITY(U,$J,358.3,18398,2)
+ ;;=^5019708
+ ;;^UTILITY(U,$J,358.3,18399,0)
+ ;;=R91.1^^64^828^101
+ ;;^UTILITY(U,$J,358.3,18399,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,18186,1,3,0)
- ;;=3^Chronic Tubulo-Interstitial Nephritis,Unspec
- ;;^UTILITY(U,$J,358.3,18186,1,4,0)
- ;;=4^N11.9
- ;;^UTILITY(U,$J,358.3,18186,2)
- ;;=^5015574
- ;;^UTILITY(U,$J,358.3,18187,0)
- ;;=N30.91^^88^913^5
- ;;^UTILITY(U,$J,358.3,18187,1,0)
+ ;;^UTILITY(U,$J,358.3,18399,1,3,0)
+ ;;=3^Pulmonary Nodule,Solitary
+ ;;^UTILITY(U,$J,358.3,18399,1,4,0)
+ ;;=4^R91.1
+ ;;^UTILITY(U,$J,358.3,18399,2)
+ ;;=^5019707
+ ;;^UTILITY(U,$J,358.3,18400,0)
+ ;;=J85.2^^64^828^3
+ ;;^UTILITY(U,$J,358.3,18400,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,18187,1,3,0)
- ;;=3^Cystitis,Unspec w/ Hematuria
- ;;^UTILITY(U,$J,358.3,18187,1,4,0)
- ;;=4^N30.91
- ;;^UTILITY(U,$J,358.3,18187,2)
- ;;=^5015643
- ;;^UTILITY(U,$J,358.3,18188,0)
- ;;=N30.90^^88^913^6
- ;;^UTILITY(U,$J,358.3,18188,1,0)
+ ;;^UTILITY(U,$J,358.3,18400,1,3,0)
+ ;;=3^Abscess of Lung w/o Pneumonia
+ ;;^UTILITY(U,$J,358.3,18400,1,4,0)
+ ;;=4^J85.2
+ ;;^UTILITY(U,$J,358.3,18400,2)
+ ;;=^5008307
+ ;;^UTILITY(U,$J,358.3,18401,0)
+ ;;=J02.9^^64^828^76
+ ;;^UTILITY(U,$J,358.3,18401,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,18188,1,3,0)
- ;;=3^Cystitis,Unspec w/o Hematuria
- ;;^UTILITY(U,$J,358.3,18188,1,4,0)
- ;;=4^N30.90
- ;;^UTILITY(U,$J,358.3,18188,2)
- ;;=^5015642
- ;;^UTILITY(U,$J,358.3,18189,0)
- ;;=N28.84^^88^913^7
- ;;^UTILITY(U,$J,358.3,18189,1,0)
+ ;;^UTILITY(U,$J,358.3,18401,1,3,0)
+ ;;=3^Pharyngitis,Acute,Unspec
+ ;;^UTILITY(U,$J,358.3,18401,1,4,0)
+ ;;=4^J02.9
+ ;;^UTILITY(U,$J,358.3,18401,2)
+ ;;=^5008130
+ ;;^UTILITY(U,$J,358.3,18402,0)
+ ;;=B20.^^64^828^1
+ ;;^UTILITY(U,$J,358.3,18402,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,18189,1,3,0)
- ;;=3^Pyelitis Cystica
- ;;^UTILITY(U,$J,358.3,18189,1,4,0)
- ;;=4^N28.84
- ;;^UTILITY(U,$J,358.3,18189,2)
- ;;=^5015628
- ;;^UTILITY(U,$J,358.3,18190,0)
- ;;=N28.85^^88^913^8
- ;;^UTILITY(U,$J,358.3,18190,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,18190,1,3,0)
- ;;=3^Pyeloureteritis Cystica
- ;;^UTILITY(U,$J,358.3,18190,1,4,0)
- ;;=4^N28.85
- ;;^UTILITY(U,$J,358.3,18190,2)
- ;;=^270372
- ;;^UTILITY(U,$J,358.3,18191,0)
- ;;=N15.1^^88^913^9
- ;;^UTILITY(U,$J,358.3,18191,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,18191,1,3,0)
- ;;=3^Renal & Perinephric Abscess
- ;;^UTILITY(U,$J,358.3,18191,1,4,0)
- ;;=4^N15.1
- ;;^UTILITY(U,$J,358.3,18191,2)
- ;;=^270371
- ;;^UTILITY(U,$J,358.3,18192,0)
- ;;=N16.^^88^913^10
- ;;^UTILITY(U,$J,358.3,18192,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,18192,1,3,0)
- ;;=3^Tubulo-Interstitial D/O in Diseases Classigied Elsewhere
- ;;^UTILITY(U,$J,358.3,18192,1,4,0)
- ;;=4^N16.
- ;;^UTILITY(U,$J,358.3,18192,2)
- ;;=^5015597
- ;;^UTILITY(U,$J,358.3,18193,0)
- ;;=N15.9^^88^913^11
- ;;^UTILITY(U,$J,358.3,18193,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,18193,1,3,0)
- ;;=3^Tubulo-Interstitial Disease,Unspec
- ;;^UTILITY(U,$J,358.3,18193,1,4,0)
- ;;=4^N15.9
- ;;^UTILITY(U,$J,358.3,18193,2)
- ;;=^5015596
- ;;^UTILITY(U,$J,358.3,18194,0)
- ;;=N12.^^88^913^12
- ;;^UTILITY(U,$J,358.3,18194,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,18194,1,3,0)
- ;;=3^Tubulo-Interstitial Nephritis,Not Spec as Acute or Chronic
- ;;^UTILITY(U,$J,358.3,18194,1,4,0)
- ;;=4^N12.
- ;;^UTILITY(U,$J,358.3,18194,2)
- ;;=^5015575
- ;;^UTILITY(U,$J,358.3,18195,0)
- ;;=N28.86^^88^913^14
- ;;^UTILITY(U,$J,358.3,18195,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,18195,1,3,0)
- ;;=3^Ureteritis Cystica
- ;;^UTILITY(U,$J,358.3,18195,1,4,0)
- ;;=4^N28.86
- ;;^UTILITY(U,$J,358.3,18195,2)
- ;;=^5015629
- ;;^UTILITY(U,$J,358.3,18196,0)
- ;;=A08.0^^88^914^6
- ;;^UTILITY(U,$J,358.3,18196,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,18196,1,3,0)
- ;;=3^Enteritis,Rotaviral
- ;;^UTILITY(U,$J,358.3,18196,1,4,0)
- ;;=4^A08.0
- ;;^UTILITY(U,$J,358.3,18196,2)
- ;;=^5000052
- ;;^UTILITY(U,$J,358.3,18197,0)
- ;;=A08.11^^88^914^1
- ;;^UTILITY(U,$J,358.3,18197,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,18197,1,3,0)
- ;;=3^Acute Gastroenteropathy d/t Norwalk Agent
+ ;;^UTILITY(U,$J,358.3,18402,1,3,0)
+ ;;=3^AIDS (HIV Disease, HIV Stage 3, ARC)
+ ;;^UTILITY(U,$J,358.3,18402,1,4,0)
+ ;;=4^B20.

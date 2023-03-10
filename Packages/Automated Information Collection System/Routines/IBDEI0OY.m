@@ -1,124 +1,130 @@
-IBDEI0OY ; ; 04-FEB-2020
- ;;3.0;IB ENCOUNTER FORM IMP/EXP;;FEB 04, 2020
+IBDEI0OY ; ; 01-FEB-2022
+ ;;3.0;IB ENCOUNTER FORM IMP/EXP;;FEB 01, 2022
  Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,999) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
- ;;^UTILITY(U,$J,358.3,11136,1,0)
+ ;;^UTILITY(U,$J,358.3,11201,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,11136,1,3,0)
- ;;=3^Lymphangitis of Face,Acute
- ;;^UTILITY(U,$J,358.3,11136,1,4,0)
- ;;=4^L03.212
- ;;^UTILITY(U,$J,358.3,11136,2)
- ;;=^5009044
- ;;^UTILITY(U,$J,358.3,11137,0)
- ;;=Z90.01^^77^723^10
- ;;^UTILITY(U,$J,358.3,11137,1,0)
+ ;;^UTILITY(U,$J,358.3,11201,1,3,0)
+ ;;=3^Disability Determination Exam
+ ;;^UTILITY(U,$J,358.3,11201,1,4,0)
+ ;;=4^Z02.71
+ ;;^UTILITY(U,$J,358.3,11201,2)
+ ;;=^5062640
+ ;;^UTILITY(U,$J,358.3,11202,0)
+ ;;=Z02.79^^42^510^4
+ ;;^UTILITY(U,$J,358.3,11202,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,11137,1,3,0)
- ;;=3^Acquired Absence of Eye
- ;;^UTILITY(U,$J,358.3,11137,1,4,0)
- ;;=4^Z90.01
- ;;^UTILITY(U,$J,358.3,11137,2)
- ;;=^322068
- ;;^UTILITY(U,$J,358.3,11138,0)
- ;;=H05.241^^77^723^13
- ;;^UTILITY(U,$J,358.3,11138,1,0)
+ ;;^UTILITY(U,$J,358.3,11202,1,3,0)
+ ;;=3^Issue of Medical Certificate
+ ;;^UTILITY(U,$J,358.3,11202,1,4,0)
+ ;;=4^Z02.79
+ ;;^UTILITY(U,$J,358.3,11202,2)
+ ;;=^5062641
+ ;;^UTILITY(U,$J,358.3,11203,0)
+ ;;=Z04.9^^42^510^3
+ ;;^UTILITY(U,$J,358.3,11203,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,11138,1,3,0)
- ;;=3^Exophthalmos,Right Eye
- ;;^UTILITY(U,$J,358.3,11138,1,4,0)
- ;;=4^H05.241
- ;;^UTILITY(U,$J,358.3,11138,2)
- ;;=^5004598
- ;;^UTILITY(U,$J,358.3,11139,0)
- ;;=H05.242^^77^723^14
- ;;^UTILITY(U,$J,358.3,11139,1,0)
+ ;;^UTILITY(U,$J,358.3,11203,1,3,0)
+ ;;=3^Exam & Observation for Unspec Reason
+ ;;^UTILITY(U,$J,358.3,11203,1,4,0)
+ ;;=4^Z04.9
+ ;;^UTILITY(U,$J,358.3,11203,2)
+ ;;=^5062666
+ ;;^UTILITY(U,$J,358.3,11204,0)
+ ;;=Z02.9^^42^510^1
+ ;;^UTILITY(U,$J,358.3,11204,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,11139,1,3,0)
- ;;=3^Exophthalmos,Left Eye
- ;;^UTILITY(U,$J,358.3,11139,1,4,0)
- ;;=4^H05.242
- ;;^UTILITY(U,$J,358.3,11139,2)
- ;;=^5004599
- ;;^UTILITY(U,$J,358.3,11140,0)
- ;;=H44.521^^77^723^15
- ;;^UTILITY(U,$J,358.3,11140,1,0)
+ ;;^UTILITY(U,$J,358.3,11204,1,3,0)
+ ;;=3^Adminstrative Exams,Unspec
+ ;;^UTILITY(U,$J,358.3,11204,1,4,0)
+ ;;=4^Z02.9
+ ;;^UTILITY(U,$J,358.3,11204,2)
+ ;;=^5062646
+ ;;^UTILITY(U,$J,358.3,11205,0)
+ ;;=Z76.82^^42^511^2
+ ;;^UTILITY(U,$J,358.3,11205,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,11140,1,3,0)
- ;;=3^Atrophy of Globe,Right Eye
- ;;^UTILITY(U,$J,358.3,11140,1,4,0)
- ;;=4^H44.521
- ;;^UTILITY(U,$J,358.3,11140,2)
- ;;=^5006025
- ;;^UTILITY(U,$J,358.3,11141,0)
- ;;=H44.522^^77^723^16
- ;;^UTILITY(U,$J,358.3,11141,1,0)
+ ;;^UTILITY(U,$J,358.3,11205,1,3,0)
+ ;;=3^Awaiting Organ Transplant Status
+ ;;^UTILITY(U,$J,358.3,11205,1,4,0)
+ ;;=4^Z76.82
+ ;;^UTILITY(U,$J,358.3,11205,2)
+ ;;=^331582
+ ;;^UTILITY(U,$J,358.3,11206,0)
+ ;;=Z78.0^^42^511^1
+ ;;^UTILITY(U,$J,358.3,11206,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,11141,1,3,0)
- ;;=3^Atrophy of Globe,Left Eye
- ;;^UTILITY(U,$J,358.3,11141,1,4,0)
- ;;=4^H44.522
- ;;^UTILITY(U,$J,358.3,11141,2)
- ;;=^5006026
- ;;^UTILITY(U,$J,358.3,11142,0)
- ;;=T85.79XA^^77^723^19
- ;;^UTILITY(U,$J,358.3,11142,1,0)
+ ;;^UTILITY(U,$J,358.3,11206,1,3,0)
+ ;;=3^Asymptomatic Menopausal State
+ ;;^UTILITY(U,$J,358.3,11206,1,4,0)
+ ;;=4^Z78.0
+ ;;^UTILITY(U,$J,358.3,11206,2)
+ ;;=^5063327
+ ;;^UTILITY(U,$J,358.3,11207,0)
+ ;;=Z74.01^^42^511^3
+ ;;^UTILITY(U,$J,358.3,11207,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,11142,1,3,0)
- ;;=3^Infect/Inflm Reaction d/t Internal Prosthetic Device/Implant,Init Encntr
- ;;^UTILITY(U,$J,358.3,11142,1,4,0)
- ;;=4^T85.79XA
- ;;^UTILITY(U,$J,358.3,11142,2)
- ;;=^5055676
- ;;^UTILITY(U,$J,358.3,11143,0)
- ;;=T85.398A^^77^723^20
- ;;^UTILITY(U,$J,358.3,11143,1,0)
+ ;;^UTILITY(U,$J,358.3,11207,1,3,0)
+ ;;=3^Bed Confinement Status
+ ;;^UTILITY(U,$J,358.3,11207,1,4,0)
+ ;;=4^Z74.01
+ ;;^UTILITY(U,$J,358.3,11207,2)
+ ;;=^5063282
+ ;;^UTILITY(U,$J,358.3,11208,0)
+ ;;=Z73.82^^42^511^5
+ ;;^UTILITY(U,$J,358.3,11208,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,11143,1,3,0)
- ;;=3^Mech Compl of Ocular Prosthetic Device/Implant/Graft,Init Encntr
- ;;^UTILITY(U,$J,358.3,11143,1,4,0)
- ;;=4^T85.398A
- ;;^UTILITY(U,$J,358.3,11143,2)
- ;;=^5055559
- ;;^UTILITY(U,$J,358.3,11144,0)
- ;;=T85.328A^^77^723^21
- ;;^UTILITY(U,$J,358.3,11144,1,0)
+ ;;^UTILITY(U,$J,358.3,11208,1,3,0)
+ ;;=3^Dual Sensory Impairment
+ ;;^UTILITY(U,$J,358.3,11208,1,4,0)
+ ;;=4^Z73.82
+ ;;^UTILITY(U,$J,358.3,11208,2)
+ ;;=^5063279
+ ;;^UTILITY(U,$J,358.3,11209,0)
+ ;;=Z66.^^42^511^4
+ ;;^UTILITY(U,$J,358.3,11209,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,11144,1,3,0)
- ;;=3^Displacement of Ocular Prosthetic Device/Implant/Graft,Init Encntr
- ;;^UTILITY(U,$J,358.3,11144,1,4,0)
- ;;=4^T85.328A
- ;;^UTILITY(U,$J,358.3,11144,2)
- ;;=^5055550
- ;;^UTILITY(U,$J,358.3,11145,0)
- ;;=T85.318A^^77^723^22
- ;;^UTILITY(U,$J,358.3,11145,1,0)
+ ;;^UTILITY(U,$J,358.3,11209,1,3,0)
+ ;;=3^Do Not Resuscitate
+ ;;^UTILITY(U,$J,358.3,11209,1,4,0)
+ ;;=4^Z66.
+ ;;^UTILITY(U,$J,358.3,11209,2)
+ ;;=^5063187
+ ;;^UTILITY(U,$J,358.3,11210,0)
+ ;;=Z78.1^^42^511^7
+ ;;^UTILITY(U,$J,358.3,11210,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,11145,1,3,0)
- ;;=3^Breakdown of Ocular Prosthetic Device/Implant/Graft,Init Encntr
- ;;^UTILITY(U,$J,358.3,11145,1,4,0)
- ;;=4^T85.318A
- ;;^UTILITY(U,$J,358.3,11145,2)
- ;;=^5055541
- ;;^UTILITY(U,$J,358.3,11146,0)
- ;;=H43.21^^77^724^4
- ;;^UTILITY(U,$J,358.3,11146,1,0)
+ ;;^UTILITY(U,$J,358.3,11210,1,3,0)
+ ;;=3^Physical Restraint Status
+ ;;^UTILITY(U,$J,358.3,11210,1,4,0)
+ ;;=4^Z78.1
+ ;;^UTILITY(U,$J,358.3,11210,2)
+ ;;=^5063328
+ ;;^UTILITY(U,$J,358.3,11211,0)
+ ;;=Z87.898^^42^511^6
+ ;;^UTILITY(U,$J,358.3,11211,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,11146,1,3,0)
- ;;=3^Asteroid Hyalosis,Right Eye
- ;;^UTILITY(U,$J,358.3,11146,1,4,0)
- ;;=4^H43.21
- ;;^UTILITY(U,$J,358.3,11146,2)
- ;;=^5005942
- ;;^UTILITY(U,$J,358.3,11147,0)
- ;;=H43.22^^77^724^5
- ;;^UTILITY(U,$J,358.3,11147,1,0)
+ ;;^UTILITY(U,$J,358.3,11211,1,3,0)
+ ;;=3^Personal Hx of Oth Spec Conditions
+ ;;^UTILITY(U,$J,358.3,11211,1,4,0)
+ ;;=4^Z87.898
+ ;;^UTILITY(U,$J,358.3,11211,2)
+ ;;=^5063520
+ ;;^UTILITY(U,$J,358.3,11212,0)
+ ;;=Z51.89^^42^512^1
+ ;;^UTILITY(U,$J,358.3,11212,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,11147,1,3,0)
- ;;=3^Asteroid Hyalosis,Left Eye
- ;;^UTILITY(U,$J,358.3,11147,1,4,0)
- ;;=4^H43.22
- ;;^UTILITY(U,$J,358.3,11147,2)
- ;;=^5005943
- ;;^UTILITY(U,$J,358.3,11148,0)
- ;;=H43.23^^77^724^6
+ ;;^UTILITY(U,$J,358.3,11212,1,3,0)
+ ;;=3^Aftercare,Oth Spec
+ ;;^UTILITY(U,$J,358.3,11212,1,4,0)
+ ;;=4^Z51.89
+ ;;^UTILITY(U,$J,358.3,11212,2)
+ ;;=^5063065
+ ;;^UTILITY(U,$J,358.3,11213,0)
+ ;;=Z51.5^^42^512^2
+ ;;^UTILITY(U,$J,358.3,11213,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,11213,1,3,0)
+ ;;=3^Palliative Care
+ ;;^UTILITY(U,$J,358.3,11213,1,4,0)
+ ;;=4^Z51.5

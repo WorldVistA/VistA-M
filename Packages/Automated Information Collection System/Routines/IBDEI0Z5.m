@@ -1,120 +1,128 @@
-IBDEI0Z5 ; ; 04-FEB-2020
- ;;3.0;IB ENCOUNTER FORM IMP/EXP;;FEB 04, 2020
+IBDEI0Z5 ; ; 01-FEB-2022
+ ;;3.0;IB ENCOUNTER FORM IMP/EXP;;FEB 01, 2022
  Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,999) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
- ;;^UTILITY(U,$J,358.3,15682,1,0)
+ ;;^UTILITY(U,$J,358.3,15865,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,15682,1,3,0)
- ;;=3^Abdominal Aortic Aneurysm w/o Rupture
- ;;^UTILITY(U,$J,358.3,15682,1,4,0)
- ;;=4^I71.4
- ;;^UTILITY(U,$J,358.3,15682,2)
- ;;=^5007789
- ;;^UTILITY(U,$J,358.3,15683,0)
- ;;=I73.9^^88^867^32
- ;;^UTILITY(U,$J,358.3,15683,1,0)
+ ;;^UTILITY(U,$J,358.3,15865,1,3,0)
+ ;;=3^Cellulitis of Groin
+ ;;^UTILITY(U,$J,358.3,15865,1,4,0)
+ ;;=4^L03.314
+ ;;^UTILITY(U,$J,358.3,15865,2)
+ ;;=^5009050
+ ;;^UTILITY(U,$J,358.3,15866,0)
+ ;;=L03.315^^61^765^109
+ ;;^UTILITY(U,$J,358.3,15866,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,15683,1,3,0)
- ;;=3^Peripheral Vascular Disease,Unspec
- ;;^UTILITY(U,$J,358.3,15683,1,4,0)
- ;;=4^I73.9
- ;;^UTILITY(U,$J,358.3,15683,2)
- ;;=^184182
- ;;^UTILITY(U,$J,358.3,15684,0)
- ;;=I82.891^^88^867^23
- ;;^UTILITY(U,$J,358.3,15684,1,0)
+ ;;^UTILITY(U,$J,358.3,15866,1,3,0)
+ ;;=3^Cellulitis of Perineum
+ ;;^UTILITY(U,$J,358.3,15866,1,4,0)
+ ;;=4^L03.315
+ ;;^UTILITY(U,$J,358.3,15866,2)
+ ;;=^5009051
+ ;;^UTILITY(U,$J,358.3,15867,0)
+ ;;=L03.316^^61^765^116
+ ;;^UTILITY(U,$J,358.3,15867,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,15684,1,3,0)
- ;;=3^Embolism/Thrombosis Oth Spec Veins,Chronic
- ;;^UTILITY(U,$J,358.3,15684,1,4,0)
- ;;=4^I82.891
- ;;^UTILITY(U,$J,358.3,15684,2)
- ;;=^5007939
- ;;^UTILITY(U,$J,358.3,15685,0)
- ;;=I82.890^^88^867^22
- ;;^UTILITY(U,$J,358.3,15685,1,0)
+ ;;^UTILITY(U,$J,358.3,15867,1,3,0)
+ ;;=3^Cellulitis of Umbilicus
+ ;;^UTILITY(U,$J,358.3,15867,1,4,0)
+ ;;=4^L03.316
+ ;;^UTILITY(U,$J,358.3,15867,2)
+ ;;=^5009052
+ ;;^UTILITY(U,$J,358.3,15868,0)
+ ;;=L03.319^^61^765^115
+ ;;^UTILITY(U,$J,358.3,15868,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,15685,1,3,0)
- ;;=3^Embolism/Thrombosis Oth Spec Veins,Acute
- ;;^UTILITY(U,$J,358.3,15685,1,4,0)
- ;;=4^I82.890
- ;;^UTILITY(U,$J,358.3,15685,2)
- ;;=^5007938
- ;;^UTILITY(U,$J,358.3,15686,0)
- ;;=I25.729^^88^867^2
- ;;^UTILITY(U,$J,358.3,15686,1,0)
+ ;;^UTILITY(U,$J,358.3,15868,1,3,0)
+ ;;=3^Cellulitis of Trunk,Unspec
+ ;;^UTILITY(U,$J,358.3,15868,1,4,0)
+ ;;=4^L03.319
+ ;;^UTILITY(U,$J,358.3,15868,2)
+ ;;=^5009054
+ ;;^UTILITY(U,$J,358.3,15869,0)
+ ;;=L03.321^^61^765^14
+ ;;^UTILITY(U,$J,358.3,15869,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,15686,1,3,0)
- ;;=3^Athscl Autologous Artery CABG w/ Unspec Angina Pectoris
- ;;^UTILITY(U,$J,358.3,15686,1,4,0)
- ;;=4^I25.729
- ;;^UTILITY(U,$J,358.3,15686,2)
- ;;=^5133561
- ;;^UTILITY(U,$J,358.3,15687,0)
- ;;=I25.119^^88^867^3
- ;;^UTILITY(U,$J,358.3,15687,1,0)
+ ;;^UTILITY(U,$J,358.3,15869,1,3,0)
+ ;;=3^Acute Lymphangitis of Abdominal Wall
+ ;;^UTILITY(U,$J,358.3,15869,1,4,0)
+ ;;=4^L03.321
+ ;;^UTILITY(U,$J,358.3,15869,2)
+ ;;=^5009055
+ ;;^UTILITY(U,$J,358.3,15870,0)
+ ;;=L03.322^^61^765^15
+ ;;^UTILITY(U,$J,358.3,15870,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,15687,1,3,0)
- ;;=3^Athscl HRT Dis of Native Cor Art w/ Ang Pctrs,Unspec
- ;;^UTILITY(U,$J,358.3,15687,1,4,0)
- ;;=4^I25.119
- ;;^UTILITY(U,$J,358.3,15687,2)
- ;;=^5007111
- ;;^UTILITY(U,$J,358.3,15688,0)
- ;;=I25.10^^88^867^4
- ;;^UTILITY(U,$J,358.3,15688,1,0)
+ ;;^UTILITY(U,$J,358.3,15870,1,3,0)
+ ;;=3^Acute Lymphangitis of Back
+ ;;^UTILITY(U,$J,358.3,15870,1,4,0)
+ ;;=4^L03.322
+ ;;^UTILITY(U,$J,358.3,15870,2)
+ ;;=^5009056
+ ;;^UTILITY(U,$J,358.3,15871,0)
+ ;;=L03.323^^61^765^16
+ ;;^UTILITY(U,$J,358.3,15871,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,15688,1,3,0)
- ;;=3^Athscl HRT Dis of Native Cor Art w/o Ang Pctrs
- ;;^UTILITY(U,$J,358.3,15688,1,4,0)
- ;;=4^I25.10
- ;;^UTILITY(U,$J,358.3,15688,2)
- ;;=^5007107
- ;;^UTILITY(U,$J,358.3,15689,0)
- ;;=I25.110^^88^867^5
- ;;^UTILITY(U,$J,358.3,15689,1,0)
+ ;;^UTILITY(U,$J,358.3,15871,1,3,0)
+ ;;=3^Acute Lymphangitis of Chest Wall
+ ;;^UTILITY(U,$J,358.3,15871,1,4,0)
+ ;;=4^L03.323
+ ;;^UTILITY(U,$J,358.3,15871,2)
+ ;;=^5009057
+ ;;^UTILITY(U,$J,358.3,15872,0)
+ ;;=L03.324^^61^765^18
+ ;;^UTILITY(U,$J,358.3,15872,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,15689,1,3,0)
- ;;=3^Athscl Hrt Dis of Native Cor Art w/ Unstable Ang Pctrs
- ;;^UTILITY(U,$J,358.3,15689,1,4,0)
- ;;=4^I25.110
- ;;^UTILITY(U,$J,358.3,15689,2)
- ;;=^5007108
- ;;^UTILITY(U,$J,358.3,15690,0)
- ;;=I25.810^^88^867^17
- ;;^UTILITY(U,$J,358.3,15690,1,0)
+ ;;^UTILITY(U,$J,358.3,15872,1,3,0)
+ ;;=3^Acute Lymphangitis of Groin
+ ;;^UTILITY(U,$J,358.3,15872,1,4,0)
+ ;;=4^L03.324
+ ;;^UTILITY(U,$J,358.3,15872,2)
+ ;;=^5009058
+ ;;^UTILITY(U,$J,358.3,15873,0)
+ ;;=L03.325^^61^765^24
+ ;;^UTILITY(U,$J,358.3,15873,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,15690,1,3,0)
- ;;=3^Athscl of CABG w/o Angina Pectoris
- ;;^UTILITY(U,$J,358.3,15690,1,4,0)
- ;;=4^I25.810
- ;;^UTILITY(U,$J,358.3,15690,2)
- ;;=^5007141
- ;;^UTILITY(U,$J,358.3,15691,0)
- ;;=I25.701^^88^867^18
- ;;^UTILITY(U,$J,358.3,15691,1,0)
+ ;;^UTILITY(U,$J,358.3,15873,1,3,0)
+ ;;=3^Acute Lymphangitis of Perineum
+ ;;^UTILITY(U,$J,358.3,15873,1,4,0)
+ ;;=4^L03.325
+ ;;^UTILITY(U,$J,358.3,15873,2)
+ ;;=^5009059
+ ;;^UTILITY(U,$J,358.3,15874,0)
+ ;;=L03.326^^61^765^30
+ ;;^UTILITY(U,$J,358.3,15874,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,15691,1,3,0)
- ;;=3^Athscl of CABG,Unspec w/ Angina Pectoris w/ Documented Spasm
- ;;^UTILITY(U,$J,358.3,15691,1,4,0)
- ;;=4^I25.701
- ;;^UTILITY(U,$J,358.3,15691,2)
- ;;=^5007118
- ;;^UTILITY(U,$J,358.3,15692,0)
- ;;=I25.708^^88^867^19
- ;;^UTILITY(U,$J,358.3,15692,1,0)
+ ;;^UTILITY(U,$J,358.3,15874,1,3,0)
+ ;;=3^Acute Lymphangitis of Umbilicus
+ ;;^UTILITY(U,$J,358.3,15874,1,4,0)
+ ;;=4^L03.326
+ ;;^UTILITY(U,$J,358.3,15874,2)
+ ;;=^5009060
+ ;;^UTILITY(U,$J,358.3,15875,0)
+ ;;=L03.329^^61^765^29
+ ;;^UTILITY(U,$J,358.3,15875,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,15692,1,3,0)
- ;;=3^Athscl of CABG,Unspec w/ Oth Angina Pectoris
- ;;^UTILITY(U,$J,358.3,15692,1,4,0)
- ;;=4^I25.708
- ;;^UTILITY(U,$J,358.3,15692,2)
- ;;=^5007119
- ;;^UTILITY(U,$J,358.3,15693,0)
- ;;=I25.709^^88^867^20
- ;;^UTILITY(U,$J,358.3,15693,1,0)
+ ;;^UTILITY(U,$J,358.3,15875,1,3,0)
+ ;;=3^Acute Lymphangitis of Trunk,Unspec
+ ;;^UTILITY(U,$J,358.3,15875,1,4,0)
+ ;;=4^L03.329
+ ;;^UTILITY(U,$J,358.3,15875,2)
+ ;;=^5009062
+ ;;^UTILITY(U,$J,358.3,15876,0)
+ ;;=L08.9^^61^765^171
+ ;;^UTILITY(U,$J,358.3,15876,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,15693,1,3,0)
- ;;=3^Athscl of CABG,Unspec w/ Unspec Angina Pectoris
- ;;^UTILITY(U,$J,358.3,15693,1,4,0)
- ;;=4^I25.709
+ ;;^UTILITY(U,$J,358.3,15876,1,3,0)
+ ;;=3^Local Infection of Skin/Subcutaneous Tissue,Unspec
+ ;;^UTILITY(U,$J,358.3,15876,1,4,0)
+ ;;=4^L08.9
+ ;;^UTILITY(U,$J,358.3,15876,2)
+ ;;=^5009082
+ ;;^UTILITY(U,$J,358.3,15877,0)
+ ;;=L11.0^^61^765^10
+ ;;^UTILITY(U,$J,358.3,15877,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,15877,1,3,0)
+ ;;=3^Acquired Keratosis Follicularis

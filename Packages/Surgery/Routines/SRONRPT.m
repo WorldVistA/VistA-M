@@ -1,5 +1,5 @@
-SRONRPT ;BIR/ADM - NURSE INTRAOP REPORT ; [ 06/16/04  10:12 AM ]
- ;;3.0;Surgery;**100,129,182**;24 Jun 93;Build 49
+SRONRPT ;BIR/ADM - NURSE INTRAOP REPORT ;06/16/04@10:12
+ ;;3.0;Surgery;**100,129,182,200**;24 Jun 93;Build 9
  ;** NOTICE: This routine is part of an implementation of a nationally
  ;**         controlled procedure. Local modifications to this routine
  ;**         are prohibited.
@@ -54,7 +54,7 @@ OSA S SRLINE="Other Scrubbed Assistants: "
  ..F  S SRLINE=$O(^SRF(SRTN,28,OTH,1,SRLINE)) Q:'SRLINE  S X=^SRF(SRTN,28,OTH,1,SRLINE,0) D COMM^SRONRPT3(X,SRL)
  D ^SRONRPT0
  Q
-PROC ; print procedure informatiom
+PROC ; print procedure information
  N I,M,MM,SRJ,SRMAJ,SROPER,SROPS,SRX,SRY,X,Z
  S SRMAJ=$P(SR(0),"^",3),SRMAJ=$S(SRMAJ="J":"Major",SRMAJ="N":"Minor",1:"Major")
  D LINE(2) S @SRG@(SRI)=SRMAJ_" Operations Performed:"
@@ -62,6 +62,8 @@ PROC ; print procedure informatiom
  I $P($G(^SRF(SRTN,30)),"^")&$P($G(^SRF(SRTN,.2)),"^",10) S SROPER="** ABORTED ** "_SROPER
  K SROPS,MM,MMM S:$L(SROPER)<70 SROPS(1)=SROPER I $L(SROPER)>69 S SROPER=SROPER_"  " F M=1:1 D LOOP Q:MMM=""
  F I=1:1 Q:'$D(SROPS(I))  D LINE(1) S @SRG@(SRI)=$S(I=1:"Primary: ",1:"         ")_SROPS(I)
+ N SROB S SROB=$$GET1^DIQ(130,SRTN_",",2006,"E")
+ D LINE(1) S @SRG@(SRI)="Robotic Assistance (Y/N): "_$S($G(SROB)]"":SROB,1:"NOT ENTERED")
  Q
 OTHER ; other procedures
  N CNT,OTH,OTHER,SRJ,SRX,SRY

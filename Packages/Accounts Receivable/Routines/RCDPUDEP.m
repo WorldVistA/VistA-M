@@ -1,5 +1,5 @@
 RCDPUDEP ;WISC/RFJ - Deposit Utilities ;29/MAY/2008
- ;;4.5;Accounts Receivable;**114,173,257,283,297,304**;Mar 20, 1995;Build 104
+ ;;4.5;Accounts Receivable;**114,173,257,283,297,304,380**;Mar 20, 1995;Build 14
  ;;Per VA Directive 6402, this routine should not be modified.
  Q
  ;
@@ -9,10 +9,11 @@ ADDDEPT(DEPOSIT,DEPDATE) ;  if the deposit is not entered, add it
  ;  if deposit date is missing, do not add the deposit
  I 'DEPDATE Q 0
  ;
+ ; PRCA *4.5*380 - No longer limiting to one record for deposit number/date
  ;  already in file, deposit number and deposit date match
- N DA,RCDPFLAG
- S DA=0 F  S DA=$O(^RCY(344.1,"B",DEPOSIT,DA)) Q:'DA  I $P($G(^RCY(344.1,DA,0)),"^",3)=DEPDATE S RCDPFLAG=1 Q
- I $G(RCDPFLAG) Q DA
+ ;N DA,RCDPFLAG
+ ;S DA=0 F  S DA=$O(^RCY(344.1,"B",DEPOSIT,DA)) Q:'DA  I $P($G(^RCY(344.1,DA,0)),"^",3)=DEPDATE S RCDPFLAG=1 Q
+ ;I $G(RCDPFLAG) Q DA
  ;
  ;  add it
  N %,%DT,D0,DA,DD,DI,DIC,DIE,DLAYGO,DO,DQ,DR,X,Y

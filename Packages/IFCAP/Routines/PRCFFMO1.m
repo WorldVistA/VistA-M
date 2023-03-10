@@ -1,6 +1,9 @@
 PRCFFMO1 ;WISC/SJG-CONTINUATION OF OBLIGATION PROCESSING ;4/24/96  8:54 AM
-V ;;5.1;IFCAP;**58,79**;Oct 20, 2000
- ;Per VHA Directive 10-93-142, this routine should not be modified.
+V ;;5.1;IFCAP;**58,79,220**;Oct 20, 2000;Build 23
+ ;Per VA Directive 6402, this routine should not be modified.
+ ;
+ ;PRC*5.1*220 Comment out line related to FPDS message generation
+ ;
  ;DISPLAY CONTROL POINT OFFICIALS BALANCES
  W !!,"Net Cost of Order: ",?30,"$",$J($P(PO(0),U,16),10,2)
  D CPBAL
@@ -102,7 +105,7 @@ PHA ; Generate PHA transaction
  D:'$G(PRCHOBL) NEW^PRCOEDI W !
  ; PRC*5.1*79: let the user know that a message is going out, except for
  ; Requisitions.
- D:$D(^PRC(442,PRCHPO,25)) EN^DDIOL("...now generating the FPDS message for the AAC","","!"),EN^DDIOL(" ")
+ ;D:$D(^PRC(442,PRCHPO,25)) EN^DDIOL("...now generating the FPDS message for the AAC","","!"),EN^DDIOL(" ")   ;PRC*5.1*220
  ;
  K PRCOPODA,IO("Q")
  ;

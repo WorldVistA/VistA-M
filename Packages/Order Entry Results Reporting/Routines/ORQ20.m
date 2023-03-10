@@ -1,5 +1,7 @@
-ORQ20 ; SLC/MKB - Detailed Order Report cont ;8/17/2017
- ;;3.0;ORDER ENTRY/RESULTS REPORTING;**12,27,92,94,116,141,177,186,190,215,243,434,493**;Dec 17, 1997;Build 6
+ORQ20 ; SLC/MKB - Detailed Order Report cont ;Dec 02, 2020@15:20:07
+ ;;3.0;ORDER ENTRY/RESULTS REPORTING;**12,27,92,94,116,141,177,186,190,215,243,434,493,539**;Dec 17, 1997;Build 41
+ ;
+ ;Reference to file #123 supported by ICR #2586
 ACT ; -- add Activity [from ^ORQ2]
  N ORACT,ORPACK,ORUCID S ORACT=$P(ACTION,U,2)
  I ORACT'="NW",$P(ACTION,U,4)=5,$P(ACTION,U,15)=13 Q  ;skip canc actions
@@ -56,12 +58,34 @@ A3 I $P(ACTION,U,2)="DC",$L(OR6) S X=$S($L($P(OR6,U,5)):$P(OR6,U,5),$P(OR6,U,4):
  . S ORJ=0 F  S ORJ=$O(^UTILITY($J,"W",DIWL,ORJ)) Q:ORJ'>0  S CNT=CNT+1,@ORY@(CNT)=$S(ORJ=1:"     Ward/Clinic Cmmts: ",1:"                        ")_^(ORJ,0)
  . K ^UTILITY($J,"W")
 A4 I $P(ACTION,U,2)="HD",$G(^OR(100,ORIFN,8,ORI,2)) S X2=^(2),CNT=CNT+1,@ORY@(CNT)="     Hold Released:     "_$$FMTE^XLFDT($P(X2,U),"2P")_" by "_$$USER($P(X2,U,2))
+ N X3,F,Y
  I $D(^OR(100,ORIFN,8,ORI,3)) D  ;Un-/Flagged
- . N X S X=$G(^OR(100,ORIFN,8,ORI,3))
- . S CNT=CNT+1,@ORY@(CNT)="     Flagged by:        "_$$USER(+$P(X,U,4))_" on "_$$DATE($P(X,U,3))
- . S CNT=CNT+1,@ORY@(CNT)="                        "_$P(X,U,5)
- . Q:X  S CNT=CNT+1,@ORY@(CNT)="     Unflagged by:      "_$$USER(+$P(X,U,7))_" on "_$$DATE($P(X,U,6))
- . S CNT=CNT+1,@ORY@(CNT)="                        "_$P(X,U,8)
+ . ;N X S X=$G(^OR(100,ORIFN,8,ORI,3))
+ . S X3=$G(^OR(100,ORIFN,8,ORI,3))
+ . S CNT=CNT+1,@ORY@(CNT)="     Flagged by:        "_$$USER(+$P(X3,U,4))_" on "_$$DATE($P(X3,U,3))
+ . S CNT=CNT+1,@ORY@(CNT)="                        "_$P(X3,U,5)
+ . I $P(X3,U,10)'="" S CNT=CNT+1,@ORY@(CNT)="     No Action Alert:   "_$$DATE($P(X3,U,10))
+ ;flagged recipients ;p539
+ S ORJ=0,F=0 F  S ORJ=$O(^OR(100,ORIFN,8,ORI,6,ORJ)) Q:'ORJ  S Y=^(ORJ,0) D
+ . S CNT=CNT+1,@ORY@(CNT)=$S('F:"     Recipients:        ",1:"                        ")_$$USER(+Y)_" added on "_$$DATE($P(Y,U,2)),F=1
+ ;flagged comments ;p539
+ N DIWL,DIWR,DIWF,X,I,ORK
+ S ORJ=0,F=0 F  S ORJ=$O(^OR(100,ORIFN,8,ORI,9,ORJ)) Q:'ORJ  S Y=^(ORJ,0) D
+ . S CNT=CNT+1,@ORY@(CNT)=$S('F:"     Comments by:       ",1:"                        ")_$$USER($P(Y,U,2))_" on "_$$DATE(+Y),F=1
+ . S DIWL=24,DIWR=110,DIWF="I24" K ^UTILITY($J,"W")
+ . S ORK=0 F  S ORK=$O(^OR(100,ORIFN,8,ORI,9,ORJ,"COM",ORK)) Q:'ORK  S X=^(ORK,0) D ^DIWP
+ . S I=0 F  S I=$O(^UTILITY($J,"W",DIWL,I)) Q:'I  S CNT=CNT+1,@ORY@(CNT)=^(I,0)
+ K ^UTILITY($J,"W")
+ I $P($G(X3),U)=0 D
+ . S CNT=CNT+1,@ORY@(CNT)="     Unflagged by:      "_$$USER(+$P(X3,U,7))_" on "_$$DATE($P(X3,U,6))
+ . S CNT=CNT+1,@ORY@(CNT)="                        "_$P(X3,U,8)
+ ;flagged history ;p539
+ K ORFHY
+ I $D(^OR(100,ORIFN,8,ORI,"FHIS")) D GETHST^ORWDXA1(.ORFHY,ORIFN_";"_ORI)
+ I $D(ORFHY) D
+ . S CNT=CNT+1,@ORY@(CNT)="     ***Order Flag History***"
+ . S ORJ=0,F=0 F  S ORJ=$O(ORFHY(ORJ)) Q:'ORJ  S Y=ORFHY(ORJ),CNT=CNT+1,@ORY@(CNT)="     "_Y
+ . K ORFHY
 A5 ;disposition/RTC Orders
  I $D(^OR(100,ORIFN,8,ORI,4)) D
  .N S S X=$G(^OR(100,ORIFN,8,ORI,4))

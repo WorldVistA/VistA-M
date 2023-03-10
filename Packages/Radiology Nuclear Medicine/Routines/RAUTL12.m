@@ -1,5 +1,5 @@
-RAUTL12 ;HISC/CAH,FPT,GJC-Utility Routine ; Oct 18, 2019@10:38:15
- ;;5.0;Radiology/Nuclear Medicine;**75,163**;Mar 16, 1998;Build 1
+RAUTL12 ;HISC/CAH,FPT,GJC-Utility Routine ; May 21, 2021@11:13:20
+ ;;5.0;Radiology/Nuclear Medicine;**75,163,181**;Mar 16, 1998;Build 1
  ;
 IMGTY(X,Y,Z) ; Determines the Imaging Type
  ; 'X' ->  either 'e', 'l', or 'p'
@@ -57,18 +57,23 @@ EXTRA(RAQI) ;Input is RAQI (Modifier)
  ;RAPORT = PORTABLE, and RAOR = OPERATING ROOM.
  S RAQI=$P($G(^RAMIS(71.2,RAQI,0)),U,2) S:RAQI="b" RABILAT="" S:RAQI="p" RAPORT="" S:RAQI="o" RAOR=""
  Q
-  ;
-DESDT(RAPRI) ; Obtain 'Date Desired (NOT appt date)' by DIR call.
- ; Input: IEN of procedure
+ ;
+DESDT(RAPRI) ;Obtain 'Date Desired (NOT appt date)' by DIR call.
+ ;from DESDT^RAUTL12 gjc@181
  ; The 'Date Desired' is passed back in internal format.
  ; 75.1 -> Rad Orders File    Fld 21 -> Date desired
+ ; Input: RAPRI = IEN of the procedure being ordered.
+ ;
  N DIR,DIROUT,DIRUT,DUOUT,DTOUT,X,Y
  I '$D(RAPKG),($D(ORVP)),($D(ORL)),($D(ORNP)) D PROCMSG^RAUTL5(RAPRI)
  F  D  Q:Y'=""
- .S DIR("?",1)="The 'Date Desired' field contains the date for which the rad/nuc med exam"
- .S DIR("?",2)="is requested. 'Date Desired' is required and should not be interpreted as"
- .S DIR("?")="an appointment date."
- .S DIR(0)="75.1,21" D ^DIR
+ .S DIR("?",1)="The date desired cannot be greater than 390 days into the future from today."
+ .S DIR("?",2)=" "
+ .S DIR("?",3)="The Date Desired or Clinically Indicated Date (CID) is the date for which the"
+ .S DIR("?",4)="Rad/Nuc Med exam is requested. The CID is required and should not be interpreted"
+ .S DIR("?")="as an appointment date."
+ .; 1st parameter is user's input in internal FM date format ('Y' not 'X')
+ .S DIR(0)="75.1,21^^K:$$FMDIFF^XLFDT(Y,DT,1)>390 X" D ^DIR
  .S:$D(DTOUT)#2!($D(DUOUT)#2) Y=-1
  .Q
  Q Y
@@ -113,3 +118,4 @@ LOC(RAX) ; Select one/many/all imaging locations.  L-Types are not
  S:'RAX RADIC("S")="N RADT S RADT=$P(^(0),""^"",19) I $S('RADT:1,RADT>DT:1,1:0)"
  S RAUTIL="RA L-TYPE" W !! D EN1^RASELCT(.RADIC,RAUTIL)
  Q $S($D(^TMP($J,"RA L-TYPE"))\10:1,1:0)
+ ;

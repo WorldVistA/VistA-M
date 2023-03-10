@@ -1,124 +1,122 @@
-IBDEI15W ; ; 04-FEB-2020
- ;;3.0;IB ENCOUNTER FORM IMP/EXP;;FEB 04, 2020
+IBDEI15W ; ; 01-FEB-2022
+ ;;3.0;IB ENCOUNTER FORM IMP/EXP;;FEB 01, 2022
  Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,999) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
- ;;^UTILITY(U,$J,358.3,18681,1,0)
+ ;;^UTILITY(U,$J,358.3,18858,2)
+ ;;=^5009864
+ ;;^UTILITY(U,$J,358.3,18859,0)
+ ;;=M05.132^^64^841^32
+ ;;^UTILITY(U,$J,358.3,18859,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,18681,1,3,0)
- ;;=3^Sleep-Related Hypoventilation Cond Class Elsewhere
- ;;^UTILITY(U,$J,358.3,18681,1,4,0)
- ;;=4^G47.36
- ;;^UTILITY(U,$J,358.3,18681,2)
- ;;=^5003979
- ;;^UTILITY(U,$J,358.3,18682,0)
- ;;=G47.35^^91^957^26
- ;;^UTILITY(U,$J,358.3,18682,1,0)
+ ;;^UTILITY(U,$J,358.3,18859,1,3,0)
+ ;;=3^Rheu Lung Disease w/ Rheu Arth of Left Wrist
+ ;;^UTILITY(U,$J,358.3,18859,1,4,0)
+ ;;=4^M05.132
+ ;;^UTILITY(U,$J,358.3,18859,2)
+ ;;=^5009870
+ ;;^UTILITY(U,$J,358.3,18860,0)
+ ;;=M05.19^^64^841^33
+ ;;^UTILITY(U,$J,358.3,18860,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,18682,1,3,0)
- ;;=3^Sleep-Related Hypoventilation,Congen Central Alveolar
- ;;^UTILITY(U,$J,358.3,18682,1,4,0)
- ;;=4^G47.35
- ;;^UTILITY(U,$J,358.3,18682,2)
- ;;=^332765
- ;;^UTILITY(U,$J,358.3,18683,0)
- ;;=G47.34^^91^957^27
- ;;^UTILITY(U,$J,358.3,18683,1,0)
+ ;;^UTILITY(U,$J,358.3,18860,1,3,0)
+ ;;=3^Rheu Lung Disease w/ Rheu Arth of Mult Sites
+ ;;^UTILITY(U,$J,358.3,18860,1,4,0)
+ ;;=4^M05.19
+ ;;^UTILITY(U,$J,358.3,18860,2)
+ ;;=^5009884
+ ;;^UTILITY(U,$J,358.3,18861,0)
+ ;;=M05.171^^64^841^34
+ ;;^UTILITY(U,$J,358.3,18861,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,18683,1,3,0)
- ;;=3^Sleep-Related Hypoventilation,Idiopathic
- ;;^UTILITY(U,$J,358.3,18683,1,4,0)
- ;;=4^G47.34
- ;;^UTILITY(U,$J,358.3,18683,2)
- ;;=^5003978
- ;;^UTILITY(U,$J,358.3,18684,0)
- ;;=G47.9^^91^957^29
- ;;^UTILITY(U,$J,358.3,18684,1,0)
+ ;;^UTILITY(U,$J,358.3,18861,1,3,0)
+ ;;=3^Rheu Lung Disease w/ Rheu Arth of Right Ankle/Foot
+ ;;^UTILITY(U,$J,358.3,18861,1,4,0)
+ ;;=4^M05.171
+ ;;^UTILITY(U,$J,358.3,18861,2)
+ ;;=^5009881
+ ;;^UTILITY(U,$J,358.3,18862,0)
+ ;;=M05.121^^64^841^35
+ ;;^UTILITY(U,$J,358.3,18862,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,18684,1,3,0)
- ;;=3^Sleep-Wake D/O,Unspec
- ;;^UTILITY(U,$J,358.3,18684,1,4,0)
- ;;=4^G47.9
- ;;^UTILITY(U,$J,358.3,18684,2)
- ;;=^5003990
- ;;^UTILITY(U,$J,358.3,18685,0)
- ;;=G47.419^^91^957^18
- ;;^UTILITY(U,$J,358.3,18685,1,0)
+ ;;^UTILITY(U,$J,358.3,18862,1,3,0)
+ ;;=3^Rheu Lung Disease w/ Rheu Arth of Right Elbow
+ ;;^UTILITY(U,$J,358.3,18862,1,4,0)
+ ;;=4^M05.121
+ ;;^UTILITY(U,$J,358.3,18862,2)
+ ;;=^5009866
+ ;;^UTILITY(U,$J,358.3,18863,0)
+ ;;=M05.141^^64^841^36
+ ;;^UTILITY(U,$J,358.3,18863,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,18685,1,3,0)
- ;;=3^Narcolepsy w/o Cataplexy
- ;;^UTILITY(U,$J,358.3,18685,1,4,0)
- ;;=4^G47.419
- ;;^UTILITY(U,$J,358.3,18685,2)
- ;;=^5003982
- ;;^UTILITY(U,$J,358.3,18686,0)
- ;;=R06.3^^91^957^3
- ;;^UTILITY(U,$J,358.3,18686,1,0)
+ ;;^UTILITY(U,$J,358.3,18863,1,3,0)
+ ;;=3^Rheu Lung Disease w/ Rheu Arth of Right Hand
+ ;;^UTILITY(U,$J,358.3,18863,1,4,0)
+ ;;=4^M05.141
+ ;;^UTILITY(U,$J,358.3,18863,2)
+ ;;=^5009872
+ ;;^UTILITY(U,$J,358.3,18864,0)
+ ;;=M05.151^^64^841^37
+ ;;^UTILITY(U,$J,358.3,18864,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,18686,1,3,0)
- ;;=3^Cheyne-Stokes Breathing
- ;;^UTILITY(U,$J,358.3,18686,1,4,0)
- ;;=4^R06.3
- ;;^UTILITY(U,$J,358.3,18686,2)
- ;;=^5019185
- ;;^UTILITY(U,$J,358.3,18687,0)
- ;;=G47.429^^91^957^16
- ;;^UTILITY(U,$J,358.3,18687,1,0)
+ ;;^UTILITY(U,$J,358.3,18864,1,3,0)
+ ;;=3^Rheu Lung Disease w/ Rheu Arth of Right Hip
+ ;;^UTILITY(U,$J,358.3,18864,1,4,0)
+ ;;=4^M05.151
+ ;;^UTILITY(U,$J,358.3,18864,2)
+ ;;=^5009875
+ ;;^UTILITY(U,$J,358.3,18865,0)
+ ;;=M05.161^^64^841^38
+ ;;^UTILITY(U,$J,358.3,18865,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,18687,1,3,0)
- ;;=3^Narcolepsy Secondary to Another Medical Condition
- ;;^UTILITY(U,$J,358.3,18687,1,4,0)
- ;;=4^G47.429
- ;;^UTILITY(U,$J,358.3,18687,2)
- ;;=^5003984
- ;;^UTILITY(U,$J,358.3,18688,0)
- ;;=F10.10^^91^958^29
- ;;^UTILITY(U,$J,358.3,18688,1,0)
+ ;;^UTILITY(U,$J,358.3,18865,1,3,0)
+ ;;=3^Rheu Lung Disease w/ Rheu Arth of Right Knee
+ ;;^UTILITY(U,$J,358.3,18865,1,4,0)
+ ;;=4^M05.161
+ ;;^UTILITY(U,$J,358.3,18865,2)
+ ;;=^5009878
+ ;;^UTILITY(U,$J,358.3,18866,0)
+ ;;=M05.111^^64^841^39
+ ;;^UTILITY(U,$J,358.3,18866,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,18688,1,3,0)
- ;;=3^Alcohol Use DO (Mild),Uncomplicated
- ;;^UTILITY(U,$J,358.3,18688,1,4,0)
- ;;=4^F10.10
- ;;^UTILITY(U,$J,358.3,18688,2)
- ;;=^5003068
- ;;^UTILITY(U,$J,358.3,18689,0)
- ;;=F10.20^^91^958^34
- ;;^UTILITY(U,$J,358.3,18689,1,0)
+ ;;^UTILITY(U,$J,358.3,18866,1,3,0)
+ ;;=3^Rheu Lung Disease w/ Rheu Arth of Right Shldr
+ ;;^UTILITY(U,$J,358.3,18866,1,4,0)
+ ;;=4^M05.111
+ ;;^UTILITY(U,$J,358.3,18866,2)
+ ;;=^5009863
+ ;;^UTILITY(U,$J,358.3,18867,0)
+ ;;=M05.131^^64^841^40
+ ;;^UTILITY(U,$J,358.3,18867,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,18689,1,3,0)
- ;;=3^Alcohol Use DO (Mod/Sev),Uncomplicated
- ;;^UTILITY(U,$J,358.3,18689,1,4,0)
- ;;=4^F10.20
- ;;^UTILITY(U,$J,358.3,18689,2)
- ;;=^5003081
- ;;^UTILITY(U,$J,358.3,18690,0)
- ;;=F10.239^^91^958^31
- ;;^UTILITY(U,$J,358.3,18690,1,0)
+ ;;^UTILITY(U,$J,358.3,18867,1,3,0)
+ ;;=3^Rheu Lung Disease w/ Rheu Arth of Right Wrist
+ ;;^UTILITY(U,$J,358.3,18867,1,4,0)
+ ;;=4^M05.131
+ ;;^UTILITY(U,$J,358.3,18867,2)
+ ;;=^5009869
+ ;;^UTILITY(U,$J,358.3,18868,0)
+ ;;=M05.10^^64^841^41
+ ;;^UTILITY(U,$J,358.3,18868,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,18690,1,3,0)
- ;;=3^Alcohol Use DO (Mod/Sev) WD,Unspec
- ;;^UTILITY(U,$J,358.3,18690,1,4,0)
- ;;=4^F10.239
- ;;^UTILITY(U,$J,358.3,18690,2)
- ;;=^5003089
- ;;^UTILITY(U,$J,358.3,18691,0)
- ;;=F10.180^^91^958^1
- ;;^UTILITY(U,$J,358.3,18691,1,0)
+ ;;^UTILITY(U,$J,358.3,18868,1,3,0)
+ ;;=3^Rheu Lung Disease w/ Rheu Arth of Unspec Site
+ ;;^UTILITY(U,$J,358.3,18868,1,4,0)
+ ;;=4^M05.10
+ ;;^UTILITY(U,$J,358.3,18868,2)
+ ;;=^5009862
+ ;;^UTILITY(U,$J,358.3,18869,0)
+ ;;=D86.86^^64^841^42
+ ;;^UTILITY(U,$J,358.3,18869,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,18691,1,3,0)
- ;;=3^Alcohol Induced Anxiety D/O w/ Mild Use D/O
- ;;^UTILITY(U,$J,358.3,18691,1,4,0)
- ;;=4^F10.180
- ;;^UTILITY(U,$J,358.3,18691,2)
- ;;=^5003076
- ;;^UTILITY(U,$J,358.3,18692,0)
- ;;=F10.280^^91^958^2
- ;;^UTILITY(U,$J,358.3,18692,1,0)
+ ;;^UTILITY(U,$J,358.3,18869,1,3,0)
+ ;;=3^Sarcoid Arthropathy
+ ;;^UTILITY(U,$J,358.3,18869,1,4,0)
+ ;;=4^D86.86
+ ;;^UTILITY(U,$J,358.3,18869,2)
+ ;;=^5002451
+ ;;^UTILITY(U,$J,358.3,18870,0)
+ ;;=D86.83^^64^841^43
+ ;;^UTILITY(U,$J,358.3,18870,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,18692,1,3,0)
- ;;=3^Alcohol Induced Anxiety D/O w/ Mod/Sev Use D/O
- ;;^UTILITY(U,$J,358.3,18692,1,4,0)
- ;;=4^F10.280
- ;;^UTILITY(U,$J,358.3,18692,2)
- ;;=^5003096
- ;;^UTILITY(U,$J,358.3,18693,0)
- ;;=F10.980^^91^958^3
+ ;;^UTILITY(U,$J,358.3,18870,1,3,0)
+ ;;=3^Sarcoid Iridocyclitis

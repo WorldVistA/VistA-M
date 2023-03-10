@@ -1,5 +1,5 @@
-%ZOSVKR ;SF/KAK/RAK/JML - ZOSVKRO - Collect RUM Statistics for Cache on VMS/Linux/Windows ;7/7/2010
- ;;8.0;KERNEL;**90,94,107,122,143,186,550,568,670**;3/1/2018;Build 45
+%ZOSVKR ;SF/KAK/RAK/JML - ZOSVKR - Collect RUM Statistics for Cache on VMS/Linux/Windows ;10/1/2020
+ ;;8.0;KERNEL;**90,94,107,122,143,186,550,568,670,740**;3/1/2018;Build 6
  ;
 RO(KMPVOPT) ; Record option resource usage in ^KMPTMP("KMPR"
  ;
@@ -37,7 +37,7 @@ RU(KMPEVENT,KMPVTYP,KMPVEXT) ;
  ;
  ;NOTE: KMPV("NOKILL" is not "NEWED" or "KILLED" as it must exist between calls
  ;         KMPV("NOKILL",node) contains stats that must exist between routine calls
- ;         KMPV("NOKILL","KMPVMUMPS") persists M implementation to decrease overhead
+ ;         KMPV("NOKILL","KMPVIMP") persists M implementation to decrease overhead
  ;         KMPV("NOKILL","KMPVVER") persists Version number to decrease overhead 
  ;----------------------------------------------------------------------
  ;
@@ -107,16 +107,17 @@ EN ;
  Q
  ;
 STATS() ;  return current stats for this $job
- N KMPVCPU,KMPVMUMPS,KMPVOS,KMPVPROC,KMPVRET,KMPVTCPU,KMPVV,KMPVVER,KMPVZH
+ N KMPVCPU,KMPIMP,KMPVOS,KMPVPROC,KMPVRET,KMPVTCPU,KMPVV,KMPVVER,KMPVZH
  ;
  S KMPVRET=""
- ; mumps implementation
- I $G(KMPV("NOKILL","KMPVMUMPS"))="" S KMPV("NOKILL","KMPVMUMPS")=$$VERSION^%ZOSV(1) ; IA 10097
- ; quit if not cache
- Q:$TR(KMPV("NOKILL","KMPVMUMPS"),"cahe","CAHE")'["CACHE" ""
- ; cache version
- I $G(KMPV("NOKILL","KMPVVER"))="" S KMPV("NOKILL","KMPVVER")=$P($$VERSION^%ZOSV(0),".",1,2) ; IA 10097
- ;
+ ; implementation name and version
+ I $G(KMPV("NOKILL","KMPVIMP"))="" D
+ .S KMPIMP=$$VERSION^%ZOSV(1) ; IA 10097
+ .S KMPIMP=$TR(KMPIMP,"cahe","CAHE")
+ .S KMPV("NOKILL","KMPVIMP")=KMPIMP
+ .S KMPV("NOKILL","KMPVVER")=$P($$VERSION^%ZOSV(0),".",1,2) ; IA 10097
+ ; quit if not CACHE or IRIS
+ Q:(KMPV("NOKILL","KMPVIMP")'["CACHE")&(KMPV("NOKILL","KMPVIMP")'["IRIS") ""
  ; if version is greater than 2007
  I KMPV("NOKILL","KMPVVER")>2007 D 
  .; RETURN = cpu^lines^commands^GloRefs
@@ -147,6 +148,8 @@ STATS() ;  return current stats for this $job
  ..S $P(KMPVRET,U,2)=$P($P(KMPVV,U,7),",")
  ..; global references
  ..S $P(KMPVRET,U,4)=$P($P(KMPVV,U,7),",",2)
+ ..; current time UTC
+ ..S $P(KMPVRET,U,5)=$ZTIMESTAMP
  ;
  Q KMPVRET
  ;

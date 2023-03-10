@@ -1,5 +1,5 @@
-ORKPS1 ; SLC/CLA - Order checking support procedures for medications ;03/21/18  06:21
- ;;3.0;ORDER ENTRY/RESULTS REPORTING;**232,272,346,352,345,311,402,457,469,481**;Dec 17, 1997;Build 3
+ORKPS1 ; SLC/CLA - Order checking support procedures for medications ;Nov 16, 2021@14:00
+ ;;3.0;ORDER ENTRY/RESULTS REPORTING;**232,272,346,352,345,311,402,457,469,481,578**;Dec 17, 1997;Build 3
  Q
 PROCESS(OI,DFN,ORKDG,ORPROSP,ORGLOBL) ;process data from pharmacy order check API
  ;ORPROSP = pharmacy orderable item ien [file #50.7] ^ drug ien [file #50]
@@ -162,7 +162,19 @@ DT(TDATA) ;add duplicate therapy checks
  ..I $G(TDATA("NEW","PROSP"))=$P($P($G(@GL@(I,"DRUGS",J)),U),";",3,4)  Q
  ..;if we got here then this order from the DRUGS array should be in the output message
  ..S ORNUM=$P($P($G(@GL@(I,"DRUGS",J)),U),";",1,2)
- ..S ORDRUGS=ORDRUGS_$S($L(ORDRUGS):", ",1:"")_$P($G(@GL@(I,"DRUGS",J)),U,3)_" ["_$$PHSTAT(DFN,ORNUM)_"]"
+ ..;OR*3.0*578 begin - check for pending clinic or inpatient orders
+ ..;                   with free text dosages (i.e. no dispense drug).
+ ..N ORDRUGX
+ ..S ORDRUGX=$P($G(@GL@(I,"DRUGS",J)),U,3)
+ ..I $E(ORNUM)="C"!($E(ORNUM)="I") D
+ ...N OR531,OIIEN
+ ...S OR531=$P(ORNUM,";",2) Q:OR531'["P"
+ ...I $O(^PS(53.1,+OR531,1,0)) Q
+ ...;no dispense drug, so display only name and dosage type (TAB, etc.)
+ ...S OIIEN=$$GET1^DIQ(53.1,+OR531,108,"I")
+ ...S ORDRUGX=$$GET1^DIQ(50.7,OIIEN,.01)_" "_$$GET1^DIQ(50.7,OIIEN,.02)
+ ..S ORDRUGS=ORDRUGS_$S($L(ORDRUGS):", ",1:"")_ORDRUGX_" ["_$$PHSTAT(DFN,ORNUM)_"]"
+ ..;OR*3.0*578 end
  .;quit if no drugs have been set into ORDRUGS
  .Q:('$L(ORDRUGS))
  .;quit if ORPROSIN is still 0 which means the prospective we are looking at was not part of this OC returned from the API

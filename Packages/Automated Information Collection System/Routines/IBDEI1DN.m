@@ -1,126 +1,124 @@
-IBDEI1DN ; ; 04-FEB-2020
- ;;3.0;IB ENCOUNTER FORM IMP/EXP;;FEB 04, 2020
+IBDEI1DN ; ; 01-FEB-2022
+ ;;3.0;IB ENCOUNTER FORM IMP/EXP;;FEB 01, 2022
  Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,999) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
- ;;^UTILITY(U,$J,358.3,22010,0)
- ;;=R45.850^^99^1121^9
- ;;^UTILITY(U,$J,358.3,22010,1,0)
+ ;;^UTILITY(U,$J,358.3,22275,1,3,0)
+ ;;=3^Pressure Ulcer Right Buttock,Unstageable
+ ;;^UTILITY(U,$J,358.3,22275,1,4,0)
+ ;;=4^L89.310
+ ;;^UTILITY(U,$J,358.3,22275,2)
+ ;;=^5009394
+ ;;^UTILITY(U,$J,358.3,22276,0)
+ ;;=L89.319^^73^959^67
+ ;;^UTILITY(U,$J,358.3,22276,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,22010,1,3,0)
- ;;=3^Homicidal Ideations
- ;;^UTILITY(U,$J,358.3,22010,1,4,0)
- ;;=4^R45.850
- ;;^UTILITY(U,$J,358.3,22010,2)
- ;;=^5019473
- ;;^UTILITY(U,$J,358.3,22011,0)
- ;;=I80.201^^99^1122^5
- ;;^UTILITY(U,$J,358.3,22011,1,0)
+ ;;^UTILITY(U,$J,358.3,22276,1,3,0)
+ ;;=3^Pressure Ulcer Right Buttock,Stage Unspec
+ ;;^UTILITY(U,$J,358.3,22276,1,4,0)
+ ;;=4^L89.319
+ ;;^UTILITY(U,$J,358.3,22276,2)
+ ;;=^5133670
+ ;;^UTILITY(U,$J,358.3,22277,0)
+ ;;=L89.311^^73^959^63
+ ;;^UTILITY(U,$J,358.3,22277,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,22011,1,3,0)
- ;;=3^Thombophlb & Phlbts Deep Vessels Right Lower Extrem
- ;;^UTILITY(U,$J,358.3,22011,1,4,0)
- ;;=4^I80.201
- ;;^UTILITY(U,$J,358.3,22011,2)
- ;;=^5007828
- ;;^UTILITY(U,$J,358.3,22012,0)
- ;;=I80.202^^99^1122^4
- ;;^UTILITY(U,$J,358.3,22012,1,0)
+ ;;^UTILITY(U,$J,358.3,22277,1,3,0)
+ ;;=3^Pressure Ulcer Right Buttock,Stage 1
+ ;;^UTILITY(U,$J,358.3,22277,1,4,0)
+ ;;=4^L89.311
+ ;;^UTILITY(U,$J,358.3,22277,2)
+ ;;=^5009395
+ ;;^UTILITY(U,$J,358.3,22278,0)
+ ;;=L89.312^^73^959^64
+ ;;^UTILITY(U,$J,358.3,22278,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,22012,1,3,0)
- ;;=3^Thombophlb & Phlbts Deep Vessels Left Lower Extrem
- ;;^UTILITY(U,$J,358.3,22012,1,4,0)
- ;;=4^I80.202
- ;;^UTILITY(U,$J,358.3,22012,2)
- ;;=^5007829
- ;;^UTILITY(U,$J,358.3,22013,0)
- ;;=I80.203^^99^1122^3
- ;;^UTILITY(U,$J,358.3,22013,1,0)
+ ;;^UTILITY(U,$J,358.3,22278,1,3,0)
+ ;;=3^Pressure Ulcer Right Buttock,Stage 2
+ ;;^UTILITY(U,$J,358.3,22278,1,4,0)
+ ;;=4^L89.312
+ ;;^UTILITY(U,$J,358.3,22278,2)
+ ;;=^5009396
+ ;;^UTILITY(U,$J,358.3,22279,0)
+ ;;=L89.313^^73^959^65
+ ;;^UTILITY(U,$J,358.3,22279,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,22013,1,3,0)
- ;;=3^Thombophlb & Phlbts Deep Vessels Bilateral Lower Extrem
- ;;^UTILITY(U,$J,358.3,22013,1,4,0)
- ;;=4^I80.203
- ;;^UTILITY(U,$J,358.3,22013,2)
- ;;=^5007830
- ;;^UTILITY(U,$J,358.3,22014,0)
- ;;=J06.9^^99^1122^14
- ;;^UTILITY(U,$J,358.3,22014,1,0)
+ ;;^UTILITY(U,$J,358.3,22279,1,3,0)
+ ;;=3^Pressure Ulcer Right Buttock,Stage 3
+ ;;^UTILITY(U,$J,358.3,22279,1,4,0)
+ ;;=4^L89.313
+ ;;^UTILITY(U,$J,358.3,22279,2)
+ ;;=^5009397
+ ;;^UTILITY(U,$J,358.3,22280,0)
+ ;;=L89.314^^73^959^66
+ ;;^UTILITY(U,$J,358.3,22280,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,22014,1,3,0)
- ;;=3^Upper resp infect, acute, unspec
- ;;^UTILITY(U,$J,358.3,22014,1,4,0)
- ;;=4^J06.9
- ;;^UTILITY(U,$J,358.3,22014,2)
- ;;=^5008143
- ;;^UTILITY(U,$J,358.3,22015,0)
- ;;=B35.3^^99^1122^7
- ;;^UTILITY(U,$J,358.3,22015,1,0)
+ ;;^UTILITY(U,$J,358.3,22280,1,3,0)
+ ;;=3^Pressure Ulcer Right Buttock,Stage 4
+ ;;^UTILITY(U,$J,358.3,22280,1,4,0)
+ ;;=4^L89.314
+ ;;^UTILITY(U,$J,358.3,22280,2)
+ ;;=^5009398
+ ;;^UTILITY(U,$J,358.3,22281,0)
+ ;;=L89.320^^73^959^26
+ ;;^UTILITY(U,$J,358.3,22281,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,22015,1,3,0)
- ;;=3^Tinea pedis
- ;;^UTILITY(U,$J,358.3,22015,1,4,0)
- ;;=4^B35.3
- ;;^UTILITY(U,$J,358.3,22015,2)
- ;;=^119732
- ;;^UTILITY(U,$J,358.3,22016,0)
- ;;=H93.11^^99^1122^10
- ;;^UTILITY(U,$J,358.3,22016,1,0)
+ ;;^UTILITY(U,$J,358.3,22281,1,3,0)
+ ;;=3^Pressure Ulcer Left Buttock,Unstageable
+ ;;^UTILITY(U,$J,358.3,22281,1,4,0)
+ ;;=4^L89.320
+ ;;^UTILITY(U,$J,358.3,22281,2)
+ ;;=^5009399
+ ;;^UTILITY(U,$J,358.3,22282,0)
+ ;;=L89.329^^73^959^25
+ ;;^UTILITY(U,$J,358.3,22282,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,22016,1,3,0)
- ;;=3^Tinnitus, right ear
- ;;^UTILITY(U,$J,358.3,22016,1,4,0)
- ;;=4^H93.11
- ;;^UTILITY(U,$J,358.3,22016,2)
- ;;=^5006964
- ;;^UTILITY(U,$J,358.3,22017,0)
- ;;=H93.12^^99^1122^9
- ;;^UTILITY(U,$J,358.3,22017,1,0)
+ ;;^UTILITY(U,$J,358.3,22282,1,3,0)
+ ;;=3^Pressure Ulcer Left Buttock,Stage Unspec
+ ;;^UTILITY(U,$J,358.3,22282,1,4,0)
+ ;;=4^L89.329
+ ;;^UTILITY(U,$J,358.3,22282,2)
+ ;;=^5133671
+ ;;^UTILITY(U,$J,358.3,22283,0)
+ ;;=L89.321^^73^959^21
+ ;;^UTILITY(U,$J,358.3,22283,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,22017,1,3,0)
- ;;=3^Tinnitus, left ear
- ;;^UTILITY(U,$J,358.3,22017,1,4,0)
- ;;=4^H93.12
- ;;^UTILITY(U,$J,358.3,22017,2)
- ;;=^5006965
- ;;^UTILITY(U,$J,358.3,22018,0)
- ;;=H93.13^^99^1122^8
- ;;^UTILITY(U,$J,358.3,22018,1,0)
+ ;;^UTILITY(U,$J,358.3,22283,1,3,0)
+ ;;=3^Pressure Ulcer Left Buttock,Stage 1
+ ;;^UTILITY(U,$J,358.3,22283,1,4,0)
+ ;;=4^L89.321
+ ;;^UTILITY(U,$J,358.3,22283,2)
+ ;;=^5009400
+ ;;^UTILITY(U,$J,358.3,22284,0)
+ ;;=L89.322^^73^959^22
+ ;;^UTILITY(U,$J,358.3,22284,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,22018,1,3,0)
- ;;=3^Tinnitus, bilateral
- ;;^UTILITY(U,$J,358.3,22018,1,4,0)
- ;;=4^H93.13
- ;;^UTILITY(U,$J,358.3,22018,2)
- ;;=^5006966
- ;;^UTILITY(U,$J,358.3,22019,0)
- ;;=K26.9^^99^1122^11
- ;;^UTILITY(U,$J,358.3,22019,1,0)
+ ;;^UTILITY(U,$J,358.3,22284,1,3,0)
+ ;;=3^Pressure Ulcer Left Buttock,Stage 2
+ ;;^UTILITY(U,$J,358.3,22284,1,4,0)
+ ;;=4^L89.322
+ ;;^UTILITY(U,$J,358.3,22284,2)
+ ;;=^5009401
+ ;;^UTILITY(U,$J,358.3,22285,0)
+ ;;=L89.323^^73^959^23
+ ;;^UTILITY(U,$J,358.3,22285,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,22019,1,3,0)
- ;;=3^Ulcer,Duodenal w/o Hemorrhage/Perforation
- ;;^UTILITY(U,$J,358.3,22019,1,4,0)
- ;;=4^K26.9
- ;;^UTILITY(U,$J,358.3,22019,2)
- ;;=^5008527
- ;;^UTILITY(U,$J,358.3,22020,0)
- ;;=K25.9^^99^1122^12
- ;;^UTILITY(U,$J,358.3,22020,1,0)
+ ;;^UTILITY(U,$J,358.3,22285,1,3,0)
+ ;;=3^Pressure Ulcer Left Buttock,Stage 3
+ ;;^UTILITY(U,$J,358.3,22285,1,4,0)
+ ;;=4^L89.323
+ ;;^UTILITY(U,$J,358.3,22285,2)
+ ;;=^5009402
+ ;;^UTILITY(U,$J,358.3,22286,0)
+ ;;=L89.324^^73^959^24
+ ;;^UTILITY(U,$J,358.3,22286,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,22020,1,3,0)
- ;;=3^Ulcer,Gastric w/o Hemorrhage/Perforation
- ;;^UTILITY(U,$J,358.3,22020,1,4,0)
- ;;=4^K25.9
- ;;^UTILITY(U,$J,358.3,22020,2)
- ;;=^5008522
- ;;^UTILITY(U,$J,358.3,22021,0)
- ;;=K27.9^^99^1122^13
- ;;^UTILITY(U,$J,358.3,22021,1,0)
+ ;;^UTILITY(U,$J,358.3,22286,1,3,0)
+ ;;=3^Pressure Ulcer Left Buttock,Stage 4
+ ;;^UTILITY(U,$J,358.3,22286,1,4,0)
+ ;;=4^L89.324
+ ;;^UTILITY(U,$J,358.3,22286,2)
+ ;;=^5009403
+ ;;^UTILITY(U,$J,358.3,22287,0)
+ ;;=L89.510^^73^959^62
+ ;;^UTILITY(U,$J,358.3,22287,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,22021,1,3,0)
- ;;=3^Ulcer,Peptic w/o Hemorrhage/Perforation
- ;;^UTILITY(U,$J,358.3,22021,1,4,0)
- ;;=4^K27.9
- ;;^UTILITY(U,$J,358.3,22021,2)
- ;;=^5008536
- ;;^UTILITY(U,$J,358.3,22022,0)
- ;;=N34.1^^99^1122^15

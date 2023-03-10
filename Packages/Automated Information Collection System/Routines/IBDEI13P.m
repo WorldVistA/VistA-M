@@ -1,124 +1,126 @@
-IBDEI13P ; ; 04-FEB-2020
- ;;3.0;IB ENCOUNTER FORM IMP/EXP;;FEB 04, 2020
+IBDEI13P ; ; 01-FEB-2022
+ ;;3.0;IB ENCOUNTER FORM IMP/EXP;;FEB 01, 2022
  Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,999) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
- ;;^UTILITY(U,$J,358.3,17691,0)
- ;;=N83.291^^88^895^77
- ;;^UTILITY(U,$J,358.3,17691,1,0)
+ ;;^UTILITY(U,$J,358.3,17871,1,3,0)
+ ;;=3^Fall from/through Roof,Init Encntr
+ ;;^UTILITY(U,$J,358.3,17871,1,4,0)
+ ;;=4^W13.2XXA
+ ;;^UTILITY(U,$J,358.3,17871,2)
+ ;;=^5059607
+ ;;^UTILITY(U,$J,358.3,17872,0)
+ ;;=W13.2XXD^^61^794^75
+ ;;^UTILITY(U,$J,358.3,17872,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,17691,1,3,0)
- ;;=3^Ovarian Cysts,Oth,Right Side
- ;;^UTILITY(U,$J,358.3,17691,1,4,0)
- ;;=4^N83.291
- ;;^UTILITY(U,$J,358.3,17691,2)
- ;;=^5138947
- ;;^UTILITY(U,$J,358.3,17692,0)
- ;;=N83.202^^88^895^78
- ;;^UTILITY(U,$J,358.3,17692,1,0)
+ ;;^UTILITY(U,$J,358.3,17872,1,3,0)
+ ;;=3^Fall from/through Roof,Subs Encntr
+ ;;^UTILITY(U,$J,358.3,17872,1,4,0)
+ ;;=4^W13.2XXD
+ ;;^UTILITY(U,$J,358.3,17872,2)
+ ;;=^5059608
+ ;;^UTILITY(U,$J,358.3,17873,0)
+ ;;=W13.3XXA^^61^794^88
+ ;;^UTILITY(U,$J,358.3,17873,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,17692,1,3,0)
- ;;=3^Ovarian Cysts,Unspec,Left Side
- ;;^UTILITY(U,$J,358.3,17692,1,4,0)
- ;;=4^N83.202
- ;;^UTILITY(U,$J,358.3,17692,2)
- ;;=^5138945
- ;;^UTILITY(U,$J,358.3,17693,0)
- ;;=N83.201^^88^895^79
- ;;^UTILITY(U,$J,358.3,17693,1,0)
+ ;;^UTILITY(U,$J,358.3,17873,1,3,0)
+ ;;=3^Fall through Floor,Init Encntr
+ ;;^UTILITY(U,$J,358.3,17873,1,4,0)
+ ;;=4^W13.3XXA
+ ;;^UTILITY(U,$J,358.3,17873,2)
+ ;;=^5059610
+ ;;^UTILITY(U,$J,358.3,17874,0)
+ ;;=W13.3XXD^^61^794^89
+ ;;^UTILITY(U,$J,358.3,17874,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,17693,1,3,0)
- ;;=3^Ovarian Cysts,Unspec,Right Side
- ;;^UTILITY(U,$J,358.3,17693,1,4,0)
- ;;=4^N83.201
- ;;^UTILITY(U,$J,358.3,17693,2)
- ;;=^5138944
- ;;^UTILITY(U,$J,358.3,17694,0)
- ;;=S31.000A^^88^896^3
- ;;^UTILITY(U,$J,358.3,17694,1,0)
+ ;;^UTILITY(U,$J,358.3,17874,1,3,0)
+ ;;=3^Fall through Floor,Subs Encntr
+ ;;^UTILITY(U,$J,358.3,17874,1,4,0)
+ ;;=4^W13.3XXD
+ ;;^UTILITY(U,$J,358.3,17874,2)
+ ;;=^5059611
+ ;;^UTILITY(U,$J,358.3,17875,0)
+ ;;=W13.4XXA^^61^794^76
+ ;;^UTILITY(U,$J,358.3,17875,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,17694,1,3,0)
- ;;=3^Open Wnd Low Back/Pelvis w/o Penet Retroperiton,Init,Unspec
- ;;^UTILITY(U,$J,358.3,17694,1,4,0)
- ;;=4^S31.000A
- ;;^UTILITY(U,$J,358.3,17694,2)
- ;;=^5023993
- ;;^UTILITY(U,$J,358.3,17695,0)
- ;;=S31.010A^^88^896^1
- ;;^UTILITY(U,$J,358.3,17695,1,0)
+ ;;^UTILITY(U,$J,358.3,17875,1,3,0)
+ ;;=3^Fall from/through Window,Init Encntr
+ ;;^UTILITY(U,$J,358.3,17875,1,4,0)
+ ;;=4^W13.4XXA
+ ;;^UTILITY(U,$J,358.3,17875,2)
+ ;;=^5059613
+ ;;^UTILITY(U,$J,358.3,17876,0)
+ ;;=W13.4XXD^^61^794^77
+ ;;^UTILITY(U,$J,358.3,17876,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,17695,1,3,0)
- ;;=3^Laceration w/o FB Low Back/Pelvis w/o Penet Retroperiton,Init
- ;;^UTILITY(U,$J,358.3,17695,1,4,0)
- ;;=4^S31.010A
- ;;^UTILITY(U,$J,358.3,17695,2)
- ;;=^5023999
- ;;^UTILITY(U,$J,358.3,17696,0)
- ;;=L08.89^^88^896^2
- ;;^UTILITY(U,$J,358.3,17696,1,0)
+ ;;^UTILITY(U,$J,358.3,17876,1,3,0)
+ ;;=3^Fall from/through Window,Subs Encntr
+ ;;^UTILITY(U,$J,358.3,17876,1,4,0)
+ ;;=4^W13.4XXD
+ ;;^UTILITY(U,$J,358.3,17876,2)
+ ;;=^5059614
+ ;;^UTILITY(U,$J,358.3,17877,0)
+ ;;=W13.8XXA^^61^794^40
+ ;;^UTILITY(U,$J,358.3,17877,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,17696,1,3,0)
- ;;=3^Local Infections Skin/Subcutaneous Tissue,Oth Spec
- ;;^UTILITY(U,$J,358.3,17696,1,4,0)
- ;;=4^L08.89
- ;;^UTILITY(U,$J,358.3,17696,2)
- ;;=^5009081
- ;;^UTILITY(U,$J,358.3,17697,0)
- ;;=S91.002A^^88^896^4
- ;;^UTILITY(U,$J,358.3,17697,1,0)
+ ;;^UTILITY(U,$J,358.3,17877,1,3,0)
+ ;;=3^Fall from Building/Structure,Init Encntr
+ ;;^UTILITY(U,$J,358.3,17877,1,4,0)
+ ;;=4^W13.8XXA
+ ;;^UTILITY(U,$J,358.3,17877,2)
+ ;;=^5059616
+ ;;^UTILITY(U,$J,358.3,17878,0)
+ ;;=W13.8XXD^^61^794^41
+ ;;^UTILITY(U,$J,358.3,17878,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,17697,1,3,0)
- ;;=3^Open Wound,Left Ankle,Unspec
- ;;^UTILITY(U,$J,358.3,17697,1,4,0)
- ;;=4^S91.002A
- ;;^UTILITY(U,$J,358.3,17697,2)
- ;;=^5044132
- ;;^UTILITY(U,$J,358.3,17698,0)
- ;;=S91.302A^^88^896^5
- ;;^UTILITY(U,$J,358.3,17698,1,0)
+ ;;^UTILITY(U,$J,358.3,17878,1,3,0)
+ ;;=3^Fall from Building/Structure,Subs Encntr
+ ;;^UTILITY(U,$J,358.3,17878,1,4,0)
+ ;;=4^W13.8XXD
+ ;;^UTILITY(U,$J,358.3,17878,2)
+ ;;=^5059617
+ ;;^UTILITY(U,$J,358.3,17879,0)
+ ;;=W13.9XXA^^61^794^38
+ ;;^UTILITY(U,$J,358.3,17879,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,17698,1,3,0)
- ;;=3^Open Wound,Left Foot,Unspec
- ;;^UTILITY(U,$J,358.3,17698,1,4,0)
- ;;=4^S91.302A
- ;;^UTILITY(U,$J,358.3,17698,2)
- ;;=^5044317
- ;;^UTILITY(U,$J,358.3,17699,0)
- ;;=S51.802A^^88^896^6
- ;;^UTILITY(U,$J,358.3,17699,1,0)
+ ;;^UTILITY(U,$J,358.3,17879,1,3,0)
+ ;;=3^Fall from Building NOS,Init Encntr
+ ;;^UTILITY(U,$J,358.3,17879,1,4,0)
+ ;;=4^W13.9XXA
+ ;;^UTILITY(U,$J,358.3,17879,2)
+ ;;=^5059619
+ ;;^UTILITY(U,$J,358.3,17880,0)
+ ;;=W13.9XXD^^61^794^39
+ ;;^UTILITY(U,$J,358.3,17880,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,17699,1,3,0)
- ;;=3^Open Wound,Left Forearm,Unspec
- ;;^UTILITY(U,$J,358.3,17699,1,4,0)
- ;;=4^S51.802A
- ;;^UTILITY(U,$J,358.3,17699,2)
- ;;=^5028662
- ;;^UTILITY(U,$J,358.3,17700,0)
- ;;=S91.102A^^88^896^7
- ;;^UTILITY(U,$J,358.3,17700,1,0)
+ ;;^UTILITY(U,$J,358.3,17880,1,3,0)
+ ;;=3^Fall from Building NOS,Subs Encntr
+ ;;^UTILITY(U,$J,358.3,17880,1,4,0)
+ ;;=4^W13.9XXD
+ ;;^UTILITY(U,$J,358.3,17880,2)
+ ;;=^5059620
+ ;;^UTILITY(U,$J,358.3,17881,0)
+ ;;=W14.XXXA^^61^794^70
+ ;;^UTILITY(U,$J,358.3,17881,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,17700,1,3,0)
- ;;=3^Open Wound,Left Great Toe w/o Damage to Nail,Unspec
- ;;^UTILITY(U,$J,358.3,17700,1,4,0)
- ;;=4^S91.102A
- ;;^UTILITY(U,$J,358.3,17700,2)
- ;;=^5044171
- ;;^UTILITY(U,$J,358.3,17701,0)
- ;;=S61.402A^^88^896^8
- ;;^UTILITY(U,$J,358.3,17701,1,0)
+ ;;^UTILITY(U,$J,358.3,17881,1,3,0)
+ ;;=3^Fall from Tree,Init Encntr
+ ;;^UTILITY(U,$J,358.3,17881,1,4,0)
+ ;;=4^W14.XXXA
+ ;;^UTILITY(U,$J,358.3,17881,2)
+ ;;=^5059622
+ ;;^UTILITY(U,$J,358.3,17882,0)
+ ;;=W14.XXXD^^61^794^71
+ ;;^UTILITY(U,$J,358.3,17882,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,17701,1,3,0)
- ;;=3^Open Wound,Left Hand,Unspec
- ;;^UTILITY(U,$J,358.3,17701,1,4,0)
- ;;=4^S61.402A
- ;;^UTILITY(U,$J,358.3,17701,2)
- ;;=^5032984
- ;;^UTILITY(U,$J,358.3,17702,0)
- ;;=S71.002A^^88^896^9
- ;;^UTILITY(U,$J,358.3,17702,1,0)
+ ;;^UTILITY(U,$J,358.3,17882,1,3,0)
+ ;;=3^Fall from Tree,Subs Encntr
+ ;;^UTILITY(U,$J,358.3,17882,1,4,0)
+ ;;=4^W14.XXXD
+ ;;^UTILITY(U,$J,358.3,17882,2)
+ ;;=^5059623
+ ;;^UTILITY(U,$J,358.3,17883,0)
+ ;;=W17.2XXA^^61^794^82
+ ;;^UTILITY(U,$J,358.3,17883,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,17702,1,3,0)
- ;;=3^Open Wound,Left Hip,Unspec
- ;;^UTILITY(U,$J,358.3,17702,1,4,0)
- ;;=4^S71.002A
- ;;^UTILITY(U,$J,358.3,17702,2)
- ;;=^5036972
+ ;;^UTILITY(U,$J,358.3,17883,1,3,0)
+ ;;=3^Fall into Hole,Init Encntr

@@ -1,126 +1,128 @@
-IBDEI1KQ ; ; 04-FEB-2020
- ;;3.0;IB ENCOUNTER FORM IMP/EXP;;FEB 04, 2020
+IBDEI1KQ ; ; 01-FEB-2022
+ ;;3.0;IB ENCOUNTER FORM IMP/EXP;;FEB 01, 2022
  Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,999) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
- ;;^UTILITY(U,$J,358.3,25154,1,0)
+ ;;^UTILITY(U,$J,358.3,25519,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,25154,1,3,0)
- ;;=3^Arthritis Streptococcal,Unspec Joint
- ;;^UTILITY(U,$J,358.3,25154,1,4,0)
- ;;=4^M00.20
- ;;^UTILITY(U,$J,358.3,25154,2)
- ;;=^5009645
- ;;^UTILITY(U,$J,358.3,25155,0)
- ;;=M00.80^^107^1213^4
- ;;^UTILITY(U,$J,358.3,25155,1,0)
+ ;;^UTILITY(U,$J,358.3,25519,1,3,0)
+ ;;=3^Histrionic Personality D/O
+ ;;^UTILITY(U,$J,358.3,25519,1,4,0)
+ ;;=4^F60.4
+ ;;^UTILITY(U,$J,358.3,25519,2)
+ ;;=^5003636
+ ;;^UTILITY(U,$J,358.3,25520,0)
+ ;;=F60.7^^92^1163^4
+ ;;^UTILITY(U,$J,358.3,25520,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,25155,1,3,0)
- ;;=3^Arthritis d/t Bacteria,Unspec Joint
- ;;^UTILITY(U,$J,358.3,25155,1,4,0)
- ;;=4^M00.80
- ;;^UTILITY(U,$J,358.3,25155,2)
- ;;=^5009669
- ;;^UTILITY(U,$J,358.3,25156,0)
- ;;=M00.9^^107^1213^72
- ;;^UTILITY(U,$J,358.3,25156,1,0)
+ ;;^UTILITY(U,$J,358.3,25520,1,3,0)
+ ;;=3^Dependent Personality D/O
+ ;;^UTILITY(U,$J,358.3,25520,1,4,0)
+ ;;=4^F60.7
+ ;;^UTILITY(U,$J,358.3,25520,2)
+ ;;=^5003637
+ ;;^UTILITY(U,$J,358.3,25521,0)
+ ;;=F60.2^^92^1163^1
+ ;;^UTILITY(U,$J,358.3,25521,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,25156,1,3,0)
- ;;=3^Pyogenic Arthritis,Unspec
- ;;^UTILITY(U,$J,358.3,25156,1,4,0)
- ;;=4^M00.9
- ;;^UTILITY(U,$J,358.3,25156,2)
- ;;=^5009693
- ;;^UTILITY(U,$J,358.3,25157,0)
- ;;=M00.00^^107^1213^78
- ;;^UTILITY(U,$J,358.3,25157,1,0)
+ ;;^UTILITY(U,$J,358.3,25521,1,3,0)
+ ;;=3^Antisocial Personality D/O
+ ;;^UTILITY(U,$J,358.3,25521,1,4,0)
+ ;;=4^F60.2
+ ;;^UTILITY(U,$J,358.3,25521,2)
+ ;;=^9066
+ ;;^UTILITY(U,$J,358.3,25522,0)
+ ;;=F60.81^^92^1163^6
+ ;;^UTILITY(U,$J,358.3,25522,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,25157,1,3,0)
- ;;=3^Staphylococcal Arthritis,Unspec Joint
- ;;^UTILITY(U,$J,358.3,25157,1,4,0)
- ;;=4^M00.00
- ;;^UTILITY(U,$J,358.3,25157,2)
- ;;=^5009597
- ;;^UTILITY(U,$J,358.3,25158,0)
- ;;=M00.10^^107^1213^65
- ;;^UTILITY(U,$J,358.3,25158,1,0)
+ ;;^UTILITY(U,$J,358.3,25522,1,3,0)
+ ;;=3^Narcissistic Personality D/O
+ ;;^UTILITY(U,$J,358.3,25522,1,4,0)
+ ;;=4^F60.81
+ ;;^UTILITY(U,$J,358.3,25522,2)
+ ;;=^331919
+ ;;^UTILITY(U,$J,358.3,25523,0)
+ ;;=F60.6^^92^1163^2
+ ;;^UTILITY(U,$J,358.3,25523,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,25158,1,3,0)
- ;;=3^Pneumococcal Arthritis,Unspec Joint
- ;;^UTILITY(U,$J,358.3,25158,1,4,0)
- ;;=4^M00.10
- ;;^UTILITY(U,$J,358.3,25158,2)
- ;;=^5009621
- ;;^UTILITY(U,$J,358.3,25159,0)
- ;;=M86.20^^107^1213^62
- ;;^UTILITY(U,$J,358.3,25159,1,0)
+ ;;^UTILITY(U,$J,358.3,25523,1,3,0)
+ ;;=3^Avoidant Personality D/O
+ ;;^UTILITY(U,$J,358.3,25523,1,4,0)
+ ;;=4^F60.6
+ ;;^UTILITY(U,$J,358.3,25523,2)
+ ;;=^331920
+ ;;^UTILITY(U,$J,358.3,25524,0)
+ ;;=F60.3^^92^1163^3
+ ;;^UTILITY(U,$J,358.3,25524,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,25159,1,3,0)
- ;;=3^Osteomyelitis,Subacute,Unspec Site
- ;;^UTILITY(U,$J,358.3,25159,1,4,0)
- ;;=4^M86.20
- ;;^UTILITY(U,$J,358.3,25159,2)
- ;;=^5014535
- ;;^UTILITY(U,$J,358.3,25160,0)
- ;;=M86.10^^107^1213^58
- ;;^UTILITY(U,$J,358.3,25160,1,0)
+ ;;^UTILITY(U,$J,358.3,25524,1,3,0)
+ ;;=3^Borderline Personality D/O
+ ;;^UTILITY(U,$J,358.3,25524,1,4,0)
+ ;;=4^F60.3
+ ;;^UTILITY(U,$J,358.3,25524,2)
+ ;;=^331921
+ ;;^UTILITY(U,$J,358.3,25525,0)
+ ;;=F60.89^^92^1163^10
+ ;;^UTILITY(U,$J,358.3,25525,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,25160,1,3,0)
- ;;=3^Osteomyelitis,Acute,Unspec Site
- ;;^UTILITY(U,$J,358.3,25160,1,4,0)
- ;;=4^M86.10
- ;;^UTILITY(U,$J,358.3,25160,2)
- ;;=^5014521
- ;;^UTILITY(U,$J,358.3,25161,0)
- ;;=M86.00^^107^1213^57
- ;;^UTILITY(U,$J,358.3,25161,1,0)
+ ;;^UTILITY(U,$J,358.3,25525,1,3,0)
+ ;;=3^Personality D/O,Oth Spec
+ ;;^UTILITY(U,$J,358.3,25525,1,4,0)
+ ;;=4^F60.89
+ ;;^UTILITY(U,$J,358.3,25525,2)
+ ;;=^5003638
+ ;;^UTILITY(U,$J,358.3,25526,0)
+ ;;=F60.9^^92^1163^11
+ ;;^UTILITY(U,$J,358.3,25526,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,25161,1,3,0)
- ;;=3^Osteomyelitis,Acute Hematogenous,Unspec Site
- ;;^UTILITY(U,$J,358.3,25161,1,4,0)
- ;;=4^M86.00
- ;;^UTILITY(U,$J,358.3,25161,2)
- ;;=^5014497
- ;;^UTILITY(U,$J,358.3,25162,0)
- ;;=M86.50^^107^1213^59
- ;;^UTILITY(U,$J,358.3,25162,1,0)
+ ;;^UTILITY(U,$J,358.3,25526,1,3,0)
+ ;;=3^Personality D/O,Unspec
+ ;;^UTILITY(U,$J,358.3,25526,1,4,0)
+ ;;=4^F60.9
+ ;;^UTILITY(U,$J,358.3,25526,2)
+ ;;=^5003639
+ ;;^UTILITY(U,$J,358.3,25527,0)
+ ;;=F07.0^^92^1163^9
+ ;;^UTILITY(U,$J,358.3,25527,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,25162,1,3,0)
- ;;=3^Osteomyelitis,Chronic Hematogenous,Unspec Site
- ;;^UTILITY(U,$J,358.3,25162,1,4,0)
- ;;=4^M86.50
- ;;^UTILITY(U,$J,358.3,25162,2)
- ;;=^5014607
- ;;^UTILITY(U,$J,358.3,25163,0)
- ;;=M86.30^^107^1213^60
- ;;^UTILITY(U,$J,358.3,25163,1,0)
+ ;;^UTILITY(U,$J,358.3,25527,1,3,0)
+ ;;=3^Personality Change d/t Another Medical Condition
+ ;;^UTILITY(U,$J,358.3,25527,1,4,0)
+ ;;=4^F07.0
+ ;;^UTILITY(U,$J,358.3,25527,2)
+ ;;=^5003063
+ ;;^UTILITY(U,$J,358.3,25528,0)
+ ;;=Z65.4^^92^1164^5
+ ;;^UTILITY(U,$J,358.3,25528,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,25163,1,3,0)
- ;;=3^Osteomyelitis,Chronic Multifocal,Unspec Site
- ;;^UTILITY(U,$J,358.3,25163,1,4,0)
- ;;=4^M86.30
- ;;^UTILITY(U,$J,358.3,25163,2)
- ;;=^5014559
- ;;^UTILITY(U,$J,358.3,25164,0)
- ;;=M86.8X9^^107^1213^63
- ;;^UTILITY(U,$J,358.3,25164,1,0)
+ ;;^UTILITY(U,$J,358.3,25528,1,3,0)
+ ;;=3^Victim of Crime
+ ;;^UTILITY(U,$J,358.3,25528,1,4,0)
+ ;;=4^Z65.4
+ ;;^UTILITY(U,$J,358.3,25528,2)
+ ;;=^5063183
+ ;;^UTILITY(U,$J,358.3,25529,0)
+ ;;=Z65.0^^92^1164^1
+ ;;^UTILITY(U,$J,358.3,25529,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,25164,1,3,0)
- ;;=3^Osteomyelitis,Unspec Sites
- ;;^UTILITY(U,$J,358.3,25164,1,4,0)
- ;;=4^M86.8X9
- ;;^UTILITY(U,$J,358.3,25164,2)
- ;;=^5014655
- ;;^UTILITY(U,$J,358.3,25165,0)
- ;;=M86.60^^107^1213^61
- ;;^UTILITY(U,$J,358.3,25165,1,0)
+ ;;^UTILITY(U,$J,358.3,25529,1,3,0)
+ ;;=3^Conviction in Civil/Criminal Proceedings w/o Imprisonment
+ ;;^UTILITY(U,$J,358.3,25529,1,4,0)
+ ;;=4^Z65.0
+ ;;^UTILITY(U,$J,358.3,25529,2)
+ ;;=^5063179
+ ;;^UTILITY(U,$J,358.3,25530,0)
+ ;;=Z65.2^^92^1164^4
+ ;;^UTILITY(U,$J,358.3,25530,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,25165,1,3,0)
- ;;=3^Osteomyelitis,Chronic,Unspec Site
- ;;^UTILITY(U,$J,358.3,25165,1,4,0)
- ;;=4^M86.60
- ;;^UTILITY(U,$J,358.3,25165,2)
- ;;=^5014630
- ;;^UTILITY(U,$J,358.3,25166,0)
- ;;=M86.40^^107^1213^56
- ;;^UTILITY(U,$J,358.3,25166,1,0)
+ ;;^UTILITY(U,$J,358.3,25530,1,3,0)
+ ;;=3^Problems Related to Release from Prison
+ ;;^UTILITY(U,$J,358.3,25530,1,4,0)
+ ;;=4^Z65.2
+ ;;^UTILITY(U,$J,358.3,25530,2)
+ ;;=^5063181
+ ;;^UTILITY(U,$J,358.3,25531,0)
+ ;;=Z65.3^^92^1164^3
+ ;;^UTILITY(U,$J,358.3,25531,1,0)
  ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,25531,1,3,0)
+ ;;=3^Problems Related to Other Legal Circumstances

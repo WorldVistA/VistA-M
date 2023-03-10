@@ -1,5 +1,5 @@
 IBTODD ;ALB/AAS - CLAIMS TRACKING DENIED DAYS REPORT ; 27-OCT-93
- ;;2.0;INTEGRATED BILLING;**32,458**;21-MAR-94;Build 4
+ ;;2.0;INTEGRATED BILLING;**32,458,730**;21-MAR-94;Build 83
  ;
 % I '$D(DT) D DT^DICRW
  W !!,"Denied Days Report",!!
@@ -75,7 +75,7 @@ BLD ; -- sort through data and build array to print from
  ...I '$P(IBCDT,U,2)!($P(IBCDT,U,2)>IBEDT) S $P(IBCDT,U,2)=$$FMADD^XLFDT(IBEDT,1)
  ...I +IBCDT<IBBDT S $P(IBCDT,U,1)=IBBDT
  ...S IBDAY=$$FMDIFF^XLFDT($P(IBCDT,U,2),$P(IBCDT,U,1))
- ..I IBLOSI=1,IBDAY=0 S IBDAY=1 ; get one day stays
+ ..I IBLOSI=1,$G(IBDAY)=0 S IBDAY=1 ; get one day stays
  ..Q:$G(IBDAY)<1
  ..S DFN=$P(IBTRCD,"^",5),IBNAM=$P($G(^DPT(+DFN,0)),"^") Q:IBNAM=""
  ..S IBD=$$PROV(DFN,IBTRCD,IBTRND,IBTALL),IBPROV=+IBD,IBSPEC=$P(IBD,"^",2),IBSERV=$P(IBD,"^",3)

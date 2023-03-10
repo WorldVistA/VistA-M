@@ -1,5 +1,5 @@
 PSBCSUTL ;BIRMINGHAM/TEJ- BCMA-HSC COVER SHEET UTILITIES ;03/06/16 3:06pm
- ;;3.0;BAR CODE MED ADMIN;**16,13,38,32,50,60,58,68,70,80,83**;Mar 2004;Build 89
+ ;;3.0;BAR CODE MED ADMIN;**16,13,38,32,50,60,58,68,70,80,83,106**;Mar 2004;Build 43
  ;Per VHA Directive 2004-038 (or future revisions regarding same), this routine should not be modified.
  ;
  ; Reference/IA
@@ -21,6 +21,7 @@ PSBCSUTL ;BIRMINGHAM/TEJ- BCMA-HSC COVER SHEET UTILITIES ;03/06/16 3:06pm
  ;       Expired/DC'd orders; set to +7 days to view future orders.
  ;*83 - call new PSBVDLRM, new call FIXADM^PSBUTL for Inserting G
  ;      action code in Results back to coversheet to trigger Removal.
+ ;*106- add Hazardous to Handle & Dispose flags 36 & 37
  ;
  ; ** Warning: PSBSIOPI & PSBCLINORD will be used as global variables
  ;
@@ -126,6 +127,9 @@ RPC(RESULTS,DFN,EXPWIN,PSBSIOPI,PSBCLINORD) ;
  .;   "ORD" is inserted later as piece 1 which offsets all here by +1
  .S $P(PSBREC,U,31)=$G(PSBCLORD)
  .S $P(PSBREC,U,32)=$G(PSBCLIEN)
+ .;       piece 34-35 reserved for Remove meds and set by PSBVDLU1
+ .S $P(PSBREC,U,36)=$G(PSBHAZHN)  ;Hazardous to Handle    *106
+ .S $P(PSBREC,U,37)=$G(PSBHAZDS)  ;Hazardous to Dispose   *106
  .;get all Admn(s) - DD info.
  .S (PSBDDS,PSBSOLS,PSBADDS,PSBFLAG)="0"
  .;PSB*3*60 adds additional checks to ensure an expired order is within the coversheet time parameter and an "END" is only added to the temp global after an order is added
@@ -258,4 +262,5 @@ CLEAN ;
  K PSBTBOUT,PSBTRDT,PSBTRFL,PSBTRTYP,PSBUID,PSBUIDS,PSBX,PSBXIEN,PSBX2,PSBYEA,PSBYEA1,PSBYTF,PSBYES,VAIP,PSBWADM,PSBWBEG
  K PSBXREC,PSBGOT1,PSBCDT,PSBQUIT,PSBUSED,PSBLST4X,PSBADMX,PSBI2,PSBXXX,PSBI,PSBPB,PSBSHWTB,PSBONTAB,PSBDONE,^TMP("PSJ",$J)
  K PSBNXTDU,LASTG,LSTTIME,PSBMHBCK,PSBHSTG,PSBNXTDT,NEXTADM,PSBLVIV
+ K PSBHAZ,PSBHAZHN,PSBHAZDS   ;*106
  Q

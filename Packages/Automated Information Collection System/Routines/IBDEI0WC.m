@@ -1,130 +1,116 @@
-IBDEI0WC ; ; 04-FEB-2020
- ;;3.0;IB ENCOUNTER FORM IMP/EXP;;FEB 04, 2020
+IBDEI0WC ; ; 01-FEB-2022
+ ;;3.0;IB ENCOUNTER FORM IMP/EXP;;FEB 01, 2022
  Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,999) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
- ;;^UTILITY(U,$J,358.3,14397,0)
- ;;=J47.1^^83^824^9
- ;;^UTILITY(U,$J,358.3,14397,1,0)
+ ;;^UTILITY(U,$J,358.3,14584,2)
+ ;;=^5020711
+ ;;^UTILITY(U,$J,358.3,14585,0)
+ ;;=S06.1X6A^^58^701^16
+ ;;^UTILITY(U,$J,358.3,14585,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,14397,1,3,0)
- ;;=3^Branchietasis w/ Acute Exacerbation
- ;;^UTILITY(U,$J,358.3,14397,1,4,0)
- ;;=4^J47.1
- ;;^UTILITY(U,$J,358.3,14397,2)
- ;;=^5008259
- ;;^UTILITY(U,$J,358.3,14398,0)
- ;;=J47.0^^83^824^10
- ;;^UTILITY(U,$J,358.3,14398,1,0)
+ ;;^UTILITY(U,$J,358.3,14585,1,3,0)
+ ;;=3^Traumatic cerebral edema w LOC >24 hr w/o ret consc w surv, init
+ ;;^UTILITY(U,$J,358.3,14585,1,4,0)
+ ;;=4^S06.1X6A
+ ;;^UTILITY(U,$J,358.3,14585,2)
+ ;;=^5020714
+ ;;^UTILITY(U,$J,358.3,14586,0)
+ ;;=S06.1X3A^^58^701^17
+ ;;^UTILITY(U,$J,358.3,14586,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,14398,1,3,0)
- ;;=3^Branchietasis w/ Acute Lower Repiratory Infection
- ;;^UTILITY(U,$J,358.3,14398,1,4,0)
- ;;=4^J47.0
- ;;^UTILITY(U,$J,358.3,14398,2)
- ;;=^5008258
- ;;^UTILITY(U,$J,358.3,14399,0)
- ;;=J47.9^^83^824^8
- ;;^UTILITY(U,$J,358.3,14399,1,0)
+ ;;^UTILITY(U,$J,358.3,14586,1,3,0)
+ ;;=3^Traumatic cerebral edema w LOC of 1-5 hrs 59 min, init
+ ;;^UTILITY(U,$J,358.3,14586,1,4,0)
+ ;;=4^S06.1X3A
+ ;;^UTILITY(U,$J,358.3,14586,2)
+ ;;=^5020705
+ ;;^UTILITY(U,$J,358.3,14587,0)
+ ;;=S06.1X1A^^58^701^18
+ ;;^UTILITY(U,$J,358.3,14587,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,14399,1,3,0)
- ;;=3^Branchietasis Uncomplicated
- ;;^UTILITY(U,$J,358.3,14399,1,4,0)
- ;;=4^J47.9
- ;;^UTILITY(U,$J,358.3,14399,2)
- ;;=^5008260
- ;;^UTILITY(U,$J,358.3,14400,0)
- ;;=J21.9^^83^824^12
- ;;^UTILITY(U,$J,358.3,14400,1,0)
+ ;;^UTILITY(U,$J,358.3,14587,1,3,0)
+ ;;=3^Traumatic cerebral edema w LOC of 30 minutes or less, init
+ ;;^UTILITY(U,$J,358.3,14587,1,4,0)
+ ;;=4^S06.1X1A
+ ;;^UTILITY(U,$J,358.3,14587,2)
+ ;;=^5020699
+ ;;^UTILITY(U,$J,358.3,14588,0)
+ ;;=S06.1X2A^^58^701^19
+ ;;^UTILITY(U,$J,358.3,14588,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,14400,1,3,0)
- ;;=3^Bronchiolitis,Acute,Unspec
- ;;^UTILITY(U,$J,358.3,14400,1,4,0)
- ;;=4^J21.9
- ;;^UTILITY(U,$J,358.3,14400,2)
- ;;=^5008199
- ;;^UTILITY(U,$J,358.3,14401,0)
- ;;=J20.9^^83^824^13
- ;;^UTILITY(U,$J,358.3,14401,1,0)
+ ;;^UTILITY(U,$J,358.3,14588,1,3,0)
+ ;;=3^Traumatic cerebral edema w LOC of 31-59 min, init
+ ;;^UTILITY(U,$J,358.3,14588,1,4,0)
+ ;;=4^S06.1X2A
+ ;;^UTILITY(U,$J,358.3,14588,2)
+ ;;=^5020702
+ ;;^UTILITY(U,$J,358.3,14589,0)
+ ;;=S06.1X4A^^58^701^20
+ ;;^UTILITY(U,$J,358.3,14589,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,14401,1,3,0)
- ;;=3^Bronchitis,Acute,Unspec
- ;;^UTILITY(U,$J,358.3,14401,1,4,0)
- ;;=4^J20.9
- ;;^UTILITY(U,$J,358.3,14401,2)
- ;;=^5008195
- ;;^UTILITY(U,$J,358.3,14402,0)
- ;;=J41.1^^83^824^14
- ;;^UTILITY(U,$J,358.3,14402,1,0)
+ ;;^UTILITY(U,$J,358.3,14589,1,3,0)
+ ;;=3^Traumatic cerebral edema w LOC of 6 hours to 24 hours, init
+ ;;^UTILITY(U,$J,358.3,14589,1,4,0)
+ ;;=4^S06.1X4A
+ ;;^UTILITY(U,$J,358.3,14589,2)
+ ;;=^5020708
+ ;;^UTILITY(U,$J,358.3,14590,0)
+ ;;=S06.1X7A^^58^701^22
+ ;;^UTILITY(U,$J,358.3,14590,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,14402,1,3,0)
- ;;=3^Bronchitis,Chronic,Mucopurulent
- ;;^UTILITY(U,$J,358.3,14402,1,4,0)
- ;;=4^J41.1
- ;;^UTILITY(U,$J,358.3,14402,2)
- ;;=^269949
- ;;^UTILITY(U,$J,358.3,14403,0)
- ;;=J41.0^^83^824^15
- ;;^UTILITY(U,$J,358.3,14403,1,0)
+ ;;^UTILITY(U,$J,358.3,14590,1,3,0)
+ ;;=3^Traumatic cerebral edema w LOC w death d/t brain inj bf consc, init
+ ;;^UTILITY(U,$J,358.3,14590,1,4,0)
+ ;;=4^S06.1X7A
+ ;;^UTILITY(U,$J,358.3,14590,2)
+ ;;=^5020717
+ ;;^UTILITY(U,$J,358.3,14591,0)
+ ;;=S06.1X8A^^58^701^23
+ ;;^UTILITY(U,$J,358.3,14591,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,14403,1,3,0)
- ;;=3^Bronchitis,Chronic,Simple
- ;;^UTILITY(U,$J,358.3,14403,1,4,0)
- ;;=4^J41.0
- ;;^UTILITY(U,$J,358.3,14403,2)
- ;;=^269946
- ;;^UTILITY(U,$J,358.3,14404,0)
- ;;=J42.^^83^824^16
- ;;^UTILITY(U,$J,358.3,14404,1,0)
+ ;;^UTILITY(U,$J,358.3,14591,1,3,0)
+ ;;=3^Traumatic cerebral edema w LOC w death d/t oth cause bf consc, init
+ ;;^UTILITY(U,$J,358.3,14591,1,4,0)
+ ;;=4^S06.1X8A
+ ;;^UTILITY(U,$J,358.3,14591,2)
+ ;;=^5020720
+ ;;^UTILITY(U,$J,358.3,14592,0)
+ ;;=S06.1X9A^^58^701^21
+ ;;^UTILITY(U,$J,358.3,14592,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,14404,1,3,0)
- ;;=3^Bronchitis,Chronic,Unspec
- ;;^UTILITY(U,$J,358.3,14404,1,4,0)
- ;;=4^J42.
- ;;^UTILITY(U,$J,358.3,14404,2)
- ;;=^5008234
- ;;^UTILITY(U,$J,358.3,14405,0)
- ;;=J40.^^83^824^17
- ;;^UTILITY(U,$J,358.3,14405,1,0)
+ ;;^UTILITY(U,$J,358.3,14592,1,3,0)
+ ;;=3^Traumatic cerebral edema w LOC of unsp duration, init
+ ;;^UTILITY(U,$J,358.3,14592,1,4,0)
+ ;;=4^S06.1X9A
+ ;;^UTILITY(U,$J,358.3,14592,2)
+ ;;=^5020723
+ ;;^UTILITY(U,$J,358.3,14593,0)
+ ;;=S06.1X0A^^58^701^24
+ ;;^UTILITY(U,$J,358.3,14593,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,14405,1,3,0)
- ;;=3^Bronchitis,Unspec as Acute/Chronic
- ;;^UTILITY(U,$J,358.3,14405,1,4,0)
- ;;=4^J40.
- ;;^UTILITY(U,$J,358.3,14405,2)
- ;;=^17164
- ;;^UTILITY(U,$J,358.3,14406,0)
- ;;=J44.1^^83^824^18
- ;;^UTILITY(U,$J,358.3,14406,1,0)
+ ;;^UTILITY(U,$J,358.3,14593,1,3,0)
+ ;;=3^Traumatic cerebral edema w/o LOC, init
+ ;;^UTILITY(U,$J,358.3,14593,1,4,0)
+ ;;=4^S06.1X0A
+ ;;^UTILITY(U,$J,358.3,14593,2)
+ ;;=^5020696
+ ;;^UTILITY(U,$J,358.3,14594,0)
+ ;;=S06.9X5A^^58^701^4
+ ;;^UTILITY(U,$J,358.3,14594,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,14406,1,3,0)
- ;;=3^COPD w/ Acute Exacerbation
- ;;^UTILITY(U,$J,358.3,14406,1,4,0)
- ;;=4^J44.1
- ;;^UTILITY(U,$J,358.3,14406,2)
- ;;=^5008240
- ;;^UTILITY(U,$J,358.3,14407,0)
- ;;=J44.0^^83^824^19
- ;;^UTILITY(U,$J,358.3,14407,1,0)
+ ;;^UTILITY(U,$J,358.3,14594,1,3,0)
+ ;;=3^Intcrn inj w LOC >24 hr w ret consc lev, init encntr,Unspec
+ ;;^UTILITY(U,$J,358.3,14594,1,4,0)
+ ;;=4^S06.9X5A
+ ;;^UTILITY(U,$J,358.3,14594,2)
+ ;;=^5021221
+ ;;^UTILITY(U,$J,358.3,14595,0)
+ ;;=S06.9X6A^^58^701^5
+ ;;^UTILITY(U,$J,358.3,14595,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,14407,1,3,0)
- ;;=3^COPD w/ Acute Lower Respiratory Infection
- ;;^UTILITY(U,$J,358.3,14407,1,4,0)
- ;;=4^J44.0
- ;;^UTILITY(U,$J,358.3,14407,2)
- ;;=^5008239
- ;;^UTILITY(U,$J,358.3,14408,0)
- ;;=J44.9^^83^824^20
- ;;^UTILITY(U,$J,358.3,14408,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,14408,1,3,0)
- ;;=3^COPD,Unspec
- ;;^UTILITY(U,$J,358.3,14408,1,4,0)
- ;;=4^J44.9
- ;;^UTILITY(U,$J,358.3,14408,2)
- ;;=^5008241
- ;;^UTILITY(U,$J,358.3,14409,0)
- ;;=R05.^^83^824^21
- ;;^UTILITY(U,$J,358.3,14409,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,14409,1,3,0)
- ;;=3^Cough
+ ;;^UTILITY(U,$J,358.3,14595,1,3,0)
+ ;;=3^Intcrn inj w LOC >24 hr w/o ret consc w surv, init encntr,Unspec
+ ;;^UTILITY(U,$J,358.3,14595,1,4,0)
+ ;;=4^S06.9X6A
+ ;;^UTILITY(U,$J,358.3,14595,2)
+ ;;=^5021224

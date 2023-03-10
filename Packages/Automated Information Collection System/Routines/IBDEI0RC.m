@@ -1,116 +1,132 @@
-IBDEI0RC ; ; 04-FEB-2020
- ;;3.0;IB ENCOUNTER FORM IMP/EXP;;FEB 04, 2020
+IBDEI0RC ; ; 01-FEB-2022
+ ;;3.0;IB ENCOUNTER FORM IMP/EXP;;FEB 01, 2022
  Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,999) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
- ;;^UTILITY(U,$J,358.3,12206,1,4,0)
- ;;=4^S01.412A
- ;;^UTILITY(U,$J,358.3,12206,2)
- ;;=^5020156
- ;;^UTILITY(U,$J,358.3,12207,0)
- ;;=S01.312A^^80^774^10
- ;;^UTILITY(U,$J,358.3,12207,1,0)
+ ;;^UTILITY(U,$J,358.3,12307,2)
+ ;;=^5151433
+ ;;^UTILITY(U,$J,358.3,12308,0)
+ ;;=L97.116^^49^596^123
+ ;;^UTILITY(U,$J,358.3,12308,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,12207,1,3,0)
- ;;=3^Laceration w/o FB of Left Ear,Init Encntr
- ;;^UTILITY(U,$J,358.3,12207,1,4,0)
- ;;=4^S01.312A
- ;;^UTILITY(U,$J,358.3,12207,2)
- ;;=^5020117
- ;;^UTILITY(U,$J,358.3,12208,0)
- ;;=S51.012A^^80^774^11
- ;;^UTILITY(U,$J,358.3,12208,1,0)
+ ;;^UTILITY(U,$J,358.3,12308,1,3,0)
+ ;;=3^Non-Pressure Chr Ulcer Rt Thigh w/ Bone Invl w/o Necrosis
+ ;;^UTILITY(U,$J,358.3,12308,1,4,0)
+ ;;=4^L97.116
+ ;;^UTILITY(U,$J,358.3,12308,2)
+ ;;=^5151434
+ ;;^UTILITY(U,$J,358.3,12309,0)
+ ;;=L97.118^^49^596^128
+ ;;^UTILITY(U,$J,358.3,12309,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,12208,1,3,0)
- ;;=3^Laceration w/o FB of Left Elbow,Init Encntr
- ;;^UTILITY(U,$J,358.3,12208,1,4,0)
- ;;=4^S51.012A
- ;;^UTILITY(U,$J,358.3,12208,2)
- ;;=^5028629
- ;;^UTILITY(U,$J,358.3,12209,0)
- ;;=S91.212A^^80^774^13
- ;;^UTILITY(U,$J,358.3,12209,1,0)
+ ;;^UTILITY(U,$J,358.3,12309,1,3,0)
+ ;;=3^Non-Pressure Chr Ulcer Rt Thigh w/ Oth Severity
+ ;;^UTILITY(U,$J,358.3,12309,1,4,0)
+ ;;=4^L97.118
+ ;;^UTILITY(U,$J,358.3,12309,2)
+ ;;=^5151435
+ ;;^UTILITY(U,$J,358.3,12310,0)
+ ;;=B00.9^^49^597^26
+ ;;^UTILITY(U,$J,358.3,12310,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,12209,1,3,0)
- ;;=3^Laceration w/o FB of Left Great Toe w/ Nail Damage,Init Encntr
- ;;^UTILITY(U,$J,358.3,12209,1,4,0)
- ;;=4^S91.212A
- ;;^UTILITY(U,$J,358.3,12209,2)
- ;;=^5044276
- ;;^UTILITY(U,$J,358.3,12210,0)
- ;;=S91.112A^^80^774^14
- ;;^UTILITY(U,$J,358.3,12210,1,0)
+ ;;^UTILITY(U,$J,358.3,12310,1,3,0)
+ ;;=3^Herpes Simplex Infection NOS
+ ;;^UTILITY(U,$J,358.3,12310,1,4,0)
+ ;;=4^B00.9
+ ;;^UTILITY(U,$J,358.3,12310,2)
+ ;;=^5000480
+ ;;^UTILITY(U,$J,358.3,12311,0)
+ ;;=K59.00^^49^597^13
+ ;;^UTILITY(U,$J,358.3,12311,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,12210,1,3,0)
- ;;=3^Laceration w/o FB of Left Great Toe w/o Nail Damage,Init Encntr
- ;;^UTILITY(U,$J,358.3,12210,1,4,0)
- ;;=4^S91.112A
- ;;^UTILITY(U,$J,358.3,12210,2)
- ;;=^5044186
- ;;^UTILITY(U,$J,358.3,12211,0)
- ;;=S61.412A^^80^774^15
- ;;^UTILITY(U,$J,358.3,12211,1,0)
+ ;;^UTILITY(U,$J,358.3,12311,1,3,0)
+ ;;=3^Constipation,Unspec
+ ;;^UTILITY(U,$J,358.3,12311,1,4,0)
+ ;;=4^K59.00
+ ;;^UTILITY(U,$J,358.3,12311,2)
+ ;;=^323537
+ ;;^UTILITY(U,$J,358.3,12312,0)
+ ;;=R42.^^49^597^17
+ ;;^UTILITY(U,$J,358.3,12312,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,12211,1,3,0)
- ;;=3^Laceration w/o FB of Left Hand,Init Encntr
- ;;^UTILITY(U,$J,358.3,12211,1,4,0)
- ;;=4^S61.412A
- ;;^UTILITY(U,$J,358.3,12211,2)
- ;;=^5032990
- ;;^UTILITY(U,$J,358.3,12212,0)
- ;;=S61.311A^^80^774^17
- ;;^UTILITY(U,$J,358.3,12212,1,0)
+ ;;^UTILITY(U,$J,358.3,12312,1,3,0)
+ ;;=3^Dizziness and Giddiness
+ ;;^UTILITY(U,$J,358.3,12312,1,4,0)
+ ;;=4^R42.
+ ;;^UTILITY(U,$J,358.3,12312,2)
+ ;;=^5019450
+ ;;^UTILITY(U,$J,358.3,12313,0)
+ ;;=G47.00^^49^597^27
+ ;;^UTILITY(U,$J,358.3,12313,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,12212,1,3,0)
- ;;=3^Laceration w/o FB of Left Index Finger w/ Nail Damage,Init Encntr
- ;;^UTILITY(U,$J,358.3,12212,1,4,0)
- ;;=4^S61.311A
- ;;^UTILITY(U,$J,358.3,12212,2)
- ;;=^5032909
- ;;^UTILITY(U,$J,358.3,12213,0)
- ;;=S61.211A^^80^774^18
- ;;^UTILITY(U,$J,358.3,12213,1,0)
+ ;;^UTILITY(U,$J,358.3,12313,1,3,0)
+ ;;=3^Insomnia,Unspec
+ ;;^UTILITY(U,$J,358.3,12313,1,4,0)
+ ;;=4^G47.00
+ ;;^UTILITY(U,$J,358.3,12313,2)
+ ;;=^332924
+ ;;^UTILITY(U,$J,358.3,12314,0)
+ ;;=G47.30^^49^597^40
+ ;;^UTILITY(U,$J,358.3,12314,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,12213,1,3,0)
- ;;=3^Laceration w/o FB of Left Index Finger w/o Nail Damage,Init Encntr
- ;;^UTILITY(U,$J,358.3,12213,1,4,0)
- ;;=4^S61.211A
- ;;^UTILITY(U,$J,358.3,12213,2)
- ;;=^5032774
- ;;^UTILITY(U,$J,358.3,12214,0)
- ;;=S91.215A^^80^774^20
- ;;^UTILITY(U,$J,358.3,12214,1,0)
+ ;;^UTILITY(U,$J,358.3,12314,1,3,0)
+ ;;=3^Sleep Apnea,Unspec
+ ;;^UTILITY(U,$J,358.3,12314,1,4,0)
+ ;;=4^G47.30
+ ;;^UTILITY(U,$J,358.3,12314,2)
+ ;;=^5003977
+ ;;^UTILITY(U,$J,358.3,12315,0)
+ ;;=R50.9^^49^597^23
+ ;;^UTILITY(U,$J,358.3,12315,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,12214,1,3,0)
- ;;=3^Laceration w/o FB of Left Lesser Toe(s) w/ Nail Damage,Init Encntr
- ;;^UTILITY(U,$J,358.3,12214,1,4,0)
- ;;=4^S91.215A
- ;;^UTILITY(U,$J,358.3,12214,2)
- ;;=^5044282
- ;;^UTILITY(U,$J,358.3,12215,0)
- ;;=S91.115A^^80^774^21
- ;;^UTILITY(U,$J,358.3,12215,1,0)
+ ;;^UTILITY(U,$J,358.3,12315,1,3,0)
+ ;;=3^Fever,Unspec
+ ;;^UTILITY(U,$J,358.3,12315,1,4,0)
+ ;;=4^R50.9
+ ;;^UTILITY(U,$J,358.3,12315,2)
+ ;;=^5019512
+ ;;^UTILITY(U,$J,358.3,12316,0)
+ ;;=R50.82^^49^597^33
+ ;;^UTILITY(U,$J,358.3,12316,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,12215,1,3,0)
- ;;=3^Laceration w/o FB of Left Lesser Toe(s) w/o Nail Damage,Init Encntr
- ;;^UTILITY(U,$J,358.3,12215,1,4,0)
- ;;=4^S91.115A
- ;;^UTILITY(U,$J,358.3,12215,2)
- ;;=^5044195
- ;;^UTILITY(U,$J,358.3,12216,0)
- ;;=S61.317A^^80^774^22
- ;;^UTILITY(U,$J,358.3,12216,1,0)
+ ;;^UTILITY(U,$J,358.3,12316,1,3,0)
+ ;;=3^Postprocedural Fever
+ ;;^UTILITY(U,$J,358.3,12316,1,4,0)
+ ;;=4^R50.82
+ ;;^UTILITY(U,$J,358.3,12316,2)
+ ;;=^5019509
+ ;;^UTILITY(U,$J,358.3,12317,0)
+ ;;=R50.83^^49^597^34
+ ;;^UTILITY(U,$J,358.3,12317,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,12216,1,3,0)
- ;;=3^Laceration w/o FB of Left Little Finger w/ Nail Damage,Init Encntr
- ;;^UTILITY(U,$J,358.3,12216,1,4,0)
- ;;=4^S61.317A
- ;;^UTILITY(U,$J,358.3,12216,2)
- ;;=^5032927
- ;;^UTILITY(U,$J,358.3,12217,0)
- ;;=S61.217A^^80^774^23
- ;;^UTILITY(U,$J,358.3,12217,1,0)
+ ;;^UTILITY(U,$J,358.3,12317,1,3,0)
+ ;;=3^Postvaccination Fever
+ ;;^UTILITY(U,$J,358.3,12317,1,4,0)
+ ;;=4^R50.83
+ ;;^UTILITY(U,$J,358.3,12317,2)
+ ;;=^5019510
+ ;;^UTILITY(U,$J,358.3,12318,0)
+ ;;=R68.83^^49^597^11
+ ;;^UTILITY(U,$J,358.3,12318,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,12217,1,3,0)
- ;;=3^Laceration w/o FB of Left Little Finger w/o Nail Damage,Init Encntr
- ;;^UTILITY(U,$J,358.3,12217,1,4,0)
- ;;=4^S61.217A
+ ;;^UTILITY(U,$J,358.3,12318,1,3,0)
+ ;;=3^Chills w/o Fever
+ ;;^UTILITY(U,$J,358.3,12318,1,4,0)
+ ;;=4^R68.83
+ ;;^UTILITY(U,$J,358.3,12318,2)
+ ;;=^5019555
+ ;;^UTILITY(U,$J,358.3,12319,0)
+ ;;=R53.81^^49^597^28
+ ;;^UTILITY(U,$J,358.3,12319,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,12319,1,3,0)
+ ;;=3^Malaise NOS
+ ;;^UTILITY(U,$J,358.3,12319,1,4,0)
+ ;;=4^R53.81
+ ;;^UTILITY(U,$J,358.3,12319,2)
+ ;;=^5019518
+ ;;^UTILITY(U,$J,358.3,12320,0)
+ ;;=R53.83^^49^597^22
+ ;;^UTILITY(U,$J,358.3,12320,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,12320,1,3,0)
+ ;;=3^Fatigue NOS

@@ -1,132 +1,124 @@
-IBDEI1CA ; ; 04-FEB-2020
- ;;3.0;IB ENCOUNTER FORM IMP/EXP;;FEB 04, 2020
+IBDEI1CA ; ; 01-FEB-2022
+ ;;3.0;IB ENCOUNTER FORM IMP/EXP;;FEB 01, 2022
  Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,999) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
- ;;^UTILITY(U,$J,358.3,21391,2)
- ;;=^5063170
- ;;^UTILITY(U,$J,358.3,21392,0)
- ;;=Z59.0^^95^1066^4
- ;;^UTILITY(U,$J,358.3,21392,1,0)
+ ;;^UTILITY(U,$J,358.3,21647,1,4,0)
+ ;;=4^M06.032
+ ;;^UTILITY(U,$J,358.3,21647,2)
+ ;;=^5010055
+ ;;^UTILITY(U,$J,358.3,21648,0)
+ ;;=M06.09^^70^922^50
+ ;;^UTILITY(U,$J,358.3,21648,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,21392,1,3,0)
- ;;=3^Homelessness
- ;;^UTILITY(U,$J,358.3,21392,1,4,0)
- ;;=4^Z59.0
- ;;^UTILITY(U,$J,358.3,21392,2)
- ;;=^5063129
- ;;^UTILITY(U,$J,358.3,21393,0)
- ;;=Z59.1^^95^1066^6
- ;;^UTILITY(U,$J,358.3,21393,1,0)
+ ;;^UTILITY(U,$J,358.3,21648,1,3,0)
+ ;;=3^Rheum Arth w/o Rheum Factor Mult Sites
+ ;;^UTILITY(U,$J,358.3,21648,1,4,0)
+ ;;=4^M06.09
+ ;;^UTILITY(U,$J,358.3,21648,2)
+ ;;=^5010070
+ ;;^UTILITY(U,$J,358.3,21649,0)
+ ;;=M06.071^^70^922^51
+ ;;^UTILITY(U,$J,358.3,21649,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,21393,1,3,0)
- ;;=3^Inadequate Housing
- ;;^UTILITY(U,$J,358.3,21393,1,4,0)
- ;;=4^Z59.1
- ;;^UTILITY(U,$J,358.3,21393,2)
- ;;=^5063130
- ;;^UTILITY(U,$J,358.3,21394,0)
- ;;=Z59.5^^95^1066^2
- ;;^UTILITY(U,$J,358.3,21394,1,0)
+ ;;^UTILITY(U,$J,358.3,21649,1,3,0)
+ ;;=3^Rheum Arth w/o Rheum Factor Right Ankle/Foot
+ ;;^UTILITY(U,$J,358.3,21649,1,4,0)
+ ;;=4^M06.071
+ ;;^UTILITY(U,$J,358.3,21649,2)
+ ;;=^5010066
+ ;;^UTILITY(U,$J,358.3,21650,0)
+ ;;=M06.021^^70^922^52
+ ;;^UTILITY(U,$J,358.3,21650,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,21394,1,3,0)
- ;;=3^Extreme Poverty
- ;;^UTILITY(U,$J,358.3,21394,1,4,0)
- ;;=4^Z59.5
- ;;^UTILITY(U,$J,358.3,21394,2)
- ;;=^5063134
- ;;^UTILITY(U,$J,358.3,21395,0)
- ;;=Z60.2^^95^1066^8
- ;;^UTILITY(U,$J,358.3,21395,1,0)
+ ;;^UTILITY(U,$J,358.3,21650,1,3,0)
+ ;;=3^Rheum Arth w/o Rheum Factor Right Elbow
+ ;;^UTILITY(U,$J,358.3,21650,1,4,0)
+ ;;=4^M06.021
+ ;;^UTILITY(U,$J,358.3,21650,2)
+ ;;=^5010051
+ ;;^UTILITY(U,$J,358.3,21651,0)
+ ;;=M06.041^^70^922^53
+ ;;^UTILITY(U,$J,358.3,21651,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,21395,1,3,0)
- ;;=3^Problems Related to Living Alone
- ;;^UTILITY(U,$J,358.3,21395,1,4,0)
- ;;=4^Z60.2
- ;;^UTILITY(U,$J,358.3,21395,2)
- ;;=^5063140
- ;;^UTILITY(U,$J,358.3,21396,0)
- ;;=Z74.2^^95^1066^1
- ;;^UTILITY(U,$J,358.3,21396,1,0)
+ ;;^UTILITY(U,$J,358.3,21651,1,3,0)
+ ;;=3^Rheum Arth w/o Rheum Factor Right Hand
+ ;;^UTILITY(U,$J,358.3,21651,1,4,0)
+ ;;=4^M06.041
+ ;;^UTILITY(U,$J,358.3,21651,2)
+ ;;=^5010057
+ ;;^UTILITY(U,$J,358.3,21652,0)
+ ;;=M06.051^^70^922^54
+ ;;^UTILITY(U,$J,358.3,21652,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,21396,1,3,0)
- ;;=3^Assistance at Home Needed
- ;;^UTILITY(U,$J,358.3,21396,1,4,0)
- ;;=4^Z74.2
- ;;^UTILITY(U,$J,358.3,21396,2)
- ;;=^5063285
- ;;^UTILITY(U,$J,358.3,21397,0)
- ;;=Z75.5^^95^1066^3
- ;;^UTILITY(U,$J,358.3,21397,1,0)
+ ;;^UTILITY(U,$J,358.3,21652,1,3,0)
+ ;;=3^Rheum Arth w/o Rheum Factor Right Hip
+ ;;^UTILITY(U,$J,358.3,21652,1,4,0)
+ ;;=4^M06.051
+ ;;^UTILITY(U,$J,358.3,21652,2)
+ ;;=^5010060
+ ;;^UTILITY(U,$J,358.3,21653,0)
+ ;;=M06.061^^70^922^55
+ ;;^UTILITY(U,$J,358.3,21653,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,21397,1,3,0)
- ;;=3^Holiday Relief Care
- ;;^UTILITY(U,$J,358.3,21397,1,4,0)
- ;;=4^Z75.5
- ;;^UTILITY(U,$J,358.3,21397,2)
- ;;=^5063294
- ;;^UTILITY(U,$J,358.3,21398,0)
- ;;=Z59.3^^95^1066^9
- ;;^UTILITY(U,$J,358.3,21398,1,0)
+ ;;^UTILITY(U,$J,358.3,21653,1,3,0)
+ ;;=3^Rheum Arth w/o Rheum Factor Right Knee
+ ;;^UTILITY(U,$J,358.3,21653,1,4,0)
+ ;;=4^M06.061
+ ;;^UTILITY(U,$J,358.3,21653,2)
+ ;;=^5010063
+ ;;^UTILITY(U,$J,358.3,21654,0)
+ ;;=M06.011^^70^922^56
+ ;;^UTILITY(U,$J,358.3,21654,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,21398,1,3,0)
- ;;=3^Problems Related to Living in Residential Institution
- ;;^UTILITY(U,$J,358.3,21398,1,4,0)
- ;;=4^Z59.3
- ;;^UTILITY(U,$J,358.3,21398,2)
- ;;=^5063132
- ;;^UTILITY(U,$J,358.3,21399,0)
- ;;=Z63.8^^95^1066^7
- ;;^UTILITY(U,$J,358.3,21399,1,0)
+ ;;^UTILITY(U,$J,358.3,21654,1,3,0)
+ ;;=3^Rheum Arth w/o Rheum Factor Right Shldr
+ ;;^UTILITY(U,$J,358.3,21654,1,4,0)
+ ;;=4^M06.011
+ ;;^UTILITY(U,$J,358.3,21654,2)
+ ;;=^5010048
+ ;;^UTILITY(U,$J,358.3,21655,0)
+ ;;=M06.031^^70^922^57
+ ;;^UTILITY(U,$J,358.3,21655,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,21399,1,3,0)
- ;;=3^Primary Support Group Problems
- ;;^UTILITY(U,$J,358.3,21399,1,4,0)
- ;;=4^Z63.8
- ;;^UTILITY(U,$J,358.3,21399,2)
- ;;=^5063174
- ;;^UTILITY(U,$J,358.3,21400,0)
- ;;=Z59.8^^95^1066^5
- ;;^UTILITY(U,$J,358.3,21400,1,0)
+ ;;^UTILITY(U,$J,358.3,21655,1,3,0)
+ ;;=3^Rheum Arth w/o Rheum Factor Right Wrist
+ ;;^UTILITY(U,$J,358.3,21655,1,4,0)
+ ;;=4^M06.031
+ ;;^UTILITY(U,$J,358.3,21655,2)
+ ;;=^5010054
+ ;;^UTILITY(U,$J,358.3,21656,0)
+ ;;=M06.00^^70^922^58
+ ;;^UTILITY(U,$J,358.3,21656,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,21400,1,3,0)
- ;;=3^Housing/Economic Circumstance Problems
- ;;^UTILITY(U,$J,358.3,21400,1,4,0)
- ;;=4^Z59.8
- ;;^UTILITY(U,$J,358.3,21400,2)
- ;;=^5063137
- ;;^UTILITY(U,$J,358.3,21401,0)
- ;;=Z72.51^^95^1067^2
- ;;^UTILITY(U,$J,358.3,21401,1,0)
+ ;;^UTILITY(U,$J,358.3,21656,1,3,0)
+ ;;=3^Rheum Arth w/o Rheum Factor Unspec Site
+ ;;^UTILITY(U,$J,358.3,21656,1,4,0)
+ ;;=4^M06.00
+ ;;^UTILITY(U,$J,358.3,21656,2)
+ ;;=^5010047
+ ;;^UTILITY(U,$J,358.3,21657,0)
+ ;;=M06.08^^70^922^59
+ ;;^UTILITY(U,$J,358.3,21657,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,21401,1,3,0)
- ;;=3^High Risk Heterosexual Behavior
- ;;^UTILITY(U,$J,358.3,21401,1,4,0)
- ;;=4^Z72.51
- ;;^UTILITY(U,$J,358.3,21401,2)
- ;;=^5063258
- ;;^UTILITY(U,$J,358.3,21402,0)
- ;;=Z72.6^^95^1067^1
- ;;^UTILITY(U,$J,358.3,21402,1,0)
+ ;;^UTILITY(U,$J,358.3,21657,1,3,0)
+ ;;=3^Rheum Arth w/o Rheum Factor Vertebrae
+ ;;^UTILITY(U,$J,358.3,21657,1,4,0)
+ ;;=4^M06.08
+ ;;^UTILITY(U,$J,358.3,21657,2)
+ ;;=^5010069
+ ;;^UTILITY(U,$J,358.3,21658,0)
+ ;;=M06.9^^70^922^109
+ ;;^UTILITY(U,$J,358.3,21658,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,21402,1,3,0)
- ;;=3^Gambling/Betting
- ;;^UTILITY(U,$J,358.3,21402,1,4,0)
- ;;=4^Z72.6
- ;;^UTILITY(U,$J,358.3,21402,2)
- ;;=^5063261
- ;;^UTILITY(U,$J,358.3,21403,0)
- ;;=Z72.3^^95^1067^4
- ;;^UTILITY(U,$J,358.3,21403,1,0)
+ ;;^UTILITY(U,$J,358.3,21658,1,3,0)
+ ;;=3^Rheumatoid Arthritis,Unspec
+ ;;^UTILITY(U,$J,358.3,21658,1,4,0)
+ ;;=4^M06.9
+ ;;^UTILITY(U,$J,358.3,21658,2)
+ ;;=^5010145
+ ;;^UTILITY(U,$J,358.3,21659,0)
+ ;;=M06.272^^70^922^110
+ ;;^UTILITY(U,$J,358.3,21659,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,21403,1,3,0)
- ;;=3^Lack of Physical Exercise
- ;;^UTILITY(U,$J,358.3,21403,1,4,0)
- ;;=4^Z72.3
- ;;^UTILITY(U,$J,358.3,21403,2)
- ;;=^5063256
- ;;^UTILITY(U,$J,358.3,21404,0)
- ;;=Z72.4^^95^1067^3
- ;;^UTILITY(U,$J,358.3,21404,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,21404,1,3,0)
- ;;=3^Inappropriate Diet/Eating Habits
+ ;;^UTILITY(U,$J,358.3,21659,1,3,0)
+ ;;=3^Rheumatoid Bursitis Left Ankle/Foot

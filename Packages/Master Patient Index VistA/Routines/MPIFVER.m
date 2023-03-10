@@ -1,5 +1,5 @@
 MPIFVER ;ALB/CKN,VISTA ENTERPRISE REGISTRATION ; 7/26/17 2:18pm
- ;;1.0;MASTER PATIENT INDEX VISTA;**61,62,65,66,67**;30 Apr 99;Build 2
+ ;;1.0;MASTER PATIENT INDEX VISTA;**61,62,65,66,67,79**;30 Apr 99;Build 2
  Q
 ENP(RESULTS,ALTRSHLD,TKTRSHLD) ;
  N XCNT,XCNTR,DFN,TMPRESLT
@@ -132,7 +132,7 @@ ASK2 ;
  I Y S XCNTR=$$CNTR(Y) D
  .;W !,"Patient: "_XCNTR_" selected"
  Q
-EXDISP(XCNT) ;Extended display for selected patient
+EXDISP(XCNT) ;Extended display for selected patient **79 (cmc) VAMPI-16603 INCLUDE CORRESPONDENCE AND WORK ADDRESS, CELL AND WORK PHONE
  ;Get all traits from original results
  N FNAME,LNAME,MNAME,CITY,COUNTRY,DOB,GENDER,ICN,L1,L2,L3,MMN,PCODE,DOD
  N POBCTY,POBCNTRY,POBST,PREF,SUFFIX,PROVINCE,RESCITY,RESCNTRY
@@ -157,6 +157,7 @@ EXDISP(XCNT) ;Extended display for selected patient
  W !,?5,"Name",?17,": "_LNAME_","_FNAME_" "_MNAME
  W !,?5,"SSN",?17,": "_SSN
  W !,?5,"DOB",?17,": "_$$FMTE^XLFDT(DOB)
+ I $G(RESULTS(XCNT,"MBI"))'="" W !,?5,"MBI",?17,": "_$G(RESULTS(XCNT,"MBI")) ;**79 ADDING MBI
  ; Story 722746 (elz) if patient is deceased display dod
  I $D(DOD) W !,?5,"*DOD",?17,": "_$$FMTE^XLFDT(DOD)
  ; Story 603957 (elz) changed Gender to Birth Sex
@@ -166,16 +167,39 @@ EXDISP(XCNT) ;Extended display for selected patient
  I POBST'="" W !,?5,"POB State",?17,": "_POBST
  I POBCNTRY'="" W !,?5,"POB Country",?17,": "_POBCNTRY
  I RESADD1'=""!(RESADD2'="")!(RESADD3'="")!(RESCNTRY'="")!(RESCITY'="")!(RESST'="")!(RESPCODE'="")!(RESPROV'="")!(RESZIP'="") D
- . W !!,"Address:"
+ . W !!,"Residential Address:"
  . I RESADD1'="" W !,?5,RESADD1
  . I RESADD2'="" W !,?5,RESADD2
  . I RESADD3'="" W !,?5,RESADD3
  . I RESCNTRY'="",(RESCNTRY="USA") D
- .. W !,?5,RESCITY_","_RESST_" "_RESZIP
+ .. W !,?5,RESCITY_", "_RESST_" "_RESZIP
  . I RESCNTRY'="",(RESCNTRY'="USA") D
  .. W !,?5,RESCITY_","_RESPROV_" "_RESPCODE
  I RESCNTRY'="" W !,?5,RESCNTRY
+ ;**79 (cmc) VAMPI-16603 WORK AND CORRESPONDENCE ADDRESS, CELL AND WORK PHONE
+ I $G(RESULTS(XCNT,"CorAddL1"))'="" D
+ .W !!,"Correspondence Address:"
+ .W !,?5,$G(RESULTS(XCNT,"CorAddL1"))
+ .W:$G(RESULTS(XCNT,"CorAddL2"))'="" !,?5,$G(RESULTS(XCNT,"CorAddL2"))
+ .W:$G(RESULTS(XCNT,"CorAddL3"))'="" !,?5,$G(RESULTS(XCNT,"CorAddL3"))
+ .I $G(RESULTS(XCNT,"CorAddCountry"))=""!($G(RESULTS(XCNT,"CorAddCountry"))="USA") W !,?5,$G(RESULTS(XCNT,"CorAddCity"))_", "_$G(RESULTS(XCNT,"CorAddState"))_" "_$G(RESULTS(XCNT,"CorAddZip4")),!,?5,"USA"
+ .I $G(RESULTS(XCNT,"CorAddCountry"))'=""&($G(RESULTS(XCNT,"CorAddCountry"))'="USA") D
+ ..W !,?5,$G(RESULTS(XCNT,"CorAddCity"))_", "_$G(RESULTS(XCNT,"CorAddProvince"))_" "_$G(RESULTS(XCNT,"CorAddPCode")),!,?5,$G(RESULTS(XCNT,"CorAddCountry"))
+ ;
+ I $G(RESULTS(XCNT,"WrkAddL1"))'="" D
+ .W !!,"Work Address:"
+ .W !,?5,$G(RESULTS(XCNT,"WrkAddL1"))
+ .W:$G(RESULTS(XCNT,"WrkAddL2"))'="" !,?5,$G(RESULTS(XCNT,"WrkAddL2"))
+ .W:$G(RESULTS(XCNT,"WrkAddL3"))'="" !,?5,$G(RESULTS(XCNT,"WrkAddL3"))
+ .I $G(RESULTS(XCNT,"WrkAddCountry"))=""!($G(RESULTS(XCNT,"WrkAddCountry"))="USA") W !,?5,$G(RESULTS(XCNT,"WrkAddCity"))_", "_$G(RESULTS(XCNT,"WrkAddState"))_" "_$G(RESULTS(XCNT,"WrkAddZip4")),!,?5,"USA"
+ .I $G(RESULTS(XCNT,"WrkAddCountry"))'=""&($G(RESULTS(XCNT,"WrkAddCountry"))'="USA") D
+ ..W !,?5,$G(RESULTS(XCNT,"WrkAddCity"))_", "_$G(RESULTS(XCNT,"WrkAddProvince"))_" "_$G(RESULTS(XCNT,"WrkAddPCode")),!,?5,$G(RESULTS(XCNT,"WrkAddCountry"))
+ ;
  I RESPHN'="" W !,?5,"Phone: "_RESPHN
+ ;
+ I $G(RESULTS(XCNT,"CellPhone"))'="" W !,?5,"Cell Phone: ",RESULTS(XCNT,"CellPhone")
+ I $G(RESULTS(XCNT,"WrkPhone"))'="" W !,?5,"Work Phone: ",RESULTS(XCNT,"WrkPhone")
+ ;
  I $D(RESULTS(XCNT,"ALIAS")) D
  . W !!,"ALIAS Information"
  . W !,?5,"NAME",?45,"SSN"

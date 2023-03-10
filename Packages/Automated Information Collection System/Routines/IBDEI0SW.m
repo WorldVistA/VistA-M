@@ -1,118 +1,128 @@
-IBDEI0SW ; ; 04-FEB-2020
- ;;3.0;IB ENCOUNTER FORM IMP/EXP;;FEB 04, 2020
+IBDEI0SW ; ; 01-FEB-2022
+ ;;3.0;IB ENCOUNTER FORM IMP/EXP;;FEB 01, 2022
  Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,999) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
- ;;^UTILITY(U,$J,358.3,12870,1,0)
+ ;;^UTILITY(U,$J,358.3,13002,1,4,0)
+ ;;=4^H53.121
+ ;;^UTILITY(U,$J,358.3,13002,2)
+ ;;=^5006309
+ ;;^UTILITY(U,$J,358.3,13003,0)
+ ;;=H53.122^^51^626^19
+ ;;^UTILITY(U,$J,358.3,13003,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,12870,1,3,0)
- ;;=3^Accidental Puncture/Laceration of Skin During Surgery
- ;;^UTILITY(U,$J,358.3,12870,1,4,0)
- ;;=4^L76.12
- ;;^UTILITY(U,$J,358.3,12870,2)
- ;;=^5009305
- ;;^UTILITY(U,$J,358.3,12871,0)
- ;;=I97.88^^80^789^15
- ;;^UTILITY(U,$J,358.3,12871,1,0)
+ ;;^UTILITY(U,$J,358.3,13003,1,3,0)
+ ;;=3^Transient Vision Loss,Left Eye
+ ;;^UTILITY(U,$J,358.3,13003,1,4,0)
+ ;;=4^H53.122
+ ;;^UTILITY(U,$J,358.3,13003,2)
+ ;;=^5006310
+ ;;^UTILITY(U,$J,358.3,13004,0)
+ ;;=H53.123^^51^626^18
+ ;;^UTILITY(U,$J,358.3,13004,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,12871,1,3,0)
- ;;=3^Intraoperative Complication of the Circulatory System NEC
- ;;^UTILITY(U,$J,358.3,12871,1,4,0)
- ;;=4^I97.88
- ;;^UTILITY(U,$J,358.3,12871,2)
- ;;=^5008111
- ;;^UTILITY(U,$J,358.3,12872,0)
- ;;=K91.81^^80^789^16
- ;;^UTILITY(U,$J,358.3,12872,1,0)
+ ;;^UTILITY(U,$J,358.3,13004,1,3,0)
+ ;;=3^Transient Vision Loss,Bilateral
+ ;;^UTILITY(U,$J,358.3,13004,1,4,0)
+ ;;=4^H53.123
+ ;;^UTILITY(U,$J,358.3,13004,2)
+ ;;=^5006311
+ ;;^UTILITY(U,$J,358.3,13005,0)
+ ;;=H53.141^^51^626^23
+ ;;^UTILITY(U,$J,358.3,13005,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,12872,1,3,0)
- ;;=3^Intraoperative Complication of the Digestive System NEC
- ;;^UTILITY(U,$J,358.3,12872,1,4,0)
- ;;=4^K91.81
- ;;^UTILITY(U,$J,358.3,12872,2)
- ;;=^5008907
- ;;^UTILITY(U,$J,358.3,12873,0)
- ;;=H95.88^^80^789^17
- ;;^UTILITY(U,$J,358.3,12873,1,0)
+ ;;^UTILITY(U,$J,358.3,13005,1,3,0)
+ ;;=3^Visual Discomfort,Right Eye
+ ;;^UTILITY(U,$J,358.3,13005,1,4,0)
+ ;;=4^H53.141
+ ;;^UTILITY(U,$J,358.3,13005,2)
+ ;;=^5006317
+ ;;^UTILITY(U,$J,358.3,13006,0)
+ ;;=H53.142^^51^626^22
+ ;;^UTILITY(U,$J,358.3,13006,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,12873,1,3,0)
- ;;=3^Intraoperative Complication of the Ear/Mastoid NEC
- ;;^UTILITY(U,$J,358.3,12873,1,4,0)
- ;;=4^H95.88
- ;;^UTILITY(U,$J,358.3,12873,2)
- ;;=^5007036
- ;;^UTILITY(U,$J,358.3,12874,0)
- ;;=N99.81^^80^789^18
- ;;^UTILITY(U,$J,358.3,12874,1,0)
+ ;;^UTILITY(U,$J,358.3,13006,1,3,0)
+ ;;=3^Visual Discomfort,Left Eye
+ ;;^UTILITY(U,$J,358.3,13006,1,4,0)
+ ;;=4^H53.142
+ ;;^UTILITY(U,$J,358.3,13006,2)
+ ;;=^5006318
+ ;;^UTILITY(U,$J,358.3,13007,0)
+ ;;=H53.143^^51^626^21
+ ;;^UTILITY(U,$J,358.3,13007,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,12874,1,3,0)
- ;;=3^Intraoperative Complication of the GU System NEC
- ;;^UTILITY(U,$J,358.3,12874,1,4,0)
- ;;=4^N99.81
- ;;^UTILITY(U,$J,358.3,12874,2)
- ;;=^5015967
- ;;^UTILITY(U,$J,358.3,12875,0)
- ;;=M96.89^^80^789^19
- ;;^UTILITY(U,$J,358.3,12875,1,0)
+ ;;^UTILITY(U,$J,358.3,13007,1,3,0)
+ ;;=3^Visual Discomfort,Bilateral
+ ;;^UTILITY(U,$J,358.3,13007,1,4,0)
+ ;;=4^H53.143
+ ;;^UTILITY(U,$J,358.3,13007,2)
+ ;;=^5006319
+ ;;^UTILITY(U,$J,358.3,13008,0)
+ ;;=H53.15^^51^626^24
+ ;;^UTILITY(U,$J,358.3,13008,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,12875,1,3,0)
- ;;=3^Intraoperative Complication of the Musculoskeletal System NEC
- ;;^UTILITY(U,$J,358.3,12875,1,4,0)
- ;;=4^M96.89
- ;;^UTILITY(U,$J,358.3,12875,2)
- ;;=^5015399
- ;;^UTILITY(U,$J,358.3,12876,0)
- ;;=G97.81^^80^789^20
- ;;^UTILITY(U,$J,358.3,12876,1,0)
+ ;;^UTILITY(U,$J,358.3,13008,1,3,0)
+ ;;=3^Visual Distortions of Shape & Size
+ ;;^UTILITY(U,$J,358.3,13008,1,4,0)
+ ;;=4^H53.15
+ ;;^UTILITY(U,$J,358.3,13008,2)
+ ;;=^268836
+ ;;^UTILITY(U,$J,358.3,13009,0)
+ ;;=H53.40^^51^626^25
+ ;;^UTILITY(U,$J,358.3,13009,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,12876,1,3,0)
- ;;=3^Intraoperative Complication of the Nervous System
- ;;^UTILITY(U,$J,358.3,12876,1,4,0)
- ;;=4^G97.81
- ;;^UTILITY(U,$J,358.3,12876,2)
- ;;=^5004211
- ;;^UTILITY(U,$J,358.3,12877,0)
- ;;=J95.88^^80^789^21
- ;;^UTILITY(U,$J,358.3,12877,1,0)
+ ;;^UTILITY(U,$J,358.3,13009,1,3,0)
+ ;;=3^Visual Field Defects,Unspec
+ ;;^UTILITY(U,$J,358.3,13009,1,4,0)
+ ;;=4^H53.40
+ ;;^UTILITY(U,$J,358.3,13009,2)
+ ;;=^5006324
+ ;;^UTILITY(U,$J,358.3,13010,0)
+ ;;=H47.9^^51^626^28
+ ;;^UTILITY(U,$J,358.3,13010,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,12877,1,3,0)
- ;;=3^Intraoperative Complication of the Respiratory System NEC
- ;;^UTILITY(U,$J,358.3,12877,1,4,0)
- ;;=4^J95.88
- ;;^UTILITY(U,$J,358.3,12877,2)
- ;;=^5008345
- ;;^UTILITY(U,$J,358.3,12878,0)
- ;;=L76.81^^80^789^22
- ;;^UTILITY(U,$J,358.3,12878,1,0)
+ ;;^UTILITY(U,$J,358.3,13010,1,3,0)
+ ;;=3^Visual Pathway Disorder,Unspec
+ ;;^UTILITY(U,$J,358.3,13010,1,4,0)
+ ;;=4^H47.9
+ ;;^UTILITY(U,$J,358.3,13010,2)
+ ;;=^5006178
+ ;;^UTILITY(U,$J,358.3,13011,0)
+ ;;=Z90.01^^51^626^1
+ ;;^UTILITY(U,$J,358.3,13011,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,12878,1,3,0)
- ;;=3^Intraoperative Complication of the Skin NEC
- ;;^UTILITY(U,$J,358.3,12878,1,4,0)
- ;;=4^L76.81
- ;;^UTILITY(U,$J,358.3,12878,2)
- ;;=^5009308
- ;;^UTILITY(U,$J,358.3,12879,0)
- ;;=D78.81^^80^789^23
- ;;^UTILITY(U,$J,358.3,12879,1,0)
+ ;;^UTILITY(U,$J,358.3,13011,1,3,0)
+ ;;=3^Acquired Absence of Eye
+ ;;^UTILITY(U,$J,358.3,13011,1,4,0)
+ ;;=4^Z90.01
+ ;;^UTILITY(U,$J,358.3,13011,2)
+ ;;=^322068
+ ;;^UTILITY(U,$J,358.3,13012,0)
+ ;;=T85.79XA^^51^626^26
+ ;;^UTILITY(U,$J,358.3,13012,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,12879,1,3,0)
- ;;=3^Intraoperative Complication of the Spleen
- ;;^UTILITY(U,$J,358.3,12879,1,4,0)
- ;;=4^D78.81
- ;;^UTILITY(U,$J,358.3,12879,2)
- ;;=^5002403
- ;;^UTILITY(U,$J,358.3,12880,0)
- ;;=H59.229^^80^789^3
- ;;^UTILITY(U,$J,358.3,12880,1,0)
+ ;;^UTILITY(U,$J,358.3,13012,1,3,0)
+ ;;=3^Infect/Inflm Reaction d/t Internal Prosth Device/Impl
+ ;;^UTILITY(U,$J,358.3,13012,1,4,0)
+ ;;=4^T85.79XA
+ ;;^UTILITY(U,$J,358.3,13012,2)
+ ;;=^5055676
+ ;;^UTILITY(U,$J,358.3,13013,0)
+ ;;=T85.398A^^51^626^27
+ ;;^UTILITY(U,$J,358.3,13013,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,12880,1,3,0)
- ;;=3^Accidental Puncture/Laceration of Eye/Adnexa,Unspec,During Surgery
- ;;^UTILITY(U,$J,358.3,12880,1,4,0)
- ;;=4^H59.229
- ;;^UTILITY(U,$J,358.3,12880,2)
- ;;=^5006416
- ;;^UTILITY(U,$J,358.3,12881,0)
- ;;=D78.12^^80^789^11
- ;;^UTILITY(U,$J,358.3,12881,1,0)
+ ;;^UTILITY(U,$J,358.3,13013,1,3,0)
+ ;;=3^Mech Compl of Ocular Prosth Device/Impl/Graft
+ ;;^UTILITY(U,$J,358.3,13013,1,4,0)
+ ;;=4^T85.398A
+ ;;^UTILITY(U,$J,358.3,13013,2)
+ ;;=^5055559
+ ;;^UTILITY(U,$J,358.3,13014,0)
+ ;;=Z97.0^^51^626^2
+ ;;^UTILITY(U,$J,358.3,13014,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,12881,1,3,0)
- ;;=3^Accidental Puncture/Laceration of Spleen During Surgery
+ ;;^UTILITY(U,$J,358.3,13014,1,3,0)
+ ;;=3^Presence of Artificial Eye
+ ;;^UTILITY(U,$J,358.3,13014,1,4,0)
+ ;;=4^Z97.0
+ ;;^UTILITY(U,$J,358.3,13014,2)
+ ;;=^5063720

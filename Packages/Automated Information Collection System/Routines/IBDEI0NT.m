@@ -1,128 +1,128 @@
-IBDEI0NT ; ; 04-FEB-2020
- ;;3.0;IB ENCOUNTER FORM IMP/EXP;;FEB 04, 2020
+IBDEI0NT ; ; 01-FEB-2022
+ ;;3.0;IB ENCOUNTER FORM IMP/EXP;;FEB 01, 2022
  Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,999) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
- ;;^UTILITY(U,$J,358.3,10595,1,4,0)
- ;;=4^D31.31
- ;;^UTILITY(U,$J,358.3,10595,2)
- ;;=^5002121
- ;;^UTILITY(U,$J,358.3,10596,0)
- ;;=D31.32^^74^685^2
- ;;^UTILITY(U,$J,358.3,10596,1,0)
+ ;;^UTILITY(U,$J,358.3,10717,0)
+ ;;=Z91.49^^42^480^14
+ ;;^UTILITY(U,$J,358.3,10717,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,10596,1,3,0)
- ;;=3^Benign Neop/Nevus Choroid,Left Eye
- ;;^UTILITY(U,$J,358.3,10596,1,4,0)
- ;;=4^D31.32
- ;;^UTILITY(U,$J,358.3,10596,2)
- ;;=^5002122
- ;;^UTILITY(U,$J,358.3,10597,0)
- ;;=C69.31^^74^685^3
- ;;^UTILITY(U,$J,358.3,10597,1,0)
+ ;;^UTILITY(U,$J,358.3,10717,1,3,0)
+ ;;=3^Personal Hx of Psychological Trauma
+ ;;^UTILITY(U,$J,358.3,10717,1,4,0)
+ ;;=4^Z91.49
+ ;;^UTILITY(U,$J,358.3,10717,2)
+ ;;=^5063623
+ ;;^UTILITY(U,$J,358.3,10718,0)
+ ;;=Z91.82^^42^480^12
+ ;;^UTILITY(U,$J,358.3,10718,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,10597,1,3,0)
- ;;=3^Malig Neop/Melanoma Choroid,Right Eye
- ;;^UTILITY(U,$J,358.3,10597,1,4,0)
- ;;=4^C69.31
- ;;^UTILITY(U,$J,358.3,10597,2)
- ;;=^5001276
- ;;^UTILITY(U,$J,358.3,10598,0)
- ;;=C69.32^^74^685^4
- ;;^UTILITY(U,$J,358.3,10598,1,0)
+ ;;^UTILITY(U,$J,358.3,10718,1,3,0)
+ ;;=3^Personal Hx of Military Deployment
+ ;;^UTILITY(U,$J,358.3,10718,1,4,0)
+ ;;=4^Z91.82
+ ;;^UTILITY(U,$J,358.3,10718,2)
+ ;;=^5063626
+ ;;^UTILITY(U,$J,358.3,10719,0)
+ ;;=Z91.89^^42^480^19
+ ;;^UTILITY(U,$J,358.3,10719,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,10598,1,3,0)
- ;;=3^Malig Neop/Melanoma Choroid,Left Eye
- ;;^UTILITY(U,$J,358.3,10598,1,4,0)
- ;;=4^C69.32
- ;;^UTILITY(U,$J,358.3,10598,2)
- ;;=^5001277
- ;;^UTILITY(U,$J,358.3,10599,0)
- ;;=B25.9^^74^685^11
- ;;^UTILITY(U,$J,358.3,10599,1,0)
+ ;;^UTILITY(U,$J,358.3,10719,1,3,0)
+ ;;=3^Personal Risk Factors
+ ;;^UTILITY(U,$J,358.3,10719,1,4,0)
+ ;;=4^Z91.89
+ ;;^UTILITY(U,$J,358.3,10719,2)
+ ;;=^5063628
+ ;;^UTILITY(U,$J,358.3,10720,0)
+ ;;=Z72.9^^42^480^20
+ ;;^UTILITY(U,$J,358.3,10720,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,10599,1,3,0)
- ;;=3^Cytomegaloviral Disease,Unspec
- ;;^UTILITY(U,$J,358.3,10599,1,4,0)
- ;;=4^B25.9
- ;;^UTILITY(U,$J,358.3,10599,2)
- ;;=^5000560
- ;;^UTILITY(U,$J,358.3,10600,0)
- ;;=B39.9^^74^685^12
- ;;^UTILITY(U,$J,358.3,10600,1,0)
+ ;;^UTILITY(U,$J,358.3,10720,1,3,0)
+ ;;=3^Problem Related to Lifestyle
+ ;;^UTILITY(U,$J,358.3,10720,1,4,0)
+ ;;=4^Z72.9
+ ;;^UTILITY(U,$J,358.3,10720,2)
+ ;;=^5063267
+ ;;^UTILITY(U,$J,358.3,10721,0)
+ ;;=Z72.811^^42^480^1
+ ;;^UTILITY(U,$J,358.3,10721,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,10600,1,3,0)
- ;;=3^Histoplasmosis,Unspec
- ;;^UTILITY(U,$J,358.3,10600,1,4,0)
- ;;=4^B39.9
- ;;^UTILITY(U,$J,358.3,10600,2)
- ;;=^5000638
- ;;^UTILITY(U,$J,358.3,10601,0)
- ;;=B58.01^^74^685^13
- ;;^UTILITY(U,$J,358.3,10601,1,0)
+ ;;^UTILITY(U,$J,358.3,10721,1,3,0)
+ ;;=3^Adult Antisocial Behavior
+ ;;^UTILITY(U,$J,358.3,10721,1,4,0)
+ ;;=4^Z72.811
+ ;;^UTILITY(U,$J,358.3,10721,2)
+ ;;=^5063263
+ ;;^UTILITY(U,$J,358.3,10722,0)
+ ;;=Z91.19^^42^480^5
+ ;;^UTILITY(U,$J,358.3,10722,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,10601,1,3,0)
- ;;=3^Toxoplasma Chorioretinitis
- ;;^UTILITY(U,$J,358.3,10601,1,4,0)
- ;;=4^B58.01
- ;;^UTILITY(U,$J,358.3,10601,2)
- ;;=^5000724
- ;;^UTILITY(U,$J,358.3,10602,0)
- ;;=H30.91^^74^685^14
- ;;^UTILITY(U,$J,358.3,10602,1,0)
+ ;;^UTILITY(U,$J,358.3,10722,1,3,0)
+ ;;=3^Nonadherence to Medical Treatment
+ ;;^UTILITY(U,$J,358.3,10722,1,4,0)
+ ;;=4^Z91.19
+ ;;^UTILITY(U,$J,358.3,10722,2)
+ ;;=^5063618
+ ;;^UTILITY(U,$J,358.3,10723,0)
+ ;;=E66.9^^42^480^6
+ ;;^UTILITY(U,$J,358.3,10723,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,10602,1,3,0)
- ;;=3^Chorioretinal Inflammation,Right Eye
- ;;^UTILITY(U,$J,358.3,10602,1,4,0)
- ;;=4^H30.91
- ;;^UTILITY(U,$J,358.3,10602,2)
- ;;=^5133481
- ;;^UTILITY(U,$J,358.3,10603,0)
- ;;=H30.92^^74^685^15
- ;;^UTILITY(U,$J,358.3,10603,1,0)
+ ;;^UTILITY(U,$J,358.3,10723,1,3,0)
+ ;;=3^Overweight or Obesity
+ ;;^UTILITY(U,$J,358.3,10723,1,4,0)
+ ;;=4^E66.9
+ ;;^UTILITY(U,$J,358.3,10723,2)
+ ;;=^5002832
+ ;;^UTILITY(U,$J,358.3,10724,0)
+ ;;=Z76.5^^42^480^3
+ ;;^UTILITY(U,$J,358.3,10724,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,10603,1,3,0)
- ;;=3^Chorioretinal Inflammation,Left Eye
- ;;^UTILITY(U,$J,358.3,10603,1,4,0)
- ;;=4^H30.92
- ;;^UTILITY(U,$J,358.3,10603,2)
- ;;=^5133482
- ;;^UTILITY(U,$J,358.3,10604,0)
- ;;=H30.93^^74^685^16
- ;;^UTILITY(U,$J,358.3,10604,1,0)
+ ;;^UTILITY(U,$J,358.3,10724,1,3,0)
+ ;;=3^Malingering
+ ;;^UTILITY(U,$J,358.3,10724,1,4,0)
+ ;;=4^Z76.5
+ ;;^UTILITY(U,$J,358.3,10724,2)
+ ;;=^5063302
+ ;;^UTILITY(U,$J,358.3,10725,0)
+ ;;=R41.83^^42^480^2
+ ;;^UTILITY(U,$J,358.3,10725,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,10604,1,3,0)
- ;;=3^Chorioretinal Inflammation,Bilateral
- ;;^UTILITY(U,$J,358.3,10604,1,4,0)
- ;;=4^H30.93
- ;;^UTILITY(U,$J,358.3,10604,2)
- ;;=^5005435
- ;;^UTILITY(U,$J,358.3,10605,0)
- ;;=H32.^^74^685^17
- ;;^UTILITY(U,$J,358.3,10605,1,0)
+ ;;^UTILITY(U,$J,358.3,10725,1,3,0)
+ ;;=3^Borderline Intellectual Functioning
+ ;;^UTILITY(U,$J,358.3,10725,1,4,0)
+ ;;=4^R41.83
+ ;;^UTILITY(U,$J,358.3,10725,2)
+ ;;=^5019442
+ ;;^UTILITY(U,$J,358.3,10726,0)
+ ;;=Z56.82^^42^480^4
+ ;;^UTILITY(U,$J,358.3,10726,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,10605,1,3,0)
- ;;=3^Chorioretinal Disorders,Secondary,Unspec
- ;;^UTILITY(U,$J,358.3,10605,1,4,0)
- ;;=4^H32.
- ;;^UTILITY(U,$J,358.3,10605,2)
- ;;=^5005489
- ;;^UTILITY(U,$J,358.3,10606,0)
- ;;=H31.001^^74^685^18
- ;;^UTILITY(U,$J,358.3,10606,1,0)
+ ;;^UTILITY(U,$J,358.3,10726,1,3,0)
+ ;;=3^Military Deployment Status,Current
+ ;;^UTILITY(U,$J,358.3,10726,1,4,0)
+ ;;=4^Z56.82
+ ;;^UTILITY(U,$J,358.3,10726,2)
+ ;;=^5063115
+ ;;^UTILITY(U,$J,358.3,10727,0)
+ ;;=Z62.811^^42^480^9
+ ;;^UTILITY(U,$J,358.3,10727,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,10606,1,3,0)
- ;;=3^Chorioretinal Scars,Right Eye
- ;;^UTILITY(U,$J,358.3,10606,1,4,0)
- ;;=4^H31.001
- ;;^UTILITY(U,$J,358.3,10606,2)
- ;;=^5005436
- ;;^UTILITY(U,$J,358.3,10607,0)
- ;;=H31.002^^74^685^19
- ;;^UTILITY(U,$J,358.3,10607,1,0)
+ ;;^UTILITY(U,$J,358.3,10727,1,3,0)
+ ;;=3^Personal Hx of Childhood Psychological Abuse
+ ;;^UTILITY(U,$J,358.3,10727,1,4,0)
+ ;;=4^Z62.811
+ ;;^UTILITY(U,$J,358.3,10727,2)
+ ;;=^5063154
+ ;;^UTILITY(U,$J,358.3,10728,0)
+ ;;=Z62.812^^42^480^7
+ ;;^UTILITY(U,$J,358.3,10728,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,10607,1,3,0)
- ;;=3^Chorioretinal Scars,Left Eye
- ;;^UTILITY(U,$J,358.3,10607,1,4,0)
- ;;=4^H31.002
- ;;^UTILITY(U,$J,358.3,10607,2)
- ;;=^5005437
+ ;;^UTILITY(U,$J,358.3,10728,1,3,0)
+ ;;=3^Personal Hx of Childhood Neglect
+ ;;^UTILITY(U,$J,358.3,10728,1,4,0)
+ ;;=4^Z62.812
+ ;;^UTILITY(U,$J,358.3,10728,2)
+ ;;=^5063155
+ ;;^UTILITY(U,$J,358.3,10729,0)
+ ;;=Z62.810^^42^480^8
+ ;;^UTILITY(U,$J,358.3,10729,1,0)
+ ;;=^358.31IA^4^2

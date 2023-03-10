@@ -1,5 +1,5 @@
-PXVUTIL ;BIR/ADM - VIMM UTILITY ROUTINE ;08/15/16  16:18
- ;;1.0;PCE PATIENT CARE ENCOUNTER;**201,210,215,216**;Aug 12, 1996;Build 11
+PXVUTIL ;BIR/ADM - VIMM UTILITY ROUTINE ;04/16/2018
+ ;;1.0;PCE PATIENT CARE ENCOUNTER;**201,210,215,216,211**;Aug 12, 1996;Build 454
  ;
  ; Reference to UCUMCODE^LEXMUCUM supported by ICR #6225
  ;
@@ -71,7 +71,7 @@ OFFER() ; called from screen on VIS OFFERED/GIVEN TO PATIENT field (#.01) in
  I '$G(DA),$G(PXD) S PXDA=+PXD I PXDA,$D(^AUTTIMM(PXDA,4,"B",Y)),'$D(^AUPNVIMM(PXDA,2,"B",Y)) S PXVIS=1
  Q PXVIS
  ;
-IMMSEL(PXVIMM,PXVISIT) ; Immunization screen for V Immunization file
+IMMSEL(PXVIMM,PXVISIT,EVENTDT) ; Immunization screen for V Immunization file
  ;
  ; Input:
  ;       PXVIMM: Immunization IEN (#9999999.14)
@@ -81,16 +81,18 @@ IMMSEL(PXVIMM,PXVISIT) ; Immunization screen for V Immunization file
  ;    0: Entry is not selectable
  ;    1: Entry is selectable
  ;
- N PXVHIST,PXVSC,PXVISITDT
+ N PXVHIST,PXVSC,PXVISITDT,TEMP
  ;
  I '$G(PXVIMM) Q 0
+ I $G(PXVISIT)="" Q 0
+ S TEMP=$G(^AUPNVSIT(PXVISIT,0))
+ I TEMP="" Q 0
  ;
- S PXVISITDT=""
- I $G(PXVISIT) S PXVISITDT=$P($G(^AUPNVSIT(PXVISIT,0)),U,1)
+ S PXVISITDT=$G(EVENTDT)
+ I PXVISITDT="" S PXVISITDT=$P(TEMP,U,1)
  ;
- S PXVHIST=0
- S PXVSC=$P($G(^AUPNVSIT(+$G(PXVISIT),0)),U,7)
- I $G(PXVSC)="E" S PXVHIST=1
+ S PXVSC=$P(TEMP,U,7)
+ S PXVHIST=$S(PXVSC="E":1,1:0)
  ;
  ; For non-historical, only allow active entries
  I 'PXVHIST,'$$SCREEN^XTID(9999999.14,,PXVIMM_",",PXVISITDT) Q 1
@@ -149,7 +151,7 @@ INST(PXVIN) ; Return Institution based off input
  ;    PXVIN - Possible values are:
  ;               "I:X": Institution (#4) IEN #X
  ;               "V:X": Visit (#9000010) IEN #X
- ;               "L:X": Hopital Location (#44) IEN #X
+ ;               "L:X": Hospital Location (#44) IEN #X
  ;
  ; Output:
  ;    Pointer to #4

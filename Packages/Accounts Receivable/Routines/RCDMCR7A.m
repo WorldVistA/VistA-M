@@ -1,17 +1,21 @@
 RCDMCR7A ;ALB/YG - 10-40% SC Medical Care Copayment Exempt Charge Reconciliation Report - Input/output; Apr 9, 2019@21:06
- ;;4.5;Accounts Receivable;**347**;Jan 29, 2019;Build 47
+ ;;4.5;Accounts Receivable;**347,386**;Jan 29, 2019;Build 6
  ;;Per VA Directive 6402, this routine should not be modified.
  ;
  ;This routine is being implemented for the AR Cross-Servicing Project
  ;It assists users in reviewing all medical care copayment bills 
  ; containing charges with a distinct date of service on or after the 
- ; copayment exemption effective date for Veterans with SC Percent equal 
+ ; copayment exemption effective date for Veterans with SC Percent equal
  ; to 10 to 40% and does not show prescription copayment bills.
  ;
  ; The report captures any medical care copayment charge without an IB 
- ; status of cancelled, and with an AR Status of Active, Open, Suspended,
+ ; status of cancelled, and with an AR Status of Active, Open, Suspended
  ; Write-Off, or Collected/Closed OR an IB Status of On-Hold, with a date 
  ; of service on or after the exemption effective date.
+ ;
+ ;PRC*4.5*386 Uses admit date in lieu of discharge date for I/P
+ ;            Removes cancelled IB charges from report
+ ;            Removes Urgent Care copayments as they are not auto exempt
  ;
 MAIN ; Initial Interactive Processing
  S:$G(U)="" U="^"
@@ -77,7 +81,7 @@ RUN ;Get data and Print it out
  Q
  ;
 REPORT ;Print report
- N RUNDATE,STATUS,NAME,SSN,BILLNO,IBIEN,SKIP,SCPER
+ N RUNDATE,STATUS,NAME,SSN,BILLNO,IBIEN,SKIP,SCPER,RCDIEN,RCDIBREC,RCDIBPNT,RCDEND,RCDADMIT,RCDIBRC1  ;PRCA*4.5*386
  ;
  S RUNDATE=$$FMTE^XLFDT($$NOW^XLFDT,"9MP")
  D HDR
@@ -90,10 +94,21 @@ REPORT ;Print report
  . . S BILLNO=""
  . . F  S BILLNO=$O(^TMP($J,"RCDMCR7","DETAIL",NAME,SSN,BILLNO)) Q:BILLNO']""  D  Q:STOPIT
  . . . S IBIEN=""
- . . . F  S IBIEN=$O(^TMP($J,"RCDMCR7","DETAIL",NAME,SSN,BILLNO,IBIEN)) Q:IBIEN']""  D  Q:STOPIT
- . . . . N NODE,SERVDT,ELIG,EXEMPTDT,RXNUM,RXNAM,STATUS
+ . . . F  S IBIEN=$O(^TMP($J,"RCDMCR7","DETAIL",NAME,SSN,BILLNO,IBIEN)),RCDEND=0 Q:IBIEN']""  D  Q:STOPIT
+ . . . . N NODE,SERVDT,ELIG,EXEMPTDT,RXNUM,RXNAM,STATUS,RCDIEN,RCDIBREC,RCDIBPNT
  . . . . ; S ^TMP($J,"RCDMCR7","DETAIL",NAME,SSN,BILLNO,IBIEN)=SERVDT_U_SCPER_U_EXEMPTDT_U_STATUS
  . . . . S NODE=$G(^TMP($J,"RCDMCR7","DETAIL",NAME,SSN,BILLNO,IBIEN))
+ . . . . S (RCDADMIT,RCDIBRC1)=" " K RCDIBRC1  ;;PRCA*4.5*186
+ . . . . S SERVDT=$P(NODE,U,1) D:BILLNO  Q:RCDEND   ;PRCA*4.5*386
+ . . . . . S RCDIEN=$O(^IB("ABIL",BILLNO,0)) Q:'RCDIEN
+ . . . . . S RCDIBREC=$G(^IB(RCDIEN,0)) Q:'RCDIBREC
+ . . . . . I $P(RCDIBREC,U,16) D
+ . . . . . . S RCDIBPNT=$P(RCDIBREC,U,16)
+ . . . . . . S RCDIBRC1=$G(^IB(RCDIBPNT,0))
+ . . . . . . I ":10:11:"[(":"_$P(RCDIBREC,U,5)_":") S RCDEND=1  ;PRCA*4.5*386
+ . . . . . I ":201:202:203:"[(":"_$P(RCDIBREC,U,3)_":") S RCDEND=1  ;PRCA*4.5*386
+ . . . . . I +RCDIBRC1,":55:56:"[(":"_+$P(RCDIBRC1,U,3)_":") S RCDADMIT=$P(RCDIBRC1,U,17)  ;PRCA*4.5*386
+ . . . . Q:RCDEND   ;PRCA*4.5*386
  . . . . S SERVDT=$P(NODE,U,1)
  . . . . S SCPER=$P(NODE,U,2)
  . . . . S EXEMPTDT=$P(NODE,U,3)
@@ -122,6 +137,7 @@ WRLINE ; Write the data formated report line
  W ?38,SCPER,"%"
  W ?47,$P(BILLNO,"/",1) ; Bill Number
  W ?59,$$STRIP^XLFSTR($$FMTE^XLFDT(EXEMPTDT,"8D")," ")
+ I RCDADMIT S SERVDT=RCDADMIT    ;PRCA*4.5*386
  W:SERVDT>0 ?67,$$STRIP^XLFSTR($$FMTE^XLFDT(SERVDT,"8D")," ")
  W ?81,$E(STATUS,1,9)
  Q
@@ -133,6 +149,7 @@ WRLINE2 ; Write the Excel report line
  W SCPER,"%",U
  W $P(BILLNO,"/",1),U
  W $$FMTE^XLFDT(EXEMPTDT,"9D"),U
+ I RCDADMIT S SERVDT=RCDADMIT    ;PRCA*4.5*386
  W $$FMTE^XLFDT(SERVDT,"9D"),U
  W STATUS,U
  Q
@@ -140,7 +157,7 @@ WRLINE2 ; Write the Excel report line
 CHKP(FOOTER) ;Check for End of Page
  ;INPUT:
  ;  FOOTER - Footer value. Optional. Default to 4 if nothing passed
- I $G(FOOTER)'>0 S FOOTER=4
+ Q  I $G(FOOTER)'>0 S FOOTER=4
  I $Y>(IOSL-FOOTER) D:RCSCR PAUSE^RCDMCUT2 Q:STOPIT  D HDR K SKIP
  Q
  ;

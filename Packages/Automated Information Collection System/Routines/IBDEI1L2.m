@@ -1,122 +1,122 @@
-IBDEI1L2 ; ; 04-FEB-2020
- ;;3.0;IB ENCOUNTER FORM IMP/EXP;;FEB 04, 2020
+IBDEI1L2 ; ; 01-FEB-2022
+ ;;3.0;IB ENCOUNTER FORM IMP/EXP;;FEB 01, 2022
  Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,999) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
- ;;^UTILITY(U,$J,358.3,25300,2)
- ;;=^5010853
- ;;^UTILITY(U,$J,358.3,25301,0)
- ;;=M25.40^^107^1217^38
- ;;^UTILITY(U,$J,358.3,25301,1,0)
+ ;;^UTILITY(U,$J,358.3,25664,1,3,0)
+ ;;=3^Hallucinogen Use DO,Mild,Uncomp
+ ;;^UTILITY(U,$J,358.3,25664,1,4,0)
+ ;;=4^F16.10
+ ;;^UTILITY(U,$J,358.3,25664,2)
+ ;;=^5003323
+ ;;^UTILITY(U,$J,358.3,25665,0)
+ ;;=F16.20^^92^1172^21
+ ;;^UTILITY(U,$J,358.3,25665,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,25301,1,3,0)
- ;;=3^Effusion,Unspec
- ;;^UTILITY(U,$J,358.3,25301,1,4,0)
- ;;=4^M25.40
- ;;^UTILITY(U,$J,358.3,25301,2)
- ;;=^5011575
- ;;^UTILITY(U,$J,358.3,25302,0)
- ;;=M45.0^^107^1217^6
- ;;^UTILITY(U,$J,358.3,25302,1,0)
+ ;;^UTILITY(U,$J,358.3,25665,1,3,0)
+ ;;=3^Hallucinogen Use DO,Mod/Sev,Uncomp
+ ;;^UTILITY(U,$J,358.3,25665,1,4,0)
+ ;;=4^F16.20
+ ;;^UTILITY(U,$J,358.3,25665,2)
+ ;;=^5003336
+ ;;^UTILITY(U,$J,358.3,25666,0)
+ ;;=F16.121^^92^1172^10
+ ;;^UTILITY(U,$J,358.3,25666,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,25302,1,3,0)
- ;;=3^Ankylosing Spondylitis of Spine,Mult Sites
- ;;^UTILITY(U,$J,358.3,25302,1,4,0)
- ;;=4^M45.0
- ;;^UTILITY(U,$J,358.3,25302,2)
- ;;=^5011960
- ;;^UTILITY(U,$J,358.3,25303,0)
- ;;=M45.2^^107^1217^3
- ;;^UTILITY(U,$J,358.3,25303,1,0)
+ ;;^UTILITY(U,$J,358.3,25666,1,3,0)
+ ;;=3^Hallucinogen Intoxication Delirium w/ Mild Use D/O
+ ;;^UTILITY(U,$J,358.3,25666,1,4,0)
+ ;;=4^F16.121
+ ;;^UTILITY(U,$J,358.3,25666,2)
+ ;;=^5003325
+ ;;^UTILITY(U,$J,358.3,25667,0)
+ ;;=F16.221^^92^1172^11
+ ;;^UTILITY(U,$J,358.3,25667,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,25303,1,3,0)
- ;;=3^Ankylosing Spondylitis of Cervical Region
- ;;^UTILITY(U,$J,358.3,25303,1,4,0)
- ;;=4^M45.2
- ;;^UTILITY(U,$J,358.3,25303,2)
- ;;=^5011962
- ;;^UTILITY(U,$J,358.3,25304,0)
- ;;=M45.4^^107^1217^7
- ;;^UTILITY(U,$J,358.3,25304,1,0)
+ ;;^UTILITY(U,$J,358.3,25667,1,3,0)
+ ;;=3^Hallucinogen Intoxication Delirium w/ Mod/Sev Use D/O
+ ;;^UTILITY(U,$J,358.3,25667,1,4,0)
+ ;;=4^F16.221
+ ;;^UTILITY(U,$J,358.3,25667,2)
+ ;;=^5003339
+ ;;^UTILITY(U,$J,358.3,25668,0)
+ ;;=F16.921^^92^1172^12
+ ;;^UTILITY(U,$J,358.3,25668,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,25304,1,3,0)
- ;;=3^Ankylosing Spondylitis of Thoracic Region
- ;;^UTILITY(U,$J,358.3,25304,1,4,0)
- ;;=4^M45.4
- ;;^UTILITY(U,$J,358.3,25304,2)
- ;;=^5011964
- ;;^UTILITY(U,$J,358.3,25305,0)
- ;;=M45.7^^107^1217^4
- ;;^UTILITY(U,$J,358.3,25305,1,0)
+ ;;^UTILITY(U,$J,358.3,25668,1,3,0)
+ ;;=3^Hallucinogen Intoxication Delirium w/o Use D/O
+ ;;^UTILITY(U,$J,358.3,25668,1,4,0)
+ ;;=4^F16.921
+ ;;^UTILITY(U,$J,358.3,25668,2)
+ ;;=^5003351
+ ;;^UTILITY(U,$J,358.3,25669,0)
+ ;;=F16.129^^92^1172^13
+ ;;^UTILITY(U,$J,358.3,25669,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,25305,1,3,0)
- ;;=3^Ankylosing Spondylitis of Lumbosacral Region
- ;;^UTILITY(U,$J,358.3,25305,1,4,0)
- ;;=4^M45.7
- ;;^UTILITY(U,$J,358.3,25305,2)
- ;;=^5011967
- ;;^UTILITY(U,$J,358.3,25306,0)
- ;;=M45.8^^107^1217^5
- ;;^UTILITY(U,$J,358.3,25306,1,0)
+ ;;^UTILITY(U,$J,358.3,25669,1,3,0)
+ ;;=3^Hallucinogen Intoxication w/ Mild Use D/O
+ ;;^UTILITY(U,$J,358.3,25669,1,4,0)
+ ;;=4^F16.129
+ ;;^UTILITY(U,$J,358.3,25669,2)
+ ;;=^5003327
+ ;;^UTILITY(U,$J,358.3,25670,0)
+ ;;=F16.229^^92^1172^14
+ ;;^UTILITY(U,$J,358.3,25670,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,25306,1,3,0)
- ;;=3^Ankylosing Spondylitis of Sacral/Sacrococcygeal Region
- ;;^UTILITY(U,$J,358.3,25306,1,4,0)
- ;;=4^M45.8
- ;;^UTILITY(U,$J,358.3,25306,2)
- ;;=^5011968
- ;;^UTILITY(U,$J,358.3,25307,0)
- ;;=M47.22^^107^1217^180
- ;;^UTILITY(U,$J,358.3,25307,1,0)
+ ;;^UTILITY(U,$J,358.3,25670,1,3,0)
+ ;;=3^Hallucinogen Intoxication w/ Mod/Sev Use D/O
+ ;;^UTILITY(U,$J,358.3,25670,1,4,0)
+ ;;=4^F16.229
+ ;;^UTILITY(U,$J,358.3,25670,2)
+ ;;=^5003340
+ ;;^UTILITY(U,$J,358.3,25671,0)
+ ;;=F16.929^^92^1172^15
+ ;;^UTILITY(U,$J,358.3,25671,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,25307,1,3,0)
- ;;=3^Sponylosis w/ Radiculopathy,Cervical Region NEC
- ;;^UTILITY(U,$J,358.3,25307,1,4,0)
- ;;=4^M47.22
- ;;^UTILITY(U,$J,358.3,25307,2)
- ;;=^5012061
- ;;^UTILITY(U,$J,358.3,25308,0)
- ;;=M47.24^^107^1217^182
- ;;^UTILITY(U,$J,358.3,25308,1,0)
+ ;;^UTILITY(U,$J,358.3,25671,1,3,0)
+ ;;=3^Hallucinogen Intoxication w/o Use D/O
+ ;;^UTILITY(U,$J,358.3,25671,1,4,0)
+ ;;=4^F16.929
+ ;;^UTILITY(U,$J,358.3,25671,2)
+ ;;=^5003352
+ ;;^UTILITY(U,$J,358.3,25672,0)
+ ;;=F16.180^^92^1172^1
+ ;;^UTILITY(U,$J,358.3,25672,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,25308,1,3,0)
- ;;=3^Sponylosis w/ Radiculopathy,Thoracic Region NEC
- ;;^UTILITY(U,$J,358.3,25308,1,4,0)
- ;;=4^M47.24
- ;;^UTILITY(U,$J,358.3,25308,2)
- ;;=^5012063
- ;;^UTILITY(U,$J,358.3,25309,0)
- ;;=M47.27^^107^1217^181
- ;;^UTILITY(U,$J,358.3,25309,1,0)
+ ;;^UTILITY(U,$J,358.3,25672,1,3,0)
+ ;;=3^Hallucinogen Induced Anxiety D/O w/ Mild Use D/O
+ ;;^UTILITY(U,$J,358.3,25672,1,4,0)
+ ;;=4^F16.180
+ ;;^UTILITY(U,$J,358.3,25672,2)
+ ;;=^5003332
+ ;;^UTILITY(U,$J,358.3,25673,0)
+ ;;=F16.280^^92^1172^2
+ ;;^UTILITY(U,$J,358.3,25673,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,25309,1,3,0)
- ;;=3^Sponylosis w/ Radiculopathy,Lumbosacral Region NEC
- ;;^UTILITY(U,$J,358.3,25309,1,4,0)
- ;;=4^M47.27
- ;;^UTILITY(U,$J,358.3,25309,2)
- ;;=^5012066
- ;;^UTILITY(U,$J,358.3,25310,0)
- ;;=M47.812^^107^1217^177
- ;;^UTILITY(U,$J,358.3,25310,1,0)
+ ;;^UTILITY(U,$J,358.3,25673,1,3,0)
+ ;;=3^Hallucinogen Induced Anxiety D/O w/ Mod/Sev Use D/O
+ ;;^UTILITY(U,$J,358.3,25673,1,4,0)
+ ;;=4^F16.280
+ ;;^UTILITY(U,$J,358.3,25673,2)
+ ;;=^5003345
+ ;;^UTILITY(U,$J,358.3,25674,0)
+ ;;=F16.980^^92^1172^3
+ ;;^UTILITY(U,$J,358.3,25674,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,25310,1,3,0)
- ;;=3^Spondylosis w/o Myelopathy/Radiculopathy,Cervical Region
- ;;^UTILITY(U,$J,358.3,25310,1,4,0)
- ;;=4^M47.812
- ;;^UTILITY(U,$J,358.3,25310,2)
- ;;=^5012069
- ;;^UTILITY(U,$J,358.3,25311,0)
- ;;=M47.814^^107^1217^178
- ;;^UTILITY(U,$J,358.3,25311,1,0)
+ ;;^UTILITY(U,$J,358.3,25674,1,3,0)
+ ;;=3^Hallucinogen Induced Anxiety D/O w/o Use D/O
+ ;;^UTILITY(U,$J,358.3,25674,1,4,0)
+ ;;=4^F16.980
+ ;;^UTILITY(U,$J,358.3,25674,2)
+ ;;=^5003357
+ ;;^UTILITY(U,$J,358.3,25675,0)
+ ;;=F16.14^^92^1172^4
+ ;;^UTILITY(U,$J,358.3,25675,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,25311,1,3,0)
- ;;=3^Spondylosis w/o Myelopathy/Radiculopathy,Thoracic Region
- ;;^UTILITY(U,$J,358.3,25311,1,4,0)
- ;;=4^M47.814
- ;;^UTILITY(U,$J,358.3,25311,2)
- ;;=^5012071
- ;;^UTILITY(U,$J,358.3,25312,0)
- ;;=M47.817^^107^1217^179
- ;;^UTILITY(U,$J,358.3,25312,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,25312,1,3,0)
- ;;=3^Spondylosis w/o Myelopathy/Radiculopathy,Lumbosacral Region
+ ;;^UTILITY(U,$J,358.3,25675,1,3,0)
+ ;;=3^Hallucinogen Induced Bipolar D/O w/ Mild Use D/O
+ ;;^UTILITY(U,$J,358.3,25675,1,4,0)
+ ;;=4^F16.14
+ ;;^UTILITY(U,$J,358.3,25675,2)
+ ;;=^5003328
+ ;;^UTILITY(U,$J,358.3,25676,0)
+ ;;=F16.24^^92^1172^5

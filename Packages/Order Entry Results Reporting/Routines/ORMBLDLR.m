@@ -1,5 +1,9 @@
-ORMBLDLR ; SLC/MKB - Build outgoing Lab ORM msgs ;11/17/00  11:10
- ;;3.0;ORDER ENTRY/RESULTS REPORTING;**97,190,195**;Dec 17, 1997
+ORMBLDLR ; SLC/MKB - Build outgoing Lab ORM msgs ;Jan 27, 2021@09:24:22
+ ;;3.0;ORDER ENTRY/RESULTS REPORTING;**97,190,195,539**;Dec 17, 1997;Build 41
+ ;
+ ; This routine uses the following ICRs:
+ ;  #7215 - LOOK^LR7OAPKM
+ ;
 HL7DATE(DATE) ; -- FM -> HL7 format
  Q $$FMTHL7^XLFDT(DATE)  ;**97
  ;
@@ -18,6 +22,8 @@ CH ; -- new Lab CH order
  S I=4,INST=0 F  S INST=$O(ORDIALOG(OI,INST)) Q:INST'>0  D
  . S X=+$G(ORDIALOG(URG,INST)),X=$P($G(^LAB(62.05,X,0)),U,4)_";"_X
  . S I=I+1,ORMSG(I)="OBR||||"_$$USID^ORMBLD(ORDIALOG(OI,INST))_"|||||||"_$$COLLTYPE_"|"_IP_"|||"_$$SPEC_"||||||||||||^^^^^"_X
+ . N AP1 S AP1=$$APSUB(ORIFN) I $P(AP1,"|")?1(1"SP",1"CY",1"EM") D
+ . . N LST S I=I+1,ORMSG(I)="AP1|"_ORIFN_"||"_$G(AP1)
  . S J=$O(^TMP("ORWORD",$J,CMMT,INST,0)) Q:'J  ; no comments for test
  . S I=I+1,ORMSG(I)="NTE|"_INST_"|P|"_^TMP("ORWORD",$J,CMMT,INST,J,0)
  . S L=0 F  S J=$O(^TMP("ORWORD",$J,CMMT,INST,J)) Q:J'>0  S L=L+1,ORMSG(I,L)=^(J,0)
@@ -76,3 +82,12 @@ XO1 D GETDLG1^ORCD(ORDIALOG),GETORDER^ORCD(+IFN)
  . S L=0 F  S J=$O(^TMP("ORWORD",$J,CMMT,INST,J)) Q:J'>0  S L=L+1,ORMSG(CNT,L)=^(J,0)
  D MSG^XQOR("OR EVSEND "_DG,.ORMSG)
  Q
+APSUB(ORIFN) ;* - determine if Anatomic Path test subscript for AP1 segment and make call to get LR CPRS SCREEN pointer
+ N ANS,DIERR,ERR,ITEM,NUM,SUB,TESTIEN
+ S ITEM=$$VALUE^ORX8(+ORIFN,"ORDERABLE",,"I")
+ S TESTIEN=+$$GET1^DIQ(101.43,ITEM_",",2,"E","ERR")
+ S SUB=$$GET1^DIQ(60,TESTIEN_",",4,"I","ERR")
+ D LOOK^LR7OAPKM(TESTIEN,,.ANS)
+ S NUM=+$O(ANS(0))
+ I $G(SUB)'?1(1"SP",1"CY",1"EM") Q $G(SUB)
+ Q $G(SUB)_"|||"_$G(ANS(NUM))

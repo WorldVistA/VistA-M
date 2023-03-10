@@ -1,51 +1,51 @@
 XINDX11 ;ISC/GRK - Create phantom routines for functions, options, etc. ;07/08/98  15:06
- ;;7.3;TOOLKIT;**20,27,121,132,140**;Apr 25, 1995;Build 40
+ ;;7.3;TOOLKIT;**20,27,121,132,140,148**;Apr 25, 1995;Build 3
  ; Per VHA Directive 2004-038, this routine should not be modified.
  G:INP(10)=9.7 RTN
- W !,"The option and function files are being processed.",!
+ N INDSTAT ;p148 tracks if status message was displayed
  G:INP(10)=9.4 PKG
 BUILD ; Process Build File
  N KRN,BLDFIL,BLDDEL
  S BLDDEL=U
- S BLDFIL=.5,INDFN="^DD(""FUNC"",",INDRN="|func",INDD="Function",INDSB="FUNC",INDXN="Build file" D BLDITEM
- S BLDFIL=19,INDFN="^DIC(19,",INDRN="|opt",INDD="Option",INDSB="OPT",INDXN="Build file" D BLDITEM
+ S BLDFIL=.5,INDFN="^DD(""FUNC"",",INDRN="|func",INDD="Function",INDSB="FUNC",INDXN="Build file",INDSTAT=0 D BLDITEM
+ S BLDFIL=19,INDFN="^DIC(19,",INDRN="|opt",INDD="Option",INDSB="OPT",INDXN="Build file",INDSTAT=0 D BLDITEM
  S BLDDEL="    "
- S BLDFIL=.401,INDFN="^DIBT(",INDRN="|sort",INDD="Sort Template",INDSB="SORT^XINDX12",INDXN="Build file" D BLDITEM
- S BLDFIL=.402,INDFN="^DIE(",INDRN="|inpt",INDD="Input Template",INDSB="INPUT^XINDX12",INDXN="Build file" D BLDITEM
- S BLDFIL=.4,INDFN="^DIPT(",INDRN="|prnt",INDD="Print Template",INDSB="PRINT^XINDX12",INDXN="Build file" D BLDITEM
- S BLDFIL=.403,INDFN="^DIST(.403,",INDRN="|form",INDD="Form",INDSB="FORM^XINDX12",INDXN="Build file" D BLDITEM
+ S BLDFIL=.401,INDFN="^DIBT(",INDRN="|sort",INDD="Sort Template",INDSB="SORT^XINDX12",INDXN="Build file",INDSTAT=0 D BLDITEM
+ S BLDFIL=.402,INDFN="^DIE(",INDRN="|inpt",INDD="Input Template",INDSB="INPUT^XINDX12",INDXN="Build file",INDSTAT=0 D BLDITEM
+ S BLDFIL=.4,INDFN="^DIPT(",INDRN="|prnt",INDD="Print Template",INDSB="PRINT^XINDX12",INDXN="Build file",INDSTAT=0 D BLDITEM
+ S BLDFIL=.403,INDFN="^DIST(.403,",INDRN="|form",INDD="Form",INDSB="FORM^XINDX12",INDXN="Build file",INDSTAT=0 D BLDITEM
  S BLDDEL=U
- S BLDFIL=.84,INDFN="^DI(.84,",INDRN="|dlg",INDD="Dialog",INDSB="DIALOG^XINDX12",INDXN="Build file" D BLDITEM
- S BLDFIL=9.2,INDFN="^DIC(9.2,",INDRN="|help",INDD="Help Frame",INDSB="HELP^XINDX12",INDXN="Build file" D BLDITEM
- S BLDFIL=19.1,INDFN="^DIC(19.1,",INDRN="|key",INDD="Security Key",INDSB="KEY^XINDX12",INDXN="Build file" D BLDITEM
- S BLDFIL=409.61,INDFN="^SD(409.61,",INDRN="|list",INDD="List Template",INDSB="LIST^XINDX12",INDXN="Build file" D BLDITEM
- S BLDFIL=101,INDFN="^ORD(101,",INDRN="|ptcl",INDD="Protocol",INDSB="PROTOCOL^XINDX12",INDXN="Build file" D BLDITEM
- S BLDFIL=771,INDFN="^HL(771,",INDRN="|hlap",INDD="HL7 Application Parameter",INDSB="HL7AP^XINDX12",INDXN="Build file" D BLDITEM
- S BLDFIL=8994,INDFN="^XWB(8994,",INDRN="|rpc",INDD="Remote Procedure",INDSB="RPC^XINDX12",INDXN="Build file" D BLDITEM
+ S BLDFIL=.84,INDFN="^DI(.84,",INDRN="|dlg",INDD="Dialog",INDSB="DIALOG^XINDX12",INDXN="Build file",INDSTAT=0 D BLDITEM
+ S BLDFIL=9.2,INDFN="^DIC(9.2,",INDRN="|help",INDD="Help Frame",INDSB="HELP^XINDX12",INDXN="Build file",INDSTAT=0 D BLDITEM
+ S BLDFIL=19.1,INDFN="^DIC(19.1,",INDRN="|key",INDD="Security Key",INDSB="KEY^XINDX12",INDXN="Build file",INDSTAT=0 D BLDITEM
+ S BLDFIL=409.61,INDFN="^SD(409.61,",INDRN="|list",INDD="List Template",INDSB="LIST^XINDX12",INDXN="Build file",INDSTAT=0 D BLDITEM
+ S BLDFIL=101,INDFN="^ORD(101,",INDRN="|ptcl",INDD="Protocol",INDSB="PROTOCOL^XINDX12",INDXN="Build file",INDSTAT=0 D BLDITEM
+ S BLDFIL=771,INDFN="^HL(771,",INDRN="|hlap",INDD="HL7 Application Parameter",INDSB="HL7AP^XINDX12",INDXN="Build file",INDSTAT=0 D BLDITEM
+ S BLDFIL=8994,INDFN="^XWB(8994,",INDRN="|rpc",INDD="Remote Procedure",INDSB="RPC^XINDX12",INDXN="Build file",INDSTAT=0 D BLDITEM
 RTN ;Routines
  D RTN^XTRUTL1(INDDA,INP(10))
  Q
  ;
 BLDITEM ; Process Each Build item in build file
  D HDR
- F KRN=0:0 S KRN=$O(^XPD(9.6,INDDA,"KRN",BLDFIL,"NM",KRN)) Q:KRN'>0  S (INDL,INDXN)=$P(^(KRN,0),BLDDEL) D ENTRY
+ F KRN=0:0 S KRN=$O(^XPD(9.6,INDDA,"KRN",BLDFIL,"NM",KRN)) Q:KRN'>0  S (INDL,INDXN)=$P(^(KRN,0),BLDDEL) D STAT:'INDSTAT,ENTRY
  I INDLC=2 K ^UTILITY($J,INDRN),^UTILITY($J,1,INDRN) ;patch 121
  QUIT
  ;
 PKG D NAMSP ;Package file
- S INDFN="^DD(""FUNC"",",INDRN="|func",INDD="Function",INDSB="FUNC" D NAME
- S INDFN="^DIC(19,",INDRN="|opt",INDD="Option",INDSB="OPT" D NAME
- S INDFN="^DIBT(",INDRN="|sort",INDD="Sort Template",INDSB="SORT^XINDX12" D NAME
- S INDFN="^DIE(",INDRN="|inpt",INDD="Input Template",INDSB="INPUT^XINDX12" D NAME
- S INDFN="^DIPT(",INDRN="|prnt",INDD="Print Template",INDSB="PRINT^XINDX12" D NAME
- S INDFN="^DIST(.403,",INDRN="|form",INDD="Form",INDSB="FORM^XINDX12" D NAME
- S INDFN="^DI(.84,",INDRN="|dlg",INDD="Dialog",INDSB="DIALOG^XINDX12" D NAME
- S INDFN="^DIC(9.2,",INDRN="|help",INDD="Help Frame",INDSB="HELP^XINDX12" D NAME
- S INDFN="^DIC(19.1,",INDRN="|key",INDD="Security Key",INDSB="KEY^XINDX12" D NAME
- S INDFN="^SD(409.61,",INDRN="|list",INDD="List Template",INDSB="LIST^XINDX12" D NAME
- S INDFN="^ORD(101,",INDRN="|ptcl",INDD="Protocol",INDSB="PROTOCOL^XINDX12" D NAME
- S INDFN="^HL(771,",INDRN="|hlap",INDD="HL7 Application Parameter",INDSB="HL7AP^XINDX12" D NAME
- S INDFN="^XWB(8994,",INDRN="|rpc",INDD="Remote Procedure",INDSB="RPC^XINDX12" D NAME
+ S INDFN="^DD(""FUNC"",",INDRN="|func",INDD="Function",INDSB="FUNC",INDSTAT=0 D NAME
+ S INDFN="^DIC(19,",INDRN="|opt",INDD="Option",INDSB="OPT",INDSTAT=0 D NAME
+ S INDFN="^DIBT(",INDRN="|sort",INDD="Sort Template",INDSB="SORT^XINDX12",INDSTAT=0 D NAME
+ S INDFN="^DIE(",INDRN="|inpt",INDD="Input Template",INDSB="INPUT^XINDX12",INDSTAT=0 D NAME
+ S INDFN="^DIPT(",INDRN="|prnt",INDD="Print Template",INDSB="PRINT^XINDX12",INDSTAT=0 D NAME
+ S INDFN="^DIST(.403,",INDRN="|form",INDD="Form",INDSB="FORM^XINDX12",INDSTAT=0 D NAME
+ S INDFN="^DI(.84,",INDRN="|dlg",INDD="Dialog",INDSB="DIALOG^XINDX12",INDSTAT=0 D NAME
+ S INDFN="^DIC(9.2,",INDRN="|help",INDD="Help Frame",INDSB="HELP^XINDX12",INDSTAT=0 D NAME
+ S INDFN="^DIC(19.1,",INDRN="|key",INDD="Security Key",INDSB="KEY^XINDX12",INDSTAT=0 D NAME
+ S INDFN="^SD(409.61,",INDRN="|list",INDD="List Template",INDSB="LIST^XINDX12",INDSTAT=0 D NAME
+ S INDFN="^ORD(101,",INDRN="|ptcl",INDD="Protocol",INDSB="PROTOCOL^XINDX12",INDSTAT=0 D NAME
+ S INDFN="^HL(771,",INDRN="|hlap",INDD="HL7 Application Parameter",INDSB="HL7AP^XINDX12",INDSTAT=0 D NAME
+ S INDFN="^XWB(8994,",INDRN="|rpc",INDD="Remote Procedure",INDSB="RPC^XINDX12",INDSTAT=0 D NAME
  Q
  ;
 NAME ; Index based on Package file #9.4
@@ -55,7 +55,7 @@ NAME ; Index based on Package file #9.4
  F A=0:0 S INDL=$O(@(INDFN_"""B"",INDL)")) Q:$P(INDL,INDXN,1)]""!(INDL="")  D  ; Order through the B index of the given file. If it nolonger matches the prefix or we hit the end of the B index quit
  . F B=0:0 S B=$O(@(INDFN_"""B"",INDL,B)")) Q:B=""  D  ; For each IEN in the B index
  .. X INDF ; Make sure it isn't an excluded namespace
- .. D:C8 @INDSB ; If it isn't an excluded namesapce cross reference it
+ .. D:C8 STAT:'INDSTAT,@INDSB ; If it isn't an excluded namesapce cross reference it
  I INDLC=2 K ^UTILITY($J,INDRN),^UTILITY($J,1,INDRN) Q  ; If there is only a header delete the faux routine
  S ^UTILITY($J,1,INDRN,0,0)=INDLC ; set the number of lines in the routine where the output will find it
  Q
@@ -68,6 +68,10 @@ NAMSP ; Setup processing for Indexing based on package file
  .. S C9=C9+1 ; increment the counter
  .. S INDXN(C9)=$P(^(0),"^") ; set INDXN(COUNTER)=excluded namespace
  S INDF="S C8=1 F H=1:1:C9 I $P(INDL,INDXN(H))="""" S C8=0 Q" ; Checks excluded namespaces
+ Q
+STAT ;write status ;p148
+ S INDSTAT=1
+ W !,"Processing ",INDD,"s",!
  Q
 HDR S INDLC=0,INDC=INDRN_" ; '"_INDXN_"' "_INDD_"s.",INDX=";" D ADD S ^UTILITY($J,INDRN)="",^UTILITY($J,1,INDRN,0,0)=0
  Q

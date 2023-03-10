@@ -1,5 +1,5 @@
-ECRRPT1 ;ALB/JAM;Event Capture Report RPC Broker ;3/7/19  14:22
- ;;2.0;EVENT CAPTURE;**25,32,33,61,78,72,90,95,100,107,112,119,139,145**;8 May 96;Build 6
+ECRRPT1 ;ALB/JAM-Event Capture Report RPC Broker ;Sep 22, 2020@17:05:23
+ ;;2.0;EVENT CAPTURE;**25,32,33,61,78,72,90,95,100,107,112,119,139,145,152**;8 May 96;Build 19
  ;
  ;119 Updated comments for reports to include (E)xport as a value for ECPTYP
 ECRPRSN ;Procedure Reason Report for RPC Call
@@ -106,7 +106,7 @@ ECDSS1 ;National/Local Procedure Reports for RPC Call
  Q
 ECDSS3 ;Category Reports for RPC Call
  ;     Variables passed in
- ;       ECRTN    - Category Procedure Report 
+ ;       ECRTN    - Category Procedure Report
  ;                  (A-active, I-inactive or B-oth)
  ;       ECPTYP   - Where to send output (P)rinter, (D)evice or screen
  ;                  or (E)xport
@@ -135,7 +135,7 @@ QUEDIP ;Queue when using DIP
 ECSUM ;Print Category and Procedure Summary (Report) for RPC Call
  ;     Variables passed in
  ;       ECL      - Location to report (1 or ALL)
- ;       ECD0...n - DSS Unit to report (ECD0, first unit, ECD1, second 
+ ;       ECD0...n - DSS Unit to report (ECD0, first unit, ECD1, second
  ;                  unit, etc.)
  ;       ECC      - Category (defaults to ALL, even if sent) (optional)
  ;       ECRTN    - Event Code Screen (Active, Inactive or Both)
@@ -168,15 +168,30 @@ ECNTPCE ;ECS Records Failing Transmission to PCE
  ;       ECED   - End Date or Report
  ;       ECPTYP - Where to send output (P)rinter, (D)evice or screen
  ;                or (E)xport
- ;
+ ;       ECL0..n - Location to report (1,some or ALL)
+ ;       ECD0..n - DSS unit to report (1,some or ALL)
  ;     Variable return
  ;       ^TMP($J,"ECRPT",n)=report output or to print device.
  N ECV,ECDATE,ECROU,ECDESC
- S ECV="ECSD^ECED" D REQCHK^ECRRPT(ECV) I ECERR Q
+ N ECLOC,ECLOC1,ECDSSU,LIEN,ECNT,ECI,ECKEY,ECX,I,X,Y ; 152
+ S ECV="ECSD^ECED^ECL0^ECD0" D REQCHK^ECRRPT(ECV) I ECERR Q  ;152 - Added Location and DSS Units
+ ;*** 152 Starts ***
+ D  I '$D(ECLOC) S ^TMP("ECMSG",$J)="1^Invalid Location." Q
+ . D LOCARRY^ECRUTL I ECL0="ALL" Q  ;112
+ . K ECLOC F I=0:1 S LIEN=$G(@("ECL"_I)) Q:'+LIEN  I $D(ECLOC1(LIEN)) S ECLOC(I+1)=LIEN_"^"_ECLOC1(LIEN)
+ D  I '$D(ECDSSU) S ^TMP("ECMSG",$J)="1^Invalid DSS Unit." Q
+ . I ECD0="ALL" D  Q
+ . . I '$D(ECDUZ) Q
+ . . S ECKEY=$S($D(^XUSEC("ECALLU",ECDUZ)):1,1:0) D ALLU^ECRUTL
+ . S (ECI,ECNT)=0 F ECI=0:1 S ECX="ECD"_ECI Q:'$D(@ECX)  D
+ . . K DIC S DIC=724,DIC(0)="QNZX",X=@ECX D ^DIC I Y<0 Q
+ . . S ECNT=ECNT+1,ECDSSU(ECNT)=Y
+ ;*** 152 Ends ***
  D DATECHK^ECRRPT(.ECSD,.ECED)
  S ECSD=ECSD-.0001,ECED=ECED+.9999
  I ECPTYP="P" D  Q
- . S ECV="ECSD^ECED^ECDATE",ECROU="START^ECNTPCE"
+ . S ECV="ECSD^ECED^ECDATE^ECL0^ECD0",ECROU="START^ECNTPCE" ;152 - Added Location and DSS Units
+ . S (ECSAVE("ECLOC("),ECSAVE("ECDSSU("))="" ;152
  . S ECDESC="ECS Records Failing Transmission to PCE Report"
  . D QUEUE^ECRRPT
  D START^ECNTPCE
@@ -221,13 +236,18 @@ ECINCPT ;National/Local Procedure Codes with Inactive CPT Reports for RPC Call
  ;     Variables passed in
  ;       ECPTYP  - Where to send output (P)rinter, (D)evice or screen
  ;                 or (E)xport
+ ;  152 - Adding the next three variables
+ ;       ECRN     - Preferred Report (N-ational, L-ocal or Both)
+ ;       ECSM     - Sort Method (P-rocedure Name, N-ational Number,C-PT Code,D-Inactive Date)
+ ;       ECSORT   - Sort Order "A"scending, "D"escending
  ;
  ;     Variable return
  ;       ^TMP($J,"ECRPT",n)=report output or to print device.
  N ECV,ECL,ECDESC,ECROU,DQTIME,ECPG
+ S ECV="ECRN^ECSM^ECSORT" D REQCHK^ECRRPT(ECV) I ECERR Q  ;152
  S ECPG=1
  I ECPTYP="P" D  Q
- . S ECROU="START^ECINCPT",ECV="ECL",ECL=""
+ . S ECV="ECRN^ECSM^ECSORT",ECROU="START^ECINCPT" ;152 ,ECV="ECL",ECL=""
  . S ECDESC="National/Local Procedure Codes with Inactive CPT"
  . D QUEUE^ECRRPT
  U IO D START^ECINCPT
@@ -262,4 +282,4 @@ ECSTPCD ;DSS Units with Associated Stop Code Error REPORT
  . S ECDESC="DSS Units with Associated Stop Code Error"
  . D QUEUE^ECRRPT
  U IO D STRTGUI^ECUNTRPT
- Q 
+ Q

@@ -1,5 +1,5 @@
 ECXUTL3 ;ALB/GTS - Utilities for DSS Extracts ;9/4/18  13:18
- ;;3.0;DSS EXTRACTS;**11,24,32,33,35,37,39,42,46,92,105,120,144,149,154,166,170**;Dec 22,1997;Build 12
+ ;;3.0;DSS EXTRACTS;**11,24,32,33,35,37,39,42,46,92,105,120,144,149,154,166,170,184**;Dec 22,1997;Build 124
  ;
 OUTPTTM(ECXDFN,ECXDT) ;* Return PC Team from PCMM files or DPT
  ; Variables -
@@ -85,7 +85,7 @@ PAT(ECXDFN,ECXDATE,ECXDATA,ECXPAT) ;Return basic patient data for extract
  S X="MPIF001" X ^%ZOSF("TEST") I $T D
  .;
  .;- Get 1st piece (either ICN # or -1 if error)
- . S MPI=+$$GETICN^MPIF001(DFN)
+ . S MPI=$$GETICN^MPIF001(DFN) ;184 - Removed "+" to include the check sum 
  .;
  .;- If error, set to null
  . S ECXPAT("MPI")=$S(MPI>0:MPI,1:"")
@@ -96,6 +96,7 @@ PAT(ECXDFN,ECXDATE,ECXDATA,ECXPAT) ;Return basic patient data for extract
  . S ECXPAT("SSN")=$P(VADM(2),U),ECXPAT("MARITAL")=$P(VADM(10),U)
  . S ECXPAT("DOB")=$$ECXDOB^ECXUTL($P(VADM(3),U))
  . S ECXPAT("SEX")=$P(VADM(5),U),ECXPAT("RELIGION")=$P(VADM(9),U)
+ . S ECXPAT("SIGI")=$P(VADM(14,5),U,2) ;184 - Add SIGI Code
  . S DIC=10,DR=2,DA=+VADM(8),DIQ="ECXAR",DIQ(0)="I" D EN^DIQ1
  . S ECXPAT("RACE")=$G(ECXAR(10,DA,DR,"I")),ECXPAT=1
  . ;add new race and ethnicity fields for FY2003

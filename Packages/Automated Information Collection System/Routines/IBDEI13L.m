@@ -1,130 +1,122 @@
-IBDEI13L ; ; 04-FEB-2020
- ;;3.0;IB ENCOUNTER FORM IMP/EXP;;FEB 04, 2020
+IBDEI13L ; ; 01-FEB-2022
+ ;;3.0;IB ENCOUNTER FORM IMP/EXP;;FEB 01, 2022
  Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,999) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
- ;;^UTILITY(U,$J,358.3,17640,1,3,0)
- ;;=3^Chlamydial Vulvovaginitis
- ;;^UTILITY(U,$J,358.3,17640,1,4,0)
- ;;=4^A56.02
- ;;^UTILITY(U,$J,358.3,17640,2)
- ;;=^5000340
- ;;^UTILITY(U,$J,358.3,17641,0)
- ;;=N81.12^^88^895^22
- ;;^UTILITY(U,$J,358.3,17641,1,0)
+ ;;^UTILITY(U,$J,358.3,17824,1,4,0)
+ ;;=4^V00.811D
+ ;;^UTILITY(U,$J,358.3,17824,2)
+ ;;=^5055938
+ ;;^UTILITY(U,$J,358.3,17825,0)
+ ;;=V00.812A^^61^794^142
+ ;;^UTILITY(U,$J,358.3,17825,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,17641,1,3,0)
- ;;=3^Cystocele,Lateral
- ;;^UTILITY(U,$J,358.3,17641,1,4,0)
- ;;=4^N81.12
- ;;^UTILITY(U,$J,358.3,17641,2)
- ;;=^331535
- ;;^UTILITY(U,$J,358.3,17642,0)
- ;;=N81.11^^88^895^23
- ;;^UTILITY(U,$J,358.3,17642,1,0)
+ ;;^UTILITY(U,$J,358.3,17825,1,3,0)
+ ;;=3^Wheelchair Colliding w/ Stationary Obj,Init Encntr
+ ;;^UTILITY(U,$J,358.3,17825,1,4,0)
+ ;;=4^V00.812A
+ ;;^UTILITY(U,$J,358.3,17825,2)
+ ;;=^5055940
+ ;;^UTILITY(U,$J,358.3,17826,0)
+ ;;=V00.812D^^61^794^143
+ ;;^UTILITY(U,$J,358.3,17826,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,17642,1,3,0)
- ;;=3^Cystocele,Midline
- ;;^UTILITY(U,$J,358.3,17642,1,4,0)
- ;;=4^N81.11
- ;;^UTILITY(U,$J,358.3,17642,2)
- ;;=^331534
- ;;^UTILITY(U,$J,358.3,17643,0)
- ;;=N81.10^^88^895^24
- ;;^UTILITY(U,$J,358.3,17643,1,0)
+ ;;^UTILITY(U,$J,358.3,17826,1,3,0)
+ ;;=3^Wheelchair Colliding w/ Stationary Obj,Subs Encntr
+ ;;^UTILITY(U,$J,358.3,17826,1,4,0)
+ ;;=4^V00.812D
+ ;;^UTILITY(U,$J,358.3,17826,2)
+ ;;=^5055941
+ ;;^UTILITY(U,$J,358.3,17827,0)
+ ;;=V00.818A^^61^794^140
+ ;;^UTILITY(U,$J,358.3,17827,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,17643,1,3,0)
- ;;=3^Cystocele,Unspec
- ;;^UTILITY(U,$J,358.3,17643,1,4,0)
- ;;=4^N81.10
- ;;^UTILITY(U,$J,358.3,17643,2)
- ;;=^5015838
- ;;^UTILITY(U,$J,358.3,17644,0)
- ;;=R87.614^^88^895^25
- ;;^UTILITY(U,$J,358.3,17644,1,0)
+ ;;^UTILITY(U,$J,358.3,17827,1,3,0)
+ ;;=3^Wheelchair Accident NEC,Init Encntr
+ ;;^UTILITY(U,$J,358.3,17827,1,4,0)
+ ;;=4^V00.818A
+ ;;^UTILITY(U,$J,358.3,17827,2)
+ ;;=^5055943
+ ;;^UTILITY(U,$J,358.3,17828,0)
+ ;;=V00.818D^^61^794^141
+ ;;^UTILITY(U,$J,358.3,17828,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,17644,1,3,0)
- ;;=3^Cytologic Evidence of Malig on Smear of Cervix
- ;;^UTILITY(U,$J,358.3,17644,1,4,0)
- ;;=4^R87.614
- ;;^UTILITY(U,$J,358.3,17644,2)
- ;;=^5019672
- ;;^UTILITY(U,$J,358.3,17645,0)
- ;;=N87.9^^88^895^35
- ;;^UTILITY(U,$J,358.3,17645,1,0)
+ ;;^UTILITY(U,$J,358.3,17828,1,3,0)
+ ;;=3^Wheelchair Accident NEC,Subs Encntr
+ ;;^UTILITY(U,$J,358.3,17828,1,4,0)
+ ;;=4^V00.818D
+ ;;^UTILITY(U,$J,358.3,17828,2)
+ ;;=^5055944
+ ;;^UTILITY(U,$J,358.3,17829,0)
+ ;;=V00.831A^^61^794^48
+ ;;^UTILITY(U,$J,358.3,17829,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,17645,1,3,0)
- ;;=3^Dysplasia of Cervix Uteri,Unspec
- ;;^UTILITY(U,$J,358.3,17645,1,4,0)
- ;;=4^N87.9
- ;;^UTILITY(U,$J,358.3,17645,2)
- ;;=^5015877
- ;;^UTILITY(U,$J,358.3,17646,0)
- ;;=R30.0^^88^895^36
- ;;^UTILITY(U,$J,358.3,17646,1,0)
+ ;;^UTILITY(U,$J,358.3,17829,1,3,0)
+ ;;=3^Fall from Mobility Scooter,Init Encntr
+ ;;^UTILITY(U,$J,358.3,17829,1,4,0)
+ ;;=4^V00.831A
+ ;;^UTILITY(U,$J,358.3,17829,2)
+ ;;=^5055955
+ ;;^UTILITY(U,$J,358.3,17830,0)
+ ;;=V00.831D^^61^794^49
+ ;;^UTILITY(U,$J,358.3,17830,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,17646,1,3,0)
- ;;=3^Dysuria
- ;;^UTILITY(U,$J,358.3,17646,1,4,0)
- ;;=4^R30.0
- ;;^UTILITY(U,$J,358.3,17646,2)
- ;;=^5019322
- ;;^UTILITY(U,$J,358.3,17647,0)
- ;;=N92.1^^88^895^39
- ;;^UTILITY(U,$J,358.3,17647,1,0)
+ ;;^UTILITY(U,$J,358.3,17830,1,3,0)
+ ;;=3^Fall from Mobility Scooter,Subs Encntr
+ ;;^UTILITY(U,$J,358.3,17830,1,4,0)
+ ;;=4^V00.831D
+ ;;^UTILITY(U,$J,358.3,17830,2)
+ ;;=^5055956
+ ;;^UTILITY(U,$J,358.3,17831,0)
+ ;;=V00.832A^^61^794^100
+ ;;^UTILITY(U,$J,358.3,17831,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,17647,1,3,0)
- ;;=3^Excessive/Frequent Menstruation w/ Irregular Cycle
- ;;^UTILITY(U,$J,358.3,17647,1,4,0)
- ;;=4^N92.1
- ;;^UTILITY(U,$J,358.3,17647,2)
- ;;=^5015909
- ;;^UTILITY(U,$J,358.3,17648,0)
- ;;=Z08.^^88^895^41
- ;;^UTILITY(U,$J,358.3,17648,1,0)
+ ;;^UTILITY(U,$J,358.3,17831,1,3,0)
+ ;;=3^Mobility Scooter Colliding w/ Stationary Obj,Init Encntr
+ ;;^UTILITY(U,$J,358.3,17831,1,4,0)
+ ;;=4^V00.832A
+ ;;^UTILITY(U,$J,358.3,17831,2)
+ ;;=^5055958
+ ;;^UTILITY(U,$J,358.3,17832,0)
+ ;;=V00.832D^^61^794^101
+ ;;^UTILITY(U,$J,358.3,17832,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,17648,1,3,0)
- ;;=3^F/U Exam After Malig Neop Treatment
- ;;^UTILITY(U,$J,358.3,17648,1,4,0)
- ;;=4^Z08.
- ;;^UTILITY(U,$J,358.3,17648,2)
- ;;=^5062667
- ;;^UTILITY(U,$J,358.3,17649,0)
- ;;=Z80.3^^88^895^42
- ;;^UTILITY(U,$J,358.3,17649,1,0)
+ ;;^UTILITY(U,$J,358.3,17832,1,3,0)
+ ;;=3^Mobility Scooter Colliding w/ Stationary Obj,Subs Encntr
+ ;;^UTILITY(U,$J,358.3,17832,1,4,0)
+ ;;=4^V00.832D
+ ;;^UTILITY(U,$J,358.3,17832,2)
+ ;;=^5055959
+ ;;^UTILITY(U,$J,358.3,17833,0)
+ ;;=V00.838A^^61^794^98
+ ;;^UTILITY(U,$J,358.3,17833,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,17649,1,3,0)
- ;;=3^Family Hx of Breast CA
- ;;^UTILITY(U,$J,358.3,17649,1,4,0)
- ;;=4^Z80.3
- ;;^UTILITY(U,$J,358.3,17649,2)
- ;;=^5063347
- ;;^UTILITY(U,$J,358.3,17650,0)
- ;;=Z80.49^^88^895^43
- ;;^UTILITY(U,$J,358.3,17650,1,0)
+ ;;^UTILITY(U,$J,358.3,17833,1,3,0)
+ ;;=3^Mobility Scooter Accident NEC,Init Encntr
+ ;;^UTILITY(U,$J,358.3,17833,1,4,0)
+ ;;=4^V00.838A
+ ;;^UTILITY(U,$J,358.3,17833,2)
+ ;;=^5055961
+ ;;^UTILITY(U,$J,358.3,17834,0)
+ ;;=V00.838D^^61^794^99
+ ;;^UTILITY(U,$J,358.3,17834,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,17650,1,3,0)
- ;;=3^Family Hx of Genital Organ CA
- ;;^UTILITY(U,$J,358.3,17650,1,4,0)
- ;;=4^Z80.49
- ;;^UTILITY(U,$J,358.3,17650,2)
- ;;=^5063351
- ;;^UTILITY(U,$J,358.3,17651,0)
- ;;=Z80.41^^88^895^44
- ;;^UTILITY(U,$J,358.3,17651,1,0)
+ ;;^UTILITY(U,$J,358.3,17834,1,3,0)
+ ;;=3^Mobility Scooter Accident NEC,Subs Encntr
+ ;;^UTILITY(U,$J,358.3,17834,1,4,0)
+ ;;=4^V00.838D
+ ;;^UTILITY(U,$J,358.3,17834,2)
+ ;;=^5055962
+ ;;^UTILITY(U,$J,358.3,17835,0)
+ ;;=V00.891A^^61^794^62
+ ;;^UTILITY(U,$J,358.3,17835,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,17651,1,3,0)
- ;;=3^Family Hx of Ovarian CA
- ;;^UTILITY(U,$J,358.3,17651,1,4,0)
- ;;=4^Z80.41
- ;;^UTILITY(U,$J,358.3,17651,2)
- ;;=^5063348
- ;;^UTILITY(U,$J,358.3,17652,0)
- ;;=N73.9^^88^895^47
- ;;^UTILITY(U,$J,358.3,17652,1,0)
+ ;;^UTILITY(U,$J,358.3,17835,1,3,0)
+ ;;=3^Fall from Pedestrian Conveyance,Init Encntr
+ ;;^UTILITY(U,$J,358.3,17835,1,4,0)
+ ;;=4^V00.891A
+ ;;^UTILITY(U,$J,358.3,17835,2)
+ ;;=^5055964
+ ;;^UTILITY(U,$J,358.3,17836,0)
+ ;;=V00.891D^^61^794^63
+ ;;^UTILITY(U,$J,358.3,17836,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,17652,1,3,0)
- ;;=3^Female Pelvic Inflammatory Disease,Unspec
- ;;^UTILITY(U,$J,358.3,17652,1,4,0)
- ;;=4^N73.9
- ;;^UTILITY(U,$J,358.3,17652,2)
- ;;=^5015820

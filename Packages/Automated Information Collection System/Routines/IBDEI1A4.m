@@ -1,118 +1,116 @@
-IBDEI1A4 ; ; 04-FEB-2020
- ;;3.0;IB ENCOUNTER FORM IMP/EXP;;FEB 04, 2020
+IBDEI1A4 ; ; 01-FEB-2022
+ ;;3.0;IB ENCOUNTER FORM IMP/EXP;;FEB 01, 2022
  Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,999) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
- ;;^UTILITY(U,$J,358.3,20457,2)
- ;;=^5029874
- ;;^UTILITY(U,$J,358.3,20458,0)
- ;;=S52.281S^^93^1002^6
- ;;^UTILITY(U,$J,358.3,20458,1,0)
+ ;;^UTILITY(U,$J,358.3,20682,1,4,0)
+ ;;=4^M48.47XS
+ ;;^UTILITY(U,$J,358.3,20682,2)
+ ;;=^5012154
+ ;;^UTILITY(U,$J,358.3,20683,0)
+ ;;=M48.41XS^^67^889^15
+ ;;^UTILITY(U,$J,358.3,20683,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,20458,1,3,0)
- ;;=3^Bent bone of right ulna, sequela
- ;;^UTILITY(U,$J,358.3,20458,1,4,0)
- ;;=4^S52.281S
- ;;^UTILITY(U,$J,358.3,20458,2)
- ;;=^5029858
- ;;^UTILITY(U,$J,358.3,20459,0)
- ;;=S52.252S^^93^1002^16
- ;;^UTILITY(U,$J,358.3,20459,1,0)
+ ;;^UTILITY(U,$J,358.3,20683,1,3,0)
+ ;;=3^Fatigue fracture of vertebra, occipt-atlan-ax region, sqla
+ ;;^UTILITY(U,$J,358.3,20683,1,4,0)
+ ;;=4^M48.41XS
+ ;;^UTILITY(U,$J,358.3,20683,2)
+ ;;=^5012130
+ ;;^UTILITY(U,$J,358.3,20684,0)
+ ;;=M48.48XS^^67^889^16
+ ;;^UTILITY(U,$J,358.3,20684,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,20459,1,3,0)
- ;;=3^Disp fx of comminuted shaft of ulna, right arm, sequela 
- ;;^UTILITY(U,$J,358.3,20459,1,4,0)
- ;;=4^S52.252S
- ;;^UTILITY(U,$J,358.3,20459,2)
- ;;=^5029634
- ;;^UTILITY(U,$J,358.3,20460,0)
- ;;=S52.251S^^93^1002^17
- ;;^UTILITY(U,$J,358.3,20460,1,0)
+ ;;^UTILITY(U,$J,358.3,20684,1,3,0)
+ ;;=3^Fatigue fracture of vertebra, sacr/sacrocygl region, sqla
+ ;;^UTILITY(U,$J,358.3,20684,1,4,0)
+ ;;=4^M48.48XS
+ ;;^UTILITY(U,$J,358.3,20684,2)
+ ;;=^5012158
+ ;;^UTILITY(U,$J,358.3,20685,0)
+ ;;=M48.44XS^^67^889^17
+ ;;^UTILITY(U,$J,358.3,20685,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,20460,1,3,0)
- ;;=3^Disp fx of comminuted shaft of ulna, right arm, sequela 
- ;;^UTILITY(U,$J,358.3,20460,1,4,0)
- ;;=4^S52.251S
- ;;^UTILITY(U,$J,358.3,20460,2)
- ;;=^5029618
- ;;^UTILITY(U,$J,358.3,20461,0)
- ;;=S52.042S^^93^1002^18
- ;;^UTILITY(U,$J,358.3,20461,1,0)
+ ;;^UTILITY(U,$J,358.3,20685,1,3,0)
+ ;;=3^Fatigue fracture of vertebra, thoracic region, sqla
+ ;;^UTILITY(U,$J,358.3,20685,1,4,0)
+ ;;=4^M48.44XS
+ ;;^UTILITY(U,$J,358.3,20685,2)
+ ;;=^5012142
+ ;;^UTILITY(U,$J,358.3,20686,0)
+ ;;=M48.45XS^^67^889^18
+ ;;^UTILITY(U,$J,358.3,20686,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,20461,1,3,0)
- ;;=3^Disp fx of coronoid process of left ulna, sequela 
- ;;^UTILITY(U,$J,358.3,20461,1,4,0)
- ;;=4^S52.042S
- ;;^UTILITY(U,$J,358.3,20461,2)
- ;;=^5028906
- ;;^UTILITY(U,$J,358.3,20462,0)
- ;;=S52.041S^^93^1002^19
- ;;^UTILITY(U,$J,358.3,20462,1,0)
+ ;;^UTILITY(U,$J,358.3,20686,1,3,0)
+ ;;=3^Fatigue fracture of vertebra, thoracolumbar region, sqla
+ ;;^UTILITY(U,$J,358.3,20686,1,4,0)
+ ;;=4^M48.45XS
+ ;;^UTILITY(U,$J,358.3,20686,2)
+ ;;=^5012146
+ ;;^UTILITY(U,$J,358.3,20687,0)
+ ;;=S12.041S^^67^889^27
+ ;;^UTILITY(U,$J,358.3,20687,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,20462,1,3,0)
- ;;=3^Disp fx of coronoid process of right ulna, sequela
- ;;^UTILITY(U,$J,358.3,20462,1,4,0)
- ;;=4^S52.041S
- ;;^UTILITY(U,$J,358.3,20462,2)
- ;;=^5028890
- ;;^UTILITY(U,$J,358.3,20463,0)
- ;;=S52.612S^^93^1002^27
- ;;^UTILITY(U,$J,358.3,20463,1,0)
+ ;;^UTILITY(U,$J,358.3,20687,1,3,0)
+ ;;=3^Nondisp lateral mass fx first cervcal vertebra, sequela
+ ;;^UTILITY(U,$J,358.3,20687,1,4,0)
+ ;;=4^S12.041S
+ ;;^UTILITY(U,$J,358.3,20687,2)
+ ;;=^5021592
+ ;;^UTILITY(U,$J,358.3,20688,0)
+ ;;=S12.031S^^67^889^28
+ ;;^UTILITY(U,$J,358.3,20688,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,20463,1,3,0)
- ;;=3^Disp fx of left ulna styloid process, sequela 
- ;;^UTILITY(U,$J,358.3,20463,1,4,0)
- ;;=4^S52.612S
- ;;^UTILITY(U,$J,358.3,20463,2)
- ;;=^5031066
- ;;^UTILITY(U,$J,358.3,20464,0)
- ;;=S52.032S^^93^1002^14
- ;;^UTILITY(U,$J,358.3,20464,1,0)
+ ;;^UTILITY(U,$J,358.3,20688,1,3,0)
+ ;;=3^Nondisp posterior arch fx first cervcal vertebra, sequela
+ ;;^UTILITY(U,$J,358.3,20688,1,4,0)
+ ;;=4^S12.031S
+ ;;^UTILITY(U,$J,358.3,20688,2)
+ ;;=^5021580
+ ;;^UTILITY(U,$J,358.3,20689,0)
+ ;;=S32.051S^^67^889^37
+ ;;^UTILITY(U,$J,358.3,20689,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,20464,1,3,0)
- ;;=3^Disp fx of comminuted shaft of radius, left arm, sequela 
- ;;^UTILITY(U,$J,358.3,20464,1,4,0)
- ;;=4^S52.032S
- ;;^UTILITY(U,$J,358.3,20464,2)
- ;;=^5135105
- ;;^UTILITY(U,$J,358.3,20465,0)
- ;;=S52.031S^^93^1002^38
- ;;^UTILITY(U,$J,358.3,20465,1,0)
+ ;;^UTILITY(U,$J,358.3,20689,1,3,0)
+ ;;=3^Stable burst fracture of fifth lumbar vertebra, sequela
+ ;;^UTILITY(U,$J,358.3,20689,1,4,0)
+ ;;=4^S32.051S
+ ;;^UTILITY(U,$J,358.3,20689,2)
+ ;;=^5024502
+ ;;^UTILITY(U,$J,358.3,20690,0)
+ ;;=S12.01XS^^67^889^38
+ ;;^UTILITY(U,$J,358.3,20690,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,20465,1,3,0)
- ;;=3^Disp fx of olecran pro w intartic extn right ulna, sequela
- ;;^UTILITY(U,$J,358.3,20465,1,4,0)
- ;;=4^S52.031S
- ;;^UTILITY(U,$J,358.3,20465,2)
- ;;=^5028856
- ;;^UTILITY(U,$J,358.3,20466,0)
- ;;=S52.022S^^93^1002^39
- ;;^UTILITY(U,$J,358.3,20466,1,0)
+ ;;^UTILITY(U,$J,358.3,20690,1,3,0)
+ ;;=3^Stable burst fracture of first cervical vertebra, sequela
+ ;;^UTILITY(U,$J,358.3,20690,1,4,0)
+ ;;=4^S12.01XS
+ ;;^UTILITY(U,$J,358.3,20690,2)
+ ;;=^5021562
+ ;;^UTILITY(U,$J,358.3,20691,0)
+ ;;=S32.011S^^67^889^39
+ ;;^UTILITY(U,$J,358.3,20691,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,20466,1,3,0)
- ;;=3^Disp fx of olecran pro w/o intartic extn left ulna, sequela
- ;;^UTILITY(U,$J,358.3,20466,1,4,0)
- ;;=4^S52.022S
- ;;^UTILITY(U,$J,358.3,20466,2)
- ;;=^5028784
- ;;^UTILITY(U,$J,358.3,20467,0)
- ;;=S52.021S^^93^1002^40
- ;;^UTILITY(U,$J,358.3,20467,1,0)
+ ;;^UTILITY(U,$J,358.3,20691,1,3,0)
+ ;;=3^Stable burst fracture of first lumbar vertebra, sequela
+ ;;^UTILITY(U,$J,358.3,20691,1,4,0)
+ ;;=4^S32.011S
+ ;;^UTILITY(U,$J,358.3,20691,2)
+ ;;=^5024382
+ ;;^UTILITY(U,$J,358.3,20692,0)
+ ;;=S22.011S^^67^889^40
+ ;;^UTILITY(U,$J,358.3,20692,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,20467,1,3,0)
- ;;=3^Disp fx of olecran pro w/o intartic extn right ulna, sequela
- ;;^UTILITY(U,$J,358.3,20467,1,4,0)
- ;;=4^S52.021S
- ;;^UTILITY(U,$J,358.3,20467,2)
- ;;=^5028768
- ;;^UTILITY(U,$J,358.3,20468,0)
- ;;=S52.611S^^93^1002^46
- ;;^UTILITY(U,$J,358.3,20468,1,0)
+ ;;^UTILITY(U,$J,358.3,20692,1,3,0)
+ ;;=3^Stable burst fracture of first thoracic vertebra, sequela
+ ;;^UTILITY(U,$J,358.3,20692,1,4,0)
+ ;;=4^S22.011S
+ ;;^UTILITY(U,$J,358.3,20692,2)
+ ;;=^5022846
+ ;;^UTILITY(U,$J,358.3,20693,0)
+ ;;=S32.041S^^67^889^41
+ ;;^UTILITY(U,$J,358.3,20693,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,20468,1,3,0)
- ;;=3^Disp fx of right ulna styloid process, sequela 
- ;;^UTILITY(U,$J,358.3,20468,1,4,0)
- ;;=4^S52.611S
- ;;^UTILITY(U,$J,358.3,20468,2)
- ;;=^5031050
- ;;^UTILITY(U,$J,358.3,20469,0)
- ;;=S52.232S^^93^1002^35
+ ;;^UTILITY(U,$J,358.3,20693,1,3,0)
+ ;;=3^Stable burst fracture of fourth lumbar vertebra, sequela
+ ;;^UTILITY(U,$J,358.3,20693,1,4,0)
+ ;;=4^S32.041S

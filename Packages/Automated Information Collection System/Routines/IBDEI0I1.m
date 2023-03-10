@@ -1,136 +1,120 @@
-IBDEI0I1 ; ; 04-FEB-2020
- ;;3.0;IB ENCOUNTER FORM IMP/EXP;;FEB 04, 2020
+IBDEI0I1 ; ; 01-FEB-2022
+ ;;3.0;IB ENCOUNTER FORM IMP/EXP;;FEB 01, 2022
  Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,999) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
- ;;^UTILITY(U,$J,358.3,7856,1,2,0)
- ;;=2^99204
- ;;^UTILITY(U,$J,358.3,7857,0)
- ;;=99205^^64^507^5
- ;;^UTILITY(U,$J,358.3,7857,1,0)
- ;;=^358.31IA^2^2
- ;;^UTILITY(U,$J,358.3,7857,1,1,0)
- ;;=1^Comprehensive, High
- ;;^UTILITY(U,$J,358.3,7857,1,2,0)
- ;;=2^99205
- ;;^UTILITY(U,$J,358.3,7858,0)
- ;;=99211^^64^508^1
- ;;^UTILITY(U,$J,358.3,7858,1,0)
- ;;=^358.31IA^2^2
- ;;^UTILITY(U,$J,358.3,7858,1,1,0)
- ;;=1^Brief (no MD seen)
- ;;^UTILITY(U,$J,358.3,7858,1,2,0)
- ;;=2^99211
- ;;^UTILITY(U,$J,358.3,7859,0)
- ;;=99212^^64^508^2
- ;;^UTILITY(U,$J,358.3,7859,1,0)
- ;;=^358.31IA^2^2
- ;;^UTILITY(U,$J,358.3,7859,1,1,0)
- ;;=1^Problem Focused
- ;;^UTILITY(U,$J,358.3,7859,1,2,0)
- ;;=2^99212
- ;;^UTILITY(U,$J,358.3,7860,0)
- ;;=99213^^64^508^3
- ;;^UTILITY(U,$J,358.3,7860,1,0)
- ;;=^358.31IA^2^2
- ;;^UTILITY(U,$J,358.3,7860,1,1,0)
- ;;=1^Expanded Problem Focus
- ;;^UTILITY(U,$J,358.3,7860,1,2,0)
- ;;=2^99213
- ;;^UTILITY(U,$J,358.3,7861,0)
- ;;=99214^^64^508^4
- ;;^UTILITY(U,$J,358.3,7861,1,0)
- ;;=^358.31IA^2^2
- ;;^UTILITY(U,$J,358.3,7861,1,1,0)
- ;;=1^Detailed
- ;;^UTILITY(U,$J,358.3,7861,1,2,0)
- ;;=2^99214
- ;;^UTILITY(U,$J,358.3,7862,0)
- ;;=99215^^64^508^5
- ;;^UTILITY(U,$J,358.3,7862,1,0)
- ;;=^358.31IA^2^2
- ;;^UTILITY(U,$J,358.3,7862,1,1,0)
- ;;=1^Comprehensive
- ;;^UTILITY(U,$J,358.3,7862,1,2,0)
- ;;=2^99215
- ;;^UTILITY(U,$J,358.3,7863,0)
- ;;=99241^^64^509^1
- ;;^UTILITY(U,$J,358.3,7863,1,0)
- ;;=^358.31IA^2^2
- ;;^UTILITY(U,$J,358.3,7863,1,1,0)
- ;;=1^Problem Focused
- ;;^UTILITY(U,$J,358.3,7863,1,2,0)
- ;;=2^99241
- ;;^UTILITY(U,$J,358.3,7864,0)
- ;;=99242^^64^509^2
- ;;^UTILITY(U,$J,358.3,7864,1,0)
- ;;=^358.31IA^2^2
- ;;^UTILITY(U,$J,358.3,7864,1,1,0)
- ;;=1^Expanded Problem Focus
- ;;^UTILITY(U,$J,358.3,7864,1,2,0)
- ;;=2^99242
- ;;^UTILITY(U,$J,358.3,7865,0)
- ;;=99243^^64^509^3
- ;;^UTILITY(U,$J,358.3,7865,1,0)
- ;;=^358.31IA^2^2
- ;;^UTILITY(U,$J,358.3,7865,1,1,0)
- ;;=1^Detailed
- ;;^UTILITY(U,$J,358.3,7865,1,2,0)
- ;;=2^99243
- ;;^UTILITY(U,$J,358.3,7866,0)
- ;;=99244^^64^509^4
- ;;^UTILITY(U,$J,358.3,7866,1,0)
- ;;=^358.31IA^2^2
- ;;^UTILITY(U,$J,358.3,7866,1,1,0)
- ;;=1^Comprehensive, Moderate
- ;;^UTILITY(U,$J,358.3,7866,1,2,0)
- ;;=2^99244
- ;;^UTILITY(U,$J,358.3,7867,0)
- ;;=99245^^64^509^5
- ;;^UTILITY(U,$J,358.3,7867,1,0)
- ;;=^358.31IA^2^2
- ;;^UTILITY(U,$J,358.3,7867,1,1,0)
- ;;=1^Comprehensive, High
- ;;^UTILITY(U,$J,358.3,7867,1,2,0)
- ;;=2^99245
- ;;^UTILITY(U,$J,358.3,7868,0)
- ;;=99024^^64^510^1
- ;;^UTILITY(U,$J,358.3,7868,1,0)
- ;;=^358.31IA^2^2
- ;;^UTILITY(U,$J,358.3,7868,1,1,0)
- ;;=1^Post-Op Follow-up Visit
- ;;^UTILITY(U,$J,358.3,7868,1,2,0)
- ;;=2^99024
- ;;^UTILITY(U,$J,358.3,7869,0)
- ;;=K12.0^^65^511^15
- ;;^UTILITY(U,$J,358.3,7869,1,0)
+ ;;^UTILITY(U,$J,358.3,8114,0)
+ ;;=L97.916^^39^391^259
+ ;;^UTILITY(U,$J,358.3,8114,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,7869,1,3,0)
- ;;=3^Aphthous Stomatitis
- ;;^UTILITY(U,$J,358.3,7869,1,4,0)
- ;;=4^K12.0
- ;;^UTILITY(U,$J,358.3,7869,2)
- ;;=^5008483
- ;;^UTILITY(U,$J,358.3,7870,0)
- ;;=L83.^^65^511^1
- ;;^UTILITY(U,$J,358.3,7870,1,0)
+ ;;^UTILITY(U,$J,358.3,8114,1,3,0)
+ ;;=3^Non-Pressure Chr Ulcer of Right Lower Leg w/ Bone Invl w/o Necrosis
+ ;;^UTILITY(U,$J,358.3,8114,1,4,0)
+ ;;=4^L97.916
+ ;;^UTILITY(U,$J,358.3,8114,2)
+ ;;=^5151488
+ ;;^UTILITY(U,$J,358.3,8115,0)
+ ;;=L97.915^^39^391^260
+ ;;^UTILITY(U,$J,358.3,8115,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,7870,1,3,0)
- ;;=3^Acanthosis Nigricans
- ;;^UTILITY(U,$J,358.3,7870,1,4,0)
- ;;=4^L83.
- ;;^UTILITY(U,$J,358.3,7870,2)
- ;;=^1451
- ;;^UTILITY(U,$J,358.3,7871,0)
- ;;=E85.9^^65^511^13
- ;;^UTILITY(U,$J,358.3,7871,1,0)
+ ;;^UTILITY(U,$J,358.3,8115,1,3,0)
+ ;;=3^Non-Pressure Chr Ulcer of Right Lower Leg w/ Msl Invl w/o Necrosis
+ ;;^UTILITY(U,$J,358.3,8115,1,4,0)
+ ;;=4^L97.915
+ ;;^UTILITY(U,$J,358.3,8115,2)
+ ;;=^5151487
+ ;;^UTILITY(U,$J,358.3,8116,0)
+ ;;=L97.918^^39^391^261
+ ;;^UTILITY(U,$J,358.3,8116,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,7871,1,3,0)
- ;;=3^Amyloidosis,Unspec
- ;;^UTILITY(U,$J,358.3,7871,1,4,0)
- ;;=4^E85.9
- ;;^UTILITY(U,$J,358.3,7871,2)
- ;;=^334185
- ;;^UTILITY(U,$J,358.3,7872,0)
- ;;=L63.8^^65^511^7
- ;;^UTILITY(U,$J,358.3,7872,1,0)
+ ;;^UTILITY(U,$J,358.3,8116,1,3,0)
+ ;;=3^Non-Pressure Chr Ulcer of Right Lower Leg w/ Oth Severity
+ ;;^UTILITY(U,$J,358.3,8116,1,4,0)
+ ;;=4^L97.918
+ ;;^UTILITY(U,$J,358.3,8116,2)
+ ;;=^5151489
+ ;;^UTILITY(U,$J,358.3,8117,0)
+ ;;=L97.116^^39^391^267
+ ;;^UTILITY(U,$J,358.3,8117,1,0)
  ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,8117,1,3,0)
+ ;;=3^Non-Pressure Chr Ulcer of Right Thigh w/ Bone Invl w/o Necrosis
+ ;;^UTILITY(U,$J,358.3,8117,1,4,0)
+ ;;=4^L97.116
+ ;;^UTILITY(U,$J,358.3,8117,2)
+ ;;=^5151434
+ ;;^UTILITY(U,$J,358.3,8118,0)
+ ;;=L97.115^^39^391^268
+ ;;^UTILITY(U,$J,358.3,8118,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,8118,1,3,0)
+ ;;=3^Non-Pressure Chr Ulcer of Right Thigh w/ Msl Invl w/o Necrosis
+ ;;^UTILITY(U,$J,358.3,8118,1,4,0)
+ ;;=4^L97.115
+ ;;^UTILITY(U,$J,358.3,8118,2)
+ ;;=^5151433
+ ;;^UTILITY(U,$J,358.3,8119,0)
+ ;;=L89.306^^39^391^276
+ ;;^UTILITY(U,$J,358.3,8119,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,8119,1,3,0)
+ ;;=3^Pressure Induced Deep Tissue Damage,Unspec Buttock
+ ;;^UTILITY(U,$J,358.3,8119,1,4,0)
+ ;;=4^L89.306
+ ;;^UTILITY(U,$J,358.3,8119,2)
+ ;;=^5158088
+ ;;^UTILITY(U,$J,358.3,8120,0)
+ ;;=L89.46^^39^391^275
+ ;;^UTILITY(U,$J,358.3,8120,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,8120,1,3,0)
+ ;;=3^Pressure Induced Deep Tissue Damage,Contig Site:Back/Buttock/Hip
+ ;;^UTILITY(U,$J,358.3,8120,1,4,0)
+ ;;=4^L89.46
+ ;;^UTILITY(U,$J,358.3,8120,2)
+ ;;=^5158091
+ ;;^UTILITY(U,$J,358.3,8121,0)
+ ;;=L02.818^^39^391^128
+ ;;^UTILITY(U,$J,358.3,8121,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,8121,1,3,0)
+ ;;=3^Cutaneous Abscess of Other Sites
+ ;;^UTILITY(U,$J,358.3,8121,1,4,0)
+ ;;=4^L02.818
+ ;;^UTILITY(U,$J,358.3,8121,2)
+ ;;=^5009011
+ ;;^UTILITY(U,$J,358.3,8122,0)
+ ;;=H65.03^^39^392^3
+ ;;^UTILITY(U,$J,358.3,8122,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,8122,1,3,0)
+ ;;=3^Acute Serous Otitis Media,Bilateral
+ ;;^UTILITY(U,$J,358.3,8122,1,4,0)
+ ;;=4^H65.03
+ ;;^UTILITY(U,$J,358.3,8122,2)
+ ;;=^5006572
+ ;;^UTILITY(U,$J,358.3,8123,0)
+ ;;=H65.01^^39^392^5
+ ;;^UTILITY(U,$J,358.3,8123,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,8123,1,3,0)
+ ;;=3^Acute Serous Otitis Media,Right Ear
+ ;;^UTILITY(U,$J,358.3,8123,1,4,0)
+ ;;=4^H65.01
+ ;;^UTILITY(U,$J,358.3,8123,2)
+ ;;=^5006570
+ ;;^UTILITY(U,$J,358.3,8124,0)
+ ;;=H65.23^^39^392^15
+ ;;^UTILITY(U,$J,358.3,8124,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,8124,1,3,0)
+ ;;=3^Chronic Serous Otitis Media,Bilateral
+ ;;^UTILITY(U,$J,358.3,8124,1,4,0)
+ ;;=4^H65.23
+ ;;^UTILITY(U,$J,358.3,8124,2)
+ ;;=^5006596
+ ;;^UTILITY(U,$J,358.3,8125,0)
+ ;;=H65.22^^39^392^16
+ ;;^UTILITY(U,$J,358.3,8125,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,8125,1,3,0)
+ ;;=3^Chronic Serous Otitis Media,Left Ear

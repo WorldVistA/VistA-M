@@ -1,6 +1,6 @@
-VAFCQRY ;BIR/DLR-Query for patient demographics ; 8/14/18 4:17pm
- ;;5.3;Registration;**428,575,627,707,863,902,926,967**;Aug 13, 1993;Build 3
- ;   
+VAFCQRY ;BIR/DLR-Query for patient demographics ;7/16/21  11:39
+ ;;5.3;Registration;**428,575,627,707,863,902,926,967,1059**;Aug 13, 1993;Build 6
+ ;
 IN ;process in the patient query
  N IEN,HLA,VAFCCNT,ICN,CLAIM,SG,VAFCER,VAFC,DFN,STATE,CITY,SUBCOMP,COMP,REP,LVL,LVL2,VAFC,SSN,SAVEDFN
  S VAFCCNT=1,VAFCER=1
@@ -21,13 +21,16 @@ IN ;process in the patient query
  D GENACK^HLMA1(HL("EID"),HLMTIENS,HL("EIDS"),"GM",1,.HLRESLTA,"",.HL)
  K VAFCER,VAFCID,COMP,SITE,VAFCFS,VAFCRCV,VAFCQRD,^TMP("HLA",$J)
  Q
+ ;
 RESP ;Response processing initiated from the MPI.
  Q
+ ;
 ROUTE ;Routine logic initiated from the MPI.
  Q
+ ;
 BLDRSP(DFN,VAFCCNT) ;
  N EVN,PID,PD1,SEQ,ERR,CNT,X,PV2,RADE,LABE,PRES
- N SIDG,ZEL,ZSP,NAMECOMP,OLD,PV1,DODF,DODD,DODOPT,DODNP,DODDISDT,SECLVL
+ N SIDG,ZEL,ZSP,NAMECOMP,OLD,PV1,DODF,DODD,DODOPT,DODNP,DODDISDT,SECLVL,SEXOR,SEXORD,PRON,PROND
  ;construct EVN (for TF Event Type AND Last Treatment Date)
  S SEQ="1,2" D BLDEVN(DFN,.SEQ,.EVN,.HL,"A19",.ERR) S ^TMP("HLA",$J,VAFCCNT)=EVN(1) S VAFCCNT=VAFCCNT+1
  ;construct PID
@@ -51,7 +54,18 @@ BLDRSP(DFN,VAFCCNT) ;
  S DODNP=$$DODNTPRV^VAFCSB(DFN) I $G(DODNP)'="" S ^TMP("HLA",$J,VAFCCNT)=DODNP,VAFCCNT=VAFCCNT+1  ;Date Of Death Notify Provider
  ;**967 - Story 783361 (ckn) - OBX for Security Level
  S SECLVL=$$SECLOG^VAFCSB(DFN) I $G(SECLVL)'="" S ^TMP("HLA",$J,VAFCCNT)=SECLVL,VAFCCNT=VAFCCNT+1
- ;** PATCH 575
+ D SEXOR^VAFCSB(DFN,.SEXOR) I $O(SEXOR(0)) N CNT S CNT=0 F  S CNT=$O(SEXOR(CNT)) Q:'CNT  S HLA("HLS",EN)=SEXOR(CNT),EN=EN+1 ;**1059, VAMPI-11114 (dri)
+ D SEXORD^VAFCSB(DFN,.SEXORD) I $O(SEXORD(0)) D  S EN=EN+1 ;**1059, VAMPI-11114 (dri)
+ .N CNT,LVL
+ .S LVL=1,CNT=0 F  S CNT=$O(SEXORD(CNT)) Q:'CNT  D
+ ..I CNT=1 S HLA("HLS",EN)=SEXORD(CNT)
+ ..I CNT>1 S HLA("HLS",EN,LVL)=SEXORD(CNT),LVL=LVL+1
+ D PRON^VAFCSB(DFN,.PRON) I $O(PRON(0)) N CNT S CNT=0 F  S CNT=$O(PRON(CNT)) Q:'CNT  S HLA("HLS",EN)=PRON(CNT),EN=EN+1 ;**1059, VAMPI-11118 (dri)
+ D PROND^VAFCSB(DFN,.PROND) I $O(PROND(0)) D  S EN=EN+1 ;**1059, VAMPI-11118 (dri)
+ .N CNT,LVL
+ .S LVL=1,CNT=0 F  S CNT=$O(PROND(CNT)) Q:'CNT  D
+ ..I CNT=1 S HLA("HLS",EN)=PROND(CNT)
+ ..I CNT>1 S HLA("HLS",EN,LVL)=PROND(CNT),LVL=LVL+1
  ;construct ZPD segment
  S SEQ="1,17,21,34" ;**707 Added 1, 21 and 34 to ZPD fields
  S ^TMP("HLA",$J,VAFCCNT)=$$EN1^VAFHLZPD(DFN,SEQ)
@@ -60,6 +74,7 @@ BLDRSP(DFN,VAFCCNT) ;
  S ZSP=$$EN^VAFHLZSP(DFN) I $G(ZSP)'="" S ^TMP("HLA",$J,VAFCCNT)=ZSP,VAFCCNT=VAFCCNT+1  ;ZSP segment
  S ZEL=$$EN^VAFHLZEL(DFN,"1,8,9",1) I $G(ZEL)'="" S ^TMP("HLA",$J,VAFCCNT)=ZEL,VAFCCNT=VAFCCNT+1  ;ZEL segment
  Q
+ ;
 MSH ;process MSH segment
  S VAFCFS=HL("FS")
  S HLQ=HL("Q"),HLFS=HL("FS"),HLECH=HL("ECH")
@@ -69,6 +84,7 @@ MSH ;process MSH segment
  S SUBCOMP=$E(HL("ECH"),4)
  S SITE=$$LKUP^XUAF4($P($P(HLNODE,HL("FS"),4),COMP))
  Q
+ ;
 QRD ;process QRD segment
  N QRD,X,IDS,WSF,ID,QRDAA,QRDNTC
  S VAFCQRD=HLNODE
@@ -84,6 +100,7 @@ QRD ;process QRD segment
  . I QRDAA="USSSA" D
  .. I QRDNTC="SS" S SSN=ID  ;Social Security number
  Q
+ ;
 BLDEVN(DFN,SEQ,EVN,HL,EVR,ERR) ;build EVN for TF last treatment date and event reason
  ; At this point only sequence one and two are supported
  ; Variable list
@@ -97,6 +114,7 @@ BLDEVN(DFN,SEQ,EVN,HL,EVR,ERR) ;build EVN for TF last treatment date and event r
  ;
  D BLDEVN^VAFCQRY2(DFN,SEQ,.EVN,.HL,EVR,.ERR)
  Q
+ ;
 BLDPD1(DFN,SEQ,PD1,HL,ERR) ;
  ; At this point only sequence 3 is supported
  ; Variable list
@@ -109,6 +127,7 @@ BLDPD1(DFN,SEQ,PD1,HL,ERR) ;
  ;
  D BLDPD1^VAFCQRY2(DFN,SEQ,.PD1,.HL,.ERR)
  Q
+ ;
 BLDPID(DFN,CNT,SEQ,PID,HL,ERR) ;build PID from File #2
  ;The required sequences 3 and 5 will be returned and at this point
  ;sequences 1-3,5-8,10-14,16,17,19,22-24 and 29 are supported
@@ -129,5 +148,7 @@ BLDPID(DFN,CNT,SEQ,PID,HL,ERR) ;build PID from File #2
  ;
  D BLDPID^VAFCQRY1(DFN,CNT,SEQ,.PID,.HL,.ERR)
  Q
+ ;
 OLD(DFN) ; **902 MVI_4634 (ckn) Return OBX segment to flag a record as "old"
  Q $S($D(^XTMP("MPIF OLD RECORDS",DFN))#2:"OBX"_HL("FS")_HL("FS")_"CE"_HL("FS")_"OLDER RECORD"_HL("FS")_HL("FS")_"Y",1:"")
+ ;

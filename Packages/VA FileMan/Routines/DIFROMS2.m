@@ -1,15 +1,12 @@
-DIFROMS2 ;SFISC/DCL/TKW - INSTALL DD FROM SOURCE ARRAY ;4SEP2016
- ;;22.2;VA FileMan;**3,5,14**;Jan 05, 2016;Build 8
+DIFROMS2 ;SFISC/DCL/TKW - INSTALL DD FROM SOURCE ARRAY ; Jul 05, 2022@09:27:23
+ ;;22.2;VA FileMan;**3,5,14,19,21,23**;Jan 05, 2016;Build 2
  ;;Per VA Directive 6402, this routine should not be modified.
  ;;Submitted to OSEHRA 5 January 2015 by the VISTA Expertise Network.
  ;;Based on Medsphere Systems Corporation's MSC FileMan 1051.
  ;;Licensed under the terms of the Apache License, Version 2.0.
  ;;GFT;**11,53,1037,1053,1055**
  ;
- ;
  Q
- ;
- ;
  ;
 EN ;CALLED FROM DIFROMS
  ;WHERE, E.G. ^XTMP("XPDI",4861,"^DD",21489,21489,.01,0)="NAME^RF^^0;1^K:$L(X)>30!(X?.N) X
@@ -75,8 +72,9 @@ FILE ;
  .F  S DIFRFLD=$O(@DIFRSA@("^DD",DIFRFILE,DIFRD,DIFRFLD)) Q:DIFRFLD'>0  D
  ..K ^DD(DIFRD,DIFRFLD,21),^(23)
  ..S DIFRX=0
- ..F  S DIFRX=$O(@DIFRSA@("^DD",DIFRFILE,DIFRD,DIFRFLD,1,DIFRX)) Q:DIFRX'>0  D
- ...K ^DD(DIFRD,DIFRFLD,1,DIFRX,"%D")
+ ..F  S DIFRX=$O(@DIFRSA@("^DD",DIFRFILE,DIFRD,DIFRFLD,1,DIFRX)) Q:DIFRX'>0  D  ;check cross ref.
+ ...K ^DD(DIFRD,DIFRFLD,1,DIFRX,"%D") ;kill Description
+ ...S Z=0 F  S Z=$O(^DD(DIFRD,DIFRFLD,1,DIFRX,Z)) Q:'Z  I Z'=1,Z'=2 K ^(Z) ;p21 kill spill over cross ref. code
 FULL I DIFRFDD F DIFRX="^DIC","^DD" D  ;FULL DEFINITION
  .N X
  .I DIFRX="^DIC",$G(^DIC(DIFRFILE,0))]"" S X=$P(^(0),"^",3,9) ;REMEMBER NODES 3 &4 (LAST^COUNT)
@@ -98,7 +96,11 @@ SETUP ..I $G(@DIFRSA@("UP",DIFRFILE,DIFRD,-1)) S ^DD(DIFRD,0,"UP")=+^(-1) ;SET T
  S DIFRD=0 F  S DIFRD=$O(@DIFRFIA@(DIFRFILE,DIFRD)) Q:DIFRD'>0  D
  .I 'DIFRFDD,$D(@DIFRSA@("DIFRNI",DIFRFILE,DIFRD)) Q
  .S D=DIFRD,DIK="A" F  S DIK=$O(^DD(D,DIK)) Q:DIK=""  K ^(DIK)
- .S DA(1)=D,DIK="^DD("_D_"," D IXALL^DIK ;CROSS-REFERENCE THE ^DD THAT WE HAVE BUILT
+ .S DA(1)=D,DIK="^DD("_D_"," D  D IXALL^DIK L -^DD(0) ;CROSS-REFERENCE THE ^DD THAT WE HAVE BUILT
+ ..N Z ;retry lock until success or 5 min. p19
+ ..F Z=1:1:150 L +^DD(0):2 Q:$T
+ ..E  S DIFRMSGR="Can't Lock ^DD(0), file #"_DIFRFILE_" not installed!",Z=1/0 ;throw <DIVIDE> error to stop install
+ ..Q
  .I $D(^DIC(D,"%",0)) S DIK="^DIC(D,""%""," D IXALL^DIK
  .Q
  I 'DIFRFDD D  G IXKEY
@@ -138,7 +140,7 @@ DIKZ I $D(^DD(DIFRFILE,0,"DIK")) D
  ;
 K12(DIFRD) N DD,D S DIFRD=+$G(DIFRD) ;DIFRD WILL BE THERE FOR A PARTIAL UPDATE
  F DD=0:0 S DD=$O(@DIFRSA@("^DD",DIFRFILE,DD)) Q:'DD  I DIFRD=DD!'DIFRD D
- .F D=0:0 S D=$O(@DIFRSA@("^DD",DIFRFILE,DD,D)) Q:'D  K ^DD(DD,D,12),^(12.1) ;KILL THE 'SCREEN' NODES, BECAUSE THEY MAY NOT BE COMING IN
+ .F D=0:0 S D=$O(@DIFRSA@("^DD",DIFRFILE,DD,D)) Q:'D  K ^DD(DD,D,12),^(12.1),^("V") ;p23 Kill 'SCREEN' and Variable pointer nodes, because they may not be coming in
  Q
  ;
 UP(ROOT,FILE,DDN) ;Return 1 if OK, or 0 for error p14

@@ -1,5 +1,5 @@
-PSBOML ;BIRMINGHAM/EFC-MEDICATION LOG ;03/06/16 3:06pm
- ;;3.0;BAR CODE MED ADMIN;**3,11,50,54,70,72,83**;Mar 2004;Build 89
+PSBOML ;BIRMINGHAM/EFC - MEDICATION LOG ;Sep 09, 2020@14:17:51
+ ;;3.0;BAR CODE MED ADMIN;**3,11,50,54,70,72,83,82**;Mar 2004;Build 27
  ;Per VHA Directive 2004-038 (or future revisions regarding same), this routine should not be modified.
  ;
  ; Reference/IA
@@ -16,7 +16,7 @@ PSBOML ;BIRMINGHAM/EFC-MEDICATION LOG ;03/06/16 3:06pm
  ;*83 - Add MRR meds remove times to report.
  ;
 EN ; Begin printing
- N PSBSTRT,PSBSTOP,PSBHDR,DFN,PSBSORT,PSBSRCHL
+ N PSBSTRT,PSBSTOP,PSBHDR,DFN,PSBSORT,PSBSRCHL,PSBTMPG,PSBAUDF,PSBGBL
  S PSBSORT=$P(PSBRPT(.1),U,1)                                     ;*70
  S PSBSTRT=$P(PSBRPT(.1),U,6)+$P(PSBRPT(.1),U,7)
  S PSBSTOP=$P(PSBRPT(.1),U,8)+$P(PSBRPT(.1),U,9)
@@ -63,7 +63,7 @@ EN ; Begin printing
  Q
  ;
 LINE(PSBIEN) ; Displays the med log entry in PSBIEN
- N PSBX,PSBASTUS,PSBMME,PSBEXIST
+ N PSBX,PSBASTUS,PSBMME,PSBEXIST,PSBY,PSBZ,PSBDHIT
  S X=$P($G(^PSB(53.79,PSBIEN,.1)),U)
  I X="" W !,"Error: Med Log Entry ",PSBIEN," has no order reference number!" Q ""
  I 'PSBAUDF,$P(^PSB(53.79,PSBIEN,0),U,9)="N" Q ""
@@ -111,7 +111,7 @@ LINE(PSBIEN) ; Displays the med log entry in PSBIEN
  W:$G(^XTMP("PSB DEBUG",0)) "  (",PSBIEN,") "   ;debug write 53.79 ien
  ;
  D:PSBASTUS["Removed"      ;find Give associated with remove event *83
- .N RMEV,INI
+ .N RMEV,INI,PSBDD
  .S RMEV=$$FINDGIVE^PSBUTL(PSBIEN)
  .S Y=$P(RMEV,U)+.0000001     ;give dt/tm
  .S INI=$P(RMEV,U,2)          ;give by ini
@@ -179,10 +179,10 @@ LINE(PSBIEN) ; Displays the med log entry in PSBIEN
  ..;the word "deleted" to "changed" only when a Remove occurs
  ..;(vs an Undo Give) that triggered the deleted.  "deleted" is a key
  ..;word that other routines test for, fixed via reporting only.
- ..N ALIN,NXALIN
+ ..N ALIN,NXALIN,XX
  ..S ALIN=$P(PSBX(.9,PSBY,0),U,3)
  ..S NXALIN=$O(PSBX(.9,PSBY))
- ..S NXALIN=$S(NXALIN="":"",1:$P(PSBX(.9,NXALIN,0),U,3))
+ ..S NXALIN=$S('NXALIN:"",1:$P(PSBX(.9,NXALIN,0),U,3))  ;*82
  ..;if next action is RM then report Give changed instead of deleted.
  ..I ALIN["ACTION STATUS",ALIN["deleted",NXALIN["REMOVED" D
  ...S XX=$P($P(PSBX(.9,PSBY,0),U,3),"deleted"),XX=XX_"changed."

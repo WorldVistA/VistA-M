@@ -1,136 +1,124 @@
-IBDEI0LC ; ; 04-FEB-2020
- ;;3.0;IB ENCOUNTER FORM IMP/EXP;;FEB 04, 2020
+IBDEI0LC ; ; 01-FEB-2022
+ ;;3.0;IB ENCOUNTER FORM IMP/EXP;;FEB 01, 2022
  Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,999) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
- ;;^UTILITY(U,$J,358.3,9462,2)
- ;;=^5133346
- ;;^UTILITY(U,$J,358.3,9463,0)
- ;;=E11.00^^72^644^9
- ;;^UTILITY(U,$J,358.3,9463,1,0)
+ ;;^UTILITY(U,$J,358.3,9603,2)
+ ;;=^5031838
+ ;;^UTILITY(U,$J,358.3,9604,0)
+ ;;=S56.512A^^39^414^21
+ ;;^UTILITY(U,$J,358.3,9604,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,9463,1,3,0)
- ;;=3^HHNS w/o Coma
- ;;^UTILITY(U,$J,358.3,9463,1,4,0)
- ;;=4^E11.00
- ;;^UTILITY(U,$J,358.3,9463,2)
- ;;=^5002627
- ;;^UTILITY(U,$J,358.3,9464,0)
- ;;=E11.01^^72^644^10
- ;;^UTILITY(U,$J,358.3,9464,1,0)
+ ;;^UTILITY(U,$J,358.3,9604,1,3,0)
+ ;;=3^Strain of Left Forearm Extn Musc/Fasc/Tend
+ ;;^UTILITY(U,$J,358.3,9604,1,4,0)
+ ;;=4^S56.512A
+ ;;^UTILITY(U,$J,358.3,9604,2)
+ ;;=^5031841
+ ;;^UTILITY(U,$J,358.3,9605,0)
+ ;;=S13.8XXA^^39^414^13
+ ;;^UTILITY(U,$J,358.3,9605,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,9464,1,3,0)
- ;;=3^HHNS w/ Coma
- ;;^UTILITY(U,$J,358.3,9464,1,4,0)
- ;;=4^E11.01
- ;;^UTILITY(U,$J,358.3,9464,2)
- ;;=^5002628
- ;;^UTILITY(U,$J,358.3,9465,0)
- ;;=E11.40^^72^644^11
- ;;^UTILITY(U,$J,358.3,9465,1,0)
+ ;;^UTILITY(U,$J,358.3,9605,1,3,0)
+ ;;=3^Sprain of Neck Joints/Ligaments,Init Encntr
+ ;;^UTILITY(U,$J,358.3,9605,1,4,0)
+ ;;=4^S13.8XXA
+ ;;^UTILITY(U,$J,358.3,9605,2)
+ ;;=^5022034
+ ;;^UTILITY(U,$J,358.3,9606,0)
+ ;;=S16.1XXA^^39^414^39
+ ;;^UTILITY(U,$J,358.3,9606,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,9465,1,3,0)
- ;;=3^Type 2 DM w/ Neuropathy
- ;;^UTILITY(U,$J,358.3,9465,1,4,0)
- ;;=4^E11.40
- ;;^UTILITY(U,$J,358.3,9465,2)
- ;;=^5002644
- ;;^UTILITY(U,$J,358.3,9466,0)
- ;;=E11.8^^72^644^12
- ;;^UTILITY(U,$J,358.3,9466,1,0)
+ ;;^UTILITY(U,$J,358.3,9606,1,3,0)
+ ;;=3^Strain of Neck Muscle/Fasc/Tendon,Init Encntr
+ ;;^UTILITY(U,$J,358.3,9606,1,4,0)
+ ;;=4^S16.1XXA
+ ;;^UTILITY(U,$J,358.3,9606,2)
+ ;;=^5022358
+ ;;^UTILITY(U,$J,358.3,9607,0)
+ ;;=S33.5XXA^^39^414^12
+ ;;^UTILITY(U,$J,358.3,9607,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,9466,1,3,0)
- ;;=3^Type 2 DM w/ Complications
- ;;^UTILITY(U,$J,358.3,9466,1,4,0)
- ;;=4^E11.8
- ;;^UTILITY(U,$J,358.3,9466,2)
- ;;=^5002665
- ;;^UTILITY(U,$J,358.3,9467,0)
- ;;=E13.10^^72^644^7
- ;;^UTILITY(U,$J,358.3,9467,1,0)
+ ;;^UTILITY(U,$J,358.3,9607,1,3,0)
+ ;;=3^Sprain of Lumbar Spine Ligaments,Init Encntr
+ ;;^UTILITY(U,$J,358.3,9607,1,4,0)
+ ;;=4^S33.5XXA
+ ;;^UTILITY(U,$J,358.3,9607,2)
+ ;;=^5025172
+ ;;^UTILITY(U,$J,358.3,9608,0)
+ ;;=S20.221A^^39^414^4
+ ;;^UTILITY(U,$J,358.3,9608,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,9467,1,3,0)
- ;;=3^Diabetic Ketoacidosis w/o Coma
- ;;^UTILITY(U,$J,358.3,9467,1,4,0)
- ;;=4^E13.10
- ;;^UTILITY(U,$J,358.3,9467,2)
- ;;=^5002669
- ;;^UTILITY(U,$J,358.3,9468,0)
- ;;=E16.2^^72^644^1
- ;;^UTILITY(U,$J,358.3,9468,1,0)
+ ;;^UTILITY(U,$J,358.3,9608,1,3,0)
+ ;;=3^Contusion,Rt Back Wall of Thorax
+ ;;^UTILITY(U,$J,358.3,9608,1,4,0)
+ ;;=4^S20.221A
+ ;;^UTILITY(U,$J,358.3,9608,2)
+ ;;=^5022484
+ ;;^UTILITY(U,$J,358.3,9609,0)
+ ;;=S20.222A^^39^414^2
+ ;;^UTILITY(U,$J,358.3,9609,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,9468,1,3,0)
- ;;=3^Hypoglycemia
- ;;^UTILITY(U,$J,358.3,9468,1,4,0)
- ;;=4^E16.2
- ;;^UTILITY(U,$J,358.3,9468,2)
- ;;=^5002708
- ;;^UTILITY(U,$J,358.3,9469,0)
- ;;=E21.3^^72^644^40
- ;;^UTILITY(U,$J,358.3,9469,1,0)
+ ;;^UTILITY(U,$J,358.3,9609,1,3,0)
+ ;;=3^Contusion,Lt Back Wall of Thorax
+ ;;^UTILITY(U,$J,358.3,9609,1,4,0)
+ ;;=4^S20.222A
+ ;;^UTILITY(U,$J,358.3,9609,2)
+ ;;=^5022487
+ ;;^UTILITY(U,$J,358.3,9610,0)
+ ;;=S20.223A^^39^414^1
+ ;;^UTILITY(U,$J,358.3,9610,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,9469,1,3,0)
- ;;=3^Hyperparathyroidism
- ;;^UTILITY(U,$J,358.3,9469,1,4,0)
- ;;=4^E21.3
- ;;^UTILITY(U,$J,358.3,9469,2)
- ;;=^331438
- ;;^UTILITY(U,$J,358.3,9470,0)
- ;;=E83.42^^72^644^27
- ;;^UTILITY(U,$J,358.3,9470,1,0)
+ ;;^UTILITY(U,$J,358.3,9610,1,3,0)
+ ;;=3^Contusion,Bilateral Back Wall of Thorax
+ ;;^UTILITY(U,$J,358.3,9610,1,4,0)
+ ;;=4^S20.223A
+ ;;^UTILITY(U,$J,358.3,9610,2)
+ ;;=^5159315
+ ;;^UTILITY(U,$J,358.3,9611,0)
+ ;;=S20.224A^^39^414^3
+ ;;^UTILITY(U,$J,358.3,9611,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,9470,1,3,0)
- ;;=3^Hypomagnesemia
- ;;^UTILITY(U,$J,358.3,9470,1,4,0)
- ;;=4^E83.42
- ;;^UTILITY(U,$J,358.3,9470,2)
- ;;=^5003003
- ;;^UTILITY(U,$J,358.3,9471,0)
- ;;=E86.0^^72^644^19
- ;;^UTILITY(U,$J,358.3,9471,1,0)
+ ;;^UTILITY(U,$J,358.3,9611,1,3,0)
+ ;;=3^Contusion,Middle Back Wall of Thorax
+ ;;^UTILITY(U,$J,358.3,9611,1,4,0)
+ ;;=4^S20.224A
+ ;;^UTILITY(U,$J,358.3,9611,2)
+ ;;=^5159318
+ ;;^UTILITY(U,$J,358.3,9612,0)
+ ;;=F10.20^^39^415^9
+ ;;^UTILITY(U,$J,358.3,9612,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,9471,1,3,0)
- ;;=3^Dehydration
- ;;^UTILITY(U,$J,358.3,9471,1,4,0)
- ;;=4^E86.0
- ;;^UTILITY(U,$J,358.3,9471,2)
- ;;=^332743
- ;;^UTILITY(U,$J,358.3,9472,0)
- ;;=E87.70^^72^644^21
- ;;^UTILITY(U,$J,358.3,9472,1,0)
+ ;;^UTILITY(U,$J,358.3,9612,1,3,0)
+ ;;=3^Alcohol Dependence,Uncomplicated
+ ;;^UTILITY(U,$J,358.3,9612,1,4,0)
+ ;;=4^F10.20
+ ;;^UTILITY(U,$J,358.3,9612,2)
+ ;;=^5003081
+ ;;^UTILITY(U,$J,358.3,9613,0)
+ ;;=F11.29^^39^415^61
+ ;;^UTILITY(U,$J,358.3,9613,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,9472,1,3,0)
- ;;=3^Fluid Overload
- ;;^UTILITY(U,$J,358.3,9472,1,4,0)
- ;;=4^E87.70
- ;;^UTILITY(U,$J,358.3,9472,2)
- ;;=^5003023
- ;;^UTILITY(U,$J,358.3,9473,0)
- ;;=E87.6^^72^644^22
- ;;^UTILITY(U,$J,358.3,9473,1,0)
+ ;;^UTILITY(U,$J,358.3,9613,1,3,0)
+ ;;=3^Opioid Dependence w/ Unspec Opioid-Induced Disorder
+ ;;^UTILITY(U,$J,358.3,9613,1,4,0)
+ ;;=4^F11.29
+ ;;^UTILITY(U,$J,358.3,9613,2)
+ ;;=^5003141
+ ;;^UTILITY(U,$J,358.3,9614,0)
+ ;;=F11.288^^39^415^60
+ ;;^UTILITY(U,$J,358.3,9614,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,9473,1,3,0)
- ;;=3^Hypokalemia
- ;;^UTILITY(U,$J,358.3,9473,1,4,0)
- ;;=4^E87.6
- ;;^UTILITY(U,$J,358.3,9473,2)
- ;;=^60610
- ;;^UTILITY(U,$J,358.3,9474,0)
- ;;=E87.1^^72^644^24
- ;;^UTILITY(U,$J,358.3,9474,1,0)
+ ;;^UTILITY(U,$J,358.3,9614,1,3,0)
+ ;;=3^Opioid Dependence w/ Other Opioid-Induced Disorder
+ ;;^UTILITY(U,$J,358.3,9614,1,4,0)
+ ;;=4^F11.288
+ ;;^UTILITY(U,$J,358.3,9614,2)
+ ;;=^5003140
+ ;;^UTILITY(U,$J,358.3,9615,0)
+ ;;=F11.282^^39^415^59
+ ;;^UTILITY(U,$J,358.3,9615,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,9474,1,3,0)
- ;;=3^Hyponatremia & Hypoosmolality
- ;;^UTILITY(U,$J,358.3,9474,1,4,0)
- ;;=4^E87.1
- ;;^UTILITY(U,$J,358.3,9474,2)
- ;;=^5003019
- ;;^UTILITY(U,$J,358.3,9475,0)
- ;;=E87.0^^72^644^25
- ;;^UTILITY(U,$J,358.3,9475,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,9475,1,3,0)
- ;;=3^Hypernatemia & Hyperosmolality
- ;;^UTILITY(U,$J,358.3,9475,1,4,0)
- ;;=4^E87.0
- ;;^UTILITY(U,$J,358.3,9475,2)
- ;;=^5003018
+ ;;^UTILITY(U,$J,358.3,9615,1,3,0)
+ ;;=3^Opioid Dependence w/ Opioid-Induced Sleep Disorder
+ ;;^UTILITY(U,$J,358.3,9615,1,4,0)
+ ;;=4^F11.282

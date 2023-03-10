@@ -1,10 +1,11 @@
-DGREGCP1 ;ALB/CLT - ADDRESS COPY UTILITIES ; 18 May 2017  2:54 PM
- ;;5.3;Registration;**941,1010**;Aug 13, 1993;Build 2
+DGREGCP1 ;ALB/CLT,ARF - ADDRESS COPY UTILITIES ; 18 May 2017  2:54 PM
+ ;;5.3;Registration;**941,1010,1040,1056**;Aug 13, 1993;Build 18
  ;
 RESDISP(DFN) ;DISPLAY THE RESIDENTIAL ADDRESS
  N DGA1,DGA2,DGA3,DGA4,DGA9,DGA10,DGA1315,DGZIP
  N DGE,DGXX,DGFORGN,X,Y,DGCIEN,DGST,DGCNTRY,DGCNTY
- W !,"Residential Address to copy to the Permanent Mailing Address:",!
+ ;DG*5.3*1056 remove Permanent from the message following displayed message
+ W !,"Residential Address to copy to the Mailing Address:",!
  I $G(^DPT(DFN,.115))="" D  Q
  .W !?5,"NO RESIDENTIAL ADDRESS"
  ;DISPLAY THE CURRENT RESIDENTIAL ADDRESS
@@ -34,13 +35,14 @@ RESDISP(DFN) ;DISPLAY THE RESIDENTIAL ADDRESS
  W !?3,DGCNTRY,!
  Q
  ;
-PERMDISP(DFN) ;DISPLAY PERMANENT MAILING ADDRESS
+PERMDISP(DFN) ;DISPLAY MAILING ADDRESS
  N DGA1,DGA9,DGA10,DGA1315,DGA2,DGA3,DGA4,DGZIP
  N DGE,DGXX,DGFORGN,X,Y,DGCIEN,DGST,DGCNTRY,DGCNTY
- W !,"Permanent Mailing Address to copy to Residential Address:",!
+ ;DG*5.3*1056 remove Permanent from the message following display messages and comment
+ W !,"Mailing Address to copy to Residential Address:",!
  I $G(^DPT(DFN,.11))="" D  Q
- .W !?5,"NO PERMANENT MAILING ADDRESS"
- ;DISPLAY THE CURRENT PERMANENT MAILING ADDRESS
+ .W !?5,"NO MAILING ADDRESS"
+ ;DISPLAY THE CURRENT MAILING ADDRESS
  S DGXX=^DPT(DFN,.11),DGA1=$P(DGXX,"^",1),DGA2=$P(DGXX,"^",2),DGA3=$P(DGXX,"^",3),DGA4=$P(DGXX,"^",4)
  S DGA9=$P(DGXX,"^",9)
  S DGA10=$P(DGXX,"^",10) S:'DGA10 DGA10=""
@@ -70,24 +72,30 @@ PERMDISP(DFN) ;DISPLAY PERMANENT MAILING ADDRESS
 RESMVQ(DFN) ;DISPLAY RESIDENTIAL ADDRESS AND QUESTION IF COPY TO PERM IS DESIRED
  I $G(^DPT(DFN,.115))="" Q
  N DIR,X,Y,DTOUT,DUOUT
- S DIR(0)="Y",DIR("A")="Copy the Residential Address to the Permanent Mailing Address",DIR("B")="NO"
- S DIR("?",1)="Enter 'YES' to copy the Residential Address ",DIR("?")="to the Permanent Mailing Address."
+ ;DG*5.3*1056 remove Permanent from the message following displayed prompts
+ S DIR(0)="Y",DIR("A")="Copy the Residential Address to the Mailing Address",DIR("B")="NO"
+ S DIR("?",1)="Enter 'YES' to copy the Residential Address ",DIR("?")="to the Mailing Address."
  D ^DIR
+ ; DG*5.3*1040 - Check for timeout of the Copy prompt
+ I $D(DTOUT) S DGTMOT=1 Q
  I $G(Y)=1 D
  . W !
  . D RESDISP(DFN)
  . S DIR(0)="Y",DIR("A")="Are you sure you want to copy",DIR("B")=""
  . S DIR("?",1)="If you answer 'YES' the current Residential Address will be copied",DIR("?")="to the Permanent Mailing Address."
  . D ^DIR
- . I $D(DTOUT)!($G(Y)=0) Q
+ . ; DG*5.3*1040 - Set variable DGTMOT=1, if timeout
+ . I $D(DTOUT) S DGTMOT=1 Q
+ . ; DG*5.3*1040 - QUIT if variable Y = 0
+ . Q:$G(Y)=0
  . I $D(DUOUT)!$D(DIROUT) Q
  . D R2P^DGREGCOP(DFN)
  . W !,"Copy completed."
  . D EOP
  Q
  ;
-PERMMVQ(DFN) ;DISPLAY PERMANENT ADDRESS AND QUESTION IF COPY TO RESIDENTIAL IS DESIRED
- ; First check for a valid Permanent Address that can be copied to residential address
+PERMMVQ(DFN) ;DISPLAY MAILING ADDRESS AND QUESTION IF COPY TO RESIDENTIAL IS DESIRED
+ ; First check for a valid Mailing Address that can be copied to residential address
  N DGXX,DGA10,DFORGN
  S DGXX=$G(^DPT(DFN,.11))
  ; Quit if nothing in Perm address line 1 field
@@ -104,35 +112,50 @@ PERMMVQ(DFN) ;DISPLAY PERMANENT ADDRESS AND QUESTION IF COPY TO RESIDENTIAL IS D
  K DIRUT
  I $$POBOXPM^DGREGCP2(DFN) D  Q
  . W !!?3,*7,"P.O. Box and GENERAL DELIVERY cannot be used in residential address." W !
- . W !,"Because the Permanent Mailing Address line 1 contains P.O. Box"
- . W " or General",!,"Delivery the Permanent Mailing Address cannot be copied to"
+ . ;DG*5.3*1056 remove Permanent from the following message displayed messages
+ . W !,"Because the Mailing Address line 1 contains P.O. Box"
+ . W " or General",!,"Delivery the Mailing Address cannot be copied to"
  . W !,"the Residential Address."
  . D EOP
+ . ; DG*5.3*1040 - Check for timeout
+ . Q:+$G(DGTMOT)
  ; Perm address is valid for use as a Residential address
 ASK ; 
  W !
- S DIR(0)="Y",DIR("A")="Copy the Permanent Mailing Address to the Residential Address"
- S DIR("?",1)="Answer 'YES' or 'NO'. 'YES' will copy the current Permanent Mailing Address",DIR("?")="to the Residential Address."
+ ;DG*5.3*1056 remove Permanent from the following message displayed message and prompt
+ S DIR(0)="Y",DIR("A")="Copy the Mailing Address to the Residential Address"
+ S DIR("?",1)="Answer 'YES' or 'NO'. 'YES' will copy the current Mailing Address",DIR("?")="to the Residential Address."
  D ^DIR
  I X="Y"!(X="YES") S Y=1,Y(0)="YES"
- I $D(DTOUT)!($G(Y)=0) Q
+ ; DG*5.3*1040 - Set variable DGTMOT=1, if timeout
+ I $D(DTOUT) S DGTMOT=1 Q
+ ; DG*5.3*1040 - QUIT if Y = 0
+ Q:$G(Y)=0
  I $D(DUOUT)!$D(DIROUT) Q
  I $D(DIRUT) G ASK
  I Y=1 D
  . W !
  . D PERMDISP(DFN) ;; W !! D RESDISP(DFN) W !
  . S DIR(0)="Y",DIR("A")="Are you sure you want to copy",DIR("B")=""
- . S DIR("?",1)="If you answer 'YES' the current Permanent Mailing Address will be copied",DIR("?")="to the Residential Address."
+ . ;DG*5.3*1056 remove Permanent from the following message displayed prompt
+ . S DIR("?",1)="If you answer 'YES' the current Mailing Address will be copied",DIR("?")="to the Residential Address."
  . D ^DIR
- . I $D(DTOUT)!($G(Y)=0) Q
+ . ; DG*5.3*1040 - Set variable DGTMOT=1, if timeout
+ . I $D(DTOUT) S DGTMOT=1 Q
+ . ; DG*5.3*1040 - QUIT if Y = 0
+ . Q:$G(Y)=0
  . I $D(DUOUT)!$D(DIROUT) Q
  . D P2R^DGREGCOP(DFN)
  . W !,"Copy completed."
  . D EOP
+ ; DG*5.3*1040 - Check for timeout
+ Q:+$G(DGTMOT)
  Q
 EOP ;End of page prompt
  N DIR,DTOUT,DUOUT,DIROUT,X,Y
  S DIR(0)="E"
  S DIR("A")="Press ENTER to continue"
  D ^DIR
+ ; DG*5.3*1040 - Set variable DGTMOT=1 to track timeout
+ I $D(DTOUT) S DGTMOT=1 Q
  Q

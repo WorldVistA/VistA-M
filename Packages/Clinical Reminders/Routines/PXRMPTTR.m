@@ -1,5 +1,5 @@
-PXRMPTTR ;SLC/PKR - Routines for term print templates ;07/10/2009
- ;;2.0;CLINICAL REMINDERS;**4,6,12**;Feb 04, 2005;Build 73
+PXRMPTTR ;SLC/PKR - Routines for term print templates ;01/14/2020
+ ;;2.0;CLINICAL REMINDERS;**4,6,12,65**;Feb 04, 2005;Build 438
  ;
  ;====================================================
 DATE(FIND0,PIECE,FLDNUM,TITLE,RJC,PAD,FILENUM,FLG) ;Standard DATE
@@ -74,6 +74,7 @@ PFIND ;Print the reminder term finding multiple.
  . D SFDISP(FIND0,16,28,"Include Visit Data:",RJC,PAD)
  . D SFDISP(FIND0,13,16,"Rx Type:",RJC,PAD)
  . D SFDISP(FIND0,15,27,"Use Start Date:",RJC,PAD)
+ . D SFDISP(FIND0,17,29,"Immunization Search Criteria:",RJC,PAD)
  . I $D(^PXRMD(811.5,D0,20,FINDING,5,0))=1 D
  .. S (SCNT,SIEN)=0
  .. F  S SIEN=$O(^PXRMD(811.5,D0,20,FINDING,5,SIEN)) Q:SIEN=""  D

@@ -1,126 +1,124 @@
-IBDEI0X4 ; ; 04-FEB-2020
- ;;3.0;IB ENCOUNTER FORM IMP/EXP;;FEB 04, 2020
+IBDEI0X4 ; ; 01-FEB-2022
+ ;;3.0;IB ENCOUNTER FORM IMP/EXP;;FEB 01, 2022
  Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,999) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
- ;;^UTILITY(U,$J,358.3,14747,0)
- ;;=K20.0^^85^834^12
- ;;^UTILITY(U,$J,358.3,14747,1,0)
+ ;;^UTILITY(U,$J,358.3,14924,1,3,0)
+ ;;=3^Fx,Shaft of humerus, left arm, sequela
+ ;;^UTILITY(U,$J,358.3,14924,1,4,0)
+ ;;=4^S42.302S
+ ;;^UTILITY(U,$J,358.3,14924,2)
+ ;;=^5027044
+ ;;^UTILITY(U,$J,358.3,14925,0)
+ ;;=S42.301S^^58^712^31
+ ;;^UTILITY(U,$J,358.3,14925,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,14747,1,3,0)
- ;;=3^Eosinophilic esophagitis
- ;;^UTILITY(U,$J,358.3,14747,1,4,0)
- ;;=4^K20.0
- ;;^UTILITY(U,$J,358.3,14747,2)
- ;;=^336605
- ;;^UTILITY(U,$J,358.3,14748,0)
- ;;=K22.10^^85^834^41
- ;;^UTILITY(U,$J,358.3,14748,1,0)
+ ;;^UTILITY(U,$J,358.3,14925,1,3,0)
+ ;;=3^Fx,Shaft of humerus, right arm, sequela
+ ;;^UTILITY(U,$J,358.3,14925,1,4,0)
+ ;;=4^S42.301S
+ ;;^UTILITY(U,$J,358.3,14925,2)
+ ;;=^5027037
+ ;;^UTILITY(U,$J,358.3,14926,0)
+ ;;=S42.202S^^58^712^33
+ ;;^UTILITY(U,$J,358.3,14926,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,14748,1,3,0)
- ;;=3^Ulcer of Esophagus w/o Bleeding
- ;;^UTILITY(U,$J,358.3,14748,1,4,0)
- ;;=4^K22.10
- ;;^UTILITY(U,$J,358.3,14748,2)
- ;;=^329929
- ;;^UTILITY(U,$J,358.3,14749,0)
- ;;=K22.5^^85^834^10
- ;;^UTILITY(U,$J,358.3,14749,1,0)
+ ;;^UTILITY(U,$J,358.3,14926,1,3,0)
+ ;;=3^Fx,Upper end of left humerus, sequela
+ ;;^UTILITY(U,$J,358.3,14926,1,4,0)
+ ;;=4^S42.202S
+ ;;^UTILITY(U,$J,358.3,14926,2)
+ ;;=^5026774
+ ;;^UTILITY(U,$J,358.3,14927,0)
+ ;;=S42.201S^^58^712^34
+ ;;^UTILITY(U,$J,358.3,14927,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,14749,1,3,0)
- ;;=3^Diverticulum of esophagus, acquired
- ;;^UTILITY(U,$J,358.3,14749,1,4,0)
- ;;=4^K22.5
- ;;^UTILITY(U,$J,358.3,14749,2)
- ;;=^5008509
- ;;^UTILITY(U,$J,358.3,14750,0)
- ;;=K22.6^^85^834^23
- ;;^UTILITY(U,$J,358.3,14750,1,0)
+ ;;^UTILITY(U,$J,358.3,14927,1,3,0)
+ ;;=3^Fx,Upper end of right humerus, sequela
+ ;;^UTILITY(U,$J,358.3,14927,1,4,0)
+ ;;=4^S42.201S
+ ;;^UTILITY(U,$J,358.3,14927,2)
+ ;;=^5026767
+ ;;^UTILITY(U,$J,358.3,14928,0)
+ ;;=S79.002S^^58^712^42
+ ;;^UTILITY(U,$J,358.3,14928,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,14750,1,3,0)
- ;;=3^Gastro-esophageal laceration-hemorrhage syndrome
- ;;^UTILITY(U,$J,358.3,14750,1,4,0)
- ;;=4^K22.6
- ;;^UTILITY(U,$J,358.3,14750,2)
- ;;=^5008510
- ;;^UTILITY(U,$J,358.3,14751,0)
- ;;=K21.9^^85^834^25
- ;;^UTILITY(U,$J,358.3,14751,1,0)
+ ;;^UTILITY(U,$J,358.3,14928,1,3,0)
+ ;;=3^Physeal fracture of upper end of left femur, sequela
+ ;;^UTILITY(U,$J,358.3,14928,1,4,0)
+ ;;=4^S79.002S
+ ;;^UTILITY(U,$J,358.3,14928,2)
+ ;;=^5039767
+ ;;^UTILITY(U,$J,358.3,14929,0)
+ ;;=S79.001S^^58^712^43
+ ;;^UTILITY(U,$J,358.3,14929,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,14751,1,3,0)
- ;;=3^Gastro-esophageal reflux disease w/o Esophagitis
- ;;^UTILITY(U,$J,358.3,14751,1,4,0)
- ;;=4^K21.9
- ;;^UTILITY(U,$J,358.3,14751,2)
- ;;=^5008505
- ;;^UTILITY(U,$J,358.3,14752,0)
- ;;=K22.70^^85^834^5
- ;;^UTILITY(U,$J,358.3,14752,1,0)
+ ;;^UTILITY(U,$J,358.3,14929,1,3,0)
+ ;;=3^Physeal fracture of upper end of right femur, sequela
+ ;;^UTILITY(U,$J,358.3,14929,1,4,0)
+ ;;=4^S79.001S
+ ;;^UTILITY(U,$J,358.3,14929,2)
+ ;;=^5039761
+ ;;^UTILITY(U,$J,358.3,14930,0)
+ ;;=Z87.81^^58^712^41
+ ;;^UTILITY(U,$J,358.3,14930,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,14752,1,3,0)
- ;;=3^Barrett's esophagus w/o dysplasia
- ;;^UTILITY(U,$J,358.3,14752,1,4,0)
- ;;=4^K22.70
- ;;^UTILITY(U,$J,358.3,14752,2)
- ;;=^5008511
- ;;^UTILITY(U,$J,358.3,14753,0)
- ;;=K22.710^^85^834^4
- ;;^UTILITY(U,$J,358.3,14753,1,0)
+ ;;^UTILITY(U,$J,358.3,14930,1,3,0)
+ ;;=3^Personal Hx of Traumatic Fx
+ ;;^UTILITY(U,$J,358.3,14930,1,4,0)
+ ;;=4^Z87.81
+ ;;^UTILITY(U,$J,358.3,14930,2)
+ ;;=^5063513
+ ;;^UTILITY(U,$J,358.3,14931,0)
+ ;;=S02.42XS^^58^712^1
+ ;;^UTILITY(U,$J,358.3,14931,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,14753,1,3,0)
- ;;=3^Barrett's esophagus w/ low grade dysplasia
- ;;^UTILITY(U,$J,358.3,14753,1,4,0)
- ;;=4^K22.710
- ;;^UTILITY(U,$J,358.3,14753,2)
- ;;=^5008512
- ;;^UTILITY(U,$J,358.3,14754,0)
- ;;=K22.711^^85^834^3
- ;;^UTILITY(U,$J,358.3,14754,1,0)
+ ;;^UTILITY(U,$J,358.3,14931,1,3,0)
+ ;;=3^Fx,Alveolus of maxilla, sequela
+ ;;^UTILITY(U,$J,358.3,14931,1,4,0)
+ ;;=4^S02.42XS
+ ;;^UTILITY(U,$J,358.3,14931,2)
+ ;;=^5020359
+ ;;^UTILITY(U,$J,358.3,14932,0)
+ ;;=S02.19XS^^58^712^2
+ ;;^UTILITY(U,$J,358.3,14932,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,14754,1,3,0)
- ;;=3^Barrett's esophagus w/ high grade dysplasia
- ;;^UTILITY(U,$J,358.3,14754,1,4,0)
- ;;=4^K22.711
- ;;^UTILITY(U,$J,358.3,14754,2)
- ;;=^5008513
- ;;^UTILITY(U,$J,358.3,14755,0)
- ;;=K44.9^^85^834^8
- ;;^UTILITY(U,$J,358.3,14755,1,0)
+ ;;^UTILITY(U,$J,358.3,14932,1,3,0)
+ ;;=3^Fx,Base of skull NEC, sequela
+ ;;^UTILITY(U,$J,358.3,14932,1,4,0)
+ ;;=4^S02.19XS
+ ;;^UTILITY(U,$J,358.3,14932,2)
+ ;;=^5020305
+ ;;^UTILITY(U,$J,358.3,14933,0)
+ ;;=S02.92XS^^58^712^4
+ ;;^UTILITY(U,$J,358.3,14933,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,14755,1,3,0)
- ;;=3^Diaphragmatic (Hiatal) hernia
- ;;^UTILITY(U,$J,358.3,14755,1,4,0)
- ;;=4^K44.9
- ;;^UTILITY(U,$J,358.3,14755,2)
- ;;=^5008617
- ;;^UTILITY(U,$J,358.3,14756,0)
- ;;=Q39.4^^85^834^15
- ;;^UTILITY(U,$J,358.3,14756,1,0)
+ ;;^UTILITY(U,$J,358.3,14933,1,3,0)
+ ;;=3^Fx,Facial bones unspec, sequela
+ ;;^UTILITY(U,$J,358.3,14933,1,4,0)
+ ;;=4^S02.92XS
+ ;;^UTILITY(U,$J,358.3,14933,2)
+ ;;=^5020443
+ ;;^UTILITY(U,$J,358.3,14934,0)
+ ;;=S02.609S^^58^712^15
+ ;;^UTILITY(U,$J,358.3,14934,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,14756,1,3,0)
- ;;=3^Esophageal web
- ;;^UTILITY(U,$J,358.3,14756,1,4,0)
- ;;=4^Q39.4
- ;;^UTILITY(U,$J,358.3,14756,2)
- ;;=^5018659
- ;;^UTILITY(U,$J,358.3,14757,0)
- ;;=T18.128A^^85^834^17
- ;;^UTILITY(U,$J,358.3,14757,1,0)
+ ;;^UTILITY(U,$J,358.3,14934,1,3,0)
+ ;;=3^Fx,Mandible, unspecified, sequela
+ ;;^UTILITY(U,$J,358.3,14934,1,4,0)
+ ;;=4^S02.609S
+ ;;^UTILITY(U,$J,358.3,14934,2)
+ ;;=^5020377
+ ;;^UTILITY(U,$J,358.3,14935,0)
+ ;;=S02.2XXS^^58^712^17
+ ;;^UTILITY(U,$J,358.3,14935,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,14757,1,3,0)
- ;;=3^Food in Esophagus,Initial
- ;;^UTILITY(U,$J,358.3,14757,1,4,0)
- ;;=4^T18.128A
- ;;^UTILITY(U,$J,358.3,14757,2)
- ;;=^5046594
- ;;^UTILITY(U,$J,358.3,14758,0)
- ;;=T18.198A^^85^834^20
- ;;^UTILITY(U,$J,358.3,14758,1,0)
+ ;;^UTILITY(U,$J,358.3,14935,1,3,0)
+ ;;=3^Fx,Nasal bones, sequela
+ ;;^UTILITY(U,$J,358.3,14935,1,4,0)
+ ;;=4^S02.2XXS
+ ;;^UTILITY(U,$J,358.3,14935,2)
+ ;;=^5020311
+ ;;^UTILITY(U,$J,358.3,14936,0)
+ ;;=S02.118S^^58^712^20
+ ;;^UTILITY(U,$J,358.3,14936,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,14758,1,3,0)
- ;;=3^Foreign body in Esophagus,Initial
- ;;^UTILITY(U,$J,358.3,14758,1,4,0)
- ;;=4^T18.198A
- ;;^UTILITY(U,$J,358.3,14758,2)
- ;;=^5046600
- ;;^UTILITY(U,$J,358.3,14759,0)
- ;;=K20.8^^85^834^16

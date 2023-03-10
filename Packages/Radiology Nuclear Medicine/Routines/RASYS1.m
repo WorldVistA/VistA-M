@@ -1,5 +1,9 @@
-RASYS1 ;HISC/CAH - Utility to update I-Loc Type to Clinic ;10/30/96  10:00
- ;;5.0;Radiology/Nuclear Medicine;;Mar 16, 1998
+RASYS1 ;HISC/CAH - Utility to update I-Loc Type to Clinic ; Aug 25, 2022@07:16:49
+ ;;5.0;Radiology/Nuclear Medicine;**184,193**;Mar 16, 1998;Build 1
+ ;Supported  IA #10040 ^SC(
+ ;Controlled IA #1623  LOC^SCDXUAPI
+ ;                     RAD^SCDXUAPI
+ ;Private    IA #19    ^DIC(40.7
 EN1(RA791) ;For each imaging loc, get file 44 pointer, DSS ID, Div
  ;and give to MAS to set/reset params on the file 44 entry
  ; Input: -> ien of entry in the 'Imaging Locations' file (79.1)
@@ -72,7 +76,7 @@ REPOINT ;current img loc points to a file 44 entry with appt patterns
  ;
  N RAERR,RAFDA
  S RA44=RA44NEW,RA44NM2=$P($G(^SC(+RA44NEW,0)),"^",1)
- S RAFDA(79.1,RA791_",",.01)=RA44NEW
+ S RAFDA(79.1,RA791_",",.01)=+RA44NEW ;p193 always plus IENs... (invalid pointer error)
  D FILE^DIE("K","RAFDA","RAERR")
  I $Y>(IOSL-6) S RAXIT=$$EOS^RAUTL5() Q:RAXIT  W @IOF
  W !,"Imaging Location "_RA44NM_" has appointment patterns, and"
@@ -84,4 +88,44 @@ REPOINT ;current img loc points to a file 44 entry with appt patterns
 OK ;this img loc was processed ok
  I $Y>(IOSL-4) S RAXIT=$$EOS^RAUTL5() Q:RAXIT  W @IOF
  W !,"Imaging Location "_$S($L(RA44NM2):RA44NM2,1:RA44NM)_" is OK.",!," "
+ Q
+INACTIV8 ;RA184/KLM Inactivate an imaging location and the associated OOC clinic
+ ;call by menu option 'RA SYSINACT'
+ N RAILOC,RA44,Y,RASUC,RAINACT,RAILS,RAIL0,RA44S,RANAME
+ W !!?5,"This option will allow you to inactivate an Imaging Location"
+ W !?5,"and the associated Occasion of Service (OOS) Hospital Location",!
+ S DIC="^RA(79.1,",DIC(0)="AEMQZ",DIC("A")="Select Location: "
+ D ^DIC I Y<0 Q
+ S RAIL0=Y(0),RAILOC=+Y,RA44=$P(Y,U,2),RANAME=Y(0,0),RAILS=$P(RAIL0,U,19)
+ S:$G(RAILS)]"" RAILS="I"
+ Q:'$G(RA44)  S RA44S=$$GET1^DIQ(44,RA44,2505,"I")_"^"_$$GET1^DIQ(44,RA44,2506,"I") ;DBIA 10040
+ I +RA44S,('$P(RA44S,"^",2)!($P(RA44S,"^",2)>DT)) S RA44S="I"
+ W !!,$J(RANAME_" STATUS: ",32)_$S(RAILS="I":"INACTIVE",1:"ACTIVE")
+ W !,$J("OOS CLINIC (IEN "_RA44_") STATUS: ",32)_$S(RA44S="I":"INACTIVE",1:"ACTIVE"),!
+ I RAILS="I"&(RA44S="I") K DIR W !!?5,"No action needed..." W ! S DIR(0)="E",DIR("A")="Press RETURN to continue" D ^DIR Q
+ K DIC,Y
+ I $G(RAILS)'="I" D  ;inactivate both i-loc and OOS clinic
+ .K DIR S DIR(0)="Y",DIR("B")="YES",DIR("A")="INACTIVATE '"_RANAME_"' Imaging Location" D ^DIR Q:$D(DIRUT)
+ .I Y=0 K DIR W !!,"No action taken..." W ! S DIR(0)="E",DIR("A")="Press RETURN to continue" D ^DIR Q
+ .S RAINACT=$P(Y(0),U,19) D INACT791
+ .Q
+ I $G(RAILS)="I",$G(RA44S)'="I" D  ;inactivate OOS clinic only
+ .K DIR S DIR(0)="Y",DIR("B")="YES",DIR("A")="INACTIVATE '"_RANAME_"' associated OOS clinic" D ^DIR Q:$D(DIRUT)
+ .I Y=0 K DIR W !!,"No action taken..." W ! S DIR(0)="E",DIR("A")="Press RETURN to continue" D ^DIR Q
+ .S RAINACT=$P(RAIL0,U,19) D INACT44
+ .Q
+ Q
+INACT791 ;inactivate the imaging location
+ K DIR S DIR(0)="79.1,19",DIR("A")="Enter the INACTIVATION date for this location" D ^DIR Q:$D(DIRUT)
+ S RAINACT=Y,RAFDA(79.1,RAILOC_",",19)=RAINACT K Y,DIRUT
+ D FILE^DIE("","RAFDA","RAERR")
+ I $D(RAERR) W !!,"There was a problem inactivating the location",!,"Contact OI&T if the problem persists" Q
+ W !!,"...Imaging Location inactivated!"
+ I $G(RA44S)'="I" D INACT44
+ Q
+INACT44 ;inactivate the OOS hospital location
+ I $L(RAINACT,".")>1 S RAINACT=$P(RAINACT,".")
+ S RASUC=$$LOC^SCDXUAPI(,,,"RADIOLOGY/NUCLEAR MEDICINE",RA44,RAINACT) ;DBIA 1623
+ I +RASUC=-1 W !,"OOS Clinic not updated. Error: "_$P(RASUC,U,3) Q
+ W !!,"...OOS Clinic inactivated!"
  Q

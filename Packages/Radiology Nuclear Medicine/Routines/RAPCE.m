@@ -1,5 +1,5 @@
-RAPCE ;HIRMFO/GJC-Interface with PCE APIs for wrkload, visits ; Jun 26, 2020@13:03:09
- ;;5.0;Radiology/Nuclear Medicine;**10,17,21,26,41,57,56,153,172**;Mar 16, 1998;Build 1
+RAPCE ;HIRMFO/GJC - Interface with PCE APIs for wrkload, visits ; Apr 28, 2022@08:42:59
+ ;;5.0;Radiology/Nuclear Medicine;**10,17,21,26,41,57,56,153,172,174,189**;Mar 16, 1998;Build 1
  ;Supported IA #2053 FILE^DIE
  ;Supported IA #4663 SWSTAT^IBBAPI
  ;Controlled IA #1889 DATA2PCE^PXAPI
@@ -7,6 +7,13 @@ RAPCE ;HIRMFO/GJC-Interface with PCE APIs for wrkload, visits ; Jun 26, 2020@13:
 COMPLETE(RADFN,RADTI,RACNI) ; When an exam status changes to 'complete'
  ; Input: RADFN-> Patient DFN, RADTI-> Exam Timestamp, RACNI-> Case IEN
  ; NOTE:  RACNI input param is ignored for exam sets (all cases under
+ ;
+ ;//P174 begin//
+ ;  if this is a study with an outside report with a
+ ;  REPORT STATUS of 'Electronically Filed' quit.
+ Q:$$OUTSIDE()=1
+ ;//P174 end//
+ ;
  ; an exam set are processed at once when order is complete)
  ; $$DATA2PCE^PXAPI returns: 1 if no errors, else error condition
  ;
@@ -21,10 +28,17 @@ COMPLETE(RADFN,RADTI,RACNI) ; When an exam status changes to 'complete'
  S RADTE=9999999.9999-RADTI,RACNT=0
  S RA7002=$G(^RADPT(RADFN,"DT",RADTI,0))
  S RAXAMSET=+$P(RA7002,"^",5) ; is this part of an exam set? 1=YES
-EN2 S RA791=$G(^RA(79.1,+$P(RA7002,"^",4),0))
+ ;TEST: Singles registered together - treat as examset.
+ ;I '$G(RAXAMSET),$P(^RADPT(RADFN,"DT",RADTI,"P",0),U,4)>1 S RAXAMSET=1
+ ;
+ ;//P174 begin//
+EN2 ;check i-loc's credit method quit if 'no credit'
+ S RA791=$G(^RA(79.1,+$P(RA7002,"^",4),0))
+ Q:+$P(RA791,"^",21)=2  ; no credit, quit
+ ;//P174 end//
+ ;
  ; Initialize variables required for PFSS 1B project and check the switch status.
  N RAPFSW,RACCOUNT S RAPFSW=$$SWSTAT^IBBAPI ; Requirement 12
- Q:+$P(RA791,"^",21)=2  ; no credit, quit
  S RAEARRY="RAERROR" N @RAEARRY
 LON ; lock at P level
  L +^RADPT(RADFN,"DT",RADTI,"P",RACNI):30 I '$T S RALCKFAL=1 D FAILBUL^RAPCE2(RADFN,RADTI,RACNI,$S($G(RADUZ):RADUZ,1:DUZ)) Q
@@ -88,6 +102,7 @@ PCE(RADFN,RADTI,RACNI) ; Pass on the information to the PCE software
  . S RASENT=1 ; sent to PCE was okay
  . Q
  E  D
+ . I $G(RASULT)=-2 D RSCRFLR^RAPCE1 Q  ;p189/KLM - Resend to PCE (PX211 work around)
  . N RAWHOERR S RAWHOERR=""
  . W:'$D(ZTQUEUED)&('$D(RARECMPL)) !?5,$C(7),"Unable to credit.",!
  . I '$G(RAXAMSET) D FAILBUL^RAPCE2(RADFN,RADTI,RACNI,$S($G(RADUZ):RADUZ,1:DUZ))
@@ -160,3 +175,20 @@ CPTMOD(X3) ;CPT Modifiers
  S RA=0
  F  S RA=$O(RACPTM(RA)) Q:'RA  S ^TMP("RAPXAPI",$J,"PROCEDURE",X3,"MODIFIERS",RACPTM(RA))=""
  Q
+ ;
+OUTSIDE() ;is this study tied to an outside report?
+ ; input: none (vars RADFN,RADTI,RACNI must exist)
+ ;return: one if an outside report, else zero
+ ; note: Dx code and intepreter cannot be entered
+ ;       w/o a report on file
+ Q:'$D(RADFN)#2!('$D(RADTI)#2)!('$D(RACNI)#2) 1
+ N RARPT,RAY3
+ S RAY3=$G(^RADPT(RADFN,"DT",RADTI,"P",RACNI,0))
+ ;if no report maybe their exam status setup
+ ;needs review? Continue through RAPCE.
+ S RARPT=$P(RAY3,U,17) Q:RARPT="" 0
+ S RARPT(0)=$G(^RARPT(RARPT,0))
+ ;REPORT STATUS fld #5, 0;5
+ ;DATE INITIAL OUTSIDE RPT ENTRY fld #18, 0;18
+ Q $S($P(RARPT(0),U,5)="EF"&($P(RARPT(0),U,18)>0):1,1:0)
+ ;

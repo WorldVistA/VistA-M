@@ -1,128 +1,124 @@
-IBDEI1IZ ; ; 04-FEB-2020
- ;;3.0;IB ENCOUNTER FORM IMP/EXP;;FEB 04, 2020
+IBDEI1IZ ; ; 01-FEB-2022
+ ;;3.0;IB ENCOUNTER FORM IMP/EXP;;FEB 01, 2022
  Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,999) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
- ;;^UTILITY(U,$J,358.3,24384,0)
- ;;=H60.11^^107^1202^14
- ;;^UTILITY(U,$J,358.3,24384,1,0)
+ ;;^UTILITY(U,$J,358.3,24690,2)
+ ;;=^5159306
+ ;;^UTILITY(U,$J,358.3,24691,0)
+ ;;=I69.351^^85^1086^20
+ ;;^UTILITY(U,$J,358.3,24691,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,24384,1,3,0)
- ;;=3^Cellulitis External Ear,Right
- ;;^UTILITY(U,$J,358.3,24384,1,4,0)
- ;;=4^H60.11
- ;;^UTILITY(U,$J,358.3,24384,2)
- ;;=^5006440
- ;;^UTILITY(U,$J,358.3,24385,0)
- ;;=H61.21^^107^1202^26
- ;;^UTILITY(U,$J,358.3,24385,1,0)
+ ;;^UTILITY(U,$J,358.3,24691,1,3,0)
+ ;;=3^Hemiplegia/Hemiparesis Following Cerebral Infrc Aff Rt Dom Side
+ ;;^UTILITY(U,$J,358.3,24691,1,4,0)
+ ;;=4^I69.351
+ ;;^UTILITY(U,$J,358.3,24691,2)
+ ;;=^5007504
+ ;;^UTILITY(U,$J,358.3,24692,0)
+ ;;=I69.352^^85^1086^21
+ ;;^UTILITY(U,$J,358.3,24692,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,24385,1,3,0)
- ;;=3^Impacted Cerumen,Right Ear
- ;;^UTILITY(U,$J,358.3,24385,1,4,0)
- ;;=4^H61.21
- ;;^UTILITY(U,$J,358.3,24385,2)
- ;;=^5006531
- ;;^UTILITY(U,$J,358.3,24386,0)
- ;;=H61.22^^107^1202^25
- ;;^UTILITY(U,$J,358.3,24386,1,0)
+ ;;^UTILITY(U,$J,358.3,24692,1,3,0)
+ ;;=3^Hemiplegia/Hemiparesis Following Cerebral Infrc Aff Lt Dom Side
+ ;;^UTILITY(U,$J,358.3,24692,1,4,0)
+ ;;=4^I69.352
+ ;;^UTILITY(U,$J,358.3,24692,2)
+ ;;=^5007505
+ ;;^UTILITY(U,$J,358.3,24693,0)
+ ;;=E74.39^^85^1087^18
+ ;;^UTILITY(U,$J,358.3,24693,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,24386,1,3,0)
- ;;=3^Impacted Cerumen,Left Ear
- ;;^UTILITY(U,$J,358.3,24386,1,4,0)
- ;;=4^H61.22
- ;;^UTILITY(U,$J,358.3,24386,2)
- ;;=^5006532
- ;;^UTILITY(U,$J,358.3,24387,0)
- ;;=H61.23^^107^1202^24
- ;;^UTILITY(U,$J,358.3,24387,1,0)
+ ;;^UTILITY(U,$J,358.3,24693,1,3,0)
+ ;;=3^Intestinal Carbohydrate Absorption Disorder,Other
+ ;;^UTILITY(U,$J,358.3,24693,1,4,0)
+ ;;=4^E74.39
+ ;;^UTILITY(U,$J,358.3,24693,2)
+ ;;=^5002928
+ ;;^UTILITY(U,$J,358.3,24694,0)
+ ;;=H61.23^^85^1087^3
+ ;;^UTILITY(U,$J,358.3,24694,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,24387,1,3,0)
- ;;=3^Impacted Cerumen,Bilateral 
- ;;^UTILITY(U,$J,358.3,24387,1,4,0)
+ ;;^UTILITY(U,$J,358.3,24694,1,3,0)
+ ;;=3^Impacted Cerumen,Bilateral
+ ;;^UTILITY(U,$J,358.3,24694,1,4,0)
  ;;=4^H61.23
- ;;^UTILITY(U,$J,358.3,24387,2)
+ ;;^UTILITY(U,$J,358.3,24694,2)
  ;;=^5006533
- ;;^UTILITY(U,$J,358.3,24388,0)
- ;;=H81.01^^107^1202^29
- ;;^UTILITY(U,$J,358.3,24388,1,0)
+ ;;^UTILITY(U,$J,358.3,24695,0)
+ ;;=H61.21^^85^1087^5
+ ;;^UTILITY(U,$J,358.3,24695,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,24388,1,3,0)
- ;;=3^Meniere's Disease,Right Ear
- ;;^UTILITY(U,$J,358.3,24388,1,4,0)
- ;;=4^H81.01
- ;;^UTILITY(U,$J,358.3,24388,2)
- ;;=^5006860
- ;;^UTILITY(U,$J,358.3,24389,0)
- ;;=H81.02^^107^1202^28
- ;;^UTILITY(U,$J,358.3,24389,1,0)
+ ;;^UTILITY(U,$J,358.3,24695,1,3,0)
+ ;;=3^Impacted Cerumen,Right Ear
+ ;;^UTILITY(U,$J,358.3,24695,1,4,0)
+ ;;=4^H61.21
+ ;;^UTILITY(U,$J,358.3,24695,2)
+ ;;=^5006531
+ ;;^UTILITY(U,$J,358.3,24696,0)
+ ;;=H61.22^^85^1087^4
+ ;;^UTILITY(U,$J,358.3,24696,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,24389,1,3,0)
- ;;=3^Meniere's Disease,Left Ear
- ;;^UTILITY(U,$J,358.3,24389,1,4,0)
- ;;=4^H81.02
- ;;^UTILITY(U,$J,358.3,24389,2)
- ;;=^5006861
- ;;^UTILITY(U,$J,358.3,24390,0)
- ;;=H81.03^^107^1202^27
- ;;^UTILITY(U,$J,358.3,24390,1,0)
+ ;;^UTILITY(U,$J,358.3,24696,1,3,0)
+ ;;=3^Impacted Cerumen,Left Ear
+ ;;^UTILITY(U,$J,358.3,24696,1,4,0)
+ ;;=4^H61.22
+ ;;^UTILITY(U,$J,358.3,24696,2)
+ ;;=^5006532
+ ;;^UTILITY(U,$J,358.3,24697,0)
+ ;;=J11.1^^85^1087^13
+ ;;^UTILITY(U,$J,358.3,24697,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,24390,1,3,0)
- ;;=3^Meniere's Disease,Bilateral
- ;;^UTILITY(U,$J,358.3,24390,1,4,0)
- ;;=4^H81.03
- ;;^UTILITY(U,$J,358.3,24390,2)
- ;;=^5006862
- ;;^UTILITY(U,$J,358.3,24391,0)
- ;;=H81.12^^107^1202^9
- ;;^UTILITY(U,$J,358.3,24391,1,0)
+ ;;^UTILITY(U,$J,358.3,24697,1,3,0)
+ ;;=3^Influenza d/t Unident Influ Virus w/ Oth Resp Manifest
+ ;;^UTILITY(U,$J,358.3,24697,1,4,0)
+ ;;=4^J11.1
+ ;;^UTILITY(U,$J,358.3,24697,2)
+ ;;=^5008158
+ ;;^UTILITY(U,$J,358.3,24698,0)
+ ;;=J10.1^^85^1087^12
+ ;;^UTILITY(U,$J,358.3,24698,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,24391,1,3,0)
- ;;=3^Benign Paroxysmal Vertigo,Left Ear
- ;;^UTILITY(U,$J,358.3,24391,1,4,0)
- ;;=4^H81.12
- ;;^UTILITY(U,$J,358.3,24391,2)
- ;;=^5006866
- ;;^UTILITY(U,$J,358.3,24392,0)
- ;;=H81.11^^107^1202^10
- ;;^UTILITY(U,$J,358.3,24392,1,0)
+ ;;^UTILITY(U,$J,358.3,24698,1,3,0)
+ ;;=3^Influenza d/t  Indent Influ Virus w/ Oth Resp Manifest
+ ;;^UTILITY(U,$J,358.3,24698,1,4,0)
+ ;;=4^J10.1
+ ;;^UTILITY(U,$J,358.3,24698,2)
+ ;;=^5008151
+ ;;^UTILITY(U,$J,358.3,24699,0)
+ ;;=K58.9^^85^1087^1
+ ;;^UTILITY(U,$J,358.3,24699,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,24392,1,3,0)
- ;;=3^Benign Paroxysmal Vertigo,Right Ear
- ;;^UTILITY(U,$J,358.3,24392,1,4,0)
- ;;=4^H81.11
- ;;^UTILITY(U,$J,358.3,24392,2)
- ;;=^5006865
- ;;^UTILITY(U,$J,358.3,24393,0)
- ;;=H81.13^^107^1202^8
- ;;^UTILITY(U,$J,358.3,24393,1,0)
+ ;;^UTILITY(U,$J,358.3,24699,1,3,0)
+ ;;=3^IBS w/o Diarrhea
+ ;;^UTILITY(U,$J,358.3,24699,1,4,0)
+ ;;=4^K58.9
+ ;;^UTILITY(U,$J,358.3,24699,2)
+ ;;=^5008740
+ ;;^UTILITY(U,$J,358.3,24700,0)
+ ;;=G47.00^^85^1087^16
+ ;;^UTILITY(U,$J,358.3,24700,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,24393,1,3,0)
- ;;=3^Benign Paroxysmal Vertigo,Bilateral
- ;;^UTILITY(U,$J,358.3,24393,1,4,0)
- ;;=4^H81.13
- ;;^UTILITY(U,$J,358.3,24393,2)
- ;;=^5006867
- ;;^UTILITY(U,$J,358.3,24394,0)
- ;;=H81.10^^107^1202^11
- ;;^UTILITY(U,$J,358.3,24394,1,0)
+ ;;^UTILITY(U,$J,358.3,24700,1,3,0)
+ ;;=3^Insomnia,Unspec
+ ;;^UTILITY(U,$J,358.3,24700,1,4,0)
+ ;;=4^G47.00
+ ;;^UTILITY(U,$J,358.3,24700,2)
+ ;;=^332924
+ ;;^UTILITY(U,$J,358.3,24701,0)
+ ;;=K40.90^^85^1087^15
+ ;;^UTILITY(U,$J,358.3,24701,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,24394,1,3,0)
- ;;=3^Benign Paroxysmal Vertigo,Unspec Ear
- ;;^UTILITY(U,$J,358.3,24394,1,4,0)
- ;;=4^H81.10
- ;;^UTILITY(U,$J,358.3,24394,2)
- ;;=^5006864
- ;;^UTILITY(U,$J,358.3,24395,0)
- ;;=B37.84^^107^1202^12
- ;;^UTILITY(U,$J,358.3,24395,1,0)
+ ;;^UTILITY(U,$J,358.3,24701,1,3,0)
+ ;;=3^Inguinal Hernia,Unil w/o Obst/Gangr
+ ;;^UTILITY(U,$J,358.3,24701,1,4,0)
+ ;;=4^K40.90
+ ;;^UTILITY(U,$J,358.3,24701,2)
+ ;;=^5008591
+ ;;^UTILITY(U,$J,358.3,24702,0)
+ ;;=K40.20^^85^1087^14
+ ;;^UTILITY(U,$J,358.3,24702,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,24395,1,3,0)
- ;;=3^Candidal Otitis Externa
- ;;^UTILITY(U,$J,358.3,24395,1,4,0)
- ;;=4^B37.84
- ;;^UTILITY(U,$J,358.3,24395,2)
- ;;=^266875
- ;;^UTILITY(U,$J,358.3,24396,0)
- ;;=H60.313^^107^1202^18
- ;;^UTILITY(U,$J,358.3,24396,1,0)
- ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,24702,1,3,0)
+ ;;=3^Inguinal Hernia,Bilat w/o Obst/Gangr
+ ;;^UTILITY(U,$J,358.3,24702,1,4,0)
+ ;;=4^K40.20

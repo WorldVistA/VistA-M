@@ -1,8 +1,9 @@
-ORWTIU ;SLC/REV - Functions for GUI PARAMETER ACTIONS ;04/24/20  11:44
- ;;3.0;ORDER ENTRY/RESULTS REPORTING;**10,85,109,132,195,243,377**;Dec 17, 1997;Build 582
+ORWTIU ;SLC/REV - Functions for GUI PARAMETER ACTIONS ;Feb 10, 2021@11:37:06
+ ;;3.0;ORDER ENTRY/RESULTS REPORTING;**10,85,109,132,195,243,377,539**;Dec 17, 1997;Build 41
  ;
  ; External Reference
  ;   DBIA  6211  ^TIUCOP
+ ;   DBIA  7225  REQDFLD^TIUPREF
  ;
 GTTIUCTX(Y,ORUSER) ; Returns current Notes view context for user
  N OCCLIM,SHOWSUB
@@ -90,6 +91,7 @@ EXCCOPY(ORY,ORTIUDA) ; Checks if note is excluded from copy/paste tracking
 EXCPLST(ORY) ;Returns a list of notes excluded from copy/paste tracking
  D EXCLST^TIUCOP(.ORY)
  Q
+ ;
 PCTCOPY(ORY,DIV) ; Return the Copy/Paste verification percentage
  I +$G(DIV)=0 S ORY="-1^Institution is required" Q
  S ORY=$$PCT^TIUCOP(DIV)
@@ -376,4 +378,8 @@ CLEAN ;clean up ^XTMP nodes related to copy/paste
  N TASK
  S TASK=0
  D CLEAN^TIUCOP(.TASK)
+ Q
+ ;
+REQDFLD(VAL,ACTION,INPUT) ;Load or Save Template Required Fields Preferences
+ D REQDFLD^TIUPREF(.VAL,$G(ACTION),$G(INPUT))
  Q

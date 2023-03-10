@@ -1,5 +1,5 @@
 BPSTEST2 ;AITC/CKB - ECME TESTING TOOL ;5/31/2018
- ;;1.0;E CLAIMS MGMT ENGINE;**24,26**;JUN 2004;Build 24
+ ;;1.0;E CLAIMS MGMT ENGINE;**24,26,28**;JUN 2004;Build 22
  ;;Per VA Directive 6402, this routine should not be modified.
  ;
  Q
@@ -12,7 +12,7 @@ SETOVER ;
  . S BPSRRESP=$$GET1^DIQ(9002313.32,BPSTIEN_",",.08,"I")
  . ;
  . ; If the response is Stranded, force an <UNDEF> error
- . I BPSRRESP="S" S BPSXXXX=BPSUNDEF
+ . I BPSRRESP="T" S BPSXXXX=BPSUNDEF
  . I BPSRRESP]"" S BPSDATA(1,112)=BPSRRESP
  . S BPSDATA(9002313.03,9002313.03,"+1,",501)=$S(BPSRRESP="R":"R",1:"A")
  . ; 
@@ -38,23 +38,23 @@ SETOVER ;
  . S BPSRRESP=$$GET1^DIQ(9002313.32,BPSTIEN_",",.05,"I")
  . ;
  . ; If the response is Stranded, force an <UNDEF> error
- . I BPSRRESP="S" S BPSXXXX=BPSUNDEF
- . I BPSRRESP]"" S BPSDATA(1,112)=$S(BPSRRESP="D":"S",1:BPSRRESP)
+ . I BPSRRESP="T" S BPSXXXX=BPSUNDEF
+ . I BPSRRESP]"" S BPSDATA(1,112)=$S(BPSRRESP="D":"T",1:BPSRRESP)
  . S BPSDATA(9002313.03,9002313.03,"+1,",501)=$S(BPSRRESP="R":"R",1:"A")
  . ;
  . ; If the response is accepted or duplicate, kill the reject code count and codes
- . I BPSRRESP="A"!(BPSRRESP="D") K BPSDATA(1,510),BPSDATA(1,511)
+ . I BPSRRESP="A"!(BPSRRESP="D")!(BPSRRESP="Q")!(BPSRRESP="S") K BPSDATA(1,510),BPSDATA(1,511)
  . ;
  . ; If the response is rejected, set the reject codes
  . I BPSRRESP="R" D SETREJ^BPSTEST(BPSTRANS)
  ;
  ; If a submission, check for specific submission overrides and set
-  I BPSTYPE="B1" D
+ I BPSTYPE="B1" D
  . ; Get submission response
  . S BPSSRESP=$$GET1^DIQ(9002313.32,BPSTIEN_",",.03,"I")
  . ;
  . ; If the response is Stranded, force an <UNDEF> error
- . I BPSSRESP="S" S BPSXXXX=BPSUNDEF
+ . I BPSSRESP="T" S BPSXXXX=BPSUNDEF
  . ;
  . ; If BPSSRESP exists, file it
  . I BPSSRESP]"" D
@@ -62,7 +62,7 @@ SETOVER ;
  .. S BPSDATA(9002313.03,9002313.03,"+1,",501)=$S(BPSSRESP="R":"R",1:"A")
  .. ; If payable or duplicate, get the BPSPAID amount and file it if it
  .. ; exists.  Also delete any reject codes
- .. I BPSSRESP="P"!(BPSSRESP="D") D
+ .. I BPSSRESP="P"!(BPSSRESP="D")!(BPSSRESP="Q")!(BPSSRESP="S") D
  ... ;
  ... S BPSX=$$GET1^DIQ(9002313.32,BPSTIEN_",",2.1,"I")             ; 505-F5 Patient Pay Amount
  ... I BPSX]"" S BPSDATA(1,505)=$$DFF^BPSECFM(BPSX,10)
@@ -88,7 +88,8 @@ SETOVER ;
  ... I BPS517]"" S BPSDATA(1,517)=$$DFF^BPSECFM(BPS517,8)           ; 517 Amount Applied to Periodic Deductible
  ... Q
  .. ;
- .. I BPSSRESP="P"!(BPSSRESP="D")!(BPSSRESP="R") D
+ .. ;if not Stranded (BPSSRESP="T") prompt for the following fields
+ .. I BPSSRESP'="T" D
  ... ; D1-D9 fields (BPS*1*15)
  ... S BPSAJPAY=$$GET1^DIQ(9002313.32,BPSTIEN_",",.1,"I")           ; Adjudicated Payment Type
  ... I BPSAJPAY]"" S BPSDATA(1,1028)=$$NFF^BPSECFM(BPSAJPAY,2)
@@ -127,7 +128,7 @@ SETOVER ;
  ... S BPSX=$$GET1^DIQ(9002313.32,BPSTIEN_",",2.09,"I") ; B98-34 reconciliation id
  ... I BPSX]"" S BPSDATA(1,2098)=$$ANFF^BPSECFM(BPSX,30)
  ... ;
- ... S BPSX=$$GET1^DIQ(9002313.32,BPSTIEN_",",2.11,"I") ; 439-E4 reason for service code
+ ... S BPSX=$$GET1^DIQ(9002313.32,BPSTIEN_",",2.11,"E") ; 439-E4 reason for service code
  ... I BPSX]"" S BPSDATA(1,439,1)=$$ANFF^BPSECFM(BPSX,4),BPSDATA(1,567,1)=1
  ... ;
  ... S BPSX=$$GET1^DIQ(9002313.32,BPSTIEN_",",4.01,"I") ; 931-F8 maximum age qualifier
@@ -170,6 +171,41 @@ SETOVER ;
  ... I BPSX]"" S BPSDATA(1,2225)=$$ANFF^BPSECFM(BPSX,3)
  ... S BPSX=$$GET1^DIQ(9002313.32,BPSTIEN_",",4.2,"I") ; D41-PA other payer relationship type
  ... I BPSX]"" S BPSDATA(1,2241)=$$ANFF^BPSECFM(BPSX,3)
+ ... ;
+ ... S BPSX=$$GET1^DIQ(9002313.32,BPSTIEN_",",5.01,"I") ; E87-ZV invalid provider data source
+ ... I BPSX]"" S BPSDATA(1,2387)=$$ANFF^BPSECFM(BPSX,2)
+ ... S BPSX=$$GET1^DIQ(9002313.32,BPSTIEN_",",5.02,"I") ; E89-ZO formulary alternative eff date
+ ... I BPSX]"" S BPSDATA(1,2389)=$$DTF1^BPSECFM(BPSX)
+ ... S BPSX=$$GET1^DIQ(9002313.32,BPSTIEN_",",5.03,"I") ; E93-ZC dur/due co-agent description
+ ... I BPSX]"" S BPSDATA(1,2393)=$$ANFF^BPSECFM(BPSX,40)
+ ... S BPSX=$$GET1^DIQ(9002313.32,BPSTIEN_",",5.04,"I") ; E94-ZA unit of prior dispensed qty
+ ... I BPSX]"" S BPSDATA(1,2394)=$$ANFF^BPSECFM(BPSX,3)
+ ... S BPSX=$$GET1^DIQ(9002313.32,BPSTIEN_",",5.05,"I") ; E95-Z9 other pharmacy id qualifier
+ ... I BPSX]"" S BPSDATA(1,2395)=$$ANFF^BPSECFM(BPSX,2)
+ ... S BPSX=$$GET1^DIQ(9002313.32,BPSTIEN_",",5.06,"I") ; E97-Z7 other pharmacy name
+ ... I BPSX]"" S BPSDATA(1,2397)=$$ANFF^BPSECFM(BPSX,70)
+ ... S BPSX=$$GET1^DIQ(9002313.32,BPSTIEN_",",5.07,"I") ; E98-Z6 other pharmacy telephone 
+ ... I BPSX]"" S BPSDATA(1,2398)=$$NFF^BPSECFM(BPSX,10)
+ ... S BPSX=$$GET1^DIQ(9002313.32,BPSTIEN_",",5.08,"I") ; E99-Z5 other prescriber last name
+ ... I BPSX]"" S BPSDATA(1,2399)=$$ANFF^BPSECFM(BPSX,35)
+ ... S BPSX=$$GET1^DIQ(9002313.32,BPSTIEN_",",5.09,"I") ; F01-Z4 other prescriber id qualifier
+ ... I BPSX]"" S BPSDATA(1,2401)=$$ANFF^BPSECFM(BPSX,2)
+ ... S BPSX=$$GET1^DIQ(9002313.32,BPSTIEN_",",5.10,"I") ; F02-Z3 other prescriber id
+ ... I BPSX]"" S BPSDATA(1,2402)=$$ANFF^BPSECFM(BPSX,35)
+ ... S BPSX=$$GET1^DIQ(9002313.32,BPSTIEN_",",5.11,"I") ; F03-Z2 other prescriber phone number
+ ... I BPSX]"" S BPSDATA(1,2403)=$$NFF^BPSECFM(BPSX,10)
+ ... S BPSX=$$GET1^DIQ(9002313.32,BPSTIEN_",",5.12,"I") ; F04-Z1 dur/due compound product id
+ ... I BPSX]"" S BPSDATA(1,2404)=$$ANFF^BPSECFM(BPSX,40)
+ ... S BPSX=$$GET1^DIQ(9002313.32,BPSTIEN_",",5.13,"I") ; F05-Z0 dur/due compound product id qualifier
+ ... I BPSX]"" S BPSDATA(1,2405)=$$ANFF^BPSECFM(BPSX,2)
+ ... S BPSX=$$GET1^DIQ(9002313.32,BPSTIEN_",",5.14,"I") ; F06-YO dur/due maximum daily dose qty
+ ... I BPSX]"" S BPSDATA(1,2406)=$$NFF^BPSECFM(BPSX,10)
+ ... S BPSX=$$GET1^DIQ(9002313.32,BPSTIEN_",",5.15,"I") ; F07-YL dur/due max daily dose - unit
+ ... I BPSX]"" S BPSDATA(1,2407)=$$ANFF^BPSECFM(BPSX,3)
+ ... S BPSX=$$GET1^DIQ(9002313.32,BPSTIEN_",",5.16,"I") ; F08-YJ dur/due minimum daily dose qty
+ ... I BPSX]"" S BPSDATA(1,2408)=$$NFF^BPSECFM(BPSX,10)
+ ... S BPSX=$$GET1^DIQ(9002313.32,BPSTIEN_",",5.17,"I") ; F09-YI dur/due min daily dose - unit
+ ... I BPSX]"" S BPSDATA(1,2409)=$$ANFF^BPSECFM(BPSX,3)
  ... ;
  ... ; E7 overrides (BPS*1*20)
  ... S BPSX=$$GET1^DIQ(9002313.32,BPSTIEN_",",.11,"I") I BPSX'="" D     ; B88-3R quantity limit per spec time period

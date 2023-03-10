@@ -1,5 +1,5 @@
-MAGDRPC3 ;WOIFO/EdM,SAF,DAC - Imaging RPCs ; 24 Oct 2017 4:40 PM
- ;;3.0;IMAGING;**11,30,51,50,85,54,49,123,138,180**;Mar 19, 2002;Build 16
+MAGDRPC3 ;WOIFO/EDM,SAF,DAC - Imaging RPCs ; Apr 20, 2022@12:50:41
+ ;;3.0;IMAGING;**11,30,51,50,85,54,49,123,138,180,305**;Mar 19, 2002;Build 3
  ;; Per VHA Directive 2004-038, this routine should not be modified.
  ;; +---------------------------------------------------------------+
  ;; | Property of the US Government.                                |
@@ -20,7 +20,7 @@ MAGDRPC3 ;WOIFO/EdM,SAF,DAC - Imaging RPCs ; 24 Oct 2017 4:40 PM
 RADLKUP(OUT,CASENUMB,STUDYDAT) ; RPC = MAG DICOM LOOKUP RAD STUDY
  ; Radiology patient/study lookup
  ; STUDYDAT is a vestigial input parameter, it is not used
- N ACCNUM ;--- Accession Number
+ N ACNUMB ;--- Accession Number
  N CPTCODE ;-- CPT code for the procedure
  N CPTNAME ;-- CPT name for the procedure
  N DATETIME ;- Timestamp
@@ -64,7 +64,7 @@ RADLKUP(OUT,CASENUMB,STUDYDAT) ; RPC = MAG DICOM LOOKUP RAD STUDY
  I '$D(^RADPT(RADPT1,"DT",RADPT2,"P",RADPT3,0)) S OUT(1)="-8,No study level" Q
  ;
  S X=^RADPT(RADPT1,"DT",RADPT2,"P",RADPT3,0)
- S Z=$P(X,"^",17) I Z S Z=$$ACCRPT^RAAPI(Z,.RAA) S ACCNUM=RAA(1)
+ S Z=$P(X,"^",17) I Z S Z=$$ACCRPT^RAAPI(Z,.RAA) S ACNUMB=RAA(1)
  S PROCIEN=$P(X,"^",2),EXAMSTS=$P(X,"^",3)
  S:EXAMSTS EXAMSTS=$$GET1^DIQ(72,EXAMSTS,.01)
  S (PROCDESC,CPTNAME,CPTCODE)=""
@@ -100,19 +100,25 @@ RADLKUP(OUT,CASENUMB,STUDYDAT) ; RPC = MAG DICOM LOOKUP RAD STUDY
  ; Patient's pregnancy status at the time of the exam
  S X="" I $G(DFN),$G(RADPT2),$G(RADPT3) S X=$G(^RADPT(DFN,"DT",RADPT2,"P",RADPT3,0))
  S OUT(15)=$P($G(^RAO(75.1,+$P(X,"^",11),0)),"^",13)
- S OUT(16)=$G(ACCNUM)
+ S OUT(16)=$G(ACNUMB)
  S OUT(1)=1 ; OK
  Q
  ;
-QUEUE(OUT,IMAGE,APPNAM,LOCATION,ACCNUM,REASON,EMAIL,PRIOR,JBTOHD) ; RPC = MAG DICOM QUEUE IMAGE
+QUEUE(OUT,IMAGE,APPNAM,LOCATION,ACNUMB,REASON,EMAIL,PRIORITY,JBTOHD) ; RPC = MAG DICOM QUEUE IMAGE
  ; Add the DICOM study send image request to the queue
- N COUNT,D0,D1,DFN,LOG,OK,P,PROBLEM,REQUESTDATETIME,STUID,TYPE,X
+ N COUNT,D0,D1,DFN,LOG,OK,P,PROBLEM,REQUESTDATETIME,STUDYUID,TYPE,X
  ;
  K OUT ; RPC return variable
+ ;
+ I $G(IMAGE)="New SOP Class DB" D  Q  ; P305 PMK 04/05/2021
+ . ; queue new SOP Class database requests
+ . D QUEUE^MAGDRPCD(.OUT,IMAGE,APPNAM,LOCATION,ACNUMB,REASON,EMAIL,PRIORITY,JBTOHD)
+ . Q
+ ;
  I '$G(IMAGE) S OUT="-1,No Image specified" Q
  I $G(APPNAM)="" S OUT="-2,No Destination specified" Q
  I '$G(LOCATION) S OUT="-3,No Origin specified" Q
- S PRIOR=+$G(PRIOR) S:'PRIOR PRIOR=500
+ S PRIORITY=+$G(PRIORITY) S:'PRIORITY PRIORITY=500
  S JBTOHD=$S($G(JBTOHD):1,1:0)
  ;
  S X=$G(^MAG(2005,IMAGE,0))
@@ -121,20 +127,24 @@ QUEUE(OUT,IMAGE,APPNAM,LOCATION,ACCNUM,REASON,EMAIL,PRIOR,JBTOHD) ; RPC = MAG DI
  . S OUT="-4,Cannot Queue Image Object Type """_TYPE_"""."
  . Q
  ;
+ Q:$D(OUT)  ; problem with accesion number lookup
+ ;
  L +^MAGDOUTP(2006.574):1E9 ; P180 DAC - Lock global, background process MUST wait
  S P=$P($G(^MAG(2005,IMAGE,0)),"^",10),P=$S(P:P,1:IMAGE)
- S STUID=$P($G(^MAG(2005,P,"PACS")),"^",1) S:STUID="" STUID="?"
- S OK=0,D0="" F  S D0=$O(^MAGDOUTP(2006.574,"STUDY",STUID,D0)) Q:'D0  D  Q:OK
- . Q:'$D(^MAGDOUTP(2006.574,"STS",LOCATION,PRIOR,"WAITING",D0))
+ S STUDYUID=$P($G(^MAG(2005,P,"PACS")),"^",1) S:STUDYUID="" STUDYUID="?"
+ S OK=0,D0="" F  S D0=$O(^MAGDOUTP(2006.574,"STUDY",STUDYUID,"LEGACY",D0)) Q:'D0  D  Q:OK
+ . Q:'$D(^MAGDOUTP(2006.574,"STATE",LOCATION,PRIORITY,"WAITING",D0))
  . Q:$P($G(^MAGDOUTP(2006.574,D0,0)),"^",1)'=APPNAM
  . S OK=D0
  . Q
- S D0=OK D:'D0
- . I $G(ACCNUM)="" D  Q:$D(OUT)  ; get the accession number (it's sometimes not passed)
+ S D0=OK
+ I D0 S OUT=D0 ; return the existing pointer to the DICOM OBJECT EXPORT (file #2006.574) queue
+ E  D  ; get the next pointer to the queue
+ . I $G(ACNUMB)="" D  Q:$D(OUT)  ; get the accession number (it's sometimes not passed)
  . . N RESULT
  . . D LOOKUP^MAGDRPCA(.RESULT,P)
  . . I RESULT<0 S OUT="-4,Accession Number Lookup Problem: "_RESULT
- . . E  S ACCNUM=$P(RESULT,"^",8)
+ . . E  S ACNUMB=$P(RESULT,"^",8)
  . . Q
  . S X=$G(^MAGDOUTP(2006.574,0))
  . S $P(X,"^",1,2)="DICOM OBJECT EXPORT^2006.574"
@@ -142,23 +152,24 @@ QUEUE(OUT,IMAGE,APPNAM,LOCATION,ACCNUM,REASON,EMAIL,PRIOR,JBTOHD) ; RPC = MAG DI
  . S $P(X,"^",3)=D0
  . S $P(X,"^",4)=$P(X,"^",4)+1 ; Total count
  . S ^MAGDOUTP(2006.574,0)=X
- . ;
  . S REQUESTDATETIME=$$NOW^XLFDT
- . S ^MAGDOUTP(2006.574,D0,0)=APPNAM_"^"_P_"^"_ACCNUM_"^"_LOCATION_"^"_PRIOR_"^"_JBTOHD_"^"_REQUESTDATETIME
+ . S ^MAGDOUTP(2006.574,D0,0)=APPNAM_"^"_P_"^"_ACNUMB_"^"_LOCATION_"^"_PRIORITY_"^"_JBTOHD_"^"_REQUESTDATETIME_"^LEGACY"
  . S ^MAGDOUTP(2006.574,"C",REQUESTDATETIME,D0)="" ; cross reference to delete old studies
- . S ^MAGDOUTP(2006.574,D0,2)=STUID
- . S ^MAGDOUTP(2006.574,"STUDY",STUID,D0)=""
+ . S ^MAGDOUTP(2006.574,D0,2)=STUDYUID
+ . S ^MAGDOUTP(2006.574,"STUDY",STUDYUID,"LEGACY",D0)=""
+ . S ^MAGDOUTP(2006.574,"D",ACNUMB,D0)="" ; P305 PMK 03/22/2021
+ . ;
+ . S OUT=D0 ; return a pointer to the DICOM OBJECT EXPORT (file #2006.574) queue
+ . ;
  . Q
  L -^MAGDOUTP(2006.574)
- Q:$D(OUT)  ; problem with accesion number lookup
- ;
  S COUNT=0,PROBLEM=3
  I (TYPE=3)!(TYPE=100) D  ; Single XRAY or DICOM image
- . S COUNT=COUNT+$$ENQUEUE(IMAGE,D0,PRIOR)
+ . S COUNT=COUNT+$$ENQUEUE(IMAGE,D0,PRIORITY)
  . Q
  I TYPE=11 D  ; Process all the images in an XRAY group
  . S D1=0 F  S D1=$O(^MAG(2005,IMAGE,1,D1)) Q:'D1  D
- . . S COUNT=COUNT+$$ENQUEUE($P($G(^MAG(2005,IMAGE,1,D1,0)),"^",1),D0,PRIOR)
+ . . S COUNT=COUNT+$$ENQUEUE($P($G(^MAG(2005,IMAGE,1,D1,0)),"^",1),D0,PRIORITY)
  . . Q
  . Q
  ;
@@ -178,13 +189,16 @@ QUEUE(OUT,IMAGE,APPNAM,LOCATION,ACCNUM,REASON,EMAIL,PRIOR,JBTOHD) ; RPC = MAG DI
  . Q:'$G(XMERR)
  . M XMERR=^TMP("XMERR",$J) S $EC=",U13-Cannot send MailMan message,"
  . Q
- S OUT=1
  Q
  ;
-ENQUEUE(IMAGE,D0,PRIOR) ; Add an image to the DICOM send image request queue sub-file
- Q:'IMAGE 0
+ENQUEUE(IMAGE,D0,PRIORITY,NEWSOPCLASS) ; Add an image to the DICOM send image request queue sub-file
+ S NEWSOPCLASS=$G(NEWSOPCLASS,0) ; only set in MAGDRPCD
+ I 'NEWSOPCLASS Q:'IMAGE 0  ; check for legacy 2005 image ien
  N D1,I,OLD,X
- D CHK^MAGGSQI(.X,IMAGE) I +$G(X(0))'=1 D  Q 0
+ ;
+ ; if IMAGE is a legacy 2005 IEN, do CHK^MAGGSQI
+ ; if IMAGE is a new SOP Class DB token, skip the check
+ I 'NEWSOPCLASS D CHK^MAGGSQI(.X,IMAGE) I +$G(X(0))'=1 D  Q 0
  . S PROBLEM=PROBLEM+1,PROBLEM(PROBLEM)=" "
  . S PROBLEM=PROBLEM+1,PROBLEM(PROBLEM)="Image # "_IMAGE_":"
  . S I="" F  S I=$O(X(I)) Q:I=""  S PROBLEM=PROBLEM+1,PROBLEM(PROBLEM)=X(I)
@@ -200,10 +214,10 @@ ENQUEUE(IMAGE,D0,PRIOR) ; Add an image to the DICOM send image request queue sub
  S X=$G(^MAGDOUTP(2006.574,D0,1,0))
  S $P(X,"^",1,2)="^2006.5744"
  S D1=$O(^MAGDOUTP(2006.574,D0,1," "),-1)+1,$P(X,"^",3)=D1
- S $P(X,"^",4)=$P(X,"^",4)+1,OUT=$P(X,"^",4)
+ S $P(X,"^",4)=$P(X,"^",4)+1
  S ^MAGDOUTP(2006.574,D0,1,0)=X
  S ^MAGDOUTP(2006.574,D0,1,D1,0)=IMAGE_"^WAITING^"_$H
- S ^MAGDOUTP(2006.574,"STS",LOCATION,PRIOR,"WAITING",D0,D1)=""
+ S ^MAGDOUTP(2006.574,"STATE",LOCATION,PRIORITY,"WAITING",D0,D1)=""
  L -^MAGDOUTP(2006.574)
  Q 1
  ;

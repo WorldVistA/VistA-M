@@ -1,5 +1,5 @@
 DIUTL ;GFT/GFT - TIMSON'S UTILITIES;24JAN2013
- ;;22.2;VA FileMan;**10**;Jan 05, 2016;Build 11
+ ;;22.2;VA FileMan;**10,19,21**;Jan 05, 2016;Build 4
  ;;Per VA Directive 6402, this routine should not be modified.
  ;;Submitted to OSEHRA 5 January 2015 by the VISTA Expertise Network.
  ;;Based on Medsphere Systems Corporation's MSC FileMan 1051.
@@ -69,25 +69,27 @@ DIVR(DI,DIFLD) ;verify
  ;D ^%ZISC
  Q
  ;
-CHKPT(DIFILE,DA,DIMSG) ;check if any entries points to this entry(DA) in file (DIFILE)
- ;INPUT: DIFILE=file number, DA=ien of record, DIMSG=closed global root or local array
- ;OUTPUT: DIMSG(0)=line count, DISMG(#)="Entry ien in FILE (file #) refers to it."
- ;CODE CAME FROM DEL^DPTLK2
- Q:$G(DIMSG)=""  S @DIMSG@(0)=0
- Q:'$G(DA)  Q:$G(^DIC(+$G(DIFILE),0))=""
- N I,J,K,L,A,B,C,G,T,Q S Q="""",C=0
- ;find all files and fields that point to this file
- F I=0:0 S I=$O(^DD(DIFILE,0,"PT",I)) Q:'I  F J=0:0 S J=+$O(^DD(DIFILE,0,"PT",I,J)),(B,T)=I Q:'J  D
- .;check if multiple, find top file level = T
- . F  S B=+$G(^DD(B,0,"UP")) S:B T=B I 'B S G=$G(^DIC(+T,0,"GL")) Q
- .;pointing to file must have file level cross reference; file level (+A=T), not mumps
- . F K=0:0 S K=$O(^DD(I,J,1,K)) Q:'K  S A=$G(^(K,0)) I +A=T,$L($P(A,U,2)),'$L($P(A,U,3)) D
-  .. Q:'$L(G)
-  ..; if variable pointer, then reset DA to contain global ref.  DA;gr
-  .. I $P(^DD(I,J,0),U,2)["V" S L=DA N DA S DA=Q_L_";"_$P($G(^DIC(DIFILE,0,"GL")),"^",2)_Q
-  .. F L=0:0 S L=$O(@(G_Q_$P(A,U,2)_Q_","_DA_",L)")) Q:'L  D
-  ... S C=C+1,@DIMSG@(C)="Entry "_L_" in "_$P($G(^DIC(T,0)),U)_" ("_T_") refers to it."
-  .. Q
- . Q
- S @DIMSG@(0)=C
+CHKPT(DIFILE,DIDA,DIUTLMSG,DIFLG) ;check if any entries points to this entry(DIDA) in file (DIFILE)
+ ;INPUT Required: DIFILE=file number, DIDA=ien of record, DIMSG=closed global root or local array
+ ;INPUT Optional: DIFLG=output format  1: detailed  0: text (default)
+ ;OUTPUT text: DIUTLMSG(0)=line count, DIUTLSMG(#)="Entry 'ien' in 'file name' ('file #') refers to it."
+ ;OUTPUT detailed: DIUTLSMG(pointer from file #, pointer from ien, dd/subdd #, field #)=""
+ ;ICR #6876
+ Q:$G(DIUTLMSG)=""!'$G(DIFILE)!'$G(DIDA)
+ Q:$G(^DIC(DIFILE,0))=""
+ K @DIUTLMSG,^TMP("DIUTL",$J)  ;p21
+ N C,GFTIEN,GFTRCR,I,J,L,PUT,X,Y
+ S @DIUTLMSG@(0)=0,DIFLG=$G(DIFLG),X=$NA(^TMP("DIUTL",$J))
+ D DEPEND^DIDGFTPT(DIFILE,DIDA,X,"M1")
+ S X=$$GET1^DIQ(DIFILE,DIDA,.01) I X="" S X="NON-EXISTENT ENTRY # "_DIDA
+ S I=0
+ F  S I=$O(^TMP("DIUTL",$J,DIFILE,DIDA,I)) Q:'I  D  Q:'$D(I)
+ .S Y=$P($G(^DIC(I,0)),U),J=0
+ .F  S J=$O(^TMP("DIUTL",$J,DIFILE,DIDA,I,J)) Q:'J  D
+ ..I 'DIFLG S C=@DIUTLMSG@(0)+1,@DIUTLMSG@(0)=C,@DIUTLMSG@(C)="Entry "_J_" in "_Y_" ("_I_") refers to it." Q
+ ..S L=""
+ ..F  S L=$O(^TMP("DIUTL",$J,DIFILE,DIDA,I,J,L)) Q:L=""  S C=@DIUTLMSG@(0)+1,@DIUTLMSG@(0)=C,@DIUTLMSG@(I,J,$P(L,","),$P(L,",",2))=""
+ ..Q
+ .Q
+ K ^TMP("DIUTL",$J)
  Q

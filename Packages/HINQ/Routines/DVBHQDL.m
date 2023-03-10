@@ -1,17 +1,19 @@
-DVBHQDL ;ISC-ALBANY/PKE-HINQ IDCU,RDPC LOGON ; 10/27/05 4:12pm
- ;;4.0;HINQ;**9,12,32,33,34,38,49**;03/25/92
+DVBHQDL ;ISC-ALBANY/PKE-HINQ IDCU,RDPC LOGON ; Sep 30, 2021@09:08
+ ;;4.0;HINQ;**9,12,32,33,34,38,49,71**;03/25/92;Build 13
+ Q  ;Patch DVB*4.0*71 prevents VistA HINQ requests due to WEBHINQ transition
  S X="A" X ^%ZOSF("LPC") K X S U="^" I $D(IO)<11 S IOP="HOME" D ^%ZIS K IOP S:'$D(DTIME) DTIME=300
  I $D(DUZ)#2'=1 W !,"DUZ not defined",! Q
  I $D(^VA(200,DUZ,.1)) S DVBNUM=$P(^(.1),U,9) I DVBNUM
  E  W !,"  HINQ Employee Number not in New Person file",!,"  Notify System manager",! Q
  ;
-EN W !,"This option will take 30 seconds to activate - using IP Addressing"
+EN Q  ;Patch DVB*4.0*71 prevents VistA HINQ requests due to WEBHINQ transition
+ W !,"This option will take 30 seconds to activate - using IP Addressing"
  U IO(0) W !!,"Do you wish to continue" S %=1 D YN^DICN
  I %'>0 G:%<0 EX1 W !,"    Enter YES to select option" G EN
  I %>1 G EX1
  S DVBTSK=0
  S DVBIOSL=IOSL,DVBIOST=IOST,DVBIOF=IOF
-ENTSK ;entry from taskman
+ENTSK Q  ;Patch DVB*4.0*71 prevents VistA HINQ requests due to WEBHINQ transition ;entry from taskman
  D SILENT^DVBHQTM I $D(DVBSTOP) S DVBABORT=1 K DVBSTOP D:'DVBTSK MESS G EX
  S DVBIDCU=^DVB(395,1,"HQVD")_"^"_$P(^("HQ"),"^",11)
  S DVBLOG=$P(DVBIDCU,U),DVBPU=$P(DVBIDCU,U,2),DVBID=$P(DVBPU,"-"),DVBPW=$P(DVBPU,"-",2)

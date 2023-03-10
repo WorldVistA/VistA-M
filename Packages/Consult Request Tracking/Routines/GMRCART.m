@@ -1,5 +1,5 @@
 GMRCART ;SLC/DCM,DLT,JFR - Result display logic ;12/17/01 22:39
- ;;3.0;CONSULT/REQUEST TRACKING;**4,15,17,23,22,38**;DEC 27, 1997
+ ;;3.0;CONSULT/REQUEST TRACKING;**4,15,17,23,22,38,154,171**;DEC 27, 1997;Build 3
  ;
  ; This routine invokes IA #2638,#10060
  ;
@@ -164,8 +164,19 @@ GETREMOT(GMRCDA,GMRCAR,GMRCNT) ;retrieve remote results and load up in display
  . S GMRCREM0=^GMR(123,GMRCDA,51,GMRCREM,0) Q:'$L(GMRCREM0)
  . S GMRCSTA=$$STA^XUAF4($P(GMRCREM0,U,3))
  . D F4^XUAF4(GMRCSTA,.GMRCSITE) I '+GMRCSITE Q
+ . ;BL; Need to check if site has been converted to Cerner and if so route properly
+ . ; S:$$CNVTD^GMRCIEVT(+GMRCSITE) GMRCSTA="200CRNR"
+ . S:$$CNVTD^GMRCIEVT(GMRCDA) GMRCSTA="200CRNR"
+ . ;
  . S GMRCRES=$P(GMRCREM0,U,2)_","
  . I GMRCRES["TIU" S GMRCRPC="TIU GET RECORD TEXT",GMRCRES=+GMRCRES
+ . ;BL;If this is a converted site add the the ICN to the string
+ . N DFN,ICN ;MKN 171 changed K DFN,ICN to N DFN,ICN
+ . I GMRCSTA["200CRNR" D 
+ . . S DFN=$P(^GMR(123,GMRCDA,0),"^",2)
+ . . S ICN=$$GETICN^MPIF001(DFN)
+ . . S GMRCRES=ICN_"\"_GMRCRES
+ . ;
  . I GMRCRES["MCAR" S GMRCRPC="ORQQCN GET MED RESULT DETAILS"
  . D SAVDEV^%ZISUTL("GMRCIO") ; save off current device settings
  . D DIRECT^XWB2HL7(.GMRCDATA,GMRCSTA,GMRCRPC,"0",GMRCRES)

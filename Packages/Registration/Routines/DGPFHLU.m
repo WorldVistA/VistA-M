@@ -1,5 +1,5 @@
 DGPFHLU ;ALB/RPM - PRF HL7 ORU/ACK PROCESSING ; 6/21/06 10:27am
- ;;5.3;Registration;**425,718,650,951**;Aug 13, 1993;Build 135
+ ;;5.3;Registration;**425,718,650,951,1063**;Aug 13, 1993;Build 7
  ;;Per VA Directive 6402, this routine should not be modified.
  ;
 BLDORU(DGPFA,DGHARR,DGHL,DGROOT) ;Build ORU~R01 Message/Segments
@@ -31,6 +31,7 @@ BLDORU(DGPFA,DGHARR,DGHL,DGROOT) ;Build ORU~R01 Message/Segments
  ;
  I $D(DGPFA),$D(DGHARR),$G(DGROOT)]"" D
  .; build PID
+ .I $D(HL) N HL MERGE HL=DGHL ; Checking if HL array exists and merging with DGHL if it does to prevent discrepancies in the PID segments
  .S DGSEGSTR=$$EN^VAFHLPID(+DGPFA("DFN"),"1,2,3,5,7,8,19",1,1) Q:DGSEGSTR=""
  .S DGSEG=DGSEG+1,@DGROOT@(DGSEG)=DGSEGSTR
  .; build OBR

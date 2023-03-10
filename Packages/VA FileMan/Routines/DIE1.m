@@ -1,5 +1,5 @@
 DIE1 ;SFISC/GFT-FILE DATA, XREF IT, GO UP AND DOWN MULTIPLES ;28MAY2008
- ;;22.2;VA FileMan;;Jan 05, 2016;Build 42
+ ;;22.2;VA FileMan;**20**;Jan 05, 2016;Build 2
  ;;Per VA Directive 6402, this routine should not be modified.
  ;;Submitted to OSEHRA 5 January 2015 by the VISTA Expertise Network.
  ;;Based on Medsphere Systems Corporation's MSC FileMan 1051.
@@ -35,13 +35,14 @@ QY I $D(DTOUT),$D(DIEDA) D
  K:$D(DTOUT) DG,DQ
  I $D(DIETMP)#2 D FIREREC K @DIETMP,DIETMP
  K DIEBADK,DIEFIRE,DIEXREF,DIEFXREF,DIIENS,DIE1,DIESP
- K DIP,DB,DE,DM,DK,DL,DH,DU,DV,DW,DP,DC,DIK,DOV,DIEL,DIFLD Q
+ K DIP,DB,DE,DM,DK,DL,DH,DU,DV,DW,DP,DC,DIK,DOV,DIEL,DIFLD,DLAYGO ;p20 added DLAYGO
+ Q
  ;
 M ;
  S DD=X,DIC(0)="LM"_$S($D(DB(DQ)):"X",1:"QE"),DO(2)=$P(DC,"^",2),DO=$P($P(DQ(DQ),U)," ",2,99)_"^"_DO(2)_"^"_$P(DC,"^",4,5) D DOWN I @("'$D("_DIC_"0))") S ^(0)="^"_DO(2)
  E  I DO(2)["I" S %=0,DIC("W")="" D W^DIC1
  K DIC("PTRIX") M DIC("PTRIX")=DIE("PTRIX")
-DIC S D="B",DLAYGO=DP\1,X=DD D  K DIC("PTRIX")
+DIC S D="B",DLAYGO=DP,X=DD D  K DIC("PTRIX") ;p20 change DLAYGO=DP\1
  .N DIETMP,DICR D X^DIC
  I Y>0 S DA=+Y,DI=0,X=$P(Y,U,2) S:$D(DIETMP)#2 $P(DIIENS,",")=DA S:+DR=.01!(DR="")&$P(Y,U,3) DI=.01,DK=1,DM=$P($P(DR,";",1),":",2),DM=$S(DR="":9999999,DM="":+DR,1:DM) G D1
  S DI(DL-1)=DI(DL-1)_U K DUOUT,DTOUT G U1

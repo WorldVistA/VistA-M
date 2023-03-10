@@ -1,5 +1,5 @@
 PSBOMM ;BIRMINGHAM/EFC-MISSED MEDS ;03/06/16 3:06pm
- ;;3.0;BAR CODE MED ADMIN;**26,32,56,52,58,70,76,83,109**;Mar 2004;Build 2
+ ;;3.0;BAR CODE MED ADMIN;**26,32,56,52,58,70,76,83,109,106**;Mar 2004;Build 43
  ;Per VHA Directive 2004-038 (or future revisions regarding same), this routine should not be modified.
  ;
  ; Reference/IA
@@ -11,6 +11,7 @@ PSBOMM ;BIRMINGHAM/EFC-MISSED MEDS ;03/06/16 3:06pm
  ;*58 - insert Verified by Column with nurse initials else "***"
  ;*70 - add test for PSBCLINORD flag and filter accordingly
  ;*83 - new tag to find MRR type meds needing removal
+ ;*106- add Hazardous Handle & Dispose flags
  ;
 EN ;
  N PSBSTRT,PSBSTOP,DFN,PSBODATE,PSBFLAG,PSBCNT,PSBEDIT,PSBFUTR,RMV,PSBSTART,PSBSTXP,PSBS,PSBSRT
@@ -28,6 +29,7 @@ EN ;
  ;call Removes to add meds needing removal                         *83
  F DFN=0:0 S DFN=$O(^TMP("PSBO",$J,DFN)) Q:'DFN  D EN1,REMOVES^PSBUTL(DFN,PSBSRT)
  D PRINT
+ D CLEAN^PSBVT   ;106
  K ^TMP("PSJ",$J),^TMP("PSB",$J),^TMP("PSBO",$J),PSBS
  Q
 EN1 ;
@@ -176,6 +178,10 @@ PRINT ;
  ....D:$D(^TMP("PSB",$J,DFN,PSBDT,PSBOITX,PSBONX,"RM"))  ;RM exists
  .....W !,$O(PSBS(DFN,PSBONX,"")),?15,PSBVNI,?21,$S(+PSBDT>0:$$DTFMT^PSBOMM2(PSBDT),1:PSBDT),?38,PSBOITX,?85,$O(PSBSTXP(PSBONX,DFN,"")),?103,PSBCLORD
  .....W !,?41,"(Remove)" S RMV=1
+ .....;*106 adds the hazardous handle/dispose notices-bg
+ .....I (PSBHAZDS=1)!(PSBHAZHN=1) W !
+ .....I PSBHAZHN=1 W ?38,"<<HAZ HANDLE>> "   ;*106 hazhn
+ .....I PSBHAZDS=1 W ?38,"<<HAZ DISPOSE>>"   ;*106 hazds, is hazhn printed 1st, then this will print after it and not at 38, desired.
  ....I PSBDT["ONE-TIME" D  Q
  .....W !
  .....W !,$O(PSBS(DFN,PSBONX,"")),?15,PSBVNI,?21,PSBDT,?38,PSBOITX,?103,PSBCLORD,!                       ;*70
@@ -188,7 +194,12 @@ PRINT ;
  ....;print Give if exists for a RM just printed, or no RM printed
  ....I 'RMV!(RMV&$D(^TMP("PSB",$J,DFN,PSBDT,PSBOITX,PSBONX))=11) D
  .....W !,$O(PSBS(DFN,PSBONX,"")),?15,PSBVNI,?21,$S(+PSBDT>0:$$DTFMT^PSBOMM2(PSBDT),1:PSBDT),?38,PSBOITX,?85,$O(PSBSTXP(PSBONX,DFN,"")) ;DFN added to PSBSTXP array in PSB*3*52
- .....W ?103,PSBCLORD,!                     ;*70 clinic name
+ .....W ?103,PSBCLORD   ;*70 clinic name
+ .....;*106 adds the hazardous handle/dispose notices-bg
+ .....I (PSBHAZDS=1)!(PSBHAZHN=1) W !
+ .....I PSBHAZHN=1 W ?38,"<<HAZ HANDLE>> "   ;*106 hazhn
+ .....I PSBHAZDS=1 W ?38,"<<HAZ DISPOSE>>"   ;*106 hazds, is hazhn printed 1st, then this will print after it and not at 38, desired.
+ .....W !
  ....I VAR1]"" W ?41,VAR1 S SP=1
  ....I VAR2]"" W:$G(SP) ! W ?41,VAR2
  ....I VAR3]"" W !,$$WRAP^PSBO(41,79,VAR3)
@@ -233,6 +244,10 @@ PRINT ;
  ......I 'RMV!(RMV&$D(^TMP("PSB",$J,DFN,PSBDT,PSBOITX,PSBONX))=11) D
  .......W !,$O(PSBS(DFN,PSBONX,"")),?15,PSBVNI,?22,$G(^DPT(DFN,.101),"**"),?42,$P(^DPT(DFN,0),U)," (",$E($P(^(0),U,9),6,9),")"
  .......W:PSBDT'["ONE-TIME" ?74,$S(+PSBDT>0:$$DTFMT^PSBOMM2(PSBDT),1:PSBDT),?92,PSBOITX S SP=1
+ ......;*106 adds the hazardous handle/dispose notices-bg
+ ......I (PSBHAZDS=1)!(PSBHAZHN=1) W !
+ ......I PSBHAZHN=1 W ?92,"<<HAZ HANDLE>> "   ;*106 hazhn
+ ......I PSBHAZDS=1 W ?92,"<<HAZ DISPOSE>>"   ;*106 hazds, if hazhn printed 1st, then this will print after that and not at 92, desired.
  ......S VAR1=$G(^TMP("PSB",$J,DFN,PSBDT,PSBOITX,PSBONX))
  ......S VAR2=$G(^TMP("PSB",$J,DFN,PSBDT,PSBOITX,PSBONX,"X"))
  ......S VAR3=$G(^TMP("PSB",$J,DFN,PSBDT,PSBOITX,PSBONX,.3))
@@ -249,71 +264,14 @@ PRINT ;
  ......I VAR3]"" W !,$$WRAP^PSBO(57,82,VAR3)
  ;
  ;* * *  Print by Clinic  * * *
- D:PSBSRT="C"
- .W $$CLNHDR()
- .I '$O(^TMP("PSB",$J,0)) W !,"No Missed Medications Found" Q
- .S PSBSORT=$P(PSBRPT(.1),U,5)
- .F DFN=0:0 S DFN=$O(^TMP("PSB",$J,DFN)) Q:'DFN  D
- ..S PSBDX=$S(PSBSORT="P":$P(^DPT(DFN,0),U),1:$G(^DPT(DFN,.1))_" "_$G(^(.101)))
- ..S:PSBDX="" PSBDX=$P(^DPT(DFN,0),U)
- ..S ^TMP("PSB",$J,"B",PSBDX,DFN)=""
- .S PSBDX=""
- .F  S PSBDX=$O(^TMP("PSB",$J,"B",PSBDX)) Q:PSBDX=""  D
- ..F DFN=0:0 S DFN=$O(^TMP("PSB",$J,"B",PSBDX,DFN)) Q:'DFN  D
- ...W !
- ...S PSBDT=""
- ...F  S PSBDT=$O(^TMP("PSB",$J,DFN,PSBDT)) Q:PSBDT=""  D
- ....W !
- ....K VAR1,VAR2,VAR3    ;reset held/refused to prevent line feed
- ....W:PSBDT["ONE-TIME" !
- ....S PSBOITX=""
- ....F  S PSBOITX=$O(^TMP("PSB",$J,DFN,PSBDT,PSBOITX)) Q:PSBOITX=""  D
- .....S PSBONX=""
- .....F  S PSBONX=$O(^TMP("PSB",$J,DFN,PSBDT,PSBOITX,PSBONX)) Q:PSBONX=""  D
- ......;if previously held/refused lines printed, need line feed *58
- ......I ($G(VAR1)]"")!($G(VAR2)]"")!($G(VAR3)]"") W:'$G(RMV) ! K RMV
- ......K VAR1,VAR2,VAR3,SP I $Y>(IOSL-9) W $$CLNHDR()
- ......D PSJ1^PSBVT(DFN,PSBONX)
- ......S PSBVNI=$S(PSBVNI]"":PSBVNI,1:"***")
- ......;     print remove line 1st           *83
- ......S RMV=0
- ......D:$D(^TMP("PSB",$J,DFN,PSBDT,PSBOITX,PSBONX,"RM"))
- .......W !,$O(PSBS(DFN,PSBONX,"")),?11,PSBVNI,?17,$P(^DPT(DFN,0),U)
- .......W ?49,$S(+PSBDT>0:$$DTFMT^PSBOMM2(PSBDT),1:PSBDT),?66,PSBOITX
- .......W ?103,PSBCLORD
- .......W !,?69,"(Remove)" S RMV=1
- ......;print Give if exists for a RM just printed, or no RM printed
- ......I 'RMV!(RMV&$D(^TMP("PSB",$J,DFN,PSBDT,PSBOITX,PSBONX))=11) D
- .......W !,$O(PSBS(DFN,PSBONX,"")),?11,PSBVNI,?17,$P(^DPT(DFN,0),U)
- .......W:PSBDT'["ONE-TIME" ?49,$S(+PSBDT>0:$$DTFMT^PSBOMM2(PSBDT),1:PSBDT),?66,PSBOITX
- .......W:PSBDT'["ONE-TIME" ?103,PSBCLORD
- ......S VAR1=$G(^TMP("PSB",$J,DFN,PSBDT,PSBOITX,PSBONX))
- ......S VAR2=$G(^TMP("PSB",$J,DFN,PSBDT,PSBOITX,PSBONX,"X"))
- ......S VAR3=$G(^TMP("PSB",$J,DFN,PSBDT,PSBOITX,PSBONX,.3))
- ......I PSBDT["ONE-TIME" D  Q
- .......W !,PSBDT,?37,PSBOITX S SP=1 W:PSBCLINORD ?103,PSBCLORD
- .......I VAR1]"" W !,?37,$P(VAR1,U,1) S SP=1
- .......I VAR2]"" W:$G(SP) ! W ?37,VAR2
- .......I VAR3]"" W !,$$WRAP^PSBO(37,102,VAR3)
- .......W !?3,"Start Date/Time:  ",?21,$O(PSBSTXT(PSBONX,DFN,"")) ;DFN added to PSBSTXT array in PSB*3*52
- .......W !?3,"Stop Date/Time:  ",?21,$O(PSBSTXP(PSBONX,DFN,"")) ;DFN added to PSBSTXP array in PSB*3*52
- .......W !
- ......;detail line additional info
- ......S SP=1
- ......I VAR1]"" W !,?57,VAR1 S SP=1
- ......I VAR2]"" W:$G(SP) ! W ?57,VAR2
- ......I VAR3]"" W !,$$WRAP^PSBO(57,82,VAR3)
- Q
+ D:PSBSRT="C" CLINIC^PSBOMM2
+ ;
 WRDHDR() ;
  D WARD^PSBOHDR(PSBWRD,.PSBHDR,,,PSBSRCHL)
  W !,"Order Status",?15,"Ver",?22,"Room-Bed",?42,"Patient",?74,"Missed Date/Time",?92,"Medication"
  D LN1^PSBOMM2
  Q ""
-CLNHDR() ;
- D CLINIC^PSBOHDR(.PSBRPT,.PSBHDR,,,PSBSRCHL)
- W !,"Order Sts",?11,"Ver",?17,"Patient",?49,"Missed Date/Time",?66,"Medication",?103,"Location"
- D LN1^PSBOMM2
- Q ""
+ ;
 PTHDR() ;
  D PT^PSBOHDR(DFN,.PSBHDR,,,PSBSRCHL)
  W !,"Order Status",?15,"Ver",?21,"Missed Date/Time",?38,"Medication",?85,"Order Stop Date"

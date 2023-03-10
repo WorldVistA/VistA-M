@@ -1,5 +1,5 @@
 PSOERXX2 ;ALB/BWF - eRx xml utilities ; 8/3/2016 5:14pm
- ;;7.0;OUTPATIENT PHARMACY;**467,508**;DEC 1997;Build 295
+ ;;7.0;OUTPATIENT PHARMACY;**467,508,581**;DEC 1997;Build 126
  ;
  Q
 MSG(GBL,HF) ;
@@ -22,8 +22,8 @@ HDR(GBL,IEN) ;
  S FRQUAL=$G(PSDAT(F,IENS,22.4,"I"))
  S FRVAL=$G(PSDAT(F,IENS,22.3,"E"))
  S INST=DUZ(2)
- ; message ID needs to be unique from vista - Site#.DUZ.erxIEN.date.time??
- S MID=INST_"."_DUZ_"."_PSOIEN_"."_$$NOW^XLFDT
+ ; message ID needs to be unique from vista - Site#.erxIEN.date.time
+ S MID=INST_"."_PSOIEN_"."_$$NOW^XLFDT
  S RTMID=$G(PSDAT(F,IENS,25,"E"))
  ;
  S PON=$G(PSDAT(F,IENS,.09,"E"))
@@ -34,10 +34,8 @@ HDR(GBL,IEN) ;
  S SSECID=$G(PSDAT(F,IENS,24.5,"E"))
  ; leaving this in place for now CH wanted the tertiary ID to be TECHNATOMY. I suspect this will
  ; need to be something different in the long run
- ;S STERTID=$G(PSDAT(F,IENS,24.6,"E"))
  S STERTID="TECHNATOMY"
  S RSECID=$G(PSDAT(F,IENS,24.3,"E"))
- ;S RTERTID=$G(PSDAT(F,IENS,24.4,"E"))
  S RTERTID="ERXPAD"
  D C S @GBL@(CNT,0)="<Header><To Qualifier="""_TOQUAL_""">"_TOVAL_"</To>"
  D C S @GBL@(CNT,0)="<From Qualifier="""_FRQUAL_""">"_FRVAL_"</From>"
@@ -45,9 +43,7 @@ HDR(GBL,IEN) ;
  ; relatesToMessageID is the CH messageID - FIELD 25
  I $L(RTMID) D C S @GBL@(CNT,0)="<RelatesToMessageID>"_RTMID_"</RelatesToMessageID>"
  D C S @GBL@(CNT,0)="<SentTime>"_$$EXTIME^PSOERXO1()_"</SentTime>"
- ; bwf - LOOK AT THE SECURITY SECTION AGAIN
  D C S @GBL@(CNT,0)="<Security>"
- ; bwf -  missing UsernameToken - consider as part of v3
  D C S @GBL@(CNT,0)="<Sender>"
  ; for now we are not using secondary identifications, this will stay in place for future activation.
  ;I $L(SSECID) D C S @GBL@(CNT,0)="<SecondaryIdentification>"_SSECID_"</SecondaryIdentification>"

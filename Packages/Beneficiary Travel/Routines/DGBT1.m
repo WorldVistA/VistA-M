@@ -1,5 +1,5 @@
-DGBT1 ;ALB/SCK/BLD - BENEFICIARY TRAVEL DISPLAY SCREEN 1;10/31/05
- ;;1.0;Beneficiary Travel;**11,20,24,30**;September 25, 2001;Build 4
+DGBT1 ;ALB/SCK/BLD - BENEFICIARY TRAVEL DISPLAY SCREEN 1 ; 10/31/05
+ ;;1.0;Beneficiary Travel;**11,20,24,30,39**;September 25, 2001;Build 6
  Q
 SCREEN ;  clear screen and write headers
  N TOTRIPS,ONEWAY,RT,MONTHDED,WAIVER,WTYPE,TTRIPS,TDED,TFIEN,DGBTOTHER
@@ -8,8 +8,12 @@ SCREEN ;  clear screen and write headers
  W @IOF
  W !?18,"Beneficiary Travel Claim Information <Screen 1>"
  W !!?2,"Claim Date: ",DGBTDTE
- D PID^VADPT6 W !!?8,"Name: ",VADM(1),?40,"PT ID: ",VA("PID"),?64,"DOB: ",$P(VADM(3),"^",2)
- I '$G(CHZFLG)!('$D(^DGBT(392,DGBTDT,"D"))) W !!?5,"Address: ",VAPA(1) W:VAPA(2)]"" !?14,VAPA(2) W:VAPA(3)]"" !?14,VAPA(3) W !?14,VAPA(4),$S(VAPA(4)]"":", "_$P(VAPA(5),"^",2)_"  "_$P(VAPA(11),U,2),1:"UNSPECIFIED")
+ D PID^VADPT6,RESADDR^DGBTUTL1(.DGBTADDR) W !!?8,"Name: ",VADM(1),?40,"PT ID: ",VA("PID"),?64,"DOB: ",$P(VADM(3),"^",2)
+ I '$G(CHZFLG)!('$D(^DGBT(392,DGBTDT,"D"))) D  ;*39 - updated to use residential address
+ .W !!?5,"Address: ",DGBTADDR(1)
+ .W:DGBTADDR(2)]"" !?14,DGBTADDR(2)
+ .W:DGBTADDR(3)]"" !?14,DGBTADDR(3)
+ .W !?14,DGBTADDR(4),$S(DGBTADDR(4)]"":", "_$P(DGBTADDR(5),"^",2)_"  "_$P(DGBTADDR(6),"^",2),1:"UNSPECIFIED")
  I $G(CHZFLG),$D(^DGBT(392,DGBTDT,"D")) D
  .N CLMADD,CLMST
  .S CLMADD=^DGBT(392,DGBTDT,"D")

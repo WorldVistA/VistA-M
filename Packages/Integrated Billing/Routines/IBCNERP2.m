@@ -1,5 +1,5 @@
-IBCNERP2 ;DAOU/BHS - IBCNE eIV RESPONSE REPORT COMPILE ;03-JUN-2002
- ;;2.0;INTEGRATED BILLING;**184,271,416,528,659**;21-MAR-94;Build 16
+IBCNERP2 ;DAOU/BHS - IBCNE eIV RESPONSE REPORT COMPILE ; 03-JUN-2002
+ ;;2.0;INTEGRATED BILLING;**184,271,416,528,659,702**;21-MAR-94;Build 53
  ;;Per VA Directive 6402, this routine should not be modified.
  ;
  ; Input vars from IBCNERP1:
@@ -97,15 +97,21 @@ EN(IBCNERTN,IBCNESPC,IBOUT) ; Entry
  ..... S DONTINC=1
  ..... S TQN=$P($G(^IBCN(365,IBPTR,0)),U,5) Q:TQN=""  ; TQ ien (#365.1)
  ..... S NODE1=$G(^IBCN(365,IBPTR,1))
- ..... I $P($G(^IBCN(365.1,TQN,0)),U,11)="V" Q     ; If verification quit
- ..... I IPRF=1,($P(NODE1,U,12)="")!($P(NODE1,U,12)<$G(IBEXP)) Q
+ ..... ; IB*702/DTG start only accept verified and remove policy exp date
+ ..... ;I $P($G(^IBCN(365.1,TQN,0)),U,11)="V" Q     ; If verification quit
+ ..... I $P($G(^IBCN(365.1,TQN,0)),U,11)'="V" Q
+ ..... ; I IPRF=1,($P(NODE1,U,12)="")!($P(NODE1,U,12)<$G(IBEXP)) Q
+ ..... ; IB*702/DTG end only accept verified and remove policy exp date
  ..... S FRST=$O(^IBCN(365,IBPTR,2,0))
  ..... I FRST="" Q
  ..... S PCD=$P($G(^IBCN(365,IBPTR,2,FRST,0)),U,6)
  ..... I PCD]"",PCD'="eIV Eligibility Determination" Q
  ..... S EBIC=$$GET1^DIQ(365.02,FRST_","_IBPTR_",","ELIGIBILITY/BENEFIT INFO:CODE")
  ..... I PCD]"",IPRF=1,EBIC'=6 Q
- ..... I PCD]"",IPRF=2,EBIC=6!(EBIC=1) Q
+ ..... ; IB*702/DTG start ambiguous
+ ..... ;I PCD]"",IPRF=2,EBIC=6!(EBIC=1) Q
+ ..... I PCD]"",IPRF=2,EBIC'="V" Q
+ ..... ; IB*702/DTG end ambiguous
  ..... I $P(NODE1,U,14)]"" Q  ; Error Condition
  ..... I $P(NODE1,U,15)]"" Q  ; Error Action
  ..... I $P($G(^IBCN(365,IBPTR,4)),U)]"" Q  ; Error Text

@@ -1,0 +1,13 @@
+LHSPST1 ;ALB/BNT - LIGHTHOUSE INITIAL DEPLOYMENT POST INSTALL ;23-FEB-2020
+ ;;1.0;LIGHTHOUSE;****;23-FEB-2020;Build 9
+ ;;Per VA Directive 6402, this routine should not be modified.
+ ;
+ ;
+POST ; Add the Lighthouse Proxy Account
+ N IEN200
+ D MES^XPDUTL("Adding entry 'LHS,APPLICATION PROXY' to the New Person file (#200)")
+ S IEN200=$$CREATE^XUSAP("LHS,APPLICATION PROXY","","LHS RPC CONTEXT")
+ I +IEN200=0 D MES^XPDUTL("........'LHS,APPLICATION PROXY' already exists.")
+ I +IEN200>0 D MES^XPDUTL("........'LHS,APPLICATION PROXY' added.")
+ I IEN200<0 D MES^XPDUTL("........'ERROR: LHS,APPLICATION PROXY' NOT added.")
+ Q

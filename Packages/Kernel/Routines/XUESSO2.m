@@ -1,5 +1,5 @@
-XUESSO2 ;ISD/HGW Enhanced Single Sign-On Utilities ;11/21/2019  09:45
- ;;8.0;KERNEL;**655,659,630,701**;Jul 10, 1995;Build 11
+XUESSO2 ;ISD/HGW - Enhanced Single Sign-On Utilities ; Apr 19, 2022@14:57
+ ;;8.0;KERNEL;**655,659,630,701,731,771**;Jul 10, 1995;Build 8
  ;Per VA Directive 6402, this routine should not be modified.
  ;
  ; This utility will identify a VistA user for auditing and HIPAA requirements.
@@ -67,10 +67,10 @@ TALL(XATR) ;Function. Find an existing user.
  ;See if match SECID, to be assigned by Identification and Access Management (IAM) services.
  I $L(SECID)>0 D  Q:ERRMSG'="" ERRMSG
  . S Y=$$SECMATCH(SECID) Q:Y<1
- . I NPI'="" D  Q:ERRMSG'=""
- . . I NPI'=$P($G(^VA(200,Y,"NPI")),U) S ERRMSG="-1^NPI mismatch for user ID'd by SecID" Q
- . I SSN'="" D  Q:ERRMSG'=""
- . . I SSN'=$P($G(^VA(200,Y,1)),U,9) S ERRMSG="-1^SSN mismatch for user ID'd by SecID" Q
+ . ;I NPI'="" D  Q:ERRMSG'=""
+ . ;. I NPI'=$P($G(^VA(200,Y,"NPI")),U) S ERRMSG="-1^NPI mismatch for user ID'd by SecID" Q
+ . ;I SSN'="" D  Q:ERRMSG'=""
+ . ;. I SSN'=$P($G(^VA(200,Y,1)),U,9) S ERRMSG="-1^SSN mismatch for user ID'd by SecID" Q
  . S NEWDUZ=Y
  . S ERRMSG=$$UPDU(.XATR,NEWDUZ) ; Update fields if changes are needed
  . Q
@@ -78,10 +78,10 @@ TALL(XATR) ;Function. Find an existing user.
  ;See if match NPI
  I $L(NPI)>0 D  Q:ERRMSG'="" ERRMSG
  . S Y=+$O(^VA(200,"ANPI",NPI,0)) Q:Y<1
- . I SECID'="" D  Q:ERRMSG'=""
- . . I $$SECMATCH(SECID)<1 S ERRMSG="-1^SecID mismatch for user ID'd by NPI" Q
- . I SSN'="" D  Q:ERRMSG'=""
- . . I SSN'=$P($G(^VA(200,Y,1)),U,9) S ERRMSG="-1^SSN mismatch for user ID'd by NPI" Q
+ . ;I SECID'="" D  Q:ERRMSG'=""
+ . ;. I $$SECMATCH(SECID)<1 S ERRMSG="-1^SecID mismatch for user ID'd by NPI" Q
+ . ;I SSN'="" D  Q:ERRMSG'=""
+ . ;. I SSN'=$P($G(^VA(200,Y,1)),U,9) S ERRMSG="-1^SSN mismatch for user ID'd by NPI" Q
  . S NEWDUZ=Y
  . S ERRMSG=$$UPDU(.XATR,NEWDUZ) ; Update fields if changes are needed
  . Q
@@ -89,22 +89,22 @@ TALL(XATR) ;Function. Find an existing user.
  ;See if match SSN
  I $L(SSN)>0 D  Q:ERRMSG'="" ERRMSG
  . S Y=+$O(^VA(200,"SSN",SSN,0)) Q:Y<1
- . I SECID'="" D  Q:ERRMSG'=""
- . . I $$SECMATCH(SECID)<1 S ERRMSG="-1^SecID mismatch for user ID'd by SSN" Q
- . I NPI'="" D  Q:ERRMSG'=""
- . . I NPI'=$P($G(^VA(200,Y,"NPI")),U) S ERRMSG="-1^NPI mismatch for user ID'd by SSN" Q
+ . ;I SECID'="" D  Q:ERRMSG'=""
+ . ;. I $$SECMATCH(SECID)<1 S ERRMSG="-1^SecID mismatch for user ID'd by SSN" Q
+ . ;I NPI'="" D  Q:ERRMSG'=""
+ . ;. I NPI'=$P($G(^VA(200,Y,"NPI")),U) S ERRMSG="-1^NPI mismatch for user ID'd by SSN" Q
  . S NEWDUZ=Y
  . S ERRMSG=$$UPDU(.XATR,NEWDUZ) ; Update fields if changes are needed
  . Q
  I NEWDUZ>0 Q NEWDUZ ;Quit here if we found a match on SSN
  ;See if match OID+UID ("AOIUID" cross-reference).
  S Y=$$AOIUID(OID,UID) I Y>0 D  Q:ERRMSG'="" ERRMSG
- . I SECID'="" D  Q:ERRMSG'=""
- . . I $$SECMATCH(SECID)<1 S ERRMSG="-1^SecID mismatch for user ID'd by OID+UID" Q
- . I NPI'="" D  Q:ERRMSG'=""
- . . I NPI'=$P($G(^VA(200,Y,"NPI")),U) S ERRMSG="-1^NPI mismatch for user ID'd by OID+UID" Q
- . I SSN'="" D  Q:ERRMSG'=""
- . . I SSN'=$P($G(^VA(200,Y,1)),U,9) S ERRMSG="-1^SSN mismatch for user ID'd by OID+UID" Q
+ . ;I SECID'="" D  Q:ERRMSG'=""
+ . ;. I $$SECMATCH(SECID)<1 S ERRMSG="-1^SecID mismatch for user ID'd by OID+UID" Q
+ . ;I NPI'="" D  Q:ERRMSG'=""
+ . ;. I NPI'=$P($G(^VA(200,Y,"NPI")),U) S ERRMSG="-1^NPI mismatch for user ID'd by OID+UID" Q
+ . ;I SSN'="" D  Q:ERRMSG'=""
+ . ;. I SSN'=$P($G(^VA(200,Y,1)),U,9) S ERRMSG="-1^SSN mismatch for user ID'd by OID+UID" Q
  . S NEWDUZ=Y
  . S ERRMSG=$$UPDU(.XATR,NEWDUZ) ; Update fields if changes are needed
  . Q
@@ -139,6 +139,7 @@ ADDUSER(XATR) ;Function. Add user using minimum attributes for user identificati
  S ERRMSG=$$UPDU(.XATR,NEWDUZ) ;Then update the remaining fields
  I +ERRMSG<0 D CLEAN(NEWDUZ) Q ERRMSG ;Delete the added user if update fails (incomplete record)
  I +NEWDUZ<1 Q "-1^Create or update of user record failed"
+ I ($G(DUZ("REMAPP"))'="") D SETREMAP(NEWDUZ,$P(DUZ("REMAPP"),"^"))
  Q NEWDUZ  ;Every thing OK
  ;
 SECMATCH(SECID) ;Function. Find match for SECID.
@@ -146,7 +147,7 @@ SECMATCH(SECID) ;Function. Find match for SECID.
  I $G(SECID)="" Q ""
  S Y=0,Z=0
  F  D  Q:Y=""
- . S Y=$O(^VA(200,"ASECID",$E(SECID,1,30),Y))
+ . S Y=$O(^VA(200,"ASECID",$E(SECID,1,40),Y)) ; p771
  . I Y>0 D  Q
  . . I SECID=$P($G(^VA(200,Y,205)),U,1) S Z=Y,Y=""
  Q Z
@@ -287,4 +288,11 @@ AUTH() ;Function. Check if calling routine is authorized
  S X=$ST($ST-2,"PLACE"),Z=$P(X,"^",2),X="^"_$P(Z," ")
  I $E(X,1,3)="^XU" Q 1          ;Authorized Kernel access
  Q 0
+ ;
+SETREMAP(USER,REMAPP) ; user created by remote application
+ N IEN,FDR
+ Q:$G(USER)<1
+ S IEN=USER_","
+ S FDR(200,IEN,202.06)=$G(REMAPP) K IEN D UPDATE^DIE("","FDR","IEN")
+ Q
  ;

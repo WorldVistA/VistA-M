@@ -1,120 +1,118 @@
-IBDEI19T ; ; 04-FEB-2020
- ;;3.0;IB ENCOUNTER FORM IMP/EXP;;FEB 04, 2020
+IBDEI19T ; ; 01-FEB-2022
+ ;;3.0;IB ENCOUNTER FORM IMP/EXP;;FEB 01, 2022
  Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,999) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
- ;;^UTILITY(U,$J,358.3,20332,0)
- ;;=S32.111S^^93^1001^20
- ;;^UTILITY(U,$J,358.3,20332,1,0)
+ ;;^UTILITY(U,$J,358.3,20558,1,4,0)
+ ;;=4^S82.54XS
+ ;;^UTILITY(U,$J,358.3,20558,2)
+ ;;=^5042278
+ ;;^UTILITY(U,$J,358.3,20559,0)
+ ;;=S82.114S^^67^888^61
+ ;;^UTILITY(U,$J,358.3,20559,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,20332,1,3,0)
- ;;=3^Minimally displaced Zone I fracture of sacrum, sequela
- ;;^UTILITY(U,$J,358.3,20332,1,4,0)
- ;;=4^S32.111S
- ;;^UTILITY(U,$J,358.3,20332,2)
- ;;=^5024538
- ;;^UTILITY(U,$J,358.3,20333,0)
- ;;=S32.121S^^93^1001^21
- ;;^UTILITY(U,$J,358.3,20333,1,0)
+ ;;^UTILITY(U,$J,358.3,20559,1,3,0)
+ ;;=3^Nondisp fx of right tibial spine, sequela      
+ ;;^UTILITY(U,$J,358.3,20559,1,4,0)
+ ;;=4^S82.114S
+ ;;^UTILITY(U,$J,358.3,20559,2)
+ ;;=^5040646
+ ;;^UTILITY(U,$J,358.3,20560,0)
+ ;;=S82.154S^^67^888^62
+ ;;^UTILITY(U,$J,358.3,20560,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,20333,1,3,0)
- ;;=3^Minimally displaced Zone II fracture of sacrum, sequela
- ;;^UTILITY(U,$J,358.3,20333,1,4,0)
- ;;=4^S32.121S
- ;;^UTILITY(U,$J,358.3,20333,2)
- ;;=^5024562
- ;;^UTILITY(U,$J,358.3,20334,0)
- ;;=S32.131S^^93^1001^22
- ;;^UTILITY(U,$J,358.3,20334,1,0)
+ ;;^UTILITY(U,$J,358.3,20560,1,3,0)
+ ;;=3^Nondisp fx of right tibial tuberosity, sequela  
+ ;;^UTILITY(U,$J,358.3,20560,1,4,0)
+ ;;=4^S82.154S
+ ;;^UTILITY(U,$J,358.3,20560,2)
+ ;;=^5041030
+ ;;^UTILITY(U,$J,358.3,20561,0)
+ ;;=S82.235S^^67^888^56
+ ;;^UTILITY(U,$J,358.3,20561,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,20334,1,3,0)
- ;;=3^Minimally displaced Zone III fracture of sacrum, sequela
- ;;^UTILITY(U,$J,358.3,20334,1,4,0)
- ;;=4^S32.131S
- ;;^UTILITY(U,$J,358.3,20334,2)
- ;;=^5024586
- ;;^UTILITY(U,$J,358.3,20335,0)
- ;;=S32.110S^^93^1001^24
- ;;^UTILITY(U,$J,358.3,20335,1,0)
+ ;;^UTILITY(U,$J,358.3,20561,1,3,0)
+ ;;=3^Nondisp fx of oblique shaft of left tibia, sequela
+ ;;^UTILITY(U,$J,358.3,20561,1,4,0)
+ ;;=4^S82.235S
+ ;;^UTILITY(U,$J,358.3,20561,2)
+ ;;=^5041314
+ ;;^UTILITY(U,$J,358.3,20562,0)
+ ;;=S82.234S^^67^888^58
+ ;;^UTILITY(U,$J,358.3,20562,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,20335,1,3,0)
- ;;=3^Nondisp Zone I fracture of sacrum, sequela
- ;;^UTILITY(U,$J,358.3,20335,1,4,0)
- ;;=4^S32.110S
- ;;^UTILITY(U,$J,358.3,20335,2)
- ;;=^5024532
- ;;^UTILITY(U,$J,358.3,20336,0)
- ;;=S32.120S^^93^1001^25
- ;;^UTILITY(U,$J,358.3,20336,1,0)
+ ;;^UTILITY(U,$J,358.3,20562,1,3,0)
+ ;;=3^Nondisp fx of oblique shaft of right tibia, sequela  
+ ;;^UTILITY(U,$J,358.3,20562,1,4,0)
+ ;;=4^S82.234S
+ ;;^UTILITY(U,$J,358.3,20562,2)
+ ;;=^5041298
+ ;;^UTILITY(U,$J,358.3,20563,0)
+ ;;=S82.875S^^67^888^59
+ ;;^UTILITY(U,$J,358.3,20563,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,20336,1,3,0)
- ;;=3^Nondisp Zone II fracture of sacrum, sequela
- ;;^UTILITY(U,$J,358.3,20336,1,4,0)
- ;;=4^S32.120S
- ;;^UTILITY(U,$J,358.3,20336,2)
- ;;=^5024556
- ;;^UTILITY(U,$J,358.3,20337,0)
- ;;=S32.130S^^93^1001^26
- ;;^UTILITY(U,$J,358.3,20337,1,0)
+ ;;^UTILITY(U,$J,358.3,20563,1,3,0)
+ ;;=3^Nondisp fx of pilon of left tibia, sequela        
+ ;;^UTILITY(U,$J,358.3,20563,1,4,0)
+ ;;=4^S82.875S
+ ;;^UTILITY(U,$J,358.3,20563,2)
+ ;;=^5042846
+ ;;^UTILITY(U,$J,358.3,20564,0)
+ ;;=S82.874S^^67^888^60
+ ;;^UTILITY(U,$J,358.3,20564,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,20337,1,3,0)
- ;;=3^Nondisp Zone III fracture of sacrum, sequela
- ;;^UTILITY(U,$J,358.3,20337,1,4,0)
- ;;=4^S32.130S
- ;;^UTILITY(U,$J,358.3,20337,2)
- ;;=^5024580
- ;;^UTILITY(U,$J,358.3,20338,0)
- ;;=S32.112S^^93^1001^30
- ;;^UTILITY(U,$J,358.3,20338,1,0)
+ ;;^UTILITY(U,$J,358.3,20564,1,3,0)
+ ;;=3^Nondisp fx of pilon of right tibia, sequela       
+ ;;^UTILITY(U,$J,358.3,20564,1,4,0)
+ ;;=4^S82.874S
+ ;;^UTILITY(U,$J,358.3,20564,2)
+ ;;=^5042830
+ ;;^UTILITY(U,$J,358.3,20565,0)
+ ;;=S82.265S^^67^888^64
+ ;;^UTILITY(U,$J,358.3,20565,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,20338,1,3,0)
- ;;=3^Severely displaced Zone I fracture of sacrum, sequela
- ;;^UTILITY(U,$J,358.3,20338,1,4,0)
- ;;=4^S32.112S
- ;;^UTILITY(U,$J,358.3,20338,2)
- ;;=^5024544
- ;;^UTILITY(U,$J,358.3,20339,0)
- ;;=S32.122S^^93^1001^31
- ;;^UTILITY(U,$J,358.3,20339,1,0)
+ ;;^UTILITY(U,$J,358.3,20565,1,3,0)
+ ;;=3^Nondisp fx of segmental shaft of left tibia, sequela  
+ ;;^UTILITY(U,$J,358.3,20565,1,4,0)
+ ;;=4^S82.265S
+ ;;^UTILITY(U,$J,358.3,20565,2)
+ ;;=^5041602
+ ;;^UTILITY(U,$J,358.3,20566,0)
+ ;;=S82.264S^^67^888^65
+ ;;^UTILITY(U,$J,358.3,20566,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,20339,1,3,0)
- ;;=3^Severely displaced Zone II fracture of sacrum, sequela
- ;;^UTILITY(U,$J,358.3,20339,1,4,0)
- ;;=4^S32.122S
- ;;^UTILITY(U,$J,358.3,20339,2)
- ;;=^5024568
- ;;^UTILITY(U,$J,358.3,20340,0)
- ;;=S32.132S^^93^1001^32
- ;;^UTILITY(U,$J,358.3,20340,1,0)
+ ;;^UTILITY(U,$J,358.3,20566,1,3,0)
+ ;;=3^Nondisp fx of segmental shaft of right tibia, sequela 
+ ;;^UTILITY(U,$J,358.3,20566,1,4,0)
+ ;;=4^S82.264S
+ ;;^UTILITY(U,$J,358.3,20566,2)
+ ;;=^5041586
+ ;;^UTILITY(U,$J,358.3,20567,0)
+ ;;=S82.244S^^67^888^70
+ ;;^UTILITY(U,$J,358.3,20567,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,20340,1,3,0)
- ;;=3^Severely displaced Zone III fracture of sacrum, sequela
- ;;^UTILITY(U,$J,358.3,20340,1,4,0)
- ;;=4^S32.132S
- ;;^UTILITY(U,$J,358.3,20340,2)
- ;;=^5024592
- ;;^UTILITY(U,$J,358.3,20341,0)
- ;;=S32.14XS^^93^1001^47
- ;;^UTILITY(U,$J,358.3,20341,1,0)
+ ;;^UTILITY(U,$J,358.3,20567,1,3,0)
+ ;;=3^Nondisp fx of spiral shaft of right tibia, sequela  
+ ;;^UTILITY(U,$J,358.3,20567,1,4,0)
+ ;;=4^S82.244S
+ ;;^UTILITY(U,$J,358.3,20567,2)
+ ;;=^5041394
+ ;;^UTILITY(U,$J,358.3,20568,0)
+ ;;=S82.245S^^67^888^68
+ ;;^UTILITY(U,$J,358.3,20568,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,20341,1,3,0)
- ;;=3^Type 1 fracture of sacrum, sequela
- ;;^UTILITY(U,$J,358.3,20341,1,4,0)
- ;;=4^S32.14XS
- ;;^UTILITY(U,$J,358.3,20341,2)
- ;;=^5024604
- ;;^UTILITY(U,$J,358.3,20342,0)
- ;;=S32.15XS^^93^1001^48
- ;;^UTILITY(U,$J,358.3,20342,1,0)
+ ;;^UTILITY(U,$J,358.3,20568,1,3,0)
+ ;;=3^Nondisp fx of spiral shaft of left tibia, sequela   
+ ;;^UTILITY(U,$J,358.3,20568,1,4,0)
+ ;;=4^S82.245S
+ ;;^UTILITY(U,$J,358.3,20568,2)
+ ;;=^5041410
+ ;;^UTILITY(U,$J,358.3,20569,0)
+ ;;=S82.225S^^67^888^71
+ ;;^UTILITY(U,$J,358.3,20569,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,20342,1,3,0)
- ;;=3^Type 2 fracture of sacrum, sequela
- ;;^UTILITY(U,$J,358.3,20342,1,4,0)
- ;;=4^S32.15XS
- ;;^UTILITY(U,$J,358.3,20342,2)
- ;;=^5024610
- ;;^UTILITY(U,$J,358.3,20343,0)
- ;;=S32.16XS^^93^1001^49
- ;;^UTILITY(U,$J,358.3,20343,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,20343,1,3,0)
- ;;=3^Type 3 fracture of sacrum, sequela
+ ;;^UTILITY(U,$J,358.3,20569,1,3,0)
+ ;;=3^Nondisp fx of transverse shaft of left tibia, sequela  
+ ;;^UTILITY(U,$J,358.3,20569,1,4,0)
+ ;;=4^S82.225S
+ ;;^UTILITY(U,$J,358.3,20569,2)
+ ;;=^5041218

@@ -1,10 +1,8 @@
 YTWJSON ;SLC/KCM - Generate JSON Instrument Spec ; 7/20/2018
- ;;5.01;MENTAL HEALTH;**130**;Dec 30, 1994;Build 62
+ ;;5.01;MENTAL HEALTH;**130,141,202**;Dec 30, 1994;Build 47
  ;
- ; External Reference    ICR#
- ; ------------------   -----
- ; %ZOSV                10097
- ; %ZTER                 1621
+ ; Reference to %ZOSV in ICR #10097
+ ; Reference to %ZTER in ICR #1621
  ;
 GETSPEC(JSON,TEST) ; Get the JSON admin spec for instrument TEST
  I TEST'=+TEST S TEST=$O(^YTT(601.71,"B",TEST,0)) Q:'TEST
@@ -25,6 +23,7 @@ ERRHND ; Handle errors & clear stack
  Q
 CONTENT(TEST,TREE) ; build TEST spec as TREE for JSON conversion
  S TREE("name")=$P(^YTT(601.71,TEST,0),U)
+ S TREE("printTitle")=$P(^YTT(601.71,TEST,0),U,3)
  ; TODO: replace Copyright (c) with \u00A9 ??
  S TREE("copyright")=$$HTMLESC^YTWJSONU($G(^YTT(601.71,TEST,7)))
  S TREE("restartDays")=$P($G(^YTT(601.71,TEST,8)),U,7)
@@ -40,18 +39,14 @@ CONTENT(TEST,TREE) ; build TEST spec as TREE for JSON conversion
  . S CTNT=0 F  S CTNT=$O(^YTT(601.76,"AD",TEST,SEQ,CTNT)) Q:'CTNT  D
  . . S X0=^YTT(601.76,CTNT,0),QSTN=$P(X0,U,4),DISP=$P(X0,U,8)
  . . S X2=^YTT(601.72,QSTN,2),RTYP=$P(X2,U,2),CTYP=$P(X2,U,3)
- . . ; TEMPORARY for patch 130, if section header and intro text are
- . . ; both there, prepend section header to intro
- . . I $P(X2,U)'=LSTINTRO S LSTINTRO=$P(X2,U) D
+ . . ; if section header and intro are both present, prepend section header
+ . . I +$P(X2,U)'=LSTINTRO S LSTINTRO=+$P(X2,U) D
  . . . N SECTHDR S SECTHDR=""
  . . . I $D(SECTIONS(QSTN)) S SECTHDR=$P(SECTIONS(QSTN),U,5)
  . . . I $L(SECTHDR) S SECTHDR=SECTHDR_"<br />"
- . . . D ADDINTRO($P(X2,U),$P(X0,U,7),SECTHDR)
+ . . . D ADDINTRO(+$P(X2,U),$P(X0,U,7),SECTHDR)
  . . E  D
  . . . I $D(SECTIONS(QSTN)) D ADDSECT(SECTIONS(QSTN))
- . . ; code was:
- . . ; I $D(SECTIONS(QSTN)) D ADDSECT(SECTIONS(QSTN))
- . . ; I $P(X2,U)'=LSTINTRO S LSTINTRO=$P(X2,U) D ADDINTRO($P(X2,U),$P(X0,U,7))
  . . D ADDQSTN(QSTN,$P(X0,U,5),$P(X0,U,6))
  . . ;
  . . ; add additional properties based on response type
@@ -141,9 +136,6 @@ CHLOOP(CTYP,CALL) ; loop through choices for a choice type
  S CIDX=0,CIDF=$O(^YTT(601.89,"B",CTYP,0)) ; choice identifier ien
  S CSEQ=0 F  S CSEQ=$O(^YTT(601.751,"AC",CTYP,CSEQ)) Q:'CSEQ  D
  . S CHID=0 F  S CHID=$O(^YTT(601.751,"AC",CTYP,CSEQ,CHID)) Q:'CHID  D
- . . ; removed the loop below, since it doesn't seem to buy us anything
- . . ; and it was causing some instruments to have duplicate choices
- . . ; S CIEN=0 F  S CIEN=$O(^YTT(601.751,"AC",CTYP,CSEQ,CHID,CIEN)) Q:'CIEN  D
  . . S CIDX=CIDX+1
  . . I CALL=1 D ADDCH(CIDX,CIDF,CHID) Q   ; radio buttons
  . . I CALL=7 D ADDLGND(CIDX,CHID) Q      ; range control
@@ -151,18 +143,16 @@ CHLOOP(CTYP,CALL) ; loop through choices for a choice type
  Q
 SECTIONS(TEST,SECTIONS) ; build list of sections for TEST
  ; SECTIONS(questionIEN)=ID^TEST^Question^TabName^Header^Format
- N IEN,X0,SCNT
- S SCNT=0
+ N IEN,X0
  S IEN=0 F  S IEN=$O(^YTT(601.81,"AC",TEST,IEN)) Q:'IEN  D
  . S X0=^YTT(601.81,IEN,0)
- . S SECTIONS($P(X0,U,3))=X0,SCNT=SCNT+1
- ;I SCNT<2 K SECTIONS    ; only need sections if there are more than one
+ . S SECTIONS($P(X0,U,3))=X0
  Q
 ADDSECT(X0) ; add section node
  ; expects TREE, CTNTIDX from CONTENT
  ; X0: ID^TEST^Question^TabName^Header^Format
  S CTNTIDX=CTNTIDX+1
- ; TEMPORARY for 130, treat Section Header as Intro
+ ; treat Section Header as Intro
  I '$L($P(X0,U,5)) QUIT
  S TREE("content",CTNTIDX,"id")="s"_+X0
  S TREE("content",CTNTIDX,"type")="IntroText"
@@ -181,7 +171,7 @@ ADDINTRO(IEN,FORMAT,PREPEND) ; add intro node
  S TREE("content",CTNTIDX,"id")="i"_+^YTT(601.73,IEN,0)
  S TREE("content",CTNTIDX,"type")="IntroText"
  D BLDTXT^YTWJSONU($NA(^YTT(601.73,IEN,1)),.TEXT)
- S TEXT=PREPEND_TEXT ; TEMPORARY fix of section header
+ S TEXT=PREPEND_$G(TEXT) ; TEMPORARY fix of section header
  M TREE("content",CTNTIDX,"text")=TEXT
  Q
 ADDQSTN(IEN,DESIG,FORMAT) ; add question node

@@ -1,5 +1,5 @@
 XUSER ;ISP/RFR - A common set of user functions ;06/09/15  10:51
- ;;8.0;KERNEL;**75,97,99,150,226,267,288,330,370,373,580,609,642**;Jul 10, 1995;Build 6
+ ;;8.0;KERNEL;**75,97,99,150,226,267,288,330,370,373,580,609,642,739,751**;Jul 10, 1995;Build 4
  ;Per VA Directive 6402, this routine should not be modified.
  ;Covered under DBIA #2343
  Q
@@ -66,18 +66,20 @@ PROVIDER(XUDA,XUF) ;See if user qualifies as a CPRS provider
  ;Default:
  Q "0^NOT A PROVIDER"
  ;
-DEA(FG,IEN) ;sr. ef. Return users DEA # or Facility DEA_"-"_user VA# or null
+DEA(FG,IEN,DATE) ;sr. ef. Return users DEA # or Facility DEA_"-"_user VA# or null
  ;ICR #2343
  ;If FG is 1: DEA# or VA#
- ;Fee Basis, C&A providers only return DEA# or null - p609/REM
- ;Add XDT=DEA expiration date. If XDT unpopulated, its expired. - p609/REM
+ ;Fee Basis, C&A providers only return DEA# or null -p609
+ ;Add XDT=DEA expiration date. If XDT unpopulated, its expired. -p609
+ ;DATE is the date to be checked against the DEA# Expiration Date (Default: Today)-p739
  N DEA,FB,IN,INN,N,N1,XDT,VA
  S IEN=$G(IEN,DUZ),INN=+DUZ(2)
+ S:'$G(DATE) DATE=DT ;p739
  S N=$G(^VA(200,IEN,"PS")),N1=$G(^VA(200,IEN,"QAR"))
  S DEA=$P(N,U,2),VA=$P(N,U,3),XDT=$P(N1,U,9)
  I $P(N,U,6)=4!($P(N,U,6)=3) S FB=1 ;Fee Basis or C&A  provider -p609
  ;I $L(DEA),$S('$L($P(N1,U,9)):1,1:$P(N1,U,9)>DT) Q DEA
- I $L(DEA),$L(XDT),XDT'<DT Q DEA ;p609
+ I $L(DEA),$L(XDT),XDT'<DATE Q DEA ;p609,p739
  I $G(FB) Q "" ;p609
  I $G(FG) Q VA
  S IN=$P($G(^DIC(4,INN,"DEA")),U) ;Check signed-in Inst.
@@ -91,40 +93,44 @@ DEA(FG,IEN) ;sr. ef. Return users DEA # or Facility DEA_"-"_user VA# or null
  ;I $L(VA),$L(IN) Q IN_"-"_VA
  Q ""
  ;
-DETOX(IEN) ;Return the Detox/Maintenance ID in file 200 - p580/REM
+DETOX(IEN,DATE) ;Return the Detox/Maintenance ID in file 200 - p580,p739
  ;ICR #2343
  ;Return Detox# - valid detox# and DEA Xdate is valid
  ;Return null - if no detox or the DEA Xdate is unpopulated
  ;Return DEA Expiration Date - valid detox# but expired DEA Xdate
  ;IEN is used to lookup user in file #200
+ ;DATE is the date to be checked against the Detox# Expiration Date (Default: Today)-p739
  N DET,XDT,N,N1
+ S:'$G(DATE) DATE=DT ;p739
  S N=$G(^VA(200,IEN,"PS")),N1=$G(^VA(200,IEN,"QAR"))
  S DET=$P(N,U,11),XDT=$P(N1,U,9)
- I $L(DET),$L(XDT),XDT'<DT Q DET
- I $L(DET),$L(XDT),XDT<DT Q XDT
+ I $L(DET),$L(XDT),XDT'<DATE Q DET ;p739
+ I $L(DET),$L(XDT),XDT<DATE Q XDT ;p739
  ;I $L(DET),$S('$L($P(N1,U,9)):1,1:$P(N1,U,9)>DT) Q DTX
  Q ""
  ;
-SDEA(FG,IEN,PSDEA) ;validation for new DEA regulations p580-JC(CPRS)
+SDEA(FG,IEN,PSDEA,DATE) ;validation for new DEA regulations p580-JC(CPRS)
  ;ICR #2343
  ;Returns: DEA#, Facility DEA_"-"_user VA#, 1, 2, or 4^expiration date
  ;If FG is 1: DEA# or VA# - similar to $$DEA
  ;IEN is used to lookup user in file #200
  ;PSDEA is the DEA schedule
+ ;DATE is the date to be checked against the DEA# Expiration Date (Default: Today); p739
  N DEA,N3,I,A,NALL,E,DA,XD,N,N1,Y
+ S:'$G(DATE) DATE=DT ;p739
  S FG=$G(FG),IEN=$G(IEN),PSDEA=$G(PSDEA)
- S DEA=$$DEA(FG,IEN) I DEA="" D  Q E
+ S DEA=$$DEA(FG,IEN,DATE) I DEA="" D  Q E ;p736
  . S E=1
  . S N=$G(^VA(200,IEN,"PS")),N1=$G(^VA(200,IEN,"QAR"))
  . S DA=$P(N,U,2),XD=$P(N1,U,9)
- . I $L(DA),$L(XD),XD<DT S Y=XD X ^DD("DD") S E=4_"^"_Y
+ . I $L(DA),$L(XD),XD<DATE S Y=XD X ^DD("DD") S E=4_"^"_Y ;p739
  I $G(PSDEA)="" Q 1
- I '$D(^VA(200,IEN,"PS3")) Q DEA
- S N3=^VA(200,IEN,"PS3")
+ ; I '$D(^VA(200,IEN,"PS3")) Q DEA  ;XU*8*751 - Remove Grandfathering
+ S N3=$G(^VA(200,IEN,"PS3")) ;XU*8*751 - Formerly Grandfathered Providers are not authorized for any schedules.
  S NALL=1 F I=1:1:6 S A(I)=$P(N3,"^",I) I A(I) S NALL=0
- I NALL D  Q 2
- . I $G(^VA(200,IEN,"PS"))="" Q
- . S $P(^("PS"),"^",2)="",$P(^("PS"),"^",3)=""
+ I NALL Q 2 ; D  Q 2                              ; XU*8*751 - No longer delete DEA# field (#53.2) and VA# field (#53.3)
+ ; . I $G(^VA(200,IEN,"PS"))="" Q                 ; from NEW PERSON (#200) when the provider is not defined for any CS 
+ ; . S $P(^("PS"),"^",2)="",$P(^("PS"),"^",3)=""  ; Federal Schedule fields (#55.1-#55.6) in NEW PERSON file
  I PSDEA=2 Q $S('A(1):2,1:DEA)
  I PSDEA="2n" Q $S('A(2):2,1:DEA)
  I PSDEA=3 Q $S('A(3):2,1:DEA)
@@ -187,7 +193,9 @@ VDEA(RETURN,IEN)  ;ISP/RFR - Verify a provider is properly configured for ePCS
  . . . . S:INDEX=$L(SCHED,U) DELIMIT=" and "
  . . . . S TEXT=$S($G(TEXT)'="":TEXT_DELIMIT,1:"")_$P(SCHED,U,INDEX)
  . . . S RETURN("Is permitted to prescribe schedule"_$S($L(SCHED,U)>1:"s",1:"")_" "_TEXT_".")=""
- I '$D(^VA(200,IEN,"PS3")) S RETURN("Is permitted to prescribe all schedules due to grandfathering.")=""
+ ;XU*8*751 - Remove Grandfathering
+ ;I '$D(^VA(200,IEN,"PS3")) S RETURN("Is permitted to prescribe all schedules due to grandfathering.")=""
+ I '$D(^VA(200,IEN,"PS3")) S RETURN("Is not permitted to prescribe any schedules.")="",RETVAL=0
  Q RETVAL
  ;
 DIV4(XUROOT,XUDUZ) ;Return the Divisions that this user is assigned to.

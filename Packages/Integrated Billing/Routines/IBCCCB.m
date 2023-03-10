@@ -1,7 +1,8 @@
 IBCCCB ;ALB/ARH - COPY BILL FOR COB ;2/13/06 10:46am
- ;;2.0;INTEGRATED BILLING;**80,106,51,151,137,182,155,323,436,432,447,547,592**;21-MAR-94;Build 58
+ ;;2.0;INTEGRATED BILLING;**80,106,51,151,137,182,155,323,436,432,447,547,592,690**;21-MAR-94;Build 10
  ;;Per VA Directive 6402, this routine should not be modified.
  ;
+ ; Reference to PAUSE^VALM1 in ICR #10116
  ; Copy bill for COB w/out cancelling, update some flds
  ; Primary->Secondary->Tertiary
 ASK ;
@@ -59,7 +60,7 @@ CHKB1 ; Entry point for Automatic/Silent COB Processing.
  I IBCAN>1 D NOPTF^IBCB2 I 'IBAC1 D NOPTF1^IBCB2 G ASK1
  ;
  F IBI=0,"S","U1","M","MP","M1" S IB(IBI)=$G(^DGCR(399,IBIFN,IBI))
- I IB(0)="" S IBER="Invalid Bill Number" D ERROR G ASK1
+ I IB(0)="" S IBER="Invalid Bill Number" D PCERR G ASK1
  ;
  ; check to see if the bill has been cancelled
  I $P(IB("S"),U,16),$P(IB("S"),U,17) D  G ASK1
@@ -69,7 +70,7 @@ CHKB1 ; Entry point for Automatic/Silent COB Processing.
  . S WHO="UNSPECIFIED"
  . I $P(IB("S"),U,18) S WHO=$P($G(^VA(200,$P(IB("S"),U,18),0)),U,1)
  . S IBER=IBER_WHO_"."
- . D ERROR
+ . D PCERR
  . Q
  ;
  S IBCOB=$$COB^IBCEF(IBIFN),IBCOBN=$TR(IBCOB,"PSTA","12")
@@ -82,17 +83,17 @@ NEXTP ; If current bill=MEDICARE WNR and valid 'next payer', use same
  ; If next valid 'payer' is ins co or MEDICARE WNR, create new bill
  S IBCOBN=IBCOBN+1,IBNM=$S(IBCOBN=2:"Secondary Payer",IBCOBN=3:"Tertiary Payer",1:"")
  ;
- I IBNM="" S IBER=$P(IB(0),U,1)_" is a "_IBNMOLD_" bill, there is no next bill in the series." D ERROR G ASK1
+ I IBNM="" S IBER=$P(IB(0),U,1)_" is a "_IBNMOLD_" bill, there is no next bill in the series." D PCERR G ASK1
  ;
  S IBX=+$P(IB("M1"),U,(4+IBCOBN)),IBY=$G(^DGCR(399,+IBX,0)),IBCOBIL(+IBIFN)=""
  ;
  I $P(IBY,U,13)=7 S IBER="The "_$P(IBNM," ",1)_" bill "_$P(IBY,U,1)_" has been cancelled." D ERROR S IBX=""
  ;
- I +IBX,$D(IBCOBIL(+IBX)) S IBER="Next bill in series can not be determined." D ERROR G ASK1
- I +IBX S IBER=$P(IBNM," ",1)_" bill already defined for this series: "_$P(IBY,U,1) D ERROR S IBIFN=IBX G ASK1
+ I +IBX,$D(IBCOBIL(+IBX)) S IBER="Next bill in series can not be determined." D PCERR G ASK1
+ I +IBX S IBER=$P(IBNM," ",1)_" bill already defined for this series: "_$P(IBY,U,1) D PCERR S IBIFN=IBX G ASK1
  ;
- S IBINSN=$P(IB("M"),U,IBCOBN) I 'IBINSN S IBER="There is no "_IBNM_" for "_$P(IB(0),U,1)_"." D ERROR G ASK1
- S IBINS=$G(^DIC(36,+IBINSN,0)) I IBINS="" S IBER="The "_IBNM_" for "_$P(IB(0),U,1)_" is not a valid Insurance Co." D ERROR G ASK1
+ S IBINSN=$P(IB("M"),U,IBCOBN) I 'IBINSN S IBER="There is no "_IBNM_" for "_$P(IB(0),U,1)_"." D PCERR G ASK1
+ S IBINS=$G(^DIC(36,+IBINSN,0)) I IBINS="" S IBER="The "_IBNM_" for "_$P(IB(0),U,1)_" is not a valid Insurance Co." D PCERR G ASK1
  ;
  S IBMRA=0
  I $P(IBINS,U,2)="N" S IBQ=0 D  G:IBQ NEXTP
@@ -212,3 +213,10 @@ CTCOPY(IBIFN,IBMRA) ; based on the type of bill, copy without cancelling
  D CTCOPY^IBCCCB0(IBIFN,$G(IBMRA)) ;Moved due to routine size
  Q
  ;
+PCERR ; Display/pause error message for interaction - *690
+ I '$G(IBSILENT) W !,IBER D PAUSE^VALM1
+ I $G(IBSILENT) S IBERRMSG=IBER
+ S IBER=""
+ I $D(IBSECHK) S IBSECHK=1
+ Q
+ ; 

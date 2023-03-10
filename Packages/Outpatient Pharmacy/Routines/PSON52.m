@@ -1,5 +1,5 @@
-PSON52 ;BIR/DSD - files new entries in prescription file ;Jul 24, 2017@15:24
- ;;7.0;OUTPATIENT PHARMACY;**1,16,23,27,32,46,71,111,124,117,131,139,157,143,219,148,239,201,268,260,225,303,358,251,387,379,390,391,313,408,473,504,505,517,457**;DEC 1997;Build 116
+PSON52 ;BIR/DSD - files new entries in prescription file ;Jan 20, 2022@11:18:18
+ ;;7.0;OUTPATIENT PHARMACY;**1,16,23,27,32,46,71,111,124,117,131,139,157,143,219,148,239,201,268,260,225,303,358,251,387,379,390,391,313,408,473,504,505,517,457,617,562,441**;DEC 1997;Build 208
  ;External reference ^PS(55 supported by DBIA 2228
  ;External reference to PSOUL^PSSLOCK supported by DBIA 2789
  ;External reference to ^XUSEC supported by DBIA 10076
@@ -8,11 +8,13 @@ PSON52 ;BIR/DSD - files new entries in prescription file ;Jul 24, 2017@15:24
  ;External reference to $$DS^PSSDSAPI supported by DBIA 5425
 EN(PSOX) ;Entry Point
 START ;
- ;
+ D:$D(XRTL) T0^%ZOSV ; Start RT Monitor
  D INIT G:PSON52("QFLG") END D NFILE Q:$G(PSONEW("DFLG"))
  D PS55,DIK
- ;
+ S:$D(XRT0) XRTN=$T(+0) D:$D(XRT0) T1^%ZOSV ; Stop RT Monitor
  D FINISH
+ ; If parked, set PARK level, APARK xref, activity log, and remove from label queue and suspense  441 PAPI
+ I $G(PSOX("MAIL/WINDOW"))="P" D PARK^PSOPRKA(PSOX("IRXN")),RMP^PSOPRKA(PSOX("IRXN"))
  I $P(^PSRX(PSOX("IRXN"),0),"^",11)="W",$G(^("IB")) S ^PSRX("ACP",$P(^PSRX(PSOX("IRXN"),0),"^",2),$P(^(2),"^",2),0,PSOX("IRXN"))=""
 END D EOJ
  Q
@@ -43,9 +45,9 @@ DT D C^%DTC S PSOX("STOP DATE")=$P(X,".") K X
  S PSOX("STATUS")=$S($G(PSOX("STATUS"))]"":PSOX("STATUS"),$D(PSORX("VERIFY")):1,$D(PSOX("NOPSDRPH")):1,1:0)
  S PSOX("COPIES")=$S($G(PSOX("COPIES"))]"":PSOX("COPIES"),1:1)
  I $G(PSORX("PHARM"))]"" S PSOX("PHARMACIST")=PSORX("PHARM") K PSORX("PHARM")
-INITX    Q
+INITX Q
  ;
-NFILE    I $G(OR0) D  Q:$G(PSONEW("DFLG"))
+NFILE I $G(OR0) D  Q:$G(PSONEW("DFLG"))
  .D NOOR^PSONEW Q:$G(PSONEW("DFLG"))
  .I $G(PSOSIGFL)!($G(PSODRUG("OI"))'=$P(OR0,"^",8)) S PSONEW("CLERK CODE")=DUZ,PSONEW("REMARKS")=$G(PSONEW("REMARKS"))_" CPRS Order #"_$P(OR0,"^")_" Edited."
  S DIC="^PSRX(",DLAYGO=52,DIC(0)="L",X=PSOX("RX #") K DD,DO D FILE^DICN S PSOX("IRXN")=+Y K DLAYGO,X,Y,DIC,DD,DO
@@ -55,16 +57,18 @@ NFILE    I $G(OR0) D  Q:$G(PSONEW("DFLG"))
  .S ^PSRX(PSOX("IRXN"),6,I,0)=^PSRX(PSOX("IRXN"),6,I,0)_$G(PSOX("DURATION",I))_"^"_$G(PSOX("CONJUNCTION",I))_"^"_$G(PSOX("ROUTE",I))_"^"_$G(PSOX("SCHEDULE",I))_"^"_$G(PSOX("VERB",I))
  .I $G(PSOX("ODOSE",I))]"" S ^PSRX(PSOX("IRXN"),6,I,1)=PSOX("ODOSE",I)
  S ^PSRX(PSOX("IRXN"),6,0)="^52.0113^"_PSOX("ENT")_"^"_PSOX("ENT")
+ ;*441-IND
+ I $G(PSOX("IND"))]"" S ^PSRX(PSOX("IRXN"),"IND")=PSOX("IND")_$S($G(PSOX("INDF")):"^"_PSOX("INDF"),1:"") S:$G(PSOX("INDO"))]"" $P(^PSRX(PSOX("IRXN"),"IND"),"^",3)=PSOX("INDO")
  K PSOX1,PSOY
  S PSOX1="" F  S PSOX1=$O(PSON52(PSOX("IRXN"),PSOX1)) Q:PSOX1=""  S ^PSRX(PSOX("IRXN"),PSOX1)=$G(PSON52(PSOX("IRXN"),PSOX1))
- ; PSO*7*505 - quantity check - leading zeroes
+ ; PSO*7*505 - quantity check - leading zeros
  N QTYTMP
  S QTYTMP=$P(^PSRX(PSOX("IRXN"),0),U,7)
  I QTYTMP["." D
  .Q:$P(QTYTMP,".")'=""
  .;Q:$P(QTYTMP,".")=0
  .S $P(^PSRX(PSOX("IRXN"),0),U,7)=0_QTYTMP
- ; PSO*7*505 - end quantity check - leading zeroes
+ ; PSO*7*505 - end quantity check - leading zeros
  I $O(PSOX("SIG",0)) D
  .S D=0 F  S D=$O(PSOX("SIG",D)) Q:'D  S ^PSRX(PSOX("IRXN"),"INS1",D,0)=PSOX("SIG",D),TP=$G(TP)+1
  .S ^PSRX(PSOX("IRXN"),"INS1",0)="^52.0115^"_TP_"^"_TP_"^"_DT_"^^" K TP,D
@@ -74,8 +78,16 @@ NFILE    I $G(OR0) D  Q:$G(PSONEW("DFLG"))
  .S D=0 F  S D=$O(SIG(D)) Q:'D  S ^PSRX(PSOX("IRXN"),"SIG1",D,0)=SIG(D),$P(^PSRX(PSOX("IRXN"),"SIG1",0),"^",3)=+$P(^PSRX(PSOX("IRXN"),"SIG1",0),"^",3)+1,$P(^(0),"^",4)=+$P(^(0),"^",4)+1 Q:'$O(SIG(D))
  .K SIG
  I $D(PSOINSFL) S ^PSRX(PSOX("IRXN"),"A",0)="^52.3DA^1^1",^PSRX(PSOX("IRXN"),"A",1,0)=DT_"^G^^0^Patient Instructions "_$S(PSOINSFL=1:"",1:"Not ")_"Sent By Provider."
- I $G(OR0),$P(OR0,"^",24) S ^PSRX(PSOX("IRXN"),"PKI")=$S($G(PSOSIGFL):"^1",1:1) D ACLOG
- I $P($G(PSOX("CS")),"^"),'+$P($G(^PSRX(PSOX("IRXN"),"PKI")),"^") S $P(^PSRX(PSOX("IRXN"),"PKI"),"^",2)=1
+ I $G(PSOTITRF) D   ;PSO*441 - marked in CPRS
+ .S $P(^PSRX(PSOX("IRXN"),"TIT"),"^",3)=1,COMM="MARKED as Titration"
+ .D RXACT^PSOBPSU2(PSOX("IRXN"),,COMM,"K",PSONEW("CLERK CODE"))
+ I $G(OR0) D
+ . I $P(OR0,"^",24) S $P(^PSRX(PSOX("IRXN"),"PKI"),"^",1,3)=$S($G(PSOSIGFL):"^1^",1:"1^^") D ACLOG Q
+ . N ORDIEN S ORDIEN=$O(^PS(52.41,"B",$P(OR0,"^"),0))
+ . I $P($G(PSOX("CS")),"^"),ORDIEN,$$ERXIEN^PSOERXUT(ORDIEN_"P"),$$GET1^DIQ(52.49,$$ERXIEN^PSOERXUT(ORDIEN_"P"),95.1,"I") D
+ . . S $P(^PSRX(PSOX("IRXN"),"PKI"),"^",1,3)="^^1"
+ I $P($G(PSOX("CS")),"^"),'+$P($G(^PSRX(PSOX("IRXN"),"PKI")),"^"),'+$P($G(^PSRX(PSOX("IRXN"),"PKI")),"^",3) D
+ . S $P(^PSRX(PSOX("IRXN"),"PKI"),"^",2)=1
  K PSOX1,PSOFINFL,HLDSIG,D,PSOINSFL,D
  D:$G(^TMP("PSODAI",$J,0))
  .S $P(^PSRX(PSOX("IRXN"),3),"^",6)=1
@@ -98,7 +110,7 @@ IBQ ;I $G(PSOBILL)=2 S ^PSRX(PSOX("IRXN"),"IBQ")=$S($G(PSOX("NEWCOPAY")):0,1:1)
  L -^PSRX("B",PSOX("IRXN"))
  Q
  ;
-ACLOG    ;activity log (digitally signed CS orders)
+ACLOG ;activity log (digitally signed CS orders)
  N DTTM,CNT,OCNT,XX
  D NOW^%DTC S DTTM=%
  S CNT=0 F XX=0:0 S XX=$O(^PSRX(PSOX("IRXN"),"A",XX)) Q:'XX  S CNT=XX
@@ -116,14 +128,14 @@ ACLOG    ;activity log (digitally signed CS orders)
  I OCNT'=CNT S ^PSRX(PSOX("IRXN"),"A",0)="^52.3DA^"_CNT_"^"_CNT
  Q
  ;
-PS55     ;
+PS55 ;
  L +^PS(55,PSODFN,"P"):$S(+$G(^DD("DILOCKTM"))>0:+^DD("DILOCKTM"),1:3)
  S:'$D(^PS(55,PSODFN,"P",0)) ^(0)="^55.03PA^^"
  F PSOX1=$P(^PS(55,PSODFN,"P",0),"^",3):1 Q:'$D(^PS(55,PSODFN,"P",PSOX1))
  S PSOX("55 IEN")=PSOX1
  S ^PS(55,PSODFN,"P",PSOX1,0)=PSOX("IRXN"),$P(^PS(55,PSODFN,"P",0),"^",3,4)=PSOX1_"^"_($P(^PS(55,PSODFN,"P",0),"^",4)+1)
  S ^PS(55,PSODFN,"P","A",PSONEW("STOP DATE"),PSOX("IRXN"))=""
-PS55X    L -^PS(55,PSODFN,"P")
+PS55X L -^PS(55,PSODFN,"P")
  K PSOX1
  Q
 DIK ;
@@ -161,22 +173,22 @@ ANQ I $G(ANQDATA)]"" D NOW^%DTC H 1 G:$D(^PS(52.52,"B",%)) ANQ D
  ; - Calling ECME for claims generation and transmission / REJECT handling
  N ACTION,PSOERX
  S PSOERX=PSOX("IRXN")
- I $$SUBMIT^PSOBPSUT(PSOERX,0) D  I ACTION="Q"!(ACTION="^") Q
+ I ($G(PSOX("MAIL/WINDOW"))'="P"),($$SUBMIT^PSOBPSUT(PSOERX,0)) D  I ACTION="Q"!(ACTION="^") Q  ;441 PAPI
  . S ACTION="" D ECMESND^PSOBPSU1(PSOERX,0,"","OF")
  . ; Quit if there is an unresolved Tricare/CHAMPVA non-billable reject code, PSO*7*358
  . I $$PSOET^PSOREJP3(PSOERX,0) S ACTION="Q" Q
  . I $$FIND^PSOREJUT(PSOERX,0) D
- . . S ACTION=$$HDLG^PSOREJU1(PSOERX,0,"79,88","OF","IOQ","Q")
+ . . S ACTION=$$HDLG^PSOREJU1(PSOERX,0,"79,88,943","OF","IOQ","Q")
  . I $$STATUS^PSOBPSUT(PSOERX,0)="E PAYABLE" D
  . . D SAVNDC^PSSNDCUT(+$$GET1^DIQ(52,PSOERX,6,"I"),$G(PSOSITE),$$GETNDC^PSONDCUT(PSOERX,0))
  ;
-FINISHP  ;
+FINISHP ;
  I $G(PSORX("PSOL",1))']"" S PSORX("PSOL",1)=PSOX("IRXN")_",",RXFL(PSOX("IRXN"))=0 G FINISHX
  F PSOX1=0:0 S PSOX1=$O(PSORX("PSOL",PSOX1)) Q:'PSOX1  S PSOX2=PSOX1
  I $L(PSORX("PSOL",PSOX2))+$L(PSOX("IRXN"))<220 S PSORX("PSOL",PSOX2)=PSORX("PSOL",PSOX2)_PSOX("IRXN")_","
  E  S PSORX("PSOL",PSOX2+1)=PSOX("IRXN")_","
  S RXFL(PSOX("IRXN"))=0
-FINISHX  ;call to build Rx array for bingo board
+FINISHX ;call to build Rx array for bingo board
  I $G(PSORX("MAIL/WINDOW"))["W" S BINGCRT=1,BINGRTE="W",BBFLG=1 D BBRX^PSORN52C
  K PSOX1,PSOX2
  K ^TMP("PSODGI",$J),^TMP("PSOSER",$J),^TMP("PSOSERS",$J),^TMP("PSODGS",$J),^TMP("PSOTDD",$J),^TMP("PSODOSF",$J)
@@ -211,7 +223,7 @@ DD ;;PSOX("RX #");;0;;1
  ;;PSOX("COPIES");;0;;18
  ;;PSOX("MAIL/WINDOW");;0;;11
  ;;PSOX("REMARKS");;3;;7
- ;;PSOX("ADMINCLINIC");;0;;15 
+ ;;PSOX("ADMINCLINIC");;0;;15
  ;;PSOX("CLERK CODE");;0;;16
  ;;PSODRUG("COST");;0;;17
  ;;PSOSITE;;2;;9
@@ -236,3 +248,6 @@ DD ;;PSOX("RX #");;0;;1
  ;;PSOX("SAND");;SAND;;1
  ;;PSOX("POE");;POE;;1
  ;;PSOX("INS");;INS;;1
+ ;;PSOX("IND");;IND;;1
+ ;;PSOX("INDF");;IND;;2
+ ;;PSOX("INDO");;IND;;3

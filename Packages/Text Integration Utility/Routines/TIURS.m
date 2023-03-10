@@ -1,5 +1,5 @@
 TIURS ; SLC/JER - Electronic signature actions ; 25 Jun 2015  12:14 PM
- ;;1.0;TEXT INTEGRATION UTILITIES;**3,4,20,67,79,98,107,58,100,109,179,157,227,274,296**;Jun 20, 1997;Build 25
+ ;;1.0;TEXT INTEGRATION UTILITIES;**3,4,20,67,79,98,107,58,100,109,179,157,227,274,296,333**;Jun 20, 1997;Build 5
  ;MILW/JMC 4/26/05-Inserted line "ES+68" execute post for text events.
 ACCEPT(TIUSLST,TIUI) ; Accept for signing
  N TIUSGN,TIUMSG,TIUPR,TIUFLAG
@@ -108,6 +108,7 @@ AGN W !!,$C(7),"You must designate an ",TIUFLD,"...",!
 ASKCOUT L -^TIU(8925,+DA)
  S TIUY=+$P($G(^TIU(8925,+DA,12)),U,8)
  Q TIUY
+ ;
 ES(DA,TIUES,TIUI) ; ^DIE call for /es/
  N SIGNER,DR,DIE,ESDT,TIUSTAT,TIUSTNOW,COSIGNER,SVCHIEF,CSREQ,TIUPRINT
  N CSNEED,TIUTTL,TIUPSIG,TIUDPRM,DAO,TIUSTWAS,TIUSTIS,DAORIG,TIUCSPRM,TIUCSPM2
@@ -170,19 +171,28 @@ ES(DA,TIUES,TIUI) ; ^DIE call for /es/
  . S DFN=$P($G(^TIU(8925,+DA,0)),U,2)
  . D QUE^TIUPXAP1
  ; post-signature action
+ S TIUTTL=+$G(^TIU(8925,+DA,0)),TIUPSIG=$$POSTSIGN^TIULC1(TIUTTL)
+ ; determine if the note/note parent is a consult
  N TIUCONS S TIUCONS=-1
  D ISCNSLT^TIUCNSLT(.TIUCONS,+$G(^TIU(8925,DA,0)))
- I TIUCONS S DA=DAORIG
- S TIUSTIS=$P($G(^TIU(8925,DA,0)),U,5)
- S TIUTTL=+$G(^TIU(8925,+DA,0)),TIUPSIG=$$POSTSIGN^TIULC1(TIUTTL)
+ ; when: DA is a consult (this could be either when resulting or addending a consult)
+ I TIUCONS D
+ . ; when: DAORIG is addendum (meaning DA refers to parent) and parent DA is not complete ;MKN TIU*1*333
+ . ; then: do not execute post action ;MKN TIU*1*333
+ . I +$$ISADDNDM^TIULC1(DAORIG)&($P(^TIU(8925,+DA,0),U,5)'=7) S CSREQ=1 ;MKN TIU*1*333
+ . I DA=DAORIG D  ;MKN TIU*1*333 when I am signing the consult result check if I need to evaluate post signature for children
+ .. ; when: parent status is completed (and wasn't in the past) note: this is when resulting a consult
+ .. ; then: execute post-action for all children documents that are complete
+ .. S TIUSTIS=$P($G(^TIU(8925,DA,0)),U,5)
+ .. I TIUSTIS=7,TIUSTWAS<7,$$HASKIDS^TIUSRVLI(DA) D
+ ... N SEQUENCE,TIUKIDS,TIUINT,TIUK
+ ... S SEQUENCE="D",TIUKIDS="TIUKIDS",TIUINT=0,TIUK=0
+ ... D SETKIDS^TIUSRVLI(TIUKIDS,DA,TIUINT)
+ ... F  S TIUK=$O(TIUKIDS(TIUK)) Q:'TIUK  I $P(TIUKIDS(TIUK),U,7)="completed" X TIUPSIG
+ . ; when: signing an addendum as long as parent doesn't need co-signature execute consult post action
+ . ; when: signing a consult result as long as doesn't need co-signature execute consult post action
+ ; elseif: for all other document classes behave as normal
  I +$L(TIUPSIG),'+$G(CSREQ) X TIUPSIG
- I TIUPSIG["TASK^TIUTIUS",+$G(CSREQ) X TIUPSIG ;PATCH TIU*1*296
- I TIUCONS,TIUSTIS=7,TIUSTWAS<7,$$HASKIDS^TIUSRVLI(DA) D
- . N SEQUENCE,TIUKIDS,TIUINT,TIUK
- . S SEQUENCE="D",TIUKIDS="TIUKIDS",TIUINT=0,TIUK=0
- . D SETKIDS^TIUSRVLI(TIUKIDS,DA,TIUINT)
- . F  S TIUK=$O(TIUKIDS(TIUK)) Q:'TIUK  D
- . . I $P(TIUKIDS(TIUK),U,7)="completed" X TIUPSIG
  Q
 THIRD ;
  N TYPE

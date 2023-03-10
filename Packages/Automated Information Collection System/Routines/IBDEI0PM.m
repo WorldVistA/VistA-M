@@ -1,124 +1,128 @@
-IBDEI0PM ; ; 04-FEB-2020
- ;;3.0;IB ENCOUNTER FORM IMP/EXP;;FEB 04, 2020
+IBDEI0PM ; ; 01-FEB-2022
+ ;;3.0;IB ENCOUNTER FORM IMP/EXP;;FEB 01, 2022
  Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,999) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
- ;;^UTILITY(U,$J,358.3,11428,2)
- ;;=^5005832
- ;;^UTILITY(U,$J,358.3,11429,0)
- ;;=H40.2213^^77^733^13
- ;;^UTILITY(U,$J,358.3,11429,1,0)
+ ;;^UTILITY(U,$J,358.3,11514,2)
+ ;;=^5054954
+ ;;^UTILITY(U,$J,358.3,11515,0)
+ ;;=N25.81^^46^556^36
+ ;;^UTILITY(U,$J,358.3,11515,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,11429,1,3,0)
- ;;=3^Angle-Closure Glaucoma,Chronic,Severe,Right Eye
- ;;^UTILITY(U,$J,358.3,11429,1,4,0)
- ;;=4^H40.2213
- ;;^UTILITY(U,$J,358.3,11429,2)
- ;;=^5005825
- ;;^UTILITY(U,$J,358.3,11430,0)
- ;;=H40.2223^^77^733^14
- ;;^UTILITY(U,$J,358.3,11430,1,0)
+ ;;^UTILITY(U,$J,358.3,11515,1,3,0)
+ ;;=3^Secondary Hyperparathyroidism of Renal Origin
+ ;;^UTILITY(U,$J,358.3,11515,1,4,0)
+ ;;=4^N25.81
+ ;;^UTILITY(U,$J,358.3,11515,2)
+ ;;=^5015617
+ ;;^UTILITY(U,$J,358.3,11516,0)
+ ;;=T82.858A^^46^556^37
+ ;;^UTILITY(U,$J,358.3,11516,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,11430,1,3,0)
- ;;=3^Angle-Closure Glaucoma,Chronic,Severe,Left Eye
- ;;^UTILITY(U,$J,358.3,11430,1,4,0)
- ;;=4^H40.2223
- ;;^UTILITY(U,$J,358.3,11430,2)
- ;;=^5133501
- ;;^UTILITY(U,$J,358.3,11431,0)
- ;;=H40.2233^^77^733^15
- ;;^UTILITY(U,$J,358.3,11431,1,0)
+ ;;^UTILITY(U,$J,358.3,11516,1,3,0)
+ ;;=3^Stenosis of Vascular Graft,Init Encntr
+ ;;^UTILITY(U,$J,358.3,11516,1,4,0)
+ ;;=4^T82.858A
+ ;;^UTILITY(U,$J,358.3,11516,2)
+ ;;=^5054941
+ ;;^UTILITY(U,$J,358.3,11517,0)
+ ;;=T82.858D^^46^556^38
+ ;;^UTILITY(U,$J,358.3,11517,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,11431,1,3,0)
- ;;=3^Angle-Closure Glaucoma,Chronic,Severe,Bilateral
- ;;^UTILITY(U,$J,358.3,11431,1,4,0)
- ;;=4^H40.2233
- ;;^UTILITY(U,$J,358.3,11431,2)
- ;;=^5005834
- ;;^UTILITY(U,$J,358.3,11432,0)
- ;;=H40.831^^77^733^16
- ;;^UTILITY(U,$J,358.3,11432,1,0)
+ ;;^UTILITY(U,$J,358.3,11517,1,3,0)
+ ;;=3^Stenosis of Vascular Graft,Subs Encntr
+ ;;^UTILITY(U,$J,358.3,11517,1,4,0)
+ ;;=4^T82.858D
+ ;;^UTILITY(U,$J,358.3,11517,2)
+ ;;=^5054942
+ ;;^UTILITY(U,$J,358.3,11518,0)
+ ;;=T82.868A^^46^556^39
+ ;;^UTILITY(U,$J,358.3,11518,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,11432,1,3,0)
- ;;=3^Aqueous Misdirection,Right Eye
- ;;^UTILITY(U,$J,358.3,11432,1,4,0)
- ;;=4^H40.831
- ;;^UTILITY(U,$J,358.3,11432,2)
- ;;=^5005927
- ;;^UTILITY(U,$J,358.3,11433,0)
- ;;=H40.832^^77^733^17
- ;;^UTILITY(U,$J,358.3,11433,1,0)
+ ;;^UTILITY(U,$J,358.3,11518,1,3,0)
+ ;;=3^Thrombosis of Vascular Graft,Init Encntr
+ ;;^UTILITY(U,$J,358.3,11518,1,4,0)
+ ;;=4^T82.868A
+ ;;^UTILITY(U,$J,358.3,11518,2)
+ ;;=^5054947
+ ;;^UTILITY(U,$J,358.3,11519,0)
+ ;;=T82.868D^^46^556^40
+ ;;^UTILITY(U,$J,358.3,11519,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,11433,1,3,0)
- ;;=3^Aqueous Misdirection,Left Eye
- ;;^UTILITY(U,$J,358.3,11433,1,4,0)
- ;;=4^H40.832
- ;;^UTILITY(U,$J,358.3,11433,2)
- ;;=^5005928
- ;;^UTILITY(U,$J,358.3,11434,0)
- ;;=Z83.511^^77^733^18
- ;;^UTILITY(U,$J,358.3,11434,1,0)
+ ;;^UTILITY(U,$J,358.3,11519,1,3,0)
+ ;;=3^Thrombosis of Vascular Graft,Subs Encntr
+ ;;^UTILITY(U,$J,358.3,11519,1,4,0)
+ ;;=4^T82.868D
+ ;;^UTILITY(U,$J,358.3,11519,2)
+ ;;=^5054948
+ ;;^UTILITY(U,$J,358.3,11520,0)
+ ;;=N28.1^^46^557^1
+ ;;^UTILITY(U,$J,358.3,11520,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,11434,1,3,0)
- ;;=3^Family Hx of Glaucoma
- ;;^UTILITY(U,$J,358.3,11434,1,4,0)
- ;;=4^Z83.511
- ;;^UTILITY(U,$J,358.3,11434,2)
- ;;=^5063382
- ;;^UTILITY(U,$J,358.3,11435,0)
- ;;=H40.1311^^77^734^1
- ;;^UTILITY(U,$J,358.3,11435,1,0)
+ ;;^UTILITY(U,$J,358.3,11520,1,3,0)
+ ;;=3^Cyst of Kidney,Acquired
+ ;;^UTILITY(U,$J,358.3,11520,1,4,0)
+ ;;=4^N28.1
+ ;;^UTILITY(U,$J,358.3,11520,2)
+ ;;=^270380
+ ;;^UTILITY(U,$J,358.3,11521,0)
+ ;;=Q61.9^^46^557^2
+ ;;^UTILITY(U,$J,358.3,11521,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,11435,1,3,0)
- ;;=3^Pigmentary Glaucoma,Mild,Right Eye
- ;;^UTILITY(U,$J,358.3,11435,1,4,0)
- ;;=4^H40.1311
- ;;^UTILITY(U,$J,358.3,11435,2)
- ;;=^5005776
- ;;^UTILITY(U,$J,358.3,11436,0)
- ;;=H40.1321^^77^734^2
- ;;^UTILITY(U,$J,358.3,11436,1,0)
+ ;;^UTILITY(U,$J,358.3,11521,1,3,0)
+ ;;=3^Cystic Kidney Disease,Unspec
+ ;;^UTILITY(U,$J,358.3,11521,1,4,0)
+ ;;=4^Q61.9
+ ;;^UTILITY(U,$J,358.3,11521,2)
+ ;;=^5018800
+ ;;^UTILITY(U,$J,358.3,11522,0)
+ ;;=Q61.2^^46^557^6
+ ;;^UTILITY(U,$J,358.3,11522,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,11436,1,3,0)
- ;;=3^Pigmentary Glaucoma,Mild,Left Eye
- ;;^UTILITY(U,$J,358.3,11436,1,4,0)
- ;;=4^H40.1321
- ;;^UTILITY(U,$J,358.3,11436,2)
- ;;=^5005781
- ;;^UTILITY(U,$J,358.3,11437,0)
- ;;=H40.1331^^77^734^3
- ;;^UTILITY(U,$J,358.3,11437,1,0)
+ ;;^UTILITY(U,$J,358.3,11522,1,3,0)
+ ;;=3^Polycystic Kidney,Adult Type
+ ;;^UTILITY(U,$J,358.3,11522,1,4,0)
+ ;;=4^Q61.2
+ ;;^UTILITY(U,$J,358.3,11522,2)
+ ;;=^5018796
+ ;;^UTILITY(U,$J,358.3,11523,0)
+ ;;=Q61.5^^46^557^4
+ ;;^UTILITY(U,$J,358.3,11523,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,11437,1,3,0)
- ;;=3^Pigmentary Glaucoma,Mild,Bilateral
- ;;^UTILITY(U,$J,358.3,11437,1,4,0)
- ;;=4^H40.1331
- ;;^UTILITY(U,$J,358.3,11437,2)
- ;;=^5005785
- ;;^UTILITY(U,$J,358.3,11438,0)
- ;;=H40.1313^^77^734^4
- ;;^UTILITY(U,$J,358.3,11438,1,0)
+ ;;^UTILITY(U,$J,358.3,11523,1,3,0)
+ ;;=3^Medullary Cystic Kidney
+ ;;^UTILITY(U,$J,358.3,11523,1,4,0)
+ ;;=4^Q61.5
+ ;;^UTILITY(U,$J,358.3,11523,2)
+ ;;=^67073
+ ;;^UTILITY(U,$J,358.3,11524,0)
+ ;;=Z82.71^^46^557^3
+ ;;^UTILITY(U,$J,358.3,11524,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,11438,1,3,0)
- ;;=3^Pigmentary Glaucoma,Severe,Right Eye
- ;;^UTILITY(U,$J,358.3,11438,1,4,0)
- ;;=4^H40.1313
- ;;^UTILITY(U,$J,358.3,11438,2)
- ;;=^5005778
- ;;^UTILITY(U,$J,358.3,11439,0)
- ;;=H40.1323^^77^734^5
- ;;^UTILITY(U,$J,358.3,11439,1,0)
+ ;;^UTILITY(U,$J,358.3,11524,1,3,0)
+ ;;=3^Family Hx of Polycystic Kidney
+ ;;^UTILITY(U,$J,358.3,11524,1,4,0)
+ ;;=4^Z82.71
+ ;;^UTILITY(U,$J,358.3,11524,2)
+ ;;=^321531
+ ;;^UTILITY(U,$J,358.3,11525,0)
+ ;;=Q61.5^^46^557^5
+ ;;^UTILITY(U,$J,358.3,11525,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,11439,1,3,0)
- ;;=3^Pigmentary Glaucoma,Severe,Left Eye
- ;;^UTILITY(U,$J,358.3,11439,1,4,0)
- ;;=4^H40.1323
- ;;^UTILITY(U,$J,358.3,11439,2)
- ;;=^5133495
- ;;^UTILITY(U,$J,358.3,11440,0)
- ;;=H40.1333^^77^734^6
- ;;^UTILITY(U,$J,358.3,11440,1,0)
+ ;;^UTILITY(U,$J,358.3,11525,1,3,0)
+ ;;=3^Medullary Sponge Kidney
+ ;;^UTILITY(U,$J,358.3,11525,1,4,0)
+ ;;=4^Q61.5
+ ;;^UTILITY(U,$J,358.3,11525,2)
+ ;;=^67073
+ ;;^UTILITY(U,$J,358.3,11526,0)
+ ;;=Q61.3^^46^557^7
+ ;;^UTILITY(U,$J,358.3,11526,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,11440,1,3,0)
- ;;=3^Pigmentary Glaucoma,Severe,Bilateral
- ;;^UTILITY(U,$J,358.3,11440,1,4,0)
- ;;=4^H40.1333
+ ;;^UTILITY(U,$J,358.3,11526,1,3,0)
+ ;;=3^Polycystic Kidney,Unspec
+ ;;^UTILITY(U,$J,358.3,11526,1,4,0)
+ ;;=4^Q61.3
+ ;;^UTILITY(U,$J,358.3,11526,2)
+ ;;=^5018797
+ ;;^UTILITY(U,$J,358.3,11527,0)
+ ;;=E11.65^^46^558^11

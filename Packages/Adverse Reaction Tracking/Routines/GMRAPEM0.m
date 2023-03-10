@@ -1,5 +1,5 @@
-GMRAPEM0 ;HIRMFO/WAA,FT-ALLERGY/ADVERSE REACTION PATIENT EDIT DRIVER ; 12 Jul 2016  1:54 PM
- ;;4.0;Adverse Reaction Tracking;**2,5,17,21,36,50,58**;Mar 29, 1996;Build 5
+GMRAPEM0 ; HIRMFO/WAA,FT - ALLERGY/ADVERSE REACTION PATIENT EDIT DRIVER ;May 4, 2022@12:17:44
+ ;;4.0;Adverse Reaction Tracking;**2,5,17,21,36,50,58,63,51**;Mar 29, 1996;Build 189
 EN11 ; Entry point for GMRA USER E/E PAT REC DATA option
  ; GMRAUSER is a flag that indicates that this is a User
  ; If user has Verifier Key then user will act normal
@@ -85,6 +85,7 @@ SELECT ;Select a patient reaction
  .I $P(GMRAPA(0),U,12) D SIGNED^GMRAPEM3 Q  ;The reaction has been signed
  .; Reaction is a new reaction or Update data
  .I GMRANEW D GMRACHK^GMRAPEM0(GMRAPA)
+ .I GMRANEW D MEDCHK ; NSR 20070203
  .D UPDATE^GMRAPEM3
  .Q
  Q
@@ -206,4 +207,46 @@ GMRACHK(GMRAPA) ;
  . S XMY("G.ADVERSE_ALLERGY_WARNING")=""
  . D ^XMD
  . K ^XTMP("GMRACHK",$J)
+ Q
+MEDCHK ; NSR 20070203
+ N GMRAMCHK
+ W !!,?2,"Checking new allergy against the patient's active medication profile . . . "
+ D CHKMEDS^ORWDAL32(.GMRAMCHK,$P(GMRAPA(0),"^"),$P(GMRAPA(0),"^",2)) ; ICR #6756
+ I GMRAMCHK'>0 W !!,?2,"No conflicts were discovered.",! K GMRAMCHK Q
+ I GMRAMCHK>0 D
+ . N GMRADA,GMRAYN,GMRAPROV,GMRASEND,GMRASLST,GMRALST,GMRAORD,GMRADUZ,GMRAOUT
+ . W !!,?2,"The following Active Orders contain "_$P(GMRAPA(0),"^",2)_":"
+ . S GMRADA=""
+ . F  S GMRADA=$O(GMRAMCHK(GMRADA)) Q:GMRADA=""  I $D(GMRAMCHK(GMRADA)) D
+ . . W !!,$P(GMRAMCHK(GMRADA),"^",3)_" (Order #"_$P(GMRAMCHK(GMRADA),"^")_") An alert will be sent to:"
+ . . D GETPROV^ORWDAL32(.GMRAPROV,$P(GMRAMCHK(GMRADA),"^"),+$G(DFN)) ; ICR #6756
+ . . N PRVDA S PRVDA=""
+ . . F  S PRVDA=$O(GMRAPROV(PRVDA)) Q:PRVDA=""  I $D(GMRAPROV(PRVDA)) D
+ . . . S GMRASLST($P(GMRAMCHK(GMRADA),"^"),$P(GMRAPROV(PRVDA),";"))=GMRAPROV(PRVDA)
+ . . . W !?3,$P(GMRAPROV(PRVDA),"^",2)," - ",$P(GMRAPROV(PRVDA),"^",3)
+ . . K GMRAPROV
+ . W !!
+ . S (GMRAOUT,GMRAYN)=0 D ASK^GMRAUTL("Do you wish to send the alert(s) to additional recipients? ",.GMRAOUT,.GMRAYN) Q:GMRAOUT
+ . I GMRAYN D ADDSTHR(.GMRALST)
+ . I $D(GMRASLST) S GMRAORD="" F  S GMRAORD=$O(GMRASLST(GMRAORD)) Q:GMRAORD=""  I $D(GMRASLST(GMRAORD)) D
+ . . K GMRAPROV
+ . . S GMRAPROV=""
+ . . I $D(GMRALST) M GMRAPROV=GMRALST
+ . . D SENDALRT^ORWDAL32(.GMRASEND,GMRAORD,.GMRAPROV) ; ICR #6756
+ . K GMRASEND,GMRASLST
+ K GMRAMCHK
+ Q
+ADDSTHR(GMRALST) ; NSR 20070203
+ K GMRALST
+ N DIC,I,GMRAYN,GMRAON,GMRANOTE,GMRAOUT,Y
+ S GMRAYN=0
+ S GMRANOTE=88 ;NEW ALLERGY ENTERED/ACTIVE MED notification
+ F I=1:1 D  Q:'GMRAYN
+ . S DIC="^VA(200,",DIC(0)="AEBQ"
+ . S DIC("A")="Enter Recipient's Name: " D ^DIC
+ . I +Y>0 D
+ . . S GMRAON=$P($$ONOFF^ORB3USER(GMRANOTE,+Y,"","",""),U,1) ;ICR #7211
+ . . I GMRAON="OFF" W !!,"   User is unable to receive the notification!",! Q
+ . . S GMRALST($P(Y,"^"))=$P(Y,"^")_";VA(200,"_"^"_$P(Y,"^",2) K DIC,Y
+ . S (GMRAOUT,GMRAYN)=0 D ASK^GMRAUTL("Add another recipient? ",.GMRAOUT,.GMRAYN) Q:GMRAOUT
  Q

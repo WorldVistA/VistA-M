@@ -1,5 +1,5 @@
-RAHLQ ;HISC/CAH,GJC AISC/SAW-Process Query Message (QRY) Type ;10/2/97  13:32
- ;;5.0;Radiology/Nuclear Medicine;**7**;Mar 16, 1998
+RAHLQ ;HISC/CAH,GJC AISC/SAW-Process Query Message (QRY) Type ; Feb 03, 2021@09:23:47
+ ;;5.0;Radiology/Nuclear Medicine;**7,175**;Mar 16, 1998;Build 2
  ; Check the validity of the following data globals:
  ; Example: '^TMP("RARPT-QRY",$J,RASUB,' (RASUB is an ien in file 772)
  ; **************** validates if data present **************************
@@ -69,19 +69,23 @@ CHKPRV ;Check for active interpreting staff/resident
  . Q
  I '$D(^XUSEC("RA VERIFY",RAVERF)) S RAERR="Provider does not hold the appropriate Rad/Nuc Med security key."
  Q
-EDTCHK ; is user permitted to edit report of a cancelled case ?
+EDTCHK ; is user permitted to edit report of a canceled case?
  ; Sets RARPT to indicate if report is allowed
- ; RARPT=1 if case cancelled, no report allowed
- ; RARPT=2 if cancelled printset, no report allowed
- ; RARPT=0 if case not cancelled, or user has key, or div params
- ;         allow rpt on cancelled cases, report entry allowed
- S RARPT=0
+ ; RARPT=1 if case canceled, no report allowed
+ ; RARPT=0 if case not canceled, or user has key, or div params
+ ;         allow rpt on canceled cases, report entry allowed
+ S RARPT=0 ;updated w/RA5_0P175
  S RASTATUS=+$P($G(^RADPT(RADFN,"DT",RADTI,"P",RACNI,0)),"^",3)
  I $P($G(^RA(72,RASTATUS,0)),"^",3)>0 K RASTATUS Q
- K RASTATUS
- I +$P($G(^RADPT(RADFN,"DT",RADTI,"P",RACNI,0)),"^",25)>1 S RARPT=2 Q  ;don't allow edit if printset
- I $D(^XUSEC("RA MGR",+$G(RAVERF))) Q  ;user has proper key
- I $D(^RADPT(RADFN,"DT",RADTI,0)) S RAMDIV=^(0),RAMLC=+$P(RAMDIV,"^",4),RAMDIV=+$P(RAMDIV,"^",3),RAMDV=$S($D(^RA(79,RAMDIV,.1)):^(.1),1:""),RAMDV=$S(RAMDV="":RAMDV,1:$TR(RAMDV,"YyNn",1100))
- I $P(RAMDV,"^",22)=1 Q  ;allow rpts on cancelled cases
- S RARPT=1  ;
+ K RASTATUS ;the study is not canceled.
+ ;if pset quit w/RARPT=0 check descendents status' later
+ Q:+$P($G(^RADPT(RADFN,"DT",RADTI,"P",RACNI,0)),"^",25)>1
+ ;
+ S RAMDIV=$G(^RADPT(RADFN,"DT",RADTI,0))
+ S RAMLC=+$P(RAMDIV,"^",4),RAMDIV=+$P(RAMDIV,"^",3)
+ S RAMDV=$S($D(^RA(79,RAMDIV,.1)):^(.1),1:"")
+ S RAMDV=$S(RAMDV="":RAMDV,1:$TR(RAMDV,"YyNn",1100))
+ Q:$P(RAMDV,"^",22)=1  ;allow rpts on canceled cases
+ S RARPT=1 ;not a pset, do not allow rpts on canceled cases
  Q
+ ;

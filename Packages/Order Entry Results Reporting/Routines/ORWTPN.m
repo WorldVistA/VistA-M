@@ -1,5 +1,5 @@
-ORWTPN ; SLC/STAFF Personal Preference - Notes ;2/21/01  08:11 [1/29/04 2:32pm]
- ;;3.0;ORDER ENTRY/RESULTS REPORTING;**85,149,187,195**;Dec 17, 1997
+ORWTPN ; SLC/STAFF - Personal Preference - Notes ;Mar 15, 2022@10:43:05
+ ;;3.0;ORDER ENTRY/RESULTS REPORTING;**85,149,187,195,405**;Dec 17, 1997;Build 211
  ;
 GETSUB(VALUE,USER) ; from ORWTPP
  ; get Ask for Subject on notes for user
@@ -30,7 +30,7 @@ SETSUB(OK,VALUE,USER) ; from ORWTPP
  D ^DIE
  Q
  ;
-GETCOS(ORY,ORUSER,ORFROM,ORDIR,ORVIZ) ; Get cosigners for user (from ORWTPP).
+GETCOS(ORY,ORUSER,ORFROM,ORDIR,ORVIZ,ORSIM) ; Get cosigners for user (from ORWTPP).
  ; (Keep this code matched with NP1^ORWU1 / NEWPERS^ORWU.)
  ;
  ; Params:
@@ -39,23 +39,47 @@ GETCOS(ORY,ORUSER,ORFROM,ORDIR,ORVIZ) ; Get cosigners for user (from ORWTPP).
  ;  ORFROM=Starting value to use.
  ;  ORUSER=User seeking a Cosigner.
  ;  ORVIZ=If true, includes RDV users; otherwise not (optional).
+ ;  ORSIM=If true, this indicates that this is a Similar Provider RPC call NSR#20110606/539
  ;
  N OR1DIV,ORCNT,ORDATE,ORDD,ORDIV,ORDUP,ORGOOD,ORI,ORIEN1,ORIEN2,ORKEY,ORLAST,ORMAX,ORMRK,ORMULTI,ORNODE,ORPREV,ORSRV,ORTTL
+ N ORFNM,ORFNMLEN,ORLNM,OPTIEN,ORDUPNM ; ** NSR 20110606/539 - Add first and last names, first name length and OPTIEN it is the IEN to the OPTION file
+ N A,ORTAB,S1
  ;
- S ORI=0,ORMAX=44,(ORLAST,ORPREV)="",ORKEY=$G(ORKEY),ORDATE=$G(ORDATE)
- S ORMULTI=$$ALL^VASITE ; Do once at beginning of call.
+ K ORTAB S S1=0 F  S S1=$O(^ORD(101.13,S1)) Q:'S1  S A=$P($G(^ORD(101.13,S1,0)),"^") I A="COR"!(A="NVA") S ORTAB(A)=S1
+ S ORI=0,ORMAX=44,(ORLAST,ORPREV,ORDUPNM)="",ORKEY=$G(ORKEY),ORDATE=$G(ORDATE),ORSIM=$G(ORSIM)    ; NSR 20110606/539 added ORSIM
+ S OPTIEN=$$LKOPT^XPDMENU("OR CPRS GUI CHART") ;Set IEN to option file - NSR 20110606/539
+ S ORMULTI=$$ALL^VASITE ; IA# 10112.  Do once at beginning of call.
+ I +ORSIM D  ; ** NSR 20110606/539 - If ORSIM, ORFROM is IEN and needs to be changed to name.  Also get first name, its length and last name **
+ .N LASTCHAR,ORFIEN,ORFROM1,XFNM,XFNMLEN
+ .S ORFIEN=ORFROM
+ .S (ORFROM,ORFROM1)=$P(^VA(200,ORFROM,0),U),$P(ORFROM,",",2)=$E($P(ORFROM,",",2),1,2)
+ .S ORFNM=$P(ORFROM,",",2),ORFNMLEN=$L(ORFNM),ORLNM=$P(ORFROM,",") ; ** NSR 20110606/539 - Add ORFNM, ORFNMLEN and ORLNM **
+ .I ORFNM]"" D
+ ..S XFNM=$P(ORFROM,",",2),XFNMLEN=$L(XFNM),LASTCHAR=$C($A(XFNM,XFNMLEN)-1),XFNM=$E(XFNM,1,XFNMLEN-1)_LASTCHAR_$C(126)
+ ..S $P(ORFROM,",",2)=XFNM
+ .S ORI=ORI+1,ORY(ORI)=ORFIEN_"^"_$$NAMEFMT^XLFNAME(ORFROM1,"F","DcMPC")
+ .S ORDUPNM(ORFIEN)=""
+ .S ORIEN2=ORFIEN
+ .;Using NP2 instead of NP4(0) in case duplicate (same but different) entry found later
+ .D NP2^ORWU1
+ E  D
+ .S (ORFNM,ORFNMLEN,ORLNM)=""
  ;
  ; NP3^ORWU1 tag includes visitors, uses full "B" x-ref.
  I +$G(ORVIZ)=1 D NP3^ORWU1(1) Q  ; Use alt. version, skip rest.
  ;
- F  Q:ORI'<ORMAX  S ORFROM=$O(^VA(200,"AUSER",ORFROM),ORDIR) Q:ORFROM=""  D
+ F  Q:ORI'<ORMAX  S ORFROM=$O(^VA(200,"AUSER",ORFROM),ORDIR) Q:ORFROM=""!'$$CHKORSIM^ORWU1(ORSIM,ORFNM,ORFNMLEN,ORFROM,ORLNM)  D  ; NSR 20110606/539 - Check for quitting with ORSIM and names comparison
  .S ORIEN1=""
  .F  S ORIEN1=$O(^VA(200,"AUSER",ORFROM,ORIEN1),ORDIR) Q:'ORIEN1  D
- ..;
+ ..I $D(ORDUPNM(ORIEN1)) Q
+ ..; NSR 20120101 Limit Signers by Tabs & Excluded User Class
+ ..I '+$$CPRSTAB^ORWU1(ORIEN1,ORTAB("COR")),'+$$CPRSTAB^ORWU1(ORIEN1,ORTAB("NVA")) Q  ; Check core tab & Non-VA tab access including effective date and expiration date
+ ..I '+$$ACCESS^XQCHK(ORIEN1,OPTIEN) Q    ;NSR 20110606/539
  ..; Screen default cosigner selection:
  ..I '$$SCRDFCS^TIULA3(ORUSER,ORIEN1) Q
  ..S ORNODE=$P($G(^VA(200,ORIEN1,0)),U)
  ..I '$L(ORNODE) Q
+ ..I +ORI,+ORY(ORI)=ORIEN1 Q  ; if the current IEN is already in list, quit
  ..S ORI=ORI+1,ORY(ORI)=ORIEN1_"^"_$$NAMEFMT^XLFNAME(ORFROM,"F","DcMPC")
  ..S ORDUP=0                            ; Init flag, check dupe.
  ..I ($P(ORPREV_" "," ")=$P(ORFROM_" "," ")) S ORDUP=1

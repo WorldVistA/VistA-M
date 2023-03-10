@@ -1,126 +1,128 @@
-IBDEI11W ; ; 04-FEB-2020
- ;;3.0;IB ENCOUNTER FORM IMP/EXP;;FEB 04, 2020
+IBDEI11W ; ; 01-FEB-2022
+ ;;3.0;IB ENCOUNTER FORM IMP/EXP;;FEB 01, 2022
  Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,999) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
- ;;^UTILITY(U,$J,358.3,16890,1,4,0)
- ;;=4^K76.0
- ;;^UTILITY(U,$J,358.3,16890,2)
- ;;=^5008831
- ;;^UTILITY(U,$J,358.3,16891,0)
- ;;=K76.89^^88^882^18
- ;;^UTILITY(U,$J,358.3,16891,1,0)
+ ;;^UTILITY(U,$J,358.3,17075,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,16891,1,3,0)
- ;;=3^Liver Disease NEC
- ;;^UTILITY(U,$J,358.3,16891,1,4,0)
- ;;=4^K76.89
- ;;^UTILITY(U,$J,358.3,16891,2)
- ;;=^5008835
- ;;^UTILITY(U,$J,358.3,16892,0)
- ;;=K71.6^^88^882^32
- ;;^UTILITY(U,$J,358.3,16892,1,0)
+ ;;^UTILITY(U,$J,358.3,17075,1,3,0)
+ ;;=3^Intvrt Disc Disorder w/ Radiculopathy,Lumbosacral Region
+ ;;^UTILITY(U,$J,358.3,17075,1,4,0)
+ ;;=4^M51.17
+ ;;^UTILITY(U,$J,358.3,17075,2)
+ ;;=^5012246
+ ;;^UTILITY(U,$J,358.3,17076,0)
+ ;;=M51.34^^61^781^53
+ ;;^UTILITY(U,$J,358.3,17076,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,16892,1,3,0)
- ;;=3^Toxic Liver Disease w/ Hepatitis NEC
- ;;^UTILITY(U,$J,358.3,16892,1,4,0)
- ;;=4^K71.6
- ;;^UTILITY(U,$J,358.3,16892,2)
- ;;=^5008801
- ;;^UTILITY(U,$J,358.3,16893,0)
- ;;=K75.9^^88^882^17
- ;;^UTILITY(U,$J,358.3,16893,1,0)
+ ;;^UTILITY(U,$J,358.3,17076,1,3,0)
+ ;;=3^Intvrt Disc Degeneration,Thoracic Region
+ ;;^UTILITY(U,$J,358.3,17076,1,4,0)
+ ;;=4^M51.34
+ ;;^UTILITY(U,$J,358.3,17076,2)
+ ;;=^5012251
+ ;;^UTILITY(U,$J,358.3,17077,0)
+ ;;=M51.37^^61^781^52
+ ;;^UTILITY(U,$J,358.3,17077,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,16893,1,3,0)
- ;;=3^Inflammatory Liver Disease,Unspec
- ;;^UTILITY(U,$J,358.3,16893,1,4,0)
- ;;=4^K75.9
- ;;^UTILITY(U,$J,358.3,16893,2)
- ;;=^5008830
- ;;^UTILITY(U,$J,358.3,16894,0)
- ;;=K71.0^^88^882^24
- ;;^UTILITY(U,$J,358.3,16894,1,0)
+ ;;^UTILITY(U,$J,358.3,17077,1,3,0)
+ ;;=3^Intvrt Disc Degeneration,Lumbosacral Region
+ ;;^UTILITY(U,$J,358.3,17077,1,4,0)
+ ;;=4^M51.37
+ ;;^UTILITY(U,$J,358.3,17077,2)
+ ;;=^5012254
+ ;;^UTILITY(U,$J,358.3,17078,0)
+ ;;=M54.14^^61^781^146
+ ;;^UTILITY(U,$J,358.3,17078,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,16894,1,3,0)
- ;;=3^Toxic Liver Disease w/ Cholestasis
- ;;^UTILITY(U,$J,358.3,16894,1,4,0)
- ;;=4^K71.0
- ;;^UTILITY(U,$J,358.3,16894,2)
- ;;=^5008793
- ;;^UTILITY(U,$J,358.3,16895,0)
- ;;=K71.10^^88^882^30
- ;;^UTILITY(U,$J,358.3,16895,1,0)
+ ;;^UTILITY(U,$J,358.3,17078,1,3,0)
+ ;;=3^Radiculopathy,Thoracic Region
+ ;;^UTILITY(U,$J,358.3,17078,1,4,0)
+ ;;=4^M54.14
+ ;;^UTILITY(U,$J,358.3,17078,2)
+ ;;=^5012299
+ ;;^UTILITY(U,$J,358.3,17079,0)
+ ;;=M54.17^^61^781^145
+ ;;^UTILITY(U,$J,358.3,17079,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,16895,1,3,0)
- ;;=3^Toxic Liver Disease w/ Hepatic Necrosis w/o Coma
- ;;^UTILITY(U,$J,358.3,16895,1,4,0)
- ;;=4^K71.10
- ;;^UTILITY(U,$J,358.3,16895,2)
- ;;=^5008794
- ;;^UTILITY(U,$J,358.3,16896,0)
- ;;=K71.11^^88^882^31
- ;;^UTILITY(U,$J,358.3,16896,1,0)
+ ;;^UTILITY(U,$J,358.3,17079,1,3,0)
+ ;;=3^Radiculopathy,Lumbosacral Region
+ ;;^UTILITY(U,$J,358.3,17079,1,4,0)
+ ;;=4^M54.17
+ ;;^UTILITY(U,$J,358.3,17079,2)
+ ;;=^5012302
+ ;;^UTILITY(U,$J,358.3,17080,0)
+ ;;=M54.2^^61^781^15
+ ;;^UTILITY(U,$J,358.3,17080,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,16896,1,3,0)
- ;;=3^Toxic Liver Disease w/ Hepatic Necrosis w/ Coma
- ;;^UTILITY(U,$J,358.3,16896,1,4,0)
- ;;=4^K71.11
- ;;^UTILITY(U,$J,358.3,16896,2)
- ;;=^5008795
- ;;^UTILITY(U,$J,358.3,16897,0)
- ;;=K71.2^^88^882^23
- ;;^UTILITY(U,$J,358.3,16897,1,0)
+ ;;^UTILITY(U,$J,358.3,17080,1,3,0)
+ ;;=3^Cervicalgia
+ ;;^UTILITY(U,$J,358.3,17080,1,4,0)
+ ;;=4^M54.2
+ ;;^UTILITY(U,$J,358.3,17080,2)
+ ;;=^5012304
+ ;;^UTILITY(U,$J,358.3,17081,0)
+ ;;=M54.31^^61^781^169
+ ;;^UTILITY(U,$J,358.3,17081,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,16897,1,3,0)
- ;;=3^Toxic Liver Disease w/ Acute Hepatitis
- ;;^UTILITY(U,$J,358.3,16897,1,4,0)
- ;;=4^K71.2
- ;;^UTILITY(U,$J,358.3,16897,2)
- ;;=^5008796
- ;;^UTILITY(U,$J,358.3,16898,0)
- ;;=K71.3^^88^882^28
- ;;^UTILITY(U,$J,358.3,16898,1,0)
+ ;;^UTILITY(U,$J,358.3,17081,1,3,0)
+ ;;=3^Sciatica,Right Side
+ ;;^UTILITY(U,$J,358.3,17081,1,4,0)
+ ;;=4^M54.31
+ ;;^UTILITY(U,$J,358.3,17081,2)
+ ;;=^5012306
+ ;;^UTILITY(U,$J,358.3,17082,0)
+ ;;=M54.32^^61^781^168
+ ;;^UTILITY(U,$J,358.3,17082,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,16898,1,3,0)
- ;;=3^Toxic Liver Disease w/ Chronic Persistent Hepatitis
- ;;^UTILITY(U,$J,358.3,16898,1,4,0)
- ;;=4^K71.3
- ;;^UTILITY(U,$J,358.3,16898,2)
- ;;=^5008797
- ;;^UTILITY(U,$J,358.3,16899,0)
- ;;=K71.4^^88^882^27
- ;;^UTILITY(U,$J,358.3,16899,1,0)
+ ;;^UTILITY(U,$J,358.3,17082,1,3,0)
+ ;;=3^Sciatica,Left Side
+ ;;^UTILITY(U,$J,358.3,17082,1,4,0)
+ ;;=4^M54.32
+ ;;^UTILITY(U,$J,358.3,17082,2)
+ ;;=^5012307
+ ;;^UTILITY(U,$J,358.3,17083,0)
+ ;;=M60.9^^61^781^66
+ ;;^UTILITY(U,$J,358.3,17083,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,16899,1,3,0)
- ;;=3^Toxic Liver Disease w/ Chronic Lobular Hepatitis
- ;;^UTILITY(U,$J,358.3,16899,1,4,0)
- ;;=4^K71.4
- ;;^UTILITY(U,$J,358.3,16899,2)
- ;;=^5008798
- ;;^UTILITY(U,$J,358.3,16900,0)
- ;;=K75.81^^88^882^19
- ;;^UTILITY(U,$J,358.3,16900,1,0)
+ ;;^UTILITY(U,$J,358.3,17083,1,3,0)
+ ;;=3^Myositis,Unspec
+ ;;^UTILITY(U,$J,358.3,17083,1,4,0)
+ ;;=4^M60.9
+ ;;^UTILITY(U,$J,358.3,17083,2)
+ ;;=^5012409
+ ;;^UTILITY(U,$J,358.3,17084,0)
+ ;;=M62.40^^61^781^36
+ ;;^UTILITY(U,$J,358.3,17084,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,16900,1,3,0)
- ;;=3^Nonalcoholic Steatohepatitis (NASH)
- ;;^UTILITY(U,$J,358.3,16900,1,4,0)
- ;;=4^K75.81
- ;;^UTILITY(U,$J,358.3,16900,2)
- ;;=^5008828
- ;;^UTILITY(U,$J,358.3,16901,0)
- ;;=K75.89^^88^882^16
- ;;^UTILITY(U,$J,358.3,16901,1,0)
+ ;;^UTILITY(U,$J,358.3,17084,1,3,0)
+ ;;=3^Contracture of Muscle,Unspec
+ ;;^UTILITY(U,$J,358.3,17084,1,4,0)
+ ;;=4^M62.40
+ ;;^UTILITY(U,$J,358.3,17084,2)
+ ;;=^5012631
+ ;;^UTILITY(U,$J,358.3,17085,0)
+ ;;=M62.831^^61^781^64
+ ;;^UTILITY(U,$J,358.3,17085,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,16901,1,3,0)
- ;;=3^Inflammatory Liver Disease,Oth Spec
- ;;^UTILITY(U,$J,358.3,16901,1,4,0)
- ;;=4^K75.89
- ;;^UTILITY(U,$J,358.3,16901,2)
- ;;=^5008829
- ;;^UTILITY(U,$J,358.3,16902,0)
- ;;=K76.4^^88^882^21
- ;;^UTILITY(U,$J,358.3,16902,1,0)
+ ;;^UTILITY(U,$J,358.3,17085,1,3,0)
+ ;;=3^Muscle Spasm of Calf
+ ;;^UTILITY(U,$J,358.3,17085,1,4,0)
+ ;;=4^M62.831
+ ;;^UTILITY(U,$J,358.3,17085,2)
+ ;;=^5012681
+ ;;^UTILITY(U,$J,358.3,17086,0)
+ ;;=M62.838^^61^781^62
+ ;;^UTILITY(U,$J,358.3,17086,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,16902,1,3,0)
- ;;=3^Peliosis Hepatis
- ;;^UTILITY(U,$J,358.3,16902,1,4,0)
- ;;=4^K76.4
+ ;;^UTILITY(U,$J,358.3,17086,1,3,0)
+ ;;=3^Muscle Spasm NEC
+ ;;^UTILITY(U,$J,358.3,17086,1,4,0)
+ ;;=4^M62.838
+ ;;^UTILITY(U,$J,358.3,17086,2)
+ ;;=^5012682
+ ;;^UTILITY(U,$J,358.3,17087,0)
+ ;;=M70.21^^61^781^68
+ ;;^UTILITY(U,$J,358.3,17087,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,17087,1,3,0)
+ ;;=3^Olecranon Bursitis,Right Elbow

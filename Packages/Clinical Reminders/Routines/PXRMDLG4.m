@@ -1,5 +1,5 @@
-PXRMDLG4 ;SLC/PJH - Reminder Dialog Edit/Inquiry ;12/10/2019
- ;;2.0;CLINICAL REMINDERS;**4,6,12,16,26,45**;Feb 04, 2005;Build 566
+PXRMDLG4 ;SLC/PJH - Reminder Dialog Edit/Inquiry ;09/09/2020
+ ;;2.0;CLINICAL REMINDERS;**4,6,12,16,26,45,71**;Feb 04, 2005;Build 43
  ;
 WP(SUB,SUB1,WIDTH,SEQ,VALMCNT) ;Format WP text
  N DIWF,DIWL,DIWR,IC,TEXT,X,TXTCNT,DTXT,CNT,SUB2
@@ -64,8 +64,10 @@ DETAIL(DIEN,LEV,VIEW,NODE) ;;Build List Manager global for all components
  .S DCIEN=$P($G(^PXRMD(801.41,DIEN,10,DSUB,0)),U,2) Q:'DCIEN
  .I "PF"[$P($G(^PXRMD(801.41,DCIEN,0)),U,4) D  Q
  ..S ^TMP("PXRMDLG PROMPTS",$J,DCIEN)=""
- ..S ^TMP("PXRMDLG4",$J,"IEN",NSEL)=DIEN_U_DSEQ
- ..S ^TMP("PXRMDLG4",$J,"SEQ",LEV_DSEQ)=DCIEN
+ ..;S ^TMP("PXRMDLG4",$J,"IEN",NSEL)=DIEN_U_DSEQ
+ ..;S ^TMP("PXRMDLG4",$J,"SEQ",LEV_DSEQ)=DCIEN
+ ..S ^TMP("PXRMDLG4",$J,"PIEN",NSEL)=DIEN_U_DSEQ
+ ..S ^TMP("PXRMDLG4",$J,"PSEQ",LEV_DSEQ)=DCIEN
  .;Save line in workfile
  .D DLINE(DCIEN,LEV,DSEQ,NODE)
  .;Build pointers back to parent
@@ -252,6 +254,9 @@ SEQ(SEQ,PIEN) ;Select sequence number to add
  ;
  ;Check that sequence number is new 
  I $D(^TMP("PXRMDLG4",$J,"SEQ",X)) D  Q
+ .W !,"Sequence number "_X_" already in use."
+ ;Check that sequence number is new and not being used by prompts
+ I $D(^TMP("PXRMDLG4",$J,"PSEQ",X)) D  Q
  .W !,"Sequence number "_X_" already in use."
  ;
  ;Check that the parent is a group or reminder dialog

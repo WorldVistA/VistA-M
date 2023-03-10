@@ -1,124 +1,128 @@
-IBDEI1G7 ; ; 04-FEB-2020
- ;;3.0;IB ENCOUNTER FORM IMP/EXP;;FEB 04, 2020
+IBDEI1G7 ; ; 01-FEB-2022
+ ;;3.0;IB ENCOUNTER FORM IMP/EXP;;FEB 01, 2022
  Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,999) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
- ;;^UTILITY(U,$J,358.3,23159,1,0)
+ ;;^UTILITY(U,$J,358.3,23424,2)
+ ;;=^5003959
+ ;;^UTILITY(U,$J,358.3,23425,0)
+ ;;=I82.891^^78^1009^9
+ ;;^UTILITY(U,$J,358.3,23425,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,23159,1,3,0)
- ;;=3^Postprocedural Respiratory Failure,Acute
- ;;^UTILITY(U,$J,358.3,23159,1,4,0)
- ;;=4^J95.821
- ;;^UTILITY(U,$J,358.3,23159,2)
- ;;=^5008338
- ;;^UTILITY(U,$J,358.3,23160,0)
- ;;=J95.822^^105^1168^26
- ;;^UTILITY(U,$J,358.3,23160,1,0)
+ ;;^UTILITY(U,$J,358.3,23425,1,3,0)
+ ;;=3^Chronic Embolism/Thrombosis,Specified Veins
+ ;;^UTILITY(U,$J,358.3,23425,1,4,0)
+ ;;=4^I82.891
+ ;;^UTILITY(U,$J,358.3,23425,2)
+ ;;=^5007939
+ ;;^UTILITY(U,$J,358.3,23426,0)
+ ;;=I82.90^^78^1009^5
+ ;;^UTILITY(U,$J,358.3,23426,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,23160,1,3,0)
- ;;=3^Postprocedural Respiratory Failure,Acute and Chronic
- ;;^UTILITY(U,$J,358.3,23160,1,4,0)
- ;;=4^J95.822
- ;;^UTILITY(U,$J,358.3,23160,2)
- ;;=^5008339
- ;;^UTILITY(U,$J,358.3,23161,0)
- ;;=J44.0^^105^1168^12
- ;;^UTILITY(U,$J,358.3,23161,1,0)
+ ;;^UTILITY(U,$J,358.3,23426,1,3,0)
+ ;;=3^Acute Embolism/Thrombosis,Unspec Vein
+ ;;^UTILITY(U,$J,358.3,23426,1,4,0)
+ ;;=4^I82.90
+ ;;^UTILITY(U,$J,358.3,23426,2)
+ ;;=^5007940
+ ;;^UTILITY(U,$J,358.3,23427,0)
+ ;;=R45.851^^78^1010^3
+ ;;^UTILITY(U,$J,358.3,23427,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,23161,1,3,0)
- ;;=3^COPD w/ Acute Lower Respiratory Infection
- ;;^UTILITY(U,$J,358.3,23161,1,4,0)
- ;;=4^J44.0
- ;;^UTILITY(U,$J,358.3,23161,2)
- ;;=^5008239
- ;;^UTILITY(U,$J,358.3,23162,0)
- ;;=J44.1^^105^1168^11
- ;;^UTILITY(U,$J,358.3,23162,1,0)
+ ;;^UTILITY(U,$J,358.3,23427,1,3,0)
+ ;;=3^Suicidal Ideations
+ ;;^UTILITY(U,$J,358.3,23427,1,4,0)
+ ;;=4^R45.851
+ ;;^UTILITY(U,$J,358.3,23427,2)
+ ;;=^5019474
+ ;;^UTILITY(U,$J,358.3,23428,0)
+ ;;=T14.91XA^^78^1010^4
+ ;;^UTILITY(U,$J,358.3,23428,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,23162,1,3,0)
- ;;=3^COPD w/ Acute Exacerbation
- ;;^UTILITY(U,$J,358.3,23162,1,4,0)
- ;;=4^J44.1
- ;;^UTILITY(U,$J,358.3,23162,2)
- ;;=^5008240
- ;;^UTILITY(U,$J,358.3,23163,0)
- ;;=J96.02^^105^1168^30
- ;;^UTILITY(U,$J,358.3,23163,1,0)
+ ;;^UTILITY(U,$J,358.3,23428,1,3,0)
+ ;;=3^Suicide Attempt,Initial Encntr
+ ;;^UTILITY(U,$J,358.3,23428,1,4,0)
+ ;;=4^T14.91XA
+ ;;^UTILITY(U,$J,358.3,23428,2)
+ ;;=^5151779
+ ;;^UTILITY(U,$J,358.3,23429,0)
+ ;;=T14.91XD^^78^1010^6
+ ;;^UTILITY(U,$J,358.3,23429,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,23163,1,3,0)
- ;;=3^Respiratory Failure,Hypercapnia,Acute
- ;;^UTILITY(U,$J,358.3,23163,1,4,0)
- ;;=4^J96.02
- ;;^UTILITY(U,$J,358.3,23163,2)
- ;;=^5008349
- ;;^UTILITY(U,$J,358.3,23164,0)
- ;;=J96.22^^105^1168^29
- ;;^UTILITY(U,$J,358.3,23164,1,0)
+ ;;^UTILITY(U,$J,358.3,23429,1,3,0)
+ ;;=3^Suicide Attempt,Subsequent Encntr
+ ;;^UTILITY(U,$J,358.3,23429,1,4,0)
+ ;;=4^T14.91XD
+ ;;^UTILITY(U,$J,358.3,23429,2)
+ ;;=^5151780
+ ;;^UTILITY(U,$J,358.3,23430,0)
+ ;;=T14.91XS^^78^1010^5
+ ;;^UTILITY(U,$J,358.3,23430,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,23164,1,3,0)
- ;;=3^Respiratory Failure,Hypercapneic,Acute and Chronic
- ;;^UTILITY(U,$J,358.3,23164,1,4,0)
- ;;=4^J96.22
- ;;^UTILITY(U,$J,358.3,23164,2)
- ;;=^5008355
- ;;^UTILITY(U,$J,358.3,23165,0)
- ;;=J96.12^^105^1168^31
- ;;^UTILITY(U,$J,358.3,23165,1,0)
+ ;;^UTILITY(U,$J,358.3,23430,1,3,0)
+ ;;=3^Suicide Attempt,Sequela
+ ;;^UTILITY(U,$J,358.3,23430,1,4,0)
+ ;;=4^T14.91XS
+ ;;^UTILITY(U,$J,358.3,23430,2)
+ ;;=^5151781
+ ;;^UTILITY(U,$J,358.3,23431,0)
+ ;;=Z91.51^^78^1010^2
+ ;;^UTILITY(U,$J,358.3,23431,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,23165,1,3,0)
- ;;=3^Respiratory Failure,Hypercapnia,Chronic
- ;;^UTILITY(U,$J,358.3,23165,1,4,0)
- ;;=4^J96.12
- ;;^UTILITY(U,$J,358.3,23165,2)
- ;;=^5008352
- ;;^UTILITY(U,$J,358.3,23166,0)
- ;;=J96.01^^105^1168^32
- ;;^UTILITY(U,$J,358.3,23166,1,0)
+ ;;^UTILITY(U,$J,358.3,23431,1,3,0)
+ ;;=3^Personal Hx of Suicidal Behavior
+ ;;^UTILITY(U,$J,358.3,23431,1,4,0)
+ ;;=4^Z91.51
+ ;;^UTILITY(U,$J,358.3,23431,2)
+ ;;=^5161317
+ ;;^UTILITY(U,$J,358.3,23432,0)
+ ;;=Z91.52^^78^1010^1
+ ;;^UTILITY(U,$J,358.3,23432,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,23166,1,3,0)
- ;;=3^Respiratory Failure,Hypoxic,Acute
- ;;^UTILITY(U,$J,358.3,23166,1,4,0)
- ;;=4^J96.01
- ;;^UTILITY(U,$J,358.3,23166,2)
- ;;=^5008348
- ;;^UTILITY(U,$J,358.3,23167,0)
- ;;=J96.21^^105^1168^33
- ;;^UTILITY(U,$J,358.3,23167,1,0)
+ ;;^UTILITY(U,$J,358.3,23432,1,3,0)
+ ;;=3^Personal Hx of Non-Suicidal Self-Harm
+ ;;^UTILITY(U,$J,358.3,23432,1,4,0)
+ ;;=4^Z91.52
+ ;;^UTILITY(U,$J,358.3,23432,2)
+ ;;=^5161318
+ ;;^UTILITY(U,$J,358.3,23433,0)
+ ;;=J30.1^^78^1011^5
+ ;;^UTILITY(U,$J,358.3,23433,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,23167,1,3,0)
- ;;=3^Respiratory Failure,Hypoxic,Acute and Chronic
- ;;^UTILITY(U,$J,358.3,23167,1,4,0)
- ;;=4^J96.21
- ;;^UTILITY(U,$J,358.3,23167,2)
- ;;=^5008354
- ;;^UTILITY(U,$J,358.3,23168,0)
- ;;=J96.11^^105^1168^34
- ;;^UTILITY(U,$J,358.3,23168,1,0)
+ ;;^UTILITY(U,$J,358.3,23433,1,3,0)
+ ;;=3^Allergic Rhinitis,Pollen
+ ;;^UTILITY(U,$J,358.3,23433,1,4,0)
+ ;;=4^J30.1
+ ;;^UTILITY(U,$J,358.3,23433,2)
+ ;;=^269906
+ ;;^UTILITY(U,$J,358.3,23434,0)
+ ;;=J30.2^^78^1011^3
+ ;;^UTILITY(U,$J,358.3,23434,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,23168,1,3,0)
- ;;=3^Respiratory Failure,Hypoxic,Chronic
- ;;^UTILITY(U,$J,358.3,23168,1,4,0)
- ;;=4^J96.11
- ;;^UTILITY(U,$J,358.3,23168,2)
- ;;=^5008351
- ;;^UTILITY(U,$J,358.3,23169,0)
- ;;=J95.821^^105^1168^35
- ;;^UTILITY(U,$J,358.3,23169,1,0)
+ ;;^UTILITY(U,$J,358.3,23434,1,3,0)
+ ;;=3^Allergic Rhinitis,Oth Seasonal
+ ;;^UTILITY(U,$J,358.3,23434,1,4,0)
+ ;;=4^J30.2
+ ;;^UTILITY(U,$J,358.3,23434,2)
+ ;;=^5008202
+ ;;^UTILITY(U,$J,358.3,23435,0)
+ ;;=J30.81^^78^1011^1
+ ;;^UTILITY(U,$J,358.3,23435,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,23169,1,3,0)
- ;;=3^Respiratory Failure,Post Procedural,Acute
- ;;^UTILITY(U,$J,358.3,23169,1,4,0)
- ;;=4^J95.821
- ;;^UTILITY(U,$J,358.3,23169,2)
- ;;=^5008338
- ;;^UTILITY(U,$J,358.3,23170,0)
- ;;=K20.9^^105^1169^12
- ;;^UTILITY(U,$J,358.3,23170,1,0)
+ ;;^UTILITY(U,$J,358.3,23435,1,3,0)
+ ;;=3^Allergic Rhinitis,Danders
+ ;;^UTILITY(U,$J,358.3,23435,1,4,0)
+ ;;=4^J30.81
+ ;;^UTILITY(U,$J,358.3,23435,2)
+ ;;=^5008203
+ ;;^UTILITY(U,$J,358.3,23436,0)
+ ;;=J30.89^^78^1011^4
+ ;;^UTILITY(U,$J,358.3,23436,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,23170,1,3,0)
- ;;=3^Esophagitis,Unspec
- ;;^UTILITY(U,$J,358.3,23170,1,4,0)
- ;;=4^K20.9
- ;;^UTILITY(U,$J,358.3,23170,2)
- ;;=^295809
- ;;^UTILITY(U,$J,358.3,23171,0)
- ;;=K25.9^^105^1169^15
+ ;;^UTILITY(U,$J,358.3,23436,1,3,0)
+ ;;=3^Allergic Rhinitis,Other
+ ;;^UTILITY(U,$J,358.3,23436,1,4,0)
+ ;;=4^J30.89
+ ;;^UTILITY(U,$J,358.3,23436,2)
+ ;;=^5008204
+ ;;^UTILITY(U,$J,358.3,23437,0)
+ ;;=J30.5^^78^1011^2

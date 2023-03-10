@@ -1,5 +1,6 @@
 YSGAF1 ;ASF/ALB- GLOBAL ASSESSMENT OF FUNCTIONNING CONT;9/25/97  11:19 ;11/10/97  16:08
- ;;5.01;MENTAL HEALTH;**33**;Dec 30, 1994
+ ;;5.01;MENTAL HEALTH;**33,187**;Dec 30, 1994;Build 73
+ ;
  Q
 ONELOC ;single hospital location
  N DIC,Y
@@ -74,7 +75,7 @@ TOP ;
  S YSGT="   10   20   30   40   50   60   70   80   90    |"
  S YSGR="####|####|####|####|####|####|####|####|####|####|"
  W @IOF,"Global Assessment of Functioning Historical Listing"
- W !,VADM(1),?$X+5,VA("PID"),?45,"printed: "
+ W !,VADM(1),?$X+5,"xxx-xx-",VA("BID"),?45,"printed: "
  D NOW^%DTC S Y=% X ^DD("DD") W Y
  S YSLINE="",$P(YSLINE,"-",79)="" W !,YSLINE
  W !,"Date",?10,"Clinician",?26,"GAF",?30,YSGT

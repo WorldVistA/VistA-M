@@ -1,5 +1,5 @@
-MAGDQR73 ;WOIFO/MLH - Imaging RPCs for Query/Retrieve - acc# scan for consult recs (old DB) ; 07 Mar 2013 10:18 AM
- ;;3.0;IMAGING;**118,138**;Mar 19, 2002;Build 5380;Sep 03, 2013
+MAGDQR73 ;WOIFO/MLH/PMK - Imaging RPCs for Query/Retrieve - acc# scan for consult recs (old DB) ; Jun 16, 2020@14:06:52
+ ;;3.0;IMAGING;**118,138,231**;Mar 19, 2002;Build 9;Sep 03, 2013
  ;; Per VHA Directive 2004-038, this routine should not be modified.
  ;; +---------------------------------------------------------------+
  ;; | Property of the US Government.                                |
@@ -29,7 +29,7 @@ ACCCON(REQ,T,P,ACC) ; scan old structure for Consult Related Images
  S D0="" F  S D0=$O(^TMP("MAG",$J,"QR",5,D0)) Q:D0=""  D
  . S MAGDFN=$$GET1^DIQ(123,D0,.02,"I") Q:'MAGDFN  ; No Patient IEN
  . Q:$$GET1^DIQ(123,D0,8)="CANCELLED"
- . I $O(^MAG(2006.5839,"C",123,D0,0)) D  Q  ; 1+ studies assoc w/consult
+ . I $O(^MAG(2006.5839,"C",123,D0,0)) D  ; 1+ studies assoc w/consult - P231 PMK 6/16/2020
  . . S IMAGE=0
  . . F  S IMAGE=$O(^MAG(2006.5839,"C",123,D0,IMAGE)) Q:'IMAGE  D
  . . . S X=$G(^MAG(2006.5839,IMAGE,0)) Q:X=""
@@ -37,7 +37,7 @@ ACCCON(REQ,T,P,ACC) ; scan old structure for Consult Related Images
  . . . S @TMPQ@(6,"C^"_X)="",ACC=1
  . . . Q
  . . Q
- . D  ; Otherwise find images in ^TIU
+ . D  ; Also find images in ^TIU - P231 PMK 6/16/2020
  . . D TIUALL^MAGDGMRC(D0,.RESULT)
  . . S I="" F  S I=$O(RESULT(I)) Q:I=""  D
  . . . S X=MAGDFN_"^8925^"_$P(RESULT(I),"^",1)_"^"_$P(RESULT(I),"^",3)_"^"_$P(RESULT(I),"^",2)

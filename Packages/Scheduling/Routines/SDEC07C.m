@@ -1,5 +1,5 @@
-SDEC07C ;ALB/WTC/ZEB - VISTA SCHEDULING RPCS ;DEC 18,2018@13:45
- ;;5.3;Scheduling;**686,694**;Aug 13, 1993;Build 61
+SDEC07C ;ALB/WTC/ZEB,KML - VISTA SCHEDULING RPCS ;MAY 5, 2022
+ ;;5.3;Scheduling;**686,694,816,820**;Aug 13, 1993;Build 10
  ;;Per VHA Directive 2004-038, this routine should not be modified
  ;
  Q
@@ -89,3 +89,23 @@ DOW N SDTMP S SDTMP=$E(X,1,3),Y=$E(X,4,5),Y=Y>2&'(SDTMP#4)+$E("144025036146",Y)
  ;
 DAY ;;^SUN^MON^TUES^WEDNES^THURS^FRI^SATUR
  ;
+ Q
+ORDERLOCKCHECK(REQUESTYPE,APPTREQIEN,SDECI,DFN) ;
+ ; sd*5.3*816 if RTC order cannot be locked then do not create appointment
+ ; send back error message to client
+ ;INPUT -
+ ;REQUESTYPE - TYPE OF APPT REQUEST (e.g., APPT, RTC, VETERAN)
+ ;APPTREQIEN - IEN of 409.85
+ ;SDECI - Line counter for error array - passed in by reference
+ ;DFN - ien of PATIENT file (#2)
+ ; return ERROR = 0 or 1
+ N ORDERID,ERROR,USER
+ S ORDERID=$G(ORDERID)
+ S ERROR=0
+ I REQUESTYPE="RTC" D
+ . S ORDERID=$$GET1^DIQ(409.85,APPTREQIEN,46,"I")
+ . Q:'+ORDERID
+ . I $D(^XTMP("ORLK-"_ORDERID)) D
+ . . S USER=$$GET1^DIQ(200,$P($G(^XTMP("ORLK-"_ORDERID,1)),"^"),.01)
+ . . D ERR^SDEC07(SDECI+1,"RTC Order is being edited by "_USER_". Please try again later.",DFN,1) S ERROR=1
+ Q ERROR

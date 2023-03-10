@@ -1,132 +1,132 @@
-IBDEI0I3 ; ; 04-FEB-2020
- ;;3.0;IB ENCOUNTER FORM IMP/EXP;;FEB 04, 2020
+IBDEI0I3 ; ; 01-FEB-2022
+ ;;3.0;IB ENCOUNTER FORM IMP/EXP;;FEB 01, 2022
  Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,999) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
- ;;^UTILITY(U,$J,358.3,7885,1,4,0)
- ;;=4^L56.0
- ;;^UTILITY(U,$J,358.3,7885,2)
- ;;=^5009214
- ;;^UTILITY(U,$J,358.3,7886,0)
- ;;=L23.9^^65^512^6
- ;;^UTILITY(U,$J,358.3,7886,1,0)
+ ;;^UTILITY(U,$J,358.3,8138,1,3,0)
+ ;;=3^Otalgia,Bilateral
+ ;;^UTILITY(U,$J,358.3,8138,1,4,0)
+ ;;=4^H92.03
+ ;;^UTILITY(U,$J,358.3,8138,2)
+ ;;=^5006947
+ ;;^UTILITY(U,$J,358.3,8139,0)
+ ;;=H91.92^^39^392^22
+ ;;^UTILITY(U,$J,358.3,8139,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,7886,1,3,0)
- ;;=3^Dermatitis,Allergic Contact,Cause Unspec
- ;;^UTILITY(U,$J,358.3,7886,1,4,0)
- ;;=4^L23.9
- ;;^UTILITY(U,$J,358.3,7886,2)
- ;;=^5009125
- ;;^UTILITY(U,$J,358.3,7887,0)
- ;;=L30.9^^65^512^21
- ;;^UTILITY(U,$J,358.3,7887,1,0)
+ ;;^UTILITY(U,$J,358.3,8139,1,3,0)
+ ;;=3^Hearing Loss,Unspec,Left Ear
+ ;;^UTILITY(U,$J,358.3,8139,1,4,0)
+ ;;=4^H91.92
+ ;;^UTILITY(U,$J,358.3,8139,2)
+ ;;=^5133554
+ ;;^UTILITY(U,$J,358.3,8140,0)
+ ;;=H91.93^^39^392^21
+ ;;^UTILITY(U,$J,358.3,8140,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,7887,1,3,0)
- ;;=3^Dermatitis,Unspec
- ;;^UTILITY(U,$J,358.3,7887,1,4,0)
- ;;=4^L30.9
- ;;^UTILITY(U,$J,358.3,7887,2)
- ;;=^5009159
- ;;^UTILITY(U,$J,358.3,7888,0)
- ;;=L24.9^^65^512^16
- ;;^UTILITY(U,$J,358.3,7888,1,0)
+ ;;^UTILITY(U,$J,358.3,8140,1,3,0)
+ ;;=3^Hearing Loss,Unspec,Bilateral
+ ;;^UTILITY(U,$J,358.3,8140,1,4,0)
+ ;;=4^H91.93
+ ;;^UTILITY(U,$J,358.3,8140,2)
+ ;;=^5006944
+ ;;^UTILITY(U,$J,358.3,8141,0)
+ ;;=H91.91^^39^392^23
+ ;;^UTILITY(U,$J,358.3,8141,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,7888,1,3,0)
- ;;=3^Dermatitis,Irritant Contact,Cause Unspec
- ;;^UTILITY(U,$J,358.3,7888,1,4,0)
- ;;=4^L24.9
- ;;^UTILITY(U,$J,358.3,7888,2)
- ;;=^5009136
- ;;^UTILITY(U,$J,358.3,7889,0)
- ;;=L30.0^^65^512^17
- ;;^UTILITY(U,$J,358.3,7889,1,0)
+ ;;^UTILITY(U,$J,358.3,8141,1,3,0)
+ ;;=3^Hearing Loss,Unspec,Right Ear
+ ;;^UTILITY(U,$J,358.3,8141,1,4,0)
+ ;;=4^H91.91
+ ;;^UTILITY(U,$J,358.3,8141,2)
+ ;;=^5133553
+ ;;^UTILITY(U,$J,358.3,8142,0)
+ ;;=H65.02^^39^392^4
+ ;;^UTILITY(U,$J,358.3,8142,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,7889,1,3,0)
- ;;=3^Dermatitis,Nummular
- ;;^UTILITY(U,$J,358.3,7889,1,4,0)
- ;;=4^L30.0
- ;;^UTILITY(U,$J,358.3,7889,2)
- ;;=^186823
- ;;^UTILITY(U,$J,358.3,7890,0)
- ;;=L23.2^^65^512^4
- ;;^UTILITY(U,$J,358.3,7890,1,0)
+ ;;^UTILITY(U,$J,358.3,8142,1,3,0)
+ ;;=3^Acute Serous Otitis Media,Left Ear
+ ;;^UTILITY(U,$J,358.3,8142,1,4,0)
+ ;;=4^H65.02
+ ;;^UTILITY(U,$J,358.3,8142,2)
+ ;;=^5006571
+ ;;^UTILITY(U,$J,358.3,8143,0)
+ ;;=H60.312^^39^392^19
+ ;;^UTILITY(U,$J,358.3,8143,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,7890,1,3,0)
- ;;=3^Dermatitis,Allergic Contact d/t Cosmetics
- ;;^UTILITY(U,$J,358.3,7890,1,4,0)
- ;;=4^L23.2
- ;;^UTILITY(U,$J,358.3,7890,2)
- ;;=^5009117
- ;;^UTILITY(U,$J,358.3,7891,0)
- ;;=L24.3^^65^512^12
- ;;^UTILITY(U,$J,358.3,7891,1,0)
+ ;;^UTILITY(U,$J,358.3,8143,1,3,0)
+ ;;=3^Diffuse Otitis Externa,Left Ear
+ ;;^UTILITY(U,$J,358.3,8143,1,4,0)
+ ;;=4^H60.312
+ ;;^UTILITY(U,$J,358.3,8143,2)
+ ;;=^5006448
+ ;;^UTILITY(U,$J,358.3,8144,0)
+ ;;=H60.311^^39^392^20
+ ;;^UTILITY(U,$J,358.3,8144,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,7891,1,3,0)
- ;;=3^Dermatitis,Irritant Contact d/t Cosmetics
- ;;^UTILITY(U,$J,358.3,7891,1,4,0)
- ;;=4^L24.3
- ;;^UTILITY(U,$J,358.3,7891,2)
- ;;=^5009129
- ;;^UTILITY(U,$J,358.3,7892,0)
- ;;=L27.2^^65^512^1
- ;;^UTILITY(U,$J,358.3,7892,1,0)
+ ;;^UTILITY(U,$J,358.3,8144,1,3,0)
+ ;;=3^Diffuse Otitis Externa,Right Ear
+ ;;^UTILITY(U,$J,358.3,8144,1,4,0)
+ ;;=4^H60.311
+ ;;^UTILITY(U,$J,358.3,8144,2)
+ ;;=^5006447
+ ;;^UTILITY(U,$J,358.3,8145,0)
+ ;;=H55.09^^39^392^30
+ ;;^UTILITY(U,$J,358.3,8145,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,7892,1,3,0)
- ;;=3^Dermatitis d/t Ingested Food
- ;;^UTILITY(U,$J,358.3,7892,1,4,0)
- ;;=4^L27.2
- ;;^UTILITY(U,$J,358.3,7892,2)
- ;;=^5009146
- ;;^UTILITY(U,$J,358.3,7893,0)
- ;;=L21.8^^65^512^20
- ;;^UTILITY(U,$J,358.3,7893,1,0)
+ ;;^UTILITY(U,$J,358.3,8145,1,3,0)
+ ;;=3^Nystagmus NEC
+ ;;^UTILITY(U,$J,358.3,8145,1,4,0)
+ ;;=4^H55.09
+ ;;^UTILITY(U,$J,358.3,8145,2)
+ ;;=^87599
+ ;;^UTILITY(U,$J,358.3,8146,0)
+ ;;=H60.01^^39^392^2
+ ;;^UTILITY(U,$J,358.3,8146,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,7893,1,3,0)
- ;;=3^Dermatitis,Seborrheic
- ;;^UTILITY(U,$J,358.3,7893,1,4,0)
- ;;=4^L21.8
- ;;^UTILITY(U,$J,358.3,7893,2)
- ;;=^303310
- ;;^UTILITY(U,$J,358.3,7894,0)
- ;;=L20.89^^65^512^7
- ;;^UTILITY(U,$J,358.3,7894,1,0)
+ ;;^UTILITY(U,$J,358.3,8146,1,3,0)
+ ;;=3^Abscess External Ear,Right
+ ;;^UTILITY(U,$J,358.3,8146,1,4,0)
+ ;;=4^H60.01
+ ;;^UTILITY(U,$J,358.3,8146,2)
+ ;;=^5006436
+ ;;^UTILITY(U,$J,358.3,8147,0)
+ ;;=H60.02^^39^392^1
+ ;;^UTILITY(U,$J,358.3,8147,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,7894,1,3,0)
- ;;=3^Dermatitis,Atopic
- ;;^UTILITY(U,$J,358.3,7894,1,4,0)
- ;;=4^L20.89
- ;;^UTILITY(U,$J,358.3,7894,2)
- ;;=^5009112
- ;;^UTILITY(U,$J,358.3,7895,0)
- ;;=E08.622^^65^512^23
- ;;^UTILITY(U,$J,358.3,7895,1,0)
+ ;;^UTILITY(U,$J,358.3,8147,1,3,0)
+ ;;=3^Abscess External Ear,Left
+ ;;^UTILITY(U,$J,358.3,8147,1,4,0)
+ ;;=4^H60.02
+ ;;^UTILITY(U,$J,358.3,8147,2)
+ ;;=^5006437
+ ;;^UTILITY(U,$J,358.3,8148,0)
+ ;;=H60.12^^39^392^13
+ ;;^UTILITY(U,$J,358.3,8148,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,7895,1,3,0)
- ;;=3^Diabetes d/t Underlying Condition w/ Skin Ulcer
- ;;^UTILITY(U,$J,358.3,7895,1,4,0)
- ;;=4^E08.622
- ;;^UTILITY(U,$J,358.3,7895,2)
- ;;=^5002535
- ;;^UTILITY(U,$J,358.3,7896,0)
- ;;=T81.31XA^^65^512^26
- ;;^UTILITY(U,$J,358.3,7896,1,0)
+ ;;^UTILITY(U,$J,358.3,8148,1,3,0)
+ ;;=3^Cellulitis External Ear,Left
+ ;;^UTILITY(U,$J,358.3,8148,1,4,0)
+ ;;=4^H60.12
+ ;;^UTILITY(U,$J,358.3,8148,2)
+ ;;=^5006441
+ ;;^UTILITY(U,$J,358.3,8149,0)
+ ;;=H60.11^^39^392^14
+ ;;^UTILITY(U,$J,358.3,8149,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,7896,1,3,0)
- ;;=3^Disruption External Surgical Wound NEC,Init Encntr
- ;;^UTILITY(U,$J,358.3,7896,1,4,0)
- ;;=4^T81.31XA
- ;;^UTILITY(U,$J,358.3,7896,2)
- ;;=^5054470
- ;;^UTILITY(U,$J,358.3,7897,0)
- ;;=L26.^^65^512^8
- ;;^UTILITY(U,$J,358.3,7897,1,0)
+ ;;^UTILITY(U,$J,358.3,8149,1,3,0)
+ ;;=3^Cellulitis External Ear,Right
+ ;;^UTILITY(U,$J,358.3,8149,1,4,0)
+ ;;=4^H60.11
+ ;;^UTILITY(U,$J,358.3,8149,2)
+ ;;=^5006440
+ ;;^UTILITY(U,$J,358.3,8150,0)
+ ;;=H61.21^^39^392^26
+ ;;^UTILITY(U,$J,358.3,8150,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,7897,1,3,0)
- ;;=3^Dermatitis,Exfoliative
- ;;^UTILITY(U,$J,358.3,7897,1,4,0)
- ;;=4^L26.
- ;;^UTILITY(U,$J,358.3,7897,2)
- ;;=^263886
- ;;^UTILITY(U,$J,358.3,7898,0)
- ;;=L98.1^^65^512^9
- ;;^UTILITY(U,$J,358.3,7898,1,0)
- ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,8150,1,3,0)
+ ;;=3^Impacted Cerumen,Right Ear
+ ;;^UTILITY(U,$J,358.3,8150,1,4,0)
+ ;;=4^H61.21
+ ;;^UTILITY(U,$J,358.3,8150,2)
+ ;;=^5006531
+ ;;^UTILITY(U,$J,358.3,8151,0)
+ ;;=H61.22^^39^392^25

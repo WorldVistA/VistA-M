@@ -1,5 +1,5 @@
-ORB3FUP1 ;SLC/CLA - ROUTINE TO SUPPORT NOTIFICATION FOLLOW UP ACTIONS ;Jul 10, 2019@11:54
- ;;3.0;ORDER ENTRY/RESULTS REPORTING;**9,64,74,105,139,243,350,377**;Dec 17, 1997;Build 582
+ORB3FUP1 ;SLC/CLA - ROUTINE TO SUPPORT NOTIFICATION FOLLOW UP ACTIONS ;Jan 12, 2021@11:20
+ ;;3.0;ORDER ENTRY/RESULTS REPORTING;**9,64,74,105,139,243,350,377,539**;Dec 17, 1997;Build 41
  Q
 TYPE(ORBY,ORXQAID) ; return notif follow-up action type
  N NIEN
@@ -10,6 +10,7 @@ TYPE(ORBY,ORXQAID) ; return notif follow-up action type
  Q
 GUI(ORBY,ORXQAID) ; Notification follow-up for GUI called via API: ORB FOLLOW-UP
  ; called by ORB FOLLOW-UP api:
+ N ORENVIR
  S ORENVIR="GUI"
  D PROCESS
  Q
@@ -18,13 +19,17 @@ PROCESS ; main process for notification follow-up
  ;XQADATA = placer num^placer id;filler num^filler id
  ;XQAKILL = value of parameter ORB DELETE MECHANISM for notif in 100.9
  N ORPDIEN,ORN,ORDFN,ORSITE,ORFID,ORFIEN,ORKILL
- N XQAID,XQADATA,XQAOPT,XQAROU
- D GETACT^XQALERT(ORXQAID)  ;return follow-up action info
- ;Q:'($D(XQADATA))  Q:'($D(XQAID))
- ;Q:($P(XQAID,",")'="OR")
+ N XQAID,XQADATA,XQAOPT,XQAROU,XQALERTD
+ ;return follow-up action info
+ I $P(ORXQAID,";",2)=DUZ D GETACT^XQALERT(ORXQAID)
+ I $P(ORXQAID,";",2)'=DUZ D
+ .D ALERTDAT^XQALBUTL(ORXQAID)
+ .S XQAID=ORXQAID,XQADATA=$G(XQALERTD(2))
+ .S XQAOPT=$G(XQALERTD(1.02))
+ .S XQAROU=$G(XQALERTD(1.03))_U_$G(XQALERTD(1.04))
+ .I XQAROU=U S XQAROU=""
  ;call function rpc stored in xqarou with params from xqadata
- D @XQAROU
- K ORENVIR
+ I XQAROU'="" D @XQAROU
  Q
 MSG ; display msg re: alert being processed for non-GUI follow-up actions
  I $G(ORENVIR)'="GUI" D
@@ -181,8 +186,9 @@ UNFLAG(ORPT) ;order unflagged - delete alert if no more flagged orders
  ;========DELETE ALERT (FOR ALL USERS) IF NO FLAGGED ORDERS AT ALL=====
  S X="",X=$O(^TMP("ORR",$J,X)) Q:X=""  I +$G(^TMP("ORR",$J,X,"TOT"))<1 D
  .;if no more flagged orders found, delete alert:
- .S XQAKILL=$$XQAKILL^ORB3F1(6)
- .I $G(XQAKILL)="" S XQAKILL=1
+ .;S XQAKILL=$$XQAKILL^ORB3F1(6)
+ .;I $G(XQAKILL)="" S XQAKILL=1
+ .S XQAKILL=0  ;p539
  .S XQAID="OR,"_ORPT_",6" D DELETEA^XQALERT K XQAID,XQAKILL S ORQUIT=1
  Q:ORQUIT
  ;========DELETE ALERT IF NO FLAGGED ORDERS LEFT RELATED TO THE USER THAT IS UNFLAGGING=====
@@ -194,13 +200,15 @@ UNFLAG(ORPT) ;order unflagged - delete alert if no more flagged orders
  .;if no more flagged orders found for this user, delete alert only for this user:
  .S XQAKILL=1
  .S XQAID="OR,"_ORPT_",6" D DELETEA^XQALERT K XQAID,XQAKILL
- ;========DELETE ALERT IF NO FLAGGED ORDERS LEFT RELATED TO THE USER THAT WAS THE ALERTED PROVIDER OF THE CURRENT ORDER=====
- S ORDOIT=1
- ;get the alerted provider
+ ;========DELETE ALERT IF NO FLAGGED ORDERS LEFT RELATED TO THE USER THAT WAS THE ALERTED PROVIDER OR RECIPIENT OF THE CURRENT ORDER=====
+ ;get the alerted provider/recipients ;p539
  I $G(ORIFN) D
  .N ORD,ORACT S ORD=+$G(ORIFN),ORACT=$P($G(ORIFN),";",2)
- .N ORUSR S ORUSR=$P($G(^OR(100,ORD,8,ORACT,3)),U,9)
- .I ORUSR D
+ .N ORUSR,IEN,ORCPT S ORUSR=$P($G(^OR(100,ORD,8,ORACT,3)),U,9) I ORUSR S ORCPT(ORUSR)=""
+ .S IEN=0
+ .F  S IEN=$O(^OR(100,ORD,8,ORACT,6,IEN)) Q:'IEN  S ORUSR=+$G(^(IEN,0)) I ORUSR S ORCPT(ORUSR)=""
+ .I $O(ORCPT(""))'="" S ORUSR=0 F  S ORUSR=$O(ORCPT(ORUSR)) Q:'ORUSR  D
+ ..S ORDOIT=1
  ..S X="",X=$O(^TMP("ORR",$J,X)) Q:X=""  D
  ...N Y S Y="" F  S Y=$O(^TMP("ORR",$J,X,Y)) Q:'Y  D
  ....N ORDER S ORDER=$G(^TMP("ORR",$J,X,Y))
@@ -239,3 +247,14 @@ SMART ;
  .D RENEW^ORB31(.ORY,XQAID)
  Q
  ;
+UPCOM ;process flagged order comment ;p539
+ K XQAKILL
+ N ORPT,ORBXQAID,ORY,ORDG,X,ORBLMDEL
+ S ORBXQAID=XQAID
+ S ORPT=$P($P(XQAID,";"),",",2)  ;get pt dfn from xqaid
+ I $G(ORENVIR)'="GUI" D
+ .D MSG
+ .S ORDG=$$DG^ORQOR1("ALL")  ;get Display Group ien
+ .D EN^ORCB(ORPT,12,ORDG,.ORBLMDEL)
+ .D DEL(.ORY,XQAID)
+ Q

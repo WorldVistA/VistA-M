@@ -1,122 +1,130 @@
-IBDEI0PV ; ; 04-FEB-2020
- ;;3.0;IB ENCOUNTER FORM IMP/EXP;;FEB 04, 2020
+IBDEI0PV ; ; 01-FEB-2022
+ ;;3.0;IB ENCOUNTER FORM IMP/EXP;;FEB 01, 2022
  Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,999) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
- ;;^UTILITY(U,$J,358.3,11538,0)
- ;;=H44.2A1^^77^737^37
- ;;^UTILITY(U,$J,358.3,11538,1,0)
+ ;;^UTILITY(U,$J,358.3,11628,2)
+ ;;=^5002735
+ ;;^UTILITY(U,$J,358.3,11629,0)
+ ;;=I15.8^^46^563^18
+ ;;^UTILITY(U,$J,358.3,11629,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,11538,1,3,0)
- ;;=3^Degenerative Myopia w/ CNV,Right Eye
- ;;^UTILITY(U,$J,358.3,11538,1,4,0)
- ;;=4^H44.2A1
- ;;^UTILITY(U,$J,358.3,11538,2)
- ;;=^5151318
- ;;^UTILITY(U,$J,358.3,11539,0)
- ;;=H44.2A2^^77^737^38
- ;;^UTILITY(U,$J,358.3,11539,1,0)
+ ;;^UTILITY(U,$J,358.3,11629,1,3,0)
+ ;;=3^Secondary Hypertension,Other
+ ;;^UTILITY(U,$J,358.3,11629,1,4,0)
+ ;;=4^I15.8
+ ;;^UTILITY(U,$J,358.3,11629,2)
+ ;;=^5007074
+ ;;^UTILITY(U,$J,358.3,11630,0)
+ ;;=E27.5^^46^563^1
+ ;;^UTILITY(U,$J,358.3,11630,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,11539,1,3,0)
- ;;=3^Degenerative Myopia w/ CNV,Left Eye
- ;;^UTILITY(U,$J,358.3,11539,1,4,0)
- ;;=4^H44.2A2
- ;;^UTILITY(U,$J,358.3,11539,2)
- ;;=^5151319
- ;;^UTILITY(U,$J,358.3,11540,0)
- ;;=H44.2A3^^77^737^39
- ;;^UTILITY(U,$J,358.3,11540,1,0)
+ ;;^UTILITY(U,$J,358.3,11630,1,3,0)
+ ;;=3^Adrenomedullary Hyperfunction
+ ;;^UTILITY(U,$J,358.3,11630,1,4,0)
+ ;;=4^E27.5
+ ;;^UTILITY(U,$J,358.3,11630,2)
+ ;;=^5002744
+ ;;^UTILITY(U,$J,358.3,11631,0)
+ ;;=E26.01^^46^563^4
+ ;;^UTILITY(U,$J,358.3,11631,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,11540,1,3,0)
- ;;=3^Degenerative Myopia w/ CNV,Bilateral
- ;;^UTILITY(U,$J,358.3,11540,1,4,0)
- ;;=4^H44.2A3
- ;;^UTILITY(U,$J,358.3,11540,2)
- ;;=^5151320
- ;;^UTILITY(U,$J,358.3,11541,0)
- ;;=H44.2B1^^77^737^40
- ;;^UTILITY(U,$J,358.3,11541,1,0)
+ ;;^UTILITY(U,$J,358.3,11631,1,3,0)
+ ;;=3^Conn's Syndrome
+ ;;^UTILITY(U,$J,358.3,11631,1,4,0)
+ ;;=4^E26.01
+ ;;^UTILITY(U,$J,358.3,11631,2)
+ ;;=^329905
+ ;;^UTILITY(U,$J,358.3,11632,0)
+ ;;=I15.9^^46^563^19
+ ;;^UTILITY(U,$J,358.3,11632,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,11541,1,3,0)
- ;;=3^Degenerative Myopia w/ Mac Hole,Right Eye
- ;;^UTILITY(U,$J,358.3,11541,1,4,0)
- ;;=4^H44.2B1
- ;;^UTILITY(U,$J,358.3,11541,2)
- ;;=^5151322
- ;;^UTILITY(U,$J,358.3,11542,0)
- ;;=H44.2B2^^77^737^41
- ;;^UTILITY(U,$J,358.3,11542,1,0)
+ ;;^UTILITY(U,$J,358.3,11632,1,3,0)
+ ;;=3^Secondary Hypertension,Unspec
+ ;;^UTILITY(U,$J,358.3,11632,1,4,0)
+ ;;=4^I15.9
+ ;;^UTILITY(U,$J,358.3,11632,2)
+ ;;=^5007075
+ ;;^UTILITY(U,$J,358.3,11633,0)
+ ;;=B20.^^46^564^3
+ ;;^UTILITY(U,$J,358.3,11633,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,11542,1,3,0)
- ;;=3^Degenerative Myopia w/ Mac Hole,Left Eye
- ;;^UTILITY(U,$J,358.3,11542,1,4,0)
- ;;=4^H44.2B2
- ;;^UTILITY(U,$J,358.3,11542,2)
- ;;=^5151323
- ;;^UTILITY(U,$J,358.3,11543,0)
- ;;=H35.3133^^77^737^6
- ;;^UTILITY(U,$J,358.3,11543,1,0)
+ ;;^UTILITY(U,$J,358.3,11633,1,3,0)
+ ;;=3^HIV Disease
+ ;;^UTILITY(U,$J,358.3,11633,1,4,0)
+ ;;=4^B20.
+ ;;^UTILITY(U,$J,358.3,11633,2)
+ ;;=^5000555
+ ;;^UTILITY(U,$J,358.3,11634,0)
+ ;;=J18.9^^46^564^6
+ ;;^UTILITY(U,$J,358.3,11634,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,11543,1,3,0)
- ;;=3^Non-Exudative ARMD, Advanced Atrophic w/o SF, Bilateral
- ;;^UTILITY(U,$J,358.3,11543,1,4,0)
- ;;=4^H35.3133
- ;;^UTILITY(U,$J,358.3,11543,2)
- ;;=^5138513
- ;;^UTILITY(U,$J,358.3,11544,0)
- ;;=H35.3132^^77^737^5
- ;;^UTILITY(U,$J,358.3,11544,1,0)
+ ;;^UTILITY(U,$J,358.3,11634,1,3,0)
+ ;;=3^Pneumonia,Unspec Organism
+ ;;^UTILITY(U,$J,358.3,11634,1,4,0)
+ ;;=4^J18.9
+ ;;^UTILITY(U,$J,358.3,11634,2)
+ ;;=^95632
+ ;;^UTILITY(U,$J,358.3,11635,0)
+ ;;=J10.1^^46^564^1
+ ;;^UTILITY(U,$J,358.3,11635,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,11544,1,3,0)
- ;;=3^Non-Exudative ARMD, Intermediate Dry Stage, Bilateral
- ;;^UTILITY(U,$J,358.3,11544,1,4,0)
- ;;=4^H35.3132
- ;;^UTILITY(U,$J,358.3,11544,2)
- ;;=^5138512
- ;;^UTILITY(U,$J,358.3,11545,0)
- ;;=H35.3291^^77^737^9
- ;;^UTILITY(U,$J,358.3,11545,1,0)
+ ;;^UTILITY(U,$J,358.3,11635,1,3,0)
+ ;;=3^Flu w/ Respiratory Manifestations
+ ;;^UTILITY(U,$J,358.3,11635,1,4,0)
+ ;;=4^J10.1
+ ;;^UTILITY(U,$J,358.3,11635,2)
+ ;;=^5008151
+ ;;^UTILITY(U,$J,358.3,11636,0)
+ ;;=K52.9^^46^564^2
+ ;;^UTILITY(U,$J,358.3,11636,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,11545,1,3,0)
- ;;=3^Exudative ARMD, w/ Active CNVM, Unspec Eye
- ;;^UTILITY(U,$J,358.3,11545,1,4,0)
- ;;=4^H35.3291
- ;;^UTILITY(U,$J,358.3,11545,2)
- ;;=^5138533
- ;;^UTILITY(U,$J,358.3,11546,0)
- ;;=H35.3292^^77^737^10
- ;;^UTILITY(U,$J,358.3,11546,1,0)
+ ;;^UTILITY(U,$J,358.3,11636,1,3,0)
+ ;;=3^Gastroenteritis & Colitis,Noninfective,Unspec
+ ;;^UTILITY(U,$J,358.3,11636,1,4,0)
+ ;;=4^K52.9
+ ;;^UTILITY(U,$J,358.3,11636,2)
+ ;;=^5008704
+ ;;^UTILITY(U,$J,358.3,11637,0)
+ ;;=N12.^^46^564^7
+ ;;^UTILITY(U,$J,358.3,11637,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,11546,1,3,0)
- ;;=3^Exudative ARMD, w/ Inactive CNVM, Unspec Eye
- ;;^UTILITY(U,$J,358.3,11546,1,4,0)
- ;;=4^H35.3292
- ;;^UTILITY(U,$J,358.3,11546,2)
- ;;=^5138534
- ;;^UTILITY(U,$J,358.3,11547,0)
- ;;=H35.3293^^77^737^11
- ;;^UTILITY(U,$J,358.3,11547,1,0)
+ ;;^UTILITY(U,$J,358.3,11637,1,3,0)
+ ;;=3^Tubulo-Interstitial Nephritis
+ ;;^UTILITY(U,$J,358.3,11637,1,4,0)
+ ;;=4^N12.
+ ;;^UTILITY(U,$J,358.3,11637,2)
+ ;;=^5015575
+ ;;^UTILITY(U,$J,358.3,11638,0)
+ ;;=L97.509^^46^564^4
+ ;;^UTILITY(U,$J,358.3,11638,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,11547,1,3,0)
- ;;=3^Exudative ARMD, w/ Inactive Scar, Unspec Eye
- ;;^UTILITY(U,$J,358.3,11547,1,4,0)
- ;;=4^H35.3293
- ;;^UTILITY(U,$J,358.3,11547,2)
- ;;=^5138535
- ;;^UTILITY(U,$J,358.3,11548,0)
- ;;=Z79.899^^77^737^33
- ;;^UTILITY(U,$J,358.3,11548,1,0)
+ ;;^UTILITY(U,$J,358.3,11638,1,3,0)
+ ;;=3^Non-Pressure Chr Ulcer Unspec Foot w/ Unspec Severity
+ ;;^UTILITY(U,$J,358.3,11638,1,4,0)
+ ;;=4^L97.509
+ ;;^UTILITY(U,$J,358.3,11638,2)
+ ;;=^5009544
+ ;;^UTILITY(U,$J,358.3,11639,0)
+ ;;=M86.10^^46^564^5
+ ;;^UTILITY(U,$J,358.3,11639,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,11548,1,3,0)
- ;;=3^Plaquenil/Long Term Med Screening
- ;;^UTILITY(U,$J,358.3,11548,1,4,0)
- ;;=4^Z79.899
- ;;^UTILITY(U,$J,358.3,11548,2)
- ;;=^5063343
- ;;^UTILITY(U,$J,358.3,11549,0)
- ;;=Z91.5^^77^738^1
- ;;^UTILITY(U,$J,358.3,11549,1,0)
+ ;;^UTILITY(U,$J,358.3,11639,1,3,0)
+ ;;=3^Osteomylitis,Acute,Unspec Site
+ ;;^UTILITY(U,$J,358.3,11639,1,4,0)
+ ;;=4^M86.10
+ ;;^UTILITY(U,$J,358.3,11639,2)
+ ;;=^5014521
+ ;;^UTILITY(U,$J,358.3,11640,0)
+ ;;=E85.9^^46^565^1
+ ;;^UTILITY(U,$J,358.3,11640,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,11549,1,3,0)
- ;;=3^Personal Hx of Suicide Attempt(s)
- ;;^UTILITY(U,$J,358.3,11549,1,4,0)
- ;;=4^Z91.5
+ ;;^UTILITY(U,$J,358.3,11640,1,3,0)
+ ;;=3^Amyloidosis,Unspec
+ ;;^UTILITY(U,$J,358.3,11640,1,4,0)
+ ;;=4^E85.9
+ ;;^UTILITY(U,$J,358.3,11640,2)
+ ;;=^334185
+ ;;^UTILITY(U,$J,358.3,11641,0)
+ ;;=N00.9^^46^565^3
+ ;;^UTILITY(U,$J,358.3,11641,1,0)
+ ;;=^358.31IA^4^2

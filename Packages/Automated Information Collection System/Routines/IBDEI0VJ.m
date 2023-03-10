@@ -1,126 +1,118 @@
-IBDEI0VJ ; ; 04-FEB-2020
- ;;3.0;IB ENCOUNTER FORM IMP/EXP;;FEB 04, 2020
+IBDEI0VJ ; ; 01-FEB-2022
+ ;;3.0;IB ENCOUNTER FORM IMP/EXP;;FEB 01, 2022
  Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,999) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
- ;;^UTILITY(U,$J,358.3,14040,1,0)
+ ;;^UTILITY(U,$J,358.3,14220,0)
+ ;;=S70.02XD^^55^673^6
+ ;;^UTILITY(U,$J,358.3,14220,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,14040,1,3,0)
- ;;=3^Fx in Oth Disease,Unspec Site,Delayed Healing
- ;;^UTILITY(U,$J,358.3,14040,1,4,0)
- ;;=4^M84.60XG
- ;;^UTILITY(U,$J,358.3,14040,2)
- ;;=^5014216
- ;;^UTILITY(U,$J,358.3,14041,0)
- ;;=M84.60XK^^83^821^44
- ;;^UTILITY(U,$J,358.3,14041,1,0)
+ ;;^UTILITY(U,$J,358.3,14220,1,3,0)
+ ;;=3^Contusion of left hip, subsequent encounter
+ ;;^UTILITY(U,$J,358.3,14220,1,4,0)
+ ;;=4^S70.02XD
+ ;;^UTILITY(U,$J,358.3,14220,2)
+ ;;=^5036838
+ ;;^UTILITY(U,$J,358.3,14221,0)
+ ;;=S70.01XD^^55^673^8
+ ;;^UTILITY(U,$J,358.3,14221,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,14041,1,3,0)
- ;;=3^Fx in Oth Disease,Unspec Site,Nonunion
- ;;^UTILITY(U,$J,358.3,14041,1,4,0)
- ;;=4^M84.60XK
- ;;^UTILITY(U,$J,358.3,14041,2)
- ;;=^5014217
- ;;^UTILITY(U,$J,358.3,14042,0)
- ;;=M84.60XP^^83^821^43
- ;;^UTILITY(U,$J,358.3,14042,1,0)
+ ;;^UTILITY(U,$J,358.3,14221,1,3,0)
+ ;;=3^Contusion of right hip, subsequent encounter
+ ;;^UTILITY(U,$J,358.3,14221,1,4,0)
+ ;;=4^S70.01XD
+ ;;^UTILITY(U,$J,358.3,14221,2)
+ ;;=^5036835
+ ;;^UTILITY(U,$J,358.3,14222,0)
+ ;;=S72.142D^^55^673^11
+ ;;^UTILITY(U,$J,358.3,14222,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,14042,1,3,0)
- ;;=3^Fx in Oth Disease,Unspec Site,Malunion
- ;;^UTILITY(U,$J,358.3,14042,1,4,0)
- ;;=4^M84.60XP
- ;;^UTILITY(U,$J,358.3,14042,2)
- ;;=^5014218
- ;;^UTILITY(U,$J,358.3,14043,0)
- ;;=M84.40XA^^83^821^56
- ;;^UTILITY(U,$J,358.3,14043,1,0)
+ ;;^UTILITY(U,$J,358.3,14222,1,3,0)
+ ;;=3^Displ intertroch fx l femur, subs for clos fx w routn heal
+ ;;^UTILITY(U,$J,358.3,14222,1,4,0)
+ ;;=4^S72.142D
+ ;;^UTILITY(U,$J,358.3,14222,2)
+ ;;=^5037934
+ ;;^UTILITY(U,$J,358.3,14223,0)
+ ;;=S72.141D^^55^673^12
+ ;;^UTILITY(U,$J,358.3,14223,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,14043,1,3,0)
- ;;=3^Fx,Unspec Site,Init Encntr
- ;;^UTILITY(U,$J,358.3,14043,1,4,0)
- ;;=4^M84.40XA
- ;;^UTILITY(U,$J,358.3,14043,2)
- ;;=^5013794
- ;;^UTILITY(U,$J,358.3,14044,0)
- ;;=M84.40XD^^83^821^59
- ;;^UTILITY(U,$J,358.3,14044,1,0)
+ ;;^UTILITY(U,$J,358.3,14223,1,3,0)
+ ;;=3^Displ intertroch fx r femur, subs for clos fx w routn heal
+ ;;^UTILITY(U,$J,358.3,14223,1,4,0)
+ ;;=4^S72.141D
+ ;;^UTILITY(U,$J,358.3,14223,2)
+ ;;=^5037918
+ ;;^UTILITY(U,$J,358.3,14224,0)
+ ;;=S72.22XD^^55^673^13
+ ;;^UTILITY(U,$J,358.3,14224,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,14044,1,3,0)
- ;;=3^Fx,Unspec Site,Routine Healing
- ;;^UTILITY(U,$J,358.3,14044,1,4,0)
- ;;=4^M84.40XD
- ;;^UTILITY(U,$J,358.3,14044,2)
- ;;=^5013795
- ;;^UTILITY(U,$J,358.3,14045,0)
- ;;=M84.40XS^^83^821^60
- ;;^UTILITY(U,$J,358.3,14045,1,0)
+ ;;^UTILITY(U,$J,358.3,14224,1,3,0)
+ ;;=3^Displ subtrochnt fx l femur, subs for clos fx w routn heal
+ ;;^UTILITY(U,$J,358.3,14224,1,4,0)
+ ;;=4^S72.22XD
+ ;;^UTILITY(U,$J,358.3,14224,2)
+ ;;=^5038030
+ ;;^UTILITY(U,$J,358.3,14225,0)
+ ;;=S72.21XD^^55^673^14
+ ;;^UTILITY(U,$J,358.3,14225,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,14045,1,3,0)
- ;;=3^Fx,Unspec Site,Sequela
- ;;^UTILITY(U,$J,358.3,14045,1,4,0)
- ;;=4^M84.40XS
- ;;^UTILITY(U,$J,358.3,14045,2)
- ;;=^5013799
- ;;^UTILITY(U,$J,358.3,14046,0)
- ;;=M84.40XG^^83^821^55
- ;;^UTILITY(U,$J,358.3,14046,1,0)
+ ;;^UTILITY(U,$J,358.3,14225,1,3,0)
+ ;;=3^Displ subtrochnt fx r femur, subs for clos fx w routn heal
+ ;;^UTILITY(U,$J,358.3,14225,1,4,0)
+ ;;=4^S72.21XD
+ ;;^UTILITY(U,$J,358.3,14225,2)
+ ;;=^5038014
+ ;;^UTILITY(U,$J,358.3,14226,0)
+ ;;=S72.002D^^55^673^23
+ ;;^UTILITY(U,$J,358.3,14226,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,14046,1,3,0)
- ;;=3^Fx,Unspec Site,Delayed Healing
- ;;^UTILITY(U,$J,358.3,14046,1,4,0)
- ;;=4^M84.40XG
- ;;^UTILITY(U,$J,358.3,14046,2)
- ;;=^5013796
- ;;^UTILITY(U,$J,358.3,14047,0)
- ;;=M84.40XK^^83^821^58
- ;;^UTILITY(U,$J,358.3,14047,1,0)
+ ;;^UTILITY(U,$J,358.3,14226,1,3,0)
+ ;;=3^Fx unsp part of nk of l femr, subs for clos fx w routn heal
+ ;;^UTILITY(U,$J,358.3,14226,1,4,0)
+ ;;=4^S72.002D
+ ;;^UTILITY(U,$J,358.3,14226,2)
+ ;;=^5037066
+ ;;^UTILITY(U,$J,358.3,14227,0)
+ ;;=S72.001D^^55^673^24
+ ;;^UTILITY(U,$J,358.3,14227,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,14047,1,3,0)
- ;;=3^Fx,Unspec Site,Nonunion
- ;;^UTILITY(U,$J,358.3,14047,1,4,0)
- ;;=4^M84.40XK
- ;;^UTILITY(U,$J,358.3,14047,2)
- ;;=^5013797
- ;;^UTILITY(U,$J,358.3,14048,0)
- ;;=M84.40XP^^83^821^57
- ;;^UTILITY(U,$J,358.3,14048,1,0)
+ ;;^UTILITY(U,$J,358.3,14227,1,3,0)
+ ;;=3^Fx unsp part of nk of r femr, subs for clos fx w routn heal
+ ;;^UTILITY(U,$J,358.3,14227,1,4,0)
+ ;;=4^S72.001D
+ ;;^UTILITY(U,$J,358.3,14227,2)
+ ;;=^5037050
+ ;;^UTILITY(U,$J,358.3,14228,0)
+ ;;=S72.145D^^55^673^29
+ ;;^UTILITY(U,$J,358.3,14228,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,14048,1,3,0)
- ;;=3^Fx,Unspec Site,Malunion
- ;;^UTILITY(U,$J,358.3,14048,1,4,0)
- ;;=4^M84.40XP
- ;;^UTILITY(U,$J,358.3,14048,2)
- ;;=^5013798
- ;;^UTILITY(U,$J,358.3,14049,0)
- ;;=M84.30XA^^83^821^50
- ;;^UTILITY(U,$J,358.3,14049,1,0)
+ ;;^UTILITY(U,$J,358.3,14228,1,3,0)
+ ;;=3^Nondisp intertroch fx l femur, subs for clos fx w routn heal
+ ;;^UTILITY(U,$J,358.3,14228,1,4,0)
+ ;;=4^S72.145D
+ ;;^UTILITY(U,$J,358.3,14228,2)
+ ;;=^5037982
+ ;;^UTILITY(U,$J,358.3,14229,0)
+ ;;=S72.144D^^55^673^30
+ ;;^UTILITY(U,$J,358.3,14229,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,14049,1,3,0)
- ;;=3^Fx,Stress,Unspec Site,Init Encntr
- ;;^UTILITY(U,$J,358.3,14049,1,4,0)
- ;;=4^M84.30XA
- ;;^UTILITY(U,$J,358.3,14049,2)
- ;;=^5013566
- ;;^UTILITY(U,$J,358.3,14050,0)
- ;;=M84.30XD^^83^821^53
- ;;^UTILITY(U,$J,358.3,14050,1,0)
+ ;;^UTILITY(U,$J,358.3,14229,1,3,0)
+ ;;=3^Nondisp intertroch fx r femur, subs for clos fx w routn heal
+ ;;^UTILITY(U,$J,358.3,14229,1,4,0)
+ ;;=4^S72.144D
+ ;;^UTILITY(U,$J,358.3,14229,2)
+ ;;=^5037966
+ ;;^UTILITY(U,$J,358.3,14230,0)
+ ;;=M16.4^^55^673^3
+ ;;^UTILITY(U,$J,358.3,14230,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,14050,1,3,0)
- ;;=3^Fx,Stress,Unspec Site,Routine Healing
- ;;^UTILITY(U,$J,358.3,14050,1,4,0)
- ;;=4^M84.30XD
- ;;^UTILITY(U,$J,358.3,14050,2)
- ;;=^5013567
- ;;^UTILITY(U,$J,358.3,14051,0)
- ;;=M84.30XS^^83^821^54
- ;;^UTILITY(U,$J,358.3,14051,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,14051,1,3,0)
- ;;=3^Fx,Stress,Unspec Site,Sequela
- ;;^UTILITY(U,$J,358.3,14051,1,4,0)
- ;;=4^M84.30XS
- ;;^UTILITY(U,$J,358.3,14051,2)
- ;;=^5013571
- ;;^UTILITY(U,$J,358.3,14052,0)
- ;;=M84.30XG^^83^821^49
- ;;^UTILITY(U,$J,358.3,14052,1,0)
+ ;;^UTILITY(U,$J,358.3,14230,1,3,0)
+ ;;=3^Bilateral post-traumatic osteoarthritis of hip
+ ;;^UTILITY(U,$J,358.3,14230,1,4,0)
+ ;;=4^M16.4
+ ;;^UTILITY(U,$J,358.3,14230,2)
+ ;;=^5010777
+ ;;^UTILITY(U,$J,358.3,14231,0)
+ ;;=M16.51^^55^673^48
+ ;;^UTILITY(U,$J,358.3,14231,1,0)
  ;;=^358.31IA^4^2

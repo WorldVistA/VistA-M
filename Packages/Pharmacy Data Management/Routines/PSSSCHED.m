@@ -1,6 +1,7 @@
-PSSSCHED ;BIR/JMC-BUILD SCHEDULE LIST FOR CPRS GUI SELECTION ; 10/15/15 4:21pm
- ;;1.0;PHARMACY DATA MANAGEMENT;**94,189**;9/30/97;Build 54
+PSSSCHED ;BIR/JMC-BUILD SCHEDULE LIST FOR CPRS GUI SELECTION ;Feb 12, 2021@13:11
+ ;;1.0;PHARMACY DATA MANAGEMENT;**94,189,249**;9/30/97;Build 2
  ;
+ ; Reference to SCHE^PSOSIG supported by DBIA 7227
  ;
  Q  ;Cannot be called directly.  Must use API
  ;
@@ -29,7 +30,7 @@ SCHED(PSSWIEN,PSSARRY) ;Receive ward IEN from CPRS and return list of schedules.
  ;of schedules returned to CPRS.
  ;
  ;If neither schedule has ward-specific admin times for the ICU
- ;then ^PS(51.1,1 will be in the list of schedules returned to CPRS.            
+ ;then ^PS(51.1,1 will be in the list of schedules returned to CPRS.
  ;
  ;If both schedules have ward-specific admin times for the ICU
  ;then ^PS(51.1,1 will be in the list of schedules returned to CPRS.
@@ -72,12 +73,12 @@ DUP ;Compare duplicates to see if any have ward-specific admin times.
  K ^TMP("PSSDUP")
  Q
 FORMAT ;Format array for proper return to CPRS
- N PSSCNTR,PSSTMP
+ N PSSCNTR,PSSTMP,PSSEXP,PSSEXP1
  S PSSSKED="",PSSSKED1="",PSSCNTR=1
  F  S PSSSKED=$O(^TMP("PSSADMIN",$J,"STD",PSSSKED)) Q:PSSSKED=""  D
  . F  S PSSSKED1=$O(^TMP("PSSADMIN",$J,"STD",PSSSKED,PSSSKED1)) Q:PSSSKED1=""  D
  . . S PSSTMP=$G(^PS(51.1,PSSSKED1,0))
- . . S PSSARRY(PSSCNTR)=PSSSKED1_"^"_PSSSKED_"^"_$P(PSSTMP,"^",8)_"^"_$P(PSSTMP,"^",5)_"^"_$G(^TMP("PSSADMIN",$J,"STD",PSSSKED,PSSSKED1))
+ . . S PSSEXP=$P(PSSTMP,"^",8) I PSSEXP="",$T(SCHE^PSOSIG)]"" S PSSEXP1=$$SCHE^PSOSIG(PSSSKED) S:PSSEXP1'=PSSSKED PSSEXP=PSSEXP1
+ . . S PSSARRY(PSSCNTR)=PSSSKED1_"^"_PSSSKED_"^"_PSSEXP_"^"_$P(PSSTMP,"^",5)_"^"_$G(^TMP("PSSADMIN",$J,"STD",PSSSKED,PSSSKED1))
  . . S PSSCNTR=PSSCNTR+1
  K PSSCNTR,PSSTMP
- Q

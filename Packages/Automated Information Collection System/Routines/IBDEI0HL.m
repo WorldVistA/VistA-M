@@ -1,128 +1,132 @@
-IBDEI0HL ; ; 04-FEB-2020
- ;;3.0;IB ENCOUNTER FORM IMP/EXP;;FEB 04, 2020
+IBDEI0HL ; ; 01-FEB-2022
+ ;;3.0;IB ENCOUNTER FORM IMP/EXP;;FEB 01, 2022
  Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,999) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
- ;;^UTILITY(U,$J,358.3,7657,1,3,0)
- ;;=3^Morbid Obesity w/ Alveolar Hypoventilation
- ;;^UTILITY(U,$J,358.3,7657,1,4,0)
- ;;=4^E66.2
- ;;^UTILITY(U,$J,358.3,7657,2)
- ;;=^5002829
- ;;^UTILITY(U,$J,358.3,7658,0)
- ;;=K85.90^^63^497^20
- ;;^UTILITY(U,$J,358.3,7658,1,0)
+ ;;^UTILITY(U,$J,358.3,7920,1,3,0)
+ ;;=3^Flexural Eczema
+ ;;^UTILITY(U,$J,358.3,7920,1,4,0)
+ ;;=4^L20.82
+ ;;^UTILITY(U,$J,358.3,7920,2)
+ ;;=^5009109
+ ;;^UTILITY(U,$J,358.3,7921,0)
+ ;;=L20.84^^39^391^165
+ ;;^UTILITY(U,$J,358.3,7921,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,7658,1,3,0)
- ;;=3^Pancreatitis,Acute w/o Necrosis/Infection,Unspec
- ;;^UTILITY(U,$J,358.3,7658,1,4,0)
- ;;=4^K85.90
- ;;^UTILITY(U,$J,358.3,7658,2)
- ;;=^5138761
- ;;^UTILITY(U,$J,358.3,7659,0)
- ;;=K85.91^^63^497^19
- ;;^UTILITY(U,$J,358.3,7659,1,0)
+ ;;^UTILITY(U,$J,358.3,7921,1,3,0)
+ ;;=3^Intrinsic Eczema
+ ;;^UTILITY(U,$J,358.3,7921,1,4,0)
+ ;;=4^L20.84
+ ;;^UTILITY(U,$J,358.3,7921,2)
+ ;;=^5009111
+ ;;^UTILITY(U,$J,358.3,7922,0)
+ ;;=L20.89^^39^391^86
+ ;;^UTILITY(U,$J,358.3,7922,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,7659,1,3,0)
- ;;=3^Pancreatitis,Acute w/ Uninfected Necrosis,Unspec
- ;;^UTILITY(U,$J,358.3,7659,1,4,0)
- ;;=4^K85.91
- ;;^UTILITY(U,$J,358.3,7659,2)
- ;;=^5138762
- ;;^UTILITY(U,$J,358.3,7660,0)
- ;;=K85.92^^63^497^18
- ;;^UTILITY(U,$J,358.3,7660,1,0)
+ ;;^UTILITY(U,$J,358.3,7922,1,3,0)
+ ;;=3^Atopic Dermatitis NEC
+ ;;^UTILITY(U,$J,358.3,7922,1,4,0)
+ ;;=4^L20.89
+ ;;^UTILITY(U,$J,358.3,7922,2)
+ ;;=^5009112
+ ;;^UTILITY(U,$J,358.3,7923,0)
+ ;;=L20.9^^39^391^87
+ ;;^UTILITY(U,$J,358.3,7923,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,7660,1,3,0)
- ;;=3^Pancreatitis,Acute w/ Infected Necrosis,Unspec
- ;;^UTILITY(U,$J,358.3,7660,1,4,0)
- ;;=4^K85.92
- ;;^UTILITY(U,$J,358.3,7660,2)
- ;;=^5138763
- ;;^UTILITY(U,$J,358.3,7661,0)
- ;;=I21.4^^63^498^57
- ;;^UTILITY(U,$J,358.3,7661,1,0)
+ ;;^UTILITY(U,$J,358.3,7923,1,3,0)
+ ;;=3^Atopic Dermatitis,Unspec
+ ;;^UTILITY(U,$J,358.3,7923,1,4,0)
+ ;;=4^L20.9
+ ;;^UTILITY(U,$J,358.3,7923,2)
+ ;;=^5009113
+ ;;^UTILITY(U,$J,358.3,7924,0)
+ ;;=L21.8^^39^391^302
+ ;;^UTILITY(U,$J,358.3,7924,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,7661,1,3,0)
- ;;=3^NSTEMI Myocardial Infarction
- ;;^UTILITY(U,$J,358.3,7661,1,4,0)
- ;;=4^I21.4
- ;;^UTILITY(U,$J,358.3,7661,2)
- ;;=^5007088
- ;;^UTILITY(U,$J,358.3,7662,0)
- ;;=I50.9^^63^498^41
- ;;^UTILITY(U,$J,358.3,7662,1,0)
+ ;;^UTILITY(U,$J,358.3,7924,1,3,0)
+ ;;=3^Seborrheic Dermatitis NEC
+ ;;^UTILITY(U,$J,358.3,7924,1,4,0)
+ ;;=4^L21.8
+ ;;^UTILITY(U,$J,358.3,7924,2)
+ ;;=^303310
+ ;;^UTILITY(U,$J,358.3,7925,0)
+ ;;=L21.9^^39^391^303
+ ;;^UTILITY(U,$J,358.3,7925,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,7662,1,3,0)
- ;;=3^Heart Failure,Unspec
- ;;^UTILITY(U,$J,358.3,7662,1,4,0)
- ;;=4^I50.9
- ;;^UTILITY(U,$J,358.3,7662,2)
- ;;=^5007251
- ;;^UTILITY(U,$J,358.3,7663,0)
- ;;=I50.23^^63^498^75
- ;;^UTILITY(U,$J,358.3,7663,1,0)
+ ;;^UTILITY(U,$J,358.3,7925,1,3,0)
+ ;;=3^Seborrheic Dermatitis,Unspec
+ ;;^UTILITY(U,$J,358.3,7925,1,4,0)
+ ;;=4^L21.9
+ ;;^UTILITY(U,$J,358.3,7925,2)
+ ;;=^188703
+ ;;^UTILITY(U,$J,358.3,7926,0)
+ ;;=L23.7^^39^391^31
+ ;;^UTILITY(U,$J,358.3,7926,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,7663,1,3,0)
- ;;=3^Systolic Congestive Heart Failure,Acute on Chronic
- ;;^UTILITY(U,$J,358.3,7663,1,4,0)
- ;;=4^I50.23
- ;;^UTILITY(U,$J,358.3,7663,2)
- ;;=^5007242
- ;;^UTILITY(U,$J,358.3,7664,0)
- ;;=I25.10^^63^498^6
- ;;^UTILITY(U,$J,358.3,7664,1,0)
+ ;;^UTILITY(U,$J,358.3,7926,1,3,0)
+ ;;=3^Allergic Contact Dermatitis d/t Plants
+ ;;^UTILITY(U,$J,358.3,7926,1,4,0)
+ ;;=4^L23.7
+ ;;^UTILITY(U,$J,358.3,7926,2)
+ ;;=^5009122
+ ;;^UTILITY(U,$J,358.3,7927,0)
+ ;;=L23.9^^39^391^32
+ ;;^UTILITY(U,$J,358.3,7927,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,7664,1,3,0)
- ;;=3^Athscl Hrt Disease Native Coronary Artery w/o Ang Pctrs
- ;;^UTILITY(U,$J,358.3,7664,1,4,0)
- ;;=4^I25.10
- ;;^UTILITY(U,$J,358.3,7664,2)
- ;;=^5007107
- ;;^UTILITY(U,$J,358.3,7665,0)
- ;;=I10.^^63^498^43
- ;;^UTILITY(U,$J,358.3,7665,1,0)
+ ;;^UTILITY(U,$J,358.3,7927,1,3,0)
+ ;;=3^Allergic Contact Dermatitis,Unspec
+ ;;^UTILITY(U,$J,358.3,7927,1,4,0)
+ ;;=4^L23.9
+ ;;^UTILITY(U,$J,358.3,7927,2)
+ ;;=^5009125
+ ;;^UTILITY(U,$J,358.3,7928,0)
+ ;;=L24.9^^39^391^166
+ ;;^UTILITY(U,$J,358.3,7928,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,7665,1,3,0)
- ;;=3^Hypertension
- ;;^UTILITY(U,$J,358.3,7665,1,4,0)
- ;;=4^I10.
- ;;^UTILITY(U,$J,358.3,7665,2)
- ;;=^5007062
- ;;^UTILITY(U,$J,358.3,7666,0)
- ;;=I49.8^^63^498^29
- ;;^UTILITY(U,$J,358.3,7666,1,0)
+ ;;^UTILITY(U,$J,358.3,7928,1,3,0)
+ ;;=3^Irritant Contact Dermatitis,Unspec
+ ;;^UTILITY(U,$J,358.3,7928,1,4,0)
+ ;;=4^L24.9
+ ;;^UTILITY(U,$J,358.3,7928,2)
+ ;;=^5009136
+ ;;^UTILITY(U,$J,358.3,7929,0)
+ ;;=L25.9^^39^391^117
+ ;;^UTILITY(U,$J,358.3,7929,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,7666,1,3,0)
- ;;=3^Cardiac Arrhythmias,Oth Spec
- ;;^UTILITY(U,$J,358.3,7666,1,4,0)
- ;;=4^I49.8
- ;;^UTILITY(U,$J,358.3,7666,2)
- ;;=^5007236
- ;;^UTILITY(U,$J,358.3,7667,0)
- ;;=R00.1^^63^498^27
- ;;^UTILITY(U,$J,358.3,7667,1,0)
+ ;;^UTILITY(U,$J,358.3,7929,1,3,0)
+ ;;=3^Contact Dermatitis,Unspec
+ ;;^UTILITY(U,$J,358.3,7929,1,4,0)
+ ;;=4^L25.9
+ ;;^UTILITY(U,$J,358.3,7929,2)
+ ;;=^5133647
+ ;;^UTILITY(U,$J,358.3,7930,0)
+ ;;=L26.^^39^391^151
+ ;;^UTILITY(U,$J,358.3,7930,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,7667,1,3,0)
- ;;=3^Bradycardia,Unspec
- ;;^UTILITY(U,$J,358.3,7667,1,4,0)
- ;;=4^R00.1
- ;;^UTILITY(U,$J,358.3,7667,2)
- ;;=^5019164
- ;;^UTILITY(U,$J,358.3,7668,0)
- ;;=I47.2^^63^498^79
- ;;^UTILITY(U,$J,358.3,7668,1,0)
+ ;;^UTILITY(U,$J,358.3,7930,1,3,0)
+ ;;=3^Exfoliative Dermatitis
+ ;;^UTILITY(U,$J,358.3,7930,1,4,0)
+ ;;=4^L26.
+ ;;^UTILITY(U,$J,358.3,7930,2)
+ ;;=^263886
+ ;;^UTILITY(U,$J,358.3,7931,0)
+ ;;=L27.0^^39^391^305
+ ;;^UTILITY(U,$J,358.3,7931,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,7668,1,3,0)
- ;;=3^Ventricular Tachycardia
- ;;^UTILITY(U,$J,358.3,7668,1,4,0)
- ;;=4^I47.2
- ;;^UTILITY(U,$J,358.3,7668,2)
- ;;=^125976
- ;;^UTILITY(U,$J,358.3,7669,0)
- ;;=I25.810^^63^498^5
- ;;^UTILITY(U,$J,358.3,7669,1,0)
+ ;;^UTILITY(U,$J,358.3,7931,1,3,0)
+ ;;=3^Skin Eruption d/t Drugs/Meds,Generalized
+ ;;^UTILITY(U,$J,358.3,7931,1,4,0)
+ ;;=4^L27.0
+ ;;^UTILITY(U,$J,358.3,7931,2)
+ ;;=^5009144
+ ;;^UTILITY(U,$J,358.3,7932,0)
+ ;;=L27.1^^39^391^306
+ ;;^UTILITY(U,$J,358.3,7932,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,7669,1,3,0)
- ;;=3^Atherosclerosis of CABG w/o Angina Pectoris
- ;;^UTILITY(U,$J,358.3,7669,1,4,0)
- ;;=4^I25.810
+ ;;^UTILITY(U,$J,358.3,7932,1,3,0)
+ ;;=3^Skin Eruption d/t Drugs/Meds,Localized
+ ;;^UTILITY(U,$J,358.3,7932,1,4,0)
+ ;;=4^L27.1
+ ;;^UTILITY(U,$J,358.3,7932,2)
+ ;;=^5009145
+ ;;^UTILITY(U,$J,358.3,7933,0)
+ ;;=L29.0^^39^391^290

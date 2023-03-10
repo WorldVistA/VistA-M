@@ -1,5 +1,5 @@
-MAGDIWDX ;WOIFO/PMK - Formatted listing of On Demand Routing request file ; 06 Mar 2013 8:05 AM
- ;;3.0;IMAGING;**138**;Mar 19, 2002;Build 5380;Sep 03, 2013
+MAGDIWDX ;WOIFO/PMK - Formatted listing of On Demand Routing request file ; Mar 10, 2022@14:18:40
+ ;;3.0;IMAGING;**110,305**;Mar 19, 2002;Build 3
  ;; Per VHA Directive 2004-038, this routine should not be modified.
  ;; +---------------------------------------------------------------+
  ;; | Property of the US Government.                                |
@@ -16,12 +16,14 @@ MAGDIWDX ;WOIFO/PMK - Formatted listing of On Demand Routing request file ; 06 M
  ;; +---------------------------------------------------------------+
  ;;
  ;
+ ; Supported IA #2320 reference ^%ZISH subroutine call
+ ;
  ; This routine is the same on VistA and the DICOM Gateway
  ;
-REPORT(LOC,A,ODEVNAME,ODEVTYPE) ; display the list of studing in the output file
- N ACCNUMB,COUNT,D0,DATETIME,DEFAULT,GROUP,I,IGNORESUCCESS,J
+REPORT(LOC,A,ODEVNAME,ODEVTYPE) ; display the list of studies in the output file
+ N ACNUMB,COUNT,D0,DATETIME,DEFAULT,GROUP,I,IGNORESUCCESS,J
  N LOCATION,LOCATIONLAST,MSG
- N POP,PRIORITY,REQUESTDATETIME,SCP,STATUS,STOP,USERAPP,USERAPPLAST,X,Y
+ N POP,PRIORITY,REQUESTDATETIME,SCP,STATE,STOP,USERAPP,USERAPPLAST,X,Y
  F I=2:1:LOC(1) D
  . S LOCATION($P(LOC(I),"^",1))=$P(LOC(I),"^",2)
  . S LOCATION("N",I-1)=$P(LOC(I),"^",1)
@@ -76,7 +78,16 @@ REPORT(LOC,A,ODEVNAME,ODEVTYPE) ; display the list of studing in the output file
  ;
  ; output the report
  ;
- I ODEVTYPE="FILE" O ODEVNAME:"NW" U ODEVNAME
+ I ODEVTYPE="FILE" D  ; open the file
+ . I $$VISTA^MAGDSTQ D  ; VistA code
+ . . D OPEN^%ZISH("OUTFILE",ODEVNAME,"W")
+ . . U IO
+ . . Q
+ . E  D  ; DICOM Gateway code
+ . . S X=$$OPEN^MAGOSFIL(ODEVNAME,"W")
+ . . U ODEVNAME
+ . . Q
+ . Q
  ;
  S (MSG(1),MSG(3))=""
  S $Y=0,STOP=0
@@ -85,12 +96,12 @@ REPORT(LOC,A,ODEVNAME,ODEVTYPE) ; display the list of studing in the output file
  Q:$$HEADING(.MSG) 
  S LOCATIONLAST=""
  F I=1:1:$G(A(1)) S X=A(I+1) D  Q:STOP
- . N WRITEACCNUMB
- . S WRITEACCNUMB=0
+ . N WRITEACNUMB
+ . S WRITEACNUMB=0
  . S LOCATION=$P(X,"^",1),USERAPP=$P(X,"^",2)
  . I LOC'="A",LOCATION'=LOC Q
  . I SCP'="A",SCP'=USERAPP Q
- . S PRIORITY=$P(X,"^",3),D0=$P(X,"^",4),ACCNUMB=$P(X,"^",5)
+ . S PRIORITY=$P(X,"^",3),D0=$P(X,"^",4),ACNUMB=$P(X,"^",5)
  . S REQUESTDATETIME=$P(X,"^",6),GROUP=$P(X,"^",7)
  . I LOCATION'=LOCATIONLAST S LOCATIONLAST=LOCATION,USERAPPLAST=""
  . I USERAPP'=USERAPPLAST D
@@ -103,25 +114,30 @@ REPORT(LOC,A,ODEVNAME,ODEVTYPE) ; display the list of studing in the output file
  . . S USERAPPLAST=USERAPP
  . . Q
  . F J=1:1:$L(X,"^")-7 D  Q:STOP
- . . S Y=$P(X,"^",J+7),STATUS=$P(Y,"|",1)
- . . I IGNORESUCCESS="YES",STATUS="SUCCESS" Q
- . . I 'WRITEACCNUMB D  Q:STOP
+ . . S Y=$P(X,"^",J+7),STATE=$P(Y,"|",1)
+ . . I IGNORESUCCESS="YES",STATE="SUCCESS" Q
+ . . I 'WRITEACNUMB D  Q:STOP
  . . . S STOP=$$NEWLINE() Q:STOP  S STOP=$$NEWLINE() Q:STOP
- . . . W ACCNUMB S WRITEACCNUMB=1
+ . . . W ACNUMB S WRITEACNUMB=1
  . . . Q
  . . S DATETIME=$P(Y,"|",2),COUNT=$P(Y,"|",3)
  . . I $X>20 S STOP=$$NEWLINE() Q:STOP
- . . W ?20,$J(COUNT,4),?28,STATUS,?40,$$HTE^XLFDT(DATETIME,"2M")
+ . . W ?20,$J(COUNT,4),?28,STATE,?40,$$HTE^XLFDT(DATETIME,"2M")
  . . W ?57,"(",$$FMTE^XLFDT(REQUESTDATETIME,"2M"),")"
  . . Q
  . Q
  ;
  Q:$$NEWLINE()  Q:$$NEWLINE()
  W "End of Report" Q:$$NEWLINE()
- I ODEVTYPE'="SCREEN" D
- . I ODEVTYPE="FILE" C ODEVNAME
+ I ODEVTYPE="FILE" D  ; close the file
+ . I $$VISTA^MAGDSTQ D  ; VistA Code
+ . . D CLOSE^%ZISH("OUTFILE")
+ . . Q
+ . E  D  ; DICOM Gateway code
+ . . S X=$$CLOSE^MAGOSFIL(ODEVNAME)
+ . . Q
  . U $P
- . W !!,"Report successfully writen to file """,ODEVNAME,"""",!
+ . W !!,"Report successfully written to file """,ODEVNAME,"""",!
  . Q
  Q
  ;

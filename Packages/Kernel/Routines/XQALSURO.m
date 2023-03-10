@@ -1,5 +1,5 @@
-XQALSURO ;ISC-SF.SEA/JLI,ISD/HGW - SURROGATES FOR ALERTS ; May 15, 2020@11:57
- ;;8.0;KERNEL;**114,125,173,285,366,443,513,602,730**;Jul 10, 1995;Build 1
+XQALSURO ;ISC-SF.SEA/JLI,ISD/HGW - SURROGATES FOR ALERTS ; May 12, 2021@14:27
+ ;;8.0;KERNEL;**114,125,173,285,366,443,513,602,730,754**;Jul 10, 1995;Build 1
  ;Per VHA Directive 2004-038, this routine should not be modified
  Q
 OTHRSURO ; OPT:- XQALERT SURROGATE SET/REMOVE -- OTHERS SPECIFY SURROGATE FOR SELECTED USER
@@ -125,10 +125,14 @@ CURRSURO(XQAUSER,XQASTRT,XQAEND) ;SR. ICR #2790 (supported)
  S XQANOW=$$NOW^XLFDT() D
  . S XQAIVAL=0,XQASTR1=0
  . F XQASTRT=0:0 S XQASTRT=$O(^XTV(8992,XQAUSER,2,"B",XQASTRT)) Q:XQASTRT'>0  Q:XQASTRT'<XQANOW  S XQASTR1=XQASTRT F XQAI=0:0 S XQAI=$O(^XTV(8992,XQAUSER,2,"B",XQASTRT,XQAI)) Q:XQAI'>0  D
+ . . ; p754 somebody removed surr by gbl kill, cleanup
+ . . I '$D(^XTV(8992,XQAUSER,2,XQAI,0)) K ^XTV(8992,XQAUSER,2,"B",XQASTRT,XQAI) Q
  . . S XQAEND=$P(^XTV(8992,XQAUSER,2,XQAI,0),U,3) I (XQAEND="")!(XQAEND>XQANOW) S XQAIVAL=XQAI
  . . Q
  . ; to be compatible with the past, if there is not a current surrogate, show the next scheduled on the zero node if there is one
  . I XQAIVAL=0 S XQASTRT=$O(^XTV(8992,XQAUSER,2,"B",XQASTR1)) Q:XQASTRT=""  F XQAI=0:0 S XQAI=$O(^XTV(8992,XQAUSER,2,"B",XQASTRT,XQAI)) Q:XQAI'>0  D  Q:XQAIVAL>0
+ . . ; p754 somebody removed surr by gbl kill, cleanup
+ . . I '$D(^XTV(8992,XQAUSER,2,XQAI,0)) K ^XTV(8992,XQAUSER,2,"B",XQASTRT,XQAI) Q
  . . S XQAEND=$P(^XTV(8992,XQAUSER,2,XQAI,0),U,3) I (XQAEND="")!(XQAEND>XQANOW) S XQAIVAL=XQAI
  . . Q
  . I XQAIVAL>0 S XQA0=^XTV(8992,XQAUSER,2,XQAIVAL,0),XQASTRT=^XTV(8992,XQAUSER,0) I ($P(XQA0,U,2)'=$P(XQASTRT,U,2))!($P(XQA0,U)'=$P(XQASTRT,U,3))!(+$P(XQA0,U,3)'=+$P(XQASTRT,U,4)) D ACTIVATE(XQAUSER,XQAIVAL)
@@ -146,26 +150,28 @@ CURRSURO(XQAUSER,XQASTRT,XQAEND) ;SR. ICR #2790 (supported)
  . N XQASURO,XQASURO1 S XQASURO1=+$P(^XTV(8992,XQAUSER,0),U,2)
  . ; REMOVE IF SURROGATE IS USER
  . I XQASURO1=XQAUSER D REMVSURO(XQAUSER) Q
- . N XQALLIST,XQAUDATE S XQAUDATE=DATE,XQALLIST(XQAUSER,DATE)="" ; P513 JLI 100504 add XQAUDATE to be able to check earlier start time
- . ; REMOVE IF CYCLES BACK TO USER - thought about removing inactive, but best to let those be handled by groups for unprocessed alerts
- . ; P513 but ignore if surrogate isn't already active - JLI 100504
- . ; begin changes in P513
- . S XQASURO1=XQAUSER
- . F  S XQASURO=$P($G(^XTV(8992,XQASURO1,0)),U,2) Q:XQASURO'>0  Q:'$$ISACTIVE(XQASURO)  S DATE=$P(^XTV(8992,XQASURO,0),U,3) Q:DATE>XQANOW  D  S XQASURO1=XQASURO ; JLI 100504
- . . ;I $D(XQALLIST(XQASURO1)) D
- . . I $D(XQALLIST(XQASURO)) D  ; p730 check on NEXT surrogate and not on XQAUSER for first pass
- . . . N DATE1 S DATE1=$O(XQALLIST(XQASURO1,""))
- . . . ; remove the surrogate relationship that started earliest
- . . . I DATE<DATE1 D REMVSURO(XQASURO)
- . . . I DATE1<=DATE D REMVSURO(XQASURO1)
- . . . S XQASURO=XQAUSER K XQALLIST S DATE=XQAUDATE ; start over
- . . . Q
- . . S XQALLIST(XQASURO,DATE)=""
- . . ; end of P513 modification
- . . Q
- . ; END OF P443 MODIFICATION
- . Q
+ . Q  ; p754 cyclic checks are done at surrogate creation time and the following is not needed
  Q -1
+ ;. N XQALLIST,XQAUDATE S XQAUDATE=DATE,XQALLIST(XQAUSER,DATE)="" ; P513 JLI 100504 add XQAUDATE to be able to check earlier start time
+ ;. ; REMOVE IF CYCLES BACK TO USER - thought about removing inactive, but best to let those be handled by groups for unprocessed alerts
+ ;. ; P513 but ignore if surrogate isn't already active - JLI 100504
+ ;. ; begin changes in P513
+ ;. S XQASURO1=XQAUSER
+ ;. F  S XQASURO=$P($G(^XTV(8992,XQASURO1,0)),U,2) Q:XQASURO'>0  Q:'$$ISACTIVE(XQASURO)  S DATE=$P(^XTV(8992,XQASURO,0),U,3) Q:DATE>XQANOW  D  S XQASURO1=XQASURO ; JLI 100504
+ ;. . ;I $D(XQALLIST(XQASURO1)) D
+ ;. . I $D(XQALLIST(XQASURO)) D  ; p730 check on NEXT surrogate and not on XQAUSER for first pass
+ ;. . . N DATE1 S DATE1=$O(XQALLIST(XQASURO1,""))
+ ;. . . ; remove the surrogate relationship that started earliest
+ ;. . . I DATE<DATE1 D REMVSURO(XQASURO)
+ ;. . . I DATE1<=DATE D REMVSURO(XQASURO1)
+ ;. . . S XQASURO=XQAUSER K XQALLIST S DATE=XQAUDATE ; start over
+ ;. . . Q
+ ;. . S XQALLIST(XQASURO,DATE)=""
+ ;. . ; end of P513 modification
+ ;. . Q
+ ;. ; END OF P443 MODIFICATION
+ ;. Q
+ ;Q -1
  ;
 ISACTIVE(XQAUSER) ; checks for whether a surrogate relationship is active or not (returns 0 or 1)
  N DATA

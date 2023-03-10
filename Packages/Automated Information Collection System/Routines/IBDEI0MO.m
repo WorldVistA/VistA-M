@@ -1,126 +1,126 @@
-IBDEI0MO ; ; 04-FEB-2020
- ;;3.0;IB ENCOUNTER FORM IMP/EXP;;FEB 04, 2020
+IBDEI0MO ; ; 01-FEB-2022
+ ;;3.0;IB ENCOUNTER FORM IMP/EXP;;FEB 01, 2022
  Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,999) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
- ;;^UTILITY(U,$J,358.3,10094,1,2,0)
- ;;=2^Contact Lens Tx for Ocular Disease
- ;;^UTILITY(U,$J,358.3,10094,1,3,0)
- ;;=3^92071
- ;;^UTILITY(U,$J,358.3,10095,0)
- ;;=92311^^73^667^12^^^^1
- ;;^UTILITY(U,$J,358.3,10095,1,0)
- ;;=^358.31IA^3^2
- ;;^UTILITY(U,$J,358.3,10095,1,2,0)
- ;;=2^Contact Lens-Aphakia Od/Os
- ;;^UTILITY(U,$J,358.3,10095,1,3,0)
- ;;=3^92311
- ;;^UTILITY(U,$J,358.3,10096,0)
- ;;=92312^^73^667^13^^^^1
- ;;^UTILITY(U,$J,358.3,10096,1,0)
- ;;=^358.31IA^3^2
- ;;^UTILITY(U,$J,358.3,10096,1,2,0)
- ;;=2^Contact Lens-Aphakia OU
- ;;^UTILITY(U,$J,358.3,10096,1,3,0)
- ;;=3^92312
- ;;^UTILITY(U,$J,358.3,10097,0)
- ;;=92354^^73^667^14^^^^1
- ;;^UTILITY(U,$J,358.3,10097,1,0)
- ;;=^358.31IA^3^2
- ;;^UTILITY(U,$J,358.3,10097,1,2,0)
- ;;=2^Low Vision Aid Fitting,Single Element
- ;;^UTILITY(U,$J,358.3,10097,1,3,0)
- ;;=3^92354
- ;;^UTILITY(U,$J,358.3,10098,0)
- ;;=92355^^73^667^15^^^^1
- ;;^UTILITY(U,$J,358.3,10098,1,0)
- ;;=^358.31IA^3^2
- ;;^UTILITY(U,$J,358.3,10098,1,2,0)
- ;;=2^Low Vision Aid Fitng,Telescopic/Compound Lens
- ;;^UTILITY(U,$J,358.3,10098,1,3,0)
- ;;=3^92355
- ;;^UTILITY(U,$J,358.3,10099,0)
- ;;=H54.3^^74^669^14
- ;;^UTILITY(U,$J,358.3,10099,1,0)
+ ;;^UTILITY(U,$J,358.3,10190,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,10099,1,3,0)
- ;;=3^Visual Loss,Both Eyes,Unqualified
- ;;^UTILITY(U,$J,358.3,10099,1,4,0)
- ;;=4^H54.3
- ;;^UTILITY(U,$J,358.3,10099,2)
- ;;=^268886
- ;;^UTILITY(U,$J,358.3,10100,0)
- ;;=H54.7^^74^669^13
- ;;^UTILITY(U,$J,358.3,10100,1,0)
+ ;;^UTILITY(U,$J,358.3,10190,1,3,0)
+ ;;=3^DM Type 1 w/ Periph Angiopathy w/o Gangrene
+ ;;^UTILITY(U,$J,358.3,10190,1,4,0)
+ ;;=4^E10.51
+ ;;^UTILITY(U,$J,358.3,10190,2)
+ ;;=^5002610
+ ;;^UTILITY(U,$J,358.3,10191,0)
+ ;;=E10.52^^39^430^31
+ ;;^UTILITY(U,$J,358.3,10191,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,10100,1,3,0)
- ;;=3^Visual Loss
- ;;^UTILITY(U,$J,358.3,10100,1,4,0)
- ;;=4^H54.7
- ;;^UTILITY(U,$J,358.3,10100,2)
- ;;=^5006368
- ;;^UTILITY(U,$J,358.3,10101,0)
- ;;=H54.8^^74^669^1
- ;;^UTILITY(U,$J,358.3,10101,1,0)
+ ;;^UTILITY(U,$J,358.3,10191,1,3,0)
+ ;;=3^DM Type 1 w/ Periph Angiopathy w/ Gangrene
+ ;;^UTILITY(U,$J,358.3,10191,1,4,0)
+ ;;=4^E10.52
+ ;;^UTILITY(U,$J,358.3,10191,2)
+ ;;=^5002611
+ ;;^UTILITY(U,$J,358.3,10192,0)
+ ;;=E11.00^^39^431^19
+ ;;^UTILITY(U,$J,358.3,10192,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,10101,1,3,0)
- ;;=3^Legal Blindness,as Defined in USA
- ;;^UTILITY(U,$J,358.3,10101,1,4,0)
- ;;=4^H54.8
- ;;^UTILITY(U,$J,358.3,10101,2)
- ;;=^5006369
- ;;^UTILITY(U,$J,358.3,10102,0)
- ;;=H54.40^^74^669^2
- ;;^UTILITY(U,$J,358.3,10102,1,0)
+ ;;^UTILITY(U,$J,358.3,10192,1,3,0)
+ ;;=3^DM Type 2 w/ Hyperosmolarity w/o NKHHC
+ ;;^UTILITY(U,$J,358.3,10192,1,4,0)
+ ;;=4^E11.00
+ ;;^UTILITY(U,$J,358.3,10192,2)
+ ;;=^5002627
+ ;;^UTILITY(U,$J,358.3,10193,0)
+ ;;=E11.01^^39^431^18
+ ;;^UTILITY(U,$J,358.3,10193,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,10102,1,3,0)
- ;;=3^Monocular,Blindness in One Eye
- ;;^UTILITY(U,$J,358.3,10102,1,4,0)
- ;;=4^H54.40
- ;;^UTILITY(U,$J,358.3,10102,2)
- ;;=^5006362
- ;;^UTILITY(U,$J,358.3,10103,0)
- ;;=H53.71^^74^669^15
- ;;^UTILITY(U,$J,358.3,10103,1,0)
+ ;;^UTILITY(U,$J,358.3,10193,1,3,0)
+ ;;=3^DM Type 2 w/ Hyperosmolarity w/ Coma
+ ;;^UTILITY(U,$J,358.3,10193,1,4,0)
+ ;;=4^E11.01
+ ;;^UTILITY(U,$J,358.3,10193,2)
+ ;;=^5002628
+ ;;^UTILITY(U,$J,358.3,10194,0)
+ ;;=E11.21^^39^431^7
+ ;;^UTILITY(U,$J,358.3,10194,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,10103,1,3,0)
- ;;=3^Glare Sensitivity
- ;;^UTILITY(U,$J,358.3,10103,1,4,0)
- ;;=4^H53.71
- ;;^UTILITY(U,$J,358.3,10103,2)
- ;;=^5006354
- ;;^UTILITY(U,$J,358.3,10104,0)
- ;;=H53.72^^74^669^16
- ;;^UTILITY(U,$J,358.3,10104,1,0)
+ ;;^UTILITY(U,$J,358.3,10194,1,3,0)
+ ;;=3^DM Type 2 w/ Diab Nephropathy
+ ;;^UTILITY(U,$J,358.3,10194,1,4,0)
+ ;;=4^E11.21
+ ;;^UTILITY(U,$J,358.3,10194,2)
+ ;;=^5002629
+ ;;^UTILITY(U,$J,358.3,10195,0)
+ ;;=E11.22^^39^431^3
+ ;;^UTILITY(U,$J,358.3,10195,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,10104,1,3,0)
- ;;=3^Impaired Contrast Sensitivity
- ;;^UTILITY(U,$J,358.3,10104,1,4,0)
- ;;=4^H53.72
- ;;^UTILITY(U,$J,358.3,10104,2)
- ;;=^5006355
- ;;^UTILITY(U,$J,358.3,10105,0)
- ;;=H54.52A1^^74^669^12
- ;;^UTILITY(U,$J,358.3,10105,1,0)
+ ;;^UTILITY(U,$J,358.3,10195,1,3,0)
+ ;;=3^DM Type 2 w/ Diab CKD
+ ;;^UTILITY(U,$J,358.3,10195,1,4,0)
+ ;;=4^E11.22
+ ;;^UTILITY(U,$J,358.3,10195,2)
+ ;;=^5002630
+ ;;^UTILITY(U,$J,358.3,10196,0)
+ ;;=E11.39^^39^431^28
+ ;;^UTILITY(U,$J,358.3,10196,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,10105,1,3,0)
- ;;=3^Normal Vision Right Eye,Low Vision Left Eye Cat 1
- ;;^UTILITY(U,$J,358.3,10105,1,4,0)
- ;;=4^H54.52A1
- ;;^UTILITY(U,$J,358.3,10105,2)
- ;;=^5151371
- ;;^UTILITY(U,$J,358.3,10106,0)
- ;;=H54.511A^^74^669^9
- ;;^UTILITY(U,$J,358.3,10106,1,0)
+ ;;^UTILITY(U,$J,358.3,10196,1,3,0)
+ ;;=3^DM Type 2 w/ Oth Diab Ophth Compl
+ ;;^UTILITY(U,$J,358.3,10196,1,4,0)
+ ;;=4^E11.39
+ ;;^UTILITY(U,$J,358.3,10196,2)
+ ;;=^5002643
+ ;;^UTILITY(U,$J,358.3,10197,0)
+ ;;=E11.41^^39^431^6
+ ;;^UTILITY(U,$J,358.3,10197,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,10106,1,3,0)
- ;;=3^Low Vision Right Eye Cat 1,Normal Vision Left Eye
- ;;^UTILITY(U,$J,358.3,10106,1,4,0)
- ;;=4^H54.511A
- ;;^UTILITY(U,$J,358.3,10106,2)
- ;;=^5151369
- ;;^UTILITY(U,$J,358.3,10107,0)
- ;;=H54.415A^^74^669^5
- ;;^UTILITY(U,$J,358.3,10107,1,0)
+ ;;^UTILITY(U,$J,358.3,10197,1,3,0)
+ ;;=3^DM Type 2 w/ Diab Mononeuropathy
+ ;;^UTILITY(U,$J,358.3,10197,1,4,0)
+ ;;=4^E11.41
+ ;;^UTILITY(U,$J,358.3,10197,2)
+ ;;=^5002645
+ ;;^UTILITY(U,$J,358.3,10198,0)
+ ;;=E11.42^^39^431^13
+ ;;^UTILITY(U,$J,358.3,10198,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,10107,1,3,0)
- ;;=3^Blindness Right Eye Cat 5,Normal Vision Left Eye
+ ;;^UTILITY(U,$J,358.3,10198,1,3,0)
+ ;;=3^DM Type 2 w/ Diab Polyneuropathy
+ ;;^UTILITY(U,$J,358.3,10198,1,4,0)
+ ;;=4^E11.42
+ ;;^UTILITY(U,$J,358.3,10198,2)
+ ;;=^5002646
+ ;;^UTILITY(U,$J,358.3,10199,0)
+ ;;=E11.43^^39^431^2
+ ;;^UTILITY(U,$J,358.3,10199,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,10199,1,3,0)
+ ;;=3^DM Type 2 w/ Diab Autonomic Polyneuropathy
+ ;;^UTILITY(U,$J,358.3,10199,1,4,0)
+ ;;=4^E11.43
+ ;;^UTILITY(U,$J,358.3,10199,2)
+ ;;=^5002647
+ ;;^UTILITY(U,$J,358.3,10200,0)
+ ;;=E11.44^^39^431^1
+ ;;^UTILITY(U,$J,358.3,10200,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,10200,1,3,0)
+ ;;=3^DM Type 2 w/ Diab Amyotrophy
+ ;;^UTILITY(U,$J,358.3,10200,1,4,0)
+ ;;=4^E11.44
+ ;;^UTILITY(U,$J,358.3,10200,2)
+ ;;=^5002648
+ ;;^UTILITY(U,$J,358.3,10201,0)
+ ;;=E11.49^^39^431^8
+ ;;^UTILITY(U,$J,358.3,10201,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,10201,1,3,0)
+ ;;=3^DM Type 2 w/ Diab Neurological Compl
+ ;;^UTILITY(U,$J,358.3,10201,1,4,0)
+ ;;=4^E11.49
+ ;;^UTILITY(U,$J,358.3,10201,2)
+ ;;=^5002649
+ ;;^UTILITY(U,$J,358.3,10202,0)
+ ;;=E11.59^^39^431^25
+ ;;^UTILITY(U,$J,358.3,10202,1,0)
+ ;;=^358.31IA^4^2

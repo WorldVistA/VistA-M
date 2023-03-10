@@ -1,120 +1,132 @@
-IBDEI13C ; ; 04-FEB-2020
- ;;3.0;IB ENCOUNTER FORM IMP/EXP;;FEB 04, 2020
+IBDEI13C ; ; 01-FEB-2022
+ ;;3.0;IB ENCOUNTER FORM IMP/EXP;;FEB 01, 2022
  Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,999) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
- ;;^UTILITY(U,$J,358.3,17529,1,4,0)
- ;;=4^F14.29
- ;;^UTILITY(U,$J,358.3,17529,2)
- ;;=^5003268
- ;;^UTILITY(U,$J,358.3,17530,0)
- ;;=F14.288^^88^893^23
- ;;^UTILITY(U,$J,358.3,17530,1,0)
+ ;;^UTILITY(U,$J,358.3,17715,1,4,0)
+ ;;=4^N92.1
+ ;;^UTILITY(U,$J,358.3,17715,2)
+ ;;=^5015909
+ ;;^UTILITY(U,$J,358.3,17716,0)
+ ;;=Z08.^^61^791^41
+ ;;^UTILITY(U,$J,358.3,17716,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,17530,1,3,0)
- ;;=3^Cocaine Dependence w/ Other Cocaine-Induced Disorder
- ;;^UTILITY(U,$J,358.3,17530,1,4,0)
- ;;=4^F14.288
- ;;^UTILITY(U,$J,358.3,17530,2)
- ;;=^5003267
- ;;^UTILITY(U,$J,358.3,17531,0)
- ;;=F14.282^^88^893^17
- ;;^UTILITY(U,$J,358.3,17531,1,0)
+ ;;^UTILITY(U,$J,358.3,17716,1,3,0)
+ ;;=3^F/U Exam After Malig Neop Treatment
+ ;;^UTILITY(U,$J,358.3,17716,1,4,0)
+ ;;=4^Z08.
+ ;;^UTILITY(U,$J,358.3,17716,2)
+ ;;=^5062667
+ ;;^UTILITY(U,$J,358.3,17717,0)
+ ;;=Z80.3^^61^791^42
+ ;;^UTILITY(U,$J,358.3,17717,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,17531,1,3,0)
- ;;=3^Cocaine Dependence w/ Cocaine-Induced Sleep Disorder
- ;;^UTILITY(U,$J,358.3,17531,1,4,0)
- ;;=4^F14.282
- ;;^UTILITY(U,$J,358.3,17531,2)
- ;;=^5003266
- ;;^UTILITY(U,$J,358.3,17532,0)
- ;;=F14.281^^88^893^18
- ;;^UTILITY(U,$J,358.3,17532,1,0)
+ ;;^UTILITY(U,$J,358.3,17717,1,3,0)
+ ;;=3^Family Hx of Breast CA
+ ;;^UTILITY(U,$J,358.3,17717,1,4,0)
+ ;;=4^Z80.3
+ ;;^UTILITY(U,$J,358.3,17717,2)
+ ;;=^5063347
+ ;;^UTILITY(U,$J,358.3,17718,0)
+ ;;=Z80.49^^61^791^43
+ ;;^UTILITY(U,$J,358.3,17718,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,17532,1,3,0)
- ;;=3^Cocaine Dependence w/ Cocaine-Induced Sexual Dysfunction
- ;;^UTILITY(U,$J,358.3,17532,1,4,0)
- ;;=4^F14.281
- ;;^UTILITY(U,$J,358.3,17532,2)
- ;;=^5003265
- ;;^UTILITY(U,$J,358.3,17533,0)
- ;;=F14.280^^88^893^15
- ;;^UTILITY(U,$J,358.3,17533,1,0)
+ ;;^UTILITY(U,$J,358.3,17718,1,3,0)
+ ;;=3^Family Hx of Genital Organ CA
+ ;;^UTILITY(U,$J,358.3,17718,1,4,0)
+ ;;=4^Z80.49
+ ;;^UTILITY(U,$J,358.3,17718,2)
+ ;;=^5063351
+ ;;^UTILITY(U,$J,358.3,17719,0)
+ ;;=Z80.41^^61^791^44
+ ;;^UTILITY(U,$J,358.3,17719,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,17533,1,3,0)
- ;;=3^Cocaine Dependence w/ Cocaine-Induced Anxiety Disorder
- ;;^UTILITY(U,$J,358.3,17533,1,4,0)
- ;;=4^F14.280
- ;;^UTILITY(U,$J,358.3,17533,2)
- ;;=^5003264
- ;;^UTILITY(U,$J,358.3,17534,0)
- ;;=F14.259^^88^893^14
- ;;^UTILITY(U,$J,358.3,17534,1,0)
+ ;;^UTILITY(U,$J,358.3,17719,1,3,0)
+ ;;=3^Family Hx of Ovarian CA
+ ;;^UTILITY(U,$J,358.3,17719,1,4,0)
+ ;;=4^Z80.41
+ ;;^UTILITY(U,$J,358.3,17719,2)
+ ;;=^5063348
+ ;;^UTILITY(U,$J,358.3,17720,0)
+ ;;=N73.9^^61^791^47
+ ;;^UTILITY(U,$J,358.3,17720,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,17534,1,3,0)
- ;;=3^Cocaine Dependence w/ Cocaine-Induc Psychotic Disorder,Unspec
- ;;^UTILITY(U,$J,358.3,17534,1,4,0)
- ;;=4^F14.259
- ;;^UTILITY(U,$J,358.3,17534,2)
- ;;=^5003263
- ;;^UTILITY(U,$J,358.3,17535,0)
- ;;=F14.251^^88^893^13
- ;;^UTILITY(U,$J,358.3,17535,1,0)
+ ;;^UTILITY(U,$J,358.3,17720,1,3,0)
+ ;;=3^Female Pelvic Inflammatory Disease,Unspec
+ ;;^UTILITY(U,$J,358.3,17720,1,4,0)
+ ;;=4^N73.9
+ ;;^UTILITY(U,$J,358.3,17720,2)
+ ;;=^5015820
+ ;;^UTILITY(U,$J,358.3,17721,0)
+ ;;=N60.32^^61^791^48
+ ;;^UTILITY(U,$J,358.3,17721,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,17535,1,3,0)
- ;;=3^Cocaine Depend w/ Cocaine-Induc Psychotic Disorder w/ Hallucin
- ;;^UTILITY(U,$J,358.3,17535,1,4,0)
- ;;=4^F14.251
- ;;^UTILITY(U,$J,358.3,17535,2)
- ;;=^5003262
- ;;^UTILITY(U,$J,358.3,17536,0)
- ;;=F14.250^^88^893^12
- ;;^UTILITY(U,$J,358.3,17536,1,0)
+ ;;^UTILITY(U,$J,358.3,17721,1,3,0)
+ ;;=3^Fibrosclerosis,Left Breast
+ ;;^UTILITY(U,$J,358.3,17721,1,4,0)
+ ;;=4^N60.32
+ ;;^UTILITY(U,$J,358.3,17721,2)
+ ;;=^5015780
+ ;;^UTILITY(U,$J,358.3,17722,0)
+ ;;=N60.31^^61^791^49
+ ;;^UTILITY(U,$J,358.3,17722,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,17536,1,3,0)
- ;;=3^Cocaine Depend w/ Cocaine-Induc Psych Disorder w/ Delusions
- ;;^UTILITY(U,$J,358.3,17536,1,4,0)
- ;;=4^F14.250
- ;;^UTILITY(U,$J,358.3,17536,2)
- ;;=^5003261
- ;;^UTILITY(U,$J,358.3,17537,0)
- ;;=F14.24^^88^893^16
- ;;^UTILITY(U,$J,358.3,17537,1,0)
+ ;;^UTILITY(U,$J,358.3,17722,1,3,0)
+ ;;=3^Fibrosclerosis,Right Breast
+ ;;^UTILITY(U,$J,358.3,17722,1,4,0)
+ ;;=4^N60.31
+ ;;^UTILITY(U,$J,358.3,17722,2)
+ ;;=^5015779
+ ;;^UTILITY(U,$J,358.3,17723,0)
+ ;;=Z01.411^^61^791^50
+ ;;^UTILITY(U,$J,358.3,17723,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,17537,1,3,0)
- ;;=3^Cocaine Dependence w/ Cocaine-Induced Mood Disorder
- ;;^UTILITY(U,$J,358.3,17537,1,4,0)
- ;;=4^F14.24
- ;;^UTILITY(U,$J,358.3,17537,2)
- ;;=^5003260
- ;;^UTILITY(U,$J,358.3,17538,0)
- ;;=F14.23^^88^893^25
- ;;^UTILITY(U,$J,358.3,17538,1,0)
+ ;;^UTILITY(U,$J,358.3,17723,1,3,0)
+ ;;=3^GYN Exam w/ Abnormal Findings
+ ;;^UTILITY(U,$J,358.3,17723,1,4,0)
+ ;;=4^Z01.411
+ ;;^UTILITY(U,$J,358.3,17723,2)
+ ;;=^5062622
+ ;;^UTILITY(U,$J,358.3,17724,0)
+ ;;=Z01.419^^61^791^1
+ ;;^UTILITY(U,$J,358.3,17724,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,17538,1,3,0)
- ;;=3^Cocaine Dependence w/ Withdrawal
- ;;^UTILITY(U,$J,358.3,17538,1,4,0)
- ;;=4^F14.23
- ;;^UTILITY(U,$J,358.3,17538,2)
- ;;=^5003259
- ;;^UTILITY(U,$J,358.3,17539,0)
- ;;=F14.229^^88^893^22
- ;;^UTILITY(U,$J,358.3,17539,1,0)
+ ;;^UTILITY(U,$J,358.3,17724,1,3,0)
+ ;;=3
+ ;;^UTILITY(U,$J,358.3,17724,1,4,0)
+ ;;=4^Z01.419
+ ;;^UTILITY(U,$J,358.3,17724,2)
+ ;;=^5062623
+ ;;^UTILITY(U,$J,358.3,17725,0)
+ ;;=Z01.419^^61^791^51
+ ;;^UTILITY(U,$J,358.3,17725,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,17539,1,3,0)
- ;;=3^Cocaine Dependence w/ Intoxication,Unspec
- ;;^UTILITY(U,$J,358.3,17539,1,4,0)
- ;;=4^F14.229
- ;;^UTILITY(U,$J,358.3,17539,2)
- ;;=^5003258
- ;;^UTILITY(U,$J,358.3,17540,0)
- ;;=F14.222^^88^893^20
- ;;^UTILITY(U,$J,358.3,17540,1,0)
+ ;;^UTILITY(U,$J,358.3,17725,1,3,0)
+ ;;=3^GYN Exam w/ Normal Findings
+ ;;^UTILITY(U,$J,358.3,17725,1,4,0)
+ ;;=4^Z01.419
+ ;;^UTILITY(U,$J,358.3,17725,2)
+ ;;=^5062623
+ ;;^UTILITY(U,$J,358.3,17726,0)
+ ;;=R87.613^^61^791^53
+ ;;^UTILITY(U,$J,358.3,17726,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,17540,1,3,0)
- ;;=3^Cocaine Dependence w/ Intoxication w/ Perceptual Disturbance
- ;;^UTILITY(U,$J,358.3,17540,1,4,0)
- ;;=4^F14.222
- ;;^UTILITY(U,$J,358.3,17540,2)
- ;;=^5003257
- ;;^UTILITY(U,$J,358.3,17541,0)
- ;;=F14.221^^88^893^19
+ ;;^UTILITY(U,$J,358.3,17726,1,3,0)
+ ;;=3^HGSIL
+ ;;^UTILITY(U,$J,358.3,17726,1,4,0)
+ ;;=4^R87.613
+ ;;^UTILITY(U,$J,358.3,17726,2)
+ ;;=^5019671
+ ;;^UTILITY(U,$J,358.3,17727,0)
+ ;;=R87.612^^61^791^63
+ ;;^UTILITY(U,$J,358.3,17727,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,17727,1,3,0)
+ ;;=3^LGSIL
+ ;;^UTILITY(U,$J,358.3,17727,1,4,0)
+ ;;=4^R87.612
+ ;;^UTILITY(U,$J,358.3,17727,2)
+ ;;=^5019670
+ ;;^UTILITY(U,$J,358.3,17728,0)
+ ;;=R92.1^^61^791^66
+ ;;^UTILITY(U,$J,358.3,17728,1,0)
+ ;;=^358.31IA^4^2

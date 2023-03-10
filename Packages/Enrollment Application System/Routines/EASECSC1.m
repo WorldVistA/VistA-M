@@ -1,5 +1,5 @@
 EASECSC1 ;ALB/PHH,LBD,EG,ERC - LTC Co-Pay Test Screen Military Service ; 05/06/2006 4:17 PM
- ;;1.0;ENROLLMENT APPLICATION SYSTEM;**5,7,38,62,75,70**;Mar 15, 2001;Build 26
+ ;;1.0;ENROLLMENT APPLICATION SYSTEM;**5,7,38,62,75,70,202**;Mar 15, 2001;Build 4
  ;
  ; Input  -- DFN      Patient IEN
  ;           DGMTACT  LTC Co-Pay Test Action
@@ -32,7 +32,7 @@ EASECRP6 ; Display the screen
  S (DGRPS,DGMTSCI)=1 D HD^EASECSCU F I=.32,.321,.322,.36,.52,.53 S DGRP(I)=$S($D(^DPT(DFN,I)):^(I),1:"")
  S (DGRPW,Z)=1 D WW S Z="    Service Branch",Z1=24 D WW1^DGRPV S Z="   Service #",Z1=19 D WW1^DGRPV S Z="   Entered",Z1=12 D WW1^DGRPV S Z="   Separated",Z1=12 D WW1^DGRPV W "   Discharge"
  W !?4,"--------------",?27,"---------",?46,"-------",?58,"---------",?70,"---------"
- S DGRPX=DGRP(.32),DGRPSV=4 D S I $P(DGRPX,"^",19)="Y" S DGRPSV=9 D S I $P(DGRPX,"^",20)="Y" S DGRPSV=14 D S
+ N DGMSE D GETMSE^DGMSEUTL(DFN,.DGMSE) D S1 ;EAS*1.0*202 MSE's new .3216 multiple will be populated at this time, so use this instead of DGRP(.32)
  S Z=2,DGRPX=DGRP(.52) D WW W "           POW: " S X=5,Z1=6 D YN W "From: " S X=7,Z1=13 D DAT W "To: " S X=8,Z1=12 D DAT W "War: ",$S($D(^DIC(22,+$P(DGRPX,"^",6),0)):$P(^(0),"^",2),1:"")
  S Z=3 D WW W "        Combat: " S X=11,Z1=6 D YN W "From: " S X=13,Z1=13 D DAT W "To: " S X=14,Z1=12 D DAT W "Loc: ",$S($D(^DIC(22,+$P(DGRPX,"^",12),0)):$P(^(0),"^",2),1:"")
  S Z=4,DGRPX=DGRP(.321) D WW W "       Vietnam: " S X=1,Z1=6 D YN W "From: " S X=4,Z1=13 D DAT W "To: " S X=5,X1=13 D DAT
@@ -77,4 +77,14 @@ WW ;Write number on screens for display and/or edit (Z=number)
  ; NOTE: This section was copied from WW^DGRPV and modified specifically
  ;       for LTC.  The code calling ^DGRPV has been redirected here.
  W:DGRPW !
+ Q
+S1 ;Display MSE data from .3216 multiple EAS*1.0*202
+ N DGMSECNT,DGRPSB
+ F DGMSECNT=1:1:3 I $D(DGMSE(DGMSECNT)) D
+ . S DGRPSB=$P(DGMSE(DGMSECNT),"^",3)
+ . W !?4,$S($D(^DIC(23,DGRPSB,0)):$E($P(^DIC(23,DGRPSB,0),"^",1),1,15),1:DGRPU) W:$$FV^DGRPMS(DGRPSB)=1 ?20,"("_$P(DGRP(.321),U,14)_")"
+ . W ?27,$P(DGMSE(DGMSECNT),"^",5)
+ . F I=1,2 S X=$P(DGMSE(DGMSECNT),"^",I),X=$S(X]"":$$FMTE^XLFDT(X,"5DZ"),1:"UNKNOWN") W ?$S(I=1:46,2:58),X
+ . W ?70,$S($D(^DIC(25,+$P(DGMSE(DGMSECNT),"^",6),0)):$E($P(^DIC(25,$P(DGMSE(DGMSECNT),"^",6),0),"^",1),1,9),1:"UNKNOWN")
+ . Q
  Q

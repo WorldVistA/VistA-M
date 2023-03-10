@@ -1,5 +1,5 @@
-PSOCMOPT ;BIR/RTR-Test for CMOP prescription ;12/02/99
- ;;7.0;OUTPATIENT PHARMACY;**36**;DEC 1997
+PSOCMOPT ;BIR/RTR-Test for CMOP prescription ;Mar 29, 2019@08:56:25
+ ;;7.0;OUTPATIENT PHARMACY;**36,441**;DEC 1997;Build 208
  ;External reference to ^PS(55 supported by DBIA 2228
  ;External reference to ^PSDRUG supported by DBIA 221
  ;PTRX = INTERNAL NUMBER FROM 52
@@ -16,8 +16,8 @@ PSOCMOPT ;BIR/RTR-Test for CMOP prescription ;12/02/99
  I $G(^PSRX(PTRX,"TN"))]"" G END
  I $P($G(^PSRX(PTRX,"STA")),"^")>9!($P($G(^("STA")),"^")=4)!($P($G(^("STA")),"^")=3) G END
  S PXRFD=0 F PX7=0:0 S PX7=$O(^PSRX(PTRX,1,PX7)) Q:'$G(PX7)  S:$D(^PSRX(PTRX,1,PX7,0)) PXRFD=PX7
- S PSOWFLAG=0 I '$O(^PSRX(PTRX,1,0)),'$P($G(^PSRX(PTRX,2)),"^",13),$P($G(^(0)),"^",11)="W",$S($P($G(^PSRX(PTRX,2)),"^",2):$P($G(^(2)),"^",2),1:+$G(PSOX("FILL DATE")))>DT S PSOWFLAG=1
- S MW=$S($G(PXRFD)>0:$P($G(^PSRX(PTRX,1,PXRFD,0)),"^",2),1:$P($G(^PSRX(PTRX,0)),"^",11)) I $G(MW)="W",'$G(PSOWFLAG) G END
+ S PSOWFLAG=0 I '$O(^PSRX(PTRX,1,0)),'$P($G(^PSRX(PTRX,2)),"^",13),($P($G(^(0)),"^",11)="W"!$P($G(^(0)),"^",11)="P"),$S($P($G(^PSRX(PTRX,2)),"^",2):$P($G(^(2)),"^",2),1:+$G(PSOX("FILL DATE")))>DT S PSOWFLAG=1
+ S MW=$S($G(PXRFD)>0:$P($G(^PSRX(PTRX,1,PXRFD,0)),"^",2),1:$P($G(^PSRX(PTRX,0)),"^",11)) I ($G(MW)="W"!($G(MW)="P")),'$G(PSOWFLAG) G END
  S PXREL=$S(PXRFD=0:$P($G(^PSRX(PTRX,2)),"^",13),1:$P($G(^PSRX(PTRX,1,PXRFD,0)),"^",18))
  I $G(PXREL) G END
  G ENDX

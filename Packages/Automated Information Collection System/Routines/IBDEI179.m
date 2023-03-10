@@ -1,120 +1,124 @@
-IBDEI179 ; ; 04-FEB-2020
- ;;3.0;IB ENCOUNTER FORM IMP/EXP;;FEB 04, 2020
+IBDEI179 ; ; 01-FEB-2022
+ ;;3.0;IB ENCOUNTER FORM IMP/EXP;;FEB 01, 2022
  Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,999) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
- ;;^UTILITY(U,$J,358.3,19272,0)
- ;;=T84.84XD^^93^991^14
- ;;^UTILITY(U,$J,358.3,19272,1,0)
+ ;;^UTILITY(U,$J,358.3,19494,1,4,0)
+ ;;=4^Z89.111
+ ;;^UTILITY(U,$J,358.3,19494,2)
+ ;;=^5063537
+ ;;^UTILITY(U,$J,358.3,19495,0)
+ ;;=Z89.122^^67^876^14
+ ;;^UTILITY(U,$J,358.3,19495,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,19272,1,3,0)
- ;;=3^Pain due to internal orthopedic prosth dev/grft, subs
- ;;^UTILITY(U,$J,358.3,19272,1,4,0)
- ;;=4^T84.84XD
- ;;^UTILITY(U,$J,358.3,19272,2)
- ;;=^5055464
- ;;^UTILITY(U,$J,358.3,19273,0)
- ;;=T84.84XS^^93^991^15
- ;;^UTILITY(U,$J,358.3,19273,1,0)
+ ;;^UTILITY(U,$J,358.3,19495,1,3,0)
+ ;;=3^Acquired absence of left wrist
+ ;;^UTILITY(U,$J,358.3,19495,1,4,0)
+ ;;=4^Z89.122
+ ;;^UTILITY(U,$J,358.3,19495,2)
+ ;;=^5063541
+ ;;^UTILITY(U,$J,358.3,19496,0)
+ ;;=Z89.121^^67^876^29
+ ;;^UTILITY(U,$J,358.3,19496,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,19273,1,3,0)
- ;;=3^Pain due to internal orthopedic prosth dev/grft, sequela
- ;;^UTILITY(U,$J,358.3,19273,1,4,0)
- ;;=4^T84.84XS
- ;;^UTILITY(U,$J,358.3,19273,2)
- ;;=^5055465
- ;;^UTILITY(U,$J,358.3,19274,0)
- ;;=T84.85XA^^93^991^16
- ;;^UTILITY(U,$J,358.3,19274,1,0)
+ ;;^UTILITY(U,$J,358.3,19496,1,3,0)
+ ;;=3^Acquired absence of right wrist
+ ;;^UTILITY(U,$J,358.3,19496,1,4,0)
+ ;;=4^Z89.121
+ ;;^UTILITY(U,$J,358.3,19496,2)
+ ;;=^5063540
+ ;;^UTILITY(U,$J,358.3,19497,0)
+ ;;=Z89.211^^67^876^28
+ ;;^UTILITY(U,$J,358.3,19497,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,19274,1,3,0)
- ;;=3^Stenosis due to internal orthopedic prosth dev/grft, init
- ;;^UTILITY(U,$J,358.3,19274,1,4,0)
- ;;=4^T84.85XA
- ;;^UTILITY(U,$J,358.3,19274,2)
- ;;=^5055466
- ;;^UTILITY(U,$J,358.3,19275,0)
- ;;=T84.85XD^^93^991^17
- ;;^UTILITY(U,$J,358.3,19275,1,0)
+ ;;^UTILITY(U,$J,358.3,19497,1,3,0)
+ ;;=3^Acquired absence of right upper limb below elbow
+ ;;^UTILITY(U,$J,358.3,19497,1,4,0)
+ ;;=4^Z89.211
+ ;;^UTILITY(U,$J,358.3,19497,2)
+ ;;=^5063545
+ ;;^UTILITY(U,$J,358.3,19498,0)
+ ;;=Z89.212^^67^876^13
+ ;;^UTILITY(U,$J,358.3,19498,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,19275,1,3,0)
- ;;=3^Stenosis due to internal orthopedic prosth dev/grft, subs
- ;;^UTILITY(U,$J,358.3,19275,1,4,0)
- ;;=4^T84.85XD
- ;;^UTILITY(U,$J,358.3,19275,2)
- ;;=^5055467
- ;;^UTILITY(U,$J,358.3,19276,0)
- ;;=T84.85XS^^93^991^18
- ;;^UTILITY(U,$J,358.3,19276,1,0)
+ ;;^UTILITY(U,$J,358.3,19498,1,3,0)
+ ;;=3^Acquired absence of left upper limb below elbow
+ ;;^UTILITY(U,$J,358.3,19498,1,4,0)
+ ;;=4^Z89.212
+ ;;^UTILITY(U,$J,358.3,19498,2)
+ ;;=^5063546
+ ;;^UTILITY(U,$J,358.3,19499,0)
+ ;;=Z89.221^^67^876^27
+ ;;^UTILITY(U,$J,358.3,19499,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,19276,1,3,0)
- ;;=3^Stenosis due to internal orthopedic prosth dev/grft, sequela
- ;;^UTILITY(U,$J,358.3,19276,1,4,0)
- ;;=4^T84.85XS
- ;;^UTILITY(U,$J,358.3,19276,2)
- ;;=^5055468
- ;;^UTILITY(U,$J,358.3,19277,0)
- ;;=T84.86XA^^93^991^20
- ;;^UTILITY(U,$J,358.3,19277,1,0)
+ ;;^UTILITY(U,$J,358.3,19499,1,3,0)
+ ;;=3^Acquired absence of right upper limb above elbow
+ ;;^UTILITY(U,$J,358.3,19499,1,4,0)
+ ;;=4^Z89.221
+ ;;^UTILITY(U,$J,358.3,19499,2)
+ ;;=^5063548
+ ;;^UTILITY(U,$J,358.3,19500,0)
+ ;;=Z89.222^^67^876^12
+ ;;^UTILITY(U,$J,358.3,19500,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,19277,1,3,0)
- ;;=3^Thrombosis due to internal orthopedic prosth dev/grft, init
- ;;^UTILITY(U,$J,358.3,19277,1,4,0)
- ;;=4^T84.86XA
- ;;^UTILITY(U,$J,358.3,19277,2)
- ;;=^5055469
- ;;^UTILITY(U,$J,358.3,19278,0)
- ;;=T84.86XD^^93^991^21
- ;;^UTILITY(U,$J,358.3,19278,1,0)
+ ;;^UTILITY(U,$J,358.3,19500,1,3,0)
+ ;;=3^Acquired absence of left upper limb above elbow
+ ;;^UTILITY(U,$J,358.3,19500,1,4,0)
+ ;;=4^Z89.222
+ ;;^UTILITY(U,$J,358.3,19500,2)
+ ;;=^5063549
+ ;;^UTILITY(U,$J,358.3,19501,0)
+ ;;=Z89.232^^67^876^9
+ ;;^UTILITY(U,$J,358.3,19501,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,19278,1,3,0)
- ;;=3^Thrombosis due to internal orthopedic prosth dev/grft, subs
- ;;^UTILITY(U,$J,358.3,19278,1,4,0)
- ;;=4^T84.86XD
- ;;^UTILITY(U,$J,358.3,19278,2)
- ;;=^5055470
- ;;^UTILITY(U,$J,358.3,19279,0)
- ;;=T84.86XS^^93^991^19
- ;;^UTILITY(U,$J,358.3,19279,1,0)
+ ;;^UTILITY(U,$J,358.3,19501,1,3,0)
+ ;;=3^Acquired absence of left shoulder
+ ;;^UTILITY(U,$J,358.3,19501,1,4,0)
+ ;;=4^Z89.232
+ ;;^UTILITY(U,$J,358.3,19501,2)
+ ;;=^5063552
+ ;;^UTILITY(U,$J,358.3,19502,0)
+ ;;=Z89.231^^67^876^24
+ ;;^UTILITY(U,$J,358.3,19502,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,19279,1,3,0)
- ;;=3^Thrombosis due to internal orth prosth dev/grft, sequela
- ;;^UTILITY(U,$J,358.3,19279,1,4,0)
- ;;=4^T84.86XS
- ;;^UTILITY(U,$J,358.3,19279,2)
- ;;=^5055471
- ;;^UTILITY(U,$J,358.3,19280,0)
- ;;=M76.62^^93^992^1
- ;;^UTILITY(U,$J,358.3,19280,1,0)
+ ;;^UTILITY(U,$J,358.3,19502,1,3,0)
+ ;;=3^Acquired absence of right shoulder
+ ;;^UTILITY(U,$J,358.3,19502,1,4,0)
+ ;;=4^Z89.231
+ ;;^UTILITY(U,$J,358.3,19502,2)
+ ;;=^5063551
+ ;;^UTILITY(U,$J,358.3,19503,0)
+ ;;=Z89.611^^67^876^21
+ ;;^UTILITY(U,$J,358.3,19503,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,19280,1,3,0)
- ;;=3^Achilles tendinitis, left leg
- ;;^UTILITY(U,$J,358.3,19280,1,4,0)
- ;;=4^M76.62
- ;;^UTILITY(U,$J,358.3,19280,2)
- ;;=^5013286
- ;;^UTILITY(U,$J,358.3,19281,0)
- ;;=M76.61^^93^992^2
- ;;^UTILITY(U,$J,358.3,19281,1,0)
+ ;;^UTILITY(U,$J,358.3,19503,1,3,0)
+ ;;=3^Acquired absence of right leg above knee
+ ;;^UTILITY(U,$J,358.3,19503,1,4,0)
+ ;;=4^Z89.611
+ ;;^UTILITY(U,$J,358.3,19503,2)
+ ;;=^5063572
+ ;;^UTILITY(U,$J,358.3,19504,0)
+ ;;=Z89.411^^67^876^18
+ ;;^UTILITY(U,$J,358.3,19504,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,19281,1,3,0)
- ;;=3^Achilles tendinitis, right leg
- ;;^UTILITY(U,$J,358.3,19281,1,4,0)
- ;;=4^M76.61
- ;;^UTILITY(U,$J,358.3,19281,2)
- ;;=^5013285
- ;;^UTILITY(U,$J,358.3,19282,0)
- ;;=M75.02^^93^992^3
- ;;^UTILITY(U,$J,358.3,19282,1,0)
+ ;;^UTILITY(U,$J,358.3,19504,1,3,0)
+ ;;=3^Acquired absence of right great toe
+ ;;^UTILITY(U,$J,358.3,19504,1,4,0)
+ ;;=4^Z89.411
+ ;;^UTILITY(U,$J,358.3,19504,2)
+ ;;=^5063554
+ ;;^UTILITY(U,$J,358.3,19505,0)
+ ;;=Z89.412^^67^876^4
+ ;;^UTILITY(U,$J,358.3,19505,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,19282,1,3,0)
- ;;=3^Adhesive capsulitis of left shoulder
- ;;^UTILITY(U,$J,358.3,19282,1,4,0)
- ;;=4^M75.02
- ;;^UTILITY(U,$J,358.3,19282,2)
- ;;=^5013240
- ;;^UTILITY(U,$J,358.3,19283,0)
- ;;=M75.01^^93^992^4
- ;;^UTILITY(U,$J,358.3,19283,1,0)
+ ;;^UTILITY(U,$J,358.3,19505,1,3,0)
+ ;;=3^Acquired absence of left great toe
+ ;;^UTILITY(U,$J,358.3,19505,1,4,0)
+ ;;=4^Z89.412
+ ;;^UTILITY(U,$J,358.3,19505,2)
+ ;;=^5063555
+ ;;^UTILITY(U,$J,358.3,19506,0)
+ ;;=Z89.422^^67^876^11
+ ;;^UTILITY(U,$J,358.3,19506,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,19283,1,3,0)
- ;;=3^Adhesive capsulitis of right shoulder
+ ;;^UTILITY(U,$J,358.3,19506,1,3,0)
+ ;;=3^Acquired absence of left toe(s)

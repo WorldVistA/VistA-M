@@ -1,5 +1,5 @@
-ORCDPS3 ;SLC/MKB-Pharmacy dialog utilities ;10/30/14  07:49
- ;;3.0;ORDER ENTRY/RESULTS REPORTING;**94,116,134,158,149,190,277,243,289,317,350**;Dec 17, 1997;Build 77
+ORCDPS3 ;SLC/MKB - Pharmacy dialog utilities ;Jan 11, 2022@09:03:58
+ ;;3.0;ORDER ENTRY/RESULTS REPORTING;**94,116,134,158,149,190,277,243,289,317,350,405**;Dec 17, 1997;Build 211
  ;
  ;Reference to SCNEW^PSOCP supported by IA #2534
  ;Reference to DIS^DGRPDB supported by IA #700
@@ -115,6 +115,20 @@ CONV ;;unit;unit;factor
  ;;M;S;2592000
  ;;ZZZZ
  ;
+ ;
+ASKTITR() ; Returns 1 or 0, if Titration prompt should be asked
+ ;
+ N ORCONJ,ORI,ORRET
+ ;
+ S ORRET=0
+ S ORCONJ=$$PTR^ORCDPS("AND/THEN")
+ ;
+ S ORI=0
+ F  S ORI=$O(ORDIALOG(ORCONJ,ORI)) Q:'ORI!(ORRET)  D
+ . I $G(ORDIALOG(ORCONJ,ORI))="T" S ORRET=1
+ ;
+ Q ORRET
+ ;
 ASKDUR()        ; -- Returns 1 or 0, if Duration prompt should be asked
  K ^TMP($J,"ORCDPS3 ASKDUR")
  N X,Y I '$G(ORCOMPLX) K ORDIALOG(PROMPT,INST) Q 0
@@ -170,3 +184,37 @@ SC ; -- Dialog validation, to ask SC questions
 PRI ; Validate Priority for Outpatient orders
  I X?1"D".E!(X?1"d".E) K X
  Q
+ ;
+IND ;returns indications for use
+ Q:'$D(^TMP("PSJIND",$J))
+ N CNT,I,TXT S (CNT,I)=0
+ F  S I=$O(^TMP("PSJIND",$J,I)) Q:'I  D
+ .S TXT=$P(^(I),"^"),CNT=CNT+1,ORDIALOG(PROMPT,"LIST",CNT)=TXT
+ S:CNT ORDIALOG(PROMPT,"LIST")=CNT
+ Q
+ ;
+XHELP ; -- list indications for use if defined
+ N NUM,I,CNT S (I,CNT)=0
+ S NUM=$G(ORDIALOG(PROMPT,"LIST")) Q:'NUM
+ W !,"Choose from:"
+ F  S I=$O(ORDIALOG(PROMPT,"LIST",I)) Q:'I  D
+ . W !,?5,I_"   "_$P(ORDIALOG(PROMPT,"LIST",I),U)
+ Q
+ ;
+DFIND ; -- Get default indication for use
+ Q
+ ;
+INDIT ;
+ I X,$D(ORDIALOG(PROMPT,"LIST",X)) Q
+ I $E(X)=0!(X?1P.E)!(X>$G(ORDIALOG(PROMPT,"LIST"))) K X Q
+ K:$L(X)>40!($L(X)<3) X
+ Q
+ ;
+PARKCK ;
+ S X=$$UPPER^ORWDPS32(X)
+ I X="M"!(X="W") Q
+ N BX,PK S BX=X
+ S PK=$$GET^XPAR("DIV^SYS^PKG","PSO PARK ON"),X=BX
+ I 'PK,X="P" K X W !,"PARK is disabled at the site, PARK is not a choice."
+ Q
+ ;

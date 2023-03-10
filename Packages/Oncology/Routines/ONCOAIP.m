@@ -1,5 +1,5 @@
-ONCOAIP ;Hines OIFO/GWB - [EE Abstract Edit Primary] ;09/26/11
- ;;2.2;ONCOLOGY;**1,4,5,6,10**;Jul 31, 2013;Build 20
+ONCOAIP ;HINES OIFO/GWB - [EE Abstract Edit Primary] ;09/26/11
+ ;;2.2;ONCOLOGY;**1,4,5,6,10,15**;Jul 31, 2013;Build 5
  ;
 ED ;[EE Abstract Edit Primary]
  N ONCDC8
@@ -186,7 +186,8 @@ ORF S SECTION="Over-ride Flags" D SECTION
  Q
  ;
 NTX ;DATE OF NO TREATMENT (165.5,124)
- I '$D(NTDD) S Y="@425" Q
+ ;I '$D(NTDD) S Y="@425" Q
+ I '$D(NTDD) S Y=138.4 Q
  K NTDD
  W !!?5,"You have entered a DATE OF NO TREATMENT.  All treatment fields"
  W !?5,"will be stuffed with the appropriate value indicating no"
@@ -198,7 +199,7 @@ NTX ;DATE OF NO TREATMENT (165.5,124)
  .K ^ONCO(165.5,"ATX",D0,TXDT)
  .S $P(^ONCO(165.5,D0,2.1),U,11)=""
  I Y[U S $P(^ONCO(165.5,D0,2.1),U,11)="",Y="@0" Q
- S NTX="" D NTX^ONCNTX K NTX
+ S NTX="" D NTX^ONCNTX K NTX,ONCRK1ST
  Q
  ;
 RS ;RADIATION/SURGERY SEQUENCE (165.5,51.3)

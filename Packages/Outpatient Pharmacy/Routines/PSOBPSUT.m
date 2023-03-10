@@ -1,13 +1,13 @@
 PSOBPSUT ;BIRM/MFR - BPS (ECME) Utilities ;07 Jun 2005  8:39 PM
- ;;7.0;OUTPATIENT PHARMACY;**148,247,260,281,287,289,358,385,403,408,512**;DEC 1997;Build 44
- ;Reference to $$ECMEON^BPSUTIL supported by IA 4410
- ;Reference to IBSEND^BPSECMP2 supported by IA 4411
- ;Reference to $$STATUS^BPSOSRX supported by IA 4412
- ;Reference to $$NDCFMT^PSSNDCUT supported by IA 4707
- ;Reference to $$CLAIM^BPSBUTL supported by IA 4719
- ;Reference to ^PS(55 supported by IA 2228
- ;Reference to ^PSDRUG( supported by IA 221
- ;Reference to ^PSDRUG("AQ" supported by IA 3165
+ ;;7.0;OUTPATIENT PHARMACY;**148,247,260,281,287,289,358,385,403,408,512,630,562,680**;DEC 1997;Build 5
+ ; Reference to $$ECMEON^BPSUTIL in ICR #4410
+ ; Reference to IBSEND^BPSECMP2 in ICR #4411
+ ; Reference to $$STATUS^BPSOSRX in ICR #4412
+ ; Reference to $$NDCFMT^PSSNDCUT in ICR #4707
+ ; Reference to $$CLAIM^BPSBUTL in ICR #4719
+ ; Reference to ^PS(55 in ICR #2228
+ ; Reference to ^PSDRUG( in ICR #221
+ ; Reference to ^PSDRUG("AQ" in ICR #3165
  ;
 ECME(RX) ; Returns "e" if Rx/Refill is Electronically Billable (3rd party)
  Q $S($$STATUS^BPSOSRX(RX,$$LSTRFL^PSOBPSU1(RX))'="":"e",1:"")
@@ -137,6 +137,32 @@ RXSTATE(RX,RFL) ; Returns the Rx Division STATE
  S SITE=$$RXSITE(RX,RFL) I 'SITE Q ""
  Q +$$GET1^DIQ(59,SITE,.08,"I")
  ;
+RXSTATEP(RX,RFL,STATE) ; Returns the Rx Export States
+ ; Input:  (r) RX  - Rx IEN (#52) 
+ ;         (o) RFL - Refill #
+ ;             STATE - Selected State
+ ; Output:  RSLT - Export States
+ N SITE,MBMST,RSLT,DFN
+ S MBMST=$$GET1^DIQ(58.41,STATE,21,"I")
+ S RSLT="^"
+ I (+MBMST=0)!(+MBMST=1) D
+ .S SITE=$$RXSITE(RX,RFL) I 'SITE Q
+ .S RSLT=RSLT_+$$GET1^DIQ(59,SITE,.08,"I")_"^"
+ I (+MBMST=1)!(+MBMST=2) D
+ .S DFN=$$GET1^DIQ(52,RX,2,"I") D ADD^VADPT I +VAPA(5)]"" S RSLT=RSLT_+VAPA(5)_"^"
+ Q RSLT
+ ;
+RXSTATEZ(RX,RFL,STATE) ; Returns the Rx Export States
+ ; Input:  (r) RX  - Rx IEN (#52) 
+ ;         (o) RFL - Refill #
+ ;             STATE - Selected State
+ ; Output:  RSLT - Export to State
+ N SITE,MBMST,RSLT,DFN
+ S MBMST=$$GET1^DIQ(58.41,STATE,21,"I")
+ I (+MBMST=0)!(+MBMST=1) S SITE=$$RXSITE(RX,RFL) Q:'SITE 0 Q +$$GET1^DIQ(59,SITE,.08,"I")
+ I +MBMST=2 S DFN=$$GET1^DIQ(52,RX,2,"I") D ADD^VADPT I +VAPA(5)]"" Q +VAPA(5)
+ Q 0
+ ;
 RXQTY(RXIEN,FILL) ; Returns the Quantity Dispense for the Fill
  ; Input:  (r) RXIEN - Rx IEN (#52) 
  ;         (o) FILL  - Refill # (Default: most recent)
@@ -214,7 +240,7 @@ MANREL(RX,RFL,PID) ; ePharmacy Manual Rx Release
  I $$PSOET^PSOREJP3(RX,RFL) W ! Q "^"
  ; Checking for REJECTS before proceeding to Rx Release
  I $$FIND^PSOREJUT(RX,RFL) D  I ACTION="Q"!(ACTION="^") W ! Q "^"
- . S ACTION=$$HDLG^PSOREJU1(RX,RFL,"79,88","ED","OIQ","Q")
+ . S ACTION=$$HDLG^PSOREJU1(RX,RFL,"79,88,943","ED","OIQ","Q")
  ; - ePharmacy switch is OFF
  I '$$ECMEON^BPSUTIL($$RXSITE^PSOBPSUT(RX,RFL)) Q ""
  ; - Not an ePharmacy Rx
@@ -227,7 +253,7 @@ MANREL(RX,RFL,PID) ; ePharmacy Manual Rx Release
  . I $G(PSOTRIC) D:ACTION=2 TRIC
  ; - Checking for OPEN/UNRESOLVED 3rd. Party Payer Rejects (After possible NDC edit)
  I $$FIND^PSOREJUT(RX,RFL) D  I ACTION="Q"!(ACTION="^") W ! Q "^"
- . S ACTION=$$HDLG^PSOREJU1(RX,RFL,"79,88","ED","OIQ","Q")
+ . S ACTION=$$HDLG^PSOREJU1(RX,RFL,"79,88,943","ED","OIQ","Q")
  I $G(PSOTRIC),$$STATUS^PSOBPSUT(RX,RFL)["IN PROGRESS" D TRIC Q "^"
  Q ""
  ;
@@ -279,18 +305,20 @@ AUTOREL(RX,RFL,RLDT,NDC,SRC,STS,HNG) ; Sends Rx Release information to ECME/IB a
  . ; - If new claim returned PAYABLE, save new NDC in the DRUG/PRESCRIPTION files
  . I $$STATUS^PSOBPSUT(RX,RFL)="E PAYABLE" D SAVNDC^PSONDCUT(RX,RFL,$$NDCFMT^PSSNDCUT(NDC),1,1)
  ; - Calls ECME api responsible for notifying IB to create a BILL
- D IBSEND(RX,RFL,1)
+ D IBSEND(RX,RFL,$S(SRC="C":2,1:1),NDC)
  Q
  ;
-IBSEND(RX,RFL,AUTO) ; Rx Release
+IBSEND(RX,RFL,AUTO,PSONDC) ; Rx Release
  ; Create Release Event
  ; Calls ECME, if needed
  ; If Payable or Duplicate, calls IB to create a bill
  ;
  ;Input: (r) RX  - Rx IEN (#52)
  ;       (o) RFL - Refill #  (Default: most recent)
- ;       (o) AUTO - Called by Auto Release Process
+ ;       (o) AUTO - Set if called by Auto Release Process (1=OPAI, 2=CMOP)
+ ;       (o) PSONDC - NDC to be on outgoing claim
  ;
+ N PSORELDT
  I '$D(RFL) S RFL=$$LSTRFL^PSOBPSU1(RX)
  ; - ECME turned OFF for Rx's site
  I '$$ECMEON^BPSUTIL($$RXSITE^PSOBPSUT(RX,RFL)) Q
@@ -304,7 +332,9 @@ IBSEND(RX,RFL,AUTO) ; Rx Release
  I 'AUTO D RELEASE^PSOBPSU1(RX,RFL,DUZ)
  ; - If the previous ECME claim was reversed or incomplete, re-submit the claim to the payer
  I (STATUS="E REVERSAL ACCEPTED")!(STATUS="IN PROGRESS") D  Q
- . D ECMESND^PSOBPSU1(RX,RFL,$$RXRLDT^PSOBPSUT(RX,RFL),$S(AUTO:"C",1:"")_"RRL")
+ . S PSORELDT=$$RXRLDT^PSOBPSUT(RX,RFL)
+ . S PSONDC=$$NDCFMT^PSSNDCUT($G(PSONDC))
+ . D ECMESND^PSOBPSU1(RX,RFL,PSORELDT,$S(AUTO:"C",1:"")_"RRL",PSONDC,$S(AUTO=2:1,1:""))
  ; - Notifying ECME of a BILLING event 
  I STATUS="E PAYABLE"!(STATUS="E DUPLICATE") D  Q
  . N PSOCLAIM S PSOCLAIM=$$CLAIM^BPSBUTL(RX,RFL)

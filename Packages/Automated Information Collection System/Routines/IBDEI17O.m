@@ -1,126 +1,126 @@
-IBDEI17O ; ; 04-FEB-2020
- ;;3.0;IB ENCOUNTER FORM IMP/EXP;;FEB 04, 2020
+IBDEI17O ; ; 01-FEB-2022
+ ;;3.0;IB ENCOUNTER FORM IMP/EXP;;FEB 01, 2022
  Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,999) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
- ;;^UTILITY(U,$J,358.3,19450,2)
- ;;=^5011141
- ;;^UTILITY(U,$J,358.3,19451,0)
- ;;=M21.764^^93^992^201
- ;;^UTILITY(U,$J,358.3,19451,1,0)
+ ;;^UTILITY(U,$J,358.3,19670,0)
+ ;;=M62.452^^67^880^21
+ ;;^UTILITY(U,$J,358.3,19670,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,19451,1,3,0)
- ;;=3^Unequal limb length (acquired), left fibula
- ;;^UTILITY(U,$J,358.3,19451,1,4,0)
- ;;=4^M21.764
- ;;^UTILITY(U,$J,358.3,19451,2)
- ;;=^5011146
- ;;^UTILITY(U,$J,358.3,19452,0)
- ;;=M21.762^^93^992^202
- ;;^UTILITY(U,$J,358.3,19452,1,0)
+ ;;^UTILITY(U,$J,358.3,19670,1,3,0)
+ ;;=3^Contracture of muscle, left thigh
+ ;;^UTILITY(U,$J,358.3,19670,1,4,0)
+ ;;=4^M62.452
+ ;;^UTILITY(U,$J,358.3,19670,2)
+ ;;=^5012645
+ ;;^UTILITY(U,$J,358.3,19671,0)
+ ;;=M62.422^^67^880^22
+ ;;^UTILITY(U,$J,358.3,19671,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,19452,1,3,0)
- ;;=3^Unequal limb length (acquired), left tibia
- ;;^UTILITY(U,$J,358.3,19452,1,4,0)
- ;;=4^M21.762
- ;;^UTILITY(U,$J,358.3,19452,2)
- ;;=^5011144
- ;;^UTILITY(U,$J,358.3,19453,0)
- ;;=M21.751^^93^992^203
- ;;^UTILITY(U,$J,358.3,19453,1,0)
+ ;;^UTILITY(U,$J,358.3,19671,1,3,0)
+ ;;=3^Contracture of muscle, left upper arm
+ ;;^UTILITY(U,$J,358.3,19671,1,4,0)
+ ;;=4^M62.422
+ ;;^UTILITY(U,$J,358.3,19671,2)
+ ;;=^5012636
+ ;;^UTILITY(U,$J,358.3,19672,0)
+ ;;=M62.49^^67^880^23
+ ;;^UTILITY(U,$J,358.3,19672,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,19453,1,3,0)
- ;;=3^Unequal limb length (acquired), right femur
- ;;^UTILITY(U,$J,358.3,19453,1,4,0)
- ;;=4^M21.751
- ;;^UTILITY(U,$J,358.3,19453,2)
- ;;=^5011140
- ;;^UTILITY(U,$J,358.3,19454,0)
- ;;=M21.763^^93^992^204
- ;;^UTILITY(U,$J,358.3,19454,1,0)
+ ;;^UTILITY(U,$J,358.3,19672,1,3,0)
+ ;;=3^Contracture of muscle, multiple sites
+ ;;^UTILITY(U,$J,358.3,19672,1,4,0)
+ ;;=4^M62.49
+ ;;^UTILITY(U,$J,358.3,19672,2)
+ ;;=^5012654
+ ;;^UTILITY(U,$J,358.3,19673,0)
+ ;;=M62.48^^67^880^24
+ ;;^UTILITY(U,$J,358.3,19673,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,19454,1,3,0)
- ;;=3^Unequal limb length (acquired), right fibula
- ;;^UTILITY(U,$J,358.3,19454,1,4,0)
- ;;=4^M21.763
- ;;^UTILITY(U,$J,358.3,19454,2)
- ;;=^5011145
- ;;^UTILITY(U,$J,358.3,19455,0)
- ;;=M21.761^^93^992^205
- ;;^UTILITY(U,$J,358.3,19455,1,0)
+ ;;^UTILITY(U,$J,358.3,19673,1,3,0)
+ ;;=3^Contracture of muscle, other site
+ ;;^UTILITY(U,$J,358.3,19673,1,4,0)
+ ;;=4^M62.48
+ ;;^UTILITY(U,$J,358.3,19673,2)
+ ;;=^5012653
+ ;;^UTILITY(U,$J,358.3,19674,0)
+ ;;=M62.471^^67^880^25
+ ;;^UTILITY(U,$J,358.3,19674,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,19455,1,3,0)
- ;;=3^Unequal limb length (acquired), right tibia
- ;;^UTILITY(U,$J,358.3,19455,1,4,0)
- ;;=4^M21.761
- ;;^UTILITY(U,$J,358.3,19455,2)
- ;;=^5011143
- ;;^UTILITY(U,$J,358.3,19456,0)
- ;;=M17.12^^93^992^206
- ;;^UTILITY(U,$J,358.3,19456,1,0)
+ ;;^UTILITY(U,$J,358.3,19674,1,3,0)
+ ;;=3^Contracture of muscle, right ankle and foot
+ ;;^UTILITY(U,$J,358.3,19674,1,4,0)
+ ;;=4^M62.471
+ ;;^UTILITY(U,$J,358.3,19674,2)
+ ;;=^5012650
+ ;;^UTILITY(U,$J,358.3,19675,0)
+ ;;=M62.431^^67^880^26
+ ;;^UTILITY(U,$J,358.3,19675,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,19456,1,3,0)
- ;;=3^Prim Osteoarth,Left Knee,Unilat
- ;;^UTILITY(U,$J,358.3,19456,1,4,0)
- ;;=4^M17.12
- ;;^UTILITY(U,$J,358.3,19456,2)
- ;;=^5010787
- ;;^UTILITY(U,$J,358.3,19457,0)
- ;;=M17.11^^93^992^207
- ;;^UTILITY(U,$J,358.3,19457,1,0)
+ ;;^UTILITY(U,$J,358.3,19675,1,3,0)
+ ;;=3^Contracture of muscle, right forearm
+ ;;^UTILITY(U,$J,358.3,19675,1,4,0)
+ ;;=4^M62.431
+ ;;^UTILITY(U,$J,358.3,19675,2)
+ ;;=^5012638
+ ;;^UTILITY(U,$J,358.3,19676,0)
+ ;;=M62.441^^67^880^27
+ ;;^UTILITY(U,$J,358.3,19676,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,19457,1,3,0)
- ;;=3^Prim Osteoarth,Right Knee,Unilat
- ;;^UTILITY(U,$J,358.3,19457,1,4,0)
- ;;=4^M17.11
- ;;^UTILITY(U,$J,358.3,19457,2)
- ;;=^5010786
- ;;^UTILITY(U,$J,358.3,19458,0)
- ;;=M76.51^^93^992^68
- ;;^UTILITY(U,$J,358.3,19458,1,0)
+ ;;^UTILITY(U,$J,358.3,19676,1,3,0)
+ ;;=3^Contracture of muscle, right hand
+ ;;^UTILITY(U,$J,358.3,19676,1,4,0)
+ ;;=4^M62.441
+ ;;^UTILITY(U,$J,358.3,19676,2)
+ ;;=^5012641
+ ;;^UTILITY(U,$J,358.3,19677,0)
+ ;;=M62.461^^67^880^28
+ ;;^UTILITY(U,$J,358.3,19677,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,19458,1,3,0)
- ;;=3^Patellar tendinitis, right knee
- ;;^UTILITY(U,$J,358.3,19458,1,4,0)
- ;;=4^M76.51
- ;;^UTILITY(U,$J,358.3,19458,2)
- ;;=^5013282
- ;;^UTILITY(U,$J,358.3,19459,0)
- ;;=M24.311^^93^992^72
- ;;^UTILITY(U,$J,358.3,19459,1,0)
+ ;;^UTILITY(U,$J,358.3,19677,1,3,0)
+ ;;=3^Contracture of muscle, right lower leg
+ ;;^UTILITY(U,$J,358.3,19677,1,4,0)
+ ;;=4^M62.461
+ ;;^UTILITY(U,$J,358.3,19677,2)
+ ;;=^5012647
+ ;;^UTILITY(U,$J,358.3,19678,0)
+ ;;=M62.411^^67^880^29
+ ;;^UTILITY(U,$J,358.3,19678,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,19459,1,3,0)
- ;;=3^Path Dislocation,Right Shoulder NEC
- ;;^UTILITY(U,$J,358.3,19459,1,4,0)
- ;;=4^M24.311
- ;;^UTILITY(U,$J,358.3,19459,2)
- ;;=^5011346
- ;;^UTILITY(U,$J,358.3,19460,0)
- ;;=M24.312^^93^992^70
- ;;^UTILITY(U,$J,358.3,19460,1,0)
+ ;;^UTILITY(U,$J,358.3,19678,1,3,0)
+ ;;=3^Contracture of muscle, right shoulder
+ ;;^UTILITY(U,$J,358.3,19678,1,4,0)
+ ;;=4^M62.411
+ ;;^UTILITY(U,$J,358.3,19678,2)
+ ;;=^5012632
+ ;;^UTILITY(U,$J,358.3,19679,0)
+ ;;=M62.451^^67^880^30
+ ;;^UTILITY(U,$J,358.3,19679,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,19460,1,3,0)
- ;;=3^Path Dislocation,Left Shoulder NEC
- ;;^UTILITY(U,$J,358.3,19460,1,4,0)
- ;;=4^M24.312
- ;;^UTILITY(U,$J,358.3,19460,2)
- ;;=^5011347
- ;;^UTILITY(U,$J,358.3,19461,0)
- ;;=M24.231^^93^992^57
- ;;^UTILITY(U,$J,358.3,19461,1,0)
+ ;;^UTILITY(U,$J,358.3,19679,1,3,0)
+ ;;=3^Contracture of muscle, right thigh
+ ;;^UTILITY(U,$J,358.3,19679,1,4,0)
+ ;;=4^M62.451
+ ;;^UTILITY(U,$J,358.3,19679,2)
+ ;;=^5012644
+ ;;^UTILITY(U,$J,358.3,19680,0)
+ ;;=M62.421^^67^880^31
+ ;;^UTILITY(U,$J,358.3,19680,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,19461,1,3,0)
- ;;=3^Ligament D/O,Right Wrist
- ;;^UTILITY(U,$J,358.3,19461,1,4,0)
- ;;=4^M24.231
- ;;^UTILITY(U,$J,358.3,19461,2)
- ;;=^5011329
- ;;^UTILITY(U,$J,358.3,19462,0)
- ;;=M24.232^^93^992^55
- ;;^UTILITY(U,$J,358.3,19462,1,0)
+ ;;^UTILITY(U,$J,358.3,19680,1,3,0)
+ ;;=3^Contracture of muscle, right upper arm
+ ;;^UTILITY(U,$J,358.3,19680,1,4,0)
+ ;;=4^M62.421
+ ;;^UTILITY(U,$J,358.3,19680,2)
+ ;;=^5012635
+ ;;^UTILITY(U,$J,358.3,19681,0)
+ ;;=M25.262^^67^880^38
+ ;;^UTILITY(U,$J,358.3,19681,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,19462,1,3,0)
- ;;=3^Ligament D/O,Left Wrist
- ;;^UTILITY(U,$J,358.3,19462,1,4,0)
- ;;=4^M24.232
- ;;^UTILITY(U,$J,358.3,19462,2)
- ;;=^5011330
+ ;;^UTILITY(U,$J,358.3,19681,1,3,0)
+ ;;=3^Flail joint, left knee
+ ;;^UTILITY(U,$J,358.3,19681,1,4,0)
+ ;;=4^M25.262
+ ;;^UTILITY(U,$J,358.3,19681,2)
+ ;;=^5011544
+ ;;^UTILITY(U,$J,358.3,19682,0)
+ ;;=M25.212^^67^880^39

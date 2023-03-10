@@ -1,5 +1,5 @@
 PSOSPMKY ;BIRM/MFR - State Prescription Monitoring Program - SSH Key Management ;01/06/16
- ;;7.0;OUTPATIENT PHARMACY;**451**;DEC 1997;Build 114
+ ;;7.0;OUTPATIENT PHARMACY;**451,625**;DEC 1997;Build 42
  ;
 EN ; Entry-point
  N STATEIEN,DIC,X,Y,DUOUT,DTOUT,PSOOS,LOCALDIR,X1,DIR,DIRUT,LOCALDIR
@@ -33,8 +33,9 @@ ACTION ; SSH Key Action
  . . W !,"update it in the View/Edit SPMP State Parameters option and try again.",$C(7) D PAUSE^PSOSPMU1
  . K DIR S DIR("A")="SSH Key Encryption Type",DIR("?")="^D ETHELP^PSOSPMKY"
  . S DIR(0)="S^DSA:Digital Signature Algorithm (DSA);RSA:Rivest, Shamir & Adleman (RSA)"
- . S DIR("B")="DSA" D ^DIR I $D(DUOUT)!($D(DIRUT)) Q
- . S ENCRTYPE=Y
+ . S DIR("B")="RSA" D ^DIR I $D(DUOUT)!($D(DIRUT)) Q
+ . S ENCRTYPE=Y I Y="DSA" D  Q
+ . . W !!,$G(IOBON),"WARNING:",$G(IOBOFF)," 'DSA' SSH keys are being phased out and are no longer supported.",$C(7)
  . I $D(^TMP("PSOPUBKY",$J)) D
  . . W !!,$G(IOBON),"WARNING:",$G(IOBOFF)," You may be overwriting SSH Keys that are currently in use.",$C(7)
  . K DIR S DIR("A")="Confirm Creation of SSH Keys for "_$$GET1^DIQ(5,STATEIEN,.01),DIR(0)="Y",DIR("B")="NO"
@@ -75,13 +76,13 @@ END Q
  ;
 NEWKEY(STATEIEN,ENCRTYPE) ; Generate and store a pair of SSH keys for a specific state
  ; Input: (r) STATEIEN - State that will be using the new key pair. Pointer to the STATE file (#5)
- ;        (o) ENCRTYPE - SSH Encryption Type (DSA / RSA) (Default: DSA)
+ ;        (o) ENCRTYPE - SSH Encryption Type (DSA / RSA) (Default: RSA)
  N LOCALDIR,DATETIME,PSOOS,KEYFILE,PV,FILE2DEL,LINE,OVFLINE,NMSPC,KEYTXT,SAVEKEY,DIE,DR,DA
  ;
  I '$G(STATEIEN) Q  ;Error: State missing
  S PSOOS=$$OS^%ZOSV()
  S LOCALDIR=$$GET1^DIQ(58.41,STATEIEN,$S(PSOOS["VMS":4,1:15)) I LOCALDIR="" Q  ;Error: Missing directory
- I $G(ENCRTYPE)'="DSA",$G(ENCRTYPE)'="RSA" S ENCRTYPE="DSA"
+ I $G(ENCRTYPE)'="DSA",$G(ENCRTYPE)'="RSA" S ENCRTYPE="RSA"
  ;
  ; LOCK to avoid OS files overwrite
  F  S DATETIME=$P($$FMTHL7^XLFDT($$HTFM^XLFDT($H)),"-") S KEYFILE="KEY"_DATETIME L +@KEYFILE:0 Q:$T  H 2

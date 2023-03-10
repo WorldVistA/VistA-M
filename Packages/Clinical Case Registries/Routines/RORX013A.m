@@ -1,5 +1,5 @@
 RORX013A ;HCIOFO/SG - DIAGNOSIS CODES (QUERY & SORT) ;6/21/06 2:24pm
- ;;1.5;CLINICAL CASE REGISTRIES;**1,13,19,21,25,31,34**;Feb 17, 2006;Build 45
+ ;;1.5;CLINICAL CASE REGISTRIES;**1,13,19,21,25,31,34,39**;Feb 17, 2006;Build 4
  ;
  ; This routine uses the following IAs:
  ;
@@ -28,6 +28,7 @@ RORX013A ;HCIOFO/SG - DIAGNOSIS CODES (QUERY & SORT) ;6/21/06 2:24pm
  ;ROR*1.5*31   MAY 2017    M FERRARESE  Adding PACT ,PCP,and AGE/DOB as additional
  ;                                      identifiers.   
  ;ROR*1.5*34   SEP 2018    F TRAXLER    Adding FUT_APPT and FUT_CLIN values                                 
+ ;ROR*1.5*39   JUL 2021    M FERRARESE  Setting SSN and LAST4 to zeros
  ;******************************************************************************
  ;******************************************************************************
  Q
@@ -231,7 +232,7 @@ QUERY(FLAGS) ;
  . ;
  . ;--- Get the patient's data
  . D VADEM^RORUTL05(PATIEN,1)
- . S RORPNAME=VADM(1),RORDOD=$$DATE^RORXU002($P(VADM(6),U)\1),RORLAST4=VA("BID")
+ . S RORPNAME=VADM(1),RORDOD=$$DATE^RORXU002($P(VADM(6),U)\1),RORLAST4="0000"
  . I $$PARAM^RORTSK01("PATIENTS","ICN") S RORICN=$$ICN^RORUTL02(PATIEN)
  . S AGETYPE=$$PARAM^RORTSK01("AGE_RANGE","TYPE")
  . S AGE=$S(AGETYPE="AGE":$P(VADM(4),U),AGETYPE="DOB":$$DATE^RORXU002($P(VADM(3),U)\1),1:"")

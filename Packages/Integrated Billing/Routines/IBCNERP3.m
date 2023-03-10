@@ -1,5 +1,5 @@
-IBCNERP3 ;DAOU/BHS - IBCNE eIV RESPONSE REPORT PRINT ;03-JUN-2002
- ;;2.0;INTEGRATED BILLING;**184,271,416,528,602**;21-MAR-94;Build 22
+IBCNERP3 ;DAOU/BHS - IBCNE eIV RESPONSE REPORT PRINT ; 03-JUN-2002
+ ;;2.0;INTEGRATED BILLING;**184,271,416,528,602,702**;21-MAR-94;Build 53
  ;;Per VA Directive 6402, this routine should not be modified.
  ;
  ; eIV - Insurance Verification
@@ -44,14 +44,20 @@ PRINT(RTN,BDT,EDT,PYR,PAT,TYP,SRT,PGC,PXT,MAX,CRT,TRC,EXP,IPRF,IBRDT,IBOUT) ; Pr
  ; MAX=max line ct/pg, CRT=1/0, TRC=trc#, EXP=earliest expiration date,IBRDT=today's date/time formatted 
  N EORMSG,NONEMSG,SORT1,SORT2,CNT,CNFLG,ERFLG,PRT1,PRT2,DISPDATA
  N OPRT1,OPRT2 ; Original values for PRT1 and PRT2, respectively
+ N IBHDR,IBDTA ; IB*702/ new vars
  S EORMSG="*** END OF REPORT ***"
  S NONEMSG="* * * N O  D A T A  F O U N D * * *"
  S (SORT1,SORT2)=""
  ;
- D PHDL:IBOUT="E" I $G(ZTSTOP)!PXT G PRINTX
+ ; IB*702/DTG start no form feed between no data the header and end of report
+ ;D PHDL:IBOUT="E" I $G(ZTSTOP)!PXT G PRINTX
+ S IBHDR=$S(IBOUT="E":"PHDL",1:"HEADER"),IBDTA=+$D(^TMP($J,RTN))
+ I IBDTA D PHDL:IBOUT="E" I $G(ZTSTOP)!PXT G PRINTX
  ;
  ; If global does not exist - display No Data message
- I '$D(^TMP($J,RTN)) W !,?(80-$L(NONEMSG)\2),NONEMSG,!!
+ ; I '$D(^TMP($J,RTN)) D @IBHDR W !,?(80-$L(NONEMSG)\2),NONEMSG,!!
+ I 'IBDTA  D @IBHDR W ! W:$G(IBOUT)="R" ?23 W NONEMSG W:$G(IBOUT)="R" !! G PRINTEOR
+ ; IB*702/DTG end no form feed between no data the header and end of report
  ;
  F  S SORT1=$O(^TMP($J,RTN,SORT1)) Q:SORT1=""  D  Q:PXT!$G(ZTSTOP)
  . S (OPRT1,PRT1)=$S(SORT1="~NO PAYER":"* No Payer Identified",1:SORT1)
@@ -68,7 +74,10 @@ PRINT(RTN,BDT,EDT,PYR,PAT,TYP,SRT,PGC,PXT,MAX,CRT,TRC,EXP,IPRF,IBRDT,IBOUT) ; Pr
  I $G(ZTSTOP)!PXT G PRINTX
  S (CNFLG,ERFLG)=0
  I $Y+1>MAX!('PGC) D HEADER I $G(ZTSTOP)!PXT G PRINTX
- W !,?(80-$L(EORMSG)\2),EORMSG
+ ; IB*702/DTG start EOR message
+PRINTEOR ; IB*702 come here for eor if no data
+ W ! W:$G(IBOUT)="R" ?30 W EORMSG W:$G(IBOUT)="R" !
+ ; IB*702/DTG end EOR message
 PRINTX ;
  Q
  ;
@@ -147,7 +156,9 @@ HEADER ; Print hdr info
  . S HDR="Responses Displayed: "_$S(TYP="M":"Most Recent",1:"All")
  . S OFFSET=79-$L(HDR)
  . W ?OFFSET,HDR
- . I $G(IPRF)=1 W !,?1,"Earliest Policy Expiration Date: ",$$FMTE^XLFDT(EXP,"5Z"),!
+ . ; IB*702/DTG start remove policy exp date
+ . ;I $G(IPRF)=1 W !,?1,"Earliest Policy Expiration Date: ",$$FMTE^XLFDT(EXP,"5Z"),!
+ . ; IB*702/DTG end remove policy exp date
  . S HDR=$$FMTE^XLFDT(BDT,"5Z")_" - "_$$FMTE^XLFDT(EDT,"5Z")
  . S OFFSET=80-$L(HDR)\2
  . W !,?OFFSET,HDR
@@ -218,7 +229,9 @@ PHDL ; - Print the header line for the Excel spreadsheet  ; 528
  . S EHDR="Sorted by: "_$S(SRT=1:"Payer",1:"Patient")_" Name"
  . S EHDR=EHDR_"^Responses Displayed: "_$S(TYP="M":"Most Recent",1:"All")
  . W !,EHDR S EHDR=""
- . I $G(IPRF)=1 W !,"Earliest Policy Expiration Date: ",$$FMTE^XLFDT(EXP,"5Z")
+ . ; IB*702/DTG start remove policy exp date
+ . ;I $G(IPRF)=1 W !,"Earliest Policy Expiration Date: ",$$FMTE^XLFDT(EXP,"5Z")
+ . ; IB*702/DTG end remove policy exp date
  . S EHDR=$$FMTE^XLFDT(BDT,"5Z")_" - "_$$FMTE^XLFDT(EDT,"5Z")
  . W !,EHDR
  . ; Disp SORT1 rng

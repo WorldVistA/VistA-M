@@ -1,5 +1,5 @@
 ECXLBB1 ;ALB/JRC - DSS VBECS EXTRACT ;7/3/18  15:06
- ;;3.0;DSS EXTRACTS;**105,102,120,127,144,156,161,170**;Dec 22, 1997;Build 12
+ ;;3.0;DSS EXTRACTS;**105,102,120,127,144,156,161,170,184**;Dec 22, 1997;Build 124
  ;Per VA Directive 6402, this routine should not be modified.  Medical Device # BK970021
  ; access to the VBECS EXTRACT file (#6002.03) is supported by
  ; controlled subscription to IA #4953  (global root ^VBECS(6002.03)
@@ -58,6 +58,7 @@ AUDRPT ; entry point for pre-extract audit report
 GETDATA ; gather rest of extract data that will be recorded in an 
  ; entry in file 727.829
  N ECXSTR,ECXASIH ;170
+ N ECXNMPI,ECXCERN,ECXSIGI ;184 - fields added
  S ECTRFDT=$$ECXDOB^ECXUTL(ECARRY(1)),ECTRFTM=$$ECXTIME^ECXUTL(ECARRY(1))
  S ECX=$$INP^ECXUTL2(ECXDFN,ECARRY(1)),ECINOUT=$P(ECX,U),ECTRSP=$P(ECX,U,3),ECADMT=$P(ECX,U,4),ECXASIH=$P(ECX,U,14) ;170
  ;
@@ -68,6 +69,9 @@ GETDATA ; gather rest of extract data that will be recorded in an
  Q:ECENCTR=""
  ;get emergency response indicator (FEMA)
  S ECXERI=$G(ECPAT("ERI"))
+ ;184 - Get New MPI and Self Identified Gender
+ S ECXNMPI=ECPAT("MPI")
+ S ECXSIGI=ECPAT("SIGI")
  ;
  ; ******* - PATCH 127, ADD PATCAT CODE ********
  S ECXPATCAT=$$PATCAT^ECXUTL(ECXDFN)
@@ -77,6 +81,7 @@ GETDATA ; gather rest of extract data that will be recorded in an
  I $G(ECXLOGIC)>2005 S ECXSTR=ECXSTR_U_ECXPHY_U_ECXPHYPC
  I $G(ECXLOGIC)>2006 D
  .S ECXSTR=ECXSTR_U_ECXERI_U_ECARRY(11)_U_ECARRY(12)_U_ECARRY(9)_U_ECARRY(10)_U_ECARRY(13)_U
+ I $G(ECXLOGIC)>2022 S ECXSTR=ECXSTR_ECPAT("SIGI") ;184
  I '$D(ECXRPT) D FILE(ECXSTR) Q
  S ^TMP("ECXLBB",$J,ECXDFN,ECD,RECORD)=ECXSTR  ;temporary global array,156-added additional subscript
  I $D(ECXCRPT) D
@@ -112,6 +117,8 @@ FILE(ECODE) ;
  ; (FEMA)^unit modified^unit modification^requesting provider^request. 
  ; provider person class^ordering provider npi ECPHYNPI
  ;ECODE1- requesting provider npi ECREQNPI^PATCAT^Encounter SC ECXESC
+ ;ECODE2 - Cerner Data
+ ;ECODE3 - New MPI (ECXNMPI)^Self Identified Gender (ECXSIGI)
  N DA,DIK,EC7
  S EC7=$O(^ECX(ECFILE,999999999),-1),EC7=EC7+1
  S ECODE=EC7_"^"_ECODE
@@ -119,8 +126,11 @@ FILE(ECODE) ;
  .S ECODE=ECODE_ECPHYNPI_U
  .S ECODE1=$G(ECREQNPI)
  .I ECXLOGIC>2010 S ECODE1=ECODE1_U_ECXPATCAT
- I ECXLOGIC>2013 S ECODE1=ECODE1_U_ECXESC ;144
- S ^ECX(ECFILE,EC7,0)=ECODE,^ECX(ECFILE,EC7,1)=$G(ECODE1),ECRN=ECRN+1
+ I ECXLOGIC>2013 S ECODE1=ECODE1_U_ECXESC_U ;144 ,184 - Added "^"
+ I ECXLOGIC>2022 S ECODE2=$G(ECXCERN)_U,ECODE3=ECXNMPI_U_ECXSIGI ;184
+ S ^ECX(ECFILE,EC7,0)=ECODE,^ECX(ECFILE,EC7,1)=$G(ECODE1) ; 184 Moved record count to below
+ S ^ECX(ECFILE,EC7,2)=$G(ECODE2),^ECX(ECFILE,EC7,3)=$G(ECODE3) ;184
+ S ECRN=ECRN+1 ;184 Moved from above
  S DA=EC7,DIK="^ECX("_ECFILE_"," D IX1^DIK K DIK,DA
  Q
  ;

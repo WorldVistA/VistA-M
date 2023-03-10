@@ -1,5 +1,5 @@
-MAGDHOW2 ;WOIFO/PMK/DAC - Capture Consult/GMRC data ;14 Jun 2018 10:13 AM
- ;;3.0;IMAGING;**138,156,183,208**;Mar 19, 2002;Build 6;Nov 16, 2014
+MAGDHOW2 ;WOIFO/PMK,DAC,JSL - Capture Consult/GMRC data ;22 Jul 2021 10:13 AM
+ ;;3.0;IMAGING;**138,156,183,208,301**;Mar 19, 2002;Build 6;Nov 16, 2014
  ;; Per VHA Directive 2004-038, this routine should not be modified.
  ;; +---------------------------------------------------------------+
  ;; | Property of the US Government.                                |
@@ -106,7 +106,7 @@ PIDPV1(HLMSTATE,DFN) ; build the PID and PV1 segments
  S NUL=$$MAKE^MAG7UM("HL7ARRAY","HL7SEG")
  S PID=HL7SEG(2)
  S PV1=HL7SEG(3)
- S SUCCESS=$$MOVESEG^HLOAPI(.HLMSTATE,PID,.ERROR)
+ S SUCCESS=$S($T(MOVESEG^HLOAPI)'="":$$MOVESEG^HLOAPI(.HLMSTATE,PID,.ERROR),1:$$MOVESEG(.HLMSTATE,PID,.ERROR))  ;In case missing HL7 patch
  I 'SUCCESS D
  . N MSG,SUBJECT,VARIABLES
  . S SUBJECT="VistA Imaging Clinical Specialty (CPRS) HL7 Generation"
@@ -118,7 +118,7 @@ PIDPV1(HLMSTATE,DFN) ; build the PID and PV1 segments
  . S VARIABLES("ERROR")=""
  . D ERROR^MAGDHOWA(SUBJECT,.MSG,.VARIABLES)
  . Q
- S SUCCESS=$$MOVESEG^HLOAPI(.HLMSTATE,PV1,.ERROR)
+ S SUCCESS=$S($T(MOVESEG^HLOAPI)'="":$$MOVESEG^HLOAPI(.HLMSTATE,PV1,.ERROR),1:$$MOVESEG(.HLMSTATE,PV1,.ERROR))  ;In case missing HL7 patch
  I 'SUCCESS D
  . N MSG,SUBJECT,VARIABLES
  . S SUBJECT="VistA Imaging Clinical Specialty (CPRS) HL7 Generation"
@@ -135,6 +135,8 @@ PIDPV1(HLMSTATE,DFN) ; build the PID and PV1 segments
 OUTPUT ; output the messages to ^MAGDHL7
  N D0,DEL,FMDATE,FMDATETIME,HLAIEN,HDR,HL7,HL7MSH,I,I1,I2,J,K,MSG,N,X,Y,Z
  S HLAIEN=HLMSTATE("BODY")
+ S HLMSTATE("HDR","RECEIVING APPLICATION")=$G(HLMSTATE("HDR","RECEIVING APPLICATION"))  ;IHS
+ F I=1,2,3 S HLMSTATE("HDR","RECEIVING FACILITY",I)=$G(HLMSTATE("HDR","RECEIVING FACILITY",I))  ;IHS
  ;
  ; build the MSH segment
  D BUILDHDR^HLOPBLD1(.HLMSTATE,"MSH",.HL7MSH)
@@ -201,3 +203,39 @@ OUTPUT ; output the messages to ^MAGDHL7
  ;
  I $G(CPINVOCATION) D OUTPUT^MAGDHOWP(N) ; copy HL7 message for clinical procedures - P208 PMK 4/12/18
  Q
+ ;
+ ;**HL7 P146 routine: HLOAPI
+MOVESEG(HLMSTATE,SEG,ERROR) ;Adds a segment built in the 'traditional' way as an array of lines into the message.
+ ;;Input:
+ ;;  HLMSTATE() - (pass by reference, required) This array is a workspace for HLO. 
+ ;;  SEG() - (pass-by-reference, required) Contains the segment.  The segement.  If the segment is short enough it should consist of only SEG or SEG(1).  If longer, additional lines can be added as SEG(<n>). 
+ ;;
+ ;;Note#1:  The message control segments, including the MSH, BHS & FTS segments, are added automatically, so may not be added by MOVESEG.
+ ;;
+ ;;Output:
+ ;;   HLMSTATE() - (pass-by-reference, required) This array is the workspace used by HLO.
+ ;;  FUNCTION - returns 1 on success, 0 on failure
+ ;;
+ ;;  ERROR (optional, pass by reference) - returns an error message on failure
+ ;;
+ ;
+ K ERROR
+ N TYPE,NEWCOUNT,OLDCOUNT,TOARY
+ ;
+ S NEWCOUNT=1
+ I $L($G(SEG)) S TOARY(1)=SEG,NEWCOUNT=2
+ S OLDCOUNT=0
+ F  S OLDCOUNT=$O(SEG(OLDCOUNT)) Q:'OLDCOUNT  S TOARY(NEWCOUNT)=SEG(OLDCOUNT),NEWCOUNT=NEWCOUNT+1
+ S TYPE=$P($G(TOARY(1)),HLMSTATE("HDR","FIELD SEPARATOR")) ;segment type
+ ;
+ ;if a 'generic' app ack MSA was built, add it as the first segment before this one
+ I $D(HLMSTATE("MSA")) D
+ .I TYPE'="MSA" N TOARY S TOARY(1)=HLMSTATE("MSA") D ADDSEG^HLOMSG(.HLMSTATE,.TOARY)
+ .K HLMSTATE("MSA")
+ ;
+ I ($L(TYPE)'=3) S ERROR="INVALID SEGMENT TYPE" Q 0
+ I (TYPE="MSH")!(TYPE="BHS")!(TYPE="BTS")!(TYPE="FHS")!(TYPE="FTS") S ERROR="INVALID SEGMENT TYPE" Q 0
+ I HLMSTATE("BATCH"),'HLMSTATE("BATCH","CURRENT MESSAGE") S ERROR="NO MESSAGES IN BATCH, SO SEGMENTS NOT ALLOWED" Q 0
+ D ADDSEG^HLOMSG(.HLMSTATE,.TOARY)
+ Q 1
+ ;

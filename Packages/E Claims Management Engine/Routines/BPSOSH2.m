@@ -1,5 +1,5 @@
 BPSOSH2 ;BHAM ISC/SD/lwj/DLF - Assemble formatted claim ;06/01/2004
- ;;1.0;E CLAIMS MGMT ENGINE;**1,5,8,10,15,19,20,23**;JUN 2004;Build 44
+ ;;1.0;E CLAIMS MGMT ENGINE;**1,5,8,10,15,19,20,23,28**;JUN 2004;Build 22
  ;;Per VA Directive 6402, this routine should not be modified.
  ;
  ;    5.1 had 14 claim segments (Header, Patient, Insurance, Claim
@@ -118,6 +118,17 @@ XLOOP(NODES,IEN,BPS,REC) ;EP - from BPSECA1
  .. S:NODE=100 SEGREC=SEGREC_FLDDATA  ;no FS on the header rec
  .. S:NODE>100 SEGREC=SEGREC_$C(28)_FLDDATA  ;FS always proceeds fld
  . ;
+ . ; If the current segment is 130/Claim (B1 - Billing Requests only), 
+ . ; add field 460-ET QUANTITY PRESCRIBED if data exists and it's not 
+ . ; already populated.
+ . ;
+ . I NODE=130,TYPE="B1" D
+ .. ; Check to see if 460-ET already added to segment.
+ .. I SEGREC[($C(28)_"ET") Q
+ .. S FLDDATA=BPS(9002313.0201,IEN(9002313.0201),460,"I")
+ .. I FLDDATA'="" S SEGREC=SEGREC_$C(28)_FLDDATA
+ .. Q
+ . ; 
  . ; If no data on this segment, Quit, don't check for addl. fields.
  . ;
  . I 'DATAFND Q

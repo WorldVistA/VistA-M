@@ -1,5 +1,5 @@
-MAGNVQ01 ;WOIFO/NST - Retrieve study ; 11 Oct 2017 3:59 PM
- ;;3.0;IMAGING;**185**;Mar 19, 2002;Build 4525;May 01, 2013
+MAGNVQ01 ;VA/WOIFO/NST - Retrieve study ; 19 Oct 2020 3:59 PM
+ ;;3.0;IMAGING;**185,301**;Mar 19, 2002;Build 4525;May 01, 2013
  ;; Per VHA Directive 2004-038, this routine should not be modified.
  ;; +---------------------------------------------------------------+
  ;; | Property of the US Government.                                |
@@ -120,7 +120,7 @@ ASTUDY(STYIX,REFTYPE,REFIEN,CONTEXT) ; Append Study section
  S FILESTD=2005.62
  S IENSSTD=STYIX_","
  D GETS^DIQ(FILESTD,STYIX,"**","RIE","MAGOUTST","MAGERR")
- I REFIEN="" D 
+ I REFIEN="" D
  . N ACNUMB
  . S ACNUMB=MAGOUTST(FILESTD,IENSSTD,"ACCESSION NUMBER","I")
  . D REFBYACN^MAGNU003(.REFTYPE,.REFIEN,ACNUMB)  ; Set Reference type by Accession Number
@@ -189,6 +189,7 @@ ASOP(SOPIX,FIMAGE) ; Append SOP section
  D WRTOUT("IMAGE_UID|"_$G(MAGOUTSO(FILESOP,IENSSOP,"SOP INSTANCE UID","E")))
  D WRTOUT("IMAGE_NUMBER|"_$G(MAGOUTSO(FILESOP,IENSSOP,"INSTANCE NUMBER","E")))
  D WRTOUT("IMAGE_INFO|"_$$IMGINFO(.MAGOUTSO,IENSSOP,FIMAGE))
+ D WRTOUT("IMAGE_SOP_CLASS_UID|"_$G(MAGOUTSO(FILESOP,IENSSOP,"SOP CLASS UID","E")))
  Q
  ;
 AIMAGE(SOPIX,IMAGE) ; Append Image section

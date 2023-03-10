@@ -1,5 +1,5 @@
-XUESSO1 ;SEA/LUKE Single Sign-on Utilities ;03/08/16  08:16
- ;;8.0;KERNEL;**165,183,196,245,254,269,337,395,466,523,655,659**;Jul 10, 1995;Build 22
+XUESSO1 ;SEA/LUKE - Single Sign-on Utilities ; Apr 08, 2022@13:58
+ ;;8.0;KERNEL;**165,183,196,245,254,269,337,395,466,523,655,659,771**;Jul 10, 1995;Build 8
  ;Per VA Directive 6402, this routine should not be modified.
  ;
 GET(INDUZ) ;Gather identifying data from user's home site.
@@ -89,13 +89,16 @@ PUT(DATIN) ;;Setup data from authenticating site GET() at receiving site
  I XT Q $$SET(NEWDUZ) ;Return 1 if OK.
  Q 0
  ;
-TALL(DUZ) ;INTRINSIC. Test for existing user or adds a new one
+TALL(XUDUZ) ;INTRINSIC. Test for existing user or adds a new one
+ ; p771 replace parameter DUZ with XUDUZ to not hide DUZ nodes being used in function
  ; ZEXCEPT: NAME,NEWDUZ,PHONE,RMTDUZ,SITE,SITENUM,SSN,XSSN,TODAY,SECID,NETWORK ;global variables within this routine
  ; ZEXCEPT: DIC ;turn off DIC(0) for ^XUA4A7 (work around)
- N FLAG,NEWREC,XUIAM
+ N FLAG,NEWREC,XUIAM,RETRY
  S FLAG=0,DUZ(0)="@" ;Make sure we can add the entry
  S XUIAM=1 ;Do not trigger IAM updates
  ;See if match SECID. Only use for lookup. Do not load SECID's.
+ S RETRY=1 ; p771 try MPI web service if not found
+FIND    ;
  I $L(SECID) D
  . S NEWDUZ=+$$SECMATCH^XUESSO2(SECID) Q:NEWDUZ<1  ;p655
  . I '$D(^VA(200,NEWDUZ,8910,"B",SITENUM)) D VISM
@@ -145,8 +148,9 @@ TALL(DUZ) ;INTRINSIC. Test for existing user or adds a new one
  ;I DUZ("LOA")=1 Q 0  ;Do not add user if Level Of Assurance is low
  ;I $G(DUZ("REMAPP"))="^MDWS" Q 0  ;Do not add user if MDWS access
  I $G(DUZ("REMAPP"))="^MDWS" H $E(DT,1,3)-315  ;Discourage deprecated MDWS access
- ;
- ;We didn't find anybody under SecID,SSN,VISITED FROM, or NAME so we add a new user
+ ; p771 end of FIND.  User not found, try MPI web service
+ I RETRY S RETRY=0,SECID=$$MPISECID($G(NETWORK)) G:$G(SECID)]"" FIND
+ADD ;We didn't find anybody under SecID,SSN,VISITED FROM, or NAME so we add a new user
  S DIC(0)="" ;Turn off ^XUA4A7 (work around)
  ;Put the name in the .01 field first.
  D ADDU ;ADDU will set NEWDUZ
@@ -156,6 +160,7 @@ TALL(DUZ) ;INTRINSIC. Test for existing user or adds a new one
  D VISM,UPDT ; Fill in the  VISITED FROM multiple
  I NEWDUZ=0 Q 0 ;Couldn't update user
  I $D(^TMP("DIERR",$J)) Q 0  ;FileMan Error
+ I ($G(DUZ("REMAPP"))'="") D SETREMAP^XUESSO2(NEWDUZ,$P(DUZ("REMAPP"),"^")) ; p771
  ;
  S FLAG=$$BULL(NAME,NEWDUZ,SITE,SITENUM,RMTDUZ,PHONE,TODAY)
  S DUZ(0)=$P($G(^VA(200,NEWDUZ,0)),U,4)
@@ -251,6 +256,7 @@ UPDT ;SR. Update all data fields
  S FDR(200.06,IEN,4)=TODAY
  I $D(PHONE),($L(PHONE)>4) S FDR(200.06,IEN,5)=PHONE ;p466 Update the phone each time
  I $D(SITE) S FDR(200.06,IEN,1)=SITE ;p655 Update the site each time (name changes in INSTITUTION file)
+ ;I ($G(DUZ("REMAPP"))'=""),'$P($G(^VA(200,NEWDUZ,1.1)),"^",6) S FDR(200,NEWDUZ_",",202.06)=$P(DUZ("REMAPP"),U) ; p771 label user as REMOTE
  K IEN D UPDATE^DIE("E","FDR","IEN") ;File all the data
  I $D(^TMP("DIERR",$J)) D  Q
  . N DIK,DA,Y
@@ -288,3 +294,11 @@ SSNCHECK(SSN) ;INTRINSIC. Check for valid SSN
  I ($E(X,1,3)>899)&($E(X,4,5)=89) Q 0  ;digits 4-5 of ITIN cannot be 89
  I ($E(X,1,3)>899)&($E(X,4,5)=93) Q 0  ;digits 4-5 of ITIN cannot be 93
  Q 1
+ ;
+MPISECID(NETNAME) ; Return SECID from MPI
+ ; Called from $$TALL
+ N XMPI,XOUT
+ S XMPI("samacctnm")=$G(NETNAME)
+ D USER^XUIAMXML(.XOUT,.XMPI)
+ Q $G(XOUT("secId"))
+ ;

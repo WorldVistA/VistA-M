@@ -1,14 +1,16 @@
-XINDEX ;ISC/REL,GFT,GRK,RWF - INDEX & CROSS-REFERENCE ;08/04/08  13:19
- ;;7.3;TOOLKIT;**20,27,48,61,66,68,110,121,128,132,133**;Apr 25, 1995;Build 15
- ; Per VHA Directive 2004-038, this routine should not be modified.
+XINDEX ;ISC/REL,GFT,GRK,RWF - INDEX & CROSS-REFERENCE ; Sep 07, 2022@14:22:58
+ ;;7.3;TOOLKIT;**20,27,48,61,66,68,110,121,128,132,133,148,151,153,155**;Apr 25, 1995;Build 3
+ ;Per VHA Directive 2004-038, this routine should not be modified.
  G ^XINDX6
 SEP F I=1:1 S CH=$E(LIN,I) D QUOTE:CH=Q Q:" "[CH
  S ARG=$E(LIN,1,I-1) S:CH=" " I=I+1 S LIN=$E(LIN,I,999) Q
-QUOTE F I=I+1:1 S CH=$E(LIN,I) Q:CH=""!(CH=Q)
+QUOTE S Y=I F I=I+1:1 S CH=$E(LIN,I) Q:CH=""!(CH=Q)
+ S Y=$E(LIN,Y,I) I Y["$ZF("!(Y["$zf(") S ERR=28 G ^XINDX1 ;p155 check for $ZF( hidden in string
  Q:CH]""  S ERR=6 G ^XINDX1
 ALIVE ;enter here from taskman
  D SETUP^XINDX7 ;Get ready to process
 A2 S RTN=$O(^UTILITY($J,RTN)) G ^XINDX5:RTN=""
+ ;INDLC=1 compiled template or ^DD code
  S INDLC=(RTN?1"|"1.4L.NP) D LOAD:'INDLC&'$D(^UTILITY($J,1,RTN,0))
  I $D(ZTQUEUED),$$S^%ZTLOAD S RTN="~",IND("QUIT")=1,ZTSTOP=1 G A2
  I 'INDDS,INDLC W !!?10,"Data Dictionaries",! S INDDS=1
@@ -19,22 +21,27 @@ LOAD S X=RTN,XCNP=0,DIF="^UTILITY("_$J_",1,RTN,0," X ^%ZOSF("TEST") Q:'$T  X ^%Z
  I $D(^UTILITY($J,1,RTN,0,0)) S ^UTILITY($J,1,RTN,"RSUM")="B"_$$SUMB^XPDRSUM($NA(^UTILITY($J,1,RTN,0)))
  Q
 BEG ;
- S %=INDLC*5 W:$X+10+%>IOM ! W RTN,$J("",10+%-$L(RTN))
+ S %=INDLC*5 W:$X+10+%>IOM ! W:$X ?$X\10+1*10 W RTN ;p148 handle routines over 8 char.
  S (IND("DO"),IND("SZT"),IND("SZC"),LABO)=0,LC=$G(^UTILITY($J,1,RTN,0,0))
  I LC="" W !,">>>Routine '",RTN,"' not found <<<",! Q
  S TXT="",LAB=$P(^UTILITY($J,1,RTN,0,1,0)," ") I RTN'=$P(LAB,"(") D E^XINDX1(17)
  I 'INDLC,LAB["(" D E^XINDX1(55) S LAB=$P(LAB,"(")
- ;if M routine(not compiled template or DD) and has more than 2 lines, check lines 1 & 2
+ ;if M routine(not compiled template or DD) and has more than 2 lines, check 1st line and comments lines
  I 'INDLC,LC>2 D
- . N LABO S LABO=1
+ . N LABO S LABO=0
  . S LIN=$G(^UTILITY($J,1,RTN,0,1,0)),TXT=1
- . ;check 1st line (site/dev - ) patch 128
- . I $P(LIN,";",2,4)'?.E1"/".E.1"-".E D E^XINDX1(62)
- . S LIN=$G(^UTILITY($J,1,RTN,0,2,0)),TXT=2
+ . ;check 1st line (SITE/DEV - description ) ;p128
+ . I $P(LIN,";",2)'?1.UP1"/"1.UP1"-".E D E^XINDX1(62) ;p151, p155 site/dev must be uppercase
+ . S LIN=$G(^UTILITY($J,1,RTN,0,2,0)),(LABO,TXT)=2
  . ;check 2nd line (;;nn.nn[TV]nn;package;.anything)
- . I $P(LIN,";",3,99)'?1.2N1"."1.2N.1(1"T",1"V").2N1";"1A.APN1";".E D E^XINDX1(44) ;patch 132
+ . I $P(LIN,";",3,99)'?1.2N1"."1.2N.1(1"T",1"V").2N1";"1A.APN1";".E D E^XINDX1(44) ;p132
  . I $L(INP(11)) X INP(11) ;Version number check
  . I $L(INP(12)) X INP(12) ;Patch number check
+ . Q
+ ;. ;check (;<space>Reference<space>to<space>[Routine/File referenced]<space>in<space>ICR<space>#[ID from ICR registration]) p153, removed in p155
+ ;. F TXT=3:1:LC S LIN=^UTILITY($J,1,RTN,0,TXT,0),LABO=TXT Q:$E(LIN,1,2)'=" ;"  D
+ ;.. I LIN[" ICR",$P(LIN,";",2,99)'?1" Reference to "1.UPN1" in ICR #"1.5N D E^XINDX1(66)
+ S LABO=0
 B5 F TXT=1:1:LC S LIN=^UTILITY($J,1,RTN,0,TXT,0),LN=$L(LIN),IND("SZT")=IND("SZT")+LN+2 D LN,ST ;Process Line
  S LAB="",LABO=0,TXT=0,^UTILITY($J,1,RTN,0)=IND("SZT")_"^"_LC_"^"_IND("SZC")
  I IND("SZT")>INP("MAX"),'INDLC S ERR=35,ERR(1)=IND("SZT") D ^XINDX1
@@ -49,7 +56,7 @@ LN K V S (ARG,GRB,IND("COM"),IND("DOL"),IND("F"))="",X=$P(LIN," ")
  I 'INDLC,'$$VT^XINDX2(LAB) D E^XINDX1($S(LAB=$$CASE^XINDX52(LAB):37,1:55)) ;Check for bad labels
  I $D(^UTILITY($J,1,RTN,"T",LAB)) D E^XINDX1(15) G CD ;DUP label
  S ^UTILITY($J,1,RTN,"T",LAB)=""
-CD I LN>245 D:'(LN=246&($E(RTN,1,3)="|dd")) E^XINDX1(19) ;patch 119
+CD I LN>245 D:$E(RTN,1,3)'="|dd" E^XINDX1(19) ;line length don't matter in data dictionary ;p148
  D:LIN'?1.ANP E^XINDX1(18)
  S LIN=$P(LIN," ",2,999),IND("LCC")=1
  I LIN="" D E^XINDX1(42) Q  ;Blank line ;p110

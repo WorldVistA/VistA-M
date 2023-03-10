@@ -1,10 +1,11 @@
 IBCEPTC3 ;ALB/ESG - EDI PREVIOUSLY TRANSMITTED CLAIMS ACTIONS ;12/19/05
- ;;2.0;INTEGRATED BILLING;**320,547,608**;21-MAR-94;Build 90
+ ;;2.0;INTEGRATED BILLING;**320,547,608,641,650,665**;21-MAR-94;Build 28
  ;;Per VA Directive 6402, this routine should not be modified.
  ;
  ; IB*2.0*547 Variable IBLOC is pre-defined (in IBCEPTC)
  ; IB*2.0*608 (vd) provided the ability to identify those claims that are resubmitted
  ;                 and those that are skipped. (US2486)
+ ; IB*2.0*665 added SELALL and removed the protocol that calls SELBATCH rendering it toothless
  Q
  ;
 SELECT ; Select claims to resubmit
@@ -19,6 +20,7 @@ SELECT ; Select claims to resubmit
  S VALMBCK="R"
  Q
  ;
+ ;WCJ;IB665;no changes to the tag but no longer call it - removed the protocol from the worklist since each claim is in its only batch
 SELBATCH ; Select a batch to resubmit 
  ; Assumes IBSORT is defined
  N DIC,DIR,X,Y,Z,IBQ,IBZ,IBI,IBDX,IBASK,IBOK,IBY,DTOUT,DUOUT
@@ -54,17 +56,74 @@ SELBATCH ; Select a batch to resubmit
 SELBQ S VALMBCK="R"
  Q
  ;
-MARK(IBIFN,IBZ,IBQ,IBI,IBASK,VALMHDR) ; Mark claim as selected for resubmit
+ ;WCJ;IB*2.0*665; new PROTOCOL and new tag to SELECT/DE SELECT ALL
+SELALL ;
+ N IBIFN,IBZ,IBI,IBQ,DIR,VALMY,X,Y,IBCNT,IBSTOP,IBSUCCESS
+ ;
+ ; check if any were already selected.  if so, allow to deselect all.
+ S IBSTOP=0
+ I $G(^TMP("IB_PREV_CLAIM_SELECT",$J)) D  Q:IBSTOP
+ . S IBCNT=^TMP("IB_PREV_CLAIM_SELECT",$J)
+ . S DIR(0)="YA",DIR("B")="Yes"
+ . S DIR("A",1)=IBCNT_" claims were previously selected."
+ . S DIR("A")="Deselect those "_IBCNT_"? "
+ . I IBCNT=1 S DIR("A",1)=IBCNT_" claim was previously selected.",DIR("A")="Deselect the "_IBCNT_"? "
+ . W ! D ^DIR K DIR
+ . I Y'=1 Q  ; stop since they don't want to deselect all
+ . S VALMBCK="R",IBSTOP=1
+ . S IBZ=0 F IBCNT=0:1 S IBZ=$O(^TMP("IB_PREV_CLAIM_SELECT",$J,IBZ)) Q:'IBZ  D
+ .. S IBQ=$G(^TMP("IB_PREV_CLAIM_SELECT",$J,IBZ))
+ .. S IBI=$G(^TMP("IB_PREV_CLAIM_SELECT",$J,IBZ,0))
+ .. S IBIFN=$S(IBLOC:IBI,1:+$G(^IBA(364,IBI,0)))
+ .. I 'IBIFN S IBCNT=IBCNT-1 Q
+ .. D MARK(IBIFN,IBZ,IBQ,IBI,0,.VALMHDR,2)
+ .. Q
+ . S DIR(0)="EA"
+ . S DIR("A",1)=IBCNT_" claims were de-selected."
+ . I IBCNT=1 S DIR("A",1)=IBCNT_" claim was de-selected."
+ . S DIR("A")="Press return to continue "
+ . W ! D ^DIR K DIR
+ ;
+ ; select all
+ S IBZ=0 F IBCNT=0:1 S IBZ=$O(^TMP("IB_PREV_CLAIM_LIST_DX",$J,IBZ)) Q:'IBZ  D
+ . S IBQ=$G(^TMP("IB_PREV_CLAIM_LIST_DX",$J,IBZ)),IBI=+$P(IBQ,U,2),IBQ=+IBQ
+ . S IBIFN=$S(IBLOC:IBI,1:+$G(^IBA(364,IBI,0)))
+ . I 'IBIFN S IBCNT=IBCNT-1 Q
+ . Q:'IBIFN
+ . D MARK(IBIFN,IBZ,IBQ,IBI,1,.VALMHDR,1,.IBSUCCESS)
+ . I '$G(IBSUCCESS) S IBCNT=IBCNT-1 Q
+ ;
+ ; display how may were just selected
+ S DIR(0)="EA"
+ S DIR("A",1)=IBCNT_" claims were selected."
+ I IBCNT=1 S DIR("A",1)=IBCNT_" claim was selected."
+ S DIR("A")="Press return to continue "
+ W ! D ^DIR K DIR
+ S VALMBCK="R"
+ Q
+ ;
+ ;WCJ;IB665;Added parameters IBSELALL and IBSUCCESS to be used by SELALL tag added above.
+MARK(IBIFN,IBZ,IBQ,IBI,IBASK,VALMHDR,IBSELALL,IBSUCCESS) ; Mark claim as selected for resubmit
+ ; IBSELALL 1=MARK 2=UNMARK - This parameter is set when calling from SELALL tag 
+ ; IBSUCCESS return 1 if successfully marked/unmarked an individual record.  The calling tag needed to keep track of how many it marked or unmarked.
  ; Returns VALMHDR killed if any selections/de-selections made
+ S IBSUCCESS=0
  N DIR,X,Y
- I $D(^TMP("IB_PREV_CLAIM_SELECT",$J,IBIFN)) D  Q
+ I $G(IBSELALL)'=1,$D(^TMP("IB_PREV_CLAIM_SELECT",$J,IBIFN)) D  Q
  . S Y=1
  . I IBASK D
- .. S DIR(0)="YA",DIR("B")="No",DIR("A",1)="Claim "_$P($G(^DGCR(399,IBIFN,0)),U)_" for entry # "_IBZ_" has already been selected",DIR("A")="Do you want to de-select it?: " W ! D ^DIR K DIR
- . I Y=1 K ^TMP("IB_PREV_CLAIM_SELECT",$J,IBIFN) S $E(^TMP("IB_PREV_CLAIM_LIST",$J,IBQ,0),6)=" ",^TMP("IB_PREV_CLAIM_SELECT",$J)=^TMP("IB_PREV_CLAIM_SELECT",$J)-1 K VALMHDR
+ .. S DIR(0)="YA",DIR("B")="No"
+ .. S DIR("A",1)="Claim "_$P($G(^DGCR(399,IBIFN,0)),U)_" for entry # "_IBZ_" has already been selected",DIR("A")="Do you want to de-select it?: "
+ .. W ! D ^DIR K DIR
+ . I Y=1 D
+ .. K ^TMP("IB_PREV_CLAIM_SELECT",$J,IBIFN)
+ .. S $E(^TMP("IB_PREV_CLAIM_LIST",$J,IBQ,0),6)=" ",^TMP("IB_PREV_CLAIM_SELECT",$J)=^TMP("IB_PREV_CLAIM_SELECT",$J)-1
+ .. K VALMHDR S IBSUCCESS=1
  ;
+ Q:$D(^TMP("IB_PREV_CLAIM_SELECT",$J,IBIFN))
  S ^TMP("IB_PREV_CLAIM_SELECT",$J,IBIFN)=IBQ,^TMP("IB_PREV_CLAIM_SELECT",$J,IBIFN,0)=IBI,^TMP("IB_PREV_CLAIM_SELECT",$J)=$G(^TMP("IB_PREV_CLAIM_SELECT",$J))+1
  S $E(^TMP("IB_PREV_CLAIM_LIST",$J,IBQ,0),6)="*" K VALMHDR
+ S IBSUCCESS=1
  Q
  ;
 VIEW ; View claims selected
@@ -75,7 +134,7 @@ VIEW ; View claims selected
  W @IOF
  S (IBQUIT,IBCT)=0
  W !,+^TMP("IB_PREV_CLAIM_SELECT",$J)," claims selected:"
- S Z="" F  S Z=$O(^TMP("IB_PREV_CLAIM_SELECT",$J,Z)) Q:'Z  S Z0=+$G(^(Z)) D
+ S Z="" F  S Z=$O(^TMP("IB_PREV_CLAIM_SELECT",$J,Z)) Q:'Z  S Z0=+$G(^(Z)) D  Q:IBQUIT
  . Q:'$D(^TMP("IB_PREV_CLAIM_LIST",$J,Z0,0))
  . S IBCT=IBCT+1
  . I '(IBCT#15) S IBQUIT=0 D  Q:IBQUIT
@@ -92,7 +151,7 @@ VIEWQ S VALMBCK="R"
 RESUB ; Resubmit selected claims
  N DIR,DIRCTR,DIRLN,DIROUT,DIRUT,DTOUT,DUOUT
  N IB364,IBABORT,IBCLMNO,IBIFN,IBSKCTR,IBFSKIP,IBRSBTST,IBTYPPTC
- N X,Y,Z1
+ N X,Y,Z1,IBC364
  ;/IB*2*608 - vd (US2486) - instituted the following variable to identify a claim as being resubmitted.
  S IBRSBTST=0
  D FULL^VALM1
@@ -131,6 +190,16 @@ RESUB ; Resubmit selected claims
  S IBIFN=0 F  S IBIFN=$O(^TMP("IB_PREV_CLAIM_SELECT",$J,IBIFN)) Q:'IBIFN  S Z1=+$G(^(IBIFN)),IB364=+$G(^(IBIFN,0)) I IB364 D
  . ;
  . I IBTYPPTC="TEST" D
+ .. ;JWS;IB*2.0*650v4;attempt to prevent duplicate - also for test claims
+ .. S IBC364=$$LAST364^IBCEF4(IBIFN)
+ .. I IB364'=IBC364,$P($G(^IBA(364,IBC364,0)),U,3)="X"!$D(^IBA(364,"AC",1,IBC364)) D  Q
+ ... S IBCLMNO=$$GET1^DIQ(399,IBIFN,.01)
+ ... S IBFSKIP=IBFSKIP+1
+ ... S ^TMP("IBSKIPPED",$J,IBCLMNO)=IBIFN
+ .. I $P($G(^IBA(364,IB364,0)),U,3)="X"!$D(^IBA(364,"AC",1,IB364)) D  Q
+ ... S IBCLMNO=$$GET1^DIQ(399,IBIFN,.01)
+ ... S IBFSKIP=IBFSKIP+1
+ ... S ^TMP("IBSKIPPED",$J,IBCLMNO)=IBIFN
  .. S ^TMP("IBEDI_TEST_BATCH",$J,IB364)=""
  .. S ^TMP("IBRESUBMIT",$J,IB364)=""
  .. I Z1 D MARK(IBIFN,"",Z1,IB364,0,.VALMHDR)
@@ -143,7 +212,8 @@ RESUB ; Resubmit selected claims
  ... S IBCLMNO=$$GET1^DIQ(399,IBIFN,.01)
  ... S IBFSKIP=IBFSKIP+1
  ... S ^TMP("IBSKIPPED",$J,IBCLMNO)=IBIFN  ; /IB*2*608 (vd) - Added to identify those claims that are Skipped
- .. N Y S Y=$$ADDTBILL^IBCB1(IBIFN)  ; new entry in file 364 - "X" status
+ .. ;JWS;IB*2.0*641v7;add resubmission parameter to $$ADDTBILL call, 3rd parameter
+ .. N Y S Y=$$ADDTBILL^IBCB1(IBIFN,"",1)  ; new entry in file 364 - "X" status
  .. I '$P(Y,U,3) Q                   ; quit if new entry didn't get added
  .. S ^TMP("IBSELX",$J,+Y)=""
  .. S ^TMP("IBRCBOLD",$J,IB364)=""   ; save list of old transmit bills
@@ -178,9 +248,12 @@ RESUB ; Resubmit selected claims
  S DIR(0)="EA"
  S DIR("A",1)="Selected claims have been resubmitted as "_IBTYPPTC_"."
  I IBFSKIP D
- . S DIR("A",2)="Please note: Some claims were not eligible to be resubmitted as live claims."
- . S DIR("A",3)=" These claims are still indicated as being selected."
- . S DIR("A",4)="The following are the claims that were skipped:"
+ . ;JWS;IB*2.0*650v4;changed message to be a little more generic
+ . S DIR("A",2)="Please note: Some claims were not eligible to be resubmitted."  ;; as live claims."
+ . S DIR("A",3)="The following are the claims that were skipped:"
+ . ;;S DIR("A",2)="Please note: Some claims were not eligible to be resubmitted as live claims."
+ . ;;S DIR("A",3)=" These claims are still indicated as being selected."
+ . ;;S DIR("A",4)="The following are the claims that were skipped:"
  . S (DIRLN,IBCLMNO)="",IBSKCTR=0,DIRCTR=4
  . F  S IBCLMNO=$O(^TMP("IBSKIPPED",$J,IBCLMNO)) Q:IBCLMNO=""  D
  . . S IBSKCTR=IBSKCTR+1 ; Increment # of claims on the display line.
@@ -238,6 +311,8 @@ TXOK(IBIFN) ; Function determines if claim is OK for live resubmission
  S IB364=+$$LAST364^IBCEF4(+$G(IBIFN)) I 'IB364 G TXOKX             ; transmit bill exists
  S IBD=$G(^IBA(364,IB364,0)) I IBD="" G TXOKX
  S IBSTAT=$P(IBD,U,3) I IBSTAT="X" G TXOKX                          ; already awaiting extract
+ ;JWS;IB*2.0*650v4;attempt to prevent duplicates; if there is already a FHIR submission in process (attempt to eliminate duplicates)
+ I $D(^IBA(364,"AC",1,IB364)) G TXOKX
  S OK=1
 TXOKX ;
  Q OK

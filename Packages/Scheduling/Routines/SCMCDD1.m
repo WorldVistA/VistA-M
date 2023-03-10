@@ -1,8 +1,7 @@
-SCMCDD1 ;ALB/REW/ART - DD Calls used by PCMM ;08/25/2014
- ;;5.3;Scheduling;**41,89,107,603**;AUG 13, 1993;Build 79
+SCMCDD1 ;ALB/REW/ART - DD Calls used by PCMM ; 08/25/2014
+ ;;5.3;Scheduling;**41,89,107,603,811**;AUG 13, 1993;Build 3
  ;
- ;Subscription ICR
- ; 3617 - DBIA3617 (^ORD(101,"B"))
+ ; Reference to ^ORD(101,"B" supported by DBIA 3617
  ;
  ;1
 WRITETP(SCTP) ;used by write node of 404.57
@@ -106,10 +105,13 @@ MAKEOUT(DA) ;used by 404.42 to create an outpatient profile entry (if there wasn
  Q $G(SCX)
  ;
 AFTERTP(SCPTTP) ;called after update of 404.43
- N SCPTTPB4,SCPCTPB4,SCTPB4,SCTPNDB4,SCPTTPAF,SCPCTPAF,SCTPAF,X,SCFLD,SCX,SCTMB4,SCTMNDB4,SCTMNDAF,SCTMAF,SCPTNM,SCTPNDAF,SCTPNMB4,Y
+ N SCPTTPB4,SCPCTPB4,SCTPB4,SCTPNDB4,SCPTTPAF,SCPCTPAF,SCTPAF,X,SCFLD,SCX,SCTMB4,SCTMNDB4,SCTMNDAF,SCTMAF,SCPTNM,SCTPNDAF,SCTPNMB4,Y,SCLP
  Q:'$G(SCPTTP)
  S SCPTTPAF=$G(^SCPT(404.43,SCPTTP,0))
  Q:'SCPTTPAF  ;603
+ I SCPTTPAF'["^" D  ; *811 - check if SCPTTPAF contains full zero node
+ .F SCLP=1:1:2 I SCPTTPAF'["^" H 1 S SCPTTPAF=$G(^SCPT(404.43,SCPTTP,0)) ; *811 - hang for up to 2 seconds to let full 404.43 record populate
+ Q:SCPTTPAF'["^"  ; *811 - quit if still no data after hang
  S SCPCTPAF=+$P(SCPTTPAF,U,5)
  S SCTPAF=$P(SCPTTPAF,U,2)
  S:SCTPAF SCTPNDAF=$G(^SCTM(404.57,SCTPAF,0))

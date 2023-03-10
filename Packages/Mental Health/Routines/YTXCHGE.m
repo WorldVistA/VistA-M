@@ -1,5 +1,5 @@
 YTXCHGE ;SLC/KCM - Instrument Specification Export ; 9/15/2015
- ;;5.01;MENTAL HEALTH;**121**;Dec 30, 1994;Build 61
+ ;;5.01;MENTAL HEALTH;**121,172**;Dec 30, 1994;Build 10
  ;
 EXPORT(TEST,DEST) ; extract test entries into DEST array
  ; TEST -- name or IEN of mental health instrument
@@ -15,6 +15,7 @@ EXPORT(TEST,DEST) ; extract test entries into DEST array
  D LDSCLS(TEST)                 ; load the instrument scales
  D LDRULE(TEST)                 ; load the instrument rules
  D LDREPT(TEST)                 ; load the instrument report
+ D LDSPEC(TEST)                 ; load the instrument entry spec
  D LDDISP                       ; load the display formatting entries
  D LDVER(TEST)                  ; load the verify entries
  Q
@@ -85,6 +86,11 @@ LDREPT(TEST) ; load the report for an instrument
  N IEN
  S IEN=$O(^YTT(601.93,"C",TEST,0))  ; use first IEN if multiple for reports
  D REC2JSON(601.93,IEN_",")
+ Q
+LDSPEC(TEST) ; load the web entry specification for an instrument
+ N IEN
+ S IEN=$O(^YTT(601.712,"B",TEST,0))
+ D REC2JSON(601.712,IEN_",")
  Q
 LDDISP       ; load display information from IEN's in DISPLAY
  ; loop thru IEN's saved in DISPLAY

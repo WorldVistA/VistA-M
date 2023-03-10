@@ -1,118 +1,126 @@
-IBDEI1F3 ; ; 04-FEB-2020
- ;;3.0;IB ENCOUNTER FORM IMP/EXP;;FEB 04, 2020
+IBDEI1F3 ; ; 01-FEB-2022
+ ;;3.0;IB ENCOUNTER FORM IMP/EXP;;FEB 01, 2022
  Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,999) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
- ;;^UTILITY(U,$J,358.3,22678,1,2,0)
- ;;=2^Critical Care,1st Hr
- ;;^UTILITY(U,$J,358.3,22678,1,3,0)
- ;;=3^99291
- ;;^UTILITY(U,$J,358.3,22679,0)
- ;;=99292^^104^1156^2^^^^1
- ;;^UTILITY(U,$J,358.3,22679,1,0)
- ;;=^358.31IA^3^2
- ;;^UTILITY(U,$J,358.3,22679,1,2,0)
- ;;=2^Critical Care,Ea Addl 30 Min
- ;;^UTILITY(U,$J,358.3,22679,1,3,0)
- ;;=3^99292
- ;;^UTILITY(U,$J,358.3,22680,0)
- ;;=99366^^104^1157^1^^^^1
- ;;^UTILITY(U,$J,358.3,22680,1,0)
- ;;=^358.31IA^3^2
- ;;^UTILITY(U,$J,358.3,22680,1,2,0)
- ;;=2^IDT Conf w/ Pt/Family,Physician 30+ min
- ;;^UTILITY(U,$J,358.3,22680,1,3,0)
- ;;=3^99366
- ;;^UTILITY(U,$J,358.3,22681,0)
- ;;=99367^^104^1157^2^^^^1
- ;;^UTILITY(U,$J,358.3,22681,1,0)
- ;;=^358.31IA^3^2
- ;;^UTILITY(U,$J,358.3,22681,1,2,0)
- ;;=2^IDT Conf w/o Pt/Family,Physician 30+ min
- ;;^UTILITY(U,$J,358.3,22681,1,3,0)
- ;;=3^99367
- ;;^UTILITY(U,$J,358.3,22682,0)
- ;;=99368^^104^1157^3^^^^1
- ;;^UTILITY(U,$J,358.3,22682,1,0)
- ;;=^358.31IA^3^2
- ;;^UTILITY(U,$J,358.3,22682,1,2,0)
- ;;=2^IDT Conf w/o Pt/Family,Nonphys 30+ min
- ;;^UTILITY(U,$J,358.3,22682,1,3,0)
- ;;=3^99368
- ;;^UTILITY(U,$J,358.3,22683,0)
- ;;=S0221^^104^1157^5^^^^1
- ;;^UTILITY(U,$J,358.3,22683,1,0)
- ;;=^358.31IA^3^2
- ;;^UTILITY(U,$J,358.3,22683,1,2,0)
- ;;=2^Med Conf by Phys w/ IDT and PT;60 min
- ;;^UTILITY(U,$J,358.3,22683,1,3,0)
- ;;=3^S0221
- ;;^UTILITY(U,$J,358.3,22684,0)
- ;;=S0220^^104^1157^4^^^^1
- ;;^UTILITY(U,$J,358.3,22684,1,0)
- ;;=^358.31IA^3^2
- ;;^UTILITY(U,$J,358.3,22684,1,2,0)
- ;;=2^Med Conf by Phys w/ IDT and PT;30 min
- ;;^UTILITY(U,$J,358.3,22684,1,3,0)
- ;;=3^S0220
- ;;^UTILITY(U,$J,358.3,22685,0)
- ;;=99357^^104^1158^2^^^^1
- ;;^UTILITY(U,$J,358.3,22685,1,0)
- ;;=^358.31IA^3^2
- ;;^UTILITY(U,$J,358.3,22685,1,2,0)
- ;;=2^Prolonged Inpt/Obs Service,Ea Addl 30 Min
- ;;^UTILITY(U,$J,358.3,22685,1,3,0)
- ;;=3^99357
- ;;^UTILITY(U,$J,358.3,22686,0)
- ;;=99356^^104^1158^1^^^^1
- ;;^UTILITY(U,$J,358.3,22686,1,0)
- ;;=^358.31IA^3^2
- ;;^UTILITY(U,$J,358.3,22686,1,2,0)
- ;;=2^Prolonged Inpt/Obs Service,1st Hr
- ;;^UTILITY(U,$J,358.3,22686,1,3,0)
- ;;=3^99356
- ;;^UTILITY(U,$J,358.3,22687,0)
- ;;=49082^^104^1159^2^^^^1
- ;;^UTILITY(U,$J,358.3,22687,1,0)
- ;;=^358.31IA^3^2
- ;;^UTILITY(U,$J,358.3,22687,1,2,0)
- ;;=2^Abdominal Paracentesis w/o Image Guidance
- ;;^UTILITY(U,$J,358.3,22687,1,3,0)
- ;;=3^49082
- ;;^UTILITY(U,$J,358.3,22688,0)
- ;;=49083^^104^1159^1^^^^1
- ;;^UTILITY(U,$J,358.3,22688,1,0)
- ;;=^358.31IA^3^2
- ;;^UTILITY(U,$J,358.3,22688,1,2,0)
- ;;=2^Abdominal Paracentesis w/ Image Guidance
- ;;^UTILITY(U,$J,358.3,22688,1,3,0)
- ;;=3^49083
- ;;^UTILITY(U,$J,358.3,22689,0)
- ;;=32554^^104^1159^13^^^^1
- ;;^UTILITY(U,$J,358.3,22689,1,0)
- ;;=^358.31IA^3^2
- ;;^UTILITY(U,$J,358.3,22689,1,2,0)
- ;;=2^Thoracentesis w/o Image Guidance
- ;;^UTILITY(U,$J,358.3,22689,1,3,0)
- ;;=3^32554
- ;;^UTILITY(U,$J,358.3,22690,0)
- ;;=32555^^104^1159^12^^^^1
- ;;^UTILITY(U,$J,358.3,22690,1,0)
- ;;=^358.31IA^3^2
- ;;^UTILITY(U,$J,358.3,22690,1,2,0)
- ;;=2^Thoracentesis w/ Image Guidance
- ;;^UTILITY(U,$J,358.3,22690,1,3,0)
- ;;=3^32555
- ;;^UTILITY(U,$J,358.3,22691,0)
- ;;=20610^^104^1159^4^^^^1
- ;;^UTILITY(U,$J,358.3,22691,1,0)
- ;;=^358.31IA^3^2
- ;;^UTILITY(U,$J,358.3,22691,1,2,0)
- ;;=2^Arthrocentesis,Major Jt w/o US Guidance
- ;;^UTILITY(U,$J,358.3,22691,1,3,0)
- ;;=3^20610
- ;;^UTILITY(U,$J,358.3,22692,0)
- ;;=20611^^104^1159^3^^^^1
- ;;^UTILITY(U,$J,358.3,22692,1,0)
- ;;=^358.31IA^3^2
- ;;^UTILITY(U,$J,358.3,22692,1,2,0)
- ;;=2^Arthrocentesis,Major Jt w/ US Guidance
+ ;;^UTILITY(U,$J,358.3,22924,1,3,0)
+ ;;=3^B-Cell Lymphoma,Unspec,Intrapelvic Lymph Nodes
+ ;;^UTILITY(U,$J,358.3,22924,1,4,0)
+ ;;=4^C85.16
+ ;;^UTILITY(U,$J,358.3,22924,2)
+ ;;=^5001707
+ ;;^UTILITY(U,$J,358.3,22925,0)
+ ;;=C85.12^^76^987^7
+ ;;^UTILITY(U,$J,358.3,22925,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,22925,1,3,0)
+ ;;=3^B-Cell Lymphoma,Unspec,Intrathoracic Lymph Nodes
+ ;;^UTILITY(U,$J,358.3,22925,1,4,0)
+ ;;=4^C85.12
+ ;;^UTILITY(U,$J,358.3,22925,2)
+ ;;=^5001703
+ ;;^UTILITY(U,$J,358.3,22926,0)
+ ;;=C85.14^^76^987^1
+ ;;^UTILITY(U,$J,358.3,22926,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,22926,1,3,0)
+ ;;=3^B-Cell Lymphoma,Unspec,Axilla/Upper Limb Lymph Nodes
+ ;;^UTILITY(U,$J,358.3,22926,1,4,0)
+ ;;=4^C85.14
+ ;;^UTILITY(U,$J,358.3,22926,2)
+ ;;=^5001705
+ ;;^UTILITY(U,$J,358.3,22927,0)
+ ;;=C85.11^^76^987^3
+ ;;^UTILITY(U,$J,358.3,22927,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,22927,1,3,0)
+ ;;=3^B-Cell Lymphoma,Unspec,Head/Face/Neck Lymph Nodes
+ ;;^UTILITY(U,$J,358.3,22927,1,4,0)
+ ;;=4^C85.11
+ ;;^UTILITY(U,$J,358.3,22927,2)
+ ;;=^5001702
+ ;;^UTILITY(U,$J,358.3,22928,0)
+ ;;=C85.15^^76^987^4
+ ;;^UTILITY(U,$J,358.3,22928,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,22928,1,3,0)
+ ;;=3^B-Cell Lymphoma,Unspec,Inguinal Region/LE Lymph Nodes
+ ;;^UTILITY(U,$J,358.3,22928,1,4,0)
+ ;;=4^C85.15
+ ;;^UTILITY(U,$J,358.3,22928,2)
+ ;;=^5001706
+ ;;^UTILITY(U,$J,358.3,22929,0)
+ ;;=C85.18^^76^987^8
+ ;;^UTILITY(U,$J,358.3,22929,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,22929,1,3,0)
+ ;;=3^B-Cell Lymphoma,Unspec,Multiple Site Lymph Nodes
+ ;;^UTILITY(U,$J,358.3,22929,1,4,0)
+ ;;=4^C85.18
+ ;;^UTILITY(U,$J,358.3,22929,2)
+ ;;=^5001709
+ ;;^UTILITY(U,$J,358.3,22930,0)
+ ;;=C85.17^^76^987^9
+ ;;^UTILITY(U,$J,358.3,22930,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,22930,1,3,0)
+ ;;=3^B-Cell Lymphoma,Unspec,Spleen
+ ;;^UTILITY(U,$J,358.3,22930,1,4,0)
+ ;;=4^C85.17
+ ;;^UTILITY(U,$J,358.3,22930,2)
+ ;;=^5001708
+ ;;^UTILITY(U,$J,358.3,22931,0)
+ ;;=C85.10^^76^987^10
+ ;;^UTILITY(U,$J,358.3,22931,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,22931,1,3,0)
+ ;;=3^B-Cell Lymphoma,Unspec,Unspec Site
+ ;;^UTILITY(U,$J,358.3,22931,1,4,0)
+ ;;=4^C85.10
+ ;;^UTILITY(U,$J,358.3,22931,2)
+ ;;=^5001701
+ ;;^UTILITY(U,$J,358.3,22932,0)
+ ;;=L60.1^^76^988^2
+ ;;^UTILITY(U,$J,358.3,22932,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,22932,1,3,0)
+ ;;=3^Onycholysis
+ ;;^UTILITY(U,$J,358.3,22932,1,4,0)
+ ;;=4^L60.1
+ ;;^UTILITY(U,$J,358.3,22932,2)
+ ;;=^186837
+ ;;^UTILITY(U,$J,358.3,22933,0)
+ ;;=L60.2^^76^988^1
+ ;;^UTILITY(U,$J,358.3,22933,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,22933,1,3,0)
+ ;;=3^Onychogryphosis
+ ;;^UTILITY(U,$J,358.3,22933,1,4,0)
+ ;;=4^L60.2
+ ;;^UTILITY(U,$J,358.3,22933,2)
+ ;;=^5009235
+ ;;^UTILITY(U,$J,358.3,22934,0)
+ ;;=B35.1^^76^988^3
+ ;;^UTILITY(U,$J,358.3,22934,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,22934,1,3,0)
+ ;;=3^Onychomycosis
+ ;;^UTILITY(U,$J,358.3,22934,1,4,0)
+ ;;=4^B35.1
+ ;;^UTILITY(U,$J,358.3,22934,2)
+ ;;=^119748
+ ;;^UTILITY(U,$J,358.3,22935,0)
+ ;;=L60.3^^76^988^4
+ ;;^UTILITY(U,$J,358.3,22935,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,22935,1,3,0)
+ ;;=3^Onychorrexis/Onychodystrophy
+ ;;^UTILITY(U,$J,358.3,22935,1,4,0)
+ ;;=4^L60.3
+ ;;^UTILITY(U,$J,358.3,22935,2)
+ ;;=^5009236
+ ;;^UTILITY(U,$J,358.3,22936,0)
+ ;;=L50.8^^76^989^4
+ ;;^UTILITY(U,$J,358.3,22936,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,22936,1,3,0)
+ ;;=3^Urticaria,Other Spec

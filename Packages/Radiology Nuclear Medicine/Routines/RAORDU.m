@@ -1,5 +1,5 @@
-RAORDU ;HISC/CAH - AISC/RMO-Update Request Status ;9/7/04 11:01am
- ;;5.0;Radiology/Nuclear Medicine;**18,41,57,133**;Mar 16, 1998;Build 4
+RAORDU ;HISC/CAH - AISC/RMO-Update Request Status ; Jul 12, 2022@16:29:15
+ ;;5.0;Radiology/Nuclear Medicine;**18,41,57,133,192**;Mar 16, 1998;Build 1
  ; last modif JULY 5,00
  ;The variables RAOIFN and RAOSTS must be defined. The variable
  ;RAOREA is set when Canceling and Holding a request. The
@@ -11,7 +11,7 @@ RAORDU ;HISC/CAH - AISC/RMO-Update Request Status ;9/7/04 11:01am
  . S RAESTAT=$$EN1^RASETU(RAOIFN,RADFN)
  . S RAOSTS=$S((+RAESTAT'<1)&(+RAESTAT'>8):6,1:RAOSTS)
  . K:RAOSTS=6 ORIFN,ORETURN
- . I '$D(RAF1),(+RAESTAT=9) D
+ . I '$D(RAF1),(+RAESTAT=9),($$CICHO^RAORDC1()=1) D  ;p192
  .. W !?3,"...will now designate request status as 'COMPLETE'..."
  .. W !?10,"...request status successfully updated."
  .. Q

@@ -1,5 +1,5 @@
 DID1 ;SFISC/XAK,JLT,GFT - STD DD LIST ;25OCT2016
- ;;22.2;VA FileMan;**2**;Jan 05, 2016;Build 139
+ ;;22.2;VA FileMan;**2,19**;Jan 05, 2016;Build 2
  ;;Per VA Directive 6402, this routine should not be modified.
  ;;Submitted to OSEHRA 5 January 2015 by the VISTA Expertise Network.
  ;;Based on Medsphere Systems Corporation's MSC FileMan 1051.
@@ -11,13 +11,16 @@ DID1 ;SFISC/XAK,JLT,GFT - STD DD LIST ;25OCT2016
 L S DJ(Z)=0
 A S DJ(Z)=$O(^DD(F(Z),DJ(Z))) I DJ(Z)'>0 S:DJ(Z)="" DJ(Z)=-1 W !! S Z=Z-1 Q
 B S N=^DD(F(Z),DJ(Z),0) K DDF I $D(DIGR),Z<2!(DJ(Z)-.01) X DIGR E  G ND
- D HD:$Y+$L(X)+6>IOSL Q:M=U  W !!,F(Z),",",DJ(Z)
+ D HD:$Y+$L(X)+6>IOSL Q:M=U
+ I $P(N,U,2)["W" S X="" G TYPE ;p19 subdd of WP, skip LABEL & WP, they were displayed at top level
+ W !!,F(Z),",",DJ(Z)
 LABEL W ?(Z+Z+12),$P(N,U),?DDL2+4," "_$P(N,U,4)
  F X=0:0 S X=$O(^DD(F(Z),DJ(Z),.008,X)) Q:'X  S W=$P($G(^(X,0)),U) I W]"",$D(^DI(.85,X,0)) S I=$P(^(0),U,2)_": " W !?(Z+Z+12-$L(I)),I,W ;DISPLAY FOREIGN LABELS
  S X=$P(N,U,2)
 WP I X,$D(^DD(+X,.01,0)) S W=$P(^(0),U,2) I W["W" D  S X=""
- .S X="WORD-PROCESSING #"_+X D  S X="(NOWRAP)" D:W["L"  S X="(IGNORE ""|"")" D:W["X"!(W["x")  S X="(UNEDITABLE)" D:W["I"  S X="(AUDITED)" D:$G(^("AUDIT"))]""
- ..W:$L(X)+$X+5>IOM !?18 W "   ",X
+ .D WPW("WORD-PROCESSING #"_+X) D:W["L" WPW("(NOWRAP)")
+ .D:W["X"!(W["x") WPW("(IGNORE ""|"")") D:W["I" WPW("(UNEDITABLE)") D:$G(^("AUDIT"))]"" WPW("(AUDITED)")
+ .Q
  F W="BOOLEAN","COMPUTED","FREE TEXT","SET","DATE","NUMBER","POINTER","K","VARIABLE POINTER","m","p" I X[$E(W) D VP^DIDX:$E(W)="V" S:W="K" W="MUMPS" S:W="p" W="POINTER" S:W="m" W="MULTIPLE" W ?40," "_W G ND:M=U
 TYPE S W=+$P(X,"t",2) I W,$D(^DI(.81,W,0)) S W=" ("_$P(^(0),U)_" Data Type)" D W D  G ND:M=U
  .N X,Y F X=0:0 S X=$O(^DD(F(Z),DJ(Z),101,X)) Q:'X  I $D(^DI(.86,X,0)) W !?DDL1,"PROPERTY: ",?DDL2,$P(^(0),U) D  Q:M=U
@@ -42,7 +45,9 @@ J S W=$P(N,U,2) I W'["N" S W=+$P(W,"J",2) I W W !?DDL1,"MAXIMUM LENGTH:   "  D W
 OT I $D(^DD(F(Z),DJ(Z),2))#2 W !?DDL1,"OUTPUT TRANSFORM:" D  D W G ND:M=U
  .I $P(^(0),U,2)'["O" S W="NOT EXECUTABLE!!  -- SPECIFIER NEEDS AN ""O""!"
  .E  S W=$S($D(^DD(F(Z),DJ(Z),2.1)):^(2.1),1:^(2))
-RD D ^DID2:$O(^DD(F(Z),DJ(Z),2.99))]"" G ND:M=U I 'X S W="UNEDITABLE" W:X["I" ! D W:X["I" G N
+RD D ^DID2:$O(^DD(F(Z),DJ(Z),2.99))]"" G ND:M=U I 'X S W="" D  G SUB:W,N ;p19 If WP, SUB will display Help & Desc. at subdd level
+ .I X["I" S W="UNEDITABLE" W ! D W Q
+ .S W=$$CHKWP(F(Z),DJ(Z)),X=$S(W:W,1:X) ;X=subdd for WP
  I $O(^DD(+X,0,"ID",""))]"" W !?DDL1,"IDENTIFIED BY:" S W="" F %=0:0 S %=$O(^DD(+X,0,"ID",%)) S:%>0 W=W_$P(^DD(+X,%,0),U)_"(#"_%_")"_$S($P(^(0),U,2)["R":"[R]",1:"")_", " I %'>0 S:W?.E1", " W=$E(W,1,$L(W)-2) D W G ND:M=U Q
  ;
  ;Print "WRITE" identifiers
@@ -63,7 +68,7 @@ RD D ^DID2:$O(^DD(F(Z),DJ(Z),2.99))]"" G ND:M=U I 'X S W="UNEDITABLE" W:X["I" ! 
  . N DIDPG
  . S DIDPG("H")="W """" S DC=DC+1 D ^DIDH1 S:M=U PAGE(U)=1"
  . D LIST^DIKCP(+X,"","L"_DDL1_"C"_(DDL2-DDL1),.DIDPG)
- S Z=Z+1,DDL1=DDL1+2,DDL2=DDL2+2,F(Z)=+X
+SUB S Z=Z+1,DDL1=DDL1+2,DDL2=DDL2+2,F(Z)=+X
  D L
 N K DDN1 I X["X" S DDN1=1 W !,?DDL1,"NOTES:",?DDL2,"XXXX--CAN'T BE ALTERED EXCEPT BY PROGRAMMER" W ! G ND:M=U
  S W=0 I $O(^DD(F(Z),DJ(Z),5,W))'="",'$D(DDN1) W !?DDL1,"NOTES:"
@@ -77,7 +82,8 @@ IX S F=0 F  G ND:M=U S F=$O(^DD(F(Z),DJ(Z),1,F)) Q:F'>0  W !?DDL1,"CROSS-REFEREN
  . S DIDFLAG="L"_DDL1_"C"_(DDL2-DDL1)_"T1"
  . D PRINT^DIKCP(F(Z),DJ(Z),$E("R",$G(DIDRANGE))_"FS"_DIDFLAG_$E("N",$D(DINM)#2),.DIDPG) Q:M=U
  . D:'$G(DIDRANGE) LIST^DIKCP(F(Z),DJ(Z),"RS"_DIDFLAG,.DIDPG)
-ND S X="" G:M'=U A:Z>1 Q
+ND S X="" G:M'=U A:Z>1
+ Q
 IX1 S W=^(F,0)_" " K DDF W ?DDL2,W,! G ND:M=U D TP:$P(W,U,3)["TRIG" I '$D(DINM) S X=0 F %=0:0 S X=$O(^DD(F(Z),DJ(Z),1,F,X)) Q:X=""  I X'="%D",X'="DT" S W=^(X) S:$L(W)<248 W=X_")= "_W K:X=3 DDF D W W ! G ND:M=U
  Q:'$D(^("%D"))
  ;
@@ -93,9 +99,20 @@ IX1 S W=^(F,0)_" " K DDF W ?DDL2,W,! G ND:M=U D TP:$P(W,U,3)["TRIG" I '$D(DINM) 
  K ^UTILITY($J,"W")
  Q
  ;
+CHKWP(F,Z) ;F=file, Z=field - return subdd of WP or 0 ;p19
+ N W,Y
+ S W=$P($G(^DD(F,Z,0)),U,2) Q:'W 0
+ S Y=$P($G(^DD(W,.01,0)),U,2)
+ Q $S(Y["W":W,1:0)
+ ;
 TP ;TRIGGER POINTER.    SHOULD BE A DO-DOT UNDER IX1
  S X=+$P(^(0),U,4) I F(Z)-X,$D(^DIC(X,0))#2 S ^UTILITY($J,"P",$E($P(^(0),U,1),1,30),0)=X,^(F(Z),DJ(Z))=6
  Q
+ ;
+WPW(X) ;word processing write
+ W:$L(X)+$X+5>IOM !?18 W "   ",X
+ Q
+ ;
 W F K=0:0 W:$D(DDF) ! S:(($L(W)+DDL2)>IOM) DDL2=32 W ?DDL2 S %Y=$E(W,IOM-$X,999) W $E(W,1,IOM-$X-1) Q:%Y=""  S W=%Y,DDF=1
  K:'X DDF Q:$Y+6<IOSL
 HD S DC=DC+1 D ^DIDH Q

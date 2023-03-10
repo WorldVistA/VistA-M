@@ -1,5 +1,6 @@
-VAFCPTED ;ISA/RJS,Zoltan-EDIT EXISTING PATIENT ;11 Dec 2018  3:59 PM
- ;;5.3;Registration;**149,333,756,837,974**;Aug 13, 1993;Build 2
+VAFCPTED ;ISA/RJS,Zoltan-EDIT EXISTING PATIENT ;4/15/22  16:30
+ ;;5.3;Registration;**149,333,756,837,974,1059,1071**;Aug 13, 1993;Build 4
+ ;
 EDIT(DGDFN,ARRAY,STRNGDR) ;-- Edits existing patient
  ;Input:
  ;  DGDFN - IEN in the PATIENT (#2) file
@@ -12,29 +13,16 @@ EDIT(DGDFN,ARRAY,STRNGDR) ;-- Edits existing patient
  ;  No output
  ;
  S U="^"
- N LOCKFLE,FLD,ZTQUEUED,DIQUIET,OLDZIP,VAFCX,STRNG
+ N LOCKFLE,FLD,ZTQUEUED,DIQUIET,VAFCX,STRNG
  S (ZTQUEUED,DIQUIET)=1
  L +^DPT(DGDFN):60
  S LOCKFLE=$T ; Need to remember whether the lock went through.
- I $L($G(@ARRAY@(.1112)))=5 D
- . ; This section prevents a 5-digit ZIP from replacing
- . ; an otherwise equivalent ZIP+4.
- . S OLDZIP=$$GET1^DIQ(2,DGDFN_",",.1112,"I")
- . I $E(OLDZIP,1,5)=@ARRAY@(.1112) S @ARRAY@(.1112)=OLDZIP
  ;process the given PATIENT file DR string in the given order
  S STRNG=STRNGDR F VAFCX=1:1 Q:STRNG=""  S FLD=$P(STRNGDR,";",VAFCX) S STRNG=$P(STRNGDR,";",VAFCX+1,$L(STRNGDR,";")) D LOAD
  ;
- ; **837, MVI_882 start
- S FLD("TEMP")=""
- F  S FLD("TEMP")=$O(@ARRAY@(FLD("TEMP"))) Q:'FLD("TEMP")  D
- . I $G(@ARRAY@(FLD("TEMP")))]"",STRNGDR'[FLD("TEMP") D
- . ; update TIN and/or FIN if it is missing in variable STRNGDR
- . I FLD("TEMP")=991.08!(FLD("TEMP")=991.09) S FLD=FLD("TEMP") D LOAD
- ; **837, MVI_882 end
  ;Do Address Bulletin if incoming Address does not equal existing
  ;Address - removed bulletin with patch DG*5.3*333
- ;
- ;I $D(@ARRAY@(.111))!$D(@ARRAY@(.112))!$D(@ARRAY@(.113))!$D(@ARRAY@(.114))!$D(@ARRAY@(.115))!$D(@ARRAY@(.117))!$D(@ARRAY@(.1112)) D  ;**333
+ ;I $D(@ARRAY@(.111))!$D(@ARRAY@(.112))!$D(@ARRAY@(.113))!$D(@ARRAY@(.114))!$D(@ARRAY@(.115))!$D(@ARRAY@(.117))!$D(@ARRAY@(.1112)) D
  ;. D ADDRESS^RGRSBULL(DGDFN,$G(@ARRAY@(.01)),$G(@ARRAY@(.111)),$G(@ARRAY@(.112)),$G(@ARRAY@(.113)),@ARRAY@("SENDING SITE"),$G(@ARRAY@(.114)),$G(@ARRAY@(.117)),$G(@ARRAY@(.115)),$G(@ARRAY@(.1112)))
  ;
  I LOCKFLE L -^DPT(DGDFN)
@@ -55,10 +43,11 @@ LOAD ; -- Loads fields to patient file
  . N NAME
  . M NAME=@ARRAY@(1.01)
  . D UPDNC(DGDFN,.NAME)
+ I FLD=.025 D UPDSEXOR(ARRAY,DGDFN,.RGER) Q  ;**1059, VAMPI-11114 (dri) file sexual orientation
+ I FLD=.2406 D UPDPRON(ARRAY,DGDFN,.RGER) Q  ;**1059, VAMPI-11118 (dri) file pronoun
  S DA=DGDFN,DIE="^DPT("
  I $G(@ARRAY@(FLD))="" Q
  I $G(@ARRAY@(FLD))["@" S @ARRAY@(FLD)="@"
- ;GENERATE BULLETIN FOR CONDITION BELOW ?
  I $G(@ARRAY@(FLD))[U Q
  S DR=FLD_"///^S X=$G(@ARRAY@(FLD))"
  D ^DIE
@@ -77,7 +66,7 @@ UPDNC(DGDFN,NAME) ;
  D UPDATE^DIE("K","FDA","IEN","MSG")
  Q
  ;
-ALIAS ; update Alias multiple **756
+ALIAS ;update Alias multiple **756
  ;allow the synchronizing of the Alias multiple with the data passed in the array
  ;array(1,x)=name (last, first middle suffix format)^ssn
  N HAVE,I,MIEN,ADD,DONE,FDA,MPIFERR,DEL,ALIAS,CNT,DGALIAS
@@ -184,6 +173,66 @@ FMTNAME(ARRAY,LEN) ;Return a formatted name from cleaned Name Components that do
  Q $$NAMEFMT^XLFNAME(.NC,"F","CL"_LEN)
  ;
 GETFLAG() ;Get the value of the name components flag
- ;;**974,Story 841921 (mko): New function
+ ;**974,Story 841921 (mko): New function
  I $T(GETFLAG^MPIFNAMC)]"" Q $$GETFLAG^MPIFNAMC
  Q 0
+ ;
+UPDSEXOR(ARRAY,DGDFN,RGER) ;**1059, VAMPI-11114 (dri) compare incoming sexual orientation multiple with existing and add/update
+ ;**1071 VAMPI-13755 (dri) - include status, date created, date last updated to compare and file
+ ;  Input:
+ ;    ARRAY = ARAY(2)
+ ;    ARAY(2,.025,n) = sexual orientation code ^ status ^ date created ^ date last update
+ ;    DGDFN = patient's dfn
+ ;
+ ;  Example:
+ ;    ARAY(2,.025,1)="CND^I^3220128^3220128"
+ ;    ARAY(2,.025,2)="DTK^E^3220128^3220128"
+ ;    ARAY(2,.025,3)="OTH^A^3220128^3220128"
+ ;
+ N CUR,FDA,I,INC,SOCODE,SOIEN,VAFCERR
+ I $G(@ARRAY@(.025,1))["@" S @ARRAY@(.025,1)="@" ;change "@" to @, since no so's received in obx's delete all so's at the vista
+ I $G(@ARRAY@(.025,1))'="@" S I=0 F  S I=$O(@ARRAY@(.025,I)) Q:'I  S SOCODE=$P($G(@ARRAY@(.025,I)),"^",1) I SOCODE'="",(SOCODE'["@"),(SOCODE'="""""") S INC(SOCODE)=I ;incoming so's
+ S I=0 F  S I=$O(^DPT(DGDFN,.025,I)) Q:'I  S SOIEN=+$P($G(^(I,0)),"^",1),SOCODE=$P($G(^DG(47.77,SOIEN,0)),"^",2) I SOCODE'="" S CUR(SOCODE)=I ;current so's at vista
+ ;
+ ;loop through incoming sexual orientations and add/update
+ S SOCODE="" F  S SOCODE=$O(INC(SOCODE)) Q:SOCODE=""  D
+ .I '$D(CUR(SOCODE)) D  Q  ;an add to vista
+ ..F I=1:1:4 S FDA(2.025,"+"_INC(SOCODE)_","_DGDFN_",",I*.01)=$P($G(@ARRAY@(.025,INC(SOCODE))),"^",I)
+ ..S FDA(2.025,"+"_INC(SOCODE)_","_DGDFN_",",.06)="R" ;since this entry is new to vista and via hl7 it came from somewhere else, type of update is 'R'emote
+ .;
+ .I $D(CUR(SOCODE)) D  ;an update to vista if something changed
+ ..F I=2:1:4 I $P($G(@ARRAY@(.025,INC(SOCODE))),"^",I)'=$P($G(^DPT(DGDFN,.025,CUR(SOCODE),0)),"^",I) D
+ ...S FDA(2.025,CUR(SOCODE)_","_DGDFN_",",I*.01)=$P($G(@ARRAY@(.025,INC(SOCODE))),"^",I)
+ ...;S FDA(2.025,CUR(SOCODE)_","_DGDFN_",",.05)="@"
+ ...S FDA(2.025,CUR(SOCODE)_","_DGDFN_",",.06)="R" ;since this entry is being modified via hl7 it came from somewhere else, note is deleted and type of update is 'R'emote
+ ;
+ ;loop through vista and delete if not in incoming so's
+ S SOCODE="" F  S SOCODE=$O(CUR(SOCODE)) Q:SOCODE=""  I '$D(INC(SOCODE)) S FDA(2.025,CUR(SOCODE)_","_DGDFN_",",.01)="@"
+ ;
+ I $D(FDA) D UPDATE^DIE("E","FDA",,"VAFCERR") I $G(VAFCERR("DIERR",1,"TEXT",1))'="" S RGER="-1^"_VAFCERR("DIERR",1,"TEXT",1)
+ Q
+ ;
+UPDPRON(ARRAY,DGDFN,RGER) ;**1059, VAMPI-11118 (dri) compare incoming pronoun multiple with existing and add/update
+ ;  Input:
+ ;    ARRAY = ARAY(2)
+ ;    ARAY(2,.2406,n) = pronoun code
+ ;    DGDFN = patient's dfn
+ ;
+ ;  Example:
+ ;    ARAY(2,.2406,1)="OTH"
+ ;    ARAY(2,.2406,2)="PTN"
+ ;
+ N CUR,FDA,I,INC,PRCODE,PRIEN,VAFCERR
+ I $G(@ARRAY@(.2406,1))["@" S @ARRAY@(.2406,1)="@" ;change "@" to @, since no pronouns received in obx's delete all pronouns at the vista
+ I $G(@ARRAY@(.2406,1))'="@" S I=0 F  S I=$O(@ARRAY@(.2406,I)) Q:'I  S PRCODE=$P($G(@ARRAY@(.2406,I)),"^",1) I PRCODE'="",(PRCODE'["@"),(PRCODE'="""""") S INC(PRCODE)=I ;incoming pronouns
+ S I=0 F  S I=$O(^DPT(DGDFN,.2406,I)) Q:'I  S PRIEN=+$P($G(^(I,0)),"^",1),PRCODE=$P($G(^DG(47.78,PRIEN,0)),"^",2) I PRCODE'="" S CUR(PRCODE)=I ;current pronouns at vista
+ ;
+ ;loop through incoming pronoun's and add if not in vista
+ S PRCODE="" F  S PRCODE=$O(INC(PRCODE)) Q:PRCODE=""  I '$D(CUR(PRCODE)) S FDA(2.2406,"+"_INC(PRCODE)_","_DGDFN_",",.01)=PRCODE
+ ;
+ ;loop through vista and delete if not in incoming pronouns
+ S PRCODE="" F  S PRCODE=$O(CUR(PRCODE)) Q:PRCODE=""  I '$D(INC(PRCODE)) S FDA(2.2406,CUR(PRCODE)_","_DGDFN_",",.01)="@"
+ ;
+ I $D(FDA) D UPDATE^DIE("E","FDA",,"VAFCERR") I $G(VAFCERR("DIERR",1,"TEXT",1))'="" S RGER="-1^"_VAFCERR("DIERR",1,"TEXT",1)
+ Q
+ ;

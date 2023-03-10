@@ -1,5 +1,5 @@
-PSORXDL ;BIR/SAB - Deletes one prescription ; 11/15/10 4:24pm
- ;;7.0;OUTPATIENT PHARMACY;**4,17,9,27,117,131,148,201,291,368,408**;DEC 1997;Build 100
+PSORXDL ;BIR/SAB - Deletes one prescription ;08/23/17  20:48
+ ;;7.0;OUTPATIENT PHARMACY;**4,17,9,27,117,131,148,201,291,368,408,441**;DEC 1997;Build 208
  ;External reference to ^PS(55 supported by DBIA 2228
  ;External references L, UL, PSOL, and PSOUL^PSSLOCK supported by DBIA 2789
  ;External reference to ^PS(59.7 supported by DBIA 694
@@ -39,6 +39,7 @@ ENQ S PSOIB=$S($D(^PSRX(DA,"IB")):^PSRX(DA,"IB"),1:0) ;Check if copay
  S DA=RXN K ^PSRX("ACP",$P(^PSRX(DA,0),"^",2),+$P(^(2),"^",2),0,DA) D ACT
  S DA=RXN I $G(^PSRX(DA,"H"))]"" K ^PSRX("AH",+$P(^PSRX(DA,"H"),"^"),DA) S ^PSRX(DA,"H")=""
  D EN^PSOHLSN1(DA,"OC","",$P(^PSRX(DA,"D"),"^"),PSONOOR)
+ I $D(^PSRX(DA,"PARK")) K ^PSRX(DA,"PARK"),^PSRX("APARK",1,DA)  ;441 PAPI
  S DA=$O(^PS(52.5,"B",RXN,0)) I DA S DIK="^PS(52.5," D ^DIK
  S DA=RXN I $D(^PS(52.4,RXN)) S DIK="^PS(52.4," D ^DIK
  K PSOABCDA I $G(DA) S PSOABCDA=$G(DA)
@@ -80,7 +81,7 @@ RESK ;
  I $G(^PSDRUG(QDRUG,660.1)),'$G(PSOWHERE) D INVINC
  I $G(PSOWHERE) K ^PSRX("AR",$G(PSOLOCRL),RXP,0)
  ;
- ; - Preserving Original Fill data on the Return To Stock Log multiple 
+ ; - Preserving Original Fill data on the Return To Stock Log multiple
  D LOGRTS^PSORTSUT(RXP,0)
  ;
  D NOW^%DTC K DIE S DA=RXP,DIE="^PSRX(",DR="31///@;32.1///"_% D ^DIE K DIE

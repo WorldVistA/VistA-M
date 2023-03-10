@@ -1,640 +1,674 @@
-IBDEI0AC ; ; 01-MAY-2020
- ;;3.0;IB ENCOUNTER FORM IMP/EXP;;MAY 01, 2020
+IBDEI0AC ; ; 01-AUG-2022
+ ;;3.0;IB ENCOUNTER FORM IMP/EXP;;AUG 01, 2022
  Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,999) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
- ;;^UTILITY(U,$J,358.3,25258,1,4,0)
- ;;=4^M48.57XS
- ;;^UTILITY(U,$J,358.3,25258,2)
- ;;=^5012190
- ;;^UTILITY(U,$J,358.3,25259,0)
- ;;=M48.51XS^^76^1013^5
- ;;^UTILITY(U,$J,358.3,25259,1,0)
+ ;;^UTILITY(U,$J,358.3,25325,1,3,0)
+ ;;=3^SCI T1 Anterior Cord Syndrome,Sequela
+ ;;^UTILITY(U,$J,358.3,25325,1,4,0)
+ ;;=4^S24.131S
+ ;;^UTILITY(U,$J,358.3,25325,2)
+ ;;=^5023302
+ ;;^UTILITY(U,$J,358.3,25326,0)
+ ;;=S24.132S^^77^1016^27
+ ;;^UTILITY(U,$J,358.3,25326,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,25259,1,3,0)
- ;;=3^Collapsed vertebra, NEC, occipt-atlan-ax region, sqla
- ;;^UTILITY(U,$J,358.3,25259,1,4,0)
- ;;=4^M48.51XS
- ;;^UTILITY(U,$J,358.3,25259,2)
- ;;=^5012166
- ;;^UTILITY(U,$J,358.3,25260,0)
- ;;=M48.58XS^^76^1013^6
- ;;^UTILITY(U,$J,358.3,25260,1,0)
+ ;;^UTILITY(U,$J,358.3,25326,1,3,0)
+ ;;=3^SCI T2-T6 Anterior Cord Syndrome,Sequela
+ ;;^UTILITY(U,$J,358.3,25326,1,4,0)
+ ;;=4^S24.132S
+ ;;^UTILITY(U,$J,358.3,25326,2)
+ ;;=^5023305
+ ;;^UTILITY(U,$J,358.3,25327,0)
+ ;;=S24.133S^^77^1016^31
+ ;;^UTILITY(U,$J,358.3,25327,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,25260,1,3,0)
- ;;=3^Collapsed vertebra, NEC, sacr/sacrocygl region, sqla
- ;;^UTILITY(U,$J,358.3,25260,1,4,0)
- ;;=4^M48.58XS
- ;;^UTILITY(U,$J,358.3,25260,2)
- ;;=^5012194
- ;;^UTILITY(U,$J,358.3,25261,0)
- ;;=M48.54XS^^76^1013^7
- ;;^UTILITY(U,$J,358.3,25261,1,0)
+ ;;^UTILITY(U,$J,358.3,25327,1,3,0)
+ ;;=3^SCI T7-T10 Anterior Cord Syndrome,Sequela
+ ;;^UTILITY(U,$J,358.3,25327,1,4,0)
+ ;;=4^S24.133S
+ ;;^UTILITY(U,$J,358.3,25327,2)
+ ;;=^5023308
+ ;;^UTILITY(U,$J,358.3,25328,0)
+ ;;=S24.134S^^77^1016^23
+ ;;^UTILITY(U,$J,358.3,25328,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,25261,1,3,0)
- ;;=3^Collapsed vertebra, NEC, thoracic region, sqla
- ;;^UTILITY(U,$J,358.3,25261,1,4,0)
- ;;=4^M48.54XS
- ;;^UTILITY(U,$J,358.3,25261,2)
- ;;=^5012178
- ;;^UTILITY(U,$J,358.3,25262,0)
- ;;=M48.55XS^^76^1013^8
- ;;^UTILITY(U,$J,358.3,25262,1,0)
+ ;;^UTILITY(U,$J,358.3,25328,1,3,0)
+ ;;=3^SCI T11-T12 Anterior Cord Syndrome,Sequela
+ ;;^UTILITY(U,$J,358.3,25328,1,4,0)
+ ;;=4^S24.134S
+ ;;^UTILITY(U,$J,358.3,25328,2)
+ ;;=^5023311
+ ;;^UTILITY(U,$J,358.3,25329,0)
+ ;;=S24.151S^^77^1016^21
+ ;;^UTILITY(U,$J,358.3,25329,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,25262,1,3,0)
- ;;=3^Collapsed vertebra, NEC, thoracolumbar region, sqla
- ;;^UTILITY(U,$J,358.3,25262,1,4,0)
- ;;=4^M48.55XS
- ;;^UTILITY(U,$J,358.3,25262,2)
- ;;=^5012182
- ;;^UTILITY(U,$J,358.3,25263,0)
- ;;=S12.040S^^76^1013^9
- ;;^UTILITY(U,$J,358.3,25263,1,0)
+ ;;^UTILITY(U,$J,358.3,25329,1,3,0)
+ ;;=3^SCI T1 Other Incomplete Lesion,Sequela
+ ;;^UTILITY(U,$J,358.3,25329,1,4,0)
+ ;;=4^S24.151S
+ ;;^UTILITY(U,$J,358.3,25329,2)
+ ;;=^5023332
+ ;;^UTILITY(U,$J,358.3,25330,0)
+ ;;=S24.152S^^77^1016^29
+ ;;^UTILITY(U,$J,358.3,25330,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,25263,1,3,0)
- ;;=3^Displaced lateral mass fx first cervcal vertebra, sequela
- ;;^UTILITY(U,$J,358.3,25263,1,4,0)
- ;;=4^S12.040S
- ;;^UTILITY(U,$J,358.3,25263,2)
- ;;=^5021586
- ;;^UTILITY(U,$J,358.3,25264,0)
- ;;=S12.030S^^76^1013^10
- ;;^UTILITY(U,$J,358.3,25264,1,0)
+ ;;^UTILITY(U,$J,358.3,25330,1,3,0)
+ ;;=3^SCI T2-T6 Other Incomplete Lesion,Sequela
+ ;;^UTILITY(U,$J,358.3,25330,1,4,0)
+ ;;=4^S24.152S
+ ;;^UTILITY(U,$J,358.3,25330,2)
+ ;;=^5023335
+ ;;^UTILITY(U,$J,358.3,25331,0)
+ ;;=S24.153S^^77^1016^33
+ ;;^UTILITY(U,$J,358.3,25331,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,25264,1,3,0)
- ;;=3^Displaced posterior arch fx first cervcal vertebra, sequela
- ;;^UTILITY(U,$J,358.3,25264,1,4,0)
- ;;=4^S12.030S
- ;;^UTILITY(U,$J,358.3,25264,2)
- ;;=^5021574
- ;;^UTILITY(U,$J,358.3,25265,0)
- ;;=M48.42XS^^76^1013^11
- ;;^UTILITY(U,$J,358.3,25265,1,0)
+ ;;^UTILITY(U,$J,358.3,25331,1,3,0)
+ ;;=3^SCI T7-T10 Other Incomplete Lesion,Sequela
+ ;;^UTILITY(U,$J,358.3,25331,1,4,0)
+ ;;=4^S24.153S
+ ;;^UTILITY(U,$J,358.3,25331,2)
+ ;;=^5023338
+ ;;^UTILITY(U,$J,358.3,25332,0)
+ ;;=S24.154S^^77^1016^25
+ ;;^UTILITY(U,$J,358.3,25332,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,25265,1,3,0)
- ;;=3^Fatigue fracture of vertebra, cervical region, sqla
- ;;^UTILITY(U,$J,358.3,25265,1,4,0)
- ;;=4^M48.42XS
- ;;^UTILITY(U,$J,358.3,25265,2)
- ;;=^5012134
- ;;^UTILITY(U,$J,358.3,25266,0)
- ;;=M48.43XS^^76^1013^12
- ;;^UTILITY(U,$J,358.3,25266,1,0)
+ ;;^UTILITY(U,$J,358.3,25332,1,3,0)
+ ;;=3^SCI T11-T12 Other Incomplete Lesion,Sequela
+ ;;^UTILITY(U,$J,358.3,25332,1,4,0)
+ ;;=4^S24.154S
+ ;;^UTILITY(U,$J,358.3,25332,2)
+ ;;=^5023341
+ ;;^UTILITY(U,$J,358.3,25333,0)
+ ;;=S24.101S^^77^1016^22
+ ;;^UTILITY(U,$J,358.3,25333,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,25266,1,3,0)
- ;;=3^Fatigue fracture of vertebra, cervicothoracic region, sqla
- ;;^UTILITY(U,$J,358.3,25266,1,4,0)
- ;;=4^M48.43XS
- ;;^UTILITY(U,$J,358.3,25266,2)
- ;;=^5012138
- ;;^UTILITY(U,$J,358.3,25267,0)
- ;;=M48.46XS^^76^1013^13
- ;;^UTILITY(U,$J,358.3,25267,1,0)
+ ;;^UTILITY(U,$J,358.3,25333,1,3,0)
+ ;;=3^SCI T1 Unspec Injury,Sequela
+ ;;^UTILITY(U,$J,358.3,25333,1,4,0)
+ ;;=4^S24.101S
+ ;;^UTILITY(U,$J,358.3,25333,2)
+ ;;=^5023275
+ ;;^UTILITY(U,$J,358.3,25334,0)
+ ;;=S24.102S^^77^1016^30
+ ;;^UTILITY(U,$J,358.3,25334,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,25267,1,3,0)
- ;;=3^Fatigue fracture of vertebra, lumbar region, sqla
- ;;^UTILITY(U,$J,358.3,25267,1,4,0)
- ;;=4^M48.46XS
- ;;^UTILITY(U,$J,358.3,25267,2)
- ;;=^5012150
- ;;^UTILITY(U,$J,358.3,25268,0)
- ;;=M48.47XS^^76^1013^14
- ;;^UTILITY(U,$J,358.3,25268,1,0)
+ ;;^UTILITY(U,$J,358.3,25334,1,3,0)
+ ;;=3^SCI T2-T6 Unspec Injury,Sequela
+ ;;^UTILITY(U,$J,358.3,25334,1,4,0)
+ ;;=4^S24.102S
+ ;;^UTILITY(U,$J,358.3,25334,2)
+ ;;=^5023278
+ ;;^UTILITY(U,$J,358.3,25335,0)
+ ;;=S24.103S^^77^1016^34
+ ;;^UTILITY(U,$J,358.3,25335,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,25268,1,3,0)
- ;;=3^Fatigue fracture of vertebra, lumbosacral region, sqla
- ;;^UTILITY(U,$J,358.3,25268,1,4,0)
- ;;=4^M48.47XS
- ;;^UTILITY(U,$J,358.3,25268,2)
- ;;=^5012154
- ;;^UTILITY(U,$J,358.3,25269,0)
- ;;=M48.41XS^^76^1013^15
- ;;^UTILITY(U,$J,358.3,25269,1,0)
+ ;;^UTILITY(U,$J,358.3,25335,1,3,0)
+ ;;=3^SCI T7-T10 Unspec Injury,Sequela
+ ;;^UTILITY(U,$J,358.3,25335,1,4,0)
+ ;;=4^S24.103S
+ ;;^UTILITY(U,$J,358.3,25335,2)
+ ;;=^5023281
+ ;;^UTILITY(U,$J,358.3,25336,0)
+ ;;=S24.104S^^77^1016^26
+ ;;^UTILITY(U,$J,358.3,25336,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,25269,1,3,0)
- ;;=3^Fatigue fracture of vertebra, occipt-atlan-ax region, sqla
- ;;^UTILITY(U,$J,358.3,25269,1,4,0)
- ;;=4^M48.41XS
- ;;^UTILITY(U,$J,358.3,25269,2)
- ;;=^5012130
- ;;^UTILITY(U,$J,358.3,25270,0)
- ;;=M48.48XS^^76^1013^16
- ;;^UTILITY(U,$J,358.3,25270,1,0)
+ ;;^UTILITY(U,$J,358.3,25336,1,3,0)
+ ;;=3^SCI T11-T12 Unspec Injury,Sequela
+ ;;^UTILITY(U,$J,358.3,25336,1,4,0)
+ ;;=4^S24.104S
+ ;;^UTILITY(U,$J,358.3,25336,2)
+ ;;=^5023284
+ ;;^UTILITY(U,$J,358.3,25337,0)
+ ;;=S24.109S^^77^1016^35
+ ;;^UTILITY(U,$J,358.3,25337,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,25270,1,3,0)
- ;;=3^Fatigue fracture of vertebra, sacr/sacrocygl region, sqla
- ;;^UTILITY(U,$J,358.3,25270,1,4,0)
- ;;=4^M48.48XS
- ;;^UTILITY(U,$J,358.3,25270,2)
- ;;=^5012158
- ;;^UTILITY(U,$J,358.3,25271,0)
- ;;=M48.44XS^^76^1013^17
- ;;^UTILITY(U,$J,358.3,25271,1,0)
+ ;;^UTILITY(U,$J,358.3,25337,1,3,0)
+ ;;=3^SCI Unspec Thoracic,Unspec Injury,Sequela
+ ;;^UTILITY(U,$J,358.3,25337,1,4,0)
+ ;;=4^S24.109S
+ ;;^UTILITY(U,$J,358.3,25337,2)
+ ;;=^5134384
+ ;;^UTILITY(U,$J,358.3,25338,0)
+ ;;=S34.111S^^77^1016^4
+ ;;^UTILITY(U,$J,358.3,25338,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,25271,1,3,0)
- ;;=3^Fatigue fracture of vertebra, thoracic region, sqla
- ;;^UTILITY(U,$J,358.3,25271,1,4,0)
- ;;=4^M48.44XS
- ;;^UTILITY(U,$J,358.3,25271,2)
- ;;=^5012142
- ;;^UTILITY(U,$J,358.3,25272,0)
- ;;=M48.45XS^^76^1013^18
- ;;^UTILITY(U,$J,358.3,25272,1,0)
+ ;;^UTILITY(U,$J,358.3,25338,1,3,0)
+ ;;=3^SCI L1 Complete Lesion,Sequela
+ ;;^UTILITY(U,$J,358.3,25338,1,4,0)
+ ;;=4^S34.111S
+ ;;^UTILITY(U,$J,358.3,25338,2)
+ ;;=^5025207
+ ;;^UTILITY(U,$J,358.3,25339,0)
+ ;;=S34.112S^^77^1016^7
+ ;;^UTILITY(U,$J,358.3,25339,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,25272,1,3,0)
- ;;=3^Fatigue fracture of vertebra, thoracolumbar region, sqla
- ;;^UTILITY(U,$J,358.3,25272,1,4,0)
- ;;=4^M48.45XS
- ;;^UTILITY(U,$J,358.3,25272,2)
- ;;=^5012146
- ;;^UTILITY(U,$J,358.3,25273,0)
- ;;=S12.041S^^76^1013^27
- ;;^UTILITY(U,$J,358.3,25273,1,0)
+ ;;^UTILITY(U,$J,358.3,25339,1,3,0)
+ ;;=3^SCI L2 Complete Lesion,Sequela
+ ;;^UTILITY(U,$J,358.3,25339,1,4,0)
+ ;;=4^S34.112S
+ ;;^UTILITY(U,$J,358.3,25339,2)
+ ;;=^5025210
+ ;;^UTILITY(U,$J,358.3,25340,0)
+ ;;=S34.113S^^77^1016^10
+ ;;^UTILITY(U,$J,358.3,25340,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,25273,1,3,0)
- ;;=3^Nondisp lateral mass fx first cervcal vertebra, sequela
- ;;^UTILITY(U,$J,358.3,25273,1,4,0)
- ;;=4^S12.041S
- ;;^UTILITY(U,$J,358.3,25273,2)
- ;;=^5021592
- ;;^UTILITY(U,$J,358.3,25274,0)
- ;;=S12.031S^^76^1013^28
- ;;^UTILITY(U,$J,358.3,25274,1,0)
+ ;;^UTILITY(U,$J,358.3,25340,1,3,0)
+ ;;=3^SCI L3 Complete Lesion,Sequela
+ ;;^UTILITY(U,$J,358.3,25340,1,4,0)
+ ;;=4^S34.113S
+ ;;^UTILITY(U,$J,358.3,25340,2)
+ ;;=^5025213
+ ;;^UTILITY(U,$J,358.3,25341,0)
+ ;;=S34.114S^^77^1016^13
+ ;;^UTILITY(U,$J,358.3,25341,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,25274,1,3,0)
- ;;=3^Nondisp posterior arch fx first cervcal vertebra, sequela
- ;;^UTILITY(U,$J,358.3,25274,1,4,0)
- ;;=4^S12.031S
- ;;^UTILITY(U,$J,358.3,25274,2)
- ;;=^5021580
- ;;^UTILITY(U,$J,358.3,25275,0)
- ;;=S32.051S^^76^1013^37
- ;;^UTILITY(U,$J,358.3,25275,1,0)
+ ;;^UTILITY(U,$J,358.3,25341,1,3,0)
+ ;;=3^SCI L4 Complete Lesion,Sequela
+ ;;^UTILITY(U,$J,358.3,25341,1,4,0)
+ ;;=4^S34.114S
+ ;;^UTILITY(U,$J,358.3,25341,2)
+ ;;=^5025216
+ ;;^UTILITY(U,$J,358.3,25342,0)
+ ;;=S34.115S^^77^1016^16
+ ;;^UTILITY(U,$J,358.3,25342,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,25275,1,3,0)
- ;;=3^Stable burst fracture of fifth lumbar vertebra, sequela
- ;;^UTILITY(U,$J,358.3,25275,1,4,0)
- ;;=4^S32.051S
- ;;^UTILITY(U,$J,358.3,25275,2)
- ;;=^5024502
- ;;^UTILITY(U,$J,358.3,25276,0)
- ;;=S12.01XS^^76^1013^38
- ;;^UTILITY(U,$J,358.3,25276,1,0)
+ ;;^UTILITY(U,$J,358.3,25342,1,3,0)
+ ;;=3^SCI L5 Complete Lesion,Sequela
+ ;;^UTILITY(U,$J,358.3,25342,1,4,0)
+ ;;=4^S34.115S
+ ;;^UTILITY(U,$J,358.3,25342,2)
+ ;;=^5025219
+ ;;^UTILITY(U,$J,358.3,25343,0)
+ ;;=S34.121S^^77^1016^5
+ ;;^UTILITY(U,$J,358.3,25343,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,25276,1,3,0)
- ;;=3^Stable burst fracture of first cervical vertebra, sequela
- ;;^UTILITY(U,$J,358.3,25276,1,4,0)
- ;;=4^S12.01XS
- ;;^UTILITY(U,$J,358.3,25276,2)
- ;;=^5021562
- ;;^UTILITY(U,$J,358.3,25277,0)
- ;;=S32.011S^^76^1013^39
- ;;^UTILITY(U,$J,358.3,25277,1,0)
+ ;;^UTILITY(U,$J,358.3,25343,1,3,0)
+ ;;=3^SCI L1 Incomplete Lesion,Sequela
+ ;;^UTILITY(U,$J,358.3,25343,1,4,0)
+ ;;=4^S34.121S
+ ;;^UTILITY(U,$J,358.3,25343,2)
+ ;;=^5025225
+ ;;^UTILITY(U,$J,358.3,25344,0)
+ ;;=S34.122S^^77^1016^8
+ ;;^UTILITY(U,$J,358.3,25344,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,25277,1,3,0)
- ;;=3^Stable burst fracture of first lumbar vertebra, sequela
- ;;^UTILITY(U,$J,358.3,25277,1,4,0)
- ;;=4^S32.011S
- ;;^UTILITY(U,$J,358.3,25277,2)
- ;;=^5024382
- ;;^UTILITY(U,$J,358.3,25278,0)
- ;;=S22.011S^^76^1013^40
- ;;^UTILITY(U,$J,358.3,25278,1,0)
+ ;;^UTILITY(U,$J,358.3,25344,1,3,0)
+ ;;=3^SCI L2 Incomplete Lesion,Sequela
+ ;;^UTILITY(U,$J,358.3,25344,1,4,0)
+ ;;=4^S34.122S
+ ;;^UTILITY(U,$J,358.3,25344,2)
+ ;;=^5025228
+ ;;^UTILITY(U,$J,358.3,25345,0)
+ ;;=S34.123S^^77^1016^11
+ ;;^UTILITY(U,$J,358.3,25345,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,25278,1,3,0)
- ;;=3^Stable burst fracture of first thoracic vertebra, sequela
- ;;^UTILITY(U,$J,358.3,25278,1,4,0)
- ;;=4^S22.011S
- ;;^UTILITY(U,$J,358.3,25278,2)
- ;;=^5022846
- ;;^UTILITY(U,$J,358.3,25279,0)
- ;;=S32.041S^^76^1013^41
- ;;^UTILITY(U,$J,358.3,25279,1,0)
+ ;;^UTILITY(U,$J,358.3,25345,1,3,0)
+ ;;=3^SCI L3 Incomplete Lesion,Sequela
+ ;;^UTILITY(U,$J,358.3,25345,1,4,0)
+ ;;=4^S34.123S
+ ;;^UTILITY(U,$J,358.3,25345,2)
+ ;;=^5025231
+ ;;^UTILITY(U,$J,358.3,25346,0)
+ ;;=S34.124S^^77^1016^14
+ ;;^UTILITY(U,$J,358.3,25346,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,25279,1,3,0)
- ;;=3^Stable burst fracture of fourth lumbar vertebra, sequela
- ;;^UTILITY(U,$J,358.3,25279,1,4,0)
- ;;=4^S32.041S
- ;;^UTILITY(U,$J,358.3,25279,2)
- ;;=^5024472
- ;;^UTILITY(U,$J,358.3,25280,0)
- ;;=S22.041S^^76^1013^42
- ;;^UTILITY(U,$J,358.3,25280,1,0)
+ ;;^UTILITY(U,$J,358.3,25346,1,3,0)
+ ;;=3^SCI L4 Incomplete Lesion,Sequela
+ ;;^UTILITY(U,$J,358.3,25346,1,4,0)
+ ;;=4^S34.124S
+ ;;^UTILITY(U,$J,358.3,25346,2)
+ ;;=^5025234
+ ;;^UTILITY(U,$J,358.3,25347,0)
+ ;;=S34.125S^^77^1016^17
+ ;;^UTILITY(U,$J,358.3,25347,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,25280,1,3,0)
- ;;=3^Stable burst fracture of fourth thoracic vertebra, sequela
- ;;^UTILITY(U,$J,358.3,25280,1,4,0)
- ;;=4^S22.041S
- ;;^UTILITY(U,$J,358.3,25280,2)
- ;;=^5022936
- ;;^UTILITY(U,$J,358.3,25281,0)
- ;;=S32.021S^^76^1013^43
- ;;^UTILITY(U,$J,358.3,25281,1,0)
+ ;;^UTILITY(U,$J,358.3,25347,1,3,0)
+ ;;=3^SCI L5 Incomplete Lesion,Sequela
+ ;;^UTILITY(U,$J,358.3,25347,1,4,0)
+ ;;=4^S34.125S
+ ;;^UTILITY(U,$J,358.3,25347,2)
+ ;;=^5025237
+ ;;^UTILITY(U,$J,358.3,25348,0)
+ ;;=S34.101S^^77^1016^6
+ ;;^UTILITY(U,$J,358.3,25348,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,25281,1,3,0)
- ;;=3^Stable burst fracture of second lumbar vertebra, sequela
- ;;^UTILITY(U,$J,358.3,25281,1,4,0)
- ;;=4^S32.021S
- ;;^UTILITY(U,$J,358.3,25281,2)
- ;;=^5024412
- ;;^UTILITY(U,$J,358.3,25282,0)
- ;;=S22.021S^^76^1013^44
- ;;^UTILITY(U,$J,358.3,25282,1,0)
+ ;;^UTILITY(U,$J,358.3,25348,1,3,0)
+ ;;=3^SCI L1 Unspec Injury,Sequela
+ ;;^UTILITY(U,$J,358.3,25348,1,4,0)
+ ;;=4^S34.101S
+ ;;^UTILITY(U,$J,358.3,25348,2)
+ ;;=^5025192
+ ;;^UTILITY(U,$J,358.3,25349,0)
+ ;;=S34.102S^^77^1016^9
+ ;;^UTILITY(U,$J,358.3,25349,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,25282,1,3,0)
- ;;=3^Stable burst fracture of second thoracic vertebra, sequela
- ;;^UTILITY(U,$J,358.3,25282,1,4,0)
- ;;=4^S22.021S
- ;;^UTILITY(U,$J,358.3,25282,2)
- ;;=^5022876
- ;;^UTILITY(U,$J,358.3,25283,0)
- ;;=S22.081S^^76^1013^33
- ;;^UTILITY(U,$J,358.3,25283,1,0)
+ ;;^UTILITY(U,$J,358.3,25349,1,3,0)
+ ;;=3^SCI L2 Unspec Injury,Sequela
+ ;;^UTILITY(U,$J,358.3,25349,1,4,0)
+ ;;=4^S34.102S
+ ;;^UTILITY(U,$J,358.3,25349,2)
+ ;;=^5025195
+ ;;^UTILITY(U,$J,358.3,25350,0)
+ ;;=S34.103S^^77^1016^12
+ ;;^UTILITY(U,$J,358.3,25350,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,25283,1,3,0)
- ;;=3^Stable burst fracture of T11-T12 vertebra, sequela
- ;;^UTILITY(U,$J,358.3,25283,1,4,0)
- ;;=4^S22.081S
- ;;^UTILITY(U,$J,358.3,25283,2)
- ;;=^5023056
- ;;^UTILITY(U,$J,358.3,25284,0)
- ;;=S22.051S^^76^1013^34
- ;;^UTILITY(U,$J,358.3,25284,1,0)
+ ;;^UTILITY(U,$J,358.3,25350,1,3,0)
+ ;;=3^SCI L3 Unspec Injury,Sequela
+ ;;^UTILITY(U,$J,358.3,25350,1,4,0)
+ ;;=4^S34.103S
+ ;;^UTILITY(U,$J,358.3,25350,2)
+ ;;=^5025198
+ ;;^UTILITY(U,$J,358.3,25351,0)
+ ;;=S34.104S^^77^1016^15
+ ;;^UTILITY(U,$J,358.3,25351,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,25284,1,3,0)
- ;;=3^Stable burst fracture of T5-T6 vertebra, sequela
- ;;^UTILITY(U,$J,358.3,25284,1,4,0)
- ;;=4^S22.051S
- ;;^UTILITY(U,$J,358.3,25284,2)
- ;;=^5022966
- ;;^UTILITY(U,$J,358.3,25285,0)
- ;;=S22.061S^^76^1013^35
- ;;^UTILITY(U,$J,358.3,25285,1,0)
+ ;;^UTILITY(U,$J,358.3,25351,1,3,0)
+ ;;=3^SCI L4 Unspec Injury,Sequela
+ ;;^UTILITY(U,$J,358.3,25351,1,4,0)
+ ;;=4^S34.104S
+ ;;^UTILITY(U,$J,358.3,25351,2)
+ ;;=^5025201
+ ;;^UTILITY(U,$J,358.3,25352,0)
+ ;;=S34.105S^^77^1016^18
+ ;;^UTILITY(U,$J,358.3,25352,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,25285,1,3,0)
- ;;=3^Stable burst fracture of T7-T8 vertebra, sequela
- ;;^UTILITY(U,$J,358.3,25285,1,4,0)
- ;;=4^S22.061S
- ;;^UTILITY(U,$J,358.3,25285,2)
- ;;=^5022996
- ;;^UTILITY(U,$J,358.3,25286,0)
- ;;=S22.071S^^76^1013^36
- ;;^UTILITY(U,$J,358.3,25286,1,0)
+ ;;^UTILITY(U,$J,358.3,25352,1,3,0)
+ ;;=3^SCI L5 Unspec Injury,Sequela
+ ;;^UTILITY(U,$J,358.3,25352,1,4,0)
+ ;;=4^S34.105S
+ ;;^UTILITY(U,$J,358.3,25352,2)
+ ;;=^5025204
+ ;;^UTILITY(U,$J,358.3,25353,0)
+ ;;=G82.21^^77^1016^1
+ ;;^UTILITY(U,$J,358.3,25353,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,25286,1,3,0)
- ;;=3^Stable burst fracture of T9-T10 vertebra, sequela
- ;;^UTILITY(U,$J,358.3,25286,1,4,0)
- ;;=4^S22.071S
- ;;^UTILITY(U,$J,358.3,25286,2)
- ;;=^5023026
- ;;^UTILITY(U,$J,358.3,25287,0)
- ;;=S32.031S^^76^1013^45
- ;;^UTILITY(U,$J,358.3,25287,1,0)
+ ;;^UTILITY(U,$J,358.3,25353,1,3,0)
+ ;;=3^Paraplegia,Complete
+ ;;^UTILITY(U,$J,358.3,25353,1,4,0)
+ ;;=4^G82.21
+ ;;^UTILITY(U,$J,358.3,25353,2)
+ ;;=^5004126
+ ;;^UTILITY(U,$J,358.3,25354,0)
+ ;;=G82.22^^77^1016^2
+ ;;^UTILITY(U,$J,358.3,25354,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,25287,1,3,0)
- ;;=3^Stable burst fracture of third lumbar vertebra, sequela
- ;;^UTILITY(U,$J,358.3,25287,1,4,0)
- ;;=4^S32.031S
- ;;^UTILITY(U,$J,358.3,25287,2)
- ;;=^5024442
- ;;^UTILITY(U,$J,358.3,25288,0)
- ;;=S22.031S^^76^1013^46
- ;;^UTILITY(U,$J,358.3,25288,1,0)
+ ;;^UTILITY(U,$J,358.3,25354,1,3,0)
+ ;;=3^Paraplegia,Incomplete
+ ;;^UTILITY(U,$J,358.3,25354,1,4,0)
+ ;;=4^G82.22
+ ;;^UTILITY(U,$J,358.3,25354,2)
+ ;;=^5004127
+ ;;^UTILITY(U,$J,358.3,25355,0)
+ ;;=G82.51^^77^1017^1
+ ;;^UTILITY(U,$J,358.3,25355,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,25288,1,3,0)
- ;;=3^Stable burst fracture of third thoracic vertebra, sequela
- ;;^UTILITY(U,$J,358.3,25288,1,4,0)
- ;;=4^S22.031S
- ;;^UTILITY(U,$J,358.3,25288,2)
- ;;=^5022906
- ;;^UTILITY(U,$J,358.3,25289,0)
- ;;=S32.111S^^76^1013^20
- ;;^UTILITY(U,$J,358.3,25289,1,0)
+ ;;^UTILITY(U,$J,358.3,25355,1,3,0)
+ ;;=3^Quadriplegia,C1-C4,Complete
+ ;;^UTILITY(U,$J,358.3,25355,1,4,0)
+ ;;=4^G82.51
+ ;;^UTILITY(U,$J,358.3,25355,2)
+ ;;=^5004129
+ ;;^UTILITY(U,$J,358.3,25356,0)
+ ;;=G82.52^^77^1017^2
+ ;;^UTILITY(U,$J,358.3,25356,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,25289,1,3,0)
- ;;=3^Minimally displaced Zone I fracture of sacrum, sequela
- ;;^UTILITY(U,$J,358.3,25289,1,4,0)
- ;;=4^S32.111S
- ;;^UTILITY(U,$J,358.3,25289,2)
- ;;=^5024538
- ;;^UTILITY(U,$J,358.3,25290,0)
- ;;=S32.121S^^76^1013^21
- ;;^UTILITY(U,$J,358.3,25290,1,0)
+ ;;^UTILITY(U,$J,358.3,25356,1,3,0)
+ ;;=3^Quadriplegia,C1-C4,Incomplete
+ ;;^UTILITY(U,$J,358.3,25356,1,4,0)
+ ;;=4^G82.52
+ ;;^UTILITY(U,$J,358.3,25356,2)
+ ;;=^5004130
+ ;;^UTILITY(U,$J,358.3,25357,0)
+ ;;=G82.53^^77^1017^3
+ ;;^UTILITY(U,$J,358.3,25357,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,25290,1,3,0)
- ;;=3^Minimally displaced Zone II fracture of sacrum, sequela
- ;;^UTILITY(U,$J,358.3,25290,1,4,0)
- ;;=4^S32.121S
- ;;^UTILITY(U,$J,358.3,25290,2)
- ;;=^5024562
- ;;^UTILITY(U,$J,358.3,25291,0)
- ;;=S32.131S^^76^1013^22
- ;;^UTILITY(U,$J,358.3,25291,1,0)
+ ;;^UTILITY(U,$J,358.3,25357,1,3,0)
+ ;;=3^Quadriplegia,C5-C7,Complete
+ ;;^UTILITY(U,$J,358.3,25357,1,4,0)
+ ;;=4^G82.53
+ ;;^UTILITY(U,$J,358.3,25357,2)
+ ;;=^5004131
+ ;;^UTILITY(U,$J,358.3,25358,0)
+ ;;=G82.54^^77^1017^4
+ ;;^UTILITY(U,$J,358.3,25358,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,25291,1,3,0)
- ;;=3^Minimally displaced Zone III fracture of sacrum, sequela
- ;;^UTILITY(U,$J,358.3,25291,1,4,0)
- ;;=4^S32.131S
- ;;^UTILITY(U,$J,358.3,25291,2)
- ;;=^5024586
- ;;^UTILITY(U,$J,358.3,25292,0)
- ;;=S32.110S^^76^1013^24
- ;;^UTILITY(U,$J,358.3,25292,1,0)
+ ;;^UTILITY(U,$J,358.3,25358,1,3,0)
+ ;;=3^Quadriplegia,C5-C7,Incomplete
+ ;;^UTILITY(U,$J,358.3,25358,1,4,0)
+ ;;=4^G82.54
+ ;;^UTILITY(U,$J,358.3,25358,2)
+ ;;=^5004132
+ ;;^UTILITY(U,$J,358.3,25359,0)
+ ;;=G82.50^^77^1017^5
+ ;;^UTILITY(U,$J,358.3,25359,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,25292,1,3,0)
- ;;=3^Nondisp Zone I fracture of sacrum, sequela
- ;;^UTILITY(U,$J,358.3,25292,1,4,0)
- ;;=4^S32.110S
- ;;^UTILITY(U,$J,358.3,25292,2)
- ;;=^5024532
- ;;^UTILITY(U,$J,358.3,25293,0)
- ;;=S32.120S^^76^1013^25
- ;;^UTILITY(U,$J,358.3,25293,1,0)
+ ;;^UTILITY(U,$J,358.3,25359,1,3,0)
+ ;;=3^Quadriplegia,Unspec
+ ;;^UTILITY(U,$J,358.3,25359,1,4,0)
+ ;;=4^G82.50
+ ;;^UTILITY(U,$J,358.3,25359,2)
+ ;;=^5004128
+ ;;^UTILITY(U,$J,358.3,25360,0)
+ ;;=L89.010^^77^1018^74
+ ;;^UTILITY(U,$J,358.3,25360,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,25293,1,3,0)
- ;;=3^Nondisp Zone II fracture of sacrum, sequela
- ;;^UTILITY(U,$J,358.3,25293,1,4,0)
- ;;=4^S32.120S
- ;;^UTILITY(U,$J,358.3,25293,2)
- ;;=^5024556
- ;;^UTILITY(U,$J,358.3,25294,0)
- ;;=S32.130S^^76^1013^26
- ;;^UTILITY(U,$J,358.3,25294,1,0)
+ ;;^UTILITY(U,$J,358.3,25360,1,3,0)
+ ;;=3^Pressure Ulcer Right Elbow,Unstageable
+ ;;^UTILITY(U,$J,358.3,25360,1,4,0)
+ ;;=4^L89.010
+ ;;^UTILITY(U,$J,358.3,25360,2)
+ ;;=^5009337
+ ;;^UTILITY(U,$J,358.3,25361,0)
+ ;;=L89.011^^77^1018^69
+ ;;^UTILITY(U,$J,358.3,25361,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,25294,1,3,0)
- ;;=3^Nondisp Zone III fracture of sacrum, sequela
- ;;^UTILITY(U,$J,358.3,25294,1,4,0)
- ;;=4^S32.130S
- ;;^UTILITY(U,$J,358.3,25294,2)
- ;;=^5024580
- ;;^UTILITY(U,$J,358.3,25295,0)
- ;;=S32.112S^^76^1013^30
- ;;^UTILITY(U,$J,358.3,25295,1,0)
+ ;;^UTILITY(U,$J,358.3,25361,1,3,0)
+ ;;=3^Pressure Ulcer Right Elbow,Stage 1
+ ;;^UTILITY(U,$J,358.3,25361,1,4,0)
+ ;;=4^L89.011
+ ;;^UTILITY(U,$J,358.3,25361,2)
+ ;;=^5009338
+ ;;^UTILITY(U,$J,358.3,25362,0)
+ ;;=L89.012^^77^1018^70
+ ;;^UTILITY(U,$J,358.3,25362,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,25295,1,3,0)
- ;;=3^Severely displaced Zone I fracture of sacrum, sequela
- ;;^UTILITY(U,$J,358.3,25295,1,4,0)
- ;;=4^S32.112S
- ;;^UTILITY(U,$J,358.3,25295,2)
- ;;=^5024544
- ;;^UTILITY(U,$J,358.3,25296,0)
- ;;=S32.122S^^76^1013^31
- ;;^UTILITY(U,$J,358.3,25296,1,0)
+ ;;^UTILITY(U,$J,358.3,25362,1,3,0)
+ ;;=3^Pressure Ulcer Right Elbow,Stage 2
+ ;;^UTILITY(U,$J,358.3,25362,1,4,0)
+ ;;=4^L89.012
+ ;;^UTILITY(U,$J,358.3,25362,2)
+ ;;=^5009339
+ ;;^UTILITY(U,$J,358.3,25363,0)
+ ;;=L89.013^^77^1018^71
+ ;;^UTILITY(U,$J,358.3,25363,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,25296,1,3,0)
- ;;=3^Severely displaced Zone II fracture of sacrum, sequela
- ;;^UTILITY(U,$J,358.3,25296,1,4,0)
- ;;=4^S32.122S
- ;;^UTILITY(U,$J,358.3,25296,2)
- ;;=^5024568
- ;;^UTILITY(U,$J,358.3,25297,0)
- ;;=S32.132S^^76^1013^32
- ;;^UTILITY(U,$J,358.3,25297,1,0)
+ ;;^UTILITY(U,$J,358.3,25363,1,3,0)
+ ;;=3^Pressure Ulcer Right Elbow,Stage 3
+ ;;^UTILITY(U,$J,358.3,25363,1,4,0)
+ ;;=4^L89.013
+ ;;^UTILITY(U,$J,358.3,25363,2)
+ ;;=^5009340
+ ;;^UTILITY(U,$J,358.3,25364,0)
+ ;;=L89.014^^77^1018^72
+ ;;^UTILITY(U,$J,358.3,25364,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,25297,1,3,0)
- ;;=3^Severely displaced Zone III fracture of sacrum, sequela
- ;;^UTILITY(U,$J,358.3,25297,1,4,0)
- ;;=4^S32.132S
- ;;^UTILITY(U,$J,358.3,25297,2)
- ;;=^5024592
- ;;^UTILITY(U,$J,358.3,25298,0)
- ;;=S32.14XS^^76^1013^47
- ;;^UTILITY(U,$J,358.3,25298,1,0)
+ ;;^UTILITY(U,$J,358.3,25364,1,3,0)
+ ;;=3^Pressure Ulcer Right Elbow,Stage 4
+ ;;^UTILITY(U,$J,358.3,25364,1,4,0)
+ ;;=4^L89.014
+ ;;^UTILITY(U,$J,358.3,25364,2)
+ ;;=^5009341
+ ;;^UTILITY(U,$J,358.3,25365,0)
+ ;;=L89.019^^77^1018^73
+ ;;^UTILITY(U,$J,358.3,25365,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,25298,1,3,0)
- ;;=3^Type 1 fracture of sacrum, sequela
- ;;^UTILITY(U,$J,358.3,25298,1,4,0)
- ;;=4^S32.14XS
- ;;^UTILITY(U,$J,358.3,25298,2)
- ;;=^5024604
- ;;^UTILITY(U,$J,358.3,25299,0)
- ;;=S32.15XS^^76^1013^48
- ;;^UTILITY(U,$J,358.3,25299,1,0)
+ ;;^UTILITY(U,$J,358.3,25365,1,3,0)
+ ;;=3^Pressure Ulcer Right Elbow,Stage Unspec
+ ;;^UTILITY(U,$J,358.3,25365,1,4,0)
+ ;;=4^L89.019
+ ;;^UTILITY(U,$J,358.3,25365,2)
+ ;;=^5133648
+ ;;^UTILITY(U,$J,358.3,25366,0)
+ ;;=L89.020^^77^1018^32
+ ;;^UTILITY(U,$J,358.3,25366,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,25299,1,3,0)
- ;;=3^Type 2 fracture of sacrum, sequela
- ;;^UTILITY(U,$J,358.3,25299,1,4,0)
- ;;=4^S32.15XS
- ;;^UTILITY(U,$J,358.3,25299,2)
- ;;=^5024610
- ;;^UTILITY(U,$J,358.3,25300,0)
- ;;=S32.16XS^^76^1013^49
- ;;^UTILITY(U,$J,358.3,25300,1,0)
+ ;;^UTILITY(U,$J,358.3,25366,1,3,0)
+ ;;=3^Pressure Ulcer Left Elbow,Unstageable
+ ;;^UTILITY(U,$J,358.3,25366,1,4,0)
+ ;;=4^L89.020
+ ;;^UTILITY(U,$J,358.3,25366,2)
+ ;;=^5009342
+ ;;^UTILITY(U,$J,358.3,25367,0)
+ ;;=L89.021^^77^1018^27
+ ;;^UTILITY(U,$J,358.3,25367,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,25300,1,3,0)
- ;;=3^Type 3 fracture of sacrum, sequela
- ;;^UTILITY(U,$J,358.3,25300,1,4,0)
- ;;=4^S32.16XS
- ;;^UTILITY(U,$J,358.3,25300,2)
- ;;=^5024616
- ;;^UTILITY(U,$J,358.3,25301,0)
- ;;=S32.17XS^^76^1013^56
- ;;^UTILITY(U,$J,358.3,25301,1,0)
+ ;;^UTILITY(U,$J,358.3,25367,1,3,0)
+ ;;=3^Pressure Ulcer Left Elbow,Stage 1
+ ;;^UTILITY(U,$J,358.3,25367,1,4,0)
+ ;;=4^L89.021
+ ;;^UTILITY(U,$J,358.3,25367,2)
+ ;;=^5009343
+ ;;^UTILITY(U,$J,358.3,25368,0)
+ ;;=L89.022^^77^1018^28
+ ;;^UTILITY(U,$J,358.3,25368,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,25301,1,3,0)
- ;;=3^Type 4 fracture of sacrum, sequela
- ;;^UTILITY(U,$J,358.3,25301,1,4,0)
- ;;=4^S32.17XS
- ;;^UTILITY(U,$J,358.3,25301,2)
- ;;=^5024622
- ;;^UTILITY(U,$J,358.3,25302,0)
- ;;=S32.2XXS^^76^1013^19
- ;;^UTILITY(U,$J,358.3,25302,1,0)
+ ;;^UTILITY(U,$J,358.3,25368,1,3,0)
+ ;;=3^Pressure Ulcer Left Elbow,Stage 2
+ ;;^UTILITY(U,$J,358.3,25368,1,4,0)
+ ;;=4^L89.022
+ ;;^UTILITY(U,$J,358.3,25368,2)
+ ;;=^5009344
+ ;;^UTILITY(U,$J,358.3,25369,0)
+ ;;=L89.023^^77^1018^29
+ ;;^UTILITY(U,$J,358.3,25369,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,25302,1,3,0)
- ;;=3^Fracture of coccyx, sequela
- ;;^UTILITY(U,$J,358.3,25302,1,4,0)
- ;;=4^S32.2XXS
- ;;^UTILITY(U,$J,358.3,25302,2)
- ;;=^5024634
- ;;^UTILITY(U,$J,358.3,25303,0)
- ;;=S12.110S^^76^1013^1
- ;;^UTILITY(U,$J,358.3,25303,1,0)
+ ;;^UTILITY(U,$J,358.3,25369,1,3,0)
+ ;;=3^Pressure Ulcer Left Elbow,Stage 3
+ ;;^UTILITY(U,$J,358.3,25369,1,4,0)
+ ;;=4^L89.023
+ ;;^UTILITY(U,$J,358.3,25369,2)
+ ;;=^5009345
+ ;;^UTILITY(U,$J,358.3,25370,0)
+ ;;=L89.024^^77^1018^30
+ ;;^UTILITY(U,$J,358.3,25370,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,25303,1,3,0)
- ;;=3^Anterior displaced Type II dens fracture, sequela
- ;;^UTILITY(U,$J,358.3,25303,1,4,0)
- ;;=4^S12.110S
- ;;^UTILITY(U,$J,358.3,25303,2)
- ;;=^5021622
- ;;^UTILITY(U,$J,358.3,25304,0)
- ;;=S12.112S^^76^1013^23
- ;;^UTILITY(U,$J,358.3,25304,1,0)
+ ;;^UTILITY(U,$J,358.3,25370,1,3,0)
+ ;;=3^Pressure Ulcer Left Elbow,Stage 4
+ ;;^UTILITY(U,$J,358.3,25370,1,4,0)
+ ;;=4^L89.024
+ ;;^UTILITY(U,$J,358.3,25370,2)
+ ;;=^5009346
+ ;;^UTILITY(U,$J,358.3,25371,0)
+ ;;=L89.029^^77^1018^31
+ ;;^UTILITY(U,$J,358.3,25371,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,25304,1,3,0)
- ;;=3^Nondisp Type II dens fracture, sequela
- ;;^UTILITY(U,$J,358.3,25304,1,4,0)
- ;;=4^S12.112S
- ;;^UTILITY(U,$J,358.3,25304,2)
- ;;=^5021634
- ;;^UTILITY(U,$J,358.3,25305,0)
- ;;=S12.111S^^76^1013^29
- ;;^UTILITY(U,$J,358.3,25305,1,0)
+ ;;^UTILITY(U,$J,358.3,25371,1,3,0)
+ ;;=3^Pressure Ulcer Left Elbow,Stage Unspec
+ ;;^UTILITY(U,$J,358.3,25371,1,4,0)
+ ;;=4^L89.029
+ ;;^UTILITY(U,$J,358.3,25371,2)
+ ;;=^5133649
+ ;;^UTILITY(U,$J,358.3,25372,0)
+ ;;=L89.119^^77^1018^97
+ ;;^UTILITY(U,$J,358.3,25372,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,25305,1,3,0)
- ;;=3^Posterior displaced Type II dens fracture, sequela
- ;;^UTILITY(U,$J,358.3,25305,1,4,0)
- ;;=4^S12.111S
- ;;^UTILITY(U,$J,358.3,25305,2)
- ;;=^5021628
- ;;^UTILITY(U,$J,358.3,25306,0)
- ;;=S52.562S^^76^1014^1
- ;;^UTILITY(U,$J,358.3,25306,1,0)
+ ;;^UTILITY(U,$J,358.3,25372,1,3,0)
+ ;;=3^Pressure Ulcer Right Upper Back,Stage Unspec
+ ;;^UTILITY(U,$J,358.3,25372,1,4,0)
+ ;;=4^L89.119
+ ;;^UTILITY(U,$J,358.3,25372,2)
+ ;;=^5009357
+ ;;^UTILITY(U,$J,358.3,25373,0)
+ ;;=L89.110^^77^1018^98
+ ;;^UTILITY(U,$J,358.3,25373,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,25306,1,3,0)
- ;;=3^Barton's fracture of left radius, sequela
- ;;^UTILITY(U,$J,358.3,25306,1,4,0)
- ;;=4^S52.562S
- ;;^UTILITY(U,$J,358.3,25306,2)
- ;;=^5030896
- ;;^UTILITY(U,$J,358.3,25307,0)
- ;;=S52.561S^^76^1014^2
- ;;^UTILITY(U,$J,358.3,25307,1,0)
+ ;;^UTILITY(U,$J,358.3,25373,1,3,0)
+ ;;=3^Pressure Ulcer Right Upper Back,Unstageable
+ ;;^UTILITY(U,$J,358.3,25373,1,4,0)
+ ;;=4^L89.110
+ ;;^UTILITY(U,$J,358.3,25373,2)
+ ;;=^5009352
+ ;;^UTILITY(U,$J,358.3,25374,0)
+ ;;=L89.111^^77^1018^93
+ ;;^UTILITY(U,$J,358.3,25374,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,25307,1,3,0)
- ;;=3^Barton's fracture of right radius, sequela
- ;;^UTILITY(U,$J,358.3,25307,1,4,0)
- ;;=4^S52.561S
- ;;^UTILITY(U,$J,358.3,25307,2)
- ;;=^5030880
- ;;^UTILITY(U,$J,358.3,25308,0)
- ;;=S52.382S^^76^1014^3
- ;;^UTILITY(U,$J,358.3,25308,1,0)
+ ;;^UTILITY(U,$J,358.3,25374,1,3,0)
+ ;;=3^Pressure Ulcer Right Upper Back,Stage 1
+ ;;^UTILITY(U,$J,358.3,25374,1,4,0)
+ ;;=4^L89.111
+ ;;^UTILITY(U,$J,358.3,25374,2)
+ ;;=^5009353
+ ;;^UTILITY(U,$J,358.3,25375,0)
+ ;;=L89.112^^77^1018^94
+ ;;^UTILITY(U,$J,358.3,25375,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,25308,1,3,0)
- ;;=3^Bent bone of left radius, sequela
- ;;^UTILITY(U,$J,358.3,25308,1,4,0)
- ;;=4^S52.382S
- ;;^UTILITY(U,$J,358.3,25308,2)
- ;;=^5030526
- ;;^UTILITY(U,$J,358.3,25309,0)
- ;;=S52.381S^^76^1014^5
- ;;^UTILITY(U,$J,358.3,25309,1,0)
+ ;;^UTILITY(U,$J,358.3,25375,1,3,0)
+ ;;=3^Pressure Ulcer Right Upper Back,Stage 2
+ ;;^UTILITY(U,$J,358.3,25375,1,4,0)
+ ;;=4^L89.112
+ ;;^UTILITY(U,$J,358.3,25375,2)
+ ;;=^5009354
+ ;;^UTILITY(U,$J,358.3,25376,0)
+ ;;=L89.113^^77^1018^95
+ ;;^UTILITY(U,$J,358.3,25376,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,25309,1,3,0)
- ;;=3^Bent bone of right radius, sequela
- ;;^UTILITY(U,$J,358.3,25309,1,4,0)
- ;;=4^S52.381S
- ;;^UTILITY(U,$J,358.3,25309,2)
- ;;=^5030510
- ;;^UTILITY(U,$J,358.3,25310,0)
- ;;=S52.532S^^76^1014^7
- ;;^UTILITY(U,$J,358.3,25310,1,0)
+ ;;^UTILITY(U,$J,358.3,25376,1,3,0)
+ ;;=3^Pressure Ulcer Right Upper Back,Stage 3
+ ;;^UTILITY(U,$J,358.3,25376,1,4,0)
+ ;;=4^L89.113
+ ;;^UTILITY(U,$J,358.3,25376,2)
+ ;;=^5009355
+ ;;^UTILITY(U,$J,358.3,25377,0)
+ ;;=L89.114^^77^1018^96
+ ;;^UTILITY(U,$J,358.3,25377,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,25310,1,3,0)
- ;;=3^Colles' fracture of left radius, sequela
- ;;^UTILITY(U,$J,358.3,25310,1,4,0)
- ;;=4^S52.532S
- ;;^UTILITY(U,$J,358.3,25310,2)
- ;;=^5030752
- ;;^UTILITY(U,$J,358.3,25311,0)
- ;;=S52.531S^^76^1014^8
- ;;^UTILITY(U,$J,358.3,25311,1,0)
+ ;;^UTILITY(U,$J,358.3,25377,1,3,0)
+ ;;=3^Pressure Ulcer Right Upper Back,Stage 4
+ ;;^UTILITY(U,$J,358.3,25377,1,4,0)
+ ;;=4^L89.114
+ ;;^UTILITY(U,$J,358.3,25377,2)
+ ;;=^5009356
+ ;;^UTILITY(U,$J,358.3,25378,0)
+ ;;=L89.129^^77^1018^55
+ ;;^UTILITY(U,$J,358.3,25378,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,25311,1,3,0)
- ;;=3^Colles' fracture of right radius, sequela
- ;;^UTILITY(U,$J,358.3,25311,1,4,0)
- ;;=4^S52.531S
- ;;^UTILITY(U,$J,358.3,25311,2)
- ;;=^5030736
- ;;^UTILITY(U,$J,358.3,25312,0)
- ;;=S52.352S^^76^1014^13
- ;;^UTILITY(U,$J,358.3,25312,1,0)
+ ;;^UTILITY(U,$J,358.3,25378,1,3,0)
+ ;;=3^Pressure Ulcer Left Upper Back,Stage Unspec
+ ;;^UTILITY(U,$J,358.3,25378,1,4,0)
+ ;;=4^L89.129
+ ;;^UTILITY(U,$J,358.3,25378,2)
+ ;;=^5133652
+ ;;^UTILITY(U,$J,358.3,25379,0)
+ ;;=L89.120^^77^1018^56
+ ;;^UTILITY(U,$J,358.3,25379,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,25312,1,3,0)
- ;;=3^Disp fx of comminuted shaft of radius, right arm, sequela 
- ;;^UTILITY(U,$J,358.3,25312,1,4,0)
- ;;=4^S52.352S
- ;;^UTILITY(U,$J,358.3,25312,2)
- ;;=^5030286
- ;;^UTILITY(U,$J,358.3,25313,0)
- ;;=S52.351S^^76^1014^15
- ;;^UTILITY(U,$J,358.3,25313,1,0)
+ ;;^UTILITY(U,$J,358.3,25379,1,3,0)
+ ;;=3^Pressure Ulcer Left Upper Back,Unstageable
+ ;;^UTILITY(U,$J,358.3,25379,1,4,0)
+ ;;=4^L89.120
+ ;;^UTILITY(U,$J,358.3,25379,2)
+ ;;=^5009358
+ ;;^UTILITY(U,$J,358.3,25380,0)
+ ;;=L89.121^^77^1018^51
+ ;;^UTILITY(U,$J,358.3,25380,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,25313,1,3,0)
- ;;=3^Disp fx of comminuted shaft of ulna, left arm, sequela 
- ;;^UTILITY(U,$J,358.3,25313,1,4,0)
- ;;=4^S52.351S
- ;;^UTILITY(U,$J,358.3,25313,2)
- ;;=^5030270
- ;;^UTILITY(U,$J,358.3,25314,0)
- ;;=S52.122S^^76^1014^22
- ;;^UTILITY(U,$J,358.3,25314,1,0)
+ ;;^UTILITY(U,$J,358.3,25380,1,3,0)
+ ;;=3^Pressure Ulcer Left Upper Back,Stage 1
+ ;;^UTILITY(U,$J,358.3,25380,1,4,0)
+ ;;=4^L89.121
+ ;;^UTILITY(U,$J,358.3,25380,2)
+ ;;=^5009359
+ ;;^UTILITY(U,$J,358.3,25381,0)
+ ;;=L89.122^^77^1018^52
+ ;;^UTILITY(U,$J,358.3,25381,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,25314,1,3,0)
- ;;=3^Disp fx of head of left radius, sequela      
- ;;^UTILITY(U,$J,358.3,25314,1,4,0)
- ;;=4^S52.122S
- ;;^UTILITY(U,$J,358.3,25314,2)
- ;;=^5029078
- ;;^UTILITY(U,$J,358.3,25315,0)
- ;;=S52.121S^^76^1014^23
- ;;^UTILITY(U,$J,358.3,25315,1,0)
+ ;;^UTILITY(U,$J,358.3,25381,1,3,0)
+ ;;=3^Pressure Ulcer Left Upper Back,Stage 2
+ ;;^UTILITY(U,$J,358.3,25381,1,4,0)
+ ;;=4^L89.122
+ ;;^UTILITY(U,$J,358.3,25381,2)
+ ;;=^5009360
+ ;;^UTILITY(U,$J,358.3,25382,0)
+ ;;=L89.123^^77^1018^53
+ ;;^UTILITY(U,$J,358.3,25382,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,25315,1,3,0)
- ;;=3^Disp fx of head of right radius, sequela     
- ;;^UTILITY(U,$J,358.3,25315,1,4,0)
- ;;=4^S52.121S
- ;;^UTILITY(U,$J,358.3,25315,2)
- ;;=^5029062
- ;;^UTILITY(U,$J,358.3,25316,0)
- ;;=S52.132S^^76^1014^32
- ;;^UTILITY(U,$J,358.3,25316,1,0)
+ ;;^UTILITY(U,$J,358.3,25382,1,3,0)
+ ;;=3^Pressure Ulcer Left Upper Back,Stage 3
+ ;;^UTILITY(U,$J,358.3,25382,1,4,0)
+ ;;=4^L89.123
+ ;;^UTILITY(U,$J,358.3,25382,2)
+ ;;=^5009361
+ ;;^UTILITY(U,$J,358.3,25383,0)
+ ;;=L89.124^^77^1018^54
+ ;;^UTILITY(U,$J,358.3,25383,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,25316,1,3,0)
- ;;=3^Disp fx of neck of left radius, sequela      
- ;;^UTILITY(U,$J,358.3,25316,1,4,0)
- ;;=4^S52.132S
- ;;^UTILITY(U,$J,358.3,25316,2)
- ;;=^5029174
- ;;^UTILITY(U,$J,358.3,25317,0)
- ;;=S52.131S^^76^1014^33
- ;;^UTILITY(U,$J,358.3,25317,1,0)
+ ;;^UTILITY(U,$J,358.3,25383,1,3,0)
+ ;;=3^Pressure Ulcer Left Upper Back,Stage 4
+ ;;^UTILITY(U,$J,358.3,25383,1,4,0)
+ ;;=4^L89.124
+ ;;^UTILITY(U,$J,358.3,25383,2)
+ ;;=^5009362
+ ;;^UTILITY(U,$J,358.3,25384,0)
+ ;;=L89.130^^77^1018^92
+ ;;^UTILITY(U,$J,358.3,25384,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,25317,1,3,0)
- ;;=3^Disp fx of neck of right radius, sequela     
- ;;^UTILITY(U,$J,358.3,25317,1,4,0)
- ;;=4^S52.131S
- ;;^UTILITY(U,$J,358.3,25317,2)
- ;;=^5029158
- ;;^UTILITY(U,$J,358.3,25318,0)
- ;;=S52.332S^^76^1014^34
- ;;^UTILITY(U,$J,358.3,25318,1,0)
+ ;;^UTILITY(U,$J,358.3,25384,1,3,0)
+ ;;=3^Pressure Ulcer Right Lower Back,Unstageable
+ ;;^UTILITY(U,$J,358.3,25384,1,4,0)
+ ;;=4^L89.130
+ ;;^UTILITY(U,$J,358.3,25384,2)
+ ;;=^5009363
+ ;;^UTILITY(U,$J,358.3,25385,0)
+ ;;=L89.139^^77^1018^91
+ ;;^UTILITY(U,$J,358.3,25385,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,25318,1,3,0)
- ;;=3^Disp fx of oblique shaft of left radius, sequela
- ;;^UTILITY(U,$J,358.3,25318,1,4,0)
- ;;=4^S52.332S
- ;;^UTILITY(U,$J,358.3,25318,2)
- ;;=^5030094
- ;;^UTILITY(U,$J,358.3,25319,0)
- ;;=S52.331S^^76^1014^36
- ;;^UTILITY(U,$J,358.3,25319,1,0)
+ ;;^UTILITY(U,$J,358.3,25385,1,3,0)
+ ;;=3^Pressure Ulcer Right Lower Back,Stage Unspec
+ ;;^UTILITY(U,$J,358.3,25385,1,4,0)
+ ;;=4^L89.139
+ ;;^UTILITY(U,$J,358.3,25385,2)
+ ;;=^5133653
+ ;;^UTILITY(U,$J,358.3,25386,0)
+ ;;=L89.131^^77^1018^87
+ ;;^UTILITY(U,$J,358.3,25386,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,25319,1,3,0)
- ;;=3^Disp fx of oblique shaft of right radius, sequela
- ;;^UTILITY(U,$J,358.3,25319,1,4,0)
- ;;=4^S52.331S
- ;;^UTILITY(U,$J,358.3,25319,2)
- ;;=^5030078
- ;;^UTILITY(U,$J,358.3,25320,0)
- ;;=S52.362S^^76^1014^47
- ;;^UTILITY(U,$J,358.3,25320,1,0)
+ ;;^UTILITY(U,$J,358.3,25386,1,3,0)
+ ;;=3^Pressure Ulcer Right Lower Back,Stage 1
+ ;;^UTILITY(U,$J,358.3,25386,1,4,0)
+ ;;=4^L89.131
+ ;;^UTILITY(U,$J,358.3,25386,2)
+ ;;=^5009364
+ ;;^UTILITY(U,$J,358.3,25387,0)
+ ;;=L89.132^^77^1018^88
+ ;;^UTILITY(U,$J,358.3,25387,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,25320,1,3,0)
- ;;=3^Disp fx of segmental shaft of radius, left arm, sequela
- ;;^UTILITY(U,$J,358.3,25320,1,4,0)
- ;;=4^S52.362S
- ;;^UTILITY(U,$J,358.3,25320,2)
- ;;=^5030382
- ;;^UTILITY(U,$J,358.3,25321,0)
- ;;=S52.361S^^76^1014^48
- ;;^UTILITY(U,$J,358.3,25321,1,0)
+ ;;^UTILITY(U,$J,358.3,25387,1,3,0)
+ ;;=3^Pressure Ulcer Right Lower Back,Stage 2
+ ;;^UTILITY(U,$J,358.3,25387,1,4,0)
+ ;;=4^L89.132
+ ;;^UTILITY(U,$J,358.3,25387,2)
+ ;;=^5009365
+ ;;^UTILITY(U,$J,358.3,25388,0)
+ ;;=L89.133^^77^1018^89
+ ;;^UTILITY(U,$J,358.3,25388,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,25321,1,3,0)
- ;;=3^Disp fx of segmental shaft of radius, right arm, sequela
- ;;^UTILITY(U,$J,358.3,25321,1,4,0)
- ;;=4^S52.361S
- ;;^UTILITY(U,$J,358.3,25321,2)
- ;;=^5030366
- ;;^UTILITY(U,$J,358.3,25322,0)
- ;;=S52.342S^^76^1014^51
+ ;;^UTILITY(U,$J,358.3,25388,1,3,0)
+ ;;=3^Pressure Ulcer Right Lower Back,Stage 3
+ ;;^UTILITY(U,$J,358.3,25388,1,4,0)
+ ;;=4^L89.133
+ ;;^UTILITY(U,$J,358.3,25388,2)
+ ;;=^5009366
+ ;;^UTILITY(U,$J,358.3,25389,0)
+ ;;=L89.134^^77^1018^90
+ ;;^UTILITY(U,$J,358.3,25389,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,25389,1,3,0)
+ ;;=3^Pressure Ulcer Right Lower Back,Stage 4
+ ;;^UTILITY(U,$J,358.3,25389,1,4,0)
+ ;;=4^L89.134
+ ;;^UTILITY(U,$J,358.3,25389,2)
+ ;;=^5009367
+ ;;^UTILITY(U,$J,358.3,25390,0)
+ ;;=L89.140^^77^1018^50
+ ;;^UTILITY(U,$J,358.3,25390,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,25390,1,3,0)
+ ;;=3^Pressure Ulcer Left Lower Back,Unstageable
+ ;;^UTILITY(U,$J,358.3,25390,1,4,0)
+ ;;=4^L89.140
+ ;;^UTILITY(U,$J,358.3,25390,2)
+ ;;=^5133655
+ ;;^UTILITY(U,$J,358.3,25391,0)
+ ;;=L89.149^^77^1018^49
+ ;;^UTILITY(U,$J,358.3,25391,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,25391,1,3,0)
+ ;;=3^Pressure Ulcer Left Lower Back,Stage Unspec
+ ;;^UTILITY(U,$J,358.3,25391,1,4,0)
+ ;;=4^L89.149
+ ;;^UTILITY(U,$J,358.3,25391,2)
+ ;;=^5133654
+ ;;^UTILITY(U,$J,358.3,25392,0)
+ ;;=L89.141^^77^1018^45
+ ;;^UTILITY(U,$J,358.3,25392,1,0)
+ ;;=^358.31IA^4^2

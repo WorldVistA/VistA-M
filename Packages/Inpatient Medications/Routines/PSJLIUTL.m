@@ -1,5 +1,5 @@
 PSJLIUTL ;BIR/MV - IV LM utilities modules ;Jul 02, 2018@09:45
- ;;5.0;INPATIENT MEDICATIONS ;**39,50,58,81,85,110,180,263,267,373**;16 DEC 97;Build 3
+ ;;5.0;INPATIENT MEDICATIONS ;**39,50,58,81,85,110,180,263,267,373,364**;16 DEC 97;Build 47
  ;
  ; Reference to ^ORD(101 is supported by DBIA #872.
  ; Reference to ^PS(55 is supported by DBIA #2191.
@@ -8,6 +8,8 @@ PSJLIUTL ;BIR/MV - IV LM utilities modules ;Jul 02, 2018@09:45
  ; Reference to ^PS(52.6 is supported by DBIA 1231.
  ;
  ; NFI changes for FR#2@wrtdrg(drgt)
+ ;*364 add Haz meds printing
+ ;
 FLDNO(X,COL)    ; Display the number next to the field name.
  ;
  ; X=Text; COL=Column to start from
@@ -53,6 +55,24 @@ WRTDRG(DRGT) ; Print AD/SOL drugs for "backdoor" view.
  . ;PSJLMX is newed in AD^PSJLIVMD & AD^PSJLIVFD.  This var count # of ad/sol so we knows
  . ;which line to blink the Requested start/stop dates.
  . S PSJLMX=$G(PSJLMX)+1
+ . ;*364 hazardous handle/dispose functionality added-bg
+ . I XQY0["PSJI UP" D
+ .. I DRGT="AD" D
+ ... N P,PSHAZ,PSJNX S PSHAZ=$$HAZ^PSSUTIL($P($G(DRG("AD",DRGX)),U,6),"OI")
+ ... I $P(PSHAZ,"^")=0&($P(PSHAZ,"^",2)=0) Q
+ ... I $P(PSHAZ,"^")=1 S P("HAZH")="<<HAZ Handle>>"
+ ... I $P(PSHAZ,"^",2)=1 S P("HAZD")=" <<HAZ Dispose>>"
+ ... S PSJNX=$G(P("HAZH"))_$G(P("HAZD")) K P("HAZH"),P("HAZD")
+ ... S PSJL=$$SETSTR^VALM1(PSJNX,PSJL,8,73)
+ ... D SETTMP^PSJLMPRU("PSJI",PSJL)
+ .. I DRGT="SOL" D
+ ... K PSHAZ,P("HAZH"),P("HAZD") N PSHAZ S PSHAZ=$$HAZ^PSSUTIL($P($G(DRG("SOL",1)),U,6),"OI")
+ ... I $P(PSHAZ,"^")=0&($P(PSHAZ,"^",2)=0) Q
+ ... I $P(PSHAZ,"^")=1 S P("HAZH")="<<HAZ Handle>>"
+ ... I $P(PSHAZ,"^",2)=1 S P("HAZD")="<<HAZ Dispose>>"
+ ... S PSJNX=$G(P("HAZH"))_$G(P("HAZD")) K P("HAZH"),P("HAZD")
+ ... S PSJL=$$SETSTR^VALM1(PSJNX,PSJL,8,73)
+ ... D SETTMP^PSJLMPRU("PSJI",PSJL)
  Q
  ;
 WTPC ; Write provider comments.

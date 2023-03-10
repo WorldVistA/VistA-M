@@ -1,5 +1,9 @@
-PXRMSTS ;SLC/PKR,AGP - Master File Server event handling routines. ;12/12/2018
- ;;2.0;CLINICAL REMINDERS;**12,17,18,26,45**;Feb 04, 2005;Build 566
+PXRMSTS ;SLC/PKR,AGP - Master File Server event handling routines. 09/01/2021
+ ;;2.0;CLINICAL REMINDERS;**12,17,18,26,45,65**;Feb 04, 2005;Build 438
+ ;
+ ;      API            ICR
+ ;$$GETSTAT^HDISVF01   4640
+ ;GETSTAT^XTID         4631
  ;==============================
 AERRMSG(EMSG,NL) ;Add the UPDATE^DIE error message.
  N ERRMSG,IND
@@ -68,6 +72,15 @@ BLDDLGTM(SUB) ;Build an index of dialog finding usage.
  ..S ^TMP($J,SUB,GBL,FIEN,IEN,"BL",SEQ)=""
  Q
  ;
+BLDFINDS(FINDINGS) ;
+ N FILE,TFIND,TYPE
+ D RFIND^PXRMFRPT(.TFIND)
+ D DFIND^PXRMFRPT(.TFIND)
+ S TYPE="" F  S TYPE=$O(TFIND(TYPE)) Q:TYPE=""  D
+ .S FILE=$G(TFIND(TYPE)) Q:TYPE=""
+ .S FINDINGS(FILE)=""
+ Q
+ ;
  ;==============================
 DEF(FILENUM,GBL,FIEN,REP,MAPACT,NL) ;Search all reminder definitions
  ;for any  that are using this finding, defined by the global (GBL) and
@@ -115,11 +128,10 @@ DIALOG(FILENUM,GBL,FIEN,REPA,REPB,MAPACT,DSUB,DLGUNMP,STATUS,NL) ;
  I '$D(^TMP($J,DSUB,GBL,FIEN)) S NL=NL+1,^TMP("PXRMXMZ",$J,NL,0)="  None" Q
  S DIE="^PXRMD(801.41,",DISABLE=1
  S DR="3////^S X=DISABLE"
- ;DBIA #4640
  S FILESTAT=+$$GETSTAT^HDISVF01(FILENUM)
  S LOCK=$S(FILESTAT=6:1,1:0)
  ;
- ;No replacement list dialog names, if file status of 6 disable the 
+ ;No replacement list dialog names, if file status of 6 disable the
  ;dialog items if the term is inactive
  I MAPACT="N" D  G DIALOGX
  .S DA=0
@@ -194,14 +206,6 @@ DIALUPD(OLDVALUE,NEWVALUE,GBL,FIELD,DIEN,FIEN,FILENUM,FIELDNAM,EDITHIST) ;
  D BLDDLGEH(.EDITHIST,DIEN,TEXT)
  Q
  ;
-BLDFINDS(FINDINGS) ;
- N FILE,TFIND,TYPE
- D RFIND^PXRMFRPT(.TFIND)
- D DFIND^PXRMFRPT(.TFIND)
- S TYPE="" F  S TYPE=$O(TFIND(TYPE)) Q:TYPE=""  D
- .S FILE=$G(TFIND(TYPE)) Q:TYPE=""
- .S FINDINGS(FILE)=""
- Q
  ;==============================
 ERROR(EVENT,NL) ;Error
  N IND
@@ -215,7 +219,7 @@ ERROR(EVENT,NL) ;Error
  ;==============================
 EVDRVR ;Event driver for STS events.
  N DEFL,DIAL,DLGUNMP,FIEN,FIENS,FILENUM,FILES,FINDINGS,FSTAT,GBL,MAPACT,NL
- N REPA,REPB,STATUS,TYPE
+ N REPA,REPB,STATUS,TYPE,OLDSTATUS
  S ZTREQ="@"
  K ^TMP($J,"DLG FIND"),^TMP($J,"FDATA"),^TMP($J,"PXRM DIALOGS"),^TMP("PXRMXMZ",$J)
  D BLDDLGTM("DLG FIND")
@@ -236,11 +240,15 @@ EVDRVR ;Event driver for STS events.
  .. I TYPE="STATUS" Q
  .. S FIEN=""
  .. F  S FIEN=$O(^XTMP(EVENT,FILENUM,TYPE,FIEN)) Q:FIEN=""  D
+ ... I FILENUM=9999999.14,FIEN=$$IMMNODEF^PXAPIIM() Q
  ...;Call processing routines.
  ... S FIENS=FIEN_","
- ...;DBIA #4631
  ... S STATUS=$$GETSTAT^XTID(FILENUM,"",FIENS)
  ... I $P(STATUS,U,3)="" S $P(STATUS,U,3)="UNDEFINED"
+ ... S OLDSTATUS=""
+ ... I $G(^XTMP(EVENT,FILENUM,"STATUS",FIEN))'="" D
+ .... S OLDSTATUS=$P(^XTMP(EVENT,FILENUM,"STATUS",FIEN),U,1,2)
+ .... ;S OLDSTATUS=OLDSTATUS_U_$$EXTERNAL^DILFD(9999999.1499,.02,"",+OLDSTATUS)
  ... I TYPE="NEW" D NEW(EVENT,FILENUM,FIEN,STATUS,.NL) Q
  ... I TYPE="BEFORE" Q
  ... I TYPE'="AFTER" D UNKNOWN(TYPE,.NL) Q
@@ -249,7 +257,9 @@ EVDRVR ;Event driver for STS events.
  ...;MAP ACTION can be M (map) or U (unmap) or N (none).
  ...;Set the map action for displaying the status.
  ... S MAPACT=$S(REPA=REPB:"N",REPA'=(FIEN_";"_FILENUM):"M",1:"U")
- ... D STATUSTX(MAPACT,FILENUM,FIEN,REPA,REPB,STATUS,.NL)
+ ... ; if nothing was changed, don?t need to include it.
+ ... I '$D(^XTMP(EVENT,FILENUM,"AFTER",FIEN,0)),MAPACT="N" Q
+ ... D STATUSTX(MAPACT,FILENUM,FIEN,REPA,REPB,OLDSTATUS,STATUS,.NL)
  ... S DLGUNMP=$S(MAPACT="U":1,1:0)
  ...;Unless the file status is 6 do not do any automatic replacements.
  ... S MAPACT=$S(FSTAT'=6:"N",1:MAPACT)
@@ -260,6 +270,9 @@ EVDRVR ;Event driver for STS events.
  ... D TERMLIST^PXRMFRPT(FILENUM,GBL,FIEN,"FDATA")
  ... D TERM(FILENUM,GBL,FIEN,REPA,MAPACT,.NL)
  ... D DIALOG(FILENUM,GBL,FIEN,REPA,REPB,MAPACT,"DLG FIND",DLGUNMP,STATUS,.NL)
+ ;
+ ; If there is no content, don't send the message
+ I NL=1 Q
  ;
  ;Deliver the MailMan message.
 SEND D SEND^PXRMMSG("PXRMXMZ",SUBJECT,"",DUZ)
@@ -340,13 +353,13 @@ RFWT(IEN,FI,TERM,NL) ;Definition finding has a replacement; change the
  Q
  ;
  ;==============================
-STATUSTX(MAPACT,FILENUM,FIEN,REPA,REPB,STATUS,NL) ;Generate the status text.
+STATUSTX(MAPACT,FILENUM,FIEN,REPA,REPB,OLDSTATUS,STATUS,NL) ;Generate the status text.
  N ABBR,FNAME,NAME,RFNAME,RFNUM,RIEN,RNAME,TEMP
  S FNAME=$$GET1^DID(FILENUM,"","","NAME")
  S NAME=$$GET1^DIQ(FILENUM,FIEN,.01)
  S NL=NL+1,^TMP("PXRMXMZ",$J,NL,0)=""
  S NL=NL+1,^TMP("PXRMXMZ",$J,NL,0)="======================================================"
- S NL=NL+1,^TMP("PXRMXMZ",$J,NL,0)=FNAME_" entry "_NAME_" status is "_$P(STATUS,U,3)
+ S NL=NL+1,^TMP("PXRMXMZ",$J,NL,0)=FNAME_" entry "_NAME_" status "_$S(OLDSTATUS'=""&(+OLDSTATUS'=+STATUS):"was changed to ",1:"is ")_$P(STATUS,U,3)
  I MAPACT="M" D
  . S RIEN=$P(REPA,";",1)
  . S RFNUM=$P(REPA,";",2)

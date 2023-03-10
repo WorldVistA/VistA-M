@@ -1,0 +1,193 @@
+PSOERXAU ;BIRM/MFR - eRx Audit Log View - Listmam Driver ;11/02/20
+ ;;7.0;OUTPATIENT PHARMACY;**617,651**;DEC 1997;Build 30
+ ;
+EN(PSOERXID) ;Menu option entry point
+ N PSOSRTBY,PSORDER,SHOWERX,UNDLN,HIGHLN,REVLN,LASTLINE,VALMCNT
+ ;
+ S PSOSRTBY="DT",PSORDER="A",SHOWERX=0
+ W !,"Please wait..."
+ D EN^VALM("PSO ERX AUDIT LOG")
+ D FULL^VALM1
+ G EXIT
+ ;
+HDR      ;Header
+ N LINE,POS,LINE1,LINE2,LINE3,LINE4,WT,WTDT,HT,HTDT,VADM,DFN,PNAME,DOB,SEX,X,GMRAL,ADVREA
+ K VALMHDR S VALMHDR(1)="eRx Patient: "_$$GET1^DIQ(52.49,PSOERXID,.04,"E")
+ S VALMHDR(2)="eRx Reference #: "_$$GET1^DIQ(52.49,PSOERXID,.01)
+ D SETHDR
+ Q
+ ;
+INIT ;Populates the Body section for ListMan
+ K ^TMP("PSOERXAU",$J),^TMP("PSOAUDSR",$J)
+ D SETSORT(PSOSRTBY),SETLINE,SETHDR
+ Q
+ ;
+SETLINE ;Sets the line to be displayed in ListMan
+ N TYPE,SRT,AUD,LINE,ZAUD,TOTAL,I,X,X1
+ K ^TMP("PSOERXAU",$J) S VALMCNT=0
+ ;
+ I '$D(^TMP("PSOAUDSR",$J)) D  Q
+ . F I=1:1:6 S ^TMP("PSOERXAU",$J,I,0)=""
+ . S ^TMP("PSOERXAU",$J,7,0)="                    No Audit Log for this eRx"
+ . S VALMCNT=1
+ ;
+ ;Resetting list to NORMAL video attributes
+ F I=1:1:$G(LASTLINE) D RESTORE^VALM10(I)
+ K UNDLN,HIGHLN,REVLN
+ ;Building the list (line by line)
+ S (SRT,AUD)="",LINE=0 K ^TMP("PSOERXAU",$J)
+ S SRT=$S(PSORDER="D":"zzz",1:""),ORDER=$S(PSORDER="D":-1,1:1)
+ F  S SRT=$O(^TMP("PSOAUDSR",$J,SRT),ORDER) Q:SRT=""  D
+ . F  S AUD=$O(^TMP("PSOAUDSR",$J,SRT,AUD)) Q:AUD=""  D
+ . . S ZAUD=$G(^TMP("PSOAUDSR",$J,SRT,AUD))
+ . . S X1=$$FMTE^XLFDT($P(ZAUD,"^")),$E(X1,28)=$P(ZAUD,"^",2),$E(X1,54)=$E($$GET1^DIQ(200,+$P(ZAUD,"^",3),.01),1,26)
+ . . S LINE=LINE+1,^TMP("PSOERXAU",$J,LINE,0)=X1,UNDLN(LINE)="1^80"
+ . . I $G(SHOWERX) D ERXVAL(PSOERXID,$P(ZAUD,"^",2))
+ . . D SETVALUE(PSOERXID,$P(ZAUD,"^",2),AUD,"OLD")
+ . . D SETVALUE(PSOERXID,$P(ZAUD,"^",2),AUD,"NEW")
+ . . S LINE=LINE+1,^TMP("PSOERXAU",$J,LINE,0)=""
+ ;
+ ;Saving NORMAL video attributes to be reset later
+ I LINE>$G(LASTLINE) D
+ . F I=($G(LASTLINE)+1):1:LINE D SAVE^VALM10(I)
+ . S LASTLINE=LINE
+ S VALMCNT=+$G(LINE)
+ D VIDEO
+ Q
+ ;
+VIDEO ; - Changes the Video Attributes for the list
+ ; - Highlighting the group lines (order type and status)
+ N LN
+ F LN=1:1:LASTLINE D
+ . I $G(UNDLN(LN)) D CNTRL^VALM10(LN,+UNDLN(LN),$P(UNDLN(LN),"^",2),IOUON,IOINORM)
+ . I $G(HIGHLN(LN)) D CNTRL^VALM10(LN,+HIGHLN(LN),$P(HIGHLN(LN),"^",2),IOINHI,IOINORM)
+ . I $G(REVLN(LN)) D CNTRL^VALM10(LN,+REVLN(LN),$P(REVLN(LN),"^",2),IORVON,IORVOFF)
+ Q
+ ;
+SETSORT(SORTBY) ;Sets the data sorted by the SORTBY specified
+ N AUD,ZAUD,DATETIME,FLDNAME,EDITEDBY,I
+ K ^TMP("PSOAUDSR",$J)
+ ;Loading eRx Audit Log (Sorted)
+ S AUD=0
+ F  S AUD=$O(^PS(52.49,PSOERXID,"AUD",AUD)) Q:'AUD  D
+ . S ZAUD=$G(^PS(52.49,PSOERXID,"AUD",AUD,0))
+ . S DATETIME=$P(ZAUD,"^",1)
+ . S FLDNAME=$P(ZAUD,"^",2)
+ . S EDITEDBY=$P(ZAUD,"^",3)
+ . S SORT=$S(SORTBY="DT":DATETIME,SORTBY="FN":FLDNAME,SORTBY="EB":$$GET1^DIQ(200,EDITEDBY,.01))
+ . S ^TMP("PSOAUDSR",$J,SORT,AUD)=ZAUD
+ . F I=1:1 Q:'$D(^PS(52.49,PSOERXID,"AUD",AUD,"VAL",I))  D
+ . . S ^TMP("PSOAUDSR",$J,SORT,AUD,"VAL",I)=^PS(52.49,PSOERXID,"AUD",AUD,"VAL",I,0)
+ Q
+ ;
+DT ;Sort by Date/Time
+ D SORT("DT")
+ Q
+ ;
+FN ;Sort by Field Name
+ D SORT("FN")
+ Q
+ ;
+EB ;Sort by Edite By
+ D SORT("EB")
+ Q
+ ;
+SH ;Show/Hide eRx Value
+ S SHOWERX=$S($G(SHOWERX):0,1:1)
+ D REFRESH
+ Q
+ ;
+SORT(FIELD) ;Sort entries by FIELD
+ I PSOSRTBY=FIELD S PSORDER=$S(PSORDER="A":"D",1:"A")
+ E  S PSOSRTBY=FIELD,PSORDER="A"
+ D REFRESH
+ Q
+ ;
+REFRESH ;Screen Refresh
+ W ?52,"Please wait..." D INIT,HDR S VALMBCK="R"
+ Q
+ ;
+EXIT ;
+ K ^TMP("PSOERXAU",$J),^TMP("PSOAUDSR",$J)
+ Q
+ ;
+HELP Q
+ ;
+SETHDR ; - Displays the Header Line
+ N HDR,ORD,POS
+ ;
+ ; - Line 1
+ S HDR="DATE/TIME",$E(HDR,28)="FIELD NAME",$E(HDR,54)="EDITED BY"
+ S $E(HDR,81)="" D INSTR^VALM1(IORVON_HDR_IOINORM,1,4)
+ S ORD=$S(PSORDER="A":"[^]",1:"[v]")
+ S:PSOSRTBY="DT" POS=11 S:PSOSRTBY="FN" POS=39 S:PSOSRTBY="EB" POS=64
+ D INSTR^VALM1(IOINHI_IORVON_ORD_IOINORM,POS,4)
+ Q
+ ;
+SETOLD(PSOERXID,AUD) ; Set Old Value
+ N OLDVAL,X,I,DIWL,DIWR,DIWF
+ D OLDVAL^PSOERXUT(PSOERXID,$P(Z,"^",2),AUD,.OLDVAL)
+ S X="" F I=1:1 Q:'$D(OLDVAL(I))  S X=X_" "_OLDVAL(I)
+ K ^UTILITY($J,"W") S DIWL=1,DIWR=70,DIWF="|" D ^DIWP
+ F I=1:1 Q:'$D(^UTILITY($J,"W",1,I))  D
+ . S LINE=LINE+1,^TMP("PSOERXAU",$J,LINE,0)=$S(I=1:"Old Value:",1:"           ")_^UTILITY($J,"W",1,I,0)
+ Q
+ ;
+SETVALUE(ERXIEN,FIELD,AUDIEN,TYPE) ; Set Old and New Values
+ ; Input: (r) ERXIEN - Pointer to the ERX HOLDING QUEUE file (52.49)
+ ;        (r) FIELD  - Audited Field (e.g., "SIG", "DRUG", etc.)
+ ;        (r) AUDIEN - Internal Entry Number for the Audit Log sub-file
+ ;        (r) TYPE   - Value Type ("OLD" or "NEW")
+ N OLDVAL,AUDVAL,I,X,DIWL,DIWR,DIWF
+ S AUDVAL=""
+ I TYPE="OLD" D
+ . D OLDVAL^PSOERXUT(ERXIEN,FIELD,AUDIEN,.OLDVAL)
+ . F I=1:1 Q:'$D(OLDVAL(I))  S AUDVAL=AUDVAL_" "_OLDVAL(I)
+ I TYPE="NEW" D
+ . F I=1:1 Q:'$D(^PS(52.49,ERXIEN,"AUD",AUDIEN,"VAL",I))  D
+ . . S AUDVAL=AUDVAL_" "_$G(^PS(52.49,ERXIEN,"AUD",AUDIEN,"VAL",I,0))
+ S $E(AUDVAL,1)=""
+ ;
+ S X=AUDVAL K ^UTILITY($J,"W") S DIWL=1,DIWR=70,DIWF="|" D ^DIWP
+ F I=1:1 Q:'$D(^UTILITY($J,"W",1,I))  D
+ . S LINE=LINE+1,^TMP("PSOERXAU",$J,LINE,0)=$S(I=1:$S(TYPE="NEW":"New",1:"Old")_" Value: ",1:"            ")_^UTILITY($J,"W",1,I,0)
+ . I TYPE="NEW" S HIGHLN(LINE)="12^80"
+ Q
+ ;
+ERXVAL(ERXIEN,FIELD) ; Set the Original Value
+ ; Input: (r) ERXIEN - Pointer to the ERX HOLDING QUEUE file (52.49)
+ ;        (r) FIELD  - Field Name
+ N VALUE,I
+ I FIELD="PATIENT" D
+ . N ERXPATID,SSN
+ . S ERXPATID=+$$GET1^DIQ(52.49,ERXIEN,.04,"I"),SSN=$$GET1^DIQ(52.46,ERXPATID,1.4)
+ . S VALUE(1)=$$GET1^DIQ(52.46,ERXPATID,.01)_" (L4SSN: "_$E(SSN,$L(SSN)-4,$L(SSN))_" | DOB: "_$$GET1^DIQ(52.46,ERXPATID,.08)_")"
+ ;
+ I FIELD="PROVIDER" D
+ . N ERXPRVID,SSN
+ . S ERXPRVID=+$$GET1^DIQ(52.49,ERXIEN,2.1,"I")
+ . S VALUE(1)=$$GET1^DIQ(52.48,ERXPRVID,.01)_" (DEA#: "_$$GET1^DIQ(52.48,ERXPRVID,1.6)_")"
+ ;
+ I FIELD="QTY" D
+ . S VALUE(1)=+$$GET1^DIQ(52.49,ERXIEN,5.1)
+ ;
+ I FIELD="DAYS SUPPLY" D
+ . S VALUE(1)=+$$GET1^DIQ(52.49,ERXIEN,5.5)
+ ;
+ I FIELD="# OF REFILLS" D
+ . S VALUE(1)=+$$GET1^DIQ(52.49,ERXIEN,5.6)
+ ;
+ I FIELD="DRUG" D
+ . S VALUE(1)=$$GET1^DIQ(52.49,ERXIEN,3.1)_$S($$GET1^DIQ(52.49,ERXIEN,4.2,"I")="ND":" (NDC#: "_$$NDCFMT^PSSNDCUT($$GET1^DIQ(52.49,ERXIEN,4.1))_")",1:"")
+ ;
+ I FIELD="SIG" D
+ . N X,DIWL,DIWR,DIWF S X=$$ERXSIG^PSOERXUT(ERXIEN)
+ . K ^UTILITY($J,"W") S DIWL=1,DIWR=70,DIWF="|" D ^DIWP
+ . F I=1:1 Q:'$D(^UTILITY($J,"W",1,I))  D
+ . . S VALUE(I)=^UTILITY($J,"W",1,I,0)
+ ;
+ I FIELD="PROVIDER COMMENTS"!(FIELD="PATIENT INSTRUCTIONS") S VALUE(1)="N/A"
+ ;
+ F I=1:1 Q:'$D(VALUE(I))  D
+ . S LINE=LINE+1,^TMP("PSOERXAU",$J,LINE,0)=$S(I=1:"eRx Value: ",1:"           ")_VALUE(I),REVLN(LINE)="12^"_($L(VALUE(I)))
+ Q

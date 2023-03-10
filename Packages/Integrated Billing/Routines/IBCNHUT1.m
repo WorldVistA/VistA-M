@@ -1,5 +1,5 @@
 IBCNHUT1 ;ALB/GEF - HPID/OEID UTILITIES ;11-MAR-14
- ;;2.0;INTEGRATED BILLING;**519,521**;21-MAR-94;Build 33
+ ;;2.0;INTEGRATED BILLING;**519,521,668**;21-MAR-94;Build 28
  ;;Per VA Directive 6402, this routine should not be modified.
  ;
  ; this routine contains various utilities for the HPID project.
@@ -78,7 +78,8 @@ VID(INS) ; this function gets the VA National ID for the insurance company/payer
  ; 
  N IBAPP,IBPYR,IBPY0
  ; get the ien of the IIV payer application
- S IBAPP=$O(^IBE(365.13,"B","IIV","")) Q:IBAPP="" ""
+ ;IB*668/TAZ - Changed Payer Application from IIV to EIV
+ S IBAPP=$O(^IBE(365.13,"B","EIV","")) Q:IBAPP="" ""
  ; find the payer
  S IBPYR=$P($G(^DIC(36,INS,3)),U,10) Q:IBPYR="" ""
  S IBPY0=$G(^IBE(365.12,IBPYR,1,IBAPP,0)) I $P(IBPY0,U,2)=1,$P(IBPY0,U,3)=1 Q $P($G(^IBE(365.12,IBPYR,0)),U,2)

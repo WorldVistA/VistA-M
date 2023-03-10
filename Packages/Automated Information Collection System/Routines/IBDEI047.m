@@ -1,674 +1,706 @@
-IBDEI047 ; ; 01-MAY-2020
- ;;3.0;IB ENCOUNTER FORM IMP/EXP;;MAY 01, 2020
+IBDEI047 ; ; 01-AUG-2022
+ ;;3.0;IB ENCOUNTER FORM IMP/EXP;;AUG 01, 2022
  Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,999) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
- ;;^UTILITY(U,$J,358.3,10081,2)
- ;;=^5010815
- ;;^UTILITY(U,$J,358.3,10082,0)
- ;;=M19.041^^48^494^137
- ;;^UTILITY(U,$J,358.3,10082,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,10082,1,3,0)
- ;;=3^Primary Osteoarthritis of Right Hand
- ;;^UTILITY(U,$J,358.3,10082,1,4,0)
- ;;=4^M19.041
- ;;^UTILITY(U,$J,358.3,10082,2)
- ;;=^5010817
- ;;^UTILITY(U,$J,358.3,10083,0)
- ;;=M19.042^^48^494^131
- ;;^UTILITY(U,$J,358.3,10083,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,10083,1,3,0)
- ;;=3^Primary Osteoarthritis of Left Hand
- ;;^UTILITY(U,$J,358.3,10083,1,4,0)
- ;;=4^M19.042
- ;;^UTILITY(U,$J,358.3,10083,2)
- ;;=^5010818
- ;;^UTILITY(U,$J,358.3,10084,0)
- ;;=M19.90^^48^494^72
- ;;^UTILITY(U,$J,358.3,10084,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,10084,1,3,0)
- ;;=3^Osteoarthritis,Unspec
- ;;^UTILITY(U,$J,358.3,10084,1,4,0)
- ;;=4^M19.90
- ;;^UTILITY(U,$J,358.3,10084,2)
- ;;=^5010853
- ;;^UTILITY(U,$J,358.3,10085,0)
- ;;=M25.40^^48^494^38
- ;;^UTILITY(U,$J,358.3,10085,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,10085,1,3,0)
- ;;=3^Effusion,Unspec
- ;;^UTILITY(U,$J,358.3,10085,1,4,0)
- ;;=4^M25.40
- ;;^UTILITY(U,$J,358.3,10085,2)
- ;;=^5011575
- ;;^UTILITY(U,$J,358.3,10086,0)
- ;;=M45.0^^48^494^6
- ;;^UTILITY(U,$J,358.3,10086,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,10086,1,3,0)
- ;;=3^Ankylosing Spondylitis of Spine,Mult Sites
- ;;^UTILITY(U,$J,358.3,10086,1,4,0)
- ;;=4^M45.0
- ;;^UTILITY(U,$J,358.3,10086,2)
- ;;=^5011960
- ;;^UTILITY(U,$J,358.3,10087,0)
- ;;=M45.2^^48^494^3
- ;;^UTILITY(U,$J,358.3,10087,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,10087,1,3,0)
- ;;=3^Ankylosing Spondylitis of Cervical Region
- ;;^UTILITY(U,$J,358.3,10087,1,4,0)
- ;;=4^M45.2
- ;;^UTILITY(U,$J,358.3,10087,2)
- ;;=^5011962
- ;;^UTILITY(U,$J,358.3,10088,0)
- ;;=M45.4^^48^494^7
- ;;^UTILITY(U,$J,358.3,10088,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,10088,1,3,0)
- ;;=3^Ankylosing Spondylitis of Thoracic Region
- ;;^UTILITY(U,$J,358.3,10088,1,4,0)
- ;;=4^M45.4
- ;;^UTILITY(U,$J,358.3,10088,2)
- ;;=^5011964
- ;;^UTILITY(U,$J,358.3,10089,0)
- ;;=M45.7^^48^494^4
- ;;^UTILITY(U,$J,358.3,10089,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,10089,1,3,0)
- ;;=3^Ankylosing Spondylitis of Lumbosacral Region
- ;;^UTILITY(U,$J,358.3,10089,1,4,0)
- ;;=4^M45.7
- ;;^UTILITY(U,$J,358.3,10089,2)
- ;;=^5011967
- ;;^UTILITY(U,$J,358.3,10090,0)
- ;;=M45.8^^48^494^5
- ;;^UTILITY(U,$J,358.3,10090,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,10090,1,3,0)
- ;;=3^Ankylosing Spondylitis of Sacral/Sacrococcygeal Region
- ;;^UTILITY(U,$J,358.3,10090,1,4,0)
- ;;=4^M45.8
- ;;^UTILITY(U,$J,358.3,10090,2)
- ;;=^5011968
- ;;^UTILITY(U,$J,358.3,10091,0)
- ;;=M47.22^^48^494^180
- ;;^UTILITY(U,$J,358.3,10091,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,10091,1,3,0)
- ;;=3^Sponylosis w/ Radiculopathy,Cervical Region NEC
- ;;^UTILITY(U,$J,358.3,10091,1,4,0)
- ;;=4^M47.22
- ;;^UTILITY(U,$J,358.3,10091,2)
- ;;=^5012061
- ;;^UTILITY(U,$J,358.3,10092,0)
- ;;=M47.24^^48^494^182
- ;;^UTILITY(U,$J,358.3,10092,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,10092,1,3,0)
- ;;=3^Sponylosis w/ Radiculopathy,Thoracic Region NEC
- ;;^UTILITY(U,$J,358.3,10092,1,4,0)
- ;;=4^M47.24
- ;;^UTILITY(U,$J,358.3,10092,2)
- ;;=^5012063
- ;;^UTILITY(U,$J,358.3,10093,0)
- ;;=M47.27^^48^494^181
- ;;^UTILITY(U,$J,358.3,10093,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,10093,1,3,0)
- ;;=3^Sponylosis w/ Radiculopathy,Lumbosacral Region NEC
- ;;^UTILITY(U,$J,358.3,10093,1,4,0)
- ;;=4^M47.27
- ;;^UTILITY(U,$J,358.3,10093,2)
- ;;=^5012066
- ;;^UTILITY(U,$J,358.3,10094,0)
- ;;=M47.812^^48^494^177
- ;;^UTILITY(U,$J,358.3,10094,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,10094,1,3,0)
- ;;=3^Spondylosis w/o Myelopathy/Radiculopathy,Cervical Region
- ;;^UTILITY(U,$J,358.3,10094,1,4,0)
- ;;=4^M47.812
- ;;^UTILITY(U,$J,358.3,10094,2)
- ;;=^5012069
- ;;^UTILITY(U,$J,358.3,10095,0)
- ;;=M47.814^^48^494^178
- ;;^UTILITY(U,$J,358.3,10095,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,10095,1,3,0)
- ;;=3^Spondylosis w/o Myelopathy/Radiculopathy,Thoracic Region
- ;;^UTILITY(U,$J,358.3,10095,1,4,0)
- ;;=4^M47.814
- ;;^UTILITY(U,$J,358.3,10095,2)
- ;;=^5012071
- ;;^UTILITY(U,$J,358.3,10096,0)
- ;;=M47.817^^48^494^179
- ;;^UTILITY(U,$J,358.3,10096,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,10096,1,3,0)
- ;;=3^Spondylosis w/o Myelopathy/Radiculopathy,Lumbosacral Region
- ;;^UTILITY(U,$J,358.3,10096,1,4,0)
- ;;=4^M47.817
- ;;^UTILITY(U,$J,358.3,10096,2)
- ;;=^5012074
- ;;^UTILITY(U,$J,358.3,10097,0)
- ;;=M48.50XA^^48^494^22
- ;;^UTILITY(U,$J,358.3,10097,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,10097,1,3,0)
- ;;=3^Collapsed Vertebra NEC,Site Unspec,Init Encntr
- ;;^UTILITY(U,$J,358.3,10097,1,4,0)
- ;;=4^M48.50XA
- ;;^UTILITY(U,$J,358.3,10097,2)
- ;;=^5012159
- ;;^UTILITY(U,$J,358.3,10098,0)
- ;;=M48.50XD^^48^494^23
- ;;^UTILITY(U,$J,358.3,10098,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,10098,1,3,0)
- ;;=3^Collapsed Vertebra NEC,Site Unspec,Subs Encntr
- ;;^UTILITY(U,$J,358.3,10098,1,4,0)
- ;;=4^M48.50XD
- ;;^UTILITY(U,$J,358.3,10098,2)
- ;;=^5012160
- ;;^UTILITY(U,$J,358.3,10099,0)
- ;;=M48.52XA^^48^494^24
- ;;^UTILITY(U,$J,358.3,10099,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,10099,1,3,0)
- ;;=3^Collapsed Vertebra,Cervical Region,Init Encntr
- ;;^UTILITY(U,$J,358.3,10099,1,4,0)
- ;;=4^M48.52XA
- ;;^UTILITY(U,$J,358.3,10099,2)
- ;;=^5012167
- ;;^UTILITY(U,$J,358.3,10100,0)
- ;;=M48.52XD^^48^494^25
- ;;^UTILITY(U,$J,358.3,10100,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,10100,1,3,0)
- ;;=3^Collapsed Vertebra,Cervical Region,Subs Encntr,Rt Healing
- ;;^UTILITY(U,$J,358.3,10100,1,4,0)
- ;;=4^M48.52XD
- ;;^UTILITY(U,$J,358.3,10100,2)
- ;;=^5012168
- ;;^UTILITY(U,$J,358.3,10101,0)
- ;;=M48.54XA^^48^494^33
- ;;^UTILITY(U,$J,358.3,10101,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,10101,1,3,0)
- ;;=3^Collapsed Vertebra,Throacic Region,Init Encntr
- ;;^UTILITY(U,$J,358.3,10101,1,4,0)
- ;;=4^M48.54XA
- ;;^UTILITY(U,$J,358.3,10101,2)
- ;;=^5012175
- ;;^UTILITY(U,$J,358.3,10102,0)
- ;;=M48.54XD^^48^494^34
- ;;^UTILITY(U,$J,358.3,10102,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,10102,1,3,0)
- ;;=3^Collapsed Vertebra,Throacic Region,Subs Encntr
- ;;^UTILITY(U,$J,358.3,10102,1,4,0)
- ;;=4^M48.54XD
- ;;^UTILITY(U,$J,358.3,10102,2)
- ;;=^5012176
- ;;^UTILITY(U,$J,358.3,10103,0)
- ;;=M48.57XA^^48^494^26
- ;;^UTILITY(U,$J,358.3,10103,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,10103,1,3,0)
- ;;=3^Collapsed Vertebra,Lumbosacral Region,Init Encntr
- ;;^UTILITY(U,$J,358.3,10103,1,4,0)
- ;;=4^M48.57XA
- ;;^UTILITY(U,$J,358.3,10103,2)
- ;;=^5012187
- ;;^UTILITY(U,$J,358.3,10104,0)
- ;;=M48.57XD^^48^494^27
- ;;^UTILITY(U,$J,358.3,10104,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,10104,1,3,0)
- ;;=3^Collapsed Vertebra,Lumbosacral Region,Subs Encntr,Rt Healing
- ;;^UTILITY(U,$J,358.3,10104,1,4,0)
- ;;=4^M48.57XD
- ;;^UTILITY(U,$J,358.3,10104,2)
- ;;=^5012188
- ;;^UTILITY(U,$J,358.3,10105,0)
- ;;=M50.30^^48^494^14
- ;;^UTILITY(U,$J,358.3,10105,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,10105,1,3,0)
- ;;=3^Cervical Disc Degeneration,Unspec Region
- ;;^UTILITY(U,$J,358.3,10105,1,4,0)
- ;;=4^M50.30
- ;;^UTILITY(U,$J,358.3,10105,2)
- ;;=^5012227
- ;;^UTILITY(U,$J,358.3,10106,0)
- ;;=M51.14^^48^494^55
- ;;^UTILITY(U,$J,358.3,10106,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,10106,1,3,0)
- ;;=3^Intvrt Disc Disorder w/ Radiculopathy,Thoracic Region
- ;;^UTILITY(U,$J,358.3,10106,1,4,0)
- ;;=4^M51.14
- ;;^UTILITY(U,$J,358.3,10106,2)
- ;;=^5012243
- ;;^UTILITY(U,$J,358.3,10107,0)
- ;;=M51.17^^48^494^54
- ;;^UTILITY(U,$J,358.3,10107,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,10107,1,3,0)
- ;;=3^Intvrt Disc Disorder w/ Radiculopathy,Lumbosacral Region
- ;;^UTILITY(U,$J,358.3,10107,1,4,0)
- ;;=4^M51.17
- ;;^UTILITY(U,$J,358.3,10107,2)
- ;;=^5012246
- ;;^UTILITY(U,$J,358.3,10108,0)
- ;;=M51.34^^48^494^53
- ;;^UTILITY(U,$J,358.3,10108,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,10108,1,3,0)
- ;;=3^Intvrt Disc Degeneration,Thoracic Region
- ;;^UTILITY(U,$J,358.3,10108,1,4,0)
- ;;=4^M51.34
- ;;^UTILITY(U,$J,358.3,10108,2)
- ;;=^5012251
- ;;^UTILITY(U,$J,358.3,10109,0)
- ;;=M51.37^^48^494^52
- ;;^UTILITY(U,$J,358.3,10109,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,10109,1,3,0)
- ;;=3^Intvrt Disc Degeneration,Lumbosacral Region
- ;;^UTILITY(U,$J,358.3,10109,1,4,0)
- ;;=4^M51.37
- ;;^UTILITY(U,$J,358.3,10109,2)
- ;;=^5012254
- ;;^UTILITY(U,$J,358.3,10110,0)
- ;;=M54.14^^48^494^146
- ;;^UTILITY(U,$J,358.3,10110,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,10110,1,3,0)
- ;;=3^Radiculopathy,Thoracic Region
- ;;^UTILITY(U,$J,358.3,10110,1,4,0)
- ;;=4^M54.14
- ;;^UTILITY(U,$J,358.3,10110,2)
- ;;=^5012299
- ;;^UTILITY(U,$J,358.3,10111,0)
- ;;=M54.17^^48^494^145
- ;;^UTILITY(U,$J,358.3,10111,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,10111,1,3,0)
- ;;=3^Radiculopathy,Lumbosacral Region
- ;;^UTILITY(U,$J,358.3,10111,1,4,0)
- ;;=4^M54.17
- ;;^UTILITY(U,$J,358.3,10111,2)
- ;;=^5012302
- ;;^UTILITY(U,$J,358.3,10112,0)
- ;;=M54.2^^48^494^15
- ;;^UTILITY(U,$J,358.3,10112,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,10112,1,3,0)
- ;;=3^Cervicalgia
- ;;^UTILITY(U,$J,358.3,10112,1,4,0)
- ;;=4^M54.2
- ;;^UTILITY(U,$J,358.3,10112,2)
- ;;=^5012304
- ;;^UTILITY(U,$J,358.3,10113,0)
- ;;=M54.31^^48^494^169
- ;;^UTILITY(U,$J,358.3,10113,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,10113,1,3,0)
- ;;=3^Sciatica,Right Side
- ;;^UTILITY(U,$J,358.3,10113,1,4,0)
- ;;=4^M54.31
- ;;^UTILITY(U,$J,358.3,10113,2)
- ;;=^5012306
- ;;^UTILITY(U,$J,358.3,10114,0)
- ;;=M54.32^^48^494^168
- ;;^UTILITY(U,$J,358.3,10114,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,10114,1,3,0)
- ;;=3^Sciatica,Left Side
- ;;^UTILITY(U,$J,358.3,10114,1,4,0)
- ;;=4^M54.32
- ;;^UTILITY(U,$J,358.3,10114,2)
- ;;=^5012307
- ;;^UTILITY(U,$J,358.3,10115,0)
- ;;=M54.5^^48^494^61
- ;;^UTILITY(U,$J,358.3,10115,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,10115,1,3,0)
- ;;=3^Low Back Pain
- ;;^UTILITY(U,$J,358.3,10115,1,4,0)
- ;;=4^M54.5
- ;;^UTILITY(U,$J,358.3,10115,2)
- ;;=^5012311
- ;;^UTILITY(U,$J,358.3,10116,0)
- ;;=M60.9^^48^494^66
- ;;^UTILITY(U,$J,358.3,10116,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,10116,1,3,0)
- ;;=3^Myositis,Unspec
- ;;^UTILITY(U,$J,358.3,10116,1,4,0)
- ;;=4^M60.9
- ;;^UTILITY(U,$J,358.3,10116,2)
- ;;=^5012409
- ;;^UTILITY(U,$J,358.3,10117,0)
- ;;=M62.40^^48^494^36
- ;;^UTILITY(U,$J,358.3,10117,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,10117,1,3,0)
- ;;=3^Contracture of Muscle,Unspec
- ;;^UTILITY(U,$J,358.3,10117,1,4,0)
- ;;=4^M62.40
- ;;^UTILITY(U,$J,358.3,10117,2)
- ;;=^5012631
- ;;^UTILITY(U,$J,358.3,10118,0)
- ;;=M62.831^^48^494^64
- ;;^UTILITY(U,$J,358.3,10118,1,0)
- ;;=^358.31IA^4^2
  ;;^UTILITY(U,$J,358.3,10118,1,3,0)
- ;;=3^Muscle Spasm of Calf
+ ;;=3^Nipple Discharge
  ;;^UTILITY(U,$J,358.3,10118,1,4,0)
- ;;=4^M62.831
+ ;;=4^N64.52
  ;;^UTILITY(U,$J,358.3,10118,2)
- ;;=^5012681
+ ;;=^259531
  ;;^UTILITY(U,$J,358.3,10119,0)
- ;;=M62.838^^48^494^62
+ ;;=N64.53^^45^447^99
  ;;^UTILITY(U,$J,358.3,10119,1,0)
  ;;=^358.31IA^4^2
  ;;^UTILITY(U,$J,358.3,10119,1,3,0)
- ;;=3^Muscle Spasm NEC
+ ;;=3^Retraction of Nipple
  ;;^UTILITY(U,$J,358.3,10119,1,4,0)
- ;;=4^M62.838
+ ;;=4^N64.53
  ;;^UTILITY(U,$J,358.3,10119,2)
- ;;=^5012682
+ ;;=^5015796
  ;;^UTILITY(U,$J,358.3,10120,0)
- ;;=M70.21^^48^494^68
+ ;;=N75.1^^45^447^8
  ;;^UTILITY(U,$J,358.3,10120,1,0)
  ;;=^358.31IA^4^2
  ;;^UTILITY(U,$J,358.3,10120,1,3,0)
- ;;=3^Olecranon Bursitis,Right Elbow
+ ;;=3^Abscess of Bartholin's Gland
  ;;^UTILITY(U,$J,358.3,10120,1,4,0)
- ;;=4^M70.21
+ ;;=4^N75.1
  ;;^UTILITY(U,$J,358.3,10120,2)
- ;;=^5013047
+ ;;=^5015823
  ;;^UTILITY(U,$J,358.3,10121,0)
- ;;=M70.22^^48^494^67
+ ;;=N80.9^^45^447^37
  ;;^UTILITY(U,$J,358.3,10121,1,0)
  ;;=^358.31IA^4^2
  ;;^UTILITY(U,$J,358.3,10121,1,3,0)
- ;;=3^Olecranon Bursitis,Left Elbow
+ ;;=3^Endometriosis,Unspec
  ;;^UTILITY(U,$J,358.3,10121,1,4,0)
- ;;=4^M70.22
+ ;;=4^N80.9
  ;;^UTILITY(U,$J,358.3,10121,2)
- ;;=^5013048
+ ;;=^5015837
  ;;^UTILITY(U,$J,358.3,10122,0)
- ;;=M71.161^^48^494^50
+ ;;=N81.4^^45^447^112
  ;;^UTILITY(U,$J,358.3,10122,1,0)
  ;;=^358.31IA^4^2
  ;;^UTILITY(U,$J,358.3,10122,1,3,0)
- ;;=3^Infective Bursitis,Right Knee
+ ;;=3^Uterovaginal Prolapse,Unspec
  ;;^UTILITY(U,$J,358.3,10122,1,4,0)
- ;;=4^M71.161
+ ;;=4^N81.4
  ;;^UTILITY(U,$J,358.3,10122,2)
- ;;=^5013139
+ ;;=^5015841
  ;;^UTILITY(U,$J,358.3,10123,0)
- ;;=M71.162^^48^494^49
+ ;;=N84.8^^45^447^87
  ;;^UTILITY(U,$J,358.3,10123,1,0)
  ;;=^358.31IA^4^2
  ;;^UTILITY(U,$J,358.3,10123,1,3,0)
- ;;=3^Infective Bursitis,Left Knee
+ ;;=3^Polyp of Other Parts of Female Genital Tract
  ;;^UTILITY(U,$J,358.3,10123,1,4,0)
- ;;=4^M71.162
+ ;;=4^N84.8
  ;;^UTILITY(U,$J,358.3,10123,2)
- ;;=^5013140
+ ;;=^5015868
  ;;^UTILITY(U,$J,358.3,10124,0)
- ;;=M72.0^^48^494^122
+ ;;=N84.0^^45^447^85
  ;;^UTILITY(U,$J,358.3,10124,1,0)
  ;;=^358.31IA^4^2
  ;;^UTILITY(U,$J,358.3,10124,1,3,0)
- ;;=3^Palmar Fascial Fibromatosis
+ ;;=3^Polyp of Corpus Uteri
  ;;^UTILITY(U,$J,358.3,10124,1,4,0)
- ;;=4^M72.0
+ ;;=4^N84.0
  ;;^UTILITY(U,$J,358.3,10124,2)
- ;;=^5013233
+ ;;=^270517
  ;;^UTILITY(U,$J,358.3,10125,0)
- ;;=M75.111^^48^494^167
+ ;;=N84.9^^45^447^86
  ;;^UTILITY(U,$J,358.3,10125,1,0)
  ;;=^358.31IA^4^2
  ;;^UTILITY(U,$J,358.3,10125,1,3,0)
- ;;=3^Rotator Cuff Syndrome,Right Shoulder
+ ;;=3^Polyp of Female Genital Tract,Unspec
  ;;^UTILITY(U,$J,358.3,10125,1,4,0)
- ;;=4^M75.111
+ ;;=4^N84.9
  ;;^UTILITY(U,$J,358.3,10125,2)
- ;;=^5013245
+ ;;=^5015869
  ;;^UTILITY(U,$J,358.3,10126,0)
- ;;=M75.112^^48^494^166
+ ;;=N84.1^^45^447^84
  ;;^UTILITY(U,$J,358.3,10126,1,0)
  ;;=^358.31IA^4^2
  ;;^UTILITY(U,$J,358.3,10126,1,3,0)
- ;;=3^Rotator Cuff Syndrome,Left Shoulder
+ ;;=3^Polyp of Cervix Uteri
  ;;^UTILITY(U,$J,358.3,10126,1,4,0)
- ;;=4^M75.112
+ ;;=4^N84.1
  ;;^UTILITY(U,$J,358.3,10126,2)
- ;;=^5013246
+ ;;=^5015866
  ;;^UTILITY(U,$J,358.3,10127,0)
- ;;=M75.51^^48^494^10
+ ;;=N89.1^^45^447^114
  ;;^UTILITY(U,$J,358.3,10127,1,0)
  ;;=^358.31IA^4^2
  ;;^UTILITY(U,$J,358.3,10127,1,3,0)
- ;;=3^Bursitis of Right Shoulder
+ ;;=3^Vaginal Dysplasia,Moderate
  ;;^UTILITY(U,$J,358.3,10127,1,4,0)
- ;;=4^M75.51
+ ;;=4^N89.1
  ;;^UTILITY(U,$J,358.3,10127,2)
- ;;=^5133690
+ ;;=^5015886
  ;;^UTILITY(U,$J,358.3,10128,0)
- ;;=M75.52^^48^494^9
+ ;;=N89.0^^45^447^113
  ;;^UTILITY(U,$J,358.3,10128,1,0)
  ;;=^358.31IA^4^2
  ;;^UTILITY(U,$J,358.3,10128,1,3,0)
- ;;=3^Bursitis of Left Shoulder
+ ;;=3^Vaginal Dysplasia,Mild
  ;;^UTILITY(U,$J,358.3,10128,1,4,0)
- ;;=4^M75.52
+ ;;=4^N89.0
  ;;^UTILITY(U,$J,358.3,10128,2)
- ;;=^5133691
+ ;;=^5015885
  ;;^UTILITY(U,$J,358.3,10129,0)
- ;;=M77.11^^48^494^58
+ ;;=N89.3^^45^447^115
  ;;^UTILITY(U,$J,358.3,10129,1,0)
  ;;=^358.31IA^4^2
  ;;^UTILITY(U,$J,358.3,10129,1,3,0)
- ;;=3^Lateral Epicondylitis,Right Elbow
+ ;;=3^Vaginal Dysplasia,Unspec
  ;;^UTILITY(U,$J,358.3,10129,1,4,0)
- ;;=4^M77.11
+ ;;=4^N89.3
  ;;^UTILITY(U,$J,358.3,10129,2)
- ;;=^5013304
+ ;;=^5015887
  ;;^UTILITY(U,$J,358.3,10130,0)
- ;;=M77.12^^48^494^57
+ ;;=N90.4^^45^447^65
  ;;^UTILITY(U,$J,358.3,10130,1,0)
  ;;=^358.31IA^4^2
  ;;^UTILITY(U,$J,358.3,10130,1,3,0)
- ;;=3^Lateral Epicondylitis,Left Elbow
+ ;;=3^Leukoplakia of Vulva
  ;;^UTILITY(U,$J,358.3,10130,1,4,0)
- ;;=4^M77.12
+ ;;=4^N90.4
  ;;^UTILITY(U,$J,358.3,10130,2)
- ;;=^5013305
+ ;;=^5015894
  ;;^UTILITY(U,$J,358.3,10131,0)
- ;;=M79.7^^48^494^40
+ ;;=N94.2^^45^447^116
  ;;^UTILITY(U,$J,358.3,10131,1,0)
  ;;=^358.31IA^4^2
  ;;^UTILITY(U,$J,358.3,10131,1,3,0)
- ;;=3^Fibromyalgia
+ ;;=3^Vaginismus
  ;;^UTILITY(U,$J,358.3,10131,1,4,0)
- ;;=4^M79.7
+ ;;=4^N94.2
  ;;^UTILITY(U,$J,358.3,10131,2)
- ;;=^46261
+ ;;=^5015918
  ;;^UTILITY(U,$J,358.3,10132,0)
- ;;=M80.08XA^^48^494^1
+ ;;=N94.0^^45^447^70
  ;;^UTILITY(U,$J,358.3,10132,1,0)
  ;;=^358.31IA^4^2
  ;;^UTILITY(U,$J,358.3,10132,1,3,0)
- ;;=3^Age-Related Osteoporosis w/ Vertebra Fx,Init Encntr
+ ;;=3^Mittelschmerz
  ;;^UTILITY(U,$J,358.3,10132,1,4,0)
- ;;=4^M80.08XA
+ ;;=4^N94.0
  ;;^UTILITY(U,$J,358.3,10132,2)
- ;;=^5013495
+ ;;=^265259
  ;;^UTILITY(U,$J,358.3,10133,0)
- ;;=M80.08XD^^48^494^2
+ ;;=N94.6^^45^447^30
  ;;^UTILITY(U,$J,358.3,10133,1,0)
  ;;=^358.31IA^4^2
  ;;^UTILITY(U,$J,358.3,10133,1,3,0)
- ;;=3^Age-Related Osteoporosis w/ Vertebra Fx,Subs Encntr
+ ;;=3^Dysmenorrhea,Unspec
  ;;^UTILITY(U,$J,358.3,10133,1,4,0)
- ;;=4^M80.08XD
+ ;;=4^N94.6
  ;;^UTILITY(U,$J,358.3,10133,2)
- ;;=^5013496
+ ;;=^5015922
  ;;^UTILITY(U,$J,358.3,10134,0)
- ;;=M84.48XA^^48^494^123
+ ;;=N94.5^^45^447^29
  ;;^UTILITY(U,$J,358.3,10134,1,0)
  ;;=^358.31IA^4^2
  ;;^UTILITY(U,$J,358.3,10134,1,3,0)
- ;;=3^Pathological Fx,Oth Site,Init Encntr
+ ;;=3^Dysmenorrhea,Secondary
  ;;^UTILITY(U,$J,358.3,10134,1,4,0)
- ;;=4^M84.48XA
+ ;;=4^N94.5
  ;;^UTILITY(U,$J,358.3,10134,2)
- ;;=^5014016
+ ;;=^5015921
  ;;^UTILITY(U,$J,358.3,10135,0)
- ;;=M84.48XD^^48^494^124
+ ;;=N94.4^^45^447^28
  ;;^UTILITY(U,$J,358.3,10135,1,0)
  ;;=^358.31IA^4^2
  ;;^UTILITY(U,$J,358.3,10135,1,3,0)
- ;;=3^Pathological Fx,Oth Site,Subs Encntr
+ ;;=3^Dysmenorrhea,Primary
  ;;^UTILITY(U,$J,358.3,10135,1,4,0)
- ;;=4^M84.48XD
+ ;;=4^N94.4
  ;;^UTILITY(U,$J,358.3,10135,2)
- ;;=^5014017
+ ;;=^5015920
  ;;^UTILITY(U,$J,358.3,10136,0)
- ;;=M87.011^^48^494^48
+ ;;=N94.3^^45^447^95
  ;;^UTILITY(U,$J,358.3,10136,1,0)
  ;;=^358.31IA^4^2
  ;;^UTILITY(U,$J,358.3,10136,1,3,0)
- ;;=3^Idiopathic Aseptic Necrosis of Right Shoulder
+ ;;=3^Premenstrual Tension Syndrome
  ;;^UTILITY(U,$J,358.3,10136,1,4,0)
- ;;=4^M87.011
+ ;;=4^N94.3
  ;;^UTILITY(U,$J,358.3,10136,2)
- ;;=^5014658
+ ;;=^5015919
  ;;^UTILITY(U,$J,358.3,10137,0)
- ;;=M87.012^^48^494^45
+ ;;=N91.0^^45^447^9
  ;;^UTILITY(U,$J,358.3,10137,1,0)
  ;;=^358.31IA^4^2
  ;;^UTILITY(U,$J,358.3,10137,1,3,0)
- ;;=3^Idiopathic Aseptic Necrosis of Left Shoulder
+ ;;=3^Amenorrhea,Primary
  ;;^UTILITY(U,$J,358.3,10137,1,4,0)
- ;;=4^M87.012
+ ;;=4^N91.0
  ;;^UTILITY(U,$J,358.3,10137,2)
- ;;=^5014659
+ ;;=^5015902
  ;;^UTILITY(U,$J,358.3,10138,0)
- ;;=M87.050^^48^494^46
+ ;;=N91.1^^45^447^10
  ;;^UTILITY(U,$J,358.3,10138,1,0)
  ;;=^358.31IA^4^2
  ;;^UTILITY(U,$J,358.3,10138,1,3,0)
- ;;=3^Idiopathic Aseptic Necrosis of Pelvis
+ ;;=3^Amenorrhea,Secondary
  ;;^UTILITY(U,$J,358.3,10138,1,4,0)
- ;;=4^M87.050
+ ;;=4^N91.1
  ;;^UTILITY(U,$J,358.3,10138,2)
- ;;=^5014679
+ ;;=^5015903
  ;;^UTILITY(U,$J,358.3,10139,0)
- ;;=M87.051^^48^494^47
+ ;;=N91.2^^45^447^11
  ;;^UTILITY(U,$J,358.3,10139,1,0)
  ;;=^358.31IA^4^2
  ;;^UTILITY(U,$J,358.3,10139,1,3,0)
- ;;=3^Idiopathic Aseptic Necrosis of Right Femur
+ ;;=3^Amenorrhea,Unspec
  ;;^UTILITY(U,$J,358.3,10139,1,4,0)
- ;;=4^M87.051
+ ;;=4^N91.2
  ;;^UTILITY(U,$J,358.3,10139,2)
- ;;=^5014680
+ ;;=^5015904
  ;;^UTILITY(U,$J,358.3,10140,0)
- ;;=M87.052^^48^494^44
+ ;;=N91.3^^45^447^73
  ;;^UTILITY(U,$J,358.3,10140,1,0)
  ;;=^358.31IA^4^2
  ;;^UTILITY(U,$J,358.3,10140,1,3,0)
- ;;=3^Idiopathic Aseptic Necrosis of Left Femur
+ ;;=3^Oligomenorrhea,Primary
  ;;^UTILITY(U,$J,358.3,10140,1,4,0)
- ;;=4^M87.052
+ ;;=4^N91.3
  ;;^UTILITY(U,$J,358.3,10140,2)
- ;;=^5014681
+ ;;=^5015905
  ;;^UTILITY(U,$J,358.3,10141,0)
- ;;=M87.111^^48^494^78
+ ;;=N91.4^^45^447^74
  ;;^UTILITY(U,$J,358.3,10141,1,0)
  ;;=^358.31IA^4^2
  ;;^UTILITY(U,$J,358.3,10141,1,3,0)
- ;;=3^Osteonecrosis d/t Drugs,Right Shoulder
+ ;;=3^Oligomenorrhea,Secondary
  ;;^UTILITY(U,$J,358.3,10141,1,4,0)
- ;;=4^M87.111
+ ;;=4^N91.4
  ;;^UTILITY(U,$J,358.3,10141,2)
- ;;=^5014701
+ ;;=^5015906
  ;;^UTILITY(U,$J,358.3,10142,0)
- ;;=M87.112^^48^494^75
+ ;;=N91.5^^45^447^75
  ;;^UTILITY(U,$J,358.3,10142,1,0)
  ;;=^358.31IA^4^2
  ;;^UTILITY(U,$J,358.3,10142,1,3,0)
- ;;=3^Osteonecrosis d/t Drugs,Left Shoulder
+ ;;=3^Oligomenorrhea,Unspec
  ;;^UTILITY(U,$J,358.3,10142,1,4,0)
- ;;=4^M87.112
+ ;;=4^N91.5
  ;;^UTILITY(U,$J,358.3,10142,2)
- ;;=^5014702
+ ;;=^5015907
  ;;^UTILITY(U,$J,358.3,10143,0)
- ;;=M87.150^^48^494^76
+ ;;=N92.0^^45^447^40
  ;;^UTILITY(U,$J,358.3,10143,1,0)
  ;;=^358.31IA^4^2
  ;;^UTILITY(U,$J,358.3,10143,1,3,0)
- ;;=3^Osteonecrosis d/t Drugs,Pelvis
+ ;;=3^Excessive/Frequent Menstruation w/ Regular Cycle
  ;;^UTILITY(U,$J,358.3,10143,1,4,0)
- ;;=4^M87.150
+ ;;=4^N92.0
  ;;^UTILITY(U,$J,358.3,10143,2)
- ;;=^5014722
+ ;;=^5015908
  ;;^UTILITY(U,$J,358.3,10144,0)
- ;;=M87.151^^48^494^77
+ ;;=N92.6^^45^447^62
  ;;^UTILITY(U,$J,358.3,10144,1,0)
  ;;=^358.31IA^4^2
  ;;^UTILITY(U,$J,358.3,10144,1,3,0)
- ;;=3^Osteonecrosis d/t Drugs,Right Femur
+ ;;=3^Irregular Menstruation,Unspec
  ;;^UTILITY(U,$J,358.3,10144,1,4,0)
- ;;=4^M87.151
+ ;;=4^N92.6
  ;;^UTILITY(U,$J,358.3,10144,2)
- ;;=^5014723
+ ;;=^5015913
  ;;^UTILITY(U,$J,358.3,10145,0)
- ;;=M87.152^^48^494^74
+ ;;=N92.5^^45^447^61
  ;;^UTILITY(U,$J,358.3,10145,1,0)
  ;;=^358.31IA^4^2
  ;;^UTILITY(U,$J,358.3,10145,1,3,0)
- ;;=3^Osteonecrosis d/t Drugs,Left Femur
+ ;;=3^Irregular Menstruation,Other Spec
  ;;^UTILITY(U,$J,358.3,10145,1,4,0)
- ;;=4^M87.152
+ ;;=4^N92.5
  ;;^UTILITY(U,$J,358.3,10145,2)
- ;;=^5014724
+ ;;=^5015912
  ;;^UTILITY(U,$J,358.3,10146,0)
- ;;=M87.180^^48^494^73
+ ;;=N92.3^^45^447^80
  ;;^UTILITY(U,$J,358.3,10146,1,0)
  ;;=^358.31IA^4^2
  ;;^UTILITY(U,$J,358.3,10146,1,3,0)
- ;;=3^Osteonecrosis d/t Drugs,Jaw
+ ;;=3^Ovulation Bleeding
  ;;^UTILITY(U,$J,358.3,10146,1,4,0)
- ;;=4^M87.180
+ ;;=4^N92.3
  ;;^UTILITY(U,$J,358.3,10146,2)
- ;;=^5014741
+ ;;=^270570
  ;;^UTILITY(U,$J,358.3,10147,0)
- ;;=M87.311^^48^494^174
+ ;;=N89.7^^45^447^54
  ;;^UTILITY(U,$J,358.3,10147,1,0)
  ;;=^358.31IA^4^2
  ;;^UTILITY(U,$J,358.3,10147,1,3,0)
- ;;=3^Secondary Osteonecrosis,Right Shoulder
+ ;;=3^Hematocolpos
  ;;^UTILITY(U,$J,358.3,10147,1,4,0)
- ;;=4^M87.311
+ ;;=4^N89.7
  ;;^UTILITY(U,$J,358.3,10147,2)
- ;;=^5014788
+ ;;=^5015889
  ;;^UTILITY(U,$J,358.3,10148,0)
- ;;=M87.312^^48^494^171
+ ;;=N93.8^^45^447^5
  ;;^UTILITY(U,$J,358.3,10148,1,0)
  ;;=^358.31IA^4^2
  ;;^UTILITY(U,$J,358.3,10148,1,3,0)
- ;;=3^Secondary Osteonecrosis,Left Shoulder
+ ;;=3^Abnormal Uterine/Vaginal Bleeding,Other Spec
  ;;^UTILITY(U,$J,358.3,10148,1,4,0)
- ;;=4^M87.312
+ ;;=4^N93.8
+ ;;^UTILITY(U,$J,358.3,10148,2)
+ ;;=^5015915
+ ;;^UTILITY(U,$J,358.3,10149,0)
+ ;;=N93.9^^45^447^6
+ ;;^UTILITY(U,$J,358.3,10149,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,10149,1,3,0)
+ ;;=3^Abnormal Uterine/Vaginal Bleeding,Unspec
+ ;;^UTILITY(U,$J,358.3,10149,1,4,0)
+ ;;=4^N93.9
+ ;;^UTILITY(U,$J,358.3,10149,2)
+ ;;=^5015916
+ ;;^UTILITY(U,$J,358.3,10150,0)
+ ;;=N92.4^^45^447^38
+ ;;^UTILITY(U,$J,358.3,10150,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,10150,1,3,0)
+ ;;=3^Excessive Bleeding in Premenopausal Period
+ ;;^UTILITY(U,$J,358.3,10150,1,4,0)
+ ;;=4^N92.4
+ ;;^UTILITY(U,$J,358.3,10150,2)
+ ;;=^5015911
+ ;;^UTILITY(U,$J,358.3,10151,0)
+ ;;=N95.0^^45^447^89
+ ;;^UTILITY(U,$J,358.3,10151,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,10151,1,3,0)
+ ;;=3^Postmenopausal Bleeding
+ ;;^UTILITY(U,$J,358.3,10151,1,4,0)
+ ;;=4^N95.0
+ ;;^UTILITY(U,$J,358.3,10151,2)
+ ;;=^97040
+ ;;^UTILITY(U,$J,358.3,10152,0)
+ ;;=N95.1^^45^447^69
+ ;;^UTILITY(U,$J,358.3,10152,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,10152,1,3,0)
+ ;;=3^Menopausal/Female Climacteric States
+ ;;^UTILITY(U,$J,358.3,10152,1,4,0)
+ ;;=4^N95.1
+ ;;^UTILITY(U,$J,358.3,10152,2)
+ ;;=^5015927
+ ;;^UTILITY(U,$J,358.3,10153,0)
+ ;;=N97.0^^45^447^45
+ ;;^UTILITY(U,$J,358.3,10153,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,10153,1,3,0)
+ ;;=3^Female Infertility Associated w/ Anovulation
+ ;;^UTILITY(U,$J,358.3,10153,1,4,0)
+ ;;=4^N97.0
+ ;;^UTILITY(U,$J,358.3,10153,2)
+ ;;=^5015931
+ ;;^UTILITY(U,$J,358.3,10154,0)
+ ;;=N97.9^^45^447^46
+ ;;^UTILITY(U,$J,358.3,10154,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,10154,1,3,0)
+ ;;=3^Female Infertility,Unspec
+ ;;^UTILITY(U,$J,358.3,10154,1,4,0)
+ ;;=4^N97.9
+ ;;^UTILITY(U,$J,358.3,10154,2)
+ ;;=^5015935
+ ;;^UTILITY(U,$J,358.3,10155,0)
+ ;;=L29.2^^45^447^96
+ ;;^UTILITY(U,$J,358.3,10155,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,10155,1,3,0)
+ ;;=3^Pruritus Vulvae
+ ;;^UTILITY(U,$J,358.3,10155,1,4,0)
+ ;;=4^L29.2
+ ;;^UTILITY(U,$J,358.3,10155,2)
+ ;;=^100075
+ ;;^UTILITY(U,$J,358.3,10156,0)
+ ;;=R92.8^^45^447^7
+ ;;^UTILITY(U,$J,358.3,10156,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,10156,1,3,0)
+ ;;=3^Abnormal/Inconclusive Findings on Dx Imaging of Breast
+ ;;^UTILITY(U,$J,358.3,10156,1,4,0)
+ ;;=4^R92.8
+ ;;^UTILITY(U,$J,358.3,10156,2)
+ ;;=^5019712
+ ;;^UTILITY(U,$J,358.3,10157,0)
+ ;;=R87.619^^45^447^4
+ ;;^UTILITY(U,$J,358.3,10157,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,10157,1,3,0)
+ ;;=3^Abnormal Cytology Findings in Specimen of Cervix Uteri,Unspec
+ ;;^UTILITY(U,$J,358.3,10157,1,4,0)
+ ;;=4^R87.619
+ ;;^UTILITY(U,$J,358.3,10157,2)
+ ;;=^5019676
+ ;;^UTILITY(U,$J,358.3,10158,0)
+ ;;=Z79.890^^45^447^56
+ ;;^UTILITY(U,$J,358.3,10158,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,10158,1,3,0)
+ ;;=3^Hormone Replacement Therapy,Postmenopausal
+ ;;^UTILITY(U,$J,358.3,10158,1,4,0)
+ ;;=4^Z79.890
+ ;;^UTILITY(U,$J,358.3,10158,2)
+ ;;=^331975
+ ;;^UTILITY(U,$J,358.3,10159,0)
+ ;;=Z33.1^^45^447^94
+ ;;^UTILITY(U,$J,358.3,10159,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,10159,1,3,0)
+ ;;=3^Pregnant State,Incidental
+ ;;^UTILITY(U,$J,358.3,10159,1,4,0)
+ ;;=4^Z33.1
+ ;;^UTILITY(U,$J,358.3,10159,2)
+ ;;=^5062853
+ ;;^UTILITY(U,$J,358.3,10160,0)
+ ;;=Z39.2^^45^447^90
+ ;;^UTILITY(U,$J,358.3,10160,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,10160,1,3,0)
+ ;;=3^Postpartum Follow-up Routine Encounter
+ ;;^UTILITY(U,$J,358.3,10160,1,4,0)
+ ;;=4^Z39.2
+ ;;^UTILITY(U,$J,358.3,10160,2)
+ ;;=^5062906
+ ;;^UTILITY(U,$J,358.3,10161,0)
+ ;;=Z30.09^^45^447^21
+ ;;^UTILITY(U,$J,358.3,10161,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,10161,1,3,0)
+ ;;=3^Counsel/Advice on Contraception Encounter
+ ;;^UTILITY(U,$J,358.3,10161,1,4,0)
+ ;;=4^Z30.09
+ ;;^UTILITY(U,$J,358.3,10161,2)
+ ;;=^5062817
+ ;;^UTILITY(U,$J,358.3,10162,0)
+ ;;=Z30.9^^45^447^20
+ ;;^UTILITY(U,$J,358.3,10162,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,10162,1,3,0)
+ ;;=3^Contraceptive Management Encounter
+ ;;^UTILITY(U,$J,358.3,10162,1,4,0)
+ ;;=4^Z30.9
+ ;;^UTILITY(U,$J,358.3,10162,2)
+ ;;=^5062828
+ ;;^UTILITY(U,$J,358.3,10163,0)
+ ;;=N64.3^^45^447^52
+ ;;^UTILITY(U,$J,358.3,10163,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,10163,1,3,0)
+ ;;=3^Galactorrhea Not Associated w/ Childbirth
+ ;;^UTILITY(U,$J,358.3,10163,1,4,0)
+ ;;=4^N64.3
+ ;;^UTILITY(U,$J,358.3,10163,2)
+ ;;=^270460
+ ;;^UTILITY(U,$J,358.3,10164,0)
+ ;;=R92.2^^45^447^59
+ ;;^UTILITY(U,$J,358.3,10164,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,10164,1,3,0)
+ ;;=3^Inconclusive Mammogram
+ ;;^UTILITY(U,$J,358.3,10164,1,4,0)
+ ;;=4^R92.2
+ ;;^UTILITY(U,$J,358.3,10164,2)
+ ;;=^5019711
+ ;;^UTILITY(U,$J,358.3,10165,0)
+ ;;=Z30.432^^45^447^98
+ ;;^UTILITY(U,$J,358.3,10165,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,10165,1,3,0)
+ ;;=3^Removal of IUD
+ ;;^UTILITY(U,$J,358.3,10165,1,4,0)
+ ;;=4^Z30.432
+ ;;^UTILITY(U,$J,358.3,10165,2)
+ ;;=^5062824
+ ;;^UTILITY(U,$J,358.3,10166,0)
+ ;;=A63.0^^45^447^12
+ ;;^UTILITY(U,$J,358.3,10166,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,10166,1,3,0)
+ ;;=3^Anogenital Warts,Verereal
+ ;;^UTILITY(U,$J,358.3,10166,1,4,0)
+ ;;=4^A63.0
+ ;;^UTILITY(U,$J,358.3,10166,2)
+ ;;=^5000360
+ ;;^UTILITY(U,$J,358.3,10167,0)
+ ;;=R63.0^^45^447^13
+ ;;^UTILITY(U,$J,358.3,10167,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,10167,1,3,0)
+ ;;=3^Anorexia
+ ;;^UTILITY(U,$J,358.3,10167,1,4,0)
+ ;;=4^R63.0
+ ;;^UTILITY(U,$J,358.3,10167,2)
+ ;;=^7939
+ ;;^UTILITY(U,$J,358.3,10168,0)
+ ;;=R87.611^^45^447^2
+ ;;^UTILITY(U,$J,358.3,10168,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,10168,1,3,0)
+ ;;=3^ASC-H
+ ;;^UTILITY(U,$J,358.3,10168,1,4,0)
+ ;;=4^R87.611
+ ;;^UTILITY(U,$J,358.3,10168,2)
+ ;;=^5019669
+ ;;^UTILITY(U,$J,358.3,10169,0)
+ ;;=R87.610^^45^447^3
+ ;;^UTILITY(U,$J,358.3,10169,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,10169,1,3,0)
+ ;;=3^ASC-US
+ ;;^UTILITY(U,$J,358.3,10169,1,4,0)
+ ;;=4^R87.610
+ ;;^UTILITY(U,$J,358.3,10169,2)
+ ;;=^5019668
+ ;;^UTILITY(U,$J,358.3,10170,0)
+ ;;=Z98.82^^45^447^14
+ ;;^UTILITY(U,$J,358.3,10170,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,10170,1,3,0)
+ ;;=3^Breast Implant Status
+ ;;^UTILITY(U,$J,358.3,10170,1,4,0)
+ ;;=4^Z98.82
+ ;;^UTILITY(U,$J,358.3,10170,2)
+ ;;=^5063747
+ ;;^UTILITY(U,$J,358.3,10171,0)
+ ;;=B37.3^^45^447^15
+ ;;^UTILITY(U,$J,358.3,10171,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,10171,1,3,0)
+ ;;=3^Candidiasis of Vulva & Vagina
+ ;;^UTILITY(U,$J,358.3,10171,1,4,0)
+ ;;=4^B37.3
+ ;;^UTILITY(U,$J,358.3,10171,2)
+ ;;=^5000615
+ ;;^UTILITY(U,$J,358.3,10172,0)
+ ;;=D06.9^^45^447^16
+ ;;^UTILITY(U,$J,358.3,10172,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,10172,1,3,0)
+ ;;=3^Carcinoma in Situ of Cervix,Unspec
+ ;;^UTILITY(U,$J,358.3,10172,1,4,0)
+ ;;=4^D06.9
+ ;;^UTILITY(U,$J,358.3,10172,2)
+ ;;=^5001941
+ ;;^UTILITY(U,$J,358.3,10173,0)
+ ;;=D06.0^^45^447^17
+ ;;^UTILITY(U,$J,358.3,10173,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,10173,1,3,0)
+ ;;=3^Carcinoma in Situ of Endocervix
+ ;;^UTILITY(U,$J,358.3,10173,1,4,0)
+ ;;=4^D06.0
+ ;;^UTILITY(U,$J,358.3,10173,2)
+ ;;=^5001938
+ ;;^UTILITY(U,$J,358.3,10174,0)
+ ;;=D06.1^^45^447^18
+ ;;^UTILITY(U,$J,358.3,10174,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,10174,1,3,0)
+ ;;=3^Carcinoma in Situ of Exocervix
+ ;;^UTILITY(U,$J,358.3,10174,1,4,0)
+ ;;=4^D06.1
+ ;;^UTILITY(U,$J,358.3,10174,2)
+ ;;=^5001939
+ ;;^UTILITY(U,$J,358.3,10175,0)
+ ;;=A56.02^^45^447^19
+ ;;^UTILITY(U,$J,358.3,10175,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,10175,1,3,0)
+ ;;=3^Chlamydial Vulvovaginitis
+ ;;^UTILITY(U,$J,358.3,10175,1,4,0)
+ ;;=4^A56.02
+ ;;^UTILITY(U,$J,358.3,10175,2)
+ ;;=^5000340
+ ;;^UTILITY(U,$J,358.3,10176,0)
+ ;;=N81.12^^45^447^22
+ ;;^UTILITY(U,$J,358.3,10176,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,10176,1,3,0)
+ ;;=3^Cystocele,Lateral
+ ;;^UTILITY(U,$J,358.3,10176,1,4,0)
+ ;;=4^N81.12
+ ;;^UTILITY(U,$J,358.3,10176,2)
+ ;;=^331535
+ ;;^UTILITY(U,$J,358.3,10177,0)
+ ;;=N81.11^^45^447^23
+ ;;^UTILITY(U,$J,358.3,10177,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,10177,1,3,0)
+ ;;=3^Cystocele,Midline
+ ;;^UTILITY(U,$J,358.3,10177,1,4,0)
+ ;;=4^N81.11
+ ;;^UTILITY(U,$J,358.3,10177,2)
+ ;;=^331534
+ ;;^UTILITY(U,$J,358.3,10178,0)
+ ;;=N81.10^^45^447^24
+ ;;^UTILITY(U,$J,358.3,10178,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,10178,1,3,0)
+ ;;=3^Cystocele,Unspec
+ ;;^UTILITY(U,$J,358.3,10178,1,4,0)
+ ;;=4^N81.10
+ ;;^UTILITY(U,$J,358.3,10178,2)
+ ;;=^5015838
+ ;;^UTILITY(U,$J,358.3,10179,0)
+ ;;=R87.614^^45^447^25
+ ;;^UTILITY(U,$J,358.3,10179,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,10179,1,3,0)
+ ;;=3^Cytologic Evidence of Malig on Smear of Cervix
+ ;;^UTILITY(U,$J,358.3,10179,1,4,0)
+ ;;=4^R87.614
+ ;;^UTILITY(U,$J,358.3,10179,2)
+ ;;=^5019672
+ ;;^UTILITY(U,$J,358.3,10180,0)
+ ;;=N87.9^^45^447^35
+ ;;^UTILITY(U,$J,358.3,10180,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,10180,1,3,0)
+ ;;=3^Dysplasia of Cervix Uteri,Unspec
+ ;;^UTILITY(U,$J,358.3,10180,1,4,0)
+ ;;=4^N87.9
+ ;;^UTILITY(U,$J,358.3,10180,2)
+ ;;=^5015877
+ ;;^UTILITY(U,$J,358.3,10181,0)
+ ;;=R30.0^^45^447^36
+ ;;^UTILITY(U,$J,358.3,10181,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,10181,1,3,0)
+ ;;=3^Dysuria
+ ;;^UTILITY(U,$J,358.3,10181,1,4,0)
+ ;;=4^R30.0
+ ;;^UTILITY(U,$J,358.3,10181,2)
+ ;;=^5019322
+ ;;^UTILITY(U,$J,358.3,10182,0)
+ ;;=N92.1^^45^447^39
+ ;;^UTILITY(U,$J,358.3,10182,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,10182,1,3,0)
+ ;;=3^Excessive/Frequent Menstruation w/ Irregular Cycle
+ ;;^UTILITY(U,$J,358.3,10182,1,4,0)
+ ;;=4^N92.1
+ ;;^UTILITY(U,$J,358.3,10182,2)
+ ;;=^5015909
+ ;;^UTILITY(U,$J,358.3,10183,0)
+ ;;=Z08.^^45^447^41
+ ;;^UTILITY(U,$J,358.3,10183,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,10183,1,3,0)
+ ;;=3^F/U Exam After Malig Neop Treatment
+ ;;^UTILITY(U,$J,358.3,10183,1,4,0)
+ ;;=4^Z08.
+ ;;^UTILITY(U,$J,358.3,10183,2)
+ ;;=^5062667
+ ;;^UTILITY(U,$J,358.3,10184,0)
+ ;;=Z80.3^^45^447^42
+ ;;^UTILITY(U,$J,358.3,10184,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,10184,1,3,0)
+ ;;=3^Family Hx of Breast CA
+ ;;^UTILITY(U,$J,358.3,10184,1,4,0)
+ ;;=4^Z80.3
+ ;;^UTILITY(U,$J,358.3,10184,2)
+ ;;=^5063347
+ ;;^UTILITY(U,$J,358.3,10185,0)
+ ;;=Z80.49^^45^447^43
+ ;;^UTILITY(U,$J,358.3,10185,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,10185,1,3,0)
+ ;;=3^Family Hx of Genital Organ CA
+ ;;^UTILITY(U,$J,358.3,10185,1,4,0)
+ ;;=4^Z80.49
+ ;;^UTILITY(U,$J,358.3,10185,2)
+ ;;=^5063351
+ ;;^UTILITY(U,$J,358.3,10186,0)
+ ;;=Z80.41^^45^447^44
+ ;;^UTILITY(U,$J,358.3,10186,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,10186,1,3,0)
+ ;;=3^Family Hx of Ovarian CA
+ ;;^UTILITY(U,$J,358.3,10186,1,4,0)
+ ;;=4^Z80.41
+ ;;^UTILITY(U,$J,358.3,10186,2)
+ ;;=^5063348
+ ;;^UTILITY(U,$J,358.3,10187,0)
+ ;;=N73.9^^45^447^47
+ ;;^UTILITY(U,$J,358.3,10187,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,10187,1,3,0)
+ ;;=3^Female Pelvic Inflammatory Disease,Unspec
+ ;;^UTILITY(U,$J,358.3,10187,1,4,0)
+ ;;=4^N73.9
+ ;;^UTILITY(U,$J,358.3,10187,2)
+ ;;=^5015820
+ ;;^UTILITY(U,$J,358.3,10188,0)
+ ;;=N60.32^^45^447^48
+ ;;^UTILITY(U,$J,358.3,10188,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,10188,1,3,0)
+ ;;=3^Fibrosclerosis,Left Breast

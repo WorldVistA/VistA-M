@@ -1,5 +1,5 @@
-PXVZRT ;SLC/PBB - VIMM UTILITY ROUTINE ;05/31/2016  2:44 PM
- ;;1.0;PCE PATIENT CARE ENCOUNTER;**206,215,216**;Aug 12, 1996;Build 11
+PXVZRT ;SLC/PBB - VIMM UTILITY ROUTINE ;Dec 01, 2021@12:25:45
+ ;;1.0;PCE PATIENT CARE ENCOUNTER;**206,215,216,217**;Aug 12, 1996;Build 134
  ;
  Q
 ZRT ;Manipulate update of MFN ZRT segment for Immunization files
@@ -27,7 +27,7 @@ ZRT ;Manipulate update of MFN ZRT segment for Immunization files
  .Q
  I 'IEN,NAME="Term" D  Q
  .;Assuming that the " " delimiter is used in Term
- .;Assuming MFS Update will be in the form: 
+ .;Assuming MFS Update will be in the form:
  .; ZRT^Term^ANTHRAX VIS 3/10/2010 ENGLISH
  .; ZRT^VistA_VIS_Edition_Date^3/10/2010     in form:mm/dd/yy
  .; ZRT^VistA_VIS_Language^ENGLISH
@@ -123,7 +123,7 @@ ZRT ;Manipulate update of MFN ZRT segment for Immunization files
  I IEN,NAME="Status" D IFST(.07,"",1) Q
  Q
 99999928  ; Manipulate update of MFN ZRT segment for 9999999.28 File
- N X,ERR,IENS,IEN1,IENX,X1,X2,X4,DA,DIK,I,FDAA
+ N X,ERR,IENS,IEN1,IENX,X1,X2,X4,DA,DIK,I,FDAA,TMP
  I IEN,NAME="VistA_Skin_Test_Mapping" D  Q
  .;ZRT^VistA_Skin_Test_Mapping^CPT:90701,90743
  .S X=$P(HLNODE,HLFS,3) ;X=CPT:90701,90743
@@ -161,9 +161,9 @@ ZRT ;Manipulate update of MFN ZRT segment for Immunization files
  Q
 M92002 ;Conversion of File:920 field .02  EDITION DATE to VETS form  02/31/2014
  N Y,X ;Date in internal form:  3140231
- ;set Y to HL7 Form:  20140231 and subsequently to: >> 2/31/2014 << 
+ ;set Y to HL7 Form:  20140231 and subsequently to: >> 2/31/2014 <<
  S Y=$$FMTHL7^XLFDT(TMP1(LEV,X2,IENS,I)),TMP1(LEV,X2,IENS,I)=" "_+$E(Y,5,6)_"/"_+$E(Y,7,8)_"/"_$E(Y,1,4)_" "
- ;Note that space put at begining and end to get form: >>ADENOVIRUS VIS 6/11/2014 ENGLISH<< 
+ ;Note that space put at begining and end to get form: >>ADENOVIRUS VIS 6/11/2014 ENGLISH<<
  Q
 M92004 ;Conversion of File:920 field .04  POINTER TO LANGUAGE FILE (#.85)
  N XX S XX=TMP1(LEV,X2,IENS,I)

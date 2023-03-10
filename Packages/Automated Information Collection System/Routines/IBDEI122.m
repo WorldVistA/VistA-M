@@ -1,126 +1,122 @@
-IBDEI122 ; ; 04-FEB-2020
- ;;3.0;IB ENCOUNTER FORM IMP/EXP;;FEB 04, 2020
+IBDEI122 ; ; 01-FEB-2022
+ ;;3.0;IB ENCOUNTER FORM IMP/EXP;;FEB 01, 2022
  Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,999) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
- ;;^UTILITY(U,$J,358.3,16964,2)
- ;;=^5010001
- ;;^UTILITY(U,$J,358.3,16965,0)
- ;;=M05.712^^88^885^152
- ;;^UTILITY(U,$J,358.3,16965,1,0)
+ ;;^UTILITY(U,$J,358.3,17149,1,4,0)
+ ;;=4^M79.641
+ ;;^UTILITY(U,$J,358.3,17149,2)
+ ;;=^5013338
+ ;;^UTILITY(U,$J,358.3,17150,0)
+ ;;=M79.642^^61^781^105
+ ;;^UTILITY(U,$J,358.3,17150,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,16965,1,3,0)
- ;;=3^Rheumatoid Arthritis of Left Shoulder
- ;;^UTILITY(U,$J,358.3,16965,1,4,0)
- ;;=4^M05.712
- ;;^UTILITY(U,$J,358.3,16965,2)
- ;;=^5010002
- ;;^UTILITY(U,$J,358.3,16966,0)
- ;;=M05.731^^88^885^160
- ;;^UTILITY(U,$J,358.3,16966,1,0)
+ ;;^UTILITY(U,$J,358.3,17150,1,3,0)
+ ;;=3^Pain in Left Hand
+ ;;^UTILITY(U,$J,358.3,17150,1,4,0)
+ ;;=4^M79.642
+ ;;^UTILITY(U,$J,358.3,17150,2)
+ ;;=^5013339
+ ;;^UTILITY(U,$J,358.3,17151,0)
+ ;;=M79.671^^61^781^114
+ ;;^UTILITY(U,$J,358.3,17151,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,16966,1,3,0)
- ;;=3^Rheumatoid Arthritis of Right Wrist
- ;;^UTILITY(U,$J,358.3,16966,1,4,0)
- ;;=4^M05.731
- ;;^UTILITY(U,$J,358.3,16966,2)
- ;;=^5010007
- ;;^UTILITY(U,$J,358.3,16967,0)
- ;;=M05.732^^88^885^153
- ;;^UTILITY(U,$J,358.3,16967,1,0)
+ ;;^UTILITY(U,$J,358.3,17151,1,3,0)
+ ;;=3^Pain in Right Foot
+ ;;^UTILITY(U,$J,358.3,17151,1,4,0)
+ ;;=4^M79.671
+ ;;^UTILITY(U,$J,358.3,17151,2)
+ ;;=^5013350
+ ;;^UTILITY(U,$J,358.3,17152,0)
+ ;;=M79.672^^61^781^104
+ ;;^UTILITY(U,$J,358.3,17152,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,16967,1,3,0)
- ;;=3^Rheumatoid Arthritis of Left Wrist
- ;;^UTILITY(U,$J,358.3,16967,1,4,0)
- ;;=4^M05.732
- ;;^UTILITY(U,$J,358.3,16967,2)
- ;;=^5010008
- ;;^UTILITY(U,$J,358.3,16968,0)
- ;;=M05.741^^88^885^156
- ;;^UTILITY(U,$J,358.3,16968,1,0)
+ ;;^UTILITY(U,$J,358.3,17152,1,3,0)
+ ;;=3^Pain in Left Foot
+ ;;^UTILITY(U,$J,358.3,17152,1,4,0)
+ ;;=4^M79.672
+ ;;^UTILITY(U,$J,358.3,17152,2)
+ ;;=^5013351
+ ;;^UTILITY(U,$J,358.3,17153,0)
+ ;;=M54.9^^61^781^8
+ ;;^UTILITY(U,$J,358.3,17153,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,16968,1,3,0)
- ;;=3^Rheumatoid Arthritis of Right Hand
- ;;^UTILITY(U,$J,358.3,16968,1,4,0)
- ;;=4^M05.741
- ;;^UTILITY(U,$J,358.3,16968,2)
- ;;=^5010010
- ;;^UTILITY(U,$J,358.3,16969,0)
- ;;=M05.742^^88^885^149
- ;;^UTILITY(U,$J,358.3,16969,1,0)
+ ;;^UTILITY(U,$J,358.3,17153,1,3,0)
+ ;;=3^Backache/Dorsalgia
+ ;;^UTILITY(U,$J,358.3,17153,1,4,0)
+ ;;=4^M54.9
+ ;;^UTILITY(U,$J,358.3,17153,2)
+ ;;=^5012314
+ ;;^UTILITY(U,$J,358.3,17154,0)
+ ;;=M48.52XG^^61^781^20
+ ;;^UTILITY(U,$J,358.3,17154,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,16969,1,3,0)
- ;;=3^Rheumatoid Arthritis of Left Hand
- ;;^UTILITY(U,$J,358.3,16969,1,4,0)
- ;;=4^M05.742
- ;;^UTILITY(U,$J,358.3,16969,2)
- ;;=^5010011
- ;;^UTILITY(U,$J,358.3,16970,0)
- ;;=M05.751^^88^885^157
- ;;^UTILITY(U,$J,358.3,16970,1,0)
+ ;;^UTILITY(U,$J,358.3,17154,1,3,0)
+ ;;=3^Collapsed Vertabra,Cervical Region,Subs Encntr,Del Healing
+ ;;^UTILITY(U,$J,358.3,17154,1,4,0)
+ ;;=4^M48.52XG
+ ;;^UTILITY(U,$J,358.3,17154,2)
+ ;;=^5012169
+ ;;^UTILITY(U,$J,358.3,17155,0)
+ ;;=M48.52XS^^61^781^21
+ ;;^UTILITY(U,$J,358.3,17155,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,16970,1,3,0)
- ;;=3^Rheumatoid Arthritis of Right Hip
- ;;^UTILITY(U,$J,358.3,16970,1,4,0)
- ;;=4^M05.751
- ;;^UTILITY(U,$J,358.3,16970,2)
- ;;=^5010013
- ;;^UTILITY(U,$J,358.3,16971,0)
- ;;=M05.752^^88^885^150
- ;;^UTILITY(U,$J,358.3,16971,1,0)
+ ;;^UTILITY(U,$J,358.3,17155,1,3,0)
+ ;;=3^Collapsed Vertabra,Cervical Region,Subs Encntr,Sequela
+ ;;^UTILITY(U,$J,358.3,17155,1,4,0)
+ ;;=4^M48.52XS
+ ;;^UTILITY(U,$J,358.3,17155,2)
+ ;;=^5012170
+ ;;^UTILITY(U,$J,358.3,17156,0)
+ ;;=M48.57XG^^61^781^28
+ ;;^UTILITY(U,$J,358.3,17156,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,16971,1,3,0)
- ;;=3^Rheumatoid Arthritis of Left Hip
- ;;^UTILITY(U,$J,358.3,16971,1,4,0)
- ;;=4^M05.752
- ;;^UTILITY(U,$J,358.3,16971,2)
- ;;=^5010014
- ;;^UTILITY(U,$J,358.3,16972,0)
- ;;=M05.761^^88^885^158
- ;;^UTILITY(U,$J,358.3,16972,1,0)
+ ;;^UTILITY(U,$J,358.3,17156,1,3,0)
+ ;;=3^Collapsed Vertebra,Lumbosacral Region,Subs Encntr,Del Healing
+ ;;^UTILITY(U,$J,358.3,17156,1,4,0)
+ ;;=4^M48.57XG
+ ;;^UTILITY(U,$J,358.3,17156,2)
+ ;;=^5012189
+ ;;^UTILITY(U,$J,358.3,17157,0)
+ ;;=M48.57XS^^61^781^29
+ ;;^UTILITY(U,$J,358.3,17157,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,16972,1,3,0)
- ;;=3^Rheumatoid Arthritis of Right Knee
- ;;^UTILITY(U,$J,358.3,16972,1,4,0)
- ;;=4^M05.761
- ;;^UTILITY(U,$J,358.3,16972,2)
- ;;=^5010016
- ;;^UTILITY(U,$J,358.3,16973,0)
- ;;=M05.762^^88^885^151
- ;;^UTILITY(U,$J,358.3,16973,1,0)
+ ;;^UTILITY(U,$J,358.3,17157,1,3,0)
+ ;;=3^Collapsed Vertebra,Lumbosacral Region,Subs Encntr,Sequela
+ ;;^UTILITY(U,$J,358.3,17157,1,4,0)
+ ;;=4^M48.57XS
+ ;;^UTILITY(U,$J,358.3,17157,2)
+ ;;=^5012190
+ ;;^UTILITY(U,$J,358.3,17158,0)
+ ;;=M48.54XD^^61^781^30
+ ;;^UTILITY(U,$J,358.3,17158,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,16973,1,3,0)
- ;;=3^Rheumatoid Arthritis of Left Knee
- ;;^UTILITY(U,$J,358.3,16973,1,4,0)
- ;;=4^M05.762
- ;;^UTILITY(U,$J,358.3,16973,2)
- ;;=^5010017
- ;;^UTILITY(U,$J,358.3,16974,0)
- ;;=M05.771^^88^885^155
- ;;^UTILITY(U,$J,358.3,16974,1,0)
+ ;;^UTILITY(U,$J,358.3,17158,1,3,0)
+ ;;=3^Collapsed Vertebra,Thoracic Region,Subs Encntr,Rt Healing
+ ;;^UTILITY(U,$J,358.3,17158,1,4,0)
+ ;;=4^M48.54XD
+ ;;^UTILITY(U,$J,358.3,17158,2)
+ ;;=^5012176
+ ;;^UTILITY(U,$J,358.3,17159,0)
+ ;;=M48.57XG^^61^781^31
+ ;;^UTILITY(U,$J,358.3,17159,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,16974,1,3,0)
- ;;=3^Rheumatoid Arthritis of Right Ankle
- ;;^UTILITY(U,$J,358.3,16974,1,4,0)
- ;;=4^M05.771
- ;;^UTILITY(U,$J,358.3,16974,2)
- ;;=^5010019
- ;;^UTILITY(U,$J,358.3,16975,0)
- ;;=M05.772^^88^885^148
- ;;^UTILITY(U,$J,358.3,16975,1,0)
+ ;;^UTILITY(U,$J,358.3,17159,1,3,0)
+ ;;=3^Collapsed Vertebra,Thoracic Region,Subs Encntr,Del Healing
+ ;;^UTILITY(U,$J,358.3,17159,1,4,0)
+ ;;=4^M48.57XG
+ ;;^UTILITY(U,$J,358.3,17159,2)
+ ;;=^5012189
+ ;;^UTILITY(U,$J,358.3,17160,0)
+ ;;=M48.54XS^^61^781^32
+ ;;^UTILITY(U,$J,358.3,17160,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,16975,1,3,0)
- ;;=3^Rheumatoid Arthritis of Left Ankle
- ;;^UTILITY(U,$J,358.3,16975,1,4,0)
- ;;=4^M05.772
- ;;^UTILITY(U,$J,358.3,16975,2)
- ;;=^5010020
- ;;^UTILITY(U,$J,358.3,16976,0)
- ;;=M05.79^^88^885^154
- ;;^UTILITY(U,$J,358.3,16976,1,0)
+ ;;^UTILITY(U,$J,358.3,17160,1,3,0)
+ ;;=3^Collapsed Vertebra,Thoracic Region,Subs Encntr,Sequela
+ ;;^UTILITY(U,$J,358.3,17160,1,4,0)
+ ;;=4^M48.54XS
+ ;;^UTILITY(U,$J,358.3,17160,2)
+ ;;=^5012178
+ ;;^UTILITY(U,$J,358.3,17161,0)
+ ;;=M62.830^^61^781^63
+ ;;^UTILITY(U,$J,358.3,17161,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,16976,1,3,0)
- ;;=3^Rheumatoid Arthritis of Multiple Sites
- ;;^UTILITY(U,$J,358.3,16976,1,4,0)
- ;;=4^M05.79
- ;;^UTILITY(U,$J,358.3,16976,2)
- ;;=^5010022

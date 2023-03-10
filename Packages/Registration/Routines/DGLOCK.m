@@ -1,5 +1,5 @@
 DGLOCK ;ALB/MRL,ERC,BAJ,LBD - PATIENT FILE DATA EDIT CHECKS ; 2/14/11 4:36pm
- ;;5.3;Registration;**108,161,247,485,672,673,688,754,797**;Aug 13, 1993;Build 24
+ ;;5.3;Registration;**108,161,247,485,672,673,688,754,797,1040**;Aug 13, 1993;Build 15
 FFP ; DGFFP Access key required
  I '$D(^XUSEC("DGFFP ACCESS",DUZ)) D EN^DDIOL("Fugitive Felon Key required to edit this field.","","!!?4") K X
  Q
@@ -62,6 +62,8 @@ TAD ;Temp Add Edit
 TADD ;Temp Address Delete?
  Q:'$D(^DPT(DFN,.121))  I $P(^(.121),"^",9)="N"!($P(^(.121),"^",1,6)="^^^^^") Q
 ASK W !,"Do you want to delete all temporary address data" S %=2 D YN^DICN I %Y["?" W !,"Answer 'Y'es to remove temporary address information, 'N'o to leave data in file" G ASK
+ ; DG*5.3*1040 - Set DGTMOT on timeout. Calling routine checks for this variable to process timeout and cleanup this variable
+ I $G(DTOUT) S DGTMOT=1
  Q:%'=1  D EN^DGCLEAR(DFN,"TEMP") Q
 VN ;Viet Svc
  D SV I $D(X),$S('$D(^DPT(DFN,.321)):1,$P(^(.321),U,1)'="Y":1,1:0) I "UN"'[$E(X) W !?4,$C(7),"Service in Republic of Vietnam not indicated...NO EDITING!" K X

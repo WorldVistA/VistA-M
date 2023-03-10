@@ -1,5 +1,5 @@
-PXRMEUT ;SLC/PJH - General extract utilities ;07/29/2010
- ;;2.0;CLINICAL REMINDERS;**4,6,17,18**;Feb 04, 2005;Build 152
+PXRMEUT ;SLC/PJH - General extract utilities ;01/08/2020
+ ;;2.0;CLINICAL REMINDERS;**4,6,17,18,42**;Feb 04, 2005;Build 245
  ;
  ;=================================================
 ASKNUM(TEXT,MIN,MAX) ;
@@ -27,7 +27,7 @@ ASKYN(DEF,TEXT,RTN,HLP) ;
  . S DIR("??")=U_"D HELP^"_RTN_"(HLP)"
  W !
  D ^DIR
- I $D(DTOUT)!$D(DUOUT) S Y=DEF
+ I $D(DTOUT)!$D(DUOUT) S Y=0
  Q Y
  ;
  ;=================================================

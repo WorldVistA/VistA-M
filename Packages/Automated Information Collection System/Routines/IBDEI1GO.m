@@ -1,124 +1,124 @@
-IBDEI1GO ; ; 04-FEB-2020
- ;;3.0;IB ENCOUNTER FORM IMP/EXP;;FEB 04, 2020
+IBDEI1GO ; ; 01-FEB-2022
+ ;;3.0;IB ENCOUNTER FORM IMP/EXP;;FEB 01, 2022
  Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,999) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
- ;;^UTILITY(U,$J,358.3,23369,1,4,0)
- ;;=4^C81.90
- ;;^UTILITY(U,$J,358.3,23369,2)
- ;;=^5001451
- ;;^UTILITY(U,$J,358.3,23370,0)
- ;;=C81.99^^105^1173^21
- ;;^UTILITY(U,$J,358.3,23370,1,0)
+ ;;^UTILITY(U,$J,358.3,23631,1,4,0)
+ ;;=4^D68.8
+ ;;^UTILITY(U,$J,358.3,23631,2)
+ ;;=^5002363
+ ;;^UTILITY(U,$J,358.3,23632,0)
+ ;;=D68.318^^79^1021^13
+ ;;^UTILITY(U,$J,358.3,23632,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,23370,1,3,0)
- ;;=3^Hodgkin Lymphoma,Extranodal/Solid Organ Sites,Unspec
- ;;^UTILITY(U,$J,358.3,23370,1,4,0)
- ;;=4^C81.99
- ;;^UTILITY(U,$J,358.3,23370,2)
- ;;=^5001460
- ;;^UTILITY(U,$J,358.3,23371,0)
- ;;=C85.80^^105^1173^71
- ;;^UTILITY(U,$J,358.3,23371,1,0)
+ ;;^UTILITY(U,$J,358.3,23632,1,3,0)
+ ;;=3^Hemorrhagic Disorder d/t Intrns Circ Anticoag/Antib/Inhib
+ ;;^UTILITY(U,$J,358.3,23632,1,4,0)
+ ;;=4^D68.318
+ ;;^UTILITY(U,$J,358.3,23632,2)
+ ;;=^340504
+ ;;^UTILITY(U,$J,358.3,23633,0)
+ ;;=D68.32^^79^1021^12
+ ;;^UTILITY(U,$J,358.3,23633,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,23371,1,3,0)
- ;;=3^Non-Hodgkin Lymphoma,Unspec Site NEC
- ;;^UTILITY(U,$J,358.3,23371,1,4,0)
- ;;=4^C85.80
- ;;^UTILITY(U,$J,358.3,23371,2)
- ;;=^5001721
- ;;^UTILITY(U,$J,358.3,23372,0)
- ;;=C85.89^^105^1173^70
- ;;^UTILITY(U,$J,358.3,23372,1,0)
+ ;;^UTILITY(U,$J,358.3,23633,1,3,0)
+ ;;=3^Hemorrhagic Disorder d/t Extrinsic Circulating Anticoagulants
+ ;;^UTILITY(U,$J,358.3,23633,1,4,0)
+ ;;=4^D68.32
+ ;;^UTILITY(U,$J,358.3,23633,2)
+ ;;=^5002357
+ ;;^UTILITY(U,$J,358.3,23634,0)
+ ;;=I10.^^79^1021^14
+ ;;^UTILITY(U,$J,358.3,23634,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,23372,1,3,0)
- ;;=3^Non-Hodgkin Lymphoma,Extranodal/Solid Organ Sites NEC
- ;;^UTILITY(U,$J,358.3,23372,1,4,0)
- ;;=4^C85.89
- ;;^UTILITY(U,$J,358.3,23372,2)
- ;;=^5001730
- ;;^UTILITY(U,$J,358.3,23373,0)
- ;;=C90.01^^105^1173^65
- ;;^UTILITY(U,$J,358.3,23373,1,0)
+ ;;^UTILITY(U,$J,358.3,23634,1,3,0)
+ ;;=3^Hypertension,Essential
+ ;;^UTILITY(U,$J,358.3,23634,1,4,0)
+ ;;=4^I10.
+ ;;^UTILITY(U,$J,358.3,23634,2)
+ ;;=^5007062
+ ;;^UTILITY(U,$J,358.3,23635,0)
+ ;;=I82.401^^79^1021^3
+ ;;^UTILITY(U,$J,358.3,23635,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,23373,1,3,0)
- ;;=3^Multiple Myeloma in Remission
- ;;^UTILITY(U,$J,358.3,23373,1,4,0)
- ;;=4^C90.01
- ;;^UTILITY(U,$J,358.3,23373,2)
- ;;=^267515
- ;;^UTILITY(U,$J,358.3,23374,0)
- ;;=C91.90^^105^1173^32
- ;;^UTILITY(U,$J,358.3,23374,1,0)
+ ;;^UTILITY(U,$J,358.3,23635,1,3,0)
+ ;;=3^Acute Embolism/Thrombos Deep Veins,Rt Lower Extrem,Unspec
+ ;;^UTILITY(U,$J,358.3,23635,1,4,0)
+ ;;=4^I82.401
+ ;;^UTILITY(U,$J,358.3,23635,2)
+ ;;=^5007854
+ ;;^UTILITY(U,$J,358.3,23636,0)
+ ;;=I82.402^^79^1021^2
+ ;;^UTILITY(U,$J,358.3,23636,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,23374,1,3,0)
- ;;=3^Lymphoid Leukemia,Unspec
- ;;^UTILITY(U,$J,358.3,23374,1,4,0)
- ;;=4^C91.90
- ;;^UTILITY(U,$J,358.3,23374,2)
- ;;=^5001780
- ;;^UTILITY(U,$J,358.3,23375,0)
- ;;=C92.90^^105^1173^66
- ;;^UTILITY(U,$J,358.3,23375,1,0)
+ ;;^UTILITY(U,$J,358.3,23636,1,3,0)
+ ;;=3^Acute Embolism/Thrombos Deep Veins,Lt Lower Extrem,Unspec
+ ;;^UTILITY(U,$J,358.3,23636,1,4,0)
+ ;;=4^I82.402
+ ;;^UTILITY(U,$J,358.3,23636,2)
+ ;;=^5007855
+ ;;^UTILITY(U,$J,358.3,23637,0)
+ ;;=I82.890^^79^1021^1
+ ;;^UTILITY(U,$J,358.3,23637,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,23375,1,3,0)
- ;;=3^Myeloid Leukemia,Unspec
- ;;^UTILITY(U,$J,358.3,23375,1,4,0)
- ;;=4^C92.90
- ;;^UTILITY(U,$J,358.3,23375,2)
- ;;=^5001810
- ;;^UTILITY(U,$J,358.3,23376,0)
- ;;=D04.9^^105^1173^9
- ;;^UTILITY(U,$J,358.3,23376,1,0)
+ ;;^UTILITY(U,$J,358.3,23637,1,3,0)
+ ;;=3^Acute Embolism/Thromb of Other Specified Veins
+ ;;^UTILITY(U,$J,358.3,23637,1,4,0)
+ ;;=4^I82.890
+ ;;^UTILITY(U,$J,358.3,23637,2)
+ ;;=^5007938
+ ;;^UTILITY(U,$J,358.3,23638,0)
+ ;;=I82.891^^79^1021^10
+ ;;^UTILITY(U,$J,358.3,23638,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,23376,1,3,0)
- ;;=3^Carcinoma in Situ of Skin,Unspec
- ;;^UTILITY(U,$J,358.3,23376,1,4,0)
- ;;=4^D04.9
- ;;^UTILITY(U,$J,358.3,23376,2)
- ;;=^5001925
- ;;^UTILITY(U,$J,358.3,23377,0)
- ;;=D05.91^^105^1173^5
- ;;^UTILITY(U,$J,358.3,23377,1,0)
+ ;;^UTILITY(U,$J,358.3,23638,1,3,0)
+ ;;=3^Chronic Embolism/Thrombo of Other Specified Veins
+ ;;^UTILITY(U,$J,358.3,23638,1,4,0)
+ ;;=4^I82.891
+ ;;^UTILITY(U,$J,358.3,23638,2)
+ ;;=^5007939
+ ;;^UTILITY(U,$J,358.3,23639,0)
+ ;;=D68.62^^79^1021^16
+ ;;^UTILITY(U,$J,358.3,23639,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,23377,1,3,0)
- ;;=3^Carcinoma in Situ of Breast,Right,Unspec
- ;;^UTILITY(U,$J,358.3,23377,1,4,0)
- ;;=4^D05.91
- ;;^UTILITY(U,$J,358.3,23377,2)
- ;;=^5001936
- ;;^UTILITY(U,$J,358.3,23378,0)
- ;;=D05.92^^105^1173^3
- ;;^UTILITY(U,$J,358.3,23378,1,0)
+ ;;^UTILITY(U,$J,358.3,23639,1,3,0)
+ ;;=3^Lupus Anticoagulant Syndrome
+ ;;^UTILITY(U,$J,358.3,23639,1,4,0)
+ ;;=4^D68.62
+ ;;^UTILITY(U,$J,358.3,23639,2)
+ ;;=^5002361
+ ;;^UTILITY(U,$J,358.3,23640,0)
+ ;;=I48.20^^79^1021^4
+ ;;^UTILITY(U,$J,358.3,23640,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,23378,1,3,0)
- ;;=3^Carcinoma in Situ of Breast,Left,Unspec
- ;;^UTILITY(U,$J,358.3,23378,1,4,0)
- ;;=4^D05.92
- ;;^UTILITY(U,$J,358.3,23378,2)
- ;;=^5001937
- ;;^UTILITY(U,$J,358.3,23379,0)
- ;;=D05.01^^105^1173^29
- ;;^UTILITY(U,$J,358.3,23379,1,0)
+ ;;^UTILITY(U,$J,358.3,23640,1,3,0)
+ ;;=3^Atrial Fibrillation,Chronic,Unspec
+ ;;^UTILITY(U,$J,358.3,23640,1,4,0)
+ ;;=4^I48.20
+ ;;^UTILITY(U,$J,358.3,23640,2)
+ ;;=^5158048
+ ;;^UTILITY(U,$J,358.3,23641,0)
+ ;;=I48.21^^79^1021^8
+ ;;^UTILITY(U,$J,358.3,23641,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,23379,1,3,0)
- ;;=3^Lobular Carcinoma in Situ of Breast,Right
- ;;^UTILITY(U,$J,358.3,23379,1,4,0)
- ;;=4^D05.01
- ;;^UTILITY(U,$J,358.3,23379,2)
- ;;=^5001927
- ;;^UTILITY(U,$J,358.3,23380,0)
- ;;=D05.02^^105^1173^28
- ;;^UTILITY(U,$J,358.3,23380,1,0)
+ ;;^UTILITY(U,$J,358.3,23641,1,3,0)
+ ;;=3^Atrial Fibrillation,Permanent
+ ;;^UTILITY(U,$J,358.3,23641,1,4,0)
+ ;;=4^I48.21
+ ;;^UTILITY(U,$J,358.3,23641,2)
+ ;;=^304710
+ ;;^UTILITY(U,$J,358.3,23642,0)
+ ;;=I48.11^^79^1021^5
+ ;;^UTILITY(U,$J,358.3,23642,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,23380,1,3,0)
- ;;=3^Lobular Carcinoma in Situ of Breast,Left
- ;;^UTILITY(U,$J,358.3,23380,1,4,0)
- ;;=4^D05.02
- ;;^UTILITY(U,$J,358.3,23380,2)
- ;;=^5001928
- ;;^UTILITY(U,$J,358.3,23381,0)
- ;;=D05.11^^105^1173^23
- ;;^UTILITY(U,$J,358.3,23381,1,0)
+ ;;^UTILITY(U,$J,358.3,23642,1,3,0)
+ ;;=3^Atrial Fibrillation,Longstanding Persistent
+ ;;^UTILITY(U,$J,358.3,23642,1,4,0)
+ ;;=4^I48.11
+ ;;^UTILITY(U,$J,358.3,23642,2)
+ ;;=^5158046
+ ;;^UTILITY(U,$J,358.3,23643,0)
+ ;;=I48.19^^79^1021^6
+ ;;^UTILITY(U,$J,358.3,23643,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,23381,1,3,0)
- ;;=3^Intraductal Carcinoma in Situ of Breast,Right
+ ;;^UTILITY(U,$J,358.3,23643,1,3,0)
+ ;;=3^Atrial Fibrillation,Other Persistent

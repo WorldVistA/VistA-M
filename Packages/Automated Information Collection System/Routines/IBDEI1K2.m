@@ -1,124 +1,120 @@
-IBDEI1K2 ; ; 04-FEB-2020
- ;;3.0;IB ENCOUNTER FORM IMP/EXP;;FEB 04, 2020
+IBDEI1K2 ; ; 01-FEB-2022
+ ;;3.0;IB ENCOUNTER FORM IMP/EXP;;FEB 01, 2022
  Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,999) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
- ;;^UTILITY(U,$J,358.3,24862,0)
- ;;=D47.4^^107^1211^182
- ;;^UTILITY(U,$J,358.3,24862,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,24862,1,3,0)
- ;;=3^Osteomyelofibrosis
- ;;^UTILITY(U,$J,358.3,24862,1,4,0)
- ;;=4^D47.4
- ;;^UTILITY(U,$J,358.3,24862,2)
- ;;=^5002259
- ;;^UTILITY(U,$J,358.3,24863,0)
- ;;=D59.1^^107^1211^29
- ;;^UTILITY(U,$J,358.3,24863,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,24863,1,3,0)
- ;;=3^Autoimmune Hemolytic Anemia,Other
- ;;^UTILITY(U,$J,358.3,24863,1,4,0)
- ;;=4^D59.1
- ;;^UTILITY(U,$J,358.3,24863,2)
- ;;=^5002324
- ;;^UTILITY(U,$J,358.3,24864,0)
- ;;=D51.3^^107^1211^196
- ;;^UTILITY(U,$J,358.3,24864,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,24864,1,3,0)
- ;;=3^Vitamin B12 Deficiency Anemia,Other
- ;;^UTILITY(U,$J,358.3,24864,1,4,0)
- ;;=4^D51.3
- ;;^UTILITY(U,$J,358.3,24864,2)
- ;;=^5002287
- ;;^UTILITY(U,$J,358.3,24865,0)
- ;;=D77.^^107^1211^58
- ;;^UTILITY(U,$J,358.3,24865,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,24865,1,3,0)
- ;;=3^Disorder of Blood/Blood-Forming Organs in Diseases Classified Elsewhere,Other
- ;;^UTILITY(U,$J,358.3,24865,1,4,0)
- ;;=4^D77.
- ;;^UTILITY(U,$J,358.3,24865,2)
- ;;=^5002396
- ;;^UTILITY(U,$J,358.3,24866,0)
- ;;=D58.2^^107^1211^84
- ;;^UTILITY(U,$J,358.3,24866,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,24866,1,3,0)
- ;;=3^Hemoglobinopathies,Other
- ;;^UTILITY(U,$J,358.3,24866,1,4,0)
- ;;=4^D58.2
- ;;^UTILITY(U,$J,358.3,24866,2)
- ;;=^87629
- ;;^UTILITY(U,$J,358.3,24867,0)
- ;;=C88.8^^107^1211^106
- ;;^UTILITY(U,$J,358.3,24867,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,24867,1,3,0)
- ;;=3^Malig Immunoproliferative Diseases,Other
- ;;^UTILITY(U,$J,358.3,24867,1,4,0)
- ;;=4^C88.8
- ;;^UTILITY(U,$J,358.3,24867,2)
- ;;=^5001750
- ;;^UTILITY(U,$J,358.3,24868,0)
- ;;=D70.8^^107^1211^179
- ;;^UTILITY(U,$J,358.3,24868,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,24868,1,3,0)
- ;;=3^Neutropenia,Other
- ;;^UTILITY(U,$J,358.3,24868,1,4,0)
- ;;=4^D70.8
- ;;^UTILITY(U,$J,358.3,24868,2)
- ;;=^334042
- ;;^UTILITY(U,$J,358.3,24869,0)
- ;;=D59.4^^107^1211^180
- ;;^UTILITY(U,$J,358.3,24869,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,24869,1,3,0)
- ;;=3^Nonautoimmune Hemolytic Anemias,Other
- ;;^UTILITY(U,$J,358.3,24869,1,4,0)
- ;;=4^D59.4
- ;;^UTILITY(U,$J,358.3,24869,2)
- ;;=^5002326
- ;;^UTILITY(U,$J,358.3,24870,0)
- ;;=D69.59^^107^1211^186
- ;;^UTILITY(U,$J,358.3,24870,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,24870,1,3,0)
- ;;=3^Secondary Thrombocytopenia,Other
- ;;^UTILITY(U,$J,358.3,24870,1,4,0)
- ;;=4^D69.59
- ;;^UTILITY(U,$J,358.3,24870,2)
- ;;=^5002369
- ;;^UTILITY(U,$J,358.3,24871,0)
- ;;=C22.7^^107^1211^47
- ;;^UTILITY(U,$J,358.3,24871,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,24871,1,3,0)
- ;;=3^Carcinomas of Liver,Other Spec
- ;;^UTILITY(U,$J,358.3,24871,1,4,0)
- ;;=4^C22.7
- ;;^UTILITY(U,$J,358.3,24871,2)
- ;;=^5000938
- ;;^UTILITY(U,$J,358.3,24872,0)
- ;;=D75.89^^107^1211^57
- ;;^UTILITY(U,$J,358.3,24872,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,24872,1,3,0)
- ;;=3^Diseases of Blood/Blood-Forming Organs,Other Spec
- ;;^UTILITY(U,$J,358.3,24872,1,4,0)
- ;;=4^D75.89
- ;;^UTILITY(U,$J,358.3,24872,2)
- ;;=^5002392
- ;;^UTILITY(U,$J,358.3,24873,0)
- ;;=D47.Z9^^107^1211^178
- ;;^UTILITY(U,$J,358.3,24873,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,24873,1,3,0)
- ;;=3^Neop Lymphoid,Hematopoietic & Related Tissue,Uncertain Behavior,Other
- ;;^UTILITY(U,$J,358.3,24873,1,4,0)
- ;;=4^D47.Z9
- ;;^UTILITY(U,$J,358.3,24873,2)
- ;;=^5002262
+ ;;^UTILITY(U,$J,358.3,25214,1,2,0)
+ ;;=2^96376
+ ;;^UTILITY(U,$J,358.3,25214,1,3,0)
+ ;;=3^Tx/Pro/Dx Inj,ea addl sequential IVP of Same Drug-Add-on
+ ;;^UTILITY(U,$J,358.3,25215,0)
+ ;;=J2680^^91^1143^5^^^^1
+ ;;^UTILITY(U,$J,358.3,25215,1,0)
+ ;;=^358.31IA^3^2
+ ;;^UTILITY(U,$J,358.3,25215,1,2,0)
+ ;;=2^J2680
+ ;;^UTILITY(U,$J,358.3,25215,1,3,0)
+ ;;=3^Fluphenazine Decanoate up to 25mg
+ ;;^UTILITY(U,$J,358.3,25216,0)
+ ;;=J1631^^91^1143^6^^^^1
+ ;;^UTILITY(U,$J,358.3,25216,1,0)
+ ;;=^358.31IA^3^2
+ ;;^UTILITY(U,$J,358.3,25216,1,2,0)
+ ;;=2^J1631
+ ;;^UTILITY(U,$J,358.3,25216,1,3,0)
+ ;;=3^Haloperidol Decanoate per 50mg
+ ;;^UTILITY(U,$J,358.3,25217,0)
+ ;;=J2315^^91^1143^7^^^^1
+ ;;^UTILITY(U,$J,358.3,25217,1,0)
+ ;;=^358.31IA^3^2
+ ;;^UTILITY(U,$J,358.3,25217,1,2,0)
+ ;;=2^J2315
+ ;;^UTILITY(U,$J,358.3,25217,1,3,0)
+ ;;=3^Naltrexone,Depot Form 1mg
+ ;;^UTILITY(U,$J,358.3,25218,0)
+ ;;=J2426^^91^1143^9^^^^1
+ ;;^UTILITY(U,$J,358.3,25218,1,0)
+ ;;=^358.31IA^3^2
+ ;;^UTILITY(U,$J,358.3,25218,1,2,0)
+ ;;=2^J2426
+ ;;^UTILITY(U,$J,358.3,25218,1,3,0)
+ ;;=3^Paliperidone Palmitate Extend Release per 1mg
+ ;;^UTILITY(U,$J,358.3,25219,0)
+ ;;=J2794^^91^1143^10^^^^1
+ ;;^UTILITY(U,$J,358.3,25219,1,0)
+ ;;=^358.31IA^3^2
+ ;;^UTILITY(U,$J,358.3,25219,1,2,0)
+ ;;=2^J2794
+ ;;^UTILITY(U,$J,358.3,25219,1,3,0)
+ ;;=3^Risperidone Long Act per 0.5mg
+ ;;^UTILITY(U,$J,358.3,25220,0)
+ ;;=J2315^^91^1143^11^^^^1
+ ;;^UTILITY(U,$J,358.3,25220,1,0)
+ ;;=^358.31IA^3^2
+ ;;^UTILITY(U,$J,358.3,25220,1,2,0)
+ ;;=2^J2315
+ ;;^UTILITY(U,$J,358.3,25220,1,3,0)
+ ;;=3^Vivitrol 1mg
+ ;;^UTILITY(U,$J,358.3,25221,0)
+ ;;=J0401^^91^1143^1^^^^1
+ ;;^UTILITY(U,$J,358.3,25221,1,0)
+ ;;=^358.31IA^3^2
+ ;;^UTILITY(U,$J,358.3,25221,1,2,0)
+ ;;=2^J0401
+ ;;^UTILITY(U,$J,358.3,25221,1,3,0)
+ ;;=3^Aripiprazole Ext Rel 1mg
+ ;;^UTILITY(U,$J,358.3,25222,0)
+ ;;=J2358^^91^1143^8^^^^1
+ ;;^UTILITY(U,$J,358.3,25222,1,0)
+ ;;=^358.31IA^3^2
+ ;;^UTILITY(U,$J,358.3,25222,1,2,0)
+ ;;=2^J2358
+ ;;^UTILITY(U,$J,358.3,25222,1,3,0)
+ ;;=3^Olanzapine,Long-Acting 1mg
+ ;;^UTILITY(U,$J,358.3,25223,0)
+ ;;=J1943^^91^1143^2^^^^1
+ ;;^UTILITY(U,$J,358.3,25223,1,0)
+ ;;=^358.31IA^3^2
+ ;;^UTILITY(U,$J,358.3,25223,1,2,0)
+ ;;=2^J1943
+ ;;^UTILITY(U,$J,358.3,25223,1,3,0)
+ ;;=3^Aristada Initio 1mg
+ ;;^UTILITY(U,$J,358.3,25224,0)
+ ;;=Q9991^^91^1143^3^^^^1
+ ;;^UTILITY(U,$J,358.3,25224,1,0)
+ ;;=^358.31IA^3^2
+ ;;^UTILITY(U,$J,358.3,25224,1,2,0)
+ ;;=2^Q9991
+ ;;^UTILITY(U,$J,358.3,25224,1,3,0)
+ ;;=3^Buprenorphine Ext-Release (Sublocade),up to 100mg
+ ;;^UTILITY(U,$J,358.3,25225,0)
+ ;;=Q9992^^91^1143^4^^^^1
+ ;;^UTILITY(U,$J,358.3,25225,1,0)
+ ;;=^358.31IA^3^2
+ ;;^UTILITY(U,$J,358.3,25225,1,2,0)
+ ;;=2^Q9992
+ ;;^UTILITY(U,$J,358.3,25225,1,3,0)
+ ;;=3^Buprenorphine Ext-Release (Sublocade) > 100mg    
+ ;;^UTILITY(U,$J,358.3,25226,0)
+ ;;=96156^^91^1144^1^^^^1
+ ;;^UTILITY(U,$J,358.3,25226,1,0)
+ ;;=^358.31IA^3^2
+ ;;^UTILITY(U,$J,358.3,25226,1,2,0)
+ ;;=2^96156
+ ;;^UTILITY(U,$J,358.3,25226,1,3,0)
+ ;;=3^Hlth/Behav,Assess/Reassess,Ea 15 min
+ ;;^UTILITY(U,$J,358.3,25227,0)
+ ;;=96158^^91^1144^2^^^^1
+ ;;^UTILITY(U,$J,358.3,25227,1,0)
+ ;;=^358.31IA^3^2
+ ;;^UTILITY(U,$J,358.3,25227,1,2,0)
+ ;;=2^96158
+ ;;^UTILITY(U,$J,358.3,25227,1,3,0)
+ ;;=3^Hlth/Behav Interv,Indiv,Init 30 min
+ ;;^UTILITY(U,$J,358.3,25228,0)
+ ;;=96159^^91^1144^3^^^^1
+ ;;^UTILITY(U,$J,358.3,25228,1,0)
+ ;;=^358.31IA^3^2
+ ;;^UTILITY(U,$J,358.3,25228,1,2,0)
+ ;;=2^96159
+ ;;^UTILITY(U,$J,358.3,25228,1,3,0)
+ ;;=3^Hlth/Behav Interv,Indiv,Ea Addl 15 min

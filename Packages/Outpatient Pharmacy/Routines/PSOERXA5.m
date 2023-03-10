@@ -1,5 +1,5 @@
 PSOERXA5 ;ALB/BWF - eRx Utilities/RPC's ; 1/20/2018 10:28am
- ;;7.0;OUTPATIENT PHARMACY;**508**;DEC 1997;Build 295
+ ;;7.0;OUTPATIENT PHARMACY;**508,581,631,617,651**;DEC 1997;Build 30
  ;
  Q
  ; ERXIEN - IEN to file 52.49
@@ -51,47 +51,53 @@ MEDDISP(ERXIEN,MTYPE) ;
  S FDA(52.49,ERXIEN_",",51.2)=REFILLS D FILE^DIE(,"FDA") K FDA
  Q
 REFRESP(ERXIEN,MTYPE) ;
- N GL,REFFDA,RESTYPE,REFNUM,RESNOTE,I,REACODE,IENS,FDA,RESTUP,RESNODE,RESTNODE,REFRES,REFREQ,DELTAS,PSOIEN,RXIEN
+ N GL,REFFDA,RESTYPE,REFNUM,RESNOTE,I,REACODE,IENS,FDA,RESTUP,RESNODE,RESTNODE,REFRES,REFREQ,DELTAS,PSOIEN,RXIEN,COMM
  S GL=$NA(^TMP($J,"PSOERXO1","Message",0,"Body",0,MTYPE,0,"Response",0))
  S RESTYPE=$O(@GL@("")),RESTUP=$$UP^XLFSTR(RESTYPE),RESTUP=$TR(RESTUP," ",""),RESTUP=$TR(RESTUP,",","")
  S RESTNODE=RESTYPE
  S REFNUM=$G(@GL@(RESTYPE,0,"ReferenceNumber",0))
- S RESTYPE=$S(RESTUP="APPROVED":"A",RESTUP="DENIED":"D",RESTUP="DENIEDNEWPRESCRIPTIONTOFOLLOW":"DNP",RESTUP="APPROVEDWITHCHANGES":"AWC",1:"")
- S RESNODE=$S(RESTYPE="A":"ApprovalReasonCode",1:"DenialReasonCode")
- S RESNOTE=$S(RESTYPE="A"!(RESTYPE="AWC"):$G(@GL@(RESTNODE,0,"Note",0)),1:$G(@GL@(RESTNODE,0,"DenialReason",0)))
+ S RESTYPE=$S(RESTUP="APPROVED":"A",RESTUP="DENIED":"D",RESTUP="DENIEDNEWPRESCRIPTIONTOFOLLOW":"DNP",RESTUP="APPROVEDWITHCHANGES":"AWC",RESTUP="REPLACE":"R",1:"")
+ S RESNODE=$S(RESTYPE="A":"ApprovalReason",RESTYPE="R":"Replace",1:"DenialReason")
+ S RESNOTE=$S(RESTYPE="A"!(RESTYPE="AWC")!(RESTYPE="R")!(RESTYPE="DNP"):$G(@GL@(RESTNODE,0,"Note",0)),1:$G(@GL@(RESTNODE,0,"DenialReason",0)))
  S REFFDA(52.49,ERXIEN_",",52.3)=REFNUM
  S REFFDA(52.49,ERXIEN_",",52.1)=RESTYPE
  S REFFDA(52.49,ERXIEN_",",52.2)=RESNOTE
  D FILE^DIE(,"REFFDA") K REFFDA
- S I=-1 F  S I=$O(@GL@(RESTNODE,0,RESNODE,I)) Q:I=""  D
- .S REACODE=$G(@GL@(RESTNODE,0,RESNODE,I))
+ S I=-1 F  S I=$O(@GL@(RESTNODE,I)) Q:I=""  D
+ .S REACODE=$G(@GL@(RESTNODE,0,"ReasonCode",I))
  .S REACODE=$$PRESOLV^PSOERXA1(REACODE,"CLQ") Q:'REACODE
  .S IENS="+1,"_ERXIEN_","
  .S REFFDA(52.4955,IENS,.01)=REACODE
  .D UPDATE^DIE(,"REFFDA") K REFFDA
  S REFRES=ERXIEN,REFREQ=$$GETREQ^PSOERXU2(ERXIEN)
+ ; If a corresponding eRx was not found for the Response received, update the Response status to RXF and do not process further
+ I 'REFREQ D  Q
+ .S COMM="Response received was '"_$S(RESTYPE="A":"Approved",RESTYPE="D":"Denied",RESTYPE="DNP":"Denied, New Rx to Follow",RESTYPE="AWC":"Approved with Changes",RESTYPE="R":"Replace",1:$G(RESTUP))
+ .D UPDSTAT^PSOERXU1(ERXIEN,"RXF",COMM_"' - No corresponding eRx Record found.") Q
  S RXIEN=$$GET1^DIQ(52.49,REFREQ,.13,"I")
- ; If the Rx has been renewed within the VA, update that status to RXD and do not process further.
+ ; If the Rx has been renewed within the VA, update the Response status to RXF and do not process further.
  I RXIEN,$$VARENEW^PSOERXU6(RXIEN) D  Q
- .I RESTYPE="DNP" D UPDSTAT^PSOERXU1(ERXIEN,"RXD","eRx Renewed within the VA.")
+ .S COMM="Response received was '"_$S(RESTYPE="A":"Approved",RESTYPE="D":"Denied",RESTYPE="DNP":"Denied, New Rx to Follow",RESTYPE="AWC":"Approved with Changes",RESTYPE="R":"Replace",1:$G(RESTUP))
+ .D UPDSTAT^PSOERXU1(ERXIEN,"RXF",COMM_"' - Unable to process - eRx already Renewed via Backdoor Pharmacy.") Q
  ; auto-dc original prescription if this is a denied, new rx to follow
- I RESTYPE="DNP" D  Q
- .D RXACT^PSOBPSU2(RXIEN,,"Refill response from external provider - Denied, New prescription to follow.","O")
+ I RESTYPE="DNP"!(RESTYPE="R") D  Q
+ .I RESTYPE="DNP",RXIEN D RXACT^PSOBPSU2(RXIEN,,"RxRenewal response from external provider - Denied, New prescription to follow.","O")
+ .I RESTYPE="R",RXIEN D RXACT^PSOBPSU2(RXIEN,,"RxRenewal response from external provider - Replace.","O")
  .D AUTODC^PSOERXU3(ERXIEN)
  ; if the response type is approved, process the approval into OP.
  I RESTYPE="A" D  Q
- .D RXACT^PSOBPSU2(RXIEN,,"Refill response from external provider - Approved.","O")
- .S PSOIEN=ERXIEN D SETUP^PSOERX1B
+ .D RXACT^PSOBPSU2(RXIEN,,"RxRenewal response from external provider - Approved.","O")
+ .S PSOIEN=ERXIEN D SETUP^PSOERX1F
  S REFRES=ERXIEN,REFREQ=$$GETREQ^PSOERXU2(ERXIEN)
  I 'REFREQ!('REFRES) Q
  D RRDELTA^PSOERXU2(.DELTAS,REFREQ,REFRES)
  ; if the type is approved with changes, and the provider hasn't changed, auto-process the renewal
  I RESTYPE="AWC",'$D(DELTAS(52.49,"EXTERNAL PROVIDER")) D
- .D RXACT^PSOBPSU2(RXIEN,,"Refill response from external provider - Approved with changes.","O")
- .S PSOIEN=ERXIEN D SETUP^PSOERX1B
+ .D RXACT^PSOBPSU2(RXIEN,,"RxRenewal response from external provider - Approved with changes.","O")
+ .S PSOIEN=ERXIEN D SETUP^PSOERX1F
  I RESTYPE="AWC",$D(DELTAS(52.49,"EXTERNAL PROVIDER")) D
- .D RXACT^PSOBPSU2(RXIEN,,"Refill response from external provider - Approved with provider changes.","O")
- I RESTYPE="D" D UPDSTAT^PSOERXU1(ERXIEN,"RXD"),RXACT^PSOBPSU2(RXIEN,,"Refill response from external provider - Denied.","O")
+ .D RXACT^PSOBPSU2(RXIEN,,"RxRenewal response from external provider - Approved with provider changes.","O")
+ I RESTYPE="D" D UPDSTAT^PSOERXU1(ERXIEN,"RXD"),RXACT^PSOBPSU2(RXIEN,,"RxRenewal response from external provider - Denied.","O")
  Q
  ; ERXIEN - IEN from 52.49
  ; MTYPE - message type (field .08)
@@ -163,14 +169,12 @@ BFC(ERXIEN) ; benefits coordination
  .S CHSUFF=$$UP^XLFSTR($G(@GL@(BFCCNT,"CardHolderName",0,"Suffix",0)))
  .S CHID=$G(@GL@(BFCCNT,"CardholderID",0))
  .S GRPID=$G(@GL@(BFCCNT,"GroupID",0))
- .;/BLB/ PSO*7.0*520
  .S PNAME=$G(@GL@(BFCCNT,"PayerName",0))
  .S IENS="+1,"_ERXIEN_","
  .S FDA(F,IENS,.01)=BSEQ,FDA(F,IENS,7)=CHID,FDA(F,IENS,.02)=GRPID,FDA(F,IENS,.03)=PNAME
  .S FDA(F,IENS,1)=CHLN,FDA(F,IENS,2)=CHFN,FDA(F,IENS,3)=CHMN,FDA(F,IENS,4)=CHSUFF,FDA(F,IENS,5)=CHPRE
  .K NEWPAYER
  .D UPDATE^DIE(,"FDA","NEWPAYER") K FDA
- .;/BLB/ - END CHANGE
  .S PIEN=$O(NEWPAYER(0)),PIEN=$G(NEWPAYER(PIEN)) Q:'PIEN
  .S PIDCNT=-1 F  S PIDCNT=$O(@GL@(BFCCNT,"PayerIdentification",PIDCNT)) Q:PIDCNT=""  D
  ..S PIDTYP="" F  S PIDTYP=$O(@GL@(BFCCNT,"PayerIdentification",PIDCNT,PIDTYP)) Q:PIDTYP=""  D

@@ -1,5 +1,5 @@
-PSBVDLPA ;BIRMINGHAM/EFC-BCMA UNIT DOSE VIRTUAL DUE LIST FUNCTIONS;03/06/16 3:06pm
- ;;3.0;BAR CODE MED ADMIN;**5,16,13,38,32,58,70,83,114**;Mar 2004;Build 3
+PSBVDLPA ;BIRMINGHAM/EFC-BCMA UNIT DOSE VIRTUAL DUE LIST FUNCTIONS;03/06/16 3:06pm ;5/20/21  15:37
+ ;;3.0;BAR CODE MED ADMIN;**5,16,13,38,32,58,70,83,114,106**;Mar 2004;Build 43
  ;Per VHA Directive 2004-038 (or future revisions regarding same), this routine should not be modified.
  ;
  ; called by PSBVDLUD to find patches not removed
@@ -16,11 +16,12 @@ PSBVDLPA ;BIRMINGHAM/EFC-BCMA UNIT DOSE VIRTUAL DUE LIST FUNCTIONS;03/06/16 3:06
  ;    - add 32nd piece for clinic name for CO meds and a patch.
  ;    - add 33rd piece to Results for Clinic ien ptr to file #44
  ;*83 - add 34th & 35th piece to Results.  Remove flag & Remove time
+ ;*106- add Hazardous to Handle & Dispose flags 36 & 37
  ;      
 EN ;Search the Medlog file for patches that were Given and not Removed.
  ; Place these meds into the return Results array.
  ;
- N PSBGNODE,PSBIEN,PSBXDTI,PSBXXDTI,PSBZON,X,Y,PSBPBK,DSPDRG
+ N PSBGNODE,PSBIEN,PSBXDTI,PSBXXDTI,PSBZON,X,Y,PSBPBK,DSPDRG             ;*83
  S PSBGNODE="^PSB(53.79,"_"""APATCH"""_","_DFN_")"
  F  S PSBGNODE=$Q(@PSBGNODE) Q:PSBGNODE']""  Q:($QS(PSBGNODE,2)'="APATCH")!($QS(PSBGNODE,3)'=DFN)  D
  .S PSBIEN=$QS(PSBGNODE,5)
@@ -78,7 +79,10 @@ EN ;Search the Medlog file for patches that were Given and not Removed.
  ...S $P(PSBREC,U,32)=$G(PSBCLORD)            ;clinic name
  ...S $P(PSBREC,U,33)=$G(PSBCLIEN)            ;clinic ien ptr
  ...S $P(PSBREC,U,35)=$P(^PSB(53.79,PSBIEN,.1),U,7)  ;existing RM time
- ...;
+ ..;       piece 34-35 reserved for Remove meds and set by PSBVDLU1
+ ..S $P(PSBREC,U,36)=$G(PSBHAZHN)  ;Hazardous to Handle    *106
+ ..S $P(PSBREC,U,37)=$G(PSBHAZDS)  ;Hazardous to Dispose   *106
+ ..;
  ..; Place into Coversheet activity ARRAY
  ..S PSBDIDX="" I $D(^PSB(53.79,"AORD",DFN,PSBONX)) D
  ...S PSBXDTI="",PSBXDTI=$O(^PSB(53.79,"AORD",DFN,PSBONX,PSBXDTI),-1)

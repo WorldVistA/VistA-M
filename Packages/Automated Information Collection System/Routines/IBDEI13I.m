@@ -1,130 +1,120 @@
-IBDEI13I ; ; 04-FEB-2020
- ;;3.0;IB ENCOUNTER FORM IMP/EXP;;FEB 04, 2020
+IBDEI13I ; ; 01-FEB-2022
+ ;;3.0;IB ENCOUNTER FORM IMP/EXP;;FEB 01, 2022
  Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,999) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
- ;;^UTILITY(U,$J,358.3,17602,2)
- ;;=^5015902
- ;;^UTILITY(U,$J,358.3,17603,0)
- ;;=N91.1^^88^895^10
- ;;^UTILITY(U,$J,358.3,17603,1,0)
+ ;;^UTILITY(U,$J,358.3,17790,0)
+ ;;=R40.2112^^61^793^27
+ ;;^UTILITY(U,$J,358.3,17790,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,17603,1,3,0)
- ;;=3^Amenorrhea,Secondary
- ;;^UTILITY(U,$J,358.3,17603,1,4,0)
- ;;=4^N91.1
- ;;^UTILITY(U,$J,358.3,17603,2)
- ;;=^5015903
- ;;^UTILITY(U,$J,358.3,17604,0)
- ;;=N91.2^^88^895^11
- ;;^UTILITY(U,$J,358.3,17604,1,0)
+ ;;^UTILITY(U,$J,358.3,17790,1,3,0)
+ ;;=3^Coma Scale,Eyes Open,Never,Emerg Dept
+ ;;^UTILITY(U,$J,358.3,17790,1,4,0)
+ ;;=4^R40.2112
+ ;;^UTILITY(U,$J,358.3,17790,2)
+ ;;=^5019357
+ ;;^UTILITY(U,$J,358.3,17791,0)
+ ;;=R40.2111^^61^793^28
+ ;;^UTILITY(U,$J,358.3,17791,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,17604,1,3,0)
- ;;=3^Amenorrhea,Unspec
- ;;^UTILITY(U,$J,358.3,17604,1,4,0)
- ;;=4^N91.2
- ;;^UTILITY(U,$J,358.3,17604,2)
- ;;=^5015904
- ;;^UTILITY(U,$J,358.3,17605,0)
- ;;=N91.3^^88^895^73
- ;;^UTILITY(U,$J,358.3,17605,1,0)
+ ;;^UTILITY(U,$J,358.3,17791,1,3,0)
+ ;;=3^Coma Scale,Eyes Open,Never,In the Field
+ ;;^UTILITY(U,$J,358.3,17791,1,4,0)
+ ;;=4^R40.2111
+ ;;^UTILITY(U,$J,358.3,17791,2)
+ ;;=^5019356
+ ;;^UTILITY(U,$J,358.3,17792,0)
+ ;;=R40.2110^^61^793^29
+ ;;^UTILITY(U,$J,358.3,17792,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,17605,1,3,0)
- ;;=3^Oligomenorrhea,Primary
- ;;^UTILITY(U,$J,358.3,17605,1,4,0)
- ;;=4^N91.3
- ;;^UTILITY(U,$J,358.3,17605,2)
- ;;=^5015905
- ;;^UTILITY(U,$J,358.3,17606,0)
- ;;=N91.4^^88^895^74
- ;;^UTILITY(U,$J,358.3,17606,1,0)
+ ;;^UTILITY(U,$J,358.3,17792,1,3,0)
+ ;;=3^Coma Scale,Eyes Open,Never,Unspec Time
+ ;;^UTILITY(U,$J,358.3,17792,1,4,0)
+ ;;=4^R40.2110
+ ;;^UTILITY(U,$J,358.3,17792,2)
+ ;;=^5019355
+ ;;^UTILITY(U,$J,358.3,17793,0)
+ ;;=R40.20^^61^793^36
+ ;;^UTILITY(U,$J,358.3,17793,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,17606,1,3,0)
- ;;=3^Oligomenorrhea,Secondary
- ;;^UTILITY(U,$J,358.3,17606,1,4,0)
- ;;=4^N91.4
- ;;^UTILITY(U,$J,358.3,17606,2)
- ;;=^5015906
- ;;^UTILITY(U,$J,358.3,17607,0)
- ;;=N91.5^^88^895^75
- ;;^UTILITY(U,$J,358.3,17607,1,0)
+ ;;^UTILITY(U,$J,358.3,17793,1,3,0)
+ ;;=3^Coma,Unspec
+ ;;^UTILITY(U,$J,358.3,17793,1,4,0)
+ ;;=4^R40.20
+ ;;^UTILITY(U,$J,358.3,17793,2)
+ ;;=^5019354
+ ;;^UTILITY(U,$J,358.3,17794,0)
+ ;;=R40.2123^^61^793^35
+ ;;^UTILITY(U,$J,358.3,17794,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,17607,1,3,0)
- ;;=3^Oligomenorrhea,Unspec
- ;;^UTILITY(U,$J,358.3,17607,1,4,0)
- ;;=4^N91.5
- ;;^UTILITY(U,$J,358.3,17607,2)
- ;;=^5015907
- ;;^UTILITY(U,$J,358.3,17608,0)
- ;;=N92.0^^88^895^40
- ;;^UTILITY(U,$J,358.3,17608,1,0)
+ ;;^UTILITY(U,$J,358.3,17794,1,3,0)
+ ;;=3^Coma Scale,Eyes Open,to Pain,at Hospital Admission
+ ;;^UTILITY(U,$J,358.3,17794,1,4,0)
+ ;;=4^R40.2123
+ ;;^UTILITY(U,$J,358.3,17794,2)
+ ;;=^5019363
+ ;;^UTILITY(U,$J,358.3,17795,0)
+ ;;=R40.2122^^61^793^32
+ ;;^UTILITY(U,$J,358.3,17795,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,17608,1,3,0)
- ;;=3^Excessive/Frequent Menstruation w/ Regular Cycle
- ;;^UTILITY(U,$J,358.3,17608,1,4,0)
- ;;=4^N92.0
- ;;^UTILITY(U,$J,358.3,17608,2)
- ;;=^5015908
- ;;^UTILITY(U,$J,358.3,17609,0)
- ;;=N92.6^^88^895^62
- ;;^UTILITY(U,$J,358.3,17609,1,0)
+ ;;^UTILITY(U,$J,358.3,17795,1,3,0)
+ ;;=3^Coma Scale,Eyes Open,to Pain,Emger Dept
+ ;;^UTILITY(U,$J,358.3,17795,1,4,0)
+ ;;=4^R40.2122
+ ;;^UTILITY(U,$J,358.3,17795,2)
+ ;;=^5019362
+ ;;^UTILITY(U,$J,358.3,17796,0)
+ ;;=R40.2124^^61^793^31
+ ;;^UTILITY(U,$J,358.3,17796,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,17609,1,3,0)
- ;;=3^Irregular Menstruation,Unspec
- ;;^UTILITY(U,$J,358.3,17609,1,4,0)
- ;;=4^N92.6
- ;;^UTILITY(U,$J,358.3,17609,2)
- ;;=^5015913
- ;;^UTILITY(U,$J,358.3,17610,0)
- ;;=N92.5^^88^895^61
- ;;^UTILITY(U,$J,358.3,17610,1,0)
+ ;;^UTILITY(U,$J,358.3,17796,1,3,0)
+ ;;=3^Coma Scale,Eyes Open,to Pain,24+ Hrs
+ ;;^UTILITY(U,$J,358.3,17796,1,4,0)
+ ;;=4^R40.2124
+ ;;^UTILITY(U,$J,358.3,17796,2)
+ ;;=^5019364
+ ;;^UTILITY(U,$J,358.3,17797,0)
+ ;;=R40.2211^^61^793^17
+ ;;^UTILITY(U,$J,358.3,17797,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,17610,1,3,0)
- ;;=3^Irregular Menstruation,Other Spec
- ;;^UTILITY(U,$J,358.3,17610,1,4,0)
- ;;=4^N92.5
- ;;^UTILITY(U,$J,358.3,17610,2)
- ;;=^5015912
- ;;^UTILITY(U,$J,358.3,17611,0)
- ;;=N92.3^^88^895^80
- ;;^UTILITY(U,$J,358.3,17611,1,0)
+ ;;^UTILITY(U,$J,358.3,17797,1,3,0)
+ ;;=3^Coma Scale,Best Verbal Response,None,in the Field
+ ;;^UTILITY(U,$J,358.3,17797,1,4,0)
+ ;;=4^R40.2211
+ ;;^UTILITY(U,$J,358.3,17797,2)
+ ;;=^5019376
+ ;;^UTILITY(U,$J,358.3,17798,0)
+ ;;=R40.2210^^61^793^16
+ ;;^UTILITY(U,$J,358.3,17798,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,17611,1,3,0)
- ;;=3^Ovulation Bleeding
- ;;^UTILITY(U,$J,358.3,17611,1,4,0)
- ;;=4^N92.3
- ;;^UTILITY(U,$J,358.3,17611,2)
- ;;=^270570
- ;;^UTILITY(U,$J,358.3,17612,0)
- ;;=N89.7^^88^895^54
- ;;^UTILITY(U,$J,358.3,17612,1,0)
+ ;;^UTILITY(U,$J,358.3,17798,1,3,0)
+ ;;=3^Coma Scale,Best Verbal Response,None,Unspec Time
+ ;;^UTILITY(U,$J,358.3,17798,1,4,0)
+ ;;=4^R40.2210
+ ;;^UTILITY(U,$J,358.3,17798,2)
+ ;;=^5019375
+ ;;^UTILITY(U,$J,358.3,17799,0)
+ ;;=R40.2224^^61^793^18
+ ;;^UTILITY(U,$J,358.3,17799,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,17612,1,3,0)
- ;;=3^Hematocolpos
- ;;^UTILITY(U,$J,358.3,17612,1,4,0)
- ;;=4^N89.7
- ;;^UTILITY(U,$J,358.3,17612,2)
- ;;=^5015889
- ;;^UTILITY(U,$J,358.3,17613,0)
- ;;=N93.8^^88^895^5
- ;;^UTILITY(U,$J,358.3,17613,1,0)
+ ;;^UTILITY(U,$J,358.3,17799,1,3,0)
+ ;;=3^Coma Scale,Best Verbal,Incomprehensible Words,24+ Hrs
+ ;;^UTILITY(U,$J,358.3,17799,1,4,0)
+ ;;=4^R40.2224
+ ;;^UTILITY(U,$J,358.3,17799,2)
+ ;;=^5019384
+ ;;^UTILITY(U,$J,358.3,17800,0)
+ ;;=R40.2223^^61^793^19
+ ;;^UTILITY(U,$J,358.3,17800,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,17613,1,3,0)
- ;;=3^Abnormal Uterine/Vaginal Bleeding,Other Spec
- ;;^UTILITY(U,$J,358.3,17613,1,4,0)
- ;;=4^N93.8
- ;;^UTILITY(U,$J,358.3,17613,2)
- ;;=^5015915
- ;;^UTILITY(U,$J,358.3,17614,0)
- ;;=N93.9^^88^895^6
- ;;^UTILITY(U,$J,358.3,17614,1,0)
+ ;;^UTILITY(U,$J,358.3,17800,1,3,0)
+ ;;=3^Coma Scale,Best Verbal,Incomprehensible Words,at Hospital Admission
+ ;;^UTILITY(U,$J,358.3,17800,1,4,0)
+ ;;=4^R40.2223
+ ;;^UTILITY(U,$J,358.3,17800,2)
+ ;;=^5019383
+ ;;^UTILITY(U,$J,358.3,17801,0)
+ ;;=R40.2222^^61^793^20
+ ;;^UTILITY(U,$J,358.3,17801,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,17614,1,3,0)
- ;;=3^Abnormal Uterine/Vaginal Bleeding,Unspec
- ;;^UTILITY(U,$J,358.3,17614,1,4,0)
- ;;=4^N93.9
- ;;^UTILITY(U,$J,358.3,17614,2)
- ;;=^5015916
- ;;^UTILITY(U,$J,358.3,17615,0)
- ;;=N92.4^^88^895^38
- ;;^UTILITY(U,$J,358.3,17615,1,0)
- ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,17801,1,3,0)
+ ;;=3^Coma Scale,Best Verbal,Incomprehensible Words,Emger Dept

@@ -1,6 +1,6 @@
 PRCHAAC ;WIFO/CR-CREATE HL7 IFCAP MESSAGE FOR AUSTIN AUTOMATION CENTER ;2/22/05 10:50 AM
- ;;5.1;IFCAP;**79,121**;Oct 20, 2000;Build 2
- ;Per VHA Directive 10-93-142, this routine should not be modified.
+ ;;5.1;IFCAP;**79,121,220**;Oct 20, 2000;Build 23
+ ;Per VA Directive 6402, this routine should not be modified.
  ; This routine will gather FPDS data for the new report requested
  ; by the Austin Automation Center (AAC), create an HL7 message, and send
  ; it to the Austin server via the VistA HL7 package.
@@ -16,6 +16,9 @@ AAC ; Start FPDS report here: Options for Detailed PC orders, Delivery
  ; MSH,MSA,MFI,MFA.
  ; Message Type: MFK  Event Type: M01.
  ;
+ ;PRC*5.1*220 Added (Q)uit to ensure no more order FPDS info will be transmitted
+ ;
+STOP Q    ;Added quit to no longer process/transmit FPDS data    ;PRC*5.1*220
  ; Get procurement detail for the purchase order.
  N PRCAAD,PRCAMT,PRCAT,PRCATP,PRCBT,PRCBZ,PRCCB,PRCCH,PRCCV,PRCDB,PRCDD,PRCDES,PRCDS,PRCDUZ,PRCEC,PRCECC,PRCEPA,PRCEPAC,PRCLEN,PRCMOP,PRCRN,PRCRNC,PRCSW,PRCVEN
  N PRCAID,PRCAM,PRCCAD,PRCCN,PRCPF,PRCH2237,PRCIDV,PRCPIID,PRCFSC,PRCFSCI,PRCPER,PRCPP,PRCTC,PRCCFG,PRCGFE,PRCOD,PRCOFC,PRCSPEC,PRCPT,PRCROOT
@@ -27,7 +30,7 @@ AAC ; Start FPDS report here: Options for Detailed PC orders, Delivery
  ;
  S PRCMOP=$P(^PRC(442,PRCHPO,0),U,2)
  S PRCMOP=$S(PRCMOP=25:"Y",1:"N")        ; if a PC order, flag it with Y
- ; Vendor pointer and name             
+ ; Vendor pointer and name
  S PRCPT=$P(^PRC(442,PRCHPO,1),U,1),PRCVEN=$P(^PRC(440,PRCPT,0),U,1)
  ; If the vendor has '&' in its name, replace it with 'AND'
  I PRCVEN["&" D

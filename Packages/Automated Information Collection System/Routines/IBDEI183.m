@@ -1,120 +1,124 @@
-IBDEI183 ; ; 04-FEB-2020
- ;;3.0;IB ENCOUNTER FORM IMP/EXP;;FEB 04, 2020
+IBDEI183 ; ; 01-FEB-2022
+ ;;3.0;IB ENCOUNTER FORM IMP/EXP;;FEB 01, 2022
  Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,999) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
- ;;^UTILITY(U,$J,358.3,19625,0)
- ;;=S72.032S^^93^995^32
- ;;^UTILITY(U,$J,358.3,19625,1,0)
+ ;;^UTILITY(U,$J,358.3,19849,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,19625,1,3,0)
- ;;=3^Displaced midcervical fx of left femur, sequela
- ;;^UTILITY(U,$J,358.3,19625,1,4,0)
- ;;=4^S72.032S
- ;;^UTILITY(U,$J,358.3,19625,2)
- ;;=^5037248
- ;;^UTILITY(U,$J,358.3,19626,0)
- ;;=S72.034S^^93^995^81
- ;;^UTILITY(U,$J,358.3,19626,1,0)
+ ;;^UTILITY(U,$J,358.3,19849,1,3,0)
+ ;;=3^Boutonniere Deformity,Left Finger(s)
+ ;;^UTILITY(U,$J,358.3,19849,1,4,0)
+ ;;=4^M20.022
+ ;;^UTILITY(U,$J,358.3,19849,2)
+ ;;=^5011034
+ ;;^UTILITY(U,$J,358.3,19850,0)
+ ;;=M20.031^^67^880^197
+ ;;^UTILITY(U,$J,358.3,19850,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,19626,1,3,0)
- ;;=3^Nondisp midcervical fx of right femur, sequela
- ;;^UTILITY(U,$J,358.3,19626,1,4,0)
- ;;=4^S72.034S
- ;;^UTILITY(U,$J,358.3,19626,2)
- ;;=^5037280
- ;;^UTILITY(U,$J,358.3,19627,0)
- ;;=S72.035S^^93^995^80
- ;;^UTILITY(U,$J,358.3,19627,1,0)
+ ;;^UTILITY(U,$J,358.3,19850,1,3,0)
+ ;;=3^Swan-Neck Deformity,Right Finger(s)
+ ;;^UTILITY(U,$J,358.3,19850,1,4,0)
+ ;;=4^M20.031
+ ;;^UTILITY(U,$J,358.3,19850,2)
+ ;;=^5011036
+ ;;^UTILITY(U,$J,358.3,19851,0)
+ ;;=M20.032^^67^880^196
+ ;;^UTILITY(U,$J,358.3,19851,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,19627,1,3,0)
- ;;=3^Nondisp midcervical fx of left femur, sequela
- ;;^UTILITY(U,$J,358.3,19627,1,4,0)
- ;;=4^S72.035S
- ;;^UTILITY(U,$J,358.3,19627,2)
- ;;=^5037296
- ;;^UTILITY(U,$J,358.3,19628,0)
- ;;=S72.041S^^93^995^11
- ;;^UTILITY(U,$J,358.3,19628,1,0)
+ ;;^UTILITY(U,$J,358.3,19851,1,3,0)
+ ;;=3^Swan-Neck Deformity,Left Finger(s)
+ ;;^UTILITY(U,$J,358.3,19851,1,4,0)
+ ;;=4^M20.032
+ ;;^UTILITY(U,$J,358.3,19851,2)
+ ;;=^5011037
+ ;;^UTILITY(U,$J,358.3,19852,0)
+ ;;=M21.331^^67^880^209
+ ;;^UTILITY(U,$J,358.3,19852,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,19628,1,3,0)
- ;;=3^Displaced base of neck fx of right femur, sequela
- ;;^UTILITY(U,$J,358.3,19628,1,4,0)
- ;;=4^S72.041S
- ;;^UTILITY(U,$J,358.3,19628,2)
- ;;=^5037328
- ;;^UTILITY(U,$J,358.3,19629,0)
- ;;=S72.042S^^93^995^10
- ;;^UTILITY(U,$J,358.3,19629,1,0)
+ ;;^UTILITY(U,$J,358.3,19852,1,3,0)
+ ;;=3^Wrist Drop,Right Wrist
+ ;;^UTILITY(U,$J,358.3,19852,1,4,0)
+ ;;=4^M21.331
+ ;;^UTILITY(U,$J,358.3,19852,2)
+ ;;=^5011107
+ ;;^UTILITY(U,$J,358.3,19853,0)
+ ;;=M21.332^^67^880^208
+ ;;^UTILITY(U,$J,358.3,19853,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,19629,1,3,0)
- ;;=3^Displaced base of neck fx of left femur, sequela
- ;;^UTILITY(U,$J,358.3,19629,1,4,0)
- ;;=4^S72.042S
- ;;^UTILITY(U,$J,358.3,19629,2)
- ;;=^5037344
- ;;^UTILITY(U,$J,358.3,19630,0)
- ;;=S72.044S^^93^995^59
- ;;^UTILITY(U,$J,358.3,19630,1,0)
+ ;;^UTILITY(U,$J,358.3,19853,1,3,0)
+ ;;=3^Wrist Drop,Left Wrist
+ ;;^UTILITY(U,$J,358.3,19853,1,4,0)
+ ;;=4^M21.332
+ ;;^UTILITY(U,$J,358.3,19853,2)
+ ;;=^5011108
+ ;;^UTILITY(U,$J,358.3,19854,0)
+ ;;=M18.0^^67^880^74
+ ;;^UTILITY(U,$J,358.3,19854,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,19630,1,3,0)
- ;;=3^Nondisp base of neck fx of right femur, sequela
- ;;^UTILITY(U,$J,358.3,19630,1,4,0)
- ;;=4^S72.044S
- ;;^UTILITY(U,$J,358.3,19630,2)
- ;;=^5037376
- ;;^UTILITY(U,$J,358.3,19631,0)
- ;;=S72.061S^^93^995^9
- ;;^UTILITY(U,$J,358.3,19631,1,0)
+ ;;^UTILITY(U,$J,358.3,19854,1,3,0)
+ ;;=3^Prim Osteoarth,1st Carpometacarpal Joint(s),Bilateral
+ ;;^UTILITY(U,$J,358.3,19854,1,4,0)
+ ;;=4^M18.0
+ ;;^UTILITY(U,$J,358.3,19854,2)
+ ;;=^5010795
+ ;;^UTILITY(U,$J,358.3,19855,0)
+ ;;=M18.11^^67^880^75
+ ;;^UTILITY(U,$J,358.3,19855,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,19631,1,3,0)
- ;;=3^Displaced articular fx of head of right femur, sequela
- ;;^UTILITY(U,$J,358.3,19631,1,4,0)
- ;;=4^S72.061S
- ;;^UTILITY(U,$J,358.3,19631,2)
- ;;=^5037461
- ;;^UTILITY(U,$J,358.3,19632,0)
- ;;=S72.062S^^93^995^8
- ;;^UTILITY(U,$J,358.3,19632,1,0)
+ ;;^UTILITY(U,$J,358.3,19855,1,3,0)
+ ;;=3^Prim Osteoarth,1st Carpometacarpal Joint(s),Right Hand,Unilat
+ ;;^UTILITY(U,$J,358.3,19855,1,4,0)
+ ;;=4^M18.11
+ ;;^UTILITY(U,$J,358.3,19855,2)
+ ;;=^5010797
+ ;;^UTILITY(U,$J,358.3,19856,0)
+ ;;=M18.12^^67^880^76
+ ;;^UTILITY(U,$J,358.3,19856,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,19632,1,3,0)
- ;;=3^Displaced articular fx of head of left femur, sequela
- ;;^UTILITY(U,$J,358.3,19632,1,4,0)
- ;;=4^S72.062S
- ;;^UTILITY(U,$J,358.3,19632,2)
- ;;=^5037477
- ;;^UTILITY(U,$J,358.3,19633,0)
- ;;=S72.064S^^93^995^57
- ;;^UTILITY(U,$J,358.3,19633,1,0)
+ ;;^UTILITY(U,$J,358.3,19856,1,3,0)
+ ;;=3^Prim Osteoarth,1st Carpometacarpal Joint(s),Left Hand,Unilat
+ ;;^UTILITY(U,$J,358.3,19856,1,4,0)
+ ;;=4^M18.12
+ ;;^UTILITY(U,$J,358.3,19856,2)
+ ;;=^5010798
+ ;;^UTILITY(U,$J,358.3,19857,0)
+ ;;=M19.031^^67^880^85
+ ;;^UTILITY(U,$J,358.3,19857,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,19633,1,3,0)
- ;;=3^Nondisp articular fx of head of right femur, sequela
- ;;^UTILITY(U,$J,358.3,19633,1,4,0)
- ;;=4^S72.064S
- ;;^UTILITY(U,$J,358.3,19633,2)
- ;;=^5037509
- ;;^UTILITY(U,$J,358.3,19634,0)
- ;;=S72.065S^^93^995^56
- ;;^UTILITY(U,$J,358.3,19634,1,0)
+ ;;^UTILITY(U,$J,358.3,19857,1,3,0)
+ ;;=3^Prim Osteoarth,Right Wrist
+ ;;^UTILITY(U,$J,358.3,19857,1,4,0)
+ ;;=4^M19.031
+ ;;^UTILITY(U,$J,358.3,19857,2)
+ ;;=^5010814
+ ;;^UTILITY(U,$J,358.3,19858,0)
+ ;;=M19.032^^67^880^81
+ ;;^UTILITY(U,$J,358.3,19858,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,19634,1,3,0)
- ;;=3^Nondisp articular fx of head of left femur, sequela
- ;;^UTILITY(U,$J,358.3,19634,1,4,0)
- ;;=4^S72.065S
- ;;^UTILITY(U,$J,358.3,19634,2)
- ;;=^5037525
- ;;^UTILITY(U,$J,358.3,19635,0)
- ;;=S72.111S^^93^995^19
- ;;^UTILITY(U,$J,358.3,19635,1,0)
+ ;;^UTILITY(U,$J,358.3,19858,1,3,0)
+ ;;=3^Prim Osteoarth,Left Wrist
+ ;;^UTILITY(U,$J,358.3,19858,1,4,0)
+ ;;=4^M19.032
+ ;;^UTILITY(U,$J,358.3,19858,2)
+ ;;=^5010815
+ ;;^UTILITY(U,$J,358.3,19859,0)
+ ;;=M19.041^^67^880^83
+ ;;^UTILITY(U,$J,358.3,19859,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,19635,1,3,0)
- ;;=3^Displaced greater trochanter fx of right femur, sequela
- ;;^UTILITY(U,$J,358.3,19635,1,4,0)
- ;;=4^S72.111S
- ;;^UTILITY(U,$J,358.3,19635,2)
- ;;=^5037642
- ;;^UTILITY(U,$J,358.3,19636,0)
- ;;=S72.112S^^93^995^18
- ;;^UTILITY(U,$J,358.3,19636,1,0)
+ ;;^UTILITY(U,$J,358.3,19859,1,3,0)
+ ;;=3^Prim Osteoarth,Right Hand
+ ;;^UTILITY(U,$J,358.3,19859,1,4,0)
+ ;;=4^M19.041
+ ;;^UTILITY(U,$J,358.3,19859,2)
+ ;;=^5010817
+ ;;^UTILITY(U,$J,358.3,19860,0)
+ ;;=Z44.012^^67^881^4
+ ;;^UTILITY(U,$J,358.3,19860,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,19636,1,3,0)
- ;;=3^Displaced greater trochanter fx of left femur, sequela
+ ;;^UTILITY(U,$J,358.3,19860,1,3,0)
+ ;;=3^Fit/adjst of complete left artificial arm
+ ;;^UTILITY(U,$J,358.3,19860,1,4,0)
+ ;;=4^Z44.012
+ ;;^UTILITY(U,$J,358.3,19860,2)
+ ;;=^5062972
+ ;;^UTILITY(U,$J,358.3,19861,0)
+ ;;=Z44.011^^67^881^6

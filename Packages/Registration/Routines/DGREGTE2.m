@@ -1,5 +1,5 @@
-DGREGTE2 ;ALB/BAJ,TDM,BDB - Temporary & Confidential Address Support Routine; 02/27/2006 ; 12/24/08 12:12pm
- ;;5.3;Registration;**688,754,851**;Aug 13, 1993;Build 10
+DGREGTE2 ;ALB/BAJ,TDM,BDB - Temporary & Confidential Address Support Routine; 02/27/2006 ; 22 Mar 2017  1:10 PM
+ ;;5.3;Registration;**688,754,851,1040**;Aug 13, 1993;Build 15
  ;
  Q
  ;
@@ -99,6 +99,7 @@ FLDDAT ; Table of field values STRUCTURE --> Description;;Type;Variable Name;Fie
  ;;Country data piece;;CONF;CPEICE;16
  ;;QUIT;;QUIT
  ;;
+ ; DG*5.3*1040; Change NULL FSLINE1 to REPEAT response code instead of REVERSE
 FLDPRMPT ;Table of prompts and responses STRUCTURE --> Description;;Field;Old Value;New Value;Response Code
  ;;ALL;NULL;UPCAR;REPEAT
  ;;ALL;NULL;DELETE;QUES
@@ -106,7 +107,7 @@ FLDPRMPT ;Table of prompts and responses STRUCTURE --> Description;;Field;Old Va
  ;;ALL;VALUE;UPCAR;REPEAT
  ;;ALL;VALUE;NULL;OK
  ;;ALL;VALUE;VALUE;OK
- ;;FSLINE1;NULL;NULL;REVERSE
+ ;;FSLINE1;NULL;NULL;REPEAT
  ;;FSLINE2;NULL;NULL;OK
  ;;FSLINE3;NULL;NULL;OK
  ;;FCITY;NULL;NULL;REVERSE

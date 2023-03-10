@@ -1,5 +1,5 @@
-PXVRPC4 ;BPFO/LMT - PCE RPCs for Immunization(s) ;08/15/16  17:26
- ;;1.0;PCE PATIENT CARE ENCOUNTER;**215,216**;Aug 12, 1996;Build 11
+PXVRPC4 ;BPFO/LMT - PCE RPCs for Immunization(s) ;May 10, 2022@14:02:20
+ ;;1.0;PCE PATIENT CARE ENCOUNTER;**215,216,217**;Aug 12, 1996;Build 134
  ;
  ; Reference to ^DIA(9999999.14,"C") supported by ICR #2602
  ; Reference to NAME in file .85 is supported by ICR #6062
@@ -46,6 +46,7 @@ IMMRPC(PXRTRN,PXIMM,PXDATE,PXLOC) ; Entry point for RPC
  ;      9: Max # In Series (#.05)
  ;      10: Combination Immunization (Y/N) (#.2)
  ;      11: Reading Required (#.51)
+ ;      12: Series Required (calculated)
  ;   ^TMP("PXVIMMRPC",$J,x)
  ;      1: "VIS"
  ;      2: #920 IEN
@@ -91,6 +92,8 @@ IMMRPC(PXRTRN,PXIMM,PXDATE,PXLOC) ; Entry point for RPC
  ;      5: Code|Coding System (#920.4, #.02 and .05)
  ;      6: NIP004 (#920.4, #.04)
  ;      7: Contraindication/Precaution (#920.4, #.06)
+ ;      8: Allergy-Related (1:Yes, 0:No)
+ ;      9: Default Warn Until Date ("Forever" means it should be forever)
  ;   ^TMP("PXVIMMRPC",$J,x)
  ;      1: "DEF"
  ;      2: Default Route (#920.051, #1302)
@@ -98,6 +101,7 @@ IMMRPC(PXRTRN,PXIMM,PXDATE,PXLOC) ; Entry point for RPC
  ;      4: Default Dose (#920.051, #1312)
  ;      5: Default Dose Units (#920.051, #1313)
  ;      6: Default Dose Units (external format) (#920.051, #1313)
+ ;      7: Default Non-Standard Dose Units (#920.051, #1314)
  ;   ^TMP("PXVIMMRPC",$J,x)
  ;      1: "DEFC"
  ;      2: Default Comments (#920.051, #81101)
@@ -145,7 +149,7 @@ IMMRPC(PXRTRN,PXIMM,PXDATE,PXLOC) ; Entry point for RPC
  ;
 GETIMM(PXRTRN,PXIMM,PXDATE,PXLOC) ; Entry point for API
  ;
- N PXAUDIT,PXDIV,PXI,PXINST,PXNODE,PXNODE0,PXNODETMP,PXSUB
+ N PXAUDIT,PXDIV,PXI,PXINST,PXNODE,PXNODE0,PXNODETMP,PXSUB,PXSERIESREQ
  ;
  S PXSUB="PXVIMM"
  K ^TMP(PXSUB,$J)
@@ -170,20 +174,23 @@ GETIMM(PXRTRN,PXIMM,PXDATE,PXLOC) ; Entry point for API
  S PXNODETMP=PXNODETMP_U_$P(PXNODE0,U,5)_U_$P(PXNODE0,U,20)
  S PXNODE=$P($G(^AUTTIMM(PXIMM,.5)),U,1)
  S PXNODETMP=PXNODETMP_U_PXNODE
+ S PXSERIESREQ=0
+ I $P(PXNODE0,U,5)>0,$$ISMAPTOADMCPT^PXVRPC4A(PXIMM) S PXSERIESREQ=1
+ S PXNODETMP=PXNODETMP_U_PXSERIESREQ
  S ^TMP(PXSUB,$J,0)=PXNODETMP
  ;
  I $D(^AUTTIMM(PXIMM,3)) D GETCS(PXSUB,PXIMM,PXDATE)
  I $D(^AUTTIMM(PXIMM,4)) D GETVIS(PXSUB,PXIMM)
  F PXI=5,7,10 I $D(^AUTTIMM(PXIMM,PXI)) D GETSUBS(PXSUB,PXIMM,PXI)
  D GETLOT(PXSUB,PXIMM,PXDATE,PXINST)
- D GETCONT(PXSUB,PXIMM) ; Get Contraindications
+ D GETCONT(PXSUB,PXIMM,PXINST) ; Get Contraindications
  D GETDEF(PXSUB,PXIMM,PXINST) ; Get Defaults
  ;
  Q
  ;
 GETCS(PXSUB,PXIMM,PXDATE) ;
  ;
- N PXCNT,PXCODE,PXCODESYS,PXCODESYSLEX,PXLEX,PXLEXADATE,PXLEXARY,PXLEXIDATE,PXLEXNODE,PXLEXSUB,PXX,PXY
+ N PXCNT,PXCODE,PXCODESYS,PXCODESYSLEX,PXLEX,PXLEXADATE,PXLEXARY,PXLEXIDATE,PXLEXNODE,PXLEXSUB,PXX,PXY,PXCODELEX
  ;
  S PXDATE=$P(PXDATE,".",1)
  S PXCNT=0
@@ -192,14 +199,21 @@ GETCS(PXSUB,PXIMM,PXDATE) ;
  F  S PXX=$O(^AUTTIMM(PXIMM,3,PXX)) Q:'PXX  D
  . S PXCODESYS=$G(^AUTTIMM(PXIMM,3,PXX,0))
  . I PXCODESYS="" Q
+ . ;
+ . ; do this for the CPT admin mappings (e.g., CPTAI1, etc.)
  . S PXCODESYSLEX=PXCODESYS
- . I PXCODESYSLEX?1(1"CPT-ADD",1"CPT-ADM") S PXCODESYSLEX=$P(PXCODESYSLEX,"-",1)
+ . I $E(PXCODESYSLEX,1,3)="CPT" S PXCODESYSLEX="CPT"
+ . ;
  . S PXY=0 F  S PXY=$O(^AUTTIMM(PXIMM,3,PXX,1,PXY)) Q:'PXY  D
  . . S PXCODE=$G(^AUTTIMM(PXIMM,3,PXX,1,PXY,0))
  . . I PXCODE="" Q
  . . ;
+ . . ; do this for the CPT amdin mappings (e.g., 91301-0011A)
+ . . S PXCODELEX=PXCODE
+ . . I PXCODESYSLEX="CPT",PXCODELEX["-" S PXCODELEX=$P(PXCODELEX,"-",2)
+ . . ;
  . . K PXLEXARY
- . . S PXLEX=$$PERIOD^LEXU(PXCODE,PXCODESYSLEX,.PXLEXARY)
+ . . S PXLEX=$$PERIOD^LEXU(PXCODELEX,PXCODESYSLEX,.PXLEXARY)
  . . ;
  . . I $P(PXLEX,U,1)=-1 D  Q
  . . . I PXCODESYSLEX?1(1"CPT",1"10D") Q
@@ -259,9 +273,8 @@ GETLOT(PXSUB,PXIMM,PXDATE,PXINST) ;
  . S PXNODE=$G(^AUTTIML(PXLOT,0))
  . I PXNODE="" Q
  . S PXEXPDATE=$P(PXNODE,U,9)
- . I $P(PXDATE,".",1)>$P(PXEXPDATE,".",1) Q
- . S PXSTAT=$P(PXNODE,U,3)
- . I PXSTAT>0 Q
+ . S PXSTAT=$$LOTSTAT^PXVXR(PXLOT,PXDATE)
+ . I 'PXSTAT Q
  . ; check if selectable for this facility
  . I $G(PXINST),'$$IMMSEL^PXVXR(PXLOT,PXINST) Q
  . S PXMAN=$P(PXNODE,U,2)
@@ -272,47 +285,60 @@ GETLOT(PXSUB,PXIMM,PXDATE,PXINST) ;
  . S ^TMP(PXSUB,$J,"LOT",PXCNT,0)=PXTEMP
  Q
  ;
-GETCONT(PXSUB,PXIMM) ; Get Contraindications
+GETCONT(PXSUB,PXIMM,PXINST) ; Get Contraindications
  ;
- N PXCNT,PXFLDS,PXIEN,PXSKIP,PXSTAT
+ N PXCNT,PXI,PXTMP
  ;
+ D GETICR^PXVRPC5(.PXTMP,920.4,"I:"_PXIMM,$G(PXINST))
  S PXCNT=0
- S PXIEN=0
- F  S PXIEN=$O(^PXV(920.4,PXIEN)) Q:'PXIEN  D
- . ;
- . S PXSKIP=0
- . I $O(^PXV(920.4,PXIEN,3,0)) D
- . . I '$O(^PXV(920.4,PXIEN,3,"B",PXIMM,0)) S PXSKIP=1
- . I PXSKIP Q
- . ;
- . S PXFLDS=$$GETFLDS^PXVRPC5(920.4,PXIEN)
- . S PXSTAT=$P(PXFLDS,U,3)
- . I 'PXSTAT Q
+ S PXI=0
+ F  S PXI=$O(PXTMP(PXI)) Q:'PXI  D
  . S PXCNT=PXCNT+1
- . S ^TMP(PXSUB,$J,"CONTRA",PXCNT,0)=PXFLDS
+ . S ^TMP(PXSUB,$J,"CONTRA",PXCNT,0)=$G(PXTMP(PXI))
+ ;
  Q
  ;
 GETDEF(PXSUB,PXIMM,PXINST) ; Get defaults
  ;
- N PXDFLTS,PXNODE,PXTMP
+ N PXDFLTS,PXNODE,PXROUTE,PXSITE,PXDOSE,PXUNITS,PXEUNITS,PXNUNITS
  ;
- I '$G(PXINST) Q
+ I '$G(PXINST) S PXINST=$$KSP^XUPARAM("INST")
  ;
  D IMMDEF^PXAPIIM(.PXDFLTS,PXIMM,PXINST)
- I '$D(PXDFLTS) Q
+ ;I '$D(PXDFLTS) Q
  ;
  S PXNODE=$G(PXDFLTS(13))
- S PXTMP=$P(PXNODE,U,2,3)_U_$P(PXNODE,U,12,13)
- I $P(PXTMP,U,4) D
- . S $P(PXTMP,U,5)=$$EXTERNAL^DILFD(9000010.11,1313,"",$P(PXTMP,U,4))
- I PXTMP'="^^^" S ^TMP(PXSUB,$J,"DEF",1,0)=PXTMP
+ S PXROUTE=$P(PXNODE,U,2)
+ S PXSITE=$P(PXNODE,U,3)
+ S PXDOSE=$P(PXNODE,U,12)
+ S PXUNITS=$P(PXNODE,U,13)
+ S PXNUNITS=$P(PXNODE,U,14)
+ ;
+ I PXDOSE D
+ . S PXDOSE=$$EXTERNAL^DILFD(9000010.11,1312,"",PXDOSE)
+ I PXUNITS D
+ . S PXEUNITS=$$EXTERNAL^DILFD(9000010.11,1313,"",PXUNITS)
+ ;
+ S ^TMP(PXSUB,$J,"DEF",1,0)=PXROUTE_U_PXSITE_U_PXDOSE_U_PXUNITS_U_$G(PXEUNITS)_U_PXNUNITS
  ;
  S PXNODE=$G(PXDFLTS(811))
  I PXNODE'="" S ^TMP(PXSUB,$J,"DEFC",1,0)=PXNODE
  ;
  Q
  ;
-IMMSHORT(PXRSLT,PXFILTER,PXDATE) ;
+GETUNITS(PXIMM,PXLOC) ;
+ N PXRSLT,PXSUB,PXINST
+ I '$G(PXIMM) Q ""
+ S PXINST=$$INST^PXVUTIL("L:"_+$G(PXLOC))
+ S PXSUB="PXVRPC4UNITS"
+ K ^TMP(PXSUB,$J)
+ D GETDEF(PXSUB,PXIMM,$G(PXINST))
+ S PXRSLT=$P($G(^TMP(PXSUB,$J,"DEF",1,0)),U,4,5)
+ I $P(PXRSLT,U,2)="" S $P(PXRSLT,U,2)=$P($G(^TMP(PXSUB,$J,"DEF",1,0)),U,6)
+ K ^TMP(PXSUB,$J)
+ Q PXRSLT
+ ;
+IMMSHORT(PXRSLT,PXFILTER,PXDATE,PXOREXC,PXLOC) ;
  ;
  ; Return short list of immunizations
  ;
@@ -325,6 +351,11 @@ IMMSHORT(PXRSLT,PXFILTER,PXDATE) ;
  ;               "B": Return both active entries and those marked as Selectable for Historic
  ;    PXDATE - Date (optional; defaults to TODAY)
  ;             Used for determining immunization status (both for filtering and for return value)
+ ;             and lot status.
+ ;   PXOREXC - Should entries defined in ORWPCE EXCLUDE IMMUNIZATIONS be excluded? (optional)
+ ;     PXLOC - Used when excluding entried listed in ORWPCE EXCLUDE IMMUNIZATIONS. (Optional)
+ ;             This is the location used when getting the paramater value at the Location level.
+ ;             Also used to get division when checking if there is a linked lot.
  ;
  ;Returns:
  ;   PXRTRN(x)
@@ -343,14 +374,19 @@ IMMSHORT(PXRSLT,PXFILTER,PXDATE) ;
  ;      6: Selectable for Historic (#8803)
  ;      7: Mnemonic (#8801)
  ;      8: Acronym (#8802)
+ ;      9: Active Lot linked to this Immunization? (1:Yes; 0:No)
  ;   PXRTRN(x)
  ;      1: "CDC"
  ;      2: CDC Product Name (#9999999.145, #.01)
+ ;   PXRTRN(x)
+ ;      1: "GROUP"
+ ;      2: Vaccine Group Name  (#9999999.147, #.01)
  ;
- N PXAUDIT,PXCNT,PXGETCSTAT,PXIEN,PXNODE,PXSELHIST,PXSTAT,PXX
+ N PXAUDIT,PXCNT,PXGETCSTAT,PXIEN,PXINST,PXLOT,PXLST,PXNODE,PXNODE88,PXSELHIST,PXSTAT,PXX
  ;
  I $G(PXFILTER)'?1(1"A",1"H",1"B") S PXFILTER="B"
  I '$G(PXDATE) S PXDATE=DT
+ S PXINST=$$INST^PXVUTIL("L:"_+$G(PXLOC))
  S PXAUDIT=0
  I $$GET1^DID(9999999.14,.07,"","AUDIT")="YES, ALWAYS" S PXAUDIT=1
  S PXGETCSTAT=$$GETCSTAT(PXDATE,PXAUDIT)
@@ -358,6 +394,7 @@ IMMSHORT(PXRSLT,PXFILTER,PXDATE) ;
  S PXCNT=0
  S PXIEN=0
  F  S PXIEN=$O(^AUTTIMM(PXIEN)) Q:PXIEN'>0  D
+ . I $G(PXOREXC),$$EXCLUDED(.PXLST,PXIEN,1,$G(PXLOC)) Q
  . S PXSELHIST=$P($G(^AUTTIMM(PXIEN,6)),U)
  . S PXSTAT=$$GETSTAT(PXIEN,PXDATE,PXGETCSTAT,PXAUDIT)
  . I PXFILTER="A",'PXSTAT Q
@@ -366,15 +403,31 @@ IMMSHORT(PXRSLT,PXFILTER,PXDATE) ;
  . ;
  . S PXCNT=PXCNT+1
  . S PXNODE=$G(^AUTTIMM(PXIEN,0))
- . S PXRSLT(PXCNT)="IMM"_U_PXIEN_U_$P(PXNODE,U,1)_U_$P(PXNODE,U,3)_U_PXSTAT_U_PXSELHIST
- . S PXNODE=$G(^AUTTIMM(PXIEN,88))
- . I PXNODE'="",PXNODE'=U S PXRSLT(PXCNT)=PXRSLT(PXCNT)_U_PXNODE
+ . S PXNODE88=$G(^AUTTIMM(PXIEN,88))
+ . ;
+ . S PXLOT=""
+ . I PXSTAT D
+ . . K ^TMP("PXVLOT",$J)
+ . . D GETLOT("PXVLOT",PXIEN,PXDATE,PXINST)
+ . . S PXLOT=0
+ . . I $O(^TMP("PXVLOT",$J,"LOT",0)) S PXLOT=1
+ . . K ^TMP("PXVLOT",$J)
+ . ;
+ . S PXRSLT(PXCNT)="IMM"_U_PXIEN_U_$P(PXNODE,U,1)_U_$P(PXNODE,U,3)_U_PXSTAT_U_PXSELHIST_U_$P(PXNODE88,U,1)_U_$P(PXNODE88,U,2)_U_PXLOT
+ . ;
  . S PXX=0
  . F  S PXX=$O(^AUTTIMM(PXIEN,5,PXX)) Q:PXX'>0  D
  . . S PXNODE=$G(^AUTTIMM(PXIEN,5,PXX,0))
  . . I PXNODE="" Q
  . . S PXCNT=PXCNT+1
  . . S PXRSLT(PXCNT)="CDC"_U_PXNODE
+ . ;
+ . S PXX=0
+ . F  S PXX=$O(^AUTTIMM(PXIEN,7,PXX)) Q:PXX'>0  D
+ . . S PXNODE=$P($G(^AUTTIMM(PXIEN,7,PXX,0)),U,1)
+ . . I PXNODE="" Q
+ . . S PXCNT=PXCNT+1
+ . . S PXRSLT(PXCNT)="GROUP"_U_PXNODE
  Q
  ;
 GETSTAT(PXIMM,PXDATE,PXCURR,PXAUDIT) ;
@@ -417,44 +470,35 @@ GETCSTAT(PXDATE,PXAUDIT) ;
  ;
  Q PXRSLT
  ;
-IMMADMCD(PXRSLT,PXDATE) ;
+ ;
+IMMADMCODES(PXRSLT,PXVISIT,PXPCELIST,PXRETCPTDEL) ;
  ;
  ; Returns Immunization Admin CPT codes
  ;
  ;Input:
- ;  PXRTRN - Return value passed by reference (Required)
- ;  PXDATE - Code status will be based off this date
- ;           (Optional; Defaults to TODAY)
+ ;    PXRSLT - Return value passed by reference (Required)
+ ;   PXVISIT - Visit IEN (Optional)
+ ; PXPCELIST - PCE Array in format passed to PX SAVE DATA rpc (Required)
+ ; PXRETCPTDEL - Should API return other mapped CPT codes (i.e., not admin) to delete (Optional)
  ;
  ;Returns:
- ;   PXRSLT(0) = Count of elements returned (0 if nothing found)
- ;   PXRSLT(n) =
- ;      Note: Only active codes (based off PXDATE) are returned.
- ;      1: "CPT-ADM" or "CPT-ADD"
- ;      2: Code
- ;      3: Variable pointer. e.g., IEN;ICPT(
- ;      4: Short Description
+ ;   PXRSLT(n) = array of CPT codes to add/delete from Visit in format passed to PX SAVE DATA rpc
  ;
- N PXCNT,PXFLD,PXI,PXIMM,PXNODE,PXSUB
- ;
- S PXSUB="PXVIMMCODE"
- K ^TMP(PXSUB,$J)
- ;
- S PXCNT=0
- I '$G(PXDATE) S PXDATE=DT
- S PXIMM=$$IMMNODEF^PXAPIIM()
- I 'PXIMM S PXRSLT(PXCNT)=0 Q
- ;
- D GETCS(PXSUB,PXIMM,PXDATE)
- F PXFLD="CPT-ADM","CPT-ADD" D
- . I '$D(^TMP(PXSUB,$J,"CS",PXFLD)) Q
- . S PXI=0 F  S PXI=$O(^TMP(PXSUB,$J,"CS",PXFLD,PXI)) Q:'PXI  D
- . . S PXNODE=$G(^TMP(PXSUB,$J,"CS",PXFLD,PXI,0))
- . . I PXNODE="" Q
- . . S PXCNT=PXCNT+1
- . . S PXRSLT(PXCNT)=PXFLD_U_PXNODE
- ;
- K ^TMP(PXSUB,$J)
- S PXRSLT(0)=PXCNT
- ;
+ D IMMADMCODES^PXVRPC4A(.PXRSLT,.PXVISIT,.PXPCELIST,$G(PXRETCPTDEL))
  Q
+ ;
+ ; Check if PXIEN should be exlcuded based off ORWPCE EXCLUDE XXX paramater
+EXCLUDED(PXLST,PXIEN,PXTYPE,PXLOC) ;
+ ;
+ N PXI,PXTMP,PXX
+ ;
+ I '$D(PXLST) D
+ . D EXCLUDED^ORWPCE2(.PXTMP,$G(PXLOC),PXTYPE)
+ . S PXI=0
+ . F  S PXI=$O(PXTMP(PXI)) Q:'PXI  D
+ . . S PXX=$P($G(PXTMP(PXI)),U,2)
+ . . I PXX S PXLST(PXX)=""
+ ;
+ I $D(PXLST(PXIEN)) Q 1
+ ;
+ Q 0

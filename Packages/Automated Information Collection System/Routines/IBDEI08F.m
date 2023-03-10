@@ -1,634 +1,688 @@
-IBDEI08F ; ; 01-MAY-2020
- ;;3.0;IB ENCOUNTER FORM IMP/EXP;;MAY 01, 2020
+IBDEI08F ; ; 01-AUG-2022
+ ;;3.0;IB ENCOUNTER FORM IMP/EXP;;AUG 01, 2022
  Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,999) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
+ ;;^UTILITY(U,$J,358.3,20540,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,20540,1,3,0)
+ ;;=3^AFIB-Permanent
+ ;;^UTILITY(U,$J,358.3,20540,1,4,0)
+ ;;=4^I48.21
+ ;;^UTILITY(U,$J,358.3,20540,2)
+ ;;=^304710
+ ;;^UTILITY(U,$J,358.3,20541,0)
+ ;;=I48.3^^68^845^9
+ ;;^UTILITY(U,$J,358.3,20541,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,20541,1,3,0)
+ ;;=3^Atrial Flutter-Typical
+ ;;^UTILITY(U,$J,358.3,20541,1,4,0)
+ ;;=4^I48.3
+ ;;^UTILITY(U,$J,358.3,20541,2)
+ ;;=^5007227
+ ;;^UTILITY(U,$J,358.3,20542,0)
+ ;;=I48.4^^68^845^8
+ ;;^UTILITY(U,$J,358.3,20542,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,20542,1,3,0)
+ ;;=3^Atrial Flutter-Atypical
+ ;;^UTILITY(U,$J,358.3,20542,1,4,0)
+ ;;=4^I48.4
+ ;;^UTILITY(U,$J,358.3,20542,2)
+ ;;=^5007228
+ ;;^UTILITY(U,$J,358.3,20543,0)
+ ;;=J44.0^^68^845^20
+ ;;^UTILITY(U,$J,358.3,20543,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,20543,1,3,0)
+ ;;=3^COPD w/ Lower Resp Infection
+ ;;^UTILITY(U,$J,358.3,20543,1,4,0)
+ ;;=4^J44.0
+ ;;^UTILITY(U,$J,358.3,20543,2)
+ ;;=^5008239
+ ;;^UTILITY(U,$J,358.3,20544,0)
+ ;;=I50.22^^68^845^18
+ ;;^UTILITY(U,$J,358.3,20544,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,20544,1,3,0)
+ ;;=3^CHF,Systolic (Chr HFrEF)
+ ;;^UTILITY(U,$J,358.3,20544,1,4,0)
+ ;;=4^I50.22
+ ;;^UTILITY(U,$J,358.3,20544,2)
+ ;;=^5007241
+ ;;^UTILITY(U,$J,358.3,20545,0)
+ ;;=I50.32^^68^845^14
+ ;;^UTILITY(U,$J,358.3,20545,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,20545,1,3,0)
+ ;;=3^CHF,Diastolic (Chr HFpEF)
+ ;;^UTILITY(U,$J,358.3,20545,1,4,0)
+ ;;=4^I50.32
+ ;;^UTILITY(U,$J,358.3,20545,2)
+ ;;=^5007245
+ ;;^UTILITY(U,$J,358.3,20546,0)
+ ;;=I50.42^^68^845^13
+ ;;^UTILITY(U,$J,358.3,20546,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,20546,1,3,0)
+ ;;=3^CHF,Combined Systolic & Diastolic
+ ;;^UTILITY(U,$J,358.3,20546,1,4,0)
+ ;;=4^I50.42
+ ;;^UTILITY(U,$J,358.3,20546,2)
+ ;;=^5007249
+ ;;^UTILITY(U,$J,358.3,20547,0)
+ ;;=I50.84^^68^845^25
+ ;;^UTILITY(U,$J,358.3,20547,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,20547,1,3,0)
+ ;;=3^End Stage Heart Failure
+ ;;^UTILITY(U,$J,358.3,20547,1,4,0)
+ ;;=4^I50.84
+ ;;^UTILITY(U,$J,358.3,20547,2)
+ ;;=^5151391
+ ;;^UTILITY(U,$J,358.3,20548,0)
+ ;;=I50.43^^68^845^15
+ ;;^UTILITY(U,$J,358.3,20548,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,20548,1,3,0)
+ ;;=3^CHF,Exacerbated Combined Systolic & Diastolic
+ ;;^UTILITY(U,$J,358.3,20548,1,4,0)
+ ;;=4^I50.43
+ ;;^UTILITY(U,$J,358.3,20548,2)
+ ;;=^5007250
+ ;;^UTILITY(U,$J,358.3,20549,0)
+ ;;=I50.33^^68^845^16
+ ;;^UTILITY(U,$J,358.3,20549,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,20549,1,3,0)
+ ;;=3^CHF,Exacerbated Diastolic (HFpEF)
+ ;;^UTILITY(U,$J,358.3,20549,1,4,0)
+ ;;=4^I50.33
+ ;;^UTILITY(U,$J,358.3,20549,2)
+ ;;=^5007246
+ ;;^UTILITY(U,$J,358.3,20550,0)
+ ;;=I50.23^^68^845^17
+ ;;^UTILITY(U,$J,358.3,20550,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,20550,1,3,0)
+ ;;=3^CHF,Exacerbated Systolic (HFrEF)
+ ;;^UTILITY(U,$J,358.3,20550,1,4,0)
+ ;;=4^I50.23
+ ;;^UTILITY(U,$J,358.3,20550,2)
+ ;;=^5007242
+ ;;^UTILITY(U,$J,358.3,20551,0)
+ ;;=F81.81^^68^846^4
+ ;;^UTILITY(U,$J,358.3,20551,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,20551,1,3,0)
+ ;;=3^Disorder of written expression
+ ;;^UTILITY(U,$J,358.3,20551,1,4,0)
+ ;;=4^F81.81
+ ;;^UTILITY(U,$J,358.3,20551,2)
+ ;;=^5003680
+ ;;^UTILITY(U,$J,358.3,20552,0)
+ ;;=R41.3^^68^846^1
+ ;;^UTILITY(U,$J,358.3,20552,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,20552,1,3,0)
+ ;;=3^Amnesia NEC
+ ;;^UTILITY(U,$J,358.3,20552,1,4,0)
+ ;;=4^R41.3
+ ;;^UTILITY(U,$J,358.3,20552,2)
+ ;;=^5019439
+ ;;^UTILITY(U,$J,358.3,20553,0)
+ ;;=F81.89^^68^846^3
+ ;;^UTILITY(U,$J,358.3,20553,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,20553,1,3,0)
+ ;;=3^Developmental disorders of scholastic skills NEC
+ ;;^UTILITY(U,$J,358.3,20553,1,4,0)
+ ;;=4^F81.89
+ ;;^UTILITY(U,$J,358.3,20553,2)
+ ;;=^5003681
+ ;;^UTILITY(U,$J,358.3,20554,0)
+ ;;=F07.81^^68^846^6
+ ;;^UTILITY(U,$J,358.3,20554,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,20554,1,3,0)
+ ;;=3^Postconcussional syndrome
+ ;;^UTILITY(U,$J,358.3,20554,1,4,0)
+ ;;=4^F07.81
+ ;;^UTILITY(U,$J,358.3,20554,2)
+ ;;=^5003064
+ ;;^UTILITY(U,$J,358.3,20555,0)
+ ;;=R41.2^^68^846^7
+ ;;^UTILITY(U,$J,358.3,20555,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,20555,1,3,0)
+ ;;=3^Retrograde amnesia
+ ;;^UTILITY(U,$J,358.3,20555,1,4,0)
+ ;;=4^R41.2
+ ;;^UTILITY(U,$J,358.3,20555,2)
+ ;;=^5019438
+ ;;^UTILITY(U,$J,358.3,20556,0)
+ ;;=I69.314^^68^846^5
+ ;;^UTILITY(U,$J,358.3,20556,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,20556,1,3,0)
+ ;;=3^Frontal Lobe & Executive Function Deficit-CVA Sequela
+ ;;^UTILITY(U,$J,358.3,20556,1,4,0)
+ ;;=4^I69.314
+ ;;^UTILITY(U,$J,358.3,20556,2)
+ ;;=^5138648
+ ;;^UTILITY(U,$J,358.3,20557,0)
+ ;;=I69.315^^68^846^2
+ ;;^UTILITY(U,$J,358.3,20557,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,20557,1,3,0)
+ ;;=3^Cognitive Social or Emotional Deficit-CVA Sequela
+ ;;^UTILITY(U,$J,358.3,20557,1,4,0)
+ ;;=4^I69.315
+ ;;^UTILITY(U,$J,358.3,20557,2)
+ ;;=^5138649
+ ;;^UTILITY(U,$J,358.3,20558,0)
+ ;;=T84.81XA^^68^847^2
+ ;;^UTILITY(U,$J,358.3,20558,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,20558,1,3,0)
+ ;;=3^Embolism d/t internal orthopedic prosth dev/grft, init
+ ;;^UTILITY(U,$J,358.3,20558,1,4,0)
+ ;;=4^T84.81XA
+ ;;^UTILITY(U,$J,358.3,20558,2)
+ ;;=^5055454
+ ;;^UTILITY(U,$J,358.3,20559,0)
+ ;;=T84.82XA^^68^847^3
+ ;;^UTILITY(U,$J,358.3,20559,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,20559,1,3,0)
+ ;;=3^Fibrosis d/t internal orthopedic prosth dev/grft, init
+ ;;^UTILITY(U,$J,358.3,20559,1,4,0)
+ ;;=4^T84.82XA
+ ;;^UTILITY(U,$J,358.3,20559,2)
+ ;;=^5055457
+ ;;^UTILITY(U,$J,358.3,20560,0)
+ ;;=T84.83XA^^68^847^4
+ ;;^UTILITY(U,$J,358.3,20560,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,20560,1,3,0)
+ ;;=3^Hemorrhage d/t internal orthopedic prosth dev/grft, init
+ ;;^UTILITY(U,$J,358.3,20560,1,4,0)
+ ;;=4^T84.83XA
+ ;;^UTILITY(U,$J,358.3,20560,2)
+ ;;=^5055460
+ ;;^UTILITY(U,$J,358.3,20561,0)
+ ;;=T84.84XA^^68^847^5
+ ;;^UTILITY(U,$J,358.3,20561,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,20561,1,3,0)
+ ;;=3^Pain d/t internal orthopedic prosth dev/grft, init
+ ;;^UTILITY(U,$J,358.3,20561,1,4,0)
+ ;;=4^T84.84XA
+ ;;^UTILITY(U,$J,358.3,20561,2)
+ ;;=^5055463
+ ;;^UTILITY(U,$J,358.3,20562,0)
+ ;;=T84.85XA^^68^847^6
+ ;;^UTILITY(U,$J,358.3,20562,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,20562,1,3,0)
+ ;;=3^Stenosis d/t internal orthopedic prosth dev/grft, init
+ ;;^UTILITY(U,$J,358.3,20562,1,4,0)
+ ;;=4^T84.85XA
+ ;;^UTILITY(U,$J,358.3,20562,2)
+ ;;=^5055466
+ ;;^UTILITY(U,$J,358.3,20563,0)
+ ;;=T84.86XA^^68^847^7
+ ;;^UTILITY(U,$J,358.3,20563,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,20563,1,3,0)
+ ;;=3^Thrombosis d/t internal orthopedic prosth dev/grft, init
+ ;;^UTILITY(U,$J,358.3,20563,1,4,0)
+ ;;=4^T84.86XA
+ ;;^UTILITY(U,$J,358.3,20563,2)
+ ;;=^5055469
+ ;;^UTILITY(U,$J,358.3,20564,0)
+ ;;=T88.9XXS^^68^847^1
+ ;;^UTILITY(U,$J,358.3,20564,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,20564,1,3,0)
+ ;;=3^Complication of surgical and medical care, unsp, sequela
+ ;;^UTILITY(U,$J,358.3,20564,1,4,0)
+ ;;=4^T88.9XXS
+ ;;^UTILITY(U,$J,358.3,20564,2)
+ ;;=^5055819
+ ;;^UTILITY(U,$J,358.3,20565,0)
+ ;;=M86.672^^68^848^2
+ ;;^UTILITY(U,$J,358.3,20565,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,20565,1,3,0)
+ ;;=3^Chr Osteomyelitis,Lt Ankle/Foot NEC
+ ;;^UTILITY(U,$J,358.3,20565,1,4,0)
+ ;;=4^M86.672
+ ;;^UTILITY(U,$J,358.3,20565,2)
+ ;;=^5014642
+ ;;^UTILITY(U,$J,358.3,20566,0)
+ ;;=M86.642^^68^848^3
+ ;;^UTILITY(U,$J,358.3,20566,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,20566,1,3,0)
+ ;;=3^Chr Osteomyelitis,Lt Hand NEC
+ ;;^UTILITY(U,$J,358.3,20566,1,4,0)
+ ;;=4^M86.642
+ ;;^UTILITY(U,$J,358.3,20566,2)
+ ;;=^5134074
+ ;;^UTILITY(U,$J,358.3,20567,0)
+ ;;=M86.622^^68^848^4
+ ;;^UTILITY(U,$J,358.3,20567,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,20567,1,3,0)
+ ;;=3^Chr Osteomyelitis,Lt Humerus NEC
+ ;;^UTILITY(U,$J,358.3,20567,1,4,0)
+ ;;=4^M86.622
+ ;;^UTILITY(U,$J,358.3,20567,2)
+ ;;=^5134070
+ ;;^UTILITY(U,$J,358.3,20568,0)
+ ;;=M86.632^^68^848^5
+ ;;^UTILITY(U,$J,358.3,20568,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,20568,1,3,0)
+ ;;=3^Chr Osteomyelitis,Lt Radius/Ulna NEC
+ ;;^UTILITY(U,$J,358.3,20568,1,4,0)
+ ;;=4^M86.632
  ;;^UTILITY(U,$J,358.3,20568,2)
- ;;=^5151474
+ ;;=^5134072
  ;;^UTILITY(U,$J,358.3,20569,0)
- ;;=L97.421^^70^877^58
+ ;;=M86.612^^68^848^6
  ;;^UTILITY(U,$J,358.3,20569,1,0)
  ;;=^358.31IA^4^2
  ;;^UTILITY(U,$J,358.3,20569,1,3,0)
- ;;=3^Non-Pressure Chr Ulcer Lt Heel & Midft Limited to Brkdwn of Skin
+ ;;=3^Chr Osteomyelitis,Lt Shoulder NEC
  ;;^UTILITY(U,$J,358.3,20569,1,4,0)
- ;;=4^L97.421
+ ;;=4^M86.612
  ;;^UTILITY(U,$J,358.3,20569,2)
- ;;=^5009535
+ ;;=^5014632
  ;;^UTILITY(U,$J,358.3,20570,0)
- ;;=L97.422^^70^877^59
+ ;;=M86.652^^68^848^7
  ;;^UTILITY(U,$J,358.3,20570,1,0)
  ;;=^358.31IA^4^2
  ;;^UTILITY(U,$J,358.3,20570,1,3,0)
- ;;=3^Non-Pressure Chr Ulcer Lt Heel & Midft w/ Fat Layer Exposed
+ ;;=3^Chr Osteomyelitis,Lt Thigh NEC
  ;;^UTILITY(U,$J,358.3,20570,1,4,0)
- ;;=4^L97.422
+ ;;=4^M86.652
  ;;^UTILITY(U,$J,358.3,20570,2)
- ;;=^5009536
+ ;;=^5014638
  ;;^UTILITY(U,$J,358.3,20571,0)
- ;;=L97.423^^70^877^60
+ ;;=M86.662^^68^848^8
  ;;^UTILITY(U,$J,358.3,20571,1,0)
  ;;=^358.31IA^4^2
  ;;^UTILITY(U,$J,358.3,20571,1,3,0)
- ;;=3^Non-Pressure Chr Ulcer Lt Heel & Midft w/ Necrosis of Msl
+ ;;=3^Chr Osteomyelitis,Lt Tibia/Fibula NEC
  ;;^UTILITY(U,$J,358.3,20571,1,4,0)
- ;;=4^L97.423
+ ;;=4^M86.662
  ;;^UTILITY(U,$J,358.3,20571,2)
- ;;=^5009537
+ ;;=^5134076
  ;;^UTILITY(U,$J,358.3,20572,0)
- ;;=L97.424^^70^877^61
+ ;;=M86.671^^68^848^9
  ;;^UTILITY(U,$J,358.3,20572,1,0)
  ;;=^358.31IA^4^2
  ;;^UTILITY(U,$J,358.3,20572,1,3,0)
- ;;=3^Non-Pressure Chr Ulcer Lt Heel & Midft w/ Necrosis of Bone
+ ;;=3^Chr Osteomyelitis,Rt Ankle/Foot NEC
  ;;^UTILITY(U,$J,358.3,20572,1,4,0)
- ;;=4^L97.424
+ ;;=4^M86.671
  ;;^UTILITY(U,$J,358.3,20572,2)
- ;;=^5009538
+ ;;=^5014641
  ;;^UTILITY(U,$J,358.3,20573,0)
- ;;=L97.425^^70^877^62
+ ;;=M86.641^^68^848^10
  ;;^UTILITY(U,$J,358.3,20573,1,0)
  ;;=^358.31IA^4^2
  ;;^UTILITY(U,$J,358.3,20573,1,3,0)
- ;;=3^Non-Pressure Chr Ulcer Lt Heel & Midft w/ Msl Invl w/o Necrosis
+ ;;=3^Chr Osteomyelitis,Rt Hand
  ;;^UTILITY(U,$J,358.3,20573,1,4,0)
- ;;=4^L97.425
+ ;;=4^M86.641
  ;;^UTILITY(U,$J,358.3,20573,2)
- ;;=^5151463
+ ;;=^5014636
  ;;^UTILITY(U,$J,358.3,20574,0)
- ;;=L97.426^^70^877^63
+ ;;=M86.621^^68^848^11
  ;;^UTILITY(U,$J,358.3,20574,1,0)
  ;;=^358.31IA^4^2
  ;;^UTILITY(U,$J,358.3,20574,1,3,0)
- ;;=3^Non-Pressure Chr Ulcer Lt Heel & Midft w/ Bone Invl w/o Necrosis
+ ;;=3^Chr Osteomyelitis,Rt Humerus NEC
  ;;^UTILITY(U,$J,358.3,20574,1,4,0)
- ;;=4^L97.426
+ ;;=4^M86.621
  ;;^UTILITY(U,$J,358.3,20574,2)
- ;;=^5151464
+ ;;=^5014634
  ;;^UTILITY(U,$J,358.3,20575,0)
- ;;=L97.428^^70^877^64
+ ;;=M86.631^^68^848^12
  ;;^UTILITY(U,$J,358.3,20575,1,0)
  ;;=^358.31IA^4^2
  ;;^UTILITY(U,$J,358.3,20575,1,3,0)
- ;;=3^Non-Pressure Chr Ulcer Lt Heel & Midft w/ Oth Servity
+ ;;=3^Chr Osteomyelitis,Rt Radius/Ulna NEC
  ;;^UTILITY(U,$J,358.3,20575,1,4,0)
- ;;=4^L97.428
+ ;;=4^M86.631
  ;;^UTILITY(U,$J,358.3,20575,2)
- ;;=^5151465
+ ;;=^5014635
  ;;^UTILITY(U,$J,358.3,20576,0)
- ;;=L97.921^^70^877^66
+ ;;=M86.611^^68^848^13
  ;;^UTILITY(U,$J,358.3,20576,1,0)
  ;;=^358.31IA^4^2
  ;;^UTILITY(U,$J,358.3,20576,1,3,0)
- ;;=3^Non-Pressure Chr Ulcer Lt LL Limited to Brkdwn Skin
+ ;;=3^Chr Osteomyelitis,Rt Shoulder NEC
  ;;^UTILITY(U,$J,358.3,20576,1,4,0)
- ;;=4^L97.921
+ ;;=4^M86.611
  ;;^UTILITY(U,$J,358.3,20576,2)
- ;;=^5133680
+ ;;=^5014631
  ;;^UTILITY(U,$J,358.3,20577,0)
- ;;=L97.922^^70^877^68
+ ;;=M86.651^^68^848^14
  ;;^UTILITY(U,$J,358.3,20577,1,0)
  ;;=^358.31IA^4^2
  ;;^UTILITY(U,$J,358.3,20577,1,3,0)
- ;;=3^Non-Pressure Chr Ulcer Lt LL w/ Fat Layer Exposed
+ ;;=3^Chr Osteomyelitis,Rt Thigh NEC
  ;;^UTILITY(U,$J,358.3,20577,1,4,0)
- ;;=4^L97.922
+ ;;=4^M86.651
  ;;^UTILITY(U,$J,358.3,20577,2)
- ;;=^5133682
+ ;;=^5014637
  ;;^UTILITY(U,$J,358.3,20578,0)
- ;;=L97.923^^70^877^70
+ ;;=M86.661^^68^848^15
  ;;^UTILITY(U,$J,358.3,20578,1,0)
  ;;=^358.31IA^4^2
  ;;^UTILITY(U,$J,358.3,20578,1,3,0)
- ;;=3^Non-Pressure Chr Ulcer Lt LL w/ Necrosis of Msl
+ ;;=3^Chr Osteomyelitis,Rt Tibia/Fibula NEC
  ;;^UTILITY(U,$J,358.3,20578,1,4,0)
- ;;=4^L97.923
+ ;;=4^M86.661
  ;;^UTILITY(U,$J,358.3,20578,2)
- ;;=^5133684
+ ;;=^5014640
  ;;^UTILITY(U,$J,358.3,20579,0)
- ;;=L97.924^^70^877^71
+ ;;=M25.672^^68^848^23
  ;;^UTILITY(U,$J,358.3,20579,1,0)
  ;;=^358.31IA^4^2
  ;;^UTILITY(U,$J,358.3,20579,1,3,0)
- ;;=3^Non-Pressure Chr Ulcer Lt LL w/ Necrosis of Bone
+ ;;=3^Stiffness,Lt Ankle NEC
  ;;^UTILITY(U,$J,358.3,20579,1,4,0)
- ;;=4^L97.924
+ ;;=4^M25.672
  ;;^UTILITY(U,$J,358.3,20579,2)
- ;;=^5133686
+ ;;=^5011640
  ;;^UTILITY(U,$J,358.3,20580,0)
- ;;=L97.925^^70^877^69
+ ;;=M25.622^^68^848^24
  ;;^UTILITY(U,$J,358.3,20580,1,0)
  ;;=^358.31IA^4^2
  ;;^UTILITY(U,$J,358.3,20580,1,3,0)
- ;;=3^Non-Pressure Chr Ulcer Lt LL w/ Msl Invl w/o Necrosis
+ ;;=3^Stiffness,Lt Elbow NEC
  ;;^UTILITY(U,$J,358.3,20580,1,4,0)
- ;;=4^L97.925
+ ;;=4^M25.622
  ;;^UTILITY(U,$J,358.3,20580,2)
- ;;=^5151490
+ ;;=^5011625
  ;;^UTILITY(U,$J,358.3,20581,0)
- ;;=L97.926^^70^877^67
+ ;;=M25.675^^68^848^25
  ;;^UTILITY(U,$J,358.3,20581,1,0)
  ;;=^358.31IA^4^2
  ;;^UTILITY(U,$J,358.3,20581,1,3,0)
- ;;=3^Non-Pressure Chr Ulcer Lt LL w/ Bone Invl w/o Necrosis
+ ;;=3^Stiffness,Lt Foot NEC
  ;;^UTILITY(U,$J,358.3,20581,1,4,0)
- ;;=4^L97.926
+ ;;=4^M25.675
  ;;^UTILITY(U,$J,358.3,20581,2)
- ;;=^5151491
+ ;;=^5011643
  ;;^UTILITY(U,$J,358.3,20582,0)
- ;;=L97.928^^70^877^72
+ ;;=M25.642^^68^848^26
  ;;^UTILITY(U,$J,358.3,20582,1,0)
  ;;=^358.31IA^4^2
  ;;^UTILITY(U,$J,358.3,20582,1,3,0)
- ;;=3^Non-Pressure Chr Ulcer Lt LL w/ Oth Severity
+ ;;=3^Stiffness,Lt Hand NEC
  ;;^UTILITY(U,$J,358.3,20582,1,4,0)
- ;;=4^L97.928
+ ;;=4^M25.642
  ;;^UTILITY(U,$J,358.3,20582,2)
- ;;=^5151492
+ ;;=^5011631
  ;;^UTILITY(U,$J,358.3,20583,0)
- ;;=L97.121^^70^877^74
+ ;;=M25.652^^68^848^27
  ;;^UTILITY(U,$J,358.3,20583,1,0)
  ;;=^358.31IA^4^2
  ;;^UTILITY(U,$J,358.3,20583,1,3,0)
- ;;=3^Non-Pressure Chr Ulcer Lt Thigh Limited to Brkdwn Skin
+ ;;=3^Stiffness,Lt Hip NEC
  ;;^UTILITY(U,$J,358.3,20583,1,4,0)
- ;;=4^L97.121
+ ;;=4^M25.652
  ;;^UTILITY(U,$J,358.3,20583,2)
- ;;=^5009490
+ ;;=^5011634
  ;;^UTILITY(U,$J,358.3,20584,0)
- ;;=L97.122^^70^877^76
+ ;;=M25.662^^68^848^28
  ;;^UTILITY(U,$J,358.3,20584,1,0)
  ;;=^358.31IA^4^2
  ;;^UTILITY(U,$J,358.3,20584,1,3,0)
- ;;=3^Non-Pressure Chr Ulcer Lt Thigh w/ Fat Layer Exposed
+ ;;=3^Stiffness,Lt Knee NEC
  ;;^UTILITY(U,$J,358.3,20584,1,4,0)
- ;;=4^L97.122
+ ;;=4^M25.662
  ;;^UTILITY(U,$J,358.3,20584,2)
- ;;=^5009491
+ ;;=^5011637
  ;;^UTILITY(U,$J,358.3,20585,0)
- ;;=L97.123^^70^877^78
+ ;;=M25.612^^68^848^29
  ;;^UTILITY(U,$J,358.3,20585,1,0)
  ;;=^358.31IA^4^2
  ;;^UTILITY(U,$J,358.3,20585,1,3,0)
- ;;=3^Non-Pressure Chr Ulcer Lt Thigh w/ Necrosis of Msl
+ ;;=3^Stiffness,Lt Shoulder NEC
  ;;^UTILITY(U,$J,358.3,20585,1,4,0)
- ;;=4^L97.123
+ ;;=4^M25.612
  ;;^UTILITY(U,$J,358.3,20585,2)
- ;;=^5009492
+ ;;=^5011622
  ;;^UTILITY(U,$J,358.3,20586,0)
- ;;=L97.124^^70^877^79
+ ;;=M25.632^^68^848^30
  ;;^UTILITY(U,$J,358.3,20586,1,0)
  ;;=^358.31IA^4^2
  ;;^UTILITY(U,$J,358.3,20586,1,3,0)
- ;;=3^Non-Pressure Chr Ulcer Lt Thigh w/ Necrosis of Bone
+ ;;=3^Stiffness,Lt Wrist NEC
  ;;^UTILITY(U,$J,358.3,20586,1,4,0)
- ;;=4^L97.124
+ ;;=4^M25.632
  ;;^UTILITY(U,$J,358.3,20586,2)
- ;;=^5009493
+ ;;=^5011628
  ;;^UTILITY(U,$J,358.3,20587,0)
- ;;=L97.125^^70^877^77
+ ;;=M25.671^^68^848^32
  ;;^UTILITY(U,$J,358.3,20587,1,0)
  ;;=^358.31IA^4^2
  ;;^UTILITY(U,$J,358.3,20587,1,3,0)
- ;;=3^Non-Pressure Chr Ulcer Lt Thigh w/ Msl Invl w/o Necrosis
+ ;;=3^Stiffness,Rt Ankle NEC
  ;;^UTILITY(U,$J,358.3,20587,1,4,0)
- ;;=4^L97.125
+ ;;=4^M25.671
  ;;^UTILITY(U,$J,358.3,20587,2)
- ;;=^5151436
+ ;;=^5011639
  ;;^UTILITY(U,$J,358.3,20588,0)
- ;;=L97.126^^70^877^75
+ ;;=M25.621^^68^848^33
  ;;^UTILITY(U,$J,358.3,20588,1,0)
  ;;=^358.31IA^4^2
  ;;^UTILITY(U,$J,358.3,20588,1,3,0)
- ;;=3^Non-Pressure Chr Ulcer Lt Thigh w/ Bone Invl w/o Necrosis
+ ;;=3^Stiffness,Rt Elbow NEC
  ;;^UTILITY(U,$J,358.3,20588,1,4,0)
- ;;=4^L97.126
+ ;;=4^M25.621
  ;;^UTILITY(U,$J,358.3,20588,2)
- ;;=^5151437
+ ;;=^5011624
  ;;^UTILITY(U,$J,358.3,20589,0)
- ;;=L97.128^^70^877^80
+ ;;=M25.674^^68^848^34
  ;;^UTILITY(U,$J,358.3,20589,1,0)
  ;;=^358.31IA^4^2
  ;;^UTILITY(U,$J,358.3,20589,1,3,0)
- ;;=3^Non-Pressure Chr Ulcer Lt Thigh w/ Oth Severity
+ ;;=3^Stiffness,Rt Foot NEC
  ;;^UTILITY(U,$J,358.3,20589,1,4,0)
- ;;=4^L97.128
+ ;;=4^M25.674
  ;;^UTILITY(U,$J,358.3,20589,2)
- ;;=^5151438
+ ;;=^5011642
  ;;^UTILITY(U,$J,358.3,20590,0)
- ;;=L97.311^^70^877^82
+ ;;=M25.641^^68^848^35
  ;;^UTILITY(U,$J,358.3,20590,1,0)
  ;;=^358.31IA^4^2
  ;;^UTILITY(U,$J,358.3,20590,1,3,0)
- ;;=3^Non-Pressure Chr Ulcer Rt Ankle Limited to Brkdwn Skin
+ ;;=3^Stiffness,Rt Hand NEC
  ;;^UTILITY(U,$J,358.3,20590,1,4,0)
- ;;=4^L97.311
+ ;;=4^M25.641
  ;;^UTILITY(U,$J,358.3,20590,2)
- ;;=^5009515
+ ;;=^5011630
  ;;^UTILITY(U,$J,358.3,20591,0)
- ;;=L97.312^^70^877^84
+ ;;=M25.651^^68^848^36
  ;;^UTILITY(U,$J,358.3,20591,1,0)
  ;;=^358.31IA^4^2
  ;;^UTILITY(U,$J,358.3,20591,1,3,0)
- ;;=3^Non-Pressure Chr Ulcer Rt Ankle w/ Fat Layer Exposed
+ ;;=3^Stiffness,Rt Hip NEC
  ;;^UTILITY(U,$J,358.3,20591,1,4,0)
- ;;=4^L97.312
+ ;;=4^M25.651
  ;;^UTILITY(U,$J,358.3,20591,2)
- ;;=^5009516
+ ;;=^5011633
  ;;^UTILITY(U,$J,358.3,20592,0)
- ;;=L97.313^^70^877^86
+ ;;=M25.661^^68^848^37
  ;;^UTILITY(U,$J,358.3,20592,1,0)
  ;;=^358.31IA^4^2
  ;;^UTILITY(U,$J,358.3,20592,1,3,0)
- ;;=3^Non-Pressure Chr Ulcer Rt Ankle w/ Necrosis of Msl
+ ;;=3^Stiffness,Rt Knee NEC
  ;;^UTILITY(U,$J,358.3,20592,1,4,0)
- ;;=4^L97.313
+ ;;=4^M25.661
  ;;^UTILITY(U,$J,358.3,20592,2)
- ;;=^5009517
+ ;;=^5011636
  ;;^UTILITY(U,$J,358.3,20593,0)
- ;;=L97.314^^70^877^87
+ ;;=M25.611^^68^848^38
  ;;^UTILITY(U,$J,358.3,20593,1,0)
  ;;=^358.31IA^4^2
  ;;^UTILITY(U,$J,358.3,20593,1,3,0)
- ;;=3^Non-Pressure Chr Ulcer Rt Ankle w/ Necrosis of Bone
+ ;;=3^Stiffness,Rt Shoulder NEC
  ;;^UTILITY(U,$J,358.3,20593,1,4,0)
- ;;=4^L97.314
+ ;;=4^M25.611
  ;;^UTILITY(U,$J,358.3,20593,2)
- ;;=^5009518
+ ;;=^5011621
  ;;^UTILITY(U,$J,358.3,20594,0)
- ;;=L97.315^^70^877^85
+ ;;=M25.631^^68^848^39
  ;;^UTILITY(U,$J,358.3,20594,1,0)
  ;;=^358.31IA^4^2
  ;;^UTILITY(U,$J,358.3,20594,1,3,0)
- ;;=3^Non-Pressure Chr Ulcer Rt Ankle w/ Msl Invl w/o Necrosis
+ ;;=3^Stiffness,Rt Wrist NEC
  ;;^UTILITY(U,$J,358.3,20594,1,4,0)
- ;;=4^L97.315
+ ;;=4^M25.631
  ;;^UTILITY(U,$J,358.3,20594,2)
- ;;=^5151451
+ ;;=^5011627
  ;;^UTILITY(U,$J,358.3,20595,0)
- ;;=L97.316^^70^877^83
+ ;;=M12.572^^68^848^40
  ;;^UTILITY(U,$J,358.3,20595,1,0)
  ;;=^358.31IA^4^2
  ;;^UTILITY(U,$J,358.3,20595,1,3,0)
- ;;=3^Non-Pressure Chr Ulcer Rt Ankle w/ Bone Invl w/o Necrosis
+ ;;=3^Traumatic Arthropathy,Lt Ankle/Foot
  ;;^UTILITY(U,$J,358.3,20595,1,4,0)
- ;;=4^L97.316
+ ;;=4^M12.572
  ;;^UTILITY(U,$J,358.3,20595,2)
- ;;=^5151452
+ ;;=^5010638
  ;;^UTILITY(U,$J,358.3,20596,0)
- ;;=L97.318^^70^877^88
+ ;;=M12.522^^68^848^41
  ;;^UTILITY(U,$J,358.3,20596,1,0)
  ;;=^358.31IA^4^2
  ;;^UTILITY(U,$J,358.3,20596,1,3,0)
- ;;=3^Non-Pressure Chr Ulcer Rt Ankle w/ Oth Severity
+ ;;=3^Traumatic Arthropathy,Lt Elbow
  ;;^UTILITY(U,$J,358.3,20596,1,4,0)
- ;;=4^L97.318
+ ;;=4^M12.522
  ;;^UTILITY(U,$J,358.3,20596,2)
- ;;=^5151453
+ ;;=^5010623
  ;;^UTILITY(U,$J,358.3,20597,0)
- ;;=L97.211^^70^877^90
+ ;;=M12.542^^68^848^42
  ;;^UTILITY(U,$J,358.3,20597,1,0)
  ;;=^358.31IA^4^2
  ;;^UTILITY(U,$J,358.3,20597,1,3,0)
- ;;=3^Non-Pressure Chr Ulcer Rt Calf Limited to Brkdwn Skin
+ ;;=3^Traumatic Arthropathy,Lt Hand
  ;;^UTILITY(U,$J,358.3,20597,1,4,0)
- ;;=4^L97.211
+ ;;=4^M12.542
  ;;^UTILITY(U,$J,358.3,20597,2)
- ;;=^5009500
+ ;;=^5010629
  ;;^UTILITY(U,$J,358.3,20598,0)
- ;;=L97.212^^70^877^92
+ ;;=M12.552^^68^848^43
  ;;^UTILITY(U,$J,358.3,20598,1,0)
  ;;=^358.31IA^4^2
  ;;^UTILITY(U,$J,358.3,20598,1,3,0)
- ;;=3^Non-Pressure Chr Ulcer Rt Calf w/ Fat Layer Exposed
+ ;;=3^Traumatic Arthropathy,Lt Hip
  ;;^UTILITY(U,$J,358.3,20598,1,4,0)
- ;;=4^L97.212
+ ;;=4^M12.552
  ;;^UTILITY(U,$J,358.3,20598,2)
- ;;=^5009501
+ ;;=^5010632
  ;;^UTILITY(U,$J,358.3,20599,0)
- ;;=L97.213^^70^877^94
+ ;;=M12.562^^68^848^44
  ;;^UTILITY(U,$J,358.3,20599,1,0)
  ;;=^358.31IA^4^2
  ;;^UTILITY(U,$J,358.3,20599,1,3,0)
- ;;=3^Non-Pressure Chr Ulcer Rt Calf w/ Necrosis of Msl
+ ;;=3^Traumatic Arthropathy,Lt Knee
  ;;^UTILITY(U,$J,358.3,20599,1,4,0)
- ;;=4^L97.213
+ ;;=4^M12.562
  ;;^UTILITY(U,$J,358.3,20599,2)
- ;;=^5009502
+ ;;=^5010635
  ;;^UTILITY(U,$J,358.3,20600,0)
- ;;=L97.214^^70^877^95
+ ;;=M12.512^^68^848^45
  ;;^UTILITY(U,$J,358.3,20600,1,0)
  ;;=^358.31IA^4^2
  ;;^UTILITY(U,$J,358.3,20600,1,3,0)
- ;;=3^Non-Pressure Chr Ulcer Rt Calf w/ Necrosis of Bone
+ ;;=3^Traumatic Arthropathy,Lt Shoulder
  ;;^UTILITY(U,$J,358.3,20600,1,4,0)
- ;;=4^L97.214
+ ;;=4^M12.512
  ;;^UTILITY(U,$J,358.3,20600,2)
- ;;=^5009503
+ ;;=^5010620
  ;;^UTILITY(U,$J,358.3,20601,0)
- ;;=L97.215^^70^877^93
+ ;;=M12.532^^68^848^46
  ;;^UTILITY(U,$J,358.3,20601,1,0)
  ;;=^358.31IA^4^2
  ;;^UTILITY(U,$J,358.3,20601,1,3,0)
- ;;=3^Non-Pressure Chr Ulcer Rt Calf w/ Msl Invl w/o Necrosis
+ ;;=3^Traumatic Arthropathy,Lt Wrist
  ;;^UTILITY(U,$J,358.3,20601,1,4,0)
- ;;=4^L97.215
+ ;;=4^M12.532
  ;;^UTILITY(U,$J,358.3,20601,2)
- ;;=^5151442
+ ;;=^5010626
  ;;^UTILITY(U,$J,358.3,20602,0)
- ;;=L97.216^^70^877^91
+ ;;=M12.571^^68^848^47
  ;;^UTILITY(U,$J,358.3,20602,1,0)
  ;;=^358.31IA^4^2
  ;;^UTILITY(U,$J,358.3,20602,1,3,0)
- ;;=3^Non-Pressure Chr Ulcer Rt Calf w/ Bone Invl w/o Necrosis
+ ;;=3^Traumatic Arthropathy,Rt Ankle/Foot
  ;;^UTILITY(U,$J,358.3,20602,1,4,0)
- ;;=4^L97.216
+ ;;=4^M12.571
  ;;^UTILITY(U,$J,358.3,20602,2)
- ;;=^5151443
+ ;;=^5010637
  ;;^UTILITY(U,$J,358.3,20603,0)
- ;;=L97.218^^70^877^96
+ ;;=M12.521^^68^848^48
  ;;^UTILITY(U,$J,358.3,20603,1,0)
  ;;=^358.31IA^4^2
  ;;^UTILITY(U,$J,358.3,20603,1,3,0)
- ;;=3^Non-Pressure Chr Ulcer Rt Calf w/ Oth Severity
+ ;;=3^Traumatic Arthropathy,Rt Elbow
  ;;^UTILITY(U,$J,358.3,20603,1,4,0)
- ;;=4^L97.218
+ ;;=4^M12.521
  ;;^UTILITY(U,$J,358.3,20603,2)
- ;;=^5151444
+ ;;=^5010622
  ;;^UTILITY(U,$J,358.3,20604,0)
- ;;=L97.511^^70^877^99
+ ;;=M12.541^^68^848^49
  ;;^UTILITY(U,$J,358.3,20604,1,0)
  ;;=^358.31IA^4^2
  ;;^UTILITY(U,$J,358.3,20604,1,3,0)
- ;;=3^Non-Pressure Chr Ulcer Rt Foot,Oth Part Limited to Brkdwn Skin
+ ;;=3^Traumatic Arthropathy,Rt Hand
  ;;^UTILITY(U,$J,358.3,20604,1,4,0)
- ;;=4^L97.511
+ ;;=4^M12.541
  ;;^UTILITY(U,$J,358.3,20604,2)
- ;;=^5009545
+ ;;=^5010628
  ;;^UTILITY(U,$J,358.3,20605,0)
- ;;=L97.512^^70^877^100
+ ;;=M12.551^^68^848^50
  ;;^UTILITY(U,$J,358.3,20605,1,0)
  ;;=^358.31IA^4^2
  ;;^UTILITY(U,$J,358.3,20605,1,3,0)
- ;;=3^Non-Pressure Chr Ulcer Rt Foot,Oth Part w/ Fat Layer Exposed
+ ;;=3^Traumatic Arthropathy,Rt Hip
  ;;^UTILITY(U,$J,358.3,20605,1,4,0)
- ;;=4^L97.512
+ ;;=4^M12.551
  ;;^UTILITY(U,$J,358.3,20605,2)
- ;;=^5009546
+ ;;=^5010631
  ;;^UTILITY(U,$J,358.3,20606,0)
- ;;=L97.513^^70^877^101
+ ;;=M12.561^^68^848^51
  ;;^UTILITY(U,$J,358.3,20606,1,0)
  ;;=^358.31IA^4^2
  ;;^UTILITY(U,$J,358.3,20606,1,3,0)
- ;;=3^Non-Pressure Chr Ulcer Rt Foot,Oth Part w/ Necrosis of Msl
+ ;;=3^Traumatic Arthropathy,Rt Knee
  ;;^UTILITY(U,$J,358.3,20606,1,4,0)
- ;;=4^L97.513
+ ;;=4^M12.561
  ;;^UTILITY(U,$J,358.3,20606,2)
- ;;=^5009547
+ ;;=^5010634
  ;;^UTILITY(U,$J,358.3,20607,0)
- ;;=L97.514^^70^877^102
+ ;;=M12.511^^68^848^52
  ;;^UTILITY(U,$J,358.3,20607,1,0)
  ;;=^358.31IA^4^2
  ;;^UTILITY(U,$J,358.3,20607,1,3,0)
- ;;=3^Non-Pressure Chr Ulcer Rt Foot,Oth Part w/ Necrosis of Bone
+ ;;=3^Traumatic Arthropathy,Rt Shoulder
  ;;^UTILITY(U,$J,358.3,20607,1,4,0)
- ;;=4^L97.514
+ ;;=4^M12.511
  ;;^UTILITY(U,$J,358.3,20607,2)
- ;;=^5009548
+ ;;=^5010619
  ;;^UTILITY(U,$J,358.3,20608,0)
- ;;=L97.515^^70^877^103
+ ;;=M12.531^^68^848^53
  ;;^UTILITY(U,$J,358.3,20608,1,0)
  ;;=^358.31IA^4^2
  ;;^UTILITY(U,$J,358.3,20608,1,3,0)
- ;;=3^Non-Pressure Chr Ulcer Rt Foot,Oth Part w/ Msl Invl w/o Necrosis
- ;;^UTILITY(U,$J,358.3,20608,1,4,0)
- ;;=4^L97.515
- ;;^UTILITY(U,$J,358.3,20608,2)
- ;;=^5151469
- ;;^UTILITY(U,$J,358.3,20609,0)
- ;;=L97.516^^70^877^104
- ;;^UTILITY(U,$J,358.3,20609,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,20609,1,3,0)
- ;;=3^Non-Pressure Chr Ulcer Rt Foot,Oth Part w/ Bone Invl w/o Necrosis
- ;;^UTILITY(U,$J,358.3,20609,1,4,0)
- ;;=4^L97.516
- ;;^UTILITY(U,$J,358.3,20609,2)
- ;;=^5151470
- ;;^UTILITY(U,$J,358.3,20610,0)
- ;;=L97.518^^70^877^105
- ;;^UTILITY(U,$J,358.3,20610,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,20610,1,3,0)
- ;;=3^Non-Pressure Chr Ulcer Rt Foot,Oth Part w/ Oth Severity
- ;;^UTILITY(U,$J,358.3,20610,1,4,0)
- ;;=4^L97.518
- ;;^UTILITY(U,$J,358.3,20610,2)
- ;;=^5151471
- ;;^UTILITY(U,$J,358.3,20611,0)
- ;;=L97.411^^70^877^106
- ;;^UTILITY(U,$J,358.3,20611,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,20611,1,3,0)
- ;;=3^Non-Pressure Chr Ulcer Rt Heel & Midft Limited to Brkdwn of Skin
- ;;^UTILITY(U,$J,358.3,20611,1,4,0)
- ;;=4^L97.411
- ;;^UTILITY(U,$J,358.3,20611,2)
- ;;=^5009530
- ;;^UTILITY(U,$J,358.3,20612,0)
- ;;=L97.412^^70^877^107
- ;;^UTILITY(U,$J,358.3,20612,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,20612,1,3,0)
- ;;=3^Non-Pressure Chr Ulcer Rt Heel & Midft w/ Fat Layer Exposed
- ;;^UTILITY(U,$J,358.3,20612,1,4,0)
- ;;=4^L97.412
- ;;^UTILITY(U,$J,358.3,20612,2)
- ;;=^5009531
- ;;^UTILITY(U,$J,358.3,20613,0)
- ;;=L97.413^^70^877^108
- ;;^UTILITY(U,$J,358.3,20613,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,20613,1,3,0)
- ;;=3^Non-Pressure Chr Ulcer Rt Heel & Midft w/ Necrosis of Msl
- ;;^UTILITY(U,$J,358.3,20613,1,4,0)
- ;;=4^L97.413
- ;;^UTILITY(U,$J,358.3,20613,2)
- ;;=^5009532
- ;;^UTILITY(U,$J,358.3,20614,0)
- ;;=L97.414^^70^877^109
- ;;^UTILITY(U,$J,358.3,20614,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,20614,1,3,0)
- ;;=3^Non-Pressure Chr Ulcer Rt Heel & Midft w/ Necrosis of Bone
- ;;^UTILITY(U,$J,358.3,20614,1,4,0)
- ;;=4^L97.414
- ;;^UTILITY(U,$J,358.3,20614,2)
- ;;=^5009533
- ;;^UTILITY(U,$J,358.3,20615,0)
- ;;=L97.415^^70^877^110
- ;;^UTILITY(U,$J,358.3,20615,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,20615,1,3,0)
- ;;=3^Non-Pressure Chr Ulcer Rt Heel & Midft w/ Msl Invl w/o Necrosis
- ;;^UTILITY(U,$J,358.3,20615,1,4,0)
- ;;=4^L97.415
- ;;^UTILITY(U,$J,358.3,20615,2)
- ;;=^5151460
- ;;^UTILITY(U,$J,358.3,20616,0)
- ;;=L97.416^^70^877^111
- ;;^UTILITY(U,$J,358.3,20616,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,20616,1,3,0)
- ;;=3^Non-Pressure Chr Ulcer Rt Heel & Midft w/ Bone Invl w/o Necrosis
- ;;^UTILITY(U,$J,358.3,20616,1,4,0)
- ;;=4^L97.416
- ;;^UTILITY(U,$J,358.3,20616,2)
- ;;=^5151461
- ;;^UTILITY(U,$J,358.3,20617,0)
- ;;=L97.418^^70^877^112
- ;;^UTILITY(U,$J,358.3,20617,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,20617,1,3,0)
- ;;=3^Non-Pressure Chr Ulcer Rt Heel & Midft w/ Oth Severity
- ;;^UTILITY(U,$J,358.3,20617,1,4,0)
- ;;=4^L97.418
- ;;^UTILITY(U,$J,358.3,20617,2)
- ;;=^5151462
- ;;^UTILITY(U,$J,358.3,20618,0)
- ;;=L97.911^^70^877^114
- ;;^UTILITY(U,$J,358.3,20618,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,20618,1,3,0)
- ;;=3^Non-Pressure Chr Ulcer Rt LL Limited to Brkdwn of Skin
- ;;^UTILITY(U,$J,358.3,20618,1,4,0)
- ;;=4^L97.911
- ;;^UTILITY(U,$J,358.3,20618,2)
- ;;=^5133679
- ;;^UTILITY(U,$J,358.3,20619,0)
- ;;=L97.912^^70^877^116
- ;;^UTILITY(U,$J,358.3,20619,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,20619,1,3,0)
- ;;=3^Non-Pressure Chr Ulcer Rt LL w/ Fat Layer Exposed
- ;;^UTILITY(U,$J,358.3,20619,1,4,0)
- ;;=4^L97.912
- ;;^UTILITY(U,$J,358.3,20619,2)
- ;;=^5133681
- ;;^UTILITY(U,$J,358.3,20620,0)
- ;;=L97.913^^70^877^118
- ;;^UTILITY(U,$J,358.3,20620,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,20620,1,3,0)
- ;;=3^Non-Pressure Chr Ulcer Rt LL w/ Necrosis of Msl
- ;;^UTILITY(U,$J,358.3,20620,1,4,0)
- ;;=4^L97.913
- ;;^UTILITY(U,$J,358.3,20620,2)
- ;;=^5133683
- ;;^UTILITY(U,$J,358.3,20621,0)
- ;;=L97.914^^70^877^119
- ;;^UTILITY(U,$J,358.3,20621,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,20621,1,3,0)
- ;;=3^Non-Pressure Chr Ulcer Rt LL w/ Necrosis of Bone
- ;;^UTILITY(U,$J,358.3,20621,1,4,0)
- ;;=4^L97.914
- ;;^UTILITY(U,$J,358.3,20621,2)
- ;;=^5133685
- ;;^UTILITY(U,$J,358.3,20622,0)
- ;;=L97.915^^70^877^117
- ;;^UTILITY(U,$J,358.3,20622,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,20622,1,3,0)
- ;;=3^Non-Pressure Chr Ulcer Rt LL w/ Msl Invl w/o Necrosis
- ;;^UTILITY(U,$J,358.3,20622,1,4,0)
- ;;=4^L97.915
- ;;^UTILITY(U,$J,358.3,20622,2)
- ;;=^5151487
- ;;^UTILITY(U,$J,358.3,20623,0)
- ;;=L97.916^^70^877^115
- ;;^UTILITY(U,$J,358.3,20623,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,20623,1,3,0)
- ;;=3^Non-Pressure Chr Ulcer Rt LL w/ Bone Invl w/o Necrosis
- ;;^UTILITY(U,$J,358.3,20623,1,4,0)
- ;;=4^L97.916
- ;;^UTILITY(U,$J,358.3,20623,2)
- ;;=^5151488
- ;;^UTILITY(U,$J,358.3,20624,0)
- ;;=L97.918^^70^877^120
- ;;^UTILITY(U,$J,358.3,20624,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,20624,1,3,0)
- ;;=3^Non-Pressure Chr Ulcer Rt LL w/ Oth Severity
- ;;^UTILITY(U,$J,358.3,20624,1,4,0)
- ;;=4^L97.918
- ;;^UTILITY(U,$J,358.3,20624,2)
- ;;=^5151489
- ;;^UTILITY(U,$J,358.3,20625,0)
- ;;=L97.111^^70^877^122
- ;;^UTILITY(U,$J,358.3,20625,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,20625,1,3,0)
- ;;=3^Non-Pressure Chr Ulcer Rt Thigh Limited to Brkdwn of Skin
- ;;^UTILITY(U,$J,358.3,20625,1,4,0)
- ;;=4^L97.111
- ;;^UTILITY(U,$J,358.3,20625,2)
- ;;=^5009485
- ;;^UTILITY(U,$J,358.3,20626,0)
- ;;=L97.112^^70^877^124
- ;;^UTILITY(U,$J,358.3,20626,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,20626,1,3,0)
- ;;=3^Non-Pressure Chr Ulcer Rt Thigh w/ Fat Layer Exposed
- ;;^UTILITY(U,$J,358.3,20626,1,4,0)
- ;;=4^L97.112
- ;;^UTILITY(U,$J,358.3,20626,2)
- ;;=^5009486
- ;;^UTILITY(U,$J,358.3,20627,0)
- ;;=L97.113^^70^877^126
- ;;^UTILITY(U,$J,358.3,20627,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,20627,1,3,0)
- ;;=3^Non-Pressure Chr Ulcer Rt Thigh w/ Necrosis of Msl
- ;;^UTILITY(U,$J,358.3,20627,1,4,0)
- ;;=4^L97.113
- ;;^UTILITY(U,$J,358.3,20627,2)
- ;;=^5009487
- ;;^UTILITY(U,$J,358.3,20628,0)
- ;;=L97.114^^70^877^127
- ;;^UTILITY(U,$J,358.3,20628,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,20628,1,3,0)
- ;;=3^Non-Pressure Chr Ulcer Rt Thigh w/ Necrosis of Bone
- ;;^UTILITY(U,$J,358.3,20628,1,4,0)
- ;;=4^L97.114
- ;;^UTILITY(U,$J,358.3,20628,2)
- ;;=^5009488
- ;;^UTILITY(U,$J,358.3,20629,0)
- ;;=L97.115^^70^877^125
- ;;^UTILITY(U,$J,358.3,20629,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,20629,1,3,0)
- ;;=3^Non-Pressure Chr Ulcer Rt Thigh w/ Msl Invl w/o Necrosis
- ;;^UTILITY(U,$J,358.3,20629,1,4,0)
- ;;=4^L97.115
- ;;^UTILITY(U,$J,358.3,20629,2)
- ;;=^5151433
- ;;^UTILITY(U,$J,358.3,20630,0)
- ;;=L97.116^^70^877^123
- ;;^UTILITY(U,$J,358.3,20630,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,20630,1,3,0)
- ;;=3^Non-Pressure Chr Ulcer Rt Thigh w/ Bone Invl w/o Necrosis
- ;;^UTILITY(U,$J,358.3,20630,1,4,0)
- ;;=4^L97.116
- ;;^UTILITY(U,$J,358.3,20630,2)
- ;;=^5151434
- ;;^UTILITY(U,$J,358.3,20631,0)
- ;;=L97.118^^70^877^128
- ;;^UTILITY(U,$J,358.3,20631,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,20631,1,3,0)
- ;;=3^Non-Pressure Chr Ulcer Rt Thigh w/ Oth Severity
- ;;^UTILITY(U,$J,358.3,20631,1,4,0)
- ;;=4^L97.118
+ ;;=3^Traumatic Arthropathy,Rt Wrist

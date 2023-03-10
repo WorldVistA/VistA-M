@@ -1,5 +1,5 @@
 RCDPURED ;WISC/RFJ - File 344 receipt/payment dd calls ;1 Jun 99
- ;;4.5;Accounts Receivable;**114,169,174,196,202,244,268,271,304,301,312,319,321**;Mar 20, 1995;Build 48
+ ;;4.5;Accounts Receivable;**114,169,174,196,202,244,268,271,304,301,312,319,321,375,371**;Mar 20, 1995;Build 29
  ;;Per VA Directive 6402, this routine should not be modified.
  ;
  ; Reference to $$REC^IBRFN supported by DBIA 2031
@@ -13,7 +13,10 @@ RCDPURED ;WISC/RFJ - File 344 receipt/payment dd calls ;1 Jun 99
 DUPLCATE ;  called by input transform receipt number (.01)
  ;  make sure no duplicate receipt numbers
  I $O(^RCY(344,"B",X,"")) K X W !,"This is a duplicate receipt number." Q
- I $O(^PRCA(433,"AF",X,"")) K X W !,"This receipt number has already been used and has been purged from the system. " K X
+ I $O(^PRCA(433,"AF",X,"")) K X W !,"This receipt number has already been used and has been purged from the system. " K X Q
+ ;
+ ;PRCA*4.5*371 added next line to prevent spaces when creating a new receipt
+ I X[" " K X W !,"Blank Spaces are not allowed in receipt numbers." Q
  Q
  ;
  ;
@@ -27,15 +30,23 @@ PAYCOUNT(RCRECTDA) ;  called by computed field number of transactions (101)
  ;
 PAYTOTAL(RCRECTDA) ;  called by computed field total amount of receipts (.15)
  ;  return the total dollars for payments entered for the receipt
- N TOTAL,X,RCERAIEN,RCRECIPT ;PRCA319 - added RCERAIEN and RCRECIPT
+ N TOTAL,X,RCERAIEN,RCRECIPT,AMT,DEBIT ;PRCA319 - added RCERAIEN and RCRECIPT
  S TOTAL=0
  ;S X=0 F  S X=$O(^RCY(344,+$G(RCRECTDA),1,X)) Q:'X  S TOTAL=TOTAL+$P($G(^(X,0)),"^",4)
  ;PRCA319 replaced line above with next section:
  S RCERAIEN=$P($G(^RCY(344,+$G(RCRECTDA),0)),U,18)
  I '$D(^RCY(344.4,+$G(RCERAIEN),1,"RECEIPT")) D  Q TOTAL ;not a multi receipt ERA 
- .S X=0 F  S X=$O(^RCY(344,+$G(RCRECTDA),1,X)) Q:'X  S TOTAL=TOTAL+$P($G(^(X,0)),"^",4)
+ .S X=0 F  S X=$O(^RCY(344,+$G(RCRECTDA),1,X)) Q:'X  D
+ .. ;PRCA*4.5*375 - Account for Credit/Debit flag when computing total amount on receipt
+ .. S AMT=$P($G(^RCY(344,+$G(RCRECTDA),1,X,0)),"^",4),DEBIT=$P($G(^RCY(344,+$G(RCRECTDA),1,X,0)),"^",29)
+ .. S:DEBIT="D" AMT=-AMT
+ .. S TOTAL=TOTAL+AMT
  S RCRECIPT=0 F  S RCRECIPT=$O(^RCY(344.4,+$G(RCERAIEN),1,"RECEIPT",RCRECIPT)) Q:+RCRECIPT=0  D
- . S X=0 F  S X=$O(^RCY(344,+$G(RCRECIPT),1,X)) Q:'X  S TOTAL=TOTAL+$P($G(^RCY(344,+$G(RCRECIPT),1,X,0)),"^",4)
+ . ;PRCA*4.5*375 - Account for Credit/Debit flag when computing total amount on receipt
+ . S X=0 F  S X=$O(^RCY(344,+$G(RCRECIPT),1,X)) Q:'X  D
+ .. S AMT=$P($G(^RCY(344,+$G(RCRECIPT),1,X,0)),"^",4),DEBIT=$P($G(^RCY(344,+$G(RCRECIPT),1,X,0)),"^",29)
+ .. S:DEBIT="D" AMT=-AMT
+ .. S TOTAL=TOTAL+AMT
  ;PRCA319 end of added section
  Q TOTAL
  ;

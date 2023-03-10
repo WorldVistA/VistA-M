@@ -1,5 +1,5 @@
 IBCE837A ;ALB/TMP - OUTPUT FOR 837 TRANSMISSION - CONTINUED ;8/6/03 10:50am
- ;;2.0;INTEGRATED BILLING;**137,191,211,232,296,377,592,623**;21-MAR-94;Build 70
+ ;;2.0;INTEGRATED BILLING;**137,191,211,232,296,377,592,623,641,718**;21-MAR-94;Build 73
  ;;Per VA Directive 6402, this routine should not be modified.
  ;
 UPD(MSGNUM,BATCH,CNT,BILLS,DESC,IBBTYP,IBINS) ; Upd current batch + bills w/new status
@@ -18,7 +18,8 @@ UPD(MSGNUM,BATCH,CNT,BILLS,DESC,IBBTYP,IBINS) ; Upd current batch + bills w/new 
  S IBTXTEST=+$P(IBBTYP,"-",2)
  I '$P($G(^IBE(350.9,1,8)),U,7) S IBINS=""
  ;
- S DIE="^IBA(364.1,",DA=IBBATCH,DR=".02////P;.03///"_CNT_";.04///"_MSGNUM_";.05///0;.07////1;.08///^S X="""_DESC_""""_$S($G(IBINS):";.12////"_IBINS,1:"")
+ ;JWS;IB*2.0*641v14 update status to A0 for FHIR claims
+ S DIE="^IBA(364.1,",DA=IBBATCH,DR=".02////"_$S($$GET1^DIQ(350.9,"1,",8.21,"I"):"A0",1:"P")_";.03///"_CNT_";.04///"_MSGNUM_";.05///0;.07////1;.08///^S X="""_DESC_""""_$S($G(IBINS):";.12////"_IBINS,1:"")
  ;
  I '$P($G(^TMP("IBRESUBMIT",$J)),U,3) S DR=DR_";1.01///NOW;1.02///.5"
  I $P($G(^TMP("IBRESUBMIT",$J)),U,2) S DR=DR_";.15////"_$P(^($J),U,2)
@@ -28,7 +29,8 @@ UPD(MSGNUM,BATCH,CNT,BILLS,DESC,IBBTYP,IBINS) ; Upd current batch + bills w/new 
  I IBTXTEST=2 D ADDTXM^IBCEPTM(.BILLS,IBBATCH,$$NOW^XLFDT()) Q
  I IBTXTEST'=2 S IBIEN=0 F  S IBIEN=$O(BILLS(IBIEN)) Q:'IBIEN  D  ;Update each bill
  . ;JWS;IB*2.0*623;update field .09 837 FHIR ReQUEST if using 837 FHIR trans method
- . S DA=IBIEN,DIE="^IBA(364,",DR=".02////"_IBBATCH_";.03///P;.04///NOW"
+ . ;JWS;IB*2.0*641v14 update status to A0 for FHIR claims
+ . S DA=IBIEN,DIE="^IBA(364,",DR=".02////"_IBBATCH_";.03///"_$S($$GET1^DIQ(350.9,"1,",8.21,"I"):"A0",1:"P")_";.04///NOW"
  . I $D(^IBA(364,"AC",1,DA)) S DR=DR_";.09////2"
  . D ^DIE
  . S IBIFN=+$G(^IBA(364,IBIEN,0))
@@ -65,6 +67,8 @@ POST ; Run after processing a bill entry for cleanup
  ..S Z=$O(^IBA(364,"ABABI",+$O(^IBA(364.1,"B",Z0,"")),IBXIEN,""))
  ..I Z S ^TMP("IBNOT",$J,Z)=IBXIEN
  K IBXSAVE,IBXNOREQ,^TMP("IBXSAVE",$J),^TMP($J)
+ ;;IB*2.0*718;JWS;12/27/21;EBILL-1629;Incorporate FSC Overrides
+ D POST^IBCE837P
  S Q="VA" F  S Q=$O(^UTILITY(Q)) Q:$E(Q,1,2)'="VA"  I $D(^(Q,$J)) K ^UTILITY(Q,$J)
  D CLEAN^DILF
  Q

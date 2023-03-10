@@ -1,648 +1,668 @@
-IBDEI00Q ; ; 01-MAY-2020
- ;;3.0;IB ENCOUNTER FORM IMP/EXP;;MAY 01, 2020
+IBDEI00Q ; ; 01-AUG-2022
+ ;;3.0;IB ENCOUNTER FORM IMP/EXP;;AUG 01, 2022
  Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,999) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
- ;;^UTILITY(U,$J,358.3,1188,0)
- ;;=S92.301A^^15^110^91
- ;;^UTILITY(U,$J,358.3,1188,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,1188,1,3,0)
- ;;=3^Fx of unsp metatarsal bone(s), right foot, init
- ;;^UTILITY(U,$J,358.3,1188,1,4,0)
- ;;=4^S92.301A
- ;;^UTILITY(U,$J,358.3,1188,2)
- ;;=^5045046
- ;;^UTILITY(U,$J,358.3,1189,0)
- ;;=S92.302A^^15^110^90
- ;;^UTILITY(U,$J,358.3,1189,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,1189,1,3,0)
- ;;=3^Fx of unsp metatarsal bone(s), left foot, init
- ;;^UTILITY(U,$J,358.3,1189,1,4,0)
- ;;=4^S92.302A
- ;;^UTILITY(U,$J,358.3,1189,2)
- ;;=^5045053
- ;;^UTILITY(U,$J,358.3,1190,0)
- ;;=S82.001A^^15^110^83
- ;;^UTILITY(U,$J,358.3,1190,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,1190,1,3,0)
- ;;=3^Fx of right patella unspec, init for clos fx
- ;;^UTILITY(U,$J,358.3,1190,1,4,0)
- ;;=4^S82.001A
- ;;^UTILITY(U,$J,358.3,1190,2)
- ;;=^5040104
- ;;^UTILITY(U,$J,358.3,1191,0)
- ;;=S82.002A^^15^110^70
- ;;^UTILITY(U,$J,358.3,1191,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,1191,1,3,0)
- ;;=3^Fx of left patella unspec, init for clos fx
- ;;^UTILITY(U,$J,358.3,1191,1,4,0)
- ;;=4^S82.002A
- ;;^UTILITY(U,$J,358.3,1191,2)
- ;;=^5040120
- ;;^UTILITY(U,$J,358.3,1192,0)
- ;;=S52.91XA^^15^110^80
- ;;^UTILITY(U,$J,358.3,1192,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,1192,1,3,0)
- ;;=3^Fx of right forearm unspec, init for clos fx
- ;;^UTILITY(U,$J,358.3,1192,1,4,0)
- ;;=4^S52.91XA
- ;;^UTILITY(U,$J,358.3,1192,2)
- ;;=^5031158
- ;;^UTILITY(U,$J,358.3,1193,0)
- ;;=S52.92XA^^15^110^67
- ;;^UTILITY(U,$J,358.3,1193,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,1193,1,3,0)
- ;;=3^Fx of left forearm unspec, init for clos fx
- ;;^UTILITY(U,$J,358.3,1193,1,4,0)
- ;;=4^S52.92XA
- ;;^UTILITY(U,$J,358.3,1193,2)
- ;;=^5031174
- ;;^UTILITY(U,$J,358.3,1194,0)
- ;;=S22.31XA^^15^110^76
- ;;^UTILITY(U,$J,358.3,1194,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,1194,1,3,0)
- ;;=3^Fx of one rib, right side, init for clos fx
- ;;^UTILITY(U,$J,358.3,1194,1,4,0)
- ;;=4^S22.31XA
- ;;^UTILITY(U,$J,358.3,1194,2)
- ;;=^5023105
- ;;^UTILITY(U,$J,358.3,1195,0)
- ;;=S22.32XA^^15^110^75
- ;;^UTILITY(U,$J,358.3,1195,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,1195,1,3,0)
- ;;=3^Fx of one rib, left side, init for clos fx
- ;;^UTILITY(U,$J,358.3,1195,1,4,0)
- ;;=4^S22.32XA
- ;;^UTILITY(U,$J,358.3,1195,2)
- ;;=^5023111
- ;;^UTILITY(U,$J,358.3,1196,0)
- ;;=S42.91XA^^15^110^84
- ;;^UTILITY(U,$J,358.3,1196,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,1196,1,3,0)
- ;;=3^Fx of right shoulder girdle, part unsp, init
- ;;^UTILITY(U,$J,358.3,1196,1,4,0)
- ;;=4^S42.91XA
- ;;^UTILITY(U,$J,358.3,1196,2)
- ;;=^5027643
- ;;^UTILITY(U,$J,358.3,1197,0)
- ;;=S42.92XA^^15^110^71
- ;;^UTILITY(U,$J,358.3,1197,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,1197,1,3,0)
- ;;=3^Fx of left shoulder girdle, part unsp, init
- ;;^UTILITY(U,$J,358.3,1197,1,4,0)
- ;;=4^S42.92XA
- ;;^UTILITY(U,$J,358.3,1197,2)
- ;;=^5027650
- ;;^UTILITY(U,$J,358.3,1198,0)
- ;;=S42.101A^^15^110^95
- ;;^UTILITY(U,$J,358.3,1198,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,1198,1,3,0)
- ;;=3^Fx of unsp part of scapula, right shoulder, init
- ;;^UTILITY(U,$J,358.3,1198,1,4,0)
- ;;=4^S42.101A
- ;;^UTILITY(U,$J,358.3,1198,2)
- ;;=^5026530
- ;;^UTILITY(U,$J,358.3,1199,0)
- ;;=S42.102A^^15^110^94
- ;;^UTILITY(U,$J,358.3,1199,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,1199,1,3,0)
- ;;=3^Fx of unsp part of scapula, left shoulder, init
- ;;^UTILITY(U,$J,358.3,1199,1,4,0)
- ;;=4^S42.102A
- ;;^UTILITY(U,$J,358.3,1199,2)
- ;;=^5026537
- ;;^UTILITY(U,$J,358.3,1200,0)
- ;;=S92.201A^^15^110^107
- ;;^UTILITY(U,$J,358.3,1200,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,1200,1,3,0)
- ;;=3^Fx of unsp tarsal bone(s) of right foot, init
- ;;^UTILITY(U,$J,358.3,1200,1,4,0)
- ;;=4^S92.201A
- ;;^UTILITY(U,$J,358.3,1200,2)
- ;;=^5044822
- ;;^UTILITY(U,$J,358.3,1201,0)
- ;;=S92.202A^^15^110^106
- ;;^UTILITY(U,$J,358.3,1201,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,1201,1,3,0)
- ;;=3^Fx of unsp tarsal bone(s) of left foot, init
- ;;^UTILITY(U,$J,358.3,1201,1,4,0)
- ;;=4^S92.202A
- ;;^UTILITY(U,$J,358.3,1201,2)
- ;;=^5044829
- ;;^UTILITY(U,$J,358.3,1202,0)
- ;;=S62.501A^^15^110^105
- ;;^UTILITY(U,$J,358.3,1202,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,1202,1,3,0)
- ;;=3^Fx of unsp phalanx of right thumb, init for clos fx
- ;;^UTILITY(U,$J,358.3,1202,1,4,0)
- ;;=4^S62.501A
- ;;^UTILITY(U,$J,358.3,1202,2)
- ;;=^5034284
- ;;^UTILITY(U,$J,358.3,1203,0)
- ;;=S62.502A^^15^110^100
  ;;^UTILITY(U,$J,358.3,1203,1,0)
  ;;=^358.31IA^4^2
  ;;^UTILITY(U,$J,358.3,1203,1,3,0)
- ;;=3^Fx of unsp phalanx of left thumb, init for clos fx
+ ;;=3^Neoplasm of uncertain behavior, unspecified
  ;;^UTILITY(U,$J,358.3,1203,1,4,0)
- ;;=4^S62.502A
+ ;;=4^D48.9
  ;;^UTILITY(U,$J,358.3,1203,2)
- ;;=^5034291
+ ;;=^5002269
  ;;^UTILITY(U,$J,358.3,1204,0)
- ;;=S82.201A^^15^110^85
+ ;;=D47.09^^10^78^2
  ;;^UTILITY(U,$J,358.3,1204,1,0)
  ;;=^358.31IA^4^2
  ;;^UTILITY(U,$J,358.3,1204,1,3,0)
- ;;=3^Fx of right tibia shaft unspec, init for clos fx
+ ;;=3^Mast Cell Neoplasms of Uncertain Behavior,Other
  ;;^UTILITY(U,$J,358.3,1204,1,4,0)
- ;;=4^S82.201A
+ ;;=4^D47.09
  ;;^UTILITY(U,$J,358.3,1204,2)
- ;;=^5041102
+ ;;=^5151299
  ;;^UTILITY(U,$J,358.3,1205,0)
- ;;=S82.202A^^15^110^72
+ ;;=D49.0^^10^79^8
  ;;^UTILITY(U,$J,358.3,1205,1,0)
  ;;=^358.31IA^4^2
  ;;^UTILITY(U,$J,358.3,1205,1,3,0)
- ;;=3^Fx of left tibia shaft unspec, init for clos fx
+ ;;=3^Neoplasm of unspecified behavior of digestive system
  ;;^UTILITY(U,$J,358.3,1205,1,4,0)
- ;;=4^S82.202A
+ ;;=4^D49.0
  ;;^UTILITY(U,$J,358.3,1205,2)
- ;;=^5041118
+ ;;=^5002270
  ;;^UTILITY(U,$J,358.3,1206,0)
- ;;=S92.911A^^15^110^86
+ ;;=D49.1^^10^79^12
  ;;^UTILITY(U,$J,358.3,1206,1,0)
  ;;=^358.31IA^4^2
  ;;^UTILITY(U,$J,358.3,1206,1,3,0)
- ;;=3^Fx of right toe(s) unspec, init for clos fx
+ ;;=3^Neoplasm of unspecified behavior of respiratory system
  ;;^UTILITY(U,$J,358.3,1206,1,4,0)
- ;;=4^S92.911A
+ ;;=4^D49.1
  ;;^UTILITY(U,$J,358.3,1206,2)
- ;;=^5045592
+ ;;=^5002271
  ;;^UTILITY(U,$J,358.3,1207,0)
- ;;=S92.912A^^15^110^73
+ ;;=D49.2^^10^79^5
  ;;^UTILITY(U,$J,358.3,1207,1,0)
  ;;=^358.31IA^4^2
  ;;^UTILITY(U,$J,358.3,1207,1,3,0)
- ;;=3^Fx of left toe(s) unspec, init for clos fx
+ ;;=3^Neoplasm of unspecified behavior of bone, soft tissue, and skin
  ;;^UTILITY(U,$J,358.3,1207,1,4,0)
- ;;=4^S92.912A
+ ;;=4^D49.2
  ;;^UTILITY(U,$J,358.3,1207,2)
- ;;=^5045599
+ ;;=^5002272
  ;;^UTILITY(U,$J,358.3,1208,0)
- ;;=S52.201A^^15^110^87
+ ;;=D49.3^^10^79^7
  ;;^UTILITY(U,$J,358.3,1208,1,0)
  ;;=^358.31IA^4^2
  ;;^UTILITY(U,$J,358.3,1208,1,3,0)
- ;;=3^Fx of right ulna shaft unspec, init for clos fx
+ ;;=3^Neoplasm of unspecified behavior of breast
  ;;^UTILITY(U,$J,358.3,1208,1,4,0)
- ;;=4^S52.201A
+ ;;=4^D49.3
  ;;^UTILITY(U,$J,358.3,1208,2)
- ;;=^5029260
+ ;;=^5002273
  ;;^UTILITY(U,$J,358.3,1209,0)
- ;;=S52.202A^^15^110^74
+ ;;=D49.4^^10^79^4
  ;;^UTILITY(U,$J,358.3,1209,1,0)
  ;;=^358.31IA^4^2
  ;;^UTILITY(U,$J,358.3,1209,1,3,0)
- ;;=3^Fx of left ulna shaft unspec, init for clos fx
+ ;;=3^Neoplasm of unspecified behavior of bladder
  ;;^UTILITY(U,$J,358.3,1209,1,4,0)
- ;;=4^S52.202A
+ ;;=4^D49.4
  ;;^UTILITY(U,$J,358.3,1209,2)
- ;;=^5029276
+ ;;=^5002274
  ;;^UTILITY(U,$J,358.3,1210,0)
- ;;=T59.91XA^^15^110^245
+ ;;=D49.6^^10^79^6
  ;;^UTILITY(U,$J,358.3,1210,1,0)
  ;;=^358.31IA^4^2
  ;;^UTILITY(U,$J,358.3,1210,1,3,0)
- ;;=3^Toxic effect of unsp gases, fumes and vapors, acc, init
+ ;;=3^Neoplasm of unspecified behavior of brain
  ;;^UTILITY(U,$J,358.3,1210,1,4,0)
- ;;=4^T59.91XA
+ ;;=4^D49.6
  ;;^UTILITY(U,$J,358.3,1210,2)
- ;;=^5053042
+ ;;=^5002276
  ;;^UTILITY(U,$J,358.3,1211,0)
- ;;=S41.111A^^15^110^135
+ ;;=D49.7^^10^79^9
  ;;^UTILITY(U,$J,358.3,1211,1,0)
  ;;=^358.31IA^4^2
  ;;^UTILITY(U,$J,358.3,1211,1,3,0)
- ;;=3^Laceration w/o fb of right upper arm, init encntr
+ ;;=3^Neoplasm of unspecified behavior of endo glands
  ;;^UTILITY(U,$J,358.3,1211,1,4,0)
- ;;=4^S41.111A
+ ;;=4^D49.7
  ;;^UTILITY(U,$J,358.3,1211,2)
- ;;=^5026336
+ ;;=^5002277
  ;;^UTILITY(U,$J,358.3,1212,0)
- ;;=S41.112A^^15^110^123
+ ;;=D49.81^^10^79^13
  ;;^UTILITY(U,$J,358.3,1212,1,0)
  ;;=^358.31IA^4^2
  ;;^UTILITY(U,$J,358.3,1212,1,3,0)
- ;;=3^Laceration w/o fb of left upper arm, init encntr
+ ;;=3^Neoplasm of unspecified behavior of retina and choroid
  ;;^UTILITY(U,$J,358.3,1212,1,4,0)
- ;;=4^S41.112A
+ ;;=4^D49.81
  ;;^UTILITY(U,$J,358.3,1212,2)
- ;;=^5026339
+ ;;=^5002278
  ;;^UTILITY(U,$J,358.3,1213,0)
- ;;=S61.210A^^15^110^128
+ ;;=D49.89^^10^79^10
  ;;^UTILITY(U,$J,358.3,1213,1,0)
  ;;=^358.31IA^4^2
  ;;^UTILITY(U,$J,358.3,1213,1,3,0)
- ;;=3^Laceration w/o fb of right indx fngr w/o damage to nail, init
+ ;;=3^Neoplasm of unspecified behavior of other specified sites
  ;;^UTILITY(U,$J,358.3,1213,1,4,0)
- ;;=4^S61.210A
+ ;;=4^D49.89
  ;;^UTILITY(U,$J,358.3,1213,2)
- ;;=^5032771
+ ;;=^5002279
  ;;^UTILITY(U,$J,358.3,1214,0)
- ;;=S61.211A^^15^110^116
+ ;;=D49.9^^10^79^14
  ;;^UTILITY(U,$J,358.3,1214,1,0)
  ;;=^358.31IA^4^2
  ;;^UTILITY(U,$J,358.3,1214,1,3,0)
- ;;=3^Laceration w/o fb of left indx fngr w/o damage to nail, init
+ ;;=3^Neoplasm of unspecified behavior of unspecified site
  ;;^UTILITY(U,$J,358.3,1214,1,4,0)
- ;;=4^S61.211A
+ ;;=4^D49.9
  ;;^UTILITY(U,$J,358.3,1214,2)
- ;;=^5032774
+ ;;=^5002280
  ;;^UTILITY(U,$J,358.3,1215,0)
- ;;=S61.212A^^15^110^132
+ ;;=D68.51^^10^79^1
  ;;^UTILITY(U,$J,358.3,1215,1,0)
  ;;=^358.31IA^4^2
  ;;^UTILITY(U,$J,358.3,1215,1,3,0)
- ;;=3^Laceration w/o fb of right mid finger w/o damage to nail, init
+ ;;=3^Activated protein C resistance
  ;;^UTILITY(U,$J,358.3,1215,1,4,0)
- ;;=4^S61.212A
+ ;;=4^D68.51
  ;;^UTILITY(U,$J,358.3,1215,2)
- ;;=^5032777
+ ;;=^5002358
  ;;^UTILITY(U,$J,358.3,1216,0)
- ;;=S61.213A^^15^110^120
+ ;;=D68.52^^10^79^16
  ;;^UTILITY(U,$J,358.3,1216,1,0)
  ;;=^358.31IA^4^2
  ;;^UTILITY(U,$J,358.3,1216,1,3,0)
- ;;=3^Laceration w/o fb of left mid finger w/o damage to nail, init
+ ;;=3^Prothrombin gene mutation
  ;;^UTILITY(U,$J,358.3,1216,1,4,0)
- ;;=4^S61.213A
+ ;;=4^D68.52
  ;;^UTILITY(U,$J,358.3,1216,2)
- ;;=^5032780
+ ;;=^5002359
  ;;^UTILITY(U,$J,358.3,1217,0)
- ;;=S61.214A^^15^110^133
+ ;;=D68.59^^10^79^15
  ;;^UTILITY(U,$J,358.3,1217,1,0)
  ;;=^358.31IA^4^2
  ;;^UTILITY(U,$J,358.3,1217,1,3,0)
- ;;=3^Laceration w/o fb of right rng fngr w/o damage to nail, init
+ ;;=3^Primary Thrombophilia NEC
  ;;^UTILITY(U,$J,358.3,1217,1,4,0)
- ;;=4^S61.214A
+ ;;=4^D68.59
  ;;^UTILITY(U,$J,358.3,1217,2)
- ;;=^5032783
+ ;;=^5002360
  ;;^UTILITY(U,$J,358.3,1218,0)
- ;;=S61.215A^^15^110^121
+ ;;=D68.61^^10^79^2
  ;;^UTILITY(U,$J,358.3,1218,1,0)
  ;;=^358.31IA^4^2
  ;;^UTILITY(U,$J,358.3,1218,1,3,0)
- ;;=3^Laceration w/o fb of left rng fngr w/o damage to nail, init
+ ;;=3^Antiphospholipid syndrome
  ;;^UTILITY(U,$J,358.3,1218,1,4,0)
- ;;=4^S61.215A
+ ;;=4^D68.61
  ;;^UTILITY(U,$J,358.3,1218,2)
- ;;=^5032786
+ ;;=^185421
  ;;^UTILITY(U,$J,358.3,1219,0)
- ;;=S61.216A^^15^110^130
+ ;;=D68.62^^10^79^3
  ;;^UTILITY(U,$J,358.3,1219,1,0)
  ;;=^358.31IA^4^2
  ;;^UTILITY(U,$J,358.3,1219,1,3,0)
- ;;=3^Laceration w/o fb of right litttle finger w/o damage to nail, init
+ ;;=3^Lupus anticoagulant syndrome
  ;;^UTILITY(U,$J,358.3,1219,1,4,0)
- ;;=4^S61.216A
+ ;;=4^D68.62
  ;;^UTILITY(U,$J,358.3,1219,2)
- ;;=^5032789
+ ;;=^5002361
  ;;^UTILITY(U,$J,358.3,1220,0)
- ;;=S61.217A^^15^110^118
+ ;;=D49.59^^10^79^11
  ;;^UTILITY(U,$J,358.3,1220,1,0)
  ;;=^358.31IA^4^2
  ;;^UTILITY(U,$J,358.3,1220,1,3,0)
- ;;=3^Laceration w/o fb of left little finger w/o damage to nail, init
+ ;;=3^Neoplasm of unspecified behavior of other GU organ
  ;;^UTILITY(U,$J,358.3,1220,1,4,0)
- ;;=4^S61.217A
+ ;;=4^D49.59
  ;;^UTILITY(U,$J,358.3,1220,2)
- ;;=^5032792
+ ;;=^5138163
  ;;^UTILITY(U,$J,358.3,1221,0)
- ;;=S91.311A^^15^110^124
+ ;;=Z85.810^^10^80^3
  ;;^UTILITY(U,$J,358.3,1221,1,0)
  ;;=^358.31IA^4^2
  ;;^UTILITY(U,$J,358.3,1221,1,3,0)
- ;;=3^Laceration w/o fb of right foot, init encntr
+ ;;=3^Personal history of malignant neoplasm of tongue
  ;;^UTILITY(U,$J,358.3,1221,1,4,0)
- ;;=4^S91.311A
+ ;;=4^Z85.810
  ;;^UTILITY(U,$J,358.3,1221,2)
- ;;=^5044320
+ ;;=^5063438
  ;;^UTILITY(U,$J,358.3,1222,0)
- ;;=S91.312A^^15^110^112
+ ;;=Z85.818^^10^80^4
  ;;^UTILITY(U,$J,358.3,1222,1,0)
  ;;=^358.31IA^4^2
  ;;^UTILITY(U,$J,358.3,1222,1,3,0)
- ;;=3^Laceration w/o fb of left foot, init encntr
+ ;;=3^Personal history of malignant neoplasm of site of lip, oral cav, & pharynx
  ;;^UTILITY(U,$J,358.3,1222,1,4,0)
- ;;=4^S91.312A
+ ;;=4^Z85.818
  ;;^UTILITY(U,$J,358.3,1222,2)
- ;;=^5044323
+ ;;=^5063439
  ;;^UTILITY(U,$J,358.3,1223,0)
- ;;=S51.811A^^15^110^125
+ ;;=Z85.01^^10^80^5
  ;;^UTILITY(U,$J,358.3,1223,1,0)
  ;;=^358.31IA^4^2
  ;;^UTILITY(U,$J,358.3,1223,1,3,0)
- ;;=3^Laceration w/o fb of right forearm, init encntr
+ ;;=3^Personal history of malignant neoplasm of esophagus
  ;;^UTILITY(U,$J,358.3,1223,1,4,0)
- ;;=4^S51.811A
+ ;;=4^Z85.01
  ;;^UTILITY(U,$J,358.3,1223,2)
- ;;=^5028665
+ ;;=^5063395
  ;;^UTILITY(U,$J,358.3,1224,0)
- ;;=S51.812A^^15^110^113
+ ;;=Z85.028^^10^80^6
  ;;^UTILITY(U,$J,358.3,1224,1,0)
  ;;=^358.31IA^4^2
  ;;^UTILITY(U,$J,358.3,1224,1,3,0)
- ;;=3^Laceration w/o fb of left forearm, init encntr
+ ;;=3^Personal history of malignant neoplasm of stomach NEC
  ;;^UTILITY(U,$J,358.3,1224,1,4,0)
- ;;=4^S51.812A
+ ;;=4^Z85.028
  ;;^UTILITY(U,$J,358.3,1224,2)
- ;;=^5028668
+ ;;=^5063397
  ;;^UTILITY(U,$J,358.3,1225,0)
- ;;=S61.411A^^15^110^127
+ ;;=Z85.038^^10^80^7
  ;;^UTILITY(U,$J,358.3,1225,1,0)
  ;;=^358.31IA^4^2
  ;;^UTILITY(U,$J,358.3,1225,1,3,0)
- ;;=3^Laceration w/o fb of right hand, init encntr
+ ;;=3^Personal history of malignant neoplasm of large intestine
  ;;^UTILITY(U,$J,358.3,1225,1,4,0)
- ;;=4^S61.411A
+ ;;=4^Z85.038
  ;;^UTILITY(U,$J,358.3,1225,2)
- ;;=^5032987
+ ;;=^5063399
  ;;^UTILITY(U,$J,358.3,1226,0)
- ;;=S61.412A^^15^110^115
+ ;;=Z85.048^^10^80^8
  ;;^UTILITY(U,$J,358.3,1226,1,0)
  ;;=^358.31IA^4^2
  ;;^UTILITY(U,$J,358.3,1226,1,3,0)
- ;;=3^Laceration w/o fb of left hand, init encntr
+ ;;=3^Personal history of malignant neoplasm of rectum, rectosig junct, and anus
  ;;^UTILITY(U,$J,358.3,1226,1,4,0)
- ;;=4^S61.412A
+ ;;=4^Z85.048
  ;;^UTILITY(U,$J,358.3,1226,2)
- ;;=^5032990
+ ;;=^5063401
  ;;^UTILITY(U,$J,358.3,1227,0)
- ;;=S81.811A^^15^110^131
+ ;;=Z85.05^^10^80^9
  ;;^UTILITY(U,$J,358.3,1227,1,0)
  ;;=^358.31IA^4^2
  ;;^UTILITY(U,$J,358.3,1227,1,3,0)
- ;;=3^Laceration w/o fb of right lower leg, init encntr
+ ;;=3^Personal history of malignant neoplasm of liver
  ;;^UTILITY(U,$J,358.3,1227,1,4,0)
- ;;=4^S81.811A
+ ;;=4^Z85.05
  ;;^UTILITY(U,$J,358.3,1227,2)
- ;;=^5040071
+ ;;=^5063402
  ;;^UTILITY(U,$J,358.3,1228,0)
- ;;=S81.812A^^15^110^119
+ ;;=Z85.068^^10^80^10
  ;;^UTILITY(U,$J,358.3,1228,1,0)
  ;;=^358.31IA^4^2
  ;;^UTILITY(U,$J,358.3,1228,1,3,0)
- ;;=3^Laceration w/o fb of left lower leg, init encntr
+ ;;=3^Personal history of malignant neoplasm of small intestine
  ;;^UTILITY(U,$J,358.3,1228,1,4,0)
- ;;=4^S81.812A
+ ;;=4^Z85.068
  ;;^UTILITY(U,$J,358.3,1228,2)
- ;;=^5040074
+ ;;=^5063404
  ;;^UTILITY(U,$J,358.3,1229,0)
- ;;=S01.01XA^^15^110^136
+ ;;=Z85.07^^10^80^11
  ;;^UTILITY(U,$J,358.3,1229,1,0)
  ;;=^358.31IA^4^2
  ;;^UTILITY(U,$J,358.3,1229,1,3,0)
- ;;=3^Laceration w/o fb of scalp, initial encounter
+ ;;=3^Personal history of malignant neoplasm of pancreas
  ;;^UTILITY(U,$J,358.3,1229,1,4,0)
- ;;=4^S01.01XA
+ ;;=4^Z85.07
  ;;^UTILITY(U,$J,358.3,1229,2)
- ;;=^5020036
+ ;;=^5063405
  ;;^UTILITY(U,$J,358.3,1230,0)
- ;;=S61.011A^^15^110^134
+ ;;=Z85.09^^10^80^12
  ;;^UTILITY(U,$J,358.3,1230,1,0)
  ;;=^358.31IA^4^2
  ;;^UTILITY(U,$J,358.3,1230,1,3,0)
- ;;=3^Laceration w/o fb of right thumb w/o damage to nail, init
+ ;;=3^Personal history of malignant neoplasm of digestive organs
  ;;^UTILITY(U,$J,358.3,1230,1,4,0)
- ;;=4^S61.011A
+ ;;=4^Z85.09
  ;;^UTILITY(U,$J,358.3,1230,2)
- ;;=^5032690
+ ;;=^5063406
  ;;^UTILITY(U,$J,358.3,1231,0)
- ;;=S61.012A^^15^110^122
+ ;;=Z85.118^^10^80^13
  ;;^UTILITY(U,$J,358.3,1231,1,0)
  ;;=^358.31IA^4^2
  ;;^UTILITY(U,$J,358.3,1231,1,3,0)
- ;;=3^Laceration w/o fb of left thumb w/o damage to nail, init
+ ;;=3^Personal history of malignant neoplasm of bronchus and lung
  ;;^UTILITY(U,$J,358.3,1231,1,4,0)
- ;;=4^S61.012A
+ ;;=4^Z85.118
  ;;^UTILITY(U,$J,358.3,1231,2)
- ;;=^5032693
+ ;;=^5063408
  ;;^UTILITY(U,$J,358.3,1232,0)
- ;;=S91.111A^^15^110^126
+ ;;=Z85.12^^10^80^14
  ;;^UTILITY(U,$J,358.3,1232,1,0)
  ;;=^358.31IA^4^2
  ;;^UTILITY(U,$J,358.3,1232,1,3,0)
- ;;=3^Laceration w/o fb of right great toe w/o damage to nail, init
+ ;;=3^Personal history of malignant neoplasm of trachea
  ;;^UTILITY(U,$J,358.3,1232,1,4,0)
- ;;=4^S91.111A
+ ;;=4^Z85.12
  ;;^UTILITY(U,$J,358.3,1232,2)
- ;;=^5044183
+ ;;=^5063409
  ;;^UTILITY(U,$J,358.3,1233,0)
- ;;=S91.112A^^15^110^114
+ ;;=Z85.21^^10^80^15
  ;;^UTILITY(U,$J,358.3,1233,1,0)
  ;;=^358.31IA^4^2
  ;;^UTILITY(U,$J,358.3,1233,1,3,0)
- ;;=3^Laceration w/o fb of left great toe w/o damage to nail, init
+ ;;=3^Personal history of malignant neoplasm of larynx
  ;;^UTILITY(U,$J,358.3,1233,1,4,0)
- ;;=4^S91.112A
+ ;;=4^Z85.21
  ;;^UTILITY(U,$J,358.3,1233,2)
- ;;=^5044186
+ ;;=^5063411
  ;;^UTILITY(U,$J,358.3,1234,0)
- ;;=S91.114A^^15^110^129
+ ;;=Z85.22^^10^80^16
  ;;^UTILITY(U,$J,358.3,1234,1,0)
  ;;=^358.31IA^4^2
  ;;^UTILITY(U,$J,358.3,1234,1,3,0)
- ;;=3^Laceration w/o fb of right lesser toe(s) w/o damage to nail, init
+ ;;=3^Personal history of malignant neoplasm of nasl cav, mid ear, & acces sinus
  ;;^UTILITY(U,$J,358.3,1234,1,4,0)
- ;;=4^S91.114A
+ ;;=4^Z85.22
  ;;^UTILITY(U,$J,358.3,1234,2)
- ;;=^5044192
+ ;;=^5063412
  ;;^UTILITY(U,$J,358.3,1235,0)
- ;;=S91.115A^^15^110^117
+ ;;=Z85.238^^10^80^17
  ;;^UTILITY(U,$J,358.3,1235,1,0)
  ;;=^358.31IA^4^2
  ;;^UTILITY(U,$J,358.3,1235,1,3,0)
- ;;=3^Laceration w/o fb of left lesser toe(s) w/o damage to nail, init
+ ;;=3^Personal history of malignant neoplasm of thymus NEC
  ;;^UTILITY(U,$J,358.3,1235,1,4,0)
- ;;=4^S91.115A
+ ;;=4^Z85.238
  ;;^UTILITY(U,$J,358.3,1235,2)
- ;;=^5044195
+ ;;=^5063414
  ;;^UTILITY(U,$J,358.3,1236,0)
- ;;=T73.3XXA^^15^110^59
+ ;;=Z85.29^^10^80^18
  ;;^UTILITY(U,$J,358.3,1236,1,0)
  ;;=^358.31IA^4^2
  ;;^UTILITY(U,$J,358.3,1236,1,3,0)
- ;;=3^Exhaustion due to excessive exertion, initial encounter
+ ;;=3^Personal history of malignant neoplasm of resp and intrathorac organs
  ;;^UTILITY(U,$J,358.3,1236,1,4,0)
- ;;=4^T73.3XXA
+ ;;=4^Z85.29
  ;;^UTILITY(U,$J,358.3,1236,2)
- ;;=^5054131
+ ;;=^5063415
  ;;^UTILITY(U,$J,358.3,1237,0)
- ;;=S61.230A^^15^110^188
+ ;;=Z85.3^^10^80^19
  ;;^UTILITY(U,$J,358.3,1237,1,0)
  ;;=^358.31IA^4^2
  ;;^UTILITY(U,$J,358.3,1237,1,3,0)
- ;;=3^Pnctr wnd w/o fb of right indx fngr w/o damage to nail, init
+ ;;=3^Personal history of malignant neoplasm of breast
  ;;^UTILITY(U,$J,358.3,1237,1,4,0)
- ;;=4^S61.230A
+ ;;=4^Z85.3
  ;;^UTILITY(U,$J,358.3,1237,2)
- ;;=^5032816
+ ;;=^5063416
  ;;^UTILITY(U,$J,358.3,1238,0)
- ;;=S61.231A^^15^110^178
+ ;;=Z85.41^^10^80^20
  ;;^UTILITY(U,$J,358.3,1238,1,0)
  ;;=^358.31IA^4^2
  ;;^UTILITY(U,$J,358.3,1238,1,3,0)
- ;;=3^Pnctr wnd w/o fb of left indx fngr w/o damage to nail, init
+ ;;=3^Personal history of malignant neoplasm of cervix uteri
  ;;^UTILITY(U,$J,358.3,1238,1,4,0)
- ;;=4^S61.231A
+ ;;=4^Z85.41
  ;;^UTILITY(U,$J,358.3,1238,2)
- ;;=^5032819
+ ;;=^5063418
  ;;^UTILITY(U,$J,358.3,1239,0)
- ;;=S61.232A^^15^110^191
+ ;;=Z85.43^^10^80^21
  ;;^UTILITY(U,$J,358.3,1239,1,0)
  ;;=^358.31IA^4^2
  ;;^UTILITY(U,$J,358.3,1239,1,3,0)
- ;;=3^Pnctr wnd w/o fb of right mid finger w/o damage to nail, init
+ ;;=3^Personal history of malignant neoplasm of ovary
  ;;^UTILITY(U,$J,358.3,1239,1,4,0)
- ;;=4^S61.232A
+ ;;=4^Z85.43
  ;;^UTILITY(U,$J,358.3,1239,2)
- ;;=^5032822
+ ;;=^5063420
  ;;^UTILITY(U,$J,358.3,1240,0)
- ;;=S61.233A^^15^110^181
+ ;;=Z85.44^^10^80^22
  ;;^UTILITY(U,$J,358.3,1240,1,0)
  ;;=^358.31IA^4^2
  ;;^UTILITY(U,$J,358.3,1240,1,3,0)
- ;;=3^Pnctr wnd w/o fb of left mid finger w/o damage to nail, init
+ ;;=3^Personal history of malignant neoplasm of female genital organs
  ;;^UTILITY(U,$J,358.3,1240,1,4,0)
- ;;=4^S61.233A
+ ;;=4^Z85.44
  ;;^UTILITY(U,$J,358.3,1240,2)
- ;;=^5032825
+ ;;=^5063421
  ;;^UTILITY(U,$J,358.3,1241,0)
- ;;=S61.234A^^15^110^192
+ ;;=Z85.46^^10^80^23
  ;;^UTILITY(U,$J,358.3,1241,1,0)
  ;;=^358.31IA^4^2
  ;;^UTILITY(U,$J,358.3,1241,1,3,0)
- ;;=3^Pnctr wnd w/o fb of right rng fngr w/o damage to nail, init
+ ;;=3^Personal history of malignant neoplasm of prostate
  ;;^UTILITY(U,$J,358.3,1241,1,4,0)
- ;;=4^S61.234A
+ ;;=4^Z85.46
  ;;^UTILITY(U,$J,358.3,1241,2)
- ;;=^5032828
+ ;;=^5063423
  ;;^UTILITY(U,$J,358.3,1242,0)
- ;;=S61.235A^^15^110^182
+ ;;=Z85.47^^10^80^24
  ;;^UTILITY(U,$J,358.3,1242,1,0)
  ;;=^358.31IA^4^2
  ;;^UTILITY(U,$J,358.3,1242,1,3,0)
- ;;=3^Pnctr wnd w/o fb of left rng fngr w/o damage to nail, init
+ ;;=3^Personal history of malignant neoplasm of testis
  ;;^UTILITY(U,$J,358.3,1242,1,4,0)
- ;;=4^S61.235A
+ ;;=4^Z85.47
  ;;^UTILITY(U,$J,358.3,1242,2)
- ;;=^5032831
+ ;;=^5063424
  ;;^UTILITY(U,$J,358.3,1243,0)
- ;;=S61.236A^^15^110^189
+ ;;=Z85.49^^10^80^25
  ;;^UTILITY(U,$J,358.3,1243,1,0)
  ;;=^358.31IA^4^2
  ;;^UTILITY(U,$J,358.3,1243,1,3,0)
- ;;=3^Pnctr wnd w/o fb of right little finger w/o damage to nail, init
+ ;;=3^Personal history of malignant neoplasm of male genital organs
  ;;^UTILITY(U,$J,358.3,1243,1,4,0)
- ;;=4^S61.236A
+ ;;=4^Z85.49
  ;;^UTILITY(U,$J,358.3,1243,2)
- ;;=^5032834
+ ;;=^5063426
  ;;^UTILITY(U,$J,358.3,1244,0)
- ;;=S61.237A^^15^110^179
+ ;;=Z85.51^^10^80^26
  ;;^UTILITY(U,$J,358.3,1244,1,0)
  ;;=^358.31IA^4^2
  ;;^UTILITY(U,$J,358.3,1244,1,3,0)
- ;;=3^Pnctr wnd w/o fb of left little finger w/o damage to nail, init
+ ;;=3^Personal history of malignant neoplasm of bladder
  ;;^UTILITY(U,$J,358.3,1244,1,4,0)
- ;;=4^S61.237A
+ ;;=4^Z85.51
  ;;^UTILITY(U,$J,358.3,1244,2)
- ;;=^5032837
+ ;;=^5063428
  ;;^UTILITY(U,$J,358.3,1245,0)
- ;;=S91.331A^^15^110^185
+ ;;=Z85.528^^10^80^27
  ;;^UTILITY(U,$J,358.3,1245,1,0)
  ;;=^358.31IA^4^2
  ;;^UTILITY(U,$J,358.3,1245,1,3,0)
- ;;=3^Pnctr wnd w/o fb of right foot, init encntr
+ ;;=3^Personal history of malignant neoplasm of kidney NEC
  ;;^UTILITY(U,$J,358.3,1245,1,4,0)
- ;;=4^S91.331A
+ ;;=4^Z85.528
  ;;^UTILITY(U,$J,358.3,1245,2)
- ;;=^5044332
+ ;;=^5063430
  ;;^UTILITY(U,$J,358.3,1246,0)
- ;;=S91.332A^^15^110^175
+ ;;=Z85.79^^10^80^28
  ;;^UTILITY(U,$J,358.3,1246,1,0)
  ;;=^358.31IA^4^2
  ;;^UTILITY(U,$J,358.3,1246,1,3,0)
- ;;=3^Pnctr wnd w/o fb of left foot, init encntr
+ ;;=3^Personal history of malignant neoplasm of lymphoid, hematpoetc & rel tiss
  ;;^UTILITY(U,$J,358.3,1246,1,4,0)
- ;;=4^S91.332A
+ ;;=4^Z85.79
  ;;^UTILITY(U,$J,358.3,1246,2)
- ;;=^5044335
+ ;;=^5063437
  ;;^UTILITY(U,$J,358.3,1247,0)
- ;;=S51.831A^^15^110^186
+ ;;=Z85.831^^10^80^29
  ;;^UTILITY(U,$J,358.3,1247,1,0)
  ;;=^358.31IA^4^2
  ;;^UTILITY(U,$J,358.3,1247,1,3,0)
- ;;=3^Pnctr wnd w/o fb of right forearm, init
+ ;;=3^Personal history of malignant neoplasm of soft tissue
  ;;^UTILITY(U,$J,358.3,1247,1,4,0)
- ;;=4^S51.831A
+ ;;=4^Z85.831
  ;;^UTILITY(U,$J,358.3,1247,2)
- ;;=^5028677
+ ;;=^5063445
  ;;^UTILITY(U,$J,358.3,1248,0)
- ;;=S51.832A^^15^110^176
+ ;;=Z85.71^^10^80^1
  ;;^UTILITY(U,$J,358.3,1248,1,0)
  ;;=^358.31IA^4^2
  ;;^UTILITY(U,$J,358.3,1248,1,3,0)
- ;;=3^Pnctr wnd w/o fb of left forearm, init encntr
+ ;;=3^Personal history of Hodgkin lymphoma
  ;;^UTILITY(U,$J,358.3,1248,1,4,0)
- ;;=4^S51.832A
+ ;;=4^Z85.71
  ;;^UTILITY(U,$J,358.3,1248,2)
- ;;=^5028680
+ ;;=^5063435
  ;;^UTILITY(U,$J,358.3,1249,0)
- ;;=S61.431A^^15^110^187
+ ;;=Z85.830^^10^80^30
  ;;^UTILITY(U,$J,358.3,1249,1,0)
  ;;=^358.31IA^4^2
  ;;^UTILITY(U,$J,358.3,1249,1,3,0)
- ;;=3^Pnctr wnd w/o fb of right hand, init encntr
+ ;;=3^Personal history of malignant neoplasm of bone
  ;;^UTILITY(U,$J,358.3,1249,1,4,0)
- ;;=4^S61.431A
+ ;;=4^Z85.830
  ;;^UTILITY(U,$J,358.3,1249,2)
- ;;=^5032999
+ ;;=^5063444
  ;;^UTILITY(U,$J,358.3,1250,0)
- ;;=S61.432A^^15^110^177
+ ;;=Z85.820^^10^80^2
  ;;^UTILITY(U,$J,358.3,1250,1,0)
  ;;=^358.31IA^4^2
  ;;^UTILITY(U,$J,358.3,1250,1,3,0)
- ;;=3^Pnctr wnd w/o fb of left hand, init encntr
+ ;;=3^Personal history of malignant melanoma of skin
  ;;^UTILITY(U,$J,358.3,1250,1,4,0)
- ;;=4^S61.432A
+ ;;=4^Z85.820
  ;;^UTILITY(U,$J,358.3,1250,2)
- ;;=^5033002
+ ;;=^5063441
  ;;^UTILITY(U,$J,358.3,1251,0)
- ;;=S81.831A^^15^110^190
+ ;;=Z85.828^^10^80^31
  ;;^UTILITY(U,$J,358.3,1251,1,0)
  ;;=^358.31IA^4^2
  ;;^UTILITY(U,$J,358.3,1251,1,3,0)
- ;;=3^Pnctr wnd w/o fb of right lower leg, init
+ ;;=3^Personal history of malignant neoplasm of skin NEC
  ;;^UTILITY(U,$J,358.3,1251,1,4,0)
- ;;=4^S81.831A
+ ;;=4^Z85.828
  ;;^UTILITY(U,$J,358.3,1251,2)
- ;;=^5040083
+ ;;=^5063443
  ;;^UTILITY(U,$J,358.3,1252,0)
- ;;=S81.832A^^15^110^180
+ ;;=Z85.840^^10^80^32
  ;;^UTILITY(U,$J,358.3,1252,1,0)
  ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,1252,1,3,0)
+ ;;=3^Personal history of malignant neoplasm of eye
+ ;;^UTILITY(U,$J,358.3,1252,1,4,0)
+ ;;=4^Z85.840
+ ;;^UTILITY(U,$J,358.3,1252,2)
+ ;;=^5063446
+ ;;^UTILITY(U,$J,358.3,1253,0)
+ ;;=Z85.841^^10^80^33
+ ;;^UTILITY(U,$J,358.3,1253,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,1253,1,3,0)
+ ;;=3^Personal history of malignant neoplasm of brain
+ ;;^UTILITY(U,$J,358.3,1253,1,4,0)
+ ;;=4^Z85.841
+ ;;^UTILITY(U,$J,358.3,1253,2)
+ ;;=^5063447
+ ;;^UTILITY(U,$J,358.3,1254,0)
+ ;;=Z85.848^^10^80^34
+ ;;^UTILITY(U,$J,358.3,1254,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,1254,1,3,0)
+ ;;=3^Personal history of malignant neoplasm of prt nervous tissue
+ ;;^UTILITY(U,$J,358.3,1254,1,4,0)
+ ;;=4^Z85.848
+ ;;^UTILITY(U,$J,358.3,1254,2)
+ ;;=^5063448
+ ;;^UTILITY(U,$J,358.3,1255,0)
+ ;;=Z85.850^^10^80^35
+ ;;^UTILITY(U,$J,358.3,1255,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,1255,1,3,0)
+ ;;=3^Personal history of malignant neoplasm of thyroid
+ ;;^UTILITY(U,$J,358.3,1255,1,4,0)
+ ;;=4^Z85.850
+ ;;^UTILITY(U,$J,358.3,1255,2)
+ ;;=^5063449
+ ;;^UTILITY(U,$J,358.3,1256,0)
+ ;;=Z85.858^^10^80^36
+ ;;^UTILITY(U,$J,358.3,1256,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,1256,1,3,0)
+ ;;=3^Personal history of malignant neoplasm of endocrine glands
+ ;;^UTILITY(U,$J,358.3,1256,1,4,0)
+ ;;=4^Z85.858
+ ;;^UTILITY(U,$J,358.3,1256,2)
+ ;;=^5063450
+ ;;^UTILITY(U,$J,358.3,1257,0)
+ ;;=E43.^^10^81^4
+ ;;^UTILITY(U,$J,358.3,1257,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,1257,1,3,0)
+ ;;=3^Protein-Calorie Malnutrition,Severe
+ ;;^UTILITY(U,$J,358.3,1257,1,4,0)
+ ;;=4^E43.
+ ;;^UTILITY(U,$J,358.3,1257,2)
+ ;;=^5002786
+ ;;^UTILITY(U,$J,358.3,1258,0)
+ ;;=E44.0^^10^81^2
+ ;;^UTILITY(U,$J,358.3,1258,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,1258,1,3,0)
+ ;;=3^Protein-Calorie Malnutrition,Moderate
+ ;;^UTILITY(U,$J,358.3,1258,1,4,0)
+ ;;=4^E44.0
+ ;;^UTILITY(U,$J,358.3,1258,2)
+ ;;=^5002787
+ ;;^UTILITY(U,$J,358.3,1259,0)
+ ;;=E44.1^^10^81^1
+ ;;^UTILITY(U,$J,358.3,1259,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,1259,1,3,0)
+ ;;=3^Protein-Calorie Malnutrition,Mild
+ ;;^UTILITY(U,$J,358.3,1259,1,4,0)
+ ;;=4^E44.1
+ ;;^UTILITY(U,$J,358.3,1259,2)
+ ;;=^5002788
+ ;;^UTILITY(U,$J,358.3,1260,0)
+ ;;=E46.^^10^81^5
+ ;;^UTILITY(U,$J,358.3,1260,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,1260,1,3,0)
+ ;;=3^Protein-Calorie Malnutrition,Unspec
+ ;;^UTILITY(U,$J,358.3,1260,1,4,0)
+ ;;=4^E46.
+ ;;^UTILITY(U,$J,358.3,1260,2)
+ ;;=^5002790
+ ;;^UTILITY(U,$J,358.3,1261,0)
+ ;;=E64.0^^10^81^3
+ ;;^UTILITY(U,$J,358.3,1261,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,1261,1,3,0)
+ ;;=3^Protein-Calorie Malnutrition,SEquelae
+ ;;^UTILITY(U,$J,358.3,1261,1,4,0)
+ ;;=4^E64.0
+ ;;^UTILITY(U,$J,358.3,1261,2)
+ ;;=^5002820
+ ;;^UTILITY(U,$J,358.3,1262,0)
+ ;;=Z01.818^^10^82^2
+ ;;^UTILITY(U,$J,358.3,1262,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,1262,1,3,0)
+ ;;=3^Pre-Procedural Examination
+ ;;^UTILITY(U,$J,358.3,1262,1,4,0)
+ ;;=4^Z01.818
+ ;;^UTILITY(U,$J,358.3,1262,2)
+ ;;=^5062628
+ ;;^UTILITY(U,$J,358.3,1263,0)
+ ;;=Z51.12^^10^82^1
+ ;;^UTILITY(U,$J,358.3,1263,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,1263,1,3,0)
+ ;;=3^Antineoplastic Immunotherapy
+ ;;^UTILITY(U,$J,358.3,1263,1,4,0)
+ ;;=4^Z51.12
+ ;;^UTILITY(U,$J,358.3,1263,2)
+ ;;=^5063062
+ ;;^UTILITY(U,$J,358.3,1264,0)
+ ;;=R45.851^^10^83^3
+ ;;^UTILITY(U,$J,358.3,1264,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,1264,1,3,0)
+ ;;=3^Suicidal Ideations
+ ;;^UTILITY(U,$J,358.3,1264,1,4,0)
+ ;;=4^R45.851
+ ;;^UTILITY(U,$J,358.3,1264,2)
+ ;;=^5019474
+ ;;^UTILITY(U,$J,358.3,1265,0)
+ ;;=T14.91XA^^10^83^4
+ ;;^UTILITY(U,$J,358.3,1265,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,1265,1,3,0)
+ ;;=3^Suicide Attempt,Initial Encntr
+ ;;^UTILITY(U,$J,358.3,1265,1,4,0)
+ ;;=4^T14.91XA
+ ;;^UTILITY(U,$J,358.3,1265,2)
+ ;;=^5151779
+ ;;^UTILITY(U,$J,358.3,1266,0)
+ ;;=T14.91XD^^10^83^6
+ ;;^UTILITY(U,$J,358.3,1266,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,1266,1,3,0)
+ ;;=3^Suicide Attempt,Subsequent Encntr
+ ;;^UTILITY(U,$J,358.3,1266,1,4,0)
+ ;;=4^T14.91XD
+ ;;^UTILITY(U,$J,358.3,1266,2)
+ ;;=^5151780
+ ;;^UTILITY(U,$J,358.3,1267,0)
+ ;;=T14.91XS^^10^83^5
+ ;;^UTILITY(U,$J,358.3,1267,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,1267,1,3,0)
+ ;;=3^Suicide Attempt,Sequela
+ ;;^UTILITY(U,$J,358.3,1267,1,4,0)
+ ;;=4^T14.91XS
+ ;;^UTILITY(U,$J,358.3,1267,2)
+ ;;=^5151781
+ ;;^UTILITY(U,$J,358.3,1268,0)
+ ;;=Z91.52^^10^83^1
+ ;;^UTILITY(U,$J,358.3,1268,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,1268,1,3,0)
+ ;;=3^Personal Hx of Non-Suicidal Self-Harm
+ ;;^UTILITY(U,$J,358.3,1268,1,4,0)
+ ;;=4^Z91.52
+ ;;^UTILITY(U,$J,358.3,1268,2)
+ ;;=^5161318
+ ;;^UTILITY(U,$J,358.3,1269,0)
+ ;;=Z91.51^^10^83^2
+ ;;^UTILITY(U,$J,358.3,1269,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,1269,1,3,0)
+ ;;=3^Personal Hx of Suicidal Behavior     

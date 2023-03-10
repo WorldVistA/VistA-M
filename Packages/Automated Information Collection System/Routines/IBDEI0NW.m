@@ -1,126 +1,130 @@
-IBDEI0NW ; ; 04-FEB-2020
- ;;3.0;IB ENCOUNTER FORM IMP/EXP;;FEB 04, 2020
+IBDEI0NW ; ; 01-FEB-2022
+ ;;3.0;IB ENCOUNTER FORM IMP/EXP;;FEB 01, 2022
  Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,999) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
- ;;^UTILITY(U,$J,358.3,10632,2)
- ;;=^5005711
- ;;^UTILITY(U,$J,358.3,10633,0)
- ;;=H35.732^^74^687^29
- ;;^UTILITY(U,$J,358.3,10633,1,0)
+ ;;^UTILITY(U,$J,358.3,10753,2)
+ ;;=^5003658
+ ;;^UTILITY(U,$J,358.3,10754,0)
+ ;;=F65.0^^42^483^2
+ ;;^UTILITY(U,$J,358.3,10754,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,10633,1,3,0)
- ;;=3^Hemorrhagic Detachment of RPE,Left Eye
- ;;^UTILITY(U,$J,358.3,10633,1,4,0)
- ;;=4^H35.732
- ;;^UTILITY(U,$J,358.3,10633,2)
- ;;=^5005712
- ;;^UTILITY(U,$J,358.3,10634,0)
- ;;=H35.721^^74^687^30
- ;;^UTILITY(U,$J,358.3,10634,1,0)
+ ;;^UTILITY(U,$J,358.3,10754,1,3,0)
+ ;;=3^Fetishistic Disorder
+ ;;^UTILITY(U,$J,358.3,10754,1,4,0)
+ ;;=4^F65.0
+ ;;^UTILITY(U,$J,358.3,10754,2)
+ ;;=^5003651
+ ;;^UTILITY(U,$J,358.3,10755,0)
+ ;;=F65.1^^42^483^9
+ ;;^UTILITY(U,$J,358.3,10755,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,10634,1,3,0)
- ;;=3^Serous Detachment of RPE,Right Eye
- ;;^UTILITY(U,$J,358.3,10634,1,4,0)
- ;;=4^H35.721
- ;;^UTILITY(U,$J,358.3,10634,2)
- ;;=^5005707
- ;;^UTILITY(U,$J,358.3,10635,0)
- ;;=H35.722^^74^687^31
- ;;^UTILITY(U,$J,358.3,10635,1,0)
+ ;;^UTILITY(U,$J,358.3,10755,1,3,0)
+ ;;=3^Transvestic Disorder
+ ;;^UTILITY(U,$J,358.3,10755,1,4,0)
+ ;;=4^F65.1
+ ;;^UTILITY(U,$J,358.3,10755,2)
+ ;;=^5003652
+ ;;^UTILITY(U,$J,358.3,10756,0)
+ ;;=F65.89^^42^483^4
+ ;;^UTILITY(U,$J,358.3,10756,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,10635,1,3,0)
- ;;=3^Serous Detachment of RPE,Left Eye
- ;;^UTILITY(U,$J,358.3,10635,1,4,0)
- ;;=4^H35.722
- ;;^UTILITY(U,$J,358.3,10635,2)
- ;;=^5005708
- ;;^UTILITY(U,$J,358.3,10636,0)
- ;;=H59.031^^74^687^13
- ;;^UTILITY(U,$J,358.3,10636,1,0)
+ ;;^UTILITY(U,$J,358.3,10756,1,3,0)
+ ;;=3^Paraphilic Disorder,Other Specified
+ ;;^UTILITY(U,$J,358.3,10756,1,4,0)
+ ;;=4^F65.89
+ ;;^UTILITY(U,$J,358.3,10756,2)
+ ;;=^5003660
+ ;;^UTILITY(U,$J,358.3,10757,0)
+ ;;=F65.9^^42^483^5
+ ;;^UTILITY(U,$J,358.3,10757,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,10636,1,3,0)
- ;;=3^CME after Cataract Surgery,Right Eye
- ;;^UTILITY(U,$J,358.3,10636,1,4,0)
- ;;=4^H59.031
- ;;^UTILITY(U,$J,358.3,10636,2)
- ;;=^5006393
- ;;^UTILITY(U,$J,358.3,10637,0)
- ;;=H59.032^^74^687^14
- ;;^UTILITY(U,$J,358.3,10637,1,0)
+ ;;^UTILITY(U,$J,358.3,10757,1,3,0)
+ ;;=3^Paraphilic Disorder,Unspec
+ ;;^UTILITY(U,$J,358.3,10757,1,4,0)
+ ;;=4^F65.9
+ ;;^UTILITY(U,$J,358.3,10757,2)
+ ;;=^5003661
+ ;;^UTILITY(U,$J,358.3,10758,0)
+ ;;=F60.0^^42^484^8
+ ;;^UTILITY(U,$J,358.3,10758,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,10637,1,3,0)
- ;;=3^CME after Cataract Surgery,Left Eye
- ;;^UTILITY(U,$J,358.3,10637,1,4,0)
- ;;=4^H59.032
- ;;^UTILITY(U,$J,358.3,10637,2)
- ;;=^5006394
- ;;^UTILITY(U,$J,358.3,10638,0)
- ;;=H35.81^^74^687^15
- ;;^UTILITY(U,$J,358.3,10638,1,0)
+ ;;^UTILITY(U,$J,358.3,10758,1,3,0)
+ ;;=3^Paranoid Personality Disorder
+ ;;^UTILITY(U,$J,358.3,10758,1,4,0)
+ ;;=4^F60.0
+ ;;^UTILITY(U,$J,358.3,10758,2)
+ ;;=^5003635
+ ;;^UTILITY(U,$J,358.3,10759,0)
+ ;;=F60.1^^42^484^12
+ ;;^UTILITY(U,$J,358.3,10759,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,10638,1,3,0)
- ;;=3^Retinal Edema/CME Other Etiology
- ;;^UTILITY(U,$J,358.3,10638,1,4,0)
- ;;=4^H35.81
- ;;^UTILITY(U,$J,358.3,10638,2)
- ;;=^5005715
- ;;^UTILITY(U,$J,358.3,10639,0)
- ;;=H35.371^^74^687^16
- ;;^UTILITY(U,$J,358.3,10639,1,0)
+ ;;^UTILITY(U,$J,358.3,10759,1,3,0)
+ ;;=3^Schizoid Personality Disorder
+ ;;^UTILITY(U,$J,358.3,10759,1,4,0)
+ ;;=4^F60.1
+ ;;^UTILITY(U,$J,358.3,10759,2)
+ ;;=^108271
+ ;;^UTILITY(U,$J,358.3,10760,0)
+ ;;=F21.^^42^484^13
+ ;;^UTILITY(U,$J,358.3,10760,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,10639,1,3,0)
- ;;=3^Macular Pucker/ERM,Right Eye
- ;;^UTILITY(U,$J,358.3,10639,1,4,0)
- ;;=4^H35.371
- ;;^UTILITY(U,$J,358.3,10639,2)
- ;;=^5005662
- ;;^UTILITY(U,$J,358.3,10640,0)
- ;;=H35.372^^74^687^17
- ;;^UTILITY(U,$J,358.3,10640,1,0)
+ ;;^UTILITY(U,$J,358.3,10760,1,3,0)
+ ;;=3^Schizotypal Personality Disorder
+ ;;^UTILITY(U,$J,358.3,10760,1,4,0)
+ ;;=4^F21.
+ ;;^UTILITY(U,$J,358.3,10760,2)
+ ;;=^5003477
+ ;;^UTILITY(U,$J,358.3,10761,0)
+ ;;=F60.5^^42^484^7
+ ;;^UTILITY(U,$J,358.3,10761,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,10640,1,3,0)
- ;;=3^Macular Pucker/ERM,Left Eye
- ;;^UTILITY(U,$J,358.3,10640,1,4,0)
- ;;=4^H35.372
- ;;^UTILITY(U,$J,358.3,10640,2)
- ;;=^5005663
- ;;^UTILITY(U,$J,358.3,10641,0)
- ;;=H35.373^^74^687^18
- ;;^UTILITY(U,$J,358.3,10641,1,0)
+ ;;^UTILITY(U,$J,358.3,10761,1,3,0)
+ ;;=3^Obsessive-Compulsive Personality Disorder
+ ;;^UTILITY(U,$J,358.3,10761,1,4,0)
+ ;;=4^F60.5
+ ;;^UTILITY(U,$J,358.3,10761,2)
+ ;;=^331918
+ ;;^UTILITY(U,$J,358.3,10762,0)
+ ;;=F60.4^^42^484^5
+ ;;^UTILITY(U,$J,358.3,10762,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,10641,1,3,0)
- ;;=3^Macular Pucker/ERM,Bilateral
- ;;^UTILITY(U,$J,358.3,10641,1,4,0)
- ;;=4^H35.373
- ;;^UTILITY(U,$J,358.3,10641,2)
- ;;=^5005664
- ;;^UTILITY(U,$J,358.3,10642,0)
- ;;=H35.341^^74^687^19
- ;;^UTILITY(U,$J,358.3,10642,1,0)
+ ;;^UTILITY(U,$J,358.3,10762,1,3,0)
+ ;;=3^Histrionic Personality Disorder
+ ;;^UTILITY(U,$J,358.3,10762,1,4,0)
+ ;;=4^F60.4
+ ;;^UTILITY(U,$J,358.3,10762,2)
+ ;;=^5003636
+ ;;^UTILITY(U,$J,358.3,10763,0)
+ ;;=F60.7^^42^484^4
+ ;;^UTILITY(U,$J,358.3,10763,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,10642,1,3,0)
- ;;=3^Macular Hole/Cyst/Pseudohole,Right Eye
- ;;^UTILITY(U,$J,358.3,10642,1,4,0)
- ;;=4^H35.341
- ;;^UTILITY(U,$J,358.3,10642,2)
- ;;=^5005650
- ;;^UTILITY(U,$J,358.3,10643,0)
- ;;=H35.342^^74^687^21
- ;;^UTILITY(U,$J,358.3,10643,1,0)
+ ;;^UTILITY(U,$J,358.3,10763,1,3,0)
+ ;;=3^Dependent Personality Disorder
+ ;;^UTILITY(U,$J,358.3,10763,1,4,0)
+ ;;=4^F60.7
+ ;;^UTILITY(U,$J,358.3,10763,2)
+ ;;=^5003637
+ ;;^UTILITY(U,$J,358.3,10764,0)
+ ;;=F60.2^^42^484^1
+ ;;^UTILITY(U,$J,358.3,10764,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,10643,1,3,0)
- ;;=3^Macular Hole/Cyst/Pseudohole,Left Eye
- ;;^UTILITY(U,$J,358.3,10643,1,4,0)
- ;;=4^H35.342
- ;;^UTILITY(U,$J,358.3,10643,2)
- ;;=^5005651
- ;;^UTILITY(U,$J,358.3,10644,0)
- ;;=H43.821^^74^687^24
- ;;^UTILITY(U,$J,358.3,10644,1,0)
+ ;;^UTILITY(U,$J,358.3,10764,1,3,0)
+ ;;=3^Antisocial Personality Disorder
+ ;;^UTILITY(U,$J,358.3,10764,1,4,0)
+ ;;=4^F60.2
+ ;;^UTILITY(U,$J,358.3,10764,2)
+ ;;=^9066
+ ;;^UTILITY(U,$J,358.3,10765,0)
+ ;;=F60.81^^42^484^6
+ ;;^UTILITY(U,$J,358.3,10765,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,10644,1,3,0)
- ;;=3^Vitreomacular Adhesion,Right Eye
- ;;^UTILITY(U,$J,358.3,10644,1,4,0)
- ;;=4^H43.821
- ;;^UTILITY(U,$J,358.3,10644,2)
- ;;=^5005957
+ ;;^UTILITY(U,$J,358.3,10765,1,3,0)
+ ;;=3^Narcissistic Personality Disorder
+ ;;^UTILITY(U,$J,358.3,10765,1,4,0)
+ ;;=4^F60.81
+ ;;^UTILITY(U,$J,358.3,10765,2)
+ ;;=^331919
+ ;;^UTILITY(U,$J,358.3,10766,0)
+ ;;=F60.6^^42^484^2
+ ;;^UTILITY(U,$J,358.3,10766,1,0)
+ ;;=^358.31IA^4^2

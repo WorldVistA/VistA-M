@@ -1,14 +1,10 @@
-HBHCXMV ;LR VAMC(IRMS)/MJT - HBHC populate ^HBHC(634 with Visit Data, or ^HBHC(634.5, file of recs in ^HBHC(632 w/pseudo SSNs, called by ^HBHCFILE, calls HBHCXMV1 ;Oct 2000
- ;;1.0;HOSPITAL BASED HOME CARE;**2,5,6,9,12,15,17,14,19,24,25**;NOV 01, 1993;Build 45
- ;******************************************************************************
- ;******************************************************************************
- ;                       --- ROUTINE MODIFICATION LOG ---
- ;        
- ;PKG/PATCH    DATE        DEVELOPER    MODIFICATION
- ;-----------  ----------  -----------  ----------------------------------------
- ;HBH*1.0*25   APR  2012   K GUPTA      Support for ICD-10 Coding System
- ;******************************************************************************
- ;******************************************************************************
+HBHCXMV ;LR VAMC(IRMS)/MJT - POPULATE HBHC TRANSMIT FILE OR LOG PSEUDO SSN ERRORS; Feb 22, 2021@07:22
+ ;;1.0;HOSPITAL BASED HOME CARE;**2,5,6,9,12,15,17,14,19,24,25,32**;NOV 01, 1993;Build 58
+ ;
+ ;Reference to:
+ ;   ^SC supported by ICR #10040
+ ;   ^DIC(4 supported by ICR #10090
+ ;   ^DG(40.8 supported by ICR #7024
  ;
  D START^HBHCXMV1
 LOOP ; Loop thru ^HBHC(632) "AC","N" cross-ref to create nodes in ^HBHC(634) => transmit
@@ -22,7 +18,25 @@ SETNODE ; Set node in ^HBHC(634) (Transmit)
  Q:HBHCAPDT>HBHCLSDT  ; Visit appointment date > HBHCLSDT (last date to include in transmit set up in ^HBHCFILE)
  I HBHCAPDT<2961001 D PCE^HBHCXMV1 Q
  I HBHCSSN'?9N D PSSN^HBHCXMV1 Q
- S HBHCPRV=+^HBHC(631.4,$P(HBHCINFO,U,4),0) S:$L(HBHCPRV)'=4 HBHCPRV=HBHCPRV_HBHCSP1
+ S HBHCPRV=+^HBHC(631.4,$P(HBHCINFO,U,4),0)
+ ;HBH*1.0*32: pad provider number with leading zeroes instead of trailing spaces
+ S:$L(HBHCPRV)'=4 HBHCPRV=$E("000",1,4-$L(HBHCPRV))_HBHCPRV
+ ;HBH*1.0*32: HBHCHOSPX = division of visit location
+ N HBHCHOSPX
+ S HBHCHOSPX=$P(HBHCINFO,U,3)
+ I HBHCHOSPX]"" D
+ . S HBHCHOSPX=$P($G(^SC(HBHCHOSPX,0)),U,15)
+ . Q:HBHCHOSPX=""
+ . ;retrieve institution file pointer
+ . S HBHCHOSPX=$P($G(^DG(40.8,HBHCHOSPX,0)),"^",7)
+ . Q:HBHCHOSPX=""
+ . ;retrieve station number
+ . S HBHCHOSPX=$P($G(^DIC(4,HBHCHOSPX,99)),U)
+ . Q:HBHCHOSPX=""
+ . S:$L(HBHCHOSPX)'=7 HBHCHOSPX=HBHCHOSPX_$E(HBHCSP4,1,(7-($L(HBHCHOSPX))))
+ ;if for some reason did not retrieve the institution's station number, use default.
+ I HBHCHOSPX="" S HBHCHOSPX=HBHCHOSP
+ ;HBHC*1.0*32 end
  S HBHCTIME=$P(HBHCAPDT,".",2) S:$L(HBHCTIME)<4 HBHCTIME=HBHCTIME_$E(HBHCZRO4,1,(4-($L(HBHCTIME)))) S:$L(HBHCTIME)>4 HBHCTIME=$E(HBHCTIME,1,4)
  S HBHCDATE=$E(HBHCAPDT,4,5)_$E(HBHCAPDT,6,7)_(1700+$E(HBHCAPDT,1,3))_HBHCTIME
  S HBHCLNME=$P($P(^DPT($P(HBHCINFO,U),0),U),",") S:$L(HBHCLNME)'=11 HBHCLNME=$S($L(HBHCLNME)<11:HBHCLNME_$E(HBHCSP10,1,11-$L(HBHCLNME)),1:$E(HBHCLNME,1,11))
@@ -50,7 +64,8 @@ WRITE ; Write transmit record, separate records containing max 5 DX & 10 CPTs ea
  Q:(HBHCDX1=HBHCSP8)&(HBHCCPT1=HBHCSP5)
  L +^HBHC(634,0):$S($D(DILOCKTM):DILOCKTM,1:3) Q:'$T  S HBHCNDX1=$P(^HBHC(634,0),U,3)+1 F  Q:'$D(^HBHC(634,HBHCNDX1))  S HBHCNDX1=HBHCNDX1+1
  S $P(^HBHC(634,0),U,3)=HBHCNDX1,$P(^HBHC(634,0),U,4)=$P(^HBHC(634,0),U,4)+1 L -^HBHC(634,0)
- S HBHCREC=HBHCFORM_HBHCHOSP_HBHCSSN_HBHCDATE_HBHCPRV_HBHCLNME_HBHCQAI_HBHCDX1_HBHCDX2_HBHCDX3_HBHCDX4_HBHCDX5_HBHCCPT1_HBHCCPT2_HBHCCPT3_HBHCCPT4_HBHCCPT5_HBHCCPT6_HBHCCPT7_HBHCCPT8_HBHCCPT9_HBHCCP10_HBHCSP64
+ ;HBH*1.0*32 variable HBHCHOSP replaced by HBHCHOSPX
+ S HBHCREC=HBHCFORM_HBHCHOSPX_HBHCSSN_HBHCDATE_HBHCPRV_HBHCLNME_HBHCQAI_HBHCDX1_HBHCDX2_HBHCDX3_HBHCDX4_HBHCDX5_HBHCCPT1_HBHCCPT2_HBHCCPT3_HBHCCPT4_HBHCCPT5_HBHCCPT6_HBHCCPT7_HBHCCPT8_HBHCCPT9_HBHCCP10_HBHCSP64
  S ^HBHC(634,HBHCNDX1,0)=HBHCREC,^HBHC(634,"B",$E(HBHCREC,1,30),HBHCNDX1)=""
  ; Flag record as filed
  L +^HBHC(632,HBHCDFN,0):$S($D(DILOCKTM):DILOCKTM,1:3) Q:'$T  K:HBHCXMT4]"" ^HBHC(632,"AC",HBHCXMT4,HBHCDFN) S $P(^HBHC(632,HBHCDFN,0),U,8)="F",^HBHC(632,"AC","F",HBHCDFN)="",$P(^HBHC(632,HBHCDFN,0),U,9)=HBHCTDY L -^HBHC(632,HBHCDFN,0)

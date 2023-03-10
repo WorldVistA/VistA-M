@@ -1,5 +1,5 @@
-ORMVBEC ; SLC/MKB - Process VBECS order msgs ;2/11/08  11:05
- ;;3.0;ORDER ENTRY/RESULTS REPORTING;**212,309,332**;Dec 17, 1997;Build 44
+ORMVBEC ; SLC/MKB - Process VBECS order msgs ;Mar 04, 2019@16:11:47
+ ;;3.0;ORDER ENTRY/RESULTS REPORTING;**212,309,332,405**;Dec 17, 1997;Build 211
  ;
 EN ; -- entry point for VBEC messages from ORMHLREC
  ;M ^MKB(+ORIFN)=@ORMSG ;for testing
@@ -52,7 +52,9 @@ SC ; -- Status changed
  I ORSTS=1 D OC Q  ;Cancel
  D STATUS^ORCSAVE2(+ORIFN,ORSTS)
  D:ORSTS=6 DATES^ORCSAVE2(+ORIFN,ORLOG)                  ;Start Time
- D:ORSTS=7 DATES^ORCSAVE2(+ORIFN,,+$E($$NOW^XLFDT,1,12)) ;Stop Time
+ I ORSTS=7 D
+ . D DATES^ORCSAVE2(+ORIFN,,+$E($$NOW^XLFDT,1,12)) ;Stop Time
+ . D OC ;Cancel Children
  Q
  ;
 OC ; -- Cancelled
@@ -114,7 +116,8 @@ ZU ; -- Unable to purge [reply]
  Q
  ;
 LAB ; -- find and cancel ORIFN'S associated Lab order
- N ORLRIFN S ORLRIFN=$$VALUE^ORX8(ORIFN,"LAB")
+ N ORLRIFN,ORSAVDUZ
+ S ORLRIFN=$$VALUE^ORX8(ORIFN,"LAB")
  I 'ORLRIFN D  ;search children for match
  . N ORDAD,ORIT,ORLAB,ORI,ORX
  . S ORDAD=+$P($G(^OR(100,+ORIFN,3)),U,9) Q:'ORDAD
@@ -124,5 +127,15 @@ LAB ; -- find and cancel ORIFN'S associated Lab order
  .. Q:$P($G(^OR(100,ORI,0)),U,14)'=ORLAB
  .. S ORX=$$VALUE^ORX8(ORI,"ORDERABLE",1,"E")
  .. I ORX[ORIT S ORLRIFN=ORI Q
- D:ORLRIFN MSG^ORMBLD(ORLRIFN,"CA")
+ I ORLRIFN D
+ . ;reset DUZ to the person who canceled the order,
+ . ;not the person who started the VBECS-OERR link
+ . S ORSAVDUZ=DUZ
+ . S DUZ=$S($G(ORDUZ):ORDUZ,1:DUZ)
+ . D MSG^ORMBLD(ORLRIFN,"CA")
+ . S DUZ=ORSAVDUZ
+ . ;checking to make sure the cancel did result in a
+ . ;discontinued status on the companion order
+ . I $P($G(^OR(100,ORLRIFN,3)),U,3)=1,'$D(^(6)) D
+ . . S ^OR(100,ORLRIFN,6)=$G(^OR(100,+ORIFN,6))
  Q

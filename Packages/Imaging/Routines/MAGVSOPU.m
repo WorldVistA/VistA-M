@@ -1,5 +1,5 @@
-MAGVSOPU ;WOIFO/NST,DAC - Update file (#2006.539)  ; 31 Oct 2012 12:12 PM
- ;;3.0;IMAGING;**118**;Mar 19, 2002;Build 4525;May 01, 2013
+MAGVSOPU ;WOIFO/NST,DAC - Update file (#2006.539)  ; Jan 14, 2021@07:51:14
+ ;;3.0;IMAGING;**118,271**;Mar 19, 2002;Build 10;May 01, 2013
  ;; Per VHA Directive 2004-038, this routine should not be modified.
  ;; +---------------------------------------------------------------+
  ;; | Property of the US Government.                                |
@@ -130,29 +130,5 @@ UPDATE ; Update DICOM UID SPECIFIC ACTION file (#2006.539)
  S MAGN("1.2.840.10008.5.1.4.34.1^RT Beams Delivery Instruction Storage (Supplement 74 Frozen Draft)^3^Unknown|iconrt.JPG")=""
  S MAGN("1.2.840.10008.5.1.4.38.1^Hanging Protocol Storage^3^Unknown|iconpstate.JPG")=""
  S MAGN("1.2.840.10008.5.1.4.1.1.77.1.6^VL Whole Slide Microscopic Image Storage^3^Unknown|createIcon")=""
- ;
- N MAGNFDA,MAGNIEN,MAGNXE,I
- N PURPOSE,TYPE,SUBTYPE
- N UID,UIDDESCR,ACTION,COMMENT
- S I=""
- S PURPOSE="Storage SCP"
- S TYPE="SOP Class"
- S SUBTYPE="Storage"
- F  S I=$O(MAGN(I)) Q:I=""  D
- . K MAGNFDA,MAGNIEN,MAGNXE
- . S UID=$P(I,"^",1)
- . S UIDDESCR=$P(I,"^",2)
- . S ACTION=$P(I,"^",3)
- . S COMMENT=$P(I,"^",4)
- . S MAGNFDA(2006.539,"?+1,",.01)=UID
- . S MAGNFDA(2006.539,"?+1,",2)=UIDDESCR
- . S MAGNFDA(2006.539,"?+1,",3)=TYPE
- . S MAGNFDA(2006.539,"?+1,",4)=SUBTYPE
- . S MAGNFDA(2006.5391,"?+2,?+1,",.01)=PURPOSE
- . S MAGNFDA(2006.5391,"?+2,?+1,",2)=ACTION
- . S MAGNFDA(2006.5391,"?+2,?+1,",3)=COMMENT
- . D UPDATE^DIE("S","MAGNFDA","MAGNIEN","MAGNXE")
- . I $D(MAGNXE("DIERR","E")) W !,"Error updating DICOM UID SPECIFIC ACTION file (#2006.539): ",I
- . Q
- W !,"Update of DICOM UID SPECIFIC ACTION file (#2006.539) is done"
+ D UPDATE^MAGVSPU2(.MAGN) ; P271 Update New SOP Classes
  Q

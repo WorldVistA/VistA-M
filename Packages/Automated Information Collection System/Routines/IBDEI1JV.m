@@ -1,120 +1,122 @@
-IBDEI1JV ; ; 04-FEB-2020
- ;;3.0;IB ENCOUNTER FORM IMP/EXP;;FEB 04, 2020
+IBDEI1JV ; ; 01-FEB-2022
+ ;;3.0;IB ENCOUNTER FORM IMP/EXP;;FEB 01, 2022
  Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,999) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
- ;;^UTILITY(U,$J,358.3,24776,1,4,0)
- ;;=4^C82.09
- ;;^UTILITY(U,$J,358.3,24776,2)
- ;;=^5001470
- ;;^UTILITY(U,$J,358.3,24777,0)
- ;;=C82.00^^107^1211^66
- ;;^UTILITY(U,$J,358.3,24777,1,0)
+ ;;^UTILITY(U,$J,358.3,25115,1,4,0)
+ ;;=4^97802
+ ;;^UTILITY(U,$J,358.3,25116,0)
+ ;;=97803^^88^1130^43^^^^1
+ ;;^UTILITY(U,$J,358.3,25116,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,24777,1,3,0)
- ;;=3^Follicular Lymphoma Grade I,Unspec Site
- ;;^UTILITY(U,$J,358.3,24777,1,4,0)
- ;;=4^C82.00
- ;;^UTILITY(U,$J,358.3,24777,2)
- ;;=^5001461
- ;;^UTILITY(U,$J,358.3,24778,0)
- ;;=C82.19^^107^1211^67
- ;;^UTILITY(U,$J,358.3,24778,1,0)
+ ;;^UTILITY(U,$J,358.3,25116,1,2,0)
+ ;;=2^Med Nutr,Ind,Re-Assmt/Intrvn,Ea 15 min
+ ;;^UTILITY(U,$J,358.3,25116,1,4,0)
+ ;;=4^97803
+ ;;^UTILITY(U,$J,358.3,25117,0)
+ ;;=97804^^88^1130^45^^^^1
+ ;;^UTILITY(U,$J,358.3,25117,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,24778,1,3,0)
- ;;=3^Follicular Lymphoma Grade II,Extranodal/Solid Organ Sites
- ;;^UTILITY(U,$J,358.3,24778,1,4,0)
- ;;=4^C82.19
- ;;^UTILITY(U,$J,358.3,24778,2)
- ;;=^5001480
- ;;^UTILITY(U,$J,358.3,24779,0)
- ;;=C82.10^^107^1211^68
- ;;^UTILITY(U,$J,358.3,24779,1,0)
+ ;;^UTILITY(U,$J,358.3,25117,1,2,0)
+ ;;=2^Medical Nutrition Grp,Ea 30 min
+ ;;^UTILITY(U,$J,358.3,25117,1,4,0)
+ ;;=4^97804
+ ;;^UTILITY(U,$J,358.3,25118,0)
+ ;;=99354^^88^1130^55^^^^1
+ ;;^UTILITY(U,$J,358.3,25118,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,24779,1,3,0)
- ;;=3^Follicular Lymphoma Grade II,Unspec Site
- ;;^UTILITY(U,$J,358.3,24779,1,4,0)
- ;;=4^C82.10
- ;;^UTILITY(U,$J,358.3,24779,2)
- ;;=^5001471
- ;;^UTILITY(U,$J,358.3,24780,0)
- ;;=C82.29^^107^1211^69
- ;;^UTILITY(U,$J,358.3,24780,1,0)
+ ;;^UTILITY(U,$J,358.3,25118,1,2,0)
+ ;;=2^Prolong Outpt E&M Svc,1st hr
+ ;;^UTILITY(U,$J,358.3,25118,1,4,0)
+ ;;=4^99354
+ ;;^UTILITY(U,$J,358.3,25119,0)
+ ;;=99355^^88^1130^56^^^^1
+ ;;^UTILITY(U,$J,358.3,25119,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,24780,1,3,0)
- ;;=3^Follicular Lymphoma Grade III,Extranodal/Solid Organ Sites
- ;;^UTILITY(U,$J,358.3,24780,1,4,0)
- ;;=4^C82.29
- ;;^UTILITY(U,$J,358.3,24780,2)
- ;;=^5001490
- ;;^UTILITY(U,$J,358.3,24781,0)
- ;;=C82.20^^107^1211^70
- ;;^UTILITY(U,$J,358.3,24781,1,0)
+ ;;^UTILITY(U,$J,358.3,25119,1,2,0)
+ ;;=2^Prolong Outpt E&M Svc,Ea Addl 30 min
+ ;;^UTILITY(U,$J,358.3,25119,1,4,0)
+ ;;=4^99355
+ ;;^UTILITY(U,$J,358.3,25120,0)
+ ;;=99356^^88^1130^53^^^^1
+ ;;^UTILITY(U,$J,358.3,25120,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,24781,1,3,0)
- ;;=3^Follicular Lymphoma Grade III,Unspec Site
- ;;^UTILITY(U,$J,358.3,24781,1,4,0)
- ;;=4^C82.20
- ;;^UTILITY(U,$J,358.3,24781,2)
- ;;=^5001481
- ;;^UTILITY(U,$J,358.3,24782,0)
- ;;=C82.39^^107^1211^71
- ;;^UTILITY(U,$J,358.3,24782,1,0)
+ ;;^UTILITY(U,$J,358.3,25120,1,2,0)
+ ;;=2^Prolong Inpt E&M Svc,1st hr
+ ;;^UTILITY(U,$J,358.3,25120,1,4,0)
+ ;;=4^99356
+ ;;^UTILITY(U,$J,358.3,25121,0)
+ ;;=99357^^88^1130^54^^^^1
+ ;;^UTILITY(U,$J,358.3,25121,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,24782,1,3,0)
- ;;=3^Follicular Lymphoma Grade IIIa,Extranodal/Solid Organ Sites
- ;;^UTILITY(U,$J,358.3,24782,1,4,0)
- ;;=4^C82.39
- ;;^UTILITY(U,$J,358.3,24782,2)
- ;;=^5001500
- ;;^UTILITY(U,$J,358.3,24783,0)
- ;;=C82.30^^107^1211^72
- ;;^UTILITY(U,$J,358.3,24783,1,0)
+ ;;^UTILITY(U,$J,358.3,25121,1,2,0)
+ ;;=2^Prolong Inpt E&M Svc,Ea Addl 30 min
+ ;;^UTILITY(U,$J,358.3,25121,1,4,0)
+ ;;=4^99357
+ ;;^UTILITY(U,$J,358.3,25122,0)
+ ;;=99406^^88^1130^11^^^^1
+ ;;^UTILITY(U,$J,358.3,25122,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,24783,1,3,0)
- ;;=3^Follicular Lymphoma Grade IIIa,Unspec Site
- ;;^UTILITY(U,$J,358.3,24783,1,4,0)
- ;;=4^C82.30
- ;;^UTILITY(U,$J,358.3,24783,2)
- ;;=^5001491
- ;;^UTILITY(U,$J,358.3,24784,0)
- ;;=C82.49^^107^1211^73
- ;;^UTILITY(U,$J,358.3,24784,1,0)
+ ;;^UTILITY(U,$J,358.3,25122,1,2,0)
+ ;;=2^Behv Change,Smoking,3-10 min
+ ;;^UTILITY(U,$J,358.3,25122,1,4,0)
+ ;;=4^99406
+ ;;^UTILITY(U,$J,358.3,25123,0)
+ ;;=99407^^88^1130^12^^^^1
+ ;;^UTILITY(U,$J,358.3,25123,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,24784,1,3,0)
- ;;=3^Follicular Lymphoma Grade IIIb,Extranodal/Solid Organ Sites
- ;;^UTILITY(U,$J,358.3,24784,1,4,0)
- ;;=4^C82.49
- ;;^UTILITY(U,$J,358.3,24784,2)
- ;;=^5001510
- ;;^UTILITY(U,$J,358.3,24785,0)
- ;;=C82.40^^107^1211^74
- ;;^UTILITY(U,$J,358.3,24785,1,0)
+ ;;^UTILITY(U,$J,358.3,25123,1,2,0)
+ ;;=2^Behv Change,Smoking,10+ min
+ ;;^UTILITY(U,$J,358.3,25123,1,4,0)
+ ;;=4^99407
+ ;;^UTILITY(U,$J,358.3,25124,0)
+ ;;=99497^^88^1130^1^^^^1
+ ;;^UTILITY(U,$J,358.3,25124,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,24785,1,3,0)
- ;;=3^Follicular Lymphoma Grade IIIb,Unspec Site
- ;;^UTILITY(U,$J,358.3,24785,1,4,0)
- ;;=4^C82.40
- ;;^UTILITY(U,$J,358.3,24785,2)
- ;;=^5001501
- ;;^UTILITY(U,$J,358.3,24786,0)
- ;;=C82.99^^107^1211^75
- ;;^UTILITY(U,$J,358.3,24786,1,0)
+ ;;^UTILITY(U,$J,358.3,25124,1,2,0)
+ ;;=2^Advncd Care Plan,1st 30 min
+ ;;^UTILITY(U,$J,358.3,25124,1,4,0)
+ ;;=4^99497
+ ;;^UTILITY(U,$J,358.3,25125,0)
+ ;;=99498^^88^1130^2^^^^1
+ ;;^UTILITY(U,$J,358.3,25125,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,24786,1,3,0)
- ;;=3^Follicular Lymphoma Unspec,Extranodal/Solid Organ Sites
- ;;^UTILITY(U,$J,358.3,24786,1,4,0)
- ;;=4^C82.99
- ;;^UTILITY(U,$J,358.3,24786,2)
- ;;=^5001550
- ;;^UTILITY(U,$J,358.3,24787,0)
- ;;=C82.90^^107^1211^76
- ;;^UTILITY(U,$J,358.3,24787,1,0)
+ ;;^UTILITY(U,$J,358.3,25125,1,2,0)
+ ;;=2^Advncd Care Plan,Ea Addl 30 min
+ ;;^UTILITY(U,$J,358.3,25125,1,4,0)
+ ;;=4^99498
+ ;;^UTILITY(U,$J,358.3,25126,0)
+ ;;=G0108^^88^1130^19^^^^1
+ ;;^UTILITY(U,$J,358.3,25126,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,24787,1,3,0)
- ;;=3^Follicular Lymphoma Unspec,Unspec Site
- ;;^UTILITY(U,$J,358.3,24787,1,4,0)
- ;;=4^C82.90
- ;;^UTILITY(U,$J,358.3,24787,2)
- ;;=^5001541
- ;;^UTILITY(U,$J,358.3,24788,0)
- ;;=R59.1^^107^1211^61
+ ;;^UTILITY(U,$J,358.3,25126,1,2,0)
+ ;;=2^Diab Mgmt Trning,Ind,Ea 30 min
+ ;;^UTILITY(U,$J,358.3,25126,1,4,0)
+ ;;=4^G0108
+ ;;^UTILITY(U,$J,358.3,25127,0)
+ ;;=G0109^^88^1130^18^^^^1
+ ;;^UTILITY(U,$J,358.3,25127,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,25127,1,2,0)
+ ;;=2^Diab Mgmt Trning,Grp,Ea 30 min
+ ;;^UTILITY(U,$J,358.3,25127,1,4,0)
+ ;;=4^G0109
+ ;;^UTILITY(U,$J,358.3,25128,0)
+ ;;=G0270^^88^1130^44^^^^1
+ ;;^UTILITY(U,$J,358.3,25128,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,25128,1,2,0)
+ ;;=2^Med Nutr,Re-Assmt New Dx,Ea 15 min
+ ;;^UTILITY(U,$J,358.3,25128,1,4,0)
+ ;;=4^G0270
+ ;;^UTILITY(U,$J,358.3,25129,0)
+ ;;=G0296^^88^1130^82^^^^1
+ ;;^UTILITY(U,$J,358.3,25129,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,25129,1,2,0)
+ ;;=2^Visit to Determ LDCT Elig
+ ;;^UTILITY(U,$J,358.3,25129,1,4,0)
+ ;;=4^G0296
+ ;;^UTILITY(U,$J,358.3,25130,0)
+ ;;=G0396^^88^1130^3^^^^1
+ ;;^UTILITY(U,$J,358.3,25130,1,0)
+ ;;=^358.31IA^4^2

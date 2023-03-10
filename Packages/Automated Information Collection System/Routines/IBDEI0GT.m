@@ -1,124 +1,124 @@
-IBDEI0GT ; ; 04-FEB-2020
- ;;3.0;IB ENCOUNTER FORM IMP/EXP;;FEB 04, 2020
+IBDEI0GT ; ; 01-FEB-2022
+ ;;3.0;IB ENCOUNTER FORM IMP/EXP;;FEB 01, 2022
  Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,999) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
- ;;^UTILITY(U,$J,358.3,7288,1,4,0)
- ;;=4^M48.52XA
- ;;^UTILITY(U,$J,358.3,7288,2)
- ;;=^5012167
- ;;^UTILITY(U,$J,358.3,7289,0)
- ;;=M48.52XD^^58^473^24
- ;;^UTILITY(U,$J,358.3,7289,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,7289,1,3,0)
- ;;=3^Collapsed Vertebra,Cervical Region,Subs Encntr,Rt Healing
- ;;^UTILITY(U,$J,358.3,7289,1,4,0)
- ;;=4^M48.52XD
- ;;^UTILITY(U,$J,358.3,7289,2)
- ;;=^5012168
- ;;^UTILITY(U,$J,358.3,7290,0)
- ;;=M48.54XA^^58^473^32
- ;;^UTILITY(U,$J,358.3,7290,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,7290,1,3,0)
- ;;=3^Collapsed Vertebra,Throacic Region,Init Encntr
- ;;^UTILITY(U,$J,358.3,7290,1,4,0)
- ;;=4^M48.54XA
- ;;^UTILITY(U,$J,358.3,7290,2)
- ;;=^5012175
- ;;^UTILITY(U,$J,358.3,7291,0)
- ;;=M48.54XD^^58^473^33
- ;;^UTILITY(U,$J,358.3,7291,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,7291,1,3,0)
- ;;=3^Collapsed Vertebra,Throacic Region,Subs Encntr
- ;;^UTILITY(U,$J,358.3,7291,1,4,0)
- ;;=4^M48.54XD
- ;;^UTILITY(U,$J,358.3,7291,2)
- ;;=^5012176
- ;;^UTILITY(U,$J,358.3,7292,0)
- ;;=M48.57XA^^58^473^25
- ;;^UTILITY(U,$J,358.3,7292,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,7292,1,3,0)
- ;;=3^Collapsed Vertebra,Lumbosacral Region,Init Encntr
- ;;^UTILITY(U,$J,358.3,7292,1,4,0)
- ;;=4^M48.57XA
- ;;^UTILITY(U,$J,358.3,7292,2)
- ;;=^5012187
- ;;^UTILITY(U,$J,358.3,7293,0)
- ;;=M48.57XD^^58^473^26
- ;;^UTILITY(U,$J,358.3,7293,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,7293,1,3,0)
- ;;=3^Collapsed Vertebra,Lumbosacral Region,Subs Encntr,Rt Healing
- ;;^UTILITY(U,$J,358.3,7293,1,4,0)
- ;;=4^M48.57XD
- ;;^UTILITY(U,$J,358.3,7293,2)
- ;;=^5012188
- ;;^UTILITY(U,$J,358.3,7294,0)
- ;;=M50.30^^58^473^13
- ;;^UTILITY(U,$J,358.3,7294,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,7294,1,3,0)
- ;;=3^Cervical Disc Degeneration,Unspec Region
- ;;^UTILITY(U,$J,358.3,7294,1,4,0)
- ;;=4^M50.30
- ;;^UTILITY(U,$J,358.3,7294,2)
- ;;=^5012227
- ;;^UTILITY(U,$J,358.3,7295,0)
- ;;=M51.14^^58^473^52
- ;;^UTILITY(U,$J,358.3,7295,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,7295,1,3,0)
- ;;=3^Intvrt Disc Disorder w/ Radiculopathy,Thoracic Region
- ;;^UTILITY(U,$J,358.3,7295,1,4,0)
- ;;=4^M51.14
- ;;^UTILITY(U,$J,358.3,7295,2)
- ;;=^5012243
- ;;^UTILITY(U,$J,358.3,7296,0)
- ;;=M51.17^^58^473^51
- ;;^UTILITY(U,$J,358.3,7296,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,7296,1,3,0)
- ;;=3^Intvrt Disc Disorder w/ Radiculopathy,Lumbosacral Region
- ;;^UTILITY(U,$J,358.3,7296,1,4,0)
- ;;=4^M51.17
- ;;^UTILITY(U,$J,358.3,7296,2)
- ;;=^5012246
- ;;^UTILITY(U,$J,358.3,7297,0)
- ;;=M51.34^^58^473^50
- ;;^UTILITY(U,$J,358.3,7297,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,7297,1,3,0)
- ;;=3^Intvrt Disc Degeneration,Thoracic Region
- ;;^UTILITY(U,$J,358.3,7297,1,4,0)
- ;;=4^M51.34
- ;;^UTILITY(U,$J,358.3,7297,2)
- ;;=^5012251
- ;;^UTILITY(U,$J,358.3,7298,0)
- ;;=M51.37^^58^473^49
- ;;^UTILITY(U,$J,358.3,7298,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,7298,1,3,0)
- ;;=3^Intvrt Disc Degeneration,Lumbosacral Region
- ;;^UTILITY(U,$J,358.3,7298,1,4,0)
- ;;=4^M51.37
- ;;^UTILITY(U,$J,358.3,7298,2)
- ;;=^5012254
- ;;^UTILITY(U,$J,358.3,7299,0)
- ;;=M54.14^^58^473^143
- ;;^UTILITY(U,$J,358.3,7299,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,7299,1,3,0)
- ;;=3^Radiculopathy,Thoracic Region
- ;;^UTILITY(U,$J,358.3,7299,1,4,0)
- ;;=4^M54.14
- ;;^UTILITY(U,$J,358.3,7299,2)
- ;;=^5012299
- ;;^UTILITY(U,$J,358.3,7300,0)
- ;;=M54.17^^58^473^142
- ;;^UTILITY(U,$J,358.3,7300,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,7300,1,3,0)
- ;;=3^Radiculopathy,Lumbosacral Region
+ ;;^UTILITY(U,$J,358.3,7559,0)
+ ;;=46600^^37^376^2^^^^1
+ ;;^UTILITY(U,$J,358.3,7559,1,0)
+ ;;=^358.31IA^3^2
+ ;;^UTILITY(U,$J,358.3,7559,1,2,0)
+ ;;=2^46600
+ ;;^UTILITY(U,$J,358.3,7559,1,3,0)
+ ;;=3^Anoscopy,Diagnostic
+ ;;^UTILITY(U,$J,358.3,7560,0)
+ ;;=44705^^37^376^3^^^^1
+ ;;^UTILITY(U,$J,358.3,7560,1,0)
+ ;;=^358.31IA^3^2
+ ;;^UTILITY(U,$J,358.3,7560,1,2,0)
+ ;;=2^44705
+ ;;^UTILITY(U,$J,358.3,7560,1,3,0)
+ ;;=3^Fecal Microbiota Transplantation
+ ;;^UTILITY(U,$J,358.3,7561,0)
+ ;;=87077^^37^376^1^^^^1
+ ;;^UTILITY(U,$J,358.3,7561,1,0)
+ ;;=^358.31IA^3^2
+ ;;^UTILITY(U,$J,358.3,7561,1,2,0)
+ ;;=2^87077
+ ;;^UTILITY(U,$J,358.3,7561,1,3,0)
+ ;;=3^Aerobic Isolate,Ea Isolate Test
+ ;;^UTILITY(U,$J,358.3,7562,0)
+ ;;=46221^^37^376^7^^^^1
+ ;;^UTILITY(U,$J,358.3,7562,1,0)
+ ;;=^358.31IA^3^2
+ ;;^UTILITY(U,$J,358.3,7562,1,2,0)
+ ;;=2^46221
+ ;;^UTILITY(U,$J,358.3,7562,1,3,0)
+ ;;=3^Hemorrhoidectomy by Rubber Band Ligation
+ ;;^UTILITY(U,$J,358.3,7563,0)
+ ;;=83013^^37^376^6^^^^1
+ ;;^UTILITY(U,$J,358.3,7563,1,0)
+ ;;=^358.31IA^3^2
+ ;;^UTILITY(U,$J,358.3,7563,1,2,0)
+ ;;=2^83013
+ ;;^UTILITY(U,$J,358.3,7563,1,3,0)
+ ;;=3^H Pylori Urea Breath Test
+ ;;^UTILITY(U,$J,358.3,7564,0)
+ ;;=96372^^37^376^10^^^^1
+ ;;^UTILITY(U,$J,358.3,7564,1,0)
+ ;;=^358.31IA^3^2
+ ;;^UTILITY(U,$J,358.3,7564,1,2,0)
+ ;;=2^96372
+ ;;^UTILITY(U,$J,358.3,7564,1,3,0)
+ ;;=3^Subcutaneous or Intramuscular Injection
+ ;;^UTILITY(U,$J,358.3,7565,0)
+ ;;=90471^^37^377^1^^^^1
+ ;;^UTILITY(U,$J,358.3,7565,1,0)
+ ;;=^358.31IA^3^2
+ ;;^UTILITY(U,$J,358.3,7565,1,2,0)
+ ;;=2^90471
+ ;;^UTILITY(U,$J,358.3,7565,1,3,0)
+ ;;=3^Immunization Admin,1 Vaccine
+ ;;^UTILITY(U,$J,358.3,7566,0)
+ ;;=90472^^37^377^2^^^^1
+ ;;^UTILITY(U,$J,358.3,7566,1,0)
+ ;;=^358.31IA^3^2
+ ;;^UTILITY(U,$J,358.3,7566,1,2,0)
+ ;;=2^90472
+ ;;^UTILITY(U,$J,358.3,7566,1,3,0)
+ ;;=3^Immunization Admin,Ea Addl
+ ;;^UTILITY(U,$J,358.3,7567,0)
+ ;;=90632^^37^377^7^^^^1
+ ;;^UTILITY(U,$J,358.3,7567,1,0)
+ ;;=^358.31IA^3^2
+ ;;^UTILITY(U,$J,358.3,7567,1,2,0)
+ ;;=2^90632
+ ;;^UTILITY(U,$J,358.3,7567,1,3,0)
+ ;;=3^Hepatitis A Vaccine
+ ;;^UTILITY(U,$J,358.3,7568,0)
+ ;;=90746^^37^377^11^^^^1
+ ;;^UTILITY(U,$J,358.3,7568,1,0)
+ ;;=^358.31IA^3^2
+ ;;^UTILITY(U,$J,358.3,7568,1,2,0)
+ ;;=2^90746
+ ;;^UTILITY(U,$J,358.3,7568,1,3,0)
+ ;;=3^Hepatitis B Vaccine,3 Dose Schedule
+ ;;^UTILITY(U,$J,358.3,7569,0)
+ ;;=90747^^37^377^13^^^^1
+ ;;^UTILITY(U,$J,358.3,7569,1,0)
+ ;;=^358.31IA^3^2
+ ;;^UTILITY(U,$J,358.3,7569,1,2,0)
+ ;;=2^90747
+ ;;^UTILITY(U,$J,358.3,7569,1,3,0)
+ ;;=3^Hepatitis B Vaccine,Dialysis/Immunosupp,4 Dose
+ ;;^UTILITY(U,$J,358.3,7570,0)
+ ;;=90636^^37^377^6^^^^1
+ ;;^UTILITY(U,$J,358.3,7570,1,0)
+ ;;=^358.31IA^3^2
+ ;;^UTILITY(U,$J,358.3,7570,1,2,0)
+ ;;=2^90636
+ ;;^UTILITY(U,$J,358.3,7570,1,3,0)
+ ;;=3^Hepatitis A & B Combination Vaccine
+ ;;^UTILITY(U,$J,358.3,7571,0)
+ ;;=4155F^^37^377^8^^^^1
+ ;;^UTILITY(U,$J,358.3,7571,1,0)
+ ;;=^358.31IA^3^2
+ ;;^UTILITY(U,$J,358.3,7571,1,2,0)
+ ;;=2^4155F
+ ;;^UTILITY(U,$J,358.3,7571,1,3,0)
+ ;;=3^Hepatitis A Vaccine Previously Received
+ ;;^UTILITY(U,$J,358.3,7572,0)
+ ;;=G0010^^37^377^9^^^^1
+ ;;^UTILITY(U,$J,358.3,7572,1,0)
+ ;;=^358.31IA^3^2
+ ;;^UTILITY(U,$J,358.3,7572,1,2,0)
+ ;;=2^G0010
+ ;;^UTILITY(U,$J,358.3,7572,1,3,0)
+ ;;=3^Hepatitis B Vaccine,Admin
+ ;;^UTILITY(U,$J,358.3,7573,0)
+ ;;=90739^^37^377^10^^^^1
+ ;;^UTILITY(U,$J,358.3,7573,1,0)
+ ;;=^358.31IA^3^2
+ ;;^UTILITY(U,$J,358.3,7573,1,2,0)
+ ;;=2^90739
+ ;;^UTILITY(U,$J,358.3,7573,1,3,0)
+ ;;=3^Hepatitis B Vaccine,2 Dose Schedule

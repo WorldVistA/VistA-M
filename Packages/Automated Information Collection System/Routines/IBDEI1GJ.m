@@ -1,130 +1,124 @@
-IBDEI1GJ ; ; 04-FEB-2020
- ;;3.0;IB ENCOUNTER FORM IMP/EXP;;FEB 04, 2020
+IBDEI1GJ ; ; 01-FEB-2022
+ ;;3.0;IB ENCOUNTER FORM IMP/EXP;;FEB 01, 2022
  Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,999) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
- ;;^UTILITY(U,$J,358.3,23307,1,4,0)
- ;;=4^G40.909
- ;;^UTILITY(U,$J,358.3,23307,2)
- ;;=^5003865
- ;;^UTILITY(U,$J,358.3,23308,0)
- ;;=G40.919^^105^1172^4
- ;;^UTILITY(U,$J,358.3,23308,1,0)
+ ;;^UTILITY(U,$J,358.3,23570,2)
+ ;;=^5019593
+ ;;^UTILITY(U,$J,358.3,23571,0)
+ ;;=Z71.89^^79^1017^8
+ ;;^UTILITY(U,$J,358.3,23571,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,23308,1,3,0)
- ;;=3^Epilepsy,Intractable w/o Status Epilepticus
- ;;^UTILITY(U,$J,358.3,23308,1,4,0)
- ;;=4^G40.919
- ;;^UTILITY(U,$J,358.3,23308,2)
- ;;=^5003867
- ;;^UTILITY(U,$J,358.3,23309,0)
- ;;=G62.9^^105^1172^8
- ;;^UTILITY(U,$J,358.3,23309,1,0)
+ ;;^UTILITY(U,$J,358.3,23571,1,3,0)
+ ;;=3^Counseling,Oth Specified
+ ;;^UTILITY(U,$J,358.3,23571,1,4,0)
+ ;;=4^Z71.89
+ ;;^UTILITY(U,$J,358.3,23571,2)
+ ;;=^5063253
+ ;;^UTILITY(U,$J,358.3,23572,0)
+ ;;=Z71.2^^79^1017^12
+ ;;^UTILITY(U,$J,358.3,23572,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,23309,1,3,0)
- ;;=3^Polyneuropathy,Unspec
- ;;^UTILITY(U,$J,358.3,23309,1,4,0)
- ;;=4^G62.9
- ;;^UTILITY(U,$J,358.3,23309,2)
- ;;=^5004079
- ;;^UTILITY(U,$J,358.3,23310,0)
- ;;=G60.9^^105^1172^6
- ;;^UTILITY(U,$J,358.3,23310,1,0)
+ ;;^UTILITY(U,$J,358.3,23572,1,3,0)
+ ;;=3^Explanation of Exam or Test Finding
+ ;;^UTILITY(U,$J,358.3,23572,1,4,0)
+ ;;=4^Z71.2
+ ;;^UTILITY(U,$J,358.3,23572,2)
+ ;;=^5063244
+ ;;^UTILITY(U,$J,358.3,23573,0)
+ ;;=Z86.51^^79^1017^22
+ ;;^UTILITY(U,$J,358.3,23573,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,23310,1,3,0)
- ;;=3^Hereditary/Idiopathic Neuropathy,Unspec
- ;;^UTILITY(U,$J,358.3,23310,1,4,0)
- ;;=4^G60.9
- ;;^UTILITY(U,$J,358.3,23310,2)
- ;;=^5004071
- ;;^UTILITY(U,$J,358.3,23311,0)
- ;;=I63.50^^105^1172^1
- ;;^UTILITY(U,$J,358.3,23311,1,0)
+ ;;^UTILITY(U,$J,358.3,23573,1,3,0)
+ ;;=3^Personal Hx of Combat & Operational Stress Reaction
+ ;;^UTILITY(U,$J,358.3,23573,1,4,0)
+ ;;=4^Z86.51
+ ;;^UTILITY(U,$J,358.3,23573,2)
+ ;;=^5063470
+ ;;^UTILITY(U,$J,358.3,23574,0)
+ ;;=Z76.89^^79^1017^14
+ ;;^UTILITY(U,$J,358.3,23574,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,23311,1,3,0)
- ;;=3^Cerebral Infarction d/t Occlusion/Stenosis of Cerebral Artery
- ;;^UTILITY(U,$J,358.3,23311,1,4,0)
- ;;=4^I63.50
- ;;^UTILITY(U,$J,358.3,23311,2)
- ;;=^5007343
- ;;^UTILITY(U,$J,358.3,23312,0)
- ;;=G45.9^^105^1172^12
- ;;^UTILITY(U,$J,358.3,23312,1,0)
+ ;;^UTILITY(U,$J,358.3,23574,1,3,0)
+ ;;=3^Health Services in Other Specified Circumstances
+ ;;^UTILITY(U,$J,358.3,23574,1,4,0)
+ ;;=4^Z76.89
+ ;;^UTILITY(U,$J,358.3,23574,2)
+ ;;=^5063304
+ ;;^UTILITY(U,$J,358.3,23575,0)
+ ;;=E10.9^^79^1017^10
+ ;;^UTILITY(U,$J,358.3,23575,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,23312,1,3,0)
- ;;=3^Transient Cerebral Ischemic Attack,Unspec
- ;;^UTILITY(U,$J,358.3,23312,1,4,0)
- ;;=4^G45.9
- ;;^UTILITY(U,$J,358.3,23312,2)
- ;;=^5003959
- ;;^UTILITY(U,$J,358.3,23313,0)
- ;;=R55.^^105^1172^11
- ;;^UTILITY(U,$J,358.3,23313,1,0)
+ ;;^UTILITY(U,$J,358.3,23575,1,3,0)
+ ;;=3^Diabetes Type 1 w/o Complications
+ ;;^UTILITY(U,$J,358.3,23575,1,4,0)
+ ;;=4^E10.9
+ ;;^UTILITY(U,$J,358.3,23575,2)
+ ;;=^5002626
+ ;;^UTILITY(U,$J,358.3,23576,0)
+ ;;=E11.9^^79^1017^11
+ ;;^UTILITY(U,$J,358.3,23576,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,23313,1,3,0)
- ;;=3^Syncope and Collapse
- ;;^UTILITY(U,$J,358.3,23313,1,4,0)
- ;;=4^R55.
- ;;^UTILITY(U,$J,358.3,23313,2)
- ;;=^116707
- ;;^UTILITY(U,$J,358.3,23314,0)
- ;;=R56.00^^105^1172^10
- ;;^UTILITY(U,$J,358.3,23314,1,0)
+ ;;^UTILITY(U,$J,358.3,23576,1,3,0)
+ ;;=3^Diabetes Type 2 w/o Complications
+ ;;^UTILITY(U,$J,358.3,23576,1,4,0)
+ ;;=4^E11.9
+ ;;^UTILITY(U,$J,358.3,23576,2)
+ ;;=^5002666
+ ;;^UTILITY(U,$J,358.3,23577,0)
+ ;;=Z51.89^^79^1017^6
+ ;;^UTILITY(U,$J,358.3,23577,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,23314,1,3,0)
- ;;=3^Simple Febrile Convulsions
- ;;^UTILITY(U,$J,358.3,23314,1,4,0)
- ;;=4^R56.00
- ;;^UTILITY(U,$J,358.3,23314,2)
- ;;=^5019522
- ;;^UTILITY(U,$J,358.3,23315,0)
- ;;=R56.1^^105^1172^9
- ;;^UTILITY(U,$J,358.3,23315,1,0)
+ ;;^UTILITY(U,$J,358.3,23577,1,3,0)
+ ;;=3^Aftercare,Oth Specified
+ ;;^UTILITY(U,$J,358.3,23577,1,4,0)
+ ;;=4^Z51.89
+ ;;^UTILITY(U,$J,358.3,23577,2)
+ ;;=^5063065
+ ;;^UTILITY(U,$J,358.3,23578,0)
+ ;;=Z56.6^^79^1017^24
+ ;;^UTILITY(U,$J,358.3,23578,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,23315,1,3,0)
- ;;=3^Post Traumatic Seizures
- ;;^UTILITY(U,$J,358.3,23315,1,4,0)
- ;;=4^R56.1
- ;;^UTILITY(U,$J,358.3,23315,2)
- ;;=^5019523
- ;;^UTILITY(U,$J,358.3,23316,0)
- ;;=R56.9^^105^1172^2
- ;;^UTILITY(U,$J,358.3,23316,1,0)
+ ;;^UTILITY(U,$J,358.3,23578,1,3,0)
+ ;;=3^Physical & Mental Strain Related to Work
+ ;;^UTILITY(U,$J,358.3,23578,1,4,0)
+ ;;=4^Z56.6
+ ;;^UTILITY(U,$J,358.3,23578,2)
+ ;;=^5063113
+ ;;^UTILITY(U,$J,358.3,23579,0)
+ ;;=Z59.9^^79^1017^15
+ ;;^UTILITY(U,$J,358.3,23579,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,23316,1,3,0)
- ;;=3^Convulsions,Unspec
- ;;^UTILITY(U,$J,358.3,23316,1,4,0)
- ;;=4^R56.9
- ;;^UTILITY(U,$J,358.3,23316,2)
- ;;=^5019524
- ;;^UTILITY(U,$J,358.3,23317,0)
- ;;=R42.^^105^1172^3
- ;;^UTILITY(U,$J,358.3,23317,1,0)
+ ;;^UTILITY(U,$J,358.3,23579,1,3,0)
+ ;;=3^Housing & Economic Circumstance Problems,Unspec
+ ;;^UTILITY(U,$J,358.3,23579,1,4,0)
+ ;;=4^Z59.9
+ ;;^UTILITY(U,$J,358.3,23579,2)
+ ;;=^5063138
+ ;;^UTILITY(U,$J,358.3,23580,0)
+ ;;=Z98.890^^79^1017^25
+ ;;^UTILITY(U,$J,358.3,23580,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,23317,1,3,0)
- ;;=3^Dizziness and Giddiness
- ;;^UTILITY(U,$J,358.3,23317,1,4,0)
- ;;=4^R42.
- ;;^UTILITY(U,$J,358.3,23317,2)
- ;;=^5019450
- ;;^UTILITY(U,$J,358.3,23318,0)
- ;;=R25.1^^105^1172^13
- ;;^UTILITY(U,$J,358.3,23318,1,0)
+ ;;^UTILITY(U,$J,358.3,23580,1,3,0)
+ ;;=3^Post-Procedural Call
+ ;;^UTILITY(U,$J,358.3,23580,1,4,0)
+ ;;=4^Z98.890
+ ;;^UTILITY(U,$J,358.3,23580,2)
+ ;;=^5063754
+ ;;^UTILITY(U,$J,358.3,23581,0)
+ ;;=R93.89^^79^1017^2
+ ;;^UTILITY(U,$J,358.3,23581,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,23318,1,3,0)
- ;;=3^Tremor,Unspec
- ;;^UTILITY(U,$J,358.3,23318,1,4,0)
- ;;=4^R25.1
- ;;^UTILITY(U,$J,358.3,23318,2)
- ;;=^5019300
- ;;^UTILITY(U,$J,358.3,23319,0)
- ;;=R20.2^^105^1172^7
- ;;^UTILITY(U,$J,358.3,23319,1,0)
+ ;;^UTILITY(U,$J,358.3,23581,1,3,0)
+ ;;=3^Abnormal Findings on Dx Imaging of Other Body Structures
+ ;;^UTILITY(U,$J,358.3,23581,1,4,0)
+ ;;=4^R93.89
+ ;;^UTILITY(U,$J,358.3,23581,2)
+ ;;=^5157477
+ ;;^UTILITY(U,$J,358.3,23582,0)
+ ;;=Z86.718^^79^1017^23
+ ;;^UTILITY(U,$J,358.3,23582,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,23319,1,3,0)
- ;;=3^Paresthesia of Skin
- ;;^UTILITY(U,$J,358.3,23319,1,4,0)
- ;;=4^R20.2
- ;;^UTILITY(U,$J,358.3,23319,2)
- ;;=^5019280
- ;;^UTILITY(U,$J,358.3,23320,0)
- ;;=C02.9^^105^1173^63
+ ;;^UTILITY(U,$J,358.3,23582,1,3,0)
+ ;;=3^Personal Hx of Venous Thrombosis & Embolism
+ ;;^UTILITY(U,$J,358.3,23582,1,4,0)
+ ;;=4^Z86.718

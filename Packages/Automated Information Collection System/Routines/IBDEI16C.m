@@ -1,122 +1,132 @@
-IBDEI16C ; ; 04-FEB-2020
- ;;3.0;IB ENCOUNTER FORM IMP/EXP;;FEB 04, 2020
+IBDEI16C ; ; 01-FEB-2022
+ ;;3.0;IB ENCOUNTER FORM IMP/EXP;;FEB 01, 2022
  Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,999) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
- ;;^UTILITY(U,$J,358.3,18869,2)
- ;;=^5003401
- ;;^UTILITY(U,$J,358.3,18870,0)
- ;;=F18.97^^91^965^9
- ;;^UTILITY(U,$J,358.3,18870,1,0)
+ ;;^UTILITY(U,$J,358.3,19054,1,3,0)
+ ;;=3^Eosinophilic Pneumonia,Chronic
+ ;;^UTILITY(U,$J,358.3,19054,1,4,0)
+ ;;=4^J82.81
+ ;;^UTILITY(U,$J,358.3,19054,2)
+ ;;=^24374
+ ;;^UTILITY(U,$J,358.3,19055,0)
+ ;;=J82.82^^64^845^7
+ ;;^UTILITY(U,$J,358.3,19055,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,18870,1,3,0)
- ;;=3^Inhalant Induced Maj Neurocog D/O w/o Use D/O
- ;;^UTILITY(U,$J,358.3,18870,1,4,0)
- ;;=4^F18.97
- ;;^UTILITY(U,$J,358.3,18870,2)
- ;;=^5003413
- ;;^UTILITY(U,$J,358.3,18871,0)
- ;;=F18.188^^91^965^10
- ;;^UTILITY(U,$J,358.3,18871,1,0)
+ ;;^UTILITY(U,$J,358.3,19055,1,3,0)
+ ;;=3^Eosinophilic Pneumonia,Acute
+ ;;^UTILITY(U,$J,358.3,19055,1,4,0)
+ ;;=4^J82.82
+ ;;^UTILITY(U,$J,358.3,19055,2)
+ ;;=^5159205
+ ;;^UTILITY(U,$J,358.3,19056,0)
+ ;;=J82.83^^64^845^6
+ ;;^UTILITY(U,$J,358.3,19056,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,18871,1,3,0)
- ;;=3^Inhalant Induced Mild Neurocog D/O w/ Mild Use D/O
- ;;^UTILITY(U,$J,358.3,18871,1,4,0)
- ;;=4^F18.188
- ;;^UTILITY(U,$J,358.3,18871,2)
- ;;=^5003390
- ;;^UTILITY(U,$J,358.3,18872,0)
- ;;=F18.288^^91^965^11
- ;;^UTILITY(U,$J,358.3,18872,1,0)
+ ;;^UTILITY(U,$J,358.3,19056,1,3,0)
+ ;;=3^Eosinophilic Asthma
+ ;;^UTILITY(U,$J,358.3,19056,1,4,0)
+ ;;=4^J82.83
+ ;;^UTILITY(U,$J,358.3,19056,2)
+ ;;=^5159206
+ ;;^UTILITY(U,$J,358.3,19057,0)
+ ;;=G89.22^^64^846^2
+ ;;^UTILITY(U,$J,358.3,19057,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,18872,1,3,0)
- ;;=3^Inhalant Induced Mild Neurocog D/O w/ Mod/Sev Use D/O
- ;;^UTILITY(U,$J,358.3,18872,1,4,0)
- ;;=4^F18.288
- ;;^UTILITY(U,$J,358.3,18872,2)
- ;;=^5003403
- ;;^UTILITY(U,$J,358.3,18873,0)
- ;;=F18.988^^91^965^12
- ;;^UTILITY(U,$J,358.3,18873,1,0)
+ ;;^UTILITY(U,$J,358.3,19057,1,3,0)
+ ;;=3^Chr Post-Thoracotomy Pain
+ ;;^UTILITY(U,$J,358.3,19057,1,4,0)
+ ;;=4^G89.22
+ ;;^UTILITY(U,$J,358.3,19057,2)
+ ;;=^5004156
+ ;;^UTILITY(U,$J,358.3,19058,0)
+ ;;=G89.3^^64^846^4
+ ;;^UTILITY(U,$J,358.3,19058,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,18873,1,3,0)
- ;;=3^Inhalant Induced Mild Neurocog D/O w/o Use D/O
- ;;^UTILITY(U,$J,358.3,18873,1,4,0)
- ;;=4^F18.988
- ;;^UTILITY(U,$J,358.3,18873,2)
- ;;=^5003415
- ;;^UTILITY(U,$J,358.3,18874,0)
- ;;=F18.159^^91^965^13
- ;;^UTILITY(U,$J,358.3,18874,1,0)
+ ;;^UTILITY(U,$J,358.3,19058,1,3,0)
+ ;;=3^Neoplasm Related Pain
+ ;;^UTILITY(U,$J,358.3,19058,1,4,0)
+ ;;=4^G89.3
+ ;;^UTILITY(U,$J,358.3,19058,2)
+ ;;=^5004159
+ ;;^UTILITY(U,$J,358.3,19059,0)
+ ;;=G89.18^^64^846^1
+ ;;^UTILITY(U,$J,358.3,19059,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,18874,1,3,0)
- ;;=3^Inhalant Induced Psychotic D/O w/ Mild Use D/O
- ;;^UTILITY(U,$J,358.3,18874,1,4,0)
- ;;=4^F18.159
- ;;^UTILITY(U,$J,358.3,18874,2)
- ;;=^5003387
- ;;^UTILITY(U,$J,358.3,18875,0)
- ;;=F18.259^^91^965^14
- ;;^UTILITY(U,$J,358.3,18875,1,0)
+ ;;^UTILITY(U,$J,358.3,19059,1,3,0)
+ ;;=3^Acute Postprocedural Pain
+ ;;^UTILITY(U,$J,358.3,19059,1,4,0)
+ ;;=4^G89.18
+ ;;^UTILITY(U,$J,358.3,19059,2)
+ ;;=^5004154
+ ;;^UTILITY(U,$J,358.3,19060,0)
+ ;;=G89.29^^64^846^3
+ ;;^UTILITY(U,$J,358.3,19060,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,18875,1,3,0)
- ;;=3^Inhalant Induced Psychotic D/O w/ Mod/Sev Use D/O
- ;;^UTILITY(U,$J,358.3,18875,1,4,0)
- ;;=4^F18.259
- ;;^UTILITY(U,$J,358.3,18875,2)
- ;;=^5003400
- ;;^UTILITY(U,$J,358.3,18876,0)
- ;;=F18.959^^91^965^15
- ;;^UTILITY(U,$J,358.3,18876,1,0)
+ ;;^UTILITY(U,$J,358.3,19060,1,3,0)
+ ;;=3^Chronic Pain
+ ;;^UTILITY(U,$J,358.3,19060,1,4,0)
+ ;;=4^G89.29
+ ;;^UTILITY(U,$J,358.3,19060,2)
+ ;;=^5004158
+ ;;^UTILITY(U,$J,358.3,19061,0)
+ ;;=J94.1^^64^847^1
+ ;;^UTILITY(U,$J,358.3,19061,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,18876,1,3,0)
- ;;=3^Inhalant Induced Psychotic D/O w/o Use D/O
- ;;^UTILITY(U,$J,358.3,18876,1,4,0)
- ;;=4^F18.959
- ;;^UTILITY(U,$J,358.3,18876,2)
- ;;=^5003412
- ;;^UTILITY(U,$J,358.3,18877,0)
- ;;=F18.99^^91^965^22
- ;;^UTILITY(U,$J,358.3,18877,1,0)
+ ;;^UTILITY(U,$J,358.3,19061,1,3,0)
+ ;;=3^Fibrothorax
+ ;;^UTILITY(U,$J,358.3,19061,1,4,0)
+ ;;=4^J94.1
+ ;;^UTILITY(U,$J,358.3,19061,2)
+ ;;=^5008317
+ ;;^UTILITY(U,$J,358.3,19062,0)
+ ;;=C45.0^^64^847^2
+ ;;^UTILITY(U,$J,358.3,19062,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,18877,1,3,0)
- ;;=3^Inhalant Related D/O,Unspec
- ;;^UTILITY(U,$J,358.3,18877,1,4,0)
- ;;=4^F18.99
- ;;^UTILITY(U,$J,358.3,18877,2)
- ;;=^5133360
- ;;^UTILITY(U,$J,358.3,18878,0)
- ;;=F18.21^^91^965^25
- ;;^UTILITY(U,$J,358.3,18878,1,0)
+ ;;^UTILITY(U,$J,358.3,19062,1,3,0)
+ ;;=3^Pleura Mesothelioma
+ ;;^UTILITY(U,$J,358.3,19062,1,4,0)
+ ;;=4^C45.0
+ ;;^UTILITY(U,$J,358.3,19062,2)
+ ;;=^5001095
+ ;;^UTILITY(U,$J,358.3,19063,0)
+ ;;=J94.8^^64^847^4
+ ;;^UTILITY(U,$J,358.3,19063,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,18878,1,3,0)
- ;;=3^Inhalant Use D/O,Mod/Sev,In Remission
- ;;^UTILITY(U,$J,358.3,18878,1,4,0)
- ;;=4^F18.21
- ;;^UTILITY(U,$J,358.3,18878,2)
- ;;=^5003393
- ;;^UTILITY(U,$J,358.3,18879,0)
- ;;=F18.11^^91^965^24
- ;;^UTILITY(U,$J,358.3,18879,1,0)
+ ;;^UTILITY(U,$J,358.3,19063,1,3,0)
+ ;;=3^Pleural Conditions NEC
+ ;;^UTILITY(U,$J,358.3,19063,1,4,0)
+ ;;=4^J94.8
+ ;;^UTILITY(U,$J,358.3,19063,2)
+ ;;=^5008319
+ ;;^UTILITY(U,$J,358.3,19064,0)
+ ;;=J94.9^^64^847^3
+ ;;^UTILITY(U,$J,358.3,19064,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,18879,1,3,0)
- ;;=3^Inhalant Use D/O,Mild,In Remission
- ;;^UTILITY(U,$J,358.3,18879,1,4,0)
- ;;=4^F18.11
- ;;^UTILITY(U,$J,358.3,18879,2)
- ;;=^5151305
- ;;^UTILITY(U,$J,358.3,18880,0)
- ;;=Z00.6^^91^966^1
- ;;^UTILITY(U,$J,358.3,18880,1,0)
+ ;;^UTILITY(U,$J,358.3,19064,1,3,0)
+ ;;=3^Pleural Condition,Unspec
+ ;;^UTILITY(U,$J,358.3,19064,1,4,0)
+ ;;=4^J94.9
+ ;;^UTILITY(U,$J,358.3,19064,2)
+ ;;=^5008320
+ ;;^UTILITY(U,$J,358.3,19065,0)
+ ;;=J91.8^^64^847^6
+ ;;^UTILITY(U,$J,358.3,19065,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,18880,1,3,0)
- ;;=3^Exam Control in Clinical Research
- ;;^UTILITY(U,$J,358.3,18880,1,4,0)
- ;;=4^Z00.6
- ;;^UTILITY(U,$J,358.3,18880,2)
- ;;=^5062608
- ;;^UTILITY(U,$J,358.3,18881,0)
- ;;=F45.8^^91^967^13
- ;;^UTILITY(U,$J,358.3,18881,1,0)
+ ;;^UTILITY(U,$J,358.3,19065,1,3,0)
+ ;;=3^Pleural Effusion in Conditions Classified Elsewhere
+ ;;^UTILITY(U,$J,358.3,19065,1,4,0)
+ ;;=4^J91.8
+ ;;^UTILITY(U,$J,358.3,19065,2)
+ ;;=^5008311
+ ;;^UTILITY(U,$J,358.3,19066,0)
+ ;;=J90.^^64^847^5
+ ;;^UTILITY(U,$J,358.3,19066,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,18881,1,3,0)
- ;;=3^Somatoform Symp & Rel D/O,Oth Spec
+ ;;^UTILITY(U,$J,358.3,19066,1,3,0)
+ ;;=3^Pleural Effusion NEC
+ ;;^UTILITY(U,$J,358.3,19066,1,4,0)
+ ;;=4^J90.
+ ;;^UTILITY(U,$J,358.3,19066,2)
+ ;;=^5008310
+ ;;^UTILITY(U,$J,358.3,19067,0)
+ ;;=J92.0^^64^847^7

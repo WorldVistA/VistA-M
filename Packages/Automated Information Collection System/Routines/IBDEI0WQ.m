@@ -1,124 +1,124 @@
-IBDEI0WQ ; ; 04-FEB-2020
- ;;3.0;IB ENCOUNTER FORM IMP/EXP;;FEB 04, 2020
+IBDEI0WQ ; ; 01-FEB-2022
+ ;;3.0;IB ENCOUNTER FORM IMP/EXP;;FEB 01, 2022
  Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,999) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
- ;;^UTILITY(U,$J,358.3,14573,1,4,0)
- ;;=4^Z91.120
- ;;^UTILITY(U,$J,358.3,14573,2)
- ;;=^5063612
- ;;^UTILITY(U,$J,358.3,14574,0)
- ;;=Z91.128^^83^826^78
- ;;^UTILITY(U,$J,358.3,14574,1,0)
+ ;;^UTILITY(U,$J,358.3,14753,1,3,0)
+ ;;=3^Traumatic Spondylopathy,Thoracic Region
+ ;;^UTILITY(U,$J,358.3,14753,1,4,0)
+ ;;=4^M48.34
+ ;;^UTILITY(U,$J,358.3,14753,2)
+ ;;=^5012118
+ ;;^UTILITY(U,$J,358.3,14754,0)
+ ;;=M48.061^^58^706^49
+ ;;^UTILITY(U,$J,358.3,14754,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,14574,1,3,0)
- ;;=3^Noncompliance w/ Med Regimen d/t Other Reasons
- ;;^UTILITY(U,$J,358.3,14574,1,4,0)
- ;;=4^Z91.128
- ;;^UTILITY(U,$J,358.3,14574,2)
- ;;=^5063613
- ;;^UTILITY(U,$J,358.3,14575,0)
- ;;=Z91.130^^83^826^76
- ;;^UTILITY(U,$J,358.3,14575,1,0)
+ ;;^UTILITY(U,$J,358.3,14754,1,3,0)
+ ;;=3^Spinal Stenosis,Lumbar Region w/o Neurogenic Claudication
+ ;;^UTILITY(U,$J,358.3,14754,1,4,0)
+ ;;=4^M48.061
+ ;;^UTILITY(U,$J,358.3,14754,2)
+ ;;=^5151513
+ ;;^UTILITY(U,$J,358.3,14755,0)
+ ;;=M48.062^^58^706^48
+ ;;^UTILITY(U,$J,358.3,14755,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,14575,1,3,0)
- ;;=3^Noncompliance w/ Med Regimen d/t Age-Related Debility
- ;;^UTILITY(U,$J,358.3,14575,1,4,0)
- ;;=4^Z91.130
- ;;^UTILITY(U,$J,358.3,14575,2)
- ;;=^5063614
- ;;^UTILITY(U,$J,358.3,14576,0)
- ;;=Z91.138^^83^826^75
- ;;^UTILITY(U,$J,358.3,14576,1,0)
+ ;;^UTILITY(U,$J,358.3,14755,1,3,0)
+ ;;=3^Spinal Stenosis,Lumbar Region w/ Neurogenic Claudication
+ ;;^UTILITY(U,$J,358.3,14755,1,4,0)
+ ;;=4^M48.062
+ ;;^UTILITY(U,$J,358.3,14755,2)
+ ;;=^5151514
+ ;;^UTILITY(U,$J,358.3,14756,0)
+ ;;=M41.9^^58^706^40
+ ;;^UTILITY(U,$J,358.3,14756,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,14576,1,3,0)
- ;;=3^Noncompliance w/ Med Regimen Unintentional
- ;;^UTILITY(U,$J,358.3,14576,1,4,0)
- ;;=4^Z91.138
- ;;^UTILITY(U,$J,358.3,14576,2)
- ;;=^5063615
- ;;^UTILITY(U,$J,358.3,14577,0)
- ;;=Z91.19^^83^826^79
- ;;^UTILITY(U,$J,358.3,14577,1,0)
+ ;;^UTILITY(U,$J,358.3,14756,1,3,0)
+ ;;=3^Scoliosis,Idiopathic
+ ;;^UTILITY(U,$J,358.3,14756,1,4,0)
+ ;;=4^M41.9
+ ;;^UTILITY(U,$J,358.3,14756,2)
+ ;;=^5011889
+ ;;^UTILITY(U,$J,358.3,14757,0)
+ ;;=M54.50^^58^706^31
+ ;;^UTILITY(U,$J,358.3,14757,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,14577,1,3,0)
- ;;=3^Noncompliance w/ Medical Treatment/Regimen
- ;;^UTILITY(U,$J,358.3,14577,1,4,0)
- ;;=4^Z91.19
- ;;^UTILITY(U,$J,358.3,14577,2)
- ;;=^5063618
- ;;^UTILITY(U,$J,358.3,14578,0)
- ;;=Z91.15^^83^826^80
- ;;^UTILITY(U,$J,358.3,14578,1,0)
+ ;;^UTILITY(U,$J,358.3,14757,1,3,0)
+ ;;=3^Low Back Pain,Unspec
+ ;;^UTILITY(U,$J,358.3,14757,1,4,0)
+ ;;=4^M54.50
+ ;;^UTILITY(U,$J,358.3,14757,2)
+ ;;=^5161215
+ ;;^UTILITY(U,$J,358.3,14758,0)
+ ;;=M54.51^^58^706^32
+ ;;^UTILITY(U,$J,358.3,14758,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,14578,1,3,0)
- ;;=3^Noncompliance w/ Renal Dialysis
- ;;^UTILITY(U,$J,358.3,14578,1,4,0)
- ;;=4^Z91.15
- ;;^UTILITY(U,$J,358.3,14578,2)
- ;;=^5063617
- ;;^UTILITY(U,$J,358.3,14579,0)
- ;;=Z57.2^^83^826^85
- ;;^UTILITY(U,$J,358.3,14579,1,0)
+ ;;^UTILITY(U,$J,358.3,14758,1,3,0)
+ ;;=3^Low Back Pain,Vertebrogenic
+ ;;^UTILITY(U,$J,358.3,14758,1,4,0)
+ ;;=4^M54.51
+ ;;^UTILITY(U,$J,358.3,14758,2)
+ ;;=^5161216
+ ;;^UTILITY(U,$J,358.3,14759,0)
+ ;;=M54.59^^58^706^30
+ ;;^UTILITY(U,$J,358.3,14759,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,14579,1,3,0)
- ;;=3^Occupational Exposure to Dust
- ;;^UTILITY(U,$J,358.3,14579,1,4,0)
- ;;=4^Z57.2
- ;;^UTILITY(U,$J,358.3,14579,2)
- ;;=^5063120
- ;;^UTILITY(U,$J,358.3,14580,0)
- ;;=Z57.31^^83^826^91
- ;;^UTILITY(U,$J,358.3,14580,1,0)
+ ;;^UTILITY(U,$J,358.3,14759,1,3,0)
+ ;;=3^Low Back Pain,Other
+ ;;^UTILITY(U,$J,358.3,14759,1,4,0)
+ ;;=4^M54.59
+ ;;^UTILITY(U,$J,358.3,14759,2)
+ ;;=^5161217
+ ;;^UTILITY(U,$J,358.3,14760,0)
+ ;;=R47.01^^58^707^1
+ ;;^UTILITY(U,$J,358.3,14760,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,14580,1,3,0)
- ;;=3^Occupational Exposure to Tobacco Smoke,Environmental
- ;;^UTILITY(U,$J,358.3,14580,1,4,0)
- ;;=4^Z57.31
- ;;^UTILITY(U,$J,358.3,14580,2)
- ;;=^5063121
- ;;^UTILITY(U,$J,358.3,14581,0)
- ;;=Z57.6^^83^826^86
- ;;^UTILITY(U,$J,358.3,14581,1,0)
+ ;;^UTILITY(U,$J,358.3,14760,1,3,0)
+ ;;=3^Aphasia NEC
+ ;;^UTILITY(U,$J,358.3,14760,1,4,0)
+ ;;=4^R47.01
+ ;;^UTILITY(U,$J,358.3,14760,2)
+ ;;=^5019488
+ ;;^UTILITY(U,$J,358.3,14761,0)
+ ;;=I69.920^^58^707^5
+ ;;^UTILITY(U,$J,358.3,14761,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,14581,1,3,0)
- ;;=3^Occupational Exposure to Extreme Temperature
- ;;^UTILITY(U,$J,358.3,14581,1,4,0)
- ;;=4^Z57.6
- ;;^UTILITY(U,$J,358.3,14581,2)
- ;;=^5063125
- ;;^UTILITY(U,$J,358.3,14582,0)
- ;;=Z57.0^^83^826^88
- ;;^UTILITY(U,$J,358.3,14582,1,0)
+ ;;^UTILITY(U,$J,358.3,14761,1,3,0)
+ ;;=3^Aphasia after unspec cerebrovascular disease
+ ;;^UTILITY(U,$J,358.3,14761,1,4,0)
+ ;;=4^I69.920
+ ;;^UTILITY(U,$J,358.3,14761,2)
+ ;;=^5007553
+ ;;^UTILITY(U,$J,358.3,14762,0)
+ ;;=I69.991^^58^707^10
+ ;;^UTILITY(U,$J,358.3,14762,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,14582,1,3,0)
- ;;=3^Occupational Exposure to Noise
- ;;^UTILITY(U,$J,358.3,14582,1,4,0)
- ;;=4^Z57.0
- ;;^UTILITY(U,$J,358.3,14582,2)
- ;;=^5063118
- ;;^UTILITY(U,$J,358.3,14583,0)
- ;;=Z57.39^^83^826^84
- ;;^UTILITY(U,$J,358.3,14583,1,0)
+ ;;^UTILITY(U,$J,358.3,14762,1,3,0)
+ ;;=3^Dysphagia after unspec cerebrovascular disease
+ ;;^UTILITY(U,$J,358.3,14762,1,4,0)
+ ;;=4^I69.991
+ ;;^UTILITY(U,$J,358.3,14762,2)
+ ;;=^5007569
+ ;;^UTILITY(U,$J,358.3,14763,0)
+ ;;=I69.952^^58^707^18
+ ;;^UTILITY(U,$J,358.3,14763,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,14583,1,3,0)
- ;;=3^Occupational Exposure to Air Contaminants
- ;;^UTILITY(U,$J,358.3,14583,1,4,0)
- ;;=4^Z57.39
- ;;^UTILITY(U,$J,358.3,14583,2)
- ;;=^5063122
- ;;^UTILITY(U,$J,358.3,14584,0)
- ;;=Z57.8^^83^826^89
- ;;^UTILITY(U,$J,358.3,14584,1,0)
+ ;;^UTILITY(U,$J,358.3,14763,1,3,0)
+ ;;=3^Hemiplegia after Unsp Crbvasc Dis,Left Dominant Side
+ ;;^UTILITY(U,$J,358.3,14763,1,4,0)
+ ;;=4^I69.952
+ ;;^UTILITY(U,$J,358.3,14763,2)
+ ;;=^5133586
+ ;;^UTILITY(U,$J,358.3,14764,0)
+ ;;=I69.954^^58^707^19
+ ;;^UTILITY(U,$J,358.3,14764,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,14584,1,3,0)
- ;;=3^Occupational Exposure to Other Risk Factors
- ;;^UTILITY(U,$J,358.3,14584,1,4,0)
- ;;=4^Z57.8
- ;;^UTILITY(U,$J,358.3,14584,2)
- ;;=^5063127
- ;;^UTILITY(U,$J,358.3,14585,0)
- ;;=Z57.1^^83^826^90
- ;;^UTILITY(U,$J,358.3,14585,1,0)
+ ;;^UTILITY(U,$J,358.3,14764,1,3,0)
+ ;;=3^Hemiplegia after Unsp Crbvasc Dis,Left Nondominant Side
+ ;;^UTILITY(U,$J,358.3,14764,1,4,0)
+ ;;=4^I69.954
+ ;;^UTILITY(U,$J,358.3,14764,2)
+ ;;=^5133587
+ ;;^UTILITY(U,$J,358.3,14765,0)
+ ;;=I69.951^^58^707^20
+ ;;^UTILITY(U,$J,358.3,14765,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,14585,1,3,0)
- ;;=3^Occupational Exposure to Radiation

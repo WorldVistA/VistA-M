@@ -1,5 +1,5 @@
 YTEXT ;SLC/TGA-TEXT I/O FOR STAFF REMARKS ; 7/6/89  13:55 ;03/11/94 14:26
- ;;5.01;MENTAL HEALTH;**37**;Dec 30, 1994
+ ;;5.01;MENTAL HEALTH;**37,187**;Dec 30, 1994;Build 73
  ;
  ; Called from the top by MENU option YSCOMMENT
  ;
@@ -22,7 +22,7 @@ I ;
 D ;
  R !!,"Shall I display the results now? N// ",A:DTIME S YSTOUT='$T,YSUOUT=A["^" G END:YSTOUT S A=$TR($E(A_"N"),"yn","YN") G 3:YSUOUT,LU:"N"[A,DR:"Y"[A W:A'["?" $C(7)," ?" W !,"Answer 'Yes' or 'No'" G D
 DR ;
- S YSXT=$P(A1(YSTEST),U,2)_","_$P(A1(YSTEST),U,3),YSHDR=YSSSN_"  "_YSNM,YSSX=YSSEX,^UTILITY($J)=YSDFN_U_A1(YSTEST) F I=1:1:43 Q:$L(YSHDR)>42  S YSHDR=YSHDR_" "
+ S YSXT=$P(A1(YSTEST),U,2)_","_$P(A1(YSTEST),U,3),YSHDR="xxx-xx-"_$E(YSSSN,$L(YSSSN)-3,$L(YSSSN))_"  "_YSNM,YSSX=YSSEX,^UTILITY($J)=YSDFN_U_A1(YSTEST) F I=1:1:43 Q:$L(YSHDR)>42  S YSHDR=YSHDR_" "
  ;D RP^YTDP G:YSTXTED!POP END S X=^UTILITY($J),YSDFN=$P(X,U),YSTEST=$P(X,U,4),A1(YSTEST)=$P(X,U,2,4) D ENPT^YSUTL
  D RP^YTDP G:YSTOUT!POP END S X=^UTILITY($J),YSDFN=$P(X,U),YSTEST=$P(X,U,4),A1(YSTEST)=$P(X,U,2,4) D ENPT^YSUTL
 LU ;
@@ -39,7 +39,7 @@ A ;
 E ;
  N A,A1
  S:'$D(^YTD(601.2,YSDFN,1,YSET,1,YSED,"R",0)) ^(0)="^601.2213D^^" S DIC="^YTD(601.2,YSDFN,1,YSET,1,YSED,""R"",",DIC(0)="L",DLAYGO=601,X="T" D ^DIC G:Y<1 OUT S YSDN=+Y
- S DIE=DIC,DA=+Y,DR="1//TODAY;2///`"_DUZ_";3;9",DA(3)=YSDFN,DA(2)=YSET,DA(1)=YSED L +^YTD(601.2,YSDFN) D ^DIE L -^YTD(601.2,YSDFN) S YSTOUT=$D(DTOUT)
+ S DIE=DIC,DA=+Y,DR="1//TODAY;2///`"_DUZ_";3;9",DA(3)=YSDFN,DA(2)=YSET,DA(1)=YSED L +^YTD(601.2,YSDFN):DILOCKTM D ^DIE L -^YTD(601.2,YSDFN) S YSTOUT=$D(DTOUT)
 E0 ;
  S X=^YTD(601.2,YSDFN,1,YSET,1,YSED,"R",YSDN,0) F I=2:1:4 I '$P(X,U,I) D DEL Q
  Q:'$D(^YTD(601.2,YSDFN,1,YSET,1,YSED,"R",YSDN))  I '$D(^(YSDN,1,1,0)) D DEL Q
@@ -49,7 +49,7 @@ E1 ;
  ; support this but the EP does not want it in place at this time 5.0, 1992
  ;W !!,"Comment will be sealed upon signing."
  R !,"Do you wish to review comment prior to filing? N// ",A:DTIME S YSTOUT='$T,YSUOUT=A["^" G OUT:YSTOUT!YSUOUT S A=$E(A) G E2:"Nn"[A I "Yy"'[A W:A'["?" " ?",$C(7) G E1
- S DR=9 L +^YTD(601.2,YSDFN) D ^DIE L -^YTD(601.2,YSDFN) G E0
+ S DR=9 L +^YTD(601.2,YSDFN):DILOCKTM D ^DIE L -^YTD(601.2,YSDFN) G E0
 E2 ;
  ;R !!,"Do you wish to afix your signature to this comment? Y// ",A:DTIME S YSTOUT='$T,YSUOUT=A["^" G OUT:YSTOUT!YSUOUT S A=$TR($E(A_"Y"),"yn","YN") G E3:"N"[A I "Y"'[A W:A'["?" " ?" G E2
  ;S DR="4///^S X=1";5///NOW" L +^YTD(601.2,YSDFN) D ^DIE L -^YTD(601.2,YSDFN) Q:$D(DTOUT)

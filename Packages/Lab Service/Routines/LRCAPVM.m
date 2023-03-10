@@ -1,10 +1,43 @@
-LRCAPVM ;DALOI/FHS - ADD WKLD CODES FOR MICRO VERIFICATION ;5/15/00
- ;;5.2;LAB SERVICE;**49,163,263**;Sep 27, 1994
+LRCAPVM ;DALOI/FHS - ADD WKLD CODES FOR MICRO VERIFICATION ;Jul 20, 2020@13:53
+ ;;5.2;LAB SERVICE;**49,163,263,537**;Sep 27, 1994;Build 11
+ ;
 EN ;
  N LRORG
  Q:'$P(LRPARAM,U,14)!('$P($G(^LRO(68,LRAA,0)),U,16))  S LREND=0
  I $D(LAMIAUTO),$D(LRINST) S LRTS=$S(+$P(^LAB(62.4,LRINST,0),U,16):$P(^(0),U,16),1:LRTS),LRORG=0 I LRTS D
  .  F  S LRORG=$O(^LAH(LRLL,1,LRIFN,3,LRORG)) K LRADD Q:LRORG<1  I $D(^(LRORG,0))#2 S LRGB1=+^(0),GLB="^LAB(61.2,LRGB1,9,A)",LRADD="" D ETIOL^LRCAPV1
+ ;LR*5.2*537 - LRVR Micro instrumentation logic
+ ;FLD=etiology nodes
+ ;Look in all "MI" subscripts for organisms
+ ;3=organism,6=parasite,9=fungus,12=microbacteria,17-virus
+ I $G(LRINTYPE)=1,$G(LRTS) D
+ . N LRFLD,LRT,LRTIME,LRMETH,LRINST,LRADD,LRISO,LRGB1,GLB
+ . S:'$G(LRURGW) LRURGW=$G(LRALERT,9)
+ . S LRTIME=$$NOW^XLFDT
+ . S LRMETH=$P($G(^LAH(LRLL,1,ISQN,0)),U,7)
+ . I LRMETH]"" S LRINST=$O(^LAB(62.4,"D",LRMETH,0))
+ . I $G(LRINST) S (LRT,LRTS)=$S(+$P(^LAB(62.4,LRINST,0),U,16):$P(^(0),U,16),1:LRTS)
+ . S LRORG=0
+ . I '$G(LRT) S LRT=LRTS
+ . S:'$G(LRT("P")) LRT("P")=LRT
+ . F LRFLD=3,6,9,12,17 S LRORG=0 D
+ . . F  S LRORG=$O(^LAH(LRLL,1,ISQN,"MI",LRFLD,LRORG)) K LRADD Q:LRORG<1  I $G(^(LRORG,0)) S LRGB1=+^(0) D
+ . . . ;LRISO = Isolate ID
+ . . . S LRISO=$G(^LAH(LRLL,1,ISQN,"MI",LRFLD,LRORG,.1))
+ . . . Q:LRISO=""
+ . . . ;Do not re-accumulate workload if this is a re-transmission of
+ . . . ;the same isolate id.  LRM63ORG array is set by routine LRVR0.
+ . . . ;Not checking isolate number IEN in ^LAH vs ^LR because the IEN's
+ . . . ;could differ between ^LAH and ^LR. The isolate ID is consistent
+ . . . ;with subsequent transmissions of the same organism. Also, not
+ . . . ;checking organism IEN from the ETIOLOGY (#61.2) file because an
+ . . . ;organism might be filed multiple times on an accession.  In the
+ . . . ;instance that an isolate id is changed for an organism, workload
+ . . . ;counts must be adjusted manually. It is standard laboratory
+ . . . ;practice to not change the isolate id for an organism.
+ . . . Q:$D(LRM63ORG(LRFLD,LRISO))
+ . . . S GLB="^LAB(61.2,LRGB1,9,A)",LRADD="" D ETIOL^LRCAPV1
+ ;LR*5.2*537 end
  Q:$G(LRMIMASS)
  K GLB F  W !!?10,"(D)isplay (A)dd Work Load " R X:DTIME S X=$E(X) S:'$T!(X=U)!(X="") LREND=1 Q:X="A"!(LREND)  D:X="D" DIS^LRCAPU
  G END:LREND

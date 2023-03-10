@@ -1,27 +1,43 @@
-DGRP6EF ;ALB/TMK,EG,BAJ,JLS - REGISTRATION SCREEN 6 FIELDS FOR EXPOSURE FACTORS ;05 Feb 2015  11:06 AM
- ;;5.3;Registration;**689,659,737,688,909**;Aug 13,1993;Build 32
+DGRP6EF ;ALB/TMK,EG,BAJ,JLS,ARF,JAM - REGISTRATION SCREEN 6 FIELDS FOR EXPOSURE FACTORS ;05 Feb 2015  11:06 AM
+ ;;5.3;Registration;**689,659,737,688,909,1014,1018,1075,1084**;Aug 13,1993;Build 4
  ;
 EN(DFN,QUIT) ; Display Environmental exposure factors/allow to edit
  N I,IND,DG321,DG322,DGCT,DIR,Z,X,Y,DIE,DR,DA,DGNONT
  ; Returns QUIT=1 if ^ entered
  ;
 EN1 D CLEAR^VALM1
- N DTOUT,DUOUT,TYPE,SEL,L,S,L1,L2,L3
+ N DTOUT,DUOUT,TYPE,SEL,L,S,L1,L2,L3,DGELV
  S DG321=$G(^DPT(DFN,.321)),DG322=$G(^DPT(DFN,.322))
  ;
  S DIR(0)="SA^",DGCT=0
- S DGCT=DGCT+1,DIR("A",DGCT)=$$SSNNM^DGRPU(DFN)
+ N DGSSNSTR,DGPTYPE,DGSSN,DGDOB ;ARF-DG*5.3*1014 begin - add standardize patient data to the screen banner
+ S DGSSNSTR=$$SSNNM^DGRPU(DFN)
+ S DGSSN=$P($P(DGSSNSTR,";",2)," ",3)
+ S DGDOB=$$GET1^DIQ(2,DFN,.03,"I")
+ S DGDOB=$$UP^XLFSTR($$FMTE^XLFDT($E(DGDOB,1,12),1))
+ S DGPTYPE=$$GET1^DIQ(391,$$GET1^DIQ(2,DFN_",",391,"I")_",",.01)
+ S:DGPTYPE="" DGPTYPE="PATIENT TYPE UNKNOWN"
+ S DGCT=DGCT+1,DIR("A",DGCT)=$P(DGSSNSTR,";",1)_$S($$GET1^DIQ(2,DFN,.2405)'="":" ("_$$GET1^DIQ(2,DFN,.2405)_")",1:"")_"    "_DGDOB
+ S DGCT=DGCT+1,DIR("A",DGCT)=$S($P($P(DGSSNSTR,";",2)," ",2)'="":$E($P($P(DGSSNSTR,";",2)," ",2),1,40)_"    ",1:"")_DGSSN_"    "_DGPTYPE
+ ;S DGCT=DGCT+1,DIR("A",DGCT)=$$SSNNM^DGRPU(DFN) ;ARF-DG*5.3*1014 end
  S DGCT=DGCT+1,DIR("A",DGCT)="",$P(DIR("A",DGCT),"=",81)=""
  S DGCT=DGCT+1,DIR("A",DGCT)=$J("",23)_"**** ENVIRONMENTAL FACTORS ****",DGCT=DGCT+1,DIR("A",DGCT)=" "
  S IND=$S('$G(DGRPV):"[]",1:"<>")
  S DGCT=DGCT+1
  S Z=$E(IND)_"1"_$E(IND,2)
+ ; DG*5.3*1075; Set flag if eligibility is Verified and ELIGIBILITY STATUS ENTERED BY (#.3616) field = POSTMASTER
+ S DGELV=0
+ I $$GET1^DIQ(2,DFN_",",.3611,"I")="V"&($$GET1^DIQ(2,DFN_",",.3616)="POSTMASTER") S DGELV=1
+ ; DG*5.3*1075 - If DGELV flag is set, A/O and Rad Exposure (groups 1 and 2) are read-only
+ I DGELV S Z="<1>"
  ; "OTHER" choice added DG*5.3*688
  ; variables S,L1,L2, & L3 used for dynamic spacing
  S SEL=$P(DG321,U,13),S=$C(32),($P(L1,S,6),$P(L2,S,$S(SEL="O":3,1:2)),$P(L3,S,3))=""
- S TYPE=$S(SEL="K":" (DMZ) ",SEL="V":" (VIET)",SEL="O":" (OTH)",1:$J("",7))
- S DIR("A",DGCT)=Z_L1_"A/O Exp.: "_$$YN^DGRP6CL(DG321,2)_TYPE_L2_"Reg: "_$$DAT^DGRP6CL(DG321,7,12)_L3_"Exam: "_$$DAT^DGRP6CL(DG321,9,12)_"A/O#: "_$P(DG321,U,10)
+ ; DG*5.3*1018 - Add Blue Water Navy Value "B"
+ S TYPE=$S(SEL="B":" (BWN) ",SEL="K":" (DMZ) ",SEL="V":" (VIET)",SEL="O":" (OTH)",1:$J("",7))
+ S DIR("A",DGCT)=Z_L1_"A/O Exp.: "_$$YN^DGRP6CL(DG321,2)_TYPE_L2_"Reg: "_$$DAT^DGRP6CL(DG321,7,12)_L3_"Exam: "_$$DAT^DGRP6CL(DG321,9,12)
  S Z=$E(IND)_"2"_$E(IND,2)
+ I DGELV S Z="<2>"
  S DGCT=DGCT+1,DIR("A",DGCT)=Z_"     ION Rad.: "_$$YN^DGRP6CL(DG321,3)_$J("",8)_"Reg: "_$$DAT^DGRP6CL(DG321,11,12)_"Method: "
  S:$P(DG321,U,12)>7 $P(DG321,U,12)="" S DIR("A",DGCT)=DIR("A",DGCT)_$P($T(SELTBL+$P(DG321,U,12)),";;",2)
  S Z=$E(IND)_"3"_$E(IND,2)
@@ -40,11 +56,22 @@ EN1 D CLEAR^VALM1
  S DGCT=DGCT+1,DIR("A",DGCT)=Z_" Camp Lejeune: "
  S DIR("A",DGCT)=DIR("A",DGCT)_$$YN^DGRP6CL(DG3217CL,1)
  ;
+ ; DG*5.3*1075 - If DGELV flag is set display informational message
+ I DGELV D
+ . S DGCT=DGCT+1,DIR("A",DGCT)=" "
+ . S DGCT=DGCT+1,DIR("A",DGCT)="Eligibility is Verified in VES. Only VES users may enter/edit Agent Orange"
+ . S DGCT=DGCT+1,DIR("A",DGCT)="or ION Radiation Exposure."
+ . S DGCT=DGCT+1,DIR("A",DGCT)=" "
+ ;
  S DGCT=DGCT+1,DIR("A",DGCT)=" "
  N DGENDTXT S DGENDTXT=$S(DGNONT&DGCLE:"3,5",DGNONT&'DGCLE:"3",'DGNONT&DGCLE:"5",1:"4")  ; DG*5.3*909 Determine available choices based also on Camp Lejeune eligibility
  S DIR("A")=$S('$G(DGRPV):"SELECT AN ENVIRONMENTAL FACTOR (1-"_DGENDTXT_") OR (Q)UIT: ",1:"PRESS RETURN TO CONTINUE ")  ;DG*5.3*909 Camp Lejeune choice added
+ ; DG*5.3*1075 If DGELV flag is set, no edit of groups 1 and 2
+ I DGELV S DIR("A")=$S('$G(DGRPV):"SELECT AN ENVIRONMENTAL FACTOR (3-"_DGENDTXT_") OR (Q)UIT: ",1:"PRESS RETURN TO CONTINUE ")
  ;Env Contam name changed to SW Asia Conditions, DG*5.3*688
  S DIR(0)=$S('$G(DGRPV):"SA^1:A/O Exp;2:ION Rad;3:SW Asia Cond;"_$S(DGNONT:"",1:"4:N/T Radium;")_$S(DGCLE:"5:Camp Lejeune;",1:"")_"Q:QUIT",1:"EA")  ; DG*5.3*909 Camp Lejeune choice added
+ ; DG*5.3*1075 If DGELV, no edit of groups 1 and 2
+ I DGELV S DIR(0)=$S('$G(DGRPV):"SA^3:SW Asia Cond;"_$S(DGNONT:"",1:"4:N/T Radium;")_$S(DGCLE:"5:Camp Lejeune;",1:"")_"Q:QUIT",1:"EA")  ; DG*5.3*909 Camp Lejeune choice added
  I '$G(DGRPV) S DIR("B")="QUIT"
  I 'DGCLE,$G(^DPT(DFN,.32171))=1,$P($G(XQY0),U)'="DG REGISTRATION VIEW" D
  . S DGHECMSG(1)="Camp Lejeune data has been verified by HEC, please "
@@ -58,10 +85,39 @@ EN1 D CLEAR^VALM1
  S Z="603"_$E("0",2-$L(+Y))_+Y
  S DIE=2,DA=DFN,DR=$P($T(@Z),";;",2)
  ;
+ ; DG*5.3*1075;  If editing group 1, A/O data, capture the current value of the AGENT ORANGE EXPOS. INDICATED? (#.32102) field
+ N DGAO
+ I Y=1 S DGAO=$$GET1^DIQ(2,DFN,.32102,"I")
+ ;
+ ; DG*5.3*1075;  If editing group 2, Radiation Exposure data, capture the current value of the RADIATION EXPOSURE INDICATED? (#.32103) field
+ N DGRAD
+ I Y=2 S DGRAD=$$GET1^DIQ(2,DFN,.32103,"I")
+ ;
  ; DG*5.3*909 Camp Lejeune logic added
  I Y'=5 D:DR'="" ^DIE
  E  X DR D AUTOUPD^DGENA2(DFN)
- K DIE,DA,DR
+ ;
+ ; DG*5.3*1075;jam
+ ; If DGRAD is defined, editing of the Radiation Exposure data was done. 
+ ; If .32103 field was changed to Y, check if RADIATION EXPOSURE METHOD (#.3212) field is blank 
+ I $D(DGRAD),DGRAD'="Y",$$GET1^DIQ(2,DFN,.32103,"I")="Y",$$GET1^DIQ(2,DFN,.3212)="" D
+ . ; If no Radiation Method defined, set the RADIATION EXPOSURE INDICATED? value back to DGRAD value (or NO if no DGRAD value)
+ . I DGRAD="" S DGRAD="N"
+ . S DR=".32103///^S X=DGRAD"
+ . D ^DIE
+ . K DIE,DA,DR
+ K DGRAD
+ ;
+ ; DG*5.3*1075;jam
+ ; If DGAO is defined, editing of the AO Exposure data was done. 
+ ; If .32102 field was changed to Y, check if AGENT ORANGE EXPOSURE LOCATION (#.3213) field is blank 
+ I $D(DGAO),DGAO'="Y",$$GET1^DIQ(2,DFN,.32102,"I")="Y",$$GET1^DIQ(2,DFN,.3213)="" D
+ . ; If no location defined, set the AGENT ORANGE EXPOS. INDICATED? value back to DGAO value (or NO if no DGAO value)
+ . I DGAO="" S DGAO="N"
+ . S DR=".32102///^S X=DGAO"
+ . D ^DIE
+ K DIE,DA,DR,DGAO
+ ;
  G EN1
  ;
 QUIT Q
@@ -100,7 +156,23 @@ EF(DFN,LIN) ;
  . S Z="Camp Lejeune",SEQ=5
  . D SETLNEX^DGRP6(Z,SEQ,.LIN,.LENGTH)
   Q
-  ; The following tag is a table of values.  Do not change location of values including null at SELTBL+0
+  ;
+CHKAOEL(DGY) ;DG*5.3*1018;jam; - Screen logic for .3213 (AGENT ORANGE EXPOSURE LOCATION) field in PATIENT file
+ ; Returns:  TRUE if the entry DGY is valid
+ ;
+ ; Only checking B (BLUE WATER NAVY) entry - All other entries are allowed
+ I DGY'="B" Q 1
+ N DGBWNDT
+ ; Allow B to be displayed when BWN ACTIVE DATE (#1402) in MAS PARAMETER file #43 is reached 
+ ; - Get the BWN ACTIVE DATE
+ S DGBWNDT=$$GET1^DIQ(43,1,1402,"I")
+ ; - If active date not defined, return FALSE
+ I 'DGBWNDT Q 0
+ ; - If active date is in the future, return FALSE
+ I DGBWNDT>$$DT^XLFDT Q 0
+ Q 1
+ ;
+ ; The following tag is a table of values.  Do not change location of values including null at SELTBL+0
 SELTBL ;;
  ;;NO VALUE
  ;;HIROSHIMA/NAGASAKI
@@ -109,8 +181,9 @@ SELTBL ;;
  ;;UNDERGROUND NUCLEAR TEST
  ;;EXP. AT NUCLEAR FACILITY
  ;;OTHER
-60301 ;;.32102//NO;S:X'="Y" Y="@65";.3213;.32107;.32109;.3211;@65;
-60302 ;;.32103//NO;S:X'="Y" Y="@66";.3212;.32111;@66;
+60301 ;;.32102//NO;S:X'="Y" Y="@65";.3213;.32107;.32109;@65;
+ ; DG*5.3*1075 - Add "R" to field .3212, making it Required
+60302 ;;.32103//NO;S:X'="Y" Y="@66";.3212R;.32111;@66;
 60303 ;;.322013//NO;S:X'="Y" Y="@612";.322014;Q;.322015;@612;
 60304 ;;D REG^DGNTQ(DFN)
 60305 ;;D ADDEDTCL^DGENCLEA(DFN)

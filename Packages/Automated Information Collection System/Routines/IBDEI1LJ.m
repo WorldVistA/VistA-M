@@ -1,130 +1,124 @@
-IBDEI1LJ ; ; 04-FEB-2020
- ;;3.0;IB ENCOUNTER FORM IMP/EXP;;FEB 04, 2020
+IBDEI1LJ ; ; 01-FEB-2022
+ ;;3.0;IB ENCOUNTER FORM IMP/EXP;;FEB 01, 2022
  Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,999) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
- ;;^UTILITY(U,$J,358.3,25507,2)
- ;;=^5062686
- ;;^UTILITY(U,$J,358.3,25508,0)
- ;;=Z12.4^^107^1220^5
- ;;^UTILITY(U,$J,358.3,25508,1,0)
+ ;;^UTILITY(U,$J,358.3,25868,1,4,0)
+ ;;=4^F15.99
+ ;;^UTILITY(U,$J,358.3,25868,2)
+ ;;=^5133358
+ ;;^UTILITY(U,$J,358.3,25869,0)
+ ;;=R45.851^^92^1186^3
+ ;;^UTILITY(U,$J,358.3,25869,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,25508,1,3,0)
- ;;=3^Cervix Malignant Neoplasm Screen
- ;;^UTILITY(U,$J,358.3,25508,1,4,0)
- ;;=4^Z12.4
- ;;^UTILITY(U,$J,358.3,25508,2)
- ;;=^5062687
- ;;^UTILITY(U,$J,358.3,25509,0)
- ;;=Z13.5^^107^1220^8
- ;;^UTILITY(U,$J,358.3,25509,1,0)
+ ;;^UTILITY(U,$J,358.3,25869,1,3,0)
+ ;;=3^Suicidal Ideations
+ ;;^UTILITY(U,$J,358.3,25869,1,4,0)
+ ;;=4^R45.851
+ ;;^UTILITY(U,$J,358.3,25869,2)
+ ;;=^5019474
+ ;;^UTILITY(U,$J,358.3,25870,0)
+ ;;=T14.91XA^^92^1186^4
+ ;;^UTILITY(U,$J,358.3,25870,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,25509,1,3,0)
- ;;=3^Eye and Ear Disorder Screen
- ;;^UTILITY(U,$J,358.3,25509,1,4,0)
- ;;=4^Z13.5
- ;;^UTILITY(U,$J,358.3,25509,2)
- ;;=^5062706
- ;;^UTILITY(U,$J,358.3,25510,0)
- ;;=Z01.89^^107^1220^6
- ;;^UTILITY(U,$J,358.3,25510,1,0)
+ ;;^UTILITY(U,$J,358.3,25870,1,3,0)
+ ;;=3^Suicide Attempt,Inital Encntr
+ ;;^UTILITY(U,$J,358.3,25870,1,4,0)
+ ;;=4^T14.91XA
+ ;;^UTILITY(U,$J,358.3,25870,2)
+ ;;=^5151779
+ ;;^UTILITY(U,$J,358.3,25871,0)
+ ;;=T14.91XD^^92^1186^6
+ ;;^UTILITY(U,$J,358.3,25871,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,25510,1,3,0)
- ;;=3^Diabetic Foot Exam
- ;;^UTILITY(U,$J,358.3,25510,1,4,0)
- ;;=4^Z01.89
- ;;^UTILITY(U,$J,358.3,25510,2)
- ;;=^5062632
- ;;^UTILITY(U,$J,358.3,25511,0)
- ;;=Z11.59^^107^1220^17
- ;;^UTILITY(U,$J,358.3,25511,1,0)
+ ;;^UTILITY(U,$J,358.3,25871,1,3,0)
+ ;;=3^Suicide Attempt,Subsequent Encntr
+ ;;^UTILITY(U,$J,358.3,25871,1,4,0)
+ ;;=4^T14.91XD
+ ;;^UTILITY(U,$J,358.3,25871,2)
+ ;;=^5151780
+ ;;^UTILITY(U,$J,358.3,25872,0)
+ ;;=T14.91XS^^92^1186^5
+ ;;^UTILITY(U,$J,358.3,25872,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,25511,1,3,0)
- ;;=3^Viral Diseases Screen
- ;;^UTILITY(U,$J,358.3,25511,1,4,0)
- ;;=4^Z11.59
- ;;^UTILITY(U,$J,358.3,25511,2)
- ;;=^5062675
- ;;^UTILITY(U,$J,358.3,25512,0)
- ;;=Z13.6^^107^1220^4
- ;;^UTILITY(U,$J,358.3,25512,1,0)
+ ;;^UTILITY(U,$J,358.3,25872,1,3,0)
+ ;;=3^Suicide Attempt,Sequela
+ ;;^UTILITY(U,$J,358.3,25872,1,4,0)
+ ;;=4^T14.91XS
+ ;;^UTILITY(U,$J,358.3,25872,2)
+ ;;=^5151781
+ ;;^UTILITY(U,$J,358.3,25873,0)
+ ;;=Z91.51^^92^1186^2
+ ;;^UTILITY(U,$J,358.3,25873,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,25512,1,3,0)
- ;;=3^Cardiovascular Disorder Screen
- ;;^UTILITY(U,$J,358.3,25512,1,4,0)
- ;;=4^Z13.6
- ;;^UTILITY(U,$J,358.3,25512,2)
- ;;=^5062707
- ;;^UTILITY(U,$J,358.3,25513,0)
- ;;=Z12.12^^107^1220^15
- ;;^UTILITY(U,$J,358.3,25513,1,0)
+ ;;^UTILITY(U,$J,358.3,25873,1,3,0)
+ ;;=3^Personal Hx of Suicidal Behavior
+ ;;^UTILITY(U,$J,358.3,25873,1,4,0)
+ ;;=4^Z91.51
+ ;;^UTILITY(U,$J,358.3,25873,2)
+ ;;=^5161317
+ ;;^UTILITY(U,$J,358.3,25874,0)
+ ;;=Z91.52^^92^1186^1
+ ;;^UTILITY(U,$J,358.3,25874,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,25513,1,3,0)
- ;;=3^Rectum Malignant Neoplasm Screen
- ;;^UTILITY(U,$J,358.3,25513,1,4,0)
- ;;=4^Z12.12
- ;;^UTILITY(U,$J,358.3,25513,2)
- ;;=^5062682
- ;;^UTILITY(U,$J,358.3,25514,0)
- ;;=Z71.89^^107^1220^13
- ;;^UTILITY(U,$J,358.3,25514,1,0)
+ ;;^UTILITY(U,$J,358.3,25874,1,3,0)
+ ;;=3^Personal Hx of Non-Suicidal Self-Harm
+ ;;^UTILITY(U,$J,358.3,25874,1,4,0)
+ ;;=4^Z91.52
+ ;;^UTILITY(U,$J,358.3,25874,2)
+ ;;=^5161318
+ ;;^UTILITY(U,$J,358.3,25875,0)
+ ;;=F19.14^^92^1187^1
+ ;;^UTILITY(U,$J,358.3,25875,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,25514,1,3,0)
- ;;=3^Other Specified Counseling
- ;;^UTILITY(U,$J,358.3,25514,1,4,0)
- ;;=4^Z71.89
- ;;^UTILITY(U,$J,358.3,25514,2)
- ;;=^5063253
- ;;^UTILITY(U,$J,358.3,25515,0)
- ;;=Z12.5^^107^1220^14
- ;;^UTILITY(U,$J,358.3,25515,1,0)
+ ;;^UTILITY(U,$J,358.3,25875,1,3,0)
+ ;;=3^Oth/Unk Substance Induced Dep D/O w/ Mild Use D/O
+ ;;^UTILITY(U,$J,358.3,25875,1,4,0)
+ ;;=4^F19.14
+ ;;^UTILITY(U,$J,358.3,25875,2)
+ ;;=^5003421
+ ;;^UTILITY(U,$J,358.3,25876,0)
+ ;;=F19.24^^92^1187^2
+ ;;^UTILITY(U,$J,358.3,25876,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,25515,1,3,0)
- ;;=3^Prostate Malignant Neoplasm Screen
- ;;^UTILITY(U,$J,358.3,25515,1,4,0)
- ;;=4^Z12.5
- ;;^UTILITY(U,$J,358.3,25515,2)
- ;;=^5062688
- ;;^UTILITY(U,$J,358.3,25516,0)
- ;;=Z00.00^^107^1220^10
- ;;^UTILITY(U,$J,358.3,25516,1,0)
+ ;;^UTILITY(U,$J,358.3,25876,1,3,0)
+ ;;=3^Oth/Unk Substance Induced Dep D/O w/ Mod/Sev Use D/O
+ ;;^UTILITY(U,$J,358.3,25876,1,4,0)
+ ;;=4^F19.24
+ ;;^UTILITY(U,$J,358.3,25876,2)
+ ;;=^5003441
+ ;;^UTILITY(U,$J,358.3,25877,0)
+ ;;=F19.94^^92^1187^3
+ ;;^UTILITY(U,$J,358.3,25877,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,25516,1,3,0)
- ;;=3^General Adult Medical Exam w/o Abnormal Findings
- ;;^UTILITY(U,$J,358.3,25516,1,4,0)
- ;;=4^Z00.00
- ;;^UTILITY(U,$J,358.3,25516,2)
- ;;=^5062599
- ;;^UTILITY(U,$J,358.3,25517,0)
- ;;=Z02.79^^107^1220^12
- ;;^UTILITY(U,$J,358.3,25517,1,0)
+ ;;^UTILITY(U,$J,358.3,25877,1,3,0)
+ ;;=3^Oth/Unk Substance Induced Dep D/O w/o Use D/O
+ ;;^UTILITY(U,$J,358.3,25877,1,4,0)
+ ;;=4^F19.94
+ ;;^UTILITY(U,$J,358.3,25877,2)
+ ;;=^5003460
+ ;;^UTILITY(U,$J,358.3,25878,0)
+ ;;=F19.17^^92^1187^4
+ ;;^UTILITY(U,$J,358.3,25878,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,25517,1,3,0)
- ;;=3^Medical Certificate Encounter
- ;;^UTILITY(U,$J,358.3,25517,1,4,0)
- ;;=4^Z02.79
- ;;^UTILITY(U,$J,358.3,25517,2)
- ;;=^5062641
- ;;^UTILITY(U,$J,358.3,25518,0)
- ;;=Z71.3^^107^1220^7
- ;;^UTILITY(U,$J,358.3,25518,1,0)
+ ;;^UTILITY(U,$J,358.3,25878,1,3,0)
+ ;;=3^Oth/Unk Substance Induced Maj Neurocog D/O w/ Mild Use D/O
+ ;;^UTILITY(U,$J,358.3,25878,1,4,0)
+ ;;=4^F19.17
+ ;;^UTILITY(U,$J,358.3,25878,2)
+ ;;=^5003426
+ ;;^UTILITY(U,$J,358.3,25879,0)
+ ;;=F19.27^^92^1187^5
+ ;;^UTILITY(U,$J,358.3,25879,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,25518,1,3,0)
- ;;=3^Dietary Counseling
- ;;^UTILITY(U,$J,358.3,25518,1,4,0)
- ;;=4^Z71.3
- ;;^UTILITY(U,$J,358.3,25518,2)
- ;;=^5063245
- ;;^UTILITY(U,$J,358.3,25519,0)
- ;;=Z71.7^^107^1220^11
- ;;^UTILITY(U,$J,358.3,25519,1,0)
+ ;;^UTILITY(U,$J,358.3,25879,1,3,0)
+ ;;=3^Oth/Unk Substance Induced Maj Neurocog D/O w/ Mod/Sev Use D/O
+ ;;^UTILITY(U,$J,358.3,25879,1,4,0)
+ ;;=4^F19.27
+ ;;^UTILITY(U,$J,358.3,25879,2)
+ ;;=^5003446
+ ;;^UTILITY(U,$J,358.3,25880,0)
+ ;;=F19.97^^92^1187^6
+ ;;^UTILITY(U,$J,358.3,25880,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,25519,1,3,0)
- ;;=3^HIV Counseling
- ;;^UTILITY(U,$J,358.3,25519,1,4,0)
- ;;=4^Z71.7
- ;;^UTILITY(U,$J,358.3,25519,2)
- ;;=^5063251
- ;;^UTILITY(U,$J,358.3,25520,0)
- ;;=Z71.6^^107^1220^16
- ;;^UTILITY(U,$J,358.3,25520,1,0)
- ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,25880,1,3,0)
+ ;;=3^Oth/Unk Substance Induced Maj Neurocog D/O w/o Use D/O

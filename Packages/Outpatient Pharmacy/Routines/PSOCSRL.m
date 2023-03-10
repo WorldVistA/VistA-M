@@ -1,5 +1,5 @@
 PSOCSRL ;BIR/BHW - release interface for control substance pkg ; 1/29/20 12:46pm
- ;;7.0;OUTPATIENT PHARMACY;**27,71,118,148,247,373,385,596**;DEC 1997;Build 1
+ ;;7.0;OUTPATIENT PHARMACY;**27,71,118,148,247,373,385,596,629**;DEC 1997;Build 1
  ;External reference to ^PSDRUG supported by DBIA 221
  ;External reference to ^PS(55 supported by DBIA 2228
  ;External reference to ^PS(59.7 supported by DBIA 694
@@ -34,7 +34,7 @@ ORI ;orig
  .;
  .S:$D(^PSDRUG(QDRUG,660.1)) ^PSDRUG(QDRUG,660.1)=^PSDRUG(QDRUG,660.1)-QTY
  .Q:$P($G(^PSRX(RXP,2)),"^",13)
- .D NOW^%DTC S DIE="^PSRX(",DA=RXP,DR="31///"_%_";23////"_PSRH  ;pso*7*373
+ .D NOW^%DTC S DIE="^PSRX(",DA=RXP,DR="31///"_%_";23////"_PSRH_";32.1////@;32.2////@" ; p629 added 32.1 and 32.2
  .D ^DIE K DIE,DR,DA,LBL
  .D EN^PSOHLSN1(RXP,"ZD")
  .; ECME - 3rd Party Billing

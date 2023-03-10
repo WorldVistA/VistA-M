@@ -1,7 +1,7 @@
-PXRMTXSM ;SLC/PKR - Reminder Taxonomy ScreenMan routines ;07/21/2015
- ;;2.0;CLINICAL REMINDERS;**26,47**;Feb 04, 2005;Build 291
+PXRMTXSM ;SLC/PKR - Reminder Taxonomy ScreenMan routines ;06/14/2022
+ ;;2.0;CLINICAL REMINDERS;**26,47,42,65**;Feb 04, 2005;Build 438
  ;
- ;===================================
+ ;===============
 CODELIST(TAXIEN) ;See if the temporary list of selected codes exists,
  ;if it does not and codes have been stored in the taxonomy
  ;then build it.
@@ -11,14 +11,51 @@ CODELIST(TAXIEN) ;See if the temporary list of selected codes exists,
  M ^TMP("PXRMCODES",$J)=^PXD(811.2,TAXIEN,20,"ATCC")
  Q
  ;
- ;===================================
+ ;===============
 EXETCCAP(DA) ;Executable caption for code search.
  N TC
  S TC=$$GET^DDSVAL(811.23,.DA,.01,"","E")
  I $L(TC)>57 S TC=$E(TC,1,54)_"..."
  Q " Term/Code: "_TC_" "
  ;
- ;===================================
+ ;===============
+FDATAVAL(IEN) ;Form Data Validation.
+ ;If either MINIMUM VALUE or MAXIMUM VALUE is defined, they both must be.
+ N MAX,MAXDEC,MIN,PROMPT,TEXT,UCUM,UDISPLAY
+ S MIN=$$GET^DDSVAL(811.2,IEN,220)
+ S MAX=$$GET^DDSVAL(811.2,IEN,221)
+ S MAXDEC=$$GET^DDSVAL(811.2,IEN,222)
+ S UCUM=$$GET^DDSVAL(811.2,IEN,223)
+ S PROMPT=$$GET^DDSVAL(811.2,IEN,224)
+ S UDISPLAY=$$GET^DDSVAL(811.2,IEN,225)
+ I (MIN=""),(MAX=""),(MAXDEC=""),(UCUM=""),(PROMPT=""),(UDISPLAY="") G SPONCLASS
+ ;If any of the measurement fields are defined they all must be.
+ I (MIN="")!(MAX="")!(MAXDEC="")!(UCUM="")!(PROMPT="")!(UDISPLAY="") D  Q
+ . S TEXT="If any of the measurement fields are defined, they all must be."
+ . D HLP^DDSUTL(.TEXT)
+ . S DDSBR="MINIMUM VALUE",DDSERROR=1
+ I MAX<MIN D  Q
+ . S TEXT="The Maximum Value cannot be less than the Minimum Value."
+ . D HLP^DDSUTL(.TEXT)
+ . S DDSBR="MAXIMUM VALUE",DDSERROR=1
+SPONCLASS ;Make sure the Class of the Sponsor matches that of the Taxonomy.
+ N CLASS,ERROR,NAME,SCLASS,SIEN
+ S CLASS=$$GET^DDSVAL(811.2,IEN,100,.ERROR,"I")
+ S SIEN=$$GET^DDSVAL(811.2,IEN,101,.ERROR,"I")
+ S SCLASS=$S(SIEN="":"",1:$$GET1^DIQ(811.6,SIEN,100,"I"))
+ I (SCLASS'=""),(SCLASS'=CLASS) D
+ . S TEXT="Sponsor Class is "_SCLASS_", Taxonomy Class is "_CLASS_" they must match!"
+ . D HLP^DDSUTL(.TEXT)
+ . S DDSBR="CLASS",DDSERROR=1
+ ;If the Name starts with VA- make sure the Class is National.
+ S NAME=$$GET^DDSVAL(811.2,IEN,.01,.ERROR,"I")
+ I $E(NAME,1,3)="VA-",CLASS'="N" D
+ . S TEXT="Name starts with 'VA-', but the Class is not National."
+ . D HLP^DDSUTL(.TEXT)
+ . S DDSBR="NAME",DDSERROR=1
+ Q
+ ;
+ ;===============
 LEXSRCH(DA,CODESYS) ;Branch for Lexicon Term/Code search.
  ;selection.
  N PXRMLEXV,SAVEDDS,TAXIEN,TERM
@@ -41,7 +78,7 @@ LEXSRCH(DA,CODESYS) ;Branch for Lexicon Term/Code search.
  . D REFRESH^DDSUTL
  Q
  ;
- ;===================================
+ ;===============
 LTCPAOC(DA) ;Lexicon Term/Code post-action on change.
  N NTC,OTC,TEXT
  S NTC=$$GET^DDSVAL(811.23,.DA,"TERM/CODE")
@@ -54,7 +91,7 @@ LTCPAOC(DA) ;Lexicon Term/Code post-action on change.
  . D PUT^DDSVAL(811.23,.DA,"TERM/CODE",OTC)
  Q
  ;
- ;===================================
+ ;===============
 NUMCODES(DA) ;Executable caption to display the number of selected codes
  ;for Lexicon Term/Code.
  ;^TMP("PXRMCODES",$J) will have the value from the current editing
@@ -94,8 +131,9 @@ NUMCODES(DA) ;Executable caption to display the number of selected codes
  I NUM<30 S TEXT=TEXT_$$REPEAT^XLFSTR(" ",(30-NUM))
  Q TEXT
  ;
- ;===================================
+ ;===============
 POSTACT(D0) ;Form Post Action
+ ;DX and DY should not be newed or killed, control by ScreenMan
  N INACTIVE,INUSE,OUTPUT
  K ^TMP("PXRMCODES",$J)
  ;If the change was a deletion there is nothing else to do.
@@ -111,7 +149,7 @@ POSTACT(D0) ;Form Post Action
  . I $D(DDS) D REFRESH^DDSUTL S DY=IOSL-7,DX=0 X IOXY S $Y=DY,$X=DX
  Q
  ;
- ;===================================
+ ;===============
 POSTSAVE(IEN) ;Form Post Save. Store changes in lists of codes.
  N CODE,CODESYS,CSYSIND,DELTERM,FDA,KCSYSIND,KFDA,MSG,NSEL,NUID,PDS
  N TEMP,TERM,TERMIND,TEXT,UID
@@ -164,7 +202,7 @@ POSTSAVE(IEN) ;Form Post Save. Store changes in lists of codes.
  I PDS="" D SPDS^PXRMPDS(IEN,PDS)
  Q
  ;
- ;===================================
+ ;===============
 SMANEDIT(IEN,NEW,FORM) ;ScreenMan edit for entry IEN.
  N CLASS,DA,DDSCHANG,DDSFILE,DDSPARM,DDSSAVE,DEL,DIDEL,DIMSG,DR,DTOUT
  N HASH256,OCLOG,NATOK,SHASH256
@@ -216,7 +254,7 @@ SMANEDIT(IEN,NEW,FORM) ;ScreenMan edit for entry IEN.
  I (FORM="PXRM TAXONOMY EDIT") D BLDLIST^PXRMTAXL("PXRMTAXL") S VALMBCK="R"
  Q
  ;
- ;===================================
+ ;===============
 VEALLSEL(DA) ;Branch for View/edit all selected codes.
  ;selection.
  N PXRMLEXV,SAVEDDS

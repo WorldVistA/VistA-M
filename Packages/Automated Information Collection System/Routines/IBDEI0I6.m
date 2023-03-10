@@ -1,126 +1,134 @@
-IBDEI0I6 ; ; 04-FEB-2020
- ;;3.0;IB ENCOUNTER FORM IMP/EXP;;FEB 04, 2020
+IBDEI0I6 ; ; 01-FEB-2022
+ ;;3.0;IB ENCOUNTER FORM IMP/EXP;;FEB 01, 2022
  Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,999) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
- ;;^UTILITY(U,$J,358.3,7923,1,4,0)
- ;;=4^L49.2
- ;;^UTILITY(U,$J,358.3,7923,2)
- ;;=^5009192
- ;;^UTILITY(U,$J,358.3,7924,0)
- ;;=L49.3^^65^513^19
- ;;^UTILITY(U,$J,358.3,7924,1,0)
+ ;;^UTILITY(U,$J,358.3,8176,2)
+ ;;=^24407
+ ;;^UTILITY(U,$J,358.3,8177,0)
+ ;;=J32.1^^39^393^14
+ ;;^UTILITY(U,$J,358.3,8177,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,7924,1,3,0)
- ;;=3^Exfoliation d/t Erythematous Cond w/ 30-39% Body Surface
- ;;^UTILITY(U,$J,358.3,7924,1,4,0)
- ;;=4^L49.3
- ;;^UTILITY(U,$J,358.3,7924,2)
- ;;=^5009193
- ;;^UTILITY(U,$J,358.3,7925,0)
- ;;=L49.4^^65^513^20
- ;;^UTILITY(U,$J,358.3,7925,1,0)
+ ;;^UTILITY(U,$J,358.3,8177,1,3,0)
+ ;;=3^Chronic Frontal Sinusitis
+ ;;^UTILITY(U,$J,358.3,8177,1,4,0)
+ ;;=4^J32.1
+ ;;^UTILITY(U,$J,358.3,8177,2)
+ ;;=^24380
+ ;;^UTILITY(U,$J,358.3,8178,0)
+ ;;=J32.9^^39^393^16
+ ;;^UTILITY(U,$J,358.3,8178,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,7925,1,3,0)
- ;;=3^Exfoliation d/t Erythematous Cond w/ 40-49% Body Surface
- ;;^UTILITY(U,$J,358.3,7925,1,4,0)
- ;;=4^L49.4
- ;;^UTILITY(U,$J,358.3,7925,2)
- ;;=^5009194
- ;;^UTILITY(U,$J,358.3,7926,0)
- ;;=L49.5^^65^513^21
- ;;^UTILITY(U,$J,358.3,7926,1,0)
+ ;;^UTILITY(U,$J,358.3,8178,1,3,0)
+ ;;=3^Chronic Sinusitis,Unspec
+ ;;^UTILITY(U,$J,358.3,8178,1,4,0)
+ ;;=4^J32.9
+ ;;^UTILITY(U,$J,358.3,8178,2)
+ ;;=^5008207
+ ;;^UTILITY(U,$J,358.3,8179,0)
+ ;;=J30.9^^39^393^11
+ ;;^UTILITY(U,$J,358.3,8179,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,7926,1,3,0)
- ;;=3^Exfoliation d/t Erythematous Cond w/ 50-59% Body Surface
- ;;^UTILITY(U,$J,358.3,7926,1,4,0)
- ;;=4^L49.5
- ;;^UTILITY(U,$J,358.3,7926,2)
- ;;=^5009195
- ;;^UTILITY(U,$J,358.3,7927,0)
- ;;=L49.6^^65^513^22
- ;;^UTILITY(U,$J,358.3,7927,1,0)
+ ;;^UTILITY(U,$J,358.3,8179,1,3,0)
+ ;;=3^Allergic Rhinitis,Unspec
+ ;;^UTILITY(U,$J,358.3,8179,1,4,0)
+ ;;=4^J30.9
+ ;;^UTILITY(U,$J,358.3,8179,2)
+ ;;=^5008205
+ ;;^UTILITY(U,$J,358.3,8180,0)
+ ;;=J30.0^^39^393^24
+ ;;^UTILITY(U,$J,358.3,8180,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,7927,1,3,0)
- ;;=3^Exfoliation d/t Erythematous Cond w/ 60-69% Body Surface
- ;;^UTILITY(U,$J,358.3,7927,1,4,0)
- ;;=4^L49.6
- ;;^UTILITY(U,$J,358.3,7927,2)
- ;;=^5009196
- ;;^UTILITY(U,$J,358.3,7928,0)
- ;;=L49.7^^65^513^23
- ;;^UTILITY(U,$J,358.3,7928,1,0)
+ ;;^UTILITY(U,$J,358.3,8180,1,3,0)
+ ;;=3^Vasomotor Rhinitis
+ ;;^UTILITY(U,$J,358.3,8180,1,4,0)
+ ;;=4^J30.0
+ ;;^UTILITY(U,$J,358.3,8180,2)
+ ;;=^5008201
+ ;;^UTILITY(U,$J,358.3,8181,0)
+ ;;=K05.00^^39^393^2
+ ;;^UTILITY(U,$J,358.3,8181,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,7928,1,3,0)
- ;;=3^Exfoliation d/t Erythematous Cond w/ 70-79% Body Surface
- ;;^UTILITY(U,$J,358.3,7928,1,4,0)
- ;;=4^L49.7
- ;;^UTILITY(U,$J,358.3,7928,2)
- ;;=^5009197
- ;;^UTILITY(U,$J,358.3,7929,0)
- ;;=L49.8^^65^513^24
- ;;^UTILITY(U,$J,358.3,7929,1,0)
+ ;;^UTILITY(U,$J,358.3,8181,1,3,0)
+ ;;=3^Acute Gingivitis,Plaque Induced
+ ;;^UTILITY(U,$J,358.3,8181,1,4,0)
+ ;;=4^K05.00
+ ;;^UTILITY(U,$J,358.3,8181,2)
+ ;;=^334192
+ ;;^UTILITY(U,$J,358.3,8182,0)
+ ;;=R04.0^^39^393^17
+ ;;^UTILITY(U,$J,358.3,8182,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,7929,1,3,0)
- ;;=3^Exfoliation d/t Erythematous Cond w/ 80-89% Body Surface
- ;;^UTILITY(U,$J,358.3,7929,1,4,0)
- ;;=4^L49.8
- ;;^UTILITY(U,$J,358.3,7929,2)
- ;;=^5009198
- ;;^UTILITY(U,$J,358.3,7930,0)
- ;;=L49.9^^65^513^27
- ;;^UTILITY(U,$J,358.3,7930,1,0)
+ ;;^UTILITY(U,$J,358.3,8182,1,3,0)
+ ;;=3^Epistaxis
+ ;;^UTILITY(U,$J,358.3,8182,1,4,0)
+ ;;=4^R04.0
+ ;;^UTILITY(U,$J,358.3,8182,2)
+ ;;=^5019173
+ ;;^UTILITY(U,$J,358.3,8183,0)
+ ;;=R09.82^^39^393^21
+ ;;^UTILITY(U,$J,358.3,8183,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,7930,1,3,0)
- ;;=3^Exfoliation d/t Erythematous Cond w/ > 89% Body Surface
- ;;^UTILITY(U,$J,358.3,7930,1,4,0)
- ;;=4^L49.9
- ;;^UTILITY(U,$J,358.3,7930,2)
- ;;=^5009199
- ;;^UTILITY(U,$J,358.3,7931,0)
- ;;=Z65.5^^65^513^28
- ;;^UTILITY(U,$J,358.3,7931,1,0)
+ ;;^UTILITY(U,$J,358.3,8183,1,3,0)
+ ;;=3^Postnasal Drip
+ ;;^UTILITY(U,$J,358.3,8183,1,4,0)
+ ;;=4^R09.82
+ ;;^UTILITY(U,$J,358.3,8183,2)
+ ;;=^97058
+ ;;^UTILITY(U,$J,358.3,8184,0)
+ ;;=K12.30^^39^393^20
+ ;;^UTILITY(U,$J,358.3,8184,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,7931,1,3,0)
- ;;=3^Exposure to Disaster/War/Hostilities
- ;;^UTILITY(U,$J,358.3,7931,1,4,0)
- ;;=4^Z65.5
- ;;^UTILITY(U,$J,358.3,7931,2)
- ;;=^5063184
- ;;^UTILITY(U,$J,358.3,7932,0)
- ;;=Z77.22^^65^513^29
- ;;^UTILITY(U,$J,358.3,7932,1,0)
+ ;;^UTILITY(U,$J,358.3,8184,1,3,0)
+ ;;=3^Oral Mucositis,Unspec
+ ;;^UTILITY(U,$J,358.3,8184,1,4,0)
+ ;;=4^K12.30
+ ;;^UTILITY(U,$J,358.3,8184,2)
+ ;;=^5008486
+ ;;^UTILITY(U,$J,358.3,8185,0)
+ ;;=J30.1^^39^393^10
+ ;;^UTILITY(U,$J,358.3,8185,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,7932,1,3,0)
- ;;=3^Exposure to/Contact w/ Environmental Tobacco Smoke
- ;;^UTILITY(U,$J,358.3,7932,1,4,0)
- ;;=4^Z77.22
- ;;^UTILITY(U,$J,358.3,7932,2)
- ;;=^5063324
- ;;^UTILITY(U,$J,358.3,7933,0)
- ;;=L30.9^^65^513^5
- ;;^UTILITY(U,$J,358.3,7933,1,0)
+ ;;^UTILITY(U,$J,358.3,8185,1,3,0)
+ ;;=3^Allergic Rhinitis d/t Pollen
+ ;;^UTILITY(U,$J,358.3,8185,1,4,0)
+ ;;=4^J30.1
+ ;;^UTILITY(U,$J,358.3,8185,2)
+ ;;=^269906
+ ;;^UTILITY(U,$J,358.3,8186,0)
+ ;;=R09.81^^39^393^18
+ ;;^UTILITY(U,$J,358.3,8186,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,7933,1,3,0)
- ;;=3^Eczema,Unspec
- ;;^UTILITY(U,$J,358.3,7933,1,4,0)
- ;;=4^L30.9
- ;;^UTILITY(U,$J,358.3,7933,2)
- ;;=^5009159
- ;;^UTILITY(U,$J,358.3,7934,0)
- ;;=L23.9^^65^513^2
- ;;^UTILITY(U,$J,358.3,7934,1,0)
+ ;;^UTILITY(U,$J,358.3,8186,1,3,0)
+ ;;=3^Nasal Congestion
+ ;;^UTILITY(U,$J,358.3,8186,1,4,0)
+ ;;=4^R09.81
+ ;;^UTILITY(U,$J,358.3,8186,2)
+ ;;=^5019203
+ ;;^UTILITY(U,$J,358.3,8187,0)
+ ;;=I69.928^^39^393^22
+ ;;^UTILITY(U,$J,358.3,8187,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,7934,1,3,0)
- ;;=3^Eczema,Allergic Contact,Unspec
- ;;^UTILITY(U,$J,358.3,7934,1,4,0)
- ;;=4^L23.9
- ;;^UTILITY(U,$J,358.3,7934,2)
- ;;=^5009125
- ;;^UTILITY(U,$J,358.3,7935,0)
- ;;=L20.82^^65^513^3
- ;;^UTILITY(U,$J,358.3,7935,1,0)
+ ;;^UTILITY(U,$J,358.3,8187,1,3,0)
+ ;;=3^Speech/Lang Deficit Following Cerebvasc Disease
+ ;;^UTILITY(U,$J,358.3,8187,1,4,0)
+ ;;=4^I69.928
+ ;;^UTILITY(U,$J,358.3,8187,2)
+ ;;=^5007557
+ ;;^UTILITY(U,$J,358.3,8188,0)
+ ;;=I69.328^^39^393^23
+ ;;^UTILITY(U,$J,358.3,8188,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,7935,1,3,0)
- ;;=3^Eczema,Flexural
- ;;^UTILITY(U,$J,358.3,7935,1,4,0)
- ;;=4^L20.82
+ ;;^UTILITY(U,$J,358.3,8188,1,3,0)
+ ;;=3^Speech/Lang Deficit Following Cerebvasc Infarc
+ ;;^UTILITY(U,$J,358.3,8188,1,4,0)
+ ;;=4^I69.328
+ ;;^UTILITY(U,$J,358.3,8188,2)
+ ;;=^5007495
+ ;;^UTILITY(U,$J,358.3,8189,0)
+ ;;=H81.4^^39^393^25
+ ;;^UTILITY(U,$J,358.3,8189,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,8189,1,3,0)
+ ;;=3^Vertigo of Central Origin
+ ;;^UTILITY(U,$J,358.3,8189,1,4,0)
+ ;;=4^H81.4

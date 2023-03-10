@@ -1,9 +1,15 @@
-ONCOPA2 ;Hines OIFO/GWB [PA Print Complete Abstract (132c)] continued ;10/05/11
- ;;2.2;ONCOLOGY;**1,5,10,12**;Jul 31, 2013;Build 8
+ONCOPA2 ;HINES OIFO/GWB - [PA Print Complete Abstract (132c)] cont ;10/05/11
+ ;;2.2;ONCOLOGY;**1,5,10,12,13,15**;Jul 31, 2013;Build 5
  ;
  N TX
  S NAME="FIRST COURSE OF TREATMENT" D FORMAT^ONCOPA1
  W !!,TITLE
+ W ! D P Q:EX=U
+ W:DATEDX<3210000 !,"   Neoadjuvant therapy:            ",ONCAB(165.5,IEN,245,"E") D P Q:EX=U
+ I DATEDX>3201231 D
+ .W !!,"   Neoadjuvant therapy (2021): ",ONCAB(165.5,IEN,245.1,"E") D P Q:EX=U
+ .W !,"   Neoadjuvant therapy-Clin Resp: ",ONCAB(165.5,IEN,245.2,"E") D P Q:EX=U
+ .W !,"   Neoadjuvant therapy-TX Effect: ",ONCAB(165.5,IEN,245.3,"E") S NEOXVAL=ONCAB(165.5,IEN,245.3,"E") D NEODSP^ONCOEOD1 K NEOXVAL D P Q:EX=U
  W ! D P Q:EX=U
  W !,"   Surgical Dx/Staging Proc:       ",ONCAB(165.5,IEN,58.1) D P Q:EX=U
  W !,"   Surgical Dx/Staging Proc Date:  ",ONCAB(165.5,IEN,58.3) D P Q:EX=U
@@ -18,7 +24,7 @@ ONCOPA2 ;Hines OIFO/GWB [PA Print Complete Abstract (132c)] continued ;10/05/11
  W !,"   Most Definitive Surg Date:      ",ONCAB(165.5,IEN,50) D P Q:EX=U
  W !,"   Surgery of Primary @Fac (F):    ",ONCAB(165.5,IEN,58.7) D P Q:EX=U
  W !,"   Most Definitive Surg @Fac Date: ",ONCAB(165.5,IEN,50.3) D P Q:EX=U
- W:DATEDX>3091231 !,"   Approach:                       ",ONCAB(165.5,IEN,234,"E") D P Q:EX=U
+ W:DATEDX>3091231 !,"   RX Hosp--Surg App 2010:         ",ONCAB(165.5,IEN,234,"E") D P Q:EX=U
  W !,"   Surgical Margins:               ",ONCAB(165.5,IEN,59) D P Q:EX=U
  W !,"   Scope of LN Surgery (F):        ",ONCAB(165.5,IEN,138.4) D P Q:EX=U
  W !,"   Scope of LN Surgery Date:       ",ONCAB(165.5,IEN,138.2) D P Q:EX=U
@@ -42,7 +48,6 @@ ONCOPA2 ;Hines OIFO/GWB [PA Print Complete Abstract (132c)] continued ;10/05/11
  W !,"   Treatment Guideline #3:         ",ONCAB(165.5,IEN,230,"E") D P Q:EX=U
  W !,"   Treatment Guideline Location:   ",ONCAB(165.5,IEN,231,"E") D P Q:EX=U
  W !,"   Treatment Guideline Doc Date:   ",ONCAB(165.5,IEN,232,"E") D P Q:EX=U
- W !,"   Neoadjuvant therapy:            ",ONCAB(165.5,IEN,245,"E") D P Q:EX=U
  W ! D P Q:EX=U
  W !,"   Radiation:                      ",ONCAB(165.5,IEN,51.2) D P Q:EX=U
  W !,"   Date Radiation Started:         ",ONCAB(165.5,IEN,51) D P Q:EX=U

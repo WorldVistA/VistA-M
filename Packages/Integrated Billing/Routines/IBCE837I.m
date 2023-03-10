@@ -1,5 +1,5 @@
 IBCE837I ;EDE/JWS - OUTPUT FOR 837 FHIR TRANSMISSION ;5/23/18 10:48am
- ;;2.0;INTEGRATED BILLING;**623**;23-MAY-18;Build 70
+ ;;2.0;INTEGRATED BILLING;**623,641,650,665**;23-MAY-18;Build 28
  ;;Per VA Directive 6402, this routine should not be modified.
  ;
 RES(RES) ;Set resource name correctly
@@ -48,13 +48,17 @@ END ; enclose message in '[ ]'
 GET(RESULT,ARG) ;RPC - EDICLAIMS; get list of claims to transmit
  ;
  ;D APPERROR^%ZTER("RPC USER") ; WCJ TEMP LINE TO SEE SOME VARIABLES
- N CT,DUZ,IBGBL,IBX,IBTEST,IBXIEN,IB0,IBTXST,IBTXTEST,IBBTYP,IBDIV,IB837R,IBNF,IBNOTX
+ N CT,DUZ,IBGBL,IBX,IBTEST,IBXIEN,IB0,IBTXST,IBTXTEST,IBBTYP,IBDIV,IB837R,IBNF,IBNOTX,MCNT
  K ^TMP($J,"BILL"),^TMP($J,"FHIR837")
- S DUZ(0)="@" D DTNOLF^DICRW
+ ;JWS;IB*2.0*650v7;3/16/21;remove setting of DUZ(0)
+ D DTNOLF^DICRW
  S IBGBL="^IBA(364,""AC"",1)",CT=1
- S IBX="" F  S IBX=$O(@IBGBL@(IBX)) Q:'IBX  D
+ ;JWS;IB*2.0*641v8;added MCNT for maximum count of claims IENs, >20,000 breaks FHIR
+ S IBX="" F  S IBX=$O(@IBGBL@(IBX)) Q:'IBX  D  I $G(MCNT)>19999 Q
  . S IBTEST=$$GET1^DIQ(364,IBX_",",.07,"I")
  . S IBXIEN=+$G(^IBA(364,IBX,0)),IBNF=""
+ . ;JWS;IB*2.0*665v17;EBILL-2241;11/2/21;found at Miami; again at Miami 12/3/21 (similar at Tongus, Orlando, West Palm) - bad entry in 364 file
+ . I IBXIEN=0 D REMCLM1(IBX) Q
  . S IB0=$G(^DGCR(399,IBXIEN,0))
  . S IBTXST=$$TXMT^IBCEF4(IBXIEN,.IBNOTX,IBNF)
  . ;JWS;IB*2.0*623v25;if claim is invalid to send, remove from 'AC' index
@@ -69,7 +73,8 @@ GET(RESULT,ARG) ;RPC - EDICLAIMS; get list of claims to transmit
  . I $$TESTPT^IBCEU($P(IB0,U,2)),'IBTXTEST D REMCLM(IBX) Q
  . ;JWS;IB*2.0*623v25;if not sending, remove from queue
  . I $D(^TMP($J,"BILL",$P(IB0,U))) D REMCLM(IBX) Q  ; do not send duplicates
- . S ^TMP($J,"BILL",$P(IB0,U))=""
+ . ;JWS;IB*2.0*641v8;added MCNT for maximum count of claims IENs, >20,000 breaks FHIR
+ . S ^TMP($J,"BILL",$P(IB0,U))="",MCNT=$G(MCNT)+1
  . S IBDIV=$P($S($P(IB0,U,22):$$SITE^VASITE(DT,$P(IB0,U,22)),1:$$SITE^VASITE()),U,3)
  . S IB837R=$$RECVR^IBCEF2(IBXIEN)
  . I $L($G(RESULT(CT)))>3000 S RESULT(CT)=RESULT(CT)_",",CT=$G(CT)+1
@@ -110,16 +115,21 @@ UP ;increment CT
 SETCLM(IBIEN,IBQ,RSUB) ; set the FHIR 837 claim for submission
  N DA,D0,DR,DIE,DIC
  S DA=IBIEN I DA="" Q
+ ;JWS;IB*2.0*665v17;EBILL-2241;11/2/21;found at Miami; again at Miami 12/3/21 (similar at Tongus, Orlando, West Palm) - bad entry in 364 file
+ I $P($G(^IBA(364,DA,0)),"^")="" Q
  I '$$PROD^XUPROD(1) S IBQ="MCT"  ; if on a non-production server, send to test queue.
  ;JWS;IB*2.0*623v24;added field .10 to 364 file entry if a resubmission
  S DR=".09////1"_$S(IBQ="MCT":";.07////1",1:";.07////0")_$S($G(RSUB)=1:";.1////1",1:""),DIE="^IBA(364,"
  D ^DIE
  Q
  ;JWS;IB*2.0*623v24
-SETSUB(IBIEN,IBVAL) ; clear the resubmission flag
+ ;JWS;IB*2.0*650v5 - add set/clear of field .11, file 364 FHIR Bundle Validation flag [11]
+SETSUB(IBIEN,IBVAL,IBFLD) ; clear the resubmission flag
  N DA,D0,DR,DIE,DIC
  S DA=IBIEN I DA="" Q
- S DR=".1////"_IBVAL,DIE="^IBA(364,"
+ I $G(IBFLD)=".11" S DR=".11////"_IBVAL
+ E  S DR=".1////"_IBVAL
+ S DIE="^IBA(364,"
  D ^DIE
  Q
  ;
@@ -139,4 +149,20 @@ REMCLM(IB364) ; clear the FHIR 837 claim for submission
  S DR=".03////Z;.09////2",DIE="^IBA(364,"
  D ^DIE
  Q
+ ;
+REMCLM1(IB364) ;;JWS;IB*2.0*665v17;EBILL-2241;11/2/21;found at Miami; again at Miami 12/3/21 (similar at Tongus, Orlando, West Palm) - bad entry in 364 file 
+ ;remove bad 364 entry
+ N DA,D0,DR,DIE,DIC,DIK
+ I +IB364=0 Q
+ S DA=IB364
+ S DIK="^IBA(364," D ^DIK
+ Q
+ ;
+ ;JWS;IB*2.0*641v13
+TEST608(IBIEN364) ;return claim test flag;flag only for conditional inclusion of COB info on claim data
+ N IBTEST,IBXIEN,IBTXTEST
+ S IBTEST=$$GET1^DIQ(364,IBIEN364_",",.07,"I")
+ S IBXIEN=+$G(^IBA(364,IBIEN364,0)),IBNF=""
+ S IBTXTEST=$S(IBTEST:2,1:+$$TEST^IBCEF4(IBXIEN))
+ Q $S(IBTXTEST=0:0,1:1)
  ;

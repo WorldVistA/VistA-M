@@ -1,5 +1,5 @@
-ECXSASUR ;BIR/DMA-SAS Report from Surgery Extract; 19 Jul 95 / 11:13 AM ;3/27/14  16:12
- ;;3.0;DSS EXTRACTS;**8,149**;Dec 22, 1997;Build 27
+ECXSASUR ;BIR/DMA-SAS Report from Surgery Extract; 19 Jul 95 / 11:13 AM ;5/17/19  14:40
+ ;;3.0;DSS EXTRACTS;**8,149,178**;Dec 22, 1997;Build 67
 EN ;entry point from menu option
  N ECXPORT,CNT ;149
  W @IOF,!!,"Surgery Extract SAS Report",!!
@@ -47,6 +47,7 @@ PROCESS ;queued entry
  ;type='p'rimary or 's'econdary or 'i'mplant
  ;ignore type=secondary
  S J="" F  S J=$O(^ECX(727.811,"AC",ECXEXT,J)) Q:'J  I $D(^ECX(727.811,J,0)) S EC=^(0),DIV=$P(EC,U,4) I $P(EC,U,17)'="S",$P(EC,U,28)'="C" D
+ .S EC16="" ;178 - NCD 21-12
  .;determine feeder location
  .S ECF1=$E($P(EC,U,32),1,4)
  .I ECF1="" D
@@ -79,10 +80,16 @@ PROCESS ;queued entry
  ..S ECFK=ECSS_"-10"
  ..S ^(ECFK)=$G(^TMP($J,"ECXAUD",DIV,ECFL,ECFK))+ECQ
  .;recovery room time product only if not cystoscopy and not non-or
- .I ECFL'="ORCY",$P(EC,U,32)="" D
- ..S ECQ=+$P(EC,U,33) I ECQ>0 D
- ...S ECFK=ECSS_"-60"
- ...S ^(ECFK)=$G(^TMP($J,"ECXAUD",DIV,ECFL,ECFK))+ECQ
+ .;178 21-12 
+ .;I ECFL'="ORCY",$P(EC,U,32)="" D
+ .;.S ECQ=+$P(EC,U,33) I ECQ>0 D
+ .;..S ECFK=ECSS_"-60"
+ .;..S ^(ECFK)=$G(^TMP($J,"ECXAUD",DIV,ECFL,ECFK))+ECQ
+ .S ECFK=ECSS_"-60"
+ .S ECQ=+$P(EC,U,33)
+ .I ECQ>0 S ^(ECFK)=$G(^TMP($J,"ECXAUD",DIV,ECFL,ECFK))+ECQ
+ .I ECQ=0 D
+ .. I $F("GLMSE",$G(EC16))>1 S ^(ECFK)=$G(^TMP($J,"ECXAUD",DIV,ECFL,ECFK))+2
  .;technician time product, only for cystoscopy
  .I ECFL="ORCY" D
  ..S ECQ=+$P(EC,U,20) S:($P(EC,U,22)>$P(EC,U,20)) ECQ=+$P(EC,U,22) I ECQ>0 D

@@ -1,130 +1,124 @@
-IBDEI1J0 ; ; 04-FEB-2020
- ;;3.0;IB ENCOUNTER FORM IMP/EXP;;FEB 04, 2020
+IBDEI1J0 ; ; 01-FEB-2022
+ ;;3.0;IB ENCOUNTER FORM IMP/EXP;;FEB 01, 2022
  Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,999) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
- ;;^UTILITY(U,$J,358.3,24396,1,3,0)
- ;;=3^Diffuse Otitis Externa,Bilateral
- ;;^UTILITY(U,$J,358.3,24396,1,4,0)
- ;;=4^H60.313
- ;;^UTILITY(U,$J,358.3,24396,2)
- ;;=^5006449
- ;;^UTILITY(U,$J,358.3,24397,0)
- ;;=H93.A3^^107^1202^38
- ;;^UTILITY(U,$J,358.3,24397,1,0)
+ ;;^UTILITY(U,$J,358.3,24702,2)
+ ;;=^5008585
+ ;;^UTILITY(U,$J,358.3,24703,0)
+ ;;=K43.2^^85^1087^6
+ ;;^UTILITY(U,$J,358.3,24703,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,24397,1,3,0)
- ;;=3^Pulsatile Tinnitus,Bilateral
- ;;^UTILITY(U,$J,358.3,24397,1,4,0)
- ;;=4^H93.A3
- ;;^UTILITY(U,$J,358.3,24397,2)
- ;;=^5138592
- ;;^UTILITY(U,$J,358.3,24398,0)
- ;;=H93.A1^^107^1202^40
- ;;^UTILITY(U,$J,358.3,24398,1,0)
+ ;;^UTILITY(U,$J,358.3,24703,1,3,0)
+ ;;=3^Incisional Hernia w/o Obst/Gangr
+ ;;^UTILITY(U,$J,358.3,24703,1,4,0)
+ ;;=4^K43.2
+ ;;^UTILITY(U,$J,358.3,24703,2)
+ ;;=^5008609
+ ;;^UTILITY(U,$J,358.3,24704,0)
+ ;;=K75.9^^85^1087^11
+ ;;^UTILITY(U,$J,358.3,24704,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,24398,1,3,0)
- ;;=3^Pulsatile Tinnitus,Right Ear
- ;;^UTILITY(U,$J,358.3,24398,1,4,0)
- ;;=4^H93.A1
- ;;^UTILITY(U,$J,358.3,24398,2)
- ;;=^5138590
- ;;^UTILITY(U,$J,358.3,24399,0)
- ;;=H93.A2^^107^1202^39
- ;;^UTILITY(U,$J,358.3,24399,1,0)
+ ;;^UTILITY(U,$J,358.3,24704,1,3,0)
+ ;;=3^Inflammatory Liver Disease,Unspec
+ ;;^UTILITY(U,$J,358.3,24704,1,4,0)
+ ;;=4^K75.9
+ ;;^UTILITY(U,$J,358.3,24704,2)
+ ;;=^5008830
+ ;;^UTILITY(U,$J,358.3,24705,0)
+ ;;=M51.9^^85^1087^17
+ ;;^UTILITY(U,$J,358.3,24705,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,24399,1,3,0)
- ;;=3^Pulsatile Tinnitus,Left Ear
- ;;^UTILITY(U,$J,358.3,24399,1,4,0)
- ;;=4^H93.A2
- ;;^UTILITY(U,$J,358.3,24399,2)
- ;;=^5138591
- ;;^UTILITY(U,$J,358.3,24400,0)
- ;;=B37.0^^107^1203^13
- ;;^UTILITY(U,$J,358.3,24400,1,0)
+ ;;^UTILITY(U,$J,358.3,24705,1,3,0)
+ ;;=3^Intervertebral Disc Disorder Thoracic,Thoracolumbar & Lumbar
+ ;;^UTILITY(U,$J,358.3,24705,1,4,0)
+ ;;=4^M51.9
+ ;;^UTILITY(U,$J,358.3,24705,2)
+ ;;=^5012263
+ ;;^UTILITY(U,$J,358.3,24706,0)
+ ;;=I30.0^^85^1087^2
+ ;;^UTILITY(U,$J,358.3,24706,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,24400,1,3,0)
- ;;=3^Candidal Stomatitis
- ;;^UTILITY(U,$J,358.3,24400,1,4,0)
- ;;=4^B37.0
- ;;^UTILITY(U,$J,358.3,24400,2)
- ;;=^5000612
- ;;^UTILITY(U,$J,358.3,24401,0)
- ;;=B37.83^^107^1203^12
- ;;^UTILITY(U,$J,358.3,24401,1,0)
+ ;;^UTILITY(U,$J,358.3,24706,1,3,0)
+ ;;=3^Idiopathic Pericarditis Acute
+ ;;^UTILITY(U,$J,358.3,24706,1,4,0)
+ ;;=4^I30.0
+ ;;^UTILITY(U,$J,358.3,24706,2)
+ ;;=^5007157
+ ;;^UTILITY(U,$J,358.3,24707,0)
+ ;;=T81.41XA^^85^1087^10
+ ;;^UTILITY(U,$J,358.3,24707,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,24401,1,3,0)
- ;;=3^Candidal Cheilitis
- ;;^UTILITY(U,$J,358.3,24401,1,4,0)
- ;;=4^B37.83
- ;;^UTILITY(U,$J,358.3,24401,2)
- ;;=^5000622
- ;;^UTILITY(U,$J,358.3,24402,0)
- ;;=J00.^^107^1203^6
- ;;^UTILITY(U,$J,358.3,24402,1,0)
+ ;;^UTILITY(U,$J,358.3,24707,1,3,0)
+ ;;=3^Infection Following Proc,Superficial Incis Surg Site,Init Enc
+ ;;^UTILITY(U,$J,358.3,24707,1,4,0)
+ ;;=4^T81.41XA
+ ;;^UTILITY(U,$J,358.3,24707,2)
+ ;;=^5157587
+ ;;^UTILITY(U,$J,358.3,24708,0)
+ ;;=T81.42XA^^85^1087^7
+ ;;^UTILITY(U,$J,358.3,24708,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,24402,1,3,0)
- ;;=3^Acute Nasopharyngitis 
- ;;^UTILITY(U,$J,358.3,24402,1,4,0)
- ;;=4^J00.
- ;;^UTILITY(U,$J,358.3,24402,2)
- ;;=^5008115
- ;;^UTILITY(U,$J,358.3,24403,0)
- ;;=J01.00^^107^1203^5
- ;;^UTILITY(U,$J,358.3,24403,1,0)
+ ;;^UTILITY(U,$J,358.3,24708,1,3,0)
+ ;;=3^Infection Following Proc,Deep Incis Surg Site,Init Enc
+ ;;^UTILITY(U,$J,358.3,24708,1,4,0)
+ ;;=4^T81.42XA
+ ;;^UTILITY(U,$J,358.3,24708,2)
+ ;;=^5157590
+ ;;^UTILITY(U,$J,358.3,24709,0)
+ ;;=T81.43XA^^85^1087^8
+ ;;^UTILITY(U,$J,358.3,24709,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,24403,1,3,0)
- ;;=3^Acute Maxillary Sinusitis,Unspec
- ;;^UTILITY(U,$J,358.3,24403,1,4,0)
- ;;=4^J01.00
- ;;^UTILITY(U,$J,358.3,24403,2)
- ;;=^5008116
- ;;^UTILITY(U,$J,358.3,24404,0)
- ;;=J01.10^^107^1203^1
- ;;^UTILITY(U,$J,358.3,24404,1,0)
+ ;;^UTILITY(U,$J,358.3,24709,1,3,0)
+ ;;=3^Infection Following Proc,Organ/Space Surg Site,Init Enc
+ ;;^UTILITY(U,$J,358.3,24709,1,4,0)
+ ;;=4^T81.43XA
+ ;;^UTILITY(U,$J,358.3,24709,2)
+ ;;=^5157593
+ ;;^UTILITY(U,$J,358.3,24710,0)
+ ;;=T81.49XA^^85^1087^9
+ ;;^UTILITY(U,$J,358.3,24710,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,24404,1,3,0)
- ;;=3^Acute Frontal Sinusitis,Unspec
- ;;^UTILITY(U,$J,358.3,24404,1,4,0)
- ;;=4^J01.10
- ;;^UTILITY(U,$J,358.3,24404,2)
- ;;=^5008118
- ;;^UTILITY(U,$J,358.3,24405,0)
- ;;=J02.9^^107^1203^7
- ;;^UTILITY(U,$J,358.3,24405,1,0)
+ ;;^UTILITY(U,$J,358.3,24710,1,3,0)
+ ;;=3^Infection Following Proc,Oth Surg Site,Init Enc
+ ;;^UTILITY(U,$J,358.3,24710,1,4,0)
+ ;;=4^T81.49XA
+ ;;^UTILITY(U,$J,358.3,24710,2)
+ ;;=^5157599
+ ;;^UTILITY(U,$J,358.3,24711,0)
+ ;;=N18.9^^85^1088^3
+ ;;^UTILITY(U,$J,358.3,24711,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,24405,1,3,0)
- ;;=3^Acute Pharyngitis,Unspec
- ;;^UTILITY(U,$J,358.3,24405,1,4,0)
- ;;=4^J02.9
- ;;^UTILITY(U,$J,358.3,24405,2)
- ;;=^5008130
- ;;^UTILITY(U,$J,358.3,24406,0)
- ;;=J03.91^^107^1203^8
- ;;^UTILITY(U,$J,358.3,24406,1,0)
+ ;;^UTILITY(U,$J,358.3,24711,1,3,0)
+ ;;=3^Kidney Disease,Chronic,Unspec
+ ;;^UTILITY(U,$J,358.3,24711,1,4,0)
+ ;;=4^N18.9
+ ;;^UTILITY(U,$J,358.3,24711,2)
+ ;;=^332812
+ ;;^UTILITY(U,$J,358.3,24712,0)
+ ;;=J04.0^^85^1088^5
+ ;;^UTILITY(U,$J,358.3,24712,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,24406,1,3,0)
- ;;=3^Acute Recurrent Tonsillitis,Unspec
- ;;^UTILITY(U,$J,358.3,24406,1,4,0)
- ;;=4^J03.91
- ;;^UTILITY(U,$J,358.3,24406,2)
- ;;=^5008136
- ;;^UTILITY(U,$J,358.3,24407,0)
- ;;=J04.0^^107^1203^3
- ;;^UTILITY(U,$J,358.3,24407,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,24407,1,3,0)
- ;;=3^Acute Laryngitis
- ;;^UTILITY(U,$J,358.3,24407,1,4,0)
+ ;;^UTILITY(U,$J,358.3,24712,1,3,0)
+ ;;=3^Laryngitis,Acute
+ ;;^UTILITY(U,$J,358.3,24712,1,4,0)
  ;;=4^J04.0
- ;;^UTILITY(U,$J,358.3,24407,2)
+ ;;^UTILITY(U,$J,358.3,24712,2)
  ;;=^5008137
- ;;^UTILITY(U,$J,358.3,24408,0)
- ;;=J06.0^^107^1203^4
- ;;^UTILITY(U,$J,358.3,24408,1,0)
+ ;;^UTILITY(U,$J,358.3,24713,0)
+ ;;=J05.0^^85^1088^6
+ ;;^UTILITY(U,$J,358.3,24713,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,24408,1,3,0)
- ;;=3^Acute Laryngopharyngitis
- ;;^UTILITY(U,$J,358.3,24408,1,4,0)
- ;;=4^J06.0
- ;;^UTILITY(U,$J,358.3,24408,2)
- ;;=^269876
+ ;;^UTILITY(U,$J,358.3,24713,1,3,0)
+ ;;=3^Laryngitis,Acute Obstructive (Croup)
+ ;;^UTILITY(U,$J,358.3,24713,1,4,0)
+ ;;=4^J05.0
+ ;;^UTILITY(U,$J,358.3,24713,2)
+ ;;=^5008141
+ ;;^UTILITY(U,$J,358.3,24714,0)
+ ;;=R17.^^85^1088^1
+ ;;^UTILITY(U,$J,358.3,24714,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,24714,1,3,0)
+ ;;=3^Jaundice,Unspec
+ ;;^UTILITY(U,$J,358.3,24714,1,4,0)
+ ;;=4^R17.

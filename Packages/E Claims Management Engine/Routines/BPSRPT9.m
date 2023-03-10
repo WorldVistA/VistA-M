@@ -1,5 +1,5 @@
 BPSRPT9 ;BHAM ISC/BNT - ECME REPORTS ;19-SEPT-08
- ;;1.0;E CLAIMS MGMT ENGINE;**8,18,20**;01-JUN-04;Build 27
+ ;;1.0;E CLAIMS MGMT ENGINE;**8,18,20,27**;JUN 2004;Build 15
  ;;Per VA Directive 6402, this routine should not be modified.
  ;
  Q
@@ -15,7 +15,7 @@ BPSRPT9 ;BHAM ISC/BNT - ECME REPORTS ;19-SEPT-08
  ;
 EN(BPRTYPE) ;
  N BPREJCD,BPRLNRL,BPRPTNAM,BPRTBCK,BPSCR,BPSUMDET,CODE,POS,STAT,X,Y,BPINS,BPARR
- N BPSORT,BPCRON,BPSEL,BPS1,BPS2,BPS3,BPS4,BPS5,BPDT,BPPHARM,BPDIVS,BPELIG1
+ N BPSORT,BPCRON,BPSEL,BPS1,BPS2,BPS3,BPS4,BPS5,BPDT,BPPHARM,BPDIVS,BPELIG1,BPSEXCEL
  ;
  ;Verify that a valid report has been requested
  I ",8,9,"'[(","_$G(BPRTYPE)_",") D EN^DDIOL("<Invalid Menu Definition - Report Undefined>") H 3 Q
@@ -34,12 +34,15 @@ EN(BPRTYPE) ;
  ;Get sort criteria
  I $$GETSORT(BPRTYPE)=-1 Q
  ;
- D DEV("RUN^BPSRPT9",BPRTYPE)
+ S BPSEXCEL=0
+ I BPRTYPE=9 S BPSEXCEL=$$SELEXCEL()
+ ;
+ D DEV("RUN^BPSRPT9",BPRTYPE,BPSEXCEL)
  Q
  ;
 RUN ; Process Report - runs in the background or foreground
  N BPRPTARR
- I BPRTYPE=9 D GETSEC^BPSRPT9A(BPDT,.BPRPTARR)  ; Collect Potential Secondary Rx Claims data
+ I BPRTYPE=9 D GETSEC^BPSRPT9A(BPDT,.BPRPTARR,BPSEXCEL)  ; Collect Potential Secondary Rx Claims data
  I BPRTYPE=8 D GETTRI^BPSRPT9A(BPDT,.BPRPTARR)  ; Collect Potential Dual Eligible Claims data
  ;
  U IO
@@ -103,6 +106,8 @@ PRNTSEC(BPARR) ;
  . W !!?5,"No potential secondary Rx claims available for date range"
  . Q
  ;
+ I BPSEXCEL D PRNTSECE(.BPARR) Q
+ ;
  S PSRT=-DT-1
  D HDR(BPRTYPE)
  F  S PSRT=$O(BPARR(PSRT)) Q:PSRT=""  D  Q:BPQUIT
@@ -132,6 +137,19 @@ PRNTSEC(BPARR) ;
  ; display the legend at the end of the report
  I $Y>(IOSL-4) D HDR(BPRTYPE) Q:BPQUIT
  W !
+ I $G(LGFLG1) W !,"Bill# ""(P) Rej"" indicates a rejected/closed primary ECME claim"
+ I $G(LGFLG2) W !,"COB ""-"" indicates a blank COB field in the pt. ins. policy"
+ Q
+ ;
+ ; Print Secondary Report Excel Format
+PRNTSECE(BPARR) ;
+ N BPSAR,LGFLG1,LGFLG2
+ W !,"Division^Bill#^RX#^Fill^Patient^PatID^COB^Date^Payers^HPID/OEID"
+ S BPSAR="BPARR(0)"
+ F  S BPSAR=$Q(@BPSAR) Q:BPSAR=""  D
+ . I $P(@BPSAR,"^",2)["(P)" S LGFLG1=1
+ . I $P(@BPSAR,"^",7)["-" S LGFLG2=1
+ . W !,@BPSAR
  I $G(LGFLG1) W !,"Bill# ""(P) Rej"" indicates a rejected/closed primary ECME claim"
  I $G(LGFLG2) W !,"COB ""-"" indicates a blank COB field in the pt. ins. policy"
  Q
@@ -236,7 +254,8 @@ SELDATE() ;
  ;Device Selection
  ;Input: BPR = Routine
  ;       BPRTYPE = Report Type used to identify Task name
-DEV(BPR,BPRTYPE) ;
+ ;       BPSEXCEL = Format output for Excel
+DEV(BPR,BPRTYPE,BPSEXCEL) ;
  N %ZIS,ZTSK,ZTSAVE,POP,ZTRTN,ZTDESC
  S %ZIS="MQ" D ^%ZIS Q:POP
  I $D(IO("Q")) D  Q
@@ -292,4 +311,27 @@ SELELIG(BPELIG1) ;Select Eligibility Types
  ;
  S X=$$SELMULTI^BPSOPR(.DIR,.BPELIG1)
  Q X
+ ;
+SELEXCEL() ; Select whether to capture data for Excel report.
+ N BPEXCEL,DIR,DIRUT,DTOUT,DUOUT,DIROUT
+ ;
+ S BPEXCEL=0
+ S DIR(0)="Y",DIR("B")="NO",DIR("T")=DTIME W !
+ S DIR("A")="Do you want to capture report data for an Excel document"
+ S DIR("?")="^D HEXC^BPSRPT4"
+ ;
+ D ^DIR
+ K DIR
+ I $D(DIRUT)!$D(DTOUT)!$D(DUOUT)!$D(DIROUT) Q "^"
+ I Y S BPEXCEL=1
+ ;
+ ;Display Excel display message
+ I BPEXCEL=1 D
+ .W !!?5,"Before continuing, please set up your terminal to capture the"
+ .W !?5,"detail report data and save the detail report data in a text file"
+ .W !?5,"to a local drive. This report may take a while to run."
+ .W !!?5,"Note: To avoid undesired wrapping of the data saved to the file,"
+ .W !?5,"      please enter '0;256;99999' at the 'DEVICE:' prompt.",!
+ ;
+ Q BPEXCEL
  ;

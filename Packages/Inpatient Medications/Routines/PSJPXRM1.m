@@ -1,5 +1,5 @@
-PSJPXRM1 ;BIR/MV-RETURN INPATIENT ACTIVE MEDS (EXPANDED) ; 2/28/11 3:28pm
- ;;5.0; INPATIENT MEDICATIONS ;**90,170,225**;16 DEC 97;Build 16
+PSJPXRM1 ;BIR/MV - RETURN INPATIENT ACTIVE MEDS (EXPANDED) ;Apr 20, 2021@15:09:49
+ ;;5.0;INPATIENT MEDICATIONS;**90,170,225,399**;16 DEC 97;Build 64
  ;
  ; Reference to ^PS(51.2 is supported by DBIA 2178.
  ; Reference to ^PS(52.6 is supported by DBIA 1231.
@@ -17,6 +17,7 @@ OEL(DAS,NAME)         ; return list of expanded inpat meds
  I ON'["P",'$D(@(F_+ON_")")) Q
  I ON["P" S X=$G(^PS(53.1,+ON,0)) Q:$P(X,U,15)'=DFN  S TYP=$P(X,U,4) D @$S(TYP="U":"UDTMP",1:"IVTMP")
  D:ON'["P" @$S(ON["U":"UDTMP",1:"IVTMP")
+ S NAME("INDICATION")=$P($G(@(F_+ON_",18)")),U)
  S Y=$S(ON["V":5,1:12),CNT=0
  I $O(@(F_+ON_","_Y_",0)")) D
  . F X=0:0 S X=$O(@(F_+ON_","_Y_","_X_")")) Q:'X  D

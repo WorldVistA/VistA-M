@@ -1,126 +1,130 @@
-IBDEI10H ; ; 04-FEB-2020
- ;;3.0;IB ENCOUNTER FORM IMP/EXP;;FEB 04, 2020
+IBDEI10H ; ; 01-FEB-2022
+ ;;3.0;IB ENCOUNTER FORM IMP/EXP;;FEB 01, 2022
  Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,999) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
- ;;^UTILITY(U,$J,358.3,16263,1,4,0)
- ;;=4^R19.5
- ;;^UTILITY(U,$J,358.3,16263,2)
- ;;=^5019274
- ;;^UTILITY(U,$J,358.3,16264,0)
- ;;=E53.8^^88^875^91
- ;;^UTILITY(U,$J,358.3,16264,1,0)
+ ;;^UTILITY(U,$J,358.3,16451,0)
+ ;;=I09.89^^61^774^17
+ ;;^UTILITY(U,$J,358.3,16451,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,16264,1,3,0)
- ;;=3^Vitamin B12 Deficiency
- ;;^UTILITY(U,$J,358.3,16264,1,4,0)
- ;;=4^E53.8
- ;;^UTILITY(U,$J,358.3,16264,2)
- ;;=^5002797
- ;;^UTILITY(U,$J,358.3,16265,0)
- ;;=K59.04^^88^875^20
- ;;^UTILITY(U,$J,358.3,16265,1,0)
+ ;;^UTILITY(U,$J,358.3,16451,1,3,0)
+ ;;=3^Rheumatic Heart Diseases NEC
+ ;;^UTILITY(U,$J,358.3,16451,1,4,0)
+ ;;=4^I09.89
+ ;;^UTILITY(U,$J,358.3,16451,2)
+ ;;=^5007060
+ ;;^UTILITY(U,$J,358.3,16452,0)
+ ;;=I47.1^^61^774^24
+ ;;^UTILITY(U,$J,358.3,16452,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,16265,1,3,0)
- ;;=3^Constipation,Chronic Idiopathic
- ;;^UTILITY(U,$J,358.3,16265,1,4,0)
- ;;=4^K59.04
- ;;^UTILITY(U,$J,358.3,16265,2)
- ;;=^7148177
- ;;^UTILITY(U,$J,358.3,16266,0)
- ;;=K59.03^^88^875^21
- ;;^UTILITY(U,$J,358.3,16266,1,0)
+ ;;^UTILITY(U,$J,358.3,16452,1,3,0)
+ ;;=3^Supraventricular Tachycardia
+ ;;^UTILITY(U,$J,358.3,16452,1,4,0)
+ ;;=4^I47.1
+ ;;^UTILITY(U,$J,358.3,16452,2)
+ ;;=^5007223
+ ;;^UTILITY(U,$J,358.3,16453,0)
+ ;;=I48.0^^61^774^15
+ ;;^UTILITY(U,$J,358.3,16453,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,16266,1,3,0)
- ;;=3^Constipation,Drug Induced
- ;;^UTILITY(U,$J,358.3,16266,1,4,0)
- ;;=4^K59.03
- ;;^UTILITY(U,$J,358.3,16266,2)
- ;;=^5138744
- ;;^UTILITY(U,$J,358.3,16267,0)
- ;;=K52.21^^88^875^51
- ;;^UTILITY(U,$J,358.3,16267,1,0)
+ ;;^UTILITY(U,$J,358.3,16453,1,3,0)
+ ;;=3^Paroxysmal Atrial Fibrillation
+ ;;^UTILITY(U,$J,358.3,16453,1,4,0)
+ ;;=4^I48.0
+ ;;^UTILITY(U,$J,358.3,16453,2)
+ ;;=^90473
+ ;;^UTILITY(U,$J,358.3,16454,0)
+ ;;=I49.5^^61^774^23
+ ;;^UTILITY(U,$J,358.3,16454,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,16267,1,3,0)
- ;;=3^Enterocolitis Synd Induced by Food Protein
- ;;^UTILITY(U,$J,358.3,16267,1,4,0)
- ;;=4^K52.21
- ;;^UTILITY(U,$J,358.3,16267,2)
- ;;=^5138713
- ;;^UTILITY(U,$J,358.3,16268,0)
- ;;=K52.22^^88^875^52
- ;;^UTILITY(U,$J,358.3,16268,1,0)
+ ;;^UTILITY(U,$J,358.3,16454,1,3,0)
+ ;;=3^Sick Sinus Syndrome
+ ;;^UTILITY(U,$J,358.3,16454,1,4,0)
+ ;;=4^I49.5
+ ;;^UTILITY(U,$J,358.3,16454,2)
+ ;;=^110404
+ ;;^UTILITY(U,$J,358.3,16455,0)
+ ;;=I49.8^^61^774^3
+ ;;^UTILITY(U,$J,358.3,16455,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,16268,1,3,0)
- ;;=3^Enterocolopathy Induced by Food Protein
- ;;^UTILITY(U,$J,358.3,16268,1,4,0)
- ;;=4^K52.22
- ;;^UTILITY(U,$J,358.3,16268,2)
- ;;=^5138714
- ;;^UTILITY(U,$J,358.3,16269,0)
- ;;=K58.2^^88^875^79
- ;;^UTILITY(U,$J,358.3,16269,1,0)
+ ;;^UTILITY(U,$J,358.3,16455,1,3,0)
+ ;;=3^Cardiac Arrhythmias
+ ;;^UTILITY(U,$J,358.3,16455,1,4,0)
+ ;;=4^I49.8
+ ;;^UTILITY(U,$J,358.3,16455,2)
+ ;;=^5007236
+ ;;^UTILITY(U,$J,358.3,16456,0)
+ ;;=I49.9^^61^774^2
+ ;;^UTILITY(U,$J,358.3,16456,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,16269,1,3,0)
- ;;=3^Irritable Bowel Syndrome,Mixed
- ;;^UTILITY(U,$J,358.3,16269,1,4,0)
- ;;=4^K58.2
- ;;^UTILITY(U,$J,358.3,16269,2)
- ;;=^5138742
- ;;^UTILITY(U,$J,358.3,16270,0)
- ;;=K58.8^^88^875^80
- ;;^UTILITY(U,$J,358.3,16270,1,0)
+ ;;^UTILITY(U,$J,358.3,16456,1,3,0)
+ ;;=3^Cardiac Arrhythmia,Unspec
+ ;;^UTILITY(U,$J,358.3,16456,1,4,0)
+ ;;=4^I49.9
+ ;;^UTILITY(U,$J,358.3,16456,2)
+ ;;=^5007237
+ ;;^UTILITY(U,$J,358.3,16457,0)
+ ;;=R00.1^^61^774^1
+ ;;^UTILITY(U,$J,358.3,16457,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,16270,1,3,0)
- ;;=3^Irritable Bowel Syndrome,Other
- ;;^UTILITY(U,$J,358.3,16270,1,4,0)
- ;;=4^K58.8
- ;;^UTILITY(U,$J,358.3,16270,2)
- ;;=^5138743
- ;;^UTILITY(U,$J,358.3,16271,0)
- ;;=K58.1^^88^875^76
- ;;^UTILITY(U,$J,358.3,16271,1,0)
+ ;;^UTILITY(U,$J,358.3,16457,1,3,0)
+ ;;=3^Bradycardia,Unspec
+ ;;^UTILITY(U,$J,358.3,16457,1,4,0)
+ ;;=4^R00.1
+ ;;^UTILITY(U,$J,358.3,16457,2)
+ ;;=^5019164
+ ;;^UTILITY(U,$J,358.3,16458,0)
+ ;;=I34.1^^61^774^14
+ ;;^UTILITY(U,$J,358.3,16458,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,16271,1,3,0)
- ;;=3^Irritable Bowel Syndrome w/ Constipation
- ;;^UTILITY(U,$J,358.3,16271,1,4,0)
- ;;=4^K58.1
- ;;^UTILITY(U,$J,358.3,16271,2)
- ;;=^5138741
- ;;^UTILITY(U,$J,358.3,16272,0)
- ;;=K61.39^^88^875^5
- ;;^UTILITY(U,$J,358.3,16272,1,0)
+ ;;^UTILITY(U,$J,358.3,16458,1,3,0)
+ ;;=3^Nonrheumatic Mitral Valve Prolapse
+ ;;^UTILITY(U,$J,358.3,16458,1,4,0)
+ ;;=4^I34.1
+ ;;^UTILITY(U,$J,358.3,16458,2)
+ ;;=^5007170
+ ;;^UTILITY(U,$J,358.3,16459,0)
+ ;;=D68.4^^61^775^1
+ ;;^UTILITY(U,$J,358.3,16459,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,16272,1,3,0)
- ;;=3^Abscess,Ischiorectal NOS
- ;;^UTILITY(U,$J,358.3,16272,1,4,0)
- ;;=4^K61.39
- ;;^UTILITY(U,$J,358.3,16272,2)
- ;;=^5157385
- ;;^UTILITY(U,$J,358.3,16273,0)
- ;;=G43.A1^^88^875^34
- ;;^UTILITY(U,$J,358.3,16273,1,0)
+ ;;^UTILITY(U,$J,358.3,16459,1,3,0)
+ ;;=3^Acquired Coagulation Factor Deficiency
+ ;;^UTILITY(U,$J,358.3,16459,1,4,0)
+ ;;=4^D68.4
+ ;;^UTILITY(U,$J,358.3,16459,2)
+ ;;=^2235
+ ;;^UTILITY(U,$J,358.3,16460,0)
+ ;;=D59.9^^61^775^2
+ ;;^UTILITY(U,$J,358.3,16460,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,16273,1,3,0)
- ;;=3^Cyclical Vomiting,In Migraine,Intractable
- ;;^UTILITY(U,$J,358.3,16273,1,4,0)
- ;;=4^G43.A1
- ;;^UTILITY(U,$J,358.3,16273,2)
- ;;=^5003913
- ;;^UTILITY(U,$J,358.3,16274,0)
- ;;=G43.A0^^88^875^35
- ;;^UTILITY(U,$J,358.3,16274,1,0)
+ ;;^UTILITY(U,$J,358.3,16460,1,3,0)
+ ;;=3^Acquired Hemolytic Anemia,Unspec
+ ;;^UTILITY(U,$J,358.3,16460,1,4,0)
+ ;;=4^D59.9
+ ;;^UTILITY(U,$J,358.3,16460,2)
+ ;;=^5002330
+ ;;^UTILITY(U,$J,358.3,16461,0)
+ ;;=C91.00^^61^775^5
+ ;;^UTILITY(U,$J,358.3,16461,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,16274,1,3,0)
- ;;=3^Cyclical Vomiting,In Migraine,Not intractable
- ;;^UTILITY(U,$J,358.3,16274,1,4,0)
- ;;=4^G43.A0
- ;;^UTILITY(U,$J,358.3,16274,2)
- ;;=^5003912
- ;;^UTILITY(U,$J,358.3,16275,0)
- ;;=R11.15^^88^875^33
- ;;^UTILITY(U,$J,358.3,16275,1,0)
+ ;;^UTILITY(U,$J,358.3,16461,1,3,0)
+ ;;=3^Acute Lymphoblastic Leukemia,Not in Remission
+ ;;^UTILITY(U,$J,358.3,16461,1,4,0)
+ ;;=4^C91.00
+ ;;^UTILITY(U,$J,358.3,16461,2)
+ ;;=^5001762
+ ;;^UTILITY(U,$J,358.3,16462,0)
+ ;;=C91.01^^61^775^4
+ ;;^UTILITY(U,$J,358.3,16462,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,16275,1,3,0)
- ;;=3^Cyclical Vomiting Syndrome,Unrelated to Migraine
- ;;^UTILITY(U,$J,358.3,16275,1,4,0)
- ;;=4^R11.15
+ ;;^UTILITY(U,$J,358.3,16462,1,3,0)
+ ;;=3^Acute Lymphoblastic Leukemia,In Remission
+ ;;^UTILITY(U,$J,358.3,16462,1,4,0)
+ ;;=4^C91.01
+ ;;^UTILITY(U,$J,358.3,16462,2)
+ ;;=^5001763
+ ;;^UTILITY(U,$J,358.3,16463,0)
+ ;;=C92.01^^61^775^7
+ ;;^UTILITY(U,$J,358.3,16463,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,16463,1,3,0)
+ ;;=3^Acute Myeloblastic Leukemia,In Remission

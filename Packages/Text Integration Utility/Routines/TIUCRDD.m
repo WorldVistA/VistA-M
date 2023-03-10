@@ -1,15 +1,16 @@
-TIUCRDD ;SPFO/AJB - Create Document Definitions ;May 18, 2020@08:11:43
- ;;1.0;TEXT INTEGRATION UTILITIES;**331**;Jun 20, 1997;Build 6
+TIUCRDD ;SPFO/AJB - Create Document Definitions ;Oct 02, 2020@06:55:26
+ ;;1.0;TEXT INTEGRATION UTILITIES;**331,330**;Jun 20, 1997;Build 51
  ;
- ; $$FIND1^DIC     ICR#2051          UPDATE^DIE     ICR#2053
+ ; $$FIND1^DIC     ICR#2051            UPDATE^DIE   ICR#2053
  ;  $$GET1^DIQ     ICR#2056           $$NOW^XLFDT   ICR#10103
- ;    $$UP^XLFSTR  ICR#10104            MES^XPDUTL  ICR#10141
+ ; $$UP^XLFSTR     ICR#10104           MES^XPDUTL   ICR#10141
  Q
 CRDD(NAME,TYPE,STATUS,PARENT,STDTTL) ; create a TIU Document Definition in 8925.1
  ; NAME   - "Example Title"            TYPE   - Class "CL", Document Class "DC", (Document) Title "DOC"
  ; STATUS - Active 11, Inactive 13     PARENT - name or IEN of desired parent 8925.1
  ;                                     STDTTL - name or IEN of enterprise standard title 8926.1
- ; verify arguments
+ N TIUFPRIV S TIUFPRIV=1
+ ; check NAME
  S NAME=$$UP^XLFSTR($G(NAME)) I NAME="" Q "0^NAME missing."
  I '+NAME,$A($E(NAME))<65!($A($E(NAME))>90) Q "0^NAME must not start with punctuation."
  I $L(NAME)<3!($L(NAME)>60) Q "0^NAME must be 3-60 characters"
@@ -64,5 +65,6 @@ ATTACH(PARENT,CHILD) ;
  S FDA(8925.14,"+2,"_PARENT_",",4)=$$GET1^DIQ(8925.1,CHILD,.01)
  D UPDATE^DIE("","FDA","IEN","ERR")
  Q
-LU(FILE,NAME,FLAGS,SCREEN,INDEXES) ;
- Q $$FIND1^DIC(FILE,"",$G(FLAGS),NAME,$G(INDEXES),$G(SCREEN),"ERR")
+LU(FILE,NAME,FLAGS,SCREEN,INDEXES,IENS) ;
+ N DILOCKTM,DISYS
+ Q $$FIND1^DIC(FILE,$G(IENS),$G(FLAGS),$G(NAME),$G(INDEXES),$G(SCREEN),"ERR")

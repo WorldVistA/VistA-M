@@ -1,5 +1,5 @@
-PSOP2 ;BIR/SAB - medication profile long or short ;02/25/94
- ;;7.0;OUTPATIENT PHARMACY;**15,98,132,326**;DEC 1997;Build 11
+PSOP2 ;BIR/SAB - medication profile long or short ;May 20, 2020@10:17
+ ;;7.0;OUTPATIENT PHARMACY;**15,98,132,326,441**;DEC 1997;Build 208
  ;External reference to File #55 supported by DBIA 2228
  ;External reference to PSDRUG supported by DBIA 221
  ;External reference ^PS(50.606 supported by DBIA 2174
@@ -31,8 +31,9 @@ PEND ;list pending orders
  .K DIC,X,Y S DIC="^VA(200,",DIC(0)="M",X="`"_+$P(PSOPEND(EEEE),"^",3) D ^DIC K DIC,X
  .W ?52,"Prov: "_$E($P(Y,"^",2),1,21)
  .D:($Y+5>IOSL)&($E(IOST)="C") DIR^PSOP1 Q:$G(PQT)  D:$Y+5>IOSL HD1
- .S PCOUNT=1 W !?1,"Sig: " F AAAA=0:0 S AAAA=$O(^PS(52.41,PENDREX,"SIG",AAAA)) Q:'AAAA!($G(PQT))  W:PCOUNT>1 ! W ?6,$G(^PS(52.41,PENDREX,"SIG",AAAA,0)) S PCOUNT=PCOUNT+1 D:($Y+5>IOSL)&($E(IOST)="C") DIR^PSOP1 Q:$G(PQT)  D:$Y+5>IOSL
+ .S PCOUNT=1 W !?1,"Sig: " N AAAA F AAAA=0:0 S AAAA=$O(^PS(52.41,PENDREX,"SIG",AAAA)) Q:'AAAA!($G(PQT))  W:PCOUNT>1 ! W ?6,$G(^PS(52.41,PENDREX,"SIG",AAAA,0)) S PCOUNT=PCOUNT+1 D:($Y+5>IOSL)&($E(IOST)="C") DIR^PSOP1 Q:$G(PQT)  D:$Y+5>IOSL
  ..D HD1 S PPCOUNT=$S('$O(^PS(52.41,PENDREX,"SIG",AAAA)):1,1:PPCOUNT)
+ .W:$P($G(^PS(52.41,PENDREX,4)),"^",2)]"" !,?1,"Indication: "_$P(^PS(52.41,PENDREX,4),"^",2)  ;*441-IND
  I '$G(PQT),$E(IOST)="C" D DIR^PSOP1
  Q
 HD1 ;W @IOF W !,?29,"PENDING ORDERS",!,PSOPLINE
@@ -43,8 +44,7 @@ HD1 ;W @IOF W !,?29,"PENDING ORDERS",!,PSOPLINE
 NVA ;non-va meds
  Q:'$O(^PS(55,DFN,"NVA",0))
  W !!,PSOPLINE,!?(80-$L("Non-VA MEDS (Not Dispensed by VA)"))/2,"Non-VA MEDS (Not Dispensed by VA)",!
- K PQT S PCNT=1 F PPP=0:0 S PPP=$O(^PS(55,DFN,"NVA",PPP)) Q:'PPP!($G(PQT))  S NVAOR=^PS(55,DFN,"NVA",PPP,0),NVA=1 D
- .;I PCNT D HD1 S PCNT=0
+ K PQT F PPP=0:0 S PPP=$O(^PS(55,DFN,"NVA",PPP)) Q:'PPP!($G(PQT))  S NVAOR=^PS(55,DFN,"NVA",PPP,0),NVA=1 D
  .Q:'$P(NVAOR,"^")
  .I $Y+10>IOSL,$E(IOST)="C" D DIR^PSOP1 Q:$D(PQT)  W @IOF
  .I $Y+11>IOSL,$E(IOST)'="C" D HD1
@@ -55,6 +55,7 @@ NVA ;non-va meds
  ..W !?2,"Date Documented: "
  ..W $E($P(NVAOR,"^",10),4,5)_"/"_$E($P(NVAOR,"^",10),6,7)_"/"_$E($P(NVAOR,"^",10),2,3)
  ..W !?2,"Status: "_$S($P(NVAOR,"^",7):"Discontinued ("_$E($P(NVAOR,"^",7),4,5)_"/"_$E($P(NVAOR,"^",7),6,7)_"/"_$E($P(NVAOR,"^",7),2,3)_")",1:"Active")
+ ..W:$P($G(^PS(55,DFN,"NVA",PPP,2)),"^")]"" !,?2,"Indication: "_$P(^PS(55,DFN,"NVA",PPP,2),"^")  ;*441-IND
  .I ($Y+5)>IOSL,$E(IOST)'="C" D HD1
  .W !?2,"Dosage: "_$P(NVAOR,"^",3)
  .W !?2,"Schedule: "_$P(NVAOR,"^",5)
@@ -62,6 +63,7 @@ NVA ;non-va meds
  .W !?2,"Status: "_$S($P(NVAOR,"^",7):"Discontinued ("_$E($P(NVAOR,"^",7),4,5)_"/"_$E($P(NVAOR,"^",7),6,7)_"/"_$E($P(NVAOR,"^",7),2,3)_")",1:"Active")
  .W !?2,"Start Date: "_$E($P(NVAOR,"^",9),4,5)_"/"_$E($P(NVAOR,"^",9),6,7)_"/"_$E($P(NVAOR,"^",9),2,3),?$X+5,"CPRS Order #: "_$P(NVAOR,"^",8)
  .W !?2,"Documented By: "_$S($G(^VA(200,$P(NVAOR,"^",11),0))]"":$P(^VA(200,$P(NVAOR,"^",11),0),"^"),1:"Unknown")_" on "_$E($P(NVAOR,"^",10),4,5)_"/"_$E($P(NVAOR,"^",10),6,7)_"/"_$E($P(NVAOR,"^",10),2,3)
+ .W:$P($G(^PS(55,DFN,"NVA",PPP,2)),"^")]"" !,?2,"Indication: "_$P(^PS(55,DFN,"NVA",PPP,2),"^")  ;*441-IND
  .I ($Y+5)>IOSL,$E(IOST)'="C" D HD1
  .I $O(^PS(55,DFN,"NVA",PPP,"OCK",0)) W !?2,"Order Check(s):" D
  ..I ($Y+5)>IOSL,$E(IOST)'="C" D HD1 W !?2,"Order Check(s):"
@@ -75,5 +77,5 @@ NVA ;non-va meds
  .I $O(^PS(55,DFN,"NVA",PPP,"DSC",0)) W !?2,"Statement/Explanation/Comments: " D
  ..I ($Y+5)>IOSL,$E(IOST)'="C" D HD1
  ..F NVAP=0:0 S NVAP=$O(^PS(55,DFN,"NVA",PPP,"DSC",NVAP)) Q:'NVAP  W $P(^PS(55,DFN,"NVA",PPP,"DSC",NVAP,0),"^"),!?34
- W ! K NVA,NVAP,NVAPR,NVAOR
+ W ! K NVA,NVAP,NVAPR,NVAOR,PRV
  Q

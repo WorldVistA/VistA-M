@@ -1,126 +1,130 @@
-IBDEI0QA ; ; 04-FEB-2020
- ;;3.0;IB ENCOUNTER FORM IMP/EXP;;FEB 04, 2020
+IBDEI0QA ; ; 01-FEB-2022
+ ;;3.0;IB ENCOUNTER FORM IMP/EXP;;FEB 01, 2022
  Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,999) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
- ;;^UTILITY(U,$J,358.3,11738,1,0)
+ ;;^UTILITY(U,$J,358.3,11809,1,4,0)
+ ;;=4^Z87.442
+ ;;^UTILITY(U,$J,358.3,11809,2)
+ ;;=^5063497
+ ;;^UTILITY(U,$J,358.3,11810,0)
+ ;;=N20.0^^46^575^2
+ ;;^UTILITY(U,$J,358.3,11810,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,11738,1,3,0)
- ;;=3^Aftercare Following Teeth/Oral Cavity Surgery
- ;;^UTILITY(U,$J,358.3,11738,1,4,0)
- ;;=4^Z48.814
- ;;^UTILITY(U,$J,358.3,11738,2)
- ;;=^5063051
- ;;^UTILITY(U,$J,358.3,11739,0)
- ;;=Z48.815^^80^756^2
- ;;^UTILITY(U,$J,358.3,11739,1,0)
+ ;;^UTILITY(U,$J,358.3,11810,1,3,0)
+ ;;=3^Calculus of Kidney
+ ;;^UTILITY(U,$J,358.3,11810,1,4,0)
+ ;;=4^N20.0
+ ;;^UTILITY(U,$J,358.3,11810,2)
+ ;;=^67056
+ ;;^UTILITY(U,$J,358.3,11811,0)
+ ;;=N20.1^^46^575^3
+ ;;^UTILITY(U,$J,358.3,11811,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,11739,1,3,0)
- ;;=3^Aftercare Following Digestive System Surgery
- ;;^UTILITY(U,$J,358.3,11739,1,4,0)
- ;;=4^Z48.815
- ;;^UTILITY(U,$J,358.3,11739,2)
- ;;=^5063052
- ;;^UTILITY(U,$J,358.3,11740,0)
- ;;=Z48.816^^80^756^3
- ;;^UTILITY(U,$J,358.3,11740,1,0)
+ ;;^UTILITY(U,$J,358.3,11811,1,3,0)
+ ;;=3^Calculus of Ureter
+ ;;^UTILITY(U,$J,358.3,11811,1,4,0)
+ ;;=4^N20.1
+ ;;^UTILITY(U,$J,358.3,11811,2)
+ ;;=^5015608
+ ;;^UTILITY(U,$J,358.3,11812,0)
+ ;;=N20.2^^46^575^4
+ ;;^UTILITY(U,$J,358.3,11812,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,11740,1,3,0)
- ;;=3^Aftercare Following GU System Surgery
- ;;^UTILITY(U,$J,358.3,11740,1,4,0)
- ;;=4^Z48.816
- ;;^UTILITY(U,$J,358.3,11740,2)
- ;;=^5063053
- ;;^UTILITY(U,$J,358.3,11741,0)
- ;;=Z48.817^^80^756^8
- ;;^UTILITY(U,$J,358.3,11741,1,0)
+ ;;^UTILITY(U,$J,358.3,11812,1,3,0)
+ ;;=3^Calculus of Kidney w/ Calculus of Ureter
+ ;;^UTILITY(U,$J,358.3,11812,1,4,0)
+ ;;=4^N20.2
+ ;;^UTILITY(U,$J,358.3,11812,2)
+ ;;=^5015609
+ ;;^UTILITY(U,$J,358.3,11813,0)
+ ;;=N20.9^^46^575^5
+ ;;^UTILITY(U,$J,358.3,11813,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,11741,1,3,0)
- ;;=3^Aftercare Following Skin Surgery
- ;;^UTILITY(U,$J,358.3,11741,1,4,0)
- ;;=4^Z48.817
- ;;^UTILITY(U,$J,358.3,11741,2)
- ;;=^5063054
- ;;^UTILITY(U,$J,358.3,11742,0)
- ;;=Z48.89^^80^756^9
- ;;^UTILITY(U,$J,358.3,11742,1,0)
+ ;;^UTILITY(U,$J,358.3,11813,1,3,0)
+ ;;=3^Urinary Calculus,Unspec
+ ;;^UTILITY(U,$J,358.3,11813,1,4,0)
+ ;;=4^N20.9
+ ;;^UTILITY(U,$J,358.3,11813,2)
+ ;;=^5015610
+ ;;^UTILITY(U,$J,358.3,11814,0)
+ ;;=E72.53^^46^575^6
+ ;;^UTILITY(U,$J,358.3,11814,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,11742,1,3,0)
- ;;=3^Aftercare Following Surgery NEC
- ;;^UTILITY(U,$J,358.3,11742,1,4,0)
- ;;=4^Z48.89
- ;;^UTILITY(U,$J,358.3,11742,2)
- ;;=^5063055
- ;;^UTILITY(U,$J,358.3,11743,0)
- ;;=Z09.^^80^756^11
- ;;^UTILITY(U,$J,358.3,11743,1,0)
+ ;;^UTILITY(U,$J,358.3,11814,1,3,0)
+ ;;=3^Hyperoxaluria
+ ;;^UTILITY(U,$J,358.3,11814,1,4,0)
+ ;;=4^E72.53
+ ;;^UTILITY(U,$J,358.3,11814,2)
+ ;;=^60210
+ ;;^UTILITY(U,$J,358.3,11815,0)
+ ;;=R78.89^^46^576^1
+ ;;^UTILITY(U,$J,358.3,11815,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,11743,1,3,0)
- ;;=3^Aftercare Following Treatment for Condition Oth Than Malig Neop
- ;;^UTILITY(U,$J,358.3,11743,1,4,0)
- ;;=4^Z09.
- ;;^UTILITY(U,$J,358.3,11743,2)
- ;;=^5062668
- ;;^UTILITY(U,$J,358.3,11744,0)
- ;;=Z48.1^^80^756^14
- ;;^UTILITY(U,$J,358.3,11744,1,0)
+ ;;^UTILITY(U,$J,358.3,11815,1,3,0)
+ ;;=3^Lithium Toxicity
+ ;;^UTILITY(U,$J,358.3,11815,1,4,0)
+ ;;=4^R78.89
+ ;;^UTILITY(U,$J,358.3,11815,2)
+ ;;=^5019588
+ ;;^UTILITY(U,$J,358.3,11816,0)
+ ;;=Z99.2^^46^577^3
+ ;;^UTILITY(U,$J,358.3,11816,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,11744,1,3,0)
- ;;=3^Planned Postproc Wound Closure
- ;;^UTILITY(U,$J,358.3,11744,1,4,0)
- ;;=4^Z48.1
- ;;^UTILITY(U,$J,358.3,11744,2)
- ;;=^5063037
- ;;^UTILITY(U,$J,358.3,11745,0)
- ;;=Z48.03^^80^756^15
- ;;^UTILITY(U,$J,358.3,11745,1,0)
+ ;;^UTILITY(U,$J,358.3,11816,1,3,0)
+ ;;=3^Dependence on Renal Dialysis
+ ;;^UTILITY(U,$J,358.3,11816,1,4,0)
+ ;;=4^Z99.2
+ ;;^UTILITY(U,$J,358.3,11816,2)
+ ;;=^5063758
+ ;;^UTILITY(U,$J,358.3,11817,0)
+ ;;=Z91.15^^46^577^6
+ ;;^UTILITY(U,$J,358.3,11817,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,11745,1,3,0)
- ;;=3^Removal of Drains
- ;;^UTILITY(U,$J,358.3,11745,1,4,0)
- ;;=4^Z48.03
- ;;^UTILITY(U,$J,358.3,11745,2)
- ;;=^5063036
- ;;^UTILITY(U,$J,358.3,11746,0)
- ;;=D23.0^^80^757^13
- ;;^UTILITY(U,$J,358.3,11746,1,0)
+ ;;^UTILITY(U,$J,358.3,11817,1,3,0)
+ ;;=3^Noncompliance w/ Renal Dialysis
+ ;;^UTILITY(U,$J,358.3,11817,1,4,0)
+ ;;=4^Z91.15
+ ;;^UTILITY(U,$J,358.3,11817,2)
+ ;;=^5063617
+ ;;^UTILITY(U,$J,358.3,11818,0)
+ ;;=Z49.31^^46^577^1
+ ;;^UTILITY(U,$J,358.3,11818,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,11746,1,3,0)
- ;;=3^Benign Neop of Skin of Lip
- ;;^UTILITY(U,$J,358.3,11746,1,4,0)
- ;;=4^D23.0
- ;;^UTILITY(U,$J,358.3,11746,2)
- ;;=^5002059
- ;;^UTILITY(U,$J,358.3,11747,0)
- ;;=D22.0^^80^757^23
- ;;^UTILITY(U,$J,358.3,11747,1,0)
+ ;;^UTILITY(U,$J,358.3,11818,1,3,0)
+ ;;=3^Adequacy Testing for Hemodialysis
+ ;;^UTILITY(U,$J,358.3,11818,1,4,0)
+ ;;=4^Z49.31
+ ;;^UTILITY(U,$J,358.3,11818,2)
+ ;;=^5063058
+ ;;^UTILITY(U,$J,358.3,11819,0)
+ ;;=Z49.32^^46^577^2
+ ;;^UTILITY(U,$J,358.3,11819,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,11747,1,3,0)
- ;;=3^Melanocytic Nevi of Lip
- ;;^UTILITY(U,$J,358.3,11747,1,4,0)
- ;;=4^D22.0
- ;;^UTILITY(U,$J,358.3,11747,2)
- ;;=^5002041
- ;;^UTILITY(U,$J,358.3,11748,0)
- ;;=D23.21^^80^757^7
- ;;^UTILITY(U,$J,358.3,11748,1,0)
+ ;;^UTILITY(U,$J,358.3,11819,1,3,0)
+ ;;=3^Adequacy Testing for Peritoneal Dialysis
+ ;;^UTILITY(U,$J,358.3,11819,1,4,0)
+ ;;=4^Z49.32
+ ;;^UTILITY(U,$J,358.3,11819,2)
+ ;;=^5063059
+ ;;^UTILITY(U,$J,358.3,11820,0)
+ ;;=Z49.01^^46^577^4
+ ;;^UTILITY(U,$J,358.3,11820,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,11748,1,3,0)
- ;;=3^Benign Neop of Right Ear/External Auric Canal
- ;;^UTILITY(U,$J,358.3,11748,1,4,0)
- ;;=4^D23.21
- ;;^UTILITY(U,$J,358.3,11748,2)
- ;;=^5002064
- ;;^UTILITY(U,$J,358.3,11749,0)
- ;;=D23.22^^80^757^2
- ;;^UTILITY(U,$J,358.3,11749,1,0)
+ ;;^UTILITY(U,$J,358.3,11820,1,3,0)
+ ;;=3^Fit/Adjustment of Extracorporeal Dialysis Catheter
+ ;;^UTILITY(U,$J,358.3,11820,1,4,0)
+ ;;=4^Z49.01
+ ;;^UTILITY(U,$J,358.3,11820,2)
+ ;;=^5063056
+ ;;^UTILITY(U,$J,358.3,11821,0)
+ ;;=Z49.02^^46^577^5
+ ;;^UTILITY(U,$J,358.3,11821,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,11749,1,3,0)
- ;;=3^Benign Neop of Left Ear/External Auric Canal
- ;;^UTILITY(U,$J,358.3,11749,1,4,0)
- ;;=4^D23.22
- ;;^UTILITY(U,$J,358.3,11749,2)
- ;;=^5002065
- ;;^UTILITY(U,$J,358.3,11750,0)
- ;;=D22.22^^80^757^18
- ;;^UTILITY(U,$J,358.3,11750,1,0)
- ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,11821,1,3,0)
+ ;;=3^Fit/Adjustment of Peritoneal Dialysis Catheter
+ ;;^UTILITY(U,$J,358.3,11821,1,4,0)
+ ;;=4^Z49.02
+ ;;^UTILITY(U,$J,358.3,11821,2)
+ ;;=^5063057
+ ;;^UTILITY(U,$J,358.3,11822,0)
+ ;;=R45.851^^46^578^6

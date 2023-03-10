@@ -1,118 +1,118 @@
-IBDEI172 ; ; 04-FEB-2020
- ;;3.0;IB ENCOUNTER FORM IMP/EXP;;FEB 04, 2020
+IBDEI172 ; ; 01-FEB-2022
+ ;;3.0;IB ENCOUNTER FORM IMP/EXP;;FEB 01, 2022
  Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,999) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
- ;;^UTILITY(U,$J,358.3,19190,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,19190,1,3,0)
- ;;=3^Hemiplga fol oth cerebvasc disease aff left dominant side
- ;;^UTILITY(U,$J,358.3,19190,1,4,0)
- ;;=4^I69.852
- ;;^UTILITY(U,$J,358.3,19190,2)
- ;;=^5007536
- ;;^UTILITY(U,$J,358.3,19191,0)
- ;;=I69.853^^93^989^47
- ;;^UTILITY(U,$J,358.3,19191,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,19191,1,3,0)
- ;;=3^Hemiplga fol oth cerebvasc disease aff right nondom side
- ;;^UTILITY(U,$J,358.3,19191,1,4,0)
- ;;=4^I69.853
- ;;^UTILITY(U,$J,358.3,19191,2)
- ;;=^5007537
- ;;^UTILITY(U,$J,358.3,19192,0)
- ;;=I69.854^^93^989^48
- ;;^UTILITY(U,$J,358.3,19192,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,19192,1,3,0)
- ;;=3^Hemiplga fol oth cerebvasc disease aff left nondom side
- ;;^UTILITY(U,$J,358.3,19192,1,4,0)
- ;;=4^I69.854
- ;;^UTILITY(U,$J,358.3,19192,2)
- ;;=^5007538
- ;;^UTILITY(U,$J,358.3,19193,0)
- ;;=I69.251^^93^989^49
- ;;^UTILITY(U,$J,358.3,19193,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,19193,1,3,0)
- ;;=3^Hemiplga fol oth ntrm intcrn hemor aff right dominant side
- ;;^UTILITY(U,$J,358.3,19193,1,4,0)
- ;;=4^I69.251
- ;;^UTILITY(U,$J,358.3,19193,2)
- ;;=^5007473
- ;;^UTILITY(U,$J,358.3,19194,0)
- ;;=I69.252^^93^989^50
- ;;^UTILITY(U,$J,358.3,19194,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,19194,1,3,0)
- ;;=3^Hemiplga fol oth ntrm intcrn hemor aff left dominant side
- ;;^UTILITY(U,$J,358.3,19194,1,4,0)
- ;;=4^I69.252
- ;;^UTILITY(U,$J,358.3,19194,2)
- ;;=^5007474
- ;;^UTILITY(U,$J,358.3,19195,0)
- ;;=I69.253^^93^989^51
- ;;^UTILITY(U,$J,358.3,19195,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,19195,1,3,0)
- ;;=3^Hemiplga fol oth ntrm intcrn hemor aff right nondom side
- ;;^UTILITY(U,$J,358.3,19195,1,4,0)
- ;;=4^I69.253
- ;;^UTILITY(U,$J,358.3,19195,2)
- ;;=^5007475
- ;;^UTILITY(U,$J,358.3,19196,0)
- ;;=I69.254^^93^989^52
- ;;^UTILITY(U,$J,358.3,19196,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,19196,1,3,0)
- ;;=3^Hemiplga fol oth ntrm intcrn hemor aff left nondom side
- ;;^UTILITY(U,$J,358.3,19196,1,4,0)
- ;;=4^I69.254
- ;;^UTILITY(U,$J,358.3,19196,2)
- ;;=^5007476
- ;;^UTILITY(U,$J,358.3,19197,0)
- ;;=I69.341^^93^989^53
- ;;^UTILITY(U,$J,358.3,19197,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,19197,1,3,0)
- ;;=3^Monoplg low lmb fol cerebral infrc aff right dominant side
- ;;^UTILITY(U,$J,358.3,19197,1,4,0)
- ;;=4^I69.341
- ;;^UTILITY(U,$J,358.3,19197,2)
- ;;=^5007501
- ;;^UTILITY(U,$J,358.3,19198,0)
- ;;=I69.342^^93^989^54
- ;;^UTILITY(U,$J,358.3,19198,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,19198,1,3,0)
- ;;=3^Monoplg low lmb fol cerebral infrc aff left dominant side
- ;;^UTILITY(U,$J,358.3,19198,1,4,0)
- ;;=4^I69.342
- ;;^UTILITY(U,$J,358.3,19198,2)
- ;;=^5133575
- ;;^UTILITY(U,$J,358.3,19199,0)
- ;;=I69.343^^93^989^55
- ;;^UTILITY(U,$J,358.3,19199,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,19199,1,3,0)
- ;;=3^Monoplg low lmb fol cerebral infrc aff right nondom side
- ;;^UTILITY(U,$J,358.3,19199,1,4,0)
- ;;=4^I69.343
- ;;^UTILITY(U,$J,358.3,19199,2)
- ;;=^5007502
- ;;^UTILITY(U,$J,358.3,19200,0)
- ;;=I69.344^^93^989^56
- ;;^UTILITY(U,$J,358.3,19200,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,19200,1,3,0)
- ;;=3^Monoplg low lmb fol cerebral infrc aff left nondom side
- ;;^UTILITY(U,$J,358.3,19200,1,4,0)
- ;;=4^I69.344
- ;;^UTILITY(U,$J,358.3,19200,2)
- ;;=^5133576
- ;;^UTILITY(U,$J,358.3,19201,0)
- ;;=I69.141^^93^989^57
- ;;^UTILITY(U,$J,358.3,19201,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,19201,1,3,0)
- ;;=3^Monoplg low lmb fol ntrm intcrbl hemor aff right dom side
+ ;;^UTILITY(U,$J,358.3,19394,1,2,0)
+ ;;=2^Electrical Stimulation,Wound Care
+ ;;^UTILITY(U,$J,358.3,19394,1,3,0)
+ ;;=3^G0281
+ ;;^UTILITY(U,$J,358.3,19395,0)
+ ;;=G0283^^66^863^4^^^^1
+ ;;^UTILITY(U,$J,358.3,19395,1,0)
+ ;;=^358.31IA^3^2
+ ;;^UTILITY(U,$J,358.3,19395,1,2,0)
+ ;;=2^Electrical Stimulation,Oth than Wnd Care
+ ;;^UTILITY(U,$J,358.3,19395,1,3,0)
+ ;;=3^G0283
+ ;;^UTILITY(U,$J,358.3,19396,0)
+ ;;=G0329^^66^863^6^^^^1
+ ;;^UTILITY(U,$J,358.3,19396,1,0)
+ ;;=^358.31IA^3^2
+ ;;^UTILITY(U,$J,358.3,19396,1,2,0)
+ ;;=2^Electromagnetic Therapy,Wound Care
+ ;;^UTILITY(U,$J,358.3,19396,1,3,0)
+ ;;=3^G0329
+ ;;^UTILITY(U,$J,358.3,19397,0)
+ ;;=97610^^66^863^12^^^^1
+ ;;^UTILITY(U,$J,358.3,19397,1,0)
+ ;;=^358.31IA^3^2
+ ;;^UTILITY(U,$J,358.3,19397,1,2,0)
+ ;;=2^US LF Non-Contact Non-Therm,Wnd Assess
+ ;;^UTILITY(U,$J,358.3,19397,1,3,0)
+ ;;=3^97610
+ ;;^UTILITY(U,$J,358.3,19398,0)
+ ;;=97607^^66^863^8^^^^1
+ ;;^UTILITY(U,$J,358.3,19398,1,0)
+ ;;=^358.31IA^3^2
+ ;;^UTILITY(U,$J,358.3,19398,1,2,0)
+ ;;=2^Neg Press Wound Tx </= 50 Sq Cm using non-DME
+ ;;^UTILITY(U,$J,358.3,19398,1,3,0)
+ ;;=3^97607
+ ;;^UTILITY(U,$J,358.3,19399,0)
+ ;;=97608^^66^863^10^^^^1
+ ;;^UTILITY(U,$J,358.3,19399,1,0)
+ ;;=^358.31IA^3^2
+ ;;^UTILITY(U,$J,358.3,19399,1,2,0)
+ ;;=2^Neg Press Wound Tx > 50 Sq Cm using non-DME
+ ;;^UTILITY(U,$J,358.3,19399,1,3,0)
+ ;;=3^97608
+ ;;^UTILITY(U,$J,358.3,19400,0)
+ ;;=G0282^^66^863^3^^^^1
+ ;;^UTILITY(U,$J,358.3,19400,1,0)
+ ;;=^358.31IA^3^2
+ ;;^UTILITY(U,$J,358.3,19400,1,2,0)
+ ;;=2^Elect Stim Wound Care Not Described by G0281
+ ;;^UTILITY(U,$J,358.3,19400,1,3,0)
+ ;;=3^G0282
+ ;;^UTILITY(U,$J,358.3,19401,0)
+ ;;=93797^^66^864^2^^^^1
+ ;;^UTILITY(U,$J,358.3,19401,1,0)
+ ;;=^358.31IA^3^2
+ ;;^UTILITY(U,$J,358.3,19401,1,2,0)
+ ;;=2^Cardiac Rehab w/o Contin ECG Monitor
+ ;;^UTILITY(U,$J,358.3,19401,1,3,0)
+ ;;=3^93797
+ ;;^UTILITY(U,$J,358.3,19402,0)
+ ;;=93798^^66^864^1^^^^1
+ ;;^UTILITY(U,$J,358.3,19402,1,0)
+ ;;=^358.31IA^3^2
+ ;;^UTILITY(U,$J,358.3,19402,1,2,0)
+ ;;=2^Cardiac Rehab w/Contin ECG Monitor
+ ;;^UTILITY(U,$J,358.3,19402,1,3,0)
+ ;;=3^93798
+ ;;^UTILITY(U,$J,358.3,19403,0)
+ ;;=G0422^^66^864^3^^^^1
+ ;;^UTILITY(U,$J,358.3,19403,1,0)
+ ;;=^358.31IA^3^2
+ ;;^UTILITY(U,$J,358.3,19403,1,2,0)
+ ;;=2^Intens Card Rehab w/ or w/o ECG,per Session
+ ;;^UTILITY(U,$J,358.3,19403,1,3,0)
+ ;;=3^G0422
+ ;;^UTILITY(U,$J,358.3,19404,0)
+ ;;=98960^^66^865^3^^^^1
+ ;;^UTILITY(U,$J,358.3,19404,1,0)
+ ;;=^358.31IA^3^2
+ ;;^UTILITY(U,$J,358.3,19404,1,2,0)
+ ;;=2^Ed/Train Self-Mgmt nonphy;1 pt ea 30min
+ ;;^UTILITY(U,$J,358.3,19404,1,3,0)
+ ;;=3^98960
+ ;;^UTILITY(U,$J,358.3,19405,0)
+ ;;=98961^^66^865^1^^^^1
+ ;;^UTILITY(U,$J,358.3,19405,1,0)
+ ;;=^358.31IA^3^2
+ ;;^UTILITY(U,$J,358.3,19405,1,2,0)
+ ;;=2^Ed/Train Self-Mgmt HCP;2-4 pts ea 30min
+ ;;^UTILITY(U,$J,358.3,19405,1,3,0)
+ ;;=3^98961
+ ;;^UTILITY(U,$J,358.3,19406,0)
+ ;;=98962^^66^865^2^^^^1
+ ;;^UTILITY(U,$J,358.3,19406,1,0)
+ ;;=^358.31IA^3^2
+ ;;^UTILITY(U,$J,358.3,19406,1,2,0)
+ ;;=2^Ed/Train Self-Mgmt HCP;5-8 pts ea 30min
+ ;;^UTILITY(U,$J,358.3,19406,1,3,0)
+ ;;=3^98962
+ ;;^UTILITY(U,$J,358.3,19407,0)
+ ;;=97760^^66^865^4^^^^1
+ ;;^UTILITY(U,$J,358.3,19407,1,0)
+ ;;=^358.31IA^3^2
+ ;;^UTILITY(U,$J,358.3,19407,1,2,0)
+ ;;=2^Orthotic Mgmt/Trng,1st Encntr,Ea 15 min
+ ;;^UTILITY(U,$J,358.3,19407,1,3,0)
+ ;;=3^97760
+ ;;^UTILITY(U,$J,358.3,19408,0)
+ ;;=97761^^66^865^5^^^^1
+ ;;^UTILITY(U,$J,358.3,19408,1,0)
+ ;;=^358.31IA^3^2
+ ;;^UTILITY(U,$J,358.3,19408,1,2,0)
+ ;;=2^Prosthetics Trng,1st Encntr,Ea 15 min

@@ -1,5 +1,5 @@
 PSOSPMU3 ;BIRM/MFR - State Prescription Monitoring Program Utility #3 - Customization ;10/07/15
- ;;7.0;OUTPATIENT PHARMACY;**451**;DEC 1997;Build 114
+ ;;7.0;OUTPATIENT PHARMACY;**451,625**;DEC 1997;Build 42
  ;
 CLONEVER(FROMVER,NEWVER,DEFTYPE) ; Create an exact copy of another ASAP version 
  ;Input: (r) FROMVER - Source ASAP Version to be cloned (3.0, 4.0, 4.1, 4.2)
@@ -36,6 +36,7 @@ SAVEVER(ASAPVER,VERDATA) ; Save an ASAP Version
  S VERDEF(58.4001,VERIEN_","_CUSIEN_",",.02)=$P(VERDATA,"^",2)
  S VERDEF(58.4001,VERIEN_","_CUSIEN_",",.03)=$P(VERDATA,"^",3)
  S VERDEF(58.4001,VERIEN_","_CUSIEN_",",.04)=$P(VERDATA,"^",4)
+ S VERDEF(58.4001,VERIEN_","_CUSIEN_",",.05)=$P(VERDATA,"^",5)   ;Denotes Zero Report Version
  D UPDATE^DIE("","VERDEF","SAVEVER","")
  S:VERIEN="+1" VERIEN=+$G(SAVEVER(1))
  ; Necessary to force the '@' as a delimiter/terminator

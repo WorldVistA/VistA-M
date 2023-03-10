@@ -1,21 +1,29 @@
-HBHCADM ;LR VAMC(IRMS)/MJT - HBHC eval/adm data entry, obtain demographic info from ^DPT, verify patient D/C from last episode/care before creating episode, calls ACTION^HBHCUTL, BIRTHYR^HBHCUTL1, SEXRACE^HBHCUTL1, MFHS^HBHCUTL3 ;May 2000
- ;;1.0;HOSPITAL BASED HOME CARE;**2,6,8,16,24,25**;NOV 01, 1993;Build 45
+HBHCADM ;LR VAMC(IRMS)/MJT - HBHC eval/admit data entry; Apr 29, 2021@07:55
+ ;;1.0;HOSPITAL BASED HOME CARE;**2,6,8,16,24,25,32**;NOV 01, 1993;Build 58
  ;
  ; Reference to $$SINFO^ICDEX supported by ICR #5747
- ;******************************************************************************
- ;******************************************************************************
- ;                       --- ROUTINE MODIFICATION LOG ---
- ;        
- ;PKG/PATCH    DATE        DEVELOPER    MODIFICATION
- ;-----------  ----------  -----------  ----------------------------------------
- ;HBH*1.0*25   FEB  2012   K GUPTA      Support for ICD-10 Coding System
- ;******************************************************************************
- ;******************************************************************************
+ ; Reference to ^DG(40.8 supported by ICR #7024
+ ;
+ ;This routine appears to have locking flaws in that there is no allowance for
+ ;locking failure. Any flaws will be researched and addressed in a future patch.
+ ;HBH*1.0*32 is following the pattern of how HBHCADM currently locks records.
  ;
 START ; Initialization
+ ;Sites must have at least one parent site defined.
+ I $O(^HBHC(631.9,1,1,"B",""))="" D  Q
+ . W !!,"No parent sites are defined at this facility."
+ . W !,"Contact your HBPC Program Manager to define at least one"
+ . W !,"parent site in option ""System Parameters Edit"".",!
+ . N DIR
+ . S DIR("A")="Press any key to continue",DIR(0)="FO"
+ . D ^DIR
  S HBHCFORM=3
+ ;Variable HBHCMFHS is set if this site is a
+ ;sanctioned Medical Foster Home site.
  D MFHS^HBHCUTL3
 PROMPT ; Prompt user for patient name
+ N HBHCHOSP
+ S HBHCHOSP=$P(^HBHC(631.9,1,0),U,5)
  K DIC,HBHCFLG,HBHCPRCT S DIC="^HBHC(631,",DIC(0)="AELMQZ" D ^DIC
  G:Y=-1 EXIT
  S HBHCDFN=+Y,HBHCDPT=$P(Y,U,2),HBHCDPT0=^DPT(HBHCDPT,0),HBHCNOD0=Y(0)
@@ -25,14 +33,53 @@ PROMPT ; Prompt user for patient name
  I (HBHCXMT3]"")&(HBHCXMT3'="N") D FORMMSG^HBHCUTL1 G:$D(HBHCNHSP) EXIT G:HBHCPRCT'=1 PROMPT
  I $P(Y,U,3) S $P(^HBHC(631,HBHCDFN,1),U,17)="N",^HBHC(631,"AE","N",HBHCDFN)="" S HBHCBXRF="" F  S HBHCBXRF=$O(^HBHC(631,"B",HBHCDPT,HBHCBXRF)) Q:(HBHCBXRF="")!(HBHCBXRF=HBHCDFN)  D CHECK
  G:$D(HBHCFLG) PROMPT
+ ;
+MFH ;HBH*1.0*32: first determine if an MFH patient
+ ;Variable HBHCFMHS = does this site have Medical Foster Homes
+ I $D(HBHCMFHS) D
+ . N DIE,DA,DR,HBHCSAVY,HBHCMFHSTR,HBHCMFHX
+ . ;preserving "Y" since will be killed downstream
+ . M HBHCSAVY=Y
+ . S DIE="^HBHC(631,",DA=HBHCDFN
+ . S DR(2,631.01)=1,DR="K HBHCQ;88;S:X'=""Y"" Y=""@1"";89;90;@1;"
+ . L +^HBHC(631,HBHCDFN):0 I $T D ^DIE
+ . M Y=HBHCSAVY
+ ;
+MFHNO ;Either the site does not have medical foster homes,
+ ;or this patient is not in a medical foster home.
+ ;In that case, the Parent Site prompt is presented.
+ I $P($G(^HBHC(631,HBHCDFN,3)),"^")'="Y" D
+ . ;This section called only if patient is not an MFH patient.
+ . ;HBH*1.0*32: add PARENT SITE (#91) field
+ . ;set a default if there is only one parent site defined
+ . ;at this site
+ . N HBHCPARN,HBHCSAVY
+ . ;saving original value of Y since used further down by pre-HBH*1.0*32 code
+ . M HBHCSAVY=Y
+ . S HBHCPARN=$S($P(^HBHC(631.9,1,1,0),"^",4)=1:$O(^HBHC(631.9,1,1,"B","")),1:"")
+ . I HBHCPARN]"" S HBHCPARN=$P(^DG(40.8,HBHCPARN,0),"^")
+ . S DR="91//^S X=HBHCPARN"
+ . S DIE="^HBHC(631,",DA=HBHCDFN
+ . L +^HBHC(631,HBHCDFN):0 I $T D ^DIE L -^HBHC(631,HBHCDFN)
+ . M Y=HBHCSAVY
+ . ;end of HBH*1.0*32
+CONT ;end of MFH logic - continue with prompts, etc.
+ ;Parent site is required if not a MFH patient.
+ ;Parent site is not required for MFH patients since the MFH's parent site
+ ;is retrieved for AITC transmissions.
+ N HBHCQUIT
+ S HBHCQUIT=1
+ ;Is parent site defined - if yes, may continue with prompts.
+ I $P($G(^HBHC(631,HBHCDFN,5)),"^")]"" S HBHCQUIT=0
+ ;If no parent site and this is an MFH site, the patient needs to be defined
+ ;as an MFH patient if there is no parent site in ^HBHC(631,HBHCDFN,5).
+ I HBHCQUIT,$D(HBHCMFHS),$P($G(^HBHC(631,HBHCDFN,3)),"^")="Y" S HBHCQUIT=0
+ Q:HBHCQUIT
  D DEMO
  K DIE S DIE="^HBHC(631,",DA=HBHCDFN,DIE("NO^")="OUTOK"
  ;added M code for Dx validation based on admission date
  ;added M code for Dx lookup instead of field 18
- I '$D(HBHCMFHS) D
- .S DR="K HBHCQ;17;2:5;D BIRTHYR^HBHCUTL1;7;D SEXRACE^HBHCUTL1;10:13;14;D ACTION^HBHCUTL;15;16"
- I $D(HBHCMFHS) D
- .S DR(2,631.01)=1,DR="K HBHCQ;88;S:X'=""Y"" Y=""@1"";89;90;@1;17;2:5;D BIRTHYR^HBHCUTL1;7;D SEXRACE^HBHCUTL1;10:13;14;D ACTION^HBHCUTL;15;16"
+ S DR="K HBHCQ;17;2:5;D BIRTHYR^HBHCUTL1;7;D SEXRACE^HBHCUTL1;10:13;14;D ACTION^HBHCUTL;15;16"
  L +^HBHC(631,HBHCDFN):0 I $T D ^DIE
  I $D(Y)>0 G PROMPT
  ; For ICD-9 lookups, set key variables used by special lookup routine

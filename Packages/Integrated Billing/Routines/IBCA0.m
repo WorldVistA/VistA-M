@@ -1,7 +1,8 @@
 IBCA0 ;ALB/AAS - ADD NEW BILLING RECORD-CONT. ;01 JUN 88 12:00
- ;;2.0;INTEGRATED BILLING;**51**;21-MAR-94
+ ;;2.0;INTEGRATED BILLING;**51,714**;21-MAR-94;Build 8
  ;;Per VHA Directive 10-93-142, this routine should not be modified.
  ; DBIA REFERENCE TO ^DGPM("ATID1") = DBIA419
+ ; reference to ^DGPT(0), piece 14 = DBIA418
  ;
  ;MAP TO DGCRA0
  ;
@@ -37,6 +38,7 @@ DISPAD ;display admissions
  ;
 ENDDIS I $G(IBIDS(.08)) D
  .N PTF Q:'$D(^DGPT(IBIDS(.08),"M"))
+ .S IBIDS(.28)=$P($P(^DGPT(IBIDS(.08),0),U,14),".")  ; IB*2.0*714
  .S PTF=IBIDS(.08) D SC1^IBCSC6
  .W !?4,"PTF record indicates ",IBSCM," of ",IBM," movements are for Service Connected Care."
  .I IBSCM,IBSCM=IBM W !?4,*7,"Warning, PTF record indicates all movements are for Service Connected Care.",*7

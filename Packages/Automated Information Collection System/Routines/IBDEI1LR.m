@@ -1,126 +1,126 @@
-IBDEI1LR ; ; 04-FEB-2020
- ;;3.0;IB ENCOUNTER FORM IMP/EXP;;FEB 04, 2020
+IBDEI1LR ; ; 01-FEB-2022
+ ;;3.0;IB ENCOUNTER FORM IMP/EXP;;FEB 01, 2022
  Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,999) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
- ;;^UTILITY(U,$J,358.3,25607,1,3,0)
- ;;=3^Stress Incontinence (Female/Male)
- ;;^UTILITY(U,$J,358.3,25607,1,4,0)
- ;;=4^N39.3
- ;;^UTILITY(U,$J,358.3,25607,2)
- ;;=^5015679
- ;;^UTILITY(U,$J,358.3,25608,0)
- ;;=R26.2^^107^1223^62
- ;;^UTILITY(U,$J,358.3,25608,1,0)
+ ;;^UTILITY(U,$J,358.3,25962,1,3,0)
+ ;;=3^Cocaine Intox w/o Percept Disturb w/ Mod/Sev Use D/O
+ ;;^UTILITY(U,$J,358.3,25962,1,4,0)
+ ;;=4^F14.229
+ ;;^UTILITY(U,$J,358.3,25962,2)
+ ;;=^5003258
+ ;;^UTILITY(U,$J,358.3,25963,0)
+ ;;=F14.929^^92^1188^27
+ ;;^UTILITY(U,$J,358.3,25963,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,25608,1,3,0)
- ;;=3^Difficulty in Walking NEC
- ;;^UTILITY(U,$J,358.3,25608,1,4,0)
- ;;=4^R26.2
- ;;^UTILITY(U,$J,358.3,25608,2)
- ;;=^5019306
- ;;^UTILITY(U,$J,358.3,25609,0)
- ;;=M54.6^^107^1223^161
- ;;^UTILITY(U,$J,358.3,25609,1,0)
+ ;;^UTILITY(U,$J,358.3,25963,1,3,0)
+ ;;=3^Cocaine Intox w/o Percept Disturb w/o Use D/O
+ ;;^UTILITY(U,$J,358.3,25963,1,4,0)
+ ;;=4^F14.929
+ ;;^UTILITY(U,$J,358.3,25963,2)
+ ;;=^5003273
+ ;;^UTILITY(U,$J,358.3,25964,0)
+ ;;=F14.121^^92^1188^19
+ ;;^UTILITY(U,$J,358.3,25964,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,25609,1,3,0)
- ;;=3^Thoracic Spine Pain
- ;;^UTILITY(U,$J,358.3,25609,1,4,0)
- ;;=4^M54.6
- ;;^UTILITY(U,$J,358.3,25609,2)
- ;;=^272507
- ;;^UTILITY(U,$J,358.3,25610,0)
- ;;=E66.8^^107^1223^130
- ;;^UTILITY(U,$J,358.3,25610,1,0)
+ ;;^UTILITY(U,$J,358.3,25964,1,3,0)
+ ;;=3^Cocaine Intox Delirium w/ Mild Use D/O
+ ;;^UTILITY(U,$J,358.3,25964,1,4,0)
+ ;;=4^F14.121
+ ;;^UTILITY(U,$J,358.3,25964,2)
+ ;;=^5003241
+ ;;^UTILITY(U,$J,358.3,25965,0)
+ ;;=F14.221^^92^1188^20
+ ;;^UTILITY(U,$J,358.3,25965,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,25610,1,3,0)
- ;;=3^Obesity NEC
- ;;^UTILITY(U,$J,358.3,25610,1,4,0)
- ;;=4^E66.8
- ;;^UTILITY(U,$J,358.3,25610,2)
- ;;=^5002831
- ;;^UTILITY(U,$J,358.3,25611,0)
- ;;=E66.9^^107^1223^131
- ;;^UTILITY(U,$J,358.3,25611,1,0)
+ ;;^UTILITY(U,$J,358.3,25965,1,3,0)
+ ;;=3^Cocaine Intox Delirium w/ Mod/Sev Use D/O
+ ;;^UTILITY(U,$J,358.3,25965,1,4,0)
+ ;;=4^F14.221
+ ;;^UTILITY(U,$J,358.3,25965,2)
+ ;;=^5003256
+ ;;^UTILITY(U,$J,358.3,25966,0)
+ ;;=F14.921^^92^1188^21
+ ;;^UTILITY(U,$J,358.3,25966,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,25611,1,3,0)
- ;;=3^Obesity,Unspec
- ;;^UTILITY(U,$J,358.3,25611,1,4,0)
- ;;=4^E66.9
- ;;^UTILITY(U,$J,358.3,25611,2)
- ;;=^5002832
- ;;^UTILITY(U,$J,358.3,25612,0)
- ;;=F18.120^^107^1223^99
- ;;^UTILITY(U,$J,358.3,25612,1,0)
+ ;;^UTILITY(U,$J,358.3,25966,1,3,0)
+ ;;=3^Cocaine Intox Delirium w/o Use D/O
+ ;;^UTILITY(U,$J,358.3,25966,1,4,0)
+ ;;=4^F14.921
+ ;;^UTILITY(U,$J,358.3,25966,2)
+ ;;=^5003271
+ ;;^UTILITY(U,$J,358.3,25967,0)
+ ;;=F14.10^^92^1188^30
+ ;;^UTILITY(U,$J,358.3,25967,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,25612,1,3,0)
- ;;=3^Inhalant Abuse w/ Intoxication,Uncomplicated
- ;;^UTILITY(U,$J,358.3,25612,1,4,0)
- ;;=4^F18.120
- ;;^UTILITY(U,$J,358.3,25612,2)
- ;;=^5003381
- ;;^UTILITY(U,$J,358.3,25613,0)
- ;;=G44.1^^107^1223^164
- ;;^UTILITY(U,$J,358.3,25613,1,0)
+ ;;^UTILITY(U,$J,358.3,25967,1,3,0)
+ ;;=3^Cocaine Use DO,Mild,Uncomp
+ ;;^UTILITY(U,$J,358.3,25967,1,4,0)
+ ;;=4^F14.10
+ ;;^UTILITY(U,$J,358.3,25967,2)
+ ;;=^5003239
+ ;;^UTILITY(U,$J,358.3,25968,0)
+ ;;=F14.20^^92^1188^32
+ ;;^UTILITY(U,$J,358.3,25968,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,25613,1,3,0)
- ;;=3^Vascular Headache NEC
- ;;^UTILITY(U,$J,358.3,25613,1,4,0)
- ;;=4^G44.1
- ;;^UTILITY(U,$J,358.3,25613,2)
- ;;=^5003934
- ;;^UTILITY(U,$J,358.3,25614,0)
- ;;=G93.3^^107^1223^149
- ;;^UTILITY(U,$J,358.3,25614,1,0)
+ ;;^UTILITY(U,$J,358.3,25968,1,3,0)
+ ;;=3^Cocaine Use DO,Mod/Sev,Uncomp
+ ;;^UTILITY(U,$J,358.3,25968,1,4,0)
+ ;;=4^F14.20
+ ;;^UTILITY(U,$J,358.3,25968,2)
+ ;;=^5003253
+ ;;^UTILITY(U,$J,358.3,25969,0)
+ ;;=F14.23^^92^1188^33
+ ;;^UTILITY(U,$J,358.3,25969,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,25614,1,3,0)
- ;;=3^Postviral Fatigue Syndrome
- ;;^UTILITY(U,$J,358.3,25614,1,4,0)
- ;;=4^G93.3
- ;;^UTILITY(U,$J,358.3,25614,2)
- ;;=^5004181
- ;;^UTILITY(U,$J,358.3,25615,0)
- ;;=K08.101^^107^1223^56
- ;;^UTILITY(U,$J,358.3,25615,1,0)
+ ;;^UTILITY(U,$J,358.3,25969,1,3,0)
+ ;;=3^Cocaine Withdrawal
+ ;;^UTILITY(U,$J,358.3,25969,1,4,0)
+ ;;=4^F14.23
+ ;;^UTILITY(U,$J,358.3,25969,2)
+ ;;=^5003259
+ ;;^UTILITY(U,$J,358.3,25970,0)
+ ;;=F14.21^^92^1188^31
+ ;;^UTILITY(U,$J,358.3,25970,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,25615,1,3,0)
- ;;=3^Complete Loss of Teeth,Unspec,Class I
- ;;^UTILITY(U,$J,358.3,25615,1,4,0)
- ;;=4^K08.101
- ;;^UTILITY(U,$J,358.3,25615,2)
- ;;=^5008406
- ;;^UTILITY(U,$J,358.3,25616,0)
- ;;=K08.102^^107^1223^57
- ;;^UTILITY(U,$J,358.3,25616,1,0)
+ ;;^UTILITY(U,$J,358.3,25970,1,3,0)
+ ;;=3^Cocaine Use DO,Mod/Sev,In Remiss
+ ;;^UTILITY(U,$J,358.3,25970,1,4,0)
+ ;;=4^F14.21
+ ;;^UTILITY(U,$J,358.3,25970,2)
+ ;;=^5003254
+ ;;^UTILITY(U,$J,358.3,25971,0)
+ ;;=F15.11^^92^1188^63
+ ;;^UTILITY(U,$J,358.3,25971,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,25616,1,3,0)
- ;;=3^Complete Loss of Teeth,Unspec,Class II
- ;;^UTILITY(U,$J,358.3,25616,1,4,0)
- ;;=4^K08.102
- ;;^UTILITY(U,$J,358.3,25616,2)
- ;;=^5008407
- ;;^UTILITY(U,$J,358.3,25617,0)
- ;;=K08.103^^107^1223^58
- ;;^UTILITY(U,$J,358.3,25617,1,0)
+ ;;^UTILITY(U,$J,358.3,25971,1,3,0)
+ ;;=3^Oth Stimulant Mild Use D/O,In Remission
+ ;;^UTILITY(U,$J,358.3,25971,1,4,0)
+ ;;=4^F15.11
+ ;;^UTILITY(U,$J,358.3,25971,2)
+ ;;=^5151304
+ ;;^UTILITY(U,$J,358.3,25972,0)
+ ;;=F14.11^^92^1188^29
+ ;;^UTILITY(U,$J,358.3,25972,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,25617,1,3,0)
- ;;=3^Complete Loss of Teeth,Unspec,Class III
- ;;^UTILITY(U,$J,358.3,25617,1,4,0)
- ;;=4^K08.103
- ;;^UTILITY(U,$J,358.3,25617,2)
- ;;=^5008408
- ;;^UTILITY(U,$J,358.3,25618,0)
- ;;=K08.104^^107^1223^59
- ;;^UTILITY(U,$J,358.3,25618,1,0)
+ ;;^UTILITY(U,$J,358.3,25972,1,3,0)
+ ;;=3^Cocaine Use DO,Mild,In Remiss
+ ;;^UTILITY(U,$J,358.3,25972,1,4,0)
+ ;;=4^F14.11
+ ;;^UTILITY(U,$J,358.3,25972,2)
+ ;;=^268249
+ ;;^UTILITY(U,$J,358.3,25973,0)
+ ;;=F15.21^^92^1188^34
+ ;;^UTILITY(U,$J,358.3,25973,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,25618,1,3,0)
- ;;=3^Complete Loss of Teeth,Unspec,Class IV
- ;;^UTILITY(U,$J,358.3,25618,1,4,0)
- ;;=4^K08.104
- ;;^UTILITY(U,$J,358.3,25618,2)
- ;;=^5008409
- ;;^UTILITY(U,$J,358.3,25619,0)
- ;;=K08.109^^107^1223^60
- ;;^UTILITY(U,$J,358.3,25619,1,0)
+ ;;^UTILITY(U,$J,358.3,25973,1,3,0)
+ ;;=3^Oth Stimulant Dependence,Mod/Sev,In Remission
+ ;;^UTILITY(U,$J,358.3,25973,1,4,0)
+ ;;=4^F15.21
+ ;;^UTILITY(U,$J,358.3,25973,2)
+ ;;=^5003296
+ ;;^UTILITY(U,$J,358.3,25974,0)
+ ;;=Z91.120^^92^1189^1
+ ;;^UTILITY(U,$J,358.3,25974,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,25619,1,3,0)
- ;;=3^Complete Loss of Teeth,Unspec,Class Unspec
+ ;;^UTILITY(U,$J,358.3,25974,1,3,0)
+ ;;=3^Intentional Underdosing d/t Financial Hardship

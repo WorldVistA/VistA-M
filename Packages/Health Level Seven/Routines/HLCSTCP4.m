@@ -1,8 +1,9 @@
 HLCSTCP4 ;SFIRMFO/RSD - BI-DIRECTIONAL TCP ;08/03/2011  13:29
- ;;1.6;HEALTH LEVEL SEVEN;**109,122,140,157**;Oct 13,1995;Build 8
+ ;;1.6;HEALTH LEVEL SEVEN;**109,122,140,157,174**;Oct 13,1995;Build 6
  ;Per VHA Directive 2004-038, this routine should not be modified.
  ;
  Q
+ ; SAC EXEMPTION 20200824-01 : Allows the use of the $ZA special variable
  ; RDERR & ERROR moved from HLCSTCP2 on 12/2/2003 - LJA
  ;
 RDERR ; Error during read process, decrement counter
@@ -112,8 +113,8 @@ HLDUZ ; compare DUZ and set DUZ to application proxy user
  ;
 HLDUZ2 ; compare DUZ and HLDUZ
  I $G(DUZ)'=HLDUZ D
- . S DUZ=HLDUZ
- . D DUZ^XUP(DUZ)
+ .S DUZ=HLDUZ
+ D DUZ^XUP(DUZ) ; HL*1.6*174 moves the call to DUZ^XUP out of the dot structure to ensure the DUZ() array is set up properly.
  Q
  ;
 CLEANVAR ; clean variables for server, called from HLCSTCP1

@@ -1,12 +1,12 @@
 PSOREJP2 ;BIRM/MFR - Third Party Rejects View/Process ;04/28/05
- ;;7.0;OUTPATIENT PHARMACY;**148,247,260,287,289,358,385,403,421,427,448,482,512,528**;DEC 1997;Build 10
+ ;;7.0;OUTPATIENT PHARMACY;**148,247,260,287,289,358,385,403,421,427,448,482,512,528,549,561**;DEC 1997;Build 41
  ;Reference to ^PSSLOCK supported by IA #2789
  ;Reference to GETDAT^BPSBUTL supported by IA #4719
  ;Reference to ^PS(55 supported by IA #2228
  ;Reference to ^DIC(36 supported by ICR #6142
  ;
  N PSORJSRT,PSOPTFLT,PSODRFLT,PSORXFLT,PSOBYFLD,PSOSTFLT,DIR,DIRUT,DUOUT,DTOUT
- N PSOINFLT,PSODTRNG,PSOINGRP,PSOTRITG,PSOCVATG
+ N PSOINFLT,PSODTRNG,PSOINGRP,PSOTRITG,PSOCVATG,PSORCFLT
  S PSORJASC=1,PSOINGRP=0,PSOTRITG=1,PSOCVATG=1
  ;
  ; - Division/Site selection
@@ -16,20 +16,24 @@ PSOREJP2 ;BIRM/MFR - Third Party Rejects View/Process ;04/28/05
  W ! S PSODTRNG=$$DTRNG("T-90","T") I PSODTRNG="^" G EXIT
  ;
 SEL ; - Field Selection (Patient/Drug/Rx)
- S DIR(0)="S^P:PATIENT;D:DRUG;R:Rx;I:INSURANCE",DIR("B")="P"
- S DIR("A")="By (P)atient, (D)rug, (R)x or (I)nsurance" D ^DIR I $D(DIRUT) G EXIT
+ S DIR(0)="S^P:PATIENT;D:DRUG;R:Rx;I:INSURANCE;C:REJECT CODE",DIR("B")="P"
+ S DIR("A")="By (P)atient, (D)rug, (R)x, (I)nsurance or Reject (C)ode" D ^DIR I $D(DIRUT) G EXIT
  S PSOBYFLD=Y,DIR("B")=""
  ;
  I PSOBYFLD="P" D  I $G(PSOPTFLT)="^" G SEL
- . S (PSODRFLT,PSORXFLT,PSOINFLT)="ALL",PSORJSRT="DR"
+ . S (PSODRFLT,PSORXFLT,PSOINFLT,PSORCFLT)="ALL",PSORJSRT="DR"
  . D SEL^PSOREJU1("PATIENT","^DPT(",.PSOPTFLT)
  ;
  I PSOBYFLD="D" D  I $G(PSODRFLT)="^" G SEL
- . S (PSOPTFLT,PSORXFLT,PSOINFLT)="ALL",PSORJSRT="PA"
+ . S (PSOPTFLT,PSORXFLT,PSOINFLT,PSORCFLT)="ALL",PSORJSRT="PA"
  . D SEL^PSOREJU1("DRUG","^PSDRUG(",.PSODRFLT)
  ;
+ I PSOBYFLD="C" D  I $G(PSORCFLT)="^" G SEL
+ . S (PSODRFLT,PSOPTFLT,PSORXFLT,PSOINFLT)="ALL",PSORJSRT="PA"
+ . D SEL^PSOREJU1("REJECT CODE","^BPSF(9002313.93,",.PSORCFLT)
+ ;
  I PSOBYFLD="R" D  I $D(DIRUT)!'$G(PSORXFLT) G SEL
- . S (PSOPTFLT,PSODRFLT,PSOINFLT)="ALL",PSORJSRT="PA"
+ . S (PSOPTFLT,PSODRFLT,PSOINFLT,PSORCFLT)="ALL",PSORJSRT="PA"
  . N DIR,DIRUT,PSODRUG,PSOQUIT,PSORX,PSORXD,RXIEN,X
  . K PSOSTFLT,PSORXFLT
  . S DIR(0)="FAO^1:30"
@@ -61,7 +65,7 @@ SEL ; - Field Selection (Patient/Drug/Rx)
  ;
  ; Insurance Company Lookup - ICR 6142
  I PSOBYFLD="I" D  I $G(PSOINFLT)="^" G SEL
- . S (PSOPTFLT,PSODRFLT,PSORXFLT)="ALL",PSORJSRT="PA"
+ . S (PSOPTFLT,PSODRFLT,PSORXFLT,PSORCFLT)="ALL",PSORJSRT="PA"
  . D SEL^PSOREJU1("INSURANCE","^DIC(36,",.PSOINFLT)
  ;
  ; - Status Selection (UNRESOLVED or RESOLVED)
@@ -77,12 +81,10 @@ EXIT Q
 CLO ; - Ignore a REJECT hidden action
  N PSOTRIC,X,PSOETEC,PSOIT
  ;
- ; ESG - PSO*7*448 - Bug fix, should pull FILL from sub-file 52.25.
  I '$D(FILL) S FILL=+$$GET1^DIQ(52.25,REJ_","_RX,5)
  S PSOTRIC="",PSOTRIC=$$TRIC^PSOREJP1(RX,FILL,PSOTRIC)
  ;
  ;reference to ^XUSEC( supported by IA 10076
- ;bld, PSO*7*358 
  I PSOTRIC,'$D(^XUSEC("PSO TRICARE/CHAMPVA",DUZ)) S VALMSG="Action Requires <PSO TRICARE/CHAMPVA> security key",VALMBCK="R" Q
  ;if TRICARE or CHAMPVA and user has security key, prompt to continue or not
  ;
@@ -195,6 +197,13 @@ CHG(SDC) ; - Change Suspense Date action
  . S COB=$$GET1^DIQ(52.25,REJ_","_RX,27,"I")
  . I 'COB S COB=1
  . S SUSDT=$$CALCSD(RX,RFL,COB)
+ ;
+ ; Display a message to the user if the Bypass 3/4 Day Supply flag is set.
+ ;
+ I $$FLAG^PSOBPSU4(RX,RFL)="YES" D
+ . W !!,"Currently, Bypass 3/4 Day Supply is set to YES.  If you continue, the"
+ . W !,"prescription fill will transmit to CMOP on the new Suspense Date entered.",!
+ . Q
  ;
 SUDT ; Asks for the new Suspense Date
  N X1,X2
@@ -390,6 +399,7 @@ PREVRX(RX,RFL,COB,LDOS,LDAYS,PREVRX) ; Gather last date of service and last days
  . Q
  ;
  ; refill - same RX. Get previus fill information
+ ;
  I RFL>0 D
  . N FL
  . F FL=(RFL-1):-1:0 D  Q:LDOS           ; start with the previous fill (RFL-1)
@@ -402,7 +412,7 @@ PREVRX(RX,RFL,COB,LDOS,LDAYS,PREVRX) ; Gather last date of service and last days
 PREVRXQ ;
  Q
  ;
-LAST120(RX,COB) ;new tag PSO*7*421, cnf
+LAST120(RX,COB) ;
  ; For the original fill, get the default DOS/Days Supply by getting
  ; most recent DOS from the other RXs within a time window for the same
  ; patient and drug and dosage Time window - Prescription has an
@@ -443,6 +453,7 @@ LAST120(RX,COB) ;new tag PSO*7*421, cnf
  ; If a previous Rx passed all other checks, then check the dosage.  If
  ; the dosage is not the same, then clear out the variables and treat as
  ; if no previous Rx was found.
+ ;
  I PREVRX'="" D
  . S QTY1=$S(PREVFL=0:+$P($G(^PSRX(PREVRX,0)),U,7),1:+$P($G(^PSRX(PREVRX,1,PREVFL,0)),U,4))
  . S DSUP1=$S(PREVFL=0:+$P($G(^PSRX(PREVRX,0)),U,8),1:+$P($G(^PSRX(PREVRX,1,PREVFL,0)),U,10))
@@ -454,9 +465,8 @@ LAST120(RX,COB) ;new tag PSO*7*421, cnf
  I PREVRX'="" S PREVRX=$$GET1^DIQ(52,PREVRX_",",.01)  ; Pull external Rx#.
  Q LDOS_U_LDS_U_PREVRX
  ;
- ; MRD;PSO*7.0*448 - Added CHECKIT procedure to consolidate checks that
- ; were previously being done in two different procedures (PREVRX,
- ; LAST120).
+ ; CHECKIT was added to consolidate checks that were previously being
+ ; performed in two different procedures (PREVRX, LAST120).
  ;
 CHECKIT(RX,FL,COB,LDOS,LDAYS)  ; Check 1 Rx/Fill for days' supply calc.
  ;

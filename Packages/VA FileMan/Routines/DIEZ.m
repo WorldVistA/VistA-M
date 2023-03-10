@@ -1,5 +1,5 @@
-DIEZ ;SFISC/GFT-COMPILE INPUT TEMPLATE ;30NOV2012
- ;;22.2;VA FileMan;**14**;Jan 05, 2016;Build 8
+DIEZ ;SFISC/GFT - COMPILE INPUT TEMPLATE ; Nov 30, 2012
+ ;;22.2;VA FileMan;**14,18**;Jan 05, 2016;Build 2
  ;;Per VA Directive 6402, this routine should not be modified.
  ;;Submitted to OSEHRA 5 January 2015 by the VISTA Expertise Network.
  ;;Based on Medsphere Systems Corporation's MSC FileMan 1051.
@@ -16,6 +16,7 @@ TEM K DIC S DIC="^DIE(",DIC(0)="AEQ",DIC("W")="W ?40,""FILE #"",$P(^(0),U,4) W:$
  S X=DNM,Y=DIPZ K DIPZ
 EN ; compile INPUT template
  ;INPUT: X=name of routine for compiling, Y=ien of INPUT template
+ D:'$D(DISYS) OS^DII ;p18
  W:'$G(DIEZS) ! K ^UTILITY($J),DRN
  N L,DIEZQ,DIR S DMAX=DMAX-2150,DNM=X,DIEZ=+Y,DRN="",DRD=0,DIEZQ=0
  D DT^DICRW,DELETROU(DNM) S X=-1 ;p14

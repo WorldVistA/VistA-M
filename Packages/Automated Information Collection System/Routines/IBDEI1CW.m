@@ -1,130 +1,126 @@
-IBDEI1CW ; ; 04-FEB-2020
- ;;3.0;IB ENCOUNTER FORM IMP/EXP;;FEB 04, 2020
+IBDEI1CW ; ; 01-FEB-2022
+ ;;3.0;IB ENCOUNTER FORM IMP/EXP;;FEB 01, 2022
  Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,999) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
- ;;^UTILITY(U,$J,358.3,21674,1,3,0)
- ;;=3^Cyclical Vomiting,in Migraine,Intractable
- ;;^UTILITY(U,$J,358.3,21674,1,4,0)
- ;;=4^G43.A1
- ;;^UTILITY(U,$J,358.3,21674,2)
- ;;=^5003913
- ;;^UTILITY(U,$J,358.3,21675,0)
- ;;=G43.A0^^99^1102^24
- ;;^UTILITY(U,$J,358.3,21675,1,0)
+ ;;^UTILITY(U,$J,358.3,21918,0)
+ ;;=R22.0^^70^933^44
+ ;;^UTILITY(U,$J,358.3,21918,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,21675,1,3,0)
- ;;=3^Cyclical Vomiting,in Migraine,Not Intractable
- ;;^UTILITY(U,$J,358.3,21675,1,4,0)
- ;;=4^G43.A0
- ;;^UTILITY(U,$J,358.3,21675,2)
- ;;=^5003912
- ;;^UTILITY(U,$J,358.3,21676,0)
- ;;=E86.0^^99^1103^1
- ;;^UTILITY(U,$J,358.3,21676,1,0)
+ ;;^UTILITY(U,$J,358.3,21918,1,3,0)
+ ;;=3^Localized Swelling/Mass/Lump,Head
+ ;;^UTILITY(U,$J,358.3,21918,1,4,0)
+ ;;=4^R22.0
+ ;;^UTILITY(U,$J,358.3,21918,2)
+ ;;=^5019284
+ ;;^UTILITY(U,$J,358.3,21919,0)
+ ;;=R22.42^^70^933^45
+ ;;^UTILITY(U,$J,358.3,21919,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,21676,1,3,0)
- ;;=3^Dehydration
- ;;^UTILITY(U,$J,358.3,21676,1,4,0)
- ;;=4^E86.0
- ;;^UTILITY(U,$J,358.3,21676,2)
- ;;=^332743
- ;;^UTILITY(U,$J,358.3,21677,0)
- ;;=K57.30^^99^1103^5
- ;;^UTILITY(U,$J,358.3,21677,1,0)
+ ;;^UTILITY(U,$J,358.3,21919,1,3,0)
+ ;;=3^Localized Swelling/Mass/Lump,Left Lower Limb
+ ;;^UTILITY(U,$J,358.3,21919,1,4,0)
+ ;;=4^R22.42
+ ;;^UTILITY(U,$J,358.3,21919,2)
+ ;;=^5134179
+ ;;^UTILITY(U,$J,358.3,21920,0)
+ ;;=R22.32^^70^933^46
+ ;;^UTILITY(U,$J,358.3,21920,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,21677,1,3,0)
- ;;=3^Dvrtclos of lg int w/o perforation or abscess w/o bleeding
- ;;^UTILITY(U,$J,358.3,21677,1,4,0)
- ;;=4^K57.30
- ;;^UTILITY(U,$J,358.3,21677,2)
- ;;=^5008723
- ;;^UTILITY(U,$J,358.3,21678,0)
- ;;=L25.9^^99^1103^2
- ;;^UTILITY(U,$J,358.3,21678,1,0)
+ ;;^UTILITY(U,$J,358.3,21920,1,3,0)
+ ;;=3^Localized Swelling/Mass/Lump,Left Upper Limb
+ ;;^UTILITY(U,$J,358.3,21920,1,4,0)
+ ;;=4^R22.32
+ ;;^UTILITY(U,$J,358.3,21920,2)
+ ;;=^5019289
+ ;;^UTILITY(U,$J,358.3,21921,0)
+ ;;=R22.43^^70^933^42
+ ;;^UTILITY(U,$J,358.3,21921,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,21678,1,3,0)
- ;;=3^Dermatitis, contact, unspec cause
- ;;^UTILITY(U,$J,358.3,21678,1,4,0)
- ;;=4^L25.9
- ;;^UTILITY(U,$J,358.3,21678,2)
- ;;=^5133647
- ;;^UTILITY(U,$J,358.3,21679,0)
- ;;=R42.^^99^1103^4
- ;;^UTILITY(U,$J,358.3,21679,1,0)
+ ;;^UTILITY(U,$J,358.3,21921,1,3,0)
+ ;;=3^Localized Swelling/Mass/Lump,Bilateral Lower Limb
+ ;;^UTILITY(U,$J,358.3,21921,1,4,0)
+ ;;=4^R22.43
+ ;;^UTILITY(U,$J,358.3,21921,2)
+ ;;=^5019291
+ ;;^UTILITY(U,$J,358.3,21922,0)
+ ;;=R22.1^^70^933^47
+ ;;^UTILITY(U,$J,358.3,21922,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,21679,1,3,0)
- ;;=3^Dizziness & giddiness
- ;;^UTILITY(U,$J,358.3,21679,1,4,0)
- ;;=4^R42.
- ;;^UTILITY(U,$J,358.3,21679,2)
- ;;=^5019450
- ;;^UTILITY(U,$J,358.3,21680,0)
- ;;=R06.00^^99^1103^11
- ;;^UTILITY(U,$J,358.3,21680,1,0)
+ ;;^UTILITY(U,$J,358.3,21922,1,3,0)
+ ;;=3^Localized Swelling/Mass/Lump,Neck
+ ;;^UTILITY(U,$J,358.3,21922,1,4,0)
+ ;;=4^R22.1
+ ;;^UTILITY(U,$J,358.3,21922,2)
+ ;;=^5019285
+ ;;^UTILITY(U,$J,358.3,21923,0)
+ ;;=R22.41^^70^933^48
+ ;;^UTILITY(U,$J,358.3,21923,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,21680,1,3,0)
- ;;=3^Dyspnea, unspec
- ;;^UTILITY(U,$J,358.3,21680,1,4,0)
- ;;=4^R06.00
- ;;^UTILITY(U,$J,358.3,21680,2)
- ;;=^5019180
- ;;^UTILITY(U,$J,358.3,21681,0)
- ;;=R13.10^^99^1103^10
- ;;^UTILITY(U,$J,358.3,21681,1,0)
+ ;;^UTILITY(U,$J,358.3,21923,1,3,0)
+ ;;=3^Localized Swelling/Mass/Lump,Right Lower Limb
+ ;;^UTILITY(U,$J,358.3,21923,1,4,0)
+ ;;=4^R22.41
+ ;;^UTILITY(U,$J,358.3,21923,2)
+ ;;=^5134178
+ ;;^UTILITY(U,$J,358.3,21924,0)
+ ;;=R22.31^^70^933^49
+ ;;^UTILITY(U,$J,358.3,21924,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,21681,1,3,0)
- ;;=3^Dysphagia, unspec
- ;;^UTILITY(U,$J,358.3,21681,1,4,0)
- ;;=4^R13.10
- ;;^UTILITY(U,$J,358.3,21681,2)
- ;;=^335307
- ;;^UTILITY(U,$J,358.3,21682,0)
- ;;=R19.7^^99^1103^3
- ;;^UTILITY(U,$J,358.3,21682,1,0)
+ ;;^UTILITY(U,$J,358.3,21924,1,3,0)
+ ;;=3^Localized Swelling/Mass/Lump,Right Upper Limb
+ ;;^UTILITY(U,$J,358.3,21924,1,4,0)
+ ;;=4^R22.31
+ ;;^UTILITY(U,$J,358.3,21924,2)
+ ;;=^5019288
+ ;;^UTILITY(U,$J,358.3,21925,0)
+ ;;=R22.9^^70^933^50
+ ;;^UTILITY(U,$J,358.3,21925,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,21682,1,3,0)
- ;;=3^Diarrhea, unspec
- ;;^UTILITY(U,$J,358.3,21682,1,4,0)
- ;;=4^R19.7
- ;;^UTILITY(U,$J,358.3,21682,2)
- ;;=^5019276
- ;;^UTILITY(U,$J,358.3,21683,0)
- ;;=N94.12^^99^1103^6
- ;;^UTILITY(U,$J,358.3,21683,1,0)
+ ;;^UTILITY(U,$J,358.3,21925,1,3,0)
+ ;;=3^Localized Swelling/Mass/Lump,Unspec
+ ;;^UTILITY(U,$J,358.3,21925,1,4,0)
+ ;;=4^R22.9
+ ;;^UTILITY(U,$J,358.3,21925,2)
+ ;;=^5019292
+ ;;^UTILITY(U,$J,358.3,21926,0)
+ ;;=R22.33^^70^933^43
+ ;;^UTILITY(U,$J,358.3,21926,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,21683,1,3,0)
- ;;=3^Dyspareunia,Deep
- ;;^UTILITY(U,$J,358.3,21683,1,4,0)
- ;;=4^N94.12
- ;;^UTILITY(U,$J,358.3,21683,2)
- ;;=^5138974
- ;;^UTILITY(U,$J,358.3,21684,0)
- ;;=N94.19^^99^1103^7
- ;;^UTILITY(U,$J,358.3,21684,1,0)
+ ;;^UTILITY(U,$J,358.3,21926,1,3,0)
+ ;;=3^Localized Swelling/Mass/Lump,Bilateral Upper Limb
+ ;;^UTILITY(U,$J,358.3,21926,1,4,0)
+ ;;=4^R22.33
+ ;;^UTILITY(U,$J,358.3,21926,2)
+ ;;=^5019290
+ ;;^UTILITY(U,$J,358.3,21927,0)
+ ;;=R11.2^^70^933^53
+ ;;^UTILITY(U,$J,358.3,21927,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,21684,1,3,0)
- ;;=3^Dyspareunia,Oth Spec
- ;;^UTILITY(U,$J,358.3,21684,1,4,0)
- ;;=4^N94.19
- ;;^UTILITY(U,$J,358.3,21684,2)
- ;;=^5138975
- ;;^UTILITY(U,$J,358.3,21685,0)
- ;;=N94.11^^99^1103^8
- ;;^UTILITY(U,$J,358.3,21685,1,0)
+ ;;^UTILITY(U,$J,358.3,21927,1,3,0)
+ ;;=3^Nausea w/ Vomitin,Unspec
+ ;;^UTILITY(U,$J,358.3,21927,1,4,0)
+ ;;=4^R11.2
+ ;;^UTILITY(U,$J,358.3,21927,2)
+ ;;=^5019237
+ ;;^UTILITY(U,$J,358.3,21928,0)
+ ;;=R53.0^^70^933^54
+ ;;^UTILITY(U,$J,358.3,21928,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,21685,1,3,0)
- ;;=3^Dyspareunia,Superficial
- ;;^UTILITY(U,$J,358.3,21685,1,4,0)
- ;;=4^N94.11
- ;;^UTILITY(U,$J,358.3,21685,2)
- ;;=^5138973
- ;;^UTILITY(U,$J,358.3,21686,0)
- ;;=N94.10^^99^1103^9
- ;;^UTILITY(U,$J,358.3,21686,1,0)
+ ;;^UTILITY(U,$J,358.3,21928,1,3,0)
+ ;;=3^Neoplastic Related Fatigue
+ ;;^UTILITY(U,$J,358.3,21928,1,4,0)
+ ;;=4^R53.0
+ ;;^UTILITY(U,$J,358.3,21928,2)
+ ;;=^5019515
+ ;;^UTILITY(U,$J,358.3,21929,0)
+ ;;=E66.9^^70^933^56
+ ;;^UTILITY(U,$J,358.3,21929,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,21686,1,3,0)
- ;;=3^Dyspareunia,Unspec
- ;;^UTILITY(U,$J,358.3,21686,1,4,0)
- ;;=4^N94.10
- ;;^UTILITY(U,$J,358.3,21686,2)
- ;;=^5138972
+ ;;^UTILITY(U,$J,358.3,21929,1,3,0)
+ ;;=3^Obesity,Unspec
+ ;;^UTILITY(U,$J,358.3,21929,1,4,0)
+ ;;=4^E66.9
+ ;;^UTILITY(U,$J,358.3,21929,2)
+ ;;=^5002832
+ ;;^UTILITY(U,$J,358.3,21930,0)
+ ;;=M87.10^^70^933^57

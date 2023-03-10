@@ -1,122 +1,134 @@
-IBDEI0PO ; ; 04-FEB-2020
- ;;3.0;IB ENCOUNTER FORM IMP/EXP;;FEB 04, 2020
+IBDEI0PO ; ; 01-FEB-2022
+ ;;3.0;IB ENCOUNTER FORM IMP/EXP;;FEB 01, 2022
  Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,999) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
- ;;^UTILITY(U,$J,358.3,11453,0)
- ;;=H40.31X3^^77^734^19
- ;;^UTILITY(U,$J,358.3,11453,1,0)
+ ;;^UTILITY(U,$J,358.3,11539,1,3,0)
+ ;;=3^Phosphorus Metabolism Disorder,Unspec
+ ;;^UTILITY(U,$J,358.3,11539,1,4,0)
+ ;;=4^E83.30
+ ;;^UTILITY(U,$J,358.3,11539,2)
+ ;;=^5002997
+ ;;^UTILITY(U,$J,358.3,11540,0)
+ ;;=E83.31^^46^559^9
+ ;;^UTILITY(U,$J,358.3,11540,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,11453,1,3,0)
- ;;=3^Glaucoma d/t Trauma,Severe,Right Eye
- ;;^UTILITY(U,$J,358.3,11453,1,4,0)
- ;;=4^H40.31X3
- ;;^UTILITY(U,$J,358.3,11453,2)
- ;;=^5133503
- ;;^UTILITY(U,$J,358.3,11454,0)
- ;;=H40.32X3^^77^734^20
- ;;^UTILITY(U,$J,358.3,11454,1,0)
+ ;;^UTILITY(U,$J,358.3,11540,1,3,0)
+ ;;=3^Familial Hypophosphatemia
+ ;;^UTILITY(U,$J,358.3,11540,1,4,0)
+ ;;=4^E83.31
+ ;;^UTILITY(U,$J,358.3,11540,2)
+ ;;=^5002998
+ ;;^UTILITY(U,$J,358.3,11541,0)
+ ;;=E83.51^^46^559^19
+ ;;^UTILITY(U,$J,358.3,11541,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,11454,1,3,0)
- ;;=3^Glaucoma d/t Trauma,Severe,Left Eye
- ;;^UTILITY(U,$J,358.3,11454,1,4,0)
- ;;=4^H40.32X3
- ;;^UTILITY(U,$J,358.3,11454,2)
- ;;=^5133504
- ;;^UTILITY(U,$J,358.3,11455,0)
- ;;=H40.33X3^^77^734^21
- ;;^UTILITY(U,$J,358.3,11455,1,0)
+ ;;^UTILITY(U,$J,358.3,11541,1,3,0)
+ ;;=3^Hypocalcemia
+ ;;^UTILITY(U,$J,358.3,11541,1,4,0)
+ ;;=4^E83.51
+ ;;^UTILITY(U,$J,358.3,11541,2)
+ ;;=^60542
+ ;;^UTILITY(U,$J,358.3,11542,0)
+ ;;=E83.52^^46^559^13
+ ;;^UTILITY(U,$J,358.3,11542,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,11455,1,3,0)
- ;;=3^Glaucoma d/t Trauma,Severe,Bilateral
- ;;^UTILITY(U,$J,358.3,11455,1,4,0)
- ;;=4^H40.33X3
- ;;^UTILITY(U,$J,358.3,11455,2)
- ;;=^5005863
- ;;^UTILITY(U,$J,358.3,11456,0)
- ;;=H40.41X1^^77^734^22
- ;;^UTILITY(U,$J,358.3,11456,1,0)
+ ;;^UTILITY(U,$J,358.3,11542,1,3,0)
+ ;;=3^Hypercalcemia
+ ;;^UTILITY(U,$J,358.3,11542,1,4,0)
+ ;;=4^E83.52
+ ;;^UTILITY(U,$J,358.3,11542,2)
+ ;;=^59932
+ ;;^UTILITY(U,$J,358.3,11543,0)
+ ;;=E87.0^^46^559^16
+ ;;^UTILITY(U,$J,358.3,11543,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,11456,1,3,0)
- ;;=3^Glaucoma d/t Uveitis,Mild,Right Eye
- ;;^UTILITY(U,$J,358.3,11456,1,4,0)
- ;;=4^H40.41X1
- ;;^UTILITY(U,$J,358.3,11456,2)
- ;;=^5005871
- ;;^UTILITY(U,$J,358.3,11457,0)
- ;;=H40.42X1^^77^734^23
- ;;^UTILITY(U,$J,358.3,11457,1,0)
+ ;;^UTILITY(U,$J,358.3,11543,1,3,0)
+ ;;=3^Hyperosmolality and Hypernatremia
+ ;;^UTILITY(U,$J,358.3,11543,1,4,0)
+ ;;=4^E87.0
+ ;;^UTILITY(U,$J,358.3,11543,2)
+ ;;=^5003018
+ ;;^UTILITY(U,$J,358.3,11544,0)
+ ;;=E87.1^^46^559^18
+ ;;^UTILITY(U,$J,358.3,11544,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,11457,1,3,0)
- ;;=3^Glaucoma d/t Uveitis,Mild,Left Eye
- ;;^UTILITY(U,$J,358.3,11457,1,4,0)
- ;;=4^H40.42X1
- ;;^UTILITY(U,$J,358.3,11457,2)
- ;;=^5005875
- ;;^UTILITY(U,$J,358.3,11458,0)
- ;;=H40.43X1^^77^734^24
- ;;^UTILITY(U,$J,358.3,11458,1,0)
+ ;;^UTILITY(U,$J,358.3,11544,1,3,0)
+ ;;=3^Hypo-osmolality and Hyponatremia
+ ;;^UTILITY(U,$J,358.3,11544,1,4,0)
+ ;;=4^E87.1
+ ;;^UTILITY(U,$J,358.3,11544,2)
+ ;;=^5003019
+ ;;^UTILITY(U,$J,358.3,11545,0)
+ ;;=E87.2^^46^559^1
+ ;;^UTILITY(U,$J,358.3,11545,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,11458,1,3,0)
- ;;=3^Glaucoma d/t Uveitis,Mild,Bilateral
- ;;^UTILITY(U,$J,358.3,11458,1,4,0)
- ;;=4^H40.43X1
- ;;^UTILITY(U,$J,358.3,11458,2)
- ;;=^5005879
- ;;^UTILITY(U,$J,358.3,11459,0)
- ;;=H40.41X3^^77^734^25
- ;;^UTILITY(U,$J,358.3,11459,1,0)
+ ;;^UTILITY(U,$J,358.3,11545,1,3,0)
+ ;;=3^Acidosis
+ ;;^UTILITY(U,$J,358.3,11545,1,4,0)
+ ;;=4^E87.2
+ ;;^UTILITY(U,$J,358.3,11545,2)
+ ;;=^5003020
+ ;;^UTILITY(U,$J,358.3,11546,0)
+ ;;=E87.3^^46^559^3
+ ;;^UTILITY(U,$J,358.3,11546,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,11459,1,3,0)
- ;;=3^Glaucoma d/t Uveitis,Severe,Right Eye
- ;;^UTILITY(U,$J,358.3,11459,1,4,0)
- ;;=4^H40.41X3
- ;;^UTILITY(U,$J,358.3,11459,2)
- ;;=^5133505
- ;;^UTILITY(U,$J,358.3,11460,0)
- ;;=H40.42X3^^77^734^26
- ;;^UTILITY(U,$J,358.3,11460,1,0)
+ ;;^UTILITY(U,$J,358.3,11546,1,3,0)
+ ;;=3^Alkalosis
+ ;;^UTILITY(U,$J,358.3,11546,1,4,0)
+ ;;=4^E87.3
+ ;;^UTILITY(U,$J,358.3,11546,2)
+ ;;=^5003021
+ ;;^UTILITY(U,$J,358.3,11547,0)
+ ;;=E87.4^^46^559^24
+ ;;^UTILITY(U,$J,358.3,11547,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,11460,1,3,0)
- ;;=3^Glaucoma d/t Uveitis,Severe,Left Eye
- ;;^UTILITY(U,$J,358.3,11460,1,4,0)
- ;;=4^H40.42X3
- ;;^UTILITY(U,$J,358.3,11460,2)
- ;;=^5133506
- ;;^UTILITY(U,$J,358.3,11461,0)
- ;;=H40.43X3^^77^734^27
- ;;^UTILITY(U,$J,358.3,11461,1,0)
+ ;;^UTILITY(U,$J,358.3,11547,1,3,0)
+ ;;=3^Mixed Acid-Base Balance Disorder
+ ;;^UTILITY(U,$J,358.3,11547,1,4,0)
+ ;;=4^E87.4
+ ;;^UTILITY(U,$J,358.3,11547,2)
+ ;;=^5003022
+ ;;^UTILITY(U,$J,358.3,11548,0)
+ ;;=E86.9^^46^559^31
+ ;;^UTILITY(U,$J,358.3,11548,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,11461,1,3,0)
- ;;=3^Glaucoma d/t Uveitis,Severe,Bilateral
- ;;^UTILITY(U,$J,358.3,11461,1,4,0)
- ;;=4^H40.43X3
- ;;^UTILITY(U,$J,358.3,11461,2)
- ;;=^5005881
- ;;^UTILITY(U,$J,358.3,11462,0)
- ;;=H40.51X3^^77^734^28
- ;;^UTILITY(U,$J,358.3,11462,1,0)
+ ;;^UTILITY(U,$J,358.3,11548,1,3,0)
+ ;;=3^Volume Depletion,Unspec
+ ;;^UTILITY(U,$J,358.3,11548,1,4,0)
+ ;;=4^E86.9
+ ;;^UTILITY(U,$J,358.3,11548,2)
+ ;;=^332840
+ ;;^UTILITY(U,$J,358.3,11549,0)
+ ;;=E86.0^^46^559^6
+ ;;^UTILITY(U,$J,358.3,11549,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,11462,1,3,0)
- ;;=3^Glaucoma d/t Eye Disorder,Severe,Right Eye
- ;;^UTILITY(U,$J,358.3,11462,1,4,0)
- ;;=4^H40.51X3
- ;;^UTILITY(U,$J,358.3,11462,2)
- ;;=^5133507
- ;;^UTILITY(U,$J,358.3,11463,0)
- ;;=H40.52X3^^77^734^29
- ;;^UTILITY(U,$J,358.3,11463,1,0)
+ ;;^UTILITY(U,$J,358.3,11549,1,3,0)
+ ;;=3^Dehydration
+ ;;^UTILITY(U,$J,358.3,11549,1,4,0)
+ ;;=4^E86.0
+ ;;^UTILITY(U,$J,358.3,11549,2)
+ ;;=^332743
+ ;;^UTILITY(U,$J,358.3,11550,0)
+ ;;=E86.1^^46^559^22
+ ;;^UTILITY(U,$J,358.3,11550,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,11463,1,3,0)
- ;;=3^Glaucoma d/t Eye Disorder,Severe,Left Eye
- ;;^UTILITY(U,$J,358.3,11463,1,4,0)
- ;;=4^H40.52X3
- ;;^UTILITY(U,$J,358.3,11463,2)
- ;;=^5133508
- ;;^UTILITY(U,$J,358.3,11464,0)
- ;;=H40.31X4^^77^734^30
- ;;^UTILITY(U,$J,358.3,11464,1,0)
+ ;;^UTILITY(U,$J,358.3,11550,1,3,0)
+ ;;=3^Hypovolemia
+ ;;^UTILITY(U,$J,358.3,11550,1,4,0)
+ ;;=4^E86.1
+ ;;^UTILITY(U,$J,358.3,11550,2)
+ ;;=^332744
+ ;;^UTILITY(U,$J,358.3,11551,0)
+ ;;=E87.70^^46^559^11
+ ;;^UTILITY(U,$J,358.3,11551,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,11464,1,3,0)
- ;;=3^Glaucoma Secondary to Eye Trauma,Right Eye,Indeterminate Stage
- ;;^UTILITY(U,$J,358.3,11464,1,4,0)
- ;;=4^H40.31X4
+ ;;^UTILITY(U,$J,358.3,11551,1,3,0)
+ ;;=3^Fluid Overload,Unspec
+ ;;^UTILITY(U,$J,358.3,11551,1,4,0)
+ ;;=4^E87.70
+ ;;^UTILITY(U,$J,358.3,11551,2)
+ ;;=^5003023
+ ;;^UTILITY(U,$J,358.3,11552,0)
+ ;;=E87.5^^46^559^14
+ ;;^UTILITY(U,$J,358.3,11552,1,0)
+ ;;=^358.31IA^4^2

@@ -1,118 +1,38 @@
-IBDEI1MT ; ; 04-FEB-2020
- ;;3.0;IB ENCOUNTER FORM IMP/EXP;;FEB 04, 2020
- Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,999) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
+IBDEI1MT ; ; 01-FEB-2022
+ ;;3.0;IB ENCOUNTER FORM IMP/EXP;;FEB 01, 2022
+ Q:'DIFQR(358.6)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,999) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
- ;;^UTILITY(U,$J,358.3,26068,1,4,0)
- ;;=4^V00.838D
- ;;^UTILITY(U,$J,358.3,26068,2)
- ;;=^5055962
- ;;^UTILITY(U,$J,358.3,26069,0)
- ;;=V00.891A^^107^1230^62
- ;;^UTILITY(U,$J,358.3,26069,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,26069,1,3,0)
- ;;=3^Fall from Pedestrian Conveyance,Init Encntr
- ;;^UTILITY(U,$J,358.3,26069,1,4,0)
- ;;=4^V00.891A
- ;;^UTILITY(U,$J,358.3,26069,2)
- ;;=^5055964
- ;;^UTILITY(U,$J,358.3,26070,0)
- ;;=V00.891D^^107^1230^63
- ;;^UTILITY(U,$J,358.3,26070,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,26070,1,3,0)
- ;;=3^Fall from Pedestrian Conveyance,Subs Encntr
- ;;^UTILITY(U,$J,358.3,26070,1,4,0)
- ;;=4^V00.891D
- ;;^UTILITY(U,$J,358.3,26070,2)
- ;;=^5055965
- ;;^UTILITY(U,$J,358.3,26071,0)
- ;;=V00.892A^^107^1230^108
- ;;^UTILITY(U,$J,358.3,26071,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,26071,1,3,0)
- ;;=3^Pedestrian Conveyance Colliding w/ Stationary Obj,Init Encntr
- ;;^UTILITY(U,$J,358.3,26071,1,4,0)
- ;;=4^V00.892A
- ;;^UTILITY(U,$J,358.3,26071,2)
- ;;=^5055967
- ;;^UTILITY(U,$J,358.3,26072,0)
- ;;=V00.892D^^107^1230^109
- ;;^UTILITY(U,$J,358.3,26072,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,26072,1,3,0)
- ;;=3^Pedestrian Conveyance Colliding w/ Stationary Obj,Subs Encntr
- ;;^UTILITY(U,$J,358.3,26072,1,4,0)
- ;;=4^V00.892D
- ;;^UTILITY(U,$J,358.3,26072,2)
- ;;=^5055968
- ;;^UTILITY(U,$J,358.3,26073,0)
- ;;=V00.898A^^107^1230^106
- ;;^UTILITY(U,$J,358.3,26073,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,26073,1,3,0)
- ;;=3^Pedestrian Conveyance Accident NEC,Init Encntr
- ;;^UTILITY(U,$J,358.3,26073,1,4,0)
- ;;=4^V00.898A
- ;;^UTILITY(U,$J,358.3,26073,2)
- ;;=^5055970
- ;;^UTILITY(U,$J,358.3,26074,0)
- ;;=V00.898D^^107^1230^107
- ;;^UTILITY(U,$J,358.3,26074,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,26074,1,3,0)
- ;;=3^Pedestrian Conveyance Accident NEC,Subs Encntr
- ;;^UTILITY(U,$J,358.3,26074,1,4,0)
- ;;=4^V00.898D
- ;;^UTILITY(U,$J,358.3,26074,2)
- ;;=^5055971
- ;;^UTILITY(U,$J,358.3,26075,0)
- ;;=W00.0XXA^^107^1230^84
- ;;^UTILITY(U,$J,358.3,26075,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,26075,1,3,0)
- ;;=3^Fall on Same Level d/t Ice/Snow,Init Encntr
- ;;^UTILITY(U,$J,358.3,26075,1,4,0)
- ;;=4^W00.0XXA
- ;;^UTILITY(U,$J,358.3,26075,2)
- ;;=^5059510
- ;;^UTILITY(U,$J,358.3,26076,0)
- ;;=W00.0XXD^^107^1230^85
- ;;^UTILITY(U,$J,358.3,26076,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,26076,1,3,0)
- ;;=3^Fall on Same Level d/t Ice/Snow,Subs Encntr
- ;;^UTILITY(U,$J,358.3,26076,1,4,0)
- ;;=4^W00.0XXD
- ;;^UTILITY(U,$J,358.3,26076,2)
- ;;=^5059511
- ;;^UTILITY(U,$J,358.3,26077,0)
- ;;=W00.1XXA^^107^1230^64
- ;;^UTILITY(U,$J,358.3,26077,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,26077,1,3,0)
- ;;=3^Fall from Stairs/Steps d/t Ice/Snow,Init Encntr
- ;;^UTILITY(U,$J,358.3,26077,1,4,0)
- ;;=4^W00.1XXA
- ;;^UTILITY(U,$J,358.3,26077,2)
- ;;=^5059513
- ;;^UTILITY(U,$J,358.3,26078,0)
- ;;=W00.1XXD^^107^1230^65
- ;;^UTILITY(U,$J,358.3,26078,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,26078,1,3,0)
- ;;=3^Fall from Stairs/Steps d/t Ice/Snow,Subs Encntr
- ;;^UTILITY(U,$J,358.3,26078,1,4,0)
- ;;=4^W00.1XXD
- ;;^UTILITY(U,$J,358.3,26078,2)
- ;;=^5059514
- ;;^UTILITY(U,$J,358.3,26079,0)
- ;;=W00.2XXA^^107^1230^58
- ;;^UTILITY(U,$J,358.3,26079,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,26079,1,3,0)
- ;;=3^Fall from One Level to Another d/t Ice/Snow,Init Encntr
- ;;^UTILITY(U,$J,358.3,26079,1,4,0)
- ;;=4^W00.2XXA
- ;;^UTILITY(U,$J,358.3,26079,2)
- ;;=^5059516
+ ;;^UTILITY(U,$J,358.6,9,0)
+ ;;=INPUT PROCEDURE CODE (CPT4)^^^PATIENT CARE ENCOUNTER^^1^4^^1^0^^1^^^^SMP
+ ;;^UTILITY(U,$J,358.6,9,1,0)
+ ;;=^^1^1^2960205^^^^
+ ;;^UTILITY(U,$J,358.6,9,1,1,0)
+ ;;=Used for inputting CPT coded procedures performed on the patient.
+ ;;^UTILITY(U,$J,358.6,9,2)
+ ;;=^^^^^^^^^^^^^^^^^1
+ ;;^UTILITY(U,$J,358.6,9,3)
+ ;;=CPT4 PROCEDURE CODES
+ ;;^UTILITY(U,$J,358.6,9,9)
+ ;;=D INPUTCPT^IBDFN8(.X)
+ ;;^UTILITY(U,$J,358.6,9,10)
+ ;;=Enter an active CPT procedure code.
+ ;;^UTILITY(U,$J,358.6,9,11)
+ ;;=D TESTCPT^IBDFN7
+ ;;^UTILITY(U,$J,358.6,9,12)
+ ;;=PROCEDURE^1^6^7^3^2
+ ;;^UTILITY(U,$J,358.6,9,13,0)
+ ;;=^358.613V^2^2
+ ;;^UTILITY(U,$J,358.6,9,13,1,0)
+ ;;=1;IBD(358.98,^^0
+ ;;^UTILITY(U,$J,358.6,9,13,2,0)
+ ;;=2;IBD(358.98,^^0
+ ;;^UTILITY(U,$J,358.6,9,14)
+ ;;=S Y=$$DSPLYCPT^IBDFN9(Y)
+ ;;^UTILITY(U,$J,358.6,9,15,0)
+ ;;=^357.615I^0^0
+ ;;^UTILITY(U,$J,358.6,9,17)
+ ;;=D SLCTCPT^IBDFN12(.X)
+ ;;^UTILITY(U,$J,358.6,9,18)
+ ;;=S IBDF("OTHER")="81^I '$P(^(0),U,4)" D LIST^IBDFDE2(.IBDSEL,.IBDF,"CPT Procedure Code")
+ ;;^UTILITY(U,$J,358.6,9,19)
+ ;;=D CPT^IBDFN14(X)

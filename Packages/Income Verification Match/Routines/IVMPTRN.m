@@ -1,6 +1,10 @@
-IVMPTRN ;ALB/MLI,SEK,RTK,BRM,BAJ,LBD - IVM BACKGROUND JOB/TRANSMISSIONS TO IVM CENTER; 10/28/2005 ; 7/13/10 4:11pm
- ;;2.0;INCOME VERIFICATION MATCH;**1,9,11,12,17,28,34,74,79,89,105,143,147**;JUL 8,1996;Build 4
+IVMPTRN ;ALB/MLI,SEK,RTK,BRM,BAJ,LBD,KUM - IVM BACKGROUND JOB/TRANSMISSIONS TO IVM CENTER; 10/28/2005 ; 7/13/10 4:11pm
+ ;;2.0;INCOME VERIFICATION MATCH;**1,9,11,12,17,28,34,74,79,89,105,143,147,196**;JUL 8,1996;Build 37
  ;;Per VHA Directive 10-93-142, this routine should not be modified.
+ ;
+ ; Supported ICRs
+ ; #2701  - $$GETICN^MPIF001
+ ; #7208  - $$EN^DGREGEEWS
  ;
  ; This routine is run nightly to send HL7 messages to the IVM Center for
  ; processing.
@@ -77,6 +81,11 @@ REG ; Creates FULL query transmission for patient's
  ..; - if merged patient record, then update Transmission Status to
  ..;   remove from "ATR" x-ref and do not create Z07 (IVM*2*147)
  ..I $D(^DPT(DFN,-9)) S X=$$CLEAR^IVMPLOG(IVMDA) K X Q
+ ..;
+ ..; IVM*2.0*196 - Do not send Z07 
+ ..; If DO YOU WISH TO ENROLL field in PATIENT (#2) file is YES AND
+ ..; there is no current Enrollment record
+ ..I $$GET1^DIQ(2,DFN_",",27.04,"I"),$$FINDCUR^DGENA(DFN)="" Q
  ..;
  ..S IVMMTDT=$$GETMTDT(DFN,IVMDT)  ;IVM*2*143
  ..;

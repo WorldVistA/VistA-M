@@ -1,116 +1,130 @@
-IBDEI0RF ; ; 04-FEB-2020
- ;;3.0;IB ENCOUNTER FORM IMP/EXP;;FEB 04, 2020
+IBDEI0RF ; ; 01-FEB-2022
+ ;;3.0;IB ENCOUNTER FORM IMP/EXP;;FEB 01, 2022
  Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,999) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
- ;;^UTILITY(U,$J,358.3,12240,1,3,0)
- ;;=3^Laceration w/o FB of Right Little Finger w/ Nail Damage,Init Encntr
- ;;^UTILITY(U,$J,358.3,12240,1,4,0)
- ;;=4^S61.316A
- ;;^UTILITY(U,$J,358.3,12240,2)
- ;;=^5032924
- ;;^UTILITY(U,$J,358.3,12241,0)
- ;;=S61.216A^^80^774^55
- ;;^UTILITY(U,$J,358.3,12241,1,0)
+ ;;^UTILITY(U,$J,358.3,12346,2)
+ ;;=^5138930
+ ;;^UTILITY(U,$J,358.3,12347,0)
+ ;;=N50.812^^49^597^42
+ ;;^UTILITY(U,$J,358.3,12347,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,12241,1,3,0)
- ;;=3^Laceration w/o FB of Right Little Finger w/o Nail Damage,Init Encntr
- ;;^UTILITY(U,$J,358.3,12241,1,4,0)
- ;;=4^S61.216A
- ;;^UTILITY(U,$J,358.3,12241,2)
- ;;=^5032789
- ;;^UTILITY(U,$J,358.3,12242,0)
- ;;=S61.312A^^80^774^57
- ;;^UTILITY(U,$J,358.3,12242,1,0)
+ ;;^UTILITY(U,$J,358.3,12347,1,3,0)
+ ;;=3^Testicular Pain,Left Side
+ ;;^UTILITY(U,$J,358.3,12347,1,4,0)
+ ;;=4^N50.812
+ ;;^UTILITY(U,$J,358.3,12347,2)
+ ;;=^5138928
+ ;;^UTILITY(U,$J,358.3,12348,0)
+ ;;=N50.811^^49^597^43
+ ;;^UTILITY(U,$J,358.3,12348,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,12242,1,3,0)
- ;;=3^Laceration w/o FB of Right Middle Finger w/ Nail Damage,Init Encntr
- ;;^UTILITY(U,$J,358.3,12242,1,4,0)
- ;;=4^S61.312A
- ;;^UTILITY(U,$J,358.3,12242,2)
- ;;=^5032912
- ;;^UTILITY(U,$J,358.3,12243,0)
- ;;=S61.212A^^80^774^58
- ;;^UTILITY(U,$J,358.3,12243,1,0)
+ ;;^UTILITY(U,$J,358.3,12348,1,3,0)
+ ;;=3^Testicular Pain,Right Side
+ ;;^UTILITY(U,$J,358.3,12348,1,4,0)
+ ;;=4^N50.811
+ ;;^UTILITY(U,$J,358.3,12348,2)
+ ;;=^5138927
+ ;;^UTILITY(U,$J,358.3,12349,0)
+ ;;=D63.1^^49^597^8
+ ;;^UTILITY(U,$J,358.3,12349,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,12243,1,3,0)
- ;;=3^Laceration w/o FB of Right Middle Finger w/o Nail Damage,Init Encntr
- ;;^UTILITY(U,$J,358.3,12243,1,4,0)
- ;;=4^S61.212A
- ;;^UTILITY(U,$J,358.3,12243,2)
- ;;=^5032777
- ;;^UTILITY(U,$J,358.3,12244,0)
- ;;=S61.314A^^80^774^59
- ;;^UTILITY(U,$J,358.3,12244,1,0)
+ ;;^UTILITY(U,$J,358.3,12349,1,3,0)
+ ;;=3^Anemia in Chronic Kidney Disease
+ ;;^UTILITY(U,$J,358.3,12349,1,4,0)
+ ;;=4^D63.1
+ ;;^UTILITY(U,$J,358.3,12349,2)
+ ;;=^332908
+ ;;^UTILITY(U,$J,358.3,12350,0)
+ ;;=R11.15^^49^597^16
+ ;;^UTILITY(U,$J,358.3,12350,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,12244,1,3,0)
- ;;=3^Laceration w/o FB of Right Ring Finger w/ Nail Damage,Init Encntr
- ;;^UTILITY(U,$J,358.3,12244,1,4,0)
- ;;=4^S61.314A
- ;;^UTILITY(U,$J,358.3,12244,2)
- ;;=^5032918
- ;;^UTILITY(U,$J,358.3,12245,0)
- ;;=S61.214A^^80^774^60
- ;;^UTILITY(U,$J,358.3,12245,1,0)
+ ;;^UTILITY(U,$J,358.3,12350,1,3,0)
+ ;;=3^Cyclical Vomiting Syndrome Unrelated to Migraine
+ ;;^UTILITY(U,$J,358.3,12350,1,4,0)
+ ;;=4^R11.15
+ ;;^UTILITY(U,$J,358.3,12350,2)
+ ;;=^5158141
+ ;;^UTILITY(U,$J,358.3,12351,0)
+ ;;=U07.1^^49^597^12
+ ;;^UTILITY(U,$J,358.3,12351,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,12245,1,3,0)
- ;;=3^Laceration w/o FB of Right Ring Finger w/o Nail Damage,Init Encntr
- ;;^UTILITY(U,$J,358.3,12245,1,4,0)
- ;;=4^S61.214A
- ;;^UTILITY(U,$J,358.3,12245,2)
- ;;=^5032783
- ;;^UTILITY(U,$J,358.3,12246,0)
- ;;=S41.011A^^80^774^61
- ;;^UTILITY(U,$J,358.3,12246,1,0)
+ ;;^UTILITY(U,$J,358.3,12351,1,3,0)
+ ;;=3^Confirmed COVID-19
+ ;;^UTILITY(U,$J,358.3,12351,1,4,0)
+ ;;=4^U07.1
+ ;;^UTILITY(U,$J,358.3,12351,2)
+ ;;=^5159070
+ ;;^UTILITY(U,$J,358.3,12352,0)
+ ;;=R06.02^^49^597^39
+ ;;^UTILITY(U,$J,358.3,12352,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,12246,1,3,0)
- ;;=3^Laceration w/o FB of Right Shoulder,Init Encntr
- ;;^UTILITY(U,$J,358.3,12246,1,4,0)
- ;;=4^S41.011A
- ;;^UTILITY(U,$J,358.3,12246,2)
- ;;=^5026297
- ;;^UTILITY(U,$J,358.3,12247,0)
- ;;=S61.111A^^80^774^63
- ;;^UTILITY(U,$J,358.3,12247,1,0)
+ ;;^UTILITY(U,$J,358.3,12352,1,3,0)
+ ;;=3^Shortness of Breath
+ ;;^UTILITY(U,$J,358.3,12352,1,4,0)
+ ;;=4^R06.02
+ ;;^UTILITY(U,$J,358.3,12352,2)
+ ;;=^5019181
+ ;;^UTILITY(U,$J,358.3,12353,0)
+ ;;=R51.0^^49^597^24
+ ;;^UTILITY(U,$J,358.3,12353,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,12247,1,3,0)
- ;;=3^Laceration w/o FB of Right Thumb w/ Nail Damage,Init Encntr
- ;;^UTILITY(U,$J,358.3,12247,1,4,0)
- ;;=4^S61.111A
- ;;^UTILITY(U,$J,358.3,12247,2)
- ;;=^5032726
- ;;^UTILITY(U,$J,358.3,12248,0)
- ;;=S61.011A^^80^774^64
- ;;^UTILITY(U,$J,358.3,12248,1,0)
+ ;;^UTILITY(U,$J,358.3,12353,1,3,0)
+ ;;=3^Headache w/ Orthostatic Component,NEC
+ ;;^UTILITY(U,$J,358.3,12353,1,4,0)
+ ;;=4^R51.0
+ ;;^UTILITY(U,$J,358.3,12353,2)
+ ;;=^5159305
+ ;;^UTILITY(U,$J,358.3,12354,0)
+ ;;=R51.9^^49^597^25
+ ;;^UTILITY(U,$J,358.3,12354,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,12248,1,3,0)
- ;;=3^Laceration w/o FB of Right Thumb w/o Nail Damage,Init Encntr
- ;;^UTILITY(U,$J,358.3,12248,1,4,0)
- ;;=4^S61.011A
- ;;^UTILITY(U,$J,358.3,12248,2)
- ;;=^5032690
- ;;^UTILITY(U,$J,358.3,12249,0)
- ;;=S61.511A^^80^774^65
- ;;^UTILITY(U,$J,358.3,12249,1,0)
+ ;;^UTILITY(U,$J,358.3,12354,1,3,0)
+ ;;=3^Headache,Unspecified
+ ;;^UTILITY(U,$J,358.3,12354,1,4,0)
+ ;;=4^R51.9
+ ;;^UTILITY(U,$J,358.3,12354,2)
+ ;;=^5159306
+ ;;^UTILITY(U,$J,358.3,12355,0)
+ ;;=Z20.822^^49^597^14
+ ;;^UTILITY(U,$J,358.3,12355,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,12249,1,3,0)
- ;;=3^Laceration w/o FB of Right Wrist,Init Encntr
- ;;^UTILITY(U,$J,358.3,12249,1,4,0)
- ;;=4^S61.511A
- ;;^UTILITY(U,$J,358.3,12249,2)
- ;;=^5033026
- ;;^UTILITY(U,$J,358.3,12250,0)
- ;;=S01.01XA^^80^774^66
- ;;^UTILITY(U,$J,358.3,12250,1,0)
+ ;;^UTILITY(U,$J,358.3,12355,1,3,0)
+ ;;=3^Contact w/ & Exposure to COVID-19
+ ;;^UTILITY(U,$J,358.3,12355,1,4,0)
+ ;;=4^Z20.822
+ ;;^UTILITY(U,$J,358.3,12355,2)
+ ;;=^5160187
+ ;;^UTILITY(U,$J,358.3,12356,0)
+ ;;=R05.9^^49^597^15
+ ;;^UTILITY(U,$J,358.3,12356,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,12250,1,3,0)
- ;;=3^Laceration w/o FB of Scalp,Init Encntr
- ;;^UTILITY(U,$J,358.3,12250,1,4,0)
- ;;=4^S01.01XA
- ;;^UTILITY(U,$J,358.3,12250,2)
- ;;=^5020036
- ;;^UTILITY(U,$J,358.3,12251,0)
- ;;=S01.91XA^^80^774^4
- ;;^UTILITY(U,$J,358.3,12251,1,0)
+ ;;^UTILITY(U,$J,358.3,12356,1,3,0)
+ ;;=3^Cough,Unspec
+ ;;^UTILITY(U,$J,358.3,12356,1,4,0)
+ ;;=4^R05.9
+ ;;^UTILITY(U,$J,358.3,12356,2)
+ ;;=^5161232
+ ;;^UTILITY(U,$J,358.3,12357,0)
+ ;;=I05.0^^49^598^34
+ ;;^UTILITY(U,$J,358.3,12357,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,12251,1,3,0)
- ;;=3^Laceration w/o FB of Head,Unspec Part,Init Encntr
+ ;;^UTILITY(U,$J,358.3,12357,1,3,0)
+ ;;=3^Rheumatic Mitral Stenosis
+ ;;^UTILITY(U,$J,358.3,12357,1,4,0)
+ ;;=4^I05.0
+ ;;^UTILITY(U,$J,358.3,12357,2)
+ ;;=^5007041
+ ;;^UTILITY(U,$J,358.3,12358,0)
+ ;;=I05.8^^49^598^35
+ ;;^UTILITY(U,$J,358.3,12358,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,12358,1,3,0)
+ ;;=3^Rheumatic Mitral Valve Diseases,Other
+ ;;^UTILITY(U,$J,358.3,12358,1,4,0)
+ ;;=4^I05.8
+ ;;^UTILITY(U,$J,358.3,12358,2)
+ ;;=^5007043
+ ;;^UTILITY(U,$J,358.3,12359,0)
+ ;;=I10.^^49^598^22
+ ;;^UTILITY(U,$J,358.3,12359,1,0)
+ ;;=^358.31IA^4^2

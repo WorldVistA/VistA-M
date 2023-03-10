@@ -1,5 +1,5 @@
 GMRAMRG ;ALB/RDK - GMRA*4.0*43; PRE MERGE ALLERGY VALIDATION ; 4/25/13 12:04pm
- ;;4.0;Adverse Reaction Tracking;**43**;Mar 29, 1996;Build 5
+ ;;4.0;Adverse Reaction Tracking;**43,66**;Mar 29, 1996;Build 1
  ;;Per VHA Directive 2004-038, this routine should not be modified.
  ;
 EN(GMRAINPT) ; Entry point
@@ -23,6 +23,13 @@ ASSESS ; File 120.86 ADVERSE REACTION ASSESSMENT -
  ; 
  ;   GMRAFR - ien of patient (files #2,120.86) being merged from
  ;   GMRATO - ien of patient (files #2,120.86) being merged to
+ ;
+ ; Fixing issue wih .01 not converting to GMRATO after merge when TO patient does not have an entry in 120.86 and FROM does
+ I GMRATO,$D(^GMR(120.86,GMRAFR,0)),'$D(^GMR(120.86,GMRATO,0)) D  Q
+ . N DIC,DA,DR,DINUM,X,Y,DD,DO,DLAYGO
+ . S DIC="^GMR(120.86,",(DINUM,X)=GMRATO,DIC(0)=""
+ . S DIC("DR")="1////"_$$GET1^DIQ(120.86,GMRAFR,1,"I")_";2////"_$$GET1^DIQ(120.86,GMRAFR,2,"I")_";3////"_$$GET1^DIQ(120.86,GMRAFR,3,"I")
+ . S DLAYGO=120.86 K DD,DO D FILE^DICN
  ;
  ;  if merge FROM or TO has allergies, set the TO assessment to
  ;  'has allergies' and quit

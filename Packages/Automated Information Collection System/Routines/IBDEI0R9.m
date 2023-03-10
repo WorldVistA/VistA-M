@@ -1,132 +1,118 @@
-IBDEI0R9 ; ; 04-FEB-2020
- ;;3.0;IB ENCOUNTER FORM IMP/EXP;;FEB 04, 2020
+IBDEI0R9 ; ; 01-FEB-2022
+ ;;3.0;IB ENCOUNTER FORM IMP/EXP;;FEB 01, 2022
  Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,999) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
- ;;^UTILITY(U,$J,358.3,12169,1,3,0)
- ;;=3^Acute Vulvitis
- ;;^UTILITY(U,$J,358.3,12169,1,4,0)
- ;;=4^N76.2
- ;;^UTILITY(U,$J,358.3,12169,2)
- ;;=^5015828
- ;;^UTILITY(U,$J,358.3,12170,0)
- ;;=N76.3^^80^771^22
- ;;^UTILITY(U,$J,358.3,12170,1,0)
+ ;;^UTILITY(U,$J,358.3,12273,2)
+ ;;=^5151452
+ ;;^UTILITY(U,$J,358.3,12274,0)
+ ;;=L97.318^^49^596^88
+ ;;^UTILITY(U,$J,358.3,12274,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,12170,1,3,0)
- ;;=3^Subacute/Chronic Vulvitis
- ;;^UTILITY(U,$J,358.3,12170,1,4,0)
- ;;=4^N76.3
- ;;^UTILITY(U,$J,358.3,12170,2)
- ;;=^5015829
- ;;^UTILITY(U,$J,358.3,12171,0)
- ;;=N80.9^^80^771^6
- ;;^UTILITY(U,$J,358.3,12171,1,0)
+ ;;^UTILITY(U,$J,358.3,12274,1,3,0)
+ ;;=3^Non-Pressure Chr Ulcer Rt Ankle w/ Oth Severity
+ ;;^UTILITY(U,$J,358.3,12274,1,4,0)
+ ;;=4^L97.318
+ ;;^UTILITY(U,$J,358.3,12274,2)
+ ;;=^5151453
+ ;;^UTILITY(U,$J,358.3,12275,0)
+ ;;=L97.211^^49^596^90
+ ;;^UTILITY(U,$J,358.3,12275,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,12171,1,3,0)
- ;;=3^Endometriosis,Unspec
- ;;^UTILITY(U,$J,358.3,12171,1,4,0)
- ;;=4^N80.9
- ;;^UTILITY(U,$J,358.3,12171,2)
- ;;=^5015837
- ;;^UTILITY(U,$J,358.3,12172,0)
- ;;=N81.5^^80^771^23
- ;;^UTILITY(U,$J,358.3,12172,1,0)
+ ;;^UTILITY(U,$J,358.3,12275,1,3,0)
+ ;;=3^Non-Pressure Chr Ulcer Rt Calf Limited to Brkdwn Skin
+ ;;^UTILITY(U,$J,358.3,12275,1,4,0)
+ ;;=4^L97.211
+ ;;^UTILITY(U,$J,358.3,12275,2)
+ ;;=^5009500
+ ;;^UTILITY(U,$J,358.3,12276,0)
+ ;;=L97.212^^49^596^92
+ ;;^UTILITY(U,$J,358.3,12276,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,12172,1,3,0)
- ;;=3^Vaginal Enterocele
- ;;^UTILITY(U,$J,358.3,12172,1,4,0)
- ;;=4^N81.5
- ;;^UTILITY(U,$J,358.3,12172,2)
- ;;=^5015842
- ;;^UTILITY(U,$J,358.3,12173,0)
- ;;=N81.9^^80^771^8
- ;;^UTILITY(U,$J,358.3,12173,1,0)
+ ;;^UTILITY(U,$J,358.3,12276,1,3,0)
+ ;;=3^Non-Pressure Chr Ulcer Rt Calf w/ Fat Layer Exposed
+ ;;^UTILITY(U,$J,358.3,12276,1,4,0)
+ ;;=4^L97.212
+ ;;^UTILITY(U,$J,358.3,12276,2)
+ ;;=^5009501
+ ;;^UTILITY(U,$J,358.3,12277,0)
+ ;;=L97.213^^49^596^94
+ ;;^UTILITY(U,$J,358.3,12277,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,12173,1,3,0)
- ;;=3^Female Genital Prolapse,Unspec
- ;;^UTILITY(U,$J,358.3,12173,1,4,0)
- ;;=4^N81.9
- ;;^UTILITY(U,$J,358.3,12173,2)
- ;;=^5015845
- ;;^UTILITY(U,$J,358.3,12174,0)
- ;;=N89.7^^80^771^9
- ;;^UTILITY(U,$J,358.3,12174,1,0)
+ ;;^UTILITY(U,$J,358.3,12277,1,3,0)
+ ;;=3^Non-Pressure Chr Ulcer Rt Calf w/ Necrosis of Msl
+ ;;^UTILITY(U,$J,358.3,12277,1,4,0)
+ ;;=4^L97.213
+ ;;^UTILITY(U,$J,358.3,12277,2)
+ ;;=^5009502
+ ;;^UTILITY(U,$J,358.3,12278,0)
+ ;;=L97.214^^49^596^95
+ ;;^UTILITY(U,$J,358.3,12278,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,12174,1,3,0)
- ;;=3^Hematocolpos
- ;;^UTILITY(U,$J,358.3,12174,1,4,0)
- ;;=4^N89.7
- ;;^UTILITY(U,$J,358.3,12174,2)
- ;;=^5015889
- ;;^UTILITY(U,$J,358.3,12175,0)
- ;;=N92.0^^80^771^7
- ;;^UTILITY(U,$J,358.3,12175,1,0)
+ ;;^UTILITY(U,$J,358.3,12278,1,3,0)
+ ;;=3^Non-Pressure Chr Ulcer Rt Calf w/ Necrosis of Bone
+ ;;^UTILITY(U,$J,358.3,12278,1,4,0)
+ ;;=4^L97.214
+ ;;^UTILITY(U,$J,358.3,12278,2)
+ ;;=^5009503
+ ;;^UTILITY(U,$J,358.3,12279,0)
+ ;;=L97.215^^49^596^93
+ ;;^UTILITY(U,$J,358.3,12279,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,12175,1,3,0)
- ;;=3^Excessive/Frequent Menstruation w/ Regular Cycle
- ;;^UTILITY(U,$J,358.3,12175,1,4,0)
- ;;=4^N92.0
- ;;^UTILITY(U,$J,358.3,12175,2)
- ;;=^5015908
- ;;^UTILITY(U,$J,358.3,12176,0)
- ;;=N92.5^^80^771^10
- ;;^UTILITY(U,$J,358.3,12176,1,0)
+ ;;^UTILITY(U,$J,358.3,12279,1,3,0)
+ ;;=3^Non-Pressure Chr Ulcer Rt Calf w/ Msl Invl w/o Necrosis
+ ;;^UTILITY(U,$J,358.3,12279,1,4,0)
+ ;;=4^L97.215
+ ;;^UTILITY(U,$J,358.3,12279,2)
+ ;;=^5151442
+ ;;^UTILITY(U,$J,358.3,12280,0)
+ ;;=L97.216^^49^596^91
+ ;;^UTILITY(U,$J,358.3,12280,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,12176,1,3,0)
- ;;=3^Irregular Menstruation NEC
- ;;^UTILITY(U,$J,358.3,12176,1,4,0)
- ;;=4^N92.5
- ;;^UTILITY(U,$J,358.3,12176,2)
- ;;=^5015912
- ;;^UTILITY(U,$J,358.3,12177,0)
- ;;=N93.8^^80^771^2
- ;;^UTILITY(U,$J,358.3,12177,1,0)
+ ;;^UTILITY(U,$J,358.3,12280,1,3,0)
+ ;;=3^Non-Pressure Chr Ulcer Rt Calf w/ Bone Invl w/o Necrosis
+ ;;^UTILITY(U,$J,358.3,12280,1,4,0)
+ ;;=4^L97.216
+ ;;^UTILITY(U,$J,358.3,12280,2)
+ ;;=^5151443
+ ;;^UTILITY(U,$J,358.3,12281,0)
+ ;;=L97.218^^49^596^96
+ ;;^UTILITY(U,$J,358.3,12281,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,12177,1,3,0)
- ;;=3^Abnormal Uterine/Vaginal Bleeding NEC
- ;;^UTILITY(U,$J,358.3,12177,1,4,0)
- ;;=4^N93.8
- ;;^UTILITY(U,$J,358.3,12177,2)
- ;;=^5015915
- ;;^UTILITY(U,$J,358.3,12178,0)
- ;;=N94.4^^80^771^17
- ;;^UTILITY(U,$J,358.3,12178,1,0)
+ ;;^UTILITY(U,$J,358.3,12281,1,3,0)
+ ;;=3^Non-Pressure Chr Ulcer Rt Calf w/ Oth Severity
+ ;;^UTILITY(U,$J,358.3,12281,1,4,0)
+ ;;=4^L97.218
+ ;;^UTILITY(U,$J,358.3,12281,2)
+ ;;=^5151444
+ ;;^UTILITY(U,$J,358.3,12282,0)
+ ;;=L97.511^^49^596^99
+ ;;^UTILITY(U,$J,358.3,12282,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,12178,1,3,0)
- ;;=3^Primary Dysmenorrhea
- ;;^UTILITY(U,$J,358.3,12178,1,4,0)
- ;;=4^N94.4
- ;;^UTILITY(U,$J,358.3,12178,2)
- ;;=^5015920
- ;;^UTILITY(U,$J,358.3,12179,0)
- ;;=N94.5^^80^771^19
- ;;^UTILITY(U,$J,358.3,12179,1,0)
+ ;;^UTILITY(U,$J,358.3,12282,1,3,0)
+ ;;=3^Non-Pressure Chr Ulcer Rt Foot,Oth Part Limited to Brkdwn Skin
+ ;;^UTILITY(U,$J,358.3,12282,1,4,0)
+ ;;=4^L97.511
+ ;;^UTILITY(U,$J,358.3,12282,2)
+ ;;=^5009545
+ ;;^UTILITY(U,$J,358.3,12283,0)
+ ;;=L97.512^^49^596^100
+ ;;^UTILITY(U,$J,358.3,12283,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,12179,1,3,0)
- ;;=3^Secondary Dysmenorrhea
- ;;^UTILITY(U,$J,358.3,12179,1,4,0)
- ;;=4^N94.5
- ;;^UTILITY(U,$J,358.3,12179,2)
- ;;=^5015921
- ;;^UTILITY(U,$J,358.3,12180,0)
- ;;=N94.6^^80^771^5
- ;;^UTILITY(U,$J,358.3,12180,1,0)
+ ;;^UTILITY(U,$J,358.3,12283,1,3,0)
+ ;;=3^Non-Pressure Chr Ulcer Rt Foot,Oth Part w/ Fat Layer Exposed
+ ;;^UTILITY(U,$J,358.3,12283,1,4,0)
+ ;;=4^L97.512
+ ;;^UTILITY(U,$J,358.3,12283,2)
+ ;;=^5009546
+ ;;^UTILITY(U,$J,358.3,12284,0)
+ ;;=L97.513^^49^596^101
+ ;;^UTILITY(U,$J,358.3,12284,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,12180,1,3,0)
- ;;=3^Dysmenorrhea,Unspec
- ;;^UTILITY(U,$J,358.3,12180,1,4,0)
- ;;=4^N94.6
- ;;^UTILITY(U,$J,358.3,12180,2)
- ;;=^5015922
- ;;^UTILITY(U,$J,358.3,12181,0)
- ;;=N95.0^^80^771^16
- ;;^UTILITY(U,$J,358.3,12181,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,12181,1,3,0)
- ;;=3^Postmenopausal Bleeding
- ;;^UTILITY(U,$J,358.3,12181,1,4,0)
- ;;=4^N95.0
- ;;^UTILITY(U,$J,358.3,12181,2)
- ;;=^97040
- ;;^UTILITY(U,$J,358.3,12182,0)
- ;;=R87.619^^80^771^1
+ ;;^UTILITY(U,$J,358.3,12284,1,3,0)
+ ;;=3^Non-Pressure Chr Ulcer Rt Foot,Oth Part w/ Necrosis of Msl
+ ;;^UTILITY(U,$J,358.3,12284,1,4,0)
+ ;;=4^L97.513
+ ;;^UTILITY(U,$J,358.3,12284,2)
+ ;;=^5009547
+ ;;^UTILITY(U,$J,358.3,12285,0)
+ ;;=L97.514^^49^596^102

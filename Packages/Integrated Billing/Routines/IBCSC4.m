@@ -1,5 +1,5 @@
 IBCSC4 ;ALB/MJB - MCCR SCREEN 4 (INPT. EOC) ;27 MAY 88 10:17
- ;;2.0;INTEGRATED BILLING;**52,51,210,245,155,287,349,403,400,461,592**;21-MAR-94;Build 58
+ ;;2.0;INTEGRATED BILLING;**52,51,210,245,155,287,349,403,400,461,592,718**;21-MAR-94;Build 73
  ;;Per VHA Directive 2004-038, this routine should not be modified.
  ;
  ;MAP TO DGCRSC4
@@ -61,7 +61,10 @@ OCC ;
  S Z=$S($P(IB(0),U,5)<3:8,1:9)
  X IBWW W " Value Code : " S IBVC=0
  I $$FT^IBCEF(IBIFN)'=2 D
- . D VC^IBCVA1 I +IBVC S J=1,I=0 F  S I=$O(IBVC(I)) Q:'I  W:J>1 !,?3," Value Code : " W ?17,$E($P(IBVC(I),U,2),1,40),?58,$P(IBVC(I),U,3) S J=J+1
+ . ;IB*2.0*718;JWS;EBILL-99;EBILL-103;11/9/21;display only up to 5 value codes
+ . D VC^IBCVA1 I +IBVC S J=1,I=0 F  S I=$O(IBVC(I)) Q:'I  Q:J>5  W:J>1 !,?3," Value Code : " W ?17,$E($P(IBVC(I),U,2),1,40),?58,$P(IBVC(I),U,3) S J=J+1
+ . ;IB*2.0*718v4;JWS;EBILL-99;EBILL-103;11/16/21;variable J was unreliable. 
+ . I +$G(IBVC)>5 W !?4,"***There are more Value Codes associated with this bill.***",!
  W:'IBVC IBUN K IBVC
  D Q^IBCSC4B G ^IBCSCP
  Q

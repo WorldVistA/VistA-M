@@ -1,696 +1,654 @@
-IBDEI04Y ; ; 01-MAY-2020
- ;;3.0;IB ENCOUNTER FORM IMP/EXP;;MAY 01, 2020
+IBDEI04Y ; ; 01-AUG-2022
+ ;;3.0;IB ENCOUNTER FORM IMP/EXP;;AUG 01, 2022
  Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,999) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
- ;;^UTILITY(U,$J,358.3,11936,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,11936,1,3,0)
- ;;=3^Infection d/t Nephrostomy Catheter,Healing/Subs Encntr
- ;;^UTILITY(U,$J,358.3,11936,1,4,0)
- ;;=4^T83.512D
- ;;^UTILITY(U,$J,358.3,11936,2)
- ;;=^5140142
- ;;^UTILITY(U,$J,358.3,11937,0)
- ;;=T83.512A^^51^561^35
- ;;^UTILITY(U,$J,358.3,11937,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,11937,1,3,0)
- ;;=3^Infection d/t Nephrostomy Catheter,Init Encntr
- ;;^UTILITY(U,$J,358.3,11937,1,4,0)
- ;;=4^T83.512A
- ;;^UTILITY(U,$J,358.3,11937,2)
- ;;=^5140141
- ;;^UTILITY(U,$J,358.3,11938,0)
- ;;=T83.512S^^51^561^36
- ;;^UTILITY(U,$J,358.3,11938,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,11938,1,3,0)
- ;;=3^Infection d/t Nephrostomy Catheter,Sequela
- ;;^UTILITY(U,$J,358.3,11938,1,4,0)
- ;;=4^T83.512S
- ;;^UTILITY(U,$J,358.3,11938,2)
- ;;=^5140143
- ;;^UTILITY(U,$J,358.3,11939,0)
- ;;=R97.20^^51^561^16
- ;;^UTILITY(U,$J,358.3,11939,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,11939,1,3,0)
- ;;=3^Elevated PSA
- ;;^UTILITY(U,$J,358.3,11939,1,4,0)
- ;;=4^R97.20
- ;;^UTILITY(U,$J,358.3,11939,2)
- ;;=^334262
- ;;^UTILITY(U,$J,358.3,11940,0)
- ;;=R97.21^^51^561^17
- ;;^UTILITY(U,$J,358.3,11940,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,11940,1,3,0)
- ;;=3^Elevated PSA After Prostate CA Treatment
- ;;^UTILITY(U,$J,358.3,11940,1,4,0)
- ;;=4^R97.21
- ;;^UTILITY(U,$J,358.3,11940,2)
- ;;=^5139228
- ;;^UTILITY(U,$J,358.3,11941,0)
- ;;=B15.9^^51^562^2
- ;;^UTILITY(U,$J,358.3,11941,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,11941,1,3,0)
- ;;=3^Acute Hepatitis A w/o Hepatic Coma
- ;;^UTILITY(U,$J,358.3,11941,1,4,0)
- ;;=4^B15.9
- ;;^UTILITY(U,$J,358.3,11941,2)
- ;;=^5000536
- ;;^UTILITY(U,$J,358.3,11942,0)
- ;;=B18.2^^51^562^5
- ;;^UTILITY(U,$J,358.3,11942,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,11942,1,3,0)
- ;;=3^Chronic Viral Hepatitis C
- ;;^UTILITY(U,$J,358.3,11942,1,4,0)
- ;;=4^B18.2
- ;;^UTILITY(U,$J,358.3,11942,2)
- ;;=^5000548
- ;;^UTILITY(U,$J,358.3,11943,0)
- ;;=B17.10^^51^562^4
- ;;^UTILITY(U,$J,358.3,11943,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,11943,1,3,0)
- ;;=3^Acute Viral Hepatitis C w/o Hepatic Coma
- ;;^UTILITY(U,$J,358.3,11943,1,4,0)
- ;;=4^B17.10
- ;;^UTILITY(U,$J,358.3,11943,2)
- ;;=^5000542
- ;;^UTILITY(U,$J,358.3,11944,0)
- ;;=B17.11^^51^562^3
- ;;^UTILITY(U,$J,358.3,11944,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,11944,1,3,0)
- ;;=3^Acute Viral Hepatitis C w/ Hepatic Coma
- ;;^UTILITY(U,$J,358.3,11944,1,4,0)
- ;;=4^B17.11
- ;;^UTILITY(U,$J,358.3,11944,2)
- ;;=^331777
- ;;^UTILITY(U,$J,358.3,11945,0)
- ;;=B15.0^^51^562^1
- ;;^UTILITY(U,$J,358.3,11945,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,11945,1,3,0)
- ;;=3^Acute Hepatitis A w/ Hepatic Coma
- ;;^UTILITY(U,$J,358.3,11945,1,4,0)
- ;;=4^B15.0
- ;;^UTILITY(U,$J,358.3,11945,2)
- ;;=^5000535
- ;;^UTILITY(U,$J,358.3,11946,0)
- ;;=Z23.^^51^563^1
- ;;^UTILITY(U,$J,358.3,11946,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,11946,1,3,0)
- ;;=3^Encounter for Immunization
- ;;^UTILITY(U,$J,358.3,11946,1,4,0)
- ;;=4^Z23.
- ;;^UTILITY(U,$J,358.3,11946,2)
- ;;=^5062795
- ;;^UTILITY(U,$J,358.3,11947,0)
- ;;=M10.9^^51^564^2
- ;;^UTILITY(U,$J,358.3,11947,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,11947,1,3,0)
- ;;=3^Gout,Unspec
- ;;^UTILITY(U,$J,358.3,11947,1,4,0)
- ;;=4^M10.9
- ;;^UTILITY(U,$J,358.3,11947,2)
- ;;=^5010404
- ;;^UTILITY(U,$J,358.3,11948,0)
- ;;=M19.90^^51^564^5
- ;;^UTILITY(U,$J,358.3,11948,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,11948,1,3,0)
- ;;=3^Osteoarthritis,Unspec
- ;;^UTILITY(U,$J,358.3,11948,1,4,0)
- ;;=4^M19.90
- ;;^UTILITY(U,$J,358.3,11948,2)
- ;;=^5010853
- ;;^UTILITY(U,$J,358.3,11949,0)
- ;;=M54.5^^51^564^4
- ;;^UTILITY(U,$J,358.3,11949,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,11949,1,3,0)
- ;;=3^Low Back Pain
- ;;^UTILITY(U,$J,358.3,11949,1,4,0)
- ;;=4^M54.5
- ;;^UTILITY(U,$J,358.3,11949,2)
- ;;=^5012311
- ;;^UTILITY(U,$J,358.3,11950,0)
- ;;=M71.50^^51^564^1
- ;;^UTILITY(U,$J,358.3,11950,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,11950,1,3,0)
- ;;=3^Bursitis NEC,Unspec Site
- ;;^UTILITY(U,$J,358.3,11950,1,4,0)
- ;;=4^M71.50
- ;;^UTILITY(U,$J,358.3,11950,2)
- ;;=^5013190
- ;;^UTILITY(U,$J,358.3,11951,0)
- ;;=M25.50^^51^564^3
- ;;^UTILITY(U,$J,358.3,11951,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,11951,1,3,0)
- ;;=3^Joint Pain,Unspec Joint
- ;;^UTILITY(U,$J,358.3,11951,1,4,0)
- ;;=4^M25.50
- ;;^UTILITY(U,$J,358.3,11951,2)
- ;;=^5011601
- ;;^UTILITY(U,$J,358.3,11952,0)
- ;;=M16.0^^51^564^12
- ;;^UTILITY(U,$J,358.3,11952,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,11952,1,3,0)
- ;;=3^Primary OA of Hip,Bilateral
- ;;^UTILITY(U,$J,358.3,11952,1,4,0)
- ;;=4^M16.0
- ;;^UTILITY(U,$J,358.3,11952,2)
- ;;=^5010769
- ;;^UTILITY(U,$J,358.3,11953,0)
- ;;=M16.11^^51^564^16
- ;;^UTILITY(U,$J,358.3,11953,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,11953,1,3,0)
- ;;=3^Primary OA of Right Hip
- ;;^UTILITY(U,$J,358.3,11953,1,4,0)
- ;;=4^M16.11
- ;;^UTILITY(U,$J,358.3,11953,2)
- ;;=^5010771
- ;;^UTILITY(U,$J,358.3,11954,0)
- ;;=M16.12^^51^564^14
- ;;^UTILITY(U,$J,358.3,11954,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,11954,1,3,0)
- ;;=3^Primary OA of Left Hip
- ;;^UTILITY(U,$J,358.3,11954,1,4,0)
- ;;=4^M16.12
- ;;^UTILITY(U,$J,358.3,11954,2)
- ;;=^5010772
- ;;^UTILITY(U,$J,358.3,11955,0)
- ;;=M16.4^^51^564^6
- ;;^UTILITY(U,$J,358.3,11955,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,11955,1,3,0)
- ;;=3^Post-Traumatic OA of Hip,Bilateral
- ;;^UTILITY(U,$J,358.3,11955,1,4,0)
- ;;=4^M16.4
- ;;^UTILITY(U,$J,358.3,11955,2)
- ;;=^5010777
- ;;^UTILITY(U,$J,358.3,11956,0)
- ;;=M16.51^^51^564^10
- ;;^UTILITY(U,$J,358.3,11956,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,11956,1,3,0)
- ;;=3^Post-Traumatic OA of Right Hip
- ;;^UTILITY(U,$J,358.3,11956,1,4,0)
- ;;=4^M16.51
- ;;^UTILITY(U,$J,358.3,11956,2)
- ;;=^5010779
- ;;^UTILITY(U,$J,358.3,11957,0)
- ;;=M16.52^^51^564^8
- ;;^UTILITY(U,$J,358.3,11957,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,11957,1,3,0)
- ;;=3^Post-Traumatic OA of Left Hip
- ;;^UTILITY(U,$J,358.3,11957,1,4,0)
- ;;=4^M16.52
- ;;^UTILITY(U,$J,358.3,11957,2)
- ;;=^5010780
- ;;^UTILITY(U,$J,358.3,11958,0)
- ;;=M17.0^^51^564^13
- ;;^UTILITY(U,$J,358.3,11958,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,11958,1,3,0)
- ;;=3^Primary OA of Knee,Bilateral
- ;;^UTILITY(U,$J,358.3,11958,1,4,0)
- ;;=4^M17.0
- ;;^UTILITY(U,$J,358.3,11958,2)
- ;;=^5010784
- ;;^UTILITY(U,$J,358.3,11959,0)
- ;;=M17.11^^51^564^17
- ;;^UTILITY(U,$J,358.3,11959,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,11959,1,3,0)
- ;;=3^Primary OA of Right Knee
- ;;^UTILITY(U,$J,358.3,11959,1,4,0)
- ;;=4^M17.11
- ;;^UTILITY(U,$J,358.3,11959,2)
- ;;=^5010786
- ;;^UTILITY(U,$J,358.3,11960,0)
- ;;=M17.12^^51^564^15
- ;;^UTILITY(U,$J,358.3,11960,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,11960,1,3,0)
- ;;=3^Primary OA of Left Knee
- ;;^UTILITY(U,$J,358.3,11960,1,4,0)
- ;;=4^M17.12
- ;;^UTILITY(U,$J,358.3,11960,2)
- ;;=^5010787
- ;;^UTILITY(U,$J,358.3,11961,0)
- ;;=M17.2^^51^564^7
- ;;^UTILITY(U,$J,358.3,11961,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,11961,1,3,0)
- ;;=3^Post-Traumatic OA of Knee,Bilateral
- ;;^UTILITY(U,$J,358.3,11961,1,4,0)
- ;;=4^M17.2
- ;;^UTILITY(U,$J,358.3,11961,2)
- ;;=^5010788
- ;;^UTILITY(U,$J,358.3,11962,0)
- ;;=M17.31^^51^564^11
- ;;^UTILITY(U,$J,358.3,11962,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,11962,1,3,0)
- ;;=3^Post-Traumatic OA of Right Knee
- ;;^UTILITY(U,$J,358.3,11962,1,4,0)
- ;;=4^M17.31
- ;;^UTILITY(U,$J,358.3,11962,2)
- ;;=^5010790
- ;;^UTILITY(U,$J,358.3,11963,0)
- ;;=M17.32^^51^564^9
- ;;^UTILITY(U,$J,358.3,11963,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,11963,1,3,0)
- ;;=3^Post-Traumatic OA of Left Knee
- ;;^UTILITY(U,$J,358.3,11963,1,4,0)
- ;;=4^M17.32
- ;;^UTILITY(U,$J,358.3,11963,2)
- ;;=^5010791
- ;;^UTILITY(U,$J,358.3,11964,0)
- ;;=G30.9^^51^565^1
- ;;^UTILITY(U,$J,358.3,11964,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,11964,1,3,0)
- ;;=3^Alzheimer's Disease,Unspec
- ;;^UTILITY(U,$J,358.3,11964,1,4,0)
- ;;=4^G30.9
- ;;^UTILITY(U,$J,358.3,11964,2)
- ;;=^5003808
- ;;^UTILITY(U,$J,358.3,11965,0)
- ;;=G20.^^51^565^8
- ;;^UTILITY(U,$J,358.3,11965,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,11965,1,3,0)
- ;;=3^Parkinson's Disease
- ;;^UTILITY(U,$J,358.3,11965,1,4,0)
- ;;=4^G20.
- ;;^UTILITY(U,$J,358.3,11965,2)
- ;;=^5003770
- ;;^UTILITY(U,$J,358.3,11966,0)
- ;;=G35.^^51^565^7
- ;;^UTILITY(U,$J,358.3,11966,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,11966,1,3,0)
- ;;=3^Multiple Sclerosis
- ;;^UTILITY(U,$J,358.3,11966,1,4,0)
- ;;=4^G35.
- ;;^UTILITY(U,$J,358.3,11966,2)
- ;;=^79761
- ;;^UTILITY(U,$J,358.3,11967,0)
- ;;=G60.9^^51^565^5
- ;;^UTILITY(U,$J,358.3,11967,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,11967,1,3,0)
- ;;=3^Hereditary/Idiopathic Neuropathy,Unspec
- ;;^UTILITY(U,$J,358.3,11967,1,4,0)
- ;;=4^G60.9
- ;;^UTILITY(U,$J,358.3,11967,2)
- ;;=^5004071
- ;;^UTILITY(U,$J,358.3,11968,0)
- ;;=I69.90^^51^565^2
- ;;^UTILITY(U,$J,358.3,11968,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,11968,1,3,0)
- ;;=3^Cerebrovascular Disease,Unspec
- ;;^UTILITY(U,$J,358.3,11968,1,4,0)
- ;;=4^I69.90
- ;;^UTILITY(U,$J,358.3,11968,2)
- ;;=^5007551
- ;;^UTILITY(U,$J,358.3,11969,0)
- ;;=R56.9^^51^565^4
- ;;^UTILITY(U,$J,358.3,11969,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,11969,1,3,0)
- ;;=3^Convulsions,Unspec
- ;;^UTILITY(U,$J,358.3,11969,1,4,0)
- ;;=4^R56.9
- ;;^UTILITY(U,$J,358.3,11969,2)
- ;;=^5019524
- ;;^UTILITY(U,$J,358.3,11970,0)
- ;;=S14.109S^^51^565^3
- ;;^UTILITY(U,$J,358.3,11970,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,11970,1,3,0)
- ;;=3^Cervical Spinal Cord Injury,Unspec,Sequela
- ;;^UTILITY(U,$J,358.3,11970,1,4,0)
- ;;=4^S14.109S
- ;;^UTILITY(U,$J,358.3,11970,2)
- ;;=^5134243
- ;;^UTILITY(U,$J,358.3,11971,0)
- ;;=S24.109S^^51^565^10
- ;;^UTILITY(U,$J,358.3,11971,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,11971,1,3,0)
- ;;=3^Thoracic Spinal Cord Injury,Unspec,Sequela
- ;;^UTILITY(U,$J,358.3,11971,1,4,0)
- ;;=4^S24.109S
- ;;^UTILITY(U,$J,358.3,11971,2)
- ;;=^5134384
- ;;^UTILITY(U,$J,358.3,11972,0)
- ;;=S34.109S^^51^565^6
- ;;^UTILITY(U,$J,358.3,11972,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,11972,1,3,0)
- ;;=3^Lumbar Spinal Cord Injury,Unspec,Sequela
- ;;^UTILITY(U,$J,358.3,11972,1,4,0)
- ;;=4^S34.109S
- ;;^UTILITY(U,$J,358.3,11972,2)
- ;;=^5134570
- ;;^UTILITY(U,$J,358.3,11973,0)
- ;;=S34.139S^^51^565^9
- ;;^UTILITY(U,$J,358.3,11973,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,11973,1,3,0)
- ;;=3^Sacral Spinal Cord Injury,Unspec,Sequela
- ;;^UTILITY(U,$J,358.3,11973,1,4,0)
- ;;=4^S34.139S
- ;;^UTILITY(U,$J,358.3,11973,2)
- ;;=^5025249
- ;;^UTILITY(U,$J,358.3,11974,0)
- ;;=Z43.0^^51^566^10
- ;;^UTILITY(U,$J,358.3,11974,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,11974,1,3,0)
- ;;=3^Attention to Tracheostomy
- ;;^UTILITY(U,$J,358.3,11974,1,4,0)
- ;;=4^Z43.0
- ;;^UTILITY(U,$J,358.3,11974,2)
- ;;=^5062958
- ;;^UTILITY(U,$J,358.3,11975,0)
- ;;=Z43.1^^51^566^8
- ;;^UTILITY(U,$J,358.3,11975,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,11975,1,3,0)
- ;;=3^Attention to Gastrostomy
- ;;^UTILITY(U,$J,358.3,11975,1,4,0)
- ;;=4^Z43.1
- ;;^UTILITY(U,$J,358.3,11975,2)
- ;;=^5062959
- ;;^UTILITY(U,$J,358.3,11976,0)
- ;;=Z43.2^^51^566^9
- ;;^UTILITY(U,$J,358.3,11976,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,11976,1,3,0)
- ;;=3^Attention to Ileostomy
  ;;^UTILITY(U,$J,358.3,11976,1,4,0)
- ;;=4^Z43.2
+ ;;=4^S06.310D
  ;;^UTILITY(U,$J,358.3,11976,2)
- ;;=^5062960
+ ;;=^5020787
  ;;^UTILITY(U,$J,358.3,11977,0)
- ;;=Z43.3^^51^566^6
+ ;;=S06.389D^^50^543^7
  ;;^UTILITY(U,$J,358.3,11977,1,0)
  ;;=^358.31IA^4^2
  ;;^UTILITY(U,$J,358.3,11977,1,3,0)
- ;;=3^Attention to Colostomy
+ ;;=3^Contus/lac/hem brnst w LOC,unsp duration,subsq
  ;;^UTILITY(U,$J,358.3,11977,1,4,0)
- ;;=4^Z43.3
+ ;;=4^S06.389D
  ;;^UTILITY(U,$J,358.3,11977,2)
- ;;=^5062961
+ ;;=^5021024
  ;;^UTILITY(U,$J,358.3,11978,0)
- ;;=Z43.4^^51^566^4
+ ;;=S06.380D^^50^543^8
  ;;^UTILITY(U,$J,358.3,11978,1,0)
  ;;=^358.31IA^4^2
  ;;^UTILITY(U,$J,358.3,11978,1,3,0)
- ;;=3^Attention to Artif Opening of Digestive Tract NEC
+ ;;=3^Contus/lac/hem brnst w/o LOC,subsq
  ;;^UTILITY(U,$J,358.3,11978,1,4,0)
- ;;=4^Z43.4
+ ;;=4^S06.380D
  ;;^UTILITY(U,$J,358.3,11978,2)
- ;;=^5062962
+ ;;=^5020997
  ;;^UTILITY(U,$J,358.3,11979,0)
- ;;=Z43.5^^51^566^7
+ ;;=S06.379D^^50^543^9
  ;;^UTILITY(U,$J,358.3,11979,1,0)
  ;;=^358.31IA^4^2
  ;;^UTILITY(U,$J,358.3,11979,1,3,0)
- ;;=3^Attention to Cystostomy
+ ;;=3^Contus/lac/hem crblm w LOC,unsp duration,subsq
  ;;^UTILITY(U,$J,358.3,11979,1,4,0)
- ;;=4^Z43.5
+ ;;=4^S06.379D
  ;;^UTILITY(U,$J,358.3,11979,2)
- ;;=^5062963
+ ;;=^5020994
  ;;^UTILITY(U,$J,358.3,11980,0)
- ;;=Z43.6^^51^566^5
+ ;;=S06.370D^^50^543^10
  ;;^UTILITY(U,$J,358.3,11980,1,0)
  ;;=^358.31IA^4^2
  ;;^UTILITY(U,$J,358.3,11980,1,3,0)
- ;;=3^Attention to Artif Opening of Urinary Tract NEC
+ ;;=3^Contus/lac/hem crblm w/o LOC,subsq
  ;;^UTILITY(U,$J,358.3,11980,1,4,0)
- ;;=4^Z43.6
+ ;;=4^S06.370D
  ;;^UTILITY(U,$J,358.3,11980,2)
- ;;=^5062964
+ ;;=^5020967
  ;;^UTILITY(U,$J,358.3,11981,0)
- ;;=Z48.00^^51^566^12
+ ;;=S06.2X9D^^50^543^11
  ;;^UTILITY(U,$J,358.3,11981,1,0)
  ;;=^358.31IA^4^2
  ;;^UTILITY(U,$J,358.3,11981,1,3,0)
- ;;=3^Change or Removal of Nonsurg Wound Dressing
+ ;;=3^Diffuse TBI w LOC,unsp duration,subsq
  ;;^UTILITY(U,$J,358.3,11981,1,4,0)
- ;;=4^Z48.00
+ ;;=4^S06.2X9D
  ;;^UTILITY(U,$J,358.3,11981,2)
- ;;=^5063033
+ ;;=^5020754
  ;;^UTILITY(U,$J,358.3,11982,0)
- ;;=Z48.01^^51^566^13
+ ;;=S06.2X0D^^50^543^12
  ;;^UTILITY(U,$J,358.3,11982,1,0)
  ;;=^358.31IA^4^2
  ;;^UTILITY(U,$J,358.3,11982,1,3,0)
- ;;=3^Change or Removal of Surg Wound Dressing
+ ;;=3^Diffuse TBI w/o LOC,subsq
  ;;^UTILITY(U,$J,358.3,11982,1,4,0)
- ;;=4^Z48.01
+ ;;=4^S06.2X0D
  ;;^UTILITY(U,$J,358.3,11982,2)
- ;;=^5063034
+ ;;=^5020727
  ;;^UTILITY(U,$J,358.3,11983,0)
- ;;=Z48.02^^51^566^23
+ ;;=S06.4X9D^^50^543^13
  ;;^UTILITY(U,$J,358.3,11983,1,0)
  ;;=^358.31IA^4^2
  ;;^UTILITY(U,$J,358.3,11983,1,3,0)
- ;;=3^Suture Removal
+ ;;=3^Epidural hemorrhage w LOC,unsp duration,subsq
  ;;^UTILITY(U,$J,358.3,11983,1,4,0)
- ;;=4^Z48.02
+ ;;=4^S06.4X9D
  ;;^UTILITY(U,$J,358.3,11983,2)
- ;;=^5063035
+ ;;=^5021054
  ;;^UTILITY(U,$J,358.3,11984,0)
- ;;=Z48.03^^51^566^11
+ ;;=S06.4X0D^^50^543^14
  ;;^UTILITY(U,$J,358.3,11984,1,0)
  ;;=^358.31IA^4^2
  ;;^UTILITY(U,$J,358.3,11984,1,3,0)
- ;;=3^Change or Removal of Drains
+ ;;=3^Epidural hemorrhage w/o LOC,subsq
  ;;^UTILITY(U,$J,358.3,11984,1,4,0)
- ;;=4^Z48.03
+ ;;=4^S06.4X0D
  ;;^UTILITY(U,$J,358.3,11984,2)
- ;;=^5063036
+ ;;=^5021027
  ;;^UTILITY(U,$J,358.3,11985,0)
- ;;=Z48.89^^51^566^22
+ ;;=S06.829D^^50^543^15
  ;;^UTILITY(U,$J,358.3,11985,1,0)
  ;;=^358.31IA^4^2
  ;;^UTILITY(U,$J,358.3,11985,1,3,0)
- ;;=3^Surgical Aftercare NEC
+ ;;=3^Inj left int carotid, intcr w LOC,unsp duration,subsq
  ;;^UTILITY(U,$J,358.3,11985,1,4,0)
- ;;=4^Z48.89
+ ;;=4^S06.829D
  ;;^UTILITY(U,$J,358.3,11985,2)
- ;;=^5063055
+ ;;=^5021174
  ;;^UTILITY(U,$J,358.3,11986,0)
- ;;=Z45.2^^51^566^1
+ ;;=S06.820D^^50^543^16
  ;;^UTILITY(U,$J,358.3,11986,1,0)
  ;;=^358.31IA^4^2
  ;;^UTILITY(U,$J,358.3,11986,1,3,0)
- ;;=3^Adjustment/Management of VAD
+ ;;=3^Inj left int carotid, intcr w/o LOC,subsq
  ;;^UTILITY(U,$J,358.3,11986,1,4,0)
- ;;=4^Z45.2
+ ;;=4^S06.820D
  ;;^UTILITY(U,$J,358.3,11986,2)
- ;;=^5062999
+ ;;=^5021147
  ;;^UTILITY(U,$J,358.3,11987,0)
- ;;=Z46.82^^51^566^17
+ ;;=S06.819D^^50^543^17
  ;;^UTILITY(U,$J,358.3,11987,1,0)
  ;;=^358.31IA^4^2
  ;;^UTILITY(U,$J,358.3,11987,1,3,0)
- ;;=3^Fitting/Adjustment of Non-Vascular Catheter
+ ;;=3^Inj right int carotid, intcr w LOC,unsp duration,subsq
  ;;^UTILITY(U,$J,358.3,11987,1,4,0)
- ;;=4^Z46.82
+ ;;=4^S06.819D
  ;;^UTILITY(U,$J,358.3,11987,2)
- ;;=^5063022
+ ;;=^5021144
  ;;^UTILITY(U,$J,358.3,11988,0)
- ;;=Z51.11^^51^566^3
+ ;;=S06.810D^^50^543^18
  ;;^UTILITY(U,$J,358.3,11988,1,0)
  ;;=^358.31IA^4^2
  ;;^UTILITY(U,$J,358.3,11988,1,3,0)
- ;;=3^Antineoplastic Chemotherapy
+ ;;=3^Inj right int carotid, intcr w/o LOC,subsq
  ;;^UTILITY(U,$J,358.3,11988,1,4,0)
- ;;=4^Z51.11
+ ;;=4^S06.810D
  ;;^UTILITY(U,$J,358.3,11988,2)
- ;;=^5063061
+ ;;=^5021117
  ;;^UTILITY(U,$J,358.3,11989,0)
- ;;=Z71.9^^51^566^14
+ ;;=S06.359D^^50^543^21
  ;;^UTILITY(U,$J,358.3,11989,1,0)
  ;;=^358.31IA^4^2
  ;;^UTILITY(U,$J,358.3,11989,1,3,0)
- ;;=3^Counseling,Unspec
+ ;;=3^Traum hemor left cerebrum w LOC,unsp duration,subsq
  ;;^UTILITY(U,$J,358.3,11989,1,4,0)
- ;;=4^Z71.9
+ ;;=4^S06.359D
  ;;^UTILITY(U,$J,358.3,11989,2)
- ;;=^5063254
+ ;;=^5020934
  ;;^UTILITY(U,$J,358.3,11990,0)
- ;;=Z76.0^^51^566^19
+ ;;=S06.350D^^50^543^22
  ;;^UTILITY(U,$J,358.3,11990,1,0)
  ;;=^358.31IA^4^2
  ;;^UTILITY(U,$J,358.3,11990,1,3,0)
- ;;=3^Issue of Repeat Prescription
+ ;;=3^Traum hemor left cerebrum w/o LOC,subsq
  ;;^UTILITY(U,$J,358.3,11990,1,4,0)
- ;;=4^Z76.0
+ ;;=4^S06.350D
  ;;^UTILITY(U,$J,358.3,11990,2)
- ;;=^5063297
+ ;;=^5020907
  ;;^UTILITY(U,$J,358.3,11991,0)
- ;;=Z02.9^^51^566^2
+ ;;=S06.349D^^50^543^23
  ;;^UTILITY(U,$J,358.3,11991,1,0)
  ;;=^358.31IA^4^2
  ;;^UTILITY(U,$J,358.3,11991,1,3,0)
- ;;=3^Administrative Exam,Unspec
+ ;;=3^Traum hemor right cerebrum w LOC,unsp duration,subsq
  ;;^UTILITY(U,$J,358.3,11991,1,4,0)
- ;;=4^Z02.9
+ ;;=4^S06.349D
  ;;^UTILITY(U,$J,358.3,11991,2)
- ;;=^5062646
+ ;;=^5020904
  ;;^UTILITY(U,$J,358.3,11992,0)
- ;;=Z59.0^^51^566^18
+ ;;=S06.340D^^50^543^24
  ;;^UTILITY(U,$J,358.3,11992,1,0)
  ;;=^358.31IA^4^2
  ;;^UTILITY(U,$J,358.3,11992,1,3,0)
- ;;=3^Homelessness
+ ;;=3^Traum hemor right cerebrum w/o LOC,subsq
  ;;^UTILITY(U,$J,358.3,11992,1,4,0)
- ;;=4^Z59.0
+ ;;=4^S06.340D
  ;;^UTILITY(U,$J,358.3,11992,2)
- ;;=^5063129
+ ;;=^5020877
  ;;^UTILITY(U,$J,358.3,11993,0)
- ;;=Z71.0^^51^566^20
+ ;;=S06.5X9D^^50^543^25
  ;;^UTILITY(U,$J,358.3,11993,1,0)
  ;;=^358.31IA^4^2
  ;;^UTILITY(U,$J,358.3,11993,1,3,0)
- ;;=3^Persons Consulting on Behalf of Another Person
+ ;;=3^Traum subdr hem w LOC,unsp duration,subsq
  ;;^UTILITY(U,$J,358.3,11993,1,4,0)
- ;;=4^Z71.0
+ ;;=4^S06.5X9D
  ;;^UTILITY(U,$J,358.3,11993,2)
- ;;=^5063242
+ ;;=^5021084
  ;;^UTILITY(U,$J,358.3,11994,0)
- ;;=Z01.818^^51^566^21
+ ;;=S06.5X0D^^50^543^26
  ;;^UTILITY(U,$J,358.3,11994,1,0)
  ;;=^358.31IA^4^2
  ;;^UTILITY(U,$J,358.3,11994,1,3,0)
- ;;=3^Preprocedural Exam NEC
+ ;;=3^Traum subdr hem w/o LOC,subsq
  ;;^UTILITY(U,$J,358.3,11994,1,4,0)
- ;;=4^Z01.818
+ ;;=4^S06.5X0D
  ;;^UTILITY(U,$J,358.3,11994,2)
- ;;=^5062628
+ ;;=^5021057
  ;;^UTILITY(U,$J,358.3,11995,0)
- ;;=Z04.9^^51^566^15
+ ;;=S06.6X9D^^50^543^27
  ;;^UTILITY(U,$J,358.3,11995,1,0)
  ;;=^358.31IA^4^2
  ;;^UTILITY(U,$J,358.3,11995,1,3,0)
- ;;=3^Exam/Observation for Unspec Reason
+ ;;=3^Traum subrac hem w LOC,unsp duration,subsq
  ;;^UTILITY(U,$J,358.3,11995,1,4,0)
- ;;=4^Z04.9
+ ;;=4^S06.6X9D
  ;;^UTILITY(U,$J,358.3,11995,2)
- ;;=^5062666
+ ;;=^5021114
  ;;^UTILITY(U,$J,358.3,11996,0)
- ;;=Z49.01^^51^566^16
+ ;;=S06.6X0D^^50^543^28
  ;;^UTILITY(U,$J,358.3,11996,1,0)
  ;;=^358.31IA^4^2
  ;;^UTILITY(U,$J,358.3,11996,1,3,0)
- ;;=3^Fitting/Adjustment of Extracorpeal Dialysis Catheter
+ ;;=3^Traum subrac hem w/o LOC,subsq
  ;;^UTILITY(U,$J,358.3,11996,1,4,0)
- ;;=4^Z49.01
+ ;;=4^S06.6X0D
  ;;^UTILITY(U,$J,358.3,11996,2)
- ;;=^5063056
+ ;;=^5021087
  ;;^UTILITY(U,$J,358.3,11997,0)
- ;;=Z71.3^^51^567^3
+ ;;=S06.1X9D^^50^543^19
  ;;^UTILITY(U,$J,358.3,11997,1,0)
  ;;=^358.31IA^4^2
  ;;^UTILITY(U,$J,358.3,11997,1,3,0)
- ;;=3^Dietary Counseling/Surveillance
+ ;;=3^Traum cerebral edema w LOC,unsp duration,subsq
  ;;^UTILITY(U,$J,358.3,11997,1,4,0)
- ;;=4^Z71.3
+ ;;=4^S06.1X9D
  ;;^UTILITY(U,$J,358.3,11997,2)
- ;;=^5063245
+ ;;=^5020724
  ;;^UTILITY(U,$J,358.3,11998,0)
- ;;=Z00.00^^51^567^6
+ ;;=S06.1X0D^^50^543^20
  ;;^UTILITY(U,$J,358.3,11998,1,0)
  ;;=^358.31IA^4^2
  ;;^UTILITY(U,$J,358.3,11998,1,3,0)
- ;;=3^General Adult Medical Exam w/o Abnormal Findings
+ ;;=3^Traum cerebral edema w/o LOC,subsq
  ;;^UTILITY(U,$J,358.3,11998,1,4,0)
- ;;=4^Z00.00
+ ;;=4^S06.1X0D
  ;;^UTILITY(U,$J,358.3,11998,2)
- ;;=^5062599
+ ;;=^5020697
  ;;^UTILITY(U,$J,358.3,11999,0)
- ;;=Z01.89^^51^567^12
+ ;;=M84.750D^^50^544^1
  ;;^UTILITY(U,$J,358.3,11999,1,0)
  ;;=^358.31IA^4^2
  ;;^UTILITY(U,$J,358.3,11999,1,3,0)
- ;;=3^Special Exam NEC
+ ;;=3^Atypical Fx,Femur,Unspec,Subsq
  ;;^UTILITY(U,$J,358.3,11999,1,4,0)
- ;;=4^Z01.89
+ ;;=4^M84.750D
  ;;^UTILITY(U,$J,358.3,11999,2)
- ;;=^5062632
+ ;;=^5138834
  ;;^UTILITY(U,$J,358.3,12000,0)
- ;;=Z11.59^^51^567^13
+ ;;=M84.758D^^50^544^2
  ;;^UTILITY(U,$J,358.3,12000,1,0)
  ;;=^358.31IA^4^2
  ;;^UTILITY(U,$J,358.3,12000,1,3,0)
- ;;=3^Viral Disease Screening NEC
+ ;;=3^Complete Oblique Atyp Femoral Fx,Left,Subsq    
  ;;^UTILITY(U,$J,358.3,12000,1,4,0)
- ;;=4^Z11.59
+ ;;=4^M84.758D
  ;;^UTILITY(U,$J,358.3,12000,2)
- ;;=^5062675
+ ;;=^5138882
  ;;^UTILITY(U,$J,358.3,12001,0)
- ;;=Z12.39^^51^567^8
+ ;;=M84.757D^^50^544^3
  ;;^UTILITY(U,$J,358.3,12001,1,0)
  ;;=^358.31IA^4^2
  ;;^UTILITY(U,$J,358.3,12001,1,3,0)
- ;;=3^Malig Neop of Breast Screening NEC
+ ;;=3^Complete Oblique Atyp Femoral Fx,Right,Subsq    
  ;;^UTILITY(U,$J,358.3,12001,1,4,0)
- ;;=4^Z12.39
+ ;;=4^M84.757D
  ;;^UTILITY(U,$J,358.3,12001,2)
- ;;=^5062686
+ ;;=^5138876
  ;;^UTILITY(U,$J,358.3,12002,0)
- ;;=Z12.12^^51^567^10
+ ;;=M84.755D^^50^544^4
  ;;^UTILITY(U,$J,358.3,12002,1,0)
  ;;=^358.31IA^4^2
  ;;^UTILITY(U,$J,358.3,12002,1,3,0)
- ;;=3^Malig Neop of Rectum Screening
+ ;;=3^Complete Transverse Atyp Femoral Fx,Left,Subsq 
  ;;^UTILITY(U,$J,358.3,12002,1,4,0)
- ;;=4^Z12.12
+ ;;=4^M84.755D
  ;;^UTILITY(U,$J,358.3,12002,2)
- ;;=^5062682
+ ;;=^5138864
  ;;^UTILITY(U,$J,358.3,12003,0)
- ;;=Z12.5^^51^567^9
+ ;;=M84.754D^^50^544^5
  ;;^UTILITY(U,$J,358.3,12003,1,0)
  ;;=^358.31IA^4^2
  ;;^UTILITY(U,$J,358.3,12003,1,3,0)
- ;;=3^Malig Neop of Prostate Screening
+ ;;=3^Complete Transverse Atyp Femoral Fx,Right,Subsq 
  ;;^UTILITY(U,$J,358.3,12003,1,4,0)
- ;;=4^Z12.5
+ ;;=4^M84.754D
  ;;^UTILITY(U,$J,358.3,12003,2)
- ;;=^5062688
+ ;;=^5138858
  ;;^UTILITY(U,$J,358.3,12004,0)
- ;;=Z13.5^^51^567^4
+ ;;=S72.132D^^50^544^6
  ;;^UTILITY(U,$J,358.3,12004,1,0)
  ;;=^358.31IA^4^2
  ;;^UTILITY(U,$J,358.3,12004,1,3,0)
- ;;=3^Eye and Ear Disorder Screening
+ ;;=3^Displaced apophyseal Fx,left femur,Subsq
  ;;^UTILITY(U,$J,358.3,12004,1,4,0)
- ;;=4^Z13.5
+ ;;=4^S72.132D
  ;;^UTILITY(U,$J,358.3,12004,2)
- ;;=^5062706
+ ;;=^5037838
  ;;^UTILITY(U,$J,358.3,12005,0)
- ;;=Z13.1^^51^567^2
+ ;;=S72.131D^^50^544^7
  ;;^UTILITY(U,$J,358.3,12005,1,0)
  ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,12005,1,3,0)
+ ;;=3^Displaced apophyseal Fx,right femur,Subsq
+ ;;^UTILITY(U,$J,358.3,12005,1,4,0)
+ ;;=4^S72.131D
+ ;;^UTILITY(U,$J,358.3,12005,2)
+ ;;=^5037822
+ ;;^UTILITY(U,$J,358.3,12006,0)
+ ;;=S72.062D^^50^544^8
+ ;;^UTILITY(U,$J,358.3,12006,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,12006,1,3,0)
+ ;;=3^Displaced articular Fx,head,left femur,Subsq
+ ;;^UTILITY(U,$J,358.3,12006,1,4,0)
+ ;;=4^S72.062D
+ ;;^UTILITY(U,$J,358.3,12006,2)
+ ;;=^5037465
+ ;;^UTILITY(U,$J,358.3,12007,0)
+ ;;=S72.061D^^50^544^9
+ ;;^UTILITY(U,$J,358.3,12007,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,12007,1,3,0)
+ ;;=3^Displaced articular Fx,head,right femur,Subsq
+ ;;^UTILITY(U,$J,358.3,12007,1,4,0)
+ ;;=4^S72.061D
+ ;;^UTILITY(U,$J,358.3,12007,2)
+ ;;=^5037449
+ ;;^UTILITY(U,$J,358.3,12008,0)
+ ;;=S72.042D^^50^544^10
+ ;;^UTILITY(U,$J,358.3,12008,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,12008,1,3,0)
+ ;;=3^Displaced base of neck Fx,left femur,Subsq
+ ;;^UTILITY(U,$J,358.3,12008,1,4,0)
+ ;;=4^S72.042D
+ ;;^UTILITY(U,$J,358.3,12008,2)
+ ;;=^5037332
+ ;;^UTILITY(U,$J,358.3,12009,0)
+ ;;=S72.041D^^50^544^11
+ ;;^UTILITY(U,$J,358.3,12009,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,12009,1,3,0)
+ ;;=3^Displaced base of neck Fx,right femur,Subsq
+ ;;^UTILITY(U,$J,358.3,12009,1,4,0)
+ ;;=4^S72.041D
+ ;;^UTILITY(U,$J,358.3,12009,2)
+ ;;=^5037316
+ ;;^UTILITY(U,$J,358.3,12010,0)
+ ;;=S82.042D^^50^544^14
+ ;;^UTILITY(U,$J,358.3,12010,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,12010,1,3,0)
+ ;;=3^Displaced comminuted Fx,left patella,Subsq
+ ;;^UTILITY(U,$J,358.3,12010,1,4,0)
+ ;;=4^S82.042D
+ ;;^UTILITY(U,$J,358.3,12010,2)
+ ;;=^5040448
+ ;;^UTILITY(U,$J,358.3,12011,0)
+ ;;=S82.041D^^50^544^15
+ ;;^UTILITY(U,$J,358.3,12011,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,12011,1,3,0)
+ ;;=3^Displaced comminuted Fx,right patella,Subsq
+ ;;^UTILITY(U,$J,358.3,12011,1,4,0)
+ ;;=4^S82.041D
+ ;;^UTILITY(U,$J,358.3,12011,2)
+ ;;=^5040432
+ ;;^UTILITY(U,$J,358.3,12012,0)
+ ;;=S72.352D^^50^544^12
+ ;;^UTILITY(U,$J,358.3,12012,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,12012,1,3,0)
+ ;;=3^Displaced comminuted Fx shaft,left femur,Subsq
+ ;;^UTILITY(U,$J,358.3,12012,1,4,0)
+ ;;=4^S72.352D
+ ;;^UTILITY(U,$J,358.3,12012,2)
+ ;;=^5038451
+ ;;^UTILITY(U,$J,358.3,12013,0)
+ ;;=S72.351D^^50^544^13
+ ;;^UTILITY(U,$J,358.3,12013,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,12013,1,3,0)
+ ;;=3^Displaced comminuted Fx shaft,right femur,Subsq
+ ;;^UTILITY(U,$J,358.3,12013,1,4,0)
+ ;;=4^S72.351D
+ ;;^UTILITY(U,$J,358.3,12013,2)
+ ;;=^5038435
+ ;;^UTILITY(U,$J,358.3,12014,0)
+ ;;=S72.022D^^50^544^16
+ ;;^UTILITY(U,$J,358.3,12014,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,12014,1,3,0)
+ ;;=3^Displaced epiphy Fx,left femur,Subsq
+ ;;^UTILITY(U,$J,358.3,12014,1,4,0)
+ ;;=4^S72.022D
+ ;;^UTILITY(U,$J,358.3,12014,2)
+ ;;=^5037140
+ ;;^UTILITY(U,$J,358.3,12015,0)
+ ;;=S72.021D^^50^544^17
+ ;;^UTILITY(U,$J,358.3,12015,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,12015,1,3,0)
+ ;;=3^Displaced epiphy Fx,right femur,Subsq
+ ;;^UTILITY(U,$J,358.3,12015,1,4,0)
+ ;;=4^S72.021D
+ ;;^UTILITY(U,$J,358.3,12015,2)
+ ;;=^5037124
+ ;;^UTILITY(U,$J,358.3,12016,0)
+ ;;=S72.112D^^50^544^18
+ ;;^UTILITY(U,$J,358.3,12016,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,12016,1,3,0)
+ ;;=3^Displaced greater trochanter Fx,left femur,Subsq
+ ;;^UTILITY(U,$J,358.3,12016,1,4,0)
+ ;;=4^S72.112D
+ ;;^UTILITY(U,$J,358.3,12016,2)
+ ;;=^5037646
+ ;;^UTILITY(U,$J,358.3,12017,0)
+ ;;=S72.111D^^50^544^19
+ ;;^UTILITY(U,$J,358.3,12017,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,12017,1,3,0)
+ ;;=3^Displaced greater trochanter Fx,right femur,Subsq
+ ;;^UTILITY(U,$J,358.3,12017,1,4,0)
+ ;;=4^S72.111D
+ ;;^UTILITY(U,$J,358.3,12017,2)
+ ;;=^5037630
+ ;;^UTILITY(U,$J,358.3,12018,0)
+ ;;=S72.142D^^50^544^20
+ ;;^UTILITY(U,$J,358.3,12018,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,12018,1,3,0)
+ ;;=3^Displaced intertrochanteric Fx,left femur,Subsq
+ ;;^UTILITY(U,$J,358.3,12018,1,4,0)
+ ;;=4^S72.142D
+ ;;^UTILITY(U,$J,358.3,12018,2)
+ ;;=^5037934
+ ;;^UTILITY(U,$J,358.3,12019,0)
+ ;;=S72.141D^^50^544^21
+ ;;^UTILITY(U,$J,358.3,12019,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,12019,1,3,0)
+ ;;=3^Displaced intertrochanteric Fx,right femur,Subsq
+ ;;^UTILITY(U,$J,358.3,12019,1,4,0)
+ ;;=4^S72.141D
+ ;;^UTILITY(U,$J,358.3,12019,2)
+ ;;=^5037918
+ ;;^UTILITY(U,$J,358.3,12020,0)
+ ;;=S72.422D^^50^544^22
+ ;;^UTILITY(U,$J,358.3,12020,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,12020,1,3,0)
+ ;;=3^Displaced lateral condyle Fx,left femur,Subsq
+ ;;^UTILITY(U,$J,358.3,12020,1,4,0)
+ ;;=4^S72.422D
+ ;;^UTILITY(U,$J,358.3,12020,2)
+ ;;=^5038775
+ ;;^UTILITY(U,$J,358.3,12021,0)
+ ;;=S72.421D^^50^544^23
+ ;;^UTILITY(U,$J,358.3,12021,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,12021,1,3,0)
+ ;;=3^Displaced lateral condyle Fx,right femur,Subsq
+ ;;^UTILITY(U,$J,358.3,12021,1,4,0)
+ ;;=4^S72.421D
+ ;;^UTILITY(U,$J,358.3,12021,2)
+ ;;=^5038759
+ ;;^UTILITY(U,$J,358.3,12022,0)
+ ;;=S72.122D^^50^544^24
+ ;;^UTILITY(U,$J,358.3,12022,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,12022,1,3,0)
+ ;;=3^Displaced lesser trochanter Fx,left femur,Subsq
+ ;;^UTILITY(U,$J,358.3,12022,1,4,0)
+ ;;=4^S72.122D
+ ;;^UTILITY(U,$J,358.3,12022,2)
+ ;;=^5037742
+ ;;^UTILITY(U,$J,358.3,12023,0)
+ ;;=S72.121D^^50^544^25
+ ;;^UTILITY(U,$J,358.3,12023,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,12023,1,3,0)
+ ;;=3^Displaced lesser trochanter Fx,right femur,Subsq
+ ;;^UTILITY(U,$J,358.3,12023,1,4,0)
+ ;;=4^S72.121D
+ ;;^UTILITY(U,$J,358.3,12023,2)
+ ;;=^5037726
+ ;;^UTILITY(U,$J,358.3,12024,0)
+ ;;=S82.022D^^50^544^26
+ ;;^UTILITY(U,$J,358.3,12024,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,12024,1,3,0)
+ ;;=3^Displaced longitudinal Fx,left patella,Subsq
+ ;;^UTILITY(U,$J,358.3,12024,1,4,0)
+ ;;=4^S82.022D
+ ;;^UTILITY(U,$J,358.3,12024,2)
+ ;;=^5040256
+ ;;^UTILITY(U,$J,358.3,12025,0)
+ ;;=S82.021D^^50^544^27
+ ;;^UTILITY(U,$J,358.3,12025,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,12025,1,3,0)
+ ;;=3^Displaced longitudinal Fx,right patella,Subsq
+ ;;^UTILITY(U,$J,358.3,12025,1,4,0)
+ ;;=4^S82.021D
+ ;;^UTILITY(U,$J,358.3,12025,2)
+ ;;=^5040240
+ ;;^UTILITY(U,$J,358.3,12026,0)
+ ;;=S72.442D^^50^544^28
+ ;;^UTILITY(U,$J,358.3,12026,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,12026,1,3,0)
+ ;;=3^Displaced lower epiphysis Fx,left femur,Subsq
+ ;;^UTILITY(U,$J,358.3,12026,1,4,0)
+ ;;=4^S72.442D
+ ;;^UTILITY(U,$J,358.3,12026,2)
+ ;;=^5136230
+ ;;^UTILITY(U,$J,358.3,12027,0)
+ ;;=S72.441D^^50^544^29
+ ;;^UTILITY(U,$J,358.3,12027,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,12027,1,3,0)
+ ;;=3^Displaced lower epiphysis Fx,right femur,Subsq
+ ;;^UTILITY(U,$J,358.3,12027,1,4,0)
+ ;;=4^S72.441D
+ ;;^UTILITY(U,$J,358.3,12027,2)
+ ;;=^5038951
+ ;;^UTILITY(U,$J,358.3,12028,0)
+ ;;=S72.432D^^50^544^30
+ ;;^UTILITY(U,$J,358.3,12028,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,12028,1,3,0)
+ ;;=3^Displaced medial condyle Fx,left femur,Subsq
+ ;;^UTILITY(U,$J,358.3,12028,1,4,0)
+ ;;=4^S72.432D
+ ;;^UTILITY(U,$J,358.3,12028,2)
+ ;;=^5038871
+ ;;^UTILITY(U,$J,358.3,12029,0)
+ ;;=S72.431D^^50^544^31
+ ;;^UTILITY(U,$J,358.3,12029,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,12029,1,3,0)
+ ;;=3^Displaced medial condyle Fx,right femur,Subsq
+ ;;^UTILITY(U,$J,358.3,12029,1,4,0)
+ ;;=4^S72.431D
+ ;;^UTILITY(U,$J,358.3,12029,2)
+ ;;=^5038855
+ ;;^UTILITY(U,$J,358.3,12030,0)
+ ;;=S72.032D^^50^544^32
+ ;;^UTILITY(U,$J,358.3,12030,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,12030,1,3,0)
+ ;;=3^Displaced midcervical Fx,left femur,Subsq
+ ;;^UTILITY(U,$J,358.3,12030,1,4,0)
+ ;;=4^S72.032D
+ ;;^UTILITY(U,$J,358.3,12030,2)
+ ;;=^5037236
+ ;;^UTILITY(U,$J,358.3,12031,0)
+ ;;=S72.031D^^50^544^33
+ ;;^UTILITY(U,$J,358.3,12031,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,12031,1,3,0)
+ ;;=3^Displaced midcervical Fx,right femur,Subsq
+ ;;^UTILITY(U,$J,358.3,12031,1,4,0)
+ ;;=4^S72.031D
+ ;;^UTILITY(U,$J,358.3,12031,2)
+ ;;=^5037220
+ ;;^UTILITY(U,$J,358.3,12032,0)
+ ;;=S72.332D^^50^544^34
+ ;;^UTILITY(U,$J,358.3,12032,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,12032,1,3,0)
+ ;;=3^Displaced oblique Fx,shaft,left femur,Subsq
+ ;;^UTILITY(U,$J,358.3,12032,1,4,0)
+ ;;=4^S72.332D
+ ;;^UTILITY(U,$J,358.3,12032,2)
+ ;;=^5038259
+ ;;^UTILITY(U,$J,358.3,12033,0)
+ ;;=S72.331D^^50^544^35
+ ;;^UTILITY(U,$J,358.3,12033,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,12033,1,3,0)
+ ;;=3^Displaced oblique Fx,shaft,right femur,Subsq
+ ;;^UTILITY(U,$J,358.3,12033,1,4,0)
+ ;;=4^S72.331D
+ ;;^UTILITY(U,$J,358.3,12033,2)
+ ;;=^5038243
+ ;;^UTILITY(U,$J,358.3,12034,0)
+ ;;=S82.012D^^50^544^36
+ ;;^UTILITY(U,$J,358.3,12034,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,12034,1,3,0)
+ ;;=3^Displaced osteochondral Fx,left patella,Subsq
+ ;;^UTILITY(U,$J,358.3,12034,1,4,0)
+ ;;=4^S82.012D
+ ;;^UTILITY(U,$J,358.3,12034,2)
+ ;;=^5040160
+ ;;^UTILITY(U,$J,358.3,12035,0)
+ ;;=S82.011D^^50^544^37
+ ;;^UTILITY(U,$J,358.3,12035,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,12035,1,3,0)
+ ;;=3^Displaced osteochondral Fx,right patella,Subsq
+ ;;^UTILITY(U,$J,358.3,12035,1,4,0)
+ ;;=4^S82.011D
+ ;;^UTILITY(U,$J,358.3,12035,2)
+ ;;=^5040144
+ ;;^UTILITY(U,$J,358.3,12036,0)
+ ;;=S72.362D^^50^544^38
+ ;;^UTILITY(U,$J,358.3,12036,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,12036,1,3,0)
+ ;;=3^Displaced segmental Fx shaft,left femur,Subsq
+ ;;^UTILITY(U,$J,358.3,12036,1,4,0)
+ ;;=4^S72.362D
+ ;;^UTILITY(U,$J,358.3,12036,2)
+ ;;=^5038547
+ ;;^UTILITY(U,$J,358.3,12037,0)
+ ;;=S72.361D^^50^544^39
+ ;;^UTILITY(U,$J,358.3,12037,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,12037,1,3,0)
+ ;;=3^Displaced segmental Fx shaft,right femur,Subsq
+ ;;^UTILITY(U,$J,358.3,12037,1,4,0)
+ ;;=4^S72.361D
+ ;;^UTILITY(U,$J,358.3,12037,2)
+ ;;=^5038531
+ ;;^UTILITY(U,$J,358.3,12038,0)
+ ;;=S72.342D^^50^544^40
+ ;;^UTILITY(U,$J,358.3,12038,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,12038,1,3,0)
+ ;;=3^Displaced spiral Fx,shaft,left femur,Subsq
+ ;;^UTILITY(U,$J,358.3,12038,1,4,0)
+ ;;=4^S72.342D
+ ;;^UTILITY(U,$J,358.3,12038,2)
+ ;;=^5038355
+ ;;^UTILITY(U,$J,358.3,12039,0)
+ ;;=S72.341D^^50^544^41
+ ;;^UTILITY(U,$J,358.3,12039,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,12039,1,3,0)
+ ;;=3^Displaced spiral Fx,shaft,right femur,Subsq
+ ;;^UTILITY(U,$J,358.3,12039,1,4,0)
+ ;;=4^S72.341D
+ ;;^UTILITY(U,$J,358.3,12039,2)
+ ;;=^5038339
+ ;;^UTILITY(U,$J,358.3,12040,0)
+ ;;=S72.22XD^^50^544^42
+ ;;^UTILITY(U,$J,358.3,12040,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,12040,1,3,0)
+ ;;=3^Displaced subtrochanteric Fx,left femur,Subsq
+ ;;^UTILITY(U,$J,358.3,12040,1,4,0)
+ ;;=4^S72.22XD
+ ;;^UTILITY(U,$J,358.3,12040,2)
+ ;;=^5038030
+ ;;^UTILITY(U,$J,358.3,12041,0)
+ ;;=S72.21XD^^50^544^43
+ ;;^UTILITY(U,$J,358.3,12041,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,12041,1,3,0)
+ ;;=3^Displaced subtrochanteric Fx,right femur,Subsq

@@ -1,126 +1,120 @@
-IBDEI132 ; ; 04-FEB-2020
- ;;3.0;IB ENCOUNTER FORM IMP/EXP;;FEB 04, 2020
+IBDEI132 ; ; 01-FEB-2022
+ ;;3.0;IB ENCOUNTER FORM IMP/EXP;;FEB 01, 2022
  Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,999) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
- ;;^UTILITY(U,$J,358.3,17412,0)
- ;;=R73.02^^88^891^95
- ;;^UTILITY(U,$J,358.3,17412,1,0)
+ ;;^UTILITY(U,$J,358.3,17592,0)
+ ;;=F14.259^^61^789^24
+ ;;^UTILITY(U,$J,358.3,17592,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,17412,1,3,0)
- ;;=3^Impaired Glucose Tolerance (oral)
- ;;^UTILITY(U,$J,358.3,17412,1,4,0)
- ;;=4^R73.02
- ;;^UTILITY(U,$J,358.3,17412,2)
- ;;=^5019562
- ;;^UTILITY(U,$J,358.3,17413,0)
- ;;=R73.09^^88^891^18
- ;;^UTILITY(U,$J,358.3,17413,1,0)
+ ;;^UTILITY(U,$J,358.3,17592,1,3,0)
+ ;;=3^Cocaine Dependence w/ Cocaine-Induc Psychotic Disorder,Unspec
+ ;;^UTILITY(U,$J,358.3,17592,1,4,0)
+ ;;=4^F14.259
+ ;;^UTILITY(U,$J,358.3,17592,2)
+ ;;=^5003263
+ ;;^UTILITY(U,$J,358.3,17593,0)
+ ;;=F14.251^^61^789^23
+ ;;^UTILITY(U,$J,358.3,17593,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,17413,1,3,0)
- ;;=3^Abnormal Glucose NEC
- ;;^UTILITY(U,$J,358.3,17413,1,4,0)
- ;;=4^R73.09
- ;;^UTILITY(U,$J,358.3,17413,2)
- ;;=^5019563
- ;;^UTILITY(U,$J,358.3,17414,0)
- ;;=R73.9^^88^891^89
- ;;^UTILITY(U,$J,358.3,17414,1,0)
+ ;;^UTILITY(U,$J,358.3,17593,1,3,0)
+ ;;=3^Cocaine Depend w/ Cocaine-Induc Psychotic Disorder w/ Hallucin
+ ;;^UTILITY(U,$J,358.3,17593,1,4,0)
+ ;;=4^F14.251
+ ;;^UTILITY(U,$J,358.3,17593,2)
+ ;;=^5003262
+ ;;^UTILITY(U,$J,358.3,17594,0)
+ ;;=F14.250^^61^789^22
+ ;;^UTILITY(U,$J,358.3,17594,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,17414,1,3,0)
- ;;=3^Hyperglycemia,Unspec
- ;;^UTILITY(U,$J,358.3,17414,1,4,0)
- ;;=4^R73.9
- ;;^UTILITY(U,$J,358.3,17414,2)
- ;;=^5019564
- ;;^UTILITY(U,$J,358.3,17415,0)
- ;;=R76.11^^88^891^147
- ;;^UTILITY(U,$J,358.3,17415,1,0)
+ ;;^UTILITY(U,$J,358.3,17594,1,3,0)
+ ;;=3^Cocaine Depend w/ Cocaine-Induc Psych Disorder w/ Delusions
+ ;;^UTILITY(U,$J,358.3,17594,1,4,0)
+ ;;=4^F14.250
+ ;;^UTILITY(U,$J,358.3,17594,2)
+ ;;=^5003261
+ ;;^UTILITY(U,$J,358.3,17595,0)
+ ;;=F14.24^^61^789^26
+ ;;^UTILITY(U,$J,358.3,17595,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,17415,1,3,0)
- ;;=3^Positive PPD
- ;;^UTILITY(U,$J,358.3,17415,1,4,0)
- ;;=4^R76.11
- ;;^UTILITY(U,$J,358.3,17415,2)
- ;;=^5019570
- ;;^UTILITY(U,$J,358.3,17416,0)
- ;;=R79.1^^88^891^3
- ;;^UTILITY(U,$J,358.3,17416,1,0)
+ ;;^UTILITY(U,$J,358.3,17595,1,3,0)
+ ;;=3^Cocaine Dependence w/ Cocaine-Induced Mood Disorder
+ ;;^UTILITY(U,$J,358.3,17595,1,4,0)
+ ;;=4^F14.24
+ ;;^UTILITY(U,$J,358.3,17595,2)
+ ;;=^5003260
+ ;;^UTILITY(U,$J,358.3,17596,0)
+ ;;=F14.23^^61^789^35
+ ;;^UTILITY(U,$J,358.3,17596,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,17416,1,3,0)
- ;;=3^Abnormal Coagulation Profile
- ;;^UTILITY(U,$J,358.3,17416,1,4,0)
- ;;=4^R79.1
- ;;^UTILITY(U,$J,358.3,17416,2)
- ;;=^5019591
- ;;^UTILITY(U,$J,358.3,17417,0)
- ;;=R82.5^^88^891^74
- ;;^UTILITY(U,$J,358.3,17417,1,0)
+ ;;^UTILITY(U,$J,358.3,17596,1,3,0)
+ ;;=3^Cocaine Dependence w/ Withdrawal
+ ;;^UTILITY(U,$J,358.3,17596,1,4,0)
+ ;;=4^F14.23
+ ;;^UTILITY(U,$J,358.3,17596,2)
+ ;;=^5003259
+ ;;^UTILITY(U,$J,358.3,17597,0)
+ ;;=F14.229^^61^789^32
+ ;;^UTILITY(U,$J,358.3,17597,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,17417,1,3,0)
- ;;=3^Elevated Urine Levels of Drug/Meds/Biol Subst
- ;;^UTILITY(U,$J,358.3,17417,1,4,0)
- ;;=4^R82.5
- ;;^UTILITY(U,$J,358.3,17417,2)
- ;;=^5019605
- ;;^UTILITY(U,$J,358.3,17418,0)
- ;;=R82.6^^88^891^30
- ;;^UTILITY(U,$J,358.3,17418,1,0)
+ ;;^UTILITY(U,$J,358.3,17597,1,3,0)
+ ;;=3^Cocaine Dependence w/ Intoxication,Unspec
+ ;;^UTILITY(U,$J,358.3,17597,1,4,0)
+ ;;=4^F14.229
+ ;;^UTILITY(U,$J,358.3,17597,2)
+ ;;=^5003258
+ ;;^UTILITY(U,$J,358.3,17598,0)
+ ;;=F14.222^^61^789^30
+ ;;^UTILITY(U,$J,358.3,17598,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,17418,1,3,0)
- ;;=3^Abnormal Urine Levels of Subst of Nonmed Source
- ;;^UTILITY(U,$J,358.3,17418,1,4,0)
- ;;=4^R82.6
- ;;^UTILITY(U,$J,358.3,17418,2)
- ;;=^5019606
- ;;^UTILITY(U,$J,358.3,17419,0)
- ;;=R82.90^^88^891^29
- ;;^UTILITY(U,$J,358.3,17419,1,0)
+ ;;^UTILITY(U,$J,358.3,17598,1,3,0)
+ ;;=3^Cocaine Dependence w/ Intoxication w/ Perceptual Disturbance
+ ;;^UTILITY(U,$J,358.3,17598,1,4,0)
+ ;;=4^F14.222
+ ;;^UTILITY(U,$J,358.3,17598,2)
+ ;;=^5003257
+ ;;^UTILITY(U,$J,358.3,17599,0)
+ ;;=F14.221^^61^789^29
+ ;;^UTILITY(U,$J,358.3,17599,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,17419,1,3,0)
- ;;=3^Abnormal Urine Findings,Unspec
- ;;^UTILITY(U,$J,358.3,17419,1,4,0)
- ;;=4^R82.90
- ;;^UTILITY(U,$J,358.3,17419,2)
- ;;=^5019609
- ;;^UTILITY(U,$J,358.3,17420,0)
- ;;=R82.91^^88^891^53
- ;;^UTILITY(U,$J,358.3,17420,1,0)
+ ;;^UTILITY(U,$J,358.3,17599,1,3,0)
+ ;;=3^Cocaine Dependence w/ Intoxication Delirium
+ ;;^UTILITY(U,$J,358.3,17599,1,4,0)
+ ;;=4^F14.221
+ ;;^UTILITY(U,$J,358.3,17599,2)
+ ;;=^5003256
+ ;;^UTILITY(U,$J,358.3,17600,0)
+ ;;=F14.220^^61^789^31
+ ;;^UTILITY(U,$J,358.3,17600,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,17420,1,3,0)
- ;;=3^Chromoabnormalities of Urine NEC
- ;;^UTILITY(U,$J,358.3,17420,1,4,0)
- ;;=4^R82.91
- ;;^UTILITY(U,$J,358.3,17420,2)
- ;;=^5019610
- ;;^UTILITY(U,$J,358.3,17421,0)
- ;;=R89.9^^88^891^22
- ;;^UTILITY(U,$J,358.3,17421,1,0)
+ ;;^UTILITY(U,$J,358.3,17600,1,3,0)
+ ;;=3^Cocaine Dependence w/ Intoxication,Uncomplicated
+ ;;^UTILITY(U,$J,358.3,17600,1,4,0)
+ ;;=4^F14.220
+ ;;^UTILITY(U,$J,358.3,17600,2)
+ ;;=^5003255
+ ;;^UTILITY(U,$J,358.3,17601,0)
+ ;;=F14.20^^61^789^36
+ ;;^UTILITY(U,$J,358.3,17601,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,17421,1,3,0)
- ;;=3^Abnormal Organ/Tissue Specimen Findings,Unspec
- ;;^UTILITY(U,$J,358.3,17421,1,4,0)
- ;;=4^R89.9
- ;;^UTILITY(U,$J,358.3,17421,2)
- ;;=^5019702
- ;;^UTILITY(U,$J,358.3,17422,0)
- ;;=R90.0^^88^891^103
- ;;^UTILITY(U,$J,358.3,17422,1,0)
+ ;;^UTILITY(U,$J,358.3,17601,1,3,0)
+ ;;=3^Cocaine Dependence,Uncompicated
+ ;;^UTILITY(U,$J,358.3,17601,1,4,0)
+ ;;=4^F14.20
+ ;;^UTILITY(U,$J,358.3,17601,2)
+ ;;=^5003253
+ ;;^UTILITY(U,$J,358.3,17602,0)
+ ;;=F10.120^^61^789^1
+ ;;^UTILITY(U,$J,358.3,17602,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,17422,1,3,0)
- ;;=3^Intracranial Space-Occupying Lesion Dx Imaging of Central Nervous System
- ;;^UTILITY(U,$J,358.3,17422,1,4,0)
- ;;=4^R90.0
- ;;^UTILITY(U,$J,358.3,17422,2)
- ;;=^5019703
- ;;^UTILITY(U,$J,358.3,17423,0)
- ;;=R90.89^^88^891^16
- ;;^UTILITY(U,$J,358.3,17423,1,0)
+ ;;^UTILITY(U,$J,358.3,17602,1,3,0)
+ ;;=3^Alcohol Abuse w/ Intoxication,Uncomplicated
+ ;;^UTILITY(U,$J,358.3,17602,1,4,0)
+ ;;=4^F10.120
+ ;;^UTILITY(U,$J,358.3,17602,2)
+ ;;=^5003069
+ ;;^UTILITY(U,$J,358.3,17603,0)
+ ;;=F10.10^^61^789^7
+ ;;^UTILITY(U,$J,358.3,17603,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,17423,1,3,0)
- ;;=3^Abnormal Findings on Dx Imaging of Central Nervous System NEC
- ;;^UTILITY(U,$J,358.3,17423,1,4,0)
- ;;=4^R90.89
- ;;^UTILITY(U,$J,358.3,17423,2)
- ;;=^5019706
- ;;^UTILITY(U,$J,358.3,17424,0)
- ;;=R91.8^^88^891^21
+ ;;^UTILITY(U,$J,358.3,17603,1,3,0)
+ ;;=3^Alcohol Abuse,Uncomplicated

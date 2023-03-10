@@ -1,5 +1,5 @@
 RORX009A ;HOIFO/SG,VAC - PRESCRIPTION UTILIZ. (QUERY & SORT) ;4/7/09 2:08pm
- ;;1.5;CLINICAL CASE REGISTRIES;**8,13,19,21,31**;Feb 17, 2006;Build 62
+ ;;1.5;CLINICAL CASE REGISTRIES;**8,13,19,21,31,39**;Feb 17, 2006;Build 4
  ;
  ; This routine uses the following IAs:
  ;
@@ -20,6 +20,7 @@ RORX009A ;HOIFO/SG,VAC - PRESCRIPTION UTILIZ. (QUERY & SORT) ;4/7/09 2:08pm
  ;                                      additional identifier option selected
  ;ROR*1.5*31   MAY 2017    M FERRARESE  Adding PACT, PCP, and AGE/DOB as additional
  ;                                      identifiers.
+ ;ROR*1.5*39   JUL 2021    M FERRARESE  Setting SSN and LAST4 to zeros
  ;                                      
  ;******************************************************************************
  ;******************************************************************************
@@ -247,7 +248,7 @@ TOTALS(PATIEN) ;
  S NODE=$NA(^TMP("RORX009",$J))
  ;--- Get the patient's data
  D VADEM^RORUTL05(PATIEN,1)
- S PTNAME=VADM(1),LAST4=VA("BID"),DOD=$$DATE^RORXU002(VADM(6)\1)
+ S PTNAME=VADM(1),LAST4="0000",DOD=$$DATE^RORXU002(VADM(6)\1)
  S AGETYPE=$$PARAM^RORTSK01("AGE_RANGE","TYPE")
  S AGE=$S(AGETYPE="AGE":$P(VADM(4),U),AGETYPE="DOB":$$DATE^RORXU002($P(VADM(3),U)\1),1:"")
  ;---

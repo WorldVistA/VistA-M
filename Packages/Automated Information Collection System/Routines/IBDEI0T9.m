@@ -1,124 +1,126 @@
-IBDEI0T9 ; ; 04-FEB-2020
- ;;3.0;IB ENCOUNTER FORM IMP/EXP;;FEB 04, 2020
+IBDEI0T9 ; ; 01-FEB-2022
+ ;;3.0;IB ENCOUNTER FORM IMP/EXP;;FEB 01, 2022
  Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,999) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
- ;;^UTILITY(U,$J,358.3,13018,1,0)
+ ;;^UTILITY(U,$J,358.3,13165,1,4,0)
+ ;;=4^H16.101
+ ;;^UTILITY(U,$J,358.3,13165,2)
+ ;;=^5004898
+ ;;^UTILITY(U,$J,358.3,13166,0)
+ ;;=H16.103^^51^629^77
+ ;;^UTILITY(U,$J,358.3,13166,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,13018,1,3,0)
- ;;=3^Bil Inguinal Hernia w/ Gangrene,Recurrent
- ;;^UTILITY(U,$J,358.3,13018,1,4,0)
- ;;=4^K40.11
- ;;^UTILITY(U,$J,358.3,13018,2)
- ;;=^5008584
- ;;^UTILITY(U,$J,358.3,13019,0)
- ;;=K40.20^^80^793^17
- ;;^UTILITY(U,$J,358.3,13019,1,0)
+ ;;^UTILITY(U,$J,358.3,13166,1,3,0)
+ ;;=3^Superficial Keratitis,Unspec,OU
+ ;;^UTILITY(U,$J,358.3,13166,1,4,0)
+ ;;=4^H16.103
+ ;;^UTILITY(U,$J,358.3,13166,2)
+ ;;=^5004900
+ ;;^UTILITY(U,$J,358.3,13167,0)
+ ;;=H17.9^^51^629^24
+ ;;^UTILITY(U,$J,358.3,13167,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,13019,1,3,0)
- ;;=3^Bil Inguinal Hernia w/o Obs or Gangrene
- ;;^UTILITY(U,$J,358.3,13019,1,4,0)
- ;;=4^K40.20
- ;;^UTILITY(U,$J,358.3,13019,2)
- ;;=^5008585
- ;;^UTILITY(U,$J,358.3,13020,0)
- ;;=K40.21^^80^793^18
- ;;^UTILITY(U,$J,358.3,13020,1,0)
+ ;;^UTILITY(U,$J,358.3,13167,1,3,0)
+ ;;=3^Corneal Scar & Opacity,Unspec
+ ;;^UTILITY(U,$J,358.3,13167,1,4,0)
+ ;;=4^H17.9
+ ;;^UTILITY(U,$J,358.3,13167,2)
+ ;;=^5005003
+ ;;^UTILITY(U,$J,358.3,13168,0)
+ ;;=H21.9^^51^629^44
+ ;;^UTILITY(U,$J,358.3,13168,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,13020,1,3,0)
- ;;=3^Bil Inguinal Hernia w/o Obs or Gangrene,Recurrent
- ;;^UTILITY(U,$J,358.3,13020,1,4,0)
- ;;=4^K40.21
- ;;^UTILITY(U,$J,358.3,13020,2)
- ;;=^5008586
- ;;^UTILITY(U,$J,358.3,13021,0)
- ;;=K40.30^^80^793^39
- ;;^UTILITY(U,$J,358.3,13021,1,0)
+ ;;^UTILITY(U,$J,358.3,13168,1,3,0)
+ ;;=3^Iris & Ciliary Body Disorder,Unspec
+ ;;^UTILITY(U,$J,358.3,13168,1,4,0)
+ ;;=4^H21.9
+ ;;^UTILITY(U,$J,358.3,13168,2)
+ ;;=^123847
+ ;;^UTILITY(U,$J,358.3,13169,0)
+ ;;=H18.501^^51^629^38
+ ;;^UTILITY(U,$J,358.3,13169,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,13021,1,3,0)
- ;;=3^Unil Inguinal Hernia w/ Obs w/o Gangrene
- ;;^UTILITY(U,$J,358.3,13021,1,4,0)
- ;;=4^K40.30
- ;;^UTILITY(U,$J,358.3,13021,2)
- ;;=^5008587
- ;;^UTILITY(U,$J,358.3,13022,0)
- ;;=K40.31^^80^793^40
- ;;^UTILITY(U,$J,358.3,13022,1,0)
+ ;;^UTILITY(U,$J,358.3,13169,1,3,0)
+ ;;=3^Hereditary Corneal Dystrophies,Unspec,Rt Eye
+ ;;^UTILITY(U,$J,358.3,13169,1,4,0)
+ ;;=4^H18.501
+ ;;^UTILITY(U,$J,358.3,13169,2)
+ ;;=^5159175
+ ;;^UTILITY(U,$J,358.3,13170,0)
+ ;;=H18.502^^51^629^37
+ ;;^UTILITY(U,$J,358.3,13170,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,13022,1,3,0)
- ;;=3^Unil Inguinal Hernia w/ Obs w/o Gangrene,Recurrent
- ;;^UTILITY(U,$J,358.3,13022,1,4,0)
- ;;=4^K40.31
- ;;^UTILITY(U,$J,358.3,13022,2)
- ;;=^5008588
- ;;^UTILITY(U,$J,358.3,13023,0)
- ;;=K40.40^^80^793^37
- ;;^UTILITY(U,$J,358.3,13023,1,0)
+ ;;^UTILITY(U,$J,358.3,13170,1,3,0)
+ ;;=3^Hereditary Corneal Dystrophies,Unspec,Lt Eye
+ ;;^UTILITY(U,$J,358.3,13170,1,4,0)
+ ;;=4^H18.502
+ ;;^UTILITY(U,$J,358.3,13170,2)
+ ;;=^5159176
+ ;;^UTILITY(U,$J,358.3,13171,0)
+ ;;=H18.503^^51^629^36
+ ;;^UTILITY(U,$J,358.3,13171,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,13023,1,3,0)
- ;;=3^Unil Inguinal Hernia w/ Gangrene
- ;;^UTILITY(U,$J,358.3,13023,1,4,0)
- ;;=4^K40.40
- ;;^UTILITY(U,$J,358.3,13023,2)
- ;;=^5008589
- ;;^UTILITY(U,$J,358.3,13024,0)
- ;;=K40.41^^80^793^38
- ;;^UTILITY(U,$J,358.3,13024,1,0)
+ ;;^UTILITY(U,$J,358.3,13171,1,3,0)
+ ;;=3^Hereditary Corneal Dystrophies,Unspec,Bilateral
+ ;;^UTILITY(U,$J,358.3,13171,1,4,0)
+ ;;=4^H18.503
+ ;;^UTILITY(U,$J,358.3,13171,2)
+ ;;=^5159177
+ ;;^UTILITY(U,$J,358.3,13172,0)
+ ;;=H18.511^^51^629^29
+ ;;^UTILITY(U,$J,358.3,13172,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,13024,1,3,0)
- ;;=3^Unil Inguinal Hernia w/ Gangrene,Recurrent
- ;;^UTILITY(U,$J,358.3,13024,1,4,0)
- ;;=4^K40.41
- ;;^UTILITY(U,$J,358.3,13024,2)
- ;;=^5008590
- ;;^UTILITY(U,$J,358.3,13025,0)
- ;;=K40.90^^80^793^41
- ;;^UTILITY(U,$J,358.3,13025,1,0)
+ ;;^UTILITY(U,$J,358.3,13172,1,3,0)
+ ;;=3^Endothelial Corneal Dystrophy,Rt Eye
+ ;;^UTILITY(U,$J,358.3,13172,1,4,0)
+ ;;=4^H18.511
+ ;;^UTILITY(U,$J,358.3,13172,2)
+ ;;=^5159179
+ ;;^UTILITY(U,$J,358.3,13173,0)
+ ;;=H18.512^^51^629^28
+ ;;^UTILITY(U,$J,358.3,13173,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,13025,1,3,0)
- ;;=3^Unil Inguinal Hernia w/o Obs or Gangrene
- ;;^UTILITY(U,$J,358.3,13025,1,4,0)
- ;;=4^K40.90
- ;;^UTILITY(U,$J,358.3,13025,2)
- ;;=^5008591
- ;;^UTILITY(U,$J,358.3,13026,0)
- ;;=K40.91^^80^793^42
- ;;^UTILITY(U,$J,358.3,13026,1,0)
+ ;;^UTILITY(U,$J,358.3,13173,1,3,0)
+ ;;=3^Endothelial Corneal Dystrophy,Lt Eye
+ ;;^UTILITY(U,$J,358.3,13173,1,4,0)
+ ;;=4^H18.512
+ ;;^UTILITY(U,$J,358.3,13173,2)
+ ;;=^5159180
+ ;;^UTILITY(U,$J,358.3,13174,0)
+ ;;=H18.513^^51^629^27
+ ;;^UTILITY(U,$J,358.3,13174,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,13026,1,3,0)
- ;;=3^Unil Inguinal Hernia w/o Obs or Gangrene,Recurrent
- ;;^UTILITY(U,$J,358.3,13026,1,4,0)
- ;;=4^K40.91
- ;;^UTILITY(U,$J,358.3,13026,2)
- ;;=^5008592
- ;;^UTILITY(U,$J,358.3,13027,0)
- ;;=K41.00^^80^793^9
- ;;^UTILITY(U,$J,358.3,13027,1,0)
+ ;;^UTILITY(U,$J,358.3,13174,1,3,0)
+ ;;=3^Endothelial Corneal Dystrophy,Bilateral
+ ;;^UTILITY(U,$J,358.3,13174,1,4,0)
+ ;;=4^H18.513
+ ;;^UTILITY(U,$J,358.3,13174,2)
+ ;;=^5159181
+ ;;^UTILITY(U,$J,358.3,13175,0)
+ ;;=H40.10X4^^51^630^5
+ ;;^UTILITY(U,$J,358.3,13175,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,13027,1,3,0)
- ;;=3^Bil Femoral Hernia w/ Obs w/o Gangrene
- ;;^UTILITY(U,$J,358.3,13027,1,4,0)
- ;;=4^K41.00
- ;;^UTILITY(U,$J,358.3,13027,2)
- ;;=^5008593
- ;;^UTILITY(U,$J,358.3,13028,0)
- ;;=K41.01^^80^793^10
- ;;^UTILITY(U,$J,358.3,13028,1,0)
+ ;;^UTILITY(U,$J,358.3,13175,1,3,0)
+ ;;=3^OAG,Unspec,Indeterminate Stage
+ ;;^UTILITY(U,$J,358.3,13175,1,4,0)
+ ;;=4^H40.10X4
+ ;;^UTILITY(U,$J,358.3,13175,2)
+ ;;=^5005752
+ ;;^UTILITY(U,$J,358.3,13176,0)
+ ;;=H40.10X1^^51^630^2
+ ;;^UTILITY(U,$J,358.3,13176,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,13028,1,3,0)
- ;;=3^Bil Femoral Hernia w/ Obs w/o Gangrene,Recurrent
- ;;^UTILITY(U,$J,358.3,13028,1,4,0)
- ;;=4^K41.01
- ;;^UTILITY(U,$J,358.3,13028,2)
- ;;=^5008594
- ;;^UTILITY(U,$J,358.3,13029,0)
- ;;=K41.10^^80^793^7
- ;;^UTILITY(U,$J,358.3,13029,1,0)
+ ;;^UTILITY(U,$J,358.3,13176,1,3,0)
+ ;;=3^OAG,Unspec,Mild Stage
+ ;;^UTILITY(U,$J,358.3,13176,1,4,0)
+ ;;=4^H40.10X1
+ ;;^UTILITY(U,$J,358.3,13176,2)
+ ;;=^5005749
+ ;;^UTILITY(U,$J,358.3,13177,0)
+ ;;=H40.10X2^^51^630^3
+ ;;^UTILITY(U,$J,358.3,13177,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,13029,1,3,0)
- ;;=3^Bil Femoral Hernia w/ Gangrene
- ;;^UTILITY(U,$J,358.3,13029,1,4,0)
- ;;=4^K41.10
- ;;^UTILITY(U,$J,358.3,13029,2)
- ;;=^5008595
- ;;^UTILITY(U,$J,358.3,13030,0)
- ;;=K41.11^^80^793^8
+ ;;^UTILITY(U,$J,358.3,13177,1,3,0)
+ ;;=3^OAG,Unspec,Moderate Stage
+ ;;^UTILITY(U,$J,358.3,13177,1,4,0)
+ ;;=4^H40.10X2

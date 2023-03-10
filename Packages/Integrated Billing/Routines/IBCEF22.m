@@ -1,5 +1,5 @@
 IBCEF22 ;ALB/TMP - FORMATTER SPECIFIC BILL FUNCTIONS ;06-FEB-96
- ;;2.0;INTEGRATED BILLING;**51,137,135,155,309,349,389,432,488,516,577,608,623**;21-MAR-94;Build 70
+ ;;2.0;INTEGRATED BILLING;**51,137,135,155,309,349,389,432,488,516,577,608,623,641**;21-MAR-94;Build 61
  ;;Per VA Directive 6402, this routine should not be modified.
  ;
  ;  OVERFLOW FROM ROUTINE IBCEF2
@@ -236,8 +236,11 @@ VC80I(LN)  ; Extracts the data for the "INS" record for VALUE CODE 80 Line item.
  S VC80LN=LN+1             ; Get the next available line number.
  ;
  S $P(IBXSAVE("INPT",VC80LN),U,1)="0022"
- ;JWS;US8323;IB*2.0*623;change Rate Code value from AAA000 to ZZZZZ on or after 10/1/2019
- S IBDOS=$P($$GET1^DIQ(399,IBXIEN_",",.03,"I"),".")
+ ;JWS;US8323;IB*2.0*623;change Procedure Code value from AAA000 to ZZZZZ on or after 10/1/2019
+ ; used for X12 SV202-02, Loop 2400, segment SV2, institutional claims only
+ ;WCJ;IB641;v12;check statement from date;if it's not there use the admission date (EVENT DATE)
+ S IBDOS=$P($$GET1^DIQ(399,IBXIEN_",",151,"I"),".")
+ I IBDOS="" S IBDOS=$P($$GET1^DIQ(399,IBXIEN_",",.03,"I"),".")
  S $P(IBXSAVE("INPT",VC80LN),U,2)=$S(IBDOS<3191001:"AAA00",1:"ZZZZZ")
  S $P(IBXSAVE("INPT",VC80LN),U,4)=$S(+IBLOOP:UNIT,1:0)
  S $P(IBXSAVE("INPT",VC80LN),U,9)=0

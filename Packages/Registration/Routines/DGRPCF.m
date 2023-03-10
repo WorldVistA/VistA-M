@@ -1,5 +1,5 @@
-DGRPCF ;ALB/MRL,BAJ,TDM,DJE - CONSISTENCY OF PATIENT DATA (FILE/EDIT) ;Sep 28, 2017  5:35PM
- ;;5.3;Registration;**250,653,786,754,867,935**;Aug 13, 1993;Build 53
+DGRPCF ;ALB/MRL,BAJ,TDM,DJE,ARF,RN - CONSISTENCY OF PATIENT DATA (FILE/EDIT) ;Sep 28, 2017  5:35PM
+ ;;5.3;Registration;**250,653,786,754,867,935,1014,1027**;Aug 13, 1993;Build 70
  ;
  ; file new inconsistencies or update file entries for patient
  ;
@@ -10,7 +10,8 @@ DGRPCF ;ALB/MRL,BAJ,TDM,DJE - CONSISTENCY OF PATIENT DATA (FILE/EDIT) ;Sep 28, 2
  ; DGCT3= count of inconsistencies which are uneditable through
  ;        checker options
  ; DGCTZ7= count of inconsistencies found that will prevent Z07
- ;
+ ; Supported ICRs
+ ; #3356  -  XQY0          ; Kernel Variable
  ;
  ; 
 EN I '$D(DGCT) G KVAR^DGRPCE
@@ -27,7 +28,19 @@ EN I '$D(DGCT) G KVAR^DGRPCE
  G KVAR^DGRPCE
  ;
  ;DJE DG*5.3*935 - Add Member ID To Vista Registration Banner - RM#879322 (added SSNNM call)
-DIS D TIME^DGRPC S DGRPE=$S($D(DGRPE):DGRPE+1,1:0) D KEY S IOP="HOME" D ^%ZIS K IOP W @IOF,! D DEM^VADPT W $$SSNNM^DGRPU(DFN),?65,$P(VADM(3),"^",2) S X="",$P(X,"=",79)="" W !,X
+ ;ARF DG*5.3*1014 - Create two line banner with preferred name and patient type added
+ ;DIS D TIME^DGRPC S DGRPE=$S($D(DGRPE):DGRPE+1,1:0) D KEY S IOP="HOME" D ^%ZIS K IOP W @IOF,! D DEM^VADPT W $$SSNNM^DGRPU(DFN),?65,$P(VADM(3),"^",2) S X="",$P(X,"=",79)="" W !,X
+DIS D TIME^DGRPC S DGRPE=$S($D(DGRPE):DGRPE+1,1:0) D KEY S IOP="HOME" D ^%ZIS K IOP W @IOF,!
+ N DGPTYPE,DGSSNSTR,DGPREFNM,DGX,DGMEMID  ;DG*5.3*1014 begin
+ S DGSSNSTR=$$SSNNM^DGRPU(DFN)
+ S DGMEMID=$E($P($P(DGSSNSTR,";",2)," ",2),1,40)
+ S DGPTYPE=$$GET1^DIQ(391,$$GET1^DIQ(2,DFN_",",391,"I")_",",.01)
+ S:DGPTYPE="" DGPTYPE="PATIENT TYPE UNKNOWN"
+ S DGPREFNM=$S($$GET1^DIQ(2,DFN,.2405)'="":" ("_$$GET1^DIQ(2,DFN,.2405)_")",1:"")
+ D DEM^VADPT
+ W VADM(1) W:DGPREFNM'="" DGPREFNM W "    "_$P(VADM(3),"^",2)
+ W ! W:DGMEMID'="" DGMEMID_"    " W $P(VADM(2),U,2),"    ",DGPTYPE
+ S DGX="",$P(DGX,"=",79)="" W !,DGX  ;DG*5.3*1014 end
  S (C,DGCT1,DGCT2,DGCT3,DGCTZ7)=0,DGEDIT="0000000011111110011111113333222223313333332222220030000" F I=1:1 S J=$P(DGER,",",I) Q:J=""  I $D(^DGIN(38.6,J,0)) S X2=$P(^(0),"^",1) D WRIT
  I DGCT1!DGCT3 W ! D NOEDIT
  I DGCTZ7 W !!,"Inconsistencies followed by [+] will prevent a Z07"
@@ -38,7 +51,12 @@ EDIT G:DGRPOUT BUL I DGCT1+DGCT3'=DGCT W !!,"DO YOU WANT TO UPDATE THESE INCONSI
  . D ^DGRPCE
  . L -^DPT(DFN)
  . S DGEDCN=1
- I $S(($G(DGRETURN)>10):0,$G(DGINC55):1,1:0) D
+ ;DG*5.3*1027 Code to not display missing income - get flag
+ N DGVET,DGOOVET,DGINCOM S DGINCOM=0,DGVET=$$VET^DGENPTA(DFN),DGOOVET=$G(^TMP($J,"DGOLDVET",DFN))
+ I DGOOVET'="",$P($G(XQY0),"^",1)="DG REGISTER PATIENT",'$$FINDCUR^DGENA(DFN),DGVET'=DGOOVET D
+ . I DGVET=0 S DGINCOM=1
+ ;DG*5.3*1027; If flag set, display missing income
+ I 'DGINCOM,$S(($G(DGRETURN)>10):0,$G(DGINC55):1,1:0) D
  .N DIR
  .S DIR(0)="Y",DIR("A")="Do you wish to return to Screen #9 to enter missing Income Data? ",DIR("B")="YES" D ^DIR
  .S:Y>0 DGRPV=0

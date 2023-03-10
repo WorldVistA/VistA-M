@@ -1,11 +1,9 @@
 IBTUBO ;ALB/AAS - UNBILLED AMOUNTS - GENERATE UNBILLED REPORTS ;29-SEP-94
- ;;2.0;INTEGRATED BILLING;**19,31,32,91,123,159,192,235,248,155,516,547,608**;21-MAR-94;Build 90
+ ;;2.0;INTEGRATED BILLING;**19,31,32,91,123,159,192,235,248,155,516,547,608,665**;21-MAR-94;Build 28
  ;;Per VA Directive 6402, this routine should not be modified.
  ;
- ;Associated ICRs
- ;  ICR#
- ;  4671 - Supports reference to file 409.1
- ;   427 - Supports reference to file 8
+ ; Reference to 409.1 in ICR #4671
+ ; Reference to 8 in ICR #427
  ;
 % ; - Entry point for manual option.
  N IBBDT,IBCOMP,IBDET,IBEDT,IBOPT,IBPRT,IBTIMON,IBQUIT,IBSEL,IBSBD
@@ -74,22 +72,33 @@ DIV ; division
 DIVX ; Exit Division selection.
  ;
  ;JRA;IB*2.0*608 Ask to Search by MCCF, Non-MCCF or Both - Start
+ N ARTIEN,ARTYP,ELIG,ELIGIEN,LN,X  ;JRA;IB*2*665 Moved up from below and added LN
+ ;
+ ;JRA;IB*2*665 Set up array of non-MCCF Rate Types
+ S ARTIEN="" F  S ARTIEN=$O(^IBE(350.9,1,28,"B",ARTIEN)) Q:'ARTIEN  D
+ . S IBMCCF("RTYP",ARTIEN)=$$GET1^DIQ(399.3,ARTIEN_",",.01,"I")
+ ;
  W !
  S DIR(0)="SA^M:MCCF;N:Non-MCCF (Outpatient Only);B:Both"
  S DIR("A")="Search by (M)CCF, (N)on-MCCF (Outpatient Only), or (B)oth? "
  S DIR("B")="M"
- S DIR("?",1)="Non-MCCF Eligibilities of Encounter are 'CHAMPVA', 'INELIGIBLE',"
+ S DIR("?",1)="Non-MCCF Eligibilities of Encounter are: 'CHAMPVA', 'INELIGIBLE',"
  S DIR("?",2)=" 'EMPLOYEE', 'TRICARE' and 'SHARING AGREEMENT'."
- S DIR("?",3)="Non-MCCF Appointment Types are 'EMPLOYEE' and 'SHARING AGREEMENT'."
- S DIR("?",4)="Non-MCCF Rate Types are 'CHAMPVA REIMB. INS.', 'CHAMPVA',"
- S DIR("?",5)=" 'TRICARE REIMB. INS.', 'TRICARE', 'INELIGIBLE' and 'INTERAGENCY'."
+ S DIR("?",3)="Non-MCCF Appointment Types are: 'EMPLOYEE' and 'SHARING AGREEMENT'."
+ ;S DIR("?",4)="Non-MCCF Rate Types are 'CHAMPVA REIMB. INS.', 'CHAMPVA',"  ;JRA;IB*2*665 ';'
+ ;S DIR("?",5)=" 'TRICARE REIMB. INS.', 'TRICARE', 'INELIGIBLE' and 'INTERAGENCY'."  ;JRA;IB*2*665 ';'
+ S DIR("?",4)="Non-MCCF Rate Types are:"  ;JRA;IB*2*665
+ S ARTIEN="",LN=5 F  S ARTIEN=$O(IBMCCF("RTYP",ARTIEN)) Q:ARTIEN=""  D  ;JRA;IB*2*665
+ . I $L($G(DIR("?",LN)))+($L(" '"_IBMCCF("RTYP",ARTIEN)_"',"))>80 S DIR("?",LN)=DIR("?",LN)_",",LN=LN+1  ;JRA;IB*2*665
+ . S DIR("?",LN)=$S($G(DIR("?",LN))="":" '"_IBMCCF("RTYP",ARTIEN)_"'",1:DIR("?",LN)_", '"_IBMCCF("RTYP",ARTIEN)_"'")  ;JRA;IB*2*665
+ S DIR("?",LN)=DIR("?",LN)_"."  ;JRA;IB*2*665
  S DIR("?")="All other Eligibilities/Types are MCCF."
  D ^DIR K DIR G:($D(DIROUT)!($D(DIRUT))) END
  S IBMCCF=Y
  ;Set up arrays of Non-MCCF Rate Types, Non-MCCF Appointment Types and Non-MCCF Eligibility of Encounter entries.
- N ARTIEN,ARTYP,ELIG,ELIGIEN,X
- F ARTYP="INTERAGENCY","CHAMPVA REIMB. INS.","CHAMPVA","TRICARE REIMB. INS.","TRICARE","INELIGIBLE" D  ;Non-MCCF Rate Types
- . S ARTIEN=$O(^DGCR(399.3,"B",ARTYP,"")) I +ARTIEN S IBMCCF("RTYP",ARTIEN)=""
+ ;N ARTIEN,ARTYP,ELIG,ELIGIEN,X  ;JRA;IB*2*665 ';'
+ ;F ARTYP="INTERAGENCY","CHAMPVA REIMB. INS.","CHAMPVA","TRICARE REIMB. INS.","TRICARE","INELIGIBLE" D  ;Non-MCCF Rate Types  ;JRA;IB*2*665 ';'
+ ;. S ARTIEN=$O(^DGCR(399.3,"B",ARTYP,"")) I +ARTIEN S IBMCCF("RTYP",ARTIEN)=""  ;JRA;IB*2*665 ';'
  F ARTYP="EMPLOYEE","SHARING AGREEMENT" D  ;Non-MCCF Appointment Types
  . ;DBIA4671 for following FIND^DIC
  . K ^TMP("DILIST",$J) D FIND^DIC(409.1,,"@;.01","X",ARTYP) I $D(^TMP("DILIST",$J,2))>1 D

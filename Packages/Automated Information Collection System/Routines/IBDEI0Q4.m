@@ -1,126 +1,118 @@
-IBDEI0Q4 ; ; 04-FEB-2020
- ;;3.0;IB ENCOUNTER FORM IMP/EXP;;FEB 04, 2020
+IBDEI0Q4 ; ; 01-FEB-2022
+ ;;3.0;IB ENCOUNTER FORM IMP/EXP;;FEB 01, 2022
  Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,999) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
- ;;^UTILITY(U,$J,358.3,11651,1,4,0)
- ;;=4^11106
- ;;^UTILITY(U,$J,358.3,11652,0)
- ;;=11107^^79^745^8^^^^1
- ;;^UTILITY(U,$J,358.3,11652,1,0)
+ ;;^UTILITY(U,$J,358.3,11739,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,11652,1,2,0)
- ;;=2^Incisional Bx,Skin,Ea Addl Lesion
- ;;^UTILITY(U,$J,358.3,11652,1,4,0)
- ;;=4^11107
- ;;^UTILITY(U,$J,358.3,11653,0)
- ;;=10060^^79^746^9
- ;;^UTILITY(U,$J,358.3,11653,1,0)
+ ;;^UTILITY(U,$J,358.3,11739,1,3,0)
+ ;;=3^Chr nephritic syndrome w/ diffuse endocaplry prolif glomrlneph
+ ;;^UTILITY(U,$J,358.3,11739,1,4,0)
+ ;;=4^N03.4
+ ;;^UTILITY(U,$J,358.3,11739,2)
+ ;;=^5015525
+ ;;^UTILITY(U,$J,358.3,11740,0)
+ ;;=N03.5^^46^573^16
+ ;;^UTILITY(U,$J,358.3,11740,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,11653,1,2,0)
- ;;=2^I&D Abscess,simple or single
- ;;^UTILITY(U,$J,358.3,11653,1,4,0)
- ;;=4^10060
- ;;^UTILITY(U,$J,358.3,11654,0)
- ;;=10061^^79^746^8
- ;;^UTILITY(U,$J,358.3,11654,1,0)
+ ;;^UTILITY(U,$J,358.3,11740,1,3,0)
+ ;;=3^Chr nephritic syndrome w/ diffuse mesangiocap glomrlneph
+ ;;^UTILITY(U,$J,358.3,11740,1,4,0)
+ ;;=4^N03.5
+ ;;^UTILITY(U,$J,358.3,11740,2)
+ ;;=^5015526
+ ;;^UTILITY(U,$J,358.3,11741,0)
+ ;;=N03.6^^46^573^11
+ ;;^UTILITY(U,$J,358.3,11741,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,11654,1,2,0)
- ;;=2^I&D Abscess,complic or multip
- ;;^UTILITY(U,$J,358.3,11654,1,4,0)
- ;;=4^10061
- ;;^UTILITY(U,$J,358.3,11655,0)
- ;;=10160^^79^746^14
- ;;^UTILITY(U,$J,358.3,11655,1,0)
+ ;;^UTILITY(U,$J,358.3,11741,1,3,0)
+ ;;=3^Chr nephritic syndrome w/ dense deposit disease
+ ;;^UTILITY(U,$J,358.3,11741,1,4,0)
+ ;;=4^N03.6
+ ;;^UTILITY(U,$J,358.3,11741,2)
+ ;;=^5015527
+ ;;^UTILITY(U,$J,358.3,11742,0)
+ ;;=N03.7^^46^573^12
+ ;;^UTILITY(U,$J,358.3,11742,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,11655,1,2,0)
- ;;=2^Needle asp absc/cyst/hematoma
- ;;^UTILITY(U,$J,358.3,11655,1,4,0)
- ;;=4^10160
- ;;^UTILITY(U,$J,358.3,11656,0)
- ;;=10140^^79^746^11
- ;;^UTILITY(U,$J,358.3,11656,1,0)
+ ;;^UTILITY(U,$J,358.3,11742,1,3,0)
+ ;;=3^Chr nephritic syndrome w/ diffuse crescentic glomrlneph
+ ;;^UTILITY(U,$J,358.3,11742,1,4,0)
+ ;;=4^N03.7
+ ;;^UTILITY(U,$J,358.3,11742,2)
+ ;;=^5015528
+ ;;^UTILITY(U,$J,358.3,11743,0)
+ ;;=N03.8^^46^573^19
+ ;;^UTILITY(U,$J,358.3,11743,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,11656,1,2,0)
- ;;=2^I&D hematoma/seroma,skin
- ;;^UTILITY(U,$J,358.3,11656,1,4,0)
- ;;=4^10140
- ;;^UTILITY(U,$J,358.3,11657,0)
- ;;=19000^^79^746^1
- ;;^UTILITY(U,$J,358.3,11657,1,0)
+ ;;^UTILITY(U,$J,358.3,11743,1,3,0)
+ ;;=3^Chr nephritic syndrome w/ other morphologic changes
+ ;;^UTILITY(U,$J,358.3,11743,1,4,0)
+ ;;=4^N03.8
+ ;;^UTILITY(U,$J,358.3,11743,2)
+ ;;=^5015529
+ ;;^UTILITY(U,$J,358.3,11744,0)
+ ;;=N03.9^^46^573^20
+ ;;^UTILITY(U,$J,358.3,11744,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,11657,1,2,0)
- ;;=2^Aspirate breast cyst, first
- ;;^UTILITY(U,$J,358.3,11657,1,4,0)
- ;;=4^19000
- ;;^UTILITY(U,$J,358.3,11658,0)
- ;;=19001^^79^746^2
- ;;^UTILITY(U,$J,358.3,11658,1,0)
+ ;;^UTILITY(U,$J,358.3,11744,1,3,0)
+ ;;=3^Chr nephritic syndrome w/ unsp morphologic changes
+ ;;^UTILITY(U,$J,358.3,11744,1,4,0)
+ ;;=4^N03.9
+ ;;^UTILITY(U,$J,358.3,11744,2)
+ ;;=^5015530
+ ;;^UTILITY(U,$J,358.3,11745,0)
+ ;;=N04.0^^46^573^59
+ ;;^UTILITY(U,$J,358.3,11745,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,11658,1,2,0)
- ;;=2^Aspirate Breast Cyst,Ea Addl Cyst
- ;;^UTILITY(U,$J,358.3,11658,1,4,0)
- ;;=4^19001
- ;;^UTILITY(U,$J,358.3,11659,0)
- ;;=26011^^79^746^4
- ;;^UTILITY(U,$J,358.3,11659,1,0)
+ ;;^UTILITY(U,$J,358.3,11745,1,3,0)
+ ;;=3^Nephrotic syndrome w/ minor glomerular abnormality
+ ;;^UTILITY(U,$J,358.3,11745,1,4,0)
+ ;;=4^N04.0
+ ;;^UTILITY(U,$J,358.3,11745,2)
+ ;;=^5015531
+ ;;^UTILITY(U,$J,358.3,11746,0)
+ ;;=N04.1^^46^573^58
+ ;;^UTILITY(U,$J,358.3,11746,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,11659,1,2,0)
- ;;=2^Drain abscess finger,complic
- ;;^UTILITY(U,$J,358.3,11659,1,4,0)
- ;;=4^26011
- ;;^UTILITY(U,$J,358.3,11660,0)
- ;;=26020^^79^746^6
- ;;^UTILITY(U,$J,358.3,11660,1,0)
+ ;;^UTILITY(U,$J,358.3,11746,1,3,0)
+ ;;=3^Nephrotic syndrome w/ focal & segmental glomerular lesions
+ ;;^UTILITY(U,$J,358.3,11746,1,4,0)
+ ;;=4^N04.1
+ ;;^UTILITY(U,$J,358.3,11746,2)
+ ;;=^5015532
+ ;;^UTILITY(U,$J,358.3,11747,0)
+ ;;=N04.2^^46^573^55
+ ;;^UTILITY(U,$J,358.3,11747,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,11660,1,2,0)
- ;;=2^Drain Tendon Sheath,Ea Hand
- ;;^UTILITY(U,$J,358.3,11660,1,4,0)
- ;;=4^26020
- ;;^UTILITY(U,$J,358.3,11661,0)
- ;;=10120^^79^746^16
- ;;^UTILITY(U,$J,358.3,11661,1,0)
+ ;;^UTILITY(U,$J,358.3,11747,1,3,0)
+ ;;=3^Nephrotic syndrome w/ diffuse membranous glomerulonephritis
+ ;;^UTILITY(U,$J,358.3,11747,1,4,0)
+ ;;=4^N04.2
+ ;;^UTILITY(U,$J,358.3,11747,2)
+ ;;=^5015533
+ ;;^UTILITY(U,$J,358.3,11748,0)
+ ;;=N04.3^^46^573^56
+ ;;^UTILITY(U,$J,358.3,11748,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,11661,1,2,0)
- ;;=2^Removal,foreign body,simple
- ;;^UTILITY(U,$J,358.3,11661,1,4,0)
- ;;=4^10120
- ;;^UTILITY(U,$J,358.3,11662,0)
- ;;=10121^^79^746^15
- ;;^UTILITY(U,$J,358.3,11662,1,0)
+ ;;^UTILITY(U,$J,358.3,11748,1,3,0)
+ ;;=3^Nephrotic syndrome w/ diffuse mesangial prolif glomrlneph
+ ;;^UTILITY(U,$J,358.3,11748,1,4,0)
+ ;;=4^N04.3
+ ;;^UTILITY(U,$J,358.3,11748,2)
+ ;;=^5015534
+ ;;^UTILITY(U,$J,358.3,11749,0)
+ ;;=N04.4^^46^573^54
+ ;;^UTILITY(U,$J,358.3,11749,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,11662,1,2,0)
- ;;=2^Removal,foreign body,complex
- ;;^UTILITY(U,$J,358.3,11662,1,4,0)
- ;;=4^10121
- ;;^UTILITY(U,$J,358.3,11663,0)
- ;;=26010^^79^746^5^^^^1
- ;;^UTILITY(U,$J,358.3,11663,1,0)
+ ;;^UTILITY(U,$J,358.3,11749,1,3,0)
+ ;;=3^Nephrotic syndrome w/ diffuse endocaplry prolif glomrlneph
+ ;;^UTILITY(U,$J,358.3,11749,1,4,0)
+ ;;=4^N04.4
+ ;;^UTILITY(U,$J,358.3,11749,2)
+ ;;=^5015535
+ ;;^UTILITY(U,$J,358.3,11750,0)
+ ;;=N04.5^^46^573^57
+ ;;^UTILITY(U,$J,358.3,11750,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,11663,1,2,0)
- ;;=2^Drain abscess finger,simple
- ;;^UTILITY(U,$J,358.3,11663,1,4,0)
- ;;=4^26010
- ;;^UTILITY(U,$J,358.3,11664,0)
- ;;=10180^^79^746^10^^^^1
- ;;^UTILITY(U,$J,358.3,11664,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,11664,1,2,0)
- ;;=2^I&D complex postop wound
- ;;^UTILITY(U,$J,358.3,11664,1,4,0)
- ;;=4^10180
- ;;^UTILITY(U,$J,358.3,11665,0)
- ;;=10080^^79^746^3^^^^1
- ;;^UTILITY(U,$J,358.3,11665,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,11665,1,2,0)
- ;;=2^Drain Pilonidal Cyst
- ;;^UTILITY(U,$J,358.3,11665,1,4,0)
- ;;=4^10080
- ;;^UTILITY(U,$J,358.3,11666,0)
- ;;=10021^^79^746^7^^^^1
- ;;^UTILITY(U,$J,358.3,11666,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,11666,1,2,0)
- ;;=2^FNA w/o Image
- ;;^UTILITY(U,$J,358.3,11666,1,4,0)
- ;;=4^10021
+ ;;^UTILITY(U,$J,358.3,11750,1,3,0)
+ ;;=3^Nephrotic syndrome w/ diffuse mesangiocapillary glomrlneph

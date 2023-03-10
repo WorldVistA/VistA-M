@@ -1,132 +1,126 @@
-IBDEI0IJ ; ; 04-FEB-2020
- ;;3.0;IB ENCOUNTER FORM IMP/EXP;;FEB 04, 2020
+IBDEI0IJ ; ; 01-FEB-2022
+ ;;3.0;IB ENCOUNTER FORM IMP/EXP;;FEB 01, 2022
  Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,999) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
- ;;^UTILITY(U,$J,358.3,8086,1,3,0)
- ;;=3^Prurigo Nodularis
- ;;^UTILITY(U,$J,358.3,8086,1,4,0)
- ;;=4^L28.1
- ;;^UTILITY(U,$J,358.3,8086,2)
- ;;=^5009148
- ;;^UTILITY(U,$J,358.3,8087,0)
- ;;=H61.001^^65^519^6
- ;;^UTILITY(U,$J,358.3,8087,1,0)
+ ;;^UTILITY(U,$J,358.3,8339,1,3,0)
+ ;;=3^Cyclical Vomiting,In Migraine,Intractable
+ ;;^UTILITY(U,$J,358.3,8339,1,4,0)
+ ;;=4^G43.A1
+ ;;^UTILITY(U,$J,358.3,8339,2)
+ ;;=^5003913
+ ;;^UTILITY(U,$J,358.3,8340,0)
+ ;;=G43.A0^^39^397^35
+ ;;^UTILITY(U,$J,358.3,8340,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,8087,1,3,0)
- ;;=3^Perichondritis Right External Ear,Unspec
- ;;^UTILITY(U,$J,358.3,8087,1,4,0)
- ;;=4^H61.001
- ;;^UTILITY(U,$J,358.3,8087,2)
- ;;=^5006499
- ;;^UTILITY(U,$J,358.3,8088,0)
- ;;=H61.002^^65^519^5
- ;;^UTILITY(U,$J,358.3,8088,1,0)
+ ;;^UTILITY(U,$J,358.3,8340,1,3,0)
+ ;;=3^Cyclical Vomiting,In Migraine,Not intractable
+ ;;^UTILITY(U,$J,358.3,8340,1,4,0)
+ ;;=4^G43.A0
+ ;;^UTILITY(U,$J,358.3,8340,2)
+ ;;=^5003912
+ ;;^UTILITY(U,$J,358.3,8341,0)
+ ;;=R11.15^^39^397^33
+ ;;^UTILITY(U,$J,358.3,8341,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,8088,1,3,0)
- ;;=3^Perichondritis Left External Ear,Unspec
- ;;^UTILITY(U,$J,358.3,8088,1,4,0)
- ;;=4^H61.002
- ;;^UTILITY(U,$J,358.3,8088,2)
- ;;=^5006500
- ;;^UTILITY(U,$J,358.3,8089,0)
- ;;=L81.0^^65^519^22
- ;;^UTILITY(U,$J,358.3,8089,1,0)
+ ;;^UTILITY(U,$J,358.3,8341,1,3,0)
+ ;;=3^Cyclical Vomiting Syndrome,Unrelated to Migraine
+ ;;^UTILITY(U,$J,358.3,8341,1,4,0)
+ ;;=4^R11.15
+ ;;^UTILITY(U,$J,358.3,8341,2)
+ ;;=^5158141
+ ;;^UTILITY(U,$J,358.3,8342,0)
+ ;;=K20.90^^39^397^55
+ ;;^UTILITY(U,$J,358.3,8342,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,8089,1,3,0)
- ;;=3^Postinflammatory Hyperpigmentation
- ;;^UTILITY(U,$J,358.3,8089,1,4,0)
- ;;=4^L81.0
- ;;^UTILITY(U,$J,358.3,8089,2)
- ;;=^5009310
- ;;^UTILITY(U,$J,358.3,8090,0)
- ;;=L81.7^^65^519^16
- ;;^UTILITY(U,$J,358.3,8090,1,0)
+ ;;^UTILITY(U,$J,358.3,8342,1,3,0)
+ ;;=3^Esophagitis w/o Bleeding,Unspec
+ ;;^UTILITY(U,$J,358.3,8342,1,4,0)
+ ;;=4^K20.90
+ ;;^UTILITY(U,$J,358.3,8342,2)
+ ;;=^5159212
+ ;;^UTILITY(U,$J,358.3,8343,0)
+ ;;=K20.91^^39^397^54
+ ;;^UTILITY(U,$J,358.3,8343,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,8090,1,3,0)
- ;;=3^Pigmented Purpuric Dermatosis
- ;;^UTILITY(U,$J,358.3,8090,1,4,0)
- ;;=4^L81.7
- ;;^UTILITY(U,$J,358.3,8090,2)
- ;;=^5009317
- ;;^UTILITY(U,$J,358.3,8091,0)
- ;;=L29.8^^65^519^36
- ;;^UTILITY(U,$J,358.3,8091,1,0)
+ ;;^UTILITY(U,$J,358.3,8343,1,3,0)
+ ;;=3^Esophagitis w/ Bleeding,Unspec
+ ;;^UTILITY(U,$J,358.3,8343,1,4,0)
+ ;;=4^K20.91
+ ;;^UTILITY(U,$J,358.3,8343,2)
+ ;;=^5159213
+ ;;^UTILITY(U,$J,358.3,8344,0)
+ ;;=A54.00^^39^398^52
+ ;;^UTILITY(U,$J,358.3,8344,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,8091,1,3,0)
- ;;=3^Pruritus NEC
- ;;^UTILITY(U,$J,358.3,8091,1,4,0)
- ;;=4^L29.8
- ;;^UTILITY(U,$J,358.3,8091,2)
- ;;=^5009152
- ;;^UTILITY(U,$J,358.3,8092,0)
- ;;=Z85.828^^65^519^10
- ;;^UTILITY(U,$J,358.3,8092,1,0)
+ ;;^UTILITY(U,$J,358.3,8344,1,3,0)
+ ;;=3^Gonococcal Infection Lower Genitourinary Tract,Unspec
+ ;;^UTILITY(U,$J,358.3,8344,1,4,0)
+ ;;=4^A54.00
+ ;;^UTILITY(U,$J,358.3,8344,2)
+ ;;=^5000311
+ ;;^UTILITY(U,$J,358.3,8345,0)
+ ;;=A54.09^^39^398^53
+ ;;^UTILITY(U,$J,358.3,8345,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,8092,1,3,0)
- ;;=3^Personal Hx of Malig Neop of Skin
- ;;^UTILITY(U,$J,358.3,8092,1,4,0)
- ;;=4^Z85.828
- ;;^UTILITY(U,$J,358.3,8092,2)
- ;;=^5063443
- ;;^UTILITY(U,$J,358.3,8093,0)
- ;;=B36.0^^65^519^19
- ;;^UTILITY(U,$J,358.3,8093,1,0)
+ ;;^UTILITY(U,$J,358.3,8345,1,3,0)
+ ;;=3^Gonococcal Infection Lower Genitourinary Tract,Other
+ ;;^UTILITY(U,$J,358.3,8345,1,4,0)
+ ;;=4^A54.09
+ ;;^UTILITY(U,$J,358.3,8345,2)
+ ;;=^5000315
+ ;;^UTILITY(U,$J,358.3,8346,0)
+ ;;=A54.02^^39^398^54
+ ;;^UTILITY(U,$J,358.3,8346,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,8093,1,3,0)
- ;;=3^Pityriasis Versicolor
- ;;^UTILITY(U,$J,358.3,8093,1,4,0)
- ;;=4^B36.0
- ;;^UTILITY(U,$J,358.3,8093,2)
- ;;=^5000608
- ;;^UTILITY(U,$J,358.3,8094,0)
- ;;=Z92.3^^65^519^8
- ;;^UTILITY(U,$J,358.3,8094,1,0)
+ ;;^UTILITY(U,$J,358.3,8346,1,3,0)
+ ;;=3^Gonococcal Vulvovaginitis,Unspec
+ ;;^UTILITY(U,$J,358.3,8346,1,4,0)
+ ;;=4^A54.02
+ ;;^UTILITY(U,$J,358.3,8346,2)
+ ;;=^5000313
+ ;;^UTILITY(U,$J,358.3,8347,0)
+ ;;=A54.1^^39^398^51
+ ;;^UTILITY(U,$J,358.3,8347,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,8094,1,3,0)
- ;;=3^Personal Hx of Irradiation (Therapeutic)
- ;;^UTILITY(U,$J,358.3,8094,1,4,0)
- ;;=4^Z92.3
- ;;^UTILITY(U,$J,358.3,8094,2)
- ;;=^5063637
- ;;^UTILITY(U,$J,358.3,8095,0)
- ;;=Z91.82^^65^519^11
- ;;^UTILITY(U,$J,358.3,8095,1,0)
+ ;;^UTILITY(U,$J,358.3,8347,1,3,0)
+ ;;=3^Gonococcal Infection Lower GU Tract w/ Periureth & Acc Gland Abscess
+ ;;^UTILITY(U,$J,358.3,8347,1,4,0)
+ ;;=4^A54.1
+ ;;^UTILITY(U,$J,358.3,8347,2)
+ ;;=^5000316
+ ;;^UTILITY(U,$J,358.3,8348,0)
+ ;;=A54.01^^39^398^50
+ ;;^UTILITY(U,$J,358.3,8348,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,8095,1,3,0)
- ;;=3^Personal Hx of Military Deployment
- ;;^UTILITY(U,$J,358.3,8095,1,4,0)
- ;;=4^Z91.82
- ;;^UTILITY(U,$J,358.3,8095,2)
- ;;=^5063626
- ;;^UTILITY(U,$J,358.3,8096,0)
- ;;=L66.0^^65^519^42
- ;;^UTILITY(U,$J,358.3,8096,1,0)
+ ;;^UTILITY(U,$J,358.3,8348,1,3,0)
+ ;;=3^Gonococcal Cystitis & Urethritis,Unspec
+ ;;^UTILITY(U,$J,358.3,8348,1,4,0)
+ ;;=4^A54.01
+ ;;^UTILITY(U,$J,358.3,8348,2)
+ ;;=^5000312
+ ;;^UTILITY(U,$J,358.3,8349,0)
+ ;;=B37.49^^39^398^14
+ ;;^UTILITY(U,$J,358.3,8349,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,8096,1,3,0)
- ;;=3^Pseudopelade
- ;;^UTILITY(U,$J,358.3,8096,1,4,0)
- ;;=4^L66.0
- ;;^UTILITY(U,$J,358.3,8096,2)
- ;;=^191705
- ;;^UTILITY(U,$J,358.3,8097,0)
- ;;=Z85.820^^65^519^9
- ;;^UTILITY(U,$J,358.3,8097,1,0)
+ ;;^UTILITY(U,$J,358.3,8349,1,3,0)
+ ;;=3^Candidiasis Urogenital,Other
+ ;;^UTILITY(U,$J,358.3,8349,1,4,0)
+ ;;=4^B37.49
+ ;;^UTILITY(U,$J,358.3,8349,2)
+ ;;=^5000618
+ ;;^UTILITY(U,$J,358.3,8350,0)
+ ;;=B37.41^^39^398^13
+ ;;^UTILITY(U,$J,358.3,8350,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,8097,1,3,0)
- ;;=3^Personal Hx of Malig Melanoma of Skin
- ;;^UTILITY(U,$J,358.3,8097,1,4,0)
- ;;=4^Z85.820
- ;;^UTILITY(U,$J,358.3,8097,2)
- ;;=^5063441
- ;;^UTILITY(U,$J,358.3,8098,0)
- ;;=Z87.2^^65^519^12
- ;;^UTILITY(U,$J,358.3,8098,1,0)
+ ;;^UTILITY(U,$J,358.3,8350,1,3,0)
+ ;;=3^Candidal Cystitis & Urethritis
+ ;;^UTILITY(U,$J,358.3,8350,1,4,0)
+ ;;=4^B37.41
+ ;;^UTILITY(U,$J,358.3,8350,2)
+ ;;=^5000616
+ ;;^UTILITY(U,$J,358.3,8351,0)
+ ;;=B37.42^^39^398^12
+ ;;^UTILITY(U,$J,358.3,8351,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,8098,1,3,0)
- ;;=3^Personal Hx of Skin Diseases
- ;;^UTILITY(U,$J,358.3,8098,1,4,0)
- ;;=4^Z87.2
- ;;^UTILITY(U,$J,358.3,8098,2)
- ;;=^5063484
- ;;^UTILITY(U,$J,358.3,8099,0)
- ;;=L08.0^^65^519^49
+ ;;^UTILITY(U,$J,358.3,8351,1,3,0)
+ ;;=3^Candidal Balanitis

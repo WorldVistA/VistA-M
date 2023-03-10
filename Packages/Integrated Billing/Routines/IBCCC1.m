@@ -1,5 +1,5 @@
 IBCCC1 ;ALB/AAS - CANCEL AND CLONE A BILL - CONTINUED ;25-JAN-90
- ;;2.0;INTEGRATED BILLING;**80,109,106,51,320,358,433,432,547**;21-MAR-94;Build 119
+ ;;2.0;INTEGRATED BILLING;**80,109,106,51,320,358,433,432,547,714**;21-MAR-94;Build 8
  ;;Per VA Directive 6402, this routine should not be modified.
  ;
  ;MAP TO DGCRCC1
@@ -13,7 +13,8 @@ IBCCC1 ;ALB/AAS - CANCEL AND CLONE A BILL - CONTINUED ;25-JAN-90
  ;STEP 5 - get remainder of data to move and store in MCCR then x-ref
  ;STEP 6 - go to screens, come out to IBB1 or something like that
  ;
-STEP4 S X=$P($T(WHERE),";;",2) F I=0:0 S I=$O(IBIDS(I)) Q:'I  S X1=$P($E(X,$F(X,I)+1,999),";",1),$P(IBDR($P(X1,"^",1)),"^",$P(X1,"^",2))=IBIDS(I)
+STEP4 S X=$P($T(WHERE+1),";;",2) F I=0:0 S I=$O(IBIDS(I)) Q:'I  S X1=$P($E(X,$F(X,I)+1,999),";",1),$P(IBDR($P(X1,"^",1)),"^",$P(X1,"^",2))=IBIDS(I)
+ ;S X=$P($T(WHERE1),";;",2) F I=0:0 S I=$O(IBIDS(I)) Q:'I  S X1=$P($E(X,$F(X,I)+1,999),";",1),$P(IBDR($P(X1,U,1)),U,$P(X1,U,2))=IBIDS(I)  ; IB*2.0*714
  ;WCJ;IB*2.0*547;added M2
  ;S IBIFN=PRCASV("ARREC") F I=0,"C","M","M1","S","U","U1" I $D(IBDR(I)) S ^DGCR(399,IBIFN,I)=IBDR(I)
  S IBIFN=PRCASV("ARREC") F I=0,"C","M","M1","M2","S","U","U1" I $D(IBDR(I)) S ^DGCR(399,IBIFN,I)=IBDR(I)
@@ -50,5 +51,6 @@ STEP45X G ^IBCCC2 ;go to step 5
 XREF F IBI1=0:0 S IBI1=$O(^DD(399,IBI,1,IBI1)) Q:'IBI1  I $D(^DD(399,IBI,1,IBI1,1)) S DA=IBIFN,X=IBIDS(IBI) I X]"" X ^DD(399,IBI,1,IBI1,1)
  Q
  ; NOTE:  any new or changed data nodes MAY need to be updated in IBNCPDP5
-WHERE ;;.01^0^1;.02^0^2;.03^0^3;.04^0^4;.05^0^5;.06^0^6;.07^0^7;.08^0^8;.09^0^9;.11^0^11;.12^0^12;.17^0^17;.18^0^18;.19^0^19;.15^0^15;.16^0^16;.21^0^21;.22^0^22;.23^0^23;.24^0^24;.25^0^25;.26^0^26;.27^0^27;151^U^1;152^U^2;155^U^5;159.5^U^20;
+WHERE ;
+ ;;.01^0^1;.02^0^2;.03^0^3;.04^0^4;.05^0^5;.06^0^6;.07^0^7;.08^0^8;.09^0^9;.11^0^11;.12^0^12;.17^0^17;.18^0^18;.19^0^19;.15^0^15;.16^0^16;.21^0^21;.22^0^22;.23^0^23;.24^0^24;.25^0^25;.26^0^26;.27^0^27;.28^0^28;151^U^1;152^U^2;155^U^5;159.5^U^20;
  ;

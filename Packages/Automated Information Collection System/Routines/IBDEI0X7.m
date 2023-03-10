@@ -1,130 +1,128 @@
-IBDEI0X7 ; ; 04-FEB-2020
- ;;3.0;IB ENCOUNTER FORM IMP/EXP;;FEB 04, 2020
+IBDEI0X7 ; ; 01-FEB-2022
+ ;;3.0;IB ENCOUNTER FORM IMP/EXP;;FEB 01, 2022
  Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,999) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
- ;;^UTILITY(U,$J,358.3,14784,0)
- ;;=D12.4^^85^835^9
- ;;^UTILITY(U,$J,358.3,14784,1,0)
+ ;;^UTILITY(U,$J,358.3,14960,2)
+ ;;=^5003530
+ ;;^UTILITY(U,$J,358.3,14961,0)
+ ;;=F33.2^^58^713^8
+ ;;^UTILITY(U,$J,358.3,14961,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,14784,1,3,0)
- ;;=3^Benign neoplasm,Descending
- ;;^UTILITY(U,$J,358.3,14784,1,4,0)
- ;;=4^D12.4
- ;;^UTILITY(U,$J,358.3,14784,2)
- ;;=^5001967
- ;;^UTILITY(U,$J,358.3,14785,0)
- ;;=D12.2^^85^835^7
- ;;^UTILITY(U,$J,358.3,14785,1,0)
+ ;;^UTILITY(U,$J,358.3,14961,1,3,0)
+ ;;=3^MDD,Recurrent,Severe w/o Psychotic Features
+ ;;^UTILITY(U,$J,358.3,14961,1,4,0)
+ ;;=4^F33.2
+ ;;^UTILITY(U,$J,358.3,14961,2)
+ ;;=^5003531
+ ;;^UTILITY(U,$J,358.3,14962,0)
+ ;;=F33.9^^58^713^9
+ ;;^UTILITY(U,$J,358.3,14962,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,14785,1,3,0)
- ;;=3^Benign neoplasm,Ascending
- ;;^UTILITY(U,$J,358.3,14785,1,4,0)
- ;;=4^D12.2
- ;;^UTILITY(U,$J,358.3,14785,2)
- ;;=^5001965
- ;;^UTILITY(U,$J,358.3,14786,0)
- ;;=D12.3^^85^835^13
- ;;^UTILITY(U,$J,358.3,14786,1,0)
+ ;;^UTILITY(U,$J,358.3,14962,1,3,0)
+ ;;=3^MDD,Recurrent,Unspec
+ ;;^UTILITY(U,$J,358.3,14962,1,4,0)
+ ;;=4^F33.9
+ ;;^UTILITY(U,$J,358.3,14962,2)
+ ;;=^5003537
+ ;;^UTILITY(U,$J,358.3,14963,0)
+ ;;=F25.0^^58^713^17
+ ;;^UTILITY(U,$J,358.3,14963,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,14786,1,3,0)
- ;;=3^Benign neoplasm,Transverse
- ;;^UTILITY(U,$J,358.3,14786,1,4,0)
- ;;=4^D12.3
- ;;^UTILITY(U,$J,358.3,14786,2)
- ;;=^5001966
- ;;^UTILITY(U,$J,358.3,14787,0)
- ;;=D12.6^^85^835^14
- ;;^UTILITY(U,$J,358.3,14787,1,0)
+ ;;^UTILITY(U,$J,358.3,14963,1,3,0)
+ ;;=3^Schizoaffective Disorder,Bipolar Type
+ ;;^UTILITY(U,$J,358.3,14963,1,4,0)
+ ;;=4^F25.0
+ ;;^UTILITY(U,$J,358.3,14963,2)
+ ;;=^5003480
+ ;;^UTILITY(U,$J,358.3,14964,0)
+ ;;=F25.1^^58^713^18
+ ;;^UTILITY(U,$J,358.3,14964,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,14787,1,3,0)
- ;;=3^Benign neoplasm,Unspec Colon
- ;;^UTILITY(U,$J,358.3,14787,1,4,0)
- ;;=4^D12.6
- ;;^UTILITY(U,$J,358.3,14787,2)
- ;;=^5001969
- ;;^UTILITY(U,$J,358.3,14788,0)
- ;;=D12.1^^85^835^6
- ;;^UTILITY(U,$J,358.3,14788,1,0)
+ ;;^UTILITY(U,$J,358.3,14964,1,3,0)
+ ;;=3^Schizoaffective Disorder,Depressive Type
+ ;;^UTILITY(U,$J,358.3,14964,1,4,0)
+ ;;=4^F25.1
+ ;;^UTILITY(U,$J,358.3,14964,2)
+ ;;=^5003481
+ ;;^UTILITY(U,$J,358.3,14965,0)
+ ;;=F25.9^^58^713^19
+ ;;^UTILITY(U,$J,358.3,14965,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,14788,1,3,0)
- ;;=3^Benign neoplasm,Appendix
- ;;^UTILITY(U,$J,358.3,14788,1,4,0)
- ;;=4^D12.1
- ;;^UTILITY(U,$J,358.3,14788,2)
- ;;=^5001964
- ;;^UTILITY(U,$J,358.3,14789,0)
- ;;=D12.0^^85^835^8
- ;;^UTILITY(U,$J,358.3,14789,1,0)
+ ;;^UTILITY(U,$J,358.3,14965,1,3,0)
+ ;;=3^Schizoaffective Disorder,Unspec
+ ;;^UTILITY(U,$J,358.3,14965,1,4,0)
+ ;;=4^F25.9
+ ;;^UTILITY(U,$J,358.3,14965,2)
+ ;;=^331857
+ ;;^UTILITY(U,$J,358.3,14966,0)
+ ;;=F32.0^^58^713^10
+ ;;^UTILITY(U,$J,358.3,14966,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,14789,1,3,0)
- ;;=3^Benign neoplasm,Cecum
- ;;^UTILITY(U,$J,358.3,14789,1,4,0)
- ;;=4^D12.0
- ;;^UTILITY(U,$J,358.3,14789,2)
- ;;=^5001963
- ;;^UTILITY(U,$J,358.3,14790,0)
- ;;=D12.7^^85^835^10
- ;;^UTILITY(U,$J,358.3,14790,1,0)
+ ;;^UTILITY(U,$J,358.3,14966,1,3,0)
+ ;;=3^MDD,Single Episode,Mild
+ ;;^UTILITY(U,$J,358.3,14966,1,4,0)
+ ;;=4^F32.0
+ ;;^UTILITY(U,$J,358.3,14966,2)
+ ;;=^5003521
+ ;;^UTILITY(U,$J,358.3,14967,0)
+ ;;=F32.1^^58^713^11
+ ;;^UTILITY(U,$J,358.3,14967,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,14790,1,3,0)
- ;;=3^Benign neoplasm,Rectosigmoid
- ;;^UTILITY(U,$J,358.3,14790,1,4,0)
- ;;=4^D12.7
- ;;^UTILITY(U,$J,358.3,14790,2)
- ;;=^5001970
- ;;^UTILITY(U,$J,358.3,14791,0)
- ;;=D12.8^^85^835^11
- ;;^UTILITY(U,$J,358.3,14791,1,0)
+ ;;^UTILITY(U,$J,358.3,14967,1,3,0)
+ ;;=3^MDD,Single Episode,Moderate
+ ;;^UTILITY(U,$J,358.3,14967,1,4,0)
+ ;;=4^F32.1
+ ;;^UTILITY(U,$J,358.3,14967,2)
+ ;;=^5003522
+ ;;^UTILITY(U,$J,358.3,14968,0)
+ ;;=F32.2^^58^713^13
+ ;;^UTILITY(U,$J,358.3,14968,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,14791,1,3,0)
- ;;=3^Benign neoplasm,Rectum
- ;;^UTILITY(U,$J,358.3,14791,1,4,0)
- ;;=4^D12.8
- ;;^UTILITY(U,$J,358.3,14791,2)
- ;;=^5001971
- ;;^UTILITY(U,$J,358.3,14792,0)
- ;;=K57.30^^85^835^28
- ;;^UTILITY(U,$J,358.3,14792,1,0)
+ ;;^UTILITY(U,$J,358.3,14968,1,3,0)
+ ;;=3^MDD,Single Episode,Severe w/o Psychotic Feat
+ ;;^UTILITY(U,$J,358.3,14968,1,4,0)
+ ;;=4^F32.2
+ ;;^UTILITY(U,$J,358.3,14968,2)
+ ;;=^5003523
+ ;;^UTILITY(U,$J,358.3,14969,0)
+ ;;=F32.3^^58^713^12
+ ;;^UTILITY(U,$J,358.3,14969,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,14792,1,3,0)
- ;;=3^Diverticulosis of Colon w/o Bleeding
- ;;^UTILITY(U,$J,358.3,14792,1,4,0)
- ;;=4^K57.30
- ;;^UTILITY(U,$J,358.3,14792,2)
- ;;=^5008723
- ;;^UTILITY(U,$J,358.3,14793,0)
- ;;=K57.20^^85^835^23
- ;;^UTILITY(U,$J,358.3,14793,1,0)
+ ;;^UTILITY(U,$J,358.3,14969,1,3,0)
+ ;;=3^MDD,Single Episode,Severe w/ Psychotic Feat
+ ;;^UTILITY(U,$J,358.3,14969,1,4,0)
+ ;;=4^F32.3
+ ;;^UTILITY(U,$J,358.3,14969,2)
+ ;;=^5003524
+ ;;^UTILITY(U,$J,358.3,14970,0)
+ ;;=F32.A^^58^713^5
+ ;;^UTILITY(U,$J,358.3,14970,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,14793,1,3,0)
- ;;=3^Diverticulitis of Colon w/ Perf & Abscess
- ;;^UTILITY(U,$J,358.3,14793,1,4,0)
- ;;=4^K57.20
- ;;^UTILITY(U,$J,358.3,14793,2)
- ;;=^5008721
- ;;^UTILITY(U,$J,358.3,14794,0)
- ;;=K57.32^^85^835^26
- ;;^UTILITY(U,$J,358.3,14794,1,0)
+ ;;^UTILITY(U,$J,358.3,14970,1,3,0)
+ ;;=3^Depression,Unspec
+ ;;^UTILITY(U,$J,358.3,14970,1,4,0)
+ ;;=4^F32.A
+ ;;^UTILITY(U,$J,358.3,14970,2)
+ ;;=^5161153
+ ;;^UTILITY(U,$J,358.3,14971,0)
+ ;;=M76.62^^58^714^1
+ ;;^UTILITY(U,$J,358.3,14971,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,14794,1,3,0)
- ;;=3^Diverticulitis of Colon,Uncomplicated
- ;;^UTILITY(U,$J,358.3,14794,1,4,0)
- ;;=4^K57.32
- ;;^UTILITY(U,$J,358.3,14794,2)
- ;;=^5008725
- ;;^UTILITY(U,$J,358.3,14795,0)
- ;;=K55.20^^85^835^5
- ;;^UTILITY(U,$J,358.3,14795,1,0)
+ ;;^UTILITY(U,$J,358.3,14971,1,3,0)
+ ;;=3^Achilles Tendinitis,Lt Leg
+ ;;^UTILITY(U,$J,358.3,14971,1,4,0)
+ ;;=4^M76.62
+ ;;^UTILITY(U,$J,358.3,14971,2)
+ ;;=^5013286
+ ;;^UTILITY(U,$J,358.3,14972,0)
+ ;;=M76.61^^58^714^2
+ ;;^UTILITY(U,$J,358.3,14972,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,14795,1,3,0)
- ;;=3^Angiodysplasia of Colon w/o Bleeding
- ;;^UTILITY(U,$J,358.3,14795,1,4,0)
- ;;=4^K55.20
- ;;^UTILITY(U,$J,358.3,14795,2)
- ;;=^5008707
- ;;^UTILITY(U,$J,358.3,14796,0)
- ;;=K52.21^^85^835^2
- ;;^UTILITY(U,$J,358.3,14796,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,14796,1,3,0)
- ;;=3^Allergic/Dietetic Gastroenteritis/Colitis,Food Protein
+ ;;^UTILITY(U,$J,358.3,14972,1,3,0)
+ ;;=3^Achilles Tendinitis,Rt Leg
+ ;;^UTILITY(U,$J,358.3,14972,1,4,0)
+ ;;=4^M76.61
+ ;;^UTILITY(U,$J,358.3,14972,2)
+ ;;=^5013285
+ ;;^UTILITY(U,$J,358.3,14973,0)
+ ;;=M75.02^^58^714^3

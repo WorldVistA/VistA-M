@@ -1,5 +1,52 @@
-PXRMLOG ;SLC/PKR - Clinical Reminders logic routines. ;06/10/2016
- ;;2.0;CLINICAL REMINDERS;**4,6,12,17,18,26,47**;Feb 04, 2005;Build 291
+PXRMLOG ;SLC/PKR - Clinical Reminders logic routines. ;03/31/2022
+ ;;2.0;CLINICAL REMINDERS;**4,6,12,17,18,26,47,42,65**;Feb 04, 2005;Build 438
+ ;==========================================================
+CRSTATUS(DEFARR,FIEVAL) ;Determine the contraindicated/refused status.
+ N CONTRALOGIC,CONTRASTRING,CRSTATUS,DCONTRALOGIC,IND,FF,FI,FINDING,FLIST,NUM,TEMP,TEST
+ ;If there is contraindicated logic, evaluate it.
+ S CRSTATUS=""
+ S TEMP=DEFARR(81)
+ S NUM=+$P(TEMP,U,1)
+ I NUM>0 D
+ . S (CONTRALOGIC,CONTRASTRING)=DEFARR(80)
+ . S FLIST=$P(TEMP,U,2)
+ . F IND=1:1:NUM D
+ .. S FINDING=$P(FLIST,";",IND)
+ .. I FINDING["FF" S TEMP=$P(FINDING,"FF",2),FF(TEMP)=FIEVAL(FINDING)
+ .. E  S FI(FINDING)=FIEVAL(FINDING)
+ . I @CONTRALOGIC S CRSTATUS="CONTRA"
+ . S TEST=$T
+ . I $G(PXRMDEBG) D
+ .. S DCONTRALOGIC=CONTRALOGIC
+ .. F IND=1:1:NUM D
+ ... S FINDING=$P(FLIST,";",IND)
+ ... S TEMP=$S(FINDING["FF":"FF("_$P(FINDING,"FF",2)_")",1:"FI("_FINDING_")")
+ ... S DCONTRALOGIC=$$STRREP^PXRMUTIL(DCONTRALOGIC,TEMP,FIEVAL(FINDING))
+ . S ^TMP(PXRMPID,$J,PXRMITEM,"CONTRAINDICATED LOGIC")=TEST_U_CONTRASTRING_U_$G(DCONTRALOGIC)
+ I CRSTATUS="CONTRA" Q CRSTATUS
+ ;
+ ;If CRSTATUS is not "CONTRA" and there is resolution logic evaluate it.
+ N DREFUSEDLOGIC,REFUSEDLOGIC,REFUSEDSTRING
+ S TEMP=DEFARR(91)
+ S NUM=+$P(TEMP,U,1)
+ I NUM>0 D
+ . S (REFUSEDLOGIC,REFUSEDSTRING)=DEFARR(90)
+ . S FLIST=$P(TEMP,U,2)
+ . F IND=1:1:NUM D
+ .. S FINDING=$P(FLIST,";",IND)
+ .. I FINDING["FF" S TEMP=$P(FINDING,"FF",2),FF(TEMP)=FIEVAL(FINDING)
+ .. E  S FI(FINDING)=FIEVAL(FINDING)
+ . I @REFUSEDLOGIC S CRSTATUS="REFUSED"
+ . S TEST=$T
+ . I $G(PXRMDEBG) D
+ .. S DREFUSEDLOGIC=REFUSEDLOGIC
+ .. F IND=1:1:NUM D
+ ... S FINDING=$P(FLIST,";",IND)
+ ... S TEMP=$S(FINDING["FF":"FF("_$P(FINDING,"FF",2)_")",1:"FI("_FINDING_")")
+ ... S DREFUSEDLOGIC=$$STRREP^PXRMUTIL(DREFUSEDLOGIC,TEMP,FIEVAL(FINDING))
+ . S ^TMP(PXRMPID,$J,PXRMITEM,"REFUSED LOGIC")=TEST_U_REFUSEDSTRING_U_$G(DREFUSEDLOGIC)
+ Q CRSTATUS
+ ;
  ;==========================================================
 EVALPCL(DEFARR,PXRMPDEM,FREQ,PCLOGIC,FIEVAL) ;Evaluate the Patient Cohort
  ;Logic.
@@ -45,7 +92,8 @@ ACHK ;
  I FREQ="" D
  . S AGEFI=0
  .;If there is no resolution logic then frequency is not required.
- . I DEFARR(35)'="" S ^TMP(PXRMPID,$J,PXRMITEM,"INFO","NOFREQ")="There is no reminder frequency!"
+ . I DEFARR(35)="" S ^TMP(PXRMPID,$J,PXRMITEM,"INFO","NOFREQ")="There is no reminder frequency!"
+ . I DEFARR(35)'="" S ^TMP(PXRMPID,$J,PXRMITEM,"FERROR","NOFREQ")="There is resolution logic but no reminder frequency!"
  E  D
  .;Save the final frequency and age range for display.
  .;Use the z so this will be the last of the info text.
@@ -54,8 +102,7 @@ ACHK ;
  . S AGEFI=$S(FREQ=-1:0,1:$$AGECHECK^PXRMAGE(PXRMPDEM("AGE"),MINAGE,MAXAGE))
  S FIEVAL("AGE")=AGEFI
  ;
- ;Evaluate the patient cohort logic
-EVAL ;
+EVAL ;Evaluate the patient cohort logic.
  N AGE,DPCLOG,FI,FF,FUN,FUNCTION,FUNLIST,NUM,SEX,VAR
  S TEMP=DEFARR(32)
  S NUM=+$P(TEMP,U,1)
@@ -100,8 +147,6 @@ EVALRESL(DEFARR,RESDATE,RESLOGIC,FIEVAL) ;Evaluate the
  S FLIST=$P(TEMP,U,2)
  F IND=1:1:NUM D
  . S FINDING=$P(FLIST,";",IND)
- .;Check for contraindicated in a resolution finding
- . I $G(FIEVAL(FINDING,"CONTRAINDICATED")) S FIEVAL("CONTRAINDICATED")=1
  . I FINDING["FF" S TEMP=$P(FINDING,"FF",2),FF(TEMP)=FIEVAL(FINDING)
  . E  S FI(FINDING)=FIEVAL(FINDING)
  I @RESLOG
@@ -203,10 +248,11 @@ VALID(LOGSTR,DA,MINLEN,MAXLEN) ;Make sure that LOGSTR is a valid logic string.
  . D EN^DDIOL("Logic string is too long")
  ;
  ;Use the FileMan code validator to check the code.
- N TEST,X
+ N X
  S X="S Y="_$TR(LOGSTR,";","")
  D ^DIM
  I $D(X)=0 D  Q 0
+ . N TEXT
  . S TEXT(1)="LOGIC string: "_LOGSTR
  . S TEXT(2)="contains invalid MUMPS code!"
  . D EN^DDIOL(.TEXT)

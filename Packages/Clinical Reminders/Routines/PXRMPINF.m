@@ -1,7 +1,7 @@
-PXRMPINF ;SLC/PKR - Routines relating to patient information. ;10/15/2019
- ;;2.0;CLINICAL REMINDERS;**12,17,24,45**;Feb 04, 2005;Build 566
+PXRMPINF ;SLC/PKR - Routines relating to patient information. ;07/01/2020
+ ;;2.0;CLINICAL REMINDERS;**12,17,24,45,42**;Feb 04, 2005;Build 245
  ;
- ;======================================================
+ ;===============
 DATACHG ;This entry point is called whenever patient data has changed.
  ;It is attached to the following event points:
  ;PXK VISIT DATA EVENT via PXRM PATIENT DATA CHANGE
@@ -16,7 +16,7 @@ DATACHG ;This entry point is called whenever patient data has changed.
  D ^%ZTLOAD
  Q
  ;
- ;======================================================
+ ;===============
 DATACHGR ;Process data from PXK VISIT DATA EVENT
  N DATA,DFN,DGBL,NODE,PXRMDFN,VIEN,VISIT,VF,VFL,VGBL
  S ZTREQ="@"
@@ -40,7 +40,7 @@ DATACHGR ;Process data from PXK VISIT DATA EVENT
  K ^XTMP(EVENT)
  Q
  ;
- ;======================================================
+ ;===============
 DEM(DFN,TODAY,DEMARR) ;Load the patient demographics into DEMARR
  ;The patient's age is calculated using whatever date is passed as
  ;TODAY. If there is a date of death and it is greater than TODAY
@@ -73,7 +73,7 @@ DEM(DFN,TODAY,DEMARR) ;Load the patient demographics into DEMARR
  . F  S SUB=$O(DEMARR(SUB)) Q:SUB=""  S ^TMP("PXRMDEM",$J,SUB)=DEMARR(SUB)
  Q
  ;
- ;======================================================
+ ;===============
 NEWEVENT(EVENT,DATALOC,ZTSAVE) ;Generate a new node in ^XTMP to store data for
  ;later processing
  N RETURN
@@ -81,13 +81,13 @@ NEWEVENT(EVENT,DATALOC,ZTSAVE) ;Generate a new node in ^XTMP to store data for
  ;Make sure sub-script is unique.
  F  Q:'$D(^XTMP(RETURN))  I $D(^XTMP(RETURN)) H 1 S RETURN=EVENT_$J_" "_$$NOW^XLFDT
  K ^XTMP(RETURN)
- S ^XTMP(RETURN,0)=$$FMADD^XLFDT(DT,3)_U_DT
+ S ^XTMP(RETURN,0)=$$FMADD^XLFDT($$NOW^XLFDT,0,12)_U_DT
  M ^XTMP(RETURN)=@DATALOC
  S ZTSAVE("EVENT")=""
  S ZTSAVE("XTMP(")=""
  Q RETURN
  ;
- ;======================================================
+ ;===============
 PLIST ;This entry point is called whenever patient data has changed.
  ;It is attached to the following event points:
  ;GMPL EVENT via PXRM PATIENT PROBLEM DATA CHANGE
@@ -103,7 +103,7 @@ PLIST ;This entry point is called whenever patient data has changed.
  D ^%ZTLOAD
  Q
  ;
- ;======================================================
+ ;===============
 PLISTR ;Process data from GMPL EVENT
  ;For diagnoses added to the problem list via the Encounter
  ;form, both DATACHG and PLIST line tags are executed
@@ -113,7 +113,7 @@ PLISTR ;Process data from GMPL EVENT
  D WH^PXRMNTFY("",DFN,"",GMPIFN)
  Q
  ;
- ;======================================================
+ ;===============
 PTFCHG ;This entry point is called whenever patient data has changed.
  ;It is attached to the following event points:
  ;DG PTF ICD DIAGNOSIS NOTIFIER via PXRM PATIENT PTF DATA CHANGE
@@ -127,7 +127,7 @@ PTFCHG ;This entry point is called whenever patient data has changed.
  D ^%ZTLOAD
  Q
  ;
- ;======================================================
+ ;===============
 PTFCHGR ;Process data from DG PTF ICD DIAGNOSIS NOTIFIER
  S ZTREQ="@"
  N DFN
@@ -135,3 +135,4 @@ PTFCHGR ;Process data from DG PTF ICD DIAGNOSIS NOTIFIER
  D WH^PXRMNTFY(EVENT,DFN,"","")
  K ^XTMP(EVENT)
  Q
+ ;

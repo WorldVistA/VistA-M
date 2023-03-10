@@ -1,5 +1,5 @@
-MPIF001 ;ALB/RJS/CMC-UTILITY ROUTINE OF APIS ;JUL 12, 1996
- ;;1.0;MASTER PATIENT INDEX VISTA;**1,3,9,16,18,21,27,33,35,41,45,48,60**;30 Apr 99;Build 2
+MPIF001 ;ALB/RJS/CMC-UTILITY ROUTINE OF APIS ; 10/28/20 8:35pm
+ ;;1.0;MASTER PATIENT INDEX VISTA;**1,3,9,16,18,21,27,33,35,41,45,48,60,76**;30 Apr 99;Build 1
  ;
  ; Integration Agreements Utilized:
  ;  ^DPT( - #2070
@@ -55,8 +55,9 @@ ICNLC(DFN) ;This API will return an ICN if one exists or create and return
  .I ICNX="" K NOLOCK S ICN="-1^PROBLEM CREATING LOCAL ICN" Q
  .S TMP=$$SETICN(DFN,ICNX,CHKSUM)
  .I +TMP=-1 K NOLOCK Q
+ .;**76 - VAMPI-799 (ckn) - Below Full ICN api is now being called by SETICN^MPIF001
  .;**60 (elz) MVI_793 new Full ICN field
- .S TMP=$$SETFICN(DFN,ICNX_"V"_CHKSUM)
+ .;S TMP=$$SETFICN(DFN,ICNX_"V"_CHKSUM)
  .S TMP=$$SETLOC(DFN,1)
  .S TMP=$$CHANGE(DFN,$P($$SITE^VASITE(),"^"))
  .K NOLOCK
@@ -163,12 +164,15 @@ SETICN(DFN,ICN,CHKSUM) ;
  S CHKSUM=$$CHECKDG^MPIFSPC(ICN) ;**45 calculate checksum based upon what's passed for ICN and use that to update 991.02
  S DIE="^DPT(",DA=DFN,DR="991.01///^S X=ICN;991.02///^S X=CHKSUM"
  D ^DIE
- I +$G(Y)=-1 S RETURN="-1^UNSUCCESSFUL DIE CALL"
+ ;**76 - VAMPI-799 (ckn)-quit if unsuccessful
+ I +$G(Y)=-1 S RETURN="-1^UNSUCCESSFUL DIE CALL" G EXIT5
  I +RETURN>0 D
  .K ^DPT("AMPIMIS",DFN)
  .I $E(ICN,1,3)=$P($$SITE^VASITE(),"^",3) S ERR=$$SETLOC(DFN,1)
  .I $E(ICN,1,3)'=$P($$SITE^VASITE(),"^",3) S ERR=$$SETLOC(DFN,0)
  I '$D(NOLOCK) D UNLOCK
+ ;**76 - VAMPI-799 (ckn) - Call Full ICN api
+ S RETURN=$$SETFICN(DFN,ICN_"V"_CHKSUM)
 EXIT5 ;
  Q RETURN
  ;

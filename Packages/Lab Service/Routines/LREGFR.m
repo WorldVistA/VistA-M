@@ -1,5 +1,5 @@
-LREGFR ;DALOI/STAFF - Calculate Creatinine-eGFR ;02/28/12  20:15
- ;;5.2;LAB SERVICE;**289,313,350,449**;Sep 27, 1994;Build 4
+LREGFR ;DALOI/STAFF - Calculate Creatinine-eGFR ;Nov 12, 2020@15:02
+ ;;5.2;LAB SERVICE;**289,313,350,449,541**;Sep 27, 1994;Build 7
  ;
  ; Reference to EN^DDIOL supported by IA #10142
  ; Reference to $$GET1^DIQ supported by IA #2056
@@ -54,6 +54,11 @@ STRT(DFN,LRTR) ; Start Processing the Routine
  . I $$CHKDUP(LRDFN,LRIDT,"For eGFR: **eGFR not Calculated - No Age Recorded**") Q
  . D FILECOM^LRVR4(LRDFN,LRIDT,"For eGFR: **eGFR not Calculated - No Age Recorded**")
  ;
+ ;LR*5.2*541: Erroneous collection date precedes patient's DOB
+ I AGE<0 D  Q
+ . S $P(LRSB(LRTN),"^")="canc"
+ . I $$CHKDUP(LRDFN,LRIDT,"For eGFR: **eGFR not Calculated - Coll. Date Before Patient's DOB**") Q
+ . D FILECOM^LRVR4(LRDFN,LRIDT,"For eGFR: **eGFR not Calculated - Coll. Date Before Patient's DOB**")
  S LRFLG=0
  I AGE<18!(AGE>70) S LRFLG=$$GET^XPAR("DIV^PKG","LR EGFR AGE CUTOFF",1,"Q")
  I AGE<18,LRFLG?1(1"1",1"3") D  Q

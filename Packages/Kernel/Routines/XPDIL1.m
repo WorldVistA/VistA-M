@@ -1,5 +1,5 @@
 XPDIL1 ;SFISC/RSD - cont. of load Distribution Global ;05/05/2008
- ;;8.0;KERNEL;**15,17,39,41,44,66,68,76,85,100,108,229,525**;Jul 10, 1995;Build 10
+ ;;8.0;KERNEL;**15,17,39,41,44,66,68,76,85,100,108,229,525,755**;Jul 10, 1995;Build 6
  ; Per VHA Directive 2004-038, this routine should not be modified.
  ;
 PKG(XPDA) ;check Package file
@@ -12,6 +12,8 @@ PKG(XPDA) ;check Package file
  .S Y=$G(^XTMP("XPDI",XPDA,"VER"))
  .I $$VERSION^XPDUTL("XU")<Y W !!,"But I need Version ",+Y," of KERNEL!"  S XPDQUIT=1
  .I $$VERSION^XPDUTL("VA FILEMAN")<$P(Y,U,2) W !,"But I Need Version ",+$P(Y,U,2)," of VA FILEMAN!" S XPDQUIT=1
+ ;"BLD" must exists ;p755
+ I '$O(^XTMP("XPDI",XPDA,"BLD",0)) W !,"Transport Build is corrupted!",! D ABORT^XPDI(XPDA,1) Q
  ;get national package name
  S %=$O(^XTMP("XPDI",XPDA,"PKG",0)),XPDPKG(0)=$G(^(+%,0)),XPDPKG=%
  ;XPDPKG=new ien^old ien
@@ -78,6 +80,8 @@ ENV(XPDENV) ;environment check & version check
  S XPDGREF="^XTMP(""XPDI"","_XPDA_",""TEMP"")"
  S XPDMBREQ=$G(^XTMP("XPDI",XPDA,"MBREQ"))
  S $P(^XPD(9.7,XPDA,0),U,7)=XPDMBREQ
+ ;"BLD" must exists ;p755
+ I '$O(^XTMP("XPDI",XPDA,"BLD",0)) W !,"Transport Build is corrupted!" D ABORT^XPDI(XPDA,1) Q 1
  ;check version number
  I XPDPKG>0 D  I $G(XPDQUIT) D ABORT^XPDI(XPDA,1) Q 1
  .N DIR,DIRUT,X,Y

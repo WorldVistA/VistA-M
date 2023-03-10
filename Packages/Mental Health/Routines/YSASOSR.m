@@ -1,7 +1,7 @@
 YSASOSR ;WHITE CITY/DCL - BUILD ASI OUTPUT IN ARRAY BY DOMAIN ;1/13/97  09:55
- ;;5.01;MENTAL HEALTH;**24**;Dec 30, 1994
- Q
+ ;;5.01;MENTAL HEALTH;**24,187**;Dec 30, 1994;Build 73
  ;
+ Q
 CSR(YSI2DA,YSI2R,YSI2SR) ;Converts Status Report fields to text, pass IEN and Target Root and Script Root.
  Q:$G(YSI2SR)=""
  Q:$D(@YSI2SR)'>9
@@ -55,6 +55,7 @@ STR(YSI2X,YSI2IEN,YSI2TR) ;Extrinsic function.  Pass string return resolved valu
  ;
 F(YSHF) ;return field value in database
  Q:$G(YSHF)=""
+ I YSHF=".02:.09" Q "xxx-xx-"_$G(VA("BID"),"xxxx") ; don't show full SSN
  N YSHX,DIERR
  S YSHX=$$GET1^DIQ(604,YSI2IEN,$P(YSHF,"^"),"",$G(YSI2TR))
  I $P(YSHF,"^",2) Q $J(YSHX,$P(YSHF,"^",2))

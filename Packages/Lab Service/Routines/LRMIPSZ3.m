@@ -1,5 +1,5 @@
-LRMIPSZ3 ;DALOI/STAFF - MICRO PATIENT REPORT - STERILITY, PARASITES, VIRUS ;02/21/13  14:43
- ;;5.2;LAB SERVICE;**350,427**;Sep 27, 1994;Build 33
+LRMIPSZ3 ;DALOI/STAFF - MICRO PATIENT REPORT - STERILITY, PARASITES, VIRUS ;Jul 15, 2021@13:13
+ ;;5.2;LAB SERVICE;**350,427,547**;Sep 27, 1994;Build 10
  ;
  ; Reference for DD global supported by ICR #999
  Q
@@ -47,7 +47,12 @@ PARA ;
  . M ^TMP("LRMI",$J,LRDFN,"MI",LRIDT)=^LR(LRDFN,"MI",LRIDT)
  . K ^TMP("LRMI",$J,LRDFN,"MI",LRIDT,32)
  ;
- I $P(^TMP("LRMI",$J,LRDFN,"MI",LRIDT,5),U)="",'$G(LRLABKY) S:'$D(LRWRDVEW) LRQUIT=1 S:LRSB'=5 LRQUIT=1
+ I $P(^TMP("LRMI",$J,LRDFN,"MI",LRIDT,5),U)="",'$G(LRLABKY) D  S:'$D(LRWRDVEW) LRQUIT=1 S:LRSB'=5 LRQUIT=1
+ . Q:'$D(^XTMP("LRMICRO EDIT",LRDFN,LRIDT,5))
+ . ;LR*5.2*547: Display informational message if accession/test is currently being edited
+ . ;            and results had previously been verified.
+ . N LR7SB S LR7SB=5
+ . D MES^LRMIPSZ2
  ;
  I LRQUIT D  Q
  . I LRBLDTMP K ^TMP("LRMI",$J,LRDFN,"MI",LRIDT)
@@ -120,7 +125,12 @@ VIR ;
  . M ^TMP("LRMI",$J,LRDFN,"MI",LRIDT)=^LR(LRDFN,"MI",LRIDT)
  . K ^TMP("LRMI",$J,LRDFN,"MI",LRIDT,32)
  ;
- I $P(^TMP("LRMI",$J,LRDFN,"MI",LRIDT,16),U)="",'$G(LRLABKY) S:'$D(LRWRDVEW) LRQUIT=1 S:LRSB'=16 LRQUIT=1
+ I $P(^TMP("LRMI",$J,LRDFN,"MI",LRIDT,16),U)="",'$G(LRLABKY) D  S:'$D(LRWRDVEW) LRQUIT=1 S:LRSB'=16 LRQUIT=1
+ . Q:'$D(^XTMP("LRMICRO EDIT",LRDFN,LRIDT,16))
+ . ;LR*5.2*547: Display informational message if accession/test is currently being edited
+ . ;            and results had previously been verified.
+ . N LR7SB S LR7SB=16
+ . D MES^LRMIPSZ2
  ;
  I LRQUIT D  Q
  . I LRBLDTMP K ^TMP("LRMI",$J,LRDFN,"MI",LRIDT)

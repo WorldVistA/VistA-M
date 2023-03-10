@@ -1,124 +1,116 @@
-IBDEI0IG ; ; 04-FEB-2020
- ;;3.0;IB ENCOUNTER FORM IMP/EXP;;FEB 04, 2020
+IBDEI0IG ; ; 01-FEB-2022
+ ;;3.0;IB ENCOUNTER FORM IMP/EXP;;FEB 01, 2022
  Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,999) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
- ;;^UTILITY(U,$J,358.3,8049,0)
- ;;=C84.07^^65^517^100
- ;;^UTILITY(U,$J,358.3,8049,1,0)
+ ;;^UTILITY(U,$J,358.3,8302,1,3,0)
+ ;;=3^Diverticulosis of Lg Intestine w/o Perforation/Abscess w/o Bleeding
+ ;;^UTILITY(U,$J,358.3,8302,1,4,0)
+ ;;=4^K57.30
+ ;;^UTILITY(U,$J,358.3,8302,2)
+ ;;=^5008723
+ ;;^UTILITY(U,$J,358.3,8303,0)
+ ;;=K57.50^^39^397^48
+ ;;^UTILITY(U,$J,358.3,8303,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,8049,1,3,0)
- ;;=3^Mycosis Fungoides,Spleen
- ;;^UTILITY(U,$J,358.3,8049,1,4,0)
- ;;=4^C84.07
- ;;^UTILITY(U,$J,358.3,8049,2)
- ;;=^5001628
- ;;^UTILITY(U,$J,358.3,8050,0)
- ;;=C84.00^^65^517^101
- ;;^UTILITY(U,$J,358.3,8050,1,0)
+ ;;^UTILITY(U,$J,358.3,8303,1,3,0)
+ ;;=3^Diverticulosis of Sm & Lg Intestine w/o Performation/Abscess w/o Bleeding
+ ;;^UTILITY(U,$J,358.3,8303,1,4,0)
+ ;;=4^K57.50
+ ;;^UTILITY(U,$J,358.3,8303,2)
+ ;;=^5008729
+ ;;^UTILITY(U,$J,358.3,8304,0)
+ ;;=K57.90^^39^397^46
+ ;;^UTILITY(U,$J,358.3,8304,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,8050,1,3,0)
- ;;=3^Mycosis Fungoides,Unspec Site
- ;;^UTILITY(U,$J,358.3,8050,1,4,0)
- ;;=4^C84.00
- ;;^UTILITY(U,$J,358.3,8050,2)
- ;;=^5001621
- ;;^UTILITY(U,$J,358.3,8051,0)
- ;;=C43.122^^65^517^4
- ;;^UTILITY(U,$J,358.3,8051,1,0)
+ ;;^UTILITY(U,$J,358.3,8304,1,3,0)
+ ;;=3^Diverticulosis of Intestine,Unspec w/o Performation/Abscess w/o Bleeding
+ ;;^UTILITY(U,$J,358.3,8304,1,4,0)
+ ;;=4^K57.90
+ ;;^UTILITY(U,$J,358.3,8304,2)
+ ;;=^5008735
+ ;;^UTILITY(U,$J,358.3,8305,0)
+ ;;=K57.20^^39^397^42
+ ;;^UTILITY(U,$J,358.3,8305,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,8051,1,3,0)
- ;;=3^Malig Melanoma of Left Lower Eyelid,Incl Canthus
- ;;^UTILITY(U,$J,358.3,8051,1,4,0)
- ;;=4^C43.122
- ;;^UTILITY(U,$J,358.3,8051,2)
- ;;=^5157252
- ;;^UTILITY(U,$J,358.3,8052,0)
- ;;=C43.121^^65^517^6
- ;;^UTILITY(U,$J,358.3,8052,1,0)
+ ;;^UTILITY(U,$J,358.3,8305,1,3,0)
+ ;;=3^Diverticulitis of Lg Intestine w/ Performation/Abscess w/o Bleeding
+ ;;^UTILITY(U,$J,358.3,8305,1,4,0)
+ ;;=4^K57.20
+ ;;^UTILITY(U,$J,358.3,8305,2)
+ ;;=^5008721
+ ;;^UTILITY(U,$J,358.3,8306,0)
+ ;;=K57.92^^39^397^41
+ ;;^UTILITY(U,$J,358.3,8306,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,8052,1,3,0)
- ;;=3^Malig Melanoma of Left Upper Eyelid,Incl Canthus
- ;;^UTILITY(U,$J,358.3,8052,1,4,0)
- ;;=4^C43.121
- ;;^UTILITY(U,$J,358.3,8052,2)
- ;;=^5157251
- ;;^UTILITY(U,$J,358.3,8053,0)
- ;;=C43.112^^65^517^12
- ;;^UTILITY(U,$J,358.3,8053,1,0)
+ ;;^UTILITY(U,$J,358.3,8306,1,3,0)
+ ;;=3^Diverticulitis of Intestine,Unspec w/o Perforation/Abscess w/o Bleeding
+ ;;^UTILITY(U,$J,358.3,8306,1,4,0)
+ ;;=4^K57.92
+ ;;^UTILITY(U,$J,358.3,8306,2)
+ ;;=^5008737
+ ;;^UTILITY(U,$J,358.3,8307,0)
+ ;;=K57.80^^39^397^40
+ ;;^UTILITY(U,$J,358.3,8307,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,8053,1,3,0)
- ;;=3^Malig Melanoma of Right Lower Eyelid,Incl Canthus
- ;;^UTILITY(U,$J,358.3,8053,1,4,0)
- ;;=4^C43.112
- ;;^UTILITY(U,$J,358.3,8053,2)
- ;;=^5157250
- ;;^UTILITY(U,$J,358.3,8054,0)
- ;;=C43.111^^65^517^14
- ;;^UTILITY(U,$J,358.3,8054,1,0)
+ ;;^UTILITY(U,$J,358.3,8307,1,3,0)
+ ;;=3^Diverticulitis of Intestine,Unspec w/ Perforation/Abscess w/o Bleeding
+ ;;^UTILITY(U,$J,358.3,8307,1,4,0)
+ ;;=4^K57.80
+ ;;^UTILITY(U,$J,358.3,8307,2)
+ ;;=^5008733
+ ;;^UTILITY(U,$J,358.3,8308,0)
+ ;;=K57.52^^39^397^45
+ ;;^UTILITY(U,$J,358.3,8308,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,8054,1,3,0)
- ;;=3^Malig Melanoma of Right Upper Eyelid,Incl Canthus
- ;;^UTILITY(U,$J,358.3,8054,1,4,0)
- ;;=4^C43.111
- ;;^UTILITY(U,$J,358.3,8054,2)
- ;;=^5157249
- ;;^UTILITY(U,$J,358.3,8055,0)
- ;;=C44.1922^^65^517^30
- ;;^UTILITY(U,$J,358.3,8055,1,0)
+ ;;^UTILITY(U,$J,358.3,8308,1,3,0)
+ ;;=3^Diverticulitis of Sm & Lg Intestine w/o Perforation/Abscess w/o Bleeding
+ ;;^UTILITY(U,$J,358.3,8308,1,4,0)
+ ;;=4^K57.52
+ ;;^UTILITY(U,$J,358.3,8308,2)
+ ;;=^5008731
+ ;;^UTILITY(U,$J,358.3,8309,0)
+ ;;=K57.40^^39^397^44
+ ;;^UTILITY(U,$J,358.3,8309,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,8055,1,3,0)
- ;;=3^Malig Neop Skin of Right Lower Eyelid,Incl Canthus
- ;;^UTILITY(U,$J,358.3,8055,1,4,0)
- ;;=4^C44.1922
- ;;^UTILITY(U,$J,358.3,8055,2)
- ;;=^5157271
- ;;^UTILITY(U,$J,358.3,8056,0)
- ;;=C44.1921^^65^517^32
- ;;^UTILITY(U,$J,358.3,8056,1,0)
+ ;;^UTILITY(U,$J,358.3,8309,1,3,0)
+ ;;=3^Diverticulitis of Sm & Lg Intestine w/ Perforation/Abscess w/o Bleeding
+ ;;^UTILITY(U,$J,358.3,8309,1,4,0)
+ ;;=4^K57.40
+ ;;^UTILITY(U,$J,358.3,8309,2)
+ ;;=^5008727
+ ;;^UTILITY(U,$J,358.3,8310,0)
+ ;;=K57.32^^39^397^43
+ ;;^UTILITY(U,$J,358.3,8310,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,8056,1,3,0)
- ;;=3^Malig Neop Skin of Right Upper Eyelid,Incl Canthus
- ;;^UTILITY(U,$J,358.3,8056,1,4,0)
- ;;=4^C44.1921
- ;;^UTILITY(U,$J,358.3,8056,2)
- ;;=^5157270
- ;;^UTILITY(U,$J,358.3,8057,0)
- ;;=C44.1992^^65^517^22
- ;;^UTILITY(U,$J,358.3,8057,1,0)
+ ;;^UTILITY(U,$J,358.3,8310,1,3,0)
+ ;;=3^Diverticulitis of Lg Intestine w/o Perforation/Abscess w/o Bleeding
+ ;;^UTILITY(U,$J,358.3,8310,1,4,0)
+ ;;=4^K57.32
+ ;;^UTILITY(U,$J,358.3,8310,2)
+ ;;=^5008725
+ ;;^UTILITY(U,$J,358.3,8311,0)
+ ;;=K59.00^^39^397^22
+ ;;^UTILITY(U,$J,358.3,8311,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,8057,1,3,0)
- ;;=3^Malig Neop Skin of Left Lower Eyelid,Incl Canthus
- ;;^UTILITY(U,$J,358.3,8057,1,4,0)
- ;;=4^C44.1992
- ;;^UTILITY(U,$J,358.3,8057,2)
- ;;=^5157273
- ;;^UTILITY(U,$J,358.3,8058,0)
- ;;=C44.1991^^65^517^24
- ;;^UTILITY(U,$J,358.3,8058,1,0)
+ ;;^UTILITY(U,$J,358.3,8311,1,3,0)
+ ;;=3^Constipation,Unspec
+ ;;^UTILITY(U,$J,358.3,8311,1,4,0)
+ ;;=4^K59.00
+ ;;^UTILITY(U,$J,358.3,8311,2)
+ ;;=^323537
+ ;;^UTILITY(U,$J,358.3,8312,0)
+ ;;=K58.9^^39^397^79
+ ;;^UTILITY(U,$J,358.3,8312,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,8058,1,3,0)
- ;;=3^Malig Neop Skin of Left Upper Eyelid,Incl Canthus
- ;;^UTILITY(U,$J,358.3,8058,1,4,0)
- ;;=4^C44.1991
- ;;^UTILITY(U,$J,358.3,8058,2)
- ;;=^5157272
- ;;^UTILITY(U,$J,358.3,8059,0)
- ;;=D22.122^^65^517^39
- ;;^UTILITY(U,$J,358.3,8059,1,0)
+ ;;^UTILITY(U,$J,358.3,8312,1,3,0)
+ ;;=3^Irritable Bowel Syndrome w/o Diarrhea
+ ;;^UTILITY(U,$J,358.3,8312,1,4,0)
+ ;;=4^K58.9
+ ;;^UTILITY(U,$J,358.3,8312,2)
+ ;;=^5008740
+ ;;^UTILITY(U,$J,358.3,8313,0)
+ ;;=K58.0^^39^397^78
+ ;;^UTILITY(U,$J,358.3,8313,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,8059,1,3,0)
- ;;=3^Melanocytic Nevi of Left Lower Eyelid
- ;;^UTILITY(U,$J,358.3,8059,1,4,0)
- ;;=4^D22.122
- ;;^UTILITY(U,$J,358.3,8059,2)
- ;;=^5157289
- ;;^UTILITY(U,$J,358.3,8060,0)
- ;;=D22.121^^65^517^41
- ;;^UTILITY(U,$J,358.3,8060,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,8060,1,3,0)
- ;;=3^Melanocytic Nevi of Left Upper Eyelid
- ;;^UTILITY(U,$J,358.3,8060,1,4,0)
- ;;=4^D22.121
- ;;^UTILITY(U,$J,358.3,8060,2)
- ;;=^5157288
+ ;;^UTILITY(U,$J,358.3,8313,1,3,0)
+ ;;=3^Irritable Bowel Syndrome w/ Diarrhea

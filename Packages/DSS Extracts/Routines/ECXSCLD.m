@@ -1,5 +1,5 @@
 ECXSCLD ;BIR/DMA,CML-Enter, Print and Edit Entries in 728.44 ;5/9/17  12:31
- ;;3.0;DSS EXTRACTS;**2,8,24,30,71,80,105,112,120,126,132,136,142,144,149,154,161,166**;Dec 22, 1997;Build 24
+ ;;3.0;DSS EXTRACTS;**2,8,24,30,71,80,105,112,120,126,132,136,142,144,149,154,161,166,184**;Dec 22, 1997;Build 124
 EN ;entry point from option
  ;load entries
  N DIR,X,Y,DIRUT,DTOUT,DUOUT,ZTSK ;144,161
@@ -160,6 +160,7 @@ PRINT ; print worksheet for updates
  I $D(IO("Q")) K ZTSAVE S ZTDESC="DSS clinic stop code work sheet",ZTRTN="SPRINT^ECXSCLD",ZTSAVE("ECALL")="" D ^%ZTLOAD,HOME^%ZIS Q
 SPRINT ; queued entry to print work sheet
  N DC,ECSDC,DIV1,DIV2,APPL,APPL1,APPL2,STOPC,CREDSC,NATC,DUPIEN,FIEN,ECSC,ECSCI,ECSC2 ;149
+ N ECSTA6A ;184
  U IO
  S QFLG=0,$P(LN,"-",$S(ECALL="D":80,1:132))="",PG=0 ;161
  S ECDATE=$O(^ECX(728.44,"A1","")) I ECDATE S ECDATE=-ECDATE,ECDATE=$$FMTE^XLFDT(ECDATE,"5DF"),ECDATE=$TR(ECDATE," ","0")
@@ -181,12 +182,13 @@ SPRINT ; queued entry to print work sheet
  ..I $D(^SC(DC,0)) D
  ...S STOPC=$P(ECSDC,U,2),CREDSC=$P(ECSDC,U,3),NATC=$P(ECSDC,U,8) ;154 CVW
  ...S DIV=$$GET1^DIQ(44,$P(ECSDC,U),3.5,"I"),APPL=$$GET1^DIQ(44,$P(ECSDC,U),1912,"I"),ECXMCA=$$GET1^DIQ(728.442,$P(ECSDC,U,14),.01) ;166
+ ...S ECSTA6A=$$GET1^DIQ(4,$P(ECSDC,U,15),99,"E") ;184
  ...I 'FIRST D
  ....I $D(^TMP("EC",$J,1_STOPC_CREDSC_NATC_DIV_APPL_ECXMCA)) D  ;166
  .....S ^TMP("EC",$J,1_STOPC_CREDSC_NATC_DIV_APPL_ECXMCA,0)="1" ;166
- ...S ECSC=$P(^SC(DC,0),U),^TMP("EC",$J,1_STOPC_CREDSC_NATC_DIV_APPL_ECXMCA,DC,ECSC)=ECSC_U_DC_U_STOPC_U_CREDSC_U_$$GET1^DIQ(728.441,NATC,.01)_U_ECXMCA_U_APPL_U_DIV ;166
+ ...S ECSC=$P(^SC(DC,0),U),^TMP("EC",$J,1_STOPC_CREDSC_NATC_DIV_APPL_ECXMCA,DC,ECSC)=ECSC_U_DC_U_STOPC_U_CREDSC_U_$$GET1^DIQ(728.441,NATC,.01)_U_ECXMCA_U_APPL_U_DIV_U_ECSTA6A ;166 ,184 - added STA6A
  ..I FIRST D
- ...S ECSC=$P(^SC(DC,0),U),^TMP("EC",$J,1_STOPC_CREDSC_NATC_DIV_APPL_ECXMCA,DC,ECSC)=ECSC_U_DC_U_STOPC_U_CREDSC_U_$$GET1^DIQ(728.441,NATC,.01)_U_ECXMCA_U_APPL_U_DIV,FIRST=0 ;166
+ ...S ECSC=$P(^SC(DC,0),U),^TMP("EC",$J,1_STOPC_CREDSC_NATC_DIV_APPL_ECXMCA,DC,ECSC)=ECSC_U_DC_U_STOPC_U_CREDSC_U_$$GET1^DIQ(728.441,NATC,.01)_U_ECXMCA_U_APPL_U_DIV_U_ECSTA6A,FIRST=0 ;166,184 - Added STA6A
  .D HEAD S ECSC="" I $O(^TMP("EC",$J,ECSC))="" W !!,"NO DATA FOUND FOR WORKSHEET.",! Q  ;144
  I ECALL="D" D
  .S KEY="" F  S KEY=$O(^TMP("EC",$J,KEY)) Q:'+KEY  I $G(^TMP("EC",$J,KEY,0)) Q:QFLG  D
@@ -196,6 +198,7 @@ SPRINT ; queued entry to print work sheet
  ...W !,$P(ECXCLX,U) ;161,166
  ...W ?32,$P(ECXCLX,U,2),?44,$P(ECXCLX,U,3),?50,$P(ECXCLX,U,4),?55,$P(ECXCLX,U,5),?61,$P(ECXCLX,U,6) ;161,166
  ...W ?67,$P(^TMP("EC",$J,KEY,IEN,NAME),U,7),?76,$P(^TMP("EC",$J,KEY,IEN,NAME),U,8) ;161,166
+ ...W ?82,$P(^TMP("EC",$J,KEY,IEN,NAME),U,9) ;184
  ..Q:QFLG  W !
  ..I $Y+6>IOSL D HEAD Q:QFLG
  K ^TMP("EC",$J) ;144 
@@ -211,20 +214,12 @@ SHOWEM ; list clinics for worksheet 149 moved to ECXSCLD1 due to size
  D SHOWEM^ECXSCLD1
  Q
 EDIT ; put in DSS stopcodes and which one to send
- I '$O(^ECX(728.44,0)) W !,"DSS Clinic stop code file does not exist",!! R X:5 K X Q
- ;patch 142-added for loop to allow for new clinic prompt
- F  W ! K DIC S DIC=728.44,DIC(0)="QEAMZ",DIC("S")="I $P($G(^SC(Y,0)),U,3)=""C""" D ^DIC Q:Y<0  D  ;149
- .S CLIEN1=+Y
- .W !!,"EXISTING CLINIC FILE DATA:" ;,?35,"EXISTING DSS CLINIC FILE DATA:" 154
- .W !!,"STOP CODE:        ",$P(Y(0),U,2) ;,?35,"DSS STOP CODE :   ",$P(Y(0),U,4) 154
- .W !,"CREDIT STOP CODE: ",$P(Y(0),U,3) ;,?35,"DSS CREDIT STOP CODE :",$P(Y(0),U,5) 154
- .W !
- .D ENDCHK
- .;D EDIT1 154 **EDIT1 code was moved to ECXSCLD1 for space
- D ENDX
+ ;184 - Edit clinic moved to ECXSCLD1 due to routine size
+ D EDIT^ECXSCLD1 ;184
  Q
 ENDCHK ;check validity of clinic
  N ECXB4ARR,ECXAFARR,ECXCHNG ;154
+ N ECXINST ;184
  S ECXCHNG=0 ;154
  ;154 REMOVED ALL ERROR CHECKING SINCE EDIT OF FIELDS REMOVED **EDIT1 code was moved to ECXSCLD1 for space
  ;S CODE=$P(^ECX(728.44,CLIEN1,0),U,4)
@@ -239,14 +234,15 @@ ENDCHK ;check validity of clinic
  ;W; !!,"...Validity Checker Complete."
  ;I ERRCHK=1 W !!,"...Errors found please fix." G EDIT1
  ;remaining fields
- D GETS^DIQ(728.44,CLIEN1,"5;7;8","I","ECXB4ARR")
+ ;D GETS^DIQ(728.44,CLIEN1,"5;7;8","I","ECXB4ARR")
+ D GETS^DIQ(728.44,CLIEN1,"5;7;8;14","I","ECXB4ARR") ;184 - Added 14
  S DIE=728.44,DA=+CLIEN1,DIE("NO^")="BACKOUTOK" ;166 added restriction to only allow backward jumping or exit from template
  ;S DR="5//1;S:X'=4 Y=6;7CHAR4 CODE;6///"_DT_";8;10" D ^DIE ;136
- S DR="5//5;S:X'=4 Y=13;7CHAR4 CODE;13;8;10" D ^DIE ;154,161,166
+ S DR="5//5;S:X'=4 Y=13;7CHAR4 CODE;13;8;10;14" D ^DIE ;154,161,166,184 - Added 14
  S:$P(^ECX(728.44,DA,0),U,6)'=4 $P(^ECX(728.44,CLIEN1,0),U,8)="" ;S $P(^(0),U,7)="" ;154
  I $P(^ECX(728.44,DA,0),U,6)=4,$P(^ECX(728.44,DA,0),U,8)="" S $P(^ECX(728.44,DA,0),U,6)=5 ;166 If action to send is 4 (with CHAR4 code) but no CHAR4 code entered, then set action to send to 5
- D GETS^DIQ(728.44,CLIEN1,"5;7;8","I","ECXAFARR") ;154
- F I=5,7,8 I ECXB4ARR(728.44,CLIEN1_",",I,"I")'=ECXAFARR(728.44,CLIEN1_",",I,"I") S ECXCHNG=1 Q  ;154
+ D GETS^DIQ(728.44,CLIEN1,"5;7;8;14","I","ECXAFARR") ;154,184 - Added 14
+ F I=5,7,8,14 I ECXB4ARR(728.44,CLIEN1_",",I,"I")'=ECXAFARR(728.44,CLIEN1_",",I,"I") S ECXCHNG=1 Q  ;154,184 - added 14
  I ECXCHNG S $P(^ECX(728.44,CLIEN1,0),U,7)="" ;154
  Q
 ERRPRNT ;print errors 149 moved to ECXSCLD1 due to size
@@ -255,7 +251,7 @@ ERRPRNT ;print errors 149 moved to ECXSCLD1 due to size
 KILL ;
  K I,WARNING,DIC,DIE,DA,DR,DIR,DIRUT,DTOUT,DUOUT,X,Y,ERRCHK
  K CLIEN1,CODE,ECXMSG,IENS,STOP,CSTOP,AMIS,FDA,OUT,ERR,WRN,ECXERR
- G EDIT
+ G EDIT^ECXSCLD1 ;184 - Moved EDIT to ECXSCLC1 due to routine size
  ;
 ERRCHK(CODE,TYPE,CLIEN1) ;check for problems 149 moved to ECXSCLD1 due to size
  Q $$ERRCHK^ECXSCLD1(CODE,TYPE,CLIEN1)

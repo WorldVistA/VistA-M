@@ -1,124 +1,124 @@
-IBDEI0RN ; ; 04-FEB-2020
- ;;3.0;IB ENCOUNTER FORM IMP/EXP;;FEB 04, 2020
+IBDEI0RN ; ; 01-FEB-2022
+ ;;3.0;IB ENCOUNTER FORM IMP/EXP;;FEB 01, 2022
  Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,999) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
- ;;^UTILITY(U,$J,358.3,12336,2)
- ;;=^5001157
- ;;^UTILITY(U,$J,358.3,12337,0)
- ;;=C4A.9^^80^777^20
- ;;^UTILITY(U,$J,358.3,12337,1,0)
+ ;;^UTILITY(U,$J,358.3,12446,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,12337,1,3,0)
- ;;=3^Merkel Cell Carcinoma,Unspec
- ;;^UTILITY(U,$J,358.3,12337,1,4,0)
- ;;=4^C4A.9
- ;;^UTILITY(U,$J,358.3,12337,2)
- ;;=^5001158
- ;;^UTILITY(U,$J,358.3,12338,0)
- ;;=C4A.121^^80^777^7
- ;;^UTILITY(U,$J,358.3,12338,1,0)
+ ;;^UTILITY(U,$J,358.3,12446,1,3,0)
+ ;;=3^Hearing Loss,Left Ear,Unspec
+ ;;^UTILITY(U,$J,358.3,12446,1,4,0)
+ ;;=4^H91.92
+ ;;^UTILITY(U,$J,358.3,12446,2)
+ ;;=^5133554
+ ;;^UTILITY(U,$J,358.3,12447,0)
+ ;;=H91.93^^49^601^20
+ ;;^UTILITY(U,$J,358.3,12447,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,12338,1,3,0)
- ;;=3^Merkel Cell Carcinoma of Left Upper Eyelid
- ;;^UTILITY(U,$J,358.3,12338,1,4,0)
- ;;=4^C4A.121
- ;;^UTILITY(U,$J,358.3,12338,2)
- ;;=^5157276
- ;;^UTILITY(U,$J,358.3,12339,0)
- ;;=C4A.122^^80^777^5
- ;;^UTILITY(U,$J,358.3,12339,1,0)
+ ;;^UTILITY(U,$J,358.3,12447,1,3,0)
+ ;;=3^Hearing Loss,Bilateral,Unspec
+ ;;^UTILITY(U,$J,358.3,12447,1,4,0)
+ ;;=4^H91.93
+ ;;^UTILITY(U,$J,358.3,12447,2)
+ ;;=^5006944
+ ;;^UTILITY(U,$J,358.3,12448,0)
+ ;;=H61.21^^49^601^25
+ ;;^UTILITY(U,$J,358.3,12448,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,12339,1,3,0)
- ;;=3^Merkel Cell Carcinoma of Left Lower Eyelid
- ;;^UTILITY(U,$J,358.3,12339,1,4,0)
- ;;=4^C4A.122
- ;;^UTILITY(U,$J,358.3,12339,2)
- ;;=^5157277
- ;;^UTILITY(U,$J,358.3,12340,0)
- ;;=C4A.111^^80^777^15
- ;;^UTILITY(U,$J,358.3,12340,1,0)
+ ;;^UTILITY(U,$J,358.3,12448,1,3,0)
+ ;;=3^Impacted Cerumen,Right Ear
+ ;;^UTILITY(U,$J,358.3,12448,1,4,0)
+ ;;=4^H61.21
+ ;;^UTILITY(U,$J,358.3,12448,2)
+ ;;=^5006531
+ ;;^UTILITY(U,$J,358.3,12449,0)
+ ;;=R43.0^^49^601^1
+ ;;^UTILITY(U,$J,358.3,12449,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,12340,1,3,0)
- ;;=3^Merkel Cell Carcinoma of Right Upper Eyelid
- ;;^UTILITY(U,$J,358.3,12340,1,4,0)
- ;;=4^C4A.111
- ;;^UTILITY(U,$J,358.3,12340,2)
- ;;=^5157274
- ;;^UTILITY(U,$J,358.3,12341,0)
- ;;=C4A.112^^80^777^13
- ;;^UTILITY(U,$J,358.3,12341,1,0)
+ ;;^UTILITY(U,$J,358.3,12449,1,3,0)
+ ;;=3^Anosmia
+ ;;^UTILITY(U,$J,358.3,12449,1,4,0)
+ ;;=4^R43.0
+ ;;^UTILITY(U,$J,358.3,12449,2)
+ ;;=^7949
+ ;;^UTILITY(U,$J,358.3,12450,0)
+ ;;=H40.1110^^49^601^19
+ ;;^UTILITY(U,$J,358.3,12450,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,12341,1,3,0)
- ;;=3^Merkel Cell Carcinoma of Right Lower Eyelid
- ;;^UTILITY(U,$J,358.3,12341,1,4,0)
- ;;=4^C4A.112
- ;;^UTILITY(U,$J,358.3,12341,2)
- ;;=^5157275
- ;;^UTILITY(U,$J,358.3,12342,0)
- ;;=S01.20XA^^80^778^33
- ;;^UTILITY(U,$J,358.3,12342,1,0)
+ ;;^UTILITY(U,$J,358.3,12450,1,3,0)
+ ;;=3^Glaucoma,Primary Open-Angle,Rt Eye,Stage Unspec
+ ;;^UTILITY(U,$J,358.3,12450,1,4,0)
+ ;;=4^H40.1110
+ ;;^UTILITY(U,$J,358.3,12450,2)
+ ;;=^5138536
+ ;;^UTILITY(U,$J,358.3,12451,0)
+ ;;=H40.1111^^49^601^16
+ ;;^UTILITY(U,$J,358.3,12451,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,12342,1,3,0)
- ;;=3^Open Wound of Nose,Init Encntr
- ;;^UTILITY(U,$J,358.3,12342,1,4,0)
- ;;=4^S01.20XA
- ;;^UTILITY(U,$J,358.3,12342,2)
- ;;=^5020090
- ;;^UTILITY(U,$J,358.3,12343,0)
- ;;=S01.00XA^^80^778^62
- ;;^UTILITY(U,$J,358.3,12343,1,0)
+ ;;^UTILITY(U,$J,358.3,12451,1,3,0)
+ ;;=3^Glaucoma,Primary Open-Angle,Rt Eye,Mild Stage
+ ;;^UTILITY(U,$J,358.3,12451,1,4,0)
+ ;;=4^H40.1111
+ ;;^UTILITY(U,$J,358.3,12451,2)
+ ;;=^5138537
+ ;;^UTILITY(U,$J,358.3,12452,0)
+ ;;=H40.1112^^49^601^17
+ ;;^UTILITY(U,$J,358.3,12452,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,12343,1,3,0)
- ;;=3^Open Wound of Scalp,Init Encntr
- ;;^UTILITY(U,$J,358.3,12343,1,4,0)
- ;;=4^S01.00XA
- ;;^UTILITY(U,$J,358.3,12343,2)
- ;;=^5020033
- ;;^UTILITY(U,$J,358.3,12344,0)
- ;;=S01.402A^^80^778^7
- ;;^UTILITY(U,$J,358.3,12344,1,0)
+ ;;^UTILITY(U,$J,358.3,12452,1,3,0)
+ ;;=3^Glaucoma,Primary Open-Angle,Rt Eye,Moderate Stage
+ ;;^UTILITY(U,$J,358.3,12452,1,4,0)
+ ;;=4^H40.1112
+ ;;^UTILITY(U,$J,358.3,12452,2)
+ ;;=^5138538
+ ;;^UTILITY(U,$J,358.3,12453,0)
+ ;;=H40.1113^^49^601^18
+ ;;^UTILITY(U,$J,358.3,12453,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,12344,1,3,0)
- ;;=3^Open Wound of Left Cheek/TMJ Area,Init Encntr
- ;;^UTILITY(U,$J,358.3,12344,1,4,0)
- ;;=4^S01.402A
- ;;^UTILITY(U,$J,358.3,12344,2)
- ;;=^5020150
- ;;^UTILITY(U,$J,358.3,12345,0)
- ;;=S01.401A^^80^778^38
- ;;^UTILITY(U,$J,358.3,12345,1,0)
+ ;;^UTILITY(U,$J,358.3,12453,1,3,0)
+ ;;=3^Glaucoma,Primary Open-Angle,Rt Eye,Severe Stage
+ ;;^UTILITY(U,$J,358.3,12453,1,4,0)
+ ;;=4^H40.1113
+ ;;^UTILITY(U,$J,358.3,12453,2)
+ ;;=^5138539
+ ;;^UTILITY(U,$J,358.3,12454,0)
+ ;;=H40.1114^^49^601^15
+ ;;^UTILITY(U,$J,358.3,12454,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,12345,1,3,0)
- ;;=3^Open Wound of Right Cheek/TMJ Area,Init Encntr
- ;;^UTILITY(U,$J,358.3,12345,1,4,0)
- ;;=4^S01.401A
- ;;^UTILITY(U,$J,358.3,12345,2)
- ;;=^5020147
- ;;^UTILITY(U,$J,358.3,12346,0)
- ;;=S01.80XA^^80^778^1
- ;;^UTILITY(U,$J,358.3,12346,1,0)
+ ;;^UTILITY(U,$J,358.3,12454,1,3,0)
+ ;;=3^Glaucoma,Primary Open-Angle,Rt Eye,Indeterminate Stage
+ ;;^UTILITY(U,$J,358.3,12454,1,4,0)
+ ;;=4^H40.1114
+ ;;^UTILITY(U,$J,358.3,12454,2)
+ ;;=^5138540
+ ;;^UTILITY(U,$J,358.3,12455,0)
+ ;;=H40.1120^^49^601^14
+ ;;^UTILITY(U,$J,358.3,12455,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,12346,1,3,0)
- ;;=3^Open Wound of Head NEC,Init Encntr
- ;;^UTILITY(U,$J,358.3,12346,1,4,0)
- ;;=4^S01.80XA
- ;;^UTILITY(U,$J,358.3,12346,2)
- ;;=^5020222
- ;;^UTILITY(U,$J,358.3,12347,0)
- ;;=S01.90XA^^80^778^2
- ;;^UTILITY(U,$J,358.3,12347,1,0)
+ ;;^UTILITY(U,$J,358.3,12455,1,3,0)
+ ;;=3^Glaucoma,Primary Open-Angle,Lt Eye,Stage Unspec
+ ;;^UTILITY(U,$J,358.3,12455,1,4,0)
+ ;;=4^H40.1120
+ ;;^UTILITY(U,$J,358.3,12455,2)
+ ;;=^5138541
+ ;;^UTILITY(U,$J,358.3,12456,0)
+ ;;=H40.1121^^49^601^11
+ ;;^UTILITY(U,$J,358.3,12456,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,12347,1,3,0)
- ;;=3^Open Wound of Head,Unspec,Init Encntr
- ;;^UTILITY(U,$J,358.3,12347,1,4,0)
- ;;=4^S01.90XA
- ;;^UTILITY(U,$J,358.3,12347,2)
- ;;=^5020240
- ;;^UTILITY(U,$J,358.3,12348,0)
- ;;=S11.80XA^^80^778^31
- ;;^UTILITY(U,$J,358.3,12348,1,0)
+ ;;^UTILITY(U,$J,358.3,12456,1,3,0)
+ ;;=3^Glaucoma,Primary Open-Angle,Lt Eye,Mild Stage
+ ;;^UTILITY(U,$J,358.3,12456,1,4,0)
+ ;;=4^H40.1121
+ ;;^UTILITY(U,$J,358.3,12456,2)
+ ;;=^5138542
+ ;;^UTILITY(U,$J,358.3,12457,0)
+ ;;=H40.1122^^49^601^12
+ ;;^UTILITY(U,$J,358.3,12457,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,12348,1,3,0)
- ;;=3^Open Wound of Neck NEC,Init Encntr
- ;;^UTILITY(U,$J,358.3,12348,1,4,0)
- ;;=4^S11.80XA
+ ;;^UTILITY(U,$J,358.3,12457,1,3,0)
+ ;;=3^Glaucoma,Primary Open-Angle,Lt Eye,Moderate Stage
+ ;;^UTILITY(U,$J,358.3,12457,1,4,0)
+ ;;=4^H40.1122
+ ;;^UTILITY(U,$J,358.3,12457,2)
+ ;;=^5138543
+ ;;^UTILITY(U,$J,358.3,12458,0)
+ ;;=H40.1123^^49^601^13

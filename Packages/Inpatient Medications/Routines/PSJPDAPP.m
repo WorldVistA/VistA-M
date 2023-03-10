@@ -1,5 +1,5 @@
 PSJPDAPP ;BIR/MHA - SEND APPOINTMENTS TO PADE ;11/27/15
- ;;5.0;INPATIENT MEDICATIONS;**317,389**;16 DEC 97;Build 4
+ ;;5.0;INPATIENT MEDICATIONS;**317,389,415,432**;16 DEC 97;Build 18
  ;Reference to ^PS(55 is supported by DBIA 2191
  ;Reference to ^ORD(101 supported by DBIA 872
  ;Reference to GETPLIST^SDAMA202 supported by DBIA 3869
@@ -10,6 +10,7 @@ PSJPDAPP ;BIR/MHA - SEND APPOINTMENTS TO PADE ;11/27/15
 EN ;
  N PDA,PDCL,PDCLA,PDI,PDJ,PDK,PSJAP,PSJCLPD,PSJPDNM,PSJDIV,DTP,SA,SEQ,I,J,K,L,P,X,Y,Z,PSJNIP,X1,X2
  S (DTP,PSJAP,I)=0
+ K ^TMP($J,"PSJCLSA")
  F  S I=$O(^PS(58.7,I)) Q:'I  S J=$$PDACT^PSJPDCLA(I)
  Q:'PSJAP
  S I=0 F  S I=$O(PSJAP(I)) Q:'I  D
@@ -19,8 +20,11 @@ EN ;
  .. S SA=""
  .. I $P(Y,"^",9)="Y" S:$P(Y,"^",4) SA=$P($G(^PS(58.71,$P(Y,"^",4),0)),"^") D ALLCLN   ;send appt for all clinics
  .. D CLARR
+ .. ; Get all CLINIC to SEND AREA associations, where 
+ .. ; INCLUDE CLINICS IN BG JOB and RE-SEND ORDERS AT CHECK-IN evaluates to YES
+ .. D GETDSARS^PSJPDAPP(I,J,3)
  M PDCL=PDCLA
- Q:'$D(PDCL)
+ I '$D(PDCL) D KILLTMP Q
  N SNM,CNM S SNM="PSJ SIU-S12 SERVER",CNM="PSJ SIU-S12 CLIENT"
  I '$O(^ORD(101,"B",SNM,0))!('$O(^ORD(101,"B",CNM,0))) Q
  N NHL D INIT^HLFNC2(SNM,.NHL) Q:$D(NHL)=1
@@ -32,6 +36,7 @@ EN ;
  . S PDJ=0 F  S PDJ=$O(PDCL(PDI,PDJ)) Q:'PDJ  D
  .. S PSJDNM=$P($$SITE^VASITE(,PDJ),"^",3)
  .. S PDK=0 F  S PDK=$O(PDCL(PDI,PDJ,PDK)) Q:'PDK  D APPT
+ D KILLTMP
  Q
  ;
 APPT ;
@@ -65,6 +70,8 @@ APPT ;
  . N XX S XX=PDI D PV19 M HLA("HLS")=NSEG
  . D GENERATE^HLMA(SNM,"LM",1,.PSJSND,"",.HLP)
  . D LOG^PSJPADE
+ . ;check for O11 re-send
+ . D RESNDORDS^PSJPDCLA(DFN,PSJOR,PDJ,PDI,3) ; Resend all orders for the input CLINIC's SEND AREA 
  Q
  ;
 ALLCLN ;
@@ -95,7 +102,8 @@ CLARR ;
  S Z=0,L=""
  F  S Z=$O(^PS(58.7,I,"DIV",J,"WCN",Z)) Q:'Z  S X=^PS(58.7,I,"DIV",J,"WCN",Z,0) D:$P(X,"^",3)="Y"
  . S SA=$P(X,"^",2) S:SA SA=$P($G(^PS(58.71,SA,0)),"^")
- . S (Y,P)=$P(X,"^") F  S P=$O(^SC("B",P)) Q:P=""!($E(P,1,$L(Y))'=Y)  D
+ . S Y=$P(X,"^"),P=$E(X,1,$L(Y)-1) F  S P=$O(^SC("B",P)) Q:P=""  D
+ .. Q:($E(P,1,$L(Y))'=Y)  ;p415
  .. S K=$O(^SC("B",P,0)),L=$G(^SC(K,0)) Q:$P(L,"^",3)'="C"  Q:$P(L,"^",15)'=J
  .. S:'$D(PDCLA(I,J,K)) PDCLA(I,J,K)=DTP_$S(SA]"":"^"_SA,1:"")
  Q
@@ -120,3 +128,190 @@ PV19 ;
  .. S:$P(NSEG(NC),HL("FS"),51)]"" PDL(6)=$P(NSEG(NC),HL("FS"),51)
  Q
  ;
+GETPSARS(PSYSIN,DFNIN,FILTER) ; Return Send Area for all clinic orders for patient DFN
+ ; OUTPUT:  ^TMP($J,"PSJCLSA",PSYSIN,PDIVIN,"CL",CLINICIEN,SENDAREAIEN)=PCLSAS
+ ;          ^TMP($J,"PSJCLSA",PSYSIN,PDIVIN,"SA",SENDAREAIEN,CLINICIEN)=PCLSAS
+ ;          PCLSAS=Send Area Name^PADE System^Division^Clinic Name^Source of Send Area value
+ ; INPUT
+ ;      PSYSIN (required) - PADE System IEN from File #58.7 
+ ;      FILTER (optional) - 0: No filter
+ ;                          1: INCLUDE CLINIC IN BG JOB required (set to YES).
+ ;                          2: RE-SEND ORDERS AT CHECK-IN required (set to YES)
+ ;                          3: Both INCLUDE CLINIC IN BG JOB and RE-SEND ORDERS AT CHECK-IN required (set to YES)
+ ;
+ Q:'$G(PSYSIN)
+ N ND,CLIN,DFN,DIVISION
+ S FILTER=+$G(FILTER)
+ ;
+ K ^TMP("PS",$J),^TMP($J,"PSJCLSA") S CNT=0
+ S DFN=DFNIN
+ D OCL1^PSJORRE(DFN,"","",0)
+ Q:'$D(^TMP("PS",$J))
+ ;
+ N PSJORD,CLINICA
+ S I=0 F  S I=$O(^TMP("PS",$J,I)) Q:'I  D
+ . N CLINICI,IENS
+ . S J=^TMP("PS",$J,I,0),PSJORD=$P(J,"^")
+ . Q:'((PSJORD["U"!(PSJORD["V")&($P(J,"^",9)="ACTIVE")))
+ . S IENS=+PSJORD_","_+DFN
+ . I PSJORD["U" S CLINICI=$$GET1^DIQ(55.06,IENS,130,"I")
+ . I PSJORD["V" S CLINICI=$$GET1^DIQ(55.01,IENS,136,"I")
+ . Q:'$G(CLINICI)
+ . S DIVISION=$$GET1^DIQ(44,CLINICI,3.5,"I")
+ . Q:'$G(DIVISION)
+ . S CLINICA(DIVISION,CLINICI)=""
+ Q:'$O(CLINICA(""))
+ ;
+ S DIVISION=0 F  S DIVISION=$O(CLINICA(DIVISION)) Q:'DIVISION  D
+ . S CLINICA=0 F  S CLINICA=$O(CLINICA(DIVISION,CLINICA)) Q:'CLINICA  D TMPSA(PSYSIN,DIVISION,CLINICA,FILTER)
+ ;
+ Q
+GETDSARS(PSYSIN,PDIVIN,FILTER) ; Return Send Area for all clinics in Division PDIVIN
+ ; OUTPUT:  ^TMP($J,"PSJCLSA",PSYSIN,PDIVIN,"CL",CLINICIEN,SENDAREAIEN)=PCLSAS
+ ;          ^TMP($J,"PSJCLSA",PSYSIN,PDIVIN,"SA",SENDAREAIEN,CLINICIEN)=PCLSAS
+ ;          PCLSAS=Send Area Name^PADE System^Division^Clinic Name^Source of Send Area value
+ ; INPUT
+ ;      PSYSIN (required) - PADE System IEN from File #58.7 
+ ;      PDIVIN (required) - PADE Division from File #58.7   
+ ;      FILTER (optional) - 0: No filter
+ ;                          1: INCLUDE CLINIC IN BG JOB required (set to YES).
+ ;                          2: RE-SEND ORDERS AT CHECK-IN required (set to YES)
+ ;                          3: Both INCLUDE CLINIC IN BG JOB and RE-SEND ORDERS AT CHECK-IN required (set to YES)
+ ;
+ Q:'$G(PSYSIN)!'$G(PDIVIN)
+ N ND,CLIN
+ S FILTER=+$G(FILTER)
+ ;
+ S CLIN=0 F  S CLIN=$O(^SC(CLIN)) Q:'CLIN  D
+ . D TMPSA(PSYSIN,PDIVIN,CLIN,FILTER)
+ Q
+ ;
+TMPSA(PSYSIN,PDIVIN,CLIN,FILTER) ; Build ^TMP( for clinic CLIN
+ N PCLSAS
+ S ND=^SC(CLIN,0) Q:$P(ND,"^",3)'="C"  Q:$P(ND,"^",15)'=PDIVIN                   ; Different Division
+ I $D(^SC(CLIN,"I")) S X=$G(^SC(CLIN,"I")) I $P(X,"^"),$P(X,"^",2)'>$P(X,"^") Q  ; Inactive Clinic
+ S PCLSAS=$$GETSAR(PSYSIN,PDIVIN,CLIN,FILTER)
+ I $L($P(PCLSAS,"^"))>1 S PCLSAS(PSYSIN,PDIVIN,CLIN)=PCLSAS D
+ . N SNDAREA,SNDAREAI S SNDAREA=$P(PCLSAS,"^"),SNDAREAI=$P(PCLSAS,"^",6)
+ . S ^TMP($J,"PSJCLSA",PSYSIN,PDIVIN,"CL",CLIN,SNDAREAI)=PCLSAS
+ . S ^TMP($J,"PSJCLSA",PSYSIN,PDIVIN,"SA",SNDAREAI,CLIN)=PCLSAS
+ Q
+ ;
+GETSAR(PSYSIN,PDIVIN,PCLININ,FILTER) ; Return Send Area for clinic PCLIN
+ ; PSYS - PADE system from PADE SYSTEM SETUP (#58.7)
+ ; PDIV - Division from PADE SYSTEM SETUP (#58.7) (pointer to MEDICAL CENTER DIVISION #40.8)
+ ; PSNDAR - Send Area from PADE SYSTEM SETUP (58.7) associated with the lowest (most specific/granular) clinic parameter
+ ;
+ I '$G(PSYSIN)!'$G(PDIVIN)!'$G(PCLININ) Q 0
+ N PSJSAR,PSJSARI,PSJQ,PCLINAM,PSADIVDF,PSADIVDFI,PSJRESND,PSJBGJOB,PSJRESNDD,PSJBGJOBD,PSJNORES
+ N PSJPSARI
+ ;
+ S PSJQ=""         ; Return values
+ S PSADIVDF=""     ; Default Divisional Send Area Name 
+ S PSADIVDFI=""    ; Default Divisional Send Area IEN
+ S PSJRESND=""     ; RE-SEND ORDERS AT CHECK-IN flag for clinic/clinic group
+ S PSJRESNDD=""    ; RE-SEND ORDERS AT CHECK-IN Divisional default (or System default if Div is null)
+ S PSJBGJOB=""     ; INCLUDE CLINIC IN BG JOB flag for clinic/clinic group
+ S PSJBGJOBD=""    ; INCLUDE CLINIC IN BG JOB flag Divisional default (or System default if Div is null)
+ ;
+ S PCLINAM=$P($G(^SC(+PCLININ,0)),"^")
+ ;
+ N DN S DN=$G(^PS(58.7,PSYSIN,"DIV",PDIVIN,0)) Q:DN="" 0
+ N DC S DC=$P(DN,"^",2)
+ I DC&(DC<DT) Q 0 ;DIV INACTIVE
+ ;
+ ; RE-SEND ORDERS AT CHECK-IN (default - if not defined at lower level)
+ S PSJRESNDD=$P($G(^PS(58.7,PSYSIN,"DIV",PDIVIN,0)),"^",10)
+ I PSJRESNDD="" S PSJRESNDD=$P($G(^PS(58.7,PSYSIN,1)),"^",3)
+ ;
+ ; INCLUDE ALL CLINICS IN BG JOB? (default - if not defined at lower level)
+ S PSJBGJOBD=$P($G(^PS(58.7,PSYSIN,"DIV",PDIVIN,0)),"^",9)
+ S PSJBGJOBD=$S(PSJBGJOBD="Y":1,PSJBGJOBD="N":0,1:"")
+ ;
+ ; Get Divisional/System default Send Area if not filtered
+ I ($P($G(^PS(58.7,PSYSIN,"DIV",PDIVIN,0)),"^",3)="Y")&($P($G(^PS(58.7,PSYSIN,"DIV",PDIVIN,2)),"^",1)="Y") D
+ . S PSADIVDFI=$P($G(^PS(58.7,PSYSIN,"DIV",PDIVIN,0)),"^",4)
+ . S:PSADIVDFI PSADIVDF=$P($G(^PS(58.71,PSADIVDFI,0)),"^")
+ ;
+ ; Get CLINIC default Send Area if not filtered
+ S PSJSARI=$O(^PS(58.7,PSYSIN,"DIV",PDIVIN,"CL","B",PCLININ,0))
+ I PSJSARI D
+ . I ($G(FILTER)=2)!($G(FILTER)=3) D  Q:'$G(PSJRESND)
+ .. S PSJRESND=$P($G(^PS(58.7,PSYSIN,"DIV",PDIVIN,"CL",PSJSARI,0)),"^",4)
+ .. S:PSJRESND="" PSJRESND=PSJRESNDD
+ . I ($G(FILTER)=1)!($G(FILTER)=3) D  Q:'$G(PSJBGJOB)
+ .. S PSJBGJOB=$P($G(^PS(58.7,PSYSIN,"DIV",PDIVIN,"CL",PSJSARI,0)),"^",3)
+ .. S PSJBGJOB=$S(PSJBGJOB="Y":1,1:PSJBGJOBD)   ; Choices=YES or NULL
+ .. S:PSJBGJOB PSJBGJOBD=PSJBGJOB               ; If INCLUDE=YES, use as default for this clinic (can't be overridden) 
+ . S PSJSARI=+$P($G(^PS(58.7,PSYSIN,"DIV",PDIVIN,"CL",PSJSARI,0)),"^",2)
+ . S PSJSAR=$P($G(^PS(58.71,+PSJSARI,0)),"^")
+ . S PSJQ=PSJSAR_"^"_PSYSIN_"^"_PDIVIN_"^"_PCLINAM_"^CL^"_PSJSARI
+ Q:$L(PSJQ) PSJQ
+ Q:(PSJRESND=0) ""  ; RE-SEND ORDERS=NO for this clinic, filter=required, ignore higher Send Area values.
+ ;
+ ; Get PADE CLINIC GROUP Send Area if not filtered
+ S PSJSARI=$O(^PS(58.7,PSYSIN,"DIV",PDIVIN,"PCG","C",PCLININ,0))
+ I PSJSARI D
+ . I ($G(FILTER)=2)!($G(FILTER)=3) D  Q:'$G(PSJRESND)
+ .. S PSJRESND=$P($G(^PS(58.7,PSYSIN,"DIV",PDIVIN,"PCG",PSJSARI,2)),"^",2)
+ .. S:PSJRESND="" PSJRESND=PSJRESNDD
+ . I ($G(FILTER)=1)!($G(FILTER)=3) D  Q:'$G(PSJBGJOB)
+ .. S PSJBGJOB=$P($G(^PS(58.7,PSYSIN,"DIV",PDIVIN,"PCG",PSJSARI,2)),"^")
+ .. S PSJBGJOB=$S(PSJBGJOB="Y":1,1:PSJBGJOBD)   ; Choices=YES or NULL
+ .. S:PSJBGJOB PSJBGJOBD=PSJBGJOB               ; If INCLUDE=YES, use as default for this clinic (can't be overridden) 
+ . S PSJSARI=+$P($G(^PS(58.7,PSYSIN,"DIV",PDIVIN,"PCG",PSJSARI,0)),"^",2)
+ . S PSJSAR=$P($G(^PS(58.71,+PSJSARI,0)),"^")
+ . S PSJQ=PSJSAR_"^"_PSYSIN_"^"_PDIVIN_"^"_PCLINAM_"^PCG^"_PSJSARI
+ Q:$L(PSJQ) PSJQ
+ Q:(PSJRESND=0) ""  ; RE-SEND ORDERS=NO for this clinic, filter=required, ignore higher Send Area values.
+ ;
+ ; Get VISTA CLINIC GROUP Send Area if not filtered
+ I $O(^PS(57.8,"AC",PCLININ,0)) D
+ . S PSJSARI=$O(^PS(57.8,"AC",PCLININ,0))
+ . I PSJSARI S PSJSARI=$O(^PS(58.7,PSYSIN,"DIV",PDIVIN,"VCG","B",PSJSARI,0))
+ . Q:'PSJSARI
+ . I ($G(FILTER)=2)!($G(FILTER)=3) D  Q:'$G(PSJRESND)
+ .. S PSJRESND=$P($G(^PS(58.7,PSYSIN,"DIV",PDIVIN,"VCG",PSJSARI,0)),"^",4)
+ .. S:PSJRESND="" PSJRESND=PSJRESNDD
+ . I ($G(FILTER)=1)!($G(FILTER)=3) D  Q:'$G(PSJBGJOB)
+ .. S PSJBGJOB=$P($G(^PS(58.7,PSYSIN,"DIV",PDIVIN,"VCG",PSJSARI,0)),"^",3)
+ .. S PSJBGJOB=$S(PSJBGJOB="Y":1,1:PSJBGJOBD)   ; Choices=YES or NULL
+ .. S:PSJBGJOB PSJBGJOBD=PSJBGJOB               ; If INCLUDE=YES, use as default for this clinic (can't be overridden) 
+ . S PSJSARI=+$P($G(^PS(58.7,PSYSIN,"DIV",PDIVIN,"VCG",PSJSARI,0)),"^",2)
+ . S PSJSAR=$P($G(^PS(58.71,PSJSARI,0)),"^")
+ . S PSJQ=PSJSAR_"^"_PSYSIN_"^"_PDIVIN_"^"_PCLINAM_"^VCG^"_PSJSARI
+ Q:$L(PSJQ) PSJQ
+ Q:(PSJRESND=0) ""  ; RE-SEND ORDERS=NO for this clinic, filter=required, ignore higher Send Area values.
+ ;
+ ; Get WILDCARD CLINIC NAME Send Area if not filtered
+ S PSJPSARI=$O(^PS(58.7,PSYSIN,"DIV",PDIVIN,"WCN","B",0)) I PSJPSARI'="" D
+ . N PSJWC,PSJLEN S PSJWC="" F  S PSJWC=$O(^PS(58.7,PSYSIN,"DIV",PDIVIN,"WCN","B",PSJWC)) Q:PSJWC=""  D
+ .. I $E(PCLINAM,1,$L(PSJWC))=PSJWC S PSJLEN($L(PSJWC),PSJWC)=""
+ . I $D(PSJLEN) D
+ .. S PSJPSARI=$O(PSJLEN(999),-1)
+ .. S PSJPSARI=$O(PSJLEN(PSJPSARI,0))
+ .. S PSJPSARI=+$O(^PS(58.7,PSYSIN,"DIV",PDIVIN,"WCN","B",PSJPSARI,0))
+ .. S PSJSARI=+$P($G(^PS(58.7,PSYSIN,"DIV",PDIVIN,"WCN",PSJPSARI,0)),"^",2)
+ .. S PSJSAR=$P($G(^PS(58.71,PSJSARI,0)),"^")
+ . I ($G(FILTER)=2)!($G(FILTER)=3) D  Q:'$G(PSJRESND)
+ .. S PSJRESND=$P($G(^PS(58.7,PSYSIN,"DIV",PDIVIN,"WCN",PSJPSARI,0)),"^",4)
+ .. S:PSJRESND="" PSJRESND=PSJRESNDD
+ . I ($G(FILTER)=1)!($G(FILTER)=3) D  Q:'$G(PSJBGJOB)
+ .. S PSJBGJOB=$P($G(^PS(58.7,PSYSIN,"DIV",PDIVIN,"WCN",PSJPSARI,0)),"^",3)
+ .. S PSJBGJOB=$S(PSJBGJOB="Y":1,1:PSJBGJOBD)   ; Choices=YES or NULL
+ .. S:PSJBGJOB PSJBGJOBD=PSJBGJOB               ; If INCLUDE=YES, use as default for this clinic (can't be overridden) 
+ . S PSJQ=$G(PSJSAR)_"^"_PSYSIN_"^"_PDIVIN_"^"_PCLINAM_"^WCN^"_PSJSARI
+ Q:$L(PSJQ) PSJQ
+ Q:(PSJRESND=0) ""  ; RE-SEND ORDERS=NO for this clinic, filter=required, ignore higher Send Area values.
+ ; 
+ ; If no matches, use Division default. PSADIVDF only defined if SEND MESSAGES FOR ALL CLINICS? and SEND ORDER MESSAGES? set to YES
+ ; and Divisional default SEND AREA exists.
+ I $L($G(PSADIVDF)) D
+ . I ($G(FILTER)=2)!($G(FILTER)=3) Q:'$G(PSJRESNDD)
+ . I ($G(FILTER)=1)!($G(FILTER)=3) Q:'$G(PSJBGJOBD)
+ . S PSJQ=PSADIVDF_"^"_PSYSIN_"^"_PDIVIN_"^"_PCLINAM_"^DIVDFLT^"_PSADIVDFI
+ Q PSJQ
+ ;
+KILLTMP ; Clean up ^TMP($J,"PSJCLSA")
+ K ^TMP($J,"PSJCLSA")
+ Q

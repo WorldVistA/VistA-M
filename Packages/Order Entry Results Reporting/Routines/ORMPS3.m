@@ -1,5 +1,5 @@
-ORMPS3 ;SLC/MKB - Process Pharmacy ORM msgs cont ;Mar 28, 2019@17:00:22
- ;;3.0;ORDER ENTRY/RESULTS REPORTING;**213,243,413**;Dec 17, 1997;Build 32
+ORMPS3 ;SLC/MKB - Process Pharmacy ORM msgs cont ;Jun 18, 2021@08:44:23
+ ;;3.0;ORDER ENTRY/RESULTS REPORTING;**213,243,413,547,405**;Dec 17, 1997;Build 211
  ;
 PTR(X) ; -- Return ptr to prompt OR GTX X
  Q +$O(^ORD(101.41,"AB","OR GTX "_X,0))
@@ -70,13 +70,16 @@ DURATION(X) ; -- Returns "# units" from U# format
  ;
 UPD ; -- Compare ORMSG to order, update responses [from SC^ORMPS]
  ;    Also expects ORIFN,ORNP,ORCAT,OR3,RXE,ZRX,PKGIFN
- N X,I,ORDER,ZSC,NTE,PI
+ N X,I,ORDER,ZSC,NTE,PI,RXO
  S ORDER=+$G(ORIFN),I=+$P(ORIFN,";",2) I I<1 D
  . S I=+$P(OR3,U,7) Q:I
  . S I=$O(^OR(100,+ORIFN,8,"A"),-1)
  S X=+$P($G(^OR(100,+ORIFN,8,I,0)),U,3) S:X'=ORNP $P(^(0),U,3)=ORNP
  S X=+$P($P(RXE,"|",3),U,4)
  I X,X'=+$$VALUE(ORDER,"DRUG") D RESP^ORCSAVE2(ORDER,"OR GTX DISPENSE DRUG",X)
+ S RXO=$$RXO^ORMPS D:RXO
+ . N I,J S J=$$UNESC^ORMPS2($P(RXO,"|",21))
+ . I $TR(J," ")'=$TR($$VALUE(ORDER,"INDICATION")," ")  D RESP^ORCSAVE2(ORDER,"OR GTX INDICATION",J)
  ;P*413
  D CLNUPD
  I $G(ORCAT)="I" D  Q
@@ -91,12 +94,21 @@ UPD ; -- Compare ORMSG to order, update responses [from SC^ORMPS]
  . S X=$P(RXE,"|",23) S:$E(X)="D" X=+$E(X,2,99)
  . I +X'=+$$VALUE(ORDER,"SUPPLY") D RESP^ORCSAVE2(ORDER,"OR GTX DAYS SUPPLY",X)
  . I $P(ZRX,"|",5)'=$$VALUE(ORDER,"PICKUP") D RESP^ORCSAVE2(ORDER,"OR GTX ROUTING",$P(ZRX,"|",5))
+ . I +$P(ZRX,"|",9)'=+$$VALUE(ORDER,"TITR") D RESP^ORCSAVE2(ORDER,"OR GTX TITRATION",+$P(ZRX,"|",9))
  . S NTE=$$NTE(7),PI=+$O(^OR(100,ORDER,4.5,"ID","PI",0))
  . I NTE,PI,$$NTXT(NTE)'=$$VALTXT(ORDER,PI) D
  .. N CNT K ^OR(100,ORDER,4.5,PI,2)
  .. S CNT=1,^OR(100,ORDER,4.5,PI,2,1,0)=$$UNESC^ORMPS2($P(@ORMSG@(NTE),"|",4))
  .. S I=0 F  S I=$O(@ORMSG@(NTE,I)) Q:I<1  S CNT=CNT+1,^OR(100,ORDER,4.5,PI,2,CNT,0)=$$UNESC^ORMPS2(@ORMSG@(NTE,I))
  .. S ^OR(100,ORDER,4.5,PI,2,0)="^^"_CNT_U_CNT_U_DT_U
+ . ;update SIG ;p547
+ . N SIG
+ . S NTE=$$NTE(21),SIG=+$O(^OR(100,ORDER,4.5,"ID","SIG",0))
+ . I NTE,SIG,$$NTXT(NTE)'=$$VALTXT(ORDER,SIG) D
+ .. N CNT K ^OR(100,ORDER,4.5,SIG,2)
+ .. S CNT=1,^OR(100,ORDER,4.5,SIG,2,1,0)=$$UNESC^ORMPS2($P(@ORMSG@(NTE),"|",4))
+ .. S I=0 F  S I=$O(@ORMSG@(NTE,I)) Q:I<1  S CNT=CNT+1,^OR(100,ORDER,4.5,SIG,2,CNT,0)=$$UNESC^ORMPS2(@ORMSG@(NTE,I))
+ .. S ^OR(100,ORDER,4.5,SIG,2,0)="^^"_CNT_U_CNT_U_DT_U
  S ZSC=$$ZSC I ZSC,$P(ZSC,"|",2)'?2.3U S ^OR(100,ORDER,5)=$TR($P(ZSC,"|",2,7),"|","^") ;1 or 0 instead of [N]SC
  Q
  ;

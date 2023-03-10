@@ -1,128 +1,126 @@
-IBDEI11I ; ; 04-FEB-2020
- ;;3.0;IB ENCOUNTER FORM IMP/EXP;;FEB 04, 2020
+IBDEI11I ; ; 01-FEB-2022
+ ;;3.0;IB ENCOUNTER FORM IMP/EXP;;FEB 01, 2022
  Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,999) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
- ;;^UTILITY(U,$J,358.3,16717,1,3,0)
- ;;=3^Underdose of Med Regiment d/t Age-Related Debility
- ;;^UTILITY(U,$J,358.3,16717,1,4,0)
- ;;=4^Z91.130
- ;;^UTILITY(U,$J,358.3,16717,2)
- ;;=^5063614
- ;;^UTILITY(U,$J,358.3,16718,0)
- ;;=Z91.138^^88^880^153
- ;;^UTILITY(U,$J,358.3,16718,1,0)
+ ;;^UTILITY(U,$J,358.3,16903,2)
+ ;;=^5014521
+ ;;^UTILITY(U,$J,358.3,16904,0)
+ ;;=M86.00^^61^777^60
+ ;;^UTILITY(U,$J,358.3,16904,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,16718,1,3,0)
- ;;=3^Underdose of Med Regiment for Other Reason
- ;;^UTILITY(U,$J,358.3,16718,1,4,0)
- ;;=4^Z91.138
- ;;^UTILITY(U,$J,358.3,16718,2)
- ;;=^5063615
- ;;^UTILITY(U,$J,358.3,16719,0)
- ;;=Z91.14^^88^880^64
- ;;^UTILITY(U,$J,358.3,16719,1,0)
+ ;;^UTILITY(U,$J,358.3,16904,1,3,0)
+ ;;=3^Osteomyelitis,Acute Hematogenous,Unspec Site
+ ;;^UTILITY(U,$J,358.3,16904,1,4,0)
+ ;;=4^M86.00
+ ;;^UTILITY(U,$J,358.3,16904,2)
+ ;;=^5014497
+ ;;^UTILITY(U,$J,358.3,16905,0)
+ ;;=M86.50^^61^777^62
+ ;;^UTILITY(U,$J,358.3,16905,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,16719,1,3,0)
- ;;=3^Noncompliance w/ Medication Regimen
- ;;^UTILITY(U,$J,358.3,16719,1,4,0)
- ;;=4^Z91.14
- ;;^UTILITY(U,$J,358.3,16719,2)
- ;;=^5063616
- ;;^UTILITY(U,$J,358.3,16720,0)
- ;;=Z91.19^^88^880^63
- ;;^UTILITY(U,$J,358.3,16720,1,0)
+ ;;^UTILITY(U,$J,358.3,16905,1,3,0)
+ ;;=3^Osteomyelitis,Chronic Hematogenous,Unspec Site
+ ;;^UTILITY(U,$J,358.3,16905,1,4,0)
+ ;;=4^M86.50
+ ;;^UTILITY(U,$J,358.3,16905,2)
+ ;;=^5014607
+ ;;^UTILITY(U,$J,358.3,16906,0)
+ ;;=M86.30^^61^777^63
+ ;;^UTILITY(U,$J,358.3,16906,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,16720,1,3,0)
- ;;=3^Noncompliance w/ Medical Treatment & Regimen
- ;;^UTILITY(U,$J,358.3,16720,1,4,0)
- ;;=4^Z91.19
- ;;^UTILITY(U,$J,358.3,16720,2)
- ;;=^5063618
- ;;^UTILITY(U,$J,358.3,16721,0)
- ;;=Z93.1^^88^880^45
- ;;^UTILITY(U,$J,358.3,16721,1,0)
+ ;;^UTILITY(U,$J,358.3,16906,1,3,0)
+ ;;=3^Osteomyelitis,Chronic Multifocal,Unspec Site
+ ;;^UTILITY(U,$J,358.3,16906,1,4,0)
+ ;;=4^M86.30
+ ;;^UTILITY(U,$J,358.3,16906,2)
+ ;;=^5014559
+ ;;^UTILITY(U,$J,358.3,16907,0)
+ ;;=M86.8X9^^61^777^66
+ ;;^UTILITY(U,$J,358.3,16907,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,16721,1,3,0)
- ;;=3^Gastrostomy Status
- ;;^UTILITY(U,$J,358.3,16721,1,4,0)
- ;;=4^Z93.1
- ;;^UTILITY(U,$J,358.3,16721,2)
- ;;=^5063643
- ;;^UTILITY(U,$J,358.3,16722,0)
- ;;=Z93.2^^88^880^51
- ;;^UTILITY(U,$J,358.3,16722,1,0)
+ ;;^UTILITY(U,$J,358.3,16907,1,3,0)
+ ;;=3^Osteomyelitis,Unspec Sites
+ ;;^UTILITY(U,$J,358.3,16907,1,4,0)
+ ;;=4^M86.8X9
+ ;;^UTILITY(U,$J,358.3,16907,2)
+ ;;=^5014655
+ ;;^UTILITY(U,$J,358.3,16908,0)
+ ;;=M86.60^^61^777^64
+ ;;^UTILITY(U,$J,358.3,16908,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,16722,1,3,0)
- ;;=3^Ileostomy Status
- ;;^UTILITY(U,$J,358.3,16722,1,4,0)
- ;;=4^Z93.2
- ;;^UTILITY(U,$J,358.3,16722,2)
- ;;=^5063644
- ;;^UTILITY(U,$J,358.3,16723,0)
- ;;=Z93.3^^88^880^7
- ;;^UTILITY(U,$J,358.3,16723,1,0)
+ ;;^UTILITY(U,$J,358.3,16908,1,3,0)
+ ;;=3^Osteomyelitis,Chronic,Unspec Site
+ ;;^UTILITY(U,$J,358.3,16908,1,4,0)
+ ;;=4^M86.60
+ ;;^UTILITY(U,$J,358.3,16908,2)
+ ;;=^5014630
+ ;;^UTILITY(U,$J,358.3,16909,0)
+ ;;=M86.40^^61^777^59
+ ;;^UTILITY(U,$J,358.3,16909,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,16723,1,3,0)
- ;;=3^Colostomy Status
- ;;^UTILITY(U,$J,358.3,16723,1,4,0)
- ;;=4^Z93.3
- ;;^UTILITY(U,$J,358.3,16723,2)
- ;;=^5063645
- ;;^UTILITY(U,$J,358.3,16724,0)
- ;;=Z94.0^^88^880^56
- ;;^UTILITY(U,$J,358.3,16724,1,0)
+ ;;^UTILITY(U,$J,358.3,16909,1,3,0)
+ ;;=3^Osteomyelitis w/ Draining Sinus,Chronic,Unspec Site
+ ;;^UTILITY(U,$J,358.3,16909,1,4,0)
+ ;;=4^M86.40
+ ;;^UTILITY(U,$J,358.3,16909,2)
+ ;;=^5014583
+ ;;^UTILITY(U,$J,358.3,16910,0)
+ ;;=R50.2^^61^777^26
+ ;;^UTILITY(U,$J,358.3,16910,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,16724,1,3,0)
- ;;=3^Kidney Transplant Status
- ;;^UTILITY(U,$J,358.3,16724,1,4,0)
- ;;=4^Z94.0
- ;;^UTILITY(U,$J,358.3,16724,2)
- ;;=^5063654
- ;;^UTILITY(U,$J,358.3,16725,0)
- ;;=Z94.1^^88^880^49
- ;;^UTILITY(U,$J,358.3,16725,1,0)
+ ;;^UTILITY(U,$J,358.3,16910,1,3,0)
+ ;;=3^Fever,Drug-Induced
+ ;;^UTILITY(U,$J,358.3,16910,1,4,0)
+ ;;=4^R50.2
+ ;;^UTILITY(U,$J,358.3,16910,2)
+ ;;=^5019507
+ ;;^UTILITY(U,$J,358.3,16911,0)
+ ;;=R50.9^^61^777^30
+ ;;^UTILITY(U,$J,358.3,16911,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,16725,1,3,0)
- ;;=3^Heart Transplant Status
- ;;^UTILITY(U,$J,358.3,16725,1,4,0)
- ;;=4^Z94.1
- ;;^UTILITY(U,$J,358.3,16725,2)
- ;;=^5063655
- ;;^UTILITY(U,$J,358.3,16726,0)
- ;;=Z94.2^^88^880^59
- ;;^UTILITY(U,$J,358.3,16726,1,0)
+ ;;^UTILITY(U,$J,358.3,16911,1,3,0)
+ ;;=3^Fever,Unspec
+ ;;^UTILITY(U,$J,358.3,16911,1,4,0)
+ ;;=4^R50.9
+ ;;^UTILITY(U,$J,358.3,16911,2)
+ ;;=^5019512
+ ;;^UTILITY(U,$J,358.3,16912,0)
+ ;;=R76.11^^61^777^1
+ ;;^UTILITY(U,$J,358.3,16912,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,16726,1,3,0)
- ;;=3^Lung Transplant Status
- ;;^UTILITY(U,$J,358.3,16726,1,4,0)
- ;;=4^Z94.2
- ;;^UTILITY(U,$J,358.3,16726,2)
- ;;=^5063656
- ;;^UTILITY(U,$J,358.3,16727,0)
- ;;=Z94.3^^88^880^48
- ;;^UTILITY(U,$J,358.3,16727,1,0)
+ ;;^UTILITY(U,$J,358.3,16912,1,3,0)
+ ;;=3^Abnormal Reaction to TB Test w/o Active TB
+ ;;^UTILITY(U,$J,358.3,16912,1,4,0)
+ ;;=4^R76.11
+ ;;^UTILITY(U,$J,358.3,16912,2)
+ ;;=^5019570
+ ;;^UTILITY(U,$J,358.3,16913,0)
+ ;;=Z21.^^61^777^33
+ ;;^UTILITY(U,$J,358.3,16913,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,16727,1,3,0)
- ;;=3^Heart & Lungs Transplant Status
- ;;^UTILITY(U,$J,358.3,16727,1,4,0)
- ;;=4^Z94.3
- ;;^UTILITY(U,$J,358.3,16727,2)
- ;;=^5063657
- ;;^UTILITY(U,$J,358.3,16728,0)
- ;;=Z94.4^^88^880^58
- ;;^UTILITY(U,$J,358.3,16728,1,0)
+ ;;^UTILITY(U,$J,358.3,16913,1,3,0)
+ ;;=3^HIV Asymptomatic,Infection Status
+ ;;^UTILITY(U,$J,358.3,16913,1,4,0)
+ ;;=4^Z21.
+ ;;^UTILITY(U,$J,358.3,16913,2)
+ ;;=^5062777
+ ;;^UTILITY(U,$J,358.3,16914,0)
+ ;;=B37.0^^61^777^18
+ ;;^UTILITY(U,$J,358.3,16914,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,16728,1,3,0)
- ;;=3^Liver Transplant Status
- ;;^UTILITY(U,$J,358.3,16728,1,4,0)
- ;;=4^Z94.4
- ;;^UTILITY(U,$J,358.3,16728,2)
- ;;=^5063658
- ;;^UTILITY(U,$J,358.3,16729,0)
- ;;=Z94.84^^88^880^149
- ;;^UTILITY(U,$J,358.3,16729,1,0)
+ ;;^UTILITY(U,$J,358.3,16914,1,3,0)
+ ;;=3^Candidal Stomatitis (Oral Thrush)
+ ;;^UTILITY(U,$J,358.3,16914,1,4,0)
+ ;;=4^B37.0
+ ;;^UTILITY(U,$J,358.3,16914,2)
+ ;;=^5000612
+ ;;^UTILITY(U,$J,358.3,16915,0)
+ ;;=B97.10^^61^777^25
+ ;;^UTILITY(U,$J,358.3,16915,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,16729,1,3,0)
- ;;=3^Stem Cell Transplant Status
- ;;^UTILITY(U,$J,358.3,16729,1,4,0)
- ;;=4^Z94.84
+ ;;^UTILITY(U,$J,358.3,16915,1,3,0)
+ ;;=3^Enterovirus,Unspec,as Cause of Disease
+ ;;^UTILITY(U,$J,358.3,16915,1,4,0)
+ ;;=4^B97.10
+ ;;^UTILITY(U,$J,358.3,16915,2)
+ ;;=^5000861

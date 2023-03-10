@@ -1,644 +1,682 @@
-IBDEI00R ; ; 01-MAY-2020
- ;;3.0;IB ENCOUNTER FORM IMP/EXP;;MAY 01, 2020
+IBDEI00R ; ; 01-AUG-2022
+ ;;3.0;IB ENCOUNTER FORM IMP/EXP;;AUG 01, 2022
  Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,999) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
- ;;^UTILITY(U,$J,358.3,1252,1,3,0)
- ;;=3^Pnctr wnd w/o fb of left lower leg, init encntr
- ;;^UTILITY(U,$J,358.3,1252,1,4,0)
- ;;=4^S81.832A
- ;;^UTILITY(U,$J,358.3,1252,2)
- ;;=^5040086
- ;;^UTILITY(U,$J,358.3,1253,0)
- ;;=S01.03XA^^15^110^195
- ;;^UTILITY(U,$J,358.3,1253,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,1253,1,3,0)
- ;;=3^Pnctr wnd w/o fb of scalp, init encntr
- ;;^UTILITY(U,$J,358.3,1253,1,4,0)
- ;;=4^S01.03XA
- ;;^UTILITY(U,$J,358.3,1253,2)
- ;;=^5020042
- ;;^UTILITY(U,$J,358.3,1254,0)
- ;;=S61.031A^^15^110^193
- ;;^UTILITY(U,$J,358.3,1254,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,1254,1,3,0)
- ;;=3^Pnctr wnd w/o fb of right thumb w/o damage to nail, init
- ;;^UTILITY(U,$J,358.3,1254,1,4,0)
- ;;=4^S61.031A
- ;;^UTILITY(U,$J,358.3,1254,2)
- ;;=^5032702
- ;;^UTILITY(U,$J,358.3,1255,0)
- ;;=S61.032A^^15^110^183
- ;;^UTILITY(U,$J,358.3,1255,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,1255,1,3,0)
- ;;=3^Pnctr wnd w/o fb of left thumb w/o damage to nail, init
- ;;^UTILITY(U,$J,358.3,1255,1,4,0)
- ;;=4^S61.032A
- ;;^UTILITY(U,$J,358.3,1255,2)
- ;;=^5032705
- ;;^UTILITY(U,$J,358.3,1256,0)
- ;;=S61.531A^^15^110^194
- ;;^UTILITY(U,$J,358.3,1256,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,1256,1,3,0)
- ;;=3^Pnctr wnd w/o fb of right wrist, init encntr
- ;;^UTILITY(U,$J,358.3,1256,1,4,0)
- ;;=4^S61.531A
- ;;^UTILITY(U,$J,358.3,1256,2)
- ;;=^5033038
- ;;^UTILITY(U,$J,358.3,1257,0)
- ;;=S61.532A^^15^110^184
- ;;^UTILITY(U,$J,358.3,1257,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,1257,1,3,0)
- ;;=3^Pnctr wnd w/o fb of left wrist, init encntr
- ;;^UTILITY(U,$J,358.3,1257,1,4,0)
- ;;=4^S61.532A
- ;;^UTILITY(U,$J,358.3,1257,2)
- ;;=^5033041
- ;;^UTILITY(U,$J,358.3,1258,0)
- ;;=S86.891A^^15^110^138
- ;;^UTILITY(U,$J,358.3,1258,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,1258,1,3,0)
- ;;=3^Musc/Tend Right Lower Leg Level Inj,Init Encntr
- ;;^UTILITY(U,$J,358.3,1258,1,4,0)
- ;;=4^S86.891A
- ;;^UTILITY(U,$J,358.3,1258,2)
- ;;=^5137173
- ;;^UTILITY(U,$J,358.3,1259,0)
- ;;=S86.892A^^15^110^137
- ;;^UTILITY(U,$J,358.3,1259,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,1259,1,3,0)
- ;;=3^Musc/Tend Left Lower Leg Level Inj,Init Encntr
- ;;^UTILITY(U,$J,358.3,1259,1,4,0)
- ;;=4^S86.892A
- ;;^UTILITY(U,$J,358.3,1259,2)
- ;;=^5137174
- ;;^UTILITY(U,$J,358.3,1260,0)
- ;;=S43.51XA^^15^110^221
- ;;^UTILITY(U,$J,358.3,1260,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,1260,1,3,0)
- ;;=3^Sprain of right acromioclavicular joint, initial encounter
- ;;^UTILITY(U,$J,358.3,1260,1,4,0)
- ;;=4^S43.51XA
- ;;^UTILITY(U,$J,358.3,1260,2)
- ;;=^5027903
- ;;^UTILITY(U,$J,358.3,1261,0)
- ;;=S43.52XA^^15^110^202
- ;;^UTILITY(U,$J,358.3,1261,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,1261,1,3,0)
- ;;=3^Sprain of left acromioclavicular joint, initial encounter
- ;;^UTILITY(U,$J,358.3,1261,1,4,0)
- ;;=4^S43.52XA
- ;;^UTILITY(U,$J,358.3,1261,2)
- ;;=^5027906
- ;;^UTILITY(U,$J,358.3,1262,0)
- ;;=S93.401A^^15^110^240
- ;;^UTILITY(U,$J,358.3,1262,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,1262,1,3,0)
- ;;=3^Sprain of unspecified ligament of right ankle, init encntr
- ;;^UTILITY(U,$J,358.3,1262,1,4,0)
- ;;=4^S93.401A
- ;;^UTILITY(U,$J,358.3,1262,2)
- ;;=^5045774
- ;;^UTILITY(U,$J,358.3,1263,0)
- ;;=S93.402A^^15^110^239
- ;;^UTILITY(U,$J,358.3,1263,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,1263,1,3,0)
- ;;=3^Sprain of unspecified ligament of left ankle, init encntr
- ;;^UTILITY(U,$J,358.3,1263,1,4,0)
- ;;=4^S93.402A
- ;;^UTILITY(U,$J,358.3,1263,2)
- ;;=^5045777
- ;;^UTILITY(U,$J,358.3,1264,0)
- ;;=S53.401A^^15^110^222
- ;;^UTILITY(U,$J,358.3,1264,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,1264,1,3,0)
- ;;=3^Sprain of right elbow unspec, initial encounter
- ;;^UTILITY(U,$J,358.3,1264,1,4,0)
- ;;=4^S53.401A
- ;;^UTILITY(U,$J,358.3,1264,2)
- ;;=^5031361
- ;;^UTILITY(U,$J,358.3,1265,0)
- ;;=S53.402A^^15^110^203
- ;;^UTILITY(U,$J,358.3,1265,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,1265,1,3,0)
- ;;=3^Sprain of left elbow unspec, initial encounter
- ;;^UTILITY(U,$J,358.3,1265,1,4,0)
- ;;=4^S53.402A
- ;;^UTILITY(U,$J,358.3,1265,2)
- ;;=^5031364
- ;;^UTILITY(U,$J,358.3,1266,0)
- ;;=S63.610A^^15^110^225
- ;;^UTILITY(U,$J,358.3,1266,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,1266,1,3,0)
- ;;=3^Sprain of right index finger unspec, initial encou
- ;;^UTILITY(U,$J,358.3,1266,1,4,0)
- ;;=4^S63.610A
- ;;^UTILITY(U,$J,358.3,1266,2)
- ;;=^5035622
- ;;^UTILITY(U,$J,358.3,1267,0)
- ;;=S63.611A^^15^110^206
- ;;^UTILITY(U,$J,358.3,1267,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,1267,1,3,0)
- ;;=3^Sprain of left index finger unspec, initial encoun
- ;;^UTILITY(U,$J,358.3,1267,1,4,0)
- ;;=4^S63.611A
- ;;^UTILITY(U,$J,358.3,1267,2)
- ;;=^5035625
- ;;^UTILITY(U,$J,358.3,1268,0)
- ;;=S63.612A^^15^110^228
- ;;^UTILITY(U,$J,358.3,1268,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,1268,1,3,0)
- ;;=3^Sprain of right middle finger unspec, initial enco
- ;;^UTILITY(U,$J,358.3,1268,1,4,0)
- ;;=4^S63.612A
- ;;^UTILITY(U,$J,358.3,1268,2)
- ;;=^5035628
- ;;^UTILITY(U,$J,358.3,1269,0)
- ;;=S63.613A^^15^110^209
- ;;^UTILITY(U,$J,358.3,1269,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,1269,1,3,0)
- ;;=3^Sprain of left middle finger unspec, initial encou
  ;;^UTILITY(U,$J,358.3,1269,1,4,0)
- ;;=4^S63.613A
+ ;;=4^Z91.51
  ;;^UTILITY(U,$J,358.3,1269,2)
- ;;=^5035631
+ ;;=^5161317
  ;;^UTILITY(U,$J,358.3,1270,0)
- ;;=S63.614A^^15^110^229
+ ;;=99211^^11^84^1
  ;;^UTILITY(U,$J,358.3,1270,1,0)
- ;;=^358.31IA^4^2
+ ;;=^358.31IA^3^2
+ ;;^UTILITY(U,$J,358.3,1270,1,2,0)
+ ;;=2^99211
  ;;^UTILITY(U,$J,358.3,1270,1,3,0)
- ;;=3^Sprain of right ring finger unspec, initial encoun
- ;;^UTILITY(U,$J,358.3,1270,1,4,0)
- ;;=4^S63.614A
- ;;^UTILITY(U,$J,358.3,1270,2)
- ;;=^5035634
+ ;;=3^RN/LPN Visit
  ;;^UTILITY(U,$J,358.3,1271,0)
- ;;=S63.615A^^15^110^210
+ ;;=99212^^11^84^2
  ;;^UTILITY(U,$J,358.3,1271,1,0)
- ;;=^358.31IA^4^2
+ ;;=^358.31IA^3^2
+ ;;^UTILITY(U,$J,358.3,1271,1,2,0)
+ ;;=2^99212
  ;;^UTILITY(U,$J,358.3,1271,1,3,0)
- ;;=3^Sprain of left ring finger unspec, initial encount
- ;;^UTILITY(U,$J,358.3,1271,1,4,0)
- ;;=4^S63.615A
- ;;^UTILITY(U,$J,358.3,1271,2)
- ;;=^5035637
+ ;;=3^SF MDM or 10-19 min
  ;;^UTILITY(U,$J,358.3,1272,0)
- ;;=S63.616A^^15^110^227
+ ;;=99213^^11^84^3
  ;;^UTILITY(U,$J,358.3,1272,1,0)
- ;;=^358.31IA^4^2
+ ;;=^358.31IA^3^2
+ ;;^UTILITY(U,$J,358.3,1272,1,2,0)
+ ;;=2^99213
  ;;^UTILITY(U,$J,358.3,1272,1,3,0)
- ;;=3^Sprain of right little finger unspec, initial enco
- ;;^UTILITY(U,$J,358.3,1272,1,4,0)
- ;;=4^S63.616A
- ;;^UTILITY(U,$J,358.3,1272,2)
- ;;=^5035640
+ ;;=3^Low Complex MDM or 20-29 min
  ;;^UTILITY(U,$J,358.3,1273,0)
- ;;=S63.617A^^15^110^208
+ ;;=99214^^11^84^4
  ;;^UTILITY(U,$J,358.3,1273,1,0)
- ;;=^358.31IA^4^2
+ ;;=^358.31IA^3^2
+ ;;^UTILITY(U,$J,358.3,1273,1,2,0)
+ ;;=2^99214
  ;;^UTILITY(U,$J,358.3,1273,1,3,0)
- ;;=3^Sprain of left little finger unspec, initial encou
- ;;^UTILITY(U,$J,358.3,1273,1,4,0)
- ;;=4^S63.617A
- ;;^UTILITY(U,$J,358.3,1273,2)
- ;;=^5035643
+ ;;=3^Mod Complex MDM or 30-39 min
  ;;^UTILITY(U,$J,358.3,1274,0)
- ;;=S93.601A^^15^110^223
+ ;;=99215^^11^84^5
  ;;^UTILITY(U,$J,358.3,1274,1,0)
- ;;=^358.31IA^4^2
+ ;;=^358.31IA^3^2
+ ;;^UTILITY(U,$J,358.3,1274,1,2,0)
+ ;;=2^99215
  ;;^UTILITY(U,$J,358.3,1274,1,3,0)
- ;;=3^Sprain of right foot unspec, initial encounter
- ;;^UTILITY(U,$J,358.3,1274,1,4,0)
- ;;=4^S93.601A
- ;;^UTILITY(U,$J,358.3,1274,2)
- ;;=^5045867
+ ;;=3^High Complex MDM or 40-54 min
  ;;^UTILITY(U,$J,358.3,1275,0)
- ;;=S93.602A^^15^110^204
+ ;;=99241^^11^85^1
  ;;^UTILITY(U,$J,358.3,1275,1,0)
- ;;=^358.31IA^4^2
+ ;;=^358.31IA^3^2
+ ;;^UTILITY(U,$J,358.3,1275,1,2,0)
+ ;;=2^99241
  ;;^UTILITY(U,$J,358.3,1275,1,3,0)
- ;;=3^Sprain of left foot unspec, initial encounter
- ;;^UTILITY(U,$J,358.3,1275,1,4,0)
- ;;=4^S93.602A
- ;;^UTILITY(U,$J,358.3,1275,2)
- ;;=^5045870
+ ;;=3^Prob Focused
  ;;^UTILITY(U,$J,358.3,1276,0)
- ;;=S63.91XA^^15^110^238
+ ;;=99242^^11^85^2
  ;;^UTILITY(U,$J,358.3,1276,1,0)
- ;;=^358.31IA^4^2
+ ;;=^358.31IA^3^2
+ ;;^UTILITY(U,$J,358.3,1276,1,2,0)
+ ;;=2^99242
  ;;^UTILITY(U,$J,358.3,1276,1,3,0)
- ;;=3^Sprain of unsp part of right wrist and hand, init encntr
- ;;^UTILITY(U,$J,358.3,1276,1,4,0)
- ;;=4^S63.91XA
- ;;^UTILITY(U,$J,358.3,1276,2)
- ;;=^5136046
+ ;;=3^Exp Problem Focused
  ;;^UTILITY(U,$J,358.3,1277,0)
- ;;=S63.92XA^^15^110^237
+ ;;=99243^^11^85^3
  ;;^UTILITY(U,$J,358.3,1277,1,0)
- ;;=^358.31IA^4^2
+ ;;=^358.31IA^3^2
+ ;;^UTILITY(U,$J,358.3,1277,1,2,0)
+ ;;=2^99243
  ;;^UTILITY(U,$J,358.3,1277,1,3,0)
- ;;=3^Sprain of unsp part of left wrist and hand, init encntr
- ;;^UTILITY(U,$J,358.3,1277,1,4,0)
- ;;=4^S63.92XA
- ;;^UTILITY(U,$J,358.3,1277,2)
- ;;=^5136047
+ ;;=3^Detailed
  ;;^UTILITY(U,$J,358.3,1278,0)
- ;;=S83.401A^^15^110^234
+ ;;=99244^^11^85^4
  ;;^UTILITY(U,$J,358.3,1278,1,0)
- ;;=^358.31IA^4^2
+ ;;=^358.31IA^3^2
+ ;;^UTILITY(U,$J,358.3,1278,1,2,0)
+ ;;=2^99244
  ;;^UTILITY(U,$J,358.3,1278,1,3,0)
- ;;=3^Sprain of unsp collateral ligament of right knee, init
- ;;^UTILITY(U,$J,358.3,1278,1,4,0)
- ;;=4^S83.401A
- ;;^UTILITY(U,$J,358.3,1278,2)
- ;;=^5043103
+ ;;=3^Comprehensive, Mod Cmplx
  ;;^UTILITY(U,$J,358.3,1279,0)
- ;;=S83.402A^^15^110^233
+ ;;=99245^^11^85^5
  ;;^UTILITY(U,$J,358.3,1279,1,0)
- ;;=^358.31IA^4^2
+ ;;=^358.31IA^3^2
+ ;;^UTILITY(U,$J,358.3,1279,1,2,0)
+ ;;=2^99245
  ;;^UTILITY(U,$J,358.3,1279,1,3,0)
- ;;=3^Sprain of unsp collateral ligament of left knee, init encntr
- ;;^UTILITY(U,$J,358.3,1279,1,4,0)
- ;;=4^S83.402A
- ;;^UTILITY(U,$J,358.3,1279,2)
- ;;=^5043106
+ ;;=3^Comprehensive, High Cmplx
  ;;^UTILITY(U,$J,358.3,1280,0)
- ;;=S83.411A^^15^110^217
+ ;;=99202^^11^86^1
  ;;^UTILITY(U,$J,358.3,1280,1,0)
- ;;=^358.31IA^4^2
+ ;;=^358.31IA^3^2
+ ;;^UTILITY(U,$J,358.3,1280,1,2,0)
+ ;;=2^99202
  ;;^UTILITY(U,$J,358.3,1280,1,3,0)
- ;;=3^Sprain of medial collateral ligament of right knee, init
- ;;^UTILITY(U,$J,358.3,1280,1,4,0)
- ;;=4^S83.411A
- ;;^UTILITY(U,$J,358.3,1280,2)
- ;;=^5043109
+ ;;=3^SF MDM or 15-29 min
  ;;^UTILITY(U,$J,358.3,1281,0)
- ;;=S83.412A^^15^110^218
+ ;;=99203^^11^86^2
  ;;^UTILITY(U,$J,358.3,1281,1,0)
- ;;=^358.31IA^4^2
+ ;;=^358.31IA^3^2
+ ;;^UTILITY(U,$J,358.3,1281,1,2,0)
+ ;;=2^99203
  ;;^UTILITY(U,$J,358.3,1281,1,3,0)
- ;;=3^Sprain of medial collateral ligament of left knee, init
- ;;^UTILITY(U,$J,358.3,1281,1,4,0)
- ;;=4^S83.412A
- ;;^UTILITY(U,$J,358.3,1281,2)
- ;;=^5043112
+ ;;=3^Low Complex MDM or 30-44 min
  ;;^UTILITY(U,$J,358.3,1282,0)
- ;;=S83.421A^^15^110^200
+ ;;=99204^^11^86^3
  ;;^UTILITY(U,$J,358.3,1282,1,0)
- ;;=^358.31IA^4^2
+ ;;=^358.31IA^3^2
+ ;;^UTILITY(U,$J,358.3,1282,1,2,0)
+ ;;=2^99204
  ;;^UTILITY(U,$J,358.3,1282,1,3,0)
- ;;=3^Sprain of lateral collateral ligament of right knee, init
- ;;^UTILITY(U,$J,358.3,1282,1,4,0)
- ;;=4^S83.421A
- ;;^UTILITY(U,$J,358.3,1282,2)
- ;;=^5043118
+ ;;=3^Mod Complex MDM or 45-59 min
  ;;^UTILITY(U,$J,358.3,1283,0)
- ;;=S83.422A^^15^110^201
+ ;;=99205^^11^86^4
  ;;^UTILITY(U,$J,358.3,1283,1,0)
- ;;=^358.31IA^4^2
+ ;;=^358.31IA^3^2
+ ;;^UTILITY(U,$J,358.3,1283,1,2,0)
+ ;;=2^99205
  ;;^UTILITY(U,$J,358.3,1283,1,3,0)
- ;;=3^Sprain of lateral collateral ligament of left knee, init
- ;;^UTILITY(U,$J,358.3,1283,1,4,0)
- ;;=4^S83.422A
- ;;^UTILITY(U,$J,358.3,1283,2)
- ;;=^5043121
+ ;;=3^High Complex MDM or 60-74 min
  ;;^UTILITY(U,$J,358.3,1284,0)
- ;;=S83.501A^^15^110^236
+ ;;=92532^^12^87^21
  ;;^UTILITY(U,$J,358.3,1284,1,0)
- ;;=^358.31IA^4^2
+ ;;=^358.31IA^3^2
+ ;;^UTILITY(U,$J,358.3,1284,1,2,0)
+ ;;=2^92532
  ;;^UTILITY(U,$J,358.3,1284,1,3,0)
- ;;=3^Sprain of unsp cruciate ligament of right knee, init encntr
- ;;^UTILITY(U,$J,358.3,1284,1,4,0)
- ;;=4^S83.501A
- ;;^UTILITY(U,$J,358.3,1284,2)
- ;;=^5043127
+ ;;=3^Positional Nystagmus Study
  ;;^UTILITY(U,$J,358.3,1285,0)
- ;;=S83.502A^^15^110^235
+ ;;=95857^^12^87^26
  ;;^UTILITY(U,$J,358.3,1285,1,0)
- ;;=^358.31IA^4^2
+ ;;=^358.31IA^3^2
+ ;;^UTILITY(U,$J,358.3,1285,1,2,0)
+ ;;=2^95857
  ;;^UTILITY(U,$J,358.3,1285,1,3,0)
- ;;=3^Sprain of unsp cruciate ligament of left knee, init encntr
- ;;^UTILITY(U,$J,358.3,1285,1,4,0)
- ;;=4^S83.502A
- ;;^UTILITY(U,$J,358.3,1285,2)
- ;;=^5043130
+ ;;=3^Tensilon Test
  ;;^UTILITY(U,$J,358.3,1286,0)
- ;;=S83.511A^^15^110^197
+ ;;=64612^^12^87^5^^^^1
  ;;^UTILITY(U,$J,358.3,1286,1,0)
- ;;=^358.31IA^4^2
+ ;;=^358.31IA^3^2
+ ;;^UTILITY(U,$J,358.3,1286,1,2,0)
+ ;;=2^64612
  ;;^UTILITY(U,$J,358.3,1286,1,3,0)
- ;;=3^Sprain of anterior cruciate ligament of right knee, init
- ;;^UTILITY(U,$J,358.3,1286,1,4,0)
- ;;=4^S83.511A
- ;;^UTILITY(U,$J,358.3,1286,2)
- ;;=^5043133
+ ;;=3^Chemodenervation Face Muscle,Unilateral
  ;;^UTILITY(U,$J,358.3,1287,0)
- ;;=S83.512A^^15^110^198
+ ;;=J0585^^12^87^4^^^^1
  ;;^UTILITY(U,$J,358.3,1287,1,0)
- ;;=^358.31IA^4^2
+ ;;=^358.31IA^3^2
+ ;;^UTILITY(U,$J,358.3,1287,1,2,0)
+ ;;=2^J0585
  ;;^UTILITY(U,$J,358.3,1287,1,3,0)
- ;;=3^Sprain of anterior cruciate ligament of left knee, init
- ;;^UTILITY(U,$J,358.3,1287,1,4,0)
- ;;=4^S83.512A
- ;;^UTILITY(U,$J,358.3,1287,2)
- ;;=^5043136
+ ;;=3^Chemodenervation Botox A,1 unit
  ;;^UTILITY(U,$J,358.3,1288,0)
- ;;=S83.521A^^15^110^219
+ ;;=20552^^12^87^28^^^^1
  ;;^UTILITY(U,$J,358.3,1288,1,0)
- ;;=^358.31IA^4^2
+ ;;=^358.31IA^3^2
+ ;;^UTILITY(U,$J,358.3,1288,1,2,0)
+ ;;=2^20552
  ;;^UTILITY(U,$J,358.3,1288,1,3,0)
- ;;=3^Sprain of posterior cruciate ligament of right knee, init
- ;;^UTILITY(U,$J,358.3,1288,1,4,0)
- ;;=4^S83.521A
- ;;^UTILITY(U,$J,358.3,1288,2)
- ;;=^5043142
+ ;;=3^Trigger Point, 1 or 2 muscles
  ;;^UTILITY(U,$J,358.3,1289,0)
- ;;=S83.522A^^15^110^220
+ ;;=20553^^12^87^29^^^^1
  ;;^UTILITY(U,$J,358.3,1289,1,0)
- ;;=^358.31IA^4^2
+ ;;=^358.31IA^3^2
+ ;;^UTILITY(U,$J,358.3,1289,1,2,0)
+ ;;=2^20553
  ;;^UTILITY(U,$J,358.3,1289,1,3,0)
- ;;=3^Sprain of posterior cruciate ligament of left knee, init
- ;;^UTILITY(U,$J,358.3,1289,1,4,0)
- ;;=4^S83.522A
- ;;^UTILITY(U,$J,358.3,1289,2)
- ;;=^5043145
+ ;;=3^Trigger Point, 3 or more muscles
  ;;^UTILITY(U,$J,358.3,1290,0)
- ;;=S76.111A^^15^110^244
+ ;;=20612^^12^87^16^^^^1
  ;;^UTILITY(U,$J,358.3,1290,1,0)
- ;;=^358.31IA^4^2
+ ;;=^358.31IA^3^2
+ ;;^UTILITY(U,$J,358.3,1290,1,2,0)
+ ;;=2^20612
  ;;^UTILITY(U,$J,358.3,1290,1,3,0)
- ;;=3^Strain of right quadriceps muscle, fascia and tendon, init
- ;;^UTILITY(U,$J,358.3,1290,1,4,0)
- ;;=4^S76.111A
- ;;^UTILITY(U,$J,358.3,1290,2)
- ;;=^5039546
+ ;;=3^Ganglion Cyst Aspriation/Injection
  ;;^UTILITY(U,$J,358.3,1291,0)
- ;;=S76.112A^^15^110^241
+ ;;=64450^^12^87^18^^^^1
  ;;^UTILITY(U,$J,358.3,1291,1,0)
- ;;=^358.31IA^4^2
+ ;;=^358.31IA^3^2
+ ;;^UTILITY(U,$J,358.3,1291,1,2,0)
+ ;;=2^64450
  ;;^UTILITY(U,$J,358.3,1291,1,3,0)
- ;;=3^Strain of left quadriceps muscle, fascia and tendon, init
- ;;^UTILITY(U,$J,358.3,1291,1,4,0)
- ;;=4^S76.112A
- ;;^UTILITY(U,$J,358.3,1291,2)
- ;;=^5039549
+ ;;=3^Nerve Block, peripheral nerve
  ;;^UTILITY(U,$J,358.3,1292,0)
- ;;=S33.5XXA^^15^110^215
+ ;;=95990^^12^87^23^^^^1
  ;;^UTILITY(U,$J,358.3,1292,1,0)
- ;;=^358.31IA^4^2
+ ;;=^358.31IA^3^2
+ ;;^UTILITY(U,$J,358.3,1292,1,2,0)
+ ;;=2^95990
  ;;^UTILITY(U,$J,358.3,1292,1,3,0)
- ;;=3^Sprain of ligaments of lumbar spine, initial encounter
- ;;^UTILITY(U,$J,358.3,1292,1,4,0)
- ;;=4^S33.5XXA
- ;;^UTILITY(U,$J,358.3,1292,2)
- ;;=^5025172
+ ;;=3^Refill Spinal Implant Pump by RN
  ;;^UTILITY(U,$J,358.3,1293,0)
- ;;=S13.9XXA^^15^110^199
+ ;;=96402^^12^87^17^^^^1
  ;;^UTILITY(U,$J,358.3,1293,1,0)
- ;;=^358.31IA^4^2
+ ;;=^358.31IA^3^2
+ ;;^UTILITY(U,$J,358.3,1293,1,2,0)
+ ;;=2^96402
  ;;^UTILITY(U,$J,358.3,1293,1,3,0)
- ;;=3^Sprain of joints and ligaments of unsp parts of neck, init
- ;;^UTILITY(U,$J,358.3,1293,1,4,0)
- ;;=4^S13.9XXA
- ;;^UTILITY(U,$J,358.3,1293,2)
- ;;=^5022037
+ ;;=3^Injec,IM,anti-neplastic horm
  ;;^UTILITY(U,$J,358.3,1294,0)
- ;;=S43.401A^^15^110^230
+ ;;=96372^^12^87^27^^^^1
  ;;^UTILITY(U,$J,358.3,1294,1,0)
- ;;=^358.31IA^4^2
+ ;;=^358.31IA^3^2
+ ;;^UTILITY(U,$J,358.3,1294,1,2,0)
+ ;;=2^96372
  ;;^UTILITY(U,$J,358.3,1294,1,3,0)
- ;;=3^Sprain of right shoulder joint unspec, init encntr
- ;;^UTILITY(U,$J,358.3,1294,1,4,0)
- ;;=4^S43.401A
- ;;^UTILITY(U,$J,358.3,1294,2)
- ;;=^5027864
+ ;;=3^Ther/Proph/Diag Inj, SC/IM
  ;;^UTILITY(U,$J,358.3,1295,0)
- ;;=S43.402A^^15^110^211
+ ;;=64616^^12^87^8^^^^1
  ;;^UTILITY(U,$J,358.3,1295,1,0)
- ;;=^358.31IA^4^2
+ ;;=^358.31IA^3^2
+ ;;^UTILITY(U,$J,358.3,1295,1,2,0)
+ ;;=2^64616
  ;;^UTILITY(U,$J,358.3,1295,1,3,0)
- ;;=3^Sprain of left shoulder joint unspec, initial enco
- ;;^UTILITY(U,$J,358.3,1295,1,4,0)
- ;;=4^S43.402A
- ;;^UTILITY(U,$J,358.3,1295,2)
- ;;=^5027867
+ ;;=3^Chemodenervation Neck Muscle,Unilateral            
  ;;^UTILITY(U,$J,358.3,1296,0)
- ;;=S13.4XXA^^15^110^214
+ ;;=64642^^12^87^3^^^^1
  ;;^UTILITY(U,$J,358.3,1296,1,0)
- ;;=^358.31IA^4^2
+ ;;=^358.31IA^3^2
+ ;;^UTILITY(U,$J,358.3,1296,1,2,0)
+ ;;=2^64642
  ;;^UTILITY(U,$J,358.3,1296,1,3,0)
- ;;=3^Sprain of ligaments of cervical spine, initial encounter
- ;;^UTILITY(U,$J,358.3,1296,1,4,0)
- ;;=4^S13.4XXA
- ;;^UTILITY(U,$J,358.3,1296,2)
- ;;=^5022028
+ ;;=3^Chemodenervation 1 Ext/1-4 Muscles
  ;;^UTILITY(U,$J,358.3,1297,0)
- ;;=S23.3XXA^^15^110^216
+ ;;=64643^^12^87^11^^^^1
  ;;^UTILITY(U,$J,358.3,1297,1,0)
- ;;=^358.31IA^4^2
+ ;;=^358.31IA^3^2
+ ;;^UTILITY(U,$J,358.3,1297,1,2,0)
+ ;;=2^64643
  ;;^UTILITY(U,$J,358.3,1297,1,3,0)
- ;;=3^Sprain of ligaments of thoracic spine, initial encounter
- ;;^UTILITY(U,$J,358.3,1297,1,4,0)
- ;;=4^S23.3XXA
- ;;^UTILITY(U,$J,358.3,1297,2)
- ;;=^5023246
+ ;;=3^Chemodenervation,Ea Addl Ext,1-4 Muscle 
  ;;^UTILITY(U,$J,358.3,1298,0)
- ;;=S63.601A^^15^110^231
+ ;;=64644^^12^87^2^^^^1
  ;;^UTILITY(U,$J,358.3,1298,1,0)
- ;;=^358.31IA^4^2
+ ;;=^358.31IA^3^2
+ ;;^UTILITY(U,$J,358.3,1298,1,2,0)
+ ;;=2^64644
  ;;^UTILITY(U,$J,358.3,1298,1,3,0)
- ;;=3^Sprain of right thumb unspec, initial encounter
- ;;^UTILITY(U,$J,358.3,1298,1,4,0)
- ;;=4^S63.601A
- ;;^UTILITY(U,$J,358.3,1298,2)
- ;;=^5035616
+ ;;=3^Chemodenervation 1 Ext 5 or > Muscles
  ;;^UTILITY(U,$J,358.3,1299,0)
- ;;=S63.602A^^15^110^212
+ ;;=64645^^12^87^12^^^^1
  ;;^UTILITY(U,$J,358.3,1299,1,0)
- ;;=^358.31IA^4^2
+ ;;=^358.31IA^3^2
+ ;;^UTILITY(U,$J,358.3,1299,1,2,0)
+ ;;=2^64645
  ;;^UTILITY(U,$J,358.3,1299,1,3,0)
- ;;=3^Sprain of left thumb unspec, initial encounter
- ;;^UTILITY(U,$J,358.3,1299,1,4,0)
- ;;=4^S63.602A
- ;;^UTILITY(U,$J,358.3,1299,2)
- ;;=^5035619
+ ;;=3^Chemodenervation,Ea Addl Ext,5 or > Mu
  ;;^UTILITY(U,$J,358.3,1300,0)
- ;;=S93.501A^^15^110^224
+ ;;=64646^^12^87^9^^^^1
  ;;^UTILITY(U,$J,358.3,1300,1,0)
- ;;=^358.31IA^4^2
+ ;;=^358.31IA^3^2
+ ;;^UTILITY(U,$J,358.3,1300,1,2,0)
+ ;;=2^64646
  ;;^UTILITY(U,$J,358.3,1300,1,3,0)
- ;;=3^Sprain of right great toe unspec, initial encounte
- ;;^UTILITY(U,$J,358.3,1300,1,4,0)
- ;;=4^S93.501A
- ;;^UTILITY(U,$J,358.3,1300,2)
- ;;=^5045810
+ ;;=3^Chemodenervation Trunk,1-5 Muscles
  ;;^UTILITY(U,$J,358.3,1301,0)
- ;;=S93.502A^^15^110^205
+ ;;=64647^^12^87^10^^^^1
  ;;^UTILITY(U,$J,358.3,1301,1,0)
- ;;=^358.31IA^4^2
+ ;;=^358.31IA^3^2
+ ;;^UTILITY(U,$J,358.3,1301,1,2,0)
+ ;;=2^64647
  ;;^UTILITY(U,$J,358.3,1301,1,3,0)
- ;;=3^Sprain of left great toe unspec, initial encounter
- ;;^UTILITY(U,$J,358.3,1301,1,4,0)
- ;;=4^S93.502A
- ;;^UTILITY(U,$J,358.3,1301,2)
- ;;=^5045813
+ ;;=3^Chemodenervation Trunk,6 or > Muscles   
  ;;^UTILITY(U,$J,358.3,1302,0)
- ;;=S93.504A^^15^110^226
+ ;;=64615^^12^87^7^^^^1
  ;;^UTILITY(U,$J,358.3,1302,1,0)
- ;;=^358.31IA^4^2
+ ;;=^358.31IA^3^2
+ ;;^UTILITY(U,$J,358.3,1302,1,2,0)
+ ;;=2^64615
  ;;^UTILITY(U,$J,358.3,1302,1,3,0)
- ;;=3^Sprain of right lesser toe(s) unspec, initial enco
- ;;^UTILITY(U,$J,358.3,1302,1,4,0)
- ;;=4^S93.504A
- ;;^UTILITY(U,$J,358.3,1302,2)
- ;;=^5045816
+ ;;=3^Chemodenervation Muscle for Migraine,Bilateral
  ;;^UTILITY(U,$J,358.3,1303,0)
- ;;=S93.505A^^15^110^207
+ ;;=64617^^12^87^6^^^^1
  ;;^UTILITY(U,$J,358.3,1303,1,0)
- ;;=^358.31IA^4^2
+ ;;=^358.31IA^3^2
+ ;;^UTILITY(U,$J,358.3,1303,1,2,0)
+ ;;=2^64617
  ;;^UTILITY(U,$J,358.3,1303,1,3,0)
- ;;=3^Sprain of left lesser toe(s) unspec, initial encou
- ;;^UTILITY(U,$J,358.3,1303,1,4,0)
- ;;=4^S93.505A
- ;;^UTILITY(U,$J,358.3,1303,2)
- ;;=^5045819
+ ;;=3^Chemodenervation Muscle Larynx,Unilateral
  ;;^UTILITY(U,$J,358.3,1304,0)
- ;;=S63.501A^^15^110^232
+ ;;=62270^^12^87^24^^^^1
  ;;^UTILITY(U,$J,358.3,1304,1,0)
- ;;=^358.31IA^4^2
+ ;;=^358.31IA^3^2
+ ;;^UTILITY(U,$J,358.3,1304,1,2,0)
+ ;;=2^62270
  ;;^UTILITY(U,$J,358.3,1304,1,3,0)
- ;;=3^Sprain of right wrist unspec, initial encounter
- ;;^UTILITY(U,$J,358.3,1304,1,4,0)
- ;;=4^S63.501A
- ;;^UTILITY(U,$J,358.3,1304,2)
- ;;=^5035583
+ ;;=3^Spinal Fluid Tap-Diagnostic 
  ;;^UTILITY(U,$J,358.3,1305,0)
- ;;=S63.502A^^15^110^213
+ ;;=62272^^12^87^13^^^^1
  ;;^UTILITY(U,$J,358.3,1305,1,0)
- ;;=^358.31IA^4^2
+ ;;=^358.31IA^3^2
+ ;;^UTILITY(U,$J,358.3,1305,1,2,0)
+ ;;=2^62272
  ;;^UTILITY(U,$J,358.3,1305,1,3,0)
- ;;=3^Sprain of left wrist unspec, initial encounter
- ;;^UTILITY(U,$J,358.3,1305,1,4,0)
- ;;=4^S63.502A
- ;;^UTILITY(U,$J,358.3,1305,2)
- ;;=^5035586
+ ;;=3^Drain Cerebro Spinal Fluid
  ;;^UTILITY(U,$J,358.3,1306,0)
- ;;=S39.012A^^15^110^243
+ ;;=64400^^12^87^20^^^^1
  ;;^UTILITY(U,$J,358.3,1306,1,0)
- ;;=^358.31IA^4^2
+ ;;=^358.31IA^3^2
+ ;;^UTILITY(U,$J,358.3,1306,1,2,0)
+ ;;=2^64400
  ;;^UTILITY(U,$J,358.3,1306,1,3,0)
- ;;=3^Strain of muscle, fascia and tendon of lower back, init
- ;;^UTILITY(U,$J,358.3,1306,1,4,0)
- ;;=4^S39.012A
- ;;^UTILITY(U,$J,358.3,1306,2)
- ;;=^5026102
+ ;;=3^Nerve Block,Trigeminal
  ;;^UTILITY(U,$J,358.3,1307,0)
- ;;=S16.1XXA^^15^110^242
+ ;;=78645^^12^87^1^^^^1
  ;;^UTILITY(U,$J,358.3,1307,1,0)
- ;;=^358.31IA^4^2
+ ;;=^358.31IA^3^2
+ ;;^UTILITY(U,$J,358.3,1307,1,2,0)
+ ;;=2^78645
  ;;^UTILITY(U,$J,358.3,1307,1,3,0)
- ;;=3^Strain of muscle, fascia and tendon at neck level, init
- ;;^UTILITY(U,$J,358.3,1307,1,4,0)
- ;;=4^S16.1XXA
- ;;^UTILITY(U,$J,358.3,1307,2)
- ;;=^5022358
+ ;;=3^CSF Shunt Evaluation
  ;;^UTILITY(U,$J,358.3,1308,0)
- ;;=T69.9XXA^^15^110^56
+ ;;=86580^^12^87^25^^^^1
  ;;^UTILITY(U,$J,358.3,1308,1,0)
- ;;=^358.31IA^4^2
+ ;;=^358.31IA^3^2
+ ;;^UTILITY(U,$J,358.3,1308,1,2,0)
+ ;;=2^86580
  ;;^UTILITY(U,$J,358.3,1308,1,3,0)
- ;;=3^Effect of reduced temperature, unspecified, init encntr
- ;;^UTILITY(U,$J,358.3,1308,1,4,0)
- ;;=4^T69.9XXA
- ;;^UTILITY(U,$J,358.3,1308,2)
- ;;=^5053978
+ ;;=3^TB Intradermal Test
  ;;^UTILITY(U,$J,358.3,1309,0)
- ;;=T69.8XXA^^15^110^57
+ ;;=64405^^12^87^19^^^^1
  ;;^UTILITY(U,$J,358.3,1309,1,0)
- ;;=^358.31IA^4^2
+ ;;=^358.31IA^3^2
+ ;;^UTILITY(U,$J,358.3,1309,1,2,0)
+ ;;=2^64405
  ;;^UTILITY(U,$J,358.3,1309,1,3,0)
- ;;=3^Effects of Reduced Temperature NEC,Init Encntr
- ;;^UTILITY(U,$J,358.3,1309,1,4,0)
- ;;=4^T69.8XXA
- ;;^UTILITY(U,$J,358.3,1309,2)
- ;;=^5053975
+ ;;=3^Nerve Block,Occipital
  ;;^UTILITY(U,$J,358.3,1310,0)
- ;;=L57.8^^15^110^196
+ ;;=95991^^12^87^22^^^^1
  ;;^UTILITY(U,$J,358.3,1310,1,0)
- ;;=^358.31IA^4^2
+ ;;=^358.31IA^3^2
+ ;;^UTILITY(U,$J,358.3,1310,1,2,0)
+ ;;=2^95991
  ;;^UTILITY(U,$J,358.3,1310,1,3,0)
- ;;=3^Skin Changes d/t Chr Expsr to Nonionizing Radiation NEC
- ;;^UTILITY(U,$J,358.3,1310,1,4,0)
- ;;=4^L57.8
- ;;^UTILITY(U,$J,358.3,1310,2)
- ;;=^5009226
+ ;;=3^Refill Spinal Implant Pump by MD/NP/PA
  ;;^UTILITY(U,$J,358.3,1311,0)
- ;;=S91.001A^^15^110^165
+ ;;=97014^^12^87^14^^^^1
  ;;^UTILITY(U,$J,358.3,1311,1,0)
- ;;=^358.31IA^4^2
+ ;;=^358.31IA^3^2
+ ;;^UTILITY(U,$J,358.3,1311,1,2,0)
+ ;;=2^97014
  ;;^UTILITY(U,$J,358.3,1311,1,3,0)
- ;;=3^Open wnd of right ankle unspec, initial encounter
- ;;^UTILITY(U,$J,358.3,1311,1,4,0)
- ;;=4^S91.001A
- ;;^UTILITY(U,$J,358.3,1311,2)
- ;;=^5044129
+ ;;=3^Electric Stimulation Therapy,Unattended
  ;;^UTILITY(U,$J,358.3,1312,0)
- ;;=S91.002A^^15^110^155
+ ;;=97032^^12^87^15^^^^1
  ;;^UTILITY(U,$J,358.3,1312,1,0)
- ;;=^358.31IA^4^2
+ ;;=^358.31IA^3^2
+ ;;^UTILITY(U,$J,358.3,1312,1,2,0)
+ ;;=2^97032
  ;;^UTILITY(U,$J,358.3,1312,1,3,0)
- ;;=3^Open wnd of left ankle unspec, initial encounter
- ;;^UTILITY(U,$J,358.3,1312,1,4,0)
- ;;=4^S91.002A
- ;;^UTILITY(U,$J,358.3,1312,2)
- ;;=^5044132
+ ;;=3^Electrical Stimulation,Manual,Ea 15 min
  ;;^UTILITY(U,$J,358.3,1313,0)
- ;;=S41.101A^^15^110^174
+ ;;=95816^^12^88^14^^^^1
  ;;^UTILITY(U,$J,358.3,1313,1,0)
- ;;=^358.31IA^4^2
+ ;;=^358.31IA^3^2
+ ;;^UTILITY(U,$J,358.3,1313,1,2,0)
+ ;;=2^95816
  ;;^UTILITY(U,$J,358.3,1313,1,3,0)
- ;;=3^Open wnd of right upper arm unspec, initial enco
- ;;^UTILITY(U,$J,358.3,1313,1,4,0)
- ;;=4^S41.101A
- ;;^UTILITY(U,$J,358.3,1313,2)
- ;;=^5026330
+ ;;=3^EEG,Awake and Drowsy
  ;;^UTILITY(U,$J,358.3,1314,0)
- ;;=S41.102A^^15^110^164
+ ;;=95819^^12^88^13^^^^1
  ;;^UTILITY(U,$J,358.3,1314,1,0)
- ;;=^358.31IA^4^2
+ ;;=^358.31IA^3^2
+ ;;^UTILITY(U,$J,358.3,1314,1,2,0)
+ ;;=2^95819
  ;;^UTILITY(U,$J,358.3,1314,1,3,0)
- ;;=3^Open wnd of left upper arm unspec, initial encou
- ;;^UTILITY(U,$J,358.3,1314,1,4,0)
- ;;=4^S41.102A
- ;;^UTILITY(U,$J,358.3,1314,2)
- ;;=^5026333
+ ;;=3^EEG,Awake and Asleep
  ;;^UTILITY(U,$J,358.3,1315,0)
- ;;=S61.200A^^15^110^169
+ ;;=95822^^12^88^16^^^^1
  ;;^UTILITY(U,$J,358.3,1315,1,0)
- ;;=^358.31IA^4^2
+ ;;=^358.31IA^3^2
+ ;;^UTILITY(U,$J,358.3,1315,1,2,0)
+ ;;=2^95822
  ;;^UTILITY(U,$J,358.3,1315,1,3,0)
- ;;=3^Open wnd of right idx fngr w/o damage to nail unspec, init
- ;;^UTILITY(U,$J,358.3,1315,1,4,0)
- ;;=4^S61.200A
- ;;^UTILITY(U,$J,358.3,1315,2)
- ;;=^5032741
+ ;;=3^EEG,Sleep or Coma only
  ;;^UTILITY(U,$J,358.3,1316,0)
- ;;=S61.201A^^15^110^159
+ ;;=95812^^12^88^1^^^^1
  ;;^UTILITY(U,$J,358.3,1316,1,0)
- ;;=^358.31IA^4^2
+ ;;=^358.31IA^3^2
+ ;;^UTILITY(U,$J,358.3,1316,1,2,0)
+ ;;=2^95812
+ ;;^UTILITY(U,$J,358.3,1316,1,3,0)
+ ;;=3^EEG 41-60 min
+ ;;^UTILITY(U,$J,358.3,1317,0)
+ ;;=95813^^12^88^2^^^^1
+ ;;^UTILITY(U,$J,358.3,1317,1,0)
+ ;;=^358.31IA^3^2
+ ;;^UTILITY(U,$J,358.3,1317,1,2,0)
+ ;;=2^95813
+ ;;^UTILITY(U,$J,358.3,1317,1,3,0)
+ ;;=3^EEG > 1 hr
+ ;;^UTILITY(U,$J,358.3,1318,0)
+ ;;=95957^^12^88^15^^^^1
+ ;;^UTILITY(U,$J,358.3,1318,1,0)
+ ;;=^358.31IA^3^2
+ ;;^UTILITY(U,$J,358.3,1318,1,2,0)
+ ;;=2^95957
+ ;;^UTILITY(U,$J,358.3,1318,1,3,0)
+ ;;=3^EEG,Digital Analysis
+ ;;^UTILITY(U,$J,358.3,1319,0)
+ ;;=95717^^12^88^6^^^^1
+ ;;^UTILITY(U,$J,358.3,1319,1,0)
+ ;;=^358.31IA^3^2
+ ;;^UTILITY(U,$J,358.3,1319,1,2,0)
+ ;;=2^95717
+ ;;^UTILITY(U,$J,358.3,1319,1,3,0)
+ ;;=3^EEG Recording 2-12 Hrs w/o Video
+ ;;^UTILITY(U,$J,358.3,1320,0)
+ ;;=95718^^12^88^5^^^^1
+ ;;^UTILITY(U,$J,358.3,1320,1,0)
+ ;;=^358.31IA^3^2
+ ;;^UTILITY(U,$J,358.3,1320,1,2,0)
+ ;;=2^95718
+ ;;^UTILITY(U,$J,358.3,1320,1,3,0)
+ ;;=3^EEG Recording 2-12 Hrs w/ Video
+ ;;^UTILITY(U,$J,358.3,1321,0)
+ ;;=95719^^12^88^4^^^^1
+ ;;^UTILITY(U,$J,358.3,1321,1,0)
+ ;;=^358.31IA^3^2
+ ;;^UTILITY(U,$J,358.3,1321,1,2,0)
+ ;;=2^95719
+ ;;^UTILITY(U,$J,358.3,1321,1,3,0)
+ ;;=3^EEG Recording 13-26 Hrs w/o Video
+ ;;^UTILITY(U,$J,358.3,1322,0)
+ ;;=95720^^12^88^3^^^^1
+ ;;^UTILITY(U,$J,358.3,1322,1,0)
+ ;;=^358.31IA^3^2
+ ;;^UTILITY(U,$J,358.3,1322,1,2,0)
+ ;;=2^95720
+ ;;^UTILITY(U,$J,358.3,1322,1,3,0)
+ ;;=3^EEG Recording 13-26 Hrs w/ Video
+ ;;^UTILITY(U,$J,358.3,1323,0)
+ ;;=95721^^12^88^8^^^^1
+ ;;^UTILITY(U,$J,358.3,1323,1,0)
+ ;;=^358.31IA^3^2
+ ;;^UTILITY(U,$J,358.3,1323,1,2,0)
+ ;;=2^95721
+ ;;^UTILITY(U,$J,358.3,1323,1,3,0)
+ ;;=3^EEG Recording 36-60 Hrs w/o Video
+ ;;^UTILITY(U,$J,358.3,1324,0)
+ ;;=95722^^12^88^7^^^^1
+ ;;^UTILITY(U,$J,358.3,1324,1,0)
+ ;;=^358.31IA^3^2
+ ;;^UTILITY(U,$J,358.3,1324,1,2,0)
+ ;;=2^95722
+ ;;^UTILITY(U,$J,358.3,1324,1,3,0)
+ ;;=3^EEG Recording 36-60 Hrs w/ Video
+ ;;^UTILITY(U,$J,358.3,1325,0)
+ ;;=95723^^12^88^10^^^^1
+ ;;^UTILITY(U,$J,358.3,1325,1,0)
+ ;;=^358.31IA^3^2
+ ;;^UTILITY(U,$J,358.3,1325,1,2,0)
+ ;;=2^95723
+ ;;^UTILITY(U,$J,358.3,1325,1,3,0)
+ ;;=3^EEG Recording 61-84 Hrs w/o Video
+ ;;^UTILITY(U,$J,358.3,1326,0)
+ ;;=95724^^12^88^9^^^^1
+ ;;^UTILITY(U,$J,358.3,1326,1,0)
+ ;;=^358.31IA^3^2
+ ;;^UTILITY(U,$J,358.3,1326,1,2,0)
+ ;;=2^95724
+ ;;^UTILITY(U,$J,358.3,1326,1,3,0)
+ ;;=3^EEG Recording 61-84 Hrs w/ Video
+ ;;^UTILITY(U,$J,358.3,1327,0)
+ ;;=95725^^12^88^12^^^^1
+ ;;^UTILITY(U,$J,358.3,1327,1,0)
+ ;;=^358.31IA^3^2
+ ;;^UTILITY(U,$J,358.3,1327,1,2,0)
+ ;;=2^95725
+ ;;^UTILITY(U,$J,358.3,1327,1,3,0)
+ ;;=3^EEG Recording > 84 Hrs w/o Video
+ ;;^UTILITY(U,$J,358.3,1328,0)
+ ;;=95726^^12^88^11^^^^1
+ ;;^UTILITY(U,$J,358.3,1328,1,0)
+ ;;=^358.31IA^3^2
+ ;;^UTILITY(U,$J,358.3,1328,1,2,0)
+ ;;=2^95726
+ ;;^UTILITY(U,$J,358.3,1328,1,3,0)
+ ;;=3^EEG Recording > 84 Hrs w/ Video
+ ;;^UTILITY(U,$J,358.3,1329,0)
+ ;;=95806^^12^89^8^^^^1
+ ;;^UTILITY(U,$J,358.3,1329,1,0)
+ ;;=^358.31IA^3^2
+ ;;^UTILITY(U,$J,358.3,1329,1,2,0)
+ ;;=2^95806
+ ;;^UTILITY(U,$J,358.3,1329,1,3,0)
+ ;;=3^Sleep Study/Unattended
+ ;;^UTILITY(U,$J,358.3,1330,0)
+ ;;=95807^^12^89^7^^^^1
+ ;;^UTILITY(U,$J,358.3,1330,1,0)
+ ;;=^358.31IA^3^2
+ ;;^UTILITY(U,$J,358.3,1330,1,2,0)
+ ;;=2^95807
+ ;;^UTILITY(U,$J,358.3,1330,1,3,0)
+ ;;=3^Sleep Study in Hosp/Clinic
+ ;;^UTILITY(U,$J,358.3,1331,0)
+ ;;=95805^^12^89^2^^^^1
+ ;;^UTILITY(U,$J,358.3,1331,1,0)
+ ;;=^358.31IA^3^2
+ ;;^UTILITY(U,$J,358.3,1331,1,2,0)
+ ;;=2^95805
+ ;;^UTILITY(U,$J,358.3,1331,1,3,0)
+ ;;=3^Multiple Sleep Latency Test
+ ;;^UTILITY(U,$J,358.3,1332,0)
+ ;;=95808^^12^89^5^^^^1
+ ;;^UTILITY(U,$J,358.3,1332,1,0)
+ ;;=^358.31IA^3^2
+ ;;^UTILITY(U,$J,358.3,1332,1,2,0)
+ ;;=2^95808
+ ;;^UTILITY(U,$J,358.3,1332,1,3,0)
+ ;;=3^Polysomnography,1-3
+ ;;^UTILITY(U,$J,358.3,1333,0)
+ ;;=G8839^^12^89^6^^^^1
+ ;;^UTILITY(U,$J,358.3,1333,1,0)
+ ;;=^358.31IA^3^2
+ ;;^UTILITY(U,$J,358.3,1333,1,2,0)
+ ;;=2^G8839
+ ;;^UTILITY(U,$J,358.3,1333,1,3,0)
+ ;;=3^Sleep Apnea Assess
+ ;;^UTILITY(U,$J,358.3,1334,0)
+ ;;=95803^^12^89^1^^^^1
+ ;;^UTILITY(U,$J,358.3,1334,1,0)
+ ;;=^358.31IA^3^2
+ ;;^UTILITY(U,$J,358.3,1334,1,2,0)
+ ;;=2^95803
+ ;;^UTILITY(U,$J,358.3,1334,1,3,0)
+ ;;=3^Actigraphy Testing (72hrs/14 consecutive days)
+ ;;^UTILITY(U,$J,358.3,1335,0)
+ ;;=95810^^12^89^3^^^^1
+ ;;^UTILITY(U,$J,358.3,1335,1,0)
+ ;;=^358.31IA^3^2
+ ;;^UTILITY(U,$J,358.3,1335,1,2,0)
+ ;;=2^95810
+ ;;^UTILITY(U,$J,358.3,1335,1,3,0)
+ ;;=3^Polysomnography w/ 4+ Parameters         
+ ;;^UTILITY(U,$J,358.3,1336,0)
+ ;;=95811^^12^89^4^^^^1
+ ;;^UTILITY(U,$J,358.3,1336,1,0)
+ ;;=^358.31IA^3^2
+ ;;^UTILITY(U,$J,358.3,1336,1,2,0)
+ ;;=2^95811
+ ;;^UTILITY(U,$J,358.3,1336,1,3,0)
+ ;;=3^Polysomnography w/ 4+ Parameters w/ CPAP
+ ;;^UTILITY(U,$J,358.3,1337,0)
+ ;;=95860^^12^90^12^^^^1
+ ;;^UTILITY(U,$J,358.3,1337,1,0)
+ ;;=^358.31IA^3^2
+ ;;^UTILITY(U,$J,358.3,1337,1,2,0)
+ ;;=2^95860
+ ;;^UTILITY(U,$J,358.3,1337,1,3,0)
+ ;;=3^EMG, one extremity
+ ;;^UTILITY(U,$J,358.3,1338,0)
+ ;;=95861^^12^90^1^^^^1
+ ;;^UTILITY(U,$J,358.3,1338,1,0)
+ ;;=^358.31IA^3^2
+ ;;^UTILITY(U,$J,358.3,1338,1,2,0)
+ ;;=2^95861
+ ;;^UTILITY(U,$J,358.3,1338,1,3,0)
+ ;;=3^EMG, 2 extremities
+ ;;^UTILITY(U,$J,358.3,1339,0)
+ ;;=95863^^12^90^2^^^^1
+ ;;^UTILITY(U,$J,358.3,1339,1,0)
+ ;;=^358.31IA^3^2
+ ;;^UTILITY(U,$J,358.3,1339,1,2,0)
+ ;;=2^95863
+ ;;^UTILITY(U,$J,358.3,1339,1,3,0)
+ ;;=3^EMG, 3 extremities
+ ;;^UTILITY(U,$J,358.3,1340,0)
+ ;;=95864^^12^90^3^^^^1
+ ;;^UTILITY(U,$J,358.3,1340,1,0)
+ ;;=^358.31IA^3^2
+ ;;^UTILITY(U,$J,358.3,1340,1,2,0)
+ ;;=2^95864
+ ;;^UTILITY(U,$J,358.3,1340,1,3,0)
+ ;;=3^EMG, 4 extremities
+ ;;^UTILITY(U,$J,358.3,1341,0)
+ ;;=95869^^12^90^11^^^^1
+ ;;^UTILITY(U,$J,358.3,1341,1,0)
+ ;;=^358.31IA^3^2
+ ;;^UTILITY(U,$J,358.3,1341,1,2,0)
+ ;;=2^95869
+ ;;^UTILITY(U,$J,358.3,1341,1,3,0)
+ ;;=3^EMG, Thoracic Paraspinal Muscles,T-2 to T-11
+ ;;^UTILITY(U,$J,358.3,1342,0)
+ ;;=95867^^12^90^6^^^^1
+ ;;^UTILITY(U,$J,358.3,1342,1,0)
+ ;;=^358.31IA^3^2
+ ;;^UTILITY(U,$J,358.3,1342,1,2,0)
+ ;;=2^95867
+ ;;^UTILITY(U,$J,358.3,1342,1,3,0)
+ ;;=3^EMG, Cranial Nerve supplied Muscles, unilat
+ ;;^UTILITY(U,$J,358.3,1343,0)
+ ;;=51785^^12^90^4^^^^1
+ ;;^UTILITY(U,$J,358.3,1343,1,0)
+ ;;=^358.31IA^3^2
+ ;;^UTILITY(U,$J,358.3,1343,1,2,0)
+ ;;=2^51785
+ ;;^UTILITY(U,$J,358.3,1343,1,3,0)
+ ;;=3^EMG, Anal/Urinary Muscle
+ ;;^UTILITY(U,$J,358.3,1344,0)
+ ;;=51792^^12^90^28^^^^1
+ ;;^UTILITY(U,$J,358.3,1344,1,0)
+ ;;=^358.31IA^3^2
+ ;;^UTILITY(U,$J,358.3,1344,1,2,0)
+ ;;=2^51792
+ ;;^UTILITY(U,$J,358.3,1344,1,3,0)
+ ;;=3^Urinary Reflex Study
+ ;;^UTILITY(U,$J,358.3,1345,0)
+ ;;=95865^^12^90^8^^^^1
+ ;;^UTILITY(U,$J,358.3,1345,1,0)
+ ;;=^358.31IA^3^2
+ ;;^UTILITY(U,$J,358.3,1345,1,2,0)
+ ;;=2^95865
+ ;;^UTILITY(U,$J,358.3,1345,1,3,0)
+ ;;=3^EMG, Larynx
+ ;;^UTILITY(U,$J,358.3,1346,0)
+ ;;=95866^^12^90^7^^^^1
+ ;;^UTILITY(U,$J,358.3,1346,1,0)
+ ;;=^358.31IA^3^2
+ ;;^UTILITY(U,$J,358.3,1346,1,2,0)
+ ;;=2^95866
+ ;;^UTILITY(U,$J,358.3,1346,1,3,0)
+ ;;=3^EMG, Hemidiaphragm
+ ;;^UTILITY(U,$J,358.3,1347,0)
+ ;;=95870^^12^90^9^^^^1
+ ;;^UTILITY(U,$J,358.3,1347,1,0)
+ ;;=^358.31IA^3^2
+ ;;^UTILITY(U,$J,358.3,1347,1,2,0)
+ ;;=2^95870
+ ;;^UTILITY(U,$J,358.3,1347,1,3,0)
+ ;;=3^EMG, Limited-One extremity
+ ;;^UTILITY(U,$J,358.3,1348,0)
+ ;;=95872^^12^90^10^^^^1
+ ;;^UTILITY(U,$J,358.3,1348,1,0)
+ ;;=^358.31IA^3^2
+ ;;^UTILITY(U,$J,358.3,1348,1,2,0)
+ ;;=2^95872
+ ;;^UTILITY(U,$J,358.3,1348,1,3,0)
+ ;;=3^EMG, Single Fiber Electrode
+ ;;^UTILITY(U,$J,358.3,1349,0)
+ ;;=95873^^12^90^16^^^^1
+ ;;^UTILITY(U,$J,358.3,1349,1,0)
+ ;;=^358.31IA^3^2
+ ;;^UTILITY(U,$J,358.3,1349,1,2,0)
+ ;;=2^95873
+ ;;^UTILITY(U,$J,358.3,1349,1,3,0)
+ ;;=3^Elec Stim,Guide chemodenervation
+ ;;^UTILITY(U,$J,358.3,1350,0)
+ ;;=95874^^12^90^26^^^^1
+ ;;^UTILITY(U,$J,358.3,1350,1,0)
+ ;;=^358.31IA^3^2
+ ;;^UTILITY(U,$J,358.3,1350,1,2,0)
+ ;;=2^95874
+ ;;^UTILITY(U,$J,358.3,1350,1,3,0)
+ ;;=3^Needle EMG,Guide Chemodenervation
+ ;;^UTILITY(U,$J,358.3,1351,0)
+ ;;=95875^^12^90^17^^^^1
+ ;;^UTILITY(U,$J,358.3,1351,1,0)
+ ;;=^358.31IA^3^2
+ ;;^UTILITY(U,$J,358.3,1351,1,2,0)
+ ;;=2^95875
+ ;;^UTILITY(U,$J,358.3,1351,1,3,0)
+ ;;=3^Ischemic limb exercise test
+ ;;^UTILITY(U,$J,358.3,1352,0)
+ ;;=95885^^12^90^14^^^^1
+ ;;^UTILITY(U,$J,358.3,1352,1,0)
+ ;;=^358.31IA^3^2
+ ;;^UTILITY(U,$J,358.3,1352,1,2,0)
+ ;;=2^95885
+ ;;^UTILITY(U,$J,358.3,1352,1,3,0)
+ ;;=3^EMG,ea extrem w/nerve conduction;limited
+ ;;^UTILITY(U,$J,358.3,1353,0)
+ ;;=95886^^12^90^13^^^^1
+ ;;^UTILITY(U,$J,358.3,1353,1,0)
+ ;;=^358.31IA^3^2
+ ;;^UTILITY(U,$J,358.3,1353,1,2,0)
+ ;;=2^95886
+ ;;^UTILITY(U,$J,358.3,1353,1,3,0)
+ ;;=3^EMG,>4 muscles,>2 nerves/>3 spinal levels
+ ;;^UTILITY(U,$J,358.3,1354,0)
+ ;;=95887^^12^90^15^^^^1

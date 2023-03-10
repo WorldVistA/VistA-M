@@ -1,5 +1,5 @@
-IBCNEDEQ ;DAOU/ALA - Process eIV Transactions continued ;21-AUG-2002
- ;;2.0;INTEGRATED BILLING;**184,271,300,416,438,601**;21-MAR-94;Build 14
+IBCNEDEQ ;DAOU/ALA - Process eIV Transactions continued ; 21-AUG-2002
+ ;;2.0;INTEGRATED BILLING;**184,271,300,416,438,601,702**;21-MAR-94;Build 53
  ;;Per VA Directive 6402, this routine should not be modified.
  ;
  ;**Program Description**
@@ -123,6 +123,9 @@ RESP ;  Create Response Record
  S RARRAY(365,RSIEN_",",.02)=$G(DFN),RARRAY(365,RSIEN_",",.03)=$G(PAYR)
  I $G(IEN)'="" D
  . I $P(^IBCN(365.1,IEN,0),U,18)=1 S RARRAY(365,RSIEN_",",.04)=$G(BUFF)
+ . ; IB*702/TAZ,CKB - set Req Service Date (.14) and Req Service Type Code (.15)
+ . S RARRAY(365,RSIEN_",",.14)=$$GET1^DIQ(365.1,IEN_",",.12,"I")
+ . S RARRAY(365,RSIEN_",",.15)=$$GET1^DIQ(365.1,IEN_",",.2,"I")
  S RARRAY(365,RSIEN_",",.05)=$G(IEN)
  S RARRAY(365,RSIEN_",",.06)=2,RARRAY(365,RSIEN_",",.08)=$G(MDTM)
  ;

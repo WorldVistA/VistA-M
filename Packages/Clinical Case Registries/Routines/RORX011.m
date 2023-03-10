@@ -1,5 +1,5 @@
 RORX011 ;HOIFO/SG,VAC - PATIENT MEDICATION HISTORY ;4/17/09 10:45am
- ;;1.5;CLINICAL CASE REGISTRIES;**1,8,13,19,21,31**;Feb 17, 2006;Build 62
+ ;;1.5;CLINICAL CASE REGISTRIES;**1,8,13,19,21,31,39**;Feb 17, 2006;Build 4
  ;
  ; This routine uses the following IAs:
  ;
@@ -22,6 +22,7 @@ RORX011 ;HOIFO/SG,VAC - PATIENT MEDICATION HISTORY ;4/17/09 10:45am
  ;ROR*1.5*21   SEP 2013    T KOPP       Added ICN as last report column if
  ;                                      additional identifier option selected
  ;ROR*1.5*31   MAY 2017    M FERRARESE  Adding PACT and PCP as additional identifiers.
+ ;ROR*1.5*39   JUL 2021    M FERRARESE  Setting SSN and LAST4 to zeros
  ;******************************************************************************
  ;******************************************************************************
  Q
@@ -87,7 +88,7 @@ PATIENT(PTLIST,PATIEN,RORXDST) ;
  Q:PTAG<0 PTAG
  D VADEM^RORUTL05(PATIEN,1)
  D ADDVAL^RORTSK11(RORTSK,"NAME",VADM(1),PTAG,1)
- D ADDVAL^RORTSK11(RORTSK,"LAST4",VA("BID"),PTAG,2)
+ S VA("BID")="0000" D ADDVAL^RORTSK11(RORTSK,"LAST4",VA("BID"),PTAG,2)
  D ADDVAL^RORTSK11(RORTSK,"DOB",$$DATE^RORXU002(VADM(3)\1),PTAG,1)
  D ADDVAL^RORTSK11(RORTSK,"AGE",VADM(4),PTAG,3)
  D ADDVAL^RORTSK11(RORTSK,"DOD",$$DATE^RORXU002(VADM(6)\1),PTAG,1)

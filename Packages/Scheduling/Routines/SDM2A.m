@@ -1,8 +1,9 @@
 SDM2A ;ALB/OG - MAKE APPOINTMENT - overflow routine ;1/11/16 10:34am
- ;;5.3;Scheduling;**446,528,567,594,611,645**;Aug 13 1993;Build 7
+ ;;5.3;Scheduling;**446,528,567,594,611,645,769**;Aug 13 1993;Build 22
  ;
  ;
 WL(SC) ;Wait List Hook/teh patch 263 ;SD/327 passed 'SC'
+ Q  ;SD*5.3*769 - EWL decommission
  N DA,DIE,DR,SBEG,SCSR,SDDIV,SDINST,SDPAR,SDWLDA,SDWLDFN,SDWLSCL
  Q:$G(SC)'>0
  I '$D(^SC(SC)) Q
@@ -56,6 +57,7 @@ WL(SC) ;Wait List Hook/teh patch 263 ;SD/327 passed 'SC'
  Q
  ;
 WLCL120(SC,DESDT) ; Is there clinic availability within 120 days of desired date ; sd/446
+ Q  ;SD*5.3*769 - EWL decommission
  N SBEG,SD120
  Q:$$GET1^DIQ(44,SC,2502,"I")="Y" 1  ; Non-count clinic. Allow > 120 days.
  S SD120=0,SBEG=DESDT-1   ;SD*567 added Go next line
@@ -79,6 +81,7 @@ DELETE ; SD*567 delete bad record
  Q
  ;
 WLCL120A(SDWLAPDT,SDDATE1,SC) ;
+ Q 1 ;SD*5.3*769 - EWL decommission
  N %DT,DIR,X,X1,X2,Y,SDRET,SDWLDFN
  Q:$$GET1^DIQ(44,SC,2502,"I")="Y" 1  ; Non-count clinic. Allow > 120 days.
  S X=SDWLAPDT,%DT="TXF" D ^%DT
@@ -102,6 +105,7 @@ WLCL120A(SDWLAPDT,SDDATE1,SC) ;
  Q 0
  ;
 WLCLASK() ; No appointment availability warning. ; sd/446
+ Q 0 ;SD*5.3*769 - EWL decommission
  N DIR
  S DIR(0)="Y"
  ; SD*5.3*645 - replaced Desired Date with CID/Preferred Date when presented to the user

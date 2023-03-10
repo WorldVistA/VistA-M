@@ -1,5 +1,5 @@
 PSOQ0595 ;HINES/RMS - TIU OBJECT FOR REMOTE MEDS VIA RDI ; 30 Nov 2007  7:54 AM
- ;;7.0;OUTPATIENT PHARMACY;**294,365**;DEC 1997;Build 2
+ ;;7.0;OUTPATIENT PHARMACY;**294,365,656**;DEC 1997;Build 1
  ;
  ;Reference to CKP^GMTSUP supported by DBIA 4231
  ;References to ORRDI1 supported by DBIA 4659
@@ -38,7 +38,7 @@ OBJ S PSOQLINE=3
  .... I $L(@TARGET@(PSOQLINE,0))>60 D INC S @TARGET@(PSOQLINE,0)="     "
  .. S @TARGET@(PSOQLINE,0)="Sig: "_PSOQSIG D INC
  . S PSOQQTY=$G(^XTMP("ORRDI","PSOO",DFN,PSOQMED,6,0)) S @TARGET@(PSOQLINE,0)="Quantity: "_+$P(PSOQQTY,";")_"    Days Supply: "_$P($P(PSOQQTY,";",2),"D",2) D INC
- . S @TARGET@(PSOQLINE,0)=$G(^XTMP("ORRDI","PSOO",DFN,PSOQMED,10,0))_" refills remaining until "_$G(^XTMP("ORRDI","PSOO",DFN,PSOQMED,7,0)) D INC
+ . S @TARGET@(PSOQLINE,0)="Original # of Refills: "_$G(^XTMP("ORRDI","PSOO",DFN,PSOQMED,10,0))_"    Rx Expiration: "_$G(^XTMP("ORRDI","PSOO",DFN,PSOQMED,7,0)) D INC   ;P656
  . S @TARGET@(PSOQLINE,0)="Last filled "_$G(^XTMP("ORRDI","PSOO",DFN,PSOQMED,9,0))_" at "_$G(^XTMP("ORRDI","PSOO",DFN,PSOQMED,1,0))_" ("_$S(PSOQSTAT["ACT":"Active",PSOQSTAT["SUSP":"Active/Suspended",1:"Status Unknown")_")" D INC
  . S @TARGET@(PSOQLINE,0)=" " D INC
  I PSOQLINE=3 D  G RDIOUT

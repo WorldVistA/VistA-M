@@ -1,5 +1,5 @@
 PSOSPMU0 ;BIRM/MFR - State Prescription Monitoring Program - Load ASAP Definition Utility ;10/07/12
- ;;7.0;OUTPATIENT PHARMACY;**451**;DEC 1997;Build 114
+ ;;7.0;OUTPATIENT PHARMACY;**451,625**;DEC 1997;Build 42
  ;
 LOADASAP(VERSION,DEFTYPE,ASARRAY) ; Loads the ASAP definition array for the specific Version
  ; Input: (r) VERSION - ASAP Version (3.0, 4.0, 4.1, 4.2)
@@ -16,6 +16,7 @@ LOADASAP(VERSION,DEFTYPE,ASARRAY) ; Loads the ASAP definition array for the spec
  . I ASAPDEF="CUSTOM ASAP DEFINITION",DEFTYPE="S" Q
  . S FILEIEN=$O(^PS(58.4,"B",ASAPDEF,0))
  . F VER="ALL",VERSION D
+ . . I VER="ALL",VERSION="4.1Z"!(VERSION="4.2Z") Q    ;Zero Report doesn't load "ALL" 
  . . ; - Don't want to load default (ALL) definitions for entirely cloned ASAP versions
  . . I ASAPDEF="STANDARD ASAP DEFINITION",'$D(^PS(58.4,FILEIEN,"VER","B",VERSION)) Q
  . . S VERIEN=$O(^PS(58.4,FILEIEN,"VER","B",VER,0)) I 'VERIEN Q
@@ -88,22 +89,35 @@ BLDTREE(SEG,SEGINFO,ARRAY) ; Build the ASAP Segment Tree (Recursivity Used)
  . D BLDTREE(SEGNAM,.SEGINFO,$Q(@ARRAY))
  Q
  ;
-VERLIST(DEFTYPE,ARRAY) ; Return a list of ASAP Versions
+VERLIST(DEFTYPE,REGZERO,ARRAY) ; Return a list of ASAP Versions  ;Zero Report adding REGZERO
  ; Input: (r) DEFTYPE - ASAP Definition Type (D: Default Only; C: Customized Only, F: Fully Customized Only,
  ;                      A: All. A combination is also allowed, e.g., "CF") 
+ ;        (r) REGZERO - Regular or Zero Report or Both ASAP Definitions (R: Regular Only; 
+ ;                      Z: Zero Report Only; B: Both)
  ;Output:     ARRAY   - ASAP Version List (ARRAY("3.0")="S", ARRAY("4.0")="S", etc...)
  N STDIEN,CUSIEN,VERSION
+ N VER,ZFLG    ;adding Zero Report flag
  K ARRAY
  S STDIEN=$O(^PS(58.4,"B","STANDARD ASAP DEFINITION",0))
  S CUSIEN=$O(^PS(58.4,"B","CUSTOM ASAP DEFINITION",0))
  I DEFTYPE["A"!(DEFTYPE["S") D
  . S VERSION="" F  S VERSION=$O(^PS(58.4,STDIEN,"VER","B",VERSION))  Q:VERSION=""  D
  . . I VERSION="ALL" Q
+ . . S VER=$O(^PS(58.4,STDIEN,"VER","B",VERSION,0)) S ZFLG=$P($G(^PS(58.4,STDIEN,"VER",VER,0)),"^",5)
+ . . I REGZERO["Z",'ZFLG Q    ;Zero ASAP only
+ . . I REGZERO["R",ZFLG Q     ;ASAP only
+ . . I REGZERO["B",ZFLG S ARRAY(VERSION_" ")="SZ" Q   ;both ASAP and Zero ASAP
  . . S ARRAY(VERSION_" ")="S"
  I DEFTYPE["A"!(DEFTYPE["C")!(DEFTYPE["F") D
  . S VERSION="" F  S VERSION=$O(^PS(58.4,CUSIEN,"VER","B",VERSION))  Q:VERSION=""  D
+ . . I $D(ARRAY(VERSION_" ")) Q    ;if customized Zero Report
+ . . S VER=$O(^PS(58.4,CUSIEN,"VER","B",VERSION,0)) S ZFLG=$P($G(^PS(58.4,CUSIEN,"VER",VER,0)),"^",5)
+ . . I REGZERO["Z",'ZFLG Q    ;Zero ASAP only
+ . . I REGZERO["R",ZFLG Q     ;ASAP only
  . . I DEFTYPE["A"!(DEFTYPE["C"),$D(^PS(58.4,STDIEN,"VER","B",VERSION)) S ARRAY(VERSION_" ")="C"
+ . . I DEFTYPE["A"!(DEFTYPE["C"),$D(^PS(58.4,STDIEN,"VER","B",VERSION)),ZFLG S ARRAY(VERSION_" ")="CZ"     ;Zero Rpt
  . . I DEFTYPE["A"!(DEFTYPE["F"),'$D(^PS(58.4,STDIEN,"VER","B",VERSION)) S ARRAY(VERSION_" ")="F"
+ . . I DEFTYPE["A"!(DEFTYPE["F"),'$D(^PS(58.4,STDIEN,"VER","B",VERSION)),ZFLG S ARRAY(VERSION_" ")="FZ"    ;Zero Rpt
  Q
  ;
 VERDATA(VERSION,DEFTYPE) ; Returns the ASAP Version fields

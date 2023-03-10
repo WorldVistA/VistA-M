@@ -1,0 +1,265 @@
+PXVWSOAP ;ISP/LMT - ICE Web Service utilities ;Jun 06, 2019@20:26:09
+ ;;1.0;PCE PATIENT CARE ENCOUNTER;**217**;Aug 12, 1996;Build 134
+ ;
+ ;
+EN(PXURL) ;
+ ;
+ ; Make SOAP call and parse data from ICE.
+ ; Use data in ^TMP("PXVWMSG",$J) to build SOAP message to ICE.
+ ; Return parsed data in ^TMP("PXICEWEB",$J).
+ ;
+ N PXCNT,PXGBL,PXHDRIN,PXHDROUT,PXHTTPSTAT
+ ;
+ D CLEAN
+ ;
+ ; Build outbound message to ICE
+ D BLDOUT
+ ;
+ S PXHDROUT("Content-Type")="application/soap+xml;charset=UTF-8"
+ S PXHTTPSTAT=$$GETURL^XTHC10(PXURL,"",$NA(^TMP("PXVWIN",$J)),.PXHDRIN,$NA(^TMP("PXVWOUT",$J)),.PXHDROUT,"POST")
+ ;
+ ;If call was unsuccessful, quit and return error from server.
+ I +PXHTTPSTAT'=200 D  Q
+ . ;M ^TMP("PXICEWEB",$J)=^TMP("PXVWIN",$J)
+ . S PXCNT=0
+ . S PXGBL=$NA(^TMP("PXVWIN",$J))
+ . F  S PXGBL=$Q(@PXGBL) Q:PXGBL=""  Q:($QS(PXGBL,1)'="PXVWIN")!($QS(PXGBL,2)'=$J)  D
+ . . S PXCNT=PXCNT+1
+ . . S ^TMP("PXICEWEB",$J,PXCNT)=$G(@PXGBL)
+ . S ^TMP("PXICEWEB",$J,0)="-3^"_PXHTTPSTAT
+ . D CLEAN
+ ;
+ ; Process Incoming Message from ICE
+ D PROCIN
+ ;
+ I '$D(^TMP("PXICEWEB",$J)) D  Q
+ . S ^TMP("PXICEWEB",$J,0)="-4^Unable to process incoming message from ICE"
+ . D CLEAN
+ ;
+ ; Success
+ S ^TMP("PXICEWEB",$J,0)=1
+ ;
+ D CLEAN
+ ;
+ Q
+ ;
+CLEAN ;
+ K ^TMP("PXVWOUT",$J)
+ K ^TMP("PXVWIN",$J)
+ Q
+ ;
+BLDOUT ; Build outbound message to ICE
+ ;
+ ; Build SOAP envelope and add b64 encoded VMR message to envelope.
+ ; Input:
+ ;   VMR Message in ^TMP("PXVWMSG",$J)
+ ; Output:
+ ;   ICE Input in ^TMP("PXVWOUT",$J)
+ ;
+ N PXCNT,PXELIEN,PXI,PXJ,PXLEN,PXLINE,PXMAXLINE,PXNODE,PXSUB,PXTIME,PXTEXT,PXTZ,PXVARS,PXX
+ ;
+ S PXMAXLINE=245
+ S PXSUB=1
+ S PXCNT=0
+ ;
+ K ^TMP("PXPAYLOAD",$J)
+ ;
+ S PXELIEN=$O(^PXV(920.77,"B","ENVELOPE",0))
+ I 'PXELIEN Q
+ ;
+ ; Base-64 encode message
+ D B64ENCD($NA(^TMP("PXPAYLOAD",$J)),$NA(^TMP("PXVWMSG",$J)))
+ ;
+ ; Format date/time as YYYY-MM-DD"T"HH:MM:SS+-time_zone_offset (e.g., 2012-01-14T00:00:00-05:00)
+ S PXTIME=17000000+$$NOW^XLFDT
+ S PXTIME=$TR(PXTIME,".","")
+ S PXTIME=PXTIME_$E("00000000000000",$L(PXTIME)+1,14)
+ S PXTZ=$$TZ^XLFDT
+ S PXTIME=$E(PXTIME,1,4)_"-"_$E(PXTIME,5,6)_"-"_$E(PXTIME,7,8)_"T"_$E(PXTIME,9,10)_":"_$E(PXTIME,11,12)_":"_$E(PXTIME,13,14)_$E(PXTZ,1,3)_":"_$E(PXTZ,4,5)
+ S PXVARS("|TIME|")=PXTIME
+ ;
+ S PXLINE=""
+ F PXNODE=2:1:4 D
+ . S PXI=0
+ . F  S PXI=$O(^PXV(920.77,PXELIEN,PXNODE,PXI)) Q:'PXI  D
+ . . S PXTEXT=$G(^PXV(920.77,PXELIEN,PXNODE,PXI,0))
+ . . ;
+ . . I PXTEXT["|PAYLOAD|" D  Q
+ . . . S PXLINE=PXLINE_$P(PXTEXT,"|PAYLOAD|",1)
+ . . . S PXJ=0
+ . . . F  S PXJ=$O(^TMP("PXPAYLOAD",$J,PXJ)) Q:'PXJ  D
+ . . . . S PXLINE=PXLINE_$G(^TMP("PXPAYLOAD",$J,PXJ))
+ . . . . D ADDOUTLN(.PXLINE)
+ . . . S PXLINE=PXLINE_$P(PXTEXT,"|PAYLOAD|",2)
+ . . ;
+ . . I PXTEXT["|" S PXTEXT=$$REPLACE^XLFSTR(PXTEXT,.PXVARS)
+ . . S PXLINE=PXLINE_PXTEXT
+ . . ;
+ . . D ADDOUTLN(.PXLINE)
+ ;
+ I PXLINE'="" D
+ . D ADDOUTLN(.PXLINE,1)
+ ;
+ K ^TMP("PXPAYLOAD",$J)
+ ;
+ Q
+ ;
+ADDOUTLN(PXLINE,PXLAST) ;
+ ;
+ ; ZEXCEPT: PXCNT,PXMAXLINE,PXSUB
+ ;
+ N PXLEN
+ ;
+ S PXLEN=$L(PXLINE)
+ I PXLEN<PXMAXLINE,'$G(PXLAST) Q
+ I PXCNT=0 S ^TMP("PXVWOUT",$J,PXSUB)=$E(PXLINE,1,PXMAXLINE)
+ I PXCNT>0 S ^TMP("PXVWOUT",$J,PXSUB,PXCNT)=$E(PXLINE,1,PXMAXLINE)
+ S PXCNT=PXCNT+1
+ S PXLINE=$E(PXLINE,(PXMAXLINE+1),PXLEN)
+ ;
+ I $L(PXLINE)>PXMAXLINE D ADDOUTLN(.PXLINE,$G(PXLAST))
+ I $G(PXLAST),$L(PXLINE)>0 D ADDOUTLN(.PXLINE,1)
+ Q
+ ;
+PROCIN ; Process message from ICE
+ ;
+ ; Extract and decode B64 message from ICE and parse XML.
+ ; Input:
+ ;   ICE Output Message in ^TMP("PXVWIN",$J)
+ ; Output:
+ ;   Parsed data in ^TMP("PXICEWEB",$J)
+ ;
+ N PXCALLBACK,PXCNT,PXGBL,PXSTART,PXTAG
+ ;
+ K ^TMP("PXPAYLOAD",$J)
+ K ^TMP("PXICEXML",$J)
+ K ^TMP("PXVWIN2",$J)
+ ;
+ ; Flatten global, to put it in correct format for EN^MXMLPRSE
+ S PXCNT=0
+ S PXGBL=$NA(^TMP("PXVWIN",$J))
+ F  S PXGBL=$Q(@PXGBL) Q:PXGBL=""  Q:($QS(PXGBL,1)'="PXVWIN")!($QS(PXGBL,2)'=$J)  D
+ . S PXCNT=PXCNT+1
+ . S ^TMP("PXVWIN2",$J,PXCNT)=$G(@PXGBL)
+ ;
+ ; Extract Base64 Payload from the base64EncodedPayload element
+ S PXCNT=0
+ S PXSTART=0
+ S PXTAG="base64EncodedPayload"
+ S PXCALLBACK("STARTELEMENT")="PROCINSE^PXVWSOAP"
+ S PXCALLBACK("ENDELEMENT")="PROCINEE^PXVWSOAP"
+ S PXCALLBACK("CHARACTERS")="PROCINC^PXVWSOAP"
+ D EN^MXMLPRSE($NA(^TMP("PXVWIN2",$J)),.PXCALLBACK,"W")
+ ;
+ I '$D(^TMP("PXPAYLOAD",$J)) Q
+ D B64DECD($NA(^TMP("PXICEXML",$J)),$NA(^TMP("PXPAYLOAD",$J)))
+ I '$D(^TMP("PXICEXML",$J)) K ^TMP("PXPAYLOAD",$J) Q
+ ;
+ ; Parse XML Message from ICE
+ D EN^PXVWPXML
+ ;
+ K ^TMP("PXPAYLOAD",$J)
+ K ^TMP("PXICEXML",$J)
+ K ^TMP("PXVWIN2",$J)
+ ;
+ Q
+ ;
+PROCINSE(PXELEMENT,PXATTLIST)  ; start element
+ ;
+ ; ZEXCEPT: PXTAG,PXSTART
+ ;
+ I PXELEMENT=PXTAG S PXSTART=1
+ Q
+ ;
+PROCINEE(PXELEMENT)  ; end element
+ ;
+ ; ZEXCEPT: PXTAG,PXSTART
+ ;
+ I PXELEMENT=PXTAG S PXSTART=0
+ Q
+ ;
+PROCINC(PXTEXT)  ; Characters
+ ;
+ ; ZEXCEPT: PXCNT,PXSTART
+ ;
+ I 'PXSTART Q
+ S PXCNT=PXCNT+1
+ S ^TMP("PXPAYLOAD",$J,PXCNT)=PXTEXT
+ Q
+ ;
+B64ENCD(PXOUT,PXIN) ; Base64 Encode data in PXIN
+ ;
+ N PXB64,PXCNT,PXENCDLEN,PXI,PXLEN,PXLINE,PXMAXLINE,PXSTOP
+ ;
+ ; Encode length should be a multiple of 3, so that partial text encodes ok.
+ S PXENCDLEN=183
+ ;S PXENCDLEN=915
+ S PXLINE=""
+ S PXCNT=0
+ ;
+ S PXSTOP=0
+ S PXI=0
+ F  D  Q:PXSTOP
+ . I $L(PXLINE)<PXENCDLEN D  Q:PXSTOP
+ . . S PXI=$O(@PXIN@(PXI))
+ . . I 'PXI S PXSTOP=1 Q
+ . . S PXLINE=PXLINE_$G(@PXIN@(PXI))
+ . S PXLEN=$L(PXLINE)
+ . I PXLEN<PXENCDLEN Q
+ . S PXB64=$$B64ENCD^XUSHSH($E(PXLINE,1,PXENCDLEN))
+ . D ADDENCLN(.PXB64)
+ . S PXLINE=$E(PXLINE,(PXENCDLEN+1),PXLEN)
+ ;
+ I PXLINE'="" D
+ . S PXB64=$$B64ENCD^XUSHSH(PXLINE)
+ . D ADDENCLN(.PXB64)
+ ;
+ Q
+ ;
+ADDENCLN(PXLINE) ;
+ ;
+ ; ZEXCEPT: PXCNT,PXOUT
+ ;
+ ; Base64 encoding adds CRLF after every 76 characters.
+ ; Remove them from payload.
+ S PXLINE=$TR(PXLINE,$C(13,10),"")
+ S PXCNT=PXCNT+1
+ S @PXOUT@(PXCNT)=PXLINE
+ Q
+ ;
+B64DECD(PXOUT,PXIN) ; Base64 decode data in PXIN
+ ;
+ N PXCNT,PXDECDLEN,PXI,PXLEN,PXLINE,PXSTOP,PXTEXT
+ ;
+ ; Decode length should be a multiple of 4 (so that it decodes partial text ok).
+ ;S PXDECDLEN=3752
+ S PXDECDLEN=244
+ S PXLINE=""
+ S PXCNT=0
+ ;
+ S PXSTOP=0
+ S PXI=0
+ F  D  Q:PXSTOP
+ . I $L(PXLINE)<PXDECDLEN D  Q:PXSTOP
+ . . S PXI=$O(@PXIN@(PXI))
+ . . I 'PXI S PXSTOP=1 Q
+ . . S PXLINE=PXLINE_$G(@PXIN@(PXI))
+ . S PXLEN=$L(PXLINE)
+ . I PXLEN<PXDECDLEN Q
+ . S PXTEXT=$$B64DECD^XUSHSH($E(PXLINE,1,PXDECDLEN))
+ . D ADDDECLN(.PXTEXT)
+ . S PXLINE=$E(PXLINE,(PXDECDLEN+1),PXLEN)
+ ;
+ I PXLINE'="" D
+ . S PXTEXT=$$B64DECD^XUSHSH(PXLINE)
+ . D ADDDECLN(.PXTEXT)
+ ;
+ Q
+ ;
+ADDDECLN(PXLINE) ;
+ ;
+ ; ZEXCEPT: PXCNT,PXOUT
+ ;
+ S PXCNT=PXCNT+1
+ S @PXOUT@(PXCNT)=PXLINE
+ Q

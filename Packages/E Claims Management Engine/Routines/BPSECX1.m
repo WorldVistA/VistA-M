@@ -1,6 +1,6 @@
 BPSECX1 ;BHAM ISC/FCS/DRS/VA/DLF - Create new Claim ID for Claim Submission file ;05/17/2004
- ;;1.0;E CLAIMS MGMT ENGINE;**1,2,5**;JUN 2004;Build 45
- ;;Per VHA Directive 2004-038, this routine should not be modified.
+ ;;1.0;E CLAIMS MGMT ENGINE;**1,2,5,33**;JUN 2004;Build 5
+ ;;Per VA Directive 6402, this routine should not be modified.
  ;----------------------------------------------------------------------
  ;Create new Claim ID for Claim Submission file (9002313.02)
  ;
@@ -16,7 +16,7 @@ CLAIMID(IEN59) ;EP - Called from BPSOSCE (billing requests) and BPSECA8 (reversa
  I '$G(IEN59) Q ""
  ;
  ; Initialization
- N PHARMACY,FACID,THIRD,DEL,PLAN,I,SEQNUM
+ N BPSCS,DEL,FACID,I,PHARMACY,PLAN,RFL,RX,SEQNUM,THIRD
  ;
  ; Get and format the Facility ID (second piece of the transmission ID)
  ;   1. Try to get NPI first.
@@ -25,6 +25,16 @@ CLAIMID(IEN59) ;EP - Called from BPSOSCE (billing requests) and BPSECA8 (reversa
  ;   3. Right-pad the final ID with spaces up to 10 characters
  S PHARMACY=+$P($G(^BPST(IEN59,1)),U,7)
  S FACID=$P($G(^BPS(9002313.56,PHARMACY,"NPI")),U,1)
+ ;
+ ; Check for Controlled Substance Drug and if BPS Pharmacy for CS
+ ; has been defined.  If so, use NPI for the CS Pharmacy.
+ S RX=$$GET1^DIQ(9002313.59,IEN59,1.11,"I")
+ S RFL=$$GET1^DIQ(9002313.59,IEN59,9)
+ S BPSCS=$$CSNPI^BPSUTIL(RX,RFL)
+ I $P(BPSCS,"^")'="-1" D
+ . S FACID=$P(BPSCS,"^",2)
+ . I FACID="" S FACID=$P(BPSCS,"^")
+ ;
  I FACID="" D
  . S FACID=$P($G(^BPS(9002313.56,PHARMACY,0)),U,2)
  . S FACID=$TR($J("",7-$L(FACID))," ","0")_FACID

@@ -1,5 +1,5 @@
 RCDPEAR1 ;ALB/TMK/PJH - ERA Unmatched Aging Report (file #344.4) ;Dec 20, 2014@18:41:35
- ;;4.5;Accounts Receivable;**173,269,276,284,293,298,321,326**;Mar 20, 1995;Build 26
+ ;;4.5;Accounts Receivable;**173,269,276,284,293,298,321,326,371**;Mar 20, 1995;Build 29
  ;Per VA Directive 6402, this routine should not be modified.
  Q
  ;
@@ -55,7 +55,7 @@ EN1 ; entry point - ERA Unmatched Aging Report [RCDPE ERA AGING REPORT]
  I RCLSTMGR="" S RCLSTMGR=$$ASKLM^RCDPEARL G:RCLSTMGR<0 EN1Q
  ; display in ListMan format and exit on return
  I RCLSTMGR D  G EN1Q
- .S RCTMPND=$T(+0)_"^ERA UNMATCHED AGING"  K ^TMP($J,RCTMPND)  ; clean any residue
+ . S RCTMPND=$T(+0)_"^ERA UNMATCHED AGING"  K ^TMP($J,RCTMPND)  ; clean any residue
  .D RPTOUT
  .N H,L,HDR S L=0
  .S HDR("TITLE")=$$HDRNM
@@ -156,30 +156,13 @@ RPTOUT ; Entry point for listing report
  .D SL^RCDPEARL(Z,.RCLNCNT,RCTMPND)
  .S Z=$$SETSTR^VALM1($J("",16)_$S($P(RC0,U,7):$$FMTE^XLFDT($P(RC0,U,7)\1,2),1:""),"",1,25)
  .S Z=$$SETSTR^VALM1("  "_$J($P(RC0,U,5),15,2),Z,26,17)
- .S Z=$$SETSTR^VALM1("  "_+$P(RC0,U,11),Z,43,11)
- .S Z=$$SETSTR^VALM1("  "_$P(RC0,U),Z_$S('$$HACERA^RCDPEU(RCFLIEN):"",1:" (HAC ERA)"),54,16) ; PRCA*4.5*321
- .S Z=$$SETSTR^VALM1("  "_$$FMTE^XLFDT($P(RC0,U,4),2),Z,70,10)                 ; PRCA*4.5*321
+ .;S Z=$$SETSTR^VALM1("  "_+$P(RC0,U,11),Z,43,11)   ;PRCA*4.5*371 Removed column EEOB CNT
+ .;PRCA*4.5*371 Moved ERA # column over from 54 to 43 below
+ .S Z=$$SETSTR^VALM1("  "_$P(RC0,U),Z_$S('$$HACERA^RCDPEU(RCFLIEN):"",1:" (HAC ERA)"),43,16) ; PRCA*4.5*321
+ .;PRCA*4.5*371 Moved ERA Date column over from 70 to 59 below
+ .S Z=$$SETSTR^VALM1("  "_$$FMTE^XLFDT($P(RC0,U,4),2),Z,59,10)                 ; PRCA*4.5*321
  .D SL^RCDPEARL(Z,.RCLNCNT,RCTMPND)
- .I "23"[$$ADJ^RCDPEU(RCFLIEN) D SL^RCDPEARL($J("",9)_"** CLAIM LEVEL ADJUSTMENTS EXIST FOR THIS ERA ***",.RCLNCNT,RCTMPND)
- .I $O(^RCY(344.4,RCFLIEN,2,0)) D  ; ERA level adjustments exist
- ..N Q
- ..D DISPADJ^RCDPESR8(RCFLIEN,"^TMP("_$J_",""RCERA_ADJ"")")
- ..I $O(^TMP($J,"RCERA_ADJ",0)) D SL^RCDPEARL($J("",9)_"** GENERAL ADJUSTMENT DATA EXIST FOR THIS ERA **",.RCLNCNT,RCTMPND)
- ..S Q=0 F  S Q=$O(^TMP($J,"RCERA_ADJ",Q)) Q:'Q  D SL^RCDPEARL($J("",9)_$G(^TMP($J,"RCERA_ADJ",Q)),.RCLNCNT,RCTMPND)
- .;
- .N D,RCSFIEN S RCSFIEN=0  ; RCSFIEN - sub-file ien, RCSF0 - zero node of sub-file entry
- .F  S RCSFIEN=$O(^RCY(344.4,RCFLIEN,1,RCSFIEN)) Q:'RCSFIEN  S RCSF0=$G(^(RCSFIEN,0)) D  Q:RCSTOP
- ..N RCDATA,RCOUT  ; set by RCDPESR0, RCDATA - message data, RCOUT - formatted message display
- ..I 'RCLSTMGR,$Y>(IOSL-RCHDR(0)) D HDRLST^RCDPEARL(.RCSTOP,.RCHDR) Q:RCSTOP
- ..S D=$J("",7)_" EEOB Seq #: "_$P(RCSF0,U)_$S($D(^RCY(344.4,RCFLIEN,1,"ATB",1,RCSFIEN)):" (REVERSAL)",1:"")_"  EEOB "
- ..S D=D_$S('$P(RCSF0,U,2):"not on file",1:"on file for "_$P($G(^DGCR(399,+$G(^IBM(361.1,+$P(RCSF0,U,2),0)),0)),U))_"  "_$J(+$P(RCSF0,U,3),"",2)
- ..D SL^RCDPEARL(D,.RCLNCNT,RCTMPND)
- ..Q:$P(RCSF0,U,2)
- ..D DISP^RCDPESR0("^RCY(344.4,"_RCFLIEN_",1,"_RCSFIEN_",1)","RCDATA",1,"RCOUT",68,1)
- ..I '$O(RCOUT(0)) D SL^RCDPEARL($J("",9)_" NO DETAIL FOUND",.RCLNCNT,RCTMPND) Q
- ..S Z=0 F  S Z=$O(RCOUT(Z)) Q:'Z  D  Q:RCSTOP
- ...I 'RCDISPTY,'RCLSTMGR,$Y>(IOSL-RCHDR(0)) D HDRLST^RCDPEARL(.RCSTOP,.RCHDR) Q:RCSTOP
- ...D SL^RCDPEARL($J("",9)_"*"_RCOUT(Z),.RCLNCNT,RCTMPND)
+ .;PRCA*4.5*371 Removed display of all detail lines below
  ;
  ; PRCA*4.5*298, put end-of-report into SL^RCDPEARL
  I 'RCSTOP D SL^RCDPEARL(" ",.RCLNCNT,RCTMPND),SL^RCDPEARL($$ENDORPRT^RCDPEARL,.RCLNCNT,RCTMPND)
@@ -212,7 +195,7 @@ HDRBLD ; Create the report header
  I RCDISPTY D  Q  ; Excel format, xecute code is QUIT, null page number
  . S RCHDR(0)=1,RCHDR("XECUTE")="Q",RCPGNUM=""
  . S XX="Aged Days^Trace #^Payment From/ID^ERA Date^File Date^Amount Paid"
- . S XX=XX_"^EEOB Cnt^ERA #^EEOB Detail"
+ . S XX=XX_"^ERA #"                             ;PRCA*4.5*371 Removed EEOB Cnt and EEOB Detail
  . S RCHDR(1)=XX
  ;
  S XX="N Y S RCPGNUM=RCPGNUM+1,Y=$$HDRNM^"
@@ -254,7 +237,8 @@ HDRBLD ; Create the report header
  S HCNT=HCNT+1,RCHDR(HCNT)=Y
  S Y="  PAYMENT FROM/ID" ; PRCA*4.5*321 - Allow extra room for 60 character Payer Name
  S HCNT=HCNT+1,RCHDR(HCNT)=Y
- S Y="                FILE DATE      AMOUNT PAID  EEOB CNT   ERA #           ERA DATE"
+ ;PRCA*4.5*371 Removed EEOB CNT below
+ S Y="                FILE DATE      AMOUNT PAID  ERA #           ERA DATE"
  S HCNT=HCNT+1,RCHDR(HCNT)=Y
  S Y="",$P(Y,"=",80)="",HCNT=HCNT+1,RCHDR(HCNT)=Y
  S RCHDR(0)=HCNT  ; total lines in header
@@ -304,7 +288,8 @@ HDRLM ; Create the list manager version of the report header
  S HCNT=HCNT+1,RCHDR(HCNT)=Y
  S Y="  PAYMENT FROM/ID" ; PRCA*4.5*321 - Allow extra room for 60 character Payer Name
  S HCNT=HCNT+1,RCHDR(HCNT)=Y
- S Y="                FILE DATE      AMOUNT PAID  EEOB CNT   ERA #           ERA DATE"
+ ;PRCA*4.5*371 Removed EEOB CNT below
+ S Y="                FILE DATE      AMOUNT PAID  ERA #           ERA DATE"
  S HCNT=HCNT+1,RCHDR(HCNT)=Y
  S RCHDR(0)=HCNT  ; total lines in header
  Q
@@ -315,33 +300,22 @@ EXCEL ; Print report to screen, one record per line for export to MS Excel.
  N D,RCSF0,RC1ST,RCEXCEP,RCFLIEN,RCLN,RCSFIEN,RCZ,Z
  ; RCSFIEN - sub-file ien
  D HDRLST^RCDPEARL(.RCSTOP,.RCHDR)
- S RCZ="" F  S RCZ=$O(^TMP($J,"RCERA_AGED",RCZ)) Q:RCZ=""  S RCFLIEN=0 F  S RCFLIEN=$O(^TMP($J,"RCERA_AGED",RCZ,RCFLIEN)) Q:'RCFLIEN  D  G:RCSTOP PRTQ2
- .I $D(ZTQUEUED),$$S^%ZTLOAD S (RCSTOP,ZTSTOP)=1 K ZTREQ I +$G(RCPGNUM) W:RCTMPND="" !!,"***TASK STOPPED BY USER***" Q
- .S RC0=$G(^RCY(344.4,RCFLIEN,0))
- .S RCEXCEP=$$XCEPT^RCDPEWLP(RCFLIEN)  ; PRCA*4.5*298  assignment of ERA exception flag (will either be "" or "x")
- .S Z=$J(RCEXCEP_-RCZ,4)_U_$P(RC0,U,2)_U_$P(RC0,U,6)_"/"_$P(RC0,U,3)_U_$$FMTE^XLFDT($P(RC0,U,4),2)_U_$$FMTE^XLFDT($P(RC0,U,7),2)_U   ;PRCA*4.5*298 display ERA exception flag
- .S Z=Z_$P(RC0,U,5)_U_$P(RC0,U,11)_U_$P(RC0,U)
- .W !,Z
- .S RCLN=Z,RC1ST=0
- .K Z
- .I "23"[$$ADJ^RCDPEU(RCFLIEN) D LSTXCEL W "^** CLAIM LEVEL ADJUSTMENTS EXIST FOR THIS ERA ***"
- .I $O(^RCY(344.4,RCFLIEN,2,0)) D  ; ERA level adjustments exist
- ..N Q
- ..D DISPADJ^RCDPESR8(RCFLIEN,"^TMP("_$J_",""RCERA_ADJ"")")
- ..I $O(^TMP($J,"RCERA_ADJ",0)) D LSTXCEL W "^** GENERAL ADJUSTMENT DATA EXISTS FOR ERA **"
- ..S Q=0 F  S Q=$O(^TMP($J,"RCERA_ADJ",Q)) Q:'Q  D LSTXCEL W "^"_$G(^TMP($J,"RCERA_ADJ",Q))
- .;
- .S RCSFIEN=0 F  S RCSFIEN=$O(^RCY(344.4,RCFLIEN,1,RCSFIEN)) Q:'RCSFIEN  S RCSF0=$G(^(RCSFIEN,0)) D  Q:RCSTOP
- ..N D
- ..K RCOUT
- ..S D=" EEOB Seq #: "_$P(RCSF0,U)_$S($D(^RCY(344.4,RCFLIEN,1,"ATB",1,RCSFIEN)):" (REVERSAL)",1:"")_"  EEOB "
- ..S D=D_$S('$P(RCSF0,U,2):"not on file",1:"on file for "_$P($G(^DGCR(399,+$G(^IBM(361.1,+$P(RCSF0,U,2),0)),0)),U))_"  "_$J(+$P(RCSF0,U,3),"",2)
- ..D LSTXCEL W "^",D
- ..Q:$P(RCSF0,U,2)
- ..D DISP^RCDPESR0("^RCY(344.4,"_RCFLIEN_",1,"_RCSFIEN_",1)","RCDATA",1,"RCOUT",68,1)
- ..I '$O(RCOUT(0)) D LSTXCEL W "^NO DETAIL FOUND" Q
- ..S Z=0 F  S Z=$O(RCOUT(Z)) Q:'Z  D  Q:RCSTOP
- ...D LSTXCEL W "^*"_RCOUT(Z)
+ S RCZ=""
+ F  S RCZ=$O(^TMP($J,"RCERA_AGED",RCZ)) Q:RCZ=""  D
+ . S RCFLIEN=0
+ . F  S RCFLIEN=$O(^TMP($J,"RCERA_AGED",RCZ,RCFLIEN)) Q:'RCFLIEN  D  G:RCSTOP PRTQ2
+ . . I $D(ZTQUEUED),$$S^%ZTLOAD S (RCSTOP,ZTSTOP)=1 K ZTREQ I +$G(RCPGNUM) W:RCTMPND="" !!,"***TASK STOPPED BY USER***" Q
+ . . S RC0=$G(^RCY(344.4,RCFLIEN,0))
+ . . S RCEXCEP=$$XCEPT^RCDPEWLP(RCFLIEN)  ; PRCA*4.5*298  assignment of ERA exception flag (will either be "" or "x")
+ . . S Z=$J(RCEXCEP_-RCZ,4)_U_$P(RC0,U,2)_U_$P(RC0,U,6)_"/"_$P(RC0,U,3)
+ . . ;
+ . . ;PRCA*4.5*371 Changed external date/times below to be just date (,2 to ,"2D")
+ . . S Z=Z_U_$$FMTE^XLFDT($P(RC0,U,4),"2D")_U_$$FMTE^XLFDT($P(RC0,U,7),"2D")_U
+ . . S Z=Z_$P(RC0,U,5)_U_$P(RC0,U,1) ;PRCA*4.5*371 removed $P(RC0,U,11)_U before _$P(RC0,U,1)
+ . . W !,Z
+ . . S RCLN=Z,RC1ST=0
+ . . ;
+ . . ;PRCA*4.5*371 removed detail lines below
  ;
  W !!,$$ENDORPRT^RCDPEARL
  Q

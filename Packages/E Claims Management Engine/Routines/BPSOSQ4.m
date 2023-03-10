@@ -1,6 +1,6 @@
 BPSOSQ4 ;BHAM ISC/FCS/DRS/DLF - Process responses ;12/7/07  15:48
- ;;1.0;E CLAIMS MGMT ENGINE;**1,5,7,10**;JUN 2004;Build 27
- ;;Per VHA Directive 2004-038, this routine should not be modified.
+ ;;1.0;E CLAIMS MGMT ENGINE;**1,5,7,10,30**;JUN 2004;Build 19
+ ;;Per VA Directive 6402, this routine should not be modified.
  ;
  ; This routine has two components
  ;   Procedures to report Response info
@@ -133,8 +133,9 @@ REJSLEEP(BPSRESP,BPSPOS,IEN59) ;
  S GRPLAN=$$GETPLN59^BPSUTIL2(IEN59) I 'GRPLAN Q 0
  I $$IGNORE^BPSOSQF(+GRPLAN) Q 0
  ;
- ; Don't sleep if response has reject 88 (DUR) or 79 (Refill Too Soon)
+ ; Don't sleep if response has reject 88 (DUR), 943 (DUR), or 79 (Refill Too Soon)
  I $D(^BPSR(BPSRESP,1000,BPSPOS,511,"B",88)) Q 0
+ I $D(^BPSR(BPSRESP,1000,BPSPOS,511,"B",943)) Q 0
  I $D(^BPSR(BPSRESP,1000,BPSPOS,511,"B",79)) Q 0
  ;
  ; Is this a reject code to consider?

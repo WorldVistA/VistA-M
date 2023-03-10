@@ -1,5 +1,5 @@
 RCDPEWL4 ;ALB/TMK/PJH - ELECTRONIC EOB WORKLIST ACTIONS ;Jun 06, 2014@19:11:19
- ;;4.5;Accounts Receivable;**173,208,269,298,303,318,326**;Mar 20, 1995;Build 26
+ ;;4.5;Accounts Receivable;**173,208,269,298,303,318,326,349,367**;Mar 20, 1995;Build 11
  ;;Per VA Directive 6402, this routine should not be modified.
  ; RCSCR variable must be defined for this routine
  Q
@@ -61,7 +61,7 @@ DISTADJ(RCFR,RCTO,RCAMT,RCCOM) ; Action that distributes an adjustment amount
  Q
  ;
 NEWREC ; Create a new receipt from scratch pad entry
- N Z,Z0,RCOK,RCRECTDA,RCSTOP,DIR,X,Y,RECTDA,CT,DIE,DA,DR,RCER,RCPAYTY,RCHAC,RCDEP,DIC
+ N CT,DA,DIC,DIE,DIR,DR,RCDEP,RCER,RCHAC,RCOK,RCPAYTY,RCRECTDA,RCSTOP,RECTDA,X,Y,Z,Z0  ; PRCA*4.5*367
  D FULL^VALM1
  I $G(RCSCR("NOEDIT"))=2 D NOTAV^RCDPEWL2 G NEWRECQ
  S (RCSTOP,RCOK)=0,VALMBCK="R"
@@ -79,7 +79,7 @@ NEWREC ; Create a new receipt from scratch pad entry
  I 'RCOK S DIR(0)="EA",DIR("A")="NO RECEIPT CAN BE CREATED - NO POSTABLE LINE ITEMS WERE FOUND" W ! D ^DIR K DIR G NEWRECQ
  ;
  S RCHAC=$$HACERA^RCDPEU(RCSCR)
- S RCPAYTY=$S(RCHAC:8,$P($G(^RCY(344.4,+RCSCR,5)),U,2)="":14,1:4)
+ S RCPAYTY=$S(RCHAC:17,$P($G(^RCY(344.4,+RCSCR,5)),U,2)="":14,1:4) ; PRCA*4.5*367 - Use CHAMPVA receipt type for CHAMPVA payments
  S RCDEP=""
  I RCPAYTY=4 D
  . N RCOK1
@@ -93,6 +93,15 @@ NEWREC ; Create a new receipt from scratch pad entry
  I 'RECTDA W ! S DIR(0)="EA",DIR("A",1)="A PROBLEM WAS ENCOUNTERED ADDING THE RECEIPT - NO RECEIPT ADDED",DIR("A")="PRESS RETURN TO CONTINUE" W ! D ^DIR K DIR G NEWRECQ
  ;
  D RCPTDET^RCDPEM(RCSCR,RECTDA,.RCER)
+ ;PRCA*4.5*367 - Calculate Receipt Total for CHAMPVA Receipts
+ I RCHAC D
+ . N RCFDA,RCPTOT,I
+ . S (RCPTOT,I)=0
+ . F  S I=$O(^RCY(344.49,RCSCR,1,I)) Q:'I  D
+ .. Q:$P(^RCY(344.49,RCSCR,1,I,0),U)'["."
+ .. S RCPTOT=RCPTOT+$P(^RCY(344.49,RCSCR,1,I,0),U,3)
+ . S RCFDA(344,RECTDA_",",.22)=RCPTOT
+ . D FILE^DIE(,"RCFDA")
  ;
  S DIE="^RCY(344.49,",DA=RCSCR,DR=".02////"_RECTDA D ^DIE
  S DIE="^RCY(344.4,",DA=RCSCR,DR=".08////"_RECTDA D ^DIE
@@ -118,9 +127,6 @@ VRECPT ;EP - Protocol action - RCDPE EOB WL RECEIPT VIEW
  N DIR,RCOK,RCZ,X,Y,Z,Z0
  D FULL^VALM1
  S VALMBCK="R"
- I '$D(^XUSEC("RCDPEPP",DUZ)) D  Q  ; PRCA*4.5*318 Added security key check
- . W !!,"This action can only be taken by users that have the RCDPEPP security key.",!
- . D PAUSE^VALM1
  I $S($P($G(^RCY(344.4,RCSCR,4)),U,2)]"":1,1:0) D VR^RCDPEWLP(RCSCR) G VRECPTQ   ; prca*4.5*298  auto-posted ERAs are handled differently
  ;
  ;
@@ -139,6 +145,8 @@ VRECPT ;EP - Protocol action - RCDPE EOB WL RECEIPT VIEW
  . W !
  . S DIR(0)="E" D ^DIR K DIR
  ;
+ I '$D(^XUSEC("RCDPEPP",DUZ)) D  Q          ; PRCA*4.5*349 - Added AM worklist preview
+ . D EN^VALM("RCDPE EOB RECEIPT PREVIEW AM"),VRECPTQ
  D EN^VALM("RCDPE EOB RECEIPT PREVIEW")
 VRECPTQ ;
  S VALMBCK=$S('$G(RCSCR):"Q",1:"R")

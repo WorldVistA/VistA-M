@@ -1,5 +1,5 @@
 PSODDPR3 ;BIR/SAB - display NVA enhanced order checks ;10/04/06 3:38pm
- ;;7.0;OUTPATIENT PHARMACY;**251,375,379,372**;DEC 1997;Build 54
+ ;;7.0;OUTPATIENT PHARMACY;**251,375,379,372,651**;DEC 1997;Build 30
  ;Reference ^PSDRUG supported by DBIA 221
  ;Reference ^PS(55 supported by DBIA 2228
  ;Reference ^PS(50.7 is supported by DBIA 2223
@@ -149,7 +149,7 @@ VAGEN(PSODD) ;Return the VA GENERIC name
  Q PSOVAG
 INST ;displays instruction and/or comments
  S INST=0 F  S INST=$O(^PS(52.41,RXREC,TY,INST)) Q:'INST  S MIG=^PS(52.41,RXREC,TY,INST,0) D
- .W !,$S(TY=2:"      Instructions: ",TY=3:" Provider Comments: ",1:"")
+ .W !,$S(TY=2:"  "_$S($$ERXIEN^PSOERXUT(RXREC_"P"):"eRx",1:"   ")_" Instructions: ",TY=3:" Provider Comments: ",1:"")
  .F SG=1:1:$L(MIG," ") D HD^PSODDPR2() Q:$G(PSODLQT)  W:$X+$L($P(MIG," ",SG)_" ")>IOM @$S(TY=3:"!?14",1:"!?19") W $P(MIG," ",SG)_" "
  K INST,TY,MIG,SG
  Q

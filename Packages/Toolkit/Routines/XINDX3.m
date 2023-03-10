@@ -1,5 +1,5 @@
 XINDX3 ;ISC/REL,GRK,RWF - PROCESS MERGE/SET/READ/KILL/NEW/OPEN COMMANDS ;06/24/08  15:44
- ;;7.3;TOOLKIT;**20,27,61,68,110,121,128,132,133,140**;Apr 25, 1995;Build 40
+ ;;7.3;TOOLKIT;**20,27,61,68,110,121,128,132,133,140,149,153**;Apr 25, 1995;Build 3
  ; Per VHA Directive 2004-038, this routine should not be modified.
 PEEK S Y=$G(LV(LV,LI+1)) Q
 PEEK2 S Y=$G(LV(LV,LI+2)) Q
@@ -45,8 +45,8 @@ VLNF(X) ;Drop into VLN
 VLN ;Valid Local Name > Variable
  S ERR=0
  Q:X?1(1U,1"%").15UN
- ;lower/mixed case, can't be namespaced ;p140
- I X?1(1A,1"%").15AN D:$E(RTN,1,2)=$E(X,1,2) E^XINDX1(57) Q
+ ;lower/mixed case, can't be namespaced ;p140 ;p153 change case and check
+ I X?1(1A,1"%").15AN D:($E(RTN,1,2)=$E(X,1,2))!($E(RTN,1,2)=$$CASE^XINDX9($E(X,1,2))) E^XINDX1(57) Q
  D E^XINDX1(11) ;Too long or other problem
  Q
 VGN ;Valid Global Name
@@ -59,7 +59,7 @@ KL1 D INC,ARG^XINDX2 Q
 KL2 S GK="!"
  I S1'="(" S ERR=24 D ^XINDX1
  G ARG^XINDX2
-KL3 I "^DT^DTIME^DUZ^IOST^IOM^U^"[("^"_S_"^") S ERR=39,ERR(1)=S D ^XINDX1
+KL3 I "^DT^DTIME^DILOCKTM^DUZ^IOST^IOM^U^"[("^"_S_"^") S ERR=39,ERR(1)=S D ^XINDX1 ;p149
  I "IO"=S D:S1="(" PEEKDN S ERR=39,ERR(1)=S_$S(S1["(":S1_Y_")",1:"") D:S1'="(" ^XINDX1 I S1="(",("QC"'[$E(Y,2)) D ^XINDX1
 KL5 S GK="!" D ARG^XINDX2 Q  ;KILL SUBS
  Q

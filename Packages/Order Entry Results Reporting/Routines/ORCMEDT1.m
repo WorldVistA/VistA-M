@@ -1,5 +1,5 @@
-ORCMEDT1 ;SLC/MKB-QO,Set editor ;08/10/15
- ;;3.0;ORDER ENTRY/RESULTS REPORTING;**8,46,57,95,110,245,243,296,341,377**;Dec 17, 1997;Build 582
+ORCMEDT1 ;SLC/MKB-QO,Set editor ;Aug 18, 2022@08:07
+ ;;3.0;ORDER ENTRY/RESULTS REPORTING;**8,46,57,95,110,245,243,296,341,377,569**;Dec 17, 1997;Build 23
 OI ; -- Enter/edit generic orderable items
  N X,Y,DA,DR,DIE,DIC,ID,DLAYGO,ORDG
  F  S ORDG=$$DGRP Q:ORDG'>0  D  W !!
@@ -21,28 +21,32 @@ QUICK ; -- Enter/edit quick order dialogs
  F  S ORQDLG=$$DIALOG^ORCMEDT0("Q") Q:ORQDLG="^"  D QCK0(ORQDLG) W !
  Q
 QCK0(ORQDLG) ; -- edit quick order ORQDLG
- N ORDIALOG,DA,DR,DIE,DIDEL,ORQUIT,ORVP,ORL,ACTION,FIRST,ORTYPE,ORNAME,X,Y,BEFORCRC,AFTERCRC
- Q:'$G(ORQDLG)  S DA=ORQDLG,(ORVP,ORL)=0,FIRST=1,ORTYPE="Z"
+ N ORDIALOG,DA,DR,DIE,DIDEL,ORQUIT,ORVP,ORL,ACTION,FIRST,ORTYPE,ORNAME,X,Y,BEFORCRC,AFTERCRC,ISAPDLG,OK2PLACE
+ Q:'$G(ORQDLG)  S DA=ORQDLG,(ORVP,ORL)=0,FIRST=1,ORTYPE="Z",ISAPDLG=$$ISAPDLG(ORQDLG)
  S ORNAME=$$NAME^ORCMEDT4(ORQDLG) Q:(ORNAME="@")!(ORNAME="^")  ;deleted,^
  S BEFORCRC=$$RAWCRC^ORCMEDT8(ORQDLG)
- I $$ISTUBEQO^ORWDXM3(ORQDLG)=1 S DR=".01///^S X=ORNAME;2;20"_$S(DUZ(0)="@":";30",1:"")
+ I ISAPDLG!($$ISTUBEQO^ORWDXM3(ORQDLG)=1) S DR=".01///^S X=ORNAME;2;20"_$S(DUZ(0)="@":";30",1:"")
  E  S DR=".01///^S X=ORNAME;2;8;20"_$S(DUZ(0)="@":";30",1:"")
  S DIE="^ORD(101.41,"
  D ^DIE G:$D(Y)!$D(DTOUT) QR  D GETQDLG^ORCD(ORQDLG) G:'$G(ORDIALOG) QR
  I '$P($G(^ORD(101.41,ORQDLG,0)),U,7) S X=+$P($G(^ORD(101.41,+ORDIALOG,0)),U,7) S:X $P(^ORD(101.41,ORQDLG,0),U,7)=X,^ORD(101.41,"APKG",X,ORQDLG)=""
  W ! I $D(^ORD(101.41,+ORDIALOG,3.1)) X ^(3.1) G:$G(ORQUIT) QQ
 Q1 D DIALOG^ORCDLG G:$G(ORQUIT) QQ
- D DISPLAY^ORCDLG S ACTION=$$OK G:ACTION="^" QQ
- D:ACTION="P" SAVE^ORCMEDT0,AUTO(ORQDLG) I ACTION="E" S FIRST=0 G Q1 ;fall thru if "C"
+ D DISPLAY^ORCDLG
+ S OK2PLACE=1 I ISAPDLG,$$ISINVALID^ORWLRAP2 S OK2PLACE=0
+ S ACTION=$$OK(OK2PLACE) G:ACTION="^" QQ
+ I ACTION="P" D SAVE^ORCMEDT0 I 'ISAPDLG D AUTO(ORQDLG)
+ I ACTION="E" S FIRST=0 G Q1 ;fall thru if "C"
 QQ X:$D(^ORD(101.41,+ORDIALOG,4)) ^(4)
 QR S AFTERCRC=$$RAWCRC^ORCMEDT8(ORQDLG)
  I BEFORCRC'=AFTERCRC D UPDQNAME^ORCMEDT8(ORQDLG) ; Rename personal quick order if modified
  Q
  ;
-OK() ; -- Ready to save?
- N X,Y,DIR S DIR(0)="SAM^P:PLACE;E:EDIT;C:CANCEL;",DIR("B")="PLACE"
- S DIR("A")="(P)lace, (E)dit, or (C)ancel this quick order? "
- S DIR("?")="Enter P to save this quick order, or E to change any of the displayed values; enter C to quit without saving these responses"
+OK(OK2PLACE) ; -- Ready to save?
+ N X,Y,DIR S DIR(0)="SAM^"_$S(OK2PLACE:"P:PLACE;",1:"")_"E:EDIT;C:CANCEL;",DIR("B")=$S(OK2PLACE:"PLACE",1:"EDIT")
+ S DIR("A")=$S(OK2PLACE:"(P)lace, ",1:"")_"(E)dit, or (C)ancel this quick order? "
+ S DIR("?")="Enter "_$S(OK2PLACE:"P to save this quick order, or ",1:"")
+ S DIR("?")=DIR("?")_"E to change any of the displayed values; enter C to quit without saving these responses"
  D ^DIR S:$D(DTOUT) Y="^"
  Q Y
  ;
@@ -126,3 +130,11 @@ EXPLAIN ;Give reason why user can't set auto-accept to yes
  W !!,"This combination of settings could cause CPRS to enter into an infinite loop",!,"creating the same order over and over.  If you wish to have"
  W !,"AUTO-ACCEPT set to YES you must change one of the other two fields",!,"to a different value.",!!,"AUTO-ACCEPT is being set to NO for you."
  Q
+ISAPDLG(DA) ; Is order dialog ANATOMIC PATHOLOGY
+ N GRP,AP,CH
+ I '$G(DA) Q 0
+ S GRP=$P($G(^ORD(101.41,DA,0)),U,5) I 'GRP Q 0
+ S AP=$O(^ORD(100.98,"B","ANATOMIC PATHOLOGY",0)) I 'AP Q 0
+ I GRP=AP Q 1
+ I +$O(^ORD(100.98,AP,1,"B",GRP,0)) Q 1
+ Q 0

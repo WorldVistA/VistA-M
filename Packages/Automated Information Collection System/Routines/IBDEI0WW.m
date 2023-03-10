@@ -1,122 +1,132 @@
-IBDEI0WW ; ; 04-FEB-2020
- ;;3.0;IB ENCOUNTER FORM IMP/EXP;;FEB 04, 2020
+IBDEI0WW ; ; 01-FEB-2022
+ ;;3.0;IB ENCOUNTER FORM IMP/EXP;;FEB 01, 2022
  Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,999) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
- ;;^UTILITY(U,$J,358.3,14645,1,4,0)
- ;;=4^Z74.3
- ;;^UTILITY(U,$J,358.3,14645,2)
- ;;=^5063286
- ;;^UTILITY(U,$J,358.3,14646,0)
- ;;=Z75.1^^83^826^126
- ;;^UTILITY(U,$J,358.3,14646,1,0)
+ ;;^UTILITY(U,$J,358.3,14825,2)
+ ;;=^90473
+ ;;^UTILITY(U,$J,358.3,14826,0)
+ ;;=I48.11^^58^708^2
+ ;;^UTILITY(U,$J,358.3,14826,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,14646,1,3,0)
- ;;=3^Problems Related to Awaiting Facility Admission
- ;;^UTILITY(U,$J,358.3,14646,1,4,0)
- ;;=4^Z75.1
- ;;^UTILITY(U,$J,358.3,14646,2)
- ;;=^5063290
- ;;^UTILITY(U,$J,358.3,14647,0)
- ;;=Z63.9^^83^826^152
- ;;^UTILITY(U,$J,358.3,14647,1,0)
+ ;;^UTILITY(U,$J,358.3,14826,1,3,0)
+ ;;=3^AFIB-Longstanding Persistent
+ ;;^UTILITY(U,$J,358.3,14826,1,4,0)
+ ;;=4^I48.11
+ ;;^UTILITY(U,$J,358.3,14826,2)
+ ;;=^5158046
+ ;;^UTILITY(U,$J,358.3,14827,0)
+ ;;=I48.19^^58^708^3
+ ;;^UTILITY(U,$J,358.3,14827,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,14647,1,3,0)
- ;;=3^Problems Related to Primary Support Group
- ;;^UTILITY(U,$J,358.3,14647,1,4,0)
- ;;=4^Z63.9
- ;;^UTILITY(U,$J,358.3,14647,2)
- ;;=^5063175
- ;;^UTILITY(U,$J,358.3,14648,0)
- ;;=Z74.09^^83^826^154
- ;;^UTILITY(U,$J,358.3,14648,1,0)
+ ;;^UTILITY(U,$J,358.3,14827,1,3,0)
+ ;;=3^AFIB-Oth Persistent
+ ;;^UTILITY(U,$J,358.3,14827,1,4,0)
+ ;;=4^I48.19
+ ;;^UTILITY(U,$J,358.3,14827,2)
+ ;;=^5158047
+ ;;^UTILITY(U,$J,358.3,14828,0)
+ ;;=I48.20^^58^708^1
+ ;;^UTILITY(U,$J,358.3,14828,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,14648,1,3,0)
- ;;=3^Problems Related to Reduced Mobility
- ;;^UTILITY(U,$J,358.3,14648,1,4,0)
- ;;=4^Z74.09
- ;;^UTILITY(U,$J,358.3,14648,2)
- ;;=^5063283
- ;;^UTILITY(U,$J,358.3,14649,0)
- ;;=Z60.9^^83^826^156
- ;;^UTILITY(U,$J,358.3,14649,1,0)
+ ;;^UTILITY(U,$J,358.3,14828,1,3,0)
+ ;;=3^AFIB-Chronic Unspec
+ ;;^UTILITY(U,$J,358.3,14828,1,4,0)
+ ;;=4^I48.20
+ ;;^UTILITY(U,$J,358.3,14828,2)
+ ;;=^5158048
+ ;;^UTILITY(U,$J,358.3,14829,0)
+ ;;=I48.21^^58^708^5
+ ;;^UTILITY(U,$J,358.3,14829,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,14649,1,3,0)
- ;;=3^Problems Related to Social Environment
- ;;^UTILITY(U,$J,358.3,14649,1,4,0)
- ;;=4^Z60.9
- ;;^UTILITY(U,$J,358.3,14649,2)
- ;;=^5063145
- ;;^UTILITY(U,$J,358.3,14650,0)
- ;;=Z60.4^^83^826^157
- ;;^UTILITY(U,$J,358.3,14650,1,0)
+ ;;^UTILITY(U,$J,358.3,14829,1,3,0)
+ ;;=3^AFIB-Permanent
+ ;;^UTILITY(U,$J,358.3,14829,1,4,0)
+ ;;=4^I48.21
+ ;;^UTILITY(U,$J,358.3,14829,2)
+ ;;=^304710
+ ;;^UTILITY(U,$J,358.3,14830,0)
+ ;;=I48.3^^58^708^9
+ ;;^UTILITY(U,$J,358.3,14830,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,14650,1,3,0)
- ;;=3^Problems Related to Social Exclusion/Rejection
- ;;^UTILITY(U,$J,358.3,14650,1,4,0)
- ;;=4^Z60.4
- ;;^UTILITY(U,$J,358.3,14650,2)
- ;;=^5063142
- ;;^UTILITY(U,$J,358.3,14651,0)
- ;;=Z60.5^^83^826^125
- ;;^UTILITY(U,$J,358.3,14651,1,0)
+ ;;^UTILITY(U,$J,358.3,14830,1,3,0)
+ ;;=3^Atrial Flutter-Typical
+ ;;^UTILITY(U,$J,358.3,14830,1,4,0)
+ ;;=4^I48.3
+ ;;^UTILITY(U,$J,358.3,14830,2)
+ ;;=^5007227
+ ;;^UTILITY(U,$J,358.3,14831,0)
+ ;;=I48.4^^58^708^8
+ ;;^UTILITY(U,$J,358.3,14831,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,14651,1,3,0)
- ;;=3^Problems Related to Adverse Discrimination/Persecution
- ;;^UTILITY(U,$J,358.3,14651,1,4,0)
- ;;=4^Z60.5
- ;;^UTILITY(U,$J,358.3,14651,2)
- ;;=^5063143
- ;;^UTILITY(U,$J,358.3,14652,0)
- ;;=Z75.3^^83^826^158
- ;;^UTILITY(U,$J,358.3,14652,1,0)
+ ;;^UTILITY(U,$J,358.3,14831,1,3,0)
+ ;;=3^Atrial Flutter-Atypical
+ ;;^UTILITY(U,$J,358.3,14831,1,4,0)
+ ;;=4^I48.4
+ ;;^UTILITY(U,$J,358.3,14831,2)
+ ;;=^5007228
+ ;;^UTILITY(U,$J,358.3,14832,0)
+ ;;=J44.0^^58^708^17
+ ;;^UTILITY(U,$J,358.3,14832,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,14652,1,3,0)
- ;;=3^Problems Related to Unavailability/Inaccessibility of Health-Care Facilities
- ;;^UTILITY(U,$J,358.3,14652,1,4,0)
- ;;=4^Z75.3
- ;;^UTILITY(U,$J,358.3,14652,2)
- ;;=^5063292
- ;;^UTILITY(U,$J,358.3,14653,0)
- ;;=Z75.4^^83^826^159
- ;;^UTILITY(U,$J,358.3,14653,1,0)
+ ;;^UTILITY(U,$J,358.3,14832,1,3,0)
+ ;;=3^COPD w/ Lower Resp Infection
+ ;;^UTILITY(U,$J,358.3,14832,1,4,0)
+ ;;=4^J44.0
+ ;;^UTILITY(U,$J,358.3,14832,2)
+ ;;=^5008239
+ ;;^UTILITY(U,$J,358.3,14833,0)
+ ;;=I50.22^^58^708^15
+ ;;^UTILITY(U,$J,358.3,14833,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,14653,1,3,0)
- ;;=3^Problems Related to Unavailability/Inaccessibility of Helping Agencies
- ;;^UTILITY(U,$J,358.3,14653,1,4,0)
- ;;=4^Z75.4
- ;;^UTILITY(U,$J,358.3,14653,2)
- ;;=^5063293
- ;;^UTILITY(U,$J,358.3,14654,0)
- ;;=Z65.9^^83^826^153
- ;;^UTILITY(U,$J,358.3,14654,1,0)
+ ;;^UTILITY(U,$J,358.3,14833,1,3,0)
+ ;;=3^CHF-Systolic (Chr HFrEF)
+ ;;^UTILITY(U,$J,358.3,14833,1,4,0)
+ ;;=4^I50.22
+ ;;^UTILITY(U,$J,358.3,14833,2)
+ ;;=^5007241
+ ;;^UTILITY(U,$J,358.3,14834,0)
+ ;;=I50.32^^58^708^14
+ ;;^UTILITY(U,$J,358.3,14834,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,14654,1,3,0)
- ;;=3^Problems Related to Psychosocial Circumstances
- ;;^UTILITY(U,$J,358.3,14654,1,4,0)
- ;;=4^Z65.9
- ;;^UTILITY(U,$J,358.3,14654,2)
- ;;=^5063186
- ;;^UTILITY(U,$J,358.3,14655,0)
- ;;=Z75.2^^83^826^160
- ;;^UTILITY(U,$J,358.3,14655,1,0)
+ ;;^UTILITY(U,$J,358.3,14834,1,3,0)
+ ;;=3^CHF-Diastolic (Chr HFpEF)
+ ;;^UTILITY(U,$J,358.3,14834,1,4,0)
+ ;;=4^I50.32
+ ;;^UTILITY(U,$J,358.3,14834,2)
+ ;;=^5007245
+ ;;^UTILITY(U,$J,358.3,14835,0)
+ ;;=I50.42^^58^708^13
+ ;;^UTILITY(U,$J,358.3,14835,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,14655,1,3,0)
- ;;=3^Problems Related to Waiting Period for Investigation/Treatment
- ;;^UTILITY(U,$J,358.3,14655,1,4,0)
- ;;=4^Z75.2
- ;;^UTILITY(U,$J,358.3,14655,2)
- ;;=^5063291
- ;;^UTILITY(U,$J,358.3,14656,0)
- ;;=Z75.5^^83^826^161
- ;;^UTILITY(U,$J,358.3,14656,1,0)
+ ;;^UTILITY(U,$J,358.3,14835,1,3,0)
+ ;;=3^CHF-Combined Systolic & Diastolic
+ ;;^UTILITY(U,$J,358.3,14835,1,4,0)
+ ;;=4^I50.42
+ ;;^UTILITY(U,$J,358.3,14835,2)
+ ;;=^5007249
+ ;;^UTILITY(U,$J,358.3,14836,0)
+ ;;=I50.84^^58^708^22
+ ;;^UTILITY(U,$J,358.3,14836,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,14656,1,3,0)
- ;;=3^Respite/Holiday Relief Care
- ;;^UTILITY(U,$J,358.3,14656,1,4,0)
- ;;=4^Z75.5
- ;;^UTILITY(U,$J,358.3,14656,2)
- ;;=^5063294
- ;;^UTILITY(U,$J,358.3,14657,0)
- ;;=R68.89^^83^826^165
- ;;^UTILITY(U,$J,358.3,14657,1,0)
+ ;;^UTILITY(U,$J,358.3,14836,1,3,0)
+ ;;=3^End Stage Heart Failure
+ ;;^UTILITY(U,$J,358.3,14836,1,4,0)
+ ;;=4^I50.84
+ ;;^UTILITY(U,$J,358.3,14836,2)
+ ;;=^5151391
+ ;;^UTILITY(U,$J,358.3,14837,0)
+ ;;=F81.81^^58^709^4
+ ;;^UTILITY(U,$J,358.3,14837,1,0)
  ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,14837,1,3,0)
+ ;;=3^Disorder of written expression
+ ;;^UTILITY(U,$J,358.3,14837,1,4,0)
+ ;;=4^F81.81
+ ;;^UTILITY(U,$J,358.3,14837,2)
+ ;;=^5003680
+ ;;^UTILITY(U,$J,358.3,14838,0)
+ ;;=R41.3^^58^709^1
+ ;;^UTILITY(U,$J,358.3,14838,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,14838,1,3,0)
+ ;;=3^Amnesia NEC

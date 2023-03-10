@@ -1,5 +1,5 @@
-PSBVDLRM ;BIRMINGHAM/EFC-BCMA UNIT DOSE VIRTUAL DUE LIST REMOVE MEDS ;03/06/16 3:06pm
- ;;3.0;BAR CODE MED ADMIN;**83,114**;Mar 2004;Build 3
+PSBVDLRM ;BIRMINGHAM/EFC-BCMA UNIT DOSE VIRTUAL DUE LIST REMOVE MEDS ;2/6/21  18:24
+ ;;3.0;BAR CODE MED ADMIN;**83,114,106**;Mar 2004;Build 43
  ;Per VHA Directive 2004-038 (or future revisions regarding same), this routine should not be modified.
  ;
  ; called by PSBVDLUD to find Medications needing removal (MRR) then
@@ -14,6 +14,7 @@ PSBVDLRM ;BIRMINGHAM/EFC-BCMA UNIT DOSE VIRTUAL DUE LIST REMOVE MEDS ;03/06/16 3
  ;*83 - Read Medlog for remove medications types MRR, other than form
  ;      of PATCH, and add 34th & 35th piece to Results.
  ;      Remove flag & Remove time
+ ;*106- add Hazardous to Handle & Dispose flags 36 & 37
  ;      
 EN ;Search the Medlog file for MRR meds (not patches) that were Given
  ; and not Removed. Place these meds into the return Results array.
@@ -76,7 +77,9 @@ EN ;Search the Medlog file for MRR meds (not patches) that were Given
  ...S $P(PSBREC,U,32)=$G(PSBCLORD)            ;clinic name
  ...S $P(PSBREC,U,33)=$G(PSBCLIEN)            ;clinic ien ptr
  ...S $P(PSBREC,U,35)=$P(^PSB(53.79,PSBIEN,.1),U,7)  ;existing RM time
- ...;
+ ..;       piece 34-35 reserved for Remove meds and set by PSBVDLU1
+ ..S $P(PSBREC,U,36)=$G(PSBHAZHN)  ;Hazardous to Handle    *106
+ ..S $P(PSBREC,U,37)=$G(PSBHAZDS)  ;Hazardous to Dispose   *106
  ..; Place into Coversheet activity ARRAY
  ..S PSBDIDX="" I $D(^PSB(53.79,"AORD",DFN,PSBONX)) D
  ...S PSBXDTI="",PSBXDTI=$O(^PSB(53.79,"AORD",DFN,PSBONX,PSBXDTI),-1)

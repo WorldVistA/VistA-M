@@ -1,5 +1,5 @@
 RCDPEAPQ ;AITC/CJE - AUTO POST REPORT -CONTINUED ;Dec 20, 2014@18:42
- ;;4.5;Accounts Receivable;**298,304,326**;Mar 20, 1995;Build 26
+ ;;4.5;Accounts Receivable;**298,304,326,345**;Mar 20, 1995;Build 34
  ;Per VA Directive 6402, this routine should not be modified.
  ; PRCA*4.5*326 - Routine created as an overflow for RCDPEAPP due to size
  Q
@@ -17,7 +17,7 @@ SAVE(ERAIEN,RCRZ,RCTYPE,APDATE,RCSORT) ; EP - Save to ^TMP global
  ;                     A2 - Total Original Amounts
  ;                     A3 - Total Payment Amounts
  ;                     A4 - Total Balance
- N BALANCE,BAMT,BILL,CLAIMIEN,COLLECT,DATE,EFTNUM,EOBIEN,ERADATE,ERANUM
+ N BALANCE,BAMT,BILL,CLAIMIEN,COLLECT,DATE,DEPNO,EFTIEN,EFTNUM,EOBIEN,ERADATE,ERANUM ; PRCA*4.5*345
  N PAMT,PAYIX1,PAYIX2,PAYNAM,PTNAM,RECEIPT,SEQ,SEQ1,SEQ2,STIX
  N TIN,TOTBAL,TOTBAMT,TOTPAMT,TRACE,XX
  S PAYNAM=$$GET1^DIQ(344.4,ERAIEN,.06,"E")          ; Payer Name from ERA Record
@@ -37,9 +37,13 @@ SAVE(ERAIEN,RCRZ,RCTYPE,APDATE,RCSORT) ; EP - Save to ^TMP global
  . S ERADATE=$$FMTE^XLFDT(ERADATE,"2DZ")
  . S DATE=$$FMTE^XLFDT(APDATE,"2DZ")                ; Auto-Posting DATE
  . S EFTNUM=$O(^RCY(344.31,"AERA",ERANUM,""))       ; EFT Number
- . S:EFTNUM EFTNUM=$$GET1^DIQ(344.31,EFTNUM,.01,"E")
+ . S EFTIEN="" I EFTNUM D                           ; PRCA*4.5*345
+ . . S EFTIEN=$$GET1^DIQ(344.31,EFTNUM,.01,"I")
+ . . S EFTNUM=$$GET1^DIQ(344.31,EFTNUM,.01,"E")
  . S XX=$$GET1^DIQ(344.41,RCRZ_","_ERAIEN,.25,"I")  ; Receipt IEN
  . S RECEIPT=$$EXTERNAL^DILFD(344.41,.25,,XX)
+ . S DEPNO=""                                        ; PRCA*4.5*345 Deposit ticket number
+ . I EFTIEN S DEPNO=$$GET1^DIQ(344.3,EFTIEN_",",.03,"E") ; PRCA*4.5*345
  ;
  ; Get link to the scratchpad detail line. If the worklist detail records exist, 
  ; loop through the ones with the same prefix to get the data (this will have split-edits)
@@ -68,10 +72,10 @@ SAVE(ERAIEN,RCRZ,RCTYPE,APDATE,RCSORT) ; EP - Save to ^TMP global
  . . . S CNT=CNT+1
  . . . S XX=STNAM_U_STNUM_U_$S(RCSORT:TIN_"/"_PAYNAM,1:PAYNAM_"/"_TIN)_U ; PRCA*4.5*326 add TIN
  . . . S XX=XX_PTNAM_U_ERANUM_U_ERADATE_U_DATE_U_EFTNUM
- . . . S XX=XX_U_RECEIPT_U_BILL_U_BAMT_U_PAMT_U_BALANCE_U_COLLECT_U_TRACE
+ . . . S XX=XX_U_RECEIPT_U_BILL_U_BAMT_U_PAMT_U_BALANCE_U_COLLECT_U_TRACE_U_DEPNO ; PRCA*4.5*345
  . . . S @GLOB@(STIX,PAYIX1,PAYIX2,CNT)=XX ; Add data for detail report
  ;
- ; If the worlist detail record does not exist, get data from ERA detail
+ ; If the worklist detail record does not exist, get data from ERA detail
  I 'SEQ D
  . S (TOTBAMT,TOTBAL,COLLECT,CLAIMIEN)=0
  . S EOBIEN=$$GET1^DIQ(344.41,RCRZ_","_ERAIEN,.02,"I")  ; IEN for 361.1
@@ -92,7 +96,7 @@ SAVE(ERAIEN,RCRZ,RCTYPE,APDATE,RCSORT) ; EP - Save to ^TMP global
  . . S:TOTBAMT COLLECT=$J(TOTPAMT/TOTBAMT*100,0,2)_"%"
  . . S CNT=CNT+1
  . . S XX=STNAM_U_STNUM_U_PAYNAM_U_PTNAM_U_ERANUM_U_ERADATE_U_DATE_U_EFTNUM
- . . S XX=XX_U_RECEIPT_U_BILL_U_TOTBAMT_U_TOTPAMT_U_TOTBAL_U_COLLECT_U_TRACE
+ . . S XX=XX_U_RECEIPT_U_BILL_U_TOTBAMT_U_TOTPAMT_U_TOTBAL_U_COLLECT_U_TRACE_U_DEPNO ; PRCA*4.5*345
  . . S @GLOB@(STIX,PAYIX1,PAYIX2,CNT)=XX
  ;
  ; Update totals for individual division

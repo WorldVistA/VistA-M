@@ -1,5 +1,5 @@
-GMRCSLM2 ;SLC/DCM,WAT - LM Detailed  display and printing ;12/10/14  14:15
- ;;3.0;CONSULT/REQUEST TRACKING;**1,4,18,15,17,23,22,65,66,73,81,110**;DEC 27,1997;Build 6
+GMRCSLM2 ;SLC/DCM,WAT - LM Detailed  display and printing ;Sep 10, 2020@14:20:28
+ ;;3.0;CONSULT/REQUEST TRACKING;**1,4,18,15,17,23,22,65,66,73,81,110,145**;DEC 27,1997;Build 18
  ;
  ;ICRs
  ;GLOBALS/FILES
@@ -66,7 +66,8 @@ DT(GMRCO,GMRCIERR) ;;Entry point to set-up detailed display.
  .Q
  I $P(GMRCO(0),"^",10) S ^TMP("GMRCR",$J,"DT",GMRCCT,0)="Place:"_$E(TAB,1,17)_$P($G(^ORD(101,+$P(GMRCO(0),"^",10),0)),"^",2),GMRCCT=GMRCCT+1
  S ^TMP("GMRCR",$J,"DT",GMRCCT,0)="Urgency:"_$E(TAB,1,15)_$S($L($P(GMRCO(0),"^",9)):$P($G(^ORD(101,+$P(GMRCO(0),"^",9),0)),"^",2),1:""),GMRCCT=GMRCCT+1
- S ^TMP("GMRCR",$J,"DT",GMRCCT,0)="Clinically Ind. Date:"_$E(TAB,1,2)_$$FMTE^XLFDT($P($G(GMRCO(0)),"^",24),1),GMRCCT=GMRCCT+1 ;WAT/66/81
+ S ^TMP("GMRCR",$J,"DT",GMRCCT,0)="Clinically Ind. Date:"_$E(TAB,1,2)_$$FMTE^XLFDT($P($G(GMRCO(0)),"^",24),1),GMRCCT=GMRCCT+1
+ S ^TMP("GMRCR",$J,"DT",GMRCCT,0)="DST ID:"_$E(TAB,1,16)_$G(^GMR(123,+GMRCO,75)),GMRCCT=GMRCCT+1
  S X="ORX8" X ^%ZOSF("TEST") I  D
  .N GMRCOITM S GMRCOITM=$$OI^ORX8(ORIFN)
  .S ^TMP("GMRCR",$J,"DT",GMRCCT,0)="Orderable Item:"_$E(TAB,1,8)_$P(GMRCOITM,U,2),GMRCCT=GMRCCT+1

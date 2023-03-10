@@ -1,6 +1,6 @@
 IBCNERP5 ;DAOU/BHS - IBCNE eIV PAYER REPORT COMPILE ;03-JUN-2002
- ;;2.0;INTEGRATED BILLING;**184,271,300,416**;21-MAR-94;Build 58
- ;;Per VHA Directive 2004-038, this routine should not be modified.
+ ;;2.0;INTEGRATED BILLING;**184,271,300,416,668**;21-MAR-94;Build 28
+ ;;Per VHA Directive 6402, this routine should not be modified.
  ;
  ; eIV - Insurance Verification Interface
  ;
@@ -118,12 +118,13 @@ GETDATA(IEN,RPTDATA,DTL,PYNM,PYIEN,PYR) ; Retrieve data for this inquiry and res
  ;   #ofDaysforResponses^#Timeouts^#Pending^DeactivationDTM
  ;  RPTDATA(PayerName,PayerIEN,ErrCond OR ErrText) = #ErrorResps subtotal
  ; Initialize variables
- NEW HLIEN,HLID,RIEN,RDATA0,RPYIEN,RPYNM,RDATA1,ERRTXT,X1,X2,FIRST,APIEN
+ NEW DEACT,HLIEN,HLID,RIEN,RDATA0,RPYIEN,RPYNM,RDATA1,ERRTXT,X1,X2,FIRST
  ;
  S RPTDATA(PYNM,PYIEN)=1
+ ;IB*668/TAZ - Call PYRDEACT to get Payer Deactivated from new file location.
  ; Determine Deactivation DTM for eIV application
- S APIEN=$$PYRAPP^IBCNEUT5("IIV",PYIEN)
- I APIEN,$P($G(^IBE(365.12,PYIEN,1,APIEN,0)),U,11) S $P(RPTDATA(PYNM,PYIEN),U,11)=$P($G(^IBE(365.12,PYIEN,1,APIEN,0)),U,12)
+ S DEACT=$$PYRDEACT^IBCNINSU(PYIEN)
+ I +DEACT S $P(RPTDATA(PYNM,PYIEN),U,11)=$P(DEACT,U,2)
  ; Logic by Transmission Status
  ;  Cancelled (7) - Payer deactivated
  I $P($G(^IBCN(365.1,IEN,0)),U,4)=7 S $P(RPTDATA(PYNM,PYIEN),U,2)=1 Q
@@ -145,9 +146,10 @@ GETDATA(IEN,RPTDATA,DTL,PYNM,PYIEN,PYR) ; Retrieve data for this inquiry and res
  .  .  ; Apply payer filter here, too!
  .  .  ; If there is a Payer filter, check against the IEN
  .  .  I PYR'="",RPYIEN'=PYR Q
+ .  .  ;IB*668/TAZ - Call PYRDEACT to get Payer Deactivated from new file location.
  .  .  ; Determine Deactivation DTM for eIV application
- .  .  S APIEN=$$PYRAPP^IBCNEUT5("IIV",RPYIEN)
- .  .  I APIEN,$P($G(^IBE(365.12,RPYIEN,1,APIEN,0)),U,11) S $P(RPTDATA(RPYNM,RPYIEN),U,11)=$P($G(^IBE(365.12,RPYIEN,1,APIEN,0)),U,12)
+ .  .  S DEACT=$$PYRDEACT^IBCNINSU(RPYIEN)
+ .  .  I +DEACT S $P(RPTDATA(RPYNM,RPYIEN),U,11)=$P(DEACT,U,2)
  .  .  S RDATA1=$G(^IBCN(365,RIEN,1))
  .  .  S ERRTXT=$G(^IBCN(365,RIEN,4))
  .  .  ; Transmitted (Pending)

@@ -1,5 +1,5 @@
-RADD2 ;HISC/GJC/CAH-Radiology Data Dictionary Utility Routine ;30 May 2019 8:39 AM
- ;;5.0;Radiology/Nuclear Medicine;**84,47,124,158**;Mar 16, 1998;Build 2
+RADD2 ;HISC/GJC/CAH-Radiology Data Dictionary Utility Routine ; Feb 11, 2021@11:10:54
+ ;;5.0;Radiology/Nuclear Medicine;**84,47,124,158,175**;Mar 16, 1998;Build 2
  ;
  ;Integration Agreements
  ;----------------------
@@ -45,27 +45,9 @@ EN1(RA71) ; Input transform for the .01 field (Procedure) for the Rad/Nuc
  K RA71ACTIVE,RA71ITYPE,RAPARENT,RAPFLG
  Q 0
  ;
-CH(RAY,RAX) ; This subroutine will fire off the 'Radiology Request Cancel
- ; /Hold' notification as defined in the 'OE/RR NOTIFICATIONS' file.
- ; Only if request is either cancelled or held.  Called from the set
- ; logic of the 'ACHN' xref in ^DD(75.1,5) field definition.
- ;
- ; Input variables:
- ; 'RAX'=Request status of the order, $S(X=1:'discontinued',X=3:'hold')
- ; 'RAY'=ien of the order in the RAD/NUC MED ORDERS file.
- ;
- Q:(RAY'=+RAY)  Q:(RAX'=1)&(RAX'=3)
- N %,C,D,D0,DA,DC,DDER,DE,DG,DH,DI,DIC,DIE,DIEDA,DIEL,DIFLD,DIP,DIW,DIWT
- N DK,DL,DM,DN,DP,DQ,DR,DU,DV,DW,I,J,N,ORBPMSG,ORBXDATA,ORIFN,ORNOTE,ORVP
- N RA751,RADFN,RANME,RAOIFN,RAOLP,RAOPTN,RAORDS,RAOREA,RAOSTS,RAPARENT
- N RAPRC,RAXIT,X,Y
- S RA751=$G(^RAO(75.1,RAY,0)) Q:RA751']""
- S RAOIFN=RAY,RADFN=+$P(RA751,"^")
- S RAPRC=$P($G(^RAMIS(71,+$P(RA751,"^",2),0)),"^"),ORVP=RADFN_";DPT("
- S ORBPMSG=$S(RAX=1:"Discontinued - ",1:"On hold - ")_$E(RAPRC,1,17)
- S ORBXDATA=RAOIFN_","_RADFN,ORIFN=+$P(RA751,"^",7),ORNOTE(26)=1
- D NOTE^ORX3
+CH ;this tag was removed w/RA*5.0*175
  Q
+ ;
 INACOM(RAD0) ; Check inactive date on the Rad/Nuc Med Procedure file (71)
  ; for the Common Procedure before setting our inactive procedure to
  ; active.  Called from the 'RA COMMON PROCEDURE EDIT' input template.

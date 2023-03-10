@@ -1,5 +1,5 @@
-EDPQPCE ;SLC/KCM - Retrieve PCE information for ED Visits ;2/28/12 08:33am
- ;;2.0;EMERGENCY DEPARTMENT;**6,2**;Feb 24, 2012;Build 23
+EDPQPCE ;SLC/KCM - Retrieve PCE information for ED Visits ; 9/20/21 11:53am
+ ;;2.0;EMERGENCY DEPARTMENT;**6,2,16**;Feb 24, 2012;Build 6
  ;
 DXPRI(AREA,LOG) ; return primary diagnosis
  N DXLST
@@ -23,7 +23,8 @@ DXPCE(EDPVISIT,DXLST) ; return a list of diagnoses from PCE
  . S EDPLCIEN=$P(X,U)
  . S CODE=$P($$ICDDATA^EDPLEX("DIAG",EDPLCIEN,EDPLVDT),U,2) ; DRP 
  . ;DRP end EDP*2.0*2 changes
- . S NAME=^AUTNPOV($P(X,U,4),0)
+ . S NAME=$G(^AUTNPOV($P(X,U,4),0))
+ . I 'NAME S NAME=$$LD^ICDEX(80,EDPLCIEN,EDPLCTYPE) ; *16
  . S:NAME'[EDPLCTYPE NAME=NAME_" ("_$G(EDPLCTYPE)_" "_CODE_")"
  . S DX=DX+1,DX($S($P(X,U,12)="P":DX,1:DX*10000))=CODE_U_NAME_U_EDPLCTYPE
  S X="",DXLST=DX F I=1:1 S X=$O(DX(X)) Q:X=""  S DXLST(I)=DX(X)

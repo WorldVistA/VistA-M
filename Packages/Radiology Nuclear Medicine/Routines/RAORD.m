@@ -1,26 +1,72 @@
-RAORD ;HISC/CAH,FPT,GJC AISC/RMO-Rad/NM Order Entry Main Menu ; Mar 20, 2020@11:24:15
- ;;5.0;Radiology/Nuclear Medicine;**133,168**;Mar 16, 1998;Build 1
+RAORD ;HISC/CAH,FPT,GJC AISC/RMO-Rad/NM Order Entry Main Menu ; Dec 23, 2020@09:58:39
+ ;;5.0;Radiology/Nuclear Medicine;**133,168,174**;Mar 16, 1998;Build 2
+ ;
+ ;NAME    TAG            IA #      USAGE          CUSTODIAN
+ ;----------------------------------------------------------
+ ;%DTC    HELP           10000     Supported      VA FILEMAN
+ ;
 2 ;;Schedule a Request
  N RAPTLOCK
+ ;//P174 ask to schedule or reschedule //
+ N DIR,DIROUT,DIRUT,DTOUT,DUOUT,X,Y
+ S DIR("A")="Schedule or Re-schedule request(s)",DIR("B")="Schedule"
+ S DIR(0)="S^1:Schedule;2:Re-Schedule"
+ S DIR("?",1)="Enter '1' to initially schedule request(s), else '2'"
+ S DIR("?")="to reschedule currently scheduled request(s)."
+ D ^DIR Q:$D(DIRUT)#2
+ K DIR,DIROUT,DIRUT,DTOUT,DUOUT
+ N RAFLGA MERGE RAFLGA=Y
+ ;RAFLGA: internal value ('1' or '2')
+ ;RAFLGA(0): external value ('Schedule' or 'Re-Schedule')
+ ;
 21 ; Patient lookup
  S DIC="^DPT(",DIC(0)="AEMQ" W ! D ^DIC K DIC G Q2:Y<0
  I $$ORVR^RAORDU()'<3 D  G:'RAPTLOCK 21
  . S RAPTLOCK=$$LK^RAUTL19(+Y_";DPT(")
  . Q
  S RADFN=+Y,RANME=$S($D(^DPT(RADFN,0)):$P(^(0),"^"),1:"Unknown")
- S (RAOFNS,RAOPTN)="Schedule",RAOVSTS="3;5"
+ ;// P174 begin //
+ N RAX S RAX=$$RESCH(RAFLGA)
+ S (RAOFNS,RAOPTN)=$P(RAX,U) ;"Schedule" or "Re-Schedule"
+ ;RAOVSTS = "3;5" for the schedule a request option &
+ ;"8;" for reschedule a request option
+ S RAOVSTS=$P(RAX,U,2) ;"3;5" schedule -or- "8;" reschedule
+ ;// P174 end //
+ ;
  W ! D ^RAORDS G Q2:'$D(RAORDS)
- S %DT("A")="Schedule Request Date/Time: ",%DT="AEFXT"
- W ! D ^%DT K %DT G Q2:Y<0 S RAOSCH=Y,RAOLP=0
+ ;// P174
+ K RAMAXDD,DIR,DIROUT,DIRUT,DTOUT,DUOUT
+ ;find the largest DATE DESIRED from the order(s) selected by the user.
+ ;use these values to beef up the help text when asking for the SCHEDULED DATE
+ S RAMAXDD=$$MAXDD(.RAORDS) ;by ref returns internal FM date
+ S RAMAXDD(0)=$$FMADD^XLFDT(RAMAXDD,210,0,0,0) ;get upper limit
+ W ! S DIR(0)="DA^"_$$DT^XLFDT_":"_RAMAXDD(0)_":ETX"
+ S DIR("A")="Enter the SCHEDULED DATE (TIME optional): "
+ S DIR("?",1)="The 'SCHEDULED DATE (TIME optional)' entered cannot"
+ S DIR("?")="be prior to TODAY and cannot exceed "_$$FMTE^XLFDT(RAMAXDD(0),"1P")_"."
+ S DIR("??")="^D HELP^%DTC"
+ D ^DIR Q:$D(DIRUT)#2
+ K DIR,DIROUT,DIRUT,DTOUT,DUOUT
+ S RAOSCH=Y,RAOLP=0
+ ;S %DT("A")="Schedule Request Date/Time: ",%DT="AEFXT"
+ ;W ! D ^%DT K %DT G Q2:Y<0 S RAOSCH=Y,RAOLP=0
  F  S RAOLP=+$O(RAORDS(RAOLP)) Q:'RAOLP!('+$G(RAORDS(RAOLP)))  D
- . S RAOIFN=$G(RAORDS(RAOLP)),RAOSTS=8 D ^RAORDU
+ . N RAOIFN S RAOIFN=$G(RAORDS(RAOLP)) ;P174
+ . S RAOIFN(0)=$G(^RAO(75.1,RAOIFN,0)),RAOIFN(21)=$P(RAOIFN(0),U,21)
+ . ;1st param: RAOIFN(21) = date desired
+ . ;2nd param: RAOSCH scheduled date
+ . ;3rd param: 2nd can't exceed 1st by more than these # of days
+ . I $$OUTXDAYS(RAOIFN(21),RAOSCH,210)=1  D  Q
+ .. W !?3,"Procedure: "_$E($$GET1^DIQ(75.1,RAOIFN,2),1,20)_" not scheduled: date is out of range."
+ .. Q
+ . S RAOSTS=8 D ^RAORDU
  . Q
  D Q2 G 21
 Q2 ; Unlock if appropriate, kill vars
  I $$ORVR^RAORDU()'<3,(+$G(RAPTLOCK)),(+$G(RADFN)) D
  . D ULK^RAUTL19(RADFN_";DPT(")
  K %DT,C,D,D0,DA,I,RADFN,RADIV,RANME,RAOFNS,RAOIFN,RAOLP,RAORDS,RAOSCH
- K RAOPTN,RAOSTS,RAOVSTS,X,Y
+ K RAOPTN,RAOSTS,RAOVSTS,X,Y,RAMAXDD
  K RAPARENT
  K A1,D1,DDER,DDH,DI,DIPGM,POP,^TMP($J,"PRO-ORD")
  Q
@@ -182,3 +228,39 @@ PCR ; Print Cancelled Requests.  Called from the 'Cancel A Request' option.
  D ^%ZTLOAD W:$D(ZTSK) !!?3,$C(7),"Task "_ZTSK_": cancellation queued to print on device ",RAION,!
  D HOME^%ZIS
  Q
+ ;
+MAXDD(ARY) ;for the RIS orders (#75.1) selected by the user
+ ;determine the DATE DESIRED (DD) farthest into the future.
+ ;R = the DATE DESIRED farthest into the future
+ ;X = 0 node (75.1)  |  X21 = RIS order DD
+ ;Y = 'n' sequntial  |  ARY(Y) = record IEN (75.1) 
+ N R,X,Y S (R,Y)=0 F  S Y=$O(ARY(Y)) Q:Y'>0  D
+ .S X=$G(^RAO(75.1,ARY(Y),0)),X21=$P(X,U,21)
+ .S:X21>R R=X21
+ .Q
+ Q R ;FM internal
+ ;
+RESCH(Y) ;P174 - pass back subject and request statuses depending
+ ;on the action: 'schedule request(s)' or 're-schedule request(s)'
+ ;Input: 'Y': '1' for schedule, '2' for reschedule
+ ;
+ N X S X="Schedule^"
+ Q $S(Y=2:"Re-"_X_"8;",1:X_"3;5")
+ ;
+OUTXDAYS(RAPD,RAQD,RAMAX) ;P174 - compare two dates. Are they
+ ;                        within the max # of days allowed?
+ ;
+ ; Input:  RAMAX = The number of days one date must be within
+ ;                 another. For example: RAMAX = 210
+ ;          RAPD = Primary Date
+ ;                 For Example: 'DATE DESIRED (Not guaranteed)'
+ ;          RAQD = Questionable Date
+ ;                 For Example: 'SCHEDULED DATE (TIME optional)'
+ ;                 (RAOSCH is the variable for this fld)
+ ;
+ ;Return: one (1) if the difference between RAQD and RAPD is more than
+ ;                the max # of days (RAMAX)
+ ;       zero (0) if RAQD is less than or equal to the RAPD by RAMAX
+ ;
+ Q $S(($$FMDIFF^XLFDT(RAQD,RAPD,1)>RAMAX):1,1:0)
+ ;

@@ -1,5 +1,5 @@
-PSOORFI4 ;BIR/SAB-CPRS order checks and display con't ;6/17/09 1:11pm
- ;;7.0;OUTPATIENT PHARMACY;**46,74,78,99,117,131,207,258,274,300,308,251,384,391,444**;DEC 1997;Build 34
+PSOORFI4 ;BIR/SAB - CPRS order checks and display con't ;Aug 23, 2021@14:15:33
+ ;;7.0;OUTPATIENT PHARMACY;**46,74,78,99,117,131,207,258,274,300,308,251,384,391,444,441**;DEC 1997;Build 208
  ;External reference to ^PS(51.2 supported by DBIA 2226
  ;External reference to ^PS(50.607 supported by DBIA 2221
  ;External reference ^PS(55 supported by DBIA 2228
@@ -42,7 +42,7 @@ PROVCOM ;
  ..S DIR(0)="E",DIR("A")="Press Return to continue" D ^DIR
  .S PSOPRC=1,NI=0 F I=0:0 S I=$O(PSONEW("SIG",I)) Q:'I  S NI=I
  .S NC=0 F I=0:0 S I=$O(PRC(I)) Q:'I  S NC=NC+1
- .I NI'>1,NC=1,($L($G(PSONEW("SIG",NI)))+$L(PRC(1)))'>250 D  Q 
+ .I NI'>1,NC=1,($L($G(PSONEW("SIG",NI)))+$L(PRC(1)))'>250 D  Q
  ..S X=PRC(1) D SIGONE^PSOHELP
  ..S PSONEW("SIG",1)=$G(PSONEW("SIG",NI))_INS1 K INS1,X
  ..S:$E(PSONEW("SIG",1))=" " PSONEW("SIG",1)=$E(PSONEW("SIG",1),2,250) S PSONEW("INS")=PSONEW("SIG",1) D EN^PSOFSIG(.PSONEW,1) K NI,NC
@@ -143,3 +143,13 @@ CLQTY ;
 PQTY ;
  S ^TMP("PSOPO",$J,IEN,0)=^TMP("PSOPO",$J,IEN,0)_", days supply of "_+$P(OR0,"^",22)_" and a qty of "_+$P(OR0,"^",10)
  Q
+ ;
+IND ;
+ Q:'$D(PSONEW("IND"))
+ Q:$D(PSONEW("INDF"))
+ D EN^DDIOL("Indication: "_PSONEW("IND"),"","!!")
+ N X,Y,DIR,DIRUT,DUOUT,PSOZ S PSOZ=$$GET1^DIQ(59.7,1,96),DIR(0)="Y",DIR("A")="Copy Indication into the Sig",DIR("B")=$S(PSOZ]"":PSOZ,1:"YES")
+ D ^DIR Q:'Y!($D(DIRUT))
+ S PSONEW("INDF")=1 D EN^PSOFSIG(.PSONEW,1)
+ Q
+ ;

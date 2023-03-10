@@ -1,126 +1,122 @@
-IBDEI1KN ; ; 04-FEB-2020
- ;;3.0;IB ENCOUNTER FORM IMP/EXP;;FEB 04, 2020
+IBDEI1KN ; ; 01-FEB-2022
+ ;;3.0;IB ENCOUNTER FORM IMP/EXP;;FEB 01, 2022
  Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,999) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
- ;;^UTILITY(U,$J,358.3,25117,1,4,0)
- ;;=4^J20.1
- ;;^UTILITY(U,$J,358.3,25117,2)
- ;;=^5008187
- ;;^UTILITY(U,$J,358.3,25118,0)
- ;;=J20.0^^107^1213^11
- ;;^UTILITY(U,$J,358.3,25118,1,0)
+ ;;^UTILITY(U,$J,358.3,25482,0)
+ ;;=Z56.82^^92^1159^4
+ ;;^UTILITY(U,$J,358.3,25482,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,25118,1,3,0)
- ;;=3^Bronchitis,Acute d/t Mycoplasma Pneumonia
- ;;^UTILITY(U,$J,358.3,25118,1,4,0)
- ;;=4^J20.0
- ;;^UTILITY(U,$J,358.3,25118,2)
- ;;=^5008186
- ;;^UTILITY(U,$J,358.3,25119,0)
- ;;=J20.2^^107^1213^6
- ;;^UTILITY(U,$J,358.3,25119,1,0)
+ ;;^UTILITY(U,$J,358.3,25482,1,3,0)
+ ;;=3^Military Deployment Status,Current
+ ;;^UTILITY(U,$J,358.3,25482,1,4,0)
+ ;;=4^Z56.82
+ ;;^UTILITY(U,$J,358.3,25482,2)
+ ;;=^5063115
+ ;;^UTILITY(U,$J,358.3,25483,0)
+ ;;=Z62.811^^92^1159^12
+ ;;^UTILITY(U,$J,358.3,25483,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,25119,1,3,0)
- ;;=3^Bonchitis,Acute d/t Streptococcus
- ;;^UTILITY(U,$J,358.3,25119,1,4,0)
- ;;=4^J20.2
- ;;^UTILITY(U,$J,358.3,25119,2)
- ;;=^5008188
- ;;^UTILITY(U,$J,358.3,25120,0)
- ;;=J20.4^^107^1213^13
- ;;^UTILITY(U,$J,358.3,25120,1,0)
+ ;;^UTILITY(U,$J,358.3,25483,1,3,0)
+ ;;=3^Personal Hx of Childhood Psychological Abuse
+ ;;^UTILITY(U,$J,358.3,25483,1,4,0)
+ ;;=4^Z62.811
+ ;;^UTILITY(U,$J,358.3,25483,2)
+ ;;=^5063154
+ ;;^UTILITY(U,$J,358.3,25484,0)
+ ;;=Z62.812^^92^1159^10
+ ;;^UTILITY(U,$J,358.3,25484,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,25120,1,3,0)
- ;;=3^Bronchitis,Acute d/t Parainfluenza Virus
- ;;^UTILITY(U,$J,358.3,25120,1,4,0)
- ;;=4^J20.4
- ;;^UTILITY(U,$J,358.3,25120,2)
- ;;=^5008190
- ;;^UTILITY(U,$J,358.3,25121,0)
- ;;=J20.3^^107^1213^8
- ;;^UTILITY(U,$J,358.3,25121,1,0)
+ ;;^UTILITY(U,$J,358.3,25484,1,3,0)
+ ;;=3^Personal Hx of Childhood Neglect
+ ;;^UTILITY(U,$J,358.3,25484,1,4,0)
+ ;;=4^Z62.812
+ ;;^UTILITY(U,$J,358.3,25484,2)
+ ;;=^5063155
+ ;;^UTILITY(U,$J,358.3,25485,0)
+ ;;=Z62.810^^92^1159^11
+ ;;^UTILITY(U,$J,358.3,25485,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,25121,1,3,0)
- ;;=3^Bronchitis,Acute d/t Coxsackievirus
- ;;^UTILITY(U,$J,358.3,25121,1,4,0)
- ;;=4^J20.3
- ;;^UTILITY(U,$J,358.3,25121,2)
- ;;=^5008189
- ;;^UTILITY(U,$J,358.3,25122,0)
- ;;=J20.9^^107^1213^7
- ;;^UTILITY(U,$J,358.3,25122,1,0)
+ ;;^UTILITY(U,$J,358.3,25485,1,3,0)
+ ;;=3^Personal Hx of Childhood Phys/Sexual Abuse
+ ;;^UTILITY(U,$J,358.3,25485,1,4,0)
+ ;;=4^Z62.810
+ ;;^UTILITY(U,$J,358.3,25485,2)
+ ;;=^5063153
+ ;;^UTILITY(U,$J,358.3,25486,0)
+ ;;=Z91.83^^92^1159^23
+ ;;^UTILITY(U,$J,358.3,25486,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,25122,1,3,0)
- ;;=3^Bronchitis,Acute Unspec
- ;;^UTILITY(U,$J,358.3,25122,1,4,0)
- ;;=4^J20.9
- ;;^UTILITY(U,$J,358.3,25122,2)
- ;;=^5008195
- ;;^UTILITY(U,$J,358.3,25123,0)
- ;;=J20.8^^107^1213^12
- ;;^UTILITY(U,$J,358.3,25123,1,0)
+ ;;^UTILITY(U,$J,358.3,25486,1,3,0)
+ ;;=3^Wandering Associated w/ a Mental Disorder
+ ;;^UTILITY(U,$J,358.3,25486,1,4,0)
+ ;;=4^Z91.83
+ ;;^UTILITY(U,$J,358.3,25486,2)
+ ;;=^5063627
+ ;;^UTILITY(U,$J,358.3,25487,0)
+ ;;=Z91.412^^92^1159^7
+ ;;^UTILITY(U,$J,358.3,25487,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,25123,1,3,0)
- ;;=3^Bronchitis,Acute d/t Oth Spec Organisms
- ;;^UTILITY(U,$J,358.3,25123,1,4,0)
- ;;=4^J20.8
- ;;^UTILITY(U,$J,358.3,25123,2)
- ;;=^5008194
- ;;^UTILITY(U,$J,358.3,25124,0)
- ;;=J20.5^^107^1213^14
- ;;^UTILITY(U,$J,358.3,25124,1,0)
+ ;;^UTILITY(U,$J,358.3,25487,1,3,0)
+ ;;=3^Personal Hx of Adult Neglect
+ ;;^UTILITY(U,$J,358.3,25487,1,4,0)
+ ;;=4^Z91.412
+ ;;^UTILITY(U,$J,358.3,25487,2)
+ ;;=^5063621
+ ;;^UTILITY(U,$J,358.3,25488,0)
+ ;;=Z91.411^^92^1159^9
+ ;;^UTILITY(U,$J,358.3,25488,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,25124,1,3,0)
- ;;=3^Bronchitis,Acute d/t Respiratory Syncytial Virus
- ;;^UTILITY(U,$J,358.3,25124,1,4,0)
- ;;=4^J20.5
- ;;^UTILITY(U,$J,358.3,25124,2)
- ;;=^5008191
- ;;^UTILITY(U,$J,358.3,25125,0)
- ;;=J20.7^^107^1213^9
- ;;^UTILITY(U,$J,358.3,25125,1,0)
+ ;;^UTILITY(U,$J,358.3,25488,1,3,0)
+ ;;=3^Personal Hx of Adult Psych Abuse
+ ;;^UTILITY(U,$J,358.3,25488,1,4,0)
+ ;;=4^Z91.411
+ ;;^UTILITY(U,$J,358.3,25488,2)
+ ;;=^5063620
+ ;;^UTILITY(U,$J,358.3,25489,0)
+ ;;=Z91.410^^92^1159^8
+ ;;^UTILITY(U,$J,358.3,25489,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,25125,1,3,0)
- ;;=3^Bronchitis,Acute d/t Echovirus
- ;;^UTILITY(U,$J,358.3,25125,1,4,0)
- ;;=4^J20.7
- ;;^UTILITY(U,$J,358.3,25125,2)
- ;;=^5008193
- ;;^UTILITY(U,$J,358.3,25126,0)
- ;;=J20.6^^107^1213^15
- ;;^UTILITY(U,$J,358.3,25126,1,0)
+ ;;^UTILITY(U,$J,358.3,25489,1,3,0)
+ ;;=3^Personal Hx of Adult Phys/Sexual Abuse
+ ;;^UTILITY(U,$J,358.3,25489,1,4,0)
+ ;;=4^Z91.410
+ ;;^UTILITY(U,$J,358.3,25489,2)
+ ;;=^5063619
+ ;;^UTILITY(U,$J,358.3,25490,0)
+ ;;=Z75.3^^92^1159^21
+ ;;^UTILITY(U,$J,358.3,25490,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,25126,1,3,0)
- ;;=3^Bronchitis,Acute d/t Rhinovirus
- ;;^UTILITY(U,$J,358.3,25126,1,4,0)
- ;;=4^J20.6
- ;;^UTILITY(U,$J,358.3,25126,2)
- ;;=^5008192
- ;;^UTILITY(U,$J,358.3,25127,0)
- ;;=J18.9^^107^1213^67
- ;;^UTILITY(U,$J,358.3,25127,1,0)
+ ;;^UTILITY(U,$J,358.3,25490,1,3,0)
+ ;;=3^Unavailable/Inaccessible to Health Care Facilities
+ ;;^UTILITY(U,$J,358.3,25490,1,4,0)
+ ;;=4^Z75.3
+ ;;^UTILITY(U,$J,358.3,25490,2)
+ ;;=^5063292
+ ;;^UTILITY(U,$J,358.3,25491,0)
+ ;;=Z75.4^^92^1159^22
+ ;;^UTILITY(U,$J,358.3,25491,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,25127,1,3,0)
- ;;=3^Pneumonia,Unspec Organism
- ;;^UTILITY(U,$J,358.3,25127,1,4,0)
- ;;=4^J18.9
- ;;^UTILITY(U,$J,358.3,25127,2)
- ;;=^95632
- ;;^UTILITY(U,$J,358.3,25128,0)
- ;;=J18.8^^107^1213^68
- ;;^UTILITY(U,$J,358.3,25128,1,0)
+ ;;^UTILITY(U,$J,358.3,25491,1,3,0)
+ ;;=3^Unavailable/Inaccessible to Other Helping Agencies
+ ;;^UTILITY(U,$J,358.3,25491,1,4,0)
+ ;;=4^Z75.4
+ ;;^UTILITY(U,$J,358.3,25491,2)
+ ;;=^5063293
+ ;;^UTILITY(U,$J,358.3,25492,0)
+ ;;=Z62.813^^92^1159^13
+ ;;^UTILITY(U,$J,358.3,25492,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,25128,1,3,0)
- ;;=3^Pneumonia,Unspec Organism NEC
- ;;^UTILITY(U,$J,358.3,25128,1,4,0)
- ;;=4^J18.8
- ;;^UTILITY(U,$J,358.3,25128,2)
- ;;=^5008185
- ;;^UTILITY(U,$J,358.3,25129,0)
- ;;=J11.00^^107^1213^28
- ;;^UTILITY(U,$J,358.3,25129,1,0)
+ ;;^UTILITY(U,$J,358.3,25492,1,3,0)
+ ;;=3^Personal Hx of Forced Labor/Sexual Exploitation in Childhood
+ ;;^UTILITY(U,$J,358.3,25492,1,4,0)
+ ;;=4^Z62.813
+ ;;^UTILITY(U,$J,358.3,25492,2)
+ ;;=^5157627
+ ;;^UTILITY(U,$J,358.3,25493,0)
+ ;;=Z91.42^^92^1159^14
+ ;;^UTILITY(U,$J,358.3,25493,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,25129,1,3,0)
- ;;=3^Flu d/t Unidentified Flu Virus w/ Unspec Type Pneumonia
- ;;^UTILITY(U,$J,358.3,25129,1,4,0)
- ;;=4^J11.00
+ ;;^UTILITY(U,$J,358.3,25493,1,3,0)
+ ;;=3^Personal Hx of Forced Labor/Sexual Exploitation
+ ;;^UTILITY(U,$J,358.3,25493,1,4,0)
+ ;;=4^Z91.42

@@ -1,5 +1,5 @@
-RAORD1 ;HISC/CAH - AISC/RMO-Request An Exam ; 06/27/07 07:22am
- ;;5.0;Radiology/Nuclear Medicine;**10,45,41,75,86**;Mar 16, 1998;Build 7
+RAORD1 ;HISC/CAH - AISC/RMO-Request An Exam ; Aug 05, 2021@08:26:18
+ ;;5.0;Radiology/Nuclear Medicine;**10,45,41,75,86,183**;Mar 16, 1998;Build 1
  ;
  ;Supported IA #10035 reference to ^DPT(
  ;Supported IA #10040 reference to ^SC(
@@ -50,7 +50,8 @@ PL ;Ask for the patient location (REQ. LOCATION file: 75.1, field: #22)
  ;*Billing Awareness Project:
  S DIC("S")="I $$PROV^RABWORD()"
  ;Display Service Connected prompts if user is a Provider.
- S DIC="^VA(200,",DIC(0)="AEMQ",Y=DUZ S:$$PROV^RABWORD DIC("B")=$P(^VA(200,DUZ,0),"^",1)
+ ;DIC(0) updated w/P183
+ S DIC="^VA(200,",DIC(0)="QEA",Y=DUZ S:$$PROV^RABWORD DIC("B")=$P(^VA(200,DUZ,0),"^",1)
  D ^DIC K DIC G Q:Y<0 S RAPIFN=+Y K DD,DO,VA200,VAERR,VAIP G ADDORD:$D(RAVSTFLG)
  ;
 ENADD ;OE/RR Entry Point for the ACTION Option

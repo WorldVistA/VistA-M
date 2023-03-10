@@ -1,5 +1,5 @@
-ORQQAL ;SLC/CLA,JFR - FUNCTIONS THAT RETURN PATIENT ADVERSE REACTION DATA ;11/16/2015  09:32
- ;;3.0;ORDER ENTRY/RESULTS REPORTING;**9,85,162,190,216,232,243,269,377**;Dec 17, 1997;Build 582
+ORQQAL ;SLC/CLA,JFR - FUNCTIONS THAT RETURN PATIENT ADVERSE REACTION DATA ;Oct 14, 2020@10:37:30
+ ;;3.0;ORDER ENTRY/RESULTS REPORTING;**9,85,162,190,216,232,243,269,377,539**;Dec 17, 1997;Build 41
 LIST(ORAY,ORPT) ; RETURN PATIENT'S ALLERGY/ADVERSE REACTION INFO:
  ; null:no allergy assessment, 0:no known allergies, 1:pt has allergies
  ; if 1 also get: allergen/reactant^reaction/symptom^severity^allergy ien
@@ -48,6 +48,7 @@ DETAIL(ORAY,DFN,ALLR,ID) ; RETURN DETAILED ALLERGY INFO FOR SPECIFIED ALLERGIC R
  S ORAY(I)="         Originator: "_$P(GMRACT,U,2)_$S($L($P(GMRACT,U,3)):" ("_$P(GMRACT,U,3)_")",1:""),I=I+1 ;216
  S ORAY(I)="         Originated: "_$P(GMRACT,U,10),I=I+1 ;216
  I $D(GMRACT("O",1)) D OBS
+ I $D(GMRACT("H")) D HIST
  S ORAY(I)="           Verified: "_$S($P(GMRACT,U,4)="VERIFIED":$P(GMRACT,U,8),1:"No"),I=I+1 ;216
  S ORAY(I)="Observed/Historical: "_$S($P(GMRACT,U,5)="OBSERVED":"Observed",$P(GMRACT,U,5)="HISTORICAL":"Historical",1:""),I=I+1
  I $D(GMRACT("C",1)) D COM
@@ -77,6 +78,12 @@ OBS S K=0,N=0 F  S K=$O(GMRACT("O",K)) Q:K'>0  D
  .S N=N+1
  S ORAY(I)=" ",I=I+1
  K N,K,Y
+ Q
+HIST ;Historical Severity and dates
+ N Y
+ S Y=$P(GMRACT("H"),U) D DD^%DT
+ S ORAY(I)=" Hist date/severity: "_$S(Y="":"",1:Y_" ")_$P(GMRACT("H"),U,2),I=I+1
+ S ORAY(I)=" ",I=I+1
  Q
 COM S K=0,N=0,ORAY(I)=" ",I=I+1
  F  S K=$O(GMRACT("C",K)) Q:K'>0  D

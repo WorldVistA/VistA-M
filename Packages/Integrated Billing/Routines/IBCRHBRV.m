@@ -1,5 +1,5 @@
 IBCRHBRV ;ALB/ARH - RATES: UPLOAD (RC) VERSION FUNCTIONS ; 14-FEB-01
- ;;2.0;INTEGRATED BILLING;**148,169,245,270,285,298,325,334,355,360,365,382,390,408,412,423,427,439,445,462,468,484,491,508,520,536,542,556,559,573,584,600,612,628,634,658,667**;21-MAR-94;Build 65
+ ;;2.0;INTEGRATED BILLING;**148,169,245,270,285,298,325,334,355,360,365,382,390,408,412,423,427,439,445,462,468,484,491,508,520,536,542,556,559,573,584,600,612,628,634,658,667,683,693,719,724,744**;21-MAR-94;Build 7
  ;;Per VA Directive 6402, this routine should not be modified.
  ;
  ; RC functions related to Version.  Update VLIST with new versions.  Update FTYPE if new types of files.
@@ -50,13 +50,14 @@ VERSEND() ; return all RC versions and corresponding inactive date 'VERS;INACTIV
 VERSITE(SITE) ; returns the list of versions loaded for a particular site
  ; *** uses 99201 in the RC PHYSICIAN set to check which versions/dates are loaded
  ; *** so 99201 must have a pro charge in all versions, if not it must be replaced with an item that does
- N IBCS,IBXRF,IBITM,IBVERS,IBCSFN,IBI,IBV,IBX,IBY,IBC
- S IBVERS=$$VERSALL,IBITM=99201
+ ; *693 - 99202 for 4.215 
+ N IBCS,IBXRF,IBITM,IBITM2,IBVERS,IBCSFN,IBI,IBV,IBX,IBY,IBC
+ S IBVERS=$$VERSALL,IBITM=99201,IBITM2=99202
  ;
  I $G(SITE)'="" S IBCS="RC-PHYSICIAN" F  S IBCS=$O(^IBE(363.1,"B",IBCS)) Q:IBCS'["RC-PHYSICIAN"  D
  . S IBV=$L(IBCS," ") I $P(IBCS," ",IBV)'=SITE Q
  . S IBCSFN=$O(^IBE(363.1,"B",IBCS,0)) Q:'IBCSFN  S IBXRF="AIVDTS"_IBCSFN
- . F IBI=1:1 S IBV=$P(IBVERS,U,IBI) Q:'IBV  I $O(^IBA(363.2,IBXRF,IBITM,-$P(IBV,";",2),0)) S IBY(+IBV)=""
+ . F IBI=1:1 S IBV=$P(IBVERS,U,IBI) Q:'IBV  I ($O(^IBA(363.2,IBXRF,IBITM,-$P(IBV,";",2),0)))!($O(^IBA(363.2,IBXRF,IBITM2,-$P(IBV,";",2),0))) S IBY(+IBV)=""
  ;
  S (IBX,IBC)="" F IBI=1:1 S IBV=+$P(IBVERS,U,IBI) Q:'IBV  I $D(IBY(IBV)) S IBX=IBX_IBC_IBV S IBC=","
  ;
@@ -164,7 +165,12 @@ VLIST ; version ^ file type/version ^ effective date ^ inactive date ^ file pref
  ;;3.24^2^3181001^3181231^IBRC1810
  ;;3.25^2^3190101^3190930^IBRC1901
  ;;3.26^2^3191001^3191231^IBRC1910
- ;;3.27^2^3200101^^IBRC2001
+ ;;3.27^2^3200101^3200930^IBRC2001
+ ;;4.21^2^3201001^3201231^IBRC2010
+ ;;4.215^2^3210101^3210930^IBRC2101
+ ;;4.22^2^3211001^3211231^IBRC2110
+ ;;4.225^2^3220101^3220930^IBRC2201
+ ;;4.23^2^3221001^^IBRC2210
  ; 
 FTYPE ; file type/versions and relevant data
  ; file identifier is used with XTMP subscript 'IBCR RC ' and routine label to parse file

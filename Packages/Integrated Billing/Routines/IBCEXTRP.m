@@ -1,5 +1,5 @@
 IBCEXTRP ;ALB/JEH - VIEW/PRINT EDI EXTRACT DATA ;4/22/03 9:59am
- ;;2.0;INTEGRATED BILLING;**137,197,211,348,349,377,592,623**;21-MAR-94;Build 70
+ ;;2.0;INTEGRATED BILLING;**137,197,211,348,349,377,592,623,641,718**;21-MAR-94;Build 73
  ;;Per VA Directive 6402, this routine should not be modified.
  ;
 EN ;
@@ -63,7 +63,9 @@ DEV ; - Select device
  ;
 LIST ; - set up array and print data
  N IBPG,IBSEQ,IBPC,IBDA,IBREC,IBQUIT,IBILL,IBLINE,IBXDATA,IBERR,IBXERR,Z,Z0,Z1
- D EXTRACT(IBIEN,IBVNUM,8,1)
+ N REP  ;TPF;IB*2.0*718;EBILL-1570;10/27/2021
+ ;D EXTRACT(IBIEN,IBVNUM,8,1) ;WCJ;IB718v22;
+ D EXTRACT(IBIEN,IBVNUM,8,1,1) ;WCJ;IB718v22;added another parameter to execute the POST workarounds
  S (IBPG,IBQUIT,IBSEQ,IBPC,IBDA,IBLINE)=0
  K ^TMP($J,"IBLINES")
  ;IB*2.0*211 - rely on form type instead of bill charge type
@@ -103,6 +105,7 @@ LIST ; - set up array and print data
  .. S DSP=$P(IBREC,U,10)     ; short description field
  .. S IBDATA=$P($G(^TMP("IBXDATA",$J,1,IBSEQ,IBMULT,IBPC)),U,1)   ; data
  .. S DSP=$J(PCD,5)_$$FO^IBCNEUT1(DSP,40)_": "_IBDATA
+ .. I DSP[("Value Code Dollars") S REP("Dollars")="Amount " S DSP=$$REPLACE^XLFSTR(DSP,.REP)  ;TPF;IB*2.0*718;EBILL-1570;10/27/2021
  .. S ^TMP($J,"IBLINES",IBSEQ,IBMULT,IBPC)=DSP
  .. Q
  . Q
@@ -155,12 +158,22 @@ EXITQ ; - clean up and exit
  D CLEAN^DILF
  Q
  ;
-EXTRACT(IBIFN,IBBATCH,IBFORM,IBLOCAL) ; Extracts transmitted form data into global
+ ;EXTRACT(IBIFN,IBBATCH,IBFORM,IBLOCAL) ; WCJ;IB718v22;adding a parameter to execute FSC workarounds in the post processing routine/s)
+ ; This new parameter IBXPOSTWA will not be passed in by DSS so the claims scrubber can continue unabated.
+EXTRACT(IBIFN,IBBATCH,IBFORM,IBLOCAL,IBXPOSTWA) ; 
+ ; *****************
+ ; this label is called by 2 routines outside IB
+ ;   VEJDIBPI
+ ;   VEJDIBPZ
+ ; 
+ ; Extracts transmitted form data into global
  ; ^TMP("IBXDATA",$J).  Errors are in ^TMP("IBXERR",$J,err_num)=text.
  ; IBBATCH = Batch # of bill (if known), otherwise, set to 1.  This
  ;          variable must be > 0 to prevent a new batch from being added
  ; IBFORM = the ien of the form in file 353
  ; IBLOCAL = 1 if OK to use local form, 0 if not
+ ; IBXPOSTWA = 1 if executing FSC post processing workarounds  ;WCJ;IB718v22;
+ ;
  N IBVNUM,IBL,IBINC,IBSEG
  D FORMPRE^IBCFP1
  S IBVNUM=$G(IBBATCH)
@@ -168,9 +181,12 @@ EXTRACT(IBIFN,IBBATCH,IBFORM,IBLOCAL) ; Extracts transmitted form data into glob
  ; Get local form associated with parent, if any
  I IBL="" S IBL=$S($P($G(^IBE(353,+IBFORM,2)),U,8):$P(^(2),U,8),1:IBFORM)
  D SETUP^IBCE837(1)
+ ;;JWS;IB*2.0*641v11;VEJD Audit Report - ;
+ I '$D(IB364IEN) S IB364IEN=+$$LAST364^IBCEF4(IBIFN)
  ;;JWS;IB*2.0*623;allow display without Batch #
- I $$GET1^DIQ(350.9,"1,",8.21,"I"),IB364IEN,$P(^IBA(364,IB364IEN,0),"^",2)="" S ^TMP("IBHDR",$J)="NOT YET ASSIGNED"
- D ROUT^IBCFP1(IBFORM,1,IBIFN,0,IBL)
+ I $$GET1^DIQ(350.9,"1,",8.21,"I"),+IB364IEN,$P(^IBA(364,IB364IEN,0),"^",2)="" S ^TMP("IBHDR",$J)="NOT YET ASSIGNED"
+ ;D ROUT^IBCFP1(IBFORM,1,IBIFN,0,IBL) ;WCJ;IB718v22;adding a parameter to execute FSC workarounds in the post processing routine/s)
+ D ROUT^IBCFP1(IBFORM,1,IBIFN,0,IBL,$G(IBXPOSTWA))  ;WCJ;IB718v22;adding a parameter to execute FSC workarounds in the post processing routine/s)
  Q
  ;
 INCLUDE(IBSEQ) ; Function to determine if segment should be included or not

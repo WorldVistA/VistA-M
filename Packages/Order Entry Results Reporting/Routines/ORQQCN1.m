@@ -1,5 +1,5 @@
-ORQQCN1 ; slc/REV - Functions for GUI consult actions - RPCs for GMRCGUIA ; 8-NOV-2000 14:49:16 [1/9/01 10:39am]
- ;;3.0;ORDER ENTRY/RESULTS REPORTING;**10,98,85,109,148**;Dec 17, 1997
+ORQQCN1 ; SLC/REV - Functions for GUI consult actions - RPCs for GMRCGUIA Aug 20, 2020@10:59:43;Dec 02, 2021@12:46:33
+ ;;3.0;ORDER ENTRY/RESULTS REPORTING;**10,98,85,109,148,405**;Dec 17, 1997;Build 211
  ;
 RC(Y,GMRCO,GMRCORNP,GMRCAD,ORCOM) ;Receive the consult into the service
  ;GMRCO - The internal file number of the consult from File 123
@@ -46,7 +46,7 @@ SETACTM(Y,GMRCO) ;set action menus in GUI based on service of selected consult
  ;
 URG(Y,GMRCO) ;new urgency from 101.42
  Q:+$G(GMRCO)=0
- N GMRCURG,X,GMRCCSLT,GMRCPROC,GMRCTYPE,GMRCPROT
+ N GMRCURG,X,GMRCCSLT,GMRCPROC,GMRCTYPE,GMRCPROT,I
  S GMRCCSLT=$O(^ORD(101,"B","GMRCOR CONSULT",0))
  S GMRCPROC=$O(^ORD(101,"B","GMRCOR REQUEST",0))
  S GMRCTYPE=$P(^GMR(123,+GMRCO,0),"^",17)
@@ -79,13 +79,13 @@ GETCSLT(ORY,ORIEN,SHOWADD)      ; Retrieve a complete consult record
  . I ROOT="^TIU(8925)" D
  . . S ORY(I)=+ORDOC_U_$$RESOLVE^TIUSRVLO(+ORDOC)
  . . S $P(ORY(I),U,14)="1",I=I+1  ; parent treenode=1 for TIU docs
- . . S ORY("INDX",+ORDOC,ORI)=""
- . . I +$G(SHOWADD) D 
+ . . S ORY("INDX",+ORDOC,ORI)="",ORI=ORI+1
+ . . I +$G(SHOWADD) D
  . . . I +$$HASDAD^TIUSRVLI(+ORDOC) S ORI=I+1 D SETDAD^TIUSRVLI("ORY",+ORDOC,.ORI) S I=ORI+1 ; for treeview of related notes
  . . . I +$$HASKIDS^TIUSRVLI(+ORDOC) S ORI=I+1 D SETKIDS^TIUSRVLI("ORY",+ORDOC,.ORI) S I=ORI+1 ; for treeview of related notes
  . E  I $E(ROOT,1,5)="^MCAR" D
  . . S ORY(I)=ORGMRC(50,X)
- . . S $P(ORY(I),U,14)="2",I=I+1     ; parent treenode=2 for med results
+ . . S $P(ORY(I),U,14)="2",I=I+1,ORI=ORI+1 ; parent treenode=2 for med results
  K ORY("INDX")
  Q
  ;

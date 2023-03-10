@@ -1,722 +1,704 @@
-IBDEI00J ; ; 01-MAY-2020
- ;;3.0;IB ENCOUNTER FORM IMP/EXP;;MAY 01, 2020
+IBDEI00J ; ; 01-AUG-2022
+ ;;3.0;IB ENCOUNTER FORM IMP/EXP;;AUG 01, 2022
  Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,999) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
- ;;^UTILITY(U,$J,358.3,684,0)
- ;;=D57.1^^12^78^39
- ;;^UTILITY(U,$J,358.3,684,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,684,1,3,0)
- ;;=3^Sickle-Cell Disease w/o Crisis
- ;;^UTILITY(U,$J,358.3,684,1,4,0)
- ;;=4^D57.1
- ;;^UTILITY(U,$J,358.3,684,2)
- ;;=^5002309
- ;;^UTILITY(U,$J,358.3,685,0)
- ;;=D64.0^^12^78^28
- ;;^UTILITY(U,$J,358.3,685,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,685,1,3,0)
- ;;=3^Anemia,Sideroblastic,Hereditary
- ;;^UTILITY(U,$J,358.3,685,1,4,0)
- ;;=4^D64.0
- ;;^UTILITY(U,$J,358.3,685,2)
- ;;=^5002344
- ;;^UTILITY(U,$J,358.3,686,0)
- ;;=D64.1^^12^78^29
- ;;^UTILITY(U,$J,358.3,686,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,686,1,3,0)
- ;;=3^Anemia,Sideroblastic,Secondary d/t Disease
- ;;^UTILITY(U,$J,358.3,686,1,4,0)
- ;;=4^D64.1
- ;;^UTILITY(U,$J,358.3,686,2)
- ;;=^5002345
- ;;^UTILITY(U,$J,358.3,687,0)
- ;;=D64.2^^12^78^30
- ;;^UTILITY(U,$J,358.3,687,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,687,1,3,0)
- ;;=3^Anemia,Sideroblastic,Secondary d/t Drugs/Toxins
- ;;^UTILITY(U,$J,358.3,687,1,4,0)
- ;;=4^D64.2
- ;;^UTILITY(U,$J,358.3,687,2)
- ;;=^5002346
- ;;^UTILITY(U,$J,358.3,688,0)
- ;;=D46.0^^12^78^25
- ;;^UTILITY(U,$J,358.3,688,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,688,1,3,0)
- ;;=3^Anemia,Refractory w/o Ring Sideroblasts
- ;;^UTILITY(U,$J,358.3,688,1,4,0)
- ;;=4^D46.0
- ;;^UTILITY(U,$J,358.3,688,2)
- ;;=^5002245
- ;;^UTILITY(U,$J,358.3,689,0)
- ;;=D46.1^^12^78^24
- ;;^UTILITY(U,$J,358.3,689,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,689,1,3,0)
- ;;=3^Anemia,Refractory w/ Ring Sideroblasts
- ;;^UTILITY(U,$J,358.3,689,1,4,0)
- ;;=4^D46.1
- ;;^UTILITY(U,$J,358.3,689,2)
- ;;=^5002246
- ;;^UTILITY(U,$J,358.3,690,0)
- ;;=D46.20^^12^78^23
- ;;^UTILITY(U,$J,358.3,690,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,690,1,3,0)
- ;;=3^Anemia,Refractory w/ Excess of Blasts,Unspec
- ;;^UTILITY(U,$J,358.3,690,1,4,0)
- ;;=4^D46.20
- ;;^UTILITY(U,$J,358.3,690,2)
- ;;=^5002247
- ;;^UTILITY(U,$J,358.3,691,0)
- ;;=D46.21^^12^78^21
- ;;^UTILITY(U,$J,358.3,691,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,691,1,3,0)
- ;;=3^Anemia,Refractory w/ Excess of Blasts 1
- ;;^UTILITY(U,$J,358.3,691,1,4,0)
- ;;=4^D46.21
- ;;^UTILITY(U,$J,358.3,691,2)
- ;;=^5002248
- ;;^UTILITY(U,$J,358.3,692,0)
- ;;=D46.22^^12^78^22
- ;;^UTILITY(U,$J,358.3,692,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,692,1,3,0)
- ;;=3^Anemia,Refractory w/ Excess of Blasts 2
- ;;^UTILITY(U,$J,358.3,692,1,4,0)
- ;;=4^D46.22
- ;;^UTILITY(U,$J,358.3,692,2)
- ;;=^5002249
- ;;^UTILITY(U,$J,358.3,693,0)
- ;;=D46.A^^12^78^33
- ;;^UTILITY(U,$J,358.3,693,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,693,1,3,0)
- ;;=3^Cytopenia,Refractory w/ Multilineage Dysplasia
- ;;^UTILITY(U,$J,358.3,693,1,4,0)
- ;;=4^D46.A
- ;;^UTILITY(U,$J,358.3,693,2)
- ;;=^5002251
- ;;^UTILITY(U,$J,358.3,694,0)
- ;;=D46.B^^12^78^34
- ;;^UTILITY(U,$J,358.3,694,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,694,1,3,0)
- ;;=3^Cytopenia,Refractory w/ Multilineage Dysplasia & Ring Sideroblasts
- ;;^UTILITY(U,$J,358.3,694,1,4,0)
- ;;=4^D46.B
- ;;^UTILITY(U,$J,358.3,694,2)
- ;;=^5002252
- ;;^UTILITY(U,$J,358.3,695,0)
- ;;=D46.C^^12^78^35
- ;;^UTILITY(U,$J,358.3,695,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,695,1,3,0)
- ;;=3^Myelodysplastic Syndrome w/ Isolated Del(5q) Chromosomal Abnormality
- ;;^UTILITY(U,$J,358.3,695,1,4,0)
- ;;=4^D46.C
- ;;^UTILITY(U,$J,358.3,695,2)
- ;;=^5002253
- ;;^UTILITY(U,$J,358.3,696,0)
- ;;=D46.4^^12^78^26
- ;;^UTILITY(U,$J,358.3,696,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,696,1,3,0)
- ;;=3^Anemia,Refractory,Unspec
- ;;^UTILITY(U,$J,358.3,696,1,4,0)
- ;;=4^D46.4
- ;;^UTILITY(U,$J,358.3,696,2)
- ;;=^5002250
- ;;^UTILITY(U,$J,358.3,697,0)
- ;;=D46.Z^^12^78^36
- ;;^UTILITY(U,$J,358.3,697,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,697,1,3,0)
- ;;=3^Myelodysplastic Syndrome,Other
- ;;^UTILITY(U,$J,358.3,697,1,4,0)
- ;;=4^D46.Z
- ;;^UTILITY(U,$J,358.3,697,2)
- ;;=^5002254
- ;;^UTILITY(U,$J,358.3,698,0)
- ;;=D46.9^^12^78^37
- ;;^UTILITY(U,$J,358.3,698,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,698,1,3,0)
- ;;=3^Myelodysplastic Syndrome,Unspec
- ;;^UTILITY(U,$J,358.3,698,1,4,0)
- ;;=4^D46.9
- ;;^UTILITY(U,$J,358.3,698,2)
- ;;=^334031
- ;;^UTILITY(U,$J,358.3,699,0)
- ;;=C50.912^^12^79^11
- ;;^UTILITY(U,$J,358.3,699,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,699,1,3,0)
- ;;=3^Malig Neop Breast,Left,Unspec Site
- ;;^UTILITY(U,$J,358.3,699,1,4,0)
- ;;=4^C50.912
- ;;^UTILITY(U,$J,358.3,699,2)
- ;;=^5001196
- ;;^UTILITY(U,$J,358.3,700,0)
- ;;=C50.911^^12^79^12
- ;;^UTILITY(U,$J,358.3,700,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,700,1,3,0)
- ;;=3^Malig Neop Breast,Right,Unspec Site
- ;;^UTILITY(U,$J,358.3,700,1,4,0)
- ;;=4^C50.911
- ;;^UTILITY(U,$J,358.3,700,2)
- ;;=^5001195
- ;;^UTILITY(U,$J,358.3,701,0)
- ;;=D05.01^^12^79^10
- ;;^UTILITY(U,$J,358.3,701,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,701,1,3,0)
- ;;=3^Lobular Carcinoma in Situ,Right Breast
- ;;^UTILITY(U,$J,358.3,701,1,4,0)
- ;;=4^D05.01
- ;;^UTILITY(U,$J,358.3,701,2)
- ;;=^5001927
- ;;^UTILITY(U,$J,358.3,702,0)
- ;;=D05.02^^12^79^9
- ;;^UTILITY(U,$J,358.3,702,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,702,1,3,0)
- ;;=3^Lobular Carcinoma in Situ,Left Breast
- ;;^UTILITY(U,$J,358.3,702,1,4,0)
- ;;=4^D05.02
- ;;^UTILITY(U,$J,358.3,702,2)
- ;;=^5001928
  ;;^UTILITY(U,$J,358.3,703,0)
- ;;=D05.92^^12^79^5
+ ;;=10007^^8^55^12^^^^1
  ;;^UTILITY(U,$J,358.3,703,1,0)
- ;;=^358.31IA^4^2
+ ;;=^358.31IA^3^2
+ ;;^UTILITY(U,$J,358.3,703,1,1,0)
+ ;;=1^10007
  ;;^UTILITY(U,$J,358.3,703,1,3,0)
- ;;=3^Carcinoma in Situ,Left Breast,Unspec Type
- ;;^UTILITY(U,$J,358.3,703,1,4,0)
- ;;=4^D05.92
- ;;^UTILITY(U,$J,358.3,703,2)
- ;;=^5001937
+ ;;=3^FNA w/ Fluor Guidance,1st Lesion
  ;;^UTILITY(U,$J,358.3,704,0)
- ;;=D05.91^^12^79^6
+ ;;=10008^^8^55^13^^^^1
  ;;^UTILITY(U,$J,358.3,704,1,0)
- ;;=^358.31IA^4^2
+ ;;=^358.31IA^3^2
+ ;;^UTILITY(U,$J,358.3,704,1,1,0)
+ ;;=1^10008
  ;;^UTILITY(U,$J,358.3,704,1,3,0)
- ;;=3^Carcinoma in Situ,Right Breast,Unspec Type
- ;;^UTILITY(U,$J,358.3,704,1,4,0)
- ;;=4^D05.91
- ;;^UTILITY(U,$J,358.3,704,2)
- ;;=^5001936
+ ;;=3^FNA w/ Fluor Guidance,Ea Addl Lesion
  ;;^UTILITY(U,$J,358.3,705,0)
- ;;=D05.11^^12^79^8
+ ;;=10009^^8^55^10^^^^1
  ;;^UTILITY(U,$J,358.3,705,1,0)
- ;;=^358.31IA^4^2
+ ;;=^358.31IA^3^2
+ ;;^UTILITY(U,$J,358.3,705,1,1,0)
+ ;;=1^10009
  ;;^UTILITY(U,$J,358.3,705,1,3,0)
- ;;=3^Intraductal Carcinoma in Situ,Right Breast
- ;;^UTILITY(U,$J,358.3,705,1,4,0)
- ;;=4^D05.11
- ;;^UTILITY(U,$J,358.3,705,2)
- ;;=^5001930
+ ;;=3^FNA w/ CT Guidance,1st Lesion
  ;;^UTILITY(U,$J,358.3,706,0)
- ;;=D05.12^^12^79^7
+ ;;=10010^^8^55^11^^^^1
  ;;^UTILITY(U,$J,358.3,706,1,0)
- ;;=^358.31IA^4^2
+ ;;=^358.31IA^3^2
+ ;;^UTILITY(U,$J,358.3,706,1,1,0)
+ ;;=1^10010
  ;;^UTILITY(U,$J,358.3,706,1,3,0)
- ;;=3^Intraductal Carcinoma in Situ,Left Breast
- ;;^UTILITY(U,$J,358.3,706,1,4,0)
- ;;=4^D05.12
- ;;^UTILITY(U,$J,358.3,706,2)
- ;;=^5001931
+ ;;=3^FNA w/ CT Guidance,Ea Addl Lesion
  ;;^UTILITY(U,$J,358.3,707,0)
- ;;=D06.9^^12^79^2
+ ;;=10011^^8^55^14^^^^1
  ;;^UTILITY(U,$J,358.3,707,1,0)
- ;;=^358.31IA^4^2
+ ;;=^358.31IA^3^2
+ ;;^UTILITY(U,$J,358.3,707,1,1,0)
+ ;;=1^10011
  ;;^UTILITY(U,$J,358.3,707,1,3,0)
- ;;=3^Carcinoma in Situ,Cervix,Unspec
- ;;^UTILITY(U,$J,358.3,707,1,4,0)
- ;;=4^D06.9
- ;;^UTILITY(U,$J,358.3,707,2)
- ;;=^5001941
+ ;;=3^FNA w/ MR Guidance,1st Lesion
  ;;^UTILITY(U,$J,358.3,708,0)
- ;;=D06.0^^12^79^3
+ ;;=10012^^8^55^15^^^^1
  ;;^UTILITY(U,$J,358.3,708,1,0)
- ;;=^358.31IA^4^2
+ ;;=^358.31IA^3^2
+ ;;^UTILITY(U,$J,358.3,708,1,1,0)
+ ;;=1^10012
  ;;^UTILITY(U,$J,358.3,708,1,3,0)
- ;;=3^Carcinoma in Situ,Endocervix
- ;;^UTILITY(U,$J,358.3,708,1,4,0)
- ;;=4^D06.0
- ;;^UTILITY(U,$J,358.3,708,2)
- ;;=^5001938
+ ;;=3^FNA w/ MR Guidance,Ea Addl Lesion
  ;;^UTILITY(U,$J,358.3,709,0)
- ;;=D06.1^^12^79^4
+ ;;=10004^^8^55^19^^^^1
  ;;^UTILITY(U,$J,358.3,709,1,0)
- ;;=^358.31IA^4^2
+ ;;=^358.31IA^3^2
+ ;;^UTILITY(U,$J,358.3,709,1,1,0)
+ ;;=1^10004
  ;;^UTILITY(U,$J,358.3,709,1,3,0)
- ;;=3^Carcinoma in Situ,Exocervix
- ;;^UTILITY(U,$J,358.3,709,1,4,0)
- ;;=4^D06.1
- ;;^UTILITY(U,$J,358.3,709,2)
- ;;=^5001939
+ ;;=3^FNA w/o Image,Ea Addl Lesion
  ;;^UTILITY(U,$J,358.3,710,0)
- ;;=D06.7^^12^79^1
+ ;;=J2060^^8^56^33^^^^1
  ;;^UTILITY(U,$J,358.3,710,1,0)
- ;;=^358.31IA^4^2
+ ;;=^358.31IA^3^2
+ ;;^UTILITY(U,$J,358.3,710,1,1,0)
+ ;;=1^J2060
  ;;^UTILITY(U,$J,358.3,710,1,3,0)
- ;;=3^Carcinoma in Situ,Cervix,Other Parts
- ;;^UTILITY(U,$J,358.3,710,1,4,0)
- ;;=4^D06.7
- ;;^UTILITY(U,$J,358.3,710,2)
- ;;=^5001940
+ ;;=3^Lorazepam 2mg
  ;;^UTILITY(U,$J,358.3,711,0)
- ;;=C53.9^^12^79^13
+ ;;=J3420^^8^56^60^^^^1
  ;;^UTILITY(U,$J,358.3,711,1,0)
- ;;=^358.31IA^4^2
+ ;;=^358.31IA^3^2
+ ;;^UTILITY(U,$J,358.3,711,1,1,0)
+ ;;=1^J3420
  ;;^UTILITY(U,$J,358.3,711,1,3,0)
- ;;=3^Malig Neop Cervix Uteri,Unspec
- ;;^UTILITY(U,$J,358.3,711,1,4,0)
- ;;=4^C53.9
- ;;^UTILITY(U,$J,358.3,711,2)
- ;;=^5001204
+ ;;=3^Vitamin B12 up to 1000mcg
  ;;^UTILITY(U,$J,358.3,712,0)
- ;;=C57.01^^12^79^15
+ ;;=J1100^^8^56^14^^^^1
  ;;^UTILITY(U,$J,358.3,712,1,0)
- ;;=^358.31IA^4^2
+ ;;=^358.31IA^3^2
+ ;;^UTILITY(U,$J,358.3,712,1,1,0)
+ ;;=1^J1100
  ;;^UTILITY(U,$J,358.3,712,1,3,0)
- ;;=3^Malig Neop Fallopian Tube,Right
- ;;^UTILITY(U,$J,358.3,712,1,4,0)
- ;;=4^C57.01
- ;;^UTILITY(U,$J,358.3,712,2)
- ;;=^5001216
+ ;;=3^Dexamethasone Sodium Phos 1mg
  ;;^UTILITY(U,$J,358.3,713,0)
- ;;=C57.02^^12^79^14
+ ;;=J1200^^8^56^15^^^^1
  ;;^UTILITY(U,$J,358.3,713,1,0)
- ;;=^358.31IA^4^2
+ ;;=^358.31IA^3^2
+ ;;^UTILITY(U,$J,358.3,713,1,1,0)
+ ;;=1^J1200
  ;;^UTILITY(U,$J,358.3,713,1,3,0)
- ;;=3^Malig Neop Fallopian Tube,Left
- ;;^UTILITY(U,$J,358.3,713,1,4,0)
- ;;=4^C57.02
- ;;^UTILITY(U,$J,358.3,713,2)
- ;;=^5001217
+ ;;=3^Diphenhydramine HCl 50mg
  ;;^UTILITY(U,$J,358.3,714,0)
- ;;=C56.1^^12^79^17
+ ;;=J0780^^8^56^53^^^^1
  ;;^UTILITY(U,$J,358.3,714,1,0)
- ;;=^358.31IA^4^2
+ ;;=^358.31IA^3^2
+ ;;^UTILITY(U,$J,358.3,714,1,1,0)
+ ;;=1^J0780
  ;;^UTILITY(U,$J,358.3,714,1,3,0)
- ;;=3^Malig Neop Ovary,Right
- ;;^UTILITY(U,$J,358.3,714,1,4,0)
- ;;=4^C56.1
- ;;^UTILITY(U,$J,358.3,714,2)
- ;;=^5001212
+ ;;=3^Prochlorperazine HCL up to 10mg
  ;;^UTILITY(U,$J,358.3,715,0)
- ;;=C56.2^^12^79^16
+ ;;=J7060^^8^56^3^^^^1
  ;;^UTILITY(U,$J,358.3,715,1,0)
- ;;=^358.31IA^4^2
+ ;;=^358.31IA^3^2
+ ;;^UTILITY(U,$J,358.3,715,1,1,0)
+ ;;=1^J7060
  ;;^UTILITY(U,$J,358.3,715,1,3,0)
- ;;=3^Malig Neop Ovary,Left
- ;;^UTILITY(U,$J,358.3,715,1,4,0)
- ;;=4^C56.2
- ;;^UTILITY(U,$J,358.3,715,2)
- ;;=^5001213
+ ;;=3^5% Dextrose/Water (500ml=1U)
  ;;^UTILITY(U,$J,358.3,716,0)
- ;;=C55.^^12^79^18
+ ;;=J7042^^8^56^2^^^^1
  ;;^UTILITY(U,$J,358.3,716,1,0)
- ;;=^358.31IA^4^2
+ ;;=^358.31IA^3^2
+ ;;^UTILITY(U,$J,358.3,716,1,1,0)
+ ;;=1^J7042
  ;;^UTILITY(U,$J,358.3,716,1,3,0)
- ;;=3^Malig Neop Uterus,Unspec Part
- ;;^UTILITY(U,$J,358.3,716,1,4,0)
- ;;=4^C55.
- ;;^UTILITY(U,$J,358.3,716,2)
- ;;=^5001211
+ ;;=3^5% Dextrose/NS (500ml=1U)
  ;;^UTILITY(U,$J,358.3,717,0)
- ;;=C52.^^12^79^19
+ ;;=J2175^^8^56^37^^^^1
  ;;^UTILITY(U,$J,358.3,717,1,0)
- ;;=^358.31IA^4^2
+ ;;=^358.31IA^3^2
+ ;;^UTILITY(U,$J,358.3,717,1,1,0)
+ ;;=1^J2175
  ;;^UTILITY(U,$J,358.3,717,1,3,0)
- ;;=3^Malig Neop Vagina
- ;;^UTILITY(U,$J,358.3,717,1,4,0)
- ;;=4^C52.
- ;;^UTILITY(U,$J,358.3,717,2)
- ;;=^267232
+ ;;=3^Meperidine HCl 100mg
  ;;^UTILITY(U,$J,358.3,718,0)
- ;;=C51.9^^12^79^20
+ ;;=J7100^^8^56^27^^^^1
  ;;^UTILITY(U,$J,358.3,718,1,0)
- ;;=^358.31IA^4^2
+ ;;=^358.31IA^3^2
+ ;;^UTILITY(U,$J,358.3,718,1,1,0)
+ ;;=1^J7100
  ;;^UTILITY(U,$J,358.3,718,1,3,0)
- ;;=3^Malig Neop Vulva,Unspec
- ;;^UTILITY(U,$J,358.3,718,1,4,0)
- ;;=4^C51.9
- ;;^UTILITY(U,$J,358.3,718,2)
- ;;=^5001202
+ ;;=3^Infusion Dextran 40,500ml
  ;;^UTILITY(U,$J,358.3,719,0)
- ;;=D66.^^12^80^7
+ ;;=J7110^^8^56^28^^^^1
  ;;^UTILITY(U,$J,358.3,719,1,0)
- ;;=^358.31IA^4^2
+ ;;=^358.31IA^3^2
+ ;;^UTILITY(U,$J,358.3,719,1,1,0)
+ ;;=1^J7110
  ;;^UTILITY(U,$J,358.3,719,1,3,0)
- ;;=3^Hereditary Factor VIII Deficiency
- ;;^UTILITY(U,$J,358.3,719,1,4,0)
- ;;=4^D66.
- ;;^UTILITY(U,$J,358.3,719,2)
- ;;=^5002353
+ ;;=3^Infusion Dextran 75,500ml
  ;;^UTILITY(U,$J,358.3,720,0)
- ;;=D68.9^^12^80^2
+ ;;=J3480^^8^56^52^^^^1
  ;;^UTILITY(U,$J,358.3,720,1,0)
- ;;=^358.31IA^4^2
+ ;;=^358.31IA^3^2
+ ;;^UTILITY(U,$J,358.3,720,1,1,0)
+ ;;=1^J3480
  ;;^UTILITY(U,$J,358.3,720,1,3,0)
- ;;=3^Coagulation Defect,Unspec
- ;;^UTILITY(U,$J,358.3,720,1,4,0)
- ;;=4^D68.9
- ;;^UTILITY(U,$J,358.3,720,2)
- ;;=^5002364
+ ;;=3^Potassium Chloride 2meq
  ;;^UTILITY(U,$J,358.3,721,0)
- ;;=E83.110^^12^80^3
+ ;;=J1940^^8^56^21^^^^1
  ;;^UTILITY(U,$J,358.3,721,1,0)
- ;;=^358.31IA^4^2
+ ;;=^358.31IA^3^2
+ ;;^UTILITY(U,$J,358.3,721,1,1,0)
+ ;;=1^J1940
  ;;^UTILITY(U,$J,358.3,721,1,3,0)
- ;;=3^Hemochromatosis,Hereditary
- ;;^UTILITY(U,$J,358.3,721,1,4,0)
- ;;=4^E83.110
- ;;^UTILITY(U,$J,358.3,721,2)
- ;;=^339602
+ ;;=3^Furosemide 20mg
  ;;^UTILITY(U,$J,358.3,722,0)
- ;;=D47.3^^12^80^6
+ ;;=J2270^^8^56^41^^^^1
  ;;^UTILITY(U,$J,358.3,722,1,0)
- ;;=^358.31IA^4^2
+ ;;=^358.31IA^3^2
+ ;;^UTILITY(U,$J,358.3,722,1,1,0)
+ ;;=1^J2270
  ;;^UTILITY(U,$J,358.3,722,1,3,0)
- ;;=3^Hemorrhagic Thrombocythemia,Essential
- ;;^UTILITY(U,$J,358.3,722,1,4,0)
- ;;=4^D47.3
- ;;^UTILITY(U,$J,358.3,722,2)
- ;;=^5002258
+ ;;=3^Morphine Sulfate up to 10mg
  ;;^UTILITY(U,$J,358.3,723,0)
- ;;=D69.1^^12^80^9
+ ;;=J2430^^8^56^51^^^^1
  ;;^UTILITY(U,$J,358.3,723,1,0)
- ;;=^358.31IA^4^2
+ ;;=^358.31IA^3^2
+ ;;^UTILITY(U,$J,358.3,723,1,1,0)
+ ;;=1^J2430
  ;;^UTILITY(U,$J,358.3,723,1,3,0)
- ;;=3^Qualitative Platelet Defects
- ;;^UTILITY(U,$J,358.3,723,1,4,0)
- ;;=4^D69.1
- ;;^UTILITY(U,$J,358.3,723,2)
- ;;=^101922
+ ;;=3^Pamidronate Disodium 30mg
  ;;^UTILITY(U,$J,358.3,724,0)
- ;;=D69.6^^12^80^10
+ ;;=J2550^^8^56^54^^^^1
  ;;^UTILITY(U,$J,358.3,724,1,0)
- ;;=^358.31IA^4^2
+ ;;=^358.31IA^3^2
+ ;;^UTILITY(U,$J,358.3,724,1,1,0)
+ ;;=1^J2550
  ;;^UTILITY(U,$J,358.3,724,1,3,0)
- ;;=3^Thrombocytopenia,Unspec
- ;;^UTILITY(U,$J,358.3,724,1,4,0)
- ;;=4^D69.6
- ;;^UTILITY(U,$J,358.3,724,2)
- ;;=^5002370
+ ;;=3^Promethzine HCL up to 50mg
  ;;^UTILITY(U,$J,358.3,725,0)
- ;;=I80.9^^12^80^8
+ ;;=J0885^^8^56^17^^^^1
  ;;^UTILITY(U,$J,358.3,725,1,0)
- ;;=^358.31IA^4^2
+ ;;=^358.31IA^3^2
+ ;;^UTILITY(U,$J,358.3,725,1,1,0)
+ ;;=1^J0885
  ;;^UTILITY(U,$J,358.3,725,1,3,0)
- ;;=3^Phlebitis & Thrombophlebitis,Unspec Site
- ;;^UTILITY(U,$J,358.3,725,1,4,0)
- ;;=4^I80.9
- ;;^UTILITY(U,$J,358.3,725,2)
- ;;=^93357
+ ;;=3^Epoetin Alfa (Non-ESRD) 1000U
  ;;^UTILITY(U,$J,358.3,726,0)
- ;;=M31.1^^12^80^11
+ ;;=J2930^^8^56^38^^^^1
  ;;^UTILITY(U,$J,358.3,726,1,0)
- ;;=^358.31IA^4^2
+ ;;=^358.31IA^3^2
+ ;;^UTILITY(U,$J,358.3,726,1,1,0)
+ ;;=1^J2930
  ;;^UTILITY(U,$J,358.3,726,1,3,0)
- ;;=3^Thrombotic Microangiopathy
- ;;^UTILITY(U,$J,358.3,726,1,4,0)
- ;;=4^M31.1
- ;;^UTILITY(U,$J,358.3,726,2)
- ;;=^119061
+ ;;=3^Methylprednisolone up to 125mg
  ;;^UTILITY(U,$J,358.3,727,0)
- ;;=D68.312^^12^80^1
+ ;;=J2920^^8^56^39^^^^1
  ;;^UTILITY(U,$J,358.3,727,1,0)
- ;;=^358.31IA^4^2
+ ;;=^358.31IA^3^2
+ ;;^UTILITY(U,$J,358.3,727,1,1,0)
+ ;;=1^J2920
  ;;^UTILITY(U,$J,358.3,727,1,3,0)
- ;;=3^Antiphospholipid Antibody w/ Hemorrhagic Disorder
- ;;^UTILITY(U,$J,358.3,727,1,4,0)
- ;;=4^D68.312
- ;;^UTILITY(U,$J,358.3,727,2)
- ;;=^340503
+ ;;=3^Methylprednisolone up to 40mg
  ;;^UTILITY(U,$J,358.3,728,0)
- ;;=D68.318^^12^80^5
+ ;;=J2792^^8^56^55^^^^1
  ;;^UTILITY(U,$J,358.3,728,1,0)
- ;;=^358.31IA^4^2
+ ;;=^358.31IA^3^2
+ ;;^UTILITY(U,$J,358.3,728,1,1,0)
+ ;;=1^J2792
  ;;^UTILITY(U,$J,358.3,728,1,3,0)
- ;;=3^Hemorrhagic Disorder d/t Circ Anticoag NEC
- ;;^UTILITY(U,$J,358.3,728,1,4,0)
- ;;=4^D68.318
- ;;^UTILITY(U,$J,358.3,728,2)
- ;;=^340504
+ ;;=3^Rho(D) Immune Globulin IV 100IU
  ;;^UTILITY(U,$J,358.3,729,0)
- ;;=D68.311^^12^80^4
+ ;;=J9202^^8^56^22^^^^1
  ;;^UTILITY(U,$J,358.3,729,1,0)
- ;;=^358.31IA^4^2
+ ;;=^358.31IA^3^2
+ ;;^UTILITY(U,$J,358.3,729,1,1,0)
+ ;;=1^J9202
  ;;^UTILITY(U,$J,358.3,729,1,3,0)
- ;;=3^Hemophilia,Acquired
- ;;^UTILITY(U,$J,358.3,729,1,4,0)
- ;;=4^D68.311
- ;;^UTILITY(U,$J,358.3,729,2)
- ;;=^340502
+ ;;=3^Goserelin Acetate Implant 3.6mg
  ;;^UTILITY(U,$J,358.3,730,0)
- ;;=Z51.89^^12^81^8
+ ;;=J1568^^8^56^25^^^^1
  ;;^UTILITY(U,$J,358.3,730,1,0)
- ;;=^358.31IA^4^2
+ ;;=^358.31IA^3^2
+ ;;^UTILITY(U,$J,358.3,730,1,1,0)
+ ;;=1^J1568
  ;;^UTILITY(U,$J,358.3,730,1,3,0)
- ;;=3^Specified Aftercare Encounter
- ;;^UTILITY(U,$J,358.3,730,1,4,0)
- ;;=4^Z51.89
- ;;^UTILITY(U,$J,358.3,730,2)
- ;;=^5063065
+ ;;=3^Immune Globulin Liquid IV 500mg
  ;;^UTILITY(U,$J,358.3,731,0)
- ;;=Z51.11^^12^81^1
+ ;;=J0640^^8^56^32^^^^1
  ;;^UTILITY(U,$J,358.3,731,1,0)
- ;;=^358.31IA^4^2
+ ;;=^358.31IA^3^2
+ ;;^UTILITY(U,$J,358.3,731,1,1,0)
+ ;;=1^J0640
  ;;^UTILITY(U,$J,358.3,731,1,3,0)
- ;;=3^Antineoplastic Chemotherapy Encounter
- ;;^UTILITY(U,$J,358.3,731,1,4,0)
- ;;=4^Z51.11
- ;;^UTILITY(U,$J,358.3,731,2)
- ;;=^5063061
+ ;;=3^Leucovorin Calcium 50mg
  ;;^UTILITY(U,$J,358.3,732,0)
- ;;=Z71.3^^12^81^5
+ ;;=J0610^^8^56^11^^^^1
  ;;^UTILITY(U,$J,358.3,732,1,0)
- ;;=^358.31IA^4^2
+ ;;=^358.31IA^3^2
+ ;;^UTILITY(U,$J,358.3,732,1,1,0)
+ ;;=1^J0610
  ;;^UTILITY(U,$J,358.3,732,1,3,0)
- ;;=3^Dietary Counseling & Surveillance
- ;;^UTILITY(U,$J,358.3,732,1,4,0)
- ;;=4^Z71.3
- ;;^UTILITY(U,$J,358.3,732,2)
- ;;=^5063245
+ ;;=3^Calcium Gluconate 10ml
  ;;^UTILITY(U,$J,358.3,733,0)
- ;;=Z31.5^^12^81^6
+ ;;=J1566^^8^56^24^^^^1
  ;;^UTILITY(U,$J,358.3,733,1,0)
- ;;=^358.31IA^4^2
+ ;;=^358.31IA^3^2
+ ;;^UTILITY(U,$J,358.3,733,1,1,0)
+ ;;=1^J1566
  ;;^UTILITY(U,$J,358.3,733,1,3,0)
- ;;=3^Genetic Counseling
- ;;^UTILITY(U,$J,358.3,733,1,4,0)
- ;;=4^Z31.5
- ;;^UTILITY(U,$J,358.3,733,2)
- ;;=^5062838
+ ;;=3^IVIG Powder 500mg
  ;;^UTILITY(U,$J,358.3,734,0)
- ;;=Z71.89^^12^81^4
+ ;;=J1626^^8^56^23^^^^1
  ;;^UTILITY(U,$J,358.3,734,1,0)
- ;;=^358.31IA^4^2
+ ;;=^358.31IA^3^2
+ ;;^UTILITY(U,$J,358.3,734,1,1,0)
+ ;;=1^J1626
  ;;^UTILITY(U,$J,358.3,734,1,3,0)
- ;;=3^Counseling,Other Spec
- ;;^UTILITY(U,$J,358.3,734,1,4,0)
- ;;=4^Z71.89
- ;;^UTILITY(U,$J,358.3,734,2)
- ;;=^5063253
+ ;;=3^Granisetron HCL 100mcg
  ;;^UTILITY(U,$J,358.3,735,0)
- ;;=Z12.4^^12^81^3
+ ;;=J1745^^8^56^26^^^^1
  ;;^UTILITY(U,$J,358.3,735,1,0)
- ;;=^358.31IA^4^2
+ ;;=^358.31IA^3^2
+ ;;^UTILITY(U,$J,358.3,735,1,1,0)
+ ;;=1^J1745
  ;;^UTILITY(U,$J,358.3,735,1,3,0)
- ;;=3^Cervical Cancer Screening
- ;;^UTILITY(U,$J,358.3,735,1,4,0)
- ;;=4^Z12.4
- ;;^UTILITY(U,$J,358.3,735,2)
- ;;=^5062687
+ ;;=3^Infliximab 10mg
  ;;^UTILITY(U,$J,358.3,736,0)
- ;;=Z12.39^^12^81^2
+ ;;=J1750^^8^56^30^^^^1
  ;;^UTILITY(U,$J,358.3,736,1,0)
- ;;=^358.31IA^4^2
+ ;;=^358.31IA^3^2
+ ;;^UTILITY(U,$J,358.3,736,1,1,0)
+ ;;=1^J1750
  ;;^UTILITY(U,$J,358.3,736,1,3,0)
- ;;=3^Breast Cancer Screening
- ;;^UTILITY(U,$J,358.3,736,1,4,0)
- ;;=4^Z12.39
- ;;^UTILITY(U,$J,358.3,736,2)
- ;;=^5062686
+ ;;=3^Iron Dextran 50mg
  ;;^UTILITY(U,$J,358.3,737,0)
- ;;=Z12.12^^12^81^7
+ ;;=J2323^^8^56^43^^^^1
  ;;^UTILITY(U,$J,358.3,737,1,0)
- ;;=^358.31IA^4^2
+ ;;=^358.31IA^3^2
+ ;;^UTILITY(U,$J,358.3,737,1,1,0)
+ ;;=1^J2323
  ;;^UTILITY(U,$J,358.3,737,1,3,0)
- ;;=3^Rectal Cancer Screening
- ;;^UTILITY(U,$J,358.3,737,1,4,0)
- ;;=4^Z12.12
- ;;^UTILITY(U,$J,358.3,737,2)
- ;;=^5062682
+ ;;=3^Natalizumab 1mg
  ;;^UTILITY(U,$J,358.3,738,0)
- ;;=C67.9^^12^82^2
+ ;;=J2916^^8^56^42^^^^1
  ;;^UTILITY(U,$J,358.3,738,1,0)
- ;;=^358.31IA^4^2
+ ;;=^358.31IA^3^2
+ ;;^UTILITY(U,$J,358.3,738,1,1,0)
+ ;;=1^J2916
  ;;^UTILITY(U,$J,358.3,738,1,3,0)
- ;;=3^Malig Neop Bladder,Unspec
- ;;^UTILITY(U,$J,358.3,738,1,4,0)
- ;;=4^C67.9
- ;;^UTILITY(U,$J,358.3,738,2)
- ;;=^5001263
+ ;;=3^Na Ferr Gluc Cmplx 12.5mg
  ;;^UTILITY(U,$J,358.3,739,0)
- ;;=D09.0^^12^82^1
+ ;;=J3475^^8^56^35^^^^1
  ;;^UTILITY(U,$J,358.3,739,1,0)
- ;;=^358.31IA^4^2
+ ;;=^358.31IA^3^2
+ ;;^UTILITY(U,$J,358.3,739,1,1,0)
+ ;;=1^J3475
  ;;^UTILITY(U,$J,358.3,739,1,3,0)
- ;;=3^Carcinoma in Situ Bladder
- ;;^UTILITY(U,$J,358.3,739,1,4,0)
- ;;=4^D09.0
- ;;^UTILITY(U,$J,358.3,739,2)
- ;;=^267742
+ ;;=3^Magnesium Sulf 500mg
  ;;^UTILITY(U,$J,358.3,740,0)
- ;;=C64.2^^12^82^5
+ ;;=J7040^^8^56^46^^^^1
  ;;^UTILITY(U,$J,358.3,740,1,0)
- ;;=^358.31IA^4^2
+ ;;=^358.31IA^3^2
+ ;;^UTILITY(U,$J,358.3,740,1,1,0)
+ ;;=1^J7040
  ;;^UTILITY(U,$J,358.3,740,1,3,0)
- ;;=3^Malig Neop Kidney,Left,except Renal Pelvis
- ;;^UTILITY(U,$J,358.3,740,1,4,0)
- ;;=4^C64.2
- ;;^UTILITY(U,$J,358.3,740,2)
- ;;=^5001249
+ ;;=3^Normal Saline 500ml
  ;;^UTILITY(U,$J,358.3,741,0)
- ;;=C64.1^^12^82^6
+ ;;=P9041^^8^56^7^^^^1
  ;;^UTILITY(U,$J,358.3,741,1,0)
- ;;=^358.31IA^4^2
+ ;;=^358.31IA^3^2
+ ;;^UTILITY(U,$J,358.3,741,1,1,0)
+ ;;=1^P9041
  ;;^UTILITY(U,$J,358.3,741,1,3,0)
- ;;=3^Malig Neop Kidney,Right,except Renal Pelvis
- ;;^UTILITY(U,$J,358.3,741,1,4,0)
- ;;=4^C64.1
- ;;^UTILITY(U,$J,358.3,741,2)
- ;;=^5001248
+ ;;=3^Albumin (Human),5%,50ml
  ;;^UTILITY(U,$J,358.3,742,0)
- ;;=C60.9^^12^82^7
+ ;;=P9045^^8^56^6^^^^1
  ;;^UTILITY(U,$J,358.3,742,1,0)
- ;;=^358.31IA^4^2
+ ;;=^358.31IA^3^2
+ ;;^UTILITY(U,$J,358.3,742,1,1,0)
+ ;;=1^P9045
  ;;^UTILITY(U,$J,358.3,742,1,3,0)
- ;;=3^Malig Neop Penis,Unspec
- ;;^UTILITY(U,$J,358.3,742,1,4,0)
- ;;=4^C60.9
- ;;^UTILITY(U,$J,358.3,742,2)
- ;;=^5001229
+ ;;=3^Albumin (Human),5%,250ml
  ;;^UTILITY(U,$J,358.3,743,0)
- ;;=C61.^^12^82^8
+ ;;=P9046^^8^56^4^^^^1
  ;;^UTILITY(U,$J,358.3,743,1,0)
- ;;=^358.31IA^4^2
+ ;;=^358.31IA^3^2
+ ;;^UTILITY(U,$J,358.3,743,1,1,0)
+ ;;=1^P9046
  ;;^UTILITY(U,$J,358.3,743,1,3,0)
- ;;=3^Malig Neop Prostate
- ;;^UTILITY(U,$J,358.3,743,1,4,0)
- ;;=4^C61.
- ;;^UTILITY(U,$J,358.3,743,2)
- ;;=^267239
+ ;;=3^Albumin (Human),25%,20ml
  ;;^UTILITY(U,$J,358.3,744,0)
- ;;=C65.1^^12^82^10
+ ;;=P9047^^8^56^5^^^^1
  ;;^UTILITY(U,$J,358.3,744,1,0)
- ;;=^358.31IA^4^2
+ ;;=^358.31IA^3^2
+ ;;^UTILITY(U,$J,358.3,744,1,1,0)
+ ;;=1^P9047
  ;;^UTILITY(U,$J,358.3,744,1,3,0)
- ;;=3^Malig Neop Renal Pelvis,Right
- ;;^UTILITY(U,$J,358.3,744,1,4,0)
- ;;=4^C65.1
- ;;^UTILITY(U,$J,358.3,744,2)
- ;;=^5001251
+ ;;=3^Albumin (Human),25%,50ml
  ;;^UTILITY(U,$J,358.3,745,0)
- ;;=C65.2^^12^82^9
+ ;;=S0028^^8^56^18^^^^1
  ;;^UTILITY(U,$J,358.3,745,1,0)
- ;;=^358.31IA^4^2
+ ;;=^358.31IA^3^2
+ ;;^UTILITY(U,$J,358.3,745,1,1,0)
+ ;;=1^S0028
  ;;^UTILITY(U,$J,358.3,745,1,3,0)
- ;;=3^Malig Neop Renal Pelvis,Left
- ;;^UTILITY(U,$J,358.3,745,1,4,0)
- ;;=4^C65.2
- ;;^UTILITY(U,$J,358.3,745,2)
- ;;=^5001252
+ ;;=3^Famotidine 20mg
  ;;^UTILITY(U,$J,358.3,746,0)
- ;;=C62.11^^12^82^4
+ ;;=J1442^^8^56^19^^^^1
  ;;^UTILITY(U,$J,358.3,746,1,0)
- ;;=^358.31IA^4^2
+ ;;=^358.31IA^3^2
+ ;;^UTILITY(U,$J,358.3,746,1,1,0)
+ ;;=1^J1442
  ;;^UTILITY(U,$J,358.3,746,1,3,0)
- ;;=3^Malig Neop Descended Testis,Right
- ;;^UTILITY(U,$J,358.3,746,1,4,0)
- ;;=4^C62.11
- ;;^UTILITY(U,$J,358.3,746,2)
- ;;=^5001234
+ ;;=3^Filgrastim (g-csf) 1mcg
  ;;^UTILITY(U,$J,358.3,747,0)
- ;;=C62.12^^12^82^3
+ ;;=J7050^^8^56^45^^^^1
  ;;^UTILITY(U,$J,358.3,747,1,0)
- ;;=^358.31IA^4^2
+ ;;=^358.31IA^3^2
+ ;;^UTILITY(U,$J,358.3,747,1,1,0)
+ ;;=1^J7050
  ;;^UTILITY(U,$J,358.3,747,1,3,0)
- ;;=3^Malig Neop Descended Testis,Left
- ;;^UTILITY(U,$J,358.3,747,1,4,0)
- ;;=4^C62.12
- ;;^UTILITY(U,$J,358.3,747,2)
- ;;=^5001235
+ ;;=3^Normal Saline 250ml
  ;;^UTILITY(U,$J,358.3,748,0)
- ;;=C62.91^^12^82^12
+ ;;=J7030^^8^56^44^^^^1
  ;;^UTILITY(U,$J,358.3,748,1,0)
- ;;=^358.31IA^4^2
+ ;;=^358.31IA^3^2
+ ;;^UTILITY(U,$J,358.3,748,1,1,0)
+ ;;=1^J7030
  ;;^UTILITY(U,$J,358.3,748,1,3,0)
- ;;=3^Malig Neop Testis,Right
- ;;^UTILITY(U,$J,358.3,748,1,4,0)
- ;;=4^C62.91
- ;;^UTILITY(U,$J,358.3,748,2)
- ;;=^5001237
+ ;;=3^Normal Saline 1000ml
  ;;^UTILITY(U,$J,358.3,749,0)
- ;;=C62.92^^12^82^11
+ ;;=J2405^^8^56^49^^^^1
  ;;^UTILITY(U,$J,358.3,749,1,0)
- ;;=^358.31IA^4^2
+ ;;=^358.31IA^3^2
+ ;;^UTILITY(U,$J,358.3,749,1,1,0)
+ ;;=1^J2405
  ;;^UTILITY(U,$J,358.3,749,1,3,0)
- ;;=3^Malig Neop Testis,Left
- ;;^UTILITY(U,$J,358.3,749,1,4,0)
- ;;=4^C62.92
- ;;^UTILITY(U,$J,358.3,749,2)
- ;;=^5001238
+ ;;=3^Ondansetron HCL 1mg
  ;;^UTILITY(U,$J,358.3,750,0)
- ;;=C66.1^^12^82^14
+ ;;=J3489^^8^56^61^^^^1
  ;;^UTILITY(U,$J,358.3,750,1,0)
- ;;=^358.31IA^4^2
+ ;;=^358.31IA^3^2
+ ;;^UTILITY(U,$J,358.3,750,1,1,0)
+ ;;=1^J3489
  ;;^UTILITY(U,$J,358.3,750,1,3,0)
- ;;=3^Malig Neop Ureter,Right
- ;;^UTILITY(U,$J,358.3,750,1,4,0)
- ;;=4^C66.1
- ;;^UTILITY(U,$J,358.3,750,2)
- ;;=^5001254
+ ;;=3^Zoledronic Acid 1mg
  ;;^UTILITY(U,$J,358.3,751,0)
- ;;=C66.2^^12^82^13
+ ;;=J1815^^8^56^29^^^^1
  ;;^UTILITY(U,$J,358.3,751,1,0)
- ;;=^358.31IA^4^2
+ ;;=^358.31IA^3^2
+ ;;^UTILITY(U,$J,358.3,751,1,1,0)
+ ;;=1^J1815
  ;;^UTILITY(U,$J,358.3,751,1,3,0)
- ;;=3^Malig Neop Ureter,Left
- ;;^UTILITY(U,$J,358.3,751,1,4,0)
- ;;=4^C66.2
- ;;^UTILITY(U,$J,358.3,751,2)
- ;;=^5001255
+ ;;=3^Insulin per 5 units
  ;;^UTILITY(U,$J,358.3,752,0)
- ;;=C68.0^^12^82^15
+ ;;=J2353^^8^56^47^^^^1
  ;;^UTILITY(U,$J,358.3,752,1,0)
- ;;=^358.31IA^4^2
+ ;;=^358.31IA^3^2
+ ;;^UTILITY(U,$J,358.3,752,1,1,0)
+ ;;=1^J2353
  ;;^UTILITY(U,$J,358.3,752,1,3,0)
- ;;=3^Malig Neop Urethra
- ;;^UTILITY(U,$J,358.3,752,1,4,0)
- ;;=4^C68.0
- ;;^UTILITY(U,$J,358.3,752,2)
- ;;=^267266
+ ;;=3^Octreotide IM 1mg
  ;;^UTILITY(U,$J,358.3,753,0)
- ;;=C24.1^^12^83^16
+ ;;=J2354^^8^56^48^^^^1
  ;;^UTILITY(U,$J,358.3,753,1,0)
- ;;=^358.31IA^4^2
+ ;;=^358.31IA^3^2
+ ;;^UTILITY(U,$J,358.3,753,1,1,0)
+ ;;=1^J2354
  ;;^UTILITY(U,$J,358.3,753,1,3,0)
- ;;=3^Malig Neop Vater Ampulla
- ;;^UTILITY(U,$J,358.3,753,1,4,0)
- ;;=4^C24.1
- ;;^UTILITY(U,$J,358.3,753,2)
- ;;=^267100
+ ;;=3^Octreotide SQ/IV 1mg
  ;;^UTILITY(U,$J,358.3,754,0)
- ;;=C21.0^^12^83^6
+ ;;=J8540^^8^56^13^^^^1
  ;;^UTILITY(U,$J,358.3,754,1,0)
- ;;=^358.31IA^4^2
+ ;;=^358.31IA^3^2
+ ;;^UTILITY(U,$J,358.3,754,1,1,0)
+ ;;=1^J8540
  ;;^UTILITY(U,$J,358.3,754,1,3,0)
- ;;=3^Malig Neop Anus,Unspec
- ;;^UTILITY(U,$J,358.3,754,1,4,0)
- ;;=4^C21.0
- ;;^UTILITY(U,$J,358.3,754,2)
- ;;=^5000930
+ ;;=3^Dexamethasone Oral 25mg
  ;;^UTILITY(U,$J,358.3,755,0)
- ;;=C24.0^^12^83^9
+ ;;=J2274^^8^56^40^^^^1
  ;;^UTILITY(U,$J,358.3,755,1,0)
- ;;=^358.31IA^4^2
+ ;;=^358.31IA^3^2
+ ;;^UTILITY(U,$J,358.3,755,1,1,0)
+ ;;=1^J2274
  ;;^UTILITY(U,$J,358.3,755,1,3,0)
- ;;=3^Malig Neop Extrahepatic Bile Duct
- ;;^UTILITY(U,$J,358.3,755,1,4,0)
- ;;=4^C24.0
+ ;;=3^Morphine Sulfate Preservative-Free 10mg
+ ;;^UTILITY(U,$J,358.3,756,0)
+ ;;=S5010^^8^56^1^^^^1
+ ;;^UTILITY(U,$J,358.3,756,1,0)
+ ;;=^358.31IA^3^2
+ ;;^UTILITY(U,$J,358.3,756,1,1,0)
+ ;;=1^S5010
+ ;;^UTILITY(U,$J,358.3,756,1,3,0)
+ ;;=3^5% Dextrose/0.45% NS 1000ml
+ ;;^UTILITY(U,$J,358.3,757,0)
+ ;;=J1756^^8^56^31^^^^1
+ ;;^UTILITY(U,$J,358.3,757,1,0)
+ ;;=^358.31IA^3^2
+ ;;^UTILITY(U,$J,358.3,757,1,1,0)
+ ;;=1^J1756
+ ;;^UTILITY(U,$J,358.3,757,1,3,0)
+ ;;=3^Iron Sucrose 1mg
+ ;;^UTILITY(U,$J,358.3,758,0)
+ ;;=J9042^^8^56^9^^^^1
+ ;;^UTILITY(U,$J,358.3,758,1,0)
+ ;;=^358.31IA^3^2
+ ;;^UTILITY(U,$J,358.3,758,1,1,0)
+ ;;=1^J9042
+ ;;^UTILITY(U,$J,358.3,758,1,3,0)
+ ;;=3^Brentuximab Vedotin 1mg
+ ;;^UTILITY(U,$J,358.3,759,0)
+ ;;=J9043^^8^56^10^^^^1
+ ;;^UTILITY(U,$J,358.3,759,1,0)
+ ;;=^358.31IA^3^2
+ ;;^UTILITY(U,$J,358.3,759,1,1,0)
+ ;;=1^J9043
+ ;;^UTILITY(U,$J,358.3,759,1,3,0)
+ ;;=3^Cabazitaxel 1mg
+ ;;^UTILITY(U,$J,358.3,760,0)
+ ;;=J0740^^8^56^12^^^^1
+ ;;^UTILITY(U,$J,358.3,760,1,0)
+ ;;=^358.31IA^3^2
+ ;;^UTILITY(U,$J,358.3,760,1,1,0)
+ ;;=1^J0740
+ ;;^UTILITY(U,$J,358.3,760,1,3,0)
+ ;;=3^Cidofovir 375mg
+ ;;^UTILITY(U,$J,358.3,761,0)
+ ;;=J1300^^8^56^16^^^^1
+ ;;^UTILITY(U,$J,358.3,761,1,0)
+ ;;=^358.31IA^3^2
+ ;;^UTILITY(U,$J,358.3,761,1,1,0)
+ ;;=1^J1300
+ ;;^UTILITY(U,$J,358.3,761,1,3,0)
+ ;;=3^Duratrad 10mg
+ ;;^UTILITY(U,$J,358.3,762,0)
+ ;;=J9395^^8^56^20^^^^1
+ ;;^UTILITY(U,$J,358.3,762,1,0)
+ ;;=^358.31IA^3^2
+ ;;^UTILITY(U,$J,358.3,762,1,1,0)
+ ;;=1^J9395
+ ;;^UTILITY(U,$J,358.3,762,1,3,0)
+ ;;=3^Fulvestrant 25mg
+ ;;^UTILITY(U,$J,358.3,763,0)
+ ;;=J8499^^8^56^59^^^^1
+ ;;^UTILITY(U,$J,358.3,763,1,0)
+ ;;=^358.31IA^3^2
+ ;;^UTILITY(U,$J,358.3,763,1,1,0)
+ ;;=1^J8499
+ ;;^UTILITY(U,$J,358.3,763,1,3,0)
+ ;;=3^Tylenol-Oral
+ ;;^UTILITY(U,$J,358.3,764,0)
+ ;;=J3590^^8^56^34^^^^1
+ ;;^UTILITY(U,$J,358.3,764,1,0)
+ ;;=^358.31IA^3^2
+ ;;^UTILITY(U,$J,358.3,764,1,1,0)
+ ;;=1^J3590
+ ;;^UTILITY(U,$J,358.3,764,1,3,0)
+ ;;=3^Luspatercept
+ ;;^UTILITY(U,$J,358.3,765,0)
+ ;;=J8501^^8^56^8^^^^1
+ ;;^UTILITY(U,$J,358.3,765,1,0)
+ ;;=^358.31IA^3^2
+ ;;^UTILITY(U,$J,358.3,765,1,1,0)
+ ;;=1^J8501
+ ;;^UTILITY(U,$J,358.3,765,1,3,0)
+ ;;=3^Aprepitant Oral 5mg
+ ;;^UTILITY(U,$J,358.3,766,0)
+ ;;=Q0162^^8^56^50^^^^1
+ ;;^UTILITY(U,$J,358.3,766,1,0)
+ ;;=^358.31IA^3^2
+ ;;^UTILITY(U,$J,358.3,766,1,1,0)
+ ;;=1^Q0162
+ ;;^UTILITY(U,$J,358.3,766,1,3,0)
+ ;;=3^Ondansetron Oral 1mg
+ ;;^UTILITY(U,$J,358.3,767,0)
+ ;;=J9353^^8^56^36^^^^1
+ ;;^UTILITY(U,$J,358.3,767,1,0)
+ ;;=^358.31IA^3^2
+ ;;^UTILITY(U,$J,358.3,767,1,1,0)
+ ;;=1^J9353
+ ;;^UTILITY(U,$J,358.3,767,1,3,0)
+ ;;=3^Margetuximab-cmkb 5mg
+ ;;^UTILITY(U,$J,358.3,768,0)
+ ;;=M0220^^8^56^58^^^^1
+ ;;^UTILITY(U,$J,358.3,768,1,0)
+ ;;=^358.31IA^3^2
+ ;;^UTILITY(U,$J,358.3,768,1,1,0)
+ ;;=1^M0220
+ ;;^UTILITY(U,$J,358.3,768,1,3,0)
+ ;;=3^Tixagev & Cilgav Inj,Pre-Exposure Prophylaxis
+ ;;^UTILITY(U,$J,358.3,769,0)
+ ;;=Q0220^^8^56^56^^^^1
+ ;;^UTILITY(U,$J,358.3,769,1,0)
+ ;;=^358.31IA^3^2
+ ;;^UTILITY(U,$J,358.3,769,1,1,0)
+ ;;=1^Q0220
+ ;;^UTILITY(U,$J,358.3,769,1,3,0)
+ ;;=3^Tixagev & Cilgav 300mg
+ ;;^UTILITY(U,$J,358.3,770,0)
+ ;;=Q0221^^8^56^57^^^^1
+ ;;^UTILITY(U,$J,358.3,770,1,0)
+ ;;=^358.31IA^3^2
+ ;;^UTILITY(U,$J,358.3,770,1,1,0)
+ ;;=1^Q0221
+ ;;^UTILITY(U,$J,358.3,770,1,3,0)
+ ;;=3^Tixagev & Cilgav 600mg
+ ;;^UTILITY(U,$J,358.3,771,0)
+ ;;=90471^^8^57^1^^^^1
+ ;;^UTILITY(U,$J,358.3,771,1,0)
+ ;;=^358.31IA^3^2
+ ;;^UTILITY(U,$J,358.3,771,1,1,0)
+ ;;=1^90471
+ ;;^UTILITY(U,$J,358.3,771,1,3,0)
+ ;;=3^Immunization Admin,1 Vaccine
+ ;;^UTILITY(U,$J,358.3,772,0)
+ ;;=90472^^8^57^2^^^^1
+ ;;^UTILITY(U,$J,358.3,772,1,0)
+ ;;=^358.31IA^3^2
+ ;;^UTILITY(U,$J,358.3,772,1,1,0)
+ ;;=1^90472
+ ;;^UTILITY(U,$J,358.3,772,1,3,0)
+ ;;=3^Immunization Admin,Ea Addl Vaccine
+ ;;^UTILITY(U,$J,358.3,773,0)
+ ;;=90632^^8^58^6^^^^1
+ ;;^UTILITY(U,$J,358.3,773,1,0)
+ ;;=^358.31IA^3^2
+ ;;^UTILITY(U,$J,358.3,773,1,1,0)
+ ;;=1^90632
+ ;;^UTILITY(U,$J,358.3,773,1,3,0)
+ ;;=3^Hepatitis A Vaccine
+ ;;^UTILITY(U,$J,358.3,774,0)
+ ;;=90636^^8^58^5^^^^1
+ ;;^UTILITY(U,$J,358.3,774,1,0)
+ ;;=^358.31IA^3^2
+ ;;^UTILITY(U,$J,358.3,774,1,1,0)
+ ;;=1^90636
+ ;;^UTILITY(U,$J,358.3,774,1,3,0)
+ ;;=3^Hepatitis A & B Vaccine
+ ;;^UTILITY(U,$J,358.3,775,0)
+ ;;=90746^^8^58^7^^^^1
+ ;;^UTILITY(U,$J,358.3,775,1,0)
+ ;;=^358.31IA^3^2
+ ;;^UTILITY(U,$J,358.3,775,1,1,0)
+ ;;=1^90746
+ ;;^UTILITY(U,$J,358.3,775,1,3,0)
+ ;;=3^Hepatitis B Vaccine
+ ;;^UTILITY(U,$J,358.3,776,0)
+ ;;=90732^^8^58^8^^^^1
+ ;;^UTILITY(U,$J,358.3,776,1,0)
+ ;;=^358.31IA^3^2
+ ;;^UTILITY(U,$J,358.3,776,1,1,0)
+ ;;=1^90732
+ ;;^UTILITY(U,$J,358.3,776,1,3,0)
+ ;;=3^Pneumococcal Vaccine
+ ;;^UTILITY(U,$J,358.3,777,0)
+ ;;=90723^^8^58^1^^^^1
+ ;;^UTILITY(U,$J,358.3,777,1,0)
+ ;;=^358.31IA^3^2
+ ;;^UTILITY(U,$J,358.3,777,1,1,0)
+ ;;=1^90723
+ ;;^UTILITY(U,$J,358.3,777,1,3,0)
+ ;;=3^DTaP-HepB-IPV Vaccine
+ ;;^UTILITY(U,$J,358.3,778,0)
+ ;;=90688^^8^58^3^^^^1
+ ;;^UTILITY(U,$J,358.3,778,1,0)
+ ;;=^358.31IA^3^2
+ ;;^UTILITY(U,$J,358.3,778,1,1,0)
+ ;;=1^90688
+ ;;^UTILITY(U,$J,358.3,778,1,3,0)
+ ;;=3^Fluzone;Quadrivalent;Multi-Dose Vial
+ ;;^UTILITY(U,$J,358.3,779,0)
+ ;;=90686^^8^58^2^^^^1
+ ;;^UTILITY(U,$J,358.3,779,1,0)
+ ;;=^358.31IA^3^2
+ ;;^UTILITY(U,$J,358.3,779,1,1,0)
+ ;;=1^90686
+ ;;^UTILITY(U,$J,358.3,779,1,3,0)
+ ;;=3^Fluarix;Quadrivalent;Pre-Filled
+ ;;^UTILITY(U,$J,358.3,780,0)
+ ;;=90662^^8^58^4^^^^1
+ ;;^UTILITY(U,$J,358.3,780,1,0)
+ ;;=^358.31IA^3^2
+ ;;^UTILITY(U,$J,358.3,780,1,1,0)
+ ;;=1^90662
+ ;;^UTILITY(U,$J,358.3,780,1,3,0)
+ ;;=3^Fluzone;Quadrivalent;Pre-Filled
+ ;;^UTILITY(U,$J,358.3,781,0)
+ ;;=99358^^8^59^3^^^^1
+ ;;^UTILITY(U,$J,358.3,781,1,0)
+ ;;=^358.31IA^3^2
+ ;;^UTILITY(U,$J,358.3,781,1,1,0)
+ ;;=1^99358
+ ;;^UTILITY(U,$J,358.3,781,1,3,0)
+ ;;=3^Prolong Srv w/o Pt Contact,1st Hr
+ ;;^UTILITY(U,$J,358.3,782,0)
+ ;;=99359^^8^59^4^^^^1
+ ;;^UTILITY(U,$J,358.3,782,1,0)
+ ;;=^358.31IA^3^2
+ ;;^UTILITY(U,$J,358.3,782,1,1,0)
+ ;;=1^99359
+ ;;^UTILITY(U,$J,358.3,782,1,3,0)
+ ;;=3^Prolong Srv w/o Pt Contact,Ea Addl 30 Min
+ ;;^UTILITY(U,$J,358.3,783,0)
+ ;;=99354^^8^59^1^^^^1
+ ;;^UTILITY(U,$J,358.3,783,1,0)
+ ;;=^358.31IA^3^2
+ ;;^UTILITY(U,$J,358.3,783,1,1,0)
+ ;;=1^99354
+ ;;^UTILITY(U,$J,358.3,783,1,3,0)
+ ;;=3^Outpt E&M Prolonged Svc,1st Hr
+ ;;^UTILITY(U,$J,358.3,784,0)
+ ;;=99355^^8^59^2^^^^1
+ ;;^UTILITY(U,$J,358.3,784,1,0)
+ ;;=^358.31IA^3^2
+ ;;^UTILITY(U,$J,358.3,784,1,1,0)
+ ;;=1^99355
+ ;;^UTILITY(U,$J,358.3,784,1,3,0)
+ ;;=3^Outpt E&M Prolonged Svc,Ea Addl 30 Min
+ ;;^UTILITY(U,$J,358.3,785,0)
+ ;;=99417^^8^59^5^^^^1
+ ;;^UTILITY(U,$J,358.3,785,1,0)
+ ;;=^358.31IA^3^2
+ ;;^UTILITY(U,$J,358.3,785,1,1,0)
+ ;;=1^99417
+ ;;^UTILITY(U,$J,358.3,785,1,3,0)
+ ;;=3^Prolong Svc,Ea 15min;Only w/ 99205 or 99215
+ ;;^UTILITY(U,$J,358.3,786,0)
+ ;;=98960^^8^60^1^^^^1
+ ;;^UTILITY(U,$J,358.3,786,1,0)
+ ;;=^358.31IA^3^2
+ ;;^UTILITY(U,$J,358.3,786,1,1,0)
+ ;;=1^98960
+ ;;^UTILITY(U,$J,358.3,786,1,3,0)
+ ;;=3^Self-Mgmt Educ/Train,1 Pt
+ ;;^UTILITY(U,$J,358.3,787,0)
+ ;;=98961^^8^60^2^^^^1
+ ;;^UTILITY(U,$J,358.3,787,1,0)
+ ;;=^358.31IA^3^2
+ ;;^UTILITY(U,$J,358.3,787,1,1,0)
+ ;;=1^98961
+ ;;^UTILITY(U,$J,358.3,787,1,3,0)
+ ;;=3^Self-Mgmt Educ/Train,2-4 Pts
+ ;;^UTILITY(U,$J,358.3,788,0)
+ ;;=98962^^8^60^3^^^^1
+ ;;^UTILITY(U,$J,358.3,788,1,0)
+ ;;=^358.31IA^3^2
+ ;;^UTILITY(U,$J,358.3,788,1,1,0)
+ ;;=1^98962
+ ;;^UTILITY(U,$J,358.3,788,1,3,0)
+ ;;=3^Self-Mgmt Educ/Train,5-8 Pts
+ ;;^UTILITY(U,$J,358.3,789,0)
+ ;;=99202^^9^61^1
+ ;;^UTILITY(U,$J,358.3,789,1,0)
+ ;;=^358.31IA^2^2
+ ;;^UTILITY(U,$J,358.3,789,1,1,0)
+ ;;=1^SF MDM or 15-29 mins
+ ;;^UTILITY(U,$J,358.3,789,1,2,0)
+ ;;=2^99202
+ ;;^UTILITY(U,$J,358.3,790,0)
+ ;;=99203^^9^61^2
+ ;;^UTILITY(U,$J,358.3,790,1,0)
+ ;;=^358.31IA^2^2

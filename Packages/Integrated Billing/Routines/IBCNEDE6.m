@@ -1,5 +1,5 @@
 IBCNEDE6 ;DAOU/DAC - eIV DATA EXTRACTS ;15-OCT-2002
- ;;2.0;INTEGRATED BILLING;**184,271,345,416,497,506,621**;21-MAR-94;Build 14
+ ;;2.0;INTEGRATED BILLING;**184,271,345,416,497,506,621,668**;21-MAR-94;Build 28
  ;;Per VA Directive 6402, this routine should not be modified.
  ;
  Q    ; no direct calls allowed
@@ -22,11 +22,14 @@ UPDDTS(PIEN,SVDT,FRDT) ;  Update service date and freshness date per payer
  ; Init vars - save original service date to calc diff
  S (FDAYS,PDAYS,EDTFLG)=0,OSVDT=SVDT
  ; Determine Payer App IEN
- S AIEN=$$PYRAPP^IBCNEUT5("IIV",PIEN)
+ ;IB*668/TAZ - Changed Payer Application from IIV to EIV
+ S AIEN=$$PYRAPP^IBCNEUT5("EIV",PIEN)
  I AIEN="" Q  ; Quit without changing if app is not defined
  S DATA=$G(^IBE(365.12,PIEN,1,AIEN,0))
  I DATA="" Q  ; Quit without changing if node is not defined
- S FDAYS=$P(DATA,U,14),PDAYS=$P(DATA,U,15)
+ ;IB*668/TAZ - Changed location for FDAYS and PDAYS
+ S FDAYS=$$GET1^DIQ(365.121,AIEN_","_PIEN_",",4.03)
+ S PDAYS=$$GET1^DIQ(365.121,AIEN_","_PIEN_",",4.04)
  ; Process past service days if not null
  I PDAYS'="" D
  . ; If zero and Service Date is less than today, reset to today

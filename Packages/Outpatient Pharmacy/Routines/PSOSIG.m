@@ -1,5 +1,5 @@
-PSOSIG ;BIR/RTR-Utility to create SIG ; 11 Nov 2019  3:04 PM
- ;;7.0;OUTPATIENT PHARMACY;**46,99,114,391,313,282,455,446,402,500,515,514,574,584**;DEC 1997;Build 3
+PSOSIG ;BIR/RTR-Utility to create SIG ;Feb 25, 2021@14:48
+ ;;7.0;OUTPATIENT PHARMACY;**46,99,114,391,313,282,455,446,402,500,515,514,574,584,449**;DEC 1997;Build 2
  ;External reference to PS(51 supported by DBIA 2224
  ;External reference to PS(51.1 supported by DBIA 2225
  ;External reference to PSDRUG( supported by DBIA 221
@@ -34,7 +34,18 @@ EXP(X) ; expand based on 51.1 and 51
  Q:$G(SCFLG) SCHEX
  S PSIN=0 F  S PSIN=$O(^PS(51,"D",X,PSIN)) Q:'PSIN!$G(SCLFL)  I PSIN,($P(^PS(51,PSIN,0),"^",4)<2)&($P($G(^PS(51,"A",X)),"^")'="") S SCHEX=$P(^(X),"^"),SCFLG=1
  Q:$G(SCFLG) SCHEX
- Q ""
+ I X[" " Q ""
+ ; expand DOW ;p449
+ N DOW,VAL,VAL1,STR,I,Y,XX,YY,TM
+ S DOW="SUNDAY;MONDAY;TUESDAY;WEDNESDAY;THURSDAY;FRIDAY;SATURDAY",(STR,SCHEX)="",TM=$P(X,"@",2)
+ F I=1:1:$L(X)+1 S VAL=$E(X,I) S:VAL?1AN STR=STR_VAL I VAL'?1AN  D  I VAL="@" Q
+ .Q:STR=""
+ .F J=1:1:7 S VAL1=$P(DOW,";",J),XX=0 I STR'="",(";"_VAL1)[(";"_STR) S YY=$P(SCHEX," ",$L(SCHEX," ")),SCHEX=$S(SCHEX="":"",DOW'[YY:SCHEX_" ",1:SCHEX_", ")_VAL1,STR="",XX=1 Q
+ .I 'XX,SCHEX'="" S YY=$P(SCHEX," ",$L(SCHEX," ")),SCHEX=$S(SCHEX="":"",DOW'[YY:SCHEX_" ",1:SCHEX_" ")_STR,STR=""
+ I SCHEX="" Q ""
+ S XX=$L(SCHEX,", ") I XX>1 S STR=$P(SCHEX,", ",1,XX-1)_" AND "_$P(SCHEX,", ",XX),SCHEX=STR
+ I SCHEX=X Q ""
+ Q SCHEX_$S(TM'="":"@",1:"")_TM
  ;
 QTY(PSOQX) ; PSOQX - Array containing Rx information
  N QDOSE,PSORXIEN,PSODSEDT,PSOOUTQT
@@ -122,7 +133,7 @@ QTS ;*282 Preserve Old Functionality
  I '$G(PSOFRQ) S PSQQUIT=1
  Q
  ;
-QTSCH(QTSH) ; 
+QTSCH(QTSH) ;
  ; Return Frequency for Schedule QTSH
  ; Otherwise return ""
  N PSOFRQ,SPCT,FOUND

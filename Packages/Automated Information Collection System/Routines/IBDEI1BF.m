@@ -1,120 +1,122 @@
-IBDEI1BF ; ; 04-FEB-2020
- ;;3.0;IB ENCOUNTER FORM IMP/EXP;;FEB 04, 2020
+IBDEI1BF ; ; 01-FEB-2022
+ ;;3.0;IB ENCOUNTER FORM IMP/EXP;;FEB 01, 2022
  Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,999) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
- ;;^UTILITY(U,$J,358.3,21028,2)
- ;;=^5003077
- ;;^UTILITY(U,$J,358.3,21029,0)
- ;;=F10.282^^95^1043^21
- ;;^UTILITY(U,$J,358.3,21029,1,0)
+ ;;^UTILITY(U,$J,358.3,21267,2)
+ ;;=^5007242
+ ;;^UTILITY(U,$J,358.3,21268,0)
+ ;;=I50.21^^70^913^4
+ ;;^UTILITY(U,$J,358.3,21268,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,21029,1,3,0)
- ;;=3^Alcohol Induced Sleep D/O w/ Mod/Severe Use Disorder
- ;;^UTILITY(U,$J,358.3,21029,1,4,0)
- ;;=4^F10.282
- ;;^UTILITY(U,$J,358.3,21029,2)
- ;;=^5003098
- ;;^UTILITY(U,$J,358.3,21030,0)
- ;;=F10.982^^95^1043^22
- ;;^UTILITY(U,$J,358.3,21030,1,0)
+ ;;^UTILITY(U,$J,358.3,21268,1,3,0)
+ ;;=3^AC Systolic Congestive Hrt Failure
+ ;;^UTILITY(U,$J,358.3,21268,1,4,0)
+ ;;=4^I50.21
+ ;;^UTILITY(U,$J,358.3,21268,2)
+ ;;=^5007240
+ ;;^UTILITY(U,$J,358.3,21269,0)
+ ;;=I20.9^^70^913^10
+ ;;^UTILITY(U,$J,358.3,21269,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,21030,1,3,0)
- ;;=3^Alcohol Induced Sleep D/O w/o Use Disorder
- ;;^UTILITY(U,$J,358.3,21030,1,4,0)
- ;;=4^F10.982
- ;;^UTILITY(U,$J,358.3,21030,2)
- ;;=^5003112
- ;;^UTILITY(U,$J,358.3,21031,0)
- ;;=F10.281^^95^1043^18
- ;;^UTILITY(U,$J,358.3,21031,1,0)
+ ;;^UTILITY(U,$J,358.3,21269,1,3,0)
+ ;;=3^Angina Pectoris,Unspec
+ ;;^UTILITY(U,$J,358.3,21269,1,4,0)
+ ;;=4^I20.9
+ ;;^UTILITY(U,$J,358.3,21269,2)
+ ;;=^5007079
+ ;;^UTILITY(U,$J,358.3,21270,0)
+ ;;=I25.721^^70^913^11
+ ;;^UTILITY(U,$J,358.3,21270,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,21031,1,3,0)
- ;;=3^Alcohol Induced Sexual Dysfunction w/ Mod/Severe Use Disorder
- ;;^UTILITY(U,$J,358.3,21031,1,4,0)
- ;;=4^F10.281
- ;;^UTILITY(U,$J,358.3,21031,2)
- ;;=^5003097
- ;;^UTILITY(U,$J,358.3,21032,0)
- ;;=F10.981^^95^1043^19
- ;;^UTILITY(U,$J,358.3,21032,1,0)
+ ;;^UTILITY(U,$J,358.3,21270,1,3,0)
+ ;;=3^Athscl Autologous Artery CABG w/ Ang Pctrs w/ Documented Spasm
+ ;;^UTILITY(U,$J,358.3,21270,1,4,0)
+ ;;=4^I25.721
+ ;;^UTILITY(U,$J,358.3,21270,2)
+ ;;=^5007126
+ ;;^UTILITY(U,$J,358.3,21271,0)
+ ;;=I25.728^^70^913^12
+ ;;^UTILITY(U,$J,358.3,21271,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,21032,1,3,0)
- ;;=3^Alcohol Induced Sexual Dysfunction w/o Use Disorder
- ;;^UTILITY(U,$J,358.3,21032,1,4,0)
- ;;=4^F10.981
- ;;^UTILITY(U,$J,358.3,21032,2)
- ;;=^5003111
- ;;^UTILITY(U,$J,358.3,21033,0)
- ;;=F10.182^^95^1043^20
- ;;^UTILITY(U,$J,358.3,21033,1,0)
+ ;;^UTILITY(U,$J,358.3,21271,1,3,0)
+ ;;=3^Athscl Autologous Artery CABG w/ Ang Pctrs NEC
+ ;;^UTILITY(U,$J,358.3,21271,1,4,0)
+ ;;=4^I25.728
+ ;;^UTILITY(U,$J,358.3,21271,2)
+ ;;=^5133560
+ ;;^UTILITY(U,$J,358.3,21272,0)
+ ;;=I25.729^^70^913^13
+ ;;^UTILITY(U,$J,358.3,21272,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,21033,1,3,0)
- ;;=3^Alcohol Induced Sleep D/O w/ Mild Use Disorder
- ;;^UTILITY(U,$J,358.3,21033,1,4,0)
- ;;=4^F10.182
- ;;^UTILITY(U,$J,358.3,21033,2)
- ;;=^5003078
- ;;^UTILITY(U,$J,358.3,21034,0)
- ;;=F10.121^^95^1043^23
- ;;^UTILITY(U,$J,358.3,21034,1,0)
+ ;;^UTILITY(U,$J,358.3,21272,1,3,0)
+ ;;=3^Athscl Autologous Artery CABG w/ Ang Pctrs,Unspec
+ ;;^UTILITY(U,$J,358.3,21272,1,4,0)
+ ;;=4^I25.729
+ ;;^UTILITY(U,$J,358.3,21272,2)
+ ;;=^5133561
+ ;;^UTILITY(U,$J,358.3,21273,0)
+ ;;=I25.720^^70^913^14
+ ;;^UTILITY(U,$J,358.3,21273,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,21034,1,3,0)
- ;;=3^Alcohol Intoxication Delirium w/ Mild Use Disorder
- ;;^UTILITY(U,$J,358.3,21034,1,4,0)
- ;;=4^F10.121
- ;;^UTILITY(U,$J,358.3,21034,2)
- ;;=^5003070
- ;;^UTILITY(U,$J,358.3,21035,0)
- ;;=F10.221^^95^1043^24
- ;;^UTILITY(U,$J,358.3,21035,1,0)
+ ;;^UTILITY(U,$J,358.3,21273,1,3,0)
+ ;;=3^Athscl Autologous Artery CABG w/ Unstable Ang Pctrs
+ ;;^UTILITY(U,$J,358.3,21273,1,4,0)
+ ;;=4^I25.720
+ ;;^UTILITY(U,$J,358.3,21273,2)
+ ;;=^5007125
+ ;;^UTILITY(U,$J,358.3,21274,0)
+ ;;=I25.711^^70^913^15
+ ;;^UTILITY(U,$J,358.3,21274,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,21035,1,3,0)
- ;;=3^Alcohol Intoxication Delirium w/ Mod/Severe Use Disorder
- ;;^UTILITY(U,$J,358.3,21035,1,4,0)
- ;;=4^F10.221
- ;;^UTILITY(U,$J,358.3,21035,2)
- ;;=^5003084
- ;;^UTILITY(U,$J,358.3,21036,0)
- ;;=F10.921^^95^1043^25
- ;;^UTILITY(U,$J,358.3,21036,1,0)
+ ;;^UTILITY(U,$J,358.3,21274,1,3,0)
+ ;;=3^Athscl Autologous Vein CABG w/ Ang Pctrs w/ Documented Spasm
+ ;;^UTILITY(U,$J,358.3,21274,1,4,0)
+ ;;=4^I25.711
+ ;;^UTILITY(U,$J,358.3,21274,2)
+ ;;=^5007122
+ ;;^UTILITY(U,$J,358.3,21275,0)
+ ;;=I25.718^^70^913^16
+ ;;^UTILITY(U,$J,358.3,21275,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,21036,1,3,0)
- ;;=3^Alcohol Intoxication Delirium w/o Use Disorder
- ;;^UTILITY(U,$J,358.3,21036,1,4,0)
- ;;=4^F10.921
- ;;^UTILITY(U,$J,358.3,21036,2)
- ;;=^5003102
- ;;^UTILITY(U,$J,358.3,21037,0)
- ;;=F10.129^^95^1043^26
- ;;^UTILITY(U,$J,358.3,21037,1,0)
+ ;;^UTILITY(U,$J,358.3,21275,1,3,0)
+ ;;=3^Athscl Autologous Vein CABG w/ Ang Pctrs NEC
+ ;;^UTILITY(U,$J,358.3,21275,1,4,0)
+ ;;=4^I25.718
+ ;;^UTILITY(U,$J,358.3,21275,2)
+ ;;=^5007123
+ ;;^UTILITY(U,$J,358.3,21276,0)
+ ;;=I25.719^^70^913^17
+ ;;^UTILITY(U,$J,358.3,21276,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,21037,1,3,0)
- ;;=3^Alcohol Intoxication w/ Mild Use Disorder
- ;;^UTILITY(U,$J,358.3,21037,1,4,0)
- ;;=4^F10.129
- ;;^UTILITY(U,$J,358.3,21037,2)
- ;;=^5003071
- ;;^UTILITY(U,$J,358.3,21038,0)
- ;;=F10.229^^95^1043^27
- ;;^UTILITY(U,$J,358.3,21038,1,0)
+ ;;^UTILITY(U,$J,358.3,21276,1,3,0)
+ ;;=3^Athscl Autologous Vein CABG w/ Ang Pctrs,Unspec
+ ;;^UTILITY(U,$J,358.3,21276,1,4,0)
+ ;;=4^I25.719
+ ;;^UTILITY(U,$J,358.3,21276,2)
+ ;;=^5007124
+ ;;^UTILITY(U,$J,358.3,21277,0)
+ ;;=I25.710^^70^913^18
+ ;;^UTILITY(U,$J,358.3,21277,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,21038,1,3,0)
- ;;=3^Alcohol Intoxication w/ Mod/Severe Use Disorder
- ;;^UTILITY(U,$J,358.3,21038,1,4,0)
- ;;=4^F10.229
- ;;^UTILITY(U,$J,358.3,21038,2)
- ;;=^5003085
- ;;^UTILITY(U,$J,358.3,21039,0)
- ;;=F10.929^^95^1043^28
- ;;^UTILITY(U,$J,358.3,21039,1,0)
+ ;;^UTILITY(U,$J,358.3,21277,1,3,0)
+ ;;=3^Athscl Autologous Vein CABG w/ Unstable Ang Pctrs
+ ;;^UTILITY(U,$J,358.3,21277,1,4,0)
+ ;;=4^I25.710
+ ;;^UTILITY(U,$J,358.3,21277,2)
+ ;;=^5007121
+ ;;^UTILITY(U,$J,358.3,21278,0)
+ ;;=I25.761^^70^913^19
+ ;;^UTILITY(U,$J,358.3,21278,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,21039,1,3,0)
- ;;=3^Alcohol Intoxication w/o Use Disorder
- ;;^UTILITY(U,$J,358.3,21039,1,4,0)
- ;;=4^F10.929
- ;;^UTILITY(U,$J,358.3,21039,2)
- ;;=^5003103
- ;;^UTILITY(U,$J,358.3,21040,0)
- ;;=F10.99^^95^1043^29
- ;;^UTILITY(U,$J,358.3,21040,1,0)
+ ;;^UTILITY(U,$J,358.3,21278,1,3,0)
+ ;;=3^Athscl Bypass Cor Art Transplt Hrt w/ Ang Pctrs w/ Documented Spasm
+ ;;^UTILITY(U,$J,358.3,21278,1,4,0)
+ ;;=4^I25.761
+ ;;^UTILITY(U,$J,358.3,21278,2)
+ ;;=^5007136
+ ;;^UTILITY(U,$J,358.3,21279,0)
+ ;;=I25.768^^70^913^20
+ ;;^UTILITY(U,$J,358.3,21279,1,0)
  ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,21279,1,3,0)
+ ;;=3^Athscl Bypass Cor Art Transplt Hrt w/ Ang Pctrs NEC

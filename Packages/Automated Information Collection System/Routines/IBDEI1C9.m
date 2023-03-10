@@ -1,124 +1,126 @@
-IBDEI1C9 ; ; 04-FEB-2020
- ;;3.0;IB ENCOUNTER FORM IMP/EXP;;FEB 04, 2020
+IBDEI1C9 ; ; 01-FEB-2022
+ ;;3.0;IB ENCOUNTER FORM IMP/EXP;;FEB 01, 2022
  Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,999) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
- ;;^UTILITY(U,$J,358.3,21379,2)
- ;;=^5063063
- ;;^UTILITY(U,$J,358.3,21380,0)
- ;;=Z63.32^^95^1065^1
- ;;^UTILITY(U,$J,358.3,21380,1,0)
+ ;;^UTILITY(U,$J,358.3,21635,1,3,0)
+ ;;=3^Paraplegia,Complete
+ ;;^UTILITY(U,$J,358.3,21635,1,4,0)
+ ;;=4^G82.21
+ ;;^UTILITY(U,$J,358.3,21635,2)
+ ;;=^5004126
+ ;;^UTILITY(U,$J,358.3,21636,0)
+ ;;=G82.22^^70^922^23
+ ;;^UTILITY(U,$J,358.3,21636,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,21380,1,3,0)
- ;;=3^Absence of Family Member
- ;;^UTILITY(U,$J,358.3,21380,1,4,0)
- ;;=4^Z63.32
- ;;^UTILITY(U,$J,358.3,21380,2)
- ;;=^5063167
- ;;^UTILITY(U,$J,358.3,21381,0)
- ;;=Z63.8^^95^1065^10
- ;;^UTILITY(U,$J,358.3,21381,1,0)
+ ;;^UTILITY(U,$J,358.3,21636,1,3,0)
+ ;;=3^Paraplegia,Incomplete
+ ;;^UTILITY(U,$J,358.3,21636,1,4,0)
+ ;;=4^G82.22
+ ;;^UTILITY(U,$J,358.3,21636,2)
+ ;;=^5004127
+ ;;^UTILITY(U,$J,358.3,21637,0)
+ ;;=G82.20^^70^922^24
+ ;;^UTILITY(U,$J,358.3,21637,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,21381,1,3,0)
- ;;=3^Primary Support Group Problems
- ;;^UTILITY(U,$J,358.3,21381,1,4,0)
- ;;=4^Z63.8
- ;;^UTILITY(U,$J,358.3,21381,2)
- ;;=^5063174
- ;;^UTILITY(U,$J,358.3,21382,0)
- ;;=Z63.5^^95^1065^4
- ;;^UTILITY(U,$J,358.3,21382,1,0)
+ ;;^UTILITY(U,$J,358.3,21637,1,3,0)
+ ;;=3^Paraplegia,Unspec
+ ;;^UTILITY(U,$J,358.3,21637,1,4,0)
+ ;;=4^G82.20
+ ;;^UTILITY(U,$J,358.3,21637,2)
+ ;;=^5004125
+ ;;^UTILITY(U,$J,358.3,21638,0)
+ ;;=M15.9^^70^922^25
+ ;;^UTILITY(U,$J,358.3,21638,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,21382,1,3,0)
- ;;=3^Disruption of Family by Separation/Divorce
- ;;^UTILITY(U,$J,358.3,21382,1,4,0)
- ;;=4^Z63.5
- ;;^UTILITY(U,$J,358.3,21382,2)
- ;;=^5063169
- ;;^UTILITY(U,$J,358.3,21383,0)
- ;;=Z71.89^^95^1065^5
- ;;^UTILITY(U,$J,358.3,21383,1,0)
+ ;;^UTILITY(U,$J,358.3,21638,1,3,0)
+ ;;=3^Polyosteoarthritis,Unspec
+ ;;^UTILITY(U,$J,358.3,21638,1,4,0)
+ ;;=4^M15.9
+ ;;^UTILITY(U,$J,358.3,21638,2)
+ ;;=^5010768
+ ;;^UTILITY(U,$J,358.3,21639,0)
+ ;;=G71.9^^70^922^26
+ ;;^UTILITY(U,$J,358.3,21639,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,21383,1,3,0)
- ;;=3^Family Counseling
- ;;^UTILITY(U,$J,358.3,21383,1,4,0)
- ;;=4^Z71.89
- ;;^UTILITY(U,$J,358.3,21383,2)
- ;;=^5063253
- ;;^UTILITY(U,$J,358.3,21384,0)
- ;;=Z69.11^^95^1065^9
- ;;^UTILITY(U,$J,358.3,21384,1,0)
+ ;;^UTILITY(U,$J,358.3,21639,1,3,0)
+ ;;=3^Primary Muscle Disorder,Unspec
+ ;;^UTILITY(U,$J,358.3,21639,1,4,0)
+ ;;=4^G71.9
+ ;;^UTILITY(U,$J,358.3,21639,2)
+ ;;=^5004094
+ ;;^UTILITY(U,$J,358.3,21640,0)
+ ;;=M05.9^^70^922^60
+ ;;^UTILITY(U,$J,358.3,21640,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,21384,1,3,0)
- ;;=3^Mental Hlth Svc for Victim of Spousal/Partner Abuse
- ;;^UTILITY(U,$J,358.3,21384,1,4,0)
- ;;=4^Z69.11
- ;;^UTILITY(U,$J,358.3,21384,2)
- ;;=^5063232
- ;;^UTILITY(U,$J,358.3,21385,0)
- ;;=Z69.12^^95^1065^7
- ;;^UTILITY(U,$J,358.3,21385,1,0)
+ ;;^UTILITY(U,$J,358.3,21640,1,3,0)
+ ;;=3^Rheum Arthritis w/ Rheum Factor,Unspec
+ ;;^UTILITY(U,$J,358.3,21640,1,4,0)
+ ;;=4^M05.9
+ ;;^UTILITY(U,$J,358.3,21640,2)
+ ;;=^5010046
+ ;;^UTILITY(U,$J,358.3,21641,0)
+ ;;=M06.072^^70^922^43
+ ;;^UTILITY(U,$J,358.3,21641,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,21385,1,3,0)
- ;;=3^Mental Hlth Svc for Perpetrator of Spousal/Partner Abuse
- ;;^UTILITY(U,$J,358.3,21385,1,4,0)
- ;;=4^Z69.12
- ;;^UTILITY(U,$J,358.3,21385,2)
- ;;=^5063233
- ;;^UTILITY(U,$J,358.3,21386,0)
- ;;=Z69.010^^95^1065^8
- ;;^UTILITY(U,$J,358.3,21386,1,0)
+ ;;^UTILITY(U,$J,358.3,21641,1,3,0)
+ ;;=3^Rheum Arth w/o Rheum Factor Left Ankle/Foot
+ ;;^UTILITY(U,$J,358.3,21641,1,4,0)
+ ;;=4^M06.072
+ ;;^UTILITY(U,$J,358.3,21641,2)
+ ;;=^5010067
+ ;;^UTILITY(U,$J,358.3,21642,0)
+ ;;=M06.022^^70^922^44
+ ;;^UTILITY(U,$J,358.3,21642,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,21386,1,3,0)
- ;;=3^Mental Hlth Svc for Victim of Parental Child Abuse
- ;;^UTILITY(U,$J,358.3,21386,1,4,0)
- ;;=4^Z69.010
- ;;^UTILITY(U,$J,358.3,21386,2)
- ;;=^5063228
- ;;^UTILITY(U,$J,358.3,21387,0)
- ;;=Z69.011^^95^1065^6
- ;;^UTILITY(U,$J,358.3,21387,1,0)
+ ;;^UTILITY(U,$J,358.3,21642,1,3,0)
+ ;;=3^Rheum Arth w/o Rheum Factor Left Elbow
+ ;;^UTILITY(U,$J,358.3,21642,1,4,0)
+ ;;=4^M06.022
+ ;;^UTILITY(U,$J,358.3,21642,2)
+ ;;=^5010052
+ ;;^UTILITY(U,$J,358.3,21643,0)
+ ;;=M06.042^^70^922^45
+ ;;^UTILITY(U,$J,358.3,21643,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,21387,1,3,0)
- ;;=3^Mental Hlth Svc for Perpetrator of Parental Child Abuse
- ;;^UTILITY(U,$J,358.3,21387,1,4,0)
- ;;=4^Z69.011
- ;;^UTILITY(U,$J,358.3,21387,2)
- ;;=^5063229
- ;;^UTILITY(U,$J,358.3,21388,0)
- ;;=Z62.898^^95^1065^11
- ;;^UTILITY(U,$J,358.3,21388,1,0)
+ ;;^UTILITY(U,$J,358.3,21643,1,3,0)
+ ;;=3^Rheum Arth w/o Rheum Factor Left Hand
+ ;;^UTILITY(U,$J,358.3,21643,1,4,0)
+ ;;=4^M06.042
+ ;;^UTILITY(U,$J,358.3,21643,2)
+ ;;=^5010058
+ ;;^UTILITY(U,$J,358.3,21644,0)
+ ;;=M06.052^^70^922^46
+ ;;^UTILITY(U,$J,358.3,21644,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,21388,1,3,0)
- ;;=3^Problems Related to Upbringing
- ;;^UTILITY(U,$J,358.3,21388,1,4,0)
- ;;=4^Z62.898
- ;;^UTILITY(U,$J,358.3,21388,2)
- ;;=^5063162
- ;;^UTILITY(U,$J,358.3,21389,0)
- ;;=Z63.79^^95^1065^12
- ;;^UTILITY(U,$J,358.3,21389,1,0)
+ ;;^UTILITY(U,$J,358.3,21644,1,3,0)
+ ;;=3^Rheum Arth w/o Rheum Factor Left Hip
+ ;;^UTILITY(U,$J,358.3,21644,1,4,0)
+ ;;=4^M06.052
+ ;;^UTILITY(U,$J,358.3,21644,2)
+ ;;=^5010061
+ ;;^UTILITY(U,$J,358.3,21645,0)
+ ;;=M06.062^^70^922^47
+ ;;^UTILITY(U,$J,358.3,21645,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,21389,1,3,0)
- ;;=3^Stressful Life Events
- ;;^UTILITY(U,$J,358.3,21389,1,4,0)
- ;;=4^Z63.79
- ;;^UTILITY(U,$J,358.3,21389,2)
- ;;=^5063173
- ;;^UTILITY(U,$J,358.3,21390,0)
- ;;=Z63.72^^95^1065^2
- ;;^UTILITY(U,$J,358.3,21390,1,0)
+ ;;^UTILITY(U,$J,358.3,21645,1,3,0)
+ ;;=3^Rheum Arth w/o Rheum Factor Left Knee
+ ;;^UTILITY(U,$J,358.3,21645,1,4,0)
+ ;;=4^M06.062
+ ;;^UTILITY(U,$J,358.3,21645,2)
+ ;;=^5010064
+ ;;^UTILITY(U,$J,358.3,21646,0)
+ ;;=M06.012^^70^922^48
+ ;;^UTILITY(U,$J,358.3,21646,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,21390,1,3,0)
- ;;=3^Alcoholism/Drug Addiction in Family
- ;;^UTILITY(U,$J,358.3,21390,1,4,0)
- ;;=4^Z63.72
- ;;^UTILITY(U,$J,358.3,21390,2)
- ;;=^5063172
- ;;^UTILITY(U,$J,358.3,21391,0)
- ;;=Z63.6^^95^1065^3
- ;;^UTILITY(U,$J,358.3,21391,1,0)
+ ;;^UTILITY(U,$J,358.3,21646,1,3,0)
+ ;;=3^Rheum Arth w/o Rheum Factor Left Shldr
+ ;;^UTILITY(U,$J,358.3,21646,1,4,0)
+ ;;=4^M06.012
+ ;;^UTILITY(U,$J,358.3,21646,2)
+ ;;=^5010049
+ ;;^UTILITY(U,$J,358.3,21647,0)
+ ;;=M06.032^^70^922^49
+ ;;^UTILITY(U,$J,358.3,21647,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,21391,1,3,0)
- ;;=3^Dependent Relative Needing Care at Home
- ;;^UTILITY(U,$J,358.3,21391,1,4,0)
- ;;=4^Z63.6
+ ;;^UTILITY(U,$J,358.3,21647,1,3,0)
+ ;;=3^Rheum Arth w/o Rheum Factor Left Wrist

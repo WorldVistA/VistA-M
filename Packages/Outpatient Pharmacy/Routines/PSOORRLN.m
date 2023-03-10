@@ -1,5 +1,5 @@
-PSOORRLN ;BHAM ISC/SJA - returns patient's outpatient meds-new sort ;10/12/06
- ;;7.0;OUTPATIENT PHARMACY;**225,331,381**;DEC 1997;Build 4
+PSOORRLN ;BHAM ISC/SJA - returns patient's outpatient meds-new sort ;Dec 10, 2021@09:34:20
+ ;;7.0;OUTPATIENT PHARMACY;**225,331,381,622,441**;DEC 1997;Build 208
  ;External reference to ^PS(55 supported by DBIA 2228
  ;External reference to ^PSDRUG supported by DBIA 221
  ;External reference to ^VA(200 supported by DBIA 10060
@@ -21,7 +21,8 @@ OCL ;entry point to return condensed list
  .S ST0=$S(STA<12&($P(RX2,"^",6)<DT):11,1:STA)
  .S STT=$P("ERROR^ACTIVE;1:1^NON-VERIFIED;2:1^REFILL FILL;1:2^HOLD;1:3^NON-VERIFIED;2:1^ACTIVE/SUSP;1:1^^^^^DONE;3:1^EXPIRED;3:2^DISCONTINUED;3:3^DISCONTINUED;3:3^DISCONTINUED;3:3^DISCONTINUED (EDIT);3:6^HOLD;1:3^","^",ST0+2)
  .S ST=$P(STT,";"),GP=$P(STT,";",2)
- .;Status Groups: 1-ACTIVE, 2-PENDING, , 3-DISCONTINUED 
+ .I STA=0,+$G(^PSRX(IFN,"PARK")) S ST="ACTIVE/PARKED"  ;441 PAPI
+ .;Status Groups: 1-ACTIVE, 2-PENDING, , 3-DISCONTINUED
  .S DRUG=$P($G(^PSDRUG(+$P(RX0,"^",6),0)),"^")
  .S ^TMP("PSO",$J,GP,ST,DRUG,TFN,0)=IFN_"R;O"_"^"_DRUG_"^^"_$P(RX2,"^",6)_"^"_($P(RX0,"^",9)-TRM)_"^^^"_$P($G(^PSRX(IFN,"OR1")),"^",2)
  .S ^TMP("PSO",$J,GP,ST,DRUG,TFN,"P",0)=$P(RX0,"^",4)_"^"_$P($G(^VA(200,+$P(RX0,"^",4),0)),"^")
@@ -37,6 +38,7 @@ OCL ;entry point to return condensed list
  .I '$G(PSOELSE) S ITFN=1 D
  ..S ^TMP("PSO",$J,GP,ST,DRUG,TFN,"SIG",ITFN,0)=$G(^PSRX(IFN,"SIG1",1,0)),^TMP("PSO",$J,GP,ST,DRUG,TFN,"SIG",0)=+$G(^TMP("PSO",$J,GP,ST,DRUG,TFN,"SIG",0))+1
  ..F I=1:0 S I=$O(^PSRX(IFN,"SIG1",I)) Q:'I  S ITFN=ITFN+1,^TMP("PSO",$J,GP,ST,DRUG,TFN,"SIG",ITFN,0)=^PSRX(IFN,"SIG1",I,0),^TMP("PSO",$J,GP,ST,DRUG,TFN,"SIG",0)=+$G(^TMP("PSO",$J,GP,ST,DRUG,TFN,"SIG",0))+1
+ .S:$P($G(^PSRX(IFN,"IND")),U)]"" ^TMP("PSO",$J,GP,ST,DRUG,TFN,"IND",0)=$P(^PSRX(IFN,"IND"),U)  ;*441-IND
  K PSOELSE
  S IFN=0 F  S IFN=$O(^PS(52.41,"P",DFN,IFN)) Q:'IFN  S PSOR=^PS(52.41,IFN,0) D:$P(PSOR,"^",3)="" WAIT D:$P(PSOR,"^",3)'="DC"&($P(PSOR,"^",3)'="DE")&($P(PSOR,"^",3)'="")
  .S ST="PENDING",GP="2:4"
@@ -51,13 +53,15 @@ OCL ;entry point to return condensed list
  .S (IEN,SD)=1,INST=0 F  S INST=$O(^PS(52.41,IFN,2,INST)) Q:'INST  S (MIG,INST(INST))=^PS(52.41,IFN,2,INST,0),^TMP("PSO",$J,GP,ST,DRUG,TFN,"SIO",0)=SD D
  ..F SG=1:1:$L(MIG," ") S:$L($G(^TMP("PSO",$J,GP,ST,DRUG,TFN,"SIO",IEN,0))_" "_$P(MIG," ",SG))>80 IEN=IEN+1,SD=SD+1,^TMP("PSO",$J,GP,ST,DRUG,TFN,"SIO",0)=SD D
  ...S ^TMP("PSO",$J,GP,ST,DRUG,TFN,"SIO",IEN,0)=$G(^TMP("PSO",$J,GP,ST,DRUG,TFN,"SIO",IEN,0))_" "_$P(MIG," ",SG)
+ .S:$P($G(^PS(52.41,IFN,4)),U,2)]"" ^TMP("PSO",$J,GP,ST,DRUG,TFN,"IND",0)=$P(^PS(52.41,IFN,4),U,2)  ;*441-IND
  D NVA
  S PSG=0,J=1 F  S PSG=$O(^TMP("PSO",$J,PSG)) Q:'PSG  S PST="" F  S PST=$O(^TMP("PSO",$J,PSG,PST)) Q:PST=""  S PSD="" F  S PSD=$O(^TMP("PSO",$J,PSG,PST,PSD)) Q:PSD=""  S I=0 F  S I=$O(^TMP("PSO",$J,PSG,PST,PSD,I)) Q:'I  D
  .M ^TMP("PS",$J,J)=^TMP("PSO",$J,PSG,PST,PSD,I) S J=J+1
  S PSG=0 F  S PSG=$O(^TMP("PS1",$J,PSG)) Q:'PSG  S PST="" F  S PST=$O(^TMP("PS1",$J,PSG,PST)) Q:PST=""  S PSD="" F  S PSD=$O(^TMP("PS1",$J,PSG,PST,PSD)) Q:PSD=""  S I=0 F  S I=$O(^TMP("PS1",$J,PSG,PST,PSD,I)) Q:'I  D
  .M ^TMP("PS",$J,J)=^TMP("PS1",$J,PSG,PST,PSD,I) S J=J+1
  K ^TMP("PSO",$J),^TMP("PS1",$J)
- D OCL^PSJORRE(DFN,BDT,EDT,.TFN,+$G(VIEW)) D END^PSOORRL1
+ D OCL^PSJORRE(DFN,$G(PSOBDTIN),$G(PSOEDTIN),.TFN,+$G(VIEW))
+ D END^PSOORRL1
  K SDT,SDT1,GP,ST,DRUG,PSG,PST,PSD,EDT,EDT1,BDT,DBT1,X
  Q
 WAIT ; IF PENDING ENTRY STILL BEING BUILT SEE IF IT COMPLETES WITHIN ANOTHER SECOND
@@ -76,6 +80,7 @@ NVA ; Set Non-VA Med Orders in the ^TMP Global
  I PSOBDT,'PSOEDT S PSOEDT=DT   ;*381
  F I=0:0 S I=$O(^PS(55,DFN,"NVA",I)) Q:'I  S X=$G(^PS(55,DFN,"NVA",I,0)) D
  .Q:'$P(X,"^")
+ .I $O(^PS(55,DFN,"NVA",I,3,0)) D NVANEW^PSOORRLO Q    ;*441-Complex dose
  .S DRG=$S($P(X,"^",2):$P($G(^PSDRUG($P(X,"^",2),0)),"^"),1:$P(^PS(50.7,$P(X,"^"),0),"^")_" "_$P(^PS(50.606,$P(^PS(50.7,$P(X,"^"),0),"^",2),0),"^"))
  .S SDT=$P(X,"^",9),PSODCDT=$P(X,"^",7)
  .S (PSOACT,PSODC)=0
@@ -106,4 +111,5 @@ TMPBLD S TFN=$G(TFN)+1
  S $P(^TMP("PS1",$J,GP,ST,DRG,TFN,0),"^",8)=$P(X,"^",8)_"^"_$S($P(X,"^",7):"DISCONTINUED",1:"ACTIVE")
  S ^TMP("PS1",$J,GP,ST,DRG,TFN,"SCH",0)=1,^TMP("PS1",$J,GP,ST,DRG,TFN,"SCH",1,0)=$P(X,"^",5)
  S ^TMP("PS1",$J,GP,ST,DRG,TFN,"SIG",0)=1,^TMP("PS1",$J,GP,ST,DRG,TFN,"SIG",1,0)=$P(X,"^",3)_" "_$P(X,"^",4)_" "_$P(X,"^",5)
+ S:$P($G(^PS(55,DFN,"NVA",I,2)),U)]"" ^TMP("PS1",$J,GP,ST,DRG,TFN,"IND",0)=$P($G(^PS(55,DFN,"NVA",I,2)),U)  ;*441-IND
  Q

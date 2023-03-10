@@ -1,128 +1,124 @@
-IBDEI1KL ; ; 04-FEB-2020
- ;;3.0;IB ENCOUNTER FORM IMP/EXP;;FEB 04, 2020
+IBDEI1KL ; ; 01-FEB-2022
+ ;;3.0;IB ENCOUNTER FORM IMP/EXP;;FEB 01, 2022
  Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,999) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
- ;;^UTILITY(U,$J,358.3,25092,1,3,0)
- ;;=3^Herpesviral Vesicular Dermatitis
- ;;^UTILITY(U,$J,358.3,25092,1,4,0)
- ;;=4^B00.1
- ;;^UTILITY(U,$J,358.3,25092,2)
- ;;=^5000468
- ;;^UTILITY(U,$J,358.3,25093,0)
- ;;=B97.89^^107^1213^89
- ;;^UTILITY(U,$J,358.3,25093,1,0)
+ ;;^UTILITY(U,$J,358.3,25457,1,3,0)
+ ;;=3^Antidepressant Discontinuation Syndrome,Init Encntr
+ ;;^UTILITY(U,$J,358.3,25457,1,4,0)
+ ;;=4^T43.205A
+ ;;^UTILITY(U,$J,358.3,25457,2)
+ ;;=^5050540
+ ;;^UTILITY(U,$J,358.3,25458,0)
+ ;;=T43.205D^^92^1157^5
+ ;;^UTILITY(U,$J,358.3,25458,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,25093,1,3,0)
- ;;=3^Viral Agent Cause of Disease
- ;;^UTILITY(U,$J,358.3,25093,1,4,0)
- ;;=4^B97.89
- ;;^UTILITY(U,$J,358.3,25093,2)
- ;;=^5000879
- ;;^UTILITY(U,$J,358.3,25094,0)
- ;;=B97.10^^107^1213^21
- ;;^UTILITY(U,$J,358.3,25094,1,0)
+ ;;^UTILITY(U,$J,358.3,25458,1,3,0)
+ ;;=3^Antidepressant Discontinuation Syndrome,Subseq Encntr
+ ;;^UTILITY(U,$J,358.3,25458,1,4,0)
+ ;;=4^T43.205D
+ ;;^UTILITY(U,$J,358.3,25458,2)
+ ;;=^5050541
+ ;;^UTILITY(U,$J,358.3,25459,0)
+ ;;=T43.205S^^92^1157^6
+ ;;^UTILITY(U,$J,358.3,25459,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,25094,1,3,0)
- ;;=3^Enterovirus Cause of Disease
- ;;^UTILITY(U,$J,358.3,25094,1,4,0)
- ;;=4^B97.10
- ;;^UTILITY(U,$J,358.3,25094,2)
- ;;=^5000861
- ;;^UTILITY(U,$J,358.3,25095,0)
- ;;=B34.9^^107^1213^90
- ;;^UTILITY(U,$J,358.3,25095,1,0)
+ ;;^UTILITY(U,$J,358.3,25459,1,3,0)
+ ;;=3^Antidepressant Discontinuation Syndrome,Sequela
+ ;;^UTILITY(U,$J,358.3,25459,1,4,0)
+ ;;=4^T43.205S
+ ;;^UTILITY(U,$J,358.3,25459,2)
+ ;;=^5050542
+ ;;^UTILITY(U,$J,358.3,25460,0)
+ ;;=G25.71^^92^1157^7
+ ;;^UTILITY(U,$J,358.3,25460,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,25095,1,3,0)
- ;;=3^Viral Infection,Unspec
- ;;^UTILITY(U,$J,358.3,25095,1,4,0)
- ;;=4^B34.9
- ;;^UTILITY(U,$J,358.3,25095,2)
- ;;=^5000603
- ;;^UTILITY(U,$J,358.3,25096,0)
- ;;=A69.20^^107^1213^50
- ;;^UTILITY(U,$J,358.3,25096,1,0)
+ ;;^UTILITY(U,$J,358.3,25460,1,3,0)
+ ;;=3^Medication-Induced Acute Akathisia
+ ;;^UTILITY(U,$J,358.3,25460,1,4,0)
+ ;;=4^G25.71
+ ;;^UTILITY(U,$J,358.3,25460,2)
+ ;;=^5003799
+ ;;^UTILITY(U,$J,358.3,25461,0)
+ ;;=G24.02^^92^1157^8
+ ;;^UTILITY(U,$J,358.3,25461,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,25096,1,3,0)
- ;;=3^Lyme Disease,Unspec
- ;;^UTILITY(U,$J,358.3,25096,1,4,0)
- ;;=4^A69.20
- ;;^UTILITY(U,$J,358.3,25096,2)
- ;;=^5000375
- ;;^UTILITY(U,$J,358.3,25097,0)
- ;;=A69.22^^107^1213^52
- ;;^UTILITY(U,$J,358.3,25097,1,0)
+ ;;^UTILITY(U,$J,358.3,25461,1,3,0)
+ ;;=3^Medication-Induced Acute Dystonia
+ ;;^UTILITY(U,$J,358.3,25461,1,4,0)
+ ;;=4^G24.02
+ ;;^UTILITY(U,$J,358.3,25461,2)
+ ;;=^5003785
+ ;;^UTILITY(U,$J,358.3,25462,0)
+ ;;=G21.0^^92^1157^12
+ ;;^UTILITY(U,$J,358.3,25462,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,25097,1,3,0)
- ;;=3^Neurologic Disorders d/t Lyme Disease
- ;;^UTILITY(U,$J,358.3,25097,1,4,0)
- ;;=4^A69.22
- ;;^UTILITY(U,$J,358.3,25097,2)
- ;;=^5000377
- ;;^UTILITY(U,$J,358.3,25098,0)
- ;;=A69.21^^107^1213^51
- ;;^UTILITY(U,$J,358.3,25098,1,0)
+ ;;^UTILITY(U,$J,358.3,25462,1,3,0)
+ ;;=3^Neuroleptic Malignant Syndrome
+ ;;^UTILITY(U,$J,358.3,25462,1,4,0)
+ ;;=4^G21.0
+ ;;^UTILITY(U,$J,358.3,25462,2)
+ ;;=^5003771
+ ;;^UTILITY(U,$J,358.3,25463,0)
+ ;;=T50.905A^^92^1157^1
+ ;;^UTILITY(U,$J,358.3,25463,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,25098,1,3,0)
- ;;=3^Meningitis d/t Lyme Disease
- ;;^UTILITY(U,$J,358.3,25098,1,4,0)
- ;;=4^A69.21
- ;;^UTILITY(U,$J,358.3,25098,2)
- ;;=^5000376
- ;;^UTILITY(U,$J,358.3,25099,0)
- ;;=A69.29^^107^1213^18
- ;;^UTILITY(U,$J,358.3,25099,1,0)
+ ;;^UTILITY(U,$J,358.3,25463,1,3,0)
+ ;;=3^Adverse Effect of Medication,Other,Init Encntr
+ ;;^UTILITY(U,$J,358.3,25463,1,4,0)
+ ;;=4^T50.905A
+ ;;^UTILITY(U,$J,358.3,25463,2)
+ ;;=^5052160
+ ;;^UTILITY(U,$J,358.3,25464,0)
+ ;;=T50.905S^^92^1157^2
+ ;;^UTILITY(U,$J,358.3,25464,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,25099,1,3,0)
- ;;=3^Conditions d/t Lyme Disease
- ;;^UTILITY(U,$J,358.3,25099,1,4,0)
- ;;=4^A69.29
- ;;^UTILITY(U,$J,358.3,25099,2)
- ;;=^5000379
- ;;^UTILITY(U,$J,358.3,25100,0)
- ;;=A69.23^^107^1213^5
- ;;^UTILITY(U,$J,358.3,25100,1,0)
+ ;;^UTILITY(U,$J,358.3,25464,1,3,0)
+ ;;=3^Adverse Effect of Medication,Other,Sequela
+ ;;^UTILITY(U,$J,358.3,25464,1,4,0)
+ ;;=4^T50.905S
+ ;;^UTILITY(U,$J,358.3,25464,2)
+ ;;=^5052162
+ ;;^UTILITY(U,$J,358.3,25465,0)
+ ;;=T50.905D^^92^1157^3
+ ;;^UTILITY(U,$J,358.3,25465,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,25100,1,3,0)
- ;;=3^Arthritis d/t Lyme Disease
- ;;^UTILITY(U,$J,358.3,25100,1,4,0)
- ;;=4^A69.23
- ;;^UTILITY(U,$J,358.3,25100,2)
- ;;=^5000378
- ;;^UTILITY(U,$J,358.3,25101,0)
- ;;=A51.0^^107^1213^29
- ;;^UTILITY(U,$J,358.3,25101,1,0)
+ ;;^UTILITY(U,$J,358.3,25465,1,3,0)
+ ;;=3^Adverse Effect of Medication,Other,Subseq Encntr
+ ;;^UTILITY(U,$J,358.3,25465,1,4,0)
+ ;;=4^T50.905D
+ ;;^UTILITY(U,$J,358.3,25465,2)
+ ;;=^5052161
+ ;;^UTILITY(U,$J,358.3,25466,0)
+ ;;=F45.22^^92^1158^1
+ ;;^UTILITY(U,$J,358.3,25466,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,25101,1,3,0)
- ;;=3^Genital Syphilis,Primary
- ;;^UTILITY(U,$J,358.3,25101,1,4,0)
- ;;=4^A51.0
- ;;^UTILITY(U,$J,358.3,25101,2)
- ;;=^5000272
- ;;^UTILITY(U,$J,358.3,25102,0)
- ;;=A52.3^^107^1213^54
- ;;^UTILITY(U,$J,358.3,25102,1,0)
+ ;;^UTILITY(U,$J,358.3,25466,1,3,0)
+ ;;=3^Body Dysmorphic D/O
+ ;;^UTILITY(U,$J,358.3,25466,1,4,0)
+ ;;=4^F45.22
+ ;;^UTILITY(U,$J,358.3,25466,2)
+ ;;=^5003588
+ ;;^UTILITY(U,$J,358.3,25467,0)
+ ;;=F63.3^^92^1158^8
+ ;;^UTILITY(U,$J,358.3,25467,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,25102,1,3,0)
- ;;=3^Neurosyphilis,Unspec
- ;;^UTILITY(U,$J,358.3,25102,1,4,0)
- ;;=4^A52.3
- ;;^UTILITY(U,$J,358.3,25102,2)
- ;;=^5000298
- ;;^UTILITY(U,$J,358.3,25103,0)
- ;;=A52.10^^107^1213^53
- ;;^UTILITY(U,$J,358.3,25103,1,0)
+ ;;^UTILITY(U,$J,358.3,25467,1,3,0)
+ ;;=3^Trichotillomania (Hair-Pulling D/O)
+ ;;^UTILITY(U,$J,358.3,25467,1,4,0)
+ ;;=4^F63.3
+ ;;^UTILITY(U,$J,358.3,25467,2)
+ ;;=^5003643
+ ;;^UTILITY(U,$J,358.3,25468,0)
+ ;;=F06.8^^92^1158^4
+ ;;^UTILITY(U,$J,358.3,25468,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,25103,1,3,0)
- ;;=3^Neurosyphilis Symptomatic,Unspec
- ;;^UTILITY(U,$J,358.3,25103,1,4,0)
- ;;=4^A52.10
- ;;^UTILITY(U,$J,358.3,25103,2)
- ;;=^5000291
- ;;^UTILITY(U,$J,358.3,25104,0)
- ;;=A52.9^^107^1213^49
- ;;^UTILITY(U,$J,358.3,25104,1,0)
+ ;;^UTILITY(U,$J,358.3,25468,1,3,0)
+ ;;=3^OCD & Rel D/O d/t Phys Cond
+ ;;^UTILITY(U,$J,358.3,25468,1,4,0)
+ ;;=4^F06.8
+ ;;^UTILITY(U,$J,358.3,25468,2)
+ ;;=^5003062
+ ;;^UTILITY(U,$J,358.3,25469,0)
+ ;;=F42.4^^92^1158^2
+ ;;^UTILITY(U,$J,358.3,25469,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,25104,1,3,0)
- ;;=3^Late Syphilis,Unspec
- ;;^UTILITY(U,$J,358.3,25104,1,4,0)
- ;;=4^A52.9

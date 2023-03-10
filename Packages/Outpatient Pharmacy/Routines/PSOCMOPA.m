@@ -1,5 +1,5 @@
-PSOCMOPA ;BIR/HTW-Utility for Hold/Can ;[ 12/30/96  10:28 AM ]
- ;;7.0;OUTPATIENT PHARMACY;**61,76,443,508**;DEC 1997;Build 295
+PSOCMOPA ;BIR/HTW-Utility for Hold/Can/Park ;Feb 07, 2019@06:29:42
+ ;;7.0;OUTPATIENT PHARMACY;**61,76,443,508,441**;DEC 1997;Build 208
  ;External Referrence to file # 550.2 granted by DBIA 2231
  ;Required input:  DA - internal entry # -  ^PSRX
  ;Returns:
@@ -7,7 +7,7 @@ PSOCMOPA ;BIR/HTW-Utility for Hold/Can ;[ 12/30/96  10:28 AM ]
  ;CMOP(FILL #)=CMOP status from 52...Trans/0,DISP/1,RETRAN/2,NOT DISP/3
  ;If suspended CMOP("S")=CMOP suspense status Q,L,X,P,R
  ;PSOCMOP=STATUS_^_TRAN DATE_^_LAST FILL
- ;All returned variables can be killed by K CMOP,PSOCMOP 
+ ;All returned variables can be killed by K CMOP,PSOCMOP
  ;
  N X,XN,BATCH,TDT,BIEN
  K PSOCMOP
@@ -20,12 +20,14 @@ PSOCMOPA ;BIR/HTW-Utility for Hold/Can ;[ 12/30/96  10:28 AM ]
  K X,XN,BATCH,TDT,BIEN
  Q
 UNHOLD N FDT S FDT=PSORX("FILL DATE"),XFROM="UNHOLD" G EN1
+UNPARK N FDT S FDT=PSORX("FILL DATE"),XFROM="UNPARK" G EN1   ;441 PAPI
 REINS S XFROM="REINSTATE"
 EN1 D SUS1^PSOCMOP I '$G(XFLAG) G KILL
  D PSOCMOPA
  I $G(REL)]""!($G(CMOP(CMOP("L")))=0)!($G(CMOP(CMOP("L")))=2) D  G KILL
  .I XFROM="REINSTATE" W !!,RX_" REINSTATED -- ",! Q
  .I XFROM="UNHOLD" W !!,$P(^PSRX(DA,0),"^")_" Removed from Hold Status",!!
+ .I XFROM="UNPARK" W !!,$P(^PSRX(DA,0),"^")_" Removed from Park Status",!!  ;441 PAPI
  I $G(CMOP(CMOP("L")))']"" D S^PSOCMOP G KILL
  I $G(CMOP(CMOP("L")))=3,(FDT>DT) D S^PSOCMOP G KILL
 KILL D D1^PSOCMOP
@@ -41,18 +43,18 @@ QS W !! S DIR("A")="LABEL: QUEUE"_$S($P(PSOPAR,"^",24):"/SUSPEND",1:"")_" or '^'
  I $G(Y)="Q" S PPL=DA,RXLTOP=1 D Q1^PSORXL
  Q
 HLD N PSOFROM S PSOFROM="HOLD"
-EN ;  Called from PSORXDL,HLD+4^PSOHLD, PSOCAN
+EN ;  Called from PSORXDL,HLD+4^PSOHLD, PSOCAN, PSOPRK
  ; if in suspense and "loading" no delete
  Q:'$G(DA)  D PSOCMOPA
  I $G(CMOP("S"))="L" D MSG K CMOP Q
  ; PSO*7*508 - quit before the DIR call if this is an eRx
- I $G(PSOFROM)="HOLD",($G(CMOP(CMOP("L")))=0!($G(CMOP(CMOP("L")))=2)) D MSG Q:$G(ERXDCIEN)  K DIR S DIR(0)="E",DIR("A")="Press Return to Continue" D ^DIR K DIR ;*443
+ I $G(PSOFROM)="HOLD",($G(CMOP(CMOP("L")))=0!($G(CMOP(CMOP("L")))=2)) D MSG D MSG Q:$G(ERXDCIEN)  K DIR S DIR(0)="E",DIR("A")="Press Return to Continue" D ^DIR K DIR ;*443
  I $G(PSOFROM)="DELETE",($G(CMOP(CMOP("L")))=0!($G(CMOP(CMOP("L")))=2)) D MSG
  K CMOP
  Q
- ; PSO*7*508 - if this is an eRx, set the flag and quit.
 MSG I $G(ERXDCIEN) S XFLAG=1 Q
- W !!,"A CMOP Rx cannot be"_$S($G(PSOFROM)="HOLD":" placed on HOLD",$G(PSOFROM)="CANCEL":" DISCONTINUED",1:" DELETED")
+ ;441 PAPI
+ W !!,"A CMOP Rx cannot be"_$S($G(PSOFROM)="HOLD":" placed on HOLD",$G(PSOFROM)="CANCEL":" DISCONTINUED",$G(PSOFROM)="PARK":" PARKED",1:" DELETED")
  W $S($G(PSOFROM)="DELETE":" while in",1:" during")
  W $S($G(PSOFROM)="DELETE":" transmission status!",1:" transmission! ")_"  Try later.",!!
  S XFLAG=1
@@ -68,7 +70,15 @@ MW(PSODIR) ;
  K DIR,DIC
  S DIR(0)="52,11"
  S DIR("B")=$S($G(PSORX("MAIL/WINDOW"))]"":PSORX("MAIL/WINDOW"),1:"WINDOW")
- D DIR G:PSODIR("DFLG")!PSODIR("FIELD") MWX
+ I $G(PSODRUG("DEA"))["D",$E($G(PSORX("MAIL/WINDOW")))="P" S DIR("B")="WINDOW"   ;441 PAPI
+ I ($G(PSODRUG("DEA"))["D")!($G(DRGNM)["CLOZAPINE") S DIR(0)="S^M:MAIL;W:WINDOW",DIR("A")="MAIL/WINDOW" G MW0   ;441 PAPI & CLOZAPINE
+ ;I $P(PSOPAR,"^",34) S DIR(0)="S^M:MAIL;W:WINDOW;P:PARK",DIR("A")="MAIL/WINDOW/PARK"
+ ;I '$P(PSOPAR,"^",34) S DIR(0)="S^M:MAIL;W:WINDOW",DIR("A")="MAIL/WINDOW"
+ N RESULTS,PSOPARKX
+ S RESULTS="PSOPARKX" D GETPARK^PSORPC01()
+ I $G(PSOPARKX(0))="YES" S DIR(0)="S^M:MAIL;W:WINDOW;P:PARK",DIR("A")="MAIL/WINDOW/PARK"
+ E  S DIR(0)="S^M:MAIL;W:WINDOW",DIR("A")="MAIL/WINDOW"
+MW0 D DIR G:PSODIR("DFLG")!PSODIR("FIELD") MWX
  I $G(Y(0))']"" S PSODIR("DFLG")=1 G MWX
  S PSODIR("MAIL/WINDOW")=Y,PSORX("MAIL/WINDOW")=Y(0)
 MW1 G:PSODIR("MAIL/WINDOW")'="W"!('$P($G(PSOPAR),"^",12)) MWX

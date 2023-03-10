@@ -1,5 +1,5 @@
-PSBOWA ;BIRMINGHAM/EFC-WARD ADMINISTRATION TIMES ;03/06/16 3:06pm
- ;;3.0;BAR CODE MED ADMIN;**9,32,56,70,80,83**;Mar 2004;Build 89
+PSBOWA ;BIRMINGHAM/EFC-WARD ADMINISTRATION TIMES ;2/6/21  18:03
+ ;;3.0;BAR CODE MED ADMIN;**9,32,56,70,80,83,106**;Mar 2004;Build 43
  ;Per VHA Directive 2004-038 (or future revisions regarding same), this routine should not be modified.
  ;
  ; Reference/IA
@@ -10,6 +10,8 @@ PSBOWA ;BIRMINGHAM/EFC-WARD ADMINISTRATION TIMES ;03/06/16 3:06pm
  ;      1480: Add clinic to header and breakdown by clinic in detail.
  ;*83 - add ability to print Scheduled Removals on Patient report
  ;    - count Removes in the Ward & Clinic reports.
+ ;*106- add Hazardous Handle & Dispose flags
+ ;
 EN ;
  N PSBHDR,PSBGTOT,PSBTOT,PSBINDX,DFN,PSBX,PSBY,PSBSM,PSBADST,PSBZ
  N PSBSRCHL,PSBSORT,PSBCL                                      ;*70
@@ -83,7 +85,7 @@ PATIENT ;* * *  Print By Patient  * * *
  ......D ERROR^PSBMLU(PSBONX,PSBOITX,DFN,"Invalid Admin times",PSBSCH)
  .....S PSBSM=$S(PSBHSM=1:"HSM",PSBSM=1:"SM",1:"")
  .....;*** Local array to include order no  
- .....S PSBTOT(PSBRPDT+Z,PSBOITX_"[sort2]",PSBONX)=PSBSM_U_"Dosage: "_PSBDOSE_"  Route: "_PSBMR_"  "_PSBIFR_U_PSBCLORD         ;add clinic name *70   ;sort Gives 2nd *83
+ .....S PSBTOT(PSBRPDT+Z,PSBOITX_"[sort2]",PSBONX)=PSBSM_U_"Dosage: "_PSBDOSE_"  Route: "_PSBMR_"  "_PSBIFR_U_PSBCLORD_U_U_PSBHAZHN_U_PSBHAZDS         ;add clinic name *70   ;sort Gives 2nd *83   ;*106 adds haz handle/dispose notice 5 & 6 piece
  ;
  ;process removes for MRR meds and add to print array if applies
  K ^TMP("PSB",$J,"RM")
@@ -105,7 +107,9 @@ PATIENT ;* * *  Print By Patient  * * *
  ..S PSBSM=$P(^TMP("PSB",$J,"RM",PSBIEN),U,9)     ;SM
  ..S PSBSM=$S($G(PSBHSM)=1:"HSM",PSBSM=1:"SM",1:"")
  ..S PSBIFR=""                             ;infuse rt n/a for MRR meds
- ..S PSBTOT(RMDT,PSBOITX_"[sort1]",PSBONX)=PSBSM_U_"Dosage: "_PSBDOSE_"  Route: "_PSBMR_"  "_PSBIFR_U_PSBCLORD_U_"(RM)"   ;sort RMs 1st *83
+ ..S PSBHAZHN=$P(^TMP("PSB",$J,"RM",PSBIEN),U,10)     ;HAZHAN
+ ..S PSBHAZDS=$P(^TMP("PSB",$J,"RM",PSBIEN),U,11)     ;HAZDIS
+ ..S PSBTOT(RMDT,PSBOITX_"[sort1]",PSBONX)=PSBSM_U_"Dosage: "_PSBDOSE_"  Route: "_PSBMR_"  "_PSBIFR_U_PSBCLORD_U_"(RM)"_U_PSBHAZHN_U_PSBHAZDS   ;sort RMs 1st *83  '*106 adds haz handle/dispose notice
  ;
  ;print the patient report
  N PREVRPDT                                                       ;*83
@@ -126,6 +130,10 @@ PATIENT ;* * *  Print By Patient  * * *
  ...W:PSBCLINORD !,$P(PSBTOT(PSBX,PSBY,PSBZ),U,3)
  ...W !,$$TIMEOUT^PSBUTL(PSBX)," ",$P(PSBTOT(PSBX,PSBY,PSBZ),U,4),?13  ;remove code piece 4 if exists *83
  ...W $P(PSBTOT(PSBX,PSBY,PSBZ),U,1),?20,$P(PSBY,"[sort"),?55,$P(PSBTOT(PSBX,PSBY,PSBZ),U,2)   ;*83
+ ...;*106 adds haz handle/dispose notice
+ ...I ($P(PSBTOT(PSBX,PSBY,PSBZ),U,5)=1)!($P(PSBTOT(PSBX,PSBY,PSBZ),U,6)=1) W !
+ ...W:$P(PSBTOT(PSBX,PSBY,PSBZ),U,5)=1 ?20,"<<HAZ HANDLE>> "
+ ...W:$P(PSBTOT(PSBX,PSBY,PSBZ),U,6)=1 ?20,"<<HAZ DISPOSE>>"
  W $$PTFTR^PSBOHDR()        ;write end of rpt footer
  Q
  ;

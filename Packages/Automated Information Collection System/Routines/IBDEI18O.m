@@ -1,118 +1,122 @@
-IBDEI18O ; ; 04-FEB-2020
- ;;3.0;IB ENCOUNTER FORM IMP/EXP;;FEB 04, 2020
+IBDEI18O ; ; 01-FEB-2022
+ ;;3.0;IB ENCOUNTER FORM IMP/EXP;;FEB 01, 2022
  Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,999) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
- ;;^UTILITY(U,$J,358.3,19867,1,3,0)
- ;;=3^Disp fx of neck of 2nd MC bone, left hand, sequela
- ;;^UTILITY(U,$J,358.3,19867,1,4,0)
- ;;=4^S62.331S
- ;;^UTILITY(U,$J,358.3,19867,2)
- ;;=^5033982
- ;;^UTILITY(U,$J,358.3,19868,0)
- ;;=S62.330S^^93^997^32
- ;;^UTILITY(U,$J,358.3,19868,1,0)
+ ;;^UTILITY(U,$J,358.3,20089,1,4,0)
+ ;;=4^S82.035S
+ ;;^UTILITY(U,$J,358.3,20089,2)
+ ;;=^5040412
+ ;;^UTILITY(U,$J,358.3,20090,0)
+ ;;=S82.041S^^67^883^13
+ ;;^UTILITY(U,$J,358.3,20090,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,19868,1,3,0)
- ;;=3^Disp fx of neck of 2nd MC bone, right hand, sequela
- ;;^UTILITY(U,$J,358.3,19868,1,4,0)
- ;;=4^S62.330S
- ;;^UTILITY(U,$J,358.3,19868,2)
- ;;=^5033975
- ;;^UTILITY(U,$J,358.3,19869,0)
- ;;=S62.333S^^93^997^33
- ;;^UTILITY(U,$J,358.3,19869,1,0)
+ ;;^UTILITY(U,$J,358.3,20090,1,3,0)
+ ;;=3^Displaced comminuted fx of right patella, sequela
+ ;;^UTILITY(U,$J,358.3,20090,1,4,0)
+ ;;=4^S82.041S
+ ;;^UTILITY(U,$J,358.3,20090,2)
+ ;;=^5040444
+ ;;^UTILITY(U,$J,358.3,20091,0)
+ ;;=S82.042S^^67^883^12
+ ;;^UTILITY(U,$J,358.3,20091,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,19869,1,3,0)
- ;;=3^Disp fx of neck of 3rd MC bone, left hand, sequela
- ;;^UTILITY(U,$J,358.3,19869,1,4,0)
- ;;=4^S62.333S
- ;;^UTILITY(U,$J,358.3,19869,2)
- ;;=^5033996
- ;;^UTILITY(U,$J,358.3,19870,0)
- ;;=S62.332S^^93^997^34
- ;;^UTILITY(U,$J,358.3,19870,1,0)
+ ;;^UTILITY(U,$J,358.3,20091,1,3,0)
+ ;;=3^Displaced comminuted fx of left patella, sequela
+ ;;^UTILITY(U,$J,358.3,20091,1,4,0)
+ ;;=4^S82.042S
+ ;;^UTILITY(U,$J,358.3,20091,2)
+ ;;=^5040460
+ ;;^UTILITY(U,$J,358.3,20092,0)
+ ;;=S82.044S^^67^883^61
+ ;;^UTILITY(U,$J,358.3,20092,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,19870,1,3,0)
- ;;=3^Disp fx of neck of 3rd MC bone, right hand, sequela
- ;;^UTILITY(U,$J,358.3,19870,1,4,0)
- ;;=4^S62.332S
- ;;^UTILITY(U,$J,358.3,19870,2)
- ;;=^5033989
- ;;^UTILITY(U,$J,358.3,19871,0)
- ;;=S62.327S^^93^997^57
- ;;^UTILITY(U,$J,358.3,19871,1,0)
+ ;;^UTILITY(U,$J,358.3,20092,1,3,0)
+ ;;=3^Nondisp comminuted fx of right patella, sequela
+ ;;^UTILITY(U,$J,358.3,20092,1,4,0)
+ ;;=4^S82.044S
+ ;;^UTILITY(U,$J,358.3,20092,2)
+ ;;=^5040492
+ ;;^UTILITY(U,$J,358.3,20093,0)
+ ;;=S82.045S^^67^883^60
+ ;;^UTILITY(U,$J,358.3,20093,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,19871,1,3,0)
- ;;=3^Disp fx of shaft of 5th MC bone, left hand, sequela
- ;;^UTILITY(U,$J,358.3,19871,1,4,0)
- ;;=4^S62.327S
- ;;^UTILITY(U,$J,358.3,19871,2)
- ;;=^5033954
- ;;^UTILITY(U,$J,358.3,19872,0)
- ;;=S62.326S^^93^997^58
- ;;^UTILITY(U,$J,358.3,19872,1,0)
+ ;;^UTILITY(U,$J,358.3,20093,1,3,0)
+ ;;=3^Nondisp comminuted fx of left patella, sequela
+ ;;^UTILITY(U,$J,358.3,20093,1,4,0)
+ ;;=4^S82.045S
+ ;;^UTILITY(U,$J,358.3,20093,2)
+ ;;=^5040508
+ ;;^UTILITY(U,$J,358.3,20094,0)
+ ;;=S72.045S^^67^883^58
+ ;;^UTILITY(U,$J,358.3,20094,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,19872,1,3,0)
- ;;=3^Disp fx of shaft of 5th MC bone, right hand, sequela
- ;;^UTILITY(U,$J,358.3,19872,1,4,0)
- ;;=4^S62.326S
- ;;^UTILITY(U,$J,358.3,19872,2)
- ;;=^5033947
- ;;^UTILITY(U,$J,358.3,19873,0)
- ;;=S62.242S^^93^997^49
- ;;^UTILITY(U,$J,358.3,19873,1,0)
+ ;;^UTILITY(U,$J,358.3,20094,1,3,0)
+ ;;=3^Nondisp base of neck fx of left femur, sequela
+ ;;^UTILITY(U,$J,358.3,20094,1,4,0)
+ ;;=4^S72.045S
+ ;;^UTILITY(U,$J,358.3,20094,2)
+ ;;=^5037392
+ ;;^UTILITY(U,$J,358.3,20095,0)
+ ;;=S72.345S^^67^883^89
+ ;;^UTILITY(U,$J,358.3,20095,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,19873,1,3,0)
- ;;=3^Disp fx of shaft of 1st MC bone, left hand, sequela
- ;;^UTILITY(U,$J,358.3,19873,1,4,0)
- ;;=4^S62.242S
- ;;^UTILITY(U,$J,358.3,19873,2)
- ;;=^5033681
- ;;^UTILITY(U,$J,358.3,19874,0)
- ;;=S62.241S^^93^997^50
- ;;^UTILITY(U,$J,358.3,19874,1,0)
+ ;;^UTILITY(U,$J,358.3,20095,1,3,0)
+ ;;=3^Nondisp spiral fx shaft of left femur, sequela
+ ;;^UTILITY(U,$J,358.3,20095,1,4,0)
+ ;;=4^S72.345S
+ ;;^UTILITY(U,$J,358.3,20095,2)
+ ;;=^5038415
+ ;;^UTILITY(U,$J,358.3,20096,0)
+ ;;=M84.752S^^67^883^52
+ ;;^UTILITY(U,$J,358.3,20096,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,19874,1,3,0)
- ;;=3^Disp fx of shaft of 1st MC bone, right hand, sequela
- ;;^UTILITY(U,$J,358.3,19874,1,4,0)
- ;;=4^S62.241S
- ;;^UTILITY(U,$J,358.3,19874,2)
- ;;=^5033674
- ;;^UTILITY(U,$J,358.3,19875,0)
- ;;=S62.325S^^93^997^55
- ;;^UTILITY(U,$J,358.3,19875,1,0)
+ ;;^UTILITY(U,$J,358.3,20096,1,3,0)
+ ;;=3^Incomp Atypical Femoral Fx,Left 
+ ;;^UTILITY(U,$J,358.3,20096,1,4,0)
+ ;;=4^M84.752S
+ ;;^UTILITY(U,$J,358.3,20096,2)
+ ;;=^5138850
+ ;;^UTILITY(U,$J,358.3,20097,0)
+ ;;=M84.750S^^67^883^1
+ ;;^UTILITY(U,$J,358.3,20097,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,19875,1,3,0)
- ;;=3^Disp fx of shaft of 4th MC bone, left hand, sequela
- ;;^UTILITY(U,$J,358.3,19875,1,4,0)
- ;;=4^S62.325S
- ;;^UTILITY(U,$J,358.3,19875,2)
- ;;=^5033940
- ;;^UTILITY(U,$J,358.3,19876,0)
- ;;=S62.324S^^93^997^56
- ;;^UTILITY(U,$J,358.3,19876,1,0)
+ ;;^UTILITY(U,$J,358.3,20097,1,3,0)
+ ;;=3^Atypical Femoral Fx,Unspec
+ ;;^UTILITY(U,$J,358.3,20097,1,4,0)
+ ;;=4^M84.750S
+ ;;^UTILITY(U,$J,358.3,20097,2)
+ ;;=^5138838
+ ;;^UTILITY(U,$J,358.3,20098,0)
+ ;;=M84.751S^^67^883^53
+ ;;^UTILITY(U,$J,358.3,20098,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,19876,1,3,0)
- ;;=3^Disp fx of shaft of 4th MC bone, right hand, sequela
- ;;^UTILITY(U,$J,358.3,19876,1,4,0)
- ;;=4^S62.324S
- ;;^UTILITY(U,$J,358.3,19876,2)
- ;;=^5033933
- ;;^UTILITY(U,$J,358.3,19877,0)
- ;;=S62.321S^^93^997^51
- ;;^UTILITY(U,$J,358.3,19877,1,0)
+ ;;^UTILITY(U,$J,358.3,20098,1,3,0)
+ ;;=3^Incomp Atypical Femoral Fx,Right
+ ;;^UTILITY(U,$J,358.3,20098,1,4,0)
+ ;;=4^M84.751S
+ ;;^UTILITY(U,$J,358.3,20098,2)
+ ;;=^5138844
+ ;;^UTILITY(U,$J,358.3,20099,0)
+ ;;=M84.754S^^67^883^5
+ ;;^UTILITY(U,$J,358.3,20099,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,19877,1,3,0)
- ;;=3^Disp fx of shaft of 2nd MC bone, left hand, sequela
- ;;^UTILITY(U,$J,358.3,19877,1,4,0)
- ;;=4^S62.321S
- ;;^UTILITY(U,$J,358.3,19877,2)
- ;;=^5033912
- ;;^UTILITY(U,$J,358.3,19878,0)
- ;;=S62.320S^^93^997^52
- ;;^UTILITY(U,$J,358.3,19878,1,0)
+ ;;^UTILITY(U,$J,358.3,20099,1,3,0)
+ ;;=3^Complete Transverse Atyp Femoral Fx,Right
+ ;;^UTILITY(U,$J,358.3,20099,1,4,0)
+ ;;=4^M84.754S
+ ;;^UTILITY(U,$J,358.3,20099,2)
+ ;;=^5138862
+ ;;^UTILITY(U,$J,358.3,20100,0)
+ ;;=M84.755S^^67^883^4
+ ;;^UTILITY(U,$J,358.3,20100,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,19878,1,3,0)
- ;;=3^Disp fx of shaft of 2nd MC bone, right hand, sequela
- ;;^UTILITY(U,$J,358.3,19878,1,4,0)
- ;;=4^S62.320S
+ ;;^UTILITY(U,$J,358.3,20100,1,3,0)
+ ;;=3^Complete Transverse Atyp Femoral Fx,Left
+ ;;^UTILITY(U,$J,358.3,20100,1,4,0)
+ ;;=4^M84.755S
+ ;;^UTILITY(U,$J,358.3,20100,2)
+ ;;=^5138868
+ ;;^UTILITY(U,$J,358.3,20101,0)
+ ;;=M84.757S^^67^883^3
+ ;;^UTILITY(U,$J,358.3,20101,1,0)
+ ;;=^358.31IA^4^2

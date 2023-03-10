@@ -1,5 +1,5 @@
 RORX001 ;HOIFO/SG,VAC - LIST OF REGISTRY PATIENTS ;4/16/09 11:53am
- ;;1.5;CLINICAL CASE REGISTRIES;**8,10,14,17,19,21,31**;Feb 17, 2006;Build 62
+ ;;1.5;CLINICAL CASE REGISTRIES;**8,10,14,17,19,21,31,39**;Feb 17, 2006;Build 4
  ;
  ; This routine uses the following IAs:
  ;
@@ -23,6 +23,7 @@ RORX001 ;HOIFO/SG,VAC - LIST OF REGISTRY PATIENTS ;4/16/09 11:53am
  ;ROR*1.5*21   SEP 2013    T KOPP       Added ICN as last report column if
  ;                                      additional identifier option selected
  ;ROR*1.5*31   MAY 2017    M FERRARESE  Adding PACT and PCP as additional identifiers.
+ ;ROR*1.5*39   JUL 2021    M FERRARESE  Setting SSN and LAST4 to zeros
  ;******************************************************************************
  ;******************************************************************************
  ;
@@ -97,11 +98,11 @@ PATIENT(IENS,PARTAG) ;
  . D ADDVAL^RORTSK11(RORTSK,"DOD",TMP,PTAG,1)
  ;--- Coded SSN
  D:$$OPTCOL^RORXU006("CSSN")
- . S TMP=$$XOR^RORUTL03($P(VADM(2),U))
+ . S TMP="000000000"
  . D ADDVAL^RORTSK11(RORTSK,"CSSN",TMP,PTAG,1)
  ;--- Last 4 digits of the SSN
  D:$$OPTCOL^RORXU006("LAST4")
- . D ADDVAL^RORTSK11(RORTSK,"LAST4",VA("BID"),PTAG,2)
+ . S VA("BID")="0000" D ADDVAL^RORTSK11(RORTSK,"LAST4",VA("BID"),PTAG,2)
  ;--- Selection Rules
  I $$OPTCOL^RORXU006("SELRULES")  D  Q:RC<0 RC
  . S RC=$$SELRULES(IENS,PTAG)

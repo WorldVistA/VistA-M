@@ -1,5 +1,5 @@
-RARTE6 ;HISC/SM Restore deleted report ; Oct 10, 2019@09:41:22
- ;;5.0;Radiology/Nuclear Medicine;**56,95,99,47,163**;Mar 16, 1998;Build 1
+RARTE6 ;HISC/SM Restore deleted report ; Jun 29, 2021@10:11:35
+ ;;5.0;Radiology/Nuclear Medicine;**56,95,99,47,163,182**;Mar 16, 1998;Build 1
  ;Supported IA #10060 ^VA(200
  ;Supported IA #2053 FILE^DIE, UPDATE^DIE
  ;Supported IA #2052 GET1^DID
@@ -13,7 +13,8 @@ RSTR ;restore deleted report
  F I=1:1:5 W !?4,$P($T(INTRO+I),";;",2)
  W !
  S RAXIT=0 ; =0 exit normally, =1 exit early
- I '$D(^XUSEC("RA MGR",DUZ)) W !!,"Supervisory key RA MGR is needed for this option." Q
+ ;p182/KLM - update RA MGR to RA RPTMGR
+ I '$D(^XUSEC("RA RPTMGR",DUZ)) W !!,"Report Manager key RA RPTMGR is needed for this option." Q
  S DIC("S")="I $P(^(0),""^"",5)=""X""" ;only select deleted reports
  S DIC("A")="Select Deleted Report to restore: "
  S DIC="^RARPT(",DIC(0)="AEMQZ"

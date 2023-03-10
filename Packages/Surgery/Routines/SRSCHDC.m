@@ -1,5 +1,5 @@
-SRSCHDC ;B'HAM ISC/MAM - SCHEDULE CONCURRENT CASES ; [ 02/25/02  7:47 AM ]
- ;;3.0; Surgery ;**67,77,100,131**;24 Jun 93
+SRSCHDC ;B'HAM ISC/MAM - SCHEDULE CONCURRENT CASES ; Feb 25, 2002@07:47
+ ;;3.0;Surgery ;**67,77,100,131,203**;24 Jun 93;Build 7
  W @IOF,! S SRCC=1,SRSOUT=0 K DIC S DIC=2,DIC(0)="QEAMZ",DIC("A")="Schedule Concurrent Cases for which Patient ?  " D ^DIC K DIC I Y<0 S SRSOUT=1 G END
  S (DFN,SRSDPT)=+Y D DEM^VADPT S SRNM=VADM(1),SRSSN=VA("PID")
 DEAD I $D(^DPT(SRSDPT,.35)),$P(^(.35),"^")'="" S Y=$E($P(^(.35),"^"),1,7) D D^DIQ W !!,"The records show that "_SRNM_" died on "_Y_".",!! G END
@@ -10,7 +10,9 @@ DATE W ! K SRDUOUT,%DT,SRSDATE S %DT="AEFX",%DT("A")="Schedule Concurrent Proced
  K SRY S DIC=40.5,DR=".01;2",DA=SRSDATE,DIQ="SRY",DIQ(0)="E" D EN^DIQ1 K DA,DIC,DIQ,DR
  I $D(SRY(40.5,SRSDATE,.01,"E")),'$D(^SRO(133,SRSITE,3,SRSDATE,0)) W !!,"Scheduling not allowed for "_$G(SRY(40.5,SRSDATE,2,"E"))_" !!",!! G DATE
  S Y=SRSDATE D D^DIQ S (SREQDT,SRSDT)=Y,ST="SCHEDULING"
-OR D ^SRSCHOR I SRSOUT W !!,"No surgical case has been scheduled.",! S SRSOUT=0 G END
+OR ;
+ D SURG^SRSCHD I SRSOUT S SRSOUT=0 G END ;SR203: ask Primary Surgeon before OR, etc
+ D ^SRSCHOR I SRSOUT W !!,"No surgical case has been scheduled.",! S SRSOUT=0 G END
  K SRTN F SRSCON=1,2 D CON^SRSCHUN I SRSOUT,SRSCON=1 Q
  I SRSOUT,SRSCON=1 W !!,"No surgical case has been scheduled.",! S SRTN("OR")=SRSOR,SRTN("START")=SRSDT1,SRTN("END")=SRSDT2,SRSEDT=$E(SRSDT2,1,7) D ^SRSCG S SRSOUT=0 G END
  I SRSOUT,SRSCON=2 K SRSCON(2) D DEL I SRSOUT G END

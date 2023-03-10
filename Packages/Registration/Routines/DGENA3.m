@@ -1,5 +1,5 @@
 DGENA3 ;ALB/CJM,ISA/KWP,RTK,TDM,LBD,PHH,PJR,TDM,KUM - Enrollment API - Consistency check ;03/23/20 12:41pm
- ;;5.3;Registration;**232,306,327,367,417,454,456,491,514,451,808,993**;Aug 13,1993;Build 92
+ ;;5.3;Registration;**232,306,327,367,417,454,456,491,514,451,808,993,1027**;Aug 13,1993;Build 70
  ;Per VHA Directive 2004-038, this routine should not be modified.
  ;
  ;CHECKand TESTVAL moved from DGENA1
@@ -75,6 +75,9 @@ CHECK(DGENR,DGPAT,ERRMSG) ;
  .I '$D(DGPAT),$$DEATH^DGENPTA(DGENR("DFN")),(DGENR("STATUS")=1)!(DGENR("STATUS")=2) S ERRMSG="ENROLLMENT STATUS OF VERIFIED OR UNVERIFIED NOT ALLOWED FOR A DECEASED PATIENT" Q
  .;all the field values must be valid
  .S SUB="" F  S SUB=$O(DGENR(SUB)) Q:((ERRMSG'="")!(SUB=""))  D
+ ..;DG*5.3*1027 - Skip Validity check for Application Date if ES transmits Blank 
+ ..I SUB="APP",$G(DGOAPP)="" Q
+ ..;
  ..I SUB'="ELIG",(SUB'="DATE"),(SUB'="FACREC") I '$$TESTVAL(SUB,DGENR(SUB)) S ERRMSG="ENROLLMENT FIELD "_$$GET1^DID(27.11,$$FIELD^DGENU(SUB),"","LABEL")_" IS NOT VALID"
  .Q:(ERRMSG'="")
  .S SUB="" F  S SUB=$O(DGENR("ELIG",SUB)) Q:((ERRMSG'="")!(SUB=""))  D

@@ -1,134 +1,134 @@
-IBDEI0I9 ; ; 04-FEB-2020
- ;;3.0;IB ENCOUNTER FORM IMP/EXP;;FEB 04, 2020
+IBDEI0I9 ; ; 01-FEB-2022
+ ;;3.0;IB ENCOUNTER FORM IMP/EXP;;FEB 01, 2022
  Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,999) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
- ;;^UTILITY(U,$J,358.3,7961,1,3,0)
- ;;=3^Intraop Hemor/Hemtom Skin/SQ Tissue,Comp Derm Procedure
- ;;^UTILITY(U,$J,358.3,7961,1,4,0)
- ;;=4^L76.01
- ;;^UTILITY(U,$J,358.3,7961,2)
- ;;=^5009302
- ;;^UTILITY(U,$J,358.3,7962,0)
- ;;=L76.02^^65^515^8
- ;;^UTILITY(U,$J,358.3,7962,1,0)
+ ;;^UTILITY(U,$J,358.3,8215,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,7962,1,3,0)
- ;;=3^Intraop Hemor/Hemtom Skin/SQ Tissue,Comp Oth Procedure
- ;;^UTILITY(U,$J,358.3,7962,1,4,0)
- ;;=4^L76.02
- ;;^UTILITY(U,$J,358.3,7962,2)
- ;;=^5009303
- ;;^UTILITY(U,$J,358.3,7963,0)
- ;;=L60.0^^65^515^5
- ;;^UTILITY(U,$J,358.3,7963,1,0)
+ ;;^UTILITY(U,$J,358.3,8215,1,3,0)
+ ;;=3^Obesity,Unspec
+ ;;^UTILITY(U,$J,358.3,8215,1,4,0)
+ ;;=4^E66.9
+ ;;^UTILITY(U,$J,358.3,8215,2)
+ ;;=^5002832
+ ;;^UTILITY(U,$J,358.3,8216,0)
+ ;;=E74.39^^39^394^16
+ ;;^UTILITY(U,$J,358.3,8216,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,7963,1,3,0)
- ;;=3^Ingrown Nail
- ;;^UTILITY(U,$J,358.3,7963,1,4,0)
- ;;=4^L60.0
- ;;^UTILITY(U,$J,358.3,7963,2)
- ;;=^5009234
- ;;^UTILITY(U,$J,358.3,7964,0)
- ;;=L30.4^^65^515^6
- ;;^UTILITY(U,$J,358.3,7964,1,0)
+ ;;^UTILITY(U,$J,358.3,8216,1,3,0)
+ ;;=3^Intestinal Carbohydrate Absorption Disorder NEC
+ ;;^UTILITY(U,$J,358.3,8216,1,4,0)
+ ;;=4^E74.39
+ ;;^UTILITY(U,$J,358.3,8216,2)
+ ;;=^5002928
+ ;;^UTILITY(U,$J,358.3,8217,0)
+ ;;=E83.30^^39^394^28
+ ;;^UTILITY(U,$J,358.3,8217,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,7964,1,3,0)
- ;;=3^Intertrigo Erythema
- ;;^UTILITY(U,$J,358.3,7964,1,4,0)
- ;;=4^L30.4
- ;;^UTILITY(U,$J,358.3,7964,2)
- ;;=^5009157
- ;;^UTILITY(U,$J,358.3,7965,0)
- ;;=L11.0^^65^516^3
- ;;^UTILITY(U,$J,358.3,7965,1,0)
+ ;;^UTILITY(U,$J,358.3,8217,1,3,0)
+ ;;=3^Phosphorus Metabolism Disorder,Unspec
+ ;;^UTILITY(U,$J,358.3,8217,1,4,0)
+ ;;=4^E83.30
+ ;;^UTILITY(U,$J,358.3,8217,2)
+ ;;=^5002997
+ ;;^UTILITY(U,$J,358.3,8218,0)
+ ;;=E83.51^^39^394^9
+ ;;^UTILITY(U,$J,358.3,8218,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,7965,1,3,0)
- ;;=3^Keratosis,Follicularis,Acquired
- ;;^UTILITY(U,$J,358.3,7965,1,4,0)
- ;;=4^L11.0
- ;;^UTILITY(U,$J,358.3,7965,2)
- ;;=^5009091
- ;;^UTILITY(U,$J,358.3,7966,0)
- ;;=L57.0^^65^516^2
- ;;^UTILITY(U,$J,358.3,7966,1,0)
+ ;;^UTILITY(U,$J,358.3,8218,1,3,0)
+ ;;=3^Hypocalcemia
+ ;;^UTILITY(U,$J,358.3,8218,1,4,0)
+ ;;=4^E83.51
+ ;;^UTILITY(U,$J,358.3,8218,2)
+ ;;=^60542
+ ;;^UTILITY(U,$J,358.3,8219,0)
+ ;;=E83.52^^39^394^7
+ ;;^UTILITY(U,$J,358.3,8219,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,7966,1,3,0)
- ;;=3^Keratosis,Actinic
- ;;^UTILITY(U,$J,358.3,7966,1,4,0)
- ;;=4^L57.0
- ;;^UTILITY(U,$J,358.3,7966,2)
- ;;=^66900
- ;;^UTILITY(U,$J,358.3,7967,0)
- ;;=L82.0^^65^516^4
- ;;^UTILITY(U,$J,358.3,7967,1,0)
+ ;;^UTILITY(U,$J,358.3,8219,1,3,0)
+ ;;=3^Hypercalcemia
+ ;;^UTILITY(U,$J,358.3,8219,1,4,0)
+ ;;=4^E83.52
+ ;;^UTILITY(U,$J,358.3,8219,2)
+ ;;=^59932
+ ;;^UTILITY(U,$J,358.3,8220,0)
+ ;;=E87.5^^39^394^8
+ ;;^UTILITY(U,$J,358.3,8220,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,7967,1,3,0)
- ;;=3^Keratosis,Inflamed Seborrheic
- ;;^UTILITY(U,$J,358.3,7967,1,4,0)
- ;;=4^L82.0
- ;;^UTILITY(U,$J,358.3,7967,2)
- ;;=^303311
- ;;^UTILITY(U,$J,358.3,7968,0)
- ;;=L82.1^^65^516^5
- ;;^UTILITY(U,$J,358.3,7968,1,0)
+ ;;^UTILITY(U,$J,358.3,8220,1,3,0)
+ ;;=3^Hyperkalemia
+ ;;^UTILITY(U,$J,358.3,8220,1,4,0)
+ ;;=4^E87.5
+ ;;^UTILITY(U,$J,358.3,8220,2)
+ ;;=^60041
+ ;;^UTILITY(U,$J,358.3,8221,0)
+ ;;=E89.2^^39^394^30
+ ;;^UTILITY(U,$J,358.3,8221,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,7968,1,3,0)
- ;;=3^Keratosis,Seborrheic
- ;;^UTILITY(U,$J,358.3,7968,1,4,0)
- ;;=4^L82.1
- ;;^UTILITY(U,$J,358.3,7968,2)
- ;;=^303312
- ;;^UTILITY(U,$J,358.3,7969,0)
- ;;=L85.8^^65^516^1
- ;;^UTILITY(U,$J,358.3,7969,1,0)
+ ;;^UTILITY(U,$J,358.3,8221,1,3,0)
+ ;;=3^PostProcedural Hypoparathyroidism
+ ;;^UTILITY(U,$J,358.3,8221,1,4,0)
+ ;;=4^E89.2
+ ;;^UTILITY(U,$J,358.3,8221,2)
+ ;;=^5003037
+ ;;^UTILITY(U,$J,358.3,8222,0)
+ ;;=E89.6^^39^394^29
+ ;;^UTILITY(U,$J,358.3,8222,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,7969,1,3,0)
- ;;=3^Keratoacantoma (Benign)
- ;;^UTILITY(U,$J,358.3,7969,1,4,0)
- ;;=4^L85.8
- ;;^UTILITY(U,$J,358.3,7969,2)
- ;;=^5009324
- ;;^UTILITY(U,$J,358.3,7970,0)
- ;;=B08.1^^65^517^91
- ;;^UTILITY(U,$J,358.3,7970,1,0)
+ ;;^UTILITY(U,$J,358.3,8222,1,3,0)
+ ;;=3^PostProcedural Adrenocortical Hypofunction
+ ;;^UTILITY(U,$J,358.3,8222,1,4,0)
+ ;;=4^E89.6
+ ;;^UTILITY(U,$J,358.3,8222,2)
+ ;;=^5003042
+ ;;^UTILITY(U,$J,358.3,8223,0)
+ ;;=L68.0^^39^394^6
+ ;;^UTILITY(U,$J,358.3,8223,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,7970,1,3,0)
- ;;=3^Molluscum Contagiosum
- ;;^UTILITY(U,$J,358.3,7970,1,4,0)
- ;;=4^B08.1
- ;;^UTILITY(U,$J,358.3,7970,2)
- ;;=^78675
- ;;^UTILITY(U,$J,358.3,7971,0)
- ;;=L74.0^^65^517^89
- ;;^UTILITY(U,$J,358.3,7971,1,0)
+ ;;^UTILITY(U,$J,358.3,8223,1,3,0)
+ ;;=3^Hirsutism
+ ;;^UTILITY(U,$J,358.3,8223,1,4,0)
+ ;;=4^L68.0
+ ;;^UTILITY(U,$J,358.3,8223,2)
+ ;;=^5009262
+ ;;^UTILITY(U,$J,358.3,8224,0)
+ ;;=M80.00XA^^39^394^2
+ ;;^UTILITY(U,$J,358.3,8224,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,7971,1,3,0)
- ;;=3^Miliaria Rubra
- ;;^UTILITY(U,$J,358.3,7971,1,4,0)
- ;;=4^L74.0
- ;;^UTILITY(U,$J,358.3,7971,2)
- ;;=^277258
- ;;^UTILITY(U,$J,358.3,7972,0)
- ;;=D22.9^^65^517^52
- ;;^UTILITY(U,$J,358.3,7972,1,0)
+ ;;^UTILITY(U,$J,358.3,8224,1,3,0)
+ ;;=3^Age-Related Osteoporosis w/ Fx,Unspec Site,Init Encntr
+ ;;^UTILITY(U,$J,358.3,8224,1,4,0)
+ ;;=4^M80.00XA
+ ;;^UTILITY(U,$J,358.3,8224,2)
+ ;;=^5013363
+ ;;^UTILITY(U,$J,358.3,8225,0)
+ ;;=M81.0^^39^394^3
+ ;;^UTILITY(U,$J,358.3,8225,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,7972,1,3,0)
- ;;=3^Melanocytic Nevi,Unspec
- ;;^UTILITY(U,$J,358.3,7972,1,4,0)
- ;;=4^D22.9
- ;;^UTILITY(U,$J,358.3,7972,2)
- ;;=^5002058
- ;;^UTILITY(U,$J,358.3,7973,0)
- ;;=C44.00^^65^517^26
- ;;^UTILITY(U,$J,358.3,7973,1,0)
+ ;;^UTILITY(U,$J,358.3,8225,1,3,0)
+ ;;=3^Age-Related Osteoporosis w/o Fx
+ ;;^UTILITY(U,$J,358.3,8225,1,4,0)
+ ;;=4^M81.0
+ ;;^UTILITY(U,$J,358.3,8225,2)
+ ;;=^5013555
+ ;;^UTILITY(U,$J,358.3,8226,0)
+ ;;=M85.80^^39^394^26
+ ;;^UTILITY(U,$J,358.3,8226,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,7973,1,3,0)
- ;;=3^Malig Neop Skin of Lip,Unspec
- ;;^UTILITY(U,$J,358.3,7973,1,4,0)
- ;;=4^C44.00
- ;;^UTILITY(U,$J,358.3,7973,2)
- ;;=^340596
- ;;^UTILITY(U,$J,358.3,7974,0)
- ;;=C44.202^^65^517^29
- ;;^UTILITY(U,$J,358.3,7974,1,0)
+ ;;^UTILITY(U,$J,358.3,8226,1,3,0)
+ ;;=3^Osteopenia,Unspec Site
+ ;;^UTILITY(U,$J,358.3,8226,1,4,0)
+ ;;=4^M85.80
+ ;;^UTILITY(U,$J,358.3,8226,2)
+ ;;=^5014473
+ ;;^UTILITY(U,$J,358.3,8227,0)
+ ;;=N62.^^39^394^5
+ ;;^UTILITY(U,$J,358.3,8227,1,0)
  ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,8227,1,3,0)
+ ;;=3^Gynecomastia
+ ;;^UTILITY(U,$J,358.3,8227,1,4,0)
+ ;;=4^N62.
+ ;;^UTILITY(U,$J,358.3,8227,2)
+ ;;=^5015790
+ ;;^UTILITY(U,$J,358.3,8228,0)
+ ;;=E66.3^^39^394^27

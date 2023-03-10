@@ -1,124 +1,128 @@
-IBDEI1EQ ; ; 04-FEB-2020
- ;;3.0;IB ENCOUNTER FORM IMP/EXP;;FEB 04, 2020
+IBDEI1EQ ; ; 01-FEB-2022
+ ;;3.0;IB ENCOUNTER FORM IMP/EXP;;FEB 01, 2022
  Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,999) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
- ;;^UTILITY(U,$J,358.3,22509,2)
- ;;=^5000214
- ;;^UTILITY(U,$J,358.3,22510,0)
- ;;=J69.0^^102^1141^22
- ;;^UTILITY(U,$J,358.3,22510,1,0)
+ ;;^UTILITY(U,$J,358.3,22761,0)
+ ;;=L94.0^^76^978^20
+ ;;^UTILITY(U,$J,358.3,22761,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,22510,1,3,0)
- ;;=3^Aspiration Pneumonia
- ;;^UTILITY(U,$J,358.3,22510,1,4,0)
- ;;=4^J69.0
- ;;^UTILITY(U,$J,358.3,22510,2)
- ;;=^5008288
- ;;^UTILITY(U,$J,358.3,22511,0)
- ;;=J69.1^^102^1141^194
- ;;^UTILITY(U,$J,358.3,22511,1,0)
+ ;;^UTILITY(U,$J,358.3,22761,1,3,0)
+ ;;=3^Scleroderma,Localized
+ ;;^UTILITY(U,$J,358.3,22761,1,4,0)
+ ;;=4^L94.0
+ ;;^UTILITY(U,$J,358.3,22761,2)
+ ;;=^5009470
+ ;;^UTILITY(U,$J,358.3,22762,0)
+ ;;=D23.9^^76^978^22
+ ;;^UTILITY(U,$J,358.3,22762,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,22511,1,3,0)
- ;;=3^Pneumonitis d/t Inhalation of Oils/Essences
- ;;^UTILITY(U,$J,358.3,22511,1,4,0)
- ;;=4^J69.1
- ;;^UTILITY(U,$J,358.3,22511,2)
- ;;=^95664
- ;;^UTILITY(U,$J,358.3,22512,0)
- ;;=J68.0^^102^1141^30
- ;;^UTILITY(U,$J,358.3,22512,1,0)
+ ;;^UTILITY(U,$J,358.3,22762,1,3,0)
+ ;;=3^Sebaceous Hyperplasia
+ ;;^UTILITY(U,$J,358.3,22762,1,4,0)
+ ;;=4^D23.9
+ ;;^UTILITY(U,$J,358.3,22762,2)
+ ;;=^5002076
+ ;;^UTILITY(U,$J,358.3,22763,0)
+ ;;=L21.9^^76^978^23
+ ;;^UTILITY(U,$J,358.3,22763,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,22512,1,3,0)
- ;;=3^Bronchitis/Pneumonitis d/t Chemicals/Gases/Fumes/Vapors
- ;;^UTILITY(U,$J,358.3,22512,1,4,0)
- ;;=4^J68.0
- ;;^UTILITY(U,$J,358.3,22512,2)
- ;;=^5008281
- ;;^UTILITY(U,$J,358.3,22513,0)
- ;;=A77.49^^102^1141^74
- ;;^UTILITY(U,$J,358.3,22513,1,0)
+ ;;^UTILITY(U,$J,358.3,22763,1,3,0)
+ ;;=3^Seborrhea,Unspec
+ ;;^UTILITY(U,$J,358.3,22763,1,4,0)
+ ;;=4^L21.9
+ ;;^UTILITY(U,$J,358.3,22763,2)
+ ;;=^188703
+ ;;^UTILITY(U,$J,358.3,22764,0)
+ ;;=L91.8^^76^978^39
+ ;;^UTILITY(U,$J,358.3,22764,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,22513,1,3,0)
- ;;=3^Ehrlichiosis,Specified Organism
- ;;^UTILITY(U,$J,358.3,22513,1,4,0)
- ;;=4^A77.49
- ;;^UTILITY(U,$J,358.3,22513,2)
- ;;=^321976
- ;;^UTILITY(U,$J,358.3,22514,0)
- ;;=A77.40^^102^1141^72
- ;;^UTILITY(U,$J,358.3,22514,1,0)
+ ;;^UTILITY(U,$J,358.3,22764,1,3,0)
+ ;;=3^Skin Tag
+ ;;^UTILITY(U,$J,358.3,22764,1,4,0)
+ ;;=4^L91.8
+ ;;^UTILITY(U,$J,358.3,22764,2)
+ ;;=^5009460
+ ;;^UTILITY(U,$J,358.3,22765,0)
+ ;;=I83.12^^76^978^42
+ ;;^UTILITY(U,$J,358.3,22765,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,22514,1,3,0)
- ;;=3^Ehrlichiosis
- ;;^UTILITY(U,$J,358.3,22514,1,4,0)
- ;;=4^A77.40
- ;;^UTILITY(U,$J,358.3,22514,2)
- ;;=^321974
- ;;^UTILITY(U,$J,358.3,22515,0)
- ;;=A77.41^^102^1141^73
- ;;^UTILITY(U,$J,358.3,22515,1,0)
+ ;;^UTILITY(U,$J,358.3,22765,1,3,0)
+ ;;=3^Stasis Dermatitis,Left Leg
+ ;;^UTILITY(U,$J,358.3,22765,1,4,0)
+ ;;=4^I83.12
+ ;;^UTILITY(U,$J,358.3,22765,2)
+ ;;=^5007989
+ ;;^UTILITY(U,$J,358.3,22766,0)
+ ;;=I83.11^^76^978^43
+ ;;^UTILITY(U,$J,358.3,22766,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,22515,1,3,0)
- ;;=3^Ehrlichiosis 2/2 Sennetu
- ;;^UTILITY(U,$J,358.3,22515,1,4,0)
- ;;=4^A77.41
- ;;^UTILITY(U,$J,358.3,22515,2)
- ;;=^321975
- ;;^UTILITY(U,$J,358.3,22516,0)
- ;;=S90.861A^^102^1141^135
- ;;^UTILITY(U,$J,358.3,22516,1,0)
+ ;;^UTILITY(U,$J,358.3,22766,1,3,0)
+ ;;=3^Stasis Dermatitis,Right Leg
+ ;;^UTILITY(U,$J,358.3,22766,1,4,0)
+ ;;=4^I83.11
+ ;;^UTILITY(U,$J,358.3,22766,2)
+ ;;=^5007988
+ ;;^UTILITY(U,$J,358.3,22767,0)
+ ;;=C84.19^^76^978^26
+ ;;^UTILITY(U,$J,358.3,22767,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,22516,1,3,0)
- ;;=3^Insect Bite,Right Foot
- ;;^UTILITY(U,$J,358.3,22516,1,4,0)
- ;;=4^S90.861A
- ;;^UTILITY(U,$J,358.3,22516,2)
- ;;=^5044087
- ;;^UTILITY(U,$J,358.3,22517,0)
- ;;=S90.862A^^102^1141^134
- ;;^UTILITY(U,$J,358.3,22517,1,0)
+ ;;^UTILITY(U,$J,358.3,22767,1,3,0)
+ ;;=3^Sezary Disease,Extranodal/Solid Organ Sites
+ ;;^UTILITY(U,$J,358.3,22767,1,4,0)
+ ;;=4^C84.19
+ ;;^UTILITY(U,$J,358.3,22767,2)
+ ;;=^5001640
+ ;;^UTILITY(U,$J,358.3,22768,0)
+ ;;=C84.13^^76^978^29
+ ;;^UTILITY(U,$J,358.3,22768,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,22517,1,3,0)
- ;;=3^Insect Bite,Left Foot
- ;;^UTILITY(U,$J,358.3,22517,1,4,0)
- ;;=4^S90.862A
- ;;^UTILITY(U,$J,358.3,22517,2)
- ;;=^5044090
- ;;^UTILITY(U,$J,358.3,22518,0)
- ;;=G06.1^^102^1141^12
- ;;^UTILITY(U,$J,358.3,22518,1,0)
+ ;;^UTILITY(U,$J,358.3,22768,1,3,0)
+ ;;=3^Sezary Disease,Intra-Abdominal Lymph Nodes
+ ;;^UTILITY(U,$J,358.3,22768,1,4,0)
+ ;;=4^C84.13
+ ;;^UTILITY(U,$J,358.3,22768,2)
+ ;;=^5001634
+ ;;^UTILITY(U,$J,358.3,22769,0)
+ ;;=C84.16^^76^978^30
+ ;;^UTILITY(U,$J,358.3,22769,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,22518,1,3,0)
- ;;=3^Abscess, spine, epidural
- ;;^UTILITY(U,$J,358.3,22518,1,4,0)
- ;;=4^G06.1
- ;;^UTILITY(U,$J,358.3,22518,2)
- ;;=^5003746
- ;;^UTILITY(U,$J,358.3,22519,0)
- ;;=Z20.2^^102^1141^48
- ;;^UTILITY(U,$J,358.3,22519,1,0)
+ ;;^UTILITY(U,$J,358.3,22769,1,3,0)
+ ;;=3^Sezary Disease,Intrapelvic Lymph Nodes
+ ;;^UTILITY(U,$J,358.3,22769,1,4,0)
+ ;;=4^C84.16
+ ;;^UTILITY(U,$J,358.3,22769,2)
+ ;;=^5001637
+ ;;^UTILITY(U,$J,358.3,22770,0)
+ ;;=C84.12^^76^978^31
+ ;;^UTILITY(U,$J,358.3,22770,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,22519,1,3,0)
- ;;=3^Contact w/ & Exposure to Infection w/ a Sexl Mode of Transmission
- ;;^UTILITY(U,$J,358.3,22519,1,4,0)
- ;;=4^Z20.2
- ;;^UTILITY(U,$J,358.3,22519,2)
- ;;=^5062764
- ;;^UTILITY(U,$J,358.3,22520,0)
- ;;=A04.71^^102^1141^81
- ;;^UTILITY(U,$J,358.3,22520,1,0)
+ ;;^UTILITY(U,$J,358.3,22770,1,3,0)
+ ;;=3^Sezary Disease,Intrathoracic Lymph Nodes
+ ;;^UTILITY(U,$J,358.3,22770,1,4,0)
+ ;;=4^C84.12
+ ;;^UTILITY(U,$J,358.3,22770,2)
+ ;;=^5001633
+ ;;^UTILITY(U,$J,358.3,22771,0)
+ ;;=C84.14^^76^978^25
+ ;;^UTILITY(U,$J,358.3,22771,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,22520,1,3,0)
- ;;=3^Enterocolitis d/t Clostridium Difficile,Recurrent
- ;;^UTILITY(U,$J,358.3,22520,1,4,0)
- ;;=4^A04.71
- ;;^UTILITY(U,$J,358.3,22520,2)
- ;;=^5151291
- ;;^UTILITY(U,$J,358.3,22521,0)
- ;;=A04.72^^102^1141^82
- ;;^UTILITY(U,$J,358.3,22521,1,0)
+ ;;^UTILITY(U,$J,358.3,22771,1,3,0)
+ ;;=3^Sezary Disease,Axilla/Upper Limb Lymph Nodes
+ ;;^UTILITY(U,$J,358.3,22771,1,4,0)
+ ;;=4^C84.14
+ ;;^UTILITY(U,$J,358.3,22771,2)
+ ;;=^5001635
+ ;;^UTILITY(U,$J,358.3,22772,0)
+ ;;=C84.11^^76^978^27
+ ;;^UTILITY(U,$J,358.3,22772,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,22521,1,3,0)
- ;;=3^Enterocolitis d/t Clostridium Difficile,Not Specified as Recurrent
- ;;^UTILITY(U,$J,358.3,22521,1,4,0)
- ;;=4^A04.72
+ ;;^UTILITY(U,$J,358.3,22772,1,3,0)
+ ;;=3^Sezary Disease,Head/Face/Neck Lymph Nodes
+ ;;^UTILITY(U,$J,358.3,22772,1,4,0)
+ ;;=4^C84.11
+ ;;^UTILITY(U,$J,358.3,22772,2)
+ ;;=^5001632
+ ;;^UTILITY(U,$J,358.3,22773,0)
+ ;;=C84.15^^76^978^28
+ ;;^UTILITY(U,$J,358.3,22773,1,0)
+ ;;=^358.31IA^4^2

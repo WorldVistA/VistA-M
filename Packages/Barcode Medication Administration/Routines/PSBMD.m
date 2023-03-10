@@ -1,5 +1,5 @@
-PSBMD ;BIRMINGHAM/EFC - BCMA MISSING DOSE FUNCTIONS ; 9/26/17 3:25pm
- ;;3.0;BAR CODE MED ADMIN;**23,42,70,100,111**;Mar 2004;Build 5
+PSBMD ;BIRMINGHAM/EFC - BCMA MISSING DOSE FUNCTIONS ;4/23/21  08:34
+ ;;3.0;BAR CODE MED ADMIN;**23,42,70,100,111,106,132**;Mar 2004;Build 1
  ;
  ; Reference/IA
  ; ^DIC(42/10039
@@ -19,6 +19,7 @@ PSBMD ;BIRMINGHAM/EFC - BCMA MISSING DOSE FUNCTIONS ; 9/26/17 3:25pm
  ;*70 -  add new kernel variable for CO Missing Dose Printer.
  ;       use Clinc name if passed in for the new field Clinic or
  ;        assume Ward and get ien.
+ ;*106-  add Hazardous Handle & Dispose flags
  ;
 RPC(RESULTS,PSBDFN,PSBDRUG,PSBDOSE,PSBRSN,PSBADMIN,PSBNEED,PSBUID,PSBON,PSBSCHD,PSBCLIN,PSBCLNIEN) ;
  ;
@@ -57,13 +58,13 @@ RPC(RESULTS,PSBDFN,PSBDRUG,PSBDOSE,PSBRSN,PSBADMIN,PSBNEED,PSBUID,PSBON,PSBSCHD,
  .D PSJ1^PSBVT(PSBDFN,PSBON) K PSBADA,PSBSOLA
  .I '$D(PSBUIDA(PSBUID)) F  D PSJ1^PSBVT(PSBDFN,PSBPONX) K PSBADA,PSBSOLA Q:$D(PSBUIDA(PSBUID))  Q:PSBPONX=""
  .F I=1:1 S PSBAD=$P(PSBUIDA(PSBUID),U,I) Q:PSBAD=""  I PSBAD["ADD" S PSBADA($P(PSBAD,";",2))=""
- .I $D(PSBADA) S X="" F I=1:1 S X=$O(PSBADA(X)) Q:X=""  S PSBFDA(53.686,I_","_PSBIENS,.01)=X,^PSB(53.68,+PSBIENS,.6,I,0)=I
+ .I $D(PSBADA) S X="" F I=1:1 S X=$O(PSBADA(X)) Q:X=""  S PSBFDA(53.686,I_","_PSBIENS,.01)=X,^PSB(53.68,+PSBIENS,.6,I,0)=0 ;p132
  .F I=1:1 S PSBSOL=$P(PSBUIDA(PSBUID),U,I) Q:PSBSOL=""  I PSBSOL["SOL" S PSBSOLA($P(PSBSOL,";",2))=""
- .I $D(PSBSOLA) S X="" F I=1:1 S X=$O(PSBSOLA(X)) Q:X=""  S PSBFDA(53.687,I_","_PSBIENS,.01)=X,^PSB(53.68,+PSBIENS,.7,I,0)=I
+ .I $D(PSBSOLA) S X="" F I=1:1 S X=$O(PSBSOLA(X)) Q:X=""  S PSBFDA(53.687,I_","_PSBIENS,.01)=X,^PSB(53.68,+PSBIENS,.7,I,0)=0 ;p132
  I $G(PSBUID)="",$G(PSBDRUG)="" D
  .D PSJ1^PSBVT(PSBDFN,PSBON)
- .I $D(PSBADA) S X="" F I=1:1 S X=$O(PSBADA(X)) Q:X=""  S PSBFDA(53.686,I_","_PSBIENS,.01)=$P(PSBADA(X),U,2),^PSB(53.68,+PSBIENS,.6,I,0)=X
- .I $D(PSBSOLA) S X="" F I=1:1 S X=$O(PSBSOLA(X)) Q:X=""  S PSBFDA(53.687,I_","_PSBIENS,.01)=$P(PSBSOLA(X),U,2),^PSB(53.68,+PSBIENS,.7,I,0)=X
+ .I $D(PSBADA) S X="" F I=1:1 S X=$O(PSBADA(X)) Q:X=""  S PSBFDA(53.686,I_","_PSBIENS,.01)=$P(PSBADA(X),U,2),^PSB(53.68,+PSBIENS,.6,I,0)=0 ;p132
+ .I $D(PSBSOLA) S X="" F I=1:1 S X=$O(PSBSOLA(X)) Q:X=""  S PSBFDA(53.687,I_","_PSBIENS,.01)=$P(PSBSOLA(X),U,2),^PSB(53.68,+PSBIENS,.7,I,0)=0 ;p132
  D FILE^DIE("","PSBFDA","PSBMSG")
  L -^PSB(53.68,+PSBIENS) ; PSB83*23
  D SUBMIT(+PSBIENS)
@@ -137,7 +138,7 @@ SUBMIT(DA) ; Submit Request to Pharmacy
  Q
  ;
 DQ(PSBMD,PSBMM) ; Dequeue report from Taskman
- N PSBFLD,PSBRET
+ N PSBFLD,PSBRET,DDIEN
  Q:'$D(^PSB(53.68,PSBMD,0))
  L +^PSB(53.68,PSBMD):$S($G(DILOCKTM)>0:DILOCKTM,1:3) ; PSB*3*23
  S PSBCFLD=$P(^PSB(53.68,PSBMD,.1),U,3)
@@ -147,10 +148,21 @@ DQ(PSBMD,PSBMM) ; Dequeue report from Taskman
  .W !,"Report:       MISSING DOSE REQUEST"
  .W !,"Date Created: " D NOW^%DTC S Y=% D D^DIQ W Y
  .W !,$TR($J("",75)," ","="),!
- I $G(PSBCFLD)'="" F PSBFLD=.01,.02,.03,.04,.05,.06,.11,.12,.18,1,.13,.14,.19,.15,.16,.17 D OUT  ;*70
+ ;I $G(PSBCFLD)'="" F PSBFLD=.01,.02,.03,.04,.05,.06,.11,.12,.18,1,.13,.14,.19,.15,.16,.17 D OUT  ;*70
+ ;I $G(PSBCFLD)="" F PSBFLD=.01,.02,.03,.04,.05,.06,.11,.12,.18,1,.25,.15,.19,.16,.17 D OUT  ;*70
+ ;I $D(^PSB(53.68,PSBMD,.6)) S X=0 F  S X=$O(^PSB(53.68,PSBMD,.6,X)) Q:'X  W !?3,"ADDITIVE:  ",$$GET1^DIQ(52.6,+^PSB(53.68,PSBMD,.6,X,0),.01)
+ ;I $D(^PSB(53.68,PSBMD,.7)) S X=0 F  S X=$O(^PSB(53.68,PSBMD,.7,X)) Q:'X  W !?3,"SOLUTION:  ",$$GET1^DIQ(52.7,+^PSB(53.68,PSBMD,.7,X,0),.01)
+ I $G(PSBCFLD)'="" D   ;*106 - added HAZ notifications for dispensed drugs
+ . F PSBFLD=.01,.02,.03,.04,.05,.06,.11,.12,.18,1,.13 D OUT
+ . S DDIEN=$$GET1^DIQ(53.68,PSBMD,.13,"I") D HAZOUT(DDIEN,31)
+ . F PSBFLD=.14,.19,.15,.16,.17 D OUT  ;*70
  I $G(PSBCFLD)="" F PSBFLD=.01,.02,.03,.04,.05,.06,.11,.12,.18,1,.25,.15,.19,.16,.17 D OUT  ;*70
- I $D(^PSB(53.68,PSBMD,.6)) S X=0 F  S X=$O(^PSB(53.68,PSBMD,.6,X)) Q:'X  W !?3,"ADDITIVE:  ",$$GET1^DIQ(52.6,+^PSB(53.68,PSBMD,.6,X,0),.01)
- I $D(^PSB(53.68,PSBMD,.7)) S X=0 F  S X=$O(^PSB(53.68,PSBMD,.7,X)) Q:'X  W !?3,"SOLUTION:  ",$$GET1^DIQ(52.7,+^PSB(53.68,PSBMD,.7,X,0),.01)
+ I $D(^PSB(53.68,PSBMD,.6)) S X=0 D   ;*106 - added HAZ notifications for additives
+ . F  S X=$O(^PSB(53.68,PSBMD,.6,X)) Q:'X  W !?3,"ADDITIVE:  ",$$GET1^DIQ(52.6,+^PSB(53.68,PSBMD,.6,X,0),.01) D
+ . . S DDIEN=$$GET1^DIQ(52.6,+^PSB(53.68,PSBMD,.6,X,0),1,"I") D HAZOUT(DDIEN,14)
+ I $D(^PSB(53.68,PSBMD,.7)) S X=0 D   ;*106 - added HAZ notifications for solutions
+ . F  S X=$O(^PSB(53.68,PSBMD,.7,X)) Q:'X  W !?3,"SOLUTION:  ",$$GET1^DIQ(52.7,+^PSB(53.68,PSBMD,.7,X,0),.01) D
+ . . S DDIEN=$$GET1^DIQ(52.7,+^PSB(53.68,PSBMD,.7,X,0),1,"I") D HAZOUT(DDIEN,14)
  Q
 OUT ;
  D FIELD^DID(53.68,PSBFLD,"","LABEL","PSBRET")
@@ -166,6 +178,12 @@ OUT ;
  .W VA("BID")
  W:PSBFLD=.13 " ("_$P($G(^PSB(53.68,PSBMD,.1)),U,3)_")"
  S ZTREQ="@"
+ Q
+ ;
+HAZOUT(P50,POS) ; Write warnings for drugs, additives and solutions that are Hazardous to Handle or Dispose *106
+ N PSBHAZ
+ S PSBHAZ=$$HAZ^PSSUTIL(P50)
+ I $P(PSBHAZ,U)!$P(PSBHAZ,U,2) W !?POS W:$P(PSBHAZ,U) "<<HAZ Handle>> " W:$P(PSBHAZ,U,2) "<<HAZ Dispose>>"
  Q
  ;
 NEW(RESULTS) ; Create a new missing dose request
@@ -258,6 +276,7 @@ FLWUP ; Follow-Up on missing dose
  S PSBNAME=$P($G(^TMP("PSBMD",$J)),U,3)
  ; end of changes for PSB*3*100
  N DIR,PSBIEN,PSBX,DA,DR,DDSFILE,PSBHDR,PSBDRUG,LOC            ;*70
+ N PSBHAZ,DDIEN                                                ;*106
  S Y="" F  Q:Y="^"  D
  .K ^TMP("PSB",$J) S X=""
  .;start PSB*3*100 changes: user did not select one division and will see all the records (single station functionality)
@@ -279,13 +298,13 @@ FLWUP ; Follow-Up on missing dose
  ..; get correct location                                     ;*70
  ..S LOC=$S($$GET1^DIQ(53.68,PSBIEN,1)]"":$$GET1^DIQ(53.68,PSBIEN,1),1:$$GET1^DIQ(53.68,PSBIEN,.12))
  ..W ?57,LOC                                                  ;*70
- ..S PSBDRUG=$$GET1^DIQ(53.68,PSBIEN,.13)
- ..I PSBDRUG]"" W !?5,PSBDRUG
+ ..S PSBDRUG=$$GET1^DIQ(53.68,PSBIEN,.13),DDIEN=$$GET1^DIQ(53.68,PSBIEN,.13,"I")           ;*106
+ ..I PSBDRUG]"" S PSBHAZ=$$HAZ^PSSUTIL(DDIEN) W !?5,PSBDRUG I $P(PSBHAZ,U)!$P(PSBHAZ,U,2) W !?5 W:$P(PSBHAZ,U) "<<HAZ Handle>> " W:$P(PSBHAZ,U,2) "<<HAZ Dispose>>"    ;*106
  ..I PSBDRUG="" D
  ...W !?5,"UNIQUE ID: ",$$GET1^DIQ(53.68,PSBIEN,.25)
  ...S X=0 F  S X=$O(^PSB(53.68,+PSBIEN,.6,X)) Q:'X  W !?10,"ADDITIVES:  ",$$GET1^DIQ(52.6,+^PSB(53.68,+PSBIEN,.6,X,0),.01)
  ...S X=0 F  S X=$O(^PSB(53.68,+PSBIEN,.7,X)) Q:'X  W !?10,"SOLUTIONS:  ",$$GET1^DIQ(52.7,+^PSB(53.68,+PSBIEN,.7,X,0),.01)
- ..S:$Y>(IOSL-4) Y=$$PAGE(PSBX)
+ ..S:$Y>(IOSL-5) Y=$$PAGE(PSBX)  ;use -5 so if Haz added line displayed, as 3rd line, then needs to not scroll line 1 HDR off screen in some cases     *106
  .S:Y'="^" Y=$$PAGE(PSBX)
  K ^TMP("PSB",$J),^TMP("PSBMD",$J) ; PSB*3*100
  Q

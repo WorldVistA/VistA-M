@@ -1,132 +1,132 @@
-IBDEI0IM ; ; 04-FEB-2020
- ;;3.0;IB ENCOUNTER FORM IMP/EXP;;FEB 04, 2020
+IBDEI0IM ; ; 01-FEB-2022
+ ;;3.0;IB ENCOUNTER FORM IMP/EXP;;FEB 01, 2022
  Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,999) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
- ;;^UTILITY(U,$J,358.3,8125,1,0)
+ ;;^UTILITY(U,$J,358.3,8376,1,3,0)
+ ;;=3^Cystitis w/o Hematuria,Irradiation
+ ;;^UTILITY(U,$J,358.3,8376,1,4,0)
+ ;;=4^N30.40
+ ;;^UTILITY(U,$J,358.3,8376,2)
+ ;;=^5015639
+ ;;^UTILITY(U,$J,358.3,8377,0)
+ ;;=N32.0^^39^398^8
+ ;;^UTILITY(U,$J,358.3,8377,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,8125,1,3,0)
- ;;=3^Purpura Immune Hemorrhagic/Idopathic Thrombocytopenic
- ;;^UTILITY(U,$J,358.3,8125,1,4,0)
- ;;=4^D69.3
- ;;^UTILITY(U,$J,358.3,8125,2)
- ;;=^332746
- ;;^UTILITY(U,$J,358.3,8126,0)
- ;;=D69.2^^65^519^47
- ;;^UTILITY(U,$J,358.3,8126,1,0)
+ ;;^UTILITY(U,$J,358.3,8377,1,3,0)
+ ;;=3^Bladder-Neck Obstruction
+ ;;^UTILITY(U,$J,358.3,8377,1,4,0)
+ ;;=4^N32.0
+ ;;^UTILITY(U,$J,358.3,8377,2)
+ ;;=^5015649
+ ;;^UTILITY(U,$J,358.3,8378,0)
+ ;;=N31.9^^39^398^79
+ ;;^UTILITY(U,$J,358.3,8378,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,8126,1,3,0)
- ;;=3^Purpura Simplex
- ;;^UTILITY(U,$J,358.3,8126,1,4,0)
- ;;=4^D69.2
- ;;^UTILITY(U,$J,358.3,8126,2)
- ;;=^5002366
- ;;^UTILITY(U,$J,358.3,8127,0)
- ;;=L76.31^^65^519^23
- ;;^UTILITY(U,$J,358.3,8127,1,0)
+ ;;^UTILITY(U,$J,358.3,8378,1,3,0)
+ ;;=3^Neurogenic Bladder Dysfunction,Unspec
+ ;;^UTILITY(U,$J,358.3,8378,1,4,0)
+ ;;=4^N31.9
+ ;;^UTILITY(U,$J,358.3,8378,2)
+ ;;=^5015648
+ ;;^UTILITY(U,$J,358.3,8379,0)
+ ;;=N31.1^^39^398^80
+ ;;^UTILITY(U,$J,358.3,8379,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,8127,1,3,0)
- ;;=3^Postprocedure Hematoma of Skin/SQ After Derm Procedure
- ;;^UTILITY(U,$J,358.3,8127,1,4,0)
- ;;=4^L76.31
- ;;^UTILITY(U,$J,358.3,8127,2)
- ;;=^5138774
- ;;^UTILITY(U,$J,358.3,8128,0)
- ;;=L76.32^^65^519^24
- ;;^UTILITY(U,$J,358.3,8128,1,0)
+ ;;^UTILITY(U,$J,358.3,8379,1,3,0)
+ ;;=3^Neuropathic Bladder,Reflex NEC
+ ;;^UTILITY(U,$J,358.3,8379,1,4,0)
+ ;;=4^N31.1
+ ;;^UTILITY(U,$J,358.3,8379,2)
+ ;;=^5015645
+ ;;^UTILITY(U,$J,358.3,8380,0)
+ ;;=N32.89^^39^398^7
+ ;;^UTILITY(U,$J,358.3,8380,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,8128,1,3,0)
- ;;=3^Postprocedure Hematoma of Skin/SQ After Oth Procedure
- ;;^UTILITY(U,$J,358.3,8128,1,4,0)
- ;;=4^L76.32
- ;;^UTILITY(U,$J,358.3,8128,2)
- ;;=^5138775
- ;;^UTILITY(U,$J,358.3,8129,0)
- ;;=R73.03^^65^519^27
- ;;^UTILITY(U,$J,358.3,8129,1,0)
+ ;;^UTILITY(U,$J,358.3,8380,1,3,0)
+ ;;=3^Bladder Disorders,Other Spec
+ ;;^UTILITY(U,$J,358.3,8380,1,4,0)
+ ;;=4^N32.89
+ ;;^UTILITY(U,$J,358.3,8380,2)
+ ;;=^87989
+ ;;^UTILITY(U,$J,358.3,8381,0)
+ ;;=N33.^^39^398^6
+ ;;^UTILITY(U,$J,358.3,8381,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,8129,1,3,0)
- ;;=3^Pre-Diabetes
- ;;^UTILITY(U,$J,358.3,8129,1,4,0)
- ;;=4^R73.03
- ;;^UTILITY(U,$J,358.3,8129,2)
- ;;=^8295662
- ;;^UTILITY(U,$J,358.3,8130,0)
- ;;=L71.9^^65^520^7
- ;;^UTILITY(U,$J,358.3,8130,1,0)
+ ;;^UTILITY(U,$J,358.3,8381,1,3,0)
+ ;;=3^Bladder Disorders,Diseases Classified Elsewhere
+ ;;^UTILITY(U,$J,358.3,8381,1,4,0)
+ ;;=4^N33.
+ ;;^UTILITY(U,$J,358.3,8381,2)
+ ;;=^5015654
+ ;;^UTILITY(U,$J,358.3,8382,0)
+ ;;=N34.2^^39^398^115
+ ;;^UTILITY(U,$J,358.3,8382,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,8130,1,3,0)
- ;;=3^Rosacea,Unspec
- ;;^UTILITY(U,$J,358.3,8130,1,4,0)
- ;;=4^L71.9
- ;;^UTILITY(U,$J,358.3,8130,2)
- ;;=^5009276
- ;;^UTILITY(U,$J,358.3,8131,0)
- ;;=L71.1^^65^520^6
- ;;^UTILITY(U,$J,358.3,8131,1,0)
+ ;;^UTILITY(U,$J,358.3,8382,1,3,0)
+ ;;=3^Urethritis
+ ;;^UTILITY(U,$J,358.3,8382,1,4,0)
+ ;;=4^N34.2
+ ;;^UTILITY(U,$J,358.3,8382,2)
+ ;;=^88231
+ ;;^UTILITY(U,$J,358.3,8383,0)
+ ;;=N34.1^^39^398^116
+ ;;^UTILITY(U,$J,358.3,8383,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,8131,1,3,0)
- ;;=3^Rhinophyma
- ;;^UTILITY(U,$J,358.3,8131,1,4,0)
- ;;=4^L71.1
- ;;^UTILITY(U,$J,358.3,8131,2)
- ;;=^106083
- ;;^UTILITY(U,$J,358.3,8132,0)
- ;;=I73.00^^65^520^2
- ;;^UTILITY(U,$J,358.3,8132,1,0)
+ ;;^UTILITY(U,$J,358.3,8383,1,3,0)
+ ;;=3^Urethritis,Nonspec
+ ;;^UTILITY(U,$J,358.3,8383,1,4,0)
+ ;;=4^N34.1
+ ;;^UTILITY(U,$J,358.3,8383,2)
+ ;;=^5015655
+ ;;^UTILITY(U,$J,358.3,8384,0)
+ ;;=N39.0^^39^398^120
+ ;;^UTILITY(U,$J,358.3,8384,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,8132,1,3,0)
- ;;=3^Raynaud's Syndrome w/o Gangrene
- ;;^UTILITY(U,$J,358.3,8132,1,4,0)
- ;;=4^I73.00
- ;;^UTILITY(U,$J,358.3,8132,2)
- ;;=^5007796
- ;;^UTILITY(U,$J,358.3,8133,0)
- ;;=I73.01^^65^520^1
- ;;^UTILITY(U,$J,358.3,8133,1,0)
+ ;;^UTILITY(U,$J,358.3,8384,1,3,0)
+ ;;=3^Urinary Tract Infection,Site Not Spec
+ ;;^UTILITY(U,$J,358.3,8384,1,4,0)
+ ;;=4^N39.0
+ ;;^UTILITY(U,$J,358.3,8384,2)
+ ;;=^124436
+ ;;^UTILITY(U,$J,358.3,8385,0)
+ ;;=N31.0^^39^398^81
+ ;;^UTILITY(U,$J,358.3,8385,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,8133,1,3,0)
- ;;=3^Raynaud's Syndrome w/ Gangrene
- ;;^UTILITY(U,$J,358.3,8133,1,4,0)
- ;;=4^I73.01
- ;;^UTILITY(U,$J,358.3,8133,2)
- ;;=^5007797
- ;;^UTILITY(U,$J,358.3,8134,0)
- ;;=Z48.01^^65^520^4
- ;;^UTILITY(U,$J,358.3,8134,1,0)
+ ;;^UTILITY(U,$J,358.3,8385,1,3,0)
+ ;;=3^Neuropathic Bladder,Uninhibited NEC
+ ;;^UTILITY(U,$J,358.3,8385,1,4,0)
+ ;;=4^N31.0
+ ;;^UTILITY(U,$J,358.3,8385,2)
+ ;;=^5015644
+ ;;^UTILITY(U,$J,358.3,8386,0)
+ ;;=R31.9^^39^398^60
+ ;;^UTILITY(U,$J,358.3,8386,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,8134,1,3,0)
- ;;=3^Removal/Change Surgical Wound Dressing
- ;;^UTILITY(U,$J,358.3,8134,1,4,0)
- ;;=4^Z48.01
- ;;^UTILITY(U,$J,358.3,8134,2)
- ;;=^5063034
- ;;^UTILITY(U,$J,358.3,8135,0)
- ;;=Z48.02^^65^520^3
- ;;^UTILITY(U,$J,358.3,8135,1,0)
+ ;;^UTILITY(U,$J,358.3,8386,1,3,0)
+ ;;=3^Hematuria,Unspec
+ ;;^UTILITY(U,$J,358.3,8386,1,4,0)
+ ;;=4^R31.9
+ ;;^UTILITY(U,$J,358.3,8386,2)
+ ;;=^5019328
+ ;;^UTILITY(U,$J,358.3,8387,0)
+ ;;=R31.0^^39^398^57
+ ;;^UTILITY(U,$J,358.3,8387,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,8135,1,3,0)
- ;;=3^Removal of Sutures
- ;;^UTILITY(U,$J,358.3,8135,1,4,0)
- ;;=4^Z48.02
- ;;^UTILITY(U,$J,358.3,8135,2)
- ;;=^5063035
- ;;^UTILITY(U,$J,358.3,8136,0)
- ;;=Z48.03^^65^520^5
- ;;^UTILITY(U,$J,358.3,8136,1,0)
+ ;;^UTILITY(U,$J,358.3,8387,1,3,0)
+ ;;=3^Hematuria,Gross
+ ;;^UTILITY(U,$J,358.3,8387,1,4,0)
+ ;;=4^R31.0
+ ;;^UTILITY(U,$J,358.3,8387,2)
+ ;;=^5019325
+ ;;^UTILITY(U,$J,358.3,8388,0)
+ ;;=R31.1^^39^398^56
+ ;;^UTILITY(U,$J,358.3,8388,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,8136,1,3,0)
- ;;=3^Removal/Change of Drains
- ;;^UTILITY(U,$J,358.3,8136,1,4,0)
- ;;=4^Z48.03
- ;;^UTILITY(U,$J,358.3,8136,2)
- ;;=^5063036
- ;;^UTILITY(U,$J,358.3,8137,0)
- ;;=B86.^^65^521^17
- ;;^UTILITY(U,$J,358.3,8137,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,8137,1,3,0)
- ;;=3^Scabies
- ;;^UTILITY(U,$J,358.3,8137,1,4,0)
- ;;=4^B86.
- ;;^UTILITY(U,$J,358.3,8137,2)
- ;;=^108096
+ ;;^UTILITY(U,$J,358.3,8388,1,3,0)
+ ;;=3^Hematuria,Benign Essential Microscopic
+ ;;^UTILITY(U,$J,358.3,8388,1,4,0)
+ ;;=4^R31.1
+ ;;^UTILITY(U,$J,358.3,8388,2)
+ ;;=^5019326
+ ;;^UTILITY(U,$J,358.3,8389,0)
+ ;;=N40.0^^39^398^3

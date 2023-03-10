@@ -1,5 +1,5 @@
-ORQ21 ;SLC/MKB,GSS - DETAILED ORDER REPORT CONTINUED ;Apr 04, 2018@19:17
- ;;3.0;ORDER ENTRY/RESULTS REPORTING;**141,190,195,215,243,361,350,417,377,521**;Dec 17, 1997;Build 3
+ORQ21 ;SLC/MKB,GSS - DETAILED ORDER REPORT CONTINUED ;Sep 14, 2020@12:05:08
+ ;;3.0;ORDER ENTRY/RESULTS REPORTING;**141,190,195,215,243,361,350,417,377,521,405**;Dec 17, 1997;Build 211
  ;;Per VHA Directive 6402, this routine should not be modified.
  ;
  ; DBIA 2400   OEL^PSOORRL   ^TMP("PS",$J)
@@ -71,7 +71,9 @@ M2 I TYPE="O" D  ;fill history
  . I $G(^TMP("PS",$J,"PAR",0)) S I=0,X="Partial Fills:      " F  S I=$O(^TMP("PS",$J,"PAR",I)) Q:I'>0  S FILLD=$G(^(I,0)) D FILLED("P")
  . S:RXN CNT=CNT+1,@ORY@(CNT)="Prescription#:                "_$P(RXN,U)
 M3 S:$P(RXN,U,5) CNT=CNT+1,@ORY@(CNT)="Pharmacist:                   "_$P($G(^VA(200,+$P(RXN,U,5),0)),U)
-    I $G(STAT)="ACTIVE/SUSP" S CNT=CNT+1,@ORY@(CNT)="Prescription Status:          "_STAT_" - Order is active. Fill or Refill has been requested."
+ I $G(STAT)="ACTIVE/SUSP" S CNT=CNT+1,@ORY@(CNT)="Prescription Status:          "_STAT_" - Order is active. Fill or Refill has been requested."
+ ;ADDED FOLLWING LINE OF PAPI CODE 405
+ I $G(STAT)="ACTIVE/PARKED" S CNT=CNT+1,@ORY@(CNT)="Prescription Status:          "_STAT_" - Order is active. Parked until next fill is requested."
  S:$P(NODE,U,13) CNT=CNT+1,@ORY@(CNT)="NOT TO BE GIVEN" K ^TMP("PS",$J)
  S CNT=CNT+1,@ORY@(CNT)="   " ;blank
  S OR5=$G(^OR(100,ORIFN,5)) I $L(OR5) D  ;SC data
@@ -127,7 +129,7 @@ RETURNS(NODE) ; add Return to Stock Data
  Q
  ;
 ROUTING(X) ; -- Returns external form
- N Y S Y=$S($G(X)="M":"Mail",$G(X)="W":"Window",1:$G(X))
+ N Y S Y=$S($G(X)="M":"Mail",$G(X)="W":"Window",$G(X)="P":"Park",1:$G(X)) ;PAPI 405
  Q Y
  ;
 SC(J) ; -- Returns name of SC field by piece number

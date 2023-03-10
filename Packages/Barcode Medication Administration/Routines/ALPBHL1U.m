@@ -1,5 +1,5 @@
-ALPBHL1U ;OIFO-DALLAS MW,SED,KC -HL7 MESSAGE SEGMENT PARSER AND UPDATE ;03/06/16 3:06pm
- ;;3.0;BAR CODE MED ADMIN;**7,69,59,73,87**;May 2002;Build 22
+ALPBHL1U ;OIFO-DALLAS MW,SED,KC -HL7 MESSAGE SEGMENT PARSER AND UPDATE ;2/6/21  15:41
+ ;;3.0;BAR CODE MED ADMIN;**7,69,59,73,87,127,108,129**;May 2002;Build 16
  ;
  ; passed parameters common to all functions:
  ;   IEN   = patient's internal entry number in file 53.7
@@ -18,6 +18,7 @@ ALPBHL1U ;OIFO-DALLAS MW,SED,KC -HL7 MESSAGE SEGMENT PARSER AND UPDATE ;03/06/16
  ;**73- Add Clinic name to Order multiple for orders that were placed
  ;       in a clinic vs. a Ward.
  ;*87 - Add Remove logic to pull out new fields and store to DB
+ ;*108- add ZZZ segment for Hazardous drug flags
  ;
 AL1(IEN,DATA,FS,CS,ERR) ; process AL1 (allergies) segment...
  I +$G(IEN)'>0!($G(DATA)="")!($G(FS)="")!($G(CS)="") D ERRBLD^ALPBUTL1("AL1","",.ERR) Q
@@ -171,7 +172,7 @@ RXE(IEN,OIEN,DATA,FS,CS,ECH,ERR) ; process RXE (order detail) segment...
  S ALPBFILE(53.702,ALPBFIEN,7)=$P(ALPBX,CS,8)
  ; schedule...   alter getting directly from RXE.1.2 pieces       ;*87
  S ALPBTIMG=$P(ALPBX,CS,2)
- S ALPBSCHD=$P(ALPBTIMG,SCS,1)
+ S ALPBSCHD=$$UNESC^ALPBGEN($P(ALPBTIMG,SCS,1))
  S ALPBREMV=$P(ALPBTIMG,SCS,3)
  S ALPBDOA=$P(ALPBTIMG,SCS,4)
  ; end                                                            ;*87
@@ -256,10 +257,26 @@ NTE(IEN,OIEN,DATA,FS,CS,ERR) ; process NTE (note) segment...
  ;
  ; Now add back to the text of the new working array into the original
  ; work array beginning with element 2, as element 1 has the heading
- F I=0:0 S I=$O(NEWALPB(I)) Q:'I  S ALPBFILE(I+1)=NEWALPB(I)
+ ; 129 Added condition to check if Other Info and get P4 on line 1
+ ; ex. line 1(NEWALPB)has NTE^21^L^TEST order for ZZTEST patient
+ ; the rest does not had NTE^21^L segment so get the whole piece
+ ; 
+ I ALPBFILE(1)="Other Info:" F I=0:0 S I=$O(NEWALPB(I)) Q:'I  D
+ . I I=1 S ALPBFILE(I+1)=$P(NEWALPB(I),"^",4)
+ . I I>1 S ALPBFILE(I+1)=NEWALPB(I)
+ I ALPBFILE(1)'="Other Info:" F I=0:0 S I=$O(NEWALPB(I)) Q:'I  S ALPBFILE(I+1)=NEWALPB(I)
  ;
  ; Store new WP text to field 8
  D WP^DIE(53.702,OIEN_","_IEN_",",8,"","ALPBFILE","ERR")
+ Q
+ ;
+ZZZ(IEN,OIEN,DATA,FS,CS,ERR) ; process Hazardous Drug flags segment                                   *108
+ I +$G(IEN)'>0!(+$G(OIEN)'>0)!($G(DATA)="")!($G(FS)="")!($G(CS)="") D ERRBLD^ALPBUTL1("ORC","",.ERR) Q
+ N ALPBFIEN,ALPBFILE
+ S ALPBFIEN=OIEN_","_IEN_","
+ S ALPBFILE(53.702,ALPBFIEN,14)=$S($P(DATA,FS,5)="Y":1,1:0)  ;HAZ Handle
+ S ALPBFILE(53.702,ALPBFIEN,15)=$S($P(DATA,FS,6)="Y":1,1:0)  ;HAZ Dispose
+ D UPDATE^DIE("","ALPBFILE","","ERR")
  Q
  ;
 HL7FMT(NEWLN,AR) ;Unwrap formatted text array lines into a new array

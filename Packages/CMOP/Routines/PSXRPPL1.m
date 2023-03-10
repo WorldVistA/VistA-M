@@ -1,5 +1,5 @@
 PSXRPPL1 ;BIR/WPB - Resets Suspense to Print/Transmit ;10/02/97
- ;;2.0;CMOP;**3,48,62,66,65,69,73,74,81,83,87**;11 Apr 97;Build 8
+ ;;2.0;CMOP;**3,48,62,66,65,69,73,74,81,83,87,91,92**;11 Apr 97;Build 19
  ;Reference to ^PSRX( supported by DBIA #1977
  ;Reference to File #59  supported by DBIA #1976
  ;Reference to PSOSURST  supported by DBIA #1970
@@ -139,8 +139,8 @@ SBTECME(PSXTP,PSXDV,THRDT,PULLDT) ;
  I '$$ECMEON^BPSUTIL(PSXDV)!'$$CMOPON^BPSUTIL(PSXDV) Q
  K ^TMP("PSXEPHDFN",$J)
  S (SDT,SBTECME)=0
- F  S SDT=$O(^PS(52.5,"CMP","Q",PSXTP,PSXDV,SDT)) S XDFN=0 Q:(SDT>PULLDT)!(SDT'>0)  D
- . F  S XDFN=$O(^PS(52.5,"CMP","Q",PSXTP,PSXDV,SDT,XDFN)) S REC=0 Q:(XDFN'>0)!(XDFN="")  D
+ F  S SDT=$O(^PS(52.5,"CMP","Q",PSXTP,PSXDV,SDT)),XDFN=0 Q:(SDT>PULLDT)!(SDT'>0)  D
+ . F  S XDFN=$O(^PS(52.5,"CMP","Q",PSXTP,PSXDV,SDT,XDFN)),REC=0 Q:(XDFN'>0)!(XDFN="")  D
  . . F  S REC=$O(^PS(52.5,"CMP","Q",PSXTP,PSXDV,SDT,XDFN,REC)) Q:(REC'>0)!(REC="")  D
  . . . S (PSOLRX,RX)=+$$GET1^DIQ(52.5,REC,.01,"I") I 'RX Q
  . . . S RFL=$$GET1^DIQ(52.5,REC,9,"I") I RFL="" S RFL=$$LSTRFL^PSOBPSU1(RX)
@@ -149,7 +149,7 @@ SBTECME(PSXTP,PSXDV,THRDT,PULLDT) ;
  . . . . I $$PATCH^XPDUTL("PSO*7.0*148") D
  . . . . . I $$RETRX^PSOBPSUT(RX,RFL),SDT>DT Q
  . . . . . I $$DOUBLE(RX,RFL) Q
- . . . . . I $$FIND^PSOREJUT(RX,RFL,,"79,88",,1) Q
+ . . . . . I $$FIND^PSOREJUT(RX,RFL,,"79,88,943",,1) Q
  . . . . . ;
  . . . . . ; If TRI/CVA and the Rx already has a closed eT/eC
  . . . . . ; pseudo-reject, then do not send another claim.
@@ -158,9 +158,8 @@ SBTECME(PSXTP,PSXDV,THRDT,PULLDT) ;
  . . . . . . D LOG^BPSOSL($$IEN59^BPSOSRX(RX,RFL),$T(+0)_"-SBTECME, $$TRICVANB returned 1")  ; ICR #4412,6764
  . . . . . ;
  . . . . . I '$$RETRX^PSOBPSUT(RX,RFL),'$$ECMESTAT^PSXRPPL2(RX,RFL) Q
- . . . . . I $$PATCH^XPDUTL("PSO*7.0*289") Q:'$$DUR^PSXRPPL2(RX,RFL)  ;ePharm Host error hold
- . . . . . I $$PATCH^XPDUTL("PSO*7.0*289"),RFL>0,$$STATUS^PSOBPSUT(RX,RFL-1)'="" Q:'$$DSH^PSXRPPL2(REC)  ;ePharm 3/4 days supply (refill)
- . . . . . I $$PATCH^XPDUTL("PSO*7.0*289"),RFL=0 Q:'$$DSH^PSXRPPL2(REC)  ;ePharm 3/4 days supply (original fill)
+ . . . . . I $$PATCH^XPDUTL("PSO*7.0*289") Q:'$$DUR^PSXRPPL2(RX,RFL)  ; ePharm Host error hold
+ . . . . . I $$PATCH^XPDUTL("PSO*7.0*289") Q:'$$DSH^PSXRPPL2(REC,1)  ; ePharm 3/4 days supply
  . . . . . ;
  . . . . . ; ECMESND^PSOBPSU1 initiates the claim submission process.
  . . . . . ;

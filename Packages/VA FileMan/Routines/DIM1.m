@@ -1,5 +1,5 @@
-DIM1 ;SFISC/JFW,GFT,TOAD-FileMan: M Syntax Checker, Exprs ;13DEC2009
- ;;22.2;VA FileMan;;Jan 05, 2016;Build 42
+DIM1 ;SFISC/JFW,GFT,TOAD - M Syntax Checker, Exprs ; Dec 13, 2009
+ ;;22.2;VA FileMan;**18**;Jan 05, 2016;Build 2
  ;;Per VA Directive 6402, this routine should not be modified.
  ;;Submitted to OSEHRA 5 January 2015 by the VISTA Expertise Network.
  ;;Based on Medsphere Systems Corporation's MSC FileMan 1051.
@@ -79,7 +79,7 @@ EXT ; extrinsic functions and variables (FUNC)
  F %I=%I+1:1 S %C1=$E(%,%I) Q:%C1?1PC&("^%"'[%C1)!(%C1="")  S %C=%C_%C1
  G:%C="" E G:%C?.E1"^" E G:%C["^^" E
  S %C1=$P(%C,"^",2) I %C1]"",%C1'?1U.15AN,%C1'?1"%".15AN G E
- S %C=$P(%C,"^") I %C]"",%C'?1U.7AN,%C'?1"%".7AN,%C'?1.8N G E
+ S %C=$P(%C,"^") I %C]"",%C'?1U.15AN,%C'?1"%".15AN,%C'?1.16N G E ;p18
  I $E(%,%I)="(",$E(%,%I+1)'=")" S %(%N,0)="P^",(%(%N,1),%(%N,2),%(%N,3))=0,%N=%N+1 G GG
  S %I=%I+$S($E(%,%I,%I+1)="()":1,1:-1)
  G GG:"[],)><=_&#!'+-*/\?:"[$E(%,%I+1),E

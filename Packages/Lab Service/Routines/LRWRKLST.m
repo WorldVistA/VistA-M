@@ -1,5 +1,5 @@
-LRWRKLST ;DALOI/STAFF - LONG ACCESSION LIST ;02/28/12  19:21
- ;;5.2;LAB SERVICE;**1,17,38,153,185,221,268,362,350**;Sep 27, 1994;Build 230
+LRWRKLST ;DALOI/STAFF - LONG ACCESSION LIST ;Mar 22, 2021@17:48
+ ;;5.2;LAB SERVICE;**1,17,38,153,185,221,268,362,350,536,543,555**;Sep 27, 1994;Build 3
  ;
  N LRDICS
  ;
@@ -62,7 +62,7 @@ W ; from LRVER, LRVR
  ;
 ENT ;
  ;
- N LRTST
+ N LRTST,LRMIPND
  ;
  I $D(ZTQUEUED) S ZTREQ="@"
  S (LREND,LRSTOP)=0
@@ -92,19 +92,40 @@ TD ; Check tests on accession to determine if meets criteria to display.
  ; If not specific test selected (LRTSE=file #60 ien) then skip
  ; Otherwise set LRTST array with file #60 ien.
  ;
- K LRTST
+ K LRTST,LRMIPND
  ;
  I '$D(^LRO(68,LRAA,1,LRAD,1,LRAN,0)) S LREND=1 Q
  S LRSN=+$P(^LRO(68,LRAA,1,LRAD,1,LRAN,0),U,5),LRDAT=+$P(^(0),U,4)
  S LRI=0
  F  S LRI=$O(^LRO(68,LRAA,1,LRAD,1,LRAN,4,LRI)) Q:LRI<.5  D
  . I LRTSE,LRTSE'=+^LRO(68,LRAA,1,LRAD,1,LRAN,4,LRI,0) Q
+ . ;LR*5.2*536 added line below
+ . I $P(^LRO(68,LRAA,0),U,2)="MI",$P(^LRO(68,LRAA,1,LRAD,1,LRAN,4,LRI,0),"^",5) D MICRO
  . I LRUNC,$P(^LRO(68,LRAA,1,LRAD,1,LRAN,4,LRI,0),"^",5) Q
  . S LRTST(LRI)=""
  ;
  I '$D(LRTST) S LREND=1
  Q
  ;
+MICRO ;further evaluation for Microbiology test
+ N LRDFNX,LRIDTX,LREXCODE,LRMIAREA
+ S LRDFNX=$P(^LRO(68,LRAA,1,LRAD,1,LRAN,0),U)
+ S LRIDTX=$P($G(^LRO(68,LRAA,1,LRAD,1,LRAN,3)),U,5)
+ S LREXCODE=$P($G(^LAB(60,LRI,0)),"^",14)
+ Q:'LREXCODE
+ S LREXCODE=$G(^LAB(62.07,LREXCODE,.1))
+ ;Logic below is the same as the logic in result verification
+ ;routine LRMIEDZ2 which determines which Microbiology area is
+ ;defined for a Microbiology test
+ S LRMIAREA=$S(LREXCODE["11.5":1,LREXCODE["23":11,LREXCODE["19":8,LREXCODE["15":5,LREXCODE["34":16,1:"")
+ ;If the [area] RPT DATE APPROVED field is null, display this test as "pending"
+ ;LR*5.2*543: Add check at 6th piece as to whether has been marked "not performed" or "merged".
+ I $P(^LRO(68,LRAA,1,LRAD,1,LRAN,4,LRI,0),"^",6)']"",$D(^LR(LRDFNX,"MI",LRIDTX,LRMIAREA)),$P(^(LRMIAREA),U)="" D
+ . ;Include on report as a pending test if user specific only incompletes
+ . I LRUNC S LRTST(LRI)=""
+ . ;flag as a pending test for section TS2
+ . S LRMIPND(LRI)=""
+ Q
  ;
 TESTS ;
  N S1,S2
@@ -131,9 +152,17 @@ TESTS ;
  I '$D(LRNAC),$L($P($G(^LRO(68,LRAA,1,LRAD,1,LRAN,3)),U,4)) D
  . W !,"ALL COMPLETED",!!
  . S LN=LN+3
+ E  I $$CHKAC() W !,"ALL COMPLETED",!! S LN=LN+3
  Q
  ;
  ;
+CHKAC() ;Are all tests complete?
+ N LRT,LRP,LRC
+ Q:'$D(^LRO(68,LRAA,1,LRAD,1,LRAN,4))
+ S LRT=0 F  S LRT=$O(^LRO(68,LRAA,1,LRAD,1,LRAN,4,LRT)) Q:LRT<1  D
+ . I $P($G(^LRO(68,LRAA,1,LRAD,1,LRAN,4,LRT,0)),U,5)'="" S LRC(LRT)=$P(^(0),U,4)
+ . E  S LRP(LRT)=$P(^(0),U,5)_U_$P(^(0),U,9)
+ Q '$D(LRP)
 TS2 ;
  ;
  D CHKPAGE^LRWRKLS1
@@ -155,7 +184,8 @@ TS2 ;
  ;
  D REF
  ;
- I $P(LRXXX,U,5) W !,"  COMPLETED: ",$$FMTE^XLFDT($P(LRXXX,U,5),"MZ") S LN=LN+1
+ ;LR*5.2*536 - add check of LRMIPND for pending Microbiology test
+ I $P(LRXXX,U,5),'$D(LRMIPND(LRI)) W !,"  COMPLETED: ",$$FMTE^XLFDT($P(LRXXX,U,5),"MZ") S LN=LN+1
  E  S LRNAC=""
  Q
  ;

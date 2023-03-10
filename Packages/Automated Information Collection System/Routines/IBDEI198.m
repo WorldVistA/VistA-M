@@ -1,116 +1,116 @@
-IBDEI198 ; ; 04-FEB-2020
- ;;3.0;IB ENCOUNTER FORM IMP/EXP;;FEB 04, 2020
+IBDEI198 ; ; 01-FEB-2022
+ ;;3.0;IB ENCOUNTER FORM IMP/EXP;;FEB 01, 2022
  Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,999) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
- ;;^UTILITY(U,$J,358.3,20093,2)
- ;;=^5028460
- ;;^UTILITY(U,$J,358.3,20094,0)
- ;;=S49.032S^^93^999^117
- ;;^UTILITY(U,$J,358.3,20094,1,0)
+ ;;^UTILITY(U,$J,358.3,20320,0)
+ ;;=S62.651S^^67^885^79
+ ;;^UTILITY(U,$J,358.3,20320,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,20094,1,3,0)
- ;;=3^Sltr-haris Type III physl fx upper end humer, left arm, sqla
- ;;^UTILITY(U,$J,358.3,20094,1,4,0)
- ;;=4^S49.032S
- ;;^UTILITY(U,$J,358.3,20094,2)
- ;;=^5028400
- ;;^UTILITY(U,$J,358.3,20095,0)
- ;;=S49.031S^^93^999^118
- ;;^UTILITY(U,$J,358.3,20095,1,0)
+ ;;^UTILITY(U,$J,358.3,20320,1,3,0)
+ ;;=3^Nondisp fx of medial phalanx of left index finger, sequela
+ ;;^UTILITY(U,$J,358.3,20320,1,4,0)
+ ;;=4^S62.651S
+ ;;^UTILITY(U,$J,358.3,20320,2)
+ ;;=^5034745
+ ;;^UTILITY(U,$J,358.3,20321,0)
+ ;;=S62.657S^^67^885^80
+ ;;^UTILITY(U,$J,358.3,20321,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,20095,1,3,0)
- ;;=3^Sltr-haris Type III physl fx upper end humer, r arm, sqla
- ;;^UTILITY(U,$J,358.3,20095,1,4,0)
- ;;=4^S49.031S
- ;;^UTILITY(U,$J,358.3,20095,2)
- ;;=^5028394
- ;;^UTILITY(U,$J,358.3,20096,0)
- ;;=S49.112S^^93^999^107
- ;;^UTILITY(U,$J,358.3,20096,1,0)
+ ;;^UTILITY(U,$J,358.3,20321,1,3,0)
+ ;;=3^Nondisp fx of medial phalanx of left little finger, sequela
+ ;;^UTILITY(U,$J,358.3,20321,1,4,0)
+ ;;=4^S62.657S
+ ;;^UTILITY(U,$J,358.3,20321,2)
+ ;;=^5034787
+ ;;^UTILITY(U,$J,358.3,20322,0)
+ ;;=S62.653S^^67^885^81
+ ;;^UTILITY(U,$J,358.3,20322,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,20096,1,3,0)
- ;;=3^Sltr-haris Type I physl fx lower end humer, left arm, sqla
- ;;^UTILITY(U,$J,358.3,20096,1,4,0)
- ;;=4^S49.112S
- ;;^UTILITY(U,$J,358.3,20096,2)
- ;;=^5134980
- ;;^UTILITY(U,$J,358.3,20097,0)
- ;;=S49.111S^^93^999^108
- ;;^UTILITY(U,$J,358.3,20097,1,0)
+ ;;^UTILITY(U,$J,358.3,20322,1,3,0)
+ ;;=3^Nondisp fx of medial phalanx of left middle finger, sequela
+ ;;^UTILITY(U,$J,358.3,20322,1,4,0)
+ ;;=4^S62.653S
+ ;;^UTILITY(U,$J,358.3,20322,2)
+ ;;=^5034759
+ ;;^UTILITY(U,$J,358.3,20323,0)
+ ;;=S62.655S^^67^885^82
+ ;;^UTILITY(U,$J,358.3,20323,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,20097,1,3,0)
- ;;=3^Sltr-haris Type I physl fx lower end humer, right arm, sqla
- ;;^UTILITY(U,$J,358.3,20097,1,4,0)
- ;;=4^S49.111S
- ;;^UTILITY(U,$J,358.3,20097,2)
- ;;=^5028442
- ;;^UTILITY(U,$J,358.3,20098,0)
- ;;=S49.012S^^93^999^109
- ;;^UTILITY(U,$J,358.3,20098,1,0)
+ ;;^UTILITY(U,$J,358.3,20323,1,3,0)
+ ;;=3^Nondisp fx of medial phalanx of left ring finger, sequela
+ ;;^UTILITY(U,$J,358.3,20323,1,4,0)
+ ;;=4^S62.655S
+ ;;^UTILITY(U,$J,358.3,20323,2)
+ ;;=^5034773
+ ;;^UTILITY(U,$J,358.3,20324,0)
+ ;;=S62.650S^^67^885^83
+ ;;^UTILITY(U,$J,358.3,20324,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,20098,1,3,0)
- ;;=3^Sltr-haris Type I physl fx upper end humer, left arm, sqla
- ;;^UTILITY(U,$J,358.3,20098,1,4,0)
- ;;=4^S49.012S
- ;;^UTILITY(U,$J,358.3,20098,2)
- ;;=^5028364
- ;;^UTILITY(U,$J,358.3,20099,0)
- ;;=S49.011S^^93^999^110
- ;;^UTILITY(U,$J,358.3,20099,1,0)
+ ;;^UTILITY(U,$J,358.3,20324,1,3,0)
+ ;;=3^Nondisp fx of medial phalanx of right index finger, sequela
+ ;;^UTILITY(U,$J,358.3,20324,1,4,0)
+ ;;=4^S62.650S
+ ;;^UTILITY(U,$J,358.3,20324,2)
+ ;;=^5034738
+ ;;^UTILITY(U,$J,358.3,20325,0)
+ ;;=S62.656S^^67^885^84
+ ;;^UTILITY(U,$J,358.3,20325,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,20099,1,3,0)
- ;;=3^Sltr-haris Type I physl fx upper end humer, right arm, sqla
- ;;^UTILITY(U,$J,358.3,20099,1,4,0)
- ;;=4^S49.011S
- ;;^UTILITY(U,$J,358.3,20099,2)
- ;;=^5028358
- ;;^UTILITY(U,$J,358.3,20100,0)
- ;;=S49.122S^^93^999^111
- ;;^UTILITY(U,$J,358.3,20100,1,0)
+ ;;^UTILITY(U,$J,358.3,20325,1,3,0)
+ ;;=3^Nondisp fx of medial phalanx of right little finger, sequela
+ ;;^UTILITY(U,$J,358.3,20325,1,4,0)
+ ;;=4^S62.656S
+ ;;^UTILITY(U,$J,358.3,20325,2)
+ ;;=^5034780
+ ;;^UTILITY(U,$J,358.3,20326,0)
+ ;;=S62.652S^^67^885^85
+ ;;^UTILITY(U,$J,358.3,20326,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,20100,1,3,0)
- ;;=3^Sltr-haris Type II physl fx lower end humer, left arm, sqla
- ;;^UTILITY(U,$J,358.3,20100,1,4,0)
- ;;=4^S49.122S
- ;;^UTILITY(U,$J,358.3,20100,2)
- ;;=^5134986
- ;;^UTILITY(U,$J,358.3,20101,0)
- ;;=S49.121S^^93^999^112
- ;;^UTILITY(U,$J,358.3,20101,1,0)
+ ;;^UTILITY(U,$J,358.3,20326,1,3,0)
+ ;;=3^Nondisp fx of medial phalanx of right middle finger, sequela
+ ;;^UTILITY(U,$J,358.3,20326,1,4,0)
+ ;;=4^S62.652S
+ ;;^UTILITY(U,$J,358.3,20326,2)
+ ;;=^5034752
+ ;;^UTILITY(U,$J,358.3,20327,0)
+ ;;=S62.654S^^67^885^86
+ ;;^UTILITY(U,$J,358.3,20327,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,20101,1,3,0)
- ;;=3^Sltr-haris Type II physl fx lower end humer, right arm, sqla
- ;;^UTILITY(U,$J,358.3,20101,1,4,0)
- ;;=4^S49.121S
- ;;^UTILITY(U,$J,358.3,20101,2)
- ;;=^5028454
- ;;^UTILITY(U,$J,358.3,20102,0)
- ;;=S49.022S^^93^999^113
- ;;^UTILITY(U,$J,358.3,20102,1,0)
+ ;;^UTILITY(U,$J,358.3,20327,1,3,0)
+ ;;=3^Nondisp fx of medial phalanx of right ring finger, sequela
+ ;;^UTILITY(U,$J,358.3,20327,1,4,0)
+ ;;=4^S62.654S
+ ;;^UTILITY(U,$J,358.3,20327,2)
+ ;;=^5034766
+ ;;^UTILITY(U,$J,358.3,20328,0)
+ ;;=S62.641S^^67^885^99
+ ;;^UTILITY(U,$J,358.3,20328,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,20102,1,3,0)
- ;;=3^Sltr-haris Type II physl fx upper end humer, left arm, sqla
- ;;^UTILITY(U,$J,358.3,20102,1,4,0)
- ;;=4^S49.022S
- ;;^UTILITY(U,$J,358.3,20102,2)
- ;;=^5028382
- ;;^UTILITY(U,$J,358.3,20103,0)
- ;;=S49.021S^^93^999^114
- ;;^UTILITY(U,$J,358.3,20103,1,0)
+ ;;^UTILITY(U,$J,358.3,20328,1,3,0)
+ ;;=3^Nondisp fx of proximal phalanx of left index finger, sequela
+ ;;^UTILITY(U,$J,358.3,20328,1,4,0)
+ ;;=4^S62.641S
+ ;;^UTILITY(U,$J,358.3,20328,2)
+ ;;=^5034675
+ ;;^UTILITY(U,$J,358.3,20329,0)
+ ;;=S62.647S^^67^885^97
+ ;;^UTILITY(U,$J,358.3,20329,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,20103,1,3,0)
- ;;=3^Sltr-haris Type II physl fx upper end humer, right arm, sqla
- ;;^UTILITY(U,$J,358.3,20103,1,4,0)
- ;;=4^S49.021S
- ;;^UTILITY(U,$J,358.3,20103,2)
- ;;=^5028376
- ;;^UTILITY(U,$J,358.3,20104,0)
- ;;=S49.142S^^93^999^119
- ;;^UTILITY(U,$J,358.3,20104,1,0)
+ ;;^UTILITY(U,$J,358.3,20329,1,3,0)
+ ;;=3^Nondisp fx of proximal phalanx of l little finger, sequela
+ ;;^UTILITY(U,$J,358.3,20329,1,4,0)
+ ;;=4^S62.647S
+ ;;^UTILITY(U,$J,358.3,20329,2)
+ ;;=^5034717
+ ;;^UTILITY(U,$J,358.3,20330,0)
+ ;;=S62.643S^^67^885^98
+ ;;^UTILITY(U,$J,358.3,20330,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,20104,1,3,0)
- ;;=3^Sltr-haris Type IV physl fx lower end humer, left arm, sqla
- ;;^UTILITY(U,$J,358.3,20104,1,4,0)
- ;;=4^S49.142S
- ;;^UTILITY(U,$J,358.3,20104,2)
- ;;=^5134998
+ ;;^UTILITY(U,$J,358.3,20330,1,3,0)
+ ;;=3^Nondisp fx of proximal phalanx of l mid finger, sequela
+ ;;^UTILITY(U,$J,358.3,20330,1,4,0)
+ ;;=4^S62.643S
+ ;;^UTILITY(U,$J,358.3,20330,2)
+ ;;=^5034689
+ ;;^UTILITY(U,$J,358.3,20331,0)
+ ;;=S62.645S^^67^885^100

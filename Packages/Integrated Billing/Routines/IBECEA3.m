@@ -1,10 +1,11 @@
 IBECEA3 ;ALB/CPM - Cancel/Edit/Add... Add a Charge ;30-MAR-93
- ;;2.0;INTEGRATED BILLING;**7,57,52,132,150,153,166,156,167,176,198,188,183,202,240,312,402,454,563,614,618,646,651,656,663,677,678**;21-MAR-94;Build 7
+ ;;2.0;INTEGRATED BILLING;**7,57,52,132,150,153,166,156,167,176,198,188,183,202,240,312,402,454,563,614,618,646,651,656,663,677,678,682,728**;21-MAR-94;Build 14
  ;;Per VA Directive 6402, this routine should not be modified.
  ;
 ADD ; Add a Charge protocol
  N IBGMT,IBGMTR,IBUSNM,IBUC    ;IB*2.0*618 Add IBUSNM IB*2.0*646 Add IBUC
  N IBDUPIEN,IBDPDATA,IBDPXA,IBDPAMT,IBCONT,IBVST ; IB*2.0*678 added
+ N IBCLDA,IBCLDY,IBCLEDT,IBCLST,IBCLSTDT,IBCLZ ;  IB*2.0*728
  ; Check for IB EDIT key.  If not present
  I '$$IBEDIT^IBECEA36 Q
  S (IBGMT,IBGMTR,IBUC)=0
@@ -44,20 +45,11 @@ ADD ; Add a Charge protocol
  ; - if LTC OPT (non-institutional) and CD display message of warning
  I IBXA=8,$$CDEXMPT^IBAECU(DFN,DT) W !!,"  ** Patient is currently Catastrophically Disabled",!
  ;
- ; - display LTC billing clock data
- I IBXA>7,IBXA<10 D  G:IBCLDA<1 ADDQ
- . N IBCLZ
- . S IBCLDA=$O(^IBA(351.81,"AE",DFN,9999999),-1)
- . S:IBCLDA IBCLDA=$O(^IBA(351.81,"AE",DFN,IBCLDA,0))
- . I 'IBCLDA W !!,"  ** Patient has no LTC billing clock **" Q
- . S IBCLZ=^IBA(351.81,IBCLDA,0)
- . W !!,"  **Last LTC Billing Clock    Start Date: ",$$FMTE^XLFDT($P(IBCLZ,"^",3)),"  Free Days Remaining: ",+$P(IBCLZ,"^",6)
- . I $P(IBCLZ,"^",6) W !,"The patient must use his free days first." S IBCLDA=0
- ;
  ; - ask date, units and maybe tier for rx copay charge
  I IBXA=5 D  G ADDQ:IBY<0,PROC
  . N IBA,IBB,IBC,IBX
- . S IBLIM=DT D FR^IBECEAU2(0) Q:IBY<0
+ . ;; IBREBILL array is defined in REBILL^IBECEA4
+ . S IBLIM=DT D FR^IBECEAU2($S($G(IBREBILL("EVDT"))'="":IBREBILL("EVDT"),1:0)) Q:IBY<0  ; IB*2.0*682
  . S (IBTO,IBEFDT)=IBFR
  . ;
  . ;PRCA*4.5*338 - if Community Care RX copay, set event date
@@ -87,7 +79,7 @@ ADD ; Add a Charge protocol
  S IBLIM=$S(IBXA=4!(IBXA=3):DT,1:$$FMADD^XLFDT(DT,-1))
  ;
 FR ; - ask 'bill from' date
- D FR^IBECEAU2(0)
+ D FR^IBECEAU2($S($G(IBREBILL("BILLFR"))'="":IBREBILL("BILLFR"),1:0))  ; IB*2.0*682
  ;
  ;IB*2.0*646/656
  ; If Urgent Care copay, skip clock checks, go to prompt for copay amount.
@@ -109,14 +101,38 @@ FR ; - ask 'bill from' date
  I IBXA=8,$$CDEXMPT^IBAECU(DFN,IBFR) W !,"Patient is LTC non-institutional exempt, Catastrophically Disabled" G ADDQ
  ;
  ; - check the LTC billing clock
- I IBXA>7,IBXA<10 D  I IBY<0 W !!,"The patient has no LTC clock active for the date.",! G ADDQ
- . N IBCLZ S IBCLZ=^IBA(351.81,IBCLDA,0)
- . ;
- . ; is this the clock and within the date range
- . I IBFR'<$P(IBCLZ,"^",3),$$YR^IBAECU($P(IBCLZ,"^",3),IBFR) S IBY=-1 Q
- . ;
- . ; look for another clock that might fit the date
- . I IBFR<$P(IBCLZ,"^",3) S IBCLDA=$O(^IBA(351.81,"AE",DFN,IBFR+1),-1) I 'IBCLDA!($$YR^IBAECU($P($G(^IBA(351.81,+IBCLDA,0)),"^",3),IBFR)) S IBY=-1
+ I IBXA>7,IBXA<10 D  I IBY<0 W !!,"The patient has no LTC clock active for this date.",! G ADDQ
+ .; IB*2.0*728
+ .; get the latest LTC clock
+ .S (IBCLSTDT,IBCLEDT)=0,IBCLDA=$$FNDOPEN^IBAECU4(DFN)
+ .I IBCLDA S IBCLZ=^IBA(351.81,IBCLDA,0),IBCLSTDT=$P(IBCLZ,U,3),IBCLEDT=$P(IBCLZ,U,4),IBCLDY=+$P(IBCLZ,U,6)
+ .; is IBFR within date range of the LTC clock?
+ .I IBFR<IBCLSTDT D  Q
+ ..S IBCLSTDT=+$O(^IBA(351.81,"AE",DFN,IBFR),-1) I IBCLSTDT>0 D  Q  ; found a previous LTC clock, try to use this one
+ ...S IBCLDA=+$O(^IBA(351.81,"AE",DFN,IBCLSTDT,""),-1) I 'IBCLDA S IBY=-1 Q
+ ...S IBCLDY=+$P(^IBA(351.81,IBCLDA,0),U,6)
+ ...W !!,"This charge will be applied to the following closed LTC clock:"
+ ...W !,"Start Date: ",$$FMTE^XLFDT(IBCLSTDT),"  Free Days Remaining: ",IBCLDY
+ ...I IBCLDY W !,"The patient must use his free days first." S IBY=-1 Q
+ ...Q
+ ..S IBY=-1
+ ..Q
+ .I IBFR>IBCLEDT D  Q
+ ..; date of service if past exp.date of the clock - ask user if they want to open a new LTC clock
+ ..I $$ASKLTC() S IBCLDA=$$OPTB^IBAECC(DFN,IBCLDA,IBCLEDT,IBFR) S:'IBCLDA IBY=-1 I IBY'<0,+$P(^IBA(351.81,IBCLDA,0),U,6) W !,"The patient must use his free days first." S IBY=-1 Q
+ ..; user didn't want to open a new clock
+ ..W !!,"The Open LTC Billing Clock detected for the patient has expired."
+ ..W !,"Please Open a New Clock and apply any available Free Days before"
+ ..W !,"continuing to charge this copayment.",!
+ ..D ASKCONT^IBAECC W !
+ ..Q
+ .; we'll be using the current clock if we got here
+ .W !!,"This charge will be applied to the following open LTC clock:"
+ .W !,"Start Date: ",$$FMTE^XLFDT(IBCLSTDT),"  Free Days Remaining: ",IBCLDY
+ .I IBCLDY W !,"The patient must use his free days first." S IBY=-1
+ .Q
+ I IBY<0 G ADDQ
+ ; end IB*2.0*728
  ;
  ; - calculate the MT inpt copay charge
  I IBXA=2 S IBDT=IBFR D COPAY^IBAUTL2 G ADDQ:IBY<0 S:IBGMT>0 IBGMTR=1,IBCHG=$$REDUCE^IBAGMT(IBCHG) I IBCHG+IBCLDOL<IBMED W *7,"   ($",IBCHG,"/day)" W:IBGMTR " GMT Rate"
@@ -212,7 +228,7 @@ UCPAY ;IB*2.0*646 Added to allow for skip of clock checks - required for Urgent 
  I IBXA=2,IBCHG+IBCLDOL'<IBMED S IBCHG=IBMED-IBCLDOL,IBUNIT=1,IBTO=IBFR D CTBB^IBECEAU3 G EV
  ;
 TO ; - ask 'bill to' date
- D TO^IBECEAU2(0) G:IBY<0 ADDQ
+ D TO^IBECEAU2($S($G(IBREBILL("BILLTO"))'="":IBREBILL("BILLTO"),1:0)) G:IBY<0 ADDQ  ; IB*2.0*682
  ;
  ;Start- IB*2.0*651
  ;Check to see if there is another medical copay (inpatient or outpatient) on that same day for this patient.
@@ -270,6 +286,7 @@ EV ; - find event record, or select admission for linkage
  ;
  ;
 PROC ; - okay to proceed?
+ N IBRES,IBBILL  ; IB*2.0*682
  D PROC^IBECEAU4("add") G:IBY<0 ADDQ
  ;
  ; - build the event record first if necessary
@@ -286,7 +303,16 @@ PROC ; - okay to proceed?
  W !,"Passing the charge directly to Accounts Receivable... "
  D PASSCH^IBECEA22 W:IBY>0 " done." G:IBY<0 ADDQ   ;IB*2.0*663 added space before done to correct display issue.
  ;
- I IBUC D ADDVST^IBECEA36(DFN,IBFR,IBEVDA,2)
+ I IBUC D
+ .; Handle re-billing  IB*2.0*682
+ .I $G(IBREBILL("UC")) D  Q
+ ..; get bill # or set it to "on hold" if bill status in file 350 = 8 (on hold)
+ ..S IBBILL=$S($$GET1^DIQ(350,$G(IBN)_",",.05,"I")=8:"ON HOLD",1:$$GET1^DIQ(350,IBEVDA_",",.11,"E"))
+ ..S IBRES=$$UPDATE^IBECEA38(IBREBILL("UC"),2,IBBILL,"",1,"IBRES")
+ ..Q
+ .;
+ .D ADDVST^IBECEA36(DFN,IBFR,IBEVDA,2)
+ .Q
  ;
  ; - review the special inpatient billing case
  I $G(IBSIBC1) D CHK^IBAMTI1(IBSIBC1,IBEVDA)
@@ -295,11 +321,17 @@ PROC ; - okay to proceed?
  I IBXA'=8,IBXA'=9,'IBUC D CLUPD^IBECEA32  ;IB*2.0*646
  ;
 ADDQ ; - display error, rebuild list, and quit
- D ERR^IBECEAU4:IBY<0,PAUSE^IBECEAU S VALMBCK="R"
- I IBCOMMIT S IBBG=VALMBG W !,"Rebuilding list of charges..." D ARRAY^IBECEA0 S VALMBG=IBBG
- K IBMED,IBCLDA,IBCLDT,IBCLDOL,IBCLDAY,IBATYP,IBDG,IBSEQNO,IBXA,IBNH,IBBS,IBLIM,IBFR,IBTO,IBRTED,IBSIBC,IBSIBC1,IBBG,IBFEEV,IBAM
- K IBX,IBCHG,IBUNIT,IBDESC,IBDT,IBEVDT,IBEVDA,IBSL,IBNOS,IBN,IBTOTL,IBARTYP,IBIL,IBTRAN,IBAFY,IBCVA,IBCLSF,IBDD,IBND,VADM,VA,VAERR,IBADJMED
-ADDQ1 K IBEXSTAT,IBCOMMIT,IBCATC,IBCVAEL,IBLTCST,IBTIER,IBEFDT,IBFEDT
+ ; IB*2.0*682 skip list rebuild and killing of some variables if we're coming from ^IBECEA4 - it's done in 'Cancel charge' code
+ I $G(IBREBILL("EVDT"))="" D
+ .D ERR^IBECEAU4:IBY<0,PAUSE^IBECEAU S VALMBCK="R"
+ .I IBCOMMIT S IBBG=VALMBG W !,"Rebuilding list of charges..." D ARRAY^IBECEA0 S VALMBG=IBBG
+ .K IBCHG,IBDESC,IBIL,IBN,IBND,IBSEQNO,IBTOTL,IBUNIT,IBATYP,IBEVDA,IBXA,IBSL,IBFR,IBTO,IBNOS
+ .Q
+ ;
+ K IBMED,IBCLDA,IBCLDT,IBCLDOL,IBCLDAY,IBDG,IBNH,IBBS,IBLIM,IBRTED,IBSIBC,IBSIBC1,IBBG,IBFEEV,IBAM
+ K IBX,IBDT,IBEVDT,IBARTYP,IBTRAN,IBAFY,IBCVA,IBCLSF,IBDD,VADM,VA,VAERR,IBADJMED
+ADDQ1 K IBEXSTAT,IBCATC,IBCVAEL,IBLTCST,IBTIER,IBEFDT,IBFEDT
+ K:$G(IBREBILL("EVDT"))="" IBCOMMIT  ; IB*2.0*682
  Q
  ;
  ;
@@ -349,7 +381,7 @@ CANDUP(IBN) ;Cancel the duplicate copay if the user wishes to.
  ;
  ;Display Duplicate Copay
  ;Get the info
- N IBFRDT,IBTODT,IBACTY,IBSTCD,IBBLNM,IBSTAT,IBCHRG,IBI
+ N IBCNRSLT,IBFRDT,IBTODT,IBACTY,IBSTCD,IBBLNM,IBSTAT,IBCHRG,IBI
  N DIR,DIRUT,DUOUT,X,Y,IBY
  S IBFRDT=$$GET1^DIQ(350,IBN_",",.14,"I")
  S IBFRDT=$$FMTE^XLFDT(IBFRDT,"2Z")
@@ -357,8 +389,8 @@ CANDUP(IBN) ;Cancel the duplicate copay if the user wishes to.
  S IBTODT=$$FMTE^XLFDT(IBTODT,"2Z")
  S IBACTY=$$GET1^DIQ(350,IBN_",",.03,"E")
  S IBSTCD=$$GET1^DIQ(350,IBN_",",.2,"E")
- S IBBLNM=$$GET1^DIQ(350,IBN_",",.11,"E")
  S IBSTAT=$$GET1^DIQ(350,IBN_",",.05,"E")
+ S IBBLNM=$$GET1^DIQ(350,IBN_",",.11,"E")
  S IBCHRG=$$GET1^DIQ(350,IBN_",",.07,"E")
  W !,"BILL",?10,"BILL",?40,"STOP",?45,"BILL",!
  W "FROM",?10," TO",?21,"CHARGE TYPE",?40,"CODE",?45,"NUMBER",?60,"STATUS",?70,"CHARGE",!
@@ -368,22 +400,35 @@ CANDUP(IBN) ;Cancel the duplicate copay if the user wishes to.
  N DIR,DIRUT,DUOUT,X,Y,IBY
  W !     ;force a line feed between the messages
  S IBY=-1   ; Default exit value
- S DIR(0)="YA",DIR("A",1)="Do you wish to cancel this existing copayment and continue billing the current",DIR("A")="copayment?  : "
+ S DIR(0)="YA"
+ S DIR("A",1)="Do you wish to cancel this existing copayment and continue billing the current",DIR("A")="copayment?  : "
  D ^DIR
  S IBY=+Y
  W !     ;force a line feed between the messages
  ;
  ;Quit if user does not answer yes.
  I +IBY<1 D  Q 0
- .  W !,"The existing copayment was not cancelled.  This charge will not be added.",!
- ;
- ;remove local variables before calling IBECEA4
- ;
- ;Otherwise, cancel the copay.
+ .W !,"The existing copayment was not cancelled. "
+ .Q
+ ; Cancel the copay.
  S IBCNRSLT=$$CANCAPI^IBECEA4(IBN)
  I +$G(IBCNRSLT)<0 D  Q 0
- . W !!,"The copayment was not cancelled."
+ .W !!,"The copayment was not cancelled."
+ .Q
  W !!,"The copayment was cancelled.  Please continue adding the new copay."
+ ;
  R !!,?10,"Press any key to continue.    ",IBX:DTIME
  ;
  Q 1
+ ;
+ASKLTC() ; LTC clock confirmation prompt IB*2.0*728
+ ;
+ ; returns 1 for "yes", or 0 otherwise
+ ;
+ N X,Y,DTOUT,DUOUT,DIR,DIROUT,DIRUT
+ W !
+ S DIR("A",1)="The Date of Service entered is beyond the end of the current clock."
+ S DIR("A")="Do you wish to close this LTC clock and start a new LTC clock? (Y/N): "
+ S DIR(0)="YAO"
+ D ^DIR
+ Q $S(+Y=1:1,1:0)

@@ -1,5 +1,5 @@
 DIUTC ;O-OIFO/ALA/LG - UTC Timezone API ;Dec 16, 2015  10:00 AM
- ;;22.2;VA FileMan;**2**;Jan 05, 2016;Build 139
+ ;;22.2;VA FileMan;**2,21**;Jan 05, 2016;Build 4
  ;;Per VA Directive 6402, this routine should not be modified.
  ;
 UTC(DTM,TMZ,INST,CNTRY,EXT) ;PEP - Return UTC value
@@ -28,6 +28,7 @@ UTC(DTM,TMZ,INST,CNTRY,EXT) ;PEP - Return UTC value
  F XX="DTM","TMZ","INST","CNTRY","EXT" S @XX=$G(@XX)
  ;
  I DTM="" Q -1_"^Date/Time parameter is missing."
+ I '$P(DTM,".",2) Q -1_"^Date/Time parameter missing time."  ;p21
  I INST]"",(TMZ]""!(CNTRY]"")) Q -1_"^Institution parameter cannot include Country or Timezone parameter."
  I TMZ]"",CNTRY="" Q -1_"^Timezone parameter must include Country parameter."
  I CNTRY]"",TMZ="" Q -1_"^Country parameter must include Timezone parameter."

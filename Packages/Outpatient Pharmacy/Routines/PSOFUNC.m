@@ -1,9 +1,10 @@
-PSOFUNC ;BHAM ISC/DRI - functions moved from the psf global ;10/26/92 11:49
- ;;7.0;OUTPATIENT PHARMACY;**146,223,249,251**;DEC 1997;Build 202
+PSOFUNC ;BHAM ISC/DRI - functions moved from the psf global ;08/23/17  19:56
+ ;;7.0;OUTPATIENT PHARMACY;**146,223,249,251,441**;DEC 1997;Build 208
 STAT ;gets status of rx
  S ST0=+$P(RX0,"^",15) I ST0<12,$O(^PS(52.5,"B",J,0)),$D(^PS(52.5,+$O(^(0)),0)),'$G(^("P")) S ST0=5
  I ST0<12,$P(RX2,"^",6)<DT S ST0=11
  S ST=$P("Error^Active^Non-Verified^Refill^Hold^Non-Verified^Suspended^^^^^Done^Expired^Discontinued^Deleted^Discontinued By Provider^Discontinued (Edit)^Provider Hold^","^",ST0+2),$P(RX0,"^",15)=ST0
+ I ST="Active" I $G(^PSRX(J,"PARK")) S ST="Active/Parked"  ;441 PAPI
  Q
 CUTDATE ;calculates exp/cancel cutoff date in PSODTCUT
  S X1=DT,X2=-120 D C^%DTC S PSODTCUT=X,PSOPRPAS=$P($G(PSOPAR),"^",7) Q

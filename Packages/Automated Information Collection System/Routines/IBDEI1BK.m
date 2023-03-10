@@ -1,122 +1,128 @@
-IBDEI1BK ; ; 04-FEB-2020
- ;;3.0;IB ENCOUNTER FORM IMP/EXP;;FEB 04, 2020
+IBDEI1BK ; ; 01-FEB-2022
+ ;;3.0;IB ENCOUNTER FORM IMP/EXP;;FEB 01, 2022
  Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,999) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
- ;;^UTILITY(U,$J,358.3,21087,1,3,0)
- ;;=3^Hallucinogen Abuse,In Remission
- ;;^UTILITY(U,$J,358.3,21087,1,4,0)
- ;;=4^F16.11
- ;;^UTILITY(U,$J,358.3,21087,2)
- ;;=^268239
- ;;^UTILITY(U,$J,358.3,21088,0)
- ;;=F11.10^^95^1046^25
- ;;^UTILITY(U,$J,358.3,21088,1,0)
+ ;;^UTILITY(U,$J,358.3,21328,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,21088,1,3,0)
- ;;=3^Opioid Use Disorder,Mild
- ;;^UTILITY(U,$J,358.3,21088,1,4,0)
- ;;=4^F11.10
- ;;^UTILITY(U,$J,358.3,21088,2)
- ;;=^5003114
- ;;^UTILITY(U,$J,358.3,21089,0)
- ;;=F11.129^^95^1046^21
- ;;^UTILITY(U,$J,358.3,21089,1,0)
+ ;;^UTILITY(U,$J,358.3,21328,1,3,0)
+ ;;=3^Rheumatic Mitral Valve Disease,Unspec
+ ;;^UTILITY(U,$J,358.3,21328,1,4,0)
+ ;;=4^I05.9
+ ;;^UTILITY(U,$J,358.3,21328,2)
+ ;;=^5007044
+ ;;^UTILITY(U,$J,358.3,21329,0)
+ ;;=I21.3^^70^913^87
+ ;;^UTILITY(U,$J,358.3,21329,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,21089,1,3,0)
- ;;=3^Opioid Intoxication w/o Perceptual Disturbances w/ Mild Use Disorder
- ;;^UTILITY(U,$J,358.3,21089,1,4,0)
- ;;=4^F11.129
- ;;^UTILITY(U,$J,358.3,21089,2)
- ;;=^5003118
- ;;^UTILITY(U,$J,358.3,21090,0)
- ;;=F11.14^^95^1046^7
- ;;^UTILITY(U,$J,358.3,21090,1,0)
+ ;;^UTILITY(U,$J,358.3,21329,1,3,0)
+ ;;=3^STEMI Myocardial Infarction,Unspec Site
+ ;;^UTILITY(U,$J,358.3,21329,1,4,0)
+ ;;=4^I21.3
+ ;;^UTILITY(U,$J,358.3,21329,2)
+ ;;=^5007087
+ ;;^UTILITY(U,$J,358.3,21330,0)
+ ;;=I44.30^^70^913^49
+ ;;^UTILITY(U,$J,358.3,21330,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,21090,1,3,0)
- ;;=3^Opioid Induced Depressive Disorder w/ Mild Use Disorder
- ;;^UTILITY(U,$J,358.3,21090,1,4,0)
- ;;=4^F11.14
- ;;^UTILITY(U,$J,358.3,21090,2)
- ;;=^5003119
- ;;^UTILITY(U,$J,358.3,21091,0)
- ;;=F11.182^^95^1046^13
- ;;^UTILITY(U,$J,358.3,21091,1,0)
+ ;;^UTILITY(U,$J,358.3,21330,1,3,0)
+ ;;=3^Atrioventricular Block,Unspec
+ ;;^UTILITY(U,$J,358.3,21330,1,4,0)
+ ;;=4^I44.30
+ ;;^UTILITY(U,$J,358.3,21330,2)
+ ;;=^5007204
+ ;;^UTILITY(U,$J,358.3,21331,0)
+ ;;=I50.40^^70^913^58
+ ;;^UTILITY(U,$J,358.3,21331,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,21091,1,3,0)
- ;;=3^Opioid Induced Sleep Disorder w/ Mild Use Disorder
- ;;^UTILITY(U,$J,358.3,21091,1,4,0)
- ;;=4^F11.182
- ;;^UTILITY(U,$J,358.3,21091,2)
- ;;=^5003124
- ;;^UTILITY(U,$J,358.3,21092,0)
- ;;=F11.20^^95^1046^2
- ;;^UTILITY(U,$J,358.3,21092,1,0)
+ ;;^UTILITY(U,$J,358.3,21331,1,3,0)
+ ;;=3^Combined Systolic & Diastolic Congestive Hrt Failure,Unspec
+ ;;^UTILITY(U,$J,358.3,21331,1,4,0)
+ ;;=4^I50.40
+ ;;^UTILITY(U,$J,358.3,21331,2)
+ ;;=^5007247
+ ;;^UTILITY(U,$J,358.3,21332,0)
+ ;;=I50.30^^70^913^59
+ ;;^UTILITY(U,$J,358.3,21332,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,21092,1,3,0)
- ;;=3^Opioid Dependence
- ;;^UTILITY(U,$J,358.3,21092,1,4,0)
- ;;=4^F11.20
- ;;^UTILITY(U,$J,358.3,21092,2)
- ;;=^5003127
- ;;^UTILITY(U,$J,358.3,21093,0)
- ;;=F11.23^^95^1046^3
- ;;^UTILITY(U,$J,358.3,21093,1,0)
+ ;;^UTILITY(U,$J,358.3,21332,1,3,0)
+ ;;=3^Diastolic Congestive Hrt Failure,Unspec
+ ;;^UTILITY(U,$J,358.3,21332,1,4,0)
+ ;;=4^I50.30
+ ;;^UTILITY(U,$J,358.3,21332,2)
+ ;;=^5007243
+ ;;^UTILITY(U,$J,358.3,21333,0)
+ ;;=I50.20^^70^913^88
+ ;;^UTILITY(U,$J,358.3,21333,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,21093,1,3,0)
- ;;=3^Opioid Dependence w/ Withdrawal
- ;;^UTILITY(U,$J,358.3,21093,1,4,0)
- ;;=4^F11.23
- ;;^UTILITY(U,$J,358.3,21093,2)
- ;;=^5003133
- ;;^UTILITY(U,$J,358.3,21094,0)
- ;;=F11.24^^95^1046^8
- ;;^UTILITY(U,$J,358.3,21094,1,0)
+ ;;^UTILITY(U,$J,358.3,21333,1,3,0)
+ ;;=3^Systolic Congestive Hrt Failure,Unspec
+ ;;^UTILITY(U,$J,358.3,21333,1,4,0)
+ ;;=4^I50.20
+ ;;^UTILITY(U,$J,358.3,21333,2)
+ ;;=^5007239
+ ;;^UTILITY(U,$J,358.3,21334,0)
+ ;;=I20.0^^70^913^89
+ ;;^UTILITY(U,$J,358.3,21334,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,21094,1,3,0)
- ;;=3^Opioid Induced Depressive Disorder w/ Moderate-Severe Use Disorder
- ;;^UTILITY(U,$J,358.3,21094,1,4,0)
- ;;=4^F11.24
- ;;^UTILITY(U,$J,358.3,21094,2)
- ;;=^5003134
- ;;^UTILITY(U,$J,358.3,21095,0)
- ;;=F11.188^^95^1046^4
- ;;^UTILITY(U,$J,358.3,21095,1,0)
+ ;;^UTILITY(U,$J,358.3,21334,1,3,0)
+ ;;=3^Unstable Angina
+ ;;^UTILITY(U,$J,358.3,21334,1,4,0)
+ ;;=4^I20.0
+ ;;^UTILITY(U,$J,358.3,21334,2)
+ ;;=^5007076
+ ;;^UTILITY(U,$J,358.3,21335,0)
+ ;;=M32.12^^70^913^80
+ ;;^UTILITY(U,$J,358.3,21335,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,21095,1,3,0)
- ;;=3^Opioid Induced Anxiety Disorder w/ Mild Use Disorder
- ;;^UTILITY(U,$J,358.3,21095,1,4,0)
- ;;=4^F11.188
- ;;^UTILITY(U,$J,358.3,21095,2)
- ;;=^5003125
- ;;^UTILITY(U,$J,358.3,21096,0)
- ;;=F11.288^^95^1046^5
- ;;^UTILITY(U,$J,358.3,21096,1,0)
+ ;;^UTILITY(U,$J,358.3,21335,1,3,0)
+ ;;=3^Pericarditis in Systemic Lupus Erythematosus
+ ;;^UTILITY(U,$J,358.3,21335,1,4,0)
+ ;;=4^M32.12
+ ;;^UTILITY(U,$J,358.3,21335,2)
+ ;;=^5011755
+ ;;^UTILITY(U,$J,358.3,21336,0)
+ ;;=I50.811^^70^913^3
+ ;;^UTILITY(U,$J,358.3,21336,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,21096,1,3,0)
- ;;=3^Opioid Induced Anxiety Disorder w/ Mod/Severe Use Disorder
- ;;^UTILITY(U,$J,358.3,21096,1,4,0)
- ;;=4^F11.288
- ;;^UTILITY(U,$J,358.3,21096,2)
- ;;=^5003140
- ;;^UTILITY(U,$J,358.3,21097,0)
- ;;=F11.988^^95^1046^6
- ;;^UTILITY(U,$J,358.3,21097,1,0)
+ ;;^UTILITY(U,$J,358.3,21336,1,3,0)
+ ;;=3^AC Right Heart Failure
+ ;;^UTILITY(U,$J,358.3,21336,1,4,0)
+ ;;=4^I50.811
+ ;;^UTILITY(U,$J,358.3,21336,2)
+ ;;=^5151385
+ ;;^UTILITY(U,$J,358.3,21337,0)
+ ;;=I50.813^^70^913^7
+ ;;^UTILITY(U,$J,358.3,21337,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,21097,1,3,0)
- ;;=3^Opioid Induced Anxiety Disorder w/o Use Disorder
- ;;^UTILITY(U,$J,358.3,21097,1,4,0)
- ;;=4^F11.988
- ;;^UTILITY(U,$J,358.3,21097,2)
- ;;=^5003154
- ;;^UTILITY(U,$J,358.3,21098,0)
- ;;=F11.921^^95^1046^26
- ;;^UTILITY(U,$J,358.3,21098,1,0)
+ ;;^UTILITY(U,$J,358.3,21337,1,3,0)
+ ;;=3^AC on Chr Right Heart Failure
+ ;;^UTILITY(U,$J,358.3,21337,1,4,0)
+ ;;=4^I50.813
+ ;;^UTILITY(U,$J,358.3,21337,2)
+ ;;=^5151387
+ ;;^UTILITY(U,$J,358.3,21338,0)
+ ;;=I50.812^^70^913^56
+ ;;^UTILITY(U,$J,358.3,21338,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,21098,1,3,0)
- ;;=3^Opioid Use w/ Intoxication Delirium
- ;;^UTILITY(U,$J,358.3,21098,1,4,0)
- ;;=4^F11.921
- ;;^UTILITY(U,$J,358.3,21098,2)
- ;;=^5003144
- ;;^UTILITY(U,$J,358.3,21099,0)
- ;;=F11.94^^95^1046^9
+ ;;^UTILITY(U,$J,358.3,21338,1,3,0)
+ ;;=3^Chr Right Heart Failure
+ ;;^UTILITY(U,$J,358.3,21338,1,4,0)
+ ;;=4^I50.812
+ ;;^UTILITY(U,$J,358.3,21338,2)
+ ;;=^5151386
+ ;;^UTILITY(U,$J,358.3,21339,0)
+ ;;=I50.84^^70^913^61
+ ;;^UTILITY(U,$J,358.3,21339,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,21339,1,3,0)
+ ;;=3^End Stage Heart Failure
+ ;;^UTILITY(U,$J,358.3,21339,1,4,0)
+ ;;=4^I50.84
+ ;;^UTILITY(U,$J,358.3,21339,2)
+ ;;=^5151391
+ ;;^UTILITY(U,$J,358.3,21340,0)
+ ;;=I50.810^^70^913^66
+ ;;^UTILITY(U,$J,358.3,21340,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,21340,1,3,0)
+ ;;=3^Heart Failure,Right,Unspec

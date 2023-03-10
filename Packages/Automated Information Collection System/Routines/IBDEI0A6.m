@@ -1,628 +1,682 @@
-IBDEI0A6 ; ; 01-MAY-2020
- ;;3.0;IB ENCOUNTER FORM IMP/EXP;;MAY 01, 2020
+IBDEI0A6 ; ; 01-AUG-2022
+ ;;3.0;IB ENCOUNTER FORM IMP/EXP;;AUG 01, 2022
  Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,999) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
- ;;^UTILITY(U,$J,358.3,24883,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,24883,1,3,0)
- ;;=3^Disp fx of medial phalanx of left little finger, sequela
- ;;^UTILITY(U,$J,358.3,24883,1,4,0)
- ;;=4^S62.627S
- ;;^UTILITY(U,$J,358.3,24883,2)
- ;;=^5034577
- ;;^UTILITY(U,$J,358.3,24884,0)
- ;;=S62.623S^^76^1009^23
- ;;^UTILITY(U,$J,358.3,24884,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,24884,1,3,0)
- ;;=3^Disp fx of medial phalanx of left middle finger, sequela
- ;;^UTILITY(U,$J,358.3,24884,1,4,0)
- ;;=4^S62.623S
- ;;^UTILITY(U,$J,358.3,24884,2)
- ;;=^5034549
- ;;^UTILITY(U,$J,358.3,24885,0)
- ;;=S62.625S^^76^1009^24
- ;;^UTILITY(U,$J,358.3,24885,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,24885,1,3,0)
- ;;=3^Disp fx of medial phalanx of left ring finger, sequela
- ;;^UTILITY(U,$J,358.3,24885,1,4,0)
- ;;=4^S62.625S
- ;;^UTILITY(U,$J,358.3,24885,2)
- ;;=^5034563
- ;;^UTILITY(U,$J,358.3,24886,0)
- ;;=S62.620S^^76^1009^25
- ;;^UTILITY(U,$J,358.3,24886,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,24886,1,3,0)
- ;;=3^Disp fx of medial phalanx of right index finger, sequela
- ;;^UTILITY(U,$J,358.3,24886,1,4,0)
- ;;=4^S62.620S
- ;;^UTILITY(U,$J,358.3,24886,2)
- ;;=^5034528
- ;;^UTILITY(U,$J,358.3,24887,0)
- ;;=S62.626S^^76^1009^26
- ;;^UTILITY(U,$J,358.3,24887,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,24887,1,3,0)
- ;;=3^Disp fx of medial phalanx of right little finger, sequela
- ;;^UTILITY(U,$J,358.3,24887,1,4,0)
- ;;=4^S62.626S
- ;;^UTILITY(U,$J,358.3,24887,2)
- ;;=^5034570
- ;;^UTILITY(U,$J,358.3,24888,0)
- ;;=S62.622S^^76^1009^27
- ;;^UTILITY(U,$J,358.3,24888,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,24888,1,3,0)
- ;;=3^Disp fx of medial phalanx of right middle finger, sequela
- ;;^UTILITY(U,$J,358.3,24888,1,4,0)
- ;;=4^S62.622S
- ;;^UTILITY(U,$J,358.3,24888,2)
- ;;=^5034542
- ;;^UTILITY(U,$J,358.3,24889,0)
- ;;=S62.624S^^76^1009^28
- ;;^UTILITY(U,$J,358.3,24889,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,24889,1,3,0)
- ;;=3^Disp fx of medial phalanx of right ring finger, sequela
- ;;^UTILITY(U,$J,358.3,24889,1,4,0)
- ;;=4^S62.624S
- ;;^UTILITY(U,$J,358.3,24889,2)
- ;;=^5034556
- ;;^UTILITY(U,$J,358.3,24890,0)
- ;;=S62.611S^^76^1009^39
- ;;^UTILITY(U,$J,358.3,24890,1,0)
- ;;=^358.31IA^4^2
  ;;^UTILITY(U,$J,358.3,24890,1,3,0)
- ;;=3^Disp fx of proximal phalanx of left index finger, sequela
+ ;;=3^Nicotine Dependence,Chewing Tobacco,In Remission
  ;;^UTILITY(U,$J,358.3,24890,1,4,0)
- ;;=4^S62.611S
+ ;;=4^F17.221
  ;;^UTILITY(U,$J,358.3,24890,2)
- ;;=^5034465
+ ;;=^5003371
  ;;^UTILITY(U,$J,358.3,24891,0)
- ;;=S62.617S^^76^1009^40
+ ;;=F17.220^^74^987^15
  ;;^UTILITY(U,$J,358.3,24891,1,0)
  ;;=^358.31IA^4^2
  ;;^UTILITY(U,$J,358.3,24891,1,3,0)
- ;;=3^Disp fx of proximal phalanx of left little finger, sequela
+ ;;=3^Nicotine Dependence,Chewing Tobacco,Uncomplicated
  ;;^UTILITY(U,$J,358.3,24891,1,4,0)
- ;;=4^S62.617S
+ ;;=4^F17.220
  ;;^UTILITY(U,$J,358.3,24891,2)
- ;;=^5034507
+ ;;=^5003370
  ;;^UTILITY(U,$J,358.3,24892,0)
- ;;=S62.613S^^76^1009^41
+ ;;=F17.211^^74^987^16
  ;;^UTILITY(U,$J,358.3,24892,1,0)
  ;;=^358.31IA^4^2
  ;;^UTILITY(U,$J,358.3,24892,1,3,0)
- ;;=3^Disp fx of proximal phalanx of left middle finger, sequela
+ ;;=3^Nicotine Dependence,Cigarettes,In Remission
  ;;^UTILITY(U,$J,358.3,24892,1,4,0)
- ;;=4^S62.613S
+ ;;=4^F17.211
  ;;^UTILITY(U,$J,358.3,24892,2)
- ;;=^5034479
+ ;;=^5003366
  ;;^UTILITY(U,$J,358.3,24893,0)
- ;;=S62.615S^^76^1009^42
+ ;;=F17.210^^74^987^17
  ;;^UTILITY(U,$J,358.3,24893,1,0)
  ;;=^358.31IA^4^2
  ;;^UTILITY(U,$J,358.3,24893,1,3,0)
- ;;=3^Disp fx of proximal phalanx of left ring finger, sequela
+ ;;=3^Nicotine Dependence,Cigarettes,Uncomplicated
  ;;^UTILITY(U,$J,358.3,24893,1,4,0)
- ;;=4^S62.615S
+ ;;=4^F17.210
  ;;^UTILITY(U,$J,358.3,24893,2)
- ;;=^5034493
+ ;;=^5003365
  ;;^UTILITY(U,$J,358.3,24894,0)
- ;;=S62.610S^^76^1009^44
+ ;;=F17.291^^74^987^18
  ;;^UTILITY(U,$J,358.3,24894,1,0)
  ;;=^358.31IA^4^2
  ;;^UTILITY(U,$J,358.3,24894,1,3,0)
- ;;=3^Disp fx of proximal phalanx of right index finger, sequela
+ ;;=3^Nicotine Dependence,Oth Tobacco Product,In Remission
  ;;^UTILITY(U,$J,358.3,24894,1,4,0)
- ;;=4^S62.610S
+ ;;=4^F17.291
  ;;^UTILITY(U,$J,358.3,24894,2)
- ;;=^5034458
+ ;;=^5003376
  ;;^UTILITY(U,$J,358.3,24895,0)
- ;;=S62.616S^^76^1009^45
+ ;;=F17.290^^74^987^19
  ;;^UTILITY(U,$J,358.3,24895,1,0)
  ;;=^358.31IA^4^2
  ;;^UTILITY(U,$J,358.3,24895,1,3,0)
- ;;=3^Disp fx of proximal phalanx of right little finger, sequela
+ ;;=3^Nicotine Dependence,Oth Tobacco Product,Uncomplicated
  ;;^UTILITY(U,$J,358.3,24895,1,4,0)
- ;;=4^S62.616S
+ ;;=4^F17.290
  ;;^UTILITY(U,$J,358.3,24895,2)
- ;;=^5034500
+ ;;=^5003375
  ;;^UTILITY(U,$J,358.3,24896,0)
- ;;=S62.612S^^76^1009^46
+ ;;=F17.201^^74^987^20
  ;;^UTILITY(U,$J,358.3,24896,1,0)
  ;;=^358.31IA^4^2
  ;;^UTILITY(U,$J,358.3,24896,1,3,0)
- ;;=3^Disp fx of proximal phalanx of right middle finger, sequela
+ ;;=3^Nicotine Dependence,Unspec,In Remission
  ;;^UTILITY(U,$J,358.3,24896,1,4,0)
- ;;=4^S62.612S
+ ;;=4^F17.201
  ;;^UTILITY(U,$J,358.3,24896,2)
- ;;=^5034472
+ ;;=^5003361
  ;;^UTILITY(U,$J,358.3,24897,0)
- ;;=S62.614S^^76^1009^47
+ ;;=F17.200^^74^987^21
  ;;^UTILITY(U,$J,358.3,24897,1,0)
  ;;=^358.31IA^4^2
  ;;^UTILITY(U,$J,358.3,24897,1,3,0)
- ;;=3^Disp fx of proximal phalanx of right ring finger, sequela
+ ;;=3^Nicotine Dependence,Unspec,Uncomplicated
  ;;^UTILITY(U,$J,358.3,24897,1,4,0)
- ;;=4^S62.614S
+ ;;=4^F17.200
  ;;^UTILITY(U,$J,358.3,24897,2)
- ;;=^5034486
+ ;;=^5003360
  ;;^UTILITY(U,$J,358.3,24898,0)
- ;;=S62.661S^^76^1009^69
+ ;;=F19.20^^74^987^25
  ;;^UTILITY(U,$J,358.3,24898,1,0)
  ;;=^358.31IA^4^2
  ;;^UTILITY(U,$J,358.3,24898,1,3,0)
- ;;=3^Nondisp fx of distal phalanx of left index finger, sequela
+ ;;=3^Psychoactive Substance Dependence,Uncomplicated
  ;;^UTILITY(U,$J,358.3,24898,1,4,0)
- ;;=4^S62.661S
+ ;;=4^F19.20
  ;;^UTILITY(U,$J,358.3,24898,2)
- ;;=^5034815
+ ;;=^5003431
  ;;^UTILITY(U,$J,358.3,24899,0)
- ;;=S62.667S^^76^1009^70
+ ;;=F43.11^^74^987^22
  ;;^UTILITY(U,$J,358.3,24899,1,0)
  ;;=^358.31IA^4^2
  ;;^UTILITY(U,$J,358.3,24899,1,3,0)
- ;;=3^Nondisp fx of distal phalanx of left little finger, sequela
+ ;;=3^PTSD,Acute
  ;;^UTILITY(U,$J,358.3,24899,1,4,0)
- ;;=4^S62.667S
+ ;;=4^F43.11
  ;;^UTILITY(U,$J,358.3,24899,2)
- ;;=^5034857
+ ;;=^5003571
  ;;^UTILITY(U,$J,358.3,24900,0)
- ;;=S62.663S^^76^1009^71
+ ;;=F43.12^^74^987^23
  ;;^UTILITY(U,$J,358.3,24900,1,0)
  ;;=^358.31IA^4^2
  ;;^UTILITY(U,$J,358.3,24900,1,3,0)
- ;;=3^Nondisp fx of distal phalanx of left middle finger, sequela
+ ;;=3^PTSD,Chronic
  ;;^UTILITY(U,$J,358.3,24900,1,4,0)
- ;;=4^S62.663S
+ ;;=4^F43.12
  ;;^UTILITY(U,$J,358.3,24900,2)
- ;;=^5034829
+ ;;=^5003572
  ;;^UTILITY(U,$J,358.3,24901,0)
- ;;=S62.665S^^76^1009^72
+ ;;=F43.10^^74^987^24
  ;;^UTILITY(U,$J,358.3,24901,1,0)
  ;;=^358.31IA^4^2
  ;;^UTILITY(U,$J,358.3,24901,1,3,0)
- ;;=3^Nondisp fx of distal phalanx of left ring finger, sequela
+ ;;=3^PTSD,Unspec
  ;;^UTILITY(U,$J,358.3,24901,1,4,0)
- ;;=4^S62.665S
+ ;;=4^F43.10
  ;;^UTILITY(U,$J,358.3,24901,2)
- ;;=^5034843
+ ;;=^5003570
  ;;^UTILITY(U,$J,358.3,24902,0)
- ;;=S62.660S^^76^1009^74
+ ;;=Z87.891^^74^987^4
  ;;^UTILITY(U,$J,358.3,24902,1,0)
  ;;=^358.31IA^4^2
  ;;^UTILITY(U,$J,358.3,24902,1,3,0)
- ;;=3^Nondisp fx of distal phalanx of right index finger, sequela
+ ;;=3^Hx of Nicotine Dependence
  ;;^UTILITY(U,$J,358.3,24902,1,4,0)
- ;;=4^S62.660S
+ ;;=4^Z87.891
  ;;^UTILITY(U,$J,358.3,24902,2)
- ;;=^5034808
+ ;;=^5063518
  ;;^UTILITY(U,$J,358.3,24903,0)
- ;;=S62.666S^^76^1009^75
+ ;;=F32.A^^74^987^3
  ;;^UTILITY(U,$J,358.3,24903,1,0)
  ;;=^358.31IA^4^2
  ;;^UTILITY(U,$J,358.3,24903,1,3,0)
- ;;=3^Nondisp fx of distal phalanx of right little finger, sequela
+ ;;=3^Depression NOS
  ;;^UTILITY(U,$J,358.3,24903,1,4,0)
- ;;=4^S62.666S
+ ;;=4^F32.A
  ;;^UTILITY(U,$J,358.3,24903,2)
- ;;=^5034850
+ ;;=^5161153
  ;;^UTILITY(U,$J,358.3,24904,0)
- ;;=S62.662S^^76^1009^76
+ ;;=F32.0^^74^987^9
  ;;^UTILITY(U,$J,358.3,24904,1,0)
  ;;=^358.31IA^4^2
  ;;^UTILITY(U,$J,358.3,24904,1,3,0)
- ;;=3^Nondisp fx of distal phalanx of right middle finger, sequela
+ ;;=3^MDD,Single Episode,Mild
  ;;^UTILITY(U,$J,358.3,24904,1,4,0)
- ;;=4^S62.662S
+ ;;=4^F32.0
  ;;^UTILITY(U,$J,358.3,24904,2)
- ;;=^5034822
+ ;;=^5003521
  ;;^UTILITY(U,$J,358.3,24905,0)
- ;;=S62.664S^^76^1009^77
+ ;;=F32.1^^74^987^10
  ;;^UTILITY(U,$J,358.3,24905,1,0)
  ;;=^358.31IA^4^2
  ;;^UTILITY(U,$J,358.3,24905,1,3,0)
- ;;=3^Nondisp fx of distal phalanx of right ring finger, sequela
+ ;;=3^MDD,Single Episode,Moderate
  ;;^UTILITY(U,$J,358.3,24905,1,4,0)
- ;;=4^S62.664S
+ ;;=4^F32.1
  ;;^UTILITY(U,$J,358.3,24905,2)
- ;;=^5034836
+ ;;=^5003522
  ;;^UTILITY(U,$J,358.3,24906,0)
- ;;=S62.651S^^76^1009^79
+ ;;=F32.2^^74^987^12
  ;;^UTILITY(U,$J,358.3,24906,1,0)
  ;;=^358.31IA^4^2
  ;;^UTILITY(U,$J,358.3,24906,1,3,0)
- ;;=3^Nondisp fx of medial phalanx of left index finger, sequela
+ ;;=3^MDD,Single Episode,Severe w/o Psych Features
  ;;^UTILITY(U,$J,358.3,24906,1,4,0)
- ;;=4^S62.651S
+ ;;=4^F32.2
  ;;^UTILITY(U,$J,358.3,24906,2)
- ;;=^5034745
+ ;;=^5003523
  ;;^UTILITY(U,$J,358.3,24907,0)
- ;;=S62.657S^^76^1009^80
+ ;;=F32.3^^74^987^11
  ;;^UTILITY(U,$J,358.3,24907,1,0)
  ;;=^358.31IA^4^2
  ;;^UTILITY(U,$J,358.3,24907,1,3,0)
- ;;=3^Nondisp fx of medial phalanx of left little finger, sequela
+ ;;=3^MDD,Single Episode,Severe w/ Psych Features
  ;;^UTILITY(U,$J,358.3,24907,1,4,0)
- ;;=4^S62.657S
+ ;;=4^F32.3
  ;;^UTILITY(U,$J,358.3,24907,2)
- ;;=^5034787
+ ;;=^5003524
  ;;^UTILITY(U,$J,358.3,24908,0)
- ;;=S62.653S^^76^1009^81
+ ;;=F33.0^^74^987^5
  ;;^UTILITY(U,$J,358.3,24908,1,0)
  ;;=^358.31IA^4^2
  ;;^UTILITY(U,$J,358.3,24908,1,3,0)
- ;;=3^Nondisp fx of medial phalanx of left middle finger, sequela
+ ;;=3^MDD,Recurrent,Mild
  ;;^UTILITY(U,$J,358.3,24908,1,4,0)
- ;;=4^S62.653S
+ ;;=4^F33.0
  ;;^UTILITY(U,$J,358.3,24908,2)
- ;;=^5034759
+ ;;=^5003529
  ;;^UTILITY(U,$J,358.3,24909,0)
- ;;=S62.655S^^76^1009^82
+ ;;=F33.1^^74^987^6
  ;;^UTILITY(U,$J,358.3,24909,1,0)
  ;;=^358.31IA^4^2
  ;;^UTILITY(U,$J,358.3,24909,1,3,0)
- ;;=3^Nondisp fx of medial phalanx of left ring finger, sequela
+ ;;=3^MDD,Recurrent,Moderate
  ;;^UTILITY(U,$J,358.3,24909,1,4,0)
- ;;=4^S62.655S
+ ;;=4^F33.1
  ;;^UTILITY(U,$J,358.3,24909,2)
- ;;=^5034773
+ ;;=^5003530
  ;;^UTILITY(U,$J,358.3,24910,0)
- ;;=S62.650S^^76^1009^83
+ ;;=F33.2^^74^987^8
  ;;^UTILITY(U,$J,358.3,24910,1,0)
  ;;=^358.31IA^4^2
  ;;^UTILITY(U,$J,358.3,24910,1,3,0)
- ;;=3^Nondisp fx of medial phalanx of right index finger, sequela
+ ;;=3^MDD,Recurrent,Severe w/o Psych Features
  ;;^UTILITY(U,$J,358.3,24910,1,4,0)
- ;;=4^S62.650S
+ ;;=4^F33.2
  ;;^UTILITY(U,$J,358.3,24910,2)
- ;;=^5034738
+ ;;=^5003531
  ;;^UTILITY(U,$J,358.3,24911,0)
- ;;=S62.656S^^76^1009^84
+ ;;=F33.3^^74^987^7
  ;;^UTILITY(U,$J,358.3,24911,1,0)
  ;;=^358.31IA^4^2
  ;;^UTILITY(U,$J,358.3,24911,1,3,0)
- ;;=3^Nondisp fx of medial phalanx of right little finger, sequela
+ ;;=3^MDD,Recurrent,Severe w/ Psych Features
  ;;^UTILITY(U,$J,358.3,24911,1,4,0)
- ;;=4^S62.656S
+ ;;=4^F33.3
  ;;^UTILITY(U,$J,358.3,24911,2)
- ;;=^5034780
+ ;;=^5003532
  ;;^UTILITY(U,$J,358.3,24912,0)
- ;;=S62.652S^^76^1009^85
+ ;;=L40.2^^74^988^1
  ;;^UTILITY(U,$J,358.3,24912,1,0)
  ;;=^358.31IA^4^2
  ;;^UTILITY(U,$J,358.3,24912,1,3,0)
- ;;=3^Nondisp fx of medial phalanx of right middle finger, sequela
+ ;;=3^Acrodermatitis Continua
  ;;^UTILITY(U,$J,358.3,24912,1,4,0)
- ;;=4^S62.652S
+ ;;=4^L40.2
  ;;^UTILITY(U,$J,358.3,24912,2)
- ;;=^5034752
+ ;;=^5009162
  ;;^UTILITY(U,$J,358.3,24913,0)
- ;;=S62.654S^^76^1009^86
+ ;;=L03.91^^74^988^2
  ;;^UTILITY(U,$J,358.3,24913,1,0)
  ;;=^358.31IA^4^2
  ;;^UTILITY(U,$J,358.3,24913,1,3,0)
- ;;=3^Nondisp fx of medial phalanx of right ring finger, sequela
+ ;;=3^Acute Lymphangitis,Unspec
  ;;^UTILITY(U,$J,358.3,24913,1,4,0)
- ;;=4^S62.654S
+ ;;=4^L03.91
  ;;^UTILITY(U,$J,358.3,24913,2)
- ;;=^5034766
+ ;;=^5009068
  ;;^UTILITY(U,$J,358.3,24914,0)
- ;;=S62.641S^^76^1009^99
+ ;;=L23.9^^74^988^3
  ;;^UTILITY(U,$J,358.3,24914,1,0)
  ;;=^358.31IA^4^2
  ;;^UTILITY(U,$J,358.3,24914,1,3,0)
- ;;=3^Nondisp fx of proximal phalanx of left index finger, sequela
+ ;;=3^Allergic Contact Dermatitis
  ;;^UTILITY(U,$J,358.3,24914,1,4,0)
- ;;=4^S62.641S
+ ;;=4^L23.9
  ;;^UTILITY(U,$J,358.3,24914,2)
- ;;=^5034675
+ ;;=^5009125
  ;;^UTILITY(U,$J,358.3,24915,0)
- ;;=S62.647S^^76^1009^97
+ ;;=L03.90^^74^988^4
  ;;^UTILITY(U,$J,358.3,24915,1,0)
  ;;=^358.31IA^4^2
  ;;^UTILITY(U,$J,358.3,24915,1,3,0)
- ;;=3^Nondisp fx of proximal phalanx of l little finger, sequela
+ ;;=3^Cellulitis,Unspec
  ;;^UTILITY(U,$J,358.3,24915,1,4,0)
- ;;=4^S62.647S
+ ;;=4^L03.90
  ;;^UTILITY(U,$J,358.3,24915,2)
- ;;=^5034717
+ ;;=^5009067
  ;;^UTILITY(U,$J,358.3,24916,0)
- ;;=S62.643S^^76^1009^98
+ ;;=L02.91^^74^988^7
  ;;^UTILITY(U,$J,358.3,24916,1,0)
  ;;=^358.31IA^4^2
  ;;^UTILITY(U,$J,358.3,24916,1,3,0)
- ;;=3^Nondisp fx of proximal phalanx of l mid finger, sequela
+ ;;=3^Cutaneous Abscess,Unspec
  ;;^UTILITY(U,$J,358.3,24916,1,4,0)
- ;;=4^S62.643S
+ ;;=4^L02.91
  ;;^UTILITY(U,$J,358.3,24916,2)
- ;;=^5034689
+ ;;=^5009016
  ;;^UTILITY(U,$J,358.3,24917,0)
- ;;=S62.645S^^76^1009^100
+ ;;=L30.2^^74^988^8
  ;;^UTILITY(U,$J,358.3,24917,1,0)
  ;;=^358.31IA^4^2
  ;;^UTILITY(U,$J,358.3,24917,1,3,0)
- ;;=3^Nondisp fx of proximal phalanx of left ring finger, sequela
+ ;;=3^Cutaneous Autosensitization
  ;;^UTILITY(U,$J,358.3,24917,1,4,0)
- ;;=4^S62.645S
+ ;;=4^L30.2
  ;;^UTILITY(U,$J,358.3,24917,2)
- ;;=^5034703
+ ;;=^5009155
  ;;^UTILITY(U,$J,358.3,24918,0)
- ;;=S62.640S^^76^1009^102
+ ;;=L30.9^^74^988^10
  ;;^UTILITY(U,$J,358.3,24918,1,0)
  ;;=^358.31IA^4^2
  ;;^UTILITY(U,$J,358.3,24918,1,3,0)
- ;;=3^Nondisp fx of proximal phalanx of r idx fngr, sequela
+ ;;=3^Dermatitis,Unspec
  ;;^UTILITY(U,$J,358.3,24918,1,4,0)
- ;;=4^S62.640S
+ ;;=4^L30.9
  ;;^UTILITY(U,$J,358.3,24918,2)
- ;;=^5034668
+ ;;=^5009159
  ;;^UTILITY(U,$J,358.3,24919,0)
- ;;=S62.646S^^76^1009^103
+ ;;=Z48.01^^74^988^5
  ;;^UTILITY(U,$J,358.3,24919,1,0)
  ;;=^358.31IA^4^2
  ;;^UTILITY(U,$J,358.3,24919,1,3,0)
- ;;=3^Nondisp fx of proximal phalanx of r little finger, sequela
+ ;;=3^Change/Removal of Surgical Wound Dressing
  ;;^UTILITY(U,$J,358.3,24919,1,4,0)
- ;;=4^S62.646S
+ ;;=4^Z48.01
  ;;^UTILITY(U,$J,358.3,24919,2)
- ;;=^5034710
+ ;;=^5063034
  ;;^UTILITY(U,$J,358.3,24920,0)
- ;;=S62.642S^^76^1009^104
+ ;;=L98.3^^74^988^11
  ;;^UTILITY(U,$J,358.3,24920,1,0)
  ;;=^358.31IA^4^2
  ;;^UTILITY(U,$J,358.3,24920,1,3,0)
- ;;=3^Nondisp fx of proximal phalanx of r mid finger, sequela
+ ;;=3^Eosinophilic Cellulitis
  ;;^UTILITY(U,$J,358.3,24920,1,4,0)
- ;;=4^S62.642S
+ ;;=4^L98.3
  ;;^UTILITY(U,$J,358.3,24920,2)
- ;;=^5034682
+ ;;=^5009576
  ;;^UTILITY(U,$J,358.3,24921,0)
- ;;=S62.644S^^76^1009^105
+ ;;=L40.1^^74^988^18
  ;;^UTILITY(U,$J,358.3,24921,1,0)
  ;;=^358.31IA^4^2
  ;;^UTILITY(U,$J,358.3,24921,1,3,0)
- ;;=3^Nondisp fx of proximal phalanx of right ring finger, sequela
+ ;;=3^Pustular Psoriasis,Generalized
  ;;^UTILITY(U,$J,358.3,24921,1,4,0)
- ;;=4^S62.644S
+ ;;=4^L40.1
  ;;^UTILITY(U,$J,358.3,24921,2)
- ;;=^5034696
+ ;;=^5009161
  ;;^UTILITY(U,$J,358.3,24922,0)
- ;;=M84.445S^^76^1009^119
+ ;;=L40.4^^74^988^12
  ;;^UTILITY(U,$J,358.3,24922,1,0)
  ;;=^358.31IA^4^2
  ;;^UTILITY(U,$J,358.3,24922,1,3,0)
- ;;=3^Pathological fracture, left finger(s), sequela
+ ;;=3^Guttate Psoriasis
  ;;^UTILITY(U,$J,358.3,24922,1,4,0)
- ;;=4^M84.445S
+ ;;=4^L40.4
  ;;^UTILITY(U,$J,358.3,24922,2)
- ;;=^5013895
+ ;;=^5009164
  ;;^UTILITY(U,$J,358.3,24923,0)
- ;;=M84.444S^^76^1009^121
+ ;;=L24.9^^74^988^13
  ;;^UTILITY(U,$J,358.3,24923,1,0)
  ;;=^358.31IA^4^2
  ;;^UTILITY(U,$J,358.3,24923,1,3,0)
- ;;=3^Pathological fracture, right finger(s), sequela
+ ;;=3^Irritant Contact Dermatitis
  ;;^UTILITY(U,$J,358.3,24923,1,4,0)
- ;;=4^M84.444S
+ ;;=4^L24.9
  ;;^UTILITY(U,$J,358.3,24923,2)
- ;;=^5013889
+ ;;=^5009136
  ;;^UTILITY(U,$J,358.3,24924,0)
- ;;=M84.345S^^76^1009^123
+ ;;=L30.0^^74^988^14
  ;;^UTILITY(U,$J,358.3,24924,1,0)
  ;;=^358.31IA^4^2
  ;;^UTILITY(U,$J,358.3,24924,1,3,0)
- ;;=3^Stress fracture, left finger(s), sequela
+ ;;=3^Nummular Dermatitis
  ;;^UTILITY(U,$J,358.3,24924,1,4,0)
- ;;=4^M84.345S
+ ;;=4^L30.0
  ;;^UTILITY(U,$J,358.3,24924,2)
- ;;=^5013667
+ ;;=^186823
  ;;^UTILITY(U,$J,358.3,24925,0)
- ;;=M84.344S^^76^1009^125
+ ;;=L40.8^^74^988^15
  ;;^UTILITY(U,$J,358.3,24925,1,0)
  ;;=^358.31IA^4^2
  ;;^UTILITY(U,$J,358.3,24925,1,3,0)
- ;;=3^Stress fracture, right finger(s), sequela
+ ;;=3^Psoriasis NEC
  ;;^UTILITY(U,$J,358.3,24925,1,4,0)
- ;;=4^M84.344S
+ ;;=4^L40.8
  ;;^UTILITY(U,$J,358.3,24925,2)
- ;;=^5013661
+ ;;=^271917
  ;;^UTILITY(U,$J,358.3,24926,0)
- ;;=S62.522S^^76^1009^15
+ ;;=L30.8^^74^988^9
  ;;^UTILITY(U,$J,358.3,24926,1,0)
  ;;=^358.31IA^4^2
  ;;^UTILITY(U,$J,358.3,24926,1,3,0)
- ;;=3^Disp fx of distal phalanx of left thumb, sequela
+ ;;=3^Dermatitis NEC
  ;;^UTILITY(U,$J,358.3,24926,1,4,0)
- ;;=4^S62.522S
+ ;;=4^L30.8
  ;;^UTILITY(U,$J,358.3,24926,2)
- ;;=^5034353
+ ;;=^5009158
  ;;^UTILITY(U,$J,358.3,24927,0)
- ;;=S62.521S^^76^1009^20
+ ;;=L40.0^^74^988^16
  ;;^UTILITY(U,$J,358.3,24927,1,0)
  ;;=^358.31IA^4^2
  ;;^UTILITY(U,$J,358.3,24927,1,3,0)
- ;;=3^Disp fx of distal phalanx of right thumb, sequela
+ ;;=3^Psoriasis Vulgaris
  ;;^UTILITY(U,$J,358.3,24927,1,4,0)
- ;;=4^S62.521S
+ ;;=4^L40.0
  ;;^UTILITY(U,$J,358.3,24927,2)
- ;;=^5034346
+ ;;=^5009160
  ;;^UTILITY(U,$J,358.3,24928,0)
- ;;=S62.512S^^76^1009^43
+ ;;=L40.9^^74^988^17
  ;;^UTILITY(U,$J,358.3,24928,1,0)
  ;;=^358.31IA^4^2
  ;;^UTILITY(U,$J,358.3,24928,1,3,0)
- ;;=3^Disp fx of proximal phalanx of left thumb, sequela
+ ;;=3^Psoriasis,Unspec
  ;;^UTILITY(U,$J,358.3,24928,1,4,0)
- ;;=4^S62.512S
+ ;;=4^L40.9
  ;;^UTILITY(U,$J,358.3,24928,2)
- ;;=^5034311
+ ;;=^5009171
  ;;^UTILITY(U,$J,358.3,24929,0)
- ;;=S62.511S^^76^1009^48
+ ;;=L40.3^^74^988^19
  ;;^UTILITY(U,$J,358.3,24929,1,0)
  ;;=^358.31IA^4^2
  ;;^UTILITY(U,$J,358.3,24929,1,3,0)
- ;;=3^Disp fx of proximal phalanx of right thumb, sequela
+ ;;=3^Pustulosis Palmaris et Plantaris
  ;;^UTILITY(U,$J,358.3,24929,1,4,0)
- ;;=4^S62.511S
+ ;;=4^L40.3
  ;;^UTILITY(U,$J,358.3,24929,2)
- ;;=^5034304
+ ;;=^5009163
  ;;^UTILITY(U,$J,358.3,24930,0)
- ;;=S62.525S^^76^1009^73
+ ;;=R21.^^74^988^20
  ;;^UTILITY(U,$J,358.3,24930,1,0)
  ;;=^358.31IA^4^2
  ;;^UTILITY(U,$J,358.3,24930,1,3,0)
- ;;=3^Nondisp fx of distal phalanx of left thumb, sequela
+ ;;=3^Rash/Oth Nonspecific Skin Eruption
  ;;^UTILITY(U,$J,358.3,24930,1,4,0)
- ;;=4^S62.525S
+ ;;=4^R21.
  ;;^UTILITY(U,$J,358.3,24930,2)
- ;;=^5034374
+ ;;=^5019283
  ;;^UTILITY(U,$J,358.3,24931,0)
- ;;=S62.524S^^76^1009^78
+ ;;=L25.9^^74^988^6
  ;;^UTILITY(U,$J,358.3,24931,1,0)
  ;;=^358.31IA^4^2
  ;;^UTILITY(U,$J,358.3,24931,1,3,0)
- ;;=3^Nondisp fx of distal phalanx of right thumb, sequela
+ ;;=3^Contact Dermatitis,Unspec
  ;;^UTILITY(U,$J,358.3,24931,1,4,0)
- ;;=4^S62.524S
+ ;;=4^L25.9
  ;;^UTILITY(U,$J,358.3,24931,2)
- ;;=^5034367
+ ;;=^5133647
  ;;^UTILITY(U,$J,358.3,24932,0)
- ;;=S62.515S^^76^1009^101
+ ;;=M34.89^^74^989^31
  ;;^UTILITY(U,$J,358.3,24932,1,0)
  ;;=^358.31IA^4^2
  ;;^UTILITY(U,$J,358.3,24932,1,3,0)
- ;;=3^Nondisp fx of proximal phalanx of left thumb, sequela
+ ;;=3^Systemic Sclerosis NEC
  ;;^UTILITY(U,$J,358.3,24932,1,4,0)
- ;;=4^S62.515S
+ ;;=4^M34.89
  ;;^UTILITY(U,$J,358.3,24932,2)
- ;;=^5034332
+ ;;=^5011784
  ;;^UTILITY(U,$J,358.3,24933,0)
- ;;=S62.514S^^76^1009^106
+ ;;=M34.0^^74^989^25
  ;;^UTILITY(U,$J,358.3,24933,1,0)
  ;;=^358.31IA^4^2
  ;;^UTILITY(U,$J,358.3,24933,1,3,0)
- ;;=3^Nondisp fx of proximal phalanx of right thumb, sequela
+ ;;=3^Progressive Systemic Sclerosis
  ;;^UTILITY(U,$J,358.3,24933,1,4,0)
- ;;=4^S62.514S
+ ;;=4^M34.0
  ;;^UTILITY(U,$J,358.3,24933,2)
- ;;=^5034325
+ ;;=^5011778
  ;;^UTILITY(U,$J,358.3,24934,0)
- ;;=S32.462S^^76^1010^5
+ ;;=F03.90^^74^989^15
  ;;^UTILITY(U,$J,358.3,24934,1,0)
  ;;=^358.31IA^4^2
  ;;^UTILITY(U,$J,358.3,24934,1,3,0)
- ;;=3^Disp fx of associated transv/post of left acetabulum, sequela
+ ;;=3^Dementia w/o Behavioral Disturbance,Unspec
  ;;^UTILITY(U,$J,358.3,24934,1,4,0)
- ;;=4^S32.462S
+ ;;=4^F03.90
  ;;^UTILITY(U,$J,358.3,24934,2)
- ;;=^5024892
+ ;;=^5003050
  ;;^UTILITY(U,$J,358.3,24935,0)
- ;;=S32.461S^^76^1010^6
+ ;;=F06.8^^74^989^22
  ;;^UTILITY(U,$J,358.3,24935,1,0)
  ;;=^358.31IA^4^2
  ;;^UTILITY(U,$J,358.3,24935,1,3,0)
- ;;=3^Disp fx of associated transv/post of right acetab, sequela
+ ;;=3^Mental Disorders d/t Physiological Condition
  ;;^UTILITY(U,$J,358.3,24935,1,4,0)
- ;;=4^S32.461S
+ ;;=4^F06.8
  ;;^UTILITY(U,$J,358.3,24935,2)
- ;;=^5024886
+ ;;=^5003062
  ;;^UTILITY(U,$J,358.3,24936,0)
- ;;=S32.312S^^76^1010^7
+ ;;=F06.1^^74^989^1
  ;;^UTILITY(U,$J,358.3,24936,1,0)
  ;;=^358.31IA^4^2
  ;;^UTILITY(U,$J,358.3,24936,1,3,0)
- ;;=3^Disp fx of avulsion of left ilium, sequela
+ ;;=3^Catatonic Disorder d/t Physiological Condition
  ;;^UTILITY(U,$J,358.3,24936,1,4,0)
- ;;=4^S32.312S
+ ;;=4^F06.1
  ;;^UTILITY(U,$J,358.3,24936,2)
- ;;=^5024658
+ ;;=^5003054
  ;;^UTILITY(U,$J,358.3,24937,0)
- ;;=S32.311S^^76^1010^9
+ ;;=G35.^^74^989^23
  ;;^UTILITY(U,$J,358.3,24937,1,0)
  ;;=^358.31IA^4^2
  ;;^UTILITY(U,$J,358.3,24937,1,3,0)
- ;;=3^Disp fx of avulsion of right ilium, sequela
+ ;;=3^Multiple Sclerosis
  ;;^UTILITY(U,$J,358.3,24937,1,4,0)
- ;;=4^S32.311S
+ ;;=4^G35.
  ;;^UTILITY(U,$J,358.3,24937,2)
- ;;=^5024652
+ ;;=^79761
  ;;^UTILITY(U,$J,358.3,24938,0)
- ;;=S32.612S^^76^1010^8
+ ;;=G60.9^^74^989^20
  ;;^UTILITY(U,$J,358.3,24938,1,0)
  ;;=^358.31IA^4^2
  ;;^UTILITY(U,$J,358.3,24938,1,3,0)
- ;;=3^Disp fx of avulsion of left ischium, sequela
+ ;;=3^Hereditary/Idiopathic Neuropathy,Unspec
  ;;^UTILITY(U,$J,358.3,24938,1,4,0)
- ;;=4^S32.612S
+ ;;=4^G60.9
  ;;^UTILITY(U,$J,358.3,24938,2)
- ;;=^5025066
+ ;;=^5004071
  ;;^UTILITY(U,$J,358.3,24939,0)
- ;;=S32.611S^^76^1010^10
+ ;;=G62.9^^74^989^24
  ;;^UTILITY(U,$J,358.3,24939,1,0)
  ;;=^358.31IA^4^2
  ;;^UTILITY(U,$J,358.3,24939,1,3,0)
- ;;=3^Disp fx of avulsion of right ischium, sequela
+ ;;=3^Polyneuropathy,Unspec
  ;;^UTILITY(U,$J,358.3,24939,1,4,0)
- ;;=4^S32.611S
+ ;;=4^G62.9
  ;;^UTILITY(U,$J,358.3,24939,2)
- ;;=^5025060
+ ;;=^5004079
  ;;^UTILITY(U,$J,358.3,24940,0)
- ;;=S32.482S^^76^1010^11
+ ;;=I63.9^^74^989^14
  ;;^UTILITY(U,$J,358.3,24940,1,0)
  ;;=^358.31IA^4^2
  ;;^UTILITY(U,$J,358.3,24940,1,3,0)
- ;;=3^Disp fx of dome of left acetabulum, sequela
+ ;;=3^Cerebral Infarction,Unspec
  ;;^UTILITY(U,$J,358.3,24940,1,4,0)
- ;;=4^S32.482S
+ ;;=4^I63.9
  ;;^UTILITY(U,$J,358.3,24940,2)
- ;;=^5024964
+ ;;=^5007355
  ;;^UTILITY(U,$J,358.3,24941,0)
- ;;=S32.481S^^76^1010^12
+ ;;=I63.50^^74^989^7
  ;;^UTILITY(U,$J,358.3,24941,1,0)
  ;;=^358.31IA^4^2
  ;;^UTILITY(U,$J,358.3,24941,1,3,0)
- ;;=3^Disp fx of dome of right acetabulum, sequela
+ ;;=3^Cerebral Infarction d/t Occls/Stenosis,Unspec Cerebral Artery
  ;;^UTILITY(U,$J,358.3,24941,1,4,0)
- ;;=4^S32.481S
+ ;;=4^I63.50
  ;;^UTILITY(U,$J,358.3,24941,2)
- ;;=^5024958
+ ;;=^5007343
  ;;^UTILITY(U,$J,358.3,24942,0)
- ;;=S32.432S^^76^1010^1
+ ;;=I63.549^^74^989^8
  ;;^UTILITY(U,$J,358.3,24942,1,0)
  ;;=^358.31IA^4^2
  ;;^UTILITY(U,$J,358.3,24942,1,3,0)
- ;;=3^Disp fx of anterior column of left acetabulum, sequela
+ ;;=3^Cerebral Infarction d/t Occls/Stenosis, Unspec Cerebellar Artery
  ;;^UTILITY(U,$J,358.3,24942,1,4,0)
- ;;=4^S32.432S
+ ;;=4^I63.549
  ;;^UTILITY(U,$J,358.3,24942,2)
- ;;=^5024784
+ ;;=^5133571
  ;;^UTILITY(U,$J,358.3,24943,0)
- ;;=S32.431S^^76^1010^2
+ ;;=I63.512^^74^989^4
  ;;^UTILITY(U,$J,358.3,24943,1,0)
  ;;=^358.31IA^4^2
  ;;^UTILITY(U,$J,358.3,24943,1,3,0)
- ;;=3^Disp fx of anterior column of right acetabulum, sequela
+ ;;=3^Cerebral Infarction d/t Left Middle Cerebral Artery Occls/Stenosis
  ;;^UTILITY(U,$J,358.3,24943,1,4,0)
- ;;=4^S32.431S
+ ;;=4^I63.512
  ;;^UTILITY(U,$J,358.3,24943,2)
- ;;=^5024778
+ ;;=^5007345
  ;;^UTILITY(U,$J,358.3,24944,0)
- ;;=S32.412S^^76^1010^3
+ ;;=I63.522^^74^989^2
  ;;^UTILITY(U,$J,358.3,24944,1,0)
  ;;=^358.31IA^4^2
  ;;^UTILITY(U,$J,358.3,24944,1,3,0)
- ;;=3^Disp fx of anterior wall of left acetabulum, sequela
+ ;;=3^Cerebral Infarction d/t Left Anterior Cerebral Artery Occls/Stenosis
  ;;^UTILITY(U,$J,358.3,24944,1,4,0)
- ;;=4^S32.412S
+ ;;=4^I63.522
  ;;^UTILITY(U,$J,358.3,24944,2)
- ;;=^5024712
+ ;;=^5007347
  ;;^UTILITY(U,$J,358.3,24945,0)
- ;;=S32.411S^^76^1010^4
+ ;;=I63.532^^74^989^5
  ;;^UTILITY(U,$J,358.3,24945,1,0)
  ;;=^358.31IA^4^2
  ;;^UTILITY(U,$J,358.3,24945,1,3,0)
- ;;=3^Disp fx of anterior wall of right acetabulum, sequela
+ ;;=3^Cerebral Infarction d/t Left Posterior Cerebral Artery Occls/Stenosis
+ ;;^UTILITY(U,$J,358.3,24945,1,4,0)
+ ;;=4^I63.532
+ ;;^UTILITY(U,$J,358.3,24945,2)
+ ;;=^5007349
+ ;;^UTILITY(U,$J,358.3,24946,0)
+ ;;=I63.542^^74^989^3
+ ;;^UTILITY(U,$J,358.3,24946,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,24946,1,3,0)
+ ;;=3^Cerebral Infarction d/t Left Cerebellar Artery Occls/Stenosis
+ ;;^UTILITY(U,$J,358.3,24946,1,4,0)
+ ;;=4^I63.542
+ ;;^UTILITY(U,$J,358.3,24946,2)
+ ;;=^5007351
+ ;;^UTILITY(U,$J,358.3,24947,0)
+ ;;=I63.511^^74^989^11
+ ;;^UTILITY(U,$J,358.3,24947,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,24947,1,3,0)
+ ;;=3^Cerebral Infarction d/t Right Middle Cerebral Artery Occls/Stenosis
+ ;;^UTILITY(U,$J,358.3,24947,1,4,0)
+ ;;=4^I63.511
+ ;;^UTILITY(U,$J,358.3,24947,2)
+ ;;=^5007344
+ ;;^UTILITY(U,$J,358.3,24948,0)
+ ;;=I63.521^^74^989^9
+ ;;^UTILITY(U,$J,358.3,24948,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,24948,1,3,0)
+ ;;=3^Cerebral Infarction d/t Right Anterior Cerebral Artery Occls/Stenosis
+ ;;^UTILITY(U,$J,358.3,24948,1,4,0)
+ ;;=4^I63.521
+ ;;^UTILITY(U,$J,358.3,24948,2)
+ ;;=^5007346
+ ;;^UTILITY(U,$J,358.3,24949,0)
+ ;;=I63.531^^74^989^12
+ ;;^UTILITY(U,$J,358.3,24949,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,24949,1,3,0)
+ ;;=3^Cerebral Infarction d/t Right Posterior Cerebral Artery Occls/Stenosis
+ ;;^UTILITY(U,$J,358.3,24949,1,4,0)
+ ;;=4^I63.531
+ ;;^UTILITY(U,$J,358.3,24949,2)
+ ;;=^5007348
+ ;;^UTILITY(U,$J,358.3,24950,0)
+ ;;=I63.541^^74^989^10
+ ;;^UTILITY(U,$J,358.3,24950,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,24950,1,3,0)
+ ;;=3^Cerebral Infarction d/t Right Cerebellar Artery Occls/Stenosis
+ ;;^UTILITY(U,$J,358.3,24950,1,4,0)
+ ;;=4^I63.541
+ ;;^UTILITY(U,$J,358.3,24950,2)
+ ;;=^5007350
+ ;;^UTILITY(U,$J,358.3,24951,0)
+ ;;=G45.9^^74^989^32
+ ;;^UTILITY(U,$J,358.3,24951,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,24951,1,3,0)
+ ;;=3^Transient Cerebral Ischemic Attack,Unspec
+ ;;^UTILITY(U,$J,358.3,24951,1,4,0)
+ ;;=4^G45.9
+ ;;^UTILITY(U,$J,358.3,24951,2)
+ ;;=^5003959
+ ;;^UTILITY(U,$J,358.3,24952,0)
+ ;;=Z86.73^^74^989^21
+ ;;^UTILITY(U,$J,358.3,24952,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,24952,1,3,0)
+ ;;=3^Hx of TIA and Cerebral Infarction w/o Residual Deficits
+ ;;^UTILITY(U,$J,358.3,24952,1,4,0)
+ ;;=4^Z86.73
+ ;;^UTILITY(U,$J,358.3,24952,2)
+ ;;=^5063477
+ ;;^UTILITY(U,$J,358.3,24953,0)
+ ;;=G82.50^^74^989^30
+ ;;^UTILITY(U,$J,358.3,24953,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,24953,1,3,0)
+ ;;=3^Quadriplegia,Unspec
+ ;;^UTILITY(U,$J,358.3,24953,1,4,0)
+ ;;=4^G82.50
+ ;;^UTILITY(U,$J,358.3,24953,2)
+ ;;=^5004128
+ ;;^UTILITY(U,$J,358.3,24954,0)
+ ;;=I63.81^^74^989^6
+ ;;^UTILITY(U,$J,358.3,24954,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,24954,1,3,0)
+ ;;=3^Cerebral Infarction d/t Occls/Stenosis Small Artery,Other
+ ;;^UTILITY(U,$J,358.3,24954,1,4,0)
+ ;;=4^I63.81
+ ;;^UTILITY(U,$J,358.3,24954,2)
+ ;;=^5157372
+ ;;^UTILITY(U,$J,358.3,24955,0)
+ ;;=I63.89^^74^989^13
+ ;;^UTILITY(U,$J,358.3,24955,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,24955,1,3,0)
+ ;;=3^Cerebral Infarction,Other
+ ;;^UTILITY(U,$J,358.3,24955,1,4,0)
+ ;;=4^I63.89
+ ;;^UTILITY(U,$J,358.3,24955,2)
+ ;;=^5157373
+ ;;^UTILITY(U,$J,358.3,24956,0)
+ ;;=G82.51^^74^989^26
+ ;;^UTILITY(U,$J,358.3,24956,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,24956,1,3,0)
+ ;;=3^Quadriplegia,C1-C4,Complete
+ ;;^UTILITY(U,$J,358.3,24956,1,4,0)
+ ;;=4^G82.51
+ ;;^UTILITY(U,$J,358.3,24956,2)
+ ;;=^5004129
+ ;;^UTILITY(U,$J,358.3,24957,0)
+ ;;=G82.52^^74^989^27
+ ;;^UTILITY(U,$J,358.3,24957,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,24957,1,3,0)
+ ;;=3^Quadriplegia,C1-C4,Incomplete
+ ;;^UTILITY(U,$J,358.3,24957,1,4,0)
+ ;;=4^G82.52
+ ;;^UTILITY(U,$J,358.3,24957,2)
+ ;;=^5004130
+ ;;^UTILITY(U,$J,358.3,24958,0)
+ ;;=G82.53^^74^989^28

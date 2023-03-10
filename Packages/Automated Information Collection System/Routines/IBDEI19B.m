@@ -1,118 +1,118 @@
-IBDEI19B ; ; 04-FEB-2020
- ;;3.0;IB ENCOUNTER FORM IMP/EXP;;FEB 04, 2020
+IBDEI19B ; ; 01-FEB-2022
+ ;;3.0;IB ENCOUNTER FORM IMP/EXP;;FEB 01, 2022
  Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,999) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
- ;;^UTILITY(U,$J,358.3,20127,1,4,0)
- ;;=4^S42.114S
- ;;^UTILITY(U,$J,358.3,20127,2)
- ;;=^5026571
- ;;^UTILITY(U,$J,358.3,20128,0)
- ;;=S42.135S^^93^999^65
- ;;^UTILITY(U,$J,358.3,20128,1,0)
+ ;;^UTILITY(U,$J,358.3,20354,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,20128,1,3,0)
- ;;=3^Nondisp fx of coracoid process, left shoulder, sequela
- ;;^UTILITY(U,$J,358.3,20128,1,4,0)
- ;;=4^S42.135S
- ;;^UTILITY(U,$J,358.3,20128,2)
- ;;=^5026662
- ;;^UTILITY(U,$J,358.3,20129,0)
- ;;=S42.134S^^93^999^66
- ;;^UTILITY(U,$J,358.3,20129,1,0)
+ ;;^UTILITY(U,$J,358.3,20354,1,3,0)
+ ;;=3^Disp fx of dome of left acetabulum, sequela
+ ;;^UTILITY(U,$J,358.3,20354,1,4,0)
+ ;;=4^S32.482S
+ ;;^UTILITY(U,$J,358.3,20354,2)
+ ;;=^5024964
+ ;;^UTILITY(U,$J,358.3,20355,0)
+ ;;=S32.481S^^67^886^12
+ ;;^UTILITY(U,$J,358.3,20355,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,20129,1,3,0)
- ;;=3^Nondisp fx of coracoid process, right shoulder, sequela
- ;;^UTILITY(U,$J,358.3,20129,1,4,0)
- ;;=4^S42.134S
- ;;^UTILITY(U,$J,358.3,20129,2)
- ;;=^5026655
- ;;^UTILITY(U,$J,358.3,20130,0)
- ;;=S42.144S^^93^999^67
- ;;^UTILITY(U,$J,358.3,20130,1,0)
+ ;;^UTILITY(U,$J,358.3,20355,1,3,0)
+ ;;=3^Disp fx of dome of right acetabulum, sequela
+ ;;^UTILITY(U,$J,358.3,20355,1,4,0)
+ ;;=4^S32.481S
+ ;;^UTILITY(U,$J,358.3,20355,2)
+ ;;=^5024958
+ ;;^UTILITY(U,$J,358.3,20356,0)
+ ;;=S32.432S^^67^886^1
+ ;;^UTILITY(U,$J,358.3,20356,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,20130,1,3,0)
- ;;=3^Nondisp fx of glenoid cav of scapula, right shoulder, sequela
- ;;^UTILITY(U,$J,358.3,20130,1,4,0)
- ;;=4^S42.144S
- ;;^UTILITY(U,$J,358.3,20130,2)
- ;;=^5026697
- ;;^UTILITY(U,$J,358.3,20131,0)
- ;;=S42.155S^^93^999^82
- ;;^UTILITY(U,$J,358.3,20131,1,0)
+ ;;^UTILITY(U,$J,358.3,20356,1,3,0)
+ ;;=3^Disp fx of anterior column of left acetabulum, sequela
+ ;;^UTILITY(U,$J,358.3,20356,1,4,0)
+ ;;=4^S32.432S
+ ;;^UTILITY(U,$J,358.3,20356,2)
+ ;;=^5024784
+ ;;^UTILITY(U,$J,358.3,20357,0)
+ ;;=S32.431S^^67^886^2
+ ;;^UTILITY(U,$J,358.3,20357,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,20131,1,3,0)
- ;;=3^Nondisp fx of neck of scapula, left shoulder, sequela
- ;;^UTILITY(U,$J,358.3,20131,1,4,0)
- ;;=4^S42.155S
- ;;^UTILITY(U,$J,358.3,20131,2)
- ;;=^5026746
- ;;^UTILITY(U,$J,358.3,20132,0)
- ;;=S42.155S^^93^999^83
- ;;^UTILITY(U,$J,358.3,20132,1,0)
+ ;;^UTILITY(U,$J,358.3,20357,1,3,0)
+ ;;=3^Disp fx of anterior column of right acetabulum, sequela
+ ;;^UTILITY(U,$J,358.3,20357,1,4,0)
+ ;;=4^S32.431S
+ ;;^UTILITY(U,$J,358.3,20357,2)
+ ;;=^5024778
+ ;;^UTILITY(U,$J,358.3,20358,0)
+ ;;=S32.412S^^67^886^3
+ ;;^UTILITY(U,$J,358.3,20358,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,20132,1,3,0)
- ;;=3^Nondisp fx of neck of scapula, left shoulder, sequela
- ;;^UTILITY(U,$J,358.3,20132,1,4,0)
- ;;=4^S42.155S
- ;;^UTILITY(U,$J,358.3,20132,2)
- ;;=^5026746
- ;;^UTILITY(U,$J,358.3,20133,0)
- ;;=S42.154S^^93^999^84
- ;;^UTILITY(U,$J,358.3,20133,1,0)
+ ;;^UTILITY(U,$J,358.3,20358,1,3,0)
+ ;;=3^Disp fx of anterior wall of left acetabulum, sequela
+ ;;^UTILITY(U,$J,358.3,20358,1,4,0)
+ ;;=4^S32.412S
+ ;;^UTILITY(U,$J,358.3,20358,2)
+ ;;=^5024712
+ ;;^UTILITY(U,$J,358.3,20359,0)
+ ;;=S32.411S^^67^886^4
+ ;;^UTILITY(U,$J,358.3,20359,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,20133,1,3,0)
- ;;=3^Nondisp fx of neck of scapula, right shoulder, sequela
- ;;^UTILITY(U,$J,358.3,20133,1,4,0)
- ;;=4^S42.154S
- ;;^UTILITY(U,$J,358.3,20133,2)
- ;;=^5026739
- ;;^UTILITY(U,$J,358.3,20134,0)
- ;;=M84.412S^^93^999^102
- ;;^UTILITY(U,$J,358.3,20134,1,0)
+ ;;^UTILITY(U,$J,358.3,20359,1,3,0)
+ ;;=3^Disp fx of anterior wall of right acetabulum, sequela
+ ;;^UTILITY(U,$J,358.3,20359,1,4,0)
+ ;;=4^S32.411S
+ ;;^UTILITY(U,$J,358.3,20359,2)
+ ;;=^5024706
+ ;;^UTILITY(U,$J,358.3,20360,0)
+ ;;=S32.472S^^67^886^13
+ ;;^UTILITY(U,$J,358.3,20360,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,20134,1,3,0)
- ;;=3^Pathological fracture, left shoulder, sequela
- ;;^UTILITY(U,$J,358.3,20134,1,4,0)
- ;;=4^M84.412S
- ;;^UTILITY(U,$J,358.3,20134,2)
- ;;=^5013811
- ;;^UTILITY(U,$J,358.3,20135,0)
- ;;=M84.411S^^93^999^104
- ;;^UTILITY(U,$J,358.3,20135,1,0)
+ ;;^UTILITY(U,$J,358.3,20360,1,3,0)
+ ;;=3^Disp fx of medial wall of left acetabulum, sequela
+ ;;^UTILITY(U,$J,358.3,20360,1,4,0)
+ ;;=4^S32.472S
+ ;;^UTILITY(U,$J,358.3,20360,2)
+ ;;=^5024928
+ ;;^UTILITY(U,$J,358.3,20361,0)
+ ;;=S32.471S^^67^886^14
+ ;;^UTILITY(U,$J,358.3,20361,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,20135,1,3,0)
- ;;=3^Pathological fracture, right shoulder, sequela
- ;;^UTILITY(U,$J,358.3,20135,1,4,0)
- ;;=4^M84.411S
- ;;^UTILITY(U,$J,358.3,20135,2)
- ;;=^5013805
- ;;^UTILITY(U,$J,358.3,20136,0)
- ;;=M84.312S^^93^999^124
- ;;^UTILITY(U,$J,358.3,20136,1,0)
+ ;;^UTILITY(U,$J,358.3,20361,1,3,0)
+ ;;=3^Disp fx of medial wall of right acetabulum, sequela
+ ;;^UTILITY(U,$J,358.3,20361,1,4,0)
+ ;;=4^S32.471S
+ ;;^UTILITY(U,$J,358.3,20361,2)
+ ;;=^5024922
+ ;;^UTILITY(U,$J,358.3,20362,0)
+ ;;=S32.442S^^67^886^15
+ ;;^UTILITY(U,$J,358.3,20362,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,20136,1,3,0)
- ;;=3^Stress fracture, left shoulder, sequela
- ;;^UTILITY(U,$J,358.3,20136,1,4,0)
- ;;=4^M84.312S
- ;;^UTILITY(U,$J,358.3,20136,2)
- ;;=^5013583
- ;;^UTILITY(U,$J,358.3,20137,0)
- ;;=M84.311S^^93^999^126
- ;;^UTILITY(U,$J,358.3,20137,1,0)
+ ;;^UTILITY(U,$J,358.3,20362,1,3,0)
+ ;;=3^Disp fx of posterior column of left acetabulum, sequela
+ ;;^UTILITY(U,$J,358.3,20362,1,4,0)
+ ;;=4^S32.442S
+ ;;^UTILITY(U,$J,358.3,20362,2)
+ ;;=^5024820
+ ;;^UTILITY(U,$J,358.3,20363,0)
+ ;;=S32.441S^^67^886^16
+ ;;^UTILITY(U,$J,358.3,20363,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,20137,1,3,0)
- ;;=3^Stress fracture, right shoulder, sequela
- ;;^UTILITY(U,$J,358.3,20137,1,4,0)
- ;;=4^M84.311S
- ;;^UTILITY(U,$J,358.3,20137,2)
- ;;=^5013577
- ;;^UTILITY(U,$J,358.3,20138,0)
- ;;=S42.012S^^93^999^10
- ;;^UTILITY(U,$J,358.3,20138,1,0)
+ ;;^UTILITY(U,$J,358.3,20363,1,3,0)
+ ;;=3^Disp fx of posterior column of right acetabulum, sequela
+ ;;^UTILITY(U,$J,358.3,20363,1,4,0)
+ ;;=4^S32.441S
+ ;;^UTILITY(U,$J,358.3,20363,2)
+ ;;=^5024814
+ ;;^UTILITY(U,$J,358.3,20364,0)
+ ;;=S32.422S^^67^886^17
+ ;;^UTILITY(U,$J,358.3,20364,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,20138,1,3,0)
- ;;=3^Disp fx of anterior sternal end of left clavicle, sequela
- ;;^UTILITY(U,$J,358.3,20138,1,4,0)
- ;;=4^S42.012S
- ;;^UTILITY(U,$J,358.3,20138,2)
- ;;=^5026396
+ ;;^UTILITY(U,$J,358.3,20364,1,3,0)
+ ;;=3^Disp fx of posterior wall of left acetabulum, sequela
+ ;;^UTILITY(U,$J,358.3,20364,1,4,0)
+ ;;=4^S32.422S
+ ;;^UTILITY(U,$J,358.3,20364,2)
+ ;;=^5024748
+ ;;^UTILITY(U,$J,358.3,20365,0)
+ ;;=S32.421S^^67^886^18
+ ;;^UTILITY(U,$J,358.3,20365,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,20365,1,3,0)
+ ;;=3^Disp fx of posterior wall of right acetabulum, sequela

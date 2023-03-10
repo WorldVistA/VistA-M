@@ -1,5 +1,5 @@
 RORX019 ;BPOIFO/ACS - LIVER SCORE BY RANGE ;5/18/11 12:39pm
- ;;1.5;CLINICAL CASE REGISTRIES;**10,13,14,15,19,21,26,31,33,34**;Feb 17, 2006;Build 45
+ ;;1.5;CLINICAL CASE REGISTRIES;**10,13,14,15,19,21,26,31,33,34,39**;Feb 17, 2006;Build 4
  ;
  ;******************************************************************************
  ;******************************************************************************
@@ -21,10 +21,11 @@ RORX019 ;BPOIFO/ACS - LIVER SCORE BY RANGE ;5/18/11 12:39pm
  ;ROR*1.5*31   MAY 2017    M FERRARESE  Adding PACT ,PCP,and AGE/DOB
  ;ROR*1.5*33   MAY 2017    F TRAXLER    Adding FUT_APPT
  ;ROR*1.5*34   SEP 2018    F TRAXLER    Adding FUT_CLIN
+ ;ROR*1.5*39   JUN 2021    F TRAXLER    Replace real SSN with zeroes.
  ;******************************************************************************
  ;******************************************************************************
  Q
- ;************************************************************************
+ ;
  ;COMPILE THE "LIVER SCORE BY RANGE" REPORT (EXTRINISIC FUNCTION)
  ;REPORT CODE: 019
  ;
@@ -186,7 +187,7 @@ PATIENT(DFN,PTAG,RORDATA,RORPTIEN,RORLC) ;
  I '$$SKIP(.RORDATA) Q 1  ;exclude patient from report with null scores
  ;--- Get patient data and put into the report
  N VADM,VA,RORDOD,MTAG,TTAG,AGETYPE,AGE
- D VADEM^RORUTL05(DFN,1)
+ D VADEM^RORUTL05(DFN,1) S VA("BID")="0000"
  ;--- The <PATIENT> tag
  S PTAG=$$ADDVAL^RORTSK11(RORTSK,"PATIENT",,PTAG,,DFN)
  I PTAG<0 Q PTAG

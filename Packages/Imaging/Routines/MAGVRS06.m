@@ -1,5 +1,5 @@
-MAGVRS06 ;WOIFO/MLH,DAC - RPC calls for DICOM file processing ; 13 Apr 2010 5:23 PM
- ;;3.0;IMAGING;**118**;Mar 19, 2002;Build 4525;May 01, 2013
+MAGVRS06 ;WOIFO/MLH,DAC - RPC calls for DICOM file processing ; Mar 31, 2021@09:48:26
+ ;;3.0;IMAGING;**118,257**;Mar 19, 2002;Build 19;May 01, 2013
  ;; Per VHA Directive 2004-038, this routine should not be modified.
  ;; +---------------------------------------------------------------+
  ;; | Property of the US Government.                                |
@@ -17,10 +17,18 @@ MAGVRS06 ;WOIFO/MLH,DAC - RPC calls for DICOM file processing ; 13 Apr 2010 5:23
  ;;
  Q
 ATPROC(OUT,PROCATTS) ;RPC - create a new procedure reference
+ L +^MAGV(2005.61):60 E  D  ; P257 DAC - Lock Procedure Reference file to prevent duplicates
+ . S OUT(1)="-99"_$$STATSEP^MAGVRS41_"Procedure Reference file is locked"
+ Q:$D(OUT(1))
  D ATTACH^MAGVRS41(.OUT,2005.61,.PROCATTS)
+ L -^MAGV(2005.61)
  Q
 CREPAT(OUT,PATATTS) ;RPC - create a new patient reference
+ L +^MAGV(2005.6):60 E  D  ; P257 DAC - Lock Patient Reference file to prevent duplicates  
+ . S OUT(1)="-99"_$$STATSEP^MAGVRS41_"Patient Reference file is locked"
+ Q:$D(OUT(1))
  D ATTACH^MAGVRS41(.OUT,2005.6,.PATATTS)
+ L -^MAGV(2005.6)
  Q
 UPDPAT(OUT,PATATTS,OVERRIDE) ;RPC - update patient
  D UPDATE^MAGVRS41(.OUT,2005.6,.PATATTS,$G(OVERRIDE))

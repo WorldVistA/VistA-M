@@ -1,128 +1,132 @@
-IBDEI0IA ; ; 04-FEB-2020
- ;;3.0;IB ENCOUNTER FORM IMP/EXP;;FEB 04, 2020
+IBDEI0IA ; ; 01-FEB-2022
+ ;;3.0;IB ENCOUNTER FORM IMP/EXP;;FEB 01, 2022
  Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,999) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
- ;;^UTILITY(U,$J,358.3,7974,1,3,0)
- ;;=3^Malig Neop Skin of Right Ear/External Auric Canal
- ;;^UTILITY(U,$J,358.3,7974,1,4,0)
- ;;=4^C44.202
- ;;^UTILITY(U,$J,358.3,7974,2)
- ;;=^5001029
- ;;^UTILITY(U,$J,358.3,7975,0)
- ;;=C44.209^^65^517^21
- ;;^UTILITY(U,$J,358.3,7975,1,0)
+ ;;^UTILITY(U,$J,358.3,8228,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,7975,1,3,0)
- ;;=3^Malig Neop Skin of Left Ear/External Auric Canal
- ;;^UTILITY(U,$J,358.3,7975,1,4,0)
- ;;=4^C44.209
- ;;^UTILITY(U,$J,358.3,7975,2)
- ;;=^5001030
- ;;^UTILITY(U,$J,358.3,7976,0)
- ;;=C44.301^^65^517^27
- ;;^UTILITY(U,$J,358.3,7976,1,0)
+ ;;^UTILITY(U,$J,358.3,8228,1,3,0)
+ ;;=3^Overweight
+ ;;^UTILITY(U,$J,358.3,8228,1,4,0)
+ ;;=4^E66.3
+ ;;^UTILITY(U,$J,358.3,8228,2)
+ ;;=^5002830
+ ;;^UTILITY(U,$J,358.3,8229,0)
+ ;;=E89.1^^39^394^31
+ ;;^UTILITY(U,$J,358.3,8229,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,7976,1,3,0)
- ;;=3^Malig Neop Skin of Nose
- ;;^UTILITY(U,$J,358.3,7976,1,4,0)
- ;;=4^C44.301
- ;;^UTILITY(U,$J,358.3,7976,2)
- ;;=^5001041
- ;;^UTILITY(U,$J,358.3,7977,0)
- ;;=C44.49^^65^517^34
- ;;^UTILITY(U,$J,358.3,7977,1,0)
+ ;;^UTILITY(U,$J,358.3,8229,1,3,0)
+ ;;=3^Postprocedural Hypoinsulinemia
+ ;;^UTILITY(U,$J,358.3,8229,1,4,0)
+ ;;=4^E89.1
+ ;;^UTILITY(U,$J,358.3,8229,2)
+ ;;=^5003036
+ ;;^UTILITY(U,$J,358.3,8230,0)
+ ;;=R73.03^^39^394^33
+ ;;^UTILITY(U,$J,358.3,8230,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,7977,1,3,0)
- ;;=3^Malig Neop Skin of Scalp/Neck
- ;;^UTILITY(U,$J,358.3,7977,1,4,0)
- ;;=4^C44.49
- ;;^UTILITY(U,$J,358.3,7977,2)
- ;;=^340478
- ;;^UTILITY(U,$J,358.3,7978,0)
- ;;=C44.509^^65^517^35
- ;;^UTILITY(U,$J,358.3,7978,1,0)
+ ;;^UTILITY(U,$J,358.3,8230,1,3,0)
+ ;;=3^Pre-Diabetes
+ ;;^UTILITY(U,$J,358.3,8230,1,4,0)
+ ;;=4^R73.03
+ ;;^UTILITY(U,$J,358.3,8230,2)
+ ;;=^8295662
+ ;;^UTILITY(U,$J,358.3,8231,0)
+ ;;=E73.9^^39^394^18
+ ;;^UTILITY(U,$J,358.3,8231,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,7978,1,3,0)
- ;;=3^Malig Neop Skin of Trunk,Other Part
- ;;^UTILITY(U,$J,358.3,7978,1,4,0)
- ;;=4^C44.509
- ;;^UTILITY(U,$J,358.3,7978,2)
- ;;=^5001053
- ;;^UTILITY(U,$J,358.3,7979,0)
- ;;=C44.590^^65^517^19
- ;;^UTILITY(U,$J,358.3,7979,1,0)
+ ;;^UTILITY(U,$J,358.3,8231,1,3,0)
+ ;;=3^Lactose Intolerance,Unspec
+ ;;^UTILITY(U,$J,358.3,8231,1,4,0)
+ ;;=4^E73.9
+ ;;^UTILITY(U,$J,358.3,8231,2)
+ ;;=^5002914
+ ;;^UTILITY(U,$J,358.3,8232,0)
+ ;;=H40.9^^39^395^11
+ ;;^UTILITY(U,$J,358.3,8232,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,7979,1,3,0)
- ;;=3^Malig Neop Skin of Anus
- ;;^UTILITY(U,$J,358.3,7979,1,4,0)
- ;;=4^C44.590
- ;;^UTILITY(U,$J,358.3,7979,2)
- ;;=^5001060
- ;;^UTILITY(U,$J,358.3,7980,0)
- ;;=C44.591^^65^517^20
- ;;^UTILITY(U,$J,358.3,7980,1,0)
+ ;;^UTILITY(U,$J,358.3,8232,1,3,0)
+ ;;=3^Glaucoma,Unspec
+ ;;^UTILITY(U,$J,358.3,8232,1,4,0)
+ ;;=4^H40.9
+ ;;^UTILITY(U,$J,358.3,8232,2)
+ ;;=^5005931
+ ;;^UTILITY(U,$J,358.3,8233,0)
+ ;;=H26.9^^39^395^7
+ ;;^UTILITY(U,$J,358.3,8233,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,7980,1,3,0)
- ;;=3^Malig Neop Skin of Breast
- ;;^UTILITY(U,$J,358.3,7980,1,4,0)
- ;;=4^C44.591
- ;;^UTILITY(U,$J,358.3,7980,2)
- ;;=^5001061
- ;;^UTILITY(U,$J,358.3,7981,0)
- ;;=C44.692^^65^517^33
- ;;^UTILITY(U,$J,358.3,7981,1,0)
+ ;;^UTILITY(U,$J,358.3,8233,1,3,0)
+ ;;=3^Cataract,Unspec
+ ;;^UTILITY(U,$J,358.3,8233,1,4,0)
+ ;;=4^H26.9
+ ;;^UTILITY(U,$J,358.3,8233,2)
+ ;;=^5005363
+ ;;^UTILITY(U,$J,358.3,8234,0)
+ ;;=H10.9^^39^395^10
+ ;;^UTILITY(U,$J,358.3,8234,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,7981,1,3,0)
- ;;=3^Malig Neop Skin of Right Upper Limb
- ;;^UTILITY(U,$J,358.3,7981,1,4,0)
- ;;=4^C44.692
- ;;^UTILITY(U,$J,358.3,7981,2)
- ;;=^5001073
- ;;^UTILITY(U,$J,358.3,7982,0)
- ;;=C44.699^^65^517^25
- ;;^UTILITY(U,$J,358.3,7982,1,0)
+ ;;^UTILITY(U,$J,358.3,8234,1,3,0)
+ ;;=3^Conjunctivitis,Unspec
+ ;;^UTILITY(U,$J,358.3,8234,1,4,0)
+ ;;=4^H10.9
+ ;;^UTILITY(U,$J,358.3,8234,2)
+ ;;=^5004716
+ ;;^UTILITY(U,$J,358.3,8235,0)
+ ;;=H11.32^^39^395^8
+ ;;^UTILITY(U,$J,358.3,8235,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,7982,1,3,0)
- ;;=3^Malig Neop Skin of Left Upper Limb
- ;;^UTILITY(U,$J,358.3,7982,1,4,0)
- ;;=4^C44.699
- ;;^UTILITY(U,$J,358.3,7982,2)
- ;;=^5001074
- ;;^UTILITY(U,$J,358.3,7983,0)
- ;;=C44.99^^65^517^37
- ;;^UTILITY(U,$J,358.3,7983,1,0)
+ ;;^UTILITY(U,$J,358.3,8235,1,3,0)
+ ;;=3^Conjunctival Hemorrhage,Left Eye
+ ;;^UTILITY(U,$J,358.3,8235,1,4,0)
+ ;;=4^H11.32
+ ;;^UTILITY(U,$J,358.3,8235,2)
+ ;;=^5004783
+ ;;^UTILITY(U,$J,358.3,8236,0)
+ ;;=H11.31^^39^395^9
+ ;;^UTILITY(U,$J,358.3,8236,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,7983,1,3,0)
- ;;=3^Malig Neop Skin,Unspec Site
- ;;^UTILITY(U,$J,358.3,7983,1,4,0)
- ;;=4^C44.99
- ;;^UTILITY(U,$J,358.3,7983,2)
- ;;=^5001094
- ;;^UTILITY(U,$J,358.3,7984,0)
- ;;=C44.792^^65^517^31
- ;;^UTILITY(U,$J,358.3,7984,1,0)
+ ;;^UTILITY(U,$J,358.3,8236,1,3,0)
+ ;;=3^Conjunctival Hemorrhage,Right Eye
+ ;;^UTILITY(U,$J,358.3,8236,1,4,0)
+ ;;=4^H11.31
+ ;;^UTILITY(U,$J,358.3,8236,2)
+ ;;=^5004782
+ ;;^UTILITY(U,$J,358.3,8237,0)
+ ;;=H01.002^^39^395^3
+ ;;^UTILITY(U,$J,358.3,8237,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,7984,1,3,0)
- ;;=3^Malig Neop Skin of Right Lower Limb
- ;;^UTILITY(U,$J,358.3,7984,1,4,0)
- ;;=4^C44.792
- ;;^UTILITY(U,$J,358.3,7984,2)
- ;;=^5001085
- ;;^UTILITY(U,$J,358.3,7985,0)
- ;;=C44.799^^65^517^23
- ;;^UTILITY(U,$J,358.3,7985,1,0)
+ ;;^UTILITY(U,$J,358.3,8237,1,3,0)
+ ;;=3^Blepharitis Unspec,Right Lower Eyelid
+ ;;^UTILITY(U,$J,358.3,8237,1,4,0)
+ ;;=4^H01.002
+ ;;^UTILITY(U,$J,358.3,8237,2)
+ ;;=^5004239
+ ;;^UTILITY(U,$J,358.3,8238,0)
+ ;;=H01.004^^39^395^2
+ ;;^UTILITY(U,$J,358.3,8238,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,7985,1,3,0)
- ;;=3^Malig Neop Skin of Left Lower Limb
- ;;^UTILITY(U,$J,358.3,7985,1,4,0)
- ;;=4^C44.799
- ;;^UTILITY(U,$J,358.3,7985,2)
- ;;=^5001086
- ;;^UTILITY(U,$J,358.3,7986,0)
- ;;=C44.89^^65^517^28
- ;;^UTILITY(U,$J,358.3,7986,1,0)
+ ;;^UTILITY(U,$J,358.3,8238,1,3,0)
+ ;;=3^Blepharitis Unspec,Left Upper Eyelid
+ ;;^UTILITY(U,$J,358.3,8238,1,4,0)
+ ;;=4^H01.004
+ ;;^UTILITY(U,$J,358.3,8238,2)
+ ;;=^5004241
+ ;;^UTILITY(U,$J,358.3,8239,0)
+ ;;=H01.005^^39^395^1
+ ;;^UTILITY(U,$J,358.3,8239,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,7986,1,3,0)
- ;;=3^Malig Neop Skin of Overlapping Sites
- ;;^UTILITY(U,$J,358.3,7986,1,4,0)
- ;;=4^C44.89
+ ;;^UTILITY(U,$J,358.3,8239,1,3,0)
+ ;;=3^Blepharitis Unspec,Left Lower Eyelid
+ ;;^UTILITY(U,$J,358.3,8239,1,4,0)
+ ;;=4^H01.005
+ ;;^UTILITY(U,$J,358.3,8239,2)
+ ;;=^5133380
+ ;;^UTILITY(U,$J,358.3,8240,0)
+ ;;=H01.001^^39^395^4
+ ;;^UTILITY(U,$J,358.3,8240,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,8240,1,3,0)
+ ;;=3^Blepharitis Unspec,Right Upper Eyelid
+ ;;^UTILITY(U,$J,358.3,8240,1,4,0)
+ ;;=4^H01.001
+ ;;^UTILITY(U,$J,358.3,8240,2)
+ ;;=^5004238

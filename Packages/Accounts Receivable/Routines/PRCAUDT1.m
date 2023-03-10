@@ -1,5 +1,6 @@
 PRCAUDT1 ;SF-ISC/YJK-SUBROUTINE AUDIT A NEW BILL/EDIT INCOMPLETE AR ;5/1/95  3:05 PM
-V ;;4.5;Accounts Receivable;**1,173**;Mar 20, 1995
+V ;;4.5;Accounts Receivable;**1,173,371**;Mar 20, 1995;Build 29
+ ;;Per VHA Directive 6402, this routine should not be modified.
  ;This audits a new bill and edits incomplete accounts receivables.
  ;
  ; DBIA for reference to file 399.3: DBIA4118
@@ -16,8 +17,8 @@ WOBIL ;Check if the patient account has old written-off bills.
 WOBIL1 I $P(^PRCA(430,Z0,0),U,8)=PRCAWOB S PRCA("WO")=1 Q
  Q
 UPBALN I $P(^PRCA(430,PRCABN,0),U,3)="",$D(^PRCA(430,PRCABN,2,0)) D ORAMT
- I '$D(^PRCA(430,PRCABN,7)) S $P(^(7),U,1)=$P(^(0),U,3)
- S:+$P(^PRCA(430,PRCABN,7),U,1)'>0 $P(^PRCA(430,PRCABN,7),U,1)=$P(^PRCA(430,PRCABN,0),U,3)
+ N PRCFDA I '$D(^PRCA(430,PRCABN,7)) S PRCFDA(430,PRCABN_",",71)=$P(^(0),U,3) D FILE^DIE(,"PRCFDA") ; PRCA*4.5*371 - Replace direct global sets in 7 node with FileMan calls so indexes get updated
+ I +$P(^PRCA(430,PRCABN,7),U,1)'>0 S PRCFDA(430,PRCABN_",",71)=$P(^PRCA(430,PRCABN,0),U,3) D FILE^DIE(,"PRCFDA") ; PRCA*4.5*371 - Replace direct global sets in 7 node with FileMan calls so indexes get updated
  S $P(^PRCA(430,PRCABN,0),U,4)=$S($P(^PRCA(430,PRCABN,0),U,2)>0:$P(^PRCA(430.2,$P(^(0),U,2),0),U,4),1:"")
  S $P(^PRCA(430,PRCABN,0),U,12)=$S($D(PRCA("SITE")):PRCA("SITE"),1:"") I '$D(PRCA("SITE")) W:'$G(PRAUTOA) !!,"HELP AT UPBALN+4",!
  S PRCA("STATUS")=$O(^PRCA(430.3,"AC",102,"")),PRCA("SDT")=DT D UPSTATS^PRCAUT2 Q  ;end of UPBALN

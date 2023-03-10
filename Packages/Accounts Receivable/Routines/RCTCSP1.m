@@ -1,5 +1,5 @@
-RCTCSP1 ;ALBANY/BDB-CROSS - SERVICING TRANSMISSION ;03/15/14 3:34 PM
- ;;4.5;Accounts Receivable;**301,331,315,339,341,336,350**;Mar 20, 1995;Build 66
+RCTCSP1 ;ALBANY/BDB-CROSS-SERVICING TRANSMISSION ;03/15/14 3:34 PM
+ ;;4.5;Accounts Receivable;**301,331,315,339,341,336,350,343**;Mar 20, 1995;Build 59
  ;;Per VA Directive 6402, this routine should not be modified.
  ;
  ;PRCA*4.5*331 Modify code to ensure that the debtor address info
@@ -14,6 +14,9 @@ RCTCSP1 ;ALBANY/BDB-CROSS - SERVICING TRANSMISSION ;03/15/14 3:34 PM
  ;             node 1. 
  ;             Also, ensure that the phone number defaults
  ;             to 10 spaces if non-numeric.
+ ;
+ ;PRCA*4.5*343 Ensure a phone number of all zeros defaults 
+ ;             to a null entry.
  ;
  Q
  ;
@@ -65,7 +68,7 @@ BILLREPP ;Call to build array of bills referred
  ..I EXCEL W U
  ..W $J(BAMT,8,2)
  ..I 'EXCEL W $J($P(B7,U,1),9,2),$J($P(B7,U,2),7,2),$J($P(B7,U,3),8,2),$J($P(B7,U,4),8,2)  ;(as per PRCA*4.5*315)
- ..I EXCEL W U,$J($P(B7,U,1),9,2)_U_$J($P(B7,U,2),7,2)_U_$J($P(B7,U,3),7,2)_U_$J($P(B7,U,4),8,2)
+ ..I EXCEL W U,$J($P(B7,U,1),8,2)_U_$J($P(B7,U,2),7,2)_U_$J($P(B7,U,3),7,2)_U_$J($P(B7,U,4),8,2)
  ..S TMP=$$FMTE^XLFDT($P(B15,U,1),"2Z")  ;Format date to n/n/nn  (as per PRCA*4.5*315)
  ..I 'EXCEL W ?67,TMP  ;$P(TMP,", ",1)_","_$P(TMP,", ",2)  ;
  ..I EXCEL W U_TMP
@@ -300,18 +303,18 @@ TAXID(DEBTOR) ;computes TAXID to place on documents
  Q TAXID
  ;
 ADDR(RCDFN,RCCSW) ; returns patient file address
- N DFN,ADDRCS,STATEIEN,STATEAB,VAPA,ADDR340,PRCAYY
+ N DFN,ADDRCS,STATEIEN,STATEAB,VAPA,ADDR340,PRCAYY,PRCAPHON
  S DFN=RCDFN
  D ADD^VADPT
  S STATEIEN=+VAPA(5),STATEAB=$$GET1^DIQ(5,STATEIEN,1)
- S PRCAYY="" F I=1:1:$L(VAPA(8)) I $E(VAPA(8),I)?1N S PRCAYY=PRCAYY_$E(VAPA(8),I)
- S VAPA(8)=PRCAYY I $L(VAPA(8))'=10 S VAPA(8)="          "    ;PRCA*4.5*336
  S ADDRCS=VAPA(1)_U_VAPA(2)_U_VAPA(4)_U_STATEAB_U_VAPA(6)_U_VAPA(8)_U_+VAPA(25)
  S ADDR340=$P($$DADD^RCAMADD(DEBTOR,,RCCSW),U,1,8)     ;PRCA*4.5*336
  I $P(ADDRCS,U,7)>2 S $P(ADDR340,U,6)="     "    ;PRCA*4.5*331/336
  S ADDR340=$P(ADDR340,U,1,2)_"^"_$P(ADDR340,U,4,7)_U_$S($P(ADDRCS,U,7)'="":$P(ADDRCS,U,7),1:1)    ;PRCA*4.5*331        
  I $P(ADDR340,U,7)="" S $P(ADDR340,U,7)=$P(ADDRCS,U,7)     ;PRCA*4.5*331
  I $P(ADDR340,U,7)>2 S $P(ADDR340,U,4)="  "     ;PRCA*4.5*331/336
+ S PRCAYY="",PRCAPHON=$P(ADDR340,U,6) F I=1:1:$L(PRCAPHON) I $E(PRCAPHON,I)?1N S PRCAYY=PRCAYY_$E($P(ADDR340,U,6),I)
+ S PRCAPHON=PRCAYY I $L(PRCAPHON)'=10!(+PRCAPHON=0) S VAPA(8)="          ",$P(ADDR340,U,6)="          "   ;PRCA*4.5*336/PRCA*4.5*343
  S ADDRCS=ADDR340
  Q ADDRCS
  ;

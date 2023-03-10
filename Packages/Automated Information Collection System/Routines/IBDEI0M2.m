@@ -1,134 +1,126 @@
-IBDEI0M2 ; ; 04-FEB-2020
- ;;3.0;IB ENCOUNTER FORM IMP/EXP;;FEB 04, 2020
+IBDEI0M2 ; ; 01-FEB-2022
+ ;;3.0;IB ENCOUNTER FORM IMP/EXP;;FEB 01, 2022
  Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,999) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
- ;;^UTILITY(U,$J,358.3,9802,1,4,0)
- ;;=4^S06.6X0A
- ;;^UTILITY(U,$J,358.3,9802,2)
- ;;=^5021086
- ;;^UTILITY(U,$J,358.3,9803,0)
- ;;=S06.6X1A^^72^653^8
- ;;^UTILITY(U,$J,358.3,9803,1,0)
+ ;;^UTILITY(U,$J,358.3,9924,0)
+ ;;=W17.2XXD^^39^420^83
+ ;;^UTILITY(U,$J,358.3,9924,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,9803,1,3,0)
- ;;=3^Traumatic Subarachnoid Hemorrhage w/ LOC
- ;;^UTILITY(U,$J,358.3,9803,1,4,0)
- ;;=4^S06.6X1A
- ;;^UTILITY(U,$J,358.3,9803,2)
- ;;=^5021089
- ;;^UTILITY(U,$J,358.3,9804,0)
- ;;=S06.330A^^72^653^9
- ;;^UTILITY(U,$J,358.3,9804,1,0)
+ ;;^UTILITY(U,$J,358.3,9924,1,3,0)
+ ;;=3^Fall into Hole,Subs Encntr
+ ;;^UTILITY(U,$J,358.3,9924,1,4,0)
+ ;;=4^W17.2XXD
+ ;;^UTILITY(U,$J,358.3,9924,2)
+ ;;=^5059773
+ ;;^UTILITY(U,$J,358.3,9925,0)
+ ;;=W17.3XXA^^39^420^80
+ ;;^UTILITY(U,$J,358.3,9925,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,9804,1,3,0)
- ;;=3^Cerebral Contusion w/o LOC
- ;;^UTILITY(U,$J,358.3,9804,1,4,0)
- ;;=4^S06.330A
- ;;^UTILITY(U,$J,358.3,9804,2)
- ;;=^5020846
- ;;^UTILITY(U,$J,358.3,9805,0)
- ;;=S06.331A^^72^653^10
- ;;^UTILITY(U,$J,358.3,9805,1,0)
+ ;;^UTILITY(U,$J,358.3,9925,1,3,0)
+ ;;=3^Fall into Empty Swimming Pool,Init Encntr
+ ;;^UTILITY(U,$J,358.3,9925,1,4,0)
+ ;;=4^W17.3XXA
+ ;;^UTILITY(U,$J,358.3,9925,2)
+ ;;=^5059775
+ ;;^UTILITY(U,$J,358.3,9926,0)
+ ;;=W17.3XXD^^39^420^81
+ ;;^UTILITY(U,$J,358.3,9926,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,9805,1,3,0)
- ;;=3^Cerebral Contusion w/ LOC
- ;;^UTILITY(U,$J,358.3,9805,1,4,0)
- ;;=4^S06.331A
- ;;^UTILITY(U,$J,358.3,9805,2)
- ;;=^5020849
- ;;^UTILITY(U,$J,358.3,9806,0)
- ;;=S06.0X0A^^72^653^11
- ;;^UTILITY(U,$J,358.3,9806,1,0)
+ ;;^UTILITY(U,$J,358.3,9926,1,3,0)
+ ;;=3^Fall into Empty Swimming Pool,Subs Encntr
+ ;;^UTILITY(U,$J,358.3,9926,1,4,0)
+ ;;=4^W17.3XXD
+ ;;^UTILITY(U,$J,358.3,9926,2)
+ ;;=^5059776
+ ;;^UTILITY(U,$J,358.3,9927,0)
+ ;;=W17.4XXA^^39^420^44
+ ;;^UTILITY(U,$J,358.3,9927,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,9806,1,3,0)
- ;;=3^Concussion w/o LOC
- ;;^UTILITY(U,$J,358.3,9806,1,4,0)
- ;;=4^S06.0X0A
- ;;^UTILITY(U,$J,358.3,9806,2)
- ;;=^5020666
- ;;^UTILITY(U,$J,358.3,9807,0)
- ;;=S06.0X1A^^72^653^12
- ;;^UTILITY(U,$J,358.3,9807,1,0)
+ ;;^UTILITY(U,$J,358.3,9927,1,3,0)
+ ;;=3^Fall from Dock,Init Encntr
+ ;;^UTILITY(U,$J,358.3,9927,1,4,0)
+ ;;=4^W17.4XXA
+ ;;^UTILITY(U,$J,358.3,9927,2)
+ ;;=^5059778
+ ;;^UTILITY(U,$J,358.3,9928,0)
+ ;;=W17.4XXD^^39^420^45
+ ;;^UTILITY(U,$J,358.3,9928,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,9807,1,3,0)
- ;;=3^Concussion w/ LOC
- ;;^UTILITY(U,$J,358.3,9807,1,4,0)
- ;;=4^S06.0X1A
- ;;^UTILITY(U,$J,358.3,9807,2)
- ;;=^5020669
- ;;^UTILITY(U,$J,358.3,9808,0)
- ;;=S00.91XA^^72^653^13
- ;;^UTILITY(U,$J,358.3,9808,1,0)
+ ;;^UTILITY(U,$J,358.3,9928,1,3,0)
+ ;;=3^Fall from Dock,Subs Encntr
+ ;;^UTILITY(U,$J,358.3,9928,1,4,0)
+ ;;=4^W17.4XXD
+ ;;^UTILITY(U,$J,358.3,9928,2)
+ ;;=^5059779
+ ;;^UTILITY(U,$J,358.3,9929,0)
+ ;;=W17.81XA^^39^420^32
+ ;;^UTILITY(U,$J,358.3,9929,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,9808,1,3,0)
- ;;=3^Head,Any Site,Abrasion
- ;;^UTILITY(U,$J,358.3,9808,1,4,0)
- ;;=4^S00.91XA
- ;;^UTILITY(U,$J,358.3,9808,2)
- ;;=^5020012
- ;;^UTILITY(U,$J,358.3,9809,0)
- ;;=S00.93XA^^72^653^14
- ;;^UTILITY(U,$J,358.3,9809,1,0)
+ ;;^UTILITY(U,$J,358.3,9929,1,3,0)
+ ;;=3^Fall down Embankment,Init Encntr
+ ;;^UTILITY(U,$J,358.3,9929,1,4,0)
+ ;;=4^W17.81XA
+ ;;^UTILITY(U,$J,358.3,9929,2)
+ ;;=^5059781
+ ;;^UTILITY(U,$J,358.3,9930,0)
+ ;;=W17.81XD^^39^420^33
+ ;;^UTILITY(U,$J,358.3,9930,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,9809,1,3,0)
- ;;=3^Head,Any Site,Contusion
- ;;^UTILITY(U,$J,358.3,9809,1,4,0)
- ;;=4^S00.93XA
- ;;^UTILITY(U,$J,358.3,9809,2)
- ;;=^5020018
- ;;^UTILITY(U,$J,358.3,9810,0)
- ;;=S02.2XXA^^72^653^15
- ;;^UTILITY(U,$J,358.3,9810,1,0)
+ ;;^UTILITY(U,$J,358.3,9930,1,3,0)
+ ;;=3^Fall down Embankment,Subs Encntr
+ ;;^UTILITY(U,$J,358.3,9930,1,4,0)
+ ;;=4^W17.81XD
+ ;;^UTILITY(U,$J,358.3,9930,2)
+ ;;=^5059782
+ ;;^UTILITY(U,$J,358.3,9931,0)
+ ;;=W17.89XA^^39^420^60
+ ;;^UTILITY(U,$J,358.3,9931,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,9810,1,3,0)
- ;;=3^Nasal Fracture
- ;;^UTILITY(U,$J,358.3,9810,1,4,0)
- ;;=4^S02.2XXA
- ;;^UTILITY(U,$J,358.3,9810,2)
- ;;=^5020306
- ;;^UTILITY(U,$J,358.3,9811,0)
- ;;=S02.92XA^^72^653^16
- ;;^UTILITY(U,$J,358.3,9811,1,0)
+ ;;^UTILITY(U,$J,358.3,9931,1,3,0)
+ ;;=3^Fall from One level to Another,Init Encntr
+ ;;^UTILITY(U,$J,358.3,9931,1,4,0)
+ ;;=4^W17.89XA
+ ;;^UTILITY(U,$J,358.3,9931,2)
+ ;;=^5059787
+ ;;^UTILITY(U,$J,358.3,9932,0)
+ ;;=W17.89XD^^39^420^61
+ ;;^UTILITY(U,$J,358.3,9932,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,9811,1,3,0)
- ;;=3^Facial Bones Fracture
- ;;^UTILITY(U,$J,358.3,9811,1,4,0)
- ;;=4^S02.92XA
- ;;^UTILITY(U,$J,358.3,9811,2)
- ;;=^5020438
- ;;^UTILITY(U,$J,358.3,9812,0)
- ;;=S10.91XA^^72^653^17
- ;;^UTILITY(U,$J,358.3,9812,1,0)
+ ;;^UTILITY(U,$J,358.3,9932,1,3,0)
+ ;;=3^Fall from One level to Another,Subs Encntr
+ ;;^UTILITY(U,$J,358.3,9932,1,4,0)
+ ;;=4^W17.89XD
+ ;;^UTILITY(U,$J,358.3,9932,2)
+ ;;=^5059788
+ ;;^UTILITY(U,$J,358.3,9933,0)
+ ;;=W18.11XA^^39^420^68
+ ;;^UTILITY(U,$J,358.3,9933,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,9812,1,3,0)
- ;;=3^Neck Abrasion
- ;;^UTILITY(U,$J,358.3,9812,1,4,0)
- ;;=4^S10.91XA
- ;;^UTILITY(U,$J,358.3,9812,2)
- ;;=^5021395
- ;;^UTILITY(U,$J,358.3,9813,0)
- ;;=S10.93XA^^72^653^18
- ;;^UTILITY(U,$J,358.3,9813,1,0)
+ ;;^UTILITY(U,$J,358.3,9933,1,3,0)
+ ;;=3^Fall from Toilet w/o Strike Against Obj,Init Encntr
+ ;;^UTILITY(U,$J,358.3,9933,1,4,0)
+ ;;=4^W18.11XA
+ ;;^UTILITY(U,$J,358.3,9933,2)
+ ;;=^5059801
+ ;;^UTILITY(U,$J,358.3,9934,0)
+ ;;=W18.11XD^^39^420^69
+ ;;^UTILITY(U,$J,358.3,9934,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,9813,1,3,0)
- ;;=3^Neck Contusion
- ;;^UTILITY(U,$J,358.3,9813,1,4,0)
- ;;=4^S10.93XA
- ;;^UTILITY(U,$J,358.3,9813,2)
- ;;=^5021401
- ;;^UTILITY(U,$J,358.3,9814,0)
- ;;=S16.1XXA^^72^653^19
- ;;^UTILITY(U,$J,358.3,9814,1,0)
+ ;;^UTILITY(U,$J,358.3,9934,1,3,0)
+ ;;=3^Fall from Toilet w/o Strike Against Obj,Subs Encntr
+ ;;^UTILITY(U,$J,358.3,9934,1,4,0)
+ ;;=4^W18.11XD
+ ;;^UTILITY(U,$J,358.3,9934,2)
+ ;;=^5059802
+ ;;^UTILITY(U,$J,358.3,9935,0)
+ ;;=W18.12XA^^39^420^66
+ ;;^UTILITY(U,$J,358.3,9935,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,9814,1,3,0)
- ;;=3^Neck Strain
- ;;^UTILITY(U,$J,358.3,9814,1,4,0)
- ;;=4^S16.1XXA
- ;;^UTILITY(U,$J,358.3,9814,2)
- ;;=^5022358
- ;;^UTILITY(U,$J,358.3,9815,0)
- ;;=M54.12^^72^653^20
- ;;^UTILITY(U,$J,358.3,9815,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,9815,1,3,0)
- ;;=3^Cervical Radiculopathy
+ ;;^UTILITY(U,$J,358.3,9935,1,3,0)
+ ;;=3^Fall from Toilet w/ Strike Against Obj,Init Encntr
+ ;;^UTILITY(U,$J,358.3,9935,1,4,0)
+ ;;=4^W18.12XA
+ ;;^UTILITY(U,$J,358.3,9935,2)
+ ;;=^5059804
+ ;;^UTILITY(U,$J,358.3,9936,0)
+ ;;=W18.12XD^^39^420^67

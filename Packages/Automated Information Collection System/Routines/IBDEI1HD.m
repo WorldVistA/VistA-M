@@ -1,124 +1,130 @@
-IBDEI1HD ; ; 04-FEB-2020
- ;;3.0;IB ENCOUNTER FORM IMP/EXP;;FEB 04, 2020
+IBDEI1HD ; ; 01-FEB-2022
+ ;;3.0;IB ENCOUNTER FORM IMP/EXP;;FEB 01, 2022
  Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,999) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
- ;;^UTILITY(U,$J,358.3,23673,1,4,0)
- ;;=4^F13.11
- ;;^UTILITY(U,$J,358.3,23673,2)
- ;;=^331938
- ;;^UTILITY(U,$J,358.3,23674,0)
- ;;=F17.200^^105^1184^1
- ;;^UTILITY(U,$J,358.3,23674,1,0)
+ ;;^UTILITY(U,$J,358.3,23951,0)
+ ;;=G30.9^^82^1038^1
+ ;;^UTILITY(U,$J,358.3,23951,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,23674,1,3,0)
- ;;=3^Tobacco Use Disorder,Moderate-Severe
- ;;^UTILITY(U,$J,358.3,23674,1,4,0)
- ;;=4^F17.200
- ;;^UTILITY(U,$J,358.3,23674,2)
- ;;=^5003360
- ;;^UTILITY(U,$J,358.3,23675,0)
- ;;=F17.201^^105^1184^2
- ;;^UTILITY(U,$J,358.3,23675,1,0)
+ ;;^UTILITY(U,$J,358.3,23951,1,3,0)
+ ;;=3^Alzheimer's Disease,Unspec
+ ;;^UTILITY(U,$J,358.3,23951,1,4,0)
+ ;;=4^G30.9
+ ;;^UTILITY(U,$J,358.3,23951,2)
+ ;;=^5003808
+ ;;^UTILITY(U,$J,358.3,23952,0)
+ ;;=G20.^^82^1038^14
+ ;;^UTILITY(U,$J,358.3,23952,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,23675,1,3,0)
- ;;=3^Tobacco Use Disorder,Moderate-Severe In Remission
- ;;^UTILITY(U,$J,358.3,23675,1,4,0)
- ;;=4^F17.201
- ;;^UTILITY(U,$J,358.3,23675,2)
- ;;=^5003361
- ;;^UTILITY(U,$J,358.3,23676,0)
- ;;=F17.203^^105^1184^3
- ;;^UTILITY(U,$J,358.3,23676,1,0)
+ ;;^UTILITY(U,$J,358.3,23952,1,3,0)
+ ;;=3^Parkinson's Disease
+ ;;^UTILITY(U,$J,358.3,23952,1,4,0)
+ ;;=4^G20.
+ ;;^UTILITY(U,$J,358.3,23952,2)
+ ;;=^5003770
+ ;;^UTILITY(U,$J,358.3,23953,0)
+ ;;=G35.^^82^1038^10
+ ;;^UTILITY(U,$J,358.3,23953,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,23676,1,3,0)
- ;;=3^Tobacco Withdrawal
- ;;^UTILITY(U,$J,358.3,23676,1,4,0)
- ;;=4^F17.203
- ;;^UTILITY(U,$J,358.3,23676,2)
- ;;=^5003362
- ;;^UTILITY(U,$J,358.3,23677,0)
- ;;=F17.210^^105^1184^4
- ;;^UTILITY(U,$J,358.3,23677,1,0)
+ ;;^UTILITY(U,$J,358.3,23953,1,3,0)
+ ;;=3^Multiple Sclerosis
+ ;;^UTILITY(U,$J,358.3,23953,1,4,0)
+ ;;=4^G35.
+ ;;^UTILITY(U,$J,358.3,23953,2)
+ ;;=^79761
+ ;;^UTILITY(U,$J,358.3,23954,0)
+ ;;=G82.50^^82^1038^15
+ ;;^UTILITY(U,$J,358.3,23954,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,23677,1,3,0)
- ;;=3^Nicotine Dependence,Cigarettes,Uncomplicated
- ;;^UTILITY(U,$J,358.3,23677,1,4,0)
- ;;=4^F17.210
- ;;^UTILITY(U,$J,358.3,23677,2)
- ;;=^5003365
- ;;^UTILITY(U,$J,358.3,23678,0)
- ;;=F17.211^^105^1184^5
- ;;^UTILITY(U,$J,358.3,23678,1,0)
+ ;;^UTILITY(U,$J,358.3,23954,1,3,0)
+ ;;=3^Quadriplegia,Unspec
+ ;;^UTILITY(U,$J,358.3,23954,1,4,0)
+ ;;=4^G82.50
+ ;;^UTILITY(U,$J,358.3,23954,2)
+ ;;=^5004128
+ ;;^UTILITY(U,$J,358.3,23955,0)
+ ;;=G82.20^^82^1038^13
+ ;;^UTILITY(U,$J,358.3,23955,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,23678,1,3,0)
- ;;=3^Nicotine Dependence,Cigarettes,In Remission
- ;;^UTILITY(U,$J,358.3,23678,1,4,0)
- ;;=4^F17.211
- ;;^UTILITY(U,$J,358.3,23678,2)
- ;;=^5003366
- ;;^UTILITY(U,$J,358.3,23679,0)
- ;;=F17.220^^105^1184^6
- ;;^UTILITY(U,$J,358.3,23679,1,0)
+ ;;^UTILITY(U,$J,358.3,23955,1,3,0)
+ ;;=3^Paraplegia,Unspec
+ ;;^UTILITY(U,$J,358.3,23955,1,4,0)
+ ;;=4^G82.20
+ ;;^UTILITY(U,$J,358.3,23955,2)
+ ;;=^5004125
+ ;;^UTILITY(U,$J,358.3,23956,0)
+ ;;=G82.21^^82^1038^11
+ ;;^UTILITY(U,$J,358.3,23956,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,23679,1,3,0)
- ;;=3^Nicotine Dependence,Chewing Tobacco,Uncomplicated
- ;;^UTILITY(U,$J,358.3,23679,1,4,0)
- ;;=4^F17.220
- ;;^UTILITY(U,$J,358.3,23679,2)
- ;;=^5003370
- ;;^UTILITY(U,$J,358.3,23680,0)
- ;;=F17.221^^105^1184^7
- ;;^UTILITY(U,$J,358.3,23680,1,0)
+ ;;^UTILITY(U,$J,358.3,23956,1,3,0)
+ ;;=3^Paraplegia,Complete
+ ;;^UTILITY(U,$J,358.3,23956,1,4,0)
+ ;;=4^G82.21
+ ;;^UTILITY(U,$J,358.3,23956,2)
+ ;;=^5004126
+ ;;^UTILITY(U,$J,358.3,23957,0)
+ ;;=G82.22^^82^1038^12
+ ;;^UTILITY(U,$J,358.3,23957,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,23680,1,3,0)
- ;;=3^Nicotine Dependence,Chewing Tobacco,In Remission
- ;;^UTILITY(U,$J,358.3,23680,1,4,0)
- ;;=4^F17.221
- ;;^UTILITY(U,$J,358.3,23680,2)
- ;;=^5003371
- ;;^UTILITY(U,$J,358.3,23681,0)
- ;;=F17.290^^105^1184^8
- ;;^UTILITY(U,$J,358.3,23681,1,0)
+ ;;^UTILITY(U,$J,358.3,23957,1,3,0)
+ ;;=3^Paraplegia,Incomplete
+ ;;^UTILITY(U,$J,358.3,23957,1,4,0)
+ ;;=4^G82.22
+ ;;^UTILITY(U,$J,358.3,23957,2)
+ ;;=^5004127
+ ;;^UTILITY(U,$J,358.3,23958,0)
+ ;;=G60.9^^82^1038^8
+ ;;^UTILITY(U,$J,358.3,23958,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,23681,1,3,0)
- ;;=3^Nicotine Dependence,Oth Tobacco Product,Uncomplicated
- ;;^UTILITY(U,$J,358.3,23681,1,4,0)
- ;;=4^F17.290
- ;;^UTILITY(U,$J,358.3,23681,2)
- ;;=^5003375
- ;;^UTILITY(U,$J,358.3,23682,0)
- ;;=F17.291^^105^1184^9
- ;;^UTILITY(U,$J,358.3,23682,1,0)
+ ;;^UTILITY(U,$J,358.3,23958,1,3,0)
+ ;;=3^Hereditary & Idiopathic Neuropathy,Unspec
+ ;;^UTILITY(U,$J,358.3,23958,1,4,0)
+ ;;=4^G60.9
+ ;;^UTILITY(U,$J,358.3,23958,2)
+ ;;=^5004071
+ ;;^UTILITY(U,$J,358.3,23959,0)
+ ;;=I69.90^^82^1038^2
+ ;;^UTILITY(U,$J,358.3,23959,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,23682,1,3,0)
- ;;=3^Nicotine Dependence,Oth Tobacco Product,In Remission
- ;;^UTILITY(U,$J,358.3,23682,1,4,0)
- ;;=4^F17.291
- ;;^UTILITY(U,$J,358.3,23682,2)
- ;;=^5003376
- ;;^UTILITY(U,$J,358.3,23683,0)
- ;;=E03.9^^105^1185^40
- ;;^UTILITY(U,$J,358.3,23683,1,0)
+ ;;^UTILITY(U,$J,358.3,23959,1,3,0)
+ ;;=3^CVD,Unspec,Sequelae
+ ;;^UTILITY(U,$J,358.3,23959,1,4,0)
+ ;;=4^I69.90
+ ;;^UTILITY(U,$J,358.3,23959,2)
+ ;;=^5007551
+ ;;^UTILITY(U,$J,358.3,23960,0)
+ ;;=R56.9^^82^1038^4
+ ;;^UTILITY(U,$J,358.3,23960,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,23683,1,3,0)
- ;;=3^Hypothyroidism
- ;;^UTILITY(U,$J,358.3,23683,1,4,0)
- ;;=4^E03.9
- ;;^UTILITY(U,$J,358.3,23683,2)
- ;;=^5002476
- ;;^UTILITY(U,$J,358.3,23684,0)
- ;;=E05.90^^105^1185^48
- ;;^UTILITY(U,$J,358.3,23684,1,0)
+ ;;^UTILITY(U,$J,358.3,23960,1,3,0)
+ ;;=3^Convulsions,Unspec
+ ;;^UTILITY(U,$J,358.3,23960,1,4,0)
+ ;;=4^R56.9
+ ;;^UTILITY(U,$J,358.3,23960,2)
+ ;;=^5019524
+ ;;^UTILITY(U,$J,358.3,23961,0)
+ ;;=S14.109S^^82^1038^3
+ ;;^UTILITY(U,$J,358.3,23961,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,23684,1,3,0)
- ;;=3^Thyrotoxicosis,Unspec w/o Thyrotoxic Crisis or Storm
- ;;^UTILITY(U,$J,358.3,23684,1,4,0)
- ;;=4^E05.90
- ;;^UTILITY(U,$J,358.3,23684,2)
- ;;=^5002492
- ;;^UTILITY(U,$J,358.3,23685,0)
- ;;=E05.91^^105^1185^47
- ;;^UTILITY(U,$J,358.3,23685,1,0)
+ ;;^UTILITY(U,$J,358.3,23961,1,3,0)
+ ;;=3^Cervical SCI,Unspec Injury/Level,Sequela
+ ;;^UTILITY(U,$J,358.3,23961,1,4,0)
+ ;;=4^S14.109S
+ ;;^UTILITY(U,$J,358.3,23961,2)
+ ;;=^5134243
+ ;;^UTILITY(U,$J,358.3,23962,0)
+ ;;=S24.109S^^82^1038^17
+ ;;^UTILITY(U,$J,358.3,23962,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,23685,1,3,0)
- ;;=3^Thyrotoxicosis,Unspec w/ Thyrotoxic Crisis or Storm
+ ;;^UTILITY(U,$J,358.3,23962,1,3,0)
+ ;;=3^Thoracic SCI,Unspec Injury/Level,Sequela
+ ;;^UTILITY(U,$J,358.3,23962,1,4,0)
+ ;;=4^S24.109S
+ ;;^UTILITY(U,$J,358.3,23962,2)
+ ;;=^5134384
+ ;;^UTILITY(U,$J,358.3,23963,0)
+ ;;=S34.109S^^82^1038^9
+ ;;^UTILITY(U,$J,358.3,23963,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,23963,1,3,0)
+ ;;=3^Lumbar SCI,Unspec Injury/Level,Sequela

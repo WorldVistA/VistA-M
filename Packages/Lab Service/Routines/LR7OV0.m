@@ -1,5 +1,7 @@
-LR7OV0 ;DALOI/STAFF - Update orderable items ;Oct 10, 2007
- ;;5.2;LAB SERVICE;**121,187,357,361,350,434**;Sep 27, 1994;Build 1
+LR7OV0 ;DALOI/STAFF - Update orderable items ;Mar 16, 2021@16:42
+ ;;5.2;LAB SERVICE;**121,187,357,361,350,434,543**;Sep 27, 1994;Build 7
+ ;
+ ;Reference to ^ORD(101.43 supported by DBIA #2843
  ;
 TEST(TEST,ICNT) ;Process single test
  ;TEST=test ptr to file 60
@@ -65,8 +67,33 @@ SINGLE(TEST,MFICODE,MFECODE) ;Message for a single test
  . S MFECODE="MDC"
  . S TESTID=$$UVID^LR7OU0(TEST,0,"","","","ORUPDMSG")
  . S ORUPDMSG(3)=$$MFE(MFECODE,TESTID)
+ . ;LR*5.2*543: send mail message for manual correction
+ . D MAIL
  I $D(ORUPDMSG(3)) S ORUPDMSG="ORUPDMSG" D MSG^XQOR("LR7O ORDERABLE OR",.ORUPDMSG) ;Send update message
  L -LR7OV0(TEST)
+ Q
+ ;
+MAIL ;
+ ;LR*5.2*543
+ N LR10143,LRNAME,LRMIN,LRMY,LRMSUB,LRMTEXT
+ S LR10143=$P(TESTID,"^",4)_";"_$P(TESTID,"^",6)
+ S LR10143=$O(^ORD(101.43,"ID",LR10143,0))
+ Q:LR10143']""
+ S LRNAME=$P($G(^ORD(101.43,LR10143,0)),"^")
+ ;Do not send message if name begins with "ZZ".
+ ;Transaction has been sent to CPRS to mark the OI inactive, but it
+ ;might not have filed yet. So no need to check for the inactive field.
+ I $E(LRNAME,1,2)="ZZ" Q
+ S LRMIN("FROM")="ORDERABLE ITEMS UPDATE TASK"
+ S LRMY(DUZ)="",LRMY("G.LMI")="",LRMY("G.OR CACS")=""
+ S LRMSUB="ATTENTION: Lab Test Deleted"
+ S LRMTEXT(1)="Lab test IEN: "_TEST_" ("_LRNAME_") has been deleted, but an orderable item"
+ S LRMTEXT(2)="(IEN: "_LR10143_") exists in the ORDERABLE ITEMS (#101.43) file."
+ S LRMTEXT(3)=" "
+ S LRMTEXT(4)="The orderable item should be edited to prefix the name with ""ZZ"" and"
+ S LRMTEXT(5)="make sure there is a date in the INACTIVATED (#.1) field."
+ S LRMTEXT="LRMTEXT"
+ D SENDMSG^XMXAPI(DUZ,LRMSUB,LRMTEXT,.LRMY,.LRMIN,"","")
  Q
  ;
 ADD(TEST) ;Add single record to Master file

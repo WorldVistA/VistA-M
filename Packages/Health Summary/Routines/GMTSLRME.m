@@ -1,14 +1,14 @@
-GMTSLRME ; SLC/JER,KER - Microbiology Extract Routine ; 08/27/2002
- ;;2.7;Health Summary;**25,28,37,56**;Oct 20, 1995
+GMTSLRME ;SLC/JER,KER - Microbiology Extract Routine; Aug 02, 2022@08:31:08
+ ;;2.7;Health Summary;**25,28,37,56,138**;Oct 20, 1995;Build 4
  ;                    
  ; External References
- ;   DBIA    67  ^LAB(60
- ;   DBIA   525  ^LR(
- ;   DBIA   531  ^LRO(68
- ;   DBIA 10006  ^DIC
- ;   DBIA 10007  MIX^DIC1
- ;   DBIA  2056  $$GET1^DIQ
- ;   DBIA 10015  EN^DIQ1
+ ; Reference to ^LAB(60 in ICR #67
+ ; Reference to ^LR( in ICR #525
+ ; Reference to ^LRO(68 in ICR #531
+ ; Reference to ^DIC in ICR #10006
+ ; Reference to ^MIX^DIC1 in ICR #10007
+ ; Reference to $$GET1^DIQ in ICR #2056
+ ; Reference to EN^DIQ1 in ICR #10015
  ;                    
 XTRCT ; Extract
  N ACC,CDT,SS,CS,X,DIC,DIQ,DA,DR,MICRO,LOC,RDT,MICCOM K ^TMP("LRM",$J)
@@ -25,6 +25,12 @@ XTRCT ; Extract
  D ABXLEV,BACT,GRAM,STER,PARA^GMTSLRMX,MYCO^GMTSLRMX,TB^GMTSLRMX,VIRO^GMTSLRMX
  Q
 BACT ; Get Bacteriology Work-up
+ ;Do not display if results not verified (GMTS*2.7*138)
+ I $P($G(^LR(LRDFN,"MI",IX,1)),U)="" D  Q
+ . ;Were results previously verified and are now in the process
+ . ;of being amended?
+ . Q:'$D(^XTMP("LRMICRO EDIT",LRDFN,IX,1))
+ . S ^TMP("LRM",$J,"BACT",0)="Results currently being edited by tech code "_$G(^XTMP("LRMICRO EDIT",LRDFN,IX,1))
  N DA,DIC,DIQ,DR,STATUS,ISO,ORG,RMK,COM,SMEAR
  ;   Work up
  I $D(^LR(LRDFN,"MI",IX,1)) D
@@ -93,6 +99,8 @@ STER ; Get sterility results if they exist
  . S ^TMP("LRM",$J,"BSTER",STER)=RESULT(63.292,STER,.01,"E")
  Q
 GRAM ; Get Gram Stain Results
+ ;Do not display if results not verified (GMTS*2.7*138)
+ I $P($G(^LR(LRDFN,"MI",IX,1)),U)="" Q
  N ISO Q:'$D(^LR(LRDFN,"MI",IX,2))  S ISO=0
  F  S ISO=$O(^LR(LRDFN,"MI",IX,2,ISO)) Q:ISO=""  S ^TMP("LRM",$J,"GRAM",ISO)=^(ISO,0)
  Q

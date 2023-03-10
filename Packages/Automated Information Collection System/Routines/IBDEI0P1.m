@@ -1,120 +1,126 @@
-IBDEI0P1 ; ; 04-FEB-2020
- ;;3.0;IB ENCOUNTER FORM IMP/EXP;;FEB 04, 2020
+IBDEI0P1 ; ; 01-FEB-2022
+ ;;3.0;IB ENCOUNTER FORM IMP/EXP;;FEB 01, 2022
  Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,999) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
- ;;^UTILITY(U,$J,358.3,11172,1,3,0)
- ;;=3^Penetrating Orbital Wound,Right Eye,Init Encntr
- ;;^UTILITY(U,$J,358.3,11172,1,4,0)
- ;;=4^S05.41XA
- ;;^UTILITY(U,$J,358.3,11172,2)
- ;;=^5020615
- ;;^UTILITY(U,$J,358.3,11173,0)
- ;;=S05.42XA^^77^725^12
- ;;^UTILITY(U,$J,358.3,11173,1,0)
+ ;;^UTILITY(U,$J,358.3,11238,1,3,0)
+ ;;=3^Housing Instability,Housed,Unspec
+ ;;^UTILITY(U,$J,358.3,11238,1,4,0)
+ ;;=4^Z59.819
+ ;;^UTILITY(U,$J,358.3,11238,2)
+ ;;=^5161311
+ ;;^UTILITY(U,$J,358.3,11239,0)
+ ;;=Z59.89^^42^514^16
+ ;;^UTILITY(U,$J,358.3,11239,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,11173,1,3,0)
- ;;=3^Penetrating Orbital Wound,Left Eye,Init Encntr
- ;;^UTILITY(U,$J,358.3,11173,1,4,0)
- ;;=4^S05.42XA
- ;;^UTILITY(U,$J,358.3,11173,2)
- ;;=^5020618
- ;;^UTILITY(U,$J,358.3,11174,0)
- ;;=S02.42XA^^77^725^17
- ;;^UTILITY(U,$J,358.3,11174,1,0)
+ ;;^UTILITY(U,$J,358.3,11239,1,3,0)
+ ;;=3^Problems Related to Housing & Economic Circumstances,Other
+ ;;^UTILITY(U,$J,358.3,11239,1,4,0)
+ ;;=4^Z59.89
+ ;;^UTILITY(U,$J,358.3,11239,2)
+ ;;=^5161312
+ ;;^UTILITY(U,$J,358.3,11240,0)
+ ;;=Z59.2^^42^514^2
+ ;;^UTILITY(U,$J,358.3,11240,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,11174,1,3,0)
- ;;=3^Fx of Alveoulus of Maxilla,Init Encntr for Closed Fx
- ;;^UTILITY(U,$J,358.3,11174,1,4,0)
- ;;=4^S02.42XA
- ;;^UTILITY(U,$J,358.3,11174,2)
- ;;=^5020354
- ;;^UTILITY(U,$J,358.3,11175,0)
- ;;=S00.11XA^^77^725^18
- ;;^UTILITY(U,$J,358.3,11175,1,0)
+ ;;^UTILITY(U,$J,358.3,11240,1,3,0)
+ ;;=3^Discord w/ Neighbors,Lodgers,Landlords
+ ;;^UTILITY(U,$J,358.3,11240,1,4,0)
+ ;;=4^Z59.2
+ ;;^UTILITY(U,$J,358.3,11240,2)
+ ;;=^5063131
+ ;;^UTILITY(U,$J,358.3,11241,0)
+ ;;=Z59.9^^42^514^17
+ ;;^UTILITY(U,$J,358.3,11241,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,11175,1,3,0)
- ;;=3^Contusion,Right Eyelid,Init Encntr
- ;;^UTILITY(U,$J,358.3,11175,1,4,0)
- ;;=4^S00.11XA
- ;;^UTILITY(U,$J,358.3,11175,2)
- ;;=^5019778
- ;;^UTILITY(U,$J,358.3,11176,0)
- ;;=S00.12XA^^77^725^19
- ;;^UTILITY(U,$J,358.3,11176,1,0)
+ ;;^UTILITY(U,$J,358.3,11241,1,3,0)
+ ;;=3^Problems Related to Housing & Economic Circumstances,Unspec
+ ;;^UTILITY(U,$J,358.3,11241,1,4,0)
+ ;;=4^Z59.9
+ ;;^UTILITY(U,$J,358.3,11241,2)
+ ;;=^5063138
+ ;;^UTILITY(U,$J,358.3,11242,0)
+ ;;=Z59.7^^42^514^13
+ ;;^UTILITY(U,$J,358.3,11242,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,11176,1,3,0)
- ;;=3^Contusion,Left Eyelid,Init Encntr
- ;;^UTILITY(U,$J,358.3,11176,1,4,0)
- ;;=4^S00.12XA
- ;;^UTILITY(U,$J,358.3,11176,2)
- ;;=^5019781
- ;;^UTILITY(U,$J,358.3,11177,0)
- ;;=S01.151A^^77^725^20
- ;;^UTILITY(U,$J,358.3,11177,1,0)
+ ;;^UTILITY(U,$J,358.3,11242,1,3,0)
+ ;;=3^Insufficient Social Insurance & Welfare Support
+ ;;^UTILITY(U,$J,358.3,11242,1,4,0)
+ ;;=4^Z59.7
+ ;;^UTILITY(U,$J,358.3,11242,2)
+ ;;=^5063136
+ ;;^UTILITY(U,$J,358.3,11243,0)
+ ;;=Z59.41^^42^514^4
+ ;;^UTILITY(U,$J,358.3,11243,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,11177,1,3,0)
- ;;=3^Open Bite,Right Eyelid,Init Encntr
- ;;^UTILITY(U,$J,358.3,11177,1,4,0)
- ;;=4^S01.151A
- ;;^UTILITY(U,$J,358.3,11177,2)
- ;;=^5020081
- ;;^UTILITY(U,$J,358.3,11178,0)
- ;;=S01.152A^^77^725^21
- ;;^UTILITY(U,$J,358.3,11178,1,0)
+ ;;^UTILITY(U,$J,358.3,11243,1,3,0)
+ ;;=3^Food Insecurity
+ ;;^UTILITY(U,$J,358.3,11243,1,4,0)
+ ;;=4^Z59.41
+ ;;^UTILITY(U,$J,358.3,11243,2)
+ ;;=^5161307
+ ;;^UTILITY(U,$J,358.3,11244,0)
+ ;;=Z59.48^^42^514^14
+ ;;^UTILITY(U,$J,358.3,11244,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,11178,1,3,0)
- ;;=3^Open Bite,Left Eyelid,Init Encntr
- ;;^UTILITY(U,$J,358.3,11178,1,4,0)
- ;;=4^S01.152A
- ;;^UTILITY(U,$J,358.3,11178,2)
- ;;=^5020084
- ;;^UTILITY(U,$J,358.3,11179,0)
- ;;=S02.81XA^^77^725^13
- ;;^UTILITY(U,$J,358.3,11179,1,0)
+ ;;^UTILITY(U,$J,358.3,11244,1,3,0)
+ ;;=3^Lack of Adequate Food,Other Spec
+ ;;^UTILITY(U,$J,358.3,11244,1,4,0)
+ ;;=4^Z59.48
+ ;;^UTILITY(U,$J,358.3,11244,2)
+ ;;=^5161308
+ ;;^UTILITY(U,$J,358.3,11245,0)
+ ;;=Z72.51^^42^515^2
+ ;;^UTILITY(U,$J,358.3,11245,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,11179,1,3,0)
- ;;=3^Fx of Skull/Facial Bones,Right Side,Init Encntr for Closed Fx
- ;;^UTILITY(U,$J,358.3,11179,1,4,0)
- ;;=4^S02.81XA
- ;;^UTILITY(U,$J,358.3,11179,2)
- ;;=^5139523
- ;;^UTILITY(U,$J,358.3,11180,0)
- ;;=S02.82XA^^77^725^14
- ;;^UTILITY(U,$J,358.3,11180,1,0)
+ ;;^UTILITY(U,$J,358.3,11245,1,3,0)
+ ;;=3^High Risk Heterosexual Behavior
+ ;;^UTILITY(U,$J,358.3,11245,1,4,0)
+ ;;=4^Z72.51
+ ;;^UTILITY(U,$J,358.3,11245,2)
+ ;;=^5063258
+ ;;^UTILITY(U,$J,358.3,11246,0)
+ ;;=Z72.6^^42^515^1
+ ;;^UTILITY(U,$J,358.3,11246,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,11180,1,3,0)
- ;;=3^Fx of Skull/Facial Bones,Left Side,Init Encntr for Closed Fx
- ;;^UTILITY(U,$J,358.3,11180,1,4,0)
- ;;=4^S02.82XA
- ;;^UTILITY(U,$J,358.3,11180,2)
- ;;=^5139529
- ;;^UTILITY(U,$J,358.3,11181,0)
- ;;=S02.31XA^^77^725^15
- ;;^UTILITY(U,$J,358.3,11181,1,0)
+ ;;^UTILITY(U,$J,358.3,11246,1,3,0)
+ ;;=3^Gambling/Betting
+ ;;^UTILITY(U,$J,358.3,11246,1,4,0)
+ ;;=4^Z72.6
+ ;;^UTILITY(U,$J,358.3,11246,2)
+ ;;=^5063261
+ ;;^UTILITY(U,$J,358.3,11247,0)
+ ;;=Z72.3^^42^515^4
+ ;;^UTILITY(U,$J,358.3,11247,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,11181,1,3,0)
- ;;=3^Fx of Orbital Floor,Right Side,Init Encntr for Closed Fx
- ;;^UTILITY(U,$J,358.3,11181,1,4,0)
- ;;=4^S02.31XA
- ;;^UTILITY(U,$J,358.3,11181,2)
- ;;=^5139325
- ;;^UTILITY(U,$J,358.3,11182,0)
- ;;=S02.32XA^^77^725^16
- ;;^UTILITY(U,$J,358.3,11182,1,0)
+ ;;^UTILITY(U,$J,358.3,11247,1,3,0)
+ ;;=3^Lack of Physical Exercise
+ ;;^UTILITY(U,$J,358.3,11247,1,4,0)
+ ;;=4^Z72.3
+ ;;^UTILITY(U,$J,358.3,11247,2)
+ ;;=^5063256
+ ;;^UTILITY(U,$J,358.3,11248,0)
+ ;;=Z72.4^^42^515^3
+ ;;^UTILITY(U,$J,358.3,11248,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,11182,1,3,0)
- ;;=3^Fx of Orbital Floor,Left Side,Init Encntr for Closed Fx
- ;;^UTILITY(U,$J,358.3,11182,1,4,0)
- ;;=4^S02.32XA
- ;;^UTILITY(U,$J,358.3,11182,2)
- ;;=^5139331
- ;;^UTILITY(U,$J,358.3,11183,0)
- ;;=H04.123^^77^726^1
- ;;^UTILITY(U,$J,358.3,11183,1,0)
+ ;;^UTILITY(U,$J,358.3,11248,1,3,0)
+ ;;=3^Inappropriate Diet/Eating Habits
+ ;;^UTILITY(U,$J,358.3,11248,1,4,0)
+ ;;=4^Z72.4
+ ;;^UTILITY(U,$J,358.3,11248,2)
+ ;;=^5063257
+ ;;^UTILITY(U,$J,358.3,11249,0)
+ ;;=Z72.820^^42^515^6
+ ;;^UTILITY(U,$J,358.3,11249,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,11183,1,3,0)
- ;;=3^Dry Eye Syndrome,Bilateral Lacrimal Glands
- ;;^UTILITY(U,$J,358.3,11183,1,4,0)
- ;;=4^H04.123
- ;;^UTILITY(U,$J,358.3,11183,2)
- ;;=^5004465
+ ;;^UTILITY(U,$J,358.3,11249,1,3,0)
+ ;;=3^Sleep Deprivation
+ ;;^UTILITY(U,$J,358.3,11249,1,4,0)
+ ;;=4^Z72.820
+ ;;^UTILITY(U,$J,358.3,11249,2)
+ ;;=^5063264
+ ;;^UTILITY(U,$J,358.3,11250,0)
+ ;;=Z72.9^^42^515^5
+ ;;^UTILITY(U,$J,358.3,11250,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,11250,1,3,0)
+ ;;=3^Lifestyle Related Problems,Unspec

@@ -1,128 +1,128 @@
-IBDEI0XP ; ; 04-FEB-2020
- ;;3.0;IB ENCOUNTER FORM IMP/EXP;;FEB 04, 2020
+IBDEI0XP ; ; 01-FEB-2022
+ ;;3.0;IB ENCOUNTER FORM IMP/EXP;;FEB 01, 2022
  Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,999) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
- ;;^UTILITY(U,$J,358.3,15009,2)
- ;;=^270254
- ;;^UTILITY(U,$J,358.3,15010,0)
- ;;=K63.89^^85^838^54
- ;;^UTILITY(U,$J,358.3,15010,1,0)
+ ;;^UTILITY(U,$J,358.3,15183,1,4,0)
+ ;;=4^M06.252
+ ;;^UTILITY(U,$J,358.3,15183,2)
+ ;;=^5010086
+ ;;^UTILITY(U,$J,358.3,15184,0)
+ ;;=M06.262^^58^717^41
+ ;;^UTILITY(U,$J,358.3,15184,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,15010,1,3,0)
- ;;=3^Small Intestine bacterial overgrowth
- ;;^UTILITY(U,$J,358.3,15010,1,4,0)
- ;;=4^K63.89
- ;;^UTILITY(U,$J,358.3,15010,2)
- ;;=^5008767
- ;;^UTILITY(U,$J,358.3,15011,0)
- ;;=K26.0^^85^838^57
- ;;^UTILITY(U,$J,358.3,15011,1,0)
+ ;;^UTILITY(U,$J,358.3,15184,1,3,0)
+ ;;=3^Rheumatoid Bursitis,Lt Knee
+ ;;^UTILITY(U,$J,358.3,15184,1,4,0)
+ ;;=4^M06.262
+ ;;^UTILITY(U,$J,358.3,15184,2)
+ ;;=^5010089
+ ;;^UTILITY(U,$J,358.3,15185,0)
+ ;;=M06.212^^58^717^42
+ ;;^UTILITY(U,$J,358.3,15185,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,15011,1,3,0)
- ;;=3^Ulcer,Duodenal,Acute w/ Bleeding
- ;;^UTILITY(U,$J,358.3,15011,1,4,0)
- ;;=4^K26.0
- ;;^UTILITY(U,$J,358.3,15011,2)
- ;;=^270089
- ;;^UTILITY(U,$J,358.3,15012,0)
- ;;=K26.1^^85^838^58
- ;;^UTILITY(U,$J,358.3,15012,1,0)
+ ;;^UTILITY(U,$J,358.3,15185,1,3,0)
+ ;;=3^Rheumatoid Bursitis,Lt Shoulder
+ ;;^UTILITY(U,$J,358.3,15185,1,4,0)
+ ;;=4^M06.212
+ ;;^UTILITY(U,$J,358.3,15185,2)
+ ;;=^5010074
+ ;;^UTILITY(U,$J,358.3,15186,0)
+ ;;=M06.232^^58^717^43
+ ;;^UTILITY(U,$J,358.3,15186,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,15012,1,3,0)
- ;;=3^Ulcer,Duodenal,Acute w/ Perforation
- ;;^UTILITY(U,$J,358.3,15012,1,4,0)
- ;;=4^K26.1
- ;;^UTILITY(U,$J,358.3,15012,2)
- ;;=^270092
- ;;^UTILITY(U,$J,358.3,15013,0)
- ;;=K26.2^^85^838^56
- ;;^UTILITY(U,$J,358.3,15013,1,0)
+ ;;^UTILITY(U,$J,358.3,15186,1,3,0)
+ ;;=3^Rheumatoid Bursitis,Lt Wrist
+ ;;^UTILITY(U,$J,358.3,15186,1,4,0)
+ ;;=4^M06.232
+ ;;^UTILITY(U,$J,358.3,15186,2)
+ ;;=^5010080
+ ;;^UTILITY(U,$J,358.3,15187,0)
+ ;;=M06.29^^58^717^44
+ ;;^UTILITY(U,$J,358.3,15187,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,15013,1,3,0)
- ;;=3^Ulcer,Duodenal,Acute w/ Bleed & Perf
- ;;^UTILITY(U,$J,358.3,15013,1,4,0)
- ;;=4^K26.2
- ;;^UTILITY(U,$J,358.3,15013,2)
- ;;=^5008523
- ;;^UTILITY(U,$J,358.3,15014,0)
- ;;=K26.3^^85^838^59
- ;;^UTILITY(U,$J,358.3,15014,1,0)
+ ;;^UTILITY(U,$J,358.3,15187,1,3,0)
+ ;;=3^Rheumatoid Bursitis,Multiple Sites
+ ;;^UTILITY(U,$J,358.3,15187,1,4,0)
+ ;;=4^M06.29
+ ;;^UTILITY(U,$J,358.3,15187,2)
+ ;;=^5010095
+ ;;^UTILITY(U,$J,358.3,15188,0)
+ ;;=M06.271^^58^717^45
+ ;;^UTILITY(U,$J,358.3,15188,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,15014,1,3,0)
- ;;=3^Ulcer,Duodenal,Acute w/o Bleed or Perf
- ;;^UTILITY(U,$J,358.3,15014,1,4,0)
- ;;=4^K26.3
- ;;^UTILITY(U,$J,358.3,15014,2)
- ;;=^5008524
- ;;^UTILITY(U,$J,358.3,15015,0)
- ;;=K26.4^^85^838^61
- ;;^UTILITY(U,$J,358.3,15015,1,0)
+ ;;^UTILITY(U,$J,358.3,15188,1,3,0)
+ ;;=3^Rheumatoid Bursitis,Rt Ankle/Foot
+ ;;^UTILITY(U,$J,358.3,15188,1,4,0)
+ ;;=4^M06.271
+ ;;^UTILITY(U,$J,358.3,15188,2)
+ ;;=^5010091
+ ;;^UTILITY(U,$J,358.3,15189,0)
+ ;;=M06.221^^58^717^46
+ ;;^UTILITY(U,$J,358.3,15189,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,15015,1,3,0)
- ;;=3^Ulcer,Duodenal,Chronic w/ Bleeding
- ;;^UTILITY(U,$J,358.3,15015,1,4,0)
- ;;=4^K26.4
- ;;^UTILITY(U,$J,358.3,15015,2)
- ;;=^270101
- ;;^UTILITY(U,$J,358.3,15016,0)
- ;;=K26.5^^85^838^62
- ;;^UTILITY(U,$J,358.3,15016,1,0)
+ ;;^UTILITY(U,$J,358.3,15189,1,3,0)
+ ;;=3^Rheumatoid Bursitis,Rt Elbow
+ ;;^UTILITY(U,$J,358.3,15189,1,4,0)
+ ;;=4^M06.221
+ ;;^UTILITY(U,$J,358.3,15189,2)
+ ;;=^5010076
+ ;;^UTILITY(U,$J,358.3,15190,0)
+ ;;=M06.241^^58^717^47
+ ;;^UTILITY(U,$J,358.3,15190,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,15016,1,3,0)
- ;;=3^Ulcer,Duodenal,Chronic w/ Perforation
- ;;^UTILITY(U,$J,358.3,15016,1,4,0)
- ;;=4^K26.5
- ;;^UTILITY(U,$J,358.3,15016,2)
- ;;=^270104
- ;;^UTILITY(U,$J,358.3,15017,0)
- ;;=K26.6^^85^838^60
- ;;^UTILITY(U,$J,358.3,15017,1,0)
+ ;;^UTILITY(U,$J,358.3,15190,1,3,0)
+ ;;=3^Rheumatoid Bursitis,Rt Hand
+ ;;^UTILITY(U,$J,358.3,15190,1,4,0)
+ ;;=4^M06.241
+ ;;^UTILITY(U,$J,358.3,15190,2)
+ ;;=^5010082
+ ;;^UTILITY(U,$J,358.3,15191,0)
+ ;;=M06.251^^58^717^48
+ ;;^UTILITY(U,$J,358.3,15191,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,15017,1,3,0)
- ;;=3^Ulcer,Duodenal,Chronic w/ Bleed & Perf
- ;;^UTILITY(U,$J,358.3,15017,1,4,0)
- ;;=4^K26.6
- ;;^UTILITY(U,$J,358.3,15017,2)
- ;;=^5008525
- ;;^UTILITY(U,$J,358.3,15018,0)
- ;;=K28.0^^85^838^65
- ;;^UTILITY(U,$J,358.3,15018,1,0)
+ ;;^UTILITY(U,$J,358.3,15191,1,3,0)
+ ;;=3^Rheumatoid Bursitis,Rt Hip
+ ;;^UTILITY(U,$J,358.3,15191,1,4,0)
+ ;;=4^M06.251
+ ;;^UTILITY(U,$J,358.3,15191,2)
+ ;;=^5010085
+ ;;^UTILITY(U,$J,358.3,15192,0)
+ ;;=M06.261^^58^717^49
+ ;;^UTILITY(U,$J,358.3,15192,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,15018,1,3,0)
- ;;=3^Ulcer,Jejunal,Acute w/ Bleeding
- ;;^UTILITY(U,$J,358.3,15018,1,4,0)
- ;;=4^K28.0
- ;;^UTILITY(U,$J,358.3,15018,2)
- ;;=^270141
- ;;^UTILITY(U,$J,358.3,15019,0)
- ;;=K28.1^^85^838^66
- ;;^UTILITY(U,$J,358.3,15019,1,0)
+ ;;^UTILITY(U,$J,358.3,15192,1,3,0)
+ ;;=3^Rheumatoid Bursitis,Rt Knee
+ ;;^UTILITY(U,$J,358.3,15192,1,4,0)
+ ;;=4^M06.261
+ ;;^UTILITY(U,$J,358.3,15192,2)
+ ;;=^5010088
+ ;;^UTILITY(U,$J,358.3,15193,0)
+ ;;=M06.211^^58^717^50
+ ;;^UTILITY(U,$J,358.3,15193,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,15019,1,3,0)
- ;;=3^Ulcer,Jejunal,Acute w/ Perforation
- ;;^UTILITY(U,$J,358.3,15019,1,4,0)
- ;;=4^K28.1
- ;;^UTILITY(U,$J,358.3,15019,2)
- ;;=^270144
- ;;^UTILITY(U,$J,358.3,15020,0)
- ;;=K28.2^^85^838^64
- ;;^UTILITY(U,$J,358.3,15020,1,0)
+ ;;^UTILITY(U,$J,358.3,15193,1,3,0)
+ ;;=3^Rheumatoid Bursitis,Rt Shoulder
+ ;;^UTILITY(U,$J,358.3,15193,1,4,0)
+ ;;=4^M06.211
+ ;;^UTILITY(U,$J,358.3,15193,2)
+ ;;=^5010073
+ ;;^UTILITY(U,$J,358.3,15194,0)
+ ;;=M06.231^^58^717^51
+ ;;^UTILITY(U,$J,358.3,15194,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,15020,1,3,0)
- ;;=3^Ulcer,Jejunal,Acute w/ Bleed & Perf
- ;;^UTILITY(U,$J,358.3,15020,1,4,0)
- ;;=4^K28.2
- ;;^UTILITY(U,$J,358.3,15020,2)
- ;;=^5008537
- ;;^UTILITY(U,$J,358.3,15021,0)
- ;;=K28.3^^85^838^67
- ;;^UTILITY(U,$J,358.3,15021,1,0)
+ ;;^UTILITY(U,$J,358.3,15194,1,3,0)
+ ;;=3^Rheumatoid Bursitis,Rt Wrist
+ ;;^UTILITY(U,$J,358.3,15194,1,4,0)
+ ;;=4^M06.231
+ ;;^UTILITY(U,$J,358.3,15194,2)
+ ;;=^5010079
+ ;;^UTILITY(U,$J,358.3,15195,0)
+ ;;=M06.28^^58^717^52
+ ;;^UTILITY(U,$J,358.3,15195,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,15021,1,3,0)
- ;;=3^Ulcer,Jejunal,Acute w/o Bleed or Perf
- ;;^UTILITY(U,$J,358.3,15021,1,4,0)
- ;;=4^K28.3
- ;;^UTILITY(U,$J,358.3,15021,2)
- ;;=^5008538
- ;;^UTILITY(U,$J,358.3,15022,0)
- ;;=K28.4^^85^838^69
+ ;;^UTILITY(U,$J,358.3,15195,1,3,0)
+ ;;=3^Rheumatoid Bursitis,Vertebrae
+ ;;^UTILITY(U,$J,358.3,15195,1,4,0)
+ ;;=4^M06.28
+ ;;^UTILITY(U,$J,358.3,15195,2)
+ ;;=^5010094

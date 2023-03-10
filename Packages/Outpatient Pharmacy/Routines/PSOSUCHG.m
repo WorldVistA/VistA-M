@@ -1,5 +1,5 @@
 PSOSUCHG ;BIR/RTR-CHANGE SUSPENSE AND FILL AND REFILL DATES ;4/29/93
- ;;7.0;OUTPATIENT PHARMACY;**20,26,130,235,148**;DEC 1997
+ ;;7.0;OUTPATIENT PHARMACY;**20,26,130,235,148,561**;DEC 1997;Build 41
  ;External reference A^PSXCH is supported by DBIA 2205
  ;External references PSOL and PSOUL^PSSLOCK supported by DBIA 2789
  ;External reference P^PSXCH is supported by DBIA 2205
@@ -18,12 +18,25 @@ SPEC D ULK K INDT S (DELCNT,WARN,PSPOP,OUT)=0 W ! S DIR("A")="Select SUSPENDED R
  G:Y<0 SPEC S DEAD=0,(SFN,DA)=+Y,RXREC=+Y(0),DFN=$P(^PS(52.5,SFN,0),"^",3),RXDATE=$P(Y(0),"^",2),STOP=$P(^PSRX(RXREC,2),"^",6),STAT=$P($G(^("STA")),"^") D  Q:$G(PSOLKQT)  D TST G:$T P^PSXCH
  .K PSOMSG,PSOLKQT D PSOL^PSSLOCK(RXREC) I '$G(PSOMSG) W !,"Rx number: "_$P($G(^PSRX(RXREC,0)),"^")_" cannot be changed because" D LMES,PAUSE S PSOLKQT=1 K PSOMSG Q
  .K PSOMSG S PSOSDLK(RXREC)=""
+ ;
 RTN I STAT=11!(STOP<DT)!(STAT=12) D EXPCAN Q
  D:$P($G(^PSRX(RXREC,"STA")),"^")<9 CHKDEAD^PSOSUCH1 Q:DEAD  I $G(PSODIV),+$P($G(^PS(52.5,SFN,0)),"^",6)'=PSOSITE S PSPOP=0 D CKDIV^PSOSUPAT Q:PSPOP
+ ;
+ ; Display a message to the user if the Bypass 3/4 Day Supply flag is set.
+ ;
+ N PSOFILL
+ S PSOFILL=$O(^PSRX(RXREC,1,"A"),-1)
+ I PSOFILL="" S PSOFILL=0
+ I $$FLAG^PSOBPSU4(RXREC,PSOFILL)="YES" D
+ . W !!,"Currently, Bypass 3/4 Day Supply is set to YES.  If you continue, the"
+ . W !,"prescription fill will transmit to CMOP on the new Suspense Date entered.",!
+ . Q
+ ;
  S DA=SFN,DIE=52.5,DR=".02;S INDT=X" D ^DIE K DIE D  Q:$D(Y)  W !
  .I $D(INDT),INDT'=RXDATE,INDT<+$P($G(^PSRX(RXREC,0)),"^",13) S DA=SFN,DIE=52.5,DR=".02///"_RXDATE D ^DIE K DIE S Y="" W !!,"Suspense date cannot be before Issue Date of Rx!",!
  I $D(X),X'=RXDATE S DA=RXREC D CHANGE^PSOSUCH1(RXREC)
  D DEL G:ACT="A" ALL G:ACT="S" SPEC
+ ;
 ALL D ULK K INDT S (DELCNT,PSDIVCHK,DELFLAG,PSPOP,PSOPOPUP,WARN,SUSCNT)=0 W ! S DIR("A")="Are you entering the patient name or barcode?",DIR(0)="SBO^P:Patient Name;B:Barcode"
  S DIR("?")="Enter 'P' if you are going to enter the patient name.  Enter 'B' to enter or wand the barcode." D ^DIR K DIR Q:$D(DIRUT)  S BC=Y
 BC S OUT=0 I BC="B" W ! S DIR("A")="Enter/wand barcode",DIR(0)="FO^5:20",DIR("?")="Enter the barcode number or wand the barcode to change all of the prescription suspense dates for one patient" D ^DIR K DIR G:$G(DIRUT) ALL S BCNUM=Y D
@@ -32,9 +45,34 @@ BC S OUT=0 I BC="B" W ! S DIR("A")="Enter/wand barcode",DIR(0)="FO^5:20",DIR("?"
  G:OUT BC
  I BC="B",'$D(^PSRX(RX,0)) W $C(7),!!?5,"Invalid Barcode!",! G BC
  I BC="B",'$D(^PS(52.5,"AC",DFN)) W !!?3,"This patient has no Rx's in suspense that have not already been printed!",! G BC
+ ;
 NAM I BC="P" W ! S DIC(0)="AEMZQ",DIC="^DPT(",DIC("S")="I $D(^PS(52.5,""AC"",+Y))!($D(^PS(52.5,""AG"",+Y)))" D ^DIC K DIC G:$D(DTOUT)!($D(DUOUT))!(Y<0) ALL S DFN=+Y
+ ;
+ ; For each of the patient's prescriptions, check whether the Bypass 3/4 Day
+ ; Supply flag is set.  If it is, display a message.
+ ;
+ N PSOCNT,PSOFILL,PSOPP
+ S PSOCNT=0
+ S PSOPP=0
+ F  S PSOPP=$O(^PS(55,DFN,"P",PSOPP)) Q:'PSOPP  D
+ . S RXREC=$G(^PS(55,DFN,"P",PSOPP,0))  ; Rx#
+ . I $P($$SUSPFILL^PSOBPSU4(RXREC),"^",1)="" Q  ; Skip if not on suspense queue
+ . S PSOFILL=$O(^PSRX(RXREC,1,"A"),-1)  ; Fill#
+ . I PSOFILL="" S PSOFILL=0
+ . I $$FLAG^PSOBPSU4(RXREC,PSOFILL)="YES" D
+ . . S PSOCNT=PSOCNT+1
+ . . I PSOCNT=1 W !
+ . . W !,"Rx #: ",$$GET1^DIQ(52,RXREC,.01,"E")
+ . . Q
+ . Q
+ I PSOCNT D
+ . W !,"Currently, Bypass 3/4 Day Supply is set to YES.  If you continue, the"
+ . W !,"prescription fill(s) will transmit to CMOP on the new Suspense Date entered.",!
+ . Q
+ ;
  F CBD=0:0 S CBD=$O(^PS(55,DFN,"P",CBD)) Q:CBD'>0!($G(PSOPOPUP))  S:$D(^PS(55,DFN,"P",CBD,0)) RXREC=+^(0) D:$D(^PS(52.5,"B",RXREC)) TEST D ULK
  G:ACT="A" ALL G:ACT="S" SPEC
+ ;
 TEST S SFN=+$O(^PS(52.5,"B",RXREC,0)) Q:'SFN  Q:$P($G(^PS(52.5,SFN,"P")),"^")'=0  S STOP=$P(^PSRX(RXREC,2),"^",6),STAT=$P($G(^("STA")),"^") D  Q:$G(PSOLKQT)  D TST D:$T A^PSXCH Q:$G(XOK)=0  I STAT=11!(STOP<DT)!(STAT=12) D EXPCAN Q
  .K PSOMSG,PSOLKQT D PSOL^PSSLOCK(RXREC) I '$G(PSOMSG) W !!,"Rx number: "_$P($G(^PSRX(RXREC,0)),"^")_" cannot be changed because" D LMES,PAUSE S PSOLKQT=1 K PSOMSG Q
  .K PSOMSG S PSOSDLK(RXREC)=""

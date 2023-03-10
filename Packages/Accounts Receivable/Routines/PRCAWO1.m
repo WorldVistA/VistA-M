@@ -1,5 +1,5 @@
 PRCAWO1 ;SF-ISC/YJK-ADMIN.COST CHARGE,TRANSACTION SUBROUTINES ;7/9/93  12:18 PM
-V ;;4.5;Accounts Receivable;**67,68,153,315**;Mar 20, 1995;Build 67
+V ;;4.5;Accounts Receivable;**67,68,153,315,377,371**;Mar 20, 1995;Build 29
  ;;Per VA Directive 6402, this routine should not be modified.
  ;Administrative cost charge transaction
  ; and subroutines called by ^PRCAWO.
@@ -25,11 +25,19 @@ DIEEN ;Loop through edit
     .Q
  I PRCAOK=1 D UPD W ?40,"*** DONE***",! Q
  D ASK2 G:PRCAOK=1 DIEEN D DELETE Q
-UPD S PRCAMF=$S($P(^PRCA(433,PRCAEN,2),U,5)]"":+$P(^(2),U,5),1:0),$P(^PRCA(430,PRCABN,7),U,4)=PRCAMF+$P(^PRCA(430,PRCABN,7),U,4)
- S PRCACC=$S(+$P(^PRCA(433,PRCAEN,2),U,6)]"":+$P(^(2),U,6),1:0),$P(^PRCA(430,PRCABN,7),U,5)=PRCACC+$P(^PRCA(430,PRCABN,7),U,5)
- S $P(^PRCA(430,PRCABN,7),U,3)=+PRCADM+$P(^PRCA(430,PRCABN,7),U,3)
- S $P(^PRCA(430,PRCABN,7),U,2)=+$P(^PRCA(433,PRCAEN,2),U,7)+$P(^PRCA(430,PRCABN,7),U,2)
- D TRANST
+UPD ; PRCA*4.5*371 - Replace direct global sets in 7 node with FileMan calls so indexes get updated
+ N PRCFDA
+ S PRCAMF=$S($P(^PRCA(433,PRCAEN,2),U,5)]"":+$P(^(2),U,5),1:0)
+ S PRCFDA(430,PRCABN_",",74)=PRCAMF+$P(^PRCA(430,PRCABN,7),U,4)
+ S PRCACC=$S(+$P(^PRCA(433,PRCAEN,2),U,6)]"":+$P(^(2),U,6),1:0)
+ S PRCFDA(430,PRCABN_",",75)=PRCACC+$P(^PRCA(430,PRCABN,7),U,5)
+ S PRCFDA(430,PRCABN_",",73)=+PRCADM+$P(^PRCA(430,PRCABN,7),U,3)
+ S PRCFDA(430,PRCABN_",",72)=+$P(^PRCA(433,PRCAEN,2),U,7)+$P(^PRCA(430,PRCABN,7),U,2)
+ D FILE^DIE(,"PRCFDA"),TRANST
+ ;
+ ;PRCA*4.5*377
+ ; Update the Repayment Plan if the bill is associated with an active plan
+ D UPDBAL^RCRPU1(PRCABN,PRCAEN)
  ;
  I $D(^PRCA(430,"TCSP",PRCABN)),PRCAEN D  ;PRCA*4.5*315/DRF add cs increase adjustment
  . I $G(RCTRREV)=0 D CSATRN^RCTCSPD5

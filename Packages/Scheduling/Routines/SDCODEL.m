@@ -1,5 +1,5 @@
-SDCODEL ;ALB/RMO - Delete Check Out ;JAN 15, 2016
- ;;5.3;Scheduling;**20,27,44,97,105,110,132,257,627,717**;Aug 13, 1993;Build 12
+SDCODEL ;ALB/RMO,BWF - Delete Check Out ;JAN 15, 2016
+ ;;5.3;Scheduling;**20,27,44,97,105,110,132,257,627,717,831**;Aug 13, 1993;Build 4
  ;
 EN(SDOE,SDMOD,SDELHDL,SDELSRC) ;Delete Check Out
  ; Input  -- SDOE     Outpatient Encounter file IEN
@@ -7,7 +7,7 @@ EN(SDOE,SDMOD,SDELHDL,SDELSRC) ;Delete Check Out
  ;           SDELHDL  Check Out Deletion Handle  [Optional]
  ;           SDELSRC  Source of delete
  ; Output -- Delete Check Out
- N DA,DFN,DE,DIE,DR,SDCL,SDDA,SDEVTF,SDOE0,SDOEP,SDORG,SDT,SDVSAV,SDVFLG
+ N DA,DFN,DE,DIE,DR,SDCL,SDDA,SDEVTF,SDOE0,SDOEP,SDORG,SDT,SDVSAV,SDVFLG,X
  D SET(SDOE,.SDOE0,.SDT,.DFN,.SDCL,.SDORG,.SDDA)
  S SDVSAV=$P(SDOE0,U,5)
  ;
@@ -15,7 +15,7 @@ EN(SDOE,SDMOD,SDELHDL,SDELSRC) ;Delete Check Out
  IF '$$EDITOK^SDCO3(SDOE,SDMOD) G ENQ
  ;
  S SDELSRC=$G(SDELSRC)  ;*zeb+1 717 11/6/18 suppress event if coming from cancel appointment
- IF SDELSRC'="PCE" S X=$$DELVFILE^PXAPI("ALL",$P($G(^SCE(SDOE,0)),U,5),"","","",1)
+ IF SDELSRC'="PCE" S X=$$DELVFILE^PXAPI("ALL",$P($G(^SCE(SDOE,0)),U,5),"","","",0)
  S SDVFLG=1
  ;
  ; -- get handle if not passed and do 'before'
@@ -29,7 +29,7 @@ EN(SDOE,SDMOD,SDELHDL,SDELSRC) ;Delete Check Out
  ; -- delete SDOE pointers and co d/t
  I SDORG=1 D
  .S DA(1)=DFN,DA=SDT,DIE="^DPT("_DFN_",""S"",",DR="21///@" D ^DIE
- .I $G(SDMOD) W !?3,"...deleting check out date/time"
+ .I $G(SDMOD)=1 W !?3,"...deleting check out date/time"
  .S DR="303///@" D DIE^SDCO1(SDCL,SDT,+SDDA,DR)
  I SDORG=3 D
  .S DA(1)=DFN,DA=+SDDA,DIE="^DPT("_DFN_",""DIS"",",DR="18///@" D ^DIE
@@ -39,7 +39,7 @@ EN(SDOE,SDMOD,SDELHDL,SDELSRC) ;Delete Check Out
  D OE(SDOE,SDMOD)
  D SDEC(DFN,SDT,SDCL)   ;delete checkout in SDEC APPOINTMENT  ;alb/sat 627
  ;
- I $G(SDMOD) W !,">>> done."
+ I $G(SDMOD)=1 W !,">>> done."
  ;
  ; -- if handle not passed, then 'after' and event
  I $G(SDEVTF),(SDELSRC'="CANCEL") D EVT^SDCOU1(SDOE,"AFTER",SDELHDL,.SDATA,SDOE0)  ;*zeb 717 11/6/18 suppress event if coming from cancel appointment
@@ -64,7 +64,7 @@ CO(SDOE,SDMOD) ;Delete Classification
  N DA,DIK,SDFL,SDI
  I $P($G(^SCE(SDOE,0)),"^",6) G COQ
  I $O(^SDD(409.42,"AO",SDOE,0))>0 D
- .I $G(SDMOD) W !?3,"...deleting classifications"
+ .I $G(SDMOD)=1 W !?3,"...deleting classifications"
  .D DEL(SDOE,409.42)
 COQ Q
  ;
@@ -85,7 +85,7 @@ OEQ Q
  ;
 COMDT(SDOE,SDMOD) ;Delete Check Out Process Completion Date
  N DA,DE,DIE,DQ,DR
- I $G(SDMOD) W !?3,"...deleting check out process completion date"
+ I $G(SDMOD)=1 W !?3,"...deleting check out process completion date"
  S DA=SDOE,DIE="^SCE(",DR=".07///@" D ^DIE
  Q
  ;

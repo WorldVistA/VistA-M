@@ -1,5 +1,5 @@
-PXRMGEV ;SLC/AGP,RFR - Generic entry point to run different Reminder Evaluation ;Feb 28, 2018@09:43
- ;;2.0;CLINICAL REMINDERS;**45**;Feb 04, 2005;Build 566
+PXRMGEV ;SLC/AGP,RFR - Generic entry point to run different Reminder Evaluation ;Apr 07, 2021@13:57
+ ;;2.0;CLINICAL REMINDERS;**45,71**;Feb 04, 2005;Build 43
  Q
  ;
 EN(RESULT,INPUT) ;
@@ -23,18 +23,18 @@ EN(RESULT,INPUT) ;
  ;   INPUT("ROC ORDERS",ORDERIEN)=""        Array of orders to evaluate Reminder Order Checks for. If defined,
  ;                                          the inputs of "ROC START", "ROC STOP", "ROC DISPLAY GROUPS",
  ;                                          "ROC STATUS" and "ROC ORDERED WITHIN" are not needed.
- ;   INPUT("ROC",ROC)=""                    Array of Reminder Order Check Groups to check for. 
+ ;   INPUT("ROC",ROC)=""                    Array of Reminder Order Check Groups to check for.
  ;                                          If ROC is ALL, run against ALL order checks.
  ;   INPUT("ROC RETURN TYPE","GROUPS")="" for groups
  ;                          ,"RULES")="" for rules
  ;                          ,"OI")="" for orderable items
  ;
  ; For Reminder List Rules:
- ;   INPUT("LR",LIST RULE NAME)=PNAME^START DATE^END DATE^SECURE^OVERWRITE^RETURN DATA     
+ ;   INPUT("LR",LIST RULE NAME)=PNAME^START DATE^END DATE^SECURE^OVERWRITE^RETURN DATA
  ;                LIST RULE NAME        Name of the List Rule to evaluate file 810.4
  ;                PNAME                 Name of the Patient List to create file 810.5
  ;                SECURE                1 or 0 should the list be secure
- ;                OVERWRITE             1 or 0 if an existing patient list with the same name should be overwritten 
+ ;                OVERWRITE             1 or 0 if an existing patient list with the same name should be overwritten
  ;                START DATE            FM date to start the list rule from
  ;                END DATE              FM date to end the list rule from
  ;                RETURN DATA           1 or 0 to determine if data should be return with the patient
@@ -69,11 +69,12 @@ EN(RESULT,INPUT) ;
  ;
  ; For Reminder Definitions:
  ;   ^TMP($J,SUB,REMINDER)="STATUS^DUE DATE^LAST DONE"
+ ;   ^TMP($J,SUB,REMINDER,"PRINT NAME")=Reminder's print name (or name if print name is null)
  ;   ^TMP($J,SUB,REMINDER,"FIEVAL")=
  ;           Merged copy of the FIEVAL array
  ;   ^TMP($J,SUB,REMINDER,"MAINTENANCE",X)=Line X of the maintenance output
  ;   ^TMP($J,SUB,REMINDER,"FINDINGS",COMPONENT REMINDER)="STATUS^DUE DATE^LAST DONE"
- ;              If REMINDER has the VA-REMINDER DEFINITION computed finding and its 
+ ;              If REMINDER has the VA-REMINDER DEFINITION computed finding and its
  ;              SAVETEMP parameter value is 1, then data for the COMPONENT REMINDER
  ;              that is executed is returned under this node
  ;   ^TMP($J,SUB,REMINDER,"FINDINGS",COMPONENT REMINDER,"FIEVAL")=
@@ -113,7 +114,7 @@ EN(RESULT,INPUT) ;
  Q
  ;
 CINPUTS(RESULT,INPUT) ;
- N DGIEN,FAIL,GNAME,NAME,NODE,ROC,ROCIENS,ROCTYPE,RIEN
+ N DGIEN,FAIL,GNAME,NAME,NODE,ROC,ROCIENS,ROCTYPE,RIEN,%DT,X,Y
  I '$D(INPUT("ROC")),'$D(INPUT("REMINDERS")),'$D(INPUT("LR")) D ERROR^PXRMGEVA(.RESULT,"No reminders items defined") Q 1
  I '$D(INPUT("LR")) D  I +$G(@RESULT@(0))<0 Q 1
  .I +$G(INPUT("DFN"))<0 D ERROR^PXRMGEVA(.RESULT,"Patient is not properly defined") Q

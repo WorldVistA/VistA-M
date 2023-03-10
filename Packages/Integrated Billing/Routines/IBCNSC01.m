@@ -1,5 +1,5 @@
 IBCNSC01 ;ALB/NLR - INSURANCE COMPANY EDIT ;6/1/05 10:06am
- ;;2.0;INTEGRATED BILLING;**52,137,191,184,232,320,349,371,399,416,432,494,519,547,592,608**;21-MAR-94;Build 90
+ ;;2.0;INTEGRATED BILLING;**52,137,191,184,232,320,349,371,399,416,432,494,519,547,592,608,668,687,713**;21-MAR-94;Build 12
  ;;Per VA Directive 6402, this routine should not be modified.
  ;
 PARAM ; -- Insurance company parameters region
@@ -111,90 +111,97 @@ MAINAD ; KDM US2487 IB*2.0*592  call in tag from IBCNSI
  D SET^IBCNSP(START+3,OFFSET,"          Fax: "_$P(IBCNS11,"^",9))
  Q
  ;
- ;
 PAYER ; This procedure builds the display for the payer associated with
  ; this insurance company.
+ ; /vd-IB-2-687 - The following module has been restructured with new code to modify
+ ;                the display for how the payer and the "EIV" and "IIU" payer
+ ;                applications are displayed.
+ ; - 08/31/20 - IIU project
+ ; - 2/4/13 - remove ePharmacy references (IB*2*494)
+ ; - 9/9/09 - eIV updated
  ; ESG - 7/29/02 - IIV project
- ;     -  9/9/09 - eIV updated
- ;     -  2/4/13 - remove ePharmacy references (IB*2*494)
  ;
- N PAYERIEN,PAYR,APPDATA,APP,DATA,APPNAME,A1,A2,A3,A4,A5,A6,A7,A8
- N START,TITLE,OFFSET,IBLINE
- S PAYERIEN=$P($G(^DIC(36,+IBCNS,3)),U,10),PAYR="",APPDATA=0
- I PAYERIEN D
- . S PAYR=$G(^IBE(365.12,PAYERIEN,0))
- . S APP=0
- . F  S APP=$O(^IBE(365.12,PAYERIEN,1,APP)) Q:'APP  D
- .. S DATA=$G(^IBE(365.12,PAYERIEN,1,APP,0))
- .. S APPNAME=$$EXTERNAL^DILFD(365.121,.01,"",$P(DATA,U,1))
- .. I APPNAME="" Q
- .. I APPNAME="IIV" S APPNAME="eIV"   ; IB*2*416 - change external display to be eIV
- .. I APPNAME="E-PHARM" Q             ; IB*2*494 - don't display ePharmacy application data
- .. I $D(APPDATA(APPNAME)) Q
- .. S (A1,A2,A3,A4,A5,A6,A7)="NO",A8=""
- .. I $P(DATA,U,2) S A1="YES"      ; national active
- .. I $P(DATA,U,3) S A2="YES"      ; local active
- .. I $P(DATA,U,7) S A3="YES"      ; auto-accept
- .. I $P(DATA,U,8) S A4="YES"      ; ident inquiries require subscr ID (*416 field not used)
- .. I $P(DATA,U,9) S A5="YES"      ; use SSN for subscriber ID (*416 field not used)
- .. I $P(DATA,U,10) S A6="YES"     ; transmit SSN (*416 field not used)
- .. I $P(DATA,U,11) S A7="YES"     ; deactivated?
- .. ; A8 = deactivation date
- .. I $P(DATA,U,12) S A8=$P($$FMTE^XLFDT($P(DATA,U,12),"5Z"),"@",1)
- .. S APPDATA(APPNAME)=A1_U_A2_U_A3_U_A4_U_A5_U_A6_U_A7_U_A8
- .. S APPDATA=APPDATA+1
- .. Q
- . Q
+ N APP,APPEIV,APPIIU,APPNAME,ARRAYEIV,ARRAYIIU,DEACTV8D,IBDATA,IBLINE,IENEIV,IENIIU,OFFSET,PIEN,PEINEIV,PEINIIU,START,TITLE
+ S PIEN=+$$GET1^DIQ(36,+IBCNS,3.10,"I"),DEACTV8D=0
+ S APPEIV=$$FIND1^DIC(365.13,,,"EIV"),APPIIU=$$FIND1^DIC(365.13,,,"IIU")
  ;
+ S IBDATA=$G(^IBE(365.12,+PIEN,0))
+ S IENEIV=+$$PYRAPP^IBCNEUT5("EIV",+PIEN)   ; Get the ien of the EIV application
+ S IENIIU=+$$PYRAPP^IBCNEUT5("IIU",+PIEN)   ; Get the ien of the IIU application
+ ;
+ S (PEINEIV,PEINIIU)=""
+ I IENEIV D
+ . D PAYER^IBCNINSU(+PIEN,"EIV","*","I",.ARRAYEIV)   ; Get the Payer's EIV data.
+ . S PEINEIV=$O(ARRAYEIV(365.121,""))
+ I IENIIU D
+ . D PAYER^IBCNINSU(+PIEN,"IIU","*","I",.ARRAYIIU)   ; Get the Payer's IIU data.
+ . S PEINIIU=$O(ARRAYIIU(365.121,""))
+ ;
+ ; Display Payer data
  S START=$O(^TMP("IBCNSC",$J,""),-1)+1
  S IB1ST("PAYER")=START
- S TITLE=" Payer Information:  e-IV "     ; esg - IB*2*494 - remove ePharmacy reference
+ S TITLE=" Payer: "_$P($G(IBDATA),U,1)
  S OFFSET=(40-($L(TITLE)/2))\1+1
  D SET^IBCNSP(START,OFFSET,TITLE,IORVON,IORVOFF)
- D SET^IBCNSP(START+1,9,"Payer Name: "_$P(PAYR,U,1))
- D SET^IBCNSP(START+2,5,"VA National ID: "_$P(PAYR,U,2))
- D SET^IBCNSP(START+2,51,"CMS National ID: "_$P(PAYR,U,3))
- S IBLINE=START+2
+ ; IB*2.0*713/DTG - start add in set for a blank line for undef error when using SL
+ D SET^IBCNSP(START+1,2,"") ;blank line
+ ; IB*2.0*713/DTG - end add in set for a blank line for undef error when using SL
+ D SET^IBCNSP(START+2,5,"VA National ID: "_$P($G(IBDATA),U,2))
+ D SET^IBCNSP(START+2,51,"CMS National ID: "_$P($G(IBDATA),U,3))
  ;
- ; Handle the case where no application data is defined
- I 'APPDATA D  G PAYERX
- . S IBLINE=IBLINE+1
- . D SET^IBCNSP(IBLINE,2," ")    ; blank line
+ I '$D(ARRAYEIV),'$D(ARRAYIIU) D  Q   ; Quit out if there is no payer data.
+ . D SET^IBCNSP(START+4,16,"Payer Application data is not defined!")
+ . D SET^IBCNSP(START+5,2,"") ;blank line
+ . S IBLINE=START+5
+ ;
+ S DEACTV8D=+$$PYRDEACT^IBCNINSU(+PIEN)   ; Deactivated status.
+ D SET^IBCNSP(START+3,8,"Deactivated: "_$$YESNO(+DEACTV8D))
+ S IBLINE=START+3
+ ;
+ ; If deactivated display date
+ I +DEACTV8D D
+ . D SET^IBCNSP(IBLINE,50,"Date Deactivated: "_$$FMTE^XLFDT($P($$GET1^DIQ(365.12,PIEN,.08,"I"),"."),"5Z"))
+ . S IBLINE=START+3
+ ;
+ ; Show eIV application data.
+ S IBLINE=IBLINE+1
+ D SET^IBCNSP(IBLINE,2,"") ;blank line
+ S IBLINE=IBLINE+1
+ D SET^IBCNSP(IBLINE,21,"Payer Application: eIV")   ; IB*2*416 - change external display to be eIV
+ I 'IENEIV D
  . S IBLINE=IBLINE+1
  . D SET^IBCNSP(IBLINE,16,"Payer Application data is not defined!")
- . Q
+ I +IENEIV D
+ . S IBLINE=IBLINE+1
+ . D SET^IBCNSP(IBLINE,4,"Nationally Enabled: "_$$YESNO(ARRAYEIV(365.121,PEINEIV,.02,"I")))
+ . D SET^IBCNSP(IBLINE,51,"FSC Auto-Update: "_$$YESNO(ARRAYEIV(365.121,PEINEIV,4.01,"I")))
+ . ;
+ . S IBLINE=IBLINE+1
+ . D SET^IBCNSP(IBLINE,7,"Locally Enabled: "_$$YESNO(ARRAYEIV(365.121,PEINEIV,.03,"I")))
  ;
- ; Display all the applications
- S APPNAME=""
- F  S APPNAME=$O(APPDATA(APPNAME)) Q:APPNAME=""  D
+ ; Show IIU application data.
+ S IBLINE=IBLINE+1
+ D SET^IBCNSP(IBLINE,2,"") ;blank line
+ S IBLINE=IBLINE+1
+ D SET^IBCNSP(IBLINE,21,"Payer Application: IIU")
+ I 'IENIIU D
  . S IBLINE=IBLINE+1
- . D SET^IBCNSP(IBLINE,2," ")    ; blank line
+ . D SET^IBCNSP(IBLINE,16,"Payer Application data is not defined!")
+ I +IENIIU D
+ . S IBLINE=IBLINE+1
+ . D SET^IBCNSP(IBLINE,4,"Nationally Enabled: "_$$YESNO(ARRAYIIU(365.121,PEINIIU,.02,"I")))
+ . D SET^IBCNSP(IBLINE,50,"Receive IIU Data: "_$$YESNO(ARRAYIIU(365.121,PEINIIU,5.01,"I")))
  . ;
  . S IBLINE=IBLINE+1
- . D SET^IBCNSP(IBLINE,2,"Payer Application: "_APPNAME)
- . D SET^IBCNSP(IBLINE,51,"FSC Auto-Update: "_$P(APPDATA(APPNAME),U,3))
- . ;
- . S IBLINE=IBLINE+1
- . D SET^IBCNSP(IBLINE,4,"National Active: "_$P(APPDATA(APPNAME),U,1))
- . D SET^IBCNSP(IBLINE,55,"Deactivated: "_$P(APPDATA(APPNAME),U,7))
- . ;
- . S IBLINE=IBLINE+1
- . D SET^IBCNSP(IBLINE,7,"Local Active: "_$P(APPDATA(APPNAME),U,2))
- . ;
- . ; If no deactivated date, then exit
- . I $P(APPDATA(APPNAME),U,8)="" Q
- . ;
- . D SET^IBCNSP(IBLINE,50,"Date Deactivated: "_$P(APPDATA(APPNAME),U,8))
- . ;
- . Q
-PAYERX ;
+ . D SET^IBCNSP(IBLINE,7,"Locally Enabled: "_$$YESNO(ARRAYIIU(365.121,PEINIIU,.03,"I")))
+ ;
  ; Two trailing blank lines after payer information display
  S IBLINE=IBLINE+1
- D SET^IBCNSP(IBLINE,2," ")    ; blank line
+ D SET^IBCNSP(IBLINE,2," ") ; blank line
  S IBLINE=IBLINE+1
- D SET^IBCNSP(IBLINE,2," ")    ; blank line
+ D SET^IBCNSP(IBLINE,2," ") ; blank line
  Q
- ;
+ ;/vd - IB-2-687 - End of newly structured code.
  ;
 REMARKS ;
  ;
@@ -217,4 +224,9 @@ SYN ;
  D SET^IBCNSP(START,OFFSET," Synonyms ",IORVON,IORVOFF)
  S SYN="" F SYNOI=1:1:8 S SYN=$O(^DIC(36,+IBCNS,10,"B",SYN)) Q:SYN=""  D SET^IBCNSP(START+SYNOI,OFFSET,$S(SYNOI>7:"  ...edit to see more...",1:"  "_SYN))
  Q
+ ;
+YESNO(VAL) ;Translate to a YES or NO value. - /vd - IB*2.0*687
+ ; INPUT:   VAL = Either 0 or 1
+ ; OUTPUT:  'YES' (for VAL=1), 'NO' (for VAL=0)
+ Q $S(VAL=1:"YES",1:"NO")
  ;

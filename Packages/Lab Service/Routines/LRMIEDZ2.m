@@ -1,9 +1,9 @@
-LRMIEDZ2 ;DALIO/JMC - MICROBIOLOGY EDIT ROUTINE ;09/07/16  08:06
- ;;5.2;LAB SERVICE;**23,104,242,295,350,427,474**;Sep 27, 1994;Build 14
+LRMIEDZ2 ;DALIO/JMC - MICROBIOLOGY EDIT ROUTINE; May 24, 2021@14:40
+ ;;5.2;LAB SERVICE;**23,104,242,295,350,427,474,536,547,561**;Sep 27, 1994;Build 2
  ;
  ; from LRFAST,LRMIEDZ,LRVER
  ;
- ; Reference to ^DIE global supported by ICR #5002
+ ; Reference to ^DIE in ICR #5002
  ;
 PAT ;
  N LRUID
@@ -125,7 +125,10 @@ PAT1 ; Called from above and LRFAST
 AUDRTN ;
  ; Also called from LRVR0 when verifying Lab UI instrument results and user wants to do full edit.
  ;
- I $P(^LR(LRDFN,"MI",LRIDT,0),U,3)!$P(^LR(LRDFN,"MI",LRIDT,0),U,9) S LRUNDO=1
+ N LRAMX,LRUNDO
+ S (LRAMX,LRUNDO)=0
+ ;LRAMX = results amended after supervisor verification
+ I $P(^LR(LRDFN,"MI",LRIDT,0),U,3)!$P(^LR(LRDFN,"MI",LRIDT,0),U,9) S (LRUNDO,LRAMX)=1
  ;
  D EC^LRMIEDZ4
  I N=0 W !,"No Tests on Accession" S (LRCAPOK,LRANOK)=0 Q
@@ -139,11 +142,37 @@ AUDRTN ;
  I LRANOK=0 Q
  I LRTX(LRI)="" W !,"EDIT CODE IN FILE 60 NOT DEFINED.",! S (LRCAPOK,LRANOK)=0 Q
  ;
- S LRTS=LRTS(LRI) D:LRUNDO UNDO^LRMIEDZ
+ S LRTS=LRTS(LRI)
  K DR
  S DA=LRIDT,DA(1)=LRDFN,DIE="^LR(LRDFN,""MI"","
  ;
  S LRSB=$S(LRTX(LRI)["11.5":1,LRTX(LRI)["23":11,LRTX(LRI)["19":8,LRTX(LRI)["15":5,LRTX(LRI)["34":16,1:"")
+ ;LR*5.2*536 add check for the Microbiology area's "date approved" field
+ ;for results which may have previously been verified.
+ ;Variable LRSB indicates the appropriate Microbiology area
+ ;Subscripts: 1 = Bacteriology; 5=Parasitology; 8=Mycology; 11=TB; 16=Virology
+ I LRSB]"",$P($G(^LR(LRDFN,"MI",LRIDT,LRSB)),U) S LRUNDO=1
+ ;LR*5.2*547 - User must acknowledge that the RPT DATE APPROVED prompt
+ ;             will be re-entered in order for results to be viewable in CPRS.
+ N LRQUITX
+ S LRQUITX=0
+ ;do not ask question if using instrumentation logic (i.e. LREDITTYPE=3)
+ I LRUNDO,$G(LREDITTYPE)'=3 D
+ . N DIR,DTOUT,DUTOUT,Y
+ . W !,"WARNING: Results have previously been verified."
+ . W !,"         If you proceed, a new RPT DATE APPROVED MUST be re-entered,"
+ . W !,"         so results are viewable in CPRS.",!
+ . W !,"Exiting early will cause results not to be viewable in CPRS.",!
+ . S DIR("A")="Do you wish to edit the accession and re-enter RPT DATE APPROVED"
+ . S DIR(0)="YN"
+ . S DIR("B")="NO"
+ . D ^DIR
+ . I $D(DTOUT)!($D(DUOUT))!($G(Y)<1) D  Q
+ . . S (LRCAPOK,LRANOK)=0
+ . . S LRQUITX=1
+ Q:LRQUITX
+ ;end of LR*5.2*547
+ D:LRUNDO UNDO
  S LRFIFO=LRTX(LRI)["FIFO",(LREND,LRSAME)=0 D:'LRFIFO TIME^LRMIEDZ3 I LREND K DR Q
  ;
  S LRSSC=$P(^LR(LRDFN,"MI",LRIDT,0),U,5)_U_$P(^(0),U,11)
@@ -161,6 +190,9 @@ AUDPT ;
  ; Execute code does not contain an edit template but fields/code
  I LRTX(LRI)'["S DR=""[",LRSB D  Q
  . X LRTX(LRI)
+ . ;LR*5.2*547: Kill ^XTMP("LRMICRO EDIT" since report was verified.
+ . I $P($G(^LR(LRDFN,"MI",LRIDT,LRSB)),"^")]"" D
+ . . K ^XTMP("LRMICRO EDIT",LRDFN,LRIDT,LRSB)
  . I $G(LREDITTYPE)=3 Q  ; If called from LRVR0 then return to complete post actions.
  . D EDIT^LRRPLU(LRDFN,LRSS,LRIDT) ; performing lab
  . D UPDATE^LRPXRM(LRDFN,"MI",LRIDT) ; clinical reminders
@@ -173,6 +205,9 @@ AUDPT ;
  S J=1 F  S J=+$O(^DIE(X,"DR",J)) Q:J<1  S K=+$O(^DIE(X,"DR",J,0)),DR(J-1,K)=^DIE(X,"DR",J,K)
  S DR=DR(1,63.05)
  D ^DIE
+ ;LR*5.2*547: Kill ^XTMP("LRMICRO EDIT" since report was verified.
+ I $P($G(^LR(LRDFN,"MI",LRIDT,LRSB)),"^")]"" D
+ . K ^XTMP("LRMICRO EDIT",LRDFN,LRIDT,LRSB)
  ;
  ; If called from LRVR0 then return to complete post actions.
  I $G(LREDITTYPE)=3 Q
@@ -191,6 +226,29 @@ AUDPT ;
  K DR
  Q
  ;
+UNDO ;LR*5.2*536 version of UNDO
+ ;Null out the "RPT DATE APPROVED" field so that unverified results are not visible in CPRS
+ I $G(LRSB)]"",$P($G(^LR(LRDFN,"MI",LRIDT,LRSB)),U) S $P(^LR(LRDFN,"MI",LRIDT,LRSB),U)=""
+ S $P(^LR(LRDFN,"MI",LRIDT,0),U,3,4)=U
+ ;LR*5.2*547: Set ^XTMP("LRMICRO EDIT" so that CPRS and VistA reports will display
+ ;            an informational message that the accession/test is being edited and
+ ;            results are not available for viewing at this time.
+ ;            Cannot rely on a null first piece at ^LR(LRDFN,"MI",LRIDT,LRSB) because
+ ;            not all sub-areas (esp. Virology) have the prelim/final flag set
+ ;            as required.
+ S ^XTMP("LRMICRO EDIT",LRDFN,LRIDT,LRSB)=DUZ
+ ;Re-set the purge date so that background processes won't kill this subscript until six
+ ;months have passed when no more Microbiology result verification is being performed in VistA.
+ S ^XTMP("LRMICRO EDIT",0)=$$FMADD^XLFDT(DT,180)_"^"_DT_" Microbiology accessions which are being edited"
+ ;LR*5.2*536:
+ ;  After discussion with Tier 2, it was decided to preserve the settings in file 68 fields
+ ;  Saving the lines below commented out in case this decision changes in the future.
+ ;  S $P(^LRO(68,LRAA,1,LRAD,1,LRAN,3),U,4)=""
+ ;  S $P(^LRO(68,LRAA,1,LRAD,1,+LRAN,4,LRTS,0),U,4,5)=U
+ ;only set amended report flag if results were previously released by a supervisor
+ I LRAMX S $P(^LR(LRDFN,"MI",LRIDT,0),U,9)=1
+ D UPDATE^LRPXRM(LRDFN,"MI",LRIDT)
+ Q
  ;
 BB ;
  W !,">>>>ERROR - NO ENTRY IN FILE #63 - PLEASE NOTIFY SYSTEM MANAGER<<^ <<<",!
@@ -201,7 +259,17 @@ EC3 ;
  S LRSSCN=$P(^LR(LRDFN,"MI",LRIDT,0),U,5)_U_$P(^(0),U,11)
  D:LRSSCN'=LRSSC UPDATE
  K LRSSCN,LRSSC S LRSAME=1
- D TIME^LRMIEDZ3 D:'LREND STF^LRMIUT
+ ;LR*5.2*561: If verifying LEDI results and status is not final,
+ ;            do not automatically populate complete date/time.
+ ;            (LRINTYPE=10 indicates LEDI.)
+ N LRXSB,LRXQUIT
+ S LRXQUIT=0
+ I $G(LRINTYPE)=10,$G(LRI),$D(LRTX(LRI)) D
+ . S LRXSB=$S(LRTX(LRI)["11.5":1,LRTX(LRI)["23":11,LRTX(LRI)["19":8,LRTX(LRI)["15":5,LRTX(LRI)["34":16,1:"")
+ . Q:LRXSB=""
+ . I $D(^LR(LRDFN,"MI",LRIDT,LRXSB)),$P(^LR(LRDFN,"MI",LRIDT,LRXSB),"^",2)'="F" S LRXQUIT=1
+ I 'LRXQUIT D TIME^LRMIEDZ3
+ D:'LREND STF^LRMIUT
  Q
  ;
  ;

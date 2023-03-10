@@ -1,5 +1,5 @@
-DIVR ;O-OIFO/GFT - VERIFY FIELD DIFLD, DATA DICTIONARY A ;5DEC2016
- ;;22.2;VA FileMan;**2,5**;Jan 05, 2016;Build 28
+DIVR ;OIFO/GFT - VERIFY FIELD DIFLD, DATA DICTIONARY A ; Aug 09, 2022@08:21
+ ;;22.2;VA FileMan;**2,5,23**;Jan 05, 2016;Build 2
  ;;Per VA Directive 6402, this routine should not be modified.
  ;;Submitted to OSEHRA 5 January 2015 by the VISTA Expertise Network.
  ;;Based on Medsphere Systems Corporation's MSC FileMan 1051.
@@ -88,7 +88,8 @@ P I @("$D(^"_DIVZ_"X,0))") S Y=X G F
 S S Y=X X DDC I '$D(X) S M=""""_Y_""" fails screen" G X
  Q:";"_DIVZ[(";"_X_":")  S M=""""_X_""" not in Set" G X
  ;
-D S X=$$DATE^DIUTL(X) ;**
+D I X'=+X S M=""""_X_""" not an internal date" G X ;p23
+ S X=$$DATE^DIUTL(X)
 N ;
 K ;
 F S DQ=X I X'?.ANP S M="Non-printing character" G X ;ALL DATA TYPES FALL THRU TO HERE

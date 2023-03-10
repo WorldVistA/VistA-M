@@ -1,21 +1,29 @@
-PSORXL ;BHAM ISC/SAB - action to be taken on prescriptions ;10/15/08 2:12pm
- ;;7.0;OUTPATIENT PHARMACY;**8,21,24,32,47,135,148,287,334,251,354,367,370,442**;DEC 1997;Build 29
+PSORXL ;BHAM ISC/SAB - action to be taken on prescriptions ;Mar 31, 2022@13:16:09
+ ;;7.0;OUTPATIENT PHARMACY;**8,21,24,32,47,135,148,287,334,251,354,367,370,442,658,441**;DEC 1997;Build 208
  ;External reference to File #50 supported by DBIA 221
  ;External references CHPUS^IBACUS and TRI^IBACUS supported by DBIA 2030
+ ;Added kill for BINGRTE to force bypass of Bingo board prompt if choose H (Hold) or PK (Park) - PaPI ;441
+ D PPLPARK^PSORXL1 I $G(PPL)="",'$O(RXRS(0)),$G(PSORX("PSOL",1))="" G RXSQUIT
  I $G(PSOTRVV),$G(PPL) S PSORX("PSOL",1)=PPL K PPL
  N SLBL,PSOSONE,PSOKLRXS,PSOSKIP S PSOSKIP=1
  S:'$G(PPL) PPL=$G(PSORX("PSOL",1)) G:$P(PSOPAR,"^",26) P
 LBL ;
  I $G(PPL) N PSOCKDC S PSOCKDC=1 D ECME^PSORXL1 I '$G(PPL) S PPL="" G RXSQUIT  ;*334 ;don't prompt to print labels for DC'ed Rx's
+ N RESULTS,PSOPARKX,PSOCNT
+ S RESULTS="PSOPARKX" D GETPARK^PSORPC01()
  W !! S DIR("A",1)="Label Printer: "_$S($G(SUSPT):PSLION,1:$G(PSOLAP))
  I $$GET1^DIQ(59,PSOSITE,134)'="" D
  . I $G(PSOFDAPT)="" S PSOFDAPT=$$DEFPRT^PSOFDAUT(PSOSITE)
  . S DIR("A",2)="FDA Med Guide Printer: "_$S($G(PSOFDAPT)="":"HOME",1:$P(PSOFDAPT,"^"))
- S DIR("A")="LABEL: QUEUE/CHANGE PRINTER"_$S($P(PSOPAR,"^",23)&($D(^XUSEC("PSORPH",DUZ))!($D(^XUSEC("PSO TECH ADV",DUZ)))):"/HOLD",1:"")_$S($P(PSOPAR,"^",24):"/SUSPEND",1:"")_$S($P(PSOPAR,"^",26):"/LABEL",1:"")_" or '^' to bypass "
+ S DIR("A")="LABEL: QUEUE/CHANGE PRINTER"_$S($P(PSOPAR,"^",23)&($D(^XUSEC("PSORPH",DUZ))!($D(^XUSEC("PSO TECH ADV",DUZ)))):"/HOLD",1:"")
+ ;S DIR("A")=DIR("A")_$S($P(PSOPAR,"^",24):"/SUSPEND",1:"")_$S($P(PSOPAR,"^",26):"/LABEL",1:"")_$S($P(PSOPAR,"^",34):"/PARK(PK)",1:"")_" or '^' to bypass "  ;papi 441
+ S DIR("A")=DIR("A")_$S($P(PSOPAR,"^",24):"/SUSPEND",1:"")_$S($P(PSOPAR,"^",26):"/LABEL",1:"")_$S($G(PSOPARKX(0))="YES":"/PARK(PK)",1:"")_" or '^' to bypass "  ;papi 441
  S DIR("?",1)="Enter 'Q' to queue labels to print",DIR("?")="Enter '^' to bypass label functions",DIR("?",4)="Enter 'S' to suspend labels to print later"
- S DIR("?",2)="Enter 'H' to hold label until Rx can be filled",DIR("?",3)="Enter 'P' for Rx profile"
- S DIR("?",5)="Enter 'C' to select another label printer"
- S:$P(PSOPAR,"^",26) DIR("?",5)="Enter 'L' to print labels without queuing"
+ S DIR("?",2)="Enter 'H' to hold label until Rx can be filled",DIR("?",3)="Enter 'PR' for Rx profile"
+ S PSOCNT=5
+ I $G(PSOPARKX(0))="YES" S DIR("?",PSOCNT)="Enter 'PK' to Park prescription(s)",PSOCNT=PSOCNT+1    ;441 PAPI
+ S DIR("?",PSOCNT)="Enter 'C' to select another label printer"
+ I $P(PSOPAR,"^",26) S PSOCNT=PSOCNT+1,DIR("?",PSOCNT)="Enter 'L' to print labels without queuing"
 TRI ;Tricare
  S X="IBACUS" X ^%ZOSF("TEST") K X I '$T G PASS
  I '$$TRI^IBACUS() G PASS
@@ -41,16 +49,19 @@ SETP K PSORX("PSOL"),PPL S VVCT=1 F VV=0:0 S VV=$O(^TMP($J,$S($G(PSTRIVAR):"PSON
  I '$G(PSTRIVAR) S (Y,LBL)="H" S PSOKLRXS=1 K PSORSAVE,PSOPSAVE,PSOHSAVE D RSAVE D H1 D RREST K PSORSAVE,PSOPSAVE,PSOHSAVE K PSOKLRXS S PSTRIVAR=1 G SETP
  K ^TMP($J,"PSONOB") S PPL=$G(PSORX("PSOL",1))
 PASS ;
+ I '$D(RESULTS) N RESULTS,PSOPARKX S RESULTS="PSOPARKX" D GETPARK^PSORPC01()
  I $E($G(DIR("A")),1,6)'="LABEL:" D RESDIR^PSOCPTRI
- S DIR(0)="SA^P:PROFILE;Q:QUEUE;C:CHANGE PRINTER"_$S($P(PSOPAR,"^",23)&($D(^XUSEC("PSORPH",DUZ))!($D(^XUSEC("PSO TECH ADV",DUZ)))):";H:HOLD",1:"")
- S DIR(0)=DIR(0)_$S($P(PSOPAR,"^",24):";S:SUSPENSE",1:"")_$S($P(PSOPAR,"^",26):";L:PRINT",1:""),DIR("B")="Q" D ^DIR D  G:$D(DIRUT)!($D(DUOUT)) EX  ;*370
+ S DIR(0)="SA^PR:PROFILE;Q:QUEUE;C:CHANGE PRINTER"_$S($P(PSOPAR,"^",23)&($D(^XUSEC("PSORPH",DUZ))!($D(^XUSEC("PSO TECH ADV",DUZ)))):";H:HOLD",1:"")
+ ;S DIR(0)=DIR(0)_$S($P(PSOPAR,"^",24):";S:SUSPENSE",1:"")_$S($P(PSOPAR,"^",26):";L:PRINT",1:"")_$S($P(PSOPAR,"^",34):";PK:PARK",1:""),DIR("B")="Q" D ^DIR S:(Y="PR") Y="P"  D  G:$D(DIRUT)!($D(DUOUT)) EX  ;*370 ;441 added PR & PARK
+ S DIR(0)=DIR(0)_$S($P(PSOPAR,"^",24):";S:SUSPENSE",1:"")_$S($P(PSOPAR,"^",26):";L:PRINT",1:"")_$S($G(PSOPARKX(0))="YES":";PK:PARK",1:""),DIR("B")="Q" D ^DIR S:Y="PR" Y="P"  D  G:$D(DIRUT)!($D(DUOUT)) EX  ;*370 ;441 added PR & PARK
  .I $D(DIRUT)!($D(DUOUT)) D AL^PSOLBL("UT") I $G(PSOEXREP) S PSOEXREX=1
  .I $G(PSOPULL) I $D(DIRUT)!($D(DUOUT)) S PSOQFLAG=1
  S:$G(PSOBEDT) NOPP=Y
  I $G(Y)="C" K PSOCLBL,%ZIS("B") S PSOCLBL=1 D @$S('$D(PSOPAR):"^PSOLSET",1:"PLBL^PSOLSET") K PSOCLBL G LBL
  I $G(Y)="Q",$D(RXRS),'$G(PSOPULL) D PPLADD^PSOSUPOE
  I $G(PSXSYS),($G(Y)'="H"),($G(Y)'="P"),('$G(PSOEXREP)) S LBL=Y,(RXLTOP,PPL1)=1 S:'$G(PSOPULL) SLBL=Y D A^PSOCMOP G:'$G(PPL) D1
- K DIR S LBL=Y S:'$G(PSOPULL) SLBL=Y G Q:Y="Q",S:Y="S",H1:Y="H",P:Y="L" I Y="P" W ! S PSDFN=DFN,PSFROM="" D ^PSODSPL K PSDFN,PSFROM G LBL
+ ;K DIR S LBL=Y S:'$G(PSOPULL) SLBL=Y G Q:Y="Q",S:Y="S",H1:Y="H",P:Y="L" I Y="P" W ! S PSDFN=DFN,PSFROM="" D ^PSODSPL K PSDFN,PSFROM G LBL  ;441 PAPI
+ K DIR S LBL=Y S:'$G(PSOPULL) SLBL=Y K:Y="H"!(Y="PK") BINGRTE G Q:Y="Q",S:Y="S",H1:Y="H",PK1:Y="PK",P:Y="L" I Y="P" W ! S PSDFN=DFN,PSFROM="" D ^PSODSPL K PSDFN,PSFROM G LBL  ;441 PAPI
 EX I $D(DUOUT)!$D(DIRUT) K BINGCRT,BINGRTE,BBRX,BBFLG S:$D(RXRS) SLBL="^" G:$D(RXRS) RXS K DIR,X,DIRUT,DUOUT,ACT,Y,DTOUT,PPL,REPRINT S NOBG=1 G RXSQUIT  ;*334
 Q S PPL1=1 G:$G(PPL)']"" D1 S PSNP=0,PSL=1 D  I $G(PSOFROM)="NEW",$P(PSOPAR,"^",8) S PSNP=1
  .Q:'$P(PSOPAR,"^",8)!($G(PSONOPRT))
@@ -78,9 +89,11 @@ QLBL I $G(PSXSYS),('$G(RXLTOP)),('$G(PSOEXREP)) D RXL^PSOCMOP G:'$G(PPL) D1
  ;- Submitting list of Rx to ECME for DUR/79 REJECT check and possible submission to 3rd Pary Payer
  D ECME^PSORXL1 I '$G(PPL) W !!,"No Label(s) printed.",!! S PSOQFLAG=1 G RXSQUIT  ;*334
  ;
+ ;S PDUZ=DUZ G DQ^PSOLBL
  S ZTRTN="DQ^PSOLBL",ZTIO=$S($G(SUSPT):PSLION,1:PSOLAP),ZTDTH=$S($G(PSOTIME):PSOTIME,1:$H),PDUZ=DUZ,OPAIO=ZTIO
  S ZTDESC="Outpatient Pharmacy "_$S($G(SUSPT):"SUSPENSE ",$G(DG):"DRUG INTERACTION ",1:"")_"LABELS OUTPUT ROUTINE"
- F G="PPL1","PSOSYS","DFN","PSOPAR","PDUZ","PCOMX",$S($G(SUSPT):"PFION",1:"PSOLAP"),"PPL" S:$D(@G) ZTSAVE(G)=""
+ ;PSO 658 - Pass PSOLAP, remove PFION since it isn't used anyplace,
+ F G="PPL1","PSOSYS","DFN","PSOPAR","PDUZ","PCOMX","PSOLAP","PPL" S:$D(@G) ZTSAVE(G)=""
  F G="RXY","PSOSITE","COPIES","SIDE","PSOSUSPR","PSOBARS","PSOBAR1","PSOBAR0","PSODELE" S:$D(@G) ZTSAVE(G)=""
  F G="PSOPULL","PSTAT","PSODBQ","PSOEXREP","PSOTREP","PSOFDAPT","PSOMGREP" S:$D(@G) ZTSAVE(G)=""
  S ZTSAVE("PSORX(")="",ZTSAVE("RXRP(")="",ZTSAVE("RXPR(")="",ZTSAVE("RXRS(")="",ZTSAVE("RXFL(")="",ZTSAVE("PCOMH(")=""
@@ -165,23 +178,23 @@ RREST N PMXZ
 OPAI ;This section of code will display where an RX is routed.
  ;To determine where an RX will be routed, check:
  ;1) if the drug for the RX is associated with an ADD device in
- ;   file #50 and if the printer is in the DISPENSING SYSTEM 
- ;   PRINTER multiple sub-file #59.02008. If it is then the RX 
- ;   will display as being routed to that device.  
+ ;   file #50 and if the printer is in the DISPENSING SYSTEM
+ ;   PRINTER multiple sub-file #59.02008. If it is then the RX
+ ;   will display as being routed to that device.
  ;2) Otherwise, the category of the ADD associated with the
- ;   printer in sub-file #59.20081 will be used to determine 
+ ;   printer in sub-file #59.20081 will be used to determine
  ;   where the RX will be routed and the ADD displayed.
  ;
  N DIC,X,Y,PN,II,RX,DEV,DDEV,ADD,DAT,DAT1,PDAT,DRG,DRG0,OPAI,CSB,RTE,FLG
  N ZTIO,MTH,NPPL
  I ($G(OPAIO)="")!($G(PPL)="") Q
  S DIC=3.5,DIC(0)="",X=OPAIO D ^DIC K DIC,X Q:Y=-1  S ZTIO=+Y
- S FLG=1,DEV=0,PN=$O(^PS(59,PSOSITE,"P","B",ZTIO,"")) I PN="" Q 
+ S FLG=1,DEV=0,PN=$O(^PS(59,PSOSITE,"P","B",ZTIO,"")) I PN="" Q
  I '$P($G(PSOPAR),"^",30) Q
  I $$GET1^DIQ(59,PSOSITE_",",105,"I")'=2.4 Q
  ;
  ;ADD array built base on category.
- ; if category is not "S" then 
+ ; if category is not "S" then
  ;               ADD(category)=ADD name^dns^port^inactive date
  ; if category is "S" then (Category "S" can be multiple)
  ;               ADD(category,ADD name)=ADD name^dns^port^inactive date
@@ -197,7 +210,7 @@ OPAI ;This section of code will display where an RX is routed.
  ..S ADD($P(DAT,"^",2),$P(DAT1,"^",2))=$P(DAT1,"^",2,99)
  S NPPL=""
  F II=1:1:$L(PPL,",") S RX=$P(PPL,",",II) D:RX'=""
- .I $G(RXRP(RX,"RP")) Q 
+ .I $G(RXRP(RX,"RP")) Q
  .S PDAT=$G(^PSRX(RX,0)),DRG=$P(PDAT,"^",6),RTE=$$RTE()
  .S DRG0=$G(^PSDRUG(+DRG,0)),DDEV=$G(^PSDRUG(+DRG,"OPAI",PSOSITE,0))
  .I $S($P(PSOPAR,"^",30)=3:1,$P(PSOPAR,"^",30)=4:1,1:0),'$$GET1^DIQ(50,DRG,28,"I") Q
@@ -237,3 +250,23 @@ RTE() ; get route for RX
  I FP="F"&(FPN) S MW=$P($G(^PSRX(RX,1,FPN,0)),"^",2)   ;refill
  I FP="P"&(FPN) S MW=$P($G(^PSRX(RX,"P",FPN,0)),"^",2) ;partial
  Q $G(MW)
+PK1 S PPL1=1 S:'$G(PPL) PPL=$G(PSORX("PSOL",PPL1))  ;441 PAPI
+ G:$G(PPL)']"" D1
+PK K SPPL G:$D(DTOUT) D1 S SPPL="" F PI=1:1 Q:$P(PPL,",",PI)=""  D   ;441 PAPI
+ .N PSOPARK,PSODRUG
+ .S PSOPARK=1
+ .S DA=$P(PPL,",",PI) D  I PSOPARK D PRK^PSOPRK(DA) W:$G(^PSRX(DA,"PARK")) !," RX# "_$P(^PSRX(DA,0),"^")_" placed in Active/Parked status." Q
+ ..S PSODRUG=$P(^PSDRUG($P(^PSRX(DA,0),"^",6),0),"^")
+ ..I $P(^PSRX(DA,"STA"),"^")'=0,($P(^("STA"),"^")'=5) W !," ",$P(^PSRX(DA,0),"^")," ",PSODRUG," not active or suspended" S PSOPARK=0 Q
+ ..S PSODRUG("DEA")=$P(^PSDRUG($P(^PSRX(DA,0),"^",6),0),"^",3)
+ ..;I $G(PSODRUG("DEA"))["D" W !," ",$P(^PSRX(DA,0),"^")," ",PSODRUG," - drug not allowed to be parked!" S PSOPARK=0 ;
+ ..I $G(PSODRUG("DEA"))["D"!(PSODRUG["CLOZAPINE") W !," ",$P(^PSRX(DA,0),"^")," ",PSODRUG," - drug not allowed to be parked!" S PSOPARK=0
+ .I $P(^PSRX(DA,"STA"),"^")=4 S SPPL=SPPL_DA_"," Q
+ ;
+ I $G(SPPL)]"" D DRUGINT
+ G D1
+ ;
+DRUGINT ;441 PAPI
+ W !!,$C(7),"Drug Interaction Rx(s) " F I=1:1 Q:$P(SPPL,",",I)=""  W $P(^PSRX($P(SPPL,",",I),0),"^")_", "
+ S PPL=SPPL,DG=1 D Q K DG,SPPL
+ Q

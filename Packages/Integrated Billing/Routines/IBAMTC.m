@@ -1,11 +1,12 @@
 IBAMTC ;ALB/CPM-MEANS TEST NIGHTLY COMPILATION JOB ;09-OCT-91
- ;;2.0;INTEGRATED BILLING;**34,52,70,93,100,118,115,132,150,153,137,176,215,275,321,312,457,519,549,614**;21-MAR-94;Build 25
+ ;;2.0;INTEGRATED BILLING;**34,52,70,93,100,118,115,132,150,153,137,176,215,275,321,312,457,519,549,614,703,706**;21-MAR-94;Build 1
  ;;Per VA Directive 6402, this routine should not be modified.
  ;
 INIT ; Entry point - initialize variables and parameters
  ;
  ;***
  ;S XRTL=$ZU(0),XRTN="IBAMTC-1" D T0^%ZOSV ;start rt clock
+ D CANCEL($$FMADD^XLFDT(DT,-7),$$NOW^XLFDT(),1) ; cancel copays (covid relief)   IB*2.0*706
  ;
  D UPDT^IBARXEPS($$FMADD^XLFDT(DT,-30),DT,1)
  ;
@@ -146,6 +147,46 @@ ORIG ; Find first admission date, considering ASIH movements
  N X,Y,Z S Z=IBA
  F  S X=$G(^DGPM(Z,0)),Y=$P(X,"^",21) Q:Y=""  S Z=+$P($G(^DGPM(Y,0)),"^",14)
  S IBADMDT=+X Q
+ ;
+CANCEL(STRTDT,ENDDT,MSG) ; cancel copays (covid relief)  IB*2.0*703
+ ;
+ ; STRTDT - starting date (internal)
+ ; ENDDT - ending date (internal)
+ ; MSG - 0 to skip Mailman bulletin, 1 to send full Mailman bulletin, 2 to send only error report
+ ;
+ N IBACT,IBCRES,IBDTM,IBECODE,IBEMSG,IBFR,IBIEN,IBN0,IBRES,IBSRVFR,IBSRVTO,IBSTAT,IBTO,IBXA,STATSTR
+ ; service dates
+ S IBSRVFR=3200406                 ; start date 04/06/20
+ S IBSRVTO=$P(^IBE(350.9,1,71),U)  ; end date comes from 350.9/71.01
+ S STATSTR="^BILLED^HOLD - RATE^HOLD - REVIEW^INCOMPLETE^ON HOLD^"  ; bill statuses to include
+ ;
+ I MSG K ^TMP("IBAMTC3",$J)
+ S IBDTM=STRTDT F  S IBDTM=$O(^IB("D",IBDTM)) Q:'IBDTM!(IBDTM'<ENDDT)  D
+ .S IBIEN=0 F  S IBIEN=$O(^IB("D",IBDTM,IBIEN)) Q:'IBIEN  D
+ ..S IBN0=^IB(IBIEN,0)  ; file 350, node 0
+ ..S IBSTAT=$$GET1^DIQ(350,IBIEN_",",.05)  ; status from 350/.05 (external)
+ ..I STATSTR'[(U_IBSTAT_U) Q  ; only cancel copays with specific status
+ ..S IBACT=$G(^IBE(350.1,+$P(IBN0,U,3),0))  ; node 0 in file 350.1 for the action type of this charge
+ ..I $P(IBACT,U,5)'=1 Q  ; action type is not "New"
+ ..S IBXA=$P(IBACT,U,11)  ; billing group
+ ..I IBXA=6!(IBXA=7) Q  ; skip CHAMPVA/TRICARE charges
+ ..I IBSTAT="INCOMPLETE",IBXA=4!(IBXA=5) Q
+ ..S IBFR=+$P(IBN0,U,14) I IBFR>IBSRVTO Q  ; Bill From date is outside the range
+ ..S IBTO=+$P(IBN0,U,15) I IBTO<IBSRVFR Q  ; Bill To date is outside the range
+ ..; cancel this copay with "pandemic response" reason
+ ..S IBCRES=$O(^IBE(350.3,"B","PANDEMIC RESPONSE",0))
+ ..S IBRES=$$CANCEL^IBECEAU6(IBIEN,IBCRES,0,0)
+ ..I MSG>0 D
+ ...I +IBRES<0 D  Q
+ ....S IBECODE=$P(IBRES,U,2),IBEMSG=$S(IBECODE'="":$P($G(^IBE(350.8,+$O(^IBE(350.8,"AC",$P(IBECODE,";"),0)),0)),U,2),1:$P(IBRES,U,3))
+ ....S ^TMP("IBAMTC3",$J,0,$P(IBN0,U))=$P(IBN0,U,11)_U_IBEMSG Q
+ ....Q
+ ...I MSG<2 S ^TMP("IBAMTC3",$J,1,$P(IBN0,U))=$P(IBN0,U,11)
+ ..Q
+ .Q
+ ; send Mailman bulletin
+ I MSG D CANCBLTN^IBAMTC3 K ^TMP("IBAMTC3",$J)
+ Q
  ;
 KILL1 ; Kill all IB variables.
  K VAERR,VAEL,VAIP,IBA,IBADMDT,IBAFY,IBATYP,IBBDT,IBBS,IBCHARG,IBCHG,IBCNT,IBCUR,IBDESC,IBDISDT,IBDT,IBDUZ,IBFAC,IBI,IBIL,IBJOB,IBLC,IBMAX

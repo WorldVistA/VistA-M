@@ -1,5 +1,5 @@
 LRMIBUG ;DALOI/JMC- DISPLAY ORGANISMS ;07/15/09  10:38
- ;;5.2;LAB SERVICE;**318,321,339,350**;Sep 27, 1994;Build 230
+ ;;5.2;LAB SERVICE;**318,321,339,350,536**;Sep 27, 1994;Build 18
  ;
  ; Reference to ^DIE global supported by ICR #5002
  ;
@@ -32,6 +32,35 @@ BUGGER ;
  S LRNB=$S($L($P(^LAB(61.2,+LRBG1,0),U,4)):$P(^(0),U,4),1:LRMIDEF),LRBI=$P(^(0),U,5)
  N LRTHISDA
  S DIE=DIC,DA=+Y,LRTHISDA=DA D TEMP,^DIE,DELINT I '$D(Y) Q
+ ;
+ ;added for LR*5.2*536
+ ;If the session times out while entering organism and/or sensitivity
+ ;(antibiotic) results, the results are not filed into the LAB DATA
+ ;(#63) file. The root cause is that TR^DIED sets variable DTOUT to 
+ ;"^" if a timeout occurs during the execution of an input template.
+ ;RE+1^DIED then invokes "I $D(DTOUT) K DQ,DG G QY^DIE1" which causes
+ ;the DIE* logic to not file the results. Further tracing was not
+ ;performed in the DIE* code.
+ ;
+ ;$G(DTOUT) = session possibly timed out without DTOUT set to "^"
+ ;$G(DTOUT)="^" = session timed out while entering organism and/or
+ ;                sensitivities
+ ;
+ I $G(DTOUT)!($G(DTOUT)="^") D  Q
+ . W !!,"**** WARNING ****"
+ . W !,"Your session has timed out.  Organism and/or antibiotic"
+ . W !,"results need to be re-entered."
+ . W !,"Verify all results on this accession are correct."
+ . N DIR
+ . S DIR(0)="E"
+ . S DIR("A")="Press enter to continue"
+ . D ^DIR
+ . D BUGOUT
+ . F  D BUGIN Q:Y<1  D
+ . . S LRBG1=Y(0)
+ . . D:$P(Y,U,3)&($P(LRPARAM,U,14))&($P($G(^LRO(68,LRAA,0)),U,16)) ETIO^LRCAPV1
+ . . D BUGGER,BUGOUT
+ ;end of LR*5.2*536 changes
  W !,"Any other antibiotics" S %=2 D YN^DICN I %'=1 Q
  I '$L(LRMIOTH) S DR="S Y=200;2.0000001:200",DR(2,63.32)=.01 D ^DIE Q
  K DR

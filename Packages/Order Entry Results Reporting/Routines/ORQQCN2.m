@@ -1,5 +1,5 @@
-ORQQCN2 ; slc/REV - Functions for GUI consult actions ;10/02/13  06:57
- ;;3.0;ORDER ENTRY/RESULTS REPORTING;**10,85,125,131,149,215,242,280,350**;Dec 17, 1997;Build 77
+ORQQCN2 ; slc/REV - Functions for GUI consult actions ;Sep 09, 2020@13:31:05
+ ;;3.0;ORDER ENTRY/RESULTS REPORTING;**10,85,125,131,149,215,242,280,350,519**;Dec 17, 1997;Build 36
  ;
  ; DBIA 2426  SERV1^GMRCASV  ^TMP("GMRCSLIST,$J)
  ; DBIA 4576  $$VALID^GMRCAU
@@ -180,9 +180,10 @@ UNRSLVD(ORY,ORDFN) ;Returns true if unresolved consults for user/pt
  S $P(ORY,U,1)=+$$ANYPENDG^GMRCTIU(ORDFN,DUZ)   ;DBIA #3473
  S $P(ORY,U,2)=+$$GET^XPAR("ALL","ORWOR SHOW CONSULTS",1,"I")
  Q
-ISPROSVC(ORY,GMRCIEN) ; IS THIS SERVICE PART OF CONSULTS-PROSTHETICS INTERFACE, wat/OR*3*280
- ;GMRCIEN - IEN of selected service
- I $G(^GMR(123.5,$G(GMRCIEN),"INT"))=1 S ORY=1
+ISPROSVC(ORY,ORIEN) ; IS THIS SERVICE PART OF CONSULTS-PROSTHETICS INTERFACE, wat/OR*3*280
+ ;ORIEN - IEN of selected service
+ S ORY=0
+ I $G(^GMR(123.5,$G(ORIEN),"INT"))=1 S ORY=1
  Q
 VALID(ORY,GMRCIEN,ORDUZ,ORIFC) ;Return users update authority for a consult
  ;ORIFC - If received, will include check for IFC Coordinator

@@ -1,5 +1,5 @@
-ORLPREM ;ISP/LMT,AGP - CPRS Team List from a Reminder Patient List ;11/08/17  14:13
- ;;3.0;ORDER ENTRY/RESULTS REPORTING;**377**;Dec 17, 1997;Build 582
+ORLPREM ;ISP/LMT,AGP - CPRS Team List from a Reminder Patient List ;Apr 21, 2021@22:16:19
+ ;;3.0;ORDER ENTRY/RESULTS REPORTING;**377,498**;Dec 17, 1997;Build 38
  ;
  ;
 ENTASK ;
@@ -70,9 +70,10 @@ EN(ORREM,ORLSTMAP) ;
  . ;
  . L +^OR(100.21,ORLST):999
  . D PRGLST(ORLST)
- . I $D(ORFDA(ORLST)) D
- . . S ORFDA(ORLST,100.21,ORLST_",",12.2)=ORREM_";PXRM(810.4,"
- . . D UPDATE^DIE("","ORFDA("_ORLST_")")
+ . ; p498 - in case there were no members on the list before and no members were added, force set 12.1
+ . S ORFDA(ORLST,100.21,ORLST_",",12.1)=$$NOW^XLFDT
+ . S ORFDA(ORLST,100.21,ORLST_",",12.2)=ORREM_";PXRM(810.4,"
+ . D UPDATE^DIE("","ORFDA("_ORLST_")")
  . L -^OR(100.21,ORLST)
  . ;
  . I $D(^TMP("DIERR",$J)) D

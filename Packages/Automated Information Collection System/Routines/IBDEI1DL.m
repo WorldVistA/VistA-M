@@ -1,128 +1,122 @@
-IBDEI1DL ; ; 04-FEB-2020
- ;;3.0;IB ENCOUNTER FORM IMP/EXP;;FEB 04, 2020
+IBDEI1DL ; ; 01-FEB-2022
+ ;;3.0;IB ENCOUNTER FORM IMP/EXP;;FEB 01, 2022
  Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,999) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
- ;;^UTILITY(U,$J,358.3,21984,1,4,0)
- ;;=4^F15.10
- ;;^UTILITY(U,$J,358.3,21984,2)
- ;;=^5003282
- ;;^UTILITY(U,$J,358.3,21985,0)
- ;;=F15.20^^99^1120^30
- ;;^UTILITY(U,$J,358.3,21985,1,0)
+ ;;^UTILITY(U,$J,358.3,22251,1,3,0)
+ ;;=3^Pressure Ulcer Right Lower Back,Unstageable
+ ;;^UTILITY(U,$J,358.3,22251,1,4,0)
+ ;;=4^L89.130
+ ;;^UTILITY(U,$J,358.3,22251,2)
+ ;;=^5009363
+ ;;^UTILITY(U,$J,358.3,22252,0)
+ ;;=L89.139^^73^959^91
+ ;;^UTILITY(U,$J,358.3,22252,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,21985,1,3,0)
- ;;=3^Stimulant Dependence,Uncomp
- ;;^UTILITY(U,$J,358.3,21985,1,4,0)
- ;;=4^F15.20
- ;;^UTILITY(U,$J,358.3,21985,2)
- ;;=^5003295
- ;;^UTILITY(U,$J,358.3,21986,0)
- ;;=F19.10^^99^1120^23
- ;;^UTILITY(U,$J,358.3,21986,1,0)
+ ;;^UTILITY(U,$J,358.3,22252,1,3,0)
+ ;;=3^Pressure Ulcer Right Lower Back,Stage Unspec
+ ;;^UTILITY(U,$J,358.3,22252,1,4,0)
+ ;;=4^L89.139
+ ;;^UTILITY(U,$J,358.3,22252,2)
+ ;;=^5133653
+ ;;^UTILITY(U,$J,358.3,22253,0)
+ ;;=L89.131^^73^959^87
+ ;;^UTILITY(U,$J,358.3,22253,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,21986,1,3,0)
- ;;=3^Psychoactive Substance Abuse,Uncomp
- ;;^UTILITY(U,$J,358.3,21986,1,4,0)
- ;;=4^F19.10
- ;;^UTILITY(U,$J,358.3,21986,2)
- ;;=^5003416
- ;;^UTILITY(U,$J,358.3,21987,0)
- ;;=F17.220^^99^1120^16
- ;;^UTILITY(U,$J,358.3,21987,1,0)
+ ;;^UTILITY(U,$J,358.3,22253,1,3,0)
+ ;;=3^Pressure Ulcer Right Lower Back,Stage 1
+ ;;^UTILITY(U,$J,358.3,22253,1,4,0)
+ ;;=4^L89.131
+ ;;^UTILITY(U,$J,358.3,22253,2)
+ ;;=^5009364
+ ;;^UTILITY(U,$J,358.3,22254,0)
+ ;;=L89.132^^73^959^88
+ ;;^UTILITY(U,$J,358.3,22254,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,21987,1,3,0)
- ;;=3^Nicotine Dependence,Chewing Tobacco,Uncomp
- ;;^UTILITY(U,$J,358.3,21987,1,4,0)
- ;;=4^F17.220
- ;;^UTILITY(U,$J,358.3,21987,2)
- ;;=^5003370
- ;;^UTILITY(U,$J,358.3,21988,0)
- ;;=F17.210^^99^1120^17
- ;;^UTILITY(U,$J,358.3,21988,1,0)
+ ;;^UTILITY(U,$J,358.3,22254,1,3,0)
+ ;;=3^Pressure Ulcer Right Lower Back,Stage 2
+ ;;^UTILITY(U,$J,358.3,22254,1,4,0)
+ ;;=4^L89.132
+ ;;^UTILITY(U,$J,358.3,22254,2)
+ ;;=^5009365
+ ;;^UTILITY(U,$J,358.3,22255,0)
+ ;;=L89.133^^73^959^89
+ ;;^UTILITY(U,$J,358.3,22255,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,21988,1,3,0)
- ;;=3^Nicotine Dependence,Cigarettes,Uncomp
- ;;^UTILITY(U,$J,358.3,21988,1,4,0)
- ;;=4^F17.210
- ;;^UTILITY(U,$J,358.3,21988,2)
- ;;=^5003365
- ;;^UTILITY(U,$J,358.3,21989,0)
- ;;=F10.11^^99^1120^1
- ;;^UTILITY(U,$J,358.3,21989,1,0)
+ ;;^UTILITY(U,$J,358.3,22255,1,3,0)
+ ;;=3^Pressure Ulcer Right Lower Back,Stage 3
+ ;;^UTILITY(U,$J,358.3,22255,1,4,0)
+ ;;=4^L89.133
+ ;;^UTILITY(U,$J,358.3,22255,2)
+ ;;=^5009366
+ ;;^UTILITY(U,$J,358.3,22256,0)
+ ;;=L89.134^^73^959^90
+ ;;^UTILITY(U,$J,358.3,22256,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,21989,1,3,0)
- ;;=3^Alcohol Abuse,In Remission
- ;;^UTILITY(U,$J,358.3,21989,1,4,0)
- ;;=4^F10.11
- ;;^UTILITY(U,$J,358.3,21989,2)
- ;;=^268230
- ;;^UTILITY(U,$J,358.3,21990,0)
- ;;=F12.11^^99^1120^7
- ;;^UTILITY(U,$J,358.3,21990,1,0)
+ ;;^UTILITY(U,$J,358.3,22256,1,3,0)
+ ;;=3^Pressure Ulcer Right Lower Back,Stage 4
+ ;;^UTILITY(U,$J,358.3,22256,1,4,0)
+ ;;=4^L89.134
+ ;;^UTILITY(U,$J,358.3,22256,2)
+ ;;=^5009367
+ ;;^UTILITY(U,$J,358.3,22257,0)
+ ;;=L89.140^^73^959^50
+ ;;^UTILITY(U,$J,358.3,22257,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,21990,1,3,0)
- ;;=3^Cannabis,In Remission
- ;;^UTILITY(U,$J,358.3,21990,1,4,0)
- ;;=4^F12.11
- ;;^UTILITY(U,$J,358.3,21990,2)
- ;;=^268236
- ;;^UTILITY(U,$J,358.3,21991,0)
- ;;=F14.11^^99^1120^8
- ;;^UTILITY(U,$J,358.3,21991,1,0)
+ ;;^UTILITY(U,$J,358.3,22257,1,3,0)
+ ;;=3^Pressure Ulcer Left Lower Back,Unstageable
+ ;;^UTILITY(U,$J,358.3,22257,1,4,0)
+ ;;=4^L89.140
+ ;;^UTILITY(U,$J,358.3,22257,2)
+ ;;=^5133655
+ ;;^UTILITY(U,$J,358.3,22258,0)
+ ;;=L89.149^^73^959^49
+ ;;^UTILITY(U,$J,358.3,22258,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,21991,1,3,0)
- ;;=3^Cocaine Abuse,In Remission
- ;;^UTILITY(U,$J,358.3,21991,1,4,0)
- ;;=4^F14.11
- ;;^UTILITY(U,$J,358.3,21991,2)
- ;;=^268249
- ;;^UTILITY(U,$J,358.3,21992,0)
- ;;=F16.11^^99^1120^11
- ;;^UTILITY(U,$J,358.3,21992,1,0)
+ ;;^UTILITY(U,$J,358.3,22258,1,3,0)
+ ;;=3^Pressure Ulcer Left Lower Back,Stage Unspec
+ ;;^UTILITY(U,$J,358.3,22258,1,4,0)
+ ;;=4^L89.149
+ ;;^UTILITY(U,$J,358.3,22258,2)
+ ;;=^5133654
+ ;;^UTILITY(U,$J,358.3,22259,0)
+ ;;=L89.141^^73^959^45
+ ;;^UTILITY(U,$J,358.3,22259,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,21992,1,3,0)
- ;;=3^Hallucinogen Abuse,In Remission
- ;;^UTILITY(U,$J,358.3,21992,1,4,0)
- ;;=4^F16.11
- ;;^UTILITY(U,$J,358.3,21992,2)
- ;;=^268239
- ;;^UTILITY(U,$J,358.3,21993,0)
- ;;=F18.11^^99^1120^14
- ;;^UTILITY(U,$J,358.3,21993,1,0)
+ ;;^UTILITY(U,$J,358.3,22259,1,3,0)
+ ;;=3^Pressure Ulcer Left Lower Back,Stage 1
+ ;;^UTILITY(U,$J,358.3,22259,1,4,0)
+ ;;=4^L89.141
+ ;;^UTILITY(U,$J,358.3,22259,2)
+ ;;=^5133656
+ ;;^UTILITY(U,$J,358.3,22260,0)
+ ;;=L89.142^^73^959^46
+ ;;^UTILITY(U,$J,358.3,22260,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,21993,1,3,0)
- ;;=3^Inhalant Abuse,In Remission
- ;;^UTILITY(U,$J,358.3,21993,1,4,0)
- ;;=4^F18.11
- ;;^UTILITY(U,$J,358.3,21993,2)
- ;;=^5151305
- ;;^UTILITY(U,$J,358.3,21994,0)
- ;;=F11.11^^99^1120^19
- ;;^UTILITY(U,$J,358.3,21994,1,0)
+ ;;^UTILITY(U,$J,358.3,22260,1,3,0)
+ ;;=3^Pressure Ulcer Left Lower Back,Stage 2
+ ;;^UTILITY(U,$J,358.3,22260,1,4,0)
+ ;;=4^L89.142
+ ;;^UTILITY(U,$J,358.3,22260,2)
+ ;;=^5133657
+ ;;^UTILITY(U,$J,358.3,22261,0)
+ ;;=L89.143^^73^959^47
+ ;;^UTILITY(U,$J,358.3,22261,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,21994,1,3,0)
- ;;=3^Opioid Abuse,In Remission
- ;;^UTILITY(U,$J,358.3,21994,1,4,0)
- ;;=4^F11.11
- ;;^UTILITY(U,$J,358.3,21994,2)
- ;;=^268246
- ;;^UTILITY(U,$J,358.3,21995,0)
- ;;=F19.11^^99^1120^22
- ;;^UTILITY(U,$J,358.3,21995,1,0)
+ ;;^UTILITY(U,$J,358.3,22261,1,3,0)
+ ;;=3^Pressure Ulcer Left Lower Back,Stage 3
+ ;;^UTILITY(U,$J,358.3,22261,1,4,0)
+ ;;=4^L89.143
+ ;;^UTILITY(U,$J,358.3,22261,2)
+ ;;=Pressure Ulcer Left Lower Back,Stage 3^5133658
+ ;;^UTILITY(U,$J,358.3,22262,0)
+ ;;=L89.144^^73^959^48
+ ;;^UTILITY(U,$J,358.3,22262,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,21995,1,3,0)
- ;;=3^Psychoactive Substance Abuse,In Remission
- ;;^UTILITY(U,$J,358.3,21995,1,4,0)
- ;;=4^F19.11
- ;;^UTILITY(U,$J,358.3,21995,2)
- ;;=^5151306
- ;;^UTILITY(U,$J,358.3,21996,0)
- ;;=F13.11^^99^1120^27
- ;;^UTILITY(U,$J,358.3,21996,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,21996,1,3,0)
- ;;=3^Sedative,Hypnotic or Anxiolytic Abuse,In Remission
- ;;^UTILITY(U,$J,358.3,21996,1,4,0)
- ;;=4^F13.11
- ;;^UTILITY(U,$J,358.3,21996,2)
- ;;=^331938
+ ;;^UTILITY(U,$J,358.3,22262,1,3,0)
+ ;;=3^Pressure Ulcer Left Lower Back,Stage 4
+ ;;^UTILITY(U,$J,358.3,22262,1,4,0)
+ ;;=4^L89.144
+ ;;^UTILITY(U,$J,358.3,22262,2)
+ ;;=^5133659
+ ;;^UTILITY(U,$J,358.3,22263,0)
+ ;;=L89.210^^73^959^86

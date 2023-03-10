@@ -1,5 +1,5 @@
-RAEDCN ;HISC/CAH,FPT,GJC,SS AISC/MJK,RMO-Edit Exams by Case Number ;10 Apr 2018 2:03 PM
- ;;5.0;Radiology/Nuclear Medicine;**5,13,10,18,28,31,34,45,85,97,124**;Mar 16, 1998;Build 4
+RAEDCN ;HISC/CAH,FPT,GJC,SS AISC/MJK,RMO-Edit Exams by Case Number ; Feb 19, 2021@08:08:21
+ ;;5.0;Radiology/Nuclear Medicine;**5,13,10,18,28,31,34,45,85,97,124,175**;Mar 16, 1998;Build 2
  ;
  ; 06/11/2007 KAM/BAY RA*5*85 Remedy Call 174790 Change Exam Cancel
  ;            to allow only descendent exams with stub report
@@ -91,7 +91,7 @@ CANCEL ;new w/RA5p124
  I $D(^RA(72,+RAST,0)),$P(^(0),"^",6)'="y" W !?3,$C(7),"This exam is in the '",$P(^(0),"^"),"' status and cannot be 'CANCELLED'." G EXIT
  ; 06/11/2007 KAM/BAY *85 Added descendent check to next line
 ASKIMG I RARPT,($$STUB^RAEDCN1(RARPT)),($$PSET^RAEDCN1(RADFN,RADTI,RACNI)) D  G:"Nn"[$E(X) EXIT G:"Yy"[$E(X) ASKCAN W:X'["?" $C(7) W !!?3,"Enter 'YES' to cancel a descendent exam with images, or 'NO' not to." G ASKIMG
- . S X=RANME_"'s Case No. "_$E(RADTE,4,7)_$E(RADTE,1,2)_"-"_RACN
+ . S X=RANME_"'s Case No. "_$E(RADTE,4,7)_$E(RADTE,2,3)_"-"_RACN ;p175
  . W !!?10,"----------------------------------",$C(7)
  . W !?10,X
  . W !?10,"This descendent exam has associated images.",$C(7)
@@ -136,10 +136,16 @@ ASKCAN ;interact with the user use DIR RA5p124
  I $D(DUOUT)#2!($D(DTOUT)#2) L -^RADPT(RADFN) D EXIT QUIT 
  S RATCOM=$P(Y,U)
  ;
+ ;/*** RA5_0P175 begin ***/
  K DIR,DIROUT,DIRUT,DTOUT,DUOUT
- S DIR(0)="70.03,3.5^^I ""^1^9^""[(U_$P(^(0),U,2)_U)",DIR("A")="REASON FOR CANCELLATION" D ^DIR
+ S DIR(0)="70.03,3.5^^I ""^1^9^""[(U_$P(^(0),U,2)_U)"
+ S DIR("A")="REASON FOR CANCELLATION" D ^DIR
  I $D(DUOUT)#2!($D(DTOUT)#2) L -^RADPT(RADFN) D EXIT QUIT
- S RAREASON=+Y ;a pointer value
+ ; Staying true to past functionality, this is not a required
+ ; field. There is no default reason presented to the user.
+ S RAREASON=$S(+Y>0:+Y,1:$O(^RA(75.2,"B","EXAM CANCELLED","")))
+ ;  >>> RA5_0P175 'EXAM CANCELLED' becomes the default reason <<<
+ ;/*** RA5_0P175 end ***/
  ;
  ;(we've not canceled the exam just yet)
  S RAY2=$G(^RADPT(RADFN,"DT",RADTI,0)) ;70.02

@@ -1,5 +1,5 @@
-PSOLBL3 ;BHAM ISC/RTR-Label utility routine ; 7/10/94
- ;;7.0;OUTPATIENT PHARMACY;**117**;DEC 1997
+PSOLBL3 ;BHAM ISC/RTR - Label utility routine ;Nov 17, 2022@08:18:47
+ ;;7.0;OUTPATIENT PHARMACY;**117,441,709**;DEC 1997;Build 4
  ;External reference ^PS(55 supported by DBIA 2228
  ;
  ;RX must be defined (Internal), Check already done for OERR SIG
@@ -22,14 +22,17 @@ FMSIG S (LVAR,LVAR1)="",LLLL=1
  .F I=0:0 S I=$O(SGY(I)) Q:'I  I $G(OSGY(I))']"" S OSGY(I)=" "
  .F I=0:0 S I=$O(OSGY(I)) Q:'I  I $G(SGY(I))']"" S SGY(I)=" "
  Q
-OTHL ;other lang. mod
+OTHL ;other lang mod
  K P,PP,L,SPSIG,SIG9,OSIG,SIG2,OSGY S PSLONG=46,OI=$P(^PSRX(RX,"OR1"),"^")
  F I=0:0 S I=$O(^PSRX(RX,6,I)) Q:'I  S INST=^(I,0) D
  .S SPSIG("DOSE",I)=$S($G(^PSRX(RX,6,I,1))]"":^PSRX(RX,6,I,1),1:$P(INST,"^")),SPSIG("DOSE ORDERED",I)=$P(INST,"^",2),SPSIG("UNITS",I)=$P(INST,"^",3),SPSIG("NOUN",I)=$P(INST,"^",4)
  .I $P(INST,"^",5)]"" S SPSIG("DURATION",I)=$S($E($P(INST,"^",5),1)'?.N:$E($P(INST,"^",5),2,99)_$E($P(INST,"^",5),1),1:$P(INST,"^",5))
  .S SPSIG("ROUTE",I)=$P(INST,"^",7),SPSIG("SCHEDULE",I)=$P(INST,"^",8)
  .S SPSIG("CONJUNCTION",I)=$P(INST,"^",6),SPSIG("VERB",I)=$P(INST,"^",9)
- S SPSIG("SIG",1)=$S($G(^PSRX(RX,"INSS"))]"":^PSRX(RX,"INSS"),1:"")
+ ;*709
+ S SPSIG("SIG",1)=""
+ I $P($G(^PSRX(RX,"IND")),"^",2),$P($G(^PSRX(RX,"IND")),"^",3)]"" S SPSIG("SIG",1)=$P(^PSRX(RX,"IND"),"^",3)
+ S SPSIG("SIG",1)=$S(SPSIG("SIG",1)]"":SPSIG("SIG",1)_" ",1:"")_$S($G(^PSRX(RX,"INSS"))]"":^PSRX(RX,"INSS"),1:"")
 NX K I,T S OTHL=1 D EN^PSOSPSIG(.SPSIG)
  S PP=1 F P=0:0 S P=$O(^PSRX(RX,"SIG1",P)) Q:'P  I $G(^PSRX(RX,"SIG1",P,0))'="" S OSIG(PP)=^(0) S PP=PP+1
  S (LVAR,LVAR1)="",L=1

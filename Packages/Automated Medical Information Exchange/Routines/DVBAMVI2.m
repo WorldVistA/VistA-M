@@ -1,5 +1,7 @@
 DVBAMVI2 ;ALB/RPM - CAPRI MVI GET CORRESPONDING IDS ;8/6/2012
- ;;2.7;AMIE;**181**;Apr 10, 1995;Build 38
+ ;;2.7;AMIE;**181,223**;Apr 10, 1995;Build 15
+ ; SAC EXEMPTION 20201020-01 : Xindex error, use of HWSC Object
+ ;
  ; Get Corresponding Ids is a function of the MVI service,
  ; used to retrieve all known MVI Identifiers as they relate
  ; to a source identifier. The transaction grouping for this
@@ -208,4 +210,36 @@ OUTPUT(DVBIN,DVBOUT) ;
  . . S DVBCNT=DVBCNT+1
  . . S DVBOUT(DVBCNT)=DVBIEN_U_$$NS^XUAF4(DVBIEN)
  S DVBOUT(0)=DVBCNT_U_$G(DVBIN(0))
+ Q
+GETACC(DVBOUT,DVBICN) ;get Active Cerner Correlations from mpi via hl7 direct rpc
+ ;
+ ; DVBOUT - return 0 (no) or 1 (yes) cerner active correlations or -1 (error)
+ ; DVBICN - patient identifier (icn)
+ ;
+ ; DIRECT^XWB2HL7 supported by subscription to ICR #3144
+ ;
+ Q:$G(DVBICN)=""
+ N DVBARRAY,DVBERROR
+ D DIRECT^XWB2HL7(.DVBARRAY,"200M","MPI GETCORRESPONDINGIDS","",DVBICN)
+ ;check for errors when connecting to mpi
+ S DVBERROR="An error has occurred that prevents CAPRI from determining if Cerner treatment records exist. Please try again. If this error persists after several attempts, please open a trouble ticket requesting IT support."
+ I $P($G(DVBARRAY(0)),"^")=""!($P($G(DVBARRAY(1)),"^")=-1) S DVBOUT="-1^"_DVBERROR_"^"_$G(DVBARRAY(1)) Q
+ D CHKACC(.DVBARRAY,.DVBOUT) ;pass by reference to set dvbout
+ Q
+ ;
+CHKACC(DVBARRAY,DVBOUT) ;check for Active Correlations with '200CRNR'
+ ;
+ ; DVBARRAY - array of patient's active correlations from mpi
+ ; DVBOUT -  return 0 (no) or 1 (yes) cerner active correlation
+ ;
+ N DVBRECN,DVBCRN,DVBERROR
+ S (DVBOUT,DVBCRN)=0
+ I $D(DVBARRAY) S DVBRECN="" F  S DVBRECN=$O(DVBARRAY(DVBRECN)) Q:DVBRECN=""  D  Q:DVBOUT=1
+  .I $P(DVBARRAY(DVBRECN),"^",2)="200CRNR"  S DVBCRN=1 D  ; check if active correlation contains '200CRNR'
+  ..; check date last treated (piece 3) not null, id type (piece 4) is pi, and status of icn or correlation (piece 6) is active
+  ..I $P(DVBARRAY(DVBRECN),"^",3)'="",$P(DVBARRAY(DVBRECN),"^",4)="PI" D
+  ...I (($P(DVBARRAY(DVBRECN),"^",6)="A")!($P(DVBARRAY(DVBRECN),"^",6)="")) S DVBOUT=1
+ I DVBCRN=0 D  ; if no active correlations contain '200CRNR'
+  .S DVBERROR="An error has occurred that prevents CAPRI from determining if Cerner treatment records exist. Please try again. If this error persists after several attempts, please open a trouble ticket requesting IT support."
+  .S DVBOUT="-1^"_DVBERROR_"^-1^'200CRNR' not found at MPI"
  Q

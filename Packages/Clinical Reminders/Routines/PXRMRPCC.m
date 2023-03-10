@@ -1,5 +1,11 @@
-PXRMRPCC ;SLC/PJH - PXRM REMINDER DIALOG ;06/17/2019
- ;;2.0;CLINICAL REMINDERS;**6,45**;Feb 04, 2005;Build 566
+PXRMRPCC ;SLC/PJH - PXRM REMINDER DIALOG ;01/11/2022
+ ;;2.0;CLINICAL REMINDERS;**6,45,65**;Feb 04, 2005;Build 438
+ ;
+ ;   API             ICR
+ ;$$GET^XPAR         2263
+ ;SHOWALL^YTQPXRM5   5056
+ ;SAVECR^YTQPXRM4    4463
+ ;NEW^WVRPCNO        4104
  ;
 ACTIVE(ORY,ORREM) ;Check if active dialog exist for reminders
  ;
@@ -13,13 +19,13 @@ ACTIVE(ORY,ORREM) ;Check if active dialog exist for reminders
  .;Dialog status
  .I DIEN S DDIS=$P($G(^PXRMD(801.41,DIEN,0)),U,3)
  .;If dialog and dialog not disabled
- .I DIEN,DDIS="" S RSTA=1
+ .I DIEN,+DDIS=0 S RSTA=1
  .;Return reminder and if active dialog exists
  .S OCNT=OCNT+1,ORY(OCNT)=RIEN_U_RSTA
  Q
  ;
  ;
-DIALOG(ORY,ORREM,DFN) ;Load reminder dialog associated with the reminder
+DIALOG(ORY,ORREM,DFN,VISITID) ;Load reminder dialog associated with the reminder
  ;
  ; input parameter ORREM - reminder ien [.01,#811.9]
  ;
@@ -39,7 +45,7 @@ DIALOG(ORY,ORREM,DFN) ;Load reminder dialog associated with the reminder
  ;
  ;Load dialog lines into local array
  S ORY(0)=0_U_+$P($G(^PXRMD(801.41,DIEN,0)),U,17)
- D LOAD^PXRMDLL(DIEN,$G(DFN))
+ D LOAD^PXRMDLL(DIEN,$G(DFN),VISITID)
  Q
  ;
 HDR(ORY,ORLOC) ;Progress Note Header by location/service/user
@@ -64,7 +70,7 @@ PROMPT(ORY,ORDLG,ORDCUR,ORFTYP,ORIEN,NDATA) ;Load additional prompts for a dialo
  ; These fields can be found in the output array of DIALOG^PXRMRPCC
  ;
  D LOAD^PXRMDLLA(ORDLG,ORDCUR,$G(ORFTYP),$G(ORIEN),$G(NDATA))
- Q 
+ Q
  ;
 RES(ORY,ORREM) ; Reminder Resources/Inquiry
  ;
@@ -79,7 +85,6 @@ MH(ORY,OTEST) ; Mental Health dialog
  ;
  K ^TMP($J,"YSQU")
  N ARRAY,CNT,CNT1,FNODE,FSUB,IC,NODE,OCNT,SUB,YS
- ;DBIA #5056
  S YS("CODE")=OTEST D SHOWALL^YTQPXRM5(.ARRAY,.YS)
  S OCNT=0,CNT=0
  S SUB="ARRAY",OCNT=0
@@ -107,7 +112,6 @@ MHS(ORY,YS) ; Mental Health save response
  S ANS=$G(YS("R1")) K YS("R1")
  S YS("ADATE")=YS("ADATE")_"."_$P($$NOW^XLFDT,".",2)
  F X=1:1:$L(ANS) I $E(ANS,X)'="X" S YS(X)=X_U_$E(ANS,X)
- ;DBIA #4463
  D SAVECR^YTQPXRM4(.ARRAY,.YS)
  Q
  ;
@@ -180,7 +184,6 @@ WH(ORY,RESULT) ;
  ...I TYP1="L" S PRINT=$P($G(NODE),U,3)
  ...S WVNOT(PUR,CNT1)=$P($G(NODE),U,5)_U_$G(TYP1)_U_$G(PRINT)_U_$P($P($G(NODE),U,4),":",2)
  K WHMUFIND,WHFIND,WHNAME
- ;DBIA #4104
  D NEW^WVRPCNO(.WVRESULT,.WVNOT)
  Q
  ;

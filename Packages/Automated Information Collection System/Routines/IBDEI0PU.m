@@ -1,124 +1,126 @@
-IBDEI0PU ; ; 04-FEB-2020
- ;;3.0;IB ENCOUNTER FORM IMP/EXP;;FEB 04, 2020
+IBDEI0PU ; ; 01-FEB-2022
+ ;;3.0;IB ENCOUNTER FORM IMP/EXP;;FEB 01, 2022
  Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,999) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
- ;;^UTILITY(U,$J,358.3,11526,0)
- ;;=H31.021^^77^737^34
- ;;^UTILITY(U,$J,358.3,11526,1,0)
+ ;;^UTILITY(U,$J,358.3,11616,1,4,0)
+ ;;=4^I13.11
+ ;;^UTILITY(U,$J,358.3,11616,2)
+ ;;=^5007069
+ ;;^UTILITY(U,$J,358.3,11617,0)
+ ;;=I13.2^^46^563^7
+ ;;^UTILITY(U,$J,358.3,11617,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,11526,1,3,0)
- ;;=3^Solar Retinopathy,Right Eye
- ;;^UTILITY(U,$J,358.3,11526,1,4,0)
- ;;=4^H31.021
- ;;^UTILITY(U,$J,358.3,11526,2)
- ;;=^5005443
- ;;^UTILITY(U,$J,358.3,11527,0)
- ;;=H31.022^^77^737^35
- ;;^UTILITY(U,$J,358.3,11527,1,0)
+ ;;^UTILITY(U,$J,358.3,11617,1,3,0)
+ ;;=3^HTN Hrt & CKD w/ Hrt Failure w/ Stage 5 Chr Kidney/ESRD
+ ;;^UTILITY(U,$J,358.3,11617,1,4,0)
+ ;;=4^I13.2
+ ;;^UTILITY(U,$J,358.3,11617,2)
+ ;;=^5007070
+ ;;^UTILITY(U,$J,358.3,11618,0)
+ ;;=I70.1^^46^563^3
+ ;;^UTILITY(U,$J,358.3,11618,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,11527,1,3,0)
- ;;=3^Solar Retinopathy,Left Eye
- ;;^UTILITY(U,$J,358.3,11527,1,4,0)
- ;;=4^H31.022
- ;;^UTILITY(U,$J,358.3,11527,2)
- ;;=^5005444
- ;;^UTILITY(U,$J,358.3,11528,0)
- ;;=H44.23^^77^737^36
- ;;^UTILITY(U,$J,358.3,11528,1,0)
+ ;;^UTILITY(U,$J,358.3,11618,1,3,0)
+ ;;=3^Atherosclerosis of Renal Artery
+ ;;^UTILITY(U,$J,358.3,11618,1,4,0)
+ ;;=4^I70.1
+ ;;^UTILITY(U,$J,358.3,11618,2)
+ ;;=^269760
+ ;;^UTILITY(U,$J,358.3,11619,0)
+ ;;=I77.3^^46^563^2
+ ;;^UTILITY(U,$J,358.3,11619,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,11528,1,3,0)
- ;;=3^Degenerative Myopia,Bilateral
- ;;^UTILITY(U,$J,358.3,11528,1,4,0)
- ;;=4^H44.23
- ;;^UTILITY(U,$J,358.3,11528,2)
- ;;=^5005989
- ;;^UTILITY(U,$J,358.3,11529,0)
- ;;=H31.011^^77^737^41
- ;;^UTILITY(U,$J,358.3,11529,1,0)
+ ;;^UTILITY(U,$J,358.3,11619,1,3,0)
+ ;;=3^Arterial Fibromuscular Dysplasia
+ ;;^UTILITY(U,$J,358.3,11619,1,4,0)
+ ;;=4^I77.3
+ ;;^UTILITY(U,$J,358.3,11619,2)
+ ;;=^5007812
+ ;;^UTILITY(U,$J,358.3,11620,0)
+ ;;=E26.02^^46^563^5
+ ;;^UTILITY(U,$J,358.3,11620,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,11529,1,3,0)
- ;;=3^Macula Scars of Posterior Pole,Right Eye
- ;;^UTILITY(U,$J,358.3,11529,1,4,0)
- ;;=4^H31.011
- ;;^UTILITY(U,$J,358.3,11529,2)
- ;;=^5005439
- ;;^UTILITY(U,$J,358.3,11530,0)
- ;;=H31.012^^77^737^42
- ;;^UTILITY(U,$J,358.3,11530,1,0)
+ ;;^UTILITY(U,$J,358.3,11620,1,3,0)
+ ;;=3^Glucocorticoid-Remediable Aldosteronism
+ ;;^UTILITY(U,$J,358.3,11620,1,4,0)
+ ;;=4^E26.02
+ ;;^UTILITY(U,$J,358.3,11620,2)
+ ;;=^329904
+ ;;^UTILITY(U,$J,358.3,11621,0)
+ ;;=I12.9^^46^563^14
+ ;;^UTILITY(U,$J,358.3,11621,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,11530,1,3,0)
- ;;=3^Macula Scars of Posterior Pole,Left Eye
- ;;^UTILITY(U,$J,358.3,11530,1,4,0)
- ;;=4^H31.012
- ;;^UTILITY(U,$J,358.3,11530,2)
- ;;=^5005440
- ;;^UTILITY(U,$J,358.3,11531,0)
- ;;=H35.50^^77^737^43
- ;;^UTILITY(U,$J,358.3,11531,1,0)
+ ;;^UTILITY(U,$J,358.3,11621,1,3,0)
+ ;;=3^Hypertensive CKD Stage 1-4
+ ;;^UTILITY(U,$J,358.3,11621,1,4,0)
+ ;;=4^I12.9
+ ;;^UTILITY(U,$J,358.3,11621,2)
+ ;;=^5007066
+ ;;^UTILITY(U,$J,358.3,11622,0)
+ ;;=I12.0^^46^563^15
+ ;;^UTILITY(U,$J,358.3,11622,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,11531,1,3,0)
- ;;=3^Retinal Dystrophy,Hereditary,Unspec
- ;;^UTILITY(U,$J,358.3,11531,1,4,0)
- ;;=4^H35.50
- ;;^UTILITY(U,$J,358.3,11531,2)
- ;;=^5005695
- ;;^UTILITY(U,$J,358.3,11532,0)
- ;;=H35.3110^^77^737^1
- ;;^UTILITY(U,$J,358.3,11532,1,0)
+ ;;^UTILITY(U,$J,358.3,11622,1,3,0)
+ ;;=3^Hypertensive CKD Stage 5 or ESRD
+ ;;^UTILITY(U,$J,358.3,11622,1,4,0)
+ ;;=4^I12.0
+ ;;^UTILITY(U,$J,358.3,11622,2)
+ ;;=^5007065
+ ;;^UTILITY(U,$J,358.3,11623,0)
+ ;;=I13.0^^46^563^6
+ ;;^UTILITY(U,$J,358.3,11623,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,11532,1,3,0)
- ;;=3^Non-Exudative ARMD,Right Eye (Unspec Stage)
- ;;^UTILITY(U,$J,358.3,11532,1,4,0)
- ;;=4^H35.3110
- ;;^UTILITY(U,$J,358.3,11532,2)
- ;;=^5138500
- ;;^UTILITY(U,$J,358.3,11533,0)
- ;;=H35.3120^^77^737^2
- ;;^UTILITY(U,$J,358.3,11533,1,0)
+ ;;^UTILITY(U,$J,358.3,11623,1,3,0)
+ ;;=3^HTN Hrt & CKD w/ Hrt Failure w/ Stage 1-4 Chr Kidney
+ ;;^UTILITY(U,$J,358.3,11623,1,4,0)
+ ;;=4^I13.0
+ ;;^UTILITY(U,$J,358.3,11623,2)
+ ;;=^5007067
+ ;;^UTILITY(U,$J,358.3,11624,0)
+ ;;=I13.10^^46^563^9
+ ;;^UTILITY(U,$J,358.3,11624,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,11533,1,3,0)
- ;;=3^Non-Exudative ARMD,Left Eye (Unspec Stage)
- ;;^UTILITY(U,$J,358.3,11533,1,4,0)
- ;;=4^H35.3120
- ;;^UTILITY(U,$J,358.3,11533,2)
- ;;=^5138505
- ;;^UTILITY(U,$J,358.3,11534,0)
- ;;=H35.3210^^77^737^7
- ;;^UTILITY(U,$J,358.3,11534,1,0)
+ ;;^UTILITY(U,$J,358.3,11624,1,3,0)
+ ;;=3^HTN Hrt & CKD w/o Hrt Failure w/ Stage 1-4 Chr Kidney
+ ;;^UTILITY(U,$J,358.3,11624,1,4,0)
+ ;;=4^I13.10
+ ;;^UTILITY(U,$J,358.3,11624,2)
+ ;;=^5007068
+ ;;^UTILITY(U,$J,358.3,11625,0)
+ ;;=I15.1^^46^563^11
+ ;;^UTILITY(U,$J,358.3,11625,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,11534,1,3,0)
- ;;=3^Exudative ARMD,Right Eye (Unspec Stage)
- ;;^UTILITY(U,$J,358.3,11534,1,4,0)
- ;;=4^H35.3210
- ;;^UTILITY(U,$J,358.3,11534,2)
- ;;=^5138520
- ;;^UTILITY(U,$J,358.3,11535,0)
- ;;=H35.3220^^77^737^8
- ;;^UTILITY(U,$J,358.3,11535,1,0)
+ ;;^UTILITY(U,$J,358.3,11625,1,3,0)
+ ;;=3^Hypertension Secondary to Oth Renal Disorders
+ ;;^UTILITY(U,$J,358.3,11625,1,4,0)
+ ;;=4^I15.1
+ ;;^UTILITY(U,$J,358.3,11625,2)
+ ;;=^5007072
+ ;;^UTILITY(U,$J,358.3,11626,0)
+ ;;=I15.2^^46^563^10
+ ;;^UTILITY(U,$J,358.3,11626,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,11535,1,3,0)
- ;;=3^Exudative ARMD,Left Eye (Unspec Stage)
- ;;^UTILITY(U,$J,358.3,11535,1,4,0)
- ;;=4^H35.3220
- ;;^UTILITY(U,$J,358.3,11535,2)
- ;;=^5138524
- ;;^UTILITY(U,$J,358.3,11536,0)
- ;;=H35.3131^^77^737^4
- ;;^UTILITY(U,$J,358.3,11536,1,0)
+ ;;^UTILITY(U,$J,358.3,11626,1,3,0)
+ ;;=3^Hypertension Secondary to Endocrine Disorders
+ ;;^UTILITY(U,$J,358.3,11626,1,4,0)
+ ;;=4^I15.2
+ ;;^UTILITY(U,$J,358.3,11626,2)
+ ;;=^5007073
+ ;;^UTILITY(U,$J,358.3,11627,0)
+ ;;=I50.1^^46^563^16
+ ;;^UTILITY(U,$J,358.3,11627,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,11536,1,3,0)
- ;;=3^Non-Exudative ARMD,Early Dry Stage,Bilateral
- ;;^UTILITY(U,$J,358.3,11536,1,4,0)
- ;;=4^H35.3131
- ;;^UTILITY(U,$J,358.3,11536,2)
- ;;=^5138511
- ;;^UTILITY(U,$J,358.3,11537,0)
- ;;=H35.3130^^77^737^3
- ;;^UTILITY(U,$J,358.3,11537,1,0)
+ ;;^UTILITY(U,$J,358.3,11627,1,3,0)
+ ;;=3^Left Ventricular Failure
+ ;;^UTILITY(U,$J,358.3,11627,1,4,0)
+ ;;=4^I50.1
+ ;;^UTILITY(U,$J,358.3,11627,2)
+ ;;=^5007238
+ ;;^UTILITY(U,$J,358.3,11628,0)
+ ;;=E26.09^^46^563^17
+ ;;^UTILITY(U,$J,358.3,11628,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,11537,1,3,0)
- ;;=3^Non-Exudative ARMD,Bilateral (Unspec Stage)
- ;;^UTILITY(U,$J,358.3,11537,1,4,0)
- ;;=4^H35.3130
- ;;^UTILITY(U,$J,358.3,11537,2)
- ;;=^5138510
+ ;;^UTILITY(U,$J,358.3,11628,1,3,0)
+ ;;=3^Primary Hyperaldosteronism,Other
+ ;;^UTILITY(U,$J,358.3,11628,1,4,0)
+ ;;=4^E26.09

@@ -1,126 +1,126 @@
-IBDEI17A ; ; 04-FEB-2020
- ;;3.0;IB ENCOUNTER FORM IMP/EXP;;FEB 04, 2020
+IBDEI17A ; ; 01-FEB-2022
+ ;;3.0;IB ENCOUNTER FORM IMP/EXP;;FEB 01, 2022
  Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,999) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
- ;;^UTILITY(U,$J,358.3,19283,1,4,0)
- ;;=4^M75.01
- ;;^UTILITY(U,$J,358.3,19283,2)
- ;;=^5013239
- ;;^UTILITY(U,$J,358.3,19284,0)
- ;;=M81.0^^93^992^5
- ;;^UTILITY(U,$J,358.3,19284,1,0)
+ ;;^UTILITY(U,$J,358.3,19506,1,4,0)
+ ;;=4^Z89.422
+ ;;^UTILITY(U,$J,358.3,19506,2)
+ ;;=^5063558
+ ;;^UTILITY(U,$J,358.3,19507,0)
+ ;;=Z89.421^^67^876^26
+ ;;^UTILITY(U,$J,358.3,19507,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,19284,1,3,0)
- ;;=3^Age-related osteoporosis w/o current pathological fracture
- ;;^UTILITY(U,$J,358.3,19284,1,4,0)
- ;;=4^M81.0
- ;;^UTILITY(U,$J,358.3,19284,2)
- ;;=^5013555
- ;;^UTILITY(U,$J,358.3,19285,0)
- ;;=M75.22^^93^992^6
- ;;^UTILITY(U,$J,358.3,19285,1,0)
+ ;;^UTILITY(U,$J,358.3,19507,1,3,0)
+ ;;=3^Acquired absence of right toe(s)
+ ;;^UTILITY(U,$J,358.3,19507,1,4,0)
+ ;;=4^Z89.421
+ ;;^UTILITY(U,$J,358.3,19507,2)
+ ;;=^5063557
+ ;;^UTILITY(U,$J,358.3,19508,0)
+ ;;=Z89.431^^67^876^17
+ ;;^UTILITY(U,$J,358.3,19508,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,19285,1,3,0)
- ;;=3^Bicipital tendinitis, left shoulder
- ;;^UTILITY(U,$J,358.3,19285,1,4,0)
- ;;=4^M75.22
- ;;^UTILITY(U,$J,358.3,19285,2)
- ;;=^5013252
- ;;^UTILITY(U,$J,358.3,19286,0)
- ;;=M75.21^^93^992^7
- ;;^UTILITY(U,$J,358.3,19286,1,0)
+ ;;^UTILITY(U,$J,358.3,19508,1,3,0)
+ ;;=3^Acquired absence of right foot
+ ;;^UTILITY(U,$J,358.3,19508,1,4,0)
+ ;;=4^Z89.431
+ ;;^UTILITY(U,$J,358.3,19508,2)
+ ;;=^5063560
+ ;;^UTILITY(U,$J,358.3,19509,0)
+ ;;=Z89.432^^67^876^3
+ ;;^UTILITY(U,$J,358.3,19509,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,19286,1,3,0)
- ;;=3^Bicipital tendinitis, right shoulder
- ;;^UTILITY(U,$J,358.3,19286,1,4,0)
- ;;=4^M75.21
- ;;^UTILITY(U,$J,358.3,19286,2)
- ;;=^5013251
- ;;^UTILITY(U,$J,358.3,19287,0)
- ;;=M17.0^^93^992^77
- ;;^UTILITY(U,$J,358.3,19287,1,0)
+ ;;^UTILITY(U,$J,358.3,19509,1,3,0)
+ ;;=3^Acquired absence of left foot
+ ;;^UTILITY(U,$J,358.3,19509,1,4,0)
+ ;;=4^Z89.432
+ ;;^UTILITY(U,$J,358.3,19509,2)
+ ;;=^5063561
+ ;;^UTILITY(U,$J,358.3,19510,0)
+ ;;=Z89.442^^67^876^1
+ ;;^UTILITY(U,$J,358.3,19510,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,19287,1,3,0)
- ;;=3^Prim Osteoarth,Knee,Bilateral
- ;;^UTILITY(U,$J,358.3,19287,1,4,0)
- ;;=4^M17.0
- ;;^UTILITY(U,$J,358.3,19287,2)
- ;;=^5010784
- ;;^UTILITY(U,$J,358.3,19288,0)
- ;;=M75.52^^93^992^10
- ;;^UTILITY(U,$J,358.3,19288,1,0)
+ ;;^UTILITY(U,$J,358.3,19510,1,3,0)
+ ;;=3^Acquired absence of left ankle
+ ;;^UTILITY(U,$J,358.3,19510,1,4,0)
+ ;;=4^Z89.442
+ ;;^UTILITY(U,$J,358.3,19510,2)
+ ;;=^5063564
+ ;;^UTILITY(U,$J,358.3,19511,0)
+ ;;=Z89.441^^67^876^15
+ ;;^UTILITY(U,$J,358.3,19511,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,19288,1,3,0)
- ;;=3^Bursitis of left shoulder
- ;;^UTILITY(U,$J,358.3,19288,1,4,0)
- ;;=4^M75.52
- ;;^UTILITY(U,$J,358.3,19288,2)
- ;;=^5133691
- ;;^UTILITY(U,$J,358.3,19289,0)
- ;;=M75.51^^93^992^11
- ;;^UTILITY(U,$J,358.3,19289,1,0)
+ ;;^UTILITY(U,$J,358.3,19511,1,3,0)
+ ;;=3^Acquired absence of right ankle
+ ;;^UTILITY(U,$J,358.3,19511,1,4,0)
+ ;;=4^Z89.441
+ ;;^UTILITY(U,$J,358.3,19511,2)
+ ;;=^5063563
+ ;;^UTILITY(U,$J,358.3,19512,0)
+ ;;=Z89.511^^67^876^23
+ ;;^UTILITY(U,$J,358.3,19512,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,19289,1,3,0)
- ;;=3^Bursitis of right shoulder
- ;;^UTILITY(U,$J,358.3,19289,1,4,0)
- ;;=4^M75.51
- ;;^UTILITY(U,$J,358.3,19289,2)
- ;;=^5133690
- ;;^UTILITY(U,$J,358.3,19290,0)
- ;;=M75.32^^93^992^12
- ;;^UTILITY(U,$J,358.3,19290,1,0)
+ ;;^UTILITY(U,$J,358.3,19512,1,3,0)
+ ;;=3^Acquired absence of right leg below knee
+ ;;^UTILITY(U,$J,358.3,19512,1,4,0)
+ ;;=4^Z89.511
+ ;;^UTILITY(U,$J,358.3,19512,2)
+ ;;=^5063566
+ ;;^UTILITY(U,$J,358.3,19513,0)
+ ;;=Z89.512^^67^876^8
+ ;;^UTILITY(U,$J,358.3,19513,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,19290,1,3,0)
- ;;=3^Calcific tendinitis of left shoulder
- ;;^UTILITY(U,$J,358.3,19290,1,4,0)
- ;;=4^M75.32
- ;;^UTILITY(U,$J,358.3,19290,2)
- ;;=^5013255
- ;;^UTILITY(U,$J,358.3,19291,0)
- ;;=M75.31^^93^992^13
- ;;^UTILITY(U,$J,358.3,19291,1,0)
+ ;;^UTILITY(U,$J,358.3,19513,1,3,0)
+ ;;=3^Acquired absence of left leg below knee
+ ;;^UTILITY(U,$J,358.3,19513,1,4,0)
+ ;;=4^Z89.512
+ ;;^UTILITY(U,$J,358.3,19513,2)
+ ;;=^5063567
+ ;;^UTILITY(U,$J,358.3,19514,0)
+ ;;=Z89.611^^67^876^22
+ ;;^UTILITY(U,$J,358.3,19514,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,19291,1,3,0)
- ;;=3^Calcific tendinitis of right shoulder
- ;;^UTILITY(U,$J,358.3,19291,1,4,0)
- ;;=4^M75.31
- ;;^UTILITY(U,$J,358.3,19291,2)
- ;;=^5013254
- ;;^UTILITY(U,$J,358.3,19292,0)
- ;;=M22.42^^93^992^14
- ;;^UTILITY(U,$J,358.3,19292,1,0)
+ ;;^UTILITY(U,$J,358.3,19514,1,3,0)
+ ;;=3^Acquired absence of right leg above knee
+ ;;^UTILITY(U,$J,358.3,19514,1,4,0)
+ ;;=4^Z89.611
+ ;;^UTILITY(U,$J,358.3,19514,2)
+ ;;=^5063572
+ ;;^UTILITY(U,$J,358.3,19515,0)
+ ;;=Z89.612^^67^876^7
+ ;;^UTILITY(U,$J,358.3,19515,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,19292,1,3,0)
- ;;=3^Chondromalacia patellae, left knee
- ;;^UTILITY(U,$J,358.3,19292,1,4,0)
- ;;=4^M22.42
- ;;^UTILITY(U,$J,358.3,19292,2)
- ;;=^5011187
- ;;^UTILITY(U,$J,358.3,19293,0)
- ;;=M22.41^^93^992^15
- ;;^UTILITY(U,$J,358.3,19293,1,0)
+ ;;^UTILITY(U,$J,358.3,19515,1,3,0)
+ ;;=3^Acquired absence of left leg above knee
+ ;;^UTILITY(U,$J,358.3,19515,1,4,0)
+ ;;=4^Z89.612
+ ;;^UTILITY(U,$J,358.3,19515,2)
+ ;;=^5063573
+ ;;^UTILITY(U,$J,358.3,19516,0)
+ ;;=Z89.622^^67^876^6
+ ;;^UTILITY(U,$J,358.3,19516,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,19293,1,3,0)
- ;;=3^Chondromalacia patellae, right knee
- ;;^UTILITY(U,$J,358.3,19293,1,4,0)
- ;;=4^M22.41
- ;;^UTILITY(U,$J,358.3,19293,2)
- ;;=^5011186
- ;;^UTILITY(U,$J,358.3,19294,0)
- ;;=M62.472^^93^992^16
- ;;^UTILITY(U,$J,358.3,19294,1,0)
+ ;;^UTILITY(U,$J,358.3,19516,1,3,0)
+ ;;=3^Acquired absence of left hip joint
+ ;;^UTILITY(U,$J,358.3,19516,1,4,0)
+ ;;=4^Z89.622
+ ;;^UTILITY(U,$J,358.3,19516,2)
+ ;;=^5063576
+ ;;^UTILITY(U,$J,358.3,19517,0)
+ ;;=Z89.621^^67^876^20
+ ;;^UTILITY(U,$J,358.3,19517,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,19294,1,3,0)
- ;;=3^Contracture of muscle, left ankle and foot
- ;;^UTILITY(U,$J,358.3,19294,1,4,0)
- ;;=4^M62.472
- ;;^UTILITY(U,$J,358.3,19294,2)
- ;;=^5012651
- ;;^UTILITY(U,$J,358.3,19295,0)
- ;;=M62.432^^93^992^17
- ;;^UTILITY(U,$J,358.3,19295,1,0)
+ ;;^UTILITY(U,$J,358.3,19517,1,3,0)
+ ;;=3^Acquired absence of right hip joint
+ ;;^UTILITY(U,$J,358.3,19517,1,4,0)
+ ;;=4^Z89.621
+ ;;^UTILITY(U,$J,358.3,19517,2)
+ ;;=^5063575
+ ;;^UTILITY(U,$J,358.3,19518,0)
+ ;;=R47.01^^67^877^1
+ ;;^UTILITY(U,$J,358.3,19518,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,19295,1,3,0)
- ;;=3^Contracture of muscle, left forearm
- ;;^UTILITY(U,$J,358.3,19295,1,4,0)
- ;;=4^M62.432
+ ;;^UTILITY(U,$J,358.3,19518,1,3,0)
+ ;;=3^Aphasia
+ ;;^UTILITY(U,$J,358.3,19518,1,4,0)
+ ;;=4^R47.01

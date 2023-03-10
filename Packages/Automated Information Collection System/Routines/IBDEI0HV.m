@@ -1,128 +1,118 @@
-IBDEI0HV ; ; 04-FEB-2020
- ;;3.0;IB ENCOUNTER FORM IMP/EXP;;FEB 04, 2020
+IBDEI0HV ; ; 01-FEB-2022
+ ;;3.0;IB ENCOUNTER FORM IMP/EXP;;FEB 01, 2022
  Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,999) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
- ;;^UTILITY(U,$J,358.3,7782,1,4,0)
- ;;=4^E87.70
- ;;^UTILITY(U,$J,358.3,7782,2)
- ;;=^5003023
- ;;^UTILITY(U,$J,358.3,7783,0)
- ;;=E87.79^^63^502^8
- ;;^UTILITY(U,$J,358.3,7783,1,0)
+ ;;^UTILITY(U,$J,358.3,8045,0)
+ ;;=L97.422^^39^391^202
+ ;;^UTILITY(U,$J,358.3,8045,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,7783,1,3,0)
- ;;=3^Fluid Overload,Other
- ;;^UTILITY(U,$J,358.3,7783,1,4,0)
- ;;=4^E87.79
- ;;^UTILITY(U,$J,358.3,7783,2)
- ;;=^5003025
- ;;^UTILITY(U,$J,358.3,7784,0)
- ;;=R73.09^^63^502^1
- ;;^UTILITY(U,$J,358.3,7784,1,0)
+ ;;^UTILITY(U,$J,358.3,8045,1,3,0)
+ ;;=3^Non-Pressure Chr Ulcer of Left Heel/Midfoot w/ Fat Layer Exposed
+ ;;^UTILITY(U,$J,358.3,8045,1,4,0)
+ ;;=4^L97.422
+ ;;^UTILITY(U,$J,358.3,8045,2)
+ ;;=^5009536
+ ;;^UTILITY(U,$J,358.3,8046,0)
+ ;;=L97.423^^39^391^203
+ ;;^UTILITY(U,$J,358.3,8046,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,7784,1,3,0)
- ;;=3^Abnormal Glucose
- ;;^UTILITY(U,$J,358.3,7784,1,4,0)
- ;;=4^R73.09
- ;;^UTILITY(U,$J,358.3,7784,2)
- ;;=^5019563
- ;;^UTILITY(U,$J,358.3,7785,0)
- ;;=D62.^^63^502^2
- ;;^UTILITY(U,$J,358.3,7785,1,0)
+ ;;^UTILITY(U,$J,358.3,8046,1,3,0)
+ ;;=3^Non-Pressure Chr Ulcer of Left Heel/Midfoot w/ Necrosis of Muscle
+ ;;^UTILITY(U,$J,358.3,8046,1,4,0)
+ ;;=4^L97.423
+ ;;^UTILITY(U,$J,358.3,8046,2)
+ ;;=^5009537
+ ;;^UTILITY(U,$J,358.3,8047,0)
+ ;;=L97.424^^39^391^204
+ ;;^UTILITY(U,$J,358.3,8047,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,7785,1,3,0)
- ;;=3^Acute Posthemorrhagic Anemia
- ;;^UTILITY(U,$J,358.3,7785,1,4,0)
- ;;=4^D62.
- ;;^UTILITY(U,$J,358.3,7785,2)
- ;;=^267986
- ;;^UTILITY(U,$J,358.3,7786,0)
- ;;=F06.8^^63^502^13
- ;;^UTILITY(U,$J,358.3,7786,1,0)
+ ;;^UTILITY(U,$J,358.3,8047,1,3,0)
+ ;;=3^Non-Pressure Chr Ulcer of Left Heel/Midfoot w/ Necrosis of Bone
+ ;;^UTILITY(U,$J,358.3,8047,1,4,0)
+ ;;=4^L97.424
+ ;;^UTILITY(U,$J,358.3,8047,2)
+ ;;=^5009538
+ ;;^UTILITY(U,$J,358.3,8048,0)
+ ;;=L97.429^^39^391^205
+ ;;^UTILITY(U,$J,358.3,8048,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,7786,1,3,0)
- ;;=3^Mental Disorders d/t Known Physiological Condition NEC
- ;;^UTILITY(U,$J,358.3,7786,1,4,0)
- ;;=4^F06.8
- ;;^UTILITY(U,$J,358.3,7786,2)
- ;;=^5003062
- ;;^UTILITY(U,$J,358.3,7787,0)
- ;;=F05.^^63^502^5
- ;;^UTILITY(U,$J,358.3,7787,1,0)
+ ;;^UTILITY(U,$J,358.3,8048,1,3,0)
+ ;;=3^Non-Pressure Chr Ulcer of Left Heel/Midfoot w/ Unspec Severity
+ ;;^UTILITY(U,$J,358.3,8048,1,4,0)
+ ;;=4^L97.429
+ ;;^UTILITY(U,$J,358.3,8048,2)
+ ;;=^5009539
+ ;;^UTILITY(U,$J,358.3,8049,0)
+ ;;=L97.511^^39^391^238
+ ;;^UTILITY(U,$J,358.3,8049,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,7787,1,3,0)
- ;;=3^Delirium d/t Known Physiological Condition
- ;;^UTILITY(U,$J,358.3,7787,1,4,0)
- ;;=4^F05.
- ;;^UTILITY(U,$J,358.3,7787,2)
- ;;=^5003052
- ;;^UTILITY(U,$J,358.3,7788,0)
- ;;=R73.9^^63^502^10
- ;;^UTILITY(U,$J,358.3,7788,1,0)
+ ;;^UTILITY(U,$J,358.3,8049,1,3,0)
+ ;;=3^Non-Pressure Chr Ulcer of Right Foot w/ Breakdown of Skin
+ ;;^UTILITY(U,$J,358.3,8049,1,4,0)
+ ;;=4^L97.511
+ ;;^UTILITY(U,$J,358.3,8049,2)
+ ;;=^5009545
+ ;;^UTILITY(U,$J,358.3,8050,0)
+ ;;=L97.512^^39^391^239
+ ;;^UTILITY(U,$J,358.3,8050,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,7788,1,3,0)
- ;;=3^Hyperglycemia,Unspec
- ;;^UTILITY(U,$J,358.3,7788,1,4,0)
- ;;=4^R73.9
- ;;^UTILITY(U,$J,358.3,7788,2)
- ;;=^5019564
- ;;^UTILITY(U,$J,358.3,7789,0)
- ;;=K56.0^^63^502^14
- ;;^UTILITY(U,$J,358.3,7789,1,0)
+ ;;^UTILITY(U,$J,358.3,8050,1,3,0)
+ ;;=3^Non-Pressure Chr Ulcer of Right Foot w/ Fat Layer Exposed
+ ;;^UTILITY(U,$J,358.3,8050,1,4,0)
+ ;;=4^L97.512
+ ;;^UTILITY(U,$J,358.3,8050,2)
+ ;;=^5009546
+ ;;^UTILITY(U,$J,358.3,8051,0)
+ ;;=L97.513^^39^391^240
+ ;;^UTILITY(U,$J,358.3,8051,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,7789,1,3,0)
- ;;=3^Paralytic Ileus
- ;;^UTILITY(U,$J,358.3,7789,1,4,0)
- ;;=4^K56.0
- ;;^UTILITY(U,$J,358.3,7789,2)
- ;;=^89879
- ;;^UTILITY(U,$J,358.3,7790,0)
- ;;=I97.710^^63^503^20
- ;;^UTILITY(U,$J,358.3,7790,1,0)
+ ;;^UTILITY(U,$J,358.3,8051,1,3,0)
+ ;;=3^Non-Pressure Chr Ulcer of Right Foot w/ Necrosis of Muscle
+ ;;^UTILITY(U,$J,358.3,8051,1,4,0)
+ ;;=4^L97.513
+ ;;^UTILITY(U,$J,358.3,8051,2)
+ ;;=^5009547
+ ;;^UTILITY(U,$J,358.3,8052,0)
+ ;;=L97.514^^39^391^241
+ ;;^UTILITY(U,$J,358.3,8052,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,7790,1,3,0)
- ;;=3^Intraoperative Cardiac Arrest During Cardiac Surgery
- ;;^UTILITY(U,$J,358.3,7790,1,4,0)
- ;;=4^I97.710
- ;;^UTILITY(U,$J,358.3,7790,2)
- ;;=^5008103
- ;;^UTILITY(U,$J,358.3,7791,0)
- ;;=I97.790^^63^503^21
- ;;^UTILITY(U,$J,358.3,7791,1,0)
+ ;;^UTILITY(U,$J,358.3,8052,1,3,0)
+ ;;=3^Non-Pressure Chr Ulcer of Right Foot w/ Necrosis of Bone
+ ;;^UTILITY(U,$J,358.3,8052,1,4,0)
+ ;;=4^L97.514
+ ;;^UTILITY(U,$J,358.3,8052,2)
+ ;;=^5009548
+ ;;^UTILITY(U,$J,358.3,8053,0)
+ ;;=L97.519^^39^391^242
+ ;;^UTILITY(U,$J,358.3,8053,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,7791,1,3,0)
- ;;=3^Intraoperative Cardiac Function Disturbance During Cardiac Surgery
- ;;^UTILITY(U,$J,358.3,7791,1,4,0)
- ;;=4^I97.790
- ;;^UTILITY(U,$J,358.3,7791,2)
- ;;=^5008105
- ;;^UTILITY(U,$J,358.3,7792,0)
- ;;=I97.88^^63^503^22
- ;;^UTILITY(U,$J,358.3,7792,1,0)
+ ;;^UTILITY(U,$J,358.3,8053,1,3,0)
+ ;;=3^Non-Pressure Chr Ulcer of Right Foot w/ Unspec Severity
+ ;;^UTILITY(U,$J,358.3,8053,1,4,0)
+ ;;=4^L97.519
+ ;;^UTILITY(U,$J,358.3,8053,2)
+ ;;=^5009549
+ ;;^UTILITY(U,$J,358.3,8054,0)
+ ;;=L97.521^^39^391^193
+ ;;^UTILITY(U,$J,358.3,8054,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,7792,1,3,0)
- ;;=3^Intraoperative Complications of the Circ System
- ;;^UTILITY(U,$J,358.3,7792,1,4,0)
- ;;=4^I97.88
- ;;^UTILITY(U,$J,358.3,7792,2)
- ;;=^5008111
- ;;^UTILITY(U,$J,358.3,7793,0)
- ;;=I97.89^^63^503^30
- ;;^UTILITY(U,$J,358.3,7793,1,0)
+ ;;^UTILITY(U,$J,358.3,8054,1,3,0)
+ ;;=3^Non-Pressure Chr Ulcer of Left Foot w/ Breakdown of Skin
+ ;;^UTILITY(U,$J,358.3,8054,1,4,0)
+ ;;=4^L97.521
+ ;;^UTILITY(U,$J,358.3,8054,2)
+ ;;=^5009550
+ ;;^UTILITY(U,$J,358.3,8055,0)
+ ;;=L97.522^^39^391^194
+ ;;^UTILITY(U,$J,358.3,8055,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,7793,1,3,0)
- ;;=3^Postprocedure Complication/Disorder of the Circ System
- ;;^UTILITY(U,$J,358.3,7793,1,4,0)
- ;;=4^I97.89
- ;;^UTILITY(U,$J,358.3,7793,2)
- ;;=^5008112
- ;;^UTILITY(U,$J,358.3,7794,0)
- ;;=T82.817A^^63^503^10
- ;;^UTILITY(U,$J,358.3,7794,1,0)
+ ;;^UTILITY(U,$J,358.3,8055,1,3,0)
+ ;;=3^Non-Pressure Chr Ulcer of Left Foot w/ Fat Layer Exposed
+ ;;^UTILITY(U,$J,358.3,8055,1,4,0)
+ ;;=4^L97.522
+ ;;^UTILITY(U,$J,358.3,8055,2)
+ ;;=^5009551
+ ;;^UTILITY(U,$J,358.3,8056,0)
+ ;;=L97.523^^39^391^195
+ ;;^UTILITY(U,$J,358.3,8056,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,7794,1,3,0)
- ;;=3^Embolism of Cardiac Prosth Dev/Graft,Init
- ;;^UTILITY(U,$J,358.3,7794,1,4,0)
- ;;=4^T82.817A
- ;;^UTILITY(U,$J,358.3,7794,2)
- ;;=^5054914

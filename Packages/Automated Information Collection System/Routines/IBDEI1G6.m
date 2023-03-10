@@ -1,126 +1,126 @@
-IBDEI1G6 ; ; 04-FEB-2020
- ;;3.0;IB ENCOUNTER FORM IMP/EXP;;FEB 04, 2020
+IBDEI1G6 ; ; 01-FEB-2022
+ ;;3.0;IB ENCOUNTER FORM IMP/EXP;;FEB 01, 2022
  Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,999) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
- ;;^UTILITY(U,$J,358.3,23147,0)
- ;;=R06.82^^105^1168^39
- ;;^UTILITY(U,$J,358.3,23147,1,0)
+ ;;^UTILITY(U,$J,358.3,23412,1,4,0)
+ ;;=4^D68.318
+ ;;^UTILITY(U,$J,358.3,23412,2)
+ ;;=^340504
+ ;;^UTILITY(U,$J,358.3,23413,0)
+ ;;=Z79.01^^78^1009^14
+ ;;^UTILITY(U,$J,358.3,23413,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,23147,1,3,0)
- ;;=3^Tachypnea NEC
- ;;^UTILITY(U,$J,358.3,23147,1,4,0)
- ;;=4^R06.82
- ;;^UTILITY(U,$J,358.3,23147,2)
- ;;=^5019191
- ;;^UTILITY(U,$J,358.3,23148,0)
- ;;=R06.00^^105^1168^18
- ;;^UTILITY(U,$J,358.3,23148,1,0)
+ ;;^UTILITY(U,$J,358.3,23413,1,3,0)
+ ;;=3^Long Term (Current) Use of Anticoagulants
+ ;;^UTILITY(U,$J,358.3,23413,1,4,0)
+ ;;=4^Z79.01
+ ;;^UTILITY(U,$J,358.3,23413,2)
+ ;;=^5063330
+ ;;^UTILITY(U,$J,358.3,23414,0)
+ ;;=Z79.02^^78^1009^15
+ ;;^UTILITY(U,$J,358.3,23414,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,23148,1,3,0)
- ;;=3^Dyspnea,Unspec
- ;;^UTILITY(U,$J,358.3,23148,1,4,0)
- ;;=4^R06.00
- ;;^UTILITY(U,$J,358.3,23148,2)
- ;;=^5019180
- ;;^UTILITY(U,$J,358.3,23149,0)
- ;;=R06.09^^105^1168^17
- ;;^UTILITY(U,$J,358.3,23149,1,0)
+ ;;^UTILITY(U,$J,358.3,23414,1,3,0)
+ ;;=3^Long Term (Current) use of Antithrombotics/Antiplatelets
+ ;;^UTILITY(U,$J,358.3,23414,1,4,0)
+ ;;=4^Z79.02
+ ;;^UTILITY(U,$J,358.3,23414,2)
+ ;;=^5063331
+ ;;^UTILITY(U,$J,358.3,23415,0)
+ ;;=D68.62^^78^1009^16
+ ;;^UTILITY(U,$J,358.3,23415,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,23149,1,3,0)
- ;;=3^Dyspnea NEC
- ;;^UTILITY(U,$J,358.3,23149,1,4,0)
- ;;=4^R06.09
- ;;^UTILITY(U,$J,358.3,23149,2)
- ;;=^5019182
- ;;^UTILITY(U,$J,358.3,23150,0)
- ;;=R04.89^^105^1168^36
- ;;^UTILITY(U,$J,358.3,23150,1,0)
+ ;;^UTILITY(U,$J,358.3,23415,1,3,0)
+ ;;=3^Lupus Anticoagulant Syndrome
+ ;;^UTILITY(U,$J,358.3,23415,1,4,0)
+ ;;=4^D68.62
+ ;;^UTILITY(U,$J,358.3,23415,2)
+ ;;=^5002361
+ ;;^UTILITY(U,$J,358.3,23416,0)
+ ;;=I73.9^^78^1009^17
+ ;;^UTILITY(U,$J,358.3,23416,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,23150,1,3,0)
- ;;=3^Respiratory Passage Hemorrhage
- ;;^UTILITY(U,$J,358.3,23150,1,4,0)
- ;;=4^R04.89
- ;;^UTILITY(U,$J,358.3,23150,2)
- ;;=^5019177
- ;;^UTILITY(U,$J,358.3,23151,0)
- ;;=J96.02^^105^1168^1
- ;;^UTILITY(U,$J,358.3,23151,1,0)
+ ;;^UTILITY(U,$J,358.3,23416,1,3,0)
+ ;;=3^Peripheral Vascular Disease,Unspec
+ ;;^UTILITY(U,$J,358.3,23416,1,4,0)
+ ;;=4^I73.9
+ ;;^UTILITY(U,$J,358.3,23416,2)
+ ;;=^184182
+ ;;^UTILITY(U,$J,358.3,23417,0)
+ ;;=Z86.79^^78^1009^18
+ ;;^UTILITY(U,$J,358.3,23417,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,23151,1,3,0)
- ;;=3^Acute Respiratory Failure w/ Hypercapnia
- ;;^UTILITY(U,$J,358.3,23151,1,4,0)
- ;;=4^J96.02
- ;;^UTILITY(U,$J,358.3,23151,2)
- ;;=^5008349
- ;;^UTILITY(U,$J,358.3,23152,0)
- ;;=J96.01^^105^1168^2
- ;;^UTILITY(U,$J,358.3,23152,1,0)
+ ;;^UTILITY(U,$J,358.3,23417,1,3,0)
+ ;;=3^Personal Hx of Circulatory System Diseases
+ ;;^UTILITY(U,$J,358.3,23417,1,4,0)
+ ;;=4^Z86.79
+ ;;^UTILITY(U,$J,358.3,23417,2)
+ ;;=^5063479
+ ;;^UTILITY(U,$J,358.3,23418,0)
+ ;;=Z86.711^^78^1009^19
+ ;;^UTILITY(U,$J,358.3,23418,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,23152,1,3,0)
- ;;=3^Acute Respiratory Failure w/ Hypoxia
- ;;^UTILITY(U,$J,358.3,23152,1,4,0)
- ;;=4^J96.01
- ;;^UTILITY(U,$J,358.3,23152,2)
- ;;=^5008348
- ;;^UTILITY(U,$J,358.3,23153,0)
- ;;=J96.20^^105^1168^5
- ;;^UTILITY(U,$J,358.3,23153,1,0)
+ ;;^UTILITY(U,$J,358.3,23418,1,3,0)
+ ;;=3^Personal Hx of Pulmonary Embolism
+ ;;^UTILITY(U,$J,358.3,23418,1,4,0)
+ ;;=4^Z86.711
+ ;;^UTILITY(U,$J,358.3,23418,2)
+ ;;=^5063474
+ ;;^UTILITY(U,$J,358.3,23419,0)
+ ;;=Z86.718^^78^1009^20
+ ;;^UTILITY(U,$J,358.3,23419,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,23153,1,3,0)
- ;;=3^Acute and Chronic Respiratory Failure,Unspec
- ;;^UTILITY(U,$J,358.3,23153,1,4,0)
- ;;=4^J96.20
- ;;^UTILITY(U,$J,358.3,23153,2)
- ;;=^5008353
- ;;^UTILITY(U,$J,358.3,23154,0)
- ;;=J96.21^^105^1168^3
- ;;^UTILITY(U,$J,358.3,23154,1,0)
+ ;;^UTILITY(U,$J,358.3,23419,1,3,0)
+ ;;=3^Personal Hx of Venous Thrombosis/Embolism
+ ;;^UTILITY(U,$J,358.3,23419,1,4,0)
+ ;;=4^Z86.718
+ ;;^UTILITY(U,$J,358.3,23419,2)
+ ;;=^5063475
+ ;;^UTILITY(U,$J,358.3,23420,0)
+ ;;=Z95.2^^78^1009^21
+ ;;^UTILITY(U,$J,358.3,23420,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,23154,1,3,0)
- ;;=3^Acute and Chronic Respiratory Failure w/ Hypoxia
- ;;^UTILITY(U,$J,358.3,23154,1,4,0)
- ;;=4^J96.21
- ;;^UTILITY(U,$J,358.3,23154,2)
- ;;=^5008354
- ;;^UTILITY(U,$J,358.3,23155,0)
- ;;=J96.22^^105^1168^4
- ;;^UTILITY(U,$J,358.3,23155,1,0)
+ ;;^UTILITY(U,$J,358.3,23420,1,3,0)
+ ;;=3^Presence of Prosthetic Heart Valve
+ ;;^UTILITY(U,$J,358.3,23420,1,4,0)
+ ;;=4^Z95.2
+ ;;^UTILITY(U,$J,358.3,23420,2)
+ ;;=^5063670
+ ;;^UTILITY(U,$J,358.3,23421,0)
+ ;;=D68.59^^78^1009^22
+ ;;^UTILITY(U,$J,358.3,23421,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,23155,1,3,0)
- ;;=3^Acute and Chronic Respiratory Failure w/ Hypercapnia
- ;;^UTILITY(U,$J,358.3,23155,1,4,0)
- ;;=4^J96.22
- ;;^UTILITY(U,$J,358.3,23155,2)
- ;;=^5008355
- ;;^UTILITY(U,$J,358.3,23156,0)
- ;;=J96.10^^105^1168^16
- ;;^UTILITY(U,$J,358.3,23156,1,0)
+ ;;^UTILITY(U,$J,358.3,23421,1,3,0)
+ ;;=3^Primary Thrombophilia
+ ;;^UTILITY(U,$J,358.3,23421,1,4,0)
+ ;;=4^D68.59
+ ;;^UTILITY(U,$J,358.3,23421,2)
+ ;;=^5002360
+ ;;^UTILITY(U,$J,358.3,23422,0)
+ ;;=I26.99^^78^1009^23
+ ;;^UTILITY(U,$J,358.3,23422,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,23156,1,3,0)
- ;;=3^Chronic Respiratory Failure,Unspec
- ;;^UTILITY(U,$J,358.3,23156,1,4,0)
- ;;=4^J96.10
- ;;^UTILITY(U,$J,358.3,23156,2)
- ;;=^5008350
- ;;^UTILITY(U,$J,358.3,23157,0)
- ;;=J96.11^^105^1168^15
- ;;^UTILITY(U,$J,358.3,23157,1,0)
+ ;;^UTILITY(U,$J,358.3,23422,1,3,0)
+ ;;=3^Pulmonary Embolism w/o Acute Cor Pulmonale
+ ;;^UTILITY(U,$J,358.3,23422,1,4,0)
+ ;;=4^I26.99
+ ;;^UTILITY(U,$J,358.3,23422,2)
+ ;;=^5007150
+ ;;^UTILITY(U,$J,358.3,23423,0)
+ ;;=I42.5^^78^1009^24
+ ;;^UTILITY(U,$J,358.3,23423,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,23157,1,3,0)
- ;;=3^Chronic Respiratory Failure w/ Hypoxia
- ;;^UTILITY(U,$J,358.3,23157,1,4,0)
- ;;=4^J96.11
- ;;^UTILITY(U,$J,358.3,23157,2)
- ;;=^5008351
- ;;^UTILITY(U,$J,358.3,23158,0)
- ;;=J96.12^^105^1168^14
- ;;^UTILITY(U,$J,358.3,23158,1,0)
+ ;;^UTILITY(U,$J,358.3,23423,1,3,0)
+ ;;=3^Restrictive Cardiomyopathy
+ ;;^UTILITY(U,$J,358.3,23423,1,4,0)
+ ;;=4^I42.5
+ ;;^UTILITY(U,$J,358.3,23423,2)
+ ;;=^5007196
+ ;;^UTILITY(U,$J,358.3,23424,0)
+ ;;=G45.9^^78^1009^26
+ ;;^UTILITY(U,$J,358.3,23424,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,23158,1,3,0)
- ;;=3^Chronic Respiratory Failure w/ Hypercapnia
- ;;^UTILITY(U,$J,358.3,23158,1,4,0)
- ;;=4^J96.12
- ;;^UTILITY(U,$J,358.3,23158,2)
- ;;=^5008352
- ;;^UTILITY(U,$J,358.3,23159,0)
- ;;=J95.821^^105^1168^25
+ ;;^UTILITY(U,$J,358.3,23424,1,3,0)
+ ;;=3^Transient Cerebral Ischemic Attack,Unspec
+ ;;^UTILITY(U,$J,358.3,23424,1,4,0)
+ ;;=4^G45.9

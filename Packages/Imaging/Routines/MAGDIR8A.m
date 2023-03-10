@@ -1,5 +1,5 @@
-MAGDIR8A ;WOIFO/PMK - Read a DICOM image file ; 03 Jul 2013 12:35 PM
- ;;3.0;IMAGING;**11,51,49,123,138**;Mar 19, 2002;Build 5380;Sep 03, 2013
+MAGDIR8A ;WOIFO/PMK,JSJ - Read a DICOM image file ; Jul 14, 2021@09:50:40
+ ;;3.0;IMAGING;**11,51,49,123,138,231,307**;Mar 19, 2002;Build 28
  ;; Per VHA Directive 2004-038, this routine should not be modified.
  ;; +---------------------------------------------------------------+
  ;; | Property of the US Government.                                |
@@ -17,6 +17,12 @@ MAGDIR8A ;WOIFO/PMK - Read a DICOM image file ; 03 Jul 2013 12:35 PM
  ;;
  ;
  ; M2MB server
+ ;
+ ; Reference to FIND1^DIC in ICR #2051
+ ; Reference to GET1^DIQ in ICR #2056
+ ; Reference to ACCFIND^RAAPI in ICR #5020
+ ; Reference to ^RA(70 in ICR #1172
+ ; Reference to ^RA(72 in ICR #1174
  ;
  ; Lookup the patient/study in the imaging service's database
  ; Different entry points are invoked from LOOKUP^MAGDIR81
@@ -50,6 +56,15 @@ RADLKUP1 ; not an entry point
  N LIST
  Q:CASENUMB=""    ;LB 12/16/98
  S X=$$ACCFIND^RAAPI(CASENUMB,.LIST)
+ ;
+ I X'=1 D  ; P231 PMK 11/12/2019
+ . ; if accession number prefix exists, strip it off and try lookup again
+ . N ANPREFIX,STRIPPEDCASENUMB
+ . S ANPREFIX=$$ANPREFIX^MAGDSTAB Q:ANPREFIX=""
+ . S STRIPPEDCASENUMB=$P(CASENUMB,ANPREFIX,2,999) Q:STRIPPEDCASENUMB=""
+ . S X=$$ACCFIND^RAAPI(STRIPPEDCASENUMB,.LIST)
+ . Q
+ ;
  Q:X'=1  S X=LIST(1) ; two conditions, no accession number & duplicate
  S RADPT1=$P(X,"^",1),RADPT2=$P(X,"^",2),RADPT3=$P(X,"^",3)
  I '$D(^RADPT(RADPT1,0)) Q  ; no patient demographics file pointer
@@ -85,9 +100,10 @@ CONLKUP ; CPRS Consult/Procedure patient/study lookup -- called by ^MAGDIR81
  Q
  ;
 LABLKUP ; Lab patient/study lookup -- called by ^MAGDIR81
- N CASE,FMYEAR,LRAA,IENS,YEAR
- S LRSS=$P(ACNUMB," ",1),YEAR=$P(ACNUMB," ",2),CASE=$P(ACNUMB," ",3)
- S LRAA=$$FIND1^DIC(68,"","BX",LRSS,"","","ERR") ; get lab area index
+ N ABBR,CASE,FMYEAR,LRAA,IENS,YEAR  ;P307
+ S ABBR=$P(ACNUMB," ",1),YEAR=$P(ACNUMB," ",2),CASE=$P(ACNUMB," ",3) ;P307
+ S LRAA=$$FIND1^DIC(68,"","BX",ABBR,"","","ERR") ; get lab area index ;P307
+ S LRSS=$$GET1^DIQ(68,LRAA,.02,"I") ;P307
  S PROCDESC=$$GET1^DIQ(68,LRAA,.01)
  S FMYEAR="3"_YEAR_"0000"
  S IENS=CASE_","_FMYEAR_","_LRAA

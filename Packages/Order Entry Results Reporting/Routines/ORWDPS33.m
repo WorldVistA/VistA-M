@@ -1,14 +1,15 @@
-ORWDPS33 ; SLC/KCM - Pharmacy Calls for GUI Dialog ;08/31/15  10:48
- ;;3.0;ORDER ENTRY/RESULTS REPORTING;**243,280,350**;Dec 17, 1997;Build 77
+ORWDPS33 ;SLC/KCM - Pharmacy Calls for GUI Dialog ;Aug 05, 2022@12:24:43
+ ;;3.0;ORDER ENTRY/RESULTS REPORTING;**243,280,350,405**;Dec 17, 1997;Build 211
  ;Per VHA Directive 6402, this routine should not be modified.
  ;This routine move several RPCs from ORWDPS32 because of the routine size
+ ; Reference to DSUP^PSOSIGDS in ICR #3278
  ;
 COMPLOC(ORY,ORID,LOC) ;
  S ORY=0
  I LOC'=+$P($G(^OR(100,+ORID,0)),U,10) S ORY=1
  Q
 DOSES(LST,OI) ; return doses for an orderable item  -  TEST ONLY
- N ORTMP,ORI,ORJ,ILST,LTSA,NDF,ORWDRG,VAPN,X,PSTYPE S PSTYPE="O"
+ N ORTMP,ORI,ORJ,ILST,LSTA,NDF,ORWDRG,VAPN,X,PSTYPE S PSTYPE="O"
  D ENDD^PSJORUTL("^^^"_+$P($G(^ORD(101.43,OI,0)),"^",2),PSTYPE,.ORTMP)
  S ORI=0 F  S ORI=$O(ORTMP(ORI)) Q:'ORI  S ORWDRG=+ORTMP(ORI) D
  . K ^TMP($J,"ORWDPS32 DRUG")
@@ -30,7 +31,7 @@ DRUGMSG(VAL,IEN)        ; return any message associated with a dispense drug
  ;
 FORMALT(ORLST,IEN,PSTYPE) ; return a list of formulary alternatives
  D ENRFA^PSJORUTL(IEN,PSTYPE,.ORLST)
- S I=0 F  S I=$O(ORLST(I)) Q:'I  D
+ N I,OI S I=0 F  S I=$O(ORLST(I)) Q:'I  D
  . S OI=+$O(^ORD(101.43,"ID",+$P(ORLST(I),U,4)_";99PSP",0))
  . S $P(ORLST(I),U,4)=OI I OI S $P(ORLST(I),U,5)=$P(^ORD(101.43,OI,0),U)
  Q
@@ -110,6 +111,21 @@ IVDOSFRM(LST,ORDERIDS,ALLIV) ;
  K ^TMP("PSJMR",$J)
  Q
  ;
+IVIND(LST,ORDERIDS) ;*405-IND
+ N CNT,OI,POI,LST1,LST2,TEXT
+ S OI=0
+ F  S OI=$O(ORDERIDS(OI)) Q:'OI  D
+ .S POI=+$P($G(^ORD(101.43,ORDERIDS(OI),0)),U,2) Q:'POI
+ .K LST1
+ .D INDICAT2^ORWDPS2(.LST1,POI)
+ .Q:'$D(LST1)
+ .S CNT=0 F  S CNT=$O(LST1(CNT)) Q:'CNT  D
+ ..S TEXT="i"_$E(LST1(CNT),2,99)
+ ..S LST2(TEXT)=""
+ Q:'$D(LST2)
+ S CNT=0,OI="" F  S OI=$O(LST2(OI)) Q:OI=""  S CNT=CNT+1,LST(CNT)=OI
+ Q
+ ;
 ISSPLY(VAL,IEN) ; return true if orderable item is a supply
  S VAL=0
  I $P($G(^ORD(101.43,IEN,"PS")),U,5)=1 S VAL=1
@@ -151,7 +167,7 @@ VALQTY(OK,X)    ; validate a quantity, return 1 if valid, 0 if not
 VALRATE(VAL,X)   ; return "1" (true) if IV rate text is valid
  I $E($RE($$UPPER^ORWDPS32(X)),1,5)="RH/LM"  S X=$E(X,1,$L(X)-5)
  S X=$$TRIM^ORWDPS32(X)
- D ORINF^PSIVSP S VAL=$G(X) ;S OK=$S($D(X):1,1:0)
+ D ORINF^PSIVSP S VAL=$S($D(X)>0:1,1:0)_U_$G(X)
  Q
 VALSCH(OK,X,PSTYPE)    ; validate a schedule, return 1 if valid, 0 if not
  I '$L($T(EN^PSSGSGUI)) S OK=-1 Q
@@ -163,3 +179,19 @@ VALSCH(OK,X,PSTYPE)    ; validate a schedule, return 1 if valid, 0 if not
  S OK=$S($D(X):1,1:0)
  Q
  ;
+CLZDS(VAL,PAT,DRG,DSUP,OI) ; return the days supply for a given cloz patient
+ ; PAT=Patient DFN, DRG=Drug IEN, DSUP=Days Supply to validate, OI=Orderable Item IEN
+ ; VAL=DISPENCE FREQUENCY of the patient in file 603.01
+ S VAL=0
+ I '$G(PAT)!('$G(DRG))!('$G(DSUP))!('$G(OI)) Q
+ N ORWX,ORDFR,MSG
+ S ORWX("PATIENT")=PAT,ORWX("DRUG")=DRG,ORWX("OI")=OI
+ D DSUP^PSOSIGDS(.ORWX)
+ S ORDFR=$G(ORWX("DAYS SUPPLY"))
+ Q:'ORDFR
+ I DSUP'>ORDFR,("^7^14^28^"[("^"_DSUP_"^")) S VAL=1 Q
+ S MSG="Patient eligibility for this medication will only allow a Days Supply of "
+ I ORDFR=28 S VAL="0^"_MSG_"28 days with 0 refills, 14 days with up to 1 refill, or 7 days with up to 3 refills." Q
+ I ORDFR=14 S VAL="0^"_MSG_"14 days with 0 refills, or 7 days with up to 1 refill." Q
+ I ORDFR=7 S VAL="0^"_MSG_"7 with 0 refills."
+ Q

@@ -1,8 +1,9 @@
-SRSUP1 ;BIR/MAM - UPDATE SCHEDULED OPERATION ; [ 01/29/01  2:13 PM ]
- ;;3.0;Surgery;**7,16,19,47,58,67,77,50,93,107,114,100,131,177,184**;24 Jun 93;Build 35
+SRSUP1 ;BIR/MAM - UPDATE SCHEDULED OPERATION;[JAN 29,2001@14:13]
+ ;;3.0;Surgery;**7,16,19,47,58,67,77,50,93,107,114,100,131,177,184,201**;24 Jun 93;Build 5
  ;
  ; Reference to ^TMP("CSLSUR1" supported by DBIA #3498
  ;
+ N SRORPRE S SRORPRE=$P(^SRF(SRTN,0),U,2)_U_$P($G(^SRF(SRTN,31)),U,4)_U_$P($G(^SRF(SRTN,31)),U,5)
  I $P($G(^SRF(SRTN,"CON")),"^") G CHANGE
 CON W !!,"Do you want to add a concurrent case ?  NO// " R SRYN:DTIME I '$T!(SRYN["^") G END
  S SRYN=$E(SRYN) S:SRYN="" SRYN="N"
@@ -13,12 +14,14 @@ CHANGE S SRC=1,SRI=$P($G(^SRF(SRTN,8)),"^"),SRS=$O(^SRO(133,"B",SRI,0)),SRTIME=$
  K SRSCC S SRSUPDT=1 W !!,"Do you want to change the ",$S(SRC:"date/",1:""),"time or operating room for which this",!,"case is scheduled ? NO// " R SRYN:DTIME I '$T!(SRYN["^") G END
  S SRYN=$E(SRYN) S:SRYN="" SRYN="N"
  I "YyNn"'[SRYN W !!,"Enter 'YES' if you need to change the ",$S(SRC:"date, ",1:""),"time or operating room for this",!,"case.  Enter RETURN to update other information related to this case." G CHANGE
-EDIT G:'$$LOCK^SROUTL(SRTN) END
+EDIT G:'$$LOCK^SRSCHD1(SRTN) END ;Modified for SR*3.0*201: call to SRSCHD1 LOCK/UNLOCK procedures
  ;JAS - 7/31/13 - Patch 177 (NEXT LINE)
  N SRICDV S SRICDV=$$ICDSTR^SROICD(SRTN)
  I "Yy"'[SRYN D RT K ST,DR,DIE,DA S SPD=$$CHKS^SRSCOR(SRTN),DR=$S($$SPIN^SRTOVRF():"[SRSRES-SCHED1]",1:"[SRSRES-SCHED]"),DIE=130,DA=SRTN D EN2^SROVAR K Q3("VIEW") D ^SRCUSS D SRDYN D:$D(SRODR) ^SROCON1 D RISK^SROAUTL3,^SROPCE1,OERR G END
  D ^SRSTCH I SRSOUT G END
- D ^SRORESV S SRTN("OR")=SRSOR,SRTN("START")=SRSDT1,SRTN("END")=SRSDT2,SRSEDT=$E(SRSDT2,1,7) D ^SRSCG
+ D ^SRORESV
+ I SRSOR_U_SRSDT1_U_SRSDT2'=SRORPRE W !!,"Another user changed the schedule for this case ... please review." D PRC G END
+ S SRTN("OR")=SRSOR,SRTN("START")=SRSDT1,SRTN("END")=SRSDT2,SRSEDT=$E(SRSDT2,1,7) D ^SRSCG
  S SRTN("SRT")=SRT,SRSTIME1=SRTN("START")_"^"_SRTN("END")_"^"_SRSDT1_"^"_SRSDT2
 DATE W !! K NODATE S OLDATE=$E(SRTN("START"),1,7) I 'SRC S SRSDATE=OLDATE W !!,"Press RETURN to continue... " R X:DTIME G DIS
  S %DT="AEFX",%DT("A")="Reschedule this Procedure for which Date ?  " D ^%DT K %DT S SRSDATE=$S(Y>0:Y,1:OLDATE) I Y<0 S NODATE=1
@@ -34,14 +37,14 @@ SCHED S S(0)=^SRF(SRTN,0),SRSERV=$P(S(0),"^",4) S DA=SRTN,DIE=130,DR=".04////"_S
  K SRGRPH,SRSDT3 S COUNT=1,MM=$E(SRSDT2,1,7),XX=$E(SRSDT1,1,7) I MM>XX S SRSDT3=MM,$P(SRSTIME,"^",2)="24:00"
  K X0,X1 D EN2^SRSCHD2 I $D(SRSLAP) S SRSOUT=1 K SRSLAP G SCHED
  D:SRSDATE'=OLDATE ^SROXRET D OERR
- D UNLOCK^SROUTL(SRTN)
+ D UNLOCK^SRSCHD1(SRTN)
 END ;
- W @IOF D ^SRSKILL K SRTN
+ W @IOF D ^SRSKILL K SRTN,SRORPRE
  Q
 NODATE ; new date not entered
  W !!,"Since no date has been entered, I must assume that you want to re-schedule",!,"this case for the same date.  If you have made a mistake and want to",!,"leave this case scheduled for the same operating room at the same times,"
  W !,"enter RETURN when prompted to select an operating room."
- R !!,"Press RETURN to continue  ",X:DTIME I '$T!(X["^") S SRSOUT=1
+PRC R !!,"Press RETURN to continue  ",X:DTIME I '$T!(X["^") S SRSOUT=1
  Q
 DIE S SRICDV=$$ICDSTR^SROICD(SRTN)
  K ST,DR,DIE,DA S DR=$S($$SPIN^SRTOVRF():"[SRSRES-SCHED1]",1:"[SRSRES-SCHED]"),DIE=130,DA=SRTN D EN2^SROVAR K Q3("VIEW") D ^SRCUSS K DR D SRDYN

@@ -1,654 +1,684 @@
-IBDEI0C6 ; ; 01-MAY-2020
- ;;3.0;IB ENCOUNTER FORM IMP/EXP;;MAY 01, 2020
+IBDEI0C6 ; ; 03-MAY-2022
+ ;;3.0;IB ENCOUNTER FORM IMP/EXP;;MAY 03, 2022
  Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,999) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
- ;;^UTILITY(U,$J,358.3,29810,0)
- ;;=D17.9^^92^1195^90
- ;;^UTILITY(U,$J,358.3,29810,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,29810,1,3,0)
- ;;=3^Benign Lipomatous Neop,Unspec
- ;;^UTILITY(U,$J,358.3,29810,1,4,0)
- ;;=4^D17.9
- ;;^UTILITY(U,$J,358.3,29810,2)
- ;;=^5002020
- ;;^UTILITY(U,$J,358.3,29811,0)
- ;;=E08.621^^92^1195^137
- ;;^UTILITY(U,$J,358.3,29811,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,29811,1,3,0)
- ;;=3^DM d/t Underlying Condition w/ Foot Ulcer
- ;;^UTILITY(U,$J,358.3,29811,1,4,0)
- ;;=4^E08.621
- ;;^UTILITY(U,$J,358.3,29811,2)
- ;;=^5002534
- ;;^UTILITY(U,$J,358.3,29812,0)
- ;;=E09.621^^92^1195^136
- ;;^UTILITY(U,$J,358.3,29812,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,29812,1,3,0)
- ;;=3^DM d/t Drug/Chemical w/ Foot Ulcer
- ;;^UTILITY(U,$J,358.3,29812,1,4,0)
- ;;=4^E09.621
- ;;^UTILITY(U,$J,358.3,29812,2)
- ;;=^5002576
- ;;^UTILITY(U,$J,358.3,29813,0)
- ;;=H05.011^^92^1195^112
- ;;^UTILITY(U,$J,358.3,29813,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,29813,1,3,0)
- ;;=3^Cellulitis of Right Orbit
- ;;^UTILITY(U,$J,358.3,29813,1,4,0)
- ;;=4^H05.011
- ;;^UTILITY(U,$J,358.3,29813,2)
- ;;=^5004560
- ;;^UTILITY(U,$J,358.3,29814,0)
- ;;=H05.012^^92^1195^105
- ;;^UTILITY(U,$J,358.3,29814,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,29814,1,3,0)
- ;;=3^Cellulitis of Left Orbit
- ;;^UTILITY(U,$J,358.3,29814,1,4,0)
- ;;=4^H05.012
- ;;^UTILITY(U,$J,358.3,29814,2)
- ;;=^5004561
- ;;^UTILITY(U,$J,358.3,29815,0)
- ;;=H05.013^^92^1195^99
- ;;^UTILITY(U,$J,358.3,29815,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,29815,1,3,0)
- ;;=3^Cellulitis of Bilateral Orbits
- ;;^UTILITY(U,$J,358.3,29815,1,4,0)
- ;;=4^H05.013
- ;;^UTILITY(U,$J,358.3,29815,2)
- ;;=^5004562
- ;;^UTILITY(U,$J,358.3,29816,0)
- ;;=I70.331^^92^1195^51
- ;;^UTILITY(U,$J,358.3,29816,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,29816,1,3,0)
- ;;=3^Athscl Bypass of Right Leg w/ Ulcer of Thigh
- ;;^UTILITY(U,$J,358.3,29816,1,4,0)
- ;;=4^I70.331
- ;;^UTILITY(U,$J,358.3,29816,2)
- ;;=^5007626
- ;;^UTILITY(U,$J,358.3,29817,0)
- ;;=I70.332^^92^1195^52
- ;;^UTILITY(U,$J,358.3,29817,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,29817,1,3,0)
- ;;=3^Athscl Bypass of Right Leg w/ Ulcer of Calf
- ;;^UTILITY(U,$J,358.3,29817,1,4,0)
- ;;=4^I70.332
- ;;^UTILITY(U,$J,358.3,29817,2)
- ;;=^5007627
- ;;^UTILITY(U,$J,358.3,29818,0)
- ;;=I70.333^^92^1195^53
- ;;^UTILITY(U,$J,358.3,29818,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,29818,1,3,0)
- ;;=3^Athscl Bypass of Right Leg w/ Ulcer of Ankle
- ;;^UTILITY(U,$J,358.3,29818,1,4,0)
- ;;=4^I70.333
- ;;^UTILITY(U,$J,358.3,29818,2)
- ;;=^5007628
- ;;^UTILITY(U,$J,358.3,29819,0)
- ;;=I70.334^^92^1195^54
- ;;^UTILITY(U,$J,358.3,29819,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,29819,1,3,0)
- ;;=3^Athscl Bypass of Right Leg w/ Ulcer of Heel/Midfoot
- ;;^UTILITY(U,$J,358.3,29819,1,4,0)
- ;;=4^I70.334
- ;;^UTILITY(U,$J,358.3,29819,2)
- ;;=^5007629
- ;;^UTILITY(U,$J,358.3,29820,0)
- ;;=I70.335^^92^1195^55
- ;;^UTILITY(U,$J,358.3,29820,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,29820,1,3,0)
- ;;=3^Athscl Bypass of Right Leg w/ Ulcer of Oth Part of Foot
- ;;^UTILITY(U,$J,358.3,29820,1,4,0)
- ;;=4^I70.335
- ;;^UTILITY(U,$J,358.3,29820,2)
- ;;=^5007630
- ;;^UTILITY(U,$J,358.3,29821,0)
- ;;=I70.341^^92^1195^50
- ;;^UTILITY(U,$J,358.3,29821,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,29821,1,3,0)
- ;;=3^Athscl Bypass of Left Leg w/ Ulcer of Thigh
- ;;^UTILITY(U,$J,358.3,29821,1,4,0)
- ;;=4^I70.341
- ;;^UTILITY(U,$J,358.3,29821,2)
- ;;=^5007633
- ;;^UTILITY(U,$J,358.3,29822,0)
- ;;=I70.342^^92^1195^47
- ;;^UTILITY(U,$J,358.3,29822,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,29822,1,3,0)
- ;;=3^Athscl Bypass of Left Leg w/ Ulcer of Calf
- ;;^UTILITY(U,$J,358.3,29822,1,4,0)
- ;;=4^I70.342
- ;;^UTILITY(U,$J,358.3,29822,2)
- ;;=^5007634
- ;;^UTILITY(U,$J,358.3,29823,0)
- ;;=I70.343^^92^1195^46
- ;;^UTILITY(U,$J,358.3,29823,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,29823,1,3,0)
- ;;=3^Athscl Bypass of Left Leg w/ Ulcer of Ankle
- ;;^UTILITY(U,$J,358.3,29823,1,4,0)
- ;;=4^I70.343
- ;;^UTILITY(U,$J,358.3,29823,2)
- ;;=^5007635
- ;;^UTILITY(U,$J,358.3,29824,0)
- ;;=I70.344^^92^1195^48
- ;;^UTILITY(U,$J,358.3,29824,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,29824,1,3,0)
- ;;=3^Athscl Bypass of Left Leg w/ Ulcer of Heel/Midfoot
- ;;^UTILITY(U,$J,358.3,29824,1,4,0)
- ;;=4^I70.344
- ;;^UTILITY(U,$J,358.3,29824,2)
- ;;=^5007636
- ;;^UTILITY(U,$J,358.3,29825,0)
- ;;=I70.345^^92^1195^49
- ;;^UTILITY(U,$J,358.3,29825,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,29825,1,3,0)
- ;;=3^Athscl Bypass of Left Leg w/ Ulcer of Oth Part of Foot
- ;;^UTILITY(U,$J,358.3,29825,1,4,0)
- ;;=4^I70.345
- ;;^UTILITY(U,$J,358.3,29825,2)
- ;;=^5007637
- ;;^UTILITY(U,$J,358.3,29826,0)
- ;;=I70.431^^92^1195^41
- ;;^UTILITY(U,$J,358.3,29826,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,29826,1,3,0)
- ;;=3^Athscl Autol Vein Bypass of Right Leg w/ Ulcer of Thigh
- ;;^UTILITY(U,$J,358.3,29826,1,4,0)
- ;;=4^I70.431
- ;;^UTILITY(U,$J,358.3,29826,2)
- ;;=^5007664
- ;;^UTILITY(U,$J,358.3,29827,0)
- ;;=I70.432^^92^1195^42
- ;;^UTILITY(U,$J,358.3,29827,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,29827,1,3,0)
- ;;=3^Athscl Autol Vein Bypass of Right Leg w/ Ulcer of Calf
- ;;^UTILITY(U,$J,358.3,29827,1,4,0)
- ;;=4^I70.432
- ;;^UTILITY(U,$J,358.3,29827,2)
- ;;=^5007665
- ;;^UTILITY(U,$J,358.3,29828,0)
- ;;=I70.433^^92^1195^43
- ;;^UTILITY(U,$J,358.3,29828,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,29828,1,3,0)
- ;;=3^Athscl Autol Vein Bypass of Right Leg w/ Ulcer of Ankle
- ;;^UTILITY(U,$J,358.3,29828,1,4,0)
- ;;=4^I70.433
- ;;^UTILITY(U,$J,358.3,29828,2)
- ;;=^5007666
- ;;^UTILITY(U,$J,358.3,29829,0)
- ;;=I70.434^^92^1195^44
- ;;^UTILITY(U,$J,358.3,29829,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,29829,1,3,0)
- ;;=3^Athscl Autol Vein Bypass of Right Leg w/ Ulcer of Heel/Midfoot
- ;;^UTILITY(U,$J,358.3,29829,1,4,0)
- ;;=4^I70.434
- ;;^UTILITY(U,$J,358.3,29829,2)
- ;;=^5007667
- ;;^UTILITY(U,$J,358.3,29830,0)
- ;;=I70.435^^92^1195^45
- ;;^UTILITY(U,$J,358.3,29830,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,29830,1,3,0)
- ;;=3^Athscl Autol Vein Bypass of Right Leg w/ Ulcer of Oth Part of Foot
- ;;^UTILITY(U,$J,358.3,29830,1,4,0)
- ;;=4^I70.435
- ;;^UTILITY(U,$J,358.3,29830,2)
- ;;=^5007668
- ;;^UTILITY(U,$J,358.3,29831,0)
- ;;=I70.441^^92^1195^36
- ;;^UTILITY(U,$J,358.3,29831,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,29831,1,3,0)
- ;;=3^Athscl Autol Vein Bypass of Left Leg w/ Ulcer of Thigh
- ;;^UTILITY(U,$J,358.3,29831,1,4,0)
- ;;=4^I70.441
- ;;^UTILITY(U,$J,358.3,29831,2)
- ;;=^5007671
- ;;^UTILITY(U,$J,358.3,29832,0)
- ;;=I70.442^^92^1195^37
- ;;^UTILITY(U,$J,358.3,29832,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,29832,1,3,0)
- ;;=3^Athscl Autol Vein Bypass of Left Leg w/ Ulcer of Calf
- ;;^UTILITY(U,$J,358.3,29832,1,4,0)
- ;;=4^I70.442
- ;;^UTILITY(U,$J,358.3,29832,2)
- ;;=^5007672
- ;;^UTILITY(U,$J,358.3,29833,0)
- ;;=I70.443^^92^1195^38
- ;;^UTILITY(U,$J,358.3,29833,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,29833,1,3,0)
- ;;=3^Athscl Autol Vein Bypass of Left Leg w/ Ulcer of Ankle
- ;;^UTILITY(U,$J,358.3,29833,1,4,0)
- ;;=4^I70.443
- ;;^UTILITY(U,$J,358.3,29833,2)
- ;;=^5007673
- ;;^UTILITY(U,$J,358.3,29834,0)
- ;;=I70.444^^92^1195^39
- ;;^UTILITY(U,$J,358.3,29834,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,29834,1,3,0)
- ;;=3^Athscl Autol Vein Bypass of Left Leg w/ Ulcer of Heel/Midfoot
- ;;^UTILITY(U,$J,358.3,29834,1,4,0)
- ;;=4^I70.444
- ;;^UTILITY(U,$J,358.3,29834,2)
- ;;=^5007674
- ;;^UTILITY(U,$J,358.3,29835,0)
- ;;=I70.445^^92^1195^40
- ;;^UTILITY(U,$J,358.3,29835,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,29835,1,3,0)
- ;;=3^Athscl Autol Vein Bypass of Left Leg w/ Ulcer of Oth Part of Foot
- ;;^UTILITY(U,$J,358.3,29835,1,4,0)
- ;;=4^I70.445
- ;;^UTILITY(U,$J,358.3,29835,2)
- ;;=^5007675
- ;;^UTILITY(U,$J,358.3,29836,0)
- ;;=I70.531^^92^1195^61
- ;;^UTILITY(U,$J,358.3,29836,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,29836,1,3,0)
- ;;=3^Athscl Nonaut Bio Bypass of Right Leg w/ Ulcer of Thigh
- ;;^UTILITY(U,$J,358.3,29836,1,4,0)
- ;;=4^I70.531
- ;;^UTILITY(U,$J,358.3,29836,2)
- ;;=^5007702
- ;;^UTILITY(U,$J,358.3,29837,0)
- ;;=I70.532^^92^1195^62
- ;;^UTILITY(U,$J,358.3,29837,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,29837,1,3,0)
- ;;=3^Athscl Nonaut Bio Bypass of Right Leg w/ Ulcer of Calf
- ;;^UTILITY(U,$J,358.3,29837,1,4,0)
- ;;=4^I70.532
- ;;^UTILITY(U,$J,358.3,29837,2)
- ;;=^5007703
- ;;^UTILITY(U,$J,358.3,29838,0)
- ;;=I70.533^^92^1195^63
- ;;^UTILITY(U,$J,358.3,29838,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,29838,1,3,0)
- ;;=3^Athscl Nonaut Bio Bypass of Right Leg w/ Ulcer of Ankle
- ;;^UTILITY(U,$J,358.3,29838,1,4,0)
- ;;=4^I70.533
- ;;^UTILITY(U,$J,358.3,29838,2)
- ;;=^5007704
- ;;^UTILITY(U,$J,358.3,29839,0)
- ;;=I70.534^^92^1195^64
- ;;^UTILITY(U,$J,358.3,29839,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,29839,1,3,0)
- ;;=3^Athscl Nonaut Bio Bypass of Right Leg w/ Ulcer of Heel/Midfoot
- ;;^UTILITY(U,$J,358.3,29839,1,4,0)
- ;;=4^I70.534
- ;;^UTILITY(U,$J,358.3,29839,2)
- ;;=^5007705
- ;;^UTILITY(U,$J,358.3,29840,0)
- ;;=I70.535^^92^1195^65
- ;;^UTILITY(U,$J,358.3,29840,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,29840,1,3,0)
- ;;=3^Athscl Nonaut Bio Bypass of Right Leg w/ Ulcer of Oth Part of Foot
- ;;^UTILITY(U,$J,358.3,29840,1,4,0)
- ;;=4^I70.535
- ;;^UTILITY(U,$J,358.3,29840,2)
- ;;=^5007706
- ;;^UTILITY(U,$J,358.3,29841,0)
- ;;=I70.541^^92^1195^56
- ;;^UTILITY(U,$J,358.3,29841,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,29841,1,3,0)
- ;;=3^Athscl Nonaut Bio Bypass of Left Leg w/ Ulcer of Thigh
- ;;^UTILITY(U,$J,358.3,29841,1,4,0)
- ;;=4^I70.541
- ;;^UTILITY(U,$J,358.3,29841,2)
- ;;=^5007709
- ;;^UTILITY(U,$J,358.3,29842,0)
- ;;=I70.542^^92^1195^57
- ;;^UTILITY(U,$J,358.3,29842,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,29842,1,3,0)
- ;;=3^Athscl Nonaut Bio Bypass of Left Leg w/ Ulcer of Calf
- ;;^UTILITY(U,$J,358.3,29842,1,4,0)
- ;;=4^I70.542
- ;;^UTILITY(U,$J,358.3,29842,2)
- ;;=^5007710
- ;;^UTILITY(U,$J,358.3,29843,0)
- ;;=I70.543^^92^1195^58
- ;;^UTILITY(U,$J,358.3,29843,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,29843,1,3,0)
- ;;=3^Athscl Nonaut Bio Bypass of Left Leg w/ Ulcer of Ankle
- ;;^UTILITY(U,$J,358.3,29843,1,4,0)
- ;;=4^I70.543
- ;;^UTILITY(U,$J,358.3,29843,2)
- ;;=^5007711
- ;;^UTILITY(U,$J,358.3,29844,0)
- ;;=I70.544^^92^1195^59
- ;;^UTILITY(U,$J,358.3,29844,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,29844,1,3,0)
- ;;=3^Athscl Nonaut Bio Bypass of Left Leg w/ Ulcer of Heel/Midfoot
- ;;^UTILITY(U,$J,358.3,29844,1,4,0)
- ;;=4^I70.544
- ;;^UTILITY(U,$J,358.3,29844,2)
- ;;=^5007712
- ;;^UTILITY(U,$J,358.3,29845,0)
- ;;=I70.545^^92^1195^60
- ;;^UTILITY(U,$J,358.3,29845,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,29845,1,3,0)
- ;;=3^Athscl Nonaut Bio Bypass of Left Leg w/ Ulcer of Oth Part of Foot
- ;;^UTILITY(U,$J,358.3,29845,1,4,0)
- ;;=4^I70.545
- ;;^UTILITY(U,$J,358.3,29845,2)
- ;;=^5007713
- ;;^UTILITY(U,$J,358.3,29846,0)
- ;;=I70.631^^92^1195^71
- ;;^UTILITY(U,$J,358.3,29846,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,29846,1,3,0)
- ;;=3^Athscl Nonbiol Bypass of Right Leg w/ Ulcer of Thigh
- ;;^UTILITY(U,$J,358.3,29846,1,4,0)
- ;;=4^I70.631
- ;;^UTILITY(U,$J,358.3,29846,2)
- ;;=^5007740
- ;;^UTILITY(U,$J,358.3,29847,0)
- ;;=I70.632^^92^1195^72
- ;;^UTILITY(U,$J,358.3,29847,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,29847,1,3,0)
- ;;=3^Athscl Nonbiol Bypass of Right Leg w/ Ulcer of Calf
- ;;^UTILITY(U,$J,358.3,29847,1,4,0)
- ;;=4^I70.632
- ;;^UTILITY(U,$J,358.3,29847,2)
- ;;=^5007741
- ;;^UTILITY(U,$J,358.3,29848,0)
- ;;=I70.633^^92^1195^73
- ;;^UTILITY(U,$J,358.3,29848,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,29848,1,3,0)
- ;;=3^Athscl Nonbiol Bypass of Right Leg w/ Ulcer of Ankle
- ;;^UTILITY(U,$J,358.3,29848,1,4,0)
- ;;=4^I70.633
- ;;^UTILITY(U,$J,358.3,29848,2)
- ;;=^5007742
- ;;^UTILITY(U,$J,358.3,29849,0)
- ;;=I70.634^^92^1195^74
- ;;^UTILITY(U,$J,358.3,29849,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,29849,1,3,0)
- ;;=3^Athscl Nonbiol Bypass of Right Leg w/ Ulcer of Heel/Midfoot
- ;;^UTILITY(U,$J,358.3,29849,1,4,0)
- ;;=4^I70.634
- ;;^UTILITY(U,$J,358.3,29849,2)
- ;;=^5007743
- ;;^UTILITY(U,$J,358.3,29850,0)
- ;;=I70.635^^92^1195^75
- ;;^UTILITY(U,$J,358.3,29850,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,29850,1,3,0)
- ;;=3^Athscl Nonbiol Bypass of Right Leg w/ Ulcer of Oth Part of Foot
- ;;^UTILITY(U,$J,358.3,29850,1,4,0)
- ;;=4^I70.635
- ;;^UTILITY(U,$J,358.3,29850,2)
- ;;=^5007744
- ;;^UTILITY(U,$J,358.3,29851,0)
- ;;=I70.641^^92^1195^66
- ;;^UTILITY(U,$J,358.3,29851,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,29851,1,3,0)
- ;;=3^Athscl Nonbiol Bypass of Left Leg w/ Ulcer of Thigh
- ;;^UTILITY(U,$J,358.3,29851,1,4,0)
- ;;=4^I70.641
- ;;^UTILITY(U,$J,358.3,29851,2)
- ;;=^5007747
- ;;^UTILITY(U,$J,358.3,29852,0)
- ;;=I70.642^^92^1195^67
- ;;^UTILITY(U,$J,358.3,29852,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,29852,1,3,0)
- ;;=3^Athscl Nonbiol Bypass of Left Leg w/ Ulcer of Calf
- ;;^UTILITY(U,$J,358.3,29852,1,4,0)
- ;;=4^I70.642
- ;;^UTILITY(U,$J,358.3,29852,2)
- ;;=^5007748
- ;;^UTILITY(U,$J,358.3,29853,0)
- ;;=I70.643^^92^1195^68
- ;;^UTILITY(U,$J,358.3,29853,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,29853,1,3,0)
- ;;=3^Athscl Nonbiol Bypass of Left Leg w/ Ulcer of Ankle
- ;;^UTILITY(U,$J,358.3,29853,1,4,0)
- ;;=4^I70.643
- ;;^UTILITY(U,$J,358.3,29853,2)
- ;;=^5007749
- ;;^UTILITY(U,$J,358.3,29854,0)
- ;;=I70.644^^92^1195^69
- ;;^UTILITY(U,$J,358.3,29854,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,29854,1,3,0)
- ;;=3^Athscl Nonbiol Bypass of Left Leg w/ Ulcer of Heel/Midfoot
- ;;^UTILITY(U,$J,358.3,29854,1,4,0)
- ;;=4^I70.644
- ;;^UTILITY(U,$J,358.3,29854,2)
- ;;=^5007750
- ;;^UTILITY(U,$J,358.3,29855,0)
- ;;=I70.645^^92^1195^70
- ;;^UTILITY(U,$J,358.3,29855,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,29855,1,3,0)
- ;;=3^Athscl Nonbiol Bypass of Left Leg w/ Ulcer of Oth Part of Foot
- ;;^UTILITY(U,$J,358.3,29855,1,4,0)
- ;;=4^I70.645
- ;;^UTILITY(U,$J,358.3,29855,2)
- ;;=^5007751
- ;;^UTILITY(U,$J,358.3,29856,0)
- ;;=K12.0^^92^1195^298
- ;;^UTILITY(U,$J,358.3,29856,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,29856,1,3,0)
- ;;=3^Recurrent Oral Aphthae
- ;;^UTILITY(U,$J,358.3,29856,1,4,0)
- ;;=4^K12.0
- ;;^UTILITY(U,$J,358.3,29856,2)
- ;;=^5008483
- ;;^UTILITY(U,$J,358.3,29857,0)
- ;;=K12.1^^92^1195^311
- ;;^UTILITY(U,$J,358.3,29857,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,29857,1,3,0)
- ;;=3^Stomatitis NEC
- ;;^UTILITY(U,$J,358.3,29857,1,4,0)
- ;;=4^K12.1
- ;;^UTILITY(U,$J,358.3,29857,2)
- ;;=^5008484
- ;;^UTILITY(U,$J,358.3,29858,0)
- ;;=K12.2^^92^1195^95
- ;;^UTILITY(U,$J,358.3,29858,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,29858,1,3,0)
- ;;=3^Cellulitis & Abscess of Mouth
- ;;^UTILITY(U,$J,358.3,29858,1,4,0)
- ;;=4^K12.2
- ;;^UTILITY(U,$J,358.3,29858,2)
- ;;=^5008485
- ;;^UTILITY(U,$J,358.3,29859,0)
- ;;=L02.01^^92^1195^122
- ;;^UTILITY(U,$J,358.3,29859,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,29859,1,3,0)
- ;;=3^Cutaneous Abscess of Face
- ;;^UTILITY(U,$J,358.3,29859,1,4,0)
- ;;=4^L02.01
- ;;^UTILITY(U,$J,358.3,29859,2)
- ;;=^5008944
- ;;^UTILITY(U,$J,358.3,29860,0)
- ;;=L02.11^^92^1195^127
- ;;^UTILITY(U,$J,358.3,29860,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,29860,1,3,0)
- ;;=3^Cutaneous Abscess of Neck
- ;;^UTILITY(U,$J,358.3,29860,1,4,0)
- ;;=4^L02.11
- ;;^UTILITY(U,$J,358.3,29860,2)
- ;;=^5008947
- ;;^UTILITY(U,$J,358.3,29861,0)
- ;;=L02.211^^92^1195^119
- ;;^UTILITY(U,$J,358.3,29861,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,29861,1,3,0)
- ;;=3^Cutaneous Abscess of Abdominal Wall
- ;;^UTILITY(U,$J,358.3,29861,1,4,0)
- ;;=4^L02.211
- ;;^UTILITY(U,$J,358.3,29861,2)
- ;;=^5008950
- ;;^UTILITY(U,$J,358.3,29862,0)
- ;;=L02.212^^92^1195^120
- ;;^UTILITY(U,$J,358.3,29862,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,29862,1,3,0)
- ;;=3^Cutaneous Abscess of Back
- ;;^UTILITY(U,$J,358.3,29862,1,4,0)
- ;;=4^L02.212
- ;;^UTILITY(U,$J,358.3,29862,2)
- ;;=^5008951
- ;;^UTILITY(U,$J,358.3,29863,0)
- ;;=L02.213^^92^1195^121
- ;;^UTILITY(U,$J,358.3,29863,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,29863,1,3,0)
- ;;=3^Cutaneous Abscess of Chest Wall
- ;;^UTILITY(U,$J,358.3,29863,1,4,0)
- ;;=4^L02.213
- ;;^UTILITY(U,$J,358.3,29863,2)
- ;;=^5008952
- ;;^UTILITY(U,$J,358.3,29864,0)
- ;;=L02.214^^92^1195^123
- ;;^UTILITY(U,$J,358.3,29864,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,29864,1,3,0)
- ;;=3^Cutaneous Abscess of Groin
- ;;^UTILITY(U,$J,358.3,29864,1,4,0)
- ;;=4^L02.214
- ;;^UTILITY(U,$J,358.3,29864,2)
- ;;=^5008953
- ;;^UTILITY(U,$J,358.3,29865,0)
- ;;=L02.215^^92^1195^129
- ;;^UTILITY(U,$J,358.3,29865,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,29865,1,3,0)
- ;;=3^Cutaneous Abscess of Perineum
- ;;^UTILITY(U,$J,358.3,29865,1,4,0)
- ;;=4^L02.215
- ;;^UTILITY(U,$J,358.3,29865,2)
- ;;=^5008954
- ;;^UTILITY(U,$J,358.3,29866,0)
- ;;=L02.216^^92^1195^134
- ;;^UTILITY(U,$J,358.3,29866,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,29866,1,3,0)
- ;;=3^Cutaneous Abscess of Unbilicus
- ;;^UTILITY(U,$J,358.3,29866,1,4,0)
- ;;=4^L02.216
- ;;^UTILITY(U,$J,358.3,29866,2)
- ;;=^5008955
- ;;^UTILITY(U,$J,358.3,29867,0)
- ;;=L02.219^^92^1195^133
- ;;^UTILITY(U,$J,358.3,29867,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,29867,1,3,0)
- ;;=3^Cutaneous Abscess of Trunk,Unspec
- ;;^UTILITY(U,$J,358.3,29867,1,4,0)
- ;;=4^L02.219
- ;;^UTILITY(U,$J,358.3,29867,2)
- ;;=^5008956
- ;;^UTILITY(U,$J,358.3,29868,0)
- ;;=L02.32^^92^1195^157
- ;;^UTILITY(U,$J,358.3,29868,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,29868,1,3,0)
- ;;=3^Furuncle of Buttock
- ;;^UTILITY(U,$J,358.3,29868,1,4,0)
- ;;=4^L02.32
- ;;^UTILITY(U,$J,358.3,29868,2)
- ;;=^5008972
- ;;^UTILITY(U,$J,358.3,29869,0)
- ;;=L02.33^^92^1195^93
- ;;^UTILITY(U,$J,358.3,29869,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,29869,1,3,0)
- ;;=3^Carbuncle of Buttock
- ;;^UTILITY(U,$J,358.3,29869,1,4,0)
- ;;=4^L02.33
- ;;^UTILITY(U,$J,358.3,29869,2)
- ;;=^5008973
- ;;^UTILITY(U,$J,358.3,29870,0)
- ;;=L02.415^^92^1195^132
- ;;^UTILITY(U,$J,358.3,29870,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,29870,1,3,0)
- ;;=3^Cutaneous Abscess of Right Lower Limb
- ;;^UTILITY(U,$J,358.3,29870,1,4,0)
- ;;=4^L02.415
- ;;^UTILITY(U,$J,358.3,29870,2)
- ;;=^5008978
- ;;^UTILITY(U,$J,358.3,29871,0)
- ;;=L02.416^^92^1195^126
- ;;^UTILITY(U,$J,358.3,29871,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,29871,1,3,0)
- ;;=3^Cutaneous Abscess of Left Lower Limb
- ;;^UTILITY(U,$J,358.3,29871,1,4,0)
- ;;=4^L02.416
- ;;^UTILITY(U,$J,358.3,29871,2)
- ;;=^5133642
- ;;^UTILITY(U,$J,358.3,29872,0)
- ;;=L02.511^^92^1195^131
- ;;^UTILITY(U,$J,358.3,29872,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,29872,1,3,0)
- ;;=3^Cutaneous Abscess of Right Hand
- ;;^UTILITY(U,$J,358.3,29872,1,4,0)
- ;;=4^L02.511
- ;;^UTILITY(U,$J,358.3,29872,2)
- ;;=^5008992
- ;;^UTILITY(U,$J,358.3,29873,0)
- ;;=L02.512^^92^1195^125
- ;;^UTILITY(U,$J,358.3,29873,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,29873,1,3,0)
- ;;=3^Cutaneous Abscess of Left Hand
- ;;^UTILITY(U,$J,358.3,29873,1,4,0)
- ;;=4^L02.512
- ;;^UTILITY(U,$J,358.3,29873,2)
- ;;=^5008993
- ;;^UTILITY(U,$J,358.3,29874,0)
- ;;=L02.611^^92^1195^130
- ;;^UTILITY(U,$J,358.3,29874,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,29874,1,3,0)
- ;;=3^Cutaneous Abscess of Right Foot
- ;;^UTILITY(U,$J,358.3,29874,1,4,0)
- ;;=4^L02.611
- ;;^UTILITY(U,$J,358.3,29874,2)
- ;;=^5009001
+ ;;^UTILITY(U,$J,358.3,30528,1,4,0)
+ ;;=4^M05.111
+ ;;^UTILITY(U,$J,358.3,30528,2)
+ ;;=^5009863
+ ;;^UTILITY(U,$J,358.3,30529,0)
+ ;;=M05.131^^86^1223^40
+ ;;^UTILITY(U,$J,358.3,30529,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,30529,1,3,0)
+ ;;=3^Rheu Lung Disease w/ Rheu Arth of Right Wrist
+ ;;^UTILITY(U,$J,358.3,30529,1,4,0)
+ ;;=4^M05.131
+ ;;^UTILITY(U,$J,358.3,30529,2)
+ ;;=^5009869
+ ;;^UTILITY(U,$J,358.3,30530,0)
+ ;;=M05.10^^86^1223^41
+ ;;^UTILITY(U,$J,358.3,30530,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,30530,1,3,0)
+ ;;=3^Rheu Lung Disease w/ Rheu Arth of Unspec Site
+ ;;^UTILITY(U,$J,358.3,30530,1,4,0)
+ ;;=4^M05.10
+ ;;^UTILITY(U,$J,358.3,30530,2)
+ ;;=^5009862
+ ;;^UTILITY(U,$J,358.3,30531,0)
+ ;;=D86.86^^86^1223^42
+ ;;^UTILITY(U,$J,358.3,30531,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,30531,1,3,0)
+ ;;=3^Sarcoid Arthropathy
+ ;;^UTILITY(U,$J,358.3,30531,1,4,0)
+ ;;=4^D86.86
+ ;;^UTILITY(U,$J,358.3,30531,2)
+ ;;=^5002451
+ ;;^UTILITY(U,$J,358.3,30532,0)
+ ;;=D86.83^^86^1223^43
+ ;;^UTILITY(U,$J,358.3,30532,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,30532,1,3,0)
+ ;;=3^Sarcoid Iridocyclitis
+ ;;^UTILITY(U,$J,358.3,30532,1,4,0)
+ ;;=4^D86.83
+ ;;^UTILITY(U,$J,358.3,30532,2)
+ ;;=^5002448
+ ;;^UTILITY(U,$J,358.3,30533,0)
+ ;;=D86.81^^86^1223^44
+ ;;^UTILITY(U,$J,358.3,30533,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,30533,1,3,0)
+ ;;=3^Sarcoid Meningitis
+ ;;^UTILITY(U,$J,358.3,30533,1,4,0)
+ ;;=4^D86.81
+ ;;^UTILITY(U,$J,358.3,30533,2)
+ ;;=^5002446
+ ;;^UTILITY(U,$J,358.3,30534,0)
+ ;;=D86.85^^86^1223^45
+ ;;^UTILITY(U,$J,358.3,30534,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,30534,1,3,0)
+ ;;=3^Sarcoid Myocarditis
+ ;;^UTILITY(U,$J,358.3,30534,1,4,0)
+ ;;=4^D86.85
+ ;;^UTILITY(U,$J,358.3,30534,2)
+ ;;=^5002450
+ ;;^UTILITY(U,$J,358.3,30535,0)
+ ;;=D86.87^^86^1223^46
+ ;;^UTILITY(U,$J,358.3,30535,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,30535,1,3,0)
+ ;;=3^Sarcoid Myositis
+ ;;^UTILITY(U,$J,358.3,30535,1,4,0)
+ ;;=4^D86.87
+ ;;^UTILITY(U,$J,358.3,30535,2)
+ ;;=^5002452
+ ;;^UTILITY(U,$J,358.3,30536,0)
+ ;;=D86.84^^86^1223^47
+ ;;^UTILITY(U,$J,358.3,30536,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,30536,1,3,0)
+ ;;=3^Sarcoid Pyelonephritis
+ ;;^UTILITY(U,$J,358.3,30536,1,4,0)
+ ;;=4^D86.84
+ ;;^UTILITY(U,$J,358.3,30536,2)
+ ;;=^5002449
+ ;;^UTILITY(U,$J,358.3,30537,0)
+ ;;=D86.0^^86^1223^48
+ ;;^UTILITY(U,$J,358.3,30537,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,30537,1,3,0)
+ ;;=3^Sarcoidosis of Lung
+ ;;^UTILITY(U,$J,358.3,30537,1,4,0)
+ ;;=4^D86.0
+ ;;^UTILITY(U,$J,358.3,30537,2)
+ ;;=^5002442
+ ;;^UTILITY(U,$J,358.3,30538,0)
+ ;;=D86.2^^86^1223^49
+ ;;^UTILITY(U,$J,358.3,30538,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,30538,1,3,0)
+ ;;=3^Sarcoidosis of Lung w/ Sarcoidosis of Lymph Nodes
+ ;;^UTILITY(U,$J,358.3,30538,1,4,0)
+ ;;=4^D86.2
+ ;;^UTILITY(U,$J,358.3,30538,2)
+ ;;=^5002444
+ ;;^UTILITY(U,$J,358.3,30539,0)
+ ;;=D86.1^^86^1223^50
+ ;;^UTILITY(U,$J,358.3,30539,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,30539,1,3,0)
+ ;;=3^Sarcoidosis of Lymph Nodes
+ ;;^UTILITY(U,$J,358.3,30539,1,4,0)
+ ;;=4^D86.1
+ ;;^UTILITY(U,$J,358.3,30539,2)
+ ;;=^5002443
+ ;;^UTILITY(U,$J,358.3,30540,0)
+ ;;=D86.89^^86^1223^51
+ ;;^UTILITY(U,$J,358.3,30540,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,30540,1,3,0)
+ ;;=3^Sarcoidosis of Oth Sites
+ ;;^UTILITY(U,$J,358.3,30540,1,4,0)
+ ;;=4^D86.89
+ ;;^UTILITY(U,$J,358.3,30540,2)
+ ;;=^5002453
+ ;;^UTILITY(U,$J,358.3,30541,0)
+ ;;=D86.3^^86^1223^52
+ ;;^UTILITY(U,$J,358.3,30541,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,30541,1,3,0)
+ ;;=3^Sarcoidosis of Skin
+ ;;^UTILITY(U,$J,358.3,30541,1,4,0)
+ ;;=4^D86.3
+ ;;^UTILITY(U,$J,358.3,30541,2)
+ ;;=^5002445
+ ;;^UTILITY(U,$J,358.3,30542,0)
+ ;;=D86.9^^86^1223^53
+ ;;^UTILITY(U,$J,358.3,30542,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,30542,1,3,0)
+ ;;=3^Sarcoidosis,Unspec
+ ;;^UTILITY(U,$J,358.3,30542,1,4,0)
+ ;;=4^D86.9
+ ;;^UTILITY(U,$J,358.3,30542,2)
+ ;;=^5002454
+ ;;^UTILITY(U,$J,358.3,30543,0)
+ ;;=M35.01^^86^1223^54
+ ;;^UTILITY(U,$J,358.3,30543,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,30543,1,3,0)
+ ;;=3^Sicca Syndrome w/ Keratoconjunctivitis
+ ;;^UTILITY(U,$J,358.3,30543,1,4,0)
+ ;;=4^M35.01
+ ;;^UTILITY(U,$J,358.3,30543,2)
+ ;;=^5011787
+ ;;^UTILITY(U,$J,358.3,30544,0)
+ ;;=M35.02^^86^1223^55
+ ;;^UTILITY(U,$J,358.3,30544,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,30544,1,3,0)
+ ;;=3^Sicca Syndrome w/ Lung Involvement
+ ;;^UTILITY(U,$J,358.3,30544,1,4,0)
+ ;;=4^M35.02
+ ;;^UTILITY(U,$J,358.3,30544,2)
+ ;;=^5011788
+ ;;^UTILITY(U,$J,358.3,30545,0)
+ ;;=M35.03^^86^1223^56
+ ;;^UTILITY(U,$J,358.3,30545,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,30545,1,3,0)
+ ;;=3^Sicca Syndrome w/ Myopathy
+ ;;^UTILITY(U,$J,358.3,30545,1,4,0)
+ ;;=4^M35.03
+ ;;^UTILITY(U,$J,358.3,30545,2)
+ ;;=^5011789
+ ;;^UTILITY(U,$J,358.3,30546,0)
+ ;;=M35.09^^86^1223^57
+ ;;^UTILITY(U,$J,358.3,30546,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,30546,1,3,0)
+ ;;=3^Sicca Syndrome w/ Oth Organ Involvement
+ ;;^UTILITY(U,$J,358.3,30546,1,4,0)
+ ;;=4^M35.09
+ ;;^UTILITY(U,$J,358.3,30546,2)
+ ;;=^5011791
+ ;;^UTILITY(U,$J,358.3,30547,0)
+ ;;=M35.04^^86^1223^58
+ ;;^UTILITY(U,$J,358.3,30547,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,30547,1,3,0)
+ ;;=3^Sicca Syndrome w/ Tubulo-Interstitial Nephropathy
+ ;;^UTILITY(U,$J,358.3,30547,1,4,0)
+ ;;=4^M35.04
+ ;;^UTILITY(U,$J,358.3,30547,2)
+ ;;=^5011790
+ ;;^UTILITY(U,$J,358.3,30548,0)
+ ;;=M35.00^^86^1223^59
+ ;;^UTILITY(U,$J,358.3,30548,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,30548,1,3,0)
+ ;;=3^Sicca Syndrome,Unspec
+ ;;^UTILITY(U,$J,358.3,30548,1,4,0)
+ ;;=4^M35.00
+ ;;^UTILITY(U,$J,358.3,30548,2)
+ ;;=^5011786
+ ;;^UTILITY(U,$J,358.3,30549,0)
+ ;;=M32.10^^86^1223^62
+ ;;^UTILITY(U,$J,358.3,30549,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,30549,1,3,0)
+ ;;=3^Systemic Lupus Erythematosus,Unspec Organ/System Involvement
+ ;;^UTILITY(U,$J,358.3,30549,1,4,0)
+ ;;=4^M32.10
+ ;;^UTILITY(U,$J,358.3,30549,2)
+ ;;=^5011753
+ ;;^UTILITY(U,$J,358.3,30550,0)
+ ;;=M32.9^^86^1223^61
+ ;;^UTILITY(U,$J,358.3,30550,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,30550,1,3,0)
+ ;;=3^Systemic Lupus Erythematosus,Unspec
+ ;;^UTILITY(U,$J,358.3,30550,1,4,0)
+ ;;=4^M32.9
+ ;;^UTILITY(U,$J,358.3,30550,2)
+ ;;=^5011761
+ ;;^UTILITY(U,$J,358.3,30551,0)
+ ;;=M34.2^^86^1223^63
+ ;;^UTILITY(U,$J,358.3,30551,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,30551,1,3,0)
+ ;;=3^Systemic Sclerosis Induced by Drug/Chemical
+ ;;^UTILITY(U,$J,358.3,30551,1,4,0)
+ ;;=4^M34.2
+ ;;^UTILITY(U,$J,358.3,30551,2)
+ ;;=^5011780
+ ;;^UTILITY(U,$J,358.3,30552,0)
+ ;;=M34.81^^86^1223^64
+ ;;^UTILITY(U,$J,358.3,30552,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,30552,1,3,0)
+ ;;=3^Systemic Sclerosis w/ Lung Involvement
+ ;;^UTILITY(U,$J,358.3,30552,1,4,0)
+ ;;=4^M34.81
+ ;;^UTILITY(U,$J,358.3,30552,2)
+ ;;=^5011781
+ ;;^UTILITY(U,$J,358.3,30553,0)
+ ;;=M34.82^^86^1223^65
+ ;;^UTILITY(U,$J,358.3,30553,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,30553,1,3,0)
+ ;;=3^Systemic Sclerosis w/ Myopathy
+ ;;^UTILITY(U,$J,358.3,30553,1,4,0)
+ ;;=4^M34.82
+ ;;^UTILITY(U,$J,358.3,30553,2)
+ ;;=^5011782
+ ;;^UTILITY(U,$J,358.3,30554,0)
+ ;;=M34.83^^86^1223^66
+ ;;^UTILITY(U,$J,358.3,30554,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,30554,1,3,0)
+ ;;=3^Systemic Sclerosis w/ Polyneuropathy
+ ;;^UTILITY(U,$J,358.3,30554,1,4,0)
+ ;;=4^M34.83
+ ;;^UTILITY(U,$J,358.3,30554,2)
+ ;;=^5011783
+ ;;^UTILITY(U,$J,358.3,30555,0)
+ ;;=M34.9^^86^1223^67
+ ;;^UTILITY(U,$J,358.3,30555,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,30555,1,3,0)
+ ;;=3^Systemic Sclerosis,Unspec
+ ;;^UTILITY(U,$J,358.3,30555,1,4,0)
+ ;;=4^M34.9
+ ;;^UTILITY(U,$J,358.3,30555,2)
+ ;;=^5011785
+ ;;^UTILITY(U,$J,358.3,30556,0)
+ ;;=J84.170^^86^1223^16
+ ;;^UTILITY(U,$J,358.3,30556,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,30556,1,3,0)
+ ;;=3^Interstitial Lung Dis w/ Progressive Fibrotic Phenotype in Dis Classd Elsewhere
+ ;;^UTILITY(U,$J,358.3,30556,1,4,0)
+ ;;=4^J84.170
+ ;;^UTILITY(U,$J,358.3,30556,2)
+ ;;=^5159208
+ ;;^UTILITY(U,$J,358.3,30557,0)
+ ;;=J84.178^^86^1223^17
+ ;;^UTILITY(U,$J,358.3,30557,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,30557,1,3,0)
+ ;;=3^Interstitial Pulmonary Disease w/ Fibrosis,Other
+ ;;^UTILITY(U,$J,358.3,30557,1,4,0)
+ ;;=4^J84.178
+ ;;^UTILITY(U,$J,358.3,30557,2)
+ ;;=^5159209
+ ;;^UTILITY(U,$J,358.3,30558,0)
+ ;;=M81.0^^86^1224^21
+ ;;^UTILITY(U,$J,358.3,30558,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,30558,1,3,0)
+ ;;=3^Osteoporosis,Age-Related
+ ;;^UTILITY(U,$J,358.3,30558,1,4,0)
+ ;;=4^M81.0
+ ;;^UTILITY(U,$J,358.3,30558,2)
+ ;;=^5013555
+ ;;^UTILITY(U,$J,358.3,30559,0)
+ ;;=M46.46^^86^1224^2
+ ;;^UTILITY(U,$J,358.3,30559,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,30559,1,3,0)
+ ;;=3^Discitis,Lumbar Region,Unspec
+ ;;^UTILITY(U,$J,358.3,30559,1,4,0)
+ ;;=4^M46.46
+ ;;^UTILITY(U,$J,358.3,30559,2)
+ ;;=^5012006
+ ;;^UTILITY(U,$J,358.3,30560,0)
+ ;;=M46.47^^86^1224^3
+ ;;^UTILITY(U,$J,358.3,30560,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,30560,1,3,0)
+ ;;=3^Discitis,Lumbosacral Region,Unspec
+ ;;^UTILITY(U,$J,358.3,30560,1,4,0)
+ ;;=4^M46.47
+ ;;^UTILITY(U,$J,358.3,30560,2)
+ ;;=^5012007
+ ;;^UTILITY(U,$J,358.3,30561,0)
+ ;;=J98.6^^86^1224^1
+ ;;^UTILITY(U,$J,358.3,30561,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,30561,1,3,0)
+ ;;=3^Diaphragm Disorders
+ ;;^UTILITY(U,$J,358.3,30561,1,4,0)
+ ;;=4^J98.6
+ ;;^UTILITY(U,$J,358.3,30561,2)
+ ;;=^5008364
+ ;;^UTILITY(U,$J,358.3,30562,0)
+ ;;=M54.9^^86^1224^5
+ ;;^UTILITY(U,$J,358.3,30562,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,30562,1,3,0)
+ ;;=3^Dorsalgia,Unspec
+ ;;^UTILITY(U,$J,358.3,30562,1,4,0)
+ ;;=4^M54.9
+ ;;^UTILITY(U,$J,358.3,30562,2)
+ ;;=^5012314
+ ;;^UTILITY(U,$J,358.3,30563,0)
+ ;;=S22.32XA^^86^1224^9
+ ;;^UTILITY(U,$J,358.3,30563,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,30563,1,3,0)
+ ;;=3^Fx One Rib Left side,Init Enctr
+ ;;^UTILITY(U,$J,358.3,30563,1,4,0)
+ ;;=4^S22.32XA
+ ;;^UTILITY(U,$J,358.3,30563,2)
+ ;;=^5023111
+ ;;^UTILITY(U,$J,358.3,30564,0)
+ ;;=S22.31XA^^86^1224^10
+ ;;^UTILITY(U,$J,358.3,30564,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,30564,1,3,0)
+ ;;=3^Fx One Rib Right Side,Init Enctr
+ ;;^UTILITY(U,$J,358.3,30564,1,4,0)
+ ;;=4^S22.31XA
+ ;;^UTILITY(U,$J,358.3,30564,2)
+ ;;=^5023105
+ ;;^UTILITY(U,$J,358.3,30565,0)
+ ;;=M10.9^^86^1224^11
+ ;;^UTILITY(U,$J,358.3,30565,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,30565,1,3,0)
+ ;;=3^Gout,Unspec
+ ;;^UTILITY(U,$J,358.3,30565,1,4,0)
+ ;;=4^M10.9
+ ;;^UTILITY(U,$J,358.3,30565,2)
+ ;;=^5010404
+ ;;^UTILITY(U,$J,358.3,30566,0)
+ ;;=S22.43XA^^86^1224^6
+ ;;^UTILITY(U,$J,358.3,30566,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,30566,1,3,0)
+ ;;=3^Fx Mult Ribs Bilateral,Init Enctr
+ ;;^UTILITY(U,$J,358.3,30566,1,4,0)
+ ;;=4^S22.43XA
+ ;;^UTILITY(U,$J,358.3,30566,2)
+ ;;=^5023135
+ ;;^UTILITY(U,$J,358.3,30567,0)
+ ;;=S22.42XA^^86^1224^7
+ ;;^UTILITY(U,$J,358.3,30567,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,30567,1,3,0)
+ ;;=3^Fx Mult Ribs Left Side,Init Enctr
+ ;;^UTILITY(U,$J,358.3,30567,1,4,0)
+ ;;=4^S22.42XA
+ ;;^UTILITY(U,$J,358.3,30567,2)
+ ;;=^5023129
+ ;;^UTILITY(U,$J,358.3,30568,0)
+ ;;=S22.41XA^^86^1224^8
+ ;;^UTILITY(U,$J,358.3,30568,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,30568,1,3,0)
+ ;;=3^Fx Mult Ribs Right Side,Init Enctr
+ ;;^UTILITY(U,$J,358.3,30568,1,4,0)
+ ;;=4^S22.41XA
+ ;;^UTILITY(U,$J,358.3,30568,2)
+ ;;=^5023123
+ ;;^UTILITY(U,$J,358.3,30569,0)
+ ;;=G70.00^^86^1224^18
+ ;;^UTILITY(U,$J,358.3,30569,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,30569,1,3,0)
+ ;;=3^Myasthenia Gracis w/o Exacerbation
+ ;;^UTILITY(U,$J,358.3,30569,1,4,0)
+ ;;=4^G70.00
+ ;;^UTILITY(U,$J,358.3,30569,2)
+ ;;=^329920
+ ;;^UTILITY(U,$J,358.3,30570,0)
+ ;;=G72.9^^86^1224^19
+ ;;^UTILITY(U,$J,358.3,30570,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,30570,1,3,0)
+ ;;=3^Myopathy,Unspec
+ ;;^UTILITY(U,$J,358.3,30570,1,4,0)
+ ;;=4^G72.9
+ ;;^UTILITY(U,$J,358.3,30570,2)
+ ;;=^5004101
+ ;;^UTILITY(U,$J,358.3,30571,0)
+ ;;=M54.89^^86^1224^4
+ ;;^UTILITY(U,$J,358.3,30571,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,30571,1,3,0)
+ ;;=3^Dorsalgia NEC
+ ;;^UTILITY(U,$J,358.3,30571,1,4,0)
+ ;;=4^M54.89
+ ;;^UTILITY(U,$J,358.3,30571,2)
+ ;;=^5012313
+ ;;^UTILITY(U,$J,358.3,30572,0)
+ ;;=M51.86^^86^1224^12
+ ;;^UTILITY(U,$J,358.3,30572,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,30572,1,3,0)
+ ;;=3^Intervertebral Disc Disorders,Lumbar Region NEC
+ ;;^UTILITY(U,$J,358.3,30572,1,4,0)
+ ;;=4^M51.86
+ ;;^UTILITY(U,$J,358.3,30572,2)
+ ;;=^5012261
+ ;;^UTILITY(U,$J,358.3,30573,0)
+ ;;=M51.87^^86^1224^13
+ ;;^UTILITY(U,$J,358.3,30573,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,30573,1,3,0)
+ ;;=3^Intervertebral Disc Disorders,Lumbosacral Region NEC
+ ;;^UTILITY(U,$J,358.3,30573,1,4,0)
+ ;;=4^M51.87
+ ;;^UTILITY(U,$J,358.3,30573,2)
+ ;;=^5012262
+ ;;^UTILITY(U,$J,358.3,30574,0)
+ ;;=M05.872^^86^1224^27
+ ;;^UTILITY(U,$J,358.3,30574,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,30574,1,3,0)
+ ;;=3^Rheu Arth w/ Rheu Factor Left Ankle/Foot
+ ;;^UTILITY(U,$J,358.3,30574,1,4,0)
+ ;;=4^M05.872
+ ;;^UTILITY(U,$J,358.3,30574,2)
+ ;;=^5010043
+ ;;^UTILITY(U,$J,358.3,30575,0)
+ ;;=M05.822^^86^1224^28
+ ;;^UTILITY(U,$J,358.3,30575,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,30575,1,3,0)
+ ;;=3^Rheu Arth w/ Rheu Factor Left Elbow
+ ;;^UTILITY(U,$J,358.3,30575,1,4,0)
+ ;;=4^M05.822
+ ;;^UTILITY(U,$J,358.3,30575,2)
+ ;;=^5010028
+ ;;^UTILITY(U,$J,358.3,30576,0)
+ ;;=M05.842^^86^1224^29
+ ;;^UTILITY(U,$J,358.3,30576,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,30576,1,3,0)
+ ;;=3^Rheu Arth w/ Rheu Factor Left Hand
+ ;;^UTILITY(U,$J,358.3,30576,1,4,0)
+ ;;=4^M05.842
+ ;;^UTILITY(U,$J,358.3,30576,2)
+ ;;=^5010034
+ ;;^UTILITY(U,$J,358.3,30577,0)
+ ;;=M05.852^^86^1224^30
+ ;;^UTILITY(U,$J,358.3,30577,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,30577,1,3,0)
+ ;;=3^Rheu Arth w/ Rheu Factor Left Hip
+ ;;^UTILITY(U,$J,358.3,30577,1,4,0)
+ ;;=4^M05.852
+ ;;^UTILITY(U,$J,358.3,30577,2)
+ ;;=^5010037
+ ;;^UTILITY(U,$J,358.3,30578,0)
+ ;;=M05.862^^86^1224^31
+ ;;^UTILITY(U,$J,358.3,30578,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,30578,1,3,0)
+ ;;=3^Rheu Arth w/ Rheu Factor Left Knee
+ ;;^UTILITY(U,$J,358.3,30578,1,4,0)
+ ;;=4^M05.862
+ ;;^UTILITY(U,$J,358.3,30578,2)
+ ;;=^5010040
+ ;;^UTILITY(U,$J,358.3,30579,0)
+ ;;=M05.812^^86^1224^32
+ ;;^UTILITY(U,$J,358.3,30579,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,30579,1,3,0)
+ ;;=3^Rheu Arth w/ Rheu Factor Left Shldr
+ ;;^UTILITY(U,$J,358.3,30579,1,4,0)
+ ;;=4^M05.812
+ ;;^UTILITY(U,$J,358.3,30579,2)
+ ;;=^5010025
+ ;;^UTILITY(U,$J,358.3,30580,0)
+ ;;=M05.832^^86^1224^33
+ ;;^UTILITY(U,$J,358.3,30580,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,30580,1,3,0)
+ ;;=3^Rheu Arth w/ Rheu Factor Left Wrist
+ ;;^UTILITY(U,$J,358.3,30580,1,4,0)
+ ;;=4^M05.832
+ ;;^UTILITY(U,$J,358.3,30580,2)
+ ;;=^5010031
+ ;;^UTILITY(U,$J,358.3,30581,0)
+ ;;=M05.89^^86^1224^34
+ ;;^UTILITY(U,$J,358.3,30581,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,30581,1,3,0)
+ ;;=3^Rheu Arth w/ Rheu Factor Mult Sites
+ ;;^UTILITY(U,$J,358.3,30581,1,4,0)
+ ;;=4^M05.89
+ ;;^UTILITY(U,$J,358.3,30581,2)
+ ;;=^5010045
+ ;;^UTILITY(U,$J,358.3,30582,0)
+ ;;=M05.871^^86^1224^35
+ ;;^UTILITY(U,$J,358.3,30582,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,30582,1,3,0)
+ ;;=3^Rheu Arth w/ Rheu Factor Right Ankle/Foot
+ ;;^UTILITY(U,$J,358.3,30582,1,4,0)
+ ;;=4^M05.871
+ ;;^UTILITY(U,$J,358.3,30582,2)
+ ;;=^5010042
+ ;;^UTILITY(U,$J,358.3,30583,0)
+ ;;=M05.821^^86^1224^36
+ ;;^UTILITY(U,$J,358.3,30583,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,30583,1,3,0)
+ ;;=3^Rheu Arth w/ Rheu Factor Right Elbow
+ ;;^UTILITY(U,$J,358.3,30583,1,4,0)
+ ;;=4^M05.821
+ ;;^UTILITY(U,$J,358.3,30583,2)
+ ;;=^5010027
+ ;;^UTILITY(U,$J,358.3,30584,0)
+ ;;=M05.841^^86^1224^37
+ ;;^UTILITY(U,$J,358.3,30584,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,30584,1,3,0)
+ ;;=3^Rheu Arth w/ Rheu Factor Right Hand
+ ;;^UTILITY(U,$J,358.3,30584,1,4,0)
+ ;;=4^M05.841
+ ;;^UTILITY(U,$J,358.3,30584,2)
+ ;;=^5010033
+ ;;^UTILITY(U,$J,358.3,30585,0)
+ ;;=M05.851^^86^1224^38
+ ;;^UTILITY(U,$J,358.3,30585,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,30585,1,3,0)
+ ;;=3^Rheu Arth w/ Rheu Factor Right Hip
+ ;;^UTILITY(U,$J,358.3,30585,1,4,0)
+ ;;=4^M05.851
+ ;;^UTILITY(U,$J,358.3,30585,2)
+ ;;=^5010036
+ ;;^UTILITY(U,$J,358.3,30586,0)
+ ;;=M05.861^^86^1224^39
+ ;;^UTILITY(U,$J,358.3,30586,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,30586,1,3,0)
+ ;;=3^Rheu Arth w/ Rheu Factor Right Knee
+ ;;^UTILITY(U,$J,358.3,30586,1,4,0)
+ ;;=4^M05.861
+ ;;^UTILITY(U,$J,358.3,30586,2)
+ ;;=^5010039
+ ;;^UTILITY(U,$J,358.3,30587,0)
+ ;;=M05.811^^86^1224^40
+ ;;^UTILITY(U,$J,358.3,30587,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,30587,1,3,0)
+ ;;=3^Rheu Arth w/ Rheu Factor Right Shldr
+ ;;^UTILITY(U,$J,358.3,30587,1,4,0)
+ ;;=4^M05.811
+ ;;^UTILITY(U,$J,358.3,30587,2)
+ ;;=^5010024
+ ;;^UTILITY(U,$J,358.3,30588,0)
+ ;;=M05.831^^86^1224^41
+ ;;^UTILITY(U,$J,358.3,30588,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,30588,1,3,0)
+ ;;=3^Rheu Arth w/ Rheu Factor Right Wrist
+ ;;^UTILITY(U,$J,358.3,30588,1,4,0)
+ ;;=4^M05.831
+ ;;^UTILITY(U,$J,358.3,30588,2)
+ ;;=^5010030
+ ;;^UTILITY(U,$J,358.3,30589,0)
+ ;;=M05.80^^86^1224^42
+ ;;^UTILITY(U,$J,358.3,30589,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,30589,1,3,0)
+ ;;=3^Rheu Arth w/ Rheu Factor Unspec Site
+ ;;^UTILITY(U,$J,358.3,30589,1,4,0)
+ ;;=4^M05.80
+ ;;^UTILITY(U,$J,358.3,30589,2)
+ ;;=^5010023
+ ;;^UTILITY(U,$J,358.3,30590,0)
+ ;;=M06.872^^86^1224^93
+ ;;^UTILITY(U,$J,358.3,30590,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,30590,1,3,0)
+ ;;=3^Rheumatoid Arthritis Left Ankle/Foot
+ ;;^UTILITY(U,$J,358.3,30590,1,4,0)
+ ;;=4^M06.872
+ ;;^UTILITY(U,$J,358.3,30590,2)
+ ;;=^5010141
+ ;;^UTILITY(U,$J,358.3,30591,0)
+ ;;=M06.822^^86^1224^94
+ ;;^UTILITY(U,$J,358.3,30591,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,30591,1,3,0)
+ ;;=3^Rheumatoid Arthritis Left Elbow
+ ;;^UTILITY(U,$J,358.3,30591,1,4,0)
+ ;;=4^M06.822
+ ;;^UTILITY(U,$J,358.3,30591,2)
+ ;;=^5010126
+ ;;^UTILITY(U,$J,358.3,30592,0)
+ ;;=M06.842^^86^1224^95
+ ;;^UTILITY(U,$J,358.3,30592,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,30592,1,3,0)
+ ;;=3^Rheumatoid Arthritis Left Hand
+ ;;^UTILITY(U,$J,358.3,30592,1,4,0)
+ ;;=4^M06.842
+ ;;^UTILITY(U,$J,358.3,30592,2)
+ ;;=^5010132
+ ;;^UTILITY(U,$J,358.3,30593,0)
+ ;;=M06.852^^86^1224^96
+ ;;^UTILITY(U,$J,358.3,30593,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,30593,1,3,0)
+ ;;=3^Rheumatoid Arthritis Left Hip
+ ;;^UTILITY(U,$J,358.3,30593,1,4,0)
+ ;;=4^M06.852
+ ;;^UTILITY(U,$J,358.3,30593,2)
+ ;;=^5010135
+ ;;^UTILITY(U,$J,358.3,30594,0)
+ ;;=M06.862^^86^1224^97
+ ;;^UTILITY(U,$J,358.3,30594,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,30594,1,3,0)
+ ;;=3^Rheumatoid Arthritis Left Knee
+ ;;^UTILITY(U,$J,358.3,30594,1,4,0)
+ ;;=4^M06.862
+ ;;^UTILITY(U,$J,358.3,30594,2)
+ ;;=^5010138
+ ;;^UTILITY(U,$J,358.3,30595,0)
+ ;;=M06.812^^86^1224^98
+ ;;^UTILITY(U,$J,358.3,30595,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,30595,1,3,0)
+ ;;=3^Rheumatoid Arthritis Left Shoulder
+ ;;^UTILITY(U,$J,358.3,30595,1,4,0)
+ ;;=4^M06.812
+ ;;^UTILITY(U,$J,358.3,30595,2)
+ ;;=^5010123
+ ;;^UTILITY(U,$J,358.3,30596,0)
+ ;;=M06.832^^86^1224^99
+ ;;^UTILITY(U,$J,358.3,30596,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,30596,1,3,0)
+ ;;=3^Rheumatoid Arthritis Left Wrist

@@ -1,5 +1,5 @@
 PSONEW ;BIR/SAB - new rx order main driver ;Jul 24, 2017@15:24
- ;;7.0;OUTPATIENT PHARMACY;**11,27,32,46,94,130,268,225,251,379,390,417,313,411,457**;DEC 1997;Build 116
+ ;;7.0;OUTPATIENT PHARMACY;**11,27,32,46,94,130,268,225,251,379,390,417,313,411,457,524**;DEC 1997;Build 28
  ;External reference to UL^PSSLOCK supported by DBIA 2789
  ;External reference to $$L^PSSLOCK supported by DBIA 2789
  ;External reference to ^VA(200 supported by DBIA 224
@@ -14,6 +14,7 @@ OERR ;backdoor new rx for v7
  S PSOPLCK=$$L^PSSLOCK(PSODFN,0) I '$G(PSOPLCK) D LOCK^PSOORCPY S VALMSG=$S($P($G(PSOPLCK),"^",2)'="":$P($G(PSOPLCK),"^",2)_" is working on this patient.",1:"Another person is entering orders for this patient.") K PSOPLCK S VALMBCK="" Q
  K PSOPLCK S X=PSODFN_";DPT(" D LK^ORX2 I 'Y S VALMSG="Another person is entering orders for this patient.",VALMBCK="" D UL^PSSLOCK(PSODFN) Q
 AGAIN N VALMCNT K PSODRUG,PSOCOU,PSOCOUU,PSONOOR,PSORX("FN"),PSORX("DFLG"),PSOQUIT,POERR S PSORX("DFLG")=0
+ N PSOHZ,PSOLSTDR S (PSOHZ,PSOLSTDR)=0       ;*524
  W ! D HLDHDR^PSOLMUTL S (PSONEW("QFLG"),PSONEW("DFLG"),PSOQUIT)=0,PSOFROM="NEW",PSONOEDT=1
  K ORD D FULL^VALM1,^PSONEW1 ; Continue order entry
  I PSONEW("QFLG") G END

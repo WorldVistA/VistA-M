@@ -1,120 +1,126 @@
-IBDEI12D ; ; 04-FEB-2020
- ;;3.0;IB ENCOUNTER FORM IMP/EXP;;FEB 04, 2020
+IBDEI12D ; ; 01-FEB-2022
+ ;;3.0;IB ENCOUNTER FORM IMP/EXP;;FEB 01, 2022
  Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,999) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
- ;;^UTILITY(U,$J,358.3,17099,0)
- ;;=M79.672^^88^885^104
- ;;^UTILITY(U,$J,358.3,17099,1,0)
+ ;;^UTILITY(U,$J,358.3,17284,2)
+ ;;=^5002449
+ ;;^UTILITY(U,$J,358.3,17285,0)
+ ;;=D86.85^^61^785^42
+ ;;^UTILITY(U,$J,358.3,17285,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,17099,1,3,0)
- ;;=3^Pain in Left Foot
- ;;^UTILITY(U,$J,358.3,17099,1,4,0)
- ;;=4^M79.672
- ;;^UTILITY(U,$J,358.3,17099,2)
- ;;=^5013351
- ;;^UTILITY(U,$J,358.3,17100,0)
- ;;=M54.9^^88^885^8
- ;;^UTILITY(U,$J,358.3,17100,1,0)
+ ;;^UTILITY(U,$J,358.3,17285,1,3,0)
+ ;;=3^Sarcoid Myocarditis
+ ;;^UTILITY(U,$J,358.3,17285,1,4,0)
+ ;;=4^D86.85
+ ;;^UTILITY(U,$J,358.3,17285,2)
+ ;;=^5002450
+ ;;^UTILITY(U,$J,358.3,17286,0)
+ ;;=D86.83^^61^785^40
+ ;;^UTILITY(U,$J,358.3,17286,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,17100,1,3,0)
- ;;=3^Backache/Dorsalgia
- ;;^UTILITY(U,$J,358.3,17100,1,4,0)
- ;;=4^M54.9
- ;;^UTILITY(U,$J,358.3,17100,2)
- ;;=^5012314
- ;;^UTILITY(U,$J,358.3,17101,0)
- ;;=M48.52XG^^88^885^20
- ;;^UTILITY(U,$J,358.3,17101,1,0)
+ ;;^UTILITY(U,$J,358.3,17286,1,3,0)
+ ;;=3^Sarcoid Iridocyclitis
+ ;;^UTILITY(U,$J,358.3,17286,1,4,0)
+ ;;=4^D86.83
+ ;;^UTILITY(U,$J,358.3,17286,2)
+ ;;=^5002448
+ ;;^UTILITY(U,$J,358.3,17287,0)
+ ;;=D84.1^^61^785^16
+ ;;^UTILITY(U,$J,358.3,17287,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,17101,1,3,0)
- ;;=3^Collapsed Vertabra,Cervical Region,Subs Encntr,Del Healing
- ;;^UTILITY(U,$J,358.3,17101,1,4,0)
- ;;=4^M48.52XG
- ;;^UTILITY(U,$J,358.3,17101,2)
- ;;=^5012169
- ;;^UTILITY(U,$J,358.3,17102,0)
- ;;=M48.52XS^^88^885^21
- ;;^UTILITY(U,$J,358.3,17102,1,0)
+ ;;^UTILITY(U,$J,358.3,17287,1,3,0)
+ ;;=3^Defects in Complement System
+ ;;^UTILITY(U,$J,358.3,17287,1,4,0)
+ ;;=4^D84.1
+ ;;^UTILITY(U,$J,358.3,17287,2)
+ ;;=^5002439
+ ;;^UTILITY(U,$J,358.3,17288,0)
+ ;;=D81.810^^61^785^5
+ ;;^UTILITY(U,$J,358.3,17288,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,17102,1,3,0)
- ;;=3^Collapsed Vertabra,Cervical Region,Subs Encntr,Sequela
- ;;^UTILITY(U,$J,358.3,17102,1,4,0)
- ;;=4^M48.52XS
- ;;^UTILITY(U,$J,358.3,17102,2)
- ;;=^5012170
- ;;^UTILITY(U,$J,358.3,17103,0)
- ;;=M48.57XG^^88^885^28
- ;;^UTILITY(U,$J,358.3,17103,1,0)
+ ;;^UTILITY(U,$J,358.3,17288,1,3,0)
+ ;;=3^Biotinidase Deficiency
+ ;;^UTILITY(U,$J,358.3,17288,1,4,0)
+ ;;=4^D81.810
+ ;;^UTILITY(U,$J,358.3,17288,2)
+ ;;=^5002422
+ ;;^UTILITY(U,$J,358.3,17289,0)
+ ;;=E88.01^^61^785^2
+ ;;^UTILITY(U,$J,358.3,17289,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,17103,1,3,0)
- ;;=3^Collapsed Vertebra,Lumbosacral Region,Subs Encntr,Del Healing
- ;;^UTILITY(U,$J,358.3,17103,1,4,0)
- ;;=4^M48.57XG
- ;;^UTILITY(U,$J,358.3,17103,2)
- ;;=^5012189
- ;;^UTILITY(U,$J,358.3,17104,0)
- ;;=M48.57XS^^88^885^29
- ;;^UTILITY(U,$J,358.3,17104,1,0)
+ ;;^UTILITY(U,$J,358.3,17289,1,3,0)
+ ;;=3^Apha-1 Antitrypsin Deficiency
+ ;;^UTILITY(U,$J,358.3,17289,1,4,0)
+ ;;=4^E88.01
+ ;;^UTILITY(U,$J,358.3,17289,2)
+ ;;=^331442
+ ;;^UTILITY(U,$J,358.3,17290,0)
+ ;;=J09.X1^^61^785^25
+ ;;^UTILITY(U,$J,358.3,17290,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,17104,1,3,0)
- ;;=3^Collapsed Vertebra,Lumbosacral Region,Subs Encntr,Sequela
- ;;^UTILITY(U,$J,358.3,17104,1,4,0)
- ;;=4^M48.57XS
- ;;^UTILITY(U,$J,358.3,17104,2)
- ;;=^5012190
- ;;^UTILITY(U,$J,358.3,17105,0)
- ;;=M48.54XD^^88^885^30
- ;;^UTILITY(U,$J,358.3,17105,1,0)
+ ;;^UTILITY(U,$J,358.3,17290,1,3,0)
+ ;;=3^Influenza d/t Indent Novel Influenza A Virus w/ Pneumonia
+ ;;^UTILITY(U,$J,358.3,17290,1,4,0)
+ ;;=4^J09.X1
+ ;;^UTILITY(U,$J,358.3,17290,2)
+ ;;=^5008144
+ ;;^UTILITY(U,$J,358.3,17291,0)
+ ;;=J09.X2^^61^785^26
+ ;;^UTILITY(U,$J,358.3,17291,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,17105,1,3,0)
- ;;=3^Collapsed Vertebra,Thoracic Region,Subs Encntr,Rt Healing
- ;;^UTILITY(U,$J,358.3,17105,1,4,0)
- ;;=4^M48.54XD
- ;;^UTILITY(U,$J,358.3,17105,2)
- ;;=^5012176
- ;;^UTILITY(U,$J,358.3,17106,0)
- ;;=M48.57XG^^88^885^31
- ;;^UTILITY(U,$J,358.3,17106,1,0)
+ ;;^UTILITY(U,$J,358.3,17291,1,3,0)
+ ;;=3^Influenza d/t Indent Novel Influenza A Virus w/ Resp Manifest
+ ;;^UTILITY(U,$J,358.3,17291,1,4,0)
+ ;;=4^J09.X2
+ ;;^UTILITY(U,$J,358.3,17291,2)
+ ;;=^5008145
+ ;;^UTILITY(U,$J,358.3,17292,0)
+ ;;=J09.X3^^61^785^27
+ ;;^UTILITY(U,$J,358.3,17292,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,17106,1,3,0)
- ;;=3^Collapsed Vertebra,Thoracic Region,Subs Encntr,Del Healing
- ;;^UTILITY(U,$J,358.3,17106,1,4,0)
- ;;=4^M48.57XG
- ;;^UTILITY(U,$J,358.3,17106,2)
- ;;=^5012189
- ;;^UTILITY(U,$J,358.3,17107,0)
- ;;=M48.54XS^^88^885^32
- ;;^UTILITY(U,$J,358.3,17107,1,0)
+ ;;^UTILITY(U,$J,358.3,17292,1,3,0)
+ ;;=3^Influenza d/t Indent Novel Influenza A Virus w/ GI Manifest
+ ;;^UTILITY(U,$J,358.3,17292,1,4,0)
+ ;;=4^J09.X3
+ ;;^UTILITY(U,$J,358.3,17292,2)
+ ;;=^5008146
+ ;;^UTILITY(U,$J,358.3,17293,0)
+ ;;=J09.X9^^61^785^28
+ ;;^UTILITY(U,$J,358.3,17293,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,17107,1,3,0)
- ;;=3^Collapsed Vertebra,Thoracic Region,Subs Encntr,Sequela
- ;;^UTILITY(U,$J,358.3,17107,1,4,0)
- ;;=4^M48.54XS
- ;;^UTILITY(U,$J,358.3,17107,2)
- ;;=^5012178
- ;;^UTILITY(U,$J,358.3,17108,0)
- ;;=M62.830^^88^885^63
- ;;^UTILITY(U,$J,358.3,17108,1,0)
+ ;;^UTILITY(U,$J,358.3,17293,1,3,0)
+ ;;=3^Influenza d/t Indent Novel Influenza A Virus w/ Oth Manifest
+ ;;^UTILITY(U,$J,358.3,17293,1,4,0)
+ ;;=4^J09.X9
+ ;;^UTILITY(U,$J,358.3,17293,2)
+ ;;=^5008147
+ ;;^UTILITY(U,$J,358.3,17294,0)
+ ;;=J44.9^^61^785^14
+ ;;^UTILITY(U,$J,358.3,17294,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,17108,1,3,0)
- ;;=3^Muscle Spasm of Back
- ;;^UTILITY(U,$J,358.3,17108,1,4,0)
- ;;=4^M62.830
- ;;^UTILITY(U,$J,358.3,17108,2)
- ;;=^5012680
- ;;^UTILITY(U,$J,358.3,17109,0)
- ;;=M19.92^^88^885^126
- ;;^UTILITY(U,$J,358.3,17109,1,0)
+ ;;^UTILITY(U,$J,358.3,17294,1,3,0)
+ ;;=3^COPD,Unspec
+ ;;^UTILITY(U,$J,358.3,17294,1,4,0)
+ ;;=4^J44.9
+ ;;^UTILITY(U,$J,358.3,17294,2)
+ ;;=^5008241
+ ;;^UTILITY(U,$J,358.3,17295,0)
+ ;;=J44.1^^61^785^13
+ ;;^UTILITY(U,$J,358.3,17295,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,17109,1,3,0)
- ;;=3^Post-Traumatic Osteoarthritis,Unspec Site
- ;;^UTILITY(U,$J,358.3,17109,1,4,0)
- ;;=4^M19.92
- ;;^UTILITY(U,$J,358.3,17109,2)
- ;;=^5010855
- ;;^UTILITY(U,$J,358.3,17110,0)
- ;;=M85.872^^88^885^84
- ;;^UTILITY(U,$J,358.3,17110,1,0)
+ ;;^UTILITY(U,$J,358.3,17295,1,3,0)
+ ;;=3^COPD w/ Acute Exacerbation
+ ;;^UTILITY(U,$J,358.3,17295,1,4,0)
+ ;;=4^J44.1
+ ;;^UTILITY(U,$J,358.3,17295,2)
+ ;;=^5008240
+ ;;^UTILITY(U,$J,358.3,17296,0)
+ ;;=J42.^^61^785^10
+ ;;^UTILITY(U,$J,358.3,17296,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,17110,1,3,0)
- ;;=3^Osteopenia,Left Ankle & Foot
+ ;;^UTILITY(U,$J,358.3,17296,1,3,0)
+ ;;=3^Bronchitis,Unspec Chronic
+ ;;^UTILITY(U,$J,358.3,17296,1,4,0)
+ ;;=4^J42.
+ ;;^UTILITY(U,$J,358.3,17296,2)
+ ;;=^5008234

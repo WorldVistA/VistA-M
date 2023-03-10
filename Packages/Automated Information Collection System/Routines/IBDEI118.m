@@ -1,126 +1,126 @@
-IBDEI118 ; ; 04-FEB-2020
- ;;3.0;IB ENCOUNTER FORM IMP/EXP;;FEB 04, 2020
+IBDEI118 ; ; 01-FEB-2022
+ ;;3.0;IB ENCOUNTER FORM IMP/EXP;;FEB 01, 2022
  Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,999) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
- ;;^UTILITY(U,$J,358.3,16595,0)
- ;;=D57.1^^88^879^187
- ;;^UTILITY(U,$J,358.3,16595,1,0)
+ ;;^UTILITY(U,$J,358.3,16780,1,4,0)
+ ;;=4^Z96.652
+ ;;^UTILITY(U,$J,358.3,16780,2)
+ ;;=^5063706
+ ;;^UTILITY(U,$J,358.3,16781,0)
+ ;;=Z96.653^^61^776^120
+ ;;^UTILITY(U,$J,358.3,16781,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,16595,1,3,0)
- ;;=3^Sickle-Cell Disease w/o Crisis
- ;;^UTILITY(U,$J,358.3,16595,1,4,0)
- ;;=4^D57.1
- ;;^UTILITY(U,$J,358.3,16595,2)
- ;;=^5002309
- ;;^UTILITY(U,$J,358.3,16596,0)
- ;;=D75.1^^88^879^185
- ;;^UTILITY(U,$J,358.3,16596,1,0)
+ ;;^UTILITY(U,$J,358.3,16781,1,3,0)
+ ;;=3^Presence of Artificial Knee Jt,Bilateral
+ ;;^UTILITY(U,$J,358.3,16781,1,4,0)
+ ;;=4^Z96.653
+ ;;^UTILITY(U,$J,358.3,16781,2)
+ ;;=^5063707
+ ;;^UTILITY(U,$J,358.3,16782,0)
+ ;;=Z96.7^^61^776^125
+ ;;^UTILITY(U,$J,358.3,16782,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,16596,1,3,0)
- ;;=3^Polycythemia,Secondary
- ;;^UTILITY(U,$J,358.3,16596,1,4,0)
- ;;=4^D75.1
- ;;^UTILITY(U,$J,358.3,16596,2)
- ;;=^186856
- ;;^UTILITY(U,$J,358.3,16597,0)
- ;;=C90.30^^88^879^188
- ;;^UTILITY(U,$J,358.3,16597,1,0)
+ ;;^UTILITY(U,$J,358.3,16782,1,3,0)
+ ;;=3^Presence of Bone/Tendon Implants NEC
+ ;;^UTILITY(U,$J,358.3,16782,1,4,0)
+ ;;=4^Z96.7
+ ;;^UTILITY(U,$J,358.3,16782,2)
+ ;;=^5063716
+ ;;^UTILITY(U,$J,358.3,16783,0)
+ ;;=Z97.11^^61^776^139
+ ;;^UTILITY(U,$J,358.3,16783,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,16597,1,3,0)
- ;;=3^Solitary Plasmacytoma,Not in Remission
- ;;^UTILITY(U,$J,358.3,16597,1,4,0)
- ;;=4^C90.30
- ;;^UTILITY(U,$J,358.3,16597,2)
- ;;=^5001759
- ;;^UTILITY(U,$J,358.3,16598,0)
- ;;=D56.3^^88^879^189
- ;;^UTILITY(U,$J,358.3,16598,1,0)
+ ;;^UTILITY(U,$J,358.3,16783,1,3,0)
+ ;;=3^Presence of Right Artificial Arm
+ ;;^UTILITY(U,$J,358.3,16783,1,4,0)
+ ;;=4^Z97.11
+ ;;^UTILITY(U,$J,358.3,16783,2)
+ ;;=^5063722
+ ;;^UTILITY(U,$J,358.3,16784,0)
+ ;;=Z97.12^^61^776^134
+ ;;^UTILITY(U,$J,358.3,16784,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,16598,1,3,0)
- ;;=3^Thalassemia Minor
- ;;^UTILITY(U,$J,358.3,16598,1,4,0)
- ;;=4^D56.3
- ;;^UTILITY(U,$J,358.3,16598,2)
- ;;=^340497
- ;;^UTILITY(U,$J,358.3,16599,0)
- ;;=D56.9^^88^879^190
- ;;^UTILITY(U,$J,358.3,16599,1,0)
+ ;;^UTILITY(U,$J,358.3,16784,1,3,0)
+ ;;=3^Presence of Left Artificial Arm
+ ;;^UTILITY(U,$J,358.3,16784,1,4,0)
+ ;;=4^Z97.12
+ ;;^UTILITY(U,$J,358.3,16784,2)
+ ;;=^5063723
+ ;;^UTILITY(U,$J,358.3,16785,0)
+ ;;=Z97.13^^61^776^142
+ ;;^UTILITY(U,$J,358.3,16785,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,16599,1,3,0)
- ;;=3^Thalassemia,Unspec
- ;;^UTILITY(U,$J,358.3,16599,1,4,0)
- ;;=4^D56.9
- ;;^UTILITY(U,$J,358.3,16599,2)
- ;;=^340606
- ;;^UTILITY(U,$J,358.3,16600,0)
- ;;=M31.1^^88^879^192
- ;;^UTILITY(U,$J,358.3,16600,1,0)
+ ;;^UTILITY(U,$J,358.3,16785,1,3,0)
+ ;;=3^Presence of Right Artificial Leg
+ ;;^UTILITY(U,$J,358.3,16785,1,4,0)
+ ;;=4^Z97.13
+ ;;^UTILITY(U,$J,358.3,16785,2)
+ ;;=^5063724
+ ;;^UTILITY(U,$J,358.3,16786,0)
+ ;;=Z97.14^^61^776^137
+ ;;^UTILITY(U,$J,358.3,16786,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,16600,1,3,0)
- ;;=3^Thrombotic Microangiopathy
- ;;^UTILITY(U,$J,358.3,16600,1,4,0)
- ;;=4^M31.1
- ;;^UTILITY(U,$J,358.3,16600,2)
- ;;=^119061
- ;;^UTILITY(U,$J,358.3,16601,0)
- ;;=D51.2^^88^879^193
- ;;^UTILITY(U,$J,358.3,16601,1,0)
+ ;;^UTILITY(U,$J,358.3,16786,1,3,0)
+ ;;=3^Presence of Left Artificial Leg
+ ;;^UTILITY(U,$J,358.3,16786,1,4,0)
+ ;;=4^Z97.14
+ ;;^UTILITY(U,$J,358.3,16786,2)
+ ;;=^5063725
+ ;;^UTILITY(U,$J,358.3,16787,0)
+ ;;=Z97.15^^61^776^116
+ ;;^UTILITY(U,$J,358.3,16787,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,16601,1,3,0)
- ;;=3^Transcobalamin II Deficiency
- ;;^UTILITY(U,$J,358.3,16601,1,4,0)
- ;;=4^D51.2
- ;;^UTILITY(U,$J,358.3,16601,2)
- ;;=^5002286
- ;;^UTILITY(U,$J,358.3,16602,0)
- ;;=D05.92^^88^879^36
- ;;^UTILITY(U,$J,358.3,16602,1,0)
+ ;;^UTILITY(U,$J,358.3,16787,1,3,0)
+ ;;=3^Presence of Artificial Arms,Bilateral
+ ;;^UTILITY(U,$J,358.3,16787,1,4,0)
+ ;;=4^Z97.15
+ ;;^UTILITY(U,$J,358.3,16787,2)
+ ;;=^5063726
+ ;;^UTILITY(U,$J,358.3,16788,0)
+ ;;=Z97.16^^61^776^121
+ ;;^UTILITY(U,$J,358.3,16788,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,16602,1,3,0)
- ;;=3^Carcinoma in Situ Left Breast,Unspec Type
- ;;^UTILITY(U,$J,358.3,16602,1,4,0)
- ;;=4^D05.92
- ;;^UTILITY(U,$J,358.3,16602,2)
- ;;=^5001937
- ;;^UTILITY(U,$J,358.3,16603,0)
- ;;=D05.91^^88^879^38
- ;;^UTILITY(U,$J,358.3,16603,1,0)
+ ;;^UTILITY(U,$J,358.3,16788,1,3,0)
+ ;;=3^Presence of Artificial Legs,Bilateral
+ ;;^UTILITY(U,$J,358.3,16788,1,4,0)
+ ;;=4^Z97.16
+ ;;^UTILITY(U,$J,358.3,16788,2)
+ ;;=^5063727
+ ;;^UTILITY(U,$J,358.3,16789,0)
+ ;;=Z98.61^^61^776^9
+ ;;^UTILITY(U,$J,358.3,16789,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,16603,1,3,0)
- ;;=3^Carcinoma in Situ Right Breast,Unspec Type
- ;;^UTILITY(U,$J,358.3,16603,1,4,0)
- ;;=4^D05.91
- ;;^UTILITY(U,$J,358.3,16603,2)
- ;;=^5001936
- ;;^UTILITY(U,$J,358.3,16604,0)
- ;;=D05.90^^88^879^34
- ;;^UTILITY(U,$J,358.3,16604,1,0)
+ ;;^UTILITY(U,$J,358.3,16789,1,3,0)
+ ;;=3^Coronary Angioplasty Status
+ ;;^UTILITY(U,$J,358.3,16789,1,4,0)
+ ;;=4^Z98.61
+ ;;^UTILITY(U,$J,358.3,16789,2)
+ ;;=^5063742
+ ;;^UTILITY(U,$J,358.3,16790,0)
+ ;;=Z98.62^^61^776^66
+ ;;^UTILITY(U,$J,358.3,16790,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,16604,1,3,0)
- ;;=3^Carcinoma in Situ Breast Unspec,Unspec Type
- ;;^UTILITY(U,$J,358.3,16604,1,4,0)
- ;;=4^D05.90
- ;;^UTILITY(U,$J,358.3,16604,2)
- ;;=^5001935
- ;;^UTILITY(U,$J,358.3,16605,0)
- ;;=D51.0^^88^879^194
- ;;^UTILITY(U,$J,358.3,16605,1,0)
+ ;;^UTILITY(U,$J,358.3,16790,1,3,0)
+ ;;=3^Peripheral Vascular Angioplasty Status w/o Graft
+ ;;^UTILITY(U,$J,358.3,16790,1,4,0)
+ ;;=4^Z98.62
+ ;;^UTILITY(U,$J,358.3,16790,2)
+ ;;=^5063743
+ ;;^UTILITY(U,$J,358.3,16791,0)
+ ;;=Z98.84^^61^776^4
+ ;;^UTILITY(U,$J,358.3,16791,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,16605,1,3,0)
- ;;=3^Vitamin B12 Deficiency Anemia d/t Intrinsic Factor Deficiency
- ;;^UTILITY(U,$J,358.3,16605,1,4,0)
- ;;=4^D51.0
- ;;^UTILITY(U,$J,358.3,16605,2)
- ;;=^5002284
- ;;^UTILITY(U,$J,358.3,16606,0)
- ;;=D51.1^^88^879^195
- ;;^UTILITY(U,$J,358.3,16606,1,0)
+ ;;^UTILITY(U,$J,358.3,16791,1,3,0)
+ ;;=3^Bariatric Surgery Status
+ ;;^UTILITY(U,$J,358.3,16791,1,4,0)
+ ;;=4^Z98.84
+ ;;^UTILITY(U,$J,358.3,16791,2)
+ ;;=^5063749
+ ;;^UTILITY(U,$J,358.3,16792,0)
+ ;;=Z99.2^^61^776^147
+ ;;^UTILITY(U,$J,358.3,16792,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,16606,1,3,0)
- ;;=3^Vitamin B12 Deficiency Anemia d/t Selective Vit B12 Malabsorp w/ Proteinuria
- ;;^UTILITY(U,$J,358.3,16606,1,4,0)
- ;;=4^D51.1
- ;;^UTILITY(U,$J,358.3,16606,2)
- ;;=^5002285
- ;;^UTILITY(U,$J,358.3,16607,0)
- ;;=D51.9^^88^879^197
+ ;;^UTILITY(U,$J,358.3,16792,1,3,0)
+ ;;=3^Renal Dialysis Dependence
+ ;;^UTILITY(U,$J,358.3,16792,1,4,0)
+ ;;=4^Z99.2

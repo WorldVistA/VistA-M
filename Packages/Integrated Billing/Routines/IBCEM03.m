@@ -1,5 +1,5 @@
 IBCEM03 ;ALB/TMP - 837 EDI RESUBMIT INDIVIDUAL BILL PROCESSING ;17-SEP-96
- ;;2.0;INTEGRATED BILLING;**137,199,296,348,349,592,623**;21-MAR-94;Build 70
+ ;;2.0;INTEGRATED BILLING;**137,199,296,348,349,592,623,641**;21-MAR-94;Build 61
  ;;Per VA Directive 6402, this routine should not be modified.
  Q
  ;
@@ -76,14 +76,16 @@ ASK N DPTNOFZY S DPTNOFZY=1  ;Suppress PATIENT file fuzzy lookups
  L -^IBA(364,IBDA)
  G ASK
  ;
-PRINT1(IBIFN,IBDA,IB364,IBRESUB) ; Print bill, submit manually as resolution
+PRINT1(IBIFN,IBDA,IB364,IBRESUB,IBRESULT) ; Print bill, submit manually as resolution ;WCJ;IB641;US3380; added IBRESULT
  ; for a returned message
  ; IBIFN = ien of bill in file 399
  ; IBDA = array returned from selection of message
  ; IB364 = ien of transmit bill entry in file 364
  ; IBRESUB = flag to indicate if bill is being resubmitted via print
+ ; IBRESULT = flag to see if print was successful
  ;
  N IBAC,IBV,IB399,DFN,ZTSK,PRCASV,IBHOLD,IBTXPRT
+ S IBRESULT=0  ;WCJ;IB641;US3380; default to unsuccessful completion
  W !
  I IBIFN="" S IBDA="" G PRINT1Q
  S IB399=$G(^DGCR(399,IBIFN,0))
@@ -93,10 +95,13 @@ PRINT1(IBIFN,IBDA,IB364,IBRESUB) ; Print bill, submit manually as resolution
  ;
  S IBV=1,IBAC=4,DFN=$P(IB399,U,2),IBTXPRT=0
  M IBHOLD("IBDA")=IBDA
- D 4^IBCB1,ENS^%ZISS
+ ;D 4^IBCB1,ENS^%ZISS   ;WCJ;IB641;US3380
+ D ALT4^IBCB1(.IBRESULT),ENS^%ZISS  ;WCJ;IB641;US3380;adding parameter
  M IBDA=IBHOLD("IBDA")
  ;
  I 'IBTXPRT W !,"Bill was not printed" S IBDA="" G PRINT1Q
+ ;
+ S IBRESULT=1 ;WCJ;IB641;US3380; got past the not printed message so we must have printed, am I right?
  ;
  D UPDEDI^IBCEM(IB364,"P")
  ;

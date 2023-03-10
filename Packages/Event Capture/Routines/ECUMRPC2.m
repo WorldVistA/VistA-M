@@ -1,8 +1,14 @@
-ECUMRPC2 ;ALB/JAM - Event Capture Management Broker Utils ;5/2/17  10:47
- ;;2.0;EVENT CAPTURE;**25,30,42,46,47,49,75,72,95,114,134**;8 May 96;Build 12
+ECUMRPC2 ;ALB/JAM - Event Capture Management Broker Utils ;12/22/21  18:54
+ ;;2.0;EVENT CAPTURE;**25,30,42,46,47,49,75,72,95,114,134,156**;8 May 96;Build 28
  ;
  ; Reference to $$SINFO^ICDEX supported by ICR #5747
  ; Reference to $$ICDDX^ICDEX supported by ICR #5747
+ ; Reference to ^DIC(4) supported by ICR #10090
+ ; Reference to ^TMP supported by SACC 2.3.2.5.1
+ ; Reference to FIND^DIC supported by Fileman API #2051
+ ; Reference to GET^XUA4A72 supported by ICR #1625
+ ; Reference to XLFDT: $$FMADD, $$NOW supported by ICR #10103
+ ; Reference to ^%ZTLOAD supported by ICR #10063
  ;
 GLOC(RESULTS,ECARY) ;
  ;
@@ -76,7 +82,7 @@ PXFND(RESULTS,ECARY) ;
  D SETENV^ECUMRPC
  S PXSTR=$P(ECARY,U),ECNT=0 I PXSTR="" Q
  K ^TMP($J,"ECPXSRCH"),^TMP("ECCPT",$J),^TMP("ECCPT1",$J)
- D 
+ D
  . I $P(PXSTR,".")="A" D CPTSRH(81,$P(PXSTR,".",2)) Q
  . I $P(PXSTR,".")="B" D CPTSRH(725,$P(PXSTR,".",2)) Q
  . F ECX=81,725 D CPTSRH(ECX,PXSTR)
@@ -124,7 +130,7 @@ PROV(ECNUM) ;Return a set of providers from the NEW PERSON file
  N I,IEN,CNT,FROM,DATE,ECUTN,ECDSS S I=0,CNT=$S(+$G(ECNUM)>0:ECNUM,1:44) ;134
  S FROM=$P(ECSTR,"|"),DATE=$P(ECSTR,"|",2),REPORT=$P(ECSTR,"|",3),ECDSS=$P(ECSTR,"|",4) ;134 Added DSS unit IEN to parameters
  F  Q:I'<CNT  S FROM=$O(^VA(200,"B",FROM),ECDIR) Q:FROM=""  D
- . S IEN="" F  S IEN=$O(^VA(200,"B",FROM,IEN),ECDIR) Q:'IEN  D 
+ . S IEN="" F  S IEN=$O(^VA(200,"B",FROM,IEN),ECDIR) Q:'IEN  D
  . . I IEN<1 Q  ;134 Don't include special users postmaster and sharedmail
  . . I REPORT="R" S I=I+1,^TMP($J,"ECFIND",I)=IEN_"^"_FROM_"^" Q
  . . S ECUTN=$$GET^XUA4A72(IEN,DATE)
@@ -145,7 +151,7 @@ LEX ; returns a list of ICD code from lexicon lookup; called from ECUMRPC1
  N LEX,ILST,I,IEN,ECX,APP,ECDT,ICD,ICDIEN,DIC,ECCS,ECCD,IMP
  S ECX=$P(ECSTR,"|",2),ECDT=$P(ECSTR,"|",3)
  S ECDT=$G(ECDT,DT),DIC="^ICD9("
- ; Determine Active Coding System based on Date Of Interest 
+ ; Determine Active Coding System based on Date Of Interest
  S ECCS=$$SINFO^ICDEX("DIAG",ECDT) ; Supported by ICR #5747
  ;spacebar default for DUZ
  I ECX=" ",+($G(DUZ))>0 S IEN=$G(^DISV(DUZ,DIC)) I +IEN D
@@ -206,3 +212,24 @@ DTPD(RESULTS,ECARY) ;Delete test patient data
  .Q
  Q
  ;
+ECDEL(RESULTS,ECARY) ;156 - Broker entry point to delete data in Event Capture files
+ ;This RPC is called when delete an entry in Event Capture files
+ ;    RPC: EC DELETE ENTRY
+ ;INPUTS  ECARY    - array with data to be deleted
+ ;         ECARY("ECFILE")=file #
+ ;         ECARY("IEN")=ien to be deleted from the file
+ ;
+ ;OUTPUTS RESULTS  - Success or failure to file
+ ;
+ N ECFILE,ECDUZ
+ D SETENV^ECUMRPC
+ D PARSE^ECFLRPC
+ K ^TMP($J,"ECMSG")
+ I $G(ECFILE)="" S ^TMP($J,"ECMSG",1)="0^File Not defined" D END^ECFLRPC Q
+ S:$G(DUZ) ECDUZ=DUZ
+ I ECFILE=720.3 D DELECSR^ECMDECS,END^ECFLRPC Q
+ I ECFILE=724 D DELDSS^ECMDDSSU,END^ECFLRPC Q
+ S ^TMP($J,"ECMSG",1)="0^Deletion Not Available"
+ D KILLVAR^ECFLRPC
+ S RESULTS=$NA(^TMP($J,"ECMSG"))
+ Q

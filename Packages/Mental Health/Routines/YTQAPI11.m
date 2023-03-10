@@ -1,5 +1,6 @@
 YTQAPI11 ;ASF/ALB - MHAx API ; 8/9/10 10:34am
- ;;5.01;MENTAL HEALTH;**85,96,123**;DEC 30,1994;Build 73
+ ;;5.01;MENTAL HEALTH;**85,96,123,187**;DEC 30,1994;Build 73
+ ;
  ;Reference to %ZIS supported by IA #10086
  ;Reference to %ZTLOAD supported by IA #10063
  ;Reference to DOB^DPTLK1 supported by IA #3266
@@ -127,7 +128,8 @@ FINDP(YSDATA,YS) ; patient lookup
  . S $P(NODE,U,3)=$$DOB^DPTLK1(+NODE)
  . ;Apply SSN screen
  . S SSN=$$SSN^DPTLK1(+NODE)
- . S DSSN=$E(SSN,1,3)_"-"_$E(SSN,4,5)_"-"_$E(SSN,6,11)
+ . ;S DSSN=$E(SSN,1,3)_"-"_$E(SSN,4,5)_"-"_$E(SSN,6,11)
+ . S DSSN="xxx-xx-"_$E(SSN,6,11)
  . S PLID=$P(NODE,U,4)
  . I $E(SSN,1,9)'?9N S (DSSN,PLID)=SSN
  . S $P(NODE,U,4)=$S($L(PLID)>5:PLID,1:DSSN)

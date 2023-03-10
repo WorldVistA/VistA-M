@@ -1,128 +1,130 @@
-IBDEI15S ; ; 04-FEB-2020
- ;;3.0;IB ENCOUNTER FORM IMP/EXP;;FEB 04, 2020
+IBDEI15S ; ; 01-FEB-2022
+ ;;3.0;IB ENCOUNTER FORM IMP/EXP;;FEB 01, 2022
  Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,999) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
- ;;^UTILITY(U,$J,358.3,18631,1,3,0)
- ;;=3^Relationship Distress w/ Spouse/Partner
- ;;^UTILITY(U,$J,358.3,18631,1,4,0)
- ;;=4^Z63.0
- ;;^UTILITY(U,$J,358.3,18631,2)
- ;;=^5063164
- ;;^UTILITY(U,$J,358.3,18632,0)
- ;;=Z63.5^^91^954^1
- ;;^UTILITY(U,$J,358.3,18632,1,0)
+ ;;^UTILITY(U,$J,358.3,18810,0)
+ ;;=A42.0^^64^840^75
+ ;;^UTILITY(U,$J,358.3,18810,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,18632,1,3,0)
- ;;=3^Disruption of Family by Separation or Divorce
- ;;^UTILITY(U,$J,358.3,18632,1,4,0)
- ;;=4^Z63.5
- ;;^UTILITY(U,$J,358.3,18632,2)
- ;;=^5063169
- ;;^UTILITY(U,$J,358.3,18633,0)
- ;;=Z63.8^^91^954^2
- ;;^UTILITY(U,$J,358.3,18633,1,0)
+ ;;^UTILITY(U,$J,358.3,18810,1,3,0)
+ ;;=3^Pulmonary Actinomycosis
+ ;;^UTILITY(U,$J,358.3,18810,1,4,0)
+ ;;=4^A42.0
+ ;;^UTILITY(U,$J,358.3,18810,2)
+ ;;=^5000215
+ ;;^UTILITY(U,$J,358.3,18811,0)
+ ;;=B40.2^^64^840^77
+ ;;^UTILITY(U,$J,358.3,18811,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,18633,1,3,0)
- ;;=3^High Expressed Emotion Level w/in Family
- ;;^UTILITY(U,$J,358.3,18633,1,4,0)
- ;;=4^Z63.8
- ;;^UTILITY(U,$J,358.3,18633,2)
- ;;=^5063174
- ;;^UTILITY(U,$J,358.3,18634,0)
- ;;=Z63.4^^91^954^7
- ;;^UTILITY(U,$J,358.3,18634,1,0)
+ ;;^UTILITY(U,$J,358.3,18811,1,3,0)
+ ;;=3^Pulmonary Blastomycosis,Unspec
+ ;;^UTILITY(U,$J,358.3,18811,1,4,0)
+ ;;=4^B40.2
+ ;;^UTILITY(U,$J,358.3,18811,2)
+ ;;=^5000641
+ ;;^UTILITY(U,$J,358.3,18812,0)
+ ;;=B38.2^^64^840^78
+ ;;^UTILITY(U,$J,358.3,18812,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,18634,1,3,0)
- ;;=3^Uncomplicated Bereavement
- ;;^UTILITY(U,$J,358.3,18634,1,4,0)
- ;;=4^Z63.4
- ;;^UTILITY(U,$J,358.3,18634,2)
- ;;=^5063168
- ;;^UTILITY(U,$J,358.3,18635,0)
- ;;=Z62.29^^91^954^8
- ;;^UTILITY(U,$J,358.3,18635,1,0)
+ ;;^UTILITY(U,$J,358.3,18812,1,3,0)
+ ;;=3^Pulmonary Coccidiodomycosis,Unspec
+ ;;^UTILITY(U,$J,358.3,18812,1,4,0)
+ ;;=4^B38.2
+ ;;^UTILITY(U,$J,358.3,18812,2)
+ ;;=^295703
+ ;;^UTILITY(U,$J,358.3,18813,0)
+ ;;=B45.0^^64^840^79
+ ;;^UTILITY(U,$J,358.3,18813,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,18635,1,3,0)
- ;;=3^Upbringing Away from Parents
- ;;^UTILITY(U,$J,358.3,18635,1,4,0)
- ;;=4^Z62.29
- ;;^UTILITY(U,$J,358.3,18635,2)
- ;;=^5063150
- ;;^UTILITY(U,$J,358.3,18636,0)
- ;;=F20.9^^91^955^10
- ;;^UTILITY(U,$J,358.3,18636,1,0)
+ ;;^UTILITY(U,$J,358.3,18813,1,3,0)
+ ;;=3^Pulmonary Cryptococcosis
+ ;;^UTILITY(U,$J,358.3,18813,1,4,0)
+ ;;=4^B45.0
+ ;;^UTILITY(U,$J,358.3,18813,2)
+ ;;=^5000669
+ ;;^UTILITY(U,$J,358.3,18814,0)
+ ;;=A31.0^^64^840^80
+ ;;^UTILITY(U,$J,358.3,18814,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,18636,1,3,0)
- ;;=3^Schizophrenia
- ;;^UTILITY(U,$J,358.3,18636,1,4,0)
- ;;=4^F20.9
- ;;^UTILITY(U,$J,358.3,18636,2)
- ;;=^5003476
- ;;^UTILITY(U,$J,358.3,18637,0)
- ;;=F20.81^^91^955^13
- ;;^UTILITY(U,$J,358.3,18637,1,0)
+ ;;^UTILITY(U,$J,358.3,18814,1,3,0)
+ ;;=3^Pulmonary Mycobacterial Infection
+ ;;^UTILITY(U,$J,358.3,18814,1,4,0)
+ ;;=4^A31.0
+ ;;^UTILITY(U,$J,358.3,18814,2)
+ ;;=^5000149
+ ;;^UTILITY(U,$J,358.3,18815,0)
+ ;;=A43.0^^64^840^81
+ ;;^UTILITY(U,$J,358.3,18815,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,18637,1,3,0)
- ;;=3^Schizophreniform D/O
- ;;^UTILITY(U,$J,358.3,18637,1,4,0)
- ;;=4^F20.81
- ;;^UTILITY(U,$J,358.3,18637,2)
- ;;=^5003474
- ;;^UTILITY(U,$J,358.3,18638,0)
- ;;=F22.^^91^955^3
- ;;^UTILITY(U,$J,358.3,18638,1,0)
+ ;;^UTILITY(U,$J,358.3,18815,1,3,0)
+ ;;=3^Pulmonary Nocardiosis
+ ;;^UTILITY(U,$J,358.3,18815,1,4,0)
+ ;;=4^A43.0
+ ;;^UTILITY(U,$J,358.3,18815,2)
+ ;;=^5000223
+ ;;^UTILITY(U,$J,358.3,18816,0)
+ ;;=B90.9^^64^840^83
+ ;;^UTILITY(U,$J,358.3,18816,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,18638,1,3,0)
- ;;=3^Delusional D/O
- ;;^UTILITY(U,$J,358.3,18638,1,4,0)
- ;;=4^F22.
- ;;^UTILITY(U,$J,358.3,18638,2)
- ;;=^5003478
- ;;^UTILITY(U,$J,358.3,18639,0)
- ;;=F23.^^91^955^1
- ;;^UTILITY(U,$J,358.3,18639,1,0)
+ ;;^UTILITY(U,$J,358.3,18816,1,3,0)
+ ;;=3^Sequelae of Respiratory/Unspec TB
+ ;;^UTILITY(U,$J,358.3,18816,1,4,0)
+ ;;=4^B90.9
+ ;;^UTILITY(U,$J,358.3,18816,2)
+ ;;=^5000827
+ ;;^UTILITY(U,$J,358.3,18817,0)
+ ;;=J41.0^^64^840^84
+ ;;^UTILITY(U,$J,358.3,18817,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,18639,1,3,0)
- ;;=3^Brief Psychotic D/O
- ;;^UTILITY(U,$J,358.3,18639,1,4,0)
- ;;=4^F23.
- ;;^UTILITY(U,$J,358.3,18639,2)
- ;;=^5003479
- ;;^UTILITY(U,$J,358.3,18640,0)
- ;;=F25.0^^91^955^7
- ;;^UTILITY(U,$J,358.3,18640,1,0)
+ ;;^UTILITY(U,$J,358.3,18817,1,3,0)
+ ;;=3^Simple Chr Bronchitis
+ ;;^UTILITY(U,$J,358.3,18817,1,4,0)
+ ;;=4^J41.0
+ ;;^UTILITY(U,$J,358.3,18817,2)
+ ;;=^269946
+ ;;^UTILITY(U,$J,358.3,18818,0)
+ ;;=B44.2^^64^840^85
+ ;;^UTILITY(U,$J,358.3,18818,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,18640,1,3,0)
- ;;=3^Schizoaffective D/O,Bipolar Type
- ;;^UTILITY(U,$J,358.3,18640,1,4,0)
- ;;=4^F25.0
- ;;^UTILITY(U,$J,358.3,18640,2)
- ;;=^5003480
- ;;^UTILITY(U,$J,358.3,18641,0)
- ;;=F25.1^^91^955^8
- ;;^UTILITY(U,$J,358.3,18641,1,0)
+ ;;^UTILITY(U,$J,358.3,18818,1,3,0)
+ ;;=3^Tonsillar Aspergillosis
+ ;;^UTILITY(U,$J,358.3,18818,1,4,0)
+ ;;=4^B44.2
+ ;;^UTILITY(U,$J,358.3,18818,2)
+ ;;=^5000665
+ ;;^UTILITY(U,$J,358.3,18819,0)
+ ;;=A15.0^^64^840^86
+ ;;^UTILITY(U,$J,358.3,18819,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,18641,1,3,0)
- ;;=3^Schizoaffective D/O,Depressive Type
- ;;^UTILITY(U,$J,358.3,18641,1,4,0)
- ;;=4^F25.1
- ;;^UTILITY(U,$J,358.3,18641,2)
- ;;=^5003481
- ;;^UTILITY(U,$J,358.3,18642,0)
- ;;=F28.^^91^955^11
- ;;^UTILITY(U,$J,358.3,18642,1,0)
+ ;;^UTILITY(U,$J,358.3,18819,1,3,0)
+ ;;=3^Tuberculosis of Lung
+ ;;^UTILITY(U,$J,358.3,18819,1,4,0)
+ ;;=4^A15.0
+ ;;^UTILITY(U,$J,358.3,18819,2)
+ ;;=^5000062
+ ;;^UTILITY(U,$J,358.3,18820,0)
+ ;;=A15.6^^64^840^87
+ ;;^UTILITY(U,$J,358.3,18820,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,18642,1,3,0)
- ;;=3^Schizophrenia Spectrum & Psychotic D/O,Oth Specified
- ;;^UTILITY(U,$J,358.3,18642,1,4,0)
- ;;=4^F28.
- ;;^UTILITY(U,$J,358.3,18642,2)
- ;;=^5003483
- ;;^UTILITY(U,$J,358.3,18643,0)
- ;;=F29.^^91^955^12
- ;;^UTILITY(U,$J,358.3,18643,1,0)
+ ;;^UTILITY(U,$J,358.3,18820,1,3,0)
+ ;;=3^Tuberculous Pleurisy
+ ;;^UTILITY(U,$J,358.3,18820,1,4,0)
+ ;;=4^A15.6
+ ;;^UTILITY(U,$J,358.3,18820,2)
+ ;;=^5000064
+ ;;^UTILITY(U,$J,358.3,18821,0)
+ ;;=H60.503^^64^840^26
+ ;;^UTILITY(U,$J,358.3,18821,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,18643,1,3,0)
- ;;=3^Schizophrenia Spectrum & Psychotic D/O,Unspec
- ;;^UTILITY(U,$J,358.3,18643,1,4,0)
- ;;=4^F29.
+ ;;^UTILITY(U,$J,358.3,18821,1,3,0)
+ ;;=3^AC Noninfective Otitis Externa,Bilateral,Unspec
+ ;;^UTILITY(U,$J,358.3,18821,1,4,0)
+ ;;=4^H60.503
+ ;;^UTILITY(U,$J,358.3,18821,2)
+ ;;=^5006469
+ ;;^UTILITY(U,$J,358.3,18822,0)
+ ;;=H60.502^^64^840^27
+ ;;^UTILITY(U,$J,358.3,18822,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,18822,1,3,0)
+ ;;=3^AC Noninfective Otitis Externa,Left Ear,Unspec

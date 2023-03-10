@@ -1,116 +1,124 @@
-IBDEI1C0 ; ; 04-FEB-2020
- ;;3.0;IB ENCOUNTER FORM IMP/EXP;;FEB 04, 2020
+IBDEI1C0 ; ; 01-FEB-2022
+ ;;3.0;IB ENCOUNTER FORM IMP/EXP;;FEB 01, 2022
  Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,999) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
- ;;^UTILITY(U,$J,358.3,21275,1,4,0)
- ;;=4^F19.94
- ;;^UTILITY(U,$J,358.3,21275,2)
- ;;=^5003460
- ;;^UTILITY(U,$J,358.3,21276,0)
- ;;=F19.17^^95^1060^4
- ;;^UTILITY(U,$J,358.3,21276,1,0)
+ ;;^UTILITY(U,$J,358.3,21526,0)
+ ;;=J84.117^^70^921^7
+ ;;^UTILITY(U,$J,358.3,21526,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,21276,1,3,0)
- ;;=3^Other/Unknown Substance Induced Maj Neurocog D/O w/ Mild Use D/O
- ;;^UTILITY(U,$J,358.3,21276,1,4,0)
- ;;=4^F19.17
- ;;^UTILITY(U,$J,358.3,21276,2)
- ;;=^5003426
- ;;^UTILITY(U,$J,358.3,21277,0)
- ;;=F19.27^^95^1060^5
- ;;^UTILITY(U,$J,358.3,21277,1,0)
+ ;;^UTILITY(U,$J,358.3,21526,1,3,0)
+ ;;=3^Desquamative Interstitial Pneumonia
+ ;;^UTILITY(U,$J,358.3,21526,1,4,0)
+ ;;=4^J84.117
+ ;;^UTILITY(U,$J,358.3,21526,2)
+ ;;=^340540
+ ;;^UTILITY(U,$J,358.3,21527,0)
+ ;;=M32.0^^70^921^8
+ ;;^UTILITY(U,$J,358.3,21527,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,21277,1,3,0)
- ;;=3^Other/Unknown Substance Induced Maj Neurocog D/O w/ Mod-Sev Use D/O
- ;;^UTILITY(U,$J,358.3,21277,1,4,0)
- ;;=4^F19.27
- ;;^UTILITY(U,$J,358.3,21277,2)
- ;;=^5003446
- ;;^UTILITY(U,$J,358.3,21278,0)
- ;;=F19.97^^95^1060^6
- ;;^UTILITY(U,$J,358.3,21278,1,0)
+ ;;^UTILITY(U,$J,358.3,21527,1,3,0)
+ ;;=3^Drug-Induced Systemic Lupus Erythematosus
+ ;;^UTILITY(U,$J,358.3,21527,1,4,0)
+ ;;=4^M32.0
+ ;;^UTILITY(U,$J,358.3,21527,2)
+ ;;=^5011752
+ ;;^UTILITY(U,$J,358.3,21528,0)
+ ;;=M32.11^^70^921^9
+ ;;^UTILITY(U,$J,358.3,21528,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,21278,1,3,0)
- ;;=3^Other/Unknown Substance Induced Maj Neurocog D/O w/o Use D/O
- ;;^UTILITY(U,$J,358.3,21278,1,4,0)
- ;;=4^F19.97
- ;;^UTILITY(U,$J,358.3,21278,2)
- ;;=^5003465
- ;;^UTILITY(U,$J,358.3,21279,0)
- ;;=F19.188^^95^1060^28
- ;;^UTILITY(U,$J,358.3,21279,1,0)
+ ;;^UTILITY(U,$J,358.3,21528,1,3,0)
+ ;;=3^Endocarditis in Systemic Lupus Erythematosus
+ ;;^UTILITY(U,$J,358.3,21528,1,4,0)
+ ;;=4^M32.11
+ ;;^UTILITY(U,$J,358.3,21528,2)
+ ;;=^5011754
+ ;;^UTILITY(U,$J,358.3,21529,0)
+ ;;=J67.0^^70^921^10
+ ;;^UTILITY(U,$J,358.3,21529,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,21279,1,3,0)
- ;;=3^Psychoactive Substance Abuse w/ Induced Disorder,Other
- ;;^UTILITY(U,$J,358.3,21279,1,4,0)
- ;;=4^F19.188
- ;;^UTILITY(U,$J,358.3,21279,2)
- ;;=^5133361
- ;;^UTILITY(U,$J,358.3,21280,0)
- ;;=F19.288^^95^1060^29
- ;;^UTILITY(U,$J,358.3,21280,1,0)
+ ;;^UTILITY(U,$J,358.3,21529,1,3,0)
+ ;;=3^Farmer's Lung
+ ;;^UTILITY(U,$J,358.3,21529,1,4,0)
+ ;;=4^J67.0
+ ;;^UTILITY(U,$J,358.3,21529,2)
+ ;;=^44962
+ ;;^UTILITY(U,$J,358.3,21530,0)
+ ;;=M32.14^^70^921^11
+ ;;^UTILITY(U,$J,358.3,21530,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,21280,1,3,0)
- ;;=3^Psychoactive Substance Dependence w/ Induced Mood Disorder,Other
- ;;^UTILITY(U,$J,358.3,21280,1,4,0)
- ;;=4^F19.288
- ;;^UTILITY(U,$J,358.3,21280,2)
- ;;=^5133362
- ;;^UTILITY(U,$J,358.3,21281,0)
- ;;=F19.988^^95^1060^30
- ;;^UTILITY(U,$J,358.3,21281,1,0)
+ ;;^UTILITY(U,$J,358.3,21530,1,3,0)
+ ;;=3^Glomerular Disease in Systemic Lupus Erythematosus
+ ;;^UTILITY(U,$J,358.3,21530,1,4,0)
+ ;;=4^M32.14
+ ;;^UTILITY(U,$J,358.3,21530,2)
+ ;;=^5011757
+ ;;^UTILITY(U,$J,358.3,21531,0)
+ ;;=J67.9^^70^921^12
+ ;;^UTILITY(U,$J,358.3,21531,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,21281,1,3,0)
- ;;=3^Psychoactive Substance Use w/ Induced Mood Disorder,Other
- ;;^UTILITY(U,$J,358.3,21281,1,4,0)
- ;;=4^F19.988
- ;;^UTILITY(U,$J,358.3,21281,2)
- ;;=^5133363
- ;;^UTILITY(U,$J,358.3,21282,0)
- ;;=F19.159^^95^1060^7
- ;;^UTILITY(U,$J,358.3,21282,1,0)
+ ;;^UTILITY(U,$J,358.3,21531,1,3,0)
+ ;;=3^Hypersensitivity Pneumonitis d/t Unspec Organic Dust
+ ;;^UTILITY(U,$J,358.3,21531,1,4,0)
+ ;;=4^J67.9
+ ;;^UTILITY(U,$J,358.3,21531,2)
+ ;;=^5008280
+ ;;^UTILITY(U,$J,358.3,21532,0)
+ ;;=J84.113^^70^921^14
+ ;;^UTILITY(U,$J,358.3,21532,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,21282,1,3,0)
- ;;=3^Other/Unknown Substance Induced Psychotic D/O w/ Mild Use D/O
- ;;^UTILITY(U,$J,358.3,21282,1,4,0)
- ;;=4^F19.159
- ;;^UTILITY(U,$J,358.3,21282,2)
- ;;=^5003424
- ;;^UTILITY(U,$J,358.3,21283,0)
- ;;=F19.259^^95^1060^8
- ;;^UTILITY(U,$J,358.3,21283,1,0)
+ ;;^UTILITY(U,$J,358.3,21532,1,3,0)
+ ;;=3^Idiopathic Non-Specific Interstitial Pneumonitis
+ ;;^UTILITY(U,$J,358.3,21532,1,4,0)
+ ;;=4^J84.113
+ ;;^UTILITY(U,$J,358.3,21532,2)
+ ;;=^340535
+ ;;^UTILITY(U,$J,358.3,21533,0)
+ ;;=J84.112^^70^921^15
+ ;;^UTILITY(U,$J,358.3,21533,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,21283,1,3,0)
- ;;=3^Other/Unknown Substance Induced Psychotic D/O w/ Mod-Sev Use D/O
- ;;^UTILITY(U,$J,358.3,21283,1,4,0)
- ;;=4^F19.259
- ;;^UTILITY(U,$J,358.3,21283,2)
- ;;=^5003444
- ;;^UTILITY(U,$J,358.3,21284,0)
- ;;=F19.959^^95^1060^9
- ;;^UTILITY(U,$J,358.3,21284,1,0)
+ ;;^UTILITY(U,$J,358.3,21533,1,3,0)
+ ;;=3^Idiopathic Pulmonary Fibrosis
+ ;;^UTILITY(U,$J,358.3,21533,1,4,0)
+ ;;=4^J84.112
+ ;;^UTILITY(U,$J,358.3,21533,2)
+ ;;=^340534
+ ;;^UTILITY(U,$J,358.3,21534,0)
+ ;;=J84.111^^70^921^13
+ ;;^UTILITY(U,$J,358.3,21534,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,21284,1,3,0)
- ;;=3^Other/Unknown Substance Induced Psychotic D/O w/o Use D/O
- ;;^UTILITY(U,$J,358.3,21284,1,4,0)
- ;;=4^F19.959
- ;;^UTILITY(U,$J,358.3,21284,2)
- ;;=^5003463
- ;;^UTILITY(U,$J,358.3,21285,0)
- ;;=F19.181^^95^1060^10
- ;;^UTILITY(U,$J,358.3,21285,1,0)
+ ;;^UTILITY(U,$J,358.3,21534,1,3,0)
+ ;;=3^Idiopathic Interstitial Pneumonia NOS
+ ;;^UTILITY(U,$J,358.3,21534,1,4,0)
+ ;;=4^J84.111
+ ;;^UTILITY(U,$J,358.3,21534,2)
+ ;;=^340610
+ ;;^UTILITY(U,$J,358.3,21535,0)
+ ;;=J84.9^^70^921^18
+ ;;^UTILITY(U,$J,358.3,21535,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,21285,1,3,0)
- ;;=3^Other/Unknown Substance Induced Sexual Dysfunction w/ Mild Use D/O
- ;;^UTILITY(U,$J,358.3,21285,1,4,0)
- ;;=4^F19.181
- ;;^UTILITY(U,$J,358.3,21285,2)
- ;;=^5003428
- ;;^UTILITY(U,$J,358.3,21286,0)
- ;;=F19.281^^95^1060^11
- ;;^UTILITY(U,$J,358.3,21286,1,0)
+ ;;^UTILITY(U,$J,358.3,21535,1,3,0)
+ ;;=3^Interstitial Pulmonary Disease,Unspec
+ ;;^UTILITY(U,$J,358.3,21535,1,4,0)
+ ;;=4^J84.9
+ ;;^UTILITY(U,$J,358.3,21535,2)
+ ;;=^5008304
+ ;;^UTILITY(U,$J,358.3,21536,0)
+ ;;=M32.13^^70^921^19
+ ;;^UTILITY(U,$J,358.3,21536,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,21286,1,3,0)
- ;;=3^Other/Unknown Substance Induced Sexual Dysfunction w/ Mod-Sev Use D/O
- ;;^UTILITY(U,$J,358.3,21286,1,4,0)
- ;;=4^F19.281
+ ;;^UTILITY(U,$J,358.3,21536,1,3,0)
+ ;;=3^Lung Involvement in Systemic Lupus Erythematosus
+ ;;^UTILITY(U,$J,358.3,21536,1,4,0)
+ ;;=4^M32.13
+ ;;^UTILITY(U,$J,358.3,21536,2)
+ ;;=^5011756
+ ;;^UTILITY(U,$J,358.3,21537,0)
+ ;;=J84.2^^70^921^20
+ ;;^UTILITY(U,$J,358.3,21537,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,21537,1,3,0)
+ ;;=3^Lymphoid Interstitial Pneumonia
+ ;;^UTILITY(U,$J,358.3,21537,1,4,0)
+ ;;=4^J84.2
+ ;;^UTILITY(U,$J,358.3,21537,2)
+ ;;=^5008302

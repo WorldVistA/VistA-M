@@ -1,5 +1,5 @@
 PSXRPPL ;BIR/WPB,BAB-Gathers data for the CMOP Transmission ;13 Mar 2002  10:31 AM
- ;;2.0;CMOP;**3,23,33,28,40,42,41,48,62,58,66,65,69,70,81,83,87**;11 Apr 97;Build 8
+ ;;2.0;CMOP;**3,23,33,28,40,42,41,48,62,58,66,65,69,70,81,83,87,91**;11 Apr 97;Build 33
  ;Reference to ^PS(52.5,  supported by DBIA #1978
  ;Reference to ^PSRX(     supported by DBIA #1977
  ;Reference to ^PSOHLSN1  supported by DBIA #2385
@@ -34,9 +34,9 @@ SDT ;
  . I BPSCNT>0 H 60+$S((BPSCNT*15)>7200:7200,1:(BPSCNT*15))
  ;
  ; After many additional checks, GETDATA^PSXRPPL will eventually add
- ; each prescription to this batch (see RS550215, below).  Late in the
- ; process, either they will be sent to CMOP (EN^PSXRTR) or labels
- ; will be printed (PRT^PSXRPPL).
+ ; each prescription to this batch (see RS550215, below).  Later in
+ ; the process, either they will be sent to CMOP (EN^PSXRTR) or
+ ; labels will be printed (PRT^PSXRPPL).
  ;
  K ^TMP("PSXEPHIN",$J)
  S SDT=0
@@ -90,6 +90,7 @@ GETDATA ;Screens rxs and builds data
  I EPHQT Q
  ;
  D CHKDATA^PSXMISC1
+ ;
 SET Q:(PSXOK=7)!(PSXOK=8)!(PSXOK=9)
  S PNAME=$G(VADM(1))
  I ($G(PSXCSRX)=1)&($G(PSXCS)=1) S ^XTMP("PSXCS",PSOSITE,DT,RXN)=""

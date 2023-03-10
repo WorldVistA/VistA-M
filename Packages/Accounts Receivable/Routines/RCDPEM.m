@@ -1,5 +1,5 @@
 RCDPEM ;ALB/TMK/PJH - POST EFT, ERA MATCHING TO EFT ;Jun 06, 2014@19:11:19
- ;;4.5;Accounts Receivable;**173,255,269,276,283,298,304,318,321,326**;Mar 20, 1995;Build 26
+ ;;4.5;Accounts Receivable;**173,255,269,276,283,298,304,318,321,326,345,349**;Mar 20, 1995;Build 44
  ;Per VA Directive 6402, this routine should not be modified.
  ; IA 4050 covers call to SPL1^IBCEOBAR
  ; Note - keep processing in line with RCDPXPAP
@@ -13,7 +13,7 @@ EN ; Post EFT deposits, auto-match EFT's and ERA's
  ;
  N RCZ,RCSUM,RCDEP,RECTDA,RC0,RCER,RCDUZ,Z,Z0,Z1,DA,X,Y,DIE,DR
  M RCDUZ=DUZ
- N DUZ S DUZ=+$O(^VA(200,"B","EDILOCKBOX,AUTOMATIC",0)),DUZ(0)="" S:'DUZ DUZ=.5
+ N DUZ S DUZ=+$O(^VA(200,"B","EDILOCKBOX,AUTOMATIC",0)),DUZ(0)="",DUZ(2)=$G(RCDUZ(2)) S:'DUZ DUZ=.5
  K ^TMP($J,"RCXM"),^TMP($J,"RCTOT")
  S ZTREQ="@"
  L +^RCY(344.3,"ALOCK"):5 I '$T D  G ENQ ; Lock record
@@ -75,6 +75,8 @@ EN ; Post EFT deposits, auto-match EFT's and ERA's
  D EN^RCDPEAP
  ;Auto Decrease - PRCA*4.5*298
  D EN^RCDPEAD
+ ;
+ I $$GET1^DIQ(342,"1,",.14,"I") D EN^RCDPEAD3() ; PRCA*4.5*345 - 1st Party Auto-Decrease
  ;
  ;Workload Notifications - PRCA*4.5*321
  D EN^RCDPEM7

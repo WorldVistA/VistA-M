@@ -1,8 +1,11 @@
-ONCODXD ;Hines OIFO/RTK,GWB - DATE DX (165.5,3) INPUT TRANSFORM ;4/9/97
- ;;2.2;ONCOLOGY;**1**;Jul 31, 2013;Build 8
+ONCODXD ;HINES OIFO/RTK,GWB - DATE DX (165.5,3) INPUT TRANSFORM ;4/9/97
+ ;;2.2;ONCOLOGY;**1,13**;Jul 31, 2013;Build 7
  ;
 DTDXIT ;Check that date entered is BEFORE or EQUAL to all other DATE fields
  S DTXFLAG=1,C=0,MULT="" K LIST,SBCT,SUBR,RADT D CHKDTS
+ ;next 2 lines to delete AJCC ID if Date DX changes from 2018-2020 to 2021+
+ I (($E(X,1,3)<321)&($E($P($G(^ONCO(165.5,D0,0)),"^",16),1,3)>320)) S $P(^ONCO(165.5,D0,"AJCC8"),"^",1)=""
+ I (($E(X,1,3)>320)&($E($P($G(^ONCO(165.5,D0,0)),"^",16),1,3)<321)) S $P(^ONCO(165.5,D0,"AJCC8"),"^",1)=""
  I DTXFLAG=1 D KLL Q
  K X W !?4,"The DATE DX must be BEFORE or EQUAL TO certain date fields.  The date"
  W !?4,"you have entered is unacceptable because it is AFTER the"

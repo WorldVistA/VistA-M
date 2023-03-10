@@ -1,5 +1,5 @@
-PSOAUTOC ;BIR/SAB - auto cancel rxs on admission ;08/15/94
- ;;7.0;OUTPATIENT PHARMACY;**3,24,30,36,88,146,132,223,148,249,324,251,332**;DEC 1997;Build 4
+PSOAUTOC ;BIR/SAB - auto cancel rxs on admission ;Jan 10, 2022@11:14:59
+ ;;7.0;OUTPATIENT PHARMACY;**3,24,30,36,88,146,132,223,148,249,324,251,332,441**;DEC 1997;Build 208
  ;External reference to File #59.7 supported by DBIA 694
  ;External reference to File #55 supported by DBIA 2228
  ;External reference ^DPT(PSODFN,.1) supported by DBIA 10035
@@ -34,6 +34,8 @@ CAN ;discontinue Rxs
  ..I $G(^PSRX(PSORX,"H"))]"" D
  ...K:$P(^PSRX(PSORX,"H"),"^") ^PSRX("AH",$P(^PSRX(PSORX,"H"),"^"),PSORX) S ^PSRX(PSORX,"H")=""
  ...I '$P($G(^PSRX(PSORX,2)),"^",2),$P($G(^(3)),"^") S $P(^PSRX(PSORX,2),"^",2)=$P(^(3),"^")
+ ..;remove from park *441
+ ..I $G(^PSRX(PSORX,"PARK")) K ^PSRX(PSORX,"PARK"),^PSRX("APARK",1,PSORX)
  ..;Add activity record
  ..S ACNT=0 F SUB=0:0 S SUB=$O(^PSRX(PSORX,"A",SUB)) Q:'SUB  S ACNT=SUB
  ..S RFCNT=0 F RF=0:0 S RF=$O(^PSRX(PSORX,1,RF)) Q:'RF  S RFCNT=RF S:RF>5 RFCNT=RF+1

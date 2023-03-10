@@ -1,5 +1,5 @@
-ONCODSR ;Hines OIFO/GWB - Surgery of Primary Site ;06/23/10
- ;;2.2;ONCOLOGY;**1,5,10,12**;Jul 31, 2013;Build 8
+ONCODSR ;HINES OIFO/GWB - Surgery of Primary Site ;06/23/10
+ ;;2.2;ONCOLOGY;**1,5,10,12,15**;Jul 31, 2013;Build 5
  ;
  ;^ONCO(164.2,9,"S",1-10) hold SURGICAL DX/STAGING PROC codes 0-9
  ;^ONCO(164.2,SITE/GP,"S",11-100) holds surgery coes 10-99
@@ -178,8 +178,9 @@ NTIT ;DATE OF NO TREATMENT (165.5,124) INPUT TRANSFORM
  ;
 NT ;DATE OF NO TREATMENT (Input transform for treatment fields)
  S NTDD=$P($G(^ONCO(165.5,D0,2.1)),U,11)
+ I $G(ONC138P2)="YES",$P($G(^ONCO(165.5,D0,0)),"^",16)>3201231 K ONC138P2,NTDD,V Q
  I (NTDD'="")&(X'=V) K X D EN^DDIOL("This primary has a DATE OF NO TREATMENT of "_$E(NTDD,4,5)_"/"_$E(NTDD,6,7)_"/"_($E(NTDD,1,3)+1700)_".",,"!!?5") D EN^DDIOL("Treatments are not allowed unless the DATE OF NO TREATMENT is deleted.",,"!!?5")
- K NTDD,V Q
+ K NTDD,ONC138P2,V Q
  ;
 CHKTS ;Check TREATMENT STATUS (165.5,235)
  N TS,TSI

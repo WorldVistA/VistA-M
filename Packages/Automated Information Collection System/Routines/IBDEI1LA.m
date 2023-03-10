@@ -1,122 +1,128 @@
-IBDEI1LA ; ; 04-FEB-2020
- ;;3.0;IB ENCOUNTER FORM IMP/EXP;;FEB 04, 2020
+IBDEI1LA ; ; 01-FEB-2022
+ ;;3.0;IB ENCOUNTER FORM IMP/EXP;;FEB 01, 2022
  Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,999) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
- ;;^UTILITY(U,$J,358.3,25398,1,3,0)
- ;;=3^Pain in Right Hand
- ;;^UTILITY(U,$J,358.3,25398,1,4,0)
- ;;=4^M79.641
- ;;^UTILITY(U,$J,358.3,25398,2)
- ;;=^5013338
- ;;^UTILITY(U,$J,358.3,25399,0)
- ;;=M79.642^^107^1217^105
- ;;^UTILITY(U,$J,358.3,25399,1,0)
+ ;;^UTILITY(U,$J,358.3,25757,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,25399,1,3,0)
- ;;=3^Pain in Left Hand
- ;;^UTILITY(U,$J,358.3,25399,1,4,0)
- ;;=4^M79.642
- ;;^UTILITY(U,$J,358.3,25399,2)
- ;;=^5013339
- ;;^UTILITY(U,$J,358.3,25400,0)
- ;;=M79.671^^107^1217^114
- ;;^UTILITY(U,$J,358.3,25400,1,0)
+ ;;^UTILITY(U,$J,358.3,25757,1,3,0)
+ ;;=3^Acute Stress D/O
+ ;;^UTILITY(U,$J,358.3,25757,1,4,0)
+ ;;=4^F43.0
+ ;;^UTILITY(U,$J,358.3,25757,2)
+ ;;=^5003569
+ ;;^UTILITY(U,$J,358.3,25758,0)
+ ;;=F43.21^^92^1176^3
+ ;;^UTILITY(U,$J,358.3,25758,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,25400,1,3,0)
- ;;=3^Pain in Right Foot
- ;;^UTILITY(U,$J,358.3,25400,1,4,0)
- ;;=4^M79.671
- ;;^UTILITY(U,$J,358.3,25400,2)
- ;;=^5013350
- ;;^UTILITY(U,$J,358.3,25401,0)
- ;;=M79.672^^107^1217^104
- ;;^UTILITY(U,$J,358.3,25401,1,0)
+ ;;^UTILITY(U,$J,358.3,25758,1,3,0)
+ ;;=3^Adjustment D/O w/ Depressed Mood
+ ;;^UTILITY(U,$J,358.3,25758,1,4,0)
+ ;;=4^F43.21
+ ;;^UTILITY(U,$J,358.3,25758,2)
+ ;;=^331948
+ ;;^UTILITY(U,$J,358.3,25759,0)
+ ;;=F43.22^^92^1176^2
+ ;;^UTILITY(U,$J,358.3,25759,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,25401,1,3,0)
- ;;=3^Pain in Left Foot
- ;;^UTILITY(U,$J,358.3,25401,1,4,0)
- ;;=4^M79.672
- ;;^UTILITY(U,$J,358.3,25401,2)
- ;;=^5013351
- ;;^UTILITY(U,$J,358.3,25402,0)
- ;;=M54.9^^107^1217^8
- ;;^UTILITY(U,$J,358.3,25402,1,0)
+ ;;^UTILITY(U,$J,358.3,25759,1,3,0)
+ ;;=3^Adjustment D/O w/ Anxiety
+ ;;^UTILITY(U,$J,358.3,25759,1,4,0)
+ ;;=4^F43.22
+ ;;^UTILITY(U,$J,358.3,25759,2)
+ ;;=^331949
+ ;;^UTILITY(U,$J,358.3,25760,0)
+ ;;=F43.23^^92^1176^5
+ ;;^UTILITY(U,$J,358.3,25760,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,25402,1,3,0)
- ;;=3^Backache/Dorsalgia
- ;;^UTILITY(U,$J,358.3,25402,1,4,0)
- ;;=4^M54.9
- ;;^UTILITY(U,$J,358.3,25402,2)
- ;;=^5012314
- ;;^UTILITY(U,$J,358.3,25403,0)
- ;;=M48.52XG^^107^1217^20
- ;;^UTILITY(U,$J,358.3,25403,1,0)
+ ;;^UTILITY(U,$J,358.3,25760,1,3,0)
+ ;;=3^Adjustment D/O w/ Mixed Anxiety & Depressed Mood
+ ;;^UTILITY(U,$J,358.3,25760,1,4,0)
+ ;;=4^F43.23
+ ;;^UTILITY(U,$J,358.3,25760,2)
+ ;;=^331950
+ ;;^UTILITY(U,$J,358.3,25761,0)
+ ;;=F43.24^^92^1176^4
+ ;;^UTILITY(U,$J,358.3,25761,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,25403,1,3,0)
- ;;=3^Collapsed Vertabra,Cervical Region,Subs Encntr,Del Healing
- ;;^UTILITY(U,$J,358.3,25403,1,4,0)
- ;;=4^M48.52XG
- ;;^UTILITY(U,$J,358.3,25403,2)
- ;;=^5012169
- ;;^UTILITY(U,$J,358.3,25404,0)
- ;;=M48.52XS^^107^1217^21
- ;;^UTILITY(U,$J,358.3,25404,1,0)
+ ;;^UTILITY(U,$J,358.3,25761,1,3,0)
+ ;;=3^Adjustment D/O w/ Disturbance of Conduct
+ ;;^UTILITY(U,$J,358.3,25761,1,4,0)
+ ;;=4^F43.24
+ ;;^UTILITY(U,$J,358.3,25761,2)
+ ;;=^331951
+ ;;^UTILITY(U,$J,358.3,25762,0)
+ ;;=F43.25^^92^1176^6
+ ;;^UTILITY(U,$J,358.3,25762,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,25404,1,3,0)
- ;;=3^Collapsed Vertabra,Cervical Region,Subs Encntr,Sequela
- ;;^UTILITY(U,$J,358.3,25404,1,4,0)
- ;;=4^M48.52XS
- ;;^UTILITY(U,$J,358.3,25404,2)
- ;;=^5012170
- ;;^UTILITY(U,$J,358.3,25405,0)
- ;;=M48.57XG^^107^1217^28
- ;;^UTILITY(U,$J,358.3,25405,1,0)
+ ;;^UTILITY(U,$J,358.3,25762,1,3,0)
+ ;;=3^Adjustment D/O w/ Mixed Disturb Emotions & Conduct
+ ;;^UTILITY(U,$J,358.3,25762,1,4,0)
+ ;;=4^F43.25
+ ;;^UTILITY(U,$J,358.3,25762,2)
+ ;;=^331952
+ ;;^UTILITY(U,$J,358.3,25763,0)
+ ;;=F43.20^^92^1176^7
+ ;;^UTILITY(U,$J,358.3,25763,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,25405,1,3,0)
- ;;=3^Collapsed Vertebra,Lumbosacral Region,Subs Encntr,Del Healing
- ;;^UTILITY(U,$J,358.3,25405,1,4,0)
- ;;=4^M48.57XG
- ;;^UTILITY(U,$J,358.3,25405,2)
- ;;=^5012189
- ;;^UTILITY(U,$J,358.3,25406,0)
- ;;=M48.57XS^^107^1217^29
- ;;^UTILITY(U,$J,358.3,25406,1,0)
+ ;;^UTILITY(U,$J,358.3,25763,1,3,0)
+ ;;=3^Adjustment D/O,Unspec
+ ;;^UTILITY(U,$J,358.3,25763,1,4,0)
+ ;;=4^F43.20
+ ;;^UTILITY(U,$J,358.3,25763,2)
+ ;;=^5003573
+ ;;^UTILITY(U,$J,358.3,25764,0)
+ ;;=F43.9^^92^1176^13
+ ;;^UTILITY(U,$J,358.3,25764,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,25406,1,3,0)
- ;;=3^Collapsed Vertebra,Lumbosacral Region,Subs Encntr,Sequela
- ;;^UTILITY(U,$J,358.3,25406,1,4,0)
- ;;=4^M48.57XS
- ;;^UTILITY(U,$J,358.3,25406,2)
- ;;=^5012190
- ;;^UTILITY(U,$J,358.3,25407,0)
- ;;=M48.54XD^^107^1217^30
- ;;^UTILITY(U,$J,358.3,25407,1,0)
+ ;;^UTILITY(U,$J,358.3,25764,1,3,0)
+ ;;=3^Trauma/Stressor-Related D/O,Unspec
+ ;;^UTILITY(U,$J,358.3,25764,1,4,0)
+ ;;=4^F43.9
+ ;;^UTILITY(U,$J,358.3,25764,2)
+ ;;=^5003576
+ ;;^UTILITY(U,$J,358.3,25765,0)
+ ;;=F94.1^^92^1176^11
+ ;;^UTILITY(U,$J,358.3,25765,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,25407,1,3,0)
- ;;=3^Collapsed Vertebra,Thoracic Region,Subs Encntr,Rt Healing
- ;;^UTILITY(U,$J,358.3,25407,1,4,0)
- ;;=4^M48.54XD
- ;;^UTILITY(U,$J,358.3,25407,2)
- ;;=^5012176
- ;;^UTILITY(U,$J,358.3,25408,0)
- ;;=M48.57XG^^107^1217^31
- ;;^UTILITY(U,$J,358.3,25408,1,0)
+ ;;^UTILITY(U,$J,358.3,25765,1,3,0)
+ ;;=3^Reactive Attachment D/O
+ ;;^UTILITY(U,$J,358.3,25765,1,4,0)
+ ;;=4^F94.1
+ ;;^UTILITY(U,$J,358.3,25765,2)
+ ;;=^5003705
+ ;;^UTILITY(U,$J,358.3,25766,0)
+ ;;=F94.2^^92^1176^8
+ ;;^UTILITY(U,$J,358.3,25766,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,25408,1,3,0)
- ;;=3^Collapsed Vertebra,Thoracic Region,Subs Encntr,Del Healing
- ;;^UTILITY(U,$J,358.3,25408,1,4,0)
- ;;=4^M48.57XG
- ;;^UTILITY(U,$J,358.3,25408,2)
- ;;=^5012189
- ;;^UTILITY(U,$J,358.3,25409,0)
- ;;=M48.54XS^^107^1217^32
- ;;^UTILITY(U,$J,358.3,25409,1,0)
+ ;;^UTILITY(U,$J,358.3,25766,1,3,0)
+ ;;=3^Disinhibited Social Engagement D/O
+ ;;^UTILITY(U,$J,358.3,25766,1,4,0)
+ ;;=4^F94.2
+ ;;^UTILITY(U,$J,358.3,25766,2)
+ ;;=^5003706
+ ;;^UTILITY(U,$J,358.3,25767,0)
+ ;;=F43.8^^92^1176^12
+ ;;^UTILITY(U,$J,358.3,25767,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,25409,1,3,0)
- ;;=3^Collapsed Vertebra,Thoracic Region,Subs Encntr,Sequela
- ;;^UTILITY(U,$J,358.3,25409,1,4,0)
- ;;=4^M48.54XS
- ;;^UTILITY(U,$J,358.3,25409,2)
- ;;=^5012178
- ;;^UTILITY(U,$J,358.3,25410,0)
- ;;=M62.830^^107^1217^63
+ ;;^UTILITY(U,$J,358.3,25767,1,3,0)
+ ;;=3^Trauma/Stressor-Related D/O,Oth Spec
+ ;;^UTILITY(U,$J,358.3,25767,1,4,0)
+ ;;=4^F43.8
+ ;;^UTILITY(U,$J,358.3,25767,2)
+ ;;=^5003575
+ ;;^UTILITY(U,$J,358.3,25768,0)
+ ;;=F43.10^^92^1176^10
+ ;;^UTILITY(U,$J,358.3,25768,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,25768,1,3,0)
+ ;;=3^PTSD,Unspec
+ ;;^UTILITY(U,$J,358.3,25768,1,4,0)
+ ;;=4^F43.10
+ ;;^UTILITY(U,$J,358.3,25768,2)
+ ;;=^5003570
+ ;;^UTILITY(U,$J,358.3,25769,0)
+ ;;=F43.12^^92^1176^9
+ ;;^UTILITY(U,$J,358.3,25769,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,25769,1,3,0)
+ ;;=3^PTSD,Chronic

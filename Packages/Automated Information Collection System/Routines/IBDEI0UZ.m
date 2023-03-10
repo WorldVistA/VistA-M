@@ -1,126 +1,122 @@
-IBDEI0UZ ; ; 04-FEB-2020
- ;;3.0;IB ENCOUNTER FORM IMP/EXP;;FEB 04, 2020
+IBDEI0UZ ; ; 01-FEB-2022
+ ;;3.0;IB ENCOUNTER FORM IMP/EXP;;FEB 01, 2022
  Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,999) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
- ;;^UTILITY(U,$J,358.3,13791,1,3,0)
- ;;=3^Hx of Falling
- ;;^UTILITY(U,$J,358.3,13791,1,4,0)
- ;;=4^Z91.81
- ;;^UTILITY(U,$J,358.3,13791,2)
- ;;=^5063625
- ;;^UTILITY(U,$J,358.3,13792,0)
- ;;=W17.89XA^^83^817^14
- ;;^UTILITY(U,$J,358.3,13792,1,0)
+ ;;^UTILITY(U,$J,358.3,13982,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,13792,1,3,0)
- ;;=3^Fall from One Level to Another,Init Encntr
- ;;^UTILITY(U,$J,358.3,13792,1,4,0)
- ;;=4^W17.89XA
- ;;^UTILITY(U,$J,358.3,13792,2)
- ;;=^5059787
- ;;^UTILITY(U,$J,358.3,13793,0)
- ;;=W03.XXXA^^83^817^1
- ;;^UTILITY(U,$J,358.3,13793,1,0)
+ ;;^UTILITY(U,$J,358.3,13982,1,3,0)
+ ;;=3^Secondary osteoarthritis, right ankle & foot
+ ;;^UTILITY(U,$J,358.3,13982,1,4,0)
+ ;;=4^M19.271
+ ;;^UTILITY(U,$J,358.3,13982,2)
+ ;;=^5010850
+ ;;^UTILITY(U,$J,358.3,13983,0)
+ ;;=M19.272^^55^666^24
+ ;;^UTILITY(U,$J,358.3,13983,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,13793,1,3,0)
- ;;=3^Fall Same Level d/t Collision w/ Another Person,Init Encntr
- ;;^UTILITY(U,$J,358.3,13793,1,4,0)
- ;;=4^W03.XXXA
- ;;^UTILITY(U,$J,358.3,13793,2)
- ;;=^5059544
- ;;^UTILITY(U,$J,358.3,13794,0)
- ;;=W18.09XA^^83^817^6
- ;;^UTILITY(U,$J,358.3,13794,1,0)
+ ;;^UTILITY(U,$J,358.3,13983,1,3,0)
+ ;;=3^Secondary osteoarthritis, left ankle & foot
+ ;;^UTILITY(U,$J,358.3,13983,1,4,0)
+ ;;=4^M19.272
+ ;;^UTILITY(U,$J,358.3,13983,2)
+ ;;=^5010851
+ ;;^UTILITY(U,$J,358.3,13984,0)
+ ;;=M19.031^^55^667^10
+ ;;^UTILITY(U,$J,358.3,13984,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,13794,1,3,0)
- ;;=3^Fall d/t Striking Against Other Object,Init Encntr
- ;;^UTILITY(U,$J,358.3,13794,1,4,0)
- ;;=4^W18.09XA
- ;;^UTILITY(U,$J,358.3,13794,2)
- ;;=^5059799
- ;;^UTILITY(U,$J,358.3,13795,0)
- ;;=W00.9XXA^^83^817^5
- ;;^UTILITY(U,$J,358.3,13795,1,0)
+ ;;^UTILITY(U,$J,358.3,13984,1,3,0)
+ ;;=3^Primary osteoarthritis, right wrist
+ ;;^UTILITY(U,$J,358.3,13984,1,4,0)
+ ;;=4^M19.031
+ ;;^UTILITY(U,$J,358.3,13984,2)
+ ;;=^5010814
+ ;;^UTILITY(U,$J,358.3,13985,0)
+ ;;=M19.032^^55^667^9
+ ;;^UTILITY(U,$J,358.3,13985,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,13795,1,3,0)
- ;;=3^Fall d/t Snow/Ice,Init Encntr
- ;;^UTILITY(U,$J,358.3,13795,1,4,0)
- ;;=4^W00.9XXA
- ;;^UTILITY(U,$J,358.3,13795,2)
- ;;=^5059519
- ;;^UTILITY(U,$J,358.3,13796,0)
- ;;=R29.6^^83^817^24
- ;;^UTILITY(U,$J,358.3,13796,1,0)
+ ;;^UTILITY(U,$J,358.3,13985,1,3,0)
+ ;;=3^Primary osteoarthritis, left wrist
+ ;;^UTILITY(U,$J,358.3,13985,1,4,0)
+ ;;=4^M19.032
+ ;;^UTILITY(U,$J,358.3,13985,2)
+ ;;=^5010815
+ ;;^UTILITY(U,$J,358.3,13986,0)
+ ;;=S50.11XA^^55^667^4
+ ;;^UTILITY(U,$J,358.3,13986,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,13796,1,3,0)
- ;;=3^Repeated Falls
- ;;^UTILITY(U,$J,358.3,13796,1,4,0)
- ;;=4^R29.6
- ;;^UTILITY(U,$J,358.3,13796,2)
- ;;=^5019317
- ;;^UTILITY(U,$J,358.3,13797,0)
- ;;=W18.40XA^^83^817^25
- ;;^UTILITY(U,$J,358.3,13797,1,0)
+ ;;^UTILITY(U,$J,358.3,13986,1,3,0)
+ ;;=3^Contusion of right forearm, initial encounter
+ ;;^UTILITY(U,$J,358.3,13986,1,4,0)
+ ;;=4^S50.11XA
+ ;;^UTILITY(U,$J,358.3,13986,2)
+ ;;=^5028494
+ ;;^UTILITY(U,$J,358.3,13987,0)
+ ;;=S50.12XA^^55^667^1
+ ;;^UTILITY(U,$J,358.3,13987,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,13797,1,3,0)
- ;;=3^Slip/Trip/Stumble w/o Falling,Init Encntr
- ;;^UTILITY(U,$J,358.3,13797,1,4,0)
- ;;=4^W18.40XA
- ;;^UTILITY(U,$J,358.3,13797,2)
- ;;=^5059818
- ;;^UTILITY(U,$J,358.3,13798,0)
- ;;=Z90.710^^83^818^2
- ;;^UTILITY(U,$J,358.3,13798,1,0)
+ ;;^UTILITY(U,$J,358.3,13987,1,3,0)
+ ;;=3^Contusion of left forearm, initial encounter
+ ;;^UTILITY(U,$J,358.3,13987,1,4,0)
+ ;;=4^S50.12XA
+ ;;^UTILITY(U,$J,358.3,13987,2)
+ ;;=^5028497
+ ;;^UTILITY(U,$J,358.3,13988,0)
+ ;;=S50.11XD^^55^667^6
+ ;;^UTILITY(U,$J,358.3,13988,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,13798,1,3,0)
- ;;=3^Acquired Absence of Cervix & Uterus
- ;;^UTILITY(U,$J,358.3,13798,1,4,0)
- ;;=4^Z90.710
- ;;^UTILITY(U,$J,358.3,13798,2)
- ;;=^5063591
- ;;^UTILITY(U,$J,358.3,13799,0)
- ;;=Z90.712^^83^818^3
- ;;^UTILITY(U,$J,358.3,13799,1,0)
+ ;;^UTILITY(U,$J,358.3,13988,1,3,0)
+ ;;=3^Contusion of right forearm, subsequent encounter
+ ;;^UTILITY(U,$J,358.3,13988,1,4,0)
+ ;;=4^S50.11XD
+ ;;^UTILITY(U,$J,358.3,13988,2)
+ ;;=^5028495
+ ;;^UTILITY(U,$J,358.3,13989,0)
+ ;;=S50.11XS^^55^667^5
+ ;;^UTILITY(U,$J,358.3,13989,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,13799,1,3,0)
- ;;=3^Acquired Absence of Cervix w/ Remaining Uterus
- ;;^UTILITY(U,$J,358.3,13799,1,4,0)
- ;;=4^Z90.712
- ;;^UTILITY(U,$J,358.3,13799,2)
- ;;=^5063593
- ;;^UTILITY(U,$J,358.3,13800,0)
- ;;=Z90.711^^83^818^4
- ;;^UTILITY(U,$J,358.3,13800,1,0)
+ ;;^UTILITY(U,$J,358.3,13989,1,3,0)
+ ;;=3^Contusion of right forearm, sequela
+ ;;^UTILITY(U,$J,358.3,13989,1,4,0)
+ ;;=4^S50.11XS
+ ;;^UTILITY(U,$J,358.3,13989,2)
+ ;;=^5028496
+ ;;^UTILITY(U,$J,358.3,13990,0)
+ ;;=S50.12XD^^55^667^3
+ ;;^UTILITY(U,$J,358.3,13990,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,13800,1,3,0)
- ;;=3^Acquired Absence of Uterus w/ Remaining Cervical Stump
- ;;^UTILITY(U,$J,358.3,13800,1,4,0)
- ;;=4^Z90.711
- ;;^UTILITY(U,$J,358.3,13800,2)
- ;;=^5063592
- ;;^UTILITY(U,$J,358.3,13801,0)
- ;;=R34.^^83^818^5
- ;;^UTILITY(U,$J,358.3,13801,1,0)
+ ;;^UTILITY(U,$J,358.3,13990,1,3,0)
+ ;;=3^Contusion of left forearm, subsequent encounter
+ ;;^UTILITY(U,$J,358.3,13990,1,4,0)
+ ;;=4^S50.12XD
+ ;;^UTILITY(U,$J,358.3,13990,2)
+ ;;=^5028498
+ ;;^UTILITY(U,$J,358.3,13991,0)
+ ;;=S50.12XS^^55^667^2
+ ;;^UTILITY(U,$J,358.3,13991,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,13801,1,3,0)
- ;;=3^Anuria & Oliguria
- ;;^UTILITY(U,$J,358.3,13801,1,4,0)
- ;;=4^R34.
- ;;^UTILITY(U,$J,358.3,13801,2)
- ;;=^5019333
- ;;^UTILITY(U,$J,358.3,13802,0)
- ;;=Z93.50^^83^818^6
- ;;^UTILITY(U,$J,358.3,13802,1,0)
+ ;;^UTILITY(U,$J,358.3,13991,1,3,0)
+ ;;=3^Contusion of left forearm, sequela
+ ;;^UTILITY(U,$J,358.3,13991,1,4,0)
+ ;;=4^S50.12XS
+ ;;^UTILITY(U,$J,358.3,13991,2)
+ ;;=^5028499
+ ;;^UTILITY(U,$J,358.3,13992,0)
+ ;;=M19.131^^55^667^8
+ ;;^UTILITY(U,$J,358.3,13992,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,13802,1,3,0)
- ;;=3^Artificial Opening,Cystostomy,Unspec
- ;;^UTILITY(U,$J,358.3,13802,1,4,0)
- ;;=4^Z93.50
- ;;^UTILITY(U,$J,358.3,13802,2)
- ;;=^5063647
- ;;^UTILITY(U,$J,358.3,13803,0)
- ;;=Z93.6^^83^818^7
- ;;^UTILITY(U,$J,358.3,13803,1,0)
+ ;;^UTILITY(U,$J,358.3,13992,1,3,0)
+ ;;=3^Post-traumatic osteoarthritis, right wrist
+ ;;^UTILITY(U,$J,358.3,13992,1,4,0)
+ ;;=4^M19.131
+ ;;^UTILITY(U,$J,358.3,13992,2)
+ ;;=^5010829
+ ;;^UTILITY(U,$J,358.3,13993,0)
+ ;;=M19.132^^55^667^7
+ ;;^UTILITY(U,$J,358.3,13993,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,13803,1,3,0)
- ;;=3^Artificial Opening,Urinary Tract,Other
+ ;;^UTILITY(U,$J,358.3,13993,1,3,0)
+ ;;=3^Post-traumatic osteoarthritis, left wrist
+ ;;^UTILITY(U,$J,358.3,13993,1,4,0)
+ ;;=4^M19.132
+ ;;^UTILITY(U,$J,358.3,13993,2)
+ ;;=^5010830

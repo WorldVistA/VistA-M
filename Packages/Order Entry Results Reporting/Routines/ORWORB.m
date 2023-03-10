@@ -1,5 +1,5 @@
-ORWORB ;SLC/DEE,REV,CLA,WAT - RPC functions which return user alert ;Nov 21, 2019@10:26
- ;;3.0;ORDER ENTRY/RESULTS REPORTING;**10,85,116,148,173,190,215,243,296,329,334,410,377**;Dec 17, 1997;Build 582
+ORWORB ;SLC/DEE,REV,CLA,WAT - RPC FUNCTIONS WHICH RETURN USER ALERT ;Mar 22, 2022@12:45
+ ;;3.0;ORDER ENTRY/RESULTS REPORTING;**10,85,116,148,173,190,215,243,296,329,334,410,377,498,405**;Dec 17, 1997;Build 211
  ;;Per VHA Directive 2004-038, this routine should not be modified
  ;
  ;DBIA reference section
@@ -34,10 +34,24 @@ FASTUSER(ORY,ORDEFFLG) ;return current user's notifications across all patients
  ; ORDEFFLG: setting this to 1 causes the alerts API to exclude deferred alerts for this user
  ;  defaults to 1 if not passed in
  N STRTDATE,STOPDATE,ORTOT,I,ORURG,URG,ORN,SORT,ORN0,URGLIST,REMLIST,REM,NONORLST,NONOR
- N ALRT,ALRTDT,ALRTPT,ALRTMSG,ALRTI,ALRTLOC,ALRTXQA,J,FWDBY,PRE,ALRTDFN
- K ^TMP("ORBG",$J)
- S STRTDATE="",STOPDATE="",FWDBY="Forwarded by: "
+ N ALRT,ALRTDT,ALRTPT,ALRTMSG,ALRTI,ALRTLOC,ALRTXQA,J,FWDBY,PRE,ALRTDFN,FROMFAST
+ K ^TMP("ORB",$J),^TMP("ORBG",$J)
+ S STRTDATE="",STOPDATE="",FWDBY="Forwarded by: ",FROMFAST=1
  D GETUSER1^XQALDATA("^TMP(""ORB"",$J)",DUZ,STRTDATE,STOPDATE,$G(ORDEFFLG,1))
+ D USERLIST(.ORY,STRTDATE,STOPDATE)
+ Q
+ ;
+PROUSER(ORY,STRTDATE,STOPDATE,MAXRET,PROONLY) ;return current user's processed notifications for a specified date range
+ Q:'$$GET^XPAR("SYS","OR RTN PROCESSED ALERTS")
+ N FWDBY
+ K ^TMP("ORB",$J),^TMP("ORBG",$J)
+ S FWDBY="Forwarded by: "
+ D GETUSER2^XQALDATA("^TMP(""ORB"",$J)",DUZ,STRTDATE,STOPDATE,MAXRET,PROONLY)
+ D USERLIST(.ORY,STRTDATE,STOPDATE)
+ Q
+USERLIST(ORY,STRTDATE,STOPDATE) ;process for obtaining user's notifications
+ N ORTOT,I,ORURG,URG,ORN,SORT,ORN0,URGLIST,REMLIST,REM,NONORLST,NONOR
+ N ALRT,ALRTDT,ALRTPT,ALRTMSG,ALRTI,ALRTLOC,ALRTXQA,J,PRE,ALRTDFN,ORRMVD
  S ORTOT=^TMP("ORB",$J)
  D URGLIST^ORQORB(.URGLIST)
  D REMLIST^ORQORB(.REMLIST)
@@ -45,25 +59,26 @@ FASTUSER(ORY,ORDEFFLG) ;return current user's notifications across all patients
  S J=0
  F I=1:1:ORTOT D
  .N ORPROV,ORBIRAD
- .S REM=""
- .S ALRTDFN=""
+ .S ALRTDFN="",REM=""
  .S ALRT=^TMP("ORB",$J,I)
  .S PRE=$E(ALRT,1,1)
  .S ALRTXQA=$P(ALRT,U,2)  ;XQAID
  .S NONOR="" F  S NONOR=$O(NONORLST(NONOR)) Q:NONOR=""  D
  ..I ALRTXQA[NONOR S REM=1  ;allow this type of alert to be Removed
  .S ALRTMSG=$P($P(ALRT,U),PRE_"  ",2)
+ .;S ALRTMSG=$P($P(ALRT,U),PRE,2,99),ALRTMSG=$$TRIM^XLFSTR(ALRTMSG,"L")
  .I $E(ALRT,4,8)'="-----" D  ;not forwarded alert info/comment
+ ..S ORRMVD=0
  ..S ORURG="n/a"
  ..S ALRTI=$P(ALRT,"  ")
  ..S ALRTPT=""
  ..S ALRTLOC=""
  ..I $E($P(ALRTXQA,";"),1,3)="TIU" S ORURG="Moderate"
  ..I $P(ALRTXQA,",")="OR" D
- ...N ALRTIEN,ORIEN,P04,ORPOUT
- ...S ALRTIEN=$O(^XTV(8992.1,"B",ALRTXQA,0)) Q:ALRTIEN'>0  ; direct read ICR #7063
- ...S ORIEN=+$G(^XTV(8992.1,ALRTIEN,2)) ; Q:ORIEN'>0  ; direct read ICR #7063
- ...S P04=$P($G(^OR(100,ORIEN,0)),U,4) I +P04 S ORPROV=$$GET1^DIQ(200,P04,.01)
+ ... N ALRTIEN,ORIEN,P04,ORPOUT
+ ... S ALRTIEN=$O(^XTV(8992.1,"B",ALRTXQA,0)) Q:ALRTIEN'>0  ; direct read ICR #7063
+ ... S ORIEN=+$G(^XTV(8992.1,ALRTIEN,2)) ; Q:ORIEN'>0  ; direct read ICR #7063
+ ... S P04=$P($G(^OR(100,ORIEN,0)),U,4) I +P04 S ORPROV=$$GET1^DIQ(200,P04,.01)
  ...S ORN=$P($P(ALRTXQA,";"),",",3)
  ...S URG=$G(URGLIST(ORN))
  ...S ORURG=$S(URG=1:"HIGH",URG=2:"Moderate",1:"low")
@@ -73,12 +88,16 @@ FASTUSER(ORY,ORDEFFLG) ;return current user's notifications across all patients
  ...S ALRTDFN=$P(ALRTXQA,",",2)
  ...S ALRTLOC=$G(^DPT(+$G(ALRTDFN),.1))
  ...I $$ISSMIEN^ORBSMART(ORN) D
+ ....N ORSMBY
  ....D ALTDATA^PXRMCALT(.ORPOUT,ALRTDFN,ALRTXQA)
+ ....I $G(ORPOUT("DATA","RADIOLOGY REPORT FOUND"))=0 D DEL^ORB3FUP1(.ORSMBY,ALRTXQA,0) S ORRMVD=1 Q
  ....I $L($G(ORPOUT("DATA",1,"DIAGNOSIS")))>0 S ORBIRAD=$G(ORPOUT("DATA",1,"DIAGNOSIS"))
+ ..I ORRMVD Q
  ..S ALRTI=$S(ALRTI="I":"I",ALRTI="L":"L",1:"")
  ..I (ALRT["): ")!($G(ORN)=27&(ALRT[") CV")) D  ;WAT
  ...S ALRTPT=$P(ALRT,": ")
  ...S ALRTPT=$E(ALRTPT,4,$L(ALRTPT))
+ ...;S ALRTPT=$P(ALRTPT,PRE,2,99),ALRTPT=$$TRIM^XLFSTR(ALRTPT,"L")
  ...I $G(ORN)=27&(ALRT[") CV") S ALRTMSG=$P($P(ALRT,U),": ",2) ;WAT
  ...E  S ALRTMSG=$P($P(ALRT,U),"): ",2) ;WAT
  ...I $E(ALRTMSG,1,1)="[" D
@@ -92,13 +111,23 @@ FASTUSER(ORY,ORDEFFLG) ;return current user's notifications across all patients
  ..I $G(ORBIRAD)'="" S ALRTMSG=ALRTMSG_" - RESULTS: "_ORBIRAD
  ..S J=J+1,^TMP("ORBG",$J,J)=ALRTI_U_ALRTPT_U_ALRTLOC_U_ORURG_U_ALRTDT_U
  ..S ^TMP("ORBG",$J,J)=^TMP("ORBG",$J,J)_ALRTMSG_U_U_ALRTXQA_U_$G(REM)_U
+ .I ORRMVD Q
  .;if alert forward info/comment:
  .I $E(ALRTMSG,1,5)="-----" D
  ..S ALRTMSG=$P(ALRTMSG,"-----",2)
  ..I $E(ALRTMSG,1,14)=FWDBY D
  ...S J=J+1,^TMP("ORBG",$J,J)=FWDBY_U_$P($P(ALRTMSG,FWDBY,2),"Generated: ")_$P($P(ALRTMSG,FWDBY,2),"Generated: ",2)
  ..E  S ^TMP("ORBG",$J,J)=^TMP("ORBG",$J,J)_U_""""_ALRTMSG_""""
- .I $G(ORPROV)'="" S ^TMP("ORBG",$J,J)=^TMP("ORBG",$J,J)_U_ORPROV ; ajb
+ .;I $G(ORPROV)'="" S ^TMP("ORBG",$J,J)=^TMP("ORBG",$J,J)_U_ORPROV ; ajb
+ .;if this is for processed alerts, add additional data into pieces 15 through 22
+ .I $D(^TMP("ORB",$J,J,"PROCESSED")) D
+ ..S $P(^TMP("ORBG",$J,J),U,15)=^TMP("ORB",$J,J,"PROCESSED")
+ .;if this is for pending alerts, add "surrogate for" into piece 15
+ .I $G(FROMFAST) N ALRTIEN,DUZIEN,SURRFOR D
+ ..S ALRTIEN=$O(^XTV(8992.1,"B",ALRTXQA,0)) Q:'ALRTIEN
+ ..S DUZIEN=$O(^XTV(8992.1,ALRTIEN,20,"B",DUZ,"")) Q:'DUZIEN
+ ..S SURRFOR=+$G(^XTV(8992.1,ALRTIEN,20,DUZIEN,3,1,0)) ; get first "surrogate for" and return returns 0 if empty
+ ..I SURRFOR S $P(^TMP("ORBG",$J,J),U,15)=$P(^VA(200,SURRFOR,0),U)
  S ^TMP("ORBG",$J)=""
  S ORY=$NA(^TMP("ORBG",$J))
  K ^TMP("ORB",$J)
@@ -155,11 +184,31 @@ UNFLORD(ORY,DFN,XQAID) ; -- auto-unflag orders?/delete alert
  ;;I (ORAUTO)!(+$G(ORBY(1))=0) D DELETE^XQALERT
  ;Q
 KILEXMED(Y,ORDFN)  ; -- Delete expiring meds notification if no expiring meds remaining
- N ORDG,ORLST,OROI S ORDG=$$DG^ORQOR1("RX")
+ N ORDG,ORLST,OROI,LIST S ORDG=$$DG^ORQOR1("RX")
+ N XQAKILL,ORNIFN,ORVP
+ S LIST("INPT")=1
+ S LIST("OUTPT")=1
  D AGET^ORWORR(.ORLST,ORDFN,5,ORDG)
- Q:+(@ORLST@(.1))  ;more left
- N XQAKILL,ORNIFN,ORVP,ORIO S OROI=""
- F OROI="INPT","OUTPT" D
+ ;selected code copied from EXPIR^ORB3TIM2
+ I +(@ORLST@(.1)) D  ;if there are orders
+ . K LIST("OUTPT")
+ . S OROI=.5
+ . N ORSCHFIL,ORBZ
+ . S ORSCHFIL=$$TERMLKUP^ORB31(.ORBZ,"ONE TIME MED")
+ . F  S OROI=$O(@ORLST@(OROI)) Q:'OROI  D  Q:'$G(LIST("INPT"))
+ .. N EXORN S EXORN=+@ORLST@(OROI)
+ .. ;skip outpt meds
+ .. Q:$$DGRX^ORQOR2(EXORN)="OUTPATIENT MEDICATIONS"
+ .. ;skip one time meds
+ .. N ONETIME,ORSCH,ORBI S ONETIME=0
+ .. I $D(ORBZ),(+$G(ORSCHFIL)=51.1) F ORBI=1:1:ORBZ D
+ ... S ORSCH=$P(ORBZ(ORBI),U,2)
+ ... I ORSCH=$$VALUE^ORCSAVE2(EXORN,"SCHEDULE") S ONETIME=1 Q
+ .. Q:+$G(ONETIME)=1
+ .. ;don't delete notification if there are valid inpt orders
+ .. K LIST("INPT")
+ S OROI=""
+ F  S OROI=$O(LIST(OROI)) Q:'$L(OROI)  D
  .S ORNIFN=$O(^ORD(100.9,"B","MEDICATIONS EXPIRING - "_OROI,0)),ORVP=ORDFN_";DPT("
  .Q:'$L($G(ORNIFN))
  .S XQAKILL=$$XQAKILL^ORB3F1(ORNIFN) ; expiring meds notif

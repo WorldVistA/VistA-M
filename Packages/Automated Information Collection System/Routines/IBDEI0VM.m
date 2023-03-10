@@ -1,128 +1,120 @@
-IBDEI0VM ; ; 04-FEB-2020
- ;;3.0;IB ENCOUNTER FORM IMP/EXP;;FEB 04, 2020
+IBDEI0VM ; ; 01-FEB-2022
+ ;;3.0;IB ENCOUNTER FORM IMP/EXP;;FEB 01, 2022
  Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,999) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
- ;;^UTILITY(U,$J,358.3,14077,0)
- ;;=Z96.653^^83^821^79
- ;;^UTILITY(U,$J,358.3,14077,1,0)
+ ;;^UTILITY(U,$J,358.3,14255,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,14077,1,3,0)
- ;;=3^Knee Joint,Artificial,Bilateral
- ;;^UTILITY(U,$J,358.3,14077,1,4,0)
- ;;=4^Z96.653
- ;;^UTILITY(U,$J,358.3,14077,2)
- ;;=^5063707
- ;;^UTILITY(U,$J,358.3,14078,0)
- ;;=M40.209^^83^821^82
- ;;^UTILITY(U,$J,358.3,14078,1,0)
+ ;;^UTILITY(U,$J,358.3,14255,1,3,0)
+ ;;=3^Fracture of unsp part of left clavicle, init for clos fx
+ ;;^UTILITY(U,$J,358.3,14255,1,4,0)
+ ;;=4^S42.002A
+ ;;^UTILITY(U,$J,358.3,14255,2)
+ ;;=^5026376
+ ;;^UTILITY(U,$J,358.3,14256,0)
+ ;;=S42.001A^^55^674^26
+ ;;^UTILITY(U,$J,358.3,14256,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,14078,1,3,0)
- ;;=3^Kyphosis,Unspec Site
- ;;^UTILITY(U,$J,358.3,14078,1,4,0)
- ;;=4^M40.209
- ;;^UTILITY(U,$J,358.3,14078,2)
- ;;=^5011817
- ;;^UTILITY(U,$J,358.3,14079,0)
- ;;=M32.9^^83^821^83
- ;;^UTILITY(U,$J,358.3,14079,1,0)
+ ;;^UTILITY(U,$J,358.3,14256,1,3,0)
+ ;;=3^Fracture of unsp part of right clavicle, init for clos fx
+ ;;^UTILITY(U,$J,358.3,14256,1,4,0)
+ ;;=4^S42.001A
+ ;;^UTILITY(U,$J,358.3,14256,2)
+ ;;=^5026369
+ ;;^UTILITY(U,$J,358.3,14257,0)
+ ;;=M75.42^^55^674^29
+ ;;^UTILITY(U,$J,358.3,14257,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,14079,1,3,0)
- ;;=3^Lupus Erythematosus,Systemic,Unspec
- ;;^UTILITY(U,$J,358.3,14079,1,4,0)
- ;;=4^M32.9
- ;;^UTILITY(U,$J,358.3,14079,2)
- ;;=^5011761
- ;;^UTILITY(U,$J,358.3,14080,0)
- ;;=M62.830^^83^821^85
- ;;^UTILITY(U,$J,358.3,14080,1,0)
+ ;;^UTILITY(U,$J,358.3,14257,1,3,0)
+ ;;=3^Impingement syndrome of left shoulder
+ ;;^UTILITY(U,$J,358.3,14257,1,4,0)
+ ;;=4^M75.42
+ ;;^UTILITY(U,$J,358.3,14257,2)
+ ;;=^5013258
+ ;;^UTILITY(U,$J,358.3,14258,0)
+ ;;=M75.41^^55^674^30
+ ;;^UTILITY(U,$J,358.3,14258,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,14080,1,3,0)
- ;;=3^Muscle Spasm,Back
- ;;^UTILITY(U,$J,358.3,14080,1,4,0)
- ;;=4^M62.830
- ;;^UTILITY(U,$J,358.3,14080,2)
- ;;=^5012680
- ;;^UTILITY(U,$J,358.3,14081,0)
- ;;=M62.831^^83^821^86
- ;;^UTILITY(U,$J,358.3,14081,1,0)
+ ;;^UTILITY(U,$J,358.3,14258,1,3,0)
+ ;;=3^Impingement syndrome of right shoulder
+ ;;^UTILITY(U,$J,358.3,14258,1,4,0)
+ ;;=4^M75.41
+ ;;^UTILITY(U,$J,358.3,14258,2)
+ ;;=^5013257
+ ;;^UTILITY(U,$J,358.3,14259,0)
+ ;;=M75.112^^55^674^31
+ ;;^UTILITY(U,$J,358.3,14259,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,14081,1,3,0)
- ;;=3^Muscle Spasm,Calf
- ;;^UTILITY(U,$J,358.3,14081,1,4,0)
- ;;=4^M62.831
- ;;^UTILITY(U,$J,358.3,14081,2)
- ;;=^5012681
- ;;^UTILITY(U,$J,358.3,14082,0)
- ;;=M62.838^^83^821^87
- ;;^UTILITY(U,$J,358.3,14082,1,0)
+ ;;^UTILITY(U,$J,358.3,14259,1,3,0)
+ ;;=3^Incomplete rotatr-cuff tear/ruptr of l shoulder, not trauma
+ ;;^UTILITY(U,$J,358.3,14259,1,4,0)
+ ;;=4^M75.112
+ ;;^UTILITY(U,$J,358.3,14259,2)
+ ;;=^5013246
+ ;;^UTILITY(U,$J,358.3,14260,0)
+ ;;=M75.111^^55^674^32
+ ;;^UTILITY(U,$J,358.3,14260,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,14082,1,3,0)
- ;;=3^Muscle Spasm,Other
- ;;^UTILITY(U,$J,358.3,14082,1,4,0)
- ;;=4^M62.838
- ;;^UTILITY(U,$J,358.3,14082,2)
- ;;=^5012682
- ;;^UTILITY(U,$J,358.3,14083,0)
- ;;=M62.50^^83^821^88
- ;;^UTILITY(U,$J,358.3,14083,1,0)
+ ;;^UTILITY(U,$J,358.3,14260,1,3,0)
+ ;;=3^Incomplete rotatr-cuff tear/ruptr of r shoulder, not trauma
+ ;;^UTILITY(U,$J,358.3,14260,1,4,0)
+ ;;=4^M75.111
+ ;;^UTILITY(U,$J,358.3,14260,2)
+ ;;=^5013245
+ ;;^UTILITY(U,$J,358.3,14261,0)
+ ;;=M25.512^^55^674^33
+ ;;^UTILITY(U,$J,358.3,14261,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,14083,1,3,0)
- ;;=3^Muscle Wasting/Atrophy,Unspec Site NEC
- ;;^UTILITY(U,$J,358.3,14083,1,4,0)
- ;;=4^M62.50
- ;;^UTILITY(U,$J,358.3,14083,2)
- ;;=^5012655
- ;;^UTILITY(U,$J,358.3,14084,0)
- ;;=M62.81^^83^821^89
- ;;^UTILITY(U,$J,358.3,14084,1,0)
+ ;;^UTILITY(U,$J,358.3,14261,1,3,0)
+ ;;=3^Pain in left shoulder
+ ;;^UTILITY(U,$J,358.3,14261,1,4,0)
+ ;;=4^M25.512
+ ;;^UTILITY(U,$J,358.3,14261,2)
+ ;;=^5011603
+ ;;^UTILITY(U,$J,358.3,14262,0)
+ ;;=M25.511^^55^674^34
+ ;;^UTILITY(U,$J,358.3,14262,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,14084,1,3,0)
- ;;=3^Muscle Weakness,Generalized
- ;;^UTILITY(U,$J,358.3,14084,1,4,0)
- ;;=4^M62.81
- ;;^UTILITY(U,$J,358.3,14084,2)
- ;;=^332922
- ;;^UTILITY(U,$J,358.3,14085,0)
- ;;=M61.9^^83^821^90
- ;;^UTILITY(U,$J,358.3,14085,1,0)
+ ;;^UTILITY(U,$J,358.3,14262,1,3,0)
+ ;;=3^Pain in right shoulder
+ ;;^UTILITY(U,$J,358.3,14262,1,4,0)
+ ;;=4^M25.511
+ ;;^UTILITY(U,$J,358.3,14262,2)
+ ;;=^5011602
+ ;;^UTILITY(U,$J,358.3,14263,0)
+ ;;=S43.025A^^55^674^37
+ ;;^UTILITY(U,$J,358.3,14263,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,14085,1,3,0)
- ;;=3^Muscle,Calcification/Ossification,Unspec
- ;;^UTILITY(U,$J,358.3,14085,1,4,0)
- ;;=4^M61.9
- ;;^UTILITY(U,$J,358.3,14085,2)
- ;;=^5012561
- ;;^UTILITY(U,$J,358.3,14086,0)
- ;;=M62.40^^83^821^91
- ;;^UTILITY(U,$J,358.3,14086,1,0)
+ ;;^UTILITY(U,$J,358.3,14263,1,3,0)
+ ;;=3^Posterior dislocation of left humerus, initial encounter
+ ;;^UTILITY(U,$J,358.3,14263,1,4,0)
+ ;;=4^S43.025A
+ ;;^UTILITY(U,$J,358.3,14263,2)
+ ;;=^5027699
+ ;;^UTILITY(U,$J,358.3,14264,0)
+ ;;=S43.024A^^55^674^39
+ ;;^UTILITY(U,$J,358.3,14264,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,14086,1,3,0)
- ;;=3^Muscle,Contracture,Unspec Site
- ;;^UTILITY(U,$J,358.3,14086,1,4,0)
- ;;=4^M62.40
- ;;^UTILITY(U,$J,358.3,14086,2)
- ;;=^5012631
- ;;^UTILITY(U,$J,358.3,14087,0)
- ;;=M62.9^^83^821^84
- ;;^UTILITY(U,$J,358.3,14087,1,0)
+ ;;^UTILITY(U,$J,358.3,14264,1,3,0)
+ ;;=3^Posterior dislocation of right humerus, initial encounter
+ ;;^UTILITY(U,$J,358.3,14264,1,4,0)
+ ;;=4^S43.024A
+ ;;^UTILITY(U,$J,358.3,14264,2)
+ ;;=^5027696
+ ;;^UTILITY(U,$J,358.3,14265,0)
+ ;;=M19.012^^55^674^41
+ ;;^UTILITY(U,$J,358.3,14265,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,14087,1,3,0)
- ;;=3^Muscle Disorder,Unspec
- ;;^UTILITY(U,$J,358.3,14087,1,4,0)
- ;;=4^M62.9
- ;;^UTILITY(U,$J,358.3,14087,2)
- ;;=^5012684
- ;;^UTILITY(U,$J,358.3,14088,0)
- ;;=M62.20^^83^821^92
- ;;^UTILITY(U,$J,358.3,14088,1,0)
+ ;;^UTILITY(U,$J,358.3,14265,1,3,0)
+ ;;=3^Primary osteoarthritis, left shoulder
+ ;;^UTILITY(U,$J,358.3,14265,1,4,0)
+ ;;=4^M19.012
+ ;;^UTILITY(U,$J,358.3,14265,2)
+ ;;=^5010809
+ ;;^UTILITY(U,$J,358.3,14266,0)
+ ;;=M19.011^^55^674^42
+ ;;^UTILITY(U,$J,358.3,14266,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,14088,1,3,0)
- ;;=3^Muscle,Nontraumatic Ischemic Infarction,Unspec Site
- ;;^UTILITY(U,$J,358.3,14088,1,4,0)
- ;;=4^M62.20
- ;;^UTILITY(U,$J,358.3,14088,2)
- ;;=^5012607
- ;;^UTILITY(U,$J,358.3,14089,0)
- ;;=G72.1^^83^821^94
- ;;^UTILITY(U,$J,358.3,14089,1,0)
- ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,14266,1,3,0)
+ ;;=3^Primary osteoarthritis, right shoulder
+ ;;^UTILITY(U,$J,358.3,14266,1,4,0)
+ ;;=4^M19.011

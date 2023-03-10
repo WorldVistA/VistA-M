@@ -1,5 +1,5 @@
-PSOSPML2 ;BIRM/MFR - View/Process Export Batch Listman Driver ;09/10/12
- ;;7.0;OUTPATIENT PHARMACY;**408,451**;DEC 1997;Build 114
+PSOSPML2 ;BIRM/MFR - View/Process Export Batch Listman Driver ;10/7/20  16:12
+ ;;7.0;OUTPATIENT PHARMACY;**408,451,625**;DEC 1997;Build 42
  ;
  N BATCHIEN,DIR,DIRUT,DTOUT,DUOUT,X,DIC,VALM,VALMCNT,VALMHDR,VALMBCK,VALMSG,PSOLSTLN
  ;
@@ -25,6 +25,11 @@ HDR ; - Builds the Header section
  S VALMHDR(2)="Created on: "_$$GET1^DIQ(58.42,BATCHIEN,8)
  S $E(VALMHDR(2),47)="Exported on: "_$$GET1^DIQ(58.42,BATCHIEN,9)
  S VALMHDR(3)="File: "_$$GET1^DIQ(58.42,BATCHIEN,6)
+ N LASTDR,LASTST
+ S LASTDR=$O(^PS(58.42,BATCHIEN,"DR",99999),-1) I LASTDR D
+ . S LASTST=$P($G(^PS(58.42,BATCHIEN,"DR",LASTDR,0)),"^")
+ . I $D(LASTST),LASTST'="<blank>" S $E(VALMHDR(3),43)="Debug Reason: "_$E($P($G(^PS(58.42,BATCHIEN,"DR",LASTDR,0)),"^"),1,30)
+ S VALMHDR(4)="Created by: "_$$GET1^DIQ(58.42,BATCHIEN,10,"E") ; PSO*7*625:PSU-14
  D SETHDR()
  Q
  ;
@@ -32,7 +37,7 @@ SETHDR() ; - Displays the Header Line
  N HDR,ORD,POS
  ;
  S HDR="   #",$E(HDR,6)="Rx#",$E(HDR,21)="FILL",$E(HDR,27)="DRUG",$E(HDR,70)="SCH",$E(HDR,74)="TYPE"
- S $E(HDR,81)="" D INSTR^VALM1(IORVON_HDR_IOINORM,1,5)
+ S $E(HDR,81)="" D INSTR^VALM1(IORVON_HDR_IOINORM,1,6) ; PSO*7*625:PSU-14 Add line to Y coordinate for VOID Created By
  Q
  ;
 INIT ; Builds the Body section
@@ -77,7 +82,7 @@ SEL ;Process selection of one entry
  Q
  ;
 EXP(MODE) ; Export Batch
- N DIR,Y,DUOUT,DIRUT,STATEIEN,PSOASVER,PSOTXRTS,QUIT,RUNMODE
+ N DIR,Y,DUOUT,DIRUT,STATEIEN,PSOASVER,PSOTXRTS,QUIT,RUNMODE,LASTDR,LASTST,NEWR,FLUSH
  D FULL^VALM1 S VALMBCK="R"
  ;
  S STATEIEN=$$GET1^DIQ(58.42,BATCHIEN,1,"I")
@@ -104,8 +109,9 @@ EXP(MODE) ; Export Batch
  . W ! K DIRUT,DUOUT,DIR
  . S DIR("A",1)="The Batch will be transmitted to the state of "_$$GET1^DIQ(58.42,BATCHIEN,1)_"."
  . S DIR("A",2)="",DIR("A")="Confirm",DIR(0)="Y",DIR("B")="N"
- . D ^DIR I $G(DTOUT)!$G(DUOUT)!'Y S QUIT=1
+ . D ^DIR I $G(DTOUT)!$G(DUOUT)!'Y S QUIT=1 Q
  . I RUNMODE'="B" W ?40,"Please wait..."
+ . I RUNMODE="D",($$GET1^DIQ(58.42,BATCHIEN,2,"I")'="RX") D DBUG(BATCHIEN) I QUIT=1 Q
  ;
  I (MODE="VIEW")!(($$GET1^DIQ(58.42,BATCHIEN,2,"I")="VD")&'PSOTXRTS) D  D ^%ZIS K %ZIS Q:POP  U IO
  . D EXMSG($S(MODE="VIEW":0,1:1)) W ! K %ZIS,IOP,POP,ZTSK S %ZIS="QM"
@@ -121,7 +127,7 @@ EXP(MODE) ; Export Batch
  . . S ZTDESC="State Prescription Monitoring Program (SPMP) Transmission"
  . . S ZTDTH=$$NOW^XLFDT()
  . . D ^%ZTLOAD W:$D(ZTSK) !!,"Export Background Job Queued to Run.",$C(7),! K ZTSK
- . D EXPORT^PSOSPMUT(BATCHIEN,"EXPORT",0,$S(RUNMODE="D":1,1:0))
+ . D EXPORT^PSOSPMUT(BATCHIEN,"EXPORT",0,$S(RUNMODE="D":1,1:0),$G(FLUSH))
  ;
  ; If exporting manually (web upload), update export fields (assumes user will upload file)
  I MODE="EXPORT",$$GET1^DIQ(58.42,BATCHIEN,2,"I")="VD",'PSOTXRTS D
@@ -167,4 +173,23 @@ RMHELP ; Running Mode Help Text
  W !?5,"            that the sFTP command used to transfer the file will be run"
  W !?5,"            in 'debug mode'. This option is useful when troubleshooting"
  W !?5,"            transmission problems."
+ Q
+ ;
+DBUG(BATCH) ; flush and debug reason prompt
+ I '$D(^XUSEC("PSO SPMP ADMIN",DUZ)) S FLUSH=0 Q
+ S FLUSH=0
+ K DIRUT,DUOUT,DIR
+ W ! S DIR("A")="Do you want to flush the known hosts key",DIR(0)="Y",DIR("B")="N"
+ D ^DIR I $G(DTOUT)!$G(DUOUT) S QUIT=1 Q
+ S FLUSH=$S(Y:1,1:0) I 'FLUSH S NEWR="<blank>" D F102 Q
+ W ! K DIRUT,DUOUT,DIR
+ N DIR,DIC,DA,X,Y,DLAYGO,DO,DD
+RD S DIR("A")="Reason for Debug",DIR(0)="58.42102,.01" D ^DIR K DIR I $D(DTOUT)!$D(DUOUT) S QUIT=1 Q
+ I Y="" W !,$C(7),"This is a required response. Enter '^' to exit" G RD
+ S NEWR=Y
+ W !
+F102 ; add new entry in the DEBUG REASON field #102
+ S DLAYGO=58.42102,DIC(0)="L",X=NEWR,DA(1)=BATCHIEN,DIC="^PS(58.42,"_BATCHIEN_",""DR"",",DIC("DR")="1////"_DUZ_";3///"_$$NOW^XLFDT()
+ D FILE^DICN K DIC,DLAYGO
+ W !
  Q

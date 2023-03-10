@@ -1,5 +1,5 @@
 IBCEMQC ;ALB/ESG - MRA EOB CRITERIA FOR AUTO-AUTHORIZE ; 11/1/06 10:34am
- ;;2.0;INTEGRATED BILLING;**155,323,302,350,359,447**;21-MAR-94;Build 80
+ ;;2.0;INTEGRATED BILLING;**155,323,302,350,359,447,718**;21-MAR-94;Build 73
  ;;Per VHA Directive 10-93-142, this routine should not be modified.
  ;
  Q   ; must be called at proper entry point
@@ -36,7 +36,9 @@ CRIT(IBEOB) ; Function to determine if EOB entry meets the criteria for
  I STOP G CRITX
  ;
  ; If this EOB is a split EOB, then don't allow it
- I $$SPLIT^IBCEMU1(IBEOB) S REASON="Claim level remark code MA15 received.  Multiple MRA's" G CRITX
+ ; WCJ;IB*2.0*718;added check for incomplete MRA so treat like a split
+ ;I $$SPLIT^IBCEMU1(IBEOB) S REASON="Claim level remark code MA15 received.  Multiple MRA's" G CRITX
+ I $$SPLIT^IBCEMU1(IBEOB) S REASON="Claim level remark code MA15 received or incomplete MRA detected.  Multiple MRA's" G CRITX
  ;
  ; Call the function that checks the claim level and/or line level
  ; adjustments for this EOB

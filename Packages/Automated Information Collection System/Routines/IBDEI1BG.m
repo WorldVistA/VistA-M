@@ -1,124 +1,120 @@
-IBDEI1BG ; ; 04-FEB-2020
- ;;3.0;IB ENCOUNTER FORM IMP/EXP;;FEB 04, 2020
+IBDEI1BG ; ; 01-FEB-2022
+ ;;3.0;IB ENCOUNTER FORM IMP/EXP;;FEB 01, 2022
  Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,999) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
- ;;^UTILITY(U,$J,358.3,21040,1,3,0)
- ;;=3^Alcohol Related Disorder,Unspec
- ;;^UTILITY(U,$J,358.3,21040,1,4,0)
- ;;=4^F10.99
- ;;^UTILITY(U,$J,358.3,21040,2)
- ;;=^5133351
- ;;^UTILITY(U,$J,358.3,21041,0)
- ;;=F10.14^^95^1043^1
- ;;^UTILITY(U,$J,358.3,21041,1,0)
+ ;;^UTILITY(U,$J,358.3,21279,1,4,0)
+ ;;=4^I25.768
+ ;;^UTILITY(U,$J,358.3,21279,2)
+ ;;=^5007137
+ ;;^UTILITY(U,$J,358.3,21280,0)
+ ;;=I25.769^^70^913^21
+ ;;^UTILITY(U,$J,358.3,21280,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,21041,1,3,0)
- ;;=3^Alcohol Abuse w/ Induced Mood Disorder
- ;;^UTILITY(U,$J,358.3,21041,1,4,0)
- ;;=4^F10.14
- ;;^UTILITY(U,$J,358.3,21041,2)
- ;;=^5003072
- ;;^UTILITY(U,$J,358.3,21042,0)
- ;;=F10.24^^95^1043^4
- ;;^UTILITY(U,$J,358.3,21042,1,0)
+ ;;^UTILITY(U,$J,358.3,21280,1,3,0)
+ ;;=3^Athscl Bypass Cor Art Transplt Hrt w/ Ang Pctrs,Unspec
+ ;;^UTILITY(U,$J,358.3,21280,1,4,0)
+ ;;=4^I25.769
+ ;;^UTILITY(U,$J,358.3,21280,2)
+ ;;=^5007138
+ ;;^UTILITY(U,$J,358.3,21281,0)
+ ;;=I25.760^^70^913^22
+ ;;^UTILITY(U,$J,358.3,21281,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,21042,1,3,0)
- ;;=3^Alcohol Dependence w/ Induced Mood Disorder
- ;;^UTILITY(U,$J,358.3,21042,1,4,0)
- ;;=4^F10.24
- ;;^UTILITY(U,$J,358.3,21042,2)
- ;;=^5003090
- ;;^UTILITY(U,$J,358.3,21043,0)
- ;;=F10.94^^95^1043^31
- ;;^UTILITY(U,$J,358.3,21043,1,0)
+ ;;^UTILITY(U,$J,358.3,21281,1,3,0)
+ ;;=3^Athscl Bypass Cor Art Transplt Hrt w/ Unstable Angina
+ ;;^UTILITY(U,$J,358.3,21281,1,4,0)
+ ;;=4^I25.760
+ ;;^UTILITY(U,$J,358.3,21281,2)
+ ;;=^5007135
+ ;;^UTILITY(U,$J,358.3,21282,0)
+ ;;=I25.701^^70^913^25
+ ;;^UTILITY(U,$J,358.3,21282,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,21043,1,3,0)
- ;;=3^Alcohol Use w/ Induced Mood Disorder,Unspec
- ;;^UTILITY(U,$J,358.3,21043,1,4,0)
- ;;=4^F10.94
- ;;^UTILITY(U,$J,358.3,21043,2)
- ;;=^5003104
- ;;^UTILITY(U,$J,358.3,21044,0)
- ;;=F10.231^^95^1043^32
- ;;^UTILITY(U,$J,358.3,21044,1,0)
+ ;;^UTILITY(U,$J,358.3,21282,1,3,0)
+ ;;=3^Athscl CABG w/ Ang Pctrs w/ Documented Spasm
+ ;;^UTILITY(U,$J,358.3,21282,1,4,0)
+ ;;=4^I25.701
+ ;;^UTILITY(U,$J,358.3,21282,2)
+ ;;=^5007118
+ ;;^UTILITY(U,$J,358.3,21283,0)
+ ;;=I25.708^^70^913^23
+ ;;^UTILITY(U,$J,358.3,21283,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,21044,1,3,0)
- ;;=3^Alcohol Withdrawal Delirium
- ;;^UTILITY(U,$J,358.3,21044,1,4,0)
- ;;=4^F10.231
- ;;^UTILITY(U,$J,358.3,21044,2)
- ;;=^5003087
- ;;^UTILITY(U,$J,358.3,21045,0)
- ;;=F10.232^^95^1043^33
- ;;^UTILITY(U,$J,358.3,21045,1,0)
+ ;;^UTILITY(U,$J,358.3,21283,1,3,0)
+ ;;=3^Athscl CABG w/ Ang Pctrs NEC
+ ;;^UTILITY(U,$J,358.3,21283,1,4,0)
+ ;;=4^I25.708
+ ;;^UTILITY(U,$J,358.3,21283,2)
+ ;;=^5007119
+ ;;^UTILITY(U,$J,358.3,21284,0)
+ ;;=I25.709^^70^913^27
+ ;;^UTILITY(U,$J,358.3,21284,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,21045,1,3,0)
- ;;=3^Alcohol Withdrawal w/ Perceptual Disturbances
- ;;^UTILITY(U,$J,358.3,21045,1,4,0)
- ;;=4^F10.232
- ;;^UTILITY(U,$J,358.3,21045,2)
- ;;=^5003088
- ;;^UTILITY(U,$J,358.3,21046,0)
- ;;=F10.11^^95^1043^2
- ;;^UTILITY(U,$J,358.3,21046,1,0)
+ ;;^UTILITY(U,$J,358.3,21284,1,3,0)
+ ;;=3^Athscl CABG w/ Ang Pctrs,Unspec
+ ;;^UTILITY(U,$J,358.3,21284,1,4,0)
+ ;;=4^I25.709
+ ;;^UTILITY(U,$J,358.3,21284,2)
+ ;;=^5007120
+ ;;^UTILITY(U,$J,358.3,21285,0)
+ ;;=I25.700^^70^913^29
+ ;;^UTILITY(U,$J,358.3,21285,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,21046,1,3,0)
- ;;=3^Alcohol Abuse,In Remission
- ;;^UTILITY(U,$J,358.3,21046,1,4,0)
- ;;=4^F10.11
- ;;^UTILITY(U,$J,358.3,21046,2)
- ;;=^268230
- ;;^UTILITY(U,$J,358.3,21047,0)
- ;;=F12.10^^95^1044^21
- ;;^UTILITY(U,$J,358.3,21047,1,0)
+ ;;^UTILITY(U,$J,358.3,21285,1,3,0)
+ ;;=3^Athscl CABG w/ Unstable Angina
+ ;;^UTILITY(U,$J,358.3,21285,1,4,0)
+ ;;=4^I25.700
+ ;;^UTILITY(U,$J,358.3,21285,2)
+ ;;=^5007117
+ ;;^UTILITY(U,$J,358.3,21286,0)
+ ;;=I25.751^^70^913^36
+ ;;^UTILITY(U,$J,358.3,21286,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,21047,1,3,0)
- ;;=3^Cannabis Use Disorder,Mild
- ;;^UTILITY(U,$J,358.3,21047,1,4,0)
- ;;=4^F12.10
- ;;^UTILITY(U,$J,358.3,21047,2)
- ;;=^5003155
- ;;^UTILITY(U,$J,358.3,21048,0)
- ;;=F12.20^^95^1044^2
- ;;^UTILITY(U,$J,358.3,21048,1,0)
+ ;;^UTILITY(U,$J,358.3,21286,1,3,0)
+ ;;=3^Athscl Native Cor Art of Transplt Hrt w/ Ang Pctrs w/ Documented Spasm
+ ;;^UTILITY(U,$J,358.3,21286,1,4,0)
+ ;;=4^I25.751
+ ;;^UTILITY(U,$J,358.3,21286,2)
+ ;;=^5007132
+ ;;^UTILITY(U,$J,358.3,21287,0)
+ ;;=I25.758^^70^913^37
+ ;;^UTILITY(U,$J,358.3,21287,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,21048,1,3,0)
- ;;=3^Cannabis Dependence
- ;;^UTILITY(U,$J,358.3,21048,1,4,0)
- ;;=4^F12.20
- ;;^UTILITY(U,$J,358.3,21048,2)
- ;;=^5003166
- ;;^UTILITY(U,$J,358.3,21049,0)
- ;;=F12.121^^95^1044^12
- ;;^UTILITY(U,$J,358.3,21049,1,0)
+ ;;^UTILITY(U,$J,358.3,21287,1,3,0)
+ ;;=3^Athscl Native Cor Art of Transplt Hrt w/ Ang Pctrs NEC
+ ;;^UTILITY(U,$J,358.3,21287,1,4,0)
+ ;;=4^I25.758
+ ;;^UTILITY(U,$J,358.3,21287,2)
+ ;;=^5007133
+ ;;^UTILITY(U,$J,358.3,21288,0)
+ ;;=I25.759^^70^913^38
+ ;;^UTILITY(U,$J,358.3,21288,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,21049,1,3,0)
- ;;=3^Cannabis Intoxication Delirium w/ Mild Use Disorder
- ;;^UTILITY(U,$J,358.3,21049,1,4,0)
- ;;=4^F12.121
- ;;^UTILITY(U,$J,358.3,21049,2)
- ;;=^5003157
- ;;^UTILITY(U,$J,358.3,21050,0)
- ;;=F12.221^^95^1044^13
- ;;^UTILITY(U,$J,358.3,21050,1,0)
+ ;;^UTILITY(U,$J,358.3,21288,1,3,0)
+ ;;=3^Athscl Native Cor Art of Transplt Hrt w/ Ang Pctrs,Unspec
+ ;;^UTILITY(U,$J,358.3,21288,1,4,0)
+ ;;=4^I25.759
+ ;;^UTILITY(U,$J,358.3,21288,2)
+ ;;=^5007134
+ ;;^UTILITY(U,$J,358.3,21289,0)
+ ;;=I25.750^^70^913^39
+ ;;^UTILITY(U,$J,358.3,21289,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,21050,1,3,0)
- ;;=3^Cannabis Intoxication Delirium w/ Mod/Severe Use Disorder
- ;;^UTILITY(U,$J,358.3,21050,1,4,0)
- ;;=4^F12.221
- ;;^UTILITY(U,$J,358.3,21050,2)
- ;;=^5003169
- ;;^UTILITY(U,$J,358.3,21051,0)
- ;;=F12.921^^95^1044^14
- ;;^UTILITY(U,$J,358.3,21051,1,0)
+ ;;^UTILITY(U,$J,358.3,21289,1,3,0)
+ ;;=3^Athscl Native Cor Art of Transplt Hrt w/ Unstable Angina
+ ;;^UTILITY(U,$J,358.3,21289,1,4,0)
+ ;;=4^I25.750
+ ;;^UTILITY(U,$J,358.3,21289,2)
+ ;;=^5007131
+ ;;^UTILITY(U,$J,358.3,21290,0)
+ ;;=I25.731^^70^913^41
+ ;;^UTILITY(U,$J,358.3,21290,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,21051,1,3,0)
- ;;=3^Cannabis Intoxication Delirium w/o Use Disorder
- ;;^UTILITY(U,$J,358.3,21051,1,4,0)
- ;;=4^F12.921
- ;;^UTILITY(U,$J,358.3,21051,2)
- ;;=^5003180
- ;;^UTILITY(U,$J,358.3,21052,0)
- ;;=F12.229^^95^1044^18
- ;;^UTILITY(U,$J,358.3,21052,1,0)
- ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,21290,1,3,0)
+ ;;=3^Athscl Nonaut Bio CABG w/ Ang Pctrs w/ Documented Spasm
+ ;;^UTILITY(U,$J,358.3,21290,1,4,0)
+ ;;=4^I25.731
+ ;;^UTILITY(U,$J,358.3,21290,2)
+ ;;=^5007128
+ ;;^UTILITY(U,$J,358.3,21291,0)
+ ;;=I25.738^^70^913^40

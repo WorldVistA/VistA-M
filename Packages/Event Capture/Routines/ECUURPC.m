@@ -1,7 +1,7 @@
-ECUURPC ;ALB/JAM - Event Capture Data Entry Broker Utilities ;1/30/19  13:46
- ;;2.0;EVENT CAPTURE;**25,42,49,94,95,76,104,124,139,145**;8 May 96;Build 6
+ECUURPC ;ALB/JAM - Event Capture Data Entry Broker Utilities ;12/24/20  11:06
+ ;;2.0;EVENT CAPTURE;**25,42,49,94,95,76,104,124,139,145,152,156,158,161**;8 May 96;Build 32
  ;
- ; Reference to $$CODEN^ICDEX supported by ICR #5747
+ ; Reference to $$CODEN^ICDEX in ICR #5747
  ;
 ECHELP(RESULTS,ECARY) ;
  ;
@@ -73,7 +73,7 @@ PATCH(RESULTS,ECARY)    ;
  D SETENV^ECUMRPC
  S RESULTS=$$PATCH^XPDUTL(ECARY)
  Q
-VERSRV(RESULTS,ECARY,VERSION)   ; Return server version of option name and 
+VERSRV(RESULTS,ECARY,VERSION)   ; Return server version of option name and
  ; minimum GUI client version.
  ;
  ;Server/client version consist of 4 pieces, namely
@@ -90,9 +90,43 @@ VERSRV(RESULTS,ECARY,VERSION)   ; Return server version of option name and
  S ECCLVER=$G(VERSION)
  I $G(ECARY)="" Q
  N ECLST,ECMINV
- S ECMINV="2.6.0.0"  ;139,145, Minimum version of EC GUI client
+ S ECMINV="2.10.0.0"  ;139,145 Minimum version of EC GUI client - 152:updated to 2.7;156:2.8;158:2.9;161:2.10
  D FIND^DIC(19,"",1,"X",ECARY,1,,,,"ECLST")
  I 'ECLST("DILIST",0) S RESULTS="" Q
  S RESULTS=ECLST("DILIST","ID",1,1)
  S RESULTS=$P(RESULTS,"version ",2)_U_ECMINV
+ Q
+ ;
+ECDEVICE(Y,FROM) ; Return a subset of entries from the Device file.
+ ; .LST(n)=IEN;Name^DisplayName^Location^RMar^PLen
+ ; FROM=text to $O from, DIR=$O direction
+ N I,IEN,CNT,SHOW,X,SAVFROM,TEMPY
+ S DIR=$P(FROM,U,2),FROM=$P(FROM,U)
+ I DIR="" S DIR=1
+ S SAVFROM=FROM
+ D DEVICE^ORWU(.Y,FROM,DIR)
+ M TEMPY=Y
+ S FROM=SAVFROM
+ D ECPREDEV(FROM,.Y) ;Get the information for the last printer selected
+ F I=1:1:19 S Y(I+1)=TEMPY(I)
+ Q
+ ;
+ECPREDEV(FROM,Y) ;This code was based off DEVICE^ORWU
+ N X0,X1,X90,X91,X95,IEN ;,XTYPE,XSTYPE,XTIME,ORA,ORPX,POP
+ N FOUND,SAVFROM,TMPSHOW
+ S SAVFROM=FROM
+ S FOUND="",IEN=0
+ I FROM["<" D  Q
+ .S FOUND=1
+ .S FROM=$RE($P($RE(FROM),"<  ",2)),IEN=$O(^%ZIS(1,"B",FROM,0))
+ .S X0=$G(^%ZIS(1,IEN,0)),X1=$G(^(1)),X90=$G(^(90)),X91=$G(^(91)),X95=$G(^(95))
+ .S SHOW=$P(X0,U) I SHOW'=FROM S SHOW=FROM_"  <"_SHOW_">"
+ .S Y(1)=IEN_";"_$P(X0,U)_U_SHOW_U_$P(X1,U)_U_$P(X91,U)_U_$P(X91,U,3)
+ F  S FROM=$O(^%ZIS(1,"B",FROM),-1) Q:FOUND  D
+ .S IEN=$O(^%ZIS(1,"B",FROM,""),-1)
+ .S X0=$G(^%ZIS(1,IEN,0)),X1=$G(^(1)),X90=$G(^(90)),X91=$G(^(91)),X95=$G(^(95))
+ .S SHOW=$P(X0,U) I SHOW'=FROM S SHOW=FROM_"  <"_SHOW_">"
+ .S TMPSHOW=SHOW_" "_$P(X91,U)
+ .I $E(TMPSHOW,1,$L(TMPSHOW)-1)=$E(SAVFROM,1,$L(SAVFROM)-2) S FOUND=1
+ S Y(1)=IEN_";"_$P(X0,U)_U_SHOW_U_$P(X1,U)_U_$P(X91,U)_U_$P(X91,U,3)
  Q

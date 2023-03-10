@@ -1,5 +1,5 @@
-IBCNEHLM ;DAOU/ALA - HL7 Registration MFN Message ;02-JUN-2015
- ;;2.0;INTEGRATED BILLING;**184,251,300,416,438,497,506,549,601,621,631,659**;21-MAR-94;Build 16
+IBCNEHLM ;DAOU/ALA - HL7 Registration MFN Message ; 02-JUN-2015
+ ;;2.0;INTEGRATED BILLING;**184,251,300,416,438,497,506,549,601,621,631,659,664,687,702,732**;21-MAR-94;Build 13
  ;;Per VA Directive 6402, this routine should not be modified.
  ;
  ;**Program Description**
@@ -62,12 +62,18 @@ REG ;  Registration message for when a site installs
  S IHLP=$P(IBCNE,U,13),IHLT=$P(IBCNE,U,14)
  S IHLS=$P(IBCNE,U,19)
  ;
+ ; IB*2.0*184 version 1, initial release of IIV
  ; IB*2.0*549 Updated version to 7, Removed retrieval of Contact Name, Phone, email
  ; IB*2.0*601 Updated version to 8
  ; IB*2.0*621 Updated version to 9, EICD
  ; IB*2.0*631 Updated version to 10
- ; IB*2.0*659 Updated version to 11
- S IVER="11"
+ ; IB*2.0*659 Updated version to 11, Added Medicare Freshness Days to this registration msg
+ ; IB*2.0*664 Now version 12, Stats going to FSC: auto update #s split (non-medicare vs medicare)
+ ; IB*2.0*687 Now version 13, IIU Functionality Added.
+ ; IB*2.0*702 Now version 14, Added EICD & MBI stats (pieces 27-30)
+ ; IB*2.0*732 Now version 15, Added ISBLUE indicator (365.12,.09) and NUMBER RETRIES (#350.9,51.06) to Table Updates
+ ;
+ S IVER="15"
  I IHLP="I" S (IHLT,IHLS)=""
  ;
  I IHLP="B",IHLT=""!(IHLS="") D  S QFL=1
@@ -113,11 +119,26 @@ HL ;  When a site installs, the enrollment should be an
  S ^TMP("HLS",$J,3)=VZRR
  ;
  ; Set the NTE segment
- S DSTAT=$$GETSTAT^IBCNEDST()
+ ;IB*2.0*664/DW- Added logic to separate the Medicare auto updates (MCAUTO)
+ ;               from non-Medicare auto updates
+ N MCAUTO
+ ; IB*2.0*702/DTG- start Added number of outgoing EICD (A1) 270 transactions
+ ;                             number of outgoing EICD-triggered (A2) 270 transactions
+ ;                             number of outgoing MBI Request 270 transactions
+ ;                             number of incoming MBI positive responses that indicated as having returned the MBI (%)
+ ; DSTAT3 is set in IBCNEDST
+ N DSTATI,DSTAT3,DSTATPA
+ S DSTATI=1,DSTAT3="",DSTATPA=HLREP
+ ; IB*2.0*702/DTG- end Added
+ S DSTAT=$$GETSTAT^IBCNEDST(.MCAUTO)
  S DSTAT2=$$GETSTAT2^IBCNEDST()                 ; IB*2.0*549 Added line
  S VNTE="NTE"_HLFS_"1"_HLFS_HLFS_IBPERSIST_HLREP_$TR(DSTAT,U,HLREP)
  S VNTE=VNTE_HLREP_RETRY_HLREP_TIMOUT           ; IB*2.0*506
  S VNTE=VNTE_HLREP_$TR(DSTAT2,U,HLREP)          ; IB*2.0*549 Added line
+ S VNTE=VNTE_HLREP_MCAUTO
+ ; IB*2.0*702/DTG- Added start
+ I $G(DSTAT3)'="" S VNTE=VNTE_HLREP_DSTAT3
+ ; IB*2.0*702/DTG Added end
  S ^TMP("HLS",$J,4)=VNTE
  ;
  D GENERATE^HLMA("IBCNE IIV REGISTER","GM",1,.HLRESLT,"")

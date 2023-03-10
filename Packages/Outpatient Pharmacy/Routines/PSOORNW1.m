@@ -1,11 +1,11 @@
 PSOORNW1 ;ISC BHAM/SAB - continuation of finish of new order ;Jun 25, 2018@13:38
- ;;7.0;OUTPATIENT PHARMACY;**23,46,78,117,131,133,172,148,222,268,206,251,379,391,313,444,469,422,477**;DEC 1997;Build 187
+ ;;7.0;OUTPATIENT PHARMACY;**23,46,78,117,131,133,172,148,222,268,206,251,379,391,313,444,469,422,477,651**;DEC 1997;Build 30
  ;Reference ^YSCL(603.01 supported by DBIA 2697
  ;Reference ^PS(55 supported by DBIA 2228
  ;Reference ^PSDRUG( supported by DBIA 221
  ;Reference to $$GETNDC^PSSNDCUT supported by IA 4707
  ;
-2 I $G(ORD),$G(ORSV) W !!,"Instructions: " D
+2 I $G(ORD),$G(ORSV) W !!,$S($$ERXIEN^PSOERXUT(ORD_"P"):"eRx ",1:""),"Instructions: " D
  .S INST=0 F  S INST=$O(^PS(52.41,ORD,2,INST)) Q:'INST  S (MIG,INST(INST))=^PS(52.41,ORD,2,INST,0) D
  ..F SG=1:1:$L(MIG," ") W:$X+$L($P(MIG," ",SG)_" ")>IOM !?14 W $P(MIG," ",SG)_" "
  .S:'$D(PSODRUG("OI")) PSODRUG("OI")=$P(OR0,"^",8)

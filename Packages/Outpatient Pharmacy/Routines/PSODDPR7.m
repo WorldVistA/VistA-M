@@ -1,5 +1,5 @@
-PSODDPR7 ; BIR/OG ; Enhanced order checks - IMO Utilities ;12/6/11
- ;;7.0;OUTPATIENT PHARMACY;**390,411**;DEC 1997;Build 95
+PSODDPR7 ; BIR/OG ; Enhanced order checks - IMO Utilities ;Nov 17, 2021@14:00
+ ;;7.0;OUTPATIENT PHARMACY;**390,411,663**;DEC 1997;Build 2
  ;External reference to IN^PSJBLDOC supported by DBIA 5306
  ;External reference to ^PS(50.606 supported by DBIA 2174
  ;External reference to ^PS(50.7 supported by DBIA 2223
@@ -90,7 +90,19 @@ GETDATA ;
  ;
 WRITE ;
  D HD^PSODDPR2() Q:$G(PSODLQT)
- S:$G(PSODUPF) PSODUPC(ZCT)=PSODUPC(ZCT)+1 W:'$G(PSODUPF) !,$J("Clinic Order: ",23)_DRGNAME_" ("_STATUS_")"
+ S:$G(PSODUPF) PSODUPC(ZCT)=PSODUPC(ZCT)+1
+ ;PSO*7.0*663 begin - check for pending clinic orders
+ ;                    with free text dosages (i.e. no dispense drug).
+ N PSODRUGX
+ S PSODRUGX=DRGNAME
+ I $G(ORDID),$P($G(^PS(53.1,+ORDID,0)),U,9)="P" D
+ . I $O(^PS(53.1,+ORDID,1,0)) Q
+ . ;no dispense drug, so display only name and dosage type (TAB, etc.)
+ . N PSOIENX
+ . S PSOIENX=$$GET1^DIQ(53.1,+ORDID,108,"I")
+ . S PSODRUGX=$$GET1^DIQ(50.7,PSOIENX,.01)_" "_$$GET1^DIQ(50.7,PSOIENX,.02)
+ W:'$G(PSODUPF) !,$J("Clinic Order: ",23)_PSODRUGX_" ("_STATUS_")"
+ ;PSO*7.0*663 end
  I $D(^TMP($J,SORT,ORDID,"ADD")) D:FILENODE=1 IV55 D:FILENODE=3 IV531
  I SCHEDULE'="" S:$G(PSODUPF) PSODUPC(ZCT)=PSODUPC(ZCT)+1 W:'$G(PSODUPF) !,$J("Schedule: ",23),SCHEDULE
  I DOSAGE'="" S:$G(PSODUPF) PSODUPC(ZCT)=PSODUPC(ZCT)+1 W:'$G(PSODUPF) !,$J("Dosage: ",23),DOSAGE

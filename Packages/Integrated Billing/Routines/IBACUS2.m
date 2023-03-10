@@ -1,6 +1,6 @@
 IBACUS2 ;ALB/CPM - TRICARE FISCAL INTERMEDIARY RX CLAIMS ;02-AUG-96
- ;;2.0;INTEGRATED BILLING;**52,91,51,240,341,347**;21-MAR-94;Build 24
- ;;Per VHA Directive 2004-038, this routine should not be modified.
+ ;;2.0;INTEGRATED BILLING;**52,91,51,240,341,347,647**;21-MAR-94;Build 10
+ ;;Per VA Directive 6402, this routine should not be modified.
  ;
 BILL(IBKEY,IBCHTRN) ; Create the TRICARE claim for the Fiscal Intermediary.
  ;  Input:    IBKEY  --  1 ; 2, where
@@ -137,7 +137,7 @@ CANCQ K DFN,IBIFN,IB,IBIL,IBCHG,IBCRES,IBY,X,Y
  ;
 BULL ; Generate a bulletin if there is an error in canceling the claim.
  K IBT S IBPT=$$PT^IBEFUNC(DFN)
- S XMSUB=$E($P(IBPT,"^"),1,14)_"  "_$P(IBPT,"^",3)_" - ERROR ENCOUNTERED"
+ S XMSUB="ERROR ENCOUNTERED"
  S XMDUZ="INTEGRATED BILLING PACKAGE",XMTEXT="IBT("
  S XMY(DUZ)=""
  S IBGRP=$P($G(^XMB(3.8,+$P($G(^IBE(350.9,1,1)),"^",7),0)),"^")

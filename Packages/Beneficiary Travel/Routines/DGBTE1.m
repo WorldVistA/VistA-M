@@ -1,5 +1,5 @@
-DGBTE1 ;ALB/SCK/GAH,LAB - BENEFICIARY TRAVEL FIND OLD CLAIM DATES ;03/20/2019
- ;;1.0;Beneficiary Travel;**8,12,13,20,21,22,25,28,33,34,37**;September 25, 2001;Build 1
+DGBTE1 ;ALB/SCK/GAH,LAB - BENEFICIARY TRAVEL FIND OLD CLAIM DATES ; 03/20/2019
+ ;;1.0;Beneficiary Travel;**8,12,13,20,21,22,25,28,33,34,37,39**;September 25, 2001;Build 6
 DATE ;  get date for claim, either new or past date
  N DGBTDCLM
  K ^TMP("DGBT",$J),^TMP("DGBTARA",$J),DIR
@@ -51,8 +51,9 @@ SET ; call inhouse generic date routine
 STUFF ;  stuff departure with address data from patient file, dest from institution file
  S DGBTCMTY=$$GET1^DIQ(392,DGBTDT,56)
  S:'$L(DGBTCMTY) DGBTCMTY="M"
+ D RESADDR^DGBTUTL1(.DGBTADDR) ;*39 - get values for address
  ;dbe patch DGBT*1*25 - removed restrictions below to allow departure and destination fields to get filed for existing claims
- S:'$D(^DGBT(392,DGBTDT,"D")) ^DGBT(392,DGBTDT,"D")=VAPA(1)_"^"_VAPA(2)_"^"_VAPA(3)_"^"_VAPA(4)_"^"_$S(VAPA(5)]"":+VAPA(5),1:"")_"^"_$P(VAPA(11),U,1)
+ S:'$D(^DGBT(392,DGBTDT,"D")) ^DGBT(392,DGBTDT,"D")=DGBTADDR(1)_"^"_DGBTADDR(2)_"^"_DGBTADDR(3)_"^"_DGBTADDR(4)_"^"_$S(DGBTADDR(5)]"":+DGBTADDR(5),1:"")_"^"_$P(DGBTADDR(6),U) ;*39 - updated to use residential address
  I '$D(^DGBT(392,DGBTDT,"T")) D
  . S X=$S($D(^DIC(4,DGBTDIVN,1)):^(1),1:"")
  . S ^DGBT(392,DGBTDT,"T")=($P(^DG(40.8,DGBTDIVI,0),U)_"^"_$P(X,U)_"^"_$P(X,U,2)_"^"_$P(X,U,3)_"^"_$P(^DIC(4,DGBTDIVN,0),U,2)_"^"_$TR($P(X,U,4),"-","")) ;*28 remove hyphen from zip code

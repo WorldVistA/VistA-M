@@ -1,134 +1,116 @@
-IBDEI0ZM ; ; 04-FEB-2020
- ;;3.0;IB ENCOUNTER FORM IMP/EXP;;FEB 04, 2020
+IBDEI0ZM ; ; 01-FEB-2022
+ ;;3.0;IB ENCOUNTER FORM IMP/EXP;;FEB 01, 2022
  Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,999) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
- ;;^UTILITY(U,$J,358.3,15890,1,3,0)
- ;;=3^Ingrowing Nail
- ;;^UTILITY(U,$J,358.3,15890,1,4,0)
- ;;=4^L60.0
- ;;^UTILITY(U,$J,358.3,15890,2)
- ;;=^5009234
- ;;^UTILITY(U,$J,358.3,15891,0)
- ;;=L60.1^^88^869^272
- ;;^UTILITY(U,$J,358.3,15891,1,0)
+ ;;^UTILITY(U,$J,358.3,16068,1,4,0)
+ ;;=4^L97.516
+ ;;^UTILITY(U,$J,358.3,16068,2)
+ ;;=^5151470
+ ;;^UTILITY(U,$J,358.3,16069,0)
+ ;;=L97.515^^61^765^244
+ ;;^UTILITY(U,$J,358.3,16069,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,15891,1,3,0)
- ;;=3^Onycholysis
- ;;^UTILITY(U,$J,358.3,15891,1,4,0)
- ;;=4^L60.1
- ;;^UTILITY(U,$J,358.3,15891,2)
- ;;=^186837
- ;;^UTILITY(U,$J,358.3,15892,0)
- ;;=L60.2^^88^869^271
- ;;^UTILITY(U,$J,358.3,15892,1,0)
+ ;;^UTILITY(U,$J,358.3,16069,1,3,0)
+ ;;=3^Non-Pressure Chr Ulcer of Right Foot w/ Msl Invl w/o Necrosis
+ ;;^UTILITY(U,$J,358.3,16069,1,4,0)
+ ;;=4^L97.515
+ ;;^UTILITY(U,$J,358.3,16069,2)
+ ;;=^5151469
+ ;;^UTILITY(U,$J,358.3,16070,0)
+ ;;=L97.518^^61^765^245
+ ;;^UTILITY(U,$J,358.3,16070,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,15892,1,3,0)
- ;;=3^Onychogryphosis
- ;;^UTILITY(U,$J,358.3,15892,1,4,0)
- ;;=4^L60.2
- ;;^UTILITY(U,$J,358.3,15892,2)
- ;;=^5009235
- ;;^UTILITY(U,$J,358.3,15893,0)
- ;;=L60.3^^88^869^176
- ;;^UTILITY(U,$J,358.3,15893,1,0)
+ ;;^UTILITY(U,$J,358.3,16070,1,3,0)
+ ;;=3^Non-Pressure Chr Ulcer of Right Foot w/ Oth Severity
+ ;;^UTILITY(U,$J,358.3,16070,1,4,0)
+ ;;=4^L97.518
+ ;;^UTILITY(U,$J,358.3,16070,2)
+ ;;=^5151471
+ ;;^UTILITY(U,$J,358.3,16071,0)
+ ;;=L97.416^^61^765^251
+ ;;^UTILITY(U,$J,358.3,16071,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,15893,1,3,0)
- ;;=3^Nail Dystrophy
- ;;^UTILITY(U,$J,358.3,15893,1,4,0)
- ;;=4^L60.3
- ;;^UTILITY(U,$J,358.3,15893,2)
- ;;=^5009236
- ;;^UTILITY(U,$J,358.3,15894,0)
- ;;=L60.4^^88^869^89
- ;;^UTILITY(U,$J,358.3,15894,1,0)
+ ;;^UTILITY(U,$J,358.3,16071,1,3,0)
+ ;;=3^Non-Pressure Chr Ulcer of Right Heel/Midft w/ Bone Invl w/o Necrosis
+ ;;^UTILITY(U,$J,358.3,16071,1,4,0)
+ ;;=4^L97.416
+ ;;^UTILITY(U,$J,358.3,16071,2)
+ ;;=^5151461
+ ;;^UTILITY(U,$J,358.3,16072,0)
+ ;;=L97.415^^61^765^252
+ ;;^UTILITY(U,$J,358.3,16072,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,15894,1,3,0)
- ;;=3^Beau's Lines
- ;;^UTILITY(U,$J,358.3,15894,1,4,0)
- ;;=4^L60.4
- ;;^UTILITY(U,$J,358.3,15894,2)
- ;;=^5009237
- ;;^UTILITY(U,$J,358.3,15895,0)
- ;;=L60.5^^88^869^330
- ;;^UTILITY(U,$J,358.3,15895,1,0)
+ ;;^UTILITY(U,$J,358.3,16072,1,3,0)
+ ;;=3^Non-Pressure Chr Ulcer of Right Heel/Midft w/ Msl Invl w/o Necrosis
+ ;;^UTILITY(U,$J,358.3,16072,1,4,0)
+ ;;=4^L97.415
+ ;;^UTILITY(U,$J,358.3,16072,2)
+ ;;=^5151460
+ ;;^UTILITY(U,$J,358.3,16073,0)
+ ;;=L97.418^^61^765^253
+ ;;^UTILITY(U,$J,358.3,16073,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,15895,1,3,0)
- ;;=3^Yellow Nail Syndrome
- ;;^UTILITY(U,$J,358.3,15895,1,4,0)
- ;;=4^L60.5
- ;;^UTILITY(U,$J,358.3,15895,2)
- ;;=^5009238
- ;;^UTILITY(U,$J,358.3,15896,0)
- ;;=L60.8^^88^869^174
- ;;^UTILITY(U,$J,358.3,15896,1,0)
+ ;;^UTILITY(U,$J,358.3,16073,1,3,0)
+ ;;=3^Non-Pressure Chr Ulcer of Right Hell/Midft w/ Oth Severity
+ ;;^UTILITY(U,$J,358.3,16073,1,4,0)
+ ;;=4^L97.418
+ ;;^UTILITY(U,$J,358.3,16073,2)
+ ;;=^5151462
+ ;;^UTILITY(U,$J,358.3,16074,0)
+ ;;=L97.916^^61^765^259
+ ;;^UTILITY(U,$J,358.3,16074,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,15896,1,3,0)
- ;;=3^Nail Disorders NEC
- ;;^UTILITY(U,$J,358.3,15896,1,4,0)
- ;;=4^L60.8
- ;;^UTILITY(U,$J,358.3,15896,2)
- ;;=^5009239
- ;;^UTILITY(U,$J,358.3,15897,0)
- ;;=L62.^^88^869^175
- ;;^UTILITY(U,$J,358.3,15897,1,0)
+ ;;^UTILITY(U,$J,358.3,16074,1,3,0)
+ ;;=3^Non-Pressure Chr Ulcer of Right Lower Leg w/ Bone Invl w/o Necrosis
+ ;;^UTILITY(U,$J,358.3,16074,1,4,0)
+ ;;=4^L97.916
+ ;;^UTILITY(U,$J,358.3,16074,2)
+ ;;=^5151488
+ ;;^UTILITY(U,$J,358.3,16075,0)
+ ;;=L97.915^^61^765^260
+ ;;^UTILITY(U,$J,358.3,16075,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,15897,1,3,0)
- ;;=3^Nail Disorders in Diseases Classified Elsewhere
- ;;^UTILITY(U,$J,358.3,15897,1,4,0)
- ;;=4^L62.
- ;;^UTILITY(U,$J,358.3,15897,2)
- ;;=^5009241
- ;;^UTILITY(U,$J,358.3,15898,0)
- ;;=L64.9^^88^869^34
- ;;^UTILITY(U,$J,358.3,15898,1,0)
+ ;;^UTILITY(U,$J,358.3,16075,1,3,0)
+ ;;=3^Non-Pressure Chr Ulcer of Right Lower Leg w/ Msl Invl w/o Necrosis
+ ;;^UTILITY(U,$J,358.3,16075,1,4,0)
+ ;;=4^L97.915
+ ;;^UTILITY(U,$J,358.3,16075,2)
+ ;;=^5151487
+ ;;^UTILITY(U,$J,358.3,16076,0)
+ ;;=L97.918^^61^765^261
+ ;;^UTILITY(U,$J,358.3,16076,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,15898,1,3,0)
- ;;=3^Androgenic Alopecia,Unspec
- ;;^UTILITY(U,$J,358.3,15898,1,4,0)
- ;;=4^L64.9
- ;;^UTILITY(U,$J,358.3,15898,2)
- ;;=^5009249
- ;;^UTILITY(U,$J,358.3,15899,0)
- ;;=L65.9^^88^869^269
- ;;^UTILITY(U,$J,358.3,15899,1,0)
+ ;;^UTILITY(U,$J,358.3,16076,1,3,0)
+ ;;=3^Non-Pressure Chr Ulcer of Right Lower Leg w/ Oth Severity
+ ;;^UTILITY(U,$J,358.3,16076,1,4,0)
+ ;;=4^L97.918
+ ;;^UTILITY(U,$J,358.3,16076,2)
+ ;;=^5151489
+ ;;^UTILITY(U,$J,358.3,16077,0)
+ ;;=L97.116^^61^765^267
+ ;;^UTILITY(U,$J,358.3,16077,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,15899,1,3,0)
- ;;=3^Nonscarring Hair Loss,Unspec
- ;;^UTILITY(U,$J,358.3,15899,1,4,0)
- ;;=4^L65.9
- ;;^UTILITY(U,$J,358.3,15899,2)
- ;;=^5009252
- ;;^UTILITY(U,$J,358.3,15900,0)
- ;;=L70.0^^88^869^7
- ;;^UTILITY(U,$J,358.3,15900,1,0)
+ ;;^UTILITY(U,$J,358.3,16077,1,3,0)
+ ;;=3^Non-Pressure Chr Ulcer of Right Thigh w/ Bone Invl w/o Necrosis
+ ;;^UTILITY(U,$J,358.3,16077,1,4,0)
+ ;;=4^L97.116
+ ;;^UTILITY(U,$J,358.3,16077,2)
+ ;;=^5151434
+ ;;^UTILITY(U,$J,358.3,16078,0)
+ ;;=L97.115^^61^765^268
+ ;;^UTILITY(U,$J,358.3,16078,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,15900,1,3,0)
- ;;=3^Acne Vulgaris
- ;;^UTILITY(U,$J,358.3,15900,1,4,0)
- ;;=4^L70.0
- ;;^UTILITY(U,$J,358.3,15900,2)
- ;;=^5009268
- ;;^UTILITY(U,$J,358.3,15901,0)
- ;;=L70.1^^88^869^2
- ;;^UTILITY(U,$J,358.3,15901,1,0)
+ ;;^UTILITY(U,$J,358.3,16078,1,3,0)
+ ;;=3^Non-Pressure Chr Ulcer of Right Thigh w/ Msl Invl w/o Necrosis
+ ;;^UTILITY(U,$J,358.3,16078,1,4,0)
+ ;;=4^L97.115
+ ;;^UTILITY(U,$J,358.3,16078,2)
+ ;;=^5151433
+ ;;^UTILITY(U,$J,358.3,16079,0)
+ ;;=L89.306^^61^765^276
+ ;;^UTILITY(U,$J,358.3,16079,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,15901,1,3,0)
- ;;=3^Acne Conglobata
- ;;^UTILITY(U,$J,358.3,15901,1,4,0)
- ;;=4^L70.1
- ;;^UTILITY(U,$J,358.3,15901,2)
- ;;=^5009269
- ;;^UTILITY(U,$J,358.3,15902,0)
- ;;=L70.3^^88^869^6
- ;;^UTILITY(U,$J,358.3,15902,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,15902,1,3,0)
- ;;=3^Acne Tropica
- ;;^UTILITY(U,$J,358.3,15902,1,4,0)
- ;;=4^L70.3
- ;;^UTILITY(U,$J,358.3,15902,2)
- ;;=^5009270
- ;;^UTILITY(U,$J,358.3,15903,0)
- ;;=L70.5^^88^869^3
- ;;^UTILITY(U,$J,358.3,15903,1,0)
- ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,16079,1,3,0)
+ ;;=3^Pressure Induced Deep Tissue Damage,Unspec Buttock
+ ;;^UTILITY(U,$J,358.3,16079,1,4,0)
+ ;;=4^L89.306

@@ -1,5 +1,5 @@
-MAGGTU4T ;WOIFO/SG/NST/JSL/DAC - VERSION CONTROL (TELEREADER) ; Jan 02, 2020@08:50:01
- ;;3.0;IMAGING;**93,94,106,117,122,127,182,219,242**;Mar 19, 2002;Build 5
+MAGGTU4T ;WOIFO/SG/NST/JSL/DAC/JSJ - VERSION CONTROL (TELEREADER) ; Oct 25, 2022@05:31:49
+ ;;3.0;IMAGING;**93,94,106,117,122,127,182,219,242,281,292,320,328**;Mar 19, 2002;Build 5
  ;; Per VHA Directive 2004-038, this routine should not be modified.
  ;; +---------------------------------------------------------------+
  ;; | Property of the US Government.                                |
@@ -21,11 +21,11 @@ MAGGTU4T ;WOIFO/SG/NST/JSL/DAC - VERSION CONTROL (TELEREADER) ; Jan 02, 2020@08:
  ;
 CLVERCT ;***** VERSION CONTROL TABLE FOR THE TELEREADER CLIENTS
  ;;==================================================================
- ;;| Version |Build|Seq #|                Comment                   |
+ ;;| Version |Build|Seq # |                Comment                  |
  ;;|---------+-----+------------------------------------------------|
- ;;| 3.0.242 |   2 |  63 | Jan 2020
- ;;| 3.0.219 |   2 |  62 | Jan 2019                                 |
- ;;| 3.0.182 |   3 |  61 | May 2017                                 |
+ ;;| 3.0.328 |   1 |  ??  | Nov 2022                                |
+ ;;| 3.0.320 |   2 |  66  | Aug 2022                                |
+ ;;| 3.0.292 |   3 |  65  | Apr 2022                                |
  ;;==================================================================
  ;
  ; Each row of the version control table contains the version and
@@ -36,6 +36,14 @@ CLVERCT ;***** VERSION CONTROL TABLE FOR THE TELEREADER CLIENTS
  ; order of patch sequential numbers is recommended.
  ;
  ; NOTE:
+ ;  Patch 328 removed support for
+ ;        - Patch 281
+ ;  Patch 320 removed support for
+ ;        - Patch 242
+ ;  Patch 292 removed support for
+ ;        - Patch 219
+ ;  Patch 281 removed support for
+ ;        - Patch 182
  ;  Patch 242 removed support for
  ;        - Patch 127
  ;  Patch 219 did not remove support for any clients.

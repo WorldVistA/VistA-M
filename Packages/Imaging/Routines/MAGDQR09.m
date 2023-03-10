@@ -1,5 +1,5 @@
-MAGDQR09 ;WOIFO/EdM,MLH,NST,BT - Imaging RPCs for Query/Retrieve ; 15 May 2012 10:46 AM
- ;;3.0;IMAGING;**118**;Mar 19, 2002;Build 4525;May 01, 2013
+MAGDQR09 ;WOIFO/EDM,MLH,NST,BT,PMK - Imaging RPCs for Query/Retrieve ; Feb 15, 2022@10:26:14
+ ;;3.0;IMAGING;**118,305**;Mar 19, 2002;Build 3
  ;; Per VHA Directive 2004-038, this routine should not be modified.
  ;; +---------------------------------------------------------------+
  ;; | Property of the US Government.                                |
@@ -138,10 +138,13 @@ Q0201206(TYPE,REQ,V,T,MAGDFN,MAGIEN,MAGRORD,MAGINTERP,SENSEMP,OK) ;O  Number of 
  . . N STYIX,SERIX
  . . S STYIX=0
  . . F  S STYIX=$O(^MAGV(2005.62,"B",UID,STYIX)) Q:STYIX=""  D
- . . . Q:$P($G(^MAGV(2005.62,STYIX,5)),"^",2)'="A"  ; inaccessible status
+ . . . I $$PROBLEM62^MAGDSTA8(STYIX) Q  ; P305 PMK 12/06/2021
+ . . . ; Q:$P($G(^MAGV(2005.62,STYIX,5)),"^",2)'="A"  ; inaccessible status
  . . . S SERIX=0
  . . . F  S SERIX=$O(^MAGV(2005.63,"C",STYIX,SERIX)) Q:'SERIX  D
- . . . . S:$P($G(^MAGV(2005.63,SERIX,9)),"^",1)="A" N=N+1  ; accessible status
+ . . . . I $$PROBLEM63^MAGDSTA8(SERIX) Q  ; P305 PMK 12/06/2021
+ . . . . ; S:$P($G(^MAGV(2005.63,SERIX,9)),"^",1)="A" N=N+1  ; accessible status
+ . . . . S N=N+1
  . . . . Q
  . . . Q
  . . Q
@@ -166,13 +169,17 @@ Q0201208(TYPE,REQ,V,T,MAGDFN,MAGIEN,MAGRORD,MAGINTERP,SENSEMP,OK) ;O  Number of 
  . . N STYIX,SERIX,SOPIX
  . . S STYIX=0
  . . F  S STYIX=$O(^MAGV(2005.62,"B",UID,STYIX)) Q:STYIX=""  D
- . . . Q:$P($G(^MAGV(2005.62,STYIX,5)),"^",2)'="A"  ; inaccessible status
+ . . . I $$PROBLEM62^MAGDSTA8(STYIX) Q  ; P305 PMK 12/06/2021
+ . . . ; Q:$P($G(^MAGV(2005.62,STYIX,5)),"^",2)'="A"  ; inaccessible status
  . . . S SERIX=0
  . . . F  S SERIX=$O(^MAGV(2005.63,"C",STYIX,SERIX)) Q:'SERIX  D
- . . . . Q:$P($G(^MAGV(2005.63,SERIX,9)),"^",1)'="A"  ; inaccessible status
+ . . . . I $$PROBLEM63^MAGDSTA8(SERIX) Q  ; P305 PMK 12/06/2021
+ . . . . ; Q:$P($G(^MAGV(2005.63,SERIX,9)),"^",1)'="A"  ; inaccessible status
  . . . . S SOPIX=0
  . . . . F  S SOPIX=$O(^MAGV(2005.64,"C",SERIX,SOPIX)) Q:'SOPIX  D
- . . . . . S:$P($G(^MAGV(2005.64,SOPIX,11)),"^",1)="A" N=N+1  ; accessible status
+ . . . . . I $$PROBLEM64^MAGDSTA8(SOPIX) Q  ; P305 PMK 12/06/2021
+ . . . . . ; S:$P($G(^MAGV(2005.64,SOPIX,11)),"^",1)="A" N=N+1  ; accessible status
+ . . . . . S N=N+1
  . . . . . Q
  . . . . Q
  . . . Q

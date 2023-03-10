@@ -1,122 +1,132 @@
-IBDEI1HA ; ; 04-FEB-2020
- ;;3.0;IB ENCOUNTER FORM IMP/EXP;;FEB 04, 2020
+IBDEI1HA ; ; 01-FEB-2022
+ ;;3.0;IB ENCOUNTER FORM IMP/EXP;;FEB 01, 2022
  Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,999) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
- ;;^UTILITY(U,$J,358.3,23639,0)
- ;;=F16.11^^105^1179^1
- ;;^UTILITY(U,$J,358.3,23639,1,0)
+ ;;^UTILITY(U,$J,358.3,23913,0)
+ ;;=K29.70^^82^1036^11
+ ;;^UTILITY(U,$J,358.3,23913,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,23639,1,3,0)
- ;;=3^Hallucinogen Abuse,In Remission
- ;;^UTILITY(U,$J,358.3,23639,1,4,0)
- ;;=4^F16.11
- ;;^UTILITY(U,$J,358.3,23639,2)
- ;;=^268239
- ;;^UTILITY(U,$J,358.3,23640,0)
- ;;=F18.10^^105^1180^2
- ;;^UTILITY(U,$J,358.3,23640,1,0)
+ ;;^UTILITY(U,$J,358.3,23913,1,3,0)
+ ;;=3^Gastritis w/o Bleeding
+ ;;^UTILITY(U,$J,358.3,23913,1,4,0)
+ ;;=4^K29.70
+ ;;^UTILITY(U,$J,358.3,23913,2)
+ ;;=^5008552
+ ;;^UTILITY(U,$J,358.3,23914,0)
+ ;;=K29.90^^82^1036^12
+ ;;^UTILITY(U,$J,358.3,23914,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,23640,1,3,0)
- ;;=3^Inhalant Use Disorder,Mild
- ;;^UTILITY(U,$J,358.3,23640,1,4,0)
- ;;=4^F18.10
- ;;^UTILITY(U,$J,358.3,23640,2)
- ;;=^5003380
- ;;^UTILITY(U,$J,358.3,23641,0)
- ;;=F18.20^^105^1180^3
- ;;^UTILITY(U,$J,358.3,23641,1,0)
+ ;;^UTILITY(U,$J,358.3,23914,1,3,0)
+ ;;=3^Gastroduodenitis w/o Bleeding
+ ;;^UTILITY(U,$J,358.3,23914,1,4,0)
+ ;;=4^K29.90
+ ;;^UTILITY(U,$J,358.3,23914,2)
+ ;;=^5008556
+ ;;^UTILITY(U,$J,358.3,23915,0)
+ ;;=K52.9^^82^1036^19
+ ;;^UTILITY(U,$J,358.3,23915,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,23641,1,3,0)
- ;;=3^Inhalant Use Disorder,Moderate-Severe
- ;;^UTILITY(U,$J,358.3,23641,1,4,0)
- ;;=4^F18.20
- ;;^UTILITY(U,$J,358.3,23641,2)
- ;;=^5003392
- ;;^UTILITY(U,$J,358.3,23642,0)
- ;;=F18.21^^105^1180^4
- ;;^UTILITY(U,$J,358.3,23642,1,0)
+ ;;^UTILITY(U,$J,358.3,23915,1,3,0)
+ ;;=3^Noninfect Gastroent & Colitis,Unspec
+ ;;^UTILITY(U,$J,358.3,23915,1,4,0)
+ ;;=4^K52.9
+ ;;^UTILITY(U,$J,358.3,23915,2)
+ ;;=^5008704
+ ;;^UTILITY(U,$J,358.3,23916,0)
+ ;;=K59.00^^82^1036^9
+ ;;^UTILITY(U,$J,358.3,23916,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,23642,1,3,0)
- ;;=3^Inhalant Use Disorder,Moderate-Severe,In Remission
- ;;^UTILITY(U,$J,358.3,23642,1,4,0)
- ;;=4^F18.21
- ;;^UTILITY(U,$J,358.3,23642,2)
- ;;=^5003393
- ;;^UTILITY(U,$J,358.3,23643,0)
- ;;=F18.14^^105^1180^5
- ;;^UTILITY(U,$J,358.3,23643,1,0)
+ ;;^UTILITY(U,$J,358.3,23916,1,3,0)
+ ;;=3^Constipation,Unspec
+ ;;^UTILITY(U,$J,358.3,23916,1,4,0)
+ ;;=4^K59.00
+ ;;^UTILITY(U,$J,358.3,23916,2)
+ ;;=^323537
+ ;;^UTILITY(U,$J,358.3,23917,0)
+ ;;=K58.9^^82^1036^18
+ ;;^UTILITY(U,$J,358.3,23917,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,23643,1,3,0)
- ;;=3^Inhalant-Induced Depressive Disorder w/ Mild Use Disorder
- ;;^UTILITY(U,$J,358.3,23643,1,4,0)
- ;;=4^F18.14
- ;;^UTILITY(U,$J,358.3,23643,2)
- ;;=^5003384
- ;;^UTILITY(U,$J,358.3,23644,0)
- ;;=F18.24^^105^1180^6
- ;;^UTILITY(U,$J,358.3,23644,1,0)
+ ;;^UTILITY(U,$J,358.3,23917,1,3,0)
+ ;;=3^IBS w/o Diarrhea
+ ;;^UTILITY(U,$J,358.3,23917,1,4,0)
+ ;;=4^K58.9
+ ;;^UTILITY(U,$J,358.3,23917,2)
+ ;;=^5008740
+ ;;^UTILITY(U,$J,358.3,23918,0)
+ ;;=K58.0^^82^1036^17
+ ;;^UTILITY(U,$J,358.3,23918,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,23644,1,3,0)
- ;;=3^Inhalant-Induced Depressive Disorder w/ Moderate to Severe Use Disorder
- ;;^UTILITY(U,$J,358.3,23644,1,4,0)
- ;;=4^F18.24
- ;;^UTILITY(U,$J,358.3,23644,2)
- ;;=^5003397
- ;;^UTILITY(U,$J,358.3,23645,0)
- ;;=F18.11^^105^1180^1
- ;;^UTILITY(U,$J,358.3,23645,1,0)
+ ;;^UTILITY(U,$J,358.3,23918,1,3,0)
+ ;;=3^IBS w/ Diarrhea
+ ;;^UTILITY(U,$J,358.3,23918,1,4,0)
+ ;;=4^K58.0
+ ;;^UTILITY(U,$J,358.3,23918,2)
+ ;;=^5008739
+ ;;^UTILITY(U,$J,358.3,23919,0)
+ ;;=K74.60^^82^1036^6
+ ;;^UTILITY(U,$J,358.3,23919,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,23645,1,3,0)
- ;;=3^Inhalant Abuse,In Remission
- ;;^UTILITY(U,$J,358.3,23645,1,4,0)
- ;;=4^F18.11
- ;;^UTILITY(U,$J,358.3,23645,2)
- ;;=^5151305
- ;;^UTILITY(U,$J,358.3,23646,0)
- ;;=F11.10^^105^1181^5
- ;;^UTILITY(U,$J,358.3,23646,1,0)
+ ;;^UTILITY(U,$J,358.3,23919,1,3,0)
+ ;;=3^Cirrhosis of Liver,Unspec
+ ;;^UTILITY(U,$J,358.3,23919,1,4,0)
+ ;;=4^K74.60
+ ;;^UTILITY(U,$J,358.3,23919,2)
+ ;;=^5008822
+ ;;^UTILITY(U,$J,358.3,23920,0)
+ ;;=R10.9^^82^1036^1
+ ;;^UTILITY(U,$J,358.3,23920,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,23646,1,3,0)
- ;;=3^Opioid Use Disorder,Mild
- ;;^UTILITY(U,$J,358.3,23646,1,4,0)
- ;;=4^F11.10
- ;;^UTILITY(U,$J,358.3,23646,2)
- ;;=^5003114
- ;;^UTILITY(U,$J,358.3,23647,0)
- ;;=F11.129^^105^1181^4
- ;;^UTILITY(U,$J,358.3,23647,1,0)
+ ;;^UTILITY(U,$J,358.3,23920,1,3,0)
+ ;;=3^Abdominal Pain,Unspec
+ ;;^UTILITY(U,$J,358.3,23920,1,4,0)
+ ;;=4^R10.9
+ ;;^UTILITY(U,$J,358.3,23920,2)
+ ;;=^5019230
+ ;;^UTILITY(U,$J,358.3,23921,0)
+ ;;=R74.8^^82^1036^2
+ ;;^UTILITY(U,$J,358.3,23921,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,23647,1,3,0)
- ;;=3^Opioid Intoxication w/o Perceptual Disturbances;Mild Use Disorder
- ;;^UTILITY(U,$J,358.3,23647,1,4,0)
- ;;=4^F11.129
- ;;^UTILITY(U,$J,358.3,23647,2)
- ;;=^5003118
- ;;^UTILITY(U,$J,358.3,23648,0)
- ;;=F11.14^^105^1181^9
- ;;^UTILITY(U,$J,358.3,23648,1,0)
+ ;;^UTILITY(U,$J,358.3,23921,1,3,0)
+ ;;=3^Abnormal Serum Enzyme Levels
+ ;;^UTILITY(U,$J,358.3,23921,1,4,0)
+ ;;=4^R74.8
+ ;;^UTILITY(U,$J,358.3,23921,2)
+ ;;=^5019566
+ ;;^UTILITY(U,$J,358.3,23922,0)
+ ;;=K92.1^^82^1036^13
+ ;;^UTILITY(U,$J,358.3,23922,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,23648,1,3,0)
- ;;=3^Opioid-Induced Depressive Disorder w/ Mild Use Disorder
- ;;^UTILITY(U,$J,358.3,23648,1,4,0)
- ;;=4^F11.14
- ;;^UTILITY(U,$J,358.3,23648,2)
- ;;=^5003119
- ;;^UTILITY(U,$J,358.3,23649,0)
- ;;=F11.182^^105^1181^11
- ;;^UTILITY(U,$J,358.3,23649,1,0)
+ ;;^UTILITY(U,$J,358.3,23922,1,3,0)
+ ;;=3^Hematochezia/Melena
+ ;;^UTILITY(U,$J,358.3,23922,1,4,0)
+ ;;=4^K92.1
+ ;;^UTILITY(U,$J,358.3,23922,2)
+ ;;=^5008914
+ ;;^UTILITY(U,$J,358.3,23923,0)
+ ;;=R19.5^^82^1036^5
+ ;;^UTILITY(U,$J,358.3,23923,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,23649,1,3,0)
- ;;=3^Opioid-Induced Sleep Disorder w/ Mild Use Disorder
- ;;^UTILITY(U,$J,358.3,23649,1,4,0)
- ;;=4^F11.182
- ;;^UTILITY(U,$J,358.3,23649,2)
- ;;=^5003124
- ;;^UTILITY(U,$J,358.3,23650,0)
- ;;=F11.20^^105^1181^6
- ;;^UTILITY(U,$J,358.3,23650,1,0)
+ ;;^UTILITY(U,$J,358.3,23923,1,3,0)
+ ;;=3^Blood in Stool
+ ;;^UTILITY(U,$J,358.3,23923,1,4,0)
+ ;;=4^R19.5
+ ;;^UTILITY(U,$J,358.3,23923,2)
+ ;;=^5019274
+ ;;^UTILITY(U,$J,358.3,23924,0)
+ ;;=K52.3^^82^1036^7
+ ;;^UTILITY(U,$J,358.3,23924,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,23650,1,3,0)
- ;;=3^Opioid Use Disorder,Moderate-Severe
- ;;^UTILITY(U,$J,358.3,23650,1,4,0)
- ;;=4^F11.20
+ ;;^UTILITY(U,$J,358.3,23924,1,3,0)
+ ;;=3^Colitis,Indeterminate
+ ;;^UTILITY(U,$J,358.3,23924,1,4,0)
+ ;;=4^K52.3
+ ;;^UTILITY(U,$J,358.3,23924,2)
+ ;;=^7357699
+ ;;^UTILITY(U,$J,358.3,23925,0)
+ ;;=K58.1^^82^1036^16
+ ;;^UTILITY(U,$J,358.3,23925,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,23925,1,3,0)
+ ;;=3^IBS w/ Constipation
+ ;;^UTILITY(U,$J,358.3,23925,1,4,0)
+ ;;=4^K58.1

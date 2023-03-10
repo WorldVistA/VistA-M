@@ -1,700 +1,654 @@
-IBDEI059 ; ; 01-MAY-2020
- ;;3.0;IB ENCOUNTER FORM IMP/EXP;;MAY 01, 2020
+IBDEI059 ; ; 01-AUG-2022
+ ;;3.0;IB ENCOUNTER FORM IMP/EXP;;AUG 01, 2022
  Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,999) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
+ ;;^UTILITY(U,$J,358.3,12689,1,4,0)
+ ;;=4^S32.011D
+ ;;^UTILITY(U,$J,358.3,12689,2)
+ ;;=^5024379
+ ;;^UTILITY(U,$J,358.3,12690,0)
+ ;;=S22.011D^^50^550^40
+ ;;^UTILITY(U,$J,358.3,12690,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,12690,1,3,0)
+ ;;=3^Stable burst Fx of first thoracic vertebra,Subsq
+ ;;^UTILITY(U,$J,358.3,12690,1,4,0)
+ ;;=4^S22.011D
+ ;;^UTILITY(U,$J,358.3,12690,2)
+ ;;=^5022843
+ ;;^UTILITY(U,$J,358.3,12691,0)
+ ;;=S32.041D^^50^550^41
+ ;;^UTILITY(U,$J,358.3,12691,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,12691,1,3,0)
+ ;;=3^Stable burst Fx of fourth lumbar vertebra,Subsq
+ ;;^UTILITY(U,$J,358.3,12691,1,4,0)
+ ;;=4^S32.041D
+ ;;^UTILITY(U,$J,358.3,12691,2)
+ ;;=^5024469
+ ;;^UTILITY(U,$J,358.3,12692,0)
+ ;;=S22.041D^^50^550^42
+ ;;^UTILITY(U,$J,358.3,12692,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,12692,1,3,0)
+ ;;=3^Stable burst Fx of fourth thoracic vertebra,Subsq
+ ;;^UTILITY(U,$J,358.3,12692,1,4,0)
+ ;;=4^S22.041D
+ ;;^UTILITY(U,$J,358.3,12692,2)
+ ;;=^5022933
+ ;;^UTILITY(U,$J,358.3,12693,0)
+ ;;=S32.021D^^50^550^43
+ ;;^UTILITY(U,$J,358.3,12693,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,12693,1,3,0)
+ ;;=3^Stable burst Fx of second lumbar vertebra,Subsq
+ ;;^UTILITY(U,$J,358.3,12693,1,4,0)
+ ;;=4^S32.021D
+ ;;^UTILITY(U,$J,358.3,12693,2)
+ ;;=^5024409
+ ;;^UTILITY(U,$J,358.3,12694,0)
+ ;;=S22.021D^^50^550^44
+ ;;^UTILITY(U,$J,358.3,12694,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,12694,1,3,0)
+ ;;=3^Stable burst Fx of second thoracic vertebra,Subsq
+ ;;^UTILITY(U,$J,358.3,12694,1,4,0)
+ ;;=4^S22.021D
+ ;;^UTILITY(U,$J,358.3,12694,2)
+ ;;=^5022873
+ ;;^UTILITY(U,$J,358.3,12695,0)
+ ;;=S32.031D^^50^550^45
+ ;;^UTILITY(U,$J,358.3,12695,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,12695,1,3,0)
+ ;;=3^Stable burst Fx of third lumbar vertebra,Subsq
+ ;;^UTILITY(U,$J,358.3,12695,1,4,0)
+ ;;=4^S32.031D
+ ;;^UTILITY(U,$J,358.3,12695,2)
+ ;;=^5024439
+ ;;^UTILITY(U,$J,358.3,12696,0)
+ ;;=S22.031D^^50^550^46
+ ;;^UTILITY(U,$J,358.3,12696,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,12696,1,3,0)
+ ;;=3^Stable burst Fx of third thoracic vertebra,Subsq
+ ;;^UTILITY(U,$J,358.3,12696,1,4,0)
+ ;;=4^S22.031D
+ ;;^UTILITY(U,$J,358.3,12696,2)
+ ;;=^5022903
+ ;;^UTILITY(U,$J,358.3,12697,0)
+ ;;=S32.14XD^^50^550^47
+ ;;^UTILITY(U,$J,358.3,12697,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,12697,1,3,0)
+ ;;=3^Type 1 Fx of sacrum,Subsq
+ ;;^UTILITY(U,$J,358.3,12697,1,4,0)
+ ;;=4^S32.14XD
+ ;;^UTILITY(U,$J,358.3,12697,2)
+ ;;=^5024601
+ ;;^UTILITY(U,$J,358.3,12698,0)
+ ;;=S32.15XD^^50^550^48
+ ;;^UTILITY(U,$J,358.3,12698,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,12698,1,3,0)
+ ;;=3^Type 2 Fx of sacrum,Subsq
+ ;;^UTILITY(U,$J,358.3,12698,1,4,0)
+ ;;=4^S32.15XD
+ ;;^UTILITY(U,$J,358.3,12698,2)
+ ;;=^5024607
+ ;;^UTILITY(U,$J,358.3,12699,0)
+ ;;=S32.16XD^^50^550^49
+ ;;^UTILITY(U,$J,358.3,12699,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,12699,1,3,0)
+ ;;=3^Type 3 Fx of sacrum,Subsq
+ ;;^UTILITY(U,$J,358.3,12699,1,4,0)
+ ;;=4^S32.16XD
+ ;;^UTILITY(U,$J,358.3,12699,2)
+ ;;=^5024613
+ ;;^UTILITY(U,$J,358.3,12700,0)
+ ;;=S12.44XD^^50^550^50
+ ;;^UTILITY(U,$J,358.3,12700,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,12700,1,3,0)
+ ;;=3^Type 3 traum spondylolysis of fifth cervcal vert,Subsq
+ ;;^UTILITY(U,$J,358.3,12700,1,4,0)
+ ;;=4^S12.44XD
+ ;;^UTILITY(U,$J,358.3,12700,2)
+ ;;=^5021823
+ ;;^UTILITY(U,$J,358.3,12701,0)
+ ;;=S12.34XD^^50^550^51
+ ;;^UTILITY(U,$J,358.3,12701,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,12701,1,3,0)
+ ;;=3^Type 3 traum spondylolysis of fourth cervcal vert,Subsq
+ ;;^UTILITY(U,$J,358.3,12701,1,4,0)
+ ;;=4^S12.34XD
+ ;;^UTILITY(U,$J,358.3,12701,2)
+ ;;=^5021769
+ ;;^UTILITY(U,$J,358.3,12702,0)
+ ;;=S12.14XD^^50^550^52
+ ;;^UTILITY(U,$J,358.3,12702,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,12702,1,3,0)
+ ;;=3^Type 3 traum spondylolysis of second cervcal vert,Subsq
+ ;;^UTILITY(U,$J,358.3,12702,1,4,0)
+ ;;=4^S12.14XD
+ ;;^UTILITY(U,$J,358.3,12702,2)
+ ;;=^5021661
+ ;;^UTILITY(U,$J,358.3,12703,0)
+ ;;=S12.64XD^^50^550^53
+ ;;^UTILITY(U,$J,358.3,12703,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,12703,1,3,0)
+ ;;=3^Type 3 traum spondylolysis of seventh cervcal vert,Subsq
  ;;^UTILITY(U,$J,358.3,12703,1,4,0)
- ;;=4^Z96.651
+ ;;=4^S12.64XD
  ;;^UTILITY(U,$J,358.3,12703,2)
- ;;=^5063705
+ ;;=^5021931
  ;;^UTILITY(U,$J,358.3,12704,0)
- ;;=Z90.02^^54^616^39
+ ;;=S12.54XD^^50^550^54
  ;;^UTILITY(U,$J,358.3,12704,1,0)
  ;;=^358.31IA^4^2
  ;;^UTILITY(U,$J,358.3,12704,1,3,0)
- ;;=3^Laryngectomy
+ ;;=3^Type 3 traum spondylolysis of sixth cervcal vert,Subsq
  ;;^UTILITY(U,$J,358.3,12704,1,4,0)
- ;;=4^Z90.02
+ ;;=4^S12.54XD
  ;;^UTILITY(U,$J,358.3,12704,2)
- ;;=^5063579
+ ;;=^5021877
  ;;^UTILITY(U,$J,358.3,12705,0)
- ;;=Z94.4^^54^616^40
+ ;;=S12.24XD^^50^550^55
  ;;^UTILITY(U,$J,358.3,12705,1,0)
  ;;=^358.31IA^4^2
  ;;^UTILITY(U,$J,358.3,12705,1,3,0)
- ;;=3^Liver Transplant
+ ;;=3^Type 3 traum spondylolysis of third cervcal vert,Subsq
  ;;^UTILITY(U,$J,358.3,12705,1,4,0)
- ;;=4^Z94.4
+ ;;=4^S12.24XD
  ;;^UTILITY(U,$J,358.3,12705,2)
- ;;=^5063658
+ ;;=^5021715
  ;;^UTILITY(U,$J,358.3,12706,0)
- ;;=Z90.2^^54^616^41
+ ;;=S32.17XD^^50^550^56
  ;;^UTILITY(U,$J,358.3,12706,1,0)
  ;;=^358.31IA^4^2
  ;;^UTILITY(U,$J,358.3,12706,1,3,0)
- ;;=3^Lobectomy
+ ;;=3^Type 4 Fx of sacrum,Subsq
  ;;^UTILITY(U,$J,358.3,12706,1,4,0)
- ;;=4^Z90.2
+ ;;=4^S32.17XD
  ;;^UTILITY(U,$J,358.3,12706,2)
- ;;=^5063585
+ ;;=^5024619
  ;;^UTILITY(U,$J,358.3,12707,0)
- ;;=Z94.2^^54^616^42
+ ;;=S22.082D^^50^550^57
  ;;^UTILITY(U,$J,358.3,12707,1,0)
  ;;=^358.31IA^4^2
  ;;^UTILITY(U,$J,358.3,12707,1,3,0)
- ;;=3^Lung Transplant
+ ;;=3^Unstable burst Fx of T11-T12 vertebra,Subsq
  ;;^UTILITY(U,$J,358.3,12707,1,4,0)
- ;;=4^Z94.2
+ ;;=4^S22.082D
  ;;^UTILITY(U,$J,358.3,12707,2)
- ;;=^5063656
+ ;;=^5023059
  ;;^UTILITY(U,$J,358.3,12708,0)
- ;;=Z90.5^^54^616^43
+ ;;=S22.052D^^50^550^58
  ;;^UTILITY(U,$J,358.3,12708,1,0)
  ;;=^358.31IA^4^2
  ;;^UTILITY(U,$J,358.3,12708,1,3,0)
- ;;=3^Nephrectomy
+ ;;=3^Unstable burst Fx of T5-T6 vertebra,Subsq
  ;;^UTILITY(U,$J,358.3,12708,1,4,0)
- ;;=4^Z90.5
+ ;;=4^S22.052D
  ;;^UTILITY(U,$J,358.3,12708,2)
- ;;=^5063590
+ ;;=^5022969
  ;;^UTILITY(U,$J,358.3,12709,0)
- ;;=Z93.6^^54^616^44
+ ;;=S22.062D^^50^550^59
  ;;^UTILITY(U,$J,358.3,12709,1,0)
  ;;=^358.31IA^4^2
  ;;^UTILITY(U,$J,358.3,12709,1,3,0)
- ;;=3^Nephrostomy/Ureterostomy/Urostomy
+ ;;=3^Unstable burst Fx of T7-T8 vertebra,Subsq
  ;;^UTILITY(U,$J,358.3,12709,1,4,0)
- ;;=4^Z93.6
+ ;;=4^S22.062D
  ;;^UTILITY(U,$J,358.3,12709,2)
- ;;=^5063651
+ ;;=^5022999
  ;;^UTILITY(U,$J,358.3,12710,0)
- ;;=Z91.14^^54^616^46
+ ;;=S22.072D^^50^550^60
  ;;^UTILITY(U,$J,358.3,12710,1,0)
  ;;=^358.31IA^4^2
  ;;^UTILITY(U,$J,358.3,12710,1,3,0)
- ;;=3^Noncompliance w/ Medication Regimen
+ ;;=3^Unstable burst Fx of T9-T10 vertebra,Subsq
  ;;^UTILITY(U,$J,358.3,12710,1,4,0)
- ;;=4^Z91.14
+ ;;=4^S22.072D
  ;;^UTILITY(U,$J,358.3,12710,2)
- ;;=^5063616
+ ;;=^5023029
  ;;^UTILITY(U,$J,358.3,12711,0)
- ;;=Z91.19^^54^616^45
+ ;;=S22.052D^^50^550^61
  ;;^UTILITY(U,$J,358.3,12711,1,0)
  ;;=^358.31IA^4^2
  ;;^UTILITY(U,$J,358.3,12711,1,3,0)
- ;;=3^Noncompliance w/ Medical Treatment/Regimen
+ ;;=3^Unstable burst Fx of fifth lumbar vertebra,Subsq
  ;;^UTILITY(U,$J,358.3,12711,1,4,0)
- ;;=4^Z91.19
+ ;;=4^S22.052D
  ;;^UTILITY(U,$J,358.3,12711,2)
- ;;=^5063618
+ ;;=^5022969
  ;;^UTILITY(U,$J,358.3,12712,0)
- ;;=Z90.722^^54^616^47
+ ;;=S12.02XD^^50^550^62
  ;;^UTILITY(U,$J,358.3,12712,1,0)
  ;;=^358.31IA^4^2
  ;;^UTILITY(U,$J,358.3,12712,1,3,0)
- ;;=3^Oophorectomy,Bilateral
+ ;;=3^Unstable burst Fx of first cervical vertebra,Subsq
  ;;^UTILITY(U,$J,358.3,12712,1,4,0)
- ;;=4^Z90.722
+ ;;=4^S12.02XD
  ;;^UTILITY(U,$J,358.3,12712,2)
- ;;=^5063595
+ ;;=^5021565
  ;;^UTILITY(U,$J,358.3,12713,0)
- ;;=Z90.721^^54^616^48
+ ;;=S32.012D^^50^550^63
  ;;^UTILITY(U,$J,358.3,12713,1,0)
  ;;=^358.31IA^4^2
  ;;^UTILITY(U,$J,358.3,12713,1,3,0)
- ;;=3^Oophorectomy,Unilateral
+ ;;=3^Unstable burst Fx of first lumbar vertebra,Subsq
  ;;^UTILITY(U,$J,358.3,12713,1,4,0)
- ;;=4^Z90.721
+ ;;=4^S32.012D
  ;;^UTILITY(U,$J,358.3,12713,2)
- ;;=^5063594
+ ;;=^5024385
  ;;^UTILITY(U,$J,358.3,12714,0)
- ;;=Z98.890^^54^616^49
+ ;;=S22.012D^^50^550^64
  ;;^UTILITY(U,$J,358.3,12714,1,0)
  ;;=^358.31IA^4^2
  ;;^UTILITY(U,$J,358.3,12714,1,3,0)
- ;;=3^Other Specified Surgery
+ ;;=3^Unstable burst Fx of first thoracic vertebra,Subsq
  ;;^UTILITY(U,$J,358.3,12714,1,4,0)
- ;;=4^Z98.890
+ ;;=4^S22.012D
  ;;^UTILITY(U,$J,358.3,12714,2)
- ;;=^5063754
+ ;;=^5022849
  ;;^UTILITY(U,$J,358.3,12715,0)
- ;;=Z99.81^^54^616^50
+ ;;=S32.042D^^50^550^65
  ;;^UTILITY(U,$J,358.3,12715,1,0)
  ;;=^358.31IA^4^2
  ;;^UTILITY(U,$J,358.3,12715,1,3,0)
- ;;=3^Oxygen Dependance
+ ;;=3^Unstable burst Fx of fourth lumbar vertebra,Subsq
  ;;^UTILITY(U,$J,358.3,12715,1,4,0)
- ;;=4^Z99.81
+ ;;=4^S32.042D
  ;;^UTILITY(U,$J,358.3,12715,2)
- ;;=^5063760
+ ;;=^5024475
  ;;^UTILITY(U,$J,358.3,12716,0)
- ;;=Z95.0^^54^616^51
+ ;;=S22.042D^^50^550^66
  ;;^UTILITY(U,$J,358.3,12716,1,0)
  ;;=^358.31IA^4^2
  ;;^UTILITY(U,$J,358.3,12716,1,3,0)
- ;;=3^Pacemaker
+ ;;=3^Unstable burst Fx of fourth thoracic vertebra,Subsq
  ;;^UTILITY(U,$J,358.3,12716,1,4,0)
- ;;=4^Z95.0
+ ;;=4^S22.042D
  ;;^UTILITY(U,$J,358.3,12716,2)
- ;;=^5063668
+ ;;=^5022939
  ;;^UTILITY(U,$J,358.3,12717,0)
- ;;=Z94.83^^54^616^52
+ ;;=S32.022D^^50^550^67
  ;;^UTILITY(U,$J,358.3,12717,1,0)
  ;;=^358.31IA^4^2
  ;;^UTILITY(U,$J,358.3,12717,1,3,0)
- ;;=3^Pancreas Transplant
+ ;;=3^Unstable burst Fx of second lumbar vertebra,Subsq
  ;;^UTILITY(U,$J,358.3,12717,1,4,0)
- ;;=4^Z94.83
+ ;;=4^S32.022D
  ;;^UTILITY(U,$J,358.3,12717,2)
- ;;=^5063664
+ ;;=^5024415
  ;;^UTILITY(U,$J,358.3,12718,0)
- ;;=Z90.411^^54^616^53
+ ;;=S32.032D^^50^550^68
  ;;^UTILITY(U,$J,358.3,12718,1,0)
  ;;=^358.31IA^4^2
  ;;^UTILITY(U,$J,358.3,12718,1,3,0)
- ;;=3^Pancreatectomy,Partial
+ ;;=3^Unstable burst Fx of third lumbar vertebra,Subsq
  ;;^UTILITY(U,$J,358.3,12718,1,4,0)
- ;;=4^Z90.411
+ ;;=4^S32.032D
  ;;^UTILITY(U,$J,358.3,12718,2)
- ;;=^5063588
+ ;;=^5024445
  ;;^UTILITY(U,$J,358.3,12719,0)
- ;;=Z90.410^^54^616^54
+ ;;=S22.032D^^50^550^69
  ;;^UTILITY(U,$J,358.3,12719,1,0)
  ;;=^358.31IA^4^2
  ;;^UTILITY(U,$J,358.3,12719,1,3,0)
- ;;=3^Pancreatectomy,Total/Complete
+ ;;=3^Unstable burst Fx of third thoracic vertebra,Subsq
  ;;^UTILITY(U,$J,358.3,12719,1,4,0)
- ;;=4^Z90.410
+ ;;=4^S22.032D
  ;;^UTILITY(U,$J,358.3,12719,2)
- ;;=^5063587
+ ;;=^5022909
  ;;^UTILITY(U,$J,358.3,12720,0)
- ;;=Z95.820^^54^616^6
+ ;;=S22.080D^^50^550^70
  ;;^UTILITY(U,$J,358.3,12720,1,0)
  ;;=^358.31IA^4^2
  ;;^UTILITY(U,$J,358.3,12720,1,3,0)
- ;;=3^Angioplasty,Peripheral Vascular w/ Stent
+ ;;=3^Wedge compression Fx of T11-T12 vertebra,Subsq
  ;;^UTILITY(U,$J,358.3,12720,1,4,0)
- ;;=4^Z95.820
+ ;;=4^S22.080D
  ;;^UTILITY(U,$J,358.3,12720,2)
- ;;=^5063678
+ ;;=^5023047
  ;;^UTILITY(U,$J,358.3,12721,0)
- ;;=Z92.3^^54^616^56
+ ;;=S22.050D^^50^550^71
  ;;^UTILITY(U,$J,358.3,12721,1,0)
  ;;=^358.31IA^4^2
  ;;^UTILITY(U,$J,358.3,12721,1,3,0)
- ;;=3^Radiation Therapy
+ ;;=3^Wedge compression Fx of T5-T6 vertebra,Subsq
  ;;^UTILITY(U,$J,358.3,12721,1,4,0)
- ;;=4^Z92.3
+ ;;=4^S22.050D
  ;;^UTILITY(U,$J,358.3,12721,2)
- ;;=^5063637
+ ;;=^5022957
  ;;^UTILITY(U,$J,358.3,12722,0)
- ;;=Z90.79^^54^616^57
+ ;;=S22.060D^^50^550^72
  ;;^UTILITY(U,$J,358.3,12722,1,0)
  ;;=^358.31IA^4^2
  ;;^UTILITY(U,$J,358.3,12722,1,3,0)
- ;;=3^Salpingo-Oophorectomy
+ ;;=3^Wedge compression Fx of T7-T8 vertebra,Subsq
  ;;^UTILITY(U,$J,358.3,12722,1,4,0)
- ;;=4^Z90.79
+ ;;=4^S22.060D
  ;;^UTILITY(U,$J,358.3,12722,2)
- ;;=^5063596
+ ;;=^5022987
  ;;^UTILITY(U,$J,358.3,12723,0)
- ;;=Z96.612^^54^616^58
+ ;;=S22.070D^^50^550^73
  ;;^UTILITY(U,$J,358.3,12723,1,0)
  ;;=^358.31IA^4^2
  ;;^UTILITY(U,$J,358.3,12723,1,3,0)
- ;;=3^Shoulder Joint Replacement,Left
+ ;;=3^Wedge compression Fx of T9-T10 vertebra,Subsq
  ;;^UTILITY(U,$J,358.3,12723,1,4,0)
- ;;=4^Z96.612
+ ;;=4^S22.070D
  ;;^UTILITY(U,$J,358.3,12723,2)
- ;;=^5063693
+ ;;=^5023017
  ;;^UTILITY(U,$J,358.3,12724,0)
- ;;=Z96.611^^54^616^59
+ ;;=S32.050D^^50^550^74
  ;;^UTILITY(U,$J,358.3,12724,1,0)
  ;;=^358.31IA^4^2
  ;;^UTILITY(U,$J,358.3,12724,1,3,0)
- ;;=3^Shoulder Joint Replacement,Right
+ ;;=3^Wedge compression Fx of fifth lumbar vertebra,Subsq
  ;;^UTILITY(U,$J,358.3,12724,1,4,0)
- ;;=4^Z96.611
+ ;;=4^S32.050D
  ;;^UTILITY(U,$J,358.3,12724,2)
- ;;=^5063692
+ ;;=^5024493
  ;;^UTILITY(U,$J,358.3,12725,0)
- ;;=Z98.1^^54^616^60
+ ;;=S32.010D^^50^550^75
  ;;^UTILITY(U,$J,358.3,12725,1,0)
  ;;=^358.31IA^4^2
  ;;^UTILITY(U,$J,358.3,12725,1,3,0)
- ;;=3^Spinal Fusion
+ ;;=3^Wedge compression Fx of first lumbar vertebra,Subsq
  ;;^UTILITY(U,$J,358.3,12725,1,4,0)
- ;;=4^Z98.1
+ ;;=4^S32.010D
  ;;^UTILITY(U,$J,358.3,12725,2)
- ;;=^5063734
+ ;;=^5024373
  ;;^UTILITY(U,$J,358.3,12726,0)
- ;;=Z90.81^^54^616^61
+ ;;=S22.010D^^50^550^76
  ;;^UTILITY(U,$J,358.3,12726,1,0)
  ;;=^358.31IA^4^2
  ;;^UTILITY(U,$J,358.3,12726,1,3,0)
- ;;=3^Splenectomy
+ ;;=3^Wedge compression Fx of first thor vertebra,Subsq
  ;;^UTILITY(U,$J,358.3,12726,1,4,0)
- ;;=4^Z90.81
+ ;;=4^S22.010D
  ;;^UTILITY(U,$J,358.3,12726,2)
- ;;=^5063597
+ ;;=^5022837
  ;;^UTILITY(U,$J,358.3,12727,0)
- ;;=E89.0^^54^616^55
+ ;;=S32.040D^^50^550^77
  ;;^UTILITY(U,$J,358.3,12727,1,0)
  ;;=^358.31IA^4^2
  ;;^UTILITY(U,$J,358.3,12727,1,3,0)
- ;;=3^PostSurgical Hypothyroidism
+ ;;=3^Wedge compression Fx of fourth lum vertebra,Subsq
  ;;^UTILITY(U,$J,358.3,12727,1,4,0)
- ;;=4^E89.0
+ ;;=4^S32.040D
  ;;^UTILITY(U,$J,358.3,12727,2)
- ;;=^5003035
+ ;;=^5024463
  ;;^UTILITY(U,$J,358.3,12728,0)
- ;;=Z93.0^^54^616^62
+ ;;=S22.040D^^50^550^78
  ;;^UTILITY(U,$J,358.3,12728,1,0)
  ;;=^358.31IA^4^2
  ;;^UTILITY(U,$J,358.3,12728,1,3,0)
- ;;=3^Tracheostomy
+ ;;=3^Wedge compression Fx of fourth thor vertebra,Subsq
  ;;^UTILITY(U,$J,358.3,12728,1,4,0)
- ;;=4^Z93.0
+ ;;=4^S22.040D
  ;;^UTILITY(U,$J,358.3,12728,2)
- ;;=^5063642
+ ;;=^5022927
  ;;^UTILITY(U,$J,358.3,12729,0)
- ;;=Z98.51^^54^616^63
+ ;;=S32.020D^^50^550^79
  ;;^UTILITY(U,$J,358.3,12729,1,0)
  ;;=^358.31IA^4^2
  ;;^UTILITY(U,$J,358.3,12729,1,3,0)
- ;;=3^Tubal Ligation
+ ;;=3^Wedge compression Fx of second lum vertebra,Subsq
  ;;^UTILITY(U,$J,358.3,12729,1,4,0)
- ;;=4^Z98.51
+ ;;=4^S32.020D
  ;;^UTILITY(U,$J,358.3,12729,2)
- ;;=^5063740
+ ;;=^5024403
  ;;^UTILITY(U,$J,358.3,12730,0)
- ;;=Z98.52^^54^616^64
+ ;;=S22.020D^^50^550^80
  ;;^UTILITY(U,$J,358.3,12730,1,0)
  ;;=^358.31IA^4^2
  ;;^UTILITY(U,$J,358.3,12730,1,3,0)
- ;;=3^Vasectomy
+ ;;=3^Wedge compression Fx of second thor vertebra,Subsq
  ;;^UTILITY(U,$J,358.3,12730,1,4,0)
- ;;=4^Z98.52
+ ;;=4^S22.020D
  ;;^UTILITY(U,$J,358.3,12730,2)
- ;;=^5063741
+ ;;=^5022867
  ;;^UTILITY(U,$J,358.3,12731,0)
- ;;=Z95.2^^54^616^25
+ ;;=S32.030D^^50^550^81
  ;;^UTILITY(U,$J,358.3,12731,1,0)
  ;;=^358.31IA^4^2
  ;;^UTILITY(U,$J,358.3,12731,1,3,0)
- ;;=3^Heart Valve Replacement (Mechanical)
+ ;;=3^Wedge compression Fx of third lumbar vertebra,Subsq
  ;;^UTILITY(U,$J,358.3,12731,1,4,0)
- ;;=4^Z95.2
+ ;;=4^S32.030D
  ;;^UTILITY(U,$J,358.3,12731,2)
- ;;=^5063670
+ ;;=^5024433
  ;;^UTILITY(U,$J,358.3,12732,0)
- ;;=Z91.5^^54^617^1
+ ;;=S22.030D^^50^550^82
  ;;^UTILITY(U,$J,358.3,12732,1,0)
  ;;=^358.31IA^4^2
  ;;^UTILITY(U,$J,358.3,12732,1,3,0)
- ;;=3^Personal Hx of Self-Harm
+ ;;=3^Wedge compression Fx of third thor vertebra,Subsq
  ;;^UTILITY(U,$J,358.3,12732,1,4,0)
- ;;=4^Z91.5
+ ;;=4^S22.030D
  ;;^UTILITY(U,$J,358.3,12732,2)
- ;;=^5063624
+ ;;=^5022897
  ;;^UTILITY(U,$J,358.3,12733,0)
- ;;=R45.851^^54^617^2
+ ;;=S52.562D^^50^551^1
  ;;^UTILITY(U,$J,358.3,12733,1,0)
  ;;=^358.31IA^4^2
  ;;^UTILITY(U,$J,358.3,12733,1,3,0)
- ;;=3^Suicidal Ideations
+ ;;=3^Barton's Fx, Lt radius, Subsq
  ;;^UTILITY(U,$J,358.3,12733,1,4,0)
- ;;=4^R45.851
+ ;;=4^S52.562D
  ;;^UTILITY(U,$J,358.3,12733,2)
- ;;=^5019474
+ ;;=^5030884
  ;;^UTILITY(U,$J,358.3,12734,0)
- ;;=T14.91XA^^54^617^3
+ ;;=S52.561D^^50^551^2
  ;;^UTILITY(U,$J,358.3,12734,1,0)
  ;;=^358.31IA^4^2
  ;;^UTILITY(U,$J,358.3,12734,1,3,0)
- ;;=3^Suicide Attempt,Initial Encntr
+ ;;=3^Barton's Fx, Rt radius, Subsq
  ;;^UTILITY(U,$J,358.3,12734,1,4,0)
- ;;=4^T14.91XA
+ ;;=4^S52.561D
  ;;^UTILITY(U,$J,358.3,12734,2)
- ;;=^5151779
+ ;;=^5030868
  ;;^UTILITY(U,$J,358.3,12735,0)
- ;;=T14.91XD^^54^617^4
+ ;;=S52.382D^^50^551^3
  ;;^UTILITY(U,$J,358.3,12735,1,0)
  ;;=^358.31IA^4^2
  ;;^UTILITY(U,$J,358.3,12735,1,3,0)
- ;;=3^Suicide Attempt,Subsequent Encntr
+ ;;=3^Bent bone, Lt radius, Subsq
  ;;^UTILITY(U,$J,358.3,12735,1,4,0)
- ;;=4^T14.91XD
+ ;;=4^S52.382D
  ;;^UTILITY(U,$J,358.3,12735,2)
- ;;=^5151780
+ ;;=^5030514
  ;;^UTILITY(U,$J,358.3,12736,0)
- ;;=T14.91XS^^54^617^5
+ ;;=S52.282D^^50^551^4
  ;;^UTILITY(U,$J,358.3,12736,1,0)
  ;;=^358.31IA^4^2
  ;;^UTILITY(U,$J,358.3,12736,1,3,0)
- ;;=3^Suicide Attempt,Sequela
+ ;;=3^Bent bone, Lt ulna, Subsq
  ;;^UTILITY(U,$J,358.3,12736,1,4,0)
- ;;=4^T14.91XS
+ ;;=4^S52.282D
  ;;^UTILITY(U,$J,358.3,12736,2)
- ;;=^5151781
+ ;;=^5029862
  ;;^UTILITY(U,$J,358.3,12737,0)
- ;;=99211^^55^618^2
+ ;;=S52.381D^^50^551^5
  ;;^UTILITY(U,$J,358.3,12737,1,0)
- ;;=^358.31IA^2^2
- ;;^UTILITY(U,$J,358.3,12737,1,1,0)
- ;;=1^OFFICE VISIT
- ;;^UTILITY(U,$J,358.3,12737,1,2,0)
- ;;=2^99211
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,12737,1,3,0)
+ ;;=3^Bent bone, Rt radius, Subsq
+ ;;^UTILITY(U,$J,358.3,12737,1,4,0)
+ ;;=4^S52.381D
+ ;;^UTILITY(U,$J,358.3,12737,2)
+ ;;=^5030498
  ;;^UTILITY(U,$J,358.3,12738,0)
- ;;=99211^^55^619^1
+ ;;=S52.532D^^50^551^7
  ;;^UTILITY(U,$J,358.3,12738,1,0)
- ;;=^358.31IA^2^2
- ;;^UTILITY(U,$J,358.3,12738,1,1,0)
- ;;=1^F-T-F INTERVENTION
- ;;^UTILITY(U,$J,358.3,12738,1,2,0)
- ;;=2^99211
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,12738,1,3,0)
+ ;;=3^Colles' Fx, Lt radius, Subsq
+ ;;^UTILITY(U,$J,358.3,12738,1,4,0)
+ ;;=4^S52.532D
+ ;;^UTILITY(U,$J,358.3,12738,2)
+ ;;=^5030740
  ;;^UTILITY(U,$J,358.3,12739,0)
- ;;=99211^^55^620^1
+ ;;=S52.281D^^50^551^6
  ;;^UTILITY(U,$J,358.3,12739,1,0)
- ;;=^358.31IA^2^2
- ;;^UTILITY(U,$J,358.3,12739,1,1,0)
- ;;=1^CCHT VIDEO VISIT
- ;;^UTILITY(U,$J,358.3,12739,1,2,0)
- ;;=2^99211
- ;;^UTILITY(U,$J,358.3,12739,3,0)
- ;;=^358.33^1^1
- ;;^UTILITY(U,$J,358.3,12739,3,1,0)
- ;;=GT
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,12739,1,3,0)
+ ;;=3^Bent bone, Rt ulna, Subsq
+ ;;^UTILITY(U,$J,358.3,12739,1,4,0)
+ ;;=4^S52.281D
+ ;;^UTILITY(U,$J,358.3,12739,2)
+ ;;=^5029846
  ;;^UTILITY(U,$J,358.3,12740,0)
- ;;=94760^^56^621^10^^^^1
+ ;;=S52.531D^^50^551^8
  ;;^UTILITY(U,$J,358.3,12740,1,0)
- ;;=^358.31IA^3^2
- ;;^UTILITY(U,$J,358.3,12740,1,2,0)
- ;;=2^94760
+ ;;=^358.31IA^4^2
  ;;^UTILITY(U,$J,358.3,12740,1,3,0)
- ;;=3^PULSE OXIMETRY
+ ;;=3^Colles' Fx, Rt radius, Subsq
+ ;;^UTILITY(U,$J,358.3,12740,1,4,0)
+ ;;=4^S52.531D
+ ;;^UTILITY(U,$J,358.3,12740,2)
+ ;;=^5030724
  ;;^UTILITY(U,$J,358.3,12741,0)
- ;;=99080^^56^621^12^^^^1
+ ;;=S62.142D^^50^551^9
  ;;^UTILITY(U,$J,358.3,12741,1,0)
- ;;=^358.31IA^3^2
- ;;^UTILITY(U,$J,358.3,12741,1,2,0)
- ;;=2^99080
+ ;;=^358.31IA^4^2
  ;;^UTILITY(U,$J,358.3,12741,1,3,0)
- ;;=3^SPECIAL REPORTS OR FORMS
+ ;;=3^Disp Fx, body, hamate bone, Lt wrist, Subsq
+ ;;^UTILITY(U,$J,358.3,12741,1,4,0)
+ ;;=4^S62.142D
+ ;;^UTILITY(U,$J,358.3,12741,2)
+ ;;=^5033348
  ;;^UTILITY(U,$J,358.3,12742,0)
- ;;=97535^^56^621^11^^^^1
+ ;;=S62.141D^^50^551^10
  ;;^UTILITY(U,$J,358.3,12742,1,0)
- ;;=^358.31IA^3^2
- ;;^UTILITY(U,$J,358.3,12742,1,2,0)
- ;;=2^97535
+ ;;=^358.31IA^4^2
  ;;^UTILITY(U,$J,358.3,12742,1,3,0)
- ;;=3^SELF CARE MNGMENT TRAINING
+ ;;=3^Disp Fx, body, hamate bone, Rt wrist, Subsq
+ ;;^UTILITY(U,$J,358.3,12742,1,4,0)
+ ;;=4^S62.141D
+ ;;^UTILITY(U,$J,358.3,12742,2)
+ ;;=^5033341
  ;;^UTILITY(U,$J,358.3,12743,0)
- ;;=99366^^56^621^13^^^^1
+ ;;=S62.132D^^50^551^11
  ;;^UTILITY(U,$J,358.3,12743,1,0)
- ;;=^358.31IA^3^2
- ;;^UTILITY(U,$J,358.3,12743,1,2,0)
- ;;=2^99366
+ ;;=^358.31IA^4^2
  ;;^UTILITY(U,$J,358.3,12743,1,3,0)
- ;;=3^TEAM CONF W/PAT BY HC PRO
+ ;;=3^Disp Fx, capitate bone, Lt wrist, Subsq
+ ;;^UTILITY(U,$J,358.3,12743,1,4,0)
+ ;;=4^S62.132D
+ ;;^UTILITY(U,$J,358.3,12743,2)
+ ;;=^5033306
  ;;^UTILITY(U,$J,358.3,12744,0)
- ;;=99499^^56^621^14^^^^1
+ ;;=S62.131D^^50^551^12
  ;;^UTILITY(U,$J,358.3,12744,1,0)
- ;;=^358.31IA^3^2
- ;;^UTILITY(U,$J,358.3,12744,1,2,0)
- ;;=2^99499
+ ;;=^358.31IA^4^2
  ;;^UTILITY(U,$J,358.3,12744,1,3,0)
- ;;=3^UNLISTED E&M SERVICE
+ ;;=3^Disp Fx, capitate bone, Rt wrist, Subsq
+ ;;^UTILITY(U,$J,358.3,12744,1,4,0)
+ ;;=4^S62.131D
+ ;;^UTILITY(U,$J,358.3,12744,2)
+ ;;=^5033299
  ;;^UTILITY(U,$J,358.3,12745,0)
- ;;=G0108^^56^621^6^^^^1
+ ;;=S52.352D^^50^551^13
  ;;^UTILITY(U,$J,358.3,12745,1,0)
- ;;=^358.31IA^3^2
- ;;^UTILITY(U,$J,358.3,12745,1,2,0)
- ;;=2^G0108
+ ;;=^358.31IA^4^2
  ;;^UTILITY(U,$J,358.3,12745,1,3,0)
- ;;=3^DM MGMT TRN PER INDIV PER 30MIN
+ ;;=3^Disp Fx, comminuted shaft, radius, Lt arm, Subsq
+ ;;^UTILITY(U,$J,358.3,12745,1,4,0)
+ ;;=4^S52.352D
+ ;;^UTILITY(U,$J,358.3,12745,2)
+ ;;=^5030274
  ;;^UTILITY(U,$J,358.3,12746,0)
- ;;=G0109^^56^621^5^^^^1
+ ;;=S52.032D^^50^551^17
  ;;^UTILITY(U,$J,358.3,12746,1,0)
- ;;=^358.31IA^3^2
- ;;^UTILITY(U,$J,358.3,12746,1,2,0)
- ;;=2^G0109
+ ;;=^358.31IA^4^2
  ;;^UTILITY(U,$J,358.3,12746,1,3,0)
- ;;=3^DM MGMT TRN GRP PER 30MIN
+ ;;=3^Disp Fx, olecran pro w intartic extn Lt ulna, Subsq
+ ;;^UTILITY(U,$J,358.3,12746,1,4,0)
+ ;;=4^S52.032D
+ ;;^UTILITY(U,$J,358.3,12746,2)
+ ;;=^5135083
  ;;^UTILITY(U,$J,358.3,12747,0)
- ;;=A9279^^56^621^8^^^^1
+ ;;=S52.351D^^50^551^14
  ;;^UTILITY(U,$J,358.3,12747,1,0)
- ;;=^358.31IA^3^2
- ;;^UTILITY(U,$J,358.3,12747,1,2,0)
- ;;=2^A9279
+ ;;=^358.31IA^4^2
  ;;^UTILITY(U,$J,358.3,12747,1,3,0)
- ;;=3^MONITORING FEATURE/DEVICE NOC
+ ;;=3^Disp Fx, comminuted shaft, radius, Rt arm, Subsq
+ ;;^UTILITY(U,$J,358.3,12747,1,4,0)
+ ;;=4^S52.351D
+ ;;^UTILITY(U,$J,358.3,12747,2)
+ ;;=^5030258
  ;;^UTILITY(U,$J,358.3,12748,0)
- ;;=H0034^^56^621^7^^^^1
+ ;;=S52.252D^^50^551^15
  ;;^UTILITY(U,$J,358.3,12748,1,0)
- ;;=^358.31IA^3^2
- ;;^UTILITY(U,$J,358.3,12748,1,2,0)
- ;;=2^H0034
+ ;;=^358.31IA^4^2
  ;;^UTILITY(U,$J,358.3,12748,1,3,0)
- ;;=3^MED TRNG & SUPPORT PER 15MIN
+ ;;=3^Disp Fx, comminuted shaft, ulna, Lt arm, Subsq
+ ;;^UTILITY(U,$J,358.3,12748,1,4,0)
+ ;;=4^S52.252D
+ ;;^UTILITY(U,$J,358.3,12748,2)
+ ;;=^5029622
  ;;^UTILITY(U,$J,358.3,12749,0)
- ;;=S9445^^56^621^9^^^^1
+ ;;=S52.251D^^50^551^16
  ;;^UTILITY(U,$J,358.3,12749,1,0)
- ;;=^358.31IA^3^2
- ;;^UTILITY(U,$J,358.3,12749,1,2,0)
- ;;=2^S9445
+ ;;=^358.31IA^4^2
  ;;^UTILITY(U,$J,358.3,12749,1,3,0)
- ;;=3^PT EDUCATION-INDIVIDUAL
+ ;;=3^Disp Fx, comminuted shaft, ulna, Rt arm, Subsq
+ ;;^UTILITY(U,$J,358.3,12749,1,4,0)
+ ;;=4^S52.251D
+ ;;^UTILITY(U,$J,358.3,12749,2)
+ ;;=^5029606
  ;;^UTILITY(U,$J,358.3,12750,0)
- ;;=96127^^56^621^1^^^^1
+ ;;=S52.022D^^50^551^18
  ;;^UTILITY(U,$J,358.3,12750,1,0)
- ;;=^358.31IA^3^2
- ;;^UTILITY(U,$J,358.3,12750,1,2,0)
- ;;=2^96127
+ ;;=^358.31IA^4^2
  ;;^UTILITY(U,$J,358.3,12750,1,3,0)
- ;;=3^BRIEF EMOTIONAL/BEHAV ASSMT
+ ;;=3^Disp Fx, olecran pro w/o intartic extn Lt ulna, Subsq
+ ;;^UTILITY(U,$J,358.3,12750,1,4,0)
+ ;;=4^S52.022D
+ ;;^UTILITY(U,$J,358.3,12750,2)
+ ;;=^5028772
  ;;^UTILITY(U,$J,358.3,12751,0)
- ;;=96110^^56^621^3^^^^1
+ ;;=S52.021D^^50^551^19
  ;;^UTILITY(U,$J,358.3,12751,1,0)
- ;;=^358.31IA^3^2
- ;;^UTILITY(U,$J,358.3,12751,1,2,0)
- ;;=2^96110
+ ;;=^358.31IA^4^2
  ;;^UTILITY(U,$J,358.3,12751,1,3,0)
- ;;=3^DEVELOPMENTAL SCREEN W/SCORE
+ ;;=3^Disp Fx, olecran pro w/o intartic extn Rt ulna, Subsq
+ ;;^UTILITY(U,$J,358.3,12751,1,4,0)
+ ;;=4^S52.021D
+ ;;^UTILITY(U,$J,358.3,12751,2)
+ ;;=^5028756
  ;;^UTILITY(U,$J,358.3,12752,0)
- ;;=T1016^^56^621^2^^^^1
+ ;;=S62.162D^^50^551^20
  ;;^UTILITY(U,$J,358.3,12752,1,0)
- ;;=^358.31IA^3^2
- ;;^UTILITY(U,$J,358.3,12752,1,2,0)
- ;;=2^T1016
+ ;;=^358.31IA^4^2
  ;;^UTILITY(U,$J,358.3,12752,1,3,0)
- ;;=3^CASE MGMT EA 15 MIN
+ ;;=3^Disp Fx, pisiform, Lt wrist, Subsq
+ ;;^UTILITY(U,$J,358.3,12752,1,4,0)
+ ;;=4^S62.162D
+ ;;^UTILITY(U,$J,358.3,12752,2)
+ ;;=^5033432
  ;;^UTILITY(U,$J,358.3,12753,0)
- ;;=S9460^^56^621^4^^^^1
+ ;;=S62.161D^^50^551^21
  ;;^UTILITY(U,$J,358.3,12753,1,0)
- ;;=^358.31IA^3^2
- ;;^UTILITY(U,$J,358.3,12753,1,2,0)
- ;;=2^S9460
+ ;;=^358.31IA^4^2
  ;;^UTILITY(U,$J,358.3,12753,1,3,0)
- ;;=3^DM MGMT PROGRAM
+ ;;=3^Disp Fx, pisiform, Rt wrist, Subsq
+ ;;^UTILITY(U,$J,358.3,12753,1,4,0)
+ ;;=4^S62.161D
+ ;;^UTILITY(U,$J,358.3,12753,2)
+ ;;=^5033425
  ;;^UTILITY(U,$J,358.3,12754,0)
- ;;=93005^^56^622^1^^^^1
+ ;;=S62.032D^^50^551^22
  ;;^UTILITY(U,$J,358.3,12754,1,0)
- ;;=^358.31IA^3^2
- ;;^UTILITY(U,$J,358.3,12754,1,2,0)
- ;;=2^93005
+ ;;=^358.31IA^4^2
  ;;^UTILITY(U,$J,358.3,12754,1,3,0)
- ;;=3^EKG,TRACING ONLY
- ;;^UTILITY(U,$J,358.3,12755,0)
- ;;=S9445^^56^623^1^^^^1
- ;;^UTILITY(U,$J,358.3,12755,1,0)
- ;;=^358.31IA^3^2
- ;;^UTILITY(U,$J,358.3,12755,1,2,0)
- ;;=2^S9445
- ;;^UTILITY(U,$J,358.3,12755,1,3,0)
- ;;=3^PT EDUCATION NOC INDIV
- ;;^UTILITY(U,$J,358.3,12756,0)
- ;;=98960^^56^623^2^^^^1
- ;;^UTILITY(U,$J,358.3,12756,1,0)
- ;;=^358.31IA^3^2
- ;;^UTILITY(U,$J,358.3,12756,1,2,0)
- ;;=2^98960
- ;;^UTILITY(U,$J,358.3,12756,1,3,0)
- ;;=3^SELF-MGMT EDUC & TRNING 1 PT
- ;;^UTILITY(U,$J,358.3,12757,0)
- ;;=98961^^56^623^3^^^^1
- ;;^UTILITY(U,$J,358.3,12757,1,0)
- ;;=^358.31IA^3^2
- ;;^UTILITY(U,$J,358.3,12757,1,2,0)
- ;;=2^98961
- ;;^UTILITY(U,$J,358.3,12757,1,3,0)
- ;;=3^SELF-MGMT EDUC & TRNING 2-4 PTS
- ;;^UTILITY(U,$J,358.3,12758,0)
- ;;=98962^^56^623^4^^^^1
- ;;^UTILITY(U,$J,358.3,12758,1,0)
- ;;=^358.31IA^3^2
- ;;^UTILITY(U,$J,358.3,12758,1,2,0)
- ;;=2^98962
- ;;^UTILITY(U,$J,358.3,12758,1,3,0)
- ;;=3^SELF-MGMT EDUC & TRNING 5-8 PTS
- ;;^UTILITY(U,$J,358.3,12759,0)
- ;;=99453^^56^624^3^^^^1
- ;;^UTILITY(U,$J,358.3,12759,1,0)
- ;;=^358.31IA^3^2
- ;;^UTILITY(U,$J,358.3,12759,1,2,0)
- ;;=2^99453
- ;;^UTILITY(U,$J,358.3,12759,1,3,0)
- ;;=3^REMOTE MTR/SETUP/INTL/ED ON DEVICE
- ;;^UTILITY(U,$J,358.3,12760,0)
- ;;=99454^^56^624^2^^^^1
- ;;^UTILITY(U,$J,358.3,12760,1,0)
- ;;=^358.31IA^3^2
- ;;^UTILITY(U,$J,358.3,12760,1,2,0)
- ;;=2^99454
- ;;^UTILITY(U,$J,358.3,12760,1,3,0)
- ;;=3^REMOTE MTR/DAILY RECORD EA 30 DAYS
- ;;^UTILITY(U,$J,358.3,12761,0)
- ;;=99457^^56^624^1^^^^1
- ;;^UTILITY(U,$J,358.3,12761,1,0)
- ;;=^358.31IA^3^2
- ;;^UTILITY(U,$J,358.3,12761,1,2,0)
- ;;=2^99457
- ;;^UTILITY(U,$J,358.3,12761,1,3,0)
- ;;=3^REMOTE MTR/MNTHLY NOTE,20 MIN+
- ;;^UTILITY(U,$J,358.3,12762,0)
- ;;=G0299^^56^625^2^^^^1
- ;;^UTILITY(U,$J,358.3,12762,1,0)
- ;;=^358.31IA^3^2
- ;;^UTILITY(U,$J,358.3,12762,1,2,0)
- ;;=2^G0299
- ;;^UTILITY(U,$J,358.3,12762,1,3,0)
- ;;=3^HOME VISIT BY RN,EA 15 MIN
- ;;^UTILITY(U,$J,358.3,12763,0)
- ;;=G0300^^56^625^1^^^^1
- ;;^UTILITY(U,$J,358.3,12763,1,0)
- ;;=^358.31IA^3^2
- ;;^UTILITY(U,$J,358.3,12763,1,2,0)
- ;;=2^G0300
- ;;^UTILITY(U,$J,358.3,12763,1,3,0)
- ;;=3^HOME VISIT BY LPN,EA 15 MIN
- ;;^UTILITY(U,$J,358.3,12764,0)
- ;;=96160^^56^626^2^^^^1
- ;;^UTILITY(U,$J,358.3,12764,1,0)
- ;;=^358.31IA^3^2
- ;;^UTILITY(U,$J,358.3,12764,1,2,0)
- ;;=2^96160
- ;;^UTILITY(U,$J,358.3,12764,1,3,0)
- ;;=3^HLTH RISK ASSMNT,PT FOCUSED
- ;;^UTILITY(U,$J,358.3,12765,0)
- ;;=96161^^56^626^1^^^^1
- ;;^UTILITY(U,$J,358.3,12765,1,0)
- ;;=^358.31IA^3^2
- ;;^UTILITY(U,$J,358.3,12765,1,2,0)
- ;;=2^96161
- ;;^UTILITY(U,$J,358.3,12765,1,3,0)
- ;;=3^HLTH RISK ASSMNT,CAREGIVER
- ;;^UTILITY(U,$J,358.3,12766,0)
- ;;=D50.9^^57^627^11
- ;;^UTILITY(U,$J,358.3,12766,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,12766,1,3,0)
- ;;=3^Anemia, iron defiency, unspec
- ;;^UTILITY(U,$J,358.3,12766,1,4,0)
- ;;=4^D50.9
- ;;^UTILITY(U,$J,358.3,12766,2)
- ;;=^5002283
- ;;^UTILITY(U,$J,358.3,12767,0)
- ;;=D64.9^^57^627^12
- ;;^UTILITY(U,$J,358.3,12767,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,12767,1,3,0)
- ;;=3^Anemia, unspec
- ;;^UTILITY(U,$J,358.3,12767,1,4,0)
- ;;=4^D64.9
- ;;^UTILITY(U,$J,358.3,12767,2)
- ;;=^5002351
- ;;^UTILITY(U,$J,358.3,12768,0)
- ;;=G30.9^^57^627^10
- ;;^UTILITY(U,$J,358.3,12768,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,12768,1,3,0)
- ;;=3^Alzheimer's disease, unspec
- ;;^UTILITY(U,$J,358.3,12768,1,4,0)
- ;;=4^G30.9
- ;;^UTILITY(U,$J,358.3,12768,2)
- ;;=^5003808
- ;;^UTILITY(U,$J,358.3,12769,0)
- ;;=I20.9^^57^627^14
- ;;^UTILITY(U,$J,358.3,12769,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,12769,1,3,0)
- ;;=3^Angina pectoris, unspec
- ;;^UTILITY(U,$J,358.3,12769,1,4,0)
- ;;=4^I20.9
- ;;^UTILITY(U,$J,358.3,12769,2)
- ;;=^5007079
- ;;^UTILITY(U,$J,358.3,12770,0)
- ;;=I35.0^^57^627^15
- ;;^UTILITY(U,$J,358.3,12770,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,12770,1,3,0)
- ;;=3^Aortic (valve) stenosis, Nonrheumatic
- ;;^UTILITY(U,$J,358.3,12770,1,4,0)
- ;;=4^I35.0
- ;;^UTILITY(U,$J,358.3,12770,2)
- ;;=^5007174
- ;;^UTILITY(U,$J,358.3,12771,0)
- ;;=I48.91^^57^627^21
- ;;^UTILITY(U,$J,358.3,12771,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,12771,1,3,0)
- ;;=3^Atrial fibrillation, unspec
- ;;^UTILITY(U,$J,358.3,12771,1,4,0)
- ;;=4^I48.91
- ;;^UTILITY(U,$J,358.3,12771,2)
- ;;=^5007229
- ;;^UTILITY(U,$J,358.3,12772,0)
- ;;=I48.92^^57^627^22
- ;;^UTILITY(U,$J,358.3,12772,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,12772,1,3,0)
- ;;=3^Atrial flutter, unspec
- ;;^UTILITY(U,$J,358.3,12772,1,4,0)
- ;;=4^I48.92
- ;;^UTILITY(U,$J,358.3,12772,2)
- ;;=^5007230
- ;;^UTILITY(U,$J,358.3,12773,0)
- ;;=I71.4^^57^627^1
- ;;^UTILITY(U,$J,358.3,12773,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,12773,1,3,0)
- ;;=3^Abdominal aortic aneurysm, w/o rupture
- ;;^UTILITY(U,$J,358.3,12773,1,4,0)
- ;;=4^I71.4
- ;;^UTILITY(U,$J,358.3,12773,2)
- ;;=^5007789
- ;;^UTILITY(U,$J,358.3,12774,0)
- ;;=J30.9^^57^627^8
- ;;^UTILITY(U,$J,358.3,12774,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,12774,1,3,0)
- ;;=3^Allergic rhinitis, unspec
- ;;^UTILITY(U,$J,358.3,12774,1,4,0)
- ;;=4^J30.9
- ;;^UTILITY(U,$J,358.3,12774,2)
- ;;=^5008205
- ;;^UTILITY(U,$J,358.3,12775,0)
- ;;=J45.909^^57^627^17
- ;;^UTILITY(U,$J,358.3,12775,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,12775,1,3,0)
- ;;=3^Asthma, uncomplicated, unspec
- ;;^UTILITY(U,$J,358.3,12775,1,4,0)
- ;;=4^J45.909
- ;;^UTILITY(U,$J,358.3,12775,2)
- ;;=^5008256
- ;;^UTILITY(U,$J,358.3,12776,0)
- ;;=M12.9^^57^627^16
- ;;^UTILITY(U,$J,358.3,12776,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,12776,1,3,0)
- ;;=3^Arthropathy, unspec
- ;;^UTILITY(U,$J,358.3,12776,1,4,0)
- ;;=4^M12.9
- ;;^UTILITY(U,$J,358.3,12776,2)
- ;;=^5010666
- ;;^UTILITY(U,$J,358.3,12777,0)
- ;;=T78.40XA^^57^627^9
- ;;^UTILITY(U,$J,358.3,12777,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,12777,1,3,0)
- ;;=3^Allergy, unspec, init encntr
- ;;^UTILITY(U,$J,358.3,12777,1,4,0)
- ;;=4^T78.40XA
- ;;^UTILITY(U,$J,358.3,12777,2)
- ;;=^5054284
- ;;^UTILITY(U,$J,358.3,12778,0)
- ;;=R10.9^^57^627^2
- ;;^UTILITY(U,$J,358.3,12778,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,12778,1,3,0)
- ;;=3^Abdominal pain, unspec
+ ;;=3^Disp Fx, proximal 3rd, navic bone, Lt wrist, Subsq

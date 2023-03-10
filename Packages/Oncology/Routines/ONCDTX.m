@@ -1,5 +1,5 @@
-ONCDTX ;Hines OIFO/GWB - Delete treatment data ;06/23/10
- ;;2.2;ONCOLOGY;**1,5**;Jul 31, 2013;Build 6
+ONCDTX ;HINES OIFO/GWB - Delete treatment data ;06/23/10
+ ;;2.2;ONCOLOGY;**1,5,15**;Jul 31, 2013;Build 5
  ;
 DEL ;Delete all First Course of Treatment data
  I '$D(DATEDX) Q
@@ -59,7 +59,7 @@ SUR ;SURGERY OF PRIMARY (F) (165.5,58.6)
  W !!,"Deleting data from the following fields...",!
  W !,"  SURGERY OF PRIMARY (F)"
  W !,"  MOST DEFINITIVE SURG DATE"
- W !,"  APPROACH"
+ W !,"  RX HOSP--SURG APP 2010"
  W !,"  SURGICAL MARGINS"
  W !,"  DATE OF SURGICAL DISCHARGE"
  W !,"  READMISSION W/I 30 DAYS/SURG"

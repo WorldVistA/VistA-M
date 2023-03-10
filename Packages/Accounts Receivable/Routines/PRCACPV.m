@@ -1,10 +1,10 @@
-PRCACPV ;WASH-ISC@ALTOONA,PA/LDB- CHAMPVA FMS DOCUMENTS ;5/1/95  3:06 PM
-V ;;4.5;Accounts Receivable;**1,48,90,119,204,192,235,295,315,338,357,365**;Mar 20, 1995;Build 6
+PRCACPV ;WASH-ISC@ALTOONA,PA/LDB - CHAMPVA FMS DOCUMENTS ;5/1/95  3:06 PM
+V ;;4.5;Accounts Receivable;**1,48,90,119,204,192,235,295,315,338,357,365,392**;Mar 20, 1995;Build 10
  ;;Per VA Directive 6402, this routine should not be modified.
  ;
  ;Add CAT=47:"INELIGIBLE REIMB. ins. code for PRCA*4.5*315
 EN(BILL,ERR) ;Send CHAMPVA SUBSISTENCE bill to FMS
- N ADD,ADDR,AMT,BILL0,BNUM,CAT,DA,DIE,DOC,DR,ERROR,ENT,FY,GECSFMS,I,P,PAT,SITE,TXT,VA,VAERR,VADM,X,XMDUZ,XMTEXT,XMY,XMSUB,Y
+ N ADD,ADDR,AMT,BILL0,BNUM,CAT,DA,DIE,DOC,DR,ERROR,ENT,FY,GECSFMS,I,P,PAT,SITE,TXT,VA,VAERR,VADM,X,XMDUZ,XMTEXT,XMY,XMSUB,Y,TMPAMT,DESC
  S ERR=-1
  I '$G(BILL) S ERR="NO BILL NUMBER TO PROCESS" D ERR Q
  S BILL0=$G(^PRCA(430,+BILL,0)) I BILL0']"" S ERR="BILL INFO CORRUPTED FOR BILL '"_BILL D ERR Q
@@ -13,7 +13,7 @@ EN(BILL,ERR) ;Send CHAMPVA SUBSISTENCE bill to FMS
  I "^27^28^30^31^32^47^80^"'[("^"_$P(BILL0,"^",2)_"^")  Q
  S SITE=$P($P(BILL0,"^"),"-") I SITE']"" S ERR="BILL NUMBER CORRUPTED" D ERR Q
  S BNUM=$P(BILL0,"^")
- S AMT=$J($P(BILL0,"^",3),0,2)
+ S TMPAMT=$$CHKTCARE(+BILL),AMT=$J($S(+TMPAMT:$P(TMPAMT,U,2),1:$P(BILL0,U,3)),0,2)  ; PRCA*4.5*392
  S CAT=$P(BILL0,"^",2)
  I "^27^31^"[("^"_CAT_"^") S PAT=$P($G(^PRCA(430,+BILL,0)),"^",9),PAT=$P($G(^RCD(340,+PAT,0)),"^"),PAT=$$NAM^RCFN01(PAT),PAT=$P(PAT,",",2)_" "_$P(PAT,",")
  S FY=$$FY^RCFN01(DT)
@@ -59,3 +59,20 @@ ERR ;Add ineligible reimb ins *315
  .S XMSUB=$S(CAT=31:"TRICARE PATIENT",CAT=30:"TRICARE",CAT=32:"TRICARE Third Party",CAT=47:"INELIGIBLE REIMB. INS. PATIENT",CAT=80:"TRICARE PHARMACY",1:"CHAMPVA")_" FMS DOC error",XMDUZ="ACCOUNTS RECEIVABLE PACKAGE"
  .D ^XMD
  Q
+ ;
+CHKTCARE(BILL) ; check if this is a Tricare Patient charge with orig. balance = 0 and only single "increase adjustment" transaction present  PRCA*4.5*392
+ ;
+ ; BILL - file 430 ien
+ ;
+ ; returns "1 ^ increase adjustment amount" if check resolves to True, 0 otherwise
+ ;
+ N CAT,N0,TN1,TRAN,TRTYPE
+ I BILL'>0 Q 0 ; invalid file 430 ien
+ S N0=$G(^PRCA(430,BILL,0)) I N0="" Q 0
+ I +$P(N0,U,3)'=0 Q 0  ; orig amount is not 0
+ I $$GET1^DIQ(430.2,$P(N0,U,2)_",",.01)'="TRICARE PATIENT" Q 0  ; not a Tricare Patient charge
+ S TRAN=+$O(^PRCA(433,"C",BILL,"")) I TRAN'>0 Q 0  ; can't find the first transaction
+ S TN1=$G(^PRCA(433,TRAN,1))  ; file 433 entry, node 1
+ I $$GET1^DIQ(430.3,$P(TN1,U,2)_",",.01)'="INCREASE ADJUSTMENT" Q 0  ; 1st transaction is not "increase adjustment"
+ I +$O(^PRCA(433,"C",BILL,TRAN))>0 Q 0  ; more than one transaction present
+ Q "1^"_+$P(TN1,U,5)

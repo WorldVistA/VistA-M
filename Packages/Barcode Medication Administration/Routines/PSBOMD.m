@@ -1,5 +1,5 @@
-PSBOMD ;BIRMINGHAM/EFC-MISSING DOSE REPORT ;12/7/12 12:41pm
- ;;3.0;BAR CODE MED ADMIN;**70**;Mar 2004;Build 101
+PSBOMD ;BIRMINGHAM/EFC-MISSING DOSE REPORT ;8/30/21  07:48
+ ;;3.0;BAR CODE MED ADMIN;**70,106,131**;Mar 2004;Build 11
  ;
  ; Reference/IA
  ; WARD^NURSUT5/3052
@@ -8,10 +8,12 @@ PSBOMD ;BIRMINGHAM/EFC-MISSING DOSE REPORT ;12/7/12 12:41pm
  ; $$GET1^DIQ(52.7/437
  ;
  ;*70 - Allow a Clinc Order only version of this report.
+ ;*106- add Hazardous Handle & Dispose flags
+ ;*131- Renamed variables when looping through ^PSB(53.68 to remove potential looping error
  ;
 EN ; Begin printing
  N PSBSCHD,PSBWRD,PSBSTRT,PSBSTOP,PSBWARD,PSBDRUG,PSBDT,PSBIEN,PSBWRDA
- N CLNMODE                                                        ;*70
+ N CLNMODE,PSBHZDG,PSBHAZ,ADDIEN,ASUB,SSUB                        ;*70,106,131
  K ^TMP("PSB",$J)
  S CLNMODE=$S($P(PSBRPT(.1),U)="C":1,1:0)      ;clinic mode T/F    *70
  ;Ward mode                                                        *70
@@ -36,12 +38,17 @@ EN ; Begin printing
  ..I 'CLNMODE S PSBWARD=$$GET1^DIQ(53.68,PSBIEN_",",.12) Q:PSBWARD=""
  ..I 'CLNMODE,PSBWRD,'$D(PSBWRD(+$P($G(^PSB(53.68,PSBIEN,.1)),U,2))) Q
  ..;end check                                                     *70
- ..S PSBDRUG=$$GET1^DIQ(53.68,PSBIEN_",",.13) I PSBDRUG="" D
- ...S PSBDRUG="NO DATA"
- ...I $D(^PSB(53.68,PSBIEN,.6)) S X=0 F  S X=$O(^PSB(53.68,+PSBIEN,.6,X)) Q:'X  S PSBDRUG=$$GET1^DIQ(52.6,+^PSB(53.68,PSBIEN,.6,X,0),.01)
- ...I $D(^PSB(53.68,PSBIEN,.7)) S X=0 F  S X=$O(^PSB(53.68,+PSBIEN,.7,X)) Q:'X  S PSBDRUG=PSBDRUG_"  "_$$GET1^DIQ(52.7,+^PSB(53.68,+PSBIEN,.7,X,0),.01)
  ..S PSBSCHD=$$GET1^DIQ(53.68,PSBIEN_",",.19) S:PSBSCHD="" PSBSCHD="NO DATA"
- ..S ^TMP("PSB",$J,PSBWARD,PSBDRUG,PSBSCHD)=$G(^TMP("PSB",$J,PSBWARD,PSBDRUG,PSBSCHD))+1
+ ..S PSBDRUG=$$GET1^DIQ(53.68,PSBIEN_",",.13)
+ ..I PSBDRUG'="" S PSBHZDG=$$GET1^DIQ(53.68,PSBIEN_",",.13,"I") D CHKHAZ
+ ..I PSBDRUG="" D
+ ...S PSBDRUG="NO DATA"
+ ...I $D(^PSB(53.68,PSBIEN,.6)) S ASUB=0 F  S ASUB=$O(^PSB(53.68,+PSBIEN,.6,ASUB)) Q:'ASUB  D
+ ....S PSBDRUG=$$GET1^DIQ(52.6,+^PSB(53.68,PSBIEN,.6,ASUB,0),.01)
+ ....S ADDIEN=+^PSB(53.68,PSBIEN,.6,ASUB,0)
+ ....S PSBHZDG=$P(^PS(52.6,ADDIEN,0),U,2)
+ ....I $D(^PSB(53.68,PSBIEN,.7)) S SSUB=0 F  S SSUB=$O(^PSB(53.68,+PSBIEN,.7,SSUB)) Q:'SSUB  S PSBDRUG=PSBDRUG_"  "_$$GET1^DIQ(52.7,+^PSB(53.68,+PSBIEN,.7,SSUB,0),.01)
+ ....D CHKHAZ
  ..S ^TMP("PSB",$J,PSBWARD)=+$G(^TMP("PSB",$J,PSBWARD))+1
  ..S ^TMP("PSB",$J)=+$G(^TMP("PSB",$J))+1
  W $$HDR()
@@ -51,16 +58,21 @@ EN ; Begin printing
  F  S PSBWARD=$O(^TMP("PSB",$J,PSBWARD)) Q:PSBWARD=""  D
  .W:$Y>(IOSL-10) $$HDR()
  .W !,PSBWARD
- .S (PSBDRUG,PSBSCHD)=""
+ .S (PSBDRUG,PSBSCHD,PSBHAZ)=""
  .F  S PSBDRUG=$O(^TMP("PSB",$J,PSBWARD,PSBDRUG)) Q:PSBDRUG=""  D
  ..F  S PSBSCHD=$O(^TMP("PSB",$J,PSBWARD,PSBDRUG,PSBSCHD)) Q:PSBSCHD=""  D
- ...W:$Y>(IOSL-10) $$HDR()
- ...W ?32,PSBDRUG,?74,$J(+^TMP("PSB",$J,PSBWARD,PSBDRUG,PSBSCHD),8),!,?35,"Schedule: "_PSBSCHD,!
+ ...F  S PSBHAZ=$O(^TMP("PSB",$J,PSBWARD,PSBDRUG,PSBSCHD,PSBHAZ)) Q:PSBHAZ=""  D
+ ....W:$Y>(IOSL-10) $$HDR()
+ ....W ?32,PSBDRUG,?74,$J(+^TMP("PSB",$J,PSBWARD,PSBDRUG,PSBSCHD,PSBHAZ),7)
+ ....I ($P(PSBHAZ,"^")=1)!($P(PSBHAZ,"^",2)=1) W !
+ ....I $P(PSBHAZ,"^")=1 W ?32,"<<HAZ Handle>> "
+ ....I $P(PSBHAZ,"^",2)=1 W ?32,"<<HAZ Dispose>>"
+ ....W !,?35,"Schedule: "_PSBSCHD,!
  .W ?74,"--------"
- .W !,?31,PSBWARD," Total: ",?74,$J(^TMP("PSB",$J,PSBWARD),8),!
+ .W !,?31,PSBWARD," Total: ",?74,$J(^TMP("PSB",$J,PSBWARD),7),!
  W ?74,"========"
  W !,?31,"Report Total: "
- W ?74,$J(+$G(^TMP("PSB",$J)),8)
+ W ?73,$J(+$G(^TMP("PSB",$J)),8)
  K ^TMP("PSB",$J)
  Q
  ;
@@ -88,3 +100,7 @@ POST ;
  S PSBDDSW=$P(VAIP(5),U,2)
  S PSBDDSR=$P(VAIP(6),U,2)
  Q 
+CHKHAZ ;
+ S PSBHAZ=$$HAZ^PSSUTIL(PSBHZDG)
+ S ^TMP("PSB",$J,PSBWARD,PSBDRUG,PSBSCHD,PSBHAZ)=$G(^TMP("PSB",$J,PSBWARD,PSBDRUG,PSBSCHD,PSBHAZ))+1
+ Q

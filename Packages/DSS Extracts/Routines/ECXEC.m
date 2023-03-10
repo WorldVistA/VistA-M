@@ -1,5 +1,9 @@
-ECXEC ;ALB/JAP,BIR/JLP,PTD-DSS Event Capture Extract  ;5/31/19  11:28
- ;;3.0;DSS EXTRACTS;**11,8,13,24,27,33,39,46,49,71,89,92,105,120,127,132,136,144,149,154,161,166,170,173,174**;Dec 22, 1997;Build 33
+ECXEC ;ALB/JAP,BIR/JLP,PTD-DSS Event Capture Extract ;5/31/19  11:28
+ ;;3.0;DSS EXTRACTS;**11,8,13,24,27,33,39,46,49,71,89,92,105,120,127,132,136,144,149,154,161,166,170,173,174,181,184**;Dec 22, 1997;Build 124
+ ;
+ ; Reference to DEM^VADPT in ICR #10061
+ ; Reference to ^TMP($J) in SACC 2.3.2.5.1
+ ;
 BEG ;entry point from option
  I '$D(^ECH) W !,"Event Capture is not initialized",!! Q
  D SETUP I ECFILE="" Q
@@ -11,6 +15,7 @@ START ;begin EC extract
  S EFY=$$FISCAL^ECXUTL1(ECED) ;170 Determine extract fiscal year based on ending date of extract
  S ECED=ECED+.3,ECLL=0
  K ^TMP("EC",$J)
+ K ^TMP($J,"ECXECM") ;181
  F  S ECLL=$O(^ECH("AC1",ECLL)),ECD=ECSD-.1 Q:'ECLL  D
  .F  S ECD=$O(^ECH("AC1",ECLL,ECD)),ECDA=0 Q:(ECD>ECED)!('ECD)  D
  ..F  S ECDA=$O(^ECH("AC1",ECLL,ECD,ECDA)) Q:'ECDA  D UPDATE
@@ -22,12 +27,14 @@ START ;begin EC extract
  .I $$FISCAL^ECXUTL1($P($G(^ECH(ECDA,0)),U,3))<EFY S ^XTMP("ECEFPAT",ECDA)=3 Q  ;170 If the fiscal year associated with the procedure date is from a previous fiscal year, skip and set for deletion
  .D UPDATE ;process record
  D CLEAN ;166 extract completed, clear out ^XTMP records
+ I $D(^TMP($J,"ECXECM")) D EN^ECXEC1 ;181 - Send messages for records with NO DSS Units
  Q
  ;
 UPDATE ;sets record and updates counters
  N ECXESC,ECXECL,ECXCLST,ECXRES1,ECXRES2,ECXRES3,ECPNM,ECDSSE,ROOT ;149,154
  N ECXTEMPW,ECXTEMPD,ECXSTANO,ECXASIH,ECXSVH  ;166,170,174
- S (ECXESC,ECXECL,ECXCLST,ECXRES1,ECXRES2,ECXRES3)="" ;144
+ N ECXCERN,ECXNMPI,ECXSIGI ;184
+ S (ECXESC,ECXECL,ECXCLST,ECXRES1,ECXRES2,ECXRES3,ECXCERN)="" ;144;184 - Added ECXCERN
  S ECCH=^ECH(ECDA,0),ECL=$P(ECCH,U,4),ECXDFN=$P(ECCH,U,2)
  S ECXPDIV=$$RADDIV^ECXDEPT(ECL)  ;Get production division from file 4
  S ECDT=$P(ECCH,U,3),ECM=$P(ECCH,U,6),ECC=$P(ECCH,U,8)
@@ -35,12 +42,15 @@ UPDATE ;sets record and updates counters
  I $P(ECP,";",2)[725 S ECPNM=$$GET1^DIQ(725,+ECP,1) ;154 Get procedure name
  Q:'$$PATDEM^ECXUTL2(ECXDFN,ECDT,"1;3;5;")
  Q:ECP']""
+ D:ECP[";"  ;181 - Moved these lines from below to be in front of calling SETTMP
+ .S ECP=$S(ECP["ICPT":$P(^ICPT(+ECP,0),U)_"01",ECP<90000:$P(^EC(725,+ECP,0),U,2)_"N",1:$P(^EC(725,+ECP,0),U,2)_"L"),ECC=$S(ECC:ECC,1:"")
  S ECXSTANO=ECXPDIV               ;166 tjl - Set default Patient Division
  I ECXA="I",$D(^DGPM(ECXMN,0)) D  ;166 tjl - Set Patient Division for inpatients based on Patient Movement record
  . S ECXTEMPW=$P($G(^DGPM(ECXMN,0)),U,6)
  . S ECXTEMPD=$P($G(^DIC(42,+ECXTEMPW,0)),U,11)
  . S ECXSTANO=$$GETDIV^ECXDEPT(ECXTEMPD)
  S ECO=$P(ECCH,U,12),ECV=$P(ECCH,U,10),ECDU=$P(ECCH,U,7)
+ I ECDU="" D SETTMP Q  ;181 - if DSS Unit is missing set global for mail message
  S ECXUNIT=$G(^ECD(ECDU,0)),ECCS=+$P(ECXUNIT,U,4),ECDCM=$P(ECXUNIT,U,5)
  S ECXDSSP="",ECXDSSD=$E(ECDCM,1,10),ECUSTOP=$P(ECXUNIT,U,10),ECUPCE=$P(ECXUNIT,U,14)
  S ICD9=$P($G(^ECH(ECDA,"P")),U,2) ;154
@@ -108,8 +118,8 @@ UPDATE ;sets record and updates counters
  S:+ECXUSRTN'>0 ECXUSRTN="" S ECU7NPI=$P(ECXUSRTN,U)
  ;change for version 2 where ECP is a variable pointer and we want to
  ;expand it category = category or null if stored as 0
- D:ECP[";"
- .S ECP=$S(ECP["ICPT":$P(^ICPT(+ECP,0),U)_"01",ECP<90000:$P(^EC(725,+ECP,0),U,2)_"N",1:$P(^EC(725,+ECP,0),U,2)_"L"),ECC=$S(ECC:ECC,1:"")
+ ;D:ECP[";"  ;181 - Moved to begin of UPDATE
+ ;.S ECP=$S(ECP["ICPT":$P(^ICPT(+ECP,0),U)_"01",ECP<90000:$P(^EC(725,+ECP,0),U,2)_"N",1:$P(^EC(725,+ECP,0),U,2)_"L"),ECC=$S(ECC:ECC,1:"")
  ;pick up EC to PCE data from "P" in File 721
  S ECPCE=$G(^ECH(ECDA,"P")),ECPCE1=$P(ECPCE,U),ECPCE2=$P(ECPCE,U,2)
  S ECPCE7=$S($P(ECPCE,U,7)=1:"Y",1:"N")
@@ -209,7 +219,7 @@ FILE ;file record in #727.815
  ;National 4CHAR code ECX4CHAR^NULL^Camp Lejeune Status ECXCLST^Encounter Camp Lejeune ECXECL
  ;Reason #1 (ECXRES1) ^ Reason #2 (ECXRES2) ^ Reason #3 (ECXRES3) ^ Combat Service Indicator (ECXSVCI) ^ Combat Service Location (ECXSVCL)
  ;Clinic IEN (ECAC) 154
- ;^ Patient Division (ECXSTANO) 166^State Home Name (ECXSVH) 174
+ ;^ Patient Division (ECXSTANO) 166^State Home Name (ECXSVH) 174^PlaceHold CERNER (ECXCERN)^New MPI (ECXNMPI)^Self Identified Gender (ECXSIGI) ; 184
  ;
  ;convert specialty to PTF Code for transmission
  N ECXDATA
@@ -221,6 +231,7 @@ FILE ;file record in #727.815
  I ECXLOGIC>2018 D  ;170 Changes related to FY19
  .S (ECXETH,ECXRC1)="" ;170 Ethnicity and Race 1 fields will now be null
  .S (ECPTTM,ECPTPR,ECCLAS,ECASPR,ECCLAS2,ECASNPI,ECPTNPI)="" ;170 PCMM-related fields will be null
+ I ECXLOGIC>2022 S ECXNMPI=ECXMPI,ECXMPI="" ;184 Field retired: MPI, Added New field:NMPI
  S ECODE=EC7_U_EC23_U_ECL_U_ECXDFN_U_ECXSSN_U_ECXPNM_U_ECXA_U
  S ECODE=ECODE_$$ECXDATE^ECXUTL(ECDT,ECXYM)_U_ECDU_U_ECC_U
  S ECODE=ECODE_ECP_U_ECV_U_ECCS_U_ECO_U_ECM_U_ECU1A_U_ECXPPC1_U
@@ -250,6 +261,7 @@ FILE ;file record in #727.815
  I ECXLOGIC>2015 S ECODE3=ECODE3_U_ECAC ;154 MOVED CLINIC IEN
  I ECXLOGIC>2017 S ECODE3=ECODE3_U_ECXSTANO  ;166
  I ECXLOGIC>2019 S ECODE3=ECODE3_U_ECXSVH ;174
+ I ECXLOGIC>2022 S ECODE3=ECODE3_U_ECXCERN_U_ECXNMPI_U_ECXSIGI ;184
  S ^ECX(ECFILE,EC7,0)=ECODE,^ECX(ECFILE,EC7,1)=ECODE1,^ECX(ECFILE,EC7,2)=$G(ECODE2),^ECX(ECFILE,EC7,3)=$G(ECODE3),ECRN=ECRN+1 ;144
  S DA=EC7,DIK="^ECX("_ECFILE_"," D IX1^DIK K DIK,DA
  I $D(ZTQUEUED),$$S^%ZTLOAD
@@ -276,4 +288,15 @@ CLEAN ;166 Section added to clean out table when extract finishes
  N RECNO
  S RECNO=0 F  S RECNO=$O(^XTMP("ECEFPAT",RECNO)) Q:'+RECNO  D
  .I $G(^XTMP("ECEFPAT",RECNO))'="" K ^XTMP("ECEFPAT",RECNO) ;If record was counted, delete entry from table
+ Q
+ ;
+SETTMP ;181 - Set global TMP for Mail Message
+ N ECXNODSS,PNAME,SSN,DFN,ECDTEX,VADM
+ S DFN=ECXDFN D DEM^VADPT ; ICR #10061
+ S ECDTEX=$$ECXDATE^ECXUTL(ECDT,ECXYM)
+ S ECDTEX=$E(ECDTEX,5,6)_"/"_$E(ECDTEX,7,8)_"/"_$E(ECDTEX,1,4)
+ I '$D(^TMP($J,"ECXECM","NODSS")) S ^TMP($J,"ECXECM","NODSS")=0
+ S ECXNODSS=^TMP($J,"ECXECM","NODSS")+1
+ S ^TMP($J,"ECXECM","NODSS",ECXNODSS,0)=$J($E(VADM(1),1,25),25)_" ("_$P(VADM(2),U,2)_") "_$J($G(ECP),12)_" "_$J(ECDTEX,12)_" "_$$ECXTIMEX^ECXUTL(ECTM)
+ S ^TMP($J,"ECXECM","NODSS")=ECXNODSS
  Q

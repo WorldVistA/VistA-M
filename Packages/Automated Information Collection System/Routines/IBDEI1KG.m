@@ -1,126 +1,128 @@
-IBDEI1KG ; ; 04-FEB-2020
- ;;3.0;IB ENCOUNTER FORM IMP/EXP;;FEB 04, 2020
+IBDEI1KG ; ; 01-FEB-2022
+ ;;3.0;IB ENCOUNTER FORM IMP/EXP;;FEB 01, 2022
  Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,999) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
- ;;^UTILITY(U,$J,358.3,25031,1,4,0)
- ;;=4^Z94.84
- ;;^UTILITY(U,$J,358.3,25031,2)
- ;;=^5063665
- ;;^UTILITY(U,$J,358.3,25032,0)
- ;;=Z96.21^^107^1212^6
- ;;^UTILITY(U,$J,358.3,25032,1,0)
+ ;;^UTILITY(U,$J,358.3,25395,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,25032,1,3,0)
- ;;=3^Cochlear Implant Status
- ;;^UTILITY(U,$J,358.3,25032,1,4,0)
- ;;=4^Z96.21
- ;;^UTILITY(U,$J,358.3,25032,2)
- ;;=^5063684
- ;;^UTILITY(U,$J,358.3,25033,0)
- ;;=Z96.41^^107^1212^132
- ;;^UTILITY(U,$J,358.3,25033,1,0)
+ ;;^UTILITY(U,$J,358.3,25395,1,3,0)
+ ;;=3^MDD,Recurrent Episode,Severe
+ ;;^UTILITY(U,$J,358.3,25395,1,4,0)
+ ;;=4^F33.2
+ ;;^UTILITY(U,$J,358.3,25395,2)
+ ;;=^5003531
+ ;;^UTILITY(U,$J,358.3,25396,0)
+ ;;=F33.3^^92^1151^7
+ ;;^UTILITY(U,$J,358.3,25396,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,25033,1,3,0)
- ;;=3^Presence of Insulin Pump
- ;;^UTILITY(U,$J,358.3,25033,1,4,0)
- ;;=4^Z96.41
- ;;^UTILITY(U,$J,358.3,25033,2)
- ;;=^5063688
- ;;^UTILITY(U,$J,358.3,25034,0)
- ;;=Z96.641^^107^1212^140
- ;;^UTILITY(U,$J,358.3,25034,1,0)
+ ;;^UTILITY(U,$J,358.3,25396,1,3,0)
+ ;;=3^MDD,Recurrent Episode w/ Psychotic Feat
+ ;;^UTILITY(U,$J,358.3,25396,1,4,0)
+ ;;=4^F33.3
+ ;;^UTILITY(U,$J,358.3,25396,2)
+ ;;=^5003532
+ ;;^UTILITY(U,$J,358.3,25397,0)
+ ;;=F33.41^^92^1151^9
+ ;;^UTILITY(U,$J,358.3,25397,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,25034,1,3,0)
- ;;=3^Presence of Right Artificial Hip Jt
- ;;^UTILITY(U,$J,358.3,25034,1,4,0)
- ;;=4^Z96.641
- ;;^UTILITY(U,$J,358.3,25034,2)
- ;;=^5063701
- ;;^UTILITY(U,$J,358.3,25035,0)
- ;;=Z96.642^^107^1212^135
- ;;^UTILITY(U,$J,358.3,25035,1,0)
+ ;;^UTILITY(U,$J,358.3,25397,1,3,0)
+ ;;=3^MDD,Recurrent Episode,In Partial Remission
+ ;;^UTILITY(U,$J,358.3,25397,1,4,0)
+ ;;=4^F33.41
+ ;;^UTILITY(U,$J,358.3,25397,2)
+ ;;=^5003534
+ ;;^UTILITY(U,$J,358.3,25398,0)
+ ;;=F33.42^^92^1151^8
+ ;;^UTILITY(U,$J,358.3,25398,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,25035,1,3,0)
- ;;=3^Presence of Left Artificial Hip Jt
- ;;^UTILITY(U,$J,358.3,25035,1,4,0)
- ;;=4^Z96.642
- ;;^UTILITY(U,$J,358.3,25035,2)
- ;;=^5063702
- ;;^UTILITY(U,$J,358.3,25036,0)
- ;;=Z96.643^^107^1212^119
- ;;^UTILITY(U,$J,358.3,25036,1,0)
+ ;;^UTILITY(U,$J,358.3,25398,1,3,0)
+ ;;=3^MDD,Recurrent Episode,In Full Remission
+ ;;^UTILITY(U,$J,358.3,25398,1,4,0)
+ ;;=4^F33.42
+ ;;^UTILITY(U,$J,358.3,25398,2)
+ ;;=^5003535
+ ;;^UTILITY(U,$J,358.3,25399,0)
+ ;;=F34.1^^92^1151^20
+ ;;^UTILITY(U,$J,358.3,25399,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,25036,1,3,0)
- ;;=3^Presence of Artificial Hip Jt,Bilateral
- ;;^UTILITY(U,$J,358.3,25036,1,4,0)
- ;;=4^Z96.643
- ;;^UTILITY(U,$J,358.3,25036,2)
- ;;=^5063703
- ;;^UTILITY(U,$J,358.3,25037,0)
- ;;=Z96.651^^107^1212^141
- ;;^UTILITY(U,$J,358.3,25037,1,0)
+ ;;^UTILITY(U,$J,358.3,25399,1,3,0)
+ ;;=3^Persistent Depressive Disorder (Dysthmia)
+ ;;^UTILITY(U,$J,358.3,25399,1,4,0)
+ ;;=4^F34.1
+ ;;^UTILITY(U,$J,358.3,25399,2)
+ ;;=^331913
+ ;;^UTILITY(U,$J,358.3,25400,0)
+ ;;=F06.34^^92^1151^3
+ ;;^UTILITY(U,$J,358.3,25400,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,25037,1,3,0)
- ;;=3^Presence of Right Artificial Knee Jt
- ;;^UTILITY(U,$J,358.3,25037,1,4,0)
- ;;=4^Z96.651
- ;;^UTILITY(U,$J,358.3,25037,2)
- ;;=^5063705
- ;;^UTILITY(U,$J,358.3,25038,0)
- ;;=Z96.652^^107^1212^136
- ;;^UTILITY(U,$J,358.3,25038,1,0)
+ ;;^UTILITY(U,$J,358.3,25400,1,3,0)
+ ;;=3^Depress D/O d/t Anth Med Cond w/ Mixed Feat
+ ;;^UTILITY(U,$J,358.3,25400,1,4,0)
+ ;;=4^F06.34
+ ;;^UTILITY(U,$J,358.3,25400,2)
+ ;;=^5003060
+ ;;^UTILITY(U,$J,358.3,25401,0)
+ ;;=F32.9^^92^1151^5
+ ;;^UTILITY(U,$J,358.3,25401,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,25038,1,3,0)
- ;;=3^Presence of Left Artificial Knee Jt
- ;;^UTILITY(U,$J,358.3,25038,1,4,0)
- ;;=4^Z96.652
- ;;^UTILITY(U,$J,358.3,25038,2)
- ;;=^5063706
- ;;^UTILITY(U,$J,358.3,25039,0)
- ;;=Z96.653^^107^1212^120
- ;;^UTILITY(U,$J,358.3,25039,1,0)
+ ;;^UTILITY(U,$J,358.3,25401,1,3,0)
+ ;;=3^Depressive D/O,Unsp
+ ;;^UTILITY(U,$J,358.3,25401,1,4,0)
+ ;;=4^F32.9
+ ;;^UTILITY(U,$J,358.3,25401,2)
+ ;;=^5003528
+ ;;^UTILITY(U,$J,358.3,25402,0)
+ ;;=F32.89^^92^1151^4
+ ;;^UTILITY(U,$J,358.3,25402,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,25039,1,3,0)
- ;;=3^Presence of Artificial Knee Jt,Bilateral
- ;;^UTILITY(U,$J,358.3,25039,1,4,0)
- ;;=4^Z96.653
- ;;^UTILITY(U,$J,358.3,25039,2)
- ;;=^5063707
- ;;^UTILITY(U,$J,358.3,25040,0)
- ;;=Z96.7^^107^1212^125
- ;;^UTILITY(U,$J,358.3,25040,1,0)
+ ;;^UTILITY(U,$J,358.3,25402,1,3,0)
+ ;;=3^Depressive D/O,Other Specified
+ ;;^UTILITY(U,$J,358.3,25402,1,4,0)
+ ;;=4^F32.89
+ ;;^UTILITY(U,$J,358.3,25402,2)
+ ;;=^5138442
+ ;;^UTILITY(U,$J,358.3,25403,0)
+ ;;=F34.81^^92^1151^6
+ ;;^UTILITY(U,$J,358.3,25403,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,25040,1,3,0)
- ;;=3^Presence of Bone/Tendon Implants NEC
- ;;^UTILITY(U,$J,358.3,25040,1,4,0)
- ;;=4^Z96.7
- ;;^UTILITY(U,$J,358.3,25040,2)
- ;;=^5063716
- ;;^UTILITY(U,$J,358.3,25041,0)
- ;;=Z97.11^^107^1212^139
- ;;^UTILITY(U,$J,358.3,25041,1,0)
+ ;;^UTILITY(U,$J,358.3,25403,1,3,0)
+ ;;=3^Disruptive Mood Dysregulation Disorder
+ ;;^UTILITY(U,$J,358.3,25403,1,4,0)
+ ;;=4^F34.81
+ ;;^UTILITY(U,$J,358.3,25403,2)
+ ;;=^8313905
+ ;;^UTILITY(U,$J,358.3,25404,0)
+ ;;=F32.81^^92^1151^21
+ ;;^UTILITY(U,$J,358.3,25404,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,25041,1,3,0)
- ;;=3^Presence of Right Artificial Arm
- ;;^UTILITY(U,$J,358.3,25041,1,4,0)
- ;;=4^Z97.11
- ;;^UTILITY(U,$J,358.3,25041,2)
- ;;=^5063722
- ;;^UTILITY(U,$J,358.3,25042,0)
- ;;=Z97.12^^107^1212^134
- ;;^UTILITY(U,$J,358.3,25042,1,0)
+ ;;^UTILITY(U,$J,358.3,25404,1,3,0)
+ ;;=3^Premenstrual Dysphoric Disorder
+ ;;^UTILITY(U,$J,358.3,25404,1,4,0)
+ ;;=4^F32.81
+ ;;^UTILITY(U,$J,358.3,25404,2)
+ ;;=^7000885
+ ;;^UTILITY(U,$J,358.3,25405,0)
+ ;;=F44.81^^92^1152^6
+ ;;^UTILITY(U,$J,358.3,25405,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,25042,1,3,0)
- ;;=3^Presence of Left Artificial Arm
- ;;^UTILITY(U,$J,358.3,25042,1,4,0)
- ;;=4^Z97.12
- ;;^UTILITY(U,$J,358.3,25042,2)
- ;;=^5063723
- ;;^UTILITY(U,$J,358.3,25043,0)
- ;;=Z97.13^^107^1212^142
- ;;^UTILITY(U,$J,358.3,25043,1,0)
+ ;;^UTILITY(U,$J,358.3,25405,1,3,0)
+ ;;=3^Dissociative Identity D/O
+ ;;^UTILITY(U,$J,358.3,25405,1,4,0)
+ ;;=4^F44.81
+ ;;^UTILITY(U,$J,358.3,25405,2)
+ ;;=^331909
+ ;;^UTILITY(U,$J,358.3,25406,0)
+ ;;=F44.9^^92^1152^5
+ ;;^UTILITY(U,$J,358.3,25406,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,25043,1,3,0)
- ;;=3^Presence of Right Artificial Leg
- ;;^UTILITY(U,$J,358.3,25043,1,4,0)
- ;;=4^Z97.13
+ ;;^UTILITY(U,$J,358.3,25406,1,3,0)
+ ;;=3^Dissociative D/O,Unspec
+ ;;^UTILITY(U,$J,358.3,25406,1,4,0)
+ ;;=4^F44.9
+ ;;^UTILITY(U,$J,358.3,25406,2)
+ ;;=^5003584
+ ;;^UTILITY(U,$J,358.3,25407,0)
+ ;;=F44.0^^92^1152^2
+ ;;^UTILITY(U,$J,358.3,25407,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,25407,1,3,0)
+ ;;=3^Dissociative Amnesia

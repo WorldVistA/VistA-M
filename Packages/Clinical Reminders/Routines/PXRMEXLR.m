@@ -1,5 +1,5 @@
-PXRMEXLR ; SLC/PKR/PJH - List Manager routines for Exchange file actions. ;01/24/2013
- ;;2.0;CLINICAL REMINDERS;**6,17,26**;Feb 04, 2005;Build 404
+PXRMEXLR ; SLC/PKR/PJH - List Manager routines for Exchange file actions. ;08/16/2018
+ ;;2.0;CLINICAL REMINDERS;**6,17,26,42**;Feb 04, 2005;Build 245
  ;==================================================
 CHF ;Create a host file containing repository entries.
  N IND,FILE,LIST,LENH2,NL,PATH,SUCCESS,TEMP
@@ -39,7 +39,7 @@ CMM ;Create a MailMan message containing packed reminders.
  S LEN=$L(LIST)
  S TEMP=$E(LIST,1,(LEN-1))
  I $D(SUCCESS("XMZ")) S VALMHDR(1)="Successfully stored entries "_TEMP_" in message "_SUCCESS("XMZ")_"."
- E  S VALMHDR(1)="Failed to store entries"_TEMP
+ E  S VALMHDR(1)="Failed to store entries "_TEMP
  S VALMBCK="R"
  Q
  ;
@@ -83,7 +83,7 @@ GETLIST() ;Get a list of entries.
  ;
  ;==================================================
 INSTALL ;Get a list of repository entries and install them.
- N IND,LIST,LNUM,PXRMRIEN
+ N IND,LIST,LNUM,PXRMNAT,PXRMRIEN
  ;Get the list to install.
  S LIST=$$GETLIST()
  ;If there is no list quit.
@@ -92,8 +92,10 @@ INSTALL ;Get a list of repository entries and install them.
  S PXRMDONE=0
  F IND=1:1:$L(LIST,",")-1 Q:PXRMDONE  D
  . S LNUM=$P(LIST,",",IND)
- .;Get the repository ien.
+ .;Get the repository IEN.
  . S PXRMRIEN=$$RIEN^PXRMEXU1(LNUM)
+ .;Get the Exchange entry's class.
+ . S PXRMNAT=$$EXCLASS^PXRMEXU2(PXRMRIEN)
  .;The list template calls INSTALL^PXRMEXLI
  . D EN^VALM("PXRM EX LIST COMPONENTS")
  . K ^TMP("PXRMEXLC",$J)

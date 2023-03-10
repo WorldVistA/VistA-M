@@ -1,5 +1,5 @@
-MAGDTRDX ;WOIFO/PMK - Formatted dump of DICOM MWL & TeleReader dictionaries ; 27 Feb 2013 9:35 AM
- ;;3.0;IMAGING;**46,138**;Mar 19, 2002;Build 5380;Sep 03, 2013
+MAGDTRDX ;WOIFO/PMK - Formatted dump of DICOM MWL & TeleReader dictionaries ; Mar 12, 2020@14:11:05
+ ;;3.0;IMAGING;**46,138,231**;Mar 19, 2002;Build 9;Sep 03, 2013
  ;; Per VHA Directive 2004-038, this routine should not be modified.
  ;; +---------------------------------------------------------------+
  ;; | Property of the US Government.                                |
@@ -15,14 +15,23 @@ MAGDTRDX ;WOIFO/PMK - Formatted dump of DICOM MWL & TeleReader dictionaries ; 27
  ;; | to be a violation of US Federal Statutes.                     |
  ;; +---------------------------------------------------------------+
  ;;
+ ;
+ ; Supported IA #10114 reference ^%ZIS routine call
+ ; Supported IA #2056 reference $$GET1^DIQ function call
+ ; Supported IA #2056 reference GETS^DIQ subroutine call
+ ; Supported IA #10103 reference $$HTE^XLFDT function call
+ ; Private IA #7095 to read GMRC PROCEDURE file (#123.3)
+ ; Controlled IA #4171 to read REQUEST SERVICES file (#123.5)
+ ; Supported IA #10060 to read NEW PERSON file (#200)
+ ;
 ENTRY ;
  D WORKLIST,TELEREAD
  Q
  ;
 WORKLIST ; display the clinical specialty DICOM MWL and HL7 configuration files
  N ACQSITE,CLINNAME,CLINPTR,CPTIEN,D0,D1,D2,D3,DIVISION,HL7SUBLIST
- N I,IPROCIDX,ISPECIDX,LOCKTIME,MSG,POP,PRIMARY,PROC,ROUTE,SERVICE,STATUS
- N TIUNOTE,TRIGGER,USERPREF,X,X1,X2,X3
+ N I,IPROCIDX,ISPECIDX,LOCKTIME,MSG,POP,PRIMARY,PROC,QRSCP,ROUTE
+ N SERVICE,STATUS,TIUNOTE,TRIGGER,USERPREF,X,X1,X2,X3
  D ^%ZIS Q:POP  ; Select device quit if none
  O IO:"WN" U IO
  S (MSG(1),MSG(3))=""
@@ -33,6 +42,7 @@ WORKLIST ; display the clinical specialty DICOM MWL and HL7 configuration files
  . S SERVICE=$P(X,"^",1),PROC=$P(X,"^",2),ISPECIDX=$P(X,"^",3)
  . S IPROCIDX=$P(X,"^",4),DIVISION=$P(X,"^",5)
  . S CPTIEN=$P(X,"^",6),HL7SUBLIST=$P(X,"^",7)
+ . S QRSCP=$P(X,"^",8)
  . W !!?13,$S(PROC:"-- Procedure",1:" -- Consult")," --"
  . W !,$$W("Request Service:"),$$GET1^DIQ(123.5,SERVICE,.01)
  . I PROC W !,$$W("Procedure:"),$$GET1^DIQ(123.3,PROC,.01)
@@ -51,6 +61,7 @@ WORKLIST ; display the clinical specialty DICOM MWL and HL7 configuration files
  . . W " -- ",$$GET1^DIQ(81,CPTIEN,2)
  . . Q
  . I HL7SUBLIST W !,$$W("HL7 Subscriber List:"),$$GET1^DIQ(779.4,HL7SUBLIST,.01)
+ . I QRSCP'="" W !,$$W("Q/R Provider:"),QRSCP
  . S CLINPTR=0
  . S D1=0 F  S D1=$O(^MAG(2006.5831,D0,1,D1)) Q:'D1  D
  . . I 'CLINPTR W !,$$W("Clinic(s):")

@@ -1,120 +1,120 @@
-IBDEI0S6 ; ; 04-FEB-2020
- ;;3.0;IB ENCOUNTER FORM IMP/EXP;;FEB 04, 2020
+IBDEI0S6 ; ; 01-FEB-2022
+ ;;3.0;IB ENCOUNTER FORM IMP/EXP;;FEB 01, 2022
  Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,999) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
- ;;^UTILITY(U,$J,358.3,12565,1,3,0)
- ;;=3^Malig Neop of Skin of Nose
- ;;^UTILITY(U,$J,358.3,12565,1,4,0)
- ;;=4^C44.301
- ;;^UTILITY(U,$J,358.3,12565,2)
- ;;=^5001041
- ;;^UTILITY(U,$J,358.3,12566,0)
- ;;=E10.621^^80^782^80
- ;;^UTILITY(U,$J,358.3,12566,1,0)
+ ;;^UTILITY(U,$J,358.3,12685,0)
+ ;;=E11.3411^^51^618^19
+ ;;^UTILITY(U,$J,358.3,12685,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,12566,1,3,0)
- ;;=3^Diabetes Type 1 w/ Foot Ulcer
- ;;^UTILITY(U,$J,358.3,12566,1,4,0)
- ;;=4^E10.621
- ;;^UTILITY(U,$J,358.3,12566,2)
- ;;=^5002616
- ;;^UTILITY(U,$J,358.3,12567,0)
- ;;=M72.6^^80^782^92
- ;;^UTILITY(U,$J,358.3,12567,1,0)
+ ;;^UTILITY(U,$J,358.3,12685,1,3,0)
+ ;;=3^DM 2 w/ SEVERE NPDR w/ Macular Edema,Right Eye
+ ;;^UTILITY(U,$J,358.3,12685,1,4,0)
+ ;;=4^E11.3411
+ ;;^UTILITY(U,$J,358.3,12685,2)
+ ;;=^5138347
+ ;;^UTILITY(U,$J,358.3,12686,0)
+ ;;=E11.3412^^51^618^28
+ ;;^UTILITY(U,$J,358.3,12686,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,12567,1,3,0)
- ;;=3^Necrotizing Fasciitis
- ;;^UTILITY(U,$J,358.3,12567,1,4,0)
- ;;=4^M72.6
- ;;^UTILITY(U,$J,358.3,12567,2)
- ;;=^303314
- ;;^UTILITY(U,$J,358.3,12568,0)
- ;;=T81.31XA^^80^783^3
- ;;^UTILITY(U,$J,358.3,12568,1,0)
+ ;;^UTILITY(U,$J,358.3,12686,1,3,0)
+ ;;=3^DM 2 w/ SEVERE NPDR w/ Macular Edema,Left Eye
+ ;;^UTILITY(U,$J,358.3,12686,1,4,0)
+ ;;=4^E11.3412
+ ;;^UTILITY(U,$J,358.3,12686,2)
+ ;;=^5138348
+ ;;^UTILITY(U,$J,358.3,12687,0)
+ ;;=E11.3511^^51^618^22
+ ;;^UTILITY(U,$J,358.3,12687,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,12568,1,3,0)
- ;;=3^Disruption of External Surgical Wound,Init Encntr
- ;;^UTILITY(U,$J,358.3,12568,1,4,0)
- ;;=4^T81.31XA
- ;;^UTILITY(U,$J,358.3,12568,2)
- ;;=^5054470
- ;;^UTILITY(U,$J,358.3,12569,0)
- ;;=T81.33XA^^80^783^4
- ;;^UTILITY(U,$J,358.3,12569,1,0)
+ ;;^UTILITY(U,$J,358.3,12687,1,3,0)
+ ;;=3^DM 2 w/ PDR w/ Macular Edema,Right Eye
+ ;;^UTILITY(U,$J,358.3,12687,1,4,0)
+ ;;=4^E11.3511
+ ;;^UTILITY(U,$J,358.3,12687,2)
+ ;;=^5138355
+ ;;^UTILITY(U,$J,358.3,12688,0)
+ ;;=E11.3512^^51^618^31
+ ;;^UTILITY(U,$J,358.3,12688,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,12569,1,3,0)
- ;;=3^Disruption of Traumatic Injury Wound Repair,Init Encntr
- ;;^UTILITY(U,$J,358.3,12569,1,4,0)
- ;;=4^T81.33XA
- ;;^UTILITY(U,$J,358.3,12569,2)
- ;;=^5054476
- ;;^UTILITY(U,$J,358.3,12570,0)
- ;;=T81.89XA^^80^783^1
- ;;^UTILITY(U,$J,358.3,12570,1,0)
+ ;;^UTILITY(U,$J,358.3,12688,1,3,0)
+ ;;=3^DM 2 w/ PDR w/ Macular Edema,Left Eye
+ ;;^UTILITY(U,$J,358.3,12688,1,4,0)
+ ;;=4^E11.3512
+ ;;^UTILITY(U,$J,358.3,12688,2)
+ ;;=^5138356
+ ;;^UTILITY(U,$J,358.3,12689,0)
+ ;;=E10.3291^^51^618^47
+ ;;^UTILITY(U,$J,358.3,12689,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,12570,1,3,0)
- ;;=3^Complications of Procedures NEC,Init Encntr
- ;;^UTILITY(U,$J,358.3,12570,1,4,0)
- ;;=4^T81.89XA
- ;;^UTILITY(U,$J,358.3,12570,2)
- ;;=^5054662
- ;;^UTILITY(U,$J,358.3,12571,0)
- ;;=K91.89^^80^783^7
- ;;^UTILITY(U,$J,358.3,12571,1,0)
+ ;;^UTILITY(U,$J,358.3,12689,1,3,0)
+ ;;=3^DM 1 w/ MILD NPDR w/o Macular Edema,Right Eye
+ ;;^UTILITY(U,$J,358.3,12689,1,4,0)
+ ;;=4^E10.3291
+ ;;^UTILITY(U,$J,358.3,12689,2)
+ ;;=^5138283
+ ;;^UTILITY(U,$J,358.3,12690,0)
+ ;;=E10.3292^^51^618^57
+ ;;^UTILITY(U,$J,358.3,12690,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,12571,1,3,0)
- ;;=3^Postprocedural Complications/Disorders of Digestive System
- ;;^UTILITY(U,$J,358.3,12571,1,4,0)
- ;;=4^K91.89
- ;;^UTILITY(U,$J,358.3,12571,2)
- ;;=^5008912
- ;;^UTILITY(U,$J,358.3,12572,0)
- ;;=T88.8XXA^^80^783^2
- ;;^UTILITY(U,$J,358.3,12572,1,0)
+ ;;^UTILITY(U,$J,358.3,12690,1,3,0)
+ ;;=3^DM 1 w/ MILD NPDR w/o Macular Edema,Left Eye
+ ;;^UTILITY(U,$J,358.3,12690,1,4,0)
+ ;;=4^E10.3292
+ ;;^UTILITY(U,$J,358.3,12690,2)
+ ;;=^5138284
+ ;;^UTILITY(U,$J,358.3,12691,0)
+ ;;=E10.3391^^51^618^49
+ ;;^UTILITY(U,$J,358.3,12691,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,12572,1,3,0)
- ;;=3^Complications of Surgical/Medical Care NEC,Init Encntr
- ;;^UTILITY(U,$J,358.3,12572,1,4,0)
- ;;=4^T88.8XXA
- ;;^UTILITY(U,$J,358.3,12572,2)
- ;;=^5055814
- ;;^UTILITY(U,$J,358.3,12573,0)
- ;;=T81.83XA^^80^783^6
- ;;^UTILITY(U,$J,358.3,12573,1,0)
+ ;;^UTILITY(U,$J,358.3,12691,1,3,0)
+ ;;=3^DM 1 w/ MOD NPDR w/o Macular Edema,Right Eye
+ ;;^UTILITY(U,$J,358.3,12691,1,4,0)
+ ;;=4^E10.3391
+ ;;^UTILITY(U,$J,358.3,12691,2)
+ ;;=^5138291
+ ;;^UTILITY(U,$J,358.3,12692,0)
+ ;;=E10.3392^^51^618^59
+ ;;^UTILITY(U,$J,358.3,12692,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,12573,1,3,0)
- ;;=3^Persistent Postprocedural Fistula,Init Encntr
- ;;^UTILITY(U,$J,358.3,12573,1,4,0)
- ;;=4^T81.83XA
- ;;^UTILITY(U,$J,358.3,12573,2)
- ;;=^5054659
- ;;^UTILITY(U,$J,358.3,12574,0)
- ;;=I97.610^^80^783^11
- ;;^UTILITY(U,$J,358.3,12574,1,0)
+ ;;^UTILITY(U,$J,358.3,12692,1,3,0)
+ ;;=3^DM 1 w/ MOD NPDR w/o Macular Edema,Left Eye
+ ;;^UTILITY(U,$J,358.3,12692,1,4,0)
+ ;;=4^E10.3392
+ ;;^UTILITY(U,$J,358.3,12692,2)
+ ;;=^5138292
+ ;;^UTILITY(U,$J,358.3,12693,0)
+ ;;=E10.3491^^51^618^51
+ ;;^UTILITY(U,$J,358.3,12693,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,12574,1,3,0)
- ;;=3^Postprocedural Hemorrhage/Hematoma of Circ System Following Cardiac Cath
- ;;^UTILITY(U,$J,358.3,12574,1,4,0)
- ;;=4^I97.610
- ;;^UTILITY(U,$J,358.3,12574,2)
- ;;=^5008099
- ;;^UTILITY(U,$J,358.3,12575,0)
- ;;=H95.42^^80^783^14
- ;;^UTILITY(U,$J,358.3,12575,1,0)
+ ;;^UTILITY(U,$J,358.3,12693,1,3,0)
+ ;;=3^DM 1 w/ SEVERE NPDR w/o Macular Edema,Right Eye
+ ;;^UTILITY(U,$J,358.3,12693,1,4,0)
+ ;;=4^E10.3491
+ ;;^UTILITY(U,$J,358.3,12693,2)
+ ;;=^5138299
+ ;;^UTILITY(U,$J,358.3,12694,0)
+ ;;=E10.3492^^51^618^61
+ ;;^UTILITY(U,$J,358.3,12694,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,12575,1,3,0)
- ;;=3^Postprocedural Hemorrhage/Hematoma of Ear/Mastoid
- ;;^UTILITY(U,$J,358.3,12575,1,4,0)
- ;;=4^H95.42
- ;;^UTILITY(U,$J,358.3,12575,2)
- ;;=^5007031
- ;;^UTILITY(U,$J,358.3,12576,0)
- ;;=I97.611^^80^783^12
- ;;^UTILITY(U,$J,358.3,12576,1,0)
+ ;;^UTILITY(U,$J,358.3,12694,1,3,0)
+ ;;=3^DM 1 w/ SEVERE NPDR w/o Macular Edema,Left Eye
+ ;;^UTILITY(U,$J,358.3,12694,1,4,0)
+ ;;=4^E10.3492
+ ;;^UTILITY(U,$J,358.3,12694,2)
+ ;;=^5138300
+ ;;^UTILITY(U,$J,358.3,12695,0)
+ ;;=E10.3591^^51^618^54
+ ;;^UTILITY(U,$J,358.3,12695,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,12576,1,3,0)
- ;;=3^Postprocedural Hemorrhage/Hematoma of Circ System Following Cardiac Bypass
- ;;^UTILITY(U,$J,358.3,12576,1,4,0)
- ;;=4^I97.611
- ;;^UTILITY(U,$J,358.3,12576,2)
- ;;=^5008100
+ ;;^UTILITY(U,$J,358.3,12695,1,3,0)
+ ;;=3^DM 1 w/ PDR w/o Macular Edema,Right Eye
+ ;;^UTILITY(U,$J,358.3,12695,1,4,0)
+ ;;=4^E10.3591
+ ;;^UTILITY(U,$J,358.3,12695,2)
+ ;;=^5138323
+ ;;^UTILITY(U,$J,358.3,12696,0)
+ ;;=E10.3592^^51^618^64
+ ;;^UTILITY(U,$J,358.3,12696,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,12696,1,3,0)
+ ;;=3^DM 1 w/ PDR w/o Macular Edema,Left Eye

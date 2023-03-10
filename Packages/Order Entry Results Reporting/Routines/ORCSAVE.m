@@ -1,5 +1,5 @@
-ORCSAVE ;SLC/MKB/JDL-Save ;10/08/19  17:01
- ;;3.0;ORDER ENTRY/RESULTS REPORTING;**7,56,70,73,92,94,116,141,163,187,190,195,243,303,293,280,306,286,269,423,421,382,397,377**;Dec 17, 1997;Build 582
+ORCSAVE ;SLC/MKB/JDL-Save ;Dec 02, 2021@13:09:37
+ ;;3.0;ORDER ENTRY/RESULTS REPORTING;**7,56,70,73,92,94,116,141,163,187,190,195,243,303,293,280,306,286,269,423,421,382,397,377,453,405**;Dec 17, 1997;Build 211
  ;Per VA Directive 6402, this routine should not be modified.
  ;
  ; DBIA 10103   ^XLFDT
@@ -70,7 +70,11 @@ EN ; -- save new/unreleased order in ORDIALOG() into Orders file
 EN1 S ^OR(100,ORIFN,0)=ORIFN_U_ORVP_U_U_$G(ORNP)_U_+ORDIALOG_";ORD(101.41,^"_USR_U_LOG_U_U_U_LOC_U_DG_U_CATG_U_TRSPEC_U_PKG_U_U_SIGNREQD_U_$G(OREVENT)_U_$G(ORAPPT)
  S ^OR(100,ORIFN,3)=LOG_"^90^"_STS_U_$S($G(ORIT):ORIT_";ORD(101.41,",1:"")_U_$G(ORDIALOG("PREV"))_"^^1^^^^"_TYPE
  S ^OR(100,ORIFN,8,0)="^100.008DA^1^1",^OR(100,ORIFN,8,1,0)=LOG_"^NW^"_$G(ORNP)_U_$S(SIGNREQD:2,1:3)_"^^^^^^^^"_NATR_U_USR_"^1^"_STS,^OR(100,ORIFN,8,"C","NW",1)=""
+ ;Indication for use
+ I $G(INDICAT)'="" S $P(^OR(100,ORIFN,10),U,2)=INDICAT
  S ^OR(100,"AF",LOG,ORIFN,1)=""
+ ; RBD OR*3.0*453 Add setting of EPRACDT index explicitly
+ I $G(ORNP)]"" S ^OR(100,"EPRACDT",ORNP,LOG,ORIFN,1)=""
  S ^OR(100,"C",+ORDIALOG_";ORD(101.41,",ORIFN)=""  ;patch 423
  S:+$G(ORIT) ^OR(100,"D",+ORIT_";ORD(101.41,",ORIFN)=""  ;patch 423
  S ^OR(100,"ACT",ORVP,9999999-LOG,+DG,ORIFN,1)=""
@@ -93,7 +97,13 @@ EN2 S ORIFN=+ORIFN D RESPONSE ; save responses
  . S ORPKIU=0 I $D(^ORD(100.7,"C",DUZ)) S ORPKIU=1
  . D PKI^ORWDPS1(.ORY,OI,CATG,+ORVP,ORPKIU)
  . I $E($G(ORY))=2 S ORDEA=ORY
- K ^OR(100,ORIFN,8,1,.1) D ORDTEXT^ORCSAVE1(ORIFN_";1") ; order text
+ ;
+ ; Update: Order Text, External Text, Drug Schedule, Digital Sig Required
+ I $G(^OR(100,ORIFN,8,1,2))'="" S $P(^OR(100,ORIFN,8,1,2),"^",4,5)="^"
+ K ^OR(100,ORIFN,8,1,.2)
+ K ^OR(100,ORIFN,8,1,.1)
+ D ORDTEXT^ORCSAVE1(ORIFN_";1")
+ ;
  S NODE=$G(^OR(100,ORIFN,8,1,0)) D  S ^OR(100,ORIFN,8,1,0)=NODE
  . S $P(NODE,U,3)=$G(ORNP)
  . S $P(NODE,U,13)=USR
@@ -104,7 +114,6 @@ EN2 S ORIFN=+ORIFN D RESPONSE ; save responses
  . S I=$O(^OR(100,ORIFN,4.5,"ID","CLASS",0))
  . I I S X=$G(^OR(100,ORIFN,4.5,+I,1)) S:"^I^O^"[(U_X_U) $P(NODE,U,12)=X
  S $P(^OR(100,ORIFN,3),U)=NOW
- ;
  ;Audit certain fields for CS ePCS Order so that we have an audit of changes to unsigned CS orders.
  S ORCSORD=""
  D CSVALUE^ORDEA(.ORCSORD,ORIFN)
@@ -126,6 +135,8 @@ EN2 S ORIFN=+ORIFN D RESPONSE ; save responses
  . . . . S ORCROC(I)=$P($P(ORK(I,2,1),"||",2),"&",3)_U_$P($P(ORK(I,2,1),"||",2),"&",4)
  . . . . S ORK(I,2,1)=ORRULE,ORI=0,ORLINE=2
  . . . . F  S ORI=$O(^TMP($J,"ORK XTRA TXT",ORGLOB,ORRULE,ORI)) Q:'ORI  S ORK(I,2,ORLINE)=^TMP($J,"ORK XTRA TXT",ORGLOB,ORRULE,ORI),ORLINE=ORLINE+1
+ . . . S ORK(I,3)=$G(ORCHECK("NEW",CDL,I,"OVER"))
+ . . . S ORK(I,4)=$G(ORCHECK("NEW",CDL,I,"REMCOMM"))
  . I $D(ORK) D
  . . N OCRET,ORKI
  . . D SAVEOC^OROCAPI1(.ORK,.OCRET)
@@ -185,9 +196,10 @@ R1 ; [Reset] Orderables
 RESUME(IFN) ; -- add Response nodes for RESUME tray service
  ; S ^OR(100,+IFN,4.5,<next>,0)=DT_"^^^RESUME",^(1)=1
  ;
- N X,Y,DA,DIC,DLAYGO
+ N X,Y,DA,DIC,DLAYGO,MSG
+ D FIELD^DID(100,4.5,"","SPECIFIER","MSG")
  S DIC="^OR(100,"_+IFN_",4.5,",DIC(0)="LX",DA(1)=+IFN,X=DT
- S DIC("DR")=".04///RESUME",DIC("P")=$P(^DD(100,4.5,0),U,2),DLAYGO=100
+ S DIC("DR")=".04///RESUME",DIC("P")=$G(MSG("SPECIFIER")),DLAYGO=100
  D ^DIC S:Y ^OR(100,+IFN,4.5,+Y,1)=1
  Q
  ;
@@ -211,9 +223,11 @@ ACTION(CODE,DA,PROV,REASON,WHEN,WHO) ; -- save new action
  . S NEXT=LAST I PAT,$P(X,U) D  ; kill old xref entries
  . . K:DGRP ^OR(100,"ACT",PAT,(9999999-$P(X,U)),DGRP,DA,NEXT)
  . . K ^OR(100,"AC",PAT,(9999999-$P(X,U)),DA,NEXT),^OR(100,"AS",PAT,(9999999-$P(X,U)),DA,NEXT),^OR(100,"AF",$P(X,U),DA,NEXT)
+ . . I $P(X,U,3) K ^OR(100,"EPRACDT",$P(X,U,3),$P(X,U),DA,NEXT)   ; RBD OR*3.0*453 Handle Kill of EPRACDT index as AF index is done
  S:'$G(NEXT) NEXT=$O(^OR(100,DA,8,"?"),-1)+1,TOTAL=TOTAL+1
  S ^OR(100,DA,8,NEXT,0)=WHEN_U_CODE_U_$G(PROV)_U_$S(SIG:2,1:3)_"^^^^^^^^"_NATR_U_WHO_U_TXT_"^11",^OR(100,DA,8,"C",CODE,NEXT)=""
  S ^OR(100,"AF",WHEN,DA,NEXT)=""
+ I $G(PROV)]"",CODE="NW" S ^OR(100,"EPRACDT",PROV,WHEN,DA,NEXT)=""   ; RBD OR*3.0*453 Handle Set of EPRACDT index
  I PAT,DGRP S ^OR(100,"ACT",PAT,9999999-WHEN,DGRP,DA,NEXT)=""
  I PAT S ^OR(100,"AC",PAT,9999999-WHEN,DA,NEXT)=""
  I SIG S ^OR(100,"AS",PAT,9999999-WHEN,DA,NEXT)=""

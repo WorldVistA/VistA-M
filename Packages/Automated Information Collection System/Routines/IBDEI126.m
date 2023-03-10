@@ -1,120 +1,126 @@
-IBDEI126 ; ; 04-FEB-2020
- ;;3.0;IB ENCOUNTER FORM IMP/EXP;;FEB 04, 2020
+IBDEI126 ; ; 01-FEB-2022
+ ;;3.0;IB ENCOUNTER FORM IMP/EXP;;FEB 01, 2022
  Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,999) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
- ;;^UTILITY(U,$J,358.3,17012,2)
- ;;=^5012160
- ;;^UTILITY(U,$J,358.3,17013,0)
- ;;=M48.52XA^^88^885^24
- ;;^UTILITY(U,$J,358.3,17013,1,0)
+ ;;^UTILITY(U,$J,358.3,17198,1,3,0)
+ ;;=3^Mental Disorders d/t Known Physiological Condition,Other
+ ;;^UTILITY(U,$J,358.3,17198,1,4,0)
+ ;;=4^F06.8
+ ;;^UTILITY(U,$J,358.3,17198,2)
+ ;;=^5003062
+ ;;^UTILITY(U,$J,358.3,17199,0)
+ ;;=F06.0^^61^782^38
+ ;;^UTILITY(U,$J,358.3,17199,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,17013,1,3,0)
- ;;=3^Collapsed Vertebra,Cervical Region,Init Encntr
- ;;^UTILITY(U,$J,358.3,17013,1,4,0)
- ;;=4^M48.52XA
- ;;^UTILITY(U,$J,358.3,17013,2)
- ;;=^5012167
- ;;^UTILITY(U,$J,358.3,17014,0)
- ;;=M48.52XD^^88^885^25
- ;;^UTILITY(U,$J,358.3,17014,1,0)
+ ;;^UTILITY(U,$J,358.3,17199,1,3,0)
+ ;;=3^Psychotic Disorder w/ Hallucin d/t Known Physiol Condition
+ ;;^UTILITY(U,$J,358.3,17199,1,4,0)
+ ;;=4^F06.0
+ ;;^UTILITY(U,$J,358.3,17199,2)
+ ;;=^5003053
+ ;;^UTILITY(U,$J,358.3,17200,0)
+ ;;=G44.209^^61^782^43
+ ;;^UTILITY(U,$J,358.3,17200,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,17014,1,3,0)
- ;;=3^Collapsed Vertebra,Cervical Region,Subs Encntr,Rt Healing
- ;;^UTILITY(U,$J,358.3,17014,1,4,0)
- ;;=4^M48.52XD
- ;;^UTILITY(U,$J,358.3,17014,2)
- ;;=^5012168
- ;;^UTILITY(U,$J,358.3,17015,0)
- ;;=M48.54XA^^88^885^33
- ;;^UTILITY(U,$J,358.3,17015,1,0)
+ ;;^UTILITY(U,$J,358.3,17200,1,3,0)
+ ;;=3^Tension-Type Headache,Not Intractable,Unspec
+ ;;^UTILITY(U,$J,358.3,17200,1,4,0)
+ ;;=4^G44.209
+ ;;^UTILITY(U,$J,358.3,17200,2)
+ ;;=^5003936
+ ;;^UTILITY(U,$J,358.3,17201,0)
+ ;;=F09.^^61^782^21
+ ;;^UTILITY(U,$J,358.3,17201,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,17015,1,3,0)
- ;;=3^Collapsed Vertebra,Throacic Region,Init Encntr
- ;;^UTILITY(U,$J,358.3,17015,1,4,0)
- ;;=4^M48.54XA
- ;;^UTILITY(U,$J,358.3,17015,2)
- ;;=^5012175
- ;;^UTILITY(U,$J,358.3,17016,0)
- ;;=M48.54XD^^88^885^34
- ;;^UTILITY(U,$J,358.3,17016,1,0)
+ ;;^UTILITY(U,$J,358.3,17201,1,3,0)
+ ;;=3^Mental Disorder d/t Known Physiological Condition,Unspec
+ ;;^UTILITY(U,$J,358.3,17201,1,4,0)
+ ;;=4^F09.
+ ;;^UTILITY(U,$J,358.3,17201,2)
+ ;;=^5003067
+ ;;^UTILITY(U,$J,358.3,17202,0)
+ ;;=F07.9^^61^782^36
+ ;;^UTILITY(U,$J,358.3,17202,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,17016,1,3,0)
- ;;=3^Collapsed Vertebra,Throacic Region,Subs Encntr
- ;;^UTILITY(U,$J,358.3,17016,1,4,0)
- ;;=4^M48.54XD
- ;;^UTILITY(U,$J,358.3,17016,2)
- ;;=^5012176
- ;;^UTILITY(U,$J,358.3,17017,0)
- ;;=M48.57XA^^88^885^26
- ;;^UTILITY(U,$J,358.3,17017,1,0)
+ ;;^UTILITY(U,$J,358.3,17202,1,3,0)
+ ;;=3^Personality & Behavrl Disorder d/t Known Physiol Cond,Unspec
+ ;;^UTILITY(U,$J,358.3,17202,1,4,0)
+ ;;=4^F07.9
+ ;;^UTILITY(U,$J,358.3,17202,2)
+ ;;=^5003066
+ ;;^UTILITY(U,$J,358.3,17203,0)
+ ;;=G30.0^^61^782^1
+ ;;^UTILITY(U,$J,358.3,17203,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,17017,1,3,0)
- ;;=3^Collapsed Vertebra,Lumbosacral Region,Init Encntr
- ;;^UTILITY(U,$J,358.3,17017,1,4,0)
- ;;=4^M48.57XA
- ;;^UTILITY(U,$J,358.3,17017,2)
- ;;=^5012187
- ;;^UTILITY(U,$J,358.3,17018,0)
- ;;=M48.57XD^^88^885^27
- ;;^UTILITY(U,$J,358.3,17018,1,0)
+ ;;^UTILITY(U,$J,358.3,17203,1,3,0)
+ ;;=3^Alzheimer's Disease w/ Early Onset
+ ;;^UTILITY(U,$J,358.3,17203,1,4,0)
+ ;;=4^G30.0
+ ;;^UTILITY(U,$J,358.3,17203,2)
+ ;;=^5003805
+ ;;^UTILITY(U,$J,358.3,17204,0)
+ ;;=G30.8^^61^782^3
+ ;;^UTILITY(U,$J,358.3,17204,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,17018,1,3,0)
- ;;=3^Collapsed Vertebra,Lumbosacral Region,Subs Encntr,Rt Healing
- ;;^UTILITY(U,$J,358.3,17018,1,4,0)
- ;;=4^M48.57XD
- ;;^UTILITY(U,$J,358.3,17018,2)
- ;;=^5012188
- ;;^UTILITY(U,$J,358.3,17019,0)
- ;;=M50.30^^88^885^14
- ;;^UTILITY(U,$J,358.3,17019,1,0)
+ ;;^UTILITY(U,$J,358.3,17204,1,3,0)
+ ;;=3^Alzheimer's Disease,Other
+ ;;^UTILITY(U,$J,358.3,17204,1,4,0)
+ ;;=4^G30.8
+ ;;^UTILITY(U,$J,358.3,17204,2)
+ ;;=^5003807
+ ;;^UTILITY(U,$J,358.3,17205,0)
+ ;;=G30.1^^61^782^2
+ ;;^UTILITY(U,$J,358.3,17205,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,17019,1,3,0)
- ;;=3^Cervical Disc Degeneration,Unspec Region
- ;;^UTILITY(U,$J,358.3,17019,1,4,0)
- ;;=4^M50.30
- ;;^UTILITY(U,$J,358.3,17019,2)
- ;;=^5012227
- ;;^UTILITY(U,$J,358.3,17020,0)
- ;;=M51.14^^88^885^55
- ;;^UTILITY(U,$J,358.3,17020,1,0)
+ ;;^UTILITY(U,$J,358.3,17205,1,3,0)
+ ;;=3^Alzheimer's Disease w/ Late Onset
+ ;;^UTILITY(U,$J,358.3,17205,1,4,0)
+ ;;=4^G30.1
+ ;;^UTILITY(U,$J,358.3,17205,2)
+ ;;=^5003806
+ ;;^UTILITY(U,$J,358.3,17206,0)
+ ;;=G30.9^^61^782^4
+ ;;^UTILITY(U,$J,358.3,17206,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,17020,1,3,0)
- ;;=3^Intvrt Disc Disorder w/ Radiculopathy,Thoracic Region
- ;;^UTILITY(U,$J,358.3,17020,1,4,0)
- ;;=4^M51.14
- ;;^UTILITY(U,$J,358.3,17020,2)
- ;;=^5012243
- ;;^UTILITY(U,$J,358.3,17021,0)
- ;;=M51.17^^88^885^54
- ;;^UTILITY(U,$J,358.3,17021,1,0)
+ ;;^UTILITY(U,$J,358.3,17206,1,3,0)
+ ;;=3^Alzheimer's Disease,Unspec
+ ;;^UTILITY(U,$J,358.3,17206,1,4,0)
+ ;;=4^G30.9
+ ;;^UTILITY(U,$J,358.3,17206,2)
+ ;;=^5003808
+ ;;^UTILITY(U,$J,358.3,17207,0)
+ ;;=G21.4^^61^782^46
+ ;;^UTILITY(U,$J,358.3,17207,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,17021,1,3,0)
- ;;=3^Intvrt Disc Disorder w/ Radiculopathy,Lumbosacral Region
- ;;^UTILITY(U,$J,358.3,17021,1,4,0)
- ;;=4^M51.17
- ;;^UTILITY(U,$J,358.3,17021,2)
- ;;=^5012246
- ;;^UTILITY(U,$J,358.3,17022,0)
- ;;=M51.34^^88^885^53
- ;;^UTILITY(U,$J,358.3,17022,1,0)
+ ;;^UTILITY(U,$J,358.3,17207,1,3,0)
+ ;;=3^Vascular Parkinsonism
+ ;;^UTILITY(U,$J,358.3,17207,1,4,0)
+ ;;=4^G21.4
+ ;;^UTILITY(U,$J,358.3,17207,2)
+ ;;=^5003776
+ ;;^UTILITY(U,$J,358.3,17208,0)
+ ;;=G20.^^61^782^35
+ ;;^UTILITY(U,$J,358.3,17208,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,17022,1,3,0)
- ;;=3^Intvrt Disc Degeneration,Thoracic Region
- ;;^UTILITY(U,$J,358.3,17022,1,4,0)
- ;;=4^M51.34
- ;;^UTILITY(U,$J,358.3,17022,2)
- ;;=^5012251
- ;;^UTILITY(U,$J,358.3,17023,0)
- ;;=M51.37^^88^885^52
- ;;^UTILITY(U,$J,358.3,17023,1,0)
+ ;;^UTILITY(U,$J,358.3,17208,1,3,0)
+ ;;=3^Parkinson's Disease
+ ;;^UTILITY(U,$J,358.3,17208,1,4,0)
+ ;;=4^G20.
+ ;;^UTILITY(U,$J,358.3,17208,2)
+ ;;=^5003770
+ ;;^UTILITY(U,$J,358.3,17209,0)
+ ;;=G25.0^^61^782^16
+ ;;^UTILITY(U,$J,358.3,17209,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,17023,1,3,0)
- ;;=3^Intvrt Disc Degeneration,Lumbosacral Region
- ;;^UTILITY(U,$J,358.3,17023,1,4,0)
- ;;=4^M51.37
- ;;^UTILITY(U,$J,358.3,17023,2)
- ;;=^5012254
- ;;^UTILITY(U,$J,358.3,17024,0)
- ;;=M54.14^^88^885^146
- ;;^UTILITY(U,$J,358.3,17024,1,0)
+ ;;^UTILITY(U,$J,358.3,17209,1,3,0)
+ ;;=3^Essential Tremor
+ ;;^UTILITY(U,$J,358.3,17209,1,4,0)
+ ;;=4^G25.0
+ ;;^UTILITY(U,$J,358.3,17209,2)
+ ;;=^5003791
+ ;;^UTILITY(U,$J,358.3,17210,0)
+ ;;=G25.2^^61^782^45
+ ;;^UTILITY(U,$J,358.3,17210,1,0)
  ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,17210,1,3,0)
+ ;;=3^Tremor,Other Spec Forms

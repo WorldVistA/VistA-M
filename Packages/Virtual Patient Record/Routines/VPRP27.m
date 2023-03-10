@@ -1,0 +1,48 @@
+VPRP27 ;SLC/MKB - Postinit for patch VPR*1*27
+ ;;1.0;VIRTUAL PATIENT RECORD;**27**;Sep 01, 2011;Build 10
+ ;;Per VHA Directive 6402, this routine should not be modified.
+ ;
+POST ; -- postinit
+ D XTMP
+ D DEL
+ ;D PAT
+ Q
+ ;
+XTMP ; -- convert/kill ^XTMP log nodes
+ N H4,HD,NUM,DFN,X
+ S H4=($P($H,",")-4)
+ S HD=0 F  S HD=$O(^XTMP("VPRHS",HD)) Q:HD<1  D
+ . I HD>H4 S NUM=0 F  S NUM=$O(^XTMP("VPRHS",HD,NUM)) Q:NUM<1  D
+ .. S DFN=0 F  S DFN=$O(^XTMP("VPRHS",HD,NUM,DFN)) Q:DFN<1  S X=$G(^(DFN)) D
+ ... I '$D(^XTMP("VPRHS-"_HD,0)) S ^XTMP("VPRHS-"_HD,0)=$$HTFM^XLFDT(HD+4)_U_DT_"^VPR update log for HealthShare"
+ ... S ^XTMP("VPRHS-"_HD,NUM,DFN)=X
+ . K ^XTMP("VPRHS",HD)
+ Q
+ ;
+DEL ; -- link new DEL entities to file
+ N I,X,NM,FN,DA,DR,DIE
+ F I=1:1 S X=$P($T(ENT+I),";",3,99) Q:X="ZZZZZ"  D
+ . S NM=$P(X,";"),FN=$P(X,";",2),X=$P(X,";",3) Q:X=""
+ . S DA(1)=+$O(^VPRC(560.1,"B",NM,0)) Q:DA(1)<1
+ . S DA=+$O(^VPRC(560.1,"F",FN,DA(1),0)) Q:DA<1
+ . S DIE="^VPRC(560.1,"_DA(1)_",1,"
+ . S DR=".03///"_X D ^DIE
+ Q
+ENT ;;CONTAINER;FILE#;DELETE ENTITY
+ ;;DIAGNOSIS;9000010.07;VPR DEL V POV
+ ;;DIAGNOSIS;45;VPR DEL PTF
+ ;;DOCUMENT;8925;VPR DEL TIU DOCUMENT
+ ;;FAMILY HISTORY;9000010.23;VPR DEL FAMILY HX
+ ;;PHYSICAL EXAM;9000010.13;VPR DEL V EXAM
+ ;;PROCEDURE;9000010.18;VPR DEL V CPT
+ ;;SOCIAL HISTORY;9000010.23;VPR DEL SOCIAL HX
+ ;;VACCINATION;9000010.11;VPR DEL VACCINATION
+ ;;VACCINATION;9000010.23;VPR DEL HF VACC REFUSAL
+ ;;ZZZZZ
+ ;
+PAT ; -- fix header node for Patient sub-file
+ N DFN,LAST,TOTAL
+ S (DFN,TOTAL)=0
+ F  S DFN=$O(^VPR(1,2,DFN)) Q:DFN<1  S LAST=DFN,TOTAL=TOTAL+1
+ S ^VPR(1,2,0)="^560.02PA^"_LAST_U_TOTAL
+ Q

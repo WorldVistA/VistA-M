@@ -1,124 +1,118 @@
-IBDEI0OH ; ; 04-FEB-2020
- ;;3.0;IB ENCOUNTER FORM IMP/EXP;;FEB 04, 2020
+IBDEI0OH ; ; 01-FEB-2022
+ ;;3.0;IB ENCOUNTER FORM IMP/EXP;;FEB 01, 2022
  Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,999) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
- ;;^UTILITY(U,$J,358.3,10918,0)
- ;;=92286^^76^712^10^^^^1
- ;;^UTILITY(U,$J,358.3,10918,1,0)
- ;;=^358.31IA^3^2
- ;;^UTILITY(U,$J,358.3,10918,1,2,0)
- ;;=2^Specular Microscopy
- ;;^UTILITY(U,$J,358.3,10918,1,3,0)
- ;;=3^92286
- ;;^UTILITY(U,$J,358.3,10919,0)
- ;;=92250^^76^713^1^^^^1
- ;;^UTILITY(U,$J,358.3,10919,1,0)
- ;;=^358.31IA^3^2
- ;;^UTILITY(U,$J,358.3,10919,1,2,0)
- ;;=2^Fundus Photos
- ;;^UTILITY(U,$J,358.3,10919,1,3,0)
- ;;=3^92250
- ;;^UTILITY(U,$J,358.3,10920,0)
- ;;=92133^^76^713^2^^^^1
- ;;^UTILITY(U,$J,358.3,10920,1,0)
- ;;=^358.31IA^3^2
- ;;^UTILITY(U,$J,358.3,10920,1,2,0)
- ;;=2^OCT RNFL (optic nerve)
- ;;^UTILITY(U,$J,358.3,10920,1,3,0)
- ;;=3^92133
- ;;^UTILITY(U,$J,358.3,10921,0)
- ;;=76514^^76^713^4^^^^1
- ;;^UTILITY(U,$J,358.3,10921,1,0)
- ;;=^358.31IA^3^2
- ;;^UTILITY(U,$J,358.3,10921,1,2,0)
- ;;=2^Pachymetry (corneal thickness)
- ;;^UTILITY(U,$J,358.3,10921,1,3,0)
- ;;=3^76514
- ;;^UTILITY(U,$J,358.3,10922,0)
- ;;=92083^^76^713^5^^^^1
- ;;^UTILITY(U,$J,358.3,10922,1,0)
- ;;=^358.31IA^3^2
- ;;^UTILITY(U,$J,358.3,10922,1,2,0)
- ;;=2^Visual Field (Humphrey)
- ;;^UTILITY(U,$J,358.3,10922,1,3,0)
- ;;=3^92083
- ;;^UTILITY(U,$J,358.3,10923,0)
- ;;=92082^^76^713^6^^^^1
- ;;^UTILITY(U,$J,358.3,10923,1,0)
- ;;=^358.31IA^3^2
- ;;^UTILITY(U,$J,358.3,10923,1,2,0)
- ;;=2^Visual Field (Goldmann)
- ;;^UTILITY(U,$J,358.3,10923,1,3,0)
- ;;=3^92082
- ;;^UTILITY(U,$J,358.3,10924,0)
- ;;=G0118^^76^713^7^^^^1
- ;;^UTILITY(U,$J,358.3,10924,1,0)
- ;;=^358.31IA^3^2
- ;;^UTILITY(U,$J,358.3,10924,1,2,0)
- ;;=2^Glaucoma Screen by Tech
- ;;^UTILITY(U,$J,358.3,10924,1,3,0)
- ;;=3^G0118
- ;;^UTILITY(U,$J,358.3,10925,0)
- ;;=92100^^76^713^9^^^^1
- ;;^UTILITY(U,$J,358.3,10925,1,0)
- ;;=^358.31IA^3^2
- ;;^UTILITY(U,$J,358.3,10925,1,2,0)
- ;;=2^Serial Tonometry Diurnal Curve
- ;;^UTILITY(U,$J,358.3,10925,1,3,0)
- ;;=3^92100
- ;;^UTILITY(U,$J,358.3,10926,0)
- ;;=92020^^76^713^8^^^^1
- ;;^UTILITY(U,$J,358.3,10926,1,0)
- ;;=^358.31IA^3^2
- ;;^UTILITY(U,$J,358.3,10926,1,2,0)
- ;;=2^Gonioscopy
- ;;^UTILITY(U,$J,358.3,10926,1,3,0)
- ;;=3^92020
- ;;^UTILITY(U,$J,358.3,10927,0)
- ;;=92081^^76^713^10^^^^1
- ;;^UTILITY(U,$J,358.3,10927,1,0)
- ;;=^358.31IA^3^2
- ;;^UTILITY(U,$J,358.3,10927,1,2,0)
- ;;=2^DMV Field/Visual Field Exam
- ;;^UTILITY(U,$J,358.3,10927,1,3,0)
- ;;=3^92081
- ;;^UTILITY(U,$J,358.3,10928,0)
- ;;=92132^^76^713^3^^^^1
- ;;^UTILITY(U,$J,358.3,10928,1,0)
- ;;=^358.31IA^3^2
- ;;^UTILITY(U,$J,358.3,10928,1,2,0)
- ;;=2^OCT Anterior Segment (angle)
- ;;^UTILITY(U,$J,358.3,10928,1,3,0)
- ;;=3^92132
- ;;^UTILITY(U,$J,358.3,10929,0)
- ;;=S9150^^76^714^1^^^^1
- ;;^UTILITY(U,$J,358.3,10929,1,0)
- ;;=^358.31IA^3^2
- ;;^UTILITY(U,$J,358.3,10929,1,2,0)
- ;;=2^Evaluation by Ocularist
- ;;^UTILITY(U,$J,358.3,10929,1,3,0)
- ;;=3^S9150
- ;;^UTILITY(U,$J,358.3,10930,0)
- ;;=92065^^76^714^8^^^^1
- ;;^UTILITY(U,$J,358.3,10930,1,0)
- ;;=^358.31IA^3^2
- ;;^UTILITY(U,$J,358.3,10930,1,2,0)
- ;;=2^Orthoptic/Pleoptic Training
- ;;^UTILITY(U,$J,358.3,10930,1,3,0)
- ;;=3^92065
- ;;^UTILITY(U,$J,358.3,10931,0)
- ;;=92060^^76^714^9^^^^1
- ;;^UTILITY(U,$J,358.3,10931,1,0)
- ;;=^358.31IA^3^2
- ;;^UTILITY(U,$J,358.3,10931,1,2,0)
- ;;=2^Sensorimotor Exam w/ Mult Meas Ocular Dev
- ;;^UTILITY(U,$J,358.3,10931,1,3,0)
- ;;=3^92060
- ;;^UTILITY(U,$J,358.3,10932,0)
- ;;=92081^^76^714^14^^^^1
- ;;^UTILITY(U,$J,358.3,10932,1,0)
- ;;=^358.31IA^3^2
- ;;^UTILITY(U,$J,358.3,10932,1,2,0)
- ;;=2^Visual Field Exam w/ Interp & Rpt;Limited
- ;;^UTILITY(U,$J,358.3,10932,1,3,0)
- ;;=3^92081
+ ;;^UTILITY(U,$J,358.3,11001,1,3,0)
+ ;;=3^Inhalant Intoxication Delirium w/ Mod/Severe Use Disorder
+ ;;^UTILITY(U,$J,358.3,11001,1,4,0)
+ ;;=4^F18.221
+ ;;^UTILITY(U,$J,358.3,11001,2)
+ ;;=^5003395
+ ;;^UTILITY(U,$J,358.3,11002,0)
+ ;;=F18.921^^42^498^20
+ ;;^UTILITY(U,$J,358.3,11002,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,11002,1,3,0)
+ ;;=3^Inhalant Intoxication Delirium w/o Use Disorder
+ ;;^UTILITY(U,$J,358.3,11002,1,4,0)
+ ;;=4^F18.921
+ ;;^UTILITY(U,$J,358.3,11002,2)
+ ;;=^5003407
+ ;;^UTILITY(U,$J,358.3,11003,0)
+ ;;=F18.129^^42^498^21
+ ;;^UTILITY(U,$J,358.3,11003,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,11003,1,3,0)
+ ;;=3^Inhalant Intoxication w/ Mild Use Disorder
+ ;;^UTILITY(U,$J,358.3,11003,1,4,0)
+ ;;=4^F18.129
+ ;;^UTILITY(U,$J,358.3,11003,2)
+ ;;=^5003383
+ ;;^UTILITY(U,$J,358.3,11004,0)
+ ;;=F18.229^^42^498^22
+ ;;^UTILITY(U,$J,358.3,11004,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,11004,1,3,0)
+ ;;=3^Inhalant Intoxication w/ Mod/Severe Use Disorder
+ ;;^UTILITY(U,$J,358.3,11004,1,4,0)
+ ;;=4^F18.229
+ ;;^UTILITY(U,$J,358.3,11004,2)
+ ;;=^5003396
+ ;;^UTILITY(U,$J,358.3,11005,0)
+ ;;=F18.929^^42^498^23
+ ;;^UTILITY(U,$J,358.3,11005,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,11005,1,3,0)
+ ;;=3^Inhalant Intoxication w/o Use Disorder
+ ;;^UTILITY(U,$J,358.3,11005,1,4,0)
+ ;;=4^F18.929
+ ;;^UTILITY(U,$J,358.3,11005,2)
+ ;;=^5003408
+ ;;^UTILITY(U,$J,358.3,11006,0)
+ ;;=F18.180^^42^498^3
+ ;;^UTILITY(U,$J,358.3,11006,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,11006,1,3,0)
+ ;;=3^Inhalant Induced Anxiety Disorder w/ Mild Use Disorder
+ ;;^UTILITY(U,$J,358.3,11006,1,4,0)
+ ;;=4^F18.180
+ ;;^UTILITY(U,$J,358.3,11006,2)
+ ;;=^5003389
+ ;;^UTILITY(U,$J,358.3,11007,0)
+ ;;=F18.280^^42^498^4
+ ;;^UTILITY(U,$J,358.3,11007,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,11007,1,3,0)
+ ;;=3^Inhalant Induced Anxiety Disorder w/ Mod/Severe Use Disorder
+ ;;^UTILITY(U,$J,358.3,11007,1,4,0)
+ ;;=4^F18.280
+ ;;^UTILITY(U,$J,358.3,11007,2)
+ ;;=^5003402
+ ;;^UTILITY(U,$J,358.3,11008,0)
+ ;;=F18.980^^42^498^5
+ ;;^UTILITY(U,$J,358.3,11008,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,11008,1,3,0)
+ ;;=3^Inhalant Induced Anxiety Disorder w/o Use Disorder
+ ;;^UTILITY(U,$J,358.3,11008,1,4,0)
+ ;;=4^F18.980
+ ;;^UTILITY(U,$J,358.3,11008,2)
+ ;;=^5003414
+ ;;^UTILITY(U,$J,358.3,11009,0)
+ ;;=F18.94^^42^498^8
+ ;;^UTILITY(U,$J,358.3,11009,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,11009,1,3,0)
+ ;;=3^Inhalant Induced Depressive Disorder w/o Use Disorder
+ ;;^UTILITY(U,$J,358.3,11009,1,4,0)
+ ;;=4^F18.94
+ ;;^UTILITY(U,$J,358.3,11009,2)
+ ;;=^5003409
+ ;;^UTILITY(U,$J,358.3,11010,0)
+ ;;=F18.17^^42^498^9
+ ;;^UTILITY(U,$J,358.3,11010,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,11010,1,3,0)
+ ;;=3^Inhalant Induced Major Neurocog Disorder w/ Mild Use Disorder
+ ;;^UTILITY(U,$J,358.3,11010,1,4,0)
+ ;;=4^F18.17
+ ;;^UTILITY(U,$J,358.3,11010,2)
+ ;;=^5003388
+ ;;^UTILITY(U,$J,358.3,11011,0)
+ ;;=F18.27^^42^498^10
+ ;;^UTILITY(U,$J,358.3,11011,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,11011,1,3,0)
+ ;;=3^Inhalant Induced Major Neurocog Disorder w/ Mod/Severe Use Disorder
+ ;;^UTILITY(U,$J,358.3,11011,1,4,0)
+ ;;=4^F18.27
+ ;;^UTILITY(U,$J,358.3,11011,2)
+ ;;=^5003401
+ ;;^UTILITY(U,$J,358.3,11012,0)
+ ;;=F18.97^^42^498^11
+ ;;^UTILITY(U,$J,358.3,11012,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,11012,1,3,0)
+ ;;=3^Inhalant Induced Major Neurocog Disorder w/o Use Disorder
+ ;;^UTILITY(U,$J,358.3,11012,1,4,0)
+ ;;=4^F18.97

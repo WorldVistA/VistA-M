@@ -1,0 +1,10 @@
+OSEHRA ZGO Export: ^OR
+ZWR
+^OR("100.04","B","Benefit of Therapy Outweighs Risk",1)=""
+^OR("100.04","B","Documentation of Allergy/Adverse Reaction is in Error",6)=""
+^OR("100.04","B","Documentation of Allergy/Adverse Reaction is to different agent in same drug class",7)=""
+^OR("100.04","B","Patient report per interview is inconsistent with remote allergy data",8)=""
+^OR("100.04","B","Patient tolerating current therapy with this medication",2)=""
+^OR("100.04","B","Previous Adverse Reaction signs/symptoms managed by patient",3)=""
+^OR("100.04","B","Renewal of Current Therapy",4)=""
+^OR("100.04","B","Will Monitor Closely for Adverse Effects",5)=""

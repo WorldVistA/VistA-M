@@ -1,6 +1,8 @@
 IBCNEAMC ;DAOU/ESG - IIV AUTO MATCH BUFFER LISTING ;11-JUN-2002
- ;;2.0;INTEGRATED BILLING;**184,252,566**;21-MAR-94;Build 1
+ ;;2.0;INTEGRATED BILLING;**184,252,566,687**;21-MAR-94;Build 88
  ;;Per VA Directive 6402, this routine should not be modified.
+ ;
+ ; IA 10076 - to access ^XUSEC global for checking security key.
  ;
 EN ; -- main entry point for IBCNE AUTO MATCH BUFFER LIST
  NEW IBCNENIL,COL,CTRLCOL,FINISH,POP,VALMBCK,X,%DT
@@ -88,9 +90,14 @@ SELECT ; -- select an entry from the list
  D FULL^VALM1
  ;
  ; Check for Auto Match security key before allowing selection
- I '$$KCHK^XUSRB("IBCNE EIV MAINTENANCE") D  G SELECTX
+ ;/vd-IB*2.0*687 - The following lines of code were changed to address the renaming of the Security Key.
+ ;I '$$KCHK^XUSRB("IBCNE EIV MAINTENANCE") D  G SELECTX
+ ;. W !!?5,"You don't hold the proper security key to access this function."
+ ;. W !?5,"The necessary key is IBCNE EIV MAINTENANCE. Please see your manager."
+ ;. D PAUSE^VALM1
+ I '$D(^XUSEC("IBCNE EIV IIU MAINTENANCE",DUZ)) D  G SELECTX
  . W !!?5,"You don't hold the proper security key to access this function."
- . W !?5,"The necessary key is IBCNE EIV MAINTENANCE.  Please see your manager."
+ . W !?5,"The necessary key is IBCNE EIV IIU MAINTENANCE. Please see your manager."
  . D PAUSE^VALM1
  . Q
  ;
@@ -137,9 +144,14 @@ LINK ; -- link to the Auto Match Enter/Edit option
  D FULL^VALM1
  ;
  ; Check for Auto Match security key before allowing selection
- I '$$KCHK^XUSRB("IBCNE EIV MAINTENANCE") D  G LINKX
+ ;/vd-IB*2.0*687 - The following lines of code were changed to address the renaming of the Security Key.
+ ;I '$$KCHK^XUSRB("IBCNE EIV MAINTENANCE") D  G LINKX
+ ;. W !!?5,"You don't hold the proper security key to access this function."
+ ;. W !?5,"The necessary key is IBCNE EIV MAINTENANCE. Please see your manager."
+ ;. D PAUSE^VALM1
+ I '$D(^XUSEC("IBCNE EIV IIU MAINTENANCE",DUZ)) D  G LINKX
  . W !!?5,"You don't hold the proper security key to access this function."
- . W !?5,"The necessary key is IBCNE EIV MAINTENANCE.  Please see your manager."
+ . W !?5,"The necessary key is IBCNE EIV IIU MAINTENANCE. Please see your manager."
  . D PAUSE^VALM1
  . Q
  ;

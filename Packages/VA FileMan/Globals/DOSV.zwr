@@ -1,8 +1,10 @@
 OSEHRA ZGO Export: ^DOSV
 ZWR
-^DOSV(0,"/dev/pts/0",0,1,"N")=1
+^DOSV(0,"/dev/pts/0",0,1,"N")=9
 ^DOSV(0,"/dev/pts/0","F",1)="9.9^.01^PATCH NAME^RF"
+^DOSV(0,"/dev/pts/1",0,1,"N")=8
 ^DOSV(0,"/dev/pts/1","F",1)="9.9^.01^PATCH NAME^RF"
+^DOSV(0,"/dev/pts/2","F",1)="9.9^.01^PATCH NAME^RF"
 ^DOSV(0,"EIE_PQ$:EIE_SUP3$PRT.TXT",0,1,"S")=4900000
 ^DOSV(0,"EIE_PQ$:EIE_SUP3$PRT.TXT",1,"922 OI&T SALARIES",1,"S")=4900000
 ^DOSV(0,"EIE_PQ$:EIE_SUP3$PRT.TXT","BY",1)="421^1^CONTROL POINT^+^;S2^^^^^4"

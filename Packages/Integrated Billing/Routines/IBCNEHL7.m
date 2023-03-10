@@ -1,5 +1,5 @@
 IBCNEHL7 ;AITC/DM - HL7 Process Incoming 271 Messages Continued;05-MAY-2018
- ;;2.0;INTEGRATED BILLING;**621**;21-MAR-94;Build 14
+ ;;2.0;INTEGRATED BILLING;**621,668**;21-MAR-94;Build 28
  ;;Per VA Directive 6402, this routine should not be modified.
  ;
  ;This routine is used to process EICD associated entries.
@@ -60,9 +60,10 @@ PROCTRK(TRKIEN) ; Process the EICD Tracking File entries.
  . S:'IBPYRIEN IBPYROK=0
  . I IBPYROK D
  .. N PYRAPP
- .. S PYRAPP=$$PYRAPP^IBCNEUT5("IIV",IBPYRIEN)
- .. I '$$GET1^DIQ(365.121,PYRAPP_","_IBPYRIEN_",",.02,"I") S IBPYROK=0 Q  ; "NATIONAL ACTIVE"
- .. I '$$GET1^DIQ(365.121,PYRAPP_","_IBPYRIEN_",",.03,"I") S IBPYROK=0 Q  ; "LOCAL ACTIVE"
+ .. ;IB*668/TAZ - Changed field names to enabled and Payer Application from IIV to EIV
+ .. S PYRAPP=$$PYRAPP^IBCNEUT5("EIV",IBPYRIEN)
+ .. I '$$GET1^DIQ(365.121,PYRAPP_","_IBPYRIEN_",",.02,"I") S IBPYROK=0 Q  ; "NATIONALLY ENABLED"
+ .. I '$$GET1^DIQ(365.121,PYRAPP_","_IBPYRIEN_",",.03,"I") S IBPYROK=0 Q  ; "LOCALLY ENABLED"
  . I IBPYROK D  Q 
  .. S IBSUBID=IBINSDTA(365.185,IBFMIEN,.04)            ; SUBSCRIBER ID
  .. S:IBSUBID="" IBSUBID=IBINSDTA(365.185,IBFMIEN,.05) ; MEMBER ID

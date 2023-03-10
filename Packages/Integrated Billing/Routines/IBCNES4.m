@@ -1,11 +1,15 @@
-IBCNES4 ;ALB/JNM - eIV elig/Benefit screen ;06/08/2016
- ;;2.0;INTEGRATED BILLING;**549**;21-MAR-94;Build 54
+IBCNES4 ;ALB/JNM - eIV elig/Benefit screen ; 06/08/2016
+ ;;2.0;INTEGRATED BILLING;**549,702**;21-MAR-94;Build 53
  ;;Per VA Directive 6402, this routine should not be modified.
  ;
 EN ; entry point for IBCNB ELIG PAYER SUMMARY action protocol
+ ;IB*702/CKB,TAZ,DJW - Fixed restore of IBVF and IBVIENS
+ N IBVF2,IBVIENS2
+ S IBVF2=IBVF,IBVIENS2=IBVIENS
  I +IBVIENS,+IBVF D
  . D EN^VALM("IBCNB INSURANCE BUFFER PAYER")
 ENX ;
+ S IBVF=IBVF2,IBVIENS=IBVIENS2
  S VALMBCK="R"
  Q
  ;
@@ -18,8 +22,9 @@ INIT0(IBVF,IBVIENS,IBSUBID,IBNOLBL) ; -- Used by IBCNBCD to fetch data
  Q
  ;
 INIT(IBSUBID) ; -- init variables and list array
- N IBVDA,LN,COL,COL1,COL2,VALMAR,IBVF2,IBVIENS2
- S IBVF2=IBVF,IBVIENS2=IBVIENS
+ ;IB*702/CKB,TAZ,DJW - Fixed restore of IBVF and IBVIENS
+ N IBVDA,LN,COL,COL1,COL2,VALMAR ;,IBVF2,IBVIENS2
+ ;S IBVF2=IBVF,IBVIENS2=IBVIENS
  I $G(IBSUBID)="" S IBSUBID="IBCNES PAY SUM"
  S VALMAR=$NA(^TMP(IBSUBID,$J))
  K @VALMAR ; clear out the existing data, if any
@@ -28,17 +33,23 @@ INIT(IBSUBID) ; -- init variables and list array
  . N IEN
  . S IEN=$$GET1^DIQ(2.312,IBVIENS,8.03,"I")
  . I +$G(IEN) S IBVF=365.02,IBVIENS=IEN_","
- I IBVF=2.322 G NODATA
+ ;IB*702/TAZ,CKB,DJW cleaned up the code for readability, changed G's to D's and
+ ; moved INITX tag
+ I IBVF=2.322 D NODATA G INITX
  D DA^DILF(IBVIENS,.IBVDA)  ; build the IBVDA array for the iens
- I '$D(IBVDA) G NODATA
+ I '$D(IBVDA) D NODATA G INITX
  D INIT2(365)
+ ;
+INITX ;
+ ;S IBVF=IBVF2,IBVIENS=IBVIENS2
+ S VALMCNT=LN
  Q
  ;
 INIT2(IBVF) ; allows changing IBVF just for this routine
  N INIEN,X1,TEMP,NOLBL
  S INIEN=IBVDA,NOLBL=$G(IBNOLBL),IBNOLBL=0
  D SET1("Payer Summary - from Payer's Response",,1,1)
- I $$GET1^DIQ(IBVF,INIEN,.07,"I")'>0 G WAITING ; If Response requested but not yet received
+ I $$GET1^DIQ(IBVF,INIEN,.07,"I")'>0 D WAITING Q  ; If Response requested but not yet received
  S IBNOLBL=NOLBL
  D SET1("Subscriber",$$GET1^DIQ(IBVF,INIEN,13.01))
  D SET1("Subscriber ID",$$GET1^DIQ(IBVF,INIEN,13.02))
@@ -76,20 +87,16 @@ INIT2(IBVF) ; allows changing IBVF just for this routine
  . D SET4($$GETQUAL(.06),$$GET1^DIQ(QFILE,QIEN,3))
  . D:STRTLINE'=LN SET1()
  D SET1()
- G INITX
+ Q
  ;
 WAITING ;
  D SET1()
  D SET1("Awaiting Payer Response.")
- G INITX
+ Q
  ; 
 NODATA ; display no data found
  D SET1()
  D SET1("No Payer Summary Data Found")
- ;
-INITX ;
- S IBVF=IBVF2,IBVIENS2=IBVIENS
- S VALMCNT=LN
  Q
  ;
 GETQUAL(QREC) ; Return Communication Qualifier text

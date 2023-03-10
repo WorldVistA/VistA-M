@@ -1,4 +1,4 @@
-RACTRG2 ; ;01/03/19
+RACTRG2 ; ;07/26/21
  D DE G BEGIN
 DE S DIE="^RADPT(D0,""DT"",D1,""P"",",DIC=DIE,DP=70.03,DL=3,DIEL=2,DU="" K DG,DE,DB Q:$O(^RADPT(D0,"DT",D1,"P",DA,""))=""
  I $D(^(0)) S %Z=^(0) S %=$P(%Z,U,2) S:%]"" DE(11)=%,DE(18)=% S %=$P(%Z,U,3) S:%]"" DE(8)=% S %=$P(%Z,U,4) S:%]"" DE(42)=% S %=$P(%Z,U,6) S:%]"" DE(60)=%,DE(63)=% S %=$P(%Z,U,7) S:%]"" DE(66)=%,DE(69)=% S %=$P(%Z,U,8) S:%]"" DE(53)=%
@@ -391,10 +391,10 @@ X67 S Y="@85"
 68 S DQ=69 ;@80
 69 S DW="0;7",DV="P49'",DU="",DIFLD=7,DLB=$$LABEL^DIALOGZ(DP,DIFLD)
  S DU="DIC(49,"
- S X=RASER
+ S X=RASERIEN
  S Y=X
- S X=Y,DB(DQ)=1 G:X="" N^DIE17:DV,A I $D(DE(DQ)),DV["I"!(DV["#") D E^DIE0 G A:'$D(X)
- G RD
+ S X=Y,DB(DQ)=1,DE(DW,"4/")="" G:X="" N^DIE17:DV,A I $D(DE(DQ)),DV["I"!(DV["#") D E^DIE0 G A:'$D(X)
+ G RD:X="@",Z
 X69 Q
 70 S DQ=71 ;@85
 71 D:$D(DG)>9 F^DIE17,DE S Y=U,DQ=71 D X71 D:$D(DIEFIRE)#2 FIREREC^DIE17 G A:$D(Y)[0,A:Y=U S X=Y,DIC(0)="F",DW=DQ G OUT^DIE17

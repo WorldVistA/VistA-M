@@ -1,8 +1,8 @@
 XINDX12 ;OSE/CJE - Create phantom routines for build components ;03/01/2018  8:37 AM
- ;;7.3;TOOLKIT;**140,147**;Apr 25, 1995;Build 1
+ ;;7.3;TOOLKIT;**140,147,148**;Apr 25, 1995;Build 3
  ; Per VHA Directive 2004-038, this routine should not be modified.
  ; Entire routine authored by Chirstopher Edwards
- ;
+ ; p148 remove all status writes, they are now done in XINDX11
  ; Variables passed through the stack:
  ; B = {IEN}
  ; INDLC = {counter}
@@ -29,7 +29,6 @@ SORT ;Process Sort Templates
  ; .401419   2      OVERFLOW CODE                    ^DIBT(D0,2,D1,3,D2,OVF0)             Part of Overflow Data Subfile
  ; .4011624  4      DISPAR(0,n,OUT)                  ^DIBT(D0,BY0D,D1,2)                  Part of Sort Range Data For BY(0)
  ; ========  =====  ===============================  ===================================  =============================================
- W !,"Processing Sort Templates",!
  S INDX=$S($L($G(^DIBT(B,"ROU"))):"D "_$G(^DIBT(B,"ROU")),1:";")
  S INDC=B_" ; "_INDL_" - ROUTINE INVOKED (#1815)"
  D ADD^XINDX11
@@ -79,13 +78,11 @@ SORT ;Process Sort Templates
  ; So we put all of the lines together as "EXECUTABLE CODE"
  ; Thanks to Sam Habiel for the implementation requried to support this.
 INPUT ; Input Templates
- W !,"Processing Input Templates",!
  S INDC=B_" ; "_INDL_" - EXECUTABLE CODE"
  D ADD^XINDX11
  D DIETM^XINDX13
  Q
 PRINT ; Print Templates
- W !,"Processing Print Templates",!
  S INDC=B_" ; "_INDL_" - EXECUTABLE CODE"
  D ADD^XINDX11
  D DIPTM^XINDX13
@@ -104,7 +101,6 @@ FORM ;Process Forms
  ; .4032     12     POST ACTION                      ^DIST(.403,D0,40,D1,40,D2,12)
  ; .4032     98     COMPUTED MULTIPLE                ^DIST(.403,D0,40,D1,40,D2,COMP MUL)
  ; ========  =====  ===============================  ===================================  =============================================
- W !,"Processing Forms",!
  S INDX=$S($L($G(^DIST(.403,B,11))):$G(^DIST(.403,B,11)),1:";")
  S INDC=B_" ; "_INDL_" - PRE ACTION (#11)"
  D ADD^XINDX11
@@ -151,7 +147,6 @@ DIALOG ;Process Dialogs
  ; ========  =====  ===============================  ===================================  =============================================
  ; .84       6      POST MESSAGE ACTION              ^DI(.84,D0,6)
  ; ========  =====  ===============================  ===================================  =============================================
- W !,"Processing Dialogs",!
  S INDX=$S($L($G(^DI(.84,B,6))):$G(^DI(.84,B,6)),1:";")
  S INDC=B_" ; "_INDL_" - POST MESSAGE ACTION (#6)"
  D ADD^XINDX11
@@ -163,7 +158,6 @@ HELP ;Process Help Frames
  ; 9.2       10.1   ENTRY EXECUTE STATEMENT          ^DIC(9.2,D0,10.1)
  ; 9.2       10.2   EXIT EXECUTE STATEMENT           ^DIC(9.2,D0,10.2)
  ; ========  =====  ===============================  ===================================  =============================================
- W !,"Processing Help Frames",!
  S INDX=$S($L($G(^DIC(9.2,B,10.1))):$G(^DIC(9.2,B,10.1)),1:";")
  S INDC=B_" ; "_INDL_" - ENTRY EXECUTE STATEMENT (#10.1)"
  D ADD^XINDX11
@@ -178,7 +172,6 @@ KEY ;Process Security Keys
  ; ========  =====  ===============================  ===================================  =============================================
  ; 19.1      4      GRANTING CONDITION               ^DIC(19.1,D0,4)
  ; ========  =====  ===============================  ===================================  =============================================
- W !,"Processing Security Keys",!
  S INDX=$S($L($G(^DIC(19.1,B,4))):$G(^DIC(19.1,B,4)),1:";")
  S INDC=B_" ; "_INDL_" - GRANTING CONDITION (#4)"
  D ADD^XINDX11
@@ -194,7 +187,6 @@ LIST ;Process List Templates
  ; 409.61    106    ENTRY CODE                       ^SD(409.61,D0,INIT)
  ; 409.61    107    ARRAY NAME                       ^SD(409.61,D0,ARRAY)                 Holds a variable name prefaced by a space
  ; ========  =====  ===============================  ===================================  =============================================
- W !,"Processing List Templates",!
  S INDX=$S($L($G(^SD(409.61,B,"HDR"))):$G(^SD(409.61,B,"HDR")),1:";")
  S INDC=B_" ; "_INDL_" - HEADER CODE (#100)"
  D ADD^XINDX11
@@ -239,7 +231,6 @@ PROTOCOL ;Process Protocols
  ; 101       21     REQUIRED VARIABLES               ^ORD(101,D0,21,D1,0)                 Required Variables sub file
  ; 101.05    .02    METHOD ACTION                    ^ORD(101,D0,101.05,D1,1) E1,245      Method sub file
  ; ========  =====  ===============================  ===================================  =============================================
- W !,"Processing Protocols",!
  K INDN
  S INDN=$P($G(^ORD(101,B,0)),U,1)
  S INDX=$S($L($G(^ORD(101,B,15))):$G(^ORD(101,B,15)),1:";")
@@ -309,7 +300,6 @@ HL7AP ; Process HL7 Application Parameters
  ; ========  =====  ===============================  ===================================  =============================================
  ; 771.06    1      PROCESSING ROUTINE               ^HL(771,D0,MSG,D1,R)
  ; ========  =====  ===============================  ===================================  =============================================
- W !,"Processing HL7 Application Parameters",!
  N SUB
  S SUB=""
  F  S SUB=$O(^HL(771,B,"MSG",SUB)) Q:SUB=""  Q:SUB'=+SUB  D
@@ -325,7 +315,6 @@ RPC ; Process Remote Procedures
  ; 8994      .02    TAG                              ^XWB(8994,D0,0) Piece 2              Needs to be concatenated with ROUTINE
  ; 8994      .03    ROUTINE                          ^XWB(8994,D0,0) Piece 3
  ; ========  =====  ===============================  ===================================  =============================================
- W !,"Processing Remote Procedures",!
  S INDX=$S($L($P($G(^XWB(8994,B,0)),U,2))&($L($P($G(^XWB(8994,B,0)),U,3))):"D "_$P($G(^XWB(8994,B,0)),U,2)_"^"_$P($G(^XWB(8994,B,0)),U,3),1:";")
  S INDC=B_" ; "_INDL_" - TAG ROUTINE (#.02 & .03)"
  D ADD^XINDX11

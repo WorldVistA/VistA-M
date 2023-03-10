@@ -1,6 +1,8 @@
 PRCHFPDE ;SF-ISC/TKW-EDIT FPDS DATA ON P.O. AFTER SIGNED BY P.A. ;12-6-90/15:48
-V ;;5.1;IFCAP;**79,100**;Oct 20, 2000
- ;Per VHA Directive 10-93-142, this routine should not be modified.
+V ;;5.1;IFCAP;**79,100,220**;Oct 20, 2000;Build 23
+ ;Per VA Directive 6402, this routine should not be modified.
+ ;
+ ;PRC*5.1*220 Removed check/query/invoke FPDS messaging
  ;
 EN1 ;EDIT FPDS DATA ON P.O. AFTER BEING SIGNED BY P.A.
  I $D(PRCHAM) S PRCHFLG=""
@@ -64,10 +66,10 @@ ASK W !!,$C(7),"ARE YOU SURE YOU WANT TO RE-ENTER THE FPDS CODES " D YN^DICN Q:(
  ;End of changes for PRC*5.1*100.
  ;
  ;Send HL7 message to the AAC
- I $P($G(^PRC(442,PRCHPO,25)),U,17)="YES",$P(^PRC(442,PRCHPO,0),U,15)>0 D EN^DDIOL("...now generating the FPDS message for the AAC","","!") D AAC^PRCHAAC
+ ;I $P($G(^PRC(442,PRCHPO,25)),U,17)="YES",$P(^PRC(442,PRCHPO,0),U,15)>0 D EN^DDIOL("...now generating the FPDS message for the AAC","","!") D AAC^PRCHAAC   ;PRC*5.1*220
  ;End changes for PRC*5.1*79
  K DIE F I=0:0 Q:'$D(PRCHPO)  S I=$O(^PRC(442,PRCHPO,9,I)) Q:'I  D ER2^PRCHNPO6:$P(^(I,0),U,2)="",ER3^PRCHNPO6:'$O(^(1,0))
- L  I $D(PRCHFLG) K PRCHFLG Q
+ L -^PRC(442,PRCHPO) I $D(PRCHFLG) K PRCHFLG Q
  G EN10
  ;
 OUT ;Tell the user that the PO is not eligible for FPDS
@@ -101,4 +103,4 @@ W W !!,?10," Enter either Yes/No  or  enter ""^"" to exit."
  Q
  ;
  ;
-Q L  K PRC,PRCHI,PRCHFLG G Q^PRCHNPO4
+Q L -^PRC(442,PRCHPO) K PRC,PRCHI,PRCHFLG G Q^PRCHNPO4

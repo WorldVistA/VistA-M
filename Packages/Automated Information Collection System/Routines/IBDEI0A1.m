@@ -1,640 +1,694 @@
-IBDEI0A1 ; ; 01-MAY-2020
- ;;3.0;IB ENCOUNTER FORM IMP/EXP;;MAY 01, 2020
+IBDEI0A1 ; ; 01-AUG-2022
+ ;;3.0;IB ENCOUNTER FORM IMP/EXP;;AUG 01, 2022
  Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,999) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
+ ;;^UTILITY(U,$J,358.3,24549,0)
+ ;;=K74.02^^74^978^9
+ ;;^UTILITY(U,$J,358.3,24549,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,24549,1,3,0)
+ ;;=3^Hepatic Fibrosis,Advanced Fibrosis
+ ;;^UTILITY(U,$J,358.3,24549,1,4,0)
+ ;;=4^K74.02
+ ;;^UTILITY(U,$J,358.3,24549,2)
+ ;;=^5159220
+ ;;^UTILITY(U,$J,358.3,24550,0)
+ ;;=K70.30^^74^978^6
+ ;;^UTILITY(U,$J,358.3,24550,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,24550,1,3,0)
+ ;;=3^Alcoholic Cirrhosis w/o Ascites
+ ;;^UTILITY(U,$J,358.3,24550,1,4,0)
+ ;;=4^K70.30
+ ;;^UTILITY(U,$J,358.3,24550,2)
+ ;;=^5008788
+ ;;^UTILITY(U,$J,358.3,24551,0)
+ ;;=K70.31^^74^978^5
+ ;;^UTILITY(U,$J,358.3,24551,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,24551,1,3,0)
+ ;;=3^Alcoholic Cirrhosis w/ Ascites
+ ;;^UTILITY(U,$J,358.3,24551,1,4,0)
+ ;;=4^K70.31
+ ;;^UTILITY(U,$J,358.3,24551,2)
+ ;;=^5008789
+ ;;^UTILITY(U,$J,358.3,24552,0)
+ ;;=K75.81^^74^978^14
+ ;;^UTILITY(U,$J,358.3,24552,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,24552,1,3,0)
+ ;;=3^Nonalcoholic Steatohepatitis (NASH)
+ ;;^UTILITY(U,$J,358.3,24552,1,4,0)
+ ;;=4^K75.81
+ ;;^UTILITY(U,$J,358.3,24552,2)
+ ;;=^5008828
+ ;;^UTILITY(U,$J,358.3,24553,0)
+ ;;=B18.2^^74^978^12
+ ;;^UTILITY(U,$J,358.3,24553,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,24553,1,3,0)
+ ;;=3^Hepatitis C (Carrier/Chronic)
+ ;;^UTILITY(U,$J,358.3,24553,1,4,0)
+ ;;=4^B18.2
+ ;;^UTILITY(U,$J,358.3,24553,2)
+ ;;=^5000548
+ ;;^UTILITY(U,$J,358.3,24554,0)
+ ;;=J85.1^^74^979^41
+ ;;^UTILITY(U,$J,358.3,24554,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,24554,1,3,0)
+ ;;=3^Abscess of Lung w/ Pneumonia
+ ;;^UTILITY(U,$J,358.3,24554,1,4,0)
+ ;;=4^J85.1
+ ;;^UTILITY(U,$J,358.3,24554,2)
+ ;;=^5008306
+ ;;^UTILITY(U,$J,358.3,24555,0)
+ ;;=J85.2^^74^979^42
+ ;;^UTILITY(U,$J,358.3,24555,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,24555,1,3,0)
+ ;;=3^Abscess of Lung w/o Pneumonia
+ ;;^UTILITY(U,$J,358.3,24555,1,4,0)
+ ;;=4^J85.2
+ ;;^UTILITY(U,$J,358.3,24555,2)
+ ;;=^5008307
+ ;;^UTILITY(U,$J,358.3,24556,0)
+ ;;=H60.513^^74^979^1
+ ;;^UTILITY(U,$J,358.3,24556,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,24556,1,3,0)
+ ;;=3^AC Actinic Otitis Externa,Bilateral
+ ;;^UTILITY(U,$J,358.3,24556,1,4,0)
+ ;;=4^H60.513
+ ;;^UTILITY(U,$J,358.3,24556,2)
+ ;;=^5006472
+ ;;^UTILITY(U,$J,358.3,24557,0)
+ ;;=H60.512^^74^979^2
+ ;;^UTILITY(U,$J,358.3,24557,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,24557,1,3,0)
+ ;;=3^AC Actinic Otitis Externa,Left Ear
+ ;;^UTILITY(U,$J,358.3,24557,1,4,0)
+ ;;=4^H60.512
+ ;;^UTILITY(U,$J,358.3,24557,2)
+ ;;=^5006471
+ ;;^UTILITY(U,$J,358.3,24558,0)
+ ;;=H60.511^^74^979^3
+ ;;^UTILITY(U,$J,358.3,24558,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,24558,1,3,0)
+ ;;=3^AC Actinic Otitis Externa,Right Ear
+ ;;^UTILITY(U,$J,358.3,24558,1,4,0)
+ ;;=4^H60.511
+ ;;^UTILITY(U,$J,358.3,24558,2)
+ ;;=^5006470
+ ;;^UTILITY(U,$J,358.3,24559,0)
+ ;;=J21.1^^74^979^5
+ ;;^UTILITY(U,$J,358.3,24559,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,24559,1,3,0)
+ ;;=3^AC Bronchiolitis d/t Human Metapneumovirus
+ ;;^UTILITY(U,$J,358.3,24559,1,4,0)
+ ;;=4^J21.1
+ ;;^UTILITY(U,$J,358.3,24559,2)
+ ;;=^5008197
+ ;;^UTILITY(U,$J,358.3,24560,0)
+ ;;=J21.8^^74^979^6
+ ;;^UTILITY(U,$J,358.3,24560,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,24560,1,3,0)
+ ;;=3^AC Bronchiolitis d/t Specified Organisms
+ ;;^UTILITY(U,$J,358.3,24560,1,4,0)
+ ;;=4^J21.8
+ ;;^UTILITY(U,$J,358.3,24560,2)
+ ;;=^5008198
+ ;;^UTILITY(U,$J,358.3,24561,0)
+ ;;=J21.9^^74^979^4
+ ;;^UTILITY(U,$J,358.3,24561,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,24561,1,3,0)
+ ;;=3^AC Bronchilitis,Unspec
+ ;;^UTILITY(U,$J,358.3,24561,1,4,0)
+ ;;=4^J21.9
+ ;;^UTILITY(U,$J,358.3,24561,2)
+ ;;=^5008199
+ ;;^UTILITY(U,$J,358.3,24562,0)
+ ;;=J20.3^^74^979^7
+ ;;^UTILITY(U,$J,358.3,24562,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,24562,1,3,0)
+ ;;=3^AC Bronchitis d/t Coxsackievirus
+ ;;^UTILITY(U,$J,358.3,24562,1,4,0)
+ ;;=4^J20.3
+ ;;^UTILITY(U,$J,358.3,24562,2)
+ ;;=^5008189
+ ;;^UTILITY(U,$J,358.3,24563,0)
+ ;;=J20.7^^74^979^8
+ ;;^UTILITY(U,$J,358.3,24563,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,24563,1,3,0)
+ ;;=3^AC Bronchitis d/t Echovirus
+ ;;^UTILITY(U,$J,358.3,24563,1,4,0)
+ ;;=4^J20.7
+ ;;^UTILITY(U,$J,358.3,24563,2)
+ ;;=^5008193
+ ;;^UTILITY(U,$J,358.3,24564,0)
+ ;;=J20.1^^74^979^9
+ ;;^UTILITY(U,$J,358.3,24564,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,24564,1,3,0)
+ ;;=3^AC Bronchitis d/t Hemophilus Influenzae
+ ;;^UTILITY(U,$J,358.3,24564,1,4,0)
+ ;;=4^J20.1
+ ;;^UTILITY(U,$J,358.3,24564,2)
+ ;;=^5008187
+ ;;^UTILITY(U,$J,358.3,24565,0)
+ ;;=J20.0^^74^979^10
  ;;^UTILITY(U,$J,358.3,24565,1,0)
  ;;=^358.31IA^4^2
  ;;^UTILITY(U,$J,358.3,24565,1,3,0)
- ;;=3^Traum subdr hem w LOC >24 hr w ret consc lev, sequela
+ ;;=3^AC Bronchitis d/t Mycoplasma Pneumoniae
  ;;^UTILITY(U,$J,358.3,24565,1,4,0)
- ;;=4^S06.5X5S
+ ;;=4^J20.0
  ;;^UTILITY(U,$J,358.3,24565,2)
- ;;=^5021073
+ ;;=^5008186
  ;;^UTILITY(U,$J,358.3,24566,0)
- ;;=S06.5X6S^^76^1006^92
+ ;;=J20.8^^74^979^14
  ;;^UTILITY(U,$J,358.3,24566,1,0)
  ;;=^358.31IA^4^2
  ;;^UTILITY(U,$J,358.3,24566,1,3,0)
- ;;=3^Traum subdr hem w LOC >24 hr w/o ret consc w surv, sequela
+ ;;=3^AC Bronchitis d/t Specified Organisms
  ;;^UTILITY(U,$J,358.3,24566,1,4,0)
- ;;=4^S06.5X6S
+ ;;=4^J20.8
  ;;^UTILITY(U,$J,358.3,24566,2)
- ;;=^5021076
+ ;;=^5008194
  ;;^UTILITY(U,$J,358.3,24567,0)
- ;;=S06.5X3S^^76^1006^93
+ ;;=J20.4^^74^979^11
  ;;^UTILITY(U,$J,358.3,24567,1,0)
  ;;=^358.31IA^4^2
  ;;^UTILITY(U,$J,358.3,24567,1,3,0)
- ;;=3^Traum subdr hem w LOC of 1-5 hrs 59 min, sequela
+ ;;=3^AC Bronchitis d/t Parainfluenza Virus
  ;;^UTILITY(U,$J,358.3,24567,1,4,0)
- ;;=4^S06.5X3S
+ ;;=4^J20.4
  ;;^UTILITY(U,$J,358.3,24567,2)
- ;;=^5021067
+ ;;=^5008190
  ;;^UTILITY(U,$J,358.3,24568,0)
- ;;=S06.5X1S^^76^1006^94
+ ;;=J20.5^^74^979^12
  ;;^UTILITY(U,$J,358.3,24568,1,0)
  ;;=^358.31IA^4^2
  ;;^UTILITY(U,$J,358.3,24568,1,3,0)
- ;;=3^Traum subdr hem w LOC of 30 minutes or less, sequela
+ ;;=3^AC Bronchitis d/t Respiratory Syncytial Virus
  ;;^UTILITY(U,$J,358.3,24568,1,4,0)
- ;;=4^S06.5X1S
+ ;;=4^J20.5
  ;;^UTILITY(U,$J,358.3,24568,2)
- ;;=^5021061
+ ;;=^5008191
  ;;^UTILITY(U,$J,358.3,24569,0)
- ;;=S06.5X2S^^76^1006^95
+ ;;=J20.6^^74^979^13
  ;;^UTILITY(U,$J,358.3,24569,1,0)
  ;;=^358.31IA^4^2
  ;;^UTILITY(U,$J,358.3,24569,1,3,0)
- ;;=3^Traum subdr hem w LOC of 31-59 min, sequela
+ ;;=3^AC Bronchitis d/t Rhinovirus
  ;;^UTILITY(U,$J,358.3,24569,1,4,0)
- ;;=4^S06.5X2S
+ ;;=4^J20.6
  ;;^UTILITY(U,$J,358.3,24569,2)
- ;;=^5021064
+ ;;=^5008192
  ;;^UTILITY(U,$J,358.3,24570,0)
- ;;=S06.5X4S^^76^1006^96
+ ;;=J20.2^^74^979^15
  ;;^UTILITY(U,$J,358.3,24570,1,0)
  ;;=^358.31IA^4^2
  ;;^UTILITY(U,$J,358.3,24570,1,3,0)
- ;;=3^Traum subdr hem w LOC of 6 hours to 24 hours, sequela
+ ;;=3^AC Bronchitis d/t Streptococcus
  ;;^UTILITY(U,$J,358.3,24570,1,4,0)
- ;;=4^S06.5X4S
+ ;;=4^J20.2
  ;;^UTILITY(U,$J,358.3,24570,2)
- ;;=^5021070
+ ;;=^5008188
  ;;^UTILITY(U,$J,358.3,24571,0)
- ;;=S06.5X9S^^76^1006^97
+ ;;=J20.9^^74^979^16
  ;;^UTILITY(U,$J,358.3,24571,1,0)
  ;;=^358.31IA^4^2
  ;;^UTILITY(U,$J,358.3,24571,1,3,0)
- ;;=3^Traum subdr hem w LOC of unsp duration, sequela
+ ;;=3^AC Bronchitis,Unspec
  ;;^UTILITY(U,$J,358.3,24571,1,4,0)
- ;;=4^S06.5X9S
+ ;;=4^J20.9
  ;;^UTILITY(U,$J,358.3,24571,2)
- ;;=^5021085
+ ;;=^5008195
  ;;^UTILITY(U,$J,358.3,24572,0)
- ;;=S06.5X0S^^76^1006^98
+ ;;=H60.523^^74^979^17
  ;;^UTILITY(U,$J,358.3,24572,1,0)
  ;;=^358.31IA^4^2
  ;;^UTILITY(U,$J,358.3,24572,1,3,0)
- ;;=3^Traum subdr hem w/o LOC, sequela
+ ;;=3^AC Chemical Otitis Externa,Bilateral
  ;;^UTILITY(U,$J,358.3,24572,1,4,0)
- ;;=4^S06.5X0S
+ ;;=4^H60.523
  ;;^UTILITY(U,$J,358.3,24572,2)
- ;;=^5021058
+ ;;=^5006476
  ;;^UTILITY(U,$J,358.3,24573,0)
- ;;=M84.351S^^76^1007^114
+ ;;=H60.522^^74^979^18
  ;;^UTILITY(U,$J,358.3,24573,1,0)
  ;;=^358.31IA^4^2
  ;;^UTILITY(U,$J,358.3,24573,1,3,0)
- ;;=3^Stress fracture, right femur, sequela
+ ;;=3^AC Chemical Otitis Externa,Left Ear
  ;;^UTILITY(U,$J,358.3,24573,1,4,0)
- ;;=4^M84.351S
+ ;;=4^H60.522
  ;;^UTILITY(U,$J,358.3,24573,2)
- ;;=^5013685
+ ;;=^5006475
  ;;^UTILITY(U,$J,358.3,24574,0)
- ;;=M84.352S^^76^1007^113
+ ;;=H60.521^^74^979^19
  ;;^UTILITY(U,$J,358.3,24574,1,0)
  ;;=^358.31IA^4^2
  ;;^UTILITY(U,$J,358.3,24574,1,3,0)
- ;;=3^Stress fracture, left femur, sequela
+ ;;=3^AC Chemical Otitis Externa,Right Ear
  ;;^UTILITY(U,$J,358.3,24574,1,4,0)
- ;;=4^M84.352S
+ ;;=4^H60.521
  ;;^UTILITY(U,$J,358.3,24574,2)
- ;;=^5013691
+ ;;=^5006474
  ;;^UTILITY(U,$J,358.3,24575,0)
- ;;=M84.451S^^76^1007^102
+ ;;=H60.543^^74^979^20
  ;;^UTILITY(U,$J,358.3,24575,1,0)
  ;;=^358.31IA^4^2
  ;;^UTILITY(U,$J,358.3,24575,1,3,0)
- ;;=3^Pathological fracture, right femur, sequela
+ ;;=3^AC Eczematoid Otitis Externa,Bilateral
  ;;^UTILITY(U,$J,358.3,24575,1,4,0)
- ;;=4^M84.451S
+ ;;=4^H60.543
  ;;^UTILITY(U,$J,358.3,24575,2)
- ;;=^5013907
+ ;;=^5006484
  ;;^UTILITY(U,$J,358.3,24576,0)
- ;;=M84.452S^^76^1007^101
+ ;;=H60.542^^74^979^21
  ;;^UTILITY(U,$J,358.3,24576,1,0)
  ;;=^358.31IA^4^2
  ;;^UTILITY(U,$J,358.3,24576,1,3,0)
- ;;=3^Pathological fracture, left femur, sequela
+ ;;=3^AC Eczematoid Otitis Externa,Left Ear
  ;;^UTILITY(U,$J,358.3,24576,1,4,0)
- ;;=4^M84.452S
+ ;;=4^H60.542
  ;;^UTILITY(U,$J,358.3,24576,2)
- ;;=^5013913
+ ;;=^5006483
  ;;^UTILITY(U,$J,358.3,24577,0)
- ;;=S72.021S^^76^1007^17
+ ;;=H60.541^^74^979^22
  ;;^UTILITY(U,$J,358.3,24577,1,0)
  ;;=^358.31IA^4^2
  ;;^UTILITY(U,$J,358.3,24577,1,3,0)
- ;;=3^Displaced epiphy fx of right femur, sequela
+ ;;=3^AC Eczematoid Otitis Externa,Right Ear
  ;;^UTILITY(U,$J,358.3,24577,1,4,0)
- ;;=4^S72.021S
+ ;;=4^H60.541
  ;;^UTILITY(U,$J,358.3,24577,2)
- ;;=^5037136
+ ;;=^5006482
  ;;^UTILITY(U,$J,358.3,24578,0)
- ;;=S72.022S^^76^1007^16
+ ;;=J04.0^^74^979^23
  ;;^UTILITY(U,$J,358.3,24578,1,0)
  ;;=^358.31IA^4^2
  ;;^UTILITY(U,$J,358.3,24578,1,3,0)
- ;;=3^Displaced epiphy fx of left femur, sequela
+ ;;=3^AC Laryngitis
  ;;^UTILITY(U,$J,358.3,24578,1,4,0)
- ;;=4^S72.022S
+ ;;=4^J04.0
  ;;^UTILITY(U,$J,358.3,24578,2)
- ;;=^5037152
+ ;;=^5008137
  ;;^UTILITY(U,$J,358.3,24579,0)
- ;;=S72.024S^^76^1007^65
+ ;;=J04.2^^74^979^24
  ;;^UTILITY(U,$J,358.3,24579,1,0)
  ;;=^358.31IA^4^2
  ;;^UTILITY(U,$J,358.3,24579,1,3,0)
- ;;=3^Nondisp epiphy fx of right femur, sequela
+ ;;=3^AC Laryngotracheitis
  ;;^UTILITY(U,$J,358.3,24579,1,4,0)
- ;;=4^S72.024S
+ ;;=4^J04.2
  ;;^UTILITY(U,$J,358.3,24579,2)
- ;;=^5037184
+ ;;=^269868
  ;;^UTILITY(U,$J,358.3,24580,0)
- ;;=S72.025S^^76^1007^64
+ ;;=J00.^^74^979^25
  ;;^UTILITY(U,$J,358.3,24580,1,0)
  ;;=^358.31IA^4^2
  ;;^UTILITY(U,$J,358.3,24580,1,3,0)
- ;;=3^Nondisp epiphy fx of left femur, sequela
+ ;;=3^AC Nasopharyngitis
  ;;^UTILITY(U,$J,358.3,24580,1,4,0)
- ;;=4^S72.025S
+ ;;=4^J00.
  ;;^UTILITY(U,$J,358.3,24580,2)
- ;;=^5037200
+ ;;=^5008115
  ;;^UTILITY(U,$J,358.3,24581,0)
- ;;=S72.031S^^76^1007^33
+ ;;=J02.8^^74^979^29
  ;;^UTILITY(U,$J,358.3,24581,1,0)
  ;;=^358.31IA^4^2
  ;;^UTILITY(U,$J,358.3,24581,1,3,0)
- ;;=3^Displaced midcervical fx of right femur, sequela
+ ;;=3^AC Pharyngitis d/t Specified Organisms
  ;;^UTILITY(U,$J,358.3,24581,1,4,0)
- ;;=4^S72.031S
+ ;;=4^J02.8
  ;;^UTILITY(U,$J,358.3,24581,2)
- ;;=^5037232
+ ;;=^5008129
  ;;^UTILITY(U,$J,358.3,24582,0)
- ;;=S72.032S^^76^1007^32
+ ;;=J02.9^^74^979^30
  ;;^UTILITY(U,$J,358.3,24582,1,0)
  ;;=^358.31IA^4^2
  ;;^UTILITY(U,$J,358.3,24582,1,3,0)
- ;;=3^Displaced midcervical fx of left femur, sequela
+ ;;=3^AC Pharyngitis,Unspec
  ;;^UTILITY(U,$J,358.3,24582,1,4,0)
- ;;=4^S72.032S
+ ;;=4^J02.9
  ;;^UTILITY(U,$J,358.3,24582,2)
- ;;=^5037248
+ ;;=^5008130
  ;;^UTILITY(U,$J,358.3,24583,0)
- ;;=S72.034S^^76^1007^81
+ ;;=B40.0^^74^979^31
  ;;^UTILITY(U,$J,358.3,24583,1,0)
  ;;=^358.31IA^4^2
  ;;^UTILITY(U,$J,358.3,24583,1,3,0)
- ;;=3^Nondisp midcervical fx of right femur, sequela
+ ;;=3^AC Pulmonary Blastomycosis
  ;;^UTILITY(U,$J,358.3,24583,1,4,0)
- ;;=4^S72.034S
+ ;;=4^B40.0
  ;;^UTILITY(U,$J,358.3,24583,2)
- ;;=^5037280
+ ;;=^5000639
  ;;^UTILITY(U,$J,358.3,24584,0)
- ;;=S72.035S^^76^1007^80
+ ;;=H60.553^^74^979^32
  ;;^UTILITY(U,$J,358.3,24584,1,0)
  ;;=^358.31IA^4^2
  ;;^UTILITY(U,$J,358.3,24584,1,3,0)
- ;;=3^Nondisp midcervical fx of left femur, sequela
+ ;;=3^AC Reactive Otitis Externa,Bilateral
  ;;^UTILITY(U,$J,358.3,24584,1,4,0)
- ;;=4^S72.035S
+ ;;=4^H60.553
  ;;^UTILITY(U,$J,358.3,24584,2)
- ;;=^5037296
+ ;;=^5006488
  ;;^UTILITY(U,$J,358.3,24585,0)
- ;;=S72.041S^^76^1007^11
+ ;;=H60.552^^74^979^33
  ;;^UTILITY(U,$J,358.3,24585,1,0)
  ;;=^358.31IA^4^2
  ;;^UTILITY(U,$J,358.3,24585,1,3,0)
- ;;=3^Displaced base of neck fx of right femur, sequela
+ ;;=3^AC Reactive Otitis Externa,Left Ear
  ;;^UTILITY(U,$J,358.3,24585,1,4,0)
- ;;=4^S72.041S
+ ;;=4^H60.552
  ;;^UTILITY(U,$J,358.3,24585,2)
- ;;=^5037328
+ ;;=^5006487
  ;;^UTILITY(U,$J,358.3,24586,0)
- ;;=S72.042S^^76^1007^10
+ ;;=H60.551^^74^979^34
  ;;^UTILITY(U,$J,358.3,24586,1,0)
  ;;=^358.31IA^4^2
  ;;^UTILITY(U,$J,358.3,24586,1,3,0)
- ;;=3^Displaced base of neck fx of left femur, sequela
+ ;;=3^AC Reactive Otitis Externa,Right Ear
  ;;^UTILITY(U,$J,358.3,24586,1,4,0)
- ;;=4^S72.042S
+ ;;=4^H60.551
  ;;^UTILITY(U,$J,358.3,24586,2)
- ;;=^5037344
+ ;;=^5006486
  ;;^UTILITY(U,$J,358.3,24587,0)
- ;;=S72.044S^^76^1007^59
+ ;;=J01.91^^74^979^35
  ;;^UTILITY(U,$J,358.3,24587,1,0)
  ;;=^358.31IA^4^2
  ;;^UTILITY(U,$J,358.3,24587,1,3,0)
- ;;=3^Nondisp base of neck fx of right femur, sequela
+ ;;=3^AC Recurrent Sinusitis,Unspec
  ;;^UTILITY(U,$J,358.3,24587,1,4,0)
- ;;=4^S72.044S
+ ;;=4^J01.91
  ;;^UTILITY(U,$J,358.3,24587,2)
- ;;=^5037376
+ ;;=^5008128
  ;;^UTILITY(U,$J,358.3,24588,0)
- ;;=S72.061S^^76^1007^9
+ ;;=J03.81^^74^979^36
  ;;^UTILITY(U,$J,358.3,24588,1,0)
  ;;=^358.31IA^4^2
  ;;^UTILITY(U,$J,358.3,24588,1,3,0)
- ;;=3^Displaced articular fx of head of right femur, sequela
+ ;;=3^AC Recurrent Tonsillitis d/t Specified Organisms
  ;;^UTILITY(U,$J,358.3,24588,1,4,0)
- ;;=4^S72.061S
+ ;;=4^J03.81
  ;;^UTILITY(U,$J,358.3,24588,2)
- ;;=^5037461
+ ;;=^5008134
  ;;^UTILITY(U,$J,358.3,24589,0)
- ;;=S72.062S^^76^1007^8
+ ;;=J03.91^^74^979^37
  ;;^UTILITY(U,$J,358.3,24589,1,0)
  ;;=^358.31IA^4^2
  ;;^UTILITY(U,$J,358.3,24589,1,3,0)
- ;;=3^Displaced articular fx of head of left femur, sequela
+ ;;=3^AC Recurrent Tonsillitis,Unspec
  ;;^UTILITY(U,$J,358.3,24589,1,4,0)
- ;;=4^S72.062S
+ ;;=4^J03.91
  ;;^UTILITY(U,$J,358.3,24589,2)
- ;;=^5037477
+ ;;=^5008136
  ;;^UTILITY(U,$J,358.3,24590,0)
- ;;=S72.064S^^76^1007^57
+ ;;=J01.90^^74^979^38
  ;;^UTILITY(U,$J,358.3,24590,1,0)
  ;;=^358.31IA^4^2
  ;;^UTILITY(U,$J,358.3,24590,1,3,0)
- ;;=3^Nondisp articular fx of head of right femur, sequela
+ ;;=3^AC Sinusitis,Unspec
  ;;^UTILITY(U,$J,358.3,24590,1,4,0)
- ;;=4^S72.064S
+ ;;=4^J01.90
  ;;^UTILITY(U,$J,358.3,24590,2)
- ;;=^5037509
+ ;;=^5008127
  ;;^UTILITY(U,$J,358.3,24591,0)
- ;;=S72.065S^^76^1007^56
+ ;;=J03.80^^74^979^39
  ;;^UTILITY(U,$J,358.3,24591,1,0)
  ;;=^358.31IA^4^2
  ;;^UTILITY(U,$J,358.3,24591,1,3,0)
- ;;=3^Nondisp articular fx of head of left femur, sequela
+ ;;=3^AC Tonsillitis d/t Specified Organisms
  ;;^UTILITY(U,$J,358.3,24591,1,4,0)
- ;;=4^S72.065S
+ ;;=4^J03.80
  ;;^UTILITY(U,$J,358.3,24591,2)
- ;;=^5037525
+ ;;=^5008133
  ;;^UTILITY(U,$J,358.3,24592,0)
- ;;=S72.111S^^76^1007^19
+ ;;=J03.90^^74^979^40
  ;;^UTILITY(U,$J,358.3,24592,1,0)
  ;;=^358.31IA^4^2
  ;;^UTILITY(U,$J,358.3,24592,1,3,0)
- ;;=3^Displaced greater trochanter fx of right femur, sequela
+ ;;=3^AC Tonsillitis,Unspec
  ;;^UTILITY(U,$J,358.3,24592,1,4,0)
- ;;=4^S72.111S
+ ;;=4^J03.90
  ;;^UTILITY(U,$J,358.3,24592,2)
- ;;=^5037642
+ ;;=^5008135
  ;;^UTILITY(U,$J,358.3,24593,0)
- ;;=S72.112S^^76^1007^18
+ ;;=B44.81^^74^979^43
  ;;^UTILITY(U,$J,358.3,24593,1,0)
  ;;=^358.31IA^4^2
  ;;^UTILITY(U,$J,358.3,24593,1,3,0)
- ;;=3^Displaced greater trochanter fx of left femur, sequela
+ ;;=3^Allergic Bronchopulmonary Aspergillosis
  ;;^UTILITY(U,$J,358.3,24593,1,4,0)
- ;;=4^S72.112S
+ ;;=4^B44.81
  ;;^UTILITY(U,$J,358.3,24593,2)
- ;;=^5037658
+ ;;=^10945
  ;;^UTILITY(U,$J,358.3,24594,0)
- ;;=S72.114S^^76^1007^67
+ ;;=B44.9^^74^979^45
  ;;^UTILITY(U,$J,358.3,24594,1,0)
  ;;=^358.31IA^4^2
  ;;^UTILITY(U,$J,358.3,24594,1,3,0)
- ;;=3^Nondisp greater trochanter fx of right femur, sequela
+ ;;=3^Aspergillosis,Unspec
  ;;^UTILITY(U,$J,358.3,24594,1,4,0)
- ;;=4^S72.114S
+ ;;=4^B44.9
  ;;^UTILITY(U,$J,358.3,24594,2)
- ;;=^5037690
+ ;;=^5000668
  ;;^UTILITY(U,$J,358.3,24595,0)
- ;;=S72.115S^^76^1007^66
+ ;;=B40.9^^74^979^47
  ;;^UTILITY(U,$J,358.3,24595,1,0)
  ;;=^358.31IA^4^2
  ;;^UTILITY(U,$J,358.3,24595,1,3,0)
- ;;=3^Nondisp greater trochanter fx of left femur, sequela
+ ;;=3^Blastomycosis,Unspec
  ;;^UTILITY(U,$J,358.3,24595,1,4,0)
- ;;=4^S72.115S
+ ;;=4^B40.9
  ;;^UTILITY(U,$J,358.3,24595,2)
- ;;=^5037706
+ ;;=^5000646
  ;;^UTILITY(U,$J,358.3,24596,0)
- ;;=S72.121S^^76^1007^25
+ ;;=J18.0^^74^979^48
  ;;^UTILITY(U,$J,358.3,24596,1,0)
  ;;=^358.31IA^4^2
  ;;^UTILITY(U,$J,358.3,24596,1,3,0)
- ;;=3^Displaced lesser trochanter fx of right femur, sequela
+ ;;=3^Bronchopneumonia,Unspec Organism
  ;;^UTILITY(U,$J,358.3,24596,1,4,0)
- ;;=4^S72.121S
+ ;;=4^J18.0
  ;;^UTILITY(U,$J,358.3,24596,2)
- ;;=^5037738
+ ;;=^5008182
  ;;^UTILITY(U,$J,358.3,24597,0)
- ;;=S72.122S^^76^1007^24
+ ;;=B45.1^^74^979^49
  ;;^UTILITY(U,$J,358.3,24597,1,0)
  ;;=^358.31IA^4^2
  ;;^UTILITY(U,$J,358.3,24597,1,3,0)
- ;;=3^Displaced lesser trochanter fx of left femur, sequela
+ ;;=3^Cerebral Cryptococcosis
  ;;^UTILITY(U,$J,358.3,24597,1,4,0)
- ;;=4^S72.122S
+ ;;=4^B45.1
  ;;^UTILITY(U,$J,358.3,24597,2)
- ;;=^5037754
+ ;;=^5000670
  ;;^UTILITY(U,$J,358.3,24598,0)
- ;;=S72.124S^^76^1007^73
+ ;;=J16.0^^74^979^50
  ;;^UTILITY(U,$J,358.3,24598,1,0)
  ;;=^358.31IA^4^2
  ;;^UTILITY(U,$J,358.3,24598,1,3,0)
- ;;=3^Nondisp lesser trochanter fx of right femur, sequela
+ ;;=3^Chlamydial Pneumonia
  ;;^UTILITY(U,$J,358.3,24598,1,4,0)
- ;;=4^S72.124S
+ ;;=4^J16.0
  ;;^UTILITY(U,$J,358.3,24598,2)
- ;;=^5037786
+ ;;=^5008179
  ;;^UTILITY(U,$J,358.3,24599,0)
- ;;=S72.125S^^76^1007^72
+ ;;=B40.1^^74^979^51
  ;;^UTILITY(U,$J,358.3,24599,1,0)
  ;;=^358.31IA^4^2
  ;;^UTILITY(U,$J,358.3,24599,1,3,0)
- ;;=3^Nondisp lesser trochanter fx of left femur, sequela
+ ;;=3^Chr Pulmonary Blastomycosis
  ;;^UTILITY(U,$J,358.3,24599,1,4,0)
- ;;=4^S72.125S
+ ;;=4^B40.1
  ;;^UTILITY(U,$J,358.3,24599,2)
- ;;=^5037802
+ ;;=^5000640
  ;;^UTILITY(U,$J,358.3,24600,0)
- ;;=S72.131S^^76^1007^7
+ ;;=J32.9^^74^979^52
  ;;^UTILITY(U,$J,358.3,24600,1,0)
  ;;=^358.31IA^4^2
  ;;^UTILITY(U,$J,358.3,24600,1,3,0)
- ;;=3^Displaced apophyseal fx of right femur, sequela
+ ;;=3^Chr Sinusitis,Unspec
  ;;^UTILITY(U,$J,358.3,24600,1,4,0)
- ;;=4^S72.131S
+ ;;=4^J32.9
  ;;^UTILITY(U,$J,358.3,24600,2)
- ;;=^5037834
+ ;;=^5008207
  ;;^UTILITY(U,$J,358.3,24601,0)
- ;;=S72.132S^^76^1007^6
+ ;;=B45.9^^74^979^54
  ;;^UTILITY(U,$J,358.3,24601,1,0)
  ;;=^358.31IA^4^2
  ;;^UTILITY(U,$J,358.3,24601,1,3,0)
- ;;=3^Displaced apophyseal fx of left femur, sequela
+ ;;=3^Cryptococcosis,Unspec
  ;;^UTILITY(U,$J,358.3,24601,1,4,0)
- ;;=4^S72.132S
+ ;;=4^B45.9
  ;;^UTILITY(U,$J,358.3,24601,2)
- ;;=^5037850
+ ;;=^5000675
  ;;^UTILITY(U,$J,358.3,24602,0)
- ;;=S72.134S^^76^1007^55
+ ;;=B45.2^^74^979^55
  ;;^UTILITY(U,$J,358.3,24602,1,0)
  ;;=^358.31IA^4^2
  ;;^UTILITY(U,$J,358.3,24602,1,3,0)
- ;;=3^Nondisp apophyseal fx of right femur, sequela
+ ;;=3^Cutaneous Cryptococcosis
  ;;^UTILITY(U,$J,358.3,24602,1,4,0)
- ;;=4^S72.134S
+ ;;=4^B45.2
  ;;^UTILITY(U,$J,358.3,24602,2)
- ;;=^5037882
+ ;;=^5000671
  ;;^UTILITY(U,$J,358.3,24603,0)
- ;;=S72.135S^^76^1007^54
+ ;;=B44.7^^74^979^56
  ;;^UTILITY(U,$J,358.3,24603,1,0)
  ;;=^358.31IA^4^2
  ;;^UTILITY(U,$J,358.3,24603,1,3,0)
- ;;=3^Nondisp apophyseal fx of left femur, sequela
+ ;;=3^Disseminated Aspergillosis
  ;;^UTILITY(U,$J,358.3,24603,1,4,0)
- ;;=4^S72.135S
+ ;;=4^B44.7
  ;;^UTILITY(U,$J,358.3,24603,2)
- ;;=^5037898
+ ;;=^5000666
  ;;^UTILITY(U,$J,358.3,24604,0)
- ;;=S72.141S^^76^1007^21
+ ;;=B45.7^^74^979^57
  ;;^UTILITY(U,$J,358.3,24604,1,0)
  ;;=^358.31IA^4^2
  ;;^UTILITY(U,$J,358.3,24604,1,3,0)
- ;;=3^Displaced intertrochanteric fx of right femur, sequela
+ ;;=3^Disseminated Cryptococcosis
  ;;^UTILITY(U,$J,358.3,24604,1,4,0)
- ;;=4^S72.141S
+ ;;=4^B45.7
  ;;^UTILITY(U,$J,358.3,24604,2)
- ;;=^5037930
+ ;;=^5000673
  ;;^UTILITY(U,$J,358.3,24605,0)
- ;;=S72.142S^^76^1007^20
+ ;;=B39.9^^74^979^59
  ;;^UTILITY(U,$J,358.3,24605,1,0)
  ;;=^358.31IA^4^2
  ;;^UTILITY(U,$J,358.3,24605,1,3,0)
- ;;=3^Displaced intertrochanteric fx of left femur, sequela
+ ;;=3^Histoplasmosis,Unspec
  ;;^UTILITY(U,$J,358.3,24605,1,4,0)
- ;;=4^S72.142S
+ ;;=4^B39.9
  ;;^UTILITY(U,$J,358.3,24605,2)
- ;;=^5037946
+ ;;=^5000638
  ;;^UTILITY(U,$J,358.3,24606,0)
- ;;=S72.144S^^76^1007^69
+ ;;=J18.2^^74^979^60
  ;;^UTILITY(U,$J,358.3,24606,1,0)
  ;;=^358.31IA^4^2
  ;;^UTILITY(U,$J,358.3,24606,1,3,0)
- ;;=3^Nondisp intertroch fx of right femur, sequela
+ ;;=3^Hypostatic Pneumonia,Unspec Organism
  ;;^UTILITY(U,$J,358.3,24606,1,4,0)
- ;;=4^S72.144S
+ ;;=4^J18.2
  ;;^UTILITY(U,$J,358.3,24606,2)
- ;;=^5037978
+ ;;=^5008184
  ;;^UTILITY(U,$J,358.3,24607,0)
- ;;=S72.145S^^76^1007^68
+ ;;=B44.0^^74^979^61
  ;;^UTILITY(U,$J,358.3,24607,1,0)
  ;;=^358.31IA^4^2
  ;;^UTILITY(U,$J,358.3,24607,1,3,0)
- ;;=3^Nondisp intertroch fx of left femur, sequela
+ ;;=3^Invasive Pulmonary Aspergillosis
  ;;^UTILITY(U,$J,358.3,24607,1,4,0)
- ;;=4^S72.145S
+ ;;=4^B44.0
  ;;^UTILITY(U,$J,358.3,24607,2)
- ;;=^5037994
+ ;;=^5000663
  ;;^UTILITY(U,$J,358.3,24608,0)
- ;;=S72.21XS^^76^1007^43
+ ;;=J18.1^^74^979^62
  ;;^UTILITY(U,$J,358.3,24608,1,0)
  ;;=^358.31IA^4^2
  ;;^UTILITY(U,$J,358.3,24608,1,3,0)
- ;;=3^Displaced subtrochanteric fx of right femur, sequela
+ ;;=3^Lobar Pneumonia,Unspec Organism
  ;;^UTILITY(U,$J,358.3,24608,1,4,0)
- ;;=4^S72.21XS
+ ;;=4^J18.1
  ;;^UTILITY(U,$J,358.3,24608,2)
- ;;=^5038026
+ ;;=^5008183
  ;;^UTILITY(U,$J,358.3,24609,0)
- ;;=S72.22XS^^76^1007^42
+ ;;=A19.9^^74^979^63
  ;;^UTILITY(U,$J,358.3,24609,1,0)
  ;;=^358.31IA^4^2
  ;;^UTILITY(U,$J,358.3,24609,1,3,0)
- ;;=3^Displaced subtrochanteric fx of left femur, sequela
+ ;;=3^Miliary Tuberculosis,Unspec
  ;;^UTILITY(U,$J,358.3,24609,1,4,0)
- ;;=4^S72.22XS
+ ;;=4^A19.9
  ;;^UTILITY(U,$J,358.3,24609,2)
- ;;=^5038042
+ ;;=^5000104
  ;;^UTILITY(U,$J,358.3,24610,0)
- ;;=S72.24XS^^76^1007^92
+ ;;=R76.11^^74^979^82
  ;;^UTILITY(U,$J,358.3,24610,1,0)
  ;;=^358.31IA^4^2
  ;;^UTILITY(U,$J,358.3,24610,1,3,0)
- ;;=3^Nondisp subtrochanteric fx of right femur, sequela
+ ;;=3^Reaction to Skin Test w/o Active TB
  ;;^UTILITY(U,$J,358.3,24610,1,4,0)
- ;;=4^S72.24XS
+ ;;=4^R76.11
  ;;^UTILITY(U,$J,358.3,24610,2)
- ;;=^5038074
+ ;;=^5019570
  ;;^UTILITY(U,$J,358.3,24611,0)
- ;;=S72.25XS^^76^1007^91
+ ;;=B45.3^^74^979^67
  ;;^UTILITY(U,$J,358.3,24611,1,0)
  ;;=^358.31IA^4^2
  ;;^UTILITY(U,$J,358.3,24611,1,3,0)
- ;;=3^Nondisp subtrochanteric fx of left femur, sequela
+ ;;=3^Osseous Cryptococcosis
  ;;^UTILITY(U,$J,358.3,24611,1,4,0)
- ;;=4^S72.25XS
+ ;;=4^B45.3
  ;;^UTILITY(U,$J,358.3,24611,2)
- ;;=^5038090
+ ;;=^5000672
  ;;^UTILITY(U,$J,358.3,24612,0)
- ;;=S72.321S^^76^1007^51
+ ;;=B44.89^^74^979^44
  ;;^UTILITY(U,$J,358.3,24612,1,0)
  ;;=^358.31IA^4^2
  ;;^UTILITY(U,$J,358.3,24612,1,3,0)
- ;;=3^Displaced transverse fx shaft of right femur, sequela
+ ;;=3^Aspergillosis NEC
  ;;^UTILITY(U,$J,358.3,24612,1,4,0)
- ;;=4^S72.321S
+ ;;=4^B44.89
  ;;^UTILITY(U,$J,358.3,24612,2)
- ;;=^5038159
+ ;;=^5000667
  ;;^UTILITY(U,$J,358.3,24613,0)
- ;;=S72.322S^^76^1007^50
+ ;;=B45.8^^74^979^53
  ;;^UTILITY(U,$J,358.3,24613,1,0)
  ;;=^358.31IA^4^2
  ;;^UTILITY(U,$J,358.3,24613,1,3,0)
- ;;=3^Displaced transverse fx shaft of left femur, sequela
+ ;;=3^Cryptococcosis NEC
  ;;^UTILITY(U,$J,358.3,24613,1,4,0)
- ;;=4^S72.322S
+ ;;=4^B45.8
  ;;^UTILITY(U,$J,358.3,24613,2)
- ;;=^5038175
+ ;;=^5000674
  ;;^UTILITY(U,$J,358.3,24614,0)
- ;;=S72.324S^^76^1007^100
+ ;;=H60.593^^74^979^64
  ;;^UTILITY(U,$J,358.3,24614,1,0)
  ;;=^358.31IA^4^2
  ;;^UTILITY(U,$J,358.3,24614,1,3,0)
- ;;=3^Nondisp transverse fx shaft of right femur, sequela
+ ;;=3^Noninfective AC Otitis Externa,Bilateral NEC
  ;;^UTILITY(U,$J,358.3,24614,1,4,0)
- ;;=4^S72.324S
+ ;;=4^H60.593
  ;;^UTILITY(U,$J,358.3,24614,2)
- ;;=^5038207
+ ;;=^5006491
  ;;^UTILITY(U,$J,358.3,24615,0)
- ;;=S72.325S^^76^1007^99
+ ;;=H60.592^^74^979^65
  ;;^UTILITY(U,$J,358.3,24615,1,0)
  ;;=^358.31IA^4^2
  ;;^UTILITY(U,$J,358.3,24615,1,3,0)
- ;;=3^Nondisp transverse fx shaft of left femur, sequela
+ ;;=3^Noninfective AC Otitis Externa,Left Ear NEC
  ;;^UTILITY(U,$J,358.3,24615,1,4,0)
- ;;=4^S72.325S
+ ;;=4^H60.592
  ;;^UTILITY(U,$J,358.3,24615,2)
- ;;=^5038223
+ ;;=^5133527
  ;;^UTILITY(U,$J,358.3,24616,0)
- ;;=S72.331S^^76^1007^35
+ ;;=H60.591^^74^979^66
  ;;^UTILITY(U,$J,358.3,24616,1,0)
  ;;=^358.31IA^4^2
  ;;^UTILITY(U,$J,358.3,24616,1,3,0)
- ;;=3^Displaced oblique fx of shaft of right femur, sequela
+ ;;=3^Noninfective AC Otitis Externa,Right Ear NEC
  ;;^UTILITY(U,$J,358.3,24616,1,4,0)
- ;;=4^S72.331S
+ ;;=4^H60.591
  ;;^UTILITY(U,$J,358.3,24616,2)
- ;;=^5038255
+ ;;=^5006490
  ;;^UTILITY(U,$J,358.3,24617,0)
- ;;=S72.332S^^76^1007^34
+ ;;=J18.8^^74^979^73
  ;;^UTILITY(U,$J,358.3,24617,1,0)
  ;;=^358.31IA^4^2
  ;;^UTILITY(U,$J,358.3,24617,1,3,0)
- ;;=3^Displaced oblique fx of shaft of left femur, sequela
+ ;;=3^Pneumonia,Unspec Organism NEC
  ;;^UTILITY(U,$J,358.3,24617,1,4,0)
- ;;=4^S72.332S
+ ;;=4^J18.8
  ;;^UTILITY(U,$J,358.3,24617,2)
- ;;=^5038271
- ;;^UTILITY(U,$J,358.3,24618,0)
- ;;=S72.334S^^76^1007^83
- ;;^UTILITY(U,$J,358.3,24618,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,24618,1,3,0)
- ;;=3^Nondisp oblique fx shaft of right femur, sequela
- ;;^UTILITY(U,$J,358.3,24618,1,4,0)
- ;;=4^S72.334S
- ;;^UTILITY(U,$J,358.3,24618,2)
- ;;=^5038303
- ;;^UTILITY(U,$J,358.3,24619,0)
- ;;=S72.335S^^76^1007^82
- ;;^UTILITY(U,$J,358.3,24619,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,24619,1,3,0)
- ;;=3^Nondisp oblique fx shaft of left femur, sequela
- ;;^UTILITY(U,$J,358.3,24619,1,4,0)
- ;;=4^S72.335S
- ;;^UTILITY(U,$J,358.3,24619,2)
- ;;=^5038319
- ;;^UTILITY(U,$J,358.3,24620,0)
- ;;=S72.341S^^76^1007^41
- ;;^UTILITY(U,$J,358.3,24620,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,24620,1,3,0)
- ;;=3^Displaced spiral fx of shaft of right femur, sequela
- ;;^UTILITY(U,$J,358.3,24620,1,4,0)
- ;;=4^S72.341S
- ;;^UTILITY(U,$J,358.3,24620,2)
- ;;=^5038351
- ;;^UTILITY(U,$J,358.3,24621,0)
- ;;=S72.342S^^76^1007^40
- ;;^UTILITY(U,$J,358.3,24621,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,24621,1,3,0)
- ;;=3^Displaced spiral fx of shaft of left femur, sequela
- ;;^UTILITY(U,$J,358.3,24621,1,4,0)
- ;;=4^S72.342S
- ;;^UTILITY(U,$J,358.3,24621,2)
- ;;=^5038367
- ;;^UTILITY(U,$J,358.3,24622,0)
- ;;=S72.344S^^76^1007^90
- ;;^UTILITY(U,$J,358.3,24622,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,24622,1,3,0)
- ;;=3^Nondisp spiral fx shaft of right femur, sequela
- ;;^UTILITY(U,$J,358.3,24622,1,4,0)
- ;;=4^S72.344S
- ;;^UTILITY(U,$J,358.3,24622,2)
- ;;=^5038399
- ;;^UTILITY(U,$J,358.3,24623,0)
- ;;=S72.345S^^76^1007^88
- ;;^UTILITY(U,$J,358.3,24623,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,24623,1,3,0)
- ;;=3^Nondisp spiral fx of shaft of left femur, sequela
- ;;^UTILITY(U,$J,358.3,24623,1,4,0)
- ;;=4^S72.345S
- ;;^UTILITY(U,$J,358.3,24623,2)
- ;;=^5038415
- ;;^UTILITY(U,$J,358.3,24624,0)
- ;;=S72.351S^^76^1007^15
- ;;^UTILITY(U,$J,358.3,24624,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,24624,1,3,0)
- ;;=3^Displaced comminuted fx shaft of right femur, sequela
- ;;^UTILITY(U,$J,358.3,24624,1,4,0)
- ;;=4^S72.351S
- ;;^UTILITY(U,$J,358.3,24624,2)
- ;;=^5038447
- ;;^UTILITY(U,$J,358.3,24625,0)
- ;;=S72.352S^^76^1007^14
- ;;^UTILITY(U,$J,358.3,24625,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,24625,1,3,0)
- ;;=3^Displaced comminuted fx shaft of left femur, sequela
- ;;^UTILITY(U,$J,358.3,24625,1,4,0)
- ;;=4^S72.352S
- ;;^UTILITY(U,$J,358.3,24625,2)
- ;;=^5038463
- ;;^UTILITY(U,$J,358.3,24626,0)
- ;;=S72.354S^^76^1007^63
- ;;^UTILITY(U,$J,358.3,24626,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,24626,1,3,0)
- ;;=3^Nondisp comminuted fx of shaft of right femur, sequela
- ;;^UTILITY(U,$J,358.3,24626,1,4,0)
- ;;=4^S72.354S
- ;;^UTILITY(U,$J,358.3,24626,2)
- ;;=^5038495
- ;;^UTILITY(U,$J,358.3,24627,0)
- ;;=S72.355S^^76^1007^62
- ;;^UTILITY(U,$J,358.3,24627,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,24627,1,3,0)
- ;;=3^Nondisp comminuted fx of shaft of left femur, sequela
- ;;^UTILITY(U,$J,358.3,24627,1,4,0)
- ;;=4^S72.355S
- ;;^UTILITY(U,$J,358.3,24627,2)
- ;;=^5038511
- ;;^UTILITY(U,$J,358.3,24628,0)
- ;;=S72.361S^^76^1007^39
- ;;^UTILITY(U,$J,358.3,24628,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,24628,1,3,0)
- ;;=3^Displaced segmental fx shaft of right femur, sequela
- ;;^UTILITY(U,$J,358.3,24628,1,4,0)
- ;;=4^S72.361S
+ ;;=^5008185

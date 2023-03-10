@@ -1,5 +1,5 @@
 RORX021A ;BPOIFO/CLR - HCV DAA CANDIDATES(QUERY & STORE) ;7/15/11 3:37pm
- ;;1.5;CLINICAL CASE REGISTRIES;**17,19,21,27,26,31,33,34**;Feb 17, 2006;Build 45
+ ;;1.5;CLINICAL CASE REGISTRIES;**17,19,21,27,26,31,33,34,39**;Feb 17, 2006;Build 4
  ;
  ; This routine uses the following IAs:
  ;
@@ -30,7 +30,8 @@ RORX021A ;BPOIFO/CLR - HCV DAA CANDIDATES(QUERY & STORE) ;7/15/11 3:37pm
  ;ROR*1.5*31   MAY 2017    M FERRARESE  Adding PACT ,PCP,and AGE/DOB as additional
  ;                                      identifiers.
  ;ROR*1.5*33   APR 2018    F TRAXLER    Adding FUT_APPT as additional identifier.
- ;ROR*1.5*34   SEP 2018    F TRAXLER    Adding FUT_CLIN column.     
+ ;ROR*1.5*34   SEP 2018    F TRAXLER    Adding FUT_CLIN column.
+ ;ROR*1.5*39   JUN 2021    F TRAXLER    Replace real SSN with zeroes.    
  ;******************************************************************************
  ;******************************************************************************
  Q
@@ -206,7 +207,7 @@ QUERY(REPORT,FLAGS,NSPT,RORLC) ;
  . I SKIP K ^TMP("RORX021",$J,"PAT",PATIEN)  Q
  . ;
  . ;--- Get and store the patient's data  last4^name^treatment status^ICN^FIB-4 score^PACT^PCP^AGE/DOB
- . D VADEM^RORUTL05(PATIEN,1)
+ . D VADEM^RORUTL05(PATIEN,1) S VA("BID")="0000"
  . S TMP=$S($$PARAM^RORTSK01("PATIENTS","ICN"):$$ICN^RORUTL02(PATIEN),1:"")
  . S ^TMP("RORX021",$J,"PAT",PATIEN)=VA("BID")_U_VADM(1)_U_RORTH_U_TMP_U_$G(RORDATA("SCORE",4))
  . S AGETYPE=$$PARAM^RORTSK01("AGE_RANGE","TYPE") D

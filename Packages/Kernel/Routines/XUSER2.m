@@ -1,13 +1,24 @@
 XUSER2 ;ISF/RWF - New Person File Utilities ;02/01/2012
- ;;8.0;KERNEL;**267,251,344,534,580**;Jul 10, 1995;Build 46
+ ;;8.0;KERNEL;**267,251,344,534,580,765**;Jul 10, 1995;Build 3
  ;Per VHA Directive 2004-038, this routine should not be modified.
  Q
 VALDEA(X,F) ;Check for a valid DEA#
  ;Returns 0 for NOT Valid, 1 for Valid
  ;F = 1 for Facility DEA check.
+ N VAPR,VADUP,VADUPNAM,VASTER
+ S $P(VASTER,"*",80)="*"
  I $D(X) K:$L(X)>9!($L(X)<9)!'(X?2U7N) X
  S F=$G(F)
- I $D(X),'F,$D(DA),$D(^VA(200,"PS1",X)),$O(^(X,0))'=DA D EN^DDIOL($C(7)_"CAN'T FILE: DUPLICATE DEA NUMBER") K X
+ I $D(X),'F,$D(DA),$D(^VA(200,"PS1",X)) D
+ . S VADUP=0,VAPR=0 F  S VAPR=$O(^VA(200,"PS1",X,VAPR)) Q:'VAPR  I VAPR'=DA S VADUP=VAPR
+ . I VADUP D  K X
+ .. D EN^DDIOL($C(7)_$E(VASTER,1,70))
+ .. D EN^DDIOL($C(7)_" DEA number "_X_" has already been assigned to another provider:")
+ .. S VADUPNAM=$P($G(^VA(200,+VADUP,0)),U)
+ .. D EN^DDIOL($C(7)_"     NAME: "_$G(VADUPNAM))
+ .. D EN^DDIOL($C(7)_"      IEN: "_VADUP)
+ .. D EN^DDIOL($C(7)_$E(VASTER,1,70))
+ .. D EN^DDIOL($C(7)_"Please check the number entered.")
  I $D(X),'F,$D(DA),$E(X,2)'=$E($P(^VA(200,DA,0),"^")) D EN^DDIOL($C(7)_"WARNING: DEA# FORMAT MISMATCH -- CHECK SECOND LETTER")
  I $D(X),'$$DEANUM(X) D EN^DDIOL($C(7)_"CAN'T FILE: DEA# FORMAT MISMATCH -- NUMERIC ALGORITHM FAILED") K X
  Q $D(X)

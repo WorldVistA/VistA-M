@@ -1,14 +1,14 @@
-PXRMEXU4 ;SLC/PJH,PKR - Reminder Exchange #4, dialog changes. ;10/10/2019
- ;;2.0;CLINICAL REMINDERS;**6,12,22,26,45**;Feb 04, 2005;Build 566
+PXRMEXU4 ;SLC/PJH,PKR - Reminder Exchange #4, dialog changes. ;Dec 07, 2021@12:24
+ ;;2.0;CLINICAL REMINDERS;**6,12,22,26,45,71,65**;Feb 04, 2005;Build 438
  ;
  Q
-BLCONV(FDA) ; convert branching logic from single value to multiple
+BLCONV(FDA) ;
  N BLIENS,ACT,IEN,IENS,LAST,TERM,SEQ,STATUS,REP
  S IENS=$O(FDA(801.44,"")) Q:IENS=""
  S IEN=$P(IENS,",",2)_","
  I $G(FDA(801.41,IEN,116))="" Q
  I $G(FDA(801.41,IEN,117))="" Q
- S TERM="TM."_FDA(801.41,IEN,116)
+ S TERM="RT."_FDA(801.41,IEN,116)
  S STATUS=$G(FDA(801.41,IEN,117))
  S REP=$S($G(FDA(801.41,IEN,118))'="":$G(FDA(801.41,IEN,118)),1:"")
  S ACT=$S(REP'="":"REPLACE",1:"HIDE")
@@ -23,11 +23,38 @@ BLCONV(FDA) ; convert branching logic from single value to multiple
  I REP'="" S FDA(801.41143,"+"_BLIENS,4)=REP
  Q
  ;
+BLDCONV1(FDA) ;
+ N IENS
+ S IENS=""
+ F  S IENS=$O(FDA(801.41143,IENS)) Q:IENS=""  D
+ .I $P(FDA(801.41143,IENS,1),".")="TM" D
+ ..S FDA(801.41143,IENS,1)="RT."_$P(FDA(801.41143,IENS,1),".",2)
+ Q
+ ;
+VIMMCONV(FDA,IENS,HASSKT,HASIMM) ;
+ I HASSKT=0,HASIMM=0 Q
+ N FIND,FINDINGS,TFINDS
+ I HASSKT,HASIMM S FDA(801.41,IENS,3)="DISABLE AND SEND MESSAGE"
+ S FIND=$G(FDA(801.41,IENS,15))
+ I FIND'["ST.",FIND'["IM." K FDA(801.41,IENS,15)
+ ;loop through additional findings
+ S FIND="" F  S FIND=$O(FDA(801.4118,FIND)) Q:FIND=""  D
+ . S FINDINGS=$G(FDA(801.4118,FIND,.01))
+ . I FINDINGS["ST."!(FINDINGS["IM.")!(FINDINGS["TX.") Q
+ . S TFINDS(FIND)=""
+ .;kill off additional findings that are codes
+ S FIND="" F  S FIND=$O(TFINDS(FIND)) Q:FIND=""  D
+ .K FDA(801.4118,FIND)
+ Q
+ ;
  ;===============================================
 DLG(FDA,NAMECHG) ;Check the dialog for renamed entries, called by
  ;silent installer. KIDSDONE is newed in INSDLG^PXRMEXSI.
- N ABBR,ACTION,ALIST,DNAM,IEN,IENS,ISACT,FILENUM,FINDING,NEWNAM,OFINDING
+ N ABBR,ACTION,ALIST,DNAM,HASIMM,HASSKT,IEN,IENS,ISACT,FILENUM,FINDING,NEWNAM,OFINDING
  N RESULT,RRG,SRC,TEMP,TEXT,TIENS,TYPE,WP
+ ;
+ S HASIMM=0,HASSKT=0
+ ;
  S IENS=$O(FDA(801.41,""))
  ;Definition .01
  S (PT01,DNAM)=FDA(801.41,IENS,.01)
@@ -65,8 +92,13 @@ DLG(FDA,NAMECHG) ;Check the dialog for renamed entries, called by
  .I NUM=801.4118!(NUM=801.412)!(NUM=801.41121) D
  ..S TIENS="",ACTION="" F  S TIENS=$O(FDA(NUM,TIENS)) Q:TIENS=""!(PXRMDONE=1)  D
  ...I (TYPE="AF") D FINDINGS(TIENS,NUM,FIELD,TYPE,.NAMECHG,.ACTION,.FDA,.PXRMDONE)
+ ...I FDA(NUM,TIENS,.01)["ST." S HASSKT=1 Q
+ ...I FDA(NUM,TIENS,.01)["IM." S HASIMM=1
  ...I TYPE'="AF" D COMPS(TIENS,NUM,FIELD,TYPE,.NAMECHG,.ACTION,.FDA,.PXRMDONE)
- .I NUM=801.41 D FINDINGS(IENS,NUM,FIELD,TYPE,.NAMECHG,.ACTION,.FDA,.PXRMDONE)
+ .I NUM=801.41 D
+ ..D FINDINGS(IENS,NUM,FIELD,TYPE,.NAMECHG,.ACTION,.FDA,.PXRMDONE)
+ ..I $G(FDA(NUM,IENS,15))["ST." S HASSKT=1
+ ..I $G(FDA(NUM,IENS,15))["IM." S HASIMM=1
  ;
  ;Look for replacements of TIU templates.
  I $D(NAMECHG(8927.1)) D
@@ -75,6 +107,8 @@ DLG(FDA,NAMECHG) ;Check the dialog for renamed entries, called by
  .S WP=$G(FDA(801.41,IENS,35))
  ;
  D BLCONV(.FDA)
+ I $D(FDA(801.41143)) D BLDCONV1(.FDA)
+ D VIMMCONV(.FDA,IENS,HASSKT,HASIMM)
  Q
  ;
  ;===============================================

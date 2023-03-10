@@ -1,5 +1,5 @@
 SRO1L1 ;BIR/ADM - UPDATE 1-LINER CASE, CONTINUED ;02/14/07
- ;;3.0;Surgery;**86,88,100,129,142,153,160,182**;24 Jun 93;Build 49
+ ;;3.0;Surgery;**86,88,100,129,142,153,160,182,200**;24 Jun 93;Build 9
  S SRSOUT=0,SRSUPCPT=2 D NCODE^SROAUTL
  N SRLCK,SRCSTAT S SRLCK=$$LOCK^SROUTL(SRTN) I 'SRLCK Q
  D SRA^SROES
@@ -7,18 +7,19 @@ EDIT S SRA=$G(^SRF(SRTN,"RA")) I $P(SRA,"^",2)="N",$P(SRA,"^",6)="N",$P(SRA,"^",
  S SRCSTAT=">> Coding "_$S($P($G(^SRO(136,SRTN,10)),"^"):"",1:"Not ")_"Complete <<"
  S SRR=0 D TSTAT,HDR^SROAUTL D TECH^SROPRIN
  S X=$P(^SRF(SRTN,"OP"),"^",2) I X S Y=$P($$CPT^ICPTCOD(X),"^",2) D SSPRIN^SROCPT S SRCPT=Y
- S SRQ=0,SRDR=".011;.04;.035;.166;1.09;1.13"
+ S SRQ=0,SRDR=".011;.04;.035;.166;1.09;1.13;2006"
  S SRAO(1)="Hospital Admission Status^.011",SRAO(2)="Major or Minor^.03",SRAO(2)="Surgical Specialty^.04",SRAO(3)="Surgical Priority^.035",SRAO(4)="Attending/Res Sup Code^.166"
  S SRAO(5)="ASA Class^1.13",SRAO(6)="Wound Classification^1.09",SRAO(7)="Anesthesia Technique^.37",SRAO(8)="CPT Codes (view only)^",SRAO(9)="Other Procedures^.42"
+ S SRAO(10)="Robotic Assistance (Y/N)^2006"
  K DA,DIC,DIQ,DR,SRY S DIC="^SRF(",DA=SRTN,DIQ="SRY",DIQ(0)="E",DR=SRDR D EN^DIQ1 K DA,DIC,DIQ,DR
  S SRY(130,SRTN,.37,"E")=SRTECH,SRY(130,SRTN,.42,"E")=$S($O(^SRF(SRTN,13,0)):"***INFORMATION ENTERED***",1:"***NONE ENTERED***"),SRY(130,SRTN,27,"E")=SRCPT
- F I=1:1:9 W !,$J(I,2)_". "_$P(SRAO(I),"^")_":" D
+ F I=1:1:10 W !,$J(I,2)_". "_$P(SRAO(I),"^")_":" D
  .I I=8 D PROC Q
  .S SREXT(1)=SRY(130,SRTN,$P(SRAO(I),"^",2),"E") I $L(SREXT(1))>48 D
  ..N I,J,X,Y S X=SREXT(1) F I=0:1:47 S J=48-I,Y=$E(X,J) I Y=" " S SREXT(1)=$E(X,1,J-1),SREXT(2)=$E(X,J+1,$L(X)) Q
  .W ?32,SREXT(1) W:$D(SREXT(2)) !,?32,SREXT(2) K SREXT
  W !! F I=1:1:80 W "-"
- S SRX=9 D SEL
+ S SRX=10 D SEL
  K DA,DIK S DIK="^SRF(",DIK(1)=".232^AQ",DA=SRTN D EN1^DIK K DA,DIK
  G:SRR=1 EDIT
 END D EXIT^SROES D:$G(SRLCK) UNLOCK^SROUTL(SRTN)

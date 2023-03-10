@@ -1,5 +1,5 @@
-LR7OF2 ;slc/dcm - Process messages from OE/RR ;8/11/97
- ;;5.2;LAB SERVICE;**121,187,440,538**;Sep 27, 1994;Build 9
+LR7OF2 ;SLC/DCM - Process messages from OE/RR ;Mar 18, 2022@16:55
+ ;;5.2;LAB SERVICE;**121,187,440,538,557**;Sep 27, 1994;Build 2
  ;
 NEW ;Process New orders from OE/RR
  ;LRXMSG=Message with linking identifiers
@@ -17,7 +17,10 @@ CANC ;Process Canceled orders from OE/RR
  I LRVERZ,$D(^LRO(69,LRODT,1,LRSN,0)) D  Q:LREND
  . S X=$P($P(LRXMSG,"|",5),"^",4),TST=""
  . I X S TST=$O(^LRO(69,LRODT,1,LRSN,2,"B",X,0))
- . I TST D DOIT(LRODT,LRSN,TST,LRXORC,LRDUZ,REASON),CHKCOMB(LRODT,LRSN,TST,LRXORC,LRDUZ,REASON)
+ . I TST D DOIT(LRODT,LRSN,TST,LRXORC,LRDUZ,REASON) D
+ . . ;LR*5.2*557: If line below is invoked for VBECS-originated
+ . . ;            cancellations, VistA status will not update correctly.
+ . . I $G(ORNMSP)'="VBEC" D CHKCOMB(LRODT,LRSN,TST,LRXORC,LRDUZ,REASON)
  D ACK^LR7OF0("CR",LRXORC)
  Q
 XO ;Process order changes from OE/RR

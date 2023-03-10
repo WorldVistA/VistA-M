@@ -1,5 +1,5 @@
-MAGDHLE ;WOIFO/SRR/PMK - PACS INTERFACE PID TRIGGERS ;26 Oct 2017 1:30 PM
- ;;3.0;IMAGING;**54,49,183**;Mar 19, 2002;Build 11;Apr 07, 2011
+MAGDHLE ;WOIFO/SRR/PMK - PACS INTERFACE PID TRIGGERS ; Dec 05, 2019@09:10:48
+ ;;3.0;IMAGING;**54,49,183,231**;Mar 19, 2002;Build 9;Apr 07, 2011
  ;; Per VHA Directive 2004-038, this routine should not be modified.
  ;; +---------------------------------------------------------------+
  ;; | Property of the US Government.                                |
@@ -15,7 +15,11 @@ MAGDHLE ;WOIFO/SRR/PMK - PACS INTERFACE PID TRIGGERS ;26 Oct 2017 1:30 PM
  ;; | to be a violation of US Federal Statutes.                     |
  ;; +---------------------------------------------------------------+
  ;;
- ; Supported IA #2602 Reading AUDIT file (#1.1) ^DIA(2,...) 
+ ; Supported IA #10063 reference ^%ZTLOAD subroutine call
+ ; Supported IA #2602 Reading AUDIT file (#1.1) ^DIA(2,...)
+ ; Supported IA #2541 reference $$KSP^XUPARAM function call
+ ; Supported IA #4440 reference $$PROD^XUPROD function call
+ ; 
  Q
  ;
 SENDA08(DFN) ; External API entry point from Radiology Package - P183 PMK 3/16/17
@@ -103,7 +107,11 @@ TSK ;CREATE TASK to make HL7 messages
  G EX
  ;
 HL7 ;Create HL7 message
- I $P($G(^MAG(2006.1,1,"IHE")),"^",1)="Y" D ADT^MAGDHLI
+ N IEN,KSITEPAR
+ ; P231 PMK - Replaced hardcoded "1" site parameter with IEN for kernel institution site parameter.
+ S KSITEPAR=$$KSP^XUPARAM("INST")
+ S IEN=$O(^MAG(2006.1,"B",KSITEPAR,""))
+ I $P($G(^MAG(2006.1,IEN,"IHE")),"^",1)="Y" D ADT^MAGDHLI
  Q
  ;
 EX ;EXIT
@@ -111,7 +119,7 @@ EX ;EXIT
  K MAGKPID,MAGKTYP
  Q
  ;
- ; Vestigal code, kept around since there still cross references somewhere
+ ; Vestigial code, kept around since there still cross references somewhere
 SET ;Set Logic from MUMPS x-ref on fields .01,.03,.09 of ^DD(2 (^DPT)
  Q
  ;

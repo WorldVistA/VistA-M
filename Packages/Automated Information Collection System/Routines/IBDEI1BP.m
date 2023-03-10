@@ -1,126 +1,122 @@
-IBDEI1BP ; ; 04-FEB-2020
- ;;3.0;IB ENCOUNTER FORM IMP/EXP;;FEB 04, 2020
+IBDEI1BP ; ; 01-FEB-2022
+ ;;3.0;IB ENCOUNTER FORM IMP/EXP;;FEB 01, 2022
  Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,999) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
- ;;^UTILITY(U,$J,358.3,21143,2)
- ;;=^5003207
- ;;^UTILITY(U,$J,358.3,21144,0)
- ;;=F13.99^^95^1047^26
- ;;^UTILITY(U,$J,358.3,21144,1,0)
+ ;;^UTILITY(U,$J,358.3,21390,0)
+ ;;=N15.0^^70^917^2
+ ;;^UTILITY(U,$J,358.3,21390,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,21144,1,3,0)
- ;;=3^Sedative/Hypnotic/Anxiolytic Related D/O,Unspec
- ;;^UTILITY(U,$J,358.3,21144,1,4,0)
- ;;=4^F13.99
- ;;^UTILITY(U,$J,358.3,21144,2)
- ;;=^5133353
- ;;^UTILITY(U,$J,358.3,21145,0)
- ;;=F13.11^^95^1047^2
- ;;^UTILITY(U,$J,358.3,21145,1,0)
+ ;;^UTILITY(U,$J,358.3,21390,1,3,0)
+ ;;=3^Balkan Nephropathy
+ ;;^UTILITY(U,$J,358.3,21390,1,4,0)
+ ;;=4^N15.0
+ ;;^UTILITY(U,$J,358.3,21390,2)
+ ;;=^12543
+ ;;^UTILITY(U,$J,358.3,21391,0)
+ ;;=N18.9^^70^917^3
+ ;;^UTILITY(U,$J,358.3,21391,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,21145,1,3,0)
- ;;=3^Sedative/Hypnotic/Anxiolytic Abuse,In Remission
- ;;^UTILITY(U,$J,358.3,21145,1,4,0)
- ;;=4^F13.11
- ;;^UTILITY(U,$J,358.3,21145,2)
- ;;=^331938
- ;;^UTILITY(U,$J,358.3,21146,0)
- ;;=F17.200^^95^1048^1
- ;;^UTILITY(U,$J,358.3,21146,1,0)
+ ;;^UTILITY(U,$J,358.3,21391,1,3,0)
+ ;;=3^Chr Kidney Disease,Unspec
+ ;;^UTILITY(U,$J,358.3,21391,1,4,0)
+ ;;=4^N18.9
+ ;;^UTILITY(U,$J,358.3,21391,2)
+ ;;=^332812
+ ;;^UTILITY(U,$J,358.3,21392,0)
+ ;;=N28.9^^70^917^18
+ ;;^UTILITY(U,$J,358.3,21392,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,21146,1,3,0)
- ;;=3^Nicotine Dependence,Unspec
- ;;^UTILITY(U,$J,358.3,21146,1,4,0)
- ;;=4^F17.200
- ;;^UTILITY(U,$J,358.3,21146,2)
- ;;=^5003360
- ;;^UTILITY(U,$J,358.3,21147,0)
- ;;=F17.203^^95^1048^5
- ;;^UTILITY(U,$J,358.3,21147,1,0)
+ ;;^UTILITY(U,$J,358.3,21392,1,3,0)
+ ;;=3^Kidney/Ureter Disorder,Unspec
+ ;;^UTILITY(U,$J,358.3,21392,1,4,0)
+ ;;=4^N28.9
+ ;;^UTILITY(U,$J,358.3,21392,2)
+ ;;=^5015630
+ ;;^UTILITY(U,$J,358.3,21393,0)
+ ;;=N40.0^^70^917^5
+ ;;^UTILITY(U,$J,358.3,21393,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,21147,1,3,0)
- ;;=3^Tobacco Withdrawal
- ;;^UTILITY(U,$J,358.3,21147,1,4,0)
- ;;=4^F17.203
- ;;^UTILITY(U,$J,358.3,21147,2)
- ;;=^5003362
- ;;^UTILITY(U,$J,358.3,21148,0)
- ;;=F17.208^^95^1048^2
- ;;^UTILITY(U,$J,358.3,21148,1,0)
+ ;;^UTILITY(U,$J,358.3,21393,1,3,0)
+ ;;=3^Enlarged Prostate w/o Lower Urinary Tract Symptoms
+ ;;^UTILITY(U,$J,358.3,21393,1,4,0)
+ ;;=4^N40.0
+ ;;^UTILITY(U,$J,358.3,21393,2)
+ ;;=^5015689
+ ;;^UTILITY(U,$J,358.3,21394,0)
+ ;;=N07.6^^70^917^6
+ ;;^UTILITY(U,$J,358.3,21394,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,21148,1,3,0)
- ;;=3^Nicotine Induced Sleep Disorder w/ Mod/Severe Use Disorder
- ;;^UTILITY(U,$J,358.3,21148,1,4,0)
- ;;=4^F17.208
- ;;^UTILITY(U,$J,358.3,21148,2)
- ;;=^5003363
- ;;^UTILITY(U,$J,358.3,21149,0)
- ;;=F17.209^^95^1048^3
- ;;^UTILITY(U,$J,358.3,21149,1,0)
+ ;;^UTILITY(U,$J,358.3,21394,1,3,0)
+ ;;=3^Hereditary Nephropathy w/ Dense Deposit Disease NEC
+ ;;^UTILITY(U,$J,358.3,21394,1,4,0)
+ ;;=4^N07.6
+ ;;^UTILITY(U,$J,358.3,21394,2)
+ ;;=^5015565
+ ;;^UTILITY(U,$J,358.3,21395,0)
+ ;;=N07.7^^70^917^7
+ ;;^UTILITY(U,$J,358.3,21395,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,21149,1,3,0)
- ;;=3^Nicotine Related Disorder,Unspec
- ;;^UTILITY(U,$J,358.3,21149,1,4,0)
- ;;=4^F17.209
- ;;^UTILITY(U,$J,358.3,21149,2)
- ;;=^5003364
- ;;^UTILITY(U,$J,358.3,21150,0)
- ;;=Z72.0^^95^1048^4
- ;;^UTILITY(U,$J,358.3,21150,1,0)
+ ;;^UTILITY(U,$J,358.3,21395,1,3,0)
+ ;;=3^Hereditary Nephropathy w/ Diffuse Crescentic Glomerular NEC
+ ;;^UTILITY(U,$J,358.3,21395,1,4,0)
+ ;;=4^N07.7
+ ;;^UTILITY(U,$J,358.3,21395,2)
+ ;;=^5015566
+ ;;^UTILITY(U,$J,358.3,21396,0)
+ ;;=N07.1^^70^917^8
+ ;;^UTILITY(U,$J,358.3,21396,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,21150,1,3,0)
- ;;=3^Tobacco Use
- ;;^UTILITY(U,$J,358.3,21150,1,4,0)
- ;;=4^Z72.0
- ;;^UTILITY(U,$J,358.3,21150,2)
- ;;=^5063255
- ;;^UTILITY(U,$J,358.3,21151,0)
- ;;=F43.0^^95^1049^1
- ;;^UTILITY(U,$J,358.3,21151,1,0)
+ ;;^UTILITY(U,$J,358.3,21396,1,3,0)
+ ;;=3^Hereditary Nephropathy w/ Focal/Segmental Glomerular Lesions NEC
+ ;;^UTILITY(U,$J,358.3,21396,1,4,0)
+ ;;=4^N07.1
+ ;;^UTILITY(U,$J,358.3,21396,2)
+ ;;=^5015560
+ ;;^UTILITY(U,$J,358.3,21397,0)
+ ;;=N07.0^^70^917^9
+ ;;^UTILITY(U,$J,358.3,21397,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,21151,1,3,0)
- ;;=3^Acute Stress Disorder
- ;;^UTILITY(U,$J,358.3,21151,1,4,0)
- ;;=4^F43.0
- ;;^UTILITY(U,$J,358.3,21151,2)
- ;;=^5003569
- ;;^UTILITY(U,$J,358.3,21152,0)
- ;;=F43.21^^95^1049^3
- ;;^UTILITY(U,$J,358.3,21152,1,0)
+ ;;^UTILITY(U,$J,358.3,21397,1,3,0)
+ ;;=3^Hereditary Nephropathy w/ Minor Glomerular Abnormality NEC
+ ;;^UTILITY(U,$J,358.3,21397,1,4,0)
+ ;;=4^N07.0
+ ;;^UTILITY(U,$J,358.3,21397,2)
+ ;;=^5015559
+ ;;^UTILITY(U,$J,358.3,21398,0)
+ ;;=N07.8^^70^917^10
+ ;;^UTILITY(U,$J,358.3,21398,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,21152,1,3,0)
- ;;=3^Adjustment Disorder w/ Depressed Mood
- ;;^UTILITY(U,$J,358.3,21152,1,4,0)
- ;;=4^F43.21
- ;;^UTILITY(U,$J,358.3,21152,2)
- ;;=^331948
- ;;^UTILITY(U,$J,358.3,21153,0)
- ;;=F43.22^^95^1049^2
- ;;^UTILITY(U,$J,358.3,21153,1,0)
+ ;;^UTILITY(U,$J,358.3,21398,1,3,0)
+ ;;=3^Hereditary Nephropathy w/ Morphologic Lesions NEC
+ ;;^UTILITY(U,$J,358.3,21398,1,4,0)
+ ;;=4^N07.8
+ ;;^UTILITY(U,$J,358.3,21398,2)
+ ;;=^5015567
+ ;;^UTILITY(U,$J,358.3,21399,0)
+ ;;=N41.9^^70^917^11
+ ;;^UTILITY(U,$J,358.3,21399,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,21153,1,3,0)
- ;;=3^Adjustment Disorder w/ Anxiety
- ;;^UTILITY(U,$J,358.3,21153,1,4,0)
- ;;=4^F43.22
- ;;^UTILITY(U,$J,358.3,21153,2)
- ;;=^331949
- ;;^UTILITY(U,$J,358.3,21154,0)
- ;;=F43.23^^95^1049^5
- ;;^UTILITY(U,$J,358.3,21154,1,0)
+ ;;^UTILITY(U,$J,358.3,21399,1,3,0)
+ ;;=3^Inflammatory Prostate Disease,Unspec
+ ;;^UTILITY(U,$J,358.3,21399,1,4,0)
+ ;;=4^N41.9
+ ;;^UTILITY(U,$J,358.3,21399,2)
+ ;;=^5015694
+ ;;^UTILITY(U,$J,358.3,21400,0)
+ ;;=N06.6^^70^917^12
+ ;;^UTILITY(U,$J,358.3,21400,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,21154,1,3,0)
- ;;=3^Adjustment Disorder w/ Mixed Anxiety & Depressed Mood
- ;;^UTILITY(U,$J,358.3,21154,1,4,0)
- ;;=4^F43.23
- ;;^UTILITY(U,$J,358.3,21154,2)
- ;;=^331950
- ;;^UTILITY(U,$J,358.3,21155,0)
- ;;=F43.24^^95^1049^4
- ;;^UTILITY(U,$J,358.3,21155,1,0)
+ ;;^UTILITY(U,$J,358.3,21400,1,3,0)
+ ;;=3^Isolated Proteinuria w/ Dense Deposit Disease
+ ;;^UTILITY(U,$J,358.3,21400,1,4,0)
+ ;;=4^N06.6
+ ;;^UTILITY(U,$J,358.3,21400,2)
+ ;;=^5015555
+ ;;^UTILITY(U,$J,358.3,21401,0)
+ ;;=N06.7^^70^917^13
+ ;;^UTILITY(U,$J,358.3,21401,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,21155,1,3,0)
- ;;=3^Adjustment Disorder w/ Disturbance of Conduct
- ;;^UTILITY(U,$J,358.3,21155,1,4,0)
- ;;=4^F43.24
- ;;^UTILITY(U,$J,358.3,21155,2)
- ;;=^331951
+ ;;^UTILITY(U,$J,358.3,21401,1,3,0)
+ ;;=3^Isolated Proteinuria w/ Diffuse Crescentic Glomerulonephritis
+ ;;^UTILITY(U,$J,358.3,21401,1,4,0)
+ ;;=4^N06.7

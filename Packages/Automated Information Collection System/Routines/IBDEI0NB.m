@@ -1,122 +1,120 @@
-IBDEI0NB ; ; 04-FEB-2020
- ;;3.0;IB ENCOUNTER FORM IMP/EXP;;FEB 04, 2020
+IBDEI0NB ; ; 01-FEB-2022
+ ;;3.0;IB ENCOUNTER FORM IMP/EXP;;FEB 01, 2022
  Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,999) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
- ;;^UTILITY(U,$J,358.3,10375,2)
- ;;=^5063035
- ;;^UTILITY(U,$J,358.3,10376,0)
- ;;=Z48.810^^74^677^1
- ;;^UTILITY(U,$J,358.3,10376,1,0)
+ ;;^UTILITY(U,$J,358.3,10501,1,4,0)
+ ;;=4^T76.21XD
+ ;;^UTILITY(U,$J,358.3,10501,2)
+ ;;=^5054228
+ ;;^UTILITY(U,$J,358.3,10502,0)
+ ;;=Z69.81^^42^469^30
+ ;;^UTILITY(U,$J,358.3,10502,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,10376,1,3,0)
- ;;=3^Aftercare Following EYE Surgery
- ;;^UTILITY(U,$J,358.3,10376,1,4,0)
- ;;=4^Z48.810
- ;;^UTILITY(U,$J,358.3,10376,2)
- ;;=^5063047
- ;;^UTILITY(U,$J,358.3,10377,0)
- ;;=H35.3131^^74^677^40
- ;;^UTILITY(U,$J,358.3,10377,1,0)
+ ;;^UTILITY(U,$J,358.3,10502,1,3,0)
+ ;;=3^MH Svc for Victim of Nonspousal/Nonpartner Abuse
+ ;;^UTILITY(U,$J,358.3,10502,1,4,0)
+ ;;=4^Z69.81
+ ;;^UTILITY(U,$J,358.3,10502,2)
+ ;;=^5063234
+ ;;^UTILITY(U,$J,358.3,10503,0)
+ ;;=Z69.82^^42^469^22
+ ;;^UTILITY(U,$J,358.3,10503,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,10377,1,3,0)
- ;;=3^Nonexudative Age-Related Macular Degn,Early Dry Stage,Bilateral
- ;;^UTILITY(U,$J,358.3,10377,1,4,0)
- ;;=4^H35.3131
- ;;^UTILITY(U,$J,358.3,10377,2)
- ;;=^5138511
- ;;^UTILITY(U,$J,358.3,10378,0)
- ;;=H35.3132^^74^677^41
- ;;^UTILITY(U,$J,358.3,10378,1,0)
+ ;;^UTILITY(U,$J,358.3,10503,1,3,0)
+ ;;=3^MH Svc for Perpetrator of Nonspousal/Nonpartner Abuse
+ ;;^UTILITY(U,$J,358.3,10503,1,4,0)
+ ;;=4^Z69.82
+ ;;^UTILITY(U,$J,358.3,10503,2)
+ ;;=^5063235
+ ;;^UTILITY(U,$J,358.3,10504,0)
+ ;;=T74.01XA^^42^469^1
+ ;;^UTILITY(U,$J,358.3,10504,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,10378,1,3,0)
- ;;=3^Nonexudative Age-Related Macular Degn,Intermed Dry Stage,Bilateral
- ;;^UTILITY(U,$J,358.3,10378,1,4,0)
- ;;=4^H35.3132
- ;;^UTILITY(U,$J,358.3,10378,2)
- ;;=^5138512
- ;;^UTILITY(U,$J,358.3,10379,0)
- ;;=H02.889^^74^677^35
- ;;^UTILITY(U,$J,358.3,10379,1,0)
+ ;;^UTILITY(U,$J,358.3,10504,1,3,0)
+ ;;=3^Adult Neglect,Confirmed,Initial Encounter 
+ ;;^UTILITY(U,$J,358.3,10504,1,4,0)
+ ;;=4^T74.01XA
+ ;;^UTILITY(U,$J,358.3,10504,2)
+ ;;=^5054140
+ ;;^UTILITY(U,$J,358.3,10505,0)
+ ;;=T74.01XD^^42^469^2
+ ;;^UTILITY(U,$J,358.3,10505,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,10379,1,3,0)
- ;;=3^Meibomian Gland Dysfunction,Unspec
- ;;^UTILITY(U,$J,358.3,10379,1,4,0)
- ;;=4^H02.889
- ;;^UTILITY(U,$J,358.3,10379,2)
- ;;=^5157349
- ;;^UTILITY(U,$J,358.3,10380,0)
- ;;=Z96.1^^74^677^46
- ;;^UTILITY(U,$J,358.3,10380,1,0)
+ ;;^UTILITY(U,$J,358.3,10505,1,3,0)
+ ;;=3^Adult Neglect,Confirmed,Subsequent Encounter 
+ ;;^UTILITY(U,$J,358.3,10505,1,4,0)
+ ;;=4^T74.01XD
+ ;;^UTILITY(U,$J,358.3,10505,2)
+ ;;=^5054141
+ ;;^UTILITY(U,$J,358.3,10506,0)
+ ;;=T76.01XA^^42^469^3
+ ;;^UTILITY(U,$J,358.3,10506,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,10380,1,3,0)
- ;;=3^Presence of Intraocular Lens
- ;;^UTILITY(U,$J,358.3,10380,1,4,0)
- ;;=4^Z96.1
- ;;^UTILITY(U,$J,358.3,10380,2)
- ;;=^5063682
- ;;^UTILITY(U,$J,358.3,10381,0)
- ;;=H43.813^^74^677^53
- ;;^UTILITY(U,$J,358.3,10381,1,0)
+ ;;^UTILITY(U,$J,358.3,10506,1,3,0)
+ ;;=3^Adult Neglect,Suspected,Initial Encounter  
+ ;;^UTILITY(U,$J,358.3,10506,1,4,0)
+ ;;=4^T76.01XA
+ ;;^UTILITY(U,$J,358.3,10506,2)
+ ;;=^5054215
+ ;;^UTILITY(U,$J,358.3,10507,0)
+ ;;=T76.01XD^^42^469^4
+ ;;^UTILITY(U,$J,358.3,10507,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,10381,1,3,0)
- ;;=3^Vitreous Degeneration,Bilateral
- ;;^UTILITY(U,$J,358.3,10381,1,4,0)
- ;;=4^H43.813
- ;;^UTILITY(U,$J,358.3,10381,2)
- ;;=^5005955
- ;;^UTILITY(U,$J,358.3,10382,0)
- ;;=H26.491^^74^677^44
- ;;^UTILITY(U,$J,358.3,10382,1,0)
+ ;;^UTILITY(U,$J,358.3,10507,1,3,0)
+ ;;=3^Adult Neglect,Suspected,Subsequent Encounter  
+ ;;^UTILITY(U,$J,358.3,10507,1,4,0)
+ ;;=4^T76.01XD
+ ;;^UTILITY(U,$J,358.3,10507,2)
+ ;;=^5054216
+ ;;^UTILITY(U,$J,358.3,10508,0)
+ ;;=Z91.412^^42^469^40
+ ;;^UTILITY(U,$J,358.3,10508,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,10382,1,3,0)
- ;;=3^PCO/Secondary Cataract,Right Eye
- ;;^UTILITY(U,$J,358.3,10382,1,4,0)
- ;;=4^H26.491
- ;;^UTILITY(U,$J,358.3,10382,2)
- ;;=^5005358
- ;;^UTILITY(U,$J,358.3,10383,0)
- ;;=H26.492^^74^677^43
- ;;^UTILITY(U,$J,358.3,10383,1,0)
+ ;;^UTILITY(U,$J,358.3,10508,1,3,0)
+ ;;=3^Personal Past Hx of Spouse or Partner Neglect
+ ;;^UTILITY(U,$J,358.3,10508,1,4,0)
+ ;;=4^Z91.412
+ ;;^UTILITY(U,$J,358.3,10508,2)
+ ;;=^5063621
+ ;;^UTILITY(U,$J,358.3,10509,0)
+ ;;=T74.31XA^^42^469^9
+ ;;^UTILITY(U,$J,358.3,10509,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,10383,1,3,0)
- ;;=3^PCO/Secondary Cataract,Left Eye
- ;;^UTILITY(U,$J,358.3,10383,1,4,0)
- ;;=4^H26.492
- ;;^UTILITY(U,$J,358.3,10383,2)
- ;;=^5005359
- ;;^UTILITY(U,$J,358.3,10384,0)
- ;;=D31.31^^74^677^5
- ;;^UTILITY(U,$J,358.3,10384,1,0)
+ ;;^UTILITY(U,$J,358.3,10509,1,3,0)
+ ;;=3^Adult Psychological Abuse,Confirmed,Initial Encounter  
+ ;;^UTILITY(U,$J,358.3,10509,1,4,0)
+ ;;=4^T74.31XA
+ ;;^UTILITY(U,$J,358.3,10509,2)
+ ;;=^5054158
+ ;;^UTILITY(U,$J,358.3,10510,0)
+ ;;=T74.31XD^^42^469^10
+ ;;^UTILITY(U,$J,358.3,10510,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,10384,1,3,0)
- ;;=3^Benign Neop/Nevus Choroid,Right Eye
- ;;^UTILITY(U,$J,358.3,10384,1,4,0)
- ;;=4^D31.31
- ;;^UTILITY(U,$J,358.3,10384,2)
- ;;=^5002121
- ;;^UTILITY(U,$J,358.3,10385,0)
- ;;=D31.32^^74^677^4
- ;;^UTILITY(U,$J,358.3,10385,1,0)
+ ;;^UTILITY(U,$J,358.3,10510,1,3,0)
+ ;;=3^Adult Psychological Abuse,Confirmed,Subsequent Encounter 
+ ;;^UTILITY(U,$J,358.3,10510,1,4,0)
+ ;;=4^T74.31XD
+ ;;^UTILITY(U,$J,358.3,10510,2)
+ ;;=^5054159
+ ;;^UTILITY(U,$J,358.3,10511,0)
+ ;;=T76.31XA^^42^469^11
+ ;;^UTILITY(U,$J,358.3,10511,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,10385,1,3,0)
- ;;=3^Benign Neop/Nevus Choroid,Left Eye
- ;;^UTILITY(U,$J,358.3,10385,1,4,0)
- ;;=4^D31.32
- ;;^UTILITY(U,$J,358.3,10385,2)
- ;;=^5002122
- ;;^UTILITY(U,$J,358.3,10386,0)
- ;;=H40.1131^^74^677^47
- ;;^UTILITY(U,$J,358.3,10386,1,0)
+ ;;^UTILITY(U,$J,358.3,10511,1,3,0)
+ ;;=3^Adult Psychological Abuse,Suspected,Initial Encounter 
+ ;;^UTILITY(U,$J,358.3,10511,1,4,0)
+ ;;=4^T76.31XA
+ ;;^UTILITY(U,$J,358.3,10511,2)
+ ;;=^5054233
+ ;;^UTILITY(U,$J,358.3,10512,0)
+ ;;=T76.31XD^^42^469^12
+ ;;^UTILITY(U,$J,358.3,10512,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,10386,1,3,0)
- ;;=3^Primary Open-Angle Glaucoma,Mild Stage,Bilateral
- ;;^UTILITY(U,$J,358.3,10386,1,4,0)
- ;;=4^H40.1131
- ;;^UTILITY(U,$J,358.3,10386,2)
- ;;=^5138547
- ;;^UTILITY(U,$J,358.3,10387,0)
- ;;=H40.1132^^74^677^48
- ;;^UTILITY(U,$J,358.3,10387,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,10387,1,3,0)
- ;;=3^Primary Open-Angle Glaucoma,Moderate Stage,Bilateral
+ ;;^UTILITY(U,$J,358.3,10512,1,3,0)
+ ;;=3^Adult Psychological Abuse,Suspected,Subsequent Encounter 
+ ;;^UTILITY(U,$J,358.3,10512,1,4,0)
+ ;;=4^T76.31XD
+ ;;^UTILITY(U,$J,358.3,10512,2)
+ ;;=^5054234
+ ;;^UTILITY(U,$J,358.3,10513,0)
+ ;;=Z91.411^^42^469^41

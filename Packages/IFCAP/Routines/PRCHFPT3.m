@@ -1,9 +1,14 @@
 PRCHFPT3 ;WISC/RSD/RHD-CONT. OF PRINT ;7/21/99  13:19
-V ;;5.1;IFCAP;;Oct 20, 2000
- ;Per VHA Directive 10-93-142, this routine should not be modified.
+V ;;5.1;IFCAP;**221**;Oct 20, 2000;Build 14
+ ;Per VA Directive 6204, this routine should not be modified.
+ ;PRC*5.1*221 Modify an item description display to skip '|' logic
+ ;            if description contains a undefined display command
+ ;            like '| IN '
  ;
-ITEM S DIWL=1,DIWR=33,DIWF="",PRCHD=0 K ^UTILITY($J,"W")
- F PRCHJJ=0:0 S PRCHD=$O(^PRC(442,D0,2,PRCH,1,PRCHD)) Q:PRCHD=""  S X=$G(^(PRCHD,0)) D DIWP^PRCUTL($G(DA))
+ITEM N PURPIPE,PRCHDIW,PRCHI,PRCHJ   ;PRC*5.1*221
+ S DIWL=1,DIWR=33,DIWF="" K ^UTILITY($J,"W")
+ S PURPIPE=0 D PIPECK S PRCHD=0   ;PRC*5.1*221
+ F PRCHJJ=0:0 S PRCHD=$O(^PRC(442,D0,2,PRCH,1,PRCHD)) Q:PRCHD=""  S X=$G(^(PRCHD,0)) S:PURPIPE DIWF=$G(DIWF)_"|" D DIWP^PRCUTL($G(DA))   ;PRC*5.1*221
  K ^TMP($J,"W") S %X="^UTILITY($J,""W"",1,",%Y="^TMP($J,""W"",1," D %XY^%RCR
  K PRCHJJ S PRCHCNT=$G(^UTILITY($J,"W",1)),PRCHL=PRCHL+PRCHCNT+1 W !?2,$J(+$P(PRCHI0,U,1),3),?7,$G(^(1,1,0))
  I PRCHTYPE'="S" W ?42,$J($P(PRCHI0,U,2),7),?52,$P($G(^PRCD(420.5,+$P(PRCHI0,U,3),0)),U,1) D
@@ -76,4 +81,10 @@ FAXEMAIL(PRCA,PRCB,PRCC) ;
  N PRCX,DIC,DR,DA,DIQ,D0 K ^UTILITY("DIQ1",$J)
  S DIC=200,DR=".136;.151",DA=PRCA,DIQ="PRCX",DIQ(0)="I" D EN^DIQ1
  S PRCB=PRCX(200,DA,.136,"I"),PRCC=PRCX(200,DA,.151,"I") K ^UTILITY("DIQ1",$J)
+ Q
+PIPECK ;check for invalid pipe '|IN ' command in item description   ;PRC*5.1*221
+ N PRCHWD,PRCHX S PRCHWD=0
+ F  S PRCHWD=$O(^PRC(442,D0,2,PRCH,1,PRCHWD)) Q:PRCHWD'>0  D  Q:PURPIPE
+ . S PRCHX=$S($D(^(PRCHWD,0)):^(0),1:"")
+ . I PRCHX["| IN " S PURPIPE=1
  Q

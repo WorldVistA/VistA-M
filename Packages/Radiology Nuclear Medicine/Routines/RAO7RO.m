@@ -1,5 +1,11 @@
-RAO7RO ;HISC/GJC,FPT-Request message from OE/RR. ; Apr 24, 2020@08:45:37
- ;;5.0;Radiology/Nuclear Medicine;**1,2,13,15,75,145,169**;Mar 16, 1998;Build 2
+RAO7RO ;HISC/GJC,FPT - Request message from OE/RR. ; Jan 06, 2022@14:01:35
+ ;;5.0;Radiology/Nuclear Medicine;**1,2,13,15,75,145,169,185**;Mar 16, 1998;Build 1
+ ;
+ ;ICR#            referenced IA           reference type
+ ;------------------------------------------------------  
+ ;10103           $$DOW^XLFDT             Supported
+ ;10038           ^HOLIDAY                Supported
+ ;
  ;
  ;------------------------- Variable List -------------------------------
  ; RAFLG=flag indicates ORC reached     RAHLFS="|"
@@ -63,7 +69,8 @@ EN1(RAMSG) ; Pass in the message from OE/RR.  Decipher information.
  . D:$P(RAO751,"^",6)=1!($P(RAO751,"^",6)=2) OENO^RAUTL19(+RAORC3)
  . K RAO751 ; fire off 'stat' or 'urgent' alert if order qualifies
  . ; print the request
- . I +RAOBR19(3)>0 S RAION=$P($G(^RA(79.1,+RAOBR19(3),0)),U,16)
+ . I +RAOBR19(3)>0 D ARPTR ;p185 - check alternate printer first
+ . I +RAOBR19(3)>0 D  S:RAION="" RAION=$P($G(^RA(79.1,+RAOBR19(3),0)),U,16)
  . ;I +RAOBR19(3)=0 S RAION=$P($G(^RA(79.1,+$O(^RA(79.1,0)),0)),U,16)
  . I +RAOBR19(3)=0 D  S:RAION="" RAION=$P($G(^RA(79.1,+$O(^RA(79.1,0)),0)),U,16)
  .. S (RALOC,RAION)=""
@@ -156,4 +163,35 @@ PSETUP ; Define the variables needed to print cancelled and non-cancelled
  N RAFOERR S RAFOERR="" ; flag to indicate entry from frontdoor (CPRS)
  F RAI="RADFN","RAOIFN","RAX","RAPGE","RAOBR4(","RAFOERR" S ZTSAVE(RAI)=""
  S:$D(RAIL) ZTSAVE("RAIL")=""
+ Q
+ARPTR ;p185/KLM Determine if After Hours request printer should be used
+  N RAF,RAHP,RART,RADOW,RARU S RAF=0
+ ;Get alternate request printer parameters
+ S RAHP=$G(^RA(79.1,+RAOBR19(3),"ARP")) Q:'$D(RAHP)
+ ;Is there an alternate printer defined?
+ S RAION=$P($G(RAHP),U) Q:RAION=""
+ ;What is the printer usage? After Hours or Alternate?
+ S RARU=$P($G(RAHP),U,2) Q:'RARU
+ I RARU=1 D ARP1 Q
+ I RARU=2 D ARP2 Q
+ Q
+ARP1 ;usage is after hours printing - check time etc
+ ;Time of the request
+ S RART=$E($P(RALDT,".",2),1,4)_"00"
+ ;Is it after hours?
+ I RART>$P(RAHP,U,3)!(RART<$P(RAHP,U,4)) S RAF=1
+ ;Is it the weekend? IA10103
+ I RAF=0,$P(RAHP,U,5)="Y" S RADOW=$$DOW^XLFDT(RALDT) S:(RADOW["Saturday")!(RADOW["Sunday") RAF=1
+ ;Is it a holiday? IA10038
+ I RAF=0,$P(RAHP,U,6)="Y",$$FIND1^DIC(40.5,"","X",$P(RALDT,"."))>0 S RAF=1
+ ;Category of request (I/O/A)
+ I RAF=1 S:($P(RAHP,U,7)'="A")&($P(RAHP,U,7)'=RAPV12) RAF=0
+ ;Not after hours, remove alt printer
+ I RAF=0 S RAION=""
+ Q
+ARP2 ;Not for afterhours printing, check req location and pt class 
+ I $O(^RA(79.1,+RAOBR19(3),"ARPL","B",RAPV13,0)) Q
+ ;Category of request to print? RAPV12 is patient class passed from CPRS
+ I ($P(RAHP,U,7)="A")!(($P(RAHP,U,7))=RAPV12) Q
+ S RAION="" ;not alternate print candidate - remove alt printer
  Q

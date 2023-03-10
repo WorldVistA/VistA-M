@@ -1,5 +1,5 @@
 IBCFP1 ;ALB/ARH - PRINT AUTHORIZED BILLS IN ORDER ;6-DEC-94
- ;;2.0;INTEGRATED BILLING;**54,52,80,121,51,137,155,320,348,349**;21-MAR-94;Build 46
+ ;;2.0;INTEGRATED BILLING;**54,52,80,121,51,137,155,320,348,349,718**;21-MAR-94;Build 73
  ;;Per VHA Directive 2004-038, this routine should not be modified.
  ;
  ;
@@ -77,7 +77,10 @@ QB1 ; Entrypoint for output logic of formatter
  K ^XTMP(IBFTP,IBJ) ; end of last queued part
  Q
  ;
-ROUT(IBFT,IBPNT,IBIFN,IBCT,IBF) ; sub procedure to protect variables with new
+ ;WCJ;IB718v22;adding a parameter to execute FSC workarounds in the post processing routine/s)
+ ;ROUT(IBFT,IBPNT,IBIFN,IBCT,IBF,IBXPOSTWA) ; sub procedure to protect variables with new
+ROUT(IBFT,IBPNT,IBIFN,IBCT,IBF,IBXPOSTWA) ; sub procedure to protect variables with new
+ ; IBXPOSTWA = 1 if executing FSC post processing workarounds  ;WCJ;IB718v22;
  N IBBN,IBS1,IBS2,IBS3,IBQ,IBFTP,IBJ,IBXPARM,Z
  D BILLPARM^IBCEFG0(IBIFN,.IBXPARM)
  S IBF=$S($G(IBF)'="":IBF,1:$P($G(^IBE(353,+IBFT,2)),U,8))
@@ -85,7 +88,9 @@ ROUT(IBFT,IBPNT,IBIFN,IBCT,IBF) ; sub procedure to protect variables with new
  ;
  ; IBF exists - use the Output Formatter for printing
  ;     2.08 field in file 353 - PRINT FORM NAME
- I IBF'="" S Z=$$EXTRACT^IBCEFG(IBF,IBIFN,.IBCT,.IBXPARM) G REX
+ ;WCJ;IB718v22;adding a parameter to execute FSC workarounds in the post processing routine/s)
+ ;I IBF'="" S Z=$$EXTRACT^IBCEFG(IBF,IBIFN,.IBCT,.IBXPARM) G REX
+ I IBF'="" S Z=$$EXTRACT^IBCEFG(IBF,IBIFN,.IBCT,.IBXPARM,$G(IBXPOSTWA)) G REX
  ;
  ; IBF does not exist - Obsolete VistA extract/print routines
  I IBFT=1 S DFN=$P($G(^DGCR(399,+IBIFN,0)),U,2) D ENP^IBCF1 W @IOF G REX

@@ -1,11 +1,12 @@
-DVBAB6 ;ALB/DJS - CAPRI PENDING 2507 REQUEST REPORT ; 02-27-2013
- ;;2.7;AMIE;**35,90,108,168,185,190,192,193**;Apr 10, 1995;Build 84
+DVBAB6 ;ALB/DJS - CAPRI PENDING 2507 REQUEST REPORT ; 9/8/21 3:59pm
+ ;;2.7;AMIE;**35,90,108,168,185,190,192,193,227,241**;Apr 10, 1995;Build 4
+ ;Per VHA Directive 2004-038, this routine should not be modified.
  ;
 STRT(MSG,DVBCSORT,RSTAT,ERDAYS,OLDAYS,ADIVNUM,ELTYP,DVBADLMTR,ROFILTER) ;
  ; MSG=DATA Passed back from RPC to GUI;(.MSG,"A","NR",1,1,7613,"W",0,0)
  ;DVBCSORT=Sort by("A"GE,"S"TATUS,"V"ETERAN NAME,"R"OUTING LOCATION)
  ;RSTAT= Routing Status("N"ew,"P"ending","T"ranscribed,"NR"New Re-Routed,"RP"Re-routed pending acceptance,"RA"Re-routed acceptance accepted --
- ;       routing status continued - "RR"Re-routed rejected,'A'll statuses)  
+ ;       routing status continued - "RR"Re-routed rejected,"RS"RE-routed pending at to site,'A'll statuses)
  ;ERDAYS= Earliest age if SORTBY is "A"("1" earliest, "7" latest)
  ;OLDAYS = OLDEST AGE IF SORTBY IS "A"("1"=earliest, "7" oldest)
  ;ADIVNUM=ROUTING LOCATION -DIVISION IEN     
@@ -35,7 +36,7 @@ HEADRD ; Print delimited output header
  S ^TMP("CAPRI",MSGCNT)=HEAD_$C(13),MSGCNT=MSGCNT+1,^TMP("CAPRI",MSGCNT)=PROCDT_$C(13),MSGCNT=MSGCNT+1
  S ^TMP("CAPRI",MSGCNT)=$S($G(ROFILTER)'=0:"RO #"_DVBADLMTR,1:"")_"Division"_DVBADLMTR_"Status"_DVBADLMTR_"Veteran Name"_DVBADLMTR_"SSN"_DVBADLMTR_"Claim No."_DVBADLMTR_"Request Date"_DVBADLMTR
  S ^TMP("CAPRI",MSGCNT)=^TMP("CAPRI",MSGCNT)_"Elapsed Days"_DVBADLMTR_"Transferred in from"_DVBADLMTR_"Requested by Name"_DVBADLMTR_"Requested by Division"_DVBADLMTR_"Exams Requested"_DVBADLMTR_"Exam Status"_DVBADLMTR
- S ^TMP("CAPRI",MSGCNT)=^TMP("CAPRI",MSGCNT)_"Cell Phone"_DVBADLMTR_"Email Address"_DVBADLMTR_"Claim Type"_DVBADLMTR_"Special Consideration(s)"_$C(13)
+ S ^TMP("CAPRI",MSGCNT)=^TMP("CAPRI",MSGCNT)_"Cell Phone"_DVBADLMTR_"Email Address"_DVBADLMTR_"Claim Type"_DVBADLMTR_"Special Consideration(s)"_DVBADLMTR_"ReRouted From"_DVBADLMTR_"ReRouted to"_$C(13)
  S MSGCNT=MSGCNT+1
  Q
  ;
@@ -43,7 +44,8 @@ DATA ; Sort data records
  ;
  S DFN="" F  S DFN=$O(^DVB(396.3,"B",DFN)) Q:DFN=""  F REQDA=0:0 S REQDA=$O(^DVB(396.3,"B",DFN,REQDA)) Q:REQDA=""  D SORT^DVBAB5
  N EXAMRECRD
- I DVBCSORT="V" S PNAM="" F  S PNAM=$O(^TMP($J,PNAM)) Q:PNAM=""  F DFN=0:0 S DFN=$O(^TMP($J,PNAM,DFN)) Q:'DFN  F DA(1)=0:0 S DA(1)=$O(^TMP($J,PNAM,DFN,DA(1))) Q:'DA(1)  D PRINT I $D(OUT) S DA(1)=999999999,PNAM="ZZZ",DONE="YES" Q
+ ;I DVBCSORT="V" S PNAM="" F  S PNAM=$O(^TMP($J,PNAM)) Q:PNAM=""  F DFN=0:0 S DFN=$O(^TMP($J,PNAM,DFN)) Q:'DFN  F DA(1)=0:0 S DA(1)=$O(^TMP($J,PNAM,DFN,DA(1))) Q:'DA(1)  D PRINT I $D(OUT) S DA(1)=999999999,PNAM="ZZZ",DONE="YES" Q
+ I DVBCSORT="V" S PNAM="" F  S PNAM=$O(^TMP($J,PNAM)) Q:PNAM=""  F DFN=0:0 S DFN=$O(^TMP($J,PNAM,DFN)) Q:'DFN  F DA(1)=0:0 S DA(1)=$O(^TMP($J,PNAM,DFN,DA(1))) Q:'DA(1)  D PRINT
  I DVBCSORT="R"!(DVBCSORT="A")!(DVBCSORT="S") D
  . S JX="" F  S JX=$O(^TMP($J,JX)) Q:JX=""  D
  .. S PNAM="" F  S PNAM=$O(^TMP($J,JX,PNAM)) Q:PNAM=""  D
@@ -83,7 +85,9 @@ PRINT ; print 2507 request data
  S ^TMP("CAPRI",MSGCNT)="Request Date: "_$$FMTE^XLFDT(RDATE1,"5DZ")_"^",MSGCNT=MSGCNT+1
  S ^TMP("CAPRI",MSGCNT)="Elapsed days: "_EDAYS_"^",MSGCNT=MSGCNT+1
  S X=$S($D(^DVB(396.3,DA(1),4)):^(4),1:"")
- D CLAIMTYP,SPEC
+ D CLAIMTYP,SPEC,REROUTE
+ S ^TMP("CAPRI",MSGCNT)="ReRouted From: "_DVBRRF_"^",MSGCNT=MSGCNT+1
+ S ^TMP("CAPRI",MSGCNT)="ReRouted To: "_DVBRRT_"^",MSGCNT=MSGCNT+1
  S ^TMP("CAPRI",MSGCNT)="Claim Type: "_DVBCTW_"^",MSGCNT=MSGCNT+1
  S ^TMP("CAPRI",MSGCNT)="Special Consideration(s): "_DVBSCWA_"^",MSGCNT=MSGCNT+1
  S ^TMP("CAPRI",MSGCNT)="^",MSGCNT=MSGCNT+1
@@ -113,7 +117,8 @@ PRINTD ; Print delimited format output on report
  S EXAMRECRD=EXAMRECRD_SSN_DVBADLMTR_$C(160)_CNUM_DVBADLMTR_$$FMTE^XLFDT(RDATE1,"5DZ")_DVBADLMTR_EDAYS_DVBADLMTR_TRNSFIN_DVBADLMTR
  Q
  ;
-NXT F DA(1)=0:0 S DA(1)=$O(^TMP($J,JX,PNAM,DFN,DA(1))) Q:DA(1)=""  D PRINT I $D(OUT) S DA(1)="",PNAM="ZZZZ",JX=$S($A(JX)>57:PNAM,1:9999999),DONE="YES"
+NXT ;F DA(1)=0:0 S DA(1)=$O(^TMP($J,JX,PNAM,DFN,DA(1))) Q:DA(1)=""  D PRINT I $D(OUT) S DA(1)="",PNAM="ZZZZ",JX=$S($A(JX)>57:PNAM,1:9999999),DONE="YES"
+ F DA(1)=0:0 S DA(1)=$O(^TMP($J,JX,PNAM,DFN,DA(1))) Q:DA(1)=""  D PRINT
  Q
 TST F DA=0:0 S DA=$O(^DVB(396.4,"C",DA(1),DA)) Q:DA=""  K PRINT S TSTAT=$P(^DVB(396.4,DA,0),U,4),TST=$P(^DVB(396.4,DA,0),U,3),PRTNM=$S($D(^DVB(396.6,TST,0)):$P(^(0),U,2),1:"") D TST1
  Q
@@ -128,9 +133,9 @@ TST1 S TSTA1=""
  . I TSTAT="T" S X=$S($D(^DIC(4.2,+X,0)):$P(^(0),U,1),1:"unknown site") S ^TMP("CAPRI",MSGCNT)=" to "_$P(X,".",1),MSGCNT=MSGCNT+1
  . Q
  I $G(DVBADLMTR)="," D
- . D CLAIMTYP,SPEC
+ . D CLAIMTYP,SPEC,REROUTE
  . S PRTNM=$S(PRTNM]"":PRTNM,1:"Missing exam name"),TSTAT=$S(TSTA1]"":"Cancelled ("_TSTA1_")",TSTAT="T":"Transferred",TSTAT]"":$$EXTERNAL^DILFD(396.4,.04,,TSTAT),TSTAT="":" (Unknown status)",1:"")
- . S ^TMP("CAPRI",MSGCNT)=EXAMRECRD_""""_PRTNM_""""_DVBADLMTR_""""_TSTAT_""""_DVBADLMTR_""""_DVBCELL_""""_DVBADLMTR_""""_DVBEMA_""""_DVBADLMTR_""""_DVBCTW_""""_DVBADLMTR_""""_DVBSCWA_""""
+ . S ^TMP("CAPRI",MSGCNT)=EXAMRECRD_""""_PRTNM_""""_DVBADLMTR_""""_TSTAT_""""_DVBADLMTR_""""_DVBCELL_""""_DVBADLMTR_""""_DVBEMA_""""_DVBADLMTR_""""_DVBCTW_""""_DVBADLMTR_""""_DVBSCWA_""""_DVBADLMTR_""""_DVBRRF_""""_DVBADLMTR_""""_DVBRRT_""""
  . I TSTAT="T" S X=$S($D(^DIC(4.2,+X,0)):$P(^(0),U,1),1:"unknown site") S ^TMP("CAPRI",MSGCNT)=^TMP("CAPRI",MSGCNT)_" to "_$P(X,".",1)
  . S ^TMP("CAPRI",MSGCNT)=^TMP("CAPRI",MSGCNT)_$C(13)
  S MSGCNT=MSGCNT+1
@@ -160,5 +165,18 @@ SPEC ;SPECIAL CONSIDERATION(S) FOR A 2507 REQUEST
  .S DVBCNT=DVBCNT+1
  .I (DVBCNT'=DVBAA) S:$D(DVBSCW(DVBSC)) DVBSCW(DVBSC)=DVBSCW(DVBSC)_","
  S DVBX="" F  S DVBX=$O(DVBSCW(DVBX)) Q:'DVBX  S DVBSCWA=DVBSCWA_DVBSCW(DVBX)
+ Q
+ ;
+REROUTE ;REROUTE INFO FOR A 2507 REQUEST
+ ;DVBRRT is site rerouted to
+ ;DVBRRF is the site rerouted from
+ S (DVBRRT,DVBRRF)=""
+ Q:'$D(^DVB(396.3,DA(1),6,0))
+ ; quit if no re-route data found
+ K DVBINC,DVBRRF,DVBRRT
+ S DVBINC=0
+ F  S DVBINC=$O(^DVB(396.3,DA(1),6,DVBINC)) Q:DVBINC="B"  D
+ . S DVBRRF=$$EXTERNAL^DILFD(396.34,.02,,$P(^DVB(396.3,DA(1),6,DVBINC,0),U,4))
+ . S DVBRRT=$$EXTERNAL^DILFD(396.34,.02,,$P(^DVB(396.3,DA(1),6,DVBINC,0),U,7))
  Q
  ;

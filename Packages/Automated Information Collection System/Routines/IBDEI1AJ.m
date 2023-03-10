@@ -1,120 +1,116 @@
-IBDEI1AJ ; ; 04-FEB-2020
- ;;3.0;IB ENCOUNTER FORM IMP/EXP;;FEB 04, 2020
+IBDEI1AJ ; ; 01-FEB-2022
+ ;;3.0;IB ENCOUNTER FORM IMP/EXP;;FEB 01, 2022
  Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,999) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
- ;;^UTILITY(U,$J,358.3,20643,0)
- ;;=99354^^94^1016^1^^^^1
- ;;^UTILITY(U,$J,358.3,20643,1,0)
- ;;=^358.31IA^3^2
- ;;^UTILITY(U,$J,358.3,20643,1,2,0)
- ;;=2^99354
- ;;^UTILITY(U,$J,358.3,20643,1,3,0)
- ;;=3^Prolonged Svc Office/Outpt;1st hr
- ;;^UTILITY(U,$J,358.3,20644,0)
- ;;=99355^^94^1016^2^^^^1
- ;;^UTILITY(U,$J,358.3,20644,1,0)
- ;;=^358.31IA^3^2
- ;;^UTILITY(U,$J,358.3,20644,1,2,0)
- ;;=2^99355
- ;;^UTILITY(U,$J,358.3,20644,1,3,0)
- ;;=3^Prolonged Svc Office/Outpt;Ea Addl 30min
- ;;^UTILITY(U,$J,358.3,20645,0)
- ;;=99356^^94^1016^3^^^^1
- ;;^UTILITY(U,$J,358.3,20645,1,0)
- ;;=^358.31IA^3^2
- ;;^UTILITY(U,$J,358.3,20645,1,2,0)
- ;;=2^99356
- ;;^UTILITY(U,$J,358.3,20645,1,3,0)
- ;;=3^Prolonged Svc,INPT/OBS,1st Hr
- ;;^UTILITY(U,$J,358.3,20646,0)
- ;;=99357^^94^1016^4^^^^1
- ;;^UTILITY(U,$J,358.3,20646,1,0)
- ;;=^358.31IA^3^2
- ;;^UTILITY(U,$J,358.3,20646,1,2,0)
- ;;=2^99357
- ;;^UTILITY(U,$J,358.3,20646,1,3,0)
- ;;=3^Prolonged Svc,INPT/OBS,Ea Addl 30 min
- ;;^UTILITY(U,$J,358.3,20647,0)
- ;;=90847^^94^1017^1^^^^1
- ;;^UTILITY(U,$J,358.3,20647,1,0)
- ;;=^358.31IA^3^2
- ;;^UTILITY(U,$J,358.3,20647,1,2,0)
- ;;=2^90847
- ;;^UTILITY(U,$J,358.3,20647,1,3,0)
- ;;=3^Family Psychotherapy w/ Patient
- ;;^UTILITY(U,$J,358.3,20648,0)
- ;;=90853^^94^1017^3^^^^1
- ;;^UTILITY(U,$J,358.3,20648,1,0)
- ;;=^358.31IA^3^2
- ;;^UTILITY(U,$J,358.3,20648,1,2,0)
- ;;=2^90853
- ;;^UTILITY(U,$J,358.3,20648,1,3,0)
- ;;=3^Group Psychotherapy
- ;;^UTILITY(U,$J,358.3,20649,0)
- ;;=S9446^^94^1017^4^^^^1
- ;;^UTILITY(U,$J,358.3,20649,1,0)
- ;;=^358.31IA^3^2
- ;;^UTILITY(U,$J,358.3,20649,1,2,0)
- ;;=2^S9446
- ;;^UTILITY(U,$J,358.3,20649,1,3,0)
- ;;=3^Patient Educ NOC Non-Phy Grp Session
- ;;^UTILITY(U,$J,358.3,20650,0)
- ;;=H0005^^94^1017^2^^^^1
- ;;^UTILITY(U,$J,358.3,20650,1,0)
- ;;=^358.31IA^3^2
- ;;^UTILITY(U,$J,358.3,20650,1,2,0)
- ;;=2^H0005
- ;;^UTILITY(U,$J,358.3,20650,1,3,0)
- ;;=3^Group Counseling w/ Alcohol and Drug Tx Focus
- ;;^UTILITY(U,$J,358.3,20651,0)
- ;;=99368^^94^1018^1^^^^1
- ;;^UTILITY(U,$J,358.3,20651,1,0)
- ;;=^358.31IA^3^2
- ;;^UTILITY(U,$J,358.3,20651,1,2,0)
- ;;=2^99368
- ;;^UTILITY(U,$J,358.3,20651,1,3,0)
- ;;=3^Non-Phy Team Conf w/o Pt &/or Fam;30 min+
- ;;^UTILITY(U,$J,358.3,20652,0)
- ;;=H0038^^94^1019^1^^^^1
- ;;^UTILITY(U,$J,358.3,20652,1,0)
- ;;=^358.31IA^3^2
- ;;^UTILITY(U,$J,358.3,20652,1,2,0)
- ;;=2^H0038
- ;;^UTILITY(U,$J,358.3,20652,1,3,0)
- ;;=3^Peer Support,per 15 min
- ;;^UTILITY(U,$J,358.3,20653,0)
- ;;=T74.11XA^^95^1020^5
- ;;^UTILITY(U,$J,358.3,20653,1,0)
+ ;;^UTILITY(U,$J,358.3,20854,1,3,0)
+ ;;=3^Nondisp fx of coronoid process of left ulna, sequela
+ ;;^UTILITY(U,$J,358.3,20854,1,4,0)
+ ;;=4^S52.045S
+ ;;^UTILITY(U,$J,358.3,20854,2)
+ ;;=^5028954
+ ;;^UTILITY(U,$J,358.3,20855,0)
+ ;;=S52.044S^^67^890^82
+ ;;^UTILITY(U,$J,358.3,20855,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,20653,1,3,0)
- ;;=3^Adult Physical Abuse,Confirmed,Initial Encounter  
- ;;^UTILITY(U,$J,358.3,20653,1,4,0)
- ;;=4^T74.11XA
- ;;^UTILITY(U,$J,358.3,20653,2)
- ;;=^5054146
- ;;^UTILITY(U,$J,358.3,20654,0)
- ;;=T74.11XD^^95^1020^6
- ;;^UTILITY(U,$J,358.3,20654,1,0)
+ ;;^UTILITY(U,$J,358.3,20855,1,3,0)
+ ;;=3^Nondisp fx of coronoid process of right ulna, sequela
+ ;;^UTILITY(U,$J,358.3,20855,1,4,0)
+ ;;=4^S52.044S
+ ;;^UTILITY(U,$J,358.3,20855,2)
+ ;;=^5028938
+ ;;^UTILITY(U,$J,358.3,20856,0)
+ ;;=S52.615S^^67^890^90
+ ;;^UTILITY(U,$J,358.3,20856,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,20654,1,3,0)
- ;;=3^Adult Physical Abuse,Confirmed,Subsequent Encounter 
- ;;^UTILITY(U,$J,358.3,20654,1,4,0)
- ;;=4^T74.11XD
- ;;^UTILITY(U,$J,358.3,20654,2)
- ;;=^5054147
- ;;^UTILITY(U,$J,358.3,20655,0)
- ;;=T76.11XA^^95^1020^7
- ;;^UTILITY(U,$J,358.3,20655,1,0)
+ ;;^UTILITY(U,$J,358.3,20856,1,3,0)
+ ;;=3^Nondisp fx of left ulna styloid process, sequela
+ ;;^UTILITY(U,$J,358.3,20856,1,4,0)
+ ;;=4^S52.615S
+ ;;^UTILITY(U,$J,358.3,20856,2)
+ ;;=^5031114
+ ;;^UTILITY(U,$J,358.3,20857,0)
+ ;;=S52.035S^^67^890^101
+ ;;^UTILITY(U,$J,358.3,20857,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,20655,1,3,0)
- ;;=3^Adult Physical Abuse,Suspected,Initial Encounter  
- ;;^UTILITY(U,$J,358.3,20655,1,4,0)
- ;;=4^T76.11XA
- ;;^UTILITY(U,$J,358.3,20655,2)
- ;;=^5054221
- ;;^UTILITY(U,$J,358.3,20656,0)
- ;;=T76.11XD^^95^1020^8
- ;;^UTILITY(U,$J,358.3,20656,1,0)
+ ;;^UTILITY(U,$J,358.3,20857,1,3,0)
+ ;;=3^Nondisp fx of olecran pro w intartic extn left ulna, sequela
+ ;;^UTILITY(U,$J,358.3,20857,1,4,0)
+ ;;=4^S52.035S
+ ;;^UTILITY(U,$J,358.3,20857,2)
+ ;;=^5135140
+ ;;^UTILITY(U,$J,358.3,20858,0)
+ ;;=S52.034S^^67^890^102
+ ;;^UTILITY(U,$J,358.3,20858,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,20656,1,3,0)
- ;;=3^Adult Physical Abuse,Suspected,Subsequent Encounter  
+ ;;^UTILITY(U,$J,358.3,20858,1,3,0)
+ ;;=3^Nondisp fx of olecran pro w intartic extn right ulna, sequela
+ ;;^UTILITY(U,$J,358.3,20858,1,4,0)
+ ;;=4^S52.034S
+ ;;^UTILITY(U,$J,358.3,20858,2)
+ ;;=^5028869
+ ;;^UTILITY(U,$J,358.3,20859,0)
+ ;;=S52.025S^^67^890^103
+ ;;^UTILITY(U,$J,358.3,20859,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,20859,1,3,0)
+ ;;=3^Nondisp fx of olecran pro w/o intartic extn left ulna, sequela
+ ;;^UTILITY(U,$J,358.3,20859,1,4,0)
+ ;;=4^S52.025S
+ ;;^UTILITY(U,$J,358.3,20859,2)
+ ;;=^5028832
+ ;;^UTILITY(U,$J,358.3,20860,0)
+ ;;=S52.024S^^67^890^104
+ ;;^UTILITY(U,$J,358.3,20860,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,20860,1,3,0)
+ ;;=3^Nondisp fx of olecran pro w/o intartic extn right ulnana, sequela
+ ;;^UTILITY(U,$J,358.3,20860,1,4,0)
+ ;;=4^S52.024S
+ ;;^UTILITY(U,$J,358.3,20860,2)
+ ;;=^5028816
+ ;;^UTILITY(U,$J,358.3,20861,0)
+ ;;=S52.614S^^67^890^110
+ ;;^UTILITY(U,$J,358.3,20861,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,20861,1,3,0)
+ ;;=3^Nondisp fx of right ulna styloid process, sequela
+ ;;^UTILITY(U,$J,358.3,20861,1,4,0)
+ ;;=4^S52.614S
+ ;;^UTILITY(U,$J,358.3,20861,2)
+ ;;=^5031098
+ ;;^UTILITY(U,$J,358.3,20862,0)
+ ;;=S52.235S^^67^890^98
+ ;;^UTILITY(U,$J,358.3,20862,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,20862,1,3,0)
+ ;;=3^Nondisp fx of oblique shaft of left ulna, sequela
+ ;;^UTILITY(U,$J,358.3,20862,1,4,0)
+ ;;=4^S52.235S
+ ;;^UTILITY(U,$J,358.3,20862,2)
+ ;;=^5029490
+ ;;^UTILITY(U,$J,358.3,20863,0)
+ ;;=S52.234S^^67^890^100
+ ;;^UTILITY(U,$J,358.3,20863,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,20863,1,3,0)
+ ;;=3^Nondisp fx of oblique shaft of right ulna, sequela
+ ;;^UTILITY(U,$J,358.3,20863,1,4,0)
+ ;;=4^S52.234S
+ ;;^UTILITY(U,$J,358.3,20863,2)
+ ;;=^5029474
+ ;;^UTILITY(U,$J,358.3,20864,0)
+ ;;=S52.265S^^67^890^113
+ ;;^UTILITY(U,$J,358.3,20864,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,20864,1,3,0)
+ ;;=3^Nondisp fx of segmental shaft of ulna, left arm, sequela
+ ;;^UTILITY(U,$J,358.3,20864,1,4,0)
+ ;;=4^S52.265S
+ ;;^UTILITY(U,$J,358.3,20864,2)
+ ;;=^5029778
+ ;;^UTILITY(U,$J,358.3,20865,0)
+ ;;=S52.264S^^67^890^114
+ ;;^UTILITY(U,$J,358.3,20865,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,20865,1,3,0)
+ ;;=3^Nondisp fx of segmental shaft of ulna, right arm, sequela

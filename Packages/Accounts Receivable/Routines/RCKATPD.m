@@ -1,6 +1,6 @@
-RCKATPD ;ALB/CPM/TJK - ADJUST ACCOUNTS FOR KATRINA VETS (CON'T) - 03-MAR-06
- ;;4.5;Accounts Receivable;**241**;Mar 20, 1995
- ;;Per VHA Directive 10-93-142, this routine should not be modified.
+RCKATPD ;ALB/CPM/TJK - ADJUST ACCOUNTS FOR KATRINA VETS (CON'T);Jun 06, 2014@19:11:19
+ ;;4.5;Accounts Receivable;**241,371**;Mar 20, 1995;Build 29
+ ;;Per VHA Directive 6402, this routine should not be modified.
  Q
  ;
  ;
@@ -47,7 +47,9 @@ INT F I=5:-1:2 Q:'EXTOT  I $P(BN7,U,I) D
  K DA,DIC,DIE,DR,TRAMT
  ;
  ; - update the balance of the bill
- S $P(^PRCA(430,BILL,7),U,2,5)=$P(BN7,U,2)_U_$P(BN7,U,3)_U_$P(BN7,U,4)_U_$P(BN7,U,5)
+ ; PRCA*4.5*371 - Replace direct global sets in 7 node with FileMan calls so indexes get updated
+ N RCFDA S RCFDA(430,BILL_",",72)=$P(BN7,U,2),RCFDA(430,BILL_",",73)=$P(BN7,U,3),RCFDA(430,BILL_",",74)=$P(BN7,U,4),RCFDA(430,BILL_",",75)=$P(BN7,U,5)
+ D FILE^DIE(,"RCFDA")
  ;
  ; - if the bill was decreased by its entire balance, set the
  ;   bill status to Cancellation

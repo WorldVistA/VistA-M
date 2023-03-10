@@ -1,5 +1,5 @@
 IBCB1 ;ALB/AAS - Process bill after enter/edited ;2-NOV-89
- ;;2.0;INTEGRATED BILLING;**70,106,51,137,161,182,155,327,432,592,623**;21-MAR-94;Build 70
+ ;;2.0;INTEGRATED BILLING;**70,106,51,137,161,182,155,327,432,592,623,641,718**;21-MAR-94;Build 73
  ;;Per VA Directive 6402, this routine should not be modified.
  ;
  ;MAP TO DGCRB1
@@ -95,18 +95,24 @@ AUTH S IBMRA=$$REQMRA^IBEFUNC(IBIFN)
  D:'$D(IBVIEW) VIEW^IBCB2 G:IBQUIT END
  S IBPNT=$P(^DGCR(399,IBIFN,"S"),"^",12)
 GEN I $$TEST^IBCEF4(IBIFN) W !!,"THIS BILL IS BEING USED AS A TRANSMISSION TEST BILL"
+ ;IB*2.0*718v5;EBILL-156;JWS;remove PRINT prompt for Dental Claims
+ I $$FT^IBCEF(IBIFN)=7 D:+$G(IBAC)=1 END,CTCOPY^IBCCCB(IBIFN) G END
  W !!,"WANT TO ",$S(IBPNT]"":"RE-",1:""),"PRINT BILL AT THIS TIME" S %=2 D YN^DICN I %=-1 D:+$G(IBAC)=1 END,CTCOPY^IBCCCB(IBIFN) G END
  I '% W !?4,"YES - to print the bill now",!?4,"NO - To take no action" G GEN
  ;JWS;IB*2.0*592
- I %=1,$$FT^IBCEF(IBIFN)=7 W !!,*7,"Dental Claims can not be printed." G END
+ ;IB*2.0*718v5;EBILL-156;JWS;remove PRINT prompt for Dental claims
+ ;;I %=1,$$FT^IBCEF(IBIFN)=7 W !!,*7,"Dental Claims can not be printed." G END
 GENTX I %'=1 D:+$G(IBAC)=1 END,CTCOPY^IBCCCB(IBIFN) G END
  ;
+ N IBABORT   ;WCJ;US3380
  ; Bill has never been printed.  First time print.
  I 'IBPNT D  G END
  . I $D(IBTXPRT) D TXPRTS
- . D EN1^IBCF
+ . D EN1^IBCF(.IBABORT) ;WCJ;US3380
+ . Q:$G(IBABORT)   ;WCJ;IB641;V13;US3380;they aborted so stop already
+ . I $D(IBRESULT) S IBRESULT=1   ;WCJ;IB641;US3380; if it is looking for a result (IBRESULT will be defined)
  . I $D(IBTXPRT) D TXPRT
- . ;D MRA^IBCEMU1(IBIFN)       ; Printing the MRA ;WCJ;IB*2.0*432;MRA may have a diffierent claim number if this is tertiary
+ . ;D MRA^IBCEMU1(IBIFN)       ; Printing the MRA ;WCJ;IB*2.0*432;MRA may have a different claim number if this is tertiary
  . D MRA^IBCEMU1($$GETMRACL^IBCAPR(IBIFN))  ;WCJ;IB*2.0*432;see above
  . I $G(IBMRANOT) D EOBALL^IBCAPR2(IBIFN)  ;WCJ;IB*2.0*432 print all the EOBs (ask device once)
  . I +$G(IBAC)=1 D END,CTCOPY^IBCCCB(IBIFN)
@@ -121,7 +127,10 @@ RPNT G:$$NEEDMRA^IBEFUNC(IBIFN) END
  . D TXPRTS
  . I "oOcC"[IBPNT S IBRESUB=$$RESUB^IBCECSA4(IBIFN,1,"P")
  S IBPNT=$S("oO"[IBPNT:1,"cC"[IBPNT:0,1:IBPNT)
- D EN1X^IBCF D:$D(IBTXPRT) TXPRT
+ D EN1X^IBCF(.IBABORT)
+ I $G(IBABORT) G END ; WCJ;IB641;V13;only do this stuff if it actually printed (was not ABORTED)
+ I $D(IBRESULT) S IBRESULT=1   ;WCJ;IB641;US3380; if it is looking for a result (IBRESULT will be defined)
+ D:$D(IBTXPRT) TXPRT
  D MRA^IBCEMU1(IBIFN)       ; Printing the MRA
  ;
  ;
@@ -176,14 +185,18 @@ ARPASS(IBIFN,UPDOK) ;Pass bill to A/R as NEW BILL
  . D ^XMD
  Q
  ;
-ADDTBILL(IBIFN,TXST) ;Add new transmit bill rec to file 364 for bill IBIFN
+ADDTBILL(IBIFN,TXST,RSUB,IBFHIR) ;Add new transmit bill rec to file 364 for bill IBIFN
  ;JWS;IB*2.0*623;add field .09 setting.
  ; TXST = test flag 1=live, 2=test
  N COB,DD,DO,DIC,DLAYGO,X
  S TXST=($G(TXST)/2\1),COB=$$COB^IBCEF(IBIFN)
  ;JWS;IB*2.0*623v24;force test claim status if not Production system
  I '$$PROD^XUPROD(1) S TXST=1
- S DIC(0)="L",DIC="^IBA(364,",DLAYGO=364,X=IBIFN,DIC("DR")=".03///X;.04///NOW;.07////"_TXST_";.08////"_COB_$S($$GET1^DIQ(350.9,"1,",8.21,"I")=1:";.09////1",1:"") D FILE^DICN
+ ;JWS;IB*2.0*641v9;change setting of FHIR transmit flag to 0 (wait for scheduled time) from 1 (instant)
+ ; variable IBFHIR will be passed if needing to send immediate = 1 (rtn IBCE); not implemented but leaving for future knowledge
+ ;;S IBFHIR=1 ; forcing to immediate transmit
+ ;JWS;IB*2.0*641v7;need to add resbumission flag from IBCEPTC3
+ S DIC(0)="L",DIC="^IBA(364,",DLAYGO=364,X=IBIFN,DIC("DR")=".03///X;.04///NOW;.07////"_TXST_";.08////"_COB_$S($$GET1^DIQ(350.9,"1,",8.21,"I")=1:";.09////1",1:"")_$S($G(RSUB)=1:";.1////1",1:"") D FILE^DICN
  Q Y
  ;
 TXPRTS ; Save off last print date to see if bill was reprinted without queueing
@@ -194,3 +207,7 @@ TXPRT ; Set variable if print was tasked or bill was printed (last print date ch
  I '$$NEEDMRA^IBEFUNC(IBIFN),$S($G(ZTSK):1,1:IBTXPRT("PRT")'=$P($G(^DGCR(399,IBIFN,"S")),U,14)) S IBTXPRT=1
  Q
  ;
+ALT4(IBRESULT) ; WCJ;IB641;US3380;added an alternate tag 4 to pass in a parameter (by reference)
+ ; to show if the request claim print actually came to a successful conclusion
+ S IBRESULT=0
+ G 4

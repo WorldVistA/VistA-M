@@ -1,5 +1,5 @@
 BPSUTIL ;BHAM ISC/FLS/SS - General Utility functions ;3/27/08  13:18
- ;;1.0;E CLAIMS MGMT ENGINE;**1,3,2,5,6,20**;JUN 2004;Build 27
+ ;;1.0;E CLAIMS MGMT ENGINE;**1,3,2,5,6,20,27,33**;JUN 2004;Build 5
  ;;Per VA Directive 6402, this routine should not be modified.
  ;
  ; ECMEON
@@ -152,3 +152,68 @@ NPIEXTR(SITE) ;
  S STATUS=$$BPSACTV^BPSUTIL(BPSPHARM)
  S NCPDP=$$GET1^DIQ(9002313.56,BPSPHARM_",",.02)
  Q NCPDP_"^"_STATUS
+ ;
+ ; TOUCHED
+ ;   Input:
+ ;      BPS57 - IEN BPS LOG OF TRANSACTIONS file #9002313.57 - required
+ ;   Output:
+ ;      0 - No touch or automated transaction
+ ;      1 - touched or manual transaction
+ ;
+TOUCHED(BPS57) ;
+ ;
+ N RXACTION
+ I $G(BPS57)="" Q 1
+ ;
+ ; Get the RXACTION for the transaction.  This field is also referred
+ ; to as BWHERE throughout the claims submission process.
+ ;
+ S RXACTION=$$GET1^DIQ(9002313.57,BPS57,1201)
+ ;
+ ; Transactions with the below actions are No Touch transactions.
+ ;
+ I ",AREV,CRLB,CRLR,CRLX,CRRL,DC,DE,HLD,OF,PC,PE,PL,PP,RF,RN,RRL,"[(","_RXACTION_",") Q 0
+ ;
+ Q 1
+ ;
+CSNPI(RX,RFL) ; BPS Pharmacy for CS NCPDP# and NPI
+ ;
+ ; Input -> RX  - Internal Prescription File IEN
+ ;          RFL - Refill Number
+ ;
+ ; Determine if the drug on the Rx is a Controlled Substance (CS).
+ ; CS drugs are defined as those which contain 2, 3, 4 or 5 in 
+ ; field DEA, SPECIAL HDLG (#3) of the DRUG file (#50).
+ ;
+ ; If the drug is a CS, check BPS PHARMACIES (#9002313.56) to see if
+ ; a different pharmacy is defined to dispense CS drugs.  Field #2
+ ; of BPS PHARMACIES is BPS PHARMACY FOR CS.  This is a 
+ ; pointer to another entry in BPS PHARMACIES.  This is the pharmacy
+ ; assigned to dispense CS drugs for the original pharmacy.  
+ ;
+ ; Return the NCPDP# and NPI of the BPS PHARMACY FOR CS if it exists.
+ ;
+ N BPSCSID,BPSDEA,BPSDIV,BPSDRGI,BPSPHARM,NCPDP,NPI
+ ;
+ ; Get Drug IEN and DEA, SPECIAL HDLG info
+ S BPSDRGI=$$GET1^DIQ(52,RX,6,"I")
+ S BPSDEA=$$GET1^DIQ(50,BPSDRGI,3)
+ ;
+ ; Quit if not a Controlled Substance
+ I '((BPSDEA["2")!(BPSDEA["3")!(BPSDEA["4")!(BPSDEA["5")) Q "-1^Non CS"
+ ;
+ ; Get Division and BPS Pharmacy info
+ S BPSDIV=+$$RXSITE^PSOBPSUT(RX,RFL)
+ S BPSPHARM=$$GETPHARM^BPSUTIL(BPSDIV)
+ I BPSPHARM="" Q "-1^No BPS Pharm"
+ ;
+ ; Get BPS Pharmacy for CS info
+ S BPSCSID=$$GET1^DIQ(9002313.56,BPSPHARM,2,"I")
+ I BPSCSID="" Q "-1^No CS Pharm"
+ ;
+ ; Return NCPDP and NPI for BPS Pharmacy for CS
+ S NCPDP=$$GET1^DIQ(9002313.56,BPSCSID,.02)
+ S NPI=$$GET1^DIQ(9002313.56,BPSCSID,41.01)
+ ;
+ Q NCPDP_"^"_NPI
+ ;

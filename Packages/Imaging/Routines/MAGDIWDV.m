@@ -1,5 +1,5 @@
-MAGDIWDV ;WOIFO/PMK - Formatted listing of On Demand Routing request file ; 29 Aug 2013 10:50 AM
- ;;3.0;IMAGING;**138**;Mar 19, 2002;Build 5380;Sep 03, 2013
+MAGDIWDV ;WOIFO/PMK - Formatted listing of On Demand Routing request file ; Mar 10, 2022@11:36:44
+ ;;3.0;IMAGING;**138,305**;Mar 19, 2002;Build 3
  ;; Per VHA Directive 2004-038, this routine should not be modified.
  ;; +---------------------------------------------------------------+
  ;; | Property of the US Government.                                |
@@ -16,10 +16,12 @@ MAGDIWDV ;WOIFO/PMK - Formatted listing of On Demand Routing request file ; 29 A
  ;; +---------------------------------------------------------------+
  ;;
  ;
+ ; Supported IA #10086 reference ^%ZIS subroutine call
+ ;
  ; This is the VistA version of the DICOM Gateway MAGDIWDG routine
  ; It also includes the RPC that is used by both routines
  ;
-SENDLIST ; display the list of studing in the output file
+SENDLIST ; display the list of studies in the output file
  N A,LOC,MSG,ODEVTYPE,X
  N IO,IOBS,IOF,IOHG,IOM,ION,IOPAR,IOS,IOSL,IOST,IOT,IOUPAR,IOXY,POP
  ;
@@ -38,54 +40,54 @@ SENDLIST ; display the list of studing in the output file
  ;
 LOOKUP(OUT) ; RPC = MAG DICOM GET EXPORT IMAGE STS
  ; get the summary information from ^MAGDOUTP
- N ACCNUMB,D0,D1,DATETIME,DATETIME1,GROUP,LIST,LOCATION
- N PRIORITY,REQUESTDATETIME,STATUS,STATUSNAME,USERAPP,X,Y,Z
+ N ACNUMB,D0,D1,DATETIME,DATETIME1,GROUP,LIST,LOCATION
+ N PRIORITY,REQUESTDATETIME,STATE,STATENAME,USERAPP,X,Y,Z
  K OUT
  S (D0,OUT(1))=0 F  S D0=$O(^MAGDOUTP(2006.574,D0)) Q:'D0  D
  . N COUNT
  . S X=$G(^MAGDOUTP(2006.574,D0,0))
- . S USERAPP=$P(X,"^",1),GROUP=$P(X,"^",2),ACCNUMB=$P(X,"^",3)
+ . S USERAPP=$P(X,"^",1),GROUP=$P(X,"^",2),ACNUMB=$P(X,"^",3)
  . S LOCATION=$P(X,"^",4),PRIORITY=$P(X,"^",5),REQUESTDATETIME=$P(X,"^",7)
  . S D1=0 F  S D1=$O(^MAGDOUTP(2006.574,D0,1,D1)) Q:'D1  D
  . . S Y=$G(^MAGDOUTP(2006.574,D0,1,D1,0)) Q:Y=""
- . . S STATUS=$P(Y,"^",2) Q:STATUS=""
+ . . S STATE=$P(Y,"^",2) Q:STATE=""
  . . S DATETIME=$P(Y,"^",3) Q:DATETIME=""
- . . S COUNT(STATUS,DATETIME)=$G(COUNT(STATUS,DATETIME))+1
+ . . S COUNT(STATE,DATETIME)=$G(COUNT(STATE,DATETIME))+1
  . . Q
  . ;
  . ; compress the times so that all events within 10 minutes are recorded as one
- . S STATUS="" F  S STATUS=$O(COUNT(STATUS)) Q:STATUS=""  D
- . . S (DATETIME,DATETIME1)="" F  S DATETIME=$O(COUNT(STATUS,DATETIME)) Q:DATETIME=""  D
+ . S STATE="" F  S STATE=$O(COUNT(STATE)) Q:STATE=""  D
+ . . S (DATETIME,DATETIME1)="" F  S DATETIME=$O(COUNT(STATE,DATETIME)) Q:DATETIME=""  D
  . . . I DATETIME1="" S DATETIME1=DATETIME
  . . . E  I $$HDIFF^XLFDT(DATETIME,DATETIME1,2)<600 D  ; less than ten minutes
- . . . . S COUNT(STATUS,DATETIME1)=COUNT(STATUS,DATETIME1)+COUNT(STATUS,DATETIME)
- . . . . K COUNT(STATUS,DATETIME)
+ . . . . S COUNT(STATE,DATETIME1)=COUNT(STATE,DATETIME1)+COUNT(STATE,DATETIME)
+ . . . . K COUNT(STATE,DATETIME)
  . . . . Q
  . . . E  S DATETIME1=DATETIME
  . . . Q
  . . Q
  . ;
  . ; store the counts into report order
- . S STATUS="" F  S STATUS=$O(COUNT(STATUS)) Q:STATUS=""  D
- . . S (DATETIME,Z)="" F  S DATETIME=$O(COUNT(STATUS,DATETIME)) Q:DATETIME=""  D
- . . . I STATUS="FAIL" S STATUSNAME="BAD IMAGE"
+ . S STATE="" F  S STATE=$O(COUNT(STATE)) Q:STATE=""  D
+ . . S (DATETIME,Z)="" F  S DATETIME=$O(COUNT(STATE,DATETIME)) Q:DATETIME=""  D
  . . . ; assume the tranmission is completed in five minutes, if not, then it probably wasn't sent
- . . . E  I STATUS="XMIT" S STATUSNAME=$S($$HDIFF^XLFDT($H,DATETIME,2)<300:"TRANSMIT",1:"NOT SENT")
- . . . E  S STATUSNAME=STATUS
- . . . S Z=Z_"^"_STATUSNAME_"|"_DATETIME_"|"_COUNT(STATUS,DATETIME)
+ . . . I STATE="XMIT" S STATENAME=$S($$HDIFF^XLFDT($H,DATETIME,2)<300:"TRANSMIT",1:"NOT SENT")
+ . . . E  S STATENAME=STATE
+ . . . S Z=Z_"^"_STATENAME_"|"_DATETIME_"|"_COUNT(STATE,DATETIME)
  . . . Q
- . . S LIST(LOCATION,USERAPP,STATUS,PRIORITY,D0)=ACCNUMB_"^"_REQUESTDATETIME_"^"_GROUP_Z
+ . . S LIST(LOCATION,USERAPP,STATE,PRIORITY,D0)=ACNUMB_"^"_REQUESTDATETIME_"^"_GROUP_Z
  . . Q
  . Q
  ; transfer the information to the OUT array
  S LOCATION="" F  S LOCATION=$O(LIST(LOCATION)) Q:LOCATION=""  D
  . S USERAPP="" F  S USERAPP=$O(LIST(LOCATION,USERAPP)) Q:USERAPP=""  D
- . . F STATUS="FAIL","XMIT","WAITING","SUCCESS" D
- . . . S PRIORITY="" F  S PRIORITY=$O(LIST(LOCATION,USERAPP,STATUS,PRIORITY)) Q:PRIORITY=""  D
- . . . . S D0="" F  S D0=$O(LIST(LOCATION,USERAPP,STATUS,PRIORITY,D0)) Q:D0=""  D
+ . . ; new NOT ON FILE, HOLD, and IGNORE states P305 PMK 10/06/2021
+ . . F STATE="NOT ON FILE","FAIL","HOLD","IGNORE","XMIT","WAITING","SUCCESS" D
+ . . . S PRIORITY="" F  S PRIORITY=$O(LIST(LOCATION,USERAPP,STATE,PRIORITY)) Q:PRIORITY=""  D
+ . . . . S D0="" F  S D0=$O(LIST(LOCATION,USERAPP,STATE,PRIORITY,D0)) Q:D0=""  D
  . . . . . S Z=LOCATION_"^"_USERAPP_"^"_PRIORITY_"^"_D0
  . . . . . S OUT(1)=OUT(1)+1
- . . . . . S OUT(OUT(1)+1)=Z_"^"_LIST(LOCATION,USERAPP,STATUS,PRIORITY,D0)
+ . . . . . S OUT(OUT(1)+1)=Z_"^"_LIST(LOCATION,USERAPP,STATE,PRIORITY,D0)
  . . . . . Q
  . . . . Q
  . . . Q

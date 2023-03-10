@@ -1,124 +1,124 @@
-IBDEI12U ; ; 04-FEB-2020
- ;;3.0;IB ENCOUNTER FORM IMP/EXP;;FEB 04, 2020
+IBDEI12U ; ; 01-FEB-2022
+ ;;3.0;IB ENCOUNTER FORM IMP/EXP;;FEB 01, 2022
  Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,999) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
- ;;^UTILITY(U,$J,358.3,17309,2)
- ;;=^5002832
- ;;^UTILITY(U,$J,358.3,17310,0)
- ;;=F18.120^^88^891^99
- ;;^UTILITY(U,$J,358.3,17310,1,0)
+ ;;^UTILITY(U,$J,358.3,17499,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,17310,1,3,0)
- ;;=3^Inhalant Abuse w/ Intoxication,Uncomplicated
- ;;^UTILITY(U,$J,358.3,17310,1,4,0)
- ;;=4^F18.120
- ;;^UTILITY(U,$J,358.3,17310,2)
- ;;=^5003381
- ;;^UTILITY(U,$J,358.3,17311,0)
- ;;=G44.1^^88^891^164
- ;;^UTILITY(U,$J,358.3,17311,1,0)
+ ;;^UTILITY(U,$J,358.3,17499,1,3,0)
+ ;;=3^Visual Hallucinations
+ ;;^UTILITY(U,$J,358.3,17499,1,4,0)
+ ;;=4^R44.1
+ ;;^UTILITY(U,$J,358.3,17499,2)
+ ;;=^5019456
+ ;;^UTILITY(U,$J,358.3,17500,0)
+ ;;=R93.422^^61^787^11
+ ;;^UTILITY(U,$J,358.3,17500,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,17311,1,3,0)
- ;;=3^Vascular Headache NEC
- ;;^UTILITY(U,$J,358.3,17311,1,4,0)
- ;;=4^G44.1
- ;;^UTILITY(U,$J,358.3,17311,2)
- ;;=^5003934
- ;;^UTILITY(U,$J,358.3,17312,0)
- ;;=G93.3^^88^891^149
- ;;^UTILITY(U,$J,358.3,17312,1,0)
+ ;;^UTILITY(U,$J,358.3,17500,1,3,0)
+ ;;=3^Abnormal Finding on Dx Image,Left Kidney
+ ;;^UTILITY(U,$J,358.3,17500,1,4,0)
+ ;;=4^R93.422
+ ;;^UTILITY(U,$J,358.3,17500,2)
+ ;;=^5139225
+ ;;^UTILITY(U,$J,358.3,17501,0)
+ ;;=R93.421^^61^787^14
+ ;;^UTILITY(U,$J,358.3,17501,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,17312,1,3,0)
- ;;=3^Postviral Fatigue Syndrome
- ;;^UTILITY(U,$J,358.3,17312,1,4,0)
- ;;=4^G93.3
- ;;^UTILITY(U,$J,358.3,17312,2)
- ;;=^5004181
- ;;^UTILITY(U,$J,358.3,17313,0)
- ;;=K08.101^^88^891^56
- ;;^UTILITY(U,$J,358.3,17313,1,0)
+ ;;^UTILITY(U,$J,358.3,17501,1,3,0)
+ ;;=3^Abnormal Finding on Dx Image,Right Kidney
+ ;;^UTILITY(U,$J,358.3,17501,1,4,0)
+ ;;=4^R93.421
+ ;;^UTILITY(U,$J,358.3,17501,2)
+ ;;=^5139224
+ ;;^UTILITY(U,$J,358.3,17502,0)
+ ;;=R93.49^^61^787^12
+ ;;^UTILITY(U,$J,358.3,17502,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,17313,1,3,0)
- ;;=3^Complete Loss of Teeth,Unspec,Class I
- ;;^UTILITY(U,$J,358.3,17313,1,4,0)
- ;;=4^K08.101
- ;;^UTILITY(U,$J,358.3,17313,2)
- ;;=^5008406
- ;;^UTILITY(U,$J,358.3,17314,0)
- ;;=K08.102^^88^891^57
- ;;^UTILITY(U,$J,358.3,17314,1,0)
+ ;;^UTILITY(U,$J,358.3,17502,1,3,0)
+ ;;=3^Abnormal Finding on Dx Image,Oth Urinary Organs
+ ;;^UTILITY(U,$J,358.3,17502,1,4,0)
+ ;;=4^R93.49
+ ;;^UTILITY(U,$J,358.3,17502,2)
+ ;;=^5139227
+ ;;^UTILITY(U,$J,358.3,17503,0)
+ ;;=R93.41^^61^787^13
+ ;;^UTILITY(U,$J,358.3,17503,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,17314,1,3,0)
- ;;=3^Complete Loss of Teeth,Unspec,Class II
- ;;^UTILITY(U,$J,358.3,17314,1,4,0)
- ;;=4^K08.102
- ;;^UTILITY(U,$J,358.3,17314,2)
- ;;=^5008407
- ;;^UTILITY(U,$J,358.3,17315,0)
- ;;=K08.103^^88^891^58
- ;;^UTILITY(U,$J,358.3,17315,1,0)
+ ;;^UTILITY(U,$J,358.3,17503,1,3,0)
+ ;;=3^Abnormal Finding on Dx Image,Renal Pelvis/Ureter/Bladder
+ ;;^UTILITY(U,$J,358.3,17503,1,4,0)
+ ;;=4^R93.41
+ ;;^UTILITY(U,$J,358.3,17503,2)
+ ;;=^5139223
+ ;;^UTILITY(U,$J,358.3,17504,0)
+ ;;=R97.20^^61^787^72
+ ;;^UTILITY(U,$J,358.3,17504,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,17315,1,3,0)
- ;;=3^Complete Loss of Teeth,Unspec,Class III
- ;;^UTILITY(U,$J,358.3,17315,1,4,0)
- ;;=4^K08.103
- ;;^UTILITY(U,$J,358.3,17315,2)
- ;;=^5008408
- ;;^UTILITY(U,$J,358.3,17316,0)
- ;;=K08.104^^88^891^59
- ;;^UTILITY(U,$J,358.3,17316,1,0)
+ ;;^UTILITY(U,$J,358.3,17504,1,3,0)
+ ;;=3^Elevated PSA
+ ;;^UTILITY(U,$J,358.3,17504,1,4,0)
+ ;;=4^R97.20
+ ;;^UTILITY(U,$J,358.3,17504,2)
+ ;;=^334262
+ ;;^UTILITY(U,$J,358.3,17505,0)
+ ;;=R97.21^^61^787^152
+ ;;^UTILITY(U,$J,358.3,17505,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,17316,1,3,0)
- ;;=3^Complete Loss of Teeth,Unspec,Class IV
- ;;^UTILITY(U,$J,358.3,17316,1,4,0)
- ;;=4^K08.104
- ;;^UTILITY(U,$J,358.3,17316,2)
- ;;=^5008409
- ;;^UTILITY(U,$J,358.3,17317,0)
- ;;=K08.109^^88^891^60
- ;;^UTILITY(U,$J,358.3,17317,1,0)
+ ;;^UTILITY(U,$J,358.3,17505,1,3,0)
+ ;;=3^Rising PSA After Tx of Prostate CA
+ ;;^UTILITY(U,$J,358.3,17505,1,4,0)
+ ;;=4^R97.21
+ ;;^UTILITY(U,$J,358.3,17505,2)
+ ;;=^5139228
+ ;;^UTILITY(U,$J,358.3,17506,0)
+ ;;=K08.89^^61^787^63
+ ;;^UTILITY(U,$J,358.3,17506,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,17317,1,3,0)
- ;;=3^Complete Loss of Teeth,Unspec,Class Unspec
- ;;^UTILITY(U,$J,358.3,17317,1,4,0)
- ;;=4^K08.109
- ;;^UTILITY(U,$J,358.3,17317,2)
- ;;=^5008410
- ;;^UTILITY(U,$J,358.3,17318,0)
- ;;=K08.401^^88^891^138
- ;;^UTILITY(U,$J,358.3,17318,1,0)
+ ;;^UTILITY(U,$J,358.3,17506,1,3,0)
+ ;;=3^Disorder of Teeth/Supporting Structures,Oth Specified
+ ;;^UTILITY(U,$J,358.3,17506,1,4,0)
+ ;;=4^K08.89
+ ;;^UTILITY(U,$J,358.3,17506,2)
+ ;;=^5008467
+ ;;^UTILITY(U,$J,358.3,17507,0)
+ ;;=R82.79^^61^787^30
+ ;;^UTILITY(U,$J,358.3,17507,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,17318,1,3,0)
- ;;=3^Partial Loss of Teeth,Unspec,Class I
- ;;^UTILITY(U,$J,358.3,17318,1,4,0)
- ;;=4^K08.401
- ;;^UTILITY(U,$J,358.3,17318,2)
- ;;=^5008432
- ;;^UTILITY(U,$J,358.3,17319,0)
- ;;=K08.402^^88^891^139
- ;;^UTILITY(U,$J,358.3,17319,1,0)
+ ;;^UTILITY(U,$J,358.3,17507,1,3,0)
+ ;;=3^Abnormal Urine Microbiological Findings
+ ;;^UTILITY(U,$J,358.3,17507,1,4,0)
+ ;;=4^R82.79
+ ;;^UTILITY(U,$J,358.3,17507,2)
+ ;;=^5139222
+ ;;^UTILITY(U,$J,358.3,17508,0)
+ ;;=K08.9^^61^787^64
+ ;;^UTILITY(U,$J,358.3,17508,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,17319,1,3,0)
- ;;=3^Partial Loss of Teeth,Unspec,Class II
- ;;^UTILITY(U,$J,358.3,17319,1,4,0)
- ;;=4^K08.402
- ;;^UTILITY(U,$J,358.3,17319,2)
- ;;=^5008433
- ;;^UTILITY(U,$J,358.3,17320,0)
- ;;=K08.403^^88^891^140
- ;;^UTILITY(U,$J,358.3,17320,1,0)
+ ;;^UTILITY(U,$J,358.3,17508,1,3,0)
+ ;;=3^Disorder of Teeth/Supporting Structures,Unspec
+ ;;^UTILITY(U,$J,358.3,17508,1,4,0)
+ ;;=4^K08.9
+ ;;^UTILITY(U,$J,358.3,17508,2)
+ ;;=^5008468
+ ;;^UTILITY(U,$J,358.3,17509,0)
+ ;;=R93.89^^61^787^15
+ ;;^UTILITY(U,$J,358.3,17509,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,17320,1,3,0)
- ;;=3^Partial Loss of Teeth,Unspec,Class III
- ;;^UTILITY(U,$J,358.3,17320,1,4,0)
- ;;=4^K08.403
- ;;^UTILITY(U,$J,358.3,17320,2)
- ;;=^5008434
- ;;^UTILITY(U,$J,358.3,17321,0)
- ;;=K08.404^^88^891^141
- ;;^UTILITY(U,$J,358.3,17321,1,0)
+ ;;^UTILITY(U,$J,358.3,17509,1,3,0)
+ ;;=3^Abnormal Finding on Dx Imaging of Oth Body Structures
+ ;;^UTILITY(U,$J,358.3,17509,1,4,0)
+ ;;=4^R93.89
+ ;;^UTILITY(U,$J,358.3,17509,2)
+ ;;=^5157477
+ ;;^UTILITY(U,$J,358.3,17510,0)
+ ;;=R82.998^^61^787^27
+ ;;^UTILITY(U,$J,358.3,17510,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,17321,1,3,0)
- ;;=3^Partial Loss of Teeth,Unspec,Class IV
- ;;^UTILITY(U,$J,358.3,17321,1,4,0)
- ;;=4^K08.404
+ ;;^UTILITY(U,$J,358.3,17510,1,3,0)
+ ;;=3^Abnormal Urine Findings,Other
+ ;;^UTILITY(U,$J,358.3,17510,1,4,0)
+ ;;=4^R82.998
+ ;;^UTILITY(U,$J,358.3,17510,2)
+ ;;=^5157472
+ ;;^UTILITY(U,$J,358.3,17511,0)
+ ;;=R82.89^^61^787^26

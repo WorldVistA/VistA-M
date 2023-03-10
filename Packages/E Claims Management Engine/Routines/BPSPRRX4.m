@@ -1,6 +1,6 @@
 BPSPRRX4 ;ALB/SS - ePharmacy secondary billing ;16-DEC-08
- ;;1.0;E CLAIMS MGMT ENGINE;**8,9,11**;JUN 2004;Build 27
- ;;Per VHA Directive 2004-038, this routine should not be modified.
+ ;;1.0;E CLAIMS MGMT ENGINE;**8,9,11,28**;JUN 2004;Build 22
+ ;;Per VA Directive 6402, this routine should not be modified.
  ;
 PRIMARY(BPSRX,BPSRF,BPSDFN,BPSDOS,BPSECLM,BPRESUB) ;
  ;Primary claim processing
@@ -50,6 +50,7 @@ PRIMARY(BPSRX,BPSRF,BPSDFN,BPSDOS,BPSECLM,BPRESUB) ;
  Q:BPSQ=-100 "-100^Action cancelled"
  Q:BPSQ=-105 "-105^The same group plan selected"
  I $$YESNO^BPSSCRRS("SUBMIT CLAIM TO "_$P(BPSPLNSL(1),U,2)_" ?(Y/N)","Y")'=1 Q "-100^Action cancelled"
+ D ACTDTY^BPSPRRX7(BPSRX,BPSRF,BPSDFN,BPSDOS)
  S BPSWHERE="P2"
  I BPRESUB=1 S BPSWHERE="P2S"
  Q $$SUBMCLM^BPSPRRX2(BPSRX,BPSRF,BPSDOS,BPSWHERE,1,BPSPLAN,.BPSDAT,BPRATTYP)

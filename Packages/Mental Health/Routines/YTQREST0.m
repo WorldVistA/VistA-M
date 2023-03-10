@@ -1,5 +1,5 @@
 YTQREST0 ;SLC/KCM - RESTful API front controller v0 ; 1/25/2017
- ;;5.01;MENTAL HEALTH;**130**;Dec 30, 1994;Build 62
+ ;;5.01;MENTAL HEALTH;**130,178,182,187**;Dec 30, 1994;Build 73
  ;
  ; .HTTPREQ: HTTP-formatted request and JSON body (if present)
  ; .HTTPRSP: HTTP-formatted response and JSON body (if present)
@@ -7,6 +7,7 @@ YTQREST0 ;SLC/KCM - RESTful API front controller v0 ; 1/25/2017
 QSTAFF(HTTPRSP,HTTPREQ) ; questionnaire administration resources
  ;;POST /api/mha/assignment NEWASMT^YTQRQAD1
  ;;
+ D WINFIX(.HTTPREQ) ; Fix the malformed JSON from Windows MHA
  D HANDLE^YTQRUTL("QSTAFF^YTQREST0",.HTTPREQ,.HTTPRSP)
  Q
  ;
@@ -38,6 +39,20 @@ QENTRY(HTTPRSP,HTTPREQ) ; questionnaire entry for patient
  ;;GET /api/mha/checks/:instrumentName GETCHKS^YTQRQAD2
  ;;GET /api/mha/instrument/admin/:adminId?1.N GETADM^YTQRQAD2
  ;;POST /api/mha/instrument/admin SAVEADM^YTQRQAD2
+ ;;GET /api/mha/assignment/cat/:assignmentId?1.N GCATINFO^YTQRCAT
+ ;;POST /api/mha/assignment/cat/:assignmentId?1.N PCATINFO^YTQRCAT
+ ;;GET /api/mha/cat/interview/:interviewId GETCATI^YTQRCAT
+ ;;POST /api/mha/cat/interview/:interviewId SETCATI^YTQRCAT
+ ;;DELETE /api/mha/assignment/:assignmentId/:instrument/:delfrmassign DELTEST^YTQRQAD1
  ;;
  D HANDLE^YTQRUTL("QENTRY^YTQREST0",.HTTPREQ,.HTTPRSP)
+ Q
+WINFIX(HTTPREQ) ; Fix the malformed JSON from Windows MHA
+ N I,BODY,SWAP
+ S BODY=0
+ S SWAP(""":,")=""":null,"
+ S SWAP(""":}")=""":null}"
+ S I=0 F  S I=$O(HTTPREQ(I)) Q:'I  D
+ . I BODY S HTTPREQ(I)=$$REPLACE^XLFSTR(HTTPREQ(I),.SWAP)
+ . I '$L(HTTPREQ(I)) S BODY=1
  Q

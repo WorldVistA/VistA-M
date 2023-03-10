@@ -1,116 +1,122 @@
-IBDEI173 ; ; 04-FEB-2020
- ;;3.0;IB ENCOUNTER FORM IMP/EXP;;FEB 04, 2020
+IBDEI173 ; ; 01-FEB-2022
+ ;;3.0;IB ENCOUNTER FORM IMP/EXP;;FEB 01, 2022
  Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,999) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
- ;;^UTILITY(U,$J,358.3,19201,1,4,0)
- ;;=4^I69.141
- ;;^UTILITY(U,$J,358.3,19201,2)
- ;;=^5007437
- ;;^UTILITY(U,$J,358.3,19202,0)
- ;;=I69.142^^93^989^58
- ;;^UTILITY(U,$J,358.3,19202,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,19202,1,3,0)
- ;;=3^Monoplg low lmb fol ntrm intcrbl hemor aff left dom side
- ;;^UTILITY(U,$J,358.3,19202,1,4,0)
- ;;=4^I69.142
- ;;^UTILITY(U,$J,358.3,19202,2)
- ;;=^5133573
- ;;^UTILITY(U,$J,358.3,19203,0)
- ;;=I69.143^^93^989^59
- ;;^UTILITY(U,$J,358.3,19203,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,19203,1,3,0)
- ;;=3^Monoplg low lmb fol ntrm intcrbl hemor aff right nondom side
- ;;^UTILITY(U,$J,358.3,19203,1,4,0)
- ;;=4^I69.143
- ;;^UTILITY(U,$J,358.3,19203,2)
- ;;=^5007438
- ;;^UTILITY(U,$J,358.3,19204,0)
- ;;=I69.144^^93^989^60
- ;;^UTILITY(U,$J,358.3,19204,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,19204,1,3,0)
- ;;=3^Monoplg low lmb fol ntrm intcrbl hemor aff left nondom side
- ;;^UTILITY(U,$J,358.3,19204,1,4,0)
- ;;=4^I69.144
- ;;^UTILITY(U,$J,358.3,19204,2)
- ;;=^5007439
- ;;^UTILITY(U,$J,358.3,19205,0)
- ;;=I69.041^^93^989^61
- ;;^UTILITY(U,$J,358.3,19205,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,19205,1,3,0)
- ;;=3^Monoplg low lmb fol ntrm subarach hemor aff right dom side
- ;;^UTILITY(U,$J,358.3,19205,1,4,0)
- ;;=4^I69.041
- ;;^UTILITY(U,$J,358.3,19205,2)
- ;;=^5007405
- ;;^UTILITY(U,$J,358.3,19206,0)
- ;;=I69.042^^93^989^62
- ;;^UTILITY(U,$J,358.3,19206,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,19206,1,3,0)
- ;;=3^Monoplg low lmb fol ntrm subarach hemor aff left dom side
- ;;^UTILITY(U,$J,358.3,19206,1,4,0)
- ;;=4^I69.042
- ;;^UTILITY(U,$J,358.3,19206,2)
- ;;=^5133572
- ;;^UTILITY(U,$J,358.3,19207,0)
- ;;=I69.043^^93^989^63
- ;;^UTILITY(U,$J,358.3,19207,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,19207,1,3,0)
- ;;=3^Monoplg low lmb fol ntrm subarach hemor aff r nondom side
- ;;^UTILITY(U,$J,358.3,19207,1,4,0)
- ;;=4^I69.043
- ;;^UTILITY(U,$J,358.3,19207,2)
- ;;=^5007406
- ;;^UTILITY(U,$J,358.3,19208,0)
- ;;=I69.044^^93^989^64
- ;;^UTILITY(U,$J,358.3,19208,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,19208,1,3,0)
- ;;=3^Monoplg low lmb fol ntrm subarach hemor aff left nondom side
- ;;^UTILITY(U,$J,358.3,19208,1,4,0)
- ;;=4^I69.044
- ;;^UTILITY(U,$J,358.3,19208,2)
- ;;=^5007407
- ;;^UTILITY(U,$J,358.3,19209,0)
- ;;=I69.841^^93^989^67
- ;;^UTILITY(U,$J,358.3,19209,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,19209,1,3,0)
- ;;=3^Monoplg low lmb fol oth cerebvasc disease aff right dom side
- ;;^UTILITY(U,$J,358.3,19209,1,4,0)
- ;;=4^I69.841
- ;;^UTILITY(U,$J,358.3,19209,2)
- ;;=^5007532
- ;;^UTILITY(U,$J,358.3,19210,0)
- ;;=I69.842^^93^989^68
- ;;^UTILITY(U,$J,358.3,19210,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,19210,1,3,0)
- ;;=3^Monoplg low lmb fol oth cerebvasc disease aff left dom side
- ;;^UTILITY(U,$J,358.3,19210,1,4,0)
- ;;=4^I69.842
- ;;^UTILITY(U,$J,358.3,19210,2)
- ;;=^5133577
- ;;^UTILITY(U,$J,358.3,19211,0)
- ;;=I69.843^^93^989^65
- ;;^UTILITY(U,$J,358.3,19211,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,19211,1,3,0)
- ;;=3^Monoplg low lmb fol oth cerebvasc dis aff right nondom side
- ;;^UTILITY(U,$J,358.3,19211,1,4,0)
- ;;=4^I69.843
- ;;^UTILITY(U,$J,358.3,19211,2)
- ;;=^5007533
- ;;^UTILITY(U,$J,358.3,19212,0)
- ;;=I69.844^^93^989^66
- ;;^UTILITY(U,$J,358.3,19212,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,19212,1,3,0)
- ;;=3^Monoplg low lmb fol oth cerebvasc dis aff left nondom side
- ;;^UTILITY(U,$J,358.3,19212,1,4,0)
- ;;=4^I69.844
+ ;;^UTILITY(U,$J,358.3,19408,1,3,0)
+ ;;=3^97761
+ ;;^UTILITY(U,$J,358.3,19409,0)
+ ;;=97763^^66^865^6^^^^1
+ ;;^UTILITY(U,$J,358.3,19409,1,0)
+ ;;=^358.31IA^3^2
+ ;;^UTILITY(U,$J,358.3,19409,1,2,0)
+ ;;=2^Orthotic/Prosthetic Mgmt/Trng,Sbsq Encntr,Ea Addl 15 min
+ ;;^UTILITY(U,$J,358.3,19409,1,3,0)
+ ;;=3^97763
+ ;;^UTILITY(U,$J,358.3,19410,0)
+ ;;=95860^^66^866^3^^^^1
+ ;;^UTILITY(U,$J,358.3,19410,1,0)
+ ;;=^358.31IA^3^2
+ ;;^UTILITY(U,$J,358.3,19410,1,2,0)
+ ;;=2^Muscle Test (EMG),1 Limb
+ ;;^UTILITY(U,$J,358.3,19410,1,3,0)
+ ;;=3^95860
+ ;;^UTILITY(U,$J,358.3,19411,0)
+ ;;=95863^^66^866^5^^^^1
+ ;;^UTILITY(U,$J,358.3,19411,1,0)
+ ;;=^358.31IA^3^2
+ ;;^UTILITY(U,$J,358.3,19411,1,2,0)
+ ;;=2^Muscle Test (EMG),3 Limbs
+ ;;^UTILITY(U,$J,358.3,19411,1,3,0)
+ ;;=3^95863
+ ;;^UTILITY(U,$J,358.3,19412,0)
+ ;;=95864^^66^866^6^^^^1
+ ;;^UTILITY(U,$J,358.3,19412,1,0)
+ ;;=^358.31IA^3^2
+ ;;^UTILITY(U,$J,358.3,19412,1,2,0)
+ ;;=2^Muscle Test (EMG),4 Limbs
+ ;;^UTILITY(U,$J,358.3,19412,1,3,0)
+ ;;=3^95864
+ ;;^UTILITY(U,$J,358.3,19413,0)
+ ;;=95867^^66^866^7^^^^1
+ ;;^UTILITY(U,$J,358.3,19413,1,0)
+ ;;=^358.31IA^3^2
+ ;;^UTILITY(U,$J,358.3,19413,1,2,0)
+ ;;=2^Muscle Test (EMG),Cran Ner Mus-Unilat
+ ;;^UTILITY(U,$J,358.3,19413,1,3,0)
+ ;;=3^95867
+ ;;^UTILITY(U,$J,358.3,19414,0)
+ ;;=95868^^66^866^8^^^^1
+ ;;^UTILITY(U,$J,358.3,19414,1,0)
+ ;;=^358.31IA^3^2
+ ;;^UTILITY(U,$J,358.3,19414,1,2,0)
+ ;;=2^Muscle Test (EMG),Head or Neck
+ ;;^UTILITY(U,$J,358.3,19414,1,3,0)
+ ;;=3^95868
+ ;;^UTILITY(U,$J,358.3,19415,0)
+ ;;=95870^^66^866^9^^^^1
+ ;;^UTILITY(U,$J,358.3,19415,1,0)
+ ;;=^358.31IA^3^2
+ ;;^UTILITY(U,$J,358.3,19415,1,2,0)
+ ;;=2^Needle EMG < 5 Muscles/Ext
+ ;;^UTILITY(U,$J,358.3,19415,1,3,0)
+ ;;=3^95870
+ ;;^UTILITY(U,$J,358.3,19416,0)
+ ;;=95861^^66^866^4^^^^1
+ ;;^UTILITY(U,$J,358.3,19416,1,0)
+ ;;=^358.31IA^3^2
+ ;;^UTILITY(U,$J,358.3,19416,1,2,0)
+ ;;=2^Muscle Test (EMG),2 Limbs
+ ;;^UTILITY(U,$J,358.3,19416,1,3,0)
+ ;;=3^95861
+ ;;^UTILITY(U,$J,358.3,19417,0)
+ ;;=95885^^66^866^10^^^^1
+ ;;^UTILITY(U,$J,358.3,19417,1,0)
+ ;;=^358.31IA^3^2
+ ;;^UTILITY(U,$J,358.3,19417,1,2,0)
+ ;;=2^Needle EMG < 5 Muscles/Ext,+NCS
+ ;;^UTILITY(U,$J,358.3,19417,1,3,0)
+ ;;=3^95885
+ ;;^UTILITY(U,$J,358.3,19418,0)
+ ;;=95886^^66^866^11^^^^1
+ ;;^UTILITY(U,$J,358.3,19418,1,0)
+ ;;=^358.31IA^3^2
+ ;;^UTILITY(U,$J,358.3,19418,1,2,0)
+ ;;=2^Needle EMG >/= 5 Muscles/Ext,+NCS
+ ;;^UTILITY(U,$J,358.3,19418,1,3,0)
+ ;;=3^95886
+ ;;^UTILITY(U,$J,358.3,19419,0)
+ ;;=95887^^66^866^12^^^^1
+ ;;^UTILITY(U,$J,358.3,19419,1,0)
+ ;;=^358.31IA^3^2
+ ;;^UTILITY(U,$J,358.3,19419,1,2,0)
+ ;;=2^Needle EMG CNs or Axial,+NCS
+ ;;^UTILITY(U,$J,358.3,19419,1,3,0)
+ ;;=3^95887
+ ;;^UTILITY(U,$J,358.3,19420,0)
+ ;;=95905^^66^866^2^^^^1
+ ;;^UTILITY(U,$J,358.3,19420,1,0)
+ ;;=^358.31IA^3^2
+ ;;^UTILITY(U,$J,358.3,19420,1,2,0)
+ ;;=2^Motor/Sens Nerv Conduct-ea limb s/F-wv
+ ;;^UTILITY(U,$J,358.3,19420,1,3,0)
+ ;;=3^95905
+ ;;^UTILITY(U,$J,358.3,19421,0)
+ ;;=95907^^66^866^14^^^^1
+ ;;^UTILITY(U,$J,358.3,19421,1,0)
+ ;;=^358.31IA^3^2
+ ;;^UTILITY(U,$J,358.3,19421,1,2,0)
+ ;;=2^Nerve conduction studies; 1-2 studies
+ ;;^UTILITY(U,$J,358.3,19421,1,3,0)
+ ;;=3^95907
+ ;;^UTILITY(U,$J,358.3,19422,0)
+ ;;=95908^^66^866^16^^^^1
+ ;;^UTILITY(U,$J,358.3,19422,1,0)
+ ;;=^358.31IA^3^2
+ ;;^UTILITY(U,$J,358.3,19422,1,2,0)
+ ;;=2^Nerve conduction studies; 3-4 studies
+ ;;^UTILITY(U,$J,358.3,19422,1,3,0)
+ ;;=3^95908
+ ;;^UTILITY(U,$J,358.3,19423,0)
+ ;;=95909^^66^866^17^^^^1
+ ;;^UTILITY(U,$J,358.3,19423,1,0)
+ ;;=^358.31IA^3^2

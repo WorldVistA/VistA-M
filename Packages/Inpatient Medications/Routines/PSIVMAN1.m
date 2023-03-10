@@ -1,16 +1,26 @@
 PSIVMAN1 ;BIR/RGY,PR-COMPILE MAN LIST ;07 OCT 97 / 9:35 AM 
- ;;5.0; INPATIENT MEDICATIONS ;**81**;16 DEC 97
+ ;;5.0;INPATIENT MEDICATIONS;**81,364,425**;16 DEC 97;Build 3
  ;
  ; Reference to ^PS(55 is supported by DBIA# 2191.
  ; Reference to ^PS(52.6 is supported by DBIA# 1231.
  ; Reference to ^PS(52.7 is supported by DBIA# 2173.
 PRNTO ;
  G:$S('$D(^PS(55,DFN,"IV",ON,"AD",0)):1,$P(^(0),"^",4)<1:1,1:0) SOL
- F PSIVA=0:0 S PSIVA=$O(^PS(55,DFN,"IV",ON,"AD",PSIVA)) Q:'PSIVA  S PSIVA=PSIVA_"^"_^(PSIVA,0) W !?16,$P(^PS(52.6,$P(PSIVA,"^",2),0),"^")," ",$P(PSIVA,"^",3) W:$P(PSIVA,"^",4)]"" " in bottle(s): ",$P(PSIVA,"^",4) W ?80,"Lot#: __________"
+ F PSIVA=0:0 S PSIVA=$O(^PS(55,DFN,"IV",ON,"AD",PSIVA)) Q:'PSIVA  S PSIVA=PSIVA_"^"_^(PSIVA,0) D
+ .W !?16,$P(^PS(52.6,$P(PSIVA,"^",2),0),"^")," ",$P(PSIVA,"^",3)
+ .W:$P(PSIVA,"^",4)]"" " in bottle(s): ",$P(PSIVA,"^",4) W ?80,"Lot#: __________"
+  .;*364 introduces haz handle/dispose warnings-bg ;*425 removing carriage returns
+ .N PSDA,PSHAZD S PSDA=$P($G(^PS(52.6,$P(PSIVA,U,2),0)),U,11) S PSHAZD=$$HAZ^PSSUTIL(PSDA,"OI")
+ .I $P(PSHAZD,"^")!$P(PSHAZD,"^",2) W ! W:$P(PSHAZD,"^") ?16,"<<HAZ Handle>>" W:$P(PSHAZD,"^",2) ?15," <<HAZ Dispose>>"
+ ;
 SOL W:$E(PSIVDN,1,3)="***" !?16,"in",!?16,PSIVDN
  G:$S('$D(^PS(55,DFN,"IV",ON,"SOL",0)):1,$P(^(0),"^",4)<1:1,1:0) PAT
  W !?16,"in" F PSIV=0:0 S PSIV=$O(^PS(55,DFN,"IV",ON,"SOL",PSIV)) Q:'PSIV  S PSIV=PSIV_"^"_^(PSIV,0) D
- .S PSIVSL=$S($D(^PS(52.7,$P(PSIV,"^",2),0)):$P(^(0),"^")_" "_$P(PSIV,"^",3)_" "_$P(^(0),"^",4),1:"*** Undefined Solution") W !?16,PSIVSL W:$E(PSIVSL,1,3)'="***" ?80,"Lot#: __________"
+ .S PSIVSL=$S($D(^PS(52.7,$P(PSIV,"^",2),0)):$P(^(0),"^")_" "_$P(PSIV,"^",3)_" "_$P(^(0),"^",4),1:"*** Undefined Solution") W !?16,PSIVSL
+ .W:$E(PSIVSL,1,3)'="***" ?80,"Lot#: __________"
+ .;*364 introduces haz handle/dispose warnings-bg ;*425 removing carriage returns
+ .N PSSOL,PSHAZS S PSSOL=$P(^PS(52.7,$P(PSIV,U,2),0),U,11) S PSHAZS=$$HAZ^PSSUTIL(PSSOL,"OI")
+ .I $P(PSHAZS,"^")!$P(PSHAZS,"^",2) W ! W:$P(PSHAZS,"^") ?16,"<<HAZ Handle>>" W:$P(PSHAZS,"^",2) ?15," <<HAZ Dispose>>"
  ;
 PAT W !?4,"[",ON,"] ",?10,VADM(1)," (",$E(VADM(2),6,9),") (",$S(+VAIN(4):$P(VAIN(4),U,2),1:"Outpatient IV"),")",?62,+^PS(55,PSIVGL1,PSIVSN,PSIVGL2,PSIVT,PSIV1,PSIV2,DFN,ON) S TOTAL=TOTAL+^(ON)
  I P(4)="S"!(P(23)="S") W ?75,"  Syringe size: ",$S($D(^PS(55,DFN,"IV",ON,2)):$S($P(^(2),U,4)'="":$P(^(2),U,4),1:"NF"),1:"NF")

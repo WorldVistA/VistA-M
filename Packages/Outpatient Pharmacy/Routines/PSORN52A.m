@@ -1,5 +1,5 @@
-PSORN52A ;IHS/DSD/JCM/SAB/FLS-Break up of PSORN52 ;Jan 20, 2020@09:25:24
- ;;7.0;OUTPATIENT PHARMACY;**157,148,268,225,306,408,595**;DEC 1997;Build 2
+PSORN52A ;IHS/DSD/JCM/SAB/FLS-Break up of PSORN52 ;Mar 30, 2022@14:37:48
+ ;;7.0;OUTPATIENT PHARMACY;**157,148,268,225,306,408,595,661,441**;DEC 1997;Build 208
  Q  ; Call from tag
  ;
 IBHLD ;
@@ -20,7 +20,7 @@ FILE ; - Filling ^PSRX and ^PS(55 entries
  S $P(PSOX("NRX0"),"^",5)=PSOX("CLINIC"),$P(PSOX("NRX0"),"^",9)=PSOX("# OF REFILLS")
  I $G(PSOX("DAYS SUPPLY")) S $P(PSOX("NRX0"),"^",8)=PSOX("DAYS SUPPLY")
  I $G(PSOX("QTY")) S $P(PSOX("NRX0"),"^",7)=PSOX("QTY")
- S $P(PSOX("NRX0"),"^",11)=$S(PSOX("FILL DATE")>DT&($P(PSOPAR,"^",6)):"M",$D(PSOX("MAIL/WINDOW")):PSOX("MAIL/WINDOW"),1:$P(PSOX("NRX0"),"^",11))
+ S $P(PSOX("NRX0"),"^",11)=$S(PSOX("FILL DATE")>DT&($P(PSOPAR,"^",6))&($G(PSOX("MAIL/WINDOW"))'="P"):"M",$D(PSOX("MAIL/WINDOW")):PSOX("MAIL/WINDOW"),1:$P(PSOX("NRX0"),"^",11))  ;*441 PAPI
  S $P(PSOX("NRX0"),"^",13)=PSOX("ISSUE DATE"),$P(PSOX("STA"),"^")=PSOX("STATUS"),$P(PSOX("NRX0"),"^",16)=$S($G(PSOX("CLERK CODE"))]"":PSOX("CLERK CODE"),1:DUZ)
  S $P(PSOX("NRX0"),"^",15)=$G(PSORENW("ADMINCLINIC"))
  S $P(PSOX("NRX0"),"^",17)=$G(PSODRUG("COST"))
@@ -40,6 +40,9 @@ FILE ; - Filling ^PSRX and ^PS(55 entries
  S:$G(PSOX("REMARKS"))']"" PSOX("REMARKS")="RENEWED FROM RX # "_$P(PSOX("RX0"),"^")
  S $P(PSOX("NRX3"),"^",7)=PSOX("REMARKS"),$P(PSOX("NRX3"),"^",8)=""
  ;
+ ; - Patient Counseling questions P661
+ I $G(OR0) D FULL^VALM1,COUN^PSONEW S PSONOOR=""
+ ;
  ; - File OTHER PATIENT INSTRUCTIONS into ^PSRX
  I $G(PSOFXRNX) S PSOFXRN=1
  D ^PSORN52C,FILE^PSORN52D
@@ -47,18 +50,18 @@ FILE ; - Filling ^PSRX and ^PS(55 entries
  I $G(PSOX("SINS"))]"" S ^PSRX(PSOX("IRXN"),"INSS")=PSOX("SINS")
  K PSOX1
  ;
+ ; - File Patient Couseling questions after PSOX("IRXN") is set P661
+ I $D(^XUSEC("PSORPH",DUZ)) S DA=PSOX("IRXN"),DIE=52,DR="41////"_PSOCOU_";S:'X Y=""@1"";42////"_PSOCOUU_";@1" D ^DIE K DIE,DR
+ ;
  ; - File data into ^PS(55)
-F55 L +^PS(55,PSODFN,"P"):$S(+$G(^DD("DILOCKTM"))>0:+^DD("DILOCKTM"),1:3) S:'$D(^PS(55,PSODFN,"P",0)) ^(0)="^55.03PA^^"
+F55 ;
+ L +^PS(55,PSODFN,"P"):$S(+$G(^DD("DILOCKTM"))>0:+^DD("DILOCKTM"),1:3) S:'$D(^PS(55,PSODFN,"P",0)) ^(0)="^55.03PA^^"
  F PSOX1=$P(^PS(55,PSODFN,"P",0),"^",3):1 Q:'$D(^PS(55,PSODFN,"P",PSOX1))
  S PSOX("55 IEN")=PSOX1
  S ^PS(55,PSODFN,"P",PSOX1,0)=PSOX("IRXN"),$P(^PS(55,PSODFN,"P",0),"^",3,4)=PSOX1_"^"_($P(^PS(55,PSODFN,"P",0),"^",4)+1)
  S ^PS(55,PSODFN,"P","A",PSOX("STOP DATE"),PSOX("IRXN"))=""
  L -^PS(55,PSODFN,"P")
  K PSOX1
- ;
- ; - Patient Counseling questions
- I $G(OR0) D FULL^VALM1,COUN^PSONEW S PSONOOR=""
- I $D(^XUSEC("PSORPH",DUZ)) S DA=PSOX("IRXN"),DIE=52,DR="41////"_PSOCOU_";S:'X Y=""@1"";42////"_PSOCOUU_";@1" D ^DIE K DIE,DR
  ;
  ; - Re-indexing file 52 entry
  K DIK,DA S DIK="^PSRX(",DA=PSOX("IRXN") D IX1^DIK K DIK

@@ -1,130 +1,126 @@
-IBDEI0K7 ; ; 04-FEB-2020
- ;;3.0;IB ENCOUNTER FORM IMP/EXP;;FEB 04, 2020
+IBDEI0K7 ; ; 01-FEB-2022
+ ;;3.0;IB ENCOUNTER FORM IMP/EXP;;FEB 01, 2022
  Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,999) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
- ;;^UTILITY(U,$J,358.3,8911,1,4,0)
- ;;=4^R33.9
- ;;^UTILITY(U,$J,358.3,8911,2)
- ;;=^5019332
- ;;^UTILITY(U,$J,358.3,8912,0)
- ;;=D51.8^^69^606^2
- ;;^UTILITY(U,$J,358.3,8912,1,0)
+ ;;^UTILITY(U,$J,358.3,9089,1,4,0)
+ ;;=4^M19.032
+ ;;^UTILITY(U,$J,358.3,9089,2)
+ ;;=^5010815
+ ;;^UTILITY(U,$J,358.3,9090,0)
+ ;;=M19.041^^39^407^137
+ ;;^UTILITY(U,$J,358.3,9090,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,8912,1,3,0)
- ;;=3^Anemia,Vitamin B12 Deficiency
- ;;^UTILITY(U,$J,358.3,8912,1,4,0)
- ;;=4^D51.8
- ;;^UTILITY(U,$J,358.3,8912,2)
- ;;=^5002288
- ;;^UTILITY(U,$J,358.3,8913,0)
- ;;=D52.9^^69^606^1
- ;;^UTILITY(U,$J,358.3,8913,1,0)
+ ;;^UTILITY(U,$J,358.3,9090,1,3,0)
+ ;;=3^Primary Osteoarthritis of Right Hand
+ ;;^UTILITY(U,$J,358.3,9090,1,4,0)
+ ;;=4^M19.041
+ ;;^UTILITY(U,$J,358.3,9090,2)
+ ;;=^5010817
+ ;;^UTILITY(U,$J,358.3,9091,0)
+ ;;=M19.042^^39^407^131
+ ;;^UTILITY(U,$J,358.3,9091,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,8913,1,3,0)
- ;;=3^Anemia,Folate Deficiency
- ;;^UTILITY(U,$J,358.3,8913,1,4,0)
- ;;=4^D52.9
- ;;^UTILITY(U,$J,358.3,8913,2)
- ;;=^5002293
- ;;^UTILITY(U,$J,358.3,8914,0)
- ;;=I10.^^69^607^12
- ;;^UTILITY(U,$J,358.3,8914,1,0)
+ ;;^UTILITY(U,$J,358.3,9091,1,3,0)
+ ;;=3^Primary Osteoarthritis of Left Hand
+ ;;^UTILITY(U,$J,358.3,9091,1,4,0)
+ ;;=4^M19.042
+ ;;^UTILITY(U,$J,358.3,9091,2)
+ ;;=^5010818
+ ;;^UTILITY(U,$J,358.3,9092,0)
+ ;;=M19.90^^39^407^72
+ ;;^UTILITY(U,$J,358.3,9092,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,8914,1,3,0)
- ;;=3^Hypertension,Essential
- ;;^UTILITY(U,$J,358.3,8914,1,4,0)
- ;;=4^I10.
- ;;^UTILITY(U,$J,358.3,8914,2)
- ;;=^5007062
- ;;^UTILITY(U,$J,358.3,8915,0)
- ;;=I15.0^^69^607^13
- ;;^UTILITY(U,$J,358.3,8915,1,0)
+ ;;^UTILITY(U,$J,358.3,9092,1,3,0)
+ ;;=3^Osteoarthritis,Unspec
+ ;;^UTILITY(U,$J,358.3,9092,1,4,0)
+ ;;=4^M19.90
+ ;;^UTILITY(U,$J,358.3,9092,2)
+ ;;=^5010853
+ ;;^UTILITY(U,$J,358.3,9093,0)
+ ;;=M25.40^^39^407^38
+ ;;^UTILITY(U,$J,358.3,9093,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,8915,1,3,0)
- ;;=3^Hypertension,Renovascular
- ;;^UTILITY(U,$J,358.3,8915,1,4,0)
- ;;=4^I15.0
- ;;^UTILITY(U,$J,358.3,8915,2)
- ;;=^5007071
- ;;^UTILITY(U,$J,358.3,8916,0)
- ;;=I13.11^^69^607^8
- ;;^UTILITY(U,$J,358.3,8916,1,0)
+ ;;^UTILITY(U,$J,358.3,9093,1,3,0)
+ ;;=3^Effusion,Unspec
+ ;;^UTILITY(U,$J,358.3,9093,1,4,0)
+ ;;=4^M25.40
+ ;;^UTILITY(U,$J,358.3,9093,2)
+ ;;=^5011575
+ ;;^UTILITY(U,$J,358.3,9094,0)
+ ;;=M45.0^^39^407^6
+ ;;^UTILITY(U,$J,358.3,9094,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,8916,1,3,0)
- ;;=3^HTN Hrt & CKD w/o Hrt Failure w/ Stage 5 Chr Kidney/ESRD
- ;;^UTILITY(U,$J,358.3,8916,1,4,0)
- ;;=4^I13.11
- ;;^UTILITY(U,$J,358.3,8916,2)
- ;;=^5007069
- ;;^UTILITY(U,$J,358.3,8917,0)
- ;;=I13.2^^69^607^7
- ;;^UTILITY(U,$J,358.3,8917,1,0)
+ ;;^UTILITY(U,$J,358.3,9094,1,3,0)
+ ;;=3^Ankylosing Spondylitis of Spine,Mult Sites
+ ;;^UTILITY(U,$J,358.3,9094,1,4,0)
+ ;;=4^M45.0
+ ;;^UTILITY(U,$J,358.3,9094,2)
+ ;;=^5011960
+ ;;^UTILITY(U,$J,358.3,9095,0)
+ ;;=M45.2^^39^407^3
+ ;;^UTILITY(U,$J,358.3,9095,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,8917,1,3,0)
- ;;=3^HTN Hrt & CKD w/ Hrt Failure w/ Stage 5 Chr Kidney/ESRD
- ;;^UTILITY(U,$J,358.3,8917,1,4,0)
- ;;=4^I13.2
- ;;^UTILITY(U,$J,358.3,8917,2)
- ;;=^5007070
- ;;^UTILITY(U,$J,358.3,8918,0)
- ;;=I70.1^^69^607^3
- ;;^UTILITY(U,$J,358.3,8918,1,0)
+ ;;^UTILITY(U,$J,358.3,9095,1,3,0)
+ ;;=3^Ankylosing Spondylitis of Cervical Region
+ ;;^UTILITY(U,$J,358.3,9095,1,4,0)
+ ;;=4^M45.2
+ ;;^UTILITY(U,$J,358.3,9095,2)
+ ;;=^5011962
+ ;;^UTILITY(U,$J,358.3,9096,0)
+ ;;=M45.4^^39^407^7
+ ;;^UTILITY(U,$J,358.3,9096,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,8918,1,3,0)
- ;;=3^Atherosclerosis of Renal Artery
- ;;^UTILITY(U,$J,358.3,8918,1,4,0)
- ;;=4^I70.1
- ;;^UTILITY(U,$J,358.3,8918,2)
- ;;=^269760
- ;;^UTILITY(U,$J,358.3,8919,0)
- ;;=I77.3^^69^607^2
- ;;^UTILITY(U,$J,358.3,8919,1,0)
+ ;;^UTILITY(U,$J,358.3,9096,1,3,0)
+ ;;=3^Ankylosing Spondylitis of Thoracic Region
+ ;;^UTILITY(U,$J,358.3,9096,1,4,0)
+ ;;=4^M45.4
+ ;;^UTILITY(U,$J,358.3,9096,2)
+ ;;=^5011964
+ ;;^UTILITY(U,$J,358.3,9097,0)
+ ;;=M45.7^^39^407^4
+ ;;^UTILITY(U,$J,358.3,9097,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,8919,1,3,0)
- ;;=3^Arterial Fibromuscular Dysplasia
- ;;^UTILITY(U,$J,358.3,8919,1,4,0)
- ;;=4^I77.3
- ;;^UTILITY(U,$J,358.3,8919,2)
- ;;=^5007812
- ;;^UTILITY(U,$J,358.3,8920,0)
- ;;=E26.02^^69^607^5
- ;;^UTILITY(U,$J,358.3,8920,1,0)
+ ;;^UTILITY(U,$J,358.3,9097,1,3,0)
+ ;;=3^Ankylosing Spondylitis of Lumbosacral Region
+ ;;^UTILITY(U,$J,358.3,9097,1,4,0)
+ ;;=4^M45.7
+ ;;^UTILITY(U,$J,358.3,9097,2)
+ ;;=^5011967
+ ;;^UTILITY(U,$J,358.3,9098,0)
+ ;;=M45.8^^39^407^5
+ ;;^UTILITY(U,$J,358.3,9098,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,8920,1,3,0)
- ;;=3^Glucocorticoid-Remediable Aldosteronism
- ;;^UTILITY(U,$J,358.3,8920,1,4,0)
- ;;=4^E26.02
- ;;^UTILITY(U,$J,358.3,8920,2)
- ;;=^329904
- ;;^UTILITY(U,$J,358.3,8921,0)
- ;;=I12.9^^69^607^14
- ;;^UTILITY(U,$J,358.3,8921,1,0)
+ ;;^UTILITY(U,$J,358.3,9098,1,3,0)
+ ;;=3^Ankylosing Spondylitis of Sacral/Sacrococcygeal Region
+ ;;^UTILITY(U,$J,358.3,9098,1,4,0)
+ ;;=4^M45.8
+ ;;^UTILITY(U,$J,358.3,9098,2)
+ ;;=^5011968
+ ;;^UTILITY(U,$J,358.3,9099,0)
+ ;;=M47.22^^39^407^180
+ ;;^UTILITY(U,$J,358.3,9099,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,8921,1,3,0)
- ;;=3^Hypertensive CKD Stage 1-4
- ;;^UTILITY(U,$J,358.3,8921,1,4,0)
- ;;=4^I12.9
- ;;^UTILITY(U,$J,358.3,8921,2)
- ;;=^5007066
- ;;^UTILITY(U,$J,358.3,8922,0)
- ;;=I12.0^^69^607^15
- ;;^UTILITY(U,$J,358.3,8922,1,0)
+ ;;^UTILITY(U,$J,358.3,9099,1,3,0)
+ ;;=3^Sponylosis w/ Radiculopathy,Cervical Region NEC
+ ;;^UTILITY(U,$J,358.3,9099,1,4,0)
+ ;;=4^M47.22
+ ;;^UTILITY(U,$J,358.3,9099,2)
+ ;;=^5012061
+ ;;^UTILITY(U,$J,358.3,9100,0)
+ ;;=M47.24^^39^407^182
+ ;;^UTILITY(U,$J,358.3,9100,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,8922,1,3,0)
- ;;=3^Hypertensive CKD Stage 5 or ESRD
- ;;^UTILITY(U,$J,358.3,8922,1,4,0)
- ;;=4^I12.0
- ;;^UTILITY(U,$J,358.3,8922,2)
- ;;=^5007065
- ;;^UTILITY(U,$J,358.3,8923,0)
- ;;=I13.0^^69^607^6
- ;;^UTILITY(U,$J,358.3,8923,1,0)
+ ;;^UTILITY(U,$J,358.3,9100,1,3,0)
+ ;;=3^Sponylosis w/ Radiculopathy,Thoracic Region NEC
+ ;;^UTILITY(U,$J,358.3,9100,1,4,0)
+ ;;=4^M47.24
+ ;;^UTILITY(U,$J,358.3,9100,2)
+ ;;=^5012063
+ ;;^UTILITY(U,$J,358.3,9101,0)
+ ;;=M47.27^^39^407^181
+ ;;^UTILITY(U,$J,358.3,9101,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,8923,1,3,0)
- ;;=3^HTN Hrt & CKD w/ Hrt Failure w/ Stage 1-4 Chr Kidney
- ;;^UTILITY(U,$J,358.3,8923,1,4,0)
- ;;=4^I13.0
- ;;^UTILITY(U,$J,358.3,8923,2)
- ;;=^5007067
- ;;^UTILITY(U,$J,358.3,8924,0)
- ;;=I13.10^^69^607^9
+ ;;^UTILITY(U,$J,358.3,9101,1,3,0)
+ ;;=3^Sponylosis w/ Radiculopathy,Lumbosacral Region NEC
+ ;;^UTILITY(U,$J,358.3,9101,1,4,0)
+ ;;=4^M47.27

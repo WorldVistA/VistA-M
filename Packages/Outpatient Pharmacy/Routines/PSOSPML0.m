@@ -1,5 +1,5 @@
-PSOSPML0 ;BIRM/MFR - Scheduled Batch Export ;10/10/12
- ;;7.0;OUTPATIENT PHARMACY;**408,451**;DEC 1997;Build 114
+PSOSPML0 ;BIRM/MFR - Scheduled Batch Export ;1/6/21  12:58
+ ;;7.0;OUTPATIENT PHARMACY;**408,451,625,630**;DEC 1997;Build 26
  ;
 AUTO ; SPMP Scheduled Background Job Edit
  N DIC,Y S DIC(0)="XZM",DIC="^DIC(19.2,",X="PSO SPMP SCHEDULED EXPORT" D ^DIC
@@ -11,6 +11,7 @@ AUTO ; SPMP Scheduled Background Job Edit
 EXPORT ; SPMP Nightly Scheduled Export
  N STATE,NODE0,EXPNODE,BEGEXPDT,FREQCY,YESTERDY,BATIEN,RXCNT,RTSBGDT,RTSENDT
  ;
+ D CHK5841
  S STATE=0
  F  S STATE=$O(^PS(58.41,STATE)) Q:'STATE  D
  . K ^TMP("PSOSPMRX",$J)
@@ -40,7 +41,66 @@ EXPORT ; SPMP Nightly Scheduled Export
  . . ; Manual sFTP Transmission to the state
  . . I $$GET1^DIQ(58.41,STATE,13,"I")="M" D
  . . . D SENDMAIL(BATIEN,"S")
+ . ;Zero Report - Daily Separate File
+ . N SITEIEN S SITEIEN=0
+ . N DEANO S DEANO=""
+ . K ^TMP("PSOSPZRP",$J),DEARX,DEANRX,SITES,ZDEA
+ . F  S SITEIEN=$O(^PS(59,SITEIEN)) Q:'SITEIEN  D
+ . . Q:$$GET1^DIQ(59,SITEIEN,.08,"I")'=STATE
+ . . I $$GET1^DIQ(59,SITEIEN,2004,"I")'="",$$GET1^DIQ(59,SITEIEN,2004,"I")<DT Q
+ . . S DEANO=$$PHA03^PSOASAP0() I DEANO="" Q
+ . . S SITES(SITEIEN)=DEANO
+ . . I $D(^TMP("PSOSPMST",$J,SITEIEN)),'$G(DEARX(DEANO)) S DEARX(DEANO)=SITEIEN
+ . . E  S DEANRX(DEANO)=SITEIEN
+ . N DEA,SITE
+ . S (DEA,SITE)=""
+ . F  S DEA=$O(DEANRX(DEA)) Q:DEA=""  D
+ . . I '$G(DEARX(DEA)) S SITE=DEANRX(DEA) S ZDEA(DEA)=SITE S ^TMP("PSOSPZRP",$J,SITE)=DEA
+ . I $D(^TMP("PSOSPZRP",$J)) D
+ . . I $$GET1^DIQ(58.41,STATE,20)'="" D    ;Sites with no RX and Yes to send Zero Report
+ . . . N %,DIC,DR,DA,X,Y,DINUM,DLAYGO,DD,DO,EXPTYPE
+ . . . S EXPTYPE="ZR"
+ . . . F  L +^PS(58.42,0):$S(+$G(^DD("DILOCKTM"))>0:+^DD("DILOCKTM"),1:3) Q:$T  H 3
+ . . . S (DINUM,BATIEN)=$O(^PS(58.42,999999999999),-1)+1
+ . . . W !!,"Creating Batch #",DINUM," for ",$$GET1^DIQ(58.41,STATE,.01),"..."
+ . . . S DIC="^PS(58.42,",X=DINUM,DIC(0)="",DIC("DR")="1////"_STATE_";2///"_EXPTYPE_";8///"_$$NOW^XLFDT()
+ . . . S DIC("DR")=DIC("DR")_";4///"_$G(BEGEXPDT)_";5///"_$G(YESTERDY)
+ . . . S DLAYGO=58.42 K DD,DO D FILE^DICN K DD,DO
+ . . . L -^PS(58.42,0)
+ . . . I Y=-1 S BATIEN="-1^Export Batch could not be created" Q
+ . . . N SITE,DEAZ S SITE=""
+ . . . F  S SITE=$O(SITES(SITE)) Q:SITE=""  D
+ . . . . S DEAZ=$G(SITES(SITE)) I '$G(ZDEA(DEAZ)) Q
+ . . . . K DIC,DINUM,DA S DIC="^PS(58.42,"_BATIEN_",""ZRS"",",DIC(0)="",DA(1)=BATIEN
+ . . . . S X=SITE,DIC("DR")="1///"_DEAZ
+ . . . . S DLAYGO=58.42201 K DD,DO D FILE^DICN K DD,DO
+ . . . ; Automatic sFTP Transmission to the state
+ . . . D EXPORT^PSOSPMUT(BATIEN,"EXPORT",1)
+ . . . N SITE S SITE=0
+ . . . N DEA S DEA=""
+ . . . F  S SITE=$O(^TMP("PSOSPZRP",$J,SITE)) Q:'SITE  D
+ . . . . S DEA=$G(^TMP("PSOSPZRP",$J,SITE))
+ . . . . D SENDMAIL(BATIEN,"ZY",DEA)
+ . . E  D SENDMAIL("","ZN")
  . K DIE,DR,DA S DR="11///"_YESTERDY S DIE="^PS(58.41,",DA=STATE D ^DIE
+ . ;RX Not Transmitted Report - Daily Separate File
+ . N BEGEXPDT,YESTERDY,BATIEN,RXCNT,LIST
+ . K ^TMP("PSOSPMRX",$J)
+ . S BEGEXPDT=$$FMADD^XLFDT(DT,-30)
+ . S YESTERDY=$$FMADD^XLFDT(DT,-1)
+ . S LIST="ARX"
+ . S LIST("STATE")=STATE
+ . ; Gathering the prescriptions to be transmitted in the ^TMP("PSOSPMRX",$J) global
+ . S RXCNT=$$GATHER^PSOSPMU1(STATE,BEGEXPDT-.1,YESTERDY+.24,"N",0,.LIST)
+ . I RXCNT>0 D
+ . . S BATIEN=$$BLDBAT^PSOSPMU1("SC",BEGEXPDT,YESTERDY)
+ . . I $P(BATIEN,"^")=-1 D LOGERROR^PSOSPMUT(0,STATE,$P(BATIEN,"^",2),1) Q
+ . .; Automatic sFTP Transmission to the state
+ . . I $$GET1^DIQ(58.41,STATE,13,"I")="A" D
+ . . . D EXPORT^PSOSPMUT(BATIEN,"EXPORT",1)
+ . .; Manual sFTP Transmission to the state
+ . . I $$GET1^DIQ(58.41,STATE,13,"I")="M" D
+ . . . D SENDMAIL^PSOSPML0(BATIEN,"S")
  ;
  ; Return To Stock Batch for ASAP 1995 states only (Weekly) - Separate file
  I $$UP^XLFSTR($$DOW^XLFDT(DT))'="SUNDAY" Q
@@ -56,12 +116,15 @@ EXPORT ; SPMP Nightly Scheduled Export
  . E  D SENDMAIL(BATIEN,"R")
  Q
  ;
-SENDMAIL(BATCHIEN,BATTYPE) ; ASAP 1995 Only - Mailman message about Return To Stock Records
+SENDMAIL(BATCHIEN,BATTYPE,DEA) ; ASAP 1995 Only - Mailman message about Return To Stock Records
  ;Input: BATCHIEN - Pointer to BATCH file (#58.42)
- ;       BATTYPE  - Batch Type: S: Scheduled / R: Return to Stock (ASAP 1995 only) 
+ ;       BATTYPE  - Batch Type: S: Scheduled / R: Return to Stock (ASAP 1995 only) / ZR: and ZY: Zero Report
+ ;   (O) DEA      - DEA Numbers passed in for Zero Report
  N XMDUZ,XMMG,XMSUB,XMTEXT,XMY,XMZ,PSOMSG,USR,STANAME
+ N RUNDT    ;Zero Reporting
  ;
  S STANAME=$$GET1^DIQ(58.42,BATCHIEN,1)
+ I $G(STANAME)="" S STANAME=$$GET1^DIQ(58.41,STATE,.01)   ;Zero Report
  ; - Scheduled Batch Notification
  I (BATTYPE="S") D
  . S XMSUB=STANAME_" CS PMP Batch Ready"
@@ -96,6 +159,20 @@ SENDMAIL(BATCHIEN,BATTYPE) ; ASAP 1995 Only - Mailman message about Return To St
  . S PSOMSG(14)="avoid reporting duplicate records for the patients."
  . S PSOMSG(15)="**************************************************************************"
  ;
+ ;Zero Report Sent
+ I (BATTYPE="ZY") D
+ . S XMSUB=STANAME_" SPMP Controlled Substance Zero Report: "_$$FMTE^XLFDT($$GET1^DIQ(58.42,BATCHIEN,4,"I")\1,"5Z")
+ . S PSOMSG(1)="No prescriptions met the submission criteria for Pharmacies using DEA#"_DEA
+ . S PSOMSG(2)="A Zero Report has been transmitted to the state."
+ ;
+ ;Zero Report NOT Sent
+ I (BATTYPE="ZN") D
+ . N XDT S XDT=$$FMADD^XLFDT((DT\1),-1)
+ . S XMSUB=STANAME_" SPMP Controlled Substance Zero Report: "_$$FMTE^XLFDT((XDT\1),"5Z")
+ . S PSOMSG(1)="No prescriptions met the submission criteria. "
+ . S PSOMSG(2)="Follow your state's guidance for manual upload of a Zero Report, if required."
+ ;
+GROUP ;
  S XMTEXT="PSOMSG("
  ; If there are no active members in the mailgroup sends message to PSDMGR key holders
  I $$GOTLOCAL^XMXAPIG("PSO SPMP NOTIFICATIONS") D
@@ -104,4 +181,37 @@ SENDMAIL(BATCHIEN,BATTYPE) ; ASAP 1995 Only - Mailman message about Return To St
  . S USR=0 F  S USR=$O(^XUSEC("PSDMGR",USR)) Q:'USR  S XMY(USR)=""
  ;
  D ^XMD
+ Q
+CHK5841 ; Check the SPMP STATE PARAMETERS file (#58.41) for presence of state transmission info
+ N SITEIEN,SITE,STATEIEN,STATE,FOUND,XREF,RXDT,ENDDT,RXIEN,RXFILL,FILL
+ K ^TMP("PSO5841",$J)
+ S SITEIEN=0
+ F  S SITEIEN=$O(^PS(59,SITEIEN)) Q:'SITEIEN  D
+ . S STATEIEN=$$GET1^DIQ(59,SITEIEN,.08,"I")
+ . I 'STATEIEN Q
+ . I $P($$SPOK^PSOSPMUT(STATEIEN),"^")=-1 D
+ .. S FOUND=0
+ .. F XREF="AL","AM" D
+ ... S RXDT=$$FMADD^XLFDT(DT,-365),RXDT=RXDT+.01,ENDDT=$$FMADD^XLFDT(DT,-1),ENDDT=ENDDT+.2359
+ ... F  S RXDT=$O(^PSRX(XREF,RXDT)) Q:'RXDT!(RXDT>ENDDT)  D
+ .... S RXIEN=0 F  S RXIEN=$O(^PSRX(XREF,RXDT,RXIEN)) Q:'RXIEN  Q:FOUND  D
+ ..... S RXFILL="" F  S RXFILL=$O(^PSRX(XREF,RXDT,RXIEN,RXFILL)) Q:RXFILL=""  D
+ ...... S FILL=$S(XREF="AL":RXFILL,1:"P"_RXFILL)
+ ...... I $$RXSTATE^PSOBPSUT(RXIEN,0)'=STATEIEN Q
+ ...... I $$SCREEN^PSOSPMUT(RXIEN,FILL) Q
+ ...... S ^TMP("PSO5841",$J,SITEIEN)="Controlled Substance Rx found, but transmission info is missing for "_$$GET1^DIQ(59,SITEIEN,.08)_" in the SPMP STATE PARAMETERS file (#58.41)."
+ ...... S FOUND=1
+ I $D(^TMP("PSO5841",$J)) D
+ . S SITEIEN=0
+ . F  S SITEIEN=$O(^TMP("PSO5841",$J,SITEIEN)) Q:'SITEIEN  D
+ .. S SITE=$$GET1^DIQ(59,SITEIEN,.01)
+ .. S STATE=$$GET1^DIQ(59,SITEIEN,.08)
+ .. S XMSUB=SITE_" Controlled Substances PMP State Parameters Missing"
+ .. S PSOMSG(1)=SITE_" doesn't currently transmit controlled substance records"
+ .. S PSOMSG(2)="because it is in a state ("_STATE_") that doesn't have SPMP"
+ .. S PSOMSG(3)="state parameters defined in your VistA system. Please enter a helpdesk"
+ .. S PSOMSG(4)="ticket if you need assistance setting up SPMP state parameters for"
+ .. S PSOMSG(5)=STATE_"."
+ .. D GROUP
+ . K ^TMP("PSO5841",$J)
  Q

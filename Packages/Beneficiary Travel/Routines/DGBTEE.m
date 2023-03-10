@@ -1,5 +1,5 @@
 DGBTEE ;ALB/SCK - BENEFICIARY TRAVEL ENTER/EDIT; 12/3/92@1600 ; 7/2/14 1:17pm
- ;;1.0;Beneficiary Travel;**2,14,20,21,25,30**;September 25, 2001;Build 4
+ ;;1.0;Beneficiary Travel;**2,14,20,21,25,30,39**;September 25, 2001;Build 6
  Q
 SCREEN ;
  ;
@@ -10,8 +10,8 @@ SCREEN ;
 MILES ;  get miles between dep. and dest. using function call to DGBTUTL
  ;
  K X,DGBTREC S (DGBTOWRT,DGBTML,DGBTMLT)=""
- I DGBTFR4]""&((DGBTACCT=4)!(DGBTACCT=5)) I $D(^DGBT(392.1,"ACS",DGBTFR4,+VAPA(5))) D
- . S X=$O(^(+VAPA(5),0)) ; naked ref. refers to file #392.1, "ACS", city.  Full reference on line MILES+2^DGBTEE, ^DGBTE(392.1,"ACS",DGBTFR4,+VAPA(5)
+ I DGBTFR4]""&((DGBTACCT=4)!(DGBTACCT=5)) I $D(^DGBT(392.1,"ACS",DGBTFR4,+DGBTADDR(5))) D  ;*39 - updated to use residential address
+ . S X=$O(^(+DGBTADDR(5),0)) ; naked ref. refers to file #392.1, "ACS", city.  Full reference on line MILES+2^DGBTEE, ^DGBTE(392.1,"ACS",DGBTFR4,+DGBTADDR(5) ;*39 - updated to use residential address
  . ;  function $$miles passes city's record# and div name to function, mileage value is returned
  . I X'="" S DGBTREC=X,DGBTML=$$MILES^DGBTUTL(DGBTREC,DGBTDV1),DGBTOWRT="ROUND TRIP" K X
  S (DGBTMAL,DGBTFAB,DGBTME,DGBTCP,DGBTFLAG,DGBTDCV,DGBTDE,DGBTDCM,DGBTDPV,DGBTDPM)=0

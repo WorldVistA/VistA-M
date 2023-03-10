@@ -1,10 +1,18 @@
-YTQAPI15 ;ASF/ALB MHA XML ; 9/25/09 11:14am
- ;;5.01;MENTAL HEALTH;**85,97,119**;Dec 30, 1994;Build 40
+YTQAPI15 ;ASF/ALB MHA XML ;Nov 19, 2020@15:02
+ ;;5.01;MENTAL HEALTH;**85,97,119,171**;Dec 30, 1994;Build 3
  Q
 MAIN ;
- N N,G,YSCN,ICN,Y,YSA,YSAD,YSB,YSC,YSCN,YSCODE,YSD,YSDFN,YSDG,YSE,YSEA,YSER,YSF,YSFIELD,YSFILE,YSIENS,YSJ,YSLOC,YSOD,YSQNUMB,YSQTEXT,YSR,DFN,DIRUT,L1,L2,CNT,IDX,LEN
+ N N,G,YSCN,ICN,Y,YSA,YSAD,YSB,YSC,YSCN,YSCODE,YSD,YSDFN,YSDG,YSE,YSEA
+ N YSER,YSF,YSFIELD,YSFILE,YSIENS,YSJ,YSLOC,YSOD,YSQNUMB,YSQTEXT,YSR
+ N DFN,DIRUT,L1,L2,CNT,IDX,LEN,DUOUT,DTOUT,YSQUIT,POP,YSOUT
+ S YSQUIT=0
  D SELAD
+ ;YS*5.01*171: quit if user entered "^" at previous prompts or timeout occurred
+ Q:$G(DIRUT)  Q:$G(DUOUT)  Q:$G(DTOUT)
+ Q:YSQUIT
 DEV S %ZIS="QM" D ^%ZIS Q:IO=""
+ ;YS*5.01*171: POP = user entered "^" at device prompt.
+ I $G(POP) Q
  I '$D(IO("Q")) W !,"Please Queue this job",! G DEV
  D  D ^%ZTLOAD D HOME^%ZIS K IO("Q") Q  ;-->out
  .S ZTRTN="ENQ^YTQAPI15",ZTDESC="MHA3 XML Export",ZTSAVE("YS*")=""
@@ -45,12 +53,28 @@ SELAD ;administation filter
  S YSER=Y
  K DIC
  N YTTLKUP S YTTLKUP=1  ; suppress filter
- I YSF="I" S DIC(0)="AEQ",DIC="^YTT(601.71," D ^DIC Q:Y'>0  S YSCODE=$P(Y,U,2)
- I YSF="P" D ^YSLRP Q:DFN'>0  ;-->out
- I YSF="O" S DIC("A")="Ordered By: ",DIC(0)="AEQ",DIC="^VA(200," D ^DIC Q:Y'>0  S YSOD=+Y
- I YSF="L" S DIC(0)="AEQ",DIC="^DIC(42," D ^DIC Q:Y'>0  S YSLOC=+Y
+ I YSF="I" D  Q
+ . S DIC(0)="AEQ",DIC="^YTT(601.71,"
+ . D ^DIC
+ . I Y'>0 S YSQUIT=1 Q
+ . S YSCODE=$P(Y,U,2)
+ I YSF="P" D  Q
+ . D ^YSLRP
+ . I $G(DFN)'>0 S YSQUIT=1
+ I YSF="O" D  Q
+ . S DIC("A")="Ordered By: "
+ . S DIC(0)="AEQ",DIC="^VA(200,"
+ . D ^DIC
+ . I Y'>0 S YSQUIT=1 Q 
+ . S YSOD=+Y
+ ;YS*5.01*171: corrected line below to validate against file 44 instead of file 42
+ I YSF="L" D
+ . S DIC(0)="AEMQZ",DIC=44
+ . D ^DIC
+ . I Y'>0 S YSQUIT=1 Q
+ . S YSLOC=+Y
  Q
-SI ;selct by instrument
+SI ;select by instrument
  S YSCN=$O(^YTT(601.71,"B",YSCODE,-1))
  S YSD=YSB-.00001 F  S YSD=$O(^YTT(601.84,"AC",YSCN,YSD)) Q:(YSD'>0)!(YSD>YSE)  D
  . S YSAD=0 F  S YSAD=$O(^YTT(601.84,"AC",YSCN,YSD,YSAD)) Q:YSAD'>0  S ^TMP("YSAD",$J,YSAD)=""

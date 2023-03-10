@@ -1,5 +1,5 @@
 BPSNCPD3 ;BHAM ISC/LJE - Continuation of BPSNCPDP - DUR HANDLING ;06/16/2004
- ;;1.0;E CLAIMS MGMT ENGINE;**1,5,6,7,8,10,11,15,19,20,22**;JUN 2004;Build 28
+ ;;1.0;E CLAIMS MGMT ENGINE;**1,5,6,7,8,10,11,15,19,20,22,29**;JUN 2004;Build 41
  ;;Per VA Directive 6402, this routine should not be modified.
  ;
  ; Due to space considerations, these comments were moved from BPSNPCPD
@@ -121,6 +121,7 @@ DUR1(BRXIEN,BFILL,DUR,ERROR,BPRXCOB) ;
  ;
  ; If the transaction record does not exist, set DUR("BILLED")=0 and quit
  I '$D(^BPST(IEN59)) S DUR("BILLED")=0 Q
+ I $$GET1^DIQ(9002313.59,IEN59,301)="NOT INSURED" S DUR("BILLED")=0 Q
  ;
  S DUR(BPRXCOB,"BILLED")=1
  ;

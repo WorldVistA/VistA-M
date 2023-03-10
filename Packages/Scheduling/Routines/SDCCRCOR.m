@@ -1,5 +1,5 @@
 SDCCRCOR ;CCRA/LB,PB - Core Tags;APR 4, 2019
- ;;5.3;Scheduling;**707,730,735,764**;APR 4, 2019;Build 22
+ ;;5.3;Scheduling;**707,730,735,764,741,795**;APR 4, 2019;Build 34
  ;;Per VA directive 6402, this routine should not be modified.
  Q
  ;
@@ -221,6 +221,7 @@ ACK(STAT,MID,SID,SEG,FLD,CD,TXT,ACKTYP) ; Creates ACKs for HL7 Message
  S RS=$E($G(HL("ECH")),2) S:RS="" RS="~"
  S ES=$E($G(HL("ECH")),3) S:ES="" ES="\"
  S SS=$E($G(HL("ECH")),4) S:SS="" SS="&"
+ S:STAT="CE" STAT="AE"
  ;
  ;Make sure the parameters are defined
  S STAT=$G(STAT),MID=$G(MID),SID=$G(SID),SEG=$G(SEG)
@@ -276,6 +277,7 @@ APPMSG(MSGID,ABORT) ; Send a MailMan Message with the errors
  Q
 MESSAGE(MSGID,ABORT) ; Send a MailMan Message with the errors
  N MSGTEXT,DUZ,XMDUZ,XMSUB,XMTEXT,XMY,XMMG,XMSTRIP,XMROU,DIFROM,XMYBLOB,XMZ,XMMG,DATE,J,FLG1
+ Q:$P(ABORT,"^",2)=""
  S DATE=$$FMTE^XLFDT($$FMDATE^HLFNC($P(HL("DTM"),"-",1)))
  S XMSUB="Consult: "_$G(CONID)_" GMRC CCRA Scheduling Issue from HSRM"
  S:$E($P($G(ABORT),"^",2),1,9)="SCHEDULER" FLG1=1
@@ -353,6 +355,23 @@ DSTTEST(YR,CHKDT) ;
  F I=1:1:20 I $P($P($T(DSTTABLE+I),";;",2),"^",1)=YR S DATES=$P($T(DSTTABLE+I),"^",2,3) D
  .I $G(CHKDT)>$P(DATES,"^",1)&($G(CHKDT)<$P(DATES,"^",2)) S RTN=0 ;APPT date is during DST timeframe.
  Q RTN
+GETRSN(SCH) ; Collects appointment reason and translates into internal format.
+ ;Tries using the Title to lookup the reason. If that fails uses the ID to lookup
+ ;the reason against the title. If that fails tries using the ID against the ID.
+ Q $$DATALKUP^SDCCRCOR(.SCH,"409.2","^SD(409.2,",6,302,"APPOINTMENT REASON MAPPING ERROR")
+GETTYPE(OBX) ;translates appointment type into internal format
+ ;OBX (I/REQ) - OBX message segment data
+ N APPTTYPE
+ S APPTTYPE=$$DATALKUP^SDCCRCOR(.OBX,"409.1","^SD(409.1,",5,303,"APPOINTMENT TYPE MAPPING ERROR")
+ I $G(APPTTYPE)="" S APPTTYPE=9
+ Q APPTTYPE
+ ;
+GETUSER(SCH) ;collects appointment entered by user and confirms they are a user in the 200 file
+ ;SCH (I/REQ) - SCH message segment data
+ Q:$G(SCH)=""
+ S USER=$$FIND1^DIC(200,,"X",$G(SCH),"ASECID",,"SCERR")
+ S USER=.5
+ Q USER
 DSTTABLE ;
  ;;2020^3200308^3201101
  ;;2021^3210314^3211107

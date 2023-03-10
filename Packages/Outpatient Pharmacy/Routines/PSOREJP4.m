@@ -1,5 +1,5 @@
 PSOREJP4 ;BP/CMF - Pharmacy Rejects List Mail message ;06/26/08 
- ;;7.0;OUTPATIENT PHARMACY;**289,427**;DEC 1997;Build 21
+ ;;7.0;OUTPATIENT PHARMACY;**289,427,562**;DEC 1997;Build 19
  ;; use of ^VADPT supported by IA#10061
  ;@author  - Chris Flegel
  ;@date    - August 18, 2008
@@ -96,7 +96,7 @@ SORT ;;
  ...S PSOTRIC=$$TRIC^PSOREJP1(RXIEN,RXFILL)
  ...S CODE=$$GET1^DIQ(52.25,REJIENS,.01)
  ...S SORTA=1
- ...I CODE'=79,CODE'=88 D
+ ...I CODE'=79,CODE'=88,CODE'=943 D
  ....I PSOTRIC=2 S SORTA="3^CHAMPVA - Non-DUR/RTS"
  ....I PSOTRIC=1 S SORTA="4^TRICARE - Non-DUR/RTS"
  ....I 'PSOTRIC D

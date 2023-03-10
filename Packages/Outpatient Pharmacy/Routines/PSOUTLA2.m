@@ -1,5 +1,5 @@
 PSOUTLA2 ;BHAM ISC/GSN-Pharmacy utility program cont. ;6/6/05 12:19pm
- ;;7.0;OUTPATIENT PHARMACY;**210,410,507**;DEC 1997;Build 28
+ ;;7.0;OUTPATIENT PHARMACY;**210,410,507,694**;DEC 1997;Build 12
  Q
  ;
 WORDWRAP(STR,IEN,GL,LM) ;Wraps words at spaces normally and will breakup long
@@ -173,3 +173,67 @@ SHOWVP  ;Entry point to Display Provider hidden action info (via defaulted IFN)
  K Y
  G PICKVP
  Q
+ ;
+SUSPDAYS(IEN) ; Return correct suspense days parameter value per Rx IEN in Suspense file  *694
+ ; IEN = Internal entry number for the RX SUSPENSE file
+ N RTN,PIEN,MAIL,LOCTST,CS,LCSV,LNCSV,CCSV,CNCSV
+ S RTN=""
+ S PIEN=$$GET1^DIQ(52.5,IEN,.03,"I"),MAIL=$$GET1^DIQ(55,PIEN,.03,"I")
+ S LOCTST=$S(MAIL<2&'$$CKCMOP(IEN):"LOCAL",MAIL>2:"LOCAL",1:"")
+ S CS=$$CHKCS(IEN)
+ ;pull ahead Days params for - Local CS, Local Non=CS, CMOP CS, CMOP Non-CS
+ S LCSV=$P(PSOPAR,U,34),LNCSV=$P(PSOPAR,U,27),CCSV=$P(PSOPAR,U,9),CNCSV=$P(PSOPAR,U,35)
+ S RTN=$S(LOCTST="LOCAL"&(CS):LCSV,LOCTST="LOCAL"&('CS):LNCSV,$$CKCMOP(IEN)&(CS):CCSV,$$CKCMOP(IEN)&('CS):CNCSV,1:0)
+ Q RTN
+ ;
+CKCMOP(IEN) ; See if CMOP dispenable by Rx drug setting *694
+ ; IEN = Internal entry number for the RX SUSPENSE file
+ N RXIEN,DGIEN,RTN
+ S RXIEN=$$GET1^DIQ(52.5,IEN,.01,"I")
+ S DGIEN=$$GET1^DIQ(52,RXIEN,6,"I")
+ S RTN=+$$GET1^DIQ(50,DGIEN,213,"I")
+ Q RTN
+ ;
+CHKCS(IEN) ; See if Rx drug is contolled substance (CS)  *694
+ ; IEN = Internal entry number for the RX SUSPENSE file
+ N RXIEN,DGIEN,DEA,RTN
+ S RXIEN=$$GET1^DIQ(52.5,IEN,.01,"I")
+ S DGIEN=$$GET1^DIQ(52,RXIEN,6,"I")
+ S DEA=$$GET1^DIQ(50,DGIEN,3)
+ S RTN=$S((DEA>1)&(DEA<6):1,1:0)
+ Q RTN
+ ;
+HLPTXT33 ;HELP TEXT FOR FIELD 3.3 FILE #59
+ N PSOHLP
+ S PSOHLP(1)="This parameter defines the number of days to pull ahead (bundle) for"
+ S PSOHLP(2)="prescriptions suspended for local dispensing of controlled substances."
+ S PSOHLP(3)="Enter the value in days between 0 and 15."
+ D EN^DDIOL(.PSOHLP)
+ Q
+ ;
+HLPTXT3 ;HELP TEXT FOR FIELD 3 FILE #59
+ N PSOHLP
+ S PSOHLP(1)="This parameter defines the number of days to pull ahead (bundle) for"
+ S PSOHLP(2)="prescriptions suspended for local dispensing of non-controlled substances."
+ S PSOHLP(3)="Enter the value in days between 0 and 15."
+ D EN^DDIOL(.PSOHLP)
+ Q
+ ;
+HLPTXT31 ;HELP TEXT FOR FIELD 3.1 FILE #59
+ N PSOHLP
+ S PSOHLP(1)="This parameter defines the number of days to pull ahead (bundle) in"
+ S PSOHLP(2)="addition to the CS DAYS TO TRANSMIT parameter for controlled substance"
+ S PSOHLP(3)="prescriptions suspended for CMOP mail. Enter the value in days between 0"
+ S PSOHLP(4)="and 15."
+ D EN^DDIOL(.PSOHLP)
+ Q
+ ;
+HLPTXT34 ;HELP TEXT FOR FIELD 3.4 FILE #59
+ N PSOHLP
+ S PSOHLP(1)="This parameter defines the number of days to pull ahead (bundle) in"
+ S PSOHLP(2)="addition to the NON-CS DAYS TO TRANSMIT parameter for non-controlled"
+ S PSOHLP(3)="substance prescriptions suspended for CMOP mail. Enter the value in days"
+ S PSOHLP(4)="between 0 and 15."
+ D EN^DDIOL(.PSOHLP)
+ Q
+ ;

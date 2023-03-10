@@ -1,5 +1,5 @@
-DIETED ;SFISC/GFT SCREEN-EDIT AN INPUT TEMPLATE ;15NOV2012
- ;;22.2;VA FileMan;;Jan 05, 2016;Build 42
+DIETED ;SFISC/GFT - SCREEN EDIT AN INPUT TEMPLATE ; Nov 15, 2012
+ ;;22.2;VA FileMan;**18**;Jan 05, 2016;Build 2
  ;;Per VA Directive 6402, this routine should not be modified.
  ;;Submitted to OSEHRA 5 January 2015 by the VISTA Expertise Network.
  ;;Based on Medsphere Systems Corporation's MSC FileMan 1051.
@@ -24,8 +24,8 @@ E N DUOUT,DTOUT,DP,DI,D0,DIETROW,DIETEDER,DIETH,DR,F,L,DB
 DDW D EDIT^DDW("^TMP(""DIETED"",$J)","M",DIETH,"(File "_DRK_")",DIETROW)
  I $D(DUOUT)!$D(DTOUT) K DR G KL
  D K K I,J
+ X ^DD("OS",DISYS,"EON") ;p18
  D PROCESS("^TMP(""DIETED"",$J)")
- X ^DD("OS",DISYS,"EON")
  S DIETROW=$O(DIETEDER(0)) I DIETROW S DIETH="ERROR!  Re-editing "_DIETED K DIETEDER G DDW
  S DDSCHG=1
 KL K ^TMP("DIETED",$J)
@@ -71,8 +71,10 @@ PROCESS(DIETA) ;puts nodes into ^UTILITY("DIETED")
  F LINE=1:1 Q:'$D(@DIETA@(LINE))  K ERR S X=^(LINE) D
  .I X?1"^".E S LINE=999999999 K DR Q
  .D LINE(X)
- .I $D(ERR) W "LINE ",LINE S DIETEDER(LINE)=ERR,LINE=-LINE Q  ;stop if we find one error
- I LINE<0 W " ERROR!"
+ .I $D(ERR) W !!,"LINE ",LINE S DIETEDER(LINE)=ERR,LINE=-LINE Q  ;stop if we find one error
+ I LINE<0 D  ;p18
+ . N %
+ . W " ERROR!",!!,"Press RETURN to continue" R:DTIME %
  Q
  ;
 LINE(X) ;Process one LINE from the screen
@@ -110,7 +112,7 @@ D N % S F=F+1,DIAR(F)=DIAR F %=F+1:.01 Q:'$D(DR(%,DI))
  ;
 DEF S X=DIETSAVE D  S X=$P(DIETSAVE,DIETSL),DV=DV_DIETSL_DP G X:DV[";",DIC ;as in DEF^DIA3
  .S X="DA,DV,DWLC,0)=X" F J=L:-1 Q:I(J)[U  S X="DA("_(L-J+1)_"),"_I(J)_","_X
- .S DICMX="S DWLC=DWLC+1,"_I(J)_X,DA="DR(99,"_DXS_",",X=DP,DQI="X(",DICOMP=L_"T"
+ .S DICMX="S DWLC=DWLC+1,"_I(J)_X,DA="DR(99,"_DXS_",",X=DP,DQI="X(",DICOMP=L_"T?" ;p18
  .D EN^DICOMP,DICS^DIA
 XEC .I $D(X),Y["m" S DIC("S")="S %=$P(^(0),U,2) I %,$D(^DD(+%,.01,0)),$P(^(0),U,2)[""W"",$D(^DD(DI,Y,0)) "_DIC("S") ;as in XEC^DIA3
  .S Y=0 F  S Y=$O(X(Y)) Q:Y=""  S @(DA_"Y)=X(Y)")

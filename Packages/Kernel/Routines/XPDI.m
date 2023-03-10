@@ -1,5 +1,6 @@
-XPDI ;SFISC/RSD - Install Process ;9/16/02  13:29
- ;;8.0;KERNEL;**10,21,39,41,44,58,68,108,145,184,229**;Jul 10, 1995
+XPDI ;SFISC/RSD - Install Process ; Apr 04, 2022@08:45:37
+ ;;8.0;KERNEL;**10,21,39,41,44,58,68,108,145,184,229,768**;Jul 10, 1995;Build 8
+ ;Per VHA Directive 2004-038, this routine should not be modified.
 EN ;install
  N DIR,DIRUT,POP,XPD,XPDA,XPDD,XPDIJ,XPDDIQ,XPDIT,XPDIABT,XPDNM,XPDNOQUE,XPDPKG,XPDREQAB,XPDST,XPDSET,XPDSET1,XPDT,XPDQUIT,XPDQUES,Y,ZTSK,%
  S %="I '$P(^(0),U,9),$D(^XPD(9.7,""ASP"",Y,1,Y)),$D(^XTMP(""XPDI"",Y))",XPDST=$$LOOK^XPDI1(%)
@@ -46,7 +47,8 @@ EN ;install
  ..D INIT^XQOO(.XPDSET1) Q:"^"[XPDSET1
  ..N DIR S DIR(0)="N^0:60:0",DIR("B")=0
  ..S DIR("A")="Delay Install (Minutes)",DIR("?")="Enter the number of minutes to delay the installing of Routines after the Disable of Options"
- ..W ! D ^DIR I $D(DIRUT) S XPDSET1="^"
+ ..;p345-rename AND* to XPD*-Patch was Cancelled keep code for future.
+ ..W ! D:'$G(XPDAUTO) ^DIR S:$G(XPDAUTO) Y=0 I $D(DIRUT) S XPDSET1="^"
  .;Y is set in the call to DIR in previous .DO
  .;save setname into first Build and the Delay in minutes, Y
  .K XPD S XPD(9.7,XPDST_",",7)=(XPDSET1]"")_XPDSET,XPD(9.7,XPDST_",",8)=Y
@@ -79,7 +81,11 @@ DEV S POP=0 S:'$D(^DD(3.5,0)) POP=1
  W:'$D(XPDNOQUE) !,"You can queue the install by enter a 'Q' at the device prompt."
  W !,"Enter a '^' to abort the install.",!
  S XPDA=XPDST,%ZIS=$P("Q",U,'$D(XPDNOQUE))
- D ^%ZIS G:POP ASKABRT
+ ;p345-rename AND* to XPD*-Patch was Cancelled keep code for future.
+ I '$G(XPDAUTO) D ^%ZIS G:POP ASKABRT
+ ;can't queue to a video Subtype device, ask device again
+ I $G(IO("Q")),$E(IOST,1,2)="C-" W !!,"You can't queue to a Video Terminal device!",! G DEV ;p768
+ I $G(XPDAUTO) U XPDDEV
  ;reset expiration date to T+7 on transport global
  S XPDD=$$FMADD^XLFDT(DT,7),^XTMP("XPDI",0)=XPDD_U_DT
  I $D(IO("Q")) D  G ASKABRT:$D(ZTSK)[0 D XPDIJ^XPDI1:$G(XPDIJ),QUIT^XPDI1(XPDST) Q
@@ -100,7 +106,9 @@ DEV S POP=0 S:'$D(^DD(3.5,0)) POP=1
  .K XPD S XPD(9.7,XPDST_",",5)=ZTSK,XPDIT=0
  .F  S XPDIT=$O(XPDT(XPDIT)) Q:'XPDIT  S XPD(9.7,+XPDT(XPDIT)_",",.02)=1 D FILE^DIE("","XPD") K XPD
  ;run install
- U IO D XPDIJ^XPDI1:$G(XPDIJ),QUIT^XPDI1(XPDST) G EN^XPDIJ
+ ;p345-rename AND* to XPD*-Patch was Cancelled keep code for future.
+ I '$G(XPDAUTO) U IO D XPDIJ^XPDI1:$G(XPDIJ),QUIT^XPDI1(XPDST) G EN^XPDIJ
+ I $G(XPDAUTO) U XPDDEV D XPDIJ^XPDI1:$G(XPDIJ),QUIT^XPDI1(XPDST) G EN^XPDIJ
  Q
  ;
  ;XPDA=ien to del, XPDK=1 kill global, XPDALL=1 deleting all

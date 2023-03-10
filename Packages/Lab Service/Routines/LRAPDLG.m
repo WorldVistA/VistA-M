@@ -1,0 +1,21 @@
+LRAPDLG ;SLC/JNM - LAB ANATOMIC PATHOLOGY ROUTINES ;Jun 30, 2022@16:42:50
+ ;;5.2;LAB SERVICE;**553**;Feb 14, 1996;Build 21
+ ;
+ Q
+ ;
+OK4CPRS(IEN) ; Returns True if the LAB test is allowed as an AP Dialog in CPRS
+ ; IEN to the LABORATORY TEST File (#60)
+ N OK,IDX,CIDX,LRSUB
+ S OK=0
+ ;
+ I '$G(IEN) Q OK
+ ;
+ S LRSUB=$P($G(^LAB(60,IEN,0)),U,4)
+ I LRSUB'?1(1"SP",1"CY",1"EM") Q OK
+ ;
+ I $P($G(^LAB(60,IEN,64)),U,1)="" Q OK
+ ;
+ I $D(^LAB(60,IEN)) D
+ . S IDX=0 F  S IDX=$O(^LAB(60,IEN,21661,IDX)) Q:'IDX  D  Q:OK
+ . . S CIDX=+$P($G(^LAB(60,IEN,21661,IDX,0)),U) I CIDX,$P($G(^LAB(69.71,CIDX,0)),U,3)=1 S OK=1
+ Q OK

@@ -1,0 +1,26 @@
+ORAPDLG ;SLC/JNM - LAB ANATOMIC PATHOLOGY ROUTINES ;Feb 18, 2022@14:01:36
+ ;;3.0;ORDER ENTRY/RESULTS REPORTING;**569**;Dec 17, 1997;Build 23
+ ;
+ Q
+ ;
+ ; SETNAME and KILLNAME are used by the "AOI" cross reference of the
+ ;   AP DIALOG CONFIG File (#101.45), ORDERABLE ITEM Field (#.04),
+ ;   to set the NAME Field (#.01) to the same as the NAME Field (#.01)
+ ;   of the ORDERABLE ITEM File (#101.43).
+ ;
+SETNAME(DA,X1,X2) ;
+ N NAME,OLDNAME
+ S OLDNAME=$P(^ORD(101.45,DA,0),U,1)
+ S NAME=$P($G(^ORD(101.43,X2,0)),U)
+ I NAME'="",NAME'=OLDNAME D
+ . S $P(^ORD(101.45,DA,0),U,1)=NAME
+ . I OLDNAME'="" K ^ORD(101.45,"B",OLDNAME,DA)
+ . S ^ORD(101.45,"B",NAME,DA)=""
+ Q
+ ;
+KILLNAME(DA,X1,X2) ;
+ ;N NAME
+ ;S NAME=$P($G(^ORD(101.45,DA,0)),U,1)
+ ;I NAME'="" D
+ ;. K ^ORD(101.45,"B",NAME,DA)
+ Q

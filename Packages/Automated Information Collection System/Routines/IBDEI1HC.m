@@ -1,114 +1,130 @@
-IBDEI1HC ; ; 04-FEB-2020
- ;;3.0;IB ENCOUNTER FORM IMP/EXP;;FEB 04, 2020
+IBDEI1HC ; ; 01-FEB-2022
+ ;;3.0;IB ENCOUNTER FORM IMP/EXP;;FEB 01, 2022
  Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,999) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
- ;;^UTILITY(U,$J,358.3,23662,1,4,0)
- ;;=4^F19.24
- ;;^UTILITY(U,$J,358.3,23662,2)
- ;;=^5003441
- ;;^UTILITY(U,$J,358.3,23663,0)
- ;;=F19.11^^105^1182^3
- ;;^UTILITY(U,$J,358.3,23663,1,0)
+ ;;^UTILITY(U,$J,358.3,23938,1,3,0)
+ ;;=3^Osteopenia,Right Hand
+ ;;^UTILITY(U,$J,358.3,23938,1,4,0)
+ ;;=4^M85.841
+ ;;^UTILITY(U,$J,358.3,23938,2)
+ ;;=^5014483
+ ;;^UTILITY(U,$J,358.3,23939,0)
+ ;;=M85.842^^82^1037^8
+ ;;^UTILITY(U,$J,358.3,23939,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,23663,1,3,0)
- ;;=3^Psychoactive Substance Abuse NEC,In Remission
- ;;^UTILITY(U,$J,358.3,23663,1,4,0)
- ;;=4^F19.11
- ;;^UTILITY(U,$J,358.3,23663,2)
- ;;=^5151306
- ;;^UTILITY(U,$J,358.3,23664,0)
- ;;=F13.10^^105^1183^2
- ;;^UTILITY(U,$J,358.3,23664,1,0)
+ ;;^UTILITY(U,$J,358.3,23939,1,3,0)
+ ;;=3^Osteopenia,Left Hand
+ ;;^UTILITY(U,$J,358.3,23939,1,4,0)
+ ;;=4^M85.842
+ ;;^UTILITY(U,$J,358.3,23939,2)
+ ;;=^5014484
+ ;;^UTILITY(U,$J,358.3,23940,0)
+ ;;=M85.851^^82^1037^20
+ ;;^UTILITY(U,$J,358.3,23940,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,23664,1,3,0)
- ;;=3^Sedative,Hypnotic or Anxiolytic Use Disorder,Mild
- ;;^UTILITY(U,$J,358.3,23664,1,4,0)
- ;;=4^F13.10
- ;;^UTILITY(U,$J,358.3,23664,2)
- ;;=^5003189
- ;;^UTILITY(U,$J,358.3,23665,0)
- ;;=F13.14^^105^1183^8
- ;;^UTILITY(U,$J,358.3,23665,1,0)
+ ;;^UTILITY(U,$J,358.3,23940,1,3,0)
+ ;;=3^Osteopenia,Right Thigh
+ ;;^UTILITY(U,$J,358.3,23940,1,4,0)
+ ;;=4^M85.851
+ ;;^UTILITY(U,$J,358.3,23940,2)
+ ;;=^5014486
+ ;;^UTILITY(U,$J,358.3,23941,0)
+ ;;=M85.852^^82^1037^11
+ ;;^UTILITY(U,$J,358.3,23941,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,23665,1,3,0)
- ;;=3^Sedative,Hypnotic or Anxiolytic-Induced Depressive,Bipolar or Related Disorder w/ Mild use Disorder
- ;;^UTILITY(U,$J,358.3,23665,1,4,0)
- ;;=4^F13.14
- ;;^UTILITY(U,$J,358.3,23665,2)
- ;;=^5003193
- ;;^UTILITY(U,$J,358.3,23666,0)
- ;;=F13.182^^105^1183^9
- ;;^UTILITY(U,$J,358.3,23666,1,0)
+ ;;^UTILITY(U,$J,358.3,23941,1,3,0)
+ ;;=3^Osteopenia,Left Thigh
+ ;;^UTILITY(U,$J,358.3,23941,1,4,0)
+ ;;=4^M85.852
+ ;;^UTILITY(U,$J,358.3,23941,2)
+ ;;=^5014487
+ ;;^UTILITY(U,$J,358.3,23942,0)
+ ;;=M85.861^^82^1037^18
+ ;;^UTILITY(U,$J,358.3,23942,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,23666,1,3,0)
- ;;=3^Sedative,Hypnotic or Anxiolytic-Induced Sleep Disorder w/ Mild Use Disorder
- ;;^UTILITY(U,$J,358.3,23666,1,4,0)
- ;;=4^F13.182
- ;;^UTILITY(U,$J,358.3,23666,2)
- ;;=^5003199
- ;;^UTILITY(U,$J,358.3,23667,0)
- ;;=F13.20^^105^1183^3
- ;;^UTILITY(U,$J,358.3,23667,1,0)
+ ;;^UTILITY(U,$J,358.3,23942,1,3,0)
+ ;;=3^Osteopenia,Right Lower Leg
+ ;;^UTILITY(U,$J,358.3,23942,1,4,0)
+ ;;=4^M85.861
+ ;;^UTILITY(U,$J,358.3,23942,2)
+ ;;=^5014489
+ ;;^UTILITY(U,$J,358.3,23943,0)
+ ;;=M85.862^^82^1037^9
+ ;;^UTILITY(U,$J,358.3,23943,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,23667,1,3,0)
- ;;=3^Sedative,Hypnotic or Anxiolytic Use Disorder,Moderate-Severe
- ;;^UTILITY(U,$J,358.3,23667,1,4,0)
- ;;=4^F13.20
- ;;^UTILITY(U,$J,358.3,23667,2)
- ;;=^5003202
- ;;^UTILITY(U,$J,358.3,23668,0)
- ;;=F13.21^^105^1183^4
- ;;^UTILITY(U,$J,358.3,23668,1,0)
+ ;;^UTILITY(U,$J,358.3,23943,1,3,0)
+ ;;=3^Osteopenia,Left Lower Leg
+ ;;^UTILITY(U,$J,358.3,23943,1,4,0)
+ ;;=4^M85.862
+ ;;^UTILITY(U,$J,358.3,23943,2)
+ ;;=^5014490
+ ;;^UTILITY(U,$J,358.3,23944,0)
+ ;;=M85.871^^82^1037^15
+ ;;^UTILITY(U,$J,358.3,23944,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,23668,1,3,0)
- ;;=3^Sedative,Hypnotic or Anxiolytic Use Disorder,Moderate-Severe In Remission
- ;;^UTILITY(U,$J,358.3,23668,1,4,0)
- ;;=4^F13.21
- ;;^UTILITY(U,$J,358.3,23668,2)
- ;;=^331934
- ;;^UTILITY(U,$J,358.3,23669,0)
- ;;=F13.232^^105^1183^5
- ;;^UTILITY(U,$J,358.3,23669,1,0)
+ ;;^UTILITY(U,$J,358.3,23944,1,3,0)
+ ;;=3^Osteopenia,Right Ankle & Foot
+ ;;^UTILITY(U,$J,358.3,23944,1,4,0)
+ ;;=4^M85.871
+ ;;^UTILITY(U,$J,358.3,23944,2)
+ ;;=^5014492
+ ;;^UTILITY(U,$J,358.3,23945,0)
+ ;;=M85.872^^82^1037^6
+ ;;^UTILITY(U,$J,358.3,23945,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,23669,1,3,0)
- ;;=3^Sedative,Hypnotic or Anxiolytic Withdrawal w/ Perceptual Disturbances
- ;;^UTILITY(U,$J,358.3,23669,1,4,0)
- ;;=4^F13.232
- ;;^UTILITY(U,$J,358.3,23669,2)
- ;;=^5003208
- ;;^UTILITY(U,$J,358.3,23670,0)
- ;;=F13.239^^105^1183^6
- ;;^UTILITY(U,$J,358.3,23670,1,0)
+ ;;^UTILITY(U,$J,358.3,23945,1,3,0)
+ ;;=3^Osteopenia,Left Ankle & Foot
+ ;;^UTILITY(U,$J,358.3,23945,1,4,0)
+ ;;=4^M85.872
+ ;;^UTILITY(U,$J,358.3,23945,2)
+ ;;=^5014493
+ ;;^UTILITY(U,$J,358.3,23946,0)
+ ;;=M85.88^^82^1037^14
+ ;;^UTILITY(U,$J,358.3,23946,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,23670,1,3,0)
- ;;=3^Sedative,Hypnotic or Anxiolytic Withdrawal w/o Perceptual Disturbances
- ;;^UTILITY(U,$J,358.3,23670,1,4,0)
- ;;=4^F13.239
- ;;^UTILITY(U,$J,358.3,23670,2)
- ;;=^5003209
- ;;^UTILITY(U,$J,358.3,23671,0)
- ;;=F13.24^^105^1183^10
- ;;^UTILITY(U,$J,358.3,23671,1,0)
+ ;;^UTILITY(U,$J,358.3,23946,1,3,0)
+ ;;=3^Osteopenia,Other Site
+ ;;^UTILITY(U,$J,358.3,23946,1,4,0)
+ ;;=4^M85.88
+ ;;^UTILITY(U,$J,358.3,23946,2)
+ ;;=^5134059
+ ;;^UTILITY(U,$J,358.3,23947,0)
+ ;;=M85.89^^82^1037^13
+ ;;^UTILITY(U,$J,358.3,23947,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,23671,1,3,0)
- ;;=3^Sedative,Hypnotic or Anxiolytic-Induced Dep,Bip or Related Disorder w/ Mod-Sev Use Disorder
- ;;^UTILITY(U,$J,358.3,23671,1,4,0)
- ;;=4^F13.24
- ;;^UTILITY(U,$J,358.3,23671,2)
- ;;=^5003210
- ;;^UTILITY(U,$J,358.3,23672,0)
- ;;=F13.231^^105^1183^7
- ;;^UTILITY(U,$J,358.3,23672,1,0)
+ ;;^UTILITY(U,$J,358.3,23947,1,3,0)
+ ;;=3^Osteopenia,Multiple Sites
+ ;;^UTILITY(U,$J,358.3,23947,1,4,0)
+ ;;=4^M85.89
+ ;;^UTILITY(U,$J,358.3,23947,2)
+ ;;=^5014495
+ ;;^UTILITY(U,$J,358.3,23948,0)
+ ;;=C79.51^^82^1037^1
+ ;;^UTILITY(U,$J,358.3,23948,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,23672,1,3,0)
- ;;=3^Sedative,Hypnotic or Anxiolytic Withdrawal Delirium
- ;;^UTILITY(U,$J,358.3,23672,1,4,0)
- ;;=4^F13.231
- ;;^UTILITY(U,$J,358.3,23672,2)
- ;;=^5003207
- ;;^UTILITY(U,$J,358.3,23673,0)
- ;;=F13.11^^105^1183^1
- ;;^UTILITY(U,$J,358.3,23673,1,0)
+ ;;^UTILITY(U,$J,358.3,23948,1,3,0)
+ ;;=3^Bone Mets
+ ;;^UTILITY(U,$J,358.3,23948,1,4,0)
+ ;;=4^C79.51
+ ;;^UTILITY(U,$J,358.3,23948,2)
+ ;;=^5001350
+ ;;^UTILITY(U,$J,358.3,23949,0)
+ ;;=M54.50^^82^1037^4
+ ;;^UTILITY(U,$J,358.3,23949,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,23673,1,3,0)
- ;;=3^Sedative,Hypnotic or Anxiolytic Abuse,In Remission
+ ;;^UTILITY(U,$J,358.3,23949,1,3,0)
+ ;;=3^Low Back Pain,Unspec
+ ;;^UTILITY(U,$J,358.3,23949,1,4,0)
+ ;;=4^M54.50
+ ;;^UTILITY(U,$J,358.3,23949,2)
+ ;;=^5161215
+ ;;^UTILITY(U,$J,358.3,23950,0)
+ ;;=F03.90^^82^1038^5
+ ;;^UTILITY(U,$J,358.3,23950,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,23950,1,3,0)
+ ;;=3^Dementia w/o Behavioral Disturbance
+ ;;^UTILITY(U,$J,358.3,23950,1,4,0)
+ ;;=4^F03.90
+ ;;^UTILITY(U,$J,358.3,23950,2)
+ ;;=^5003050

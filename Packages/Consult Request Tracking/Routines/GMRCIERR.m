@@ -1,5 +1,5 @@
 GMRCIERR ;SLC/JFR - process IFC message error alert ;07/08/03 11:16
- ;;3.0;CONSULT/REQUEST TRACKING;**22,28,30,35,58**;DEC 27, 1997;Build 4
+ ;;3.0;CONSULT/REQUEST TRACKING;**22,28,30,35,58,167**;DEC 27, 1997;Build 22
  ;;Per VHA Directive 2004-038, this routine should not be modified.
  Q
 EN(GMRCLOG,GMRCDA,GMRCACT,GMRCRPT) ;start here
@@ -122,19 +122,22 @@ SNDALRT(GMRCLOG,TYPE,XQAMSG) ; send an alert on some errors
  S XQADATA=GMRCLOG_"|"_GMRCDA_"|"_GMRCACT
  D SETUP^XQALERT
  Q
-PTERRMSG(GMRCPID,GMRCSTA,GMRCDOM,GMRCOBR) ;send IFC pt err to mail group
+PTERRMSG(GMRCPID,GMRCSTA,GMRCDOM,GMRCOBR,GMRCCRNR,GMRCMSGI) ;send IFC pt err to mail group ;MKN 167 Added GMRCCRNR,GMRCMSGI parameters
  ;Input:
- ;  GMRCPID = PID seg from IFC message
- ;  GMRCSTA = station # of site where message originated
- ;  GMRCDOM = domain to send the message to, if defined   (optional)
- ;  GMRCOBR = OBR segment from IFC msg  (optional)
+ ; GMRCPID = PID seg from IFC message
+ ; GMRCSTA = station # of site where message originated
+ ; GMRCDOM = domain to send the message to, if defined (optional)
+ ; GMRCOBR = OBR segment from IFC msg (optional)
+ ; GMRCCRNR = Set to 1 if IFC consult from Cerner
+ ; GMRCMSGI = Present if IFC consult from Cerner
  ;
  ;Output:
- ;  mail message containing patient demographics
+ ; mail message containing patient demographics
  ;
  N GMRCGRP,GMRCMSG,GMRCNM,GMRCNAM,GMRCDOB
  N XMERR,GMRCSUB,GMRCSITE,GMRCERR,GMRCICN
  N XMTEXT,XMY,XMDUZ,XMSUB,XMZ,XMMG
+ S GMRCCRNR=$G(GMRCCRNR),GMRCMSGI=$G(GMRCMSGI) ;MKN 167
  S GMRCNAM=$P(GMRCPID,"|",5)
  S GMRCNM("FAMILY")=$P(GMRCNAM,U),GMRCNM("GIVEN")=$P(GMRCNAM,U,2)
  S GMRCNM("MIDDLE")=$P(GMRCNAM,U,3),GMRCNM("SUFFIX")=$P(GMRCNAM,U,4)
@@ -151,11 +154,11 @@ PTERRMSG(GMRCPID,GMRCSTA,GMRCDOM,GMRCOBR) ;send IFC pt err to mail group
  S GMRCMSG(6,0)="Handling Manuals to resolve this error so the request may be processed."
  S GMRCMSG(7,0)=" ",GMRCMSG(8,0)=" "
  S GMRCMSG(9,0)="Patient demographics from "_GMRCSITE("NAME")
- S GMRCMSG(10,0)="   Patient name: "_GMRCNAM
- S GMRCMSG(11,0)="            SSN: "_$P(GMRCPID,"|",19)
- S GMRCMSG(12,0)="  Date of birth: "_GMRCDOB
- S GMRCMSG(13,0)="            Sex: "_$P(GMRCPID,"|",8)
- S GMRCMSG(14,0)="     Remote ICN: "_GMRCICN
+ S GMRCMSG(10,0)=" Patient name: "_GMRCNAM
+ S GMRCMSG(11,0)=" SSN: "_$P(GMRCPID,"|",19)
+ S GMRCMSG(12,0)=" Date of birth: "_GMRCDOB
+ S GMRCMSG(13,0)=" Sex: "_$P(GMRCPID,"|",8)
+ S GMRCMSG(14,0)=" Remote ICN: "_GMRCICN
  S GMRCMSG(15,0)=" "
  ;
  S XMSUB="Incoming IFC patient error, "_GMRCNAM
@@ -168,15 +171,31 @@ PTERRMSG(GMRCPID,GMRCSTA,GMRCDOM,GMRCOBR) ;send IFC pt err to mail group
  .. N DIE,DA,DR
  .. S DIE=3.9,DA=XMZ,DR="1.7////P" D ^DIE K DIE,DA,DR
  . I GMRCITM["VA1235" S GMRCITM="Ordered service: "_$P(GMRCITM,U,2)
- . I GMRCITM["VA1233" S GMRCITM="  Ordered proc.: "_$P(GMRCITM,U,2)
+ . I GMRCITM["VA1233" S GMRCITM=" Ordered proc.: "_$P(GMRCITM,U,2)
  . S GMRCMSG(16,0)=GMRCITM
  S GMRCMSG(17,0)=" "
- S GMRCMSG(18,0)="   The error is: Unknown Patient (201)"
+ S GMRCMSG(18,0)="The error is: Unknown Patient (201)"
  D  ; set XMY to local group or remote group
  . I $D(GMRCDOM) S XMY("G.IFC CLIN ERRORS@"_GMRCDOM)="" Q
  . S XMY("G.IFC PATIENT ERROR MESSAGES")=""
  S XMTEXT="GMRCMSG("
  D EN1^XMD
+ ;MKN 167 If consult was from Cerner, send message to GMRC TIER II CRNR IFC ERRORS without PII (Goes through Outlook)
+ Q:'GMRCCRNR
+ K GMRCMSG,XMY
+ S GMRCMSG(1,0)="An Inter-facility consult has been received from Cerner with"
+ S GMRCMSG(2,0)="message ID "_$S(GMRCMSGI]"":$P(GMRCMSGI,U)_" "_$P(GMRCMSGI,U,2),1:"Not known")
+ S GMRCMSG(3,0)=" "
+ S GMRCMSG(4,0)="The error is: Unknown Patient (201)"
+ S XMSUB="Incoming IFC patient error"
+ S XMDUZ="Consult/Request Tracking Package"
+ D XMZ^XMA2
+ D  ; set XMY to local group or remote group
+ . I $D(GMRCDOM) S XMY("G.IFC CLIN ERRORS@"_GMRCDOM)="" Q
+ . S XMY("G.GMRC TIER II CRNR IFC ERRORS")=""
+ S XMTEXT="GMRCMSG("
+ D EN1^XMD
+ ;MKN 167 End of GMRC TIER II CRNR IFC ERRORS message
  Q
  ;
 PTMPIER(GMRCDFN) ;send IFC local MPI error to MAS mail group
@@ -202,10 +221,10 @@ PTMPIER(GMRCDFN) ;send IFC local MPI error to MAS mail group
  S GMRCMSG(10,0)="            Sex: "_$P(GMRCPT("SX"),U,2)
  S GMRCMSG(11,0)="  "
  S GMRCMSG(12,0)="   The error is: Local or unknown MPI identifiers (202)"
- ;
  S XMY("G.IFC PATIENT ERROR MESSAGES")=""
  S XMSUB="Outgoing IFC patient error, "_GMRCPT("NM")
  S XMDUZ="Consult/Request Tracking Package"
  S XMTEXT="GMRCMSG("
  D ^XMD
+ ;
  Q

@@ -1,16 +1,16 @@
 IBCNEDE5 ;DAOU/DAC - eIV DATA EXTRACTS ;15-OCT-2002
- ;;2.0;INTEGRATED BILLING;**184,271,416,497,549,621**;21-MAR-94;Build 14
+ ;;2.0;INTEGRATED BILLING;**184,271,416,497,549,621,668**;21-MAR-94;Build 28
  ;;Per VA Directive 6402, this routine should not be modified.
  ;
  Q    ; no direct calls allowed
  ; IB*2.0*621 - Removed tag "SIDCHK2"
  ;
 SIDCHK(PIEN,DFN,BSID,SIDARRAY,FRESHDT) ; Checks the flag setting of
- ; 'Identification Requires Subscriber ID'. The function returns a "^"
+ ; '270 REQUIRES SUB ID' (#365.121,4.02). The function returns a "^"
  ; delimited string.  The first value is between 1 and 5 telling the
  ; calling program what action(s) it should perform. The 2nd piece
  ; indicates the Subcriber ID that the calling program should use for
- ; setting the Subscriber IDs in the eIV Transmission Queue file (365.1).
+ ; setting the Subscriber IDs in the eIV Transmission Queue file (#365.1).
  ; The calling program is to address the blank Sub IDs.
  ;
  ; PIEN - Payer's IEN (file 365.12)
@@ -33,7 +33,7 @@ SIDCHK(PIEN,DFN,BSID,SIDARRAY,FRESHDT) ; Checks the flag setting of
  ;         picked up if the insurance policy is active, and if the insurance
  ;         policy hasn't been verified within the Freshness period.
  ;
- N SIDACT,SID,APPIEN,SIDSTR,SIDREQ
+ N SIDACT,SID,APPIEN,SIDREQ    ;dw/IB*668 removed SIDSTR
  N INSSTR,INSSTR1,INSSTR7,SYMBOL,EXP,SUBID,SUBIDS,SIDCNT,INREC,MVER,VFLG,MCRTQ
  ;
  S FRESHDT=$G(FRESHDT),VFLG=0
@@ -44,9 +44,12 @@ SIDCHK(PIEN,DFN,BSID,SIDARRAY,FRESHDT) ; Checks the flag setting of
  . S SIDARRAY($$STRIP(SID,,DFN)_"_")=""
  . Q
  ;
- S APPIEN=$$PYRAPP^IBCNEUT5("IIV",PIEN)
- S SIDSTR=$G(^IBE(365.12,PIEN,1,APPIEN,0))
- S SIDREQ=$P(SIDSTR,U,8)
+ ;IB*668/TAZ - Changed Payer Application from IIV to EIV
+ S APPIEN=$$PYRAPP^IBCNEUT5("EIV",PIEN)
+ ; dw/IB*2.0*668 location of field moved for variable SIDSTR
+ ; S SIDSTR=$G(^IBE(365.12,PIEN,1,APPIEN,0))
+ ; S SIDREQ=$P(SIDSTR,U,8)
+ S SIDREQ=$$GET1^DIQ(365.121,APPIEN_","_PIEN_",",4.02,"I")
  ;
  S INSSTR="",SIDCNT=0,INREC=$O(^DPT(DFN,.312,0)),MCRTQ=0 S:'INREC INREC=1
  ;

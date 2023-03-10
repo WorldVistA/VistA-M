@@ -1,128 +1,134 @@
-IBDEI0IH ; ; 04-FEB-2020
- ;;3.0;IB ENCOUNTER FORM IMP/EXP;;FEB 04, 2020
+IBDEI0IH ; ; 01-FEB-2022
+ ;;3.0;IB ENCOUNTER FORM IMP/EXP;;FEB 01, 2022
  Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,999) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
- ;;^UTILITY(U,$J,358.3,8061,0)
- ;;=D22.112^^65^517^45
- ;;^UTILITY(U,$J,358.3,8061,1,0)
+ ;;^UTILITY(U,$J,358.3,8313,1,4,0)
+ ;;=4^K58.0
+ ;;^UTILITY(U,$J,358.3,8313,2)
+ ;;=^5008739
+ ;;^UTILITY(U,$J,358.3,8314,0)
+ ;;=K59.1^^39^397^37
+ ;;^UTILITY(U,$J,358.3,8314,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,8061,1,3,0)
- ;;=3^Melanocytic Nevi of Right Lower Eyelid
- ;;^UTILITY(U,$J,358.3,8061,1,4,0)
- ;;=4^D22.112
- ;;^UTILITY(U,$J,358.3,8061,2)
- ;;=^5157287
- ;;^UTILITY(U,$J,358.3,8062,0)
- ;;=D22.111^^65^517^47
- ;;^UTILITY(U,$J,358.3,8062,1,0)
+ ;;^UTILITY(U,$J,358.3,8314,1,3,0)
+ ;;=3^Diarrhea,Functional
+ ;;^UTILITY(U,$J,358.3,8314,1,4,0)
+ ;;=4^K59.1
+ ;;^UTILITY(U,$J,358.3,8314,2)
+ ;;=^270281
+ ;;^UTILITY(U,$J,358.3,8315,0)
+ ;;=K61.4^^39^397^4
+ ;;^UTILITY(U,$J,358.3,8315,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,8062,1,3,0)
- ;;=3^Melanocytic Nevi of Right Upper Eyelid
- ;;^UTILITY(U,$J,358.3,8062,1,4,0)
- ;;=4^D22.111
- ;;^UTILITY(U,$J,358.3,8062,2)
- ;;=^5157286
- ;;^UTILITY(U,$J,358.3,8063,0)
- ;;=D03.122^^65^517^64
- ;;^UTILITY(U,$J,358.3,8063,1,0)
+ ;;^UTILITY(U,$J,358.3,8315,1,3,0)
+ ;;=3^Abscess,Intrasphincteric
+ ;;^UTILITY(U,$J,358.3,8315,1,4,0)
+ ;;=4^K61.4
+ ;;^UTILITY(U,$J,358.3,8315,2)
+ ;;=^5008752
+ ;;^UTILITY(U,$J,358.3,8316,0)
+ ;;=K61.0^^39^397^2
+ ;;^UTILITY(U,$J,358.3,8316,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,8063,1,3,0)
- ;;=3^Melanoma in Situ of Left Lower Eyelid
- ;;^UTILITY(U,$J,358.3,8063,1,4,0)
- ;;=4^D03.122
- ;;^UTILITY(U,$J,358.3,8063,2)
- ;;=^5157281
- ;;^UTILITY(U,$J,358.3,8064,0)
- ;;=D03.121^^65^517^65
- ;;^UTILITY(U,$J,358.3,8064,1,0)
+ ;;^UTILITY(U,$J,358.3,8316,1,3,0)
+ ;;=3^Abscess,Anal
+ ;;^UTILITY(U,$J,358.3,8316,1,4,0)
+ ;;=4^K61.0
+ ;;^UTILITY(U,$J,358.3,8316,2)
+ ;;=^5008749
+ ;;^UTILITY(U,$J,358.3,8317,0)
+ ;;=K61.1^^39^397^6
+ ;;^UTILITY(U,$J,358.3,8317,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,8064,1,3,0)
- ;;=3^Melanoma in Situ of Left Upper Eyelid
- ;;^UTILITY(U,$J,358.3,8064,1,4,0)
- ;;=4^D03.121
- ;;^UTILITY(U,$J,358.3,8064,2)
- ;;=^5157280
- ;;^UTILITY(U,$J,358.3,8065,0)
- ;;=D03.112^^65^517^68
- ;;^UTILITY(U,$J,358.3,8065,1,0)
+ ;;^UTILITY(U,$J,358.3,8317,1,3,0)
+ ;;=3^Abscess,Rectal
+ ;;^UTILITY(U,$J,358.3,8317,1,4,0)
+ ;;=4^K61.1
+ ;;^UTILITY(U,$J,358.3,8317,2)
+ ;;=^259588
+ ;;^UTILITY(U,$J,358.3,8318,0)
+ ;;=K61.2^^39^397^3
+ ;;^UTILITY(U,$J,358.3,8318,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,8065,1,3,0)
- ;;=3^Melanoma in Situ of Right Lower Eyelid
- ;;^UTILITY(U,$J,358.3,8065,1,4,0)
- ;;=4^D03.112
- ;;^UTILITY(U,$J,358.3,8065,2)
- ;;=^5157279
- ;;^UTILITY(U,$J,358.3,8066,0)
- ;;=D03.111^^65^517^69
- ;;^UTILITY(U,$J,358.3,8066,1,0)
+ ;;^UTILITY(U,$J,358.3,8318,1,3,0)
+ ;;=3^Abscess,Anorectal
+ ;;^UTILITY(U,$J,358.3,8318,1,4,0)
+ ;;=4^K61.2
+ ;;^UTILITY(U,$J,358.3,8318,2)
+ ;;=^5008750
+ ;;^UTILITY(U,$J,358.3,8319,0)
+ ;;=K50.014^^39^397^24
+ ;;^UTILITY(U,$J,358.3,8319,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,8066,1,3,0)
- ;;=3^Melanoma in Situ of Right Upper Eyelid
- ;;^UTILITY(U,$J,358.3,8066,1,4,0)
- ;;=4^D03.111
- ;;^UTILITY(U,$J,358.3,8066,2)
- ;;=^5157278
- ;;^UTILITY(U,$J,358.3,8067,0)
- ;;=C4A.122^^65^517^77
- ;;^UTILITY(U,$J,358.3,8067,1,0)
+ ;;^UTILITY(U,$J,358.3,8319,1,3,0)
+ ;;=3^Crohn's Disease of Small Intestine w/ Abscess
+ ;;^UTILITY(U,$J,358.3,8319,1,4,0)
+ ;;=4^K50.014
+ ;;^UTILITY(U,$J,358.3,8319,2)
+ ;;=^5008628
+ ;;^UTILITY(U,$J,358.3,8320,0)
+ ;;=K50.114^^39^397^23
+ ;;^UTILITY(U,$J,358.3,8320,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,8067,1,3,0)
- ;;=3^Merkle Cell CA,Left Lower Eyelid,Incl Canthus
- ;;^UTILITY(U,$J,358.3,8067,1,4,0)
- ;;=4^C4A.122
- ;;^UTILITY(U,$J,358.3,8067,2)
- ;;=^5157277
- ;;^UTILITY(U,$J,358.3,8068,0)
- ;;=C4A.121^^65^517^71
- ;;^UTILITY(U,$J,358.3,8068,1,0)
+ ;;^UTILITY(U,$J,358.3,8320,1,3,0)
+ ;;=3^Crohn's Disease of Large Intestine w/ Abscess
+ ;;^UTILITY(U,$J,358.3,8320,1,4,0)
+ ;;=4^K50.114
+ ;;^UTILITY(U,$J,358.3,8320,2)
+ ;;=^5008635
+ ;;^UTILITY(U,$J,358.3,8321,0)
+ ;;=D12.6^^39^397^7
+ ;;^UTILITY(U,$J,358.3,8321,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,8068,1,3,0)
- ;;=3^Merkel Cell CA,Left Upper Eyelid,Incl Canthus
- ;;^UTILITY(U,$J,358.3,8068,1,4,0)
- ;;=4^C4A.121
- ;;^UTILITY(U,$J,358.3,8068,2)
- ;;=^5157276
- ;;^UTILITY(U,$J,358.3,8069,0)
- ;;=C4A.111^^65^517^73
- ;;^UTILITY(U,$J,358.3,8069,1,0)
+ ;;^UTILITY(U,$J,358.3,8321,1,3,0)
+ ;;=3^Adenomatous Polyp of Colon
+ ;;^UTILITY(U,$J,358.3,8321,1,4,0)
+ ;;=4^D12.6
+ ;;^UTILITY(U,$J,358.3,8321,2)
+ ;;=^5001969
+ ;;^UTILITY(U,$J,358.3,8322,0)
+ ;;=K64.9^^39^397^65
+ ;;^UTILITY(U,$J,358.3,8322,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,8069,1,3,0)
- ;;=3^Merkel Cell CA,Right Upper Eyelid,Incl Canthus
- ;;^UTILITY(U,$J,358.3,8069,1,4,0)
- ;;=4^C4A.111
- ;;^UTILITY(U,$J,358.3,8069,2)
- ;;=^5157274
- ;;^UTILITY(U,$J,358.3,8070,0)
- ;;=C4A.112^^65^517^72
- ;;^UTILITY(U,$J,358.3,8070,1,0)
+ ;;^UTILITY(U,$J,358.3,8322,1,3,0)
+ ;;=3^Hemorrhoids w/o Complication
+ ;;^UTILITY(U,$J,358.3,8322,1,4,0)
+ ;;=4^K64.9
+ ;;^UTILITY(U,$J,358.3,8322,2)
+ ;;=^5008775
+ ;;^UTILITY(U,$J,358.3,8323,0)
+ ;;=K50.814^^39^397^32
+ ;;^UTILITY(U,$J,358.3,8323,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,8070,1,3,0)
- ;;=3^Merkel Cell CA,Right Lower Eyelid,Incl Canthus
- ;;^UTILITY(U,$J,358.3,8070,1,4,0)
- ;;=4^C4A.112
- ;;^UTILITY(U,$J,358.3,8070,2)
- ;;=^5157275
- ;;^UTILITY(U,$J,358.3,8071,0)
- ;;=I78.1^^65^518^9
- ;;^UTILITY(U,$J,358.3,8071,1,0)
+ ;;^UTILITY(U,$J,358.3,8323,1,3,0)
+ ;;=3^Crohn's Disease,Small/Large Intestine w/ Abscess
+ ;;^UTILITY(U,$J,358.3,8323,1,4,0)
+ ;;=4^K50.814
+ ;;^UTILITY(U,$J,358.3,8323,2)
+ ;;=^5008642
+ ;;^UTILITY(U,$J,358.3,8324,0)
+ ;;=D12.9^^39^397^9
+ ;;^UTILITY(U,$J,358.3,8324,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,8071,1,3,0)
- ;;=3^Nevus,Non-Neoplastic
- ;;^UTILITY(U,$J,358.3,8071,1,4,0)
- ;;=4^I78.1
- ;;^UTILITY(U,$J,358.3,8071,2)
- ;;=^269807
- ;;^UTILITY(U,$J,358.3,8072,0)
- ;;=L60.3^^65^518^2
- ;;^UTILITY(U,$J,358.3,8072,1,0)
+ ;;^UTILITY(U,$J,358.3,8324,1,3,0)
+ ;;=3^Benign Neop of Anus
+ ;;^UTILITY(U,$J,358.3,8324,1,4,0)
+ ;;=4^D12.9
+ ;;^UTILITY(U,$J,358.3,8324,2)
+ ;;=^5001972
+ ;;^UTILITY(U,$J,358.3,8325,0)
+ ;;=D12.8^^39^397^15
+ ;;^UTILITY(U,$J,358.3,8325,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,8072,1,3,0)
- ;;=3^Nail Dystrophy
- ;;^UTILITY(U,$J,358.3,8072,1,4,0)
- ;;=4^L60.3
- ;;^UTILITY(U,$J,358.3,8072,2)
- ;;=^5009236
- ;;^UTILITY(U,$J,358.3,8073,0)
- ;;=L92.1^^65^518^4
- ;;^UTILITY(U,$J,358.3,8073,1,0)
+ ;;^UTILITY(U,$J,358.3,8325,1,3,0)
+ ;;=3^Benign Neop of Rectum
+ ;;^UTILITY(U,$J,358.3,8325,1,4,0)
+ ;;=4^D12.8
+ ;;^UTILITY(U,$J,358.3,8325,2)
+ ;;=^5001971
+ ;;^UTILITY(U,$J,358.3,8326,0)
+ ;;=K92.2^^39^397^57
+ ;;^UTILITY(U,$J,358.3,8326,1,0)
  ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,8326,1,3,0)
+ ;;=3^GI Bleed,Unspec

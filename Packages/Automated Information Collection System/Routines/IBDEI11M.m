@@ -1,126 +1,126 @@
-IBDEI11M ; ; 04-FEB-2020
- ;;3.0;IB ENCOUNTER FORM IMP/EXP;;FEB 04, 2020
+IBDEI11M ; ; 01-FEB-2022
+ ;;3.0;IB ENCOUNTER FORM IMP/EXP;;FEB 01, 2022
  Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,999) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
- ;;^UTILITY(U,$J,358.3,16766,1,3,0)
- ;;=3^Tracheostomy Status
- ;;^UTILITY(U,$J,358.3,16766,1,4,0)
- ;;=4^Z93.0
- ;;^UTILITY(U,$J,358.3,16766,2)
- ;;=^5063642
- ;;^UTILITY(U,$J,358.3,16767,0)
- ;;=Z99.3^^88^880^156
- ;;^UTILITY(U,$J,358.3,16767,1,0)
+ ;;^UTILITY(U,$J,358.3,16953,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,16767,1,3,0)
- ;;=3^Wheelchair Dependence
- ;;^UTILITY(U,$J,358.3,16767,1,4,0)
- ;;=4^Z99.3
- ;;^UTILITY(U,$J,358.3,16767,2)
- ;;=^5063759
- ;;^UTILITY(U,$J,358.3,16768,0)
- ;;=Z83.42^^88^880^21
- ;;^UTILITY(U,$J,358.3,16768,1,0)
+ ;;^UTILITY(U,$J,358.3,16953,1,3,0)
+ ;;=3^Peliosis Hepatis
+ ;;^UTILITY(U,$J,358.3,16953,1,4,0)
+ ;;=4^K76.4
+ ;;^UTILITY(U,$J,358.3,16953,2)
+ ;;=^91041
+ ;;^UTILITY(U,$J,358.3,16954,0)
+ ;;=K71.50^^61^778^27
+ ;;^UTILITY(U,$J,358.3,16954,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,16768,1,3,0)
- ;;=3^Family Hx of Familial Hypercholesterolemia
- ;;^UTILITY(U,$J,358.3,16768,1,4,0)
- ;;=4^Z83.42
- ;;^UTILITY(U,$J,358.3,16768,2)
- ;;=^8132985
- ;;^UTILITY(U,$J,358.3,16769,0)
- ;;=Z98.890^^88^880^114
- ;;^UTILITY(U,$J,358.3,16769,1,0)
+ ;;^UTILITY(U,$J,358.3,16954,1,3,0)
+ ;;=3^Toxic Liver Disease w/ Chronic Active Hepatitis w/o Ascites
+ ;;^UTILITY(U,$J,358.3,16954,1,4,0)
+ ;;=4^K71.50
+ ;;^UTILITY(U,$J,358.3,16954,2)
+ ;;=^5008799
+ ;;^UTILITY(U,$J,358.3,16955,0)
+ ;;=K71.51^^61^778^28
+ ;;^UTILITY(U,$J,358.3,16955,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,16769,1,3,0)
- ;;=3^Postprocedural States/HX of Surgery NEC
- ;;^UTILITY(U,$J,358.3,16769,1,4,0)
- ;;=4^Z98.890
- ;;^UTILITY(U,$J,358.3,16769,2)
- ;;=^5063754
- ;;^UTILITY(U,$J,358.3,16770,0)
- ;;=Z95.1^^88^880^115
- ;;^UTILITY(U,$J,358.3,16770,1,0)
+ ;;^UTILITY(U,$J,358.3,16955,1,3,0)
+ ;;=3^Toxic Liver Disease w/ Chronic Active Hepatitis w/ Ascites
+ ;;^UTILITY(U,$J,358.3,16955,1,4,0)
+ ;;=4^K71.51
+ ;;^UTILITY(U,$J,358.3,16955,2)
+ ;;=^5008800
+ ;;^UTILITY(U,$J,358.3,16956,0)
+ ;;=K71.7^^61^778^31
+ ;;^UTILITY(U,$J,358.3,16956,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,16770,1,3,0)
- ;;=3^Presence of Aortocoronary Bypass
- ;;^UTILITY(U,$J,358.3,16770,1,4,0)
- ;;=4^Z95.1
- ;;^UTILITY(U,$J,358.3,16770,2)
- ;;=^5063669
- ;;^UTILITY(U,$J,358.3,16771,0)
- ;;=Z98.2^^88^880^127
- ;;^UTILITY(U,$J,358.3,16771,1,0)
+ ;;^UTILITY(U,$J,358.3,16956,1,3,0)
+ ;;=3^Toxic Liver Disease w/ Fibrosis & Cirrhosis of Liver
+ ;;^UTILITY(U,$J,358.3,16956,1,4,0)
+ ;;=4^K71.7
+ ;;^UTILITY(U,$J,358.3,16956,2)
+ ;;=^5008802
+ ;;^UTILITY(U,$J,358.3,16957,0)
+ ;;=K71.8^^61^778^35
+ ;;^UTILITY(U,$J,358.3,16957,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,16771,1,3,0)
- ;;=3^Presence of Cerebrospinal Fluid Drainage Device
- ;;^UTILITY(U,$J,358.3,16771,1,4,0)
- ;;=4^Z98.2
- ;;^UTILITY(U,$J,358.3,16771,2)
- ;;=^5063735
- ;;^UTILITY(U,$J,358.3,16772,0)
- ;;=Z97.5^^88^880^128
- ;;^UTILITY(U,$J,358.3,16772,1,0)
+ ;;^UTILITY(U,$J,358.3,16957,1,3,0)
+ ;;=3^Toxic Liver Disease w/ Oth Disorders of Liver
+ ;;^UTILITY(U,$J,358.3,16957,1,4,0)
+ ;;=4^K71.8
+ ;;^UTILITY(U,$J,358.3,16957,2)
+ ;;=^5008803
+ ;;^UTILITY(U,$J,358.3,16958,0)
+ ;;=K71.9^^61^778^36
+ ;;^UTILITY(U,$J,358.3,16958,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,16772,1,3,0)
- ;;=3^Presence of Contraceptive (Intrauterine) Device
- ;;^UTILITY(U,$J,358.3,16772,1,4,0)
- ;;=4^Z97.5
- ;;^UTILITY(U,$J,358.3,16772,2)
- ;;=^5063731
- ;;^UTILITY(U,$J,358.3,16773,0)
- ;;=Z95.5^^88^880^129
- ;;^UTILITY(U,$J,358.3,16773,1,0)
+ ;;^UTILITY(U,$J,358.3,16958,1,3,0)
+ ;;=3^Toxic Liver Disease,Unspec
+ ;;^UTILITY(U,$J,358.3,16958,1,4,0)
+ ;;=4^K71.9
+ ;;^UTILITY(U,$J,358.3,16958,2)
+ ;;=^5008804
+ ;;^UTILITY(U,$J,358.3,16959,0)
+ ;;=K75.2^^61^778^22
+ ;;^UTILITY(U,$J,358.3,16959,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,16773,1,3,0)
- ;;=3^Presence of Coronary Angioplasty Implant/Graft
- ;;^UTILITY(U,$J,358.3,16773,1,4,0)
- ;;=4^Z95.5
- ;;^UTILITY(U,$J,358.3,16773,2)
- ;;=^5063673
- ;;^UTILITY(U,$J,358.3,16774,0)
- ;;=Z97.2^^88^880^130
- ;;^UTILITY(U,$J,358.3,16774,1,0)
+ ;;^UTILITY(U,$J,358.3,16959,1,3,0)
+ ;;=3^Nonspecific Reactive Hepatitis
+ ;;^UTILITY(U,$J,358.3,16959,1,4,0)
+ ;;=4^K75.2
+ ;;^UTILITY(U,$J,358.3,16959,2)
+ ;;=^5008826
+ ;;^UTILITY(U,$J,358.3,16960,0)
+ ;;=K75.3^^61^778^13
+ ;;^UTILITY(U,$J,358.3,16960,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,16774,1,3,0)
- ;;=3^Presence of Dental Prosthetic Device
- ;;^UTILITY(U,$J,358.3,16774,1,4,0)
- ;;=4^Z97.2
- ;;^UTILITY(U,$J,358.3,16774,2)
- ;;=^5063728
- ;;^UTILITY(U,$J,358.3,16775,0)
- ;;=Z97.4^^88^880^131
- ;;^UTILITY(U,$J,358.3,16775,1,0)
+ ;;^UTILITY(U,$J,358.3,16960,1,3,0)
+ ;;=3^Granulomatous Hepatitis NEC
+ ;;^UTILITY(U,$J,358.3,16960,1,4,0)
+ ;;=4^K75.3
+ ;;^UTILITY(U,$J,358.3,16960,2)
+ ;;=^5008827
+ ;;^UTILITY(U,$J,358.3,16961,0)
+ ;;=K76.6^^61^778^24
+ ;;^UTILITY(U,$J,358.3,16961,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,16775,1,3,0)
- ;;=3^Presence of External Hearing Aid
- ;;^UTILITY(U,$J,358.3,16775,1,4,0)
- ;;=4^Z97.4
- ;;^UTILITY(U,$J,358.3,16775,2)
- ;;=^5063730
- ;;^UTILITY(U,$J,358.3,16776,0)
- ;;=Z96.622^^88^880^117
- ;;^UTILITY(U,$J,358.3,16776,1,0)
+ ;;^UTILITY(U,$J,358.3,16961,1,3,0)
+ ;;=3^Portal Hypertension
+ ;;^UTILITY(U,$J,358.3,16961,1,4,0)
+ ;;=4^K76.6
+ ;;^UTILITY(U,$J,358.3,16961,2)
+ ;;=^5008834
+ ;;^UTILITY(U,$J,358.3,16962,0)
+ ;;=K74.00^^61^778^16
+ ;;^UTILITY(U,$J,358.3,16962,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,16776,1,3,0)
- ;;=3^Presence of Artificial Elbow Joint,Left
- ;;^UTILITY(U,$J,358.3,16776,1,4,0)
- ;;=4^Z96.622
- ;;^UTILITY(U,$J,358.3,16776,2)
- ;;=^5063696
- ;;^UTILITY(U,$J,358.3,16777,0)
- ;;=Z96.632^^88^880^122
- ;;^UTILITY(U,$J,358.3,16777,1,0)
+ ;;^UTILITY(U,$J,358.3,16962,1,3,0)
+ ;;=3^Hepatic Fibrosis,Unspec
+ ;;^UTILITY(U,$J,358.3,16962,1,4,0)
+ ;;=4^K74.00
+ ;;^UTILITY(U,$J,358.3,16962,2)
+ ;;=^5159218
+ ;;^UTILITY(U,$J,358.3,16963,0)
+ ;;=K74.01^^61^778^15
+ ;;^UTILITY(U,$J,358.3,16963,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,16777,1,3,0)
- ;;=3^Presence of Artificial Wrist Joint,Left
- ;;^UTILITY(U,$J,358.3,16777,1,4,0)
- ;;=4^Z96.632
- ;;^UTILITY(U,$J,358.3,16777,2)
- ;;=^5063699
- ;;^UTILITY(U,$J,358.3,16778,0)
- ;;=Z96.621^^88^880^118
- ;;^UTILITY(U,$J,358.3,16778,1,0)
+ ;;^UTILITY(U,$J,358.3,16963,1,3,0)
+ ;;=3^Hepatic Fibrosis,Early Fibrosis
+ ;;^UTILITY(U,$J,358.3,16963,1,4,0)
+ ;;=4^K74.01
+ ;;^UTILITY(U,$J,358.3,16963,2)
+ ;;=^5159219
+ ;;^UTILITY(U,$J,358.3,16964,0)
+ ;;=K74.02^^61^778^14
+ ;;^UTILITY(U,$J,358.3,16964,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,16778,1,3,0)
- ;;=3^Presence of Artificial Elbow Joint,Right
+ ;;^UTILITY(U,$J,358.3,16964,1,3,0)
+ ;;=3^Hepatic Fibrosis,Advanced Fibrosis
+ ;;^UTILITY(U,$J,358.3,16964,1,4,0)
+ ;;=4^K74.02
+ ;;^UTILITY(U,$J,358.3,16964,2)
+ ;;=^5159220
+ ;;^UTILITY(U,$J,358.3,16965,0)
+ ;;=F20.3^^61^779^31
+ ;;^UTILITY(U,$J,358.3,16965,1,0)
+ ;;=^358.31IA^4^2

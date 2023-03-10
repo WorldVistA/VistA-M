@@ -1,124 +1,126 @@
-IBDEI0VI ; ; 04-FEB-2020
- ;;3.0;IB ENCOUNTER FORM IMP/EXP;;FEB 04, 2020
+IBDEI0VI ; ; 01-FEB-2022
+ ;;3.0;IB ENCOUNTER FORM IMP/EXP;;FEB 01, 2022
  Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,999) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
- ;;^UTILITY(U,$J,358.3,14028,1,0)
+ ;;^UTILITY(U,$J,358.3,14207,2)
+ ;;=^5010772
+ ;;^UTILITY(U,$J,358.3,14208,0)
+ ;;=M16.11^^55^673^35
+ ;;^UTILITY(U,$J,358.3,14208,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,14028,1,3,0)
- ;;=3^Edema,Unspec
- ;;^UTILITY(U,$J,358.3,14028,1,4,0)
- ;;=4^R60.9
- ;;^UTILITY(U,$J,358.3,14028,2)
- ;;=^5019534
- ;;^UTILITY(U,$J,358.3,14029,0)
- ;;=M72.9^^83^821^33
- ;;^UTILITY(U,$J,358.3,14029,1,0)
+ ;;^UTILITY(U,$J,358.3,14208,1,3,0)
+ ;;=3^Osteoarthritis, primary, right hip unilateral
+ ;;^UTILITY(U,$J,358.3,14208,1,4,0)
+ ;;=4^M16.11
+ ;;^UTILITY(U,$J,358.3,14208,2)
+ ;;=^5010771
+ ;;^UTILITY(U,$J,358.3,14209,0)
+ ;;=M16.0^^55^673^33
+ ;;^UTILITY(U,$J,358.3,14209,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,14029,1,3,0)
- ;;=3^Fibroblastic Disorder,Unspec
- ;;^UTILITY(U,$J,358.3,14029,1,4,0)
- ;;=4^M72.9
- ;;^UTILITY(U,$J,358.3,14029,2)
- ;;=^5013237
- ;;^UTILITY(U,$J,358.3,14030,0)
- ;;=M79.7^^83^821^34
- ;;^UTILITY(U,$J,358.3,14030,1,0)
+ ;;^UTILITY(U,$J,358.3,14209,1,3,0)
+ ;;=3^Osteoarthritis, primary bilateral hip
+ ;;^UTILITY(U,$J,358.3,14209,1,4,0)
+ ;;=4^M16.0
+ ;;^UTILITY(U,$J,358.3,14209,2)
+ ;;=^5010769
+ ;;^UTILITY(U,$J,358.3,14210,0)
+ ;;=M25.552^^55^673^36
+ ;;^UTILITY(U,$J,358.3,14210,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,14030,1,3,0)
- ;;=3^Fibromyalgia
- ;;^UTILITY(U,$J,358.3,14030,1,4,0)
- ;;=4^M79.7
- ;;^UTILITY(U,$J,358.3,14030,2)
- ;;=^46261
- ;;^UTILITY(U,$J,358.3,14031,0)
- ;;=M84.50XA^^83^821^36
- ;;^UTILITY(U,$J,358.3,14031,1,0)
+ ;;^UTILITY(U,$J,358.3,14210,1,3,0)
+ ;;=3^Pain in left hip
+ ;;^UTILITY(U,$J,358.3,14210,1,4,0)
+ ;;=4^M25.552
+ ;;^UTILITY(U,$J,358.3,14210,2)
+ ;;=^5011612
+ ;;^UTILITY(U,$J,358.3,14211,0)
+ ;;=M25.551^^55^673^37
+ ;;^UTILITY(U,$J,358.3,14211,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,14031,1,3,0)
- ;;=3^Fx in Neoplastic Disease,Unspec Site,Init Encntr
- ;;^UTILITY(U,$J,358.3,14031,1,4,0)
- ;;=4^M84.50XA
- ;;^UTILITY(U,$J,358.3,14031,2)
- ;;=^5014022
- ;;^UTILITY(U,$J,358.3,14032,0)
- ;;=M84.50XD^^83^821^39
- ;;^UTILITY(U,$J,358.3,14032,1,0)
+ ;;^UTILITY(U,$J,358.3,14211,1,3,0)
+ ;;=3^Pain in right hip
+ ;;^UTILITY(U,$J,358.3,14211,1,4,0)
+ ;;=4^M25.551
+ ;;^UTILITY(U,$J,358.3,14211,2)
+ ;;=^5011611
+ ;;^UTILITY(U,$J,358.3,14212,0)
+ ;;=S73.015A^^55^673^38
+ ;;^UTILITY(U,$J,358.3,14212,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,14032,1,3,0)
- ;;=3^Fx in Neoplastic Disease,Unspec Site,Routine Healing
- ;;^UTILITY(U,$J,358.3,14032,1,4,0)
- ;;=4^M84.50XD
- ;;^UTILITY(U,$J,358.3,14032,2)
- ;;=^5014023
- ;;^UTILITY(U,$J,358.3,14033,0)
- ;;=M84.50XS^^83^821^40
- ;;^UTILITY(U,$J,358.3,14033,1,0)
+ ;;^UTILITY(U,$J,358.3,14212,1,3,0)
+ ;;=3^Posterior dislocation of left hip, initial encounter
+ ;;^UTILITY(U,$J,358.3,14212,1,4,0)
+ ;;=4^S73.015A
+ ;;^UTILITY(U,$J,358.3,14212,2)
+ ;;=^5039249
+ ;;^UTILITY(U,$J,358.3,14213,0)
+ ;;=S73.014A^^55^673^40
+ ;;^UTILITY(U,$J,358.3,14213,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,14033,1,3,0)
- ;;=3^Fx in Neoplastic Disease,Unspec Site,Sequela
- ;;^UTILITY(U,$J,358.3,14033,1,4,0)
- ;;=4^M84.50XS
- ;;^UTILITY(U,$J,358.3,14033,2)
- ;;=^5014027
- ;;^UTILITY(U,$J,358.3,14034,0)
- ;;=M84.50XG^^83^821^35
- ;;^UTILITY(U,$J,358.3,14034,1,0)
+ ;;^UTILITY(U,$J,358.3,14213,1,3,0)
+ ;;=3^Posterior dislocation of right hip, initial encounter
+ ;;^UTILITY(U,$J,358.3,14213,1,4,0)
+ ;;=4^S73.014A
+ ;;^UTILITY(U,$J,358.3,14213,2)
+ ;;=^5039246
+ ;;^UTILITY(U,$J,358.3,14214,0)
+ ;;=M00.052^^55^673^42
+ ;;^UTILITY(U,$J,358.3,14214,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,14034,1,3,0)
- ;;=3^Fx in Neoplastic Disease,Unspec Site,Delayed Healing
- ;;^UTILITY(U,$J,358.3,14034,1,4,0)
- ;;=4^M84.50XG
- ;;^UTILITY(U,$J,358.3,14034,2)
- ;;=^5014024
- ;;^UTILITY(U,$J,358.3,14035,0)
- ;;=M84.50XK^^83^821^38
- ;;^UTILITY(U,$J,358.3,14035,1,0)
+ ;;^UTILITY(U,$J,358.3,14214,1,3,0)
+ ;;=3^Staphylococcal arthritis, left hip
+ ;;^UTILITY(U,$J,358.3,14214,1,4,0)
+ ;;=4^M00.052
+ ;;^UTILITY(U,$J,358.3,14214,2)
+ ;;=^5009611
+ ;;^UTILITY(U,$J,358.3,14215,0)
+ ;;=M00.051^^55^673^43
+ ;;^UTILITY(U,$J,358.3,14215,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,14035,1,3,0)
- ;;=3^Fx in Neoplastic Disease,Unspec Site,Nonunion
- ;;^UTILITY(U,$J,358.3,14035,1,4,0)
- ;;=4^M84.50XK
- ;;^UTILITY(U,$J,358.3,14035,2)
- ;;=^5014025
- ;;^UTILITY(U,$J,358.3,14036,0)
- ;;=M84.50XP^^83^821^37
- ;;^UTILITY(U,$J,358.3,14036,1,0)
+ ;;^UTILITY(U,$J,358.3,14215,1,3,0)
+ ;;=3^Staphylococcal arthritis, right hip
+ ;;^UTILITY(U,$J,358.3,14215,1,4,0)
+ ;;=4^M00.051
+ ;;^UTILITY(U,$J,358.3,14215,2)
+ ;;=^5009610
+ ;;^UTILITY(U,$J,358.3,14216,0)
+ ;;=M12.552^^55^673^44
+ ;;^UTILITY(U,$J,358.3,14216,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,14036,1,3,0)
- ;;=3^Fx in Neoplastic Disease,Unspec Site,Malunion
- ;;^UTILITY(U,$J,358.3,14036,1,4,0)
- ;;=4^M84.50XP
- ;;^UTILITY(U,$J,358.3,14036,2)
- ;;=^5014026
- ;;^UTILITY(U,$J,358.3,14037,0)
- ;;=M84.60XA^^83^821^42
- ;;^UTILITY(U,$J,358.3,14037,1,0)
+ ;;^UTILITY(U,$J,358.3,14216,1,3,0)
+ ;;=3^Traumatic arthropathy, left hip
+ ;;^UTILITY(U,$J,358.3,14216,1,4,0)
+ ;;=4^M12.552
+ ;;^UTILITY(U,$J,358.3,14216,2)
+ ;;=^5010632
+ ;;^UTILITY(U,$J,358.3,14217,0)
+ ;;=M12.551^^55^673^45
+ ;;^UTILITY(U,$J,358.3,14217,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,14037,1,3,0)
- ;;=3^Fx in Oth Disease,Unspec Site,Init Encntr
- ;;^UTILITY(U,$J,358.3,14037,1,4,0)
- ;;=4^M84.60XA
- ;;^UTILITY(U,$J,358.3,14037,2)
- ;;=^5014214
- ;;^UTILITY(U,$J,358.3,14038,0)
- ;;=M84.60XD^^83^821^45
- ;;^UTILITY(U,$J,358.3,14038,1,0)
+ ;;^UTILITY(U,$J,358.3,14217,1,3,0)
+ ;;=3^Traumatic arthropathy, right hip
+ ;;^UTILITY(U,$J,358.3,14217,1,4,0)
+ ;;=4^M12.551
+ ;;^UTILITY(U,$J,358.3,14217,2)
+ ;;=^5010631
+ ;;^UTILITY(U,$J,358.3,14218,0)
+ ;;=M70.62^^55^673^46
+ ;;^UTILITY(U,$J,358.3,14218,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,14038,1,3,0)
- ;;=3^Fx in Oth Disease,Unspec Site,Rountine Healing
- ;;^UTILITY(U,$J,358.3,14038,1,4,0)
- ;;=4^M84.60XD
- ;;^UTILITY(U,$J,358.3,14038,2)
- ;;=^5014215
- ;;^UTILITY(U,$J,358.3,14039,0)
- ;;=M84.60XS^^83^821^46
- ;;^UTILITY(U,$J,358.3,14039,1,0)
+ ;;^UTILITY(U,$J,358.3,14218,1,3,0)
+ ;;=3^Trochanteric bursitis, left hip
+ ;;^UTILITY(U,$J,358.3,14218,1,4,0)
+ ;;=4^M70.62
+ ;;^UTILITY(U,$J,358.3,14218,2)
+ ;;=^5013060
+ ;;^UTILITY(U,$J,358.3,14219,0)
+ ;;=M70.61^^55^673^47
+ ;;^UTILITY(U,$J,358.3,14219,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,14039,1,3,0)
- ;;=3^Fx in Oth Disease,Unspec Site,Sequela
- ;;^UTILITY(U,$J,358.3,14039,1,4,0)
- ;;=4^M84.60XS
- ;;^UTILITY(U,$J,358.3,14039,2)
- ;;=^5014219
- ;;^UTILITY(U,$J,358.3,14040,0)
- ;;=M84.60XG^^83^821^41
+ ;;^UTILITY(U,$J,358.3,14219,1,3,0)
+ ;;=3^Trochanteric bursitis, right hip
+ ;;^UTILITY(U,$J,358.3,14219,1,4,0)
+ ;;=4^M70.61
+ ;;^UTILITY(U,$J,358.3,14219,2)
+ ;;=^5013059

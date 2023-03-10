@@ -1,17 +1,18 @@
 VPRSDAQ ;SLC/MKB -- SDA queries ;11/8/18  14:11
- ;;1.0;VIRTUAL PATIENT RECORD;**8,10,20**;Sep 01, 2011;Build 9
+ ;;1.0;VIRTUAL PATIENT RECORD;**8,10,20,26,25,27,28**;Sep 01, 2011;Build 6
  ;;Per VHA Directive 6402, this routine should not be modified.
  ;
  ; External References          DBIA#
  ; -------------------          -----
  ; ^AUPNVSIT                     2028
  ; ^AUTTHF                       4295
+ ; ^DGPM                         1865
  ; ^DGS(41.1                     3796
+ ; ^GMR(120.86                   3449
  ; ^LR                            525
  ; ^OR(100                       5771
  ; ^ORD(100.98                   6982
  ; ^PXRMINDX                     4290
- ; ^WV(790.05                    5772
  ; %DT                          10003
  ; DGPFAPI                       3860
  ; DIC                           2051
@@ -30,6 +31,7 @@ VPRSDAQ ;SLC/MKB -- SDA queries ;11/8/18  14:11
  ; TIUPP3, ^TMP("TIUPPCV",$J)    2864
  ; TIUVPR                        6077
  ; VADPT2                         325
+ ; WVRPCVPR                      7199
  ; XLFDT                        10103
  ;
  ; VistA application queries, return DLIST(#) = record ID
@@ -49,11 +51,16 @@ ALLERGYS ; -- Allergies/Adverse Reactions
  S VPRN=0,GMRA="0^0^111^0^1"
  I $L($T(EN2^GMRADPT)) D EN2^GMRADPT I 1
  E  D EN1^GMRADPT
- I 'GMRAL Q  ;D NKA^VPRDJ02 Q
+ ;I 'GMRAL Q  ;D NKA^VPRDJ02 Q
  S ID=0 F  S ID=+$O(GMRAL(ID)) Q:ID<1  S VPRN=VPRN+1,DLIST(VPRN)=ID Q:VPRN'<DMAX
  Q
  ;
-VISITS ; -- Visits
+ASSESS ; -- get Assessment #120.86 for patient if none or NKA
+ Q:'$G(DFN)  Q:$P($G(^GMR(120.86,DFN,0)),U,2)  ;has allergies
+ S DLIST(1)=DFN
+ Q
+ ;
+VISITS ; -- Visits [no longer used - see QRY^VPRSDAV]
  N IDT,BEG,END,ID,VPRN,VAINDT,VADMVT,VAERR
  S BEG=DSTRT,END=DSTOP D IDT^VPRDVSIT
  S VPRN=0,IDT=BEG
@@ -65,7 +72,7 @@ VISITS ; -- Visits
  .. S VPRN=VPRN+1,DLIST(VPRN)=ID
  Q
  ;
-ADM ; -- Admissions (via Visits)
+ADM ; -- Admissions (visits)
  N IDT,BEG,END,ID,VPRN,VAINDT,VADMVT,VAERR S VPRN=0
  S BEG=DSTRT,END=DSTOP D IDT^VPRDVSIT
  S IDT=BEG F  S IDT=$O(^AUPNVSIT("AAH",DFN,IDT)) Q:IDT<1!(IDT>END)  D  Q:VPRN'<DMAX
@@ -73,6 +80,16 @@ ADM ; -- Admissions (via Visits)
  .. S VAINDT=(9999999-$P(IDT,"."))_"."_$P(IDT,".",2)
  .. D ADM^VADPT2 Q:'$G(VADMVT)
  .. S VPRN=VPRN+1,DLIST(VPRN)=VADMVT_"~"_ID
+ Q
+ ;
+EDP ; -- Emergency Dept (visits)
+ N IDT,BEG,END,VST,ID,VPRN
+ S BEG=DSTRT,END=DSTOP D IDT^VPRDVSIT
+ S VPRN=0,IDT=BEG
+ F  S IDT=$O(^AUPNVSIT("AA",DFN,IDT)) Q:IDT<1!(IDT>END)  D  Q:VPRN'<DMAX
+ . S VST=0 F  S VST=$O(^AUPNVSIT("AA",DFN,IDT,VST)) Q:VST<1  D
+ .. S ID=+$O(^EDP(230,"V",VST,0))
+ .. S:ID VPRN=VPRN+1,DLIST(VPRN)=ID
  Q
  ;
 DOCUMENT ; -- Text Integration Utilities
@@ -113,9 +130,9 @@ CW ; -- Crisis/Warning notes (alerts) [replaced by CWQ^VPRSDAF in *23]
  ;
 LRAP ; -- LR Anatomic Pathology reports [expects LRDFN]
  N SUB,IDT,VPRN,CTR S VPRN=0
- D RR^LR7OR1(DFN,,DSTRT,DSTOP,"AP",,,DMAX)
+ D RR^LR7OR1(DFN,,DSTRT,DSTOP,"AP")
  S SUB="" F  S SUB=$O(^TMP("LRRR",$J,DFN,SUB)) Q:SUB=""  D
- . S IDT=0 F  S IDT=$O(^TMP("LRRR",$J,DFN,SUB,IDT)) Q:IDT<1  I $O(^(IDT,0)) D
+ . S IDT=0 F  S IDT=$O(^TMP("LRRR",$J,DFN,SUB,IDT)) Q:IDT<1  I $O(^(IDT,0)) D  Q:VPRN'<DMAX
  .. Q:$O(^LR(LRDFN,SUB,IDT,.05,0))        ;report in TIU
  .. Q:'$P($G(^LR(LRDFN,SUB,IDT,0)),U,11)  ;not final results
  .. S VPRN=VPRN+1,DLIST(VPRN)=IDT_","_LRDFN_"~"_SUB
@@ -124,9 +141,10 @@ LRAP ; -- LR Anatomic Pathology reports [expects LRDFN]
  ;
 LRMI ; -- LR Microbiology reports [expects LRDFN]
  N IDT,VPRN,CTR S VPRN=0
- D RR^LR7OR1(DFN,,DSTRT,DSTOP,"MI",,,DMAX)
- S IDT=0 F  S IDT=$O(^TMP("LRRR",$J,DFN,"MI",IDT)) Q:IDT<1  I $O(^(IDT,0)) D
- . Q:'$P($G(^LR(LRDFN,"MI",IDT,0)),U,3)  ;not final results
+ D RR^LR7OR1(DFN,,DSTRT,DSTOP,"MI")
+ S IDT=0 F  S IDT=$O(^TMP("LRRR",$J,DFN,"MI",IDT)) Q:IDT<1  I $O(^(IDT,0)) D  Q:VPRN'<DMAX
+ . ;Q:'$P($G(^LR(LRDFN,"MI",IDT,0)),U,3)  ;not final results
+ . Q:'$$MI1^VPRSDAB(LRDFN,IDT)  ;not final results
  . S VPRN=VPRN+1,DLIST(VPRN)=IDT_","_LRDFN_"~MI"
  K ^TMP("LRRR",$J,DFN)
  Q
@@ -225,7 +243,7 @@ CPT ; -- V CPT (Procedures)
 POV ; -- V POV (Diagnosis)
  N FNUM S FNUM=9000010.07 G PXRM
  ;
-IMMS ; -- Immunizations
+IMMS ; -- V Immunizations
  N FNUM S FNUM=9000010.11 G PXRM
  ;
 PXRM ; -- Search PXRM index
@@ -234,8 +252,32 @@ PXRM ; -- Search PXRM index
  D SORT^VPRDJ09 ;sort ^PXRMINDX into ^TMP("VPRPX",$J,IDT)
  S VPRIDT=0 F  S VPRIDT=$O(^TMP("VPRPX",$J,VPRIDT)) Q:VPRIDT<1  D  Q:VPRN'<DMAX
  . S ID=0 F  S ID=$O(^TMP("VPRPX",$J,VPRIDT,ID)) Q:ID<1  D  Q:VPRN'<DMAX
+ .. I FNUM=9000010.18,'$$VCPT^VPRSDAV(ID) Q
  .. S VPRN=VPRN+1,DLIST(VPRN)=ID
  K ^TMP("VPRPX",$J)
+ Q
+ ;
+ICR ; -- V Imm Contraindications/Refusals
+ N ROOT,INDX,DATE,IDT,DA,TMP,VPRN S VPRN=0
+ ; find records in ^PXRMINDX, sort by date
+ S ROOT="^PXRMINDX(9000010.707,""PCI"","_DFN,INDX=ROOT_")",ROOT=ROOT_","
+ F  S INDX=$Q(@INDX) Q:INDX'[ROOT  D
+ . S DATE=$QS(INDX,6) Q:DATE<DSTRT  Q:DATE>DSTOP
+ . S DA=$QS(INDX,8),IDT=9999999-DATE,TMP(IDT,DA)=""
+ ; return [DMAX] entries
+ S IDT=0 F  S IDT=$O(TMP(IDT)) Q:IDT<1  D  Q:VPRN'<DMAX
+ . S DA=0 F  S DA=$O(TMP(IDT,DA)) Q:DA<1  S VPRN=VPRN+1,DLIST(VPRN)=DA
+ Q
+ ;
+HFCVR ; -- V Health Factors, for COVID Vaccination Refusal
+ N ITEM,NAME,DATE,DA,X,VPRN S VPRN=0
+ S ITEM=+$O(^AUTTHF("B","VA-SARS-COV-2 VACCINE REFUSAL",0)) Q:ITEM<1  D CVR
+ S NAME="VA-SARS-COV-2 IMM REFUSAL"
+ F  S NAME=$O(^AUTTHF("B",NAME)) Q:NAME'?1"VA-SARS-COV-2 IMM REFUSAL".E  S ITEM=+$O(^(NAME,0)) D CVR
+ Q
+CVR ;loop for ITEM
+ S DATE=DSTRT F  S DATE=$O(^PXRMINDX(9000010.23,"PI",+$G(DFN),ITEM,DATE)) Q:DATE<1!(DATE>DSTOP)  D  Q:VPRN'<DMAX
+ . S DA=0 F  S DA=$O(^PXRMINDX(9000010.23,"PI",+$G(DFN),ITEM,DATE,DA)) Q:DA<1  S VPRN=VPRN+1,DLIST(VPRN)=DA Q:VPRN'<DMAX
  Q
  ;
 HFM ; -- V Health Factors, for Family History
@@ -261,11 +303,10 @@ SOCHIST(IEN) ; -- find social history factors
  Q 0
  ;
 WVPL ; -- Women's Health Pregnancy Log, for Social History
- N DA,X0
- S DA=$O(^WV(790.05,"C",DFN,""),-1) Q:'DA  ;last entry
- S X0=$G(^WV(790.05,DA,0))
- ; status=YES, future due date (allow past 14 days)
- I $P(X0,U,3),$P(X0,U,4)'<$$FMADD^XLFDT(DT,-14) S DLIST(1)=DA
+ K ^TMP("WVPREGST",$J)
+ D BASELINE^WVRPCVPR(DFN)
+ S:$D(^TMP("WVPREGST",$J,"BASELINE")) DLIST(1)=DFN
+ ;S:$G(^TMP("WVPREGST",$J,"BASELINE","TO TIME"))'<$$FMADD^XLFDT(DT,-14) DLIST(1)=DFN
  Q
  ;
 VITALS ; -- GMR Vital Measurements
@@ -284,7 +325,7 @@ VITALS ; -- GMR Vital Measurements
 APPTS ; -- Appointments
  N VPRX,VPRNUM,VPRDT,VPRN
  S VPRX(1)=DSTRT_";"_DSTOP,VPRX(4)=DFN
- S VPRX("FLDS")="1;2;3;10;11;12;22",VPRX("SORT")="P"
+ S VPRX("FLDS")="1;2;3;5;8;9;10;11;12;18;22",VPRX("SORT")="P"
  ; appointments
  S VPRX(3)="R;I;NS;NSR;NT" ;no cancelled appt's
  S VPRNUM=$$SDAPI^SDAMA301(.VPRX),(VPRDT,VPRN)=0
@@ -319,14 +360,14 @@ PRF ; -- Patient Record Flags [replaced by PRFQ^VPRSDAF]
  . S DLIST(I)=IEN_"~"_DFN,VPRF("IDX",IEN)=I
  Q
  ;
-PTF ; -- PTF DXLS via ^PXRMINDX(45,"ICD","PNI",DFN,"DXLS",ICD,DATE,DA)
- N VPRSTART,VPRSTOP,VPRIDT,VPRN,ID,X,P80
- S VPRSTART=DSTRT,VPRSTOP=DSTOP,VPRN=0
- D PTF^VPRDJ09 ;sort ^PXRMINDX into ^TMP("VPRPX",$J,IDT)
- S VPRIDT=0 F  S VPRIDT=$O(^TMP("VPRPX",$J,VPRIDT)) Q:VPRIDT<1  D  Q:VPRN'<DMAX
- . S ID=0 F  S ID=$O(^TMP("VPRPX",$J,VPRIDT,ID)) Q:ID<1  I ID["DXLS" D  Q:VPRN'<DMAX
- .. S VPRN=VPRN+1,DLIST(VPRN)=+ID
- K ^TMP("VPRPX",$J)
+PTF ; -- PTF Diagnosis (DXLS via Admissions)
+ N IDT,END,VPRN,ADM,PTF
+ S IDT=9999999.9999999-DSTOP-.0000001,END=9999999.9999999-DSTRT,VPRN=0
+ F  S IDT=$O(^DGPM("ATID1",DFN,IDT)) Q:IDT<1!(IDT>END)  D  Q:VPRN'<DMAX
+ . S ADM=0 F  S ADM=$O(^DGPM("ATID1",DFN,IDT,ADM)) Q:ADM<1  D  Q:VPRN'<DMAX
+ .. S PTF=+$P($G(^DGPM(ADM,0)),U,16) Q:PTF<1
+ .. Q:'$$GET1^DIQ(45,PTF,79,"I")  ;no DXLS
+ .. S VPRN=VPRN+1,DLIST(VPRN)=+PTF
  Q
  ;
 FIM ; -- Functional Independence Measurements

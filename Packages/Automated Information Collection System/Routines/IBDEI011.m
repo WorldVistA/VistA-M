@@ -1,680 +1,700 @@
-IBDEI011 ; ; 01-MAY-2020
- ;;3.0;IB ENCOUNTER FORM IMP/EXP;;MAY 01, 2020
+IBDEI011 ; ; 01-AUG-2022
+ ;;3.0;IB ENCOUNTER FORM IMP/EXP;;AUG 01, 2022
  Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,999) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
+ ;;^UTILITY(U,$J,358.3,1977,1,3,0)
+ ;;=3^Blindness OD Category 5,Low Vision OS Category 2
+ ;;^UTILITY(U,$J,358.3,1977,1,4,0)
+ ;;=4^H54.1152
+ ;;^UTILITY(U,$J,358.3,1977,2)
+ ;;=^5151352
+ ;;^UTILITY(U,$J,358.3,1978,0)
+ ;;=H91.91^^16^127^25
+ ;;^UTILITY(U,$J,358.3,1978,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,1978,1,3,0)
+ ;;=3^Hearing Loss,Unspec,Rt Ear
+ ;;^UTILITY(U,$J,358.3,1978,1,4,0)
+ ;;=4^H91.91
+ ;;^UTILITY(U,$J,358.3,1978,2)
+ ;;=^5133553
  ;;^UTILITY(U,$J,358.3,1979,0)
- ;;=99415^^19^160^1^^^^1
+ ;;=H91.92^^16^127^24
  ;;^UTILITY(U,$J,358.3,1979,1,0)
- ;;=^358.31IA^3^2
- ;;^UTILITY(U,$J,358.3,1979,1,2,0)
- ;;=2^99415
+ ;;=^358.31IA^4^2
  ;;^UTILITY(U,$J,358.3,1979,1,3,0)
- ;;=3^Prolonged Clin Staff Svc;1st hr
+ ;;=3^Hearing Loss,Unspec,Lt Ear
+ ;;^UTILITY(U,$J,358.3,1979,1,4,0)
+ ;;=4^H91.92
+ ;;^UTILITY(U,$J,358.3,1979,2)
+ ;;=^5133554
  ;;^UTILITY(U,$J,358.3,1980,0)
- ;;=99416^^19^160^2^^^^1
+ ;;=H91.93^^16^127^23
  ;;^UTILITY(U,$J,358.3,1980,1,0)
- ;;=^358.31IA^3^2
- ;;^UTILITY(U,$J,358.3,1980,1,2,0)
- ;;=2^99416
+ ;;=^358.31IA^4^2
  ;;^UTILITY(U,$J,358.3,1980,1,3,0)
- ;;=3^Prolonged Clin Staff Svc;Ea Addl 30min
+ ;;=3^Hearing Loss,Unspec,Bilateral
+ ;;^UTILITY(U,$J,358.3,1980,1,4,0)
+ ;;=4^H91.93
+ ;;^UTILITY(U,$J,358.3,1980,2)
+ ;;=^5006944
  ;;^UTILITY(U,$J,358.3,1981,0)
- ;;=95940^^19^161^2^^^^1
+ ;;=G23.8^^16^128^4
  ;;^UTILITY(U,$J,358.3,1981,1,0)
- ;;=^358.31IA^3^2
- ;;^UTILITY(U,$J,358.3,1981,1,2,0)
- ;;=2^95940
+ ;;=^358.31IA^4^2
  ;;^UTILITY(U,$J,358.3,1981,1,3,0)
- ;;=3^Intraoperative Monitoring in OR
+ ;;=3^Basal Ganglia Degenerative Diseases,Other Spec
+ ;;^UTILITY(U,$J,358.3,1981,1,4,0)
+ ;;=4^G23.8
+ ;;^UTILITY(U,$J,358.3,1981,2)
+ ;;=^5003782
  ;;^UTILITY(U,$J,358.3,1982,0)
- ;;=95941^^19^161^1^^^^1
+ ;;=F04.^^16^128^1
  ;;^UTILITY(U,$J,358.3,1982,1,0)
- ;;=^358.31IA^3^2
- ;;^UTILITY(U,$J,358.3,1982,1,2,0)
- ;;=2^95941
+ ;;=^358.31IA^4^2
  ;;^UTILITY(U,$J,358.3,1982,1,3,0)
- ;;=3^Continuous IOM,From Outside OR
+ ;;=3^Amnestic Disorder d/t Known Physiological Condition
+ ;;^UTILITY(U,$J,358.3,1982,1,4,0)
+ ;;=4^F04.
+ ;;^UTILITY(U,$J,358.3,1982,2)
+ ;;=^5003051
  ;;^UTILITY(U,$J,358.3,1983,0)
- ;;=99455^^19^161^3^^^^1
+ ;;=F05.^^16^128^5
  ;;^UTILITY(U,$J,358.3,1983,1,0)
- ;;=^358.31IA^3^2
- ;;^UTILITY(U,$J,358.3,1983,1,2,0)
- ;;=2^99455
+ ;;=^358.31IA^4^2
  ;;^UTILITY(U,$J,358.3,1983,1,3,0)
- ;;=3^Work Related Disability Exam
+ ;;=3^Delirium d/t Physiological Condition
+ ;;^UTILITY(U,$J,358.3,1983,1,4,0)
+ ;;=4^F05.
+ ;;^UTILITY(U,$J,358.3,1983,2)
+ ;;=^5003052
  ;;^UTILITY(U,$J,358.3,1984,0)
- ;;=V5030^^19^162^66^^^^1
+ ;;=F06.8^^16^128^13
  ;;^UTILITY(U,$J,358.3,1984,1,0)
- ;;=^358.31IA^3^2
- ;;^UTILITY(U,$J,358.3,1984,1,2,0)
- ;;=2^V5030
+ ;;=^358.31IA^4^2
  ;;^UTILITY(U,$J,358.3,1984,1,3,0)
- ;;=3^HA,Monaural,Body Worn,Air Conduction
+ ;;=3^Mental Disorders d/t Known Physiological Condition
+ ;;^UTILITY(U,$J,358.3,1984,1,4,0)
+ ;;=4^F06.8
+ ;;^UTILITY(U,$J,358.3,1984,2)
+ ;;=^5003062
  ;;^UTILITY(U,$J,358.3,1985,0)
- ;;=V5040^^19^162^67^^^^1
+ ;;=F32.9^^16^128^12
  ;;^UTILITY(U,$J,358.3,1985,1,0)
- ;;=^358.31IA^3^2
- ;;^UTILITY(U,$J,358.3,1985,1,2,0)
- ;;=2^V5040
+ ;;=^358.31IA^4^2
  ;;^UTILITY(U,$J,358.3,1985,1,3,0)
- ;;=3^HA,Monaural,Body Worn,Bone Conduction
+ ;;=3^Major Depressive Disorder,Single Episode,Unspec
+ ;;^UTILITY(U,$J,358.3,1985,1,4,0)
+ ;;=4^F32.9
+ ;;^UTILITY(U,$J,358.3,1985,2)
+ ;;=^5003528
  ;;^UTILITY(U,$J,358.3,1986,0)
- ;;=V5050^^19^162^68^^^^1
+ ;;=F41.9^^16^128^2
  ;;^UTILITY(U,$J,358.3,1986,1,0)
- ;;=^358.31IA^3^2
- ;;^UTILITY(U,$J,358.3,1986,1,2,0)
- ;;=2^V5050
+ ;;=^358.31IA^4^2
  ;;^UTILITY(U,$J,358.3,1986,1,3,0)
- ;;=3^HA,Monaural,ITE
+ ;;=3^Anxiety Disorder,Unspec
+ ;;^UTILITY(U,$J,358.3,1986,1,4,0)
+ ;;=4^F41.9
+ ;;^UTILITY(U,$J,358.3,1986,2)
+ ;;=^5003567
  ;;^UTILITY(U,$J,358.3,1987,0)
- ;;=V5060^^19^162^65^^^^1
+ ;;=F43.10^^16^128^18
  ;;^UTILITY(U,$J,358.3,1987,1,0)
- ;;=^358.31IA^3^2
- ;;^UTILITY(U,$J,358.3,1987,1,2,0)
- ;;=2^V5060
+ ;;=^358.31IA^4^2
  ;;^UTILITY(U,$J,358.3,1987,1,3,0)
- ;;=3^HA,Monaural,BTE
+ ;;=3^PTSD,Unspec
+ ;;^UTILITY(U,$J,358.3,1987,1,4,0)
+ ;;=4^F43.10
+ ;;^UTILITY(U,$J,358.3,1987,2)
+ ;;=^5003570
  ;;^UTILITY(U,$J,358.3,1988,0)
- ;;=V5090^^19^162^24^^^^1
+ ;;=F43.12^^16^128^17
  ;;^UTILITY(U,$J,358.3,1988,1,0)
- ;;=^358.31IA^3^2
- ;;^UTILITY(U,$J,358.3,1988,1,2,0)
- ;;=2^V5090
+ ;;=^358.31IA^4^2
  ;;^UTILITY(U,$J,358.3,1988,1,3,0)
- ;;=3^HA Dispensing Fee,Unspec
+ ;;=3^PTSD,Chronic
+ ;;^UTILITY(U,$J,358.3,1988,1,4,0)
+ ;;=4^F43.12
+ ;;^UTILITY(U,$J,358.3,1988,2)
+ ;;=^5003572
  ;;^UTILITY(U,$J,358.3,1989,0)
- ;;=V5095^^19^162^71^^^^1
+ ;;=F32.89^^16^128^7
  ;;^UTILITY(U,$J,358.3,1989,1,0)
- ;;=^358.31IA^3^2
- ;;^UTILITY(U,$J,358.3,1989,1,2,0)
- ;;=2^V5095
+ ;;=^358.31IA^4^2
  ;;^UTILITY(U,$J,358.3,1989,1,3,0)
- ;;=3^Semi-Impl Mid Ear Hearing Pros
+ ;;=3^Depressive Episode,Other Specified
+ ;;^UTILITY(U,$J,358.3,1989,1,4,0)
+ ;;=4^F32.89
+ ;;^UTILITY(U,$J,358.3,1989,2)
+ ;;=^5138442
  ;;^UTILITY(U,$J,358.3,1990,0)
- ;;=V5100^^19^162^32^^^^1
+ ;;=F42.2^^16^128^14
  ;;^UTILITY(U,$J,358.3,1990,1,0)
- ;;=^358.31IA^3^2
- ;;^UTILITY(U,$J,358.3,1990,1,2,0)
- ;;=2^V5100
+ ;;=^358.31IA^4^2
  ;;^UTILITY(U,$J,358.3,1990,1,3,0)
- ;;=3^HA,Bilateral,Body Worn
+ ;;=3^Obsessional Thoughts/Acts,Mixed
+ ;;^UTILITY(U,$J,358.3,1990,1,4,0)
+ ;;=4^F42.2
+ ;;^UTILITY(U,$J,358.3,1990,2)
+ ;;=^5138444
  ;;^UTILITY(U,$J,358.3,1991,0)
- ;;=V5110^^19^162^21^^^^1
+ ;;=F42.3^^16^128^11
  ;;^UTILITY(U,$J,358.3,1991,1,0)
- ;;=^358.31IA^3^2
- ;;^UTILITY(U,$J,358.3,1991,1,2,0)
- ;;=2^V5110
+ ;;=^358.31IA^4^2
  ;;^UTILITY(U,$J,358.3,1991,1,3,0)
- ;;=3^HA Dispensing Fee,Bilateral
+ ;;=3^Hoarding Disorder
+ ;;^UTILITY(U,$J,358.3,1991,1,4,0)
+ ;;=4^F42.3
+ ;;^UTILITY(U,$J,358.3,1991,2)
+ ;;=^5138445
  ;;^UTILITY(U,$J,358.3,1992,0)
- ;;=V5120^^19^162^34^^^^1
+ ;;=F42.4^^16^128^10
  ;;^UTILITY(U,$J,358.3,1992,1,0)
- ;;=^358.31IA^3^2
- ;;^UTILITY(U,$J,358.3,1992,1,2,0)
- ;;=2^V5120
+ ;;=^358.31IA^4^2
  ;;^UTILITY(U,$J,358.3,1992,1,3,0)
- ;;=3^HA,Binaural,Body-Worn
+ ;;=3^Excoriation Disorder
+ ;;^UTILITY(U,$J,358.3,1992,1,4,0)
+ ;;=4^F42.4
+ ;;^UTILITY(U,$J,358.3,1992,2)
+ ;;=^5138446
  ;;^UTILITY(U,$J,358.3,1993,0)
- ;;=V5130^^19^162^35^^^^1
+ ;;=F42.8^^16^128^15
  ;;^UTILITY(U,$J,358.3,1993,1,0)
- ;;=^358.31IA^3^2
- ;;^UTILITY(U,$J,358.3,1993,1,2,0)
- ;;=2^V5130
+ ;;=^358.31IA^4^2
  ;;^UTILITY(U,$J,358.3,1993,1,3,0)
- ;;=3^HA,Binaural,ITE
+ ;;=3^Obsessive-Compulsive Disorder,Other
+ ;;^UTILITY(U,$J,358.3,1993,1,4,0)
+ ;;=4^F42.8
+ ;;^UTILITY(U,$J,358.3,1993,2)
+ ;;=^5138447
  ;;^UTILITY(U,$J,358.3,1994,0)
- ;;=V5140^^19^162^33^^^^1
+ ;;=F50.81^^16^128^8
  ;;^UTILITY(U,$J,358.3,1994,1,0)
- ;;=^358.31IA^3^2
- ;;^UTILITY(U,$J,358.3,1994,1,2,0)
- ;;=2^V5140
+ ;;=^358.31IA^4^2
  ;;^UTILITY(U,$J,358.3,1994,1,3,0)
- ;;=3^HA,Binaural,BTE
+ ;;=3^Eating Disorder,Binge
+ ;;^UTILITY(U,$J,358.3,1994,1,4,0)
+ ;;=4^F50.81
+ ;;^UTILITY(U,$J,358.3,1994,2)
+ ;;=^8123226
  ;;^UTILITY(U,$J,358.3,1995,0)
- ;;=V5160^^19^162^22^^^^1
+ ;;=F50.89^^16^128^9
  ;;^UTILITY(U,$J,358.3,1995,1,0)
- ;;=^358.31IA^3^2
- ;;^UTILITY(U,$J,358.3,1995,1,2,0)
- ;;=2^V5160
+ ;;=^358.31IA^4^2
  ;;^UTILITY(U,$J,358.3,1995,1,3,0)
- ;;=3^HA Dispensing Fee,Binaural
+ ;;=3^Eating Disorder,Other Specified
+ ;;^UTILITY(U,$J,358.3,1995,1,4,0)
+ ;;=4^F50.89
+ ;;^UTILITY(U,$J,358.3,1995,2)
+ ;;=^5138449
  ;;^UTILITY(U,$J,358.3,1996,0)
- ;;=V5240^^19^162^20^^^^1
+ ;;=F50.82^^16^128^3
  ;;^UTILITY(U,$J,358.3,1996,1,0)
- ;;=^358.31IA^3^2
- ;;^UTILITY(U,$J,358.3,1996,1,2,0)
- ;;=2^V5240
+ ;;=^358.31IA^4^2
  ;;^UTILITY(U,$J,358.3,1996,1,3,0)
- ;;=3^HA Dispensing Fee,BICROS
+ ;;=3^Avoidant/Restrictive Food Intake Disorder
+ ;;^UTILITY(U,$J,358.3,1996,1,4,0)
+ ;;=4^F50.82
+ ;;^UTILITY(U,$J,358.3,1996,2)
+ ;;=^5151308
  ;;^UTILITY(U,$J,358.3,1997,0)
- ;;=V5241^^19^162^23^^^^1
+ ;;=F43.11^^16^128^16
  ;;^UTILITY(U,$J,358.3,1997,1,0)
- ;;=^358.31IA^3^2
- ;;^UTILITY(U,$J,358.3,1997,1,2,0)
- ;;=2^V5241
+ ;;=^358.31IA^4^2
  ;;^UTILITY(U,$J,358.3,1997,1,3,0)
- ;;=3^HA Dispensing Fee,Monaural
+ ;;=3^PTSD,Acute
+ ;;^UTILITY(U,$J,358.3,1997,1,4,0)
+ ;;=4^F43.11
+ ;;^UTILITY(U,$J,358.3,1997,2)
+ ;;=^5003571
  ;;^UTILITY(U,$J,358.3,1998,0)
- ;;=V5242^^19^162^29^^^^1
+ ;;=F32.A^^16^128^6
  ;;^UTILITY(U,$J,358.3,1998,1,0)
- ;;=^358.31IA^3^2
- ;;^UTILITY(U,$J,358.3,1998,1,2,0)
- ;;=2^V5242
+ ;;=^358.31IA^4^2
  ;;^UTILITY(U,$J,358.3,1998,1,3,0)
- ;;=3^HA,Analog,Monaural,CIC
+ ;;=3^Depression,Unspec
+ ;;^UTILITY(U,$J,358.3,1998,1,4,0)
+ ;;=4^F32.A
+ ;;^UTILITY(U,$J,358.3,1998,2)
+ ;;=^5161153
  ;;^UTILITY(U,$J,358.3,1999,0)
- ;;=V5243^^19^162^30^^^^1
+ ;;=C34.90^^16^129^1
  ;;^UTILITY(U,$J,358.3,1999,1,0)
- ;;=^358.31IA^3^2
- ;;^UTILITY(U,$J,358.3,1999,1,2,0)
- ;;=2^V5243
+ ;;=^358.31IA^4^2
  ;;^UTILITY(U,$J,358.3,1999,1,3,0)
- ;;=3^HA,Analog,Monaural,ITC
+ ;;=3^Malig Neop Bronchus/Lung Unspec Part
+ ;;^UTILITY(U,$J,358.3,1999,1,4,0)
+ ;;=4^C34.90
+ ;;^UTILITY(U,$J,358.3,1999,2)
+ ;;=^5000966
  ;;^UTILITY(U,$J,358.3,2000,0)
- ;;=V5244^^19^162^47^^^^1
+ ;;=G20.^^16^130^13
  ;;^UTILITY(U,$J,358.3,2000,1,0)
- ;;=^358.31IA^3^2
- ;;^UTILITY(U,$J,358.3,2000,1,2,0)
- ;;=2^V5244
+ ;;=^358.31IA^4^2
  ;;^UTILITY(U,$J,358.3,2000,1,3,0)
- ;;=3^HA,Dig Prog Analog,Monaural,CIC
+ ;;=3^Parkinson's Disease
+ ;;^UTILITY(U,$J,358.3,2000,1,4,0)
+ ;;=4^G20.
+ ;;^UTILITY(U,$J,358.3,2000,2)
+ ;;=^5003770
  ;;^UTILITY(U,$J,358.3,2001,0)
- ;;=V5245^^19^162^48^^^^1
+ ;;=G30.9^^16^130^1
  ;;^UTILITY(U,$J,358.3,2001,1,0)
- ;;=^358.31IA^3^2
- ;;^UTILITY(U,$J,358.3,2001,1,2,0)
- ;;=2^V5245
+ ;;=^358.31IA^4^2
  ;;^UTILITY(U,$J,358.3,2001,1,3,0)
- ;;=3^HA,Dig Prog Analog,Monaural,ITC
+ ;;=3^Alzheimer's Disease,Unspec
+ ;;^UTILITY(U,$J,358.3,2001,1,4,0)
+ ;;=4^G30.9
+ ;;^UTILITY(U,$J,358.3,2001,2)
+ ;;=^5003808
  ;;^UTILITY(U,$J,358.3,2002,0)
- ;;=V5246^^19^162^49^^^^1
+ ;;=G35.^^16^130^11
  ;;^UTILITY(U,$J,358.3,2002,1,0)
- ;;=^358.31IA^3^2
- ;;^UTILITY(U,$J,358.3,2002,1,2,0)
- ;;=2^V5246
+ ;;=^358.31IA^4^2
  ;;^UTILITY(U,$J,358.3,2002,1,3,0)
- ;;=3^HA,Dig Prog Analog,Monaural,ITE
+ ;;=3^Multiple Sclerosis
+ ;;^UTILITY(U,$J,358.3,2002,1,4,0)
+ ;;=4^G35.
+ ;;^UTILITY(U,$J,358.3,2002,2)
+ ;;=^79761
  ;;^UTILITY(U,$J,358.3,2003,0)
- ;;=V5247^^19^162^46^^^^1
+ ;;=G82.20^^16^130^12
  ;;^UTILITY(U,$J,358.3,2003,1,0)
- ;;=^358.31IA^3^2
- ;;^UTILITY(U,$J,358.3,2003,1,2,0)
- ;;=2^V5247
+ ;;=^358.31IA^4^2
  ;;^UTILITY(U,$J,358.3,2003,1,3,0)
- ;;=3^HA,Dig Prog Analog,Monaural,BTE
+ ;;=3^Paraplegia,Unspec
+ ;;^UTILITY(U,$J,358.3,2003,1,4,0)
+ ;;=4^G82.20
+ ;;^UTILITY(U,$J,358.3,2003,2)
+ ;;=^5004125
  ;;^UTILITY(U,$J,358.3,2004,0)
- ;;=V5248^^19^162^26^^^^1
+ ;;=R53.81^^16^130^10
  ;;^UTILITY(U,$J,358.3,2004,1,0)
- ;;=^358.31IA^3^2
- ;;^UTILITY(U,$J,358.3,2004,1,2,0)
- ;;=2^V5248
+ ;;=^358.31IA^4^2
  ;;^UTILITY(U,$J,358.3,2004,1,3,0)
- ;;=3^HA,Analog,Binaural,CIC
+ ;;=3^Malaise,Other
+ ;;^UTILITY(U,$J,358.3,2004,1,4,0)
+ ;;=4^R53.81
+ ;;^UTILITY(U,$J,358.3,2004,2)
+ ;;=^5019518
  ;;^UTILITY(U,$J,358.3,2005,0)
- ;;=V5249^^19^162^28^^^^1
+ ;;=I69.920^^16^130^2
  ;;^UTILITY(U,$J,358.3,2005,1,0)
- ;;=^358.31IA^3^2
- ;;^UTILITY(U,$J,358.3,2005,1,2,0)
- ;;=2^V5249
+ ;;=^358.31IA^4^2
  ;;^UTILITY(U,$J,358.3,2005,1,3,0)
- ;;=3^HA,Analog,Binaural,ITC
+ ;;=3^Aphasia Following Unspec CVD
+ ;;^UTILITY(U,$J,358.3,2005,1,4,0)
+ ;;=4^I69.920
+ ;;^UTILITY(U,$J,358.3,2005,2)
+ ;;=^5007553
  ;;^UTILITY(U,$J,358.3,2006,0)
- ;;=V5250^^19^162^27^^^^1
+ ;;=I69.921^^16^130^4
  ;;^UTILITY(U,$J,358.3,2006,1,0)
- ;;=^358.31IA^3^2
- ;;^UTILITY(U,$J,358.3,2006,1,2,0)
- ;;=2^V5250
+ ;;=^358.31IA^4^2
  ;;^UTILITY(U,$J,358.3,2006,1,3,0)
- ;;=3^HA,Analog,Binaural,CIC
+ ;;=3^Dysphasia Following Unspec CVD
+ ;;^UTILITY(U,$J,358.3,2006,1,4,0)
+ ;;=4^I69.921
+ ;;^UTILITY(U,$J,358.3,2006,2)
+ ;;=^5007554
  ;;^UTILITY(U,$J,358.3,2007,0)
- ;;=V5251^^19^162^51^^^^1
+ ;;=I69.928^^16^130^16
  ;;^UTILITY(U,$J,358.3,2007,1,0)
- ;;=^358.31IA^3^2
- ;;^UTILITY(U,$J,358.3,2007,1,2,0)
- ;;=2^V5251
+ ;;=^358.31IA^4^2
  ;;^UTILITY(U,$J,358.3,2007,1,3,0)
- ;;=3^HA,Digital Analog,Binaural,ITC
+ ;;=3^Speech/Lang Deficits Following Unspec CVD
+ ;;^UTILITY(U,$J,358.3,2007,1,4,0)
+ ;;=4^I69.928
+ ;;^UTILITY(U,$J,358.3,2007,2)
+ ;;=^5007557
  ;;^UTILITY(U,$J,358.3,2008,0)
- ;;=V5252^^19^162^52^^^^1
+ ;;=I69.951^^16^130^6
  ;;^UTILITY(U,$J,358.3,2008,1,0)
- ;;=^358.31IA^3^2
- ;;^UTILITY(U,$J,358.3,2008,1,2,0)
- ;;=2^V5252
+ ;;=^358.31IA^4^2
  ;;^UTILITY(U,$J,358.3,2008,1,3,0)
- ;;=3^HA,Digital Analog,Binaural,ITE
+ ;;=3^Hemiplegia & Hemiparesis After CVD,Right Dominant 
+ ;;^UTILITY(U,$J,358.3,2008,1,4,0)
+ ;;=4^I69.951
+ ;;^UTILITY(U,$J,358.3,2008,2)
+ ;;=^5007561
  ;;^UTILITY(U,$J,358.3,2009,0)
- ;;=V5253^^19^162^50^^^^1
+ ;;=I69.952^^16^130^7
  ;;^UTILITY(U,$J,358.3,2009,1,0)
- ;;=^358.31IA^3^2
- ;;^UTILITY(U,$J,358.3,2009,1,2,0)
- ;;=2^V5253
+ ;;=^358.31IA^4^2
  ;;^UTILITY(U,$J,358.3,2009,1,3,0)
- ;;=3^HA,Digital Analog,Binaural,BTE
+ ;;=3^Hemiplegia & Hemiparesis After CVD,Left Dominant 
+ ;;^UTILITY(U,$J,358.3,2009,1,4,0)
+ ;;=4^I69.952
+ ;;^UTILITY(U,$J,358.3,2009,2)
+ ;;=^5133586
  ;;^UTILITY(U,$J,358.3,2010,0)
- ;;=V5254^^19^162^58^^^^1
+ ;;=I69.953^^16^130^8
  ;;^UTILITY(U,$J,358.3,2010,1,0)
- ;;=^358.31IA^3^2
- ;;^UTILITY(U,$J,358.3,2010,1,2,0)
- ;;=2^V5254
+ ;;=^358.31IA^4^2
  ;;^UTILITY(U,$J,358.3,2010,1,3,0)
- ;;=3^HA,Digital,Monaural,CIC
+ ;;=3^Hemiplegia & Hemiparesis After CVD,Right Nondomiant 
+ ;;^UTILITY(U,$J,358.3,2010,1,4,0)
+ ;;=4^I69.953
+ ;;^UTILITY(U,$J,358.3,2010,2)
+ ;;=^5007562
  ;;^UTILITY(U,$J,358.3,2011,0)
- ;;=V5255^^19^162^59^^^^1
+ ;;=I69.954^^16^130^9
  ;;^UTILITY(U,$J,358.3,2011,1,0)
- ;;=^358.31IA^3^2
- ;;^UTILITY(U,$J,358.3,2011,1,2,0)
- ;;=2^V5255
+ ;;=^358.31IA^4^2
  ;;^UTILITY(U,$J,358.3,2011,1,3,0)
- ;;=3^HA,Digital,Monaural,ITC
+ ;;=3^Hemiplegia & Hemiparesis After CVD,Left Nondomiant 
+ ;;^UTILITY(U,$J,358.3,2011,1,4,0)
+ ;;=4^I69.954
+ ;;^UTILITY(U,$J,358.3,2011,2)
+ ;;=^5133587
  ;;^UTILITY(U,$J,358.3,2012,0)
- ;;=V5256^^19^162^60^^^^1
+ ;;=I69.910^^16^130^3
  ;;^UTILITY(U,$J,358.3,2012,1,0)
- ;;=^358.31IA^3^2
- ;;^UTILITY(U,$J,358.3,2012,1,2,0)
- ;;=2^V5256
+ ;;=^358.31IA^4^2
  ;;^UTILITY(U,$J,358.3,2012,1,3,0)
- ;;=3^HA,Digital,Monaural,ITE
+ ;;=3^Cognitive Deficits Following Unspec CVD
+ ;;^UTILITY(U,$J,358.3,2012,1,4,0)
+ ;;=4^I69.910
+ ;;^UTILITY(U,$J,358.3,2012,2)
+ ;;=^5138660
  ;;^UTILITY(U,$J,358.3,2013,0)
- ;;=V5257^^19^162^57^^^^1
+ ;;=G12.24^^16^130^5
  ;;^UTILITY(U,$J,358.3,2013,1,0)
- ;;=^358.31IA^3^2
- ;;^UTILITY(U,$J,358.3,2013,1,2,0)
- ;;=2^V5257
+ ;;=^358.31IA^4^2
  ;;^UTILITY(U,$J,358.3,2013,1,3,0)
- ;;=3^HA,Digital,Monaural,BTE
+ ;;=3^Familial Motor Neuron Disease
+ ;;^UTILITY(U,$J,358.3,2013,1,4,0)
+ ;;=4^G12.24
+ ;;^UTILITY(U,$J,358.3,2013,2)
+ ;;=^5151309
  ;;^UTILITY(U,$J,358.3,2014,0)
- ;;=V5258^^19^162^54^^^^1
+ ;;=G12.23^^16^130^14
  ;;^UTILITY(U,$J,358.3,2014,1,0)
- ;;=^358.31IA^3^2
- ;;^UTILITY(U,$J,358.3,2014,1,2,0)
- ;;=2^V5258
+ ;;=^358.31IA^4^2
  ;;^UTILITY(U,$J,358.3,2014,1,3,0)
- ;;=3^HA,Digital,Binaural,CIC
+ ;;=3^Primary Lateral Sclerosis
+ ;;^UTILITY(U,$J,358.3,2014,1,4,0)
+ ;;=4^G12.23
+ ;;^UTILITY(U,$J,358.3,2014,2)
+ ;;=^268422
  ;;^UTILITY(U,$J,358.3,2015,0)
- ;;=V5259^^19^162^55^^^^1
+ ;;=G12.25^^16^130^15
  ;;^UTILITY(U,$J,358.3,2015,1,0)
- ;;=^358.31IA^3^2
- ;;^UTILITY(U,$J,358.3,2015,1,2,0)
- ;;=2^V5259
+ ;;=^358.31IA^4^2
  ;;^UTILITY(U,$J,358.3,2015,1,3,0)
- ;;=3^HA,Digital,Binaural,ITC
+ ;;=3^Progressive Spinal Muscle Atrophy
+ ;;^UTILITY(U,$J,358.3,2015,1,4,0)
+ ;;=4^G12.25
+ ;;^UTILITY(U,$J,358.3,2015,2)
+ ;;=^5151310
  ;;^UTILITY(U,$J,358.3,2016,0)
- ;;=V5260^^19^162^56^^^^1
+ ;;=K21.9^^16^131^5
  ;;^UTILITY(U,$J,358.3,2016,1,0)
- ;;=^358.31IA^3^2
- ;;^UTILITY(U,$J,358.3,2016,1,2,0)
- ;;=2^V5260
+ ;;=^358.31IA^4^2
  ;;^UTILITY(U,$J,358.3,2016,1,3,0)
- ;;=3^HA,Digital,Binaural,ITE
+ ;;=3^GERD w/o Esophagitis
+ ;;^UTILITY(U,$J,358.3,2016,1,4,0)
+ ;;=4^K21.9
+ ;;^UTILITY(U,$J,358.3,2016,2)
+ ;;=^5008505
  ;;^UTILITY(U,$J,358.3,2017,0)
- ;;=V5261^^19^162^53^^^^1
+ ;;=N40.0^^16^131^2
  ;;^UTILITY(U,$J,358.3,2017,1,0)
- ;;=^358.31IA^3^2
- ;;^UTILITY(U,$J,358.3,2017,1,2,0)
- ;;=2^V5261
+ ;;=^358.31IA^4^2
  ;;^UTILITY(U,$J,358.3,2017,1,3,0)
- ;;=3^HA,Digital,Binaural,BTE
+ ;;=3^Enlarged Prostate w/o Lower Urinary Tract Symptoms
+ ;;^UTILITY(U,$J,358.3,2017,1,4,0)
+ ;;=4^N40.0
+ ;;^UTILITY(U,$J,358.3,2017,2)
+ ;;=^5015689
  ;;^UTILITY(U,$J,358.3,2018,0)
- ;;=V5262^^19^162^64^^^^1
+ ;;=B35.1^^16^131^6
  ;;^UTILITY(U,$J,358.3,2018,1,0)
- ;;=^358.31IA^3^2
- ;;^UTILITY(U,$J,358.3,2018,1,2,0)
- ;;=2^V5262
+ ;;=^358.31IA^4^2
  ;;^UTILITY(U,$J,358.3,2018,1,3,0)
- ;;=3^HA,Disposable,Any Type,Monaural
+ ;;=3^Tinea Unguium
+ ;;^UTILITY(U,$J,358.3,2018,1,4,0)
+ ;;=4^B35.1
+ ;;^UTILITY(U,$J,358.3,2018,2)
+ ;;=^119748
  ;;^UTILITY(U,$J,358.3,2019,0)
- ;;=V5263^^19^162^63^^^^1
+ ;;=R54.^^16^131^1
  ;;^UTILITY(U,$J,358.3,2019,1,0)
- ;;=^358.31IA^3^2
- ;;^UTILITY(U,$J,358.3,2019,1,2,0)
- ;;=2^V5263
+ ;;=^358.31IA^4^2
  ;;^UTILITY(U,$J,358.3,2019,1,3,0)
- ;;=3^HA,Disposable,Any Type,Binaural
+ ;;=3^Age-related Physical Debility
+ ;;^UTILITY(U,$J,358.3,2019,1,4,0)
+ ;;=4^R54.
+ ;;^UTILITY(U,$J,358.3,2019,2)
+ ;;=^5019521
  ;;^UTILITY(U,$J,358.3,2020,0)
- ;;=V5264^^19^162^19^^^^1
+ ;;=K21.00^^16^131^4
  ;;^UTILITY(U,$J,358.3,2020,1,0)
- ;;=^358.31IA^3^2
- ;;^UTILITY(U,$J,358.3,2020,1,2,0)
- ;;=2^V5264
+ ;;=^358.31IA^4^2
  ;;^UTILITY(U,$J,358.3,2020,1,3,0)
- ;;=3^Ear Mold,Custom
+ ;;=3^GERD w/ Esophagitis w/o Bleed
+ ;;^UTILITY(U,$J,358.3,2020,1,4,0)
+ ;;=4^K21.00
+ ;;^UTILITY(U,$J,358.3,2020,2)
+ ;;=^5159214
  ;;^UTILITY(U,$J,358.3,2021,0)
- ;;=V5265^^19^162^18^^^^1
+ ;;=K21.01^^16^131^3
  ;;^UTILITY(U,$J,358.3,2021,1,0)
- ;;=^358.31IA^3^2
- ;;^UTILITY(U,$J,358.3,2021,1,2,0)
- ;;=2^V5265
+ ;;=^358.31IA^4^2
  ;;^UTILITY(U,$J,358.3,2021,1,3,0)
- ;;=3^Dome,Disposable Earmold
+ ;;=3^GERD w/ Esophagitis w/ Bleed
+ ;;^UTILITY(U,$J,358.3,2021,1,4,0)
+ ;;=4^K21.01
+ ;;^UTILITY(U,$J,358.3,2021,2)
+ ;;=^5159215
  ;;^UTILITY(U,$J,358.3,2022,0)
- ;;=V5266^^19^162^17^^^^1
+ ;;=J44.9^^16^132^2
  ;;^UTILITY(U,$J,358.3,2022,1,0)
- ;;=^358.31IA^3^2
- ;;^UTILITY(U,$J,358.3,2022,1,2,0)
- ;;=2^V5266
+ ;;=^358.31IA^4^2
  ;;^UTILITY(U,$J,358.3,2022,1,3,0)
- ;;=3^Battery for Hearing Device,Per Battery
+ ;;=3^COPD,Unspec
+ ;;^UTILITY(U,$J,358.3,2022,1,4,0)
+ ;;=4^J44.9
+ ;;^UTILITY(U,$J,358.3,2022,2)
+ ;;=^5008241
  ;;^UTILITY(U,$J,358.3,2023,0)
- ;;=V5267^^19^162^25^^^^1
+ ;;=J45.909^^16^132^1
  ;;^UTILITY(U,$J,358.3,2023,1,0)
- ;;=^358.31IA^3^2
- ;;^UTILITY(U,$J,358.3,2023,1,2,0)
- ;;=2^V5267
+ ;;=^358.31IA^4^2
  ;;^UTILITY(U,$J,358.3,2023,1,3,0)
- ;;=3^HA or ALD Supply/Accessory NOS
+ ;;=3^Asthma,Uncomplicated,Unspec
+ ;;^UTILITY(U,$J,358.3,2023,1,4,0)
+ ;;=4^J45.909
+ ;;^UTILITY(U,$J,358.3,2023,2)
+ ;;=^5008256
  ;;^UTILITY(U,$J,358.3,2024,0)
- ;;=V5268^^19^162^14^^^^1
+ ;;=F02.81^^16^133^11
  ;;^UTILITY(U,$J,358.3,2024,1,0)
- ;;=^358.31IA^3^2
- ;;^UTILITY(U,$J,358.3,2024,1,2,0)
- ;;=2^V5268
+ ;;=^358.31IA^4^2
  ;;^UTILITY(U,$J,358.3,2024,1,3,0)
- ;;=3^ALD,Telephone Amplifier
+ ;;=3^Dementia in Oth Diseases Classd Elswhr w/ Behav Disturb
+ ;;^UTILITY(U,$J,358.3,2024,1,4,0)
+ ;;=4^F02.81
+ ;;^UTILITY(U,$J,358.3,2024,2)
+ ;;=^5003049
  ;;^UTILITY(U,$J,358.3,2025,0)
- ;;=V5269^^19^162^16^^^^1
+ ;;=F02.80^^16^133^12
  ;;^UTILITY(U,$J,358.3,2025,1,0)
- ;;=^358.31IA^3^2
- ;;^UTILITY(U,$J,358.3,2025,1,2,0)
- ;;=2^V5269
+ ;;=^358.31IA^4^2
  ;;^UTILITY(U,$J,358.3,2025,1,3,0)
- ;;=3^Alerting Device,Any Type
+ ;;=3^Dementia in Oth Diseases Classd Elswhr w/o Behav Disturb
+ ;;^UTILITY(U,$J,358.3,2025,1,4,0)
+ ;;=4^F02.80
+ ;;^UTILITY(U,$J,358.3,2025,2)
+ ;;=^5003048
  ;;^UTILITY(U,$J,358.3,2026,0)
- ;;=V5270^^19^162^12^^^^1
+ ;;=F03.91^^16^133^13
  ;;^UTILITY(U,$J,358.3,2026,1,0)
- ;;=^358.31IA^3^2
- ;;^UTILITY(U,$J,358.3,2026,1,2,0)
- ;;=2^V5270
+ ;;=^358.31IA^4^2
  ;;^UTILITY(U,$J,358.3,2026,1,3,0)
- ;;=3^ALD,TV Amplifier,Any Type
+ ;;=3^Dementia w/ Behav Disturb,Unspec
+ ;;^UTILITY(U,$J,358.3,2026,1,4,0)
+ ;;=4^F03.91
+ ;;^UTILITY(U,$J,358.3,2026,2)
+ ;;=^5133350
  ;;^UTILITY(U,$J,358.3,2027,0)
- ;;=V5271^^19^162^13^^^^1
+ ;;=G31.83^^16^133^14
  ;;^UTILITY(U,$J,358.3,2027,1,0)
- ;;=^358.31IA^3^2
- ;;^UTILITY(U,$J,358.3,2027,1,2,0)
- ;;=2^V5271
+ ;;=^358.31IA^4^2
  ;;^UTILITY(U,$J,358.3,2027,1,3,0)
- ;;=3^ALD,TV Caption Decoder
+ ;;=3^Dementia w/ Lewy Bodies
+ ;;^UTILITY(U,$J,358.3,2027,1,4,0)
+ ;;=4^G31.83
+ ;;^UTILITY(U,$J,358.3,2027,2)
+ ;;=^329888
  ;;^UTILITY(U,$J,358.3,2028,0)
- ;;=V5272^^19^162^11^^^^1
+ ;;=F03.90^^16^133^15
  ;;^UTILITY(U,$J,358.3,2028,1,0)
- ;;=^358.31IA^3^2
- ;;^UTILITY(U,$J,358.3,2028,1,2,0)
- ;;=2^V5272
+ ;;=^358.31IA^4^2
  ;;^UTILITY(U,$J,358.3,2028,1,3,0)
- ;;=3^ALD,TDD
+ ;;=3^Dementia w/o Behav Disturb,Unspec
+ ;;^UTILITY(U,$J,358.3,2028,1,4,0)
+ ;;=4^F03.90
+ ;;^UTILITY(U,$J,358.3,2028,2)
+ ;;=^5003050
  ;;^UTILITY(U,$J,358.3,2029,0)
- ;;=V5273^^19^162^2^^^^1
+ ;;=F01.51^^16^133^30
  ;;^UTILITY(U,$J,358.3,2029,1,0)
- ;;=^358.31IA^3^2
- ;;^UTILITY(U,$J,358.3,2029,1,2,0)
- ;;=2^V5273
+ ;;=^358.31IA^4^2
  ;;^UTILITY(U,$J,358.3,2029,1,3,0)
- ;;=3^ALD,Cochlear Implant
+ ;;=3^Vascular Dementia w/ Behav Disturb
+ ;;^UTILITY(U,$J,358.3,2029,1,4,0)
+ ;;=4^F01.51
+ ;;^UTILITY(U,$J,358.3,2029,2)
+ ;;=^5003047
  ;;^UTILITY(U,$J,358.3,2030,0)
- ;;=V5274^^19^162^15^^^^1
+ ;;=F01.50^^16^133^31
  ;;^UTILITY(U,$J,358.3,2030,1,0)
- ;;=^358.31IA^3^2
- ;;^UTILITY(U,$J,358.3,2030,1,2,0)
- ;;=2^V5274
+ ;;=^358.31IA^4^2
  ;;^UTILITY(U,$J,358.3,2030,1,3,0)
- ;;=3^ALD,Unspec
+ ;;=3^Vascular Dementia w/o Behav Disturb
+ ;;^UTILITY(U,$J,358.3,2030,1,4,0)
+ ;;=4^F01.50
+ ;;^UTILITY(U,$J,358.3,2030,2)
+ ;;=^5003046
  ;;^UTILITY(U,$J,358.3,2031,0)
- ;;=V5281^^19^162^6^^^^1
+ ;;=A81.9^^16^133^6
  ;;^UTILITY(U,$J,358.3,2031,1,0)
- ;;=^358.31IA^3^2
- ;;^UTILITY(U,$J,358.3,2031,1,2,0)
- ;;=2^V5281
+ ;;=^358.31IA^4^2
  ;;^UTILITY(U,$J,358.3,2031,1,3,0)
- ;;=3^ALD,FM/DM System,Monaural
+ ;;=3^Atypical Virus Infection of CNS,Unspec
+ ;;^UTILITY(U,$J,358.3,2031,1,4,0)
+ ;;=4^A81.9
+ ;;^UTILITY(U,$J,358.3,2031,2)
+ ;;=^5000414
  ;;^UTILITY(U,$J,358.3,2032,0)
- ;;=V5282^^19^162^5^^^^1
+ ;;=A81.09^^16^133^8
  ;;^UTILITY(U,$J,358.3,2032,1,0)
- ;;=^358.31IA^3^2
- ;;^UTILITY(U,$J,358.3,2032,1,2,0)
- ;;=2^V5282
+ ;;=^358.31IA^4^2
  ;;^UTILITY(U,$J,358.3,2032,1,3,0)
- ;;=3^ALD,FM/DM System,Binaural
+ ;;=3^Creutzfeldt-Jakob Disease,Other
+ ;;^UTILITY(U,$J,358.3,2032,1,4,0)
+ ;;=4^A81.09
+ ;;^UTILITY(U,$J,358.3,2032,2)
+ ;;=^5000410
  ;;^UTILITY(U,$J,358.3,2033,0)
- ;;=V5283^^19^162^7^^^^1
+ ;;=A81.00^^16^133^9
  ;;^UTILITY(U,$J,358.3,2033,1,0)
- ;;=^358.31IA^3^2
- ;;^UTILITY(U,$J,358.3,2033,1,2,0)
- ;;=2^V5283
+ ;;=^358.31IA^4^2
  ;;^UTILITY(U,$J,358.3,2033,1,3,0)
- ;;=3^ALD,FM/DM System,Neck Loop Induction Receiver
+ ;;=3^Creutzfeldt-Jakob Disease,Unspec
+ ;;^UTILITY(U,$J,358.3,2033,1,4,0)
+ ;;=4^A81.00
+ ;;^UTILITY(U,$J,358.3,2033,2)
+ ;;=^5000409
  ;;^UTILITY(U,$J,358.3,2034,0)
- ;;=V5284^^19^162^10^^^^1
+ ;;=A81.01^^16^133^10
  ;;^UTILITY(U,$J,358.3,2034,1,0)
- ;;=^358.31IA^3^2
- ;;^UTILITY(U,$J,358.3,2034,1,2,0)
- ;;=2^V5284
+ ;;=^358.31IA^4^2
  ;;^UTILITY(U,$J,358.3,2034,1,3,0)
- ;;=3^ALD,FM/DM,Ear Level Receiver
+ ;;=3^Creutzfeldt-Jakob Disease,Variant
+ ;;^UTILITY(U,$J,358.3,2034,1,4,0)
+ ;;=4^A81.01
+ ;;^UTILITY(U,$J,358.3,2034,2)
+ ;;=^336701
  ;;^UTILITY(U,$J,358.3,2035,0)
- ;;=V5285^^19^162^9^^^^1
+ ;;=A81.89^^16^133^7
  ;;^UTILITY(U,$J,358.3,2035,1,0)
- ;;=^358.31IA^3^2
- ;;^UTILITY(U,$J,358.3,2035,1,2,0)
- ;;=2^V5285
+ ;;=^358.31IA^4^2
  ;;^UTILITY(U,$J,358.3,2035,1,3,0)
- ;;=3^ALD,FM/DM,Direct Audio Input Receiver
+ ;;=3^Atypical Virus Infections of CNS,Other
+ ;;^UTILITY(U,$J,358.3,2035,1,4,0)
+ ;;=4^A81.89
+ ;;^UTILITY(U,$J,358.3,2035,2)
+ ;;=^5000413
  ;;^UTILITY(U,$J,358.3,2036,0)
- ;;=V5286^^19^162^1^^^^1
+ ;;=A81.2^^16^133^27
  ;;^UTILITY(U,$J,358.3,2036,1,0)
- ;;=^358.31IA^3^2
- ;;^UTILITY(U,$J,358.3,2036,1,2,0)
- ;;=2^V5286
+ ;;=^358.31IA^4^2
  ;;^UTILITY(U,$J,358.3,2036,1,3,0)
- ;;=3^ALD,Blue Tooth FM/DM Receiver
+ ;;=3^Progressive Multifocal Leukoencephalopathy
+ ;;^UTILITY(U,$J,358.3,2036,1,4,0)
+ ;;=4^A81.2
+ ;;^UTILITY(U,$J,358.3,2036,2)
+ ;;=^5000411
  ;;^UTILITY(U,$J,358.3,2037,0)
- ;;=V5287^^19^162^4^^^^1
+ ;;=B20.^^16^133^17
  ;;^UTILITY(U,$J,358.3,2037,1,0)
- ;;=^358.31IA^3^2
- ;;^UTILITY(U,$J,358.3,2037,1,2,0)
- ;;=2^V5287
+ ;;=^358.31IA^4^2
  ;;^UTILITY(U,$J,358.3,2037,1,3,0)
- ;;=3^ALD,FM/DM Receiver NOS
+ ;;=3^HIV Dis w/ Dementia w/ Behav Disturb
+ ;;^UTILITY(U,$J,358.3,2037,1,4,0)
+ ;;=4^B20.
+ ;;^UTILITY(U,$J,358.3,2037,2)
+ ;;=^5000555^F02.81
  ;;^UTILITY(U,$J,358.3,2038,0)
- ;;=V5288^^19^162^8^^^^1
+ ;;=B20.^^16^133^18
  ;;^UTILITY(U,$J,358.3,2038,1,0)
- ;;=^358.31IA^3^2
- ;;^UTILITY(U,$J,358.3,2038,1,2,0)
- ;;=2^V5288
+ ;;=^358.31IA^4^2
  ;;^UTILITY(U,$J,358.3,2038,1,3,0)
- ;;=3^ALD,FM/DM Transmitter ALD
+ ;;=3^HIV Dis w/ Dementia w/o Behav Disturb
+ ;;^UTILITY(U,$J,358.3,2038,1,4,0)
+ ;;=4^B20.
+ ;;^UTILITY(U,$J,358.3,2038,2)
+ ;;=^5000555^F02.80
  ;;^UTILITY(U,$J,358.3,2039,0)
- ;;=V5289^^19^162^3^^^^1
+ ;;=F10.27^^16^133^1
  ;;^UTILITY(U,$J,358.3,2039,1,0)
- ;;=^358.31IA^3^2
- ;;^UTILITY(U,$J,358.3,2039,1,2,0)
- ;;=2^V5289
+ ;;=^358.31IA^4^2
  ;;^UTILITY(U,$J,358.3,2039,1,3,0)
- ;;=3^ALD,FM/DM Adapter/Boot Coupling Device
+ ;;=3^Alcohol Dependence w/ Alcohol-Induced Persisting Dementia
+ ;;^UTILITY(U,$J,358.3,2039,1,4,0)
+ ;;=4^F10.27
+ ;;^UTILITY(U,$J,358.3,2039,2)
+ ;;=^5003095
  ;;^UTILITY(U,$J,358.3,2040,0)
- ;;=V5290^^19^162^72^^^^1
+ ;;=F19.97^^16^133^29
  ;;^UTILITY(U,$J,358.3,2040,1,0)
- ;;=^358.31IA^3^2
- ;;^UTILITY(U,$J,358.3,2040,1,2,0)
- ;;=2^V5290
+ ;;=^358.31IA^4^2
  ;;^UTILITY(U,$J,358.3,2040,1,3,0)
- ;;=3^Transmitter Microphone,Any Type
+ ;;=3^Psychoactive Subs Use w/ Subs-Induced Persisting Dementia NEC
+ ;;^UTILITY(U,$J,358.3,2040,1,4,0)
+ ;;=4^F19.97
+ ;;^UTILITY(U,$J,358.3,2040,2)
+ ;;=^5003465
  ;;^UTILITY(U,$J,358.3,2041,0)
- ;;=V5298^^19^162^69^^^^1
+ ;;=G30.0^^16^133^2
  ;;^UTILITY(U,$J,358.3,2041,1,0)
- ;;=^358.31IA^3^2
- ;;^UTILITY(U,$J,358.3,2041,1,2,0)
- ;;=2^V5298
+ ;;=^358.31IA^4^2
  ;;^UTILITY(U,$J,358.3,2041,1,3,0)
- ;;=3^Hearing Aid NOC
+ ;;=3^Alzheimer's Disease w/ Early Onset
+ ;;^UTILITY(U,$J,358.3,2041,1,4,0)
+ ;;=4^G30.0
+ ;;^UTILITY(U,$J,358.3,2041,2)
+ ;;=^5003805
  ;;^UTILITY(U,$J,358.3,2042,0)
- ;;=V5299^^19^162^70^^^^1
+ ;;=G30.1^^16^133^3
  ;;^UTILITY(U,$J,358.3,2042,1,0)
- ;;=^358.31IA^3^2
- ;;^UTILITY(U,$J,358.3,2042,1,2,0)
- ;;=2^V5299
+ ;;=^358.31IA^4^2
  ;;^UTILITY(U,$J,358.3,2042,1,3,0)
- ;;=3^Hearing Services
+ ;;=3^Alzheimer's Disease w/ Late Onset
+ ;;^UTILITY(U,$J,358.3,2042,1,4,0)
+ ;;=4^G30.1
+ ;;^UTILITY(U,$J,358.3,2042,2)
+ ;;=^5003806
  ;;^UTILITY(U,$J,358.3,2043,0)
- ;;=V5171^^19^162^45^^^^1
+ ;;=G30.9^^16^133^4
  ;;^UTILITY(U,$J,358.3,2043,1,0)
- ;;=^358.31IA^3^2
- ;;^UTILITY(U,$J,358.3,2043,1,2,0)
- ;;=2^V5171
+ ;;=^358.31IA^4^2
  ;;^UTILITY(U,$J,358.3,2043,1,3,0)
- ;;=3^HA,CROS,Monaural,ITE
+ ;;=3^Alzheimer's Disease,Unspec
+ ;;^UTILITY(U,$J,358.3,2043,1,4,0)
+ ;;=4^G30.9
+ ;;^UTILITY(U,$J,358.3,2043,2)
+ ;;=^5003808
  ;;^UTILITY(U,$J,358.3,2044,0)
- ;;=V5172^^19^162^44^^^^1
+ ;;=G10.^^16^133^19
  ;;^UTILITY(U,$J,358.3,2044,1,0)
- ;;=^358.31IA^3^2
- ;;^UTILITY(U,$J,358.3,2044,1,2,0)
- ;;=2^V5172
+ ;;=^358.31IA^4^2
  ;;^UTILITY(U,$J,358.3,2044,1,3,0)
- ;;=3^HA,CROS,Monaural,ITC
+ ;;=3^Huntington's Disease w/ Dementia w/ Behav Disturb
+ ;;^UTILITY(U,$J,358.3,2044,1,4,0)
+ ;;=4^G10.
+ ;;^UTILITY(U,$J,358.3,2044,2)
+ ;;=^5003751^F02.81
  ;;^UTILITY(U,$J,358.3,2045,0)
- ;;=V5181^^19^162^42^^^^1
+ ;;=G10.^^16^133^20
  ;;^UTILITY(U,$J,358.3,2045,1,0)
- ;;=^358.31IA^3^2
- ;;^UTILITY(U,$J,358.3,2045,1,2,0)
- ;;=2^V5181
+ ;;=^358.31IA^4^2
  ;;^UTILITY(U,$J,358.3,2045,1,3,0)
- ;;=3^HA,CROS,Monaural,BTE
+ ;;=3^Huntington's Disease w/ Dementia w/o Behav Disturb
+ ;;^UTILITY(U,$J,358.3,2045,1,4,0)
+ ;;=4^G10.
+ ;;^UTILITY(U,$J,358.3,2045,2)
+ ;;=^5003751^F02.80
  ;;^UTILITY(U,$J,358.3,2046,0)
- ;;=V5190^^19^162^43^^^^1
+ ;;=G90.3^^16^133^21
  ;;^UTILITY(U,$J,358.3,2046,1,0)
- ;;=^358.31IA^3^2
- ;;^UTILITY(U,$J,358.3,2046,1,2,0)
- ;;=2^V5190
+ ;;=^358.31IA^4^2
  ;;^UTILITY(U,$J,358.3,2046,1,3,0)
- ;;=3^HA,CROS,Monaural,Glasses
- ;;^UTILITY(U,$J,358.3,2047,0)
- ;;=V5200^^19^162^62^^^^1
- ;;^UTILITY(U,$J,358.3,2047,1,0)
- ;;=^358.31IA^3^2
- ;;^UTILITY(U,$J,358.3,2047,1,2,0)
- ;;=2^V5200
- ;;^UTILITY(U,$J,358.3,2047,1,3,0)
- ;;=3^HA,Dispensing Fee,CROS,Monaural
- ;;^UTILITY(U,$J,358.3,2048,0)
- ;;=V5211^^19^162^41^^^^1
- ;;^UTILITY(U,$J,358.3,2048,1,0)
- ;;=^358.31IA^3^2
- ;;^UTILITY(U,$J,358.3,2048,1,2,0)
- ;;=2^V5211
- ;;^UTILITY(U,$J,358.3,2048,1,3,0)
- ;;=3^HA,CROS,Binaural,ITE/ITE
- ;;^UTILITY(U,$J,358.3,2049,0)
- ;;=V5212^^19^162^40^^^^1
- ;;^UTILITY(U,$J,358.3,2049,1,0)
- ;;=^358.31IA^3^2
- ;;^UTILITY(U,$J,358.3,2049,1,2,0)
- ;;=2^V5212
- ;;^UTILITY(U,$J,358.3,2049,1,3,0)
- ;;=3^HA,CROS,Binaural,ITE/ITC
- ;;^UTILITY(U,$J,358.3,2050,0)
- ;;=V5213^^19^162^39^^^^1
- ;;^UTILITY(U,$J,358.3,2050,1,0)
- ;;=^358.31IA^3^2
- ;;^UTILITY(U,$J,358.3,2050,1,2,0)
- ;;=2^V5213
- ;;^UTILITY(U,$J,358.3,2050,1,3,0)
- ;;=3^HA,CROS,Binaural,ITE/BET
- ;;^UTILITY(U,$J,358.3,2051,0)
- ;;=V5214^^19^162^38^^^^1
- ;;^UTILITY(U,$J,358.3,2051,1,0)
- ;;=^358.31IA^3^2
- ;;^UTILITY(U,$J,358.3,2051,1,2,0)
- ;;=2^V5214
- ;;^UTILITY(U,$J,358.3,2051,1,3,0)
- ;;=3^HA,CROS,Binaural,ITC/ITC
- ;;^UTILITY(U,$J,358.3,2052,0)
- ;;=V5215^^19^162^37^^^^1
- ;;^UTILITY(U,$J,358.3,2052,1,0)
- ;;=^358.31IA^3^2
- ;;^UTILITY(U,$J,358.3,2052,1,2,0)
- ;;=2^V5215
- ;;^UTILITY(U,$J,358.3,2052,1,3,0)
- ;;=3^HA,CROS,Binaural,ITC/BTE
- ;;^UTILITY(U,$J,358.3,2053,0)
- ;;=V5221^^19^162^36^^^^1
- ;;^UTILITY(U,$J,358.3,2053,1,0)
- ;;=^358.31IA^3^2
- ;;^UTILITY(U,$J,358.3,2053,1,2,0)
- ;;=2^V5221
- ;;^UTILITY(U,$J,358.3,2053,1,3,0)
- ;;=3^HA,CROS,Binaural,BTE/BTE
- ;;^UTILITY(U,$J,358.3,2054,0)
- ;;=V5230^^19^162^31^^^^1
- ;;^UTILITY(U,$J,358.3,2054,1,0)
- ;;=^358.31IA^3^2
- ;;^UTILITY(U,$J,358.3,2054,1,2,0)
- ;;=2^V5230
- ;;^UTILITY(U,$J,358.3,2054,1,3,0)
- ;;=3^HA,BICROS,Glasses
- ;;^UTILITY(U,$J,358.3,2055,0)
- ;;=69100^^19^163^3^^^^1
- ;;^UTILITY(U,$J,358.3,2055,1,0)
- ;;=^358.31IA^3^2
- ;;^UTILITY(U,$J,358.3,2055,1,2,0)
- ;;=2^69100
- ;;^UTILITY(U,$J,358.3,2055,1,3,0)
- ;;=3^Bx,External Ear
- ;;^UTILITY(U,$J,358.3,2056,0)
- ;;=69105^^19^163^2^^^^1
- ;;^UTILITY(U,$J,358.3,2056,1,0)
- ;;=^358.31IA^3^2
- ;;^UTILITY(U,$J,358.3,2056,1,2,0)
- ;;=2^69105
- ;;^UTILITY(U,$J,358.3,2056,1,3,0)
- ;;=3^Bx,External Auditory Canal
- ;;^UTILITY(U,$J,358.3,2057,0)
- ;;=69110^^19^163^5^^^^1
- ;;^UTILITY(U,$J,358.3,2057,1,0)
- ;;=^358.31IA^3^2
- ;;^UTILITY(U,$J,358.3,2057,1,2,0)
- ;;=2^69110
- ;;^UTILITY(U,$J,358.3,2057,1,3,0)
- ;;=3^Excision External Ear;Partial,Simple
- ;;^UTILITY(U,$J,358.3,2058,0)
- ;;=69120^^19^163^1^^^^1
- ;;^UTILITY(U,$J,358.3,2058,1,0)
- ;;=^358.31IA^3^2
- ;;^UTILITY(U,$J,358.3,2058,1,2,0)
- ;;=2^69120
- ;;^UTILITY(U,$J,358.3,2058,1,3,0)
- ;;=3^Amputation of External Ear
- ;;^UTILITY(U,$J,358.3,2059,0)
- ;;=69140^^19^163^4^^^^1
- ;;^UTILITY(U,$J,358.3,2059,1,0)
- ;;=^358.31IA^3^2
- ;;^UTILITY(U,$J,358.3,2059,1,2,0)
- ;;=2^69140
- ;;^UTILITY(U,$J,358.3,2059,1,3,0)
- ;;=3^Excision Exostosis,External Ear Canal
- ;;^UTILITY(U,$J,358.3,2060,0)
- ;;=69145^^19^163^6^^^^1
- ;;^UTILITY(U,$J,358.3,2060,1,0)
- ;;=^358.31IA^3^2
- ;;^UTILITY(U,$J,358.3,2060,1,2,0)
- ;;=2^69145
- ;;^UTILITY(U,$J,358.3,2060,1,3,0)
- ;;=3^Excision Soft Tiss Lesion,Ext Auditory Canal
- ;;^UTILITY(U,$J,358.3,2061,0)
- ;;=69150^^19^163^8^^^^1
- ;;^UTILITY(U,$J,358.3,2061,1,0)
- ;;=^358.31IA^3^2
- ;;^UTILITY(U,$J,358.3,2061,1,2,0)
- ;;=2^69150
- ;;^UTILITY(U,$J,358.3,2061,1,3,0)
- ;;=3^Rad Exc Ext Aud Canal Lesion w/o Nck Dissect
- ;;^UTILITY(U,$J,358.3,2062,0)
- ;;=69155^^19^163^7^^^^1
- ;;^UTILITY(U,$J,358.3,2062,1,0)
- ;;=^358.31IA^3^2
- ;;^UTILITY(U,$J,358.3,2062,1,2,0)
- ;;=2^69155
- ;;^UTILITY(U,$J,358.3,2062,1,3,0)
- ;;=3^Rad Exc Ext Aud Canal Lesion w/ Nck Dissect
- ;;^UTILITY(U,$J,358.3,2063,0)
- ;;=69000^^19^164^2^^^^1
- ;;^UTILITY(U,$J,358.3,2063,1,0)
- ;;=^358.31IA^3^2
+ ;;=3^Multi-System Degeneration of the Autonomic Nervous System
+ ;;^UTILITY(U,$J,358.3,2046,1,4,0)
+ ;;=4^G90.3
+ ;;^UTILITY(U,$J,358.3,2046,2)
+ ;;=^5004162

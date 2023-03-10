@@ -1,5 +1,5 @@
 PSIVRNL ;BIR/RGY-PRINT RENEWAL AND ACTIVE ORDER LIST ; 15 May 98 / 9:27 AM
- ;;5.0; INPATIENT MEDICATIONS ;**3,137**;16 DEC 97
+ ;;5.0;INPATIENT MEDICATIONS;**3,137,364,425**;16 DEC 97;Build 3
  ;
 ENRNL ;
  D ^PSIVXU I $D(XQUIT) K XQUIT Q
@@ -43,19 +43,30 @@ PRNT D:$Y+7>IOSL!(WARD'=WRD) HDR D ENIV^PSJAC W !,VAIN(5),?30 S PSIV=$O(^PS(55,D
 ENP1 W !,VADM(1)
  S SSNF=0
 ENP3 I PSIV]"" S PSIV=$O(^PS(55,DFN,"IV",ON,"AD",PSIV)) I PSIV D ENP2 W ! D CHK2
+ N HAZFLG
  I PSIV]"" F PSIV=PSIV:0 S PSIV=$O(^PS(55,DFN,"IV",ON,"AD",PSIV)) Q:'PSIV  D ENP2 W ! D CHK2
  F PSIV=0:0 S PSIV=$O(^PS(55,DFN,"IV",ON,"SOL",PSIV)) Q:'PSIV  D
  .; naked ref below refers to line above
  .S PSIV=PSIV_"^"_^(PSIV,0) W ?30,$S($D(^PS(52.7,$P(PSIV,"^",2),0)):$P(^(0),"^")_" "_$P(PSIV,"^",3)_" "_$P(^(0),"^",4),1:"*** Undefined Solution"),! D CHK2
+ .;introduces haz handle/dispose warnings-bg     *364
+ .N PSSL,PSHAZ S HAZFLG=0 S PSSL=$P(^PS(52.7,$P(PSIV,"^",2),0),"^",2) S PSHAZ=$$HAZ^PSSUTIL(PSSL) I $P(PSHAZ,"^")=1 S P("HAZHA")="<<HAZ Handle>> " S HAZFLG=1
+ .I $P(PSHAZ,"^",2)=1 S P("HAZDA")="<<HAZ Dispose>>" S HAZFLG=1
  W:P(8)]"" ?30,$P(P(8),"@"),! D CHK2
+ I $G(HAZFLG) W ?30,$G(P("HAZHA"))_$G(P("HAZDA")) K P("HAZDA"),P("HAZHA")   ;*425 IF condition and HAZFLG 
  W:P(9)]"" ?30,P(9) W:P(11)]"" " (",P(11),")" W:P(9)_P(11)]"" ! D CHK2
  S PSIV=$S($D(^PS(55,DFN,"IV",ON,3)):$P(^(3),"^"),1:"") W:PSIV]"" ?30,"Other print info.: ",PSIV,! D CHK2
  ; naked ref below refers to line above
  S PSIV=$S($D(^(1)):$P(^(1),"^"),1:"") W:PSIV]"" ?40,"Remarks: ",PSIV,! D CHK2
  I "OHD"[P(17) S Y=^DD(55.01,100,0),X=P(17),X=$P($P(";"_$P(Y,"^",3),";"_X_":",2),";") W ?30,"*** THIS ORDER HAS A STATUS OF '",X,"' ***",!
- D CHK2 K SSNF Q
-ENP2 S PSIV=PSIV_"^"_^PS(55,DFN,"IV",ON,"AD",+PSIV,0) W ?30,$S($D(^PS(52.6,$P(PSIV,"^",2),0)):$P(^(0),"^")_" "_$P(PSIV,"^",3),1:"*** Undefined Additive") I $P(PSIV,"^",4)]"" W " (",$P(PSIV,"^",4),")"
- S PSIV=+PSIV Q
+ D CHK2 K SSNF
+ Q
+ENP2 S PSIV=PSIV_"^"_^PS(55,DFN,"IV",ON,"AD",+PSIV,0) W ?30,$S($D(^PS(52.6,$P(PSIV,"^",2),0)):$P(^(0),"^")_" "_$P(PSIV,"^",3),1:"*** Undefined Additive") D 
+ . N PSDG,PSHAZ S PSDG=$P(^PS(52.6,$P(PSIV,"^",2),0),"^",2) S PSHAZ=$$HAZ^PSSUTIL(PSDG) I $P(PSHAZ,"^")=1 S P("HAZHS")="<<HAZ Handle>> "
+ . I $P(PSHAZ,"^",2)=1 S P("HAZDS")="<<HAZ Dispose>>"
+ . I $P(PSHAZ,"^")!$P(PSHAZ,"^",2) W !?30,$G(P("HAZHS"))_$G(P("HAZDS")) K P("HAZDS"),P("HAZHS")   ;*425 IF condition
+ . S PSIV=+PSIV Q
+ I $P(PSIV,"^",4)]"" W " (",$P(PSIV,"^",4),")"
+ Q
 HDR W:$Y @IOF,!! I $E(PSIVEND)=9 W "Active order list"
  E  W "Renewal list from " S Y=PSIVBEG D WD W " to " S Y=PSIVEND D WD
  W !,"Printed on: " S Y=PSIVRUN D WD W !!,"Patient name",?40,"Order",?80,"Stop date",?105,"Provider",! F Y=1:1:130 W "-"

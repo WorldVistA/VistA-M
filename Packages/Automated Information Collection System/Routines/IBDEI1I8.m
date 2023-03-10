@@ -1,116 +1,128 @@
-IBDEI1I8 ; ; 04-FEB-2020
- ;;3.0;IB ENCOUNTER FORM IMP/EXP;;FEB 04, 2020
+IBDEI1I8 ; ; 01-FEB-2022
+ ;;3.0;IB ENCOUNTER FORM IMP/EXP;;FEB 01, 2022
  Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,999) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
- ;;^UTILITY(U,$J,358.3,24062,1,3,0)
- ;;=3^Athscl Autol Vein Bypass of Left Leg w/ Ulcer of Ankle
- ;;^UTILITY(U,$J,358.3,24062,1,4,0)
- ;;=4^I70.443
- ;;^UTILITY(U,$J,358.3,24062,2)
- ;;=^5007673
- ;;^UTILITY(U,$J,358.3,24063,0)
- ;;=I70.444^^107^1201^39
- ;;^UTILITY(U,$J,358.3,24063,1,0)
+ ;;^UTILITY(U,$J,358.3,24334,1,3,0)
+ ;;=3^Cyclosporiasis
+ ;;^UTILITY(U,$J,358.3,24334,1,4,0)
+ ;;=4^A07.4
+ ;;^UTILITY(U,$J,358.3,24334,2)
+ ;;=^321973
+ ;;^UTILITY(U,$J,358.3,24335,0)
+ ;;=A07.8^^82^1053^14
+ ;;^UTILITY(U,$J,358.3,24335,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,24063,1,3,0)
- ;;=3^Athscl Autol Vein Bypass of Left Leg w/ Ulcer of Heel/Midfoot
- ;;^UTILITY(U,$J,358.3,24063,1,4,0)
- ;;=4^I70.444
- ;;^UTILITY(U,$J,358.3,24063,2)
- ;;=^5007674
- ;;^UTILITY(U,$J,358.3,24064,0)
- ;;=I70.445^^107^1201^40
- ;;^UTILITY(U,$J,358.3,24064,1,0)
+ ;;^UTILITY(U,$J,358.3,24335,1,3,0)
+ ;;=3^Protozoal Intestinal Diseases,Oth Spec
+ ;;^UTILITY(U,$J,358.3,24335,1,4,0)
+ ;;=4^A07.8
+ ;;^UTILITY(U,$J,358.3,24335,2)
+ ;;=^265972
+ ;;^UTILITY(U,$J,358.3,24336,0)
+ ;;=A07.9^^82^1053^13
+ ;;^UTILITY(U,$J,358.3,24336,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,24064,1,3,0)
- ;;=3^Athscl Autol Vein Bypass of Left Leg w/ Ulcer of Oth Part of Foot
- ;;^UTILITY(U,$J,358.3,24064,1,4,0)
- ;;=4^I70.445
- ;;^UTILITY(U,$J,358.3,24064,2)
- ;;=^5007675
- ;;^UTILITY(U,$J,358.3,24065,0)
- ;;=I70.531^^107^1201^61
- ;;^UTILITY(U,$J,358.3,24065,1,0)
+ ;;^UTILITY(U,$J,358.3,24336,1,3,0)
+ ;;=3^Protozoal Intestinal Disease,Unspec
+ ;;^UTILITY(U,$J,358.3,24336,1,4,0)
+ ;;=4^A07.9
+ ;;^UTILITY(U,$J,358.3,24336,2)
+ ;;=^5000051
+ ;;^UTILITY(U,$J,358.3,24337,0)
+ ;;=A08.0^^82^1053^15
+ ;;^UTILITY(U,$J,358.3,24337,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,24065,1,3,0)
- ;;=3^Athscl Nonaut Bio Bypass of Right Leg w/ Ulcer of Thigh
- ;;^UTILITY(U,$J,358.3,24065,1,4,0)
- ;;=4^I70.531
- ;;^UTILITY(U,$J,358.3,24065,2)
- ;;=^5007702
- ;;^UTILITY(U,$J,358.3,24066,0)
- ;;=I70.532^^107^1201^62
- ;;^UTILITY(U,$J,358.3,24066,1,0)
+ ;;^UTILITY(U,$J,358.3,24337,1,3,0)
+ ;;=3^Rotaviral Enteritis
+ ;;^UTILITY(U,$J,358.3,24337,1,4,0)
+ ;;=4^A08.0
+ ;;^UTILITY(U,$J,358.3,24337,2)
+ ;;=^5000052
+ ;;^UTILITY(U,$J,358.3,24338,0)
+ ;;=A08.11^^82^1053^1
+ ;;^UTILITY(U,$J,358.3,24338,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,24066,1,3,0)
- ;;=3^Athscl Nonaut Bio Bypass of Right Leg w/ Ulcer of Calf
- ;;^UTILITY(U,$J,358.3,24066,1,4,0)
- ;;=4^I70.532
- ;;^UTILITY(U,$J,358.3,24066,2)
- ;;=^5007703
- ;;^UTILITY(U,$J,358.3,24067,0)
- ;;=I70.533^^107^1201^63
- ;;^UTILITY(U,$J,358.3,24067,1,0)
+ ;;^UTILITY(U,$J,358.3,24338,1,3,0)
+ ;;=3^Acute Gastroenteropathy d/t Norwalk Agent
+ ;;^UTILITY(U,$J,358.3,24338,1,4,0)
+ ;;=4^A08.11
+ ;;^UTILITY(U,$J,358.3,24338,2)
+ ;;=^5000053
+ ;;^UTILITY(U,$J,358.3,24339,0)
+ ;;=A08.19^^82^1053^2
+ ;;^UTILITY(U,$J,358.3,24339,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,24067,1,3,0)
- ;;=3^Athscl Nonaut Bio Bypass of Right Leg w/ Ulcer of Ankle
- ;;^UTILITY(U,$J,358.3,24067,1,4,0)
- ;;=4^I70.533
- ;;^UTILITY(U,$J,358.3,24067,2)
- ;;=^5007704
- ;;^UTILITY(U,$J,358.3,24068,0)
- ;;=I70.534^^107^1201^64
- ;;^UTILITY(U,$J,358.3,24068,1,0)
+ ;;^UTILITY(U,$J,358.3,24339,1,3,0)
+ ;;=3^Acute Gastroenteropathy d/t Oth Small Round Viruses
+ ;;^UTILITY(U,$J,358.3,24339,1,4,0)
+ ;;=4^A08.19
+ ;;^UTILITY(U,$J,358.3,24339,2)
+ ;;=^5000054
+ ;;^UTILITY(U,$J,358.3,24340,0)
+ ;;=A08.2^^82^1053^3
+ ;;^UTILITY(U,$J,358.3,24340,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,24068,1,3,0)
- ;;=3^Athscl Nonaut Bio Bypass of Right Leg w/ Ulcer of Heel/Midfoot
- ;;^UTILITY(U,$J,358.3,24068,1,4,0)
- ;;=4^I70.534
- ;;^UTILITY(U,$J,358.3,24068,2)
- ;;=^5007705
- ;;^UTILITY(U,$J,358.3,24069,0)
- ;;=I70.535^^107^1201^65
- ;;^UTILITY(U,$J,358.3,24069,1,0)
+ ;;^UTILITY(U,$J,358.3,24340,1,3,0)
+ ;;=3^Adenoviral Enteritis
+ ;;^UTILITY(U,$J,358.3,24340,1,4,0)
+ ;;=4^A08.2
+ ;;^UTILITY(U,$J,358.3,24340,2)
+ ;;=^5000055
+ ;;^UTILITY(U,$J,358.3,24341,0)
+ ;;=A08.31^^82^1053^6
+ ;;^UTILITY(U,$J,358.3,24341,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,24069,1,3,0)
- ;;=3^Athscl Nonaut Bio Bypass of Right Leg w/ Ulcer of Oth Part of Foot
- ;;^UTILITY(U,$J,358.3,24069,1,4,0)
- ;;=4^I70.535
- ;;^UTILITY(U,$J,358.3,24069,2)
- ;;=^5007706
- ;;^UTILITY(U,$J,358.3,24070,0)
- ;;=I70.541^^107^1201^56
- ;;^UTILITY(U,$J,358.3,24070,1,0)
+ ;;^UTILITY(U,$J,358.3,24341,1,3,0)
+ ;;=3^Calicivirus enteritis
+ ;;^UTILITY(U,$J,358.3,24341,1,4,0)
+ ;;=4^A08.31
+ ;;^UTILITY(U,$J,358.3,24341,2)
+ ;;=^5000056
+ ;;^UTILITY(U,$J,358.3,24342,0)
+ ;;=A08.32^^82^1053^4
+ ;;^UTILITY(U,$J,358.3,24342,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,24070,1,3,0)
- ;;=3^Athscl Nonaut Bio Bypass of Left Leg w/ Ulcer of Thigh
- ;;^UTILITY(U,$J,358.3,24070,1,4,0)
- ;;=4^I70.541
- ;;^UTILITY(U,$J,358.3,24070,2)
- ;;=^5007709
- ;;^UTILITY(U,$J,358.3,24071,0)
- ;;=I70.542^^107^1201^57
- ;;^UTILITY(U,$J,358.3,24071,1,0)
+ ;;^UTILITY(U,$J,358.3,24342,1,3,0)
+ ;;=3^Astrovirus enteritis
+ ;;^UTILITY(U,$J,358.3,24342,1,4,0)
+ ;;=4^A08.32
+ ;;^UTILITY(U,$J,358.3,24342,2)
+ ;;=^5000057
+ ;;^UTILITY(U,$J,358.3,24343,0)
+ ;;=A08.39^^82^1053^16
+ ;;^UTILITY(U,$J,358.3,24343,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,24071,1,3,0)
- ;;=3^Athscl Nonaut Bio Bypass of Left Leg w/ Ulcer of Calf
- ;;^UTILITY(U,$J,358.3,24071,1,4,0)
- ;;=4^I70.542
- ;;^UTILITY(U,$J,358.3,24071,2)
- ;;=^5007710
- ;;^UTILITY(U,$J,358.3,24072,0)
- ;;=I70.543^^107^1201^58
- ;;^UTILITY(U,$J,358.3,24072,1,0)
+ ;;^UTILITY(U,$J,358.3,24343,1,3,0)
+ ;;=3^Viral Enteritis,Oth
+ ;;^UTILITY(U,$J,358.3,24343,1,4,0)
+ ;;=4^A08.39
+ ;;^UTILITY(U,$J,358.3,24343,2)
+ ;;=^5000058
+ ;;^UTILITY(U,$J,358.3,24344,0)
+ ;;=A08.4^^82^1053^17
+ ;;^UTILITY(U,$J,358.3,24344,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,24072,1,3,0)
- ;;=3^Athscl Nonaut Bio Bypass of Left Leg w/ Ulcer of Ankle
- ;;^UTILITY(U,$J,358.3,24072,1,4,0)
- ;;=4^I70.543
- ;;^UTILITY(U,$J,358.3,24072,2)
- ;;=^5007711
- ;;^UTILITY(U,$J,358.3,24073,0)
- ;;=I70.544^^107^1201^59
- ;;^UTILITY(U,$J,358.3,24073,1,0)
+ ;;^UTILITY(U,$J,358.3,24344,1,3,0)
+ ;;=3^Viral Intestinal Infection,Unspec
+ ;;^UTILITY(U,$J,358.3,24344,1,4,0)
+ ;;=4^A08.4
+ ;;^UTILITY(U,$J,358.3,24344,2)
+ ;;=^5000059
+ ;;^UTILITY(U,$J,358.3,24345,0)
+ ;;=A08.8^^82^1053^11
+ ;;^UTILITY(U,$J,358.3,24345,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,24073,1,3,0)
- ;;=3^Athscl Nonaut Bio Bypass of Left Leg w/ Ulcer of Heel/Midfoot
+ ;;^UTILITY(U,$J,358.3,24345,1,3,0)
+ ;;=3^Intestinal Infections,Oth Spec
+ ;;^UTILITY(U,$J,358.3,24345,1,4,0)
+ ;;=4^A08.8
+ ;;^UTILITY(U,$J,358.3,24345,2)
+ ;;=^5000060
+ ;;^UTILITY(U,$J,358.3,24346,0)
+ ;;=A09.^^82^1053^10
+ ;;^UTILITY(U,$J,358.3,24346,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,24346,1,3,0)
+ ;;=3^Infectious Gastroenteritis & Colitis,Unspec
+ ;;^UTILITY(U,$J,358.3,24346,1,4,0)
+ ;;=4^A09.

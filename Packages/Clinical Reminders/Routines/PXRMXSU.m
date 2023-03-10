@@ -1,5 +1,5 @@
-PXRMXSU ; SLC/PJH - Reminder Reports DIC Prompts;01/06/2006
- ;;2.0;CLINICAL REMINDERS;**4**;Feb 04, 2005;Build 21
+PXRMXSU ;SLC/PJH - Reminder Reports DIC Prompts ;01/04/2020
+ ;;2.0;CLINICAL REMINDERS;**4,42**;Feb 04, 2005;Build 245
  ;
  ;Called by PXRMXD
  ;
@@ -44,6 +44,28 @@ SEL(FILE,MODE,CNT,ARRAY,ONE,CHECK) ;
  .I CNT=0,'$$QUIT W !,LIT1
  .K DIC
  Q
+ ;
+ ;---
+CATCHECK(NCAT,REMCAT) ;Check the selected categories for problems.
+ N CATIEN,CATOK,DEFIEN,IND,JND,TEST
+ S CATOK=1
+ F IND=1:1:NCAT D
+ . S CATIEN=$P(REMCAT(IND),U,1)
+ . S JND=0
+ . F  S JND=+$O(^PXRMD(811.7,CATIEN,2,JND)) Q:JND=0  D
+ .. S TEST=^PXRMD(811.7,CATIEN,2,JND,0)
+ .. S REMIEN=$P(TEST,U,1)
+ .. I '$D(^PXD(811.9,REMIEN)) D
+ ... W !!,"Reminder Category: "_$P(^PXRMD(811.7,CATIEN,0),U,1)_" contains a pointer to a reminder that does"
+ ... W !,"not exist on the system, the reminder pointer is ",REMIEN,"."
+ ... S CATOK=0
+ .;Check sub-categories.
+ . S JND=0
+ . F  S JND=+$O(^PXRMD(811.7,CATIEN,10,JND)) Q:JND=0  D
+ .. S SUBCAT(1)=$P(^PXRMD(811.7,CATIEN,10,JND,0),U,1)
+ .. S CATOK=$$CATCHECK(1,.SUBCAT)
+ Q CATOK
+ ;---
  ;
  ;Establish the LOCATION criteria
 LOC(ADEF,BDEF) ;
@@ -188,6 +210,7 @@ RCATS I PXRMREP="S" D  Q:$D(DUOUT)!$D(DTOUT)
  .S DIC("A")="Select a REMINDER CATEGORY: "
  .S LIT="Select another REMINDER CATEGORY: ",LIT1=""
  .D SEL(811.7,"AEQMZ",.NCAT,.REMCAT,PXRMREP,3)
+ I '$$CATCHECK(NCAT,.REMCAT) G RCATS
  ;Individual Reminders
  D REM(.REM) Q:$D(DTOUT)
  I $D(DUOUT),PXRMREP="S" G RCATS

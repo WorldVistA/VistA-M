@@ -1,5 +1,6 @@
-LR7OSMZ3 ;slc/dcm - Silent Micro rpt - STERILITY, PARASITES, VIRUS ;8/11/97
- ;;5.2;LAB SERVICE;**121,244**;Sep 27, 1994
+LR7OSMZ3 ;slc/dcm - Silent Micro rpt - STERILITY, PARASITES, VIRUS ;Jul 15, 2021@13:33
+ ;;5.2;LAB SERVICE;**121,244,547**;Sep 27, 1994;Build 10
+ ;
 STER ;from LR7OSMZ1
  S X=^LR(LRDFN,"MI",LRIDT,1)
  I $L($P(X,U,7)) D LINE^LR7OSUM4 S ^TMP("LRC",$J,GCNT,0)=$$S^LR7OS(1,CCNT,"STERILITY CONTROL: "_$S($P(X,U,7)="N":"NEGATIVE",$P(X,U,7)="P":"POSITIVE",1:$P(X,U,7)))
@@ -8,7 +9,12 @@ STER ;from LR7OSMZ1
  . S ^TMP("LRC",$J,GCNT,0)=$$S^LR7OS(3,CCNT,"#"_I_": "_$S($P(X,"^")="N":"NEGATIVE",$P(X,"^")="P":"POSITIVE",1:""))
  Q
 PARA ;from LR7OSMZ1
- I '$L($P(^LR(LRDFN,"MI",LRIDT,5),U)) Q:'$D(LRWRDVEW)  Q:LRSB'=5
+ I '$L($P(^LR(LRDFN,"MI",LRIDT,5),U)) D  Q:'$D(LRWRDVEW)  Q:LRSB'=5
+ . Q:'$D(^XTMP("LRMICRO EDIT",LRDFN,LRIDT,5))
+ . ;LR*5.2*547: Display informational message if accession/test is currently being edited
+ . ;            and results had previously been verified.
+ . N LR7SB S LR7SB=5
+ . D MES^LR7OSMZ2
  S LRTUS=$P(^LR(LRDFN,"MI",LRIDT,5),U,2),DZ=$P(^(5),U,3),Y=$P(^(5),U)
  D D^LRU,LINE^LR7OSUM4
  S ^TMP("LRC",$J,GCNT,0)=$$S^LR7OS(1,CCNT,"* PARASITOLOGY "_$S(LRTUS="F":"FINAL",LRTUS="P":"PRELIMINARY",1:"")_" REPORT => "_Y_"   TECH CODE: "_DZ)
@@ -43,7 +49,12 @@ LIST1 ;
  . D LINE^LR7OSUM4 S ^TMP("LRC",$J,GCNT,0)=$$S^LR7OS(13,CCNT,X)
  Q
 VIR ;from LR7OSMZ1
- I '$L($P(^LR(LRDFN,"MI",LRIDT,16),U)) Q:'$D(LRWRDVEW)  Q:LRSB'=16
+ I '$L($P(^LR(LRDFN,"MI",LRIDT,16),U)) D  Q:'$D(LRWRDVEW)  Q:LRSB'=16
+ . Q:'$D(^XTMP("LRMICRO EDIT",LRDFN,LRIDT,16))
+ . ;LR*5.2*547: Display informational message if accession/test is currently being edited
+ . ;            and results had previously been verified.
+ . N LR7SB S LR7SB=16
+ . D MES^LR7OSMZ2
  S LRTUS=$P(^LR(LRDFN,"MI",LRIDT,16),U,2),DZ=$P(^(16),U,3),Y=$P(^(16),U)
  D D^LRU,LINE^LR7OSUM4
  S ^TMP("LRC",$J,GCNT,0)=$$S^LR7OS(1,CCNT,"* VIROLOGY "_$S(LRTUS="F":"FINAL",LRTUS="P":"PRELIMINARY",1:"")_" REPORT => "_Y_"   TECH CODE: "_DZ)

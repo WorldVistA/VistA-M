@@ -1,5 +1,5 @@
-PSORXVW1 ;BIR/SAB - view prescription con't ;12/4/07 12:28pm
- ;;7.0;OUTPATIENT PHARMACY;**35,47,46,71,99,117,156,193,210,148,258,260,240,281,359,354,367,386,408,427,499,509,482**;DEC 1997;Build 44
+PSORXVW1 ;BIR/SAB - view prescription con't ;Sep 10, 2018@08:51
+ ;;7.0;OUTPATIENT PHARMACY;**35,47,46,71,99,117,156,193,210,148,258,260,240,281,359,354,367,386,408,427,499,509,482,441**;DEC 1997;Build 208
  ;External reference to ^DD(52 supported by DBIA 999
  ;External reference to ^VA(200 supported by DBIA 10060
  ;PSO*210 add call to WORDWRAP api
@@ -17,7 +17,7 @@ PSORXVW1 ;BIR/SAB - view prescription con't ;12/4/07 12:28pm
  S IEN=IEN+1,^TMP("PSOAL",$J,IEN,0)=" " ;,IEN=IEN+1,$P(^TMP("PSOAL",$J,IEN,0),"=",79)="="
  S IEN=IEN+1,^TMP("PSOAL",$J,IEN,0)="Original Fill Released: " I $P(RX2,"^",13) S DTT=$P(RX2,"^",13) D DAT S ^TMP("PSOAL",$J,IEN,0)=^TMP("PSOAL",$J,IEN,0)_DAT K DAT,DTT
  I $P(RX2,"^",15) S DTT=$P(RX2,"^",15) D DAT S ^TMP("PSOAL",$J,IEN,0)=^TMP("PSOAL",$J,IEN,0)_"(Returned to Stock "_DAT_")" K DAT,DTT
- S ^TMP("PSOAL",$J,IEN,0)=^TMP("PSOAL",$J,IEN,0)_"      Routing: "_$S($P(RX0,"^",11)="W":"Window",1:"Mail")
+ S ^TMP("PSOAL",$J,IEN,0)=^TMP("PSOAL",$J,IEN,0)_"      Routing: "_$S($P(RX0,"^",11)="W":"Window",$P(RX0,"^",11)="P":"Park",1:"Mail")  ;PAPI 441
  I $G(^PSRX(DA,"H"))]"",$P(^("STA"),"^")=3 D HLD
  D RF,PAR,ACT,COPAY^PSORXVW2,LBL,ECME^PSOORAL1,SPMP^PSOORAL1,^PSORXVW2:$O(^PSRX(DA,4,0))
  Q
@@ -77,7 +77,8 @@ RF ;refill log
  F N=0:0 S N=$O(^PSRX(DA,1,N)) Q:'N  S P1=^(N,0),PSORFI=$G(^PSRX(DA,1,N,"RF")) D
  .S DTT=$P(P1,"^",8)\1 D DAT S IEN=IEN+1,^TMP("PSOAL",$J,IEN,0)=N_"   "_DAT_"   "
  .S DTT=$P(P1,"^"),$P(RN," ",10)=" " D DAT
- .S ^TMP("PSOAL",$J,IEN,0)=^TMP("PSOAL",$J,IEN,0)_DAT_"     "_$P(P1,"^",4)_$E("               ",$L($P(P1,"^",4))+1,15)_"  "_$S($P(P1,"^",2)="M":"Mail",1:"Window")_" "_$P(P1,"^",6)_$E(RN,$L($P(P1,"^",6))+1,12)
+ .;PAPI 441
+ .S ^TMP("PSOAL",$J,IEN,0)=^TMP("PSOAL",$J,IEN,0)_DAT_"     "_$P(P1,"^",4)_$E("               ",$L($P(P1,"^",4))+1,15)_"  "_$S($P(P1,"^",2)="M":"Mail",$P(P1,"^",2)="P":"Park",1:"Window")_" "_$P(P1,"^",6)_$E(RN,$L($P(P1,"^",6))+1,12)
  .K DIC,X,Y S DIC="^VA(200,",DIC(0)="N,Z",X=+$P(P1,"^",5) D ^DIC
  .S ^TMP("PSOAL",$J,IEN,0)=^TMP("PSOAL",$J,IEN,0)_$E($S($P(PSORFI,"^",2)]"":$P(PSORFI,"^",2),+Y:$P(Y,"^",2),1:""),1,16) K DIC,X,Y
  .S PSDIV=$S(+PSORFI:+PSORFI,$D(^PS(59,+$P(P1,"^",9),0)):$P(^(0),"^",6),1:"Unknown"),IEN=IEN+1,^TMP("PSOAL",$J,IEN,0)="Division: "_PSDIV_$E("        ",$L(PSDIV)+1,8)_"  "
@@ -97,7 +98,7 @@ PAR ;partial log
  .S IEN=IEN+1,^TMP("PSOAL",$J,IEN,0)=N_"   "_DAT_"  ",QTY=$P(P1,"^",4)_$E("               ",$L($P(P1,"^",4))+1,15)
  .S DTT=$P(P1,"^") D DAT S ^TMP("PSOAL",$J,IEN,0)=^TMP("PSOAL",$J,IEN,0)_DAT_"  "_QTY_"  "
  .S PSDIV=$S(+PSOPFI:+PSOPFI,$D(^PS(59,+$P(P1,"^",9),0)):$P(^(0),"^",6),1:"UNKNOWN"),PSDIV=PSDIV_$E("        ",$L(PSDIV)+1,8)  ;*499
- .S MW=$S($P(P1,"^",2)="M":"Mail",1:"Window"),MW=MW_$E("          ",$L(MW)+1,10)
+ .S MW=$S($P(P1,"^",2)="M":"Mail",$P(P1,"^",2)="P":"Park",1:"Window"),MW=MW_$E("          ",$L(MW)+1,10)  ;PAPI 441
  .K DIC,X,Y S DIC="^VA(200,",DIC(0)="N,Z",X=+$P(P1,"^",5) D ^DIC  ;*509 - 0;5 INSTEAD OF 0;16
  .S ^TMP("PSOAL",$J,IEN,0)=^TMP("PSOAL",$J,IEN,0)_MW_"  "_$P(P1,"^",6)_$E("            ",$L($P(P1,"^",6))+1,10)_$E($S($P(PSOPFI,"^",2)]"":$P(PSOPFI,"^",2),+Y:$P(Y,"^",2),1:""),1,16)  ;*499
  .S RTS=$S($P(P1,"^",16):" RETURNED TO STOCK: "_$E($P(P1,"^",16),4,5)_"/"_$E($P(P1,"^",16),6,7)_"/"_$E($P(P1,"^",16),2,3),1:" RELEASED: "_$S($P(P1,"^",19):$E($P(P1,"^",19),4,5)_"/"_$E($P(P1,"^",19),6,7)_"/"_$E($P(P1,"^",19),2,3),1:""))
@@ -143,7 +144,7 @@ HLP ; Help Text for the VIEW PRESCRIPTION prompt
  W !," number with or without any leading zeros."
  W !!,"  Or just",!
  D LKP("?")
- Q 
+ Q
  ;
 LKP(INPUT) ; - Peforms Lookup on the PRESCRIPTION file
  N DIC,X,Y

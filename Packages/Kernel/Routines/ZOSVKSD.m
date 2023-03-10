@@ -1,5 +1,5 @@
-%ZOSVKSD ;OAK/KAK/RAK/JML - ZOSVKSD - Calculate Disk Capacity ;7/25/2004
- ;;8.0;KERNEL;**121,197,268,456,568,670**;3/1/2018;Build 45
+%ZOSVKSD ;OAK/KAK/RAK/JML - ZOSVKSD - Calculate Disk Capacity ;10/1/2020
+ ;;8.0;KERNEL;**121,197,268,456,568,670,740**;3/1/2018;Build 6
  ;
  ; This routine will help to calculate disk capacity for
  ; Cache system platforms by looking up volume set table information
@@ -23,12 +23,12 @@ EN(SITENUM,SESSNUM,OS) ;-- called by routine SYS+2^KMPSLK
  Q
  ;
 ALLOS ; Using InterSystems APIs.  Designed to work on all OS's
- N KMPSARR,KMPSDIR,KMPSRNS,KMPSTNS,KMPSPTR
+ N KMPRNS,KMPSARR,KMPSDIR,KMPSRNS,KMPSTNS,KMPSPTR
  ; 
  ; KMPS*2.0*1 -- now monitoring all volume sets
  ;
  S KMPSDIR="",KMPSARR=""
- S KMPSRNS=$ZU(5),KMPSTNS=$ZU(5,"%SYS")
+ S KMPRNS=$NAMESPACE,$NAMESPACE="%SYS"
  F  S KMPSDIR=$O(^SYS("UCI",KMPSDIR)) Q:KMPSDIR=""  D
  .Q:$G(^SYS("UCI",KMPSDIR))]""
  .; get TOTAL BLOCKS for directory
@@ -37,23 +37,25 @@ ALLOS ; Using InterSystems APIs.  Designed to work on all OS's
  .Q:KMPSPTR.Mounted'=1
  .;
  .S KMPSARR("KMPS",SITENUM,SESSNUM,"@VOL",KMPSDIR)=KMPSPTR.Blocks
- S KMPSTNS=$ZU(5,KMPSRNS)
+ S $NAMESPACE=KMPRNS
  S KMPSDIR=""
  F  S KMPSDIR=$O(KMPSARR("KMPS",SITENUM,SESSNUM,"@VOL",KMPSDIR)) Q:KMPSDIR=""  D
  .S ^XTMP("KMPS",SITENUM,SESSNUM,"@VOL",KMPSDIR)=KMPSARR("KMPS",SITENUM,SESSNUM,"@VOL",KMPSDIR)
  Q
  ;
 KMPVVSTM(KMPVDATA) ; Get storage metrics for Vista Storage Monitor (VSTM) within VistA System Monitor (VSM)
- N KMPVRNS,KMPVTNS,KMPVDIR,KMPVDB,KMPVMAX,KMPVSIZE,KMPVBSIZ,KMPVBPM,KMPVSTAT,KMPVFMB
+ N KMPRNS,KMPVTNS,KMPVDIR,KMPVDB,KMPVMAX,KMPVSIZE,KMPVBSIZ,KMPVBPM,KMPVSTAT,KMPVFMB
  N KMPVFBLK,KMPVSYSD,KMPVESIZ,KMPVFLAG,KMPVRSET,KMPVDFSP
+ N KMPDBERR,KMPVLN,KMPVTEXT
  S U="^"
  ; get current namespace, switch to %SYS
- S KMPVRNS=$ZU(5),KMPVTNS=$ZU(5,"%SYS")
+ S KMPRNS=$NAMESPACE,$NAMESPACE="%SYS"
  S KMPVDIR=""
  S KMPVTNS=$ZU(5,"%SYS")
  F  S KMPVDIR=$O(^SYS("UCI",KMPVDIR)) Q:KMPVDIR=""  D
  .Q:$G(^SYS("UCI",KMPVDIR))]""
  .S KMPVDB=##class(SYS.Database).%OpenId(KMPVDIR)
+ .I KMPVDB="" S KMPDBERR(KMPVDIR)="" Q
  .S KMPVMAX=KMPVDB.MaxSize,KMPVSIZE=KMPVDB.Size
  .S KMPVBSIZ=KMPVDB.BlockSize,KMPVBPM=KMPVDB.BlocksPerMap
  .S KMPVSTAT=KMPVDB.GetFreeSpace(KMPVDIR,.KMPVFMB,.KMPVFBLK)
@@ -72,15 +74,21 @@ KMPVVSTM(KMPVDATA) ; Get storage metrics for Vista Storage Monitor (VSTM) within
  }
  D KMPVRSET.Close()
  ; Switch back to production namespace
- S KMPVTNS=$ZU(5,KMPVRNS)
+ S $NAMESPACE=KMPRNS
+ ; Send email if directory doesn't exist
+ I $D(KMPDBERR) D
+ .S KMPVTEXT("SUBJECT")="VSM CONFIG: Missing Directory"
+ .S KMPVDIR="",KMPVLN=1
+ .F  S KMPVDIR=$O(KMPDBERR(KMPVDIR)) Q:KMPVDIR=""  D
+ ..S KMPVTEXT(KMPVLN)="Directory: "_KMPVDIR,KMPVLN=KMPVLN+1
+ .D INFOMSG^KMPUTLW(.KMPVTEXT)
  Q
  ;
 KMPVVTCM(KMPVDATA) ; Get Cache metrics for Vista Timed Collection Monitor (VTCM) within VistA System Monitor (VSM)
- N U,KMPVRNS,KMPVTNS
+ N U,KMPRNS,KMPVTNS
  S U="^"
  ; get current namespace, switch to %SYS
- S KMPVRNS=$ZU(5),KMPVTNS=$ZU(5,"%SYS")
- S KMPVTNS=$ZU(5,"%SYS")
+ S KMPRNS=$NAMESPACE,$NAMESPACE="%SYS"
  ;
  S KMPVDATA("KMPVDASH")=##class(SYS.Stats.Dashboard).Sample()
  S KMPVDATA("KMPVROUT")=##class(SYS.Stats.Routine).Sample()
@@ -88,15 +96,15 @@ KMPVVTCM(KMPVDATA) ; Get Cache metrics for Vista Timed Collection Monitor (VTCM)
  S KMPVDATA("KMPVMEM")=##class(%SYSTEM.Config.SharedMemoryHeap).FreeCount()
  ;
  ; Return to 'from' namespace
- S KMPVTNS=$ZU(5,KMPVRNS)
+ S $NAMESPACE=KMPRNS
  Q
  ;
 BLKCOL(KMPVRET) ;
  ; ** Non interactive subset of Intersystems' ^BLKCOL routine - includes parts of BLKCOL and RUNERR line tags
  ;
- N KMPVRNS,KMPVTNS,KMPVSEC,KMPVWAIT,KMPVDET,KMPVCOL,KMPVTO,KMPVCNT,KMPVINFO
+ N KMPRNS,KMPVTNS,KMPVSEC,KMPVWAIT,KMPVDET,KMPVCOL,KMPVTO,KMPVCNT,KMPVINFO
  ; get current namespace, switch to %SYS
- S KMPVRNS=$ZU(5),KMPVTNS=$ZU(5,"%SYS")
+ S KMPRNS=$NAMESPACE,$NAMESPACE="%SYS"
  S KMPVSEC=10,KMPVWAIT=10,KMPVDET=2,KMPVRET=""
  ;
  S $ZTRAP="RUNERR"
@@ -104,17 +112,17 @@ BLKCOL(KMPVRET) ;
  K ^||BLKCOL
  S KMPVCOL=0,KMPVTO=$ZH+KMPVSEC
  F KMPVCNT=1:1:1000 D
- .S KMPVINFO=$zu(190,17)
+ .S KMPVINFO=$ZU(190,17)
  .I KMPVINFO]"" S KMPVCOL=KMPVCOL+1
  .H KMPVWAIT/1000
  S KMPVRET=KMPVCNT_","_KMPVCOL
  L -^SYS("BLKCOL")
  ; Return to 'from' namespace
- S KMPVTNS=$ZU(5,KMPVRNS)
+ S $NAMESPACE=KMPRNS
  Q
 RUNERR ; Trap errors
  S $ZTRAP=""
  L -^SYS("BLKCOL")
  ; Return to 'from' namespace
- S KMPVTNS=$ZU(5,KMPVRNS)
+ S $NAMESPACE=KMPRNS
  Q

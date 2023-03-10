@@ -1,6 +1,6 @@
 IBCNEML ;BP/YMG - MAILMAN NOTIFICATION TO LINK PAYERS ;27-AUG-2010
- ;;2.0;INTEGRATED BILLING;**438**;21-MAR-94;Build 52
- ;;Per VHA Directive 2004-038, this routine should not be modified.
+ ;;2.0;INTEGRATED BILLING;**438,668**;21-MAR-94;Build 28
+ ;;Per VA Directive 6402, this routine should not be modified.
  ;
  Q
  ;
@@ -27,7 +27,8 @@ EN ; entry point
  .I PROFID'="",$D(RPTDATA("P",PROFID)) S:'$D(RPTDATA("PYR",IEN)) RPTDATA("PYR",IEN)="",TOTAL=TOTAL+1
  .I INSTID'="",$D(RPTDATA("I",INSTID)) S:'$D(RPTDATA("PYR",IEN)) RPTDATA("PYR",IEN)="",TOTAL=TOTAL+1
  .; if payer is nationally active, but locally inactive, add it to the list
- .S APP=$$PYRAPP^IBCNEUT5("IIV",IEN),(LOACT,NAACT)=0
+ .;IB*668/TAZ - Changed Payer Application from IIV to EIV
+ .S APP=$$PYRAPP^IBCNEUT5("EIV",IEN),(LOACT,NAACT)=0
  .I 'APP Q
  .S DATA=$G(^IBE(365.12,IEN,1,APP,0)),NAACT=$P(DATA,U,2),LOACT=$P(DATA,U,3)
  .I NAACT,'LOACT,$D(RPTDATA("PYR",IEN)) S RPTDATA("INACTIVE",IEN)=PAYER

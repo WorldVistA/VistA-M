@@ -1,118 +1,130 @@
-IBDEI1EZ ; ; 04-FEB-2020
- ;;3.0;IB ENCOUNTER FORM IMP/EXP;;FEB 04, 2020
+IBDEI1EZ ; ; 01-FEB-2022
+ ;;3.0;IB ENCOUNTER FORM IMP/EXP;;FEB 01, 2022
  Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,999) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
- ;;^UTILITY(U,$J,358.3,22624,1,3,0)
- ;;=3^Weight Loss
- ;;^UTILITY(U,$J,358.3,22624,1,4,0)
- ;;=4^R63.4
- ;;^UTILITY(U,$J,358.3,22624,2)
- ;;=^5019542
- ;;^UTILITY(U,$J,358.3,22625,0)
- ;;=Z20.6^^102^1142^19
- ;;^UTILITY(U,$J,358.3,22625,1,0)
+ ;;^UTILITY(U,$J,358.3,22874,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,22625,1,3,0)
- ;;=3^Contact/Suspected Exposure to HIV
- ;;^UTILITY(U,$J,358.3,22625,1,4,0)
- ;;=4^Z20.6
- ;;^UTILITY(U,$J,358.3,22625,2)
- ;;=^5062768
- ;;^UTILITY(U,$J,358.3,22626,0)
- ;;=B15.9^^102^1142^43
- ;;^UTILITY(U,$J,358.3,22626,1,0)
+ ;;^UTILITY(U,$J,358.3,22874,1,3,0)
+ ;;=3^BCC Skin Trunk 
+ ;;^UTILITY(U,$J,358.3,22874,1,4,0)
+ ;;=4^C44.519
+ ;;^UTILITY(U,$J,358.3,22874,2)
+ ;;=^5001056
+ ;;^UTILITY(U,$J,358.3,22875,0)
+ ;;=C44.619^^76^984^7
+ ;;^UTILITY(U,$J,358.3,22875,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,22626,1,3,0)
- ;;=3^Hepatitis A,Acute
- ;;^UTILITY(U,$J,358.3,22626,1,4,0)
- ;;=4^B15.9
- ;;^UTILITY(U,$J,358.3,22626,2)
- ;;=^5000536
- ;;^UTILITY(U,$J,358.3,22627,0)
- ;;=T80.219A^^102^1143^6
- ;;^UTILITY(U,$J,358.3,22627,1,0)
+ ;;^UTILITY(U,$J,358.3,22875,1,3,0)
+ ;;=3^BCC Skin Left Upper Limb
+ ;;^UTILITY(U,$J,358.3,22875,1,4,0)
+ ;;=4^C44.619
+ ;;^UTILITY(U,$J,358.3,22875,2)
+ ;;=^5001068
+ ;;^UTILITY(U,$J,358.3,22876,0)
+ ;;=C44.712^^76^984^12
+ ;;^UTILITY(U,$J,358.3,22876,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,22627,1,3,0)
- ;;=3^Infection d/t Central Venous Cath,Init Encntr
- ;;^UTILITY(U,$J,358.3,22627,1,4,0)
- ;;=4^T80.219A
- ;;^UTILITY(U,$J,358.3,22627,2)
- ;;=^5054359
- ;;^UTILITY(U,$J,358.3,22628,0)
- ;;=T80.211A^^102^1143^1
- ;;^UTILITY(U,$J,358.3,22628,1,0)
+ ;;^UTILITY(U,$J,358.3,22876,1,3,0)
+ ;;=3^BCC Skin Right Lower Limb
+ ;;^UTILITY(U,$J,358.3,22876,1,4,0)
+ ;;=4^C44.712
+ ;;^UTILITY(U,$J,358.3,22876,2)
+ ;;=^5001079
+ ;;^UTILITY(U,$J,358.3,22877,0)
+ ;;=C44.719^^76^984^6
+ ;;^UTILITY(U,$J,358.3,22877,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,22628,1,3,0)
- ;;=3^Bloodstream Infection d/t Central Venous Catheter,Init Encntr
- ;;^UTILITY(U,$J,358.3,22628,1,4,0)
- ;;=4^T80.211A
- ;;^UTILITY(U,$J,358.3,22628,2)
- ;;=^5054350
- ;;^UTILITY(U,$J,358.3,22629,0)
- ;;=T80.212A^^102^1143^17
- ;;^UTILITY(U,$J,358.3,22629,1,0)
+ ;;^UTILITY(U,$J,358.3,22877,1,3,0)
+ ;;=3^BCC Skin Left Lower Limb
+ ;;^UTILITY(U,$J,358.3,22877,1,4,0)
+ ;;=4^C44.719
+ ;;^UTILITY(U,$J,358.3,22877,2)
+ ;;=^5001080
+ ;;^UTILITY(U,$J,358.3,22878,0)
+ ;;=C44.81^^76^984^9
+ ;;^UTILITY(U,$J,358.3,22878,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,22629,1,3,0)
- ;;=3^Local Infection d/t Central Venous Catheter,Init Encntr
- ;;^UTILITY(U,$J,358.3,22629,1,4,0)
- ;;=4^T80.212A
- ;;^UTILITY(U,$J,358.3,22629,2)
- ;;=^5054353
- ;;^UTILITY(U,$J,358.3,22630,0)
- ;;=T80.22XA^^102^1143^3
- ;;^UTILITY(U,$J,358.3,22630,1,0)
+ ;;^UTILITY(U,$J,358.3,22878,1,3,0)
+ ;;=3^BCC Skin Overlapping Sites
+ ;;^UTILITY(U,$J,358.3,22878,1,4,0)
+ ;;=4^C44.81
+ ;;^UTILITY(U,$J,358.3,22878,2)
+ ;;=^5001088
+ ;;^UTILITY(U,$J,358.3,22879,0)
+ ;;=L13.9^^76^984^36
+ ;;^UTILITY(U,$J,358.3,22879,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,22630,1,3,0)
- ;;=3^Infection Following Transfusion/Infusion/Injec Blood Products,Init Encntr
- ;;^UTILITY(U,$J,358.3,22630,1,4,0)
- ;;=4^T80.22XA
- ;;^UTILITY(U,$J,358.3,22630,2)
- ;;=^5054362
- ;;^UTILITY(U,$J,358.3,22631,0)
- ;;=T80.29XA^^102^1143^2
- ;;^UTILITY(U,$J,358.3,22631,1,0)
+ ;;^UTILITY(U,$J,358.3,22879,1,3,0)
+ ;;=3^Bullous Disorder,Unspec
+ ;;^UTILITY(U,$J,358.3,22879,1,4,0)
+ ;;=4^L13.9
+ ;;^UTILITY(U,$J,358.3,22879,2)
+ ;;=^5009105
+ ;;^UTILITY(U,$J,358.3,22880,0)
+ ;;=M35.2^^76^984^18
+ ;;^UTILITY(U,$J,358.3,22880,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,22631,1,3,0)
- ;;=3^Infection Following Infusion/Transfusion/Therapeutic Injection,Init Encntr
- ;;^UTILITY(U,$J,358.3,22631,1,4,0)
- ;;=4^T80.29XA
- ;;^UTILITY(U,$J,358.3,22631,2)
- ;;=^5054365
- ;;^UTILITY(U,$J,358.3,22632,0)
- ;;=T85.79XA^^102^1143^7
- ;;^UTILITY(U,$J,358.3,22632,1,0)
+ ;;^UTILITY(U,$J,358.3,22880,1,3,0)
+ ;;=3^Behcet's Disease
+ ;;^UTILITY(U,$J,358.3,22880,1,4,0)
+ ;;=4^M35.2
+ ;;^UTILITY(U,$J,358.3,22880,2)
+ ;;=^263705
+ ;;^UTILITY(U,$J,358.3,22881,0)
+ ;;=D23.0^^76^984^27
+ ;;^UTILITY(U,$J,358.3,22881,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,22632,1,3,0)
- ;;=3^Infection d/t Implantable Device Graft,Init Encntr
- ;;^UTILITY(U,$J,358.3,22632,1,4,0)
- ;;=4^T85.79XA
- ;;^UTILITY(U,$J,358.3,22632,2)
- ;;=^5055676
- ;;^UTILITY(U,$J,358.3,22633,0)
- ;;=T82.6XXA^^102^1143^5
- ;;^UTILITY(U,$J,358.3,22633,1,0)
+ ;;^UTILITY(U,$J,358.3,22881,1,3,0)
+ ;;=3^Benign Neop Skin Lip
+ ;;^UTILITY(U,$J,358.3,22881,1,4,0)
+ ;;=4^D23.0
+ ;;^UTILITY(U,$J,358.3,22881,2)
+ ;;=^5002059
+ ;;^UTILITY(U,$J,358.3,22882,0)
+ ;;=D23.21^^76^984^28
+ ;;^UTILITY(U,$J,358.3,22882,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,22633,1,3,0)
- ;;=3^Infection d/t Cardiac Valve Prosthesis,Init Encntr
- ;;^UTILITY(U,$J,358.3,22633,1,4,0)
- ;;=4^T82.6XXA
- ;;^UTILITY(U,$J,358.3,22633,2)
- ;;=^5054908
- ;;^UTILITY(U,$J,358.3,22634,0)
- ;;=T84.52XA^^102^1143^12
- ;;^UTILITY(U,$J,358.3,22634,1,0)
+ ;;^UTILITY(U,$J,358.3,22882,1,3,0)
+ ;;=3^Benign Neop Skin Right Ear/External Auric Canal
+ ;;^UTILITY(U,$J,358.3,22882,1,4,0)
+ ;;=4^D23.21
+ ;;^UTILITY(U,$J,358.3,22882,2)
+ ;;=^5002064
+ ;;^UTILITY(U,$J,358.3,22883,0)
+ ;;=D23.22^^76^984^22
+ ;;^UTILITY(U,$J,358.3,22883,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,22634,1,3,0)
- ;;=3^Infection d/t Left Hip Prosthesis,Init Encntr
- ;;^UTILITY(U,$J,358.3,22634,1,4,0)
- ;;=4^T84.52XA
- ;;^UTILITY(U,$J,358.3,22634,2)
- ;;=^5055388
- ;;^UTILITY(U,$J,358.3,22635,0)
- ;;=T84.54XA^^102^1143^13
- ;;^UTILITY(U,$J,358.3,22635,1,0)
+ ;;^UTILITY(U,$J,358.3,22883,1,3,0)
+ ;;=3^Benign Neop Skin Left Ear/External Auric Canal
+ ;;^UTILITY(U,$J,358.3,22883,1,4,0)
+ ;;=4^D23.22
+ ;;^UTILITY(U,$J,358.3,22883,2)
+ ;;=^5002065
+ ;;^UTILITY(U,$J,358.3,22884,0)
+ ;;=D23.30^^76^984^21
+ ;;^UTILITY(U,$J,358.3,22884,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,22635,1,3,0)
- ;;=3^Infection d/t Left Knee Prosthesis,Init Encntrreaction due to internal left knee prosth, init
- ;;^UTILITY(U,$J,358.3,22635,1,4,0)
- ;;=4^T84.54XA
+ ;;^UTILITY(U,$J,358.3,22884,1,3,0)
+ ;;=3^Benign Neop Skin Face,Unspec
+ ;;^UTILITY(U,$J,358.3,22884,1,4,0)
+ ;;=4^D23.30
+ ;;^UTILITY(U,$J,358.3,22884,2)
+ ;;=^5002066
+ ;;^UTILITY(U,$J,358.3,22885,0)
+ ;;=D23.39^^76^984^20
+ ;;^UTILITY(U,$J,358.3,22885,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,22885,1,3,0)
+ ;;=3^Benign Neop Skin Face NEC
+ ;;^UTILITY(U,$J,358.3,22885,1,4,0)
+ ;;=4^D23.39
+ ;;^UTILITY(U,$J,358.3,22885,2)
+ ;;=^5002067
+ ;;^UTILITY(U,$J,358.3,22886,0)
+ ;;=D23.5^^76^984^34
+ ;;^UTILITY(U,$J,358.3,22886,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,22886,1,3,0)
+ ;;=3^Benign Neop Skin Trunk
+ ;;^UTILITY(U,$J,358.3,22886,1,4,0)
+ ;;=4^D23.5

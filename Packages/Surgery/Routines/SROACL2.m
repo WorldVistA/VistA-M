@@ -1,5 +1,5 @@
-SROACL2 ;BIR/SJA - CLINICAL DATA ;07/12/2011
- ;;3.0;Surgery;**125,160,176,182,184**;24 Jun 93;Build 35
+SROACL2 ;BIR/SJA - CLINICAL DATA ; JULY 12, 2011
+ ;;3.0;Surgery;**125,160,176,182,184,200**;24 Jun 93;Build 9
  D HDR^SROAUTL N SRQ
 PRIOR W !,"Prior Heart Surgery:"
  W !!,"0. NONE                      4. OTHER",!,"1. CABG-ONLY                 5. CABG/OTHER",!,"2. VALVE-ONLY                6. UNKNOWN",!,"3. CABG/Valve"
@@ -21,10 +21,11 @@ CHECK N I,C S SRQ=0
  S Y=$P(Y,",",1,$L(Y,",")-1)_"^485"
  Q
 HWT ; retrieve height & weight from vital, called by sromen-start
- N SRVAL,SRN0,SRSD,SRED
+ N SRVAL,SRN0,SRSD,SRED,SRHT,SRHTDT ;SR200: remove 1 year HT limit; update MEASUREMENT DATE (#200.1)
  S SRN0=$G(^SRF(SRTN,0)),DFN=$S($D(DFN):DFN,1:$P(SRN0,"^")),SRED=$P(SRN0,"^",9)
-H I $P($G(^SRF(SRTN,206)),"^")="" S SRSD=$$FMADD^XLFDT(SRED,-365),SRVAL=$$HW^SROACL1(SRSD,SRED,"HT") D
- .I SRVAL'="" S SRVAL=SRVAL+.5\1,$P(^SRF(SRTN,206),"^")=SRVAL
+H I $P($G(^SRF(SRTN,206)),"^")="" S SRSD=0,SRVAL=$$HW^SROACL1(SRSD,SRED,"HT") D
+  .I SRVAL'="" S SRHT=$P(SRVAL,U)+.5\1,$P(^SRF(SRTN,206),"^")=SRHT D
+  ..S SRHTDT=$P(SRVAL,U,2) S $P(^SRF(SRTN,200.1),"^",7)=SRHTDT
 W I $P($G(^SRF(SRTN,206)),"^",2)="" S SRSD=$$FMADD^XLFDT(SRED,-30),SRVAL=$$HW^SROACL1(SRSD,SRED,"WT") D
- .I SRVAL'="" S SRVAL=SRVAL+.5\1,$P(^SRF(SRTN,206),"^",2)=SRVAL
- Q
+  .I SRVAL'="" S SRVAL=SRVAL+.5\1,$P(^SRF(SRTN,206),"^",2)=SRVAL
+  Q

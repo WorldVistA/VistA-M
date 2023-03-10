@@ -1,5 +1,5 @@
 RORUPD09 ;HCIOFO/SG - PROCESSING OF THE 'PTF' FILE  ;8/3/05 9:50am
- ;;1.5;CLINICAL CASE REGISTRIES;**18,25,26**;Feb 17, 2006;Build 53
+ ;;1.5;CLINICAL CASE REGISTRIES;**18,25,26,37**;Feb 17, 2006;Build 9
  ;
  ;*****************************************************************************
  ;*****************************************************************************
@@ -12,6 +12,7 @@ RORUPD09 ;HCIOFO/SG - PROCESSING OF THE 'PTF' FILE  ;8/3/05 9:50am
  ;                                      fields for ICD-10 PTF expansion.
  ;ROR*1.5*26   MAR 2015    T KOPP       Added rule for PTF procedure codes check
  ;                                      in API #3
+ ;ROR*1.5*37   SEP 2020    F TRAXLER    Added ALLPAT subroutine
  ;*****************************************************************************
  ;*****************************************************************************
  ; This routine uses the following IAs:
@@ -114,5 +115,12 @@ PTFRULE1(REGIEN) ;
  . S ROR=0 F  S ROR=$O(RORVALS("PPTF","I",ROR)) Q:'ROR  I +$D(^ROR(798.5,REGIEN,2,"B",+$G(RORVALS("PPTF","I",ROR,"I")))) S RC=1 Q
  I 'RC,$D(^ROR(798.5,REGIEN,3,"B")) D  ;CPT procedure codes
  . S ROR=0 F  S ROR=$O(RORVALS("PPTF","C",ROR)) Q:'ROR  I +$D(^ROR(798.5,REGIEN,3,"B",+$G(RORVALS("PPTF","C",ROR,"I")))) S RC=1 Q
+ Q RC
+ ;
+ALLPAT(REGIEN) ;Is Admission Date (#2) value less than 2 years old
+ N RC,ROR2YRS
+ S RC=0,ROR2YRS=DT-20000
+ I $D(RORVALS("DV",45,154,"I")) D
+ . I RORVALS("DV",45,154,"I")>ROR2YRS S RC=1
  Q RC
  ;

@@ -1,5 +1,5 @@
-DGR113 ;ALB/TGH,HM,KUM,BDB - Health Benefit Plan View History - List Manager Screen ;5/21/19 10:56am 
- ;;5.3;Registration;**871,987,1006**;Aug 13, 1993;Build 6
+DGR113 ;ALB/TGH,HM,KUM,BDB,ARF - Health Benefit Plan View History - List Manager Screen ;5/21/19 10:56am 
+ ;;5.3;Registration;**871,987,1006,1014**;Aug 13, 1993;Build 42
  ;
 EN(DFN) ;Main entry point to invoke the DGEN HBP VIEW list
  ; Input  -- DFN      Patient IEN
@@ -10,12 +10,13 @@ EN(DFN) ;Main entry point to invoke the DGEN HBP VIEW list
  ;
 HDR ;Header code
  N X
- D PID^VADPT
- S VALMHDR(1)=$E("Patient: "_$P($G(^DPT(DFN,0)),U),1,30)
- S VALMHDR(1)=VALMHDR(1)_" ("_VA("BID")_")"
- S X="PATIENT TYPE UNKNOWN"
- I $D(^DPT(DFN,"TYPE")),$D(^DG(391,+^("TYPE"),0)) S X=$P(^(0),U,1)
- S VALMHDR(1)=$$SETSTR^VALM1(X,VALMHDR(1),60,80)
+ D LISTHDR^DGRPU(1) ;DG*5.3*1014 - ARF - sets patient data in the 1st and 2nd entries in VALMHDR array
+ ;D PID^VADPT                                             ;DG*5.3*1014 begin comment previous code
+ ;S VALMHDR(1)=$E("Patient: "_$P($G(^DPT(DFN,0)),U),1,30)
+ ;S VALMHDR(1)=VALMHDR(1)_" ("_VA("BID")_")"
+ ;S X="PATIENT TYPE UNKNOWN"
+ ;I $D(^DPT(DFN,"TYPE")),$D(^DG(391,+^("TYPE"),0)) S X=$P(^(0),U,1)
+ ;S VALMHDR(1)=$$SETSTR^VALM1(X,VALMHDR(1),60,80)         ;DG*5.3*1014 end comment previous code
  Q
  ;
 INIT ;Build patient HBP View History screen

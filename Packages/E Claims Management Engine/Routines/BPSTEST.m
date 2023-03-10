@@ -1,5 +1,5 @@
 BPSTEST ;OAK/ELZ - ECME TESTING TOOL ;11/15/07  09:55
- ;;1.0;E CLAIMS MGMT ENGINE;**6,7,8,10,11,15,19,20,22,23,24,26**;JUN 2004;Build 24
+ ;;1.0;E CLAIMS MGMT ENGINE;**6,7,8,10,11,15,19,20,22,23,24,26,28**;JUN 2004;Build 22
  ;;Per VA Directive 6402, this routine should not be modified.
  ;
  ; Look at BPSTEST1 for additional documentation of the Testing Tool
@@ -21,8 +21,8 @@ GETOVER(KEY1,KEY2,BPSORESP,BPSWHERE,BPSTYPE,BPPAYSEQ) ;
  ; Check if testing is enabled
  I '$$CHECK() Q
  ;
- ; Option can not be run for Date of Death option as it causes errors
- I $G(XQY0)["DG DEATH ENTRY" W !,"The testing tool can not be run from Date of Death option" Q
+ ; Option cannot be run for Date of Death option as it causes errors
+ I $G(XQY0)["DG DEATH ENTRY" W !,"The testing tool cannot be run from Date of Death option" Q
  ;
  ; Do not run for background jobs
  I $D(ZTQUEUED)!(",AREV,CRLB,CRLR,CRLX,CRRL,PC,PL,"[(","_BPSWHERE_",")) Q
@@ -83,78 +83,89 @@ GETOVER(KEY1,KEY2,BPSORESP,BPSWHERE,BPSTYPE,BPPAYSEQ) ;
  . I BPSRESP="R" D ENREVRJ(BPSTRANS)
  ;
  ; If BPSTYPE contains 'S', do submission response
- I BPSTYPE["S" D
- . W !!,"Submission Questions"
- . D PROMPT(BPSTIEN,.03,"P")
- . S BPSSRESP=$$GET1^DIQ(9002313.32,BPSTIEN_",",.03,"I")
- . I BPSSRESP="P"!(BPSSRESP="D") D PROMPT(BPSTIEN,.04,40)       ; total amount paid (509-F9)
- . I BPSSRESP="P"!(BPSSRESP="D") D PROMPT(BPSTIEN,.06,9)        ; copay amount (518-FI)
- . I BPSSRESP="R" D REJECTS(BPSTIEN) ; BPS*1*22
- . ;
- . ; This section is for new D1-E7 fields and other fields so we can test that they are filed correctly
- . ; At some point, these can probably be removed
- . I BPSSRESP="P"!(BPSSRESP="D")!(BPSSRESP="R") D
- .. ;
- .. ; Ask if user wants to enter data for additional response file fields - Quit if user says no
- .. N DIR,DTOUT,DUOUT,DIROUT,DIRUT
- .. S DIR(0)="YA",DIR("A")="Populate Additional Response Fields? ",DIR("B")="No" W ! D ^DIR
- .. I Y'=1 Q
- .. ;
- .. ; Overrides to test functionality of BPS*1*20
- .. D PROMPT(BPSTIEN,.15,0)        ; Ingredient Cost Paid (506)
- .. D PROMPT(BPSTIEN,.16,0)        ; Dispensing Fee Paid (507)
- .. D PROMPT(BPSTIEN,.17,0)        ; Remaining Deductible Amount (513)
- .. D PROMPT(BPSTIEN,.18,0)        ; Amount Applied to Periodic Deductible (517)
- .. ;
- .. ; Additional overrides for D1-D9 (BPS*1*15)
- .. D PROMPT(BPSTIEN,.09,"")       ; next available fill date
- .. D PROMPT(BPSTIEN,.1,"")        ; adjudicated payment type
- .. ;
- .. ; Additional overrides for E0-E6 (BPS*1*19)
- .. D PROMPT(BPSTIEN,2.01,"04")    ; % sales tax basis pd
- .. D PROMPT(BPSTIEN,2.02,11)      ; other amount paid qualifier
- .. D PROMPT(BPSTIEN,2.03,"01")    ; payer id qualifier
- .. D PROMPT(BPSTIEN,2.04,"")      ; help desk phone# ext
- .. D PROMPT(BPSTIEN,2.05,"")      ; pro service fee cont/reim amt
- .. D PROMPT(BPSTIEN,2.06,"")      ; other payer help desk phone# ext
- .. D PROMPT(BPSTIEN,2.07,"")      ; response intermed auth type id
- .. D PROMPT(BPSTIEN,2.08,"")      ; response intermed auth id
- .. D PROMPT(BPSTIEN,3.01,"")      ; response intermed message
- .. ;
- .. ; E7 overrides (BPS*1*20)
- .. D PROMPT(BPSTIEN,.11,"")          ; quan limit per specific time period
- .. D PROMPT(BPSTIEN,.12,"")          ; quan limit time period
- .. D PROMPT(BPSTIEN,.13,"")          ; days supp limit per specific time period
- .. D PROMPT(BPSTIEN,.14,"")          ; days supp limit time period
- .. ; Overrides to test functionality - BPS*1*22
- .. D PROMPT(BPSTIEN,2.09,"")         ; reconciliation id
- .. ;
- .. D PROMPT(BPSTIEN,2.1,"")          ; Patient Pay Amount
- .. D PROMPT(BPSTIEN,2.11,"")         ; Reason for Service Code
- .. ;
- .. D PROMPT(BPSTIEN,4.01,"")         ; Maximum Age Qualifier
- .. D PROMPT(BPSTIEN,4.02,"")         ; Maximum Age
- .. D PROMPT(BPSTIEN,4.03,"")         ; Maximum Amount
- .. D PROMPT(BPSTIEN,4.04,"")         ; Maximum Amount Qualifier
- .. D PROMPT(BPSTIEN,4.05,"")         ; Maximum Amount Time Period
- .. D PROMPT(BPSTIEN,4.06,"")         ; Maximum Amount Time Period Start Date
- .. D PROMPT(BPSTIEN,4.07,"")         ; Maximum Amount Time Period End Date
- .. D PROMPT(BPSTIEN,4.08,"")         ; Maximum Amount Time Period Units
- .. D PROMPT(BPSTIEN,4.09,"")         ; Minimum Age Qualifier
- .. D PROMPT(BPSTIEN,4.1,"")          ; Minimum Age
- .. D PROMPT(BPSTIEN,4.11,"")         ; Other Payer Adjudicated Program Type
- .. D PROMPT(BPSTIEN,4.12,"")         ; Patient Pay Component Amount
- .. D PROMPT(BPSTIEN,4.13,"")         ; Patient Pay Component Count
- .. D PROMPT(BPSTIEN,4.14,"")         ; Patient Pay Component Qualifier
- .. D PROMPT(BPSTIEN,4.15,"")         ; Minimum Amount
- .. D PROMPT(BPSTIEN,4.16,"")         ; Minimum Amount Qualifier
- .. D PROMPT(BPSTIEN,4.17,"")         ; Other Payer Name
- .. D PROMPT(BPSTIEN,4.18,"")         ; Remaining Amount
- .. D PROMPT(BPSTIEN,4.19,"")         ; Remaining Amount Qualifier
- .. D PROMPT(BPSTIEN,4.2,"")          ; Other Payer Relationship Type
+ I BPSTYPE["S" D SUBMISSION
  ;
  W ! D PROMPT(BPSTIEN,.07,0)
  Q
+ ;
+SUBMISSION ; Submission Reponse Questions
+ W !!,"Submission Questions"
+ D PROMPT(BPSTIEN,.03,"P")
+ S BPSSRESP=$$GET1^DIQ(9002313.32,BPSTIEN_",",.03,"I")
+ ;
+ I BPSSRESP="P"!(BPSSRESP="D")!(BPSSRESP="Q")!(BPSSRESP="S") D
+ . D PROMPT(BPSTIEN,.04,40)       ; total amount paid (509-F9)
+ . D PROMPT(BPSTIEN,.06,9)        ; copay amount (518-FI)
+ ;
+SR ;
+ I BPSSRESP="R" D
+ . D REJECTS(BPSTIEN) ; BPS*1*22
+ . ; Check to ensure that the user entered at least one reject
+ . I $O(^BPS(9002313.32,BPSTIEN,1,0))="" D  G SR
+ .. W !,*7,"Must select at least one reject."
+ . Q
+ ;
+ ; This section is for new D1-E7 fields and other fields so we can test that they are filed correctly
+ ; At some point, these can probably be removed
+ ;All but Submission Response T=STRANDED
+ I BPSSRESP'="T" D
+ . ; Ask if user wants to enter data for additional response file fields - Quit if user says no
+ . N DIR,DTOUT,DUOUT,DIROUT,DIRUT
+ . S DIR(0)="YA",DIR("A")="Populate Additional Response Fields? ",DIR("B")="No" W ! D ^DIR
+ . I Y'=1 Q
+ . ;Allow the user to select a Response Field that they want to override
+ . D SELFLD
+ . Q
+ ;
+ Q
+ ;
+SELFLD ; Allow the user to Select a Response field
+ K BPSFIELDNAME,BPSFIELDIEN,BPSFLD
+ ;
+SELFLD1 ;
+ K DIC,X,Y
+ ;
+ S DIC=9002313.91
+ S DIC(0)="AEMQ"
+ S DIC("A")="Select a Response Field you wish to override: "
+ S DIC("S")="I $$CHKDD^BPSTEST(Y)"
+ S DIC("T")=""
+ W !
+ D ^DIC
+ ;
+ ; Exit if the user enters "^" or "^^"
+ I X["^" S BPSFLD=X G SFEXIT
+ ; When the user just hits <return>, skip down to SFEXIT.
+ I X="" G SFEXIT
+ ;
+ S BPSFIELDNAME=$$GET1^DIQ(9002313.91,+Y,.03)
+ S BPSFIELDIEN=$O(^DD(9002313.32,"B",BPSFIELDNAME,""))
+ ; 
+ S BPSFLD=1
+ S BPSFLD(BPSFIELDIEN)=BPSFIELDNAME_"^"_X
+ ;
+ ; Disallow fields inappropriate for a claim submission.
+ I ",.01,.02,.03,.05,.07,.08,"[(","_BPSFIELDIEN_",") D  G SELFLD1
+ . W !,?4,"Can't choose that one, make another selection.",*7
+ . Q
+ ;
+ W !
+ D PROMPT(BPSTIEN,BPSFIELDIEN,"")
+ G SELFLD1
+ ;
+SFEXIT ;
+ Q 
+ ;
+CHKDD(BPSY) ;
+ ; Check NCPDP field and verify that it's in 9002313.32
+ ;
+ N BPSFIELDNAME
+ S BPSFIELDNAME=$$GET1^DIQ(9002313.91,+BPSY,.03) ; Pull NCPDP field name.
+ ;
+ ; If this field is not in the DD for file 9002313.32, then disallow.
+ I '$D(^DD(9002313.32,"B",BPSFIELDNAME)) Q 0
+ ;
+ Q 1
  ;
 SETOVER(BPSTRANS,BPSTYPE,BPSDATA) ;
  ; called by BPSECMPS to set the override data

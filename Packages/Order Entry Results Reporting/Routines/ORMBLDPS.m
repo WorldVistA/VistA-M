@@ -1,5 +1,5 @@
-ORMBLDPS ;SLC/MKB-Build outgoing Pharmacy ORM msgs ;10/02/14  08:07
- ;;3.0;ORDER ENTRY/RESULTS REPORTING;**7,38,54,86,97,94,116,129,141,190,195,237,254,243,293,280,266,395**;Dec 17, 1997;Build 11
+ORMBLDPS ;SLC/MKB-Build outgoing Pharmacy ORM msgs ;Jul 20, 2021@14:08:09
+ ;;3.0;ORDER ENTRY/RESULTS REPORTING;**7,38,54,86,97,94,116,129,141,190,195,237,254,243,293,280,266,395,405**;Dec 17, 1997;Build 211
  ;
  ;
 PTR(NAME) ; -- Returns ptr value of prompt in Dialog file
@@ -10,7 +10,7 @@ NVA ; -- new Non-VA Meds order
 OUT ; -- new Outpt Meds order [same as UD, +3 fields]
 UD ; -- new Inpt (Unit Dose) Meds order
  N ADMIN,OI,DRUG,INSTR,DOSE,ROUTE,SCHED,DUR,URG,PROVCOMM,PI,DISPENSE,X,Y,I,J,K,L,QT1,QT2,QT3,QT4,QT6,QT9,CONJ,ORC,SC,OUTPT,OITXT,OITXT2
- N QT7,SCHTYPE
+ N QT7,SCHTYPE,INDICATN
  S OUTPT=$S($P(OR0,U,12)="O":1,1:0) ;outpt flag
  S X=$G(^OR(100,IFN,8,1,0)) I $P(X,U,5),$P(X,U,5)'=$P(X,U,3) S $P(ORMSG(4),"|",13)=$P(X,U,5) ; Send signer instead of orderer if different
  S OI=$$PTR("ORDERABLE ITEM"),DRUG=$$PTR("DISPENSE DRUG")
@@ -19,26 +19,21 @@ UD ; -- new Inpt (Unit Dose) Meds order
  S DUR=$$PTR("DURATION"),URG=$$PTR("URGENCY"),DOSE=$$PTR("DOSE")
  S ROUTE=$$PTR("ROUTE"),PROVCOMM=$$PTR("WORD PROCESSING 1")
  S PI=$$PTR("PATIENT INSTRUCTIONS"),CONJ=$$PTR("AND/THEN")
+ S INDICATN=$$PTR("INDICATION")  ;*405-IND
  S J=1,ORC(J)=$P(ORMSG(4),"|",1,7)_"|"
- I +$G(NVA)=1 G NVA1
+ ;removed G NVA1 here, as now introducing complex NVA Meds ability
 UD1 S I=0 F  S I=$O(ORDIALOG(INSTR,I)) Q:I'>0  D
  . S X=$G(ORDIALOG(DOSE,I))
  . ;S QT1=$S($L(X):$P(X,"&",1,4)_"&"_$P(X,"&",6),1:"")
  . S QT2=$$ESC($G(ORDIALOG(SCHED,I)))_$S(OUTPT:"",1:"&"_$G(ORDIALOG(ADMIN,I)))
- . S QT3=$$HL7DUR
+ . S QT3=$S(+$G(NVA):$$DURATION^ORMPS3($$HL7DUR),1:$$HL7DUR)
  . S QT1=$S($L(X):$P(X,"&",1,6),1:"")
  . S QT6=$P($G(^ORD(101.42,+$G(ORDIALOG(URG,I)),0)),U,2)
  . S QT7=$G(ORDIALOG(SCHTYPE,I))
  . S QT9=$G(ORDIALOG(CONJ,I))_"~" S:$E(QT9)="T" QT9="S~"
  . S J=J+1,ORC(J)=QT1_U_QT2_U_QT3_"^^^"_QT6_U_QT7_U_$$INSTR_U_QT9
  ;
-NVA1 I +$G(NVA)=1 D
- . S I=1 ;only one dosage possible for non-va meds
- . S QT2=$G(ORDIALOG(SCHED,I)),QT3=$$HL7DUR,X=$G(ORDIALOG(DOSE,I))
- . S QT1=$S($L(X):$P(X,"&",1,6),1:"")
- . S QT6=$P($G(^ORD(101.42,+$G(ORDIALOG(URG,I)),0)),U,2)
- . S QT9=$G(ORDIALOG(CONJ,I))_"~" S:$E(QT9)="T" QT9="S~"
- . S J=J+1,ORC(J)=QT1_U_$$ESC(QT2)_U_QT3_"^^^"_QT6_"^^"_$$INSTR_U_QT9
+NVA1 ;introduces complex Non-VA order, removed 7 lines of code that only allowed one dosage
  ;
  I $L($P(OR0,U,8)) S $P(ORC(2),U,4)=$$FMTHL7^XLFDT($P(OR0,U,8)) S:J<2 J=2
  S J=J+1,ORC(J)="|"_$P(ORMSG(4),"|",9,999),ORC=J,X="ORMSG(4)",ORMSG(4)="",I=0
@@ -72,6 +67,7 @@ UD3 S J=0 F  S J=$O(ORDIALOG(ROUTE,J)) Q:J'>0  S I=I+1,ORMSG(I)=$$RXR($G(ORDIALO
  D DG1^ORWDBA3($G(IFN),"I",I)
  I $P(^ORD(100.98,$P(OR0,U,11),0),U)="NON-VA MEDICATIONS" D
  . S I=I+1 D ZRN(IFN,.ORMSG,I)
+ S $P(ORMSG(5),"|",21)=$$ESC($G(ORDIALOG(INDICATN,1)))  ;*405-IND - Add Indication to RXO segment
  Q
  ;
 INSTR() ; -- Return text instructions for QT-8, instance I
@@ -105,8 +101,8 @@ HDQ Q Y
  ;
 IV ; -- new IV Meds order
  N SOLN,VOL,ADDS,STR,UNITS,RATE,URG,WP,QT,I,X1,X2,INST
- N IVLIMIT ; duratioin or total volume for IV order
- N IVTYPE,IVZRX,X,CNT,ROUTE,ORBCMA,DFN,ADDFREQ
+ N IVLIMIT ; duration or total volume for IV order
+ N IVTYPE,IVZRX,X,CNT,ROUTE,ORBCMA,DFN,ADDFREQ,INDICATN
  S IVLIMIT=$$PTR("DURATION")
  S IVTYPE=$G(ORDIALOG(+$$PTR("IV TYPE"),1))
  I IVTYPE="",$P($G(^OR(100,IFN,3)),U,11)="B" D
@@ -118,6 +114,7 @@ IV ; -- new IV Meds order
  S WP=$$PTR("WORD PROCESSING 1"),VOL=$$PTR("VOLUME")
  S SCHTYPE=$$PTR("SCHEDULE TYPE")
  S SOLN=$$PTR("ORDERABLE ITEM"),URG=+$G(ORDIALOG($$PTR("URGENCY"),1))
+ S INDICATN=$$PTR("INDICATION")  ;*405-IND
  ;I IVTYPE="",$G(ORDIALOG(+$$PTR("SCHEDULE"),1))="" S IVTYPE="C"
  I IVTYPE="I" S QT=U_$$ESC($G(ORDIALOG(+$$PTR("SCHEDULE"),1)))_"&"_$G(ORDIALOG(+$$PTR("ADMIN TIMES"),1))_"^^^^"
  I IVTYPE="C" S QT="^^^^^"
@@ -128,6 +125,7 @@ IV ; -- new IV Meds order
  S RATE=$G(ORDIALOG(RATE,1)) S:$E(RATE,$L(RATE))=" " RATE=$E(RATE,1,($L(RATE)-1)) S ORMSG(5)="RXO|^^^PS-1^IV^99OTH|"_$$ESC(RATE) ;strip any trailing spaces
  S IVLIMIT=$G(ORDIALOG(IVLIMIT,1))
  I $L(IVLIMIT) S IVLIMIT=$$HL7IVLMT^ORMBLDP1(IVLIMIT),ORMSG(5)="RXO|^^"_IVLIMIT_"^PS-1^IV^99OTH|"_RATE
+ S $P(ORMSG(5),"|",21)=$$ESC($G(ORDIALOG(INDICATN,1)))  ; *405-Add Indication to RXO message
  S I=5 I $L($G(ORDIALOG(WP,1))) D
  . N J,K S J=$O(^TMP("ORWORD",$J,WP,1,0)) Q:'J
  . S I=6,ORMSG(6)="NTE|6|P|"_$$ESC($G(^TMP("ORWORD",$J,WP,1,J,0)))
@@ -146,10 +144,11 @@ IV1 S INST=0 F  S INST=$O(ORDIALOG(SOLN,INST)) Q:INST'>0  D
  . . ;S I=I+1,ORMSG(I)="RXC|A|"_$$USID^ORMBLD(X1)_"|"_$G(ORDIALOG(STR,INST))_"|"_$$HL7UNIT(X2)
  D ORDCHKS
  S IVZRX=$$ZRX(IFN,0)
- S CNT=0
- F X=1:1:$L(IVZRX) I $E(IVZRX,X)="|" S CNT=CNT+1
- I CNT<6 F X=CNT:1:5 S IVZRX=IVZRX_"|"
- S I=I+1,ORMSG(I)=IVZRX_IVTYPE
+ ;S CNT=0
+ ;F X=1:1:$L(IVZRX) I $E(IVZRX,X)="|" S CNT=CNT+1
+ ;I CNT<6 F X=CNT:1:5 S IVZRX=IVZRX_"|"
+ S $P(IVZRX,"|",7)=IVTYPE
+ S I=I+1,ORMSG(I)=IVZRX ; _IVTYPE
  ; Create DG1 & ZCL segment(s) for Billing Awareness (BA) Project
  D DG1^ORWDBA3($G(IFN),"I",I)
  Q
@@ -165,7 +164,7 @@ RXR(ROUTE) ; -- Returns RXR segment
  Q "RXR|^^^"_+ROUTE_U_NAME_"^99PSR"
  ;
 ZRX(IFN,OUTPT) ; -- Returns ZRX segment
- N NATURE,TYPE,ORIG,PSORIG,ROUTING,ZRX
+ N NATURE,TYPE,ORIG,ORTITR,PSORIG,ROUTING,ZRX
  S TYPE=$P($G(^OR(100,IFN,3)),U,11),NATURE=$P($G(^(8,1,0)),U,12)
  S:NATURE NATURE=$P($G(^ORD(100.02,+NATURE,0)),U,2) ;code
  S PSORIG="" I (TYPE=1)!(TYPE=2) D
@@ -177,6 +176,9 @@ ZRX(IFN,OUTPT) ; -- Returns ZRX segment
  ;IS FOUND THIS CODE WILL BE REMOVE
  I OUTPT=1,ROUTING'="",ROUTING>0 S ROUTING="M"
  I $G(OUTPT) S ZRX=ZRX_"|"_ROUTING_$S($L($P($G(^OR(100,ORIFN,8,1,2)),"^",3)):"|||1",1:"")
+ ; Send titration info in ZRX-8
+ S ORTITR=+$G(ORDIALOG($$PTR("TITRATION"),1))
+ S $P(ZRX,"|",9)=ORTITR
  Q ZRX
  ;
 ZRN(IFN,ORMSG,I) ; -- Set ZRN segment

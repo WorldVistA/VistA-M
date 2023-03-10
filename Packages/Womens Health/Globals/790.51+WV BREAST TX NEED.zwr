@@ -1,6 +1,6 @@
 OSEHRA ZGO Export: WV BREAST TX NEED
 ZWR
-^WV(790.51,0)="WV BREAST TX NEED^790.51^18^16"
+^WV(790.51,0)="WV BREAST TX NEED^790.51^19^17"
 ^WV(790.51,1,0)="Mammogram, Screening"
 ^WV(790.51,2,0)="Mammogram, Repeat"
 ^WV(790.51,3,0)="Mammogram, Followup"
@@ -17,6 +17,8 @@ ZWR
 ^WV(790.51,14,0)="Chart Review"
 ^WV(790.51,15,0)="Other Facility"
 ^WV(790.51,18,0)="Patient Follow up"
+^WV(790.51,19,0)="Breast MRI"
+^WV(790.51,"B","Breast MRI",19)=""
 ^WV(790.51,"B","CBE and MAM",13)=""
 ^WV(790.51,"B","Chart Review",14)=""
 ^WV(790.51,"B","Clinical Breast Exam",12)=""
@@ -33,6 +35,7 @@ ZWR
 ^WV(790.51,"B","Patient Follow up",18)=""
 ^WV(790.51,"B","Ultrasound",6)=""
 ^WV(790.51,"B","Undetermined",8)=""
+^WV(790.51,"U","BREAST MRI",19)=""
 ^WV(790.51,"U","CBE AND MAM",13)=""
 ^WV(790.51,"U","CHART REVIEW",14)=""
 ^WV(790.51,"U","CLINICAL BREAST EXAM",12)=""

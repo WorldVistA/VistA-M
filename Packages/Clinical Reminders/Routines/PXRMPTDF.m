@@ -1,5 +1,5 @@
-PXRMPTDF ;SLC/PKR/PJH - Reminder Inquiry print template routines. ;04/20/2020
- ;;2.0;CLINICAL REMINDERS;**4,6,12,46**;Feb 04, 2005;Build 236
+PXRMPTDF ;SLC/PKR/PJH - Reminder Inquiry print template routines. ;08/25/2020
+ ;;2.0;CLINICAL REMINDERS;**4,6,12,46,65**;Feb 04, 2005;Build 438
  ;
  ;================================================
 PFIND ;Print the reminder definition finding multiple.
@@ -18,8 +18,8 @@ PFIND ;Print the reminder definition finding multiple.
  F IND=1:1:(RJC+2) S PADS=PADS_PAD
  S FINDING=0
  F  S FINDING=$O(^PXD(811.9,D0,20,FINDING)) Q:+FINDING=0  D
- .D WPFORMAT(FINDING,20,RJC,1)
- .D WPFORMAT(FINDING,20,RJC,2)
+ . D WPFORMAT(FINDING,20,RJC,1)
+ . D WPFORMAT(FINDING,20,RJC,2)
  K ^UTILITY($J,"W")
  S FINDING=0
  F  S FINDING=$O(^PXD(811.9,D0,25,FINDING)) Q:+FINDING=0  D
@@ -74,6 +74,7 @@ PFIND ;Print the reminder definition finding multiple.
  . D SFDISP(FIND0,12,13,"MH Scale:",RJC,PAD,FILENUM)
  . D SFDISP(FIND0,13,16,"Rx Type:",RJC,PAD,FILENUM)
  . D SFDISP(FIND0,15,27,"Use Start Date:",RJC,PAD,FILENUM)
+ . D SFDISP(FIND0,17,29,"Immunization Search Criteria:",RJC,PAD,FILENUM)
  . I $D(^PXD(811.9,D0,20,FINDING,5,0))=1 D
  .. S (SCNT,SIEN)=0
  .. F  S SIEN=$O(^PXD(811.9,D0,20,FINDING,5,SIEN)) Q:SIEN=""  D
@@ -237,7 +238,7 @@ STATUS(STAT0,TITLE,SPACE) ;
  Q
  ;
  ;================================================
-WPFORMAT(FINDING,NODE,RJC,INDEX) ;Format found/not found word, description word processing text.
+WPFORMAT(FINDING,NODE,RJC,INDEX) ;Format found/not word processing text.
  I '$D(^PXD(811.9,D0,NODE,FINDING,INDEX,1,0)) Q
  ;Save the title using the current format for DIWP.
  N DIWF,DIWL,DIWR,IND,NLINES,SC,X
@@ -258,8 +259,8 @@ WPFORMAT(FINDING,NODE,RJC,INDEX) ;Format found/not found word, description word 
  Q
  ;
  ;================================================
-WPOUT(FINDING,NODE,TITLE,RJC,PAD,PADS,INDEX) ;Output found/not found, description word processing
- ;text.
+WPOUT(FINDING,NODE,TITLE,RJC,PAD,PADS,INDEX) ;Output found/not found,
+ ;word processing text.
  I $D(^TMP($J,"W",FINDING,NODE,INDEX)) D
  .N IND,X
  .S X=$$RJ^XLFSTR(TITLE,RJC,PAD)_" "_^TMP($J,"W",FINDING,NODE,INDEX,1)

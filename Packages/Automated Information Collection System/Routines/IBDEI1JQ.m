@@ -1,128 +1,126 @@
-IBDEI1JQ ; ; 04-FEB-2020
- ;;3.0;IB ENCOUNTER FORM IMP/EXP;;FEB 04, 2020
+IBDEI1JQ ; ; 01-FEB-2022
+ ;;3.0;IB ENCOUNTER FORM IMP/EXP;;FEB 01, 2022
  Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,999) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
- ;;^UTILITY(U,$J,358.3,24716,0)
- ;;=I05.0^^107^1210^18
- ;;^UTILITY(U,$J,358.3,24716,1,0)
+ ;;^UTILITY(U,$J,358.3,25045,1,4,0)
+ ;;=4^99140
+ ;;^UTILITY(U,$J,358.3,25046,0)
+ ;;=99116^^86^1123^3^^^^1
+ ;;^UTILITY(U,$J,358.3,25046,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,24716,1,3,0)
- ;;=3^Rheumatic Mitral Stenosis
- ;;^UTILITY(U,$J,358.3,24716,1,4,0)
- ;;=4^I05.0
- ;;^UTILITY(U,$J,358.3,24716,2)
- ;;=^5007041
- ;;^UTILITY(U,$J,358.3,24717,0)
- ;;=I05.8^^107^1210^19
- ;;^UTILITY(U,$J,358.3,24717,1,0)
+ ;;^UTILITY(U,$J,358.3,25046,1,2,0)
+ ;;=2^ANES COMP BY TOTAL BODY HYPOTHERMIA
+ ;;^UTILITY(U,$J,358.3,25046,1,4,0)
+ ;;=4^99116
+ ;;^UTILITY(U,$J,358.3,25047,0)
+ ;;=99367^^86^1124^2^^^^1
+ ;;^UTILITY(U,$J,358.3,25047,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,24717,1,3,0)
- ;;=3^Rheumatic Mitral Valve Disease NEC
- ;;^UTILITY(U,$J,358.3,24717,1,4,0)
- ;;=4^I05.8
- ;;^UTILITY(U,$J,358.3,24717,2)
- ;;=^5007043
- ;;^UTILITY(U,$J,358.3,24718,0)
- ;;=I05.9^^107^1210^20
- ;;^UTILITY(U,$J,358.3,24718,1,0)
+ ;;^UTILITY(U,$J,358.3,25047,1,2,0)
+ ;;=2^Team Conf by Phys w/o Pt;30+ min
+ ;;^UTILITY(U,$J,358.3,25047,1,4,0)
+ ;;=4^99367
+ ;;^UTILITY(U,$J,358.3,25048,0)
+ ;;=99368^^86^1124^1^^^^1
+ ;;^UTILITY(U,$J,358.3,25048,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,24718,1,3,0)
- ;;=3^Rheumatic Mitral Valve Disease,Unspec
- ;;^UTILITY(U,$J,358.3,24718,1,4,0)
- ;;=4^I05.9
- ;;^UTILITY(U,$J,358.3,24718,2)
- ;;=^5007044
- ;;^UTILITY(U,$J,358.3,24719,0)
- ;;=I07.1^^107^1210^21
- ;;^UTILITY(U,$J,358.3,24719,1,0)
+ ;;^UTILITY(U,$J,358.3,25048,1,2,0)
+ ;;=2^Team Conf by HC Pro w/o Pt;30+ min
+ ;;^UTILITY(U,$J,358.3,25048,1,4,0)
+ ;;=4^99368
+ ;;^UTILITY(U,$J,358.3,25049,0)
+ ;;=U07.1^^87^1125^1
+ ;;^UTILITY(U,$J,358.3,25049,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,24719,1,3,0)
- ;;=3^Rheumatic Tricuspid Insufficiency
- ;;^UTILITY(U,$J,358.3,24719,1,4,0)
- ;;=4^I07.1
- ;;^UTILITY(U,$J,358.3,24719,2)
- ;;=^5007048
- ;;^UTILITY(U,$J,358.3,24720,0)
- ;;=I07.9^^107^1210^22
- ;;^UTILITY(U,$J,358.3,24720,1,0)
+ ;;^UTILITY(U,$J,358.3,25049,1,3,0)
+ ;;=3^Confirmed COVID-19
+ ;;^UTILITY(U,$J,358.3,25049,1,4,0)
+ ;;=4^U07.1
+ ;;^UTILITY(U,$J,358.3,25049,2)
+ ;;=^5159070
+ ;;^UTILITY(U,$J,358.3,25050,0)
+ ;;=U09.9^^87^1125^2
+ ;;^UTILITY(U,$J,358.3,25050,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,24720,1,3,0)
- ;;=3^Rheumatic Tricuspid Valve Disease,Unspec
- ;;^UTILITY(U,$J,358.3,24720,1,4,0)
- ;;=4^I07.9
- ;;^UTILITY(U,$J,358.3,24720,2)
- ;;=^5007051
- ;;^UTILITY(U,$J,358.3,24721,0)
- ;;=I08.0^^107^1210^16
- ;;^UTILITY(U,$J,358.3,24721,1,0)
+ ;;^UTILITY(U,$J,358.3,25050,1,3,0)
+ ;;=3^Post COVID-19 Condition,Unspec
+ ;;^UTILITY(U,$J,358.3,25050,1,4,0)
+ ;;=4^U09.9
+ ;;^UTILITY(U,$J,358.3,25050,2)
+ ;;=^5161298
+ ;;^UTILITY(U,$J,358.3,25051,0)
+ ;;=Z20.822^^87^1126^1
+ ;;^UTILITY(U,$J,358.3,25051,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,24721,1,3,0)
- ;;=3^Rheumatic Disorders of Mitral & Aortic Valves
- ;;^UTILITY(U,$J,358.3,24721,1,4,0)
- ;;=4^I08.0
- ;;^UTILITY(U,$J,358.3,24721,2)
- ;;=^5007052
- ;;^UTILITY(U,$J,358.3,24722,0)
- ;;=I09.89^^107^1210^17
- ;;^UTILITY(U,$J,358.3,24722,1,0)
+ ;;^UTILITY(U,$J,358.3,25051,1,3,0)
+ ;;=3^Contact w/ & Exposure to COVID-19
+ ;;^UTILITY(U,$J,358.3,25051,1,4,0)
+ ;;=4^Z20.822
+ ;;^UTILITY(U,$J,358.3,25051,2)
+ ;;=^5160187
+ ;;^UTILITY(U,$J,358.3,25052,0)
+ ;;=J20.8^^87^1127^1
+ ;;^UTILITY(U,$J,358.3,25052,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,24722,1,3,0)
- ;;=3^Rheumatic Heart Diseases NEC
- ;;^UTILITY(U,$J,358.3,24722,1,4,0)
- ;;=4^I09.89
- ;;^UTILITY(U,$J,358.3,24722,2)
- ;;=^5007060
- ;;^UTILITY(U,$J,358.3,24723,0)
- ;;=I47.1^^107^1210^24
- ;;^UTILITY(U,$J,358.3,24723,1,0)
+ ;;^UTILITY(U,$J,358.3,25052,1,3,0)
+ ;;=3^Bronchitis,Acute d/t Other Spec Organisms
+ ;;^UTILITY(U,$J,358.3,25052,1,4,0)
+ ;;=4^J20.8
+ ;;^UTILITY(U,$J,358.3,25052,2)
+ ;;=^5008194
+ ;;^UTILITY(U,$J,358.3,25053,0)
+ ;;=J22.^^87^1127^11
+ ;;^UTILITY(U,$J,358.3,25053,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,24723,1,3,0)
- ;;=3^Supraventricular Tachycardia
- ;;^UTILITY(U,$J,358.3,24723,1,4,0)
- ;;=4^I47.1
- ;;^UTILITY(U,$J,358.3,24723,2)
- ;;=^5007223
- ;;^UTILITY(U,$J,358.3,24724,0)
- ;;=I48.0^^107^1210^15
- ;;^UTILITY(U,$J,358.3,24724,1,0)
+ ;;^UTILITY(U,$J,358.3,25053,1,3,0)
+ ;;=3^Lower Respiratory Infection,Acute,Unspec
+ ;;^UTILITY(U,$J,358.3,25053,1,4,0)
+ ;;=4^J22.
+ ;;^UTILITY(U,$J,358.3,25053,2)
+ ;;=^5008200
+ ;;^UTILITY(U,$J,358.3,25054,0)
+ ;;=J98.8^^87^1127^15
+ ;;^UTILITY(U,$J,358.3,25054,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,24724,1,3,0)
- ;;=3^Paroxysmal Atrial Fibrillation
- ;;^UTILITY(U,$J,358.3,24724,1,4,0)
- ;;=4^I48.0
- ;;^UTILITY(U,$J,358.3,24724,2)
- ;;=^90473
- ;;^UTILITY(U,$J,358.3,24725,0)
- ;;=I49.5^^107^1210^23
- ;;^UTILITY(U,$J,358.3,24725,1,0)
+ ;;^UTILITY(U,$J,358.3,25054,1,3,0)
+ ;;=3^Respiratory Disorder,Other Spec
+ ;;^UTILITY(U,$J,358.3,25054,1,4,0)
+ ;;=4^J98.8
+ ;;^UTILITY(U,$J,358.3,25054,2)
+ ;;=^5008365
+ ;;^UTILITY(U,$J,358.3,25055,0)
+ ;;=R50.9^^87^1127^10
+ ;;^UTILITY(U,$J,358.3,25055,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,24725,1,3,0)
- ;;=3^Sick Sinus Syndrome
- ;;^UTILITY(U,$J,358.3,24725,1,4,0)
- ;;=4^I49.5
- ;;^UTILITY(U,$J,358.3,24725,2)
- ;;=^110404
- ;;^UTILITY(U,$J,358.3,24726,0)
- ;;=I49.8^^107^1210^3
- ;;^UTILITY(U,$J,358.3,24726,1,0)
+ ;;^UTILITY(U,$J,358.3,25055,1,3,0)
+ ;;=3^Fever,Unspec
+ ;;^UTILITY(U,$J,358.3,25055,1,4,0)
+ ;;=4^R50.9
+ ;;^UTILITY(U,$J,358.3,25055,2)
+ ;;=^5019512
+ ;;^UTILITY(U,$J,358.3,25056,0)
+ ;;=R06.02^^87^1127^17
+ ;;^UTILITY(U,$J,358.3,25056,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,24726,1,3,0)
- ;;=3^Cardiac Arrhythmias
- ;;^UTILITY(U,$J,358.3,24726,1,4,0)
- ;;=4^I49.8
- ;;^UTILITY(U,$J,358.3,24726,2)
- ;;=^5007236
- ;;^UTILITY(U,$J,358.3,24727,0)
- ;;=I49.9^^107^1210^2
- ;;^UTILITY(U,$J,358.3,24727,1,0)
+ ;;^UTILITY(U,$J,358.3,25056,1,3,0)
+ ;;=3^Shortness of Breath
+ ;;^UTILITY(U,$J,358.3,25056,1,4,0)
+ ;;=4^R06.02
+ ;;^UTILITY(U,$J,358.3,25056,2)
+ ;;=^5019181
+ ;;^UTILITY(U,$J,358.3,25057,0)
+ ;;=J40.^^87^1127^2
+ ;;^UTILITY(U,$J,358.3,25057,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,24727,1,3,0)
- ;;=3^Cardiac Arrhythmia,Unspec
- ;;^UTILITY(U,$J,358.3,24727,1,4,0)
- ;;=4^I49.9
- ;;^UTILITY(U,$J,358.3,24727,2)
- ;;=^5007237
- ;;^UTILITY(U,$J,358.3,24728,0)
- ;;=R00.1^^107^1210^1
- ;;^UTILITY(U,$J,358.3,24728,1,0)
+ ;;^UTILITY(U,$J,358.3,25057,1,3,0)
+ ;;=3^Bronchitis,Not Specified as Acute or Chronic
+ ;;^UTILITY(U,$J,358.3,25057,1,4,0)
+ ;;=4^J40.
+ ;;^UTILITY(U,$J,358.3,25057,2)
+ ;;=^17164
+ ;;^UTILITY(U,$J,358.3,25058,0)
+ ;;=J80.^^87^1127^16
+ ;;^UTILITY(U,$J,358.3,25058,1,0)
  ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,25058,1,3,0)
+ ;;=3^Respiratory Distress Syndrome,Acute

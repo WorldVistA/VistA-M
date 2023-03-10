@@ -1,130 +1,128 @@
-IBDEI15I ; ; 04-FEB-2020
- ;;3.0;IB ENCOUNTER FORM IMP/EXP;;FEB 04, 2020
+IBDEI15I ; ; 01-FEB-2022
+ ;;3.0;IB ENCOUNTER FORM IMP/EXP;;FEB 01, 2022
  Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,999) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
- ;;^UTILITY(U,$J,358.3,18506,1,4,0)
- ;;=4^F44.1
- ;;^UTILITY(U,$J,358.3,18506,2)
- ;;=^331908
- ;;^UTILITY(U,$J,358.3,18507,0)
- ;;=F50.02^^91^941^1
- ;;^UTILITY(U,$J,358.3,18507,1,0)
+ ;;^UTILITY(U,$J,358.3,18686,1,4,0)
+ ;;=4^H60.391
+ ;;^UTILITY(U,$J,358.3,18686,2)
+ ;;=^5006459
+ ;;^UTILITY(U,$J,358.3,18687,0)
+ ;;=H66.93^^64^835^17
+ ;;^UTILITY(U,$J,358.3,18687,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,18507,1,3,0)
- ;;=3^Anorexia Nervosa,Binge-Eating/Purging Type
- ;;^UTILITY(U,$J,358.3,18507,1,4,0)
- ;;=4^F50.02
- ;;^UTILITY(U,$J,358.3,18507,2)
- ;;=^5003599
- ;;^UTILITY(U,$J,358.3,18508,0)
- ;;=F50.01^^91^941^2
- ;;^UTILITY(U,$J,358.3,18508,1,0)
+ ;;^UTILITY(U,$J,358.3,18687,1,3,0)
+ ;;=3^Otitis Media Bilateral,Unspec
+ ;;^UTILITY(U,$J,358.3,18687,1,4,0)
+ ;;=4^H66.93
+ ;;^UTILITY(U,$J,358.3,18687,2)
+ ;;=^5006642
+ ;;^UTILITY(U,$J,358.3,18688,0)
+ ;;=H66.92^^64^835^18
+ ;;^UTILITY(U,$J,358.3,18688,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,18508,1,3,0)
- ;;=3^Anorexia Nervosa,Restricting Type
- ;;^UTILITY(U,$J,358.3,18508,1,4,0)
- ;;=4^F50.01
- ;;^UTILITY(U,$J,358.3,18508,2)
- ;;=^5003598
- ;;^UTILITY(U,$J,358.3,18509,0)
- ;;=F50.9^^91^941^7
- ;;^UTILITY(U,$J,358.3,18509,1,0)
+ ;;^UTILITY(U,$J,358.3,18688,1,3,0)
+ ;;=3^Otitis Media Left Ear,Unspec
+ ;;^UTILITY(U,$J,358.3,18688,1,4,0)
+ ;;=4^H66.92
+ ;;^UTILITY(U,$J,358.3,18688,2)
+ ;;=^5006641
+ ;;^UTILITY(U,$J,358.3,18689,0)
+ ;;=H66.91^^64^835^19
+ ;;^UTILITY(U,$J,358.3,18689,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,18509,1,3,0)
- ;;=3^Eating Disorder,Unspec
- ;;^UTILITY(U,$J,358.3,18509,1,4,0)
- ;;=4^F50.9
- ;;^UTILITY(U,$J,358.3,18509,2)
- ;;=^5003602
- ;;^UTILITY(U,$J,358.3,18510,0)
- ;;=F50.2^^91^941^5
- ;;^UTILITY(U,$J,358.3,18510,1,0)
+ ;;^UTILITY(U,$J,358.3,18689,1,3,0)
+ ;;=3^Otitis Media Right Ear,Unspec
+ ;;^UTILITY(U,$J,358.3,18689,1,4,0)
+ ;;=4^H66.91
+ ;;^UTILITY(U,$J,358.3,18689,2)
+ ;;=^5006640
+ ;;^UTILITY(U,$J,358.3,18690,0)
+ ;;=H60.93^^64^835^14
+ ;;^UTILITY(U,$J,358.3,18690,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,18510,1,3,0)
- ;;=3^Bulimia Nervosa
- ;;^UTILITY(U,$J,358.3,18510,1,4,0)
- ;;=4^F50.2
- ;;^UTILITY(U,$J,358.3,18510,2)
- ;;=^5003600
- ;;^UTILITY(U,$J,358.3,18511,0)
- ;;=F98.21^^91^941^8
- ;;^UTILITY(U,$J,358.3,18511,1,0)
+ ;;^UTILITY(U,$J,358.3,18690,1,3,0)
+ ;;=3^Otitis Externa Bilateral,Unspec
+ ;;^UTILITY(U,$J,358.3,18690,1,4,0)
+ ;;=4^H60.93
+ ;;^UTILITY(U,$J,358.3,18690,2)
+ ;;=^5006498
+ ;;^UTILITY(U,$J,358.3,18691,0)
+ ;;=H60.92^^64^835^15
+ ;;^UTILITY(U,$J,358.3,18691,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,18511,1,3,0)
- ;;=3^Rumination Disorder
- ;;^UTILITY(U,$J,358.3,18511,1,4,0)
- ;;=4^F98.21
- ;;^UTILITY(U,$J,358.3,18511,2)
- ;;=^5003713
- ;;^UTILITY(U,$J,358.3,18512,0)
- ;;=F50.81^^91^941^4
- ;;^UTILITY(U,$J,358.3,18512,1,0)
+ ;;^UTILITY(U,$J,358.3,18691,1,3,0)
+ ;;=3^Otitis Externa Left Ear,Unspec
+ ;;^UTILITY(U,$J,358.3,18691,1,4,0)
+ ;;=4^H60.92
+ ;;^UTILITY(U,$J,358.3,18691,2)
+ ;;=^5133525
+ ;;^UTILITY(U,$J,358.3,18692,0)
+ ;;=H60.91^^64^835^16
+ ;;^UTILITY(U,$J,358.3,18692,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,18512,1,3,0)
- ;;=3^Binge-Eating Disorder
- ;;^UTILITY(U,$J,358.3,18512,1,4,0)
- ;;=4^F50.81
- ;;^UTILITY(U,$J,358.3,18512,2)
- ;;=^8123226
- ;;^UTILITY(U,$J,358.3,18513,0)
- ;;=F50.89^^91^941^6
- ;;^UTILITY(U,$J,358.3,18513,1,0)
+ ;;^UTILITY(U,$J,358.3,18692,1,3,0)
+ ;;=3^Otitis Externa Right Ear,Unspec
+ ;;^UTILITY(U,$J,358.3,18692,1,4,0)
+ ;;=4^H60.91
+ ;;^UTILITY(U,$J,358.3,18692,2)
+ ;;=^5133524
+ ;;^UTILITY(U,$J,358.3,18693,0)
+ ;;=J30.9^^64^835^4
+ ;;^UTILITY(U,$J,358.3,18693,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,18513,1,3,0)
- ;;=3^Eating Disorder,Oth Spec
- ;;^UTILITY(U,$J,358.3,18513,1,4,0)
- ;;=4^F50.89
- ;;^UTILITY(U,$J,358.3,18513,2)
- ;;=^5138449
- ;;^UTILITY(U,$J,358.3,18514,0)
- ;;=F50.82^^91^941^3
- ;;^UTILITY(U,$J,358.3,18514,1,0)
+ ;;^UTILITY(U,$J,358.3,18693,1,3,0)
+ ;;=3^Allergic Rhinitis,Unspec
+ ;;^UTILITY(U,$J,358.3,18693,1,4,0)
+ ;;=4^J30.9
+ ;;^UTILITY(U,$J,358.3,18693,2)
+ ;;=^5008205
+ ;;^UTILITY(U,$J,358.3,18694,0)
+ ;;=J38.00^^64^835^20
+ ;;^UTILITY(U,$J,358.3,18694,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,18514,1,3,0)
- ;;=3^Avoidant/Restrictive Food Intake Disorder
- ;;^UTILITY(U,$J,358.3,18514,1,4,0)
- ;;=4^F50.82
- ;;^UTILITY(U,$J,358.3,18514,2)
- ;;=^5151308
- ;;^UTILITY(U,$J,358.3,18515,0)
- ;;=Z55.9^^91^942^1
- ;;^UTILITY(U,$J,358.3,18515,1,0)
+ ;;^UTILITY(U,$J,358.3,18694,1,3,0)
+ ;;=3^Paralysis of Vocal Cords/Larynx,Unspec
+ ;;^UTILITY(U,$J,358.3,18694,1,4,0)
+ ;;=4^J38.00
+ ;;^UTILITY(U,$J,358.3,18694,2)
+ ;;=^5008219
+ ;;^UTILITY(U,$J,358.3,18695,0)
+ ;;=K92.2^^64^836^2
+ ;;^UTILITY(U,$J,358.3,18695,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,18515,1,3,0)
- ;;=3^Academic/Educational Problem
- ;;^UTILITY(U,$J,358.3,18515,1,4,0)
- ;;=4^Z55.9
- ;;^UTILITY(U,$J,358.3,18515,2)
- ;;=^5063106
- ;;^UTILITY(U,$J,358.3,18516,0)
- ;;=Z56.82^^91^942^5
- ;;^UTILITY(U,$J,358.3,18516,1,0)
+ ;;^UTILITY(U,$J,358.3,18695,1,3,0)
+ ;;=3^Gastrointestinal Hemorrhage,Unspec
+ ;;^UTILITY(U,$J,358.3,18695,1,4,0)
+ ;;=4^K92.2
+ ;;^UTILITY(U,$J,358.3,18695,2)
+ ;;=^5008915
+ ;;^UTILITY(U,$J,358.3,18696,0)
+ ;;=K27.9^^64^836^3
+ ;;^UTILITY(U,$J,358.3,18696,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,18516,1,3,0)
- ;;=3^Problems Related to Current Military Deployment Status
- ;;^UTILITY(U,$J,358.3,18516,1,4,0)
- ;;=4^Z56.82
- ;;^UTILITY(U,$J,358.3,18516,2)
- ;;=^5063115
- ;;^UTILITY(U,$J,358.3,18517,0)
- ;;=Z56.0^^91^942^11
- ;;^UTILITY(U,$J,358.3,18517,1,0)
+ ;;^UTILITY(U,$J,358.3,18696,1,3,0)
+ ;;=3^Peptic Ulcer w/o Hemorrhage/Perforation,Unspec Site
+ ;;^UTILITY(U,$J,358.3,18696,1,4,0)
+ ;;=4^K27.9
+ ;;^UTILITY(U,$J,358.3,18696,2)
+ ;;=^5008536
+ ;;^UTILITY(U,$J,358.3,18697,0)
+ ;;=K46.9^^64^836^1
+ ;;^UTILITY(U,$J,358.3,18697,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,18517,1,3,0)
- ;;=3^Unemployment,Unspec
- ;;^UTILITY(U,$J,358.3,18517,1,4,0)
- ;;=4^Z56.0
- ;;^UTILITY(U,$J,358.3,18517,2)
- ;;=^5063107
- ;;^UTILITY(U,$J,358.3,18518,0)
- ;;=Z56.1^^91^942^2
- ;;^UTILITY(U,$J,358.3,18518,1,0)
+ ;;^UTILITY(U,$J,358.3,18697,1,3,0)
+ ;;=3^Abdominal Hernia w/o Obstruction/Gangrene,Unspec
+ ;;^UTILITY(U,$J,358.3,18697,1,4,0)
+ ;;=4^K46.9
+ ;;^UTILITY(U,$J,358.3,18697,2)
+ ;;=^5008623
+ ;;^UTILITY(U,$J,358.3,18698,0)
+ ;;=N14.0^^64^837^1
+ ;;^UTILITY(U,$J,358.3,18698,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,18518,1,3,0)
- ;;=3^Change of Job
- ;;^UTILITY(U,$J,358.3,18518,1,4,0)
- ;;=4^Z56.1
- ;;^UTILITY(U,$J,358.3,18518,2)
- ;;=^5063108
- ;;^UTILITY(U,$J,358.3,18519,0)
- ;;=Z56.2^^91^942^9
+ ;;^UTILITY(U,$J,358.3,18698,1,3,0)
+ ;;=3^Analgesic Nephropathy
+ ;;^UTILITY(U,$J,358.3,18698,1,4,0)
+ ;;=4^N14.0
+ ;;^UTILITY(U,$J,358.3,18698,2)
+ ;;=^5015590

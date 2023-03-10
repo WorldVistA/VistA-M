@@ -1,5 +1,5 @@
-PXRMLEXL ;SLC/PKR - List Manager routines for Taxonomies and Lexicon. ;09/21/2014
- ;;2.0;CLINICAL REMINDERS;**26,47**;Feb 04, 2005;Build 291
+PXRMLEXL ;SLC/PKR - List Manager routines for Taxonomies and Lexicon. ;08/16/2018
+ ;;2.0;CLINICAL REMINDERS;**26,47,42**;Feb 04, 2005;Build 245
  ;
  ;=========================================
 ADDSEL(ENUM,UID) ;Add entry ENUM to the selected list and highlight it.
@@ -22,9 +22,6 @@ BLDLIST ;Build the Lexicon list.
  S CODESYS=^TMP("PXRMLEXTC",$J,"CODESYS")
  S TAXIEN=^TMP("PXRMLEXTC",$J,"TAX IEN")
  S TERM=^TMP("PXRMLEXTC",$J,"LEX TERM")
- ;Clear the display.
- D KILL^VALM10
- K ^TMP("PXRMLEXL",$J)
  I '$D(^TMP("PXRMLEXS",$J,TERM,CODESYS)) D
  . D LEXLIST(TAXIEN,TERM,CODESYS,.NCODES,.NLINES,.TEXT)
  . M ^TMP("PXRMTEXT",$J,TERM,CODESYS,"TEXT")=TEXT
@@ -175,7 +172,7 @@ HELP ;Display help.
  Q
  ;
  ;=========================================
-HLITE(ENUM,MODE,UID) ;Highlight/unhighlight an entry. MODE=1 turns on
+HLITE(ENUM,MODE,UID) ;Highlight/un-highlight an entry. MODE=1 turns on
  ;highlighting, MODE=0 turns it off.
  N LINE,START,STOP,VCTRL
  S VCTRL=$S(MODE=1:IOINHI,1:IOINORM)
@@ -329,13 +326,13 @@ RFDX(LIST) ;Remove UID from the selected entries.
  Q
  ;
  ;=========================================
-RFT(ENUM) ;Remove entry ENUM from the selected list and unhighlight it.
+RFT(ENUM) ;Remove entry ENUM from the selected list and un-highlight it.
  K ^TMP("PXRMLEXL",$J,"SELECTED",ENUM)
  D HLITE(ENUM,0,0)
  Q
  ;
  ;=========================================
-RFTL ;Remove the selected entries from the selected list and unhighlight them.
+RFTL ;Remove the selected entries from the selected list and un-highlight them.
  N SEL,SELLIST
  ;Get the list.
  D GETLIST(.SELLIST)
@@ -347,7 +344,7 @@ RFTL ;Remove the selected entries from the selected list and unhighlight them.
  Q
  ;
  ;=========================================
-RFTX(LIST) ;Remove the selected entries from the selected list and unhighlight
+RFTX(LIST) ;Remove the selected entries from the selected list and un-highlight
  ;them.
  N ENUM,IND
  F IND=1:1:$L(LIST,",") D
@@ -418,13 +415,10 @@ UIDL ;Mark selected entries as UID.
  ;
  ;=========================================
 UIDOK() ;Check the coding system to determine if it can be used in a dialog.
- N CODESYS
+ N CODESYS,UIDOK
  S CODESYS=^TMP("PXRMLEXTC",$J,"CODESYS")
- I CODESYS="10D" Q 1
- I CODESYS="CPC" Q 1
- I CODESYS="CPT" Q 1
- I CODESYS="ICD" Q 1
- I CODESYS="SCT" Q 0
+ S UIDOK=$$UIDOK^PXRMUID(CODESYS)
+ I UIDOK Q 1
  S (XQORQUIT,XQORPOP)=1
  Q 0
  ;

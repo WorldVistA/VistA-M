@@ -1,5 +1,5 @@
 IBECEA37 ;EDE/WCJ-Multi-site maintain UC VISIT TRACKING FILE (#351.82) - CALLER/REQUESTOR ; 2-DEC-19
- ;;2.0;INTEGRATED BILLING;**663,671,669,677**;21-MAR-94;Build 17
+ ;;2.0;INTEGRATED BILLING;**663,671,669,677,689,696**;21-MAR-94;Build 3
  ;;Per VA Directive 6402, this routine should not be modified.
  ;; DBIA#1621 %ZTER (ERROR RECORDING)
  ;; DBIA#2729 MESSAGE ACTION API
@@ -64,7 +64,8 @@ MULTI(IBINDEX,IBLOOKUP) ;
  ;^TMP("DILIST",1720,0,"MAP")="IEN^.01I^.01^C2^.03I^.04I^.05^.06I^.07I^1.01I"
  ;^TMP("DILIST",1720,1,0)="1^1234567^PATIENT,TEST A^999^3190801^2^999-K909Z09^^^1"
  ; have at them
- N IBLOOP,IBDATA,IBIEN,IBDFN,IBSITE,IBFAC,IBVISDT,IBSTAT,IBBILL,IBCOMM,IBUNIQ,IBEXSITE,IBTFL,IBT,IBICN,IBH,IBX,IBR,IBERR,IBHERE,IBC,IBZ,IBOSITEIN,IBOSITEEX,IBPATPR,IBELGRP
+ ;N IBLOOP,IBDATA,IBIEN,IBDFN,IBSITE,IBFAC,IBVISDT,IBSTAT,IBBILL,IBCOMM,IBUNIQ,IBEXSITE,IBTFL,IBT,IBICN,IBH,IBX,IBR,IBERR,IBHERE,IBC,IBZ,IBOSITEIN,IBOSITEEX,IBPATPR,IBELGRP
+ N IBLOOP,IBDATA,IBIEN,IBDFN,IBSITE,IBFAC,IBVISDT,IBSTAT,IBBILL,IBCOMM,IBUNIQ,IBEXSITE,IBTFL,IBT,IBICN,IBH,IBX,IBR,IBERR,IBHERE,IBC,IBZ,IBOSITEEX,IBPATPR,IBELGRP
  ;
  S IBPATPR=IBINDEX="B"  ; Set IBPAT flag since behaviour will be even differenter than the others and we may need to check the flag often
  ;
@@ -77,9 +78,11 @@ MULTI(IBINDEX,IBLOOKUP) ;
  . S IBIEN=$P(IBDATA,U)
  . S IBDFN=$P(IBDATA,U,2)
  . ;
- . S IBOSITEIN=$P(IBDATA,U,4)  ; IEN file 4 (orginating site internal)
- . I IBOSITEIN'=IBFAC D REMOVE(IBIEN) Q  ; if treatment is not for the current site, don't push out - it was pushed here.  Only originating sites should push.
- . S IBOSITEEX=$$GET1^DIQ(4,IBOSITEIN,99)   ; turn external site # into internal one
+ . ;S IBOSITEIN=$P(IBDATA,U,4)  ; IEN file 4 (originating site internal)
+ . ;I IBOSITEIN'=IBFAC D REMOVE(IBIEN) Q  ; if treatment is not for the current site, don't push out - it was pushed here.  Only originating sites should push.
+ . ;S IBOSITEEX=$$GET1^DIQ(4,IBOSITEIN,99)   ; turn external site # into internal one
+ . S IBOSITEEX=$P(IBDATA,U,4)  ; IEN file 4 (originating site external)
+ . I IBOSITEEX'=IBSITE D REMOVE(IBIEN) Q  ; if treatment is not for the current site, don't push out - it was pushed here.  Only originating sites should push.
  . ;
  . K IBTFL
  . S IBT=$$TFL(IBDFN,IBOSITEEX,.IBTFL)
@@ -168,11 +171,13 @@ TFL(DFN,IBS,IBT) ; returns treating facility list (pass IBT by reference)
  ;
  N IBC,IBZ,IBFT,Y
  D TFL^VAFCTFU1(.IBZ,DFN)
- Q:-$G(IBZ(1))=1 0
+ Q:+$G(IBZ(1))=1 0
  S (IBZ,IBC)=0
  ; Return only remote facilities of certain types:
  S IBFT="^VAMC^M&ROC^RO-OC^"
- F  S IBZ=$O(IBZ(IBZ)) Q:IBZ<1  I +IBZ(IBZ)>0,+IBZ(IBZ)'=IBS,IBFT[("^"_$P(IBZ(IBZ),U,5)_"^") S IBT(+IBZ(IBZ))=IBZ(IBZ),IBC=IBC+1
+ ; skip CERNER for now 200CRNR; IB*2.0*696
+ ;F  S IBZ=$O(IBZ(IBZ)) Q:IBZ<1  I +IBZ(IBZ)>0,+IBZ(IBZ)'=IBS,IBFT[("^"_$P(IBZ(IBZ),U,5)_"^") S IBT(+IBZ(IBZ))=IBZ(IBZ),IBC=IBC+1
+ F  S IBZ=$O(IBZ(IBZ)) Q:IBZ<1  I +IBZ(IBZ)>0,+IBZ(IBZ)'=IBS,IBFT[("^"_$P(IBZ(IBZ),U,5)_"^"),$P(IBZ(IBZ),U,1)'="200CRNR" S IBT(+IBZ(IBZ))=IBZ(IBZ),IBC=IBC+1
  Q IBC
  ;
 ALERTSO ; alert someone
@@ -181,7 +186,7 @@ ALERTSO ; alert someone
  ;
  Q:'$D(^TMP("IBECEA_COPAY",$J))
  N SUBJ,MSG,XMTO,LN,IBDFN,IBRES,IBDATA,IBFAC,IBLN,IBL4,IBAD,IBLP
- S SUBJ="IBCU COPAY exceptions"
+ S SUBJ="IBUC COPAY exceptions"
  S LN=0,IBDFN=""
  F  S IBDFN=$O(^TMP("IBECEA_COPAY",$J,IBDFN)) Q:+IBDFN'=IBDFN  D
  . S IBAD=0

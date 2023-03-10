@@ -1,128 +1,130 @@
-IBDEI0ID ; ; 04-FEB-2020
- ;;3.0;IB ENCOUNTER FORM IMP/EXP;;FEB 04, 2020
+IBDEI0ID ; ; 01-FEB-2022
+ ;;3.0;IB ENCOUNTER FORM IMP/EXP;;FEB 01, 2022
  Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,999) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
- ;;^UTILITY(U,$J,358.3,8011,2)
- ;;=^5001905
- ;;^UTILITY(U,$J,358.3,8012,0)
- ;;=D03.72^^65^517^56
- ;;^UTILITY(U,$J,358.3,8012,1,0)
+ ;;^UTILITY(U,$J,358.3,8265,1,4,0)
+ ;;=4^D12.1
+ ;;^UTILITY(U,$J,358.3,8265,2)
+ ;;=^5001964
+ ;;^UTILITY(U,$J,358.3,8266,0)
+ ;;=K63.5^^39^397^84
+ ;;^UTILITY(U,$J,358.3,8266,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,8012,1,3,0)
- ;;=3^Melanoma in Situ Left Lower Limb
- ;;^UTILITY(U,$J,358.3,8012,1,4,0)
- ;;=4^D03.72
- ;;^UTILITY(U,$J,358.3,8012,2)
- ;;=^5001906
- ;;^UTILITY(U,$J,358.3,8013,0)
- ;;=D03.8^^65^517^67
- ;;^UTILITY(U,$J,358.3,8013,1,0)
+ ;;^UTILITY(U,$J,358.3,8266,1,3,0)
+ ;;=3^Polyp of Colon
+ ;;^UTILITY(U,$J,358.3,8266,1,4,0)
+ ;;=4^K63.5
+ ;;^UTILITY(U,$J,358.3,8266,2)
+ ;;=^5008765
+ ;;^UTILITY(U,$J,358.3,8267,0)
+ ;;=D12.3^^39^397^17
+ ;;^UTILITY(U,$J,358.3,8267,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,8013,1,3,0)
- ;;=3^Melanoma in Situ of Other Sites
- ;;^UTILITY(U,$J,358.3,8013,1,4,0)
- ;;=4^D03.8
- ;;^UTILITY(U,$J,358.3,8013,2)
- ;;=^5001907
- ;;^UTILITY(U,$J,358.3,8014,0)
- ;;=D22.0^^65^517^43
- ;;^UTILITY(U,$J,358.3,8014,1,0)
+ ;;^UTILITY(U,$J,358.3,8267,1,3,0)
+ ;;=3^Benign Neop of Transverse Colon
+ ;;^UTILITY(U,$J,358.3,8267,1,4,0)
+ ;;=4^D12.3
+ ;;^UTILITY(U,$J,358.3,8267,2)
+ ;;=^5001966
+ ;;^UTILITY(U,$J,358.3,8268,0)
+ ;;=D12.2^^39^397^11
+ ;;^UTILITY(U,$J,358.3,8268,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,8014,1,3,0)
- ;;=3^Melanocytic Nevi of Lip
- ;;^UTILITY(U,$J,358.3,8014,1,4,0)
- ;;=4^D22.0
- ;;^UTILITY(U,$J,358.3,8014,2)
- ;;=^5002041
- ;;^UTILITY(U,$J,358.3,8015,0)
- ;;=D22.21^^65^517^44
- ;;^UTILITY(U,$J,358.3,8015,1,0)
+ ;;^UTILITY(U,$J,358.3,8268,1,3,0)
+ ;;=3^Benign Neop of Ascending Colon
+ ;;^UTILITY(U,$J,358.3,8268,1,4,0)
+ ;;=4^D12.2
+ ;;^UTILITY(U,$J,358.3,8268,2)
+ ;;=^5001965
+ ;;^UTILITY(U,$J,358.3,8269,0)
+ ;;=D12.5^^39^397^16
+ ;;^UTILITY(U,$J,358.3,8269,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,8015,1,3,0)
- ;;=3^Melanocytic Nevi of Right Ear/External Auricular Canal
- ;;^UTILITY(U,$J,358.3,8015,1,4,0)
- ;;=4^D22.21
- ;;^UTILITY(U,$J,358.3,8015,2)
- ;;=^5002046
- ;;^UTILITY(U,$J,358.3,8016,0)
- ;;=D22.22^^65^517^38
- ;;^UTILITY(U,$J,358.3,8016,1,0)
+ ;;^UTILITY(U,$J,358.3,8269,1,3,0)
+ ;;=3^Benign Neop of Sigmoid Colon
+ ;;^UTILITY(U,$J,358.3,8269,1,4,0)
+ ;;=4^D12.5
+ ;;^UTILITY(U,$J,358.3,8269,2)
+ ;;=^5001968
+ ;;^UTILITY(U,$J,358.3,8270,0)
+ ;;=D12.4^^39^397^14
+ ;;^UTILITY(U,$J,358.3,8270,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,8016,1,3,0)
- ;;=3^Melanocytic Nevi of Left Ear/External Auricular Canal
- ;;^UTILITY(U,$J,358.3,8016,1,4,0)
- ;;=4^D22.22
- ;;^UTILITY(U,$J,358.3,8016,2)
- ;;=^5002047
- ;;^UTILITY(U,$J,358.3,8017,0)
- ;;=D22.30^^65^517^51
- ;;^UTILITY(U,$J,358.3,8017,1,0)
+ ;;^UTILITY(U,$J,358.3,8270,1,3,0)
+ ;;=3^Benign Neop of Descending Colon
+ ;;^UTILITY(U,$J,358.3,8270,1,4,0)
+ ;;=4^D12.4
+ ;;^UTILITY(U,$J,358.3,8270,2)
+ ;;=^5001967
+ ;;^UTILITY(U,$J,358.3,8271,0)
+ ;;=D73.2^^39^397^19
+ ;;^UTILITY(U,$J,358.3,8271,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,8017,1,3,0)
- ;;=3^Melanocytic Nevi of Unspec Part of Face
- ;;^UTILITY(U,$J,358.3,8017,1,4,0)
- ;;=4^D22.30
- ;;^UTILITY(U,$J,358.3,8017,2)
- ;;=^5002048
- ;;^UTILITY(U,$J,358.3,8018,0)
- ;;=D22.4^^65^517^49
- ;;^UTILITY(U,$J,358.3,8018,1,0)
+ ;;^UTILITY(U,$J,358.3,8271,1,3,0)
+ ;;=3^Congestive Splenomegaly,Chronic
+ ;;^UTILITY(U,$J,358.3,8271,1,4,0)
+ ;;=4^D73.2
+ ;;^UTILITY(U,$J,358.3,8271,2)
+ ;;=^268000
+ ;;^UTILITY(U,$J,358.3,8272,0)
+ ;;=I85.00^^39^397^53
+ ;;^UTILITY(U,$J,358.3,8272,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,8018,1,3,0)
- ;;=3^Melanocytic Nevi of Scalp/Neck
- ;;^UTILITY(U,$J,358.3,8018,1,4,0)
- ;;=4^D22.4
- ;;^UTILITY(U,$J,358.3,8018,2)
- ;;=^5002050
- ;;^UTILITY(U,$J,358.3,8019,0)
- ;;=D22.5^^65^517^50
- ;;^UTILITY(U,$J,358.3,8019,1,0)
+ ;;^UTILITY(U,$J,358.3,8272,1,3,0)
+ ;;=3^Esophageal Varices w/o Bleeding
+ ;;^UTILITY(U,$J,358.3,8272,1,4,0)
+ ;;=4^I85.00
+ ;;^UTILITY(U,$J,358.3,8272,2)
+ ;;=^5008023
+ ;;^UTILITY(U,$J,358.3,8273,0)
+ ;;=K21.9^^39^397^63
+ ;;^UTILITY(U,$J,358.3,8273,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,8019,1,3,0)
- ;;=3^Melanocytic Nevi of Trunk
- ;;^UTILITY(U,$J,358.3,8019,1,4,0)
- ;;=4^D22.5
- ;;^UTILITY(U,$J,358.3,8019,2)
- ;;=^5002051
- ;;^UTILITY(U,$J,358.3,8020,0)
- ;;=D22.61^^65^517^48
- ;;^UTILITY(U,$J,358.3,8020,1,0)
+ ;;^UTILITY(U,$J,358.3,8273,1,3,0)
+ ;;=3^Gastroesophageal Reflux Disease w/o Esophagitis
+ ;;^UTILITY(U,$J,358.3,8273,1,4,0)
+ ;;=4^K21.9
+ ;;^UTILITY(U,$J,358.3,8273,2)
+ ;;=^5008505
+ ;;^UTILITY(U,$J,358.3,8274,0)
+ ;;=K25.7^^39^397^58
+ ;;^UTILITY(U,$J,358.3,8274,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,8020,1,3,0)
- ;;=3^Melanocytic Nevi of Right Upper Limb
- ;;^UTILITY(U,$J,358.3,8020,1,4,0)
- ;;=4^D22.61
- ;;^UTILITY(U,$J,358.3,8020,2)
- ;;=^5002053
- ;;^UTILITY(U,$J,358.3,8021,0)
- ;;=D22.62^^65^517^42
- ;;^UTILITY(U,$J,358.3,8021,1,0)
+ ;;^UTILITY(U,$J,358.3,8274,1,3,0)
+ ;;=3^Gastric Ulcer w/o Hemorrhage/Perforation,Chronic
+ ;;^UTILITY(U,$J,358.3,8274,1,4,0)
+ ;;=4^K25.7
+ ;;^UTILITY(U,$J,358.3,8274,2)
+ ;;=^5008521
+ ;;^UTILITY(U,$J,358.3,8275,0)
+ ;;=K26.9^^39^397^49
+ ;;^UTILITY(U,$J,358.3,8275,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,8021,1,3,0)
- ;;=3^Melanocytic Nevi of Left Upper Limb
- ;;^UTILITY(U,$J,358.3,8021,1,4,0)
- ;;=4^D22.62
- ;;^UTILITY(U,$J,358.3,8021,2)
- ;;=^5002054
- ;;^UTILITY(U,$J,358.3,8022,0)
- ;;=D22.71^^65^517^46
- ;;^UTILITY(U,$J,358.3,8022,1,0)
+ ;;^UTILITY(U,$J,358.3,8275,1,3,0)
+ ;;=3^Duadenal Ulcer w/o Hemorrhage/Perforation,Unspec
+ ;;^UTILITY(U,$J,358.3,8275,1,4,0)
+ ;;=4^K26.9
+ ;;^UTILITY(U,$J,358.3,8275,2)
+ ;;=^5008527
+ ;;^UTILITY(U,$J,358.3,8276,0)
+ ;;=K27.9^^39^397^83
+ ;;^UTILITY(U,$J,358.3,8276,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,8022,1,3,0)
- ;;=3^Melanocytic Nevi of Right Lower Limb
- ;;^UTILITY(U,$J,358.3,8022,1,4,0)
- ;;=4^D22.71
- ;;^UTILITY(U,$J,358.3,8022,2)
- ;;=^5002056
- ;;^UTILITY(U,$J,358.3,8023,0)
- ;;=D22.72^^65^517^40
- ;;^UTILITY(U,$J,358.3,8023,1,0)
+ ;;^UTILITY(U,$J,358.3,8276,1,3,0)
+ ;;=3^Peptic Ulcer w/o Hemorrhage/Perforation,Unspec
+ ;;^UTILITY(U,$J,358.3,8276,1,4,0)
+ ;;=4^K27.9
+ ;;^UTILITY(U,$J,358.3,8276,2)
+ ;;=^5008536
+ ;;^UTILITY(U,$J,358.3,8277,0)
+ ;;=K29.70^^39^397^59
+ ;;^UTILITY(U,$J,358.3,8277,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,8023,1,3,0)
- ;;=3^Melanocytic Nevi of Left Lower Limb
- ;;^UTILITY(U,$J,358.3,8023,1,4,0)
- ;;=4^D22.72
- ;;^UTILITY(U,$J,358.3,8023,2)
- ;;=^5002057
- ;;^UTILITY(U,$J,358.3,8024,0)
- ;;=C44.390^^65^517^36
+ ;;^UTILITY(U,$J,358.3,8277,1,3,0)
+ ;;=3^Gastritis w/o Bleeding,Unspec
+ ;;^UTILITY(U,$J,358.3,8277,1,4,0)
+ ;;=4^K29.70
+ ;;^UTILITY(U,$J,358.3,8277,2)
+ ;;=^5008552
+ ;;^UTILITY(U,$J,358.3,8278,0)
+ ;;=K29.90^^39^397^60

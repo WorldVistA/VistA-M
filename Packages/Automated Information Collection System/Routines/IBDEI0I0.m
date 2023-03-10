@@ -1,130 +1,118 @@
-IBDEI0I0 ; ; 04-FEB-2020
- ;;3.0;IB ENCOUNTER FORM IMP/EXP;;FEB 04, 2020
+IBDEI0I0 ; ; 01-FEB-2022
+ ;;3.0;IB ENCOUNTER FORM IMP/EXP;;FEB 01, 2022
  Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,999) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
- ;;^UTILITY(U,$J,358.3,7843,1,3,0)
- ;;=3^Kidney/Ureter Disorder,Unspec
- ;;^UTILITY(U,$J,358.3,7843,1,4,0)
- ;;=4^N28.9
- ;;^UTILITY(U,$J,358.3,7843,2)
- ;;=^5015630
- ;;^UTILITY(U,$J,358.3,7844,0)
- ;;=I13.0^^63^505^7
- ;;^UTILITY(U,$J,358.3,7844,1,0)
+ ;;^UTILITY(U,$J,358.3,8102,1,4,0)
+ ;;=4^L97.316
+ ;;^UTILITY(U,$J,358.3,8102,2)
+ ;;=^5151452
+ ;;^UTILITY(U,$J,358.3,8103,0)
+ ;;=L97.315^^39^391^228
+ ;;^UTILITY(U,$J,358.3,8103,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,7844,1,3,0)
- ;;=3^Hypertensive Hrt Dis & CKD w/ CHF
- ;;^UTILITY(U,$J,358.3,7844,1,4,0)
- ;;=4^I13.0
- ;;^UTILITY(U,$J,358.3,7844,2)
- ;;=^5007067
- ;;^UTILITY(U,$J,358.3,7845,0)
- ;;=I13.2^^63^505^5
- ;;^UTILITY(U,$J,358.3,7845,1,0)
+ ;;^UTILITY(U,$J,358.3,8103,1,3,0)
+ ;;=3^Non-Pressure Chr Ulcer of Right Ankle w/ Msl Invl w/o Necrosis
+ ;;^UTILITY(U,$J,358.3,8103,1,4,0)
+ ;;=4^L97.315
+ ;;^UTILITY(U,$J,358.3,8103,2)
+ ;;=^5151451
+ ;;^UTILITY(U,$J,358.3,8104,0)
+ ;;=L97.318^^39^391^229
+ ;;^UTILITY(U,$J,358.3,8104,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,7845,1,3,0)
- ;;=3^Hypertensive Hrt Dis & CKD V/ESRD w/ CHF
- ;;^UTILITY(U,$J,358.3,7845,1,4,0)
- ;;=4^I13.2
- ;;^UTILITY(U,$J,358.3,7845,2)
- ;;=^5007070
- ;;^UTILITY(U,$J,358.3,7846,0)
- ;;=I13.10^^63^505^8
- ;;^UTILITY(U,$J,358.3,7846,1,0)
+ ;;^UTILITY(U,$J,358.3,8104,1,3,0)
+ ;;=3^Non-Pressure Chr Ulcer of Right Ankle w/ Oth Severity
+ ;;^UTILITY(U,$J,358.3,8104,1,4,0)
+ ;;=4^L97.318
+ ;;^UTILITY(U,$J,358.3,8104,2)
+ ;;=^5151453
+ ;;^UTILITY(U,$J,358.3,8105,0)
+ ;;=L97.216^^39^391^235
+ ;;^UTILITY(U,$J,358.3,8105,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,7846,1,3,0)
- ;;=3^Hypertensive Hrt Dis & CKD w/o CHF
- ;;^UTILITY(U,$J,358.3,7846,1,4,0)
- ;;=4^I13.10
- ;;^UTILITY(U,$J,358.3,7846,2)
- ;;=^5007068
- ;;^UTILITY(U,$J,358.3,7847,0)
- ;;=I13.11^^63^505^6
- ;;^UTILITY(U,$J,358.3,7847,1,0)
+ ;;^UTILITY(U,$J,358.3,8105,1,3,0)
+ ;;=3^Non-Pressure Chr Ulcer of Right Calf w/ Bone Invl w/o Necrosis
+ ;;^UTILITY(U,$J,358.3,8105,1,4,0)
+ ;;=4^L97.216
+ ;;^UTILITY(U,$J,358.3,8105,2)
+ ;;=^5151443
+ ;;^UTILITY(U,$J,358.3,8106,0)
+ ;;=L97.215^^39^391^236
+ ;;^UTILITY(U,$J,358.3,8106,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,7847,1,3,0)
- ;;=3^Hypertensive Hrt Dis & CKD V/ESRD w/o CHF
- ;;^UTILITY(U,$J,358.3,7847,1,4,0)
- ;;=4^I13.11
- ;;^UTILITY(U,$J,358.3,7847,2)
- ;;=^5007069
- ;;^UTILITY(U,$J,358.3,7848,0)
- ;;=Z91.5^^63^506^1
- ;;^UTILITY(U,$J,358.3,7848,1,0)
+ ;;^UTILITY(U,$J,358.3,8106,1,3,0)
+ ;;=3^Non-Pressure Chr Ulcer of Right Calf w/ Msl Invl w/o Necrosis
+ ;;^UTILITY(U,$J,358.3,8106,1,4,0)
+ ;;=4^L97.215
+ ;;^UTILITY(U,$J,358.3,8106,2)
+ ;;=^5151442
+ ;;^UTILITY(U,$J,358.3,8107,0)
+ ;;=L97.218^^39^391^237
+ ;;^UTILITY(U,$J,358.3,8107,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,7848,1,3,0)
- ;;=3^Personal Hx of Suicide Attempt(s)
- ;;^UTILITY(U,$J,358.3,7848,1,4,0)
- ;;=4^Z91.5
- ;;^UTILITY(U,$J,358.3,7848,2)
- ;;=^5063624
- ;;^UTILITY(U,$J,358.3,7849,0)
- ;;=R45.851^^63^506^2
- ;;^UTILITY(U,$J,358.3,7849,1,0)
+ ;;^UTILITY(U,$J,358.3,8107,1,3,0)
+ ;;=3^Non-Pressure Chr Ulcer of Right Calf w/ Oth Severity
+ ;;^UTILITY(U,$J,358.3,8107,1,4,0)
+ ;;=4^L97.218
+ ;;^UTILITY(U,$J,358.3,8107,2)
+ ;;=^5151444
+ ;;^UTILITY(U,$J,358.3,8108,0)
+ ;;=L97.516^^39^391^243
+ ;;^UTILITY(U,$J,358.3,8108,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,7849,1,3,0)
- ;;=3^Suicidal Ideations
- ;;^UTILITY(U,$J,358.3,7849,1,4,0)
- ;;=4^R45.851
- ;;^UTILITY(U,$J,358.3,7849,2)
- ;;=^5019474
- ;;^UTILITY(U,$J,358.3,7850,0)
- ;;=T14.91XA^^63^506^3
- ;;^UTILITY(U,$J,358.3,7850,1,0)
+ ;;^UTILITY(U,$J,358.3,8108,1,3,0)
+ ;;=3^Non-Pressure Chr Ulcer of Right Foot w/ Bone Invl w/o Necrosis
+ ;;^UTILITY(U,$J,358.3,8108,1,4,0)
+ ;;=4^L97.516
+ ;;^UTILITY(U,$J,358.3,8108,2)
+ ;;=^5151470
+ ;;^UTILITY(U,$J,358.3,8109,0)
+ ;;=L97.515^^39^391^244
+ ;;^UTILITY(U,$J,358.3,8109,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,7850,1,3,0)
- ;;=3^Suicide Attempt,Initial Encntr
- ;;^UTILITY(U,$J,358.3,7850,1,4,0)
- ;;=4^T14.91XA
- ;;^UTILITY(U,$J,358.3,7850,2)
- ;;=^5151779
- ;;^UTILITY(U,$J,358.3,7851,0)
- ;;=T14.91XD^^63^506^4
- ;;^UTILITY(U,$J,358.3,7851,1,0)
+ ;;^UTILITY(U,$J,358.3,8109,1,3,0)
+ ;;=3^Non-Pressure Chr Ulcer of Right Foot w/ Msl Invl w/o Necrosis
+ ;;^UTILITY(U,$J,358.3,8109,1,4,0)
+ ;;=4^L97.515
+ ;;^UTILITY(U,$J,358.3,8109,2)
+ ;;=^5151469
+ ;;^UTILITY(U,$J,358.3,8110,0)
+ ;;=L97.518^^39^391^245
+ ;;^UTILITY(U,$J,358.3,8110,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,7851,1,3,0)
- ;;=3^Suicide Attempt,Subsequent Encntr
- ;;^UTILITY(U,$J,358.3,7851,1,4,0)
- ;;=4^T14.91XD
- ;;^UTILITY(U,$J,358.3,7851,2)
- ;;=^5151780
- ;;^UTILITY(U,$J,358.3,7852,0)
- ;;=T14.91XS^^63^506^5
- ;;^UTILITY(U,$J,358.3,7852,1,0)
+ ;;^UTILITY(U,$J,358.3,8110,1,3,0)
+ ;;=3^Non-Pressure Chr Ulcer of Right Foot w/ Oth Severity
+ ;;^UTILITY(U,$J,358.3,8110,1,4,0)
+ ;;=4^L97.518
+ ;;^UTILITY(U,$J,358.3,8110,2)
+ ;;=^5151471
+ ;;^UTILITY(U,$J,358.3,8111,0)
+ ;;=L97.416^^39^391^251
+ ;;^UTILITY(U,$J,358.3,8111,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,7852,1,3,0)
- ;;=3^Suicide Attempt,Sequela
- ;;^UTILITY(U,$J,358.3,7852,1,4,0)
- ;;=4^T14.91XS
- ;;^UTILITY(U,$J,358.3,7852,2)
- ;;=^5151781
- ;;^UTILITY(U,$J,358.3,7853,0)
- ;;=99201^^64^507^1
- ;;^UTILITY(U,$J,358.3,7853,1,0)
- ;;=^358.31IA^2^2
- ;;^UTILITY(U,$J,358.3,7853,1,1,0)
- ;;=1^Problem Focus
- ;;^UTILITY(U,$J,358.3,7853,1,2,0)
- ;;=2^99201
- ;;^UTILITY(U,$J,358.3,7854,0)
- ;;=99202^^64^507^2
- ;;^UTILITY(U,$J,358.3,7854,1,0)
- ;;=^358.31IA^2^2
- ;;^UTILITY(U,$J,358.3,7854,1,1,0)
- ;;=1^Expanded Problem Focus
- ;;^UTILITY(U,$J,358.3,7854,1,2,0)
- ;;=2^99202
- ;;^UTILITY(U,$J,358.3,7855,0)
- ;;=99203^^64^507^3
- ;;^UTILITY(U,$J,358.3,7855,1,0)
- ;;=^358.31IA^2^2
- ;;^UTILITY(U,$J,358.3,7855,1,1,0)
- ;;=1^Detailed
- ;;^UTILITY(U,$J,358.3,7855,1,2,0)
- ;;=2^99203
- ;;^UTILITY(U,$J,358.3,7856,0)
- ;;=99204^^64^507^4
- ;;^UTILITY(U,$J,358.3,7856,1,0)
- ;;=^358.31IA^2^2
- ;;^UTILITY(U,$J,358.3,7856,1,1,0)
- ;;=1^Comprehensive, Moderate
+ ;;^UTILITY(U,$J,358.3,8111,1,3,0)
+ ;;=3^Non-Pressure Chr Ulcer of Right Heel/Midft w/ Bone Invl w/o Necrosis
+ ;;^UTILITY(U,$J,358.3,8111,1,4,0)
+ ;;=4^L97.416
+ ;;^UTILITY(U,$J,358.3,8111,2)
+ ;;=^5151461
+ ;;^UTILITY(U,$J,358.3,8112,0)
+ ;;=L97.415^^39^391^252
+ ;;^UTILITY(U,$J,358.3,8112,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,8112,1,3,0)
+ ;;=3^Non-Pressure Chr Ulcer of Right Heel/Midft w/ Msl Invl w/o Necrosis
+ ;;^UTILITY(U,$J,358.3,8112,1,4,0)
+ ;;=4^L97.415
+ ;;^UTILITY(U,$J,358.3,8112,2)
+ ;;=^5151460
+ ;;^UTILITY(U,$J,358.3,8113,0)
+ ;;=L97.418^^39^391^253
+ ;;^UTILITY(U,$J,358.3,8113,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,8113,1,3,0)
+ ;;=3^Non-Pressure Chr Ulcer of Right Hell/Midft w/ Oth Severity
+ ;;^UTILITY(U,$J,358.3,8113,1,4,0)
+ ;;=4^L97.418
+ ;;^UTILITY(U,$J,358.3,8113,2)
+ ;;=^5151462

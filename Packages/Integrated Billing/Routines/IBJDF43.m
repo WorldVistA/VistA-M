@@ -1,5 +1,5 @@
 IBJDF43 ;ALB/RB - FIRST PARTY FOLLOW-UP REPORT (COMPILE/PRINT SUMMARY);15-APR-00
- ;;2.0;INTEGRATED BILLING;**123,568**;21-MAR-94;Build 40
+ ;;2.0;INTEGRATED BILLING;**123,568,705,715**;21-MAR-94;Build 25
  ;;Per VA Directive 6402, this routine should not be modified.
  ;
 INIT ; - Initialize counters (Called by IBJDF41)
@@ -96,7 +96,7 @@ SUM ; - Print summary for AR category.
  . . S Y=$P(IB(IBCAT,IB,9),U,2)
  . . F I=1:1:IBS,9 S X=$P($T(CATN+I),";;",2,99) D
  . . . W:I=9 ! W !,X,?30,$J(+IB(IBCAT,IB,I),6)
- . . . W "  (",$J(+IB(IBCAT,IB,I)/+IB(IBCAT,IB,9)*100,0,$S(I=9:0,1:2)),"%)"
+ . . . W "  (",$J($S(+IB(IBCAT,IB,9)'=0:+IB(IBCAT,IB,I)/+IB(IBCAT,IB,9)*100,1:0),0,$S(I=9:0,1:2)),"%)"  ; IB*2.0*705
  . . . S Z=$FN($P(IB(IBCAT,IB,I),U,2),",",2)
  . . . W ?52,$J($S(I=1!(I=9):"$",1:"")_Z,15)
  . . . W "  (",$J($S('Y:0,1:$P(IB(IBCAT,IB,I),U,2)/Y*100),0,$S(I=9:0,1:2)),"%)"
@@ -135,6 +135,55 @@ PAUSE ; - Page break.
  N IBX,DIR,DIRUT,DUOUT,DTOUT,DIROUT,X,Y
  F IBX=$Y:1:(IOSL-3) W !
  S DIR(0)="E" D ^DIR S:$D(DIRUT)!($D(DUOUT)) IBQ=1
+ Q
+ ;
+OSUM ; Print Overall Summary
+ ;Undeclared Input Parameters
+ ;  IB - Array of data gathered
+ ;
+ N IBS,IBCAT,IBDLT,IBI,IBDATA
+ S IBS=$S(IBSRC:8,1:7)
+ S IB("OSUM")=0,IB("OSUM",9)="0^0"
+ S IBCAT=""
+ F  S IBCAT=$O(IB(IBCAT)) Q:'IBCAT  D
+ . S IBDLT=0
+ . F  S IBDLT=$O(IB(IBCAT,IBDLT)) Q:'IBDLT  D
+ . . S IBI=0
+ . . F  S IBI=$O(IB(IBCAT,IBDLT,IBI)) Q:IBI>8  D
+ . . . S IBDATA=$G(IB(IBCAT,IBDLT,IBI))
+ . . . S $P(IB("OSUM",IBI),U,1)=$P($G(IB("OSUM",IBI)),U,1)+$P(IBDATA,U,1)
+ . . . S $P(IB("OSUM",IBI),U,2)=$P($G(IB("OSUM",IBI)),U,2)+$P(IBDATA,U,2)
+ . . . S $P(IB("OSUM",9),U,1)=$P(IB("OSUM",9),U,1)+$P(IBDATA,U,1)
+ . . . S $P(IB("OSUM",9),U,2)=$P(IB("OSUM",9),U,2)+$P(IBDATA,U,2)
+ ;
+ ; - Print Custom Header
+ D OSHDR
+ N X,Y,Z,I
+ S Y=$P(IB("OSUM",9),U,2)
+ F I=1:1:IBS,9 S X=$P($T(CATN+I),";;",2,99) D
+ .I $G(IB("OSUM",I))="" Q  ; IB*2.0*715
+ .W:I=9 ! W !,X,?30,$J($P(IB("OSUM",I),U),6)
+ .W "  (",$J($S(+IB("OSUM",9)'=0:$P(IB("OSUM",I),U)/+IB("OSUM",9)*100,1:0),0,$S(I=9:0,1:2)),"%)"  ; IB*2.0*705
+ .S Z=$FN($P(IB("OSUM",I),U,2),",",2)
+ .W ?52,$J($S(I=1!(I=9):"$",1:"")_Z,15)
+ .W "  (",$J($S('Y:0,1:$P(IB("OSUM",I),U,2)/Y*100),0,$S(I=9:0,1:2)),"%)"
+ D PAUSE
+ ;
+OSUMQ Q
+ ;
+OSHDR ; - Custom Header for Overall Summary
+ I '$D(IBRUN) D
+ .D NOW^%DTC S IBRUN=$$DAT2^IBOUTL(%)
+ W:'$G(IBPAG) ! I $E(IOST,1,2)="C-"!$G(IBPAG) W @IOF,*13
+ S IBPAG=$G(IBPAG)+1
+ W "FIRST PARTY FOLLOW-UP SUMMARY REPORT   Run Date: ",IBRUN
+ W ?71,"Page: ",$J(IBPAG,3)
+ S X="Overall Summary"
+ S X=X_"/ RECEIVABLES REFERRED TO RC "_$S('IBSRC:"NOT ",1:"")_"INCLUDED"
+ F I=1:1 W !,$E(X,1,80) S X=$E(X,81,999) I X="" Q
+ W !!!!?(80-$L(X)\2),X,!?(80-$L(X)\2),$$DASH^IBJDF43($L(X)),!!
+ W "AR Category",?31,"# Receivables",?52,"Total Outstanding Balance",!
+ W "-----------",?31,"-------------",?52,"-------------------------",!
  Q
  ;
 CATN ; - List of category names.

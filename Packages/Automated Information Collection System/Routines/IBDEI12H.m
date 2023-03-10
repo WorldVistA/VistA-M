@@ -1,132 +1,124 @@
-IBDEI12H ; ; 04-FEB-2020
- ;;3.0;IB ENCOUNTER FORM IMP/EXP;;FEB 04, 2020
+IBDEI12H ; ; 01-FEB-2022
+ ;;3.0;IB ENCOUNTER FORM IMP/EXP;;FEB 01, 2022
  Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,999) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
- ;;^UTILITY(U,$J,358.3,17147,1,4,0)
- ;;=4^F09.
- ;;^UTILITY(U,$J,358.3,17147,2)
- ;;=^5003067
- ;;^UTILITY(U,$J,358.3,17148,0)
- ;;=F07.9^^88^886^36
- ;;^UTILITY(U,$J,358.3,17148,1,0)
+ ;;^UTILITY(U,$J,358.3,17335,0)
+ ;;=T74.21XS^^61^786^9
+ ;;^UTILITY(U,$J,358.3,17335,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,17148,1,3,0)
- ;;=3^Personality & Behavrl Disorder d/t Known Physiol Cond,Unspec
- ;;^UTILITY(U,$J,358.3,17148,1,4,0)
- ;;=4^F07.9
- ;;^UTILITY(U,$J,358.3,17148,2)
- ;;=^5003066
- ;;^UTILITY(U,$J,358.3,17149,0)
- ;;=G30.0^^88^886^1
- ;;^UTILITY(U,$J,358.3,17149,1,0)
+ ;;^UTILITY(U,$J,358.3,17335,1,3,0)
+ ;;=3^Adult Sexual Abuse,Confirmed,Sequela
+ ;;^UTILITY(U,$J,358.3,17335,1,4,0)
+ ;;=4^T74.21XS
+ ;;^UTILITY(U,$J,358.3,17335,2)
+ ;;=^5054154
+ ;;^UTILITY(U,$J,358.3,17336,0)
+ ;;=T76.21XD^^61^786^11
+ ;;^UTILITY(U,$J,358.3,17336,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,17149,1,3,0)
- ;;=3^Alzheimer's Disease w/ Early Onset
- ;;^UTILITY(U,$J,358.3,17149,1,4,0)
- ;;=4^G30.0
- ;;^UTILITY(U,$J,358.3,17149,2)
- ;;=^5003805
- ;;^UTILITY(U,$J,358.3,17150,0)
- ;;=G30.8^^88^886^3
- ;;^UTILITY(U,$J,358.3,17150,1,0)
+ ;;^UTILITY(U,$J,358.3,17336,1,3,0)
+ ;;=3^Adult Sexual Abuse,Suspected,Sub Encntr
+ ;;^UTILITY(U,$J,358.3,17336,1,4,0)
+ ;;=4^T76.21XD
+ ;;^UTILITY(U,$J,358.3,17336,2)
+ ;;=^5054228
+ ;;^UTILITY(U,$J,358.3,17337,0)
+ ;;=T76.21XS^^61^786^12
+ ;;^UTILITY(U,$J,358.3,17337,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,17150,1,3,0)
- ;;=3^Alzheimer's Disease,Other
- ;;^UTILITY(U,$J,358.3,17150,1,4,0)
- ;;=4^G30.8
- ;;^UTILITY(U,$J,358.3,17150,2)
- ;;=^5003807
- ;;^UTILITY(U,$J,358.3,17151,0)
- ;;=G30.1^^88^886^2
- ;;^UTILITY(U,$J,358.3,17151,1,0)
+ ;;^UTILITY(U,$J,358.3,17337,1,3,0)
+ ;;=3^Adult Sexual Abuse,Suspected,Sequela
+ ;;^UTILITY(U,$J,358.3,17337,1,4,0)
+ ;;=4^T76.21XS
+ ;;^UTILITY(U,$J,358.3,17337,2)
+ ;;=^5054229
+ ;;^UTILITY(U,$J,358.3,17338,0)
+ ;;=Y07.53^^61^786^13
+ ;;^UTILITY(U,$J,358.3,17338,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,17151,1,3,0)
- ;;=3^Alzheimer's Disease w/ Late Onset
- ;;^UTILITY(U,$J,358.3,17151,1,4,0)
- ;;=4^G30.1
- ;;^UTILITY(U,$J,358.3,17151,2)
- ;;=^5003806
- ;;^UTILITY(U,$J,358.3,17152,0)
- ;;=G30.9^^88^886^4
- ;;^UTILITY(U,$J,358.3,17152,1,0)
+ ;;^UTILITY(U,$J,358.3,17338,1,3,0)
+ ;;=3^Instructor,Perpetrator of MST
+ ;;^UTILITY(U,$J,358.3,17338,1,4,0)
+ ;;=4^Y07.53
+ ;;^UTILITY(U,$J,358.3,17338,2)
+ ;;=^5061207
+ ;;^UTILITY(U,$J,358.3,17339,0)
+ ;;=Y07.59^^61^786^14
+ ;;^UTILITY(U,$J,358.3,17339,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,17152,1,3,0)
- ;;=3^Alzheimer's Disease,Unspec
- ;;^UTILITY(U,$J,358.3,17152,1,4,0)
- ;;=4^G30.9
- ;;^UTILITY(U,$J,358.3,17152,2)
- ;;=^5003808
- ;;^UTILITY(U,$J,358.3,17153,0)
- ;;=G21.4^^88^886^46
- ;;^UTILITY(U,$J,358.3,17153,1,0)
+ ;;^UTILITY(U,$J,358.3,17339,1,3,0)
+ ;;=3^Non-Family Member,Perpetrator of MST/Abuse NEC
+ ;;^UTILITY(U,$J,358.3,17339,1,4,0)
+ ;;=4^Y07.59
+ ;;^UTILITY(U,$J,358.3,17339,2)
+ ;;=^5061208
+ ;;^UTILITY(U,$J,358.3,17340,0)
+ ;;=T74.51XA^^61^786^1
+ ;;^UTILITY(U,$J,358.3,17340,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,17153,1,3,0)
- ;;=3^Vascular Parkinsonism
- ;;^UTILITY(U,$J,358.3,17153,1,4,0)
- ;;=4^G21.4
- ;;^UTILITY(U,$J,358.3,17153,2)
- ;;=^5003776
- ;;^UTILITY(U,$J,358.3,17154,0)
- ;;=G20.^^88^886^35
- ;;^UTILITY(U,$J,358.3,17154,1,0)
+ ;;^UTILITY(U,$J,358.3,17340,1,3,0)
+ ;;=3^Adult Forced Sexual Exploit,Confirmed,Init enctr
+ ;;^UTILITY(U,$J,358.3,17340,1,4,0)
+ ;;=4^T74.51XA
+ ;;^UTILITY(U,$J,358.3,17340,2)
+ ;;=^5157560
+ ;;^UTILITY(U,$J,358.3,17341,0)
+ ;;=T74.51XD^^61^786^2
+ ;;^UTILITY(U,$J,358.3,17341,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,17154,1,3,0)
- ;;=3^Parkinson's Disease
- ;;^UTILITY(U,$J,358.3,17154,1,4,0)
- ;;=4^G20.
- ;;^UTILITY(U,$J,358.3,17154,2)
- ;;=^5003770
- ;;^UTILITY(U,$J,358.3,17155,0)
- ;;=G25.0^^88^886^16
- ;;^UTILITY(U,$J,358.3,17155,1,0)
+ ;;^UTILITY(U,$J,358.3,17341,1,3,0)
+ ;;=3^Adult Forced Sexual Exploit,Confirmed,Subs
+ ;;^UTILITY(U,$J,358.3,17341,1,4,0)
+ ;;=4^T74.51XD
+ ;;^UTILITY(U,$J,358.3,17341,2)
+ ;;=^5157561
+ ;;^UTILITY(U,$J,358.3,17342,0)
+ ;;=T74.51XS^^61^786^3
+ ;;^UTILITY(U,$J,358.3,17342,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,17155,1,3,0)
- ;;=3^Essential Tremor
- ;;^UTILITY(U,$J,358.3,17155,1,4,0)
- ;;=4^G25.0
- ;;^UTILITY(U,$J,358.3,17155,2)
- ;;=^5003791
- ;;^UTILITY(U,$J,358.3,17156,0)
- ;;=G25.2^^88^886^45
- ;;^UTILITY(U,$J,358.3,17156,1,0)
+ ;;^UTILITY(U,$J,358.3,17342,1,3,0)
+ ;;=3^Adult Forced Sexual Exploit,Confirmed,Sequela
+ ;;^UTILITY(U,$J,358.3,17342,1,4,0)
+ ;;=4^T74.51XS
+ ;;^UTILITY(U,$J,358.3,17342,2)
+ ;;=^5157562
+ ;;^UTILITY(U,$J,358.3,17343,0)
+ ;;=T76.51XA^^61^786^4
+ ;;^UTILITY(U,$J,358.3,17343,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,17156,1,3,0)
- ;;=3^Tremor,Other Spec Forms
- ;;^UTILITY(U,$J,358.3,17156,1,4,0)
- ;;=4^G25.2
- ;;^UTILITY(U,$J,358.3,17156,2)
- ;;=^5003793
- ;;^UTILITY(U,$J,358.3,17157,0)
- ;;=G25.1^^88^886^44
- ;;^UTILITY(U,$J,358.3,17157,1,0)
+ ;;^UTILITY(U,$J,358.3,17343,1,3,0)
+ ;;=3^Adult Forced Sexual Exploit,Suspected,Init 
+ ;;^UTILITY(U,$J,358.3,17343,1,4,0)
+ ;;=4^T76.51XA
+ ;;^UTILITY(U,$J,358.3,17343,2)
+ ;;=^5157572
+ ;;^UTILITY(U,$J,358.3,17344,0)
+ ;;=T76.51XD^^61^786^5
+ ;;^UTILITY(U,$J,358.3,17344,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,17157,1,3,0)
- ;;=3^Tremor,Drug-Induced
- ;;^UTILITY(U,$J,358.3,17157,1,4,0)
- ;;=4^G25.1
- ;;^UTILITY(U,$J,358.3,17157,2)
- ;;=^5003792
- ;;^UTILITY(U,$J,358.3,17158,0)
- ;;=G25.81^^88^886^39
- ;;^UTILITY(U,$J,358.3,17158,1,0)
+ ;;^UTILITY(U,$J,358.3,17344,1,3,0)
+ ;;=3^Adult Forced Sexual Exploit,Suspected,Subs
+ ;;^UTILITY(U,$J,358.3,17344,1,4,0)
+ ;;=4^T76.51XD
+ ;;^UTILITY(U,$J,358.3,17344,2)
+ ;;=^5157573
+ ;;^UTILITY(U,$J,358.3,17345,0)
+ ;;=T76.51XS^^61^786^6
+ ;;^UTILITY(U,$J,358.3,17345,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,17158,1,3,0)
- ;;=3^Restless Legs Syndrome
- ;;^UTILITY(U,$J,358.3,17158,1,4,0)
- ;;=4^G25.81
- ;;^UTILITY(U,$J,358.3,17158,2)
- ;;=^5003801
- ;;^UTILITY(U,$J,358.3,17159,0)
- ;;=G35.^^88^886^32
- ;;^UTILITY(U,$J,358.3,17159,1,0)
+ ;;^UTILITY(U,$J,358.3,17345,1,3,0)
+ ;;=3^Adult Forced Sexual Exploit,Suspected,Sequela
+ ;;^UTILITY(U,$J,358.3,17345,1,4,0)
+ ;;=4^T76.51XS
+ ;;^UTILITY(U,$J,358.3,17345,2)
+ ;;=^5157574
+ ;;^UTILITY(U,$J,358.3,17346,0)
+ ;;=E66.01^^61^787^124
+ ;;^UTILITY(U,$J,358.3,17346,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,17159,1,3,0)
- ;;=3^Multiple Sclerosis
- ;;^UTILITY(U,$J,358.3,17159,1,4,0)
- ;;=4^G35.
- ;;^UTILITY(U,$J,358.3,17159,2)
- ;;=^79761
- ;;^UTILITY(U,$J,358.3,17160,0)
- ;;=G40.901^^88^886^14
- ;;^UTILITY(U,$J,358.3,17160,1,0)
- ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,17346,1,3,0)
+ ;;=3^Morbid Obesity
+ ;;^UTILITY(U,$J,358.3,17346,1,4,0)
+ ;;=4^E66.01
+ ;;^UTILITY(U,$J,358.3,17346,2)
+ ;;=^5002826

@@ -1,130 +1,124 @@
-IBDEI1DG ; ; 04-FEB-2020
- ;;3.0;IB ENCOUNTER FORM IMP/EXP;;FEB 04, 2020
+IBDEI1DG ; ; 01-FEB-2022
+ ;;3.0;IB ENCOUNTER FORM IMP/EXP;;FEB 01, 2022
  Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,999) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
- ;;^UTILITY(U,$J,358.3,21923,0)
- ;;=F60.89^^99^1115^10
- ;;^UTILITY(U,$J,358.3,21923,1,0)
+ ;;^UTILITY(U,$J,358.3,22190,1,3,0)
+ ;;=3^SCI T7-T10 Complete Lesion,Sequela
+ ;;^UTILITY(U,$J,358.3,22190,1,4,0)
+ ;;=4^S24.113S
+ ;;^UTILITY(U,$J,358.3,22190,2)
+ ;;=^5023293
+ ;;^UTILITY(U,$J,358.3,22191,0)
+ ;;=S24.114S^^73^957^24
+ ;;^UTILITY(U,$J,358.3,22191,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,21923,1,3,0)
- ;;=3^Personality disorders, spec, other
- ;;^UTILITY(U,$J,358.3,21923,1,4,0)
- ;;=4^F60.89
- ;;^UTILITY(U,$J,358.3,21923,2)
- ;;=^5003638
- ;;^UTILITY(U,$J,358.3,21924,0)
- ;;=F60.1^^99^1115^11
- ;;^UTILITY(U,$J,358.3,21924,1,0)
+ ;;^UTILITY(U,$J,358.3,22191,1,3,0)
+ ;;=3^SCI T11-T12 Complete Lesion,Sequela
+ ;;^UTILITY(U,$J,358.3,22191,1,4,0)
+ ;;=4^S24.114S
+ ;;^UTILITY(U,$J,358.3,22191,2)
+ ;;=^5023296
+ ;;^UTILITY(U,$J,358.3,22192,0)
+ ;;=S24.131S^^73^957^19
+ ;;^UTILITY(U,$J,358.3,22192,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,21924,1,3,0)
- ;;=3^Schizoid personality disorder
- ;;^UTILITY(U,$J,358.3,21924,1,4,0)
- ;;=4^F60.1
- ;;^UTILITY(U,$J,358.3,21924,2)
- ;;=^108271
- ;;^UTILITY(U,$J,358.3,21925,0)
- ;;=F21.^^99^1115^12
- ;;^UTILITY(U,$J,358.3,21925,1,0)
+ ;;^UTILITY(U,$J,358.3,22192,1,3,0)
+ ;;=3^SCI T1 Anterior Cord Syndrome,Sequela
+ ;;^UTILITY(U,$J,358.3,22192,1,4,0)
+ ;;=4^S24.131S
+ ;;^UTILITY(U,$J,358.3,22192,2)
+ ;;=^5023302
+ ;;^UTILITY(U,$J,358.3,22193,0)
+ ;;=S24.132S^^73^957^27
+ ;;^UTILITY(U,$J,358.3,22193,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,21925,1,3,0)
- ;;=3^Schizotypal disorder
- ;;^UTILITY(U,$J,358.3,21925,1,4,0)
- ;;=4^F21.
- ;;^UTILITY(U,$J,358.3,21925,2)
- ;;=^5003477
- ;;^UTILITY(U,$J,358.3,21926,0)
- ;;=M54.10^^99^1116^3
- ;;^UTILITY(U,$J,358.3,21926,1,0)
+ ;;^UTILITY(U,$J,358.3,22193,1,3,0)
+ ;;=3^SCI T2-T6 Anterior Cord Syndrome,Sequela
+ ;;^UTILITY(U,$J,358.3,22193,1,4,0)
+ ;;=4^S24.132S
+ ;;^UTILITY(U,$J,358.3,22193,2)
+ ;;=^5023305
+ ;;^UTILITY(U,$J,358.3,22194,0)
+ ;;=S24.133S^^73^957^31
+ ;;^UTILITY(U,$J,358.3,22194,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,21926,1,3,0)
- ;;=3^Radiculopathy, site unspec
- ;;^UTILITY(U,$J,358.3,21926,1,4,0)
- ;;=4^M54.10
- ;;^UTILITY(U,$J,358.3,21926,2)
- ;;=^5012295
- ;;^UTILITY(U,$J,358.3,21927,0)
- ;;=R21.^^99^1116^5
- ;;^UTILITY(U,$J,358.3,21927,1,0)
+ ;;^UTILITY(U,$J,358.3,22194,1,3,0)
+ ;;=3^SCI T7-T10 Anterior Cord Syndrome,Sequela
+ ;;^UTILITY(U,$J,358.3,22194,1,4,0)
+ ;;=4^S24.133S
+ ;;^UTILITY(U,$J,358.3,22194,2)
+ ;;=^5023308
+ ;;^UTILITY(U,$J,358.3,22195,0)
+ ;;=S24.134S^^73^957^23
+ ;;^UTILITY(U,$J,358.3,22195,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,21927,1,3,0)
- ;;=3^Rash & other nonspec skin eruption
- ;;^UTILITY(U,$J,358.3,21927,1,4,0)
- ;;=4^R21.
- ;;^UTILITY(U,$J,358.3,21927,2)
- ;;=^5019283
- ;;^UTILITY(U,$J,358.3,21928,0)
- ;;=M06.9^^99^1116^6
- ;;^UTILITY(U,$J,358.3,21928,1,0)
+ ;;^UTILITY(U,$J,358.3,22195,1,3,0)
+ ;;=3^SCI T11-T12 Anterior Cord Syndrome,Sequela
+ ;;^UTILITY(U,$J,358.3,22195,1,4,0)
+ ;;=4^S24.134S
+ ;;^UTILITY(U,$J,358.3,22195,2)
+ ;;=^5023311
+ ;;^UTILITY(U,$J,358.3,22196,0)
+ ;;=S24.151S^^73^957^21
+ ;;^UTILITY(U,$J,358.3,22196,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,21928,1,3,0)
- ;;=3^Rheumatoid arthritis, unspec
- ;;^UTILITY(U,$J,358.3,21928,1,4,0)
- ;;=4^M06.9
- ;;^UTILITY(U,$J,358.3,21928,2)
- ;;=^5010145
- ;;^UTILITY(U,$J,358.3,21929,0)
- ;;=J31.0^^99^1116^7
- ;;^UTILITY(U,$J,358.3,21929,1,0)
+ ;;^UTILITY(U,$J,358.3,22196,1,3,0)
+ ;;=3^SCI T1 Other Incomplete Lesion,Sequela
+ ;;^UTILITY(U,$J,358.3,22196,1,4,0)
+ ;;=4^S24.151S
+ ;;^UTILITY(U,$J,358.3,22196,2)
+ ;;=^5023332
+ ;;^UTILITY(U,$J,358.3,22197,0)
+ ;;=S24.152S^^73^957^29
+ ;;^UTILITY(U,$J,358.3,22197,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,21929,1,3,0)
- ;;=3^Rhinitis, chronic
- ;;^UTILITY(U,$J,358.3,21929,1,4,0)
- ;;=4^J31.0
- ;;^UTILITY(U,$J,358.3,21929,2)
- ;;=^24434
- ;;^UTILITY(U,$J,358.3,21930,0)
- ;;=M54.12^^99^1116^1
- ;;^UTILITY(U,$J,358.3,21930,1,0)
+ ;;^UTILITY(U,$J,358.3,22197,1,3,0)
+ ;;=3^SCI T2-T6 Other Incomplete Lesion,Sequela
+ ;;^UTILITY(U,$J,358.3,22197,1,4,0)
+ ;;=4^S24.152S
+ ;;^UTILITY(U,$J,358.3,22197,2)
+ ;;=^5023335
+ ;;^UTILITY(U,$J,358.3,22198,0)
+ ;;=S24.153S^^73^957^33
+ ;;^UTILITY(U,$J,358.3,22198,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,21930,1,3,0)
- ;;=3^Radiculopathy, cervical region
- ;;^UTILITY(U,$J,358.3,21930,1,4,0)
- ;;=4^M54.12
- ;;^UTILITY(U,$J,358.3,21930,2)
- ;;=^5012297
- ;;^UTILITY(U,$J,358.3,21931,0)
- ;;=M54.16^^99^1116^2
- ;;^UTILITY(U,$J,358.3,21931,1,0)
+ ;;^UTILITY(U,$J,358.3,22198,1,3,0)
+ ;;=3^SCI T7-T10 Other Incomplete Lesion,Sequela
+ ;;^UTILITY(U,$J,358.3,22198,1,4,0)
+ ;;=4^S24.153S
+ ;;^UTILITY(U,$J,358.3,22198,2)
+ ;;=^5023338
+ ;;^UTILITY(U,$J,358.3,22199,0)
+ ;;=S24.154S^^73^957^25
+ ;;^UTILITY(U,$J,358.3,22199,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,21931,1,3,0)
- ;;=3^Radiculopathy, lumbar region
- ;;^UTILITY(U,$J,358.3,21931,1,4,0)
- ;;=4^M54.16
- ;;^UTILITY(U,$J,358.3,21931,2)
- ;;=^5012301
- ;;^UTILITY(U,$J,358.3,21932,0)
- ;;=M54.14^^99^1116^4
- ;;^UTILITY(U,$J,358.3,21932,1,0)
+ ;;^UTILITY(U,$J,358.3,22199,1,3,0)
+ ;;=3^SCI T11-T12 Other Incomplete Lesion,Sequela
+ ;;^UTILITY(U,$J,358.3,22199,1,4,0)
+ ;;=4^S24.154S
+ ;;^UTILITY(U,$J,358.3,22199,2)
+ ;;=^5023341
+ ;;^UTILITY(U,$J,358.3,22200,0)
+ ;;=S24.101S^^73^957^22
+ ;;^UTILITY(U,$J,358.3,22200,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,21932,1,3,0)
- ;;=3^Radiculopathy, thoracic region
- ;;^UTILITY(U,$J,358.3,21932,1,4,0)
- ;;=4^M54.14
- ;;^UTILITY(U,$J,358.3,21932,2)
- ;;=^5012299
- ;;^UTILITY(U,$J,358.3,21933,0)
- ;;=I50.814^^99^1116^8
- ;;^UTILITY(U,$J,358.3,21933,1,0)
+ ;;^UTILITY(U,$J,358.3,22200,1,3,0)
+ ;;=3^SCI T1 Unspec Injury,Sequela
+ ;;^UTILITY(U,$J,358.3,22200,1,4,0)
+ ;;=4^S24.101S
+ ;;^UTILITY(U,$J,358.3,22200,2)
+ ;;=^5023275
+ ;;^UTILITY(U,$J,358.3,22201,0)
+ ;;=S24.102S^^73^957^30
+ ;;^UTILITY(U,$J,358.3,22201,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,21933,1,3,0)
- ;;=3^Right Heart Failure d/t Left Heart Failure
- ;;^UTILITY(U,$J,358.3,21933,1,4,0)
- ;;=4^I50.814
- ;;^UTILITY(U,$J,358.3,21933,2)
- ;;=^5151388
- ;;^UTILITY(U,$J,358.3,21934,0)
- ;;=I50.810^^99^1116^9
- ;;^UTILITY(U,$J,358.3,21934,1,0)
+ ;;^UTILITY(U,$J,358.3,22201,1,3,0)
+ ;;=3^SCI T2-T6 Unspec Injury,Sequela
+ ;;^UTILITY(U,$J,358.3,22201,1,4,0)
+ ;;=4^S24.102S
+ ;;^UTILITY(U,$J,358.3,22201,2)
+ ;;=^5023278
+ ;;^UTILITY(U,$J,358.3,22202,0)
+ ;;=S24.103S^^73^957^34
+ ;;^UTILITY(U,$J,358.3,22202,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,21934,1,3,0)
- ;;=3^Right Heart Failure,Unspec
- ;;^UTILITY(U,$J,358.3,21934,1,4,0)
- ;;=4^I50.810
- ;;^UTILITY(U,$J,358.3,21934,2)
- ;;=^5151384
- ;;^UTILITY(U,$J,358.3,21935,0)
- ;;=L72.3^^99^1117^1
- ;;^UTILITY(U,$J,358.3,21935,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,21935,1,3,0)
- ;;=3^Sebaceous cyst

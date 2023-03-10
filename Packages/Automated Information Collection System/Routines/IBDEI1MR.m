@@ -1,120 +1,112 @@
-IBDEI1MR ; ; 04-FEB-2020
- ;;3.0;IB ENCOUNTER FORM IMP/EXP;;FEB 04, 2020
- Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,999) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
+IBDEI1MR ; ; 01-FEB-2022
+ ;;3.0;IB ENCOUNTER FORM IMP/EXP;;FEB 01, 2022
+ Q:'DIFQR(358.6)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,999) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
- ;;^UTILITY(U,$J,358.3,26045,1,4,0)
- ;;=4^R40.2340
- ;;^UTILITY(U,$J,358.3,26045,2)
- ;;=^5019415
- ;;^UTILITY(U,$J,358.3,26046,0)
- ;;=R40.2324^^107^1229^1
- ;;^UTILITY(U,$J,358.3,26046,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,26046,1,3,0)
- ;;=3^Coma Scale,Best Motor Resp,Extension,24+ Hrs
- ;;^UTILITY(U,$J,358.3,26046,1,4,0)
- ;;=4^R40.2324
- ;;^UTILITY(U,$J,358.3,26046,2)
- ;;=^5019409
- ;;^UTILITY(U,$J,358.3,26047,0)
- ;;=R40.2323^^107^1229^4
- ;;^UTILITY(U,$J,358.3,26047,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,26047,1,3,0)
- ;;=3^Coma Scale,Best Motor Resp,Extension,at Hospital Admission
- ;;^UTILITY(U,$J,358.3,26047,1,4,0)
- ;;=4^R40.2323
- ;;^UTILITY(U,$J,358.3,26047,2)
- ;;=^5019408
- ;;^UTILITY(U,$J,358.3,26048,0)
- ;;=R40.2322^^107^1229^2
- ;;^UTILITY(U,$J,358.3,26048,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,26048,1,3,0)
- ;;=3^Coma Scale,Best Motor Resp,Extension,Emger Dept
- ;;^UTILITY(U,$J,358.3,26048,1,4,0)
- ;;=4^R40.2322
- ;;^UTILITY(U,$J,358.3,26048,2)
- ;;=^5019407
- ;;^UTILITY(U,$J,358.3,26049,0)
- ;;=R40.2321^^107^1229^5
- ;;^UTILITY(U,$J,358.3,26049,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,26049,1,3,0)
- ;;=3^Coma Scale,Best Motor Resp,Extension,in the Field
- ;;^UTILITY(U,$J,358.3,26049,1,4,0)
- ;;=4^R40.2321
- ;;^UTILITY(U,$J,358.3,26049,2)
- ;;=^5019406
- ;;^UTILITY(U,$J,358.3,26050,0)
- ;;=R40.2320^^107^1229^3
- ;;^UTILITY(U,$J,358.3,26050,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,26050,1,3,0)
- ;;=3^Coma Scale,Best Motor Resp,Extension,Unspec Time
- ;;^UTILITY(U,$J,358.3,26050,1,4,0)
- ;;=4^R40.2320
- ;;^UTILITY(U,$J,358.3,26050,2)
- ;;=^5019405
- ;;^UTILITY(U,$J,358.3,26051,0)
- ;;=R40.2314^^107^1229^11
- ;;^UTILITY(U,$J,358.3,26051,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,26051,1,3,0)
- ;;=3^Coma Scale,Best Motor Resp,None,24+ Hrs
- ;;^UTILITY(U,$J,358.3,26051,1,4,0)
- ;;=4^R40.2314
- ;;^UTILITY(U,$J,358.3,26051,2)
- ;;=^5019404
- ;;^UTILITY(U,$J,358.3,26052,0)
- ;;=R40.2313^^107^1229^14
- ;;^UTILITY(U,$J,358.3,26052,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,26052,1,3,0)
- ;;=3^Coma Scale,Best Motor Resp,None,at Hospital Admission
- ;;^UTILITY(U,$J,358.3,26052,1,4,0)
- ;;=4^R40.2313
- ;;^UTILITY(U,$J,358.3,26052,2)
- ;;=^5019403
- ;;^UTILITY(U,$J,358.3,26053,0)
- ;;=R40.2312^^107^1229^12
- ;;^UTILITY(U,$J,358.3,26053,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,26053,1,3,0)
- ;;=3^Coma Scale,Best Motor Resp,None,Emerg Dept
- ;;^UTILITY(U,$J,358.3,26053,1,4,0)
- ;;=4^R40.2312
- ;;^UTILITY(U,$J,358.3,26053,2)
- ;;=^5019402
- ;;^UTILITY(U,$J,358.3,26054,0)
- ;;=R40.2311^^107^1229^15
- ;;^UTILITY(U,$J,358.3,26054,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,26054,1,3,0)
- ;;=3^Coma Scale,Best Motor Resp,None,in the Field
- ;;^UTILITY(U,$J,358.3,26054,1,4,0)
- ;;=4^R40.2311
- ;;^UTILITY(U,$J,358.3,26054,2)
- ;;=^5019401
- ;;^UTILITY(U,$J,358.3,26055,0)
- ;;=R40.2310^^107^1229^13
- ;;^UTILITY(U,$J,358.3,26055,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,26055,1,3,0)
- ;;=3^Coma Scale,Best Motor Resp,None,Unspec Time
- ;;^UTILITY(U,$J,358.3,26055,1,4,0)
- ;;=4^R40.2310
- ;;^UTILITY(U,$J,358.3,26055,2)
- ;;=^5019400
- ;;^UTILITY(U,$J,358.3,26056,0)
- ;;=R40.4^^107^1229^38
- ;;^UTILITY(U,$J,358.3,26056,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,26056,1,3,0)
- ;;=3^Transient Alteration of Awareness
- ;;^UTILITY(U,$J,358.3,26056,1,4,0)
- ;;=4^R40.4
- ;;^UTILITY(U,$J,358.3,26056,2)
- ;;=^5019435
- ;;^UTILITY(U,$J,358.3,26057,0)
- ;;=V00.811A^^107^1230^50
+ ;;^UTILITY(U,$J,358.6)
+ ;;=^IBE(358.6,
+ ;;^UTILITY(U,$J,358.6,0)
+ ;;=IMP/EXP PACKAGE INTERFACE^358.6I^9^9
+ ;;^UTILITY(U,$J,358.6,1,0)
+ ;;=DG SELECT VISIT TYPE CPT PROCEDURES^VSIT^IBDFN4^SCHEDULING^^3^2^^1^^^1^2^^^^^^^^1
+ ;;^UTILITY(U,$J,358.6,1,1,0)
+ ;;=^^1^1^2941116^^^^
+ ;;^UTILITY(U,$J,358.6,1,1,1,0)
+ ;;=Allows for select of just Visit type CPT codes from the CPT file.
+ ;;^UTILITY(U,$J,358.6,1,2)
+ ;;=CODE^5^RECOMMENDED TEXT-SHORT NAME^40^RECOMMENDED HEADER^30^SHORT NAME FROM CPT FILE^28^^^^^^^^^1^1
+ ;;^UTILITY(U,$J,358.6,1,3)
+ ;;=SELECT TYPE OF VISIT CPT
+ ;;^UTILITY(U,$J,358.6,1,11)
+ ;;=D TESTVST^IBDFN7
+ ;;^UTILITY(U,$J,358.6,1,15,0)
+ ;;=^357.615I^4^3
+ ;;^UTILITY(U,$J,358.6,1,15,2,0)
+ ;;=RECOMMENDED TEXT-SHORT NAME^40^2
+ ;;^UTILITY(U,$J,358.6,1,15,3,0)
+ ;;=RECOMMENDED HEADER^30^3
+ ;;^UTILITY(U,$J,358.6,1,15,4,0)
+ ;;=SHORT NAME FROM CPT FILE^28^4
+ ;;^UTILITY(U,$J,358.6,2,0)
+ ;;=INPUT VISIT TYPE^^^PATIENT CARE ENCOUNTER^^1^^^1^^^1^^^^SMP
+ ;;^UTILITY(U,$J,358.6,2,1,0)
+ ;;=^^1^1^2951023^
+ ;;^UTILITY(U,$J,358.6,2,1,1,0)
+ ;;=Used for inputting the visit type that applies to the visit.
+ ;;^UTILITY(U,$J,358.6,2,2)
+ ;;=^^^^^^^^^^^^^^^^^1
+ ;;^UTILITY(U,$J,358.6,2,3)
+ ;;=VISIT TYPE OF VISIT
+ ;;^UTILITY(U,$J,358.6,2,9)
+ ;;=D INPUTCPT^IBDFN8(.X)
+ ;;^UTILITY(U,$J,358.6,2,10)
+ ;;=Enter an active Visit Type code.
+ ;;^UTILITY(U,$J,358.6,2,11)
+ ;;=D TESTVST^IBDFN7
+ ;;^UTILITY(U,$J,358.6,2,12)
+ ;;=ENCOUNTER^5
+ ;;^UTILITY(U,$J,358.6,2,14)
+ ;;=S Y=$$DSPLYCPT^IBDFN9(Y)
+ ;;^UTILITY(U,$J,358.6,2,15,0)
+ ;;=^357.615I^0^0
+ ;;^UTILITY(U,$J,358.6,2,17)
+ ;;=D SLCTVST^IBDFN12(.X)
+ ;;^UTILITY(U,$J,358.6,2,18)
+ ;;=S IBDF("OTHER")="357.69^I '$P(^(0),U,4)" D LIST^IBDFDE2(.IBDSEL,.IBDF,"Visit Type (EM) Code")
+ ;;^UTILITY(U,$J,358.6,2,19)
+ ;;=D VST^IBDFN14(X)
+ ;;^UTILITY(U,$J,358.6,3,0)
+ ;;=DPT PATIENT'S NAME^VADPT^IBDFN^REGISTRATION^1^2^1^1^1^^^1
+ ;;^UTILITY(U,$J,358.6,3,1,0)
+ ;;=^^2^2^2930212^^^^
+ ;;^UTILITY(U,$J,358.6,3,1,1,0)
+ ;;= 
+ ;;^UTILITY(U,$J,358.6,3,1,2,0)
+ ;;=Patient's Name
+ ;;^UTILITY(U,$J,358.6,3,2)
+ ;;=Patient's Name^30^^^^^^^^^^^^^^^1
+ ;;^UTILITY(U,$J,358.6,3,3)
+ ;;=PATIENT NAME
+ ;;^UTILITY(U,$J,358.6,3,7,0)
+ ;;=^357.67^1^1
+ ;;^UTILITY(U,$J,358.6,3,7,1,0)
+ ;;=DFN
+ ;;^UTILITY(U,$J,358.6,3,15,0)
+ ;;=^357.615I^0^0
+ ;;^UTILITY(U,$J,358.6,4,0)
+ ;;=DPT PATIENT'S PID^VADPT^IBDFN^REGISTRATION^1^2^1^1^1^^^1
+ ;;^UTILITY(U,$J,358.6,4,1,0)
+ ;;=^^1^1^2931015^^
+ ;;^UTILITY(U,$J,358.6,4,1,1,0)
+ ;;=Used to display the patient identifier.
+ ;;^UTILITY(U,$J,358.6,4,2)
+ ;;=PATIENT IDENTIFIER^15^^^^^^^^^^^^^^^1
+ ;;^UTILITY(U,$J,358.6,4,3)
+ ;;=PATIENT IDENTIFIER PID
+ ;;^UTILITY(U,$J,358.6,4,7,0)
+ ;;=^357.67^1^1
+ ;;^UTILITY(U,$J,358.6,4,7,1,0)
+ ;;=DFN
+ ;;^UTILITY(U,$J,358.6,4,15,0)
+ ;;=^357.615I^0^0
+ ;;^UTILITY(U,$J,358.6,5,0)
+ ;;=DPT PATIENT'S DOB/AGE^VADPT^IBDFN^REGISTRATION^1^2^2^^1^^^1
+ ;;^UTILITY(U,$J,358.6,5,1,0)
+ ;;=^^2^2^2951023^
+ ;;^UTILITY(U,$J,358.6,5,1,1,0)
+ ;;=Patient's DOB in MM DD, YYYY format
+ ;;^UTILITY(U,$J,358.6,5,1,2,0)
+ ;;=Patient's age in years.
+ ;;^UTILITY(U,$J,358.6,5,2)
+ ;;=Patient's DOB^12^Patient's Age^3^^^^^^^^^^^^^1
+ ;;^UTILITY(U,$J,358.6,5,3)
+ ;;=PATIENT DOB AGE PIMS
+ ;;^UTILITY(U,$J,358.6,5,7,0)
+ ;;=^357.67^1^1
+ ;;^UTILITY(U,$J,358.6,5,7,1,0)
+ ;;=DFN
+ ;;^UTILITY(U,$J,358.6,5,15,0)
+ ;;=^357.615I^1^1
+ ;;^UTILITY(U,$J,358.6,5,15,1,0)
+ ;;=Patient's Age^3^2^
+ ;;^UTILITY(U,$J,358.6,6,0)
+ ;;=DG SELECT ICD-10 DIAGNOSIS CODES^ICD10^IBDFN4^SCHEDULING^^3^2^^1^^^1^7^^^^1^1^^^^30

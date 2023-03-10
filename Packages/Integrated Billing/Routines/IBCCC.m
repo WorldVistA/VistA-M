@@ -1,5 +1,5 @@
 IBCCC ;ALB/AAS - CANCEL AND CLONE A BILL ;25-JAN-90
- ;;2.0;INTEGRATED BILLING;**80,109,106,51,320,433,432,447,516,592**;21-MAR-94;Build 58
+ ;;2.0;INTEGRATED BILLING;**80,109,106,51,320,433,432,447,516,592,714**;21-MAR-94;Build 8
  ;;Per VA Directive 6402, this routine should not be modified.
  ;
  ;MAP TO DGCRCC
@@ -45,7 +45,7 @@ STEP2 S IBND0=^DGCR(399,IBIDS(.15),0) I $D(^("U")) S IBNDU=^("U")
  ; *** Note - all these fields should also be included in WHERE^IBCCC1
  ; IB*2.0*432 added check of variable IBSILENT to allow COB copy in background mode
  F I=2:1:12 S:$P(IBND0,"^",I)]"" IBIDS(I/100)=$P(IBND0,"^",I)
- F I=16:1:19,21:1:27 S:$P(IBND0,"^",I)]"" IBIDS(I/100)=$P(IBND0,"^",I)
+ F I=16:1:19,21:1:28 S:$P(IBND0,"^",I)]"" IBIDS(I/100)=$P(IBND0,"^",I)  ; IB*2.0*714
  F I=151,152,155 S IBIDS(I)=$P(IBNDU,"^",(I-150))
  S IBIDS(159.5)=$P(IBNDU,U,20)
  ; ***

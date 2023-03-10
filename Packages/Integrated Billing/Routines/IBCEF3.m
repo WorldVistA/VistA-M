@@ -1,5 +1,5 @@
 IBCEF3 ;ALB/TMP - FORMATTER SPECIFIC BILL FLD FUNCTIONS ;17-JUNE-96
- ;;2.0;INTEGRATED BILLING;**52,84,121,51,152,210,155,348,349,389,488,516,592**;21-MAR-94;Build 58
+ ;;2.0;INTEGRATED BILLING;**52,84,121,51,152,210,155,348,349,389,488,516,592,665**;21-MAR-94;Build 28
  ;;Per VA Directive 6402, this routine should not be modified.
  ;
 MPG(PG,FLDS,FORM) ; Set static flds on pages after page 1
@@ -169,9 +169,12 @@ XPROC(DATA,CT) ; Output any UB procedures after 6 on new page(s)
  ; DATA = output data from IBXSAVE("PROC",CT)
  ; CT = array sequence # of the procedure being output
  ; Only used for local prints
- N OFFSET,PG,COL,PRCODE,Q
- S Q=(CT-1)\3#2,OFFSET=$S('Q:0,1:2)
- S PG=(CT-1)\6+1,COL=1+(CT-1#3*15)
+ N OFFSET,PG,COL,PRCODE,Q,XCT
+ ;JWS;IB*2.0*665;US45880;for pages 2 thru N, do not print principle procedure in box 74
+ S XCT=$S(CT<7:CT,1:CT+(CT-7\5)+1)
+ S Q=(XCT-1)\3#2,OFFSET=$S('Q:0,1:2)
+ S PG=(XCT-1)\6+1,COL=1+(XCT-1#3*15)
+ ;end;IB*2.0*665;replaced CT var with XCT
  D MPGUB(PG,OFFSET,$P(DATA,U,1),58,COL)
  D MPGUB(PG,OFFSET,$P(DATA,U,2),58,COL+9)
  Q

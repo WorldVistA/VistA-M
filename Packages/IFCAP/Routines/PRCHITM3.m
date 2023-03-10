@@ -1,8 +1,8 @@
-PRCHITM3 ;OI&T/LKG - READING 832 TXN IN HOST FILE ;10/27/17  12:42
- ;;5.1;IFCAP;**198**;OCT 20, 2000;Build 6
+PRCHITM3 ;OI&T/LKG - READING 832 TXN IN HOST FILE ;12/20/21  22:14
+ ;;5.1;IFCAP;**198,226**;OCT 20, 2000;Build 2
  ;Per VA Directive 6402, this routine should not be modified.
  ;Integration agreements
- ; ICR #2320:  CLOSE^%ZISH(),$$DEFDIR^%ZISH(),$$LIST^%ZISH(),OPEN^%ZISH(),$$STATUS^%ZISH()
+ ; ICR #2320:  CLOSE^%ZISH(),$$LIST^%ZISH(),OPEN^%ZISH(),$$STATUS^%ZISH()
  ; ICR #2171:  $$STA^XUAF4()
  ; ICR #2541:  $$KSP^XUPARAM()
  ; ICR #4440:  $$PROD^XUPROD()
@@ -12,7 +12,7 @@ PRCHITM3 ;OI&T/LKG - READING 832 TXN IN HOST FILE ;10/27/17  12:42
 ST ;Entry point
  N DIR,DTOUT,DUOUT,DIROUT,DIRUT,POP,X,Y,PRCI,PRCLFARR,PRCLFDIR,PRCLFF,PRCLFFIL,PRCLFIN,PRCFATAL S PRCFATAL=0
  N ZTSK,ZTSAVE,ZTDTM,ZTRTN,ZTDESC,ZTIO,PRCX
-GETDIR S DIR(0)="FA^1:75",DIR("A")="Enter the file's directory: ",DIR("B")=$$DEFDIR^%ZISH()
+GETDIR S DIR(0)="FA^1:75",DIR("A")="Enter the file's directory: ",DIR("B")="/srv/vista/patches/.NIF/"
  S DIR("?",1)="Enter name of the directory containing the file.",DIR("?")="  Directory value is up to 75 characters in the format for the operating system."
  D ^DIR I $D(DIRUT) S PRCFATAL=1 G END
  S PRCLFDIR=Y
@@ -26,7 +26,7 @@ GETDIR S DIR(0)="FA^1:75",DIR("A")="Enter the file's directory: ",DIR("B")=$$DEF
  D OPEN^%ZISH("PRCLFIN",PRCLFDIR,PRCLFFIL,"R",)
  I POP W !,"Unable to open file "_PRCLFDIR_PRCLFFIL_"." S PRCFATAL=1 G END
  U IO
- F PRCI=1:1 R PRCX:DTIME Q:$E(PRCX,1,4)="ISA^"  Q:$$STATUS^%ZISH
+ F PRCI=1:1 R PRCX:DTIME Q:$E(PRCX,1,4)="ISA^"  Q:$$STATUS^%ZISH!($P(PRCX,"^")="***END OF FILE***")
  I $E(PRCX,1,4)'="ISA^" U IO(0) D EN^DDIOL("*** ISA segment is missing. ***","","!!?10") S PRCFATAL=1 D CLOSE^%ZISH("PRCLFIN") G END
  U IO(0) W !
  N PRCISITE,PRCRSITE S PRCISITE=$P($P($P(PRCX,"^",9),"~",2)," "),PRCRSITE=$$STA^XUAF4($$KSP^XUPARAM("INST"))
@@ -36,9 +36,9 @@ GETDIR S DIR(0)="FA^1:75",DIR("A")="Enter the file's directory: ",DIR("B")=$$DEF
  . S PRCMSG(2)="832 Txn ICN "_$P(PRCX,"^",14)_" for station "_PRCISITE_" was sent to "_PRCRSITE_"."
  . D EN^DDIOL(.PRCMSG)
  . S PRCFATAL=1 D CLOSE^%ZISH("PRCLFIN")
- K DIR S DIR(0)="YA",DIR("A")="Do want to queue the item load? ",DIR("B")="YES"
+ K DIR S DIR(0)="YA",DIR("A")="Do you want to queue the item load? ",DIR("B")="YES"
  S DIR("?")="Enter 'YES' to run in background or 'NO' to run in foreground."
- D ^DIR I $D(DIRUT) S PRCFATAL=1 D CLOSE^%ZISH("PRCLLYFIN") G END
+ D ^DIR I $D(DIRUT) S PRCFATAL=1 D CLOSE^%ZISH("PRCLFIN") G END
  I Y D  G END
  . D CLOSE^%ZISH("PRCLFIN")
  . S ZTRTN="RUN^PRCHITM3",ZTDESC="NIF/IFCAP Item Load",ZTIO=""

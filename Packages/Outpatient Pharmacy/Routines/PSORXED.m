@@ -1,5 +1,5 @@
-PSORXED ;IHS/DSD/JCM - edit rx utility ;8/18/10 3:16pm
- ;;7.0;OUTPATIENT PHARMACY;**2,16,21,26,56,71,125,201,246,289,298,366,385,403,421,482,512**;DEC 1997;Build 44
+PSORXED ;IHS/DSD/JCM - edit rx utility ;Dec 03, 2020@10:39:54
+ ;;7.0;OUTPATIENT PHARMACY;**2,16,21,26,56,71,125,201,246,289,298,366,385,403,421,482,512,621,441**;DEC 1997;Build 208
  ;External reference to ^PSXEDIT supported by DBIA 2209
  ;External reference to ^DD(52 supported by DBIA 999
  ;External reference to ^PSDRUG supported by DBIA 221
@@ -21,9 +21,7 @@ PARSE F PSORXED("LIST")=1:1 Q:'$D(PSOLIST(PSORXED("LIST")))!PSORXED("QFLG")  F P
  ;
 PROCESS S PSORXED("DFLG")=0 G:$G(^PSRX(PSORXED("IRXN"),0))']"" PROCESSX
  ;*298 Track PI and Oth Lang PI
- S PSORXED("RX0")=^PSRX(PSORXED("IRXN"),0)
- S PSORXED("RX2")=^(2)
- S PSORXED("RX3")=^(3)
+ S PSORXED("RX0")=^PSRX(PSORXED("IRXN"),0),PSORXED("RX2")=^(2),PSORXED("RX3")=^(3)
  S PSOSIG=$G(^PSRX(PSORXED("IRXN"),"SIG"))
  S PSODAYS=$P(PSORXED("RX0"),"^",8)
  S PSOPINS=$G(^PSRX(PSORXED("IRXN"),"INS"))
@@ -31,9 +29,7 @@ PROCESS S PSORXED("DFLG")=0 G:$G(^PSRX(PSORXED("IRXN"),0))']"" PROCESSX
  S (I,RFED,RFDT)=0
  F  S I=$O(^PSRX(PSORXED("IRXN"),1,I)) Q:'I  D
  . S RFED=I
- . S PSORXED("RX1")=^PSRX(PSORXED("IRXN"),1,I,0)
- . S RFDT=$P(^(0),"^")
- . S PSODAYS=$P(^(0),"^",10) S:$P(^(0),"^",17) PSONEW("PROVIDER NAME")=$P(^VA(200,$P(^(0),"^",17),0),"^")
+ . S PSORXED("RX1")=^PSRX(PSORXED("IRXN"),1,I,0),RFDT=$P(^(0),"^"),PSODAYS=$P(^(0),"^",10) S:$P(^(0),"^",17) PSONEW("PROVIDER NAME")=$P(^VA(200,$P(^(0),"^",17),0),"^")
  S PSORXST=+$P($G(^PS(53,+$P(PSORXED("RX0"),"^",3),0)),"^",7)
  N DA
  S DA=PSORXED("IRXN")
@@ -77,12 +73,15 @@ LOG K PSFROM S DA=PSORXED("IRXN"),(PSRX0,RX0)=PSORXED("RX0"),QTY=$P(RX0,"^",7),Q
  ;*298 Track PI and Oth Lang PI
  I PSOPINS'=$G(^PSRX(DA,"INS")) S COM=COM_$P(^DD(52,114,0),"^")_" ("_PSOPINS_"),"
  I PSOOINS'=$G(^PSRX(DA,"INSS")) S COM=COM_$P(^DD(52,114.1,0),"^")_" ("_PSOOINS_"),"
+ I PSOPIND'=$P($G(^PSRX(DA,"IND")),"^") S COM=COM_$P(^DD(52,128,0),"^")_" ("_PSOPIND_")," ;*441-IND
+ I PSOPINDF'=$P($G(^PSRX(DA,"IND")),"^",2) S COM=COM_$P(^DD(52,129,0),"^")_" ("_PSOPINDF_")," ;*441-IND
  I PSOTRN'=$G(^PSRX(DA,"TN")) S COM=COM_$P(^DD(52,6.5,0),"^")_" ("_PSOTRN_"),"
  D FILL
  I '$$RXRLDT^PSOBPSUT(PSORXED("IRXN"),PSOEDITF),COM="",PSOBPS="e" D LBLCHK G:'PSOEDITL LOGX G LOG1
  I PSOTRIC&('$$RXRLDT^PSOBPSUT(PSORXED("IRXN"),PSOEDITF)),COM="",PSOBPS'="e" D LBLCHK G LOGX ; labels for unreleased TRICARE/CHAMPVA resolved claims; when COM'="" label always printed
  I PSOTRIC&(COM=""),PSOBPS'="e" D LBL D ASKL:PSOEDITL G:'PSOEDITL LOGX G LOG1
- G:COM="" LOGX K PSRX0 S X=$S($D(PSOCLC):PSOCLC,1:DUZ)
+ I COM="" S RX0=^PSRX(DA,0),RX2=^(2),J=DA,OEXDT=+$P(RX2,"^",6) D ^PSOEXDT G LOGX
+  K PSRX0 S X=$S($D(PSOCLC):PSOCLC,1:DUZ)
  S K=1,D1=0 F Z=0:0 S Z=$O(^PSRX(DA,"A",Z)) Q:'Z  S D1=Z,K=K+1
  S D1=D1+1 S:'($D(^PSRX(DA,"A",0))#2) ^(0)="^52.3DA^^^" S ^(0)=$P(^(0),"^",1,2)_"^"_D1_"^"_K
  ;
@@ -96,16 +95,17 @@ LOG1 ;
  .K ^PSRX("AG",OEXDT,DA) S ^PSRX("AG",NEXDT,DA)=""
  .S D=+$P(RX0,"^",2) K ^PS(55,D,"P","A",OEXDT,DA) S ^PS(55,D,"P","A",NEXDT,DA)=""
  K D,OEXDT,NEXDT
- ; 
+ ;
  ; Do not add RX to the label list when there are:
  ;   1) Unresolved DUR/Refill Too Soon/RRR rejects
  ;   2) Unresolved TRICARE/CHAMPVA rejects
  ;   3) TRICARE/CHAMPVA claims that are IN PROGRESS
+ ;   4) Being edited from Mail or Window to Park  ;ADDED PAPI LINE OF CODE
  ; But if the Fill Date was modified then bypass these checks and allow to update the label list  - PSO*7*403
  I 'PSOFILDAT,$$ECMECHK^PSOREJU3(DA,$G(PSOEDITF)) G LOGX
  ;
  ; If Rx is non-billable
- I PSOBPS'="e" G:+$P(^PSRX(J,"STA"),"^")!($G(PSOEDITL)=1&('$G(PSOTRIC))) LOGX S RXFL(PSORXED("IRXN"))=$S($G(PSOEDITF):$G(PSOEDITF),1:0) I $G(PSORX("PSOL",1))']"" S PSORX("PSOL",1)=PSORXED("IRXN")_"," D SETRP G LOGX
+ I PSOBPS'="e" G:+$P(^PSRX(J,"STA"),"^")!($G(PSOEDITL)=1&('$G(PSOTRIC))) LOGX S RXFL(PSORXED("IRXN"))=$S($G(PSOEDITF):$G(PSOEDITF),1:0) I $G(PSORX("PSOL",1))']"",'$G(PSOTOPK) S PSORX("PSOL",1)=PSORXED("IRXN")_"," D SETRP G LOGX
  I PSOBPS'="e" G:$G(PSOEDITL)=1&('$G(PSOTRIC)) LOGX
  ;
  ; If Rx is billable
@@ -114,8 +114,9 @@ LOG1 ;
  . S PTLBL=1,PSOACT=0
  . F  S PSOACT=$O(^PSRX(DA,"A",PSOACT)) Q:'PSOACT  D  Q:'PTLBL
  . . I $$GET1^DIQ(52.3,PSOACT_","_DA,.05,"E")["CMOP Suspense Label Printed" S PTLBL=0
+ I $G(PSOTOPK) G LOGX  ;ADDED PAPI
  ;
- I PSOBPS="e" G:+$P(^PSRX(J,"STA"),"^") LOGX S RXFL(PSORXED("IRXN"))=$S($G(PSOEDITF):$G(PSOEDITF),1:0) I $G(PSORX("PSOL",1))']"" S PSORX("PSOL",1)=PSORXED("IRXN")_"," D SETRP G LOGX
+ I PSOBPS="e" G:+$P(^PSRX(J,"STA"),"^")!($G(PSOEDITL)=1&('$G(PSOTRIC))) LOGX S RXFL(PSORXED("IRXN"))=$S($G(PSOEDITF):$G(PSOEDITF),1:0) I $G(PSORX("PSOL",1))']"" I '$G(PSOTOPK) S PSORX("PSOL",1)=PSORXED("IRXN")_"," D SETRP G LOGX
  ;
  F PSOX1=0:0 S PSOX1=$O(PSORX("PSOL",PSOX1)) Q:'PSOX1  S PSOX2=PSOX1
  I $L(PSORX("PSOL",PSOX2))+$L(PSORXED("IRXN"))<220 D  G LOGX
@@ -123,6 +124,7 @@ LOG1 ;
  E  I $G(PSORX("PSOL",PSOX2+1))'[PSORXED("IRXN")_"," S PSORX("PSOL",PSOX2+1)=PSORXED("IRXN")_"," D SETRP   ;;PSO*7*246
  ;
 LOGX K PSOEDITF,PSOEDITR,PSOEDITL D:$G(RFED) ^PSORXED1
+ K PSOTOPK,PSOFRPK   ;ADDED PAPI LINE OF CODE
  Q
  ;
 POST ; D NEXT D:$G(^PSRX(PSORXED("IRXN"),"IB"))]"" COPAY K PSODAYS,PSORXST
@@ -233,5 +235,5 @@ ASKL ;
  S PSOEDITL=1
  Q
  ;
-SETRP I $P($G(^PSRX(PSORXED("IRXN"),"STA")),"^")'=5,$G(PSOEDITL)=0 S RXRP(PSORXED("IRXN"))="1^^^1",VALMSG="Label will reprint due to Edit"
+SETRP I '$G(PSOTOPK),$P($G(^PSRX(PSORXED("IRXN"),"STA")),"^")'=5,$G(PSOEDITL)=0 S RXRP(PSORXED("IRXN"))="1^^^1",VALMSG="Label will reprint due to Edit"
  Q

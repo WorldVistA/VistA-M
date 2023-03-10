@@ -1,5 +1,5 @@
-RARTE1 ;HISC/CAH,FPT,GJC AISC/MJK,RMO-Edit/Delete a Report ; Dec 17, 2019@10:05:19
- ;;5.0;Radiology/Nuclear Medicine;**2,15,17,23,31,68,56,47,124,163,162**;Mar 16, 1998;Build 2
+RARTE1 ;HISC/CAH,FPT,GJC AISC/MJK,RMO-Edit/Delete a Report ; Aug 25, 2020@15:11:03
+ ;;5.0;Radiology/Nuclear Medicine;**2,15,17,23,31,68,56,47,124,163,162,173**;Mar 16, 1998;Build 1
  ;Private IA #4793 DELETE^WVRALINK, CREATE^WVRALINK 
  ;Supported IA #10035
  ;Supported IA #10007
@@ -62,7 +62,8 @@ UNVER(RAXRPT) ; unverify a report
  ;                    delete (interactive)
  ;
  I 'RAXRPT D SET^RAPSET1 G Q:$D(XQUIT)
- I RAXRPT N X S X=RAXRPT
+ ;p173/KLM lookup on IEN should not be ambiguous.
+ I RAXRPT N X S X="`"_RAXRPT
  S RAXIT=0,DIC="^RARPT(",DIC("S")="I $P(^(0),U,5)=""V"""
  S DIC(0)=$S('RAXRPT:"AEMQZ",1:"NZ")
  D DICW,^DIC K DIC I Y<0 D Q Q

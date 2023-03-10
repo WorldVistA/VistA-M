@@ -1,124 +1,124 @@
-IBDEI158 ; ; 04-FEB-2020
- ;;3.0;IB ENCOUNTER FORM IMP/EXP;;FEB 04, 2020
+IBDEI158 ; ; 01-FEB-2022
+ ;;3.0;IB ENCOUNTER FORM IMP/EXP;;FEB 01, 2022
  Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,999) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
- ;;^UTILITY(U,$J,358.3,18384,1,4,0)
- ;;=4^T74.01XA
- ;;^UTILITY(U,$J,358.3,18384,2)
- ;;=^5054140
- ;;^UTILITY(U,$J,358.3,18385,0)
- ;;=T74.01XD^^91^935^4
- ;;^UTILITY(U,$J,358.3,18385,1,0)
+ ;;^UTILITY(U,$J,358.3,18564,2)
+ ;;=^5000958
+ ;;^UTILITY(U,$J,358.3,18565,0)
+ ;;=C34.92^^64^832^9
+ ;;^UTILITY(U,$J,358.3,18565,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,18385,1,3,0)
- ;;=3^Adult Neglect,Confirmed,Subs Enctr
- ;;^UTILITY(U,$J,358.3,18385,1,4,0)
- ;;=4^T74.01XD
- ;;^UTILITY(U,$J,358.3,18385,2)
- ;;=^5054141
- ;;^UTILITY(U,$J,358.3,18386,0)
- ;;=T76.01XA^^91^935^5
- ;;^UTILITY(U,$J,358.3,18386,1,0)
+ ;;^UTILITY(U,$J,358.3,18565,1,3,0)
+ ;;=3^Malig Neop Left Bronchus/Lung,Unspec Part
+ ;;^UTILITY(U,$J,358.3,18565,1,4,0)
+ ;;=4^C34.92
+ ;;^UTILITY(U,$J,358.3,18565,2)
+ ;;=^5000968
+ ;;^UTILITY(U,$J,358.3,18566,0)
+ ;;=C34.91^^64^832^18
+ ;;^UTILITY(U,$J,358.3,18566,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,18386,1,3,0)
- ;;=3^Adult Neglect,Suspected,Init Enctr
- ;;^UTILITY(U,$J,358.3,18386,1,4,0)
- ;;=4^T76.01XA
- ;;^UTILITY(U,$J,358.3,18386,2)
- ;;=^5054215
- ;;^UTILITY(U,$J,358.3,18387,0)
- ;;=T76.01XD^^91^935^6
- ;;^UTILITY(U,$J,358.3,18387,1,0)
+ ;;^UTILITY(U,$J,358.3,18566,1,3,0)
+ ;;=3^Malig Neop Right Bronchus/Lung,Unspec Part
+ ;;^UTILITY(U,$J,358.3,18566,1,4,0)
+ ;;=4^C34.91
+ ;;^UTILITY(U,$J,358.3,18566,2)
+ ;;=^5000967
+ ;;^UTILITY(U,$J,358.3,18567,0)
+ ;;=C34.12^^64^832^12
+ ;;^UTILITY(U,$J,358.3,18567,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,18387,1,3,0)
- ;;=3^Adult Neglect,Suspected,Subs Enctr
- ;;^UTILITY(U,$J,358.3,18387,1,4,0)
- ;;=4^T76.01XD
- ;;^UTILITY(U,$J,358.3,18387,2)
- ;;=^5054216
- ;;^UTILITY(U,$J,358.3,18388,0)
- ;;=Z91.412^^91^935^25
- ;;^UTILITY(U,$J,358.3,18388,1,0)
+ ;;^UTILITY(U,$J,358.3,18567,1,3,0)
+ ;;=3^Malig Neop Left Upper Lobe Bronchus/Lung
+ ;;^UTILITY(U,$J,358.3,18567,1,4,0)
+ ;;=4^C34.12
+ ;;^UTILITY(U,$J,358.3,18567,2)
+ ;;=^5000962
+ ;;^UTILITY(U,$J,358.3,18568,0)
+ ;;=C34.11^^64^832^21
+ ;;^UTILITY(U,$J,358.3,18568,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,18388,1,3,0)
- ;;=3^Personal Hx of Adult Neglect
- ;;^UTILITY(U,$J,358.3,18388,1,4,0)
- ;;=4^Z91.412
- ;;^UTILITY(U,$J,358.3,18388,2)
- ;;=^5063621
- ;;^UTILITY(U,$J,358.3,18389,0)
- ;;=T74.31XA^^91^935^11
- ;;^UTILITY(U,$J,358.3,18389,1,0)
+ ;;^UTILITY(U,$J,358.3,18568,1,3,0)
+ ;;=3^Malig Neop Right Upper Lobe Bronchus/Lung
+ ;;^UTILITY(U,$J,358.3,18568,1,4,0)
+ ;;=4^C34.11
+ ;;^UTILITY(U,$J,358.3,18568,2)
+ ;;=^5000961
+ ;;^UTILITY(U,$J,358.3,18569,0)
+ ;;=C39.0^^64^832^22
+ ;;^UTILITY(U,$J,358.3,18569,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,18389,1,3,0)
- ;;=3^Adult Psychological Abuse,Confirmed,Init Enctr
- ;;^UTILITY(U,$J,358.3,18389,1,4,0)
- ;;=4^T74.31XA
- ;;^UTILITY(U,$J,358.3,18389,2)
- ;;=^5054158
- ;;^UTILITY(U,$J,358.3,18390,0)
- ;;=T74.31XD^^91^935^12
- ;;^UTILITY(U,$J,358.3,18390,1,0)
+ ;;^UTILITY(U,$J,358.3,18569,1,3,0)
+ ;;=3^Malig Neop Upper Respiratory Tract,Unspec Part
+ ;;^UTILITY(U,$J,358.3,18569,1,4,0)
+ ;;=4^C39.0
+ ;;^UTILITY(U,$J,358.3,18569,2)
+ ;;=^5000971
+ ;;^UTILITY(U,$J,358.3,18570,0)
+ ;;=C78.02^^64^832^23
+ ;;^UTILITY(U,$J,358.3,18570,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,18390,1,3,0)
- ;;=3^Adult Psychological Abuse,Confirmed,Subs Enctr
- ;;^UTILITY(U,$J,358.3,18390,1,4,0)
- ;;=4^T74.31XD
- ;;^UTILITY(U,$J,358.3,18390,2)
- ;;=^5054159
- ;;^UTILITY(U,$J,358.3,18391,0)
- ;;=T76.31XA^^91^935^13
- ;;^UTILITY(U,$J,358.3,18391,1,0)
+ ;;^UTILITY(U,$J,358.3,18570,1,3,0)
+ ;;=3^Secondary Malig Neop Left Lung
+ ;;^UTILITY(U,$J,358.3,18570,1,4,0)
+ ;;=4^C78.02
+ ;;^UTILITY(U,$J,358.3,18570,2)
+ ;;=^5001336
+ ;;^UTILITY(U,$J,358.3,18571,0)
+ ;;=C78.01^^64^832^24
+ ;;^UTILITY(U,$J,358.3,18571,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,18391,1,3,0)
- ;;=3^Adult Psychological Abuse,Suspected,Init Enctr
- ;;^UTILITY(U,$J,358.3,18391,1,4,0)
- ;;=4^T76.31XA
- ;;^UTILITY(U,$J,358.3,18391,2)
- ;;=^5054233
- ;;^UTILITY(U,$J,358.3,18392,0)
- ;;=T76.31XD^^91^935^14
- ;;^UTILITY(U,$J,358.3,18392,1,0)
+ ;;^UTILITY(U,$J,358.3,18571,1,3,0)
+ ;;=3^Secondary Malig Neop Right Lung
+ ;;^UTILITY(U,$J,358.3,18571,1,4,0)
+ ;;=4^C78.01
+ ;;^UTILITY(U,$J,358.3,18571,2)
+ ;;=^5001335
+ ;;^UTILITY(U,$J,358.3,18572,0)
+ ;;=I50.41^^64^833^1
+ ;;^UTILITY(U,$J,358.3,18572,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,18392,1,3,0)
- ;;=3^Adult Psychological Abuse,Suspected,Subs Enctr
- ;;^UTILITY(U,$J,358.3,18392,1,4,0)
- ;;=4^T76.31XD
- ;;^UTILITY(U,$J,358.3,18392,2)
- ;;=^5054234
- ;;^UTILITY(U,$J,358.3,18393,0)
- ;;=Z91.411^^91^935^27
- ;;^UTILITY(U,$J,358.3,18393,1,0)
+ ;;^UTILITY(U,$J,358.3,18572,1,3,0)
+ ;;=3^AC Combined Systolic & Diastolic Congestive Hrt Failure
+ ;;^UTILITY(U,$J,358.3,18572,1,4,0)
+ ;;=4^I50.41
+ ;;^UTILITY(U,$J,358.3,18572,2)
+ ;;=^5007248
+ ;;^UTILITY(U,$J,358.3,18573,0)
+ ;;=I50.31^^64^833^2
+ ;;^UTILITY(U,$J,358.3,18573,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,18393,1,3,0)
- ;;=3^Personal Hx of Adult Psychological Abuse
- ;;^UTILITY(U,$J,358.3,18393,1,4,0)
- ;;=4^Z91.411
- ;;^UTILITY(U,$J,358.3,18393,2)
- ;;=^5063620
- ;;^UTILITY(U,$J,358.3,18394,0)
- ;;=Z69.021^^91^935^20
- ;;^UTILITY(U,$J,358.3,18394,1,0)
+ ;;^UTILITY(U,$J,358.3,18573,1,3,0)
+ ;;=3^AC Diastolic Congestive Hrt Failure
+ ;;^UTILITY(U,$J,358.3,18573,1,4,0)
+ ;;=4^I50.31
+ ;;^UTILITY(U,$J,358.3,18573,2)
+ ;;=^5007244
+ ;;^UTILITY(U,$J,358.3,18574,0)
+ ;;=I50.43^^64^833^5
+ ;;^UTILITY(U,$J,358.3,18574,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,18394,1,3,0)
- ;;=3^MH Svc for Perpetrator of Nonparental Child Abuse
- ;;^UTILITY(U,$J,358.3,18394,1,4,0)
- ;;=4^Z69.021
- ;;^UTILITY(U,$J,358.3,18394,2)
- ;;=^5063231
- ;;^UTILITY(U,$J,358.3,18395,0)
- ;;=Z69.011^^91^935^22
- ;;^UTILITY(U,$J,358.3,18395,1,0)
+ ;;^UTILITY(U,$J,358.3,18574,1,3,0)
+ ;;=3^AC on Chr Combined Systolic & Diastolic Congestive Hrt Failure
+ ;;^UTILITY(U,$J,358.3,18574,1,4,0)
+ ;;=4^I50.43
+ ;;^UTILITY(U,$J,358.3,18574,2)
+ ;;=^5007250
+ ;;^UTILITY(U,$J,358.3,18575,0)
+ ;;=I50.33^^64^833^6
+ ;;^UTILITY(U,$J,358.3,18575,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,18395,1,3,0)
- ;;=3^MH Svc for Perpetrator of Parental Child Abuse
- ;;^UTILITY(U,$J,358.3,18395,1,4,0)
- ;;=4^Z69.011
- ;;^UTILITY(U,$J,358.3,18395,2)
- ;;=^5063229
- ;;^UTILITY(U,$J,358.3,18396,0)
- ;;=Z69.12^^91^935^19
- ;;^UTILITY(U,$J,358.3,18396,1,0)
+ ;;^UTILITY(U,$J,358.3,18575,1,3,0)
+ ;;=3^AC on Chr Diastolic Congestive Hrt Failure
+ ;;^UTILITY(U,$J,358.3,18575,1,4,0)
+ ;;=4^I50.33
+ ;;^UTILITY(U,$J,358.3,18575,2)
+ ;;=^5007246
+ ;;^UTILITY(U,$J,358.3,18576,0)
+ ;;=I50.23^^64^833^8
+ ;;^UTILITY(U,$J,358.3,18576,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,18396,1,3,0)
- ;;=3^MH SVC for Perpetrator of Spousal/Partner Abuse
+ ;;^UTILITY(U,$J,358.3,18576,1,3,0)
+ ;;=3^AC on Chr Systolic Congestive Hrt Failure
+ ;;^UTILITY(U,$J,358.3,18576,1,4,0)
+ ;;=4^I50.23

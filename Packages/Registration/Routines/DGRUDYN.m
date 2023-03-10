@@ -1,5 +1,5 @@
 DGRUDYN ;ALB/SCK - RAI/MDS COTS DYNAMIC ADDRESSING ROUTINE; 9-2-99 ; 6/23/03 3:25pm
- ;;5.3;Registration;**190,328,354,357,473,501**;Aug 13, 1993
+ ;;5.3;Registration;**190,328,354,357,473,501,1053**;Aug 13, 1993;Build 4
  ;
 EN(EVENT) ;
  ;
@@ -37,6 +37,7 @@ EN(EVENT) ;
  ;
  ; Set client protocol for destination
  S DGSTN=$$SITE^VASITE($$NOW^XLFDT,DGDIV)
+ Q:'$D(HLL("LINKS",1))  ;Quit if no RAI Number is Medical Center Division - DG*5.3*1053
  ; S DGAPIEN=$P(HLL("LINKS",1),"^",4) ;changed p-357, disabled p-501
  S DGAPIEN=$$GET1^DIQ(771,$P(HLL("LINKS",1),"^",4),.01) ; added p-501
  S DGFAC=$$GET1^DIQ(771,$P(HLL("LINKS",1),"^",4),3) ; added p-501

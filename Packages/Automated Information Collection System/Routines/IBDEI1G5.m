@@ -1,132 +1,124 @@
-IBDEI1G5 ; ; 04-FEB-2020
- ;;3.0;IB ENCOUNTER FORM IMP/EXP;;FEB 04, 2020
+IBDEI1G5 ; ; 01-FEB-2022
+ ;;3.0;IB ENCOUNTER FORM IMP/EXP;;FEB 01, 2022
  Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,999) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
- ;;^UTILITY(U,$J,358.3,23134,1,0)
+ ;;^UTILITY(U,$J,358.3,23400,1,4,0)
+ ;;=4^I95.9
+ ;;^UTILITY(U,$J,358.3,23400,2)
+ ;;=^5008080
+ ;;^UTILITY(U,$J,358.3,23401,0)
+ ;;=Z51.81^^78^1009^25
+ ;;^UTILITY(U,$J,358.3,23401,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,23134,1,3,0)
- ;;=3^Bronchitis
- ;;^UTILITY(U,$J,358.3,23134,1,4,0)
- ;;=4^J40.
- ;;^UTILITY(U,$J,358.3,23134,2)
- ;;=^17164
- ;;^UTILITY(U,$J,358.3,23135,0)
- ;;=J43.9^^105^1168^19
- ;;^UTILITY(U,$J,358.3,23135,1,0)
+ ;;^UTILITY(U,$J,358.3,23401,1,3,0)
+ ;;=3^Therapeutic Drug Level Monitoring
+ ;;^UTILITY(U,$J,358.3,23401,1,4,0)
+ ;;=4^Z51.81
+ ;;^UTILITY(U,$J,358.3,23401,2)
+ ;;=^5063064
+ ;;^UTILITY(U,$J,358.3,23402,0)
+ ;;=D68.51^^78^1009^1
+ ;;^UTILITY(U,$J,358.3,23402,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,23135,1,3,0)
- ;;=3^Emphysema,Unspec
- ;;^UTILITY(U,$J,358.3,23135,1,4,0)
- ;;=4^J43.9
- ;;^UTILITY(U,$J,358.3,23135,2)
- ;;=^5008238
- ;;^UTILITY(U,$J,358.3,23136,0)
- ;;=J45.909^^105^1168^7
- ;;^UTILITY(U,$J,358.3,23136,1,0)
+ ;;^UTILITY(U,$J,358.3,23402,1,3,0)
+ ;;=3^Activated Protein C Resistance
+ ;;^UTILITY(U,$J,358.3,23402,1,4,0)
+ ;;=4^D68.51
+ ;;^UTILITY(U,$J,358.3,23402,2)
+ ;;=^5002358
+ ;;^UTILITY(U,$J,358.3,23403,0)
+ ;;=I82.402^^78^1009^2
+ ;;^UTILITY(U,$J,358.3,23403,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,23136,1,3,0)
- ;;=3^Asthma,Uncomplicated
- ;;^UTILITY(U,$J,358.3,23136,1,4,0)
- ;;=4^J45.909
- ;;^UTILITY(U,$J,358.3,23136,2)
- ;;=^5008256
- ;;^UTILITY(U,$J,358.3,23137,0)
- ;;=J47.9^^105^1168^9
- ;;^UTILITY(U,$J,358.3,23137,1,0)
+ ;;^UTILITY(U,$J,358.3,23403,1,3,0)
+ ;;=3^Acute Embolism/Thrombos Deep Veins Left Lower Extremity
+ ;;^UTILITY(U,$J,358.3,23403,1,4,0)
+ ;;=4^I82.402
+ ;;^UTILITY(U,$J,358.3,23403,2)
+ ;;=^5007855
+ ;;^UTILITY(U,$J,358.3,23404,0)
+ ;;=I82.401^^78^1009^3
+ ;;^UTILITY(U,$J,358.3,23404,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,23137,1,3,0)
- ;;=3^Bronchiectasis,Uncomplicated
- ;;^UTILITY(U,$J,358.3,23137,1,4,0)
- ;;=4^J47.9
- ;;^UTILITY(U,$J,358.3,23137,2)
- ;;=^5008260
- ;;^UTILITY(U,$J,358.3,23138,0)
- ;;=J44.9^^105^1168^13
- ;;^UTILITY(U,$J,358.3,23138,1,0)
+ ;;^UTILITY(U,$J,358.3,23404,1,3,0)
+ ;;=3^Acute Embolism/Thrombos Deep Veins Right Lower Extremity
+ ;;^UTILITY(U,$J,358.3,23404,1,4,0)
+ ;;=4^I82.401
+ ;;^UTILITY(U,$J,358.3,23404,2)
+ ;;=^5007854
+ ;;^UTILITY(U,$J,358.3,23405,0)
+ ;;=I82.890^^78^1009^4
+ ;;^UTILITY(U,$J,358.3,23405,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,23138,1,3,0)
- ;;=3^COPD,Unspec
- ;;^UTILITY(U,$J,358.3,23138,1,4,0)
- ;;=4^J44.9
- ;;^UTILITY(U,$J,358.3,23138,2)
- ;;=^5008241
- ;;^UTILITY(U,$J,358.3,23139,0)
- ;;=R09.1^^105^1168^22
- ;;^UTILITY(U,$J,358.3,23139,1,0)
+ ;;^UTILITY(U,$J,358.3,23405,1,3,0)
+ ;;=3^Acute Embolism/Thrombosis of Specified Veins
+ ;;^UTILITY(U,$J,358.3,23405,1,4,0)
+ ;;=4^I82.890
+ ;;^UTILITY(U,$J,358.3,23405,2)
+ ;;=^5007938
+ ;;^UTILITY(U,$J,358.3,23406,0)
+ ;;=D68.61^^78^1009^6
+ ;;^UTILITY(U,$J,358.3,23406,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,23139,1,3,0)
- ;;=3^Pleurisy
- ;;^UTILITY(U,$J,358.3,23139,1,4,0)
- ;;=4^R09.1
- ;;^UTILITY(U,$J,358.3,23139,2)
- ;;=^95428
- ;;^UTILITY(U,$J,358.3,23140,0)
- ;;=J90.^^105^1168^21
- ;;^UTILITY(U,$J,358.3,23140,1,0)
+ ;;^UTILITY(U,$J,358.3,23406,1,3,0)
+ ;;=3^Antiphospholipid Syndrome
+ ;;^UTILITY(U,$J,358.3,23406,1,4,0)
+ ;;=4^D68.61
+ ;;^UTILITY(U,$J,358.3,23406,2)
+ ;;=^185421
+ ;;^UTILITY(U,$J,358.3,23407,0)
+ ;;=I63.50^^78^1009^7
+ ;;^UTILITY(U,$J,358.3,23407,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,23140,1,3,0)
- ;;=3^Pleural Effusion NEC
- ;;^UTILITY(U,$J,358.3,23140,1,4,0)
- ;;=4^J90.
- ;;^UTILITY(U,$J,358.3,23140,2)
- ;;=^5008310
- ;;^UTILITY(U,$J,358.3,23141,0)
- ;;=J95.811^^105^1168^24
- ;;^UTILITY(U,$J,358.3,23141,1,0)
+ ;;^UTILITY(U,$J,358.3,23407,1,3,0)
+ ;;=3^Cerebral Infarction d/t Occls/Stenos of Cereb Artery
+ ;;^UTILITY(U,$J,358.3,23407,1,4,0)
+ ;;=4^I63.50
+ ;;^UTILITY(U,$J,358.3,23407,2)
+ ;;=^5007343
+ ;;^UTILITY(U,$J,358.3,23408,0)
+ ;;=I82.91^^78^1009^8
+ ;;^UTILITY(U,$J,358.3,23408,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,23141,1,3,0)
- ;;=3^Pneumothorax,Postprocedural
- ;;^UTILITY(U,$J,358.3,23141,1,4,0)
- ;;=4^J95.811
- ;;^UTILITY(U,$J,358.3,23141,2)
- ;;=^5008336
- ;;^UTILITY(U,$J,358.3,23142,0)
- ;;=J84.10^^105^1168^27
- ;;^UTILITY(U,$J,358.3,23142,1,0)
+ ;;^UTILITY(U,$J,358.3,23408,1,3,0)
+ ;;=3^Chronic Embolism/Thrombosis Unspec Vein
+ ;;^UTILITY(U,$J,358.3,23408,1,4,0)
+ ;;=4^I82.91
+ ;;^UTILITY(U,$J,358.3,23408,2)
+ ;;=^5007941
+ ;;^UTILITY(U,$J,358.3,23409,0)
+ ;;=I25.9^^78^1009^10
+ ;;^UTILITY(U,$J,358.3,23409,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,23142,1,3,0)
- ;;=3^Pulmonary Fibrosis,Unspec
- ;;^UTILITY(U,$J,358.3,23142,1,4,0)
- ;;=4^J84.10
- ;;^UTILITY(U,$J,358.3,23142,2)
- ;;=^5008300
- ;;^UTILITY(U,$J,358.3,23143,0)
- ;;=J84.89^^105^1168^20
- ;;^UTILITY(U,$J,358.3,23143,1,0)
+ ;;^UTILITY(U,$J,358.3,23409,1,3,0)
+ ;;=3^Chronic Ischemic Heart Disease,Unspec
+ ;;^UTILITY(U,$J,358.3,23409,1,4,0)
+ ;;=4^I25.9
+ ;;^UTILITY(U,$J,358.3,23409,2)
+ ;;=^5007144
+ ;;^UTILITY(U,$J,358.3,23410,0)
+ ;;=D68.9^^78^1009^11
+ ;;^UTILITY(U,$J,358.3,23410,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,23143,1,3,0)
- ;;=3^Interstitial Pulmonary Diseases
- ;;^UTILITY(U,$J,358.3,23143,1,4,0)
- ;;=4^J84.89
- ;;^UTILITY(U,$J,358.3,23143,2)
- ;;=^5008303
- ;;^UTILITY(U,$J,358.3,23144,0)
- ;;=J98.11^^105^1168^8
- ;;^UTILITY(U,$J,358.3,23144,1,0)
+ ;;^UTILITY(U,$J,358.3,23410,1,3,0)
+ ;;=3^Coagulation Defect,Unspec
+ ;;^UTILITY(U,$J,358.3,23410,1,4,0)
+ ;;=4^D68.9
+ ;;^UTILITY(U,$J,358.3,23410,2)
+ ;;=^5002364
+ ;;^UTILITY(U,$J,358.3,23411,0)
+ ;;=D68.8^^78^1009^12
+ ;;^UTILITY(U,$J,358.3,23411,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,23144,1,3,0)
- ;;=3^Atelectasis
- ;;^UTILITY(U,$J,358.3,23144,1,4,0)
- ;;=4^J98.11
- ;;^UTILITY(U,$J,358.3,23144,2)
- ;;=^5008360
- ;;^UTILITY(U,$J,358.3,23145,0)
- ;;=J96.00^^105^1168^28
- ;;^UTILITY(U,$J,358.3,23145,1,0)
+ ;;^UTILITY(U,$J,358.3,23411,1,3,0)
+ ;;=3^Coagulation Defects,Other Spec
+ ;;^UTILITY(U,$J,358.3,23411,1,4,0)
+ ;;=4^D68.8
+ ;;^UTILITY(U,$J,358.3,23411,2)
+ ;;=^5002363
+ ;;^UTILITY(U,$J,358.3,23412,0)
+ ;;=D68.318^^78^1009^13
+ ;;^UTILITY(U,$J,358.3,23412,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,23145,1,3,0)
- ;;=3^Respiratory Failure,Acute
- ;;^UTILITY(U,$J,358.3,23145,1,4,0)
- ;;=4^J96.00
- ;;^UTILITY(U,$J,358.3,23145,2)
- ;;=^5008347
- ;;^UTILITY(U,$J,358.3,23146,0)
- ;;=R06.02^^105^1168^38
- ;;^UTILITY(U,$J,358.3,23146,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,23146,1,3,0)
- ;;=3^Shortness of Breath
- ;;^UTILITY(U,$J,358.3,23146,1,4,0)
- ;;=4^R06.02
- ;;^UTILITY(U,$J,358.3,23146,2)
- ;;=^5019181
+ ;;^UTILITY(U,$J,358.3,23412,1,3,0)
+ ;;=3^Hemorrhagic Disorder d/t Intrinsic Circ Anticoagulants

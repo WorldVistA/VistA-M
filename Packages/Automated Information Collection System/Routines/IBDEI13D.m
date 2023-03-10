@@ -1,122 +1,130 @@
-IBDEI13D ; ; 04-FEB-2020
- ;;3.0;IB ENCOUNTER FORM IMP/EXP;;FEB 04, 2020
+IBDEI13D ; ; 01-FEB-2022
+ ;;3.0;IB ENCOUNTER FORM IMP/EXP;;FEB 01, 2022
  Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,999) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
- ;;^UTILITY(U,$J,358.3,17541,1,0)
+ ;;^UTILITY(U,$J,358.3,17728,1,3,0)
+ ;;=3^Mammographic Calcification on Dx Breast Image
+ ;;^UTILITY(U,$J,358.3,17728,1,4,0)
+ ;;=4^R92.1
+ ;;^UTILITY(U,$J,358.3,17728,2)
+ ;;=^5019710
+ ;;^UTILITY(U,$J,358.3,17729,0)
+ ;;=R92.0^^61^791^67
+ ;;^UTILITY(U,$J,358.3,17729,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,17541,1,3,0)
- ;;=3^Cocaine Dependence w/ Intoxication Delirium
- ;;^UTILITY(U,$J,358.3,17541,1,4,0)
- ;;=4^F14.221
- ;;^UTILITY(U,$J,358.3,17541,2)
- ;;=^5003256
- ;;^UTILITY(U,$J,358.3,17542,0)
- ;;=F14.220^^88^893^21
- ;;^UTILITY(U,$J,358.3,17542,1,0)
+ ;;^UTILITY(U,$J,358.3,17729,1,3,0)
+ ;;=3^Mammographic Microcalcification on Dx Breast Image
+ ;;^UTILITY(U,$J,358.3,17729,1,4,0)
+ ;;=4^R92.0
+ ;;^UTILITY(U,$J,358.3,17729,2)
+ ;;=^5019709
+ ;;^UTILITY(U,$J,358.3,17730,0)
+ ;;=N89.8^^61^791^72
+ ;;^UTILITY(U,$J,358.3,17730,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,17542,1,3,0)
- ;;=3^Cocaine Dependence w/ Intoxication,Uncomplicated
- ;;^UTILITY(U,$J,358.3,17542,1,4,0)
- ;;=4^F14.220
- ;;^UTILITY(U,$J,358.3,17542,2)
- ;;=^5003255
- ;;^UTILITY(U,$J,358.3,17543,0)
- ;;=F14.20^^88^893^26
- ;;^UTILITY(U,$J,358.3,17543,1,0)
+ ;;^UTILITY(U,$J,358.3,17730,1,3,0)
+ ;;=3^Noninflammatory Vaginal Disorder,Oth Spec
+ ;;^UTILITY(U,$J,358.3,17730,1,4,0)
+ ;;=4^N89.8
+ ;;^UTILITY(U,$J,358.3,17730,2)
+ ;;=^88111
+ ;;^UTILITY(U,$J,358.3,17731,0)
+ ;;=R10.2^^61^791^82
+ ;;^UTILITY(U,$J,358.3,17731,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,17543,1,3,0)
- ;;=3^Cocaine Dependence,Uncompicated
- ;;^UTILITY(U,$J,358.3,17543,1,4,0)
- ;;=4^F14.20
- ;;^UTILITY(U,$J,358.3,17543,2)
- ;;=^5003253
- ;;^UTILITY(U,$J,358.3,17544,0)
- ;;=F10.120^^88^893^1
- ;;^UTILITY(U,$J,358.3,17544,1,0)
+ ;;^UTILITY(U,$J,358.3,17731,1,3,0)
+ ;;=3^Pelvic & Perineal Pain
+ ;;^UTILITY(U,$J,358.3,17731,1,4,0)
+ ;;=4^R10.2
+ ;;^UTILITY(U,$J,358.3,17731,2)
+ ;;=^5019209
+ ;;^UTILITY(U,$J,358.3,17732,0)
+ ;;=N94.89^^61^791^83
+ ;;^UTILITY(U,$J,358.3,17732,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,17544,1,3,0)
- ;;=3^Alcohol Abuse w/ Intoxication,Uncomplicated
- ;;^UTILITY(U,$J,358.3,17544,1,4,0)
- ;;=4^F10.120
- ;;^UTILITY(U,$J,358.3,17544,2)
- ;;=^5003069
- ;;^UTILITY(U,$J,358.3,17545,0)
- ;;=F10.10^^88^893^3
- ;;^UTILITY(U,$J,358.3,17545,1,0)
+ ;;^UTILITY(U,$J,358.3,17732,1,3,0)
+ ;;=3^Pelvic Congestion Syndrome
+ ;;^UTILITY(U,$J,358.3,17732,1,4,0)
+ ;;=4^N94.89
+ ;;^UTILITY(U,$J,358.3,17732,2)
+ ;;=^5015925
+ ;;^UTILITY(U,$J,358.3,17733,0)
+ ;;=Z85.3^^61^791^57
+ ;;^UTILITY(U,$J,358.3,17733,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,17545,1,3,0)
- ;;=3^Alcohol Abuse,Uncomplicated
- ;;^UTILITY(U,$J,358.3,17545,1,4,0)
- ;;=4^F10.10
- ;;^UTILITY(U,$J,358.3,17545,2)
- ;;=^5003068
- ;;^UTILITY(U,$J,358.3,17546,0)
- ;;=F17.201^^88^893^31
- ;;^UTILITY(U,$J,358.3,17546,1,0)
+ ;;^UTILITY(U,$J,358.3,17733,1,3,0)
+ ;;=3^Hx of Breast CA
+ ;;^UTILITY(U,$J,358.3,17733,1,4,0)
+ ;;=4^Z85.3
+ ;;^UTILITY(U,$J,358.3,17733,2)
+ ;;=^5063416
+ ;;^UTILITY(U,$J,358.3,17734,0)
+ ;;=Z85.43^^61^791^58
+ ;;^UTILITY(U,$J,358.3,17734,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,17546,1,3,0)
- ;;=3^Nicotine Dependence In Remission,Unspec
- ;;^UTILITY(U,$J,358.3,17546,1,4,0)
- ;;=4^F17.201
- ;;^UTILITY(U,$J,358.3,17546,2)
- ;;=^5003361
- ;;^UTILITY(U,$J,358.3,17547,0)
- ;;=F17.210^^88^893^30
- ;;^UTILITY(U,$J,358.3,17547,1,0)
+ ;;^UTILITY(U,$J,358.3,17734,1,3,0)
+ ;;=3^Hx of Ovarian CA
+ ;;^UTILITY(U,$J,358.3,17734,1,4,0)
+ ;;=4^Z85.43
+ ;;^UTILITY(U,$J,358.3,17734,2)
+ ;;=^5063420
+ ;;^UTILITY(U,$J,358.3,17735,0)
+ ;;=N94.3^^61^791^81
+ ;;^UTILITY(U,$J,358.3,17735,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,17547,1,3,0)
- ;;=3^Nicotine Dependence Cigarettes,Uncomplicated
- ;;^UTILITY(U,$J,358.3,17547,1,4,0)
- ;;=4^F17.210
- ;;^UTILITY(U,$J,358.3,17547,2)
- ;;=^5003365
- ;;^UTILITY(U,$J,358.3,17548,0)
- ;;=F17.291^^88^893^32
- ;;^UTILITY(U,$J,358.3,17548,1,0)
+ ;;^UTILITY(U,$J,358.3,17735,1,3,0)
+ ;;=3^PMS
+ ;;^UTILITY(U,$J,358.3,17735,1,4,0)
+ ;;=4^N94.3
+ ;;^UTILITY(U,$J,358.3,17735,2)
+ ;;=^5015919
+ ;;^UTILITY(U,$J,358.3,17736,0)
+ ;;=N93.0^^61^791^88
+ ;;^UTILITY(U,$J,358.3,17736,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,17548,1,3,0)
- ;;=3^Nicotine Dependence Oth Tobacco Product,In Remission
- ;;^UTILITY(U,$J,358.3,17548,1,4,0)
- ;;=4^F17.291
- ;;^UTILITY(U,$J,358.3,17548,2)
- ;;=^5003376
- ;;^UTILITY(U,$J,358.3,17549,0)
- ;;=F17.290^^88^893^33
- ;;^UTILITY(U,$J,358.3,17549,1,0)
+ ;;^UTILITY(U,$J,358.3,17736,1,3,0)
+ ;;=3^Postcoital & Contact Bleeding
+ ;;^UTILITY(U,$J,358.3,17736,1,4,0)
+ ;;=4^N93.0
+ ;;^UTILITY(U,$J,358.3,17736,2)
+ ;;=^5015914
+ ;;^UTILITY(U,$J,358.3,17737,0)
+ ;;=Z32.02^^61^791^91
+ ;;^UTILITY(U,$J,358.3,17737,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,17549,1,3,0)
- ;;=3^Nicotine Dependence Oth Tobacco Product,Uncomplicated
- ;;^UTILITY(U,$J,358.3,17549,1,4,0)
- ;;=4^F17.290
- ;;^UTILITY(U,$J,358.3,17549,2)
- ;;=^5003375
- ;;^UTILITY(U,$J,358.3,17550,0)
- ;;=F17.221^^88^893^27
- ;;^UTILITY(U,$J,358.3,17550,1,0)
+ ;;^UTILITY(U,$J,358.3,17737,1,3,0)
+ ;;=3^Pregnancy Test,Negative
+ ;;^UTILITY(U,$J,358.3,17737,1,4,0)
+ ;;=4^Z32.02
+ ;;^UTILITY(U,$J,358.3,17737,2)
+ ;;=^5062850
+ ;;^UTILITY(U,$J,358.3,17738,0)
+ ;;=Z32.01^^61^791^92
+ ;;^UTILITY(U,$J,358.3,17738,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,17550,1,3,0)
- ;;=3^Nicotine Dependence Chewing Tobacco,In Remission
- ;;^UTILITY(U,$J,358.3,17550,1,4,0)
- ;;=4^F17.221
- ;;^UTILITY(U,$J,358.3,17550,2)
- ;;=^5003371
- ;;^UTILITY(U,$J,358.3,17551,0)
- ;;=F17.220^^88^893^28
- ;;^UTILITY(U,$J,358.3,17551,1,0)
+ ;;^UTILITY(U,$J,358.3,17738,1,3,0)
+ ;;=3^Pregnancy Test,Positive
+ ;;^UTILITY(U,$J,358.3,17738,1,4,0)
+ ;;=4^Z32.01
+ ;;^UTILITY(U,$J,358.3,17738,2)
+ ;;=^5062849
+ ;;^UTILITY(U,$J,358.3,17739,0)
+ ;;=Z32.00^^61^791^93
+ ;;^UTILITY(U,$J,358.3,17739,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,17551,1,3,0)
- ;;=3^Nicotine Dependence Chewing Tobacco,Uncomplicated
- ;;^UTILITY(U,$J,358.3,17551,1,4,0)
- ;;=4^F17.220
- ;;^UTILITY(U,$J,358.3,17551,2)
- ;;=^5003370
- ;;^UTILITY(U,$J,358.3,17552,0)
- ;;=F17.211^^88^893^29
- ;;^UTILITY(U,$J,358.3,17552,1,0)
+ ;;^UTILITY(U,$J,358.3,17739,1,3,0)
+ ;;=3^Pregnancy Test,Unknown Result
+ ;;^UTILITY(U,$J,358.3,17739,1,4,0)
+ ;;=4^Z32.00
+ ;;^UTILITY(U,$J,358.3,17739,2)
+ ;;=^5062848
+ ;;^UTILITY(U,$J,358.3,17740,0)
+ ;;=N81.6^^61^791^97
+ ;;^UTILITY(U,$J,358.3,17740,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,17552,1,3,0)
- ;;=3^Nicotine Dependence Cigarettes,In Remission
- ;;^UTILITY(U,$J,358.3,17552,1,4,0)
- ;;=4^F17.211
- ;;^UTILITY(U,$J,358.3,17552,2)
- ;;=^5003366
+ ;;^UTILITY(U,$J,358.3,17740,1,3,0)
+ ;;=3^Rectocele w/o Uterine Prolapse
+ ;;^UTILITY(U,$J,358.3,17740,1,4,0)
+ ;;=4^N81.6
+ ;;^UTILITY(U,$J,358.3,17740,2)
+ ;;=^259590

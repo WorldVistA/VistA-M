@@ -1,114 +1,134 @@
-IBDEI1FS ; ; 04-FEB-2020
- ;;3.0;IB ENCOUNTER FORM IMP/EXP;;FEB 04, 2020
+IBDEI1FS ; ; 01-FEB-2022
+ ;;3.0;IB ENCOUNTER FORM IMP/EXP;;FEB 01, 2022
  Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,999) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
- ;;^UTILITY(U,$J,358.3,22980,1,4,0)
- ;;=4^G97.31
- ;;^UTILITY(U,$J,358.3,22980,2)
- ;;=^5004204
- ;;^UTILITY(U,$J,358.3,22981,0)
- ;;=G97.32^^105^1166^127
- ;;^UTILITY(U,$J,358.3,22981,1,0)
+ ;;^UTILITY(U,$J,358.3,23236,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,22981,1,3,0)
- ;;=3^Intraop Hemor/Hemtom of Nervous Sys Complication Oth Procedure
- ;;^UTILITY(U,$J,358.3,22981,1,4,0)
- ;;=4^G97.32
- ;;^UTILITY(U,$J,358.3,22981,2)
- ;;=^5004205
- ;;^UTILITY(U,$J,358.3,22982,0)
- ;;=H59.111^^105^1166^130
- ;;^UTILITY(U,$J,358.3,22982,1,0)
+ ;;^UTILITY(U,$J,358.3,23236,1,3,0)
+ ;;=3^Otitis Media,Serous Chronic,Left Ear
+ ;;^UTILITY(U,$J,358.3,23236,1,4,0)
+ ;;=4^H65.22
+ ;;^UTILITY(U,$J,358.3,23236,2)
+ ;;=^5006595
+ ;;^UTILITY(U,$J,358.3,23237,0)
+ ;;=H65.23^^78^1004^45
+ ;;^UTILITY(U,$J,358.3,23237,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,22982,1,3,0)
- ;;=3^Intraop Hemor/Hemtom of Right Eye/Adnexa Complicating Ophth Procedure
- ;;^UTILITY(U,$J,358.3,22982,1,4,0)
- ;;=4^H59.111
- ;;^UTILITY(U,$J,358.3,22982,2)
- ;;=^5006401
- ;;^UTILITY(U,$J,358.3,22983,0)
- ;;=H59.112^^105^1166^122
- ;;^UTILITY(U,$J,358.3,22983,1,0)
+ ;;^UTILITY(U,$J,358.3,23237,1,3,0)
+ ;;=3^Otitis Media,Serous Chronic,Bilateral
+ ;;^UTILITY(U,$J,358.3,23237,1,4,0)
+ ;;=4^H65.23
+ ;;^UTILITY(U,$J,358.3,23237,2)
+ ;;=^5006596
+ ;;^UTILITY(U,$J,358.3,23238,0)
+ ;;=H93.12^^78^1004^72
+ ;;^UTILITY(U,$J,358.3,23238,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,22983,1,3,0)
- ;;=3^Intraop Hemor/Hemtom of Left Eye/Adnexa Complicating Ophth Procedure
- ;;^UTILITY(U,$J,358.3,22983,1,4,0)
- ;;=4^H59.112
- ;;^UTILITY(U,$J,358.3,22983,2)
- ;;=^5006402
- ;;^UTILITY(U,$J,358.3,22984,0)
- ;;=H59.113^^105^1166^108
- ;;^UTILITY(U,$J,358.3,22984,1,0)
+ ;;^UTILITY(U,$J,358.3,23238,1,3,0)
+ ;;=3^Tinnitus,Left Ear
+ ;;^UTILITY(U,$J,358.3,23238,1,4,0)
+ ;;=4^H93.12
+ ;;^UTILITY(U,$J,358.3,23238,2)
+ ;;=^5006965
+ ;;^UTILITY(U,$J,358.3,23239,0)
+ ;;=H93.13^^78^1004^71
+ ;;^UTILITY(U,$J,358.3,23239,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,22984,1,3,0)
- ;;=3^Intraop Hemor/Hemtom of Bilateral Eyes/Adnexa Complicating Ophth Procedure
- ;;^UTILITY(U,$J,358.3,22984,1,4,0)
- ;;=4^H59.113
- ;;^UTILITY(U,$J,358.3,22984,2)
- ;;=^5006403
- ;;^UTILITY(U,$J,358.3,22985,0)
- ;;=H59.121^^105^1166^131
- ;;^UTILITY(U,$J,358.3,22985,1,0)
+ ;;^UTILITY(U,$J,358.3,23239,1,3,0)
+ ;;=3^Tinnitus,Bilateral
+ ;;^UTILITY(U,$J,358.3,23239,1,4,0)
+ ;;=4^H93.13
+ ;;^UTILITY(U,$J,358.3,23239,2)
+ ;;=^5006966
+ ;;^UTILITY(U,$J,358.3,23240,0)
+ ;;=H93.11^^78^1004^73
+ ;;^UTILITY(U,$J,358.3,23240,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,22985,1,3,0)
- ;;=3^Intraop Hemor/Hemtom of Right Eye/Adnexa Complicating Oth Procedure
- ;;^UTILITY(U,$J,358.3,22985,1,4,0)
- ;;=4^H59.121
- ;;^UTILITY(U,$J,358.3,22985,2)
- ;;=^5006405
- ;;^UTILITY(U,$J,358.3,22986,0)
- ;;=H59.122^^105^1166^123
- ;;^UTILITY(U,$J,358.3,22986,1,0)
+ ;;^UTILITY(U,$J,358.3,23240,1,3,0)
+ ;;=3^Tinnitus,Right Ear
+ ;;^UTILITY(U,$J,358.3,23240,1,4,0)
+ ;;=4^H93.11
+ ;;^UTILITY(U,$J,358.3,23240,2)
+ ;;=^5006964
+ ;;^UTILITY(U,$J,358.3,23241,0)
+ ;;=J30.9^^78^1004^2
+ ;;^UTILITY(U,$J,358.3,23241,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,22986,1,3,0)
- ;;=3^Intraop Hemor/Hemtom of Left Eye/Adnexa Complicating Oth Procedure
- ;;^UTILITY(U,$J,358.3,22986,1,4,0)
- ;;=4^H59.122
- ;;^UTILITY(U,$J,358.3,22986,2)
- ;;=^5006406
- ;;^UTILITY(U,$J,358.3,22987,0)
- ;;=H59.123^^105^1166^109
- ;;^UTILITY(U,$J,358.3,22987,1,0)
+ ;;^UTILITY(U,$J,358.3,23241,1,3,0)
+ ;;=3^Allergic Rhinitis,Unspec
+ ;;^UTILITY(U,$J,358.3,23241,1,4,0)
+ ;;=4^J30.9
+ ;;^UTILITY(U,$J,358.3,23241,2)
+ ;;=^5008205
+ ;;^UTILITY(U,$J,358.3,23242,0)
+ ;;=R43.0^^78^1004^3
+ ;;^UTILITY(U,$J,358.3,23242,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,22987,1,3,0)
- ;;=3^Intraop Hemor/Hemtom of Bilateral Eyes/Adnexa Complicating Oth Procedure
- ;;^UTILITY(U,$J,358.3,22987,1,4,0)
- ;;=4^H59.123
- ;;^UTILITY(U,$J,358.3,22987,2)
- ;;=^5006407
- ;;^UTILITY(U,$J,358.3,22988,0)
- ;;=H95.21^^105^1166^116
- ;;^UTILITY(U,$J,358.3,22988,1,0)
+ ;;^UTILITY(U,$J,358.3,23242,1,3,0)
+ ;;=3^Anosmia
+ ;;^UTILITY(U,$J,358.3,23242,1,4,0)
+ ;;=4^R43.0
+ ;;^UTILITY(U,$J,358.3,23242,2)
+ ;;=^7949
+ ;;^UTILITY(U,$J,358.3,23243,0)
+ ;;=R04.0^^78^1004^4
+ ;;^UTILITY(U,$J,358.3,23243,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,22988,1,3,0)
- ;;=3^Intraop Hemor/Hemtom of Ear/Mastoid Complicating Ear/Mastoid Procedure
- ;;^UTILITY(U,$J,358.3,22988,1,4,0)
- ;;=4^H95.21
- ;;^UTILITY(U,$J,358.3,22988,2)
- ;;=^5007026
- ;;^UTILITY(U,$J,358.3,22989,0)
- ;;=H95.22^^105^1166^117
- ;;^UTILITY(U,$J,358.3,22989,1,0)
+ ;;^UTILITY(U,$J,358.3,23243,1,3,0)
+ ;;=3^Epistaxis
+ ;;^UTILITY(U,$J,358.3,23243,1,4,0)
+ ;;=4^R04.0
+ ;;^UTILITY(U,$J,358.3,23243,2)
+ ;;=^5019173
+ ;;^UTILITY(U,$J,358.3,23244,0)
+ ;;=R09.81^^78^1004^18
+ ;;^UTILITY(U,$J,358.3,23244,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,22989,1,3,0)
- ;;=3^Intraop Hemor/Hemtom of Ear/Mastoid Complicating Oth Procedure
- ;;^UTILITY(U,$J,358.3,22989,1,4,0)
- ;;=4^H95.22
- ;;^UTILITY(U,$J,358.3,22989,2)
- ;;=^5007027
- ;;^UTILITY(U,$J,358.3,22990,0)
- ;;=I97.410^^105^1166^110
- ;;^UTILITY(U,$J,358.3,22990,1,0)
+ ;;^UTILITY(U,$J,358.3,23244,1,3,0)
+ ;;=3^Nasal Congestion,Hyperplasia
+ ;;^UTILITY(U,$J,358.3,23244,1,4,0)
+ ;;=4^R09.81
+ ;;^UTILITY(U,$J,358.3,23244,2)
+ ;;=^5019203
+ ;;^UTILITY(U,$J,358.3,23245,0)
+ ;;=J33.0^^78^1004^19
+ ;;^UTILITY(U,$J,358.3,23245,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,22990,1,3,0)
- ;;=3^Intraop Hemor/Hemtom of Circ Sys Complicating Card Catheterization
- ;;^UTILITY(U,$J,358.3,22990,1,4,0)
- ;;=4^I97.410
- ;;^UTILITY(U,$J,358.3,22990,2)
- ;;=^5008093
- ;;^UTILITY(U,$J,358.3,22991,0)
- ;;=I97.411^^105^1166^111
- ;;^UTILITY(U,$J,358.3,22991,1,0)
+ ;;^UTILITY(U,$J,358.3,23245,1,3,0)
+ ;;=3^Nasal Polyp
+ ;;^UTILITY(U,$J,358.3,23245,1,4,0)
+ ;;=4^J33.0
+ ;;^UTILITY(U,$J,358.3,23245,2)
+ ;;=^269880
+ ;;^UTILITY(U,$J,358.3,23246,0)
+ ;;=J00.^^78^1004^20
+ ;;^UTILITY(U,$J,358.3,23246,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,22991,1,3,0)
- ;;=3^Intraop Hemor/Hemtom of Circ Sys Complicating Cardiac Bypass
+ ;;^UTILITY(U,$J,358.3,23246,1,3,0)
+ ;;=3^Nasopharyngitis,Acute
+ ;;^UTILITY(U,$J,358.3,23246,1,4,0)
+ ;;=4^J00.
+ ;;^UTILITY(U,$J,358.3,23246,2)
+ ;;=^5008115
+ ;;^UTILITY(U,$J,358.3,23247,0)
+ ;;=R09.82^^78^1004^55
+ ;;^UTILITY(U,$J,358.3,23247,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,23247,1,3,0)
+ ;;=3^Post Nasal Drip
+ ;;^UTILITY(U,$J,358.3,23247,1,4,0)
+ ;;=4^R09.82
+ ;;^UTILITY(U,$J,358.3,23247,2)
+ ;;=^97058
+ ;;^UTILITY(U,$J,358.3,23248,0)
+ ;;=J01.90^^78^1004^56
+ ;;^UTILITY(U,$J,358.3,23248,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,23248,1,3,0)
+ ;;=3^Sinusitis,Acute,Unspec
+ ;;^UTILITY(U,$J,358.3,23248,1,4,0)
+ ;;=4^J01.90
+ ;;^UTILITY(U,$J,358.3,23248,2)
+ ;;=^5008127
+ ;;^UTILITY(U,$J,358.3,23249,0)
+ ;;=J32.9^^78^1004^58

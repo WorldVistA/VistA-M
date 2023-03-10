@@ -1,5 +1,5 @@
-ORCDPS2 ;SLC/MKB - Pharmacy dialog utilities ;06/08/20  09:12
- ;;3.0;ORDER ENTRY/RESULTS REPORTING;**94,116,125,131,243,311,350,377,413**;Dec 17, 1997;Build 32
+ORCDPS2 ;SLC/MKB-Pharmacy dialog utilities ;Feb 18, 2021@14:20:11
+ ;;3.0;ORDER ENTRY/RESULTS REPORTING;**94,116,125,131,243,311,350,377,413,405**;Dec 17, 1997;Build 211
  ;
 COMPLEX() ; -- Single or complex?
  N X,Y,DIR,DUOUT,DTOUT,COMPLX
@@ -108,7 +108,7 @@ DOSE() ; -- Dosage
  N X0,Y S X0=$G(ORDIALOG(ORID,ORI)) ;ID string
  S Y=DOSE I ORDRUG,$L(X0) D  ;use local dose if common DispDrug
  . S:$L($P(X0,"&",5)) Y=$P(X0,"&",5) ;unless Outpt w/total dose
- . I ORCAT="O",X0 S Y=$$WORD($P(X0,"&",3))_" "_$P(X0,"&",4) ;u/d
+ . I ORCAT="O",X0,'+$G(ISIMO) S Y=$$WORD($P(X0,"&",3))_" "_$P(X0,"&",4) ;u/d
  Q Y
  ;
 WORD(X) ; -- Words for number X

@@ -1,5 +1,5 @@
-MAGDQR20 ;WOIFO/EdM,NST,MLH,BT - RPCs for Query/Retrieve SetUp ; 25 Jan 2012 4:27 PM
- ;;3.0;IMAGING;**119**;Mar 19, 2002;Build 4396;Apr 19, 2013
+MAGDQR20 ;VA/WOIFO/EdM,NST,MLH,BT,JSL - RPCs for Query/Retrieve SetUp ; 22 Jul 2021 4:27 PM
+ ;;3.0;IMAGING;**119,301**;Mar 19, 2002;Build 4396;Apr 19, 2013
  ;; Per VHA Directive 2004-038, this routine should not be modified.
  ;; +---------------------------------------------------------------+
  ;; | Property of the US Government.                                |
@@ -243,6 +243,9 @@ SRTMAGTI(INUM,I0,REQDFN) ; Save IMAGE_IEN and GROUP_IEN lines
  S IMGINFO=$G(^TMP("MAG",$J,"S",I0)) K ^TMP("MAG",$J,"S",I0)
  ; Get Site image parameters IEN from 16^ piece of IMGINFO
  S:IMGINFO'="" MAGTI=MAGTI+1,^TMP("MAG",$J,"TI",MAGTI)="IMAGE_INFO|"_IMGINFO_"|"_$$GETSNUM^MAGDQR21($P(IMGINFO,"^",16))
+ ;
+ S MAGTI=MAGTI+1,^TMP("MAG",$J,"TI",MAGTI)="IMAGE_SOP_CLASS_UID|"_$$GET1^DIQ(2005,I0,251)
+ ;
  Q
  ;
 WRSERUID(UID,D0) ; Output SERIES_IEN line

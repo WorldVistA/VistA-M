@@ -1,126 +1,124 @@
-IBDEI0V6 ; ; 04-FEB-2020
- ;;3.0;IB ENCOUNTER FORM IMP/EXP;;FEB 04, 2020
+IBDEI0V6 ; ; 01-FEB-2022
+ ;;3.0;IB ENCOUNTER FORM IMP/EXP;;FEB 01, 2022
  Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,999) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
- ;;^UTILITY(U,$J,358.3,13879,1,3,0)
- ;;=3^Urinary Frequency
- ;;^UTILITY(U,$J,358.3,13879,1,4,0)
- ;;=4^R35.0
- ;;^UTILITY(U,$J,358.3,13879,2)
- ;;=^5019334
- ;;^UTILITY(U,$J,358.3,13880,0)
- ;;=N39.42^^83^818^114
- ;;^UTILITY(U,$J,358.3,13880,1,0)
+ ;;^UTILITY(U,$J,358.3,14066,1,4,0)
+ ;;=4^M70.51
+ ;;^UTILITY(U,$J,358.3,14066,2)
+ ;;=^5013056
+ ;;^UTILITY(U,$J,358.3,14067,0)
+ ;;=S83.095A^^55^670^45
+ ;;^UTILITY(U,$J,358.3,14067,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,13880,1,3,0)
- ;;=3^Urinary Incontinence w/o Sensory Awareness
- ;;^UTILITY(U,$J,358.3,13880,1,4,0)
- ;;=4^N39.42
- ;;^UTILITY(U,$J,358.3,13880,2)
- ;;=^5015681
- ;;^UTILITY(U,$J,358.3,13881,0)
- ;;=N39.45^^83^818^115
- ;;^UTILITY(U,$J,358.3,13881,1,0)
+ ;;^UTILITY(U,$J,358.3,14067,1,3,0)
+ ;;=3^Dislocation Left Patella, init encntr NEC
+ ;;^UTILITY(U,$J,358.3,14067,1,4,0)
+ ;;=4^S83.095A
+ ;;^UTILITY(U,$J,358.3,14067,2)
+ ;;=^5137019
+ ;;^UTILITY(U,$J,358.3,14068,0)
+ ;;=S83.094A^^55^670^55
+ ;;^UTILITY(U,$J,358.3,14068,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,13881,1,3,0)
- ;;=3^Urinary Incontinence,Continuous Leakage
- ;;^UTILITY(U,$J,358.3,13881,1,4,0)
- ;;=4^N39.45
- ;;^UTILITY(U,$J,358.3,13881,2)
- ;;=^5015684
- ;;^UTILITY(U,$J,358.3,13882,0)
- ;;=R39.81^^83^818^116
- ;;^UTILITY(U,$J,358.3,13882,1,0)
+ ;;^UTILITY(U,$J,358.3,14068,1,3,0)
+ ;;=3^Dislocation Right Patella, init encntr NEC
+ ;;^UTILITY(U,$J,358.3,14068,1,4,0)
+ ;;=4^S83.094A
+ ;;^UTILITY(U,$J,358.3,14068,2)
+ ;;=^5042932
+ ;;^UTILITY(U,$J,358.3,14069,0)
+ ;;=M25.362^^55^670^61
+ ;;^UTILITY(U,$J,358.3,14069,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,13882,1,3,0)
- ;;=3^Urinary Incontinence,Functional
- ;;^UTILITY(U,$J,358.3,13882,1,4,0)
- ;;=4^R39.81
- ;;^UTILITY(U,$J,358.3,13882,2)
- ;;=^5019349
- ;;^UTILITY(U,$J,358.3,13883,0)
- ;;=N39.46^^83^818^117
- ;;^UTILITY(U,$J,358.3,13883,1,0)
+ ;;^UTILITY(U,$J,358.3,14069,1,3,0)
+ ;;=3^Instability, left knee NEC
+ ;;^UTILITY(U,$J,358.3,14069,1,4,0)
+ ;;=4^M25.362
+ ;;^UTILITY(U,$J,358.3,14069,2)
+ ;;=^5011567
+ ;;^UTILITY(U,$J,358.3,14070,0)
+ ;;=S83.282A^^55^670^75
+ ;;^UTILITY(U,$J,358.3,14070,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,13883,1,3,0)
- ;;=3^Urinary Incontinence,Mixed,Male/Female
- ;;^UTILITY(U,$J,358.3,13883,1,4,0)
- ;;=4^N39.46
- ;;^UTILITY(U,$J,358.3,13883,2)
- ;;=^5015685
- ;;^UTILITY(U,$J,358.3,13884,0)
- ;;=N39.44^^83^818^118
- ;;^UTILITY(U,$J,358.3,13884,1,0)
+ ;;^UTILITY(U,$J,358.3,14070,1,3,0)
+ ;;=3^Tear of Left Knee Lat Mensc,Current Injury,Init Encntr NEC
+ ;;^UTILITY(U,$J,358.3,14070,1,4,0)
+ ;;=4^S83.282A
+ ;;^UTILITY(U,$J,358.3,14070,2)
+ ;;=^5137064
+ ;;^UTILITY(U,$J,358.3,14071,0)
+ ;;=S83.281A^^55^670^77
+ ;;^UTILITY(U,$J,358.3,14071,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,13884,1,3,0)
- ;;=3^Urinary Incontinence,Nocturnal Enuresis
- ;;^UTILITY(U,$J,358.3,13884,1,4,0)
- ;;=4^N39.44
- ;;^UTILITY(U,$J,358.3,13884,2)
- ;;=^5015683
- ;;^UTILITY(U,$J,358.3,13885,0)
- ;;=N39.498^^83^818^119
- ;;^UTILITY(U,$J,358.3,13885,1,0)
+ ;;^UTILITY(U,$J,358.3,14071,1,3,0)
+ ;;=3^Tear of Right Knee Lat Mensc,Current Injury,Init Encntr NEC
+ ;;^UTILITY(U,$J,358.3,14071,1,4,0)
+ ;;=4^S83.281A
+ ;;^UTILITY(U,$J,358.3,14071,2)
+ ;;=^5043091
+ ;;^UTILITY(U,$J,358.3,14072,0)
+ ;;=S83.242A^^55^670^76
+ ;;^UTILITY(U,$J,358.3,14072,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,13885,1,3,0)
- ;;=3^Urinary Incontinence,Other
- ;;^UTILITY(U,$J,358.3,13885,1,4,0)
- ;;=4^N39.498
- ;;^UTILITY(U,$J,358.3,13885,2)
- ;;=^5015686
- ;;^UTILITY(U,$J,358.3,13886,0)
- ;;=N39.490^^83^818^120
- ;;^UTILITY(U,$J,358.3,13886,1,0)
+ ;;^UTILITY(U,$J,358.3,14072,1,3,0)
+ ;;=3^Tear of Left Knee Medial Meniscus,Current Injury,Init Encntr NEC
+ ;;^UTILITY(U,$J,358.3,14072,1,4,0)
+ ;;=4^S83.242A
+ ;;^UTILITY(U,$J,358.3,14072,2)
+ ;;=^5137058
+ ;;^UTILITY(U,$J,358.3,14073,0)
+ ;;=S83.241A^^55^670^78
+ ;;^UTILITY(U,$J,358.3,14073,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,13886,1,3,0)
- ;;=3^Urinary Incontinence,Overflow
- ;;^UTILITY(U,$J,358.3,13886,1,4,0)
- ;;=4^N39.490
- ;;^UTILITY(U,$J,358.3,13886,2)
- ;;=^331569
- ;;^UTILITY(U,$J,358.3,13887,0)
- ;;=N39.43^^83^818^121
- ;;^UTILITY(U,$J,358.3,13887,1,0)
+ ;;^UTILITY(U,$J,358.3,14073,1,3,0)
+ ;;=3^Tear of Right Knee Medial Meniscus,Current Injry,Init Encntr NEC
+ ;;^UTILITY(U,$J,358.3,14073,1,4,0)
+ ;;=4^S83.241A
+ ;;^UTILITY(U,$J,358.3,14073,2)
+ ;;=^5043061
+ ;;^UTILITY(U,$J,358.3,14074,0)
+ ;;=M25.562^^55^670^67
+ ;;^UTILITY(U,$J,358.3,14074,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,13887,1,3,0)
- ;;=3^Urinary Incontinence,Post-Void Dribbling
- ;;^UTILITY(U,$J,358.3,13887,1,4,0)
- ;;=4^N39.43
- ;;^UTILITY(U,$J,358.3,13887,2)
- ;;=^5015682
- ;;^UTILITY(U,$J,358.3,13888,0)
- ;;=N39.3^^83^818^122
- ;;^UTILITY(U,$J,358.3,13888,1,0)
+ ;;^UTILITY(U,$J,358.3,14074,1,3,0)
+ ;;=3^Pain in left knee
+ ;;^UTILITY(U,$J,358.3,14074,1,4,0)
+ ;;=4^M25.562
+ ;;^UTILITY(U,$J,358.3,14074,2)
+ ;;=^5011615
+ ;;^UTILITY(U,$J,358.3,14075,0)
+ ;;=M25.561^^55^670^68
+ ;;^UTILITY(U,$J,358.3,14075,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,13888,1,3,0)
- ;;=3^Urinary Incontinence,Stress,Male/Female
- ;;^UTILITY(U,$J,358.3,13888,1,4,0)
- ;;=4^N39.3
- ;;^UTILITY(U,$J,358.3,13888,2)
- ;;=^5015679
- ;;^UTILITY(U,$J,358.3,13889,0)
- ;;=R32.^^83^818^123
- ;;^UTILITY(U,$J,358.3,13889,1,0)
+ ;;^UTILITY(U,$J,358.3,14075,1,3,0)
+ ;;=3^Pain in right knee
+ ;;^UTILITY(U,$J,358.3,14075,1,4,0)
+ ;;=4^M25.561
+ ;;^UTILITY(U,$J,358.3,14075,2)
+ ;;=^5011614
+ ;;^UTILITY(U,$J,358.3,14076,0)
+ ;;=M76.52^^55^670^69
+ ;;^UTILITY(U,$J,358.3,14076,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,13889,1,3,0)
- ;;=3^Urinary Incontinence,Unspec
- ;;^UTILITY(U,$J,358.3,13889,1,4,0)
- ;;=4^R32.
- ;;^UTILITY(U,$J,358.3,13889,2)
- ;;=^5019329
- ;;^UTILITY(U,$J,358.3,13890,0)
- ;;=N39.41^^83^818^124
- ;;^UTILITY(U,$J,358.3,13890,1,0)
+ ;;^UTILITY(U,$J,358.3,14076,1,3,0)
+ ;;=3^Patellar tendinitis, left knee
+ ;;^UTILITY(U,$J,358.3,14076,1,4,0)
+ ;;=4^M76.52
+ ;;^UTILITY(U,$J,358.3,14076,2)
+ ;;=^5013283
+ ;;^UTILITY(U,$J,358.3,14077,0)
+ ;;=M76.51^^55^670^70
+ ;;^UTILITY(U,$J,358.3,14077,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,13890,1,3,0)
- ;;=3^Urinary Incontinence,Urge
- ;;^UTILITY(U,$J,358.3,13890,1,4,0)
- ;;=4^N39.41
- ;;^UTILITY(U,$J,358.3,13890,2)
- ;;=Urinary Incontinence,Urge^5015680
- ;;^UTILITY(U,$J,358.3,13891,0)
- ;;=R33.0^^83^818^125
- ;;^UTILITY(U,$J,358.3,13891,1,0)
+ ;;^UTILITY(U,$J,358.3,14077,1,3,0)
+ ;;=3^Patellar tendinitis, right knee
+ ;;^UTILITY(U,$J,358.3,14077,1,4,0)
+ ;;=4^M76.51
+ ;;^UTILITY(U,$J,358.3,14077,2)
+ ;;=^5013282
+ ;;^UTILITY(U,$J,358.3,14078,0)
+ ;;=M67.52^^55^670^71
+ ;;^UTILITY(U,$J,358.3,14078,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,13891,1,3,0)
- ;;=3^Urinary Retention,Drug-Induced
+ ;;^UTILITY(U,$J,358.3,14078,1,3,0)
+ ;;=3^Plica syndrome, left knee

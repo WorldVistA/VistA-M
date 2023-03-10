@@ -1,5 +1,5 @@
 SDECWL ;ALB/SAT,WTC,LAB - VISTA SCHEDULING RPCS ;Apr 10, 2020@15:22
- ;;5.3;Scheduling;**627,642,665,672,694,745**;Aug 13, 1993;Build 40
+ ;;5.3;Scheduling;**627,642,665,672,694,745,774**;Aug 13, 1993;Build 9
  ;
  Q
  ;
@@ -71,42 +71,45 @@ WLOPEN(RET,WLAPP,WLIEN,WLDDT) ;SET Waitlist Open/re-open
  ;                                    SDEC APPOINTMENT file 409.84
  ;     WLIEN - (required if no WLAPP) Waitlist ID - Pointer to
  ;                                    SD WAIT LIST file
- ;     WLDDT - (optional) Desired Date of appointment in external format
+ ;     WLDDT - Desired Date of appointment in external format
+ S U="^"
  N SDART,SDECI,SDQ,WLFDA,WLMSG,X,Y,%DT
- S RET="^TMP(""SDECWL"","_$J_",""WLOPEN"")"
- K @RET
- S (SDECI,SDQ)=0
- S @RET@(SDECI)="T00030ERRORID^T00030ERRTEXT"_$C(30)
- ;validate WLAPP (required if WLIEN not passed it)
- S WLAPP=$G(WLAPP)
- I WLAPP'="" I $D(^SDEC(409.84,WLAPP,0)) D
- .S SDART=$$GET1^DIQ(409.84,WLAPP_",",.22,"I")
- .I $P(SDART,";",2)'="SDWL(409.3," S SDECI=SDECI+1 S @RET@(SDECI)="-1^Not an EWL appointment."_$C(30),SDQ=1 Q
- .I $G(WLIEN)'="",WLIEN'=$P(SDART,";",1) S SDECI=SDECI+1 S @RET@(SDECI)="-1^Appointment EWL does not match passed in EWL."_$C(30),SDQ=1 Q
- .S WLIEN=$P(SDART,";",1)
- G:SDQ WLX
- ;validate WLIEN
- S WLIEN=$G(WLIEN)
- I WLIEN="" S SDECI=SDECI+1 S @RET@(SDECI)="-1^Wait List ID or Appointment ID is required."_$C(30,31) Q
- I '$D(^SDWL(409.3,WLIEN,0)) S SDECI=SDECI+1 S @RET@(SDECI)="-1^Invalid wait list ID."_$C(30,31) Q
- ;validate WLDDT
- S WLDDT=$P($G(WLDDT),"@",1)
- ;
- ;  Change date/time conversion so midnight is handled properly.  wtc 694 5/17/18
- ;
- I WLDDT'="" S WLDDT=$$NETTOFM^SDECDATE(WLDDT,"N","N") I WLDDT=-1 S SDECI=SDECI+1 S @RET@(SDECI)="-1^Invalid desired date of appointment."_$C(30,31) Q
- ;I $G(WLDDT)'="" S %DT="" S X=WLDDT D ^%DT I Y=-1 S SDECI=SDECI+1 S @RET@(SDECI)="-1^Invalid desired date of appointment."_$C(30,31) Q
- ;
- S WLFDA=$NA(WLFDA(409.3,WLIEN_","))
- S @WLFDA@(19)=""
- S @WLFDA@(20)=""
- S @WLFDA@(21)=""
- S:WLDDT'="" @WLFDA@(22)=WLDDT
- S @WLFDA@(23)="OPEN"
- D UPDATE^DIE("E","WLFDA","WLRET","WLMSG")
- I $D(WLMSG("DIERR")) D
- . F MI=1:1:$G(WLMSG("DIERR")) S SDECI=SDECI+1 S @RET@(SDECI)="-1^"_$G(WLMSG("DIERR",MI,"TEXT",1))_$C(30)
- I '$D(WLMSG("DIERR")) S SDECI=SDECI+1 S @RET@(SDECI)="0^"_WLIEN_$C(30)
+ I WLAPP="" S RET="-1^APPOINTMENT IEN REQUIRED" Q
+ I WLIEN="" S RET="-1^EWL ENTRY REQUIRED" Q
+ I WLDDT="" S RET="-1^PID REQUIRED" Q
+ S RET=""
+ ;SD*5.3*774 Start new logic
+ Q:WLIEN=""
+ I $G(WLIEN)'="" D
+ .S DFN=$$GET1^DIQ(409.3,WLIEN_",",.01,"I")
+ .Q:DFN=""
+ .S INP(1)=""
+ .S INP(2)=DFN
+ .S INP(3)=$$GET1^DIQ(409.3,WLIEN_",",1,"E")
+ .S INP(4)=$$GET1^DIQ(409.3,WLIEN_",",2,"E")
+ .S INP(5)="APPT"
+ .S INP(6)=$$GET1^DIQ(409.3,WLIEN_",",13.2,"E")
+ .S INP(7)=$$GET1^DIQ(409.3,WLIEN_",",9,"E")
+ .S INP(8)=$$GET1^DIQ(409.3,WLIEN_",",10,"E")
+ .S INP(9)=$$GET1^DIQ(409.3,WLIEN_",",11,"E")
+ .S INP(10)=$$GET1^DIQ(409.3,WLIEN_",",12,"E")
+ .S INP(11)=WLDDT
+ .S INP(12)=$$GET1^DIQ(409.3,WLIEN_",",25)
+ .S INP(13)=$$GET1^DIQ(409.3,WLIEN_",",10.5,"E")
+ .S INP(14)=""
+ .S INP(15)=""
+ .S INP(16)=""
+ .S INP(17)=""
+ .S INP(18)=$$GET1^DIQ(409.3,WLIEN_",",15,"E")
+ .S INP(19)=$$GET1^DIQ(409.3,WLIEN_",",14)
+ .S RET1=""
+ .D ARSET^SDECAR2(.RET1,.INP)
+ .I RET'["-1" D
+ ..S ARIEN=$P(RET1,$C(30),2)
+ ..S ^SDEC(409.84,WLAPP,2)=+ARIEN_";SDEC(409.85,"
+ .Q
+ I $G(RET1)'="" S RET=RET1
+ Q
 WLX  S @RET@(SDECI)=@RET@(SDECI)_$C(31)
  Q
  ;

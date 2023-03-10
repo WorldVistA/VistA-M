@@ -1,5 +1,5 @@
-IBECEA31 ;ALB/CPM-Cancel/Edit/Add... Handle Events ; 02-APR-93
- ;;2.0;INTEGRATED BILLING;**27,57,52,176,188**;21-MAR-94
+IBECEA31 ;ALB/CPM - Cancel/Edit/Add... Handle Events ; 02-APR-93
+ ;;2.0;INTEGRATED BILLING;**27,57,52,176,188,715**;21-MAR-94;Build 25
  ;;Per VHA Directive 10-93-142, this routine should not be modified.
  ;
 EVF(DFN,IBFR,IBTO,IBNH) ; Find the matching event for a copay or per diem.
@@ -12,14 +12,14 @@ EVF(DFN,IBFR,IBTO,IBNH) ; Find the matching event for a copay or per diem.
  ;              0   --   an event is not found
  ;             -1   --   an event is found, but can't be billed
  I '$G(DFN)!'$G(IBFR)!'$G(IBTO) Q 0
- S IBNH=$G(IBNH),IBNH=$S(IBNH=2:"FEE",IBNH=3:"LTC A",IBNH:"NHCU",1:"HOSPITAL")
+ S IBNH=$G(IBNH),IBNH=$S((IBNH=0&(IBXA=7)):"TRICARE INPT",IBNH=2:"FEE",IBNH=3:"LTC A",IBNH:"NHCU",1:"HOSPITAL")  ; IB*2.0*715
  N DIS,EVD,IBN,Y S EVD="",(IBN,Y)=0
  F  S EVD=$O(^IB("AFDT",DFN,EVD)) Q:'EVD  I -EVD'>IBFR F  S IBN=$O(^IB("AFDT",DFN,EVD,IBN)) Q:'IBN  S IBND=$G(^IB(IBN,0)) I $P(IBND,"^",8)[IBNH,$P(IBND,"^",8)'["FEE OPT",$P(IBND,"^",8)'["FEE LTC OPT" D EVS G EVFQ
 EVFQ Q Y
  ;
 EVS ; Set the output variable Y for the most recent (applicable) event.
  S DIS=$$DIS($P(IBND,"^",4))
- S Y=$S(IBXA=3&(IBTO>DIS):-1,(IBXA=2!(IBXA=1))&(IBTO'<DIS):-1,1:IBN)_"^"_-EVD_"^"_DIS
+ S Y=$S(IBXA=3&(IBTO>DIS):-1,(IBXA=2!(IBXA=1)!($G(IBNH)="TRICARE INPT"))&(IBTO'<DIS):-1,1:IBN)_"^"_-EVD_"^"_DIS  ; IB*2.0*715
  Q
  ;
 DIS(X) ; Find the discharge date for an admission.

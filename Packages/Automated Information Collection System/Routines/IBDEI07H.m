@@ -1,694 +1,648 @@
-IBDEI07H ; ; 01-MAY-2020
- ;;3.0;IB ENCOUNTER FORM IMP/EXP;;MAY 01, 2020
+IBDEI07H ; ; 01-AUG-2022
+ ;;3.0;IB ENCOUNTER FORM IMP/EXP;;AUG 01, 2022
  Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,999) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
+ ;;^UTILITY(U,$J,358.3,18208,0)
+ ;;=O98.63^^62^737^85
+ ;;^UTILITY(U,$J,358.3,18208,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,18208,1,3,0)
+ ;;=3^Protozoal diseases complicating the puerperium
+ ;;^UTILITY(U,$J,358.3,18208,1,4,0)
+ ;;=4^O98.63
+ ;;^UTILITY(U,$J,358.3,18208,2)
+ ;;=^5017898
+ ;;^UTILITY(U,$J,358.3,18209,0)
+ ;;=O24.011^^62^737^69
+ ;;^UTILITY(U,$J,358.3,18209,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,18209,1,3,0)
+ ;;=3^Pre-existing diabetes, type 1, in pregnancy, first trimester
+ ;;^UTILITY(U,$J,358.3,18209,1,4,0)
+ ;;=4^O24.011
+ ;;^UTILITY(U,$J,358.3,18209,2)
+ ;;=^5016255
+ ;;^UTILITY(U,$J,358.3,18210,0)
+ ;;=O24.012^^62^737^65
+ ;;^UTILITY(U,$J,358.3,18210,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,18210,1,3,0)
+ ;;=3^Pre-exist diabetes, type 1, in pregnancy, second trimester
+ ;;^UTILITY(U,$J,358.3,18210,1,4,0)
+ ;;=4^O24.012
+ ;;^UTILITY(U,$J,358.3,18210,2)
+ ;;=^5016256
+ ;;^UTILITY(U,$J,358.3,18211,0)
+ ;;=O24.013^^62^737^70
+ ;;^UTILITY(U,$J,358.3,18211,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,18211,1,3,0)
+ ;;=3^Pre-existing diabetes, type 1, in pregnancy, third trimester
+ ;;^UTILITY(U,$J,358.3,18211,1,4,0)
+ ;;=4^O24.013
+ ;;^UTILITY(U,$J,358.3,18211,2)
+ ;;=^5016257
+ ;;^UTILITY(U,$J,358.3,18212,0)
+ ;;=O24.111^^62^737^71
+ ;;^UTILITY(U,$J,358.3,18212,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,18212,1,3,0)
+ ;;=3^Pre-existing diabetes, type 2, in pregnancy, first trimester
+ ;;^UTILITY(U,$J,358.3,18212,1,4,0)
+ ;;=4^O24.111
+ ;;^UTILITY(U,$J,358.3,18212,2)
+ ;;=^5016261
+ ;;^UTILITY(U,$J,358.3,18213,0)
+ ;;=O24.112^^62^737^66
+ ;;^UTILITY(U,$J,358.3,18213,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,18213,1,3,0)
+ ;;=3^Pre-exist diabetes, type 2, in pregnancy, second trimester
+ ;;^UTILITY(U,$J,358.3,18213,1,4,0)
+ ;;=4^O24.112
+ ;;^UTILITY(U,$J,358.3,18213,2)
+ ;;=^5016262
+ ;;^UTILITY(U,$J,358.3,18214,0)
+ ;;=O24.113^^62^737^72
+ ;;^UTILITY(U,$J,358.3,18214,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,18214,1,3,0)
+ ;;=3^Pre-existing diabetes, type 2, in pregnancy, third trimester
+ ;;^UTILITY(U,$J,358.3,18214,1,4,0)
+ ;;=4^O24.113
+ ;;^UTILITY(U,$J,358.3,18214,2)
+ ;;=^5016263
+ ;;^UTILITY(U,$J,358.3,18215,0)
+ ;;=O24.03^^62^737^67
+ ;;^UTILITY(U,$J,358.3,18215,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,18215,1,3,0)
+ ;;=3^Pre-existing diabetes mellitus, type 1, in the puerperium
+ ;;^UTILITY(U,$J,358.3,18215,1,4,0)
+ ;;=4^O24.03
+ ;;^UTILITY(U,$J,358.3,18215,2)
+ ;;=^5016260
+ ;;^UTILITY(U,$J,358.3,18216,0)
+ ;;=O24.13^^62^737^68
+ ;;^UTILITY(U,$J,358.3,18216,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,18216,1,3,0)
+ ;;=3^Pre-existing diabetes mellitus, type 2, in the puerperium
+ ;;^UTILITY(U,$J,358.3,18216,1,4,0)
+ ;;=4^O24.13
+ ;;^UTILITY(U,$J,358.3,18216,2)
+ ;;=^5016266
+ ;;^UTILITY(U,$J,358.3,18217,0)
+ ;;=O99.281^^62^737^16
+ ;;^UTILITY(U,$J,358.3,18217,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,18217,1,3,0)
+ ;;=3^Endo, nutritional and metab diseases comp preg, first tri
+ ;;^UTILITY(U,$J,358.3,18217,1,4,0)
+ ;;=4^O99.281
+ ;;^UTILITY(U,$J,358.3,18217,2)
+ ;;=^5017935
+ ;;^UTILITY(U,$J,358.3,18218,0)
+ ;;=O99.282^^62^737^17
+ ;;^UTILITY(U,$J,358.3,18218,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,18218,1,3,0)
+ ;;=3^Endo, nutritional and metab diseases comp preg, second tri
+ ;;^UTILITY(U,$J,358.3,18218,1,4,0)
+ ;;=4^O99.282
+ ;;^UTILITY(U,$J,358.3,18218,2)
+ ;;=^5017936
+ ;;^UTILITY(U,$J,358.3,18219,0)
+ ;;=O99.283^^62^737^18
+ ;;^UTILITY(U,$J,358.3,18219,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,18219,1,3,0)
+ ;;=3^Endo, nutritional and metab diseases comp preg, third tri
+ ;;^UTILITY(U,$J,358.3,18219,1,4,0)
+ ;;=4^O99.283
+ ;;^UTILITY(U,$J,358.3,18219,2)
+ ;;=^5017937
+ ;;^UTILITY(U,$J,358.3,18220,0)
+ ;;=O99.285^^62^737^19
+ ;;^UTILITY(U,$J,358.3,18220,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,18220,1,3,0)
+ ;;=3^Endocrine, nutritional and metabolic diseases comp the puerp
  ;;^UTILITY(U,$J,358.3,18220,1,4,0)
- ;;=4^M87.111
+ ;;=4^O99.285
  ;;^UTILITY(U,$J,358.3,18220,2)
- ;;=^5014701
+ ;;=^5017939
  ;;^UTILITY(U,$J,358.3,18221,0)
- ;;=M87.112^^65^775^75
+ ;;=O99.011^^62^737^3
  ;;^UTILITY(U,$J,358.3,18221,1,0)
  ;;=^358.31IA^4^2
  ;;^UTILITY(U,$J,358.3,18221,1,3,0)
- ;;=3^Osteonecrosis d/t Drugs,Left Shoulder
+ ;;=3^Anemia complicating pregnancy, first trimester
  ;;^UTILITY(U,$J,358.3,18221,1,4,0)
- ;;=4^M87.112
+ ;;=4^O99.011
  ;;^UTILITY(U,$J,358.3,18221,2)
- ;;=^5014702
+ ;;=^5017916
  ;;^UTILITY(U,$J,358.3,18222,0)
- ;;=M87.150^^65^775^76
+ ;;=O99.012^^62^737^4
  ;;^UTILITY(U,$J,358.3,18222,1,0)
  ;;=^358.31IA^4^2
  ;;^UTILITY(U,$J,358.3,18222,1,3,0)
- ;;=3^Osteonecrosis d/t Drugs,Pelvis
+ ;;=3^Anemia complicating pregnancy, second trimester
  ;;^UTILITY(U,$J,358.3,18222,1,4,0)
- ;;=4^M87.150
+ ;;=4^O99.012
  ;;^UTILITY(U,$J,358.3,18222,2)
- ;;=^5014722
+ ;;=^5017917
  ;;^UTILITY(U,$J,358.3,18223,0)
- ;;=M87.151^^65^775^77
+ ;;=O99.013^^62^737^5
  ;;^UTILITY(U,$J,358.3,18223,1,0)
  ;;=^358.31IA^4^2
  ;;^UTILITY(U,$J,358.3,18223,1,3,0)
- ;;=3^Osteonecrosis d/t Drugs,Right Femur
+ ;;=3^Anemia complicating pregnancy, third trimester
  ;;^UTILITY(U,$J,358.3,18223,1,4,0)
- ;;=4^M87.151
+ ;;=4^O99.013
  ;;^UTILITY(U,$J,358.3,18223,2)
- ;;=^5014723
+ ;;=^5017918
  ;;^UTILITY(U,$J,358.3,18224,0)
- ;;=M87.152^^65^775^74
+ ;;=O99.03^^62^737^6
  ;;^UTILITY(U,$J,358.3,18224,1,0)
  ;;=^358.31IA^4^2
  ;;^UTILITY(U,$J,358.3,18224,1,3,0)
- ;;=3^Osteonecrosis d/t Drugs,Left Femur
+ ;;=3^Anemia complicating the puerperium
  ;;^UTILITY(U,$J,358.3,18224,1,4,0)
- ;;=4^M87.152
+ ;;=4^O99.03
  ;;^UTILITY(U,$J,358.3,18224,2)
- ;;=^5014724
+ ;;=^5017921
  ;;^UTILITY(U,$J,358.3,18225,0)
- ;;=M87.180^^65^775^73
+ ;;=O99.321^^62^737^12
  ;;^UTILITY(U,$J,358.3,18225,1,0)
  ;;=^358.31IA^4^2
  ;;^UTILITY(U,$J,358.3,18225,1,3,0)
- ;;=3^Osteonecrosis d/t Drugs,Jaw
+ ;;=3^Drug use complicating pregnancy, first trimester
  ;;^UTILITY(U,$J,358.3,18225,1,4,0)
- ;;=4^M87.180
+ ;;=4^O99.321
  ;;^UTILITY(U,$J,358.3,18225,2)
- ;;=^5014741
+ ;;=^5017947
  ;;^UTILITY(U,$J,358.3,18226,0)
- ;;=M87.311^^65^775^174
+ ;;=O99.322^^62^737^13
  ;;^UTILITY(U,$J,358.3,18226,1,0)
  ;;=^358.31IA^4^2
  ;;^UTILITY(U,$J,358.3,18226,1,3,0)
- ;;=3^Secondary Osteonecrosis,Right Shoulder
+ ;;=3^Drug use complicating pregnancy, second trimester
  ;;^UTILITY(U,$J,358.3,18226,1,4,0)
- ;;=4^M87.311
+ ;;=4^O99.322
  ;;^UTILITY(U,$J,358.3,18226,2)
- ;;=^5014788
+ ;;=^5017948
  ;;^UTILITY(U,$J,358.3,18227,0)
- ;;=M87.312^^65^775^171
+ ;;=O99.323^^62^737^14
  ;;^UTILITY(U,$J,358.3,18227,1,0)
  ;;=^358.31IA^4^2
  ;;^UTILITY(U,$J,358.3,18227,1,3,0)
- ;;=3^Secondary Osteonecrosis,Left Shoulder
+ ;;=3^Drug use complicating pregnancy, third trimester
  ;;^UTILITY(U,$J,358.3,18227,1,4,0)
- ;;=4^M87.312
+ ;;=4^O99.323
  ;;^UTILITY(U,$J,358.3,18227,2)
- ;;=^5014789
+ ;;=^5017949
  ;;^UTILITY(U,$J,358.3,18228,0)
- ;;=M87.350^^65^775^172
+ ;;=O99.325^^62^737^15
  ;;^UTILITY(U,$J,358.3,18228,1,0)
  ;;=^358.31IA^4^2
  ;;^UTILITY(U,$J,358.3,18228,1,3,0)
- ;;=3^Secondary Osteonecrosis,Pelvis
+ ;;=3^Drug use complicating the puerperium
  ;;^UTILITY(U,$J,358.3,18228,1,4,0)
- ;;=4^M87.350
+ ;;=4^O99.325
  ;;^UTILITY(U,$J,358.3,18228,2)
- ;;=^5014809
+ ;;=^5017951
  ;;^UTILITY(U,$J,358.3,18229,0)
- ;;=M87.351^^65^775^173
+ ;;=O90.6^^62^737^64
  ;;^UTILITY(U,$J,358.3,18229,1,0)
  ;;=^358.31IA^4^2
  ;;^UTILITY(U,$J,358.3,18229,1,3,0)
- ;;=3^Secondary Osteonecrosis,Right Femur
+ ;;=3^Postpartum mood disturbance
  ;;^UTILITY(U,$J,358.3,18229,1,4,0)
- ;;=4^M87.351
+ ;;=4^O90.6
  ;;^UTILITY(U,$J,358.3,18229,2)
- ;;=^5014810
+ ;;=^5017818
  ;;^UTILITY(U,$J,358.3,18230,0)
- ;;=M87.352^^65^775^170
+ ;;=O99.411^^62^737^8
  ;;^UTILITY(U,$J,358.3,18230,1,0)
  ;;=^358.31IA^4^2
  ;;^UTILITY(U,$J,358.3,18230,1,3,0)
- ;;=3^Secondary Osteonecrosis,Left Femur
+ ;;=3^Diseases of the circ sys comp pregnancy, first trimester
  ;;^UTILITY(U,$J,358.3,18230,1,4,0)
- ;;=4^M87.352
+ ;;=4^O99.411
  ;;^UTILITY(U,$J,358.3,18230,2)
- ;;=^5014811
+ ;;=^5017970
  ;;^UTILITY(U,$J,358.3,18231,0)
- ;;=M87.811^^65^775^83
+ ;;=O99.412^^62^737^9
  ;;^UTILITY(U,$J,358.3,18231,1,0)
  ;;=^358.31IA^4^2
  ;;^UTILITY(U,$J,358.3,18231,1,3,0)
- ;;=3^Osteonecrosis,Right Shoulder
+ ;;=3^Diseases of the circ sys comp pregnancy, second trimester
  ;;^UTILITY(U,$J,358.3,18231,1,4,0)
- ;;=4^M87.811
+ ;;=4^O99.412
  ;;^UTILITY(U,$J,358.3,18231,2)
- ;;=^5014831
+ ;;=^5017971
  ;;^UTILITY(U,$J,358.3,18232,0)
- ;;=M87.812^^65^775^80
+ ;;=O99.413^^62^737^10
  ;;^UTILITY(U,$J,358.3,18232,1,0)
  ;;=^358.31IA^4^2
  ;;^UTILITY(U,$J,358.3,18232,1,3,0)
- ;;=3^Osteonecrosis,Left Shoulder
+ ;;=3^Diseases of the circ sys comp pregnancy, third trimester
  ;;^UTILITY(U,$J,358.3,18232,1,4,0)
- ;;=4^M87.812
+ ;;=4^O99.413
  ;;^UTILITY(U,$J,358.3,18232,2)
- ;;=^5014832
+ ;;=^5017972
  ;;^UTILITY(U,$J,358.3,18233,0)
- ;;=M87.850^^65^775^81
+ ;;=O99.43^^62^737^11
  ;;^UTILITY(U,$J,358.3,18233,1,0)
  ;;=^358.31IA^4^2
  ;;^UTILITY(U,$J,358.3,18233,1,3,0)
- ;;=3^Osteonecrosis,Pelvis
+ ;;=3^Diseases of the circ sys complicating the puerperium
  ;;^UTILITY(U,$J,358.3,18233,1,4,0)
- ;;=4^M87.850
+ ;;=4^O99.43
  ;;^UTILITY(U,$J,358.3,18233,2)
- ;;=^5014852
+ ;;=^5017975
  ;;^UTILITY(U,$J,358.3,18234,0)
- ;;=M87.851^^65^775^82
+ ;;=O33.0^^62^737^44
  ;;^UTILITY(U,$J,358.3,18234,1,0)
  ;;=^358.31IA^4^2
  ;;^UTILITY(U,$J,358.3,18234,1,3,0)
- ;;=3^Osteonecrosis,Right Femur
+ ;;=3^Matern care for disproprtn d/t deformity of matern pelv bone
  ;;^UTILITY(U,$J,358.3,18234,1,4,0)
- ;;=4^M87.851
+ ;;=4^O33.0
  ;;^UTILITY(U,$J,358.3,18234,2)
- ;;=^5014853
+ ;;=^5016691
  ;;^UTILITY(U,$J,358.3,18235,0)
- ;;=M87.852^^65^775^79
+ ;;=O99.810^^62^737^1
  ;;^UTILITY(U,$J,358.3,18235,1,0)
  ;;=^358.31IA^4^2
  ;;^UTILITY(U,$J,358.3,18235,1,3,0)
- ;;=3^Osteonecrosis,Left Femur
+ ;;=3^Abnormal glucose complicating pregnancy
  ;;^UTILITY(U,$J,358.3,18235,1,4,0)
- ;;=4^M87.852
+ ;;=4^O99.810
  ;;^UTILITY(U,$J,358.3,18235,2)
- ;;=^5014854
+ ;;=^5017994
  ;;^UTILITY(U,$J,358.3,18236,0)
- ;;=M88.0^^65^775^70
+ ;;=O99.815^^62^737^2
  ;;^UTILITY(U,$J,358.3,18236,1,0)
  ;;=^358.31IA^4^2
  ;;^UTILITY(U,$J,358.3,18236,1,3,0)
- ;;=3^Osteitis Deformans of Skull
+ ;;=3^Abnormal glucose complicating the puerperium
  ;;^UTILITY(U,$J,358.3,18236,1,4,0)
- ;;=4^M88.0
+ ;;=4^O99.815
  ;;^UTILITY(U,$J,358.3,18236,2)
- ;;=^5014874
+ ;;=^5017996
  ;;^UTILITY(U,$J,358.3,18237,0)
- ;;=M88.1^^65^775^71
+ ;;=O24.410^^62^737^24
  ;;^UTILITY(U,$J,358.3,18237,1,0)
  ;;=^358.31IA^4^2
  ;;^UTILITY(U,$J,358.3,18237,1,3,0)
- ;;=3^Osteitis Deformans of Vertebrae
+ ;;=3^Gestational DM in Pregnancy,Diet Controlled
  ;;^UTILITY(U,$J,358.3,18237,1,4,0)
- ;;=4^M88.1
+ ;;=4^O24.410
  ;;^UTILITY(U,$J,358.3,18237,2)
- ;;=^5014875
+ ;;=^5016272
  ;;^UTILITY(U,$J,358.3,18238,0)
- ;;=M88.89^^65^775^69
+ ;;=O24.414^^62^737^25
  ;;^UTILITY(U,$J,358.3,18238,1,0)
  ;;=^358.31IA^4^2
  ;;^UTILITY(U,$J,358.3,18238,1,3,0)
- ;;=3^Osteitis Deformans of Mult Sites
+ ;;=3^Gestational DM in Pregnancy,Insulin Controlled
  ;;^UTILITY(U,$J,358.3,18238,1,4,0)
- ;;=4^M88.89
+ ;;=4^O24.414
  ;;^UTILITY(U,$J,358.3,18238,2)
- ;;=^5014898
+ ;;=^5016273
  ;;^UTILITY(U,$J,358.3,18239,0)
- ;;=M94.0^^65^775^16
+ ;;=O24.415^^62^737^23
  ;;^UTILITY(U,$J,358.3,18239,1,0)
  ;;=^358.31IA^4^2
  ;;^UTILITY(U,$J,358.3,18239,1,3,0)
- ;;=3^Chondrocostal Junction Syndrome/Costochondritis
+ ;;=3^Gestational DM in Pregnancy,Ctrl by Oral Hypoglycemic Drugs
  ;;^UTILITY(U,$J,358.3,18239,1,4,0)
- ;;=4^M94.0
+ ;;=4^O24.415
  ;;^UTILITY(U,$J,358.3,18239,2)
- ;;=^5015327
+ ;;=^5139041
  ;;^UTILITY(U,$J,358.3,18240,0)
- ;;=M94.20^^65^775^19
+ ;;=O24.430^^62^737^27
  ;;^UTILITY(U,$J,358.3,18240,1,0)
  ;;=^358.31IA^4^2
  ;;^UTILITY(U,$J,358.3,18240,1,3,0)
- ;;=3^Chondromalacia,Unspec Site
+ ;;=3^Gestational DM in Puerperium,Diet Controlled
  ;;^UTILITY(U,$J,358.3,18240,1,4,0)
- ;;=4^M94.20
+ ;;=4^O24.430
  ;;^UTILITY(U,$J,358.3,18240,2)
- ;;=^5015329
+ ;;=^5016278
  ;;^UTILITY(U,$J,358.3,18241,0)
- ;;=M94.261^^65^775^18
+ ;;=O24.434^^62^737^28
  ;;^UTILITY(U,$J,358.3,18241,1,0)
  ;;=^358.31IA^4^2
  ;;^UTILITY(U,$J,358.3,18241,1,3,0)
- ;;=3^Chondromalacia,Right Knee
+ ;;=3^Gestational DM in Puerperium,Insulin Controlled
  ;;^UTILITY(U,$J,358.3,18241,1,4,0)
- ;;=4^M94.261
+ ;;=4^O24.434
  ;;^UTILITY(U,$J,358.3,18241,2)
- ;;=^5015345
+ ;;=^5016279
  ;;^UTILITY(U,$J,358.3,18242,0)
- ;;=M94.262^^65^775^17
+ ;;=O24.435^^62^737^26
  ;;^UTILITY(U,$J,358.3,18242,1,0)
  ;;=^358.31IA^4^2
  ;;^UTILITY(U,$J,358.3,18242,1,3,0)
- ;;=3^Chondromalacia,Left Knee
+ ;;=3^Gestational DM in Puerperium,Ctrl by Oral Hypoglycemic Drugs
  ;;^UTILITY(U,$J,358.3,18242,1,4,0)
- ;;=4^M94.262
+ ;;=4^O24.435
  ;;^UTILITY(U,$J,358.3,18242,2)
- ;;=^5015346
+ ;;=^5139043
  ;;^UTILITY(U,$J,358.3,18243,0)
- ;;=R25.2^^65^775^37
+ ;;=F53.0^^62^737^63
  ;;^UTILITY(U,$J,358.3,18243,1,0)
  ;;=^358.31IA^4^2
  ;;^UTILITY(U,$J,358.3,18243,1,3,0)
- ;;=3^Cramp and Spasm
+ ;;=3^Postpartum Depression
  ;;^UTILITY(U,$J,358.3,18243,1,4,0)
- ;;=4^R25.2
+ ;;=4^F53.0
  ;;^UTILITY(U,$J,358.3,18243,2)
- ;;=^5019301
+ ;;=^5157303
  ;;^UTILITY(U,$J,358.3,18244,0)
- ;;=R70.0^^65^775^39
+ ;;=F53.1^^62^737^86
  ;;^UTILITY(U,$J,358.3,18244,1,0)
  ;;=^358.31IA^4^2
  ;;^UTILITY(U,$J,358.3,18244,1,3,0)
- ;;=3^Elevated Erythrocyte Sedimentation Rate
+ ;;=3^Puerperal Psychosis
  ;;^UTILITY(U,$J,358.3,18244,1,4,0)
- ;;=4^R70.0
+ ;;=4^F53.1
  ;;^UTILITY(U,$J,358.3,18244,2)
- ;;=^5019559
+ ;;=^5157304
  ;;^UTILITY(U,$J,358.3,18245,0)
- ;;=M25.511^^65^775^119
+ ;;=O99.331^^62^738^20
  ;;^UTILITY(U,$J,358.3,18245,1,0)
  ;;=^358.31IA^4^2
  ;;^UTILITY(U,$J,358.3,18245,1,3,0)
- ;;=3^Pain in Right Shoulder
+ ;;=3^Tobacco complicating pregnancy, first trimester
  ;;^UTILITY(U,$J,358.3,18245,1,4,0)
- ;;=4^M25.511
+ ;;=4^O99.331
  ;;^UTILITY(U,$J,358.3,18245,2)
- ;;=^5011602
+ ;;=^5017953
  ;;^UTILITY(U,$J,358.3,18246,0)
- ;;=M25.512^^65^775^109
+ ;;=O99.332^^62^738^21
  ;;^UTILITY(U,$J,358.3,18246,1,0)
  ;;=^358.31IA^4^2
  ;;^UTILITY(U,$J,358.3,18246,1,3,0)
- ;;=3^Pain in Left Shoulder
+ ;;=3^Tobacco complicating pregnancy, second trimester
  ;;^UTILITY(U,$J,358.3,18246,1,4,0)
- ;;=4^M25.512
+ ;;=4^O99.332
  ;;^UTILITY(U,$J,358.3,18246,2)
- ;;=^5011603
+ ;;=^5017954
  ;;^UTILITY(U,$J,358.3,18247,0)
- ;;=M25.521^^65^775^113
+ ;;=O99.333^^62^738^22
  ;;^UTILITY(U,$J,358.3,18247,1,0)
  ;;=^358.31IA^4^2
  ;;^UTILITY(U,$J,358.3,18247,1,3,0)
- ;;=3^Pain in Right Elbow
+ ;;=3^Tobacco complicating pregnancy, third trimester
  ;;^UTILITY(U,$J,358.3,18247,1,4,0)
- ;;=4^M25.521
+ ;;=4^O99.333
  ;;^UTILITY(U,$J,358.3,18247,2)
- ;;=^5011605
+ ;;=^5017955
  ;;^UTILITY(U,$J,358.3,18248,0)
- ;;=M25.522^^65^775^103
+ ;;=O99.335^^62^738^23
  ;;^UTILITY(U,$J,358.3,18248,1,0)
  ;;=^358.31IA^4^2
  ;;^UTILITY(U,$J,358.3,18248,1,3,0)
- ;;=3^Pain in Left Elbow
+ ;;=3^Tobacco complicating the puerperium
  ;;^UTILITY(U,$J,358.3,18248,1,4,0)
- ;;=4^M25.522
+ ;;=4^O99.335
  ;;^UTILITY(U,$J,358.3,18248,2)
- ;;=^5011606
+ ;;=^5017957
  ;;^UTILITY(U,$J,358.3,18249,0)
- ;;=M25.531^^65^775^120
+ ;;=O99.211^^62^738^14
  ;;^UTILITY(U,$J,358.3,18249,1,0)
  ;;=^358.31IA^4^2
  ;;^UTILITY(U,$J,358.3,18249,1,3,0)
- ;;=3^Pain in Right Wrist
+ ;;=3^Obesity complicating pregnancy, first trimester
  ;;^UTILITY(U,$J,358.3,18249,1,4,0)
- ;;=4^M25.531
+ ;;=4^O99.211
  ;;^UTILITY(U,$J,358.3,18249,2)
- ;;=^5011608
+ ;;=^5017929
  ;;^UTILITY(U,$J,358.3,18250,0)
- ;;=M25.532^^65^775^110
+ ;;=O99.212^^62^738^15
  ;;^UTILITY(U,$J,358.3,18250,1,0)
  ;;=^358.31IA^4^2
  ;;^UTILITY(U,$J,358.3,18250,1,3,0)
- ;;=3^Pain in Left Wrist
+ ;;=3^Obesity complicating pregnancy, second trimester
  ;;^UTILITY(U,$J,358.3,18250,1,4,0)
- ;;=4^M25.532
+ ;;=4^O99.212
  ;;^UTILITY(U,$J,358.3,18250,2)
- ;;=^5011609
+ ;;=^5017930
  ;;^UTILITY(U,$J,358.3,18251,0)
- ;;=M25.551^^65^775^116
+ ;;=O99.213^^62^738^16
  ;;^UTILITY(U,$J,358.3,18251,1,0)
  ;;=^358.31IA^4^2
  ;;^UTILITY(U,$J,358.3,18251,1,3,0)
- ;;=3^Pain in Right Hip
+ ;;=3^Obesity complicating pregnancy, third trimester
  ;;^UTILITY(U,$J,358.3,18251,1,4,0)
- ;;=4^M25.551
+ ;;=4^O99.213
  ;;^UTILITY(U,$J,358.3,18251,2)
- ;;=^5011611
+ ;;=^5017931
  ;;^UTILITY(U,$J,358.3,18252,0)
- ;;=M25.552^^65^775^106
+ ;;=O99.215^^62^738^18
  ;;^UTILITY(U,$J,358.3,18252,1,0)
  ;;=^358.31IA^4^2
  ;;^UTILITY(U,$J,358.3,18252,1,3,0)
- ;;=3^Pain in Left Hip
+ ;;=3^Obesity complicating the puerperium
  ;;^UTILITY(U,$J,358.3,18252,1,4,0)
- ;;=4^M25.552
+ ;;=4^O99.215
  ;;^UTILITY(U,$J,358.3,18252,2)
- ;;=^5011612
+ ;;=^5017933
  ;;^UTILITY(U,$J,358.3,18253,0)
- ;;=M25.561^^65^775^117
+ ;;=O99.841^^62^738^2
  ;;^UTILITY(U,$J,358.3,18253,1,0)
  ;;=^358.31IA^4^2
  ;;^UTILITY(U,$J,358.3,18253,1,3,0)
- ;;=3^Pain in Right Knee
+ ;;=3^Bariatric surgery status comp pregnancy, first trimester
  ;;^UTILITY(U,$J,358.3,18253,1,4,0)
- ;;=4^M25.561
+ ;;=4^O99.841
  ;;^UTILITY(U,$J,358.3,18253,2)
- ;;=^5011614
+ ;;=^5018004
  ;;^UTILITY(U,$J,358.3,18254,0)
- ;;=M25.562^^65^775^107
+ ;;=O99.842^^62^738^3
  ;;^UTILITY(U,$J,358.3,18254,1,0)
  ;;=^358.31IA^4^2
  ;;^UTILITY(U,$J,358.3,18254,1,3,0)
- ;;=3^Pain in Left Knee
+ ;;=3^Bariatric surgery status comp pregnancy, second trimester
  ;;^UTILITY(U,$J,358.3,18254,1,4,0)
- ;;=4^M25.562
+ ;;=4^O99.842
  ;;^UTILITY(U,$J,358.3,18254,2)
- ;;=^5011615
+ ;;=^5018005
  ;;^UTILITY(U,$J,358.3,18255,0)
- ;;=M25.571^^65^775^111
+ ;;=O99.843^^62^738^4
  ;;^UTILITY(U,$J,358.3,18255,1,0)
  ;;=^358.31IA^4^2
  ;;^UTILITY(U,$J,358.3,18255,1,3,0)
- ;;=3^Pain in Right Ankle
+ ;;=3^Bariatric surgery status comp pregnancy, third trimester
  ;;^UTILITY(U,$J,358.3,18255,1,4,0)
- ;;=4^M25.571
+ ;;=4^O99.843
  ;;^UTILITY(U,$J,358.3,18255,2)
- ;;=^5011617
+ ;;=^5018006
  ;;^UTILITY(U,$J,358.3,18256,0)
- ;;=M25.572^^65^775^101
+ ;;=O99.845^^62^738^5
  ;;^UTILITY(U,$J,358.3,18256,1,0)
  ;;=^358.31IA^4^2
  ;;^UTILITY(U,$J,358.3,18256,1,3,0)
- ;;=3^Pain in Left Ankle
+ ;;=3^Bariatric surgery status complicating the puerperium
  ;;^UTILITY(U,$J,358.3,18256,1,4,0)
- ;;=4^M25.572
+ ;;=4^O99.845
  ;;^UTILITY(U,$J,358.3,18256,2)
- ;;=^5011618
+ ;;=^5018008
  ;;^UTILITY(U,$J,358.3,18257,0)
- ;;=M79.601^^65^775^112
+ ;;=O99.351^^62^738^10
  ;;^UTILITY(U,$J,358.3,18257,1,0)
  ;;=^358.31IA^4^2
  ;;^UTILITY(U,$J,358.3,18257,1,3,0)
- ;;=3^Pain in Right Arm
+ ;;=3^Diseases of the nervous sys comp pregnancy, first trimester
  ;;^UTILITY(U,$J,358.3,18257,1,4,0)
- ;;=4^M79.601
+ ;;=4^O99.351
  ;;^UTILITY(U,$J,358.3,18257,2)
- ;;=^5013325
+ ;;=^5017965
  ;;^UTILITY(U,$J,358.3,18258,0)
- ;;=M79.602^^65^775^102
+ ;;=O99.352^^62^738^11
  ;;^UTILITY(U,$J,358.3,18258,1,0)
  ;;=^358.31IA^4^2
  ;;^UTILITY(U,$J,358.3,18258,1,3,0)
- ;;=3^Pain in Left Arm
+ ;;=3^Diseases of the nervous sys comp pregnancy, second trimester
  ;;^UTILITY(U,$J,358.3,18258,1,4,0)
- ;;=4^M79.602
+ ;;=4^O99.352
  ;;^UTILITY(U,$J,358.3,18258,2)
- ;;=^5013326
+ ;;=^5017966
  ;;^UTILITY(U,$J,358.3,18259,0)
- ;;=M79.604^^65^775^118
+ ;;=O99.353^^62^738^12
  ;;^UTILITY(U,$J,358.3,18259,1,0)
  ;;=^358.31IA^4^2
  ;;^UTILITY(U,$J,358.3,18259,1,3,0)
- ;;=3^Pain in Right Leg
+ ;;=3^Diseases of the nervous sys comp pregnancy, third trimester
  ;;^UTILITY(U,$J,358.3,18259,1,4,0)
- ;;=4^M79.604
+ ;;=4^O99.353
  ;;^UTILITY(U,$J,358.3,18259,2)
- ;;=^5013328
+ ;;=^5017967
  ;;^UTILITY(U,$J,358.3,18260,0)
- ;;=M79.605^^65^775^108
+ ;;=O26.851^^62^738^24
  ;;^UTILITY(U,$J,358.3,18260,1,0)
  ;;=^358.31IA^4^2
  ;;^UTILITY(U,$J,358.3,18260,1,3,0)
- ;;=3^Pain in Left Leg
+ ;;=3^Spotting complicating pregnancy, first trimester
  ;;^UTILITY(U,$J,358.3,18260,1,4,0)
- ;;=4^M79.605
+ ;;=4^O26.851
  ;;^UTILITY(U,$J,358.3,18260,2)
- ;;=^5013329
+ ;;=^5016349
  ;;^UTILITY(U,$J,358.3,18261,0)
- ;;=M79.641^^65^775^115
+ ;;=O26.852^^62^738^25
  ;;^UTILITY(U,$J,358.3,18261,1,0)
  ;;=^358.31IA^4^2
  ;;^UTILITY(U,$J,358.3,18261,1,3,0)
- ;;=3^Pain in Right Hand
+ ;;=3^Spotting complicating pregnancy, second trimester
  ;;^UTILITY(U,$J,358.3,18261,1,4,0)
- ;;=4^M79.641
+ ;;=4^O26.852
  ;;^UTILITY(U,$J,358.3,18261,2)
- ;;=^5013338
+ ;;=^5016350
  ;;^UTILITY(U,$J,358.3,18262,0)
- ;;=M79.642^^65^775^105
+ ;;=O26.853^^62^738^26
  ;;^UTILITY(U,$J,358.3,18262,1,0)
  ;;=^358.31IA^4^2
  ;;^UTILITY(U,$J,358.3,18262,1,3,0)
- ;;=3^Pain in Left Hand
+ ;;=3^Spotting complicating pregnancy, third trimester
  ;;^UTILITY(U,$J,358.3,18262,1,4,0)
- ;;=4^M79.642
+ ;;=4^O26.853
  ;;^UTILITY(U,$J,358.3,18262,2)
- ;;=^5013339
+ ;;=^5016351
  ;;^UTILITY(U,$J,358.3,18263,0)
- ;;=M79.671^^65^775^114
+ ;;=O26.841^^62^738^28
  ;;^UTILITY(U,$J,358.3,18263,1,0)
  ;;=^358.31IA^4^2
  ;;^UTILITY(U,$J,358.3,18263,1,3,0)
- ;;=3^Pain in Right Foot
+ ;;=3^Uterine size-date discrepancy, first trimester
  ;;^UTILITY(U,$J,358.3,18263,1,4,0)
- ;;=4^M79.671
+ ;;=4^O26.841
  ;;^UTILITY(U,$J,358.3,18263,2)
- ;;=^5013350
+ ;;=^5016345
  ;;^UTILITY(U,$J,358.3,18264,0)
- ;;=M79.672^^65^775^104
+ ;;=O26.842^^62^738^29
  ;;^UTILITY(U,$J,358.3,18264,1,0)
  ;;=^358.31IA^4^2
  ;;^UTILITY(U,$J,358.3,18264,1,3,0)
- ;;=3^Pain in Left Foot
+ ;;=3^Uterine size-date discrepancy, second trimester
  ;;^UTILITY(U,$J,358.3,18264,1,4,0)
- ;;=4^M79.672
+ ;;=4^O26.842
  ;;^UTILITY(U,$J,358.3,18264,2)
- ;;=^5013351
+ ;;=^5016346
  ;;^UTILITY(U,$J,358.3,18265,0)
- ;;=M54.9^^65^775^8
+ ;;=O26.843^^62^738^30
  ;;^UTILITY(U,$J,358.3,18265,1,0)
  ;;=^358.31IA^4^2
  ;;^UTILITY(U,$J,358.3,18265,1,3,0)
- ;;=3^Backache/Dorsalgia
+ ;;=3^Uterine size-date discrepancy, third trimester
  ;;^UTILITY(U,$J,358.3,18265,1,4,0)
- ;;=4^M54.9
+ ;;=4^O26.843
  ;;^UTILITY(U,$J,358.3,18265,2)
- ;;=^5012314
+ ;;=^5016347
  ;;^UTILITY(U,$J,358.3,18266,0)
- ;;=M48.52XG^^65^775^20
+ ;;=O26.872^^62^738^6
  ;;^UTILITY(U,$J,358.3,18266,1,0)
  ;;=^358.31IA^4^2
  ;;^UTILITY(U,$J,358.3,18266,1,3,0)
- ;;=3^Collapsed Vertabra,Cervical Region,Subs Encntr,Del Healing
+ ;;=3^Cervical shortening, second trimester
  ;;^UTILITY(U,$J,358.3,18266,1,4,0)
- ;;=4^M48.52XG
+ ;;=4^O26.872
  ;;^UTILITY(U,$J,358.3,18266,2)
- ;;=^5012169
+ ;;=^5016354
  ;;^UTILITY(U,$J,358.3,18267,0)
- ;;=M48.52XS^^65^775^21
+ ;;=O26.873^^62^738^7
  ;;^UTILITY(U,$J,358.3,18267,1,0)
  ;;=^358.31IA^4^2
  ;;^UTILITY(U,$J,358.3,18267,1,3,0)
- ;;=3^Collapsed Vertabra,Cervical Region,Subs Encntr,Sequela
+ ;;=3^Cervical shortening, third trimester
  ;;^UTILITY(U,$J,358.3,18267,1,4,0)
- ;;=4^M48.52XS
+ ;;=4^O26.873
  ;;^UTILITY(U,$J,358.3,18267,2)
- ;;=^5012170
+ ;;=^5016355
  ;;^UTILITY(U,$J,358.3,18268,0)
- ;;=M48.57XG^^65^775^28
+ ;;=O30.001^^62^739^77
  ;;^UTILITY(U,$J,358.3,18268,1,0)
  ;;=^358.31IA^4^2
  ;;^UTILITY(U,$J,358.3,18268,1,3,0)
- ;;=3^Collapsed Vertebra,Lumbosacral Region,Subs Encntr,Del Healing
+ ;;=3^Twin,unsp num plcnta,amnio sacs,1st tri
  ;;^UTILITY(U,$J,358.3,18268,1,4,0)
- ;;=4^M48.57XG
+ ;;=4^O30.001
  ;;^UTILITY(U,$J,358.3,18268,2)
- ;;=^5012189
+ ;;=^5016429
  ;;^UTILITY(U,$J,358.3,18269,0)
- ;;=M48.57XS^^65^775^29
+ ;;=O30.002^^62^739^78
  ;;^UTILITY(U,$J,358.3,18269,1,0)
  ;;=^358.31IA^4^2
  ;;^UTILITY(U,$J,358.3,18269,1,3,0)
- ;;=3^Collapsed Vertebra,Lumbosacral Region,Subs Encntr,Sequela
+ ;;=3^Twin,unsp num plcnta,amnio sacs,2nd tri
  ;;^UTILITY(U,$J,358.3,18269,1,4,0)
- ;;=4^M48.57XS
+ ;;=4^O30.002
  ;;^UTILITY(U,$J,358.3,18269,2)
- ;;=^5012190
+ ;;=^5016430
  ;;^UTILITY(U,$J,358.3,18270,0)
- ;;=M48.54XD^^65^775^30
+ ;;=O30.003^^62^739^79
  ;;^UTILITY(U,$J,358.3,18270,1,0)
  ;;=^358.31IA^4^2
  ;;^UTILITY(U,$J,358.3,18270,1,3,0)
- ;;=3^Collapsed Vertebra,Thoracic Region,Subs Encntr,Rt Healing
+ ;;=3^Twin,unsp num plcnta,amnio sacs,3rd tri
  ;;^UTILITY(U,$J,358.3,18270,1,4,0)
- ;;=4^M48.54XD
+ ;;=4^O30.003
  ;;^UTILITY(U,$J,358.3,18270,2)
- ;;=^5012176
+ ;;=^5016431
  ;;^UTILITY(U,$J,358.3,18271,0)
- ;;=M48.57XG^^65^775^31
+ ;;=O30.011^^62^739^71
  ;;^UTILITY(U,$J,358.3,18271,1,0)
  ;;=^358.31IA^4^2
  ;;^UTILITY(U,$J,358.3,18271,1,3,0)
- ;;=3^Collapsed Vertebra,Thoracic Region,Subs Encntr,Del Healing
+ ;;=3^Twin pregnancy, monochorionic/monoamniotic, first trimester
  ;;^UTILITY(U,$J,358.3,18271,1,4,0)
- ;;=4^M48.57XG
+ ;;=4^O30.011
  ;;^UTILITY(U,$J,358.3,18271,2)
- ;;=^5012189
+ ;;=^5016432
  ;;^UTILITY(U,$J,358.3,18272,0)
- ;;=M48.54XS^^65^775^32
+ ;;=O30.012^^62^739^72
  ;;^UTILITY(U,$J,358.3,18272,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,18272,1,3,0)
- ;;=3^Collapsed Vertebra,Thoracic Region,Subs Encntr,Sequela
- ;;^UTILITY(U,$J,358.3,18272,1,4,0)
- ;;=4^M48.54XS
- ;;^UTILITY(U,$J,358.3,18272,2)
- ;;=^5012178
- ;;^UTILITY(U,$J,358.3,18273,0)
- ;;=M62.830^^65^775^63
- ;;^UTILITY(U,$J,358.3,18273,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,18273,1,3,0)
- ;;=3^Muscle Spasm of Back
- ;;^UTILITY(U,$J,358.3,18273,1,4,0)
- ;;=4^M62.830
- ;;^UTILITY(U,$J,358.3,18273,2)
- ;;=^5012680
- ;;^UTILITY(U,$J,358.3,18274,0)
- ;;=M19.92^^65^775^126
- ;;^UTILITY(U,$J,358.3,18274,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,18274,1,3,0)
- ;;=3^Post-Traumatic Osteoarthritis,Unspec Site
- ;;^UTILITY(U,$J,358.3,18274,1,4,0)
- ;;=4^M19.92
- ;;^UTILITY(U,$J,358.3,18274,2)
- ;;=^5010855
- ;;^UTILITY(U,$J,358.3,18275,0)
- ;;=M85.872^^65^775^84
- ;;^UTILITY(U,$J,358.3,18275,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,18275,1,3,0)
- ;;=3^Osteopenia,Left Ankle & Foot
- ;;^UTILITY(U,$J,358.3,18275,1,4,0)
- ;;=4^M85.872
- ;;^UTILITY(U,$J,358.3,18275,2)
- ;;=^5014493
- ;;^UTILITY(U,$J,358.3,18276,0)
- ;;=M85.832^^65^775^85
- ;;^UTILITY(U,$J,358.3,18276,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,18276,1,3,0)
- ;;=3^Osteopenia,Left Forearm
- ;;^UTILITY(U,$J,358.3,18276,1,4,0)
- ;;=4^M85.832
- ;;^UTILITY(U,$J,358.3,18276,2)
- ;;=^5014481
- ;;^UTILITY(U,$J,358.3,18277,0)
- ;;=M85.842^^65^775^86
- ;;^UTILITY(U,$J,358.3,18277,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,18277,1,3,0)
- ;;=3^Osteopenia,Left Hand
- ;;^UTILITY(U,$J,358.3,18277,1,4,0)
- ;;=4^M85.842
- ;;^UTILITY(U,$J,358.3,18277,2)
- ;;=^5014484
- ;;^UTILITY(U,$J,358.3,18278,0)
- ;;=M85.862^^65^775^87
- ;;^UTILITY(U,$J,358.3,18278,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,18278,1,3,0)
- ;;=3^Osteopenia,Left Lower Leg
- ;;^UTILITY(U,$J,358.3,18278,1,4,0)
- ;;=4^M85.862
- ;;^UTILITY(U,$J,358.3,18278,2)
- ;;=^5014490
- ;;^UTILITY(U,$J,358.3,18279,0)
- ;;=M85.812^^65^775^88
- ;;^UTILITY(U,$J,358.3,18279,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,18279,1,3,0)
- ;;=3^Osteopenia,Left Shoulder
- ;;^UTILITY(U,$J,358.3,18279,1,4,0)
- ;;=4^M85.812
- ;;^UTILITY(U,$J,358.3,18279,2)
- ;;=^5014475
- ;;^UTILITY(U,$J,358.3,18280,0)
- ;;=M85.852^^65^775^89
- ;;^UTILITY(U,$J,358.3,18280,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,18280,1,3,0)
- ;;=3^Osteopenia,Left Thigh
- ;;^UTILITY(U,$J,358.3,18280,1,4,0)
- ;;=4^M85.852
- ;;^UTILITY(U,$J,358.3,18280,2)
- ;;=^5014487
- ;;^UTILITY(U,$J,358.3,18281,0)
- ;;=M85.822^^65^775^90
- ;;^UTILITY(U,$J,358.3,18281,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,18281,1,3,0)
- ;;=3^Osteopenia,Left Upper Arm
- ;;^UTILITY(U,$J,358.3,18281,1,4,0)
- ;;=4^M85.822
- ;;^UTILITY(U,$J,358.3,18281,2)
- ;;=^5014478
- ;;^UTILITY(U,$J,358.3,18282,0)
- ;;=M85.89^^65^775^91
- ;;^UTILITY(U,$J,358.3,18282,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,18282,1,3,0)
- ;;=3^Osteopenia,Multiple Sites
- ;;^UTILITY(U,$J,358.3,18282,1,4,0)
- ;;=4^M85.89
- ;;^UTILITY(U,$J,358.3,18282,2)
- ;;=^5014495
- ;;^UTILITY(U,$J,358.3,18283,0)
- ;;=M85.88^^65^775^92
- ;;^UTILITY(U,$J,358.3,18283,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,18283,1,3,0)
- ;;=3^Osteopenia,Other Site
- ;;^UTILITY(U,$J,358.3,18283,1,4,0)
- ;;=4^M85.88
- ;;^UTILITY(U,$J,358.3,18283,2)
- ;;=^5134059
- ;;^UTILITY(U,$J,358.3,18284,0)
- ;;=M85.871^^65^775^93
- ;;^UTILITY(U,$J,358.3,18284,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,18284,1,3,0)
- ;;=3^Osteopenia,Right Foot & Ankle
- ;;^UTILITY(U,$J,358.3,18284,1,4,0)
- ;;=4^M85.871
- ;;^UTILITY(U,$J,358.3,18284,2)
- ;;=^5014492
- ;;^UTILITY(U,$J,358.3,18285,0)
- ;;=M85.831^^65^775^94
- ;;^UTILITY(U,$J,358.3,18285,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,18285,1,3,0)
- ;;=3^Osteopenia,Right Forearm
- ;;^UTILITY(U,$J,358.3,18285,1,4,0)
- ;;=4^M85.831
- ;;^UTILITY(U,$J,358.3,18285,2)
- ;;=^5014480
- ;;^UTILITY(U,$J,358.3,18286,0)
- ;;=M85.841^^65^775^95
- ;;^UTILITY(U,$J,358.3,18286,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,18286,1,3,0)
- ;;=3^Osteopenia,Right Hand
- ;;^UTILITY(U,$J,358.3,18286,1,4,0)
- ;;=4^M85.841
- ;;^UTILITY(U,$J,358.3,18286,2)
- ;;=^5014483
- ;;^UTILITY(U,$J,358.3,18287,0)
- ;;=M85.861^^65^775^96
- ;;^UTILITY(U,$J,358.3,18287,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,18287,1,3,0)
- ;;=3^Osteopenia,Right Lower Leg
- ;;^UTILITY(U,$J,358.3,18287,1,4,0)
- ;;=4^M85.861
- ;;^UTILITY(U,$J,358.3,18287,2)
- ;;=^5014489
- ;;^UTILITY(U,$J,358.3,18288,0)
- ;;=M85.811^^65^775^97
- ;;^UTILITY(U,$J,358.3,18288,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,18288,1,3,0)
- ;;=3^Osteopenia,Right Shoulder
- ;;^UTILITY(U,$J,358.3,18288,1,4,0)
- ;;=4^M85.811
- ;;^UTILITY(U,$J,358.3,18288,2)
- ;;=^5014474
- ;;^UTILITY(U,$J,358.3,18289,0)
- ;;=M85.851^^65^775^98
- ;;^UTILITY(U,$J,358.3,18289,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,18289,1,3,0)
- ;;=3^Osteopenia,Right Thigh

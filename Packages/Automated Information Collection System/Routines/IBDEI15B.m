@@ -1,122 +1,122 @@
-IBDEI15B ; ; 04-FEB-2020
- ;;3.0;IB ENCOUNTER FORM IMP/EXP;;FEB 04, 2020
+IBDEI15B ; ; 01-FEB-2022
+ ;;3.0;IB ENCOUNTER FORM IMP/EXP;;FEB 01, 2022
  Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,999) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
- ;;^UTILITY(U,$J,358.3,18421,1,3,0)
- ;;=3^Bipolar & Rel D/O d/t Med Cond w/ Manic/Hypo-Like Ep
- ;;^UTILITY(U,$J,358.3,18421,1,4,0)
- ;;=4^F06.33
- ;;^UTILITY(U,$J,358.3,18421,2)
- ;;=^5003059
- ;;^UTILITY(U,$J,358.3,18422,0)
- ;;=F06.34^^91^937^2
- ;;^UTILITY(U,$J,358.3,18422,1,0)
+ ;;^UTILITY(U,$J,358.3,18600,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,18422,1,3,0)
- ;;=3^Bipolar & Rel D/O d/t Med Cond w/ Mixed Features
- ;;^UTILITY(U,$J,358.3,18422,1,4,0)
- ;;=4^F06.34
- ;;^UTILITY(U,$J,358.3,18422,2)
- ;;=^5003060
- ;;^UTILITY(U,$J,358.3,18423,0)
- ;;=F31.11^^91^937^22
- ;;^UTILITY(U,$J,358.3,18423,1,0)
+ ;;^UTILITY(U,$J,358.3,18600,1,3,0)
+ ;;=3^Athscl Nonaut Bio CABG w/ Ang Pctrs NEC
+ ;;^UTILITY(U,$J,358.3,18600,1,4,0)
+ ;;=4^I25.738
+ ;;^UTILITY(U,$J,358.3,18600,2)
+ ;;=^5007129
+ ;;^UTILITY(U,$J,358.3,18601,0)
+ ;;=I25.739^^64^833^42
+ ;;^UTILITY(U,$J,358.3,18601,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,18423,1,3,0)
- ;;=3^Bipolar I D/O,Current/Recent Ep Manic,Mild
- ;;^UTILITY(U,$J,358.3,18423,1,4,0)
- ;;=4^F31.11
- ;;^UTILITY(U,$J,358.3,18423,2)
- ;;=^5003496
- ;;^UTILITY(U,$J,358.3,18424,0)
- ;;=F31.12^^91^937^23
- ;;^UTILITY(U,$J,358.3,18424,1,0)
+ ;;^UTILITY(U,$J,358.3,18601,1,3,0)
+ ;;=3^Athscl Nonaut Bio CABG w/ Ang Pctrs,Unspec
+ ;;^UTILITY(U,$J,358.3,18601,1,4,0)
+ ;;=4^I25.739
+ ;;^UTILITY(U,$J,358.3,18601,2)
+ ;;=^5007130
+ ;;^UTILITY(U,$J,358.3,18602,0)
+ ;;=I25.730^^64^833^43
+ ;;^UTILITY(U,$J,358.3,18602,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,18424,1,3,0)
- ;;=3^Bipolar I D/O,Current/Recent Ep Manic,Mod
- ;;^UTILITY(U,$J,358.3,18424,1,4,0)
- ;;=4^F31.12
- ;;^UTILITY(U,$J,358.3,18424,2)
- ;;=^5003497
- ;;^UTILITY(U,$J,358.3,18425,0)
- ;;=F31.13^^91^937^24
- ;;^UTILITY(U,$J,358.3,18425,1,0)
+ ;;^UTILITY(U,$J,358.3,18602,1,3,0)
+ ;;=3^Athscl Nonaut Bio CABG w/ Unstable Angina
+ ;;^UTILITY(U,$J,358.3,18602,1,4,0)
+ ;;=4^I25.730
+ ;;^UTILITY(U,$J,358.3,18602,2)
+ ;;=^5007127
+ ;;^UTILITY(U,$J,358.3,18603,0)
+ ;;=I25.791^^64^833^26
+ ;;^UTILITY(U,$J,358.3,18603,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,18425,1,3,0)
- ;;=3^Bipolar I D/O,Current/Recent Ep Manic,Sev
- ;;^UTILITY(U,$J,358.3,18425,1,4,0)
- ;;=4^F31.13
- ;;^UTILITY(U,$J,358.3,18425,2)
- ;;=^5003498
- ;;^UTILITY(U,$J,358.3,18426,0)
- ;;=F31.2^^91^937^19
- ;;^UTILITY(U,$J,358.3,18426,1,0)
+ ;;^UTILITY(U,$J,358.3,18603,1,3,0)
+ ;;=3^Athscl CABG w/ Ang Pctrs w/ Documented Spasm
+ ;;^UTILITY(U,$J,358.3,18603,1,4,0)
+ ;;=4^I25.791
+ ;;^UTILITY(U,$J,358.3,18603,2)
+ ;;=^5007140
+ ;;^UTILITY(U,$J,358.3,18604,0)
+ ;;=I25.798^^64^833^24
+ ;;^UTILITY(U,$J,358.3,18604,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,18426,1,3,0)
- ;;=3^Bipolar I D/O,Current/Recent Ep Manic w/ Psych Feat
- ;;^UTILITY(U,$J,358.3,18426,1,4,0)
- ;;=4^F31.2
- ;;^UTILITY(U,$J,358.3,18426,2)
- ;;=^5003499
- ;;^UTILITY(U,$J,358.3,18427,0)
- ;;=F31.73^^91^937^20
- ;;^UTILITY(U,$J,358.3,18427,1,0)
+ ;;^UTILITY(U,$J,358.3,18604,1,3,0)
+ ;;=3^Athscl CABG w/ Ang Pctrs NEC
+ ;;^UTILITY(U,$J,358.3,18604,1,4,0)
+ ;;=4^I25.798
+ ;;^UTILITY(U,$J,358.3,18604,2)
+ ;;=^5133558
+ ;;^UTILITY(U,$J,358.3,18605,0)
+ ;;=I25.799^^64^833^28
+ ;;^UTILITY(U,$J,358.3,18605,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,18427,1,3,0)
- ;;=3^Bipolar I D/O,Current/Recent Ep Manic,In Part Remiss
- ;;^UTILITY(U,$J,358.3,18427,1,4,0)
- ;;=4^F31.73
- ;;^UTILITY(U,$J,358.3,18427,2)
- ;;=^5003513
- ;;^UTILITY(U,$J,358.3,18428,0)
- ;;=F31.74^^91^937^21
- ;;^UTILITY(U,$J,358.3,18428,1,0)
+ ;;^UTILITY(U,$J,358.3,18605,1,3,0)
+ ;;=3^Athscl CABG w/ Ang Pctrs,Unspec
+ ;;^UTILITY(U,$J,358.3,18605,1,4,0)
+ ;;=4^I25.799
+ ;;^UTILITY(U,$J,358.3,18605,2)
+ ;;=^5133559
+ ;;^UTILITY(U,$J,358.3,18606,0)
+ ;;=I25.790^^64^833^30
+ ;;^UTILITY(U,$J,358.3,18606,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,18428,1,3,0)
- ;;=3^Bipolar I D/O,Current/Recent Ep Manic,In Full Remiss
- ;;^UTILITY(U,$J,358.3,18428,1,4,0)
- ;;=4^F31.74
- ;;^UTILITY(U,$J,358.3,18428,2)
- ;;=^5003514
- ;;^UTILITY(U,$J,358.3,18429,0)
- ;;=F31.31^^91^937^13
- ;;^UTILITY(U,$J,358.3,18429,1,0)
+ ;;^UTILITY(U,$J,358.3,18606,1,3,0)
+ ;;=3^Athscl CABG w/ Unstable Angina
+ ;;^UTILITY(U,$J,358.3,18606,1,4,0)
+ ;;=4^I25.790
+ ;;^UTILITY(U,$J,358.3,18606,2)
+ ;;=^5007139
+ ;;^UTILITY(U,$J,358.3,18607,0)
+ ;;=I25.111^^64^833^31
+ ;;^UTILITY(U,$J,358.3,18607,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,18429,1,3,0)
- ;;=3^Bipolar I D/O,Current/Recent Ep Dep,Mild
- ;;^UTILITY(U,$J,358.3,18429,1,4,0)
- ;;=4^F31.31
- ;;^UTILITY(U,$J,358.3,18429,2)
- ;;=^5003501
- ;;^UTILITY(U,$J,358.3,18430,0)
- ;;=F31.32^^91^937^14
- ;;^UTILITY(U,$J,358.3,18430,1,0)
+ ;;^UTILITY(U,$J,358.3,18607,1,3,0)
+ ;;=3^Athscl Hrt Disease Native Cor Art w/ Ang Pctrs w/ Documented Spasm
+ ;;^UTILITY(U,$J,358.3,18607,1,4,0)
+ ;;=4^I25.111
+ ;;^UTILITY(U,$J,358.3,18607,2)
+ ;;=^5007109
+ ;;^UTILITY(U,$J,358.3,18608,0)
+ ;;=I25.118^^64^833^32
+ ;;^UTILITY(U,$J,358.3,18608,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,18430,1,3,0)
- ;;=3^Bipolar I D/O,Current/Recent Ep Dep,Mod
- ;;^UTILITY(U,$J,358.3,18430,1,4,0)
- ;;=4^F31.32
- ;;^UTILITY(U,$J,358.3,18430,2)
- ;;=^5003502
- ;;^UTILITY(U,$J,358.3,18431,0)
- ;;=F31.4^^91^937^15
- ;;^UTILITY(U,$J,358.3,18431,1,0)
+ ;;^UTILITY(U,$J,358.3,18608,1,3,0)
+ ;;=3^Athscl Hrt Disease Native Cor Art w/ Ang Pctrs NEC
+ ;;^UTILITY(U,$J,358.3,18608,1,4,0)
+ ;;=4^I25.118
+ ;;^UTILITY(U,$J,358.3,18608,2)
+ ;;=^5007110
+ ;;^UTILITY(U,$J,358.3,18609,0)
+ ;;=I25.119^^64^833^33
+ ;;^UTILITY(U,$J,358.3,18609,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,18431,1,3,0)
- ;;=3^Bipolar I D/O,Current/Recent Ep Dep,Sev
- ;;^UTILITY(U,$J,358.3,18431,1,4,0)
- ;;=4^F31.4
- ;;^UTILITY(U,$J,358.3,18431,2)
- ;;=^5003503
- ;;^UTILITY(U,$J,358.3,18432,0)
- ;;=F31.5^^91^937^10
- ;;^UTILITY(U,$J,358.3,18432,1,0)
+ ;;^UTILITY(U,$J,358.3,18609,1,3,0)
+ ;;=3^Athscl Hrt Disease Native Cor Art w/ Ang Pctrs,Unspec
+ ;;^UTILITY(U,$J,358.3,18609,1,4,0)
+ ;;=4^I25.119
+ ;;^UTILITY(U,$J,358.3,18609,2)
+ ;;=^5007111
+ ;;^UTILITY(U,$J,358.3,18610,0)
+ ;;=I25.110^^64^833^34
+ ;;^UTILITY(U,$J,358.3,18610,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,18432,1,3,0)
- ;;=3^Bipolar I D/O,Current/Recent Ep Dep w/ Psych Feat
- ;;^UTILITY(U,$J,358.3,18432,1,4,0)
- ;;=4^F31.5
- ;;^UTILITY(U,$J,358.3,18432,2)
- ;;=^5003504
- ;;^UTILITY(U,$J,358.3,18433,0)
- ;;=F31.75^^91^937^11
+ ;;^UTILITY(U,$J,358.3,18610,1,3,0)
+ ;;=3^Athscl Hrt Disease Native Cor Art w/ Unstable Angina
+ ;;^UTILITY(U,$J,358.3,18610,1,4,0)
+ ;;=4^I25.110
+ ;;^UTILITY(U,$J,358.3,18610,2)
+ ;;=^5007108
+ ;;^UTILITY(U,$J,358.3,18611,0)
+ ;;=I25.10^^64^833^35
+ ;;^UTILITY(U,$J,358.3,18611,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,18611,1,3,0)
+ ;;=3^Athscl Hrt Disease Native Cor Art w/o Ang Pctrs
+ ;;^UTILITY(U,$J,358.3,18611,1,4,0)
+ ;;=4^I25.10
+ ;;^UTILITY(U,$J,358.3,18611,2)
+ ;;=^5007107

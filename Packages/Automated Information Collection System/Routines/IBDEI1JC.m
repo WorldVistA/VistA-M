@@ -1,124 +1,130 @@
-IBDEI1JC ; ; 04-FEB-2020
- ;;3.0;IB ENCOUNTER FORM IMP/EXP;;FEB 04, 2020
+IBDEI1JC ; ; 01-FEB-2022
+ ;;3.0;IB ENCOUNTER FORM IMP/EXP;;FEB 01, 2022
  Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,999) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
- ;;^UTILITY(U,$J,358.3,24543,1,3,0)
- ;;=3^Diverticulitis of Intestine,Unspec w/ Perforation/Abscess w/o Bleeding
- ;;^UTILITY(U,$J,358.3,24543,1,4,0)
- ;;=4^K57.80
- ;;^UTILITY(U,$J,358.3,24543,2)
- ;;=^5008733
- ;;^UTILITY(U,$J,358.3,24544,0)
- ;;=K57.52^^107^1207^45
- ;;^UTILITY(U,$J,358.3,24544,1,0)
+ ;;^UTILITY(U,$J,358.3,24851,1,3,0)
+ ;;=3^Sciatica,Right Side
+ ;;^UTILITY(U,$J,358.3,24851,1,4,0)
+ ;;=4^M54.31
+ ;;^UTILITY(U,$J,358.3,24851,2)
+ ;;=^5012306
+ ;;^UTILITY(U,$J,358.3,24852,0)
+ ;;=M54.32^^85^1093^2
+ ;;^UTILITY(U,$J,358.3,24852,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,24544,1,3,0)
- ;;=3^Diverticulitis of Sm & Lg Intestine w/o Perforation/Abscess w/o Bleeding
- ;;^UTILITY(U,$J,358.3,24544,1,4,0)
- ;;=4^K57.52
- ;;^UTILITY(U,$J,358.3,24544,2)
- ;;=^5008731
- ;;^UTILITY(U,$J,358.3,24545,0)
- ;;=K57.40^^107^1207^44
- ;;^UTILITY(U,$J,358.3,24545,1,0)
+ ;;^UTILITY(U,$J,358.3,24852,1,3,0)
+ ;;=3^Sciatica,Left Side
+ ;;^UTILITY(U,$J,358.3,24852,1,4,0)
+ ;;=4^M54.32
+ ;;^UTILITY(U,$J,358.3,24852,2)
+ ;;=^5012307
+ ;;^UTILITY(U,$J,358.3,24853,0)
+ ;;=F20.5^^85^1093^1
+ ;;^UTILITY(U,$J,358.3,24853,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,24545,1,3,0)
- ;;=3^Diverticulitis of Sm & Lg Intestine w/ Perforation/Abscess w/o Bleeding
- ;;^UTILITY(U,$J,358.3,24545,1,4,0)
- ;;=4^K57.40
- ;;^UTILITY(U,$J,358.3,24545,2)
- ;;=^5008727
- ;;^UTILITY(U,$J,358.3,24546,0)
- ;;=K57.32^^107^1207^43
- ;;^UTILITY(U,$J,358.3,24546,1,0)
+ ;;^UTILITY(U,$J,358.3,24853,1,3,0)
+ ;;=3^Schizophrenia,Residual
+ ;;^UTILITY(U,$J,358.3,24853,1,4,0)
+ ;;=4^F20.5
+ ;;^UTILITY(U,$J,358.3,24853,2)
+ ;;=^5003473
+ ;;^UTILITY(U,$J,358.3,24854,0)
+ ;;=J01.90^^85^1093^8
+ ;;^UTILITY(U,$J,358.3,24854,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,24546,1,3,0)
- ;;=3^Diverticulitis of Lg Intestine w/o Perforation/Abscess w/o Bleeding
- ;;^UTILITY(U,$J,358.3,24546,1,4,0)
- ;;=4^K57.32
- ;;^UTILITY(U,$J,358.3,24546,2)
- ;;=^5008725
- ;;^UTILITY(U,$J,358.3,24547,0)
- ;;=K59.00^^107^1207^22
- ;;^UTILITY(U,$J,358.3,24547,1,0)
+ ;;^UTILITY(U,$J,358.3,24854,1,3,0)
+ ;;=3^Sinusitis Acute,Unspec
+ ;;^UTILITY(U,$J,358.3,24854,1,4,0)
+ ;;=4^J01.90
+ ;;^UTILITY(U,$J,358.3,24854,2)
+ ;;=^5008127
+ ;;^UTILITY(U,$J,358.3,24855,0)
+ ;;=J32.9^^85^1093^9
+ ;;^UTILITY(U,$J,358.3,24855,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,24547,1,3,0)
- ;;=3^Constipation,Unspec
- ;;^UTILITY(U,$J,358.3,24547,1,4,0)
- ;;=4^K59.00
- ;;^UTILITY(U,$J,358.3,24547,2)
- ;;=^323537
- ;;^UTILITY(U,$J,358.3,24548,0)
- ;;=K58.9^^107^1207^78
- ;;^UTILITY(U,$J,358.3,24548,1,0)
+ ;;^UTILITY(U,$J,358.3,24855,1,3,0)
+ ;;=3^Sinusitis,Chronic Unspec
+ ;;^UTILITY(U,$J,358.3,24855,1,4,0)
+ ;;=4^J32.9
+ ;;^UTILITY(U,$J,358.3,24855,2)
+ ;;=^5008207
+ ;;^UTILITY(U,$J,358.3,24856,0)
+ ;;=L72.3^^85^1093^4
+ ;;^UTILITY(U,$J,358.3,24856,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,24548,1,3,0)
- ;;=3^Irritable Bowel Syndrome w/o Diarrhea
- ;;^UTILITY(U,$J,358.3,24548,1,4,0)
- ;;=4^K58.9
- ;;^UTILITY(U,$J,358.3,24548,2)
- ;;=^5008740
- ;;^UTILITY(U,$J,358.3,24549,0)
- ;;=K58.0^^107^1207^77
- ;;^UTILITY(U,$J,358.3,24549,1,0)
+ ;;^UTILITY(U,$J,358.3,24856,1,3,0)
+ ;;=3^Sebaceous Cyst
+ ;;^UTILITY(U,$J,358.3,24856,1,4,0)
+ ;;=4^L72.3
+ ;;^UTILITY(U,$J,358.3,24856,2)
+ ;;=^5009281
+ ;;^UTILITY(U,$J,358.3,24857,0)
+ ;;=M46.90^^85^1093^17
+ ;;^UTILITY(U,$J,358.3,24857,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,24549,1,3,0)
- ;;=3^Irritable Bowel Syndrome w/ Diarrhea
- ;;^UTILITY(U,$J,358.3,24549,1,4,0)
- ;;=4^K58.0
- ;;^UTILITY(U,$J,358.3,24549,2)
- ;;=^5008739
- ;;^UTILITY(U,$J,358.3,24550,0)
- ;;=K59.1^^107^1207^37
- ;;^UTILITY(U,$J,358.3,24550,1,0)
+ ;;^UTILITY(U,$J,358.3,24857,1,3,0)
+ ;;=3^Spondylopathy Inflammatory,Site Unspec
+ ;;^UTILITY(U,$J,358.3,24857,1,4,0)
+ ;;=4^M46.90
+ ;;^UTILITY(U,$J,358.3,24857,2)
+ ;;=^5012030
+ ;;^UTILITY(U,$J,358.3,24858,0)
+ ;;=M47.819^^85^1093^18
+ ;;^UTILITY(U,$J,358.3,24858,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,24550,1,3,0)
- ;;=3^Diarrhea,Functional
- ;;^UTILITY(U,$J,358.3,24550,1,4,0)
- ;;=4^K59.1
- ;;^UTILITY(U,$J,358.3,24550,2)
- ;;=^270281
- ;;^UTILITY(U,$J,358.3,24551,0)
- ;;=K61.4^^107^1207^4
- ;;^UTILITY(U,$J,358.3,24551,1,0)
+ ;;^UTILITY(U,$J,358.3,24858,1,3,0)
+ ;;=3^Spondylosis w/o Myelopathy/Radiculopathy,Site Unspec
+ ;;^UTILITY(U,$J,358.3,24858,1,4,0)
+ ;;=4^M47.819
+ ;;^UTILITY(U,$J,358.3,24858,2)
+ ;;=^5012076
+ ;;^UTILITY(U,$J,358.3,24859,0)
+ ;;=R55.^^85^1093^22
+ ;;^UTILITY(U,$J,358.3,24859,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,24551,1,3,0)
- ;;=3^Abscess,Intrasphincteric
- ;;^UTILITY(U,$J,358.3,24551,1,4,0)
- ;;=4^K61.4
- ;;^UTILITY(U,$J,358.3,24551,2)
- ;;=^5008752
- ;;^UTILITY(U,$J,358.3,24552,0)
- ;;=K61.0^^107^1207^2
- ;;^UTILITY(U,$J,358.3,24552,1,0)
+ ;;^UTILITY(U,$J,358.3,24859,1,3,0)
+ ;;=3^Syncope and Collapse
+ ;;^UTILITY(U,$J,358.3,24859,1,4,0)
+ ;;=4^R55.
+ ;;^UTILITY(U,$J,358.3,24859,2)
+ ;;=^116707
+ ;;^UTILITY(U,$J,358.3,24860,0)
+ ;;=G47.9^^85^1093^13
+ ;;^UTILITY(U,$J,358.3,24860,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,24552,1,3,0)
- ;;=3^Abscess,Anal
- ;;^UTILITY(U,$J,358.3,24552,1,4,0)
- ;;=4^K61.0
- ;;^UTILITY(U,$J,358.3,24552,2)
- ;;=^5008749
- ;;^UTILITY(U,$J,358.3,24553,0)
- ;;=K61.1^^107^1207^6
- ;;^UTILITY(U,$J,358.3,24553,1,0)
+ ;;^UTILITY(U,$J,358.3,24860,1,3,0)
+ ;;=3^Sleep Disorder,Unspec
+ ;;^UTILITY(U,$J,358.3,24860,1,4,0)
+ ;;=4^G47.9
+ ;;^UTILITY(U,$J,358.3,24860,2)
+ ;;=^5003990
+ ;;^UTILITY(U,$J,358.3,24861,0)
+ ;;=G47.30^^85^1093^12
+ ;;^UTILITY(U,$J,358.3,24861,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,24553,1,3,0)
- ;;=3^Abscess,Rectal
- ;;^UTILITY(U,$J,358.3,24553,1,4,0)
- ;;=4^K61.1
- ;;^UTILITY(U,$J,358.3,24553,2)
- ;;=^259588
- ;;^UTILITY(U,$J,358.3,24554,0)
- ;;=K61.2^^107^1207^3
- ;;^UTILITY(U,$J,358.3,24554,1,0)
+ ;;^UTILITY(U,$J,358.3,24861,1,3,0)
+ ;;=3^Sleep Apnea,Unspec
+ ;;^UTILITY(U,$J,358.3,24861,1,4,0)
+ ;;=4^G47.30
+ ;;^UTILITY(U,$J,358.3,24861,2)
+ ;;=^5003977
+ ;;^UTILITY(U,$J,358.3,24862,0)
+ ;;=R06.02^^85^1093^7
+ ;;^UTILITY(U,$J,358.3,24862,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,24554,1,3,0)
- ;;=3^Abscess,Anorectal
- ;;^UTILITY(U,$J,358.3,24554,1,4,0)
- ;;=4^K61.2
- ;;^UTILITY(U,$J,358.3,24554,2)
- ;;=^5008750
- ;;^UTILITY(U,$J,358.3,24555,0)
- ;;=K50.014^^107^1207^24
- ;;^UTILITY(U,$J,358.3,24555,1,0)
+ ;;^UTILITY(U,$J,358.3,24862,1,3,0)
+ ;;=3^Shortness of Breath
+ ;;^UTILITY(U,$J,358.3,24862,1,4,0)
+ ;;=4^R06.02
+ ;;^UTILITY(U,$J,358.3,24862,2)
+ ;;=^5019181
+ ;;^UTILITY(U,$J,358.3,24863,0)
+ ;;=M48.061^^85^1093^15
+ ;;^UTILITY(U,$J,358.3,24863,1,0)
  ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,24863,1,3,0)
+ ;;=3^Spinal Stenosis,Lumbar Region
+ ;;^UTILITY(U,$J,358.3,24863,1,4,0)
+ ;;=4^M48.061
+ ;;^UTILITY(U,$J,358.3,24863,2)
+ ;;=^5151513

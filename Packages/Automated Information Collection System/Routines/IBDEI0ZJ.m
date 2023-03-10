@@ -1,132 +1,122 @@
-IBDEI0ZJ ; ; 04-FEB-2020
- ;;3.0;IB ENCOUNTER FORM IMP/EXP;;FEB 04, 2020
+IBDEI0ZJ ; ; 01-FEB-2022
+ ;;3.0;IB ENCOUNTER FORM IMP/EXP;;FEB 01, 2022
  Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,999) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
- ;;^UTILITY(U,$J,358.3,15851,2)
- ;;=^5009107
- ;;^UTILITY(U,$J,358.3,15852,0)
- ;;=L20.81^^88^869^88
- ;;^UTILITY(U,$J,358.3,15852,1,0)
+ ;;^UTILITY(U,$J,358.3,16034,1,3,0)
+ ;;=3^Athscl of Bypass Graft of Right Leg w/ Heel/Midfoot Ulcer
+ ;;^UTILITY(U,$J,358.3,16034,1,4,0)
+ ;;=4^I70.734
+ ;;^UTILITY(U,$J,358.3,16034,2)
+ ;;=^5007772
+ ;;^UTILITY(U,$J,358.3,16035,0)
+ ;;=I70.735^^61^765^85
+ ;;^UTILITY(U,$J,358.3,16035,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,15852,1,3,0)
- ;;=3^Atopic Neurodermatitis
- ;;^UTILITY(U,$J,358.3,15852,1,4,0)
- ;;=4^L20.81
- ;;^UTILITY(U,$J,358.3,15852,2)
- ;;=^5009108
- ;;^UTILITY(U,$J,358.3,15853,0)
- ;;=L20.82^^88^869^153
- ;;^UTILITY(U,$J,358.3,15853,1,0)
+ ;;^UTILITY(U,$J,358.3,16035,1,3,0)
+ ;;=3^Athscl of Bypass Graft of Right Leg w/ Oth Part Foot Ulcer
+ ;;^UTILITY(U,$J,358.3,16035,1,4,0)
+ ;;=4^I70.735
+ ;;^UTILITY(U,$J,358.3,16035,2)
+ ;;=^5007773
+ ;;^UTILITY(U,$J,358.3,16036,0)
+ ;;=I70.741^^61^765^80
+ ;;^UTILITY(U,$J,358.3,16036,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,15853,1,3,0)
- ;;=3^Flexural Eczema
- ;;^UTILITY(U,$J,358.3,15853,1,4,0)
- ;;=4^L20.82
- ;;^UTILITY(U,$J,358.3,15853,2)
- ;;=^5009109
- ;;^UTILITY(U,$J,358.3,15854,0)
- ;;=L20.84^^88^869^165
- ;;^UTILITY(U,$J,358.3,15854,1,0)
+ ;;^UTILITY(U,$J,358.3,16036,1,3,0)
+ ;;=3^Athscl of Bypass Graft of Left Leg w/ Thigh Ulcer
+ ;;^UTILITY(U,$J,358.3,16036,1,4,0)
+ ;;=4^I70.741
+ ;;^UTILITY(U,$J,358.3,16036,2)
+ ;;=^5133601
+ ;;^UTILITY(U,$J,358.3,16037,0)
+ ;;=I70.742^^61^765^77
+ ;;^UTILITY(U,$J,358.3,16037,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,15854,1,3,0)
- ;;=3^Intrinsic Eczema
- ;;^UTILITY(U,$J,358.3,15854,1,4,0)
- ;;=4^L20.84
- ;;^UTILITY(U,$J,358.3,15854,2)
- ;;=^5009111
- ;;^UTILITY(U,$J,358.3,15855,0)
- ;;=L20.89^^88^869^86
- ;;^UTILITY(U,$J,358.3,15855,1,0)
+ ;;^UTILITY(U,$J,358.3,16037,1,3,0)
+ ;;=3^Athscl of Bypass Graft of Left Leg w/ Calf Ulcer
+ ;;^UTILITY(U,$J,358.3,16037,1,4,0)
+ ;;=4^I70.742
+ ;;^UTILITY(U,$J,358.3,16037,2)
+ ;;=^5133602
+ ;;^UTILITY(U,$J,358.3,16038,0)
+ ;;=I70.743^^61^765^76
+ ;;^UTILITY(U,$J,358.3,16038,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,15855,1,3,0)
- ;;=3^Atopic Dermatitis NEC
- ;;^UTILITY(U,$J,358.3,15855,1,4,0)
- ;;=4^L20.89
- ;;^UTILITY(U,$J,358.3,15855,2)
- ;;=^5009112
- ;;^UTILITY(U,$J,358.3,15856,0)
- ;;=L20.9^^88^869^87
- ;;^UTILITY(U,$J,358.3,15856,1,0)
+ ;;^UTILITY(U,$J,358.3,16038,1,3,0)
+ ;;=3^Athscl of Bypass Graft of Left Leg w/ Ankle Ulcer
+ ;;^UTILITY(U,$J,358.3,16038,1,4,0)
+ ;;=4^I70.743
+ ;;^UTILITY(U,$J,358.3,16038,2)
+ ;;=^5133603
+ ;;^UTILITY(U,$J,358.3,16039,0)
+ ;;=I70.744^^61^765^78
+ ;;^UTILITY(U,$J,358.3,16039,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,15856,1,3,0)
- ;;=3^Atopic Dermatitis,Unspec
- ;;^UTILITY(U,$J,358.3,15856,1,4,0)
- ;;=4^L20.9
- ;;^UTILITY(U,$J,358.3,15856,2)
- ;;=^5009113
- ;;^UTILITY(U,$J,358.3,15857,0)
- ;;=L21.8^^88^869^302
- ;;^UTILITY(U,$J,358.3,15857,1,0)
+ ;;^UTILITY(U,$J,358.3,16039,1,3,0)
+ ;;=3^Athscl of Bypass Graft of Left Leg w/ Heel/Midfoot Ulcer
+ ;;^UTILITY(U,$J,358.3,16039,1,4,0)
+ ;;=4^I70.744
+ ;;^UTILITY(U,$J,358.3,16039,2)
+ ;;=^5133604
+ ;;^UTILITY(U,$J,358.3,16040,0)
+ ;;=I70.745^^61^765^79
+ ;;^UTILITY(U,$J,358.3,16040,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,15857,1,3,0)
- ;;=3^Seborrheic Dermatitis NEC
- ;;^UTILITY(U,$J,358.3,15857,1,4,0)
- ;;=4^L21.8
- ;;^UTILITY(U,$J,358.3,15857,2)
- ;;=^303310
- ;;^UTILITY(U,$J,358.3,15858,0)
- ;;=L21.9^^88^869^303
- ;;^UTILITY(U,$J,358.3,15858,1,0)
+ ;;^UTILITY(U,$J,358.3,16040,1,3,0)
+ ;;=3^Athscl of Bypass Graft of Left Leg w/ Oth Part Foot Ulcer
+ ;;^UTILITY(U,$J,358.3,16040,1,4,0)
+ ;;=4^I70.745
+ ;;^UTILITY(U,$J,358.3,16040,2)
+ ;;=^5133605
+ ;;^UTILITY(U,$J,358.3,16041,0)
+ ;;=I83.009^^61^765^327
+ ;;^UTILITY(U,$J,358.3,16041,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,15858,1,3,0)
- ;;=3^Seborrheic Dermatitis,Unspec
- ;;^UTILITY(U,$J,358.3,15858,1,4,0)
- ;;=4^L21.9
- ;;^UTILITY(U,$J,358.3,15858,2)
- ;;=^188703
- ;;^UTILITY(U,$J,358.3,15859,0)
- ;;=L23.7^^88^869^31
- ;;^UTILITY(U,$J,358.3,15859,1,0)
+ ;;^UTILITY(U,$J,358.3,16041,1,3,0)
+ ;;=3^Varicose Veins of Lower Extremity w/ Ulcer
+ ;;^UTILITY(U,$J,358.3,16041,1,4,0)
+ ;;=4^I83.009
+ ;;^UTILITY(U,$J,358.3,16041,2)
+ ;;=^5007972
+ ;;^UTILITY(U,$J,358.3,16042,0)
+ ;;=N61.1^^61^765^1
+ ;;^UTILITY(U,$J,358.3,16042,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,15859,1,3,0)
- ;;=3^Allergic Contact Dermatitis d/t Plants
- ;;^UTILITY(U,$J,358.3,15859,1,4,0)
- ;;=4^L23.7
- ;;^UTILITY(U,$J,358.3,15859,2)
- ;;=^5009122
- ;;^UTILITY(U,$J,358.3,15860,0)
- ;;=L23.9^^88^869^32
- ;;^UTILITY(U,$J,358.3,15860,1,0)
+ ;;^UTILITY(U,$J,358.3,16042,1,3,0)
+ ;;=3^Abscess of Breast & Nipple
+ ;;^UTILITY(U,$J,358.3,16042,1,4,0)
+ ;;=4^N61.1
+ ;;^UTILITY(U,$J,358.3,16042,2)
+ ;;=^5138937
+ ;;^UTILITY(U,$J,358.3,16043,0)
+ ;;=L03.213^^61^765^96
+ ;;^UTILITY(U,$J,358.3,16043,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,15860,1,3,0)
- ;;=3^Allergic Contact Dermatitis,Unspec
- ;;^UTILITY(U,$J,358.3,15860,1,4,0)
- ;;=4^L23.9
- ;;^UTILITY(U,$J,358.3,15860,2)
- ;;=^5009125
- ;;^UTILITY(U,$J,358.3,15861,0)
- ;;=L24.9^^88^869^166
- ;;^UTILITY(U,$J,358.3,15861,1,0)
+ ;;^UTILITY(U,$J,358.3,16043,1,3,0)
+ ;;=3^Cellulitis Periorbital
+ ;;^UTILITY(U,$J,358.3,16043,1,4,0)
+ ;;=4^L03.213
+ ;;^UTILITY(U,$J,358.3,16043,2)
+ ;;=^259555
+ ;;^UTILITY(U,$J,358.3,16044,0)
+ ;;=L90.0^^61^765^170
+ ;;^UTILITY(U,$J,358.3,16044,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,15861,1,3,0)
- ;;=3^Irritant Contact Dermatitis,Unspec
- ;;^UTILITY(U,$J,358.3,15861,1,4,0)
- ;;=4^L24.9
- ;;^UTILITY(U,$J,358.3,15861,2)
- ;;=^5009136
- ;;^UTILITY(U,$J,358.3,15862,0)
- ;;=L25.9^^88^869^117
- ;;^UTILITY(U,$J,358.3,15862,1,0)
+ ;;^UTILITY(U,$J,358.3,16044,1,3,0)
+ ;;=3^Lichen Sclerosus et Atrophicus
+ ;;^UTILITY(U,$J,358.3,16044,1,4,0)
+ ;;=4^L90.0
+ ;;^UTILITY(U,$J,358.3,16044,2)
+ ;;=^70699
+ ;;^UTILITY(U,$J,358.3,16045,0)
+ ;;=N63.20^^61^765^172
+ ;;^UTILITY(U,$J,358.3,16045,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,15862,1,3,0)
- ;;=3^Contact Dermatitis,Unspec
- ;;^UTILITY(U,$J,358.3,15862,1,4,0)
- ;;=4^L25.9
- ;;^UTILITY(U,$J,358.3,15862,2)
- ;;=^5133647
- ;;^UTILITY(U,$J,358.3,15863,0)
- ;;=L26.^^88^869^151
- ;;^UTILITY(U,$J,358.3,15863,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,15863,1,3,0)
- ;;=3^Exfoliative Dermatitis
- ;;^UTILITY(U,$J,358.3,15863,1,4,0)
- ;;=4^L26.
- ;;^UTILITY(U,$J,358.3,15863,2)
- ;;=^263886
- ;;^UTILITY(U,$J,358.3,15864,0)
- ;;=L27.0^^88^869^305
- ;;^UTILITY(U,$J,358.3,15864,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,15864,1,3,0)
- ;;=3^Skin Eruption d/t Drugs/Meds,Generalized
+ ;;^UTILITY(U,$J,358.3,16045,1,3,0)
+ ;;=3^Lump,Left Breast,Unspec Quadrant
+ ;;^UTILITY(U,$J,358.3,16045,1,4,0)
+ ;;=4^N63.20
+ ;;^UTILITY(U,$J,358.3,16045,2)
+ ;;=^5151524
+ ;;^UTILITY(U,$J,358.3,16046,0)
+ ;;=N63.10^^61^765^173

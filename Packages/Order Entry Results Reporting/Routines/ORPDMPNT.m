@@ -1,0 +1,209 @@
+ORPDMPNT ;ISP/LMT - PDMP Note Code ;Dec 06, 2021@15:41
+ ;;3.0;ORDER ENTRY/RESULTS REPORTING;**519,498,405**;Dec 17, 1997;Build 211
+ ;
+ ; This routine uses the following ICRs:
+ ;   4476 - File 8925.1, Field .01, .07   (private)
+ ;   4478 - File 8925.1, Field .04        (private)
+ ;   3375 - MAKE^TIUSRVP                  (controlled)
+ ;   3062 - MAIN^TIULAPIS                 (controlled)
+ ;
+ Q
+ ;
+ ; Create the PDMP note
+MAKENOTE(ORRETURN,ORINPUTTXT,ORVDT,ORVLOC,ORVSTR,DFN,ORUSER,ORCOSIGNER,ORERROR,ORERRMSG,ORLOGIENS,ORSHARED) ;
+ ;
+ ; Returns:
+ ;   If successfully created note:
+ ;     ORRETURN = Note IEN ^ Change Log ^ Date/Time
+ ;
+ ;   If there was an error:
+ ;     ORRETURN = -1 ^ Error Message
+ ;
+ N ORCHANGE,ORCNT,ORDATETIME,ORLCNT,ORNOASF,ORNOTETXT,ORTITLE,ORTIUX
+ ;
+ S ORTITLE=$$GETNOTE
+ I ORTITLE="" S ORRETURN="-1^Cannot find PDMP note title." Q
+ I '$G(DFN) S ORRETURN="-1^DFN is required." Q
+ ;
+ S ORUSER=$G(ORUSER,DUZ)
+ S ORCOSIGNER=$G(ORCOSIGNER)
+ S ORVDT=$G(ORVDT)
+ S ORVLOC=$G(ORVLOC)
+ S ORVSTR=$G(ORVSTR)
+ I 'ORVDT,'ORVLOC,'ORVSTR S ORRETURN="-1^Visit info is required." Q
+ I 'ORVLOC S ORVLOC=$P(ORVSTR,";",1)
+ I 'ORVDT S ORVDT=$P(ORVSTR,";",2)
+ S ORERROR=$G(ORERROR)
+ S ORSHARED=$G(ORSHARED,0)
+ ;
+ I 'ORSHARED,ORLOGIENS'="" D
+ . S ORSHARED=+$P($G(^ORD(101.62,+$P(ORLOGIENS,",",2),1,+ORLOGIENS,0)),U,5)
+ ;
+ S ORDATETIME=$$NOW^XLFDT
+ S ORNOASF=1
+ S ORTIUX(1201)=ORDATETIME ; entry date and time
+ S ORTIUX(1202)=ORUSER ; author
+ S ORTIUX(1204)=ORUSER ;expected signer
+ S ORTIUX(1208)=ORCOSIGNER ; expected signer
+ S ORTIUX(1301)=ORDATETIME ; reference date/time (this can be something other than NOW)
+ ;
+ D BLDTEXT(.ORNOTETXT,.ORINPUTTXT,ORERROR,.ORERRMSG,ORUSER,ORCOSIGNER,ORSHARED)
+ S ORCNT=0
+ S ORLCNT=0
+ F  S ORCNT=$O(ORNOTETXT(ORCNT)) Q:ORCNT'>0  D
+ . S ORLCNT=ORLCNT+1
+ . S ORTIUX("TEXT",ORLCNT,0)=$G(ORNOTETXT(ORCNT))
+ ;
+ D MAKE^TIUSRVP(.ORRETURN,DFN,ORTITLE,ORVDT,ORVLOC,0,.ORTIUX,ORVSTR,"",ORNOASF)  ; ICR 3375
+ I ORRETURN>0 D
+ . S ORCHANGE=$P($$FMTE^XLFDT(ORVDT,2),"@")
+ . S ORCHANGE=ORCHANGE_" "_$P(^TIU(8925.1,+ORTITLE,0),U)_", "_$P($G(^SC(+ORVLOC,0)),U)_" "_$$TITLE^XLFSTR($P(^VA(200,ORUSER,0),U))  ; ICRs 4476, 10040, 10060
+ . S ORRETURN=ORRETURN_U_ORCHANGE_U_ORDATETIME
+ . I $G(ORLOGIENS)'="" D UPDATELOG^ORPDMP(ORLOGIENS,"","","","","","",+ORRETURN)
+ ;
+ Q
+ ;
+ ; Return the PDMP note title IEN
+GETNOTE() ;
+ ;
+ N ORTITLE
+ ;
+ S ORTITLE=$$GET^XPAR("ALL","OR PDMP NOTE TITLE",1,"I")
+ I ORTITLE'>0 Q ""
+ ;Request needed for ICR 2321
+ I $P($G(^TIU(8925.1,+ORTITLE,0)),U,4)'="DOC" Q ""  ; ICR 4478
+ I +$$GET1^DIQ(8925.1,ORTITLE,.07,"I")'=11 Q ""  ; ICR 4476
+ ;
+ Q ORTITLE
+ ;
+ ; Build the note text
+BLDTEXT(ORNOTETXT,ORINPUTTXT,ORERROR,ORERRMSG,ORUSER,ORCOSIGNER,ORSHARED) ;
+ ;
+ N DIWF,DIWL,DIWR,ORAUTHUSER,ORI,ORLINE,ORNAME,ORNAMEC,ORTXT,X
+ ;
+ S ORAUTHUSER=$$ISAUTH^ORPDMP(ORUSER)
+ ;
+ S ORLINE=0
+ ;
+ ; Add who submitted the query.
+ S ORNAME=$$NAME^XUSER(ORUSER,"F")
+ I ORAUTHUSER S ORTXT="This PDMP query was submitted by "_ORNAME_"."
+ I 'ORAUTHUSER,ORCOSIGNER D
+ . S ORNAMEC=$$NAME^XUSER(ORCOSIGNER,"F")
+ . S ORTXT="This PDMP query was submitted by "_ORNAME_" on behalf of "_ORNAMEC_"."
+ ; Format line for 80-char
+ K ^UTILITY($J,"W")
+ S DIWL=1
+ S DIWR=80
+ S X=$G(ORTXT)
+ D ^DIWP
+ S ORI=0
+ F  S ORI=$O(^UTILITY($J,"W",1,ORI)) Q:'ORI  D
+ . S ORTXT=$G(^UTILITY($J,"W",1,ORI,0))
+ . I ORTXT="" Q
+ . S ORLINE=ORLINE+1
+ . S ORNOTETXT(ORLINE)=ORTXT
+ K ^UTILITY($J,"W")
+ ;
+ ; Add Justification/Reason text to note
+ D GETTXT(.ORNOTETXT,.ORLINE,"R",1)
+ ;
+ ; Add Disclosure text to note
+ I ORSHARED D
+ . D GETTXT(.ORNOTETXT,.ORLINE,"D",1)
+ ;
+ ; Add Delegate Canned Statement to Note
+ I 'ORAUTHUSER,'ORERROR D
+ . D GETTXT(.ORNOTETXT,.ORLINE,"CD",1)
+ ;
+ I $O(ORINPUTTXT(0)),'ORERROR D
+ . S ORLINE=ORLINE+1
+ . S ORNOTETXT(ORLINE)=""
+ . S ORI=0
+ . F  S ORI=$O(ORINPUTTXT(ORI)) Q:'ORI  D
+ . . S ORLINE=ORLINE+1
+ . . S ORNOTETXT(ORLINE)=ORINPUTTXT(ORI)
+ ;
+ ; If error, add error text to note
+ I ORERROR D
+ . D GETTXT(.ORNOTETXT,.ORLINE,"E",1)
+ . I $D(ORERRMSG) D
+ . . S ORI=0
+ . . F  S ORI=$O(ORERRMSG(ORI)) Q:'ORI  D
+ . . . S ORLINE=ORLINE+1
+ . . . S ORNOTETXT(ORLINE)=$G(ORERRMSG(ORI))
+ ;
+ Q
+ ;
+ ; Get canned text from OR PDMP NOTE TEXT parameter
+GETTXT(ORNOTETXT,ORLINE,ORTYPE,ORADDLINE)  ;
+ ;
+ N ORI,ORARR,ORERR
+ ;
+ D GETWP^XPAR(.ORARR,"ALL","OR PDMP NOTE TEXT",ORTYPE,.ORERR)
+ ;
+ I '$D(ORARR) Q
+ ;
+ I $G(ORADDLINE)>0 D
+ . F ORI=1:1:ORADDLINE D
+ . . S ORLINE=ORLINE+1
+ . . S ORNOTETXT(ORLINE)=""
+ ;
+ S ORI=0
+ F  S ORI=$O(ORARR(ORI)) Q:'ORI  D
+ . S ORLINE=ORLINE+1
+ . S ORNOTETXT(ORLINE)=ORARR(ORI,0)
+ ;
+ Q
+ ;
+ ; Get the most recent date a PDMP note was completed for a patient
+RECNTNOTE(ORRETURN,DFN) ;
+ ;
+ N ORDATE,ORDOC,ORSTATUS
+ ;
+ S ORSTATUS="COMPLETED"
+ S ORDOC(1)=$$GETNOTE
+ K ^TMP("TIU",$J)
+ D MAIN^TIULAPIS(DFN,.ORDOC,.ORSTATUS,,,1,0)  ; ICR 3062
+ S ORDATE=$O(^TMP("TIU",$J,0))
+ I ORDATE S ORDATE=9999999-ORDATE
+ K ^TMP("TIU",$J)
+ S ORRETURN=ORDATE
+ ;
+ Q
+ ;
+ ; If note was deleted, retracted, or reassigned delete the pointer to the Note from the PDMP Query Log
+DOCACT ; Queue processor for TIU DOCUMENT ACTION
+ ;
+ N ORACT,ORDOC,ORIEN,ORIEN1,ORLOGIENS,ORSUB
+ ;
+ S ORSUB="TIUDOCACT"
+ Q:'$D(^TMP(ORSUB,$J))
+ ;
+ N $ET,$ES
+ S $ET="D UNEXPERR^ORPDMPNT"
+ ;
+ S ORACT=$G(^TMP(ORSUB,$J,"ACTION"))
+ S ORACT=$S(ORACT="DELETE":"D",ORACT="RETRACT":"R",ORACT="REASSIGN":"A",1:"")
+ I ORACT="" Q
+ I ORACT'="A" S ORDOC=+$G(^TMP(ORSUB,$J,"DOCUMENT"))
+ I ORACT="A" S ORDOC=+$G(^TMP(ORSUB,$J,"DOCUMENT","OLD"))
+ I '$G(ORDOC) Q
+ ;
+ S ORIEN=0
+ F  S ORIEN=$O(^ORD(101.62,"AT",ORDOC,ORIEN)) Q:'ORIEN  D
+ . S ORIEN1=0
+ . F  S ORIEN1=$O(^ORD(101.62,"AT",ORDOC,ORIEN,ORIEN1)) Q:'ORIEN1  D
+ . . S ORLOGIENS=ORIEN1_","_ORIEN_","
+ . . D UPDATELOG^ORPDMP(ORLOGIENS,"","","","","","","@",ORACT)
+ ;
+ Q
+ ;
+ ; Unexpected error handler during DOACT
+UNEXPERR ;
+ ;ZEXCEPT: ORSUB
+ N %ZT,%ZTERROR
+ S %ZT($NA(^TMP(ORSUB,$J)))=""
+ D ^%ZTER ;file error
+ S $ECODE=""
+ Q

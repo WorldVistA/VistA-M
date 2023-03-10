@@ -1,5 +1,5 @@
 RCDPEV ;ALB/TMK - EDI LOCKBOX WORKLIST VERIFY PAYMENTS ;Sep 15, 2014@14:36:22
- ;;4.5;Accounts Receivable;**208,138,298**;Mar 20, 1995;Build 121
+ ;;4.5;Accounts Receivable;**208,138,298,345**;Mar 20, 1995;Build 34
  ;Per VA Directive 6402, this routine should not be modified.
  Q
  ;
@@ -47,7 +47,8 @@ VER(RCSCR,RCBILL,RCREF,F1) ; Run verif for WL entry RCSCR in file 344.49
  S X=$P(RC430,U,3)+$P(RC43013,U)+$P(RC43013,U,2) ; Amount billed from VistA (including MRA totals)
  S X1=$P(RC36112,U,4) ; from EEOB
  I $G(F1),+X=+X1 S $P(RESULT,U,4)=X,$P(RESULT,U,5)=X1
- I +X'=+X1 S $P(RESULT,U)=0,$P(RESULT,U,4)=SETF1_X,$P(RESULT,U,5)=SETF1_X1
+ ; I +X'=+X1 S $P(RESULT,U)=0,$P(RESULT,U,4)=SETF1_X,$P(RESULT,U,5)=SETF1_X1
+ I +X'=+X1 S $P(RESULT,U,4)=SETF1_X,$P(RESULT,U,5)=SETF1_X1 ; PRCA*4.5*345 - Allow line to verify even if billed amount does not match
  ;
  S X=$P($G(^DGCR(399,+RCBILL,"U")),U) ; Date of service from VistA
  S X2=$P($G(^DGCR(399,+RCBILL,"U")),U,2)

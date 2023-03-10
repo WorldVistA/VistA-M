@@ -1,5 +1,5 @@
 RORUPD08 ;HCIOFO/SG - PROCESSING OF 'VISIT' & 'V POV' FILES ;10/27/05 11:08am
- ;;1.5;CLINICAL CASE REGISTRIES;**19**;Feb 17, 2006;Build 43
+ ;;1.5;CLINICAL CASE REGISTRIES;**19,37**;Feb 17, 2006;Build 9
  ;
  ; This routine uses the following IAs:
  ;
@@ -16,6 +16,7 @@ RORUPD08 ;HCIOFO/SG - PROCESSING OF 'VISIT' & 'V POV' FILES ;10/27/05 11:08am
  ;PKG/PATCH    DATE        DEVELOPER    MODIFICATION
  ;-----------  ----------  -----------  ----------------------------------------
  ;ROR*1.5*19   FEB  2012   K GUPTA      Support for ICD-10 Coding System
+ ;ROR*1.5*37   SEP  2020   F TRAXLER    Added ALLPAT subroutine
  ;******************************************************************************
  ;******************************************************************************
  ;
@@ -170,3 +171,11 @@ VPOV(VISITIEN,DATE,LOCATION) ;
  ;
  D CLRDES^RORUPDUT(RORFILE)
  Q RC
+ ;
+ALLPAT(REGIEN) ;Is Visit/Admit Date/Time (#.01) less than 2 years old
+ N RC,ROR2YRS
+ S RC=0,ROR2YRS=DT-20000
+ I $D(RORVALS("DV",9000010,155,"I")) D
+ . I RORVALS("DV",9000010,155,"I")>ROR2YRS S RC=1
+ Q RC
+ ;

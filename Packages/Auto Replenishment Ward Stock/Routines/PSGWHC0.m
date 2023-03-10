@@ -1,5 +1,5 @@
 PSGWHC0 ;BHAM ISC/PTD,CML-High Cost for Selected Date Range (Single AOU or Cumulative) - CONTINUED ; 19 Mar 93 / 8:30 AM
- ;;2.3; Automatic Replenishment/Ward Stock ;;4 JAN 94
+ ;;2.3;Automatic Replenishment/Ward Stock ;**21**;4 JAN 94;Build 6
 ENQ ;ENTRY POINT WHEN QUEUED
  K ^TMP("PSGWHC",$J) S INVN=0
  F J=0:0 S INVN=$O(^PSI(58.19,INVN)) Q:'INVN  S INVDT=$P($P(^PSI(58.19,INVN,0),"^"),".") I (INVDT'<BDT)&(INVDT'>EDT) S ^TMP("PSGWHC",$J,"INV",INVN)=""
@@ -33,7 +33,10 @@ CHKDTA ;DETERMINE TOTAL COST FOR SELECTED DRUG
  E  S INC=1
  I $D(LOC1),($P(LOC1,"^",6)="") S INC=1
  I $D(LOC2),($P(LOC2,"^",3)="") S INC=1
-COST I INC=0 S DRGCST=DRGQD*($P(LOC1,"^",6))
+ ; PSGW*2.3*21 - USE AR/WS AMIS CONVERSION NUMBER
+ S PSGWCNM=$S($P($G(LOC2),"^",3)="":1,1:$P(LOC2,"^",3))
+ ;
+COST I INC=0 S DRGCST=DRGQD*($P(LOC1,"^",6))*PSGWCNM
  E  S DRGCST="NO DATA"
 SETGL S ^TMP("PSGWHC",$J,DRGNM,AOU)=DRGQD_"^"_DRGCST G DRGLP
  ;

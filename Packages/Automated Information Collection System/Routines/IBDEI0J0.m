@@ -1,134 +1,126 @@
-IBDEI0J0 ; ; 04-FEB-2020
- ;;3.0;IB ENCOUNTER FORM IMP/EXP;;FEB 04, 2020
+IBDEI0J0 ; ; 01-FEB-2022
+ ;;3.0;IB ENCOUNTER FORM IMP/EXP;;FEB 01, 2022
  Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,999) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
- ;;^UTILITY(U,$J,358.3,8304,0)
- ;;=L68.0^^65^529^2
- ;;^UTILITY(U,$J,358.3,8304,1,0)
+ ;;^UTILITY(U,$J,358.3,8552,1,4,0)
+ ;;=4^C82.30
+ ;;^UTILITY(U,$J,358.3,8552,2)
+ ;;=^5001491
+ ;;^UTILITY(U,$J,358.3,8553,0)
+ ;;=C82.49^^39^401^77
+ ;;^UTILITY(U,$J,358.3,8553,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,8304,1,3,0)
- ;;=3^Hirsutism
- ;;^UTILITY(U,$J,358.3,8304,1,4,0)
- ;;=4^L68.0
- ;;^UTILITY(U,$J,358.3,8304,2)
- ;;=^5009262
- ;;^UTILITY(U,$J,358.3,8305,0)
- ;;=L68.9^^65^529^5
- ;;^UTILITY(U,$J,358.3,8305,1,0)
+ ;;^UTILITY(U,$J,358.3,8553,1,3,0)
+ ;;=3^Follicular Lymphoma Grade IIIb,Extranodal/Solid Organ Sites
+ ;;^UTILITY(U,$J,358.3,8553,1,4,0)
+ ;;=4^C82.49
+ ;;^UTILITY(U,$J,358.3,8553,2)
+ ;;=^5001510
+ ;;^UTILITY(U,$J,358.3,8554,0)
+ ;;=C82.40^^39^401^78
+ ;;^UTILITY(U,$J,358.3,8554,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,8305,1,3,0)
- ;;=3^Hypertrichosis,Unspec
- ;;^UTILITY(U,$J,358.3,8305,1,4,0)
- ;;=4^L68.9
- ;;^UTILITY(U,$J,358.3,8305,2)
- ;;=^5009267
- ;;^UTILITY(U,$J,358.3,8306,0)
- ;;=L74.510^^65^529^3
- ;;^UTILITY(U,$J,358.3,8306,1,0)
+ ;;^UTILITY(U,$J,358.3,8554,1,3,0)
+ ;;=3^Follicular Lymphoma Grade IIIb,Unspec Site
+ ;;^UTILITY(U,$J,358.3,8554,1,4,0)
+ ;;=4^C82.40
+ ;;^UTILITY(U,$J,358.3,8554,2)
+ ;;=^5001501
+ ;;^UTILITY(U,$J,358.3,8555,0)
+ ;;=C82.99^^39^401^79
+ ;;^UTILITY(U,$J,358.3,8555,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,8306,1,3,0)
- ;;=3^Hyperhidrosis,Primary,Focal,Axilla
- ;;^UTILITY(U,$J,358.3,8306,1,4,0)
- ;;=4^L74.510
- ;;^UTILITY(U,$J,358.3,8306,2)
- ;;=^5009290
- ;;^UTILITY(U,$J,358.3,8307,0)
- ;;=L81.4^^65^529^4
- ;;^UTILITY(U,$J,358.3,8307,1,0)
+ ;;^UTILITY(U,$J,358.3,8555,1,3,0)
+ ;;=3^Follicular Lymphoma Unspec,Extranodal/Solid Organ Sites
+ ;;^UTILITY(U,$J,358.3,8555,1,4,0)
+ ;;=4^C82.99
+ ;;^UTILITY(U,$J,358.3,8555,2)
+ ;;=^5001550
+ ;;^UTILITY(U,$J,358.3,8556,0)
+ ;;=C82.90^^39^401^80
+ ;;^UTILITY(U,$J,358.3,8556,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,8307,1,3,0)
- ;;=3^Hyperpigmentation,Other
- ;;^UTILITY(U,$J,358.3,8307,1,4,0)
- ;;=4^L81.4
- ;;^UTILITY(U,$J,358.3,8307,2)
- ;;=^5009314
- ;;^UTILITY(U,$J,358.3,8308,0)
- ;;=L90.0^^65^530^14
- ;;^UTILITY(U,$J,358.3,8308,1,0)
+ ;;^UTILITY(U,$J,358.3,8556,1,3,0)
+ ;;=3^Follicular Lymphoma Unspec,Unspec Site
+ ;;^UTILITY(U,$J,358.3,8556,1,4,0)
+ ;;=4^C82.90
+ ;;^UTILITY(U,$J,358.3,8556,2)
+ ;;=^5001541
+ ;;^UTILITY(U,$J,358.3,8557,0)
+ ;;=R59.1^^39^401^65
+ ;;^UTILITY(U,$J,358.3,8557,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,8308,1,3,0)
- ;;=3^Lichen Sclerosus et Atrophicus
- ;;^UTILITY(U,$J,358.3,8308,1,4,0)
- ;;=4^L90.0
- ;;^UTILITY(U,$J,358.3,8308,2)
- ;;=^70699
- ;;^UTILITY(U,$J,358.3,8309,0)
- ;;=L28.0^^65^530^15
- ;;^UTILITY(U,$J,358.3,8309,1,0)
+ ;;^UTILITY(U,$J,358.3,8557,1,3,0)
+ ;;=3^Enlarged Lymph Nodes,Generalized
+ ;;^UTILITY(U,$J,358.3,8557,1,4,0)
+ ;;=4^R59.1
+ ;;^UTILITY(U,$J,358.3,8557,2)
+ ;;=^5019530
+ ;;^UTILITY(U,$J,358.3,8558,0)
+ ;;=C91.40^^39^401^84
+ ;;^UTILITY(U,$J,358.3,8558,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,8309,1,3,0)
- ;;=3^Lichen Simplex Chronicus
- ;;^UTILITY(U,$J,358.3,8309,1,4,0)
- ;;=4^L28.0
- ;;^UTILITY(U,$J,358.3,8309,2)
- ;;=^259859
- ;;^UTILITY(U,$J,358.3,8310,0)
- ;;=L66.1^^65^530^11
- ;;^UTILITY(U,$J,358.3,8310,1,0)
+ ;;^UTILITY(U,$J,358.3,8558,1,3,0)
+ ;;=3^Hairy Cell Leukemia,Not in Remission
+ ;;^UTILITY(U,$J,358.3,8558,1,4,0)
+ ;;=4^C91.40
+ ;;^UTILITY(U,$J,358.3,8558,2)
+ ;;=^5001771
+ ;;^UTILITY(U,$J,358.3,8559,0)
+ ;;=C91.42^^39^401^82
+ ;;^UTILITY(U,$J,358.3,8559,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,8310,1,3,0)
- ;;=3^Lichen Planopilaris
- ;;^UTILITY(U,$J,358.3,8310,1,4,0)
- ;;=4^L66.1
- ;;^UTILITY(U,$J,358.3,8310,2)
- ;;=^5009253
- ;;^UTILITY(U,$J,358.3,8311,0)
- ;;=L43.0^^65^530^12
- ;;^UTILITY(U,$J,358.3,8311,1,0)
+ ;;^UTILITY(U,$J,358.3,8559,1,3,0)
+ ;;=3^Hairy Cell Leukemia,In Relapse
+ ;;^UTILITY(U,$J,358.3,8559,1,4,0)
+ ;;=4^C91.42
+ ;;^UTILITY(U,$J,358.3,8559,2)
+ ;;=^5001773
+ ;;^UTILITY(U,$J,358.3,8560,0)
+ ;;=C91.41^^39^401^83
+ ;;^UTILITY(U,$J,358.3,8560,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,8311,1,3,0)
- ;;=3^Lichen Planus,Hypertrophic
- ;;^UTILITY(U,$J,358.3,8311,1,4,0)
- ;;=4^L43.0
- ;;^UTILITY(U,$J,358.3,8311,2)
- ;;=^5009178
- ;;^UTILITY(U,$J,358.3,8312,0)
- ;;=L43.2^^65^530^16
- ;;^UTILITY(U,$J,358.3,8312,1,0)
+ ;;^UTILITY(U,$J,358.3,8560,1,3,0)
+ ;;=3^Hairy Cell Leukemia,In Remission
+ ;;^UTILITY(U,$J,358.3,8560,1,4,0)
+ ;;=4^C91.41
+ ;;^UTILITY(U,$J,358.3,8560,2)
+ ;;=^5001772
+ ;;^UTILITY(U,$J,358.3,8561,0)
+ ;;=D57.01^^39^401^85
+ ;;^UTILITY(U,$J,358.3,8561,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,8312,1,3,0)
- ;;=3^Lichenoid Drug Reaction
- ;;^UTILITY(U,$J,358.3,8312,1,4,0)
- ;;=4^L43.2
- ;;^UTILITY(U,$J,358.3,8312,2)
- ;;=^5009180
- ;;^UTILITY(U,$J,358.3,8313,0)
- ;;=L43.9^^65^530^13
- ;;^UTILITY(U,$J,358.3,8313,1,0)
+ ;;^UTILITY(U,$J,358.3,8561,1,3,0)
+ ;;=3^Hb-SS Disease w/ Acute Chest Syndrome
+ ;;^UTILITY(U,$J,358.3,8561,1,4,0)
+ ;;=4^D57.01
+ ;;^UTILITY(U,$J,358.3,8561,2)
+ ;;=^5002307
+ ;;^UTILITY(U,$J,358.3,8562,0)
+ ;;=D57.00^^39^401^86
+ ;;^UTILITY(U,$J,358.3,8562,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,8313,1,3,0)
- ;;=3^Lichen Planus,Unspec
- ;;^UTILITY(U,$J,358.3,8313,1,4,0)
- ;;=4^L43.9
- ;;^UTILITY(U,$J,358.3,8313,2)
- ;;=^5009183
- ;;^UTILITY(U,$J,358.3,8314,0)
- ;;=L93.0^^65^530^18
- ;;^UTILITY(U,$J,358.3,8314,1,0)
+ ;;^UTILITY(U,$J,358.3,8562,1,3,0)
+ ;;=3^Hb-SS Disease w/ Crisis,Unspec
+ ;;^UTILITY(U,$J,358.3,8562,1,4,0)
+ ;;=4^D57.00
+ ;;^UTILITY(U,$J,358.3,8562,2)
+ ;;=^5002306
+ ;;^UTILITY(U,$J,358.3,8563,0)
+ ;;=D57.02^^39^401^87
+ ;;^UTILITY(U,$J,358.3,8563,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,8314,1,3,0)
- ;;=3^Lupus,Erythematosus,Discoid
- ;;^UTILITY(U,$J,358.3,8314,1,4,0)
- ;;=4^L93.0
- ;;^UTILITY(U,$J,358.3,8314,2)
- ;;=^5009467
- ;;^UTILITY(U,$J,358.3,8315,0)
- ;;=L93.2^^65^530^20
- ;;^UTILITY(U,$J,358.3,8315,1,0)
+ ;;^UTILITY(U,$J,358.3,8563,1,3,0)
+ ;;=3^Hb-SS Disease w/ Splenic Sequestration
+ ;;^UTILITY(U,$J,358.3,8563,1,4,0)
+ ;;=4^D57.02
+ ;;^UTILITY(U,$J,358.3,8563,2)
+ ;;=^5002308
+ ;;^UTILITY(U,$J,358.3,8564,0)
+ ;;=D68.32^^39^401^89
+ ;;^UTILITY(U,$J,358.3,8564,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,8315,1,3,0)
- ;;=3^Lupus,Erythematosus,Local
- ;;^UTILITY(U,$J,358.3,8315,1,4,0)
- ;;=4^L93.2
- ;;^UTILITY(U,$J,358.3,8315,2)
- ;;=^5009469
- ;;^UTILITY(U,$J,358.3,8316,0)
- ;;=L93.1^^65^530^21
- ;;^UTILITY(U,$J,358.3,8316,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,8316,1,3,0)
- ;;=3^Lupus,Erythematosus,Subacute Cutaneous
- ;;^UTILITY(U,$J,358.3,8316,1,4,0)
- ;;=4^L93.1
- ;;^UTILITY(U,$J,358.3,8316,2)
- ;;=^5009468
+ ;;^UTILITY(U,$J,358.3,8564,1,3,0)
+ ;;=3^Hemorrhagic Disorder d/t Extrinsic Circulating Anticoagulants
+ ;;^UTILITY(U,$J,358.3,8564,1,4,0)
+ ;;=4^D68.32

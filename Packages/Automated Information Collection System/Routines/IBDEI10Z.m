@@ -1,126 +1,122 @@
-IBDEI10Z ; ; 04-FEB-2020
- ;;3.0;IB ENCOUNTER FORM IMP/EXP;;FEB 04, 2020
+IBDEI10Z ; ; 01-FEB-2022
+ ;;3.0;IB ENCOUNTER FORM IMP/EXP;;FEB 01, 2022
  Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,999) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
- ;;^UTILITY(U,$J,358.3,16484,2)
- ;;=^5001550
- ;;^UTILITY(U,$J,358.3,16485,0)
- ;;=C82.90^^88^879^76
- ;;^UTILITY(U,$J,358.3,16485,1,0)
+ ;;^UTILITY(U,$J,358.3,16670,1,4,0)
+ ;;=4^D57.411
+ ;;^UTILITY(U,$J,358.3,16670,2)
+ ;;=^5002314
+ ;;^UTILITY(U,$J,358.3,16671,0)
+ ;;=D57.412^^61^775^194
+ ;;^UTILITY(U,$J,358.3,16671,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,16485,1,3,0)
- ;;=3^Follicular Lymphoma Unspec,Unspec Site
- ;;^UTILITY(U,$J,358.3,16485,1,4,0)
- ;;=4^C82.90
- ;;^UTILITY(U,$J,358.3,16485,2)
- ;;=^5001541
- ;;^UTILITY(U,$J,358.3,16486,0)
- ;;=R59.1^^88^879^61
- ;;^UTILITY(U,$J,358.3,16486,1,0)
+ ;;^UTILITY(U,$J,358.3,16671,1,3,0)
+ ;;=3^Sickle-Cell Thalassemia,Unspec w/ Splenic Sequestration
+ ;;^UTILITY(U,$J,358.3,16671,1,4,0)
+ ;;=4^D57.412
+ ;;^UTILITY(U,$J,358.3,16671,2)
+ ;;=^5002315
+ ;;^UTILITY(U,$J,358.3,16672,0)
+ ;;=M31.10^^61^775^215
+ ;;^UTILITY(U,$J,358.3,16672,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,16486,1,3,0)
- ;;=3^Enlarged Lymph Nodes,Generalized
- ;;^UTILITY(U,$J,358.3,16486,1,4,0)
- ;;=4^R59.1
- ;;^UTILITY(U,$J,358.3,16486,2)
- ;;=^5019530
- ;;^UTILITY(U,$J,358.3,16487,0)
- ;;=C91.40^^88^879^80
- ;;^UTILITY(U,$J,358.3,16487,1,0)
+ ;;^UTILITY(U,$J,358.3,16672,1,3,0)
+ ;;=3^Thrombotic Microangiopathy,Unspec
+ ;;^UTILITY(U,$J,358.3,16672,1,4,0)
+ ;;=4^M31.10
+ ;;^UTILITY(U,$J,358.3,16672,2)
+ ;;=^5161189
+ ;;^UTILITY(U,$J,358.3,16673,0)
+ ;;=Z85.818^^61^776^86
+ ;;^UTILITY(U,$J,358.3,16673,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,16487,1,3,0)
- ;;=3^Hairy Cell Leukemia,Not in Remission
- ;;^UTILITY(U,$J,358.3,16487,1,4,0)
- ;;=4^C91.40
- ;;^UTILITY(U,$J,358.3,16487,2)
- ;;=^5001771
- ;;^UTILITY(U,$J,358.3,16488,0)
- ;;=C91.42^^88^879^78
- ;;^UTILITY(U,$J,358.3,16488,1,0)
+ ;;^UTILITY(U,$J,358.3,16673,1,3,0)
+ ;;=3^Personal Hx of Malig Neop of Lip,Oral Cavity & Pharynx
+ ;;^UTILITY(U,$J,358.3,16673,1,4,0)
+ ;;=4^Z85.818
+ ;;^UTILITY(U,$J,358.3,16673,2)
+ ;;=^5063439
+ ;;^UTILITY(U,$J,358.3,16674,0)
+ ;;=Z85.819^^61^776^87
+ ;;^UTILITY(U,$J,358.3,16674,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,16488,1,3,0)
- ;;=3^Hairy Cell Leukemia,In Relapse
- ;;^UTILITY(U,$J,358.3,16488,1,4,0)
- ;;=4^C91.42
- ;;^UTILITY(U,$J,358.3,16488,2)
- ;;=^5001773
- ;;^UTILITY(U,$J,358.3,16489,0)
- ;;=C91.41^^88^879^79
- ;;^UTILITY(U,$J,358.3,16489,1,0)
+ ;;^UTILITY(U,$J,358.3,16674,1,3,0)
+ ;;=3^Personal Hx of Malig Neop of Lip,Oral Cavity & Pharynx,Unspec
+ ;;^UTILITY(U,$J,358.3,16674,1,4,0)
+ ;;=4^Z85.819
+ ;;^UTILITY(U,$J,358.3,16674,2)
+ ;;=^5063440
+ ;;^UTILITY(U,$J,358.3,16675,0)
+ ;;=Z85.01^^61^776^82
+ ;;^UTILITY(U,$J,358.3,16675,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,16489,1,3,0)
- ;;=3^Hairy Cell Leukemia,In Remission
- ;;^UTILITY(U,$J,358.3,16489,1,4,0)
- ;;=4^C91.41
- ;;^UTILITY(U,$J,358.3,16489,2)
- ;;=^5001772
- ;;^UTILITY(U,$J,358.3,16490,0)
- ;;=D57.01^^88^879^81
- ;;^UTILITY(U,$J,358.3,16490,1,0)
+ ;;^UTILITY(U,$J,358.3,16675,1,3,0)
+ ;;=3^Personal Hx of Malig Neop of Esophagus
+ ;;^UTILITY(U,$J,358.3,16675,1,4,0)
+ ;;=4^Z85.01
+ ;;^UTILITY(U,$J,358.3,16675,2)
+ ;;=^5063395
+ ;;^UTILITY(U,$J,358.3,16676,0)
+ ;;=Z85.028^^61^776^93
+ ;;^UTILITY(U,$J,358.3,16676,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,16490,1,3,0)
- ;;=3^Hb-SS Disease w/ Acute Chest Syndrome
- ;;^UTILITY(U,$J,358.3,16490,1,4,0)
- ;;=4^D57.01
- ;;^UTILITY(U,$J,358.3,16490,2)
- ;;=^5002307
- ;;^UTILITY(U,$J,358.3,16491,0)
- ;;=D57.00^^88^879^82
- ;;^UTILITY(U,$J,358.3,16491,1,0)
+ ;;^UTILITY(U,$J,358.3,16676,1,3,0)
+ ;;=3^Personal Hx of Malig Neop of Stomach
+ ;;^UTILITY(U,$J,358.3,16676,1,4,0)
+ ;;=4^Z85.028
+ ;;^UTILITY(U,$J,358.3,16676,2)
+ ;;=^5063397
+ ;;^UTILITY(U,$J,358.3,16677,0)
+ ;;=Z85.038^^61^776^84
+ ;;^UTILITY(U,$J,358.3,16677,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,16491,1,3,0)
- ;;=3^Hb-SS Disease w/ Crisis,Unspec
- ;;^UTILITY(U,$J,358.3,16491,1,4,0)
- ;;=4^D57.00
- ;;^UTILITY(U,$J,358.3,16491,2)
- ;;=^5002306
- ;;^UTILITY(U,$J,358.3,16492,0)
- ;;=D57.02^^88^879^83
- ;;^UTILITY(U,$J,358.3,16492,1,0)
+ ;;^UTILITY(U,$J,358.3,16677,1,3,0)
+ ;;=3^Personal Hx of Malig Neop of Large Intestine
+ ;;^UTILITY(U,$J,358.3,16677,1,4,0)
+ ;;=4^Z85.038
+ ;;^UTILITY(U,$J,358.3,16677,2)
+ ;;=^5063399
+ ;;^UTILITY(U,$J,358.3,16678,0)
+ ;;=Z85.048^^61^776^91
+ ;;^UTILITY(U,$J,358.3,16678,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,16492,1,3,0)
- ;;=3^Hb-SS Disease w/ Splenic Sequestration
- ;;^UTILITY(U,$J,358.3,16492,1,4,0)
- ;;=4^D57.02
- ;;^UTILITY(U,$J,358.3,16492,2)
- ;;=^5002308
- ;;^UTILITY(U,$J,358.3,16493,0)
- ;;=D68.32^^88^879^85
- ;;^UTILITY(U,$J,358.3,16493,1,0)
+ ;;^UTILITY(U,$J,358.3,16678,1,3,0)
+ ;;=3^Personal Hx of Malig Neop of Rectum,Rectosig Junct & Anus
+ ;;^UTILITY(U,$J,358.3,16678,1,4,0)
+ ;;=4^Z85.048
+ ;;^UTILITY(U,$J,358.3,16678,2)
+ ;;=^5063401
+ ;;^UTILITY(U,$J,358.3,16679,0)
+ ;;=Z85.118^^61^776^80
+ ;;^UTILITY(U,$J,358.3,16679,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,16493,1,3,0)
- ;;=3^Hemorrhagic Disorder d/t Extrinsic Circulating Anticoagulants
- ;;^UTILITY(U,$J,358.3,16493,1,4,0)
- ;;=4^D68.32
- ;;^UTILITY(U,$J,358.3,16493,2)
- ;;=^5002357
- ;;^UTILITY(U,$J,358.3,16494,0)
- ;;=C22.2^^88^879^86
- ;;^UTILITY(U,$J,358.3,16494,1,0)
+ ;;^UTILITY(U,$J,358.3,16679,1,3,0)
+ ;;=3^Personal Hx of Malig Neop of Bronchus & Lung
+ ;;^UTILITY(U,$J,358.3,16679,1,4,0)
+ ;;=4^Z85.118
+ ;;^UTILITY(U,$J,358.3,16679,2)
+ ;;=^5063408
+ ;;^UTILITY(U,$J,358.3,16680,0)
+ ;;=Z85.21^^61^776^85
+ ;;^UTILITY(U,$J,358.3,16680,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,16494,1,3,0)
- ;;=3^Hepatoblastoma
- ;;^UTILITY(U,$J,358.3,16494,1,4,0)
- ;;=4^C22.2
- ;;^UTILITY(U,$J,358.3,16494,2)
- ;;=^5000935
- ;;^UTILITY(U,$J,358.3,16495,0)
- ;;=D58.9^^88^879^88
- ;;^UTILITY(U,$J,358.3,16495,1,0)
+ ;;^UTILITY(U,$J,358.3,16680,1,3,0)
+ ;;=3^Personal Hx of Malig Neop of Larynx
+ ;;^UTILITY(U,$J,358.3,16680,1,4,0)
+ ;;=4^Z85.21
+ ;;^UTILITY(U,$J,358.3,16680,2)
+ ;;=^5063411
+ ;;^UTILITY(U,$J,358.3,16681,0)
+ ;;=Z85.3^^61^776^79
+ ;;^UTILITY(U,$J,358.3,16681,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,16495,1,3,0)
- ;;=3^Hereditary Hemolytic Anemia,Unspec
- ;;^UTILITY(U,$J,358.3,16495,1,4,0)
- ;;=4^D58.9
- ;;^UTILITY(U,$J,358.3,16495,2)
- ;;=^5002322
- ;;^UTILITY(U,$J,358.3,16496,0)
- ;;=C81.99^^88^879^89
- ;;^UTILITY(U,$J,358.3,16496,1,0)
+ ;;^UTILITY(U,$J,358.3,16681,1,3,0)
+ ;;=3^Personal Hx of Malig Neop of Breast
+ ;;^UTILITY(U,$J,358.3,16681,1,4,0)
+ ;;=4^Z85.3
+ ;;^UTILITY(U,$J,358.3,16681,2)
+ ;;=^5063416
+ ;;^UTILITY(U,$J,358.3,16682,0)
+ ;;=Z85.41^^61^776^81
+ ;;^UTILITY(U,$J,358.3,16682,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,16496,1,3,0)
- ;;=3^Hodgkin Lymphoma,Extranodal/Solid Organ Sites
- ;;^UTILITY(U,$J,358.3,16496,1,4,0)
- ;;=4^C81.99
- ;;^UTILITY(U,$J,358.3,16496,2)
- ;;=^5001460

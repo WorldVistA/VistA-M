@@ -1,5 +1,5 @@
 GMRCCCRA ;COG/PB/LB/MJ - Receive HL7 Message for HCP ;3/21/18 09:00
- ;;3.0;CONSULT/REQUEST TRACKING;**99,106,112,123,134,146,158**;JUN 1, 2018;Build 16
+ ;;3.0;CONSULT/REQUEST TRACKING;**99,106,112,123,134,146,158,163,173,190**;JUN 1, 2018;Build 13
  ;
  ;DBIA# Supported Reference
  ;----- --------------------------------
@@ -19,19 +19,21 @@ GMRCCCRA ;COG/PB/LB/MJ - Receive HL7 Message for HCP ;3/21/18 09:00
  ;2171  NS^XUAF4
  ;2693  EXTRACT^TIULQ
  ;
- ;;Patch 85 fix for CA SDM ticket R6063960FY16
- ;;Patch 99 fix for screen to send community care consults HL7 messages -  Cognosante - PB Mar 5 2018
- ;;Patch 99 commented out PCP code- 2nd  PRD  segment -until Intersystems ready M14/M15- Cognosante-LB Apr 3 2018
- ;;Patch 106 added code to include IN1 segments with reimburse flag, and division value in PV1.
- ;;Patch 106 cleaned up per several ICRs.
- ;;Patch 112 critical fix to remove control characters before sending consult, as bad data was causing infinite loop of HL7 process.
- ;;Patch 123 consult status updates inbound to VistA, OHI additions outbound from VistA in IN1 segment
- ;;Patch 134 fix control character issue in TIU notes
- ;;Patch 146 fix if the consult was transferred from an imaging order, sets the DXCODE from the DX text
- ;;Patch 146 fix PRD address problem, set to null fields that contain only spaces
- ;;
- ;;proposed for CCRA release 8.0 - successfully send Administrative Complete consult notes
- ;
+ ;Patch 85 fix for CA SDM ticket R6063960FY16
+ ;Patch 99 fix for screen to send community care consults HL7 messages -  Cognosante - PB Mar 5 2018
+ ;Patch 99 commented out PCP code- 2nd  PRD  segment -until Intersystems ready M14/M15- Cognosante-LB Apr 3 2018
+ ;Patch 106 added code to include IN1 segments with reimburse flag, and division value in PV1.
+ ;Patch 106 cleaned up per several ICRs.
+ ;Patch 112 critical fix to remove control characters before sending consult, as bad data was causing infinite loop of HL7 process.
+ ;Patch 123 consult status updates inbound to VistA, OHI additions outbound from VistA in IN1 segment
+ ;Patch 134 fix control character issue in TIU notes
+ ;Patch 146 fix if the consult was transferred from an imaging order, sets the DXCODE from the DX text
+ ;Patch 146 fix PRD address problem, set to null fields that contain only spaces
+ ;Patch 158 add code to convert start and end times from eastern to local, code to update the new field 81 in file 123
+ ;Patch 163 add code to allow editing of new file 81 in file 123
+ ;proposed for CCRA release 8.0 - successfully send Administrative Complete consult notes
+ ;Patch 173 add EDIPI to the PID segment
+ ;Patch 190 adds a check for a discontinue comment in the Order file, field 65 if Order file, field 64 is null.
  ;
 EN(MSG) ;Entry point to routine from GMRC CONSULTS TO CCRA protocol attached to GMRC EVSEND OR
  ;MSG = local array which contains the HL7 segments
@@ -56,7 +58,7 @@ EN(MSG) ;Entry point to routine from GMRC CONSULTS TO CCRA protocol attached to 
  S STATUS=$$STATUS(MSGTYP2,MSGTYP3) I STATUS="UNKNOWN" Q  ;don't process anything we haven't coded for
  ;done verifying this consult needs to go to HCP, start building HL7 message
  N SNAME,GMRCHL,ZERR,ZCNT,ECH,DATA,GDATA,URG,TYP,RES,EFFDT,PDUZ,PN,ADDR,PH,GMRCP,SENS,DX,DXCODE
- N PCP,PCDUZ,PCPN,PCADDR,PCPH
+ N PCP,PCDUZ,PCPN,PCADDR,PCPH,GMRCERR,UPDATE81,FDA
  ;S SNAME="GMRC HCP REF-"_$S(MSGTYP2="DR":"I14",MSGTYP="ORR":"I12",MSGTYP2="OC":"I14",MSGTYP2="OD":"I14",1:"I13")_" SERVER"
  S SNAME="GMRC CCRA-HSRM REF-"_$S(MSGTYP2="DR":"I14",MSGTYP="ORR":"I12",MSGTYP2="OC":"I14",MSGTYP2="OD":"I14",1:"I13")_" SERVER"
  S GMRCHL("EID")=$$FIND1^DIC(101,,"X",SNAME)
@@ -83,9 +85,9 @@ EN(MSG) ;Entry point to routine from GMRC CONSULTS TO CCRA protocol attached to 
  S ADDR=$$ADDR^GMRCHL7P(PDUZ,.GMRCHL),PH=$$PH^GMRCHL7P(PDUZ,.GMRCHL)
  S ADDR=$$CLRADD^GMRCCCR1(ADDR)  ; patch 146 - MJ
  S ZCNT=ZCNT+1,GMRCM(ZCNT)="PRD|RP|"_PN_"|"_$G(ADDR)_"||"_$G(PH)_"||"_+$G(NPI)
- ;;commented out PCP code- 2nd PRD segment -until Intersystems ready M14/M15- Cognosante-LB Apr 3 2018
- ;;PCP code-starts here-
- ;;"PP"- Primary Care Provider segment if the info exists 
+ ;commented out PCP code- 2nd PRD segment -until Intersystems ready M14/M15- Cognosante-LB Apr 3 2018
+ ;PCP code-starts here-
+ ;"PP"- Primary Care Provider segment if the info exists 
  S PCP=$$OUTPTPR^SDUTL3(DFN)
  I +PCP  D
  . S PCDUZ=+PCP,PCPN=$P(PCP,"^",2),PCPN=$$HLNAME^XLFNAME(PCPN,"S",ECH),$P(PCPN,ECH,9)=PCDUZ
@@ -93,25 +95,31 @@ EN(MSG) ;Entry point to routine from GMRC CONSULTS TO CCRA protocol attached to 
  . S PCADDR=$$CLRADD^GMRCCCR1(PCADDR)  ; patch 146 - MJ
  . S NPI=$P($G(^VA(200,PCDUZ,"NPI")),"^")
  . S ZCNT=ZCNT+1,GMRCM(ZCNT)="PRD|PP|"_PCPN_"|"_$G(PCADDR)_"||"_$G(PCPH)_"||"_+$G(NPI)
- ;;PCP code-ends here-
+ ;PCP code-ends here-
  ;PID segment May be multiple nodes in the return array - make nodes 2-n sub nodes
+ K LOOPER S LOOPER=0 N TGMRCP,TMPGMRCP
+PID ;
+ K PID N GMRCP
  D BLDPID^VAFCQRY(DFN,1,"ALL",.GMRCP,.GMRCHL,ZERR)
+ M TGMRCP=GMRCP
+ D EDIPI^GMRCCCR1(.TMPGMRCP,DFN,.GMRCP)
+ I $L($G(TMPGMRCP(1)))>5 K GMRCP M GMRCP=TMPGMRCP
  S I=0 F  S I=$O(GMRCP(I)) Q:'I  D
  .I I=1 S ZCNT=ZCNT+1,GMRCM(ZCNT)=$TR(GMRCP(I),"""") Q
  .S GMRCM(ZCNT,I)=$TR(GMRCP(I),"""")
  K GMRCP
- ; MJ - 5/24/2018 patch 106 changes to add - IN1 segments
+ ;MJ - 5/24/2018 patch 106 changes to add - IN1 segments
  N GMRC0,I,INSP,INSPX,RETVAL,X,GMRCIN1,N,GMRCSTR,PLAN,PRECERT,TYPE ; PLAN, PRECERT, TYPE added for patch 123
  S GMRCSTR=",3,4,5,7,8,9,12,13,15,16,17,28,36"    ; IN1 fields to capture
  D EN^VAFHLIN1(DFN,GMRCSTR,,"|","GMRCIN1","^~\&") ; get IN1 segments
- ; loop through IN1 segments found
+ ;loop through IN1 segments found
  F I=0:0 S I=$O(GMRCIN1(I)) Q:'I  I I>0 D
  . S GMRC0=$G(GMRCIN1(I,0)) I GMRC0']"" Q
  . S INSP=$P(GMRC0,"|",4)
  . S PRECERT=""  ; added for patch 123
  . S N=0 F  S N=$O(^DPT(DFN,.312,N)) Q:'N  I $D(^(N,0)) D
  .. S X=^DPT(DFN,.312,N,0)
- .. ; begin patch 123 mods
+ .. ;begin patch 123 mods
  .. N COORDBEN,LASTVER,Y
  .. S COORDBEN=$P(X,"^",20)
  .. S COORDBEN=$S(COORDBEN=1:"PRIMARY",COORDBEN=2:"SECONDARY",COORDBEN=3:"TERTIARY",1:"")
@@ -127,22 +135,22 @@ EN(MSG) ;Entry point to routine from GMRC CONSULTS TO CCRA protocol attached to 
  .. I $L(PLANID)>0 S PLANID=$P($G(^IBCNR(366.03,PLANID,0)),"^",1)
  .. S $P(GMRC0,"|",3)=PLANID ; 
  .. K COORDBEN,LASTVER,PLANID,Y
- .. ; end patch 123 mods
+ .. ;end patch 123 mods
  .. N X1 S X1=$G(^DIC(36,+X,0)) I X1="" Q   ; no insurance company entry
  .. S INSPX=$P(X,U,1)
  .. I INSP=INSPX D                          ; insurance plan found matches that of the segment
  ... S RETVAL=$$GET1^DIQ(36,INSP_",",1,"I") ; get reimbursable flag
  ... S RETVAL=$S(RETVAL="Y":"YES",RETVAL="*":"*",RETVAL="**":"**",RETVAL="":"YES",RETVAL="N":"NO",1:"?")
  ... S $P(GMRC0,"|",33)=RETVAL              ; add flag back into segment
- ... ; get address
+ ... ;get address
  ... S $P(GMRC0,"|",6)=$$GETADD^GMRCCCR1(INSP) ; get address info and put it into segment field 5
  ... S GMRCIN1(I,0)=GMRC0
  . S ZCNT=ZCNT+1,GMRCM(ZCNT)=GMRCIN1(I,0) ; add segment to message
- . ; patch 123 mods - if PRECERT value exists, create IN3 segment
+ . ;patch 123 mods - if PRECERT value exists, create IN3 segment
  . I $L(PRECERT) S ZCNT=ZCNT+1,GMRCM(ZCNT)="IN3",$P(GMRCM(ZCNT),"|",21)="^"_PRECERT,PRECERT=""
- . ; end patch 123 mods
+ . ;end patch 123 mods
  K GMRC0,I,INSP,INSPX,RETVAL,X,GMRCIN1,N,GMRCSTR,PLAN,PRECERT,TYPE ; PLAN, PRECERT, TYPE added for patch 123
- ; end patch 106 changes
+ ;end patch 106 changes
  ;DG1 segment ;Patch 85 modified
  ;if this is a radiology order converted to a consult the dxcode will not be in the consult in field 30.1
  ;the DX text has the dxcode in it, the code below parses it.
@@ -159,30 +167,35 @@ EN(MSG) ;Entry point to routine from GMRC CONSULTS TO CCRA protocol attached to 
  D IN5^VADPT ;VAIP(18)=Attending Physician, VAIP(13,5)=Primary Physician for admission
  S ZCNT=ZCNT+1,GMRCM(ZCNT)="PV1|1|"_$S(VAIP(13):"I",1:"O")_"|||||"_VAIP(18)_"|"
  I VAIP(5) S $P(GMRCM(ZCNT),"|",4)=VAIP(5) ;location for last movement event
- ; patch 106 - add in division value
+ ;patch 106 - add in division value
  N GMRCDIV
  S GMRCDIV=$$NS^XUAF4(DUZ(2)),GMRCDIV=$P(GMRCDIV,"^",2)
  N ORGDIV S ORGDIV=$$GET1^DIQ(123,GMRCDA_",",81,"I")
  I $G(ORGDIV)'="" S:$G(ORGDIV)'=$G(GMRCDIV) GMRCDIV=$G(ORGDIV)
- I $G(ORGDIV)="" N FDA S FDA(123,$G(GMRCDA)_",",81)=GMRCDIV D UPDATE^DIE(,"FDA",$G(GMRCDA)_",","SDERR")
+ I $G(ORGDIV)="" D
+ .Q:($G(MSGTYP)="SC"&($G(MSGTYP3)="ZC"))  ; patch 163 - PB don't update the new field if it is a scheduling update
+ .N FDA S FDA(123,$G(GMRCDA)_",",81)=GMRCDIV D UPDATE^DIE(,"FDA",$G(GMRCDA)_",","GMRCERR")
  N A,B S A="&"_GMRCDIV,B=$P(GMRCM(ZCNT),"|",4),$P(B,"^",4)=A,$P(GMRCM(ZCNT),"|",4)=B K A,B
  K GMRCDIV
- ; end patch 106 mod
- ;
+ ;End patch 106 mod
  S SENS=$$SSN^DPTLK1(DFN) I SENS["*SENSITIVE*" S $P(GMRCM(ZCNT),"|",17)="R" ;sensitive patient
  S $P(GMRCM(ZCNT),"|",18)=VAIP(13,5)
- ; begin patch 106 mod
+ ;begin patch 106 mod
  K VAIP
- ; end patch 106 mod
+ ;end patch 106 mod
  D KVA^VADPT
  ;NTE segment
  D NTE(.GMRCHL)
+ I $G(^GMR(123,GMRCDA,5))'="" D  ; patch 163 - PB set referral facility on PV1 to value in field 81, file 123
+ .N XXCNT,P4
+ .S XXCNT=0 F  S XXCNT=$O(GMRCM(XXCNT)) Q:XXCNT'>0  D
+ ..S:$P(GMRCM(XXCNT),"|")="PV1" P4=$P(GMRCM(XXCNT),"|",4),$P(P4,"&",2)=$P(^GMR(123,GMRCDA,5),"^"),$P(GMRCM(XXCNT),"|",4)=P4
  K ^TMP("GMRCHL7CCRA",$J)
- ;
- ; When done, re-serve the (modified) referral message to CCRA
+ ;When done, re-serve the (modified) referral message to CCRA
  N HL,HLA,GMRCRES,GMRCHLP
  M HL=GMRCHL,HLA("HLS")=GMRCM
  M GMRCHL=^XTMP("GMRCHL7H","MESSAGE")
+ ;D EDIPI^GMRCCCR1(DFN)
  D GENERATE^HLMA(GMRCHL("EID"),"LM",1,.GMRCRES,"",.GMRCHLP)
  Q
 NTE(HL) ;Find Reason for Request for New or Resubmit entries, Find TIU for complete, find Activity Comment for others
@@ -198,20 +211,18 @@ NTE(HL) ;Find Reason for Request for New or Resubmit entries, Find TIU for compl
  ..S ZCNT=ZCNT+1,NTECNT=NTECNT+1,GMRCM(ZCNT)="NTE|"_NTECNT_"||"_X
  ..Q
  .Q
- ; Build NTE for CM^ADDENDED
+ ;Build NTE for CM^ADDENDED
  I MSGTYP2="XX",MSGTYP3="CM" D  Q
  .N GMRCN,GMRCTXT,GMRCCMP,GMRCASTR
  .D AUTHDTTM
  .S ZCNT=ZCNT+1,GMRCM(ZCNT)="NTE|"_NTECNT_"|P|Progress Note"
  .S GMRCN=$P($G(^GMR(123,GMRCDA,50,1,0)),U) I GMRCN'["TIU(8925," Q
  .D TGET^TIUSRVR1(.GMRCTXT,$S(+$G(GMRCPARN):+GMRCPARN,+$G(TIUDA):+TIUDA,1:+GMRCN),"VIEW")
- .;
- .; line below modified in patch 106 to use GET1^DIQ call for date
+ .;line below modified in patch 106 to use GET1^DIQ call for date
  .S GMRCCMP=$$DATE^GMRCCCRA($$GET1^DIQ(8925,+TIUDA_",",1301,"I"),"MM/DD/CCYY")_" ADDENDUM"_" STATUS: "_$$GET1^DIQ(8925,+TIUDA_",",.05)
  .S (I,GMRCASTR)=0
  .F  S I=$O(@GMRCTXT@(I)) Q:I=""  S X=@GMRCTXT@(I) D
  ..I X=GMRCCMP S GMRCASTR=I
- .;
  .I GMRCASTR D
  ..S I=GMRCASTR-1
  ..F  S I=$O(@GMRCTXT@(I)) Q:I=""  S X=@GMRCTXT@(I) D
@@ -220,12 +231,10 @@ NTE(HL) ;Find Reason for Request for New or Resubmit entries, Find TIU for compl
  ...S X=$$TIUC^GMRCCCR1(X)
  ...S ZCNT=ZCNT+1,NTECNT=NTECNT+1,GMRCM(ZCNT)="NTE|"_NTECNT_"||"_X
  .K ^TMP("TIUVIEW",$J) ;clean up results of TIUSRVR1 call
- ;
- ; patch 146 - DONE flag used to determine if notes are found. If so, no need to drop to default
- ; some cases of DR/CM combo have notes stored in level 50, some in level 40
- ; both need to be accounted for
- ;
- ; I MSGTYP3="CM" D  Q  ; pre-146
+ ;patch 146 - DONE flag used to determine if notes are found. If so, no need to drop to default
+ ;some cases of DR/CM combo have notes stored in level 50, some in level 40
+ ;both need to be accounted for
+ ;I MSGTYP3="CM" D  Q  ; pre-146
  N DONE S DONE=0           ; patch 146
  I MSGTYP3="CM" D  Q:DONE  ; patch 146
  .N GMRCN,GMRCTXT
@@ -246,13 +255,16 @@ NTE(HL) ;Find Reason for Request for New or Resubmit entries, Find TIU for compl
  .D AUTHDTTM
  .S ZCNT=ZCNT+1,GMRCM(ZCNT)="NTE|"_NTECNT_"|L|Activity Comment"
  .S ORIEN=$G(@GDATA@(.03,"I")) I 'ORIEN Q
- .S CMT=$$GET1^DIQ(100,ORIEN_",",64),CMT=$$TRIM^XLFSTR($G(CMT))
+ .S CMT=$$GET1^DIQ(100,ORIEN_",",64)
+ .I $G(CMT)="" S CMT=$$GET1^DIQ(100,ORIEN_",",65) ;Patch 190 - PB if field 64 is null check field 65
+ .I $G(CMT)'="" S CMT=$$TRIM^XLFSTR($G(CMT))
  .S CMT=$TR($G(CMT),$C(13,10,10),$C(10,10))
  .D HL7TXT^GMRCHL7P(.CMT,.HL,"\")
- .S CMT=$$TIUC^GMRCCCR1(CMT)
+ .S:$G(CMT)'="" CMT=$$TIUC^GMRCCCR1(CMT) ;Patch 190 - PB if the comment is null, don't call the control character screen API
  .S ZCNT=ZCNT+1,GMRCM(ZCNT)="NTE|2||"_CMT
  .Q
- N ACT,ACTD,ACTIEN,Q
+ N ACT,ACTD,ACTIEN,Q,UPDATE81
+ S UPDATE81=0
  S Q=0,ACTIEN=9999 F  S ACTIEN=$O(^GMR(123,GMRCDA,40,ACTIEN),-1) Q:'ACTIEN!Q  S X=$G(^GMR(123,GMRCDA,40,ACTIEN,0)) D
  .S ACT=$P(X,U,2),ACTD=$P($P($G(^GMR(123.1,+ACT,0)),U)," ")
  .I $P($P(STATUS,ECH,2)," ")'=ACTD Q
@@ -263,6 +275,11 @@ NTE(HL) ;Find Reason for Request for New or Resubmit entries, Find TIU for compl
  ..D HL7TXT^GMRCHL7P(.X,.HL,"\")
  ..S X=$$TIUC^GMRCCCR1(X)
  ..S ZCNT=ZCNT+1,NTECNT=NTECNT+1,GMRCM(ZCNT)="NTE|"_NTECNT_"||"_X
+ ..I $$UP^XLFSTR($G(X))["EDIT REFERRAL FACILITY:" D  ; patch 163 - PB if the edit is to change referral facility parse and update field 81, file 123
+ ...S X=$TR(X,$C(10),"")
+ ...S UPDATE81=$P(X,": ",2)
+ ...Q:$G(UPDATE81)=0
+ ...N FDA S FDA(123,$G(GMRCDA)_",",81)=$G(UPDATE81) D UPDATE^DIE(,"FDA",$G(GMRCDA)_",","GMRCERR")
  ..Q
  .Q
  Q
@@ -305,13 +322,10 @@ COMMENT(GMRCDA) ;send comments on Non VA Care consults to HCP
  Q
 ADDEND(TIUDA) ;send addendums on Non VA Care consults to HCP
  ;create a fake event for HCP since there is no HL7 event passed to GMRC EVSEND OR
- ;
  I '$G(TIUDA) Q
  Q:'$D(^TIU(8925,+TIUDA,0))
  N TIUTYP,DFN,GMRCPARN,GMRCO,GMRCD,GMRCDA,GMRCD1,GMRC8925,T
- ;
  S GMRCO=$$ADDEND^GMRCCCR1 Q:'GMRCO   ; patch 146, needed for space ; MJ
- ;
  S T(1)="MSH|^~\&|CONSULTS||||||ORM"
  S T(2)="PID|||"_DFN
  S T(4)="ORC|XX|"_$$GET1^DIQ(123,GMRCO,.03,"I")_";"_$$OITEM($$GET1^DIQ(123,GMRCO,.03,"I"))_"^OR|"_GMRCO_";GMRC^GMRC||CM|"
@@ -338,13 +352,9 @@ OITEM(GMRCORDN) ; Orderable Item
  ; patch 106 - modified to use ICR 2467
  N RETVAL ;,GMRCOITM
  S RETVAL=1
- ;S GMRCOITM=+$O(^OR(100,GMRCORDN,.1,0))
- ;I GMRCOITM D
- ;.S RETVAL=+$G(^OR(100,GMRCORDN,.1,GMRCOITM,0))
- ;.I 'RETVAL S RETVAL=1
  S RETVAL=+$$OI^ORX8(GMRCORDN)
  I 'RETVAL S RETVAL=1
- ; end patch 106 mods
+ ;end patch 106 mods
  Q RETVAL
 ACK ; Process ACK HL7 messages
  D ACK^GMRCCCR1 ; patch 146, moved for space

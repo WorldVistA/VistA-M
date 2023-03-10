@@ -1,5 +1,5 @@
-MAGDRPC8 ;WOIFO/EdM,BT,DAC - RPCs for Master Files ; 31 Aug 2014 9:52 AM
- ;;3.0;IMAGING;**11,30,51,54,118,138,156,161**;Mar 19, 2002;Build 20;Sep 1, 2015
+MAGDRPC8 ;WOIFO/EdM,BT,DAC,PMK - RPCs for Master Files ; Apr 03, 2020@10:13:43
+ ;;3.0;IMAGING;**11,30,51,54,118,138,156,161,231**;Mar 19, 2002;Build 9;Sep 1, 2015
  ;; Per VHA Directive 2004-038, this routine should not be modified.
  ;; +---------------------------------------------------------------+
  ;; | Property of the US Government.                                |
@@ -15,6 +15,14 @@ MAGDRPC8 ;WOIFO/EdM,BT,DAC - RPCs for Master Files ; 31 Aug 2014 9:52 AM
  ;; | to be a violation of US Federal Statutes.                     |
  ;; +---------------------------------------------------------------+
  ;;
+ ;
+ ; Supported IA #4389 reference $$FIND^DIC function call
+ ; Supported IA #2056 reference $$GET1^DIQ function call
+ ; Supported IA #2171 reference SIBLING^XUAF4 subroutine call
+ ; Supported IA #10103 reference $$FMTE^XLFDT function call
+ ; Supported IA #10103 reference $$NOW^XLFDT function call
+ ; Supported IA #2541 reference $$KSP^XUPARAM function call
+ ;
  Q
  ;
 UPDTAPP(OUT,APP) ; RPC = MAG DICOM UPDATE SCU LIST
@@ -67,7 +75,7 @@ UPDTAPP(OUT,APP) ; RPC = MAG DICOM UPDATE SCU LIST
  . Q:A["_"
  . S X=APP(A),$P(X,"^",8)=NOW
  . S D0=$O(^MAG(2006.587," "),-1)+1,PLUS=PLUS+1,$P(HDR,"^",3)=D0
- . S ^MAG(2006.587,D0,0)=$P(X,"^",1,8),SERVNAM=$P(X,"^",1)
+ . S ^MAG(2006.587,D0,0)=$P(X,"^",1,9),SERVNAM=$P(X,"^",1) ; PMK P231 2/5/2020
  . S ^MAG(2006.587,"B",SERVNAM,D0)=""
  . S ^MAG(2006.587,"C",SERVNAM,GWLOC,GWNAM,D0)=""
  . S ^MAG(2006.587,"D",GWNAM,GWLOC,D0)=""
@@ -115,7 +123,7 @@ UPDTGW(OUT,ONAM,NNAM,OLOC,NLOC) ; RPC = MAG DICOM UPDATE GATEWAY NAME
  ;
 SIBS(P0,T) N MAGLOC,P1,P2
  S T(P0)=""
- D SIBLING^XUAF4("MAGLOC",P0,"PARENT FACILITY") ; General API, IA #2171
+ D SIBLING^XUAF4("MAGLOC",P0,"PARENT FACILITY")
  S P1="" F  S P1=$O(MAGLOC("P",P1)) Q:P1=""  D
  . S P2="" F  S P2=$O(MAGLOC("P",P1,"C",P2)) Q:P2=""  S T(P2)=""
  . Q
@@ -127,12 +135,12 @@ LOCS(OUT) ; RPC = MAG DICOM VALID LOCATIONS
  S D0=0 F  S D0=$O(^MAG(2006.1,D0)) Q:'D0  D
  . S X=$G(^MAG(2006.1,D0,0)),P1=$P(X,"^",1) Q:P1=""
  . I +P1=P1 S T(P1)="" Q
- . D FIND^DIC(4,"","","BX",P1,"*","","","","MAGR","MAGM") ; IA #4389
+ . D FIND^DIC(4,"","","BX",P1,"*","","","","MAGR","MAGM")
  . S I=0 F  S I=$O(MAGR("DILIST",2,I)) Q:'I  D
  . . S P1=MAGR("DILIST",2,I) I P1 K MAGR S T(P1)=""
  . . Q
  . Q
- I $T(+1^XUPARAM)'="" S P1=$$KSP^XUPARAM("INST") D:P1 SIBS(P1,.T)
+ I $T(^XUPARAM)'="" S P1=$$KSP^XUPARAM("INST") D:P1 SIBS(P1,.T)
  S P1=+$G(^DD("SITE",1)) D:P1 SIBS(P1,.T)
  ;
  S P1="" F  S P1=$O(T(P1)) Q:P1=""  D

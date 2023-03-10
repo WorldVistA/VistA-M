@@ -1,124 +1,128 @@
-IBDEI14J ; ; 04-FEB-2020
- ;;3.0;IB ENCOUNTER FORM IMP/EXP;;FEB 04, 2020
+IBDEI14J ; ; 01-FEB-2022
+ ;;3.0;IB ENCOUNTER FORM IMP/EXP;;FEB 01, 2022
  Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,999) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
- ;;^UTILITY(U,$J,358.3,18049,1,4,0)
- ;;=4^E10.10
- ;;^UTILITY(U,$J,358.3,18049,2)
- ;;=^5002587
- ;;^UTILITY(U,$J,358.3,18050,0)
- ;;=E10.11^^88^908^17
- ;;^UTILITY(U,$J,358.3,18050,1,0)
+ ;;^UTILITY(U,$J,358.3,18235,0)
+ ;;=J15.29^^61^808^11
+ ;;^UTILITY(U,$J,358.3,18235,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,18050,1,3,0)
- ;;=3^DM Type 1 w/ Ketoacidosis w/ Coma
- ;;^UTILITY(U,$J,358.3,18050,1,4,0)
- ;;=4^E10.11
- ;;^UTILITY(U,$J,358.3,18050,2)
- ;;=^5002588
- ;;^UTILITY(U,$J,358.3,18051,0)
- ;;=E10.21^^88^908^8
- ;;^UTILITY(U,$J,358.3,18051,1,0)
+ ;;^UTILITY(U,$J,358.3,18235,1,3,0)
+ ;;=3^Pneumonia d/t Oth Staph
+ ;;^UTILITY(U,$J,358.3,18235,1,4,0)
+ ;;=4^J15.29
+ ;;^UTILITY(U,$J,358.3,18235,2)
+ ;;=^5008172
+ ;;^UTILITY(U,$J,358.3,18236,0)
+ ;;=J15.3^^61^808^20
+ ;;^UTILITY(U,$J,358.3,18236,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,18051,1,3,0)
- ;;=3^DM Type 1 w/ Diab Nephropathy
- ;;^UTILITY(U,$J,358.3,18051,1,4,0)
- ;;=4^E10.21
- ;;^UTILITY(U,$J,358.3,18051,2)
- ;;=^5002589
- ;;^UTILITY(U,$J,358.3,18052,0)
- ;;=E10.22^^88^908^3
- ;;^UTILITY(U,$J,358.3,18052,1,0)
+ ;;^UTILITY(U,$J,358.3,18236,1,3,0)
+ ;;=3^Pneumonia d/t Streptococcus,Group B
+ ;;^UTILITY(U,$J,358.3,18236,1,4,0)
+ ;;=4^J15.3
+ ;;^UTILITY(U,$J,358.3,18236,2)
+ ;;=^5008173
+ ;;^UTILITY(U,$J,358.3,18237,0)
+ ;;=J15.4^^61^808^15
+ ;;^UTILITY(U,$J,358.3,18237,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,18052,1,3,0)
- ;;=3^DM Type 1 w/ Diab CKD
- ;;^UTILITY(U,$J,358.3,18052,1,4,0)
- ;;=4^E10.22
- ;;^UTILITY(U,$J,358.3,18052,2)
- ;;=^5002590
- ;;^UTILITY(U,$J,358.3,18053,0)
- ;;=E10.29^^88^908^24
- ;;^UTILITY(U,$J,358.3,18053,1,0)
+ ;;^UTILITY(U,$J,358.3,18237,1,3,0)
+ ;;=3^Pneumonia d/t Other Streptococci
+ ;;^UTILITY(U,$J,358.3,18237,1,4,0)
+ ;;=4^J15.4
+ ;;^UTILITY(U,$J,358.3,18237,2)
+ ;;=^5008174
+ ;;^UTILITY(U,$J,358.3,18238,0)
+ ;;=J15.5^^61^808^5
+ ;;^UTILITY(U,$J,358.3,18238,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,18053,1,3,0)
- ;;=3^DM Type 1 w/ Oth Diab Kidney Compl
- ;;^UTILITY(U,$J,358.3,18053,1,4,0)
- ;;=4^E10.29
- ;;^UTILITY(U,$J,358.3,18053,2)
- ;;=^5002591
- ;;^UTILITY(U,$J,358.3,18054,0)
- ;;=E10.311^^88^908^12
- ;;^UTILITY(U,$J,358.3,18054,1,0)
+ ;;^UTILITY(U,$J,358.3,18238,1,3,0)
+ ;;=3^Pneumonia d/t Escherichia Coli
+ ;;^UTILITY(U,$J,358.3,18238,1,4,0)
+ ;;=4^J15.5
+ ;;^UTILITY(U,$J,358.3,18238,2)
+ ;;=^5008175
+ ;;^UTILITY(U,$J,358.3,18239,0)
+ ;;=J15.6^^61^808^12
+ ;;^UTILITY(U,$J,358.3,18239,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,18054,1,3,0)
- ;;=3^DM Type 1 w/ Diab Retinopathy w/ Macular Edema
- ;;^UTILITY(U,$J,358.3,18054,1,4,0)
- ;;=4^E10.311
- ;;^UTILITY(U,$J,358.3,18054,2)
- ;;=^5002592
- ;;^UTILITY(U,$J,358.3,18055,0)
- ;;=E10.319^^88^908^13
- ;;^UTILITY(U,$J,358.3,18055,1,0)
+ ;;^UTILITY(U,$J,358.3,18239,1,3,0)
+ ;;=3^Pneumonia d/t Other Aerobic Gram-Neg Bacteria
+ ;;^UTILITY(U,$J,358.3,18239,1,4,0)
+ ;;=4^J15.6
+ ;;^UTILITY(U,$J,358.3,18239,2)
+ ;;=^5008176
+ ;;^UTILITY(U,$J,358.3,18240,0)
+ ;;=J15.7^^61^808^10
+ ;;^UTILITY(U,$J,358.3,18240,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,18055,1,3,0)
- ;;=3^DM Type 1 w/ Diab Retinopathy w/o Macular Edema
- ;;^UTILITY(U,$J,358.3,18055,1,4,0)
- ;;=4^E10.319
- ;;^UTILITY(U,$J,358.3,18055,2)
- ;;=^5002593
- ;;^UTILITY(U,$J,358.3,18056,0)
- ;;=E10.3211^^88^908^19
- ;;^UTILITY(U,$J,358.3,18056,1,0)
+ ;;^UTILITY(U,$J,358.3,18240,1,3,0)
+ ;;=3^Pneumonia d/t Mycoplasma Pneumoniae
+ ;;^UTILITY(U,$J,358.3,18240,1,4,0)
+ ;;=4^J15.7
+ ;;^UTILITY(U,$J,358.3,18240,2)
+ ;;=^5008177
+ ;;^UTILITY(U,$J,358.3,18241,0)
+ ;;=J15.8^^61^808^13
+ ;;^UTILITY(U,$J,358.3,18241,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,18056,1,3,0)
- ;;=3^DM Type 1 w/ Mild Nonp Rtnop w/ Macular Edema,Rt Eye
- ;;^UTILITY(U,$J,358.3,18056,1,4,0)
- ;;=4^E10.3211
- ;;^UTILITY(U,$J,358.3,18056,2)
- ;;=^5138279
- ;;^UTILITY(U,$J,358.3,18057,0)
- ;;=E10.3212^^88^908^20
- ;;^UTILITY(U,$J,358.3,18057,1,0)
+ ;;^UTILITY(U,$J,358.3,18241,1,3,0)
+ ;;=3^Pneumonia d/t Other Spec Bacteria
+ ;;^UTILITY(U,$J,358.3,18241,1,4,0)
+ ;;=4^J15.8
+ ;;^UTILITY(U,$J,358.3,18241,2)
+ ;;=^95571
+ ;;^UTILITY(U,$J,358.3,18242,0)
+ ;;=J15.9^^61^808^22
+ ;;^UTILITY(U,$J,358.3,18242,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,18057,1,3,0)
- ;;=3^DM Type 1 w/ Mild Nonp Rtnop w/ Macular Edema,Lt Eye
- ;;^UTILITY(U,$J,358.3,18057,1,4,0)
- ;;=4^E10.3212
- ;;^UTILITY(U,$J,358.3,18057,2)
- ;;=^5138280
- ;;^UTILITY(U,$J,358.3,18058,0)
- ;;=E10.3213^^88^908^21
- ;;^UTILITY(U,$J,358.3,18058,1,0)
+ ;;^UTILITY(U,$J,358.3,18242,1,3,0)
+ ;;=3^Pneumonia,Bacterial,Unspec
+ ;;^UTILITY(U,$J,358.3,18242,1,4,0)
+ ;;=4^J15.9
+ ;;^UTILITY(U,$J,358.3,18242,2)
+ ;;=^5008178
+ ;;^UTILITY(U,$J,358.3,18243,0)
+ ;;=J16.0^^61^808^23
+ ;;^UTILITY(U,$J,358.3,18243,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,18058,1,3,0)
- ;;=3^DM Type 1 w/ Mild Nonp Rtnop w/ Macular Edema,Bilat
- ;;^UTILITY(U,$J,358.3,18058,1,4,0)
- ;;=4^E10.3213
- ;;^UTILITY(U,$J,358.3,18058,2)
- ;;=^5138281
- ;;^UTILITY(U,$J,358.3,18059,0)
- ;;=E10.39^^88^908^26
- ;;^UTILITY(U,$J,358.3,18059,1,0)
+ ;;^UTILITY(U,$J,358.3,18243,1,3,0)
+ ;;=3^Pneumonia,Chlamydial
+ ;;^UTILITY(U,$J,358.3,18243,1,4,0)
+ ;;=4^J16.0
+ ;;^UTILITY(U,$J,358.3,18243,2)
+ ;;=^5008179
+ ;;^UTILITY(U,$J,358.3,18244,0)
+ ;;=J16.8^^61^808^14
+ ;;^UTILITY(U,$J,358.3,18244,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,18059,1,3,0)
- ;;=3^DM Type 1 w/ Oth Diab Ophth Compl
- ;;^UTILITY(U,$J,358.3,18059,1,4,0)
- ;;=4^E10.39
- ;;^UTILITY(U,$J,358.3,18059,2)
- ;;=^5002603
- ;;^UTILITY(U,$J,358.3,18060,0)
- ;;=E10.40^^88^908^10
- ;;^UTILITY(U,$J,358.3,18060,1,0)
+ ;;^UTILITY(U,$J,358.3,18244,1,3,0)
+ ;;=3^Pneumonia d/t Other Spec Infectious Organisms
+ ;;^UTILITY(U,$J,358.3,18244,1,4,0)
+ ;;=4^J16.8
+ ;;^UTILITY(U,$J,358.3,18244,2)
+ ;;=^5008180
+ ;;^UTILITY(U,$J,358.3,18245,0)
+ ;;=J17.^^61^808^21
+ ;;^UTILITY(U,$J,358.3,18245,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,18060,1,3,0)
- ;;=3^DM Type 1 w/ Diab Neuropathy,Unspec
- ;;^UTILITY(U,$J,358.3,18060,1,4,0)
- ;;=4^E10.40
- ;;^UTILITY(U,$J,358.3,18060,2)
- ;;=^5002604
- ;;^UTILITY(U,$J,358.3,18061,0)
- ;;=E10.41^^88^908^7
- ;;^UTILITY(U,$J,358.3,18061,1,0)
+ ;;^UTILITY(U,$J,358.3,18245,1,3,0)
+ ;;=3^Pneumonia in Diseases Classified Elsewhere
+ ;;^UTILITY(U,$J,358.3,18245,1,4,0)
+ ;;=4^J17.
+ ;;^UTILITY(U,$J,358.3,18245,2)
+ ;;=^5008181
+ ;;^UTILITY(U,$J,358.3,18246,0)
+ ;;=J18.0^^61^808^2
+ ;;^UTILITY(U,$J,358.3,18246,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,18061,1,3,0)
- ;;=3^DM Type 1 w/ Diab Mononeuropathy
+ ;;^UTILITY(U,$J,358.3,18246,1,3,0)
+ ;;=3^Bronchopneumonia,Unspec Organism
+ ;;^UTILITY(U,$J,358.3,18246,1,4,0)
+ ;;=4^J18.0
+ ;;^UTILITY(U,$J,358.3,18246,2)
+ ;;=^5008182
+ ;;^UTILITY(U,$J,358.3,18247,0)
+ ;;=J18.1^^61^808^25
+ ;;^UTILITY(U,$J,358.3,18247,1,0)
+ ;;=^358.31IA^4^2

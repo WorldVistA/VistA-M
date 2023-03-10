@@ -1,12 +1,13 @@
-RCCPCPS ;WASH-ISC@ALTOONA,PA/NYB-Build Patient Statement File ;12/19/96  4:14 PM
-V ;;4.5;Accounts Receivable;**34,70,80,48,104,116,149,170,181,190,223,237,219,265,301,348**;Mar 20,1995;Build 20
+RCCPCPS ;WASH-ISC@ALTOONA,PA/NYB - Build Patient Statement File ;12/19/96  4:14 PM
+V ;;4.5;Accounts Receivable;**34,70,80,48,104,116,149,170,181,190,223,237,219,265,301,348,397**;Mar 20,1995;Build 7
  ;;Per VA Directive 6402, this routine should not be modified.
  ;
  ;PRCA*4.5*348 Set 'BEG' lookup to handle last statement event
  ;             whether exists or not
  ;
 EN N CCPC,CNT,DAT,DEB,DIK,END,INADFL,LDT1,LDT3,PCC,PRN,RCDATE,RCT,SVADM,SVAMT,SVINT,SVOTH,SITE,TXT,VAR,X,%
- N RCINFULL,RCINPART S COMM=0
+ N RCINFULL,RCINPART,STATLIM S COMM=0
+ S STATLIM=$$GET1^DIQ(342,1_",",101,"I")+1 ;Statment Length from AR Site Parameter file
  K ^RCPS(349.2)
  F X="PA","IS" S RCT=$O(^RCT(349.1,"B",X,0)) Q:'RCT  K ^RCT(349.1,+RCT,4),^RCT(349.1,+RCT,5)
  K ^XTMP("RCCPC")
@@ -130,7 +131,7 @@ EN N CCPC,CNT,DAT,DEB,DIK,END,INADFL,LDT1,LDT3,PCC,PRN,RCDATE,RCT,SVADM,SVAMT,SV
  .   ;  set 0th node
  .   I RCPSDA S ^RCPS(349.2,RCDEBTDA,2,0)="^349.21DA^"_RCPSDA_"^"_RCPSDA
  .   ;  
- .   I RCPSDA'<287 S ^XTMP("RCCPC",0)=DT,^XTMP("RCCPC",RCDEBTDA)="" Q
+ .   I RCPSDA'<STATLIM S ^XTMP("RCCPC",0)=DT,^XTMP("RCCPC",RCDEBTDA)="" Q
  .   D NO
  ;
  S DIK="^RCPS(349.2," D IXALL^DIK

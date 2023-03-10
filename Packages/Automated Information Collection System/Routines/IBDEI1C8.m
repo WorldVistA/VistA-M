@@ -1,130 +1,126 @@
-IBDEI1C8 ; ; 04-FEB-2020
- ;;3.0;IB ENCOUNTER FORM IMP/EXP;;FEB 04, 2020
+IBDEI1C8 ; ; 01-FEB-2022
+ ;;3.0;IB ENCOUNTER FORM IMP/EXP;;FEB 01, 2022
  Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,999) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
- ;;^UTILITY(U,$J,358.3,21367,1,0)
+ ;;^UTILITY(U,$J,358.3,21623,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,21367,1,3,0)
- ;;=3^Disability Determination Exam
- ;;^UTILITY(U,$J,358.3,21367,1,4,0)
- ;;=4^Z02.71
- ;;^UTILITY(U,$J,358.3,21367,2)
- ;;=^5062640
- ;;^UTILITY(U,$J,358.3,21368,0)
- ;;=Z02.79^^95^1062^4
- ;;^UTILITY(U,$J,358.3,21368,1,0)
+ ;;^UTILITY(U,$J,358.3,21623,1,3,0)
+ ;;=3^Rheumatoid Arthritis Left Knee
+ ;;^UTILITY(U,$J,358.3,21623,1,4,0)
+ ;;=4^M06.862
+ ;;^UTILITY(U,$J,358.3,21623,2)
+ ;;=^5010138
+ ;;^UTILITY(U,$J,358.3,21624,0)
+ ;;=M06.812^^70^922^98
+ ;;^UTILITY(U,$J,358.3,21624,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,21368,1,3,0)
- ;;=3^Issue of Medical Certificate
- ;;^UTILITY(U,$J,358.3,21368,1,4,0)
- ;;=4^Z02.79
- ;;^UTILITY(U,$J,358.3,21368,2)
- ;;=^5062641
- ;;^UTILITY(U,$J,358.3,21369,0)
- ;;=Z04.9^^95^1062^3
- ;;^UTILITY(U,$J,358.3,21369,1,0)
+ ;;^UTILITY(U,$J,358.3,21624,1,3,0)
+ ;;=3^Rheumatoid Arthritis Left Shoulder
+ ;;^UTILITY(U,$J,358.3,21624,1,4,0)
+ ;;=4^M06.812
+ ;;^UTILITY(U,$J,358.3,21624,2)
+ ;;=^5010123
+ ;;^UTILITY(U,$J,358.3,21625,0)
+ ;;=M06.832^^70^922^99
+ ;;^UTILITY(U,$J,358.3,21625,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,21369,1,3,0)
- ;;=3^Exam & Observation for Unspec Reason
- ;;^UTILITY(U,$J,358.3,21369,1,4,0)
- ;;=4^Z04.9
- ;;^UTILITY(U,$J,358.3,21369,2)
- ;;=^5062666
- ;;^UTILITY(U,$J,358.3,21370,0)
- ;;=Z02.9^^95^1062^1
- ;;^UTILITY(U,$J,358.3,21370,1,0)
+ ;;^UTILITY(U,$J,358.3,21625,1,3,0)
+ ;;=3^Rheumatoid Arthritis Left Wrist
+ ;;^UTILITY(U,$J,358.3,21625,1,4,0)
+ ;;=4^M06.832
+ ;;^UTILITY(U,$J,358.3,21625,2)
+ ;;=^5010129
+ ;;^UTILITY(U,$J,358.3,21626,0)
+ ;;=M06.89^^70^922^100
+ ;;^UTILITY(U,$J,358.3,21626,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,21370,1,3,0)
- ;;=3^Adminstrative Exams,Unspec
- ;;^UTILITY(U,$J,358.3,21370,1,4,0)
- ;;=4^Z02.9
- ;;^UTILITY(U,$J,358.3,21370,2)
- ;;=^5062646
- ;;^UTILITY(U,$J,358.3,21371,0)
- ;;=Z76.82^^95^1063^2
- ;;^UTILITY(U,$J,358.3,21371,1,0)
+ ;;^UTILITY(U,$J,358.3,21626,1,3,0)
+ ;;=3^Rheumatoid Arthritis Mult Sites
+ ;;^UTILITY(U,$J,358.3,21626,1,4,0)
+ ;;=4^M06.89
+ ;;^UTILITY(U,$J,358.3,21626,2)
+ ;;=^5010144
+ ;;^UTILITY(U,$J,358.3,21627,0)
+ ;;=M06.871^^70^922^101
+ ;;^UTILITY(U,$J,358.3,21627,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,21371,1,3,0)
- ;;=3^Awaiting Organ Transplant Status
- ;;^UTILITY(U,$J,358.3,21371,1,4,0)
- ;;=4^Z76.82
- ;;^UTILITY(U,$J,358.3,21371,2)
- ;;=^331582
- ;;^UTILITY(U,$J,358.3,21372,0)
- ;;=Z78.0^^95^1063^1
- ;;^UTILITY(U,$J,358.3,21372,1,0)
+ ;;^UTILITY(U,$J,358.3,21627,1,3,0)
+ ;;=3^Rheumatoid Arthritis Right Ankle/Foot
+ ;;^UTILITY(U,$J,358.3,21627,1,4,0)
+ ;;=4^M06.871
+ ;;^UTILITY(U,$J,358.3,21627,2)
+ ;;=^5010140
+ ;;^UTILITY(U,$J,358.3,21628,0)
+ ;;=M06.821^^70^922^102
+ ;;^UTILITY(U,$J,358.3,21628,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,21372,1,3,0)
- ;;=3^Asymptomatic Menopausal State
- ;;^UTILITY(U,$J,358.3,21372,1,4,0)
- ;;=4^Z78.0
- ;;^UTILITY(U,$J,358.3,21372,2)
- ;;=^5063327
- ;;^UTILITY(U,$J,358.3,21373,0)
- ;;=Z74.01^^95^1063^3
- ;;^UTILITY(U,$J,358.3,21373,1,0)
+ ;;^UTILITY(U,$J,358.3,21628,1,3,0)
+ ;;=3^Rheumatoid Arthritis Right Elbow
+ ;;^UTILITY(U,$J,358.3,21628,1,4,0)
+ ;;=4^M06.821
+ ;;^UTILITY(U,$J,358.3,21628,2)
+ ;;=^5010125
+ ;;^UTILITY(U,$J,358.3,21629,0)
+ ;;=M06.841^^70^922^103
+ ;;^UTILITY(U,$J,358.3,21629,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,21373,1,3,0)
- ;;=3^Bed Confinement Status
- ;;^UTILITY(U,$J,358.3,21373,1,4,0)
- ;;=4^Z74.01
- ;;^UTILITY(U,$J,358.3,21373,2)
- ;;=^5063282
- ;;^UTILITY(U,$J,358.3,21374,0)
- ;;=Z73.82^^95^1063^5
- ;;^UTILITY(U,$J,358.3,21374,1,0)
+ ;;^UTILITY(U,$J,358.3,21629,1,3,0)
+ ;;=3^Rheumatoid Arthritis Right Hand
+ ;;^UTILITY(U,$J,358.3,21629,1,4,0)
+ ;;=4^M06.841
+ ;;^UTILITY(U,$J,358.3,21629,2)
+ ;;=^5010131
+ ;;^UTILITY(U,$J,358.3,21630,0)
+ ;;=M06.851^^70^922^104
+ ;;^UTILITY(U,$J,358.3,21630,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,21374,1,3,0)
- ;;=3^Dual Sensory Impairment
- ;;^UTILITY(U,$J,358.3,21374,1,4,0)
- ;;=4^Z73.82
- ;;^UTILITY(U,$J,358.3,21374,2)
- ;;=^5063279
- ;;^UTILITY(U,$J,358.3,21375,0)
- ;;=Z66.^^95^1063^4
- ;;^UTILITY(U,$J,358.3,21375,1,0)
+ ;;^UTILITY(U,$J,358.3,21630,1,3,0)
+ ;;=3^Rheumatoid Arthritis Right Hip
+ ;;^UTILITY(U,$J,358.3,21630,1,4,0)
+ ;;=4^M06.851
+ ;;^UTILITY(U,$J,358.3,21630,2)
+ ;;=^5010134
+ ;;^UTILITY(U,$J,358.3,21631,0)
+ ;;=M06.861^^70^922^105
+ ;;^UTILITY(U,$J,358.3,21631,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,21375,1,3,0)
- ;;=3^Do Not Resuscitate
- ;;^UTILITY(U,$J,358.3,21375,1,4,0)
- ;;=4^Z66.
- ;;^UTILITY(U,$J,358.3,21375,2)
- ;;=^5063187
- ;;^UTILITY(U,$J,358.3,21376,0)
- ;;=Z78.1^^95^1063^7
- ;;^UTILITY(U,$J,358.3,21376,1,0)
+ ;;^UTILITY(U,$J,358.3,21631,1,3,0)
+ ;;=3^Rheumatoid Arthritis Right Knee
+ ;;^UTILITY(U,$J,358.3,21631,1,4,0)
+ ;;=4^M06.861
+ ;;^UTILITY(U,$J,358.3,21631,2)
+ ;;=^5010137
+ ;;^UTILITY(U,$J,358.3,21632,0)
+ ;;=M06.811^^70^922^106
+ ;;^UTILITY(U,$J,358.3,21632,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,21376,1,3,0)
- ;;=3^Physical Restraint Status
- ;;^UTILITY(U,$J,358.3,21376,1,4,0)
- ;;=4^Z78.1
- ;;^UTILITY(U,$J,358.3,21376,2)
- ;;=^5063328
- ;;^UTILITY(U,$J,358.3,21377,0)
- ;;=Z87.898^^95^1063^6
- ;;^UTILITY(U,$J,358.3,21377,1,0)
+ ;;^UTILITY(U,$J,358.3,21632,1,3,0)
+ ;;=3^Rheumatoid Arthritis Right Shoulder
+ ;;^UTILITY(U,$J,358.3,21632,1,4,0)
+ ;;=4^M06.811
+ ;;^UTILITY(U,$J,358.3,21632,2)
+ ;;=^5010122
+ ;;^UTILITY(U,$J,358.3,21633,0)
+ ;;=M06.831^^70^922^107
+ ;;^UTILITY(U,$J,358.3,21633,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,21377,1,3,0)
- ;;=3^Personal Hx of Oth Spec Conditions
- ;;^UTILITY(U,$J,358.3,21377,1,4,0)
- ;;=4^Z87.898
- ;;^UTILITY(U,$J,358.3,21377,2)
- ;;=^5063520
- ;;^UTILITY(U,$J,358.3,21378,0)
- ;;=Z51.89^^95^1064^1
- ;;^UTILITY(U,$J,358.3,21378,1,0)
+ ;;^UTILITY(U,$J,358.3,21633,1,3,0)
+ ;;=3^Rheumatoid Arthritis Right Wrist
+ ;;^UTILITY(U,$J,358.3,21633,1,4,0)
+ ;;=4^M06.831
+ ;;^UTILITY(U,$J,358.3,21633,2)
+ ;;=^5010128
+ ;;^UTILITY(U,$J,358.3,21634,0)
+ ;;=M06.88^^70^922^108
+ ;;^UTILITY(U,$J,358.3,21634,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,21378,1,3,0)
- ;;=3^Aftercare,Oth Spec
- ;;^UTILITY(U,$J,358.3,21378,1,4,0)
- ;;=4^Z51.89
- ;;^UTILITY(U,$J,358.3,21378,2)
- ;;=^5063065
- ;;^UTILITY(U,$J,358.3,21379,0)
- ;;=Z51.5^^95^1064^2
- ;;^UTILITY(U,$J,358.3,21379,1,0)
+ ;;^UTILITY(U,$J,358.3,21634,1,3,0)
+ ;;=3^Rheumatoid Arthritis Vetebrae
+ ;;^UTILITY(U,$J,358.3,21634,1,4,0)
+ ;;=4^M06.88
+ ;;^UTILITY(U,$J,358.3,21634,2)
+ ;;=^5010143
+ ;;^UTILITY(U,$J,358.3,21635,0)
+ ;;=G82.21^^70^922^22
+ ;;^UTILITY(U,$J,358.3,21635,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,21379,1,3,0)
- ;;=3^Palliative Care
- ;;^UTILITY(U,$J,358.3,21379,1,4,0)
- ;;=4^Z51.5

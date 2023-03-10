@@ -1,11 +1,11 @@
-HLEVAPI3 ;O-OIFO/LJA/PIJ - Event Monitor APIs ;12/08/2010
- ;;1.6;HEALTH LEVEL SEVEN;**109,153**;Oct 13, 1995;Build 11
- ;Per VHA Directive 2004-038, this routine should not be modified.
+HLEVAPI3 ;O-OIFO/LJA/PIJ - Event Monitor APIs ; Mar 02, 2021@08:28
+ ;;1.6;HEALTH LEVEL SEVEN;**109,153,173**;Oct 13, 1995;Build 14
+ ;Per VA Directive 6402, this routine should not be modified.
 EVENTONE(HLEVIENM,HLEVNM,HLEVIENE) ; Master job check of an event...
  ; ZTSKMST -- req
  N CONT,CURR,CURRNOW,IEN,LAPSEMIN,LASTRUN,MAILGRP,MCHECK,MSTART,NO,NODE
  N NODE0,NODE40,PAR1,PAR2,PAR3,PAR4,PAR5,PAR6,PAR7,PAR8,RUNNOW
- N START,STAT,ZTDESC,ZTDTH,ZTIO,ZTRTN
+ N START,STAT,ZTDESC,ZTDTH,ZTIO,ZTRTN,HLDT,HLIEN
  ;
  S NODE0=$G(^HLEV(776.1,+$G(HLEVIENE),0))
  I NODE0']"" D RECEVM(HLEVIENM,HLEVIENE,"X^NO-0-NODE") QUIT  ;->
@@ -25,10 +25,16 @@ EVENTONE(HLEVIENM,HLEVNM,HLEVIENE) ; Master job check of an event...
  .  D RECEVM(HLEVIENM,HLEVIENE,"X-INVALID-M-CHK ["_$TR(MCHECK,U,"~")_"]")
  ;
  ; When last run (started)?  Return NULL if not completed...
- S IEN=$O(^HLEV(776,"M",+HLEVIENE,":"),-1)
- S (NODE,LASTRUN(1))=$G(^HLEV(776,+IEN,0))
- S LASTRUN=$P(NODE,U),LASTRUN=$S(LASTRUN?7N1"."1.N:LASTRUN,1:"")
- S X=$P(NODE,U,2) I X?7N1"."1.N S LASTRUN=X
+ ;Use the "B" x-ref to get the most recently run monitors, and then check monitor value - Start HL*1.6*173 changes
+ ;S IEN=$O(^HLEV(776,"M",+HLEVIENE,":"),-1)
+  S HLDT=":" F  S HLDT=$O(^HLEV(776,"B",HLDT),-1) Q:'HLDT  Q:$G(IEN)  D
+ .S HLIEN=":" F  S HLIEN=$O(^HLEV(776,"B",HLDT,HLIEN),-1) Q:'HLIEN  Q:$G(IEN)  D
+ ..I $P($G(^HLEV(776,HLIEN,0)),U,3)=HLEVIENE S IEN=HLIEN Q
+ I $G(IEN) S (NODE,LASTRUN(1))=$G(^HLEV(776,+IEN,0)) D
+ .S LASTRUN=$P(NODE,U),LASTRUN=$S(LASTRUN?7N1"."1.N:LASTRUN,1:"")
+ .S X=$P(NODE,U,2) I X?7N1"."1.N S LASTRUN=X
+ S:'$G(IEN) LASTRUN=""
+ ;End HL*1.6*173 code changes
  ;
  ; Set start new job default to YES...
  S CONT=1

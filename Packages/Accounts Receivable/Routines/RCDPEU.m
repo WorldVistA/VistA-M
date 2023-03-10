@@ -1,6 +1,6 @@
 RCDPEU ;ALB/TMK - ELECTRONIC ERA UTILITIES ;05-NOV-02
- ;;4.5;Accounts Receivable;**173**;Mar 20, 1995
- ;;Per VHA Directive 10-93-142, this routine should not be modified.
+ ;;4.5;Accounts Receivable;**173,367**;Mar 20, 1995;Build 11
+ ;Per VA Directive 6402, this routine should not be modified.
  Q
  ;
 EFTMTCH ; Match an electronic EFT's deposit to a paper EOB's receipt record
@@ -68,9 +68,11 @@ HACERA(RCERA) ; Functions to determine if ERA entry in file 344.4 is an
  ; ERA received from HAC (CHAMPVA)
  ; RCERA = ien of entry file 344.4
  ; Returns 1 if it is, 0 if not
- N X
- S X=0 ; Add code here to make the determination
- Q X
+ ; PRCA*4.5*367 - Add logic to determine if ERA is CHAMPVA
+ N RCPMTHD,RCTRACE
+ S RCTRACE=$$GET1^DIQ(344.4,RCERA_",",.02)
+ S RCPMTHD=$$GET1^DIQ(344.4,RCERA_",",.15)
+ Q $E(RCTRACE,1,3)="TDA"&(RCPMTHD="CHK")
  ;
 HACEFT(RCEFT) ; Functions to determine if EFT entry in file 344.3 is an
  ; EFT received from HAC (CHAMPVA)

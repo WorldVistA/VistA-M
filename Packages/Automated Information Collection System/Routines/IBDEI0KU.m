@@ -1,122 +1,128 @@
-IBDEI0KU ; ; 04-FEB-2020
- ;;3.0;IB ENCOUNTER FORM IMP/EXP;;FEB 04, 2020
+IBDEI0KU ; ; 01-FEB-2022
+ ;;3.0;IB ENCOUNTER FORM IMP/EXP;;FEB 01, 2022
  Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,999) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
- ;;^UTILITY(U,$J,358.3,9210,1,3,0)
- ;;=3^Albuterol,Inhale,Non-Compd,Concentrate Frm 1mg
- ;;^UTILITY(U,$J,358.3,9211,0)
- ;;=J7644^^70^626^8^^^^1
- ;;^UTILITY(U,$J,358.3,9211,1,0)
- ;;=^358.31IA^3^2
- ;;^UTILITY(U,$J,358.3,9211,1,2,0)
- ;;=2^J7644
- ;;^UTILITY(U,$J,358.3,9211,1,3,0)
- ;;=3^Ipratropium Bromide Inhale,Non-Compd,Unit per mg
- ;;^UTILITY(U,$J,358.3,9212,0)
- ;;=J7620^^70^626^2^^^^1
- ;;^UTILITY(U,$J,358.3,9212,1,0)
- ;;=^358.31IA^3^2
- ;;^UTILITY(U,$J,358.3,9212,1,2,0)
- ;;=2^J7620
- ;;^UTILITY(U,$J,358.3,9212,1,3,0)
- ;;=3^Albuterol 2.5mg/Ipratropium Bromide 0.5mg Non-Comp
- ;;^UTILITY(U,$J,358.3,9213,0)
- ;;=36556^^70^627^5^^^^1
- ;;^UTILITY(U,$J,358.3,9213,1,0)
- ;;=^358.31IA^3^2
- ;;^UTILITY(U,$J,358.3,9213,1,2,0)
- ;;=2^36556
- ;;^UTILITY(U,$J,358.3,9213,1,3,0)
- ;;=3^Central Venous Line
- ;;^UTILITY(U,$J,358.3,9214,0)
- ;;=36600^^70^627^3^^^^1
- ;;^UTILITY(U,$J,358.3,9214,1,0)
- ;;=^358.31IA^3^2
- ;;^UTILITY(U,$J,358.3,9214,1,2,0)
- ;;=2^36600
- ;;^UTILITY(U,$J,358.3,9214,1,3,0)
- ;;=3^Arterial Puncture (ABG)
- ;;^UTILITY(U,$J,358.3,9215,0)
- ;;=36680^^70^627^4^^^^1
- ;;^UTILITY(U,$J,358.3,9215,1,0)
- ;;=^358.31IA^3^2
- ;;^UTILITY(U,$J,358.3,9215,1,2,0)
- ;;=2^36680
- ;;^UTILITY(U,$J,358.3,9215,1,3,0)
- ;;=3^Intraosseous Line Placement
- ;;^UTILITY(U,$J,358.3,9216,0)
- ;;=37195^^70^627^16^^^^1
- ;;^UTILITY(U,$J,358.3,9216,1,0)
- ;;=^358.31IA^3^2
- ;;^UTILITY(U,$J,358.3,9216,1,2,0)
- ;;=2^37195
- ;;^UTILITY(U,$J,358.3,9216,1,3,0)
- ;;=3^Thrombolysis Cerebral,IV Infusion
- ;;^UTILITY(U,$J,358.3,9217,0)
- ;;=92953^^70^627^10^^^^1
- ;;^UTILITY(U,$J,358.3,9217,1,0)
- ;;=^358.31IA^3^2
- ;;^UTILITY(U,$J,358.3,9217,1,2,0)
- ;;=2^92953
- ;;^UTILITY(U,$J,358.3,9217,1,3,0)
- ;;=3^Pacing,Transcutaneous
- ;;^UTILITY(U,$J,358.3,9218,0)
- ;;=92960^^70^627^9^^^^1
- ;;^UTILITY(U,$J,358.3,9218,1,0)
- ;;=^358.31IA^3^2
- ;;^UTILITY(U,$J,358.3,9218,1,2,0)
- ;;=2^92960
- ;;^UTILITY(U,$J,358.3,9218,1,3,0)
- ;;=3^Defibrillation for Cardioversion,External (NOT in CPR)
- ;;^UTILITY(U,$J,358.3,9219,0)
- ;;=92977^^70^627^15^^^^1
- ;;^UTILITY(U,$J,358.3,9219,1,0)
- ;;=^358.31IA^3^2
- ;;^UTILITY(U,$J,358.3,9219,1,2,0)
- ;;=2^92977
- ;;^UTILITY(U,$J,358.3,9219,1,3,0)
- ;;=3^Thrombolysis Coronary,IV Infusion
- ;;^UTILITY(U,$J,358.3,9220,0)
- ;;=36430^^70^627^19^^^^1
- ;;^UTILITY(U,$J,358.3,9220,1,0)
- ;;=^358.31IA^3^2
- ;;^UTILITY(U,$J,358.3,9220,1,2,0)
- ;;=2^36430
- ;;^UTILITY(U,$J,358.3,9220,1,3,0)
- ;;=3^Transfusion,Blood/Blood Components
- ;;^UTILITY(U,$J,358.3,9221,0)
- ;;=31500^^70^627^6^^^^1
- ;;^UTILITY(U,$J,358.3,9221,1,0)
- ;;=^358.31IA^3^2
- ;;^UTILITY(U,$J,358.3,9221,1,2,0)
- ;;=2^31500
- ;;^UTILITY(U,$J,358.3,9221,1,3,0)
- ;;=3^Enodotracheal Intubation
- ;;^UTILITY(U,$J,358.3,9222,0)
- ;;=31505^^70^627^7^^^^1
- ;;^UTILITY(U,$J,358.3,9222,1,0)
- ;;=^358.31IA^3^2
- ;;^UTILITY(U,$J,358.3,9222,1,2,0)
- ;;=2^31505
- ;;^UTILITY(U,$J,358.3,9222,1,3,0)
- ;;=3^Indirect Laryngoscopy
- ;;^UTILITY(U,$J,358.3,9223,0)
- ;;=92950^^70^627^8^^^^1
- ;;^UTILITY(U,$J,358.3,9223,1,0)
- ;;=^358.31IA^3^2
- ;;^UTILITY(U,$J,358.3,9223,1,2,0)
- ;;=2^92950
- ;;^UTILITY(U,$J,358.3,9223,1,3,0)
- ;;=3^CPR Resuscitation
- ;;^UTILITY(U,$J,358.3,9224,0)
- ;;=32554^^70^627^11^^^^1
- ;;^UTILITY(U,$J,358.3,9224,1,0)
- ;;=^358.31IA^3^2
- ;;^UTILITY(U,$J,358.3,9224,1,2,0)
- ;;=2^32554
- ;;^UTILITY(U,$J,358.3,9224,1,3,0)
- ;;=3^Thoracentesis w/o Imaging Guidance
- ;;^UTILITY(U,$J,358.3,9225,0)
- ;;=32555^^70^627^12^^^^1
- ;;^UTILITY(U,$J,358.3,9225,1,0)
- ;;=^358.31IA^3^2
+ ;;^UTILITY(U,$J,358.3,9378,1,4,0)
+ ;;=4^Y07.53
+ ;;^UTILITY(U,$J,358.3,9378,2)
+ ;;=^5061207
+ ;;^UTILITY(U,$J,358.3,9379,0)
+ ;;=Y07.59^^39^412^14
+ ;;^UTILITY(U,$J,358.3,9379,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,9379,1,3,0)
+ ;;=3^Non-Family Member,Perpetrator of MST/Abuse NEC
+ ;;^UTILITY(U,$J,358.3,9379,1,4,0)
+ ;;=4^Y07.59
+ ;;^UTILITY(U,$J,358.3,9379,2)
+ ;;=^5061208
+ ;;^UTILITY(U,$J,358.3,9380,0)
+ ;;=T74.51XA^^39^412^1
+ ;;^UTILITY(U,$J,358.3,9380,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,9380,1,3,0)
+ ;;=3^Adult Forced Sexual Exploit,Confirmed,Init enctr
+ ;;^UTILITY(U,$J,358.3,9380,1,4,0)
+ ;;=4^T74.51XA
+ ;;^UTILITY(U,$J,358.3,9380,2)
+ ;;=^5157560
+ ;;^UTILITY(U,$J,358.3,9381,0)
+ ;;=T74.51XD^^39^412^2
+ ;;^UTILITY(U,$J,358.3,9381,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,9381,1,3,0)
+ ;;=3^Adult Forced Sexual Exploit,Confirmed,Subs
+ ;;^UTILITY(U,$J,358.3,9381,1,4,0)
+ ;;=4^T74.51XD
+ ;;^UTILITY(U,$J,358.3,9381,2)
+ ;;=^5157561
+ ;;^UTILITY(U,$J,358.3,9382,0)
+ ;;=T74.51XS^^39^412^3
+ ;;^UTILITY(U,$J,358.3,9382,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,9382,1,3,0)
+ ;;=3^Adult Forced Sexual Exploit,Confirmed,Sequela
+ ;;^UTILITY(U,$J,358.3,9382,1,4,0)
+ ;;=4^T74.51XS
+ ;;^UTILITY(U,$J,358.3,9382,2)
+ ;;=^5157562
+ ;;^UTILITY(U,$J,358.3,9383,0)
+ ;;=T76.51XA^^39^412^4
+ ;;^UTILITY(U,$J,358.3,9383,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,9383,1,3,0)
+ ;;=3^Adult Forced Sexual Exploit,Suspected,Init 
+ ;;^UTILITY(U,$J,358.3,9383,1,4,0)
+ ;;=4^T76.51XA
+ ;;^UTILITY(U,$J,358.3,9383,2)
+ ;;=^5157572
+ ;;^UTILITY(U,$J,358.3,9384,0)
+ ;;=T76.51XD^^39^412^5
+ ;;^UTILITY(U,$J,358.3,9384,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,9384,1,3,0)
+ ;;=3^Adult Forced Sexual Exploit,Suspected,Subs
+ ;;^UTILITY(U,$J,358.3,9384,1,4,0)
+ ;;=4^T76.51XD
+ ;;^UTILITY(U,$J,358.3,9384,2)
+ ;;=^5157573
+ ;;^UTILITY(U,$J,358.3,9385,0)
+ ;;=T76.51XS^^39^412^6
+ ;;^UTILITY(U,$J,358.3,9385,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,9385,1,3,0)
+ ;;=3^Adult Forced Sexual Exploit,Suspected,Sequela
+ ;;^UTILITY(U,$J,358.3,9385,1,4,0)
+ ;;=4^T76.51XS
+ ;;^UTILITY(U,$J,358.3,9385,2)
+ ;;=^5157574
+ ;;^UTILITY(U,$J,358.3,9386,0)
+ ;;=E66.01^^39^413^124
+ ;;^UTILITY(U,$J,358.3,9386,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,9386,1,3,0)
+ ;;=3^Morbid Obesity
+ ;;^UTILITY(U,$J,358.3,9386,1,4,0)
+ ;;=4^E66.01
+ ;;^UTILITY(U,$J,358.3,9386,2)
+ ;;=^5002826
+ ;;^UTILITY(U,$J,358.3,9387,0)
+ ;;=F18.10^^39^413^99
+ ;;^UTILITY(U,$J,358.3,9387,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,9387,1,3,0)
+ ;;=3^Inhalant Abuse,Uncomplicated
+ ;;^UTILITY(U,$J,358.3,9387,1,4,0)
+ ;;=4^F18.10
+ ;;^UTILITY(U,$J,358.3,9387,2)
+ ;;=^5003380
+ ;;^UTILITY(U,$J,358.3,9388,0)
+ ;;=F55.0^^39^413^41
+ ;;^UTILITY(U,$J,358.3,9388,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,9388,1,3,0)
+ ;;=3^Antacid Abuse
+ ;;^UTILITY(U,$J,358.3,9388,1,4,0)
+ ;;=4^F55.0
+ ;;^UTILITY(U,$J,358.3,9388,2)
+ ;;=^5003628
+ ;;^UTILITY(U,$J,358.3,9389,0)
+ ;;=F18.90^^39^413^100
+ ;;^UTILITY(U,$J,358.3,9389,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,9389,1,3,0)
+ ;;=3^Inhalant Use Uncomplicated,Unspec
+ ;;^UTILITY(U,$J,358.3,9389,1,4,0)
+ ;;=4^F18.90
+ ;;^UTILITY(U,$J,358.3,9389,2)
+ ;;=^5003405
+ ;;^UTILITY(U,$J,358.3,9390,0)
+ ;;=F55.2^^39^413^106
+ ;;^UTILITY(U,$J,358.3,9390,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,9390,1,3,0)
+ ;;=3^Laxative Abuse
+ ;;^UTILITY(U,$J,358.3,9390,1,4,0)
+ ;;=4^F55.2
+ ;;^UTILITY(U,$J,358.3,9390,2)
+ ;;=^5003630

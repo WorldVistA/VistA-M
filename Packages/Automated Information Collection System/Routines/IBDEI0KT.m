@@ -1,120 +1,130 @@
-IBDEI0KT ; ; 04-FEB-2020
- ;;3.0;IB ENCOUNTER FORM IMP/EXP;;FEB 04, 2020
+IBDEI0KT ; ; 01-FEB-2022
+ ;;3.0;IB ENCOUNTER FORM IMP/EXP;;FEB 01, 2022
  Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,999) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
- ;;^UTILITY(U,$J,358.3,9196,1,0)
- ;;=^358.31IA^3^2
- ;;^UTILITY(U,$J,358.3,9196,1,2,0)
- ;;=2^29505
- ;;^UTILITY(U,$J,358.3,9196,1,3,0)
- ;;=3^Apply Long Leg Splint
- ;;^UTILITY(U,$J,358.3,9197,0)
- ;;=26600^^70^625^18^^^^1
- ;;^UTILITY(U,$J,358.3,9197,1,0)
- ;;=^358.31IA^3^2
- ;;^UTILITY(U,$J,358.3,9197,1,2,0)
- ;;=2^26600
- ;;^UTILITY(U,$J,358.3,9197,1,3,0)
- ;;=3^Metacarpal Fx,Closed Txmt w/o Manip,Ea Bone
- ;;^UTILITY(U,$J,358.3,9198,0)
- ;;=26605^^70^625^19^^^^1
- ;;^UTILITY(U,$J,358.3,9198,1,0)
- ;;=^358.31IA^3^2
- ;;^UTILITY(U,$J,358.3,9198,1,2,0)
- ;;=2^26605
- ;;^UTILITY(U,$J,358.3,9198,1,3,0)
- ;;=3^Metacarpal Fx,Closed Txmt w/ Manip,Ea Bone
- ;;^UTILITY(U,$J,358.3,9199,0)
- ;;=27250^^70^625^21^^^^1
- ;;^UTILITY(U,$J,358.3,9199,1,0)
- ;;=^358.31IA^3^2
- ;;^UTILITY(U,$J,358.3,9199,1,2,0)
- ;;=2^27250
- ;;^UTILITY(U,$J,358.3,9199,1,3,0)
- ;;=3^Closed Tx Hip Dislocation,Traumatic w/o Anesthesia
- ;;^UTILITY(U,$J,358.3,9200,0)
- ;;=27265^^70^625^22^^^^1
- ;;^UTILITY(U,$J,358.3,9200,1,0)
- ;;=^358.31IA^3^2
- ;;^UTILITY(U,$J,358.3,9200,1,2,0)
- ;;=2^27265
- ;;^UTILITY(U,$J,358.3,9200,1,3,0)
- ;;=3^Closed Tx Post-Hip Arthroplasty w/o Anesthesia
- ;;^UTILITY(U,$J,358.3,9201,0)
- ;;=27562^^70^625^23^^^^1
- ;;^UTILITY(U,$J,358.3,9201,1,0)
- ;;=^358.31IA^3^2
- ;;^UTILITY(U,$J,358.3,9201,1,2,0)
- ;;=2^27562
- ;;^UTILITY(U,$J,358.3,9201,1,3,0)
- ;;=3^Closed Tx Patella Dislocation w/o Anesthesia
- ;;^UTILITY(U,$J,358.3,9202,0)
- ;;=27840^^70^625^24^^^^1
- ;;^UTILITY(U,$J,358.3,9202,1,0)
- ;;=^358.31IA^3^2
- ;;^UTILITY(U,$J,358.3,9202,1,2,0)
- ;;=2^27840
- ;;^UTILITY(U,$J,358.3,9202,1,3,0)
- ;;=3^Closed Tx Ankle Dislocation w/o Anesthesia
- ;;^UTILITY(U,$J,358.3,9203,0)
- ;;=24600^^70^625^25^^^^1
- ;;^UTILITY(U,$J,358.3,9203,1,0)
- ;;=^358.31IA^3^2
- ;;^UTILITY(U,$J,358.3,9203,1,2,0)
- ;;=2^24600
- ;;^UTILITY(U,$J,358.3,9203,1,3,0)
- ;;=3^Closed Tx Elbow Dislocation w/o Anesthesia
- ;;^UTILITY(U,$J,358.3,9204,0)
- ;;=25605^^70^625^26^^^^1
- ;;^UTILITY(U,$J,358.3,9204,1,0)
- ;;=^358.31IA^3^2
- ;;^UTILITY(U,$J,358.3,9204,1,2,0)
- ;;=2^25605
- ;;^UTILITY(U,$J,358.3,9204,1,3,0)
- ;;=3^Closed Tx Distal Radial Fx w/ Manipulation
- ;;^UTILITY(U,$J,358.3,9205,0)
- ;;=J3535^^70^626^7^^^^1
- ;;^UTILITY(U,$J,358.3,9205,1,0)
- ;;=^358.31IA^3^2
- ;;^UTILITY(U,$J,358.3,9205,1,2,0)
- ;;=2^J3535
- ;;^UTILITY(U,$J,358.3,9205,1,3,0)
- ;;=3^Drug Admin Thru Metered Dose Inhaler
- ;;^UTILITY(U,$J,358.3,9206,0)
- ;;=J7608^^70^626^1^^^^1
- ;;^UTILITY(U,$J,358.3,9206,1,0)
- ;;=^358.31IA^3^2
- ;;^UTILITY(U,$J,358.3,9206,1,2,0)
- ;;=2^J7608
- ;;^UTILITY(U,$J,358.3,9206,1,3,0)
- ;;=3^Acetylcysteine,Inhale,Non-Compd,Unit Dose
- ;;^UTILITY(U,$J,358.3,9207,0)
- ;;=J7609^^70^626^4^^^^1
- ;;^UTILITY(U,$J,358.3,9207,1,0)
- ;;=^358.31IA^3^2
- ;;^UTILITY(U,$J,358.3,9207,1,2,0)
- ;;=2^J7609
- ;;^UTILITY(U,$J,358.3,9207,1,3,0)
- ;;=3^Albuterol,Inhale,Compd,Unit Dose 1mg
- ;;^UTILITY(U,$J,358.3,9208,0)
- ;;=J7610^^70^626^3^^^^1
- ;;^UTILITY(U,$J,358.3,9208,1,0)
- ;;=^358.31IA^3^2
- ;;^UTILITY(U,$J,358.3,9208,1,2,0)
- ;;=2^J7610
- ;;^UTILITY(U,$J,358.3,9208,1,3,0)
- ;;=3^Albuterol,Inhale,Compd,Concentrate Frm 1mg
- ;;^UTILITY(U,$J,358.3,9209,0)
- ;;=J7613^^70^626^6^^^^1
- ;;^UTILITY(U,$J,358.3,9209,1,0)
- ;;=^358.31IA^3^2
- ;;^UTILITY(U,$J,358.3,9209,1,2,0)
- ;;=2^J7613
- ;;^UTILITY(U,$J,358.3,9209,1,3,0)
- ;;=3^Albuterol,Inhale,Non-Compd,Unit Dose 1mg
- ;;^UTILITY(U,$J,358.3,9210,0)
- ;;=J7611^^70^626^5^^^^1
- ;;^UTILITY(U,$J,358.3,9210,1,0)
- ;;=^358.31IA^3^2
- ;;^UTILITY(U,$J,358.3,9210,1,2,0)
- ;;=2^J7611
+ ;;^UTILITY(U,$J,358.3,9366,0)
+ ;;=J44.0^^39^411^12
+ ;;^UTILITY(U,$J,358.3,9366,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,9366,1,3,0)
+ ;;=3^COPD w/ (Acute) Lower Respiratory Infection
+ ;;^UTILITY(U,$J,358.3,9366,1,4,0)
+ ;;=4^J44.0
+ ;;^UTILITY(U,$J,358.3,9366,2)
+ ;;=^5008239
+ ;;^UTILITY(U,$J,358.3,9367,0)
+ ;;=J94.1^^39^411^23
+ ;;^UTILITY(U,$J,358.3,9367,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,9367,1,3,0)
+ ;;=3^Fibrothorax
+ ;;^UTILITY(U,$J,358.3,9367,1,4,0)
+ ;;=4^J94.1
+ ;;^UTILITY(U,$J,358.3,9367,2)
+ ;;=^5008317
+ ;;^UTILITY(U,$J,358.3,9368,0)
+ ;;=G47.33^^39^411^31
+ ;;^UTILITY(U,$J,358.3,9368,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,9368,1,3,0)
+ ;;=3^Obstructive Sleep Apnea
+ ;;^UTILITY(U,$J,358.3,9368,1,4,0)
+ ;;=4^G47.33
+ ;;^UTILITY(U,$J,358.3,9368,2)
+ ;;=^332763
+ ;;^UTILITY(U,$J,358.3,9369,0)
+ ;;=R91.1^^39^411^55
+ ;;^UTILITY(U,$J,358.3,9369,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,9369,1,3,0)
+ ;;=3^Solitary Pulmonary Nodule
+ ;;^UTILITY(U,$J,358.3,9369,1,4,0)
+ ;;=4^R91.1
+ ;;^UTILITY(U,$J,358.3,9369,2)
+ ;;=^5019707
+ ;;^UTILITY(U,$J,358.3,9370,0)
+ ;;=R05.9^^39^411^15
+ ;;^UTILITY(U,$J,358.3,9370,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,9370,1,3,0)
+ ;;=3^Cough,Unspec
+ ;;^UTILITY(U,$J,358.3,9370,1,4,0)
+ ;;=4^R05.9
+ ;;^UTILITY(U,$J,358.3,9370,2)
+ ;;=^5161232
+ ;;^UTILITY(U,$J,358.3,9371,0)
+ ;;=T74.21XA^^39^412^7
+ ;;^UTILITY(U,$J,358.3,9371,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,9371,1,3,0)
+ ;;=3^Adult Sexual Abuse,Confirmed,Init Encntr
+ ;;^UTILITY(U,$J,358.3,9371,1,4,0)
+ ;;=4^T74.21XA
+ ;;^UTILITY(U,$J,358.3,9371,2)
+ ;;=^5054152
+ ;;^UTILITY(U,$J,358.3,9372,0)
+ ;;=T76.21XA^^39^412^10
+ ;;^UTILITY(U,$J,358.3,9372,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,9372,1,3,0)
+ ;;=3^Adult Sexual Abuse,Suspected,Init Encntr
+ ;;^UTILITY(U,$J,358.3,9372,1,4,0)
+ ;;=4^T76.21XA
+ ;;^UTILITY(U,$J,358.3,9372,2)
+ ;;=^5054227
+ ;;^UTILITY(U,$J,358.3,9373,0)
+ ;;=Y07.9^^39^412^15
+ ;;^UTILITY(U,$J,358.3,9373,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,9373,1,3,0)
+ ;;=3^Perpetrator of Maltreatment/Neglect,Unspec
+ ;;^UTILITY(U,$J,358.3,9373,1,4,0)
+ ;;=4^Y07.9
+ ;;^UTILITY(U,$J,358.3,9373,2)
+ ;;=^5061209
+ ;;^UTILITY(U,$J,358.3,9374,0)
+ ;;=T74.21XD^^39^412^8
+ ;;^UTILITY(U,$J,358.3,9374,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,9374,1,3,0)
+ ;;=3^Adult Sexual Abuse,Confirmed,Sub Encntr
+ ;;^UTILITY(U,$J,358.3,9374,1,4,0)
+ ;;=4^T74.21XD
+ ;;^UTILITY(U,$J,358.3,9374,2)
+ ;;=^5054153
+ ;;^UTILITY(U,$J,358.3,9375,0)
+ ;;=T74.21XS^^39^412^9
+ ;;^UTILITY(U,$J,358.3,9375,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,9375,1,3,0)
+ ;;=3^Adult Sexual Abuse,Confirmed,Sequela
+ ;;^UTILITY(U,$J,358.3,9375,1,4,0)
+ ;;=4^T74.21XS
+ ;;^UTILITY(U,$J,358.3,9375,2)
+ ;;=^5054154
+ ;;^UTILITY(U,$J,358.3,9376,0)
+ ;;=T76.21XD^^39^412^11
+ ;;^UTILITY(U,$J,358.3,9376,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,9376,1,3,0)
+ ;;=3^Adult Sexual Abuse,Suspected,Sub Encntr
+ ;;^UTILITY(U,$J,358.3,9376,1,4,0)
+ ;;=4^T76.21XD
+ ;;^UTILITY(U,$J,358.3,9376,2)
+ ;;=^5054228
+ ;;^UTILITY(U,$J,358.3,9377,0)
+ ;;=T76.21XS^^39^412^12
+ ;;^UTILITY(U,$J,358.3,9377,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,9377,1,3,0)
+ ;;=3^Adult Sexual Abuse,Suspected,Sequela
+ ;;^UTILITY(U,$J,358.3,9377,1,4,0)
+ ;;=4^T76.21XS
+ ;;^UTILITY(U,$J,358.3,9377,2)
+ ;;=^5054229
+ ;;^UTILITY(U,$J,358.3,9378,0)
+ ;;=Y07.53^^39^412^13
+ ;;^UTILITY(U,$J,358.3,9378,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,9378,1,3,0)
+ ;;=3^Instructor,Perpetrator of MST

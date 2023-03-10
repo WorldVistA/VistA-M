@@ -1,130 +1,122 @@
-IBDEI1G4 ; ; 04-FEB-2020
- ;;3.0;IB ENCOUNTER FORM IMP/EXP;;FEB 04, 2020
+IBDEI1G4 ; ; 01-FEB-2022
+ ;;3.0;IB ENCOUNTER FORM IMP/EXP;;FEB 01, 2022
  Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,999) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
- ;;^UTILITY(U,$J,358.3,23121,1,4,0)
- ;;=4^I16.1
- ;;^UTILITY(U,$J,358.3,23121,2)
- ;;=^8204721
- ;;^UTILITY(U,$J,358.3,23122,0)
- ;;=I16.9^^105^1167^30
- ;;^UTILITY(U,$J,358.3,23122,1,0)
+ ;;^UTILITY(U,$J,358.3,23388,2)
+ ;;=^5161232
+ ;;^UTILITY(U,$J,358.3,23389,0)
+ ;;=I83.91^^78^1008^12
+ ;;^UTILITY(U,$J,358.3,23389,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,23122,1,3,0)
- ;;=3^Hypertensive Crisis,Unspec
- ;;^UTILITY(U,$J,358.3,23122,1,4,0)
- ;;=4^I16.9
- ;;^UTILITY(U,$J,358.3,23122,2)
- ;;=^5138600
- ;;^UTILITY(U,$J,358.3,23123,0)
- ;;=I10.^^105^1167^18
- ;;^UTILITY(U,$J,358.3,23123,1,0)
+ ;;^UTILITY(U,$J,358.3,23389,1,3,0)
+ ;;=3^Varicose Veins,Asymptomatic,Right Lower Extremity
+ ;;^UTILITY(U,$J,358.3,23389,1,4,0)
+ ;;=4^I83.91
+ ;;^UTILITY(U,$J,358.3,23389,2)
+ ;;=^5008020
+ ;;^UTILITY(U,$J,358.3,23390,0)
+ ;;=I83.92^^78^1008^11
+ ;;^UTILITY(U,$J,358.3,23390,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,23123,1,3,0)
- ;;=3^Essentional HTN
- ;;^UTILITY(U,$J,358.3,23123,1,4,0)
- ;;=4^I10.
- ;;^UTILITY(U,$J,358.3,23123,2)
- ;;=^5007062
- ;;^UTILITY(U,$J,358.3,23124,0)
- ;;=I48.0^^105^1167^11
- ;;^UTILITY(U,$J,358.3,23124,1,0)
+ ;;^UTILITY(U,$J,358.3,23390,1,3,0)
+ ;;=3^Varicose Veins,Asymptomatic,Left Lower Extremity
+ ;;^UTILITY(U,$J,358.3,23390,1,4,0)
+ ;;=4^I83.92
+ ;;^UTILITY(U,$J,358.3,23390,2)
+ ;;=^5008021
+ ;;^UTILITY(U,$J,358.3,23391,0)
+ ;;=I83.93^^78^1008^10
+ ;;^UTILITY(U,$J,358.3,23391,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,23124,1,3,0)
- ;;=3^Atrial Fibrillation,Paroxysmal
- ;;^UTILITY(U,$J,358.3,23124,1,4,0)
- ;;=4^I48.0
- ;;^UTILITY(U,$J,358.3,23124,2)
- ;;=^90473
- ;;^UTILITY(U,$J,358.3,23125,0)
- ;;=I50.1^^105^1167^22
- ;;^UTILITY(U,$J,358.3,23125,1,0)
+ ;;^UTILITY(U,$J,358.3,23391,1,3,0)
+ ;;=3^Varicose Veins,Asymptomatic,Bilateral Lower Extremities
+ ;;^UTILITY(U,$J,358.3,23391,1,4,0)
+ ;;=4^I83.93
+ ;;^UTILITY(U,$J,358.3,23391,2)
+ ;;=^5008022
+ ;;^UTILITY(U,$J,358.3,23392,0)
+ ;;=I83.019^^78^1008^9
+ ;;^UTILITY(U,$J,358.3,23392,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,23125,1,3,0)
- ;;=3^Heart Failure,Left
- ;;^UTILITY(U,$J,358.3,23125,1,4,0)
- ;;=4^I50.1
- ;;^UTILITY(U,$J,358.3,23125,2)
- ;;=^5007238
- ;;^UTILITY(U,$J,358.3,23126,0)
- ;;=I48.20^^105^1167^8
- ;;^UTILITY(U,$J,358.3,23126,1,0)
+ ;;^UTILITY(U,$J,358.3,23392,1,3,0)
+ ;;=3^Varicose Veins Right Lower Extrem w/ Ulcer Unspec Site
+ ;;^UTILITY(U,$J,358.3,23392,1,4,0)
+ ;;=4^I83.019
+ ;;^UTILITY(U,$J,358.3,23392,2)
+ ;;=^5007979
+ ;;^UTILITY(U,$J,358.3,23393,0)
+ ;;=I83.029^^78^1008^8
+ ;;^UTILITY(U,$J,358.3,23393,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,23126,1,3,0)
- ;;=3^Atrial Fibrillation,Chronic,Unspec
- ;;^UTILITY(U,$J,358.3,23126,1,4,0)
- ;;=4^I48.20
- ;;^UTILITY(U,$J,358.3,23126,2)
- ;;=^5158048
- ;;^UTILITY(U,$J,358.3,23127,0)
- ;;=I48.21^^105^1167^12
- ;;^UTILITY(U,$J,358.3,23127,1,0)
+ ;;^UTILITY(U,$J,358.3,23393,1,3,0)
+ ;;=3^Varicose Veins Left Lower Extrem w/ Ulcer Unspec Site
+ ;;^UTILITY(U,$J,358.3,23393,1,4,0)
+ ;;=4^I83.029
+ ;;^UTILITY(U,$J,358.3,23393,2)
+ ;;=^5007986
+ ;;^UTILITY(U,$J,358.3,23394,0)
+ ;;=I71.4^^78^1008^1
+ ;;^UTILITY(U,$J,358.3,23394,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,23127,1,3,0)
- ;;=3^Atrial Fibrillation,Permanent
- ;;^UTILITY(U,$J,358.3,23127,1,4,0)
- ;;=4^I48.21
- ;;^UTILITY(U,$J,358.3,23127,2)
- ;;=^304710
- ;;^UTILITY(U,$J,358.3,23128,0)
- ;;=I48.11^^105^1167^9
- ;;^UTILITY(U,$J,358.3,23128,1,0)
+ ;;^UTILITY(U,$J,358.3,23394,1,3,0)
+ ;;=3^AAA w/o rupture
+ ;;^UTILITY(U,$J,358.3,23394,1,4,0)
+ ;;=4^I71.4
+ ;;^UTILITY(U,$J,358.3,23394,2)
+ ;;=^5007789
+ ;;^UTILITY(U,$J,358.3,23395,0)
+ ;;=I73.9^^78^1008^3
+ ;;^UTILITY(U,$J,358.3,23395,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,23128,1,3,0)
- ;;=3^Atrial Fibrillation,Longstanding Persistent
- ;;^UTILITY(U,$J,358.3,23128,1,4,0)
- ;;=4^I48.11
- ;;^UTILITY(U,$J,358.3,23128,2)
- ;;=^5158046
- ;;^UTILITY(U,$J,358.3,23129,0)
- ;;=I48.19^^105^1167^10
- ;;^UTILITY(U,$J,358.3,23129,1,0)
+ ;;^UTILITY(U,$J,358.3,23395,1,3,0)
+ ;;=3^PVD, unspec
+ ;;^UTILITY(U,$J,358.3,23395,1,4,0)
+ ;;=4^I73.9
+ ;;^UTILITY(U,$J,358.3,23395,2)
+ ;;=^184182
+ ;;^UTILITY(U,$J,358.3,23396,0)
+ ;;=I80.201^^78^1008^4
+ ;;^UTILITY(U,$J,358.3,23396,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,23129,1,3,0)
- ;;=3^Atrial Fibrillation,Oth Persistent
- ;;^UTILITY(U,$J,358.3,23129,1,4,0)
- ;;=4^I48.19
- ;;^UTILITY(U,$J,358.3,23129,2)
- ;;=^5158047
- ;;^UTILITY(U,$J,358.3,23130,0)
- ;;=A15.0^^105^1168^40
- ;;^UTILITY(U,$J,358.3,23130,1,0)
+ ;;^UTILITY(U,$J,358.3,23396,1,3,0)
+ ;;=3^Phlebitis & thrombophlebitis deep vessels, right lower extremity
+ ;;^UTILITY(U,$J,358.3,23396,1,4,0)
+ ;;=4^I80.201
+ ;;^UTILITY(U,$J,358.3,23396,2)
+ ;;=^5007828
+ ;;^UTILITY(U,$J,358.3,23397,0)
+ ;;=I80.202^^78^1008^5
+ ;;^UTILITY(U,$J,358.3,23397,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,23130,1,3,0)
- ;;=3^Tuberculosis of Lung
- ;;^UTILITY(U,$J,358.3,23130,1,4,0)
- ;;=4^A15.0
- ;;^UTILITY(U,$J,358.3,23130,2)
- ;;=^5000062
- ;;^UTILITY(U,$J,358.3,23131,0)
- ;;=D86.9^^105^1168^37
- ;;^UTILITY(U,$J,358.3,23131,1,0)
+ ;;^UTILITY(U,$J,358.3,23397,1,3,0)
+ ;;=3^Phlebitis & thrombophlebitis deep vessels, left lower extremities
+ ;;^UTILITY(U,$J,358.3,23397,1,4,0)
+ ;;=4^I80.202
+ ;;^UTILITY(U,$J,358.3,23397,2)
+ ;;=^5007829
+ ;;^UTILITY(U,$J,358.3,23398,0)
+ ;;=I80.203^^78^1008^6
+ ;;^UTILITY(U,$J,358.3,23398,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,23131,1,3,0)
- ;;=3^Sarcoidosis,Unspec
- ;;^UTILITY(U,$J,358.3,23131,1,4,0)
- ;;=4^D86.9
- ;;^UTILITY(U,$J,358.3,23131,2)
- ;;=^5002454
- ;;^UTILITY(U,$J,358.3,23132,0)
- ;;=E88.01^^105^1168^6
- ;;^UTILITY(U,$J,358.3,23132,1,0)
+ ;;^UTILITY(U,$J,358.3,23398,1,3,0)
+ ;;=3^Phlebitis & thrombophlebitis deep vessels, bilateral lower extremities
+ ;;^UTILITY(U,$J,358.3,23398,1,4,0)
+ ;;=4^I80.203
+ ;;^UTILITY(U,$J,358.3,23398,2)
+ ;;=^5007830
+ ;;^UTILITY(U,$J,358.3,23399,0)
+ ;;=I80.3^^78^1008^7
+ ;;^UTILITY(U,$J,358.3,23399,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,23132,1,3,0)
- ;;=3^Alpha-1 Antitrypsin Deficiency
- ;;^UTILITY(U,$J,358.3,23132,1,4,0)
- ;;=4^E88.01
- ;;^UTILITY(U,$J,358.3,23132,2)
- ;;=^331442
- ;;^UTILITY(U,$J,358.3,23133,0)
- ;;=J18.9^^105^1168^23
- ;;^UTILITY(U,$J,358.3,23133,1,0)
+ ;;^UTILITY(U,$J,358.3,23399,1,3,0)
+ ;;=3^Phlebitis & thrombophlebitis of lower extremities, unspec
+ ;;^UTILITY(U,$J,358.3,23399,1,4,0)
+ ;;=4^I80.3
+ ;;^UTILITY(U,$J,358.3,23399,2)
+ ;;=^5007845
+ ;;^UTILITY(U,$J,358.3,23400,0)
+ ;;=I95.9^^78^1008^2
+ ;;^UTILITY(U,$J,358.3,23400,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,23133,1,3,0)
- ;;=3^Pneumonia,Unspec Organism
- ;;^UTILITY(U,$J,358.3,23133,1,4,0)
- ;;=4^J18.9
- ;;^UTILITY(U,$J,358.3,23133,2)
- ;;=^95632
- ;;^UTILITY(U,$J,358.3,23134,0)
- ;;=J40.^^105^1168^10
+ ;;^UTILITY(U,$J,358.3,23400,1,3,0)
+ ;;=3^Hypotension, unspecified

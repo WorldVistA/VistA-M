@@ -1,5 +1,5 @@
 PSOPKIV1 ;BHAM ISC/MHA - validate PKI cert. ; 05/09/2002  8:15 am
- ;;7.0;OUTPATIENT PHARMACY;**131,146,223,148,249,391,426,462,572**;DEC 1997;Build 1
+ ;;7.0;OUTPATIENT PHARMACY;**131,146,223,148,249,391,426,462,572,630**;DEC 1997;Build 26
  ;Ref. to ^ORDEA is supported by DBIA 5709
  ;Ref. to ^ORB supported by DBIA 1362
  ;Ref. to ^XUSSPKI supported by DBIA 3539
@@ -213,7 +213,7 @@ ALERT ;
  ;          For consults:  the IEN of the consult in file 123 
  N PSOX S PSOX=1
  S PSOX(+$P(OR0,"^",5))=""
- D EN^ORB3(76,PSODFN,$P(OR0,"^"),.PSOX,"DEA certificate expired. Renew your certificate.","")
+ D EN^ORB3(76,PSODFN,$P(OR0,"^"),.PSOX,"Rx processed: PIV Card Cert Expired - NO ACTION REQ","")   ;PSO*7*630
  Q
  ; 
 00 ;;Order Text is blank;;

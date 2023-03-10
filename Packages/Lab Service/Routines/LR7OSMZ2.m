@@ -1,5 +1,5 @@
-LR7OSMZ2 ;DALOI/STAFF - Silent Micro rpt - BACTERIA, SIC/SBC, MIC ;03/13/13  14:31
- ;;5.2;LAB SERVICE;**121,244,392,350,427**;Sep 27, 1994;Build 33
+LR7OSMZ2 ;DALOI/STAFF - Silent Micro rpt - BACTERIA, SIC/SBC, MIC ;Jul 15, 2021@13:33
+ ;;5.2;LAB SERVICE;**121,244,392,350,427,547**;Sep 27, 1994;Build 10
  ;
  ;
 ANTI ;from LR7OSMZ1
@@ -14,10 +14,29 @@ ANTI ;from LR7OSMZ1
  . . D LINE
  Q
  ;
+MES ;LR*5.2*547: Display informational message if accession/test is currently being edited.
+ Q:'$G(LR7SB)
+ Q:'$D(^XTMP("LRMICRO EDIT",LRDFN,LRIDT,LR7SB))
+ N LR7AREA
+ S LR7AREA=$S(LR7SB=1:"Bacteriology",LR7SB=5:"Parasitology",LR7SB=8:"Mycology",LR7SB=11:"Mycobacteriology",1:"Virology")
+ D LINE
+ S ^TMP("LRC",$J,GCNT,0)=$$S^LR7OS(1,CCNT,"                         *** ATTENTION ***")
+ D LINE
+ S ^TMP("LRC",$J,GCNT,0)=$$S^LR7OS(1,CCNT,"          The "_LR7AREA_" Report is being edited by")
+ D LINE
+ S ^TMP("LRC",$J,GCNT,0)=$$S^LR7OS(1,CCNT,"          tech code "_$G(^XTMP("LRMICRO EDIT",LRDFN,LRIDT,LR7SB))_" and current results")
+ D LINE
+ S ^TMP("LRC",$J,GCNT,0)=$$S^LR7OS(1,CCNT,"          may not be visible until approved.")
+ Q
  ;
 BACT ;from LR7OSMZ1
  ;
- I '$L($P(^LR(LRDFN,"MI",LRIDT,1),U)) Q:'$D(LRWRDVEW)  Q:LRSB'=1
+ I '$L($P(^LR(LRDFN,"MI",LRIDT,1),U)) D  Q:'$D(LRWRDVEW)  Q:LRSB'=1
+ . Q:'$D(^XTMP("LRMICRO EDIT",LRDFN,LRIDT,1))
+ . ;LR*5.2*547: Display informational message if accession/test is currently being edited
+ . ;            and results had previously been verified.
+ . N LR7SB S LR7SB=1
+ . D MES
  ;
  D BUG
  I $D(^LR(LRDFN,"MI",LRIDT,2,0)) D FH^LR7OSMZU Q:LREND  D GRAM

@@ -1,5 +1,5 @@
-PSOHLNE1 ;BIR/RTR-Parsing out segments from OERR ;01/20/95
- ;;7.0;OUTPATIENT PHARMACY;**1,9,46,71,98,111,117,131,157,181,143,235,239,225,391**;DEC 1997;Build 13
+PSOHLNE1 ;BIR/RTR-Parsing out segments from OERR ;Dec 31, 2019@13:34:16
+ ;;7.0;OUTPATIENT PHARMACY;**1,9,46,71,98,111,117,131,157,181,143,235,239,225,391,441**;DEC 1997;Build 208
  ;External reference to EN^ORERR supported by DBIA 2187
  ;External reference to PS(50.607 supported by DBIA 2221
  ;External reference to OR(100 supported by DBIA 2219
@@ -154,6 +154,7 @@ ZRX ;Process ZRX segment
  S ROUTING=$P(PSOSEG,"|",4)
  I ROUTING="" S ROUTING="M"
  I $P(PSOSEG,"|",7) S DSIG=1
+ S PSOTITR=$P(PSOSEG,"|",8)
  Q
 CHCS ;Replace CHCS number with CPRS number in .01 field
  N PSOHTMP

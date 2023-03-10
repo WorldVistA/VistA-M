@@ -1,130 +1,126 @@
-IBDEI1ED ; ; 04-FEB-2020
- ;;3.0;IB ENCOUNTER FORM IMP/EXP;;FEB 04, 2020
+IBDEI1ED ; ; 01-FEB-2022
+ ;;3.0;IB ENCOUNTER FORM IMP/EXP;;FEB 01, 2022
  Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,999) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
- ;;^UTILITY(U,$J,358.3,22345,1,4,0)
- ;;=4^A60.01
- ;;^UTILITY(U,$J,358.3,22345,2)
- ;;=^5000353
- ;;^UTILITY(U,$J,358.3,22346,0)
- ;;=A60.04^^102^1141^123
- ;;^UTILITY(U,$J,358.3,22346,1,0)
+ ;;^UTILITY(U,$J,358.3,22600,1,3,0)
+ ;;=3^Malig Melanoma of Overlapping Sites of Skin
+ ;;^UTILITY(U,$J,358.3,22600,1,4,0)
+ ;;=4^C43.8
+ ;;^UTILITY(U,$J,358.3,22600,2)
+ ;;=^5001014
+ ;;^UTILITY(U,$J,358.3,22601,0)
+ ;;=D03.0^^76^974^66
+ ;;^UTILITY(U,$J,358.3,22601,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,22346,1,3,0)
- ;;=3^Herpetic Vulvovaginitis
- ;;^UTILITY(U,$J,358.3,22346,1,4,0)
- ;;=4^A60.04
- ;;^UTILITY(U,$J,358.3,22346,2)
- ;;=^5000356
- ;;^UTILITY(U,$J,358.3,22347,0)
- ;;=B01.9^^102^1141^120
- ;;^UTILITY(U,$J,358.3,22347,1,0)
+ ;;^UTILITY(U,$J,358.3,22601,1,3,0)
+ ;;=3^Melanoma in Situ of Lip
+ ;;^UTILITY(U,$J,358.3,22601,1,4,0)
+ ;;=4^D03.0
+ ;;^UTILITY(U,$J,358.3,22601,2)
+ ;;=^5001888
+ ;;^UTILITY(U,$J,358.3,22602,0)
+ ;;=D03.21^^76^974^58
+ ;;^UTILITY(U,$J,358.3,22602,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,22347,1,3,0)
- ;;=3^Herpes, varicella
- ;;^UTILITY(U,$J,358.3,22347,1,4,0)
- ;;=4^B01.9
- ;;^UTILITY(U,$J,358.3,22347,2)
- ;;=^5000487
- ;;^UTILITY(U,$J,358.3,22348,0)
- ;;=B00.3^^102^1141^119
- ;;^UTILITY(U,$J,358.3,22348,1,0)
+ ;;^UTILITY(U,$J,358.3,22602,1,3,0)
+ ;;=3^Melanoma in Situ Right Ear/External Auricular Canal
+ ;;^UTILITY(U,$J,358.3,22602,1,4,0)
+ ;;=4^D03.21
+ ;;^UTILITY(U,$J,358.3,22602,2)
+ ;;=^5001893
+ ;;^UTILITY(U,$J,358.3,22603,0)
+ ;;=D03.22^^76^974^55
+ ;;^UTILITY(U,$J,358.3,22603,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,22348,1,3,0)
- ;;=3^Herpes, Meningitis
- ;;^UTILITY(U,$J,358.3,22348,1,4,0)
- ;;=4^B00.3
- ;;^UTILITY(U,$J,358.3,22348,2)
- ;;=^5000470
- ;;^UTILITY(U,$J,358.3,22349,0)
- ;;=B00.9^^102^1141^116
- ;;^UTILITY(U,$J,358.3,22349,1,0)
+ ;;^UTILITY(U,$J,358.3,22603,1,3,0)
+ ;;=3^Melanoma in Situ Left Ear/External Auricular Canal
+ ;;^UTILITY(U,$J,358.3,22603,1,4,0)
+ ;;=4^D03.22
+ ;;^UTILITY(U,$J,358.3,22603,2)
+ ;;=^5001894
+ ;;^UTILITY(U,$J,358.3,22604,0)
+ ;;=D03.30^^76^974^63
+ ;;^UTILITY(U,$J,358.3,22604,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,22349,1,3,0)
- ;;=3^Herpes NEC
- ;;^UTILITY(U,$J,358.3,22349,1,4,0)
- ;;=4^B00.9
- ;;^UTILITY(U,$J,358.3,22349,2)
- ;;=^5000480
- ;;^UTILITY(U,$J,358.3,22350,0)
- ;;=B39.2^^102^1141^127
- ;;^UTILITY(U,$J,358.3,22350,1,0)
+ ;;^UTILITY(U,$J,358.3,22604,1,3,0)
+ ;;=3^Melanoma in Situ Unspec Part of Face
+ ;;^UTILITY(U,$J,358.3,22604,1,4,0)
+ ;;=4^D03.30
+ ;;^UTILITY(U,$J,358.3,22604,2)
+ ;;=^5001895
+ ;;^UTILITY(U,$J,358.3,22605,0)
+ ;;=D03.4^^76^974^61
+ ;;^UTILITY(U,$J,358.3,22605,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,22350,1,3,0)
- ;;=3^Histoplasmosis,Pulmonary
- ;;^UTILITY(U,$J,358.3,22350,1,4,0)
- ;;=4^B39.2
- ;;^UTILITY(U,$J,358.3,22350,2)
- ;;=^5000634
- ;;^UTILITY(U,$J,358.3,22351,0)
- ;;=B39.9^^102^1141^125
- ;;^UTILITY(U,$J,358.3,22351,1,0)
+ ;;^UTILITY(U,$J,358.3,22605,1,3,0)
+ ;;=3^Melanoma in Situ Scalp/Neck
+ ;;^UTILITY(U,$J,358.3,22605,1,4,0)
+ ;;=4^D03.4
+ ;;^UTILITY(U,$J,358.3,22605,2)
+ ;;=^5001897
+ ;;^UTILITY(U,$J,358.3,22606,0)
+ ;;=D03.59^^76^974^62
+ ;;^UTILITY(U,$J,358.3,22606,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,22351,1,3,0)
- ;;=3^Histoplasmosis NEC
- ;;^UTILITY(U,$J,358.3,22351,1,4,0)
- ;;=4^B39.9
- ;;^UTILITY(U,$J,358.3,22351,2)
- ;;=^5000638
- ;;^UTILITY(U,$J,358.3,22352,0)
- ;;=Z21.^^102^1141^105
- ;;^UTILITY(U,$J,358.3,22352,1,0)
+ ;;^UTILITY(U,$J,358.3,22606,1,3,0)
+ ;;=3^Melanoma in Situ Trunk,Other Part
+ ;;^UTILITY(U,$J,358.3,22606,1,4,0)
+ ;;=4^D03.59
+ ;;^UTILITY(U,$J,358.3,22606,2)
+ ;;=^5001900
+ ;;^UTILITY(U,$J,358.3,22607,0)
+ ;;=D03.51^^76^974^53
+ ;;^UTILITY(U,$J,358.3,22607,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,22352,1,3,0)
- ;;=3^HIV + Status (Asymptomatic)
- ;;^UTILITY(U,$J,358.3,22352,1,4,0)
- ;;=4^Z21.
- ;;^UTILITY(U,$J,358.3,22352,2)
- ;;=^5062777
- ;;^UTILITY(U,$J,358.3,22353,0)
- ;;=B20.^^102^1141^104
- ;;^UTILITY(U,$J,358.3,22353,1,0)
+ ;;^UTILITY(U,$J,358.3,22607,1,3,0)
+ ;;=3^Melanoma in Situ Anal Skin
+ ;;^UTILITY(U,$J,358.3,22607,1,4,0)
+ ;;=4^D03.51
+ ;;^UTILITY(U,$J,358.3,22607,2)
+ ;;=^5001898
+ ;;^UTILITY(U,$J,358.3,22608,0)
+ ;;=D03.52^^76^974^54
+ ;;^UTILITY(U,$J,358.3,22608,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,22353,1,3,0)
- ;;=3^HIV + (Symptomatic)/AIDS
- ;;^UTILITY(U,$J,358.3,22353,1,4,0)
- ;;=4^B20.
- ;;^UTILITY(U,$J,358.3,22353,2)
- ;;=^5000555
- ;;^UTILITY(U,$J,358.3,22354,0)
- ;;=A63.0^^102^1141^129
- ;;^UTILITY(U,$J,358.3,22354,1,0)
+ ;;^UTILITY(U,$J,358.3,22608,1,3,0)
+ ;;=3^Melanoma in Situ Breast,Skin/Soft Tissue
+ ;;^UTILITY(U,$J,358.3,22608,1,4,0)
+ ;;=4^D03.52
+ ;;^UTILITY(U,$J,358.3,22608,2)
+ ;;=^5001899
+ ;;^UTILITY(U,$J,358.3,22609,0)
+ ;;=D03.61^^76^974^60
+ ;;^UTILITY(U,$J,358.3,22609,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,22354,1,3,0)
- ;;=3^Human Papillomavirus infection
- ;;^UTILITY(U,$J,358.3,22354,1,4,0)
- ;;=4^A63.0
- ;;^UTILITY(U,$J,358.3,22354,2)
- ;;=^5000360
- ;;^UTILITY(U,$J,358.3,22355,0)
- ;;=Z91.19^^102^1141^128
- ;;^UTILITY(U,$J,358.3,22355,1,0)
+ ;;^UTILITY(U,$J,358.3,22609,1,3,0)
+ ;;=3^Melanoma in Situ Right Upper Limb
+ ;;^UTILITY(U,$J,358.3,22609,1,4,0)
+ ;;=4^D03.61
+ ;;^UTILITY(U,$J,358.3,22609,2)
+ ;;=^5001902
+ ;;^UTILITY(U,$J,358.3,22610,0)
+ ;;=D03.62^^76^974^57
+ ;;^UTILITY(U,$J,358.3,22610,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,22355,1,3,0)
- ;;=3^History of past non-compliance
- ;;^UTILITY(U,$J,358.3,22355,1,4,0)
- ;;=4^Z91.19
- ;;^UTILITY(U,$J,358.3,22355,2)
- ;;=^5063618
- ;;^UTILITY(U,$J,358.3,22356,0)
- ;;=T85.79XA^^102^1141^130
- ;;^UTILITY(U,$J,358.3,22356,1,0)
+ ;;^UTILITY(U,$J,358.3,22610,1,3,0)
+ ;;=3^Melanoma in Situ Left Upper Limb
+ ;;^UTILITY(U,$J,358.3,22610,1,4,0)
+ ;;=4^D03.62
+ ;;^UTILITY(U,$J,358.3,22610,2)
+ ;;=^5001903
+ ;;^UTILITY(U,$J,358.3,22611,0)
+ ;;=D03.71^^76^974^59
+ ;;^UTILITY(U,$J,358.3,22611,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,22356,1,3,0)
- ;;=3^Infect/inflm reaction d/t implantable device graft,init encntr
- ;;^UTILITY(U,$J,358.3,22356,1,4,0)
- ;;=4^T85.79XA
- ;;^UTILITY(U,$J,358.3,22356,2)
- ;;=^5055676
- ;;^UTILITY(U,$J,358.3,22357,0)
- ;;=J11.00^^102^1141^133
- ;;^UTILITY(U,$J,358.3,22357,1,0)
+ ;;^UTILITY(U,$J,358.3,22611,1,3,0)
+ ;;=3^Melanoma in Situ Right Lower Limb
+ ;;^UTILITY(U,$J,358.3,22611,1,4,0)
+ ;;=4^D03.71
+ ;;^UTILITY(U,$J,358.3,22611,2)
+ ;;=^5001905
+ ;;^UTILITY(U,$J,358.3,22612,0)
+ ;;=D03.72^^76^974^56
+ ;;^UTILITY(U,$J,358.3,22612,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,22357,1,3,0)
- ;;=3^Influenza with unspecified type of pneumonia
- ;;^UTILITY(U,$J,358.3,22357,1,4,0)
- ;;=4^J11.00
- ;;^UTILITY(U,$J,358.3,22357,2)
- ;;=^5008156
- ;;^UTILITY(U,$J,358.3,22358,0)
- ;;=B82.9^^102^1141^136
+ ;;^UTILITY(U,$J,358.3,22612,1,3,0)
+ ;;=3^Melanoma in Situ Left Lower Limb

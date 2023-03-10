@@ -1,11 +1,11 @@
 RCBEPAY2 ;WISC/RFJ-create a payment transaction cont                 ;1 Jun 00
- ;;4.5;Accounts Receivable;**153,162**;Mar 20, 1995
+ ;;4.5;Accounts Receivable;**153,162,377**;Mar 20, 1995;Build 45
  ;;Per VHA Directive 10-93-142, this routine should not be modified.
  Q
  ;
  ;
 SET ;  set the transactions and balances (continuation of rcbepay1)
- N COMMENT,DR,RCDATA3,RCLINE,RCREPAMT,RCREPDA,RCTOTAL,RCTYPE,X
+ N COMMENT,DR,RCDATA3,RCLINE,RCREPAMT,RCREPDA,RCTOTAL,RCTYPE,X,RCRPIEN
  ;
  ;  no payment amount
  S RCTOTAL=$G(RCPAY("PRIN"))+$G(RCPAY("INT"))+$G(RCPAY("ADM"))+$G(RCPAY("MF"))+$G(RCPAY("CC"))
@@ -39,17 +39,26 @@ SET ;  set the transactions and balances (continuation of rcbepay1)
  ;  if TOP, decrement current top debt amount (field 4.03 in file 340)
  I RCTYPE="TOP" D TOPAMT^RCBEUDEB(RCBILLDA,-RCTOTAL)
  ;
+ ;PRCA*4.5*377 - Retiring this old functionality adding new functionality.
+ ;
  ;  if there is a repayment plan, set as being paid in file 430
  ;  loop thru all repayment plans and keep paying them off till
  ;  you run out of money.  this code is for double payments.
- S RCREPAMT=$P($G(^PRCA(430,RCBILLDA,4)),"^",3)
+ ;S RCREPAMT=$P($G(^PRCA(430,RCBILLDA,4)),"^",3)
  ;  is there a repayment amount and is the total amt equal to
  ;  or greater than the expected repayment amount?
- I RCREPAMT,RCTOTAL'<RCREPAMT D
- .   S RCREPDA=0 F  S RCREPDA=$O(^PRCA(430,RCBILLDA,5,RCREPDA)) Q:'RCREPDA  D  I 'RCREPDA Q
- .   .   I +$P($G(^PRCA(430,RCBILLDA,5,RCREPDA,0)),"^",2)=1 Q
- .   .   S $P(^PRCA(430,RCBILLDA,5,RCREPDA,0),"^",2,4)="1^0^"_RCTRANDA
- .   .   S RCTOTAL=RCTOTAL-RCREPAMT I RCTOTAL<RCREPAMT S RCREPDA=0
+ ;I RCREPAMT,RCTOTAL'<RCREPAMT D
+ ;.   S RCREPDA=0 F  S RCREPDA=$O(^PRCA(430,RCBILLDA,5,RCREPDA)) Q:'RCREPDA  D  I 'RCREPDA Q
+ ;.   .   I +$P($G(^PRCA(430,RCBILLDA,5,RCREPDA,0)),"^",2)=1 Q
+ ;.   .   S $P(^PRCA(430,RCBILLDA,5,RCREPDA,0),"^",2,4)="1^0^"_RCTRANDA
+ ;.   .   S RCTOTAL=RCTOTAL-RCREPAMT I RCTOTAL<RCREPAMT S RCREPDA=0
+ ;
+ ; If this bill is linked to a repayment plan, update the plan with the payment information,
+ ;  Update the schedule, and recalculate it's status.
+ I +$G(^PRCA(430,RCBILLDA,4)) D
+ .S RCRPIEN=$P($G(^PRCA(430,RCBILLDA,4)),U,5)
+ .D UPDPAY^RCRPU1(RCRPIEN,RCTRANDA,RCTOTAL)
+ .Q
  ;
  ;  set 433 transaction with payment amounts
  S RCDATA3=""

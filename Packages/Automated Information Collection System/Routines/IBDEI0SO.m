@@ -1,122 +1,128 @@
-IBDEI0SO ; ; 04-FEB-2020
- ;;3.0;IB ENCOUNTER FORM IMP/EXP;;FEB 04, 2020
+IBDEI0SO ; ; 01-FEB-2022
+ ;;3.0;IB ENCOUNTER FORM IMP/EXP;;FEB 01, 2022
  Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,999) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
- ;;^UTILITY(U,$J,358.3,12775,1,4,0)
- ;;=4^L97.522
- ;;^UTILITY(U,$J,358.3,12775,2)
- ;;=^5009551
- ;;^UTILITY(U,$J,358.3,12776,0)
- ;;=L97.523^^80^786^99
- ;;^UTILITY(U,$J,358.3,12776,1,0)
+ ;;^UTILITY(U,$J,358.3,12904,1,3,0)
+ ;;=3^Retinal Telangiectasis,OU
+ ;;^UTILITY(U,$J,358.3,12904,1,4,0)
+ ;;=4^H35.073
+ ;;^UTILITY(U,$J,358.3,12904,2)
+ ;;=^5005608
+ ;;^UTILITY(U,$J,358.3,12905,0)
+ ;;=H35.071^^51^623^34
+ ;;^UTILITY(U,$J,358.3,12905,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,12776,1,3,0)
- ;;=3^Nonpressure Chr Ulcer of Left Foot NEC,Necrosis of Muscle
- ;;^UTILITY(U,$J,358.3,12776,1,4,0)
- ;;=4^L97.523
- ;;^UTILITY(U,$J,358.3,12776,2)
- ;;=^5009552
- ;;^UTILITY(U,$J,358.3,12777,0)
- ;;=L97.524^^80^786^100
- ;;^UTILITY(U,$J,358.3,12777,1,0)
+ ;;^UTILITY(U,$J,358.3,12905,1,3,0)
+ ;;=3^Retinal Telangiectasis,OD
+ ;;^UTILITY(U,$J,358.3,12905,1,4,0)
+ ;;=4^H35.071
+ ;;^UTILITY(U,$J,358.3,12905,2)
+ ;;=^5005606
+ ;;^UTILITY(U,$J,358.3,12906,0)
+ ;;=H35.072^^51^623^35
+ ;;^UTILITY(U,$J,358.3,12906,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,12777,1,3,0)
- ;;=3^Nonpressure Chr Ulcer of Left Foot NEC,Necrosis of Bone
- ;;^UTILITY(U,$J,358.3,12777,1,4,0)
- ;;=4^L97.524
- ;;^UTILITY(U,$J,358.3,12777,2)
- ;;=^5009553
- ;;^UTILITY(U,$J,358.3,12778,0)
- ;;=L97.529^^80^786^101
- ;;^UTILITY(U,$J,358.3,12778,1,0)
+ ;;^UTILITY(U,$J,358.3,12906,1,3,0)
+ ;;=3^Retinal Telangiectasis,OS
+ ;;^UTILITY(U,$J,358.3,12906,1,4,0)
+ ;;=4^H35.072
+ ;;^UTILITY(U,$J,358.3,12906,2)
+ ;;=^5005607
+ ;;^UTILITY(U,$J,358.3,12907,0)
+ ;;=H34.03^^51^623^23
+ ;;^UTILITY(U,$J,358.3,12907,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,12778,1,3,0)
- ;;=3^Nonpressure Chr Ulcer of Left Foot NEC,Unspec Severity
- ;;^UTILITY(U,$J,358.3,12778,1,4,0)
- ;;=4^L97.529
- ;;^UTILITY(U,$J,358.3,12778,2)
- ;;=^5009554
- ;;^UTILITY(U,$J,358.3,12779,0)
- ;;=L97.821^^80^786^107
- ;;^UTILITY(U,$J,358.3,12779,1,0)
+ ;;^UTILITY(U,$J,358.3,12907,1,3,0)
+ ;;=3^Transient Retinal Artery Occlusion,OU
+ ;;^UTILITY(U,$J,358.3,12907,1,4,0)
+ ;;=4^H34.03
+ ;;^UTILITY(U,$J,358.3,12907,2)
+ ;;=^5005555
+ ;;^UTILITY(U,$J,358.3,12908,0)
+ ;;=H34.01^^51^623^21
+ ;;^UTILITY(U,$J,358.3,12908,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,12779,1,3,0)
- ;;=3^Nonpressure Chr Ulcer of Left Lower Leg,Breakdown of Skin
- ;;^UTILITY(U,$J,358.3,12779,1,4,0)
- ;;=4^L97.821
- ;;^UTILITY(U,$J,358.3,12779,2)
- ;;=^5009565
- ;;^UTILITY(U,$J,358.3,12780,0)
- ;;=L97.822^^80^786^108
- ;;^UTILITY(U,$J,358.3,12780,1,0)
+ ;;^UTILITY(U,$J,358.3,12908,1,3,0)
+ ;;=3^Transient Retinal Artery Occlusion,OD
+ ;;^UTILITY(U,$J,358.3,12908,1,4,0)
+ ;;=4^H34.01
+ ;;^UTILITY(U,$J,358.3,12908,2)
+ ;;=^5005553
+ ;;^UTILITY(U,$J,358.3,12909,0)
+ ;;=H34.02^^51^623^22
+ ;;^UTILITY(U,$J,358.3,12909,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,12780,1,3,0)
- ;;=3^Nonpressure Chr Ulcer of Left Lower Leg,Fat Layer Exposed
- ;;^UTILITY(U,$J,358.3,12780,1,4,0)
- ;;=4^L97.822
- ;;^UTILITY(U,$J,358.3,12780,2)
- ;;=^5009566
- ;;^UTILITY(U,$J,358.3,12781,0)
- ;;=L97.823^^80^786^109
- ;;^UTILITY(U,$J,358.3,12781,1,0)
+ ;;^UTILITY(U,$J,358.3,12909,1,3,0)
+ ;;=3^Transient Retinal Artery Occlusion,OS
+ ;;^UTILITY(U,$J,358.3,12909,1,4,0)
+ ;;=4^H34.02
+ ;;^UTILITY(U,$J,358.3,12909,2)
+ ;;=^5005554
+ ;;^UTILITY(U,$J,358.3,12910,0)
+ ;;=H35.00^^51^623^47
+ ;;^UTILITY(U,$J,358.3,12910,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,12781,1,3,0)
- ;;=3^Nonpressure Chr Ulcer of Left Lower Leg,Necrosis of Muscle
- ;;^UTILITY(U,$J,358.3,12781,1,4,0)
- ;;=4^L97.823
- ;;^UTILITY(U,$J,358.3,12781,2)
- ;;=^5009567
- ;;^UTILITY(U,$J,358.3,12782,0)
- ;;=L97.824^^80^786^110
- ;;^UTILITY(U,$J,358.3,12782,1,0)
+ ;;^UTILITY(U,$J,358.3,12910,1,3,0)
+ ;;=3^Background Retinopathy,Unspec
+ ;;^UTILITY(U,$J,358.3,12910,1,4,0)
+ ;;=4^H35.00
+ ;;^UTILITY(U,$J,358.3,12910,2)
+ ;;=^5005581
+ ;;^UTILITY(U,$J,358.3,12911,0)
+ ;;=H34.823^^51^623^50
+ ;;^UTILITY(U,$J,358.3,12911,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,12782,1,3,0)
- ;;=3^Nonpressure Chr Ulcer of Left Lower Leg,Necrosis of Bone
- ;;^UTILITY(U,$J,358.3,12782,1,4,0)
- ;;=4^L97.824
- ;;^UTILITY(U,$J,358.3,12782,2)
- ;;=^5009568
- ;;^UTILITY(U,$J,358.3,12783,0)
- ;;=L97.829^^80^786^111
- ;;^UTILITY(U,$J,358.3,12783,1,0)
+ ;;^UTILITY(U,$J,358.3,12911,1,3,0)
+ ;;=3^Venous Engorgement,OU
+ ;;^UTILITY(U,$J,358.3,12911,1,4,0)
+ ;;=4^H34.823
+ ;;^UTILITY(U,$J,358.3,12911,2)
+ ;;=^5005574
+ ;;^UTILITY(U,$J,358.3,12912,0)
+ ;;=H34.821^^51^623^48
+ ;;^UTILITY(U,$J,358.3,12912,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,12783,1,3,0)
- ;;=3^Nonpressure Chr Ulcer of Left Lower Leg,Unspec Severity
- ;;^UTILITY(U,$J,358.3,12783,1,4,0)
- ;;=4^L97.829
- ;;^UTILITY(U,$J,358.3,12783,2)
- ;;=^5009569
- ;;^UTILITY(U,$J,358.3,12784,0)
- ;;=C61.^^80^787^26
- ;;^UTILITY(U,$J,358.3,12784,1,0)
+ ;;^UTILITY(U,$J,358.3,12912,1,3,0)
+ ;;=3^Venous Engorgement,OD
+ ;;^UTILITY(U,$J,358.3,12912,1,4,0)
+ ;;=4^H34.821
+ ;;^UTILITY(U,$J,358.3,12912,2)
+ ;;=^5005572
+ ;;^UTILITY(U,$J,358.3,12913,0)
+ ;;=H34.822^^51^623^49
+ ;;^UTILITY(U,$J,358.3,12913,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,12784,1,3,0)
- ;;=3^Malig Neop of Prostate
- ;;^UTILITY(U,$J,358.3,12784,1,4,0)
- ;;=4^C61.
- ;;^UTILITY(U,$J,358.3,12784,2)
- ;;=^267239
- ;;^UTILITY(U,$J,358.3,12785,0)
- ;;=C67.9^^80^787^24
- ;;^UTILITY(U,$J,358.3,12785,1,0)
+ ;;^UTILITY(U,$J,358.3,12913,1,3,0)
+ ;;=3^Venous Engorgement,OS
+ ;;^UTILITY(U,$J,358.3,12913,1,4,0)
+ ;;=4^H34.822
+ ;;^UTILITY(U,$J,358.3,12913,2)
+ ;;=^5005573
+ ;;^UTILITY(U,$J,358.3,12914,0)
+ ;;=H34.9^^51^623^24
+ ;;^UTILITY(U,$J,358.3,12914,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,12785,1,3,0)
- ;;=3^Malig Neop of Bladder,Unspec
- ;;^UTILITY(U,$J,358.3,12785,1,4,0)
- ;;=4^C67.9
- ;;^UTILITY(U,$J,358.3,12785,2)
- ;;=^5001263
- ;;^UTILITY(U,$J,358.3,12786,0)
- ;;=C64.1^^80^787^27
- ;;^UTILITY(U,$J,358.3,12786,1,0)
+ ;;^UTILITY(U,$J,358.3,12914,1,3,0)
+ ;;=3^Retinal Vascular Occlusion,Unspec
+ ;;^UTILITY(U,$J,358.3,12914,1,4,0)
+ ;;=4^H34.9
+ ;;^UTILITY(U,$J,358.3,12914,2)
+ ;;=^5005580
+ ;;^UTILITY(U,$J,358.3,12915,0)
+ ;;=H52.201^^51^624^2
+ ;;^UTILITY(U,$J,358.3,12915,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,12786,1,3,0)
- ;;=3^Malig Neop of Right Kidney
- ;;^UTILITY(U,$J,358.3,12786,1,4,0)
- ;;=4^C64.1
- ;;^UTILITY(U,$J,358.3,12786,2)
- ;;=^5001248
- ;;^UTILITY(U,$J,358.3,12787,0)
- ;;=C64.2^^80^787^25
- ;;^UTILITY(U,$J,358.3,12787,1,0)
+ ;;^UTILITY(U,$J,358.3,12915,1,3,0)
+ ;;=3^Astigmatism,Unspec,Rt Eye
+ ;;^UTILITY(U,$J,358.3,12915,1,4,0)
+ ;;=4^H52.201
+ ;;^UTILITY(U,$J,358.3,12915,2)
+ ;;=^5006267
+ ;;^UTILITY(U,$J,358.3,12916,0)
+ ;;=H52.202^^51^624^3
+ ;;^UTILITY(U,$J,358.3,12916,1,0)
  ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,12916,1,3,0)
+ ;;=3^Astigmatism,Unspec,Lt Eye
+ ;;^UTILITY(U,$J,358.3,12916,1,4,0)
+ ;;=4^H52.202

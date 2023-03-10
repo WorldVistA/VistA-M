@@ -1,122 +1,124 @@
-IBDEI0MR ; ; 04-FEB-2020
- ;;3.0;IB ENCOUNTER FORM IMP/EXP;;FEB 04, 2020
+IBDEI0MR ; ; 01-FEB-2022
+ ;;3.0;IB ENCOUNTER FORM IMP/EXP;;FEB 01, 2022
  Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,999) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
- ;;^UTILITY(U,$J,358.3,10131,1,4,0)
- ;;=4^H35.061
- ;;^UTILITY(U,$J,358.3,10131,2)
- ;;=^5005602
- ;;^UTILITY(U,$J,358.3,10132,0)
- ;;=H35.062^^74^670^29
- ;;^UTILITY(U,$J,358.3,10132,1,0)
+ ;;^UTILITY(U,$J,358.3,10226,2)
+ ;;=^5002642
+ ;;^UTILITY(U,$J,358.3,10227,0)
+ ;;=I10.^^39^432^1
+ ;;^UTILITY(U,$J,358.3,10227,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,10132,1,3,0)
- ;;=3^Retinal Vasculitis,Left Eye
- ;;^UTILITY(U,$J,358.3,10132,1,4,0)
- ;;=4^H35.062
- ;;^UTILITY(U,$J,358.3,10132,2)
- ;;=^5005603
- ;;^UTILITY(U,$J,358.3,10133,0)
- ;;=H34.8110^^74^670^11
- ;;^UTILITY(U,$J,358.3,10133,1,0)
+ ;;^UTILITY(U,$J,358.3,10227,1,3,0)
+ ;;=3^Essential/Primary Hypertension
+ ;;^UTILITY(U,$J,358.3,10227,1,4,0)
+ ;;=4^I10.
+ ;;^UTILITY(U,$J,358.3,10227,2)
+ ;;=^5007062
+ ;;^UTILITY(U,$J,358.3,10228,0)
+ ;;=I11.0^^39^432^12
+ ;;^UTILITY(U,$J,358.3,10228,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,10133,1,3,0)
- ;;=3^Central Retinal Vein Occls,Right Eye w/ Macular Edema
- ;;^UTILITY(U,$J,358.3,10133,1,4,0)
- ;;=4^H34.8110
- ;;^UTILITY(U,$J,358.3,10133,2)
- ;;=^5138476
- ;;^UTILITY(U,$J,358.3,10134,0)
- ;;=H34.8111^^74^670^12
- ;;^UTILITY(U,$J,358.3,10134,1,0)
+ ;;^UTILITY(U,$J,358.3,10228,1,3,0)
+ ;;=3^Hypertensive Heart Disease w/ Heart Failure
+ ;;^UTILITY(U,$J,358.3,10228,1,4,0)
+ ;;=4^I11.0
+ ;;^UTILITY(U,$J,358.3,10228,2)
+ ;;=^5007063
+ ;;^UTILITY(U,$J,358.3,10229,0)
+ ;;=I11.9^^39^432^13
+ ;;^UTILITY(U,$J,358.3,10229,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,10134,1,3,0)
- ;;=3^Central Retinal Vein Occls,Right Eye w/ NV
- ;;^UTILITY(U,$J,358.3,10134,1,4,0)
- ;;=4^H34.8111
- ;;^UTILITY(U,$J,358.3,10134,2)
- ;;=^5138477
- ;;^UTILITY(U,$J,358.3,10135,0)
- ;;=H34.8112^^74^670^13
- ;;^UTILITY(U,$J,358.3,10135,1,0)
+ ;;^UTILITY(U,$J,358.3,10229,1,3,0)
+ ;;=3^Hypertensive Heart Disease w/o Heart Failure
+ ;;^UTILITY(U,$J,358.3,10229,1,4,0)
+ ;;=4^I11.9
+ ;;^UTILITY(U,$J,358.3,10229,2)
+ ;;=^5007064
+ ;;^UTILITY(U,$J,358.3,10230,0)
+ ;;=I12.0^^39^432^5
+ ;;^UTILITY(U,$J,358.3,10230,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,10135,1,3,0)
- ;;=3^Central Retinal Vein Occls,Right Eye,Stable
- ;;^UTILITY(U,$J,358.3,10135,1,4,0)
- ;;=4^H34.8112
- ;;^UTILITY(U,$J,358.3,10135,2)
- ;;=^5138478
- ;;^UTILITY(U,$J,358.3,10136,0)
- ;;=H34.8120^^74^670^14
- ;;^UTILITY(U,$J,358.3,10136,1,0)
+ ;;^UTILITY(U,$J,358.3,10230,1,3,0)
+ ;;=3^Hypertensive CKD w/ Stage 5 CKD or ESRD
+ ;;^UTILITY(U,$J,358.3,10230,1,4,0)
+ ;;=4^I12.0
+ ;;^UTILITY(U,$J,358.3,10230,2)
+ ;;=^5007065
+ ;;^UTILITY(U,$J,358.3,10231,0)
+ ;;=I12.9^^39^432^4
+ ;;^UTILITY(U,$J,358.3,10231,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,10136,1,3,0)
- ;;=3^Central Retinal Vein Occls,Left Eye w/ Macular Edema
- ;;^UTILITY(U,$J,358.3,10136,1,4,0)
- ;;=4^H34.8120
- ;;^UTILITY(U,$J,358.3,10136,2)
- ;;=^5138479
- ;;^UTILITY(U,$J,358.3,10137,0)
- ;;=H34.8121^^74^670^15
- ;;^UTILITY(U,$J,358.3,10137,1,0)
+ ;;^UTILITY(U,$J,358.3,10231,1,3,0)
+ ;;=3^Hypertensive CKD w/ Stage 1-4 CKD
+ ;;^UTILITY(U,$J,358.3,10231,1,4,0)
+ ;;=4^I12.9
+ ;;^UTILITY(U,$J,358.3,10231,2)
+ ;;=^5007066
+ ;;^UTILITY(U,$J,358.3,10232,0)
+ ;;=I13.0^^39^432^8
+ ;;^UTILITY(U,$J,358.3,10232,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,10137,1,3,0)
- ;;=3^Central Retinal Vein Occls,Left Eye w/ NV
- ;;^UTILITY(U,$J,358.3,10137,1,4,0)
- ;;=4^H34.8121
- ;;^UTILITY(U,$J,358.3,10137,2)
- ;;=^5138480
- ;;^UTILITY(U,$J,358.3,10138,0)
- ;;=H34.8122^^74^670^16
- ;;^UTILITY(U,$J,358.3,10138,1,0)
+ ;;^UTILITY(U,$J,358.3,10232,1,3,0)
+ ;;=3^Hypertensive HRT & CKD w/ Hrt Fail & Stg 1-4 CKD
+ ;;^UTILITY(U,$J,358.3,10232,1,4,0)
+ ;;=4^I13.0
+ ;;^UTILITY(U,$J,358.3,10232,2)
+ ;;=^5007067
+ ;;^UTILITY(U,$J,358.3,10233,0)
+ ;;=I13.10^^39^432^10
+ ;;^UTILITY(U,$J,358.3,10233,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,10138,1,3,0)
- ;;=3^Central Retinal Vein Occls,Left Eye,Stable
- ;;^UTILITY(U,$J,358.3,10138,1,4,0)
- ;;=4^H34.8122
- ;;^UTILITY(U,$J,358.3,10138,2)
- ;;=^5138481
- ;;^UTILITY(U,$J,358.3,10139,0)
- ;;=H34.8310^^74^670^3
- ;;^UTILITY(U,$J,358.3,10139,1,0)
+ ;;^UTILITY(U,$J,358.3,10233,1,3,0)
+ ;;=3^Hypertensive HRT & CKD w/o Hrt Fail & Stg 1-4 CKD
+ ;;^UTILITY(U,$J,358.3,10233,1,4,0)
+ ;;=4^I13.10
+ ;;^UTILITY(U,$J,358.3,10233,2)
+ ;;=^5007068
+ ;;^UTILITY(U,$J,358.3,10234,0)
+ ;;=I13.11^^39^432^11
+ ;;^UTILITY(U,$J,358.3,10234,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,10139,1,3,0)
- ;;=3^Branch Retinal Vein Occls,Right Eye w/ Macular Edema
- ;;^UTILITY(U,$J,358.3,10139,1,4,0)
- ;;=4^H34.8310
- ;;^UTILITY(U,$J,358.3,10139,2)
- ;;=^5138488
- ;;^UTILITY(U,$J,358.3,10140,0)
- ;;=H34.8311^^74^670^4
- ;;^UTILITY(U,$J,358.3,10140,1,0)
+ ;;^UTILITY(U,$J,358.3,10234,1,3,0)
+ ;;=3^Hypertensive HRT & CKD w/o Hrt Fail & Stg 5 CKD/ESRD
+ ;;^UTILITY(U,$J,358.3,10234,1,4,0)
+ ;;=4^I13.11
+ ;;^UTILITY(U,$J,358.3,10234,2)
+ ;;=^5007069
+ ;;^UTILITY(U,$J,358.3,10235,0)
+ ;;=I13.2^^39^432^9
+ ;;^UTILITY(U,$J,358.3,10235,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,10140,1,3,0)
- ;;=3^Branch Retinal Vein Occls,Right Eye w/ NV
- ;;^UTILITY(U,$J,358.3,10140,1,4,0)
- ;;=4^H34.8311
- ;;^UTILITY(U,$J,358.3,10140,2)
- ;;=^5138489
- ;;^UTILITY(U,$J,358.3,10141,0)
- ;;=H34.8312^^74^670^5
- ;;^UTILITY(U,$J,358.3,10141,1,0)
+ ;;^UTILITY(U,$J,358.3,10235,1,3,0)
+ ;;=3^Hypertensive HRT & CKD w/ Hrt Fail & Stg 5 CKD/ESRD
+ ;;^UTILITY(U,$J,358.3,10235,1,4,0)
+ ;;=4^I13.2
+ ;;^UTILITY(U,$J,358.3,10235,2)
+ ;;=^5007070
+ ;;^UTILITY(U,$J,358.3,10236,0)
+ ;;=I15.0^^39^432^15
+ ;;^UTILITY(U,$J,358.3,10236,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,10141,1,3,0)
- ;;=3^Branch Retinal Vein Occls,Right Eye,Stable
- ;;^UTILITY(U,$J,358.3,10141,1,4,0)
- ;;=4^H34.8312
- ;;^UTILITY(U,$J,358.3,10141,2)
- ;;=^5138490
- ;;^UTILITY(U,$J,358.3,10142,0)
- ;;=H34.8320^^74^670^6
- ;;^UTILITY(U,$J,358.3,10142,1,0)
+ ;;^UTILITY(U,$J,358.3,10236,1,3,0)
+ ;;=3^Renovascular Hypertension
+ ;;^UTILITY(U,$J,358.3,10236,1,4,0)
+ ;;=4^I15.0
+ ;;^UTILITY(U,$J,358.3,10236,2)
+ ;;=^5007071
+ ;;^UTILITY(U,$J,358.3,10237,0)
+ ;;=I15.1^^39^432^3
+ ;;^UTILITY(U,$J,358.3,10237,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,10142,1,3,0)
- ;;=3^Branch Retinal Vein Occls,Left Eye w/ Macular Edema
- ;;^UTILITY(U,$J,358.3,10142,1,4,0)
- ;;=4^H34.8320
- ;;^UTILITY(U,$J,358.3,10142,2)
- ;;=^5138491
- ;;^UTILITY(U,$J,358.3,10143,0)
- ;;=H34.8321^^74^670^7
- ;;^UTILITY(U,$J,358.3,10143,1,0)
+ ;;^UTILITY(U,$J,358.3,10237,1,3,0)
+ ;;=3^Hypertension Secondary to Oth Renal Disorders
+ ;;^UTILITY(U,$J,358.3,10237,1,4,0)
+ ;;=4^I15.1
+ ;;^UTILITY(U,$J,358.3,10237,2)
+ ;;=^5007072
+ ;;^UTILITY(U,$J,358.3,10238,0)
+ ;;=I15.2^^39^432^2
+ ;;^UTILITY(U,$J,358.3,10238,1,0)
  ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,10238,1,3,0)
+ ;;=3^Hypertension Secondary to Endocrine Disorders
+ ;;^UTILITY(U,$J,358.3,10238,1,4,0)
+ ;;=4^I15.2

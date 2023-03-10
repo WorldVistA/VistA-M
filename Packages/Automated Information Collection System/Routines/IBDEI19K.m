@@ -1,118 +1,116 @@
-IBDEI19K ; ; 04-FEB-2020
- ;;3.0;IB ENCOUNTER FORM IMP/EXP;;FEB 04, 2020
+IBDEI19K ; ; 01-FEB-2022
+ ;;3.0;IB ENCOUNTER FORM IMP/EXP;;FEB 01, 2022
  Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,999) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
- ;;^UTILITY(U,$J,358.3,20230,1,0)
+ ;;^UTILITY(U,$J,358.3,20456,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,20230,1,3,0)
- ;;=3^Disp fx of segmental shaft of left fibula, sequela     
- ;;^UTILITY(U,$J,358.3,20230,1,4,0)
- ;;=4^S82.462S
- ;;^UTILITY(U,$J,358.3,20230,2)
- ;;=^5042129
- ;;^UTILITY(U,$J,358.3,20231,0)
- ;;=S82.461S^^93^1000^27
- ;;^UTILITY(U,$J,358.3,20231,1,0)
+ ;;^UTILITY(U,$J,358.3,20456,1,3,0)
+ ;;=3^Nondisp fx of spiral shaft of humerus, right arm, sequela  
+ ;;^UTILITY(U,$J,358.3,20456,1,4,0)
+ ;;=4^S42.344S
+ ;;^UTILITY(U,$J,358.3,20456,2)
+ ;;=^5027174
+ ;;^UTILITY(U,$J,358.3,20457,0)
+ ;;=S42.475S^^67^887^97
+ ;;^UTILITY(U,$J,358.3,20457,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,20231,1,3,0)
- ;;=3^Disp fx of segmental shaft of right fibula, sequela  
- ;;^UTILITY(U,$J,358.3,20231,1,4,0)
- ;;=4^S82.461S
- ;;^UTILITY(U,$J,358.3,20231,2)
- ;;=^5042113
- ;;^UTILITY(U,$J,358.3,20232,0)
- ;;=S82.442S^^93^1000^29
- ;;^UTILITY(U,$J,358.3,20232,1,0)
+ ;;^UTILITY(U,$J,358.3,20457,1,3,0)
+ ;;=3^Nondisp fx of transcondylar of left humerus, sequela 
+ ;;^UTILITY(U,$J,358.3,20457,1,4,0)
+ ;;=4^S42.475S
+ ;;^UTILITY(U,$J,358.3,20457,2)
+ ;;=^5027608
+ ;;^UTILITY(U,$J,358.3,20458,0)
+ ;;=S42.474S^^67^887^98
+ ;;^UTILITY(U,$J,358.3,20458,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,20232,1,3,0)
- ;;=3^Disp fx of spiral shaft of left fibula, sequela 
- ;;^UTILITY(U,$J,358.3,20232,1,4,0)
- ;;=4^S82.442S
- ;;^UTILITY(U,$J,358.3,20232,2)
- ;;=^5041937
- ;;^UTILITY(U,$J,358.3,20233,0)
- ;;=S82.441S^^93^1000^31
- ;;^UTILITY(U,$J,358.3,20233,1,0)
+ ;;^UTILITY(U,$J,358.3,20458,1,3,0)
+ ;;=3^Nondisp fx of transcondylar of right humerus, sequela 
+ ;;^UTILITY(U,$J,358.3,20458,1,4,0)
+ ;;=4^S42.474S
+ ;;^UTILITY(U,$J,358.3,20458,2)
+ ;;=^5027601
+ ;;^UTILITY(U,$J,358.3,20459,0)
+ ;;=S42.325S^^67^887^99
+ ;;^UTILITY(U,$J,358.3,20459,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,20233,1,3,0)
- ;;=3^Disp fx of spiral shaft of right fibula, sequela 
- ;;^UTILITY(U,$J,358.3,20233,1,4,0)
- ;;=4^S82.441S
- ;;^UTILITY(U,$J,358.3,20233,2)
- ;;=^5041921
- ;;^UTILITY(U,$J,358.3,20234,0)
- ;;=S82.422S^^93^1000^33
- ;;^UTILITY(U,$J,358.3,20234,1,0)
+ ;;^UTILITY(U,$J,358.3,20459,1,3,0)
+ ;;=3^Nondisp fx of transverse shaft of humerus, left arm, sequela
+ ;;^UTILITY(U,$J,358.3,20459,1,4,0)
+ ;;=4^S42.325S
+ ;;^UTILITY(U,$J,358.3,20459,2)
+ ;;=^5027097
+ ;;^UTILITY(U,$J,358.3,20460,0)
+ ;;=S42.324S^^67^887^100
+ ;;^UTILITY(U,$J,358.3,20460,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,20234,1,3,0)
- ;;=3^Disp fx of transverse shaft of left fibula, sequela    
- ;;^UTILITY(U,$J,358.3,20234,1,4,0)
- ;;=4^S82.422S
- ;;^UTILITY(U,$J,358.3,20234,2)
- ;;=^5041745
- ;;^UTILITY(U,$J,358.3,20235,0)
- ;;=S82.421S^^93^1000^35
- ;;^UTILITY(U,$J,358.3,20235,1,0)
+ ;;^UTILITY(U,$J,358.3,20460,1,3,0)
+ ;;=3^Nondisp fx of transverse shaft of humerus, right arm, sequela 
+ ;;^UTILITY(U,$J,358.3,20460,1,4,0)
+ ;;=4^S42.324S
+ ;;^UTILITY(U,$J,358.3,20460,2)
+ ;;=^5027090
+ ;;^UTILITY(U,$J,358.3,20461,0)
+ ;;=M84.422S^^67^887^101
+ ;;^UTILITY(U,$J,358.3,20461,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,20235,1,3,0)
- ;;=3^Disp fx of transverse shaft of right fibula, sequela  
- ;;^UTILITY(U,$J,358.3,20235,1,4,0)
- ;;=4^S82.421S
- ;;^UTILITY(U,$J,358.3,20235,2)
- ;;=^5041729
- ;;^UTILITY(U,$J,358.3,20236,0)
- ;;=S82.455S^^93^1000^42
- ;;^UTILITY(U,$J,358.3,20236,1,0)
+ ;;^UTILITY(U,$J,358.3,20461,1,3,0)
+ ;;=3^Pathological fracture, left humerus, sequela
+ ;;^UTILITY(U,$J,358.3,20461,1,4,0)
+ ;;=4^M84.422S
+ ;;^UTILITY(U,$J,358.3,20461,2)
+ ;;=^5013829
+ ;;^UTILITY(U,$J,358.3,20462,0)
+ ;;=M84.421S^^67^887^103
+ ;;^UTILITY(U,$J,358.3,20462,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,20236,1,3,0)
- ;;=3^Nondisp fx of comminuted shaft of left fibula, sequela 
- ;;^UTILITY(U,$J,358.3,20236,1,4,0)
- ;;=4^S82.455S
- ;;^UTILITY(U,$J,358.3,20236,2)
- ;;=^5042081
- ;;^UTILITY(U,$J,358.3,20237,0)
- ;;=S82.454S^^93^1000^44
- ;;^UTILITY(U,$J,358.3,20237,1,0)
+ ;;^UTILITY(U,$J,358.3,20462,1,3,0)
+ ;;=3^Pathological fracture, right humerus, sequela
+ ;;^UTILITY(U,$J,358.3,20462,1,4,0)
+ ;;=4^M84.421S
+ ;;^UTILITY(U,$J,358.3,20462,2)
+ ;;=^5013823
+ ;;^UTILITY(U,$J,358.3,20463,0)
+ ;;=S49.132S^^67^887^116
+ ;;^UTILITY(U,$J,358.3,20463,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,20237,1,3,0)
- ;;=3^Nondisp fx of comminuted shaft of right fibula, sequela 
- ;;^UTILITY(U,$J,358.3,20237,1,4,0)
- ;;=4^S82.454S
- ;;^UTILITY(U,$J,358.3,20237,2)
- ;;=^5042065
- ;;^UTILITY(U,$J,358.3,20238,0)
- ;;=S82.65XS^^93^1000^47
- ;;^UTILITY(U,$J,358.3,20238,1,0)
+ ;;^UTILITY(U,$J,358.3,20463,1,3,0)
+ ;;=3^Sltr-haris Type III physl fx lower end humer, left arm, sqla
+ ;;^UTILITY(U,$J,358.3,20463,1,4,0)
+ ;;=4^S49.132S
+ ;;^UTILITY(U,$J,358.3,20463,2)
+ ;;=^5134992
+ ;;^UTILITY(U,$J,358.3,20464,0)
+ ;;=S49.131S^^67^887^115
+ ;;^UTILITY(U,$J,358.3,20464,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,20238,1,3,0)
- ;;=3^Nondisp fx of lateral malleolus of left fibula, sequela
- ;;^UTILITY(U,$J,358.3,20238,1,4,0)
- ;;=4^S82.65XS
- ;;^UTILITY(U,$J,358.3,20238,2)
- ;;=^5042390
- ;;^UTILITY(U,$J,358.3,20239,0)
- ;;=S82.64XS^^93^1000^48
- ;;^UTILITY(U,$J,358.3,20239,1,0)
+ ;;^UTILITY(U,$J,358.3,20464,1,3,0)
+ ;;=3^Sltr-haris Type III physl fx low end humer, right arm, sqla
+ ;;^UTILITY(U,$J,358.3,20464,1,4,0)
+ ;;=4^S49.131S
+ ;;^UTILITY(U,$J,358.3,20464,2)
+ ;;=^5028460
+ ;;^UTILITY(U,$J,358.3,20465,0)
+ ;;=S49.032S^^67^887^117
+ ;;^UTILITY(U,$J,358.3,20465,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,20239,1,3,0)
- ;;=3^Nondisp fx of lateral malleolus of right fibula, sequela
- ;;^UTILITY(U,$J,358.3,20239,1,4,0)
- ;;=4^S82.64XS
- ;;^UTILITY(U,$J,358.3,20239,2)
- ;;=^5042374
- ;;^UTILITY(U,$J,358.3,20240,0)
- ;;=S82.435S^^93^1000^55
- ;;^UTILITY(U,$J,358.3,20240,1,0)
+ ;;^UTILITY(U,$J,358.3,20465,1,3,0)
+ ;;=3^Sltr-haris Type III physl fx upper end humer, left arm, sqla
+ ;;^UTILITY(U,$J,358.3,20465,1,4,0)
+ ;;=4^S49.032S
+ ;;^UTILITY(U,$J,358.3,20465,2)
+ ;;=^5028400
+ ;;^UTILITY(U,$J,358.3,20466,0)
+ ;;=S49.031S^^67^887^118
+ ;;^UTILITY(U,$J,358.3,20466,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,20240,1,3,0)
- ;;=3^Nondisp fx of oblique shaft of left fibula, sequela
- ;;^UTILITY(U,$J,358.3,20240,1,4,0)
- ;;=4^S82.435S
- ;;^UTILITY(U,$J,358.3,20240,2)
- ;;=^5041889
- ;;^UTILITY(U,$J,358.3,20241,0)
- ;;=S82.434S^^93^1000^57
- ;;^UTILITY(U,$J,358.3,20241,1,0)
+ ;;^UTILITY(U,$J,358.3,20466,1,3,0)
+ ;;=3^Sltr-haris Type III physl fx upper end humer, r arm, sqla
+ ;;^UTILITY(U,$J,358.3,20466,1,4,0)
+ ;;=4^S49.031S
+ ;;^UTILITY(U,$J,358.3,20466,2)
+ ;;=^5028394
+ ;;^UTILITY(U,$J,358.3,20467,0)
+ ;;=S49.112S^^67^887^107
+ ;;^UTILITY(U,$J,358.3,20467,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,20241,1,3,0)
- ;;=3^Nondisp fx of oblique shaft of right fibula, sequela  

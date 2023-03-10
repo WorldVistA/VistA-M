@@ -1,9 +1,7 @@
 YTWJSONO ;SLC/KCM - Instrument Admin Spec Output ; 1/25/2017
- ;;5.01;MENTAL HEALTH;**130**;Dec 30, 1994;Build 62
+ ;;5.01;MENTAL HEALTH;**130,141,202**;Dec 30, 1994;Build 47
  ;
- ; External Reference    ICR#
- ; ------------------   -----
- ; XLFSTR               10104
+ ; Reference to XLFSTR in ICR #10104
  ;
 TEST ;
  N TEST,TREE,OUT
@@ -19,6 +17,7 @@ FMTJSON(TREE,OUT) ; format instrument spec in TREE as readable lines
  D PROP("name"),LF(1)
  I $L(@ROOT@("copyright")) D PROP("copyright"),LF(1)
  D PROP("restartDays"),LF(1)
+ D PROP("printTitle"),LF(1)
  D COMMA,TEXT("""content"":[")
  S SLOT=0 F  S SLOT=$O(TREE("content",SLOT)) Q:'SLOT  D
  . S ROOT=$NA(TREE("content",SLOT))
@@ -85,14 +84,20 @@ PROP(NAME) ; Add property to output, using JSON data types
  I '$D(@ROOT@(NAME,"\s")) D                     ; if not forced string
  . I X']]$C(1) S VALUE=X                        ; collates as numeric
  . I X="true"!(X="false")!(X="null") S VALUE=X  ; boolean/null
- I $D(@ROOT@(NAME,"\")) D                       ; handle word proc nodes
- . N IDX S IDX=0
- . F  S IDX=$O(@ROOT@(NAME,"\",IDX)) Q:'IDX  S X=X_@ROOT@(NAME,"\",IDX)
- . ; assumption is that all intros, questions, etc. have $L < 4096
- . I $L(X)>4000 W !!,"ERROR, Length of "_ROOT_" "_NAME_" is "_$L(X)
- I '$D(VALUE) S VALUE=""""_X_""""               ; string
+ I '$D(VALUE),'$D(@ROOT@(NAME,"\")),($L(X)<80) S VALUE=""""_X_"""" ; string
+ I $D(VALUE) D  QUIT                            ; finish up unless word proc
+ . D COMMA                                      ; prepend comma if not first
+ . S OUT(LN)=OUT(LN)_""""_NAME_""": "_VALUE     ; add to output line
+ ;
+ ; fall through here for handling word processing and longer strings
+ ; (to keep lines short enough for MailMan to transport them
+ N IDX,TEXT
+ S IDX=0 F  S IDX=$O(@ROOT@(NAME,"\",IDX)) Q:'IDX  S X=X_@ROOT@(NAME,"\",IDX)
+ D WRAPTXT^YTWJSONU(X,.TEXT)
  D COMMA
- S OUT(LN)=OUT(LN)_""""_NAME_""": "_VALUE
+ S OUT(LN)=OUT(LN)_""""_NAME_""": """_TEXT(1)   ; first WP line
+ S IDX=1 F  S IDX=$O(TEXT(IDX)) Q:'IDX  S LN=LN+1,OUT(LN)=TEXT(IDX)
+ S OUT(LN)=OUT(LN)_""""                         ; closing quote
  Q
 COMMA ; Add comma, if needed, before adding property
  ; expects OUT,LN

@@ -1,124 +1,130 @@
-IBDEI0P8 ; ; 04-FEB-2020
- ;;3.0;IB ENCOUNTER FORM IMP/EXP;;FEB 04, 2020
+IBDEI0P8 ; ; 01-FEB-2022
+ ;;3.0;IB ENCOUNTER FORM IMP/EXP;;FEB 01, 2022
  Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,999) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
- ;;^UTILITY(U,$J,358.3,11257,1,0)
+ ;;^UTILITY(U,$J,358.3,11324,2)
+ ;;=^5019474
+ ;;^UTILITY(U,$J,358.3,11325,0)
+ ;;=Z65.9^^42^525^12
+ ;;^UTILITY(U,$J,358.3,11325,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,11257,1,3,0)
- ;;=3^Presence of Intraocular Lens
- ;;^UTILITY(U,$J,358.3,11257,1,4,0)
- ;;=4^Z96.1
- ;;^UTILITY(U,$J,358.3,11257,2)
- ;;=^5063682
- ;;^UTILITY(U,$J,358.3,11258,0)
- ;;=H43.813^^77^727^53
- ;;^UTILITY(U,$J,358.3,11258,1,0)
+ ;;^UTILITY(U,$J,358.3,11325,1,3,0)
+ ;;=3^Psychosocial Circumstance Problems,Unspec
+ ;;^UTILITY(U,$J,358.3,11325,1,4,0)
+ ;;=4^Z65.9
+ ;;^UTILITY(U,$J,358.3,11325,2)
+ ;;=^5063186
+ ;;^UTILITY(U,$J,358.3,11326,0)
+ ;;=Z56.9^^42^525^6
+ ;;^UTILITY(U,$J,358.3,11326,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,11258,1,3,0)
- ;;=3^Vitreous Degeneration,Bilateral
- ;;^UTILITY(U,$J,358.3,11258,1,4,0)
- ;;=4^H43.813
- ;;^UTILITY(U,$J,358.3,11258,2)
- ;;=^5005955
- ;;^UTILITY(U,$J,358.3,11259,0)
- ;;=H26.491^^77^727^44
- ;;^UTILITY(U,$J,358.3,11259,1,0)
+ ;;^UTILITY(U,$J,358.3,11326,1,3,0)
+ ;;=3^Employment Problems,Unspec
+ ;;^UTILITY(U,$J,358.3,11326,1,4,0)
+ ;;=4^Z56.9
+ ;;^UTILITY(U,$J,358.3,11326,2)
+ ;;=^5063117
+ ;;^UTILITY(U,$J,358.3,11327,0)
+ ;;=R45.850^^42^525^7
+ ;;^UTILITY(U,$J,358.3,11327,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,11259,1,3,0)
- ;;=3^PCO/Secondary Cataract,Right Eye
- ;;^UTILITY(U,$J,358.3,11259,1,4,0)
- ;;=4^H26.491
- ;;^UTILITY(U,$J,358.3,11259,2)
- ;;=^5005358
- ;;^UTILITY(U,$J,358.3,11260,0)
- ;;=H26.492^^77^727^43
- ;;^UTILITY(U,$J,358.3,11260,1,0)
+ ;;^UTILITY(U,$J,358.3,11327,1,3,0)
+ ;;=3^Homicidal Ideations
+ ;;^UTILITY(U,$J,358.3,11327,1,4,0)
+ ;;=4^R45.850
+ ;;^UTILITY(U,$J,358.3,11327,2)
+ ;;=^5019473
+ ;;^UTILITY(U,$J,358.3,11328,0)
+ ;;=H54.7^^42^526^8
+ ;;^UTILITY(U,$J,358.3,11328,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,11260,1,3,0)
- ;;=3^PCO/Secondary Cataract,Left Eye
- ;;^UTILITY(U,$J,358.3,11260,1,4,0)
- ;;=4^H26.492
- ;;^UTILITY(U,$J,358.3,11260,2)
- ;;=^5005359
- ;;^UTILITY(U,$J,358.3,11261,0)
- ;;=D31.31^^77^727^5
- ;;^UTILITY(U,$J,358.3,11261,1,0)
+ ;;^UTILITY(U,$J,358.3,11328,1,3,0)
+ ;;=3^Visual Loss,Unspec
+ ;;^UTILITY(U,$J,358.3,11328,1,4,0)
+ ;;=4^H54.7
+ ;;^UTILITY(U,$J,358.3,11328,2)
+ ;;=^5006368
+ ;;^UTILITY(U,$J,358.3,11329,0)
+ ;;=R68.89^^42^526^4
+ ;;^UTILITY(U,$J,358.3,11329,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,11261,1,3,0)
- ;;=3^Benign Neop/Nevus Choroid,Right Eye
- ;;^UTILITY(U,$J,358.3,11261,1,4,0)
- ;;=4^D31.31
- ;;^UTILITY(U,$J,358.3,11261,2)
- ;;=^5002121
- ;;^UTILITY(U,$J,358.3,11262,0)
- ;;=D31.32^^77^727^4
- ;;^UTILITY(U,$J,358.3,11262,1,0)
+ ;;^UTILITY(U,$J,358.3,11329,1,3,0)
+ ;;=3^General Symptoms/Signs
+ ;;^UTILITY(U,$J,358.3,11329,1,4,0)
+ ;;=4^R68.89
+ ;;^UTILITY(U,$J,358.3,11329,2)
+ ;;=^5019557
+ ;;^UTILITY(U,$J,358.3,11330,0)
+ ;;=R47.89^^42^526^7
+ ;;^UTILITY(U,$J,358.3,11330,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,11262,1,3,0)
- ;;=3^Benign Neop/Nevus Choroid,Left Eye
- ;;^UTILITY(U,$J,358.3,11262,1,4,0)
- ;;=4^D31.32
- ;;^UTILITY(U,$J,358.3,11262,2)
- ;;=^5002122
- ;;^UTILITY(U,$J,358.3,11263,0)
- ;;=H40.1131^^77^727^47
- ;;^UTILITY(U,$J,358.3,11263,1,0)
+ ;;^UTILITY(U,$J,358.3,11330,1,3,0)
+ ;;=3^Speech Disturbances
+ ;;^UTILITY(U,$J,358.3,11330,1,4,0)
+ ;;=4^R47.89
+ ;;^UTILITY(U,$J,358.3,11330,2)
+ ;;=^5019493
+ ;;^UTILITY(U,$J,358.3,11331,0)
+ ;;=R43.9^^42^526^6
+ ;;^UTILITY(U,$J,358.3,11331,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,11263,1,3,0)
- ;;=3^Primary Open-Angle Glaucoma,Mild Stage,Bilateral
- ;;^UTILITY(U,$J,358.3,11263,1,4,0)
- ;;=4^H40.1131
- ;;^UTILITY(U,$J,358.3,11263,2)
- ;;=^5138547
- ;;^UTILITY(U,$J,358.3,11264,0)
- ;;=H40.1132^^77^727^48
- ;;^UTILITY(U,$J,358.3,11264,1,0)
+ ;;^UTILITY(U,$J,358.3,11331,1,3,0)
+ ;;=3^Smell/Taste Disturbances,Unspec
+ ;;^UTILITY(U,$J,358.3,11331,1,4,0)
+ ;;=4^R43.9
+ ;;^UTILITY(U,$J,358.3,11331,2)
+ ;;=^5019454
+ ;;^UTILITY(U,$J,358.3,11332,0)
+ ;;=R13.10^^42^526^3
+ ;;^UTILITY(U,$J,358.3,11332,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,11264,1,3,0)
- ;;=3^Primary Open-Angle Glaucoma,Moderate Stage,Bilateral
- ;;^UTILITY(U,$J,358.3,11264,1,4,0)
- ;;=4^H40.1132
- ;;^UTILITY(U,$J,358.3,11264,2)
- ;;=^5138548
- ;;^UTILITY(U,$J,358.3,11265,0)
- ;;=Z01.021^^77^727^27
- ;;^UTILITY(U,$J,358.3,11265,1,0)
+ ;;^UTILITY(U,$J,358.3,11332,1,3,0)
+ ;;=3^Dysphagia,Unspec
+ ;;^UTILITY(U,$J,358.3,11332,1,4,0)
+ ;;=4^R13.10
+ ;;^UTILITY(U,$J,358.3,11332,2)
+ ;;=^335307
+ ;;^UTILITY(U,$J,358.3,11333,0)
+ ;;=F52.9^^42^526^5
+ ;;^UTILITY(U,$J,358.3,11333,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,11265,1,3,0)
- ;;=3^Eye/Vision Exam After Failed Exam w/ Abnormal Findings
- ;;^UTILITY(U,$J,358.3,11265,1,4,0)
- ;;=4^Z01.021
- ;;^UTILITY(U,$J,358.3,11265,2)
- ;;=^5158319
- ;;^UTILITY(U,$J,358.3,11266,0)
- ;;=Z01.020^^77^727^28
- ;;^UTILITY(U,$J,358.3,11266,1,0)
+ ;;^UTILITY(U,$J,358.3,11333,1,3,0)
+ ;;=3^Sexual Dysfunction,Unspec
+ ;;^UTILITY(U,$J,358.3,11333,1,4,0)
+ ;;=4^F52.9
+ ;;^UTILITY(U,$J,358.3,11333,2)
+ ;;=^5003625
+ ;;^UTILITY(U,$J,358.3,11334,0)
+ ;;=I69.391^^42^526^2
+ ;;^UTILITY(U,$J,358.3,11334,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,11266,1,3,0)
- ;;=3^Eye/Vision Exam After Failed Exam w/o Abnormal Findings
- ;;^UTILITY(U,$J,358.3,11266,1,4,0)
- ;;=4^Z01.020
- ;;^UTILITY(U,$J,358.3,11266,2)
- ;;=^5158318
- ;;^UTILITY(U,$J,358.3,11267,0)
- ;;=H10.31^^77^728^1
- ;;^UTILITY(U,$J,358.3,11267,1,0)
+ ;;^UTILITY(U,$J,358.3,11334,1,3,0)
+ ;;=3^Dysphagia,Sequela of CVA
+ ;;^UTILITY(U,$J,358.3,11334,1,4,0)
+ ;;=4^I69.391
+ ;;^UTILITY(U,$J,358.3,11334,2)
+ ;;=^5007516
+ ;;^UTILITY(U,$J,358.3,11335,0)
+ ;;=I69.320^^42^526^1
+ ;;^UTILITY(U,$J,358.3,11335,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,11267,1,3,0)
- ;;=3^Conjunctivitis,Acute,Right Eye
- ;;^UTILITY(U,$J,358.3,11267,1,4,0)
- ;;=4^H10.31
- ;;^UTILITY(U,$J,358.3,11267,2)
- ;;=^5133458
- ;;^UTILITY(U,$J,358.3,11268,0)
- ;;=H10.32^^77^728^2
- ;;^UTILITY(U,$J,358.3,11268,1,0)
+ ;;^UTILITY(U,$J,358.3,11335,1,3,0)
+ ;;=3^Aphasia,Sequela CVA
+ ;;^UTILITY(U,$J,358.3,11335,1,4,0)
+ ;;=4^I69.320
+ ;;^UTILITY(U,$J,358.3,11335,2)
+ ;;=^5007491
+ ;;^UTILITY(U,$J,358.3,11336,0)
+ ;;=I69.312^^42^526^9
+ ;;^UTILITY(U,$J,358.3,11336,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,11268,1,3,0)
- ;;=3^Conjunctivitis,Acute,Left Eye
- ;;^UTILITY(U,$J,358.3,11268,1,4,0)
- ;;=4^H10.32
- ;;^UTILITY(U,$J,358.3,11268,2)
- ;;=^5133459
- ;;^UTILITY(U,$J,358.3,11269,0)
- ;;=H10.401^^77^728^3
+ ;;^UTILITY(U,$J,358.3,11336,1,3,0)
+ ;;=3^Visuospacial Deficit & Spacial Neglect,Sequela of CVA
+ ;;^UTILITY(U,$J,358.3,11336,1,4,0)
+ ;;=4^I69.312
+ ;;^UTILITY(U,$J,358.3,11336,2)
+ ;;=^5138646
+ ;;^UTILITY(U,$J,358.3,11337,0)
+ ;;=Z75.3^^42^527^5
+ ;;^UTILITY(U,$J,358.3,11337,1,0)
+ ;;=^358.31IA^4^2

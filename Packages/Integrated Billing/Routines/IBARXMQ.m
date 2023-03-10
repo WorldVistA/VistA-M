@@ -1,5 +1,5 @@
 IBARXMQ ;LL/ELZ-RX COPAY RPC QUERY ROUTINE (MILL BILL) ;10-OCT-2000
- ;;2.0;INTEGRATED BILLING;**150,156,186,199,563**;21-MAR-94;Build 12
+ ;;2.0;INTEGRATED BILLING;**150,156,186,199,563,676**;21-MAR-94;Build 34
  ;;Per VA Directive 6402, this routine should not be modified.
  ;
 EN ; main entry point for users to request a query of rx bills from all possible facilities
@@ -15,7 +15,7 @@ EN ; main entry point for users to request a query of rx bills from all possible
  S IBDT=Y
  ;
  ; scan for patient to see if different facilities could be involved
- S IBT=$$TFL^IBARXMU(DFN,.IBTFL)
+ S IBT=$$TFL^IBARXMU(DFN,.IBTFL,2)
  ;
  ; if multiple facilities ask if we should check
  I IBT W !,"This patient could have Pharmacy Co-payment bills at other facilities",!,"Do you want to check those other facilities" S %=0 D YN^DICN S:%'=1 IBT=0 Q:%<0
@@ -35,6 +35,9 @@ DQ ; tasked entry point
  ; remote stuff, file locally
  I IBT S IBX=0 F  S IBX=$O(IBTFL(IBX)) Q:IBX<1  D
  . W:'$D(ZTQUEUED) !,"Now sending query to ",$P(IBTFL(IBX),"^",2)," ..."
+ . ;676;BL; Send request to Cerner Separate response message returns transactions
+ . I $P(IBTFL(IBX),"^",1)["200CRNR" D  Q
+ . . D EN^IBARXCQR(DFN,$E(IBDT,1,5)_"00")
  . D QUERY^IBARXMU(DFN,IBDT,+IBTFL(IBX),.IBD)
  . I $P(IBD(0),"^")=-1!(-1=+IBD)!($P($G(IBD(1)),"^")=-1) S IBER=1 K IBD Q
  . S X=1 F  S X=$O(IBD(X)) Q:X<1  S IBD=$$ADD^IBARXMN(DFN,IBD(X))
@@ -50,7 +53,7 @@ PRINT ;
  S (IBP,IBE,IBB,IBU)=0 D HEAD F  S IBE=$O(^TMP("IBARXM",$J,IBE)) Q:IBE<1!($D(DIRUT))  S IBX=0 F  S IBX=$O(^TMP("IBARXM",$J,IBE,IBX)) Q:IBX<1!($D(DIRUT))  D
  . D:$Y+3>IOSL HEAD Q:$D(DIRUT)
  . S IBD=^TMP("IBARXM",$J,IBE,IBX)
- . W !,$E($P($$FAC^IBARXMU($$LKUP^XUAF4($P(IBD,"-"))),"^"),1,9),"(",+IBD,")"
+ . W !,$E($P($$FAC^IBARXMU($P(IBD,"^",13)),"^"),1,9),"(",+IBD,")"  ;676;BL Changed call to return Cerner name
  . W ?17,$G(^TMP("IBARXM",$J,IBE,IBX,"AR"))
  . W ?29,$$FMTE^XLFDT(IBE,"2D")
  . W ?40,$P(IBD,"^",20)

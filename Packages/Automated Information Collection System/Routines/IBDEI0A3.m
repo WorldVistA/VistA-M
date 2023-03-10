@@ -1,642 +1,686 @@
-IBDEI0A3 ; ; 01-MAY-2020
- ;;3.0;IB ENCOUNTER FORM IMP/EXP;;MAY 01, 2020
+IBDEI0A3 ; ; 01-AUG-2022
+ ;;3.0;IB ENCOUNTER FORM IMP/EXP;;AUG 01, 2022
  Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,999) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
+ ;;^UTILITY(U,$J,358.3,24685,1,4,0)
+ ;;=4^D86.83
+ ;;^UTILITY(U,$J,358.3,24685,2)
+ ;;=^5002448
+ ;;^UTILITY(U,$J,358.3,24686,0)
+ ;;=D86.81^^74^980^44
+ ;;^UTILITY(U,$J,358.3,24686,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,24686,1,3,0)
+ ;;=3^Sarcoid Meningitis
+ ;;^UTILITY(U,$J,358.3,24686,1,4,0)
+ ;;=4^D86.81
+ ;;^UTILITY(U,$J,358.3,24686,2)
+ ;;=^5002446
+ ;;^UTILITY(U,$J,358.3,24687,0)
+ ;;=D86.85^^74^980^45
+ ;;^UTILITY(U,$J,358.3,24687,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,24687,1,3,0)
+ ;;=3^Sarcoid Myocarditis
+ ;;^UTILITY(U,$J,358.3,24687,1,4,0)
+ ;;=4^D86.85
+ ;;^UTILITY(U,$J,358.3,24687,2)
+ ;;=^5002450
+ ;;^UTILITY(U,$J,358.3,24688,0)
+ ;;=D86.87^^74^980^46
+ ;;^UTILITY(U,$J,358.3,24688,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,24688,1,3,0)
+ ;;=3^Sarcoid Myositis
+ ;;^UTILITY(U,$J,358.3,24688,1,4,0)
+ ;;=4^D86.87
+ ;;^UTILITY(U,$J,358.3,24688,2)
+ ;;=^5002452
+ ;;^UTILITY(U,$J,358.3,24689,0)
+ ;;=D86.84^^74^980^47
+ ;;^UTILITY(U,$J,358.3,24689,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,24689,1,3,0)
+ ;;=3^Sarcoid Pyelonephritis
+ ;;^UTILITY(U,$J,358.3,24689,1,4,0)
+ ;;=4^D86.84
+ ;;^UTILITY(U,$J,358.3,24689,2)
+ ;;=^5002449
+ ;;^UTILITY(U,$J,358.3,24690,0)
+ ;;=D86.0^^74^980^48
+ ;;^UTILITY(U,$J,358.3,24690,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,24690,1,3,0)
+ ;;=3^Sarcoidosis of Lung
+ ;;^UTILITY(U,$J,358.3,24690,1,4,0)
+ ;;=4^D86.0
+ ;;^UTILITY(U,$J,358.3,24690,2)
+ ;;=^5002442
+ ;;^UTILITY(U,$J,358.3,24691,0)
+ ;;=D86.2^^74^980^49
+ ;;^UTILITY(U,$J,358.3,24691,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,24691,1,3,0)
+ ;;=3^Sarcoidosis of Lung w/ Sarcoidosis of Lymph Nodes
+ ;;^UTILITY(U,$J,358.3,24691,1,4,0)
+ ;;=4^D86.2
+ ;;^UTILITY(U,$J,358.3,24691,2)
+ ;;=^5002444
  ;;^UTILITY(U,$J,358.3,24692,0)
- ;;=S92.531S^^76^1008^28
+ ;;=D86.1^^74^980^50
  ;;^UTILITY(U,$J,358.3,24692,1,0)
  ;;=^358.31IA^4^2
  ;;^UTILITY(U,$J,358.3,24692,1,3,0)
- ;;=3^Disp distal phalanx fx of right lesser toe,sequela
+ ;;=3^Sarcoidosis of Lymph Nodes
  ;;^UTILITY(U,$J,358.3,24692,1,4,0)
- ;;=4^S92.531S
+ ;;=4^D86.1
  ;;^UTILITY(U,$J,358.3,24692,2)
- ;;=^5045521
+ ;;=^5002443
  ;;^UTILITY(U,$J,358.3,24693,0)
- ;;=S92.522S^^76^1008^40
+ ;;=D86.89^^74^980^51
  ;;^UTILITY(U,$J,358.3,24693,1,0)
  ;;=^358.31IA^4^2
  ;;^UTILITY(U,$J,358.3,24693,1,3,0)
- ;;=3^Disp medial cuneiform fx of left lesser toe(s),sequela
+ ;;=3^Sarcoidosis of Oth Sites
  ;;^UTILITY(U,$J,358.3,24693,1,4,0)
- ;;=4^S92.522S
+ ;;=4^D86.89
  ;;^UTILITY(U,$J,358.3,24693,2)
- ;;=^5045486
+ ;;=^5002453
  ;;^UTILITY(U,$J,358.3,24694,0)
- ;;=S92.521S^^76^1008^43
+ ;;=D86.3^^74^980^52
  ;;^UTILITY(U,$J,358.3,24694,1,0)
  ;;=^358.31IA^4^2
  ;;^UTILITY(U,$J,358.3,24694,1,3,0)
- ;;=3^Disp medial phalanx fx of right lesser toe(s), sequela
+ ;;=3^Sarcoidosis of Skin
  ;;^UTILITY(U,$J,358.3,24694,1,4,0)
- ;;=4^S92.521S
+ ;;=4^D86.3
  ;;^UTILITY(U,$J,358.3,24694,2)
- ;;=^5045479
+ ;;=^5002445
  ;;^UTILITY(U,$J,358.3,24695,0)
- ;;=S92.412S^^76^1008^50
+ ;;=D86.9^^74^980^53
  ;;^UTILITY(U,$J,358.3,24695,1,0)
  ;;=^358.31IA^4^2
  ;;^UTILITY(U,$J,358.3,24695,1,3,0)
- ;;=3^Disp proximal phalanx fx of left great toe, sequela
+ ;;=3^Sarcoidosis,Unspec
  ;;^UTILITY(U,$J,358.3,24695,1,4,0)
- ;;=4^S92.412S
+ ;;=4^D86.9
  ;;^UTILITY(U,$J,358.3,24695,2)
- ;;=^5045311
+ ;;=^5002454
  ;;^UTILITY(U,$J,358.3,24696,0)
- ;;=S92.512S^^76^1008^51
+ ;;=M35.01^^74^980^54
  ;;^UTILITY(U,$J,358.3,24696,1,0)
  ;;=^358.31IA^4^2
  ;;^UTILITY(U,$J,358.3,24696,1,3,0)
- ;;=3^Disp proximal phalanx fx of left lesser toe(s), sequela
+ ;;=3^Sicca Syndrome w/ Keratoconjunctivitis
  ;;^UTILITY(U,$J,358.3,24696,1,4,0)
- ;;=4^S92.512S
+ ;;=4^M35.01
  ;;^UTILITY(U,$J,358.3,24696,2)
- ;;=s92411s^5045444
+ ;;=^5011787
  ;;^UTILITY(U,$J,358.3,24697,0)
- ;;=S92.411S^^76^1008^52
+ ;;=M35.02^^74^980^55
  ;;^UTILITY(U,$J,358.3,24697,1,0)
  ;;=^358.31IA^4^2
  ;;^UTILITY(U,$J,358.3,24697,1,3,0)
- ;;=3^Disp proximal phalanx fx of right great toe, sequela
+ ;;=3^Sicca Syndrome w/ Lung Involvement
  ;;^UTILITY(U,$J,358.3,24697,1,4,0)
- ;;=4^S92.411S
+ ;;=4^M35.02
  ;;^UTILITY(U,$J,358.3,24697,2)
- ;;=^5045304
+ ;;=^5011788
  ;;^UTILITY(U,$J,358.3,24698,0)
- ;;=S92.511S^^76^1008^53
+ ;;=M35.03^^74^980^56
  ;;^UTILITY(U,$J,358.3,24698,1,0)
  ;;=^358.31IA^4^2
  ;;^UTILITY(U,$J,358.3,24698,1,3,0)
- ;;=3^Disp proximal phalanx fx of right lesser toe(s), sequela
+ ;;=3^Sicca Syndrome w/ Myopathy
  ;;^UTILITY(U,$J,358.3,24698,1,4,0)
- ;;=4^S92.511S
+ ;;=4^M35.03
  ;;^UTILITY(U,$J,358.3,24698,2)
- ;;=s92425s^5045437
+ ;;=^5011789
  ;;^UTILITY(U,$J,358.3,24699,0)
- ;;=S92.425S^^76^1008^80
+ ;;=M35.09^^74^980^57
  ;;^UTILITY(U,$J,358.3,24699,1,0)
  ;;=^358.31IA^4^2
  ;;^UTILITY(U,$J,358.3,24699,1,3,0)
- ;;=3^Nondisp distal phalanx fx of left great toe, sequela
+ ;;=3^Sicca Syndrome w/ Oth Organ Involvement
  ;;^UTILITY(U,$J,358.3,24699,1,4,0)
- ;;=4^S92.425S
+ ;;=4^M35.09
  ;;^UTILITY(U,$J,358.3,24699,2)
- ;;=^5045374
+ ;;=^5011791
  ;;^UTILITY(U,$J,358.3,24700,0)
- ;;=S92.535S^^76^1008^81
+ ;;=M35.04^^74^980^58
  ;;^UTILITY(U,$J,358.3,24700,1,0)
  ;;=^358.31IA^4^2
  ;;^UTILITY(U,$J,358.3,24700,1,3,0)
- ;;=3^Nondisp distal phalanx fx of left lesser toe(s), sequela
+ ;;=3^Sicca Syndrome w/ Tubulo-Interstitial Nephropathy
  ;;^UTILITY(U,$J,358.3,24700,1,4,0)
- ;;=4^S92.535S
+ ;;=4^M35.04
  ;;^UTILITY(U,$J,358.3,24700,2)
- ;;=^5045549
+ ;;=^5011790
  ;;^UTILITY(U,$J,358.3,24701,0)
- ;;=S92.424S^^76^1008^82
+ ;;=M35.00^^74^980^59
  ;;^UTILITY(U,$J,358.3,24701,1,0)
  ;;=^358.31IA^4^2
  ;;^UTILITY(U,$J,358.3,24701,1,3,0)
- ;;=3^Nondisp distal phalanx fx of right great toe, sequela
+ ;;=3^Sicca Syndrome,Unspec
  ;;^UTILITY(U,$J,358.3,24701,1,4,0)
- ;;=4^S92.424S
+ ;;=4^M35.00
  ;;^UTILITY(U,$J,358.3,24701,2)
- ;;=^5045367
+ ;;=^5011786
  ;;^UTILITY(U,$J,358.3,24702,0)
- ;;=S92.534S^^76^1008^83
+ ;;=M32.10^^74^980^62
  ;;^UTILITY(U,$J,358.3,24702,1,0)
  ;;=^358.31IA^4^2
  ;;^UTILITY(U,$J,358.3,24702,1,3,0)
- ;;=3^Nondisp distal phalanx fx of right lesser toe(s), sequela
+ ;;=3^Systemic Lupus Erythematosus,Unspec Organ/System Involvement
  ;;^UTILITY(U,$J,358.3,24702,1,4,0)
- ;;=4^S92.534S
+ ;;=4^M32.10
  ;;^UTILITY(U,$J,358.3,24702,2)
- ;;=^5045542
+ ;;=^5011753
  ;;^UTILITY(U,$J,358.3,24703,0)
- ;;=S92.525S^^76^1008^94
+ ;;=M32.9^^74^980^61
  ;;^UTILITY(U,$J,358.3,24703,1,0)
  ;;=^358.31IA^4^2
  ;;^UTILITY(U,$J,358.3,24703,1,3,0)
- ;;=3^Nondisp medial phalanx fx of left lesser toe(s), sequela
+ ;;=3^Systemic Lupus Erythematosus,Unspec
  ;;^UTILITY(U,$J,358.3,24703,1,4,0)
- ;;=4^S92.525S
+ ;;=4^M32.9
  ;;^UTILITY(U,$J,358.3,24703,2)
- ;;=^5045507
+ ;;=^5011761
  ;;^UTILITY(U,$J,358.3,24704,0)
- ;;=S92.524S^^76^1008^95
+ ;;=M34.2^^74^980^63
  ;;^UTILITY(U,$J,358.3,24704,1,0)
  ;;=^358.31IA^4^2
  ;;^UTILITY(U,$J,358.3,24704,1,3,0)
- ;;=3^Nondisp medial phalanx fx of right lesser toe(s), sequela
+ ;;=3^Systemic Sclerosis Induced by Drug/Chemical
  ;;^UTILITY(U,$J,358.3,24704,1,4,0)
- ;;=4^S92.524S
+ ;;=4^M34.2
  ;;^UTILITY(U,$J,358.3,24704,2)
- ;;=^5045500
+ ;;=^5011780
  ;;^UTILITY(U,$J,358.3,24705,0)
- ;;=S92.415S^^76^1008^102
+ ;;=M34.81^^74^980^64
  ;;^UTILITY(U,$J,358.3,24705,1,0)
  ;;=^358.31IA^4^2
  ;;^UTILITY(U,$J,358.3,24705,1,3,0)
- ;;=3^Nondisp proximal phalanx fx of left great toe, sequela
+ ;;=3^Systemic Sclerosis w/ Lung Involvement
  ;;^UTILITY(U,$J,358.3,24705,1,4,0)
- ;;=4^S92.415S
+ ;;=4^M34.81
  ;;^UTILITY(U,$J,358.3,24705,2)
- ;;=^5045332
+ ;;=^5011781
  ;;^UTILITY(U,$J,358.3,24706,0)
- ;;=S92.515S^^76^1008^103
+ ;;=M34.82^^74^980^65
  ;;^UTILITY(U,$J,358.3,24706,1,0)
  ;;=^358.31IA^4^2
  ;;^UTILITY(U,$J,358.3,24706,1,3,0)
- ;;=3^Nondisp proximal phalanx fx of left lesser toe(s), sequela
+ ;;=3^Systemic Sclerosis w/ Myopathy
  ;;^UTILITY(U,$J,358.3,24706,1,4,0)
- ;;=4^S92.515S
+ ;;=4^M34.82
  ;;^UTILITY(U,$J,358.3,24706,2)
- ;;=^5045465
+ ;;=^5011782
  ;;^UTILITY(U,$J,358.3,24707,0)
- ;;=S92.414S^^76^1008^104
+ ;;=M34.83^^74^980^66
  ;;^UTILITY(U,$J,358.3,24707,1,0)
  ;;=^358.31IA^4^2
  ;;^UTILITY(U,$J,358.3,24707,1,3,0)
- ;;=3^Nondisp proximal phalanx fx of right great toe, sequela
+ ;;=3^Systemic Sclerosis w/ Polyneuropathy
  ;;^UTILITY(U,$J,358.3,24707,1,4,0)
- ;;=4^S92.414S
+ ;;=4^M34.83
  ;;^UTILITY(U,$J,358.3,24707,2)
- ;;=^5045325
+ ;;=^5011783
  ;;^UTILITY(U,$J,358.3,24708,0)
- ;;=S92.514S^^76^1008^105
+ ;;=M34.9^^74^980^67
  ;;^UTILITY(U,$J,358.3,24708,1,0)
  ;;=^358.31IA^4^2
  ;;^UTILITY(U,$J,358.3,24708,1,3,0)
- ;;=3^Nondisp proximal phalanx fx of right lesser toe(s), sequela
+ ;;=3^Systemic Sclerosis,Unspec
  ;;^UTILITY(U,$J,358.3,24708,1,4,0)
- ;;=4^S92.514S
+ ;;=4^M34.9
  ;;^UTILITY(U,$J,358.3,24708,2)
- ;;=^5045458
+ ;;=^5011785
  ;;^UTILITY(U,$J,358.3,24709,0)
- ;;=M84.478S^^76^1008^110
+ ;;=J84.170^^74^980^16
  ;;^UTILITY(U,$J,358.3,24709,1,0)
  ;;=^358.31IA^4^2
  ;;^UTILITY(U,$J,358.3,24709,1,3,0)
- ;;=3^Pathological fracture, left toe(s), sequela
+ ;;=3^Interstitial Lung Dis w/ Progressive Fibrotic Phenotype in Dis Classd Elsewhere
  ;;^UTILITY(U,$J,358.3,24709,1,4,0)
- ;;=4^M84.478S
+ ;;=4^J84.170
  ;;^UTILITY(U,$J,358.3,24709,2)
- ;;=^5014009
+ ;;=^5159208
  ;;^UTILITY(U,$J,358.3,24710,0)
- ;;=M84.477S^^76^1008^113
+ ;;=J84.178^^74^980^17
  ;;^UTILITY(U,$J,358.3,24710,1,0)
  ;;=^358.31IA^4^2
  ;;^UTILITY(U,$J,358.3,24710,1,3,0)
- ;;=3^Pathological fracture, right toe(s), sequela
+ ;;=3^Interstitial Pulmonary Disease w/ Fibrosis,Other
  ;;^UTILITY(U,$J,358.3,24710,1,4,0)
- ;;=4^M84.477S
+ ;;=4^J84.178
  ;;^UTILITY(U,$J,358.3,24710,2)
- ;;=^5014003
+ ;;=^5159209
  ;;^UTILITY(U,$J,358.3,24711,0)
- ;;=M84.378S^^76^1008^116
+ ;;=M81.0^^74^981^21
  ;;^UTILITY(U,$J,358.3,24711,1,0)
  ;;=^358.31IA^4^2
  ;;^UTILITY(U,$J,358.3,24711,1,3,0)
- ;;=3^Stress fracture, left toe(s), sequela
+ ;;=3^Osteoporosis,Age-Related
  ;;^UTILITY(U,$J,358.3,24711,1,4,0)
- ;;=4^M84.378S
+ ;;=4^M81.0
  ;;^UTILITY(U,$J,358.3,24711,2)
- ;;=^5013781
+ ;;=^5013555
  ;;^UTILITY(U,$J,358.3,24712,0)
- ;;=M84.377S^^76^1008^119
+ ;;=M46.46^^74^981^2
  ;;^UTILITY(U,$J,358.3,24712,1,0)
  ;;=^358.31IA^4^2
  ;;^UTILITY(U,$J,358.3,24712,1,3,0)
- ;;=3^Stress fracture, right toe(s), sequela
+ ;;=3^Discitis,Lumbar Region,Unspec
  ;;^UTILITY(U,$J,358.3,24712,1,4,0)
- ;;=4^M84.377S
+ ;;=4^M46.46
  ;;^UTILITY(U,$J,358.3,24712,2)
- ;;=^5013775
+ ;;=^5012006
  ;;^UTILITY(U,$J,358.3,24713,0)
- ;;=S92.212S^^76^1008^23
+ ;;=M46.47^^74^981^3
  ;;^UTILITY(U,$J,358.3,24713,1,0)
  ;;=^358.31IA^4^2
  ;;^UTILITY(U,$J,358.3,24713,1,3,0)
- ;;=3^Disp cuboid bone of left foot fx, sequela
+ ;;=3^Discitis,Lumbosacral Region,Unspec
  ;;^UTILITY(U,$J,358.3,24713,1,4,0)
- ;;=4^S92.212S
+ ;;=4^M46.47
  ;;^UTILITY(U,$J,358.3,24713,2)
- ;;=^5044849
+ ;;=^5012007
  ;;^UTILITY(U,$J,358.3,24714,0)
- ;;=S92.211S^^76^1008^24
+ ;;=J98.6^^74^981^1
  ;;^UTILITY(U,$J,358.3,24714,1,0)
  ;;=^358.31IA^4^2
  ;;^UTILITY(U,$J,358.3,24714,1,3,0)
- ;;=3^Disp cuboid bone of right foot, sequela
+ ;;=3^Diaphragm Disorders
  ;;^UTILITY(U,$J,358.3,24714,1,4,0)
- ;;=4^S92.211S
+ ;;=4^J98.6
  ;;^UTILITY(U,$J,358.3,24714,2)
- ;;=^5044842
+ ;;=^5008364
  ;;^UTILITY(U,$J,358.3,24715,0)
- ;;=S92.352S^^76^1008^9
+ ;;=M54.9^^74^981^5
  ;;^UTILITY(U,$J,358.3,24715,1,0)
  ;;=^358.31IA^4^2
  ;;^UTILITY(U,$J,358.3,24715,1,3,0)
- ;;=3^Disp 5th metatarsal fx of left foot,sequela
+ ;;=3^Dorsalgia,Unspec
  ;;^UTILITY(U,$J,358.3,24715,1,4,0)
- ;;=4^S92.352S
+ ;;=4^M54.9
  ;;^UTILITY(U,$J,358.3,24715,2)
- ;;=^5045241
+ ;;=^5012314
  ;;^UTILITY(U,$J,358.3,24716,0)
- ;;=S92.351S^^76^1008^10
+ ;;=S22.32XA^^74^981^9
  ;;^UTILITY(U,$J,358.3,24716,1,0)
  ;;=^358.31IA^4^2
  ;;^UTILITY(U,$J,358.3,24716,1,3,0)
- ;;=3^Disp 5th metatarsal fx of right foot,sequela
+ ;;=3^Fx One Rib Left side,Init Enctr
  ;;^UTILITY(U,$J,358.3,24716,1,4,0)
- ;;=4^S92.351S
+ ;;=4^S22.32XA
  ;;^UTILITY(U,$J,358.3,24716,2)
- ;;=^5045234
+ ;;=^5023111
  ;;^UTILITY(U,$J,358.3,24717,0)
- ;;=S92.312S^^76^1008^1
+ ;;=S22.31XA^^74^981^10
  ;;^UTILITY(U,$J,358.3,24717,1,0)
  ;;=^358.31IA^4^2
  ;;^UTILITY(U,$J,358.3,24717,1,3,0)
- ;;=3^Disp 1st metatarsal fx of left foot,sequela
+ ;;=3^Fx One Rib Right Side,Init Enctr
  ;;^UTILITY(U,$J,358.3,24717,1,4,0)
- ;;=4^S92.312S
+ ;;=4^S22.31XA
  ;;^UTILITY(U,$J,358.3,24717,2)
- ;;=^5045073
+ ;;=^5023105
  ;;^UTILITY(U,$J,358.3,24718,0)
- ;;=S92.311S^^76^1008^2
+ ;;=M10.9^^74^981^11
  ;;^UTILITY(U,$J,358.3,24718,1,0)
  ;;=^358.31IA^4^2
  ;;^UTILITY(U,$J,358.3,24718,1,3,0)
- ;;=3^Disp 1st metatarsal fx of right foot,sequela
+ ;;=3^Gout,Unspec
  ;;^UTILITY(U,$J,358.3,24718,1,4,0)
- ;;=4^S92.311S
+ ;;=4^M10.9
  ;;^UTILITY(U,$J,358.3,24718,2)
- ;;=^5045066
+ ;;=^5010404
  ;;^UTILITY(U,$J,358.3,24719,0)
- ;;=S92.342S^^76^1008^7
+ ;;=S22.43XA^^74^981^6
  ;;^UTILITY(U,$J,358.3,24719,1,0)
  ;;=^358.31IA^4^2
  ;;^UTILITY(U,$J,358.3,24719,1,3,0)
- ;;=3^Disp 4th metatarsal fx of left foot,sequela
+ ;;=3^Fx Mult Ribs Bilateral,Init Enctr
  ;;^UTILITY(U,$J,358.3,24719,1,4,0)
- ;;=4^S92.342S
+ ;;=4^S22.43XA
  ;;^UTILITY(U,$J,358.3,24719,2)
- ;;=^5045199
+ ;;=^5023135
  ;;^UTILITY(U,$J,358.3,24720,0)
- ;;=S92.341S^^76^1008^8
+ ;;=S22.42XA^^74^981^7
  ;;^UTILITY(U,$J,358.3,24720,1,0)
  ;;=^358.31IA^4^2
  ;;^UTILITY(U,$J,358.3,24720,1,3,0)
- ;;=3^Disp 4th metatarsal fx of right foot,sequela
+ ;;=3^Fx Mult Ribs Left Side,Init Enctr
  ;;^UTILITY(U,$J,358.3,24720,1,4,0)
- ;;=4^S92.341S
+ ;;=4^S22.42XA
  ;;^UTILITY(U,$J,358.3,24720,2)
- ;;=^5045192
+ ;;=^5023129
  ;;^UTILITY(U,$J,358.3,24721,0)
- ;;=S92.232S^^76^1008^31
+ ;;=S22.41XA^^74^981^8
  ;;^UTILITY(U,$J,358.3,24721,1,0)
  ;;=^358.31IA^4^2
  ;;^UTILITY(U,$J,358.3,24721,1,3,0)
- ;;=3^Disp intermed cuneiform fx of left foot,sequela
+ ;;=3^Fx Mult Ribs Right Side,Init Enctr
  ;;^UTILITY(U,$J,358.3,24721,1,4,0)
- ;;=4^S92.232S
+ ;;=4^S22.41XA
  ;;^UTILITY(U,$J,358.3,24721,2)
- ;;=^5044933
+ ;;=^5023123
  ;;^UTILITY(U,$J,358.3,24722,0)
- ;;=S92.231S^^76^1008^32
+ ;;=G70.00^^74^981^18
  ;;^UTILITY(U,$J,358.3,24722,1,0)
  ;;=^358.31IA^4^2
  ;;^UTILITY(U,$J,358.3,24722,1,3,0)
- ;;=3^Disp intermed cuneiform fx of right foot,sequela
+ ;;=3^Myasthenia Gracis w/o Exacerbation
  ;;^UTILITY(U,$J,358.3,24722,1,4,0)
- ;;=4^S92.231S
+ ;;=4^G70.00
  ;;^UTILITY(U,$J,358.3,24722,2)
- ;;=^5044926
+ ;;=^329920
  ;;^UTILITY(U,$J,358.3,24723,0)
- ;;=S92.222S^^76^1008^35
+ ;;=G72.9^^74^981^19
  ;;^UTILITY(U,$J,358.3,24723,1,0)
  ;;=^358.31IA^4^2
  ;;^UTILITY(U,$J,358.3,24723,1,3,0)
- ;;=3^Disp lateral cuneiform fx of left foot,sequela
+ ;;=3^Myopathy,Unspec
  ;;^UTILITY(U,$J,358.3,24723,1,4,0)
- ;;=4^S92.222S
+ ;;=4^G72.9
  ;;^UTILITY(U,$J,358.3,24723,2)
- ;;=^5044891
+ ;;=^5004101
  ;;^UTILITY(U,$J,358.3,24724,0)
- ;;=S92.221S^^76^1008^36
+ ;;=M54.89^^74^981^4
  ;;^UTILITY(U,$J,358.3,24724,1,0)
  ;;=^358.31IA^4^2
  ;;^UTILITY(U,$J,358.3,24724,1,3,0)
- ;;=3^Disp lateral cuneiform fx of right foot,sequela
+ ;;=3^Dorsalgia NEC
  ;;^UTILITY(U,$J,358.3,24724,1,4,0)
- ;;=4^S92.221S
+ ;;=4^M54.89
  ;;^UTILITY(U,$J,358.3,24724,2)
- ;;=^5044884
+ ;;=^5012313
  ;;^UTILITY(U,$J,358.3,24725,0)
- ;;=S92.242S^^76^1008^39
+ ;;=M51.86^^74^981^12
  ;;^UTILITY(U,$J,358.3,24725,1,0)
  ;;=^358.31IA^4^2
  ;;^UTILITY(U,$J,358.3,24725,1,3,0)
- ;;=3^Disp medial cuneiform fx of left foot, sequela
+ ;;=3^Intervertebral Disc Disorders,Lumbar Region NEC
  ;;^UTILITY(U,$J,358.3,24725,1,4,0)
- ;;=4^S92.242S
+ ;;=4^M51.86
  ;;^UTILITY(U,$J,358.3,24725,2)
- ;;=^5044975
+ ;;=^5012261
  ;;^UTILITY(U,$J,358.3,24726,0)
- ;;=S92.241S^^76^1008^41
+ ;;=M51.87^^74^981^13
  ;;^UTILITY(U,$J,358.3,24726,1,0)
  ;;=^358.31IA^4^2
  ;;^UTILITY(U,$J,358.3,24726,1,3,0)
- ;;=3^Disp medial cuneiform fx of right foot,sequela
+ ;;=3^Intervertebral Disc Disorders,Lumbosacral Region NEC
  ;;^UTILITY(U,$J,358.3,24726,1,4,0)
- ;;=4^S92.241S
+ ;;=4^M51.87
  ;;^UTILITY(U,$J,358.3,24726,2)
- ;;=^5044968
+ ;;=^5012262
  ;;^UTILITY(U,$J,358.3,24727,0)
- ;;=S92.252S^^76^1008^44
+ ;;=M05.872^^74^981^27
  ;;^UTILITY(U,$J,358.3,24727,1,0)
  ;;=^358.31IA^4^2
  ;;^UTILITY(U,$J,358.3,24727,1,3,0)
- ;;=3^Disp navicular fx of left foot, sequela
+ ;;=3^Rheu Arth w/ Rheu Factor Left Ankle/Foot
  ;;^UTILITY(U,$J,358.3,24727,1,4,0)
- ;;=4^S92.252S
+ ;;=4^M05.872
  ;;^UTILITY(U,$J,358.3,24727,2)
- ;;=^5045017
+ ;;=^5010043
  ;;^UTILITY(U,$J,358.3,24728,0)
- ;;=S92.251S^^76^1008^45
+ ;;=M05.822^^74^981^28
  ;;^UTILITY(U,$J,358.3,24728,1,0)
  ;;=^358.31IA^4^2
  ;;^UTILITY(U,$J,358.3,24728,1,3,0)
- ;;=3^Disp navicular fx of right foot, sequela
+ ;;=3^Rheu Arth w/ Rheu Factor Left Elbow
  ;;^UTILITY(U,$J,358.3,24728,1,4,0)
- ;;=4^S92.251S
+ ;;=4^M05.822
  ;;^UTILITY(U,$J,358.3,24728,2)
- ;;=^5045010
+ ;;=^5010028
  ;;^UTILITY(U,$J,358.3,24729,0)
- ;;=S92.322S^^76^1008^3
+ ;;=M05.842^^74^981^29
  ;;^UTILITY(U,$J,358.3,24729,1,0)
  ;;=^358.31IA^4^2
  ;;^UTILITY(U,$J,358.3,24729,1,3,0)
- ;;=3^Disp 2nd metatarsal fx of left foot, sequela
+ ;;=3^Rheu Arth w/ Rheu Factor Left Hand
  ;;^UTILITY(U,$J,358.3,24729,1,4,0)
- ;;=4^S92.322S
+ ;;=4^M05.842
  ;;^UTILITY(U,$J,358.3,24729,2)
- ;;=^5045115
+ ;;=^5010034
  ;;^UTILITY(U,$J,358.3,24730,0)
- ;;=S92.321S^^76^1008^4
+ ;;=M05.852^^74^981^30
  ;;^UTILITY(U,$J,358.3,24730,1,0)
  ;;=^358.31IA^4^2
  ;;^UTILITY(U,$J,358.3,24730,1,3,0)
- ;;=3^Disp 2nd metatarsal fx of right foot, sequela
+ ;;=3^Rheu Arth w/ Rheu Factor Left Hip
  ;;^UTILITY(U,$J,358.3,24730,1,4,0)
- ;;=4^S92.321S
+ ;;=4^M05.852
  ;;^UTILITY(U,$J,358.3,24730,2)
- ;;=^5045108
+ ;;=^5010037
  ;;^UTILITY(U,$J,358.3,24731,0)
- ;;=S92.332S^^76^1008^5
+ ;;=M05.862^^74^981^31
  ;;^UTILITY(U,$J,358.3,24731,1,0)
  ;;=^358.31IA^4^2
  ;;^UTILITY(U,$J,358.3,24731,1,3,0)
- ;;=3^Disp 3rd metatarsal fx of left foot, sequela
+ ;;=3^Rheu Arth w/ Rheu Factor Left Knee
  ;;^UTILITY(U,$J,358.3,24731,1,4,0)
- ;;=4^S92.332S
+ ;;=4^M05.862
  ;;^UTILITY(U,$J,358.3,24731,2)
- ;;=^5045157
+ ;;=^5010040
  ;;^UTILITY(U,$J,358.3,24732,0)
- ;;=S92.331S^^76^1008^6
+ ;;=M05.812^^74^981^32
  ;;^UTILITY(U,$J,358.3,24732,1,0)
  ;;=^358.31IA^4^2
  ;;^UTILITY(U,$J,358.3,24732,1,3,0)
- ;;=3^Disp 3rd metatarsal fx of right foot, sequela
+ ;;=3^Rheu Arth w/ Rheu Factor Left Shldr
  ;;^UTILITY(U,$J,358.3,24732,1,4,0)
- ;;=4^S92.331S
+ ;;=4^M05.812
  ;;^UTILITY(U,$J,358.3,24732,2)
- ;;=^5045150
+ ;;=^5010025
  ;;^UTILITY(U,$J,358.3,24733,0)
- ;;=S92.215S^^76^1008^78
+ ;;=M05.832^^74^981^33
  ;;^UTILITY(U,$J,358.3,24733,1,0)
  ;;=^358.31IA^4^2
  ;;^UTILITY(U,$J,358.3,24733,1,3,0)
- ;;=3^Nondisp cuboid bone fx of left foot, sequela
+ ;;=3^Rheu Arth w/ Rheu Factor Left Wrist
  ;;^UTILITY(U,$J,358.3,24733,1,4,0)
- ;;=4^S92.215S
+ ;;=4^M05.832
  ;;^UTILITY(U,$J,358.3,24733,2)
- ;;=^5044870
+ ;;=^5010031
  ;;^UTILITY(U,$J,358.3,24734,0)
- ;;=S92.214S^^76^1008^79
+ ;;=M05.89^^74^981^34
  ;;^UTILITY(U,$J,358.3,24734,1,0)
  ;;=^358.31IA^4^2
  ;;^UTILITY(U,$J,358.3,24734,1,3,0)
- ;;=3^Nondisp cuboid bone fx of right foot, sequela
+ ;;=3^Rheu Arth w/ Rheu Factor Mult Sites
  ;;^UTILITY(U,$J,358.3,24734,1,4,0)
- ;;=4^S92.214S
+ ;;=4^M05.89
  ;;^UTILITY(U,$J,358.3,24734,2)
- ;;=^5044863
+ ;;=^5010045
  ;;^UTILITY(U,$J,358.3,24735,0)
- ;;=S92.355S^^76^1008^64
+ ;;=M05.871^^74^981^35
  ;;^UTILITY(U,$J,358.3,24735,1,0)
  ;;=^358.31IA^4^2
  ;;^UTILITY(U,$J,358.3,24735,1,3,0)
- ;;=3^Nondisp 5th metatarsal fx of left foot, sequela
+ ;;=3^Rheu Arth w/ Rheu Factor Right Ankle/Foot
  ;;^UTILITY(U,$J,358.3,24735,1,4,0)
- ;;=4^S92.355S
+ ;;=4^M05.871
  ;;^UTILITY(U,$J,358.3,24735,2)
- ;;=^5045262
+ ;;=^5010042
  ;;^UTILITY(U,$J,358.3,24736,0)
- ;;=S92.354S^^76^1008^65
+ ;;=M05.821^^74^981^36
  ;;^UTILITY(U,$J,358.3,24736,1,0)
  ;;=^358.31IA^4^2
  ;;^UTILITY(U,$J,358.3,24736,1,3,0)
- ;;=3^Nondisp 5th metatarsal fx of right foot, sequela
+ ;;=3^Rheu Arth w/ Rheu Factor Right Elbow
  ;;^UTILITY(U,$J,358.3,24736,1,4,0)
- ;;=4^S92.354S
+ ;;=4^M05.821
  ;;^UTILITY(U,$J,358.3,24736,2)
- ;;=^5045255
+ ;;=^5010027
  ;;^UTILITY(U,$J,358.3,24737,0)
- ;;=S92.315S^^76^1008^56
+ ;;=M05.841^^74^981^37
  ;;^UTILITY(U,$J,358.3,24737,1,0)
  ;;=^358.31IA^4^2
  ;;^UTILITY(U,$J,358.3,24737,1,3,0)
- ;;=3^Nondisp 1st metatarsal fx of left foot, sequela
+ ;;=3^Rheu Arth w/ Rheu Factor Right Hand
  ;;^UTILITY(U,$J,358.3,24737,1,4,0)
- ;;=4^S92.315S
+ ;;=4^M05.841
  ;;^UTILITY(U,$J,358.3,24737,2)
- ;;=^5045094
+ ;;=^5010033
  ;;^UTILITY(U,$J,358.3,24738,0)
- ;;=S92.314S^^76^1008^57
+ ;;=M05.851^^74^981^38
  ;;^UTILITY(U,$J,358.3,24738,1,0)
  ;;=^358.31IA^4^2
  ;;^UTILITY(U,$J,358.3,24738,1,3,0)
- ;;=3^Nondisp 1st metatarsal fx of right foot, sequela
+ ;;=3^Rheu Arth w/ Rheu Factor Right Hip
  ;;^UTILITY(U,$J,358.3,24738,1,4,0)
- ;;=4^S92.314S
+ ;;=4^M05.851
  ;;^UTILITY(U,$J,358.3,24738,2)
- ;;=^5045087
+ ;;=^5010036
  ;;^UTILITY(U,$J,358.3,24739,0)
- ;;=S92.345S^^76^1008^62
+ ;;=M05.861^^74^981^39
  ;;^UTILITY(U,$J,358.3,24739,1,0)
  ;;=^358.31IA^4^2
  ;;^UTILITY(U,$J,358.3,24739,1,3,0)
- ;;=3^Nondisp 4th metatarsal fx of left foot, sequela
+ ;;=3^Rheu Arth w/ Rheu Factor Right Knee
  ;;^UTILITY(U,$J,358.3,24739,1,4,0)
- ;;=4^S92.345S
+ ;;=4^M05.861
  ;;^UTILITY(U,$J,358.3,24739,2)
- ;;=^5045220
+ ;;=^5010039
  ;;^UTILITY(U,$J,358.3,24740,0)
- ;;=S92.344S^^76^1008^63
+ ;;=M05.811^^74^981^40
  ;;^UTILITY(U,$J,358.3,24740,1,0)
  ;;=^358.31IA^4^2
  ;;^UTILITY(U,$J,358.3,24740,1,3,0)
- ;;=3^Nondisp 4th metatarsal fx of right foot, sequela
+ ;;=3^Rheu Arth w/ Rheu Factor Right Shldr
  ;;^UTILITY(U,$J,358.3,24740,1,4,0)
- ;;=4^S92.344S
+ ;;=4^M05.811
  ;;^UTILITY(U,$J,358.3,24740,2)
- ;;=^5045213
+ ;;=^5010024
  ;;^UTILITY(U,$J,358.3,24741,0)
- ;;=S92.235S^^76^1008^86
+ ;;=M05.831^^74^981^41
  ;;^UTILITY(U,$J,358.3,24741,1,0)
  ;;=^358.31IA^4^2
  ;;^UTILITY(U,$J,358.3,24741,1,3,0)
- ;;=3^Nondisp intermed cuneiform fx of left foot, sequela
+ ;;=3^Rheu Arth w/ Rheu Factor Right Wrist
  ;;^UTILITY(U,$J,358.3,24741,1,4,0)
- ;;=4^S92.235S
+ ;;=4^M05.831
  ;;^UTILITY(U,$J,358.3,24741,2)
- ;;=^5044954
+ ;;=^5010030
  ;;^UTILITY(U,$J,358.3,24742,0)
- ;;=S92.234S^^76^1008^87
+ ;;=M05.80^^74^981^42
  ;;^UTILITY(U,$J,358.3,24742,1,0)
  ;;=^358.31IA^4^2
  ;;^UTILITY(U,$J,358.3,24742,1,3,0)
- ;;=3^Nondisp intermed cuneiform fx of right foot, sequela
+ ;;=3^Rheu Arth w/ Rheu Factor Unspec Site
  ;;^UTILITY(U,$J,358.3,24742,1,4,0)
- ;;=4^S92.234S
+ ;;=4^M05.80
  ;;^UTILITY(U,$J,358.3,24742,2)
- ;;=^5044947
+ ;;=^5010023
  ;;^UTILITY(U,$J,358.3,24743,0)
- ;;=S92.225S^^76^1008^90
+ ;;=M06.872^^74^981^93
  ;;^UTILITY(U,$J,358.3,24743,1,0)
  ;;=^358.31IA^4^2
  ;;^UTILITY(U,$J,358.3,24743,1,3,0)
- ;;=3^Nondisp lateral cuneiform fx of left foot, sequela
+ ;;=3^Rheumatoid Arthritis Left Ankle/Foot
  ;;^UTILITY(U,$J,358.3,24743,1,4,0)
- ;;=4^S92.225S
+ ;;=4^M06.872
  ;;^UTILITY(U,$J,358.3,24743,2)
- ;;=^5044912
+ ;;=^5010141
  ;;^UTILITY(U,$J,358.3,24744,0)
- ;;=S92.224S^^76^1008^91
+ ;;=M06.822^^74^981^94
  ;;^UTILITY(U,$J,358.3,24744,1,0)
  ;;=^358.31IA^4^2
  ;;^UTILITY(U,$J,358.3,24744,1,3,0)
- ;;=3^Nondisp lateral cuneiform fx of right foot, sequela
+ ;;=3^Rheumatoid Arthritis Left Elbow
  ;;^UTILITY(U,$J,358.3,24744,1,4,0)
- ;;=4^S92.224S
+ ;;=4^M06.822
  ;;^UTILITY(U,$J,358.3,24744,2)
- ;;=^5044905
+ ;;=^5010126
  ;;^UTILITY(U,$J,358.3,24745,0)
- ;;=S92.245S^^76^1008^92
+ ;;=M06.842^^74^981^95
  ;;^UTILITY(U,$J,358.3,24745,1,0)
  ;;=^358.31IA^4^2
  ;;^UTILITY(U,$J,358.3,24745,1,3,0)
- ;;=3^Nondisp medial cuneiform fx of left foot, sequela
+ ;;=3^Rheumatoid Arthritis Left Hand
  ;;^UTILITY(U,$J,358.3,24745,1,4,0)
- ;;=4^S92.245S
+ ;;=4^M06.842
  ;;^UTILITY(U,$J,358.3,24745,2)
- ;;=^5044996
+ ;;=^5010132
  ;;^UTILITY(U,$J,358.3,24746,0)
- ;;=S92.244S^^76^1008^93
+ ;;=M06.852^^74^981^96
  ;;^UTILITY(U,$J,358.3,24746,1,0)
  ;;=^358.31IA^4^2
  ;;^UTILITY(U,$J,358.3,24746,1,3,0)
- ;;=3^Nondisp medial cuneiform fx of right foot, sequela
+ ;;=3^Rheumatoid Arthritis Left Hip
  ;;^UTILITY(U,$J,358.3,24746,1,4,0)
- ;;=4^S92.244S
+ ;;=4^M06.852
  ;;^UTILITY(U,$J,358.3,24746,2)
- ;;=^5044989
+ ;;=^5010135
  ;;^UTILITY(U,$J,358.3,24747,0)
- ;;=S92.255S^^76^1008^96
+ ;;=M06.862^^74^981^97
  ;;^UTILITY(U,$J,358.3,24747,1,0)
  ;;=^358.31IA^4^2
  ;;^UTILITY(U,$J,358.3,24747,1,3,0)
- ;;=3^Nondisp navicular fx of left foot, sequela
+ ;;=3^Rheumatoid Arthritis Left Knee
  ;;^UTILITY(U,$J,358.3,24747,1,4,0)
- ;;=4^S92.255S
+ ;;=4^M06.862
  ;;^UTILITY(U,$J,358.3,24747,2)
- ;;=^5045038
+ ;;=^5010138
  ;;^UTILITY(U,$J,358.3,24748,0)
- ;;=S92.254S^^76^1008^97
+ ;;=M06.812^^74^981^98
  ;;^UTILITY(U,$J,358.3,24748,1,0)
  ;;=^358.31IA^4^2
  ;;^UTILITY(U,$J,358.3,24748,1,3,0)
- ;;=3^Nondisp navicular fx of right foot, sequela
+ ;;=3^Rheumatoid Arthritis Left Shoulder
  ;;^UTILITY(U,$J,358.3,24748,1,4,0)
- ;;=4^S92.254S
+ ;;=4^M06.812
  ;;^UTILITY(U,$J,358.3,24748,2)
- ;;=^5045031
+ ;;=^5010123
  ;;^UTILITY(U,$J,358.3,24749,0)
- ;;=S92.325S^^76^1008^58
+ ;;=M06.832^^74^981^99
  ;;^UTILITY(U,$J,358.3,24749,1,0)
  ;;=^358.31IA^4^2
  ;;^UTILITY(U,$J,358.3,24749,1,3,0)
- ;;=3^Nondisp 2nd metatarsal fx of left foot, sequela
+ ;;=3^Rheumatoid Arthritis Left Wrist
  ;;^UTILITY(U,$J,358.3,24749,1,4,0)
- ;;=4^S92.325S
+ ;;=4^M06.832
  ;;^UTILITY(U,$J,358.3,24749,2)
- ;;=^5045136
+ ;;=^5010129
  ;;^UTILITY(U,$J,358.3,24750,0)
- ;;=S92.324S^^76^1008^59
+ ;;=M06.89^^74^981^100
  ;;^UTILITY(U,$J,358.3,24750,1,0)
  ;;=^358.31IA^4^2
  ;;^UTILITY(U,$J,358.3,24750,1,3,0)
- ;;=3^Nondisp 2nd metatarsal fx of right foot, sequela
+ ;;=3^Rheumatoid Arthritis Mult Sites
  ;;^UTILITY(U,$J,358.3,24750,1,4,0)
- ;;=4^S92.324S
+ ;;=4^M06.89
  ;;^UTILITY(U,$J,358.3,24750,2)
- ;;=^5045129
+ ;;=^5010144
  ;;^UTILITY(U,$J,358.3,24751,0)
- ;;=S92.335S^^76^1008^60
+ ;;=M06.871^^74^981^101
  ;;^UTILITY(U,$J,358.3,24751,1,0)
  ;;=^358.31IA^4^2
  ;;^UTILITY(U,$J,358.3,24751,1,3,0)
- ;;=3^Nondisp 3rd metatarsal fx of left foot, sequela
+ ;;=3^Rheumatoid Arthritis Right Ankle/Foot
  ;;^UTILITY(U,$J,358.3,24751,1,4,0)
- ;;=4^S92.335S
+ ;;=4^M06.871
  ;;^UTILITY(U,$J,358.3,24751,2)
- ;;=^5045178
+ ;;=^5010140
  ;;^UTILITY(U,$J,358.3,24752,0)
- ;;=S92.334S^^76^1008^61
+ ;;=M06.821^^74^981^102
  ;;^UTILITY(U,$J,358.3,24752,1,0)
  ;;=^358.31IA^4^2
  ;;^UTILITY(U,$J,358.3,24752,1,3,0)
- ;;=3^Nondisp 3rd metatarsal fx of right foot, sequela
+ ;;=3^Rheumatoid Arthritis Right Elbow
  ;;^UTILITY(U,$J,358.3,24752,1,4,0)
- ;;=4^S92.334S
+ ;;=4^M06.821
  ;;^UTILITY(U,$J,358.3,24752,2)
- ;;=^5045171
+ ;;=^5010125
  ;;^UTILITY(U,$J,358.3,24753,0)
- ;;=M84.475S^^76^1008^109
+ ;;=M06.841^^74^981^103
  ;;^UTILITY(U,$J,358.3,24753,1,0)
  ;;=^358.31IA^4^2
  ;;^UTILITY(U,$J,358.3,24753,1,3,0)
- ;;=3^Pathological fracture, left foot, sequela
+ ;;=3^Rheumatoid Arthritis Right Hand
  ;;^UTILITY(U,$J,358.3,24753,1,4,0)
- ;;=4^M84.475S
- ;;^UTILITY(U,$J,358.3,24753,2)
- ;;=^5013991
- ;;^UTILITY(U,$J,358.3,24754,0)
- ;;=M84.474S^^76^1008^112
- ;;^UTILITY(U,$J,358.3,24754,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,24754,1,3,0)
- ;;=3^Pathological fracture, right foot, sequela
- ;;^UTILITY(U,$J,358.3,24754,1,4,0)
- ;;=4^M84.474S
- ;;^UTILITY(U,$J,358.3,24754,2)
- ;;=^5013985
- ;;^UTILITY(U,$J,358.3,24755,0)
- ;;=M84.375S^^76^1008^115
- ;;^UTILITY(U,$J,358.3,24755,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,24755,1,3,0)
- ;;=3^Stress fracture, left foot, sequela
- ;;^UTILITY(U,$J,358.3,24755,1,4,0)
- ;;=4^M84.375S
+ ;;=4^M06.841

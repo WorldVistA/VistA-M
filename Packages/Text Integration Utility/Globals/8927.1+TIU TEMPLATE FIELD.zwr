@@ -1,6 +1,6 @@
 OSEHRA ZGO Export: TIU TEMPLATE FIELD
 ZWR
-^TIU(8927.1,0)="TIU TEMPLATE FIELD^8927.1^21^236"
+^TIU(8927.1,0)="TIU TEMPLATE FIELD^8927.1^16367^237"
 ^TIU(8927.1,1,0)="EF CONTACT INFO^T^0^0^^^0^0^1^0^2^0^0^0^0"
 ^TIU(8927.1,1,10,0)="^^7^7^3091118"
 ^TIU(8927.1,1,10,1,0)="Please provide contact information for the veteran's"
@@ -829,6 +829,8 @@ ZWR
 ^TIU(8927.1,16362,0)="AH-BPR WORD PROCESSING FIELD^W^0^74^^^0^0^0^5^0^0^0^0^0"
 ^TIU(8927.1,16364,0)="VA-HEP C NCP GUIDANCE STATEMENT^H^0^0^Screening for Hepatitis C^^0^0^0^0^0^0^0^0^0"
 ^TIU(8927.1,16364,3)="http://vaww.prevention.domain.ext/Screening_for_Hepatitis_C.asp"
+^TIU(8927.1,16367,0)="VA-DIRECT1340^H^0^0^VHA Publications^^0^0^0^0^0^0^0^0^0"
+^TIU(8927.1,16367,3)="https://www.domain.ext/vhapublications/"
 ^TIU(8927.1,17237,0)="NCP HERPES ZOSTER GUIDANCE^H^0^0^VHA Guidance on use of Herpes Zoster Vaccine^^0^0^0^0^0^0^0^0^0"
 ^TIU(8927.1,17237,3)="http://vaww.prevention.domain.ext/Herpes_Zoster_Shingles_Immunization.asp"
 ^TIU(8927.1,17238,0)="CDC ZOSTER VACCINE RECOMMENDATIONS^H^0^0^Zoster (Shingles) ACIP Vaccine Recommendations^^0^0^0^0^0^0^0^0^0"
@@ -1062,6 +1064,7 @@ ZWR
 ^TIU(8927.1,"B","VA-AAA SCREENING INFO",6)=""
 ^TIU(8927.1,"B","VA-DATE COMBO Y/M",7)=""
 ^TIU(8927.1,"B","VA-DEP CPG",6505)=""
+^TIU(8927.1,"B","VA-DIRECT1340",16367)=""
 ^TIU(8927.1,"B","VA-EB 65/240 I3*",16332)=""
 ^TIU(8927.1,"B","VA-EBOLA URL CDC AFFECTED AREAS",9315)=""
 ^TIU(8927.1,"B","VA-EBOLA URL CDC ALGORITHM",9316)=""

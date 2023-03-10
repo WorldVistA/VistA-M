@@ -1,5 +1,5 @@
 MBAAMDA3 ;OIT-PD/CBR - APPOINTMENT API ;02/10/2016
- ;;1.0;Scheduling Calendar View;**1**;Feb 13, 2015;Build 85
+ ;;1.0;Scheduling Calendar View;**1,11**;Feb 13, 2015;Build 1
  ;
  ;Associated ICRs
  ;  ICR#
@@ -74,10 +74,20 @@ MAKE(DFN,SD,SC,TYPE,STYP,STAT,RSN,USR,DT,SRT,NAAI,LAB,XRAY,EKG,DESDT) ; Make pat
  . S IENS=SD_","_DFN_","
  . S FDA(2.98,IENS,".01")=SC
  . S FDA(2.98,IENS,"3")="@"
+ . S FDA(2.98,IENS,"5")=$G(LAB)
+ . S FDA(2.98,IENS,"6")=$G(XRAY)
+ . S FDA(2.98,IENS,"7")=$G(EKG)
  . S FDA(2.98,IENS,"9")=$G(RSN)
  . S FDA(2.98,IENS,"9.5")=$G(TYPE)
+ . S FDA(2.98,IENS,14)="@"
+ . S FDA(2.98,IENS,15)="@"
+ . S FDA(2.98,IENS,16)="@"
  . S FDA(2.98,IENS,"17")="@"
+ . S FDA(2.98,IENS,19)=$G(USR)
  . S FDA(2.98,IENS,"20")=DT
+ . S FDA(2.98,IENS,"24")=$G(STYP)
+ . S FDA(2.98,IENS,"25")=$G(SRT)
+ . S FDA(2.98,IENS,"26")=$G(NAAI)
  . S FDA(2.98,IENS,"27")=$G(DESDT)
  . D FILE^DIE("","FDA","ERR")
  E  D

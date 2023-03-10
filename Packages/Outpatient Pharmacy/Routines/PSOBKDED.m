@@ -1,12 +1,12 @@
-PSOBKDED ;BIR/SAB - Edit backdoor Rx Order entry ;17 DEC 2019 11:26:40
- ;;7.0;OUTPATIENT PHARMACY;**11,46,91,78,99,117,133,143,268,378,416,282,450,402,518,525,538,457,557,574,598**;DEC 1997;Build 3
+PSOBKDED ;BIR/SAB - Edit backdoor Rx Order entry ;Aug 11, 2020@11:13:08
+ ;;7.0;OUTPATIENT PHARMACY;**11,46,91,78,99,117,133,143,268,378,416,282,450,402,518,525,538,457,557,574,598,441**;DEC 1997;Build 208
  ;Ref PS(50.607 IA 2221
  ;Ref PS(50.7 IA 2223
  ;Ref PS(51.2 IA 2226
  ;Ref PSDRUG( IA 221
  ;Ref DOSE^PSSORPH IA 3234
  ;Ref PS(55 IA 2228
-1 S %DT="AEX",%DT(0)=-PSONEW("FILL DATE"),Y=PSONEW("ISSUE DATE") X ^DD("DD") S %DT("A")="ISSUE DATE: ",%DT("B")=Y D ^%DT D CID^PSOUTL
+1 S %DT="AEX",%DT(0)=-PSONEW("FILL DATE"),Y=PSONEW("ISSUE DATE") X ^DD("DD") S %DT("A")="ISSUE DATE: ",%DT("B")=Y D ^%DT,CID^PSOUTL
  I "^"[$E(X) D KX K %DT Q
  ; PSO*7*538 Added Next Line
  I Y=-1 W ! D CIDH^PSOUTL W ! G 1
@@ -50,7 +50,7 @@ INS S PSONEW("FLD")="3B" D INS^PSODIR(.PSONEW) ;Ins
  Q
 DOSE ;backdoor
  I '$G(PSONEW("ENT")) S IEN=IEN+1,^TMP("PSOPO",$J,IEN,0)="  (5) Dosage Ordered: " G INS1
- S SD=1 F I=1:1:PSONEW("ENT") D 
+ S SD=1 F I=1:1:PSONEW("ENT") D
  .I '$G(PSONEW("DOSE ORDERED",I)),$G(PSONEW("VERB",I))]"" S IEN=IEN+1,^TMP("PSOPO",$J,IEN,0)="                Verb: "_$G(PSONEW("VERB",I))
  .S:$G(SD)=1 IEN=IEN+1,^TMP("PSOPO",$J,IEN,0)="  (5)",DS=1 K SD
  .D DOSE1
@@ -58,10 +58,13 @@ INS1 S IEN=IEN+1,^TMP("PSOPO",$J,IEN,0)="  (6)Pat Instruction:"
 INS2 I $O(PSONEW("SIG",0)) F D=0:0 S D=$O(PSONEW("SIG",D)) Q:'D  D
  .F SG=1:1:$L(PSONEW("SIG",D)) S:$L(^TMP("PSOPO",$J,IEN,0)_" "_$P(PSONEW("SIG",D)," ",SG))>80 IEN=IEN+1,$P(^TMP("PSOPO",$J,IEN,0)," ",21)=" " D
  ..S:$P(PSONEW("SIG",D)," ",SG)'="" ^TMP("PSOPO",$J,IEN,0)=$G(^TMP("PSOPO",$J,IEN,0))_" "_$P(PSONEW("SIG",D)," ",SG)
- I $P($G(^PS(55,PSODFN,"LAN")),"^") D  Q
+ I $P($G(^PS(55,PSODFN,"LAN")),"^") D
  .S IEN=IEN+1,^TMP("PSOPO",$J,IEN,0)=" Other Patient Inst.: "
  .I $G(^PSRX(+$G(PSONEW("OIRXN")),"INSS"))]"" S PSONEW("SINS")=^PSRX(PSONEW("OIRXN"),"INSS")
  .S ^TMP("PSOPO",$J,IEN,0)=^TMP("PSOPO",$J,IEN,0)_$G(PSONEW("SINS"))
+ S IEN=IEN+1,^TMP("PSOPO",$J,IEN,0)="         Indications: "_$S($G(PSONEW("IND"))]"":PSONEW("IND"),1:"") ;*441-IND
+ I $P($G(^PS(55,PSODFN,"LAN")),"^") D
+ . S IEN=IEN+1,^TMP("PSOPO",$J,IEN,0)="   Other Indications: "_$S($G(PSONEW("INDO"))]"":PSONEW("INDO"),1:"")
  Q
  ;
 DOSE1 I $G(DS)=1 D  K DS G DU
@@ -92,11 +95,6 @@ RTE ;*525
  . I MRX="",$G(MRDFV)]"" S MRX=$G(MRDFV)
  S X=MRX
  K MRSLS,MRX,MRDFV,MRQ
- ;K DIR,DIRUT S DIR(0)="FO^2:45",DIR("A")="ROUTE",DIR("?")="^D HLP^PSOORED4"
- ;S DIR("B")=$S($G(PSORXED("ROUTE",ENT)):$P(^PS(51.2,PSORXED("ROUTE",ENT),0),"^"),$G(RTE)]"":RTE,$G(DRET):"",1:"PO") K:DIR("B")="" DIR("B")
- ;S DIR("B")=$S($G(PSORXED("ROUTE",ENT)):$P(^PS(51.2,PSORXED("ROUTE",ENT),0),"^"),$G(RTE)]"":RTE,1:"") K:DIR("B")="" DIR("B")
- ;I '$G(PSORXED("ROUTE",ENT)),$G(PSOREEDT) K DIR("B")
- ;D ^DIR 
  I X[U,$L(X)>1 S FIELD="RTE",JUMP=1 K DIRUT,DTOUT Q
  Q:$D(DTOUT)!($D(DUOUT))
  I X="@"!(X="") K RTE,ERTE S DRET=1,PSORXED("ROUTE",ENT)="" Q
@@ -117,12 +115,10 @@ ASK1 S STRE=$P($G(DOSE("DD",PSODRUG("IEN"))),"^",5),UNITN=$P($G(DOSE("DD",PSODRU
  .F I=0:0 S I=$O(DOSE(I)) Q:'I!('$D(DOSE(I)))  S PSODOSCT=I
  .I PSODOSCT=1,$P(DOSE(1),"^")=""&($P(DOSE("DD",PSODRUG("IEN")),"^",6)="") S PSODOSFL=1
  S PSODOSWT="",PSODOSWT=$S($G(PSODOSCT)<1:"",$G(PSODOSCT)=1&($G(PSODOSFL)):"",1:" (1-"_$G(PSODOSCT)_")")
- ;S DIR("A",1)="Select from list of Available Dosages"_PSODOSWT_", Enter Free Text Dose",DIR("?")="^D LST1^PSOBKDE1",DIR("A")="or Enter a Question Mark (?) to view list"
  ; next 2 lines 402
  I PSODOSCT=1,($P($G(DOSE(1)),"^")=""&($P($G(DOSE(1)),"^",3)="")) S PSODOSFL=1
  S:$G(PSODOSFL) DIR("A")="     Please Enter a Free Text Dose"
  S:'$G(PSODOSFL) DIR("A",1)="Select from list of Available Dosages"_PSODOSWT_", Enter Free Text Dose",DIR("?")="^D LST1^PSOBKDE1",DIR("A")="or Enter a Question Mark (?) to view list"
- ;
  ; PSO*7.0*574 -  Defect 1180952 Adding Complex default dose
  I $G(PSORXED("DOSE",ENT))]"" S DIR("B")=PSORXED("DOSE",ENT) D
  .I $G(PSORXED("UNITS",ENT))]"",DIR("B")'[($P($G(^PS(50.607,PSORXED("UNITS",ENT),0)),"^")) S DIR("B")=DIR("B")_$P($G(^PS(50.607,PSORXED("UNITS",ENT),0)),"^") K:$G(PSOREEDQ)!($G(PSOBDRG)) DIR("B")
@@ -132,9 +128,7 @@ ASK1 S STRE=$P($G(DOSE("DD",PSODRUG("IEN"))),"^",5),UNITN=$P($G(DOSE("DD",PSODRU
  I X=$G(PSORXED("DOSE",ENT)),$D(DOSE(Y)) S PSORXED("DOSE EDIT")=DOSE(Y) G GD1
  I X=$G(PSORXED("DOSE",ENT)) D  G DOS
  .S DOSE=X,UNITS=$G(PSORXED("UNITS",ENT)),PSORXED("DOSE EDIT")=X
- .;
  .I $P(DOSE("DD",PSODRUG("IEN")),"^",5) S DUPD=DOSE/$P(DOSE("DD",PSODRUG("IEN")),"^",5),PSORXED("DOSE ORDERED",ENT)=DUPD ;557
- .;
  .I DOSE'?.N&(DOSE'?.N1".".N)!'DOSE("LD") S (UNITN,UNITS,PSORXED("UNITS",ENT))="" K PSORXED("DOSE ORDERED",ENT),DUPD,PSORXED("NOUN",ENT)
 GD1 N PSORXTE
  I $D(DOSE(Y)) D  G DOS ;from list
@@ -174,7 +168,6 @@ DOS W " "_$S($E(DOSE,1)="."&($G(UNITN)'=""):"0",1:"")_DOSE W:$G(UNITN)'="" UNITN
  .K DTOUT,DUOUT,DIRUT,Y,X D ^DIR K DIR K:$G(X)="@"!($G(X)="") DIRUT I $D(DIRUT) Q
  .I X="@" S OTHDOS(ENT)=1 D KX K PSORXED("ODOSE",ENT) Q
  .S:X'="" PSORXED("ODOSE",ENT)=X
- ;
  Q
  ;
 SCH D KX

@@ -1,5 +1,5 @@
 YTSAUDTC ;SLC/PIJ - Score AUDC ; 01/08/2016
- ;;5.01;MENTAL HEALTH;**123**;DEC 30,1994;Build 73
+ ;;5.01;MENTAL HEALTH;**123,141**;DEC 30,1994;Build 85
  ;
  ;Public, Supported ICRs
  ; #2056 - Fileman API - $$GET1^DIQ
@@ -11,6 +11,8 @@ DATA1 ;
  S YSDFN=$P($G(DATA),U,2)
  S YSSEX=$$GET1^DIQ(2,YSDFN_",",.02,"I")
  S YSINSNAM=$P(DATA,U,3)
+ S YSGVN=$P(DATA,U,4)
+ S YSSRC=$S(+DATA:$P($G(^YTT(601.84,+DATA,0)),U,13),1:0)
  S NODE=2 F  S NODE=$O(YSDATA(NODE)) Q:NODE=""  D
  .S DATA=YSDATA(NODE)
  .S YSQN=$P($G(DATA),U,1)
@@ -20,11 +22,15 @@ DATA1 ;
  Q
  ;
 SCORE ;
- I '$D(^TMP($J,"YSCOR")) D  Q
+ I '$D(^TMP($J,"YSCOR")) D  QUIT
  .S SC="| "_YSINSNAM_" score could not be determined. "
  ;
  S SCORE=$P($G(^TMP($J,"YSCOR",2)),"=",2)
- I YSSEX="F" D  Q
+ ; cut-off after question 3 set up to vary based on sex
+ I 'YSGVN!YSSRC D  QUIT  ; 'YSGVN if no admin yet, YSSRC if MHA > 1.0.3.81
+ . S SC="  Score: "_SCORE_" points, which is a "_$S(SCORE>=5:"positive",1:"negative")_" result."
+ ; otherwise, use original cut-off
+ I YSSEX="F" D  QUIT
  .S SC="  Score: "_SCORE_" points, which is a "_$S(SCORE>=3:"positive",1:"negative")_" result."
  S SC="  Score: "_SCORE_" points, which is a "_$S(SCORE>=4:"positive",1:"negative")_" result."
  Q
@@ -44,7 +50,7 @@ DLLSTR(YSDATA,YS,YSTRNG) ;
  ; YSTRNG = 1 Score Instrument
  ; YSTRNG = 2 get Report Answers and Text
  N DATA,LEG,NODE,SCORE,SC
- N YSCDA,YSDFN,YSINSNAM,YSSEX,YSQN
+ N YSCDA,YSDFN,YSINSNAM,YSSEX,YSQN,YSGVN,YSSRC
  ;
  S (SC,YSSEX)=""
  S SCORE=0

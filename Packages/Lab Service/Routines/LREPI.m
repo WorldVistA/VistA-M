@@ -1,5 +1,6 @@
-LREPI ;DALOI/SED - EMERGING PATHOGENS SEARCH ;16 Jun 2013  6:03 PM
- ;;5.2;LAB SERVICE;**132,175,260,281,421,509**;Sep 27, 1994;Build 4
+LREPI ;DALOI/SED - EMERGING PATHOGENS SEARCH ;Aug 20, 2021@09:32
+ ;;5.2;LAB SERVICE;**132,175,260,281,421,509,552**;Sep 27, 1994;Build 2
+ ;
  ; Reference to ^DGPT supported by IA #418
  ; Reference to ^ORD(101 supported by IA #872
  ; Reference to PATS^PXRMXX supported by IA #3134
@@ -15,7 +16,8 @@ EN ;
  ;
 INIT ;Set up search criteria
  ;Fix start and stop date problem CKA 6/2/2002
- S LRBEG=(9999999-LRRPE)_".0000001",LREND=9999999-LRRPS+.999999
+ ;LR*5.2*552: Correction for date range to scan. Added +1 to LRRPE.
+ S LRBEG=(9999999-(LRRPE+1))_".0000001",LREND=9999999-LRRPS+.999999
  ; Determine which Coding to system to activate:
  ; If report beginning date and ending date are prior to ICDx effective date
  ;  report will print patients with ICD diagnosis codes 

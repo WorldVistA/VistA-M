@@ -1,13 +1,13 @@
 VPRHST1 ;SLC/KCM,MKB - Display XML object ;09/18/18 4:36pm
- ;;1.0;VIRTUAL PATIENT RECORD;**8**;Sep 01, 2011;Build 87
+ ;;1.0;VIRTUAL PATIENT RECORD;**8,25,27**;Sep 01, 2011;Build 10
  ;;Per VA Directive 6402, this routine should not be modified.
  ;
 XML(OBJ) ; -- display XML OBJect in hierarchy, returns DONE if ^
- N XSTRING,ORSTK,ORNXT,ORCNT
+ N XSTRING,ORSTK,ORNXT,ORCNT K DONE,QUIT
  S XSTRING=$G(OBJ) Q:'$L(XSTRING)
  S ORSTK=-1,ORCNT=0 D OPEN
  ;
- F  S ORNXT=$E(XSTRING,1,2) D @$S(ORNXT="</":"CLOSE",ORNXT?1"<".E:"OPEN",1:"XDATA") Q:XSTRING=""  Q:$G(DONE)
+ F  S ORNXT=$E(XSTRING,1,2) D @$S(ORNXT="</":"CLOSE",ORNXT?1"<"1.A.E:"OPEN",1:"XDATA") Q:XSTRING=""  Q:$G(DONE)
  Q
  ;
 OPEN ; -- opening tag
@@ -18,7 +18,7 @@ OPEN ; -- opening tag
  ;
 XDATA ; -- data + closing tag
  N DATA,TAG
- S DATA=$P(XSTRING,"<") W DATA
+ S DATA=$P(XSTRING,"</") W DATA
  S XSTRING=$E(XSTRING,$L(DATA)+1,999999999)
  S TAG=$P(XSTRING,">")_">" W TAG
  S XSTRING=$E(XSTRING,$L(TAG)+1,999999999),ORSTK=ORSTK-1
@@ -31,9 +31,10 @@ CLOSE ; -- closing tag, pop stack
  Q
  ;
 READ ; -- continue?
- N X
- W !!,"Press <return> to continue ..." R X:DTIME
- S:X["^" DONE=1
+ N X K DONE,QUIT
+R1 W !!,"Press <return> to continue or ^ to exit item ..." R X:DTIME
+ I X["?" W !,"Enter ^ to skip the rest of this item, or ^^ to exit the option." G R1
+ S:X["^" DONE=1 S:X["^^" QUIT=1
  Q
  ;
 JSON(OBJ) ; -- display JSON OBJect in hierarchy, returns DONE if ^

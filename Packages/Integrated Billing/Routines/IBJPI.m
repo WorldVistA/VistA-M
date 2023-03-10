@@ -1,6 +1,8 @@
-IBJPI ;DAOU/BHS - IBJP eIV SITE PARAMETERS SCREEN ;01-APR-2015
- ;;2.0;INTEGRATED BILLING;**184,271,316,416,438,479,506,528,549,601,621,659**;21-MAR-94;Build 16
+IBJPI ;DAOU/BHS - IBJP eIV SITE PARAMETERS SCREEN ; 01-APR-2015
+ ;;2.0;INTEGRATED BILLING;**184,271,316,416,438,479,506,528,549,601,621,659,668,687,702,732**;21-MAR-94;Build 13
  ;;Per VA Directive 6402, this routine should not be modified.
+ ;
+ ;/vd-IB*2*668 - Removed the SSVI logic introduced with IB*2*528 in its entirety within VistA.
  ;
  ; eIV - Electronic Insurance Verification Interface parameters
  ;
@@ -24,14 +26,17 @@ HELP ; help
  ; IB*2.0*601,IB*2.0*621/DM adjust help text
  D FULL^VALM1
  W @IOF
- W !,"This screen displays all of the eIV Site Parameters used to manage the"
- W !,"eIV application used for electronic Insurance Verification."
+ ;IB*732/CKB - modified the text & added text for the Fix Corrupt Buffers action
+ W !,"This screen displays all the eIV and IIU Site Parameters used to manage"
+ W !,"electronic Insurance Verification."
  W !!,"The General Parameters section concerns overall parameters for"
- W !,"monitoring the interface and controlling eIV communication between"
- W !,"VistA and the EC located in Austin."
+ W !,"monitoring the interface and controlling eIV and IIU communication"
+ W !,"between VistA and the EC located in Austin."
  W !!,"The Batch Extracts section concerns extract-specific parameters"
  W !,"including active/inactive status and selection criteria. Parameters"
  W !,"associated with a specific extract may also be detailed here."
+ W !!,"The Fix Corrupt Buffers action allows a user to fix corrupted entries in"
+ W !,"the INSURANCE VERIFICATION PROCESSOR file (#355.33) aka ""the buffer file""."
  D PAUSE^VALM1
  W @IOF
  S VALMBCK="R"
@@ -53,6 +58,7 @@ BLD ; Creates the body of the worklist
  S SLINE=$S(ELINEL>ELINER:ELINEL,1:ELINER)
  D BLDGENNB(SLINE,.ELINEL)                      ; Build Non-Editable Bottom Params
  D BLDBE(ELINEL,.ELINEL)                        ; Build Batch Extract Gen Parameters
+ D BLDGENNS(.ELINEL)                     ; Build Non-Editable IIU Parameters - vd/IB*2*687
  S VALMCNT=ELINEL-1
  Q
  ;
@@ -61,17 +67,18 @@ BLDGENE(SLINE,ELINE) ; Build the General Editable Parameters Section
  ;          ELINE   - Current Ending Section Line Number
  ; Output:  ELINE   - Updated Ending Section Line Number
  ;
- ; IB*2.0*621/DM adjusted this area to get SSVI parameters on the same line 
- N XX
+ N STRTLN,XX   ;/vd-IB*2*687 - added the STRTLN variable
  S ELINE=$$SETN("General Parameters (editable)",SLINE,1,1)
  S ELINE=$$SET("          Medicare Payer: ",$$GET1^DIQ(350.9,"1,",51.25),ELINE,1)
  S ELINE=$$SET("           HMS Directory: ",$$GET1^DIQ(350.9,"1,",13.01),ELINE,1)
  S ELINE=$$SET("              EII Active: ",$$GET1^DIQ(350.9,"1,",13.02),ELINE,1)
+ ;/vd-IB*2*687 - Added the following 3 lines.
+ S STRTLN=ELINE
+ S ELINE=$$SET("             IIU Enabled: ",$$GET1^DIQ(350.9,"1,",53.02),ELINE,1)
+ ;IB*702/TAZ - Added display for EIV NO GRP NUM A/U
+ S ELINE=STRTLN
+ S ELINE=$$SET(" eIV No Group # Auto-Update: ",$$GET1^DIQ(350.9,"1,",51.34),ELINE,41)
  ;
- S XX=$$GET1^DIQ(350.9,"1,",100,"I"),XX=$S(XX:"YES",1:"NO")
- S ELINE=$$SET("            SSVI Enabled: ",XX,ELINE,1)    ; IB*2*528/baa
- S XX=$$GET1^DIQ(350.9,"1,",103,"I")
- S ELINE=$$SET("Days to retain SSVI data: ",XX,ELINE-1,38) ; IB*2*528/baa
  Q
  ;
 BLDGENNL(SLINE,STARTR,ELINE) ; Build the Left portion of the General
@@ -84,7 +91,7 @@ BLDGENNL(SLINE,STARTR,ELINE) ; Build the Left portion of the General
  ;
  N XX
  S ELINE=$$SET("",$J("",40),SLINE,1)            ; Spacing Blank Line
- S ELINE=$$SETN("General Parameters (non-editable)",ELINE,1,1)
+ S ELINE=$$SETN("eIV Parameters (non-editable)",ELINE,1,1)   ;/vd-IB*2*687 - changed the text for this line.
  S STARTR=ELINE                                 ; Start of Right Section
  S ELINE=$$SET("          Freshness Days: ",$$GET1^DIQ(350.9,"1,",51.01),ELINE,1)
  S ELINE=$$SET("            Timeout Days: ",$$GET1^DIQ(350.9,"1,",51.05),ELINE,1)
@@ -133,41 +140,90 @@ BLDBE(SLINE,ELINE) ; Build the Batch Extract Parameters Section
  ;          ELINE   - Current Ending Section Line Number
  ; Output:  ELINE   - Updated Ending Section Line Number
  ;
- N IBEX,IBEX1,IBEX2,IBEX3,IBIIVB,IBST,IEN
+ N IBEX,IBEX1,IBEIVB,IBST,IEN
  S ELINE=$$SET("",$J("",40),ELINE,1)            ; Spacing Blank Line
  S ELINE=$$SETN("Batch Extracts",ELINE,1,1)
- S ELINE=$$SET(" Extract               Selection    Maximum # to","",ELINE,1)
- S ELINE=$$SETN("Name         On/Off   Criteria     Extract/Day",ELINE,1,"",1)
+ ;/vd-IB*2*687 - Commented the following section of code and re-wrote it to make it cleaner.
+ ;               Also renamed variable IBIIVB to IBEIVB to better reflect the application name
+ ;S ELINE=$$SET(" Extract               Selection    Maximum # to","",ELINE,1)
+ ;S ELINE=$$SETN("Name         On/Off   Criteria     Extract/Day",ELINE,1,"",1)
  ;
  ; Loop thru extracts
- S IEN=0
- F  D  Q:'IEN
- . S IEN=$O(^IBE(350.9,1,51.17,IEN))
- . Q:'IEN
- . S IBIIVB=$G(^IBE(350.9,1,51.17,IEN,0))       ; Batch Extract multiple line
- . S IBEX=+$P(IBIIVB,"^",1)                     ; Type
- . Q:'$F(".1.2.","."_IBEX_".")
- . S IBST=$$FO^IBCNEUT1($S($P(IBIIVB,"^",1)'="":$$GET1^DIQ(350.9002,IEN_",1,",.01,"E"),1:""),14)
- . S IBST=IBST_$$FO^IBCNEUT1($S(+$P(IBIIVB,"^",2):"ON",1:"OFF"),9)
- . S IBEX1=$S(+$P(IBIIVB,U,3)'=0:+$P(IBIIVB,"^",3),1:$P(IBIIVB,"^",3))
- . S IBEX2=$S(+$P(IBIIVB,U,4)'=0:+$P(IBIIVB,"^",4),1:$P(IBIIVB,"^",4))
- . S IBST=IBST_$$FO^IBCNEUT1($S(IBEX=1:"n/a",IBEX=2:IBEX1,IBEX=3:IBEX1_"/"_IBEX2,1:"ERROR"),13)
- . S IBST=IBST_$$FO^IBCNEUT1($S(+$P(IBIIVB,"^",5):+$P(IBIIVB,"^",5),1:$P(IBIIVB,"^",5)),14)
- . S ELINE=$$SET(IBST,"",ELINE,1)
- ; IB*2.0*621/DM display EICD extract (#4), eventually, other extracts will migrate to this structure 
- S ELINE=$$SET("",$J("",40),ELINE,1)  ; Spacing Blank Line 
- S ELINE=$$SET("",$J("",40),ELINE,1)  ; Spacing Blank Line
+ ;S IEN=0
+ ;F  D  Q:'IEN
+ ;. S IEN=$O(^IBE(350.9,1,51.17,IEN))
+ ;. Q:'IEN
+ ;. S IBIIVB=$G(^IBE(350.9,1,51.17,IEN,0))       ; Batch Extract multiple line
+ ;. S IBEX=+$P(IBIIVB,"^",1)                     ; Type
+ ;. Q:'$F(".1.2.","."_IBEX_".")
+ ;. S IBST=$$FO^IBCNEUT1($S($P(IBIIVB,"^",1)'="":$$GET1^DIQ(350.9002,IEN_",1,",.01,"E"),1:""),14)
+ ;. S IBST=IBST_$$FO^IBCNEUT1($S(+$P(IBIIVB,"^",2):"ON",1:"OFF"),9)
+ ;. S IBEX1=$S(+$P(IBIIVB,U,3)'=0:+$P(IBIIVB,"^",3),1:$P(IBIIVB,"^",3))
+ ;. S IBEX2=$S(+$P(IBIIVB,U,4)'=0:+$P(IBIIVB,"^",4),1:$P(IBIIVB,"^",4))
+ ;. S IBST=IBST_$$FO^IBCNEUT1($S(IBEX=1:"n/a",IBEX=2:IBEX1,IBEX=3:IBEX1_"/"_IBEX2,1:"ERROR"),13)
+ ;. S IBST=IBST_$$FO^IBCNEUT1($S(+$P(IBIIVB,"^",5):+$P(IBIIVB,"^",5),1:$P(IBIIVB,"^",5)),14)
+ ;. S ELINE=$$SET(IBST,"",ELINE,1)
+ ;; IB*2.0*621/DM display EICD extract (#4), eventually, other extracts will migrate to this structure 
+ ;S ELINE=$$SET("",$J("",40),ELINE,1)  ; Spacing Blank Line 
+ ;S ELINE=$$SET("",$J("",40),ELINE,1)  ; Spacing Blank Line
+ ;S ELINE=$$SET(" Extract               Start Days   Days After           Maximum # to","",ELINE,1)
+ ;S ELINE=$$SETN("Name         On/Off   From Today   Start        Freq.   Extract/Day",ELINE,1,"",1)
+ ;I $$GET1^DIQ(350.9002,"4,1,",.01)="EICD" D 
+ ;. S IBEX=$$SETTINGS^IBCNEDE7(4) ; collect EICD parameters 
+ ;. S IBST=$$FO^IBCNEUT1("EICD",14)
+ ;. S IBST=IBST_$$FO^IBCNEUT1($S(+IBEX:"ON",1:"OFF"),9)
+ ;. S IBST=IBST_$$FO^IBCNEUT1(+$P(IBEX,"^",6),13) ; Start Days
+ ;. S IBST=IBST_$$FO^IBCNEUT1(+$P(IBEX,"^",7),13) ; Days After 
+ ;. S IBST=IBST_$$FO^IBCNEUT1(+$P(IBEX,"^",8),8) ; Frequency
+ ;. S IBST=IBST_$$FO^IBCNEUT1(+$P(IBEX,"^",4),8) ; Max extract
+ ;. S ELINE=$$SET(IBST,"",ELINE,1)
+ ;
+ ;/vd-IB*2*687 - Beginning of new/restructured code.
+ N APPTBE,BENAME,FRESHDAY
+ S FRESHDAY=$$GET1^DIQ(350.9,"1,",51.01)  ; FRESHNESS DAYS - used by Buffer/Appt as "Frequency"
  S ELINE=$$SET(" Extract               Start Days   Days After           Maximum # to","",ELINE,1)
  S ELINE=$$SETN("Name         On/Off   From Today   Start        Freq.   Extract/Day",ELINE,1,"",1)
- I $$GET1^DIQ(350.9002,"4,1,",.01)="EICD" D 
- . S IBEX=$$SETTINGS^IBCNEDE7(4) ; collect EICD parameters 
- . S IBST=$$FO^IBCNEUT1("EICD",14)
- . S IBST=IBST_$$FO^IBCNEUT1($S(+IBEX:"ON",1:"OFF"),9)
- . S IBST=IBST_$$FO^IBCNEUT1(+$P(IBEX,"^",6),13) ; Start Days
- . S IBST=IBST_$$FO^IBCNEUT1(+$P(IBEX,"^",7),13) ; Days After 
- . S IBST=IBST_$$FO^IBCNEUT1(+$P(IBEX,"^",8),8) ; Frequency
- . S IBST=IBST_$$FO^IBCNEUT1(+$P(IBEX,"^",4),8) ; Max extract
+ ;
+ ; Loop thru Batch Extracts.
+ S IEN=0
+ F  S IEN=$O(^IBE(350.9,1,51.17,IEN)) Q:'IEN  D
+ . S IBEX=+$P($G(^IBE(350.9,1,51.17,IEN,0)),U)    ; Type
+ . I "^1^2^4^"'[(U_IBEX_U) Q          ; Only want Buffer, Appt and EICD Batch Extracts.
+ . S IBEIVB=$$SETTINGS^IBCNEDE7(IBEX) ; collect specific extract's site parameter settings
+ . S BENAME=$S($P(IBEIVB,U,1)'="":$$GET1^DIQ(350.9002,IEN_",1,",.01,"E"),1:"")
+ . I BENAME="Appt" S APPTBE=1,BENAME=BENAME_" *"   ; If this is the APPT extract, need to add footnote.
+ . S IBST=$$FO^IBCNEUT1(BENAME,14)    ; Extract Name 
+ . S IBST=IBST_$$FO^IBCNEUT1($S(+$P(IBEIVB,"^",1):"ON",1:"OFF"),9)
+ . S IBEX1=$P(IBEIVB,U,6)
+ . S IBST=IBST_$$FO^IBCNEUT1($S("^1^2^"[(U_IBEX_U):"Today",IBEX=4:IBEX1,1:"n/a"),13) ; Start Days
+ . S IBST=IBST_$$FO^IBCNEUT1($S(IBEX=1:"Today",IBEX=2:$$GET1^DIQ(350.9002,IEN_",1,",.03),IBEX=4:+$P(IBEIVB,U,7),1:"n/a"),13)   ; Days After Start
+ . S IBST=IBST_$$FO^IBCNEUT1($S(IBEX=4:+$P(IBEIVB,U,8),1:FRESHDAY),8) ; Frequency
+ . S IBST=IBST_$$FO^IBCNEUT1(+$P(IBEIVB,U,4),8)                       ; Max extract
  . S ELINE=$$SET(IBST,"",ELINE,1)
+ ;/vd-IB*2*687 - End of new/restructured code.
+ ;
+ I +APPTBE D   ;/vd-IB*2*687 - Added to indicate "APPT" Buffer Entry.
+ . S ELINE=$$SET("","",ELINE,1)            ; Spacing Blank Line
+ . S ELINE=$$SET("   * Appt extract - Medicare frequency is "_$$GET1^DIQ(350.9,"1,",51.32)_" days","",ELINE,1)
+ Q
+ ;
+ ;/vd - IB*2.0*687 - The BLDGENNS module was added for the IIU Parameters.
+BLDGENNS(ELINE) ; Build the IIU Parameters Non-editable Section
+ ; Input: SLINE - Starting Section Line Number
+ ; ELINE - Current Ending Section Line Number
+ ; Output: ELINE - Updated Ending Section Line Number
+ ;
+ N STRTLN,XX
+ S ELINE=$$SET("",$J("",40),ELINE,1) ; Spacing Blank Line
+ S ELINE=$$SETN("IIU Parameters (non-editable)",ELINE,1,1)
+ S STRTLN=ELINE
+ S ELINE=$$SET("     Max Days of Recent Visit: ",$$GET1^DIQ(350.9,"1,",53.03),ELINE,1)
+ S ELINE=$$SET("Min Days Before Sharing Again: ",$$GET1^DIQ(350.9,"1,",53.04),ELINE,1)
+ S ELINE=$$SET("            IIU Master Switch: ",$$GET1^DIQ(350.9,"1,",53.01),ELINE,1)
+ S ELINE=STRTLN
+ S ELINE=$$SET("      Purging Sent Records: ",$$GET1^DIQ(350.9,"1,",53.05),ELINE,41)
+ S ELINE=$$SET("  Purging Received Records: ",$$GET1^DIQ(350.9,"1,",53.07),ELINE,41)
+ S ELINE=$$SET(" Purging Candidate Records: ",$$GET1^DIQ(350.9,"1,",53.06),ELINE,41)
  Q
  ;
 SET(LABEL,DATA,LINE,COL) ; Sets text into the body of the worklist

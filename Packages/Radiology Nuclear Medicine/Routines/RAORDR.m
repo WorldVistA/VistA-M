@@ -1,27 +1,26 @@
-RAORDR ;ABV/SCR/MKN - Refer Pending/Hold Requests ; Dec 04, 2019@12:37:22
- ;;5.0;Radiology/Nuclear Medicine;**148,161**;Mar 16, 1998;Build 1
+RAORDR ;ABV/SCR/MKN - Refer Pending/Hold Requests ; Jul 12, 2022@09:32:46
+ ;;5.0;Radiology/Nuclear Medicine;**148,161,170,179,190**;Mar 16, 1998;Build 1
  ;
- Q
- ;
- ; Routine              IA          Type
+ ; Routine/File         IA          Type
  ; -------------------------------------
  ; DEM^VADPT           10061        (S)
  ; ^DIWP               10011        (S)
  ; ^SC(                10040        (S)
  ; ^VA(200             10060        (S)
  ; ^DPT(               10035        (S)
- ; CMT^ORQQCN2         TBR
+ ; CMT^ORQQCN2         NONE
  ; ^OR(100             5771,6475    (C)
  ; ^GMR(123            6116,2586    (C)
  ;
-ENT ;
+ Q
+ENT ;Entry
  ;
  N DIC,DIR,DIRUT,DTOUT,DUOUT,QQ,RA123IEN,RA44NA,RAANS,RAANS2,RAARAY,RAARRAY
  N RACDW,RACDWN,RACIENS,RACOMCT,RACNT,RACOM,RACOUNT,RADD,RADFN,RADT,RAEND
  N RAERR,RAEXPL,RAF,RAHDR,RAI,RAILOC,RAJUST,RAJUST2,RAILOC1,RALOCNM,RAMAND
  N RAN,RANOW,RANOW2,RAO,RAOBEG,RAOEND,RAOIFN,RAOPHY,RAORD0,RAORDIEN,RAPOP
- N RAPR,RAPRTYDT,RAQUES,RAQUIT,RAREASON,RAREQSTA,RARES,RASELOC,RASTART,RASUB
- N RAT,RAUCID,X,Y
+ N RAPR,RAPRTYDT,RAQUES,RAQUIT,RAREAS,RAREQSTA,RARES,RASELOC,RASTART,RASUB
+ N RAT,RAUCID,X,Y,RAEXP
  ;
  S (RAARRAY,RACIENS,RAILOC)=""
 GETPAT ;
@@ -44,56 +43,33 @@ GETPAT ;
  I '$D(RAARRAY(1)) W !,"No Imaging orders found for this patient",! G GETPAT
  S (RACOUNT,RAF,RARES)=0
  D GETORD
- G:'RARES GETPAT
+ G:'RARES!(RAQUIT) GETPAT
  S RAORDIEN=$$MAKECONS^RAORDR1($G(RAARRAY(Y)))
  ;Add comments to Consult that was just created
+ ;P170
+ N I,RET
  S RAUCID="",RA123IEN=$G(^OR(100,RAORDIEN,4)) I $P(RA123IEN,";",2)="GMRC" D
- . S RA123IEN=+RA123IEN,RAUCID=$$GET1^DIQ(123,RA123IEN,80)
- . D:RA123IEN&($D(RAEXPL(RAANS2)))
- . . S RAI="",RACOMCT=0 F  S RAI=$O(RACDW(RAANS,RAANS2,RAI)) Q:RAI=""  D
- . . . S RACOMCT=RACOMCT+1,RACOM(RACOMCT)=$P(RACDW(RAANS,RAANS2,RAI),U)
- . . . I $P(RACDW(RAANS,RAANS2,RAI),U,2)]"",$G(RAEXPL(RAANS2))]"" D ADDEXPL
- . . S RADT=$$NOW^XLFDT()
- . . L +^GMR(123,RA123IEN):5 I '$T D ERROR^RAORDR1("Consult record locked, cannot update comments.") Q  ;p161 -Lock consult
- . . D CMT^ORQQCN2(.RAERR,RA123IEN,.RACOM,"N","",RADT)
- . . L -^GMR(123,RA123IEN)
- . D:RA123IEN&(RAANS2=0)
- . . S RAI="",RACOMCT=0 F  S RAI=$O(RACDW(RAANS,RAI)) Q:RAI=""  D
- . . . S RACOMCT=RACOMCT+1 S:$P(RACDW(RAANS,RAI),U)]"" RACOM(RACOMCT)=$P(RACDW(RAANS,RAI),U)
- . . . I $P(RACDW(RAANS,RAI),U,2)]"",$G(RAEXPL)]"" D ADDEXPLS
- . . S RADT=$$NOW^XLFDT()
- . . L +^GMR(123,RA123IEN):5 I '$T D ERROR^RAORDR1("Consult record locked, cannot update comments.") Q  ;p161 -Lock consult
- . . D CMT^ORQQCN2(.RAERR,RA123IEN,.RACOM,"N","",RADT)
- . . L -^GMR(123,RA123IEN)
- . W !!,"Consult with UCID: "_$S(RAUCID]"":RAUCID,1:"(Not known)")," has been created",!
- . I 'RA123IEN W !!,"**NO Consult created**",!
+ .S RA123IEN=+RA123IEN,RAUCID=$$GET1^DIQ(123,RA123IEN,80)
+ .D:RA123IEN
+ ..S RACOM(1)="#COI#",RACOM(2)="COI-Veteran OPT-IN for Community Care",RACOM(3)=$P(RAREAS,U,2)
+ ..I $D(RAEXP) D
+ ...D BRKLINE(.RET,RAEXP,74)
+ ...S I=0 F  S I=$O(RET(I)) Q:I=""  S RACOM(I+3)=$G(RET(I))
+ ...Q
+ ..S RADT=$$NOW^XLFDT() ;p179 - comment activity date is now
+ ..L +^GMR(123,RA123IEN):5 I '$T D ERROR^RAORDR1("Consult record locked, cannot update comments.") Q  ;p161 -Lock consult
+ ..D CMT^ORQQCN2(.RAERR,RA123IEN,.RACOM,"N","",RADT)
+ ..L -^GMR(123,RA123IEN)
+ .W !!,"Consult with UCID: "_$S(RAUCID]"":RAUCID,1:"(Not known)")," has been created",!
+ .I 'RA123IEN W !!,"**NO Consult created**",!
  D KILL
  G GETPAT
- ;
-ADDEXPL ;
- N I,L,X
- S X=$P($G(RAEXPL(RAANS2)),U,2)
- S RACOM(RACOMCT)=RACOM(RACOMCT)_$S(X]"":":",1:"")
- I X]"" D BRKLINE(.L,X,74) D
- .S I="" F  S I=$O(L(I)) Q:'I  S RACOMCT=RACOMCT+1,RACOM(RACOMCT)=L(I)
- Q
- ;
-ADDEXPLS ;
- N I,X,L
- S X=RAEXPL
- I $D(RACOM(RACOMCT)) D  Q
- .S RACOM(RACOMCT)=RACOM(RACOMCT)_$S(X]"":":",1:"")
- .I X]"" D BRKLINE(.L,X,74) D
- ..S I="" F  S I=$O(L(I)) Q:'I  S RACOMCT=RACOMCT+1,RACOM(RACOMCT)=L(I)
- D BRKLINE(.L,X,74)
- S I="" F  S I=$O(L(I)) Q:'I  S RACOM(RACOMCT)=L(I),RACOMCT=RACOMCT+1
- Q
  ;
 KILL ;
  K DIC,DIR,DIRUT,QQ,RA123IEN,RA44NA,RAANS,RAANS2,RAARAY,RAARRAY,RACDW,RACDWN,RACIENS,RACOMCT,RACNT,RACOM
  K RACOUNT,RADD,RADFN,RADT,RAEND,RAERR,RAEXPL,RAF,RAHDR,RAI,RAILOC,RAJUST,RAJUST2,RAILOC1,RALOCNM,RAN,RANOW
- K RANOW2,RAO,RAOBEG,RAOEND,RAOIFN,RAOPHY,RAORD0,RAORDIEN,RAPOP,RAPR,RAPRTYDT,RAQUES,RAQUIT,RAREASON
- K RAREQSTA,RARES,RASELOC,RASTART,RASUB,RAT,RAUCID,X,Y
+ K RANOW2,RAO,RAOBEG,RAOEND,RAOIFN,RAOPHY,RAORD0,RAORDIEN,RAPOP,RAPR,RAPRTYDT,RAQUES,RAQUIT,RAREAS,RAUDIV
+ K RAREQSTA,RARES,RASELOC,RASTART,RASUB,RAT,RAUCID,X,Y,RET,RAEXP,RALADT,RAOI,ORDIALOG,RAEXP,RAIENS,RASOC
  S (RACIENS,RAILOC)=""
  Q
  ;
@@ -158,99 +134,34 @@ GETINFO(RAARAY) ;this function collects information that would be collected from
  N DIR,DIRUT,RACOUNT,RAGMRC1,RARPT,Y
  ;
  S (RAJUST,RAQUIT,RARPT)=0
- D SETJUST2 ;Set up RAJUST array with prompts
+ ;D SETJUST2 ;Set up RAJUST array with prompts
  D GETMAIN
  S:'$D(RAARAY("TYPEOFSERVICE")) RAARAY("TYPEOFSERVICE")="4^Diagnostic"
  S RAARAY("THIRDPARTY")="2^NO"
  S RAARAY("TRAUMA")="2^NO"
  Q
  ;
-SETJUST2 ;Build RAJUST
- N I,LAST,X
- S LAST="",(RAANS,RAANS2)=0
- ;First build RAJUST array with questions
- F I=1:1 S X=$T(JUSTQ+I) Q:X=" ;//"  S OPT=$P(X,";",2),I=$$JUSTMAIN(OPT,I)
- Q
- ;
-JUSTMAIN(OPT,LINE) ;
- N J,RET,X
- S RET=LINE
- F J=LINE:1 S X=$T(JUSTQ+J) Q:X=" ;//"  Q:$P(X,";",2)'=OPT  S RET=J D
- .I $P(X,";",3)'="CDW",$P(X,";",3)'="S" S RAJUST(OPT)=$P(X,";",3) Q
- .I $P(X,";",3)="S" S J=$$JUSTSUB(OPT,J) Q
- .I $P(X,";",3)="CDW" S RAJUST(OPT,"CDW",$P(X,";",4))=$P(X,";",5) D  Q
- ..I $P(X,";",3)="CDW",$P(X,";",6)="ASK" S RAJUST(OPT,"CDW",$P(X,";",4),"ASK")=$P(X,";",7) D
- ...I $P(X,";",8) S RAJUST(OPT,"CDW",$P(X,";",4),"MAND")=1
- Q RET
- ;
-JUSTSUB(PARENT,LINE) ;
- N J,OPT,RET,X
- F J=LINE:1 S X=$T(JUSTQ+J) Q:X=" ;//"  S RET=J S:J=LINE OPT=$P(X,";",2) Q:PARENT'=OPT  D
- .I $P(X,";",5)'="CDW" S RAJUST(PARENT,"S",$P(X,";",4))=$P(X,";",5) Q
- .I $P(X,";",5)="CDW" S:$P(X,";",7)'="" RAJUST(PARENT,"S",$P(X,";",4),"CDW",$P(X,";",6))=$P(X,";",7) D
- ..I $P(X,";",8)="ASK" S RAJUST(PARENT,"S",$P(X,";",4),"CDW",$P(X,";",6),"ASK")=$P(X,";",9) D
- ...I $P(X,";",10) S RAJUST(PARENT,"S",$P(X,";",4),"CDW",$P(X,";",6),"MAND")=1
- Q RET
- ;
 GETMAIN ;Ask the main questions and fill in the answers at tag GETJSUB
- N RAL
+ ;P170 - CC Justifications now stored in file #75.3 instead of hardcoded in this routine.
+ N RAJN,RAJJ,RAI,CNT S RAJN=""
  W !!,"Justification for Community Care"
- K DIR S RAL=0,DIR(0)="S^" F I=1:1 S X=$G(RAJUST(I)) Q:X=""  S DIR(0)=DIR(0)_I_":"_$P($P(X,U),";")_";",RAL=RAL+1
- S DIR(0)=$E(DIR(0),1,$L(DIR(0))-1)
- D ^DIR
- I $D(DIRUT) S RAQUIT=1
- S:'RAQUIT RAARAY("JUSTIFICATION")=Y_U_Y(0) ;This array entry is used for Reason for Request WP in Consult
- K DIR,DIRUT
- Q:RAQUIT
- S RAANS=+Y,RAREASON=RAJUST(RAANS) ; Reason for Request
- ;
- ;Now check if there are any main questions or any sub-questions
-GETJSUB ;
- ;
- S RARPT=0 K RAEXPL
- I '$D(RAJUST(RAANS,"S")) S RAANS2=0 D  G:RARPT GETMAIN Q
- . ;Set CDW up for main menu item. Ask any text questions if needed
- . S RACDWN="" F  S RACDWN=$O(RAJUST(RAANS,"CDW",RACDWN)) Q:RACDWN=""  D
- . . S RACDW(RAANS,RACDWN)=RAJUST(RAANS,"CDW",RACDWN)_U_$G(RAJUST(RAANS,"CDW",RACDWN,"ASK"))
- . . S RAQUES=$G(RAJUST(RAANS,"CDW",RACDWN,"ASK"))
- . . S RAMAND=$G(RAJUST(RAANS,"CDW",RACDWN,"MAND"))
- . . I RAQUES]"" D
- . . . K DIR S DIR(0)="F"_$S('RAMAND:"O",1:"")_"^3:240",DIR("A")=RAQUES
- . . . S DIR("?")=RAQUES_": 3-240 characters"
- . . . S DIR("??")="^D HELP^RAORDR("_$C(34)_RAQUES_": 3-240 characters"_$C(34)_")"
- . . . D ^DIR
- . . . I $D(DUOUT)!($D(DTOUT)) S RARPT=1 Q
- . . . S RAEXPL=Y
- . . . S:RAEXPL]"" RAARAY("JUSTIFICATION EXPLANATION")="  "_RAEXPL
- ;
- ;Sub-menu questions
- W !!,$P(RAJUST(RAANS),U)
- K DIR S DIR(0)="S^",RASUB="" F  S RASUB=$O(RAJUST(RAANS,"S",RASUB)) Q:RASUB=""  D
- . S DIR(0)=DIR(0)_RASUB_":"_RAJUST(RAANS,"S",RASUB)_";"
- . S RACDWN="" F  S RACDWN=$O(RAJUST(RAANS,"S",RASUB,"CDW",RACDWN)) Q:RACDWN=""  D
- . . S RACDW(RAANS,RASUB,RACDWN)=RAJUST(RAANS,"S",RASUB,"CDW",RACDWN)_U_$G(RAJUST(RAANS,"S",RASUB,"CDW",RACDWN,"ASK"))
- . . S RAEXPL(RASUB)=$P(RACDW(RAANS,RASUB,RACDWN),U,2)
- . . S RAEXPL(RASUB,"MAND")=$G(RAJUST(RAANS,"S",RASUB,"CDW",RACDWN,"MAND"))
- S DIR(0)=$E(DIR(0),1,$L(DIR(0))-1)
- S DIR("A")="Select Reason for "_$P(RAJUST(RAANS),U)
- D ^DIR
- G:$D(DUOUT)!($D(DTOUT)) GETMAIN
- S RAANS2=+Y
- ;If the sub-question requires a reason, ask it now
- S RARPT=0
- I $G(RAEXPL(RAANS2))]"" D  G:RARPT GETJSUB ;^ entered by user in SUB-QUESTION field - go back to Justification question
- . S RAMAND=$G(RAEXPL(RAANS2,"MAND"))
- . K DIR S DIR(0)="F"_$S('RAMAND:"O",1:"")_"^3:240",DIR("A")=$G(RAEXPL(RAANS2))
- . S DIR("?")="Enter "_$G(RAEXPL(RAANS2))_": 3-240 characters"
- . S DIR("??")="^D HELP^RAORDR("_$C(34)_"Enter "_$G(RAEXPL(RAANS2))_": 3-240 characters"_$C(34)_")"
- . D ^DIR
- . I $D(DUOUT)!($D(DTOUT)) S RARPT=1 Q
- . S $P(RAEXPL(RAANS2),U,2)=Y
- . S RAARAY("JUSTIFICATION SUBMENU SELECTION")=$P($P(RAJUST(RAANS,"S",RAANS2),U)," (")_$S(Y]"":":",1:"")
- . S:Y]"" RAARAY("JUSTIFICATION SUBMENU EXPLANATION")=Y
- ;
+ ;W !!,?5,"Select one of the following:",!
+ S RAI=0 F  S RAI=$O(^RA(75.3,RAI)) Q:RAI="B"  D
+ .S RAJJ=$$GET1^DIQ(75.3,RAI,.01),RAJJ=$S($L(RAJJ,":")>1:$P(RAJJ,": ",2),1:RAJJ)
+ .I RAI=1 S RAJN=RAI_":"_RAJJ_";"
+ .E  S RAJN=RAJN_RAI_":"_RAJJ_";"
+ .Q
+ S RAJN=$E(RAJN,1,$L(RAJN)-1)
+ N DIR,Y S DIR(0)="S^"_RAJN D ^DIR I $D(DIRUT) S RAQUIT=1 Q
+ S RAREAS=Y_"^"_$$GET1^DIQ(75.3,Y,.01) K DIR,Y
+ I RAREAS="" S RAQUIT=1 Q
+ I $$GET1^DIQ(75.3,+RAREAS,2,"I")=1 D
+ .S DIR(0)="F^3:240",DIR("A")="EXPLAIN" S DIR("?")="Enter Explaination for '"_$P(RAREAS,U,2)_"': 3-240 characters"
+ .D ^DIR I $D(DIRUT) S RAQUIT=1 Q
+ .S RAEXP=Y
+ .Q
+ K DIR,DIRUT,Y
  Q
- ;
 BRKLINE(OUT,LINE,LGTH) ;Break line down into 80 character lines in OUT
  N CT,DIWL,DIWR,I,X
  S LINE=$$TRIM^XLFSTR(LINE)
@@ -258,48 +169,3 @@ BRKLINE(OUT,LINE,LGTH) ;Break line down into 80 character lines in OUT
  S I="" F  S I=$O(^UTILITY($J,"W",1,I)) Q:'I  S CT=CT+1,OUT(CT)=^UTILITY($J,"W",1,I,0)
  K ^UTILITY($J,"W")
  Q
- ;
-HELP(MSG) ;
- W !!,MSG
- Q
- ;
-JUSTQ ;Justification for Community Care prompts
- ;1;VA facility does not provide the required service
- ;1;CDW;1;#COI#
- ;1;CDW;2;COI-Veteran OPT-IN for Community Care
- ;1;CDW;3;Service Not Available: VA facility does not provide the required service
- ;2;Veteran cannot safely travel to VA facility due to medical reason
- ;2;CDW;1;#COI#
- ;2;CDW;2;COI-Veteran OPT-IN for Community Care
- ;2;CDW;3;Veteran cannot safely travel to VA facility due to medical reason
- ;2;CDW;4;;ASK;Medical reason
- ;3;Veteran cannot travel to VA facility due to geographical inaccessibility
- ;3;CDW;1;#COI#
- ;3;CDW;2;COI-Veteran OPT-IN for Community Care
- ;3;CDW;3;Geographical inaccessibility
- ;4;VA facility cannot timely provide the required service
- ;4;CDW;1;#COI#
- ;4;CDW;2;COI-Veteran OPT-IN for Community Care
- ;4;CDW;3;Wait Time: VA appointment is greater than Wait Time Standard (WTS)
- ;5;Unusual or excessive travel burden
- ;5;S;1;Geographical challenges
- ;5;S;1;CDW;1;#COI#
- ;5;S;1;CDW;2;COI-Veteran OPT-IN for Community Care
- ;5;S;1;CDW;3;UXB-Unusual or excessive travel burden
- ;5;S;1;CDW;4;GEO-Geographical challenges;ASK;Explain
- ;5;S;2;Environmental factors
- ;5;S;2;CDW;1;#COI#
- ;5;S;2;CDW;2;COI-Veteran OPT-IN for Community Care
- ;5;S;2;CDW;3;UXB-Unusual or excessive travel burden
- ;5;S;2;CDW;4;ENV-Environmental factors;ASK;Explain
- ;5;S;3;Medical condition
- ;5;S;3;CDW;1;#COI#
- ;5;S;3;CDW;2;COI-Veteran OPT-IN for Community Care
- ;5;S;3;CDW;3;UXB-Unusual or excessive travel burden
- ;5;S;3;CDW;4;MED-Medical condition;ASK;Explain
- ;5;S;4;Nature or simplicity of services
- ;5;S;4;CDW;1;#COI#
- ;5;S;4;CDW;2;COI-Veteran OPT-IN for Community Care
- ;5;S;4;CDW;3;UXB-Unusual or excessive travel burden
- ;5;S;4;CDW;4;Nature or simplicity of services;ASK;Explain;1
- ;//

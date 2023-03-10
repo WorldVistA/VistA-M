@@ -1,5 +1,5 @@
-SCMSVUT3   ;BP/JRP - HL7 segment & field validation utilities ;8/11/99 9:54am
- ;;5.3;Scheduling;**142,180,208,239,395,441,543**;AUG 13, 1993;Build 1
+SCMSVUT3   ;BP/JRP - HL7 segment & field validation utilities ; Mar 04, 2021@10:12
+ ;;5.3;Scheduling;**142,180,208,239,395,441,543,777**;AUG 13, 1993;Build 4
  ;
  ;Standard input parameters
  ;   DATA  - Value to validate
@@ -232,4 +232,4 @@ AOLOC(DATA,DFN) ;Validate Agent Orange exposure location (error 7130)
  ;No claim - shouldn't have a location
  I 'VASV(2) Q $S(DATA="":1,1:0)
  ;Claims exposure - must have a valid location
- Q $S(DATA="":0,"VKO"[DATA:1,1:0)
+ Q $S(DATA="":0,"VKOB"[DATA:1,1:0)  ;SD*5.3*777 - Include BWN

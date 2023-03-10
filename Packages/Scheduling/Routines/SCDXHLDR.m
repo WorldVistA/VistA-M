@@ -1,5 +1,5 @@
 SCDXHLDR ;ALB/JLU;Ambulatory care event handler;4/30/96
- ;;5.3;Scheduling;**44,99,126,66,132,245**;5/1/96
+ ;;5.3;Scheduling;**44,99,126,66,132,245,782**;5/1/96;Build 10
  ;This routine is the Ambulatory care event handler.  It will hang on 
  ;the Scheduling event driver and monitor the types of events.  When a
  ;check out, edit to a check out or deletion of a check out occurs this
@@ -112,7 +112,7 @@ VALIDATE(XMIT,CLINIC) ;this entry point performs the validation at check out.
  I VAL<1 G VALQ
  I 'SDMODE,'$D(ZTQUEUED),'$D(VALQUIET) W !!,"Performing Ambulatory Care Validation Checks.",!
  S ERR=$$VALIDATE^SCMSVUT2(XMIT)
- I SDMODE!($D(ZTQUEUED))!($D(VALQUIET)) G VALQ
+ I SDMODE!($D(ZTQUEUED))!($D(VALQUIET))!($G(SDMOD)=2) G VALQ  ;Add check for VSE GUI indicator SDMOD - SD*5.3*782
  I ERR<1 DO  G VALQ
  .W !,"No validation errors found!"
  .Q

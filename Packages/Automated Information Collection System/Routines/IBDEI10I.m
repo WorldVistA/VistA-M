@@ -1,126 +1,122 @@
-IBDEI10I ; ; 04-FEB-2020
- ;;3.0;IB ENCOUNTER FORM IMP/EXP;;FEB 04, 2020
+IBDEI10I ; ; 01-FEB-2022
+ ;;3.0;IB ENCOUNTER FORM IMP/EXP;;FEB 01, 2022
  Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,999) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
- ;;^UTILITY(U,$J,358.3,16275,2)
- ;;=^5158141
- ;;^UTILITY(U,$J,358.3,16276,0)
- ;;=A54.00^^88^876^50
- ;;^UTILITY(U,$J,358.3,16276,1,0)
+ ;;^UTILITY(U,$J,358.3,16463,1,4,0)
+ ;;=4^C92.01
+ ;;^UTILITY(U,$J,358.3,16463,2)
+ ;;=^5001790
+ ;;^UTILITY(U,$J,358.3,16464,0)
+ ;;=C92.00^^61^775^8
+ ;;^UTILITY(U,$J,358.3,16464,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,16276,1,3,0)
- ;;=3^Gonococcal Infection Lower Genitourinary Tract,Unspec
- ;;^UTILITY(U,$J,358.3,16276,1,4,0)
- ;;=4^A54.00
- ;;^UTILITY(U,$J,358.3,16276,2)
- ;;=^5000311
- ;;^UTILITY(U,$J,358.3,16277,0)
- ;;=A54.09^^88^876^51
- ;;^UTILITY(U,$J,358.3,16277,1,0)
+ ;;^UTILITY(U,$J,358.3,16464,1,3,0)
+ ;;=3^Acute Myeloblastic Leukemia,Not in Remission
+ ;;^UTILITY(U,$J,358.3,16464,1,4,0)
+ ;;=4^C92.00
+ ;;^UTILITY(U,$J,358.3,16464,2)
+ ;;=^5001789
+ ;;^UTILITY(U,$J,358.3,16465,0)
+ ;;=C92.61^^61^775^9
+ ;;^UTILITY(U,$J,358.3,16465,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,16277,1,3,0)
- ;;=3^Gonococcal Infection Lower Genitourinary Tract,Other
- ;;^UTILITY(U,$J,358.3,16277,1,4,0)
- ;;=4^A54.09
- ;;^UTILITY(U,$J,358.3,16277,2)
- ;;=^5000315
- ;;^UTILITY(U,$J,358.3,16278,0)
- ;;=A54.02^^88^876^52
- ;;^UTILITY(U,$J,358.3,16278,1,0)
+ ;;^UTILITY(U,$J,358.3,16465,1,3,0)
+ ;;=3^Acute Myeloid Leukemia w/ 11q23-Abnormality,In Remission
+ ;;^UTILITY(U,$J,358.3,16465,1,4,0)
+ ;;=4^C92.61
+ ;;^UTILITY(U,$J,358.3,16465,2)
+ ;;=^5001808
+ ;;^UTILITY(U,$J,358.3,16466,0)
+ ;;=C92.60^^61^775^10
+ ;;^UTILITY(U,$J,358.3,16466,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,16278,1,3,0)
- ;;=3^Gonococcal Vulvovaginitis,Unspec
- ;;^UTILITY(U,$J,358.3,16278,1,4,0)
- ;;=4^A54.02
- ;;^UTILITY(U,$J,358.3,16278,2)
- ;;=^5000313
- ;;^UTILITY(U,$J,358.3,16279,0)
- ;;=A54.1^^88^876^49
- ;;^UTILITY(U,$J,358.3,16279,1,0)
+ ;;^UTILITY(U,$J,358.3,16466,1,3,0)
+ ;;=3^Acute Myeloid Leukemia w/ 11q23-Abnormality,Not in Remission
+ ;;^UTILITY(U,$J,358.3,16466,1,4,0)
+ ;;=4^C92.60
+ ;;^UTILITY(U,$J,358.3,16466,2)
+ ;;=^5001807
+ ;;^UTILITY(U,$J,358.3,16467,0)
+ ;;=C92.A1^^61^775^11
+ ;;^UTILITY(U,$J,358.3,16467,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,16279,1,3,0)
- ;;=3^Gonococcal Infection Lower GU Tract w/ Periureth & Acc Gland Abscess
- ;;^UTILITY(U,$J,358.3,16279,1,4,0)
- ;;=4^A54.1
- ;;^UTILITY(U,$J,358.3,16279,2)
- ;;=^5000316
- ;;^UTILITY(U,$J,358.3,16280,0)
- ;;=A54.01^^88^876^48
- ;;^UTILITY(U,$J,358.3,16280,1,0)
+ ;;^UTILITY(U,$J,358.3,16467,1,3,0)
+ ;;=3^Acute Myeloid Leukemia w/ Multilin Dysplasia,In Remission
+ ;;^UTILITY(U,$J,358.3,16467,1,4,0)
+ ;;=4^C92.A1
+ ;;^UTILITY(U,$J,358.3,16467,2)
+ ;;=^5001814
+ ;;^UTILITY(U,$J,358.3,16468,0)
+ ;;=C92.A0^^61^775^12
+ ;;^UTILITY(U,$J,358.3,16468,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,16280,1,3,0)
- ;;=3^Gonococcal Cystitis & Urethritis,Unspec
- ;;^UTILITY(U,$J,358.3,16280,1,4,0)
- ;;=4^A54.01
- ;;^UTILITY(U,$J,358.3,16280,2)
- ;;=^5000312
- ;;^UTILITY(U,$J,358.3,16281,0)
- ;;=B37.49^^88^876^14
- ;;^UTILITY(U,$J,358.3,16281,1,0)
+ ;;^UTILITY(U,$J,358.3,16468,1,3,0)
+ ;;=3^Acute Myeloid Leukemia w/ Multilin Dysplasia,Not in Remission
+ ;;^UTILITY(U,$J,358.3,16468,1,4,0)
+ ;;=4^C92.A0
+ ;;^UTILITY(U,$J,358.3,16468,2)
+ ;;=^5001813
+ ;;^UTILITY(U,$J,358.3,16469,0)
+ ;;=C92.51^^61^775^13
+ ;;^UTILITY(U,$J,358.3,16469,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,16281,1,3,0)
- ;;=3^Candidiasis Urogenital,Other
- ;;^UTILITY(U,$J,358.3,16281,1,4,0)
- ;;=4^B37.49
- ;;^UTILITY(U,$J,358.3,16281,2)
- ;;=^5000618
- ;;^UTILITY(U,$J,358.3,16282,0)
- ;;=B37.41^^88^876^13
- ;;^UTILITY(U,$J,358.3,16282,1,0)
+ ;;^UTILITY(U,$J,358.3,16469,1,3,0)
+ ;;=3^Acute Myelomonocytic Leukemia,In Remission
+ ;;^UTILITY(U,$J,358.3,16469,1,4,0)
+ ;;=4^C92.51
+ ;;^UTILITY(U,$J,358.3,16469,2)
+ ;;=^5001805
+ ;;^UTILITY(U,$J,358.3,16470,0)
+ ;;=C92.50^^61^775^14
+ ;;^UTILITY(U,$J,358.3,16470,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,16282,1,3,0)
- ;;=3^Candidal Cystitis & Urethritis
- ;;^UTILITY(U,$J,358.3,16282,1,4,0)
- ;;=4^B37.41
- ;;^UTILITY(U,$J,358.3,16282,2)
- ;;=^5000616
- ;;^UTILITY(U,$J,358.3,16283,0)
- ;;=B37.42^^88^876^12
- ;;^UTILITY(U,$J,358.3,16283,1,0)
+ ;;^UTILITY(U,$J,358.3,16470,1,3,0)
+ ;;=3^Acute Myelomonocytic Leukemia,Not in Remission
+ ;;^UTILITY(U,$J,358.3,16470,1,4,0)
+ ;;=4^C92.50
+ ;;^UTILITY(U,$J,358.3,16470,2)
+ ;;=^5001804
+ ;;^UTILITY(U,$J,358.3,16471,0)
+ ;;=C94.40^^61^775^17
+ ;;^UTILITY(U,$J,358.3,16471,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,16283,1,3,0)
- ;;=3^Candidal Balanitis
- ;;^UTILITY(U,$J,358.3,16283,1,4,0)
- ;;=4^B37.42
- ;;^UTILITY(U,$J,358.3,16283,2)
- ;;=^5000617
- ;;^UTILITY(U,$J,358.3,16284,0)
- ;;=A59.03^^88^876^108
- ;;^UTILITY(U,$J,358.3,16284,1,0)
+ ;;^UTILITY(U,$J,358.3,16471,1,3,0)
+ ;;=3^Acute Panmyelosis w/ Myelofibrosis,Not in Remission
+ ;;^UTILITY(U,$J,358.3,16471,1,4,0)
+ ;;=4^C94.40
+ ;;^UTILITY(U,$J,358.3,16471,2)
+ ;;=^5001843
+ ;;^UTILITY(U,$J,358.3,16472,0)
+ ;;=C94.42^^61^775^15
+ ;;^UTILITY(U,$J,358.3,16472,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,16284,1,3,0)
- ;;=3^Trichomonal Cystitis & Urethritis
- ;;^UTILITY(U,$J,358.3,16284,1,4,0)
- ;;=4^A59.03
- ;;^UTILITY(U,$J,358.3,16284,2)
- ;;=^5000349
- ;;^UTILITY(U,$J,358.3,16285,0)
- ;;=E87.6^^88^876^61
- ;;^UTILITY(U,$J,358.3,16285,1,0)
+ ;;^UTILITY(U,$J,358.3,16472,1,3,0)
+ ;;=3^Acute Panmyelosis w/ Myelofibrosis,In Relapse
+ ;;^UTILITY(U,$J,358.3,16472,1,4,0)
+ ;;=4^C94.42
+ ;;^UTILITY(U,$J,358.3,16472,2)
+ ;;=^5001845
+ ;;^UTILITY(U,$J,358.3,16473,0)
+ ;;=C94.41^^61^775^16
+ ;;^UTILITY(U,$J,358.3,16473,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,16285,1,3,0)
- ;;=3^Hypokalemia
- ;;^UTILITY(U,$J,358.3,16285,1,4,0)
- ;;=4^E87.6
- ;;^UTILITY(U,$J,358.3,16285,2)
- ;;=^60610
- ;;^UTILITY(U,$J,358.3,16286,0)
- ;;=F52.0^^88^876^60
- ;;^UTILITY(U,$J,358.3,16286,1,0)
+ ;;^UTILITY(U,$J,358.3,16473,1,3,0)
+ ;;=3^Acute Panmyelosis w/ Myelofibrosis,In Remission
+ ;;^UTILITY(U,$J,358.3,16473,1,4,0)
+ ;;=4^C94.41
+ ;;^UTILITY(U,$J,358.3,16473,2)
+ ;;=^5001844
+ ;;^UTILITY(U,$J,358.3,16474,0)
+ ;;=D62.^^61^775^18
+ ;;^UTILITY(U,$J,358.3,16474,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,16286,1,3,0)
- ;;=3^Hypoactive Sexual Desire Disorder
- ;;^UTILITY(U,$J,358.3,16286,1,4,0)
- ;;=4^F52.0
- ;;^UTILITY(U,$J,358.3,16286,2)
- ;;=^5003618
- ;;^UTILITY(U,$J,358.3,16287,0)
- ;;=F52.22^^88^876^103
- ;;^UTILITY(U,$J,358.3,16287,1,0)
+ ;;^UTILITY(U,$J,358.3,16474,1,3,0)
+ ;;=3^Acute Posthemorrhagic Anemia
+ ;;^UTILITY(U,$J,358.3,16474,1,4,0)
+ ;;=4^D62.
+ ;;^UTILITY(U,$J,358.3,16474,2)
+ ;;=^267986
+ ;;^UTILITY(U,$J,358.3,16475,0)
+ ;;=C92.41^^61^775^19
+ ;;^UTILITY(U,$J,358.3,16475,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,16287,1,3,0)
- ;;=3^Sexual Arousal Disorder,Female
- ;;^UTILITY(U,$J,358.3,16287,1,4,0)
- ;;=4^F52.22
- ;;^UTILITY(U,$J,358.3,16287,2)
- ;;=^5003621

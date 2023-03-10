@@ -1,114 +1,128 @@
-IBDEI1FW ; ; 04-FEB-2020
- ;;3.0;IB ENCOUNTER FORM IMP/EXP;;FEB 04, 2020
+IBDEI1FW ; ; 01-FEB-2022
+ ;;3.0;IB ENCOUNTER FORM IMP/EXP;;FEB 01, 2022
  Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,999) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
- ;;^UTILITY(U,$J,358.3,23025,1,4,0)
- ;;=4^N99.821
- ;;^UTILITY(U,$J,358.3,23025,2)
- ;;=^5015969
- ;;^UTILITY(U,$J,358.3,23026,0)
- ;;=T88.8XXA^^105^1166^26
- ;;^UTILITY(U,$J,358.3,23026,1,0)
+ ;;^UTILITY(U,$J,358.3,23287,1,3,0)
+ ;;=3^Arthropathy, unspecified
+ ;;^UTILITY(U,$J,358.3,23287,1,4,0)
+ ;;=4^M12.9
+ ;;^UTILITY(U,$J,358.3,23287,2)
+ ;;=^5010666
+ ;;^UTILITY(U,$J,358.3,23288,0)
+ ;;=M15.3^^78^1005^37
+ ;;^UTILITY(U,$J,358.3,23288,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,23026,1,3,0)
- ;;=3^Complic,Surgical/Medical Care NEC,Init Encntr
- ;;^UTILITY(U,$J,358.3,23026,1,4,0)
- ;;=4^T88.8XXA
- ;;^UTILITY(U,$J,358.3,23026,2)
- ;;=^5055814
- ;;^UTILITY(U,$J,358.3,23027,0)
- ;;=T81.83XA^^105^1166^173
- ;;^UTILITY(U,$J,358.3,23027,1,0)
+ ;;^UTILITY(U,$J,358.3,23288,1,3,0)
+ ;;=3^Secondary multiple arthritis
+ ;;^UTILITY(U,$J,358.3,23288,1,4,0)
+ ;;=4^M15.3
+ ;;^UTILITY(U,$J,358.3,23288,2)
+ ;;=^5010765
+ ;;^UTILITY(U,$J,358.3,23289,0)
+ ;;=M15.8^^78^1005^28
+ ;;^UTILITY(U,$J,358.3,23289,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,23027,1,3,0)
- ;;=3^Persistent Postprocedural Fistula,Init Encntr
- ;;^UTILITY(U,$J,358.3,23027,1,4,0)
- ;;=4^T81.83XA
- ;;^UTILITY(U,$J,358.3,23027,2)
- ;;=^5054659
- ;;^UTILITY(U,$J,358.3,23028,0)
- ;;=T81.89XA^^105^1166^25
- ;;^UTILITY(U,$J,358.3,23028,1,0)
+ ;;^UTILITY(U,$J,358.3,23289,1,3,0)
+ ;;=3^Polyosteoarthritis, other
+ ;;^UTILITY(U,$J,358.3,23289,1,4,0)
+ ;;=4^M15.8
+ ;;^UTILITY(U,$J,358.3,23289,2)
+ ;;=^5010767
+ ;;^UTILITY(U,$J,358.3,23290,0)
+ ;;=M46.90^^78^1005^38
+ ;;^UTILITY(U,$J,358.3,23290,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,23028,1,3,0)
- ;;=3^Complic,Procedures NEC,Init Encntr
- ;;^UTILITY(U,$J,358.3,23028,1,4,0)
- ;;=4^T81.89XA
- ;;^UTILITY(U,$J,358.3,23028,2)
- ;;=^5054662
- ;;^UTILITY(U,$J,358.3,23029,0)
- ;;=T81.9XXA^^105^1166^24
- ;;^UTILITY(U,$J,358.3,23029,1,0)
+ ;;^UTILITY(U,$J,358.3,23290,1,3,0)
+ ;;=3^Spondylopathy inflammatory, site unspec
+ ;;^UTILITY(U,$J,358.3,23290,1,4,0)
+ ;;=4^M46.90
+ ;;^UTILITY(U,$J,358.3,23290,2)
+ ;;=^5012030
+ ;;^UTILITY(U,$J,358.3,23291,0)
+ ;;=M47.819^^78^1005^39
+ ;;^UTILITY(U,$J,358.3,23291,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,23029,1,3,0)
- ;;=3^Complic,Procedure Unspec,Init Encntr
- ;;^UTILITY(U,$J,358.3,23029,1,4,0)
- ;;=4^T81.9XXA
- ;;^UTILITY(U,$J,358.3,23029,2)
- ;;=^5054665
- ;;^UTILITY(U,$J,358.3,23030,0)
- ;;=T85.810A^^105^1166^48
- ;;^UTILITY(U,$J,358.3,23030,1,0)
+ ;;^UTILITY(U,$J,358.3,23291,1,3,0)
+ ;;=3^Spondylosis w/o myelopathy/radiculopathy, site unspec
+ ;;^UTILITY(U,$J,358.3,23291,1,4,0)
+ ;;=4^M47.819
+ ;;^UTILITY(U,$J,358.3,23291,2)
+ ;;=^5012076
+ ;;^UTILITY(U,$J,358.3,23292,0)
+ ;;=M51.9^^78^1005^8
+ ;;^UTILITY(U,$J,358.3,23292,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,23030,1,3,0)
- ;;=3^Embol d/t Nervous System Prosthetic Device/Implant/Graft,Init Encntr
- ;;^UTILITY(U,$J,358.3,23030,1,4,0)
- ;;=4^T85.810A
- ;;^UTILITY(U,$J,358.3,23030,2)
- ;;=^5140309
- ;;^UTILITY(U,$J,358.3,23031,0)
- ;;=T85.818A^^105^1166^49
- ;;^UTILITY(U,$J,358.3,23031,1,0)
+ ;;^UTILITY(U,$J,358.3,23292,1,3,0)
+ ;;=3^Intervertebral disc disorder, thoracic, thoracolumbar & lumbar
+ ;;^UTILITY(U,$J,358.3,23292,1,4,0)
+ ;;=4^M51.9
+ ;;^UTILITY(U,$J,358.3,23292,2)
+ ;;=^5012263
+ ;;^UTILITY(U,$J,358.3,23293,0)
+ ;;=M54.10^^78^1005^33
+ ;;^UTILITY(U,$J,358.3,23293,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,23031,1,3,0)
- ;;=3^Embol d/t Oth Internal Prosthetic Device/Implant/Graft,Init Encntr
- ;;^UTILITY(U,$J,358.3,23031,1,4,0)
- ;;=4^T85.818A
- ;;^UTILITY(U,$J,358.3,23031,2)
- ;;=^5140312
- ;;^UTILITY(U,$J,358.3,23032,0)
- ;;=T85.820A^^105^1166^55
- ;;^UTILITY(U,$J,358.3,23032,1,0)
+ ;;^UTILITY(U,$J,358.3,23293,1,3,0)
+ ;;=3^Radiculopathy,Unspec Site
+ ;;^UTILITY(U,$J,358.3,23293,1,4,0)
+ ;;=4^M54.10
+ ;;^UTILITY(U,$J,358.3,23293,2)
+ ;;=^5012295
+ ;;^UTILITY(U,$J,358.3,23294,0)
+ ;;=M54.2^^78^1005^3
+ ;;^UTILITY(U,$J,358.3,23294,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,23032,1,3,0)
- ;;=3^Fibrosis d/t Nervous System Prosthetic Device/Implant/Graft,Init Encntr
- ;;^UTILITY(U,$J,358.3,23032,1,4,0)
- ;;=4^T85.820A
- ;;^UTILITY(U,$J,358.3,23032,2)
- ;;=^5140315
- ;;^UTILITY(U,$J,358.3,23033,0)
- ;;=T85.828A^^105^1166^56
- ;;^UTILITY(U,$J,358.3,23033,1,0)
+ ;;^UTILITY(U,$J,358.3,23294,1,3,0)
+ ;;=3^Cervicalgia
+ ;;^UTILITY(U,$J,358.3,23294,1,4,0)
+ ;;=4^M54.2
+ ;;^UTILITY(U,$J,358.3,23294,2)
+ ;;=^5012304
+ ;;^UTILITY(U,$J,358.3,23295,0)
+ ;;=M54.31^^78^1005^36
+ ;;^UTILITY(U,$J,358.3,23295,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,23033,1,3,0)
- ;;=3^Fibrosis d/t Other Internal Prosthetic Device/Implant/Graft,Init Encntr
- ;;^UTILITY(U,$J,358.3,23033,1,4,0)
- ;;=4^T85.828A
- ;;^UTILITY(U,$J,358.3,23033,2)
- ;;=^5140318
- ;;^UTILITY(U,$J,358.3,23034,0)
- ;;=T85.830A^^105^1166^61
- ;;^UTILITY(U,$J,358.3,23034,1,0)
+ ;;^UTILITY(U,$J,358.3,23295,1,3,0)
+ ;;=3^Sciatica, right side
+ ;;^UTILITY(U,$J,358.3,23295,1,4,0)
+ ;;=4^M54.31
+ ;;^UTILITY(U,$J,358.3,23295,2)
+ ;;=^5012306
+ ;;^UTILITY(U,$J,358.3,23296,0)
+ ;;=M54.32^^78^1005^35
+ ;;^UTILITY(U,$J,358.3,23296,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,23034,1,3,0)
- ;;=3^Hemorrh d/t Nervous System Prosthetic Device/Implant/Graft,Init Encntr
- ;;^UTILITY(U,$J,358.3,23034,1,4,0)
- ;;=4^T85.830A
- ;;^UTILITY(U,$J,358.3,23034,2)
- ;;=^5140321
- ;;^UTILITY(U,$J,358.3,23035,0)
- ;;=T85.838A^^105^1166^62
- ;;^UTILITY(U,$J,358.3,23035,1,0)
+ ;;^UTILITY(U,$J,358.3,23296,1,3,0)
+ ;;=3^Sciatica, left side
+ ;;^UTILITY(U,$J,358.3,23296,1,4,0)
+ ;;=4^M54.32
+ ;;^UTILITY(U,$J,358.3,23296,2)
+ ;;=^5012307
+ ;;^UTILITY(U,$J,358.3,23297,0)
+ ;;=M54.9^^78^1005^4
+ ;;^UTILITY(U,$J,358.3,23297,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,23035,1,3,0)
- ;;=3^Hemorrh d/t Other Internal Prosthetic Device/Implant/Graft,Init Encntr
- ;;^UTILITY(U,$J,358.3,23035,1,4,0)
- ;;=4^T85.838A
- ;;^UTILITY(U,$J,358.3,23035,2)
- ;;=^5140324
- ;;^UTILITY(U,$J,358.3,23036,0)
- ;;=T83.61XA^^105^1166^77
- ;;^UTILITY(U,$J,358.3,23036,1,0)
+ ;;^UTILITY(U,$J,358.3,23297,1,3,0)
+ ;;=3^Dorsalgia, unspecified
+ ;;^UTILITY(U,$J,358.3,23297,1,4,0)
+ ;;=4^M54.9
+ ;;^UTILITY(U,$J,358.3,23297,2)
+ ;;=^5012314
+ ;;^UTILITY(U,$J,358.3,23298,0)
+ ;;=M77.9^^78^1005^5
+ ;;^UTILITY(U,$J,358.3,23298,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,23036,1,3,0)
- ;;=3^Infect/Inflm Reaction d/t Implanted Penile Prosthesis,Init Encntr
+ ;;^UTILITY(U,$J,358.3,23298,1,3,0)
+ ;;=3^Enthesopathy, unspecified
+ ;;^UTILITY(U,$J,358.3,23298,1,4,0)
+ ;;=4^M77.9
+ ;;^UTILITY(U,$J,358.3,23298,2)
+ ;;=^5013319
+ ;;^UTILITY(U,$J,358.3,23299,0)
+ ;;=M71.50^^78^1005^2
+ ;;^UTILITY(U,$J,358.3,23299,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,23299,1,3,0)
+ ;;=3^Bursitis NEC, unspec site
+ ;;^UTILITY(U,$J,358.3,23299,1,4,0)
+ ;;=4^M71.50

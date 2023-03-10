@@ -1,5 +1,5 @@
 RCBEADJ ;WISC/RFJ-adjustment ;Jun 06, 2014@19:11:19
- ;;4.5;Accounts Receivable;**169,172,204,173,208,233,298,301,315,326,338**;Mar 20, 1995;Build 69
+ ;;4.5;Accounts Receivable;**169,172,204,173,208,233,298,301,315,326,338,371**;Mar 20, 1995;Build 29
  ;;Per VA Directive 6402, this routine should not be modified.
  Q
  ;
@@ -35,7 +35,7 @@ ADJUST(RCBETYPE,RCEDI) ;  create an adjustment
  ;
 ADJBILL(RCBETYPE,RCBILLDA,RCEDIWL) ;  adjust a bill
  ; RCEDIWL = ien of ERA entry if called from worklist
- N RCAMOUNT,RCBALANC,RCDATA7,RCLIST,RCONTADJ,RCTRANDA,TOTALCAL,TOTALSTO,I,X,Y
+ N RCAMOUNT,RCBALANC,RCDATA7,RCLIST,RCONTADJ,RCTRANDA,TOTALCAL,TOTALSTO,I,X,Y,RCFDA
  ;  lock the bill
  L +^PRCA(430,RCBILLDA):5 E  W !,"ANOTHER USER IS CURRENTLY WORKING WITH THIS BILL." Q
  ;
@@ -73,12 +73,13 @@ ADJBILL(RCBETYPE,RCBILLDA,RCEDIWL) ;  adjust a bill
  .   S Y=$$ASKFIX I Y'=1 W !,"  NOTE: You must fix the Balance Discrepancy before processing an adjustment!" S RCBILLDA=0 Q
  .   ;
  .   ;  fix it
- .   S $P(RCDATA7,"^",1)=+$P(RCBALANC,"^",1) ; principal
- .   S $P(RCDATA7,"^",2)=+$P(RCBALANC,"^",2) ; interest
- .   S $P(RCDATA7,"^",3)=+$P(RCBALANC,"^",3) ; admin
- .   S $P(RCDATA7,"^",4)=+$P(RCBALANC,"^",4) ; marshal fee
- .   S $P(RCDATA7,"^",5)=+$P(RCBALANC,"^",5) ; court cost
- .   S $P(^PRCA(430,RCBILLDA,7),"^",1,5)=$P(RCDATA7,"^",1,5)
+ .   ; PRCA*4.5*371 - Replace direct global sets in 7 node with FileMan calls so indexes get updated
+ .   S RCFDA(430,RCBILLDA_",",71)=+$P(RCBALANC,"^",1) ; principal
+ .   S RCFDA(430,RCBILLDA_",",72)=+$P(RCBALANC,"^",2) ; interest
+ .   S RCFDA(430,RCBILLDA_",",73)=+$P(RCBALANC,"^",3) ; admin
+ .   S RCFDA(430,RCBILLDA_",",74)=+$P(RCBALANC,"^",4) ; marshal fee
+ .   S RCFDA(430,RCBILLDA_",",75)=+$P(RCBALANC,"^",5) ; court cost
+ .   D FILE^DIE(,"RCFDA")
  .   ;
  .   W !,"  Balance Discrepancy FIXED!"
  ;
@@ -255,7 +256,6 @@ AMOUNT(RCBILLDA,RCBETYPE) ;  enter the adjustment amount for a bill
  I $G(DTOUT)!($G(DUOUT)) S Y=-1 I $G(GOTBILL) S RCDPGQ=1    ; account profile listman quit flag  *315
  Q $S(Y'="":Y,1:-1)
  ;
- ;
 ASKCM() ;  ask if the action is being performed due to the claims matching process  *315
  N DIR,DIQ2,DIRUT,DTOUT,DUOUT,X,Y
  S DIR(0)="YO",DIR("B")="NO"
@@ -263,6 +263,7 @@ ASKCM() ;  ask if the action is being performed due to the claims matching proce
  D ^DIR
  I $G(DTOUT)!($G(DUOUT)) S Y=-1 I $G(GOTBILL) S RCDPGQ=1    ; account profile listman quit flag  *315
  Q Y
+ ;
  ;
 THRDPRTY(RCBILLDA) ; check whether or not bill is THIRD PARTY
  N CAT

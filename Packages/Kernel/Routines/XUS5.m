@@ -1,5 +1,7 @@
-XUS5 ;SF-ISC/STAFF - RESUME LOGIC FOR CONTINUE ;07/15/2003  12:39
- ;;8.0;KERNEL;**313**;Jul 10, 1995
+XUS5 ;SF-ISC/STAFF - RESUME LOGIC FOR CONTINUE ;2/5/08  15:34
+ ;;8.0;KERNEL;**313,741**;Jul 10, 1995;Build 1
+ ;;;;Per VHA Directive 6402, this routine should not be modified.
+ ;
  S %=^XUTL("XQ",$J,"XQM"),XQSV=%_U_%_U_$S($D(^XUTL("XQO","P"_%,"^",%)):$P(^(%),U,2,99),1:^DIC(19,%,0))
  G JUMP^XQ72
  ;
@@ -55,6 +57,7 @@ XUDIE ; Check and see if need a DDS or a DIE call
  N J,XUDIE,DDSFILE,DIMSG
  S:+DIE DIE=^DIC(+DIE,0,"GL") S J=$S($E(DR)="[":$E(DR,2,$L(DR)-1),1:""),XUDIE=DIE_(+DA)_",0)"
  L +@XUDIE:2 I '$T W !,"Record in use by someone else." Q
+ I $G(^VA(200,DUZ,508))=1 D ^DIE G XUDIEX  ; P741 check for disability users
  I J]"",IOST["C-",$D(^DIST(.403,"B",J)) S DDSFILE=DIE D ^DDS G:'$D(DIMSG) XUDIEX
  K DIMSG D ^DIE
 XUDIEX ;

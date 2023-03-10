@@ -1,5 +1,6 @@
-SDM0 ;SF/GFT - MAKE APPOINTMENT ;1/5/16 12:26pm
- ;;5.3;Scheduling;**140,167,206,186,223,237,241,384,334,547,621,622,645,674,726**;Aug 13, 1993;Build 36
+SDM0 ;SF/GFT,ANU - MAKE APPOINTMENT ;1/5/16 12:26pm
+ ;;5.3;Scheduling;**140,167,206,186,223,237,241,384,334,547,621,622,645,674,726,796,797**;Aug 13, 1993;Build 8
+ ;;Per VHA Directive 6402, this routine should not be modified
  I $D(SDXXX) S SDOK=1 Q
  N SDSRTY,SDDATE,SDSDATE,SDDATE2,SDSRFU,SDDMAX,SDONCE
  ;Prompt for scheduling request type
@@ -13,8 +14,11 @@ M N SDHX,SDXF,SDXD
  ;Determine maximum days for scheduling
  S SDMAX(1)=$P($G(^SC(+SC,"SDP")),U,2) S:'SDMAX(1) SDMAX(1)=365
  S (SDMAX,SDDMAX)=$$FMADD^XLFDT(DT,SDMAX(1))
+ ; SD*5.3*796 - Anu - Remove prompt for PID and default to today's date
  ;Prompt for desired date
- Q:'$$DDATE(.SDDATE,SDSRTY,.SDMAX)
+ ;Q:'$$DDATE(.SDDATE,SDSRTY,.SDMAX)
+ S SDDATE=DT
+ ; SD*5.3*796 - Anu - Remove prompt - End
  ;If date and time, schedule appt. directly
  W ! I SDDATE#1 S SDSDATE=SDDATE,SDDATE=SDDATE\1 G ^SDM1
  S (X,Y)=SDDATE K SDHX

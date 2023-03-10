@@ -1,130 +1,132 @@
-IBDEI0JW ; ; 04-FEB-2020
- ;;3.0;IB ENCOUNTER FORM IMP/EXP;;FEB 04, 2020
+IBDEI0JW ; ; 01-FEB-2022
+ ;;3.0;IB ENCOUNTER FORM IMP/EXP;;FEB 01, 2022
  Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,999) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
- ;;^UTILITY(U,$J,358.3,8772,1,4,0)
- ;;=4^I20.0
- ;;^UTILITY(U,$J,358.3,8772,2)
- ;;=^5007076
- ;;^UTILITY(U,$J,358.3,8773,0)
- ;;=I20.9^^69^599^1
- ;;^UTILITY(U,$J,358.3,8773,1,0)
+ ;;^UTILITY(U,$J,358.3,8951,1,4,0)
+ ;;=4^R50.9
+ ;;^UTILITY(U,$J,358.3,8951,2)
+ ;;=^5019512
+ ;;^UTILITY(U,$J,358.3,8952,0)
+ ;;=R76.11^^39^403^1
+ ;;^UTILITY(U,$J,358.3,8952,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,8773,1,3,0)
- ;;=3^Angina Pectoris,Unspec
- ;;^UTILITY(U,$J,358.3,8773,1,4,0)
- ;;=4^I20.9
- ;;^UTILITY(U,$J,358.3,8773,2)
- ;;=^5007079
- ;;^UTILITY(U,$J,358.3,8774,0)
- ;;=I31.9^^69^599^16
- ;;^UTILITY(U,$J,358.3,8774,1,0)
+ ;;^UTILITY(U,$J,358.3,8952,1,3,0)
+ ;;=3^Abnormal Reaction to TB Test w/o Active TB
+ ;;^UTILITY(U,$J,358.3,8952,1,4,0)
+ ;;=4^R76.11
+ ;;^UTILITY(U,$J,358.3,8952,2)
+ ;;=^5019570
+ ;;^UTILITY(U,$J,358.3,8953,0)
+ ;;=Z21.^^39^403^33
+ ;;^UTILITY(U,$J,358.3,8953,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,8774,1,3,0)
- ;;=3^Pericardium Disease,Unspec
- ;;^UTILITY(U,$J,358.3,8774,1,4,0)
- ;;=4^I31.9
- ;;^UTILITY(U,$J,358.3,8774,2)
- ;;=^5007165
- ;;^UTILITY(U,$J,358.3,8775,0)
- ;;=I49.9^^69^599^2
- ;;^UTILITY(U,$J,358.3,8775,1,0)
+ ;;^UTILITY(U,$J,358.3,8953,1,3,0)
+ ;;=3^HIV Asymptomatic,Infection Status
+ ;;^UTILITY(U,$J,358.3,8953,1,4,0)
+ ;;=4^Z21.
+ ;;^UTILITY(U,$J,358.3,8953,2)
+ ;;=^5062777
+ ;;^UTILITY(U,$J,358.3,8954,0)
+ ;;=B37.0^^39^403^18
+ ;;^UTILITY(U,$J,358.3,8954,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,8775,1,3,0)
- ;;=3^Arrhythmia,Cardiac,Unspec
- ;;^UTILITY(U,$J,358.3,8775,1,4,0)
- ;;=4^I49.9
- ;;^UTILITY(U,$J,358.3,8775,2)
- ;;=^5007237
- ;;^UTILITY(U,$J,358.3,8776,0)
- ;;=I13.0^^69^599^9
- ;;^UTILITY(U,$J,358.3,8776,1,0)
+ ;;^UTILITY(U,$J,358.3,8954,1,3,0)
+ ;;=3^Candidal Stomatitis (Oral Thrush)
+ ;;^UTILITY(U,$J,358.3,8954,1,4,0)
+ ;;=4^B37.0
+ ;;^UTILITY(U,$J,358.3,8954,2)
+ ;;=^5000612
+ ;;^UTILITY(U,$J,358.3,8955,0)
+ ;;=B97.10^^39^403^25
+ ;;^UTILITY(U,$J,358.3,8955,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,8776,1,3,0)
- ;;=3^HTN Hrt Disease w/ Hrt Failure and CKD,Stage 1-4
- ;;^UTILITY(U,$J,358.3,8776,1,4,0)
- ;;=4^I13.0
- ;;^UTILITY(U,$J,358.3,8776,2)
- ;;=^5007067
- ;;^UTILITY(U,$J,358.3,8777,0)
- ;;=I13.2^^69^599^10
- ;;^UTILITY(U,$J,358.3,8777,1,0)
+ ;;^UTILITY(U,$J,358.3,8955,1,3,0)
+ ;;=3^Enterovirus,Unspec,as Cause of Disease
+ ;;^UTILITY(U,$J,358.3,8955,1,4,0)
+ ;;=4^B97.10
+ ;;^UTILITY(U,$J,358.3,8955,2)
+ ;;=^5000861
+ ;;^UTILITY(U,$J,358.3,8956,0)
+ ;;=R50.82^^39^403^27
+ ;;^UTILITY(U,$J,358.3,8956,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,8777,1,3,0)
- ;;=3^HTN Hrt Disease w/ Hrt Failure and CKD, Stage 5 or ESRD
- ;;^UTILITY(U,$J,358.3,8777,1,4,0)
- ;;=4^I13.2
- ;;^UTILITY(U,$J,358.3,8777,2)
- ;;=^5007070
- ;;^UTILITY(U,$J,358.3,8778,0)
- ;;=I13.10^^69^599^11
- ;;^UTILITY(U,$J,358.3,8778,1,0)
+ ;;^UTILITY(U,$J,358.3,8956,1,3,0)
+ ;;=3^Fever,Postprocedural
+ ;;^UTILITY(U,$J,358.3,8956,1,4,0)
+ ;;=4^R50.82
+ ;;^UTILITY(U,$J,358.3,8956,2)
+ ;;=^5019509
+ ;;^UTILITY(U,$J,358.3,8957,0)
+ ;;=R50.83^^39^403^29
+ ;;^UTILITY(U,$J,358.3,8957,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,8778,1,3,0)
- ;;=3^HTN Hrt Disease w/o Hrt Failure and CKD, Stage 1-4
- ;;^UTILITY(U,$J,358.3,8778,1,4,0)
- ;;=4^I13.10
- ;;^UTILITY(U,$J,358.3,8778,2)
- ;;=^5007068
- ;;^UTILITY(U,$J,358.3,8779,0)
- ;;=I13.11^^69^599^12
- ;;^UTILITY(U,$J,358.3,8779,1,0)
+ ;;^UTILITY(U,$J,358.3,8957,1,3,0)
+ ;;=3^Fever,Postvaccination
+ ;;^UTILITY(U,$J,358.3,8957,1,4,0)
+ ;;=4^R50.83
+ ;;^UTILITY(U,$J,358.3,8957,2)
+ ;;=^5019510
+ ;;^UTILITY(U,$J,358.3,8958,0)
+ ;;=R50.84^^39^403^28
+ ;;^UTILITY(U,$J,358.3,8958,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,8779,1,3,0)
- ;;=3^HTN Hrt Disease w/o Hrt Failure and CKD,Stage 5 or ESRD
- ;;^UTILITY(U,$J,358.3,8779,1,4,0)
- ;;=4^I13.11
- ;;^UTILITY(U,$J,358.3,8779,2)
- ;;=^5007069
- ;;^UTILITY(U,$J,358.3,8780,0)
- ;;=I50.1^^69^599^15
- ;;^UTILITY(U,$J,358.3,8780,1,0)
+ ;;^UTILITY(U,$J,358.3,8958,1,3,0)
+ ;;=3^Fever,Posttransfusion
+ ;;^UTILITY(U,$J,358.3,8958,1,4,0)
+ ;;=4^R50.84
+ ;;^UTILITY(U,$J,358.3,8958,2)
+ ;;=^5019511
+ ;;^UTILITY(U,$J,358.3,8959,0)
+ ;;=B02.23^^39^403^74
+ ;;^UTILITY(U,$J,358.3,8959,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,8780,1,3,0)
- ;;=3^Left Ventricular Failure
- ;;^UTILITY(U,$J,358.3,8780,1,4,0)
- ;;=4^I50.1
- ;;^UTILITY(U,$J,358.3,8780,2)
- ;;=^5007238
- ;;^UTILITY(U,$J,358.3,8781,0)
- ;;=E21.3^^69^600^17
- ;;^UTILITY(U,$J,358.3,8781,1,0)
+ ;;^UTILITY(U,$J,358.3,8959,1,3,0)
+ ;;=3^Postherpetic Polyneuropathy
+ ;;^UTILITY(U,$J,358.3,8959,1,4,0)
+ ;;=4^B02.23
+ ;;^UTILITY(U,$J,358.3,8959,2)
+ ;;=^266550
+ ;;^UTILITY(U,$J,358.3,8960,0)
+ ;;=B02.22^^39^403^75
+ ;;^UTILITY(U,$J,358.3,8960,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,8781,1,3,0)
- ;;=3^Hyperparathyroidism,Unspec
- ;;^UTILITY(U,$J,358.3,8781,1,4,0)
- ;;=4^E21.3
- ;;^UTILITY(U,$J,358.3,8781,2)
- ;;=^331438
- ;;^UTILITY(U,$J,358.3,8782,0)
- ;;=E78.5^^69^600^16
- ;;^UTILITY(U,$J,358.3,8782,1,0)
+ ;;^UTILITY(U,$J,358.3,8960,1,3,0)
+ ;;=3^Postherpetic Trigeminal Neuralgia
+ ;;^UTILITY(U,$J,358.3,8960,1,4,0)
+ ;;=4^B02.22
+ ;;^UTILITY(U,$J,358.3,8960,2)
+ ;;=^266546
+ ;;^UTILITY(U,$J,358.3,8961,0)
+ ;;=J03.91^^39^403^87
+ ;;^UTILITY(U,$J,358.3,8961,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,8782,1,3,0)
- ;;=3^Hyperlipidemia,Unspec
- ;;^UTILITY(U,$J,358.3,8782,1,4,0)
- ;;=4^E78.5
- ;;^UTILITY(U,$J,358.3,8782,2)
- ;;=^5002969
- ;;^UTILITY(U,$J,358.3,8783,0)
- ;;=M10.30^^69^600^11
- ;;^UTILITY(U,$J,358.3,8783,1,0)
+ ;;^UTILITY(U,$J,358.3,8961,1,3,0)
+ ;;=3^Tonsillitis,Acute Recurrent,Unspec
+ ;;^UTILITY(U,$J,358.3,8961,1,4,0)
+ ;;=4^J03.91
+ ;;^UTILITY(U,$J,358.3,8961,2)
+ ;;=^5008136
+ ;;^UTILITY(U,$J,358.3,8962,0)
+ ;;=U07.1^^39^403^16
+ ;;^UTILITY(U,$J,358.3,8962,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,8783,1,3,0)
- ;;=3^Gout d/t Renal Impairment,Unspec Site
- ;;^UTILITY(U,$J,358.3,8783,1,4,0)
- ;;=4^M10.30
- ;;^UTILITY(U,$J,358.3,8783,2)
- ;;=^5010356
- ;;^UTILITY(U,$J,358.3,8784,0)
- ;;=E66.9^^69^600^33
- ;;^UTILITY(U,$J,358.3,8784,1,0)
+ ;;^UTILITY(U,$J,358.3,8962,1,3,0)
+ ;;=3^COVID-19
+ ;;^UTILITY(U,$J,358.3,8962,1,4,0)
+ ;;=4^U07.1
+ ;;^UTILITY(U,$J,358.3,8962,2)
+ ;;=^5159070
+ ;;^UTILITY(U,$J,358.3,8963,0)
+ ;;=A84.81^^39^403^76
+ ;;^UTILITY(U,$J,358.3,8963,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,8784,1,3,0)
- ;;=3^Obesity,Unspec
- ;;^UTILITY(U,$J,358.3,8784,1,4,0)
- ;;=4^E66.9
- ;;^UTILITY(U,$J,358.3,8784,2)
- ;;=^5002832
- ;;^UTILITY(U,$J,358.3,8785,0)
- ;;=E66.01^^69^600^32
+ ;;^UTILITY(U,$J,358.3,8963,1,3,0)
+ ;;=3^Powassan Virus Disease
+ ;;^UTILITY(U,$J,358.3,8963,1,4,0)
+ ;;=4^A84.81
+ ;;^UTILITY(U,$J,358.3,8963,2)
+ ;;=^5159071
+ ;;^UTILITY(U,$J,358.3,8964,0)
+ ;;=A84.89^^39^403^85
+ ;;^UTILITY(U,$J,358.3,8964,1,0)
+ ;;=^358.31IA^4^2

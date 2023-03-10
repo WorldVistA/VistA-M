@@ -1,4 +1,4 @@
-DGPTXX8 ; COMPILED XREF FOR FILE #45 ; 06/24/20
+DGPTXX8 ; COMPILED XREF FOR FILE #45 ; 02/01/23
  ; 
  S DIKZK=1
  S DIKZ(0)=$G(^DGPT(DA,0))
@@ -237,7 +237,44 @@ CR1 S DIXR=401
  I $G(X(1))]"",$G(X(2))]"",$G(X(3))]"",$G(X(4))]"" D
  . K X1,X2 M X1=X,X2=X
  . D SPTFDD^DGPTDDCR(.X,.DA,"PDX")
-CR2 S DIXR=1176
+CR2 S DIXR=833
+ K X
+ S DIKZ(0)=$G(^DGPT(DA,0))
+ S X(1)=$P(DIKZ(0),U,1)
+ S X(2)=$P(DIKZ(0),U,11)
+ S DIKZ(70)=$G(^DGPT(DA,70))
+ S X(3)=$P(DIKZ(70),U,10)
+ S X(4)=$P(DIKZ(70),U,16)
+ S X(5)=$P(DIKZ(70),U,17)
+ S X(6)=$P(DIKZ(70),U,18)
+ S X(7)=$P(DIKZ(70),U,19)
+ S X(8)=$P(DIKZ(70),U,20)
+ S X(9)=$P(DIKZ(70),U,21)
+ S X(10)=$P(DIKZ(70),U,22)
+ S X(11)=$P(DIKZ(70),U,23)
+ S X(12)=$P(DIKZ(70),U,24)
+ S DIKZ(71)=$G(^DGPT(DA,71))
+ S X(13)=$P(DIKZ(71),U,1)
+ S X(14)=$P(DIKZ(71),U,2)
+ S X(15)=$P(DIKZ(71),U,3)
+ S X(16)=$P(DIKZ(71),U,4)
+ S X(17)=$P(DIKZ(71),U,5)
+ S X(18)=$P(DIKZ(71),U,6)
+ S X(19)=$P(DIKZ(71),U,7)
+ S X(20)=$P(DIKZ(71),U,8)
+ S X(21)=$P(DIKZ(71),U,9)
+ S X(22)=$P(DIKZ(71),U,10)
+ S X(23)=$P(DIKZ(71),U,11)
+ S X(24)=$P(DIKZ(71),U,12)
+ S X(25)=$P(DIKZ(71),U,13)
+ S X(26)=$P(DIKZ(71),U,14)
+ S X(27)=$P(DIKZ(71),U,15)
+ S X(28)=$P(DIKZ(70),U,11)
+ S X=$G(X(1))
+ D
+ . K X1,X2 M X1=X,X2=X
+ . D NOTIFY^DGPTDD(.X1,.X2,.DA,45,"DISCHARGE","SET")
+CR3 S DIXR=1176
  K X
  S DIKZ(0)=$G(^DGPT(DA,0))
  S X(1)=$P(DIKZ(0),U,1)
@@ -250,7 +287,7 @@ CR2 S DIXR=1176
  I $G(X(1))]"",$G(X(2))]"",$G(X(3))]"",$G(X(4))]"" D
  . K X1,X2 M X1=X,X2=X
  . D SPTFDD^DGPTDDCR(.X,.DA,"DXLS")
-CR3 S DIXR=1187
+CR4 S DIXR=1187
  K X
  S DIKZ(0)=$G(^DGPT(DA,0))
  S X(1)=$P(DIKZ(0),U,1)
@@ -263,7 +300,7 @@ CR3 S DIXR=1187
  I $G(X(1))]"",$G(X(2))]"",$G(X(3))]"",$G(X(4))]"" D
  . K X1,X2 M X1=X,X2=X
  . D SPTFDD^DGPTDDCR(.X,.DA,"D SD1")
-CR4 S DIXR=1188
+CR5 S DIXR=1188
  K X
  S DIKZ(0)=$G(^DGPT(DA,0))
  S X(1)=$P(DIKZ(0),U,1)
@@ -277,7 +314,7 @@ CR4 S DIXR=1188
  I $G(X(1))]"",$G(X(2))]"",$G(X(3))]"",$G(X(4))]"" D
  . K X1,X2 M X1=X,X2=X
  . D SPTFDD^DGPTDDCR(.X,.DA,"D SD10")
-CR5 S DIXR=1189
+CR6 S DIXR=1189
  K X
  S DIKZ(0)=$G(^DGPT(DA,0))
  S X(1)=$P(DIKZ(0),U,1)
@@ -291,7 +328,7 @@ CR5 S DIXR=1189
  I $G(X(1))]"",$G(X(2))]"",$G(X(3))]"",$G(X(4))]"" D
  . K X1,X2 M X1=X,X2=X
  . D SPTFDD^DGPTDDCR(.X,.DA,"D SD11")
-CR6 S DIXR=1190
+CR7 S DIXR=1190
  K X
  S DIKZ(0)=$G(^DGPT(DA,0))
  S X(1)=$P(DIKZ(0),U,1)
@@ -305,7 +342,7 @@ CR6 S DIXR=1190
  I $G(X(1))]"",$G(X(2))]"",$G(X(3))]"",$G(X(4))]"" D
  . K X1,X2 M X1=X,X2=X
  . D SPTFDD^DGPTDDCR(.X,.DA,"D SD12")
-CR7 S DIXR=1191
+CR8 S DIXR=1191
  K X
  S DIKZ(0)=$G(^DGPT(DA,0))
  S X(1)=$P(DIKZ(0),U,1)
@@ -319,7 +356,7 @@ CR7 S DIXR=1191
  I $G(X(1))]"",$G(X(2))]"",$G(X(3))]"",$G(X(4))]"" D
  . K X1,X2 M X1=X,X2=X
  . D SPTFDD^DGPTDDCR(.X,.DA,"D SD13")
-CR8 S DIXR=1192
+CR9 S DIXR=1192
  K X
  S DIKZ(0)=$G(^DGPT(DA,0))
  S X(1)=$P(DIKZ(0),U,1)
@@ -332,7 +369,7 @@ CR8 S DIXR=1192
  I $G(X(1))]"",$G(X(2))]"",$G(X(3))]"",$G(X(4))]"" D
  . K X1,X2 M X1=X,X2=X
  . D SPTFDD^DGPTDDCR(.X,.DA,"D SD2")
-CR9 S DIXR=1193
+CR10 S DIXR=1193
  K X
  S DIKZ(0)=$G(^DGPT(DA,0))
  S X(1)=$P(DIKZ(0),U,1)
@@ -345,7 +382,7 @@ CR9 S DIXR=1193
  I $G(X(1))]"",$G(X(2))]"",$G(X(3))]"",$G(X(4))]"" D
  . K X1,X2 M X1=X,X2=X
  . D SPTFDD^DGPTDDCR(.X,.DA,"D SD3")
-CR10 S DIXR=1194
+CR11 S DIXR=1194
  K X
  S DIKZ(0)=$G(^DGPT(DA,0))
  S X(1)=$P(DIKZ(0),U,1)
@@ -358,7 +395,7 @@ CR10 S DIXR=1194
  I $G(X(1))]"",$G(X(2))]"",$G(X(3))]"",$G(X(4))]"" D
  . K X1,X2 M X1=X,X2=X
  . D SPTFDD^DGPTDDCR(.X,.DA,"D SD4")
-CR11 S DIXR=1195
+CR12 S DIXR=1195
  K X
  S DIKZ(0)=$G(^DGPT(DA,0))
  S X(1)=$P(DIKZ(0),U,1)
@@ -371,7 +408,7 @@ CR11 S DIXR=1195
  I $G(X(1))]"",$G(X(2))]"",$G(X(3))]"",$G(X(4))]"" D
  . K X1,X2 M X1=X,X2=X
  . D SPTFDD^DGPTDDCR(.X,.DA,"D SD5")
-CR12 S DIXR=1196
+CR13 S DIXR=1196
  K X
  S DIKZ(0)=$G(^DGPT(DA,0))
  S X(1)=$P(DIKZ(0),U,1)
@@ -384,7 +421,7 @@ CR12 S DIXR=1196
  I $G(X(1))]"",$G(X(2))]"",$G(X(3))]"",$G(X(4))]"" D
  . K X1,X2 M X1=X,X2=X
  . D SPTFDD^DGPTDDCR(.X,.DA,"D SD6")
-CR13 S DIXR=1197
+CR14 S DIXR=1197
  K X
  S DIKZ(0)=$G(^DGPT(DA,0))
  S X(1)=$P(DIKZ(0),U,1)
@@ -397,7 +434,7 @@ CR13 S DIXR=1197
  I $G(X(1))]"",$G(X(2))]"",$G(X(3))]"",$G(X(4))]"" D
  . K X1,X2 M X1=X,X2=X
  . D SPTFDD^DGPTDDCR(.X,.DA,"D SD7")
-CR14 S DIXR=1198
+CR15 S DIXR=1198
  K X
  S DIKZ(0)=$G(^DGPT(DA,0))
  S X(1)=$P(DIKZ(0),U,1)
@@ -410,7 +447,7 @@ CR14 S DIXR=1198
  I $G(X(1))]"",$G(X(2))]"",$G(X(3))]"",$G(X(4))]"" D
  . K X1,X2 M X1=X,X2=X
  . D SPTFDD^DGPTDDCR(.X,.DA,"D SD8")
-CR15 S DIXR=1199
+CR16 S DIXR=1199
  K X
  S DIKZ(0)=$G(^DGPT(DA,0))
  S X(1)=$P(DIKZ(0),U,1)
@@ -423,7 +460,7 @@ CR15 S DIXR=1199
  I $G(X(1))]"",$G(X(2))]"",$G(X(3))]"",$G(X(4))]"" D
  . K X1,X2 M X1=X,X2=X
  . D SPTFDD^DGPTDDCR(.X,.DA,"D SD9")
-CR16 S DIXR=1239
+CR17 S DIXR=1239
  K X
  S DIKZ(0)=$G(^DGPT(DA,0))
  S X(1)=$P(DIKZ(0),U,1)
@@ -437,7 +474,7 @@ CR16 S DIXR=1239
  I $G(X(1))]"",$G(X(2))]"",$G(X(3))]"",$G(X(4))]"" D
  . K X1,X2 M X1=X,X2=X
  . D SPTFDD^DGPTDDCR(.X,.DA,"D SD14")
-CR17 S DIXR=1240
+CR18 S DIXR=1240
  K X
  S DIKZ(0)=$G(^DGPT(DA,0))
  S X(1)=$P(DIKZ(0),U,1)
@@ -451,7 +488,7 @@ CR17 S DIXR=1240
  I $G(X(1))]"",$G(X(2))]"",$G(X(3))]"",$G(X(4))]"" D
  . K X1,X2 M X1=X,X2=X
  . D SPTFDD^DGPTDDCR(.X,.DA,"D SD15")
-CR18 S DIXR=1241
+CR19 S DIXR=1241
  K X
  S DIKZ(0)=$G(^DGPT(DA,0))
  S X(1)=$P(DIKZ(0),U,1)
@@ -465,7 +502,7 @@ CR18 S DIXR=1241
  I $G(X(1))]"",$G(X(2))]"",$G(X(3))]"",$G(X(4))]"" D
  . K X1,X2 M X1=X,X2=X
  . D SPTFDD^DGPTDDCR(.X,.DA,"D SD16")
-CR19 S DIXR=1242
+CR20 S DIXR=1242
  K X
  S DIKZ(0)=$G(^DGPT(DA,0))
  S X(1)=$P(DIKZ(0),U,1)
@@ -479,7 +516,7 @@ CR19 S DIXR=1242
  I $G(X(1))]"",$G(X(2))]"",$G(X(3))]"",$G(X(4))]"" D
  . K X1,X2 M X1=X,X2=X
  . D SPTFDD^DGPTDDCR(.X,.DA,"D SD17")
-CR20 S DIXR=1243
+CR21 S DIXR=1243
  K X
  S DIKZ(0)=$G(^DGPT(DA,0))
  S X(1)=$P(DIKZ(0),U,1)
@@ -493,7 +530,7 @@ CR20 S DIXR=1243
  I $G(X(1))]"",$G(X(2))]"",$G(X(3))]"",$G(X(4))]"" D
  . K X1,X2 M X1=X,X2=X
  . D SPTFDD^DGPTDDCR(.X,.DA,"D SD18")
-CR21 S DIXR=1244
+CR22 S DIXR=1244
  K X
  S DIKZ(0)=$G(^DGPT(DA,0))
  S X(1)=$P(DIKZ(0),U,1)
@@ -507,7 +544,7 @@ CR21 S DIXR=1244
  I $G(X(1))]"",$G(X(2))]"",$G(X(3))]"",$G(X(4))]"" D
  . K X1,X2 M X1=X,X2=X
  . D SPTFDD^DGPTDDCR(.X,.DA,"D SD19")
-CR22 S DIXR=1245
+CR23 S DIXR=1245
  K X
  S DIKZ(0)=$G(^DGPT(DA,0))
  S X(1)=$P(DIKZ(0),U,1)
@@ -521,7 +558,7 @@ CR22 S DIXR=1245
  I $G(X(1))]"",$G(X(2))]"",$G(X(3))]"",$G(X(4))]"" D
  . K X1,X2 M X1=X,X2=X
  . D SPTFDD^DGPTDDCR(.X,.DA,"D SD20")
-CR23 S DIXR=1246
+CR24 S DIXR=1246
  K X
  S DIKZ(0)=$G(^DGPT(DA,0))
  S X(1)=$P(DIKZ(0),U,1)
@@ -532,41 +569,4 @@ CR23 S DIXR=1246
  S DIKZ(70)=$G(^DGPT(DA,70))
  S X(5)=$P(DIKZ(70),U,1)
  S X=$G(X(1))
- I $G(X(1))]"",$G(X(2))]"",$G(X(3))]"",$G(X(4))]"" D
- . K X1,X2 M X1=X,X2=X
- . D SPTFDD^DGPTDDCR(.X,.DA,"D SD21")
-CR24 S DIXR=1247
- K X
- S DIKZ(0)=$G(^DGPT(DA,0))
- S X(1)=$P(DIKZ(0),U,1)
- S X(2)=$P(DIKZ(0),U,2)
- S X(3)=$P(DIKZ(0),U,11)
- S DIKZ(71)=$G(^DGPT(DA,71))
- S X(4)=$P(DIKZ(71),U,13)
- S DIKZ(70)=$G(^DGPT(DA,70))
- S X(5)=$P(DIKZ(70),U,1)
- S X=$G(X(1))
- I $G(X(1))]"",$G(X(2))]"",$G(X(3))]"",$G(X(4))]"" D
- . K X1,X2 M X1=X,X2=X
- . D SPTFDD^DGPTDDCR(.X,.DA,"D SD22")
-CR25 S DIXR=1248
- K X
- S DIKZ(0)=$G(^DGPT(DA,0))
- S X(1)=$P(DIKZ(0),U,1)
- S X(2)=$P(DIKZ(0),U,2)
- S X(3)=$P(DIKZ(0),U,11)
- S DIKZ(71)=$G(^DGPT(DA,71))
- S X(4)=$P(DIKZ(71),U,14)
- S DIKZ(70)=$G(^DGPT(DA,70))
- S X(5)=$P(DIKZ(70),U,1)
- S X=$G(X(1))
- I $G(X(1))]"",$G(X(2))]"",$G(X(3))]"",$G(X(4))]"" D
- . K X1,X2 M X1=X,X2=X
- . D SPTFDD^DGPTDDCR(.X,.DA,"D SD23")
-CR26 S DIXR=1249
- K X
- S DIKZ(0)=$G(^DGPT(DA,0))
- S X(1)=$P(DIKZ(0),U,1)
- S X(2)=$P(DIKZ(0),U,2)
- S X(3)=$P(DIKZ(0),U,11)
 END G ^DGPTXX9

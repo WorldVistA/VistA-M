@@ -1,130 +1,118 @@
-IBDEI0Q2 ; ; 04-FEB-2020
- ;;3.0;IB ENCOUNTER FORM IMP/EXP;;FEB 04, 2020
+IBDEI0Q2 ; ; 01-FEB-2022
+ ;;3.0;IB ENCOUNTER FORM IMP/EXP;;FEB 01, 2022
  Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,999) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
- ;;^UTILITY(U,$J,358.3,11621,1,4,0)
- ;;=4^E11.3512
- ;;^UTILITY(U,$J,358.3,11621,2)
- ;;=^5138356
- ;;^UTILITY(U,$J,358.3,11622,0)
- ;;=E11.3591^^77^741^11
- ;;^UTILITY(U,$J,358.3,11622,1,0)
+ ;;^UTILITY(U,$J,358.3,11716,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,11622,1,3,0)
- ;;=3^DM Type 2 w/ PDR w/o Macular Edema,Right Eye
- ;;^UTILITY(U,$J,358.3,11622,1,4,0)
- ;;=4^E11.3591
- ;;^UTILITY(U,$J,358.3,11622,2)
- ;;=^5138375
- ;;^UTILITY(U,$J,358.3,11623,0)
- ;;=E11.3592^^77^741^19
- ;;^UTILITY(U,$J,358.3,11623,1,0)
+ ;;^UTILITY(U,$J,358.3,11716,1,3,0)
+ ;;=3^Rapidly progr neph synd w/ focal & seg glomerular lesions
+ ;;^UTILITY(U,$J,358.3,11716,1,4,0)
+ ;;=4^N01.1
+ ;;^UTILITY(U,$J,358.3,11716,2)
+ ;;=^5015502
+ ;;^UTILITY(U,$J,358.3,11717,0)
+ ;;=N01.2^^46^573^66
+ ;;^UTILITY(U,$J,358.3,11717,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,11623,1,3,0)
- ;;=3^DM Type 2 w/ PDR w/o Macular Edema,Left Eye
- ;;^UTILITY(U,$J,358.3,11623,1,4,0)
- ;;=4^E11.3592
- ;;^UTILITY(U,$J,358.3,11623,2)
- ;;=^5138376
- ;;^UTILITY(U,$J,358.3,11624,0)
- ;;=H35.81^^77^741^3
- ;;^UTILITY(U,$J,358.3,11624,1,0)
+ ;;^UTILITY(U,$J,358.3,11717,1,3,0)
+ ;;=3^Rapidly progr neph synd w/ diffuse membranous glomrlneph
+ ;;^UTILITY(U,$J,358.3,11717,1,4,0)
+ ;;=4^N01.2
+ ;;^UTILITY(U,$J,358.3,11717,2)
+ ;;=^5015503
+ ;;^UTILITY(U,$J,358.3,11718,0)
+ ;;=N01.3^^46^573^64
+ ;;^UTILITY(U,$J,358.3,11718,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,11624,1,3,0)
- ;;=3^Retinal Edema/CME Other Etiology
- ;;^UTILITY(U,$J,358.3,11624,1,4,0)
- ;;=4^H35.81
- ;;^UTILITY(U,$J,358.3,11624,2)
- ;;=^5005715
- ;;^UTILITY(U,$J,358.3,11625,0)
- ;;=99201^^78^742^1
- ;;^UTILITY(U,$J,358.3,11625,1,0)
- ;;=^358.31IA^2^2
- ;;^UTILITY(U,$J,358.3,11625,1,1,0)
- ;;=1^Problem Focus
- ;;^UTILITY(U,$J,358.3,11625,1,2,0)
- ;;=2^99201
- ;;^UTILITY(U,$J,358.3,11626,0)
- ;;=99202^^78^742^2
- ;;^UTILITY(U,$J,358.3,11626,1,0)
- ;;=^358.31IA^2^2
- ;;^UTILITY(U,$J,358.3,11626,1,1,0)
- ;;=1^Expanded Problem Focus
- ;;^UTILITY(U,$J,358.3,11626,1,2,0)
- ;;=2^99202
- ;;^UTILITY(U,$J,358.3,11627,0)
- ;;=99203^^78^742^3
- ;;^UTILITY(U,$J,358.3,11627,1,0)
- ;;=^358.31IA^2^2
- ;;^UTILITY(U,$J,358.3,11627,1,1,0)
- ;;=1^Detailed
- ;;^UTILITY(U,$J,358.3,11627,1,2,0)
- ;;=2^99203
- ;;^UTILITY(U,$J,358.3,11628,0)
- ;;=99204^^78^742^4
- ;;^UTILITY(U,$J,358.3,11628,1,0)
- ;;=^358.31IA^2^2
- ;;^UTILITY(U,$J,358.3,11628,1,1,0)
- ;;=1^Comprehensive, Moderate
- ;;^UTILITY(U,$J,358.3,11628,1,2,0)
- ;;=2^99204
- ;;^UTILITY(U,$J,358.3,11629,0)
- ;;=99205^^78^742^5
- ;;^UTILITY(U,$J,358.3,11629,1,0)
- ;;=^358.31IA^2^2
- ;;^UTILITY(U,$J,358.3,11629,1,1,0)
- ;;=1^Comprehensive, High
- ;;^UTILITY(U,$J,358.3,11629,1,2,0)
- ;;=2^99205
- ;;^UTILITY(U,$J,358.3,11630,0)
- ;;=99211^^78^743^1
- ;;^UTILITY(U,$J,358.3,11630,1,0)
- ;;=^358.31IA^2^2
- ;;^UTILITY(U,$J,358.3,11630,1,1,0)
- ;;=1^Brief (no MD seen)
- ;;^UTILITY(U,$J,358.3,11630,1,2,0)
- ;;=2^99211
- ;;^UTILITY(U,$J,358.3,11631,0)
- ;;=99212^^78^743^2
- ;;^UTILITY(U,$J,358.3,11631,1,0)
- ;;=^358.31IA^2^2
- ;;^UTILITY(U,$J,358.3,11631,1,1,0)
- ;;=1^Problem Focused
- ;;^UTILITY(U,$J,358.3,11631,1,2,0)
- ;;=2^99212
- ;;^UTILITY(U,$J,358.3,11632,0)
- ;;=99213^^78^743^3
- ;;^UTILITY(U,$J,358.3,11632,1,0)
- ;;=^358.31IA^2^2
- ;;^UTILITY(U,$J,358.3,11632,1,1,0)
- ;;=1^Expanded Problem Focus
- ;;^UTILITY(U,$J,358.3,11632,1,2,0)
- ;;=2^99213
- ;;^UTILITY(U,$J,358.3,11633,0)
- ;;=99214^^78^743^4
- ;;^UTILITY(U,$J,358.3,11633,1,0)
- ;;=^358.31IA^2^2
- ;;^UTILITY(U,$J,358.3,11633,1,1,0)
- ;;=1^Detailed
- ;;^UTILITY(U,$J,358.3,11633,1,2,0)
- ;;=2^99214
- ;;^UTILITY(U,$J,358.3,11634,0)
- ;;=99215^^78^743^5
- ;;^UTILITY(U,$J,358.3,11634,1,0)
- ;;=^358.31IA^2^2
- ;;^UTILITY(U,$J,358.3,11634,1,1,0)
- ;;=1^Comprehensive
- ;;^UTILITY(U,$J,358.3,11634,1,2,0)
- ;;=2^99215
- ;;^UTILITY(U,$J,358.3,11635,0)
- ;;=99024^^78^743^6
- ;;^UTILITY(U,$J,358.3,11635,1,0)
- ;;=^358.31IA^2^2
- ;;^UTILITY(U,$J,358.3,11635,1,1,0)
- ;;=1^Post Op visit in Global
- ;;^UTILITY(U,$J,358.3,11635,1,2,0)
- ;;=2^99024
- ;;^UTILITY(U,$J,358.3,11636,0)
- ;;=99241^^78^744^1
- ;;^UTILITY(U,$J,358.3,11636,1,0)
- ;;=^358.31IA^2^2
+ ;;^UTILITY(U,$J,358.3,11718,1,3,0)
+ ;;=3^Rapidly progr neph synd w/ diffus mesangial prolif glomrlneph
+ ;;^UTILITY(U,$J,358.3,11718,1,4,0)
+ ;;=4^N01.3
+ ;;^UTILITY(U,$J,358.3,11718,2)
+ ;;=^5015504
+ ;;^UTILITY(U,$J,358.3,11719,0)
+ ;;=N01.4^^46^573^63
+ ;;^UTILITY(U,$J,358.3,11719,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,11719,1,3,0)
+ ;;=3^Rapidly progr neph synd w/ diffus endocaplry prolif glomrlneph
+ ;;^UTILITY(U,$J,358.3,11719,1,4,0)
+ ;;=4^N01.4
+ ;;^UTILITY(U,$J,358.3,11719,2)
+ ;;=^5015505
+ ;;^UTILITY(U,$J,358.3,11720,0)
+ ;;=N01.5^^46^573^67
+ ;;^UTILITY(U,$J,358.3,11720,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,11720,1,3,0)
+ ;;=3^Rapidly progr neph synd w/ diffuse mesangiocap glomrlneph
+ ;;^UTILITY(U,$J,358.3,11720,1,4,0)
+ ;;=4^N01.5
+ ;;^UTILITY(U,$J,358.3,11720,2)
+ ;;=^5015506
+ ;;^UTILITY(U,$J,358.3,11721,0)
+ ;;=N01.6^^46^573^62
+ ;;^UTILITY(U,$J,358.3,11721,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,11721,1,3,0)
+ ;;=3^Rapidly progr neph synd w/ dense deposit disease
+ ;;^UTILITY(U,$J,358.3,11721,1,4,0)
+ ;;=4^N01.6
+ ;;^UTILITY(U,$J,358.3,11721,2)
+ ;;=^5015507
+ ;;^UTILITY(U,$J,358.3,11722,0)
+ ;;=N01.7^^46^573^65
+ ;;^UTILITY(U,$J,358.3,11722,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,11722,1,3,0)
+ ;;=3^Rapidly progr neph synd w/ diffuse crescentic glomrlneph
+ ;;^UTILITY(U,$J,358.3,11722,1,4,0)
+ ;;=4^N01.7
+ ;;^UTILITY(U,$J,358.3,11722,2)
+ ;;=^5015508
+ ;;^UTILITY(U,$J,358.3,11723,0)
+ ;;=N01.8^^46^573^70
+ ;;^UTILITY(U,$J,358.3,11723,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,11723,1,3,0)
+ ;;=3^Rapidly progr neph synd w/ oth morphologic changes
+ ;;^UTILITY(U,$J,358.3,11723,1,4,0)
+ ;;=4^N01.8
+ ;;^UTILITY(U,$J,358.3,11723,2)
+ ;;=^5015509
+ ;;^UTILITY(U,$J,358.3,11724,0)
+ ;;=N01.9^^46^573^71
+ ;;^UTILITY(U,$J,358.3,11724,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,11724,1,3,0)
+ ;;=3^Rapidly progr neph synd w/ unsp morphologic changes
+ ;;^UTILITY(U,$J,358.3,11724,1,4,0)
+ ;;=4^N01.9
+ ;;^UTILITY(U,$J,358.3,11724,2)
+ ;;=^5015510
+ ;;^UTILITY(U,$J,358.3,11725,0)
+ ;;=N02.0^^46^573^79
+ ;;^UTILITY(U,$J,358.3,11725,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,11725,1,3,0)
+ ;;=3^Recurrent & perst hematur w/ minor glomerular abnlt
+ ;;^UTILITY(U,$J,358.3,11725,1,4,0)
+ ;;=4^N02.0
+ ;;^UTILITY(U,$J,358.3,11725,2)
+ ;;=^5015511
+ ;;^UTILITY(U,$J,358.3,11726,0)
+ ;;=N02.1^^46^573^78
+ ;;^UTILITY(U,$J,358.3,11726,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,11726,1,3,0)
+ ;;=3^Recurrent & perst hematur w/ focal & seg glomerular lesions
+ ;;^UTILITY(U,$J,358.3,11726,1,4,0)
+ ;;=4^N02.1
+ ;;^UTILITY(U,$J,358.3,11726,2)
+ ;;=^5015512
+ ;;^UTILITY(U,$J,358.3,11727,0)
+ ;;=N02.2^^46^573^76
+ ;;^UTILITY(U,$J,358.3,11727,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,11727,1,3,0)
+ ;;=3^Recurrent & perst hematur w/ diffuse membranous glomrlneph

@@ -1,122 +1,118 @@
-IBDEI18I ; ; 04-FEB-2020
- ;;3.0;IB ENCOUNTER FORM IMP/EXP;;FEB 04, 2020
+IBDEI18I ; ; 01-FEB-2022
+ ;;3.0;IB ENCOUNTER FORM IMP/EXP;;FEB 01, 2022
  Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,999) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
- ;;^UTILITY(U,$J,358.3,19797,1,3,0)
- ;;=3^Pathological fracture, right foot, sequela
- ;;^UTILITY(U,$J,358.3,19797,1,4,0)
- ;;=4^M84.474S
- ;;^UTILITY(U,$J,358.3,19797,2)
- ;;=^5013985
- ;;^UTILITY(U,$J,358.3,19798,0)
- ;;=M84.375S^^93^996^115
- ;;^UTILITY(U,$J,358.3,19798,1,0)
+ ;;^UTILITY(U,$J,358.3,20021,1,3,0)
+ ;;=3^Nondisp intertroch fx of left femur, sequela
+ ;;^UTILITY(U,$J,358.3,20021,1,4,0)
+ ;;=4^S72.145S
+ ;;^UTILITY(U,$J,358.3,20021,2)
+ ;;=^5037994
+ ;;^UTILITY(U,$J,358.3,20022,0)
+ ;;=S72.21XS^^67^883^43
+ ;;^UTILITY(U,$J,358.3,20022,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,19798,1,3,0)
- ;;=3^Stress fracture, left foot, sequela
- ;;^UTILITY(U,$J,358.3,19798,1,4,0)
- ;;=4^M84.375S
- ;;^UTILITY(U,$J,358.3,19798,2)
- ;;=^5013763
- ;;^UTILITY(U,$J,358.3,19799,0)
- ;;=M84.374S^^93^996^118
- ;;^UTILITY(U,$J,358.3,19799,1,0)
+ ;;^UTILITY(U,$J,358.3,20022,1,3,0)
+ ;;=3^Displaced subtrochanteric fx of right femur, sequela
+ ;;^UTILITY(U,$J,358.3,20022,1,4,0)
+ ;;=4^S72.21XS
+ ;;^UTILITY(U,$J,358.3,20022,2)
+ ;;=^5038026
+ ;;^UTILITY(U,$J,358.3,20023,0)
+ ;;=S72.22XS^^67^883^42
+ ;;^UTILITY(U,$J,358.3,20023,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,19799,1,3,0)
- ;;=3^Stress fracture, right foot, sequela
- ;;^UTILITY(U,$J,358.3,19799,1,4,0)
- ;;=4^M84.374S
- ;;^UTILITY(U,$J,358.3,19799,2)
- ;;=^5013757
- ;;^UTILITY(U,$J,358.3,19800,0)
- ;;=S92.152S^^93^996^13
- ;;^UTILITY(U,$J,358.3,19800,1,0)
+ ;;^UTILITY(U,$J,358.3,20023,1,3,0)
+ ;;=3^Displaced subtrochanteric fx of left femur, sequela
+ ;;^UTILITY(U,$J,358.3,20023,1,4,0)
+ ;;=4^S72.22XS
+ ;;^UTILITY(U,$J,358.3,20023,2)
+ ;;=^5038042
+ ;;^UTILITY(U,$J,358.3,20024,0)
+ ;;=S72.24XS^^67^883^92
+ ;;^UTILITY(U,$J,358.3,20024,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,19800,1,3,0)
- ;;=3^Disp avulsion fx of left talus, sequela
- ;;^UTILITY(U,$J,358.3,19800,1,4,0)
- ;;=4^S92.152S
- ;;^UTILITY(U,$J,358.3,19800,2)
- ;;=^5044786
- ;;^UTILITY(U,$J,358.3,19801,0)
- ;;=S92.151S^^93^996^14
- ;;^UTILITY(U,$J,358.3,19801,1,0)
+ ;;^UTILITY(U,$J,358.3,20024,1,3,0)
+ ;;=3^Nondisp subtrochanteric fx of right femur, sequela
+ ;;^UTILITY(U,$J,358.3,20024,1,4,0)
+ ;;=4^S72.24XS
+ ;;^UTILITY(U,$J,358.3,20024,2)
+ ;;=^5038074
+ ;;^UTILITY(U,$J,358.3,20025,0)
+ ;;=S72.25XS^^67^883^91
+ ;;^UTILITY(U,$J,358.3,20025,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,19801,1,3,0)
- ;;=3^Disp avulsion fx of right talus, sequela
- ;;^UTILITY(U,$J,358.3,19801,1,4,0)
- ;;=4^S92.151S
- ;;^UTILITY(U,$J,358.3,19801,2)
- ;;=^5044779
- ;;^UTILITY(U,$J,358.3,19802,0)
- ;;=S92.032S^^93^996^15
- ;;^UTILITY(U,$J,358.3,19802,1,0)
+ ;;^UTILITY(U,$J,358.3,20025,1,3,0)
+ ;;=3^Nondisp subtrochanteric fx of left femur, sequela
+ ;;^UTILITY(U,$J,358.3,20025,1,4,0)
+ ;;=4^S72.25XS
+ ;;^UTILITY(U,$J,358.3,20025,2)
+ ;;=^5038090
+ ;;^UTILITY(U,$J,358.3,20026,0)
+ ;;=S72.321S^^67^883^51
+ ;;^UTILITY(U,$J,358.3,20026,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,19802,1,3,0)
- ;;=3^Disp avulsion tuberosity fx of left calcaneus, sequela
- ;;^UTILITY(U,$J,358.3,19802,1,4,0)
- ;;=4^S92.032S
- ;;^UTILITY(U,$J,358.3,19802,2)
- ;;=^5044464
- ;;^UTILITY(U,$J,358.3,19803,0)
- ;;=S92.142S^^93^996^29
- ;;^UTILITY(U,$J,358.3,19803,1,0)
+ ;;^UTILITY(U,$J,358.3,20026,1,3,0)
+ ;;=3^Displaced transverse fx shaft of right femur, sequela
+ ;;^UTILITY(U,$J,358.3,20026,1,4,0)
+ ;;=4^S72.321S
+ ;;^UTILITY(U,$J,358.3,20026,2)
+ ;;=^5038159
+ ;;^UTILITY(U,$J,358.3,20027,0)
+ ;;=S72.322S^^67^883^50
+ ;;^UTILITY(U,$J,358.3,20027,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,19803,1,3,0)
- ;;=3^Disp dome fx of left talus, sequela
- ;;^UTILITY(U,$J,358.3,19803,1,4,0)
- ;;=4^S92.142S
- ;;^UTILITY(U,$J,358.3,19803,2)
- ;;=^5044744
- ;;^UTILITY(U,$J,358.3,19804,0)
- ;;=S92.031S^^93^996^16
- ;;^UTILITY(U,$J,358.3,19804,1,0)
+ ;;^UTILITY(U,$J,358.3,20027,1,3,0)
+ ;;=3^Displaced transverse fx shaft of left femur, sequela
+ ;;^UTILITY(U,$J,358.3,20027,1,4,0)
+ ;;=4^S72.322S
+ ;;^UTILITY(U,$J,358.3,20027,2)
+ ;;=^5038175
+ ;;^UTILITY(U,$J,358.3,20028,0)
+ ;;=S72.324S^^67^883^100
+ ;;^UTILITY(U,$J,358.3,20028,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,19804,1,3,0)
- ;;=3^Disp avulsion tuberosity fx of right calcaneus, sequela
- ;;^UTILITY(U,$J,358.3,19804,1,4,0)
- ;;=4^S92.031S
- ;;^UTILITY(U,$J,358.3,19804,2)
- ;;=^5044457
- ;;^UTILITY(U,$J,358.3,19805,0)
- ;;=S92.141S^^93^996^30
- ;;^UTILITY(U,$J,358.3,19805,1,0)
+ ;;^UTILITY(U,$J,358.3,20028,1,3,0)
+ ;;=3^Nondisp transverse fx shaft of right femur, sequela
+ ;;^UTILITY(U,$J,358.3,20028,1,4,0)
+ ;;=4^S72.324S
+ ;;^UTILITY(U,$J,358.3,20028,2)
+ ;;=^5038207
+ ;;^UTILITY(U,$J,358.3,20029,0)
+ ;;=S72.325S^^67^883^99
+ ;;^UTILITY(U,$J,358.3,20029,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,19805,1,3,0)
- ;;=3^Disp dome fx of right talus, sequela
- ;;^UTILITY(U,$J,358.3,19805,1,4,0)
- ;;=4^S92.141S
- ;;^UTILITY(U,$J,358.3,19805,2)
- ;;=^5044737
- ;;^UTILITY(U,$J,358.3,19806,0)
- ;;=S92.022S^^93^996^11
- ;;^UTILITY(U,$J,358.3,19806,1,0)
+ ;;^UTILITY(U,$J,358.3,20029,1,3,0)
+ ;;=3^Nondisp transverse fx shaft of left femur, sequela
+ ;;^UTILITY(U,$J,358.3,20029,1,4,0)
+ ;;=4^S72.325S
+ ;;^UTILITY(U,$J,358.3,20029,2)
+ ;;=^5038223
+ ;;^UTILITY(U,$J,358.3,20030,0)
+ ;;=S72.331S^^67^883^35
+ ;;^UTILITY(U,$J,358.3,20030,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,19806,1,3,0)
- ;;=3^Disp anterior process fx of left calcaneus,sequela
- ;;^UTILITY(U,$J,358.3,19806,1,4,0)
- ;;=4^S92.022S
- ;;^UTILITY(U,$J,358.3,19806,2)
- ;;=^5044422
- ;;^UTILITY(U,$J,358.3,19807,0)
- ;;=S92.021S^^93^996^12
- ;;^UTILITY(U,$J,358.3,19807,1,0)
+ ;;^UTILITY(U,$J,358.3,20030,1,3,0)
+ ;;=3^Displaced oblique fx of shaft of right femur, sequela
+ ;;^UTILITY(U,$J,358.3,20030,1,4,0)
+ ;;=4^S72.331S
+ ;;^UTILITY(U,$J,358.3,20030,2)
+ ;;=^5038255
+ ;;^UTILITY(U,$J,358.3,20031,0)
+ ;;=S72.332S^^67^883^34
+ ;;^UTILITY(U,$J,358.3,20031,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,19807,1,3,0)
- ;;=3^Disp anterior process fx of right calcaneus,sequela
- ;;^UTILITY(U,$J,358.3,19807,1,4,0)
- ;;=4^S92.021S
- ;;^UTILITY(U,$J,358.3,19807,2)
- ;;=^5044415
- ;;^UTILITY(U,$J,358.3,19808,0)
- ;;=S92.012S^^93^996^19
- ;;^UTILITY(U,$J,358.3,19808,1,0)
+ ;;^UTILITY(U,$J,358.3,20031,1,3,0)
+ ;;=3^Displaced oblique fx of shaft of left femur, sequela
+ ;;^UTILITY(U,$J,358.3,20031,1,4,0)
+ ;;=4^S72.332S
+ ;;^UTILITY(U,$J,358.3,20031,2)
+ ;;=^5038271
+ ;;^UTILITY(U,$J,358.3,20032,0)
+ ;;=S72.334S^^67^883^83
+ ;;^UTILITY(U,$J,358.3,20032,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,19808,1,3,0)
- ;;=3^Disp body of left calcaneus fx, sequela
- ;;^UTILITY(U,$J,358.3,19808,1,4,0)
- ;;=4^S92.012S
- ;;^UTILITY(U,$J,358.3,19808,2)
- ;;=^5044380
- ;;^UTILITY(U,$J,358.3,19809,0)
- ;;=S92.122S^^93^996^20
+ ;;^UTILITY(U,$J,358.3,20032,1,3,0)
+ ;;=3^Nondisp oblique fx shaft of right femur, sequela
+ ;;^UTILITY(U,$J,358.3,20032,1,4,0)
+ ;;=4^S72.334S

@@ -1,126 +1,130 @@
-IBDEI11C ; ; 04-FEB-2020
- ;;3.0;IB ENCOUNTER FORM IMP/EXP;;FEB 04, 2020
+IBDEI11C ; ; 01-FEB-2022
+ ;;3.0;IB ENCOUNTER FORM IMP/EXP;;FEB 01, 2022
  Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,999) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
- ;;^UTILITY(U,$J,358.3,16643,2)
- ;;=^5063434
- ;;^UTILITY(U,$J,358.3,16644,0)
- ;;=Z85.72^^88^880^98
- ;;^UTILITY(U,$J,358.3,16644,1,0)
+ ;;^UTILITY(U,$J,358.3,16829,1,3,0)
+ ;;=3^Tuberculosis of Lung
+ ;;^UTILITY(U,$J,358.3,16829,1,4,0)
+ ;;=4^A15.0
+ ;;^UTILITY(U,$J,358.3,16829,2)
+ ;;=^5000062
+ ;;^UTILITY(U,$J,358.3,16830,0)
+ ;;=B20.^^61^777^34
+ ;;^UTILITY(U,$J,358.3,16830,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,16644,1,3,0)
- ;;=3^Personal Hx of Non-Hodgkin Lymphomas
- ;;^UTILITY(U,$J,358.3,16644,1,4,0)
- ;;=4^Z85.72
- ;;^UTILITY(U,$J,358.3,16644,2)
- ;;=^5063436
- ;;^UTILITY(U,$J,358.3,16645,0)
- ;;=Z85.79^^88^880^88
- ;;^UTILITY(U,$J,358.3,16645,1,0)
+ ;;^UTILITY(U,$J,358.3,16830,1,3,0)
+ ;;=3^HIV Disease
+ ;;^UTILITY(U,$J,358.3,16830,1,4,0)
+ ;;=4^B20.
+ ;;^UTILITY(U,$J,358.3,16830,2)
+ ;;=^5000555
+ ;;^UTILITY(U,$J,358.3,16831,0)
+ ;;=B02.9^^61^777^100
+ ;;^UTILITY(U,$J,358.3,16831,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,16645,1,3,0)
- ;;=3^Personal Hx of Malig Neop of Lymphoid,Hematpoetc & Rel Tissue
- ;;^UTILITY(U,$J,358.3,16645,1,4,0)
- ;;=4^Z85.79
- ;;^UTILITY(U,$J,358.3,16645,2)
- ;;=^5063437
- ;;^UTILITY(U,$J,358.3,16646,0)
- ;;=Z85.820^^88^880^77
- ;;^UTILITY(U,$J,358.3,16646,1,0)
+ ;;^UTILITY(U,$J,358.3,16831,1,3,0)
+ ;;=3^Zoster w/o Complications
+ ;;^UTILITY(U,$J,358.3,16831,1,4,0)
+ ;;=4^B02.9
+ ;;^UTILITY(U,$J,358.3,16831,2)
+ ;;=^5000501
+ ;;^UTILITY(U,$J,358.3,16832,0)
+ ;;=A60.9^^61^777^2
+ ;;^UTILITY(U,$J,358.3,16832,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,16646,1,3,0)
- ;;=3^Personal Hx of Malig Melanoma of Skin
- ;;^UTILITY(U,$J,358.3,16646,1,4,0)
- ;;=4^Z85.820
- ;;^UTILITY(U,$J,358.3,16646,2)
- ;;=^5063441
- ;;^UTILITY(U,$J,358.3,16647,0)
- ;;=Z85.828^^88^880^92
- ;;^UTILITY(U,$J,358.3,16647,1,0)
+ ;;^UTILITY(U,$J,358.3,16832,1,3,0)
+ ;;=3^Anogenital Herpesviral Infection,Unspec
+ ;;^UTILITY(U,$J,358.3,16832,1,4,0)
+ ;;=4^A60.9
+ ;;^UTILITY(U,$J,358.3,16832,2)
+ ;;=^5000359
+ ;;^UTILITY(U,$J,358.3,16833,0)
+ ;;=A60.04^^61^777^37
+ ;;^UTILITY(U,$J,358.3,16833,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,16647,1,3,0)
- ;;=3^Personal Hx of Malig Neop of Skin
- ;;^UTILITY(U,$J,358.3,16647,1,4,0)
- ;;=4^Z85.828
- ;;^UTILITY(U,$J,358.3,16647,2)
- ;;=^5063443
- ;;^UTILITY(U,$J,358.3,16648,0)
- ;;=Z85.71^^88^880^72
- ;;^UTILITY(U,$J,358.3,16648,1,0)
+ ;;^UTILITY(U,$J,358.3,16833,1,3,0)
+ ;;=3^Herpesviral Vulvovaginitis
+ ;;^UTILITY(U,$J,358.3,16833,1,4,0)
+ ;;=4^A60.04
+ ;;^UTILITY(U,$J,358.3,16833,2)
+ ;;=^5000356
+ ;;^UTILITY(U,$J,358.3,16834,0)
+ ;;=A60.01^^61^777^35
+ ;;^UTILITY(U,$J,358.3,16834,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,16648,1,3,0)
- ;;=3^Personal Hx of Hodgkin Lymphoma
- ;;^UTILITY(U,$J,358.3,16648,1,4,0)
- ;;=4^Z85.71
- ;;^UTILITY(U,$J,358.3,16648,2)
- ;;=^5063435
- ;;^UTILITY(U,$J,358.3,16649,0)
- ;;=Z65.8^^88^880^144
- ;;^UTILITY(U,$J,358.3,16649,1,0)
+ ;;^UTILITY(U,$J,358.3,16834,1,3,0)
+ ;;=3^Herpesviral Infection of Penis
+ ;;^UTILITY(U,$J,358.3,16834,1,4,0)
+ ;;=4^A60.01
+ ;;^UTILITY(U,$J,358.3,16834,2)
+ ;;=^5000353
+ ;;^UTILITY(U,$J,358.3,16835,0)
+ ;;=B00.1^^61^777^36
+ ;;^UTILITY(U,$J,358.3,16835,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,16649,1,3,0)
- ;;=3^Psychosocial Circumstance Related Problems
- ;;^UTILITY(U,$J,358.3,16649,1,4,0)
- ;;=4^Z65.8
- ;;^UTILITY(U,$J,358.3,16649,2)
- ;;=^5063185
- ;;^UTILITY(U,$J,358.3,16650,0)
- ;;=Z86.11^^88^880^109
- ;;^UTILITY(U,$J,358.3,16650,1,0)
+ ;;^UTILITY(U,$J,358.3,16835,1,3,0)
+ ;;=3^Herpesviral Vesicular Dermatitis
+ ;;^UTILITY(U,$J,358.3,16835,1,4,0)
+ ;;=4^B00.1
+ ;;^UTILITY(U,$J,358.3,16835,2)
+ ;;=^5000468
+ ;;^UTILITY(U,$J,358.3,16836,0)
+ ;;=B97.89^^61^777^96
+ ;;^UTILITY(U,$J,358.3,16836,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,16650,1,3,0)
- ;;=3^Personal Hx of Tuberculosis
- ;;^UTILITY(U,$J,358.3,16650,1,4,0)
- ;;=4^Z86.11
- ;;^UTILITY(U,$J,358.3,16650,2)
- ;;=^5063461
- ;;^UTILITY(U,$J,358.3,16651,0)
- ;;=Z86.13^^88^880^76
- ;;^UTILITY(U,$J,358.3,16651,1,0)
+ ;;^UTILITY(U,$J,358.3,16836,1,3,0)
+ ;;=3^Viral Agent Cause of Disease
+ ;;^UTILITY(U,$J,358.3,16836,1,4,0)
+ ;;=4^B97.89
+ ;;^UTILITY(U,$J,358.3,16836,2)
+ ;;=^5000879
+ ;;^UTILITY(U,$J,358.3,16837,0)
+ ;;=B97.10^^61^777^24
+ ;;^UTILITY(U,$J,358.3,16837,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,16651,1,3,0)
- ;;=3^Personal Hx of Malaria
- ;;^UTILITY(U,$J,358.3,16651,1,4,0)
- ;;=4^Z86.13
- ;;^UTILITY(U,$J,358.3,16651,2)
- ;;=^5063463
- ;;^UTILITY(U,$J,358.3,16652,0)
- ;;=Z86.73^^88^880^106
- ;;^UTILITY(U,$J,358.3,16652,1,0)
+ ;;^UTILITY(U,$J,358.3,16837,1,3,0)
+ ;;=3^Enterovirus Cause of Disease
+ ;;^UTILITY(U,$J,358.3,16837,1,4,0)
+ ;;=4^B97.10
+ ;;^UTILITY(U,$J,358.3,16837,2)
+ ;;=^5000861
+ ;;^UTILITY(U,$J,358.3,16838,0)
+ ;;=B34.9^^61^777^97
+ ;;^UTILITY(U,$J,358.3,16838,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,16652,1,3,0)
- ;;=3^Personal Hx of TIA & Cereb Infrc w/o Residual Deficits
- ;;^UTILITY(U,$J,358.3,16652,1,4,0)
- ;;=4^Z86.73
- ;;^UTILITY(U,$J,358.3,16652,2)
- ;;=^5063477
- ;;^UTILITY(U,$J,358.3,16653,0)
- ;;=Z86.79^^88^880^69
- ;;^UTILITY(U,$J,358.3,16653,1,0)
+ ;;^UTILITY(U,$J,358.3,16838,1,3,0)
+ ;;=3^Viral Infection,Unspec
+ ;;^UTILITY(U,$J,358.3,16838,1,4,0)
+ ;;=4^B34.9
+ ;;^UTILITY(U,$J,358.3,16838,2)
+ ;;=^5000603
+ ;;^UTILITY(U,$J,358.3,16839,0)
+ ;;=A69.20^^61^777^53
+ ;;^UTILITY(U,$J,358.3,16839,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,16653,1,3,0)
- ;;=3^Personal Hx of Circulatory System Diseases
- ;;^UTILITY(U,$J,358.3,16653,1,4,0)
- ;;=4^Z86.79
- ;;^UTILITY(U,$J,358.3,16653,2)
- ;;=^5063479
- ;;^UTILITY(U,$J,358.3,16654,0)
- ;;=Z91.040^^88^880^57
- ;;^UTILITY(U,$J,358.3,16654,1,0)
+ ;;^UTILITY(U,$J,358.3,16839,1,3,0)
+ ;;=3^Lyme Disease,Unspec
+ ;;^UTILITY(U,$J,358.3,16839,1,4,0)
+ ;;=4^A69.20
+ ;;^UTILITY(U,$J,358.3,16839,2)
+ ;;=^5000375
+ ;;^UTILITY(U,$J,358.3,16840,0)
+ ;;=A69.22^^61^777^55
+ ;;^UTILITY(U,$J,358.3,16840,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,16654,1,3,0)
- ;;=3^Latex Allergy Status
- ;;^UTILITY(U,$J,358.3,16654,1,4,0)
- ;;=4^Z91.040
- ;;^UTILITY(U,$J,358.3,16654,2)
- ;;=^5063607
- ;;^UTILITY(U,$J,358.3,16655,0)
- ;;=Z92.3^^88^880^73
- ;;^UTILITY(U,$J,358.3,16655,1,0)
+ ;;^UTILITY(U,$J,358.3,16840,1,3,0)
+ ;;=3^Neurologic Disorders d/t Lyme Disease
+ ;;^UTILITY(U,$J,358.3,16840,1,4,0)
+ ;;=4^A69.22
+ ;;^UTILITY(U,$J,358.3,16840,2)
+ ;;=^5000377
+ ;;^UTILITY(U,$J,358.3,16841,0)
+ ;;=A69.21^^61^777^54
+ ;;^UTILITY(U,$J,358.3,16841,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,16655,1,3,0)
- ;;=3^Personal Hx of Irradiation
- ;;^UTILITY(U,$J,358.3,16655,1,4,0)
- ;;=4^Z92.3
- ;;^UTILITY(U,$J,358.3,16655,2)
- ;;=^5063637
+ ;;^UTILITY(U,$J,358.3,16841,1,3,0)
+ ;;=3^Meningitis d/t Lyme Disease
+ ;;^UTILITY(U,$J,358.3,16841,1,4,0)
+ ;;=4^A69.21
+ ;;^UTILITY(U,$J,358.3,16841,2)
+ ;;=^5000376

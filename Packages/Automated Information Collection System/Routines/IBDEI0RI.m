@@ -1,126 +1,126 @@
-IBDEI0RI ; ; 04-FEB-2020
- ;;3.0;IB ENCOUNTER FORM IMP/EXP;;FEB 04, 2020
+IBDEI0RI ; ; 01-FEB-2022
+ ;;3.0;IB ENCOUNTER FORM IMP/EXP;;FEB 01, 2022
  Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,999) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
- ;;^UTILITY(U,$J,358.3,12275,1,4,0)
- ;;=4^C44.602
- ;;^UTILITY(U,$J,358.3,12275,2)
- ;;=^5001064
- ;;^UTILITY(U,$J,358.3,12276,0)
- ;;=C44.609^^80^775^10
- ;;^UTILITY(U,$J,358.3,12276,1,0)
+ ;;^UTILITY(U,$J,358.3,12384,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,12276,1,3,0)
- ;;=3^Malig Neop of Skin of Left Upper Limb
- ;;^UTILITY(U,$J,358.3,12276,1,4,0)
- ;;=4^C44.609
- ;;^UTILITY(U,$J,358.3,12276,2)
- ;;=^5001065
- ;;^UTILITY(U,$J,358.3,12277,0)
- ;;=C44.702^^80^775^15
- ;;^UTILITY(U,$J,358.3,12277,1,0)
+ ;;^UTILITY(U,$J,358.3,12384,1,3,0)
+ ;;=3^HTN CKD w/ Stage 1-4 CKD or Unspec
+ ;;^UTILITY(U,$J,358.3,12384,1,4,0)
+ ;;=4^I12.9
+ ;;^UTILITY(U,$J,358.3,12384,2)
+ ;;=^5007066
+ ;;^UTILITY(U,$J,358.3,12385,0)
+ ;;=I12.0^^49^598^16
+ ;;^UTILITY(U,$J,358.3,12385,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,12277,1,3,0)
- ;;=3^Malig Neop of Skin of Right Lower Limb
- ;;^UTILITY(U,$J,358.3,12277,1,4,0)
- ;;=4^C44.702
- ;;^UTILITY(U,$J,358.3,12277,2)
- ;;=^5001076
- ;;^UTILITY(U,$J,358.3,12278,0)
- ;;=C44.709^^80^775^8
- ;;^UTILITY(U,$J,358.3,12278,1,0)
+ ;;^UTILITY(U,$J,358.3,12385,1,3,0)
+ ;;=3^HTN CKD w/ Stage 5 CKD or ESRD
+ ;;^UTILITY(U,$J,358.3,12385,1,4,0)
+ ;;=4^I12.0
+ ;;^UTILITY(U,$J,358.3,12385,2)
+ ;;=^5007065
+ ;;^UTILITY(U,$J,358.3,12386,0)
+ ;;=I13.10^^49^598^19
+ ;;^UTILITY(U,$J,358.3,12386,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,12278,1,3,0)
- ;;=3^Malig Neop of Skin of Left Lower Limb
- ;;^UTILITY(U,$J,358.3,12278,1,4,0)
- ;;=4^C44.709
- ;;^UTILITY(U,$J,358.3,12278,2)
- ;;=^5001077
- ;;^UTILITY(U,$J,358.3,12279,0)
- ;;=C44.80^^80^775^2
- ;;^UTILITY(U,$J,358.3,12279,1,0)
+ ;;^UTILITY(U,$J,358.3,12386,1,3,0)
+ ;;=3^HTN Heart & CKD w/o Heart Fail w/ 1-4 CKD or Unspec
+ ;;^UTILITY(U,$J,358.3,12386,1,4,0)
+ ;;=4^I13.10
+ ;;^UTILITY(U,$J,358.3,12386,2)
+ ;;=^5007068
+ ;;^UTILITY(U,$J,358.3,12387,0)
+ ;;=I13.11^^49^598^20
+ ;;^UTILITY(U,$J,358.3,12387,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,12279,1,3,0)
- ;;=3^Malig Neop of Overlapping Sites of Skin
- ;;^UTILITY(U,$J,358.3,12279,1,4,0)
- ;;=4^C44.80
- ;;^UTILITY(U,$J,358.3,12279,2)
- ;;=^5001087
- ;;^UTILITY(U,$J,358.3,12280,0)
- ;;=C44.90^^80^775^20
- ;;^UTILITY(U,$J,358.3,12280,1,0)
+ ;;^UTILITY(U,$J,358.3,12387,1,3,0)
+ ;;=3^HTN Heart & CKD w/o Heart Fail w/ 5 CKD or ESRD
+ ;;^UTILITY(U,$J,358.3,12387,1,4,0)
+ ;;=4^I13.11
+ ;;^UTILITY(U,$J,358.3,12387,2)
+ ;;=^5007069
+ ;;^UTILITY(U,$J,358.3,12388,0)
+ ;;=I13.0^^49^598^17
+ ;;^UTILITY(U,$J,358.3,12388,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,12280,1,3,0)
- ;;=3^Malig Neop of Skin,Unspec
- ;;^UTILITY(U,$J,358.3,12280,1,4,0)
- ;;=4^C44.90
- ;;^UTILITY(U,$J,358.3,12280,2)
- ;;=^5001091
- ;;^UTILITY(U,$J,358.3,12281,0)
- ;;=C44.1091^^80^775^9
- ;;^UTILITY(U,$J,358.3,12281,1,0)
+ ;;^UTILITY(U,$J,358.3,12388,1,3,0)
+ ;;=3^HTN Heart & CKD w/ Heart Fail w/ 1-4 CKD or Unspec
+ ;;^UTILITY(U,$J,358.3,12388,1,4,0)
+ ;;=4^I13.0
+ ;;^UTILITY(U,$J,358.3,12388,2)
+ ;;=^5007067
+ ;;^UTILITY(U,$J,358.3,12389,0)
+ ;;=I13.2^^49^598^18
+ ;;^UTILITY(U,$J,358.3,12389,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,12281,1,3,0)
- ;;=3^Malig Neop of Skin of Left Upper Eyelid
- ;;^UTILITY(U,$J,358.3,12281,1,4,0)
- ;;=4^C44.1091
- ;;^UTILITY(U,$J,358.3,12281,2)
- ;;=^5157255
- ;;^UTILITY(U,$J,358.3,12282,0)
- ;;=C44.1092^^80^775^7
- ;;^UTILITY(U,$J,358.3,12282,1,0)
+ ;;^UTILITY(U,$J,358.3,12389,1,3,0)
+ ;;=3^HTN Heart & CKD w/ Heart Fail w/ 5 CKD or ESRD
+ ;;^UTILITY(U,$J,358.3,12389,1,4,0)
+ ;;=4^I13.2
+ ;;^UTILITY(U,$J,358.3,12389,2)
+ ;;=^5007070
+ ;;^UTILITY(U,$J,358.3,12390,0)
+ ;;=I31.9^^49^598^32
+ ;;^UTILITY(U,$J,358.3,12390,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,12282,1,3,0)
- ;;=3^Malig Neop of Skin of Left Lower Eyelid
- ;;^UTILITY(U,$J,358.3,12282,1,4,0)
- ;;=4^C44.1092
- ;;^UTILITY(U,$J,358.3,12282,2)
- ;;=^5157256
- ;;^UTILITY(U,$J,358.3,12283,0)
- ;;=C44.1021^^80^775^16
- ;;^UTILITY(U,$J,358.3,12283,1,0)
+ ;;^UTILITY(U,$J,358.3,12390,1,3,0)
+ ;;=3^Pericardial Disease NOS
+ ;;^UTILITY(U,$J,358.3,12390,1,4,0)
+ ;;=4^I31.9
+ ;;^UTILITY(U,$J,358.3,12390,2)
+ ;;=^5007165
+ ;;^UTILITY(U,$J,358.3,12391,0)
+ ;;=I48.20^^49^598^5
+ ;;^UTILITY(U,$J,358.3,12391,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,12283,1,3,0)
- ;;=3^Malig Neop of Skin of Right Upper Eyelid
- ;;^UTILITY(U,$J,358.3,12283,1,4,0)
- ;;=4^C44.1021
- ;;^UTILITY(U,$J,358.3,12283,2)
- ;;=^5157253
- ;;^UTILITY(U,$J,358.3,12284,0)
- ;;=C44.1022^^80^775^14
- ;;^UTILITY(U,$J,358.3,12284,1,0)
+ ;;^UTILITY(U,$J,358.3,12391,1,3,0)
+ ;;=3^Atrial Fibrillation,Chronic,Unspec
+ ;;^UTILITY(U,$J,358.3,12391,1,4,0)
+ ;;=4^I48.20
+ ;;^UTILITY(U,$J,358.3,12391,2)
+ ;;=^5158048
+ ;;^UTILITY(U,$J,358.3,12392,0)
+ ;;=I48.21^^49^598^8
+ ;;^UTILITY(U,$J,358.3,12392,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,12284,1,3,0)
- ;;=3^Malig Neop of Skin of Right Lower Eyelid
- ;;^UTILITY(U,$J,358.3,12284,1,4,0)
- ;;=4^C44.1022
- ;;^UTILITY(U,$J,358.3,12284,2)
- ;;=^5157254
- ;;^UTILITY(U,$J,358.3,12285,0)
- ;;=C43.9^^80^776^18
- ;;^UTILITY(U,$J,358.3,12285,1,0)
+ ;;^UTILITY(U,$J,358.3,12392,1,3,0)
+ ;;=3^Atrial Fibrillation,Permanent
+ ;;^UTILITY(U,$J,358.3,12392,1,4,0)
+ ;;=4^I48.21
+ ;;^UTILITY(U,$J,358.3,12392,2)
+ ;;=^304710
+ ;;^UTILITY(U,$J,358.3,12393,0)
+ ;;=I48.11^^49^598^6
+ ;;^UTILITY(U,$J,358.3,12393,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,12285,1,3,0)
- ;;=3^Malig Melanoma of Skin,Unspec
- ;;^UTILITY(U,$J,358.3,12285,1,4,0)
- ;;=4^C43.9
- ;;^UTILITY(U,$J,358.3,12285,2)
- ;;=^5001015
- ;;^UTILITY(U,$J,358.3,12286,0)
- ;;=C43.0^^80^776^8
- ;;^UTILITY(U,$J,358.3,12286,1,0)
+ ;;^UTILITY(U,$J,358.3,12393,1,3,0)
+ ;;=3^Atrial Fibrillation,Longstanding Persistent
+ ;;^UTILITY(U,$J,358.3,12393,1,4,0)
+ ;;=4^I48.11
+ ;;^UTILITY(U,$J,358.3,12393,2)
+ ;;=^5158046
+ ;;^UTILITY(U,$J,358.3,12394,0)
+ ;;=I48.19^^49^598^7
+ ;;^UTILITY(U,$J,358.3,12394,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,12286,1,3,0)
- ;;=3^Malig Melanoma of Lip
- ;;^UTILITY(U,$J,358.3,12286,1,4,0)
- ;;=4^C43.0
- ;;^UTILITY(U,$J,358.3,12286,2)
- ;;=^5000994
- ;;^UTILITY(U,$J,358.3,12287,0)
- ;;=C43.21^^80^776^11
- ;;^UTILITY(U,$J,358.3,12287,1,0)
+ ;;^UTILITY(U,$J,358.3,12394,1,3,0)
+ ;;=3^Atrial Fibrillation,Oth Persistent
+ ;;^UTILITY(U,$J,358.3,12394,1,4,0)
+ ;;=4^I48.19
+ ;;^UTILITY(U,$J,358.3,12394,2)
+ ;;=^5158047
+ ;;^UTILITY(U,$J,358.3,12395,0)
+ ;;=Z71.89^^49^599^1
+ ;;^UTILITY(U,$J,358.3,12395,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,12287,1,3,0)
- ;;=3^Malig Melanoma of Right Ear/External Auricular Canal
- ;;^UTILITY(U,$J,358.3,12287,1,4,0)
- ;;=4^C43.21
+ ;;^UTILITY(U,$J,358.3,12395,1,3,0)
+ ;;=3^Counseling,Other Specified
+ ;;^UTILITY(U,$J,358.3,12395,1,4,0)
+ ;;=4^Z71.89
+ ;;^UTILITY(U,$J,358.3,12395,2)
+ ;;=^5063253
+ ;;^UTILITY(U,$J,358.3,12396,0)
+ ;;=Z71.7^^49^599^2
+ ;;^UTILITY(U,$J,358.3,12396,1,0)
+ ;;=^358.31IA^4^2

@@ -1,26 +1,81 @@
-PXRPC ;ISL/JLC - PCE DATA2PCE RPC ;06/23/2016
- ;;1.0;PCE PATIENT CARE ENCOUNTER;**200,209,210,215,216**;Aug 12, 1996;Build 11
+PXRPC ;ISL/JLC - PCE DATA2PCE RPC ;Jul 20, 2021@08:24:07
+ ;;1.0;PCE PATIENT CARE ENCOUNTER;**200,209,210,215,216,211,217**;Aug 12, 1996;Build 134
  ;
  ; Reference to UCUMDATA^LEXMUCUM supported by ICR #6225
- ; Reference to ICDDX^ICDEX supported by ICR #5747
  ;
  ;
-SAVE(OK,PCELIST,LOC,PKGNAME,SRC) ; save PCE information
- N VSTR
- N PXAPI,PXDEL,PKG,PROBLEMS,PXAVST,PXERROR,PXAPREDT
- I '$D(PCELIST(1)) S OK=-3 Q
- S VSTR=$P(PCELIST(1),U,4) K ^TMP("PXRPC",$J,VSTR)
- I $G(PKGNAME)="" S OK=-3 Q
- I $G(SRC)="" S OK=-3 Q
- S PKG=$$PKG2IEN^VSIT(PKGNAME) I PKG=-1 S OK=-3 Q
- M ^TMP("PXRPC",$J,VSTR)=PCELIST
- D DQSAVE(.PCELIST,"PXAPI","PXDEL",.PROBLEMS,.SRC)
- I '$D(PXAPI)#10 S OK=-3 Q
- I $D(PXAPI("PROVIDER")) S PXAPREDT=1 ;Allow edit of primary flag
- D DATA2PCE(.OK,"PXAPI",PKG,SRC,.PXAVST,.PXERROR)
+SAVE(OK,PCELIST,LOC,PKGNAME,SRC,PXAVST,PXRETVST) ; save PCE information
+ ;
+ N PXRET
+ ;
+ D SAVE2(.PXRET,.PCELIST,.PKGNAME,.SRC,.PXAVST)
+ S OK=$G(PXRET(0))
+ I '$G(PXRETVST) S OK=$P(OK,U,1)
  Q
  ;
-DQSAVE(PCELIST,PXPCEARR,PXPCEDARR,PROBLEMS,SRC) ;
+SAVE2(OK,PCELIST,PKGNAME,SRC,PXAVST) ; save PCE information - and return err info
+ ;
+ N PXAPI,PXERRTYP,PKG,PROBLEMS,PXAPREDT,PXIMMRDAPI
+ ;
+ S PXERRTYP="INPUT_ERR"
+ ;
+ I $G(PKGNAME)="" D  Q
+ . S OK(0)=-3
+ . S OK(1)=PXERRTYP_U_U_U_U_U_"Package Name argument not defined."
+ I $G(SRC)="" D  Q
+ . S OK(0)=-3
+ . S OK(1)=PXERRTYP_U_U_U_U_U_"Source argument not defined."
+ S PKG=$$PKG2IEN^VSIT(PKGNAME)
+ I PKG=-1 D  Q
+ . S OK(0)=-3
+ . S OK(1)=PXERRTYP_U_U_U_U_U_"Package, '"_PKGNAME_"', does not exist in the Package file (#9.4)."
+ ;
+ D DQSAVE(.PCELIST,.PXAPI,.PROBLEMS,.SRC,.PXIMMRDAPI)
+ I '$D(PXAPI) D  Q
+ . S OK(0)=-3
+ . S OK(1)=PXERRTYP_U_U_U_U_U_"'PCELIST' argument not valid."
+ ;
+ S PXAPREDT=1 ;Flag to allow edit of primary provider
+ D DATA2PCE(.OK,"PXAPI",PKG,SRC,PXAPREDT,.PXAVST)
+ ;
+ ; save immunization reading (for smallpox) in a seperate DATA2PCE call
+ ; as it is part of the placement visit.
+ I $D(PXIMMRDAPI) D
+ . D IMMREAD(.OK,.PXIMMRDAPI,PKG,SRC,PXAPREDT)
+ ;
+ Q
+ ;
+IMMREAD(OK,PXIMMRDAPI,PKG,SRC) ; save immunization reading (for smallpox)
+ ;
+ N PXAPREDT,PXERROR,PXERRCOUNT,PXI,PXTEMP,PXVISIT,OK2
+ ;
+ S PXERRCOUNT=+$O(OK(""),-1)
+ ;
+ S PXERROR=$G(PXIMMRDAPI("IMMUNIZATION",1,"ERROR"))
+ S PXVISIT=$G(PXIMMRDAPI("IMMUNIZATION",1,"VISIT"))
+ K PXIMMRDAPI("IMMUNIZATION",1,"ERROR")
+ K PXIMMRDAPI("IMMUNIZATION",1,"VISIT")
+ I PXERROR'="" D  Q
+ . I +OK(0)>0 S $P(OK(0),U,1)=-1
+ . S PXERRCOUNT=PXERRCOUNT+1
+ . S OK(PXERRCOUNT)="ERROR_IMM_READING"_U_U_U_U_U_PXERROR
+ I 'PXVISIT D  Q
+ . I +OK(0)>0 S $P(OK(0),U,1)=-1
+ . S PXERRCOUNT=PXERRCOUNT+1
+ . S OK(PXERRCOUNT)="ERROR_IMM_READING"_U_U_U_U_U_"Could not file Immunization Reading, as the Placement Visit could not be obtained."
+ ;
+ S PXAPREDT=1 ;Flag to allow edit of primary provider
+ D DATA2PCE(.OK2,"PXIMMRDAPI",PKG,SRC,PXAPREDT,PXVISIT)
+ I +OK2(0)<0,+OK(0)>0 S $P(OK(0),U,1)=$P(OK2(0),U,1)
+ S PXI=0
+ F  S PXI=$O(OK2(PXI)) Q:'PXI  D
+ . S PXERRCOUNT=PXERRCOUNT+1
+ . S PXTEMP=$G(OK2(PXI))
+ . S OK(PXERRCOUNT)=$P(PXTEMP,U,1)_"_IMM_READING"_U_$P(PXTEMP,U,2,99)
+ ;
+ Q
+ ;
+DQSAVE(PCELIST,PXPCEARR,PROBLEMS,SRC,PXPCEIMMRD) ;
  ;
  ; Processes PCELIST input array and creates a new array in a format
  ; that can be passed into DATA2PCE^PXAPI.
@@ -29,253 +84,72 @@ DQSAVE(PCELIST,PXPCEARR,PXPCEDARR,PROBLEMS,SRC) ;
  ;   .PCELIST - (Required) Array passed by reference.
  ;              This should be in the same format as the PX SAVE DATA
  ;              and ORWPCE SAVE RPCs' PCELIST input parameter.
- ;   PXPCEARR - (Required) The root of an array passed as a String value
- ;              (e.g., "ORPXAPI") that this API will populate based off
- ;              the PCELIST argument. This array will be in a format
- ;              that can be passed into DATA2PCE^PXAPI.
- ;  PXPCEDARR - (Required) The root of an array passed as a String value
- ;              (e.g., "ORPXDEL") that this API will populate based off
- ;              the PCELIST argument. This array will be populated with
- ;              some deletions that need to be filed to DATA2PCE before
- ;              filing PXPCEARR. This array will be in a format
- ;              that can be passed into DATA2PCE^PXAPI.
+ ;  .PXPCEARR - (Required) The root of an array passed by reference
+ ;              that this API will populate based off the PCELIST
+ ;              argument. This array will be in a format that can be
+ ;              passed into DATA2PCE^PXAPI.
  ;  .PROBLEMS - (Required) This API will populate this array with POV
  ;              entries that are marked to be added to the Problem List.
  ;       .SRC - (Required) The source of the data - such as 'TEXT
  ;              INTEGRATION UTILITIES'. This API can possibly change the
  ;              value of SRC, depending on the Health Factor (HF) values
  ;              contained in PCELIST.
+ ;.PXPCEIMMRD - (Required) The root of an array passed by reference
+ ;              that this API will populate based off the PCELIST argument.
+ ;              It will only be populated if there is an immunization
+ ;              reading. This array will be in a format that can be passed
+ ;              into DATA2PCE^PXAPI.
  ;
- N TYP,CODE,IEN,I,X
- N CAT,NARR,ROOT,ROOT2,PXENCDT,IMPLDT
- N PRV,CPT,ICD,IMM,SK,PED,HF,XAM,TRT,ICR,MOD,MODCNT,MODIDX,MODS
- N COM,COMMENT,COMMENTS,SVCAT
- N DFN,PXAPREDT,PXCPTDEL
- ; Vars for Info Source (IMMIS) Imm. Admin Route (IMMRT), Body Site (IMMAL), Lot, Manufacturer, Exp. Date & Comments
- N IMMISNM,IMMISIEN,IMMRTNM,IMMRTIEN,IMMRTERR,IMMALNAME,IMMALIEN,IMMALERR,IMMLOT,IMMMANUF,IMMEXPDT,IMMCOMM,IMMCOMMS,IMMLOTIEN
- N NUM,REMARK,SEQ,IMMDSG,IMMCVX,IMMCVXER,IMMOVERRIDE,SKRDCOM
- S IMPLDT=$$IMPDATE^LEXU("10D")
- S (PRV,CPT,ICD,IMM,SK,PED,HF,XAM,TRT,ICR)=0
- S I="" F  S I=$O(PCELIST(I)) Q:'I  S X=PCELIST(I) D
- . S X=PCELIST(I),TYP=$P(X,U),CODE=$P(X,U,2),CAT=$P(X,U,3),NARR=$P(X,U,4)
- . I $E(TYP,1,3)="PRV" D  Q
- . . Q:'$L(CODE)
- . . S PRV=PRV+1
- . . S ROOT=PXPCEARR_"(""PROVIDER"","_PRV_")"
- . . S ROOT2=PXPCEDARR_"(""PROVIDER"","_PRV_")"
- . . I $E(TYP,4)'="-" D
- . . . S @ROOT@("NAME")=CODE
- . . . S @ROOT@("PRIMARY")=$P(X,U,6)
- . . S @ROOT2@("NAME")=CODE
- . . S @ROOT2@("DELETE")=1
- . . S PXAPREDT=1 ;Allow edit of primary flag
- . I TYP="VST" D  Q
- . . S ROOT=PXPCEARR_"(""ENCOUNTER"",1)"
- . . I CODE="DT" S (PXENCDT,@ROOT@("ENC D/T"))=$P(X,U,3) Q
- . . I CODE="PT" S @ROOT@("PATIENT")=$P(X,U,3),DFN=$P(X,U,3) Q
- . . I CODE="HL" S @ROOT@("HOS LOC")=$P(X,U,3) Q
- . . I CODE="PR" S @ROOT@("PARENT")=$P(X,U,3) Q
- . . ;prevents checkout!
- . . I CODE="VC" S (SVCAT,@ROOT@("SERVICE CATEGORY"))=$P(X,U,3) Q
- . . I CODE="SC" S @ROOT@("SC")=$P(X,U,3) Q
- . . I CODE="AO" S @ROOT@("AO")=$P(X,U,3) Q
- . . I CODE="IR" S @ROOT@("IR")=$P(X,U,3) Q
- . . I CODE="EC" S @ROOT@("EC")=$P(X,U,3) Q
- . . I CODE="MST" S @ROOT@("MST")=$P(X,U,3) Q
- . . I CODE="HNC" S @ROOT@("HNC")=$P(X,U,3) Q
- . . I CODE="CV" S @ROOT@("CV")=$P(X,U,3) Q
- . . I CODE="SHD" S @ROOT@("SHAD")=$P(X,U,3) Q
- . . I CODE="OL" D  Q
- . . . I +$P(X,U,3) S @ROOT@("INSTITUTION")=$P(X,U,3)
- . . . E  I $P(X,U,4)'="",$P(X,U,4)'="0" D
- . . . . I $$PATCH^XPDUTL("PX*1.0*96") S @ROOT@("OUTSIDE LOCATION")=$P(X,U,4)
- . . . . E  S @ROOT@("COMMENT")="OUTSIDE LOCATION:  "_$P(X,U,4)
- . I $E(TYP,1,3)="CPT" D  Q
- . . Q:'$L(CODE)
- . . S CPT=CPT+1,ROOT=PXPCEARR_"(""PROCEDURE"","_CPT_")"
- . . S IEN=$$CODEN^ICPTCOD(CODE) ;ICR #1995
- . . S @ROOT@("PROCEDURE")=IEN
- . . I +$P(X,U,9) D
- . . . S MODS=$P(X,U,9),MODCNT=+MODS
- . . . F MODIDX=1:1:MODCNT D
- . . . . S MOD=$P($P(MODS,";",MODIDX+1),"/")
- . . . . S @ROOT@("MODIFIERS",MOD)=""
- . . S:$L(CAT) @ROOT@("CATEGORY")=CAT
- . . S:$L(NARR) @ROOT@("NARRATIVE")=NARR
- . . S:$L($P(X,U,5)) @ROOT@("QTY")=$P(X,U,5)
- . . S:$P(X,U,6)>0 @ROOT@("ENC PROVIDER")=$P(X,U,6)
- . . S:$L($P(X,U,10))>0 COMMENT($P(X,U,10))="PROCEDURE^"_CPT
- . . I $E(TYP,4)="-" S @ROOT@("DELETE")=1,@ROOT@("QTY")=0,PXCPTDEL=CPT
- . I $E(TYP,1,3)="POV" D  Q
- . . N PXDXI,PXDX
- . . Q:'$L(CODE)
- . . F PXDXI=1:1:$L(CODE,"/") D
- . . . N CSYS,CDT,IEN,LEXIEN
- . . . S PXDX=$P(CODE,"/",PXDXI)
- . . . S ICD=ICD+1,ROOT=PXPCEARR_"(""DX/PL"","_ICD_")"
- . . . S CDT=$S($G(SVCAT)="E":DT,1:$G(PXENCDT))
- . . . S CSYS=$S(CDT'<IMPLDT:"10D",1:"ICD")
- . . . I (PXDX]""),(PXDX'[".") S PXDX=PXDX_"."
- . . . S IEN=+$$ICDDX^ICDEX(PXDX,CDT,$S(CSYS="10D":30,1:1),"E") ; ICR #5747
- . . . I IEN'>0 Q
- . . . S @ROOT@("DIAGNOSIS")=IEN
- . . . S @ROOT@("PRIMARY")=$S(PXDXI=1:$P(X,U,5),1:0)
- . . . S LEXIEN=$P($$EXP^LEXCODE(PXDX,CSYS,CDT),U),@ROOT@("LEXICON TERM")=$S(LEXIEN>0:LEXIEN,1:"")
- . . . S:$L(CAT) @ROOT@("CATEGORY")=CAT
- . . . S:$L(NARR) @ROOT@("NARRATIVE")=NARR
- . . . S:$P(X,U,6)>0 @ROOT@("ENC PROVIDER")=$P(X,U,6)
- . . . I $L($P(X,U,7)),($P(X,U,7)=1),(PXDXI=1) S @ROOT@("PL ADD")=$P(X,U,7),PROBLEMS(ICD)=NARR_U_CODE
- . . . S:$L($P(X,U,10))>0&(PXDXI=1) COMMENT($P(X,U,10))="DX/PL^"_ICD
- . . . I $E(TYP,4)="-" S @ROOT@("DELETE")=1
- . I $E(TYP,1,3)="IMM" D  Q
- . . ; If the CVX Code is present, then use it to find the corresponding Immunization,
- . . ; but only if the Immunization IEN is not specified
- . . S IMMCVX=$P(X,U,11)
- . . I CODE="",IMMCVX'="" S CODE=$$FIND1^DIC(9999999.14,,,IMMCVX,"C",,"IMMCVXER")
- . . Q:'$L(CODE)
- . . S IMM=IMM+1,ROOT=PXPCEARR_"(""IMMUNIZATION"","_IMM_")"
- . . S @ROOT@("IMMUN")=CODE
- . . I IMMCVX'="" S @ROOT@("CVX")=IMMCVX
- . . S:$L($P(X,U,5)) @ROOT@("SERIES")=$P(X,U,5)
- . . S:$L($P(X,U,7)) @ROOT@("REACTION")=$P(X,U,7)
- . . S:$L($P(X,U,8)) @ROOT@("CONTRAINDICATED")=$P(X,U,8)
- . . S:$L($P(X,U,9)) @ROOT@("REFUSED")=$P(X,U,9)
- . . S:$P(X,U,6)>0 @ROOT@("ENC PROVIDER")=$P(X,U,6)
- . . S:$L($P(X,U,10))>0 COMMENT($P(X,U,10))="IMMUNIZATION^"_IMM
- . . ; These are the additional fields being added by PX*1.0*209
- . . S IMMISIEN=$$IMMSRC($P(X,U,12))
- . . S:IMMISIEN @ROOT@("INFO SOURCE")=IMMISIEN
- . . S IMMRTIEN=$$IMMROUTE($P(X,U,14))
- . . S:IMMRTIEN @ROOT@("ADMIN ROUTE")=IMMRTIEN
- . . S IMMALIEN=$$IMMLOC($P(X,U,15))
- . . S:IMMALIEN @ROOT@("ANATOMIC LOC")=IMMALIEN
- . . S IMMLOT=$$IMMLOT($P(X,U,16),$P(X,U,17),$P(X,U,18))
- . . S IMMLOTIEN=$P(IMMLOT,"^",1)
- . . S IMMCOMM=$P(IMMLOT,"^",2)
- . . S:IMMLOTIEN @ROOT@("LOT NUM")=IMMLOTIEN
- . . S IMMDSG=$$IMMDSG($P(X,U,13))
- . . I $P(IMMDSG,U,1)'="" D
- . . . S @ROOT@("DOSE")=$P(IMMDSG,U,1)
- . . . I $P(IMMDSG,U,2) S @ROOT@("DOSE UNITS")=$P(IMMDSG,U,2)
- . . I $P(IMMDSG,U,3)'="" D  ; add Dosage to comments
- . . . S IMMCOMM=$S($G(IMMCOMM)'="":IMMCOMM_"; ",1:"")_$P(IMMDSG,U,3)
- . . I IMMCOMM'="" D
- . . . ; If we have something to add to the Imm comment, either add it to the existing comment
- . . . ; (if one exists) or just set it in the COMMENT field.
- . . . I $L($P(X,U,10)) S IMMCOMMS($P(X,U,10))=IMMCOMM ; This will get added later to the existing comment
- . . . E  S @ROOT@("COMMENT")=IMMCOMM
- . . S:$P(X,U,19)>0 @ROOT@("EVENT D/T")=$P(X,U,19)
- . . S:$P(X,U,20)>0 @ROOT@("ORD PROVIDER")=$P(X,U,20)
- . . I $P(X,U,21)'="" D IMMVIS($P(X,U,21),ROOT)
- . . I $P(X,U,22)'="" D IMMRMRKS($P(X,U,22),IMM,.REMARK)
- . . I $P(X,U,23)'="" S @ROOT@("WARNING ACK")=$P(X,U,23)
- . . I $P(X,U,24)>0 S IMMOVERRIDE($P(X,U,24))="IMMUNIZATION^"_IMM
- . . I $E(TYP,4)="-" S @ROOT@("DELETE")=1
- . I $E(TYP,1,2)="SK" D  Q
- . . Q:'$L(CODE)
- . . S SK=SK+1,ROOT=PXPCEARR_"(""SKIN TEST"","_SK_")"
- . . S @ROOT@("TEST")=CODE
- . . S:$L($P(X,U,5)) @ROOT@("RESULT")=$P(X,U,5)
- . . S:$L($P(X,U,7)) @ROOT@("READING")=$P(X,U,7)
- . . S:$L($P(X,U,8)) @ROOT@("D/T READ")=$P(X,U,8)
- . . S:$L($P(X,U,9)) @ROOT@("EVENT D/T")=$P(X,U,9)
- . . S:$P(X,U,6)>0 @ROOT@("ENC PROVIDER")=$P(X,U,6)
- . . S:$L($P(X,U,10))>0 COMMENT($P(X,U,10))="SKIN TEST^"_SK
- . . S:$P(X,U,11)>0 @ROOT@("READER")=$P(X,U,11) ; PX*1*216
- . . S:$P(X,U,12)>0 @ROOT@("ORD PROVIDER")=$P(X,U,12) ; PX*1*216
- . . S IMMALIEN=$$IMMLOC($P(X,U,13)) ; PX*1*216
- . . S:IMMALIEN @ROOT@("ANATOMIC LOC")=IMMALIEN ; PX*1*216
- . . I $P(X,U,14)>0 S SKRDCOM($P(X,U,14))="SKIN TEST^"_SK ; PX*1*216
- . . I $E(TYP,3)="-" S @ROOT@("DELETE")=1
- . I $E(TYP,1,3)="PED" D  Q
- . . Q:'$L(CODE)
- . . S PED=PED+1,ROOT=PXPCEARR_"(""PATIENT ED"","_PED_")"
- . . S @ROOT@("TOPIC")=CODE
- . . S:$L($P(X,U,5)) @ROOT@("UNDERSTANDING")=$P(X,U,5)
- . . S:$P(X,U,6)>0 @ROOT@("ENC PROVIDER")=$P(X,U,6)
- . . S:$L($P(X,U,10))>0 COMMENT($P(X,U,10))="PATIENT ED^"_PED
- . . I $E(TYP,4)="-" S @ROOT@("DELETE")=1
- . I $E(TYP,1,2)="HF" D  Q
- . . Q:'$L(CODE)
- . . S HF=HF+1,ROOT=PXPCEARR_"(""HEALTH FACTOR"","_HF_")"
- . . S @ROOT@("HEALTH FACTOR")=CODE
- . . S:$L($P(X,U,5)) @ROOT@("LEVEL/SEVERITY")=$P(X,U,5)
- . . S:$P(X,U,6)'>0 $P(X,U,6)=$G(@PXPCEARR@("PROVIDER",1,"NAME"))
- . . S:$P(X,U,6)>0 @ROOT@("ENC PROVIDER")=$P(X,U,6)
- . . S:$L($P(X,U,11)) @ROOT@("EVENT D/T")=$P($P(X,U,11),";",1)
- . . S:$L($P(X,U,11)) SRC=$P($P(X,U,11),";",2)
- . . S:$L($P(X,U,10))>0 COMMENT($P(X,U,10))="HEALTH FACTOR^"_HF
- . . I $E(TYP,3)="-" S @ROOT@("DELETE")=1
- . I $E(TYP,1,3)="XAM" D  Q
- . . Q:'$L(CODE)
- . . S XAM=XAM+1,ROOT=PXPCEARR_"(""EXAM"","_XAM_")"
- . . S @ROOT@("EXAM")=CODE
- . . S:$L($P(X,U,5)) @ROOT@("RESULT")=$P(X,U,5)
- . . S:$P(X,U,6)>0 @ROOT@("ENC PROVIDER")=$P(X,U,6)
- . . S:$L($P(X,U,10))>0 COMMENT($P(X,U,10))="EXAM^"_XAM
- . . I $E(TYP,4)="-" S @ROOT@("DELETE")=1
- . I $E(TYP,1,3)="TRT" D  Q
- . . Q:'$L(CODE)
- . . S TRT=TRT+1,ROOT=PXPCEARR_"(""TREATMENT"","_TRT_")"
- . . S @ROOT@("IMMUN")=CODE
- . . S:$L(CAT) @ROOT@("CATEGORY")=CAT
- . . S:$L(NARR) @ROOT@("NARRATIVE")=NARR
- . . S:$L($P(X,U,5)) @ROOT@("QTY")=$P(X,U,5)
- . . S:$P(X,U,6)>0 @ROOT@("ENC PROVIDER")=$P(X,U,6)
- . . S:$L($P(X,U,10))>0 COMMENT($P(X,U,10))="TREATMENT^"_TRT
- . . I $E(TYP,4)="-" S @ROOT@("DELETE")=1,@ROOT@("QTY")=0
- . I $E(TYP,1,3)="ICR" D  Q
- . . Q:'$L(CODE)
- . . S ICR=ICR+1,ROOT=PXPCEARR_"(""IMM CONTRA/REFUSAL"","_ICR_")"
- . . S @ROOT@("CONTRA/REFUSAL")=CODE
- . . I $P(X,U,5)'="" S @ROOT@("IMMUN")=$$TRIM^XLFSTR($P(X,U,5))
- . . I $P(X,U,6)'="" S @ROOT@("WARN UNTIL DATE")=$$TRIM^XLFSTR($P(X,U,6))
- . . I $P(X,U,7)'="" S @ROOT@("EVENT D/T")=$$TRIM^XLFSTR($P(X,U,7))
- . . I $P(X,U,8)'="" S @ROOT@("ENC PROVIDER")=$$TRIM^XLFSTR($P(X,U,8))
- . . S:$L($P(X,U,10))>0 COMMENT($P(X,U,10))="IMM CONTRA/REFUSAL^"_ICR
- . . I $E(TYP,4)="-" S @ROOT@("DELETE")=1
- . I $E(TYP,1,3)="COM" D  Q
- . . Q:'$L(CODE)
- . . Q:'$L(CAT)
- . . S COMMENTS(CODE)=$P(X,U,3,999)
- ;Store the comments
- S COM=""
- ;F  S COM=$O(COMMENT(COM)) Q:COM=""  S:$D(COMMENTS(COM)) PXAPI($P(COMMENT(COM),"^",1),$P(COMMENT(COM),"^",2),"COMMENT")=COMMENTS(COM)
- F  S COM=$O(COMMENT(COM)) Q:COM=""  D:$D(COMMENTS(COM))
- . I $G(IMMCOMMS(COM))'="" D
- . . I COMMENTS(COM)="@" S COMMENTS(COM)=""
- . . S COMMENTS(COM)=COMMENTS(COM)_$S(COMMENTS(COM)="":"",1:" ")_IMMCOMMS(COM)
- . S @PXPCEARR@($P(COMMENT(COM),"^",1),$P(COMMENT(COM),"^",2),"COMMENT")=COMMENTS(COM)
  ;
- ;Store the Remarks (currently used by immunizations) - PX,210
- S COM=""
- F  S COM=$O(REMARK(COM)) Q:COM=""  I $D(COMMENTS(COM)) D
- . S TYP=$P(REMARK(COM),"^",1)
- . S NUM=$P(REMARK(COM),"^",2)
- . S SEQ=$O(@PXPCEARR@(TYP,NUM,"REMARKS",""),-1)+1
- . S @PXPCEARR@(TYP,NUM,"REMARKS",SEQ,0)=COMMENTS(COM)
+ D DQSAVE^PXRPC1(.PCELIST,.PXPCEARR,.PROBLEMS,.SRC,.PXPCEIMMRD)
+ Q
  ;
- ;Store the Immunization Override Reason - PX,215
- S COM=""
- F  S COM=$O(IMMOVERRIDE(COM)) Q:COM=""  I $G(COMMENTS(COM))'="" D
- . S TYP=$P(IMMOVERRIDE(COM),"^",1)
- . S NUM=$P(IMMOVERRIDE(COM),"^",2)
- . S @PXPCEARR@(TYP,NUM,"OVERRIDE REASON")=COMMENTS(COM)
  ;
- ;Store the Skin Test Reading Comment - PX*1*216
- S COM=""
- F  S COM=$O(SKRDCOM(COM)) Q:COM=""  I $G(COMMENTS(COM))'="" D
- . S TYP=$P(SKRDCOM(COM),"^",1)
- . S NUM=$P(SKRDCOM(COM),"^",2)
- . S @PXPCEARR@(TYP,NUM,"READING COMMENT")=COMMENTS(COM)
- ;
- S @PXPCEARR@("ENCOUNTER",1,"ENCOUNTER TYPE")="P"
+DATA2PCE(OK,PXPCEARR,PKG,SRC,PXAPREDT,PXAVST) ;
+ N PXERROR,PXERRPROB
+ I '($D(PXAVST)#2) S PXAVST=""
+ S OK(0)=$$DATA2PCE^PXAI(PXPCEARR,PKG,SRC,.PXAVST,"",0,.PXERROR,PXAPREDT,.PXERRPROB)
+ S OK(0)=OK(0)_U_$G(PXAVST)
+ D ERROR(.OK,.PXERROR,.PXERRPROB)
  ;
  Q
  ;
-DATA2PCE(OK,PXPCEARR,PKG,SRC,PXAVST,PXERROR) ;
- I '($D(PXAVST)#2) S PXAVST=""
- S OK=$$DATA2PCE^PXAI(PXPCEARR,PKG,SRC,.PXAVST,"","",.PXERROR,"","","")
+ERROR(PXRET,PXERROR,PXERRPROB) ; Return errors
+ ;
+ N PXERRCOUNT,PXERRTYP,PXFIELD,PXFILE,PXIEN,PXMSG,PXNODE,PXNUM,PXSUB
+ ;
+ I '$D(PXERRPROB),'$D(PXERROR) Q
+ S PXERRCOUNT=0
+ ;
+ S PXNODE="PXERROR"
+ S PXERRTYP="ERROR_FILING"
+ F  S PXNODE=$Q(@PXNODE) Q:PXNODE=""  D
+ . S PXFILE=$QS(PXNODE,1)
+ . S PXNUM=$QS(PXNODE,2)
+ . S PXIEN=$QS(PXNODE,3)
+ . S PXFIELD=$QS(PXNODE,4)
+ . S PXSUB=$QS(PXNODE,5)
+ . I PXSUB'="" S PXFIELD=PXFIELD_","_PXSUB
+ . S PXMSG=$G(@PXNODE)
+ . S PXERRCOUNT=PXERRCOUNT+1
+ . S PXRET(PXERRCOUNT)=PXERRTYP_U_PXFILE_U_PXNUM_U_PXIEN_U_PXFIELD_U_PXMSG
+ ;
+ S PXNODE="PXERRPROB"
+ F  S PXNODE=$Q(@PXNODE) Q:PXNODE=""  D
+ . S PXERRTYP=$QS(PXNODE,3)
+ . S PXFILE=$QS(PXNODE,4)
+ . S PXFIELD=$QS(PXNODE,5)
+ . S PXNUM=$QS(PXNODE,6)
+ . S PXMSG=$G(@PXNODE)
+ . I PXFILE="PX/DL",PXERRTYP="ERROR4" D
+ . . S PXNUM=PXFIELD
+ . . S PXFIELD=""
+ . I PXFILE="ENCOUNTER",PXERRTYP="WARNING3" D
+ . . S PXFIELD=PXNUM
+ . . S PXNUM=1
+ . S PXERRCOUNT=PXERRCOUNT+1
+ . S PXRET(PXERRCOUNT)=PXERRTYP_U_PXFILE_U_PXNUM_U_U_PXFIELD_U_PXMSG
+ ;
  Q
  ;
 IMMSRC(IMMIS) ; Returns Event Info Source IEN
@@ -326,7 +200,7 @@ IMMLOT(IMMLOT,IMMMANUF,IMMEXPDT) ; Returns Lot_IEN^Comment
  S:IMMEXPDT'="" IMMCOMM=IMMCOMM_$S(IMMCOMM="":"",1:" ")_"Expiration Date: "_IMMEXPDT
  Q "^"_IMMCOMM
  ;
-IMMVIS(IMMVISMULT,ROOT) ; Sets ROOT's VIS multiple
+IMMVIS(IMMVISMULT,PXPCEARR,IMM) ; Sets PXPCEARR's VIS multiple
  N IMMVIS,IMMVISDT,IMMVISENTRY,PXSEQ,PXX,X
  S PXSEQ=0
  F PXX=1:1:$L(IMMVISMULT,";") D
@@ -336,7 +210,7 @@ IMMVIS(IMMVISMULT,ROOT) ; Sets ROOT's VIS multiple
  . S IMMVISDT=$P(IMMVISENTRY,"/",2)
  . I IMMVISDT S IMMVIS=IMMVIS_U_IMMVISDT
  . S PXSEQ=PXSEQ+1
- . S @ROOT@("VIS",PXSEQ,0)=IMMVIS
+ . S PXPCEARR("IMMUNIZATION",IMM,"VIS",PXSEQ,0)=IMMVIS
  Q
  ;
 IMMRMRKS(IMMREMARKS,IMMNUM,REMARK) ; Sets REMARK array

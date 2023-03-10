@@ -1,5 +1,5 @@
-PSODRG ;IHS/DSD/JCM - ORDER ENTRY DRUG SELECTION ;17 DEC 2019 8:10:26
- ;;7.0;OUTPATIENT PHARMACY;**20,23,36,53,54,46,112,139,207,148,243,268,324,251,375,387,398,390,427,411,458,504,517,457,574**;DEC 1997;Build 53
+PSODRG ;IHS/DSD/JCM - ORDER ENTRY DRUG SELECTION ;10/23/18 8:47am
+ ;;7.0;OUTPATIENT PHARMACY;**20,23,36,53,54,46,112,139,207,148,243,268,324,251,375,387,398,390,427,411,458,504,517,457,574,524**;DEC 1997;Build 28
  ;Reference to ^PSDRUG( supported by DBIA 221
  ;Reference to ^PS(50.7 supported by DBIA 2223
  ;Reference to $$PROMPT^PSSDIN supported by DBIA 3166
@@ -10,6 +10,8 @@ PSODRG ;IHS/DSD/JCM - ORDER ENTRY DRUG SELECTION ;17 DEC 2019 8:10:26
  ;Reference to ^VADPT supported by DBIA 10061
  ;Reference to IN^PSSHRQ2 supported by DBIA 5369
  ;Reference to ^XTMP("ORRDI" supported by DBIA 5440
+ ;
+ ;*524 Add HAZ Handle & Haz Dispose Alert pre-order checks
  ;----------------------------------------------------------
 START ;
  S (PSONEW("DFLG"),PSONEW("FIELD"),PSODRG("QFLG"))=0 K PSORX("DFLG")
@@ -84,8 +86,8 @@ TRADEX I $G(PSORXED("DFLG")),$D(DIRUT) S PSORXED("DFLG")=1
  K DIRUT,DTOUT,DUOUT,X,Y,DA,DR,DIE
  Q
 SET ;
- N STAT
- S PSODRUG("IEN")=+PSOY,PSODRUG("VA CLASS")=$P(PSOY(0),"^",2)
+ N PSOHZ S PSOHZ=0    ;init haz alert shown to user=no *524
+ N STAT S PSODRUG("IEN")=+PSOY,PSODRUG("VA CLASS")=$P(PSOY(0),"^",2)
  S PSODRUG("NAME")=$P(PSOY(0),"^")
  S PSODRUG("OI")=+$$GET1^DIQ(50,+PSOY,2.1,"I"),PSODRUG("OIN")=$$GET1^DIQ(50,+PSOY,2.1)
  S PSODRUG("NDF")=$S(PSODRUG("OI"):$$GET1^DIQ(50,+PSOY,20,"I")_"A"_$$GET1^DIQ(50,+PSOY,22,"I"),1:0)
@@ -109,6 +111,17 @@ NFI ;display restriction/guidelines
  I NFI]"","ODY"[NFI D TD^PSONFI
  K NFI Q
 POST ;order checks
+ ;add Hazardous to Handle/Dispose warning messages                                              *524
+ N HAZ,HAZH,HAZD,HTXT,LL S HAZ=$$HAZ^PSSUTIL(PSODRUG("IEN")),HAZH=$P(HAZ,U),HAZD=$P(HAZ,U,2)
+ I ('$G(PSOHZ)!(PSODRUG("IEN")'=$G(PSOLSTDR))),(HAZH!HAZD) D
+ . S PSOHZ=1,PSOLSTDR=PSODRUG("IEN")
+ . D HAZWARNG^PSSUTIL(PSODRUG("IEN"),"O",HAZH,HAZD,.HTXT)
+ . S $P(LL,"-",80)="-"
+ . W #,$C(7),LL,!
+ . W $J("***** WARNING *****",47)
+ . D WRAPTEXT(HTXT,65,5) W !
+ . W LL,!
+ . K DIR S DIR(0)="E",DIR("?")="Press Return to continue",DIR("A")="Press Return to continue" D ^DIR
  N LIST S LIST="PSOPEPS"
  K PSODOSD,^TMP("PSORXDC",$J),^TMP($J,LIST),^TMP("PSODAOC",$J)
  K ZDGDG,ZTHER,IT,PSODLQT,PSODOSD
@@ -236,4 +249,21 @@ NOALRGY ;
  .D ^DIE                                 ;*398 - Update Rx file
  I $D(PSONV) S PSORX("INTERVENE")=0 D EN1^PSORXI(PSONV) Q
  D ^PSORXI
+ Q
+ ;
+WRAPTEXT(TEXT,LIMIT,CSPACES) ;Wrap text util copied in from a PSO routine originally      *524
+ ;;FUNCTION TO DISPLAY (WRITE) TEXT WRAPPED TO A CERTAIN COLUMN LENGTH
+ ;;DEFAULT=74 CHARACTERS WITH NO SPACES IN FRONT
+ N WORDS,COUNT,LINE,NEXTWORD
+ Q:$G(TEXT)']"" ""
+ S LIMIT=$G(LIMIT,74)
+ S CSPACES=$S($G(CSPACES):CSPACES,1:0)
+ S WORDS=$L(TEXT," ")
+ W !,$$REPEAT^XLFSTR(" ",CSPACES)
+ F COUNT=1:1:WORDS D
+ . S NEXTWORD=$P(TEXT," ",COUNT)
+ . Q:NEXTWORD=""  ;TO REMOVE LEADING OR DOUBLE SPACES
+ . S LINE=$G(LINE)_NEXTWORD_" "
+ . I $L($G(LINE))>LIMIT W !,$$REPEAT^XLFSTR(" ",CSPACES) K LINE
+ . W NEXTWORD_" "
  Q

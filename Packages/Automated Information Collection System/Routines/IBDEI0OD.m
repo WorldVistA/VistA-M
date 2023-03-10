@@ -1,122 +1,112 @@
-IBDEI0OD ; ; 04-FEB-2020
- ;;3.0;IB ENCOUNTER FORM IMP/EXP;;FEB 04, 2020
+IBDEI0OD ; ; 01-FEB-2022
+ ;;3.0;IB ENCOUNTER FORM IMP/EXP;;FEB 01, 2022
  Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,999) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
- ;;^UTILITY(U,$J,358.3,10858,1,3,0)
- ;;=3^J3396
- ;;^UTILITY(U,$J,358.3,10859,0)
- ;;=J9035^^76^708^2^^^^1
- ;;^UTILITY(U,$J,358.3,10859,1,0)
- ;;=^358.31IA^3^2
- ;;^UTILITY(U,$J,358.3,10859,1,2,0)
- ;;=2^Bevacizumab 10mg (use w/ 67028)
- ;;^UTILITY(U,$J,358.3,10859,1,3,0)
- ;;=3^J9035
- ;;^UTILITY(U,$J,358.3,10860,0)
- ;;=J0178^^76^708^1^^^^1
- ;;^UTILITY(U,$J,358.3,10860,1,0)
- ;;=^358.31IA^3^2
- ;;^UTILITY(U,$J,358.3,10860,1,2,0)
- ;;=2^Aflibercept 1mg (use w/ 67028)
- ;;^UTILITY(U,$J,358.3,10860,1,3,0)
- ;;=3^J0178
- ;;^UTILITY(U,$J,358.3,10861,0)
- ;;=J7312^^76^708^5^^^^1
- ;;^UTILITY(U,$J,358.3,10861,1,0)
- ;;=^358.31IA^3^2
- ;;^UTILITY(U,$J,358.3,10861,1,2,0)
- ;;=2^Dexamethasone Intra Implant
- ;;^UTILITY(U,$J,358.3,10861,1,3,0)
- ;;=3^J7312
- ;;^UTILITY(U,$J,358.3,10862,0)
- ;;=J3301^^76^708^15^^^^1
- ;;^UTILITY(U,$J,358.3,10862,1,0)
- ;;=^358.31IA^3^2
- ;;^UTILITY(U,$J,358.3,10862,1,2,0)
- ;;=2^Triamcinolone Acetonide per 10mg (use w/ 67028)
- ;;^UTILITY(U,$J,358.3,10862,1,3,0)
- ;;=3^J3301
- ;;^UTILITY(U,$J,358.3,10863,0)
- ;;=J2778^^76^708^9^^^^1
- ;;^UTILITY(U,$J,358.3,10863,1,0)
- ;;=^358.31IA^3^2
- ;;^UTILITY(U,$J,358.3,10863,1,2,0)
- ;;=2^Ranibizumab per .01mg (use w/ 67028)
- ;;^UTILITY(U,$J,358.3,10863,1,3,0)
- ;;=3^J2778
- ;;^UTILITY(U,$J,358.3,10864,0)
- ;;=C9257^^76^708^3^^^^1
- ;;^UTILITY(U,$J,358.3,10864,1,0)
- ;;=^358.31IA^3^2
- ;;^UTILITY(U,$J,358.3,10864,1,2,0)
- ;;=2^Bevacizumab 0.25mg (use w/ 67028)
- ;;^UTILITY(U,$J,358.3,10864,1,3,0)
- ;;=3^C9257
- ;;^UTILITY(U,$J,358.3,10865,0)
- ;;=67028^^76^709^1^^^^1
- ;;^UTILITY(U,$J,358.3,10865,1,0)
- ;;=^358.31IA^3^2
- ;;^UTILITY(U,$J,358.3,10865,1,2,0)
- ;;=2^INTRAVITREAL EYE INJ-1 Eye/Unilateral
- ;;^UTILITY(U,$J,358.3,10865,1,3,0)
- ;;=3^67028
- ;;^UTILITY(U,$J,358.3,10866,0)
- ;;=J3301^^76^709^7^^^^1
- ;;^UTILITY(U,$J,358.3,10866,1,0)
- ;;=^358.31IA^3^2
- ;;^UTILITY(U,$J,358.3,10866,1,2,0)
- ;;=2^Triamcinolone/KENALOG (use w/ 68200)
- ;;^UTILITY(U,$J,358.3,10866,1,3,0)
- ;;=3^J3301
- ;;^UTILITY(U,$J,358.3,10867,0)
- ;;=J0178^^76^709^2^^^^1
- ;;^UTILITY(U,$J,358.3,10867,1,0)
- ;;=^358.31IA^3^2
- ;;^UTILITY(U,$J,358.3,10867,1,2,0)
- ;;=2^Aflib/EYLEA (use w/ 67028)
- ;;^UTILITY(U,$J,358.3,10867,1,3,0)
- ;;=3^J0178
- ;;^UTILITY(U,$J,358.3,10868,0)
- ;;=J7312^^76^709^14^^^^1
- ;;^UTILITY(U,$J,358.3,10868,1,0)
- ;;=^358.31IA^3^2
- ;;^UTILITY(U,$J,358.3,10868,1,2,0)
- ;;=2^Dexameth Implant/OZURDEX
- ;;^UTILITY(U,$J,358.3,10868,1,3,0)
- ;;=3^J7312
- ;;^UTILITY(U,$J,358.3,10869,0)
- ;;=J3300^^76^709^8^^^^1
- ;;^UTILITY(U,$J,358.3,10869,1,0)
- ;;=^358.31IA^3^2
- ;;^UTILITY(U,$J,358.3,10869,1,2,0)
- ;;=2^Triamcinolone/TRIESENCE (use w/ 67028)
- ;;^UTILITY(U,$J,358.3,10869,1,3,0)
- ;;=3^J3300
- ;;^UTILITY(U,$J,358.3,10870,0)
- ;;=64612^^76^709^10^^^^1
- ;;^UTILITY(U,$J,358.3,10870,1,0)
- ;;=^358.31IA^3^2
- ;;^UTILITY(U,$J,358.3,10870,1,2,0)
- ;;=2^Chemodenervation of Muscle Inj (eg,Botox),Unilat
- ;;^UTILITY(U,$J,358.3,10870,1,3,0)
- ;;=3^64612
- ;;^UTILITY(U,$J,358.3,10871,0)
- ;;=68200^^76^709^6^^^^1
- ;;^UTILITY(U,$J,358.3,10871,1,0)
- ;;=^358.31IA^3^2
- ;;^UTILITY(U,$J,358.3,10871,1,2,0)
- ;;=2^Subtenons Injection
- ;;^UTILITY(U,$J,358.3,10871,1,3,0)
- ;;=3^68200
- ;;^UTILITY(U,$J,358.3,10872,0)
- ;;=67505^^76^709^15^^^^1
- ;;^UTILITY(U,$J,358.3,10872,1,0)
- ;;=^358.31IA^3^2
- ;;^UTILITY(U,$J,358.3,10872,1,2,0)
- ;;=2^Retrobulbar Inj,Alcohol
- ;;^UTILITY(U,$J,358.3,10872,1,3,0)
- ;;=3^67505
- ;;^UTILITY(U,$J,358.3,10873,0)
- ;;=67500^^76^709^16^^^^1
- ;;^UTILITY(U,$J,358.3,10873,1,0)
- ;;=^358.31IA^3^2
+ ;;^UTILITY(U,$J,358.3,10955,0)
+ ;;=F13.97^^42^495^9
+ ;;^UTILITY(U,$J,358.3,10955,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,10955,1,3,0)
+ ;;=3^Sedative/Hypnotic/Anxiolytic Induced Maj Neurocog D/O w/o Use D/O
+ ;;^UTILITY(U,$J,358.3,10955,1,4,0)
+ ;;=4^F13.97
+ ;;^UTILITY(U,$J,358.3,10955,2)
+ ;;=^5003234
+ ;;^UTILITY(U,$J,358.3,10956,0)
+ ;;=F13.288^^42^495^10
+ ;;^UTILITY(U,$J,358.3,10956,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,10956,1,3,0)
+ ;;=3^Sedative/Hypnotic/Anxiolytic Induced Mild Neurocog D/O w/ Mod-Sev Use D/O
+ ;;^UTILITY(U,$J,358.3,10956,1,4,0)
+ ;;=4^F13.288
+ ;;^UTILITY(U,$J,358.3,10956,2)
+ ;;=^5003219
+ ;;^UTILITY(U,$J,358.3,10957,0)
+ ;;=F13.988^^42^495^11
+ ;;^UTILITY(U,$J,358.3,10957,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,10957,1,3,0)
+ ;;=3^Sedative/Hypnotic/Anxiolytic Induced Mild Neurocog D/O w/o Use D/O
+ ;;^UTILITY(U,$J,358.3,10957,1,4,0)
+ ;;=4^F13.988
+ ;;^UTILITY(U,$J,358.3,10957,2)
+ ;;=^5003238
+ ;;^UTILITY(U,$J,358.3,10958,0)
+ ;;=F13.159^^42^495^12
+ ;;^UTILITY(U,$J,358.3,10958,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,10958,1,3,0)
+ ;;=3^Sedative/Hypnotic/Anxiolytic Induced Psychotic D/O w/ Mild Use D/O
+ ;;^UTILITY(U,$J,358.3,10958,1,4,0)
+ ;;=4^F13.159
+ ;;^UTILITY(U,$J,358.3,10958,2)
+ ;;=^5003196
+ ;;^UTILITY(U,$J,358.3,10959,0)
+ ;;=F13.259^^42^495^13
+ ;;^UTILITY(U,$J,358.3,10959,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,10959,1,3,0)
+ ;;=3^Sedative/Hypnotic/Anxiolytic Induced Psychotic D/O w/ Mod-Sev Use D/O
+ ;;^UTILITY(U,$J,358.3,10959,1,4,0)
+ ;;=4^F13.259
+ ;;^UTILITY(U,$J,358.3,10959,2)
+ ;;=^5003213
+ ;;^UTILITY(U,$J,358.3,10960,0)
+ ;;=F13.959^^42^495^14
+ ;;^UTILITY(U,$J,358.3,10960,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,10960,1,3,0)
+ ;;=3^Sedative/Hypnotic/Anxiolytic Induced Psychotic D/O w/o Use D/O
+ ;;^UTILITY(U,$J,358.3,10960,1,4,0)
+ ;;=4^F13.959
+ ;;^UTILITY(U,$J,358.3,10960,2)
+ ;;=^5003232
+ ;;^UTILITY(U,$J,358.3,10961,0)
+ ;;=F13.181^^42^495^15
+ ;;^UTILITY(U,$J,358.3,10961,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,10961,1,3,0)
+ ;;=3^Sedative/Hypnotic/Anxiolytic Induced Sexual Dysfunction w/ Mild Use D/O
+ ;;^UTILITY(U,$J,358.3,10961,1,4,0)
+ ;;=4^F13.181
+ ;;^UTILITY(U,$J,358.3,10961,2)
+ ;;=^5003198
+ ;;^UTILITY(U,$J,358.3,10962,0)
+ ;;=F13.281^^42^495^16
+ ;;^UTILITY(U,$J,358.3,10962,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,10962,1,3,0)
+ ;;=3^Sedative/Hypnotic/Anxiolytic Induced Sexual Dysfunction w/ Mod-Sev Use D/O
+ ;;^UTILITY(U,$J,358.3,10962,1,4,0)
+ ;;=4^F13.281
+ ;;^UTILITY(U,$J,358.3,10962,2)
+ ;;=^5003217
+ ;;^UTILITY(U,$J,358.3,10963,0)
+ ;;=F13.981^^42^495^17
+ ;;^UTILITY(U,$J,358.3,10963,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,10963,1,3,0)
+ ;;=3^Sedative/Hypnotic/Anxiolytic Induced Sexual Dysfunction w/o Use D/O
+ ;;^UTILITY(U,$J,358.3,10963,1,4,0)
+ ;;=4^F13.981
+ ;;^UTILITY(U,$J,358.3,10963,2)
+ ;;=^5003236
+ ;;^UTILITY(U,$J,358.3,10964,0)
+ ;;=F13.182^^42^495^18
+ ;;^UTILITY(U,$J,358.3,10964,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,10964,1,3,0)
+ ;;=3^Sedative/Hypnotic/Anxiolytic Induced Sleep D/O w/ Mild Use D/O
+ ;;^UTILITY(U,$J,358.3,10964,1,4,0)
+ ;;=4^F13.182
+ ;;^UTILITY(U,$J,358.3,10964,2)
+ ;;=^5003199
+ ;;^UTILITY(U,$J,358.3,10965,0)
+ ;;=F13.282^^42^495^19
+ ;;^UTILITY(U,$J,358.3,10965,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,10965,1,3,0)
+ ;;=3^Sedative/Hypnotic/Anxiolytic Induced Sleep D/O w/ Mod-Sev Use D/O
+ ;;^UTILITY(U,$J,358.3,10965,1,4,0)
+ ;;=4^F13.282

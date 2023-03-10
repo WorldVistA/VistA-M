@@ -1,10 +1,14 @@
 PSOCPF ;BIR/BAA - Pharmacy CO-PAY Application Utilities for IB ;02/06/92
- ;;7.0;OUTPATIENT PHARMACY;**463,592**;DEC 1997;Build 4
+ ;;7.0;OUTPATIENT PHARMACY;**463,592,618,636**;DEC 1997;Build 14
  ;
 EN ; -- main entry point for HELD CHARGES LIST
  ;
  ; add code to do filters here
  N FILTERS,PNAME
+ ;PSO*7*618 MOVE NEWS FROM FILTERS
+ N DIR,DIROUT,DIRUT,DTOUT,DUOUT,X,XX,Y,IBDATES,DFN,R
+ ;PSO*7*618 ADD NEWS FROM ASKRX
+ N DIC,DIVS,DUOUT,FIRST,PSOIENS,PSOIENS2,IEN,N
  I '$$FILTER(.FILTERS) Q
  ;
  ; code to do sort
@@ -45,13 +49,18 @@ BLD ; build data to display
  K ^TMP("VALMAR",$J)
  N LINE,VCNT
  I '$D(^TMP($J,"PSOCPF")) D  Q
- . S VCNT=1
+ . S (VCNT,VALMCNT)=1
+ . ;PSO*7*618 fix/rewrite add patient info
+ . S NAME=$P($G(^DPT(+PAT,0)),U)
  . S LINE=$$SETL("","","",1,4)
- . S LINE=$$SETL(LINE,"NO DATA FOUND FOR ENTERED CRITERIA","",5,50)
- . S VALMCNT=1
- . D SET^VALM10(VALMCNT,LINE,VCNT)
- N RFL,VCNT,MED,NAME,RFL,SC,SCP,FILDT,BLN,IBST1,MTS,RX,REC,VALMY,ARST1,BLNO,CPY,CPYO
- N DFN,MTO,MTSD,MTSO,PBIL,PID,PRIEN,RIEN,RXO,RXS,SCO,SCOO,SCPO,DEBTOR
+ . S LINE=$$SETL(LINE,NAME,"",5,22)
+ . D SET^VALM10(VCNT,LINE,VCNT)
+ . S LINE=$$SETL("","","",1,7)
+ . S LINE=$$SETL(LINE,"NO DATA FOUND FOR ENTERED CRITERIA","",8,50)
+ . S VCNT=3
+ . D SET^VALM10(VCNT,LINE,VCNT)
+ N RFL,VCNT,MED,NAME,RFL,SC,SCP,FILDT,BLN,IBST1,RX,REC,VALMY,ARST1,BLNO
+ N DFN,PBIL,PID,PRIEN,RIEN,RXO,RXS,SCO,SCOO,SCPO,DEBTOR,RXS
  S VALMCNT=0
  S (RIEN,VCNT)=0,(NAME,RFL)=""
  F  S NAME=$O(^TMP($J,"PSOCPF",NAME)) Q:NAME=""  D
@@ -61,16 +70,22 @@ BLD ; build data to display
  ... S LINE=$$SETL("",VCNT,"",1,4) ;line#
  ... S REC=^TMP($J,"PSOCPF",NAME,RIEN,RFL),PID=$P(REC,U,2),ARST1=$P(REC,U,10),PBIL=$P(REC,U,16)
  ... S MED=$P(REC,U,3),RX=$P(REC,U,7),BLN=$P(REC,U,9),FILDT=$P(REC,U,8),DFN=$P(REC,U,15)
- ... S PRIEN=$P(REC,U,18),CPY=$P(REC,U,20),DEBTOR=$P(REC,U,21)
+ ... ;PSO*7*636 remove CPY
+ ... S PRIEN=$P(REC,U,18),DEBTOR=$P(REC,U,21)
  ... S ^TMP($J,"PSOCPFX",VCNT)=NAME_U_DFN_U_MED_U_RIEN_U_BLN_U_PRIEN_U_RFL_U_RX_U_DEBTOR
  ... S RXO="Rx#:"_RX_"-"_RFL
  ... S BLNO="BIL#:"_BLN
- ... S SC=$P(REC,U,11),SCO=$S(SC=1:"YES",1:"NO"),SCOO="SC:"_SCO
- ... S SCP=$P(REC,U,12),SCPO="SC%:"_+SCP
- ... S MTSD=$P(REC,U,13),MTO="DT:"_MTSD
- ... S MTS=$P(REC,U,14),MTSO="MT:"_MTS
- ... S CPYO="RX:"_CPY
- ... S ^TMP($J,"PSOCPFE",NAME,RIEN,RFL)=NAME_U_PID_U_MED_U_RX_"-"_RFL_U_$$FMTE^XLFDT(FILDT,"2DZ")_U_BLN_U_ARST1_U_SCO_U_SCP_"%"_U_MTS_U_MTSD_U_CPY
+ ... ;PSO*7*636 Remove SC & SC% from report
+ ... ;S SC=$P(REC,U,11),SCO=$S(SC=1:"YES",1:"NO"),SCOO="SC:"_SCO
+ ... ;S SCP=$P(REC,U,12),SCPO="SC%:"_+SCP
+ ... ;Add RX Status PSO 636
+ ... S RXS=$P(REC,U,11),RXS=$S(RXS:"COPAY",1:"NO COPAY"),RXS="RX STATUS: "_RXS
+ ... ;PSO*7*636 remove MTSD,MTS,CPYO
+ ... ;S MTSD=$P(REC,U,13),MTO="DT:"_MTSD
+ ... ;S MTS=$P(REC,U,14),MTSO="MT:"_MTS
+ ... ;S CPYO="RX:"_CPY
+ ... ;PSO*7*636 Remove SC,SC%,MTSD,MTS,CPY from report
+ ... S ^TMP($J,"PSOCPFE",NAME,RIEN,RFL)=NAME_U_PID_U_MED_U_RX_"-"_RFL_U_$$FMTE^XLFDT(FILDT,"2DZ")_U_BLN_U_ARST1_U_RXS_U_U_U_U
  ... S LINE=$$SETL(LINE,NAME,"",5,22)
  ... S LINE=$$SETL(LINE,PID,"",28,6)
  ... S LINE=$$SETL(LINE,MED,"",35,16)
@@ -78,20 +93,27 @@ BLD ; build data to display
  ... S LINE=$$SETL(LINE,ARST1,"",62,17)
  ... S VALMCNT=VALMCNT+1
  ... D SET^VALM10(VALMCNT,LINE,VCNT)
- ... S LINE=$$SETL("",SCOO,"",5,8)
- ... S LINE=$$SETL(LINE,SCPO,"",14,8)
- ... S LINE=$$SETL(LINE,RXO,"",35,20)
- ... S LINE=$$SETL(LINE,BLNO,"",62,17)
+ ... ;PSO*7*636 Remove SC & SC% from report
+ ... ;S LINE=$$SETL("",SCOO,"",5,8)
+ ... ;S LINE=$$SETL(LINE,SCPO,"",14,8)
+ ... ;PSO*7*636 Add RX Status:
+ ... S LINE=$$SETL("",RXS,"",6,20)
+ ... ;PSO*7*636 move RX# label 1 space right
+ ... S LINE=$$SETL(LINE,RXO,"",36,20)
+ ... ;PSO*7*636 Move BIL# label to the left 8 spaces
+ ... S LINE=$$SETL(LINE,BLNO,"",54,17)
  ... S VALMCNT=VALMCNT+1
  ... D SET^VALM10(VALMCNT,LINE,VCNT)
- ... S LINE=$$SETL("",MTSO,"",5,20)
- ... S LINE=$$SETL(LINE,MTO,"",35,16)
- ... S LINE=$$SETL(LINE,CPYO,"",53,25)
- ... S VALMCNT=VALMCNT+1
- ... D SET^VALM10(VALMCNT,LINE,VCNT)
- ... S LINE=""
- ... S VALMCNT=VALMCNT+1
- ... D SET^VALM10(VALMCNT,LINE,VCNT)
+ ... ;PSO*7*636 remove mtso,mts,cpyo
+ ... ;S LINE=$$SETL("",MTSO,"",5,20)
+ ... ;S LINE=$$SETL(LINE,MTO,"",35,16)
+ ... ;S LINE=$$SETL(LINE,CPYO,"",53,25)
+ ... ;S VALMCNT=VALMCNT+1
+ ... ;D SET^VALM10(VALMCNT,LINE,VCNT)
+ ... ;PSO*7*636 No blank line between RXs
+ ... ;S LINE=""
+ ... ;S VALMCNT=VALMCNT+1
+ ... ;D SET^VALM10(VALMCNT,LINE,VCNT)
  Q
  ;
 SETL(LINE,DATA,LABEL,COL,LNG) ; Creates a line of data to be set into the body
@@ -119,14 +141,15 @@ EXIT ; -- exit code
  Q
  ;
 FILTER(FILTERS) ; filter display
- ; Sets an array of filters to determine which entris to include in display
+ ; Sets an array of filters to determine which entries to include in display
  ; Input:   None
  ; Output:  
  ; Returns: 0 if the user entered '^' or timed out, 1 otherwise
  ; FILTERS(0) = from date ^ to date ^ 0 (all) 1 (selected) prescriptions ^ patient ^
- ;                                    0 (no) 1 (yes) exclued canceled bills
+ ;                                    0 (no) 1 (yes) exclude canceled bills
  ; FILTERS(1,RX ien) = ""
- N DIR,DIROUT,DIRUT,DTOUT,DUOUT,X,XX,Y,IBDATES,DFN,R
+ ;PSO*7*618 MOVE NEWS TO ENTRY OF ROUTINE
+ ;N DIR,DIROUT,DIRUT,DTOUT,DUOUT,X,XX,Y,IBDATES,DFN,R
  K FILTERS
  ;
  S DIC(0)="AEQMN",DIC="^DPT(",FIRST=1
@@ -136,13 +159,14 @@ FILTER(FILTERS) ; filter display
  S (DFN,PAT,$P(FILTERS(0),U,4))=$P(PAT,U,1)
  ;
  ; get date range
- S IBDATES="Fill Dates",IBDATES=$$FMDATES(IBDATES) I IBDATES=0 Q 0
+ S IBDATES="Fill Dates",IBDATES=$$FMDATES(IBDATES) I +IBDATES=0 Q 0 ;PSO 618 add +
  S $P(FILTERS(0),U,1)=$P(IBDATES,U,1)
  S $P(FILTERS(0),U,2)=$P(IBDATES,U,2)
  ;
  ; Prescription filter
  D ADDRX
- I Y=-1 Q 0
+ ;PSO 618 add DIRUT exit
+ I $G(DIRUT)!(Y=-1) Q 0
  ;
  S ^TMP($J,"PSOCPFF",0)=FILTERS(0)
  S R=""
@@ -159,7 +183,8 @@ ADDRX ;
  S DIR("?")="Enter 'S' to view entries for selected Prescription(s)."
  S $P(DIR(0),U,2)="A:All Prescriptions;S:Selected Prescriptions"
  W ! D ^DIR K DIR
- I Y=-1 Q 0
+ ;PSO 618 add DIRUT exit
+ I $G(DIRUT)!(Y=-1) Q
  S X=$$UP^XLFSTR(X)
  S $P(FILTERS(0),U,3)=$S(Y="A":0,1:1)
  ;
@@ -185,7 +210,8 @@ FMDQ Q DT1
 ASKRX(FILTERS)   ; Sets a list of PrescriptionS to be displayed
  ; Input:   FILTERS - Current Array of filter settings
  ; Output:  FILTERS - Updated Array of filter settings
- N DIC,DIR,DIRUT,DIVS,DUOUT,FIRST,PSOIENS,PSOIENS2,IEN,N,X,XX,Y
+ ;PSO*7*618 MOVE TO NP
+ ;N DIC,DIR,DIRUT,DIVS,DUOUT,FIRST,PSOIENS,PSOIENS2,IEN,N,X,XX,Y
  S DIC=52,DIC(0)="AEQMN",FIRST=1
  K FILTERS(1)
  F  D  Q:+IEN<1
@@ -196,7 +222,7 @@ ASKRX(FILTERS)   ; Sets a list of PrescriptionS to be displayed
  I '$D(PSOIENS) S $P(FILTERS(0),U,3)=0 Q
  ;
  ; Set the filter node responses in alphabetical order
- S XX=""
+ S XX="",Y=""
  F  D  Q:XX=""
  . S XX=$O(PSOIENS(XX))
  . Q:XX=""

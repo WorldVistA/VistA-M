@@ -1,136 +1,128 @@
-IBDEI0M0 ; ; 04-FEB-2020
- ;;3.0;IB ENCOUNTER FORM IMP/EXP;;FEB 04, 2020
+IBDEI0M0 ; ; 01-FEB-2022
+ ;;3.0;IB ENCOUNTER FORM IMP/EXP;;FEB 01, 2022
  Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,999) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
- ;;^UTILITY(U,$J,358.3,9777,0)
- ;;=W55.81XA^^72^652^25
- ;;^UTILITY(U,$J,358.3,9777,1,0)
+ ;;^UTILITY(U,$J,358.3,9899,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,9777,1,3,0)
- ;;=3^Animal Bite,Mammals
- ;;^UTILITY(U,$J,358.3,9777,1,4,0)
- ;;=4^W55.81XA
- ;;^UTILITY(U,$J,358.3,9777,2)
- ;;=^5060319
- ;;^UTILITY(U,$J,358.3,9778,0)
- ;;=W46.1XXA^^72^652^26
- ;;^UTILITY(U,$J,358.3,9778,1,0)
+ ;;^UTILITY(U,$J,358.3,9899,1,3,0)
+ ;;=3^Fall from Bed,Init Encntr
+ ;;^UTILITY(U,$J,358.3,9899,1,4,0)
+ ;;=4^W06.XXXA
+ ;;^UTILITY(U,$J,358.3,9899,2)
+ ;;=^5059559
+ ;;^UTILITY(U,$J,358.3,9900,0)
+ ;;=W06.XXXD^^39^420^35
+ ;;^UTILITY(U,$J,358.3,9900,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,9778,1,3,0)
- ;;=3^Needlestick
- ;;^UTILITY(U,$J,358.3,9778,1,4,0)
- ;;=4^W46.1XXA
- ;;^UTILITY(U,$J,358.3,9778,2)
- ;;=^5060190
- ;;^UTILITY(U,$J,358.3,9779,0)
- ;;=A09.^^72^652^27
- ;;^UTILITY(U,$J,358.3,9779,1,0)
+ ;;^UTILITY(U,$J,358.3,9900,1,3,0)
+ ;;=3^Fall from Bed,Subs Encntr
+ ;;^UTILITY(U,$J,358.3,9900,1,4,0)
+ ;;=4^W06.XXXD
+ ;;^UTILITY(U,$J,358.3,9900,2)
+ ;;=^5059560
+ ;;^UTILITY(U,$J,358.3,9901,0)
+ ;;=W07.XXXA^^39^420^42
+ ;;^UTILITY(U,$J,358.3,9901,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,9779,1,3,0)
- ;;=3^Gastroenteritis,Infectious
- ;;^UTILITY(U,$J,358.3,9779,1,4,0)
- ;;=4^A09.
- ;;^UTILITY(U,$J,358.3,9779,2)
- ;;=^5000061
- ;;^UTILITY(U,$J,358.3,9780,0)
- ;;=M72.6^^72^652^30
- ;;^UTILITY(U,$J,358.3,9780,1,0)
+ ;;^UTILITY(U,$J,358.3,9901,1,3,0)
+ ;;=3^Fall from Chair,Init Encntr
+ ;;^UTILITY(U,$J,358.3,9901,1,4,0)
+ ;;=4^W07.XXXA
+ ;;^UTILITY(U,$J,358.3,9901,2)
+ ;;=^5059562
+ ;;^UTILITY(U,$J,358.3,9902,0)
+ ;;=W07.XXXD^^39^420^43
+ ;;^UTILITY(U,$J,358.3,9902,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,9780,1,3,0)
- ;;=3^Necrotizing Fasciitis
- ;;^UTILITY(U,$J,358.3,9780,1,4,0)
- ;;=4^M72.6
- ;;^UTILITY(U,$J,358.3,9780,2)
- ;;=^303314
- ;;^UTILITY(U,$J,358.3,9781,0)
- ;;=Z11.1^^72^652^31
- ;;^UTILITY(U,$J,358.3,9781,1,0)
+ ;;^UTILITY(U,$J,358.3,9902,1,3,0)
+ ;;=3^Fall from Chair,Subs Encntr
+ ;;^UTILITY(U,$J,358.3,9902,1,4,0)
+ ;;=4^W07.XXXD
+ ;;^UTILITY(U,$J,358.3,9902,2)
+ ;;=^5059563
+ ;;^UTILITY(U,$J,358.3,9903,0)
+ ;;=W10.1XXA^^39^420^86
+ ;;^UTILITY(U,$J,358.3,9903,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,9781,1,3,0)
- ;;=3^Screening/Reading TB Test
- ;;^UTILITY(U,$J,358.3,9781,1,4,0)
- ;;=4^Z11.1
- ;;^UTILITY(U,$J,358.3,9781,2)
- ;;=^5062670
- ;;^UTILITY(U,$J,358.3,9782,0)
- ;;=N76.0^^72^652^33
- ;;^UTILITY(U,$J,358.3,9782,1,0)
+ ;;^UTILITY(U,$J,358.3,9903,1,3,0)
+ ;;=3^Fall on Sidewalk Curb,Init Encntr
+ ;;^UTILITY(U,$J,358.3,9903,1,4,0)
+ ;;=4^W10.1XXA
+ ;;^UTILITY(U,$J,358.3,9903,2)
+ ;;=^5059583
+ ;;^UTILITY(U,$J,358.3,9904,0)
+ ;;=W10.1XXD^^39^420^87
+ ;;^UTILITY(U,$J,358.3,9904,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,9782,1,3,0)
- ;;=3^Acute Vaginitis
- ;;^UTILITY(U,$J,358.3,9782,1,4,0)
- ;;=4^N76.0
- ;;^UTILITY(U,$J,358.3,9782,2)
- ;;=^5015826
- ;;^UTILITY(U,$J,358.3,9783,0)
- ;;=A60.9^^72^652^34
- ;;^UTILITY(U,$J,358.3,9783,1,0)
+ ;;^UTILITY(U,$J,358.3,9904,1,3,0)
+ ;;=3^Fall on Sidewalk Curb,Subs Encntr
+ ;;^UTILITY(U,$J,358.3,9904,1,4,0)
+ ;;=4^W10.1XXD
+ ;;^UTILITY(U,$J,358.3,9904,2)
+ ;;=^5059584
+ ;;^UTILITY(U,$J,358.3,9905,0)
+ ;;=W11.XXXA^^39^420^46
+ ;;^UTILITY(U,$J,358.3,9905,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,9783,1,3,0)
- ;;=3^Genital Herpesviral Infection
- ;;^UTILITY(U,$J,358.3,9783,1,4,0)
- ;;=4^A60.9
- ;;^UTILITY(U,$J,358.3,9783,2)
- ;;=^5000359
- ;;^UTILITY(U,$J,358.3,9784,0)
- ;;=Z11.3^^72^652^35
- ;;^UTILITY(U,$J,358.3,9784,1,0)
+ ;;^UTILITY(U,$J,358.3,9905,1,3,0)
+ ;;=3^Fall from Ladder,Init Encntr
+ ;;^UTILITY(U,$J,358.3,9905,1,4,0)
+ ;;=4^W11.XXXA
+ ;;^UTILITY(U,$J,358.3,9905,2)
+ ;;=^5059595
+ ;;^UTILITY(U,$J,358.3,9906,0)
+ ;;=W11.XXXD^^39^420^47
+ ;;^UTILITY(U,$J,358.3,9906,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,9784,1,3,0)
- ;;=3^STD Screen
- ;;^UTILITY(U,$J,358.3,9784,1,4,0)
- ;;=4^Z11.3
- ;;^UTILITY(U,$J,358.3,9784,2)
- ;;=^5062672
- ;;^UTILITY(U,$J,358.3,9785,0)
- ;;=B20.^^72^652^36
- ;;^UTILITY(U,$J,358.3,9785,1,0)
+ ;;^UTILITY(U,$J,358.3,9906,1,3,0)
+ ;;=3^Fall from Ladder,Subs Encntr
+ ;;^UTILITY(U,$J,358.3,9906,1,4,0)
+ ;;=4^W11.XXXD
+ ;;^UTILITY(U,$J,358.3,9906,2)
+ ;;=^5059596
+ ;;^UTILITY(U,$J,358.3,9907,0)
+ ;;=W13.0XXA^^39^420^72
+ ;;^UTILITY(U,$J,358.3,9907,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,9785,1,3,0)
- ;;=3^HIV
- ;;^UTILITY(U,$J,358.3,9785,1,4,0)
- ;;=4^B20.
- ;;^UTILITY(U,$J,358.3,9785,2)
- ;;=^5000555
- ;;^UTILITY(U,$J,358.3,9786,0)
- ;;=B18.2^^72^652^37
- ;;^UTILITY(U,$J,358.3,9786,1,0)
+ ;;^UTILITY(U,$J,358.3,9907,1,3,0)
+ ;;=3^Fall from/through Balcony,Init Encntr
+ ;;^UTILITY(U,$J,358.3,9907,1,4,0)
+ ;;=4^W13.0XXA
+ ;;^UTILITY(U,$J,358.3,9907,2)
+ ;;=^5059601
+ ;;^UTILITY(U,$J,358.3,9908,0)
+ ;;=W13.0XXD^^39^420^73
+ ;;^UTILITY(U,$J,358.3,9908,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,9786,1,3,0)
- ;;=3^Chronic Viral Hepatitis C
- ;;^UTILITY(U,$J,358.3,9786,1,4,0)
- ;;=4^B18.2
- ;;^UTILITY(U,$J,358.3,9786,2)
- ;;=^5000548
- ;;^UTILITY(U,$J,358.3,9787,0)
- ;;=G03.9^^72^652^38
- ;;^UTILITY(U,$J,358.3,9787,1,0)
+ ;;^UTILITY(U,$J,358.3,9908,1,3,0)
+ ;;=3^Fall from/through Balcony,Subs Encntr
+ ;;^UTILITY(U,$J,358.3,9908,1,4,0)
+ ;;=4^W13.0XXD
+ ;;^UTILITY(U,$J,358.3,9908,2)
+ ;;=^5059602
+ ;;^UTILITY(U,$J,358.3,9909,0)
+ ;;=W13.1XXA^^39^420^36
+ ;;^UTILITY(U,$J,358.3,9909,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,9787,1,3,0)
- ;;=3^Meningitis
- ;;^UTILITY(U,$J,358.3,9787,1,4,0)
- ;;=4^G03.9
- ;;^UTILITY(U,$J,358.3,9787,2)
- ;;=^5003729
- ;;^UTILITY(U,$J,358.3,9788,0)
- ;;=G04.90^^72^652^39
- ;;^UTILITY(U,$J,358.3,9788,1,0)
+ ;;^UTILITY(U,$J,358.3,9909,1,3,0)
+ ;;=3^Fall from Bridge,Init Encntr
+ ;;^UTILITY(U,$J,358.3,9909,1,4,0)
+ ;;=4^W13.1XXA
+ ;;^UTILITY(U,$J,358.3,9909,2)
+ ;;=^5059604
+ ;;^UTILITY(U,$J,358.3,9910,0)
+ ;;=W13.1XXD^^39^420^37
+ ;;^UTILITY(U,$J,358.3,9910,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,9788,1,3,0)
- ;;=3^Encephalitis & Encephalopathy
- ;;^UTILITY(U,$J,358.3,9788,1,4,0)
- ;;=4^G04.90
- ;;^UTILITY(U,$J,358.3,9788,2)
- ;;=^5003741
- ;;^UTILITY(U,$J,358.3,9789,0)
- ;;=A15.0^^72^652^32
- ;;^UTILITY(U,$J,358.3,9789,1,0)
+ ;;^UTILITY(U,$J,358.3,9910,1,3,0)
+ ;;=3^Fall from Bridge,Subs Encntr
+ ;;^UTILITY(U,$J,358.3,9910,1,4,0)
+ ;;=4^W13.1XXD
+ ;;^UTILITY(U,$J,358.3,9910,2)
+ ;;=^5059605
+ ;;^UTILITY(U,$J,358.3,9911,0)
+ ;;=W13.2XXA^^39^420^74
+ ;;^UTILITY(U,$J,358.3,9911,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,9789,1,3,0)
- ;;=3^Tuberculosis,Pulmonary
- ;;^UTILITY(U,$J,358.3,9789,1,4,0)
- ;;=4^A15.0
- ;;^UTILITY(U,$J,358.3,9789,2)
- ;;=^5000062
- ;;^UTILITY(U,$J,358.3,9790,0)
- ;;=A04.71^^72^652^28
+ ;;^UTILITY(U,$J,358.3,9911,1,3,0)
+ ;;=3^Fall from/through Roof,Init Encntr

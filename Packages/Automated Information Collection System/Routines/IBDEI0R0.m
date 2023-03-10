@@ -1,122 +1,120 @@
-IBDEI0R0 ; ; 04-FEB-2020
- ;;3.0;IB ENCOUNTER FORM IMP/EXP;;FEB 04, 2020
+IBDEI0R0 ; ; 01-FEB-2022
+ ;;3.0;IB ENCOUNTER FORM IMP/EXP;;FEB 01, 2022
  Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,999) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
- ;;^UTILITY(U,$J,358.3,12057,0)
- ;;=K85.20^^80^769^6
- ;;^UTILITY(U,$J,358.3,12057,1,0)
+ ;;^UTILITY(U,$J,358.3,12167,1,4,0)
+ ;;=4^L89.226
+ ;;^UTILITY(U,$J,358.3,12167,2)
+ ;;=^5158087
+ ;;^UTILITY(U,$J,358.3,12168,0)
+ ;;=L89.146^^49^595^121
+ ;;^UTILITY(U,$J,358.3,12168,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,12057,1,3,0)
- ;;=3^Alcohol Induced Acute Pancreatitis
- ;;^UTILITY(U,$J,358.3,12057,1,4,0)
- ;;=4^K85.20
- ;;^UTILITY(U,$J,358.3,12057,2)
- ;;=^5138752
- ;;^UTILITY(U,$J,358.3,12058,0)
- ;;=K85.21^^80^769^8
- ;;^UTILITY(U,$J,358.3,12058,1,0)
+ ;;^UTILITY(U,$J,358.3,12168,1,3,0)
+ ;;=3^Pressure-Induced Deep Tissue Damage of Left Lower Back
+ ;;^UTILITY(U,$J,358.3,12168,1,4,0)
+ ;;=4^L89.146
+ ;;^UTILITY(U,$J,358.3,12168,2)
+ ;;=^5158083
+ ;;^UTILITY(U,$J,358.3,12169,0)
+ ;;=L89.126^^49^595^122
+ ;;^UTILITY(U,$J,358.3,12169,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,12058,1,3,0)
- ;;=3^Alcohol Induced Acute Pancreatitis w/ Uninfected Necrosis
- ;;^UTILITY(U,$J,358.3,12058,1,4,0)
- ;;=4^K85.21
- ;;^UTILITY(U,$J,358.3,12058,2)
- ;;=^5138753
- ;;^UTILITY(U,$J,358.3,12059,0)
- ;;=K85.22^^80^769^7
- ;;^UTILITY(U,$J,358.3,12059,1,0)
+ ;;^UTILITY(U,$J,358.3,12169,1,3,0)
+ ;;=3^Pressure-Induced Deep Tissue Damage of Left Upper Back
+ ;;^UTILITY(U,$J,358.3,12169,1,4,0)
+ ;;=4^L89.126
+ ;;^UTILITY(U,$J,358.3,12169,2)
+ ;;=^5158081
+ ;;^UTILITY(U,$J,358.3,12170,0)
+ ;;=L89.896^^49^595^123
+ ;;^UTILITY(U,$J,358.3,12170,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,12059,1,3,0)
- ;;=3^Alcohol Induced Acute Pancreatitis w/ Infected Necrosis
- ;;^UTILITY(U,$J,358.3,12059,1,4,0)
- ;;=4^K85.22
- ;;^UTILITY(U,$J,358.3,12059,2)
- ;;=^5138754
- ;;^UTILITY(U,$J,358.3,12060,0)
- ;;=K85.10^^80^769^17
- ;;^UTILITY(U,$J,358.3,12060,1,0)
+ ;;^UTILITY(U,$J,358.3,12170,1,3,0)
+ ;;=3^Pressure-Induced Deep Tissue Damage of Oth Site
+ ;;^UTILITY(U,$J,358.3,12170,1,4,0)
+ ;;=4^L89.896
+ ;;^UTILITY(U,$J,358.3,12170,2)
+ ;;=^5158099
+ ;;^UTILITY(U,$J,358.3,12171,0)
+ ;;=L89.96^^49^595^124
+ ;;^UTILITY(U,$J,358.3,12171,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,12060,1,3,0)
- ;;=3^Biliary Acute Pancreatitis
- ;;^UTILITY(U,$J,358.3,12060,1,4,0)
- ;;=4^K85.10
- ;;^UTILITY(U,$J,358.3,12060,2)
- ;;=^5138749
- ;;^UTILITY(U,$J,358.3,12061,0)
- ;;=K85.11^^80^769^19
- ;;^UTILITY(U,$J,358.3,12061,1,0)
+ ;;^UTILITY(U,$J,358.3,12171,1,3,0)
+ ;;=3^Pressure-Induced Deep Tissue Damage of Unspec Site
+ ;;^UTILITY(U,$J,358.3,12171,1,4,0)
+ ;;=4^L89.96
+ ;;^UTILITY(U,$J,358.3,12171,2)
+ ;;=^5158100
+ ;;^UTILITY(U,$J,358.3,12172,0)
+ ;;=L89.516^^49^595^125
+ ;;^UTILITY(U,$J,358.3,12172,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,12061,1,3,0)
- ;;=3^Biliary Acute pancreatitis w/ Uninfected Necrosis
- ;;^UTILITY(U,$J,358.3,12061,1,4,0)
- ;;=4^K85.11
- ;;^UTILITY(U,$J,358.3,12061,2)
- ;;=^5138750
- ;;^UTILITY(U,$J,358.3,12062,0)
- ;;=K85.12^^80^769^18
- ;;^UTILITY(U,$J,358.3,12062,1,0)
+ ;;^UTILITY(U,$J,358.3,12172,1,3,0)
+ ;;=3^Pressure-Induced Deep Tissue Damage of Right Ankle
+ ;;^UTILITY(U,$J,358.3,12172,1,4,0)
+ ;;=4^L89.516
+ ;;^UTILITY(U,$J,358.3,12172,2)
+ ;;=^5158093
+ ;;^UTILITY(U,$J,358.3,12173,0)
+ ;;=L89.316^^49^595^126
+ ;;^UTILITY(U,$J,358.3,12173,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,12062,1,3,0)
- ;;=3^Biliary Acute Pancreatitis w/ Infected Necrosis
- ;;^UTILITY(U,$J,358.3,12062,1,4,0)
- ;;=4^K85.12
- ;;^UTILITY(U,$J,358.3,12062,2)
- ;;=^5138751
- ;;^UTILITY(U,$J,358.3,12063,0)
- ;;=K85.31^^80^769^38
- ;;^UTILITY(U,$J,358.3,12063,1,0)
+ ;;^UTILITY(U,$J,358.3,12173,1,3,0)
+ ;;=3^Pressure-Induced Deep Tissue Damage of Right Buttock
+ ;;^UTILITY(U,$J,358.3,12173,1,4,0)
+ ;;=4^L89.316
+ ;;^UTILITY(U,$J,358.3,12173,2)
+ ;;=^5158089
+ ;;^UTILITY(U,$J,358.3,12174,0)
+ ;;=L89.016^^49^595^127
+ ;;^UTILITY(U,$J,358.3,12174,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,12063,1,3,0)
- ;;=3^Drug Induced Acute Pancreatitis w/ Uninfected Necrosis
- ;;^UTILITY(U,$J,358.3,12063,1,4,0)
- ;;=4^K85.31
- ;;^UTILITY(U,$J,358.3,12063,2)
- ;;=^5138756
- ;;^UTILITY(U,$J,358.3,12064,0)
- ;;=K85.30^^80^769^36
- ;;^UTILITY(U,$J,358.3,12064,1,0)
+ ;;^UTILITY(U,$J,358.3,12174,1,3,0)
+ ;;=3^Pressure-Induced Deep Tissue Damage of Right Elbow
+ ;;^UTILITY(U,$J,358.3,12174,1,4,0)
+ ;;=4^L89.016
+ ;;^UTILITY(U,$J,358.3,12174,2)
+ ;;=^5158077
+ ;;^UTILITY(U,$J,358.3,12175,0)
+ ;;=L89.616^^49^595^128
+ ;;^UTILITY(U,$J,358.3,12175,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,12064,1,3,0)
- ;;=3^Drug Induced Acute Pancreatitis
- ;;^UTILITY(U,$J,358.3,12064,1,4,0)
- ;;=4^K85.30
- ;;^UTILITY(U,$J,358.3,12064,2)
- ;;=^5138755
- ;;^UTILITY(U,$J,358.3,12065,0)
- ;;=K85.32^^80^769^37
- ;;^UTILITY(U,$J,358.3,12065,1,0)
+ ;;^UTILITY(U,$J,358.3,12175,1,3,0)
+ ;;=3^Pressure-Induced Deep Tissue Damage of Right Heel
+ ;;^UTILITY(U,$J,358.3,12175,1,4,0)
+ ;;=4^L89.616
+ ;;^UTILITY(U,$J,358.3,12175,2)
+ ;;=^5158096
+ ;;^UTILITY(U,$J,358.3,12176,0)
+ ;;=L89.216^^49^595^129
+ ;;^UTILITY(U,$J,358.3,12176,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,12065,1,3,0)
- ;;=3^Drug Induced Acute Pancreatitis w/ Infected Necrosis
- ;;^UTILITY(U,$J,358.3,12065,1,4,0)
- ;;=4^K85.32
- ;;^UTILITY(U,$J,358.3,12065,2)
- ;;=^5138757
- ;;^UTILITY(U,$J,358.3,12066,0)
- ;;=C78.7^^80^770^93
- ;;^UTILITY(U,$J,358.3,12066,1,0)
+ ;;^UTILITY(U,$J,358.3,12176,1,3,0)
+ ;;=3^Pressure-Induced Deep Tissue Damage of Right Hip
+ ;;^UTILITY(U,$J,358.3,12176,1,4,0)
+ ;;=4^L89.216
+ ;;^UTILITY(U,$J,358.3,12176,2)
+ ;;=^5158086
+ ;;^UTILITY(U,$J,358.3,12177,0)
+ ;;=L89.136^^49^595^130
+ ;;^UTILITY(U,$J,358.3,12177,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,12066,1,3,0)
- ;;=3^Secondary Malig Neop of Liver/Intrahepatic Bile Duct
- ;;^UTILITY(U,$J,358.3,12066,1,4,0)
- ;;=4^C78.7
- ;;^UTILITY(U,$J,358.3,12066,2)
- ;;=^5001339
- ;;^UTILITY(U,$J,358.3,12067,0)
- ;;=C78.5^^80^770^92
- ;;^UTILITY(U,$J,358.3,12067,1,0)
+ ;;^UTILITY(U,$J,358.3,12177,1,3,0)
+ ;;=3^Pressure-Induced Deep Tissue Damage of Right Lower Back
+ ;;^UTILITY(U,$J,358.3,12177,1,4,0)
+ ;;=4^L89.136
+ ;;^UTILITY(U,$J,358.3,12177,2)
+ ;;=^5158082
+ ;;^UTILITY(U,$J,358.3,12178,0)
+ ;;=L89.116^^49^595^131
+ ;;^UTILITY(U,$J,358.3,12178,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,12067,1,3,0)
- ;;=3^Secondary Malig Neop of Large Intestine/Rectum
- ;;^UTILITY(U,$J,358.3,12067,1,4,0)
- ;;=4^C78.5
- ;;^UTILITY(U,$J,358.3,12067,2)
- ;;=^267327
- ;;^UTILITY(U,$J,358.3,12068,0)
- ;;=C78.89^^80^770^91
- ;;^UTILITY(U,$J,358.3,12068,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,12068,1,3,0)
- ;;=3^Secondary Malig Neop of Digestive Organs NEC
- ;;^UTILITY(U,$J,358.3,12068,1,4,0)
- ;;=4^C78.89
+ ;;^UTILITY(U,$J,358.3,12178,1,3,0)
+ ;;=3^Pressure-Induced Deep Tissue Damage of Right Upper Back
+ ;;^UTILITY(U,$J,358.3,12178,1,4,0)
+ ;;=4^L89.116
+ ;;^UTILITY(U,$J,358.3,12178,2)
+ ;;=^5158080
+ ;;^UTILITY(U,$J,358.3,12179,0)
+ ;;=L89.156^^49^595^132

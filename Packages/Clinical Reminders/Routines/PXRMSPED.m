@@ -1,5 +1,5 @@
-PXRMSPED ; SLC/PKR - Edit a reminder sponsor. ;09/02/2005
- ;;2.0;CLINICAL REMINDERS;**4**;Feb 04, 2005;Build 21
+PXRMSPED ;SLC/PKR - Edit a reminder sponsor. ;04/08/2019
+ ;;2.0;CLINICAL REMINDERS;**4,42**;Feb 04, 2005;Build 245
  ;
  ;==============================================
  N CS1,CS2,DA,DIC,DLAYGO,DTOUT,DUOUT,NUM,Y
@@ -64,7 +64,7 @@ INUSE(SIEN) ;This is used by ^DD(811.6,.01,"DEL",1,0) to determine if it
  . S NUM=NUM+1
  . S FILEA(NUM)=811.6
  . S IENA(NUM)=SP
- F FILE=801.41,810.9,811.2,811.4,811.5,811.9 D
+ F FILE=801.41,810.9,811.2,811.4,811.5,811.9,9999999.09,9999999.15,9999999.17,9999999.64 D
  . K LIST
  . D LIST^DIC(FILE,"","@","","","","","","","","LIST")
  . S IENT=$P(LIST("DILIST",0),U,1)

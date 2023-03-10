@@ -1,11 +1,12 @@
-PSIVEDT ;BIR/MLM - EDIT IV ORDER ;Jan 08, 2019@15:45:40
- ;;5.0;INPATIENT MEDICATIONS;**4,110,127,133,134,181,252,281,366,319**;16 DEC 97;Build 31
+PSIVEDT ;BIR/MLM - EDIT IV ORDER ;Nov 23, 2021@09:57:57
+ ;;5.0;INPATIENT MEDICATIONS;**4,110,127,133,134,181,252,281,366,319,399**;16 DEC 97;Build 64
  ;
  ; Reference to ^PS(53.1 is supported by DBIA 2256.
  ; Reference to ^PS(52.7 is supported by DBIA 2173.
  ; Reference to ^PS(51.2 is supported by DBIA 2178.
  ; Reference to ^PS(50.7 is supported by DBIA 2180.
  ; Reference to ^PS(55 is supported by DBIA 2191.
+ ; Reference to ^PSSJORDF is supported by DBIA 2418.
  ;
 EDIT ;
  ;Store the DRG array.  If it changed then to do an OC
@@ -170,6 +171,10 @@ DKILL ; Kill for drug edit.
  ;
 126 ; Clinic date. ;*p319
  D 51^PSGOE82
+ Q
+ ;
+132 ;*399-IND
+ D IND^PSIVEDT1
  Q
  ;
 FF ; up-arrow to another field.

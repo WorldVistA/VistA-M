@@ -1,6 +1,7 @@
 XQ1 ; SEA/MJM - DRIVER FOR MENUMAN (PART 2) ;08/28/08  13:20
- ;;8.0;KERNEL;**1,15,59,67,46,151,170,242,446,672**;Jul 10, 1995;Build 28
+ ;;8.0;KERNEL;**1,15,59,67,46,151,170,242,446,672,737**;Jul 10, 1995;Build 3
  ;Per VHA Directive 2004-038, this routine should not be modified.
+ ;
  S DIC=19,DIC(0)="AEQM" D ^DIC Q:Y<0  S (XQDIC,XQY)=+Y K DIC,XQUR,Y,^VA(200,DUZ,202.1)
  D INIT^XQ12
  G M^XQ
@@ -97,7 +98,8 @@ DIC ;Get FileMan parameters from Option File and do look up
  S DA=+Y,Y=XQY
  Q
  ;
-D1 S:DIC["(" DIC=U_DIC Q
+D1 ;S:DIC["(" DIC=U_DIC Q
+ S:$G(DIC)["(" DIC=U_DIC Q  ;p737
  ;
 SET F XQI=1:1 S XQV=$P(XQZ,",",XQI) Q:XQV=""  K @XQV I $D(^DIC(19,+XQY,XQW+XQI)),^(XQW+XQI)]"" S @XQV=^(XQW+XQI)
  I $D(DIC("A")),DIC("A")]"" S DIC("A")=DIC("A")_" "

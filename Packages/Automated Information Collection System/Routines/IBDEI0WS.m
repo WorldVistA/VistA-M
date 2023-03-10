@@ -1,126 +1,124 @@
-IBDEI0WS ; ; 04-FEB-2020
- ;;3.0;IB ENCOUNTER FORM IMP/EXP;;FEB 04, 2020
+IBDEI0WS ; ; 01-FEB-2022
+ ;;3.0;IB ENCOUNTER FORM IMP/EXP;;FEB 01, 2022
  Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,999) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
- ;;^UTILITY(U,$J,358.3,14597,1,4,0)
- ;;=4^Z86.51
- ;;^UTILITY(U,$J,358.3,14597,2)
- ;;=^5063470
- ;;^UTILITY(U,$J,358.3,14598,0)
- ;;=Z86.31^^83^826^103
- ;;^UTILITY(U,$J,358.3,14598,1,0)
+ ;;^UTILITY(U,$J,358.3,14777,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,14598,1,3,0)
- ;;=3^Personal Hx of Diabetic Foot Ulcer
- ;;^UTILITY(U,$J,358.3,14598,1,4,0)
- ;;=4^Z86.31
- ;;^UTILITY(U,$J,358.3,14598,2)
- ;;=^5063467
- ;;^UTILITY(U,$J,358.3,14599,0)
- ;;=Z86.59^^83^826^105
- ;;^UTILITY(U,$J,358.3,14599,1,0)
+ ;;^UTILITY(U,$J,358.3,14777,1,3,0)
+ ;;=3^Convulsions,Unspec
+ ;;^UTILITY(U,$J,358.3,14777,1,4,0)
+ ;;=4^R56.9
+ ;;^UTILITY(U,$J,358.3,14777,2)
+ ;;=^5019524
+ ;;^UTILITY(U,$J,358.3,14778,0)
+ ;;=S06.9X5S^^58^707^26
+ ;;^UTILITY(U,$J,358.3,14778,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,14599,1,3,0)
- ;;=3^Personal Hx of Mental/Behavioral Disorders
- ;;^UTILITY(U,$J,358.3,14599,1,4,0)
- ;;=4^Z86.59
- ;;^UTILITY(U,$J,358.3,14599,2)
- ;;=^5063471
- ;;^UTILITY(U,$J,358.3,14600,0)
- ;;=Z86.14^^83^826^104
- ;;^UTILITY(U,$J,358.3,14600,1,0)
+ ;;^UTILITY(U,$J,358.3,14778,1,3,0)
+ ;;=3^Intcrn injury w LOC >24 hr w ret consc lev, sequela
+ ;;^UTILITY(U,$J,358.3,14778,1,4,0)
+ ;;=4^S06.9X5S
+ ;;^UTILITY(U,$J,358.3,14778,2)
+ ;;=^5021223
+ ;;^UTILITY(U,$J,358.3,14779,0)
+ ;;=S06.9X6S^^58^707^27
+ ;;^UTILITY(U,$J,358.3,14779,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,14600,1,3,0)
- ;;=3^Personal Hx of MRSA
- ;;^UTILITY(U,$J,358.3,14600,1,4,0)
- ;;=4^Z86.14
- ;;^UTILITY(U,$J,358.3,14600,2)
- ;;=^5063464
- ;;^UTILITY(U,$J,358.3,14601,0)
- ;;=Z91.82^^83^826^106
- ;;^UTILITY(U,$J,358.3,14601,1,0)
+ ;;^UTILITY(U,$J,358.3,14779,1,3,0)
+ ;;=3^Intcrn injury w LOC >24 hr w/o ret consc w surv, sqla
+ ;;^UTILITY(U,$J,358.3,14779,1,4,0)
+ ;;=4^S06.9X6S
+ ;;^UTILITY(U,$J,358.3,14779,2)
+ ;;=^5021226
+ ;;^UTILITY(U,$J,358.3,14780,0)
+ ;;=S06.9X3S^^58^707^28
+ ;;^UTILITY(U,$J,358.3,14780,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,14601,1,3,0)
- ;;=3^Personal Hx of Military Deployment
- ;;^UTILITY(U,$J,358.3,14601,1,4,0)
- ;;=4^Z91.82
- ;;^UTILITY(U,$J,358.3,14601,2)
- ;;=^5063626
- ;;^UTILITY(U,$J,358.3,14602,0)
- ;;=Z86.03^^83^826^107
- ;;^UTILITY(U,$J,358.3,14602,1,0)
+ ;;^UTILITY(U,$J,358.3,14780,1,3,0)
+ ;;=3^Intcrn injury w LOC of 1-5 hrs 59 min, sequela
+ ;;^UTILITY(U,$J,358.3,14780,1,4,0)
+ ;;=4^S06.9X3S
+ ;;^UTILITY(U,$J,358.3,14780,2)
+ ;;=^5021217
+ ;;^UTILITY(U,$J,358.3,14781,0)
+ ;;=S06.9X1S^^58^707^29
+ ;;^UTILITY(U,$J,358.3,14781,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,14602,1,3,0)
- ;;=3^Personal Hx of Neop of Uncertain Behavior
- ;;^UTILITY(U,$J,358.3,14602,1,4,0)
- ;;=4^Z86.03
- ;;^UTILITY(U,$J,358.3,14602,2)
- ;;=^5063460
- ;;^UTILITY(U,$J,358.3,14603,0)
- ;;=Z87.891^^83^826^108
- ;;^UTILITY(U,$J,358.3,14603,1,0)
+ ;;^UTILITY(U,$J,358.3,14781,1,3,0)
+ ;;=3^Intcrn injury w LOC of 30 minutes or less, sequela
+ ;;^UTILITY(U,$J,358.3,14781,1,4,0)
+ ;;=4^S06.9X1S
+ ;;^UTILITY(U,$J,358.3,14781,2)
+ ;;=^5021211
+ ;;^UTILITY(U,$J,358.3,14782,0)
+ ;;=S06.9X2S^^58^707^30
+ ;;^UTILITY(U,$J,358.3,14782,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,14603,1,3,0)
- ;;=3^Personal Hx of Nicotine Dependence
- ;;^UTILITY(U,$J,358.3,14603,1,4,0)
- ;;=4^Z87.891
- ;;^UTILITY(U,$J,358.3,14603,2)
- ;;=^5063518
- ;;^UTILITY(U,$J,358.3,14604,0)
- ;;=Z87.310^^83^826^109
- ;;^UTILITY(U,$J,358.3,14604,1,0)
+ ;;^UTILITY(U,$J,358.3,14782,1,3,0)
+ ;;=3^Intcrn injury w LOC of 31-59 min, sequela
+ ;;^UTILITY(U,$J,358.3,14782,1,4,0)
+ ;;=4^S06.9X2S
+ ;;^UTILITY(U,$J,358.3,14782,2)
+ ;;=^5021214
+ ;;^UTILITY(U,$J,358.3,14783,0)
+ ;;=S06.9X4S^^58^707^31
+ ;;^UTILITY(U,$J,358.3,14783,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,14604,1,3,0)
- ;;=3^Personal Hx of Osteoporosis Fx
- ;;^UTILITY(U,$J,358.3,14604,1,4,0)
- ;;=4^Z87.310
- ;;^UTILITY(U,$J,358.3,14604,2)
- ;;=^5063485
- ;;^UTILITY(U,$J,358.3,14605,0)
- ;;=Z87.11^^83^826^110
- ;;^UTILITY(U,$J,358.3,14605,1,0)
+ ;;^UTILITY(U,$J,358.3,14783,1,3,0)
+ ;;=3^Intcrn injury w LOC of 6-24 hrs, sequela
+ ;;^UTILITY(U,$J,358.3,14783,1,4,0)
+ ;;=4^S06.9X4S
+ ;;^UTILITY(U,$J,358.3,14783,2)
+ ;;=^5021220
+ ;;^UTILITY(U,$J,358.3,14784,0)
+ ;;=S06.9X9S^^58^707^32
+ ;;^UTILITY(U,$J,358.3,14784,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,14605,1,3,0)
- ;;=3^Personal Hx of Peptic Ulcer Disease
- ;;^UTILITY(U,$J,358.3,14605,1,4,0)
- ;;=4^Z87.11
- ;;^UTILITY(U,$J,358.3,14605,2)
- ;;=^5063482
- ;;^UTILITY(U,$J,358.3,14606,0)
- ;;=Z87.01^^83^826^111
- ;;^UTILITY(U,$J,358.3,14606,1,0)
+ ;;^UTILITY(U,$J,358.3,14784,1,3,0)
+ ;;=3^Intcrn injury w LOC of unsp duration, sequela
+ ;;^UTILITY(U,$J,358.3,14784,1,4,0)
+ ;;=4^S06.9X9S
+ ;;^UTILITY(U,$J,358.3,14784,2)
+ ;;=^5021235
+ ;;^UTILITY(U,$J,358.3,14785,0)
+ ;;=S06.9X0S^^58^707^33
+ ;;^UTILITY(U,$J,358.3,14785,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,14606,1,3,0)
- ;;=3^Personal Hx of Pneumonia
- ;;^UTILITY(U,$J,358.3,14606,1,4,0)
- ;;=4^Z87.01
- ;;^UTILITY(U,$J,358.3,14606,2)
- ;;=^5063480
- ;;^UTILITY(U,$J,358.3,14607,0)
- ;;=Z86.12^^83^826^112
- ;;^UTILITY(U,$J,358.3,14607,1,0)
+ ;;^UTILITY(U,$J,358.3,14785,1,3,0)
+ ;;=3^Intcrn injury w/o LOC, sequela
+ ;;^UTILITY(U,$J,358.3,14785,1,4,0)
+ ;;=4^S06.9X0S
+ ;;^UTILITY(U,$J,358.3,14785,2)
+ ;;=^5021208
+ ;;^UTILITY(U,$J,358.3,14786,0)
+ ;;=G11.10^^58^707^12
+ ;;^UTILITY(U,$J,358.3,14786,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,14607,1,3,0)
- ;;=3^Personal Hx of Poliomyelitis
- ;;^UTILITY(U,$J,358.3,14607,1,4,0)
- ;;=4^Z86.12
- ;;^UTILITY(U,$J,358.3,14607,2)
- ;;=^5063462
- ;;^UTILITY(U,$J,358.3,14608,0)
- ;;=Z87.430^^83^826^113
- ;;^UTILITY(U,$J,358.3,14608,1,0)
+ ;;^UTILITY(U,$J,358.3,14786,1,3,0)
+ ;;=3^Early-Onset Cerebellar Ataxia,Unspec
+ ;;^UTILITY(U,$J,358.3,14786,1,4,0)
+ ;;=4^G11.10
+ ;;^UTILITY(U,$J,358.3,14786,2)
+ ;;=^5159151
+ ;;^UTILITY(U,$J,358.3,14787,0)
+ ;;=G11.11^^58^707^13
+ ;;^UTILITY(U,$J,358.3,14787,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,14608,1,3,0)
- ;;=3^Personal Hx of Prostatic Dysplasia
- ;;^UTILITY(U,$J,358.3,14608,1,4,0)
- ;;=4^Z87.430
- ;;^UTILITY(U,$J,358.3,14608,2)
- ;;=^5063493
- ;;^UTILITY(U,$J,358.3,14609,0)
- ;;=Z91.49^^83^826^114
- ;;^UTILITY(U,$J,358.3,14609,1,0)
+ ;;^UTILITY(U,$J,358.3,14787,1,3,0)
+ ;;=3^Friedreich Ataxia
+ ;;^UTILITY(U,$J,358.3,14787,1,4,0)
+ ;;=4^G11.11
+ ;;^UTILITY(U,$J,358.3,14787,2)
+ ;;=^5159152
+ ;;^UTILITY(U,$J,358.3,14788,0)
+ ;;=G11.19^^58^707^11
+ ;;^UTILITY(U,$J,358.3,14788,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,14609,1,3,0)
- ;;=3^Personal Hx of Psychological Trauma NEC
- ;;^UTILITY(U,$J,358.3,14609,1,4,0)
- ;;=4^Z91.49
+ ;;^UTILITY(U,$J,358.3,14788,1,3,0)
+ ;;=3^Early-Onset Cerebellar Ataxia,Oth
+ ;;^UTILITY(U,$J,358.3,14788,1,4,0)
+ ;;=4^G11.19
+ ;;^UTILITY(U,$J,358.3,14788,2)
+ ;;=^5159153
+ ;;^UTILITY(U,$J,358.3,14789,0)
+ ;;=I69.020^^58^707^4

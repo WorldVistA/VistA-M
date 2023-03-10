@@ -1,122 +1,130 @@
-IBDEI1KO ; ; 04-FEB-2020
- ;;3.0;IB ENCOUNTER FORM IMP/EXP;;FEB 04, 2020
+IBDEI1KO ; ; 01-FEB-2022
+ ;;3.0;IB ENCOUNTER FORM IMP/EXP;;FEB 01, 2022
  Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,999) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
- ;;^UTILITY(U,$J,358.3,25129,2)
- ;;=^5008156
- ;;^UTILITY(U,$J,358.3,25130,0)
- ;;=J12.9^^107^1213^69
- ;;^UTILITY(U,$J,358.3,25130,1,0)
+ ;;^UTILITY(U,$J,358.3,25493,2)
+ ;;=^5157633
+ ;;^UTILITY(U,$J,358.3,25494,0)
+ ;;=Z02.89^^92^1159^1
+ ;;^UTILITY(U,$J,358.3,25494,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,25130,1,3,0)
- ;;=3^Pneumonia,Viral Unspec
- ;;^UTILITY(U,$J,358.3,25130,1,4,0)
- ;;=4^J12.9
- ;;^UTILITY(U,$J,358.3,25130,2)
- ;;=^5008169
- ;;^UTILITY(U,$J,358.3,25131,0)
- ;;=J10.08^^107^1213^41
- ;;^UTILITY(U,$J,358.3,25131,1,0)
+ ;;^UTILITY(U,$J,358.3,25494,1,3,0)
+ ;;=3^Administrative Exams,Other
+ ;;^UTILITY(U,$J,358.3,25494,1,4,0)
+ ;;=4^Z02.89
+ ;;^UTILITY(U,$J,358.3,25494,2)
+ ;;=^5062645
+ ;;^UTILITY(U,$J,358.3,25495,0)
+ ;;=Z91.51^^92^1159^18
+ ;;^UTILITY(U,$J,358.3,25495,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,25131,1,3,0)
- ;;=3^Influenza d/t Oth ID'd Influenza Virus w/ Oth Pneumonia
- ;;^UTILITY(U,$J,358.3,25131,1,4,0)
- ;;=4^J10.08
- ;;^UTILITY(U,$J,358.3,25131,2)
- ;;=^5008150
- ;;^UTILITY(U,$J,358.3,25132,0)
- ;;=J10.00^^107^1213^40
- ;;^UTILITY(U,$J,358.3,25132,1,0)
+ ;;^UTILITY(U,$J,358.3,25495,1,3,0)
+ ;;=3^Personal Hx of Suicidal Behavior
+ ;;^UTILITY(U,$J,358.3,25495,1,4,0)
+ ;;=4^Z91.51
+ ;;^UTILITY(U,$J,358.3,25495,2)
+ ;;=^5161317
+ ;;^UTILITY(U,$J,358.3,25496,0)
+ ;;=Z91.52^^92^1159^16
+ ;;^UTILITY(U,$J,358.3,25496,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,25132,1,3,0)
- ;;=3^Influenza d/t Oth ID'd Flu Virus w/ Unspec Type Pneumonia
- ;;^UTILITY(U,$J,358.3,25132,1,4,0)
- ;;=4^J10.00
- ;;^UTILITY(U,$J,358.3,25132,2)
- ;;=^5008148
- ;;^UTILITY(U,$J,358.3,25133,0)
- ;;=J11.08^^107^1213^43
- ;;^UTILITY(U,$J,358.3,25133,1,0)
+ ;;^UTILITY(U,$J,358.3,25496,1,3,0)
+ ;;=3^Personal Hx of Non-Suicidal Self-Harm
+ ;;^UTILITY(U,$J,358.3,25496,1,4,0)
+ ;;=4^Z91.52
+ ;;^UTILITY(U,$J,358.3,25496,2)
+ ;;=^5161318
+ ;;^UTILITY(U,$J,358.3,25497,0)
+ ;;=Z70.9^^92^1160^2
+ ;;^UTILITY(U,$J,358.3,25497,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,25133,1,3,0)
- ;;=3^Influenza d/t Unident Flu Virus w/ Spec Pneumonia
- ;;^UTILITY(U,$J,358.3,25133,1,4,0)
- ;;=4^J11.08
- ;;^UTILITY(U,$J,358.3,25133,2)
- ;;=^5008157
- ;;^UTILITY(U,$J,358.3,25134,0)
- ;;=J10.1^^107^1213^42
- ;;^UTILITY(U,$J,358.3,25134,1,0)
+ ;;^UTILITY(U,$J,358.3,25497,1,3,0)
+ ;;=3^Sex Counseling
+ ;;^UTILITY(U,$J,358.3,25497,1,4,0)
+ ;;=4^Z70.9
+ ;;^UTILITY(U,$J,358.3,25497,2)
+ ;;=^5063241
+ ;;^UTILITY(U,$J,358.3,25498,0)
+ ;;=Z71.9^^92^1160^1
+ ;;^UTILITY(U,$J,358.3,25498,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,25134,1,3,0)
- ;;=3^Influenza d/t Oth ID'd Influenza Virus w/ Oth Resp Manifest
- ;;^UTILITY(U,$J,358.3,25134,1,4,0)
- ;;=4^J10.1
- ;;^UTILITY(U,$J,358.3,25134,2)
- ;;=^5008151
- ;;^UTILITY(U,$J,358.3,25135,0)
- ;;=J10.01^^107^1213^39
- ;;^UTILITY(U,$J,358.3,25135,1,0)
+ ;;^UTILITY(U,$J,358.3,25498,1,3,0)
+ ;;=3^Counseling,Unspec
+ ;;^UTILITY(U,$J,358.3,25498,1,4,0)
+ ;;=4^Z71.9
+ ;;^UTILITY(U,$J,358.3,25498,2)
+ ;;=^5063254
+ ;;^UTILITY(U,$J,358.3,25499,0)
+ ;;=Z60.0^^92^1161^2
+ ;;^UTILITY(U,$J,358.3,25499,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,25135,1,3,0)
- ;;=3^Influenza d/t Oth ID'd Flu Virus w/ Same Oth ID'd Flu Virus Pneumonia
- ;;^UTILITY(U,$J,358.3,25135,1,4,0)
- ;;=4^J10.01
- ;;^UTILITY(U,$J,358.3,25135,2)
- ;;=^5008149
- ;;^UTILITY(U,$J,358.3,25136,0)
- ;;=J11.1^^107^1213^44
- ;;^UTILITY(U,$J,358.3,25136,1,0)
+ ;;^UTILITY(U,$J,358.3,25499,1,3,0)
+ ;;=3^Phase of Life Problem
+ ;;^UTILITY(U,$J,358.3,25499,1,4,0)
+ ;;=4^Z60.0
+ ;;^UTILITY(U,$J,358.3,25499,2)
+ ;;=^5063139
+ ;;^UTILITY(U,$J,358.3,25500,0)
+ ;;=Z60.2^^92^1161^3
+ ;;^UTILITY(U,$J,358.3,25500,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,25136,1,3,0)
- ;;=3^Influenza d/t Unident Influenza Virus w/ Oth Resp Manifest
- ;;^UTILITY(U,$J,358.3,25136,1,4,0)
- ;;=4^J11.1
- ;;^UTILITY(U,$J,358.3,25136,2)
- ;;=^5008158
- ;;^UTILITY(U,$J,358.3,25137,0)
- ;;=N12.^^107^1213^85
- ;;^UTILITY(U,$J,358.3,25137,1,0)
+ ;;^UTILITY(U,$J,358.3,25500,1,3,0)
+ ;;=3^Problem Related to Living Alone
+ ;;^UTILITY(U,$J,358.3,25500,1,4,0)
+ ;;=4^Z60.2
+ ;;^UTILITY(U,$J,358.3,25500,2)
+ ;;=^5063140
+ ;;^UTILITY(U,$J,358.3,25501,0)
+ ;;=Z60.3^^92^1161^1
+ ;;^UTILITY(U,$J,358.3,25501,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,25137,1,3,0)
- ;;=3^Tubulo-Interstitial Nephritis
- ;;^UTILITY(U,$J,358.3,25137,1,4,0)
- ;;=4^N12.
- ;;^UTILITY(U,$J,358.3,25137,2)
- ;;=^5015575
- ;;^UTILITY(U,$J,358.3,25138,0)
- ;;=N11.9^^107^1213^86
- ;;^UTILITY(U,$J,358.3,25138,1,0)
+ ;;^UTILITY(U,$J,358.3,25501,1,3,0)
+ ;;=3^Acculturation Difficulty
+ ;;^UTILITY(U,$J,358.3,25501,1,4,0)
+ ;;=4^Z60.3
+ ;;^UTILITY(U,$J,358.3,25501,2)
+ ;;=^5063141
+ ;;^UTILITY(U,$J,358.3,25502,0)
+ ;;=Z60.4^^92^1161^5
+ ;;^UTILITY(U,$J,358.3,25502,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,25138,1,3,0)
- ;;=3^Tubulo-Interstitial Nephritis,Chronic
- ;;^UTILITY(U,$J,358.3,25138,1,4,0)
- ;;=4^N11.9
- ;;^UTILITY(U,$J,358.3,25138,2)
- ;;=^5015574
- ;;^UTILITY(U,$J,358.3,25139,0)
- ;;=N13.6^^107^1213^73
- ;;^UTILITY(U,$J,358.3,25139,1,0)
+ ;;^UTILITY(U,$J,358.3,25502,1,3,0)
+ ;;=3^Social Exclusion or Rejection
+ ;;^UTILITY(U,$J,358.3,25502,1,4,0)
+ ;;=4^Z60.4
+ ;;^UTILITY(U,$J,358.3,25502,2)
+ ;;=^5063142
+ ;;^UTILITY(U,$J,358.3,25503,0)
+ ;;=Z60.5^^92^1161^6
+ ;;^UTILITY(U,$J,358.3,25503,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,25139,1,3,0)
- ;;=3^Pyonephrosis
- ;;^UTILITY(U,$J,358.3,25139,1,4,0)
- ;;=4^N13.6
- ;;^UTILITY(U,$J,358.3,25139,2)
- ;;=^101552
- ;;^UTILITY(U,$J,358.3,25140,0)
- ;;=N30.91^^107^1213^19
- ;;^UTILITY(U,$J,358.3,25140,1,0)
+ ;;^UTILITY(U,$J,358.3,25503,1,3,0)
+ ;;=3^Target (Perceived) Adverse Discrimination/Persecution
+ ;;^UTILITY(U,$J,358.3,25503,1,4,0)
+ ;;=4^Z60.5
+ ;;^UTILITY(U,$J,358.3,25503,2)
+ ;;=^5063143
+ ;;^UTILITY(U,$J,358.3,25504,0)
+ ;;=Z60.9^^92^1161^4
+ ;;^UTILITY(U,$J,358.3,25504,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,25140,1,3,0)
- ;;=3^Cystitis w/ Hematuria,Unspec
- ;;^UTILITY(U,$J,358.3,25140,1,4,0)
- ;;=4^N30.91
- ;;^UTILITY(U,$J,358.3,25140,2)
- ;;=^5015643
- ;;^UTILITY(U,$J,358.3,25141,0)
- ;;=N30.90^^107^1213^20
- ;;^UTILITY(U,$J,358.3,25141,1,0)
+ ;;^UTILITY(U,$J,358.3,25504,1,3,0)
+ ;;=3^Problem Related to Social Environment,Unspec
+ ;;^UTILITY(U,$J,358.3,25504,1,4,0)
+ ;;=4^Z60.9
+ ;;^UTILITY(U,$J,358.3,25504,2)
+ ;;=^5063145
+ ;;^UTILITY(U,$J,358.3,25505,0)
+ ;;=F65.4^^92^1162^6
+ ;;^UTILITY(U,$J,358.3,25505,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,25141,1,3,0)
- ;;=3^Cystitis w/o Hematuria,Unspec
+ ;;^UTILITY(U,$J,358.3,25505,1,3,0)
+ ;;=3^Pedophilic D/O
+ ;;^UTILITY(U,$J,358.3,25505,1,4,0)
+ ;;=4^F65.4
+ ;;^UTILITY(U,$J,358.3,25505,2)
+ ;;=^5003655
+ ;;^UTILITY(U,$J,358.3,25506,0)
+ ;;=F65.2^^92^1162^1
+ ;;^UTILITY(U,$J,358.3,25506,1,0)
+ ;;=^358.31IA^4^2

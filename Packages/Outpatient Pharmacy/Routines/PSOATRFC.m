@@ -1,5 +1,5 @@
-PSOATRFC ;BIR/MHA - Automate CPRS Refill request ;8/18/08 12:54pm
- ;;7.0;OUTPATIENT PHARMACY;**305,388,313**;DEC 1997;Build 76
+PSOATRFC ;BIR/MHA - Automate CPRS Refill request ;Jul 13, 2021@14:18:47
+ ;;7.0;OUTPATIENT PHARMACY;**305,388,313,441**;DEC 1997;Build 208
  ;Reference to ^PSSLOCK supported by DBIA 2789
  ;Reference ^PSDRUG supported by DBIA 221
  ;Reference ^PS(55 supported by DBIA 2228
@@ -35,7 +35,10 @@ REF(PSORXN,PSOITMG) ;process refill request
  . D ERR("Patient is an Inpatient on Ward "_PSOPTPST(2,PSODFN,.1))
  I $G(PSOPTPST(2,PSODFN,148))="YES",'$P(PSORFN,U,2) D  Q
  . D ERR("Patient is in a Contract Nursing Home")
- D CHKRF Q:PSOITNF           ;Quit if RX not refillable
+ D CHKRF
+ ;Original fill is Active/Parked, 0 refills, no labels previously printed ? ORIGINAL FILL
+ I $G(^PSRX(PSORXN,"PARK")),'$O(^PSRX(PSORXN,"L",0)),$P(^PSRX(PSORXN,0),"^",9)=0 S PSOITNF=1
+ Q:PSOITNF           ;Quit if RX not refillable
  ;
  ;more checks
  I $O(^PS(52.5,"B",PSORXN,0)),'$G(^PS(52.5,+$O(^PS(52.5,"B",PSORXN,0)),"P")) D  Q
@@ -59,9 +62,13 @@ REF(PSORXN,PSOITMG) ;process refill request
  . D ERR("'Titration Rx' cannot be refilled.")
  ;
  ;ok to process refill
+ ;S:'$P(PSOX("RX2"),U,2) $P(PSOX("RX2"),U,2)=DT
+ ;I $O(^XUSEC("PSOAUTRF",0)),$$GET1^DIQ(59.7,1,40.16,"I"),$G(^PSRX($G(PSORXN),"PARK")),$L($G(PSOITNF)) N DA S DA=$G(PSORXN) D:DA EN^PSOPRKA
+ ;Q:PSOITNF
  D EN^PSOR52(.PSOX)
  ;add additional activity log comment to refill just added
  I PSOITF,$D(^PSRX(PSORXN,1,PSOITF,0)) D
+ . I $G(PSOPARK)!($G(PSOFROM)]"") Q  ; not being refilled from CPRS 441 PAPI
  . N AL,DONE,PSOFDA
  . S AL="",DONE=0
  . F  S AL=$O(^PSRX(PSORXN,"A",AL),-1) Q:'AL  D  Q:DONE
@@ -122,7 +129,7 @@ CHKDT ;check date on this refill request
 NEXT ;
  S PSOX1=$P(PSORXN2,U,2)
  I '$O(^PSRX(PSORXN,1,0)) D  Q
- . S $P(PSORXN3,U)=PSOX1,X1=PSOX1
+ . S $P(PSORXN3,U)=PSOX1,X1=PSOX1  ;S:X1="" X1=DT
  . S X2=$P(PSORXN0,U,8)-10\1
  . D C^%DTC
  . S:'$P(PSORXN3,U,8) $P(PSORXN3,U,2)=X K X

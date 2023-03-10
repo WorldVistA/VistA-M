@@ -1,5 +1,5 @@
 SROAWL ;BIR/ADM - REPORT OF MONTHLY CASE WORKLOAD TOTALS ;02/12/07
- ;;3.0; Surgery ;**38,47,50,86,141,153,160**;24 Jun 93;Build 7
+ ;;3.0;Surgery;**38,47,50,86,141,153,160,200**;24 Jun 93;Build 9
  N SRINSTP,SRSEL S (SRSOUT,SRT)=0,SRP=1,SRINST=SRSITE("SITE"),SRINSTP=SRSITE("DIV")
 START G:SRSOUT END W @IOF,!,"Report of Monthly Case Workload Totals",!!
  K DIR S DIR("A",1)="Print which report?",DIR("A",2)="",DIR("A",3)="1. Report for Single Month"
@@ -9,7 +9,7 @@ START G:SRSOUT END W @IOF,!,"Report of Monthly Case Workload Totals",!!
  W @IOF,"This option provides a report of the monthly risk assessment surgical case",!,"workload totals which include the following categories:",!
  W ?5,"1. All cases performed",!,?5,"2. Eligible cases",!,?5,"3. Eligible cases meeting exclusion criteria"
  W !,?5,"4. Assessed cases",!,?5,"5. Not logged eligible cases"
- W !,?5,"6. Cardiac cases",!,?5,"7. Non-cardiac cases",!,?5,"8. Assessed cases per day (based on 20 days/month)"
+ W !,?5,"6. Cardiac cases",!,?5,"7. Non-cardiac cases",!,?5,"8. Cases utilizing Robotic Assistance",!,?5,"9. Assessed cases per day (based on 20 days/month)"
  W !!,"The second part of this report provides the total number of incomplete",!,"assessments remaining for the month selected and the prior 12 months."
 DATE D GETDT W ! K DIR S DIR("A")="Compile workload totals for which month and year? ",DIR(0)="DA^::MX",DIR("B")=SRM_" "_SRY,DIR("?",1)="Enter the month and year for which to run this report,"
  S DIR("?")="for example, 'MAY 94', 'MAY 1994', '5/94' or '5 94'." D ^DIR I $D(DTOUT)!$D(DUOUT)!'Y S SRSOUT=1 G END

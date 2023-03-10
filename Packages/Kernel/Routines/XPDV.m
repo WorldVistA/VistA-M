@@ -1,5 +1,5 @@
 XPDV ;SFISC/RSD - Verify Build ;10/15/2008
- ;;8.0;KERNEL;**30,44,58,108,511,525,539,547**;Jul 10, 1995;Build 15
+ ;;8.0;KERNEL;**30,44,58,108,511,525,539,547,755**;Jul 10, 1995;Build 6
  ;Per VHA Directive 2004-038, this routine should not be modified.
  ;checks that everything is ready to do a build
  ;XPDA=build ien, loop thru all nodes in ^XPD(9.6,XPDA and verify data
@@ -95,13 +95,16 @@ ENTRY(Z) ;check entry, Z=name^file
  N F,X,Y
  ;check for X, name, in "B" x-ref of file.
  S X=$P(Z,U),Y=0 F  S Y=$O(@FGR@("B",X,Y)) D  Q:X=""
- .I 'Y W !?3,X,"  in ",$P(^DIC(XPDFILE,0),U)," File   ** NOT FOUND **",*7 S X="" Q
+ .I 'Y W:'$G(XPDIB) !?3,X,"  in ",$P(^DIC(XPDFILE,0),U)," File   ** NOT FOUND **",*7 S X="" Q  ;p755 XPDIB=don't write if doing Backup
  .;if Y is in x-ref but node doesn't exist, quit and try another
  .;if this is a fileman template, the file associated with it is piece 2 of Z
  .;if Form file check piece 8 else 4
  .Q:'$D(@FGR@(Y,0))  I $P(Z,U,2) S F=^(0) S:$P(Z,U,2)=$P(F,U,(4+(4*(FGR["DIST")))) X="" Q
  .;if it is routine file,9.8, check that routine exist
- .I XPDFILE=9.8 S F="" I '$$RTN(X,.F) W !,"Routine ",X,F S X="",Y=0 Q
+ .I XPDFILE=9.8 S F="" D  I F]"" S X="",Y=0 Q
+ .. I $G(XPDIB) S:$T(^@X)="" F=" DOESN'T EXIST!!" Q  ;p755 XPDIB=Backup, just check routine exists
+ .. I '$$RTN(X,.F) W !,"Routine ",X,F Q
+ .. Q
  .;if this is not a fileman template or routine we found Y
  .S X="" Q
  Q +Y

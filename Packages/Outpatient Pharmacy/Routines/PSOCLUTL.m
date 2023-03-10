@@ -1,5 +1,5 @@
 PSOCLUTL ;BHAM ISC/DMA - utilities for clozapine reporting system ;4 Oct 2019 12:29:40
- ;;7.0;OUTPATIENT PHARMACY;**28,56,122,222,268,457,574,612**;DEC 1997;Build 23
+ ;;7.0;OUTPATIENT PHARMACY;**28,56,122,222,268,457,574,612,621**;DEC 1997;Build 13
  ;External reference ^YSCL(603.01 supported by DBIA 2697
  ;External reference ^PS(55 supported by DBIA 2228
  ;
@@ -58,7 +58,7 @@ PHY ;
  S DIR(0)="YA",DIR("B")="NO" D ^DIR K DIR I Y=0!($D(DUOUT)) S ANQX=1 D END G END1
  ;/RBN End NCC changes to remove Pretreatment choice - PSO*7.0*457
 SAVE ;
- S DA=PSO1,DIE=55,DR="53////"_PSO2_";54////"_PSO3_";57////"_PSO4_";56////0;58////"_DT
+ S DA=PSO1,DIE=55,DR="53////"_PSO2_";54////"_PSO3_";57////"_PSO4_";56////0" S:($$GET1^DIQ(55,PSO1,53)'=PSO2) DR=DR_";58////"_DT
  L +^PS(55,DA):DILOCKTM E  W !!,$C(7),"Patient "_PSONAME_" is being edited by another user!  Try Later." S ANQX=1 D END G END1
  D ^DIE L -^PS(55,DA)
  S:PSO2?1U6N $P(^XTMP("PSJ CLOZ",0),U,4)=PSO2  ; save last temp reg#
@@ -98,7 +98,10 @@ AGAIN ; re-enter patient - new number, status and provider
  S PSO3=$$GET1^DIQ(55,PSO1,54,"I")
 PHY1 ;
  S DIR(0)="55,57" D ^DIR G END:$D(DIRUT) I Y S PSO4=+Y
- I $$GET1^DIQ(200,PSO4,53.2)="" W !!,"Only providers with DEA numbers entered in the New Person",!,"file can register patients in this program.",!! G PHY1
+ I $$GET1^DIQ(200,PSO4,53.2)="" D  G PHY1
+ . W !!,"Only providers with DEA numbers entered in the New Person",!,"file can register patients in this program.",!!
+ I $$GET1^DIQ(55,PSO1,53)=PSO2,$$GET1^DIQ(55,PSO1,57,"I")=PSO4 D  G END
+ . W !!?5,"No changes made.",$C(7),!
  G SAVE
  ;
 OVER ;allow registration of patients and clozapine numbers not yet authorized by the NCCC.
@@ -231,5 +234,5 @@ QTYCHK(PSORXARY,NUMDAYS) ; check/adjust quantity, PSORXARY passed by ref., NUMDA
  . S TMSDLY=1440/NMIN  ;times daily
  . S QTY=QTY+(NUMDAYS*TMSDLY*$G(PSORXARY("DOSE ORDERED",J)))
  ;
- S:QTY PSORXARY("QTY")=QTY,$P(PSORXARY("RX0"),U,7)=QTY
+ S:QTY PSORXARY("QTY")=(QTY+.99)\1,$P(PSORXARY("RX0"),U,7)=(QTY+.99)\1
  Q

@@ -1,11 +1,14 @@
-DVBHQZ4 ;ISC-ALBANY/PKE-enter in Suspense File ; 8/25/87  16:05 ;
- ;;V4.0;HINQ;;03/25/92 
+DVBHQZ4 ;ISC-ALBANY/PKE-enter in Suspense File ; Sep 30, 2021@09:08
+ ;;4.0;HINQ;**71**;03/25/92;Build 13
+ Q  ;Patch DVB*4.0*71 prevents VistA HINQ requests due to WEBHINQ transition 
  D DIV,TELL,FIND G EX
  Q
-FIND S DIC="^DPT(",DIC(0)="AEMQZ" D ^DIC Q:+Y'>0  S DFN=+Y D VER W:$D(DVBVER) !,?20,"Verified" W:'$D(DVBVER) !,?15 D EN^DVBHQUT G FIND
+FIND Q  ;Patch DVB*4.0*71 prevents VistA HINQ requests due to WEBHINQ transition
+ S DIC="^DPT(",DIC(0)="AEMQZ" D ^DIC Q:+Y'>0  S DFN=+Y D VER W:$D(DVBVER) !,?20,"Verified" W:'$D(DVBVER) !,?15 D EN^DVBHQUT G FIND
  Q  ;G EX
  ;
-EN I $D(^DVB(395.5,DFN,0)),"PNEA"[$P(^(0),U,4) W !,$C(7),"A HINQ Request has already been made for this patient",!,"Do you wish to make another Request"
+EN Q  ;Patch DVB*4.0*71 prevents VistA HINQ requests due to WEBHINQ transition
+ I $D(^DVB(395.5,DFN,0)),"PNEA"[$P(^(0),U,4) W !,$C(7),"A HINQ Request has already been made for this patient",!,"Do you wish to make another Request"
  E  W !,"Do you wish to request a HINQ inquiry  "
 AGAIN S %=2 D YN^DICN I %=1 S DVBDIV=0 D EN^DVBHQUT G EX1
  I %Y'["?" G EX1
@@ -26,7 +29,8 @@ DIV S DVBDIV=0 I $D(^DVB(395,1,"HQ")),$P(^("HQ"),U,13) S DVBDIV=$P(^DG(43,1,"GL"
 TELL I DVBDIV,$D(DVBDIVN) W !,"The HINQ response will show the '"_DVBDIVN_"' division",!
  Q
  ;
-HINQ I $D(DUZ)#2'=1 W !,"DUZ not defined",! Q
+HINQ Q  ;Patch DVB*4.0*71 prevents VistA HINQ requests due to WEBHINQ transition 
+ I $D(DUZ)#2'=1 W !,"DUZ not defined",! Q
  I $D(^VA(200,DUZ,.1)) S DVBNUM=$P(^(.1),U,9) I DVBNUM
  E  W !,"  HINQ Employee Number not in New Person file",!,"  Notify System Manager",! Q
  S DVBGO=0

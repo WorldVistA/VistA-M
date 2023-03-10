@@ -1,5 +1,5 @@
-PSOTRLBL ;BHAM ISC/AMC/SAB - MULTI RX REFILL REQUEST FORM ;11/16/92 15:37
- ;;7.0;OUTPATIENT PHARMACY;**19,92,107,110,326**;DEC 1997;Build 11
+PSOTRLBL ;BHAM ISC/AMC/SAB - MULTI RX REFILL REQUEST FORM ;08/24/17  10:11
+ ;;7.0;OUTPATIENT PHARMACY;**19,92,107,110,326,441**;DEC 1997;Build 208
  ;External reference ^PS(59.7 supported by DBIA 694
  ;External reference to ^PS(55 supported by DBIA 2228
 CHK S PSDO=$O(^PS(52.5,"C",ZI,D0)),DFN=$P(^PS(52.5,D0,0),"^",3) I PSDO>0 S PSDFN=$P(^PS(52.5,PSDO,0),"^",3) Q:PSDFN=DFN
@@ -22,7 +22,8 @@ DOCNEW W ?54,PSINF("NAME")
  I $G(ADDR(3))="",$G(ADDR(4))="" G ADD
  I $G(ADDR(3))'="",$G(ADDR(4))="" W !,?54,$G(ADDR(3)) G ADD
  W !,?54,$G(ADDR(3)),!,?54,$G(ADDR(4))
-ADD W !,?54,"Please check prescriptions to be refilled"
+ADD I 'PSOORIG W !,?54,"Please check prescriptions to be refilled"    ;441 PAPI
+ I PSOORIG W !,?54,"Please check prescriptions to be filled/refilled"
  F J=1:1:COUNT S PSA=$O(RX(PSA)) S:'PSA J=J-1 Q:'PSA  D SCRPTNEW
  W !,?54,"(",PSLN,")",!,?60,"PATIENT'S SIGNATURE   ",$E(DT,4,5),"/",$E(DT,6,7),"/",($E(DT,1,3)+1700)
 DOCEND W @IOF I PSA,$O(RX(PSA)) G DOCNEW
@@ -49,5 +50,12 @@ DTCONOD S PSDT2=$P(RX(PSA),"^"),PSDT2=$E(PSDT2,4,5)_"/"_$E(PSDT2,6,7)_"/"_($E(PS
 REFILL F AMC=0:0 S AMC=$O(^PSRX(PSRXX,1,AMC)) Q:'AMC  S PSRFL=PSRFL-1
  I PSRFL>0 S X1=DT,X2=$P(^PSRX(PSRXX,0),"^",8)-10 D C^%DTC I X'<$P(^(2),"^",6) S PSRFL=0
  Q
-RZX S PSRXX=+^PS(55,DFN,"P",PSRX,0) I $D(^PSRX(PSRXX,0)) S PSRFL=$P(^(0),"^",9) D:$D(^(1))&PSRFL REFILL I PSRFL>0,$P($G(^PSRX(PSRXX,"STA")),"^")<10,134'[$E(+$P($G(^("STA")),"^")),$P(^(2),"^",6)>DT S RX(PSRXX)=$P(^(2),"^",6)_"^"_PSRFL
+RZX ;
+ S PSOORIG=0   ;441 PAPI
+ S PSRXX=+^PS(55,DFN,"P",PSRX,0) I $D(^PSRX(PSRXX,0)) D
+ .N EXPDT
+ .S EXPDT=$P(^PSRX(PSRXX,2),"^",6) I EXPDT'>DT Q
+ .S PSRFL=$P(^PSRX(PSRXX,0),"^",9) D:$D(^PSRX(PSRXX,1))&PSRFL REFILL
+ .I +PSRFL=0,$G(^PSRX(PSRXX,"PARK")),$P($G(^PSRX(PSRXX,"STA")),"^")=0 D CHKLBL^PSOPRKA(PSRXX,0) I 'LBLP S RX(PSRXX)=EXPDT_"^"_PSRFL,PSOORIG=1
+ .I PSRFL>0,$P($G(^PSRX(PSRXX,"STA")),"^")<10,134'[$E(+$P($G(^("STA")),"^")) S RX(PSRXX)=EXPDT_"^"_PSRFL
  Q

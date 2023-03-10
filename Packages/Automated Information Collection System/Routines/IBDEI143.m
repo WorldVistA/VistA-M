@@ -1,120 +1,124 @@
-IBDEI143 ; ; 04-FEB-2020
- ;;3.0;IB ENCOUNTER FORM IMP/EXP;;FEB 04, 2020
+IBDEI143 ; ; 01-FEB-2022
+ ;;3.0;IB ENCOUNTER FORM IMP/EXP;;FEB 01, 2022
  Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,999) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
- ;;^UTILITY(U,$J,358.3,17856,0)
- ;;=Y04.1XXD^^88^898^2
- ;;^UTILITY(U,$J,358.3,17856,1,0)
+ ;;^UTILITY(U,$J,358.3,18037,1,4,0)
+ ;;=4^Z89.021
+ ;;^UTILITY(U,$J,358.3,18037,2)
+ ;;=^5063534
+ ;;^UTILITY(U,$J,358.3,18038,0)
+ ;;=Z89.431^^61^797^11
+ ;;^UTILITY(U,$J,358.3,18038,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,17856,1,3,0)
- ;;=3^Assault by Human Bite,Subs Encntr
- ;;^UTILITY(U,$J,358.3,17856,1,4,0)
- ;;=4^Y04.1XXD
- ;;^UTILITY(U,$J,358.3,17856,2)
- ;;=^5061169
- ;;^UTILITY(U,$J,358.3,17857,0)
- ;;=Y04.2XXA^^88^898^5
- ;;^UTILITY(U,$J,358.3,17857,1,0)
+ ;;^UTILITY(U,$J,358.3,18038,1,3,0)
+ ;;=3^Acquired Absence of Foot,Right
+ ;;^UTILITY(U,$J,358.3,18038,1,4,0)
+ ;;=4^Z89.431
+ ;;^UTILITY(U,$J,358.3,18038,2)
+ ;;=^5063560
+ ;;^UTILITY(U,$J,358.3,18039,0)
+ ;;=Z89.411^^61^797^13
+ ;;^UTILITY(U,$J,358.3,18039,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,17857,1,3,0)
- ;;=3^Assault by Strike/Bumped by Another Person,Init Encntr
- ;;^UTILITY(U,$J,358.3,17857,1,4,0)
- ;;=4^Y04.2XXA
- ;;^UTILITY(U,$J,358.3,17857,2)
- ;;=^5061171
- ;;^UTILITY(U,$J,358.3,17858,0)
- ;;=Y04.8XXA^^88^898^3
- ;;^UTILITY(U,$J,358.3,17858,1,0)
+ ;;^UTILITY(U,$J,358.3,18039,1,3,0)
+ ;;=3^Acquired Absence of Great Toe,Right
+ ;;^UTILITY(U,$J,358.3,18039,1,4,0)
+ ;;=4^Z89.411
+ ;;^UTILITY(U,$J,358.3,18039,2)
+ ;;=^5063554
+ ;;^UTILITY(U,$J,358.3,18040,0)
+ ;;=Z89.111^^61^797^15
+ ;;^UTILITY(U,$J,358.3,18040,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,17858,1,3,0)
- ;;=3^Assault by Oth Bodily Force,Init Encntr
- ;;^UTILITY(U,$J,358.3,17858,1,4,0)
- ;;=4^Y04.8XXA
- ;;^UTILITY(U,$J,358.3,17858,2)
- ;;=^5061174
- ;;^UTILITY(U,$J,358.3,17859,0)
- ;;=Y04.2XXD^^88^898^6
- ;;^UTILITY(U,$J,358.3,17859,1,0)
+ ;;^UTILITY(U,$J,358.3,18040,1,3,0)
+ ;;=3^Acquired Absence of Hand,Right
+ ;;^UTILITY(U,$J,358.3,18040,1,4,0)
+ ;;=4^Z89.111
+ ;;^UTILITY(U,$J,358.3,18040,2)
+ ;;=^5063537
+ ;;^UTILITY(U,$J,358.3,18041,0)
+ ;;=Z89.621^^61^797^17
+ ;;^UTILITY(U,$J,358.3,18041,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,17859,1,3,0)
- ;;=3^Assault by Strike/Bumped by Another Person,Subs Encntr
- ;;^UTILITY(U,$J,358.3,17859,1,4,0)
- ;;=4^Y04.2XXD
- ;;^UTILITY(U,$J,358.3,17859,2)
- ;;=^5061172
- ;;^UTILITY(U,$J,358.3,17860,0)
- ;;=Y04.8XXD^^88^898^4
- ;;^UTILITY(U,$J,358.3,17860,1,0)
+ ;;^UTILITY(U,$J,358.3,18041,1,3,0)
+ ;;=3^Acquired Absence of Hip Joint,Right
+ ;;^UTILITY(U,$J,358.3,18041,1,4,0)
+ ;;=4^Z89.621
+ ;;^UTILITY(U,$J,358.3,18041,2)
+ ;;=^5063575
+ ;;^UTILITY(U,$J,358.3,18042,0)
+ ;;=Z89.611^^61^797^21
+ ;;^UTILITY(U,$J,358.3,18042,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,17860,1,3,0)
- ;;=3^Assault by Oth Bodily Force,Subs Encntr
- ;;^UTILITY(U,$J,358.3,17860,1,4,0)
- ;;=4^Y04.8XXD
- ;;^UTILITY(U,$J,358.3,17860,2)
- ;;=^5061175
- ;;^UTILITY(U,$J,358.3,17861,0)
- ;;=Y36.200A^^88^898^133
- ;;^UTILITY(U,$J,358.3,17861,1,0)
+ ;;^UTILITY(U,$J,358.3,18042,1,3,0)
+ ;;=3^Acquired Absence of Leg Above Knee,Right
+ ;;^UTILITY(U,$J,358.3,18042,1,4,0)
+ ;;=4^Z89.611
+ ;;^UTILITY(U,$J,358.3,18042,2)
+ ;;=^5063572
+ ;;^UTILITY(U,$J,358.3,18043,0)
+ ;;=Z89.511^^61^797^23
+ ;;^UTILITY(U,$J,358.3,18043,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,17861,1,3,0)
- ;;=3^War Op Inv Unspec Explosion/Fragments,Milt,Init Encntr
- ;;^UTILITY(U,$J,358.3,17861,1,4,0)
- ;;=4^Y36.200A
- ;;^UTILITY(U,$J,358.3,17861,2)
- ;;=^5061607
- ;;^UTILITY(U,$J,358.3,17862,0)
- ;;=Y36.200D^^88^898^134
- ;;^UTILITY(U,$J,358.3,17862,1,0)
+ ;;^UTILITY(U,$J,358.3,18043,1,3,0)
+ ;;=3^Acquired Absence of Leg Below Knee,Right
+ ;;^UTILITY(U,$J,358.3,18043,1,4,0)
+ ;;=4^Z89.511
+ ;;^UTILITY(U,$J,358.3,18043,2)
+ ;;=^5063566
+ ;;^UTILITY(U,$J,358.3,18044,0)
+ ;;=Z89.231^^61^797^33
+ ;;^UTILITY(U,$J,358.3,18044,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,17862,1,3,0)
- ;;=3^War Op Inv Unspec Explosion/Fragments,Milt,Subs Encntr
- ;;^UTILITY(U,$J,358.3,17862,1,4,0)
- ;;=4^Y36.200D
- ;;^UTILITY(U,$J,358.3,17862,2)
- ;;=^5061608
- ;;^UTILITY(U,$J,358.3,17863,0)
- ;;=Y36.300A^^88^898^135
- ;;^UTILITY(U,$J,358.3,17863,1,0)
+ ;;^UTILITY(U,$J,358.3,18044,1,3,0)
+ ;;=3^Acquired Absence of Shoulder,Right
+ ;;^UTILITY(U,$J,358.3,18044,1,4,0)
+ ;;=4^Z89.231
+ ;;^UTILITY(U,$J,358.3,18044,2)
+ ;;=^5063551
+ ;;^UTILITY(U,$J,358.3,18045,0)
+ ;;=Z89.011^^61^797^37
+ ;;^UTILITY(U,$J,358.3,18045,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,17863,1,3,0)
- ;;=3^War Op Inv Unspec Fire/Conflagr/Hot Subst,Milt,Init Encntr
- ;;^UTILITY(U,$J,358.3,17863,1,4,0)
- ;;=4^Y36.300A
- ;;^UTILITY(U,$J,358.3,17863,2)
- ;;=^5061661
- ;;^UTILITY(U,$J,358.3,17864,0)
- ;;=Y36.300D^^88^898^136
- ;;^UTILITY(U,$J,358.3,17864,1,0)
+ ;;^UTILITY(U,$J,358.3,18045,1,3,0)
+ ;;=3^Acquired Absence of Thumb,Right
+ ;;^UTILITY(U,$J,358.3,18045,1,4,0)
+ ;;=4^Z89.011
+ ;;^UTILITY(U,$J,358.3,18045,2)
+ ;;=^5063531
+ ;;^UTILITY(U,$J,358.3,18046,0)
+ ;;=Z89.421^^61^797^26
+ ;;^UTILITY(U,$J,358.3,18046,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,17864,1,3,0)
- ;;=3^War Op Inv Unspec Fire/Conflagr/Hot Subst,Milt,Subs Encntr
- ;;^UTILITY(U,$J,358.3,17864,1,4,0)
- ;;=4^Y36.300D
- ;;^UTILITY(U,$J,358.3,17864,2)
- ;;=^5061662
- ;;^UTILITY(U,$J,358.3,17865,0)
- ;;=Y36.410A^^88^898^130
- ;;^UTILITY(U,$J,358.3,17865,1,0)
+ ;;^UTILITY(U,$J,358.3,18046,1,3,0)
+ ;;=3^Acquired Absence of Oth Toe(s),Right
+ ;;^UTILITY(U,$J,358.3,18046,1,4,0)
+ ;;=4^Z89.421
+ ;;^UTILITY(U,$J,358.3,18046,2)
+ ;;=^5063557
+ ;;^UTILITY(U,$J,358.3,18047,0)
+ ;;=Z89.221^^61^797^39
+ ;;^UTILITY(U,$J,358.3,18047,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,17865,1,3,0)
- ;;=3^War Op Inv Rubber Bullets,Milt,Init Encntr
- ;;^UTILITY(U,$J,358.3,17865,1,4,0)
- ;;=4^Y36.410A
- ;;^UTILITY(U,$J,358.3,17865,2)
- ;;=^5061691
- ;;^UTILITY(U,$J,358.3,17866,0)
- ;;=Y36.410D^^88^898^132
- ;;^UTILITY(U,$J,358.3,17866,1,0)
+ ;;^UTILITY(U,$J,358.3,18047,1,3,0)
+ ;;=3^Acquired Absence of Upper Limb Above Elbow,Right
+ ;;^UTILITY(U,$J,358.3,18047,1,4,0)
+ ;;=4^Z89.221
+ ;;^UTILITY(U,$J,358.3,18047,2)
+ ;;=^5063548
+ ;;^UTILITY(U,$J,358.3,18048,0)
+ ;;=Z89.211^^61^797^41
+ ;;^UTILITY(U,$J,358.3,18048,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,17866,1,3,0)
- ;;=3^War Op Inv Rubber Bullets,Milt,Subs Encntr
- ;;^UTILITY(U,$J,358.3,17866,1,4,0)
- ;;=4^Y36.410D
- ;;^UTILITY(U,$J,358.3,17866,2)
- ;;=^5061692
- ;;^UTILITY(U,$J,358.3,17867,0)
- ;;=Y36.6X0A^^88^898^122
- ;;^UTILITY(U,$J,358.3,17867,1,0)
+ ;;^UTILITY(U,$J,358.3,18048,1,3,0)
+ ;;=3^Acquired Absence of Upper Limb Below Elbow,Right
+ ;;^UTILITY(U,$J,358.3,18048,1,4,0)
+ ;;=4^Z89.211
+ ;;^UTILITY(U,$J,358.3,18048,2)
+ ;;=^5063545
+ ;;^UTILITY(U,$J,358.3,18049,0)
+ ;;=Z89.121^^61^797^44
+ ;;^UTILITY(U,$J,358.3,18049,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,17867,1,3,0)
- ;;=3^War Op Inv Biological Weapons,Milt,Init Encntr
+ ;;^UTILITY(U,$J,358.3,18049,1,3,0)
+ ;;=3^Acquired Absence of Wrist,Right

@@ -1,134 +1,116 @@
-IBDEI0M3 ; ; 04-FEB-2020
- ;;3.0;IB ENCOUNTER FORM IMP/EXP;;FEB 04, 2020
+IBDEI0M3 ; ; 01-FEB-2022
+ ;;3.0;IB ENCOUNTER FORM IMP/EXP;;FEB 01, 2022
  Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,999) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
- ;;^UTILITY(U,$J,358.3,9815,1,4,0)
- ;;=4^M54.12
- ;;^UTILITY(U,$J,358.3,9815,2)
- ;;=^5012297
- ;;^UTILITY(U,$J,358.3,9816,0)
- ;;=S13.9XXA^^72^653^21
- ;;^UTILITY(U,$J,358.3,9816,1,0)
+ ;;^UTILITY(U,$J,358.3,9936,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,9816,1,3,0)
- ;;=3^Neck Sprain (Whiplash)
- ;;^UTILITY(U,$J,358.3,9816,1,4,0)
- ;;=4^S13.9XXA
- ;;^UTILITY(U,$J,358.3,9816,2)
- ;;=^5022037
- ;;^UTILITY(U,$J,358.3,9817,0)
- ;;=S23.3XXA^^72^653^22
- ;;^UTILITY(U,$J,358.3,9817,1,0)
+ ;;^UTILITY(U,$J,358.3,9936,1,3,0)
+ ;;=3^Fall from Toilet w/ Strike Against Obj,Subs Encntr
+ ;;^UTILITY(U,$J,358.3,9936,1,4,0)
+ ;;=4^W18.12XD
+ ;;^UTILITY(U,$J,358.3,9936,2)
+ ;;=^5137984
+ ;;^UTILITY(U,$J,358.3,9937,0)
+ ;;=W18.2XXA^^39^420^78
+ ;;^UTILITY(U,$J,358.3,9937,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,9817,1,3,0)
- ;;=3^Thoracic Spine Sprain
- ;;^UTILITY(U,$J,358.3,9817,1,4,0)
- ;;=4^S23.3XXA
- ;;^UTILITY(U,$J,358.3,9817,2)
- ;;=^5023246
- ;;^UTILITY(U,$J,358.3,9818,0)
- ;;=S29.012A^^72^653^23
- ;;^UTILITY(U,$J,358.3,9818,1,0)
+ ;;^UTILITY(U,$J,358.3,9937,1,3,0)
+ ;;=3^Fall in Empty Shower/Bathtub,Init Encntr
+ ;;^UTILITY(U,$J,358.3,9937,1,4,0)
+ ;;=4^W18.2XXA
+ ;;^UTILITY(U,$J,358.3,9937,2)
+ ;;=^5059806
+ ;;^UTILITY(U,$J,358.3,9938,0)
+ ;;=W18.2XXD^^39^420^79
+ ;;^UTILITY(U,$J,358.3,9938,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,9818,1,3,0)
- ;;=3^Thoracic Strain
- ;;^UTILITY(U,$J,358.3,9818,1,4,0)
- ;;=4^S29.012A
- ;;^UTILITY(U,$J,358.3,9818,2)
- ;;=^5023777
- ;;^UTILITY(U,$J,358.3,9819,0)
- ;;=M48.50XA^^72^653^24
- ;;^UTILITY(U,$J,358.3,9819,1,0)
+ ;;^UTILITY(U,$J,358.3,9938,1,3,0)
+ ;;=3^Fall in Empty Shower/Bathtub,Subs Encntr
+ ;;^UTILITY(U,$J,358.3,9938,1,4,0)
+ ;;=4^W18.2XXD
+ ;;^UTILITY(U,$J,358.3,9938,2)
+ ;;=^5059807
+ ;;^UTILITY(U,$J,358.3,9939,0)
+ ;;=W18.40XA^^39^420^114
+ ;;^UTILITY(U,$J,358.3,9939,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,9819,1,3,0)
- ;;=3^Vertebral Compression Fracture
- ;;^UTILITY(U,$J,358.3,9819,1,4,0)
- ;;=4^M48.50XA
- ;;^UTILITY(U,$J,358.3,9819,2)
- ;;=^5012159
- ;;^UTILITY(U,$J,358.3,9820,0)
- ;;=S20.419A^^72^653^25
- ;;^UTILITY(U,$J,358.3,9820,1,0)
+ ;;^UTILITY(U,$J,358.3,9939,1,3,0)
+ ;;=3^Slipping/Tripping/Stumbling w/o Falling,Init Encntr
+ ;;^UTILITY(U,$J,358.3,9939,1,4,0)
+ ;;=4^W18.40XA
+ ;;^UTILITY(U,$J,358.3,9939,2)
+ ;;=^5059818
+ ;;^UTILITY(U,$J,358.3,9940,0)
+ ;;=W18.40XD^^39^420^115
+ ;;^UTILITY(U,$J,358.3,9940,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,9820,1,3,0)
- ;;=3^Upper Back Abrasion
- ;;^UTILITY(U,$J,358.3,9820,1,4,0)
- ;;=4^S20.419A
- ;;^UTILITY(U,$J,358.3,9820,2)
- ;;=^5022565
- ;;^UTILITY(U,$J,358.3,9821,0)
- ;;=S20.229A^^72^653^26
- ;;^UTILITY(U,$J,358.3,9821,1,0)
+ ;;^UTILITY(U,$J,358.3,9940,1,3,0)
+ ;;=3^Slipping/Tripping/Stumbling w/o Falling,Subs Encntr
+ ;;^UTILITY(U,$J,358.3,9940,1,4,0)
+ ;;=4^W18.40XD
+ ;;^UTILITY(U,$J,358.3,9940,2)
+ ;;=^5059819
+ ;;^UTILITY(U,$J,358.3,9941,0)
+ ;;=W18.41XA^^39^420^116
+ ;;^UTILITY(U,$J,358.3,9941,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,9821,1,3,0)
- ;;=3^Upper Back Contusion
- ;;^UTILITY(U,$J,358.3,9821,1,4,0)
- ;;=4^S20.229A
- ;;^UTILITY(U,$J,358.3,9821,2)
- ;;=^5022490
- ;;^UTILITY(U,$J,358.3,9822,0)
- ;;=S30.810A^^72^653^27
- ;;^UTILITY(U,$J,358.3,9822,1,0)
+ ;;^UTILITY(U,$J,358.3,9941,1,3,0)
+ ;;=3^Slipping/Tripping/Stumbling w/o Falling d/t Stepping on Obj,Init Encntr
+ ;;^UTILITY(U,$J,358.3,9941,1,4,0)
+ ;;=4^W18.41XA
+ ;;^UTILITY(U,$J,358.3,9941,2)
+ ;;=^5059821
+ ;;^UTILITY(U,$J,358.3,9942,0)
+ ;;=W18.41XD^^39^420^117
+ ;;^UTILITY(U,$J,358.3,9942,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,9822,1,3,0)
- ;;=3^Lower Back Abrasion
- ;;^UTILITY(U,$J,358.3,9822,1,4,0)
- ;;=4^S30.810A
- ;;^UTILITY(U,$J,358.3,9822,2)
- ;;=^5023828
- ;;^UTILITY(U,$J,358.3,9823,0)
- ;;=S30.0XXA^^72^653^28
- ;;^UTILITY(U,$J,358.3,9823,1,0)
+ ;;^UTILITY(U,$J,358.3,9942,1,3,0)
+ ;;=3^Slipping/Tripping/Stumbling w/o Falling d/t Stepping on Obj,Subs Encntr
+ ;;^UTILITY(U,$J,358.3,9942,1,4,0)
+ ;;=4^W18.41XD
+ ;;^UTILITY(U,$J,358.3,9942,2)
+ ;;=^5059822
+ ;;^UTILITY(U,$J,358.3,9943,0)
+ ;;=W18.42XA^^39^420^118
+ ;;^UTILITY(U,$J,358.3,9943,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,9823,1,3,0)
- ;;=3^Lower Back Contusion
- ;;^UTILITY(U,$J,358.3,9823,1,4,0)
- ;;=4^S30.0XXA
- ;;^UTILITY(U,$J,358.3,9823,2)
- ;;=^5023804
- ;;^UTILITY(U,$J,358.3,9824,0)
- ;;=M54.5^^72^653^29
- ;;^UTILITY(U,$J,358.3,9824,1,0)
+ ;;^UTILITY(U,$J,358.3,9943,1,3,0)
+ ;;=3^Slipping/Tripping/Stumbling w/o Falling d/t Stepping into Hole,Init Encntr
+ ;;^UTILITY(U,$J,358.3,9943,1,4,0)
+ ;;=4^W18.42XA
+ ;;^UTILITY(U,$J,358.3,9943,2)
+ ;;=^5059824
+ ;;^UTILITY(U,$J,358.3,9944,0)
+ ;;=W18.42XD^^39^420^119
+ ;;^UTILITY(U,$J,358.3,9944,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,9824,1,3,0)
- ;;=3^Low Back Pain
- ;;^UTILITY(U,$J,358.3,9824,1,4,0)
- ;;=4^M54.5
- ;;^UTILITY(U,$J,358.3,9824,2)
- ;;=^5012311
- ;;^UTILITY(U,$J,358.3,9825,0)
- ;;=S33.5XXA^^72^653^30
- ;;^UTILITY(U,$J,358.3,9825,1,0)
+ ;;^UTILITY(U,$J,358.3,9944,1,3,0)
+ ;;=3^Slipping/Tripping/Stumbling w/o Falling d/t Stepping into Hole,Subs Encntr
+ ;;^UTILITY(U,$J,358.3,9944,1,4,0)
+ ;;=4^W18.42XD
+ ;;^UTILITY(U,$J,358.3,9944,2)
+ ;;=^5059825
+ ;;^UTILITY(U,$J,358.3,9945,0)
+ ;;=W18.43XA^^39^420^112
+ ;;^UTILITY(U,$J,358.3,9945,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,9825,1,3,0)
- ;;=3^Lumbar Spine Sprain
- ;;^UTILITY(U,$J,358.3,9825,1,4,0)
- ;;=4^S33.5XXA
- ;;^UTILITY(U,$J,358.3,9825,2)
- ;;=^5025172
- ;;^UTILITY(U,$J,358.3,9826,0)
- ;;=S32.008A^^72^653^31
- ;;^UTILITY(U,$J,358.3,9826,1,0)
+ ;;^UTILITY(U,$J,358.3,9945,1,3,0)
+ ;;=3^Slipping/Tripping w/o Fall d/t Step from One Level to Another,Init Encntr
+ ;;^UTILITY(U,$J,358.3,9945,1,4,0)
+ ;;=4^W18.43XA
+ ;;^UTILITY(U,$J,358.3,9945,2)
+ ;;=^5059827
+ ;;^UTILITY(U,$J,358.3,9946,0)
+ ;;=W18.43XD^^39^420^113
+ ;;^UTILITY(U,$J,358.3,9946,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,9826,1,3,0)
- ;;=3^Lumbar Spine Vertebral Fracture
- ;;^UTILITY(U,$J,358.3,9826,1,4,0)
- ;;=4^S32.008A
- ;;^UTILITY(U,$J,358.3,9826,2)
- ;;=^5024359
- ;;^UTILITY(U,$J,358.3,9827,0)
- ;;=M54.16^^72^653^32
- ;;^UTILITY(U,$J,358.3,9827,1,0)
+ ;;^UTILITY(U,$J,358.3,9946,1,3,0)
+ ;;=3^Slipping/Tripping w/o Fall d/t Step from One Level to Another,Subs Encntr
+ ;;^UTILITY(U,$J,358.3,9946,1,4,0)
+ ;;=4^W18.43XD
+ ;;^UTILITY(U,$J,358.3,9946,2)
+ ;;=^5059828
+ ;;^UTILITY(U,$J,358.3,9947,0)
+ ;;=W18.49XA^^39^420^120
+ ;;^UTILITY(U,$J,358.3,9947,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,9827,1,3,0)
- ;;=3^Lumbar Radiculopathy
- ;;^UTILITY(U,$J,358.3,9827,1,4,0)
- ;;=4^M54.16
- ;;^UTILITY(U,$J,358.3,9827,2)
- ;;=^5012301
- ;;^UTILITY(U,$J,358.3,9828,0)
- ;;=M54.30^^72^653^33
- ;;^UTILITY(U,$J,358.3,9828,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,9828,1,3,0)
- ;;=3^Sciatica

@@ -1,5 +1,5 @@
-GMRAPEM1 ;HIRMFO/YMP,RM,WAA-CHANGE OF OBSERVED DATA TO HISTORICAL STORAGE ;12/1/95  13:45
- ;;4.0;Adverse Reaction Tracking;;Mar 29, 1996
+GMRAPEM1 ; HIRMFO/YMP,RM,WAA - CHANGE OF OBSERVED DATA TO HISTORICAL STORAGE ;May 11, 2021@12:03:03
+ ;;4.0;Adverse Reaction Tracking;**63**;Mar 29, 1996;Build 34
 ENDING ;Display and edit the word processing field for a patient reaction.
  W @IOF,! D DISP,EDIT G EXIT
  Q
@@ -48,7 +48,7 @@ EDIT ;Edit the word processing field.
  I '$D(^GMR(120.8,GMRAPA,26,0)) S ^(0)="^120.826D^^"
  D NOW^%DTC S DIC="^GMR(120.8,"_GMRAPA_",26,",DA(1)=GMRAPA,DLAYGO=120.8,DIC(0)="L",X=% K DD,DO,DINUM D FILE^DICN K DLAYGO G EXIT:+Y'>0
  K DR S DA=+Y,DIE=DIC,DR="1////"_DUZ_";1.5////"_GMRAVCM_";2" K DIC D ^DIE
- I '$O(^GMR(120.8,DA(1),26,DA,2,0)) S DIK=DIE D ^DIK
+ I '$O(^GMR(120.8,DA(1),26,DA,2,0)) S DIK=DIE D ^DIK K Y
 EXIT ;Exit point.
  K GMRAVCM
  Q

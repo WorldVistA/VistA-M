@@ -1,128 +1,62 @@
-IBDEI1MH ; ; 04-FEB-2020
- ;;3.0;IB ENCOUNTER FORM IMP/EXP;;FEB 04, 2020
- Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,999) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
+IBDEI1MH ; ; 01-FEB-2022
+ ;;3.0;IB ENCOUNTER FORM IMP/EXP;;FEB 01, 2022
+ Q:'DIFQ(358.5)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,999) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
- ;;^UTILITY(U,$J,358.3,25923,1,4,0)
- ;;=4^R92.8
- ;;^UTILITY(U,$J,358.3,25923,2)
- ;;=^5019712
- ;;^UTILITY(U,$J,358.3,25924,0)
- ;;=R87.619^^107^1227^4
- ;;^UTILITY(U,$J,358.3,25924,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,25924,1,3,0)
- ;;=3^Abnormal Cytology Findings in Specimen of Cervix Uteri,Unspec
- ;;^UTILITY(U,$J,358.3,25924,1,4,0)
- ;;=4^R87.619
- ;;^UTILITY(U,$J,358.3,25924,2)
- ;;=^5019676
- ;;^UTILITY(U,$J,358.3,25925,0)
- ;;=Z79.890^^107^1227^56
- ;;^UTILITY(U,$J,358.3,25925,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,25925,1,3,0)
- ;;=3^Hormone Replacement Therapy,Postmenopausal
- ;;^UTILITY(U,$J,358.3,25925,1,4,0)
- ;;=4^Z79.890
- ;;^UTILITY(U,$J,358.3,25925,2)
- ;;=^331975
- ;;^UTILITY(U,$J,358.3,25926,0)
- ;;=Z33.1^^107^1227^94
- ;;^UTILITY(U,$J,358.3,25926,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,25926,1,3,0)
- ;;=3^Pregnant State,Incidental
- ;;^UTILITY(U,$J,358.3,25926,1,4,0)
- ;;=4^Z33.1
- ;;^UTILITY(U,$J,358.3,25926,2)
- ;;=^5062853
- ;;^UTILITY(U,$J,358.3,25927,0)
- ;;=Z39.2^^107^1227^90
- ;;^UTILITY(U,$J,358.3,25927,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,25927,1,3,0)
- ;;=3^Postpartum Follow-up Routine Encounter
- ;;^UTILITY(U,$J,358.3,25927,1,4,0)
- ;;=4^Z39.2
- ;;^UTILITY(U,$J,358.3,25927,2)
- ;;=^5062906
- ;;^UTILITY(U,$J,358.3,25928,0)
- ;;=Z30.09^^107^1227^21
- ;;^UTILITY(U,$J,358.3,25928,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,25928,1,3,0)
- ;;=3^Counsel/Advice on Contraception Encounter
- ;;^UTILITY(U,$J,358.3,25928,1,4,0)
- ;;=4^Z30.09
- ;;^UTILITY(U,$J,358.3,25928,2)
- ;;=^5062817
- ;;^UTILITY(U,$J,358.3,25929,0)
- ;;=Z30.9^^107^1227^20
- ;;^UTILITY(U,$J,358.3,25929,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,25929,1,3,0)
- ;;=3^Contraceptive Management Encounter
- ;;^UTILITY(U,$J,358.3,25929,1,4,0)
- ;;=4^Z30.9
- ;;^UTILITY(U,$J,358.3,25929,2)
- ;;=^5062828
- ;;^UTILITY(U,$J,358.3,25930,0)
- ;;=N64.3^^107^1227^52
- ;;^UTILITY(U,$J,358.3,25930,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,25930,1,3,0)
- ;;=3^Galactorrhea Not Associated w/ Childbirth
- ;;^UTILITY(U,$J,358.3,25930,1,4,0)
- ;;=4^N64.3
- ;;^UTILITY(U,$J,358.3,25930,2)
- ;;=^270460
- ;;^UTILITY(U,$J,358.3,25931,0)
- ;;=R92.2^^107^1227^59
- ;;^UTILITY(U,$J,358.3,25931,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,25931,1,3,0)
- ;;=3^Inconclusive Mammogram
- ;;^UTILITY(U,$J,358.3,25931,1,4,0)
- ;;=4^R92.2
- ;;^UTILITY(U,$J,358.3,25931,2)
- ;;=^5019711
- ;;^UTILITY(U,$J,358.3,25932,0)
- ;;=Z30.432^^107^1227^98
- ;;^UTILITY(U,$J,358.3,25932,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,25932,1,3,0)
- ;;=3^Removal of IUD
- ;;^UTILITY(U,$J,358.3,25932,1,4,0)
- ;;=4^Z30.432
- ;;^UTILITY(U,$J,358.3,25932,2)
- ;;=^5062824
- ;;^UTILITY(U,$J,358.3,25933,0)
- ;;=A63.0^^107^1227^12
- ;;^UTILITY(U,$J,358.3,25933,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,25933,1,3,0)
- ;;=3^Anogenital Warts,Verereal
- ;;^UTILITY(U,$J,358.3,25933,1,4,0)
- ;;=4^A63.0
- ;;^UTILITY(U,$J,358.3,25933,2)
- ;;=^5000360
- ;;^UTILITY(U,$J,358.3,25934,0)
- ;;=R63.0^^107^1227^13
- ;;^UTILITY(U,$J,358.3,25934,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,25934,1,3,0)
- ;;=3^Anorexia
- ;;^UTILITY(U,$J,358.3,25934,1,4,0)
- ;;=4^R63.0
- ;;^UTILITY(U,$J,358.3,25934,2)
- ;;=^7939
- ;;^UTILITY(U,$J,358.3,25935,0)
- ;;=R87.611^^107^1227^2
- ;;^UTILITY(U,$J,358.3,25935,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,25935,1,3,0)
- ;;=3^ASC-H
- ;;^UTILITY(U,$J,358.3,25935,1,4,0)
- ;;=4^R87.611
- ;;^UTILITY(U,$J,358.3,25935,2)
- ;;=^5019669
+ ;;^DIC(358.5,0,"GL")
+ ;;=^IBE(358.5,
+ ;;^DIC("B","IMP/EXP DATA FIELD",358.5)
+ ;;=
+ ;;^DIC(358.5,"%D",0)
+ ;;=^^1^1^2940829^^^^
+ ;;^DIC(358.5,"%D",1,0)
+ ;;=Used by the import/export utility as a workspace.
+ ;;^DIC(358.5,"%D",2,0)
+ ;;= 
+ ;;^DIC(358.5,"%D",3,0)
+ ;;= 
+ ;;^DIC(358.5,"%D",4,0)
+ ;;=This file is nearly identical to file #357.5. It is used by the
+ ;;^DIC(358.5,"%D",5,0)
+ ;;=Import/Export Utility as a temporary staging area for data from that file
+ ;;^DIC(358.5,"%D",6,0)
+ ;;=that is being imported or exported.
+ ;;^DD(358.5,0)
+ ;;=FIELD^^2^13
+ ;;^DD(358.5,0,"DDA")
+ ;;=N
+ ;;^DD(358.5,0,"DT")
+ ;;=2930730
+ ;;^DD(358.5,0,"ID",.02)
+ ;;=W ""
+ ;;^DD(358.5,0,"ID",.03)
+ ;;=W ""
+ ;;^DD(358.5,0,"IX","B",358.5,.01)
+ ;;=
+ ;;^DD(358.5,0,"IX","C",358.5,.02)
+ ;;=
+ ;;^DD(358.5,0,"NM","IMP/EXP DATA FIELD")
+ ;;=
+ ;;^DD(358.5,0,"VRPK")
+ ;;=IBD
+ ;;^DD(358.5,.01,0)
+ ;;=NAME^RF^^0;1^K:$L(X)>30!($L(X)<3)!'(X'?1P.E) X
+ ;;^DD(358.5,.01,1,0)
+ ;;=^.1
+ ;;^DD(358.5,.01,1,1,0)
+ ;;=358.5^B
+ ;;^DD(358.5,.01,1,1,1)
+ ;;=S ^IBE(358.5,"B",$E(X,1,30),DA)=""
+ ;;^DD(358.5,.01,1,1,2)
+ ;;=K ^IBE(358.5,"B",$E(X,1,30),DA)
+ ;;^DD(358.5,.01,3)
+ ;;=Answer must be 3-30 characters in length.
+ ;;^DD(358.5,.01,21,0)
+ ;;=^^3^3^2930419^^^
+ ;;^DD(358.5,.01,21,1,0)
+ ;;= 
+ ;;^DD(358.5,.01,21,2,0)
+ ;;=The name is used to identify the field within a block. It can be anything
+ ;;^DD(358.5,.01,21,3,0)
+ ;;=the designer of a form wants it to be.
+ ;;^DD(358.5,.01,"DT")
+ ;;=2930419

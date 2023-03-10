@@ -1,5 +1,5 @@
-MPIFA43 ;BIR/DLR-Utility for processing an ADT-A43 Un-link ID ; 1/4/12 12:55pm
- ;;1.0;MASTER PATIENT INDEX VISTA;**22,41,46,54**;30 Apr 99;Build 2
+MPIFA43 ;BIR/DLR-Utility for processing an ADT-A43 Un-link ID ; 5/4/20 11:01am
+ ;;1.0;MASTER PATIENT INDEX VISTA;**22,41,46,54,75**;30 Apr 99;Build 1
 DBIA ; Supported IA's
  ;
  ;IA: 2796  - EXC, START, and STOP^RGHLLOG
@@ -69,7 +69,8 @@ RSP ;response process logic entry point
  Q
 ROUTE ;routing logic entry point
  N MPI S MPI=$$MPILINK^MPIFAPI() D
- .I $P($G(MPI),U)'=-1 S HLL("LINKS",1)="MPIF ADT-A43 CLIENT"_"^"_MPI
+ .;**75 - Story - 1260465 (ckn) - Include 200M in HLL links for HAC
+ .I $P($G(MPI),U)'=-1 S HLL("LINKS",1)="MPIF ADT-A43 CLIENT"_"^"_MPI_$S($P($$SITE^VASITE(),"^",3)=741:"^200M",1:"")
  .I $P($G(MPI),U)=-1 D
  ..N RGLOG D START^RGHLLOG(HLMTIEN,"","")
  ..D EXC^RGHLLOG(224,"No MPI link identified ",$G(PDFN))
@@ -83,6 +84,8 @@ MOVE(ARRAY,ERROR) ;
  I $G(ARRAY("DFNLOC"))="" S ARRAY("DFNLOC")=ARRAY("ICNMISMATCHLOC")
  I $G(ARRAY("CMOR"))="" S ARRAY("CMOR")=ARRAY("DFNLOC")
  ;if assigning authority'= site station# then Quit because this is not the mismatched site so MFN-M05 sent as a result of site removal on MPI will remove it from all sites TF list
+ ;**75 - Story 1260465 (ckn) - specific to HAC Site (741)
+ I ARRAY("DFNLOC")="741MM" S ARRAY("DFNLOC")=741
  I ARRAY("DFNLOC")'=$P($$SITE^VASITE,"^",3) D  Q
  .;if assigning authority '= site station# then remove assigning authority from TF list for the given ICN
  .N MPISITE S MPISITE=$$IEN^XUAF4(ARRAY("DFNLOC"))

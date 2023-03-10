@@ -1,5 +1,6 @@
-PSS50P7 ;BIR/LDT - API FOR INFORMATION FROM FILE 50.7;Dec 7, 2018@11:44:49
- ;;1.0;PHARMACY DATA MANAGEMENT;**85,91,199,234**;9/30/97;Build 5
+PSS50P7 ;BIR/LDT - API FOR INFORMATION FROM FILE 50.7;Aug 24, 2021@15:03:03
+ ;;1.0;PHARMACY DATA MANAGEMENT;**85,91,199,234,187**;9/30/97;Build 27
+ ;
  ;
 ZERO(PSSIEN,PSSFT,PSSFL,LIST) ;
  ;PSSIEN - IEN of entry in PHARMACY ORDERABLE ITEM file (#50.7).
@@ -179,4 +180,20 @@ SSET(PSSC,PSSCNT,PSSI,DIR,SUB) ;Pull back a subset of the PHARMACY ORDERABLE ITE
  F  Q:PSSC'<PSSCNT  S PSSI=$O(^PS(50.7,"B",PSSI),DIR) Q:PSSI=""  S PSSJ=0 F  S PSSJ=$O(^PS(50.7,"B",PSSI,PSSJ)) Q:'PSSJ  I $D(^PS(50.7,PSSJ,0)) S PS0=^(0) D
  . S Y=$P(PS0,"^",4) D DD^%DT S PSSIDT=Y
  . S Y=$P($G(^PS(50.606,$P(PS0,"^",2),0)),"^"),PSSC=PSSC+1,^TMP(SUB,$J,1,PSSC)=PSSJ_"^"_PSSI_" "_Y_" "_PSSIDT
+ Q
+INDCATN(PSSIEN,LIST) ; *187 return Indications for Use for Prescription and Medication Order
+ N I,J,K,IND,ARR
+ I +$G(PSSIEN)'>0!($G(LIST)']"") Q
+ K ^TMP($J,LIST) S I="",K=0
+ I $P($G(^PS(50.7,PSSIEN,4)),"^",2)]"" S K=1,IND=$$ENLU^PSSGMI($P(^PS(50.7,PSSIEN,4),"^",2)),^TMP($J,LIST,1)=IND_"^"_K,ARR(IND)="" ;if most common indication exists, return its value
+ F  S I=$O(^PS(50.7,PSSIEN,"IND","B",I)) Q:I=""  D
+ .S IND=$$ENLU^PSSGMI(I) ;convert to uppercase
+ .I '$D(ARR(IND)) S ARR(IND)=""
+ S I="" F  S I=$O(ARR(I)) Q:I=""  I $P($G(^TMP($J,LIST,1)),"^")'=I S K=K+1,^TMP($J,LIST,K)=I
+ S I="",K=0 K ARR
+ I $P($G(^PS(50.7,PSSIEN,4)),"^",4)]"" S K=1,IND=$$ENLU^PSSGMI($P(^PS(50.7,PSSIEN,4),"^",4)),^TMP($J,LIST,"OTH",1)=IND_"^"_K,ARR(IND)="" ;if other most common indication exists, return its value
+ F  S I=$O(^PS(50.7,PSSIEN,"INDO","B",I)) Q:I=""  D
+ .S IND=$$ENLU^PSSGMI(I) ;convert to uppercase
+ .I '$D(ARR(IND)) S ARR(IND)=""
+ S I="" F  S I=$O(ARR(I)) Q:I=""  I $P($G(^TMP($J,LIST,"OTH",1)),"^")'=I S K=K+1,^TMP($J,LIST,"OTH",K)=I
  Q

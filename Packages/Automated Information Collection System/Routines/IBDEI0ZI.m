@@ -1,128 +1,118 @@
-IBDEI0ZI ; ; 04-FEB-2020
- ;;3.0;IB ENCOUNTER FORM IMP/EXP;;FEB 04, 2020
+IBDEI0ZI ; ; 01-FEB-2022
+ ;;3.0;IB ENCOUNTER FORM IMP/EXP;;FEB 01, 2022
  Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,999) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
- ;;^UTILITY(U,$J,358.3,15839,1,3,0)
- ;;=3^Cellulitis of Perineum
- ;;^UTILITY(U,$J,358.3,15839,1,4,0)
- ;;=4^L03.315
- ;;^UTILITY(U,$J,358.3,15839,2)
- ;;=^5009051
- ;;^UTILITY(U,$J,358.3,15840,0)
- ;;=L03.316^^88^869^116
- ;;^UTILITY(U,$J,358.3,15840,1,0)
+ ;;^UTILITY(U,$J,358.3,16023,0)
+ ;;=L97.919^^61^765^258
+ ;;^UTILITY(U,$J,358.3,16023,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,15840,1,3,0)
- ;;=3^Cellulitis of Umbilicus
- ;;^UTILITY(U,$J,358.3,15840,1,4,0)
- ;;=4^L03.316
- ;;^UTILITY(U,$J,358.3,15840,2)
- ;;=^5009052
- ;;^UTILITY(U,$J,358.3,15841,0)
- ;;=L03.319^^88^869^115
- ;;^UTILITY(U,$J,358.3,15841,1,0)
+ ;;^UTILITY(U,$J,358.3,16023,1,3,0)
+ ;;=3^Non-Pressure Chr Ulcer of Right Lower Leg w/ Unspec Severity
+ ;;^UTILITY(U,$J,358.3,16023,1,4,0)
+ ;;=4^L97.919
+ ;;^UTILITY(U,$J,358.3,16023,2)
+ ;;=^5133688
+ ;;^UTILITY(U,$J,358.3,16024,0)
+ ;;=L97.921^^61^765^207
+ ;;^UTILITY(U,$J,358.3,16024,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,15841,1,3,0)
- ;;=3^Cellulitis of Trunk,Unspec
- ;;^UTILITY(U,$J,358.3,15841,1,4,0)
- ;;=4^L03.319
- ;;^UTILITY(U,$J,358.3,15841,2)
- ;;=^5009054
- ;;^UTILITY(U,$J,358.3,15842,0)
- ;;=L03.321^^88^869^14
- ;;^UTILITY(U,$J,358.3,15842,1,0)
+ ;;^UTILITY(U,$J,358.3,16024,1,3,0)
+ ;;=3^Non-Pressure Chr Ulcer of Left Lower Leg w/ Breakdown of Skin
+ ;;^UTILITY(U,$J,358.3,16024,1,4,0)
+ ;;=4^L97.921
+ ;;^UTILITY(U,$J,358.3,16024,2)
+ ;;=^5133680
+ ;;^UTILITY(U,$J,358.3,16025,0)
+ ;;=L97.922^^61^765^208
+ ;;^UTILITY(U,$J,358.3,16025,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,15842,1,3,0)
- ;;=3^Acute Lymphangitis of Abdominal Wall
- ;;^UTILITY(U,$J,358.3,15842,1,4,0)
- ;;=4^L03.321
- ;;^UTILITY(U,$J,358.3,15842,2)
- ;;=^5009055
- ;;^UTILITY(U,$J,358.3,15843,0)
- ;;=L03.322^^88^869^15
- ;;^UTILITY(U,$J,358.3,15843,1,0)
+ ;;^UTILITY(U,$J,358.3,16025,1,3,0)
+ ;;=3^Non-Pressure Chr Ulcer of Left Lower Leg w/ Fat Layer Exposed
+ ;;^UTILITY(U,$J,358.3,16025,1,4,0)
+ ;;=4^L97.922
+ ;;^UTILITY(U,$J,358.3,16025,2)
+ ;;=^5133682
+ ;;^UTILITY(U,$J,358.3,16026,0)
+ ;;=L97.923^^61^765^209
+ ;;^UTILITY(U,$J,358.3,16026,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,15843,1,3,0)
- ;;=3^Acute Lymphangitis of Back
- ;;^UTILITY(U,$J,358.3,15843,1,4,0)
- ;;=4^L03.322
- ;;^UTILITY(U,$J,358.3,15843,2)
- ;;=^5009056
- ;;^UTILITY(U,$J,358.3,15844,0)
- ;;=L03.323^^88^869^16
- ;;^UTILITY(U,$J,358.3,15844,1,0)
+ ;;^UTILITY(U,$J,358.3,16026,1,3,0)
+ ;;=3^Non-Pressure Chr Ulcer of Left Lower Leg w/ Necrosis of Muscle
+ ;;^UTILITY(U,$J,358.3,16026,1,4,0)
+ ;;=4^L97.923
+ ;;^UTILITY(U,$J,358.3,16026,2)
+ ;;=^5133684
+ ;;^UTILITY(U,$J,358.3,16027,0)
+ ;;=L97.924^^61^765^210
+ ;;^UTILITY(U,$J,358.3,16027,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,15844,1,3,0)
- ;;=3^Acute Lymphangitis of Chest Wall
- ;;^UTILITY(U,$J,358.3,15844,1,4,0)
- ;;=4^L03.323
- ;;^UTILITY(U,$J,358.3,15844,2)
- ;;=^5009057
- ;;^UTILITY(U,$J,358.3,15845,0)
- ;;=L03.324^^88^869^18
- ;;^UTILITY(U,$J,358.3,15845,1,0)
+ ;;^UTILITY(U,$J,358.3,16027,1,3,0)
+ ;;=3^Non-Pressure Chr Ulcer of Left Lower Leg w/ Necrosis of Bone
+ ;;^UTILITY(U,$J,358.3,16027,1,4,0)
+ ;;=4^L97.924
+ ;;^UTILITY(U,$J,358.3,16027,2)
+ ;;=^5133686
+ ;;^UTILITY(U,$J,358.3,16028,0)
+ ;;=L97.929^^61^765^211
+ ;;^UTILITY(U,$J,358.3,16028,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,15845,1,3,0)
- ;;=3^Acute Lymphangitis of Groin
- ;;^UTILITY(U,$J,358.3,15845,1,4,0)
- ;;=4^L03.324
- ;;^UTILITY(U,$J,358.3,15845,2)
- ;;=^5009058
- ;;^UTILITY(U,$J,358.3,15846,0)
- ;;=L03.325^^88^869^24
- ;;^UTILITY(U,$J,358.3,15846,1,0)
+ ;;^UTILITY(U,$J,358.3,16028,1,3,0)
+ ;;=3^Non-Pressure Chr Ulcer of Left Lower Leg w/ Unspec Severity
+ ;;^UTILITY(U,$J,358.3,16028,1,4,0)
+ ;;=4^L97.929
+ ;;^UTILITY(U,$J,358.3,16028,2)
+ ;;=^5133689
+ ;;^UTILITY(U,$J,358.3,16029,0)
+ ;;=L98.2^^61^765^152
+ ;;^UTILITY(U,$J,358.3,16029,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,15846,1,3,0)
- ;;=3^Acute Lymphangitis of Perineum
- ;;^UTILITY(U,$J,358.3,15846,1,4,0)
- ;;=4^L03.325
- ;;^UTILITY(U,$J,358.3,15846,2)
- ;;=^5009059
- ;;^UTILITY(U,$J,358.3,15847,0)
- ;;=L03.326^^88^869^30
- ;;^UTILITY(U,$J,358.3,15847,1,0)
+ ;;^UTILITY(U,$J,358.3,16029,1,3,0)
+ ;;=3^Febrile Neutrophilic Dermatosis
+ ;;^UTILITY(U,$J,358.3,16029,1,4,0)
+ ;;=4^L98.2
+ ;;^UTILITY(U,$J,358.3,16029,2)
+ ;;=^5009575
+ ;;^UTILITY(U,$J,358.3,16030,0)
+ ;;=L98.9^^61^765^307
+ ;;^UTILITY(U,$J,358.3,16030,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,15847,1,3,0)
- ;;=3^Acute Lymphangitis of Umbilicus
- ;;^UTILITY(U,$J,358.3,15847,1,4,0)
- ;;=4^L03.326
- ;;^UTILITY(U,$J,358.3,15847,2)
- ;;=^5009060
- ;;^UTILITY(U,$J,358.3,15848,0)
- ;;=L03.329^^88^869^29
- ;;^UTILITY(U,$J,358.3,15848,1,0)
+ ;;^UTILITY(U,$J,358.3,16030,1,3,0)
+ ;;=3^Skin/Subcutaneous Tissue Disorder,Unspec
+ ;;^UTILITY(U,$J,358.3,16030,1,4,0)
+ ;;=4^L98.9
+ ;;^UTILITY(U,$J,358.3,16030,2)
+ ;;=^5009595
+ ;;^UTILITY(U,$J,358.3,16031,0)
+ ;;=I70.731^^61^765^81
+ ;;^UTILITY(U,$J,358.3,16031,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,15848,1,3,0)
- ;;=3^Acute Lymphangitis of Trunk,Unspec
- ;;^UTILITY(U,$J,358.3,15848,1,4,0)
- ;;=4^L03.329
- ;;^UTILITY(U,$J,358.3,15848,2)
- ;;=^5009062
- ;;^UTILITY(U,$J,358.3,15849,0)
- ;;=L08.9^^88^869^171
- ;;^UTILITY(U,$J,358.3,15849,1,0)
+ ;;^UTILITY(U,$J,358.3,16031,1,3,0)
+ ;;=3^Athscl of Bypass Graft of Right Leg w/ Thigh Ulcer
+ ;;^UTILITY(U,$J,358.3,16031,1,4,0)
+ ;;=4^I70.731
+ ;;^UTILITY(U,$J,358.3,16031,2)
+ ;;=^5007769
+ ;;^UTILITY(U,$J,358.3,16032,0)
+ ;;=I70.732^^61^765^82
+ ;;^UTILITY(U,$J,358.3,16032,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,15849,1,3,0)
- ;;=3^Local Infection of Skin/Subcutaneous Tissue,Unspec
- ;;^UTILITY(U,$J,358.3,15849,1,4,0)
- ;;=4^L08.9
- ;;^UTILITY(U,$J,358.3,15849,2)
- ;;=^5009082
- ;;^UTILITY(U,$J,358.3,15850,0)
- ;;=L11.0^^88^869^10
- ;;^UTILITY(U,$J,358.3,15850,1,0)
+ ;;^UTILITY(U,$J,358.3,16032,1,3,0)
+ ;;=3^Athscl of Bypass Graft of Right Leg w/ Calf Ulcer
+ ;;^UTILITY(U,$J,358.3,16032,1,4,0)
+ ;;=4^I70.732
+ ;;^UTILITY(U,$J,358.3,16032,2)
+ ;;=^5007770
+ ;;^UTILITY(U,$J,358.3,16033,0)
+ ;;=I70.733^^61^765^83
+ ;;^UTILITY(U,$J,358.3,16033,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,15850,1,3,0)
- ;;=3^Acquired Keratosis Follicularis
- ;;^UTILITY(U,$J,358.3,15850,1,4,0)
- ;;=4^L11.0
- ;;^UTILITY(U,$J,358.3,15850,2)
- ;;=^5009091
- ;;^UTILITY(U,$J,358.3,15851,0)
- ;;=L20.0^^88^869^91
- ;;^UTILITY(U,$J,358.3,15851,1,0)
+ ;;^UTILITY(U,$J,358.3,16033,1,3,0)
+ ;;=3^Athscl of Bypass Graft of Right Leg w/ Ankle Ulcer
+ ;;^UTILITY(U,$J,358.3,16033,1,4,0)
+ ;;=4^I70.733
+ ;;^UTILITY(U,$J,358.3,16033,2)
+ ;;=^5007771
+ ;;^UTILITY(U,$J,358.3,16034,0)
+ ;;=I70.734^^61^765^84
+ ;;^UTILITY(U,$J,358.3,16034,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,15851,1,3,0)
- ;;=3^Besnier's Prurigo
- ;;^UTILITY(U,$J,358.3,15851,1,4,0)
- ;;=4^L20.0

@@ -1,122 +1,130 @@
-IBDEI1B4 ; ; 04-FEB-2020
- ;;3.0;IB ENCOUNTER FORM IMP/EXP;;FEB 04, 2020
+IBDEI1B4 ; ; 01-FEB-2022
+ ;;3.0;IB ENCOUNTER FORM IMP/EXP;;FEB 01, 2022
  Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,999) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
- ;;^UTILITY(U,$J,358.3,20895,1,4,0)
- ;;=4^Z62.811
- ;;^UTILITY(U,$J,358.3,20895,2)
- ;;=^5063154
- ;;^UTILITY(U,$J,358.3,20896,0)
- ;;=Z62.812^^95^1032^7
- ;;^UTILITY(U,$J,358.3,20896,1,0)
+ ;;^UTILITY(U,$J,358.3,21131,0)
+ ;;=C39.9^^70^908^53
+ ;;^UTILITY(U,$J,358.3,21131,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,20896,1,3,0)
- ;;=3^Personal Hx of Childhood Neglect
- ;;^UTILITY(U,$J,358.3,20896,1,4,0)
- ;;=4^Z62.812
- ;;^UTILITY(U,$J,358.3,20896,2)
- ;;=^5063155
- ;;^UTILITY(U,$J,358.3,20897,0)
- ;;=Z62.810^^95^1032^8
- ;;^UTILITY(U,$J,358.3,20897,1,0)
+ ;;^UTILITY(U,$J,358.3,21131,1,3,0)
+ ;;=3^Malig Neop Lower Respiratory Tract
+ ;;^UTILITY(U,$J,358.3,21131,1,4,0)
+ ;;=4^C39.9
+ ;;^UTILITY(U,$J,358.3,21131,2)
+ ;;=^5000972
+ ;;^UTILITY(U,$J,358.3,21132,0)
+ ;;=R76.11^^70^908^102
+ ;;^UTILITY(U,$J,358.3,21132,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,20897,1,3,0)
- ;;=3^Personal Hx of Childhood Physical Abuse
- ;;^UTILITY(U,$J,358.3,20897,1,4,0)
- ;;=4^Z62.810
- ;;^UTILITY(U,$J,358.3,20897,2)
- ;;=^5063153
- ;;^UTILITY(U,$J,358.3,20898,0)
- ;;=Z91.83^^95^1032^23
- ;;^UTILITY(U,$J,358.3,20898,1,0)
+ ;;^UTILITY(U,$J,358.3,21132,1,3,0)
+ ;;=3^Reaction to Skin Test w/o Active TB
+ ;;^UTILITY(U,$J,358.3,21132,1,4,0)
+ ;;=4^R76.11
+ ;;^UTILITY(U,$J,358.3,21132,2)
+ ;;=^5019570
+ ;;^UTILITY(U,$J,358.3,21133,0)
+ ;;=E66.9^^70^908^75
+ ;;^UTILITY(U,$J,358.3,21133,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,20898,1,3,0)
- ;;=3^Wandering Associated w/ a Mental Disorder
- ;;^UTILITY(U,$J,358.3,20898,1,4,0)
- ;;=4^Z91.83
- ;;^UTILITY(U,$J,358.3,20898,2)
- ;;=^5063627
- ;;^UTILITY(U,$J,358.3,20899,0)
- ;;=Z62.810^^95^1032^10
- ;;^UTILITY(U,$J,358.3,20899,1,0)
+ ;;^UTILITY(U,$J,358.3,21133,1,3,0)
+ ;;=3^Obesity,Unspec
+ ;;^UTILITY(U,$J,358.3,21133,1,4,0)
+ ;;=4^E66.9
+ ;;^UTILITY(U,$J,358.3,21133,2)
+ ;;=^5002832
+ ;;^UTILITY(U,$J,358.3,21134,0)
+ ;;=I26.99^^70^908^91
+ ;;^UTILITY(U,$J,358.3,21134,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,20899,1,3,0)
- ;;=3^Personal Hx of Childhood Sexual Abuse
- ;;^UTILITY(U,$J,358.3,20899,1,4,0)
- ;;=4^Z62.810
- ;;^UTILITY(U,$J,358.3,20899,2)
- ;;=^5063153
- ;;^UTILITY(U,$J,358.3,20900,0)
- ;;=Z91.412^^95^1032^15
- ;;^UTILITY(U,$J,358.3,20900,1,0)
+ ;;^UTILITY(U,$J,358.3,21134,1,3,0)
+ ;;=3^Pulmonary Embolism w/o Acute Cor Pulmonale
+ ;;^UTILITY(U,$J,358.3,21134,1,4,0)
+ ;;=4^I26.99
+ ;;^UTILITY(U,$J,358.3,21134,2)
+ ;;=^5007150
+ ;;^UTILITY(U,$J,358.3,21135,0)
+ ;;=R09.1^^70^908^79
+ ;;^UTILITY(U,$J,358.3,21135,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,20900,1,3,0)
- ;;=3^Personal Hx of Spouse or Partner Neglect
- ;;^UTILITY(U,$J,358.3,20900,1,4,0)
- ;;=4^Z91.412
- ;;^UTILITY(U,$J,358.3,20900,2)
- ;;=^5063621
- ;;^UTILITY(U,$J,358.3,20901,0)
- ;;=Z91.411^^95^1032^16
- ;;^UTILITY(U,$J,358.3,20901,1,0)
+ ;;^UTILITY(U,$J,358.3,21135,1,3,0)
+ ;;=3^Pleurisy
+ ;;^UTILITY(U,$J,358.3,21135,1,4,0)
+ ;;=4^R09.1
+ ;;^UTILITY(U,$J,358.3,21135,2)
+ ;;=^95428
+ ;;^UTILITY(U,$J,358.3,21136,0)
+ ;;=J69.0^^70^908^86
+ ;;^UTILITY(U,$J,358.3,21136,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,20901,1,3,0)
- ;;=3^Personal Hx of Spouse or Partner Psychological Abuse
- ;;^UTILITY(U,$J,358.3,20901,1,4,0)
- ;;=4^Z91.411
- ;;^UTILITY(U,$J,358.3,20901,2)
- ;;=^5063620
- ;;^UTILITY(U,$J,358.3,20902,0)
- ;;=Z91.410^^95^1032^17
- ;;^UTILITY(U,$J,358.3,20902,1,0)
+ ;;^UTILITY(U,$J,358.3,21136,1,3,0)
+ ;;=3^Pneumonitis d/t Inhalation of Food/Vomit
+ ;;^UTILITY(U,$J,358.3,21136,1,4,0)
+ ;;=4^J69.0
+ ;;^UTILITY(U,$J,358.3,21136,2)
+ ;;=^5008288
+ ;;^UTILITY(U,$J,358.3,21137,0)
+ ;;=J15.9^^70^908^81
+ ;;^UTILITY(U,$J,358.3,21137,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,20902,1,3,0)
- ;;=3^Personal Hx of Spouse or Partner Violence,Physical
- ;;^UTILITY(U,$J,358.3,20902,1,4,0)
- ;;=4^Z91.410
- ;;^UTILITY(U,$J,358.3,20902,2)
- ;;=^5063619
- ;;^UTILITY(U,$J,358.3,20903,0)
- ;;=Z91.410^^95^1032^18
- ;;^UTILITY(U,$J,358.3,20903,1,0)
+ ;;^UTILITY(U,$J,358.3,21137,1,3,0)
+ ;;=3^Pneumonia,Bacterial,Unspec
+ ;;^UTILITY(U,$J,358.3,21137,1,4,0)
+ ;;=4^J15.9
+ ;;^UTILITY(U,$J,358.3,21137,2)
+ ;;=^5008178
+ ;;^UTILITY(U,$J,358.3,21138,0)
+ ;;=J18.9^^70^908^83
+ ;;^UTILITY(U,$J,358.3,21138,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,20903,1,3,0)
- ;;=3^Personal Hx of Spouse or Partner Violence,Sexual
- ;;^UTILITY(U,$J,358.3,20903,1,4,0)
- ;;=4^Z91.410
- ;;^UTILITY(U,$J,358.3,20903,2)
- ;;=^5063619
- ;;^UTILITY(U,$J,358.3,20904,0)
- ;;=Z75.3^^95^1032^21
- ;;^UTILITY(U,$J,358.3,20904,1,0)
+ ;;^UTILITY(U,$J,358.3,21138,1,3,0)
+ ;;=3^Pneumonia,Unspec Organism
+ ;;^UTILITY(U,$J,358.3,21138,1,4,0)
+ ;;=4^J18.9
+ ;;^UTILITY(U,$J,358.3,21138,2)
+ ;;=^95632
+ ;;^UTILITY(U,$J,358.3,21139,0)
+ ;;=J12.9^^70^908^85
+ ;;^UTILITY(U,$J,358.3,21139,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,20904,1,3,0)
- ;;=3^Unavailability/Inaccessibility of Health Care Facilities
- ;;^UTILITY(U,$J,358.3,20904,1,4,0)
- ;;=4^Z75.3
- ;;^UTILITY(U,$J,358.3,20904,2)
- ;;=^5063292
- ;;^UTILITY(U,$J,358.3,20905,0)
- ;;=Z75.4^^95^1032^22
- ;;^UTILITY(U,$J,358.3,20905,1,0)
+ ;;^UTILITY(U,$J,358.3,21139,1,3,0)
+ ;;=3^Pneumonia,Viral,Unspec
+ ;;^UTILITY(U,$J,358.3,21139,1,4,0)
+ ;;=4^J12.9
+ ;;^UTILITY(U,$J,358.3,21139,2)
+ ;;=^5008169
+ ;;^UTILITY(U,$J,358.3,21140,0)
+ ;;=J93.9^^70^908^87
+ ;;^UTILITY(U,$J,358.3,21140,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,20905,1,3,0)
- ;;=3^Unavailability/Inaccessibility of Other Helping Agencies
- ;;^UTILITY(U,$J,358.3,20905,1,4,0)
- ;;=4^Z75.4
- ;;^UTILITY(U,$J,358.3,20905,2)
- ;;=^5063293
- ;;^UTILITY(U,$J,358.3,20906,0)
- ;;=Z91.42^^95^1032^11
- ;;^UTILITY(U,$J,358.3,20906,1,0)
+ ;;^UTILITY(U,$J,358.3,21140,1,3,0)
+ ;;=3^Pneumothorax,Unspec
+ ;;^UTILITY(U,$J,358.3,21140,1,4,0)
+ ;;=4^J93.9
+ ;;^UTILITY(U,$J,358.3,21140,2)
+ ;;=^5008315
+ ;;^UTILITY(U,$J,358.3,21141,0)
+ ;;=J84.10^^70^908^94
+ ;;^UTILITY(U,$J,358.3,21141,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,20906,1,3,0)
- ;;=3^Personal Hx of Forced Labor/Sexual Exploitation
- ;;^UTILITY(U,$J,358.3,20906,1,4,0)
- ;;=4^Z91.42
- ;;^UTILITY(U,$J,358.3,20906,2)
- ;;=^5157633
- ;;^UTILITY(U,$J,358.3,20907,0)
- ;;=Z70.9^^95^1033^2
- ;;^UTILITY(U,$J,358.3,20907,1,0)
+ ;;^UTILITY(U,$J,358.3,21141,1,3,0)
+ ;;=3^Pulmonary Fibrosis,Unspec
+ ;;^UTILITY(U,$J,358.3,21141,1,4,0)
+ ;;=4^J84.10
+ ;;^UTILITY(U,$J,358.3,21141,2)
+ ;;=^5008300
+ ;;^UTILITY(U,$J,358.3,21142,0)
+ ;;=J84.89^^70^908^47
+ ;;^UTILITY(U,$J,358.3,21142,1,0)
  ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,21142,1,3,0)
+ ;;=3^Interstitial Pulmonary Disease
+ ;;^UTILITY(U,$J,358.3,21142,1,4,0)
+ ;;=4^J84.89
+ ;;^UTILITY(U,$J,358.3,21142,2)
+ ;;=^5008303
+ ;;^UTILITY(U,$J,358.3,21143,0)
+ ;;=Z01.811^^70^908^88
+ ;;^UTILITY(U,$J,358.3,21143,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,21143,1,3,0)
+ ;;=3^Pre-Procedural Respiratory Exam

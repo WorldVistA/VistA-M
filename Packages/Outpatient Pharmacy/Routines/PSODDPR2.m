@@ -1,5 +1,5 @@
 PSODDPR2 ;BIR/SAB - display enhanced order checks ;11 May 2010  9:06 AM
- ;;7.0;OUTPATIENT PHARMACY;**251,375,379,390,372,416,411,458,402**;DEC 1997;Build 8
+ ;;7.0;OUTPATIENT PHARMACY;**251,375,379,390,372,416,411,458,402,634**;DEC 1997;Build 3
  ;External reference to ^PS(50.606 supported by DBIA 2174
  ;External reference to ^PS(50.7 supported by DBIA 2223
  ;External reference to ^PS(55 supported by DBIA 2228
@@ -179,6 +179,7 @@ INT ;
  D INT^PSODDPR5
  Q
 HD(PSOLINES,OVRRID) ;
+ Q:$G(PSODUPF)  ;P634
  S:'$G(PSODLQT) PSODLQT=0  S:'$G(OVRRID) OVRRID=0 S:'$G(PSOLINES) PSOLINES=5
  I '$G(OVRRID),$G(PSODLQT)!(($Y+PSOLINES)'>IOSL) Q
  I $G(PSOTHND2) S PSOTHND1=1

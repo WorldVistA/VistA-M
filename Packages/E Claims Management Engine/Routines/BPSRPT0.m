@@ -1,5 +1,5 @@
 BPSRPT0 ;BHAM ISC/BEE - ECME REPORTS ;14-FEB-05
- ;;1.0;E CLAIMS MGMT ENGINE;**1,5,7,10,11,19,20,23,24**;JUN 2004;Build 43
+ ;;1.0;E CLAIMS MGMT ENGINE;**1,5,7,10,11,19,20,23,24,28**;JUN 2004;Build 22
  ;;Per VA Directive 6402, this routine should not be modified.
  ;
  Q
@@ -15,6 +15,7 @@ BPSRPT0 ;BHAM ISC/BEE - ECME REPORTS ;14-FEB-05
  ;                          7 = Closed Claims
  ;                          8 = Spending Account Report
  ;                          9 = ECME RXs with Non-Billable Status
+ ;                         10 = Duplicate Claims Report
  ;                          
  ; Passed variables:
  ;  The following local variables are set in BPSPRT0 and are passed throughout
@@ -22,14 +23,16 @@ BPSRPT0 ;BHAM ISC/BEE - ECME REPORTS ;14-FEB-05
  ;  and when creating the reports.
  ;  These local variable are not passed as parameters but assumed to be defined.
  ; 
- ;    BPRTYPE -  report number (1-9) 
+ ;    BPRTYPE -  report number (1-10) 
  ;      1 = Payable Claims, 2 = Rejected Claims, 3 = Claims Submitted, Not Yet Released, 
  ;      4 = Reversed Claims, 5 = Recent Transactions, 6 = Totals By Date,
- ;      7 = Closed Claims, 8 = Spending Account Report, 9 = ECME RXs with Non-Billable Status
+ ;      7 = Closed Claims, 8 = Spending Account Report, 9 = ECME RXs with Non-Billable Status,
+ ;      10 = Duplicate Claims
  ;    BPRPTNAM - report name 
  ;      1-PAYABLE CLAIMS, 2-REJECTED CLAIMS, 3-SUBMIT,NOT RELEASED CLAIMS,
  ;      4-REVERSED CLAIMS, 5-RECENT TRANSACTIONS, 6-TOTALS, 7-CLOSED CLAIMS,
- ;      8-SPENDING ACCOUNT REPORT, 9-RXS WITH NON-BILLABLE STATUS
+ ;      8-SPENDING ACCOUNT REPORT, 9-RXS WITH NON-BILLABLE STATUS,
+ ;      10-DUPLICATE CLAIMS REPORT
  ;    BPSLC - all lower case letters (used to convert from lower to upper)
  ;    BPSUC - all upper case letters (used to convert from lower to upper)
  ;    BPPHARM - Pharmacy Divisions or ALL
@@ -88,6 +91,8 @@ BPSRPT0 ;BHAM ISC/BEE - ECME REPORTS ;14-FEB-05
  ;      BPELIG1=(0,^)
  ;      BPELIG1=(V,T,C)   V-Veteran, T-Tricare, C-Champva
  ;       if multiple entries BPELIG1=(a comma delimited string of users selection, e.g. "C,T")
+ ; BPDUP - Dup Claims S-Duplicate of Approved, D-Duplicate of Paid, Q-Duplicate of Capture or 0-All
+ ; BPDUP=(S,D,Q,0,^)
  ;    BPOPCL - Open-2, Closed-1 or All-0
  ;      BPOPCL=(0,1,2,^)
  ;    BPQSTPR - select Prescriber-1 or All-0
@@ -121,14 +126,15 @@ BPSRPT0 ;BHAM ISC/BEE - ECME REPORTS ;14-FEB-05
  ;    BPGRPLAN - insurance plan name
  ;    BPSDATA - tells whether data has been displayed to the screen (0-No,1-Yes)
  ;                          
-EN(BPRTYPE) N %,BPACREJ,BPAUTREV,BPBEGDT,BPCCRSN,BPDRGCL,BPDRUG,BPENDDT,BPEXCEL,BPNOW,BPPHARM,BPINSINF,BPMWC,BPQ,BPQSTDRG
- N BPREJCD,BPRLNRL,BPRPTNAM,BPRTBCK,BPSCR,BPSUMDET,CODE,POS,STAT,X,Y,BPINS,BPARR,BPELIG,BPOPCL
+EN(BPRTYPE) ;
+ N %,BPACREJ,BPAUTREV,BPBEGDT,BPCCRSN,BPDRGCL,BPDRUG,BPENDDT,BPEXCEL,BPNOW,BPPHARM,BPINSINF,BPMWC,BPQ,BPQSTDRG
+ N BPREJCD,BPRLNRL,BPRPTNAM,BPRTBCK,BPSCR,BPSUMDET,BPINS,BPARR,BPELIG,BPDUP,BPOPCL
  N BPNBSTS,BPALRC,BPELIG1,BPRESC,BPPAT,BPQSTPAT,BPBILL,BPMIN,BPMAX,BPSLC,BPSUC,BPSCOMMENT
- N BPQSTCR,BPQSTPR,BPQSTRC
+ N BPQSTCR,BPQSTPR,BPQSTRC,CODE,POS,STAT,X,Y
  ;
  ;Verify that a valid report has been requested
- I ",1,2,3,4,5,6,7,8,9,"'[(","_$G(BPRTYPE)_",") W "<Invalid Menu Definition - Report Undefined>" H 3 Q
- S BPRPTNAM=$P("PAYABLE CLAIMS^REJECTED CLAIMS^SUBMIT,NOT RELEASED CLAIMS^REVERSED CLAIMS^RECENT TRANSACTIONS^TOTALS^CLOSED CLAIMS^SPENDING ACCOUNT REPORT^RXS WITH NON-BILLABLE STATUS","^",BPRTYPE)
+ I ",1,2,3,4,5,6,7,8,9,10,"'[(","_$G(BPRTYPE)_",") W "<Invalid Menu Definition - Report Undefined>" H 3 Q
+ S BPRPTNAM=$P("PAYABLE CLAIMS^REJECTED CLAIMS^SUBMIT,NOT RELEASED CLAIMS^REVERSED CLAIMS^RECENT TRANSACTIONS^TOTALS^CLOSED CLAIMS^SPENDING ACCOUNT REPORT^RXS WITH NON-BILLABLE STATUS^DUPLICATE CLAIMS","^",BPRTYPE)
  ;
  ;Needed to convert lower case entries to upper case
  S BPSLC="abcdefghijklmnopqrstuvwxyz"
@@ -159,17 +165,20 @@ INSUR ;
  ;Returns (A-ALL,M-Mail,W-Window,C-CMOP)
  I (",5,6,8,")[BPRTYPE S BPMWC=$$SELMWC^BPSRPT3("A") I BPMWC="^" G EXIT
  I (",1,2,3,4,7,9,")[BPRTYPE S BPMWC=$$SELMWC1^BPSRPT3("A") I BPMWC="^" G EXIT
+ I BPRTYPE=10 S BPMWC="A"   ;DEFAULT TO ALL, do not prompt for report 10
  ;
  ;Prompt to Display (R)ealTime Fills or (B)ackbills or (P)RO Option or Re(S)ubmission or (A)LL (Default to ALL)
  ;Returns (1-ALL,2-RealTime Fills,3-Backbills,4-PRO Option,5-Resubmission)
  S BPRTBCK=1
  I (",5,6,8,")[BPRTYPE S BPRTBCK=$$SELRTBCK^BPSRPT3(1) I BPRTBCK="^" G EXIT
  I (",1,2,3,4,7,")[BPRTYPE S BPRTBCK=$$SELRBPS^BPSRPT3() I BPRTBCK="^" G EXIT
+ I BPRTYPE=10 S BPMWC="A"   ;DEFAULT TO ALL, do not prompt for report 10
  ;
 DGDGCL ;
  ;Prompt to Display Specific (D)rug or Drug (C)lass or (A)ll (Default to ALL)
  ;Returns (1-ALL,2-Drug,3-Drug Class)
- S BPQSTDRG=$$SELDRGAL^BPSRPT3(1) I BPQSTDRG="^" Q
+ I BPRTYPE'=10 S BPQSTDRG=$$SELDRGAL^BPSRPT3(1) I BPQSTDRG="^" Q
+ I BPRTYPE=10 S BPQSTDRG=1 ;DEFAULT TO 1-ALL, do not prompt for report 10
  ;
  ;Prompt to Select Drug (No Default)
  S BPDRUG=0 I BPQSTDRG=2 D  G:BPDRUG="^" EXIT G:BPDRUG=0 DGDGCL
@@ -192,7 +201,7 @@ DGDGCL ;
  ;
  ;Prompt to Include (R)ELEASED or (N)OT RELEASED or (A)LL (Default to RELEASED)
  ;Returns (1-ALL,2-RELEASED,3-NOT RELEASED)
- S BPRLNRL=$S(BPRTYPE=3:3,1:1) I (",1,2,4,6,7,8,9,")[BPRTYPE S BPRLNRL=$$SELRLNRL^BPSRPT4($S(BPRTYPE=9:1,1:2)) I BPRLNRL="^" G EXIT
+ S BPRLNRL=$S(BPRTYPE=3:3,1:1) I (",1,2,4,6,7,8,9,10,")[(","_BPRTYPE_",") S BPRLNRL=$$SELRLNRL^BPSRPT4($S(BPRTYPE=9!(BPRTYPE=10):1,1:2)) I BPRLNRL="^" G EXIT
  ;
 REJCD ;
  ;Prompt to Include (S)pecific Reject Code or (A)LL (Default to ALL)
@@ -233,7 +242,11 @@ CCR ;
  ;Prompt for one, multiple or (A)ll Eligibility Indicator
  ;Returns (0-All, 1-selection)
  ; If 1, BPARR("ELIG",xx) is set for each eligibility selected - xx="V", "T" or "C"
- S BPELIG1=0 I (",1,2,3,4,7,9,")[BPRTYPE S BPELIG1=$$SELELIG1^BPSRPT3() I BPELIG1="^" G EXIT
+ S BPELIG1=0 I (",1,2,3,4,7,9,10,")[(","_BPRTYPE_",") S BPELIG1=$$SELELIG1^BPSRPT3() I BPELIG1="^" G EXIT
+ ;
+ ;Prompt to Display S - DUPLICATE OF APPROVED, D - DUPLICATE OF PAID, Q - DUPLICATE OF CAPTURE, A - ALL
+ ;Returns 0-ALL,^-quit, or selection separated by comma's
+ I BPRTYPE=10 S BPDUP=$$SELDUP^BPSRPT3A() I BPDUP="^" G EXIT
  ;
  ;Prompt for Open/Closed/All claims
  ;Returns (1=Closed,2=Open,0=All)
@@ -252,7 +265,7 @@ PRESCR ;
 PATIENT ;    
  ;Prompt to select (P)atients or (A)LL Patients
  ;Returns: (0=ALL,1=Patient,^=exit)
- S BPQSTPAT=0 I (",1,2,3,4,7,9,")[BPRTYPE S BPQSTPAT=$$SELPA^BPSRPT3A() I BPQSTPAT="^" G EXIT
+ S BPQSTPAT=0 I (",1,2,3,4,7,9,10,")[(","_BPRTYPE_",") S BPQSTPAT=$$SELPA^BPSRPT3A() I BPQSTPAT="^" G EXIT
  ;
  ;If (P)atients was selected, prompt for one or more patients
  ;Returns: BPPAT=a string of patient ien's separated by a comma
@@ -261,7 +274,7 @@ PATIENT ;
  ;
  ;Prompt to select(R)ange for Billed Amount or (A)LL
  ;Returns: (0=ALL,1=Range,^=exit)
- S BPBILL=0 I (",1,2,3,4,9,")[BPRTYPE S BPBILL=$$SELBAMT^BPSRPT3A() I BPBILL="^" G EXIT
+ S BPBILL=0 I (",1,2,3,4,9,10,")[(","_BPRTYPE_",") S BPBILL=$$SELBAMT^BPSRPT3A() I BPBILL="^" G EXIT
  ;If Range of Billed Amount was selected prompt for Minimum and Maximum
  ;Returns: BPMIN=minimum amount entered, BPMAX=maximum amount entered
  S (BPMIN,BPMAX)=0

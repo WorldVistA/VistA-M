@@ -1,5 +1,5 @@
-ONCSGA8C ;Hines OIFO/RTK - AJCC 8th Ed Automatic Staging Tables ;01/17/19
- ;;2.2;ONCOLOGY;**10,12**;Jul 31, 2013;Build 8
+ONCSGA8C ;HINES OIFO/RTK - AJCC 8th Ed Automatic Staging Tables ;01/17/19
+ ;;2.2;ONCOLOGY;**10,12,13**;Jul 31, 2013;Build 7
  ;
  ;
 60 ;KIDNEY
@@ -56,6 +56,7 @@ ONCSGA8C ;Hines OIFO/RTK - AJCC 8th Ed Automatic Staging Tables ;01/17/19
  I T="T2",N="N1",M="M0" S SG=3 Q
  I T="T3",N="N0",M="M0" S SG=3 Q
  I T="T3",N="N1",M="M0" S SG=3 Q
+ I T="T4",N="NX",M="M0" S SG=4 Q
  I T="T4",N="N0",M="M0" S SG=4 Q
  I T="T4",N="N1",M="M0" S SG=4 Q
  I N="N2",M="M1" S SG=4 Q
@@ -169,4 +170,27 @@ ONCSGA8C ;Hines OIFO/RTK - AJCC 8th Ed Automatic Staging Tables ;01/17/19
  I (N="N0")!(N="N1")!(N="N2"),M="M0",PBI18=7 S SG="4A1" Q
  I N="N3",M="M0",PBI18<8 S SG="4A2" Q
  I (N="N0")!(N="N1")!(N="N2")!(N="N3"),M="M1",PBI18<8 S SG="4B" Q
+ Q
+529 ;CERVIX UTERI -- 9TH EDITION
+ S M=$E(M,2,5)
+ I T="T1",N["N0",M="M0" S SG=1 Q
+ I T="T1a",N["N0",M="M0" S SG="1A" Q
+ I T="T1a1",N["N0",M="M0" S SG="1A1" Q
+ I T="T1a2",N["N0",M="M0" S SG="1A2" Q
+ I T="T1b",N["N0",M="M1" S SG="1B" Q
+ I T="T1b1",N["N0",M="M0" S SG="1B1" Q
+ I T="T1b2",N["N0",M="M0" S SG="1B2" Q
+ I T="T1b3",N["N0",M="M0" S SG="1B3" Q
+ I T="T2",N["N0",M="M0" S SG=2 Q
+ I T="T2a",N["N0",M="M0" S SG="2A" Q
+ I T="T2a1",N["N0",M="M0" S SG="2A1" Q
+ I T="T2a2",N["N0",M="M0" S SG="2A2" Q
+ I T="T2b",N["N0",M="M0" S SG="2B" Q
+ I T="T3",N["N0",M="M0" S SG=3 Q
+ I T="T3a",N["N0",M="M0" S SG="3A" Q
+ I T="T3b",N["N0",M="M0" S SG="3B" Q
+ I T'="T4",N["N1",M="M0" S SG="3C1" Q
+ I T'="T4",N["N2",M="M0" S SG="3C2" Q
+ I T="T4",M="M0" S SG="4A" Q
+ I M="M1" S SG="4B"
  Q

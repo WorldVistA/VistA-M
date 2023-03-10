@@ -1,16 +1,17 @@
-VPRPCMM ;SLC/MKB -- PCMM Utilities ;2/20/20  14:58
- ;;1.0;VIRTUAL PATIENT RECORD;**24**;Sep 01, 2011;Build 3
+VPRPCMM ;SLC/MKB/BLJ -- PCMM Utilities ;2/20/20  14:58
+ ;;1.0;VIRTUAL PATIENT RECORD;**24,28**;Sep 01, 2011;Build 6
  ;;Per VA Directive 6402, this routine should not be modified.
  ;
- ; External References          DBIA#
- ; -------------------          -----
- ; SCMC PATIENT TEAM CHANGES     7012
- ; SCMC PATIENT TEAM POSITION    7013
- ; %ZTLOAD                      10063
- ; DIQ                           2056
- ; SCAPMC                        1916
- ; SDUTL3                        1252
- ; XLFDT                        10103
+ ; External References                          DBIA#
+ ; -------------------                          -----
+ ; SCMC PATIENT TEAM CHANGES                    7012
+ ; SCMC PATIENT TEAM POSITION                   7013
+ ; ^SCTM(404.52                                 7174
+ ; %DTC
+ ; %ZTLOAD                                     10063
+ ; DIQ                                          2056
+ ; SCAPMC                                       1916
+ ; SDUTL3                                       1252
  ;
 PCP ; -- get DLIST(#)=ien^role of PCP, team members
  ; Expects DFN, VPRTEAM = ien^name of PCTeam
@@ -49,26 +50,17 @@ PTPEVT ; -- SCMC PATIENT TEAM POSITION CHANGES protocol listener
  D QUE^VPRHS(DFN) ;POST^VPRHS(DFN,"Patient",DFN_";2")
  Q
  ;
-PPEVT(IEN) ; -- change practitioner-position assignment in #404.52
- ; X(1) = #404.57 ien (.01)
- ; X(2) = Effective Date (.02)
- ; X(3) = Status (.04)
- N TPOS,EFFDT,STS
- S TPOS=+$G(X(1)),EFFDT=$G(X(2)),STS=$G(X(3))
- Q:TPOS<1  Q:STS=""
- I EFFDT>$$NOW^XLFDT D QUE Q
-TPOS ;can enter here for task w/TPOS
- N VPRN,DFN
- S TPOS=+$G(TPOS) Q:TPOS'>0
+PTPCEVT ; -- PROVIDER TEAM POSITION change tasked job.
+ N U S U="^"
+ N DFN,DATE,EFFDATE,POSITION,%
+ S EFFDATE=9999999
+ D NOW^%DTC S DATE=%-1 ; Get the last 24 hrs of changes.
+ F  S EFFDATE=$O(^SCTM(404.52,"ADP",EFFDATE),-1) Q:EFFDATE<DATE  D
+ .S POSITION=""
+ .F  S POSITION=$O(^SCTM(404.52,"ADP",EFFDATE,POSITION)) Q:'POSITION  D
+ ..K ^TMP("SC TMP LIST",$J)
+ ..Q:'$$PTTP^SCAPMC(POSITION)
+ ..S DFN=0
+ ..F  S DFN=$O(^TMP("SC TMP LIST",$J,"SCPTA",DFN))  Q:+DFN<1  D QUE^VPRHS(DFN)
  K ^TMP("SC TMP LIST",$J)
- Q:'$$PTTP^SCAPMC(TPOS)  ;find patients linked to team position
- S VPRN=0 F  S VPRN=$O(^TMP("SC TMP LIST",$J,VPRN))  Q:VPRN<1  S DFN=+$G(^(VPRN)) D QUE^VPRHS(DFN)
- K ^TMP("SC TMP LIST",$J)
- Q
- ;
-QUE ; -- task Patient update for Effective D/T
- N ZTRTN,ZTDTH,ZTDESC,ZTIO,ZTSAVE,ZTUCI,ZTCPU,ZTPRI,ZTKIL,ZTSYNC,ZTSK
- S ZTRTN="TPOS^VPRPCMM",ZTDTH=$S(EFFDT?7N:EFFDT_".0001",1:EFFDT)
- S ZTDESC="Task PCMM Patient Container updates"
- S ZTIO="",ZTSAVE("TPOS")="" D ^%ZTLOAD
  Q

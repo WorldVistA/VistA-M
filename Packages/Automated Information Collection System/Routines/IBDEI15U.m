@@ -1,126 +1,124 @@
-IBDEI15U ; ; 04-FEB-2020
- ;;3.0;IB ENCOUNTER FORM IMP/EXP;;FEB 04, 2020
+IBDEI15U ; ; 01-FEB-2022
+ ;;3.0;IB ENCOUNTER FORM IMP/EXP;;FEB 01, 2022
  Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,999) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
- ;;^UTILITY(U,$J,358.3,18656,1,3,0)
- ;;=3^Premature (Early) Ejaculation
- ;;^UTILITY(U,$J,358.3,18656,1,4,0)
- ;;=4^F52.4
- ;;^UTILITY(U,$J,358.3,18656,2)
- ;;=^331928
- ;;^UTILITY(U,$J,358.3,18657,0)
- ;;=F52.8^^91^956^8
- ;;^UTILITY(U,$J,358.3,18657,1,0)
+ ;;^UTILITY(U,$J,358.3,18835,0)
+ ;;=J84.117^^64^841^7
+ ;;^UTILITY(U,$J,358.3,18835,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,18657,1,3,0)
- ;;=3^Sexual Dysfunction,Oth Spec
- ;;^UTILITY(U,$J,358.3,18657,1,4,0)
- ;;=4^F52.8
- ;;^UTILITY(U,$J,358.3,18657,2)
- ;;=^5003624
- ;;^UTILITY(U,$J,358.3,18658,0)
- ;;=F52.9^^91^956^9
- ;;^UTILITY(U,$J,358.3,18658,1,0)
+ ;;^UTILITY(U,$J,358.3,18835,1,3,0)
+ ;;=3^Desquamative Interstitial Pneumonia
+ ;;^UTILITY(U,$J,358.3,18835,1,4,0)
+ ;;=4^J84.117
+ ;;^UTILITY(U,$J,358.3,18835,2)
+ ;;=^340540
+ ;;^UTILITY(U,$J,358.3,18836,0)
+ ;;=M32.0^^64^841^8
+ ;;^UTILITY(U,$J,358.3,18836,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,18658,1,3,0)
- ;;=3^Sexual Dysfunction,Unspec
- ;;^UTILITY(U,$J,358.3,18658,1,4,0)
- ;;=4^F52.9
- ;;^UTILITY(U,$J,358.3,18658,2)
- ;;=^5003625
- ;;^UTILITY(U,$J,358.3,18659,0)
- ;;=G47.09^^91^957^14
- ;;^UTILITY(U,$J,358.3,18659,1,0)
+ ;;^UTILITY(U,$J,358.3,18836,1,3,0)
+ ;;=3^Drug-Induced Systemic Lupus Erythematosus
+ ;;^UTILITY(U,$J,358.3,18836,1,4,0)
+ ;;=4^M32.0
+ ;;^UTILITY(U,$J,358.3,18836,2)
+ ;;=^5011752
+ ;;^UTILITY(U,$J,358.3,18837,0)
+ ;;=M32.11^^64^841^9
+ ;;^UTILITY(U,$J,358.3,18837,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,18659,1,3,0)
- ;;=3^Insomnia D/O,Oth Spec
- ;;^UTILITY(U,$J,358.3,18659,1,4,0)
- ;;=4^G47.09
- ;;^UTILITY(U,$J,358.3,18659,2)
- ;;=^5003970
- ;;^UTILITY(U,$J,358.3,18660,0)
- ;;=G47.00^^91^957^15
- ;;^UTILITY(U,$J,358.3,18660,1,0)
+ ;;^UTILITY(U,$J,358.3,18837,1,3,0)
+ ;;=3^Endocarditis in Systemic Lupus Erythematosus
+ ;;^UTILITY(U,$J,358.3,18837,1,4,0)
+ ;;=4^M32.11
+ ;;^UTILITY(U,$J,358.3,18837,2)
+ ;;=^5011754
+ ;;^UTILITY(U,$J,358.3,18838,0)
+ ;;=J67.0^^64^841^10
+ ;;^UTILITY(U,$J,358.3,18838,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,18660,1,3,0)
- ;;=3^Insomnia D/O,Unspec
- ;;^UTILITY(U,$J,358.3,18660,1,4,0)
- ;;=4^G47.00
- ;;^UTILITY(U,$J,358.3,18660,2)
- ;;=^332924
- ;;^UTILITY(U,$J,358.3,18661,0)
- ;;=G47.10^^91^957^12
- ;;^UTILITY(U,$J,358.3,18661,1,0)
+ ;;^UTILITY(U,$J,358.3,18838,1,3,0)
+ ;;=3^Farmer's Lung
+ ;;^UTILITY(U,$J,358.3,18838,1,4,0)
+ ;;=4^J67.0
+ ;;^UTILITY(U,$J,358.3,18838,2)
+ ;;=^44962
+ ;;^UTILITY(U,$J,358.3,18839,0)
+ ;;=M32.14^^64^841^11
+ ;;^UTILITY(U,$J,358.3,18839,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,18661,1,3,0)
- ;;=3^Hypersomnolence D/O,Unspec
- ;;^UTILITY(U,$J,358.3,18661,1,4,0)
- ;;=4^G47.10
- ;;^UTILITY(U,$J,358.3,18661,2)
- ;;=^332926
- ;;^UTILITY(U,$J,358.3,18662,0)
- ;;=G47.33^^91^957^22
- ;;^UTILITY(U,$J,358.3,18662,1,0)
+ ;;^UTILITY(U,$J,358.3,18839,1,3,0)
+ ;;=3^Glomerular Disease in Systemic Lupus Erythematosus
+ ;;^UTILITY(U,$J,358.3,18839,1,4,0)
+ ;;=4^M32.14
+ ;;^UTILITY(U,$J,358.3,18839,2)
+ ;;=^5011757
+ ;;^UTILITY(U,$J,358.3,18840,0)
+ ;;=J67.9^^64^841^12
+ ;;^UTILITY(U,$J,358.3,18840,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,18662,1,3,0)
- ;;=3^Obstructive Sleep Apnea Hypopnea
- ;;^UTILITY(U,$J,358.3,18662,1,4,0)
- ;;=4^G47.33
- ;;^UTILITY(U,$J,358.3,18662,2)
- ;;=^332763
- ;;^UTILITY(U,$J,358.3,18663,0)
- ;;=G47.31^^91^957^2
- ;;^UTILITY(U,$J,358.3,18663,1,0)
+ ;;^UTILITY(U,$J,358.3,18840,1,3,0)
+ ;;=3^Hypersensitivity Pneumonitis d/t Unspec Organic Dust
+ ;;^UTILITY(U,$J,358.3,18840,1,4,0)
+ ;;=4^J67.9
+ ;;^UTILITY(U,$J,358.3,18840,2)
+ ;;=^5008280
+ ;;^UTILITY(U,$J,358.3,18841,0)
+ ;;=J84.113^^64^841^14
+ ;;^UTILITY(U,$J,358.3,18841,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,18663,1,3,0)
- ;;=3^Central Sleep Apnea,Idiopathic
- ;;^UTILITY(U,$J,358.3,18663,1,4,0)
- ;;=4^G47.31
- ;;^UTILITY(U,$J,358.3,18663,2)
- ;;=^332761
- ;;^UTILITY(U,$J,358.3,18664,0)
- ;;=G47.21^^91^957^5
- ;;^UTILITY(U,$J,358.3,18664,1,0)
+ ;;^UTILITY(U,$J,358.3,18841,1,3,0)
+ ;;=3^Idiopathic Non-Specific Interstitial Pneumonitis
+ ;;^UTILITY(U,$J,358.3,18841,1,4,0)
+ ;;=4^J84.113
+ ;;^UTILITY(U,$J,358.3,18841,2)
+ ;;=^340535
+ ;;^UTILITY(U,$J,358.3,18842,0)
+ ;;=J84.112^^64^841^15
+ ;;^UTILITY(U,$J,358.3,18842,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,18664,1,3,0)
- ;;=3^Circadian Rhythm Sleep-Wake D/O;Delayed Sleep Phase Type
- ;;^UTILITY(U,$J,358.3,18664,1,4,0)
- ;;=4^G47.21
- ;;^UTILITY(U,$J,358.3,18664,2)
- ;;=^332769
- ;;^UTILITY(U,$J,358.3,18665,0)
- ;;=G47.22^^91^957^4
- ;;^UTILITY(U,$J,358.3,18665,1,0)
+ ;;^UTILITY(U,$J,358.3,18842,1,3,0)
+ ;;=3^Idiopathic Pulmonary Fibrosis
+ ;;^UTILITY(U,$J,358.3,18842,1,4,0)
+ ;;=4^J84.112
+ ;;^UTILITY(U,$J,358.3,18842,2)
+ ;;=^340534
+ ;;^UTILITY(U,$J,358.3,18843,0)
+ ;;=J84.111^^64^841^13
+ ;;^UTILITY(U,$J,358.3,18843,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,18665,1,3,0)
- ;;=3^Circadian Rhythm Sleep-Wake D/O;Advanced Sleep Phase Type
- ;;^UTILITY(U,$J,358.3,18665,1,4,0)
- ;;=4^G47.22
- ;;^UTILITY(U,$J,358.3,18665,2)
- ;;=^332770
- ;;^UTILITY(U,$J,358.3,18666,0)
- ;;=G47.23^^91^957^6
- ;;^UTILITY(U,$J,358.3,18666,1,0)
+ ;;^UTILITY(U,$J,358.3,18843,1,3,0)
+ ;;=3^Idiopathic Interstitial Pneumonia NOS
+ ;;^UTILITY(U,$J,358.3,18843,1,4,0)
+ ;;=4^J84.111
+ ;;^UTILITY(U,$J,358.3,18843,2)
+ ;;=^340610
+ ;;^UTILITY(U,$J,358.3,18844,0)
+ ;;=J84.9^^64^841^18
+ ;;^UTILITY(U,$J,358.3,18844,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,18666,1,3,0)
- ;;=3^Circadian Rhythm Sleep-Wake D/O;Irregular Sleep Wake Type
- ;;^UTILITY(U,$J,358.3,18666,1,4,0)
- ;;=4^G47.23
- ;;^UTILITY(U,$J,358.3,18666,2)
- ;;=^5003975
- ;;^UTILITY(U,$J,358.3,18667,0)
- ;;=G47.24^^91^957^7
- ;;^UTILITY(U,$J,358.3,18667,1,0)
+ ;;^UTILITY(U,$J,358.3,18844,1,3,0)
+ ;;=3^Interstitial Pulmonary Disease,Unspec
+ ;;^UTILITY(U,$J,358.3,18844,1,4,0)
+ ;;=4^J84.9
+ ;;^UTILITY(U,$J,358.3,18844,2)
+ ;;=^5008304
+ ;;^UTILITY(U,$J,358.3,18845,0)
+ ;;=M32.13^^64^841^19
+ ;;^UTILITY(U,$J,358.3,18845,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,18667,1,3,0)
- ;;=3^Circadian Rhythm Sleep-Wake D/O;Non-24 Hr Sleep Wake Type
- ;;^UTILITY(U,$J,358.3,18667,1,4,0)
- ;;=4^G47.24
- ;;^UTILITY(U,$J,358.3,18667,2)
- ;;=^5003976
- ;;^UTILITY(U,$J,358.3,18668,0)
- ;;=G47.26^^91^957^8
- ;;^UTILITY(U,$J,358.3,18668,1,0)
+ ;;^UTILITY(U,$J,358.3,18845,1,3,0)
+ ;;=3^Lung Involvement in Systemic Lupus Erythematosus
+ ;;^UTILITY(U,$J,358.3,18845,1,4,0)
+ ;;=4^M32.13
+ ;;^UTILITY(U,$J,358.3,18845,2)
+ ;;=^5011756
+ ;;^UTILITY(U,$J,358.3,18846,0)
+ ;;=J84.2^^64^841^20
+ ;;^UTILITY(U,$J,358.3,18846,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,18668,1,3,0)
- ;;=3^Circadian Rhythm Sleep-Wake D/O;Shift Work Type
+ ;;^UTILITY(U,$J,358.3,18846,1,3,0)
+ ;;=3^Lymphoid Interstitial Pneumonia
+ ;;^UTILITY(U,$J,358.3,18846,1,4,0)
+ ;;=4^J84.2
+ ;;^UTILITY(U,$J,358.3,18846,2)
+ ;;=^5008302

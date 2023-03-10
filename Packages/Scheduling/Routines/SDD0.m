@@ -1,5 +1,5 @@
 SDD0 ;SF/GFT,ALB/BOK,JSH,LDB - REMAP A CLINIC ;26 JAN 84  3:00 pm
- ;;5.3;Scheduling;**167,401,529,674,726,753**;Aug 13, 1993;Build 3
+ ;;5.3;Scheduling;**167,401,529,674,726,753,775,780**;Aug 13, 1993;Build 17
 SETX ;
  N SDDIV
  S SDDIV=$P($G(SD0),"^",15) Q:SDDIV=""
@@ -24,6 +24,7 @@ CHECK S X=DATE D DW^%DTC S DAY=$P("SUN^MON^TUES^WEDNES^THURS^FRI^SATUR",U,Y+1),D
  G Z:'$D(^SC(SC,"T"_DOW,SS,1)) I ^(1)="" S MSG="no master pattern for this day" D:SDNODE PRNT Q
  S DH=^(1),X=DATE G FIX ;NAKED REFERENCE ^SC(IFN,"T"_DOW,DATE,1)
 HOLIDAY S ^SC(SC,"ST",DATE,1)="   "_$E(DATE,6,7)_"    "_X,^(0)=DATE
+ D EN^SDTMPHLC(SC,DATE,,"C",X) ;780
 Z S MSG=$S($D(SDHOL)&SDAPPT:"- Appts!",'SDSOH&$D(SDHOL):"- Inserted",1:"") I MSG]"" S MSG=X_MSG D PRNT
  Q
 END K %,%DT,DATE,DAY,DH,DOW,DR,DR1,HSI,I,P,POP,S,SB,SC,SDAPPT,SDAPPT1,SDBD,SDNM,SDED,SDHOL,SD0,SDIN,SDRE,SDRE1,SDSAVX,SDSL,SDSOH,SI,SM,SS,SD,SCI,SCC,ST,STARTDAY,STR,X,MSG,Y,YP,PG,DGVAR,DGPGM,VAUTD,VAUTC,SDU,BEGDATE,ENDDATE D CLOSE^DGUTQ Q
@@ -32,7 +33,7 @@ FIX ;DH=PATTERN  X=DATE
 I S I=DR#1-SB*100,I=I#1*SI\.6+(I\1*SI)*2,S=$E(SM,I,999),SM=$E(SM,1,I-1)
  I $D(^SC(SC,"S",DR,"MES")) D CAN S X=SDSAVX K SDSAVX S DR=+$O(^SC(SC,"S",DR)) G:DR\1=X I G OVR
  F Y=0:0 S Y=$O(^SC(SC,"S",DR,1,Y)) Q:Y'>0  I $P(^(Y,0),"^",9)'["C",((+$E($P(DR,".",2)_"000",1,4)>=($S($P($G(^SC(SC,"SL")),U,3)>0:+$P(^SC(SC,"SL"),U,3)_"00",1:800)))) D  ;Ignore appts prior to Begin time, SD*5.3*726
- .S SDSL=$P(^SC(SC,"S",DR,1,Y,0),U,2)/SL*(SL\(60/SDSI))*HSI-HSI F I=0:HSI:SDSL S ST=$E(S,I+2) S:ST="" ST=" " S S=$E(S,1,I+2-1)_$E(STR,$F(STR,ST)-2)_$E(S,I+3,999)
+ .S SDSL=$P(^SC(SC,"S",DR,1,Y,0),U,2)/SL*(SL\(60/SDSI))*HSI-HSI F I=0:HSI:SDSL S ST=$E(S,I+2) S:ST="" ST=" " S S=$E(S,1,I+2-1)_$S("{}&%?#"[ST:ST,1:$E(STR,$F(STR,ST)-2))_$E(S,I+3,999) ;SD*5.3*775 - Correct overbooks >10
  S SM=SM_S,DR=$O(^SC(SC,"S",DR)) I DR\1=X G I
 OVR I $L(SM)>SM,(X>=$O(SDDOW($$DOW^XLFDT(X,1),(X+1)),-1)&($O(SDDOW($$DOW^XLFDT(X,1),(X+1)),-1)))!($D(^SC(SC,"OST",X))) S ^SC(SC,"ST",X,0)=X,^(1)=SM S:SS'>0 ^(9)=SC ;Verify indefinite schedule after start date, SD*5.3*674
  G Z

@@ -1,5 +1,5 @@
-DVBAB1 ;ALB/SPH - CAPRI UTILITIES ; 12/12/11 3:52pm
- ;;2.7;AMIE;**35,37,50,42,53,57,73,104,109,137,146,143,179**;Apr 10, 1995;Build 15
+DVBAB1 ;ALB/SPH - CAPRI UTILITIES ; MAY 27, 2022@11:31am
+ ;;2.7;AMIE;**35,37,50,42,53,57,73,104,109,137,146,143,179,238**;Apr 10, 1995;Build 16
  ;
 VERSION(ZMSG,DVBGUIV) ;
  ; 
@@ -15,14 +15,26 @@ VERSION(ZMSG,DVBGUIV) ;
  ; 
  ; Sets variables DVBABVR* so that the error trap will display what
  ; version of the client software the user was utilizing if CAPRI bombs.
+ ; Patch 238 adds two N variables and the checking GUI version against minimum and previous versions
  ;
  N DVBVERS
  N DVBOLD
+ N DVBPREV
+ N DVBGUIC
+ N DVBABVR1,DVBABVR2,DVBABVR3
  ;
  ;obtain version parameters and build version string result
  S DVBVERS=$$GET^XPAR("PKG","DVBAB CAPRI MINIMUM VERSION",1,"Q")
  S DVBOLD=$$GET^XPAR("PKG","DVBAB CAPRI ALLOW OLD VERSION",1,"Q")
  S ZMSG=DVBVERS_"^"_$S(DVBOLD=1:"YESOLD",1:"NOOLD")
+ ;
+ ;238-Checking GUI version against minimum and previous versions
+ ;Strip preceding zero from minor build number and setting date to prevent other gui's
+ I $G(DVBGUIV)'="" S DVBGUIC=DVBGUIV,$P(DVBGUIC,".",3)=+$P(DVBGUIC,".",3) D 
+ .I $P(ZMSG,"*",2)'=$P(DVBGUIC,"*",3) D
+ ..S DVBPREV=$$GET^XPAR("PKG","DVBAB CAPRI PREVIOUS VERSION",1,"Q")
+ ..I DVBPREV'="",($P(DVBGUIC,"*",3)'=$P(DVBPREV,"*",3)) D
+ ...S $P(ZMSG,"*",5)=2800101
  ;
  ;set DVBABVR* vars for error trap
  S DVBABVR1="CAPRI Server Version: "_ZMSG
@@ -215,6 +227,7 @@ FINDEXAM(ZMSG,ZIEN) ;Returns list of exams in 396.4 that are linked to ZIEN in 3
  Q
 SENDMSG ;SET UP TO SEND EMAIL/NOTIFICATION TO REQUESTOR OF 2507
  N DVBA0,DVBAREQ,DVBAEA,DVBAC,DVBAQUIT,DVBADFN,DVBASITE,DVBADT,DUZ
+ N MSG,MERR,CTR,RIEN
  ;SINCE MAILMAN DOES NOT ALLOW MESSAGES TO BE SENT FROM USERS WITHOUT ACCESS CODES OR MAILBOXES
  ;WHICH CAPRI REMOTE USER DO NOT HAVE, WE HAVE TO NEW DUZ AND CHANGE XMDUZ TO THE NAME OF THE USER
  ;AS A STRING SO THE PROCESS IS STILL LINKED TO THE USER SENDING/TRIGGERING THE MESSAGE

@@ -1,14 +1,20 @@
-GMTSLRMX ; SLC/JER,KER - Extended Microbiology Extract ; 02/27/2002
- ;;2.7;Health Summary;**49**;Oct 20, 1995
+GMTSLRMX ;SLC/JER,KER - Extended Microbiology Extract; Aug 02, 2022@08:31:08
+ ;;2.7;Health Summary;**49,138**;Oct 20, 1995;Build 4
  ;                    
  ; External References
- ;   DBIA 10022  %XY^%RCR
- ;   DBIA   526  ^LAB(61.2
- ;   DBIA    63  ^LR(
- ;   DBIA  2056  $$GET1^DID
- ;   DBIA 10015  EN^DIQ1
+ ; Reference to %XY^%RCR in ICR #10022
+ ; Reference to ^LAB(61.2 in ICR #526
+ ; Reference to ^LR( in ICR #63
+ ; Reference to $$GET1^DID in ICR #2056
+ ; Reference to EN^DIQ1 in ICR #10015
  ;                    
 PARA ; Get Parasitology Work-up
+ ;Do not display if results not verified (GMTS*2.7*138)
+ I $P($G(^LR(LRDFN,"MI",IX,5)),U)="" D  Q
+ . ;Were results previously verified and are now in the process
+ . ;of being amended?
+ . Q:'$D(^XTMP("LRMICRO EDIT",LRDFN,IX,5))
+ . S ^TMP("LRM",$J,"PARA",0)="Results currently being edited by tech code "_$G(^XTMP("LRMICRO EDIT",LRDFN,IX,5))
  N DA,DIC,DIQ,DR,STATUS,PN,SN,RMK,SMEAR,COM
  I $D(^LR(LRDFN,"MI",IX,5)) D
  . S DIC=63,DA=LRDFN,DA(63.05)=IX,DR=5,DR(63.05)=15,DIQ="STATUS"
@@ -36,6 +42,12 @@ IDPARA ; Get parasite stage, quantity, and comment
  F  S COM=$O(^LR(LRDFN,"MI",IX,6,PN,1,SN,1,COM)) Q:COM'>0  S ^TMP("LRM",$J,"PARA",PN,SN,"COM",COM)=^(COM,0)
  Q
 MYCO ; Get Mycology Work-up
+ ;Do not display if results not verified (GMTS*2.7*138)
+ I $P($G(^LR(LRDFN,"MI",IX,8)),U)="" D  Q
+  . ;Were results previously verified and are now in the process
+ . ;of being amended?
+ . Q:'$D(^XTMP("LRMICRO EDIT",LRDFN,IX,8))
+ . S ^TMP("LRM",$J,"MYCO",0)="Results currently being edited by tech code "_$G(^XTMP("LRMICRO EDIT",LRDFN,IX,8))
  N DA,DIC,DIQ,DR,DA,STATUS,GMW,ISO,FUN,RMK,COM,SMEAR
  ;   Work-up
  I $D(^LR(LRDFN,"MI",IX,8)) D
@@ -60,6 +72,12 @@ FNGS ; Fungus/Yeast
  S FUN=$P(^LAB(61.2,FUN,0),U),FUN=FUN_U_QTY
  Q
 TB ; Gets Mycobacteriology Work-up
+ ;Do not display if results not verified (GMTS*2.7*138)
+ I $P($G(^LR(LRDFN,"MI",IX,11)),U)="" D  Q
+ . ;Were results previously verified and are now in the process
+ . ;of being amended?
+ . Q:'$D(^XTMP("LRMICRO EDIT",LRDFN,IX,11))
+ . S ^TMP("LRM",$J,"TB",0)="Results currently being edited by tech code "_$G(^XTMP("LRMICRO EDIT",LRDFN,IX,11))
  N DA,DIC,DIQ,DR,STATUS,GMW,ISO,MB,RMK,X,%X,Y,%Y,COM,MY,GMTB,GMTBA,GMTBF,GMTBL
  I $D(^LR(LRDFN,"MI",IX,11)) D
  . S DIC=63,DA=LRDFN,DA(63.05)=IX,DR=5,DR(63.05)="23;24;25",DIQ="STATUS"
@@ -87,6 +105,12 @@ MYCB ; Mycobacterium
  S MB=$P(^LAB(61.2,MB,0),U),MB=MB_U_QTY
  Q
 VIRO ; Gets Virology Work-up
+ ;Do not display if results not verified (GMTS*2.7*138)
+ I $P($G(^LR(LRDFN,"MI",IX,16)),U)="" D  Q
+  . ;Were results previously verified and are now in the process
+ . ;of being amended?
+ . Q:'$D(^XTMP("LRMICRO EDIT",LRDFN,IX,16))
+ . S ^TMP("LRM",$J,"VIRO",0)="Results currently being edited by tech code "_$G(^XTMP("LRMICRO EDIT",LRDFN,IX,16))
  N BUG,DA,DIC,DIQ,DR,GMW,ISO,RMK,STATUS
  I $D(^LR(LRDFN,"MI",IX,16)) D
  . S DIC=63,DA=LRDFN,DA(63.05)=IX,DR=5,DR(63.05)=34,DIQ="STATUS"

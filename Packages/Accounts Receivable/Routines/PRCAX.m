@@ -1,6 +1,6 @@
 PRCAX ;WASH-ISC@ALTOONA,PA/TJK-MEDICATION COPAY EXEMPTION ;7/20/93  1:09 PM
-V ;;4.5;Accounts Receivable;**68**;Mar 20, 1995
- ;;Per VHA Directive 10-93-142, this routine should not be modified.
+V ;;4.5;Accounts Receivable;**68,371**;Mar 20, 1995;Build 29
+ ;;Per VHA Directive 6402, this routine should not be modified.
 EN1(DFN,BEG,END,ERR) ;ENTRY POINT FROM IB
  I 'DFN!($G(^DPT(DFN,0))="") S ERR="INVALID PATIENT DFN" Q
  I '$O(^RCD(340,"B",DFN_";DPT(",0)) S ERR="NO PATIENT ACCOUNT" Q
@@ -50,7 +50,9 @@ INT F I=5:-1:2 Q:'EXTOT  I $P(BN7,U,I) S X=$P(BN7,U,I),DECAMT=$S(X>BUCKET:BUCKET
  S DR=".03////"_BILL_";11////"_DT_";12////"_TTYPE_";15////"_TRAMT_";41////"_MSG_";89////1;4////2"
  S DIC=DIE D ^DIE,AUDIT^PRCAX1
  K DA,DIC,DIE,DR,TRAMT
- S $P(^PRCA(430,BILL,7),U,2,5)=$P(BN7,U,2)_U_$P(BN7,U,3)_U_$P(BN7,U,4)_U_$P(BN7,U,5)
+ ; PRCA*4.5*371 - Replace direct global sets in 7 node with FileMan calls so indexes get updated
+ N PRCFDA S PRCFDA(430,BILL_",",72)=$P(BN7,U,2),PRCFDA(430,BILL_",",73)=$P(BN7,U,3),PRCFDA(430,BILL_",",74)=$P(BN7,U,4),PRCFDA(430,BILL_",",75)=$P(BN7,U,5)
+ D FILE^DIE(,"PRCFDA")
  I 'OLDBAL S STATUS=39,NBILL=BILL D UPDTST Q
  Q:'BUCKET
 DEC ;SET DECREASE TRANSACTION HERE

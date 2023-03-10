@@ -1,5 +1,5 @@
-PSOPOLY ;BHAM ISC/SAB - patients with a minimum amount of rx's within a # of days ;10/06/93
- ;;7.0;OUTPATIENT PHARMACY;**19,28,132,326,405**;DEC 1997;Build 2
+PSOPOLY ;BHAM ISC/SAB - patients with a minimum amount of rx's within a # of days ;08/23/17  20:40
+ ;;7.0;OUTPATIENT PHARMACY;**19,28,132,326,405,441**;DEC 1997;Build 208
  ;External reference ^PS(55 supported by DBIA# 2228
  ;External reference ^PSDRUG( supported by DBIA# 221
  ;External reference ^DPT( supported by DBIA# 10035
@@ -19,6 +19,7 @@ BEG S RXS=0 S:$G(PSDATEX) PSDATE=PSDATEX
  I RXS'<RX S P=0 F  S P=$O(RX(DFN,P)) Q:'P  S RX0=$S($D(^PSRX(P,0)):^(0),1:""),RX2=$S($D(^(2)):^(2),1:""),RX3=$S($D(^(3)):^(3),1:"") D
  .S STA=RX(DFN,P),DRUG=$S($D(^PSDRUG($P(RX0,"^",6),0)):$P(^PSDRUG($P(RX0,"^",6),0),"^"),1:"UNKNOWN"),CLASS=$S($P($G(^PSDRUG($P(RX0,"^",6),0)),"^",2)]"":$P(^(0),"^",2),1:"UNKNOWN")
 A .S STAT="A^N^R^H^N^S^^^^^^E^DC^^DC^DE^H^P^",STATUS=$P(STAT,"^",STA+1)
+ .I STATUS="A",$G(^PSRX(P,"PARK")) S STATUS="AP" ;441 PAPI
  .S FILLDATE=9999999-$P(^PSRX(P,2),"^",2)
  .S ^TMP($J,$P(^DPT(DFN,0),"^"),CLASS,DRUG,FILLDATE,P)=$P(^PSRX(P,0),"^",2)_"^"_RXS_"^"_$P(RX3,"^")_"^"_$P(RX0,"^",4)_"^"_STATUS_"^"_VA("BID")_"^"_DFN
  I RXS'<RX,$O(^TMP($J,$P(^DPT(DFN,0),"^"),""))="" S CLASS="NVA",^TMP($J,$P(^DPT(DFN,0),"^"),CLASS)=DFN_"^"_RXS

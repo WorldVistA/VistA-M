@@ -1,5 +1,5 @@
-PXRMOUTU ;SLC/PKR - Utilities for preparing output. ;01/09/2017
- ;;2.0;CLINICAL REMINDERS;**17,18,26,47**;Feb 04, 2005;Build 291
+PXRMOUTU ;SLC/PKR - Utilities for preparing output. ;02/14/2022
+ ;;2.0;CLINICAL REMINDERS;**17,18,26,47,42,65**;Feb 04, 2005;Build 438
  ;
  ;==================================================
 ADDTXT(LM,RM,NTXT,TXT) ;
@@ -32,11 +32,15 @@ FERROR(NTXT) ; Check for a fatal error and output a message.
  . S TEXT(2)="There may be additional information in the error trap."
  . D ADDTXTA(2,PXRMRM,.NTXT,2,.TEXT)
  ;
+ ;Frequency errors
+ I $D(^TMP(PXRMPID,$J,PXRMITEM,"FERROR","NOFREQ")) D
+ . S TEXT=^TMP(PXRMPID,$J,PXRMITEM,"FERROR","NOFREQ")
+ . D ADDTXT(1,PXRMRM,.NTXT,TEXT)
+ ;
  ;Patient errors
  I $D(^TMP(PXRMPID,$J,PXRMITEM,"FERROR","PATIENT")) D
  . S ERROR=$O(^TMP(PXRMPID,$J,PXRMITEM,"FERROR","PATIENT",""))
- . I ERROR="NOPAT" S TEXT=^TMP(PXRMPID,$J,PXRMITEM,"FERROR","PATIENT","NOPAT")
- . I ERROR="NO LOCK" S TEXT="Could not get a lock for patient "_PXRMPDEM("DFN")_", try again!"
+ . I ERROR="NO PAT" S TEXT=^TMP(PXRMPID,$J,PXRMITEM,"FERROR","PATIENT","NO PAT")
  . D ADDTXT(1,PXRMRM,.NTXT,TEXT)
  ;
  ;Problems with CF.VA-REMINDER DEFINITION
@@ -44,8 +48,9 @@ FERROR(NTXT) ; Check for a fatal error and output a message.
  I $D(^TMP(PXRMPID,$J,PXRMITEM,"FERROR","CF.VA-REMINDER DEFINITION")) D
  . K TEXT
  . S TEXT(1)=""
- . S TEXT(2)="The computed finding parameter for CF.VA-REMINDER DEFINITION is missing or invalid."
+ . S TEXT(2)="The computed finding parameter for CF.VA-REMINDER DEFINITION is missing, invalid, or inactive."
  . D ADDTXTA(1,PXRMRM,.NTXT,2,.TEXT)
+ ;
  ;Recursion
  I $D(^TMP(PXRMPID,$J,PXRMITEM,"FERROR","RECURSION")) D
  . K TEXT
@@ -71,8 +76,9 @@ INFO(PXRMITEM,NTXT) ;Output INFO text. An INFO node has the structure:
  ;(PXRMPID,$J,PXRMITEM,"INFO",DESCRIPTION)=TEXT
  I '$D(^TMP(PXRMPID,$J,PXRMITEM,"INFO")) Q
  N DES,TEXT
- S TEXT="Information about the reminder evaluation:"
- D ADDTXT(1,PXRMRM,.NTXT,TEXT)
+ S TEXT(1)=""
+ S TEXT(2)="Information about the reminder evaluation:"
+ D ADDTXTA(1,PXRMRM,.NTXT,2,.TEXT)
  S DES=""
  F  S DES=$O(^TMP(PXRMPID,$J,PXRMITEM,"INFO",DES)) Q:DES=""  D
  . S TEXT=^TMP(PXRMPID,$J,PXRMITEM,"INFO",DES)
@@ -81,17 +87,17 @@ INFO(PXRMITEM,NTXT) ;Output INFO text. An INFO node has the structure:
  ;
  ;==================================================
 WARN(PXRMITEM,PXRMPDEM) ;Output WARNING text. An WARN node has the structure:
- ;(PXRMPID,$J,PXRMITEM,"WARN",DESCRIPTION)=TEXT
- I '$D(^TMP(PXRMPID,$J,PXRMITEM,"WARN")) Q
+ ;(PXRMPID,$J,PXRMITEM,"WARNING",DESCRIPTION)=TEXT
+ I '$D(^TMP(PXRMPID,$J,PXRMITEM,"WARNING")) Q
  N DES,NL,REMINDER,SUB
  K ^TMP("PXRMXMZ",$J)
  S SUB="Reminder evaluation warnings"
  S REMINDER=$S($G(PXRMITEM)>0:$P(^PXD(811.9,PXRMITEM,0),U,1),1:"?")
  S ^TMP("PXRMXMZ",$J,1,0)="The following warnings were encountered:",NL=1
  S DES=""
- F  S DES=$O(^TMP(PXRMPID,$J,PXRMITEM,"WARN",DES)) Q:DES=""  D
- . S TEXT=^TMP(PXRMPID,$J,PXRMITEM,"WARN",DES)
- . S NL=NL+1 S ^TMP("PXRMXMZ",$J,NL,0)=" "_^TMP(PXRMPID,$J,PXRMITEM,"WARN",DES)
+ F  S DES=$O(^TMP(PXRMPID,$J,PXRMITEM,"WARNING",DES)) Q:DES=""  D
+ . S TEXT=^TMP(PXRMPID,$J,PXRMITEM,"WARNING",DES)
+ . S NL=NL+1 S ^TMP("PXRMXMZ",$J,NL,0)=" "_^TMP(PXRMPID,$J,PXRMITEM,"WARNING",DES)
  S NL=NL+1,^TMP("PXRMXMZ",$J,NL,0)="While evaluating reminder "_REMINDER
  S NL=NL+1,^TMP("PXRMXMZ",$J,NL,0)="For patient DFN="_PXRMPDEM("DFN")
  S NL=NL+1,^TMP("PXRMXMZ",$J,NL,0)="The time of the evaluation was "_$$FMTE^XLFDT($$NOW^XLFDT,"5Z")

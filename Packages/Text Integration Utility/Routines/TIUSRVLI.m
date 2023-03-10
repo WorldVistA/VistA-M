@@ -1,10 +1,11 @@
-TIUSRVLI ; SLC/JER - Server fns - lists for CPRS ;13-NOV-2001 08:21:33
- ;;1.0;TEXT INTEGRATION UTILITIES;**108,122**;Jun 20, 1997
+TIUSRVLI ;SLC/JER - Server fns - lists for CPRS;Apr 06, 2021@11:27:11
+ ;;1.0;TEXT INTEGRATION UTILITIES;**108,122,339**;Jun 20, 1997;Build 39
 HASDAD(DA) ; Evaluate whether a document has a parent
  Q $S(+$P($G(^TIU(8925,+DA,0)),U,6):1,+$G(^TIU(8925,+DA,21)):1,1:0)
  ;
-SETDAD(TIUY,DA,TIUI) ; Set parent in return array
- N DADA,TIUD0,TIUD21
+SETDAD(TIUY,DA,TIUI,FLG) ; Set parent in return array
+ N DADA,RMVFLG,TIUD0,TIUD21
+ S FLG=+$G(FLG)
  ; Exclude components
  Q:'+$$ISDOC(DA)
  S TIUD0=$G(^TIU(8925,DA,0)),TIUD21=$G(^(21))
@@ -12,11 +13,14 @@ SETDAD(TIUY,DA,TIUI) ; Set parent in return array
  Q:+DADA'>0
  Q:+$D(@TIUY@("INDX",DADA))
  Q:+$D(^TIU(8925,DADA,0))=0
+ S RMVFLG=0
+ I FLG S RMVFLG=$$DOREMOV(.TIUY,DADA)
+ Q:RMVFLG=1
  S TIUI=$S(SEQUENCE="A":+$G(TIUI)-1,1:+$G(TIUI)+1)
  S @TIUY@(TIUI)=DADA_U_$$RESOLVE^TIUSRVLO(DADA)
  S @TIUY@("INDX",DADA,TIUI)=""
- I +$G(SHOWADD) D SETKIDS(.TIUY,DADA,.TIUI)
- I +$$HASDAD(DADA) D SETDAD(.TIUY,DADA,.TIUI)
+ I +$G(SHOWADD) D SETKIDS(.TIUY,DADA,.TIUI,FLG)
+ I +$$HASDAD(DADA) D SETDAD(.TIUY,DADA,.TIUI,FLG)
  Q
  ;
 HASKIDS(DA) ; Evaluate whether a document has children
@@ -29,23 +33,30 @@ HASKIDS(DA) ; Evaluate whether a document has children
  S TIUY=$S(+$O(^TIU(8925,"GDAD",DA,0)):1,1:0)
 HASKIDX Q TIUY
  ;
-SETKIDS(TIUY,DA,TIUI) ; Set children in return array
- N KIDA S KIDA=0
+SETKIDS(TIUY,DA,TIUI,FLG) ; Set children in return array
+ N KIDA,RMVFLG
+ S FLG=+$G(FLG)
+ S RMVFLG=0
+ S KIDA=0
  ; Begin with addenda
- F  S KIDA=$O(^TIU(8925,"DAD",DA,KIDA)) Q:+KIDA'>0  D
+ F  S KIDA=$O(^TIU(8925,"DAD",DA,KIDA)) Q:+KIDA'>0  D  Q:RMVFLG=1
  . Q:'+$$ISDOC(KIDA)
  . Q:+$D(@TIUY@("INDX",KIDA))
+ . I FLG S RMVFLG=$$DOREMOV(.TIUY,KIDA)
+ . Q:RMVFLG=1
  . S TIUI=$S(SEQUENCE="A":+$G(TIUI)-1,1:+$G(TIUI)+1)
  . S @TIUY@(TIUI)=KIDA_U_$$RESOLVE^TIUSRVLO(KIDA)
  . S @TIUY@("INDX",KIDA,TIUI)=""
  ; Next do ID entries
  S KIDA=0
- F  S KIDA=$O(^TIU(8925,"GDAD",DA,KIDA)) Q:+KIDA'>0  D
+ F  S KIDA=$O(^TIU(8925,"GDAD",DA,KIDA)) Q:+KIDA'>0  D  Q:RMVFLG=1
  . Q:+$D(@TIUY@("INDX",KIDA))
+ . I FLG S RMVFLG=$$DOREMOV(.TIUY,KIDA)
+ . Q:RMVFLG=1
  . S TIUI=$S(SEQUENCE="A":+$G(TIUI)-1,1:+$G(TIUI)+1)
  . S @TIUY@(TIUI)=KIDA_U_$$RESOLVE^TIUSRVLO(KIDA)
  . S @TIUY@("INDX",KIDA,TIUI)=""
- . I +$$HASKIDS(KIDA) D SETKIDS(.TIUY,KIDA,.TIUI)
+ . I +$$HASKIDS(KIDA) D SETKIDS(.TIUY,KIDA,.TIUI,FLG)
  Q
 ISDOC(DA) ; Evaluate whether a given record is a document
  N TIUY,TIUTYP
@@ -62,9 +73,77 @@ GETUND(TIUY,CLASS,DFN,TIME1,TIME2,TIUJ,SEQUENCE) ; Get undictated docs
  . . S DATTIM=TIME1-.0000001
  . . F  S DATTIM=$O(^TIU(8925,"APT",DFN,+TIUTYP(TIUI),STATUS,DATTIM)) Q:+DATTIM'>0  D
  . . . N TIUDA S TIUDA=0
- . . . F  S TIUDA=$O(^TIU(8925,"APT",DFN,+TIUTYP(TIUI),STATUS,DATTIM,TIUDA)) Q:+TIUDA'>0  D 
+ . . . F  S TIUDA=$O(^TIU(8925,"APT",DFN,+TIUTYP(TIUI),STATUS,DATTIM,TIUDA)) Q:+TIUDA'>0  D
  . . . . Q:+$D(@TIUY@("INDX",TIUDA))
  . . . . S TIUJ=$S(SEQUENCE="A":+$G(TIUJ)-1,1:+$G(TIUJ)+1)
  . . . . S @TIUY@(TIUJ)=TIUDA_U_$$RESOLVE^TIUSRVLO(TIUDA)
  . . . . S @TIUY@("INDX",TIUDA,TIUJ)=""
+ Q
+DOREMOV(TIUY,DA) ;Check for need to remove previously returned data
+ ; and perform the remove
+ N RMVFLG,TIUD0,TIUD1301
+ S RMVFLG=0
+ S TIUD0=$G(^TIU(8925,DA,0))
+ S TIUD1301=$P($G(^TIU(8925,DA,13)),U,1)
+ I +$G(PRVRTNDT)>0 D
+ . I PRVRTNDT=TIUD1301,TIUIEN>DA Q
+ . I PRVRTNDT>TIUD1301 Q
+ . I (('+$P(TIUD0,U))!('+$G(TIUD1301))!('+$P(TIUD0,U,2))!(($P(TIUD0,U,5)<6))) Q
+ . D RMV(.TIUY,DA)
+ . S RMVFLG=1
+ . Q
+ Q RMVFLG
+RMV(TIUY,DA) ; Remove notes previously returned
+ D RMVDAD(.TIUY,DA)
+ D RMVKID(.TIUY,DA)
+ I TIUJ>0 S TIUJ=TIUJ-1
+ Q
+RMVDAD(TIUY,DA) ; Remove parent entries
+ N CNT,DADA,TIUD0,TIUD21
+ ; Exclude components
+ Q:'+$$ISDOC(DA)
+ S TIUD0=$G(^TIU(8925,DA,0)),TIUD21=$G(^(21))
+ S DADA=$S(+$P(TIUD0,U,6):+$P(TIUD0,U,6),+TIUD21:+TIUD21,1:0)
+ Q:+DADA'>0
+ S @TIUY@("INDX",DADA)=""
+ S CNT=+$O(@TIUY@("INDX",DADA,""))
+ Q:CNT<1
+ K @TIUY@(CNT)
+ I +$G(SHOWADD) D RMVKID(.TIUY,DADA)
+ I +$$HASDAD(DADA) D RMVDAD(.TIUY,DADA)
+ Q
+RMVKID(TIUY,DA) ; Remove child notes
+ N CNT,KIDA
+ S KIDA=0
+ ; Begin with addenda
+ F  S KIDA=$O(^TIU(8925,"DAD",DA,KIDA)) Q:+KIDA'>0  D
+ . Q:'+$$ISDOC(KIDA)
+ . S @TIUY@("INDX",KIDA)=""
+ . S CNT=+$O(@TIUY@("INDX",KIDA,""))
+ . Q:CNT<1
+ . K @TIUY@(CNT)
+ . Q
+ ; Next do ID entries
+ S KIDA=0
+ F  S KIDA=$O(^TIU(8925,"GDAD",DA,KIDA)) Q:+KIDA'>0  D
+ . S @TIUY@("INDX",KIDA)=""
+ . S CNT=+$O(@TIUY@("INDX",KIDA,""))
+ . Q:CNT<1
+ . K @TIUY@(CNT)
+ . I +$$HASKIDS(KIDA) D RMVKID(.TIUY,KIDA)
+ . Q
+ Q
+RESEQ(TIUY,TIUI) ; Resequence @TIUY@(TIUI) after removal of entries and reset TIUI
+ N ADD,ARRY,CNT,CNT1,DA,DATA
+ S ADD=$S(SEQUENCE="D":1,1:-1)
+ S ARRY=$NA(^TMP("TIURESEQ",$J))
+ S (CNT,CNT1)=0
+ F  S CNT1=$O(@TIUY@(CNT1),ADD) Q:CNT1=""  D
+ . I +CNT1=0 Q
+ . S CNT=CNT+ADD
+ . S @ARRY@(CNT)=$G(@TIUY@(CNT1))
+ . Q
+ K @TIUY
+ M @TIUY=@ARRY
+ K @ARRY
  Q

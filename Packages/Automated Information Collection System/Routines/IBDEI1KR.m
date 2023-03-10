@@ -1,128 +1,126 @@
-IBDEI1KR ; ; 04-FEB-2020
- ;;3.0;IB ENCOUNTER FORM IMP/EXP;;FEB 04, 2020
+IBDEI1KR ; ; 01-FEB-2022
+ ;;3.0;IB ENCOUNTER FORM IMP/EXP;;FEB 01, 2022
  Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,999) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
- ;;^UTILITY(U,$J,358.3,25166,1,3,0)
- ;;=3^Osteomyelitis w/ Draining Sinus,Chronic,Unspec Site
- ;;^UTILITY(U,$J,358.3,25166,1,4,0)
- ;;=4^M86.40
- ;;^UTILITY(U,$J,358.3,25166,2)
- ;;=^5014583
- ;;^UTILITY(U,$J,358.3,25167,0)
- ;;=R50.2^^107^1213^23
- ;;^UTILITY(U,$J,358.3,25167,1,0)
+ ;;^UTILITY(U,$J,358.3,25531,1,4,0)
+ ;;=4^Z65.3
+ ;;^UTILITY(U,$J,358.3,25531,2)
+ ;;=^5063182
+ ;;^UTILITY(U,$J,358.3,25532,0)
+ ;;=Z65.1^^92^1164^2
+ ;;^UTILITY(U,$J,358.3,25532,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,25167,1,3,0)
- ;;=3^Fever,Drug-Induced
- ;;^UTILITY(U,$J,358.3,25167,1,4,0)
- ;;=4^R50.2
- ;;^UTILITY(U,$J,358.3,25167,2)
- ;;=^5019507
- ;;^UTILITY(U,$J,358.3,25168,0)
- ;;=R50.9^^107^1213^27
- ;;^UTILITY(U,$J,358.3,25168,1,0)
+ ;;^UTILITY(U,$J,358.3,25532,1,3,0)
+ ;;=3^Imprisonment or Other Incarceration
+ ;;^UTILITY(U,$J,358.3,25532,1,4,0)
+ ;;=4^Z65.1
+ ;;^UTILITY(U,$J,358.3,25532,2)
+ ;;=^5063180
+ ;;^UTILITY(U,$J,358.3,25533,0)
+ ;;=Z64.0^^92^1165^6
+ ;;^UTILITY(U,$J,358.3,25533,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,25168,1,3,0)
- ;;=3^Fever,Unspec
- ;;^UTILITY(U,$J,358.3,25168,1,4,0)
- ;;=4^R50.9
- ;;^UTILITY(U,$J,358.3,25168,2)
- ;;=^5019512
- ;;^UTILITY(U,$J,358.3,25169,0)
- ;;=R76.11^^107^1213^1
- ;;^UTILITY(U,$J,358.3,25169,1,0)
+ ;;^UTILITY(U,$J,358.3,25533,1,3,0)
+ ;;=3^Problems Related to Unwanted Pregnancy
+ ;;^UTILITY(U,$J,358.3,25533,1,4,0)
+ ;;=4^Z64.0
+ ;;^UTILITY(U,$J,358.3,25533,2)
+ ;;=^5063176
+ ;;^UTILITY(U,$J,358.3,25534,0)
+ ;;=Z64.1^^92^1165^3
+ ;;^UTILITY(U,$J,358.3,25534,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,25169,1,3,0)
- ;;=3^Abnormal Reaction to TB Test w/o Active TB
- ;;^UTILITY(U,$J,358.3,25169,1,4,0)
- ;;=4^R76.11
- ;;^UTILITY(U,$J,358.3,25169,2)
- ;;=^5019570
- ;;^UTILITY(U,$J,358.3,25170,0)
- ;;=Z21.^^107^1213^30
- ;;^UTILITY(U,$J,358.3,25170,1,0)
+ ;;^UTILITY(U,$J,358.3,25534,1,3,0)
+ ;;=3^Problems Related to Multiparity
+ ;;^UTILITY(U,$J,358.3,25534,1,4,0)
+ ;;=4^Z64.1
+ ;;^UTILITY(U,$J,358.3,25534,2)
+ ;;=^5063177
+ ;;^UTILITY(U,$J,358.3,25535,0)
+ ;;=Z64.4^^92^1165^1
+ ;;^UTILITY(U,$J,358.3,25535,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,25170,1,3,0)
- ;;=3^HIV Asymptomatic,Infection Status
- ;;^UTILITY(U,$J,358.3,25170,1,4,0)
- ;;=4^Z21.
- ;;^UTILITY(U,$J,358.3,25170,2)
- ;;=^5062777
- ;;^UTILITY(U,$J,358.3,25171,0)
- ;;=B37.0^^107^1213^16
- ;;^UTILITY(U,$J,358.3,25171,1,0)
+ ;;^UTILITY(U,$J,358.3,25535,1,3,0)
+ ;;=3^Discord w/ Counselors
+ ;;^UTILITY(U,$J,358.3,25535,1,4,0)
+ ;;=4^Z64.4
+ ;;^UTILITY(U,$J,358.3,25535,2)
+ ;;=^5063178
+ ;;^UTILITY(U,$J,358.3,25536,0)
+ ;;=Z65.5^^92^1165^2
+ ;;^UTILITY(U,$J,358.3,25536,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,25171,1,3,0)
- ;;=3^Candidal Stomatitis (Oral Thrush)
- ;;^UTILITY(U,$J,358.3,25171,1,4,0)
- ;;=4^B37.0
- ;;^UTILITY(U,$J,358.3,25171,2)
- ;;=^5000612
- ;;^UTILITY(U,$J,358.3,25172,0)
- ;;=B97.10^^107^1213^22
- ;;^UTILITY(U,$J,358.3,25172,1,0)
+ ;;^UTILITY(U,$J,358.3,25536,1,3,0)
+ ;;=3^Exposure to Disaster,War or Other Hostilities
+ ;;^UTILITY(U,$J,358.3,25536,1,4,0)
+ ;;=4^Z65.5
+ ;;^UTILITY(U,$J,358.3,25536,2)
+ ;;=^5063184
+ ;;^UTILITY(U,$J,358.3,25537,0)
+ ;;=Z65.8^^92^1165^4
+ ;;^UTILITY(U,$J,358.3,25537,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,25172,1,3,0)
- ;;=3^Enterovirus,Unspec,as Cause of Disease
- ;;^UTILITY(U,$J,358.3,25172,1,4,0)
- ;;=4^B97.10
- ;;^UTILITY(U,$J,358.3,25172,2)
- ;;=^5000861
- ;;^UTILITY(U,$J,358.3,25173,0)
- ;;=R50.82^^107^1213^24
- ;;^UTILITY(U,$J,358.3,25173,1,0)
+ ;;^UTILITY(U,$J,358.3,25537,1,3,0)
+ ;;=3^Problems Related to Psychosocial Circumstances,Other
+ ;;^UTILITY(U,$J,358.3,25537,1,4,0)
+ ;;=4^Z65.8
+ ;;^UTILITY(U,$J,358.3,25537,2)
+ ;;=^5063185
+ ;;^UTILITY(U,$J,358.3,25538,0)
+ ;;=Z65.9^^92^1165^5
+ ;;^UTILITY(U,$J,358.3,25538,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,25173,1,3,0)
- ;;=3^Fever,Postprocedural
- ;;^UTILITY(U,$J,358.3,25173,1,4,0)
- ;;=4^R50.82
- ;;^UTILITY(U,$J,358.3,25173,2)
- ;;=^5019509
- ;;^UTILITY(U,$J,358.3,25174,0)
- ;;=R50.83^^107^1213^26
- ;;^UTILITY(U,$J,358.3,25174,1,0)
+ ;;^UTILITY(U,$J,358.3,25538,1,3,0)
+ ;;=3^Problems Related to Psychosocial Circumstances,Unspec
+ ;;^UTILITY(U,$J,358.3,25538,1,4,0)
+ ;;=4^Z65.9
+ ;;^UTILITY(U,$J,358.3,25538,2)
+ ;;=^5063186
+ ;;^UTILITY(U,$J,358.3,25539,0)
+ ;;=Z65.4^^92^1165^7
+ ;;^UTILITY(U,$J,358.3,25539,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,25174,1,3,0)
- ;;=3^Fever,Postvaccination
- ;;^UTILITY(U,$J,358.3,25174,1,4,0)
- ;;=4^R50.83
- ;;^UTILITY(U,$J,358.3,25174,2)
- ;;=^5019510
- ;;^UTILITY(U,$J,358.3,25175,0)
- ;;=R50.84^^107^1213^25
- ;;^UTILITY(U,$J,358.3,25175,1,0)
+ ;;^UTILITY(U,$J,358.3,25539,1,3,0)
+ ;;=3^Victim of Terrorism or Torture
+ ;;^UTILITY(U,$J,358.3,25539,1,4,0)
+ ;;=4^Z65.4
+ ;;^UTILITY(U,$J,358.3,25539,2)
+ ;;=^5063183
+ ;;^UTILITY(U,$J,358.3,25540,0)
+ ;;=Z62.820^^92^1166^3
+ ;;^UTILITY(U,$J,358.3,25540,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,25175,1,3,0)
- ;;=3^Fever,Posttransfusion
- ;;^UTILITY(U,$J,358.3,25175,1,4,0)
- ;;=4^R50.84
- ;;^UTILITY(U,$J,358.3,25175,2)
- ;;=^5019511
- ;;^UTILITY(U,$J,358.3,25176,0)
- ;;=B02.23^^107^1213^70
- ;;^UTILITY(U,$J,358.3,25176,1,0)
+ ;;^UTILITY(U,$J,358.3,25540,1,3,0)
+ ;;=3^Parent-Child Relational Problem
+ ;;^UTILITY(U,$J,358.3,25540,1,4,0)
+ ;;=4^Z62.820
+ ;;^UTILITY(U,$J,358.3,25540,2)
+ ;;=^5063157
+ ;;^UTILITY(U,$J,358.3,25541,0)
+ ;;=Z62.891^^92^1166^6
+ ;;^UTILITY(U,$J,358.3,25541,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,25176,1,3,0)
- ;;=3^Postherpetic Polyneuropathy
- ;;^UTILITY(U,$J,358.3,25176,1,4,0)
- ;;=4^B02.23
- ;;^UTILITY(U,$J,358.3,25176,2)
- ;;=^266550
- ;;^UTILITY(U,$J,358.3,25177,0)
- ;;=B02.22^^107^1213^71
- ;;^UTILITY(U,$J,358.3,25177,1,0)
+ ;;^UTILITY(U,$J,358.3,25541,1,3,0)
+ ;;=3^Sibling Relational Problem
+ ;;^UTILITY(U,$J,358.3,25541,1,4,0)
+ ;;=4^Z62.891
+ ;;^UTILITY(U,$J,358.3,25541,2)
+ ;;=^5063161
+ ;;^UTILITY(U,$J,358.3,25542,0)
+ ;;=Z62.898^^92^1166^4
+ ;;^UTILITY(U,$J,358.3,25542,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,25177,1,3,0)
- ;;=3^Postherpetic Trigeminal Neuralgia
- ;;^UTILITY(U,$J,358.3,25177,1,4,0)
- ;;=4^B02.22
- ;;^UTILITY(U,$J,358.3,25177,2)
- ;;=^266546
- ;;^UTILITY(U,$J,358.3,25178,0)
- ;;=J03.91^^107^1213^80
- ;;^UTILITY(U,$J,358.3,25178,1,0)
+ ;;^UTILITY(U,$J,358.3,25542,1,3,0)
+ ;;=3^Problems Related to Upbringing,Oth Spec
+ ;;^UTILITY(U,$J,358.3,25542,1,4,0)
+ ;;=4^Z62.898
+ ;;^UTILITY(U,$J,358.3,25542,2)
+ ;;=^5063162
+ ;;^UTILITY(U,$J,358.3,25543,0)
+ ;;=Z63.0^^92^1166^5
+ ;;^UTILITY(U,$J,358.3,25543,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,25178,1,3,0)
- ;;=3^Tonsillitis,Acute Recurrent,Unspec
- ;;^UTILITY(U,$J,358.3,25178,1,4,0)
- ;;=4^J03.91
+ ;;^UTILITY(U,$J,358.3,25543,1,3,0)
+ ;;=3^Relationship Distress w/ Spouse/Partner
+ ;;^UTILITY(U,$J,358.3,25543,1,4,0)
+ ;;=4^Z63.0

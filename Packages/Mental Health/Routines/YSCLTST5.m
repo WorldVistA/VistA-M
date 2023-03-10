@@ -1,5 +1,5 @@
-YSCLTST5 ;HINOI/RSJ-TRANSMISSION DATA FOR CLOZAPINE ORDERS ;8 Nov 2019 15:21:58
- ;;5.01;MENTAL HEALTH;**122,154**;Dec 30, 1994;Build 48
+YSCLTST5 ;HINOI/RSJ-TRANSMISSION DATA FOR CLOZAPINE ORDERS ;7 May 2020 17:31:44
+ ;;5.01;MENTAL HEALTH;**122,154,149**;Dec 30, 1994;Build 72
  ; Reference to $$SITE^VASITE supported by IA #10112
  ; Reference to ^DPT supported by IA #10035
  ; Reference to ^PS(55 supported by IA #787
@@ -210,8 +210,9 @@ REXMIT ;
  . D XTMPZRO S $P(^XTMP("YSCLDEM",0),"^",4)=YSCLDT
  ;
  S YSCLCT=4,YSCLCNTR=1
- ;RBN Modificaton for retransmit
- I '$G(YSCLREX) S YSCLTRDT=$P($P($G(^XTMP("YSCLTRN",0)),U,4),"."),YSCLEND=DT
+ ;RBN Modification for retransmit
+ ; ajf added plus to the set command for YSCLTRDT ; defect 1262531
+ I '$G(YSCLREX) S YSCLTRDT=+$P($P($G(^XTMP("YSCLTRN",0)),U,4),"."),YSCLEND=DT
  E  S YSCLTRDT=YSCLSTDT,YSCLEND=YSCLEDDT
  ;RBN End modification for retransmit
  I $O(^XTMP("YSCLTRN",YSCLTRDT)) D

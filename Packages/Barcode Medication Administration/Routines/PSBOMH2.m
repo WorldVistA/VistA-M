@@ -1,5 +1,5 @@
 PSBOMH2 ;BIRMINGHAM/EFC-MAH ;9/13/12 5:15pm
- ;;3.0;BAR CODE MED ADMIN;**6,20,27,26,67,68,70**;Mar 2004;Build 101
+ ;;3.0;BAR CODE MED ADMIN;**6,20,27,26,67,68,70,133**;Mar 2004;Build 1
  ;
  ; Reference/IA
  ; EN^PSJBCMA/2828
@@ -114,7 +114,7 @@ LEGEND ;
  I $D(^TMP("PSB",$J,"LEGEND"))  D
  .S X=$Q(^TMP("PSB",$J,"LEGEND",""))
  .F  W $S($QS(X,4)[99:"",1:$QS(X,4)),?10,$QS(X,5),! S X=$Q(@X) Q:$QS(X,3)'="LEGEND"  ;
- W !!,"Status Codes",!,"C - Completed",!,"G - Given",!,"H - Held",!,"I - Infusing",!,"M - Missing Dose Requested",!,"R - Refused",!,"RM - Removed",!,"S - Stopped",!  ;
+ W !!,"Status Codes",!,"C - Completed",!,"G - Given",!,"H - Held",!,"I - Infusing",!,"M - Missing Dose Requested",!,"N - Not Given (Undo-Given)",!,"R - Refused",!,"RM - Removed",!,"S - Stopped",!  ;P133
  W "> - Scheduled administration times for the order have been changed",!,"*** - Medication Not Due",! ;add changed Admin time message, PSB*3*67
  K ^TMP("PSJ",$J)
  Q

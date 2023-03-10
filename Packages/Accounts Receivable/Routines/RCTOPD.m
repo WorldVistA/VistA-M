@@ -1,12 +1,12 @@
-RCTOPD ;WASH IRMFO@ALTOONA,PA/TJK-TOP TRANSMISSION ;2/11/00 3:34 PM
-V ;;4.5;Accounts Receivable;**141,187,224,236,229,301,315,337,338**;Mar 20, 1995;Build 69
+RCTOPD ;WASH IRMFO/ALTOONA,PA/TJK - TOP TRANSMISSION ;2/11/00 3:34 PM
+V ;;4.5;Accounts Receivable;**141,187,224,236,229,301,315,337,338,343**;Mar 20, 1995;Build 59
  ;;Per VA Directive 6402, this routine should not be modified.
  ;
  ;PRCA*4.5*337 Keep XTMP work file for 5 days
  ;
 ENTER ;Entry point from nightly process
  Q:'$D(RCDOC)
- N DEBTOR,BILL,DEBTOR0,B0,B6,B7,P121DT,PRIN,INT,ADMIN,B4,B14  ;PRCA*4.5*315 - P181Dt change to P121DT - FY16 HAPE RRE [TOPS]
+ N DEBTOR,BILL,DEBTOR0,B0,B6,B7,RC151DT,PRIN,INT,ADMIN,B4,B14  ;PRCA*4.5*343 - P121DT change to P151DT - previously changed by *315
  N EFFDT,DFN,CNTR,SITE,LN,FN,MN,DOB,SITE,F60DT,VADM,DEBTOR4,DEBTOR6
  N PHONE,QUIT,TOTAL,ZIPCODE,FULLNM,RCNT,REPAY,X1,X2
  N ERROR,ADDR,CAT,BILLDT,P10YDT,CURRTOT,HOLD,SITECD,RCNEW,ACTDT
@@ -15,7 +15,7 @@ ENTER ;Entry point from nightly process
  ;
  K ^XTMP("RCTOPD") S ^XTMP("RCTOPD",0)=$$FMADD^XLFDT(DT,5)_"^"_DT   ;PRCA*4.5*315 Allow global to be purged in 5 days
  S SITE=$E($$SITE^RCMSITE(),1,3),SITECD=$P(^RC(342,1,3),U,5)
- S X1=DT,X2=-121 D C^%DTC S (P121DT,EFFDT)=X  ; PRCA*4.5*315 - FY16 HAPE RRE [TOPS] - change -181 to -121 (120 vs 180 days)
+ S X1=DT,X2=-151 D C^%DTC S (RC151DT,EFFDT)=X  ; PRCA*4.5*343 - change from 121 to 151 days
  S X1=DT,X2=-3650 D C^%DTC S P10YDT=X
  S X1=DT,X2=+60 D C^%DTC S F60DT=X
  S ACTDT=3150801 ;activation date for all sites except beckley, little rock, upstate ny 
@@ -42,7 +42,7 @@ ENTER ;Entry point from nightly process
     .S DEBTOR6=$G(^RCD(340,DEBTOR,6)),DEBTOR0=$G(^(0)),HOLD=0,RCNEW=1
     .I $P(DEBTOR6,U,2),'$P(DEBTOR6,U,3) Q
     .S QUIT=1,FILE=$$FILE(DEBTOR0) Q:'FILE
-    .S EFFDT=P121DT
+    .S EFFDT=RC151DT
     .D PROC(DEBTOR,.QUIT,FILE,.HOLD,.EFFDT) Q:QUIT
     .D EN1^RCTOP2(DEBTOR,"M",FILE)
     .D EN1^RCTOP1(DEBTOR,TOTAL,"M",EFFDT,0,FILE)
@@ -179,13 +179,13 @@ PROC(DEBTOR,QUIT,FILE,HOLD,EFFDT) ;process bills for a specific debtor
     .;*** PRCA*4.5*338 start
     .Q:'CAT
     .;Check the Refer to TOP field to see if this should be referred, based on AR Category
-    .S BILLDT=$P(B6,U,21)
-    .Q:'$$RFCHK(CAT,"N",1.02,BILLDT)    ;PRCA*4.5*338
+    .;S BILLDT=$P(B6,U,21) ; PRCA*4.5*343 - change BILLDT to LETTER1(#61) field
+    .Q:'$$RFCHK(CAT,"N",1.02,$P(B6,U,21))    ;PRCA*4.5*338
     .;*** PRCA*4.5*338 end
     .Q:$D(^PRCA(430,"TCSP",BILL))  ;cross-serviced bills
     .;check for DOJ referral here
     .I $P(B6,U,4),($P(B6,U,5)="DOJ") Q
-    .I (BILLDT<P10YDT)!(BILLDT>P121DT)!(BILLDT<$P(DEBTOR6,U,3)) Q
+    .S BILLDT=$P(B6,U,1) I (BILLDT<P10YDT)!(BILLDT>RC151DT)!(BILLDT<$P(DEBTOR6,U,3)) Q  ; PRCA*4.5*343 - change BILLDT from DATE ACCOUNT ACTIVATED (#60) to LETTER1(#61)
     .I '$P(B6,U,3) D  Q
     ..;no 3rd letter being sent 
     ..N TDEB,TFIL

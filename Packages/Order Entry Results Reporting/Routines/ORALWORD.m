@@ -1,5 +1,5 @@
-ORALWORD ; SLC/JMH - Utilities for Checking if an order can be ordered ; 11/28/18 3:37pm
- ;;3.0;ORDER ENTRY/RESULTS REPORTING;**243,427**;Dec 17, 1997;Build 105
+ORALWORD ; SLC/JMH - Utilities for Checking if an order can be ordered ;Apr 21, 2021@10:02:50
+ ;;3.0;ORDER ENTRY/RESULTS REPORTING;**243,427,405**;Dec 17, 1997;Build 211
  ;External reference $$CL^YSCLTST2 controlled by DBIA 4556
  ;External reference $$OVERRIDE^YSCLTST2 controlled by DBIA 4556
  ;Reference to ^DIQ supported by DBIA #2056
@@ -16,7 +16,7 @@ ALLWORD(ORY,DFN,ORX,ORTYPE,PROV) ;
  ;ORTYPE="Q" Quick Order, ORX equal the IEN from file 101.43
  ;ORTYPE="N" New order, ORX equal the IEN from file 101.41
  ;
- I ORTYPE="E" S OROI=$G(^OR(100,ORX,.1,1,0))
+ I ORTYPE="E" S OROI=$G(^OR(100,ORX,.1,1,0)) N ORTXT D TEXT^ORQ12(.ORTXT,ORX) ; ajb added N and TEXT call
  I ORTYPE="Q" D
  .S QPIEN=$O(^ORD(101.41,"AB","OR GTX ORDERABLE ITEM","")) Q:QPIEN'>0
  .S QOIEN=$O(^ORD(101.41,ORX,6,"D",QPIEN,"")) Q:QOIEN'>0
@@ -32,26 +32,37 @@ ALLWORD(ORY,DFN,ORX,ORTYPE,PROV) ;
  N ORQUIT
  S ORQUIT=0
  I '$G(PROV) S PROV=DUZ
- I $G(PROV) D
- .I '$L($$DEA^XUSER(,PROV)) D
- ..S ORQUIT=1,ORY=1
- ..S ORQUIT=1,ORY=1
- ..S ORY(1)="*** You are not authorized to place Clozapine orders."
- ..S ORY(2)="You must have a DEA#.  Please contact your"
- ..S ORY(3)="CAC or IRM for more information. ***"
- .Q:ORQUIT
- .I '$D(^XUSEC("YSCL AUTHORIZED",PROV)) D
- ..S ORQUIT=1,ORY=1
- ..S ORY(1)="*** You are not authorized to place Clozapine orders."
- ..S ORY(2)="You must hold key YSCL AUTHORIZED.  Please contact your"
- ..S ORY(3)="CAC or IRM for more information on this key. ***"
+ I $G(PROV) D  ; ajb v32 *405
+ . N ORDEA,ORKEY S (ORDEA,ORKEY)=0
+ . I '$L($$DEA^XUSER(,PROV)) S ORDEA=1
+ . I '$D(^XUSEC("YSCL AUTHORIZED",PROV)) S ORKEY=1
+ . I +ORDEA!+ORKEY D
+ . . S ORQUIT=1,ORY=1
+ . . S ORY(1)="Warning:  This CLOZAPINE order will NOT be "_$S(ORTYPE="E":"transferred.",1:"placed.")
+ . . S ORY(2)=""
+ . . I +$D(ORTXT) S ORY(3)="" D
+ . . . N X S X=0 F  S X=$O(ORTXT(X)) Q:'+X  S ORY(3)=ORY(3)_ORTXT(X)
+ . . S:$G(ORY(3))'="" ORY(4)=""
+ . . S ORY(5)="You are NOT authorized to place CLOZAPINE orders."
+ . . S ORY(6)=""
+ . . S ORY(7)="Reason:  "_$S(+ORDEA&+ORKEY:"You do not have a DEA# and missing key YSCL AUTHORIZED.",+ORDEA:"You do not have a DEA#.",1:"You are missing key YSCL AUTHORIZED.")
+ . . S ORY(8)=""
+ . . S ORY(9)="Contact your Pharmacy for more information about the authorization requirements for ordering CLOZAPINE."
+ . . N ORMSG D GETWP^XPAR(.ORMSG,"SYS","OR CPRS CLOZAPINE CUSTOM MSG")
+ . . I +$D(ORMSG) S ORMSG=0 F  S ORMSG=$O(ORMSG(ORMSG)) Q:'+ORMSG  S ORY(8+ORMSG)=ORMSG(ORMSG,0) ; replace ORY(9) with custom message line(s)
+ . . ;S ORY(1)="*** You are not authorized to place Clozapine orders."
+ . . ;S ORY(2)="You must have a DEA#.  Please contact your"
+ . . ;S ORY(3)="CAC or IRM for more information. ***"
+ . . ;S ORY(1)="*** You are not authorized to place Clozapine orders."
+ . . ;S ORY(2)="You must hold key YSCL AUTHORIZED.  Please contact your"
+ . . ;S ORY(3)="CAC or IRM for more information on this key. ***"
  Q:ORQUIT
  ;  if is a cloz med , check if patient (DFN) can have a clozapine med
  S ORYS=$$CL^YSCLTST2(DFN)
  ;    if yes returns ORY=0
  I +ORYS>0 D BEFQUIT  Q
- ;    if no 
- ;      returns 
+ ;    if no
+ ;      returns
  ;    ORY=1
  ;    ORY(0)=CAPTION FOR DIALOG BOX
  ;    ORY(1-N)=MESSAGE TO DISPLAY

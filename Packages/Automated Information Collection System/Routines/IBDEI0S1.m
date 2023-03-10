@@ -1,128 +1,128 @@
-IBDEI0S1 ; ; 04-FEB-2020
- ;;3.0;IB ENCOUNTER FORM IMP/EXP;;FEB 04, 2020
+IBDEI0S1 ; ; 01-FEB-2022
+ ;;3.0;IB ENCOUNTER FORM IMP/EXP;;FEB 01, 2022
  Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,999) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
- ;;^UTILITY(U,$J,358.3,12503,1,0)
+ ;;^UTILITY(U,$J,358.3,12619,1,4,0)
+ ;;=4^F32.9
+ ;;^UTILITY(U,$J,358.3,12619,2)
+ ;;=^5003528
+ ;;^UTILITY(U,$J,358.3,12620,0)
+ ;;=F17.210^^49^611^6
+ ;;^UTILITY(U,$J,358.3,12620,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,12503,1,3,0)
- ;;=3^Benign Lipomatous Neop of Skin of Right Leg
- ;;^UTILITY(U,$J,358.3,12503,1,4,0)
- ;;=4^D17.23
- ;;^UTILITY(U,$J,358.3,12503,2)
- ;;=^5002010
- ;;^UTILITY(U,$J,358.3,12504,0)
- ;;=D17.1^^80^782^31
- ;;^UTILITY(U,$J,358.3,12504,1,0)
+ ;;^UTILITY(U,$J,358.3,12620,1,3,0)
+ ;;=3^Nicotine Dependence,Cigarettes,Uncomp
+ ;;^UTILITY(U,$J,358.3,12620,1,4,0)
+ ;;=4^F17.210
+ ;;^UTILITY(U,$J,358.3,12620,2)
+ ;;=^5003365
+ ;;^UTILITY(U,$J,358.3,12621,0)
+ ;;=F17.220^^49^611^5
+ ;;^UTILITY(U,$J,358.3,12621,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,12504,1,3,0)
- ;;=3^Benign Lipomatous Neop of Skin of Trunk
- ;;^UTILITY(U,$J,358.3,12504,1,4,0)
- ;;=4^D17.1
- ;;^UTILITY(U,$J,358.3,12504,2)
- ;;=^5002006
- ;;^UTILITY(U,$J,358.3,12505,0)
- ;;=G56.02^^80^782^32
- ;;^UTILITY(U,$J,358.3,12505,1,0)
+ ;;^UTILITY(U,$J,358.3,12621,1,3,0)
+ ;;=3^Nicotine Dependence,Chewing Tobacco,Uncomp
+ ;;^UTILITY(U,$J,358.3,12621,1,4,0)
+ ;;=4^F17.220
+ ;;^UTILITY(U,$J,358.3,12621,2)
+ ;;=^5003370
+ ;;^UTILITY(U,$J,358.3,12622,0)
+ ;;=F17.290^^49^611^7
+ ;;^UTILITY(U,$J,358.3,12622,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,12505,1,3,0)
- ;;=3^Carpal Tunnel Syndrome,Left Upper Limb
- ;;^UTILITY(U,$J,358.3,12505,1,4,0)
- ;;=4^G56.02
- ;;^UTILITY(U,$J,358.3,12505,2)
- ;;=^5004019
- ;;^UTILITY(U,$J,358.3,12506,0)
- ;;=G56.01^^80^782^33
- ;;^UTILITY(U,$J,358.3,12506,1,0)
+ ;;^UTILITY(U,$J,358.3,12622,1,3,0)
+ ;;=3^Nicotine Dependence,Oth Tobacco Product,Uncomp
+ ;;^UTILITY(U,$J,358.3,12622,1,4,0)
+ ;;=4^F17.290
+ ;;^UTILITY(U,$J,358.3,12622,2)
+ ;;=^5003375
+ ;;^UTILITY(U,$J,358.3,12623,0)
+ ;;=R45.851^^49^612^3
+ ;;^UTILITY(U,$J,358.3,12623,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,12506,1,3,0)
- ;;=3^Carpal Tunnel Syndrome,Right Upper Limb
- ;;^UTILITY(U,$J,358.3,12506,1,4,0)
- ;;=4^G56.01
- ;;^UTILITY(U,$J,358.3,12506,2)
- ;;=^5004018
- ;;^UTILITY(U,$J,358.3,12507,0)
- ;;=K12.2^^80^782^45
- ;;^UTILITY(U,$J,358.3,12507,1,0)
+ ;;^UTILITY(U,$J,358.3,12623,1,3,0)
+ ;;=3^Suicidal Ideations
+ ;;^UTILITY(U,$J,358.3,12623,1,4,0)
+ ;;=4^R45.851
+ ;;^UTILITY(U,$J,358.3,12623,2)
+ ;;=^5019474
+ ;;^UTILITY(U,$J,358.3,12624,0)
+ ;;=T14.91XA^^49^612^4
+ ;;^UTILITY(U,$J,358.3,12624,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,12507,1,3,0)
- ;;=3^Cellulitis of Mouth
- ;;^UTILITY(U,$J,358.3,12507,1,4,0)
- ;;=4^K12.2
- ;;^UTILITY(U,$J,358.3,12507,2)
- ;;=^5008485
- ;;^UTILITY(U,$J,358.3,12508,0)
- ;;=L03.311^^80^782^34
- ;;^UTILITY(U,$J,358.3,12508,1,0)
+ ;;^UTILITY(U,$J,358.3,12624,1,3,0)
+ ;;=3^Suicide Attempt,Initial Encntr
+ ;;^UTILITY(U,$J,358.3,12624,1,4,0)
+ ;;=4^T14.91XA
+ ;;^UTILITY(U,$J,358.3,12624,2)
+ ;;=^5151779
+ ;;^UTILITY(U,$J,358.3,12625,0)
+ ;;=T14.91XD^^49^612^6
+ ;;^UTILITY(U,$J,358.3,12625,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,12508,1,3,0)
- ;;=3^Cellulitis of Abdominal Wall
- ;;^UTILITY(U,$J,358.3,12508,1,4,0)
- ;;=4^L03.311
- ;;^UTILITY(U,$J,358.3,12508,2)
- ;;=^5009047
- ;;^UTILITY(U,$J,358.3,12509,0)
- ;;=L03.317^^80^782^35
- ;;^UTILITY(U,$J,358.3,12509,1,0)
+ ;;^UTILITY(U,$J,358.3,12625,1,3,0)
+ ;;=3^Suicide Attempt,Subsequent Encntr
+ ;;^UTILITY(U,$J,358.3,12625,1,4,0)
+ ;;=4^T14.91XD
+ ;;^UTILITY(U,$J,358.3,12625,2)
+ ;;=^5151780
+ ;;^UTILITY(U,$J,358.3,12626,0)
+ ;;=T14.91XS^^49^612^5
+ ;;^UTILITY(U,$J,358.3,12626,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,12509,1,3,0)
- ;;=3^Cellulitis of Buttock
- ;;^UTILITY(U,$J,358.3,12509,1,4,0)
- ;;=4^L03.317
- ;;^UTILITY(U,$J,358.3,12509,2)
- ;;=^5009053
- ;;^UTILITY(U,$J,358.3,12510,0)
- ;;=L03.313^^80^782^36
- ;;^UTILITY(U,$J,358.3,12510,1,0)
+ ;;^UTILITY(U,$J,358.3,12626,1,3,0)
+ ;;=3^Suicide Attempt,Sequela
+ ;;^UTILITY(U,$J,358.3,12626,1,4,0)
+ ;;=4^T14.91XS
+ ;;^UTILITY(U,$J,358.3,12626,2)
+ ;;=^5151781
+ ;;^UTILITY(U,$J,358.3,12627,0)
+ ;;=Z91.52^^49^612^1
+ ;;^UTILITY(U,$J,358.3,12627,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,12510,1,3,0)
- ;;=3^Cellulitis of Chest Wall
- ;;^UTILITY(U,$J,358.3,12510,1,4,0)
- ;;=4^L03.313
- ;;^UTILITY(U,$J,358.3,12510,2)
- ;;=^5009049
- ;;^UTILITY(U,$J,358.3,12511,0)
- ;;=L03.211^^80^782^37
- ;;^UTILITY(U,$J,358.3,12511,1,0)
+ ;;^UTILITY(U,$J,358.3,12627,1,3,0)
+ ;;=3^Personal Hx of Non-Suicidal Self-Harm
+ ;;^UTILITY(U,$J,358.3,12627,1,4,0)
+ ;;=4^Z91.52
+ ;;^UTILITY(U,$J,358.3,12627,2)
+ ;;=^5161318
+ ;;^UTILITY(U,$J,358.3,12628,0)
+ ;;=Z91.51^^49^612^2
+ ;;^UTILITY(U,$J,358.3,12628,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,12511,1,3,0)
- ;;=3^Cellulitis of Face
- ;;^UTILITY(U,$J,358.3,12511,1,4,0)
- ;;=4^L03.211
- ;;^UTILITY(U,$J,358.3,12511,2)
- ;;=^5009043
- ;;^UTILITY(U,$J,358.3,12512,0)
- ;;=L03.314^^80^782^38
- ;;^UTILITY(U,$J,358.3,12512,1,0)
+ ;;^UTILITY(U,$J,358.3,12628,1,3,0)
+ ;;=3^Personal Hx of Suicidal Behavior     
+ ;;^UTILITY(U,$J,358.3,12628,1,4,0)
+ ;;=4^Z91.51
+ ;;^UTILITY(U,$J,358.3,12628,2)
+ ;;=^5161317
+ ;;^UTILITY(U,$J,358.3,12629,0)
+ ;;=Z93.52^^49^613^1
+ ;;^UTILITY(U,$J,358.3,12629,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,12512,1,3,0)
- ;;=3^Cellulitis of Groin
- ;;^UTILITY(U,$J,358.3,12512,1,4,0)
- ;;=4^L03.314
- ;;^UTILITY(U,$J,358.3,12512,2)
- ;;=^5009050
- ;;^UTILITY(U,$J,358.3,12513,0)
- ;;=L03.811^^80^782^39
- ;;^UTILITY(U,$J,358.3,12513,1,0)
+ ;;^UTILITY(U,$J,358.3,12629,1,3,0)
+ ;;=3^Appendico-Vesicostomy Status
+ ;;^UTILITY(U,$J,358.3,12629,1,4,0)
+ ;;=4^Z93.52
+ ;;^UTILITY(U,$J,358.3,12629,2)
+ ;;=^5063649
+ ;;^UTILITY(U,$J,358.3,12630,0)
+ ;;=Z93.3^^49^613^9
+ ;;^UTILITY(U,$J,358.3,12630,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,12513,1,3,0)
- ;;=3^Cellulitis of Head
- ;;^UTILITY(U,$J,358.3,12513,1,4,0)
- ;;=4^L03.811
- ;;^UTILITY(U,$J,358.3,12513,2)
- ;;=^5009063
- ;;^UTILITY(U,$J,358.3,12514,0)
- ;;=L03.112^^80^782^40
- ;;^UTILITY(U,$J,358.3,12514,1,0)
+ ;;^UTILITY(U,$J,358.3,12630,1,3,0)
+ ;;=3^Colostomy Status
+ ;;^UTILITY(U,$J,358.3,12630,1,4,0)
+ ;;=4^Z93.3
+ ;;^UTILITY(U,$J,358.3,12630,2)
+ ;;=^5063645
+ ;;^UTILITY(U,$J,358.3,12631,0)
+ ;;=Z93.51^^49^613^10
+ ;;^UTILITY(U,$J,358.3,12631,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,12514,1,3,0)
- ;;=3^Cellulitis of Left Axilla
- ;;^UTILITY(U,$J,358.3,12514,1,4,0)
- ;;=4^L03.112
- ;;^UTILITY(U,$J,358.3,12514,2)
- ;;=^5009032
- ;;^UTILITY(U,$J,358.3,12515,0)
- ;;=L03.012^^80^782^41
- ;;^UTILITY(U,$J,358.3,12515,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,12515,1,3,0)
- ;;=3^Cellulitis of Left Finger
+ ;;^UTILITY(U,$J,358.3,12631,1,3,0)
+ ;;=3^Cutaneous-Vesicostomy Status
+ ;;^UTILITY(U,$J,358.3,12631,1,4,0)
+ ;;=4^Z93.51
+ ;;^UTILITY(U,$J,358.3,12631,2)
+ ;;=^5063648

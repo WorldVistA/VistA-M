@@ -1,5 +1,5 @@
 IBCEF2 ;ALB/TMP - FORMATTER SPECIFIC BILL FUNCTIONS ;8/6/03 10:54am
- ;;2.0;INTEGRATED BILLING;**52,85,51,137,232,155,296,349,403,400,432,488,461,547,592,608**;21-MAR-94;Build 90
+ ;;2.0;INTEGRATED BILLING;**52,85,51,137,232,155,296,349,403,400,432,488,461,547,592,608,665**;21-MAR-94;Build 28
  ;;Per VA Directive 6402, this routine should not be modified.
  ;
 HOS(IBIFN) ; Extract rev codes for inst. episode into IBXDATA
@@ -89,8 +89,9 @@ ALLPAYID(IBIFN,IBXDATA,SEQ) ; Returns clearinghouse id for all (SEQ="")
  . ; EJK *296* Send IBEBI for MRA secondary claims if it exists
  . I Z>1,IBMRA,IBEBI'="" S A=IBEBI Q
  . ;
+ . ;WCJ;IB*2.0*665;It was making LCOB not match OI6 for secondary payer on teriary claims
  . ; MRA secondary claim
- . I Z>1,IBMCR=1,$P(Z1,U,5)="C" S A=$S(IBINST:"I",1:"P")_"PRNT" Q
+ . ; I Z>1,IBMCR=1,$P(Z1,U,5)="C" S A=$S(IBINST:"I",1:"P")_"PRNT" Q
  . ;
  . ; Medicare is current payer (MRA request claim)
  . I $$WNRBILL^IBEFUNC(IBIFN,Z) S A=$S(IBINST:"12M61",1:"SMTX1") Q
@@ -205,7 +206,9 @@ M(CT) ; Calculate multi-valued field for 837 extract
  S CT=CT+1
  ;IB*2.0*547/TAZ Increase counter to 25
  ;Q $E(CT#12+$S(CT#12:0,1:12)_" ",1,2)
- Q $E(CT#25+$S(CT#25:0,1:25)_" ",1,2)
+ ;IB*2.0*665v1;JWS;4/1/21;Do not mod CT with any value, just return count
+ ;;Q $E(CT#25+$S(CT#25:0,1:25)_" ",1,2)
+ Q CT
  ;
 SVITM(IBA,LINE) ; Saves the linked items from the bill data extract into
  ; an array the formatter will use to link Rxs and prosthetics

@@ -1,10 +1,16 @@
-PRCASVC ;SF-ISC/YJK-ACCEPT, AMMEND AND CANCEL AR BILL ;9/6/95  2:09 PM
-V ;;4.5;Accounts Receivable;**1,21,48,90,136,138,249,274,315,338**;Mar 20, 1995;Build 69
+PRCASVC ;SF-ISC/YJK - ACCEPT, AMMEND AND CANCEL AR BILL ;9/6/95  2:09 PM
+V ;;4.5;Accounts Receivable;**1,21,48,90,136,138,249,274,315,338,392**;Mar 20, 1995;Build 10
  ;;Per VA Directive 6402, this routine should not be modified.
 REL ;Accept bill into AR
- N X,Y
+ N PRCABN,TRCARE,X,Y  ; PRCA*4.5*392
+ ; PRCA*4.5*392
+ S TRCARE=$S(PRCASV("CAT")=31:1,1:0) ; set to 1 for Tricare Patient charges
+ I TRCARE S PRCASV("AMT")=$P(PRCASV("FY"),U,2),$P(PRCASV("FY"),U,2)=0  ; clear 'original amount' for Tricare Patient charges
+ ;
  D ^PRCASVC6 G:$D(PRCAERR) Q3 S PRCADEBT=$O(^RCD(340,"B",PRCASV("DEBTOR"),0)) I 'PRCADEBT K DD,DO S DIC="^RCD(340,",DIC(0)="QL",X=PRCASV("DEBTOR"),DLAYGO=340 D FILE^DICN K DIC,DLAYGO,DO Q:Y<0  S PRCADEBT=+Y
- D FY S PRCAT=$P(^PRCA(430.2,PRCASV("CAT"),0),"^",6) F Y="IDNO^4","GPNO^6","GPNM^5","INPA^1" S:$D(PRCASV($P(Y,"^"))) $P(^PRCA(430,PRCASV("ARREC"),202),"^",$P(Y,"^",2))=PRCASV($P(Y,"^"))
+ D FY
+ I TRCARE S $P(PRCASV("FY"),U,2)=PRCASV("AMT")  ; PRCA*4.5*392
+ S PRCAT=$P(^PRCA(430.2,PRCASV("CAT"),0),"^",6) F Y="IDNO^4","GPNO^6","GPNM^5","INPA^1" S:$D(PRCASV($P(Y,"^"))) $P(^PRCA(430,PRCASV("ARREC"),202),"^",$P(Y,"^",2))=PRCASV($P(Y,"^"))
  S DIE="^PRCA(430,",DR="[PRCASV REL]",DA=PRCASV("ARREC") D ^DIE
 Q3 K PRCAT,PRCAORA,PRCADEBT,DIE,DR,%
  ;  set the fund for the bill (set in routine rcxfmsuf)
@@ -74,6 +80,7 @@ Q3 K PRCAT,PRCAORA,PRCADEBT,DIE,DR,%
  .S $P(^PRCA(430,DA,11),"^",18)=""
  .S RCCARE=$$TYP^IBRFN(DA),RCCARE(1)="8095",$P(^PRCA(430,DA,11),"^",6)=RCCARE(1)
  I $G(PRCASV("MEDCA"))!$G(PRCASV("MEDURE")) D MEDICARE
+ I TRCARE S PRCABN=PRCASV("ARREC") D TRAN^PRCASER S PRCASV("IBTRAN")=PRCAEN  ; file transaction for Tricare charges  PRCA*4.5*392
  K DA
  Q
  ;

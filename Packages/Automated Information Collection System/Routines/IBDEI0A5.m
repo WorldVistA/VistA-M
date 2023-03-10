@@ -1,634 +1,694 @@
-IBDEI0A5 ; ; 01-MAY-2020
- ;;3.0;IB ENCOUNTER FORM IMP/EXP;;MAY 01, 2020
+IBDEI0A5 ; ; 01-AUG-2022
+ ;;3.0;IB ENCOUNTER FORM IMP/EXP;;AUG 01, 2022
  Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,999) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
- ;;^UTILITY(U,$J,358.3,24820,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,24820,1,3,0)
- ;;=3^Disp fx of neck of 1st MC bone, left hand, sequela
- ;;^UTILITY(U,$J,358.3,24820,1,4,0)
- ;;=4^S62.252S
- ;;^UTILITY(U,$J,358.3,24820,2)
- ;;=^5033723
- ;;^UTILITY(U,$J,358.3,24821,0)
- ;;=S62.251S^^76^1009^30
- ;;^UTILITY(U,$J,358.3,24821,1,0)
- ;;=^358.31IA^4^2
  ;;^UTILITY(U,$J,358.3,24821,1,3,0)
- ;;=3^Disp fx of neck of 1st MC bone, right hand, sequela
+ ;;=3^Rheumatoid Nodule Left Wrist
  ;;^UTILITY(U,$J,358.3,24821,1,4,0)
- ;;=4^S62.251S
+ ;;=4^M06.332
  ;;^UTILITY(U,$J,358.3,24821,2)
- ;;=^5033716
+ ;;=^5010104
  ;;^UTILITY(U,$J,358.3,24822,0)
- ;;=S62.335S^^76^1009^35
+ ;;=M06.39^^74^981^133
  ;;^UTILITY(U,$J,358.3,24822,1,0)
  ;;=^358.31IA^4^2
  ;;^UTILITY(U,$J,358.3,24822,1,3,0)
- ;;=3^Disp fx of neck of 4th MC bone, left hand, sequela
+ ;;=3^Rheumatoid Nodule Mult Sites
  ;;^UTILITY(U,$J,358.3,24822,1,4,0)
- ;;=4^S62.335S
+ ;;=4^M06.39
  ;;^UTILITY(U,$J,358.3,24822,2)
- ;;=^5034010
+ ;;=^5010119
  ;;^UTILITY(U,$J,358.3,24823,0)
- ;;=S62.334S^^76^1009^36
+ ;;=M06.371^^74^981^134
  ;;^UTILITY(U,$J,358.3,24823,1,0)
  ;;=^358.31IA^4^2
  ;;^UTILITY(U,$J,358.3,24823,1,3,0)
- ;;=3^Disp fx of neck of 4th MC bone, right hand, sequela
+ ;;=3^Rheumatoid Nodule Right Ankle/Foot
  ;;^UTILITY(U,$J,358.3,24823,1,4,0)
- ;;=4^S62.334S
+ ;;=4^M06.371
  ;;^UTILITY(U,$J,358.3,24823,2)
- ;;=^5034003
+ ;;=^5010115
  ;;^UTILITY(U,$J,358.3,24824,0)
- ;;=S62.331S^^76^1009^31
+ ;;=M06.321^^74^981^135
  ;;^UTILITY(U,$J,358.3,24824,1,0)
  ;;=^358.31IA^4^2
  ;;^UTILITY(U,$J,358.3,24824,1,3,0)
- ;;=3^Disp fx of neck of 2nd MC bone, left hand, sequela
+ ;;=3^Rheumatoid Nodule Right Elbow
  ;;^UTILITY(U,$J,358.3,24824,1,4,0)
- ;;=4^S62.331S
+ ;;=4^M06.321
  ;;^UTILITY(U,$J,358.3,24824,2)
- ;;=^5033982
+ ;;=^5010100
  ;;^UTILITY(U,$J,358.3,24825,0)
- ;;=S62.330S^^76^1009^32
+ ;;=M06.341^^74^981^136
  ;;^UTILITY(U,$J,358.3,24825,1,0)
  ;;=^358.31IA^4^2
  ;;^UTILITY(U,$J,358.3,24825,1,3,0)
- ;;=3^Disp fx of neck of 2nd MC bone, right hand, sequela
+ ;;=3^Rheumatoid Nodule Right Hand
  ;;^UTILITY(U,$J,358.3,24825,1,4,0)
- ;;=4^S62.330S
+ ;;=4^M06.341
  ;;^UTILITY(U,$J,358.3,24825,2)
- ;;=^5033975
+ ;;=^5010106
  ;;^UTILITY(U,$J,358.3,24826,0)
- ;;=S62.333S^^76^1009^33
+ ;;=M06.351^^74^981^137
  ;;^UTILITY(U,$J,358.3,24826,1,0)
  ;;=^358.31IA^4^2
  ;;^UTILITY(U,$J,358.3,24826,1,3,0)
- ;;=3^Disp fx of neck of 3rd MC bone, left hand, sequela
+ ;;=3^Rheumatoid Nodule Right Hip
  ;;^UTILITY(U,$J,358.3,24826,1,4,0)
- ;;=4^S62.333S
+ ;;=4^M06.351
  ;;^UTILITY(U,$J,358.3,24826,2)
- ;;=^5033996
+ ;;=^5010109
  ;;^UTILITY(U,$J,358.3,24827,0)
- ;;=S62.332S^^76^1009^34
+ ;;=M06.361^^74^981^138
  ;;^UTILITY(U,$J,358.3,24827,1,0)
  ;;=^358.31IA^4^2
  ;;^UTILITY(U,$J,358.3,24827,1,3,0)
- ;;=3^Disp fx of neck of 3rd MC bone, right hand, sequela
+ ;;=3^Rheumatoid Nodule Right Knee
  ;;^UTILITY(U,$J,358.3,24827,1,4,0)
- ;;=4^S62.332S
+ ;;=4^M06.361
  ;;^UTILITY(U,$J,358.3,24827,2)
- ;;=^5033989
+ ;;=^5010112
  ;;^UTILITY(U,$J,358.3,24828,0)
- ;;=S62.327S^^76^1009^57
+ ;;=M06.311^^74^981^139
  ;;^UTILITY(U,$J,358.3,24828,1,0)
  ;;=^358.31IA^4^2
  ;;^UTILITY(U,$J,358.3,24828,1,3,0)
- ;;=3^Disp fx of shaft of 5th MC bone, left hand, sequela
+ ;;=3^Rheumatoid Nodule Right Shoulder
  ;;^UTILITY(U,$J,358.3,24828,1,4,0)
- ;;=4^S62.327S
+ ;;=4^M06.311
  ;;^UTILITY(U,$J,358.3,24828,2)
- ;;=^5033954
+ ;;=^5010097
  ;;^UTILITY(U,$J,358.3,24829,0)
- ;;=S62.326S^^76^1009^58
+ ;;=M06.331^^74^981^140
  ;;^UTILITY(U,$J,358.3,24829,1,0)
  ;;=^358.31IA^4^2
  ;;^UTILITY(U,$J,358.3,24829,1,3,0)
- ;;=3^Disp fx of shaft of 5th MC bone, right hand, sequela
+ ;;=3^Rheumatoid Nodule Right Wrist
  ;;^UTILITY(U,$J,358.3,24829,1,4,0)
- ;;=4^S62.326S
+ ;;=4^M06.331
  ;;^UTILITY(U,$J,358.3,24829,2)
- ;;=^5033947
+ ;;=^5010103
  ;;^UTILITY(U,$J,358.3,24830,0)
- ;;=S62.242S^^76^1009^49
+ ;;=M06.30^^74^981^141
  ;;^UTILITY(U,$J,358.3,24830,1,0)
  ;;=^358.31IA^4^2
  ;;^UTILITY(U,$J,358.3,24830,1,3,0)
- ;;=3^Disp fx of shaft of 1st MC bone, left hand, sequela
+ ;;=3^Rheumatoid Nodule Unspec Site
  ;;^UTILITY(U,$J,358.3,24830,1,4,0)
- ;;=4^S62.242S
+ ;;=4^M06.30
  ;;^UTILITY(U,$J,358.3,24830,2)
- ;;=^5033681
+ ;;=^5010096
  ;;^UTILITY(U,$J,358.3,24831,0)
- ;;=S62.241S^^76^1009^50
+ ;;=M06.38^^74^981^142
  ;;^UTILITY(U,$J,358.3,24831,1,0)
  ;;=^358.31IA^4^2
  ;;^UTILITY(U,$J,358.3,24831,1,3,0)
- ;;=3^Disp fx of shaft of 1st MC bone, right hand, sequela
+ ;;=3^Rheumatoid Nodule Vertebrae
  ;;^UTILITY(U,$J,358.3,24831,1,4,0)
- ;;=4^S62.241S
+ ;;=4^M06.38
  ;;^UTILITY(U,$J,358.3,24831,2)
- ;;=^5033674
+ ;;=^5010118
  ;;^UTILITY(U,$J,358.3,24832,0)
- ;;=S62.325S^^76^1009^55
+ ;;=M05.572^^74^981^77
  ;;^UTILITY(U,$J,358.3,24832,1,0)
  ;;=^358.31IA^4^2
  ;;^UTILITY(U,$J,358.3,24832,1,3,0)
- ;;=3^Disp fx of shaft of 4th MC bone, left hand, sequela
+ ;;=3^Rheum Polyneuropathy w/ Rheum Arth Left Ankle/Foot
  ;;^UTILITY(U,$J,358.3,24832,1,4,0)
- ;;=4^S62.325S
+ ;;=4^M05.572
  ;;^UTILITY(U,$J,358.3,24832,2)
- ;;=^5033940
+ ;;=^5009974
  ;;^UTILITY(U,$J,358.3,24833,0)
- ;;=S62.324S^^76^1009^56
+ ;;=M05.522^^74^981^78
  ;;^UTILITY(U,$J,358.3,24833,1,0)
  ;;=^358.31IA^4^2
  ;;^UTILITY(U,$J,358.3,24833,1,3,0)
- ;;=3^Disp fx of shaft of 4th MC bone, right hand, sequela
+ ;;=3^Rheum Polyneuropathy w/ Rheum Arth Left Elbow
  ;;^UTILITY(U,$J,358.3,24833,1,4,0)
- ;;=4^S62.324S
+ ;;=4^M05.522
  ;;^UTILITY(U,$J,358.3,24833,2)
- ;;=^5033933
+ ;;=^5009959
  ;;^UTILITY(U,$J,358.3,24834,0)
- ;;=S62.321S^^76^1009^51
+ ;;=M05.542^^74^981^79
  ;;^UTILITY(U,$J,358.3,24834,1,0)
  ;;=^358.31IA^4^2
  ;;^UTILITY(U,$J,358.3,24834,1,3,0)
- ;;=3^Disp fx of shaft of 2nd MC bone, left hand, sequela
+ ;;=3^Rheum Polyneuropathy w/ Rheum Arth Left Hand
  ;;^UTILITY(U,$J,358.3,24834,1,4,0)
- ;;=4^S62.321S
+ ;;=4^M05.542
  ;;^UTILITY(U,$J,358.3,24834,2)
- ;;=^5033912
+ ;;=^5009965
  ;;^UTILITY(U,$J,358.3,24835,0)
- ;;=S62.320S^^76^1009^52
+ ;;=M05.552^^74^981^80
  ;;^UTILITY(U,$J,358.3,24835,1,0)
  ;;=^358.31IA^4^2
  ;;^UTILITY(U,$J,358.3,24835,1,3,0)
- ;;=3^Disp fx of shaft of 2nd MC bone, right hand, sequela
+ ;;=3^Rheum Polyneuropathy w/ Rheum Arth Left Hip
  ;;^UTILITY(U,$J,358.3,24835,1,4,0)
- ;;=4^S62.320S
+ ;;=4^M05.552
  ;;^UTILITY(U,$J,358.3,24835,2)
- ;;=^5033905
+ ;;=^5009968
  ;;^UTILITY(U,$J,358.3,24836,0)
- ;;=S62.323S^^76^1009^53
+ ;;=M05.562^^74^981^81
  ;;^UTILITY(U,$J,358.3,24836,1,0)
  ;;=^358.31IA^4^2
  ;;^UTILITY(U,$J,358.3,24836,1,3,0)
- ;;=3^Disp fx of shaft of 3rd MC bone, left hand, sequela
+ ;;=3^Rheum Polyneuropathy w/ Rheum Arth Left Knee
  ;;^UTILITY(U,$J,358.3,24836,1,4,0)
- ;;=4^S62.323S
+ ;;=4^M05.562
  ;;^UTILITY(U,$J,358.3,24836,2)
- ;;=^5033926
+ ;;=^5009971
  ;;^UTILITY(U,$J,358.3,24837,0)
- ;;=S62.322S^^76^1009^54
+ ;;=M05.512^^74^981^82
  ;;^UTILITY(U,$J,358.3,24837,1,0)
  ;;=^358.31IA^4^2
  ;;^UTILITY(U,$J,358.3,24837,1,3,0)
- ;;=3^Disp fx of shaft of 3rd MC bone, right hand, sequela
+ ;;=3^Rheum Polyneuropathy w/ Rheum Arth Left Shoulder
  ;;^UTILITY(U,$J,358.3,24837,1,4,0)
- ;;=4^S62.322S
+ ;;=4^M05.512
  ;;^UTILITY(U,$J,358.3,24837,2)
- ;;=^5033919
+ ;;=^5009956
  ;;^UTILITY(U,$J,358.3,24838,0)
- ;;=S62.222S^^76^1009^59
+ ;;=M05.532^^74^981^83
  ;;^UTILITY(U,$J,358.3,24838,1,0)
  ;;=^358.31IA^4^2
  ;;^UTILITY(U,$J,358.3,24838,1,3,0)
- ;;=3^Disp rolando's fx, left hand, sequela
+ ;;=3^Rheum Polyneuropathy w/ Rheum Arth Left Wrist
  ;;^UTILITY(U,$J,358.3,24838,1,4,0)
- ;;=4^S62.222S
+ ;;=4^M05.532
  ;;^UTILITY(U,$J,358.3,24838,2)
- ;;=^5033597
+ ;;=^5009962
  ;;^UTILITY(U,$J,358.3,24839,0)
- ;;=S62.221S^^76^1009^60
+ ;;=M05.59^^74^981^84
  ;;^UTILITY(U,$J,358.3,24839,1,0)
  ;;=^358.31IA^4^2
  ;;^UTILITY(U,$J,358.3,24839,1,3,0)
- ;;=3^Disp rolando's fx, right hand, sequela
+ ;;=3^Rheum Polyneuropathy w/ Rheum Arth Mult Sites
  ;;^UTILITY(U,$J,358.3,24839,1,4,0)
- ;;=4^S62.221S
+ ;;=4^M05.59
  ;;^UTILITY(U,$J,358.3,24839,2)
- ;;=^5033590
+ ;;=^5009976
  ;;^UTILITY(U,$J,358.3,24840,0)
- ;;=S62.346S^^76^1009^67
+ ;;=M05.571^^74^981^85
  ;;^UTILITY(U,$J,358.3,24840,1,0)
  ;;=^358.31IA^4^2
  ;;^UTILITY(U,$J,358.3,24840,1,3,0)
- ;;=3^Nondisp fx of base of 5th MC bone, right hand, sequela
+ ;;=3^Rheum Polyneuropathy w/ Rheum Arth Right Ankle/Foot
  ;;^UTILITY(U,$J,358.3,24840,1,4,0)
- ;;=4^S62.346S
+ ;;=4^M05.571
  ;;^UTILITY(U,$J,358.3,24840,2)
- ;;=^5034087
+ ;;=^5009973
  ;;^UTILITY(U,$J,358.3,24841,0)
- ;;=S62.347S^^76^1009^68
+ ;;=M05.521^^74^981^86
  ;;^UTILITY(U,$J,358.3,24841,1,0)
  ;;=^358.31IA^4^2
  ;;^UTILITY(U,$J,358.3,24841,1,3,0)
- ;;=3^Nondisp fx of base of 5th MC bone. left hand, sequela
+ ;;=3^Rheum Polyneuropathy w/ Rheum Arth Right Elbow
  ;;^UTILITY(U,$J,358.3,24841,1,4,0)
- ;;=4^S62.347S
+ ;;=4^M05.521
  ;;^UTILITY(U,$J,358.3,24841,2)
- ;;=^5034094
+ ;;=^5009958
  ;;^UTILITY(U,$J,358.3,24842,0)
- ;;=S62.345S^^76^1009^65
+ ;;=M05.541^^74^981^87
  ;;^UTILITY(U,$J,358.3,24842,1,0)
  ;;=^358.31IA^4^2
  ;;^UTILITY(U,$J,358.3,24842,1,3,0)
- ;;=3^Nondisp fx of base of 4th MC bone, left hand, sequela
+ ;;=3^Rheum Polyneuropathy w/ Rheum Arth Right Hand
  ;;^UTILITY(U,$J,358.3,24842,1,4,0)
- ;;=4^S62.345S
+ ;;=4^M05.541
  ;;^UTILITY(U,$J,358.3,24842,2)
- ;;=^5034080
+ ;;=^5009964
  ;;^UTILITY(U,$J,358.3,24843,0)
- ;;=S62.344S^^76^1009^66
+ ;;=M05.551^^74^981^88
  ;;^UTILITY(U,$J,358.3,24843,1,0)
  ;;=^358.31IA^4^2
  ;;^UTILITY(U,$J,358.3,24843,1,3,0)
- ;;=3^Nondisp fx of base of 4th MC bone, right hand, sequela
+ ;;=3^Rheum Polyneuropathy w/ Rheum Arth Right Hip
  ;;^UTILITY(U,$J,358.3,24843,1,4,0)
- ;;=4^S62.344S
+ ;;=4^M05.551
  ;;^UTILITY(U,$J,358.3,24843,2)
- ;;=^5034073
+ ;;=^5009967
  ;;^UTILITY(U,$J,358.3,24844,0)
- ;;=S62.340S^^76^1009^61
+ ;;=M05.561^^74^981^89
  ;;^UTILITY(U,$J,358.3,24844,1,0)
  ;;=^358.31IA^4^2
  ;;^UTILITY(U,$J,358.3,24844,1,3,0)
- ;;=3^Nondisp fx of base of 2nd MC bone, right hand, sequela
+ ;;=3^Rheum Polyneuropathy w/ Rheum Arth Right Knee
  ;;^UTILITY(U,$J,358.3,24844,1,4,0)
- ;;=4^S62.340S
+ ;;=4^M05.561
  ;;^UTILITY(U,$J,358.3,24844,2)
- ;;=^5034045
+ ;;=^5009970
  ;;^UTILITY(U,$J,358.3,24845,0)
- ;;=S62.341S^^76^1009^62
+ ;;=M05.511^^74^981^90
  ;;^UTILITY(U,$J,358.3,24845,1,0)
  ;;=^358.31IA^4^2
  ;;^UTILITY(U,$J,358.3,24845,1,3,0)
- ;;=3^Nondisp fx of base of 2nd MC bone. left hand, sequela
+ ;;=3^Rheum Polyneuropathy w/ Rheum Arth Right Shoulder
  ;;^UTILITY(U,$J,358.3,24845,1,4,0)
- ;;=4^S62.341S
+ ;;=4^M05.511
  ;;^UTILITY(U,$J,358.3,24845,2)
- ;;=^5034052
+ ;;=^5009955
  ;;^UTILITY(U,$J,358.3,24846,0)
- ;;=S62.343S^^76^1009^63
+ ;;=M05.531^^74^981^91
  ;;^UTILITY(U,$J,358.3,24846,1,0)
  ;;=^358.31IA^4^2
  ;;^UTILITY(U,$J,358.3,24846,1,3,0)
- ;;=3^Nondisp fx of base of 3rd MC bone, left hand, sequela
+ ;;=3^Rheum Polyneuropathy w/ Rheum Arth Right Wrist
  ;;^UTILITY(U,$J,358.3,24846,1,4,0)
- ;;=4^S62.343S
+ ;;=4^M05.531
  ;;^UTILITY(U,$J,358.3,24846,2)
- ;;=^5034066
+ ;;=^5009961
  ;;^UTILITY(U,$J,358.3,24847,0)
- ;;=S62.342S^^76^1009^64
+ ;;=M05.50^^74^981^92
  ;;^UTILITY(U,$J,358.3,24847,1,0)
  ;;=^358.31IA^4^2
  ;;^UTILITY(U,$J,358.3,24847,1,3,0)
- ;;=3^Nondisp fx of base of 3rd MC bone, right hand, sequela
+ ;;=3^Rheum Polyneuropathy w/ Rheum Arth Unspec Site
  ;;^UTILITY(U,$J,358.3,24847,1,4,0)
- ;;=4^S62.342S
+ ;;=4^M05.50
  ;;^UTILITY(U,$J,358.3,24847,2)
- ;;=^5034059
+ ;;=^5009954
  ;;^UTILITY(U,$J,358.3,24848,0)
- ;;=S62.367S^^76^1009^95
+ ;;=G04.1^^74^981^143
  ;;^UTILITY(U,$J,358.3,24848,1,0)
  ;;=^358.31IA^4^2
  ;;^UTILITY(U,$J,358.3,24848,1,3,0)
- ;;=3^Nondisp fx of neck of 5th MC bone, left hand, sequela
+ ;;=3^Tropical Spastic Paraplegia
  ;;^UTILITY(U,$J,358.3,24848,1,4,0)
- ;;=4^S62.367S
+ ;;=4^G04.1
  ;;^UTILITY(U,$J,358.3,24848,2)
- ;;=^5034234
+ ;;=^5003733
  ;;^UTILITY(U,$J,358.3,24849,0)
- ;;=S62.366S^^76^1009^96
+ ;;=M19.90^^74^981^20
  ;;^UTILITY(U,$J,358.3,24849,1,0)
  ;;=^358.31IA^4^2
  ;;^UTILITY(U,$J,358.3,24849,1,3,0)
- ;;=3^Nondisp fx of neck of 5th MC bone, right hand, sequela
+ ;;=3^Osteoarthritis Unspec Site
  ;;^UTILITY(U,$J,358.3,24849,1,4,0)
- ;;=4^S62.366S
+ ;;=4^M19.90
  ;;^UTILITY(U,$J,358.3,24849,2)
- ;;=^5034227
+ ;;=^5010853
  ;;^UTILITY(U,$J,358.3,24850,0)
- ;;=S62.255S^^76^1009^87
+ ;;=M54.50^^74^981^16
  ;;^UTILITY(U,$J,358.3,24850,1,0)
  ;;=^358.31IA^4^2
  ;;^UTILITY(U,$J,358.3,24850,1,3,0)
- ;;=3^Nondisp fx of neck of 1st MC bone, left hand, sequela
+ ;;=3^Low Back Pain,Unspec
  ;;^UTILITY(U,$J,358.3,24850,1,4,0)
- ;;=4^S62.255S
+ ;;=4^M54.50
  ;;^UTILITY(U,$J,358.3,24850,2)
- ;;=^5033744
+ ;;=^5161215
  ;;^UTILITY(U,$J,358.3,24851,0)
- ;;=S62.254S^^76^1009^88
+ ;;=M54.59^^74^981^15
  ;;^UTILITY(U,$J,358.3,24851,1,0)
  ;;=^358.31IA^4^2
  ;;^UTILITY(U,$J,358.3,24851,1,3,0)
- ;;=3^Nondisp fx of neck of 1st MC bone, right hand, sequela
+ ;;=3^Low Back Pain,Other
  ;;^UTILITY(U,$J,358.3,24851,1,4,0)
- ;;=4^S62.254S
+ ;;=4^M54.59
  ;;^UTILITY(U,$J,358.3,24851,2)
- ;;=^5033737
+ ;;=^5161217
  ;;^UTILITY(U,$J,358.3,24852,0)
- ;;=S62.365S^^76^1009^93
+ ;;=M54.51^^74^981^17
  ;;^UTILITY(U,$J,358.3,24852,1,0)
  ;;=^358.31IA^4^2
  ;;^UTILITY(U,$J,358.3,24852,1,3,0)
- ;;=3^Nondisp fx of neck of 4th MC bone, left hand, sequela
+ ;;=3^Low Back Pain,Vertebrogenic
  ;;^UTILITY(U,$J,358.3,24852,1,4,0)
- ;;=4^S62.365S
+ ;;=4^M54.51
  ;;^UTILITY(U,$J,358.3,24852,2)
- ;;=^5034220
+ ;;=^5161216
  ;;^UTILITY(U,$J,358.3,24853,0)
- ;;=S62.364S^^76^1009^94
+ ;;=Z79.1^^74^981^14
  ;;^UTILITY(U,$J,358.3,24853,1,0)
  ;;=^358.31IA^4^2
  ;;^UTILITY(U,$J,358.3,24853,1,3,0)
- ;;=3^Nondisp fx of neck of 4th MC bone, right hand, sequela
+ ;;=3^Long Term (Current) Use of NSAID
  ;;^UTILITY(U,$J,358.3,24853,1,4,0)
- ;;=4^S62.364S
+ ;;=4^Z79.1
  ;;^UTILITY(U,$J,358.3,24853,2)
- ;;=^5034213
+ ;;=^5063332
  ;;^UTILITY(U,$J,358.3,24854,0)
- ;;=S62.361S^^76^1009^89
+ ;;=Z48.02^^74^982^1
  ;;^UTILITY(U,$J,358.3,24854,1,0)
  ;;=^358.31IA^4^2
  ;;^UTILITY(U,$J,358.3,24854,1,3,0)
- ;;=3^Nondisp fx of neck of 2nd MC bone, left hand, sequela
+ ;;=3^Suture Removal
  ;;^UTILITY(U,$J,358.3,24854,1,4,0)
- ;;=4^S62.361S
+ ;;=4^Z48.02
  ;;^UTILITY(U,$J,358.3,24854,2)
- ;;=^5034192
+ ;;=^5063035
  ;;^UTILITY(U,$J,358.3,24855,0)
- ;;=S62.360S^^76^1009^90
+ ;;=J70.1^^74^983^1
  ;;^UTILITY(U,$J,358.3,24855,1,0)
  ;;=^358.31IA^4^2
  ;;^UTILITY(U,$J,358.3,24855,1,3,0)
- ;;=3^Nondisp fx of neck of 2nd MC bone, right hand, sequela
+ ;;=3^Chr Pulmonary Manifestations d/t Radiation
  ;;^UTILITY(U,$J,358.3,24855,1,4,0)
- ;;=4^S62.360S
+ ;;=4^J70.1
  ;;^UTILITY(U,$J,358.3,24855,2)
- ;;=^5034185
+ ;;=^269983
  ;;^UTILITY(U,$J,358.3,24856,0)
- ;;=S62.363S^^76^1009^91
+ ;;=J70.0^^74^984^1
  ;;^UTILITY(U,$J,358.3,24856,1,0)
  ;;=^358.31IA^4^2
  ;;^UTILITY(U,$J,358.3,24856,1,3,0)
- ;;=3^Nondisp fx of neck of 3rd MC bone, left hand, sequela
+ ;;=3^Acute Pulmonary Manifestations d/t Radiation
  ;;^UTILITY(U,$J,358.3,24856,1,4,0)
- ;;=4^S62.363S
+ ;;=4^J70.0
  ;;^UTILITY(U,$J,358.3,24856,2)
- ;;=^5034206
+ ;;=^269982
  ;;^UTILITY(U,$J,358.3,24857,0)
- ;;=S62.362S^^76^1009^92
+ ;;=J63.0^^74^984^2
  ;;^UTILITY(U,$J,358.3,24857,1,0)
  ;;=^358.31IA^4^2
  ;;^UTILITY(U,$J,358.3,24857,1,3,0)
- ;;=3^Nondisp fx of neck of 3rd MC bone, right hand, sequela
+ ;;=3^Aluminosis of Lung
  ;;^UTILITY(U,$J,358.3,24857,1,4,0)
- ;;=4^S62.362S
+ ;;=4^J63.0
  ;;^UTILITY(U,$J,358.3,24857,2)
- ;;=^5034199
+ ;;=^5008265
  ;;^UTILITY(U,$J,358.3,24858,0)
- ;;=S62.357S^^76^1009^115
+ ;;=J63.1^^74^984^3
  ;;^UTILITY(U,$J,358.3,24858,1,0)
  ;;=^358.31IA^4^2
  ;;^UTILITY(U,$J,358.3,24858,1,3,0)
- ;;=3^Nondisp fx of shaft of 5th MC bone, left hand, sequela
+ ;;=3^Bauxite Fibrosis of Lung
  ;;^UTILITY(U,$J,358.3,24858,1,4,0)
- ;;=4^S62.357S
+ ;;=4^J63.1
  ;;^UTILITY(U,$J,358.3,24858,2)
- ;;=^5034164
+ ;;=^5008266
  ;;^UTILITY(U,$J,358.3,24859,0)
- ;;=S62.356S^^76^1009^116
+ ;;=J63.2^^74^984^4
  ;;^UTILITY(U,$J,358.3,24859,1,0)
  ;;=^358.31IA^4^2
  ;;^UTILITY(U,$J,358.3,24859,1,3,0)
- ;;=3^Nondisp fx of shaft of 5th MC bone, right hand, sequela
+ ;;=3^Berylliosis
  ;;^UTILITY(U,$J,358.3,24859,1,4,0)
- ;;=4^S62.356S
+ ;;=4^J63.2
  ;;^UTILITY(U,$J,358.3,24859,2)
- ;;=^5034157
+ ;;=^13594
  ;;^UTILITY(U,$J,358.3,24860,0)
- ;;=S62.245S^^76^1009^107
+ ;;=J60.^^74^984^5
  ;;^UTILITY(U,$J,358.3,24860,1,0)
  ;;=^358.31IA^4^2
  ;;^UTILITY(U,$J,358.3,24860,1,3,0)
- ;;=3^Nondisp fx of shaft of 1st MC bone, left hand, sequela
+ ;;=3^Coalworker's Pneumoconiosis
  ;;^UTILITY(U,$J,358.3,24860,1,4,0)
- ;;=4^S62.245S
+ ;;=4^J60.
  ;;^UTILITY(U,$J,358.3,24860,2)
- ;;=^5033702
+ ;;=^5008261
  ;;^UTILITY(U,$J,358.3,24861,0)
- ;;=S62.244S^^76^1009^108
+ ;;=J63.3^^74^984^9
  ;;^UTILITY(U,$J,358.3,24861,1,0)
  ;;=^358.31IA^4^2
  ;;^UTILITY(U,$J,358.3,24861,1,3,0)
- ;;=3^Nondisp fx of shaft of 1st MC bone, right hand, sequela
+ ;;=3^Graphite Fibrosis of Lung
  ;;^UTILITY(U,$J,358.3,24861,1,4,0)
- ;;=4^S62.244S
+ ;;=4^J63.3
  ;;^UTILITY(U,$J,358.3,24861,2)
- ;;=^5033695
+ ;;=^5008267
  ;;^UTILITY(U,$J,358.3,24862,0)
- ;;=S62.355S^^76^1009^113
+ ;;=J65.^^74^984^10
  ;;^UTILITY(U,$J,358.3,24862,1,0)
  ;;=^358.31IA^4^2
  ;;^UTILITY(U,$J,358.3,24862,1,3,0)
- ;;=3^Nondisp fx of shaft of 4th MC bone, left hand, sequela
+ ;;=3^Pneumoconiosis Associated w/ Tuberculosis
  ;;^UTILITY(U,$J,358.3,24862,1,4,0)
- ;;=4^S62.355S
+ ;;=4^J65.
  ;;^UTILITY(U,$J,358.3,24862,2)
- ;;=^5034150
+ ;;=^5008272
  ;;^UTILITY(U,$J,358.3,24863,0)
- ;;=S62.354S^^76^1009^114
+ ;;=J61.^^74^984^11
  ;;^UTILITY(U,$J,358.3,24863,1,0)
  ;;=^358.31IA^4^2
  ;;^UTILITY(U,$J,358.3,24863,1,3,0)
- ;;=3^Nondisp fx of shaft of 4th MC bone, right hand, sequela
+ ;;=3^Pneumoconiosis d/t Asbestos/Oth Mineral Fibers
  ;;^UTILITY(U,$J,358.3,24863,1,4,0)
- ;;=4^S62.354S
+ ;;=4^J61.
  ;;^UTILITY(U,$J,358.3,24863,2)
- ;;=^5034143
+ ;;=^5008262
  ;;^UTILITY(U,$J,358.3,24864,0)
- ;;=S62.351S^^76^1009^109
+ ;;=J62.8^^74^984^12
  ;;^UTILITY(U,$J,358.3,24864,1,0)
  ;;=^358.31IA^4^2
  ;;^UTILITY(U,$J,358.3,24864,1,3,0)
- ;;=3^Nondisp fx of shaft of 2nd MC bone, left hand, sequela
+ ;;=3^Pneumoconiosis d/t Dust Containing Silica
  ;;^UTILITY(U,$J,358.3,24864,1,4,0)
- ;;=4^S62.351S
+ ;;=4^J62.8
  ;;^UTILITY(U,$J,358.3,24864,2)
- ;;=^5034122
+ ;;=^5008264
  ;;^UTILITY(U,$J,358.3,24865,0)
- ;;=S62.350S^^76^1009^110
+ ;;=J62.0^^74^984^13
  ;;^UTILITY(U,$J,358.3,24865,1,0)
  ;;=^358.31IA^4^2
  ;;^UTILITY(U,$J,358.3,24865,1,3,0)
- ;;=3^Nondisp fx of shaft of 2nd MC bone, right hand, sequela
+ ;;=3^Pneumoconiosis d/t Talc Dust
  ;;^UTILITY(U,$J,358.3,24865,1,4,0)
- ;;=4^S62.350S
+ ;;=4^J62.0
  ;;^UTILITY(U,$J,358.3,24865,2)
- ;;=^5034115
+ ;;=^5008263
  ;;^UTILITY(U,$J,358.3,24866,0)
- ;;=S62.353S^^76^1009^111
+ ;;=J63.4^^74^984^15
  ;;^UTILITY(U,$J,358.3,24866,1,0)
  ;;=^358.31IA^4^2
  ;;^UTILITY(U,$J,358.3,24866,1,3,0)
- ;;=3^Nondisp fx of shaft of 3rd MC bone, left hand, sequela
+ ;;=3^Siderosis
  ;;^UTILITY(U,$J,358.3,24866,1,4,0)
- ;;=4^S62.353S
+ ;;=4^J63.4
  ;;^UTILITY(U,$J,358.3,24866,2)
- ;;=^5034136
+ ;;=^5008268
  ;;^UTILITY(U,$J,358.3,24867,0)
- ;;=S62.352S^^76^1009^112
+ ;;=J63.5^^74^984^16
  ;;^UTILITY(U,$J,358.3,24867,1,0)
  ;;=^358.31IA^4^2
  ;;^UTILITY(U,$J,358.3,24867,1,3,0)
- ;;=3^Nondisp fx of shaft of 3rd MC bone, right hand, sequela
+ ;;=3^Stannosis
  ;;^UTILITY(U,$J,358.3,24867,1,4,0)
- ;;=4^S62.352S
+ ;;=4^J63.5
  ;;^UTILITY(U,$J,358.3,24867,2)
- ;;=^5034129
+ ;;=^5008269
  ;;^UTILITY(U,$J,358.3,24868,0)
- ;;=S62.225S^^76^1009^117
+ ;;=J64.^^74^984^14
  ;;^UTILITY(U,$J,358.3,24868,1,0)
  ;;=^358.31IA^4^2
  ;;^UTILITY(U,$J,358.3,24868,1,3,0)
- ;;=3^Nondisp rolando's fx, left hand, sequela
+ ;;=3^Pneumoconiosis,Unspec
  ;;^UTILITY(U,$J,358.3,24868,1,4,0)
- ;;=4^S62.225S
+ ;;=4^J64.
  ;;^UTILITY(U,$J,358.3,24868,2)
- ;;=^5033618
+ ;;=^5008271
  ;;^UTILITY(U,$J,358.3,24869,0)
- ;;=S62.224S^^76^1009^118
+ ;;=J82.81^^74^984^8
  ;;^UTILITY(U,$J,358.3,24869,1,0)
  ;;=^358.31IA^4^2
  ;;^UTILITY(U,$J,358.3,24869,1,3,0)
- ;;=3^Nondisp rolando's fx, right hand, sequela
+ ;;=3^Eosinophilic Pneumonia,Chronic
  ;;^UTILITY(U,$J,358.3,24869,1,4,0)
- ;;=4^S62.224S
+ ;;=4^J82.81
  ;;^UTILITY(U,$J,358.3,24869,2)
- ;;=^5033611
+ ;;=^24374
  ;;^UTILITY(U,$J,358.3,24870,0)
- ;;=M84.442S^^76^1009^120
+ ;;=J82.82^^74^984^7
  ;;^UTILITY(U,$J,358.3,24870,1,0)
  ;;=^358.31IA^4^2
  ;;^UTILITY(U,$J,358.3,24870,1,3,0)
- ;;=3^Pathological fracture, left hand, sequela
+ ;;=3^Eosinophilic Pneumonia,Acute
  ;;^UTILITY(U,$J,358.3,24870,1,4,0)
- ;;=4^M84.442S
+ ;;=4^J82.82
  ;;^UTILITY(U,$J,358.3,24870,2)
- ;;=^5013877
+ ;;=^5159205
  ;;^UTILITY(U,$J,358.3,24871,0)
- ;;=M84.441S^^76^1009^122
+ ;;=J82.83^^74^984^6
  ;;^UTILITY(U,$J,358.3,24871,1,0)
  ;;=^358.31IA^4^2
  ;;^UTILITY(U,$J,358.3,24871,1,3,0)
- ;;=3^Pathological fracture, right hand, sequela
+ ;;=3^Eosinophilic Asthma
  ;;^UTILITY(U,$J,358.3,24871,1,4,0)
- ;;=4^M84.441S
+ ;;=4^J82.83
  ;;^UTILITY(U,$J,358.3,24871,2)
- ;;=^5013871
+ ;;=^5159206
  ;;^UTILITY(U,$J,358.3,24872,0)
- ;;=M84.342S^^76^1009^124
+ ;;=G89.22^^74^985^2
  ;;^UTILITY(U,$J,358.3,24872,1,0)
  ;;=^358.31IA^4^2
  ;;^UTILITY(U,$J,358.3,24872,1,3,0)
- ;;=3^Stress fracture, left hand, sequela
+ ;;=3^Chr Post-Thoracotomy Pain
  ;;^UTILITY(U,$J,358.3,24872,1,4,0)
- ;;=4^M84.342S
+ ;;=4^G89.22
  ;;^UTILITY(U,$J,358.3,24872,2)
- ;;=^5013649
+ ;;=^5004156
  ;;^UTILITY(U,$J,358.3,24873,0)
- ;;=M84.341S^^76^1009^126
+ ;;=G89.3^^74^985^4
  ;;^UTILITY(U,$J,358.3,24873,1,0)
  ;;=^358.31IA^4^2
  ;;^UTILITY(U,$J,358.3,24873,1,3,0)
- ;;=3^Stress fracture, right hand, sequela
+ ;;=3^Neoplasm Related Pain
  ;;^UTILITY(U,$J,358.3,24873,1,4,0)
- ;;=4^M84.341S
+ ;;=4^G89.3
  ;;^UTILITY(U,$J,358.3,24873,2)
- ;;=^5013643
+ ;;=^5004159
  ;;^UTILITY(U,$J,358.3,24874,0)
- ;;=S62.631S^^76^1009^11
+ ;;=G89.18^^74^985^1
  ;;^UTILITY(U,$J,358.3,24874,1,0)
  ;;=^358.31IA^4^2
  ;;^UTILITY(U,$J,358.3,24874,1,3,0)
- ;;=3^Disp fx of distal phalanx of left index finger, sequela
+ ;;=3^Acute Postprocedural Pain
  ;;^UTILITY(U,$J,358.3,24874,1,4,0)
- ;;=4^S62.631S
+ ;;=4^G89.18
  ;;^UTILITY(U,$J,358.3,24874,2)
- ;;=^5034605
+ ;;=^5004154
  ;;^UTILITY(U,$J,358.3,24875,0)
- ;;=S62.637S^^76^1009^12
+ ;;=G89.29^^74^985^3
  ;;^UTILITY(U,$J,358.3,24875,1,0)
  ;;=^358.31IA^4^2
  ;;^UTILITY(U,$J,358.3,24875,1,3,0)
- ;;=3^Disp fx of distal phalanx of left little finger, sequela
+ ;;=3^Chronic Pain
  ;;^UTILITY(U,$J,358.3,24875,1,4,0)
- ;;=4^S62.637S
+ ;;=4^G89.29
  ;;^UTILITY(U,$J,358.3,24875,2)
- ;;=^5034647
+ ;;=^5004158
  ;;^UTILITY(U,$J,358.3,24876,0)
- ;;=S62.633S^^76^1009^13
+ ;;=J94.1^^74^986^1
  ;;^UTILITY(U,$J,358.3,24876,1,0)
  ;;=^358.31IA^4^2
  ;;^UTILITY(U,$J,358.3,24876,1,3,0)
- ;;=3^Disp fx of distal phalanx of left middle finger, sequela
+ ;;=3^Fibrothorax
  ;;^UTILITY(U,$J,358.3,24876,1,4,0)
- ;;=4^S62.633S
+ ;;=4^J94.1
  ;;^UTILITY(U,$J,358.3,24876,2)
- ;;=^5034619
+ ;;=^5008317
  ;;^UTILITY(U,$J,358.3,24877,0)
- ;;=S62.635S^^76^1009^14
+ ;;=C45.0^^74^986^2
  ;;^UTILITY(U,$J,358.3,24877,1,0)
  ;;=^358.31IA^4^2
  ;;^UTILITY(U,$J,358.3,24877,1,3,0)
- ;;=3^Disp fx of distal phalanx of left ring finger, sequela
+ ;;=3^Pleura Mesothelioma
  ;;^UTILITY(U,$J,358.3,24877,1,4,0)
- ;;=4^S62.635S
+ ;;=4^C45.0
  ;;^UTILITY(U,$J,358.3,24877,2)
- ;;=^5034633
+ ;;=^5001095
  ;;^UTILITY(U,$J,358.3,24878,0)
- ;;=S62.630S^^76^1009^16
+ ;;=J94.8^^74^986^4
  ;;^UTILITY(U,$J,358.3,24878,1,0)
  ;;=^358.31IA^4^2
  ;;^UTILITY(U,$J,358.3,24878,1,3,0)
- ;;=3^Disp fx of distal phalanx of right index finger, sequela
+ ;;=3^Pleural Conditions NEC
  ;;^UTILITY(U,$J,358.3,24878,1,4,0)
- ;;=4^S62.630S
+ ;;=4^J94.8
  ;;^UTILITY(U,$J,358.3,24878,2)
- ;;=^5034598
+ ;;=^5008319
  ;;^UTILITY(U,$J,358.3,24879,0)
- ;;=S62.636S^^76^1009^17
+ ;;=J94.9^^74^986^3
  ;;^UTILITY(U,$J,358.3,24879,1,0)
  ;;=^358.31IA^4^2
  ;;^UTILITY(U,$J,358.3,24879,1,3,0)
- ;;=3^Disp fx of distal phalanx of right little finger, sequela
+ ;;=3^Pleural Condition,Unspec
  ;;^UTILITY(U,$J,358.3,24879,1,4,0)
- ;;=4^S62.636S
+ ;;=4^J94.9
  ;;^UTILITY(U,$J,358.3,24879,2)
- ;;=^5034640
+ ;;=^5008320
  ;;^UTILITY(U,$J,358.3,24880,0)
- ;;=S62.632S^^76^1009^18
+ ;;=J91.8^^74^986^6
  ;;^UTILITY(U,$J,358.3,24880,1,0)
  ;;=^358.31IA^4^2
  ;;^UTILITY(U,$J,358.3,24880,1,3,0)
- ;;=3^Disp fx of distal phalanx of right middle finger, sequela
+ ;;=3^Pleural Effusion in Conditions Classified Elsewhere
  ;;^UTILITY(U,$J,358.3,24880,1,4,0)
- ;;=4^S62.632S
+ ;;=4^J91.8
  ;;^UTILITY(U,$J,358.3,24880,2)
- ;;=^5034612
+ ;;=^5008311
  ;;^UTILITY(U,$J,358.3,24881,0)
- ;;=S62.634S^^76^1009^19
+ ;;=J90.^^74^986^5
  ;;^UTILITY(U,$J,358.3,24881,1,0)
  ;;=^358.31IA^4^2
  ;;^UTILITY(U,$J,358.3,24881,1,3,0)
- ;;=3^Disp fx of distal phalanx of right ring finger, sequela
+ ;;=3^Pleural Effusion NEC
  ;;^UTILITY(U,$J,358.3,24881,1,4,0)
- ;;=4^S62.634S
+ ;;=4^J90.
  ;;^UTILITY(U,$J,358.3,24881,2)
- ;;=^5034626
+ ;;=^5008310
  ;;^UTILITY(U,$J,358.3,24882,0)
- ;;=S62.621S^^76^1009^21
+ ;;=J92.0^^74^986^7
  ;;^UTILITY(U,$J,358.3,24882,1,0)
  ;;=^358.31IA^4^2
  ;;^UTILITY(U,$J,358.3,24882,1,3,0)
- ;;=3^Disp fx of medial phalanx of left index finger, sequela
+ ;;=3^Pleural Plaque w/ Presence of Asbestos
  ;;^UTILITY(U,$J,358.3,24882,1,4,0)
- ;;=4^S62.621S
+ ;;=4^J92.0
  ;;^UTILITY(U,$J,358.3,24882,2)
- ;;=^5034535
+ ;;=^5008312
  ;;^UTILITY(U,$J,358.3,24883,0)
- ;;=S62.627S^^76^1009^22
+ ;;=J92.9^^74^986^8
+ ;;^UTILITY(U,$J,358.3,24883,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,24883,1,3,0)
+ ;;=3^Pleural Plaque w/o Asbestos
+ ;;^UTILITY(U,$J,358.3,24883,1,4,0)
+ ;;=4^J92.9
+ ;;^UTILITY(U,$J,358.3,24883,2)
+ ;;=^5008313
+ ;;^UTILITY(U,$J,358.3,24884,0)
+ ;;=R09.1^^74^986^9
+ ;;^UTILITY(U,$J,358.3,24884,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,24884,1,3,0)
+ ;;=3^Pleurisy
+ ;;^UTILITY(U,$J,358.3,24884,1,4,0)
+ ;;=4^R09.1
+ ;;^UTILITY(U,$J,358.3,24884,2)
+ ;;=^95428
+ ;;^UTILITY(U,$J,358.3,24885,0)
+ ;;=J86.0^^74^986^10
+ ;;^UTILITY(U,$J,358.3,24885,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,24885,1,3,0)
+ ;;=3^Pyothorax w/ Fistula
+ ;;^UTILITY(U,$J,358.3,24885,1,4,0)
+ ;;=4^J86.0
+ ;;^UTILITY(U,$J,358.3,24885,2)
+ ;;=^5008308
+ ;;^UTILITY(U,$J,358.3,24886,0)
+ ;;=J86.9^^74^986^11
+ ;;^UTILITY(U,$J,358.3,24886,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,24886,1,3,0)
+ ;;=3^Pyothorax w/o Fistula
+ ;;^UTILITY(U,$J,358.3,24886,1,4,0)
+ ;;=4^J86.9
+ ;;^UTILITY(U,$J,358.3,24886,2)
+ ;;=^5008309
+ ;;^UTILITY(U,$J,358.3,24887,0)
+ ;;=F41.9^^74^987^2
+ ;;^UTILITY(U,$J,358.3,24887,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,24887,1,3,0)
+ ;;=3^Anxiety Disorder,Unspec
+ ;;^UTILITY(U,$J,358.3,24887,1,4,0)
+ ;;=4^F41.9
+ ;;^UTILITY(U,$J,358.3,24887,2)
+ ;;=^5003567
+ ;;^UTILITY(U,$J,358.3,24888,0)
+ ;;=F10.20^^74^987^1
+ ;;^UTILITY(U,$J,358.3,24888,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,24888,1,3,0)
+ ;;=3^Alcohol Dependence,Uncomplicated
+ ;;^UTILITY(U,$J,358.3,24888,1,4,0)
+ ;;=4^F10.20
+ ;;^UTILITY(U,$J,358.3,24888,2)
+ ;;=^5003081
+ ;;^UTILITY(U,$J,358.3,24889,0)
+ ;;=F32.9^^74^987^13
+ ;;^UTILITY(U,$J,358.3,24889,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,24889,1,3,0)
+ ;;=3^MDD,Single Episode,Unspec
+ ;;^UTILITY(U,$J,358.3,24889,1,4,0)
+ ;;=4^F32.9
+ ;;^UTILITY(U,$J,358.3,24889,2)
+ ;;=^5003528
+ ;;^UTILITY(U,$J,358.3,24890,0)
+ ;;=F17.221^^74^987^14
+ ;;^UTILITY(U,$J,358.3,24890,1,0)
+ ;;=^358.31IA^4^2

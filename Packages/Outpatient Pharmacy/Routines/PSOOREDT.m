@@ -1,17 +1,18 @@
-PSOOREDT ;BIR/SAB - Edit orders from backdoor ;5/8/08 3:27pm
- ;;7.0;OUTPATIENT PHARMACY;**4,20,27,37,57,46,78,102,104,119,143,148,260,281,304,289,298,379,377,391,313,427,411,505,517,574**;DEC 1997;Build 53
+PSOOREDT ;BIR/SAB - Edit orders from backdoor ;Jan 25, 2022@14:31:38
+ ;;7.0;OUTPATIENT PHARMACY;**4,20,27,37,57,46,78,102,104,119,143,148,260,281,304,289,298,379,377,391,313,427,411,505,517,574,524,617,441**;DEC 1997;Build 208
  ;External reference to ^PSDRUG( supported by DBIA 221
- ;External reference to L^PSSLOCK supported by DBIA 2789
- ;External reference to UL^PSSLOCK supported by DBIA 2789
- ;External reference to PSOL^PSSLOCK supported by DBIA 2789
- ;External reference to PSOUL^PSSLOCK supported by DBIA 2789
+ ;External reference to ^PSSLOCK supported by DBIA 2789
  ;External reference to ^VA(200 supported by DBIA 10060
+ ;
+ ;*524 add Hazardous meds alerts
+ ;
 SEL K PSOISLKD,PSOLOKED S PSOPLCK=$$L^PSSLOCK(PSODFN,0) I '$G(PSOPLCK) D LOCK^PSOORCPY D SVAL K PSOPLCK S VALMBCK="" Q
  K PSOPLCK D PSOL^PSSLOCK($P(PSOLST(ORN),"^",2)) I '$G(PSOMSG) D UL^PSSLOCK(+$G(PSODFN)) D SVALO K PSOMSG S VALMBCK="" Q
  K PSOMSG S PSOLOKED=1
+ N PSOHZ S PSOHZ=0    ;reset haz alert displayed to user *524
  S REF=0 S:$$LSTRFL^PSOBPSU1($P(PSOLST(ORN),"^",2)) REF=1  ;*377
  K PSORX("DFLG"),DIR,DUOUT,DIRUT S DIR("A")="Select fields by number"
- S DIR(0)="LO^1:"_$S($$STATUS^PSOBPSUT($P(PSOLST(ORN),"^",2))'="":21,$G(REF):20,1:19)
+ S DIR(0)="LO^1:"_$S($$STATUS^PSOBPSUT($P(PSOLST(ORN),"^",2))'="":21,$G(REF):20,1:22)
  D ^DIR I $D(DIRUT) K DIR,DIRUT,DTOUT S VALMBCK="" D UL K PSOLOKED Q
 EDTSEL N VALMCNT K PSOISLKD,PSORX("DFLG"),PSOOIFLG,PSOMRFLG,DIR,DIRUT,DTOUT,DTOUT,ZONE S PSOQUIT=0,(PSOEDIT,PSORXED)=1 I +Y S FST=Y D HLDHDR^PSOLMUTL D  G EX ;PSO LM SELECT MENU protocol
  .I '$G(PSOLOKED) S PSOPLCK=$$L^PSSLOCK(PSODFN,0) I '$G(PSOPLCK) D LOCK^PSOORCPY D SVAL K PSOPLCK S VALMBCK="",(PSOISLKD,PSODE)=1 Q
@@ -42,13 +43,13 @@ EX2 S VALMBCK=$S($G(PSOQUIT):"R",$G(PSORX("FN")):"Q",$G(ZONE):"Q",1:"R")
  K NEWEDT I $G(VALMBCK)="R" W ! D CLEAN^PSOVER1 H 2
  Q
  ;
-EDT ; Rx Edit (Backdoor) 
+EDT ; Rx Edit (Backdoor)
  ;/BLB/ Patch PSO*7*505/517 Modified EDT to block the editing functionality of certain fields of CS drugs
  N FLNCHK,CSDRG,DRGIEN
  K NCPDPFLG,PSOPKI,DEA
  S I=0 F  S I=$O(^PSRX($P(PSOLST(ORN),"^",2),1,I)) Q:'I  S PSORXED("RX1")=^PSRX($P(PSOLST(ORN),"^",2),1,I,0)
  ;*298 Track PI and Oth Lang PI
- S (RX0,PSORXED("RX0"))=^PSRX($P(PSOLST(ORN),"^",2),0),PSORXED("RX2")=$G(^(2)),PSORXED("RX3")=$G(^(3)),PSOSIG=$P(^("SIG"),"^"),PSOPINS=$G(^("INS")),PSOOINS=$G(^("INSS"))
+ S (RX0,PSORXED("RX0"))=^PSRX($P(PSOLST(ORN),"^",2),0),PSORXED("RX2")=$G(^(2)),PSORXED("RX3")=$G(^(3)),PSOSIG=$P(^("SIG"),"^"),PSOPINS=$G(^("INS")),PSOOINS=$G(^("INSS")),PSOPIND=$P($G(^("IND")),"^"),PSOPINDF=$P($G(^("IND")),"^",2) ;*441-IND
  I '$D(PSODRUG) NEW PSOY S PSOY=$P(RX0,U,6),PSOY(0)=^PSDRUG(PSOY,0) D SET^PSODRG ; *298 moved this line from EDT+2  RX0 was not defined yet
  S CSDRG=0 I $$NDF^PSOORNEW(PSODRUG("IEN"))!$$CSDRG^PSOORNEW(PSODRUG("IEN")) S CSDRG=1
  I CSDRG,$$CSFLDBLK(FST) D
@@ -56,9 +57,11 @@ EDT ; Rx Edit (Backdoor)
  .S DIR(0)="E" D ^DIR K DIR
  F FLD=1:1:$L(FST,",") Q:$P(FST,",",FLD)']""!($G(PSORXED("DFLG")))!($G(PSORX("DFLG")))  S FLN=+$P(FST,",",FLD) S DRGIEN=PSODRUG("IEN") D
  .S FLNCHK=","_FLN_","
- .S PSORXED("DFLG")=0,(DA,PSORXED("IRXN"),PSORENW("OIRXN"))=$P(PSOLST(ORN),"^",2),RX0=^PSRX(PSORXED("IRXN"),0),PSOPKI=$P($G(^PSRX(PSORXED("IRXN"),"PKI")),"^") S:$G(PSOSIG)="" PSOSIG=$P(^("SIG"),"^")
+ .S PSORXED("DFLG")=0,(DA,PSORXED("IRXN"),PSORENW("OIRXN"))=$P(PSOLST(ORN),"^",2),RX0=^PSRX(PSORXED("IRXN"),0)
+ .S PSOPKI=$S($P($G(^PSRX(PSORXED("IRXN"),"PKI")),"^")!$P($G(^PSRX(PSORXED("IRXN"),"PKI")),"^",3):1,1:0) S:$G(PSOSIG)="" PSOSIG=$P(^("SIG"),"^")
  .;*298 Track PI and Oth Lang PI
  .S:$G(PSOPINS)="" PSOPINS=$G(^PSRX(DA,"INS")) S:$G(PSOOINS)="" PSOOINS=$G(^PSRX(DA,"INSS"))
+ .S:$G(PSOPIND)="" PSOPIND=$P($G(^PSRX(DA,"IND")),"^") S:$G(PSOPINDF)="" PSOPINDF=$P($G(^PSRX(DA,"IND")),"^",2) ;*441-IND
  .I '$G(PSOSIGFL) D
  ..S PSOI=+^PSRX(DA,"OR1"),PSODAYS=$P(RX0,"^",8),PSORXST=+$P($G(^PS(53,$P(RX0,"^",3),0)),"^",7)
  ..I 'PSOI S PSOI=+^PSDRUG($P(RX0,"^",6),2),$P(^PSRX(DA,"OR1"),"^")=PSOI
@@ -81,7 +84,7 @@ EDT ; Rx Edit (Backdoor)
  .; Allow edit of the NDC when the EDIT DRUG setting is off
  .; Other checks regarding if the NDC may be edited are found in NDC^PSODRG - PSO*7*427
  .;
- .; If clozpaine drug set clozapine edit variable to control exprire date calculation PSO*7*574  
+ .; If clozpaine drug set clozapine edit variable to control expire date calculation PSO*7*574
  .I $$ISCLOZ^PSJCLOZ(,,,,$G(PSODRUG("IEN"))) S PSORXED("CLOZ EDIT")=1
  .I FLN=2,'$P(PSOPAR,"^",3) D  Q
  ..N NDC D NDC^PSODRG(RXN,0,,.NDC) I $G(NDC)="^"!($G(NDC)="") Q
@@ -101,6 +104,17 @@ EDT ; Rx Edit (Backdoor)
  ..S (PSODRUG("DAW"),PSORXED("FLD",81))=DAW
  .I FLN=9!(FLN=10)!(FLN=11) D NOCHG^PSOORED7 Q
  .S DR=+DR
+ .;441 PAPI
+ .I DR=11 D  Q
+ ..S PREVMWP=$P(RX0,"^",11) D MWP^PSOPRK(DA,PREVMWP,0) K DIR
+ ..I $G(PRKMW)="" Q
+ ..S PSORXED("FLD",DR)=PRKMW
+ ..I PSORXED("FLD",DR)="W",$P(PSOPAR,"^",12) D
+ ...D FIELD^DID(52,DR,"","LABEL","ZZ") S PSORXED(ZZ("LABEL"))=PSORXED("FLD",DR) K ZZ
+ ...S DR=35,DIQ="PSORXED" D EN^DIQ1 K DIC,DIQ,DIRUT,DUOUT,DTOUT
+ ...S:$G(PSORXED(52,DA,DR))]"" DIR("B")=PSORXED(52,DA,DR)
+ ...S DIR(0)="52,"_(DR) D ^DIR I $D(DIRUT),X'="@" K DIR,DIRUT Q
+ ...S PSORXED("FLD",DR)=X K DIR,DIRUT,DIROUT,X,Y,PSORXED(52,DA,DR)
  .K DIR,DIRUT,DIROUT ;S DIE=52 D ^DIE I $D(Y) S PSORXED("DFLG")=1
  .K DIC,DIQ S DIC=52,DA=PSORXED("IRXN"),DIQ="PSORXED" D EN^DIQ1 K DIC,DIQ
  .S DIR("B")=$S($G(PSORXED("FLD",DR))]"":PSORXED("FLD",DR),1:PSORXED(52,DA,DR)),DIR(0)="52,"_DR D ^DIR
@@ -166,7 +180,7 @@ SVALO ;Set message for order lock
  S VALMSG=$S($P($G(PSOMSG),"^",2)'="":$P($G(PSOMSG),"^",2),1:"Another person is editing this order.")
  Q
  ;
-PAUSE     ;
+PAUSE ;
  N DIR,X,Y
  W ! S DIR(0)="E",DIR("A")="Press Return to continue" D ^DIR
  Q

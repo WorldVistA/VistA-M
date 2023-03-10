@@ -1,5 +1,5 @@
-PSOORDER ;BHAM ISC/SAB- utility routine to return Rx data ; 04/09/96 10:30 am
- ;;7.0;OUTPATIENT PHARMACY;**11,20,9,46,103,165**;DEC 1997
+PSOORDER ;BHAM ISC/SAB- utility routine to return Rx data ;08/23/17  20:22
+ ;;7.0;OUTPATIENT PHARMACY;**11,20,9,46,103,165,441**;DEC 1997;Build 208
  ;^PS(55 supported by DBIA 2228
  ;^PSDRUG supported by DBIA 221
  ;^VA(200 supported by DBIA 10060
@@ -28,14 +28,16 @@ EN(DFN,RX) ;
  ..S PSORFCL=$P(RX1(I),"^",7) I PSORFCL S PSORFCL=PSORFCL_";"_$P($G(^VA(200,PSORFCL,0)),"^")
  ..S ^TMP("PSOR",$J,RX,"REF",I,0)=+RX1(I)_"^"_$G(PSORFPR)_"^"_$G(PSORFCL)_"^"_$P(RX1(I),"^",4)_"^"_+$P(RX1(I),"^",10)_"^"_+$P(RX1(I),"^",11)_"^"
  ..S ^TMP("PSOR",$J,RX,"REF",I,0)=^TMP("PSOR",$J,RX,"REF",I,0)_PSOCST_"^"_$P(RX1(I),"^",18)_"^"_$P(RX1(I),"^",16)_"^"
- ..S ^TMP("PSOR",$J,RX,"REF",I,0)=^TMP("PSOR",$J,RX,"REF",I,0)_$S($P(RX1(I),"^",2)="M":"M;MAIL",1:"W;WINDOW")_"^"_$P(RX1(I),"^",9)_"^"_$P(RX1(I),"^",8)_"^"_$P($G(^PSRX(RX,1,I,1)),"^",3)
+ ..;441 PAPI
+ ..S ^TMP("PSOR",$J,RX,"REF",I,0)=^TMP("PSOR",$J,RX,"REF",I,0)_$S($P(RX1(I),"^",2)="M":"M;MAIL",$P(RX1(I),"^",2)="P":"P;PARK",1:"W;WINDOW")_"^"_$P(RX1(I),"^",9)_"^"_$P(RX1(I),"^",8)_"^"_$P($G(^PSRX(RX,1,I,1)),"^",3)
  .F I=0:0 S I=$O(^PSRX(RX,"P",I)) Q:'I  I $D(^PSRX(RX,"P",I,0)) S RXP(I)=^PSRX(RX,"P",I,0) D
  ..S PSOCST=$P(RXP(I),"^",4)*+$P(RXP(I),"^",11)
  ..S PSOPLPR=$P(RX0,"^",4) I PSOPLPR S PSOPLPR=PSOPLPR_";"_$P($G(^VA(200,PSOPLPR,0)),"^")
  ..S PSOPLCL=$P(RXP(I),"^",7) I PSOPLCL S PSOPLCL=PSOPLCL_";"_$P($G(^VA(200,PSOPLCL,0)),"^")
  ..S ^TMP("PSOR",$J,RX,"RPAR",I,0)=+RXP(I)_"^"_$G(PSOPLPR)_"^"_$G(PSOPLCL)_"^"_$P(RXP(I),"^",4)_"^"_+$P(RXP(I),"^",10)_"^"
  ..S ^TMP("PSOR",$J,RX,"RPAR",I,0)=^TMP("PSOR",$J,RX,"RPAR",I,0)_+$P(RXP(I),"^",11)_"^"_PSOCST_"^"_$P(RXP(I),"^",19)_"^"_$P(RXP(I),"^",16)_"^"
- ..S ^TMP("PSOR",$J,RX,"RPAR",I,0)=^TMP("PSOR",$J,RX,"RPAR",I,0)_$S($P(RXP(I),"^",2)="M":"M;MAIL",1:"W;WINDOW")_"^"_$P(RXP(I),"^",9)_"^"_$P(RXP(I),"^",8)_"^"_$P(RXP(I),"^",12)
+ ..;441 PAPI
+ ..S ^TMP("PSOR",$J,RX,"RPAR",I,0)=^TMP("PSOR",$J,RX,"RPAR",I,0)_$S($P(RXP(I),"^",2)="M":"M;MAIL",$P(RXP(I),"^",2)="P":"P;PARK",1:"W;WINDOW")_"^"_$P(RXP(I),"^",9)_"^"_$P(RXP(I),"^",8)_"^"_$P(RXP(I),"^",12)
  .S MI=0 F I=0:0 S I=$O(^PSRX(RX,6,I)) Q:'I  S RP(I)=^PSRX(RX,6,I,0) D
  ..S UN=$P(RP(I),"^",3) I UN S PSOX=$G(^PS(50.607,UN,0)) S UN=UN_";"_$P(PSOX,"^")
  ..S RT=$P(RP(I),"^",7) I RT S PSOX=$G(^PS(51.2,RT,0)) S RT=RT_";"_$P(PSOX,"^")
@@ -50,7 +52,7 @@ EN(DFN,RX) ;
  S FPN=$P(OERR,"^",5) I FPN S PSOX=$G(^VA(200,FPN,0)) S FPN=FPN_";"_$P(PSOX,"^")
  S CLN=$P(RX0,"^",5) I CLN S PSOX=$G(^SC(CLN,0)) S CLN=CLN_";"_$P(PSOX,"^")
  S RXP=$P(RX0,"^",3)_";"_$P($G(^PS(53,+$P(RX0,"^",3),0)),"^")
- S MW=$S($P(RX0,"^",11)="W":"W;WINDOW",1:"M;MAIL")
+ S MW=$S($P(RX0,"^",11)="W":"W;WINDOW",$P(RX0,"^",11)="P":"P;PARK",1:"M;MAIL")  ;441 PAPI
  S PSOX="A;ACTIVE" S:$D(^PS(52.4,RX,0)) PSOX="N;NON-VERIFIED" S:$O(^PS(52.5,"B",RX,0))&($G(^PS(52.5,+$O(^PS(52.5,"B",RX,0)),"P"))'=1) PSOX="S;SUSPENDED"
  I ST0<12,$P(RX2,"^",6)<DT S ST0=11
  S PSOX=$P("Error^A;Active^N;Non-Verified^R;Refill^H;Hold^N;Non-Verified^S;Suspended^^^^^D;Done^E;Expired^DC;Discontinued^D;Deleted^DC;Discontinued^DC;Discontinued (Edit)^H;Provider Hold^","^",ST0+2)

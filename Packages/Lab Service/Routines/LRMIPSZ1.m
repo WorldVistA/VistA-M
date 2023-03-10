@@ -1,5 +1,5 @@
-LRMIPSZ1 ;DALOI/STAFF - MICRO PATIENT REPORT ;09/02/10  22:20
- ;;5.2;LAB SERVICE;**283,350,520**;Sep 27, 1994;Build 3
+LRMIPSZ1 ;DALOI/STAFF - MICRO PATIENT REPORT ;Aug 14, 2019@10:00
+ ;;5.2;LAB SERVICE;**283,350,520,536**;Sep 27, 1994;Build 18
  ;
  ;
 DQ ;tasked from LRTASK from IMMEDIATE INTERIM REPORTING thru LRTP
@@ -101,7 +101,8 @@ RPT ;
  . . W ?19,LRX
  . . I '$P(X,U,2) W ! D NP Q
  . . S Y=$P(X,U,2)
-  . . ; LR*5.2*520
+ . . ; LR*5.2*520 and LR*5.2*536
+ . . S LRDISP=$P(X,U,3)
  . . D D^LRU S LRY=$S(LRDISP["Not Performed":"canceled: ",1:"completed: ")_Y
  . . I (19+$L(LRX)+$L(LRY))>IOM W !
  . . W ?50,LRY,! D NP
@@ -190,7 +191,7 @@ EN1 ;
  I LRTS(1) S LRTESTCOMPLE=1
  ;
  S:LRTS=LRONETST LRPRINT=1
- S LRTSTS=$S($D(^LAB(60,LRTS,0)):$P(^(0),U),1:"deleted test"),^TMP("LR",$J,"T",$S($D(^LAB(60,LRTS,.1)):$P(^(.1),U,6),1:"")_","_LRBRR)=LRTSTS_U_LRTS(1)
+ S LRTSTS=$S($D(^LAB(60,LRTS,0)):$P(^(0),U),1:"deleted test"),^TMP("LR",$J,"T",$S($D(^LAB(60,LRTS,.1)):$P(^(.1),U,6),1:"")_","_LRBRR)=LRTSTS_U_LRTS(1)_U_LRDISP
  Q
  ;
  ;

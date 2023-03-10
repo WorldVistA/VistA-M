@@ -1,126 +1,120 @@
-IBDEI1K6 ; ; 04-FEB-2020
- ;;3.0;IB ENCOUNTER FORM IMP/EXP;;FEB 04, 2020
+IBDEI1K6 ; ; 01-FEB-2022
+ ;;3.0;IB ENCOUNTER FORM IMP/EXP;;FEB 01, 2022
  Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,999) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
- ;;^UTILITY(U,$J,358.3,24909,2)
- ;;=^5002289
- ;;^UTILITY(U,$J,358.3,24910,0)
- ;;=D68.0^^107^1211^199
- ;;^UTILITY(U,$J,358.3,24910,1,0)
+ ;;^UTILITY(U,$J,358.3,25273,1,3,0)
+ ;;=3^TICK-BORNE ENCEPH VIRUS VACC,INACTIVE 0.25 ML IM
+ ;;^UTILITY(U,$J,358.3,25274,0)
+ ;;=90627^^91^1146^39^^^^1
+ ;;^UTILITY(U,$J,358.3,25274,1,0)
+ ;;=^358.31IA^3^2
+ ;;^UTILITY(U,$J,358.3,25274,1,2,0)
+ ;;=2^90627
+ ;;^UTILITY(U,$J,358.3,25274,1,3,0)
+ ;;=3^TICK-BORNE ENCEPH VIRUS VACC,INACTIVE 0.5 ML IM 
+ ;;^UTILITY(U,$J,358.3,25275,0)
+ ;;=90758^^91^1146^42^^^^1
+ ;;^UTILITY(U,$J,358.3,25275,1,0)
+ ;;=^358.31IA^3^2
+ ;;^UTILITY(U,$J,358.3,25275,1,2,0)
+ ;;=2^90758
+ ;;^UTILITY(U,$J,358.3,25275,1,3,0)
+ ;;=3^ZAIRE EBOLAVIRUS VAC LIVE IM
+ ;;^UTILITY(U,$J,358.3,25276,0)
+ ;;=T74.11XA^^92^1147^7
+ ;;^UTILITY(U,$J,358.3,25276,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,24910,1,3,0)
- ;;=3^Von Willebrand's Disease
- ;;^UTILITY(U,$J,358.3,24910,1,4,0)
- ;;=4^D68.0
- ;;^UTILITY(U,$J,358.3,24910,2)
- ;;=^127267
- ;;^UTILITY(U,$J,358.3,24911,0)
- ;;=C88.0^^107^1211^200
- ;;^UTILITY(U,$J,358.3,24911,1,0)
+ ;;^UTILITY(U,$J,358.3,25276,1,3,0)
+ ;;=3^Adult Physical Abuse,Confirmed,Init Enctr
+ ;;^UTILITY(U,$J,358.3,25276,1,4,0)
+ ;;=4^T74.11XA
+ ;;^UTILITY(U,$J,358.3,25276,2)
+ ;;=^5054146
+ ;;^UTILITY(U,$J,358.3,25277,0)
+ ;;=T74.11XD^^92^1147^8
+ ;;^UTILITY(U,$J,358.3,25277,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,24911,1,3,0)
- ;;=3^Waldenstrom Macroglobulinemia
- ;;^UTILITY(U,$J,358.3,24911,1,4,0)
- ;;=4^C88.0
- ;;^UTILITY(U,$J,358.3,24911,2)
- ;;=^5001748
- ;;^UTILITY(U,$J,358.3,24912,0)
- ;;=C91.02^^107^1211^3
- ;;^UTILITY(U,$J,358.3,24912,1,0)
+ ;;^UTILITY(U,$J,358.3,25277,1,3,0)
+ ;;=3^Adult Physical Abuse,Confirmed,Subs Enctr
+ ;;^UTILITY(U,$J,358.3,25277,1,4,0)
+ ;;=4^T74.11XD
+ ;;^UTILITY(U,$J,358.3,25277,2)
+ ;;=^5054147
+ ;;^UTILITY(U,$J,358.3,25278,0)
+ ;;=T76.11XA^^92^1147^9
+ ;;^UTILITY(U,$J,358.3,25278,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,24912,1,3,0)
- ;;=3^Acute Lymphoblastic Leukemia,In Relapse
- ;;^UTILITY(U,$J,358.3,24912,1,4,0)
- ;;=4^C91.02
- ;;^UTILITY(U,$J,358.3,24912,2)
- ;;=^5001764
- ;;^UTILITY(U,$J,358.3,24913,0)
- ;;=C92.02^^107^1211^6
- ;;^UTILITY(U,$J,358.3,24913,1,0)
+ ;;^UTILITY(U,$J,358.3,25278,1,3,0)
+ ;;=3^Adult Physical Abuse,Suspected,Init Enctr
+ ;;^UTILITY(U,$J,358.3,25278,1,4,0)
+ ;;=4^T76.11XA
+ ;;^UTILITY(U,$J,358.3,25278,2)
+ ;;=^5054221
+ ;;^UTILITY(U,$J,358.3,25279,0)
+ ;;=T76.11XD^^92^1147^10
+ ;;^UTILITY(U,$J,358.3,25279,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,24913,1,3,0)
- ;;=3^Acute Myeloblastic Leukemia,In Relapse
- ;;^UTILITY(U,$J,358.3,24913,1,4,0)
- ;;=4^C92.02
- ;;^UTILITY(U,$J,358.3,24913,2)
- ;;=^5001791
- ;;^UTILITY(U,$J,358.3,24914,0)
- ;;=D09.3^^107^1211^46
- ;;^UTILITY(U,$J,358.3,24914,1,0)
+ ;;^UTILITY(U,$J,358.3,25279,1,3,0)
+ ;;=3^Adult Physical Abuse,Suspected,Subs Enctr
+ ;;^UTILITY(U,$J,358.3,25279,1,4,0)
+ ;;=4^T76.11XD
+ ;;^UTILITY(U,$J,358.3,25279,2)
+ ;;=^5054222
+ ;;^UTILITY(U,$J,358.3,25280,0)
+ ;;=Z69.11^^92^1147^24
+ ;;^UTILITY(U,$J,358.3,25280,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,24914,1,3,0)
- ;;=3^Carcinoma in Situ of Thyroid/Oth Endocrine Glands
- ;;^UTILITY(U,$J,358.3,24914,1,4,0)
- ;;=4^D09.3
- ;;^UTILITY(U,$J,358.3,24914,2)
- ;;=^5001955
- ;;^UTILITY(U,$J,358.3,24915,0)
- ;;=C22.0^^107^1211^87
- ;;^UTILITY(U,$J,358.3,24915,1,0)
+ ;;^UTILITY(U,$J,358.3,25280,1,3,0)
+ ;;=3^MH Svc for Victim of Spousal/Partner Abuse,Neglect
+ ;;^UTILITY(U,$J,358.3,25280,1,4,0)
+ ;;=4^Z69.11
+ ;;^UTILITY(U,$J,358.3,25280,2)
+ ;;=^5063232
+ ;;^UTILITY(U,$J,358.3,25281,0)
+ ;;=Z91.410^^92^1147^26
+ ;;^UTILITY(U,$J,358.3,25281,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,24915,1,3,0)
- ;;=3^Hepatocellular Carcinoma
- ;;^UTILITY(U,$J,358.3,24915,1,4,0)
- ;;=4^C22.0
- ;;^UTILITY(U,$J,358.3,24915,2)
- ;;=^5000933
- ;;^UTILITY(U,$J,358.3,24916,0)
- ;;=C24.9^^107^1211^114
- ;;^UTILITY(U,$J,358.3,24916,1,0)
+ ;;^UTILITY(U,$J,358.3,25281,1,3,0)
+ ;;=3^Personal Hx of Adult Physical/Sexual Abuse
+ ;;^UTILITY(U,$J,358.3,25281,1,4,0)
+ ;;=4^Z91.410
+ ;;^UTILITY(U,$J,358.3,25281,2)
+ ;;=^5063619
+ ;;^UTILITY(U,$J,358.3,25282,0)
+ ;;=T74.21XA^^92^1147^15
+ ;;^UTILITY(U,$J,358.3,25282,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,24916,1,3,0)
- ;;=3^Malig Neop Biliary Tract,Unspec
- ;;^UTILITY(U,$J,358.3,24916,1,4,0)
- ;;=4^C24.9
- ;;^UTILITY(U,$J,358.3,24916,2)
- ;;=^5000942
- ;;^UTILITY(U,$J,358.3,24917,0)
- ;;=C50.922^^107^1211^138
- ;;^UTILITY(U,$J,358.3,24917,1,0)
+ ;;^UTILITY(U,$J,358.3,25282,1,3,0)
+ ;;=3^Adult Sexual Abuse,Confirmed,Init Enctr
+ ;;^UTILITY(U,$J,358.3,25282,1,4,0)
+ ;;=4^T74.21XA
+ ;;^UTILITY(U,$J,358.3,25282,2)
+ ;;=^5054152
+ ;;^UTILITY(U,$J,358.3,25283,0)
+ ;;=T74.21XD^^92^1147^16
+ ;;^UTILITY(U,$J,358.3,25283,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,24917,1,3,0)
- ;;=3^Malig Neop Left Male Breast,Unspec Site
- ;;^UTILITY(U,$J,358.3,24917,1,4,0)
- ;;=4^C50.922
- ;;^UTILITY(U,$J,358.3,24917,2)
- ;;=^5133340
- ;;^UTILITY(U,$J,358.3,24918,0)
- ;;=C34.91^^107^1211^156
- ;;^UTILITY(U,$J,358.3,24918,1,0)
+ ;;^UTILITY(U,$J,358.3,25283,1,3,0)
+ ;;=3^Adult Sexual Abuse,Confirmed,Subs Enctr
+ ;;^UTILITY(U,$J,358.3,25283,1,4,0)
+ ;;=4^T74.21XD
+ ;;^UTILITY(U,$J,358.3,25283,2)
+ ;;=^5054153
+ ;;^UTILITY(U,$J,358.3,25284,0)
+ ;;=T76.21XA^^92^1147^17
+ ;;^UTILITY(U,$J,358.3,25284,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,24918,1,3,0)
- ;;=3^Malig Neop Right Bronchus/Lung,Unspec Part
- ;;^UTILITY(U,$J,358.3,24918,1,4,0)
- ;;=4^C34.91
- ;;^UTILITY(U,$J,358.3,24918,2)
- ;;=^5000967
- ;;^UTILITY(U,$J,358.3,24919,0)
- ;;=C50.921^^107^1211^160
- ;;^UTILITY(U,$J,358.3,24919,1,0)
+ ;;^UTILITY(U,$J,358.3,25284,1,3,0)
+ ;;=3^Adult Sexual Abuse,Suspected,Init Enctr
+ ;;^UTILITY(U,$J,358.3,25284,1,4,0)
+ ;;=4^T76.21XA
+ ;;^UTILITY(U,$J,358.3,25284,2)
+ ;;=^5054227
+ ;;^UTILITY(U,$J,358.3,25285,0)
+ ;;=T76.21XD^^92^1147^18
+ ;;^UTILITY(U,$J,358.3,25285,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,24919,1,3,0)
- ;;=3^Malig Neop Right Male Breast,Unspec Site
- ;;^UTILITY(U,$J,358.3,24919,1,4,0)
- ;;=4^C50.921
- ;;^UTILITY(U,$J,358.3,24919,2)
- ;;=^5001198
- ;;^UTILITY(U,$J,358.3,24920,0)
- ;;=C90.02^^107^1211^172
- ;;^UTILITY(U,$J,358.3,24920,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,24920,1,3,0)
- ;;=3^Multiple Myeloma,In Relapse
- ;;^UTILITY(U,$J,358.3,24920,1,4,0)
- ;;=4^C90.02
- ;;^UTILITY(U,$J,358.3,24920,2)
- ;;=^5001753
- ;;^UTILITY(U,$J,358.3,24921,0)
- ;;=D51.9^^107^1211^25
- ;;^UTILITY(U,$J,358.3,24921,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,24921,1,3,0)
- ;;=3^Anemia in Vitamin B12 Deficiency
- ;;^UTILITY(U,$J,358.3,24921,1,4,0)
- ;;=4^D51.9
- ;;^UTILITY(U,$J,358.3,24921,2)
- ;;=^5002289
+ ;;^UTILITY(U,$J,358.3,25285,1,3,0)
+ ;;=3^Adult Sexual Abuse,Suspected,Subs Enctr
+ ;;^UTILITY(U,$J,358.3,25285,1,4,0)
+ ;;=4^T76.21XD

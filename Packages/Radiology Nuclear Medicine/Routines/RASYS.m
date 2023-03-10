@@ -1,5 +1,5 @@
-RASYS ;HISC/CAH AISC/TMP-System Definition Menu ;11/13/96  14:17
- ;;5.0;Radiology/Nuclear Medicine;**42,47**;Mar 16, 1998;Build 21
+RASYS ;HISC/CAH AISC/TMP-System Definition Menu ; Jan 29, 2021@08:58:56
+ ;;5.0;Radiology/Nuclear Medicine;**42,47,178**;Mar 16, 1998;Build 2
 1 ;;Division Parameter Set-up
  S DIC="^RA(79,",DIC(0)="AELMQ",DIC("A")="Select Division: ",DLAYGO=79
  D ^DIC K DIC,DLAYGO I Y<0 K X,Y G Q1
@@ -90,6 +90,32 @@ INACT ; write inactive flag, called by 'List of Camera/Equip/Rms' option
  N RA1,RA2 S RA1=$O(^RA(78.6,"B",DDDD0,0)),RA2=0
  I RA1 I $G(^RA(78.6,RA1,0))]"",$P(^(0),U,3)]"" S RA2=1
  W ?0,$S(RA2:"(*)",1:"   "),$E(DDDD0,1,15)
+ Q
+7 ;;RA SYSUPLOC /RA178;KLM - Menu to automatically set outside locations 'Suppress Ordering?' prompt to YES.
+ N RACM,RAILOC,RAIL,RAFDA,RADIC,RAUTIL S RACM=2
+ K ^TMP($J,"RA178")
+ W !!,?5,"This option will set the selected outside imaging locations to"
+ W !,?5,"'Suppress Ordering'. Doing this will prevent the location from"
+ W !,?5,"showing up in CPRS as a 'Submit To' location for a radiology"
+ W !,?5,"request."
+ W !!,?3,"**Note that your selection is limited to outside (no credit) locations.**"
+ W !,?3,"**If you select 'ALL', all of your outside locations will be updated.**"
+ S RADIC="^RA(79.1,",RADIC(0)="OEMZ",RADIC("S")="I $P(^RA(79.1,+Y,0),U,19)="""",$D(^RA(79.1,""ACM"",2,+Y))"
+ S RADIC("A")="Select Location(s): ",RAUTIL="RA178"
+ W !! D EN1^RASELCT(.RADIC,RAUTIL)
+ I $O(^TMP($J,"RA178",""))="" W !!?3,$C(7),"No location selected." Q
+ S RAILOC="" F  S RAILOC=$O(^TMP($J,"RA178",RAILOC)) Q:RAILOC=""  D
+ .S RAIL=0 F  S RAIL=$O(^TMP($J,"RA178",RAILOC,RAIL)) Q:RAIL=""  D
+ ..S:$$GET1^DIQ(79.1,RAIL,.1)="" RAFDA(79.1,RAIL_",",.1)="Y"
+ ..Q
+ .Q
+ D FILE^DIE("","RAFDA") W !!?2,"Location(s) updated...",!
+ W !,?2,"Your outside location order suppression status:"
+ N RAI S RAI=0 F  S RAI=$O(^RA(79.1,"ACM",RACM,RAI)) Q:RAI=""  D
+ .W !?2,$E($$GET1^DIQ(79.1,RAI,.01),1,25),?30,"Suppress Order?: ",$S($G(^RA(79.1,RAI,.1))="Y":"YES",1:"NO")
+ .Q
+ W ! S DIR(0)="E",DIR("A")="Press RETURN to continue" D ^DIR
+ K ^TMP($J,"RA178"),DIR,DIRUT,DUOUT
  Q
 ZIS(RA) ; Select a device.
  ; 'RAPOP'=device selection successful (1:no) ^ '^%ZTLOAD' called (1:yes)

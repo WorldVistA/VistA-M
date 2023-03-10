@@ -1,124 +1,116 @@
-IBDEI19U ; ; 04-FEB-2020
- ;;3.0;IB ENCOUNTER FORM IMP/EXP;;FEB 04, 2020
+IBDEI19U ; ; 01-FEB-2022
+ ;;3.0;IB ENCOUNTER FORM IMP/EXP;;FEB 01, 2022
  Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,999) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
- ;;^UTILITY(U,$J,358.3,20343,1,4,0)
- ;;=4^S32.16XS
- ;;^UTILITY(U,$J,358.3,20343,2)
- ;;=^5024616
- ;;^UTILITY(U,$J,358.3,20344,0)
- ;;=S32.17XS^^93^1001^56
- ;;^UTILITY(U,$J,358.3,20344,1,0)
+ ;;^UTILITY(U,$J,358.3,20570,0)
+ ;;=S82.224S^^67^888^73
+ ;;^UTILITY(U,$J,358.3,20570,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,20344,1,3,0)
- ;;=3^Type 4 fracture of sacrum, sequela
- ;;^UTILITY(U,$J,358.3,20344,1,4,0)
- ;;=4^S32.17XS
- ;;^UTILITY(U,$J,358.3,20344,2)
- ;;=^5024622
- ;;^UTILITY(U,$J,358.3,20345,0)
- ;;=S32.2XXS^^93^1001^19
- ;;^UTILITY(U,$J,358.3,20345,1,0)
+ ;;^UTILITY(U,$J,358.3,20570,1,3,0)
+ ;;=3^Nondisp fx of transverse shaft of right tibia, sequela  
+ ;;^UTILITY(U,$J,358.3,20570,1,4,0)
+ ;;=4^S82.224S
+ ;;^UTILITY(U,$J,358.3,20570,2)
+ ;;=^5041202
+ ;;^UTILITY(U,$J,358.3,20571,0)
+ ;;=M84.462S^^67^888^76
+ ;;^UTILITY(U,$J,358.3,20571,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,20345,1,3,0)
- ;;=3^Fracture of coccyx, sequela
- ;;^UTILITY(U,$J,358.3,20345,1,4,0)
- ;;=4^S32.2XXS
- ;;^UTILITY(U,$J,358.3,20345,2)
- ;;=^5024634
- ;;^UTILITY(U,$J,358.3,20346,0)
- ;;=S12.110S^^93^1001^1
- ;;^UTILITY(U,$J,358.3,20346,1,0)
+ ;;^UTILITY(U,$J,358.3,20571,1,3,0)
+ ;;=3^Pathological fracture, left tibia, sequela
+ ;;^UTILITY(U,$J,358.3,20571,1,4,0)
+ ;;=4^M84.462S
+ ;;^UTILITY(U,$J,358.3,20571,2)
+ ;;=^5013943
+ ;;^UTILITY(U,$J,358.3,20572,0)
+ ;;=M84.461S^^67^888^78
+ ;;^UTILITY(U,$J,358.3,20572,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,20346,1,3,0)
- ;;=3^Anterior displaced Type II dens fracture, sequela
- ;;^UTILITY(U,$J,358.3,20346,1,4,0)
- ;;=4^S12.110S
- ;;^UTILITY(U,$J,358.3,20346,2)
- ;;=^5021622
- ;;^UTILITY(U,$J,358.3,20347,0)
- ;;=S12.112S^^93^1001^23
- ;;^UTILITY(U,$J,358.3,20347,1,0)
+ ;;^UTILITY(U,$J,358.3,20572,1,3,0)
+ ;;=3^Pathological fracture, right tibia, sequela
+ ;;^UTILITY(U,$J,358.3,20572,1,4,0)
+ ;;=4^M84.461S
+ ;;^UTILITY(U,$J,358.3,20572,2)
+ ;;=^5013937
+ ;;^UTILITY(U,$J,358.3,20573,0)
+ ;;=S89.112S^^67^888^79
+ ;;^UTILITY(U,$J,358.3,20573,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,20347,1,3,0)
- ;;=3^Nondisp Type II dens fracture, sequela
- ;;^UTILITY(U,$J,358.3,20347,1,4,0)
- ;;=4^S12.112S
- ;;^UTILITY(U,$J,358.3,20347,2)
- ;;=^5021634
- ;;^UTILITY(U,$J,358.3,20348,0)
- ;;=S12.111S^^93^1001^29
- ;;^UTILITY(U,$J,358.3,20348,1,0)
+ ;;^UTILITY(U,$J,358.3,20573,1,3,0)
+ ;;=3^Sltr-haris Type I physeal fx lower end of l tibia, sequela
+ ;;^UTILITY(U,$J,358.3,20573,1,4,0)
+ ;;=4^S89.112S
+ ;;^UTILITY(U,$J,358.3,20573,2)
+ ;;=^5137294
+ ;;^UTILITY(U,$J,358.3,20574,0)
+ ;;=S89.012S^^67^888^83
+ ;;^UTILITY(U,$J,358.3,20574,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,20348,1,3,0)
- ;;=3^Posterior displaced Type II dens fracture, sequela
- ;;^UTILITY(U,$J,358.3,20348,1,4,0)
- ;;=4^S12.111S
- ;;^UTILITY(U,$J,358.3,20348,2)
- ;;=^5021628
- ;;^UTILITY(U,$J,358.3,20349,0)
- ;;=S52.562S^^93^1002^1
- ;;^UTILITY(U,$J,358.3,20349,1,0)
+ ;;^UTILITY(U,$J,358.3,20574,1,3,0)
+ ;;=3^Sltr-haris Type I physeal fx upper end of l tibia, sequela
+ ;;^UTILITY(U,$J,358.3,20574,1,4,0)
+ ;;=4^S89.012S
+ ;;^UTILITY(U,$J,358.3,20574,2)
+ ;;=^5043654
+ ;;^UTILITY(U,$J,358.3,20575,0)
+ ;;=S89.011S^^67^888^84
+ ;;^UTILITY(U,$J,358.3,20575,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,20349,1,3,0)
- ;;=3^Barton's fracture of left radius, sequela
- ;;^UTILITY(U,$J,358.3,20349,1,4,0)
- ;;=4^S52.562S
- ;;^UTILITY(U,$J,358.3,20349,2)
- ;;=^5030896
- ;;^UTILITY(U,$J,358.3,20350,0)
- ;;=S52.561S^^93^1002^2
- ;;^UTILITY(U,$J,358.3,20350,1,0)
+ ;;^UTILITY(U,$J,358.3,20575,1,3,0)
+ ;;=3^Sltr-haris Type I physeal fx upper end of r tibia, sequela
+ ;;^UTILITY(U,$J,358.3,20575,1,4,0)
+ ;;=4^S89.011S
+ ;;^UTILITY(U,$J,358.3,20575,2)
+ ;;=^5043648
+ ;;^UTILITY(U,$J,358.3,20576,0)
+ ;;=S89.111S^^67^888^80
+ ;;^UTILITY(U,$J,358.3,20576,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,20350,1,3,0)
- ;;=3^Barton's fracture of right radius, sequela
- ;;^UTILITY(U,$J,358.3,20350,1,4,0)
- ;;=4^S52.561S
- ;;^UTILITY(U,$J,358.3,20350,2)
- ;;=^5030880
- ;;^UTILITY(U,$J,358.3,20351,0)
- ;;=S52.382S^^93^1002^3
- ;;^UTILITY(U,$J,358.3,20351,1,0)
+ ;;^UTILITY(U,$J,358.3,20576,1,3,0)
+ ;;=3^Sltr-haris Type I physeal fx lower end of r tibia, sequela
+ ;;^UTILITY(U,$J,358.3,20576,1,4,0)
+ ;;=4^S89.111S
+ ;;^UTILITY(U,$J,358.3,20576,2)
+ ;;=^5043732
+ ;;^UTILITY(U,$J,358.3,20577,0)
+ ;;=S89.122S^^67^888^87
+ ;;^UTILITY(U,$J,358.3,20577,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,20351,1,3,0)
- ;;=3^Bent bone of left radius, sequela
- ;;^UTILITY(U,$J,358.3,20351,1,4,0)
- ;;=4^S52.382S
- ;;^UTILITY(U,$J,358.3,20351,2)
- ;;=^5030526
- ;;^UTILITY(U,$J,358.3,20352,0)
- ;;=S52.381S^^93^1002^5
- ;;^UTILITY(U,$J,358.3,20352,1,0)
+ ;;^UTILITY(U,$J,358.3,20577,1,3,0)
+ ;;=3^Sltr-haris Type II physeal fx lower end of l tibia, sequela
+ ;;^UTILITY(U,$J,358.3,20577,1,4,0)
+ ;;=4^S89.122S
+ ;;^UTILITY(U,$J,358.3,20577,2)
+ ;;=^5137300
+ ;;^UTILITY(U,$J,358.3,20578,0)
+ ;;=S89.121S^^67^888^88
+ ;;^UTILITY(U,$J,358.3,20578,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,20352,1,3,0)
- ;;=3^Bent bone of right radius, sequela
- ;;^UTILITY(U,$J,358.3,20352,1,4,0)
- ;;=4^S52.381S
- ;;^UTILITY(U,$J,358.3,20352,2)
- ;;=^5030510
- ;;^UTILITY(U,$J,358.3,20353,0)
- ;;=S52.532S^^93^1002^7
- ;;^UTILITY(U,$J,358.3,20353,1,0)
+ ;;^UTILITY(U,$J,358.3,20578,1,3,0)
+ ;;=3^Sltr-haris Type II physeal fx lower end of r tibia, sequela
+ ;;^UTILITY(U,$J,358.3,20578,1,4,0)
+ ;;=4^S89.121S
+ ;;^UTILITY(U,$J,358.3,20578,2)
+ ;;=^5043744
+ ;;^UTILITY(U,$J,358.3,20579,0)
+ ;;=S89.022S^^67^888^91
+ ;;^UTILITY(U,$J,358.3,20579,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,20353,1,3,0)
- ;;=3^Colles' fracture of left radius, sequela
- ;;^UTILITY(U,$J,358.3,20353,1,4,0)
- ;;=4^S52.532S
- ;;^UTILITY(U,$J,358.3,20353,2)
- ;;=^5030752
- ;;^UTILITY(U,$J,358.3,20354,0)
- ;;=S52.531S^^93^1002^8
- ;;^UTILITY(U,$J,358.3,20354,1,0)
+ ;;^UTILITY(U,$J,358.3,20579,1,3,0)
+ ;;=3^Sltr-haris Type II physeal fx upper end of l tibia, sequela
+ ;;^UTILITY(U,$J,358.3,20579,1,4,0)
+ ;;=4^S89.022S
+ ;;^UTILITY(U,$J,358.3,20579,2)
+ ;;=^5043672
+ ;;^UTILITY(U,$J,358.3,20580,0)
+ ;;=S89.021S^^67^888^92
+ ;;^UTILITY(U,$J,358.3,20580,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,20354,1,3,0)
- ;;=3^Colles' fracture of right radius, sequela
- ;;^UTILITY(U,$J,358.3,20354,1,4,0)
- ;;=4^S52.531S
- ;;^UTILITY(U,$J,358.3,20354,2)
- ;;=^5030736
- ;;^UTILITY(U,$J,358.3,20355,0)
- ;;=S52.352S^^93^1002^13
- ;;^UTILITY(U,$J,358.3,20355,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,20355,1,3,0)
- ;;=3^Disp fx of comminuted shaft of radius, right arm, sequela 
+ ;;^UTILITY(U,$J,358.3,20580,1,3,0)
+ ;;=3^Sltr-haris Type II physeal fx upper end of r tibia, sequela
+ ;;^UTILITY(U,$J,358.3,20580,1,4,0)
+ ;;=4^S89.021S
+ ;;^UTILITY(U,$J,358.3,20580,2)
+ ;;=^5043666
+ ;;^UTILITY(U,$J,358.3,20581,0)
+ ;;=S89.132S^^67^888^95

@@ -1,122 +1,124 @@
-IBDEI0GS ; ; 04-FEB-2020
- ;;3.0;IB ENCOUNTER FORM IMP/EXP;;FEB 04, 2020
+IBDEI0GS ; ; 01-FEB-2022
+ ;;3.0;IB ENCOUNTER FORM IMP/EXP;;FEB 01, 2022
  Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,999) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
- ;;^UTILITY(U,$J,358.3,7276,2)
- ;;=^5011962
- ;;^UTILITY(U,$J,358.3,7277,0)
- ;;=M45.4^^58^473^7
- ;;^UTILITY(U,$J,358.3,7277,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,7277,1,3,0)
- ;;=3^Ankylosing Spondylitis of Thoracic Region
- ;;^UTILITY(U,$J,358.3,7277,1,4,0)
- ;;=4^M45.4
- ;;^UTILITY(U,$J,358.3,7277,2)
- ;;=^5011964
- ;;^UTILITY(U,$J,358.3,7278,0)
- ;;=M45.7^^58^473^4
- ;;^UTILITY(U,$J,358.3,7278,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,7278,1,3,0)
- ;;=3^Ankylosing Spondylitis of Lumbosacral Region
- ;;^UTILITY(U,$J,358.3,7278,1,4,0)
- ;;=4^M45.7
- ;;^UTILITY(U,$J,358.3,7278,2)
- ;;=^5011967
- ;;^UTILITY(U,$J,358.3,7279,0)
- ;;=M45.8^^58^473^5
- ;;^UTILITY(U,$J,358.3,7279,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,7279,1,3,0)
- ;;=3^Ankylosing Spondylitis of Sacral/Sacrococcygeal Region
- ;;^UTILITY(U,$J,358.3,7279,1,4,0)
- ;;=4^M45.8
- ;;^UTILITY(U,$J,358.3,7279,2)
- ;;=^5011968
- ;;^UTILITY(U,$J,358.3,7280,0)
- ;;=M47.22^^58^473^175
- ;;^UTILITY(U,$J,358.3,7280,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,7280,1,3,0)
- ;;=3^Sponylosis w/ Radiculopathy,Cervical Region NEC
- ;;^UTILITY(U,$J,358.3,7280,1,4,0)
- ;;=4^M47.22
- ;;^UTILITY(U,$J,358.3,7280,2)
- ;;=^5012061
- ;;^UTILITY(U,$J,358.3,7281,0)
- ;;=M47.24^^58^473^177
- ;;^UTILITY(U,$J,358.3,7281,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,7281,1,3,0)
- ;;=3^Sponylosis w/ Radiculopathy,Thoracic Region NEC
- ;;^UTILITY(U,$J,358.3,7281,1,4,0)
- ;;=4^M47.24
- ;;^UTILITY(U,$J,358.3,7281,2)
- ;;=^5012063
- ;;^UTILITY(U,$J,358.3,7282,0)
- ;;=M47.27^^58^473^176
- ;;^UTILITY(U,$J,358.3,7282,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,7282,1,3,0)
- ;;=3^Sponylosis w/ Radiculopathy,Lumbosacral Region NEC
- ;;^UTILITY(U,$J,358.3,7282,1,4,0)
- ;;=4^M47.27
- ;;^UTILITY(U,$J,358.3,7282,2)
- ;;=^5012066
- ;;^UTILITY(U,$J,358.3,7283,0)
- ;;=M47.812^^58^473^172
- ;;^UTILITY(U,$J,358.3,7283,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,7283,1,3,0)
- ;;=3^Spondylosis w/o Myelopathy/Radiculopathy,Cervical Region
- ;;^UTILITY(U,$J,358.3,7283,1,4,0)
- ;;=4^M47.812
- ;;^UTILITY(U,$J,358.3,7283,2)
- ;;=^5012069
- ;;^UTILITY(U,$J,358.3,7284,0)
- ;;=M47.814^^58^473^173
- ;;^UTILITY(U,$J,358.3,7284,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,7284,1,3,0)
- ;;=3^Spondylosis w/o Myelopathy/Radiculopathy,Thoracic Region
- ;;^UTILITY(U,$J,358.3,7284,1,4,0)
- ;;=4^M47.814
- ;;^UTILITY(U,$J,358.3,7284,2)
- ;;=^5012071
- ;;^UTILITY(U,$J,358.3,7285,0)
- ;;=M47.817^^58^473^174
- ;;^UTILITY(U,$J,358.3,7285,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,7285,1,3,0)
- ;;=3^Spondylosis w/o Myelopathy/Radiculopathy,Lumbosacral Region
- ;;^UTILITY(U,$J,358.3,7285,1,4,0)
- ;;=4^M47.817
- ;;^UTILITY(U,$J,358.3,7285,2)
- ;;=^5012074
- ;;^UTILITY(U,$J,358.3,7286,0)
- ;;=M48.50XA^^58^473^21
- ;;^UTILITY(U,$J,358.3,7286,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,7286,1,3,0)
- ;;=3^Collapsed Vertebra NEC,Site Unspec,Init Encntr
- ;;^UTILITY(U,$J,358.3,7286,1,4,0)
- ;;=4^M48.50XA
- ;;^UTILITY(U,$J,358.3,7286,2)
- ;;=^5012159
- ;;^UTILITY(U,$J,358.3,7287,0)
- ;;=M48.50XD^^58^473^22
- ;;^UTILITY(U,$J,358.3,7287,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,7287,1,3,0)
- ;;=3^Collapsed Vertebra NEC,Site Unspec,Subs Encntr
- ;;^UTILITY(U,$J,358.3,7287,1,4,0)
- ;;=4^M48.50XD
- ;;^UTILITY(U,$J,358.3,7287,2)
- ;;=^5012160
- ;;^UTILITY(U,$J,358.3,7288,0)
- ;;=M48.52XA^^58^473^23
- ;;^UTILITY(U,$J,358.3,7288,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,7288,1,3,0)
- ;;=3^Collapsed Vertebra,Cervical Region,Init Encntr
+ ;;^UTILITY(U,$J,358.3,7544,0)
+ ;;=43278^^37^374^2^^^^1
+ ;;^UTILITY(U,$J,358.3,7544,1,0)
+ ;;=^358.31IA^3^2
+ ;;^UTILITY(U,$J,358.3,7544,1,2,0)
+ ;;=2^43278
+ ;;^UTILITY(U,$J,358.3,7544,1,3,0)
+ ;;=3^ERCP w/ Ablation
+ ;;^UTILITY(U,$J,358.3,7545,0)
+ ;;=43275^^37^374^8^^^^1
+ ;;^UTILITY(U,$J,358.3,7545,1,0)
+ ;;=^358.31IA^3^2
+ ;;^UTILITY(U,$J,358.3,7545,1,2,0)
+ ;;=2^43275
+ ;;^UTILITY(U,$J,358.3,7545,1,3,0)
+ ;;=3^ERCP w/ Foreign Body or Stent Removal
+ ;;^UTILITY(U,$J,358.3,7546,0)
+ ;;=48148^^37^374^1^^^^1
+ ;;^UTILITY(U,$J,358.3,7546,1,0)
+ ;;=^358.31IA^3^2
+ ;;^UTILITY(U,$J,358.3,7546,1,2,0)
+ ;;=2^48148
+ ;;^UTILITY(U,$J,358.3,7546,1,3,0)
+ ;;=3^Ampullectomy
+ ;;^UTILITY(U,$J,358.3,7547,0)
+ ;;=74328^^37^374^14^^^^1
+ ;;^UTILITY(U,$J,358.3,7547,1,0)
+ ;;=^358.31IA^3^2
+ ;;^UTILITY(U,$J,358.3,7547,1,2,0)
+ ;;=2^74328
+ ;;^UTILITY(U,$J,358.3,7547,1,3,0)
+ ;;=3^Fluoroscopy,Bile Duct
+ ;;^UTILITY(U,$J,358.3,7548,0)
+ ;;=74329^^37^374^16^^^^1
+ ;;^UTILITY(U,$J,358.3,7548,1,0)
+ ;;=^358.31IA^3^2
+ ;;^UTILITY(U,$J,358.3,7548,1,2,0)
+ ;;=2^74329
+ ;;^UTILITY(U,$J,358.3,7548,1,3,0)
+ ;;=3^Fluoroscopy,Pancreatic Duct
+ ;;^UTILITY(U,$J,358.3,7549,0)
+ ;;=74330^^37^374^15^^^^1
+ ;;^UTILITY(U,$J,358.3,7549,1,0)
+ ;;=^358.31IA^3^2
+ ;;^UTILITY(U,$J,358.3,7549,1,2,0)
+ ;;=2^74330
+ ;;^UTILITY(U,$J,358.3,7549,1,3,0)
+ ;;=3^Fluoroscopy,Bile and Pancreatic Ducts
+ ;;^UTILITY(U,$J,358.3,7550,0)
+ ;;=43246^^37^375^1^^^^1
+ ;;^UTILITY(U,$J,358.3,7550,1,0)
+ ;;=^358.31IA^3^2
+ ;;^UTILITY(U,$J,358.3,7550,1,2,0)
+ ;;=2^43246
+ ;;^UTILITY(U,$J,358.3,7550,1,3,0)
+ ;;=3^EGD w/ Percutaneous G-Tube Placement
+ ;;^UTILITY(U,$J,358.3,7551,0)
+ ;;=44373^^37^375^2^^^^1
+ ;;^UTILITY(U,$J,358.3,7551,1,0)
+ ;;=^358.31IA^3^2
+ ;;^UTILITY(U,$J,358.3,7551,1,2,0)
+ ;;=2^44373
+ ;;^UTILITY(U,$J,358.3,7551,1,3,0)
+ ;;=3^Enteroscopy w/ Conversion of G-Tube to J-Tube
+ ;;^UTILITY(U,$J,358.3,7552,0)
+ ;;=44372^^37^375^3^^^^1
+ ;;^UTILITY(U,$J,358.3,7552,1,0)
+ ;;=^358.31IA^3^2
+ ;;^UTILITY(U,$J,358.3,7552,1,2,0)
+ ;;=2^44372
+ ;;^UTILITY(U,$J,358.3,7552,1,3,0)
+ ;;=3^Enteroscopy w/ Percutaneous J-Tube Placement
+ ;;^UTILITY(U,$J,358.3,7553,0)
+ ;;=43762^^37^375^4^^^^1
+ ;;^UTILITY(U,$J,358.3,7553,1,0)
+ ;;=^358.31IA^3^2
+ ;;^UTILITY(U,$J,358.3,7553,1,2,0)
+ ;;=2^43762
+ ;;^UTILITY(U,$J,358.3,7553,1,3,0)
+ ;;=3^G-Tube Change
+ ;;^UTILITY(U,$J,358.3,7554,0)
+ ;;=43763^^37^375^5^^^^1
+ ;;^UTILITY(U,$J,358.3,7554,1,0)
+ ;;=^358.31IA^3^2
+ ;;^UTILITY(U,$J,358.3,7554,1,2,0)
+ ;;=2^43763
+ ;;^UTILITY(U,$J,358.3,7554,1,3,0)
+ ;;=3^G-Tube Change Rev of Gastrostomy
+ ;;^UTILITY(U,$J,358.3,7555,0)
+ ;;=91111^^37^376^4^^^^1
+ ;;^UTILITY(U,$J,358.3,7555,1,0)
+ ;;=^358.31IA^3^2
+ ;;^UTILITY(U,$J,358.3,7555,1,2,0)
+ ;;=2^91111
+ ;;^UTILITY(U,$J,358.3,7555,1,3,0)
+ ;;=3^GI Tract Imaging,Intraluminal,Esophagus,Int & Rpt
+ ;;^UTILITY(U,$J,358.3,7556,0)
+ ;;=91110^^37^376^5^^^^1
+ ;;^UTILITY(U,$J,358.3,7556,1,0)
+ ;;=^358.31IA^3^2
+ ;;^UTILITY(U,$J,358.3,7556,1,2,0)
+ ;;=2^91110
+ ;;^UTILITY(U,$J,358.3,7556,1,3,0)
+ ;;=3^GI Tract Imaging,Intraluminal,Esophagus-Ileum,Int & Rpt
+ ;;^UTILITY(U,$J,358.3,7557,0)
+ ;;=91120^^37^376^9^^^^1
+ ;;^UTILITY(U,$J,358.3,7557,1,0)
+ ;;=^358.31IA^3^2
+ ;;^UTILITY(U,$J,358.3,7557,1,2,0)
+ ;;=2^91120
+ ;;^UTILITY(U,$J,358.3,7557,1,3,0)
+ ;;=3^Rectal Sensation Test
+ ;;^UTILITY(U,$J,358.3,7558,0)
+ ;;=91065^^37^376^8^^^^1
+ ;;^UTILITY(U,$J,358.3,7558,1,0)
+ ;;=^358.31IA^3^2
+ ;;^UTILITY(U,$J,358.3,7558,1,2,0)
+ ;;=2^91065
+ ;;^UTILITY(U,$J,358.3,7558,1,3,0)
+ ;;=3^Hydrogen Breath Test

@@ -1,124 +1,124 @@
-IBDEI0OM ; ; 04-FEB-2020
- ;;3.0;IB ENCOUNTER FORM IMP/EXP;;FEB 04, 2020
+IBDEI0OM ; ; 01-FEB-2022
+ ;;3.0;IB ENCOUNTER FORM IMP/EXP;;FEB 01, 2022
  Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,999) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
- ;;^UTILITY(U,$J,358.3,10988,2)
- ;;=^5151339
- ;;^UTILITY(U,$J,358.3,10989,0)
- ;;=H54.0X53^^77^719^8
- ;;^UTILITY(U,$J,358.3,10989,1,0)
+ ;;^UTILITY(U,$J,358.3,11061,1,3,0)
+ ;;=3^Global Developmental Delay
+ ;;^UTILITY(U,$J,358.3,11061,1,4,0)
+ ;;=4^F88.
+ ;;^UTILITY(U,$J,358.3,11061,2)
+ ;;=^5003690
+ ;;^UTILITY(U,$J,358.3,11062,0)
+ ;;=F80.2^^42^505^18
+ ;;^UTILITY(U,$J,358.3,11062,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,10989,1,3,0)
- ;;=3^Blindness Right Eye Cat 5,Blindness Left Eye Cat 3
- ;;^UTILITY(U,$J,358.3,10989,1,4,0)
- ;;=4^H54.0X53
- ;;^UTILITY(U,$J,358.3,10989,2)
- ;;=^5151344
- ;;^UTILITY(U,$J,358.3,10990,0)
- ;;=H54.2X22^^77^719^10
- ;;^UTILITY(U,$J,358.3,10990,1,0)
+ ;;^UTILITY(U,$J,358.3,11062,1,3,0)
+ ;;=3^Language Disorder
+ ;;^UTILITY(U,$J,358.3,11062,1,4,0)
+ ;;=4^F80.2
+ ;;^UTILITY(U,$J,358.3,11062,2)
+ ;;=^331959
+ ;;^UTILITY(U,$J,358.3,11063,0)
+ ;;=F81.2^^42^505^19
+ ;;^UTILITY(U,$J,358.3,11063,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,10990,1,3,0)
- ;;=3^Low Vision Right Eye Cat 2,Low Vision Left Eye Cat 2
- ;;^UTILITY(U,$J,358.3,10990,1,4,0)
- ;;=4^H54.2X22
- ;;^UTILITY(U,$J,358.3,10990,2)
- ;;=^5151362
- ;;^UTILITY(U,$J,358.3,10991,0)
- ;;=H54.512A^^77^719^11
- ;;^UTILITY(U,$J,358.3,10991,1,0)
+ ;;^UTILITY(U,$J,358.3,11063,1,3,0)
+ ;;=3^Learning Disorder w/ Impairment in Mathematics
+ ;;^UTILITY(U,$J,358.3,11063,1,4,0)
+ ;;=4^F81.2
+ ;;^UTILITY(U,$J,358.3,11063,2)
+ ;;=^331957
+ ;;^UTILITY(U,$J,358.3,11064,0)
+ ;;=F81.0^^42^505^20
+ ;;^UTILITY(U,$J,358.3,11064,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,10991,1,3,0)
- ;;=3^Low Vision Right Eye Cat 2,Normal Vision Left Eye
- ;;^UTILITY(U,$J,358.3,10991,1,4,0)
- ;;=4^H54.512A
- ;;^UTILITY(U,$J,358.3,10991,2)
- ;;=^5151370
- ;;^UTILITY(U,$J,358.3,10992,0)
- ;;=Z82.1^^77^719^17
- ;;^UTILITY(U,$J,358.3,10992,1,0)
+ ;;^UTILITY(U,$J,358.3,11064,1,3,0)
+ ;;=3^Learning Disorder w/ Impairment in Reading
+ ;;^UTILITY(U,$J,358.3,11064,1,4,0)
+ ;;=4^F81.0
+ ;;^UTILITY(U,$J,358.3,11064,2)
+ ;;=^5003679
+ ;;^UTILITY(U,$J,358.3,11065,0)
+ ;;=F81.81^^42^505^21
+ ;;^UTILITY(U,$J,358.3,11065,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,10992,1,3,0)
- ;;=3^Family Hx Blindness/Visual Loss
- ;;^UTILITY(U,$J,358.3,10992,1,4,0)
- ;;=4^Z82.1
- ;;^UTILITY(U,$J,358.3,10992,2)
- ;;=^5063365
- ;;^UTILITY(U,$J,358.3,10993,0)
- ;;=H35.81^^77^720^20
- ;;^UTILITY(U,$J,358.3,10993,1,0)
+ ;;^UTILITY(U,$J,358.3,11065,1,3,0)
+ ;;=3^Learning Disorder w/ Impairment in Written Expression
+ ;;^UTILITY(U,$J,358.3,11065,1,4,0)
+ ;;=4^F81.81
+ ;;^UTILITY(U,$J,358.3,11065,2)
+ ;;=^5003680
+ ;;^UTILITY(U,$J,358.3,11066,0)
+ ;;=F88.^^42^505^22
+ ;;^UTILITY(U,$J,358.3,11066,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,10993,1,3,0)
- ;;=3^Retinal Edema/CME Other Etiology
- ;;^UTILITY(U,$J,358.3,10993,1,4,0)
- ;;=4^H35.81
- ;;^UTILITY(U,$J,358.3,10993,2)
- ;;=^5005715
- ;;^UTILITY(U,$J,358.3,10994,0)
- ;;=H34.11^^77^720^9
- ;;^UTILITY(U,$J,358.3,10994,1,0)
+ ;;^UTILITY(U,$J,358.3,11066,1,3,0)
+ ;;=3^Neurodevelopmental Disorder,Oth Specified
+ ;;^UTILITY(U,$J,358.3,11066,1,4,0)
+ ;;=4^F88.
+ ;;^UTILITY(U,$J,358.3,11066,2)
+ ;;=^5003690
+ ;;^UTILITY(U,$J,358.3,11067,0)
+ ;;=F89.^^42^505^23
+ ;;^UTILITY(U,$J,358.3,11067,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,10994,1,3,0)
- ;;=3^Central Retinal Artery Occlusion,Right Eye
- ;;^UTILITY(U,$J,358.3,10994,1,4,0)
- ;;=4^H34.11
- ;;^UTILITY(U,$J,358.3,10994,2)
- ;;=^5005557
- ;;^UTILITY(U,$J,358.3,10995,0)
- ;;=H34.12^^77^720^10
- ;;^UTILITY(U,$J,358.3,10995,1,0)
+ ;;^UTILITY(U,$J,358.3,11067,1,3,0)
+ ;;=3^Neurodevelopmental Disorder,Unspec
+ ;;^UTILITY(U,$J,358.3,11067,1,4,0)
+ ;;=4^F89.
+ ;;^UTILITY(U,$J,358.3,11067,2)
+ ;;=^5003691
+ ;;^UTILITY(U,$J,358.3,11068,0)
+ ;;=F95.1^^42^505^24
+ ;;^UTILITY(U,$J,358.3,11068,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,10995,1,3,0)
- ;;=3^Central Retinal Artery Occlusion,Left Eye
- ;;^UTILITY(U,$J,358.3,10995,1,4,0)
- ;;=4^H34.12
- ;;^UTILITY(U,$J,358.3,10995,2)
- ;;=^5005558
- ;;^UTILITY(U,$J,358.3,10996,0)
- ;;=H34.231^^77^720^1
- ;;^UTILITY(U,$J,358.3,10996,1,0)
+ ;;^UTILITY(U,$J,358.3,11068,1,3,0)
+ ;;=3^Persistent (Chronic) Motor or Vocal Tic Disorder w/ Motor Tics Only
+ ;;^UTILITY(U,$J,358.3,11068,1,4,0)
+ ;;=4^F95.1
+ ;;^UTILITY(U,$J,358.3,11068,2)
+ ;;=^331941
+ ;;^UTILITY(U,$J,358.3,11069,0)
+ ;;=F95.0^^42^505^26
+ ;;^UTILITY(U,$J,358.3,11069,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,10996,1,3,0)
- ;;=3^Branch Retinal Artery Occlusion,Right Eye
- ;;^UTILITY(U,$J,358.3,10996,1,4,0)
- ;;=4^H34.231
- ;;^UTILITY(U,$J,358.3,10996,2)
- ;;=^5005564
- ;;^UTILITY(U,$J,358.3,10997,0)
- ;;=H34.232^^77^720^2
- ;;^UTILITY(U,$J,358.3,10997,1,0)
+ ;;^UTILITY(U,$J,358.3,11069,1,3,0)
+ ;;=3^Provisional Tic Disorder
+ ;;^UTILITY(U,$J,358.3,11069,1,4,0)
+ ;;=4^F95.0
+ ;;^UTILITY(U,$J,358.3,11069,2)
+ ;;=^331940
+ ;;^UTILITY(U,$J,358.3,11070,0)
+ ;;=F80.89^^42^505^27
+ ;;^UTILITY(U,$J,358.3,11070,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,10997,1,3,0)
- ;;=3^Branch Retinal Artery Occlusion,Left Eye
- ;;^UTILITY(U,$J,358.3,10997,1,4,0)
- ;;=4^H34.232
- ;;^UTILITY(U,$J,358.3,10997,2)
- ;;=^5005565
- ;;^UTILITY(U,$J,358.3,10998,0)
- ;;=H35.031^^77^720^17
- ;;^UTILITY(U,$J,358.3,10998,1,0)
+ ;;^UTILITY(U,$J,358.3,11070,1,3,0)
+ ;;=3^Social (Pragmatic) Communication Disorder
+ ;;^UTILITY(U,$J,358.3,11070,1,4,0)
+ ;;=4^F80.89
+ ;;^UTILITY(U,$J,358.3,11070,2)
+ ;;=^5003677
+ ;;^UTILITY(U,$J,358.3,11071,0)
+ ;;=F80.0^^42^505^28
+ ;;^UTILITY(U,$J,358.3,11071,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,10998,1,3,0)
- ;;=3^Hypertensive Retinopathy,Right Eye
- ;;^UTILITY(U,$J,358.3,10998,1,4,0)
- ;;=4^H35.031
- ;;^UTILITY(U,$J,358.3,10998,2)
- ;;=^5005590
- ;;^UTILITY(U,$J,358.3,10999,0)
- ;;=H35.032^^77^720^18
- ;;^UTILITY(U,$J,358.3,10999,1,0)
+ ;;^UTILITY(U,$J,358.3,11071,1,3,0)
+ ;;=3^Speech Sound Disorder
+ ;;^UTILITY(U,$J,358.3,11071,1,4,0)
+ ;;=4^F80.0
+ ;;^UTILITY(U,$J,358.3,11071,2)
+ ;;=^5003674
+ ;;^UTILITY(U,$J,358.3,11072,0)
+ ;;=F98.4^^42^505^29
+ ;;^UTILITY(U,$J,358.3,11072,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,10999,1,3,0)
- ;;=3^Hypertensive Retinopathy,Left Eye
- ;;^UTILITY(U,$J,358.3,10999,1,4,0)
- ;;=4^H35.032
- ;;^UTILITY(U,$J,358.3,10999,2)
- ;;=^5005591
- ;;^UTILITY(U,$J,358.3,11000,0)
- ;;=H35.033^^77^720^19
- ;;^UTILITY(U,$J,358.3,11000,1,0)
+ ;;^UTILITY(U,$J,358.3,11072,1,3,0)
+ ;;=3^Stereotypic Movement D/O Assoc w/ Known Med/Gene Cond/Neurod D/O or Environ Factor
+ ;;^UTILITY(U,$J,358.3,11072,1,4,0)
+ ;;=4^F98.4
+ ;;^UTILITY(U,$J,358.3,11072,2)
+ ;;=^5003716
+ ;;^UTILITY(U,$J,358.3,11073,0)
+ ;;=F95.8^^42^505^32
+ ;;^UTILITY(U,$J,358.3,11073,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,11000,1,3,0)
- ;;=3^Hypertensive Retinopathy,Bilateral
- ;;^UTILITY(U,$J,358.3,11000,1,4,0)
- ;;=4^H35.033

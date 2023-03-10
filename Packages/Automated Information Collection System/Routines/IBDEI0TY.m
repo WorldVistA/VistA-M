@@ -1,128 +1,128 @@
-IBDEI0TY ; ; 04-FEB-2020
- ;;3.0;IB ENCOUNTER FORM IMP/EXP;;FEB 04, 2020
+IBDEI0TY ; ; 01-FEB-2022
+ ;;3.0;IB ENCOUNTER FORM IMP/EXP;;FEB 01, 2022
  Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,999) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
- ;;^UTILITY(U,$J,358.3,13333,1,4,0)
- ;;=4^L02.93
- ;;^UTILITY(U,$J,358.3,13333,2)
- ;;=^5009018
- ;;^UTILITY(U,$J,358.3,13334,0)
- ;;=L03.90^^83^810^18
- ;;^UTILITY(U,$J,358.3,13334,1,0)
+ ;;^UTILITY(U,$J,358.3,13476,1,4,0)
+ ;;=4^H50.50
+ ;;^UTILITY(U,$J,358.3,13476,2)
+ ;;=^5006240
+ ;;^UTILITY(U,$J,358.3,13477,0)
+ ;;=H50.40^^51^637^31
+ ;;^UTILITY(U,$J,358.3,13477,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,13334,1,3,0)
- ;;=3^Cellulitis,Unspec
- ;;^UTILITY(U,$J,358.3,13334,1,4,0)
- ;;=4^L03.90
- ;;^UTILITY(U,$J,358.3,13334,2)
- ;;=^5009067
- ;;^UTILITY(U,$J,358.3,13335,0)
- ;;=L94.9^^83^810^19
- ;;^UTILITY(U,$J,358.3,13335,1,0)
+ ;;^UTILITY(U,$J,358.3,13477,1,3,0)
+ ;;=3^Heterotropia
+ ;;^UTILITY(U,$J,358.3,13477,1,4,0)
+ ;;=4^H50.40
+ ;;^UTILITY(U,$J,358.3,13477,2)
+ ;;=^5006237
+ ;;^UTILITY(U,$J,358.3,13478,0)
+ ;;=H53.462^^51^637^32
+ ;;^UTILITY(U,$J,358.3,13478,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,13335,1,3,0)
- ;;=3^Connective Tissue Disorder,Localized,Unspec
- ;;^UTILITY(U,$J,358.3,13335,1,4,0)
- ;;=4^L94.9
- ;;^UTILITY(U,$J,358.3,13335,2)
- ;;=^5009475
- ;;^UTILITY(U,$J,358.3,13336,0)
- ;;=L84.^^83^810^20
- ;;^UTILITY(U,$J,358.3,13336,1,0)
+ ;;^UTILITY(U,$J,358.3,13478,1,3,0)
+ ;;=3^Homonymous Bilateral Field Defects,Left Side
+ ;;^UTILITY(U,$J,358.3,13478,1,4,0)
+ ;;=4^H53.462
+ ;;^UTILITY(U,$J,358.3,13478,2)
+ ;;=^5006342
+ ;;^UTILITY(U,$J,358.3,13479,0)
+ ;;=H53.461^^51^637^33
+ ;;^UTILITY(U,$J,358.3,13479,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,13336,1,3,0)
- ;;=3^Corns & Callosities
- ;;^UTILITY(U,$J,358.3,13336,1,4,0)
- ;;=4^L84.
- ;;^UTILITY(U,$J,358.3,13336,2)
- ;;=^271920
- ;;^UTILITY(U,$J,358.3,13337,0)
- ;;=L27.0^^83^810^22
- ;;^UTILITY(U,$J,358.3,13337,1,0)
+ ;;^UTILITY(U,$J,358.3,13479,1,3,0)
+ ;;=3^Homonymous Bilateral Field Defects,Right Side
+ ;;^UTILITY(U,$J,358.3,13479,1,4,0)
+ ;;=4^H53.461
+ ;;^UTILITY(U,$J,358.3,13479,2)
+ ;;=^5006341
+ ;;^UTILITY(U,$J,358.3,13480,0)
+ ;;=H50.53^^51^637^34
+ ;;^UTILITY(U,$J,358.3,13480,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,13337,1,3,0)
- ;;=3^Dermatitis d/t Drugs/Meds Taken Internally,General
- ;;^UTILITY(U,$J,358.3,13337,1,4,0)
- ;;=4^L27.0
- ;;^UTILITY(U,$J,358.3,13337,2)
- ;;=^5009144
- ;;^UTILITY(U,$J,358.3,13338,0)
- ;;=L27.1^^83^810^23
- ;;^UTILITY(U,$J,358.3,13338,1,0)
+ ;;^UTILITY(U,$J,358.3,13480,1,3,0)
+ ;;=3^Hyperphoria
+ ;;^UTILITY(U,$J,358.3,13480,1,4,0)
+ ;;=4^H50.53
+ ;;^UTILITY(U,$J,358.3,13480,2)
+ ;;=^5006241
+ ;;^UTILITY(U,$J,358.3,13481,0)
+ ;;=G43.909^^51^637^35
+ ;;^UTILITY(U,$J,358.3,13481,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,13338,1,3,0)
- ;;=3^Dermatitis d/t Drugs/Meds Taken Internally,Local
- ;;^UTILITY(U,$J,358.3,13338,1,4,0)
- ;;=4^L27.1
- ;;^UTILITY(U,$J,358.3,13338,2)
- ;;=^5009145
- ;;^UTILITY(U,$J,358.3,13339,0)
- ;;=L27.2^^83^810^24
- ;;^UTILITY(U,$J,358.3,13339,1,0)
+ ;;^UTILITY(U,$J,358.3,13481,1,3,0)
+ ;;=3^Migraine,Not Intractable w/o Status Migrainosus
+ ;;^UTILITY(U,$J,358.3,13481,1,4,0)
+ ;;=4^G43.909
+ ;;^UTILITY(U,$J,358.3,13481,2)
+ ;;=^5003909
+ ;;^UTILITY(U,$J,358.3,13482,0)
+ ;;=D86.82^^51^637^36
+ ;;^UTILITY(U,$J,358.3,13482,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,13339,1,3,0)
- ;;=3^Dermatitis d/t Ingested Food
- ;;^UTILITY(U,$J,358.3,13339,1,4,0)
- ;;=4^L27.2
- ;;^UTILITY(U,$J,358.3,13339,2)
- ;;=^5009146
- ;;^UTILITY(U,$J,358.3,13340,0)
- ;;=L58.0^^83^810^25
- ;;^UTILITY(U,$J,358.3,13340,1,0)
+ ;;^UTILITY(U,$J,358.3,13482,1,3,0)
+ ;;=3^Multiple Cranial Nerve Palsies in Sarcoidosis
+ ;;^UTILITY(U,$J,358.3,13482,1,4,0)
+ ;;=4^D86.82
+ ;;^UTILITY(U,$J,358.3,13482,2)
+ ;;=^5002447
+ ;;^UTILITY(U,$J,358.3,13483,0)
+ ;;=H55.00^^51^637^41
+ ;;^UTILITY(U,$J,358.3,13483,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,13340,1,3,0)
- ;;=3^Dermatitis d/t Radiation,Acute
- ;;^UTILITY(U,$J,358.3,13340,1,4,0)
- ;;=4^L58.0
- ;;^UTILITY(U,$J,358.3,13340,2)
- ;;=^5009228
- ;;^UTILITY(U,$J,358.3,13341,0)
- ;;=L58.1^^83^810^26
- ;;^UTILITY(U,$J,358.3,13341,1,0)
+ ;;^UTILITY(U,$J,358.3,13483,1,3,0)
+ ;;=3^Mystagmus,Unspec
+ ;;^UTILITY(U,$J,358.3,13483,1,4,0)
+ ;;=4^H55.00
+ ;;^UTILITY(U,$J,358.3,13483,2)
+ ;;=^5006370
+ ;;^UTILITY(U,$J,358.3,13484,0)
+ ;;=H52.523^^51^637^43
+ ;;^UTILITY(U,$J,358.3,13484,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,13341,1,3,0)
- ;;=3^Dermatitis d/t Radiation,Chronic
- ;;^UTILITY(U,$J,358.3,13341,1,4,0)
- ;;=4^L58.1
- ;;^UTILITY(U,$J,358.3,13341,2)
- ;;=^5009229
- ;;^UTILITY(U,$J,358.3,13342,0)
- ;;=L58.9^^83^810^21
- ;;^UTILITY(U,$J,358.3,13342,1,0)
+ ;;^UTILITY(U,$J,358.3,13484,1,3,0)
+ ;;=3^Paresis of Accommodation,Bilateral
+ ;;^UTILITY(U,$J,358.3,13484,1,4,0)
+ ;;=4^H52.523
+ ;;^UTILITY(U,$J,358.3,13484,2)
+ ;;=^5006284
+ ;;^UTILITY(U,$J,358.3,13485,0)
+ ;;=H52.521^^51^637^45
+ ;;^UTILITY(U,$J,358.3,13485,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,13342,1,3,0)
- ;;=3^Dermatitis d/t  Radiation,Unspec
- ;;^UTILITY(U,$J,358.3,13342,1,4,0)
- ;;=4^L58.9
- ;;^UTILITY(U,$J,358.3,13342,2)
- ;;=^5009230
- ;;^UTILITY(U,$J,358.3,13343,0)
- ;;=L27.9^^83^810^27
- ;;^UTILITY(U,$J,358.3,13343,1,0)
+ ;;^UTILITY(U,$J,358.3,13485,1,3,0)
+ ;;=3^Paresis of Accommodation,Right Eye
+ ;;^UTILITY(U,$J,358.3,13485,1,4,0)
+ ;;=4^H52.521
+ ;;^UTILITY(U,$J,358.3,13485,2)
+ ;;=^5006282
+ ;;^UTILITY(U,$J,358.3,13486,0)
+ ;;=H52.522^^51^637^44
+ ;;^UTILITY(U,$J,358.3,13486,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,13343,1,3,0)
- ;;=3^Dermatitis d/t Unspec Subs Taken Internally
- ;;^UTILITY(U,$J,358.3,13343,1,4,0)
- ;;=4^L27.9
- ;;^UTILITY(U,$J,358.3,13343,2)
- ;;=^271914
- ;;^UTILITY(U,$J,358.3,13344,0)
- ;;=L20.9^^83^810^29
- ;;^UTILITY(U,$J,358.3,13344,1,0)
+ ;;^UTILITY(U,$J,358.3,13486,1,3,0)
+ ;;=3^Paresis of Accommodation,Left Eye
+ ;;^UTILITY(U,$J,358.3,13486,1,4,0)
+ ;;=4^H52.522
+ ;;^UTILITY(U,$J,358.3,13486,2)
+ ;;=^5006283
+ ;;^UTILITY(U,$J,358.3,13487,0)
+ ;;=Z87.820^^51^637^46
+ ;;^UTILITY(U,$J,358.3,13487,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,13344,1,3,0)
- ;;=3^Dermatitis,Atopic,Unspec
- ;;^UTILITY(U,$J,358.3,13344,1,4,0)
- ;;=4^L20.9
- ;;^UTILITY(U,$J,358.3,13344,2)
- ;;=^5009113
- ;;^UTILITY(U,$J,358.3,13345,0)
- ;;=L23.9^^83^810^28
- ;;^UTILITY(U,$J,358.3,13345,1,0)
+ ;;^UTILITY(U,$J,358.3,13487,1,3,0)
+ ;;=3^Personal Hx of TBI
+ ;;^UTILITY(U,$J,358.3,13487,1,4,0)
+ ;;=4^Z87.820
+ ;;^UTILITY(U,$J,358.3,13487,2)
+ ;;=^5063514
+ ;;^UTILITY(U,$J,358.3,13488,0)
+ ;;=H34.02^^51^637^47
+ ;;^UTILITY(U,$J,358.3,13488,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,13345,1,3,0)
- ;;=3^Dermatitis,Allergic Contact,Unspec Cause
- ;;^UTILITY(U,$J,358.3,13345,1,4,0)
- ;;=4^L23.9
- ;;^UTILITY(U,$J,358.3,13345,2)
- ;;=^5009125
+ ;;^UTILITY(U,$J,358.3,13488,1,3,0)
+ ;;=3^Retinal Artery Occlusion,Transient,Left Eye
+ ;;^UTILITY(U,$J,358.3,13488,1,4,0)
+ ;;=4^H34.02
+ ;;^UTILITY(U,$J,358.3,13488,2)
+ ;;=^5005554

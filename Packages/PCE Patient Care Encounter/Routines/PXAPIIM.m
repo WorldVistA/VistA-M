@@ -1,5 +1,5 @@
-PXAPIIM ;BP/LMT - PCE Immunization APIs ;04/20/16  10:00
- ;;1.0;PCE PATIENT CARE ENCOUNTER;**210,215**;Aug 12, 1996;Build 10
+PXAPIIM ;ISP/LMT - PCE Immunization APIs ;Aug 05, 2021@07:18:12
+ ;;1.0;PCE PATIENT CARE ENCOUNTER;**210,215,217**;Aug 12, 1996;Build 134
  ;
  ; Reference to NAME in file .85 is supported by ICR #6062
  ;
@@ -57,46 +57,24 @@ IMMGRP(PXRESULT,PXIMM) ;
  ;  PXRESULT("VG",GROUP_NAME,IMM_IEN) = Immunization Name
  ;  PXRESULT("ICR",CONTRA_VIEN) = Contraindication Name
  ;
- N PXCODE,PXCVX,PXICRIEN,PXICRNAME,PXIMMB,PXNAME,PXVGIEN,PXVGNAME
- ;
  I '$G(PXIMM) Q
- ;
- S PXNAME=$P($G(^AUTTIMM(PXIMM,0)),U,1)
- ;
- S PXCVX=$P($G(^AUTTIMM(PXIMM,0)),U,3)
- I PXCVX'="" D
- . S PXIMMB=0
- . F  S PXIMMB=$O(^AUTTIMM("C",PXCVX,PXIMMB)) Q:'PXIMMB  D
- . . S PXNAME=$P($G(^AUTTIMM(PXIMMB,0)),U,1)
- . . S PXRESULT("CVX",PXCVX,PXIMMB)=PXNAME
- ;
- S PXVGIEN=0
- F  S PXVGIEN=$O(^AUTTIMM(PXIMM,7,PXVGIEN)) Q:'PXVGIEN  D
- . S PXVGNAME=$P($G(^AUTTIMM(PXIMM,7,PXVGIEN,0)),U,1)
- . I PXVGNAME="" Q
- . S PXIMMB=0
- . F  S PXIMMB=$O(^AUTTIMM("I",PXVGNAME,PXIMMB)) Q:'PXIMMB  D
- . . S PXNAME=$P($G(^AUTTIMM(PXIMMB,0)),U,1)
- . . S PXRESULT("VG",PXVGNAME,PXIMMB)=PXNAME
- ;
- S PXICRIEN=0
- F  S PXICRIEN=$O(^PXV(920.4,PXICRIEN)) Q:'PXICRIEN  D
- . S PXICRNAME=$P($G(^PXV(920.4,PXICRIEN,0)),U,1)
- . ;
- . ; If this imm is listed in the Immunizations Limited To
- . ; multiple, include it
- . I $O(^PXV(920.4,PXICRIEN,3,"B",PXIMM,0)) D  Q
- . . S PXRESULT("ICR",PXICRIEN_";PXV(920.4,")=PXICRNAME
- . ;
- . ; Include all contras that don't have the Immunizations
- . ; Limited To multiple populated, except Severe Reaction
- . ; Previous Dose
- . I '$O(^PXV(920.4,PXICRIEN,3,0)) D  Q
- . . S PXCODE=$P($G(^PXV(920.4,PXICRIEN,0)),U,2)
- . . I (PXICRNAME="SEVERE REACTION PREVIOUS DOSE")!(PXCODE="VXC20") Q
- . . S PXRESULT("ICR",PXICRIEN_";PXV(920.4,")=PXICRNAME
+ D IMMGRP^PXAPIIM2(.PXRESULT,.PXIMM)
  ;
  Q
+ ;
+SKSTAT(PXSK) ;
+ ;
+ ;Returns Skin Test status
+ ;
+ ;Input:
+ ;  PXSK - (required) Pointer to #9999999.14
+ ;
+ ;Returns:
+ ;  1: Active
+ ;  0: Inactive
+ ;
+ I '$G(PXSK) Q ""
+ Q $$GETSTAT^PXVRPC8(PXSK,DT,1,0)
  ;
 IMMSTAT(PXIMM) ;
  ;
@@ -138,7 +116,8 @@ PATICR(PXRESULT,DFN,PXIMM,PXBDT,PXEDT) ;
  ; Finds all of a patient's contraindications/refusals using the following criteria:
  ;   1. Any current-dated contraindication/refusal for PXIMM AND any immunization
  ;      that shares the same CVX code.
- ;   2. Any current-dated refusals for an immunization that shares the same vaccine
+ ;   2. If the Refused Vaccine Group (#1205) is set to Yes, then include any
+ ;      current-dated refusals for an immunization that shares the same vaccine
  ;      group as PXIMM.
  ;   3. Any current-dated contraindications where the contraindication has PXIMM
  ;      listed in the "Immunization Limited To" multiple.
@@ -160,8 +139,10 @@ PATICR(PXRESULT,DFN,PXIMM,PXBDT,PXEDT) ;
  ;Returns:
  ;  PXRESULT(DAS) = Visit IEN ^ Contra/Refusal variable pointer | Contra/Refusal Name
  ;                  ^ Immunization IEN | Name ^ Warn Until Date ^ D/T Recorded ^ Event D/T
- ;                  ^ Encounter Provider IEN | Name
+ ;                  ^ Encounter Provider IEN | Name ^ Refused Vaccine Group (1/0)
  ;  PXRESULT(DAS,"COMMENTS") = Comments
+ ; When the entry is from IMM CONTRAINDICATION REASONS this is defined:
+ ;  PXRESULT(DAS,"CONTRAINDICATION/PRECAUTION")=CONTRAINDICATION/PRECAUTION
  ;
  ;  * DAS = Pointer to #9000010.707
  ;
@@ -201,7 +182,7 @@ PATICR(PXRESULT,DFN,PXIMM,PXBDT,PXEDT) ;
  . . F  S PXICR=$O(^PXRMINDX(PXFILE,"PIC",DFN,PXIMMB,PXICR)) Q:'PXICR  D
  . . . I PXSEARCHBY="REFUSALS",PXICR'[920.5 Q
  . . . S PXSUB(1)=PXFILE,PXSUB(2)="PIC",PXSUB(3)=DFN,PXSUB(4)=PXIMMB,PXSUB(5)=PXICR
- . . . D SEARCH(.PXRESULT,.PXSUB,.PXBDT,.PXEDT)
+ . . . D SEARCH(.PXRESULT,.PXSUB,.PXBDT,.PXEDT,PXSEARCHBY)
  ;
  ; >> Search based off criteria #3 & #4:
  ;
@@ -215,6 +196,7 @@ PATICR(PXRESULT,DFN,PXIMM,PXBDT,PXEDT) ;
  ; >> Setup return array fields:
  S PXDAS=0
  F  S PXDAS=$O(PXRESULT(PXDAS)) Q:'PXDAS  D
+ . K PXDATA
  . D VICR^PXPXRM(PXDAS,.PXDATA)
  . S PXX=$G(PXDATA("VISIT"))
  . S PXX=PXX_U_$P($G(PXDATA("CONTRA/REFUSAL")),U,1)_"|"_$P($G(PXDATA("CONTRA/REFUSAL")),U,2)
@@ -223,12 +205,13 @@ PATICR(PXRESULT,DFN,PXIMM,PXBDT,PXEDT) ;
  . S PXX=PXX_U_$G(PXDATA("D/T RECORDED"))
  . S PXX=PXX_U_$G(PXDATA("EVENT D/T"))
  . S PXX=PXX_U_$P($G(PXDATA("ENC PROVIDER")),U,1)_"|"_$P($G(PXDATA("ENC PROVIDER")),U,2)
+ . S PXX=PXX_U_$G(PXDATA("REFUSED VACCINE GROUP"))
  . S PXRESULT(PXDAS)=PXX
+ . I $G(PXDATA("CONTRAINDICATION/PRECAUTION"))'="" S PXRESULT(PXDAS,"CONTRAINDICATION/PRECAUTION")=PXDATA("CONTRAINDICATION/PRECAUTION")
  . S PXRESULT(PXDAS,"COMMENTS")=$G(PXDATA("COMMENTS"))
- ;
  Q
  ;
-SEARCH(PXRESULT,PXSUB,PXBDT,PXEDT) ; Helper function for PATICR
+SEARCH(PXRESULT,PXSUB,PXBDT,PXEDT,PXSEARCHBY) ; Helper function for PATICR
  ;
  N PXDAS,PXSTART,PXSTOP
  ;
@@ -238,6 +221,8 @@ SEARCH(PXRESULT,PXSUB,PXBDT,PXEDT) ; Helper function for PATICR
  . F  S PXSTOP=$O(^PXRMINDX(PXSUB(1),PXSUB(2),PXSUB(3),PXSUB(4),PXSUB(5),PXSTART,PXSTOP)) Q:'PXSTOP  D
  . . S PXDAS=0
  . . F  S PXDAS=$O(^PXRMINDX(PXSUB(1),PXSUB(2),PXSUB(3),PXSUB(4),PXSUB(5),PXSTART,PXSTOP,PXDAS)) Q:'PXDAS  D
+ . . . ; If refusal is only for this vaccine, quit
+ . . . I $G(PXSEARCHBY)="REFUSALS",$P($G(^AUPNVICR(PXDAS,12)),U,5)=0 Q
  . . . S PXRESULT(PXDAS)=""
  ;
  Q
@@ -290,20 +275,20 @@ SITES(PXRSLT,PXROUTE,PXSORTBY) ;
  ;
 IMMDEF(PXRSLT,PXIMM,PXINST) ;
  ;
- N PXIEN,PXPRNT,PXSTA
+ N PXIEN,PXPRNT,PXSTA,PXUNITS,PXNUNITS,PXUCUM
  ;
  I '$G(PXIMM)!('$G(PXINST)) Q
  I $D(PXINST(PXINST)) Q  ; Used to prevent infinite recursion
  ;
  S PXIEN=$O(^PXV(920.05,"AC",PXINST,PXIMM,0))
  ;
- I PXIEN D  Q
+ I PXIEN D
  . M PXRSLT=^PXV(920.05,PXIEN,1,PXIMM)
  ;
  ; If site did not create defaults, make recursive
  ; call for parent Institution; if parent has defaults,
  ; inherit from parent.
- I 'PXIEN D  Q
+ I 'PXIEN D
  . S PXSTA=$$STA^XUAF4(PXINST)
  . I PXSTA="" Q
  . S PXPRNT=$$PRNT^XUAF4(PXSTA)
@@ -319,4 +304,285 @@ IMMDEF(PXRSLT,PXIMM,PXINST) ;
  . S PXINST=+PXPRNT
  . D IMMDEF(.PXRSLT,PXIMM,.PXINST)
  ;
+ S PXUNITS=$P($G(PXRSLT(13)),U,13)
+ S PXNUNITS=$P($G(PXRSLT(13)),U,14)
+ I PXUNITS="",PXNUNITS="" D  ; default to mL unless overriden by imm default response
+ . K PXUCUM
+ . D UCUMDATA^LEXMUCUM("mL",.PXUCUM)
+ . S PXUNITS=$O(PXUCUM(0))
+ . I PXUNITS S $P(PXRSLT(13),U,13)=PXUNITS
+ ;
  Q
+ ;
+ ;
+HIST(PXRESULTS,PXTYPE,PXIENLST,DFN,PXDIR) ;
+ ;
+ ; Return patient's immunization or skin test history for a given
+ ; list of immunizations or skin tests.
+ ;
+ ; Inputs:
+ ;     PXTYPE = "SK": for Skin Tests
+ ;              "IM": For Immunizations
+ ;   PXIENLST = List of IENs from the Immunization/Skin Test file (passed by reference).
+ ;              PXIENLST(IEN)=""
+ ;        DFN = Patient (#2) IEN
+ ;      PXDIR = Sort order.
+ ;              1: Most recent first
+ ;              0: Oldest first
+ ;
+ ; Returns:
+ ;    For Immunizations:
+ ;       PXRESULTS(n)=Immunization Name ^ Date Administered ^ Series ^ Facility
+ ;    For Skin Tests:
+ ;       PXRESULTS(n)=Skin Test Name ^ Date Admin ^ Date Read ^ Reading ^ Result ^ Facility
+ ;
+ N PXCNT,PXDAS,PXDATE,PXFILE,PXIEN,PXSUB,PXTMP
+ ;
+ S PXFILE=$S($G(PXTYPE)="SK":9000010.12,1:9000010.11)
+ ;
+ S PXIEN=0
+ F  S PXIEN=$O(PXIENLST(PXIEN)) Q:'PXIEN  D
+ . S PXDATE=0
+ . F  S PXDATE=$O(^PXRMINDX(PXFILE,"PI",DFN,PXIEN,PXDATE)) Q:'PXDATE  D
+ . . S PXDAS=0
+ . . F  S PXDAS=$O(^PXRMINDX(PXFILE,"PI",DFN,PXIEN,PXDATE,PXDAS)) Q:'PXDAS  D
+ . . . S PXSUB=PXDATE
+ . . . I $G(PXDIR) S PXSUB=9999999-PXDATE
+ . . . S PXTMP(PXSUB,PXDAS)=PXDATE
+ ;
+ S PXCNT=0
+ S PXSUB=""
+ F  S PXSUB=$O(PXTMP(PXSUB)) Q:PXSUB=""  D
+ . S PXDAS=0
+ . F  S PXDAS=$O(PXTMP(PXSUB,PXDAS)) Q:'PXDAS  D
+ . . S PXDATE=$G(PXTMP(PXSUB,PXDAS))
+ . . I PXFILE=9000010.11 D ADDIMM(.PXRESULTS,.PXCNT,PXDAS,PXDATE)
+ . . I PXFILE=9000010.12 D ADDSK(.PXRESULTS,.PXCNT,PXDAS)
+ ;
+ Q
+ ;
+ADDIMM(PXRESULT,PXCNT,PXDAS,PXDATE) ;
+ N PXIMM,PXFAC,PXVISIT
+ D VIMM^PXPXRM(PXDAS,.PXIMM)
+ S PXCNT=PXCNT+1
+ S PXFAC=$P(PXIMM("FACILITY"),U,2)
+ I PXFAC="" D
+ . S PXVISIT=$P($G(^AUPNVIMM(+PXDAS,0)),U,3)
+ . I 'PXVISIT Q
+ . S PXFAC=$P($G(^AUPNVSIT(PXVISIT,21)),U,1)
+ S PXRESULT(PXCNT)=$P(PXIMM("IMMUNIZATION"),U,2)_U_PXDATE_U_PXIMM("SERIES")_U_PXFAC
+ Q
+ ;
+ADDSK(PXRESULT,PXCNT,PXDAS) ;
+ N PXDATE,PXSK
+ D VSKIN^PXPXRM(PXDAS,.PXSK)
+ S PXDATE=$G(PXSK("EVENT DATE AND TIME"))
+ I 'PXDATE S PXDATE=PXSK("PLACEMENT VISIT DATE TIME")
+ I 'PXDATE S PXDATE=PXSK("VISIT DATE TIME")
+ S PXCNT=PXCNT+1
+ S PXRESULT(PXCNT)=$P(PXSK("SKIN TEST"),U,2)_U_PXDATE_U_PXSK("DATE READ")_U_PXSK("READING")_U_PXSK("RESULTS")_U_$P(PXSK("FACILITY"),U,2)
+ Q
+ ;
+READVALS(PXRESULT) ;return data type for reading fields
+ N PXCODE,PXCODES,PXI
+ ;
+ S PXRESULT("RANGE")="0:40:0" ;Minimum:Maximum:Maximum decimals
+ ;
+ S PXCODES=$$GET1^DID(9000010.11,1401,"","SET OF CODES")
+ F PXI=1:1 S PXCODE=$P(PXCODES,";",PXI) Q:PXCODE=""  D
+ . S PXRESULT("CODES",PXCODE)=""
+ ;
+ Q
+ ;
+READENT(PXRESULT,DFN) ;
+ ; Find most recent immunization admin for vaccine that requires reading.
+ ; Only return if there is no reading entered previously.
+ ;
+ N PXDATE,PXIMM,PXNAME,PXTEMP,PXVIMM,PXVIMM14
+ ;
+ S PXRESULT(1)=""
+ ;
+ ; Get all V Imm entries for immunizations that require reading (currently only Smallpox)
+ S PXIMM=0
+ F  S PXIMM=$O(^AUTTIMM(PXIMM)) Q:'PXIMM  D
+ . I '$P($G(^AUTTIMM(PXIMM,.5)),U,1) Q
+ . S PXDATE=$O(^PXRMINDX(9000010.11,"PI",DFN,PXIMM,""),-1)
+ . I 'PXDATE Q
+ . S PXVIMM=$O(^PXRMINDX(9000010.11,"PI",DFN,PXIMM,PXDATE,0))
+ . I 'PXVIMM Q
+ . S PXTEMP(PXDATE,PXVIMM)=PXIMM
+ ;
+ ; find most recent admin
+ S PXDATE=$O(PXTEMP(""),-1)
+ I 'PXDATE Q
+ S PXVIMM=$O(PXTEMP(PXDATE,0))
+ I 'PXVIMM Q
+ ;
+ S PXIMM=PXTEMP(PXDATE,PXVIMM)
+ S PXVIMM14=$G(^AUPNVIMM(PXVIMM,14))
+ ; if both Reading and Results are populated, quit
+ I $P(PXVIMM14,U,1)'="",$P(PXVIMM14,U,2)'="" Q
+ ;
+ S PXNAME=$P($G(^AUTTIMM(PXIMM,0)),U,1)
+ S PXRESULT(1)=PXVIMM_U_PXNAME_U_PXDATE
+ ;
+ Q
+ ;
+GETLOT(PXRTRN,PXIMM,PXDATE,PXLOC) ;
+ ;
+ ; Get active lots for a given immunization
+ ;
+ ;  PXIMM - Immunization IEN or C:CVX Code
+ ; PXDATE - Date (Optional; Defaults to NOW)
+ ;  PXLOC - Used to determine Institution (Optional)
+ ;           Possible values are:
+ ;             "I:X": Institution (#4) IEN #X
+ ;             "V:X": Visit (#9000010) IEN #X
+ ;             "L:X": Hopital Location (#44) IEN #X
+ ;           If PXLOC is not passed in OR could not make determination based off
+ ;           input, then default to DUZ(2), and if DUZ(2) is not defined,
+ ;           default to Default Institution.
+ ;
+ ;
+ N PXCNT,PXCVX,PXINST,PXSUB
+ ;
+ S PXIMM=$G(PXIMM)
+ I $E(PXIMM,1)="C" D
+ . S PXCVX=$P(PXIMM,":",2)
+ . I PXCVX="" Q
+ . D CVXTOIEN(.PXIMM,PXCVX)
+ . S PXIMM=$P(PXIMM,U,1)
+ ;
+ I ('PXIMM)!('$D(^AUTTIMM(+PXIMM,0))) D  Q
+ . S PXRTRN(0)="-1^Immunization entry not found."
+ ;
+ I '$G(PXDATE) S PXDATE=$$NOW^XLFDT()
+ S PXINST=$$INST^PXVUTIL($G(PXLOC))
+ ;
+ S PXSUB="PXVIMM"
+ K ^TMP(PXSUB,$J)
+ D GETLOT^PXVRPC4(PXSUB,PXIMM,PXDATE,PXINST)
+ M PXRTRN=^TMP(PXSUB,$J,"LOT")
+ K ^TMP(PXSUB,$J)
+ ;
+ S PXCNT=+$O(PXRTRN(""),-1)
+ S PXRTRN(0)=PXCNT
+ ;
+ Q
+ ;
+CVXTOIEN(PXRSLT,PXCVX) ;
+ ;
+ ; Return an Immunization IEN for a given CVX code.
+ ;
+ ;Input:
+ ;    PXCVX - A CVX code
+ ;
+ ;Returns:
+ ; If a match is found:
+ ;   PXRSLT=Immunization IEN ^ Name ^ Status  (1: Active; 0: Inactive) ^ Selectable for Historic
+ ; Else:
+ ;   PXRSLT=""
+ ;
+ N PXCLASS,PXIMM,PXNAME,PXSELHIST,PXSTATUS
+ ;
+ S PXRSLT=""
+ I $G(PXCVX)="" Q
+ S PXIMM=0
+ F  S PXIMM=$O(^AUTTIMM("C",PXCVX,PXIMM)) Q:'PXIMM  D
+ . S PXCLASS=$P($G(^AUTTIMM(PXIMM,100)),U,1)
+ . I PXCLASS'="N" Q
+ . S PXSELHIST=$P($G(^AUTTIMM(PXIMM,6)),U,1)
+ . I PXSELHIST="Y"!(PXRSLT="") S PXRSLT=PXIMM
+ ;
+ I PXRSLT D
+ . S PXNAME=$P($G(^AUTTIMM(PXRSLT,0)),U,1)
+ . S PXSELHIST=$P($G(^AUTTIMM(PXRSLT,6)),U,1)
+ . S PXSTATUS='$P($G(^AUTTIMM(PXRSLT,0)),U,7)
+ . S PXRSLT=PXRSLT_U_PXNAME_U_PXSTATUS_U_PXSELHIST
+ ;
+ Q
+ ;
+ ;
+ISIMMSEL(PXRSLT,PXIMM,PXDATE,PXLOC,PXHIST) ;
+ ;
+ ; Is this immunization selectable for the given encounter?
+ ;
+ ;  PXIMM - Immunization IEN or C:CVX Code
+ ; PXDATE - Date (Optional; Defaults to NOW)
+ ;  PXLOC - Used to determine Institution (Optional)
+ ;           Possible values are:
+ ;             "I:X": Institution (#4) IEN #X
+ ;             "V:X": Visit (#9000010) IEN #X
+ ;             "L:X": Hopital Location (#44) IEN #X
+ ;           If PXLOC is not passed in OR could not make determination based off
+ ;           input, then default to DUZ(2), and if DUZ(2) is not defined,
+ ;           default to Default Institution.
+ ;  PXHIST - Is this a historical encounter (1:Yes; 0: No) (Optional; Defaults to No)
+ ;
+ ;Returns:
+ ;   PXRSLT= 1:If Immunization is selectable; 0: otherwise
+ ;           For non-historical: Immunization must be active and have selectable lots,
+ ;           for it to be selectable;
+ ;           For historical: As long as immunization is Active or Inactive, but Selectable for Historic,
+ ;           it is selectable.
+ ;
+ N PXCVX,PXLOTS,PXSTATUS
+ ;
+ S PXRSLT=0
+ ;
+ I '$G(PXDATE) S PXDATE=$$NOW^XLFDT()
+ I '$G(PXHIST) S PXHIST=0
+ S PXIMM=$G(PXIMM)
+ I $E(PXIMM,1)="C" D
+ . S PXCVX=$P(PXIMM,":",2)
+ . I PXCVX="" Q
+ . D CVXTOIEN(.PXIMM,PXCVX)
+ . S PXIMM=$P(PXIMM,U,1)
+ ;
+ I ('PXIMM)!('$D(^AUTTIMM(+PXIMM,0))) Q
+ ;
+ S PXSTATUS=$$IMMSTADT(PXIMM,PXDATE)
+ ;
+ ; If historical, Quit
+ ; Return 1 if imm is active or sel for historical
+ I PXHIST D  Q
+ . I PXSTATUS?1(1"A",1"H") S PXRSLT=1
+ ;
+ ; for non-historical, return 0 if imm is inactive
+ I PXSTATUS'="A" Q
+ ;
+ ; return 1, if there are lots; 0 otherwise
+ D GETLOT(.PXLOTS,PXIMM,PXDATE,$G(PXLOC))
+ I $O(PXLOTS(0)) S PXRSLT=1
+ ;
+ Q
+ ;
+ ;
+ ;
+IMMSTADT(PXIMM,PXDATE) ;
+ ;
+ ;Returns Immunization status for a given date
+ ;
+ ;Input:
+ ;  PXIMM - (required) Pointer to #9999999.14
+ ; PXDATE - Date (Optional; Defaults to NOW)
+ ;
+ ;Returns:
+ ;  A: Active
+ ;  H: Inactive, but Selectable for Historic
+ ;  I: Inactive
+ ;
+ N PXAUDIT,PXSTATUS
+ ;
+ I '$G(PXIMM) Q ""
+ I '$D(^AUTTIMM(PXIMM)) Q ""
+ ;
+ I '$G(PXDATE) S PXDATE=$$NOW^XLFDT()
+ S PXAUDIT=0
+ I $$GET1^DID(9999999.14,.07,"","AUDIT")="YES, ALWAYS" S PXAUDIT=1
+ S PXSTATUS=$$GETSTAT^PXVRPC4(PXIMM,PXDATE,$$GETCSTAT^PXVRPC4(PXDATE,PXAUDIT),PXAUDIT)
+ ;
+ I PXSTATUS Q "A"
+ I $P($G(^AUTTIMM(PXIMM,6)),U,1)="Y" Q "H"
+ Q "I"
+ ;

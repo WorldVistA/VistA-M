@@ -1,5 +1,5 @@
 TIUTIUS ; MILW/JMC - Functions to search TIU documents; May 24, 2006 ; 2/16/16 1:49pm
- ;;1.0;TEXT INTEGRATION UTILITIES;**296,324**;JUN 20, 1997;Build 4;Build 13
+ ;;1.0;TEXT INTEGRATION UTILITIES;**296,324,346**;JUN 20, 1997;Build 1;Build 13
  ;
  ;
 TASK(AUMTDA) ; Task searching of document for specified text
@@ -11,7 +11,8 @@ TASK(AUMTDA) ; Task searching of document for specified text
  ;
  ; If original don't check if cosigned and signer different than cosigner - was checked when signed.
  F I=0,15 S X(I)=$G(^TIU(8925,AUMTDA,I))
- I 'AUMTADD,$P(X(15),"^",8),$P(X(15),"^",2),$P(X(15),"^",8)'=$P(X(15),"^",2) Q
+ ;TIU*1*346 Remove this line that prevents alerts from being sent when completed by cosigner
+ ;I 'AUMTADD,$P(X(15),"^",8),$P(X(15),"^",2),$P(X(15),"^",8)'=$P(X(15),"^",2) Q
  ; If addendum and not complete then don't check.
  I AUMTADD,$P(X(0),"^",5)'=7 Q
  ;

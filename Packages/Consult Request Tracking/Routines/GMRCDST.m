@@ -1,5 +1,5 @@
-GMRCDST ;ABV/BL - Retrieve Decision from DST server;03/28/2019
- ;;3.0;CONSULT/REQUEST TRACKING;**124,139,152**;DEC 27, 1997;Build 5
+GMRCDST ;ABV/BL - Retrieve Decision from DST server;May 21, 2020@07:06:12
+ ;;3.0;CONSULT/REQUEST TRACKING;**124,139,152,145,177**;DEC 27, 1997;Build 4
  ;
  ;SAC EXEMPTION 20200131-01 : GMRC use of vendor specific code
  ;IA6173
@@ -85,6 +85,8 @@ GETDST(IEN123,ID) ;
  ;
 TRYAG ; Execute the HTTP Get method.
  K XUERR,RESPJSON,AFOR,APAY,GMRCSS
+ K COM ; WCJ;GMRC*3.0*177
+ S ERRFLG=0  ; WCJ;GMRC*3.0*177
  S AFOR=0,APAY=""  ;Set variable to check for AutoForward
  S RESULT=$$GET^XOBWLIB(REQUEST,RESOURCE,.XUERR,0)
  I 'RESULT D
@@ -149,9 +151,10 @@ TRYAG ; Execute the HTTP Get method.
  ;
 FINDIDO(ORIFN) ;
  ;1. Find IEN of consult record
- ;2. Call $$FINDID45 to retrieve DST ID from the #100,#4.5 (RESPONSES multiple)
- ;3. If DST ID not found in 2. call $$FINDIDC to retrieve DST ID from #123,#20 (REASON FOR REQUEST)
- ;4. Call $$GETDST to retrieve Decision data from DST database and save it as a comment
+ ;2. See if DST ID is in new field added by CPRS in GMRC*3.0*145 (file (#123), field (#85))
+ ;3. If DST ID not found in 2. call $$FINDID45 to retrieve DST ID from the #100,#4.5 (RESPONSES multiple)
+ ;4. If DST ID not found in 3. call $$FINDIDC to retrieve DST ID from #123,#20 (REASON FOR REQUEST)
+ ;5. Call $$GETDST to retrieve Decision data from DST database and save it as a comment
  ;
  ;Input: ORIFN=IEN of file #100
  ;Output:
@@ -161,7 +164,12 @@ FINDIDO(ORIFN) ;
  N ID,IEN123,X
  S IEN123=0,X=$G(^OR(100,ORIFN,4)) I $P(X,";",2)="GMRC" S IEN123=+X
  Q:'IEN123 "-1^No Decision data found"
- S ID=$$FINDID45(ORIFN) ;First search for the DST ID in field #100,#4.5 (RESPONSES)
+ ;
+ ;WCJ;GMRC*3.0*145;check if CPRS put it in the new field(#85) in the consult file(#123)
+ N ERROR  ; just for kicks - don't really need returned error.
+ S ID=$TR($$GET1^DIQ(123,IEN123_",",85,,,"ERROR")," ","")
+ ;
+ I ID="" S ID=$$FINDID45(ORIFN) ;Next search for the DST ID in field #100,#4.5 (RESPONSES)
  ;Having not found the ID in the #100,#4.5 field, now look for it in the consult
  I ID="" S ID=$$FINDIDC(IEN123)
  ;remove space
@@ -188,8 +196,8 @@ FINDID45(ORIFN) ;
  Q ID
  ;
 FINDIDC(IEN123) ;
- ;This API searches FILE #123, FIELD #20 (REASON FOR REQUEST)looking for a 
- ;"DST ID:" tag and, if found, will extract the DST ID and call API 
+ ;This API searches FILE #123, FIELD #20 (REASON FOR REQUEST)looking for a
+ ;"DST ID:" tag and, if found, will extract the DST ID and call API
  ;$$GETDST to retrieve the decision data from the DST database and create
  ;a comment in the consult containing the decision data
  ;

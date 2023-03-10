@@ -1,5 +1,5 @@
-PSOSULB1 ;BHAM ISC/RTR,SAB -Print suspended labels  cont. ;10/10/96
- ;;7.0;OUTPATIENT PHARMACY;**10,200,264,289,367,421,448,452**;DEC 1997;Build 56
+PSOSULB1 ;BHAM ISC/RTR,SAB - Print suspended labels cont. ;10/10/96
+ ;;7.0;OUTPATIENT PHARMACY;**10,200,264,289,367,421,448,452,561**;DEC 1997;Build 41
  ;Reference to $$INSUR^IBBAPI supported by IA 4419
  ;Reference to $$BILLABLE^IBNCPDP supported by IA 6243
  ;
@@ -68,50 +68,47 @@ BAIMAIL ;Send mail message
  S ^TMP("PSOM",$J,SEQ+1)=""
  S XMTEXT="^TMP(""PSOM"",$J," N DIFROM D ^XMD K XMSUB,XMTEXT,XMY,XMDUZ
  Q
- ;Description: 
- ;This function determines whether the RX SUSPENSE has a DAYS SUPPLY HOLD
- ;condition.
- ;Input: REC = Pointer to Suspense file (#52.5)
- ;Returns: 1 or 0
- ;1 (one) if 3/4 of days supply has elapsed.
- ;0 (zero) is returned if 3/4 of days supply has not elapsed. 
+ ;
+ ; DSH determines whether a prescription has a 3/4 days supply hold
+ ; condition.
+ ;   Input: REC = Pointer to Suspense file (#52.5)
+ ;   Returns: 1 or 0
+ ;     1 (one) if 3/4 of days supply has elapsed.
+ ;     0 (zero) if 3/4 of days supply has not elapsed.
  ;
 DSH(REC) ; ePharmacy - verify that 3/4 days supply has elapsed before printing from suspense
- N PSINSUR,PSARR,SHDT,DSHOLD,DSHDT,PS0,COMM,DIE,DA,DR,RXIEN,RFL,DAYSSUP,LSTFIL,PTDFN,IBINS,DRG
- N SFN,SDT,ELIG,PREVRX
- S DSHOLD=1,PS0=^PS(52.5,REC,0),RXIEN=$P(PS0,U,1),RFL=$P(PS0,U,13)
- S LSTFIL=$$LSTRFL^PSOBPSU1(RXIEN),PTDFN=$$GET1^DIQ(52,RXIEN,"2","I")
- I RFL="" S RFL=LSTFIL
- S IBSTAT=$$INSUR^IBBAPI(PTDFN,,"E",.IBINS,"1"),DRG=$$GET1^DIQ(52,RXIEN,"6","I")
- S ELIG=$S(RFL:$P($G(^PSRX(+RXIEN,1,RFL,"EPH")),U,5),1:$P($G(^PSRX(+RXIEN,"EPH")),U,5))
  ;
- ; Don't hold Rx where the previous fill was not ebillable
- I LSTFIL>0,$$STATUS^BPSOSRX(RXIEN,LSTFIL-1)="" Q DSHOLD
- ; Don't hold when the Rx has SC/EI flagged
- I $P($G(^PSRX(RXIEN,"ICD",1,0)),U,2,10)[1 Q DSHOLD
- ; Don't hold rx if drug is non-billable
- I '$$BILLABLE^IBNCPDP(DRG,ELIG) Q DSHOLD ; IA# 6243
- ; Don't hold if no insurance
- I 'IBSTAT!(IBSTAT=-1) Q DSHOLD
+ N COMM,DA,DAYSSUP,DIE,DR,DSHDT,DSHOLD
+ N PREVRX,PSARR,PSINSUR,RFL,RXIEN,SDT,SFN,SHDT
+ ;
+ S DSHOLD=1
+ S RXIEN=$$GET1^DIQ(52.5,REC,.01,"I")
+ S RFL=$$GET1^DIQ(52.5,REC,9,"I")
+ I RFL="" S RFL=$$LSTRFL^PSOBPSU1(RXIEN)
+ ;
+ ; If the Rx/Fill is not e-billable, then Quit out.
+ ;
+ I '$$EBILLABLE^PSOSULB2(RXIEN,RFL) Q DSHOLD
  ;
  S DSHDT=$$DSHDT(RXIEN,RFL) ; 3/4 of days supply date
  S PREVRX=$P(DSHDT,U,2)
  S DSHDT=$P(DSHDT,U)
  I DSHDT>DT S DSHOLD=0 D
- . I DSHDT'=$P(PS0,U,14) D  ; Update Suspense Hold Date and Activity Log
- . . ; MRD;PSO*7*448 - If a previous Rx is used in the 3/4 days' supply 
- . . ; calculation, capture that Rx in the activity log.
+ . I DSHDT'=$$GET1^DIQ(52.5,REC,10,"I") D  ; Update Suspense Hold Date and Activity Log
+ . . ; If a previous Rx is used in the 3/4 days' supply calculation,
+ . . ; capture that Rx in the activity log.
  . . S COMM="3/4 of Days Supply SUSPENSE HOLD until "_$$FMTE^XLFDT(DSHDT,"2D")
  . . I PREVRX'="" S COMM=COMM_" (prior Rx "_PREVRX_")"
  . . S COMM=COMM_"."
  . . S DAYSSUP=$$LFDS(RXIEN)
  . . D RXACT^PSOBPSU2(RXIEN,RFL,COMM,"S",+$G(DUZ)) ; Update Activity Log
  . . S DR="10///^S X=DSHDT",DIE="^PS(52.5,",DA=REC D ^DIE ; File Suspense Hold Date
- . . N DA,DIE,DR,PSOX,SFN,INDT,DEAD,SUB,XOK,OLD,X,II
+ . . N DA,DIE,DR,PSOX,SFN,INDT,DEAD,SUB,XOK,OLD
  . . S DA=REC,DIE="^PS(52.5,",DR=".02///"_DSHDT D ^DIE
  . . S SFN=REC,DEAD=0,INDT=DSHDT D CHANGE^PSOSUCH1(RXIEN,RFL)
  . . Q
  . Q
+ ;
  Q DSHOLD
  ;
 DSHDT(RXIEN,RFL) ; ePharmacy function to determine the 3/4 of the days supply date

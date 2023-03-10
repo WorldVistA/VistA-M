@@ -1,5 +1,5 @@
 XPDIP ;SFISC/RSD - Install Package & Routine file ;03/08/2006
- ;;8.0;KERNEL;**15,21,28,30,41,44,51,58,83,92,100,108,137,229,350,393,517,672**;Jul 10, 1995;Build 28
+ ;;8.0;KERNEL;**15,21,28,30,41,44,51,58,83,92,100,108,137,229,350,393,517,672,755**;Jul 10, 1995;Build 6
  ;Per VHA Directive 2004-038, this routine should not be modified.
  Q
 PKG ;
@@ -125,12 +125,11 @@ RTN ;move rtns to install file
  S (XPDC,XPDCR,XPDRH)=0,XPDJ="",NOW=$$NOW^XLFDT()
  ;get all routines that were loaded, XPDM=action
  ;actions are 0=load, 1=delete, 2=skip
- F  S XPDJ=$O(^XTMP("XPDI",XPDA,"RTN",XPDJ)) Q:XPDJ=""  S XPDM=^(XPDJ) D:'XPDM
+ F  S XPDJ=$O(^XTMP("XPDI",XPDA,"RTN",XPDJ)) Q:XPDJ=""  S XPDM=^(XPDJ) D
  .;XPD, build array to update ROUTINE multiple in INSTALL file
- .S XPDC=XPDC+1,^TMP($J,"XPDL",XPDC)=XPDC,^TMP($J,"XPD",9.704,"+"_XPDC_","_XPDA_",",.01)=XPDJ
- .;XPDR, build array to update ROUTINE file, Set install date
- .;S:'$D(^DIC(9.8,"B",XPDJ)) XPDCR=XPDCR+1,^TMP($J,"XPDR",9.8,"?+"_XPDCR_",",.01)=XPDJ,^(1)="R"
- .S XPDCR=XPDCR+1,^TMP($J,"XPDR",9.8,"?+"_XPDCR_",",.01)=XPDJ,^(1)="R",^(7.4)=NOW ;**229
+ .S:'XPDM XPDC=XPDC+1,^TMP($J,"XPDL",XPDC)=XPDC,^TMP($J,"XPD",9.704,"+"_XPDC_","_XPDA_",",.01)=XPDJ
+ .;XPDR, build array to update ROUTINE file, Set name,type,install date ;if deleting set patch name ;p755
+ .S XPDCR=XPDCR+1,^TMP($J,"XPDR",9.8,"?+"_XPDCR_",",.01)=XPDJ,^(1)="R",^(7.4)=NOW S:XPDM ^(6.2)=XPDNM ;p229
  ;if we are doing VT graphic display, update only 40%
  I $D(XPDIDVT) S XPDIDCNT=XPDIDTOT*.4 D UPDATE^XPDID(XPDIDCNT)
  F XPDK="DIKZ","DIEZ","DIPZ" D

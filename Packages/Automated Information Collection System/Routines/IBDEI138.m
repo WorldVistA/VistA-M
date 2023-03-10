@@ -1,114 +1,132 @@
-IBDEI138 ; ; 04-FEB-2020
- ;;3.0;IB ENCOUNTER FORM IMP/EXP;;FEB 04, 2020
+IBDEI138 ; ; 01-FEB-2022
+ ;;3.0;IB ENCOUNTER FORM IMP/EXP;;FEB 01, 2022
  Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,999) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
- ;;^UTILITY(U,$J,358.3,17483,1,3,0)
- ;;=3^Strain of Right Thumb at Forearm Level Extn/Abdr Muscle/Fasc/Tendon
- ;;^UTILITY(U,$J,358.3,17483,1,4,0)
- ;;=4^S56.311A
- ;;^UTILITY(U,$J,358.3,17483,2)
- ;;=^5031715
- ;;^UTILITY(U,$J,358.3,17484,0)
- ;;=S56.312A^^88^892^35
- ;;^UTILITY(U,$J,358.3,17484,1,0)
+ ;;^UTILITY(U,$J,358.3,17665,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,17484,1,3,0)
- ;;=3^Strain of Left Thumb at Forearm Level Extn/Abdr Muscle/Fasc/Tendon
- ;;^UTILITY(U,$J,358.3,17484,1,4,0)
- ;;=4^S56.312A
- ;;^UTILITY(U,$J,358.3,17484,2)
- ;;=^5031718
- ;;^UTILITY(U,$J,358.3,17485,0)
- ;;=S56.411A^^88^892^44
- ;;^UTILITY(U,$J,358.3,17485,1,0)
+ ;;^UTILITY(U,$J,358.3,17665,1,3,0)
+ ;;=3^Mittelschmerz
+ ;;^UTILITY(U,$J,358.3,17665,1,4,0)
+ ;;=4^N94.0
+ ;;^UTILITY(U,$J,358.3,17665,2)
+ ;;=^265259
+ ;;^UTILITY(U,$J,358.3,17666,0)
+ ;;=N94.6^^61^791^30
+ ;;^UTILITY(U,$J,358.3,17666,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,17485,1,3,0)
- ;;=3^Strain of Right Index Finger at Forearm Level Extensor Muscle/Fasc/Tendon
- ;;^UTILITY(U,$J,358.3,17485,1,4,0)
- ;;=4^S56.411A
- ;;^UTILITY(U,$J,358.3,17485,2)
- ;;=^5031763
- ;;^UTILITY(U,$J,358.3,17486,0)
- ;;=S56.412A^^88^892^24
- ;;^UTILITY(U,$J,358.3,17486,1,0)
+ ;;^UTILITY(U,$J,358.3,17666,1,3,0)
+ ;;=3^Dysmenorrhea,Unspec
+ ;;^UTILITY(U,$J,358.3,17666,1,4,0)
+ ;;=4^N94.6
+ ;;^UTILITY(U,$J,358.3,17666,2)
+ ;;=^5015922
+ ;;^UTILITY(U,$J,358.3,17667,0)
+ ;;=N94.5^^61^791^29
+ ;;^UTILITY(U,$J,358.3,17667,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,17486,1,3,0)
- ;;=3^Strain of Left Index Finger at Forearm Level Extensor Muscle/Fasc/Tendon
- ;;^UTILITY(U,$J,358.3,17486,1,4,0)
- ;;=4^S56.412A
- ;;^UTILITY(U,$J,358.3,17486,2)
- ;;=^5031766
- ;;^UTILITY(U,$J,358.3,17487,0)
- ;;=S56.413A^^88^892^52
- ;;^UTILITY(U,$J,358.3,17487,1,0)
+ ;;^UTILITY(U,$J,358.3,17667,1,3,0)
+ ;;=3^Dysmenorrhea,Secondary
+ ;;^UTILITY(U,$J,358.3,17667,1,4,0)
+ ;;=4^N94.5
+ ;;^UTILITY(U,$J,358.3,17667,2)
+ ;;=^5015921
+ ;;^UTILITY(U,$J,358.3,17668,0)
+ ;;=N94.4^^61^791^28
+ ;;^UTILITY(U,$J,358.3,17668,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,17487,1,3,0)
- ;;=3^Strain of Right Middle Finger at Forearm Level Extensor Muscle/Fasc/Tendon
- ;;^UTILITY(U,$J,358.3,17487,1,4,0)
- ;;=4^S56.413A
- ;;^UTILITY(U,$J,358.3,17487,2)
- ;;=^5031769
- ;;^UTILITY(U,$J,358.3,17488,0)
- ;;=S56.414A^^88^892^32
- ;;^UTILITY(U,$J,358.3,17488,1,0)
+ ;;^UTILITY(U,$J,358.3,17668,1,3,0)
+ ;;=3^Dysmenorrhea,Primary
+ ;;^UTILITY(U,$J,358.3,17668,1,4,0)
+ ;;=4^N94.4
+ ;;^UTILITY(U,$J,358.3,17668,2)
+ ;;=^5015920
+ ;;^UTILITY(U,$J,358.3,17669,0)
+ ;;=N94.3^^61^791^95
+ ;;^UTILITY(U,$J,358.3,17669,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,17488,1,3,0)
- ;;=3^Strain of Left Middle Finger at Forearm Levle Extensor Muscle/Fasc/Tendon
- ;;^UTILITY(U,$J,358.3,17488,1,4,0)
- ;;=4^S56.414A
- ;;^UTILITY(U,$J,358.3,17488,2)
- ;;=^5031772
- ;;^UTILITY(U,$J,358.3,17489,0)
- ;;=S56.415A^^88^892^54
- ;;^UTILITY(U,$J,358.3,17489,1,0)
+ ;;^UTILITY(U,$J,358.3,17669,1,3,0)
+ ;;=3^Premenstrual Tension Syndrome
+ ;;^UTILITY(U,$J,358.3,17669,1,4,0)
+ ;;=4^N94.3
+ ;;^UTILITY(U,$J,358.3,17669,2)
+ ;;=^5015919
+ ;;^UTILITY(U,$J,358.3,17670,0)
+ ;;=N91.0^^61^791^9
+ ;;^UTILITY(U,$J,358.3,17670,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,17489,1,3,0)
- ;;=3^Strain of Right Ring Finger at Forearm Level Extensor Muscle/Fasc/Tendon
- ;;^UTILITY(U,$J,358.3,17489,1,4,0)
- ;;=4^S56.415A
- ;;^UTILITY(U,$J,358.3,17489,2)
- ;;=^5031775
- ;;^UTILITY(U,$J,358.3,17490,0)
- ;;=S56.416A^^88^892^34
- ;;^UTILITY(U,$J,358.3,17490,1,0)
+ ;;^UTILITY(U,$J,358.3,17670,1,3,0)
+ ;;=3^Amenorrhea,Primary
+ ;;^UTILITY(U,$J,358.3,17670,1,4,0)
+ ;;=4^N91.0
+ ;;^UTILITY(U,$J,358.3,17670,2)
+ ;;=^5015902
+ ;;^UTILITY(U,$J,358.3,17671,0)
+ ;;=N91.1^^61^791^10
+ ;;^UTILITY(U,$J,358.3,17671,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,17490,1,3,0)
- ;;=3^Strain of Left Ring Finger at Forearm Level Extensor Muscle/Fasc/Tendon
- ;;^UTILITY(U,$J,358.3,17490,1,4,0)
- ;;=4^S56.416A
- ;;^UTILITY(U,$J,358.3,17490,2)
- ;;=^5031778
- ;;^UTILITY(U,$J,358.3,17491,0)
- ;;=S66.912A^^88^892^22
- ;;^UTILITY(U,$J,358.3,17491,1,0)
+ ;;^UTILITY(U,$J,358.3,17671,1,3,0)
+ ;;=3^Amenorrhea,Secondary
+ ;;^UTILITY(U,$J,358.3,17671,1,4,0)
+ ;;=4^N91.1
+ ;;^UTILITY(U,$J,358.3,17671,2)
+ ;;=^5015903
+ ;;^UTILITY(U,$J,358.3,17672,0)
+ ;;=N91.2^^61^791^11
+ ;;^UTILITY(U,$J,358.3,17672,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,17491,1,3,0)
- ;;=3^Strain of Left Hand Muscle/Fasc/Tendon,Unspec
- ;;^UTILITY(U,$J,358.3,17491,1,4,0)
- ;;=4^S66.912A
- ;;^UTILITY(U,$J,358.3,17491,2)
- ;;=^5036534
- ;;^UTILITY(U,$J,358.3,17492,0)
- ;;=S66.911A^^88^892^42
- ;;^UTILITY(U,$J,358.3,17492,1,0)
+ ;;^UTILITY(U,$J,358.3,17672,1,3,0)
+ ;;=3^Amenorrhea,Unspec
+ ;;^UTILITY(U,$J,358.3,17672,1,4,0)
+ ;;=4^N91.2
+ ;;^UTILITY(U,$J,358.3,17672,2)
+ ;;=^5015904
+ ;;^UTILITY(U,$J,358.3,17673,0)
+ ;;=N91.3^^61^791^73
+ ;;^UTILITY(U,$J,358.3,17673,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,17492,1,3,0)
- ;;=3^Strain of Right Hand Muscle/Fasc/Tendon,Unspec
- ;;^UTILITY(U,$J,358.3,17492,1,4,0)
- ;;=4^S66.911A
- ;;^UTILITY(U,$J,358.3,17492,2)
- ;;=^5036531
- ;;^UTILITY(U,$J,358.3,17493,0)
- ;;=S63.501A^^88^892^18
- ;;^UTILITY(U,$J,358.3,17493,1,0)
+ ;;^UTILITY(U,$J,358.3,17673,1,3,0)
+ ;;=3^Oligomenorrhea,Primary
+ ;;^UTILITY(U,$J,358.3,17673,1,4,0)
+ ;;=4^N91.3
+ ;;^UTILITY(U,$J,358.3,17673,2)
+ ;;=^5015905
+ ;;^UTILITY(U,$J,358.3,17674,0)
+ ;;=N91.4^^61^791^74
+ ;;^UTILITY(U,$J,358.3,17674,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,17493,1,3,0)
- ;;=3^Sprain of Right Wrist
- ;;^UTILITY(U,$J,358.3,17493,1,4,0)
- ;;=4^S63.501A
- ;;^UTILITY(U,$J,358.3,17493,2)
- ;;=^5035583
- ;;^UTILITY(U,$J,358.3,17494,0)
- ;;=S63.502A^^88^892^7
- ;;^UTILITY(U,$J,358.3,17494,1,0)
+ ;;^UTILITY(U,$J,358.3,17674,1,3,0)
+ ;;=3^Oligomenorrhea,Secondary
+ ;;^UTILITY(U,$J,358.3,17674,1,4,0)
+ ;;=4^N91.4
+ ;;^UTILITY(U,$J,358.3,17674,2)
+ ;;=^5015906
+ ;;^UTILITY(U,$J,358.3,17675,0)
+ ;;=N91.5^^61^791^75
+ ;;^UTILITY(U,$J,358.3,17675,1,0)
  ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,17675,1,3,0)
+ ;;=3^Oligomenorrhea,Unspec
+ ;;^UTILITY(U,$J,358.3,17675,1,4,0)
+ ;;=4^N91.5
+ ;;^UTILITY(U,$J,358.3,17675,2)
+ ;;=^5015907
+ ;;^UTILITY(U,$J,358.3,17676,0)
+ ;;=N92.0^^61^791^40
+ ;;^UTILITY(U,$J,358.3,17676,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,17676,1,3,0)
+ ;;=3^Excessive/Frequent Menstruation w/ Regular Cycle
+ ;;^UTILITY(U,$J,358.3,17676,1,4,0)
+ ;;=4^N92.0
+ ;;^UTILITY(U,$J,358.3,17676,2)
+ ;;=^5015908
+ ;;^UTILITY(U,$J,358.3,17677,0)
+ ;;=N92.6^^61^791^62
+ ;;^UTILITY(U,$J,358.3,17677,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,17677,1,3,0)
+ ;;=3^Irregular Menstruation,Unspec
+ ;;^UTILITY(U,$J,358.3,17677,1,4,0)
+ ;;=4^N92.6
+ ;;^UTILITY(U,$J,358.3,17677,2)
+ ;;=^5015913

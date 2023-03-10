@@ -1,5 +1,5 @@
-MAGVD001 ;WOIFO/BT,NST,DAC - Delete Study By Accession Number ; 03 Dec 2012 11:26 AM
- ;;3.0;IMAGING;**118,138**;Mar 19, 2002;Build 5380;Sep 03, 2013
+MAGVD001 ;WOIFO/BT,NST,DAC,PMK - Delete Study By Accession Number ; Feb 15, 2022@10:23:58
+ ;;3.0;IMAGING;**118,138,231,305**;Mar 19, 2002;Build 3
  ;; Per VHA Directive 2004-038, this routine should not be modified.
  ;; +---------------------------------------------------------------+
  ;; | Property of the US Government.                                |
@@ -48,20 +48,28 @@ GETACC() ; Get Accession Number
  S DIR(0)="FO^^K:'$$ISMSKOK^MAGVD001(X) X"
  S DIR("A")="Enter an Accession Number"
  S DIR("A",1)=""
- S DIR("??",1)="By Entering Accession Number, all Studies with this Accession Number"
- S DIR("??",2)="will be deleted."
- S DIR("?")="Enter Accession Number, e.g. GMRC-123, 111231-345, 660-111231-345, or ""^"" to exit."
+ S DIR("??")="^D GETACCHELP^MAGVD001"
+ S DIR("?",1)="Enter Accession Number, e.g. 660-GMR-123, 111231-345, 660-111231-345," ; P231 PMK 4/4/2020
+ S DIR("?",2)="GMRC-123, SP 21 12345 or ""^"" to exit."  ; P305 PMK 01/04/2022
+ S DIR("?")=" "
  D ^DIR
  S:Y="^" Y=""
  Q Y
  ;
+GETACCHELP ; double quote help message
+ W !,"By Entering Accession Number, all Studies with this Accession Number"
+ W !,"will be deleted."
+ Q
+ ;
 ISMSKOK(Y) ; Verify accession number format - 0 invalid; 1 - valid
  N OK
  S OK=0
+ S Y=$$UP^MAGDFCNV(Y)
  D  ; needed for QUITs
  . I $L(Y,"-")=3 I Y?3N.N1"-"6N1"-"1.N S OK=1 Q  ; radiology SSS-MMDDYY-NNNNN format
  . I $L(Y,"-")=2 I Y?6N1"-"1.N S OK=1 Q  ; radiology MMDDYY-NNNNN format
  . I $$GMRCIEN^MAGDFCNV(Y) S OK=1 Q  ; consult format
+ . I $L(Y," ")=3 I Y?.E1" "2N1" "1N.N S OK=1 Q  ; anatomic pathology format - P305 PMK 01/03/2022
  . Q
  Q OK
  ;

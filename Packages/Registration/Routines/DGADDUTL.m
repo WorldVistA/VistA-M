@@ -1,9 +1,10 @@
-DGADDUTL ;ALB/PHH,EG,BAJ,ERC,CKN,TDM,LBD,JAM - PATIENT ADDRESS ; 19 Jul 2017  3:03 PM
- ;;5.3;Registration;**658,695,730,688,808,851,872,915,925,941,1010**;Aug 13, 1993;Build 2
+DGADDUTL ;ALB/PHH,EG,BAJ,ERC,CKN,TDM,LBD,JAM,ARF - PATIENT ADDRESS ; 19 Jul 2017  3:03 PM
+ ;;5.3;Registration;**658,695,730,688,808,851,872,915,925,941,1010,1040,1056**;Aug 13, 1993;Build 18
  Q
 ADDR ; validate/edit Patient address (entry for DG ADDRESS UPDATE option)
  N %,QUIT,DIC,Y,DFN,USERSEL
 ADDRLOOP ;
+ N X,DGLN,DGCNT,DGLINE,DIWL,DIWR,DIWF  ;DG*5.3*1056
  W !!
  K DIC,Y,DFN,USERSEL
  S DIC="^DPT(",DIC(0)="AEMZQ",DIC("A")="Veteran Name/SSN: " D ^DIC
@@ -14,14 +15,21 @@ ADDRLOOP ;
  L +^DPT(DFN):3 E  W !!,"Patient is being edited. Try again later."  G ADDR
  F  D  Q:QUIT
  .; JAM - Patch DG*5.3*941 Modify prompt to add "Mailing"
- .W !!,"Do you want to update the (P)ermanent Mailing Address, (T)emporary Mailing Address, or (B)oth? "
+ .; Patch DG*5.3*1056 Remove (P)ermanent from the following prompt, changed to (M)ailing
+ .W !!
+ .S X="Do you want to update the (M)ailing Address, (T)emporary Mailing Address, or (B)oth? "
+ . ;Patch DG*5.3*1056 - use DIWP to format the prompt
+ .K ^UTILITY($J,"W") S DIWL=0,DIWR=79,DIWF="" D ^DIWP
+ .S DGCNT=^UTILITY($J,"W",0)
+ .F DGLN=1:1:DGCNT S DGLINE=$TR(^UTILITY($J,"W",0,DGLN,0),"_"," ") W !,DGLINE
+ .K ^UTILITY($J,"W")
  .R USERSEL:300
  .I '$T S USERSEL="^"
  .I USERSEL["^"!(USERSEL="") S QUIT=1 Q
- .S USERSEL=$TR(USERSEL,"ptb","PTB")
- .I USERSEL'="P",USERSEL'="T",USERSEL'="B" D  Q
+ .S USERSEL=$TR(USERSEL,"mtb","MTB")  ;DG*5.3*1056 added M for Mailing Address and removed P(ermanent)
+ .I USERSEL'="M",USERSEL'="T",USERSEL'="B" D  Q  ;DG*5.3*1056 added M for Mailing Address and removed P(ermanent)
  ..W !,"Invalid selection!"
- .I USERSEL="P"!(USERSEL="B") W ! D UPDATE(DFN,"PERM")
+ .I (USERSEL="M")!(USERSEL="B") W ! D UPDATE(DFN,"PERM") ;DG*5.3*1056 added M for Mailing Address and removed P(ermanent)
  .I USERSEL="T"!(USERSEL="B") D UPDATE(DFN,"TEMP")
  .S QUIT=1
  L -^DPT(DFN)
@@ -29,19 +37,23 @@ ADDRLOOP ;
 ADD(DFN) ; validate/edit Patient address (entry point for routine DGREG)
  ;         Input  -- DFN
  ;
- N RETVAL,ADDYN
- ;Display the permanent address (DG*5.3*851)
+ ; DG*5.3*1040 - New variable DGADDFG to track called from entry point ADD
+ N RETVAL,ADDYN,DGADDFG S DGADDFG=1
+ ;Display the mailing address (DG*5.3*851)
  D DISPADD^DGADDUT2(DFN)
  S (RETVAL,ADDYN)=0
  F  D  Q:ADDYN
  .;jam DG*5.3*925 RM#788099 Add/Edit Residential address - Change prompt to Permanent Mailing Address:
- .S ADDYN=$$ADDYN("Do you want to edit the Patient's Permanent Mailing Address")
+ .;DG*5.3*1056 removed Permanent from the following prompt
+ .S ADDYN=$$ADDYN("Do you want to edit the Patient's Mailing Address")
  .S RETVAL=ADDYN
  .I ADDYN'=1,ADDYN'=2 S (ADDYN,RETVAL)=0
  .I 'ADDYN W !?5,"Enter 'YES' to edit Patient's Address or 'NO' to continue."
  I ADDYN=1,$G(DFN)'="",$D(^DPT(DFN,0)) D
  .D UPDATE(DFN,"PERM")
- .S RETVAL=1
+ .; DG*5.3*1040 - Check if DGTMOT exists and return -1
+ .I +$G(DGTMOT) S RETVAL=-1
+ .E  S RETVAL=1
  Q RETVAL
 ADDYN(PROMPT) ; Yes/No Prompt to Edit/Validate Address
  ;         Input  -- None
@@ -80,8 +92,12 @@ ADDRED(DFN,FLG) ; Address Edit (Code copied from DGREGAED and modified)
  ;    FLG(1) - if 1, let user edit phone numbers (field #.131 and #.132)
  ;    FLG(2) - if 1, display before & after address for user confirmation
  N SRC,%,DGINPUT,I,X,Y
+ I '$G(DGADDFG) N DGTMOT S DGTMOT=0 ; DG*5.3*1040 - New only coming from entry point UPDATE directly
  S SRC="ADDUTL"
  D EN^DGREGAED(DFN,.FLG,SRC)
+ ;
+ ; DG*5.3*1040; jam; If timeout and this is a direct call to UPDATE, clear the screen prior to quitting
+ I $G(DGTMOT),'$G(DGADDFG) W @IOF,!!!
  ;
  ; Update the Date/Time Stamp
  ;The next line was disabled to fix problem of Date/Time stamp being
@@ -146,11 +162,15 @@ EDITTADR(DFN) ; Edit Temporary Address
  D DISPTADR(DFN,.DGPRIOR)
  W !!
  ;
+ I '$G(DGADDFG) N DGTMOT S DGTMOT=0 ; DG*5.3*1040 - New only coming from entry point UPDATE directly
+ ;
  ; JAM - Patch DG*5.3*941 - Temporary Mailing Address is editable via screen 1.1 group 3 (from screen 1 group 5)
  ;S DGCH=5,DGRPAN="1,2,3,4,5,",DGDR="",DGRPS=1
  S DGCH=3,DGRPAN="1,2,3,4,5",DGDR="",DGRPS=1.1
  D CHOICE^DGRPP
  D ^DGRPE
+ ; DG*5.3*1040; jam; If timeout and this is a direct call to UPDATE, clear the screen prior to quitting
+ I $G(DGTMOT),'$G(DGADDFG) W @IOF,!!! Q
  ; Update the Date/Time Stamp
  D UPDDTTM(DFN,TYPE)
  Q

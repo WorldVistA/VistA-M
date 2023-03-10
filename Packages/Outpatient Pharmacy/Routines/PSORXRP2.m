@@ -1,5 +1,5 @@
-PSORXRP2 ;BIR/SAB-main menu entry reprint of a Rx label ;10/5/07 7:45am
- ;;7.0;OUTPATIENT PHARMACY;**11,27,120,138,135,156,185,280,251,367,478**;DEC 1997;Build 27
+PSORXRP2 ;BIR/SAB-main menu entry reprint of a Rx label ;Feb 05, 2019@10:27:56
+ ;;7.0;OUTPATIENT PHARMACY;**11,27,120,138,135,156,185,280,251,367,478,441**;DEC 1997;Build 208
  ;External references PSOL and PSOUL^PSSLOCK supported by DBIA 2789
  ;External reference ^PS(55 supported by DBIA 2228
  ;External reference to ^PSDRUG supported by DBIA 221
@@ -14,6 +14,7 @@ LRP N PSODISP,PSOMGREP,PSOFILL
  I $P(^PSRX(RX,"STA"),"^")=14 W $C(7),!,"Cannot Reprint! Discontinued by Provider." D ULR,KILL Q
  I $P(^PSRX(RX,"STA"),"^")=15 W $C(7),!,"Cannot Reprint! Discontinued due to editing." D ULR,KILL Q
  I $P(^PSRX(RX,"STA"),"^")=16 W $C(7),!,"Cannot Reprint! Placed on HOLD by Provider." D ULR,KILL Q
+ I $P(^PSRX(RX,"STA"),"^")=0,$D(^PSRX(DA,"PARK")) W $C(7),!!,"Cannot Reprint! Medication is currently PARKED." D ULR,KILL G LRP  ;PAPI 441
  I DT>$P(^PSRX(RX,2),"^",6) D  D ULR,KILL G LRP
  .W !,$C(7),"Medication Expired on "_$E($P(^PSRX(RX,2),"^",6),4,5)_"-"_$E($P(^(2),"^",6),6,7)_"-"_$E($P(^(2),"^",6),2,3) I $P(^PSRX(DA,"STA"),"^")<11 S $P(^PSRX(DA,"STA"),"^")=11 D
  ..S COMM="Medication Expired on "_$E($P(^PSRX(RX,2),"^",6),4,5)_"-"_$E($P(^(2),"^",6),6,7)_"-"_$E($P(^(2),"^",6),2,3) D EN^PSOHLSN1(DA,"SC","ZE",COMM) K COMM
@@ -52,7 +53,7 @@ GOOD K X
  I $$GET1^DIQ(59,PSOSITE,134)'="",$$MGONFILE^PSOFDAUT(DA) D  I $D(DIRUT) D ULR,KILL G LRP
  . K DIR,DIRUT S DIR("A")="Reprint the FDA Medication Guide",DIR(0)="Y",DIR("B")="No"
  . D ^DIR K DIR Q:$D(DIRUT)  S PSOMGREP=Y
- ; 
+ ;
  D ACT I $D(DIRUT) D ULR,KILL G LRP
  I $D(PCOM) D ULR,KILL G LRP
  F I=1,2,4,6,7,9,13,16 S P(I)=$P(PDA,"^",I)

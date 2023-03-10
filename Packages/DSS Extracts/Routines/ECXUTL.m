@@ -1,5 +1,7 @@
 ECXUTL ;ALB/JAP - Utilities for DSS Extracts ; 11/23/10 1:58pm
- ;;3.0;DSS EXTRACTS;**1,5,8,84,90,127,144**;Dec 22, 1997;Build 9
+ ;;3.0;DSS EXTRACTS;**1,5,8,84,90,127,144,184**;Dec 22, 1997;Build 124
+ ;
+ ; Reference to $$IEN2DATA^XUA4A72,$$GET^XUA4A72 in ICR #1625
  ;
 ECXYM(ECXFMDT) ;extrinsic function
  ;converts any FM internal format date or date/time to a 6-character string
@@ -274,6 +276,26 @@ ORDPROV(DFN,ON,PSJTMP) ; get provider using order reference number
  D EN^PSJBCMA1(DFN,ON,PSJTMP) ;IA#2829
  Q +($G(^TMP("PSJ",$J,1)))
  ;
+PRVX12(PERS,DATE) ;184 - Provider Taxonomy
+ ;   input
+ ;   PERS  = pointer to file #200 (required)
+ ;   DATE  = date on which person class must be active (required)
+ ;           (internal Fileman format)
+ ;   output
+ ;   X12CODE = X12 code field from file #8932.1
+ ;            (exactly 7 characters in length)
+ N ECX,X12CODE
+ S X12CODE=""
+ S ECHEAD=$G(ECHEAD)
+ S ECX=$$GET^XUA4A72(PERS,DATE)
+ ;if no person class use alternate date to resolve person class
+ I +ECX'>0 D
+ .N DATE
+ .S DATE=$S(ECHEAD="LAB":$P(EC1,U,14),ECHEAD="LAR":$P(EC1,U,4),ECHEAD="PRE":$P(ECDATA,U,13),ECHEAD="RAD":$P($G(^RAO(75.1,+$G(ECXIEN),0)),U,16),1:"")
+ .S ECX=$$GET^XUA4A72(PERS,DATE)
+ .Q
+ S X12CODE=$P($$IEN2DATA^XUA4A72(+ECX),U,7)
+ Q X12CODE
 ELIGCDS ;
  ;;AD-ACTIVE DUTY;;AD
  ;;REC-RECRUIT;;REC

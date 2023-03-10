@@ -1,126 +1,128 @@
-IBDEI1BX ; ; 04-FEB-2020
- ;;3.0;IB ENCOUNTER FORM IMP/EXP;;FEB 04, 2020
+IBDEI1BX ; ; 01-FEB-2022
+ ;;3.0;IB ENCOUNTER FORM IMP/EXP;;FEB 01, 2022
  Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,999) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
- ;;^UTILITY(U,$J,358.3,21239,1,4,0)
- ;;=4^F98.4
- ;;^UTILITY(U,$J,358.3,21239,2)
- ;;=^5003716
- ;;^UTILITY(U,$J,358.3,21240,0)
- ;;=F95.8^^95^1057^32
- ;;^UTILITY(U,$J,358.3,21240,1,0)
+ ;;^UTILITY(U,$J,358.3,21488,1,4,0)
+ ;;=4^B44.89
+ ;;^UTILITY(U,$J,358.3,21488,2)
+ ;;=^5000667
+ ;;^UTILITY(U,$J,358.3,21489,0)
+ ;;=B45.8^^70^920^53
+ ;;^UTILITY(U,$J,358.3,21489,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,21240,1,3,0)
- ;;=3^Tic Disorder,Oth Specified
- ;;^UTILITY(U,$J,358.3,21240,1,4,0)
- ;;=4^F95.8
- ;;^UTILITY(U,$J,358.3,21240,2)
- ;;=^5003709
- ;;^UTILITY(U,$J,358.3,21241,0)
- ;;=F95.9^^95^1057^33
- ;;^UTILITY(U,$J,358.3,21241,1,0)
+ ;;^UTILITY(U,$J,358.3,21489,1,3,0)
+ ;;=3^Cryptococcosis NEC
+ ;;^UTILITY(U,$J,358.3,21489,1,4,0)
+ ;;=4^B45.8
+ ;;^UTILITY(U,$J,358.3,21489,2)
+ ;;=^5000674
+ ;;^UTILITY(U,$J,358.3,21490,0)
+ ;;=H60.593^^70^920^64
+ ;;^UTILITY(U,$J,358.3,21490,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,21241,1,3,0)
- ;;=3^Tic Disorder,Unspec
- ;;^UTILITY(U,$J,358.3,21241,1,4,0)
- ;;=4^F95.9
- ;;^UTILITY(U,$J,358.3,21241,2)
- ;;=^5003710
- ;;^UTILITY(U,$J,358.3,21242,0)
- ;;=F95.2^^95^1057^34
- ;;^UTILITY(U,$J,358.3,21242,1,0)
+ ;;^UTILITY(U,$J,358.3,21490,1,3,0)
+ ;;=3^Noninfective AC Otitis Externa,Bilateral NEC
+ ;;^UTILITY(U,$J,358.3,21490,1,4,0)
+ ;;=4^H60.593
+ ;;^UTILITY(U,$J,358.3,21490,2)
+ ;;=^5006491
+ ;;^UTILITY(U,$J,358.3,21491,0)
+ ;;=H60.592^^70^920^65
+ ;;^UTILITY(U,$J,358.3,21491,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,21242,1,3,0)
- ;;=3^Tourette's Disorder
- ;;^UTILITY(U,$J,358.3,21242,1,4,0)
- ;;=4^F95.2
- ;;^UTILITY(U,$J,358.3,21242,2)
- ;;=^331942
- ;;^UTILITY(U,$J,358.3,21243,0)
- ;;=F98.5^^95^1057^1
- ;;^UTILITY(U,$J,358.3,21243,1,0)
+ ;;^UTILITY(U,$J,358.3,21491,1,3,0)
+ ;;=3^Noninfective AC Otitis Externa,Left Ear NEC
+ ;;^UTILITY(U,$J,358.3,21491,1,4,0)
+ ;;=4^H60.592
+ ;;^UTILITY(U,$J,358.3,21491,2)
+ ;;=^5133527
+ ;;^UTILITY(U,$J,358.3,21492,0)
+ ;;=H60.591^^70^920^66
+ ;;^UTILITY(U,$J,358.3,21492,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,21243,1,3,0)
- ;;=3^Adult-Onset Fluency Disorder
- ;;^UTILITY(U,$J,358.3,21243,1,4,0)
- ;;=4^F98.5
- ;;^UTILITY(U,$J,358.3,21243,2)
- ;;=^5003717
- ;;^UTILITY(U,$J,358.3,21244,0)
- ;;=F90.2^^95^1057^2
- ;;^UTILITY(U,$J,358.3,21244,1,0)
+ ;;^UTILITY(U,$J,358.3,21492,1,3,0)
+ ;;=3^Noninfective AC Otitis Externa,Right Ear NEC
+ ;;^UTILITY(U,$J,358.3,21492,1,4,0)
+ ;;=4^H60.591
+ ;;^UTILITY(U,$J,358.3,21492,2)
+ ;;=^5006490
+ ;;^UTILITY(U,$J,358.3,21493,0)
+ ;;=J18.8^^70^920^73
+ ;;^UTILITY(U,$J,358.3,21493,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,21244,1,3,0)
- ;;=3^Attention Deficit Disorder,Combined Presentation
- ;;^UTILITY(U,$J,358.3,21244,1,4,0)
- ;;=4^F90.2
- ;;^UTILITY(U,$J,358.3,21244,2)
- ;;=^5003694
- ;;^UTILITY(U,$J,358.3,21245,0)
- ;;=F90.1^^95^1057^3
- ;;^UTILITY(U,$J,358.3,21245,1,0)
+ ;;^UTILITY(U,$J,358.3,21493,1,3,0)
+ ;;=3^Pneumonia,Unspec Organism NEC
+ ;;^UTILITY(U,$J,358.3,21493,1,4,0)
+ ;;=4^J18.8
+ ;;^UTILITY(U,$J,358.3,21493,2)
+ ;;=^5008185
+ ;;^UTILITY(U,$J,358.3,21494,0)
+ ;;=B44.1^^70^920^76
+ ;;^UTILITY(U,$J,358.3,21494,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,21245,1,3,0)
- ;;=3^Attention Deficit Disorder,Hyperactive/Impulsive Presentation
- ;;^UTILITY(U,$J,358.3,21245,1,4,0)
- ;;=4^F90.1
- ;;^UTILITY(U,$J,358.3,21245,2)
- ;;=^5003693
- ;;^UTILITY(U,$J,358.3,21246,0)
- ;;=F90.0^^95^1057^4
- ;;^UTILITY(U,$J,358.3,21246,1,0)
+ ;;^UTILITY(U,$J,358.3,21494,1,3,0)
+ ;;=3^Pulmonary Aspergillosis NEC
+ ;;^UTILITY(U,$J,358.3,21494,1,4,0)
+ ;;=4^B44.1
+ ;;^UTILITY(U,$J,358.3,21494,2)
+ ;;=^5000664
+ ;;^UTILITY(U,$J,358.3,21495,0)
+ ;;=B48.4^^70^920^68
+ ;;^UTILITY(U,$J,358.3,21495,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,21246,1,3,0)
- ;;=3^Attention Deficit Disorder,Predominantly Inattentive Presentation
- ;;^UTILITY(U,$J,358.3,21246,1,4,0)
- ;;=4^F90.0
- ;;^UTILITY(U,$J,358.3,21246,2)
- ;;=^5003692
- ;;^UTILITY(U,$J,358.3,21247,0)
- ;;=F06.1^^95^1057^8
- ;;^UTILITY(U,$J,358.3,21247,1,0)
+ ;;^UTILITY(U,$J,358.3,21495,1,3,0)
+ ;;=3^Penicillosis
+ ;;^UTILITY(U,$J,358.3,21495,1,4,0)
+ ;;=4^B48.4
+ ;;^UTILITY(U,$J,358.3,21495,2)
+ ;;=^5000688
+ ;;^UTILITY(U,$J,358.3,21496,0)
+ ;;=J14.^^70^920^69
+ ;;^UTILITY(U,$J,358.3,21496,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,21247,1,3,0)
- ;;=3^Catatonia Associated w/ Another Mental Disorder
- ;;^UTILITY(U,$J,358.3,21247,1,4,0)
- ;;=4^F06.1
- ;;^UTILITY(U,$J,358.3,21247,2)
- ;;=^5003054
- ;;^UTILITY(U,$J,358.3,21248,0)
- ;;=F80.81^^95^1057^9
- ;;^UTILITY(U,$J,358.3,21248,1,0)
+ ;;^UTILITY(U,$J,358.3,21496,1,3,0)
+ ;;=3^Pneumonia d/t Hemophilus Influenzae
+ ;;^UTILITY(U,$J,358.3,21496,1,4,0)
+ ;;=4^J14.
+ ;;^UTILITY(U,$J,358.3,21496,2)
+ ;;=^5008171
+ ;;^UTILITY(U,$J,358.3,21497,0)
+ ;;=J13.^^70^920^70
+ ;;^UTILITY(U,$J,358.3,21497,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,21248,1,3,0)
- ;;=3^Child-Onset Fluency Disorder (Stuttering)
- ;;^UTILITY(U,$J,358.3,21248,1,4,0)
- ;;=4^F80.81
- ;;^UTILITY(U,$J,358.3,21248,2)
- ;;=^5003676
- ;;^UTILITY(U,$J,358.3,21249,0)
- ;;=F70.^^95^1057^13
- ;;^UTILITY(U,$J,358.3,21249,1,0)
+ ;;^UTILITY(U,$J,358.3,21497,1,3,0)
+ ;;=3^Pneumonia d/t Streptococcus Pneumoniae
+ ;;^UTILITY(U,$J,358.3,21497,1,4,0)
+ ;;=4^J13.
+ ;;^UTILITY(U,$J,358.3,21497,2)
+ ;;=^5008170
+ ;;^UTILITY(U,$J,358.3,21498,0)
+ ;;=J17.^^70^920^71
+ ;;^UTILITY(U,$J,358.3,21498,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,21249,1,3,0)
- ;;=3^Intellectual Disability,Mild
- ;;^UTILITY(U,$J,358.3,21249,1,4,0)
- ;;=4^F70.
- ;;^UTILITY(U,$J,358.3,21249,2)
- ;;=^5003668
- ;;^UTILITY(U,$J,358.3,21250,0)
- ;;=F71.^^95^1057^14
- ;;^UTILITY(U,$J,358.3,21250,1,0)
+ ;;^UTILITY(U,$J,358.3,21498,1,3,0)
+ ;;=3^Pneumonia in Diseases Classified Elsewhere
+ ;;^UTILITY(U,$J,358.3,21498,1,4,0)
+ ;;=4^J17.
+ ;;^UTILITY(U,$J,358.3,21498,2)
+ ;;=^5008181
+ ;;^UTILITY(U,$J,358.3,21499,0)
+ ;;=J18.9^^70^920^72
+ ;;^UTILITY(U,$J,358.3,21499,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,21250,1,3,0)
- ;;=3^Intellectual Disability,Moderate
- ;;^UTILITY(U,$J,358.3,21250,1,4,0)
- ;;=4^F71.
- ;;^UTILITY(U,$J,358.3,21250,2)
- ;;=^5003669
- ;;^UTILITY(U,$J,358.3,21251,0)
- ;;=F73.^^95^1057^15
- ;;^UTILITY(U,$J,358.3,21251,1,0)
+ ;;^UTILITY(U,$J,358.3,21499,1,3,0)
+ ;;=3^Pneumonia,Unspec Organism
+ ;;^UTILITY(U,$J,358.3,21499,1,4,0)
+ ;;=4^J18.9
+ ;;^UTILITY(U,$J,358.3,21499,2)
+ ;;=^95632
+ ;;^UTILITY(U,$J,358.3,21500,0)
+ ;;=A15.7^^70^920^74
+ ;;^UTILITY(U,$J,358.3,21500,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,21251,1,3,0)
- ;;=3^Intellectual Disability,Profound
- ;;^UTILITY(U,$J,358.3,21251,1,4,0)
- ;;=4^F73.
+ ;;^UTILITY(U,$J,358.3,21500,1,3,0)
+ ;;=3^Primary Respiratory TB
+ ;;^UTILITY(U,$J,358.3,21500,1,4,0)
+ ;;=4^A15.7
+ ;;^UTILITY(U,$J,358.3,21500,2)
+ ;;=^5000065

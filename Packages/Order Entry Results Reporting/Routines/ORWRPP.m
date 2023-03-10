@@ -1,5 +1,5 @@
-ORWRPP ; ALB/MJK - Background Report Print Driver ;07/18/17  13:30
- ;;3.0;ORDER ENTRY/RESULTS REPORTING;**10,85,109,192,332,449**;Dec 17, 1997;Build 3
+ORWRPP ; ALB/MJK - Background Report Print Driver ;01/04/18  10:37
+ ;;3.0;ORDER ENTRY/RESULTS REPORTING;**10,85,109,192,332,449,405**;Dec 17, 1997;Build 211
  ;
  ;
 PRINT(ORY,ORIO,ORDFN,ORRPTID,ORHSTYPE,ORDTRNG,OREXAMID,ORCOMP,ORALPHA,OROMEGA)        ; -- print report entry point
@@ -134,6 +134,17 @@ SITE(ORSTA)   ;Print Station info
  S:'$L($G(ORSTA)) ORSTA=$G(DUZ(2))
  S X="Report from: "_$$GET1^DIQ(4,+ORSTA,.01,"E")_"    Station #"_$$GET1^DIQ(4,+ORSTA,99,"E")
  W !?(IOM/2-($L(X)/2)),X
+ Q
+LRSITE(ORSTA)   ;Print Station info
+ N X,ORADD
+ I $G(ORSTA) S ORSTA=$$IEN^XUAF4(ORSTA)
+ S:'$L($G(ORSTA)) ORSTA=$G(DUZ(2))
+ S X="Report from: "_$$GET1^DIQ(4,+ORSTA,.01,"E")_"    Station #"_$$GET1^DIQ(4,+ORSTA,99,"E")
+ W !?(IOM/2-($L(X)/2)),X
+ S ORADD=$$PADD^XUAF4(+ORSTA)
+ S ORADD=$P(ORADD,"^")_", "_$P(ORADD,"^",2)_", "_$P(ORADD,"^",3)_" "_$P(ORADD,"^",4)
+ S ORADD=$E(ORADD,1,76)
+ W !?(IOM/2-($L(ORADD)/2)),ORADD
  Q
 NOTYET(ROOT) ; -- standard not available display text
  D SETITEM(.ROOT,"Report not available at this time.")

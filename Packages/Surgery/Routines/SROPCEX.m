@@ -1,5 +1,5 @@
-SROPCEX ;BIR/ADM - CROSS REFERENCE LOGIC ;01/11/06
- ;;3.0; Surgery ;**58,62,69,86,119,142**;24 Jun 93
+SROPCEX ;BIR/ADM - CROSS REFERENCE LOGIC ; JAN 11,2006
+ ;;3.0;Surgery;**58,62,69,86,119,142,204**;24 Jun 93;Build 3
  Q
 APCE ; send case data to PCE
  N SRCASE,SRDIV,SRCLINIC,SRPDATE,SRQ,SRSITE,SRSR,SRWC,SRX,SRZ S SRQ=0 S:$D(SRTN) SRCASE=SRTN I '$D(SRCASE) S SRCASE=$S($G(DA(1)):DA(1),1:DA)
@@ -17,5 +17,7 @@ APCE ; send case data to PCE
  S SRX=$G(^SRF(SRCASE,.2)) Q:'$P(SRX,"^",10)!'$P(SRX,"^",12)
  S SRX=$G(^SRF(SRCASE,.1)) Q:'$P(SRX,"^",4)  I SRSR'=0,'$P(SRX,"^",13) Q
  Q:SRQ
-SET S SRZ=$P($G(^SRO(136,SRCASE,10)),"^") I SRZ S SRTN=SRCASE D START^SROPCEP
+SET S SRZ=$P($G(^SRO(136,SRCASE,10)),"^") I SRZ S SRTN=SRCASE D
+ .N DE,DQ,DG,DIFLD ; SR*3.0*204; these are FM variables from the calling routine that must survive the call below:
+ .D START^SROPCEP
  Q

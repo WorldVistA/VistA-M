@@ -1,112 +1,132 @@
-IBDEI1FL ; ; 04-FEB-2020
- ;;3.0;IB ENCOUNTER FORM IMP/EXP;;FEB 04, 2020
+IBDEI1FL ; ; 01-FEB-2022
+ ;;3.0;IB ENCOUNTER FORM IMP/EXP;;FEB 01, 2022
  Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,999) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
- ;;^UTILITY(U,$J,358.3,22902,1,0)
+ ;;^UTILITY(U,$J,358.3,23148,1,4,0)
+ ;;=4^N18.31
+ ;;^UTILITY(U,$J,358.3,23148,2)
+ ;;=^5159287
+ ;;^UTILITY(U,$J,358.3,23149,0)
+ ;;=N18.32^^78^1002^12
+ ;;^UTILITY(U,$J,358.3,23149,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,22902,1,3,0)
- ;;=3^Mech Compl of Permanent Sutures,Init Encntr
- ;;^UTILITY(U,$J,358.3,22902,1,4,0)
- ;;=4^T85.692A
- ;;^UTILITY(U,$J,358.3,22902,2)
- ;;=^5055658
- ;;^UTILITY(U,$J,358.3,22903,0)
- ;;=T85.698A^^105^1166^157
- ;;^UTILITY(U,$J,358.3,22903,1,0)
+ ;;^UTILITY(U,$J,358.3,23149,1,3,0)
+ ;;=3^Kidney Disease,Chr,Stage 3b
+ ;;^UTILITY(U,$J,358.3,23149,1,4,0)
+ ;;=4^N18.32
+ ;;^UTILITY(U,$J,358.3,23149,2)
+ ;;=^5159288
+ ;;^UTILITY(U,$J,358.3,23150,0)
+ ;;=N18.9^^78^1002^13
+ ;;^UTILITY(U,$J,358.3,23150,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,22903,1,3,0)
- ;;=3^Mech Compl of Internal Prosthetic Device/Implant/Graft,Init Encntr
- ;;^UTILITY(U,$J,358.3,22903,1,4,0)
- ;;=4^T85.698A
- ;;^UTILITY(U,$J,358.3,22903,2)
- ;;=^5055667
- ;;^UTILITY(U,$J,358.3,22904,0)
- ;;=T82.6XXA^^105^1166^75
- ;;^UTILITY(U,$J,358.3,22904,1,0)
+ ;;^UTILITY(U,$J,358.3,23150,1,3,0)
+ ;;=3^Kidney Disease,Chr,Unspec
+ ;;^UTILITY(U,$J,358.3,23150,1,4,0)
+ ;;=4^N18.9
+ ;;^UTILITY(U,$J,358.3,23150,2)
+ ;;=^332812
+ ;;^UTILITY(U,$J,358.3,23151,0)
+ ;;=N19.^^78^1002^16
+ ;;^UTILITY(U,$J,358.3,23151,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,22904,1,3,0)
- ;;=3^Infect/Inflm Reaction d/t Cardiac Valve Prosthesis,Init Encntr
- ;;^UTILITY(U,$J,358.3,22904,1,4,0)
- ;;=4^T82.6XXA
- ;;^UTILITY(U,$J,358.3,22904,2)
- ;;=^5054908
- ;;^UTILITY(U,$J,358.3,22905,0)
- ;;=T82.7XXA^^105^1166^76
- ;;^UTILITY(U,$J,358.3,22905,1,0)
+ ;;^UTILITY(U,$J,358.3,23151,1,3,0)
+ ;;=3^Kidney Failure,Unspec
+ ;;^UTILITY(U,$J,358.3,23151,1,4,0)
+ ;;=4^N19.
+ ;;^UTILITY(U,$J,358.3,23151,2)
+ ;;=^5015607
+ ;;^UTILITY(U,$J,358.3,23152,0)
+ ;;=N20.1^^78^1002^3
+ ;;^UTILITY(U,$J,358.3,23152,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,22905,1,3,0)
- ;;=3^Infect/Inflm Reaction d/t Cardiac/Vasc Device/Implant/Graft,Init Encntr
- ;;^UTILITY(U,$J,358.3,22905,1,4,0)
- ;;=4^T82.7XXA
- ;;^UTILITY(U,$J,358.3,22905,2)
- ;;=^5054911
- ;;^UTILITY(U,$J,358.3,22906,0)
- ;;=T85.79XA^^105^1166^96
- ;;^UTILITY(U,$J,358.3,22906,1,0)
+ ;;^UTILITY(U,$J,358.3,23152,1,3,0)
+ ;;=3^Calculus of Ureter
+ ;;^UTILITY(U,$J,358.3,23152,1,4,0)
+ ;;=4^N20.1
+ ;;^UTILITY(U,$J,358.3,23152,2)
+ ;;=^5015608
+ ;;^UTILITY(U,$J,358.3,23153,0)
+ ;;=L03.031^^78^1003^3
+ ;;^UTILITY(U,$J,358.3,23153,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,22906,1,3,0)
- ;;=3^Infect/Inflm Reaction d/t Internal Prosthetic Device/Implant/Graft,Init Encntr
- ;;^UTILITY(U,$J,358.3,22906,1,4,0)
- ;;=4^T85.79XA
- ;;^UTILITY(U,$J,358.3,22906,2)
- ;;=^5055676
- ;;^UTILITY(U,$J,358.3,22907,0)
- ;;=T84.50XA^^105^1166^79
- ;;^UTILITY(U,$J,358.3,22907,1,0)
+ ;;^UTILITY(U,$J,358.3,23153,1,3,0)
+ ;;=3^Cellulitis of right toe
+ ;;^UTILITY(U,$J,358.3,23153,1,4,0)
+ ;;=4^L03.031
+ ;;^UTILITY(U,$J,358.3,23153,2)
+ ;;=^5009025
+ ;;^UTILITY(U,$J,358.3,23154,0)
+ ;;=L03.032^^78^1003^2
+ ;;^UTILITY(U,$J,358.3,23154,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,22907,1,3,0)
- ;;=3^Infect/Inflm Reaction d/t Int Joint Prosthesis,Init Encntr
- ;;^UTILITY(U,$J,358.3,22907,1,4,0)
- ;;=4^T84.50XA
- ;;^UTILITY(U,$J,358.3,22907,2)
- ;;=^5055382
- ;;^UTILITY(U,$J,358.3,22908,0)
- ;;=T84.51XA^^105^1166^97
- ;;^UTILITY(U,$J,358.3,22908,1,0)
+ ;;^UTILITY(U,$J,358.3,23154,1,3,0)
+ ;;=3^Cellulitis of left toe
+ ;;^UTILITY(U,$J,358.3,23154,1,4,0)
+ ;;=4^L03.032
+ ;;^UTILITY(U,$J,358.3,23154,2)
+ ;;=^5009026
+ ;;^UTILITY(U,$J,358.3,23155,0)
+ ;;=L03.90^^78^1003^4
+ ;;^UTILITY(U,$J,358.3,23155,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,22908,1,3,0)
- ;;=3^Infect/Inflm Reaction d/t Internal Right Hip Prosthesis,Init Encntr
- ;;^UTILITY(U,$J,358.3,22908,1,4,0)
- ;;=4^T84.51XA
- ;;^UTILITY(U,$J,358.3,22908,2)
- ;;=^5055385
- ;;^UTILITY(U,$J,358.3,22909,0)
- ;;=T84.52XA^^105^1166^99
- ;;^UTILITY(U,$J,358.3,22909,1,0)
+ ;;^UTILITY(U,$J,358.3,23155,1,3,0)
+ ;;=3^Cellulitis, unspecified
+ ;;^UTILITY(U,$J,358.3,23155,1,4,0)
+ ;;=4^L03.90
+ ;;^UTILITY(U,$J,358.3,23155,2)
+ ;;=^5009067
+ ;;^UTILITY(U,$J,358.3,23156,0)
+ ;;=L08.9^^78^1003^32
+ ;;^UTILITY(U,$J,358.3,23156,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,22909,1,3,0)
- ;;=3^Infect/Inflm Reaction d/t Left Hip Prosthesis,Init Encntr
- ;;^UTILITY(U,$J,358.3,22909,1,4,0)
- ;;=4^T84.52XA
- ;;^UTILITY(U,$J,358.3,22909,2)
- ;;=^5055388
- ;;^UTILITY(U,$J,358.3,22910,0)
- ;;=T84.53XA^^105^1166^98
- ;;^UTILITY(U,$J,358.3,22910,1,0)
+ ;;^UTILITY(U,$J,358.3,23156,1,3,0)
+ ;;=3^Skin infection, unspec
+ ;;^UTILITY(U,$J,358.3,23156,1,4,0)
+ ;;=4^L08.9
+ ;;^UTILITY(U,$J,358.3,23156,2)
+ ;;=^5009082
+ ;;^UTILITY(U,$J,358.3,23157,0)
+ ;;=L29.9^^78^1003^23
+ ;;^UTILITY(U,$J,358.3,23157,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,22910,1,3,0)
- ;;=3^Infect/Inflm Reaction d/t Internal Right Knee Prosthesis,Init Encntr
- ;;^UTILITY(U,$J,358.3,22910,1,4,0)
- ;;=4^T84.53XA
- ;;^UTILITY(U,$J,358.3,22910,2)
- ;;=^5055391
- ;;^UTILITY(U,$J,358.3,22911,0)
- ;;=T84.54XA^^105^1166^94
- ;;^UTILITY(U,$J,358.3,22911,1,0)
+ ;;^UTILITY(U,$J,358.3,23157,1,3,0)
+ ;;=3^Pruritus, unspecified
+ ;;^UTILITY(U,$J,358.3,23157,1,4,0)
+ ;;=4^L29.9
+ ;;^UTILITY(U,$J,358.3,23157,2)
+ ;;=^5009153
+ ;;^UTILITY(U,$J,358.3,23158,0)
+ ;;=L30.9^^78^1003^16
+ ;;^UTILITY(U,$J,358.3,23158,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,22911,1,3,0)
- ;;=3^Infect/Inflm Reaction d/t Internal Left Knee Prosthesis,Init Encntr
- ;;^UTILITY(U,$J,358.3,22911,1,4,0)
- ;;=4^T84.54XA
- ;;^UTILITY(U,$J,358.3,22911,2)
- ;;=^5055394
- ;;^UTILITY(U,$J,358.3,22912,0)
- ;;=T84.60XA^^105^1166^93
- ;;^UTILITY(U,$J,358.3,22912,1,0)
+ ;;^UTILITY(U,$J,358.3,23158,1,3,0)
+ ;;=3^Dermatitis,Unspec
+ ;;^UTILITY(U,$J,358.3,23158,1,4,0)
+ ;;=4^L30.9
+ ;;^UTILITY(U,$J,358.3,23158,2)
+ ;;=^5009159
+ ;;^UTILITY(U,$J,358.3,23159,0)
+ ;;=L40.0^^78^1003^27
+ ;;^UTILITY(U,$J,358.3,23159,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,22912,1,3,0)
- ;;=3^Infect/Inflm Reaction d/t Internal Fixation Device,Unspec Site,Init Encntr
- ;;^UTILITY(U,$J,358.3,22912,1,4,0)
- ;;=4^T84.60XA
- ;;^UTILITY(U,$J,358.3,22912,2)
- ;;=^5055400
+ ;;^UTILITY(U,$J,358.3,23159,1,3,0)
+ ;;=3^Psoriasis,Vulgaris
+ ;;^UTILITY(U,$J,358.3,23159,1,4,0)
+ ;;=4^L40.0
+ ;;^UTILITY(U,$J,358.3,23159,2)
+ ;;=^5009160
+ ;;^UTILITY(U,$J,358.3,23160,0)
+ ;;=L40.1^^78^1003^28
+ ;;^UTILITY(U,$J,358.3,23160,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,23160,1,3,0)
+ ;;=3^Pustular psoriasis, generalized
+ ;;^UTILITY(U,$J,358.3,23160,1,4,0)
+ ;;=4^L40.1
+ ;;^UTILITY(U,$J,358.3,23160,2)
+ ;;=^5009161
+ ;;^UTILITY(U,$J,358.3,23161,0)
+ ;;=L40.2^^78^1003^1
+ ;;^UTILITY(U,$J,358.3,23161,1,0)
+ ;;=^358.31IA^4^2

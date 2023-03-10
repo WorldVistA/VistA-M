@@ -1,132 +1,116 @@
-IBDEI0HZ ; ; 04-FEB-2020
- ;;3.0;IB ENCOUNTER FORM IMP/EXP;;FEB 04, 2020
+IBDEI0HZ ; ; 01-FEB-2022
+ ;;3.0;IB ENCOUNTER FORM IMP/EXP;;FEB 01, 2022
  Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,999) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
- ;;^UTILITY(U,$J,358.3,7830,1,4,0)
- ;;=4^A41.9
- ;;^UTILITY(U,$J,358.3,7830,2)
- ;;=^5000214
- ;;^UTILITY(U,$J,358.3,7831,0)
- ;;=R65.20^^63^504^7
- ;;^UTILITY(U,$J,358.3,7831,1,0)
+ ;;^UTILITY(U,$J,358.3,8091,1,3,0)
+ ;;=3^Non-Pressure Chr Ulcer of Left Calf w/ Msl Invl w/o Necrosis
+ ;;^UTILITY(U,$J,358.3,8091,1,4,0)
+ ;;=4^L97.225
+ ;;^UTILITY(U,$J,358.3,8091,2)
+ ;;=^5151445
+ ;;^UTILITY(U,$J,358.3,8092,0)
+ ;;=L97.228^^39^391^192
+ ;;^UTILITY(U,$J,358.3,8092,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,7831,1,3,0)
- ;;=3^Severe Sepsis w/o Septic Shock
- ;;^UTILITY(U,$J,358.3,7831,1,4,0)
- ;;=4^R65.20
- ;;^UTILITY(U,$J,358.3,7831,2)
- ;;=^5019547
- ;;^UTILITY(U,$J,358.3,7832,0)
- ;;=R65.21^^63^504^6
- ;;^UTILITY(U,$J,358.3,7832,1,0)
+ ;;^UTILITY(U,$J,358.3,8092,1,3,0)
+ ;;=3^Non-Pressure Chr Ulcer of Left Calf w/ Oth Severity
+ ;;^UTILITY(U,$J,358.3,8092,1,4,0)
+ ;;=4^L97.228
+ ;;^UTILITY(U,$J,358.3,8092,2)
+ ;;=^5151447
+ ;;^UTILITY(U,$J,358.3,8093,0)
+ ;;=L97.526^^39^391^198
+ ;;^UTILITY(U,$J,358.3,8093,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,7832,1,3,0)
- ;;=3^Severe Sepsis w/ Septic Shock
- ;;^UTILITY(U,$J,358.3,7832,1,4,0)
- ;;=4^R65.21
- ;;^UTILITY(U,$J,358.3,7832,2)
- ;;=^5019548
- ;;^UTILITY(U,$J,358.3,7833,0)
- ;;=T81.44XA^^63^504^2
- ;;^UTILITY(U,$J,358.3,7833,1,0)
+ ;;^UTILITY(U,$J,358.3,8093,1,3,0)
+ ;;=3^Non-Pressure Chr Ulcer of Left Foot w/ Bone Invl w/o Necrosis
+ ;;^UTILITY(U,$J,358.3,8093,1,4,0)
+ ;;=4^L97.526
+ ;;^UTILITY(U,$J,358.3,8093,2)
+ ;;=^5151473
+ ;;^UTILITY(U,$J,358.3,8094,0)
+ ;;=L97.525^^39^391^199
+ ;;^UTILITY(U,$J,358.3,8094,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,7833,1,3,0)
- ;;=3^Sepsis Following Proc,Init Enc
- ;;^UTILITY(U,$J,358.3,7833,1,4,0)
- ;;=4^T81.44XA
- ;;^UTILITY(U,$J,358.3,7833,2)
- ;;=^5157596
- ;;^UTILITY(U,$J,358.3,7834,0)
- ;;=N17.9^^63^505^2
- ;;^UTILITY(U,$J,358.3,7834,1,0)
+ ;;^UTILITY(U,$J,358.3,8094,1,3,0)
+ ;;=3^Non-Pressure Chr Ulcer of Left Foot w/ Msl Invl w/o Necrosis
+ ;;^UTILITY(U,$J,358.3,8094,1,4,0)
+ ;;=4^L97.525
+ ;;^UTILITY(U,$J,358.3,8094,2)
+ ;;=^5151472
+ ;;^UTILITY(U,$J,358.3,8095,0)
+ ;;=L97.528^^39^391^200
+ ;;^UTILITY(U,$J,358.3,8095,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,7834,1,3,0)
- ;;=3^Acute Kidney Failure,Unspec
- ;;^UTILITY(U,$J,358.3,7834,1,4,0)
- ;;=4^N17.9
- ;;^UTILITY(U,$J,358.3,7834,2)
- ;;=^338532
- ;;^UTILITY(U,$J,358.3,7835,0)
- ;;=I12.9^^63^505^3
- ;;^UTILITY(U,$J,358.3,7835,1,0)
+ ;;^UTILITY(U,$J,358.3,8095,1,3,0)
+ ;;=3^Non-Pressure Chr Ulcer of Left Foot w/ Oth Severity
+ ;;^UTILITY(U,$J,358.3,8095,1,4,0)
+ ;;=4^L97.528
+ ;;^UTILITY(U,$J,358.3,8095,2)
+ ;;=^5151474
+ ;;^UTILITY(U,$J,358.3,8096,0)
+ ;;=L97.426^^39^391^206
+ ;;^UTILITY(U,$J,358.3,8096,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,7835,1,3,0)
- ;;=3^Hypertensive Chr Kidney Disease
- ;;^UTILITY(U,$J,358.3,7835,1,4,0)
- ;;=4^I12.9
- ;;^UTILITY(U,$J,358.3,7835,2)
- ;;=^5007066
- ;;^UTILITY(U,$J,358.3,7836,0)
- ;;=I12.0^^63^505^4
- ;;^UTILITY(U,$J,358.3,7836,1,0)
+ ;;^UTILITY(U,$J,358.3,8096,1,3,0)
+ ;;=3^Non-Pressure Chr Ulcer of Left Heel/Midft w/ Bone Invl w/o Necrosis
+ ;;^UTILITY(U,$J,358.3,8096,1,4,0)
+ ;;=4^L97.426
+ ;;^UTILITY(U,$J,358.3,8096,2)
+ ;;=^5151464
+ ;;^UTILITY(U,$J,358.3,8097,0)
+ ;;=L97.925^^39^391^212
+ ;;^UTILITY(U,$J,358.3,8097,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,7836,1,3,0)
- ;;=3^Hypertensive Chr Kidney Disease w/ Stage 5 Kidney Disease/ESRD
- ;;^UTILITY(U,$J,358.3,7836,1,4,0)
- ;;=4^I12.0
- ;;^UTILITY(U,$J,358.3,7836,2)
- ;;=^5007065
- ;;^UTILITY(U,$J,358.3,7837,0)
- ;;=N17.0^^63^505^1
- ;;^UTILITY(U,$J,358.3,7837,1,0)
+ ;;^UTILITY(U,$J,358.3,8097,1,3,0)
+ ;;=3^Non-Pressure Chr Ulcer of Left Lower Leg w/ Msl Invl w/o Necrosis
+ ;;^UTILITY(U,$J,358.3,8097,1,4,0)
+ ;;=4^L97.925
+ ;;^UTILITY(U,$J,358.3,8097,2)
+ ;;=^5151490
+ ;;^UTILITY(U,$J,358.3,8098,0)
+ ;;=L97.928^^39^391^213
+ ;;^UTILITY(U,$J,358.3,8098,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,7837,1,3,0)
- ;;=3^Acute Kidney Failure w/ Tubular Necrosis
- ;;^UTILITY(U,$J,358.3,7837,1,4,0)
- ;;=4^N17.0
- ;;^UTILITY(U,$J,358.3,7837,2)
- ;;=^5015598
- ;;^UTILITY(U,$J,358.3,7838,0)
- ;;=N39.0^^63^505^14
- ;;^UTILITY(U,$J,358.3,7838,1,0)
+ ;;^UTILITY(U,$J,358.3,8098,1,3,0)
+ ;;=3^Non-Pressure Chr Ulcer of Left Lower Leg w/ Oth Severity
+ ;;^UTILITY(U,$J,358.3,8098,1,4,0)
+ ;;=4^L97.928
+ ;;^UTILITY(U,$J,358.3,8098,2)
+ ;;=^5151492
+ ;;^UTILITY(U,$J,358.3,8099,0)
+ ;;=L97.126^^39^391^219
+ ;;^UTILITY(U,$J,358.3,8099,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,7838,1,3,0)
- ;;=3^UTI,Site Not Spec
- ;;^UTILITY(U,$J,358.3,7838,1,4,0)
- ;;=4^N39.0
- ;;^UTILITY(U,$J,358.3,7838,2)
- ;;=^124436
- ;;^UTILITY(U,$J,358.3,7839,0)
- ;;=C61.^^63^505^12
- ;;^UTILITY(U,$J,358.3,7839,1,0)
+ ;;^UTILITY(U,$J,358.3,8099,1,3,0)
+ ;;=3^Non-Pressure Chr Ulcer of Left Thigh w/ Bone Invl w/o Necrosis
+ ;;^UTILITY(U,$J,358.3,8099,1,4,0)
+ ;;=4^L97.126
+ ;;^UTILITY(U,$J,358.3,8099,2)
+ ;;=^5151437
+ ;;^UTILITY(U,$J,358.3,8100,0)
+ ;;=L97.125^^39^391^220
+ ;;^UTILITY(U,$J,358.3,8100,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,7839,1,3,0)
- ;;=3^Malig Neop Prostate
- ;;^UTILITY(U,$J,358.3,7839,1,4,0)
- ;;=4^C61.
- ;;^UTILITY(U,$J,358.3,7839,2)
- ;;=^267239
- ;;^UTILITY(U,$J,358.3,7840,0)
- ;;=C64.1^^63^505^13
- ;;^UTILITY(U,$J,358.3,7840,1,0)
+ ;;^UTILITY(U,$J,358.3,8100,1,3,0)
+ ;;=3^Non-Pressure Chr Ulcer of Left Thigh w/ Msl Invl w/o Necrosis
+ ;;^UTILITY(U,$J,358.3,8100,1,4,0)
+ ;;=4^L97.125
+ ;;^UTILITY(U,$J,358.3,8100,2)
+ ;;=^5151436
+ ;;^UTILITY(U,$J,358.3,8101,0)
+ ;;=L97.128^^39^391^221
+ ;;^UTILITY(U,$J,358.3,8101,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,7840,1,3,0)
- ;;=3^Malig Neop Right Kidney
- ;;^UTILITY(U,$J,358.3,7840,1,4,0)
- ;;=4^C64.1
- ;;^UTILITY(U,$J,358.3,7840,2)
- ;;=^5001248
- ;;^UTILITY(U,$J,358.3,7841,0)
- ;;=C64.2^^63^505^11
- ;;^UTILITY(U,$J,358.3,7841,1,0)
+ ;;^UTILITY(U,$J,358.3,8101,1,3,0)
+ ;;=3^Non-Pressure Chr Ulcer of Left Thigh w/ Oth Severity
+ ;;^UTILITY(U,$J,358.3,8101,1,4,0)
+ ;;=4^L97.128
+ ;;^UTILITY(U,$J,358.3,8101,2)
+ ;;=^5151438
+ ;;^UTILITY(U,$J,358.3,8102,0)
+ ;;=L97.316^^39^391^227
+ ;;^UTILITY(U,$J,358.3,8102,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,7841,1,3,0)
- ;;=3^Malig Neop Left Kidney
- ;;^UTILITY(U,$J,358.3,7841,1,4,0)
- ;;=4^C64.2
- ;;^UTILITY(U,$J,358.3,7841,2)
- ;;=^5001249
- ;;^UTILITY(U,$J,358.3,7842,0)
- ;;=C57.9^^63^505^10
- ;;^UTILITY(U,$J,358.3,7842,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,7842,1,3,0)
- ;;=3^Malig Neop Female Genital Organ,Unspec
- ;;^UTILITY(U,$J,358.3,7842,1,4,0)
- ;;=4^C57.9
- ;;^UTILITY(U,$J,358.3,7842,2)
- ;;=^5001227
- ;;^UTILITY(U,$J,358.3,7843,0)
- ;;=N28.9^^63^505^9
- ;;^UTILITY(U,$J,358.3,7843,1,0)
- ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,8102,1,3,0)
+ ;;=3^Non-Pressure Chr Ulcer of Right Ankle w/ Bone Invl w/o Necrosis

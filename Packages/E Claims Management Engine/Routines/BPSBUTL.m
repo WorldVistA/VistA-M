@@ -1,5 +1,5 @@
 BPSBUTL ;BHAM ISC/MFR/VA/DLF - IB Communication Utilities ;06/01/2004
- ;;1.0;E CLAIMS MGMT ENGINE;**1,3,2,5,7,8,9,10,11,15,20,24**;JUN 2004;Build 43
+ ;;1.0;E CLAIMS MGMT ENGINE;**1,3,2,5,7,8,9,10,11,15,20,24,31**;JUN 2004;Build 16
  ;;Per VA Directive 6402, this routine should not be modified.
  ;Reference to STORESP^IBNCPDP supported by DBIA 4299
  Q
@@ -11,8 +11,9 @@ BPSBUTL ;BHAM ISC/MFR/VA/DLF - IB Communication Utilities ;06/01/2004
  ;RELCOP - 1 (Yes) or 0 (No) release copay or not?
  ;COMMENT - comment
  ;ERROR - array by reference for error details
+ ;BPSCLO - 1 indicates call coming from ECME User Screen action CLO
  ;
-CLOSE(CLAIM,TRNDX,REASON,PAPER,RELCOP,COMMENT,ERROR) ; Send IB an update on the CLAIM status for a Closed Claim
+CLOSE(CLAIM,TRNDX,REASON,PAPER,RELCOP,COMMENT,ERROR,BPSCLO) ; Send IB an update on the CLAIM status for a Closed Claim
  N DFN,BPSARRY,BILLNUM,CLAIMNFO,FILLNUM,RXIEN,TRANINFO
  ;
  ; - Data gathering
@@ -33,7 +34,8 @@ CLOSE(CLAIM,TRNDX,REASON,PAPER,RELCOP,COMMENT,ERROR) ; Send IB an update on the 
  S BPSARRY("STATUS")="CLOSED"
  S BPSARRY("PAID")=0
  S BPSARRY("RELEASE DATE")=$S(FILLNUM=0:$$RXAPI1^BPSUTIL1(RXIEN,31,"I"),1:$$RXSUBF1^BPSUTIL1(RXIEN,52,52.1,FILLNUM,17,"I"))
- S BPSARRY("USER")=DUZ
+ I $G(BPSCLO) S BPSARRY("USER")=DUZ
+ E  S BPSARRY("USER")=$$GET1^DIQ(9002313.59,TRNDX,13,"I")
  S BPSARRY("EPHARM")=$$GET1^DIQ(9002313.59,TRNDX,1.07,"I")
  S BPSARRY("RXCOB")=$$COB59^BPSUTIL2(TRNDX)
  I REASON'="" D

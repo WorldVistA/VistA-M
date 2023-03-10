@@ -1,5 +1,5 @@
 DIC1 ;SFISC/GFT/TKW-READ X, SHOW CHOICES ;29DEC2013
- ;;22.2;VA FileMan;;Jan 05, 2016;Build 42
+ ;;22.2;VA FileMan;**20**;Jan 05, 2016;Build 2
  ;;Per VA Directive 6402, this routine should not be modified.
  ;;Submitted to OSEHRA 5 January 2015 by the VISTA Expertise Network.
  ;;Based on Medsphere Systems Corporation's MSC FileMan 1051.
@@ -41,7 +41,7 @@ DO ; GET FILE ATTR
  Q:$D(DO(2))  I $D(@(DIC_"0)")) S DO=^(0)
  E  S DO="0^-1" I $D(DIC("P")) S DO=U_DIC("P"),^(0)=DO
 EGP I $P(DO,U,2)>1.9 S $P(DO,U)=$$FILENAME^DIALOGZ(+$P(DO,U,2)) ;**CCO/NI PROMPT FILE NAME and following line
-DO2 S DO(2)=$P(DO,U,2) I DO?1"^".E S $P(DO,U)=$$FILENAME^DIALOGZ(+DO(2))
+DO2 S DO(2)=$P(DO,U,2) I DO?1"^".E S $P(DO,U)=$O(^DD(+DO(2),0,"NM",0)) ;p20 files<1.9 might not have a ^DIC(+DO(2))
  I DO(2)["s",$D(^DD(+DO(2),0,"SCR")) S DO("SCR")=^("SCR")
  Q:$D(DIC("W"))  Q:DO(2)'["I"  Q:'$D(^DD(+DO(2),0,"ID"))
  S DIC("W")=""

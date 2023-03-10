@@ -1,5 +1,5 @@
 IBCEPTC0 ;ALB/ESG - EDI PREVIOUSLY TRANSMITTED CLAIMS CONT ; 12/19/05
- ;;2.0;INTEGRATED BILLING;**320,348,547,592**;21-MAR-94;Build 58
+ ;;2.0;INTEGRATED BILLING;**320,348,547,592,665**;21-MAR-94;Build 28
  ;;Per VA Directive 6402, this routine should not be modified.
  ;
  Q
@@ -14,8 +14,13 @@ LIST ; Queued report format entrypoint
  I IBREP="R" N IBPAGE,IBSTOP,IBHDRDT S (IBPAGE,IBSTOP)=0
  ;
  ; evaluate claim transmission data from files 364.1 and 364
- S IBDT=IBDT1-.1
- F  S IBDT=$O(^IBA(364.1,"ALT",IBDT)) Q:'IBDT!((IBDT\1)>IBDT2)  S IBBDA=0 F  S IBBDA=$O(^IBA(364.1,"ALT",IBDT,IBBDA)) Q:'IBBDA  D
+ ;WCJ;IB665;start;added times to date/times in IBCEPTC
+ ;S IBDT=IBDT1-.1
+ S IBDT=$$FMADD^XLFDT(IBDT1,,,,-1)
+ I '+$P(IBDT2,".",2) S IBDT2=$$FMADD^XLFDT(IBDT2,1,,,-1)
+ ;F  S IBDT=$O(^IBA(364.1,"ALT",IBDT)) Q:'IBDT!((IBDT\1)>IBDT2)  S IBBDA=0 F  S IBBDA=$O(^IBA(364.1,"ALT",IBDT,IBBDA)) Q:'IBBDA  D
+ F  S IBDT=$O(^IBA(364.1,"ALT",IBDT)) Q:'IBDT!((IBDT)>IBDT2)  S IBBDA=0 F  S IBBDA=$O(^IBA(364.1,"ALT",IBDT,IBBDA)) Q:'IBBDA  D
+ . ;WCJ;IB665;end
  . S IBDTX=IBDT\1
  . S IBDA=0 F  S IBDA=$O(^IBA(364,"C",IBBDA,IBDA)) Q:'IBDA  D
  .. D STORE(IBDA,IBBDA,IBDTX,$P($G(^IBA(364,IBDA,0)),U,7)+1)
@@ -23,10 +28,16 @@ LIST ; Queued report format entrypoint
  . Q
  ;
  ; evaluate the test transmissions from file 361.4 (SRS 3.2.10.3)
- S IBDT=IBDT1-.1
+ ;WCJ;IB665;start;added times to date/times in IBCEPTC
+ ;S IBDT=IBDT1-.1
+ S IBDT=$$FMADD^XLFDT(IBDT1,,,,-1)
+ ;WCJ;IB665;end
  F  S IBDT=$O(^IBM(361.4,"ALT",IBDT)) Q:'IBDT!(IBDT>IBDT2)  S IBIFN=0 F  S IBIFN=$O(^IBM(361.4,"ALT",IBDT,IBIFN)) Q:'IBIFN  S IBZ1=0 F  S IBZ1=$O(^IBM(361.4,IBIFN,1,IBZ1)) Q:'IBZ1  D
  . S DATA=$G(^IBM(361.4,IBIFN,1,IBZ1,0)) Q:DATA=""
- . S IBDTX=$P(DATA,U,1)\1    ; transmit date
+ . ;WCJ;IB665;start;
+ . ;S IBDTX=$P(DATA,U,1)\1    ; transmit date
+ . S IBDTX=$P(DATA,U,1)    ; transmit date
+ . ;WCJ;IB665;end
  . Q:IBDTX<IBDT1             ;  too early
  . Q:IBDTX>IBDT2             ;  too late
  . S IBBDA=+$P(DATA,U,2)     ; batch ien
@@ -144,6 +155,9 @@ STORE(IB364,IBBDA,IBDTX,IBTYP) ; Check and store transmission data
  I IBCRIT=2,($$COBN^IBCEF(IBIFN)>1) G STOREX
  I IBCRIT=3,($$COBN^IBCEF(IBIFN)=1) G STOREX
  I IBCRIT=4,'$P($G(^DGCR(399,IBIFN,"TX")),U,7) G STOREX
+ ;WCJ;IB665;start
+ I IBCRIT=5,$$GET1^DIQ(364,IB364_",",.03,"I")'="A0" G STOREX
+ ;WCJ;IB665;end
  ;
  ; skip cancelled claims conditionally
  I $P(IB0,U,13)=7,'IBPTCCAN G STOREX

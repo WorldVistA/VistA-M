@@ -1,5 +1,5 @@
 YTWJSONF ;SLC/KCM - File/Export JSON versions of instruments ; 7/20/2018
- ;;5.01;MENTAL HEALTH;**130**;Dec 30, 1994;Build 62
+ ;;5.01;MENTAL HEALTH;**130,141**;Dec 30, 1994;Build 85
  ;
  ; External Reference    ICR#
  ; ------------------   -----
@@ -92,3 +92,30 @@ LIST(PATH) ; Save list of instruments as JSON to directory
  K ^TMP($J)
  Q
  ;
+ ; -- calls to seed to MH TEST/SURVEY ENTRY file (601.712)
+ ;
+LPSEED ; Loop thru all active instruments to seed JSON documents
+ N TEST
+ S TEST=0 F  S TEST=$O(^YTT(601.71,TEST)) Q:'TEST  D
+ . I $P($G(^YTT(601.71,TEST,2)),U,2)'="Y" QUIT
+ . D FILE712(TEST) W "."
+ Q
+FILE712(TEST) ; save JSON test to 601.712
+ K ^TMP("YTQ-FILE",$J)
+ N JSON,CRC,ERRS,I,REC,IEN
+ I TEST'=+TEST S TEST=$O(^YTT(601.71,"B",TEST,0))
+ D GETSPEC^YTWJSON(.JSON,TEST)
+ I '$D(JSON) W "JSON err: "_$P(^YTT(601.71,TEST,0),U) QUIT
+ S I=0 F  S I=$O(JSON(I)) Q:'I  S ^TMP("YTQ-FILE",$J,I,0)=JSON(I)
+ D CHKSPEC^YTWJSONE($NA(^TMP("YTQ-FILE",$J)),.ERRS,.CRC)
+ I $L($G(ERRS)) W "Checksum err: "_ERRS QUIT
+ ;
+ S REC(.01)=TEST
+ S REC(.02)=$$NOW^XLFDT
+ S REC(.03)=CRC
+ S REC(1)=$NA(^TMP("YTQ-FILE",$J))
+ S IEN=$O(^YTT(601.712,"B",TEST,0))
+ I IEN D FMUPD^YTXCHGU(601.712,.REC,IEN) I 1
+ E  D FMADD^YTXCHGU(601.712,.REC)
+ K ^TMP("YTQ-FILE",$J)
+ Q

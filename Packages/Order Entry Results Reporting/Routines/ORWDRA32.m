@@ -1,5 +1,5 @@
-ORWDRA32 ; SLC/KCM/REV/JDL - Radiology calls to support windows [6/28/02] ;02/21/19  11:47
- ;;3.0;ORDER ENTRY/RESULTS REPORTING;**10,116,141,215,280,377**;Dec 17, 1997;Build 582
+ORWDRA32 ; SLC/KCM/REV/JDL - Radiology calls to support windows [6/28/02] ;Oct 19, 2020@08:05:39
+ ;;3.0;ORDER ENTRY/RESULTS REPORTING;**10,116,141,215,280,377,498**;Dec 17, 1997;Build 38
  ;
 DEF(LST,PATID,EVTDIV,IMGTYP) ; Get dialog data for radiology
  N ILST,I,ORX S ILST=0
@@ -32,13 +32,13 @@ COMMPRO ; Get the common procedures
  . S LST($$NXT)="i"_I_U_ORX_U_U_$$REQAPPR(I)
  Q
 URGENCY ; Get the allowable urgencies and default
- S ORX="",I=0
- F  S ORX=$O(^ORD(101.42,"S.RA",ORX)) Q:ORX=""  D
- . I (ORX="ASAP")!(ORX="STAT")!(ORX="ROUTINE") D
+ N A
+ S ORX="",I=0 N ORUIEN
+ F  S ORX=$O(^ORD(101.42,"S.RA",ORX)) Q:ORX=""  S ORUIEN=0 D
+ . F  S ORUIEN=$O(^ORD(101.42,"S.RA",ORX,ORUIEN)) Q:'ORUIEN  D
+ . . I '$$RADURG(ORUIEN) Q
  . . S I=$O(^ORD(101.42,"S.RA",ORX,0))
  . . S LST($$NXT)="i"_I_U_ORX
- S I=$O(^ORD(101.42,"B","ROUTINE",0))
- S LST($$NXT)="d"_I_U_"ROUTINE"
  Q
 TRNSPRT ; Get the modes of transport
  F ORX="A^AMBULATORY","P^PORTABLE","S^STRETCHER","W^WHEELCHAIR" D
@@ -153,3 +153,7 @@ LOCTYPE(Y,ORLOC) ; Returns type of location (C,W)
  Q:$G(ORLOC)=""
  S Y=$P($G(^SC(+$G(ORLOC),0)),U,3)
  Q
+RADURG(URGIEN) ;
+ I '$D(URGIEN) Q 0
+ S A=$G(^ORD(101.42,URGIEN,0)) I "^A^S^R^"'[("^"_$P(A,"^",2)_"^") Q 0
+ Q 1

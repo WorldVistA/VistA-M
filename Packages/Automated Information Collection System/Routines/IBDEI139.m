@@ -1,122 +1,128 @@
-IBDEI139 ; ; 04-FEB-2020
- ;;3.0;IB ENCOUNTER FORM IMP/EXP;;FEB 04, 2020
+IBDEI139 ; ; 01-FEB-2022
+ ;;3.0;IB ENCOUNTER FORM IMP/EXP;;FEB 01, 2022
  Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,999) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
- ;;^UTILITY(U,$J,358.3,17494,1,3,0)
- ;;=3^Sprain of Left Wrist
- ;;^UTILITY(U,$J,358.3,17494,1,4,0)
- ;;=4^S63.502A
- ;;^UTILITY(U,$J,358.3,17494,2)
- ;;=^5035586
- ;;^UTILITY(U,$J,358.3,17495,0)
- ;;=S83.8X1A^^88^892^16
- ;;^UTILITY(U,$J,358.3,17495,1,0)
+ ;;^UTILITY(U,$J,358.3,17678,0)
+ ;;=N92.5^^61^791^61
+ ;;^UTILITY(U,$J,358.3,17678,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,17495,1,3,0)
- ;;=3^Sprain of Right Knee,Oth Spec Parts
- ;;^UTILITY(U,$J,358.3,17495,1,4,0)
- ;;=4^S83.8X1A
- ;;^UTILITY(U,$J,358.3,17495,2)
- ;;=^5043160
- ;;^UTILITY(U,$J,358.3,17496,0)
- ;;=S83.8X2A^^88^892^5
- ;;^UTILITY(U,$J,358.3,17496,1,0)
+ ;;^UTILITY(U,$J,358.3,17678,1,3,0)
+ ;;=3^Irregular Menstruation,Other Spec
+ ;;^UTILITY(U,$J,358.3,17678,1,4,0)
+ ;;=4^N92.5
+ ;;^UTILITY(U,$J,358.3,17678,2)
+ ;;=^5015912
+ ;;^UTILITY(U,$J,358.3,17679,0)
+ ;;=N92.3^^61^791^80
+ ;;^UTILITY(U,$J,358.3,17679,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,17496,1,3,0)
- ;;=3^Sprain of Left Knee,Oth Spec Parts
- ;;^UTILITY(U,$J,358.3,17496,1,4,0)
- ;;=4^S83.8X2A
- ;;^UTILITY(U,$J,358.3,17496,2)
- ;;=^5043163
- ;;^UTILITY(U,$J,358.3,17497,0)
- ;;=S86.211A^^88^892^47
- ;;^UTILITY(U,$J,358.3,17497,1,0)
+ ;;^UTILITY(U,$J,358.3,17679,1,3,0)
+ ;;=3^Ovulation Bleeding
+ ;;^UTILITY(U,$J,358.3,17679,1,4,0)
+ ;;=4^N92.3
+ ;;^UTILITY(U,$J,358.3,17679,2)
+ ;;=^270570
+ ;;^UTILITY(U,$J,358.3,17680,0)
+ ;;=N89.7^^61^791^54
+ ;;^UTILITY(U,$J,358.3,17680,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,17497,1,3,0)
- ;;=3^Strain of Right Lower Leg Anterior Muscle/Tendon
- ;;^UTILITY(U,$J,358.3,17497,1,4,0)
- ;;=4^S86.211A
- ;;^UTILITY(U,$J,358.3,17497,2)
- ;;=^5043484
- ;;^UTILITY(U,$J,358.3,17498,0)
- ;;=S86.212A^^88^892^27
- ;;^UTILITY(U,$J,358.3,17498,1,0)
+ ;;^UTILITY(U,$J,358.3,17680,1,3,0)
+ ;;=3^Hematocolpos
+ ;;^UTILITY(U,$J,358.3,17680,1,4,0)
+ ;;=4^N89.7
+ ;;^UTILITY(U,$J,358.3,17680,2)
+ ;;=^5015889
+ ;;^UTILITY(U,$J,358.3,17681,0)
+ ;;=N93.8^^61^791^5
+ ;;^UTILITY(U,$J,358.3,17681,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,17498,1,3,0)
- ;;=3^Strain of Left Lower Leg Anterior Muscle/Tendon
- ;;^UTILITY(U,$J,358.3,17498,1,4,0)
- ;;=4^S86.212A
- ;;^UTILITY(U,$J,358.3,17498,2)
- ;;=^5043487
- ;;^UTILITY(U,$J,358.3,17499,0)
- ;;=S86.311A^^88^892^49
- ;;^UTILITY(U,$J,358.3,17499,1,0)
+ ;;^UTILITY(U,$J,358.3,17681,1,3,0)
+ ;;=3^Abnormal Uterine/Vaginal Bleeding,Other Spec
+ ;;^UTILITY(U,$J,358.3,17681,1,4,0)
+ ;;=4^N93.8
+ ;;^UTILITY(U,$J,358.3,17681,2)
+ ;;=^5015915
+ ;;^UTILITY(U,$J,358.3,17682,0)
+ ;;=N93.9^^61^791^6
+ ;;^UTILITY(U,$J,358.3,17682,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,17499,1,3,0)
- ;;=3^Strain of Right Lower Leg Peroneal Muscle/Tendon
- ;;^UTILITY(U,$J,358.3,17499,1,4,0)
- ;;=4^S86.311A
- ;;^UTILITY(U,$J,358.3,17499,2)
- ;;=^5043511
- ;;^UTILITY(U,$J,358.3,17500,0)
- ;;=S86.312A^^88^892^29
- ;;^UTILITY(U,$J,358.3,17500,1,0)
+ ;;^UTILITY(U,$J,358.3,17682,1,3,0)
+ ;;=3^Abnormal Uterine/Vaginal Bleeding,Unspec
+ ;;^UTILITY(U,$J,358.3,17682,1,4,0)
+ ;;=4^N93.9
+ ;;^UTILITY(U,$J,358.3,17682,2)
+ ;;=^5015916
+ ;;^UTILITY(U,$J,358.3,17683,0)
+ ;;=N92.4^^61^791^38
+ ;;^UTILITY(U,$J,358.3,17683,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,17500,1,3,0)
- ;;=3^Strain of Left Lower Leg Peroneal Muscle/Tendon
- ;;^UTILITY(U,$J,358.3,17500,1,4,0)
- ;;=4^S86.312A
- ;;^UTILITY(U,$J,358.3,17500,2)
- ;;=^5043514
- ;;^UTILITY(U,$J,358.3,17501,0)
- ;;=S86.811A^^88^892^48
- ;;^UTILITY(U,$J,358.3,17501,1,0)
+ ;;^UTILITY(U,$J,358.3,17683,1,3,0)
+ ;;=3^Excessive Bleeding in Premenopausal Period
+ ;;^UTILITY(U,$J,358.3,17683,1,4,0)
+ ;;=4^N92.4
+ ;;^UTILITY(U,$J,358.3,17683,2)
+ ;;=^5015911
+ ;;^UTILITY(U,$J,358.3,17684,0)
+ ;;=N95.0^^61^791^89
+ ;;^UTILITY(U,$J,358.3,17684,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,17501,1,3,0)
- ;;=3^Strain of Right Lower Leg Muscle/Tendon NEC
- ;;^UTILITY(U,$J,358.3,17501,1,4,0)
- ;;=4^S86.811A
- ;;^UTILITY(U,$J,358.3,17501,2)
- ;;=^5043538
- ;;^UTILITY(U,$J,358.3,17502,0)
- ;;=S86.812A^^88^892^28
- ;;^UTILITY(U,$J,358.3,17502,1,0)
+ ;;^UTILITY(U,$J,358.3,17684,1,3,0)
+ ;;=3^Postmenopausal Bleeding
+ ;;^UTILITY(U,$J,358.3,17684,1,4,0)
+ ;;=4^N95.0
+ ;;^UTILITY(U,$J,358.3,17684,2)
+ ;;=^97040
+ ;;^UTILITY(U,$J,358.3,17685,0)
+ ;;=N95.1^^61^791^69
+ ;;^UTILITY(U,$J,358.3,17685,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,17502,1,3,0)
- ;;=3^Strain of Left Lower Leg Muscle/Tendon NEC
- ;;^UTILITY(U,$J,358.3,17502,1,4,0)
- ;;=4^S86.812A
- ;;^UTILITY(U,$J,358.3,17502,2)
- ;;=^5043541
- ;;^UTILITY(U,$J,358.3,17503,0)
- ;;=S86.111A^^88^892^50
- ;;^UTILITY(U,$J,358.3,17503,1,0)
+ ;;^UTILITY(U,$J,358.3,17685,1,3,0)
+ ;;=3^Menopausal/Female Climacteric States
+ ;;^UTILITY(U,$J,358.3,17685,1,4,0)
+ ;;=4^N95.1
+ ;;^UTILITY(U,$J,358.3,17685,2)
+ ;;=^5015927
+ ;;^UTILITY(U,$J,358.3,17686,0)
+ ;;=N97.0^^61^791^45
+ ;;^UTILITY(U,$J,358.3,17686,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,17503,1,3,0)
- ;;=3^Strain of Right Lower Leg Posterior Muscle/Tendon
- ;;^UTILITY(U,$J,358.3,17503,1,4,0)
- ;;=4^S86.111A
- ;;^UTILITY(U,$J,358.3,17503,2)
- ;;=^5043460
- ;;^UTILITY(U,$J,358.3,17504,0)
- ;;=S86.112A^^88^892^30
- ;;^UTILITY(U,$J,358.3,17504,1,0)
+ ;;^UTILITY(U,$J,358.3,17686,1,3,0)
+ ;;=3^Female Infertility Associated w/ Anovulation
+ ;;^UTILITY(U,$J,358.3,17686,1,4,0)
+ ;;=4^N97.0
+ ;;^UTILITY(U,$J,358.3,17686,2)
+ ;;=^5015931
+ ;;^UTILITY(U,$J,358.3,17687,0)
+ ;;=N97.9^^61^791^46
+ ;;^UTILITY(U,$J,358.3,17687,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,17504,1,3,0)
- ;;=3^Strain of Left Lower Leg Posterior Muscle/Tendon
- ;;^UTILITY(U,$J,358.3,17504,1,4,0)
- ;;=4^S86.112A
- ;;^UTILITY(U,$J,358.3,17504,2)
- ;;=^5043463
- ;;^UTILITY(U,$J,358.3,17505,0)
- ;;=S83.401A^^88^892^15
- ;;^UTILITY(U,$J,358.3,17505,1,0)
+ ;;^UTILITY(U,$J,358.3,17687,1,3,0)
+ ;;=3^Female Infertility,Unspec
+ ;;^UTILITY(U,$J,358.3,17687,1,4,0)
+ ;;=4^N97.9
+ ;;^UTILITY(U,$J,358.3,17687,2)
+ ;;=^5015935
+ ;;^UTILITY(U,$J,358.3,17688,0)
+ ;;=L29.2^^61^791^96
+ ;;^UTILITY(U,$J,358.3,17688,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,17505,1,3,0)
- ;;=3^Sprain of Right Knee Collateral Ligament
- ;;^UTILITY(U,$J,358.3,17505,1,4,0)
- ;;=4^S83.401A
- ;;^UTILITY(U,$J,358.3,17505,2)
- ;;=^5043103
- ;;^UTILITY(U,$J,358.3,17506,0)
- ;;=S83.402A^^88^892^4
+ ;;^UTILITY(U,$J,358.3,17688,1,3,0)
+ ;;=3^Pruritus Vulvae
+ ;;^UTILITY(U,$J,358.3,17688,1,4,0)
+ ;;=4^L29.2
+ ;;^UTILITY(U,$J,358.3,17688,2)
+ ;;=^100075
+ ;;^UTILITY(U,$J,358.3,17689,0)
+ ;;=R92.8^^61^791^7
+ ;;^UTILITY(U,$J,358.3,17689,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,17689,1,3,0)
+ ;;=3^Abnormal/Inconclusive Findings on Dx Imaging of Breast
+ ;;^UTILITY(U,$J,358.3,17689,1,4,0)
+ ;;=4^R92.8
+ ;;^UTILITY(U,$J,358.3,17689,2)
+ ;;=^5019712
+ ;;^UTILITY(U,$J,358.3,17690,0)
+ ;;=R87.619^^61^791^4
+ ;;^UTILITY(U,$J,358.3,17690,1,0)
+ ;;=^358.31IA^4^2

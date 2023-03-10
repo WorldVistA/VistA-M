@@ -1,5 +1,5 @@
-PXPXRMI1 ; SLC/PKR,SCK - Build indexes for the V files. ;03/14/16  09:49
- ;;1.0;PCE PATIENT CARE ENCOUNTER;**119,194,210,215**;Aug 12, 1996;Build 10
+PXPXRMI1 ; SLC/PKR,SCK - Build indexes for the V files. ;08/11/2017
+ ;;1.0;PCE PATIENT CARE ENCOUNTER;**119,194,210,215,211**;Aug 12, 1996;Build 454
  ;DBIA 4113 supports PXRMSXRM entry points.
  ;DBIA 4114 supports setting and killing ^PXRMINDX
  ;===============================================================
@@ -22,7 +22,7 @@ VCPT ;Build the indexes for V CPT.
  . I +DAS=0 S DONE=1 Q
  . I +DAS'=DAS D  Q
  .. S DONE=1
- .. S ETEXT="Bad ien: "_DAS_", cannot continue."
+ .. S ETEXT="Bad IEN: "_DAS_", cannot continue."
  .. D ADDERROR^PXRMSXRM(GLOBAL,ETEXT,.NERROR)
  . S IND=IND+1
  . I IND#TENP=0 D
@@ -49,9 +49,10 @@ VCPT ;Build the indexes for V CPT.
  . I '$D(^AUPNVSIT(VISIT)) D  Q
  .. S ETEXT=DAS_" invalid visit"
  .. D ADDERROR^PXRMSXRM(GLOBAL,ETEXT,.NERROR)
- . S DATE=$P(^AUPNVSIT(VISIT,0),U,1)
+ . S DATE=$P($G(^AUPNVCPT(DAS,12)),U,1)
+ . I DATE="" S DATE=$P(^AUPNVSIT(VISIT,0),U,1)
  . I DATE="" D  Q
- .. S ETEXT=DAS_" missing visit date"
+ .. S ETEXT=DAS_" missing date"
  .. D ADDERROR^PXRMSXRM(GLOBAL,ETEXT,.NERROR)
  . S PP=$P(TEMP,U,7)
  . I PP="" S PP="U"
@@ -91,7 +92,7 @@ VHF ;Build the indexes for V HEALTH FACTORS.
  . I +DAS=0 S DONE=1 Q
  . I +DAS'=DAS D  Q
  .. S DONE=1
- .. S ETEXT="Bad ien: "_DAS_", cannot continue."
+ .. S ETEXT="Bad IEN: "_DAS_", cannot continue."
  .. D ADDERROR^PXRMSXRM(GLOBAL,ETEXT,.NERROR)
  . S IND=IND+1
  . I IND#TENP=0 D
@@ -124,9 +125,10 @@ VHF ;Build the indexes for V HEALTH FACTORS.
  . I '$D(^AUPNVSIT(VISIT)) D  Q
  .. S ETEXT=DAS_" invalid visit"
  .. D ADDERROR^PXRMSXRM(GLOBAL,ETEXT,.NERROR)
+ . S DATE=$P($G(^AUPNVHF(DAS,12)),U,1)
  . S DATE=$P(^AUPNVSIT(VISIT,0),U,1)
  . I DATE="" D  Q
- .. S ETEXT=DAS_" missing visit date"
+ .. S ETEXT=DAS_" missing date"
  .. D ADDERROR^PXRMSXRM(GLOBAL,ETEXT,.NERROR)
  . S NE=NE+1
  . S ^PXRMINDX(9000010.23,"IP",HF,DFN,DATE,DAS)=""
@@ -142,78 +144,6 @@ VHF ;Build the indexes for V HEALTH FACTORS.
  S ^PXRMINDX(9000010.23,"GLOBAL NAME")=GLOBAL
  S ^PXRMINDX(9000010.23,"BUILT BY")=DUZ
  S ^PXRMINDX(9000010.23,"DATE BUILT")=$$NOW^XLFDT
- Q
- ;
- ;===============================================================
-VIMM ;Build the indexes for V IMMUNIZATION.
- N CVX,DAS,DATE,DFN,DIFF,DONE,END,ENTRIES,ETEXT,EVENTDT,GLOBAL,IMM
- N IND,NE,NERROR,START,TEMP,TENP,TEXT,VISIT
- ;Don't leave any old stuff around.
- K ^PXRMINDX(9000010.11)
- S GLOBAL=$$GET1^DID(9000010.11,"","","GLOBAL NAME")
- S ENTRIES=$P(^AUPNVIMM(0),U,4)
- S TENP=ENTRIES/10
- S TENP=+$P(TENP,".",1)
- I TENP<1 S TENP=1
- D BMES^XPDUTL("Building indexes for V IMMUNIZATION")
- S TEXT="There are "_ENTRIES_" entries to process."
- D MES^XPDUTL(TEXT)
- S START=$H
- S (DAS,DONE,IND,NE,NERROR)=0
- F  S DAS=$O(^AUPNVIMM(DAS)) Q:DONE  D
- . I +DAS=0 S DONE=1 Q
- . I +DAS'=DAS D  Q
- .. S DONE=1
- .. S ETEXT="Bad ien: "_DAS_", cannot continue."
- .. D ADDERROR^PXRMSXRM(GLOBAL,ETEXT,.NERROR)
- . S IND=IND+1
- . I IND#TENP=0 D
- .. S TEXT="Processing entry "_IND
- .. D MES^XPDUTL(TEXT)
- . I IND#10000=0 W "."
- . S TEMP=^AUPNVIMM(DAS,0)
- . S IMM=$P(TEMP,U,1)
- . I IMM="" D  Q
- .. S ETEXT=DAS_" missing immunization"
- .. D ADDERROR^PXRMSXRM(GLOBAL,ETEXT,.NERROR)
- . I '$D(^AUTTIMM(IMM)) D  Q
- .. S ETEXT=DAS_" invalid immunization"
- .. D ADDERROR^PXRMSXRM(GLOBAL,ETEXT,.NERROR)
- . S DFN=$P(TEMP,U,2)
- . I DFN="" D  Q
- .. S ETEXT=DAS_" missing DFN"
- .. D ADDERROR^PXRMSXRM(GLOBAL,ETEXT,.NERROR)
- . S VISIT=$P(TEMP,U,3)
- . I VISIT="" D  Q
- .. S ETEXT=DAS_" missing visit"
- .. D ADDERROR^PXRMSXRM(GLOBAL,ETEXT,.NERROR)
- . I '$D(^AUPNVSIT(VISIT)) D  Q
- .. S ETEXT=DAS_" invalid visit"
- .. D ADDERROR^PXRMSXRM(GLOBAL,ETEXT,.NERROR)
- . S DATE=$P(^AUPNVSIT(VISIT,0),U,1)
- . I DATE="" D  Q
- .. S ETEXT=DAS_" missing visit date"
- .. D ADDERROR^PXRMSXRM(GLOBAL,ETEXT,.NERROR)
- . S EVENTDT=$P($G(^AUPNVIMM(DAS,12)),U,1)
- . I EVENTDT S DATE=EVENTDT
- . S NE=NE+1
- . S ^PXRMINDX(9000010.11,"IP",IMM,DFN,DATE,DAS)=""
- . S ^PXRMINDX(9000010.11,"PI",DFN,IMM,DATE,DAS)=""
- . S CVX=$P($G(^AUTTIMM(IMM,0)),U,3)
- . I CVX'="" D
- .. S ^PXRMINDX(9000010.11,"CVX","IP",CVX,DFN,DATE,DAS)=""
- .. S ^PXRMINDX(9000010.11,"CVX","PI",DFN,CVX,DATE,DAS)=""
- S END=$H
- S TEXT=NE_" V IMMUNIZATION results indexed."
- D MES^XPDUTL(TEXT)
- D DETIME^PXRMSXRM(START,END)
- ;If there were errors send a message.
- I NERROR>0 D ERRMSG^PXRMSXRM(NERROR,GLOBAL)
- ;Send a MailMan message with the results.
- D COMMSG^PXRMSXRM(GLOBAL,START,END,NE,NERROR)
- S ^PXRMINDX(9000010.11,"GLOBAL NAME")=GLOBAL
- S ^PXRMINDX(9000010.11,"BUILT BY")=DUZ
- S ^PXRMINDX(9000010.11,"DATE BUILT")=$$NOW^XLFDT
  Q
  ;
  ;===============================================================
@@ -237,7 +167,7 @@ VICR ;Build the indexes for V IMM CONTRA/REFUSAL EVENTS.
  . I +DAS=0 S DONE=1 Q
  . I +DAS'=DAS D  Q
  .. S DONE=1
- .. S ETEXT="Bad ien: "_DAS_", cannot continue."
+ .. S ETEXT="Bad IEN: "_DAS_", cannot continue."
  .. D ADDERROR^PXRMSXRM(GLOBAL,ETEXT,.NERROR)
  . S IND=IND+1
  . I IND#TENP=0 D
@@ -272,7 +202,7 @@ VICR ;Build the indexes for V IMM CONTRA/REFUSAL EVENTS.
  .. D ADDERROR^PXRMSXRM(GLOBAL,ETEXT,.NERROR)
  . S VDATE=$P($G(^AUPNVSIT(VISIT,0)),U,1)
  . I VDATE="" D  Q
- .. S ETEXT=DAS_" missing visit date"
+ .. S ETEXT=DAS_" missing date"
  .. D ADDERROR^PXRMSXRM(GLOBAL,ETEXT,.NERROR)
  . S WARNDT=$P(TEMP,U,5)
  . S EVENTDT=$P($G(^AUPNVICR(DAS,12)),U,1)
@@ -296,5 +226,76 @@ VICR ;Build the indexes for V IMM CONTRA/REFUSAL EVENTS.
  S ^PXRMINDX(PXFILE,"GLOBAL NAME")=GLOBAL
  S ^PXRMINDX(PXFILE,"BUILT BY")=DUZ
  S ^PXRMINDX(PXFILE,"DATE BUILT")=$$NOW^XLFDT
+ Q
+ ;
+ ;===============================================================
+VIMM ;Build the indexes for V IMMUNIZATION.
+ N CVX,DAS,DATE,DFN,DIFF,DONE,END,ENTRIES,ETEXT,GLOBAL,IMM
+ N IND,NE,NERROR,START,TEMP,TENP,TEXT,VISIT
+ ;Don't leave any old stuff around.
+ K ^PXRMINDX(9000010.11)
+ S GLOBAL=$$GET1^DID(9000010.11,"","","GLOBAL NAME")
+ S ENTRIES=$P(^AUPNVIMM(0),U,4)
+ S TENP=ENTRIES/10
+ S TENP=+$P(TENP,".",1)
+ I TENP<1 S TENP=1
+ D BMES^XPDUTL("Building indexes for V IMMUNIZATION")
+ S TEXT="There are "_ENTRIES_" entries to process."
+ D MES^XPDUTL(TEXT)
+ S START=$H
+ S (DAS,DONE,IND,NE,NERROR)=0
+ F  S DAS=$O(^AUPNVIMM(DAS)) Q:DONE  D
+ . I +DAS=0 S DONE=1 Q
+ . I +DAS'=DAS D  Q
+ .. S DONE=1
+ .. S ETEXT="Bad IEN: "_DAS_", cannot continue."
+ .. D ADDERROR^PXRMSXRM(GLOBAL,ETEXT,.NERROR)
+ . S IND=IND+1
+ . I IND#TENP=0 D
+ .. S TEXT="Processing entry "_IND
+ .. D MES^XPDUTL(TEXT)
+ . I IND#10000=0 W "."
+ . S TEMP=^AUPNVIMM(DAS,0)
+ . S IMM=$P(TEMP,U,1)
+ . I IMM="" D  Q
+ .. S ETEXT=DAS_" missing immunization"
+ .. D ADDERROR^PXRMSXRM(GLOBAL,ETEXT,.NERROR)
+ . I '$D(^AUTTIMM(IMM)) D  Q
+ .. S ETEXT=DAS_" invalid immunization"
+ .. D ADDERROR^PXRMSXRM(GLOBAL,ETEXT,.NERROR)
+ . S DFN=$P(TEMP,U,2)
+ . I DFN="" D  Q
+ .. S ETEXT=DAS_" missing DFN"
+ .. D ADDERROR^PXRMSXRM(GLOBAL,ETEXT,.NERROR)
+ . S VISIT=$P(TEMP,U,3)
+ . I VISIT="" D  Q
+ .. S ETEXT=DAS_" missing visit"
+ .. D ADDERROR^PXRMSXRM(GLOBAL,ETEXT,.NERROR)
+ . I '$D(^AUPNVSIT(VISIT)) D  Q
+ .. S ETEXT=DAS_" invalid visit"
+ .. D ADDERROR^PXRMSXRM(GLOBAL,ETEXT,.NERROR)
+ . S DATE=$P($G(^AUPNVIMM(DAS,12)),U,1)
+ . I DATE="" S DATE=$P(^AUPNVSIT(VISIT,0),U,1)
+ . I DATE="" D  Q
+ .. S ETEXT=DAS_" missing date"
+ .. D ADDERROR^PXRMSXRM(GLOBAL,ETEXT,.NERROR)
+ . S NE=NE+1
+ . S ^PXRMINDX(9000010.11,"IP",IMM,DFN,DATE,DAS)=""
+ . S ^PXRMINDX(9000010.11,"PI",DFN,IMM,DATE,DAS)=""
+ . S CVX=$P($G(^AUTTIMM(IMM,0)),U,3)
+ . I CVX'="" D
+ .. S ^PXRMINDX(9000010.11,"CVX","IP",CVX,DFN,DATE,DAS)=""
+ .. S ^PXRMINDX(9000010.11,"CVX","PI",DFN,CVX,DATE,DAS)=""
+ S END=$H
+ S TEXT=NE_" V IMMUNIZATION results indexed."
+ D MES^XPDUTL(TEXT)
+ D DETIME^PXRMSXRM(START,END)
+ ;If there were errors send a message.
+ I NERROR>0 D ERRMSG^PXRMSXRM(NERROR,GLOBAL)
+ ;Send a MailMan message with the results.
+ D COMMSG^PXRMSXRM(GLOBAL,START,END,NE,NERROR)
+ S ^PXRMINDX(9000010.11,"GLOBAL NAME")=GLOBAL
+ S ^PXRMINDX(9000010.11,"BUILT BY")=DUZ
+ S ^PXRMINDX(9000010.11,"DATE BUILT")=$$NOW^XLFDT
  Q
  ;

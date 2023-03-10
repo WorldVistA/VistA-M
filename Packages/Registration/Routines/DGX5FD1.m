@@ -1,9 +1,9 @@
-DGX5FD1 ; ;06/24/20
+DGX5FD1 ; ;01/03/22
  D DE G BEGIN
 DE S DIE="^DGPT(D0,""M"",",DIC=DIE,DP=45.02,DL=2,DIEL=1,DU="" K DG,DE,DB Q:$O(^DGPT(D0,"M",DA,""))=""
  I $D(^(0)) S %Z=^(0) S %=$P(%Z,U,2) S:%]"" DE(5)=% S %=$P(%Z,U,3) S:%]"" DE(8)=% S %=$P(%Z,U,4) S:%]"" DE(11)=% S %=$P(%Z,U,5) S:%]"" DE(26)=% S %=$P(%Z,U,6) S:%]"" DE(36)=% S %=$P(%Z,U,7) S:%]"" DE(46)=% S %=$P(%Z,U,8) S:%]"" DE(56)=%
  I  S %=$P(%Z,U,9) S:%]"" DE(66)=% S %=$P(%Z,U,10) S:%]"" DE(2)=% S %=$P(%Z,U,18) S:%]"" DE(16)=%,DE(19)=%
- I $D(^(82)) S %Z=^(82) S %=$P(%Z,U,1) S:%]"" DE(29)=% S %=$P(%Z,U,2) S:%]"" DE(39)=% S %=$P(%Z,U,3) S:%]"" DE(49)=% S %=$P(%Z,U,4) S:%]"" DE(59)=%
+ I $D(^(82)) S %Z=^(82) S %=$P(%Z,U,1) S:%]"" DE(29)=% S %=$P(%Z,U,2) S:%]"" DE(39)=% S %=$P(%Z,U,3) S:%]"" DE(49)=% S %=$P(%Z,U,4) S:%]"" DE(59)=% S %=$P(%Z,U,5) S:%]"" DE(69)=%
  K %Z Q
  ;
 W W !?DL+DL-2,DLB_": "
@@ -158,18 +158,8 @@ C26S S X="" G:DG(DQ)=X C26F1 K DB
  K DIV S DIV=X,D0=DA(1),DIV(0)=D0,D1=DA,DIV(1)=D1 S Y(1)=$S($D(^DGPT(D0,"M",D1,82)):^(82),1:"") S X=$P(Y(1),U,1),X=X S DIU=X K Y S X="" S DIH=$G(^DGPT(DIV(0),"M",DIV(1),82)),DIV=X S $P(^(82),U,1)=DIV,DIH=45.02,DIG=82.01 D ^DICR
  S X=DG(DQ),DIC=DIE
  X "N X S X=""DGRUDD01"" X ^%ZOSF(""TEST"") Q:'$T  N DG1 S DG1=+$P(^DGPT(DA(1),0),""^"",1) D:(DG1>0) ADGRU^DGRUDD01(DG1)"
-C26F1 N X,X1,X2 S DIXR=1622 D C26X1(U) K X2 M X2=X D C26X1("O") K X1 M X1=X
- D
- . D NOTIFY^DGPTDD(.X1,.X2,.DA,"MOVEMENT","DX01")
- K X M X=X2 D
- . D NOTIFY^DGPTDD(.X1,.X2,.DA,"MOVEMENT","DX01")
- G C26F2
-C26X1(DION) K X
- S X(1)=$G(@DIEZTMP@("V",45.02,DIIENS,5,DION),$P($G(^DGPT(DA(1),"M",DA,0)),U,5))
- S X=$G(X(1))
- Q
-C26F2 S DIEZRXR(45.02,DIIENS)=$$OREF^DILF($NA(@$$CREF^DILF(DIE)))
- F DIXR=1177 S DIEZRXR(45.02,DIXR)=""
+C26F1 S DIEZRXR(45.02,DIIENS)=$$OREF^DILF($NA(@$$CREF^DILF(DIE)))
+ F DIXR=835,1177 S DIEZRXR(45.02,DIXR)=""
  Q
 X26 N K D GETAPI^DGICDGT("DG PTF","DIAG",$G(DA(1)),"EN")
  Q
@@ -181,7 +171,7 @@ X27 S DGXX=X
 X28 I DGXX="" S Y="@26"
  Q
 29 D:$D(DG)>9 F^DIE17,DE S DQ=29,DW="82;1",DV="SX",DU="",DIFLD=82.01,DLB=$$LABEL^DIALOGZ(DP,DIFLD)
- S DU="Y:Present on Admission;N:Not Present on Admission;U:Insufficient Docum to Present on Admission;W:Can't Determine if Present on Admission;"
+ S DU="Y:Present on Admission;N:Not Present on Admission;U:Insufficient Docum to Present on Admission;W:Can't Determine if Present on Admission;1:Exempt;"
  G RE
 X29 I X]"",$G(DA),$G(DA(1)) K:'$$POA501^DGPTFUT1(X,DA(1),DA,0,5) X
  Q
@@ -218,18 +208,8 @@ C36S S X="" G:DG(DQ)=X C36F1 K DB
  K DIV S DIV=X,D0=DA(1),DIV(0)=D0,D1=DA,DIV(1)=D1 S Y(1)=$S($D(^DGPT(D0,"M",D1,82)):^(82),1:"") S X=$P(Y(1),U,2),X=X S DIU=X K Y S X="" S DIH=$G(^DGPT(DIV(0),"M",DIV(1),82)),DIV=X S $P(^(82),U,2)=DIV,DIH=45.02,DIG=82.02 D ^DICR
  S X=DG(DQ),DIC=DIE
  X "N X S X=""DGRUDD01"" X ^%ZOSF(""TEST"") Q:'$T  N DG1 S DG1=+$P(^DGPT(DA(1),0),""^"",1) D:(DG1>0) ADGRU^DGRUDD01(DG1)"
-C36F1 N X,X1,X2 S DIXR=1623 D C36X1(U) K X2 M X2=X D C36X1("O") K X1 M X1=X
- D
- . D NOTIFY^DGPTDD(.X1,.X2,.DA,"MOVEMENT","DX02")
- K X M X=X2 D
- . D NOTIFY^DGPTDD(.X1,.X2,.DA,"MOVEMENT","DX02")
- G C36F2
-C36X1(DION) K X
- S X(1)=$G(@DIEZTMP@("V",45.02,DIIENS,6,DION),$P($G(^DGPT(DA(1),"M",DA,0)),U,6))
- S X=$G(X(1))
- Q
-C36F2 S DIEZRXR(45.02,DIIENS)=$$OREF^DILF($NA(@$$CREF^DILF(DIE)))
- F DIXR=1179 S DIEZRXR(45.02,DIXR)=""
+C36F1 S DIEZRXR(45.02,DIIENS)=$$OREF^DILF($NA(@$$CREF^DILF(DIE)))
+ F DIXR=835,1179 S DIEZRXR(45.02,DIXR)=""
  Q
 X36 N K D GETAPI^DGICDGT("DG PTF","DIAG",$G(DA(1)),"EN")
  Q
@@ -241,7 +221,7 @@ X37 S DGXX=X
 X38 I DGXX="" S Y="@41"
  Q
 39 D:$D(DG)>9 F^DIE17,DE S DQ=39,DW="82;2",DV="SX",DU="",DIFLD=82.02,DLB=$$LABEL^DIALOGZ(DP,DIFLD)
- S DU="Y:Present on Admission;N:Not Present on Admission;U:Insufficient Docum to Present on Admission;W:Can't Determine if Present on Admission;"
+ S DU="Y:Present on Admission;N:Not Present on Admission;U:Insufficient Docum to Present on Admission;W:Can't Determine if Present on Admission;1:Exempt;"
  G RE
 X39 I X]"",$G(DA),$G(DA(1)) K:'$$POA501^DGPTFUT1(X,DA(1),DA,0,6) X
  Q
@@ -278,18 +258,8 @@ C46S S X="" G:DG(DQ)=X C46F1 K DB
  K DIV S DIV=X,D0=DA(1),DIV(0)=D0,D1=DA,DIV(1)=D1 S Y(1)=$S($D(^DGPT(D0,"M",D1,82)):^(82),1:"") S X=$P(Y(1),U,3),X=X S DIU=X K Y S X="" S DIH=$G(^DGPT(DIV(0),"M",DIV(1),82)),DIV=X S $P(^(82),U,3)=DIV,DIH=45.02,DIG=82.03 D ^DICR
  S X=DG(DQ),DIC=DIE
  X "N X S X=""DGRUDD01"" X ^%ZOSF(""TEST"") Q:'$T  N DG1 S DG1=+$P(^DGPT(DA(1),0),""^"",1) D:(DG1>0) ADGRU^DGRUDD01(DG1)"
-C46F1 N X,X1,X2 S DIXR=1624 D C46X1(U) K X2 M X2=X D C46X1("O") K X1 M X1=X
- D
- . D NOTIFY^DGPTDD(.X1,.X2,.DA,"MOVEMENT","DX03")
- K X M X=X2 D
- . D NOTIFY^DGPTDD(.X1,.X2,.DA,"MOVEMENT","DX03")
- G C46F2
-C46X1(DION) K X
- S X(1)=$G(@DIEZTMP@("V",45.02,DIIENS,7,DION),$P($G(^DGPT(DA(1),"M",DA,0)),U,7))
- S X=$G(X(1))
- Q
-C46F2 S DIEZRXR(45.02,DIIENS)=$$OREF^DILF($NA(@$$CREF^DILF(DIE)))
- F DIXR=1180 S DIEZRXR(45.02,DIXR)=""
+C46F1 S DIEZRXR(45.02,DIIENS)=$$OREF^DILF($NA(@$$CREF^DILF(DIE)))
+ F DIXR=835,1180 S DIEZRXR(45.02,DIXR)=""
  Q
 X46 N K D GETAPI^DGICDGT("DG PTF","DIAG",$G(DA(1)),"EN")
  Q
@@ -301,7 +271,7 @@ X47 S DGXX=X
 X48 I DGXX="" S Y="@51"
  Q
 49 D:$D(DG)>9 F^DIE17,DE S DQ=49,DW="82;3",DV="SX",DU="",DIFLD=82.03,DLB=$$LABEL^DIALOGZ(DP,DIFLD)
- S DU="Y:Present on Admission;N:Not Present on Admission;U:Insufficient Docum to Present on Admission;W:Can't Determine if Present on Admission;"
+ S DU="Y:Present on Admission;N:Not Present on Admission;U:Insufficient Docum to Present on Admission;W:Can't Determine if Present on Admission;1:Exempt;"
  G RE
 X49 I X]"",$G(DA),$G(DA(1)) K:'$$POA501^DGPTFUT1(X,DA(1),DA,0,7) X
  Q
@@ -338,18 +308,8 @@ C56S S X="" G:DG(DQ)=X C56F1 K DB
  K DIV S DIV=X,D0=DA(1),DIV(0)=D0,D1=DA,DIV(1)=D1 S Y(1)=$S($D(^DGPT(D0,"M",D1,82)):^(82),1:"") S X=$P(Y(1),U,4),X=X S DIU=X K Y S X="" S DIH=$G(^DGPT(DIV(0),"M",DIV(1),82)),DIV=X S $P(^(82),U,4)=DIV,DIH=45.02,DIG=82.04 D ^DICR
  S X=DG(DQ),DIC=DIE
  X "N X S X=""DGRUDD01"" X ^%ZOSF(""TEST"") Q:'$T  N DG1 S DG1=+$P(^DGPT(DA(1),0),""^"",1) D:(DG1>0) ADGRU^DGRUDD01(DG1)"
-C56F1 N X,X1,X2 S DIXR=1625 D C56X1(U) K X2 M X2=X D C56X1("O") K X1 M X1=X
- D
- . D NOTIFY^DGPTDD(.X1,.X2,.DA,"MOVEMENT","DX04")
- K X M X=X2 D
- . D NOTIFY^DGPTDD(.X1,.X2,.DA,"MOVEMENT","DX04")
- G C56F2
-C56X1(DION) K X
- S X(1)=$G(@DIEZTMP@("V",45.02,DIIENS,8,DION),$P($G(^DGPT(DA(1),"M",DA,0)),U,8))
- S X=$G(X(1))
- Q
-C56F2 S DIEZRXR(45.02,DIIENS)=$$OREF^DILF($NA(@$$CREF^DILF(DIE)))
- F DIXR=1181 S DIEZRXR(45.02,DIXR)=""
+C56F1 S DIEZRXR(45.02,DIIENS)=$$OREF^DILF($NA(@$$CREF^DILF(DIE)))
+ F DIXR=835,1181 S DIEZRXR(45.02,DIXR)=""
  Q
 X56 N K D GETAPI^DGICDGT("DG PTF","DIAG",$G(DA(1)),"EN")
  Q
@@ -361,7 +321,7 @@ X57 S DGXX=X
 X58 I DGXX="" S Y="@61"
  Q
 59 D:$D(DG)>9 F^DIE17,DE S DQ=59,DW="82;4",DV="SX",DU="",DIFLD=82.04,DLB=$$LABEL^DIALOGZ(DP,DIFLD)
- S DU="Y:Present on Admission;N:Not Present on Admission;U:Insufficient Docum to Present on Admission;W:Can't Determine if Present on Admission;"
+ S DU="Y:Present on Admission;N:Not Present on Admission;U:Insufficient Docum to Present on Admission;W:Can't Determine if Present on Admission;1:Exempt;"
  G RE
 X59 I X]"",$G(DA),$G(DA(1)) K:'$$POA501^DGPTFUT1(X,DA(1),DA,0,8) X
  Q
@@ -385,21 +345,16 @@ X65 S DGNFLD="@80"
  S DU="ICD9("
  G RE
 C66 G C66S:$D(DE(66))[0 K DB
- D ^DGX5FD2
+ S X=DE(66),DIC=DIE
+ K ^DGPT(DA(1),"M","AC",$E(X,1,30),DA)
+ S X=DE(66),DIC=DIE
+ K DIV S DIV=X,D0=DA(1),DIV(0)=D0,D1=DA,DIV(1)=D1 S Y(1)=$S($D(^DGPT(D0,"M",D1,82)):^(82),1:"") S X=$P(Y(1),U,5),X=X S DIU=X K Y S X="" S DIH=$G(^DGPT(DIV(0),"M",DIV(1),82)),DIV=X S $P(^(82),U,5)=DIV,DIH=45.02,DIG=82.05 D ^DICR
+ S X=DE(66),DIC=DIE
+ X "N X S X=""DGRUDD01"" X ^%ZOSF(""TEST"") Q:'$T  N DG1 S DG1=+$P(^DGPT(DA(1),0),""^"",1) D:(DG1>0) ADGRU^DGRUDD01(DG1)"
 C66S S X="" G:DG(DQ)=X C66F1 K DB
- D ^DGX5FD3
-C66F1 N X,X1,X2 S DIXR=1626 D C66X1(U) K X2 M X2=X D C66X1("O") K X1 M X1=X
- D
- . D NOTIFY^DGPTDD(.X1,.X2,.DA,"MOVEMENT","DX05")
- K X M X=X2 D
- . D NOTIFY^DGPTDD(.X1,.X2,.DA,"MOVEMENT","DX05")
- G C66F2
-C66X1(DION) K X
- S X(1)=$G(@DIEZTMP@("V",45.02,DIIENS,9,DION),$P($G(^DGPT(DA(1),"M",DA,0)),U,9))
- S X=$G(X(1))
- Q
-C66F2 S DIEZRXR(45.02,DIIENS)=$$OREF^DILF($NA(@$$CREF^DILF(DIE)))
- F DIXR=1182 S DIEZRXR(45.02,DIXR)=""
+ D ^DGX5FD2
+C66F1 S DIEZRXR(45.02,DIIENS)=$$OREF^DILF($NA(@$$CREF^DILF(DIE)))
+ F DIXR=835,1182 S DIEZRXR(45.02,DIXR)=""
  Q
 X66 N K D GETAPI^DGICDGT("DG PTF","DIAG",$G(DA(1)),"EN")
  Q
@@ -410,4 +365,24 @@ X67 S DGXX=X
 68 D:$D(DG)>9 F^DIE17,DE S Y=U,DQ=68 D X68 D:$D(DIEFIRE)#2 FIREREC^DIE17 G A:$D(Y)[0,A:Y=U S X=Y,DIC(0)="F",DW=DQ G OUT^DIE17
 X68 I DGXX="" S Y="@71"
  Q
-69 D:$D(DG)>9 F^DIE17 G ^DGX5FD4
+69 D:$D(DG)>9 F^DIE17,DE S DQ=69,DW="82;5",DV="SX",DU="",DIFLD=82.05,DLB=$$LABEL^DIALOGZ(DP,DIFLD)
+ S DU="Y:Present on Admission;N:Not Present on Admission;U:Insufficient Docum to Present on Admission;W:Can't Determine if Present on Admission;1:Exempt;"
+ G RE
+X69 I X]"",$G(DA),$G(DA(1)) K:'$$POA501^DGPTFUT1(X,DA(1),DA,0,9) X
+ Q
+ ;
+70 S DQ=71 ;@71
+71 D:$D(DG)>9 F^DIE17,DE S Y=U,DQ=71 D X71 D:$D(DIEFIRE)#2 FIREREC^DIE17 G A:$D(Y)[0,A:Y=U S X=Y,DIC(0)="F",DW=DQ G OUT^DIE17
+X71 S X=DGXX
+ Q
+72 D:$D(DG)>9 F^DIE17,DE S Y=U,DQ=72 D X72 D:$D(DIEFIRE)#2 FIREREC^DIE17 G A:$D(Y)[0,A:Y=U S X=Y,DIC(0)="F",DW=DQ G OUT^DIE17
+X72 I X K DGPTIT S DGNFLD="@80",Y="@8000",DGPTIT(X_$C(59)_"ICD9(")=""
+ Q
+73 S DQ=74 ;@80
+74 D:$D(DG)>9 F^DIE17,DE S Y=U,DQ=74 D X74 D:$D(DIEFIRE)#2 FIREREC^DIE17 G A:$D(Y)[0,A:Y=U S X=Y,DIC(0)="F",DW=DQ G OUT^DIE17
+X74 I DGADD,$P(DGHOLD,U,11)]"" S Y="@90"
+ Q
+75 D:$D(DG)>9 F^DIE17,DE S Y=U,DQ=75 D X75 D:$D(DIEFIRE)#2 FIREREC^DIE17 G A:$D(Y)[0,A:Y=U S X=Y,DIC(0)="F",DW=DQ G OUT^DIE17
+X75 S DGNFLD="@90"
+ Q
+76 D:$D(DG)>9 F^DIE17 G ^DGX5FD3

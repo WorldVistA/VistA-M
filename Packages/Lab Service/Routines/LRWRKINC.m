@@ -1,5 +1,6 @@
-LRWRKINC ;SLC/DCM/CJS-INCOMPLETE STATUS REPORT ;2/19/91  11:47
- ;;5.2;LAB SERVICE;**153,201,221,453**;Sep 27, 1994;Build 4
+LRWRKINC ;SLC/DCM/CJS-INCOMPLETE STATUS REPORT ;Mar 22, 2021@17:48
+ ;;5.2;LAB SERVICE;**153,201,221,453,536,543**;Sep 27, 1994;Build 7
+ ;
 EN ;
  K ^TMP($J),^TMP("LR",$J),^TMP("LRWRKINC",$J)
  K %ZIS,DIC
@@ -110,6 +111,8 @@ EN ;
  ;
 DQ ;
  U IO
+ ;LR*5.2*536: Variable LRMI* variables in next line indicate Microbiology accession
+ N LRMIFLG,LRMIARX,LRMIPND
  S (LRAA,LRINDEX,LRPAGE)=0,(LRX,LRY)=""
  F  S LRX=$O(^TMP("LRWRKINC",$J,LRX)) Q:LRX=""  D
  . N LRZ
@@ -147,10 +150,43 @@ DQ ;
  Q
  ;
 TD ;
+ N LRMIAREA,LRDFNX,LRIDTX,LRTST68
+ K LRMIARX,LRMIPND
  I '$D(^LRO(68,LRAA,1,LRAD,1,LRAN,0)) S LREND=1 Q
  I LRNOCNTL,$P($G(^LRO(68,LRAA,1,LRAD,1,LRAN,0)),"^",2)=62.3 S LREND=1 Q
- S LRVERVER=1,I=0
+ S LRVERVER=1,(I,LRMIFLG)=0
  F  S I=$O(^LRO(68,LRAA,1,LRAD,1,LRAN,4,I)) Q:I<.5  I $D(^(I,0)) S LRVERVER=(LRVERVER&$P(^(0),U,5))
+ ;LR*5.2*536 - if "RPT DATE APPROVED" has not been populated for Microbiology accessions,
+ ;             display accession on the Incomplete list
+ ;             (considered combining logic below with lines above, but decided to keep
+ ;              Microbiology logic separate in case further changes are needed.)
+ I $P(^LRO(68,LRAA,0),U,2)="MI" D
+ . S LRDFNX=$P(^LRO(68,LRAA,1,LRAD,1,LRAN,0),U)
+ . S LRIDTX=$P($G(^LRO(68,LRAA,1,LRAD,1,LRAN,3)),U,5)
+ . ;Subscripts: 1 = Bacteriology; 5=Parasitology; 8=Mycology; 11=TB; 16=Virology
+ . I LRIDTX>1 F LRMIAREA=1,5,8,11,16 D
+ . . ;using a different flag for Micro so that this change will only affect Micro
+ . . ;in the TESTS subsection of this routine
+ . . ;LRMIFLG = "[area] RPT DATE APPROVED" is not populated
+ . . I $D(^LR(LRDFNX,"MI",LRIDTX,LRMIAREA)),$P(^(LRMIAREA),U)="" D
+ . . . S LRVERVER=0,LRMIFLG=1
+ . . . S LRMIARX(LRMIAREA)=""
+ . Q:'$D(LRMIARX)
+ . ;determine which tests on the accession are defined for the pending Microbiology
+ . ;area subscript
+ . S LRTST68=0
+ . F  S LRTST68=$O(^LRO(68,LRAA,1,LRAD,1,LRAN,4,LRTST68)) Q:LRTST68<.5  D
+ . . ;LR*5.2*543: Do not list if test marked "not performed" or "merged".
+ . . I $P(^LRO(68,LRAA,1,LRAD,1,LRAN,4,LRTST68,0),U,6)]"" Q
+ . . N LREXCODE
+ . . S LREXCODE=$P($G(^LAB(60,LRTST68,0)),"^",14)
+ . . I LREXCODE]"" S LREXCODE=$G(^LAB(62.07,LREXCODE,.1))
+ . . ;Logic below is the same as the logic in result verification routine LRMIEDZ2 which
+ . . ;determines which Microbiology area is defined for a Microbiology test
+ . . S LRMIAREA=$S(LREXCODE["11.5":1,LREXCODE["23":11,LREXCODE["19":8,LREXCODE["15":5,LREXCODE["34":16,1:"")
+ . . ;setting an array because more than one test on the accession might be defined for the
+ . . ;Microbiology area
+ . . I LRMIAREA]"",$D(LRMIARX(LRMIAREA)) S LRMIPND(LRTST68)=""
  I '$D(^LRO(68,LRAA,1,LRAD,1,LRAN,4,0)) S LREND=1
  Q
  ;
@@ -163,7 +199,15 @@ TESTS Q:'$D(^LRO(68,LRAA,1,LRAD,1,LRAN,4,0))
  . S LR60=+LRI(0)
  . I $D(^TMP("LR",$J,"T")),'$D(^TMP("LR",$J,"T",LR60)) Q  ; Not specific test
  . I LREXTST,$D(LREXTST(LR60)) Q  ; Exclude specific test
- . I $P(LRI(0),U,5) Q  ; Complete date
+ . ;LR*5.2*536:
+ . ;LRMIFLG of 1 indicates this is a pending Microbiology accession even though
+ . ;a "complete" date has been set at LRI(0),U,5) by the prompt "[test name] completed:"
+ . ;(i.e. the "[area] RPT DATE APPROVED:" prompt has not been answered.
+ . I $P(LRI(0),U,5),'$G(LRMIFLG) Q
+ . ;LR*5.2*536: This is a Microbiology pending accession but the test being evaluated
+ . ;            is not pending. (There may be more than one Micro test on an accession.)
+ . ;The check for LRI(0) is necessary because the area subscript may not yet exist in file 63.
+ . I $G(LRMIFLG),'$D(LRMIPND(LR60)),$P(LRI(0),U,5) Q
  . I LRCUTOFF,'LRDLA Q  ; Uncollected
  . I LRCUTOFF,LRCUTOFF<LRDLA Q  ; After cut-off date/time
  . S LR60(0)=$G(^LAB(60,LR60,0)) ; Get zeroth node from file #60

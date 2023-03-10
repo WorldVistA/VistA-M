@@ -1,5 +1,6 @@
-LROE ;DALOI/CJS/FHS-LAB ORDER ENTRY AND ACCESSION ;01/23/17  07:34
- ;;5.2;LAB SERVICE;**100,121,201,221,263,286,360,423,432,438,450,479**;Sep 27, 1994;Build 8
+LROE ;DALOI/CJS/FHS-LAB ORDER ENTRY AND ACCESSION ;Nov 12, 2020@15:02
+ ;;5.2;LAB SERVICE;**100,121,201,221,263,286,360,423,432,438,450,479,541**;Sep 27, 1994;Build 7
+ ;
  K LRORIFN,LRNATURE,LREND,LRORDRR
  ;;*
  N LRSVODT,LRORDR
@@ -125,19 +126,38 @@ STAT ;
  ;
  ;
 TIME ;from LROE1, LRORD1
+ N LRFUTURE S LRFUTURE=0
  S %DT="SET" W !,"Collection Date@Time: ",$S($D(%DT("B")):%DT("B"),1:"NOW"),"//" R X:DTIME I '$T!(X="^") S LRCDT=-1 Q
  S:X="" X=$S($D(%DT("B")):%DT("B"),1:"N")
- W:X["?" !!,"You may enter ""T@U"" or just ""U"", for Today at Unknown time",!!
- I X["@U",$P(X,"@U",2)="" S X=$P(X,"@U",1) D ^%DT G TIME:Y<1 S LRCDT=+Y_"^1" Q
- S:X="U" LRCDT=DT_"^1"
- I X'="U" D ^%DT D:X'["?" TIME1 G TIME:X["?" S LRCDT=+Y_"^" G TIME:Y'["."
+ I X["?" W !!,"You may enter ""T@U"" or just ""U"", for Today at Unknown time",!! G TIME
+ I X["@U",$P(X,"@U",2)="" D  Q
+ . S X=$P(X,"@U",1)
+ . D ^%DT
+ . I Y<1 D TIME Q
+ . I $E(Y,6,7)="00" D  Q
+ . . W !,"Please enter a specific month, day, and year."
+ . . D TIME
+ . I Y>DT D TIME1,TIME Q
+ . I $G(DOB),Y<DOB D
+ . . W !,"Invalid - Collection date precedes patient's date of birth."
+ . . D TIME
+ . S LRCDT=Y_"^1"
+ I X="U" S LRCDT=DT_"^1" Q
+ D ^%DT,TIME1
+ I LRFUTURE G TIME
+ I Y>0,$G(DOB),Y<DOB D  Q
+ . W !,"Invalid - Collection date precedes patient's date of birth."
+ . D TIME
+ S LRCDT=+Y_"^" G TIME:Y'["."
  Q
  ;
 TIME1 S X1=X,Y1=Y D TIME2 S X=X1,Y=Y1 K X1,Y1
  Q
  ;
-TIME2 S X="N",%DT="ST" D ^%DT Q:Y1'>Y  F  W !,"You have specified a collection time in the future.  Are you sure" S %=2 D YN^DICN Q:%  W !,"Answer 'Y'es or 'N'o."
- S:%'=1 X="?" S X1=X
+TIME2 S X="N",%DT="ST" D ^%DT
+ Q:Y1'>Y
+ W !,"Future date/time may not be entered."
+ S LRFUTURE=1
  Q
  ;
  ;

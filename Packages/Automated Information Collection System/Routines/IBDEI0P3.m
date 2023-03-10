@@ -1,126 +1,126 @@
-IBDEI0P3 ; ; 04-FEB-2020
- ;;3.0;IB ENCOUNTER FORM IMP/EXP;;FEB 04, 2020
+IBDEI0P3 ; ; 01-FEB-2022
+ ;;3.0;IB ENCOUNTER FORM IMP/EXP;;FEB 01, 2022
  Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,999) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
- ;;^UTILITY(U,$J,358.3,11196,1,0)
+ ;;^UTILITY(U,$J,358.3,11262,2)
+ ;;=^5063573
+ ;;^UTILITY(U,$J,358.3,11263,0)
+ ;;=Z89.621^^42^516^11
+ ;;^UTILITY(U,$J,358.3,11263,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,11196,1,3,0)
- ;;=3^Benign Neop Skin,Right Upper Eyelid
- ;;^UTILITY(U,$J,358.3,11196,1,4,0)
- ;;=4^D23.111
- ;;^UTILITY(U,$J,358.3,11196,2)
- ;;=^5157290
- ;;^UTILITY(U,$J,358.3,11197,0)
- ;;=D23.112^^77^726^15
- ;;^UTILITY(U,$J,358.3,11197,1,0)
+ ;;^UTILITY(U,$J,358.3,11263,1,3,0)
+ ;;=3^Acquired Absence of Right Hip Joint
+ ;;^UTILITY(U,$J,358.3,11263,1,4,0)
+ ;;=4^Z89.621
+ ;;^UTILITY(U,$J,358.3,11263,2)
+ ;;=^5063575
+ ;;^UTILITY(U,$J,358.3,11264,0)
+ ;;=Z89.622^^42^516^4
+ ;;^UTILITY(U,$J,358.3,11264,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,11197,1,3,0)
- ;;=3^Benign Neop Skin,Right Lower Eyelid
- ;;^UTILITY(U,$J,358.3,11197,1,4,0)
- ;;=4^D23.112
- ;;^UTILITY(U,$J,358.3,11197,2)
- ;;=^5157291
- ;;^UTILITY(U,$J,358.3,11198,0)
- ;;=D23.121^^77^726^16
- ;;^UTILITY(U,$J,358.3,11198,1,0)
+ ;;^UTILITY(U,$J,358.3,11264,1,3,0)
+ ;;=3^Acquired Absence of Left Hip Joint
+ ;;^UTILITY(U,$J,358.3,11264,1,4,0)
+ ;;=4^Z89.622
+ ;;^UTILITY(U,$J,358.3,11264,2)
+ ;;=^5063576
+ ;;^UTILITY(U,$J,358.3,11265,0)
+ ;;=Z99.11^^42^517^2
+ ;;^UTILITY(U,$J,358.3,11265,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,11198,1,3,0)
- ;;=3^Benign Neop Skin,Left Upper Eyelid
- ;;^UTILITY(U,$J,358.3,11198,1,4,0)
- ;;=4^D23.121
- ;;^UTILITY(U,$J,358.3,11198,2)
- ;;=^5157292
- ;;^UTILITY(U,$J,358.3,11199,0)
- ;;=D23.122^^77^726^17
- ;;^UTILITY(U,$J,358.3,11199,1,0)
+ ;;^UTILITY(U,$J,358.3,11265,1,3,0)
+ ;;=3^Dependence on Respirator/Ventilator Status
+ ;;^UTILITY(U,$J,358.3,11265,1,4,0)
+ ;;=4^Z99.11
+ ;;^UTILITY(U,$J,358.3,11265,2)
+ ;;=^5063756
+ ;;^UTILITY(U,$J,358.3,11266,0)
+ ;;=Z99.3^^42^517^3
+ ;;^UTILITY(U,$J,358.3,11266,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,11199,1,3,0)
- ;;=3^BEnign Neop Skin,Left Lower Eyelid
- ;;^UTILITY(U,$J,358.3,11199,1,4,0)
- ;;=4^D23.122
- ;;^UTILITY(U,$J,358.3,11199,2)
- ;;=^5157293
- ;;^UTILITY(U,$J,358.3,11200,0)
- ;;=C44.1021^^77^726^18
- ;;^UTILITY(U,$J,358.3,11200,1,0)
+ ;;^UTILITY(U,$J,358.3,11266,1,3,0)
+ ;;=3^Dependence on Wheelchair
+ ;;^UTILITY(U,$J,358.3,11266,1,4,0)
+ ;;=4^Z99.3
+ ;;^UTILITY(U,$J,358.3,11266,2)
+ ;;=^5063759
+ ;;^UTILITY(U,$J,358.3,11267,0)
+ ;;=Z99.89^^42^517^1
+ ;;^UTILITY(U,$J,358.3,11267,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,11200,1,3,0)
- ;;=3^Malig Neop Skin,Right Upper Eyelid
- ;;^UTILITY(U,$J,358.3,11200,1,4,0)
- ;;=4^C44.1021
- ;;^UTILITY(U,$J,358.3,11200,2)
- ;;=^5157253
- ;;^UTILITY(U,$J,358.3,11201,0)
- ;;=C44.1022^^77^726^19
- ;;^UTILITY(U,$J,358.3,11201,1,0)
+ ;;^UTILITY(U,$J,358.3,11267,1,3,0)
+ ;;=3^Dependence on Enabling Machines/Devices NOS
+ ;;^UTILITY(U,$J,358.3,11267,1,4,0)
+ ;;=4^Z99.89
+ ;;^UTILITY(U,$J,358.3,11267,2)
+ ;;=^5063761
+ ;;^UTILITY(U,$J,358.3,11268,0)
+ ;;=F81.9^^42^518^2
+ ;;^UTILITY(U,$J,358.3,11268,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,11201,1,3,0)
- ;;=3^Malig Neop Skin,Right Lower Eyelid
- ;;^UTILITY(U,$J,358.3,11201,1,4,0)
- ;;=4^C44.1022
- ;;^UTILITY(U,$J,358.3,11201,2)
- ;;=^5157254
- ;;^UTILITY(U,$J,358.3,11202,0)
- ;;=C44.1091^^77^726^20
- ;;^UTILITY(U,$J,358.3,11202,1,0)
+ ;;^UTILITY(U,$J,358.3,11268,1,3,0)
+ ;;=3^Developmental Disorder of Scholastic Skills,Unspec
+ ;;^UTILITY(U,$J,358.3,11268,1,4,0)
+ ;;=4^F81.9
+ ;;^UTILITY(U,$J,358.3,11268,2)
+ ;;=^5003682
+ ;;^UTILITY(U,$J,358.3,11269,0)
+ ;;=Z86.59^^42^518^4
+ ;;^UTILITY(U,$J,358.3,11269,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,11202,1,3,0)
- ;;=3^Malig Neop Skin,Left Upper Eyelid
- ;;^UTILITY(U,$J,358.3,11202,1,4,0)
- ;;=4^C44.1091
- ;;^UTILITY(U,$J,358.3,11202,2)
- ;;=^5157255
- ;;^UTILITY(U,$J,358.3,11203,0)
- ;;=C44.1092^^77^726^21
- ;;^UTILITY(U,$J,358.3,11203,1,0)
+ ;;^UTILITY(U,$J,358.3,11269,1,3,0)
+ ;;=3^Personal Hx of Mental/Behavioral Disorders
+ ;;^UTILITY(U,$J,358.3,11269,1,4,0)
+ ;;=4^Z86.59
+ ;;^UTILITY(U,$J,358.3,11269,2)
+ ;;=^5063471
+ ;;^UTILITY(U,$J,358.3,11270,0)
+ ;;=F48.9^^42^518^3
+ ;;^UTILITY(U,$J,358.3,11270,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,11203,1,3,0)
- ;;=3^Malig Neop Skin,Left Lower Eyelid
- ;;^UTILITY(U,$J,358.3,11203,1,4,0)
- ;;=4^C44.1092
- ;;^UTILITY(U,$J,358.3,11203,2)
- ;;=^5157256
- ;;^UTILITY(U,$J,358.3,11204,0)
- ;;=C44.1121^^77^726^22
- ;;^UTILITY(U,$J,358.3,11204,1,0)
+ ;;^UTILITY(U,$J,358.3,11270,1,3,0)
+ ;;=3^Nonpsychotic Mental Disorder,Unspec
+ ;;^UTILITY(U,$J,358.3,11270,1,4,0)
+ ;;=4^F48.9
+ ;;^UTILITY(U,$J,358.3,11270,2)
+ ;;=^5003596
+ ;;^UTILITY(U,$J,358.3,11271,0)
+ ;;=Z91.83^^42^518^5
+ ;;^UTILITY(U,$J,358.3,11271,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,11204,1,3,0)
- ;;=3^BCC Neop Skin,Right Upper Eyelid
- ;;^UTILITY(U,$J,358.3,11204,1,4,0)
- ;;=4^C44.1121
- ;;^UTILITY(U,$J,358.3,11204,2)
- ;;=^5157257
- ;;^UTILITY(U,$J,358.3,11205,0)
- ;;=C44.1122^^77^726^23
- ;;^UTILITY(U,$J,358.3,11205,1,0)
+ ;;^UTILITY(U,$J,358.3,11271,1,3,0)
+ ;;=3^Wandering in Diseases Classified Elsewhere
+ ;;^UTILITY(U,$J,358.3,11271,1,4,0)
+ ;;=4^Z91.83
+ ;;^UTILITY(U,$J,358.3,11271,2)
+ ;;=^5063627
+ ;;^UTILITY(U,$J,358.3,11272,0)
+ ;;=F69.^^42^518^1
+ ;;^UTILITY(U,$J,358.3,11272,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,11205,1,3,0)
- ;;=3^BCC Neop Skin,Right Lower Eyelid
- ;;^UTILITY(U,$J,358.3,11205,1,4,0)
- ;;=4^C44.1122
- ;;^UTILITY(U,$J,358.3,11205,2)
- ;;=^5157258
- ;;^UTILITY(U,$J,358.3,11206,0)
- ;;=C44.1191^^77^726^24
- ;;^UTILITY(U,$J,358.3,11206,1,0)
+ ;;^UTILITY(U,$J,358.3,11272,1,3,0)
+ ;;=3^Adult Personality/Behavior Disorder,Unspec
+ ;;^UTILITY(U,$J,358.3,11272,1,4,0)
+ ;;=4^F69.
+ ;;^UTILITY(U,$J,358.3,11272,2)
+ ;;=^5003667
+ ;;^UTILITY(U,$J,358.3,11273,0)
+ ;;=Z13.89^^42^519^1
+ ;;^UTILITY(U,$J,358.3,11273,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,11206,1,3,0)
- ;;=3^BCC Neop Skin,Left Upper Eyelid
- ;;^UTILITY(U,$J,358.3,11206,1,4,0)
- ;;=4^C44.1191
- ;;^UTILITY(U,$J,358.3,11206,2)
- ;;=^5157259
- ;;^UTILITY(U,$J,358.3,11207,0)
- ;;=C44.1192^^77^726^25
- ;;^UTILITY(U,$J,358.3,11207,1,0)
+ ;;^UTILITY(U,$J,358.3,11273,1,3,0)
+ ;;=3^Screening for Other Disorders
+ ;;^UTILITY(U,$J,358.3,11273,1,4,0)
+ ;;=4^Z13.89
+ ;;^UTILITY(U,$J,358.3,11273,2)
+ ;;=^5062720
+ ;;^UTILITY(U,$J,358.3,11274,0)
+ ;;=Z94.0^^42^520^6
+ ;;^UTILITY(U,$J,358.3,11274,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,11207,1,3,0)
- ;;=3^BCC Neop Skin,Left Lower Eyelid
- ;;^UTILITY(U,$J,358.3,11207,1,4,0)
- ;;=4^C44.1192
- ;;^UTILITY(U,$J,358.3,11207,2)
- ;;=^5157260
- ;;^UTILITY(U,$J,358.3,11208,0)
- ;;=C44.1221^^77^726^26
- ;;^UTILITY(U,$J,358.3,11208,1,0)
- ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,11274,1,3,0)
+ ;;=3^Kidney Transplant Status
+ ;;^UTILITY(U,$J,358.3,11274,1,4,0)
+ ;;=4^Z94.0
+ ;;^UTILITY(U,$J,358.3,11274,2)
+ ;;=^5063654

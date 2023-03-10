@@ -1,5 +1,5 @@
-RAUTL4 ;HISC/CAH,FPT,GJC AISC/SAW-Utility Routine ; 13 Jul 2015  5:10 PM
- ;;5.0;Radiology/Nuclear Medicine;**123**;Mar 16, 1998;Build 7
+RAUTL4 ;HISC/CAH,FPT,GJC AISC/SAW - Utility Routine ; Jan 05, 2022@16:30:37
+ ;;5.0;Radiology/Nuclear Medicine;**123,186**;Mar 16, 1998;Build 1
  ;
  ; Supported IA #1252 reference to $$OUTPTPR^SDUTL3 & $$OUTPTAP^SDUTL3  5-P123
  ; Supported IA #10035 reference to (^DPT(DFN,.1)  5-P123
@@ -112,3 +112,20 @@ COMMA(Y) ; If the last character in a string is a comma, strip it off
  ; example: 1-100, becomes 1-100
  N RA F RA=$L(Y):-1 Q:$E(Y,RA)'=","
  Q $E(Y,1,RA)
+ ;
+ASKFILM(RAITYP,RAY3) ;do higher exam statuses have ASK FOR FILM DATA?
+ ;set to 'Y' (YES)? <case sensitive> p186
+ ;Input: RAITYP = imaging type (external)
+ ;  RAY3 = 0 node EXAMINATIONS multiple (#70.03)
+ ;
+ ;return: 'X' 0 for don't ask; 1 ask
+ N RAIEN,RAORD,X,Y S X=0
+ S (RAORD,Y)=$P($G(^RA(72,+$P(RAY3,U,3),0)),U,3)
+ ;note: RAORD is order # for current status
+ F  S Y=$O(^RA(72,"AA",RAITYP,Y)) Q:Y=""  D  Q:X=1
+ .S RAIEN=$O(^RA(72,"AA",RAITYP,Y,0)) ;IEN file 72
+ .;^DD(72,.24,0)="ASK FOR FILM DATA?^RS^Y:YES;N:NO;^.2;4^Q
+ .S:$P($G(^RA(72,RAIEN,.2)),U,4)="Y" X=1
+ .Q
+ Q X
+ ;

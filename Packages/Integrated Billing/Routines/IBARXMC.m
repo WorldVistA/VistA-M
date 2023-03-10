@@ -1,5 +1,5 @@
-IBARXMC ;LL/ELZ-PHARMACY COPAY CAP FUNCTIONS ;26-APR-2001
- ;;2.0;INTEGRATED BILLING;**156,186,237,552,563**;21-MAR-94;Build 12
+IBARXMC ;LL/ELZ-PHARMACY COPAY CAP FUNCTIONS ; 03 Mar 2021
+ ;;2.0;INTEGRATED BILLING;**156,186,237,552,563,676**;21-MAR-94;Build 34
  ;;Per VA Directive 6402, this routine should not be modified.
  ;
 NEW(IBQ,IBC,IBD,IBB,IBN) ; used to compute new bills amount above cap
@@ -82,22 +82,22 @@ NET(X) ; returns net amount billed for a parent and its children
 CANCEL(DFN,IBDT) ; receives notification of a cancellation and determines
  ; if more need to be billed.  IBDT should be in fm format date to check
  ;
- N IBT,IBTFL,IBX,IBD,IBFD,IBTD,IBDTQ,IBBIL,IBS1,IBS2
- ;
- ; first determine if cap reached or quit
- ;Q:'$P($G(^IBAM(354.7,DFN,1,+$O(^IBAM(354.7,DFN,1,"B",IBDT,0)),0)),"^",3)
+ N IBT,IBTFL,IBX,IBD,IBFD,IBTD,IBDTQ,IBBIL,IBS,IBS1,IBS2
  ;
 C1 ; get starting values
- S IBS=+$$SITE^IBARXMU
+ S IBS=+$P($$SITE^IBARXMU,"^",3)  ;676;Need to use Site ID not IEN 
  S IBP=+$$PRIORITY^IBARXMU(DFN)
  D CAP(IBDT+1,IBP,.IBZ,.IBY,.IBFD,.IBTD)
  I ('IBY&('IBZ))!('IBFD)!('IBTD) Q
  S IBA=$$BILLED(DFN,IBDT+1,IBFD,IBTD),IBE=$P(IBA,"^",2)
  ;
  ; query (if any) other facilities to see what is there.
-C2 S IBT=$$TFL^IBARXMU(DFN,.IBTFL)
+C2 S IBT=$$TFL^IBARXMU(DFN,.IBTFL,2)
  I IBT W:'$D(ZTQUEUED) !,"This patient is being seen at other VA treating facilities. I need to make",!,"sure there are no Rx fills that have not been billed elsewhere." S IBX=0 F  S IBX=$O(IBTFL(IBX)) Q:IBX<1  D
  . I '$D(ZTQUEUED) U IO W !,"Now sending queries to ",$P(IBTFL(IBX),"^",2)," ..."
+ . ;676;BL; Send request to Cerner Separate response message returns transactions
+ . I $P(IBTFL(IBX),"^",1)["200CRNR" D  Q
+ . . D EN^IBARXCQR(DFN,$E(IBFD,1,5)_"00")
  . S IBDTQ=IBFD F  D  S IBDTQ=$$NEXTMO(IBDTQ) Q:IBDTQ>IBTD
  .. D UQUERY^IBARXMU(DFN,$E(IBDTQ,1,5)_"00",+IBTFL(IBX),.IBD)
  .. I $P(IBD(0),"^")=-1!(-1=+IBD) K IBD Q
@@ -133,6 +133,9 @@ C5 . ; determine how much to bill (if any)
  . S IBB=IBB-IBBIL
  . ;quit if IBBIL is less than zero IB*552 ticket 956230
  . Q:IBBIL<0
+ . ;676;If Cerner send HL7
+ . I +$P(IBZ,"^",1)=200 D EN^IBARXCBK(IBX,IBBIL) Q
+ . ;
  . D @($S(IBS=+IBZ:"BILL",1:"SEND")_"^IBARXMB($P(IBZ,""^""),IBBIL)")
  K ^TMP("IBD",$J)
  Q
@@ -170,7 +173,7 @@ DQCAN ; entry point for queued back billing job
  .D ^IBAERR Q
  ;
  ; do query/back billing
- S IBD=0 F  S IBD=$O(IBCAP(IBD)) Q:IBD<1  D CANCEL(DFN,IBD)
+ S IBD=0 F  S IBD=$O(IBCAP(IBD)) Q:IBD<1  D CANCEL(DFN,IBD) H 120  ;Delay between backbilling months
  ;
  ; remove lock
  L -^IBAM(354.7,"APAT",DFN)

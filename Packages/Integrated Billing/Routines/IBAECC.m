@@ -1,5 +1,5 @@
-IBAECC ;LL/ELZ-LONG TERM CARE CLOCK MAINTANCE ; 05-FEB-02
- ;;2.0;INTEGRATED BILLING;**176,199**;21-MAR-94
+IBAECC ;LL/ELZ - LONG TERM CARE CLOCK MAINTANCE ; 05-FEB-02
+ ;;2.0;INTEGRATED BILLING;**176,199,728**;21-MAR-94;Build 14
  ;; Per VHA Directive 10-93-142, this routine should not be modified
  ;
  ; this routine will allow users to perform LTC copay clock
@@ -8,7 +8,7 @@ IBAECC ;LL/ELZ-LONG TERM CARE CLOCK MAINTANCE ; 05-FEB-02
  ;
 OPT ; menu option main entry point
  ;
- N DIC,X,Y,DFN,IBLTCX,DTOUT,DUOUT,DIRUT,DIROUT,%,DIR,IBSTDT,IBCL,IBX,IBY,IBLTCZ
+ N ADDED,DFN,DIC,IBCL,IBLTCX,IBLTCZ,IBOPCL,IBSTDT,IBRES,IBX,IBY,X,Y
  ;
  ; select a patient (screen out patients with no LTC clock and are
  ; not LTC patients.
@@ -18,28 +18,118 @@ OPTA K DIC,X,Y,DFN,IBLTCX,VADP
  S DFN=+Y D DEM^VADPT
  ;
  ; is there a clock, if not offer to add
+ ; IB*2.0*728
+ S ADDED=0
  I '$D(^IBA(351.81,"C",DFN)) D  G:$G(IBLTCX)<1 OPTA
- . W !!,"The patient ",VADM(1)," has no LTC clock on file."
- . F  W !,"Do you want to add one" S %=2 D YN^DICN Q:%'=0  W !,"    Answer with 'Yes' or 'No'"
- . Q:%'=1
- . ;
- . ; start date
- . W !,"You need to specify the clock start date"
- . S DIR(0)="D^:"_DT D ^DIR Q:$D(DIRUT)  S IBSTDT=+Y
- . ;
- . ; create clock entry
- . S IBLTCX=+$$ADDCL^IBAECU(DFN,IBSTDT)
+ .W !!,"The patient ",VADM(1)," has no LTC clock on file."
+ .S IBRES=$$ASKCRU(0) Q:IBRES'>0
+ .S IBSTDT=$$ASKSTDT(0) Q:IBSTDT'>0  ; start date  IB*2.0*728
+ .; create clock entry
+ .S IBLTCX=+$$ADDCL^IBAECU(DFN,IBSTDT) S:IBLTCX>0 ADDED=1
+ .Q
  ;
+ I 'ADDED S IBRES=$$ASKCRU(1) D:IBRES=1  G:IBRES'>0 OPTA
+ .; check for existing open clock
+ .S IBOPCL=$$FNDOPEN^IBAECU4(DFN) I IBOPCL>0 S IBLTCX=$$OPTB(DFN,IBOPCL,$$GET1^DIQ(351.81,IBOPCL_",",.04,"I"))
+ .Q
+ ; we get here either if user chose to update esitsing clock or brand new clock was added (there was no existing clock to close)
  ; choose a clock
  I $G(IBLTCX)<1 S IBLTCX=$$ASKCLK^IBAECP(DFN,1) G:$G(IBLTCX)<1 OPTA
  ;
  S IBLTCZ=^IBA(351.81,IBLTCX,0) D DISPLAY,EDIT
  G OPTA
  ;
+OPTB(DFN,IBOPCL,IBOEDT,IBDEFDT) ; close existing clock and open the new one, also called from IB CANCEL  IB*2.0*728
+ ;
+ ; DFN - patient DFN
+ ; IBOPCL - old clock ien (file 351.81)
+ ; IBOEDT - old clock exp. date (internal)
+ ; IBDEFDT - default start date (optional)
+ ;
+ ; returns 1 if new clock was opened, 0 otherwise
+ ;
+ N IBLTCX,IBOIENS,IBOSTDTE,IBSTDT,Z
+ S IBLTCX=0
+ S IBOIENS=IBOPCL_",",IBOSTDTE=$$GET1^DIQ(351.81,IBOIENS,.03)
+ W !!,"WARNING!!!"
+ W !,"Creating a new clock for this patient will close the existing open LTC Clock.",!
+ I $$ASKYN()'>0 D  Q 0  ; ask for confirmation
+ .W !!,"No new clock created."
+ .W !,"Existing Clock for the Period starting on ",IBOSTDTE," is still in effect.",!
+ .D ASKCONT
+ .Q
+ S IBSTDT=$$ASKSTDT(+$G(IBDEFDT)) Q:IBSTDT'>0 0  ; start date
+ I IBSTDT'>IBOEDT D  Q 0
+ .S Z=$$FMTE^XLFDT(IBOEDT)
+ .W !!,"This patient's existing clock ends on ",Z,"."
+ .W !!,"Unable to create a new clock for this patient until after ",Z
+ .W !," at the earliest.",!
+ .D ASKCONT
+ .Q
+ L +^IBA(351.81,IBOPCL):5 I '$T Q 0
+ D CLOSECLK^IBAECU4(IBOPCL,DFN) ; close old clock
+ L -^IBA(351.81,IBOPCL)
+ W !!,"Clock for the Period starting on ",IBOSTDTE," is now closed."
+ S IBLTCX=+$$ADDCL^IBAECU(DFN,IBSTDT) ; create new clock
+ I IBLTCX>0 W !,"A new clock starting on ",$$FMTE^XLFDT(IBSTDT)," is now open.",!
+ D ASKCONT
+ Q IBLTCX
+ ;
 EX ;
  D KVAR^VADPT
  ;
  Q
+ ;
+ASKYN() ; "do you still wish to continue" prompt  IB*2.0*728
+ ;
+ ; returns 1 for "yes", or 0 otherwise
+ ;
+ N X,Y,DTOUT,DUOUT,DIR,DIROUT,DIRUT
+ S DIR("A")="Do you still wish to continue? (Y/N): "
+ S DIR(0)="YAO"
+ D ^DIR
+ Q $S(+Y=1:1,1:0)
+ ;
+ASKCONT ; "press any key to continue" prompt  IB*2.0*728
+ ;
+ N X,Y,DTOUT,DUOUT,DIR,DIROUT,DIRUT
+ S DIR("A")="Press any key to continue."
+ S DIR(0)="EA"
+ D ^DIR
+ Q
+ ;
+ASKSTDT(DEF) ; prompt for start date  IB*2.0*728
+ ;
+ ; DEF - default start date
+ ;
+ ; returns start date or "" for user exit
+ ;
+ N X,Y,DTOUT,DUOUT,DIR,DIROUT,DIRUT
+ S DIR("A")="Please specify the clock start date: "
+ I DEF>0 S DIR("B")=$$FMTE^XLFDT(DEF)
+ S DIR(0)="DAO^:"_DT
+ D ^DIR
+ I $D(DTOUT)!$D(DUOUT)!$D(DIROUT)!$D(DIRUT) Q ""
+ Q +Y
+ ;
+ASKCRU(UFLG) ; prompt for create new / update existing clock  IB*2.0*728
+ ;
+ ; UFLG - 1 = prompt for update, 0 = only prompt for creation of a new clock
+ ;
+ ; returns 1 if user chooses to create new clock, 2 if they choose to update existing clock, or "" for user exit
+ ;
+ N X,Y,DTOUT,DUOUT,DIR,DIROUT,DIRUT
+ I UFLG D
+ .S DIR("A")="Create (N)ew Clock or (U)pdate Existing Clock? (N/U): "
+ .S DIR(0)="SAO^N:Create new clock;U:Update existing clock"
+ .Q
+ I 'UFLG D
+ .S DIR("A")="Create New Clock (Y/N): "
+ .S DIR(0)="YAO"
+ .Q
+ D ^DIR
+ I $D(DTOUT)!$D(DUOUT) Q ""
+ Q $S(Y="N":1,Y=1:1,Y="U":2,1:"")
  ;
 DISPLAY ; display clock information
  ; Temporary

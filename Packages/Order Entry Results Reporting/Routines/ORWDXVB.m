@@ -1,8 +1,8 @@
-ORWDXVB ;slc/dcm - Order dialog utilities for Blood Bank ;12/7/05  17:11
- ;;3.0;ORDER ENTRY/RESULTS REPORTING;**215,243,212,309,332**;Dec 17 1997;Build 44
+ORWDXVB ;SLC/DCM - Order dialog utilities for Blood Bank ;Dec 02, 2021@12:46:23
+ ;;3.0;ORDER ENTRY/RESULTS REPORTING;**215,243,212,309,332,405**;Dec 17 1997;Build 211
  ;
  ; DBIA 2503   RR^LR7OR1   ^TMP("LRRR",$J)
- ; 
+ ;
 GETPAT(ORX,DFN,ORL) ;Get Patient data from VBECS
  ;Needs patient DFN and Location (ORL)
  N ORSTN,DIV
@@ -71,7 +71,7 @@ PATINFO(OROOT,DFN,LOC) ;Test ^TMP global output
  ;S I=0 F  S I=$O(@OROOT@(I)) Q:'I  W !,^(I,0)
  ;K @OROOT
  Q
-GETALL(OROOT,DFN,LOC) ;Get all data in one call and let the GUI divide it up
+GETALL(OROOT,DFN,LOC,EDATE) ;Get all data in one call and let the GUI divide it up
  N ORX,INFO,CNT,I,J,K,OREAS,OREASON
  S OROOT=$NA(^TMP("ORVBECINFO",$J)),CNT=1
  D GETPAT(.ORX,DFN,LOC)
@@ -106,7 +106,7 @@ GETALL(OROOT,DFN,LOC) ;Get all data in one call and let the GUI divide it up
  D PTINFO(.INFO,.ORX)
  S I=0 F  S I=$O(^TMP("ORVBEC",$J,I)) Q:'I  S CNT=CNT+1,^TMP("ORVBECINFO",$J,CNT)="i"_^TMP("ORVBEC",$J,I,0)
  S CNT=CNT+1,^TMP("ORVBECINFO",$J,CNT)="~TNS ORDERS"
- N ORMODS D PULL^ORWDXVB2(.ORMODS,DFN)
+ N ORMODS D PULL^ORWDXVB2(.ORMODS,DFN,,,$G(EDATE))
  S I=0 F  S I=$O(ORMODS(I)) Q:'I  S CNT=CNT+1,^TMP("ORVBECINFO",$J,CNT)="i"_ORMODS(I)
  K ^TMP("ORVBEC",$J)
  Q

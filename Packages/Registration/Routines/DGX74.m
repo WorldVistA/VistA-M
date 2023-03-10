@@ -1,4 +1,4 @@
-DGX74 ; ;06/24/20
+DGX74 ; ;01/03/22
  D DE G BEGIN
 DE S DIE="^DGPT(",DIC=DIE,DP=45,DL=1,DIEL=0,DU="" K DG,DE,DB Q:$O(^DGPT(DA,""))=""
  I $D(^(71)) S %Z=^(71) S %=$P(%Z,U,5) S:%]"" DE(1)=% S %=$P(%Z,U,6) S:%]"" DE(11)=% S %=$P(%Z,U,7) S:%]"" DE(21)=% S %=$P(%Z,U,8) S:%]"" DE(31)=% S %=$P(%Z,U,9) S:%]"" DE(41)=% S %=$P(%Z,U,10) S:%]"" DE(51)=% S %=$P(%Z,U,11) S:%]"" DE(61)=%
@@ -62,7 +62,7 @@ C1S S X="" G:DG(DQ)=X C1F1 K DB
  S X=DG(DQ),DIC=DIE
  K DIV S DIV=X,D0=DA,DIV(0)=D0 S Y(1)=$S($D(^DGPT(D0,82)):^(82),1:"") S X=$P(Y(1),U,15),X=X S DIU=X K Y S X="" S DIH=$G(^DGPT(DIV(0),82)),DIV=X S $P(^(82),U,15)=DIV,DIH=45,DIG=82.15 D ^DICR
 C1F1 S DIEZRXR(45,DIIENS)=$$OREF^DILF($NA(@$$CREF^DILF(DIE)))
- F DIXR=1239,1611 S DIEZRXR(45,DIXR)=""
+ F DIXR=833,1239 S DIEZRXR(45,DIXR)=""
  Q
 X1 N DGI S DGI=15 D GETAPI^DGICDGT("DG PTF","DIAG",$G(DA),"EN3")
  Q
@@ -74,7 +74,7 @@ X2 S DGXX=X
 X3 I DGXX="" S Y="@131"
  Q
 4 D:$D(DG)>9 F^DIE17,DE S DQ=4,DW="82;15",DV="SX",DU="",DIFLD=82.15,DLB=$$LABEL^DIALOGZ(DP,DIFLD)
- S DU="Y:Present on Admission;N:Not Present on Admission;U:Insufficient Docum to Present on Admission;W:Can't Determine if Present on Admission;"
+ S DU="Y:Present on Admission;N:Not Present on Admission;U:Insufficient Docum to Present on Admission;W:Can't Determine if Present on Admission;1:Exempt;"
  G RE
 X4 I X]"",$G(DA) K:'$$POA701^DGPTFUT1(X,DA,71,5) X
  Q
@@ -108,7 +108,7 @@ C11S S X="" G:DG(DQ)=X C11F1 K DB
  S X=DG(DQ),DIC=DIE
  K DIV S DIV=X,D0=DA,DIV(0)=D0 S Y(1)=$S($D(^DGPT(D0,82)):^(82),1:"") S X=$P(Y(1),U,16),X=X S DIU=X K Y S X="" S DIH=$G(^DGPT(DIV(0),82)),DIV=X S $P(^(82),U,16)=DIV,DIH=45,DIG=82.16 D ^DICR
 C11F1 S DIEZRXR(45,DIIENS)=$$OREF^DILF($NA(@$$CREF^DILF(DIE)))
- F DIXR=1240,1612 S DIEZRXR(45,DIXR)=""
+ F DIXR=833,1240 S DIEZRXR(45,DIXR)=""
  Q
 X11 N DGI S DGI=16 D GETAPI^DGICDGT("DG PTF","DIAG",$G(DA),"EN3")
  Q
@@ -120,7 +120,7 @@ X12 S DGXX=X
 X13 I DGXX="" S Y="@141"
  Q
 14 D:$D(DG)>9 F^DIE17,DE S DQ=14,DW="82;16",DV="SX",DU="",DIFLD=82.16,DLB=$$LABEL^DIALOGZ(DP,DIFLD)
- S DU="Y:Present on Admission;N:Not Present on Admission;U:Insufficient Docum to Present on Admission;W:Can't Determine if Present on Admission;"
+ S DU="Y:Present on Admission;N:Not Present on Admission;U:Insufficient Docum to Present on Admission;W:Can't Determine if Present on Admission;1:Exempt;"
  G RE
 X14 I X]"",$G(DA) K:'$$POA701^DGPTFUT1(X,DA,71,6) X
  Q
@@ -154,7 +154,7 @@ C21S S X="" G:DG(DQ)=X C21F1 K DB
  S X=DG(DQ),DIC=DIE
  K DIV S DIV=X,D0=DA,DIV(0)=D0 S Y(1)=$S($D(^DGPT(D0,82)):^(82),1:"") S X=$P(Y(1),U,17),X=X S DIU=X K Y S X="" S DIH=$G(^DGPT(DIV(0),82)),DIV=X S $P(^(82),U,17)=DIV,DIH=45,DIG=82.17 D ^DICR
 C21F1 S DIEZRXR(45,DIIENS)=$$OREF^DILF($NA(@$$CREF^DILF(DIE)))
- F DIXR=1241,1613 S DIEZRXR(45,DIXR)=""
+ F DIXR=833,1241 S DIEZRXR(45,DIXR)=""
  Q
 X21 N DGI S DGI=17 D GETAPI^DGICDGT("DG PTF","DIAG",$G(DA),"EN3")
  Q
@@ -166,7 +166,7 @@ X22 S DGXX=X
 X23 I DGXX="" S Y="@151"
  Q
 24 D:$D(DG)>9 F^DIE17,DE S DQ=24,DW="82;17",DV="SX",DU="",DIFLD=82.17,DLB=$$LABEL^DIALOGZ(DP,DIFLD)
- S DU="Y:Present on Admission;N:Not Present on Admission;U:Insufficient Docum to Present on Admission;W:Can't Determine if Present on Admission;"
+ S DU="Y:Present on Admission;N:Not Present on Admission;U:Insufficient Docum to Present on Admission;W:Can't Determine if Present on Admission;1:Exempt;"
  G RE
 X24 I X]"",$G(DA) K:'$$POA701^DGPTFUT1(X,DA,71,7) X
  Q
@@ -200,7 +200,7 @@ C31S S X="" G:DG(DQ)=X C31F1 K DB
  S X=DG(DQ),DIC=DIE
  K DIV S DIV=X,D0=DA,DIV(0)=D0 S Y(1)=$S($D(^DGPT(D0,82)):^(82),1:"") S X=$P(Y(1),U,18),X=X S DIU=X K Y S X="" S DIH=$G(^DGPT(DIV(0),82)),DIV=X S $P(^(82),U,18)=DIV,DIH=45,DIG=82.18 D ^DICR
 C31F1 S DIEZRXR(45,DIIENS)=$$OREF^DILF($NA(@$$CREF^DILF(DIE)))
- F DIXR=1242,1614 S DIEZRXR(45,DIXR)=""
+ F DIXR=833,1242 S DIEZRXR(45,DIXR)=""
  Q
 X31 N DGI S DGI=18 D GETAPI^DGICDGT("DG PTF","DIAG",$G(DA),"EN3")
  Q
@@ -212,7 +212,7 @@ X32 S DGXX=X
 X33 I DGXX="" S Y="@161"
  Q
 34 D:$D(DG)>9 F^DIE17,DE S DQ=34,DW="82;18",DV="SX",DU="",DIFLD=82.18,DLB=$$LABEL^DIALOGZ(DP,DIFLD)
- S DU="Y:Present on Admission;N:Not Present on Admission;U:Insufficient Docum to Present on Admission;W:Can't Determine if Present on Admission;"
+ S DU="Y:Present on Admission;N:Not Present on Admission;U:Insufficient Docum to Present on Admission;W:Can't Determine if Present on Admission;1:Exempt;"
  G RE
 X34 I X]"",$G(DA) K:'$$POA701^DGPTFUT1(X,DA,71,8) X
  Q
@@ -246,7 +246,7 @@ C41S S X="" G:DG(DQ)=X C41F1 K DB
  S X=DG(DQ),DIC=DIE
  K DIV S DIV=X,D0=DA,DIV(0)=D0 S Y(1)=$S($D(^DGPT(D0,82)):^(82),1:"") S X=$P(Y(1),U,19),X=X S DIU=X K Y S X="" S DIH=$G(^DGPT(DIV(0),82)),DIV=X S $P(^(82),U,19)=DIV,DIH=45,DIG=82.19 D ^DICR
 C41F1 S DIEZRXR(45,DIIENS)=$$OREF^DILF($NA(@$$CREF^DILF(DIE)))
- F DIXR=1243,1615 S DIEZRXR(45,DIXR)=""
+ F DIXR=833,1243 S DIEZRXR(45,DIXR)=""
  Q
 X41 N DGI S DGI=19 D GETAPI^DGICDGT("DG PTF","DIAG",$G(DA),"EN3")
  Q
@@ -258,7 +258,7 @@ X42 S DGXX=X
 X43 I DGXX="" S Y="@171"
  Q
 44 D:$D(DG)>9 F^DIE17,DE S DQ=44,DW="82;19",DV="SX",DU="",DIFLD=82.19,DLB=$$LABEL^DIALOGZ(DP,DIFLD)
- S DU="Y:Present on Admission;N:Not Present on Admission;U:Insufficient Docum to Present on Admission;W:Can't Determine if Present on Admission;"
+ S DU="Y:Present on Admission;N:Not Present on Admission;U:Insufficient Docum to Present on Admission;W:Can't Determine if Present on Admission;1:Exempt;"
  G RE
 X44 I X]"",$G(DA) K:'$$POA701^DGPTFUT1(X,DA,71,9) X
  Q
@@ -292,7 +292,7 @@ C51S S X="" G:DG(DQ)=X C51F1 K DB
  S X=DG(DQ),DIC=DIE
  K DIV S DIV=X,D0=DA,DIV(0)=D0 S Y(1)=$S($D(^DGPT(D0,82)):^(82),1:"") S X=$P(Y(1),U,20),X=X S DIU=X K Y S X="" S DIH=$G(^DGPT(DIV(0),82)),DIV=X S $P(^(82),U,20)=DIV,DIH=45,DIG=82.2 D ^DICR
 C51F1 S DIEZRXR(45,DIIENS)=$$OREF^DILF($NA(@$$CREF^DILF(DIE)))
- F DIXR=1244,1616 S DIEZRXR(45,DIXR)=""
+ F DIXR=833,1244 S DIEZRXR(45,DIXR)=""
  Q
 X51 N DGI S DGI=20 D GETAPI^DGICDGT("DG PTF","DIAG",$G(DA),"EN3")
  Q
@@ -304,7 +304,7 @@ X52 S DGXX=X
 X53 I DGXX="" S Y="@181"
  Q
 54 D:$D(DG)>9 F^DIE17,DE S DQ=54,DW="82;20",DV="SX",DU="",DIFLD=82.2,DLB=$$LABEL^DIALOGZ(DP,DIFLD)
- S DU="Y:Present on Admission;N:Not Present on Admission;U:Insufficient Docum to Present on Admission;W:Can't Determine if Present on Admission;"
+ S DU="Y:Present on Admission;N:Not Present on Admission;U:Insufficient Docum to Present on Admission;W:Can't Determine if Present on Admission;1:Exempt;"
  G RE
 X54 I X]"",$G(DA) K:'$$POA701^DGPTFUT1(X,DA,71,10) X
  Q
@@ -338,7 +338,7 @@ C61S S X="" G:DG(DQ)=X C61F1 K DB
  S X=DG(DQ),DIC=DIE
  K DIV S DIV=X,D0=DA,DIV(0)=D0 S Y(1)=$S($D(^DGPT(D0,82)):^(82),1:"") S X=$P(Y(1),U,21),X=X S DIU=X K Y S X="" S DIH=$G(^DGPT(DIV(0),82)),DIV=X S $P(^(82),U,21)=DIV,DIH=45,DIG=82.21 D ^DICR
 C61F1 S DIEZRXR(45,DIIENS)=$$OREF^DILF($NA(@$$CREF^DILF(DIE)))
- F DIXR=1245,1617 S DIEZRXR(45,DIXR)=""
+ F DIXR=833,1245 S DIEZRXR(45,DIXR)=""
  Q
 X61 N DGI S DGI=21 D GETAPI^DGICDGT("DG PTF","DIAG",$G(DA),"EN3")
  Q
@@ -350,7 +350,7 @@ X62 S DGXX=X
 X63 I DGXX="" S Y="@191"
  Q
 64 D:$D(DG)>9 F^DIE17,DE S DQ=64,DW="82;21",DV="SX",DU="",DIFLD=82.21,DLB=$$LABEL^DIALOGZ(DP,DIFLD)
- S DU="Y:Present on Admission;N:Not Present on Admission;U:Insufficient Docum to Present on Admission;W:Can't Determine if Present on Admission;"
+ S DU="Y:Present on Admission;N:Not Present on Admission;U:Insufficient Docum to Present on Admission;W:Can't Determine if Present on Admission;1:Exempt;"
  G RE
 X64 I X]"",$G(DA) K:'$$POA701^DGPTFUT1(X,DA,71,11) X
  Q

@@ -1,6 +1,12 @@
-ORELR5 ; slc/dcm - Check 69 against 100 ;
- ;;3.0;ORDER ENTRY/RESULTS REPORTING;**42**;Dec 17, 1997
+ORELR5 ;slc/dcm - Check 69 against 100 ;Jul 08, 2019@12:17:53
+ ;;3.0;ORDER ENTRY/RESULTS REPORTING;**42,453**;Dec 17, 1997;Build 47
+ ;
+ ;
+ ; Reference to ^LAB(60 supported by ICR #2387
+ ; Reference to ^LR( is supported by ICR #1948
+ ;
 EN ;Check file 69 against 100 for inconsistencies
+ ;
  N %,UPD,ZTSAVE
  W !!,"This routine will go through the LAB ORDER ENTRY file (69)"
  W !,"and check for inconsistencies between Lab files and CPRS files."
@@ -63,8 +69,10 @@ LOOP(LRDFN,ORAFIX) ;Loop on patient
  ...... N DI,DIC,DIE,DA,DR,D0,DQ,DISYS
  ...... I $P(X,"^",11) K ^OR(100,"ACT",$P(X,"^",2),9999999-+X8O,$P(X,"^",11),ORIFN,1)
  ...... K ^OR(100,"AC",$P(X,"^",2),9999999-+X8O,ORIFN,1),^OR(100,"AF",+X8O,ORIFN,1),^OR(100,"AS",$P(X,"^",2),9999999-(+X8O),ORIFN,1)
+ ...... I $P(X8O,"^",3) K ^OR(100,"EPRACDT",$P(X8O,"^",3),+X8O,ORIFN,1)   ; RBD OR*3.0*453 Clean up new EPRACDT index also
  ...... I $P(X8O,"^",16)=+X8O K ^OR(100,"AR",$P(X,"^",2),9999999-(+X8O),ORIFN,1) S ^OR(100,"AR",$P(X,"^",2),9999999-LRENT,ORIFN,1)="",$P(^OR(100,ORIFN,8,1,0),"^",16)=LRENT
  ...... S $P(^OR(100,ORIFN,8,1,0),"^")=LRENT,^OR(100,"AF",LRENT,ORIFN,1)=""
+ ...... S ^OR(100,"EPRACDT",$P(X8O,"^",3),LRENT,ORIFN,1)=""   ; RBD OR*3.0*453 Reset EPRACDT index also
  ...... D S1^ORDD100(ORIFN,1,"",LRENT),SET^ORDD100(ORIFN,1),ACT1^ORDD100A(ORIFN,1)
  Q
 WRT(LRODT,LRSN,LRTST,TEXT,FIXED) ;Write error message

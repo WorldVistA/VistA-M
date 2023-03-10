@@ -1,5 +1,5 @@
-RAHLRS ;HIRMFO/CRT/PDW - Resend HL7 messages for selected cases ;11 Mar 2019 10:07 AM
- ;;5.0;Radiology/Nuclear Medicine;**25,54,60,71,82,95,137,156**;Mar 16, 1998;Build 1
+RAHLRS ;HIRMFO/CRT/PDW - Resend HL7 messages for selected cases ; Jan 13, 2021@12:17:40
+ ;;5.0;Radiology/Nuclear Medicine;**25,54,60,71,82,95,137,156,178**;Mar 16, 1998;Build 2
  ;
  ; Utility to RESEND HL7 messages
  ;
@@ -37,7 +37,7 @@ RESEND(RADFN,RADTI,RACNI,QUIT) ; re-send exam message(s) to HL7 subscribers
  S QUIT=$$OK(RADFN,RADTI,RACNI)
  I QUIT>0 D
  .I RAED[",REG," D
- ..D EN^DDIOL("Re-sending 'EXAM REGISTERD' HL7 message...",,"!!,?6")
+ ..D EN^DDIOL("Re-sending 'EXAM REGISTERED' HL7 message...",,"!!,?6") ;p178/KLM - correct spelling of 'REGISTERED'
  ..D REG^RAHLRPC
  .I RAED[",CANCEL," D
  ..D EN^DDIOL("Re-sending 'EXAM CANCELLED' HL7 message...",,"!,?6")

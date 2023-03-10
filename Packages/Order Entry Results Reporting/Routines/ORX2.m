@@ -1,5 +1,9 @@
-ORX2 ; slc/dcm - OE/RR Patient lock entry points ;4/21/04  09:46
- ;;3.0;ORDER ENTRY/RESULTS REPORTING;**16,48,158,168,183,190,195,292**;Dec 17, 1997;Build 6
+ORX2 ;SLC/DCM,AJB - OE/RR PATIENT LOCK ENTRY POINT ;Jun 23, 2022@07:59:29
+ ;;3.0;ORDER ENTRY/RESULTS REPORTING;**16,48,158,168,183,190,195,292,405**;Dec 17, 1997;Build 211
+ ;
+ ; $$GET1^DIQ   ICR #2056      ^DIR            ICR #10026
+ ; *^XLFDT      ICR #10103
+ ;
 PT1 ;;Entry point to unlock patient when done adding orders - NO LONGER USED
  ;;Required variable ORVP.
  Q:'$D(ORVP)  Q:'$L(ORVP)  Q:ORVP'["DPT("
@@ -17,22 +21,20 @@ ULK ;;Entry point to unlock patient
  Q:'$D(X)  Q:'$L(X)  Q:X'["DPT("  Q:'$D(@("^"_$P(X,";",2)_+X_",0)"))
  D UNLOCK(+X)
  Q
- ;
 LOCK(DFN) ; -- Lock patient chart (silent)
  ; Returns 1 if successful, or 0^Message if could not get lock
- ;
  Q:'$G(DFN) "0^Invalid patient" N Y,ORLK,NOW,NOW1
  S ORLK=$G(^XTMP("ORPTLK-"_DFN,1)) Q:ORLK=(DUZ_U_$J) 1 ;locked
- L +^XTMP("ORPTLK-"_DFN):$S($G(DILOCKTM)>0:DILOCKTM,1:5) I '$T S Y="0^"_$S(+ORLK:$P($G(^VA(200,+ORLK,0)),U),1:"Another person")_" is editing orders for this patient." Q Y
+ L +^XTMP("ORPTLK-"_DFN):$S($G(DILOCKTM)>0:DILOCKTM,1:5) I '$T D  Q Y
+ . ; who and date/time of lock added to locked message *405 - various patient safety issues
+ . S Y="0^"_$S(+ORLK=DUZ:"You have",1:$$GET1^DIQ(200,+ORLK,.01)_" has")_" this patient locked with another session.  ["_$$FMTE^XLFDT($P($G(^XTMP("ORPTLK-"_DFN,0)),U,2),2)_"]"
  S NOW=$$NOW^XLFDT,NOW1=$$FMADD^XLFDT(NOW,1)
  S ^XTMP("ORPTLK-"_DFN,0)=NOW1_U_NOW_"^CPRS Chart Lock",^(1)=DUZ_U_$J
  Q 1
- ;
 UNLOCK(DFN) ; -- Unlock patient chart (silent)
  L -^XTMP("ORPTLK-"_DFN)
  I $G(^XTMP("ORPTLK-"_DFN,1))=(DUZ_U_$J) K ^XTMP("ORPTLK-"_DFN)
  Q
- ;
 INC(IFN) ;Increment zero node on file 100.2
  N X,X3,X4
  Q:'$G(IFN) 1 Q:$D(^OR(100.2,IFN)) 1

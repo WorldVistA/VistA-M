@@ -1,5 +1,5 @@
 PSODDPR1 ;BIR/SAB - enhanced dup drug checker for pending/nva orders ;09/30/06 11:33am
- ;;7.0;OUTPATIENT PHARMACY;**251,375,379**;DEC 1997;Build 28
+ ;;7.0;OUTPATIENT PHARMACY;**251,375,379,651**;DEC 1997;Build 30
  ;External reference to ^PSDRUG supported by DBIA 221
  ;External reference to ^PS(50.606 supported by DBIA 2174
  ;External reference to ^PS(51.2 supported by DBIA 2226
@@ -71,7 +71,7 @@ ASKCAN  ;
  Q
 INST ;displays instruction and/or comments
  S INST=0 F  S INST=$O(^PS(52.41,RXREC,TY,INST)) Q:'INST  S MIG=^PS(52.41,RXREC,TY,INST,0) D
- .W !,$S(TY=2:"      Instructions: ",TY=3:" Provider Comments: ",1:"")
+ .W !,$S(TY=2:"  "_$S($$ERXIEN^PSOERXUT(RXREC_"P"):"eRx",1:"   ")_" Instructions: ",TY=3:" Provider Comments: ",1:"")
  .F SG=1:1:$L(MIG," ") W:$X+$L($P(MIG," ",SG)_" ")>IOM @$S(TY=3:"!?14",1:"!?19") W $P(MIG," ",SG)_" "
  K INST,TY,MIG,SG
  Q

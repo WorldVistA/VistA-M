@@ -1,5 +1,5 @@
-DGRPD ;ALB/MRL,MLR,JAN,LBD,EG,BRM,JRC,BAJ,JAM,HM,BDB -PATIENT INQUIRY (NEW) ;July 09, 2014  12:16pm
- ;;5.3;Registration;**109,124,121,57,161,149,286,358,436,445,489,498,506,513,518,550,545,568,585,677,703,688,887,907,925,936,940,941,987,1006**;Aug 13, 1993;Build 6
+DGRPD ;ALB/MRL,MLR,JAN,LBD,EG,BRM,JRC,BAJ,JAM,HM,BDB,ARF,RN,JAM - PATIENT INQUIRY (NEW) ;July 09, 2014  12:16pm
+ ;;5.3;Registration;**109,124,121,57,161,149,286,358,436,445,489,498,506,513,518,550,545,568,585,677,703,688,887,907,925,936,940,941,987,1006,1056,1061,1059,1071,1064**;Aug 13, 1993;Build 41
  ; *286* Newing variables X,Y in OKLINE subroutine
  ; *358* If a patient is on a domiciliary ward, don't display MEANS
  ; TEST required/Medication Copayment Exemption messages
@@ -25,7 +25,7 @@ EN ;call to display patient inquiry - input DFN
  ;jam DG*5.3*925 RM#788099 change labels to "Permanent Mailing Address" and "Temporary Mailing Address"
  ;
  W " Residential Address: "
- W ?40,"Permanent Mailing Address: "
+ W ?40,"Mailing Address: "  ;DG*5.3*1056 remove Permanent from the address label
  S DGAD=.115,(DGA1,DGA2)=1 D AL^DGRPU(35) S DGAD=.11,DGA1=1,DGA2=2 D AL^DGRPU(35)
  W !?5
  N Z,Z1
@@ -101,7 +101,8 @@ EN ;call to display patient inquiry - input DFN
  N DGEMER S DGEMER=$$EXTERNAL^DILFD(2,.181,"",$P($G(^DPT(DFN,.18)),"^"))
  W:DGEMER]"" !?32,"Emergency Response: ",DGEMER
  I 'DGABBRV W !!?4,"POS: ",$S($D(^DIC(21,+$P(DGRP(.32),"^",3),0)):$P(^(0),"^",1),1:DGRPU),?42,"Claim #: ",$S($P(DGRP(.31),"^",3)]"":$P(DGRP(.31),"^",3),1:"UNSPECIFIED")
- I 'DGABBRV W !?2,"Relig: ",$S($D(^DIC(13,+$P(DGRP(0),"^",8),0)):$P(^(0),"^",1),1:DGRPU),?46,"Birth Sex: ",$S($P(VADM(5),"^",2)]"":$P(VADM(5),"^",2),1:"UNSPECIFIED") ; DG*5.3*907
+ I 'DGABBRV W !?2,"Relig: ",$S($D(^DIC(13,+$P(DGRP(0),"^",8),0)):$P(^(0),"^",1),1:DGRPU),?46 ;,"Birth Sex: ",$S($P(VADM(5),"^",2)]"":$P(VADM(5),"^",2),1:"UNSPECIFIED") ; DG*5.3*907
+ ;**159 REMOVE CONDITIONAL DISPLAY OF BIRTH SEX AND GROUP WITH OTHER SOGI FIELDS
  I 'DGABBRV W ! D
  .N RACE,ETHNIC,PTR,VAL,X,DIWL,DIWR,DIWF
  .K ^UTILITY($J,"W")
@@ -122,11 +123,17 @@ EN ;call to display patient inquiry - input DFN
  .W ?3,"Race: ",RACE(1,0),?40,"Ethnicity: ",ETHNIC(1,0)
  .F X=2:1 Q:'$D(RACE(X,0))&'$D(ETHNIC(X,0))  W !,?9,$G(RACE(X,0)),?51,$G(ETHNIC(X,0))
  I '$$OKLINE^DGRPD1(16) G Q
+ ;**1059 ADDING SOGI fields including BIRTH SEX
+ D SOGI
  D LANGUAGE
  I '$$OKLINE^DGRPD1(10) G Q
  ;display cv status #4156
  N DGCV S DGCV=$$CVEDT^DGCV(+DFN)
  W !!,?2,"Combat Vet Status: "_$S($P(DGCV,U,3)=1:"ELIGIBLE",$P(DGCV,U,3)="":"NOT ELIGIBLE",1:"EXPIRED") I DGCV>0 W ?45,"End Date: "_$$FMTE^XLFDT($P(DGCV,U,2),"5DZ")
+ ;DG*5.3*1061 Display COMPACT ACT status only if TRUE
+ N DGCOMPACT S DGCOMPACT=$$CAI^DGENELA(+DFN)
+ I DGCOMPACT=1 W !,?1,"COMPACT Act Status: ELIGIBLE"
+ ;
  ;display primary eligibility
  S X1=DGRP(.36),X=$P(DGRP(.361),"^",1) W !,"Primary Eligibility: ",$S($D(^DIC(8,+X1,0)):$P(^(0),"^",1)_" ("_$S(X="V":"VERIFIED",X="P":"PENDING VERIFICATION",X="R":"PENDING REVERIFICATION",1:"NOT VERIFIED")_")",1:DGRPU)
  W !,"Other Eligibilities: " F I=0:0 S I=$O(^DIC(8,I)) Q:'I  I $D(^DIC(8,I,0)),I'=+X1 S X=$P(^(0),"^",1)_", " I $D(^DPT("AEL",DFN,I)) W:$X+$L(X)>79 !?21 W X
@@ -147,6 +154,9 @@ EN ;call to display patient inquiry - input DFN
  . S DGPTM=$$PCTEAM^DGSDUTL(DFN)
  . I $P(DGPTM,U,2)]"" W !,"[PRIMARY CARE TEAM:] "_$P(DGPTM,U,2)
  . W !,$$REPEAT^XLFSTR("-",78)
+ ;jam; DG*5.3*1064
+ I $$INDSTATUS^DGENELA2(DFN) W !,$$EZBLD^DIALOG(261133)
+ ;
  ; Check if patient is an inpatient and on a DOM ward
  ; If inpatient is on a DOM ward, don't display MT or CP messages
  ; If inpatient is NOT on a DOM ward, don't display CP message
@@ -250,4 +260,23 @@ LANGUAGE ; Get language data *///*
 L1 W !!,"Language Date/Time: ",$S(DGLANGDT="":"UNANSWERED",1:DGLANGDT),!
  W ?1,"Preferred Language: ",$S(DGPRFLAN="":"UNANSWERED",1:DGPRFLAN)
  K DGLANGDT,DGPRFLAN,DGLANG0,DGLANGDA
+ Q
+SOGI ;**1059 SOGI FIELDS TO BE DISPLAYED VAMPI-11114,VAMPI-11118,VAMPI-11120, VAMPI-11121
+ ;**1071 VAMPI-13755 (jfw) - Display Additional SO Info
+ N EN,SXO,PRN
+ W !,"Birth Sex    :  ",$$GET1^DIQ(2,DFN,".02","E")
+ ;SEXUAL ORIENTATION
+ W !,"Sexual Orientation: "
+ S EN=0 F  S EN=$O(^DPT(DFN,.025,EN)) Q:'EN  D
+ .N DGSOI D GETS^DIQ(2.025,EN_","_DFN,"*",,"DGSOI")
+ .W !?20,DGSOI(2.025,EN_","_DFN_",",.01)_" ("_DGSOI(2.025,EN_","_DFN_",",.02)_")"
+ .W !?25,"Date Created:",?44,DGSOI(2.025,EN_","_DFN_",",.03)
+ .W !?25,"Date Last Updated: "_DGSOI(2.025,EN_","_DFN_",",.04)
+ W !,"Sexual Orientation Description: ",$$GET1^DIQ(2,DFN,".0251","E")
+ W !,"Pronoun: "
+ S EN=0 F  S EN=$O(^DPT(DFN,.2406,EN)) Q:'EN  D
+ .S PRN=$G(^DPT(DFN,.2406,EN,0))
+ .W !?20,$P($G(^DG(47.78,PRN,0)),"^")
+ W !,"Pronoun Description: ",$$GET1^DIQ(2,DFN,".24061","E")
+ W !,"Self-Identified Gender Identity: ",$$GET1^DIQ(2,DFN,".024","E")
  Q

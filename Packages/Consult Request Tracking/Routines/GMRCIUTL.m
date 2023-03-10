@@ -1,6 +1,8 @@
-GMRCIUTL ;SLC/JFR - UTILITIES FOR INTER-FACILITY CONSULTS ;11/26/01 15:34
- ;;3.0;CONSULT/REQUEST TRACKING;**22,58**;DEC 27, 1997;Build 4
+GMRCIUTL ;SLC/JFR - UTILITIES FOR INTER-FACILITY CONSULTS ; Oct 24, 2022@13:59:59
+ ;;3.0;CONSULT/REQUEST TRACKING;**22,58,184**;DEC 27, 1997;Build 22
  ;;Per VHA Directive 2004-038, this routine should not be modified.
+ ;
+ ; #2051 DIC, #2053 DIE, #3015 VAFCPID, #10112 VASITE, #10103 XLFDT, #3065 XLFNAME, #2171 XUAF4, #2541 XUPARAM, #4648 VAFCTFU2
  ;
  Q  ;don't start at the top
  ;
@@ -156,10 +158,10 @@ CODEOI(GMRCDA) ; look at ordered procedure or service and code it for IFC msg
  S GMRCSIT=$$STA^XUAF4($$KSP^XUPARAM("INST"))
  I +$P(^GMR(123,GMRCDA,0),U,8) D  ; it's a procedure
  . S GMRCPR=+$P(^GMR(123,GMRCDA,0),U,8)
- . S GMRCOI=GMRCPR_U_$P(^GMR(123.3,GMRCPR,"IFC"),U,2)_U_GMRCSIT_"VA1233"
+ . S GMRCOI=GMRCPR_U_$P($G(^GMR(123.3,GMRCPR,"IFC")),U,2)_U_GMRCSIT_"VA1233" ; P184
  I '$D(GMRCOI) D  ; it's a consult
  . S GMRCSS=$P(^GMR(123,GMRCDA,0),U,5)
- . S GMRCOI=GMRCSS_U_$P(^GMR(123.5,GMRCSS,"IFC"),U,2)_U_GMRCSIT_"VA1235"
+ . S GMRCOI=GMRCSS_U_$P($G(^GMR(123.5,GMRCSS,"IFC")),U,2)_U_GMRCSIT_"VA1235" ; P184
  Q GMRCOI
  ;
 RESP(GMRCAC,GMRCMID,GMRCOC,GMRCDA,GMRCERR) ;build and send appl ACK/NAK 
@@ -171,8 +173,23 @@ RESP(GMRCAC,GMRCMID,GMRCOC,GMRCDA,GMRCERR) ;build and send appl ACK/NAK
  ;   GMRCERR = only defined if an error is found
  ;
  S HLA("HLA",1)=$$MSA^GMRCISEG(GMRCAC,GMRCMID,$G(GMRCERR))
+ ;
+ ;  Generate PID segment for Cerner orders.  Insert EDIPI and patient account number.  p184
+ ;
+ N DFN,PID,EDIPI,ICN,PTACCTNO,FS,CS,REPTTN,SEGNUM,PTACCTNO ;
+ S SEGNUM=1 ;
+ I $G(GMRCDA) D  ;
+ . S DFN=$P(^GMR(123,GMRCDA,0),U,2),PTACCTNO=$P($G(^GMR(123,GMRCDA,"CERNER")),U,3) ;
+ . I PTACCTNO'="" D  ;
+ .. S HLECH=HL("ECH"),PID=$$EN^VAFCPID(DFN,"1,2,3,7,8,19"),PID=$$ADD2PID(PID,DFN,PTACCTNO) ;
+ .. S SEGNUM=SEGNUM+1,HLA("HLA",SEGNUM)=PID ;
+ ;
  I $D(GMRCOC) D
- . I GMRCOC="NW" S HLA("HLA",2)=$$ORCRESP^GMRCISG1(GMRCDA,"OK","IP")
+ . I GMRCOC="NW" S SEGNUM=SEGNUM+1,HLA("HLA",SEGNUM)=$$ORCRESP^GMRCISG1(GMRCDA,"OK","IP")
+ ;
+ ;  Generate OBR segment for Cerner orders.  p184
+ ;
+ I $G(GMRCDA),PTACCTNO'="" S SEGNUM=SEGNUM+1,HLA("HLA",SEGNUM)=$$OBR^GMRCISG1(GMRCDA),HLA("HLA",SEGNUM)=$$ADD2OBR(HLA("HLA",SEGNUM),GMRCDA) ;
  Q
  ;
 LOGMSG(GMRCO,GMRCACT,GMRCMSG,GMRCER) ;create or update IFC MESSAGE LOG entry
@@ -202,6 +219,94 @@ LOGMSG(GMRCO,GMRCACT,GMRCMSG,GMRCER) ;create or update IFC MESSAGE LOG entry
  I $G(GMRCER) S FDA(1,123.6,"+1,",.08)=GMRCER
  D UPDATE^DIE("","FDA(1)","GMRCLG","GMRCERR")
  Q
+ ;
+EDIPI(DFN) ; p184
+ ;
+ ;  Return patient's EDIPI
+ ;
+ N SITE,TFLIST,I ;
+ ;
+ S SITE=$P($$SITE^VASITE(),U,3) D TFL^VAFCTFU2(.TFLIST,DFN_U_"PI"_U_"USVHA"_U_SITE) ;  icr #4648
+ ;
+ S EDIPI="" F I=1:1 Q:'$D(TFLIST(I))  I $P(TFLIST(I),U,2)="NI",$P(TFLIST(I),U,3)="USDOD",$P(TFLIST(I),U,4)="200DOD",$P(TFLIST(I),U,5)="A" S EDIPI=$P(TFLIST(I),U,1) Q  ;
+ ;
+ Q EDIPI ;
+ ;
+ADD2PID(PIDSGMNT,DFN,ACCTNO) ; P184
+ ;
+ ;  Reformats PID segment and adds fields to it to make it Cerner-compliant.
+ ;
+ ;  PIDSGMNT = PID segment to be added to
+ ;  DFN      = Patient (pointer to #2)
+ ;  ACCTNO   = Patient account number [OPTIONAL]
+ ;
+ ;  Note HL array must be defined or default values will be used.
+ ;
+ N FS,CS,REPTTN,EDIPI,ICN ;
+ S FS=$G(HL("FS"),"|"),CS=$E($G(HL("ECH"),"^~\&"),1),REPTTN=$E($G(HL("ECH"),"^~\&"),2) ;
+ ;
+ ;  Get EDIPI for patient.
+ ;
+ S EDIPI=$$EDIPI^GMRCIUTL(DFN),ICN=$P(PIDSGMNT,FS,3) ;
+ ;
+ ;  Clear PID-2 and PID-4
+ ;
+ S $P(PIDSGMNT,FS,3)="",$P(PIDSGMNT,FS,5)="" ;
+ ;
+ ;  Re-format PID-3 field.
+ ;
+ S $P(PIDSGMNT,FS,4)=ICN_CS_CS_CS_"ICN"_CS_"VETID"_REPTTN_EDIPI_CS_CS_CS_"EDIPI"_CS_"EDIPI" ;
+ ;
+ ;  Add patient account number to PID-18
+ ;
+ I $G(ACCTNO)'="" S $P(PIDSGMNT,FS,19)=ACCTNO ;
+ ;
+ Q PIDSGMNT ;
+ ;
+ADD2OBR(OBRSGMNT,CONSULT) ; P184
+ ;
+ ;  Enhances OBR-2, OBR-4 and populates OBR-16, OBR-19 to make it Cerner-compliant.
+ ;
+ ;  OBRSGMNT = OBR Segment to be enhanced
+ ;  CONSULT  = Consult (pointer to #123)
+ ;
+ N FS,CS,STN,ORDERNUM,OBR16,ORDPRVDR,NAME,NPI,FILE,ID,CODING,OBR19,FIELD ;
+ S FS=$G(HL("FS"),"|"),CS=$E($G(HL("ECH"),"^~\&"),1) ;
+ ;
+ ;  Populate OBR-2 with Cerner order number and station.  
+ ;  Populate OBR-4.2 with procedure/service name.
+ ;  Populate OBR-16 with saved provider data if IFC role is filler.
+ ;  Populate OBR-19 with saved placer field 1 data if IFC role is filler.
+ ;
+ I $$GET1^DIQ(123,CONSULT,.125,"I")="F" D  ;
+ . ;
+ . S STN=$P($G(^GMR(123,CONSULT,0)),U,23),ORDERNUM=$P($G(^GMR(123,CONSULT,0)),U,22) ;
+ . S STN=$$GET1^DIQ(4,STN,99,"E"),$P(OBRSGMNT,FS,3)=ORDERNUM_CS_STN_CS_"GMRCIFR" ;
+ . ;
+ . S ID=$P($P(OBRSGMNT,FS,5),CS,1),CODING=$P($P(OBRSGMNT,FS,5),CS,3),FILE=$P(CODING,"VA",2)/10,NAME="" ; WTC 10.24.22
+ . I FILE S NAME=$$GET1^DIQ(FILE,ID,.01,"E") ;
+ . S $P(OBRSGMNT,FS,5)=ID_CS_NAME_CS_CODING ;
+ . ;
+ . S OBR16=$G(^GMR(123,CONSULT,"CERNER1")),$P(OBRSGMNT,FS,17)=OBR16 ;
+ . S OBR19=$G(^GMR(123,CONSULT,"CERNER2")),$P(OBRSGMNT,FS,20)=OBR19 ; V10 WTC 6/28/22
+ ;
+ ;  Populate OBR-2 with consult number and station.  
+ ;  Populate OBR-4.2 with procedure/service name.
+ ;  Populate OBR-16 with ordering provider if IFC role is placer.
+ ;
+ I $$GET1^DIQ(123,CONSULT,.125,"I")="P" D  ;
+ . ;
+ . S STN=$P($G(^GMR(123,CONSULT,0)),U,21) ;
+ . S STN=$$GET1^DIQ(4,STN,99,"E"),$P(OBRSGMNT,FS,3)=CONSULT_CS_STN_CS_"GMRCIFR" ;
+ . ;
+ . S ID=$P($P(OBRSGMNT,FS,5),CS,1),CODING=$P($P(OBRSGMNT,FS,5),CS,3),FILE=$P(CODING,"VA",2)/10,NAME="" ; WTC 10.24.22
+ . I FILE S FIELD=$S(FILE=123.5:133,FILE=123.3:127,1:.01),NAME=$$GET1^DIQ(FILE,ID,FIELD,"E") I $G(NAME)="" S NAME=$$GET1^DIQ(FILE,ID,.01,"E") ;
+ . S $P(OBRSGMNT,FS,5)=ID_CS_NAME_CS_CODING ;
+ . ;
+ . S ORDPRVDR=$P(^GMR(123,CONSULT,0),U,14) ;
+ . I ORDPRVDR S NAME=$$GET1^DIQ(200,ORDPRVDR,.01,"E"),NPI=$P($$NPI^XUSNPI("Individual_ID",ORDPRVDR),U,1),$P(OBRSGMNT,FS,17)=$S(NPI>0:NPI,1:"")_CS_$P(NAME,",",1)_CS_$P($P(NAME,",",2)," ",1)_CS_$P($P(NAME,",",2)," ",2) ;
+ ;
+ Q OBRSGMNT ;
  ;
 ERR101 ;Unknown Consult/Procedure request
 ERR201 ;Unknown Patient

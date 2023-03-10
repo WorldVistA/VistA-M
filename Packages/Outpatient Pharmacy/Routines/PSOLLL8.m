@@ -1,5 +1,5 @@
 PSOLLL8 ;BIR/JLC - LASER LABEL - CRITICAL INTERACTION ;12/13/02
- ;;7.0;OUTPATIENT PHARMACY;**120,251,387,367,372**;DEC 1997;Build 54
+ ;;7.0;OUTPATIENT PHARMACY;**120,251,387,367,372,616**;DEC 1997;Build 3
  ;Reference to PS(56 supported by DBIA 2229
  ;Reference to PSDRUG supported by DBIA 221
  ;External reference to $$DS^PSSDSAPI supported by DBIA 5424
@@ -44,6 +44,7 @@ STORE ;LABEL PRINT NODE
  F IR=0 F FDA=0:0 S FDA=$O(^PSRX(RX,"L",FDA)) Q:'FDA  S IR=FDA
  ;S IR=IR+1,^PSRX(RX,"L",0)="^52.032DA^"_IR_"^"_IR,^PSRX(RX,"L",IR,0)=NOW_"^"_RXF_"^"_$S($G(PCOMX)]"":$G(PCOMX),1:"From RX number "_$P(^PSRX(RX,0),"^"))_" Drug-Drug interaction"_$S($G(RXRP(RX)):" (Reprint)",1:"")_"^"_PDUZ_"^1"
  S IR=IR+1,PSRXSET="^52.032DA^"_IR_"^"_IR
+ S ^PSRX(RX,"L",0)=PSRXSET  ; PSO*7*616  Fix missing Header node
  S PSRXSET=NOW_"^"_RXF_"^"_$S($G(PCOMX)]"":$G(PCOMX),1:"From RX number "_$P(^PSRX(RX,0),"^"))
  S PSRXSET=PSRXSET_$S(PSODRGI&(PSODOSEW)&$$DS^PSSDSAPI:" Drug-Drug interaction/dose warning",PSODRGI:" Drug-Drug interaction",PSODOSEW&$$DS^PSSDSAPI:" Dose Warning",1:"")_$S($G(RXRP(RX)):" (Reprint)",1:"")_"^"_PDUZ_"^1"
  S ^PSRX(RX,"L",IR,0)=PSRXSET

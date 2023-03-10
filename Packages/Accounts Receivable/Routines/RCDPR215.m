@@ -1,6 +1,6 @@
 RCDPR215 ;WISC/RFJ-receipt processing sf215 report ;1 Jun 99
- ;;4.5;Accounts Receivable;**114,173,211,220,321**;Mar 20, 1995;Build 48
- ;;Per VHA Directive 10-93-142, this routine should not be modified.
+ ;;4.5;Accounts Receivable;**114,173,211,220,321,375**;Mar 20, 1995;Build 15
+ ;;Per VHA Directive 6402, this routine should not be modified.
  Q
  ;
 DQ ;  queued report starts here, input RECEIPDA
@@ -14,8 +14,14 @@ DQ ;  queued report starts here, input RECEIPDA
  S REPRODT=$P($P($G(^RCY(344,RECEIPDA,0)),"^",8),".")
  D FMSLINES^RCXFMSC1(RECEIPDA)
  I $$EDILB^RCDPEU(RECEIPDA)=1 D  ; EFT deposit receipt
- . S TOT=0
- . S Z=0 F  S Z=$O(^RCY(344,RECEIPDA,1,Z)) Q:'Z  S TOT=TOT+$P($G(^(Z,0)),U,4)
+ . ;PRCA*4.5*375 - Present Debit CRs as Negative Values
+ . N AMT
+ . S TOT=0,AMT=0
+ . S Z=0 F  S Z=$O(^RCY(344,RECEIPDA,1,Z)) Q:'Z  D
+ .. S AMT=$P($G(^RCY(344,RECEIPDA,1,Z,0)),U,4)
+ .. S:$P($G(^RCY(344,RECEIPDA,1,Z,0)),U,29)="D" AMT=-AMT
+ .. S TOT=TOT+AMT
+ . ;END PRCA*4.5*375
  . S ^TMP($J,"RCFMSCR",EFTFUND)=TOT
  ;
  ;  print report

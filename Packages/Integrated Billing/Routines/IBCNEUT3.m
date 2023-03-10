@@ -1,5 +1,5 @@
 IBCNEUT3 ;DAOU/AM - eIV MISC. UTILITIES ;12-JUN-2002
- ;;2.0;INTEGRATED BILLING;**184,252,271,416,601**;21-MAR-94;Build 14
+ ;;2.0;INTEGRATED BILLING;**184,252,271,416,601,713**;21-MAR-94;Build 12
  ;;Per VA Directive 6402, this routine should not be modified.
  ;
  ; The purpose of the INSERROR utility is to identify a legitimate
@@ -86,6 +86,7 @@ INSERROR(TYPE,IEN,ERRFLG,ARRAY) ;
  I $G(IEN)="" S SYMIEN=$$ERROR^IBCNEUT8("B9","IEN is not passed to the insurance match algorithm.") G EXIT
  I TYPE="B",'$D(^IBA(355.33,IEN)) S SYMIEN=$$ERROR^IBCNEUT8("B9","Invalid Buffer IEN "_IEN_" has been passed to the insurance match algorithm.") G EXIT
  I TYPE="B",$$MBICHK^IBCNEUT7(IEN) Q $$PAYER^IBCNEUT4($$GET1^DIQ(350.9,"1,","MBI PAYER","I")) ; IB*2*601/DM
+ I TYPE="B",$$MANUAL(IEN) G EXIT
  I TYPE="I",'$D(^DIC(36,IEN)) S SYMIEN=$$ERROR^IBCNEUT8("B9","Invalid Insurance Company IEN "_IEN_" has been passed to the insurance match algorithm.") G EXIT
  ;
  ; If the IEN is an Insurance Company IEN, validate it
@@ -166,3 +167,9 @@ INSERROR(TYPE,IEN,ERRFLG,ARRAY) ;
 EXIT ; Main function exit point
  Q SYMIEN_U_PAYIEN_U_PAYID
  ;
+MANUAL(IEN) ; Need to do a manual insurance verification?
+ N MANUAL,STIEN
+ S MANUAL=0
+ S STIEN=$$FIND1^DIC(365.15,,"X","B17","B")
+ I $$GET1^DIQ(355.33,IEN_",",.12,"I")=STIEN S MANUAL=1,SYMIEN=STIEN
+ Q MANUAL

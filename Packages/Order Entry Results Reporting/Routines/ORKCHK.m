@@ -1,5 +1,5 @@
-ORKCHK ; SLC/CLA - Main routine called by OE/RR to initiate order checks ;04/24/12  11:49
- ;;3.0;ORDER ENTRY/RESULTS REPORTING;**6,32,94,105,123,232,267,243,280,345**;Dec 17, 1997;Build 32
+ORKCHK ; SLC/CLA - Main routine called by OE/RR to initiate order checks ;Jun 23, 2021@11:33:53
+ ;;3.0;ORDER ENTRY/RESULTS REPORTING;**6,32,94,105,123,232,267,243,280,345,539,405**;Dec 17, 1997;Build 211
 EN(ORKY,ORKDFN,ORKA,ORKMODE,OROIL,ORDODSG) ;initiate order checking
  ;ORKY: array of returned msgs in format: ornum^orderchk ien^clin danger^msg
  ;ORKDFN: patient dfn
@@ -10,7 +10,7 @@ EN(ORKY,ORKDFN,ORKA,ORKMODE,OROIL,ORDODSG) ;initiate order checking
  ; effective d/t|
  ; order number|
  ; filler data (LR: specimen ien, PS: meds prev ordered during this session in format med1^med2^...)
- ;ORKMODE: mode/event trigger (DISPLAY,SELECT,ACCEPT,SESSION,ALL,NOTIF)
+ ;ORKMODE: mode/event trigger (DISPLAY,SELECT,ACCEPT,SESSION,ALL,NOTIF,ALLERGY,ALLACC)
  ; PS: meds previously ordered during this session med1^med2^...
  ;OROIL: array containing the order info passed in (oly for ACCEPT mode)
  ;ORDODSG: flag that denotes if dosage checks should be performed
@@ -99,7 +99,7 @@ EN(ORKY,ORKDFN,ORKA,ORKMODE,OROIL,ORDODSG) ;initiate order checking
  .I '$L($G(ORKTMODE)) D
  ..I ORKMODE="DISPLAY" D EN^ORKCHK3(.ORKS,ORKDFN,ORKA(ORKX),ORENT,ORKTMODE)
  ..I ORKMODE="SELECT" D EN^ORKCHK4(.ORKS,ORKDFN,ORKA(ORKX),ORENT,ORKTMODE,.OROIL,.ORIVORDR,.ORDODSG)
- ..I ORKMODE="ACCEPT" D EN^ORKCHK5(.ORKS,ORKDFN,ORKA(ORKX),ORENT,ORKTMODE,.OROIL,.ORDODSG)
+ ..I ORKMODE="ACCEPT"!(ORKMODE="ALLERGY")!(ORKMODE="ALLACC") D EN^ORKCHK5(.ORKS,ORKDFN,ORKA(ORKX),ORENT,ORKTMODE,.OROIL,.ORDODSG)
  ..I ORKMODE="SESSION" D EN^ORKCHK6(.ORKS,ORKDFN,ORKA(ORKX),ORENT,ORKTMODE)
  ;
  ;set messages into sorting array then into ORKY ORKS("ORK",clinical danger level,oi,msg)=ornum^order check ien^clin danger level^message
@@ -138,7 +138,7 @@ CHKRMT ;
  Q:'$$HAVEHDR^ORRDI1
  Q:$$LDPTTVAL^ORRDI2($G(DFN))
  Q:$P($G(^XTMP("ORRDI","PSOO",ORKDFN,0)),U,3)'<0&($P($G(^XTMP("ORRDI","ART",ORKDFN,0)),U,3)'<0)
- I $G(ORKMODE)="ACCEPT" D
+ I $G(ORKMODE)="ACCEPT"!($G(ORKMODE)="ALLACC") D
  . N IFN
  . S IFN=$O(ORKY(""),-1)+1
  . S ORKY(IFN)="^99^2^Remote Order Checking not available - checks done on local data only"

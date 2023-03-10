@@ -1,118 +1,124 @@
-IBDEI1FI ; ; 04-FEB-2020
- ;;3.0;IB ENCOUNTER FORM IMP/EXP;;FEB 04, 2020
+IBDEI1FI ; ; 01-FEB-2022
+ ;;3.0;IB ENCOUNTER FORM IMP/EXP;;FEB 01, 2022
  Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,999) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
- ;;^UTILITY(U,$J,358.3,22868,1,4,0)
- ;;=4^T82.520A
- ;;^UTILITY(U,$J,358.3,22868,2)
- ;;=^5054836
- ;;^UTILITY(U,$J,358.3,22869,0)
- ;;=T82.521A^^105^1166^42
- ;;^UTILITY(U,$J,358.3,22869,1,0)
+ ;;^UTILITY(U,$J,358.3,23112,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,22869,1,3,0)
- ;;=3^Dsplcmnt of Surgically Created AV Shunt,Init Encntr
- ;;^UTILITY(U,$J,358.3,22869,1,4,0)
- ;;=4^T82.521A
- ;;^UTILITY(U,$J,358.3,22869,2)
- ;;=^5054839
- ;;^UTILITY(U,$J,358.3,22870,0)
- ;;=T82.523A^^105^1166^31
- ;;^UTILITY(U,$J,358.3,22870,1,0)
+ ;;^UTILITY(U,$J,358.3,23112,1,3,0)
+ ;;=3^Nonrheumatic aortic valve stenosis
+ ;;^UTILITY(U,$J,358.3,23112,1,4,0)
+ ;;=4^I35.0
+ ;;^UTILITY(U,$J,358.3,23112,2)
+ ;;=^5007174
+ ;;^UTILITY(U,$J,358.3,23113,0)
+ ;;=I35.2^^78^1000^18
+ ;;^UTILITY(U,$J,358.3,23113,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,22870,1,3,0)
- ;;=3^Dsplcmnt of Balloon Device,Init Encntr
- ;;^UTILITY(U,$J,358.3,22870,1,4,0)
- ;;=4^T82.523A
- ;;^UTILITY(U,$J,358.3,22870,2)
- ;;=^5054845
- ;;^UTILITY(U,$J,358.3,22871,0)
- ;;=T82.525A^^105^1166^43
- ;;^UTILITY(U,$J,358.3,22871,1,0)
+ ;;^UTILITY(U,$J,358.3,23113,1,3,0)
+ ;;=3^Nonrheumatic aortic valve stenosis w/ insufficiency
+ ;;^UTILITY(U,$J,358.3,23113,1,4,0)
+ ;;=4^I35.2
+ ;;^UTILITY(U,$J,358.3,23113,2)
+ ;;=^5007176
+ ;;^UTILITY(U,$J,358.3,23114,0)
+ ;;=I42.8^^78^1000^7
+ ;;^UTILITY(U,$J,358.3,23114,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,22871,1,3,0)
- ;;=3^Dsplcmnt of Umbrella Device,Init Encntr
- ;;^UTILITY(U,$J,358.3,22871,1,4,0)
- ;;=4^T82.525A
- ;;^UTILITY(U,$J,358.3,22871,2)
- ;;=^5054851
- ;;^UTILITY(U,$J,358.3,22872,0)
- ;;=T82.529A^^105^1166^34
- ;;^UTILITY(U,$J,358.3,22872,1,0)
+ ;;^UTILITY(U,$J,358.3,23114,1,3,0)
+ ;;=3^Cardiomyopathies, other
+ ;;^UTILITY(U,$J,358.3,23114,1,4,0)
+ ;;=4^I42.8
+ ;;^UTILITY(U,$J,358.3,23114,2)
+ ;;=^5007199
+ ;;^UTILITY(U,$J,358.3,23115,0)
+ ;;=I48.91^^78^1000^3
+ ;;^UTILITY(U,$J,358.3,23115,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,22872,1,3,0)
- ;;=3^Dsplcmnt of Cardiac/Vascular Devices/Implants Unspec,Init Encntr
- ;;^UTILITY(U,$J,358.3,22872,1,4,0)
- ;;=4^T82.529A
- ;;^UTILITY(U,$J,358.3,22872,2)
- ;;=^5054857
- ;;^UTILITY(U,$J,358.3,22873,0)
- ;;=T82.530A^^105^1166^140
- ;;^UTILITY(U,$J,358.3,22873,1,0)
+ ;;^UTILITY(U,$J,358.3,23115,1,3,0)
+ ;;=3^Atrial fibrillation, unspec
+ ;;^UTILITY(U,$J,358.3,23115,1,4,0)
+ ;;=4^I48.91
+ ;;^UTILITY(U,$J,358.3,23115,2)
+ ;;=^5007229
+ ;;^UTILITY(U,$J,358.3,23116,0)
+ ;;=I48.92^^78^1000^4
+ ;;^UTILITY(U,$J,358.3,23116,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,22873,1,3,0)
- ;;=3^Leakage of Surgically Created AV Fistula,Init Encntr
- ;;^UTILITY(U,$J,358.3,22873,1,4,0)
- ;;=4^T82.530A
- ;;^UTILITY(U,$J,358.3,22873,2)
- ;;=^5054860
- ;;^UTILITY(U,$J,358.3,22874,0)
- ;;=T82.531A^^105^1166^141
- ;;^UTILITY(U,$J,358.3,22874,1,0)
+ ;;^UTILITY(U,$J,358.3,23116,1,3,0)
+ ;;=3^Atrial flutter, unspec
+ ;;^UTILITY(U,$J,358.3,23116,1,4,0)
+ ;;=4^I48.92
+ ;;^UTILITY(U,$J,358.3,23116,2)
+ ;;=^5007230
+ ;;^UTILITY(U,$J,358.3,23117,0)
+ ;;=I49.3^^78^1000^23
+ ;;^UTILITY(U,$J,358.3,23117,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,22874,1,3,0)
- ;;=3^Leakage of Surgically Created AV Shunt,Init Encntr
- ;;^UTILITY(U,$J,358.3,22874,1,4,0)
- ;;=4^T82.531A
- ;;^UTILITY(U,$J,358.3,22874,2)
- ;;=^5054863
- ;;^UTILITY(U,$J,358.3,22875,0)
- ;;=T82.533A^^105^1166^136
- ;;^UTILITY(U,$J,358.3,22875,1,0)
+ ;;^UTILITY(U,$J,358.3,23117,1,3,0)
+ ;;=3^Ventricular premature depolarization
+ ;;^UTILITY(U,$J,358.3,23117,1,4,0)
+ ;;=4^I49.3
+ ;;^UTILITY(U,$J,358.3,23117,2)
+ ;;=^5007233
+ ;;^UTILITY(U,$J,358.3,23118,0)
+ ;;=I50.9^^78^1000^6
+ ;;^UTILITY(U,$J,358.3,23118,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,22875,1,3,0)
- ;;=3^Leakage of Balloon Device,Init Encntr
- ;;^UTILITY(U,$J,358.3,22875,1,4,0)
- ;;=4^T82.533A
- ;;^UTILITY(U,$J,358.3,22875,2)
- ;;=^5054869
- ;;^UTILITY(U,$J,358.3,22876,0)
- ;;=T82.535A^^105^1166^142
- ;;^UTILITY(U,$J,358.3,22876,1,0)
+ ;;^UTILITY(U,$J,358.3,23118,1,3,0)
+ ;;=3^CHF,Unspec
+ ;;^UTILITY(U,$J,358.3,23118,1,4,0)
+ ;;=4^I50.9
+ ;;^UTILITY(U,$J,358.3,23118,2)
+ ;;=^5007251
+ ;;^UTILITY(U,$J,358.3,23119,0)
+ ;;=I69.928^^78^1000^22
+ ;;^UTILITY(U,$J,358.3,23119,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,22876,1,3,0)
- ;;=3^Leakage of Umbrella Device,Init Encntr
- ;;^UTILITY(U,$J,358.3,22876,1,4,0)
- ;;=4^T82.535A
- ;;^UTILITY(U,$J,358.3,22876,2)
- ;;=^5054875
- ;;^UTILITY(U,$J,358.3,22877,0)
- ;;=T82.539A^^105^1166^137
- ;;^UTILITY(U,$J,358.3,22877,1,0)
+ ;;^UTILITY(U,$J,358.3,23119,1,3,0)
+ ;;=3^Speech/lang deficits following unsp cerebvasc disease
+ ;;^UTILITY(U,$J,358.3,23119,1,4,0)
+ ;;=4^I69.928
+ ;;^UTILITY(U,$J,358.3,23119,2)
+ ;;=^5007557
+ ;;^UTILITY(U,$J,358.3,23120,0)
+ ;;=I69.910^^78^1000^5
+ ;;^UTILITY(U,$J,358.3,23120,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,22877,1,3,0)
- ;;=3^Leakage of Cardiac/Vascular Device/Implant Unspec,Init Encntr
- ;;^UTILITY(U,$J,358.3,22877,1,4,0)
- ;;=4^T82.539A
- ;;^UTILITY(U,$J,358.3,22877,2)
- ;;=^5054881
- ;;^UTILITY(U,$J,358.3,22878,0)
- ;;=T82.590A^^105^1166^162
- ;;^UTILITY(U,$J,358.3,22878,1,0)
+ ;;^UTILITY(U,$J,358.3,23120,1,3,0)
+ ;;=3^Attention/Concentration Deficit Following Cerebrvasc Disease
+ ;;^UTILITY(U,$J,358.3,23120,1,4,0)
+ ;;=4^I69.910
+ ;;^UTILITY(U,$J,358.3,23120,2)
+ ;;=^5138660
+ ;;^UTILITY(U,$J,358.3,23121,0)
+ ;;=I69.911^^78^1000^15
+ ;;^UTILITY(U,$J,358.3,23121,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,22878,1,3,0)
- ;;=3^Mech Compl of Surgically Created AV Fistula,Init Encntr
- ;;^UTILITY(U,$J,358.3,22878,1,4,0)
- ;;=4^T82.590A
- ;;^UTILITY(U,$J,358.3,22878,2)
- ;;=^5054884
- ;;^UTILITY(U,$J,358.3,22879,0)
- ;;=T82.591A^^105^1166^163
- ;;^UTILITY(U,$J,358.3,22879,1,0)
+ ;;^UTILITY(U,$J,358.3,23121,1,3,0)
+ ;;=3^Memory Deficit Following Cerebvasc Disease
+ ;;^UTILITY(U,$J,358.3,23121,1,4,0)
+ ;;=4^I69.911
+ ;;^UTILITY(U,$J,358.3,23121,2)
+ ;;=^5138661
+ ;;^UTILITY(U,$J,358.3,23122,0)
+ ;;=I69.912^^78^1000^24
+ ;;^UTILITY(U,$J,358.3,23122,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,22879,1,3,0)
- ;;=3^Mech Compl of Surgically Created AV Shunt,Init Encntr
- ;;^UTILITY(U,$J,358.3,22879,1,4,0)
- ;;=4^T82.591A
- ;;^UTILITY(U,$J,358.3,22879,2)
- ;;=^5054887
+ ;;^UTILITY(U,$J,358.3,23122,1,3,0)
+ ;;=3^Visospatial Deficit Following Cerebvasc Disease
+ ;;^UTILITY(U,$J,358.3,23122,1,4,0)
+ ;;=4^I69.912
+ ;;^UTILITY(U,$J,358.3,23122,2)
+ ;;=^5138662
+ ;;^UTILITY(U,$J,358.3,23123,0)
+ ;;=I69.913^^78^1000^21
+ ;;^UTILITY(U,$J,358.3,23123,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,23123,1,3,0)
+ ;;=3^Psychomotor Deficit Following Cerebvasc Disease
+ ;;^UTILITY(U,$J,358.3,23123,1,4,0)
+ ;;=4^I69.913
+ ;;^UTILITY(U,$J,358.3,23123,2)
+ ;;=^5138663
+ ;;^UTILITY(U,$J,358.3,23124,0)
+ ;;=I69.914^^78^1000^11

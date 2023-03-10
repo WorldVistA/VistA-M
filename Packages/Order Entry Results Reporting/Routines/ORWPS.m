@@ -1,10 +1,10 @@
-ORWPS ;SLC/KCM,JLI,REV,CLA - MEDS TAB;12/04/2014  13:06 ;08/31/15  10:47
- ;;3.0;ORDER ENTRY/RESULTS REPORTING;**10,85,116,132,141,173,203,190,195,265,275,243,280,350**;Dec 17, 1997;Build 77
+ORWPS ;SLC/KCM,JLI,REV,CLA - MEDS TAB ;Dec 06, 2021@15:47
+ ;;3.0;ORDER ENTRY/RESULTS REPORTING;**10,85,116,132,141,173,203,190,195,265,275,243,280,350,498,405**;Dec 17, 1997;Build 211
  ;;Per VHA Directive 6402, this routine should not be modified.
 COVER(LST,DFN,FILTER) ; retrieve meds for cover sheet
  S FILTER=$G(FILTER,0)
  K ^TMP("PS",$J)
- D OCL^PSOORRL(DFN,"","")
+ N DRG,ND2P5,RNWDT,SG D OCL^PSOORRL(DFN,"","") ; *498 new'd variables left over after call
  N ILST,ITMP,X,VAIN,VAERR S ILST=0
  D:FILTER INP^VADPT
  S ITMP="" F  S ITMP=$O(^TMP("PS",$J,ITMP)) Q:'ITMP  D
@@ -14,6 +14,11 @@ COVER(LST,DFN,FILTER) ; retrieve meds for cover sheet
  . I $D(^TMP("PS",$J,ITMP,"CLINIC",0)) S LST($$NXT)=$P(X,U,1,2)_U_$P(X,U,8,9)_U_"C"
  . E  S LST($$NXT)=$P(X,U,1,2)_U_$P(X,U,8,9)
  K ^TMP("PS",$J)
+ ; assumes 101.24/ORCV ACTIVE MEDICATIONS/INVERT="" via *498 post-install (OR498P)
+ ; *498 sort order: clinic (A), in/out (B), non-va (C) - KLUNK
+ N TMP S X=0 F  S X=$O(LST(X)) Q:'+X  S TMP($S($P(LST(X),U,5)="C":"A"_X,$P(LST(X),U)["N;O":"C"_X,1:"B"_X))=LST(X) K LST(X)
+ S ILST=0,X="" F  S X=$O(TMP(X)) Q:X=""  S LST($$NXT)=TMP(X) ; put TMP entries back in LST
+ ; *498
  Q
 DT(X) ; -- Returns FM date for X
  N Y,%DT S %DT="T",Y="" D:X'="" ^%DT
@@ -22,35 +27,61 @@ DT(X) ; -- Returns FM date for X
 ACTIVE(LST,DFN,USER,VIEW,UPDATE) ; retrieve active inpatient & outpatient meds
  K ^TMP("PS",$J)
  K ^TMP("ORACT",$J)
- N BEG,DATE,END,ERROR,CTX,STVIEW
- S (BEG,END,CTX)=""
+ N BEG,DATE,END,ERROR,CTX,STVIEW,CTXOUT,CTXIN,BEGIN,ENDIN,BEGOUT,ENDOUT,DATEIN,DATEOUT,ORX
+ S (BEG,END,CTX,CTXOUT,CTXIN,BEGIN,ENDIN,BEGOUT,ENDOUT)=""
  S VIEW=+$G(VIEW)
  S UPDATE=+$G(UPDATE)
  I VIEW=0,UPDATE=0 S VIEW=1
- S CTX=$$GET^XPAR("ALL","ORCH CONTEXT MEDS")
- I CTX=";" D DEL^XPAR("USR.`"_DUZ,"ORCH CONTEXT MEDS")
- S CTX=$$GET^XPAR("ALL","ORCH CONTEXT MEDS")
- S BEG=$$DT($P(CTX,";")),END=$$DT($P(CTX,";",2))
+ S CTX=$$GET^XPAR("ALL","ORCH CONTEXT MEDS")                 ;CTX=Overall date range
+ I CTX=";" D
+ . D DEL^XPAR("USR.`"_DUZ,"ORCH CONTEXT MEDS")
+ . S CTX=$$GET^XPAR("ALL","ORCH CONTEXT MEDS")
+ S CTXIN=$$GET^XPAR("ALL","ORCH CONTEXT MEDS INPAT")         ;CTXIN=Inpatient date range
+ I CTXIN=";" D
+ . D DEL^XPAR("USR.`"_DUZ,"ORCH CONTEXT MEDS INPAT")
+ . S CTXIN=$$GET^XPAR("ALL","ORCH CONTEXT MEDS INPAT")
+ S CTXOUT=$$GET^XPAR("ALL","ORCH CONTEXT MEDS OUTPAT NONVA") ;CTXOUT=Outpatient non-VA date range
+ I CTXOUT=";" D
+ . D DEL^XPAR("USR.`"_DUZ,"ORCH CONTEXT MEDS OUTPAT NONVA")
+ . S CTXOUT=$$GET^XPAR("ALL","ORCH CONTEXT MEDS OUTPAT NONVA")
+ I '$L(CTXIN) S CTXIN=CTX
+ I '$L(CTXOUT) S CTXOUT=CTX
+ S BEG=$$DT($P(CTX,";"))
+ S END=$$DT($P(CTX,";",2))
+ S BEGIN=$$DT($P(CTXIN,";"))
+ S ENDIN=$$DT($P(CTXIN,";",2))
+ S BEGOUT=$$DT($P(CTXOUT,";"))
+ S ENDOUT=$$DT($P(CTXOUT,";",2))
  I +$G(USER)=0 S USER=DUZ
  I UPDATE=1 D
- .S STVIEW=$$GET^XPAR($G(USER)_";VA(200,","OR MEDS TAB SORT",1,"I")
- .I VIEW>0,+STVIEW'=VIEW D PUT^XPAR(DUZ_";VA(200,","OR MEDS TAB SORT",,VIEW,.ERROR) S STVIEW=VIEW
- .I VIEW=0,+STVIEW=0 D PUT^XPAR(DUZ_";VA(200,","OR MEDS TAB SORT",,"1",.ERROR) S STVIEW=1,VIEW=1
- .I VIEW=0,+STVIEW'=VIEW S VIEW=+STVIEW
- .S LST(0)=STVIEW_U
- .S DATE=""
- .I BEG>0,END>0 S DATE=" ("_$$FMTE^XLFDT(BEG,2)_"-"_$$FMTE^XLFDT(END,2)_")"
- .;I +BEG=0!(+END=0) S DATE=" (To set a specific date range go to Tools|Options|Other Parameters)"
- .S LST(0)=LST(0)_DATE
- D OCL^PSOORRL(DFN,BEG,END,VIEW)
- N ITMP,FIELDS,INSTRUCT,COMMENTS,REASON,NVSDT,TYPE,ILST,J S ILST=0
- S ITMP="" F  S ITMP=$O(^TMP("PS",$J,ITMP)) Q:'ITMP  D
+ . S STVIEW=$$GET^XPAR($G(USER)_";VA(200,","OR MEDS TAB SORT",1,"I")
+ . I VIEW>0,+STVIEW'=VIEW D PUT^XPAR(DUZ_";VA(200,","OR MEDS TAB SORT",,VIEW,.ERROR) S STVIEW=VIEW
+ . I VIEW=0,+STVIEW=0 D PUT^XPAR(DUZ_";VA(200,","OR MEDS TAB SORT",,"1",.ERROR) S STVIEW=1,VIEW=1
+ . I VIEW=0,+STVIEW'=VIEW S VIEW=+STVIEW
+ . S LST(0)=STVIEW_U
+ . S (DATE,DATEIN,DATEOUT)=""
+ . I BEG>0,END>0 S DATE=$$FMTE^XLFDT(BEG,1)_" - "_$$FMTE^XLFDT(END,1)_" "
+ . ;I BEGIN>0,ENDIN>0 S DATEIN=$$FMTE^XLFDT(BEGIN,1)_" - "_$$FMTE^XLFDT(ENDIN,1)_" "
+ . ; If BEGIN is not defined, default to T; If ENDOUT is not defined, default to no end date.
+ . S ORX=$S(BEGIN>0:BEGIN,1:$$DT("T"))
+ . I ENDIN>0 S DATEIN=$$FMTE^XLFDT(ORX,1)_" - "_$$FMTE^XLFDT(ENDIN,1)_" "
+ . I ENDIN'>0 S DATEIN=$$FMTE^XLFDT(ORX,1)_" and Later "
+ . ;I BEGOUT>0,ENDOUT>0 S DATEOUT=$$FMTE^XLFDT(BEGOUT,1)_" - "_$$FMTE^XLFDT(ENDOUT,1)_" "
+ . ; If BEGOUT is not defined, default to T-120; If ENDOUT is not defined, default to no end date.
+ . S ORX=$S(BEGOUT>0:BEGOUT,1:$$DT("T-120"))
+ . I ENDOUT>0 S DATEOUT=$$FMTE^XLFDT(ORX,1)_" - "_$$FMTE^XLFDT(ENDOUT,1)_" "
+ . I ENDOUT'>0 S DATEOUT=$$FMTE^XLFDT(ORX,1)_" and Later "
+ . S LST(0)=LST(0)_DATE_U_DATEIN_U_DATEOUT
+ D OCL^PSOORRL(DFN,BEGOUT,ENDOUT,VIEW,BEGIN,ENDIN)
+ N ITMP,FIELDS,INSTRUCT,COMMENTS,REASON,NVSDT,TYPE,ILST,J
+ S ILST=0,ITMP=""
+ F  S ITMP=$O(^TMP("PS",$J,ITMP)) Q:'ITMP  D
  . K INSTRUCT,COMMENTS,REASON
  . K ^TMP("ORACT",$J,"COMMENTS")
  . S COMMENTS="^TMP(""ORACT"",$J,""COMMENTS"")"
  . S (INSTRUCT,@COMMENTS)="",FIELDS=^TMP("PS",$J,ITMP,0)
  . I +$P(FIELDS,"^",8),$D(^OR(100,+$P(FIELDS,"^",8),8,"C","XX")) D
- . . S $P(^TMP("PS",$J,ITMP,0),"^",2)="*"_$P(^TMP("PS",$J,ITMP,0),"^",2) ;dan testing
+ .. S $P(^TMP("PS",$J,ITMP,0),"^",2)="*"_$P(^TMP("PS",$J,ITMP,0),"^",2)
  . S TYPE=$S($P($P(FIELDS,U),";",2)="O":"OP",1:"UD")
  . I $D(^TMP("PS",$J,ITMP,"CLINIC",0)) S TYPE="CP"
  . N LOC,LOCEX S (LOC,LOCEX)=""
@@ -60,7 +91,9 @@ ACTIVE(LST,DFN,USER,VIEW,UPDATE) ; retrieve active inpatient & outpatient meds
  . I $O(^TMP("PS",$J,ITMP,"A",0))>0 S TYPE="IV"
  . I $O(^TMP("PS",$J,ITMP,"B",0))>0 S TYPE="IV"
  . I (TYPE="UD")!(TYPE="CP") D UDINST(.INSTRUCT,ITMP)
- . I TYPE="OP" D OPINST(.INSTRUCT,ITMP)
+ . I TYPE="OP" D
+ . . D OPINST(.INSTRUCT,ITMP)
+ . . D TITR(.INSTRUCT,+$P(FIELDS,"^",8))
  . I TYPE="IV" D IVINST(.INSTRUCT,ITMP)
  . I TYPE="NV" D NVINST(.INSTRUCT,ITMP),NVREASON(.REASON,.NVSDT,ITMP)
  . I (TYPE="UD")!(TYPE="IV")!(TYPE="NV")!(TYPE="CP") D SETMULT(COMMENTS,ITMP,"SIO")
@@ -72,6 +105,7 @@ ACTIVE(LST,DFN,USER,VIEW,UPDATE) ; retrieve active inpatient & outpatient meds
  . S J=0 F  S J=$O(INSTRUCT(J)) Q:'J  S LST($$NXT)=INSTRUCT(J)
  . S J=0 F  S J=$O(COMMENTS(J)) Q:'J  S LST($$NXT)="t"_COMMENTS(J)
  . S J=0 F  S J=$O(REASON(J)) Q:'J  S LST($$NXT)="t"_REASON(J)
+ . S:$D(^TMP("PS",$J,ITMP,"IND")) LST($$NXT)="\Indication: "_^TMP("PS",$J,ITMP,"IND",0)  ;*405-IND
  K ^TMP("PS",$J)
  K ^TMP("ORACT",$J)
  Q
@@ -126,9 +160,9 @@ IVINST(Y,INDEX) ; assembles instructions for an IV order
  I $L(IVDUR) D
  . N DURU,DURV S DURU="",DURV=0
  . I IVDUR["dose" D  Q
- . .S DURV=$P(IVDUR,"doses",2)
- . .S IVDUR="for a total of "_+DURV_$S(+DURV=1:"dose",+DURV>1:" doses",1:" dose")
- . .S @RST@(@RST)=@RST@(@RST)_" "_IVDUR
+ ..S DURV=$P(IVDUR,"doses",2)
+ ..S IVDUR="for a total of "_+DURV_$S(+DURV=1:"dose",+DURV>1:" doses",1:" dose")
+ ..S @RST@(@RST)=@RST@(@RST)_" "_IVDUR
  . S DURU=$E(IVDUR,1),DURV=$E(IVDUR,2,$L(IVDUR))
  . I (DURU="D")!(DURU="d") S IVDUR="for "_+DURV_$S(+DURV=1:" day",+DURV>1:" days",1:" day")
  . I (DURU="H")!(DURU="h") S IVDUR="for "_+DURV_$S(+DURV=1:" hours",+DURV>1:" hours",1:" hour")
@@ -198,14 +232,14 @@ MEDHIST(ORROOT,DFN,ORIFN) ; -- show admin history for a med  (RV)
  ; then use the Orderable item number to get the MAH.
  I (ORPHMID["P")!(ORPHMID="") D  Q
  . I '$L($T(HISTORY^PSBMLHS)) D  Q
- . . S @ORROOT@(0)="This report is only available using BCMA version 2.0."
+ .. S @ORROOT@(0)="This report is only available using BCMA version 2.0."
  . D HISTORY^PSBMLHS(.ORROOT,DFN,ORPSID)  ; DBIA #3459 for BCMA v2.0
  ; If the order has a Display Group of IV MEDICATION the use the Pharmacy order number to get the MA
  I ($P($G(^OR(100,+ORIFN,0)),U,11)=ISIV)!($P($G(^OR(100,+ORIFN,0)),U,11)=HPIV)!($P($G(^OR(100,+ORIFN,0)),U,11)=CLIVDISP) D  Q
  . I 'CKPKG S @ORROOT@(0)="Medication Administration History is not available at this time for IV fluids."
  . I CKPKG D
- . . D RPC^PSBO(.ORROOT,"PM",DFN,"","","","","","","","","",ORPHMID)  ;DBIA #3955
- . . I '$D(@ORROOT) S @ORROOT@(0)="No Medication Administration History found for the IV order."
+ .. D RPC^PSBO(.ORROOT,"PM",DFN,"","","","","","","","","",ORPHMID)  ;DBIA #3955
+ .. I '$D(@ORROOT) S @ORROOT@(0)="No Medication Administration History found for the IV order."
  I '$L($T(HISTORY^PSBMLHS)) D  Q
  . S @ORROOT@(0)="This report is only available using BCMA version 2.0."
  D HISTORY^PSBMLHS(.ORROOT,DFN,ORPSID)  ; DBIA #3459 for BCMA v2.0
@@ -214,4 +248,12 @@ MEDHIST(ORROOT,DFN,ORIFN) ; -- show admin history for a med  (RV)
 REASON(ORY) ; -- Return Non-VA Med Statement/Reasons
  N ORE
  D GETLST^XPAR(.ORY,"ALL","ORWD NONVA REASON","E")
+ Q
+ ;
+TITR(INSTRUCT,ORIFN) ; p405 - Add titration info
+ N ORI
+ I $$ISTITR^ORUTL3(+ORIFN) D
+ . S ORI=$O(INSTRUCT(""),-1)
+ . S ORI=ORI+1
+ . S INSTRUCT(ORI)="\ ** This Rx contains a separate titration and maintenance component to its schedule and instructions **"
  Q

@@ -1,128 +1,122 @@
-IBDEI1L5 ; ; 04-FEB-2020
- ;;3.0;IB ENCOUNTER FORM IMP/EXP;;FEB 04, 2020
+IBDEI1L5 ; ; 01-FEB-2022
+ ;;3.0;IB ENCOUNTER FORM IMP/EXP;;FEB 01, 2022
  Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,999) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
- ;;^UTILITY(U,$J,358.3,25336,2)
- ;;=^5013047
- ;;^UTILITY(U,$J,358.3,25337,0)
- ;;=M70.22^^107^1217^67
- ;;^UTILITY(U,$J,358.3,25337,1,0)
+ ;;^UTILITY(U,$J,358.3,25699,2)
+ ;;=^5003152
+ ;;^UTILITY(U,$J,358.3,25700,0)
+ ;;=F11.282^^92^1173^12
+ ;;^UTILITY(U,$J,358.3,25700,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,25337,1,3,0)
- ;;=3^Olecranon Bursitis,Left Elbow
- ;;^UTILITY(U,$J,358.3,25337,1,4,0)
- ;;=4^M70.22
- ;;^UTILITY(U,$J,358.3,25337,2)
- ;;=^5013048
- ;;^UTILITY(U,$J,358.3,25338,0)
- ;;=M71.161^^107^1217^50
- ;;^UTILITY(U,$J,358.3,25338,1,0)
+ ;;^UTILITY(U,$J,358.3,25700,1,3,0)
+ ;;=3^Opioid Induced Sleep D/O w/ Mod/Sev Use D/O
+ ;;^UTILITY(U,$J,358.3,25700,1,4,0)
+ ;;=4^F11.282
+ ;;^UTILITY(U,$J,358.3,25700,2)
+ ;;=^5003139
+ ;;^UTILITY(U,$J,358.3,25701,0)
+ ;;=F11.982^^92^1173^13
+ ;;^UTILITY(U,$J,358.3,25701,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,25338,1,3,0)
- ;;=3^Infective Bursitis,Right Knee
- ;;^UTILITY(U,$J,358.3,25338,1,4,0)
- ;;=4^M71.161
- ;;^UTILITY(U,$J,358.3,25338,2)
- ;;=^5013139
- ;;^UTILITY(U,$J,358.3,25339,0)
- ;;=M71.162^^107^1217^49
- ;;^UTILITY(U,$J,358.3,25339,1,0)
+ ;;^UTILITY(U,$J,358.3,25701,1,3,0)
+ ;;=3^Opioid Induced Sleep D/O w/o Use D/O
+ ;;^UTILITY(U,$J,358.3,25701,1,4,0)
+ ;;=4^F11.982
+ ;;^UTILITY(U,$J,358.3,25701,2)
+ ;;=^5003153
+ ;;^UTILITY(U,$J,358.3,25702,0)
+ ;;=F11.121^^92^1173^14
+ ;;^UTILITY(U,$J,358.3,25702,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,25339,1,3,0)
- ;;=3^Infective Bursitis,Left Knee
- ;;^UTILITY(U,$J,358.3,25339,1,4,0)
- ;;=4^M71.162
- ;;^UTILITY(U,$J,358.3,25339,2)
- ;;=^5013140
- ;;^UTILITY(U,$J,358.3,25340,0)
- ;;=M72.0^^107^1217^122
- ;;^UTILITY(U,$J,358.3,25340,1,0)
+ ;;^UTILITY(U,$J,358.3,25702,1,3,0)
+ ;;=3^Opioid Intox Delirium w/ Mild Use D/O
+ ;;^UTILITY(U,$J,358.3,25702,1,4,0)
+ ;;=4^F11.121
+ ;;^UTILITY(U,$J,358.3,25702,2)
+ ;;=^5003116
+ ;;^UTILITY(U,$J,358.3,25703,0)
+ ;;=F11.221^^92^1173^15
+ ;;^UTILITY(U,$J,358.3,25703,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,25340,1,3,0)
- ;;=3^Palmar Fascial Fibromatosis
- ;;^UTILITY(U,$J,358.3,25340,1,4,0)
- ;;=4^M72.0
- ;;^UTILITY(U,$J,358.3,25340,2)
- ;;=^5013233
- ;;^UTILITY(U,$J,358.3,25341,0)
- ;;=M75.111^^107^1217^167
- ;;^UTILITY(U,$J,358.3,25341,1,0)
+ ;;^UTILITY(U,$J,358.3,25703,1,3,0)
+ ;;=3^Opioid Intox Delirium w/ Mod/Sev Use D/O
+ ;;^UTILITY(U,$J,358.3,25703,1,4,0)
+ ;;=4^F11.221
+ ;;^UTILITY(U,$J,358.3,25703,2)
+ ;;=^5003130
+ ;;^UTILITY(U,$J,358.3,25704,0)
+ ;;=F11.229^^92^1173^20
+ ;;^UTILITY(U,$J,358.3,25704,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,25341,1,3,0)
- ;;=3^Rotator Cuff Syndrome,Right Shoulder
- ;;^UTILITY(U,$J,358.3,25341,1,4,0)
- ;;=4^M75.111
- ;;^UTILITY(U,$J,358.3,25341,2)
- ;;=^5013245
- ;;^UTILITY(U,$J,358.3,25342,0)
- ;;=M75.112^^107^1217^166
- ;;^UTILITY(U,$J,358.3,25342,1,0)
+ ;;^UTILITY(U,$J,358.3,25704,1,3,0)
+ ;;=3^Opioid Intox w/o Percep Disturb w/ Mod/Sev Use D/O
+ ;;^UTILITY(U,$J,358.3,25704,1,4,0)
+ ;;=4^F11.229
+ ;;^UTILITY(U,$J,358.3,25704,2)
+ ;;=^5003132
+ ;;^UTILITY(U,$J,358.3,25705,0)
+ ;;=F11.929^^92^1173^21
+ ;;^UTILITY(U,$J,358.3,25705,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,25342,1,3,0)
- ;;=3^Rotator Cuff Syndrome,Left Shoulder
- ;;^UTILITY(U,$J,358.3,25342,1,4,0)
- ;;=4^M75.112
- ;;^UTILITY(U,$J,358.3,25342,2)
- ;;=^5013246
- ;;^UTILITY(U,$J,358.3,25343,0)
- ;;=M75.51^^107^1217^10
- ;;^UTILITY(U,$J,358.3,25343,1,0)
+ ;;^UTILITY(U,$J,358.3,25705,1,3,0)
+ ;;=3^Opioid Intox w/o Percep Disturb w/o Use D/O
+ ;;^UTILITY(U,$J,358.3,25705,1,4,0)
+ ;;=4^F11.929
+ ;;^UTILITY(U,$J,358.3,25705,2)
+ ;;=^5003146
+ ;;^UTILITY(U,$J,358.3,25706,0)
+ ;;=F11.122^^92^1173^17
+ ;;^UTILITY(U,$J,358.3,25706,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,25343,1,3,0)
- ;;=3^Bursitis of Right Shoulder
- ;;^UTILITY(U,$J,358.3,25343,1,4,0)
- ;;=4^M75.51
- ;;^UTILITY(U,$J,358.3,25343,2)
- ;;=^5133690
- ;;^UTILITY(U,$J,358.3,25344,0)
- ;;=M75.52^^107^1217^9
- ;;^UTILITY(U,$J,358.3,25344,1,0)
+ ;;^UTILITY(U,$J,358.3,25706,1,3,0)
+ ;;=3^Opioid Intox w/ Percep Disturb w/ Mild Use D/O
+ ;;^UTILITY(U,$J,358.3,25706,1,4,0)
+ ;;=4^F11.122
+ ;;^UTILITY(U,$J,358.3,25706,2)
+ ;;=^5003117
+ ;;^UTILITY(U,$J,358.3,25707,0)
+ ;;=F11.222^^92^1173^18
+ ;;^UTILITY(U,$J,358.3,25707,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,25344,1,3,0)
- ;;=3^Bursitis of Left Shoulder
- ;;^UTILITY(U,$J,358.3,25344,1,4,0)
- ;;=4^M75.52
- ;;^UTILITY(U,$J,358.3,25344,2)
- ;;=^5133691
- ;;^UTILITY(U,$J,358.3,25345,0)
- ;;=M77.11^^107^1217^58
- ;;^UTILITY(U,$J,358.3,25345,1,0)
+ ;;^UTILITY(U,$J,358.3,25707,1,3,0)
+ ;;=3^Opioid Intox w/ Percep Disturb w/ Mod/Sev Use D/O
+ ;;^UTILITY(U,$J,358.3,25707,1,4,0)
+ ;;=4^F11.222
+ ;;^UTILITY(U,$J,358.3,25707,2)
+ ;;=^5003131
+ ;;^UTILITY(U,$J,358.3,25708,0)
+ ;;=F11.922^^92^1173^19
+ ;;^UTILITY(U,$J,358.3,25708,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,25345,1,3,0)
- ;;=3^Lateral Epicondylitis,Right Elbow
- ;;^UTILITY(U,$J,358.3,25345,1,4,0)
- ;;=4^M77.11
- ;;^UTILITY(U,$J,358.3,25345,2)
- ;;=^5013304
- ;;^UTILITY(U,$J,358.3,25346,0)
- ;;=M77.12^^107^1217^57
- ;;^UTILITY(U,$J,358.3,25346,1,0)
+ ;;^UTILITY(U,$J,358.3,25708,1,3,0)
+ ;;=3^Opioid Intox w/ Percep Disturb w/o Use D/O
+ ;;^UTILITY(U,$J,358.3,25708,1,4,0)
+ ;;=4^F11.922
+ ;;^UTILITY(U,$J,358.3,25708,2)
+ ;;=^5003145
+ ;;^UTILITY(U,$J,358.3,25709,0)
+ ;;=F11.99^^92^1173^23
+ ;;^UTILITY(U,$J,358.3,25709,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,25346,1,3,0)
- ;;=3^Lateral Epicondylitis,Left Elbow
- ;;^UTILITY(U,$J,358.3,25346,1,4,0)
- ;;=4^M77.12
- ;;^UTILITY(U,$J,358.3,25346,2)
- ;;=^5013305
- ;;^UTILITY(U,$J,358.3,25347,0)
- ;;=M79.7^^107^1217^40
- ;;^UTILITY(U,$J,358.3,25347,1,0)
+ ;;^UTILITY(U,$J,358.3,25709,1,3,0)
+ ;;=3^Opioid Related D/O,Unspec
+ ;;^UTILITY(U,$J,358.3,25709,1,4,0)
+ ;;=4^F11.99
+ ;;^UTILITY(U,$J,358.3,25709,2)
+ ;;=^5133352
+ ;;^UTILITY(U,$J,358.3,25710,0)
+ ;;=F11.21^^92^1173^27
+ ;;^UTILITY(U,$J,358.3,25710,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,25347,1,3,0)
- ;;=3^Fibromyalgia
- ;;^UTILITY(U,$J,358.3,25347,1,4,0)
- ;;=4^M79.7
- ;;^UTILITY(U,$J,358.3,25347,2)
- ;;=^46261
- ;;^UTILITY(U,$J,358.3,25348,0)
- ;;=M80.08XA^^107^1217^1
- ;;^UTILITY(U,$J,358.3,25348,1,0)
+ ;;^UTILITY(U,$J,358.3,25710,1,3,0)
+ ;;=3^Opioid Use DO,Mod/Sev,In Remiss
+ ;;^UTILITY(U,$J,358.3,25710,1,4,0)
+ ;;=4^F11.21
+ ;;^UTILITY(U,$J,358.3,25710,2)
+ ;;=^5003128
+ ;;^UTILITY(U,$J,358.3,25711,0)
+ ;;=Z79.891^^92^1173^1
+ ;;^UTILITY(U,$J,358.3,25711,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,25348,1,3,0)
- ;;=3^Age-Related Osteoporosis w/ Vertebra Fx,Init Encntr
- ;;^UTILITY(U,$J,358.3,25348,1,4,0)
- ;;=4^M80.08XA
- ;;^UTILITY(U,$J,358.3,25348,2)
- ;;=^5013495
- ;;^UTILITY(U,$J,358.3,25349,0)
- ;;=M80.08XD^^107^1217^2
+ ;;^UTILITY(U,$J,358.3,25711,1,3,0)
+ ;;=3^Long Term Opiate/Opioid Analgesic Use

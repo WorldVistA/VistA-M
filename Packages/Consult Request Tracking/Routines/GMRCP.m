@@ -1,5 +1,5 @@
-GMRCP ;SLC/DLT,DCM - Message audit and status process ;08/29/17  09:09
- ;;3.0;CONSULT/REQUEST TRACKING;**1,4,17,22,27,53,55,46,91**;DEC 27, 1997;Build 4
+GMRCP ;SLC/DLT,DCM - Message audit and status process ;Nov 09, 2020@08:52:15
+ ;;3.0;CONSULT/REQUEST TRACKING;**1,4,17,22,27,53,55,46,91,84**;DEC 27, 1997;Build 27
  ;Processing action on Generic Requests/Consults from OE/RR
 MSG(GMRCDFN,GMRCALRM,GMRCIFN,ORN,GMRCADUZ,FLG,GMRCFORC) ;send alert notification information to OERR for notification or update
  ;GMRCDFN=patient's DFN           GMRCORFN=OR file # ^OR(100,GMRCORFN
@@ -20,6 +20,8 @@ MSG(GMRCDFN,GMRCALRM,GMRCIFN,ORN,GMRCADUZ,FLG,GMRCFORC) ;send alert notification
  I FLG,$P(^GMR(123,+GMRCIFN,0),"^",11) S GMRCADUZ($P(^(0),"^",11))=""
  S:'$D(GMRCADUZ) GMRCADUZ=""
  S:'$D(GMRCFORC) GMRCFORC=""
+ I $G(^GMR(123.5,GMRCSS,"INT"))=1 D  ;set ORN to prosthetics alert, if necessary
+ . S:$G(ORN)=63 ORN=89
  ;N X S X="" F  S X=$O(GMRCADUZ(X)) Q:(X="")  I +X=DUZ,X'=DUZ K GMRCADUZ(X) ;Don't send alert to user generating alert
  K GMRCADUZ(DUZ) ;Don't send alert to user generating alert
  D EN^ORB3(ORN,GMRCDFN,GMRCORFN,.GMRCADUZ,GMRCALRM,GMRCIFN,.GMRCFORC)

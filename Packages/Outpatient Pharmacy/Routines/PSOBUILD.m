@@ -1,10 +1,13 @@
 PSOBUILD ;IHS/DSD/JCM - BUILD ARRAY OF PATIENTS CURRENT MEDS  [ 07/15/96  5:25 PM ] ;6/21/07 8:20am
- ;;7.0;OUTPATIENT PHARMACY;**23,82,119,132,235,206,251**;DEC 1997;Build 202
+ ;;7.0;OUTPATIENT PHARMACY;**23,82,119,132,235,206,251,441**;DEC 1997;Build 208
  ;External reference ^PS(50.606 supported by DBIA 2174
  ;External reference ^PS(50.7 supported by DBIA 2223
  ;External reference ^PS(55 supported by DBIA 2228
  ;External reference ^PSDRUG( supported by DBIA 221
  ; Input variables: PSODFN,DT,PSODTCUT
+ ;
+ ;Add Complex Orders to NVA Meds
+ ;
 START N ORD K PSOSD I '$D(PSODFN)!('$D(DT)) G END
  D EOJ,INIT G:PSOQFLG END D BUILD
  S STA="ACTIVE^NON-VERIFIED^REFILL^HOLD^NON-VERIFIED^ACTIVE^^^^^^ACTIVE^DISCONTINUED^^DISCONTINUED^DISCONTINUED^HOLD"
@@ -19,15 +22,41 @@ START N ORD K PSOSD I '$D(PSODFN)!('$D(DT)) G END
  .I $D(PSOSD("PENDING",DRG)) S DRG=DRG_"^"_PEN
  .S PSOSD("PENDING",DRG)="*****^17^Z^Z^"_$S(PSODD:$P(^PSDRUG(PSODD,0),"^",2),1:"")_"^"_$P(^PS(52.41,PEN,0),"^",11)_"^"_$S($G(^PSDRUG(PSODD,"ND"))]"":+^("ND")_"A"_$P(^("ND"),"^",3),1:"")
  .S PSOSD("PENDING",DRG)=PSOSD("PENDING",DRG)_"^"_$P(ORD,"^",10)_"^"_$P(ORD,"^",6)_"^"_PEN_"^"_$S($G(PSODD):$G(PSODD),1:""),PSOSD=+$G(PSOSD)+1 K PSOOI,PSODD
- F NVA=0:0 S NVA=$O(^PS(55,PSODFN,"NVA",NVA)) Q:'NVA  S NON=^PS(55,PSODFN,"NVA",NVA,0) D:'$P(^PS(55,PSODFN,"NVA",NVA,0),"^",7)
- .S PSODD=$P(NON,"^",2),PSOOI=$P(NON,"^")
- .S DRG=$S(PSODD:$P($G(^PSDRUG(PSODD,0)),"^"),+PSOOI&('PSODD):$P(^PS(50.7,+PSOOI,0),"^")_" "_$P(^PS(50.606,$P(^PS(50.7,+PSOOI,0),"^",2),0),"^"),1:"")
- .I $D(PSOSD("ZNONVA",DRG)) S DRG=DRG_"^"_NVA
- .S PSOSD("ZNONVA",DRG)="****^9^Z^Z^"_$S($P(NON,"^",2):$P(^PSDRUG($P(NON,"^",2),0),"^",2),1:"")_"^"_$P(NON,"^",3)_"^^"_$P(NON,"^",5)_"^"_$P(NON,"^",10)_"^"_NVA_"^"_$P(NON,"^",2)
- .I $P(NON,"^",2) S $P(PSOSD("ZNONVA",DRG),"^",7)=$S($G(^PSDRUG(PSODD,"ND"))]"":+^("ND")_"A"_$P(^("ND"),"^",3),1:"")
- .S PSOSD=+$G(PSOSD)+1
+ ;***    Complex NVA Order Modifications    ***
+ N DD,DDX,DOSE,SCHD,MEDR,DURA,CONJ,COMPLEX
+ F NVA=0:0 S NVA=$O(^PS(55,PSODFN,"NVA",NVA)) Q:'NVA  S NON=^PS(55,PSODFN,"NVA",NVA,0) D:'$P(^PS(55,PSODFN,"NVA",NVA,0),"^",7)   ;DO if not DC'd date
+ .I $O(^PS(55,PSODFN,"NVA",NVA,3,0)) D NVANEW Q
+ .D NVAOLD
 END D EOJ
  Q
+ ;
+NVANEW ;New Complex NVA order multiple file format logic
+ ;loop thru DD multiple and create separate array entries for each item (in case contain a complex order)
+ F DD=0:0 S DD=$O(^PS(55,PSODFN,"NVA",NVA,3,DD)) Q:'DD  D
+ .S DDX=DD_","_NVA_","_PSODFN
+ .S DOSE=$$GET1^DIQ(55.516,DDX,"DOSAGE","I")
+ .S SCHD=$$GET1^DIQ(55.516,DDX,"SCHEDULE","I")
+ .S MEDR=$$GET1^DIQ(55.516,DDX,"MEDICATION ROUTE","I")
+ .S DURA=$$GET1^DIQ(55.516,DDX,"DURATION","I")
+ .S CONJ=$$GET1^DIQ(55.516,DDX,"CONJUNCTION")
+ .S PSODD=$P(NON,"^",2),PSOOI=$P(NON,"^")
+ .S DRG=$S(PSODD:$P($G(^PSDRUG(PSODD,0)),"^"),+PSOOI&('PSODD):$P(^PS(50.7,+PSOOI,0),"^")_" "_$P(^PS(50.606,$P(^PS(50.7,+PSOOI,0),"^",2),0),"^"),1:"")
+ .I $D(PSOSD("ZNONVA",DRG)) S DRG=DRG_"^"_NVA_"^"_DD
+ .S PSOSD("ZNONVA",DRG)="****^9^Z^Z^"_$S(PSODD:$P(^PSDRUG(PSODD,0),"^",2),1:"")_"^"_DOSE_"^^"_SCHD_"^"_$P(NON,"^",10)_"^"_NVA_"^"_PSODD_"^"_DURA_"^"_CONJ   ;append new pieces 12 & 13
+ .I PSODD S $P(PSOSD("ZNONVA",DRG),"^",7)=$S($G(^PSDRUG(PSODD,"ND"))]"":+^("ND")_"A"_$P(^("ND"),"^",3),1:"")
+ .S PSOSD=+$G(PSOSD)+1
+ Q
+ ;
+NVAOLD ;NVA Backwards compatible for old NON-VA file DD, pre-complex order SIG multiple file setup 
+ ;   (after 441. By attrition, all records will eventually have the new complex order mult. file format)
+ S PSODD=$P(NON,"^",2),PSOOI=$P(NON,"^")
+ S DRG=$S(PSODD:$P($G(^PSDRUG(PSODD,0)),"^"),+PSOOI&('PSODD):$P(^PS(50.7,+PSOOI,0),"^")_" "_$P(^PS(50.606,$P(^PS(50.7,+PSOOI,0),"^",2),0),"^"),1:"")
+ I $D(PSOSD("ZNONVA",DRG)) S DRG=DRG_U_NVA    ;build unique nva drug name subscript when same drug
+ S PSOSD("ZNONVA",DRG)="****^9^Z^Z^"_$S($P(NON,"^",2):$P(^PSDRUG($P(NON,"^",2),0),"^",2),1:"")_"^"_$P(NON,"^",3)_"^^"_$P(NON,"^",5)_"^"_$P(NON,"^",10)_"^"_NVA_"^"_$P(NON,"^",2)
+ I $P(NON,"^",2) S $P(PSOSD("ZNONVA",DRG),"^",7)=$S($G(^PSDRUG(PSODD,"ND"))]"":+^("ND")_"A"_$P(^("ND"),"^",3),1:"")
+ S PSOSD=+$G(PSOSD)+1
+ Q
+ ;
 INIT ;
  K PSOSD,PSOMED S PSOQFLG=0,U="^",PSOBUILD("COUNT")=0 G:$D(PSODTCUT) INITX
  I '$D(^PS(53,"B","OUTPATIENT")) S PSOQFLG=1 G INITX

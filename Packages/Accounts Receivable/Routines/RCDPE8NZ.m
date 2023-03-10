@@ -1,11 +1,12 @@
 RCDPE8NZ ;ALB/TMK/KML/hrubovcak - Unapplied EFT Deposits report ;Jun 06, 2014@19:11:19
- ;;4.5;Accounts Receivable;**173,212,208,269,276,283,293,298,317,318,326**;Mar 20, 1995;Build 26
+ ;;4.5;Accounts Receivable;**173,212,208,269,276,283,293,298,317,318,326,375,371**;Mar 20, 1995;Build 29
  ;Per VA Directive 6402, this routine should not be modified.
  ;
 EN ; entry point for Unapplied EFT Deposits Report [RCDPE UNAPPLIED EFT DEP REPORT]
  ; ^RCY(344.3,0) = EDI LOCKBOX DEPOSIT^344.3I^
  ;
- N %ZIS,DIR,RCDISPTY,RCDTRNG,RCENDT,RCHDR,RCLNCNT,RCLSTMGR,RCPGNUM,RCRPLST,RCSTDT,RCTMPND,RCTYPE,X,Y
+ N %ZIS,DIR,RCDET,RCDISPTY,RCDTRNG,RCENDT,RCHDR,RCLNCNT,RCLSTMGR,RCPGNUM,RCRPLST,RCSTDT,RCTMPND,RCTYPE,RPTQ,X,Y
+ ; RCDET - detail report or grand totals only
  ; RCDISPTY - display type for Excel
  ; RCDTRNG - range of dates
  ; RCHDR - report header
@@ -18,24 +19,28 @@ EN ; entry point for Unapplied EFT Deposits Report [RCDPE UNAPPLIED EFT DEP REPO
  ;
  S RCRPLST=$T(+0)_"_EFT"  ; storage for list of entries
  S RCLNCNT=0,RCLSTMGR="",RCTMPND=""  ; initial values for ListMan
- S RCTYPE=$$RTYPE^RCDPEU1("A") G:(RCTYPE=-1) RPTQ ; PRCA*4.5*326 - Add M/P/T filter
- S RCDTRNG=$$DTRNG^RCDPEM4() G:'(RCDTRNG>0) RPTQ
- S RCSTDT=$P(RCDTRNG,U,2),RCENDT=$P(RCDTRNG,U,3)
- ; ask if export to excel
- S RCDISPTY=$$DISPTY^RCDPEM3() G:RCDISPTY<0 RPTQ
- ; for Excel, set ListMan flag to prevent question
- I RCDISPTY S RCLSTMGR="^" D INFO^RCDPEM6
- I RCLSTMGR="" S RCLSTMGR=$$ASKLM^RCDPEARL G:RCLSTMGR<0 RPTQ
- I RCLSTMGR D  G RPTQ  ; send output to ListMan
- .S RCTMPND=$T(+0)_"^UNAPPLIED EFT" K ^TMP($J,RCTMPND)  ; clean any residue
- .D MKRPRT
- .N H,L,HDR S L=0
- .S HDR("TITLE")=$$HDRNM
- .F H=1:1:7 I $D(RCHDR(H)) S L=H,HDR(H)=RCHDR(H)  ; take first 3 lines of report header
- .I $O(RCHDR(L)) D  ; any remaining header lines at top of report
- ..N N S N=0,H=L F  S H=$O(RCHDR(H)) Q:'H  S N=N+.001,^TMP($J,RCTMPND,N)=RCHDR(H)
- .; invoke ListMan
- .D LMRPT^RCDPEARL(.HDR,$NA(^TMP($J,RCTMPND))) ; generate ListMan display
+ S RCDET=$$RDET("D") G:(RCDET=-1) RPTQ ; PRCA*4.5*371 - Prompt for detail report or grand total only
+ S RCTYPE="A",(RCDTRNG,RCSTDT,RCENDT,RCDISPTY,RCLSTMGR)="",RPTQ=0 ; PRCA*4.5*371 - Make sure these don't crash grand totals report
+ ;PRCA*4.5*371 - Change G RPTQ commands to setting a quit variable, because GOTO in a DO block apparently doesn't actually GOTO
+ I RCDET'="G" D  G:RPTQ RPTQ  ;PRCA*4.5*371 - Don't prompt for any other options if grand total only selected
+ .S RCTYPE=$$RTYPE^RCDPEU1("A") I (RCTYPE=-1) S RPTQ=1 Q  ; PRCA*4.5*326 - Add M/P/T filter
+ .S RCDTRNG=$$DTRNG^RCDPEM4() I '(RCDTRNG>0) S RPTQ=1 Q
+ .S RCSTDT=$P(RCDTRNG,U,2),RCENDT=$P(RCDTRNG,U,3)
+ .; ask if export to excel
+ .S RCDISPTY=$$DISPTY^RCDPEM3() I RCDISPTY<0 S RPTQ=1 Q
+ .; for Excel, set ListMan flag to prevent question
+ .I RCDISPTY S RCLSTMGR="^" D INFO^RCDPEM6
+ .I RCLSTMGR="" S RCLSTMGR=$$ASKLM^RCDPEARL I RCLSTMGR<0 S RPTQ=1 Q
+ .I RCLSTMGR D  S RPTQ=1 Q  ; send output to ListMan
+ ..S RCTMPND=$T(+0)_"^UNAPPLIED EFT" K ^TMP($J,RCTMPND)  ; clean any residue
+ ..D MKRPRT
+ ..N H,L,HDR S L=0
+ ..S HDR("TITLE")=$$HDRNM
+ ..F H=1:1:7 I $D(RCHDR(H)) S L=H,HDR(H)=RCHDR(H)  ; take first 3 lines of report header
+ ..I $O(RCHDR(L)) D  ; any remaining header lines at top of report
+ ...N N S N=0,H=L F  S H=$O(RCHDR(H)) Q:'H  S N=N+.001,^TMP($J,RCTMPND,N)=RCHDR(H)
+ ..; invoke ListMan
+ ..D LMRPT^RCDPEARL(.HDR,$NA(^TMP($J,RCTMPND))) ; generate ListMan display
  ;
  ; Ask device
  S %ZIS="QM" D ^%ZIS Q:POP
@@ -62,11 +67,12 @@ MKRPRT ; Entry point for queued job
  S (RCTSKCNT,RCSTOP,RCSUM,RCUNAP)=0
  S RCARDEP="" F  S RCARDEP=$O(^RCY(344.3,"ARDEP",RCARDEP)) Q:RCARDEP=""!RCSTOP  S RCDA=0 F  S RCDA=$O(^RCY(344.3,"ARDEP",RCARDEP,RCDA)) Q:'RCDA  D  Q:RCSTOP
  . S RCDATA=$G(^RCY(344.3,RCDA,0)),RCDT=$P(RCDATA,U,7),RCTOT=0
- . Q:RCDT<RCSTDT  ; Before start date
- . Q:RCDT>(RCENDT+.999999)  ; After the end date
+ . Q:+RCSTDT&(RCDT<RCSTDT)  ; Before start date
+ . Q:+RCENDT&(RCDT>(RCENDT+.999999))  ; After the end date
  . Q:'$P(RCDATA,"^",8)  ; no payment amt
  . S RCEFT=0 F  S RCEFT=$O(^RCY(344.31,"B",RCDA,RCEFT)) Q:'RCEFT!RCSTOP  S RCDATA(0)=$G(^RCY(344.31,RCEFT,0)) D  Q:RCSTOP
  . . I '$$ISTYPE^RCDPEU1(344.31,RCEFT,RCTYPE) Q  ;PRCA*4.5*326
+ . . Q:$P($G(^RCY(344.31,RCEFT,0)),U,16)="D"  ; PRCA*4.5*375 - Do not show Debit EFTs because there's nothing to apply
  . . S RCTSKCNT=RCTSKCNT+1
  . . I '(RCTSKCNT#100),$D(ZTQUEUED),$$S^%ZTLOAD S (RCSTOP,ZTSTOP)=1 K ZTREQ Q
  . . Q:$P($G(^RCY(344.31,RCEFT,3)),U)        ; EFT has been removed   PRCA*4.5*293
@@ -93,6 +99,7 @@ RPT ;  display/print the report using data populated in temporary global array
  N RCPAYID,RCPAYER,XX,YY,ZZ   ;PRCA*4.5*318
  ;
  D:'RCLSTMGR HDRLST^RCDPEARL(.RCSTOP,.RCHDR)  ; initial report header
+ G:RCDET="G" RPTQ  ; PRCA*4.5*371 - Quit here if grand totals only report
  ;
  S RCDT=0
  F  S RCDT=$O(^TMP(RCRPLST,$J,RCDT)) Q:'RCDT  D  Q:RCSTOP
@@ -148,9 +155,8 @@ RPT ;  display/print the report using data populated in temporary global array
  D:'$D(ZTQUEUED) ^%ZISC
  G:RCSTOP RPTQ
  ;
- I 'RCLSTMGR,'RCSTOP,$E(IOST,1,2)="C-" D ASK^RCDPEARL(.RCSTOP)
- ;
 RPTQ ;
+ I '$G(RCLSTMGR),'$G(RCSTOP),$E(IOST,1,2)="C-" D ASK^RCDPEARL(.RCSTOP)
  K ^TMP(RCRPLST,$J)
  Q
  ;
@@ -193,22 +199,26 @@ HDRBLD ; create the report header
  ;
  S Y=$$HDRNM,HCNT=1,RCHDR(HCNT)=$J("",80-$L(Y)\2)_Y  ; line 1 will be replaced by XECUTE code below
  S RCHDR("XECUTE")="N Y S RCPGNUM=RCPGNUM+1,Y=$$HDRNM^"_$T(+0)_"_$S(RCLSTMGR:"""",1:$J(""Page: ""_RCPGNUM,12)),RCHDR(1)=$J("" "",80-$L(Y)\2)_Y"
- S Y="Run Date: "_RCHDR("RUNDATE")_"                 MEDICAL/PHARMACY/TRICARE: "   ; PRCA*4.5*326
- S Y=Y_$S(RCTYPE="M":"MEDICAL",RCTYPE="P":"PHARMACY",RCTYPE="T":"TRICARE",1:"ALL") ; PRCA*4.5*326
+ S Y="Run Date: "_RCHDR("RUNDATE")
+ I RCDET'="G" D  ; PRCA*4.5*371 - Don't display MPT information in Grand Totals report
+ . S Y=Y_"                 MEDICAL/PHARMACY/TRICARE: "   ; PRCA*4.5*326
+ . S Y=Y_$S(RCTYPE="M":"MEDICAL",RCTYPE="P":"PHARMACY",RCTYPE="T":"TRICARE",1:"ALL") ; PRCA*4.5*326
  S HCNT=HCNT+1,RCHDR(HCNT)=$J("",80-$L(Y)\2)_Y
  ;
- S Y="Date Range: "_$$FMTE^XLFDT(RCSTDT,2)_" - "_$$FMTE^XLFDT(RCENDT,2)_" (Deposit Date)",Y=$J("",80-$L(Y)\2)_Y
+ S:RCDET="G" Y="GRAND TOTAL",Y=$J("",80-$L(Y)\2)_Y ; PRCA*4.5*371 - Grand Totals report
+ S:RCDET'="G" Y="Date Range: "_$$FMTE^XLFDT(RCSTDT,2)_" - "_$$FMTE^XLFDT(RCENDT,2)_" (Deposit Date)",Y=$J("",80-$L(Y)\2)_Y
  S HCNT=HCNT+1,RCHDR(HCNT)=Y
  S Y="TOTAL NUMBER OF UNAPPLIED DEPOSITS: "_RCUNAP,HCNT=HCNT+1,RCHDR(HCNT)=$J("",80-$L(Y)\2)_Y
  S Y="TOTAL AMOUNT OF UNAPPLIED DEPOSITS: $"_$FN(RCSUM,",",2),HCNT=HCNT+1,RCHDR(HCNT)=$J("",80-$L(Y)\2)_Y
  S HCNT=HCNT+1,RCHDR(HCNT)=""
  ;
- ; PRCA*4.5*317 Shift each line 2 chars to the right
- S HCNT=HCNT+1,RCHDR(HCNT)="  DEPOSIT #      DEPOSIT DATE      TOT AMT OF DEPOSIT    TOT AMT UNPOSTED"
- S HCNT=HCNT+1,RCHDR(HCNT)="   PAYER/ID"
- S HCNT=HCNT+1,RCHDR(HCNT)=$J("",4)_"TRACE #"_$J("",44)_"PAYMENT AMT  RECEIPT #"
- S HCNT=HCNT+1,RCHDR(HCNT)=$J("",6)_$E("ERA MATCHED"_$J("",40),1,40)_"  FMS DOC #/STATUS"
- ; PRCA*4.5*317 End
+ I RCDET'="G" D  ; PRCA*4.5*371 - Don't display details on grand total report
+ .; PRCA*4.5*317 Shift each line 2 chars to the right
+ .S HCNT=HCNT+1,RCHDR(HCNT)="  DEPOSIT #      DEPOSIT DATE      TOT AMT OF DEPOSIT    TOT AMT UNPOSTED"
+ .S HCNT=HCNT+1,RCHDR(HCNT)="   PAYER/ID"
+ .S HCNT=HCNT+1,RCHDR(HCNT)=$J("",4)_"TRACE #"_$J("",44)_"PAYMENT AMT  RECEIPT #"
+ .S HCNT=HCNT+1,RCHDR(HCNT)=$J("",6)_$E("ERA MATCHED"_$J("",40),1,40)_"  FMS DOC #/STATUS"
+ .; PRCA*4.5*317 End
  S Y="",$P(Y,"=",81)="",HCNT=HCNT+1,RCHDR(HCNT)=Y  ; row of equal signs at bottom
  ;
  S RCHDR(0)=HCNT  ; header line count
@@ -259,4 +269,23 @@ EXCEL ; Print report formatted for export to Excel
  ...W $S($P(RCDATA,U)=-1:"NO RECEIPT",$P(RCDATA,U)=-2:"NO FMS DOCUMENT",1:$P(RCDATA,U,2)_" - "_$P(RCDATA,U,3))
  ...W !
  Q
+ ;
+ ; PRCA*4.5*371 - Add subroutine
+RDET(DEF) ; Prompt for full report or just grand total 
+ ; Input:   DEF     - Value to use a default
+ ; Returns: -1      - User ^ or timed out
+ ;           D      - User selected DETAIL REPORT
+ ;           G      - User selected GRAND TOTAL
+ N DA,DIR,DTOUT,DUOUT,X,Y,DIRUT,DIROUT,RCTYPE,RETURN
+ S RCTYPE=""
+ S DIR("?")="Enter the type of report to run"
+ S DIR(0)="SA^D:DETAIL;G:GRAND TOTAL"
+ S DIR("A")="(D)ETAIL REPORT or (G)RAND TOTAL?: "
+ S DIR("B")=$S($G(DEF)'="":DEF,1:"D")
+ D ^DIR
+ K DIR
+ I $D(DTOUT)!$D(DUOUT) Q -1
+ Q:Y="" "A"
+ S RETURN=$E(Y)
+ Q RETURN
  ;

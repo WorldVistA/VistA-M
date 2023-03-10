@@ -1,5 +1,5 @@
 SROATMNO ;BIR/MAM - TRANSMIT NO ASSESSMENT ;09/12/2011
- ;;3.0;Surgery;**27,38,47,62,68,79,83,81,88,93,95,97,129,125,142,153,160,166,174,175,176,177,182,184**;24 Jun 93;Build 35
+ ;;3.0;Surgery;**27,38,47,62,68,79,83,81,88,93,95,97,129,125,142,153,160,166,174,175,176,177,182,184,200**;24 Jun 93;Build 9
  ;** NOTICE: This routine is part of an implementation of a nationally
  ;**         controlled procedure. Local modifications to this routine
  ;**         are prohibited.
@@ -50,6 +50,7 @@ SET I $P($G(^SRF(SRTN,.4)),"^",2)="T"!(TDATE<SRLO) K ^SRF("AQ",TDATE,SRTN) Q
  S SRTEMP=SRTEMP_$J(CPT(1),5)_$J(CPT(2),5)_$J(CPT(3),5)_$J(CPT(4),5)_$J(CPT(5),5)_$J(CPT(6),5)_$J(CPT(7),5)_$J(CPT(8),5)_$J(CPT(9),5)_$J(CPT(10),5)_$J(SRWOUND,2)_$J(SROCTYPE,1)_SRBLANK_$J(SRCC,10)_$J($E(SRDEATH,1,12),12)_$J($E(SRDIS,1,12),12)
  S Y=$P(^SRF(SRTN,0),"^",26)
  S SRTEMP=SRTEMP_$J($P($G(^SRF(SRTN,30)),"^",6),1)_$J($P($G(^SRF(SRTN,.1)),"^",21),1)_$J(Y,1)
+ N SROBOT S SROBOT=$P($G(^SRF(SRTN,"OP")),U,3),SRTEMP=SRTEMP_$J(SROBOT,2)
  ;
  S ^TMP("SRA",$J,SRAMNUM,SRACNT,0)=SRTEMP,SRACNT=SRACNT+1
  S SRICD=$P($G(^SRO(136,SRTN,0)),"^",3) S:SRICD SRICD=$P($$ICD^SROICD(SRTN,SRICD),"^",2)
@@ -59,7 +60,7 @@ SET I $P($G(^SRF(SRTN,.4)),"^",2)="T"!(TDATE<SRLO) K ^SRF("AQ",TDATE,SRTN) Q
  S SRTEMP=SRTEMP_$J(SRINTUB,1)_SR95PO_$J(SRATT,2)_$J(SRDOB,7)_$J(SRICD,8)_$J(SROC(38),2)_$J(SROC(39),2)
  S ^TMP("SRA",$J,SRAMNUM,SRACNT,0)=SRTEMP_$J($P(SRA(.2),"^",10),12)_$J($P(SRA(.2),"^",12),12)_$J($P(SRA(.2),"^",2),12)_$J($P(SRA(.2),"^",3),12)_$J(SRCVA,1),SRACNT=SRACNT+1
  S SRA(.9)=$G(^SRF(SRTN,.9)),SRA("VER")=$G(^SRF(SRTN,"VER")),SRA(52)=$G(^SRF(SRTN,52))
- S SRTEMP="@"_$J(SRASITE,3)_$J(SRTN,7)_"  D"_$J($P(SRA(.9),"^"),12)_$J($P(SRA(.9),"^",2),12)_$J($P(SRA(.9),"^",3),12)_$J($P(SRA(.9),"^",4),12)_$J($P(SRA(.9),"^",5),12)_$J($P(SRA(.9),"^",6),12)
+ S SRTEMP="@"_$J(SRASITE,3)_$J(SRTN,7)_"  D"_$J($P(SRA(.9),"^"),12)_$J($E($P(SRA(.9),"^",2),1,12),12)_$J($P(SRA(.9),"^",3),12)_$J($P(SRA(.9),"^",4),12)_$J($P(SRA(.9),"^",5),12)_$J($P(SRA(.9),"^",6),12)
  S SRTEMP=SRTEMP_$J($E($P($G(^SRF(SRTN,30)),"^"),1,12),12)_$J($P($G(^SRF(SRTN,31)),"^",8),4)_$J($P($G(^SRF(SRTN,30)),"^",4),50)
  F I=7:1:18 S SRTEMP=SRTEMP_$J($P(SRA("VER"),"^",I),2)
  S SROR="",Y=$P(^SRF(SRTN,0),"^",2),C=$P(^DD(130,.02,0),"^",2) I Y'="" D Y^DIQ S SROR=Y

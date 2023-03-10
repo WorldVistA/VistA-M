@@ -1,5 +1,5 @@
-DGRPC ;ALB/MRL/PJR/PHH/EG/BAJ,TDM,LBD - CHECK CONSISTENCY OF PATIENT DATA ;6/29/11 3:50pm
- ;;5.3;Registration;**108,121,314,301,470,489,505,451,568,585,641,653,688,754,797,867,903,952**;Aug 13, 1993;Build 160
+DGRPC ;ALB/MRL/PJR/PHH/EG/BAJ,TDM,LBD,RN,ARF - CHECK CONSISTENCY OF PATIENT DATA ;6/29/11 3:50pm
+ ;;5.3;Registration;**108,121,314,301,470,489,505,451,568,585,641,653,688,754,797,867,903,952,1027,1045,1081**;Aug 13, 1993;Build 4
  ;Per VHA Directive 6402, this routine should not be modified.
  ;
  ; 315 added to OVER99 local variable by patch DG*5.3*903 which was submitted to OSEHRA
@@ -19,7 +19,9 @@ DGRPC ;ALB/MRL/PJR/PHH/EG/BAJ,TDM,LBD - CHECK CONSISTENCY OF PATIENT DATA ;6/29/
  N ANYMSE,CONARR,CONCHK,CONERR,CONSPEC,LOC,I5,I6,DGPMSE
  N MSECHK,MSESET,MSERR,MSDATERR,RANGE,RANSET,OVER99
  D ON I $S(('$D(DFN)#2):1,'$D(^DPT(DFN,0)):1,DGER:1,1:0) G KVAR^DGRPCE:DGER
-EN       S:'$D(DGEDCN)#2 DGEDCN=0 I DGEDCN W !!,"Checking data for consistency..."
+EN ; DG*5.3*1027 Screen 7 changes - call new consistency check
+ D VETINDCHG
+ S:'$D(DGEDCN)#2 DGEDCN=0 I DGEDCN W !!,"Checking data for consistency..."
  D START:DGEDCN
  F I=0,.13,.141,.121,.122,.22,.24,.3,.31,.311,.32,.321,.322,.33,.35,.36,.362,.38,.39,.52,.53,"TYPE","VET" S DGP(I)=$G(^DPT(DFN,I))
  ;Get MSEs from MSE sub-file #2.3216 (DG*5.3*797)
@@ -29,7 +31,9 @@ EN       S:'$D(DGEDCN)#2 DGEDCN=0 I DGEDCN W !!,"Checking data for consistency..
  S DGRPCOLD="," I $D(^DGIN(38.5,DFN)) F I=0:0 S I=$O(^DGIN(38.5,DFN,"I",I)) Q:'I  S DGRPCOLD=DGRPCOLD_I_","
  ;find consistencies to check/not check
  ; DG*5.3*653 modified to exclude checks numbered>99  BAJ  10/25/2005
- S DGCHK="," F I=0:0 S I=$O(^DGIN(38.6,I)) Q:'I!(I=99)  I $D(^(I,0)),$S(I=2:0,I=51:0,I=9:1,I=10:1,I=13:1,I=14:1,I=22:1,I=52:1,I=53:1,I=89:1,'$P(^(0),"^",5):1,1:0),I'=99 S DGCHK=DGCHK_I_","
+ ; DG*5.3*1081 modified to exclude 15, INEL REASON UNSPECIFIED, ineligibility consistency check
+ ;S DGCHK="," F I=0:0 S I=$O(^DGIN(38.6,I)) Q:'I!(I=99)  I $D(^(I,0)),$S(I=2:0,I=51:0,I=9:1,I=10:1,I=13:1,I=14:1,I=22:1,I=52:1,I=53:1,I=89:1,'$P(^(0),"^",5):1,1:0),I'=99 S DGCHK=DGCHK_I_","
+ S DGCHK="," F I=0:0 S I=$O(^DGIN(38.6,I)) Q:'I!(I=99)  I $D(^(I,0)),$S(I=2:0,I=51:0,I=9:1,I=10:1,I=13:1,I=14:1,I=22:1,I=52:1,I=53:1,I=89:1,'$P(^(0),"^",5):1,1:0),I'=99,I'=15 S DGCHK=DGCHK_I_","
  ; On following line patch DG*5.3*903 added 315 as a new consistency
  S OVER99=",301,303,304,306,307,308,313,314,315,402,403,406,407,501,502,503,504,505,506,507,516,517,"
  S DGVT=$S(DGP("VET")="Y":1,1:0),DGSC=$S($P(DGP(.3),"^",1)="Y":1,1:0),DGCD=$S($D(^DIC(8,+DGP(.36),0)):^(0),1:""),(DGCT,DGER,DGNCK)="" I 'DGVT,$D(^DG(391,+DGP("TYPE"),0)),$P(^(0),"^",2) S DGVT=2
@@ -122,3 +126,72 @@ TIMEQ    K DGSTART,DGEND,DGTIME,X,X1,DGCON Q
 ON       ;check if checker is on
  S DGER=0 I $S('$D(^DG(43,1,0)):1,'$P(^(0),"^",37):1,1:0) S DGER=1
  S:'$D(DGEDCN) DGEDCN=0 W:DGER !!,"CONSISTENCY CHECKER TURNED OFF!!",$C(7) Q
+VETINDCHG ; DG*5.3*1027 Vet indicator change
+ ; If DO YOU WISH TO ENROLL field in PATIENT (#2) file is YES AND
+ ; A record for the patient does not exist in the Patient Enrollment file AND
+ ; The patient is unknown to ES Then Incomplete Enrollment.
+ ; Supported DBIA #2701:   The supported DBIA is used to access MPI
+ ;                         APIs to retrieve ICN, determine if ICN
+ ;                         is local and if site is LST. 
+ ; Supported ICRs
+ ; #3356  -  XQY0          ; Kernel Variable
+ ;
+ ; Quit if not in specific menu options or if there is a current enrollment
+ I ($P($G(XQY0),"^",1)'="DG REGISTER PATIENT"),($P($G(XQY0),"^",1)'="DG LOAD PATIENT DATA"),($P($G(XQY0),"^",1)'="DG ELIGIBILITY VERIFICATION"),($P($G(XQY0),"^",1)'="DGPRE PRE-REGISTER OPTION") QUIT
+ I $$FINDCUR^DGENA(DFN) QUIT
+ N DGKEY,DGREQNAME,DGENSTAT,DGWSHTOEN,DGRESP,DGVET,DGOVET,DTOUT,DUOUT
+ S DGREQNAME="VistAData"
+ S DGRESP=0
+ S DGKEY=$$GETICN^MPIF001(DFN),DGVET=$$VET^DGENPTA(DFN),DGOVET=$G(^TMP($J,"DGOLDVET",DFN))
+ I $P(DGKEY,"^",1)'=-1 S DGRESP=$$EN^DGREGEEWS(DGKEY,DGREQNAME,.DGENSTAT,.DGWSHTOEN)
+ I +DGRESP=0,'$G(DGDONE),$P($G(XQY0),"^",1)'="DG REGISTER PATIENT" D
+ . W !!,"This patient has not had the Enrollment Request Process completed and this must be done through Register A Patient."
+ . S DGDONE=1
+ . N DIR,X,Y
+ . S DIR(0)="E"
+ . D ^DIR K DIR
+ I DGOVET'="",$P($G(XQY0),"^",1)="DG REGISTER PATIENT",+DGRESP=0,DGVET'=DGOVET,'$G(DGDONE2) D
+ . I DGVET=1 D
+ . . W !,"Veteran indicator has been changed. ""Do You Wish To Enroll"" is currently set to NO."
+ . . W !!,"Use the Enrollment System if the Veteran wishes to enroll."
+ . . N DIR,X,Y
+ . . S DIR(0)="E"
+ . . D ^DIR
+ . I DGVET=0 D
+ . . N DGINELIG,DGENPTA
+ . . I $$GET^DGENPTA(DFN,.DGENPTA) S DGINELIG=$G(DGENPTA("INELDATE"))
+ . . I ($G(DGENRYN)=1),DGINELIG="" D REGORSN     ;self-reported reason prompt
+ . . I DGINELIG="" D APPTCHG     ; DG*5.3*1045 - If there is no Ineligible Date, set the Appointment request fields to null
+ . S DGDONE2=1
+ Q
+APPTCHG   ; DG*5.3*1027 Vet indicator change from Yes to No
+ ;Remove the Appointment Request information
+ N DGIENS,DGRSLT,DGFDA
+ S DGRSLT=""
+ S DGIENS=DFN_","
+ ;APPOINTMENT REQUEST ON 1010EZ 1010.15;9
+ S DGFDA(2,DGIENS,1010.159)=DGRSLT ;
+ ;APPOINTMENT REQUEST DATE 1010.15;11
+ S DGFDA(2,DGIENS,1010.1511)=DGRSLT
+ ;ORIGINAL APPOINTMENT REQUEST 1010.15;12
+ S DGFDA(2,DGIENS,1010.1512)=DGRSLT
+ ;ORIGINAL APPT REQUEST DATE 1010.15;13
+ S DGFDA(2,DGIENS,1010.1513)=DGRSLT
+ ;ORIG APPT REQUEST CHG DT/TM 1010.15;14
+ S DGFDA(2,DGIENS,1010.1514)=DGRSLT
+ ;APPT REQUEST 1010EZ CHG DT/TM 1010.15;15
+ S DGFDA(2,DGIENS,1010.1515)=DGRSLT
+ D FILE^DIE("","DGFDA")
+ Q
+REGORSN ; DG*5.3*1027 Display prompt for REGISTRATION ONLY REASON
+ N DGNOW,DGENRODT,DGENSRCE,DGENRRSN,DIR,X,Y,DUOUT,DTOUT
+ F  D  Q:DGENRRSN
+ . K DIR
+ . S DIR("A")="SELF-REPORTED REGISTRATION ONLY REASON: "
+ . S DIR(0)="27.11,.15,AO"
+ . D ^DIR Q:$D(DTOUT)!($D(DUOUT))
+ . S DGENRRSN=+Y
+ . I 'DGENRRSN W !,"This is a required field.",!
+ I DGENRRSN S DGNOW=$$NOW^XLFDT(),DGENRODT=DGNOW,DGENSRCE=1 D REGONLY^DGEN(DFN)
+ S DGENRYN=0
+ Q

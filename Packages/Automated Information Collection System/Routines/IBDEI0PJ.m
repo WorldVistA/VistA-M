@@ -1,124 +1,128 @@
-IBDEI0PJ ; ; 04-FEB-2020
- ;;3.0;IB ENCOUNTER FORM IMP/EXP;;FEB 04, 2020
+IBDEI0PJ ; ; 01-FEB-2022
+ ;;3.0;IB ENCOUNTER FORM IMP/EXP;;FEB 01, 2022
  Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,999) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
- ;;^UTILITY(U,$J,358.3,11393,1,3,0)
- ;;=3^Ocular Hypertension,Bilateral
- ;;^UTILITY(U,$J,358.3,11393,1,4,0)
- ;;=4^H40.053
- ;;^UTILITY(U,$J,358.3,11393,2)
- ;;=^5005742
- ;;^UTILITY(U,$J,358.3,11394,0)
- ;;=H40.1211^^77^732^16
- ;;^UTILITY(U,$J,358.3,11394,1,0)
+ ;;^UTILITY(U,$J,358.3,11479,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,11394,1,3,0)
- ;;=3^Low-Tension Glaucoma,Mild,Right Eye
- ;;^UTILITY(U,$J,358.3,11394,1,4,0)
- ;;=4^H40.1211
- ;;^UTILITY(U,$J,358.3,11394,2)
- ;;=^5005759
- ;;^UTILITY(U,$J,358.3,11395,0)
- ;;=H40.1221^^77^732^17
- ;;^UTILITY(U,$J,358.3,11395,1,0)
+ ;;^UTILITY(U,$J,358.3,11479,1,3,0)
+ ;;=3^Left Ventricular Failure
+ ;;^UTILITY(U,$J,358.3,11479,1,4,0)
+ ;;=4^I50.1
+ ;;^UTILITY(U,$J,358.3,11479,2)
+ ;;=^5007238
+ ;;^UTILITY(U,$J,358.3,11480,0)
+ ;;=E21.3^^46^556^17
+ ;;^UTILITY(U,$J,358.3,11480,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,11395,1,3,0)
- ;;=3^Low-Tension Glaucoma,Mild,Left Eye
- ;;^UTILITY(U,$J,358.3,11395,1,4,0)
- ;;=4^H40.1221
- ;;^UTILITY(U,$J,358.3,11395,2)
- ;;=^5005764
- ;;^UTILITY(U,$J,358.3,11396,0)
- ;;=H40.1231^^77^732^18
- ;;^UTILITY(U,$J,358.3,11396,1,0)
+ ;;^UTILITY(U,$J,358.3,11480,1,3,0)
+ ;;=3^Hyperparathyroidism,Unspec
+ ;;^UTILITY(U,$J,358.3,11480,1,4,0)
+ ;;=4^E21.3
+ ;;^UTILITY(U,$J,358.3,11480,2)
+ ;;=^331438
+ ;;^UTILITY(U,$J,358.3,11481,0)
+ ;;=E78.5^^46^556^16
+ ;;^UTILITY(U,$J,358.3,11481,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,11396,1,3,0)
- ;;=3^Low-Tension Glaucoma,Mild,Bilateral
- ;;^UTILITY(U,$J,358.3,11396,1,4,0)
- ;;=4^H40.1231
- ;;^UTILITY(U,$J,358.3,11396,2)
- ;;=^5005768
- ;;^UTILITY(U,$J,358.3,11397,0)
- ;;=H40.1233^^77^732^20
- ;;^UTILITY(U,$J,358.3,11397,1,0)
+ ;;^UTILITY(U,$J,358.3,11481,1,3,0)
+ ;;=3^Hyperlipidemia,Unspec
+ ;;^UTILITY(U,$J,358.3,11481,1,4,0)
+ ;;=4^E78.5
+ ;;^UTILITY(U,$J,358.3,11481,2)
+ ;;=^5002969
+ ;;^UTILITY(U,$J,358.3,11482,0)
+ ;;=M10.30^^46^556^11
+ ;;^UTILITY(U,$J,358.3,11482,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,11397,1,3,0)
- ;;=3^Low-Tension Glaucoma,Severe,Bilateral
- ;;^UTILITY(U,$J,358.3,11397,1,4,0)
- ;;=4^H40.1233
- ;;^UTILITY(U,$J,358.3,11397,2)
- ;;=^5005770
- ;;^UTILITY(U,$J,358.3,11398,0)
- ;;=H40.011^^77^732^21
- ;;^UTILITY(U,$J,358.3,11398,1,0)
+ ;;^UTILITY(U,$J,358.3,11482,1,3,0)
+ ;;=3^Gout d/t Renal Impairment,Unspec Site
+ ;;^UTILITY(U,$J,358.3,11482,1,4,0)
+ ;;=4^M10.30
+ ;;^UTILITY(U,$J,358.3,11482,2)
+ ;;=^5010356
+ ;;^UTILITY(U,$J,358.3,11483,0)
+ ;;=E66.9^^46^556^33
+ ;;^UTILITY(U,$J,358.3,11483,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,11398,1,3,0)
- ;;=3^Open Angle w/ Borderline Findings,Low Risk,Right Eye
- ;;^UTILITY(U,$J,358.3,11398,1,4,0)
- ;;=4^H40.011
- ;;^UTILITY(U,$J,358.3,11398,2)
- ;;=^5005724
- ;;^UTILITY(U,$J,358.3,11399,0)
- ;;=H40.012^^77^732^22
- ;;^UTILITY(U,$J,358.3,11399,1,0)
+ ;;^UTILITY(U,$J,358.3,11483,1,3,0)
+ ;;=3^Obesity,Unspec
+ ;;^UTILITY(U,$J,358.3,11483,1,4,0)
+ ;;=4^E66.9
+ ;;^UTILITY(U,$J,358.3,11483,2)
+ ;;=^5002832
+ ;;^UTILITY(U,$J,358.3,11484,0)
+ ;;=E66.01^^46^556^32
+ ;;^UTILITY(U,$J,358.3,11484,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,11399,1,3,0)
- ;;=3^Open Angle w/ Borderline Findings,Low Risk,Left Eye
- ;;^UTILITY(U,$J,358.3,11399,1,4,0)
- ;;=4^H40.012
- ;;^UTILITY(U,$J,358.3,11399,2)
- ;;=^5005725
- ;;^UTILITY(U,$J,358.3,11400,0)
- ;;=H59.41^^77^732^25
- ;;^UTILITY(U,$J,358.3,11400,1,0)
+ ;;^UTILITY(U,$J,358.3,11484,1,3,0)
+ ;;=3^Obesity,Morbid,d/t Excess Calories
+ ;;^UTILITY(U,$J,358.3,11484,1,4,0)
+ ;;=4^E66.01
+ ;;^UTILITY(U,$J,358.3,11484,2)
+ ;;=^5002826
+ ;;^UTILITY(U,$J,358.3,11485,0)
+ ;;=D50.9^^46^556^2
+ ;;^UTILITY(U,$J,358.3,11485,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,11400,1,3,0)
- ;;=3^Blebitis,Stage 1
- ;;^UTILITY(U,$J,358.3,11400,1,4,0)
- ;;=4^H59.41
- ;;^UTILITY(U,$J,358.3,11400,2)
- ;;=^5006426
- ;;^UTILITY(U,$J,358.3,11401,0)
- ;;=H40.1111^^77^732^6
- ;;^UTILITY(U,$J,358.3,11401,1,0)
+ ;;^UTILITY(U,$J,358.3,11485,1,3,0)
+ ;;=3^Anemia,Iron Deficiency,Unspec
+ ;;^UTILITY(U,$J,358.3,11485,1,4,0)
+ ;;=4^D50.9
+ ;;^UTILITY(U,$J,358.3,11485,2)
+ ;;=^5002283
+ ;;^UTILITY(U,$J,358.3,11486,0)
+ ;;=D63.1^^46^556^1
+ ;;^UTILITY(U,$J,358.3,11486,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,11401,1,3,0)
- ;;=3^Primary Open-Angle Glaucoma,Mild Stage,Right Eye
- ;;^UTILITY(U,$J,358.3,11401,1,4,0)
- ;;=4^H40.1111
- ;;^UTILITY(U,$J,358.3,11401,2)
- ;;=^5138537
- ;;^UTILITY(U,$J,358.3,11402,0)
- ;;=H40.1121^^77^732^7
- ;;^UTILITY(U,$J,358.3,11402,1,0)
+ ;;^UTILITY(U,$J,358.3,11486,1,3,0)
+ ;;=3^Anemia in Chronic Kidney Disease
+ ;;^UTILITY(U,$J,358.3,11486,1,4,0)
+ ;;=4^D63.1
+ ;;^UTILITY(U,$J,358.3,11486,2)
+ ;;=^332908
+ ;;^UTILITY(U,$J,358.3,11487,0)
+ ;;=G60.9^^46^556^31
+ ;;^UTILITY(U,$J,358.3,11487,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,11402,1,3,0)
- ;;=3^Primary Open-Angle Glaucoma,Mild Stage,Left Eye
- ;;^UTILITY(U,$J,358.3,11402,1,4,0)
- ;;=4^H40.1121
- ;;^UTILITY(U,$J,358.3,11402,2)
- ;;=^5138542
- ;;^UTILITY(U,$J,358.3,11403,0)
- ;;=H40.013^^77^732^4
- ;;^UTILITY(U,$J,358.3,11403,1,0)
+ ;;^UTILITY(U,$J,358.3,11487,1,3,0)
+ ;;=3^Neuropathy,Hereditary/Idiopathic,Unspec
+ ;;^UTILITY(U,$J,358.3,11487,1,4,0)
+ ;;=4^G60.9
+ ;;^UTILITY(U,$J,358.3,11487,2)
+ ;;=^5004071
+ ;;^UTILITY(U,$J,358.3,11488,0)
+ ;;=I73.9^^46^556^34
+ ;;^UTILITY(U,$J,358.3,11488,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,11403,1,3,0)
- ;;=3^Glaucoma Suspect,Low Risk,Bilateral
- ;;^UTILITY(U,$J,358.3,11403,1,4,0)
- ;;=4^H40.013
- ;;^UTILITY(U,$J,358.3,11403,2)
- ;;=^5005726
- ;;^UTILITY(U,$J,358.3,11404,0)
- ;;=H40.023^^77^732^5
- ;;^UTILITY(U,$J,358.3,11404,1,0)
+ ;;^UTILITY(U,$J,358.3,11488,1,3,0)
+ ;;=3^PVD,Unspec
+ ;;^UTILITY(U,$J,358.3,11488,1,4,0)
+ ;;=4^I73.9
+ ;;^UTILITY(U,$J,358.3,11488,2)
+ ;;=^184182
+ ;;^UTILITY(U,$J,358.3,11489,0)
+ ;;=N04.9^^46^556^30
+ ;;^UTILITY(U,$J,358.3,11489,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,11404,1,3,0)
- ;;=3^Glaucoma Suspect,High Risk,Bilateral
- ;;^UTILITY(U,$J,358.3,11404,1,4,0)
- ;;=4^H40.023
- ;;^UTILITY(U,$J,358.3,11404,2)
- ;;=^5005730
- ;;^UTILITY(U,$J,358.3,11405,0)
- ;;=H40.1132^^77^732^11
- ;;^UTILITY(U,$J,358.3,11405,1,0)
+ ;;^UTILITY(U,$J,358.3,11489,1,3,0)
+ ;;=3^Nephrotic Syndrome w/ Unspec Morphologic Changes
+ ;;^UTILITY(U,$J,358.3,11489,1,4,0)
+ ;;=4^N04.9
+ ;;^UTILITY(U,$J,358.3,11489,2)
+ ;;=^5015540
+ ;;^UTILITY(U,$J,358.3,11490,0)
+ ;;=N25.0^^46^556^35
+ ;;^UTILITY(U,$J,358.3,11490,1,0)
  ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,11490,1,3,0)
+ ;;=3^Renal Osteodystrophy
+ ;;^UTILITY(U,$J,358.3,11490,1,4,0)
+ ;;=4^N25.0
+ ;;^UTILITY(U,$J,358.3,11490,2)
+ ;;=^104747
+ ;;^UTILITY(U,$J,358.3,11491,0)
+ ;;=T80.211A^^46^556^3
+ ;;^UTILITY(U,$J,358.3,11491,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,11491,1,3,0)
+ ;;=3^Bloodstream Infection d/t Central Venous Catheter,Init Encntr

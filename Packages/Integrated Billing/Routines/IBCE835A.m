@@ -1,5 +1,5 @@
 IBCE835A ;ALB/ESG/PJH - 835 EDI EOB PROCESSING CONTINUED ; 7/15/10 7:02pm
- ;;2.0;INTEGRATED BILLING;**135,431**;21-MAR-94;Build 106
+ ;;2.0;INTEGRATED BILLING;**135,431,718**;21-MAR-94;Build 73
  ;;Per VHA Directive 2004-038, this routine should not be modified.
  Q
  ; Continue processing of IBCE835 since that routine grew too large
@@ -17,8 +17,13 @@ IBCE835A ;ALB/ESG/PJH - 835 EDI EOB PROCESSING CONTINUED ; 7/15/10 7:02pm
  ;                                  ,"D1",seq#,37)=
  ;                                          claim level adjust. raw data
  ;
- N IBCLM
+ N IBCLM,IBHCT
  S IBCLM=$$GETCLM^IBCE277($P(IBD,U,2))
+ ;
+ ;;IB*2.0*718;JWS;EBILL-924;handle split MRAs in the same file received from FSC
+ S IBHCT=$$GETHCT^IBCE835(IBCLM)
+ S IBCLM=IBCLM_"#"_IBHCT
+ ;
  Q:'$D(^TMP("IBMSG",$J,"CLAIM",IBCLM))
  S IBD("LINE")=$G(IBD("LINE"))+1
  S ^TMP("IBMSG",$J,"CLAIM",IBCLM,IBD("LINE"))=$S($D(^TMP("IBMSG",$J,"CLAIM",IBCLM,"D",37)):$J("",34),1:"MEDICARE ADJUDICATION MESSAGE(S): ")_"("_$P(IBD,U,4)_")  "_$P(IBD,U,5)
@@ -37,9 +42,13 @@ IBCE835A ;ALB/ESG/PJH - 835 EDI EOB PROCESSING CONTINUED ; 7/15/10 7:02pm
  ;                                       claim status raw data
  ;    IBD("LINE") = The last line # populated in the message
  ;
- N IBCLM
+ N IBCLM,IBHCT
  S IBCLM=$$GETCLM^IBCE277($P(IBD,U,2))
  S IBD("LINE")=$G(IBD("LINE"))+1
+ ;
+ ;;IB*2.0*718;JWS;EBILL-924;handle split MRAs in the same file received from FSC
+ S IBHCT=$$GETHCT^IBCE835(IBCLM)
+ S IBCLM=IBCLM_"#"_IBHCT
  ;
  I '$D(^TMP("IBMSG",$J,"CLAIM",IBCLM,"D",40)) D
  . S ^TMP("IBMSG",$J,"CLAIM",IBCLM,IBD("LINE"))="Line level detail exists for this claim"
@@ -61,9 +70,13 @@ IBCE835A ;ALB/ESG/PJH - 835 EDI EOB PROCESSING CONTINUED ; 7/15/10 7:02pm
  ;                                       claim status raw data
  ;    IBD("LINE") = The last line # populated in the message
  ;
- N IBCLM
+ N IBCLM,IBHCT
  S IBCLM=$$GETCLM^IBCE277($P(IBD,U,2))
  S IBD("LINE")=$G(IBD("LINE"))+1
+ ;
+ ;;IB*2.0*718;JWS;EBILL-924;handle split MRAs in the same file received from FSC
+ S IBHCT=$$GETHCT^IBCE835(IBCLM)
+ S IBCLM=IBCLM_"#"_IBHCT
  ;
  I '$D(^TMP("IBMSG",$J,"CLAIM",IBCLM,"D",45)) D
  . S ^TMP("IBMSG",$J,"CLAIM",IBCLM,IBD("LINE"))="Line level adjustments exist for this claim"
@@ -85,9 +98,13 @@ IBCE835A ;ALB/ESG/PJH - 835 EDI EOB PROCESSING CONTINUED ; 7/15/10 7:02pm
  ;                                       claim status raw data
  ;    IBD("LINE") = The last line # populated in the message
  ;
- N IBCLM
+ N IBCLM,IBHCT
  S IBCLM=$$GETCLM^IBCE277($P(IBD,U,2))
  S IBD("LINE")=$G(IBD("LINE"))+1
+ ;
+ ;;IB*2.0*718;JWS;EBILL-924;handle split MRAs in the same file received from FSC
+ S IBHCT=$$GETHCT^IBCE835(IBCLM)
+ S IBCLM=IBCLM_"#"_IBHCT
  ;
  I '$D(^TMP("IBMSG",$J,"CLAIM",IBCLM,"D",46)) D
  . S ^TMP("IBMSG",$J,"CLAIM",IBCLM,IBD("LINE"))="Line level adjustments exist for this claim"

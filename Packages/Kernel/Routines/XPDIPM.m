@@ -1,5 +1,5 @@
-XPDIPM ;SFISC/RSD - Load a Packman Message ;05/28/99  10:08
- ;;8.0;KERNEL;**21,28,68,108**;Jul 05, 1995
+XPDIPM ;SFISC/RSD - Load a Packman Message ;05/05/2008
+ ;;8.0;KERNEL;**21,28,68,108,755**;Jul 05, 1995;Build 6
  Q:'$D(^XMB(3.9,+$G(XMZ),0))
  N X,XPD,Y S XPD=0
  F  S XPD=$O(^XMB(3.9,XMZ,2,XPD)) Q:+XPD'=XPD  S X=^(XPD,0) I $E(X,1,11)="$TXT $KIDS " Q
@@ -8,9 +8,10 @@ EN I 'XPD!'$L(Y) W !!,"Couldn't find a KIDS package!!",*7 Q
  N DIR,DIRUT,GR,XPDA,XPDST,XPDIT,XPDT,XPDNM,XPDQUIT,XPDREQAB
  S XPDST("H1")=$P(^XMB(3.9,XMZ,0),U),XPDST=0,XPDIT=1
  S XPDA=$$INST^XPDIL1(Y) G:'XPDA NONE^XPDIL
- W !
+ W !,"Distribution OK!",! ;p755
  S DIR(0)="Y",DIR("A")="Want to Continue with Load",DIR("B")="YES"
- D ^DIR I 'Y!$D(DIRUT) D ABRTALL^XPDI(1) G NONE^XPDIL
+ ;p345-rename AND* to XPD*-Patch was Cancelled keep code for future.
+ I '$G(XPDAUTO) D ^DIR S:$G(XPDAUTO) Y=1 I 'Y!$D(DIRUT) D ABRTALL^XPDI(1) G NONE^XPDIL
  W !,"Loading Distribution...",!
  S ^XTMP("XPDI",0)=$$FMADD^XLFDT(DT,7)_U_DT
  D GI I $G(XPDQUIT) D ABRTALL^XPDI(1) G NONE^XPDIL

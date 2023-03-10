@@ -1,130 +1,124 @@
-IBDEI13G ; ; 04-FEB-2020
- ;;3.0;IB ENCOUNTER FORM IMP/EXP;;FEB 04, 2020
+IBDEI13G ; ; 01-FEB-2022
+ ;;3.0;IB ENCOUNTER FORM IMP/EXP;;FEB 01, 2022
  Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,999) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
- ;;^UTILITY(U,$J,358.3,17577,1,3,0)
- ;;=3^Solitary Cyst of Unspec Breast
- ;;^UTILITY(U,$J,358.3,17577,1,4,0)
- ;;=4^N60.09
- ;;^UTILITY(U,$J,358.3,17577,2)
- ;;=^5015772
- ;;^UTILITY(U,$J,358.3,17578,0)
- ;;=N60.11^^88^895^27
- ;;^UTILITY(U,$J,358.3,17578,1,0)
+ ;;^UTILITY(U,$J,358.3,17765,2)
+ ;;=^5044132
+ ;;^UTILITY(U,$J,358.3,17766,0)
+ ;;=S91.302A^^61^792^5
+ ;;^UTILITY(U,$J,358.3,17766,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,17578,1,3,0)
- ;;=3^Diffuse Cystic Mastopathy of Right Breast
- ;;^UTILITY(U,$J,358.3,17578,1,4,0)
- ;;=4^N60.11
- ;;^UTILITY(U,$J,358.3,17578,2)
- ;;=^5015773
- ;;^UTILITY(U,$J,358.3,17579,0)
- ;;=N60.12^^88^895^26
- ;;^UTILITY(U,$J,358.3,17579,1,0)
+ ;;^UTILITY(U,$J,358.3,17766,1,3,0)
+ ;;=3^Open Wound,Left Foot,Unspec
+ ;;^UTILITY(U,$J,358.3,17766,1,4,0)
+ ;;=4^S91.302A
+ ;;^UTILITY(U,$J,358.3,17766,2)
+ ;;=^5044317
+ ;;^UTILITY(U,$J,358.3,17767,0)
+ ;;=S51.802A^^61^792^6
+ ;;^UTILITY(U,$J,358.3,17767,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,17579,1,3,0)
- ;;=3^Diffuse Cystic Mastopathy of Left Breast
- ;;^UTILITY(U,$J,358.3,17579,1,4,0)
- ;;=4^N60.12
- ;;^UTILITY(U,$J,358.3,17579,2)
- ;;=^5015774
- ;;^UTILITY(U,$J,358.3,17580,0)
- ;;=N64.4^^88^895^68
- ;;^UTILITY(U,$J,358.3,17580,1,0)
+ ;;^UTILITY(U,$J,358.3,17767,1,3,0)
+ ;;=3^Open Wound,Left Forearm,Unspec
+ ;;^UTILITY(U,$J,358.3,17767,1,4,0)
+ ;;=4^S51.802A
+ ;;^UTILITY(U,$J,358.3,17767,2)
+ ;;=^5028662
+ ;;^UTILITY(U,$J,358.3,17768,0)
+ ;;=S91.102A^^61^792^7
+ ;;^UTILITY(U,$J,358.3,17768,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,17580,1,3,0)
- ;;=3^Mastodynia
- ;;^UTILITY(U,$J,358.3,17580,1,4,0)
- ;;=4^N64.4
- ;;^UTILITY(U,$J,358.3,17580,2)
- ;;=^5015794
- ;;^UTILITY(U,$J,358.3,17581,0)
- ;;=N64.51^^88^895^60
- ;;^UTILITY(U,$J,358.3,17581,1,0)
+ ;;^UTILITY(U,$J,358.3,17768,1,3,0)
+ ;;=3^Open Wound,Left Great Toe w/o Damage to Nail,Unspec
+ ;;^UTILITY(U,$J,358.3,17768,1,4,0)
+ ;;=4^S91.102A
+ ;;^UTILITY(U,$J,358.3,17768,2)
+ ;;=^5044171
+ ;;^UTILITY(U,$J,358.3,17769,0)
+ ;;=S61.402A^^61^792^8
+ ;;^UTILITY(U,$J,358.3,17769,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,17581,1,3,0)
- ;;=3^Induration of Breast
- ;;^UTILITY(U,$J,358.3,17581,1,4,0)
- ;;=4^N64.51
- ;;^UTILITY(U,$J,358.3,17581,2)
- ;;=^5015795
- ;;^UTILITY(U,$J,358.3,17582,0)
- ;;=N64.59^^88^895^105
- ;;^UTILITY(U,$J,358.3,17582,1,0)
+ ;;^UTILITY(U,$J,358.3,17769,1,3,0)
+ ;;=3^Open Wound,Left Hand,Unspec
+ ;;^UTILITY(U,$J,358.3,17769,1,4,0)
+ ;;=4^S61.402A
+ ;;^UTILITY(U,$J,358.3,17769,2)
+ ;;=^5032984
+ ;;^UTILITY(U,$J,358.3,17770,0)
+ ;;=S71.002A^^61^792^9
+ ;;^UTILITY(U,$J,358.3,17770,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,17582,1,3,0)
- ;;=3^Signs and Symptoms in Breast,Other
- ;;^UTILITY(U,$J,358.3,17582,1,4,0)
- ;;=4^N64.59
- ;;^UTILITY(U,$J,358.3,17582,2)
- ;;=^5015797
- ;;^UTILITY(U,$J,358.3,17583,0)
- ;;=N64.52^^88^895^71
- ;;^UTILITY(U,$J,358.3,17583,1,0)
+ ;;^UTILITY(U,$J,358.3,17770,1,3,0)
+ ;;=3^Open Wound,Left Hip,Unspec
+ ;;^UTILITY(U,$J,358.3,17770,1,4,0)
+ ;;=4^S71.002A
+ ;;^UTILITY(U,$J,358.3,17770,2)
+ ;;=^5036972
+ ;;^UTILITY(U,$J,358.3,17771,0)
+ ;;=S91.104A^^61^792^20
+ ;;^UTILITY(U,$J,358.3,17771,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,17583,1,3,0)
- ;;=3^Nipple Discharge
- ;;^UTILITY(U,$J,358.3,17583,1,4,0)
- ;;=4^N64.52
- ;;^UTILITY(U,$J,358.3,17583,2)
- ;;=^259531
- ;;^UTILITY(U,$J,358.3,17584,0)
- ;;=N64.53^^88^895^99
- ;;^UTILITY(U,$J,358.3,17584,1,0)
+ ;;^UTILITY(U,$J,358.3,17771,1,3,0)
+ ;;=3^Open Wound,Right Lesser Toe(s) w/o Damage to nail,Unspec
+ ;;^UTILITY(U,$J,358.3,17771,1,4,0)
+ ;;=4^S91.104A
+ ;;^UTILITY(U,$J,358.3,17771,2)
+ ;;=^5044174
+ ;;^UTILITY(U,$J,358.3,17772,0)
+ ;;=S81.802A^^61^792^11
+ ;;^UTILITY(U,$J,358.3,17772,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,17584,1,3,0)
- ;;=3^Retraction of Nipple
- ;;^UTILITY(U,$J,358.3,17584,1,4,0)
- ;;=4^N64.53
- ;;^UTILITY(U,$J,358.3,17584,2)
- ;;=^5015796
- ;;^UTILITY(U,$J,358.3,17585,0)
- ;;=N75.1^^88^895^8
- ;;^UTILITY(U,$J,358.3,17585,1,0)
+ ;;^UTILITY(U,$J,358.3,17772,1,3,0)
+ ;;=3^Open Wound,Left Lower Leg,Unspec
+ ;;^UTILITY(U,$J,358.3,17772,1,4,0)
+ ;;=4^S81.802A
+ ;;^UTILITY(U,$J,358.3,17772,2)
+ ;;=^5040068
+ ;;^UTILITY(U,$J,358.3,17773,0)
+ ;;=S41.102A^^61^792^13
+ ;;^UTILITY(U,$J,358.3,17773,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,17585,1,3,0)
- ;;=3^Abscess of Bartholin's Gland
- ;;^UTILITY(U,$J,358.3,17585,1,4,0)
- ;;=4^N75.1
- ;;^UTILITY(U,$J,358.3,17585,2)
- ;;=^5015823
- ;;^UTILITY(U,$J,358.3,17586,0)
- ;;=N80.9^^88^895^37
- ;;^UTILITY(U,$J,358.3,17586,1,0)
+ ;;^UTILITY(U,$J,358.3,17773,1,3,0)
+ ;;=3^Open Wound,Left Upper Arm,Unspec
+ ;;^UTILITY(U,$J,358.3,17773,1,4,0)
+ ;;=4^S41.102A
+ ;;^UTILITY(U,$J,358.3,17773,2)
+ ;;=^5026333
+ ;;^UTILITY(U,$J,358.3,17774,0)
+ ;;=S91.001A^^61^792^14
+ ;;^UTILITY(U,$J,358.3,17774,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,17586,1,3,0)
- ;;=3^Endometriosis,Unspec
- ;;^UTILITY(U,$J,358.3,17586,1,4,0)
- ;;=4^N80.9
- ;;^UTILITY(U,$J,358.3,17586,2)
- ;;=^5015837
- ;;^UTILITY(U,$J,358.3,17587,0)
- ;;=N81.4^^88^895^112
- ;;^UTILITY(U,$J,358.3,17587,1,0)
+ ;;^UTILITY(U,$J,358.3,17774,1,3,0)
+ ;;=3^Open Wound,Right Ankle,Unspec
+ ;;^UTILITY(U,$J,358.3,17774,1,4,0)
+ ;;=4^S91.001A
+ ;;^UTILITY(U,$J,358.3,17774,2)
+ ;;=^5044129
+ ;;^UTILITY(U,$J,358.3,17775,0)
+ ;;=S91.301A^^61^792^15
+ ;;^UTILITY(U,$J,358.3,17775,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,17587,1,3,0)
- ;;=3^Uterovaginal Prolapse,Unspec
- ;;^UTILITY(U,$J,358.3,17587,1,4,0)
- ;;=4^N81.4
- ;;^UTILITY(U,$J,358.3,17587,2)
- ;;=^5015841
- ;;^UTILITY(U,$J,358.3,17588,0)
- ;;=N84.8^^88^895^87
- ;;^UTILITY(U,$J,358.3,17588,1,0)
+ ;;^UTILITY(U,$J,358.3,17775,1,3,0)
+ ;;=3^Open Wound,Right Foot,Unspec
+ ;;^UTILITY(U,$J,358.3,17775,1,4,0)
+ ;;=4^S91.301A
+ ;;^UTILITY(U,$J,358.3,17775,2)
+ ;;=^5044314
+ ;;^UTILITY(U,$J,358.3,17776,0)
+ ;;=S51.801A^^61^792^16
+ ;;^UTILITY(U,$J,358.3,17776,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,17588,1,3,0)
- ;;=3^Polyp of Other Parts of Female Genital Tract
- ;;^UTILITY(U,$J,358.3,17588,1,4,0)
- ;;=4^N84.8
- ;;^UTILITY(U,$J,358.3,17588,2)
- ;;=^5015868
- ;;^UTILITY(U,$J,358.3,17589,0)
- ;;=N84.0^^88^895^85
- ;;^UTILITY(U,$J,358.3,17589,1,0)
+ ;;^UTILITY(U,$J,358.3,17776,1,3,0)
+ ;;=3^Open Wound,Right Forearm,Unspec
+ ;;^UTILITY(U,$J,358.3,17776,1,4,0)
+ ;;=4^S51.801A
+ ;;^UTILITY(U,$J,358.3,17776,2)
+ ;;=^5028659
+ ;;^UTILITY(U,$J,358.3,17777,0)
+ ;;=S91.101A^^61^792^17
+ ;;^UTILITY(U,$J,358.3,17777,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,17589,1,3,0)
- ;;=3^Polyp of Corpus Uteri
- ;;^UTILITY(U,$J,358.3,17589,1,4,0)
- ;;=4^N84.0
- ;;^UTILITY(U,$J,358.3,17589,2)
- ;;=^270517
+ ;;^UTILITY(U,$J,358.3,17777,1,3,0)
+ ;;=3^Open Wound,Right Great Toe w/o Damage to Nail,Unspec
+ ;;^UTILITY(U,$J,358.3,17777,1,4,0)
+ ;;=4^S91.101A

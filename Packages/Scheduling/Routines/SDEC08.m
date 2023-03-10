@@ -1,27 +1,32 @@
-SDEC08 ;ALB/SAT/JSM,WTC,LAB - VISTA SCHEDULING RPCS ;Apr 23, 2020@15:22
- ;;5.3;Scheduling;**627,651,658,665,722,740,744,694,745**;Aug 13, 1993;Build 40
- ;;Per VHA Directive 2004-038, this routine should not be modified
+SDEC08   ;ALB/SAT/JSM,WTC,LAB,LEG,RRM,MGD - DELETE APPTS ;June 17, 2022@14:12
+ ;;5.3;Scheduling;**627,651,658,665,722,740,744,694,745,756,774,781,785,790,792,796,797,799,801,805,819**;Aug 13, 1993;Build 5
+ ;;Per VHA Directive 6402, this routine should not be modified
  ;
+ ; Reference to ^DPT (Patient File) is supported by IA #7030
  Q
  ;
-APPDEL(SDECY,SDECAPTID,SDECTYP,SDECCR,SDECNOT,SDECDATE,SDUSER,SOURCE,SDF) ;Cancels appointment
- ;APPDEL(SDECY,SDECAPTID,SDECTYP,SDECCR,SDECNOT,SDECDATE,SDUSER,SOURCE,SDF)  external parameter tag is in SDEC
+APPDEL(SDECY,SDECAPTID,SDECTYP,SDECCR,SDECNOT,SDECDATE,SDUSER,SOURCE,SDF,SDECCMT,NEWPID,EASTRCKNGNMBR) ;Cancels appointment
  ;SDECAPTID - (required) pointer to SDEC APPOINTMENT file #409.84
  ;SDECTYP   - (required) appointment Status valid values:
  ;                       C=CANCELLED BY CLINIC
  ;                       PC=CANCELLED BY PATIENT
- ;SDECCR    - (optional) pointer to CANCELLATION REASON File (409.2)
+ ;SDECCR    - (required) pointer to CANCELLATION REASON File (409.2)
  ;SDECNOT   - (optional) text representing user note
  ;SDECDATE  - (optional) Cancel Date/Time in external format; defaults to NOW
  ;SDUSER    - (optional) User that cancelled appt; defaults to current user
- ;SOURCE    - future enhancment VSE 1.8 SD*5.3*715
- ;SDF       - (optional) Flag used to determine whether to reopen appointment SD*5.3*745
+ ;SOURCE    - future enhancment L 1.8 SD*5.3*715
+ ;SDF       - (optional) Flag to determine whether to reopen appointment SD*5.3*745
+ ;SDECCMT   - (optional) List of cancellation comment hash tags (see #409.88) separated by ^ - 756 6/8/2020 wtc
+ ;NEWPID    - (optional) Only allowed when cancelling a recall request appointment by patient
+ ;EASTRCKINGNMBR - (optional) Enterprise Appointment Scheduling Tracking Number associated to an appointment.
  ;Returns error code in recordset field ERRORID
  ;
  N SDECNOD,SDECPATID,SDECSTART,DIK,DA,SDECID,SDECI,SDECZ,SDECERR
  N SDECLOC,SDECLEN,SDECSCIEN,SDECSCIEN1,SDECNOEV,SDECSC1,SDRET
- N %DT,X,Y
- S SDF=$S($G(SDF)=2:2,1:1) ; lab 745 default all flags to 1 except a flag of 2.
+ N %DT,X,Y,SDECJ ; wtc 756 6/8/2020 added SDECJ
+ I $G(NEWPID)'="" D
+ .S NEWPID=$$NETTOFM^SDECDATE(NEWPID,"N","N")
+ S SDF=$S($G(SDF)=3:3,$G(SDF)=2:2,1:1) ; lab 745 default all flags to 1 except a flag of 2.
  S SDECNOEV=1 ;Don't execute SDEC CANCEL APPOINTMENT protocol
  S SDECSCIEN1=0
  ;
@@ -41,6 +46,12 @@ APPDEL(SDECY,SDECAPTID,SDECTYP,SDECCR,SDECNOT,SDECDATE,SDUSER,SOURCE,SDF) ;Cance
  I SDECCR'="" I '$D(^SD(409.2,+SDECCR,0)) S SDECCR=$O(^SD(409.2,"B","SDECCR",0))
  ;validate SDECNOT
  S SDECNOT=$TR($G(SDECNOT),"^"," ")  ;alb/sat 658 - strip out ^
+ ;
+ ;  Add cancellation comment HASHTAGs from #409.88 to beginning of user note. - 756 wtc 6/8/2020
+ ;
+ I $G(SDECCMT)'="" F SDECJ=$L(SDECCMT,U):-1:1 S SDECNOT=$P(SDECCMT,U,SDECJ)_"_"_SDECNOT ;  Add hashtags in reverse order of receipt so national appear first.  wtc 8/19/2020
+ I $E(SDECNOT,$L(SDECNOT))="_" S SDECNOT=$E(SDECNOT,1,$L(SDECNOT)-1) ;  Strip off trailing "_".  Happens if not extra note text.
+ ;
  ;validate cancel date/time
  S SDECDATE=$G(SDECDATE)
  ;
@@ -59,14 +70,18 @@ APPDEL(SDECY,SDECAPTID,SDECTYP,SDECCR,SDECNOT,SDECDATE,SDUSER,SOURCE,SDF) ;Cance
  S SDECSTART=$P(SDECNOD,U)
  ;
  ;Lock SDEC node
- ;changed SDECPATID to SDECAPTID to get the APPOINTMENT ID instead of the PATIENT ID  ; pwc *745  7/16/2020
+ ;changed SDECPATID to SDECAPTID to get APPOINTMENT ID instead of PATIENT ID  ; pwc *745  7/16/2020
  L +^SDEC(409.84,SDECAPTID):5 I '$T D ADERR(SDECI+1,.SDECY,"Another user is working with this patient's record.  Please try again later",+SDECAPTID,0) Q  ;BI/SD *5.3*740
  ;cancel check-in if walk-in
  I $P(SDECNOD,U,13)="y" D
  .S SDRET=""
  .D CHECKIN^SDEC25(.SDRET,SDECAPTID,"@")
+ ;validate EAS Tracking Number
+ S EASTRCKNGNMBR=$TR($G(EASTRCKNGNMBR),"^"," ")
+ I $L(EASTRCKNGNMBR) S EASTRCKNGNMBR=$$EASVALIDATE^SDESUTIL(EASTRCKNGNMBR)
+ I EASTRCKNGNMBR=-1 D ADERR(SDECI,.SDECY,"SDEC08: Invalid EAS Tracking Number",+$G(SDECAPTID),0) Q
  ;cancel SDEC APPOINTMENT record
- D SDECCAN(SDECAPTID,SDECTYP,SDECCR,SDECNOT,SDECDATE,SDUSER,SDF) ;*745
+ D SDECCAN(SDECAPTID,SDECTYP,SDECCR,SDECNOT,SDECDATE,SDUSER,SDF,$G(NEWPID),EASTRCKNGNMBR) ;*745
  ;
  S SDECSC1=$P(SDECNOD,U,7) ;RESOURCEID
  I SDECSC1]"",$D(^SDEC(409.831,SDECSC1,0)) D  I +$G(SDECZ) S SDECERR=+SDECZ D ADERR(SDECI,.SDECY,$P(SDECZ,U,2),+SDECAPTID,1) Q   ;BI/SD*5.3*740 added ADERR ;changed SDECPATID to SDECAPTID - pwc *745
@@ -87,9 +102,9 @@ APPDEL(SDECY,SDECAPTID,SDECTYP,SDECCR,SDECNOT,SDECDATE,SDUSER,SOURCE,SDF) ;Cance
  . S SDECNOD=$G(^SC(SDECLOC,"S",SDECSTART,1,+SDECSCIEN,0))
  . I SDECNOD="" S SDECZ="0^Unable to find associated appointment for this patient." Q
  . S SDECLEN=$P(SDECNOD,U,2)
- . D APCAN^SDEC08A(.SDECZ,SDECLOC,SDECPATID,SDECSTART,SDECAPTID,SDECLEN) ;moved to SDEC08A because routine is too big *745
+ . D APCAN^SDEC08A(.SDECZ,SDECLOC,SDECPATID,SDECSTART,SDECAPTID,SDECLEN)
  . Q:+$G(SDECZ)
- . D AVUPDT^SDEC08A(SDECLOC,SDECSTART,SDECLEN)  ;moved to SDEC08A because routine is too big *745
+ . D AVUPDT^SDEC08A(SDECLOC,SDECSTART,SDECLEN)  ;moved to SDEC08A routine is too big *745
  . D AR433D^SDECAR2(SDECAPTID)
  L -^SDEC(409.84,SDECAPTID)   ;changed SDECPATID to SDECAPTID  ; pwc *745
  S SDECI=SDECI+1
@@ -107,24 +122,29 @@ ADERR(SDECI,SDECY,SDECERR,SDECAPTID,LOCK) ;Error processing   BI/SD*5.3*740  ;ch
  I LOCK=1  L -^SDEC(409.84,SDECAPTID)   ; changed SDECPATID to SDECAPTID  ; pwc *745
  Q
  ;
-SDECCAN(SDECAPTID,SDECTYP,SDECCR,SDECNOT,SDECDATE,SDUSER,SDF) ;cancel SDEC APPOINTMENT entry
+SDECCAN(SDECAPTID,SDECTYP,SDECCR,SDECNOT,SDECDATE,SDUSER,SDF,NEWPID,EASTRCKNGNMBR) ;cancel SDEC APPOINTMENT entry
  ;SDECAPTID - (required) pointer to SDEC APPOINTMENT file
  ;SDECTYP   - (required) appointment Status valid values:
  ;                          C=CANCELLED BY CLINIC
  ;                         PC=CANCELLED BY PATIENT
- ;SDECCR    - (optional) pointer to CANCELLATION REASON File (409.2)
+ ;SDECCR    - (required) pointer to CANCELLATION REASON File (409.2)
  ;SDECNOT   - (optional) text representing user note
  ;SDECDATE  - (optional) Cancel Date/Time in fm format; defaults to NOW) ;
  ;SDF       - (optional) flags ;*745 expanded flag explanation
  ;                       "1" or null  - update consult only.  (assumption called from a GUI)
  ;                       "01" (two digit) -do not reopen appt (called from cancel in SDAM)
  ;                       "2" - close appt request disp code REMOVED/EXTERNAL APP
+ ;                       "3" - Block & Move don't re-open a Appt Request if a Recall
+ ;NEWPID    - (optional) Only allowed when cancelling a recall request appointment by patient
+ ;EASTRCKINGNMBR - (optional) Enterprise Appointment Scheduling Tracking Number associated to an appointment.
  ;
  ;Cancel SDEC APPOINTMENT entry
  N DFN,PROVIEN,Y
  N SAVESTRT,SDAPTYP,SDCL,SDI,SDIEN,SDECIENS,SDECFDA,SDECMSG,SDECWP,SDRES,SDT   ;alb/sat 651 add SAVESTRT and SDRES
+ N DFN40985,IEN40986,PIDCHANGEVERIF,CSFDA,CSSIEN,ERR,CONSIEN,PIDHIEN ;**792
  S SDF=$G(SDF,0)
- S DFN=$$GET1^DIQ(409.84,SDECAPTID_",",.05)   ;alb/sat 658
+ S NEWPID=$G(NEWPID)
+ S DFN=$$GET1^DIQ(409.84,SDECAPTID_",",.05,"I")   ;alb/sat 658;781 lab added, "I"
  S SDT=$$GET1^DIQ(409.84,SDECAPTID_",",.01,"I")
  S SAVESTRT=$$GET1^DIQ(409.84,SDECAPTID_",",.01)   ;alb/sat 651
  S SDRES=$$GET1^DIQ(409.84,SDECAPTID_",",.07,"I")  ;alb/sat 651
@@ -133,39 +153,37 @@ SDECCAN(SDECAPTID,SDECTYP,SDECCR,SDECNOT,SDECDATE,SDUSER,SDF) ;cancel SDEC APPOI
  S SDECFDA(409.84,SDECIENS,.121)=$S($G(SDUSER)'="":SDUSER,1:DUZ)
  S:$G(SDECCR)'="" SDECFDA(409.84,SDECIENS,.122)=SDECCR
  S SDECFDA(409.84,SDECIENS,.17)=SDECTYP
+ ;S SDECFDA(409.84,SDECIENS,2)="@" ;patch SD*5.3*796, delete VVS appointment ID if appoinment is cancelled
+ S:$G(EASTRCKNGNMBR)'="" SDECFDA(409.84,SDECIENS,100)=EASTRCKNGNMBR
  K SDECMSG
  D FILE^DIE("","SDECFDA","SDECMSG")
  S SDAPTYP=$$GET1^DIQ(409.84,SDECAPTID_",",.22,"I")
+ I SDF=3,$P(SDAPTYP,";",2)'="SD(403.5," S SDF=0
  ;alb/sat 658 modification begin
- S SDECNOT=$G(SDECNOT),SDECNOT=$E(SDECNOT,1,160)
- I $L(SDECNOT)>2,'$E(SDF,2) K SDECFDA S SDECFDA(2.98,SDT_","_DFN_",",17)=SDECNOT D UPDATE^DIE("","SDECFDA")
+ S SDECNOT=$G(SDECNOT) ;,SDECNOT=$E(SDECNOT,1,160) - removed 160 character restriction so entire note is stored in #409.84 - wtc 756
+ I $L(SDECNOT)>2,'$E(SDF,2) K SDECFDA
+ S SDECFDA(2.98,SDT_","_DFN_",",17)=$E(SDECNOT,1,160) D UPDATE^DIE("","SDECFDA") ; restrict note in #2 to 160 characters - wtc 756
+ ; VSE-863; 6/6/2021 ; create new "APPT" Request if A "RECALL" Appt is Cancelled
+ I $P(SDAPTYP,";",2)="SD(403.5," D  Q
+ .Q:SDF=3
+ .D RECREQ^SDECRECREQ(.SDECY,SDECAPTID,SDAPTYP,$G(NEWPID),$G(SDECTYP))
  ;alb/sat 658 modification end
  I $P(SDAPTYP,";",2)="GMR(123,",$E(SDF,1),(SDF'=2) D
  .S SDCL=$$SDCL^SDECUTL(SDECAPTID)
  .S PROVIEN=$$GET1^DIQ(44,SDCL_",",16,"I")
- .D REQSET^SDEC07A($P(SDAPTYP,";",1),PROVIEN,"",2,SDECTYP,SDECNOT,SAVESTRT,SDRES)  ;alb/sat 651 added SAVESTRT
- I $P(SDAPTYP,";",2)="SDWL(409.3," D   ;update EWL
- .S DFN=$$GET1^DIQ(409.3,$P(SDAPTYP,";",1)_",",.01,"I")
- .Q:DFN=""
- .S SDIEN=0 F  S SDIEN=$O(^SDWL(409.3,"B",DFN,SDIEN)) Q:SDIEN=""  D
- ..I $$GET1^DIQ(409.3,SDIEN_",",13,"I")=SDT D
- ...K SDECFDA,SDECMSG,SDECWP
- ...;S SDIEN=$P(SDAPTYP,";",1)
- ...S SDECFDA(409.3,SDIEN_",",13)="@"
- ...S SDECFDA(409.3,SDIEN_",",13.1)="@"
- ...S SDECFDA(409.3,SDIEN_",",13.2)="@"
- ...S SDECFDA(409.3,SDIEN_",",13.3)="@"
- ...S SDECFDA(409.3,SDIEN_",",13.4)="@"
- ...S SDECFDA(409.3,SDIEN_",",13.5)="@"
- ...S SDECFDA(409.3,SDIEN_",",13.6)="@"
- ...S SDECFDA(409.3,SDIEN_",",13.7)="@"
- ...S SDECFDA(409.3,SDIEN_",",13.8)="@"
- ...D UPDATE^DIE("","SDECFDA")
- ...D:'$E(SDF,2) WLOPEN^SDECWL("","",SDIEN) ;alb/jsm 658 do not reopen if called from SDEC^SDCNP0
- ...I SDF=2 NEW INP S INP(1)=SDIEN S INP(2)="REMOVED/EXTERNAL APP" S INP(3)=SDUSER S INP(4)=DT D WLCLOSE^SDECWL("",.INP) ;*745
+ .D REQSET^SDEC07A($P(SDAPTYP,";",1),PROVIEN,"",2,SDECTYP,SDECNOT,SAVESTRT,SDRES)  ;651 added SAVESTRT
+ .; File consult PID history
+ .I $G(NEWPID) D
+ ..S CONSIEN=$P(SDAPTYP,";",1)
+ ..S PIDHIEN=$O(^SDEC(409.87,"B",CONSIEN,0))
+ ..S CSFDA(409.871,"+1,"_PIDHIEN_",",.01)=$$NOW^XLFDT
+ ..S CSFDA(409.871,"+1,"_PIDHIEN_",",1)=$G(NEWPID)
+ ..S CSFDA(409.871,"+1,"_PIDHIEN_",",2)=$$GET1^DIQ(200,SDUSER,.01,"E")
+ ..D UPDATE^DIE("","CSFDA","CSSIEN","ERR") K CSFDA
+ .Q
  I $P(SDAPTYP,";",2)="SDEC(409.85," D   ;update APPT
  .K SDECFDA,SDECMSG,SDECWP
- .D:'$E(SDF,2) AROPEN^SDECAR("",SDECAPTID) ;alb/jsm 658 do not reopen if called from SDEC^SDCNP0
+ .D:'$E(SDF,2) AROPEN^SDECAR("",SDECAPTID)
  .S SDIEN=$P(SDAPTYP,";",1)
  .S SDECFDA(409.85,SDIEN_",",13)="@"
  .S SDECFDA(409.85,SDIEN_",",13.1)="@"
@@ -176,13 +194,16 @@ SDECCAN(SDECAPTID,SDECTYP,SDECCR,SDECNOT,SDECDATE,SDUSER,SDF) ;cancel SDEC APPOI
  .S SDECFDA(409.85,SDIEN_",",13.6)="@"
  .S SDECFDA(409.85,SDIEN_",",13.7)="@"
  .S SDECFDA(409.85,SDIEN_",",13.8)="@"
- .D UPDATE^DIE("","SDECFDA")
+ .S PIDCHANGEVERIF=$S(SDECTYP="C":0,SDECTYP="PC":1,1:"")
+ .S SDECFDA(409.85,SDIEN_",",49)=PIDCHANGEVERIF
+ .S:$G(EASTRCKNGNMBR)'="" SDECFDA(409.85,SDIEN_",",100)=EASTRCKNGNMBR
+ .D UPDATE^DIE("","SDECFDA","ARRET","ERRMSG")
  .I SDF=2 NEW INP S INP(1)=SDIEN S INP(2)="REMOVED/EXTERNAL APP" S INP(3)=SDUSER S INP(4)=DT D ARCLOSE^SDECAR("",.INP) ;*745
  Q
  ;
-CANEVT(SDECPAT,SDECSTART,SDECSC) ;EP Called by SDEC CANCEL APPOINTMENT event
- ;when appointments cancelled via PIMS interface.
- ;Propagates cancellation to SDECAPPT and raises refresh event to running GUI clients
+CANEVT(SDECPAT,SDECSTART,SDECSC) ;EP Called by SDEC CANCEL APPOINTMENT
+ ;when Appt cancelled via PIMS interface.
+ ;Propagates canceL to SDECAPPT & raises refresh event to running GUI clients
  N SDECFOUND,SDECRES
  Q:+$G(SDECNOEV)
  Q:'+$G(SDECSC)
@@ -192,7 +213,7 @@ CANEVT(SDECPAT,SDECSTART,SDECSC) ;EP Called by SDEC CANCEL APPOINTMENT event
  Q
  ;
 CANEVT1(SDECRES,SDECSTART,SDECPAT) ;
- ;Get appointment id in SDECAPT
+ ;Get Appt ID in SDECAPT
  ;If found, call SDECCAN(SDECAPPT) and return 1
  ;else return 0
  N SDECFOUND,SDECAPPT
@@ -212,16 +233,14 @@ CANEVT3(SDECRES) ;
  S SDECRESN=$G(^SDEC(409.831,SDECRES,0))
  Q:SDECRESN=""
  S SDECRESN=$P(SDECRESN,"^")
- ;D EVENT^SDEC23("SCHEDULE-"_SDECRESN,"","","")
- ;D EVENT^BMXMEVN("SDEC SCHEDULE",SDECRESN)
  Q
  ;
 CANCEL(BSDR) ;EP; called to cancel appt
  ; Make call using: S ERR=$$CANCEL^SDEC08(.ARRAY)
  ;
  ; Input Array -
- ; BSDR("PAT") = ien of patient in file 2
- ; BSDR("CLN") = ien of clinic in file 44
+ ; BSDR("PAT") = ien of patient file 2
+ ; BSDR("CLN") = ien of clinic file 44
  ; BSDR("TYP") = C for canceled by clinic; PC for patient canceled
  ; BSDR("ADT") = appointment date and time
  ; BSDR("CDT") = cancel date and time
@@ -270,9 +289,9 @@ CANCEL(BSDR) ;EP; called to cancel appt
  S:$G(BSDR("NOT"))]"" @SDFDA@(17)=$E(BSDR("NOT"),1,160)
  S @SDFDA@(19)=USER
  S @SDFDA@(20)=DATE
- D UPDATE^DIE("","SDFDA")
+ D UPDATE^DIE("","SDFDA") ; ICR #7030 wtc 756 6/15/2020
  N SDPCE
- S SDPCE=$P($G(^DPT(DFN,"S",SDT,0)),U,20)
+ S SDPCE=$P($G(^DPT(DFN,"S",SDT,0)),U,20) ; ICR #7030 wtc 756 6/15/2020
  D:+SDPCE EN^SDCODEL(SDPCE,2,"","CANCEL")  ;remove OUTPATIENT ENCOUNTER link  ;*zeb 10/25/18 722 pass in correct SDMODE and delete source
  S $P(^SC(BSDR("CLN"),"S",BSDR("ADT"),1,HLAPTIEN,0),"^",9)="C"
  ; call event driver
@@ -284,7 +303,7 @@ UNDOCANA(SDECY,SDECAPTID) ;Undo Cancel Appointment
  ;UNDOCANA(SDECY,SDECAPTID)  external parameter tag in SDEC
  ;called by SDEC UNCANCEL APPT
  ; SDECAPTID = ien of appointment in SDEC APPOINTMENT (^SDECAPPT) file 409.84
- N SDECDAM,SDECDEC,SDECI,SDECNOD,SDECPATID,SDECSTART
+ N SDECDAM,SDECDEC,SDECI,SDECNOD,SDECPATID,SDECSTART,SDECNOTE,SDECWKIN
  S SDECNOEV=1 ;Don't execute SDEC CANCEL APPOINTMENT protocol  ;is this used?
  ;
  S SDECI=0
@@ -303,7 +322,12 @@ UNDOCANA(SDECY,SDECAPTID) ;Undo Cancel Appointment
  S SDECDAM=$P(SDECNOD,U,9)                  ;date appt made
  S SDECDEC=$P(SDECNOD,U,8)                  ;data entry clerk
  S SDECLEN=$P(SDECNOD,U,18)                 ;length of appt in minutes
- S SDECNOTE=$G(^SDEC(409.84,SDECAPTID,1,1,0))  ;note from SDEC APPOINTMENT
+ ;
+ ;  Get entire note from Appointment file.  756 wtc 1/25/2019
+ ;
+ ;S SDECNOTE=$G(^SDEC(409.84,SDECAPTID,1,1,0))  ;note from SDEC APPOINTMENT
+ S SDECNOTE="" N I F I=1:1 Q:'$D(^SDEC(409.84,SDECAPTID,1,I,0))  S SDECNOTE=SDECNOTE_^(0)_$C(13) ;
+ ;
  S SDECPATID=$P(SDECNOD,U,5)                ;pointer to VA PATIENT file 2
  S SDECSC1=$P($G(SDECNOD),U,7)              ;resource
  S SDECSTART=$P(SDECNOD,U)                  ;appt start time
@@ -312,7 +336,7 @@ UNDOCANA(SDECY,SDECAPTID) ;Undo Cancel Appointment
  ; changed line below to use SDECAPTID instead of SDECPATID  ; pwc *745  7/16/2020
  L +^SDEC(409.84,SDECAPTID):5 I '$T D ERR(SDECI+1,"Another user is working with this patient's record.  Please try again later",+SDECAPTID,0) Q   ;BI/SD*5.3*740
  ;un-cancel SDEC APPOINTMENT
- D SDECUCAN(SDECAPTID)
+ D SDECUCAN^SDEC08A(SDECAPTID)  ;moved to ^SDEC08A because of XINDEX size *756 PWC
  I SDECSC1]"",$D(^SDEC(409.831,SDECSC1,0)) D  I +$G(SDECZ) S SDECERR=SDECERR_$P(SDECZ,U,2) D ERR(SDECI,SDECERR,+SDECAPTID,1) Q   ;BI/SD*5.3*740  ;changed SDECPATID to SDECAPTID - pwc *745
  . S SDECLOC=""
  . S SDECNOD=^SDEC(409.831,SDECSC1,0)
@@ -321,72 +345,13 @@ UNDOCANA(SDECY,SDECAPTID) ;Undo Cancel Appointment
  . Q:'+SDECLOC
  . ;un-cancel patient appointment and re-instate clinic appointment
  . S SDECZ=""
- . D APUCAN(.SDECZ,SDECLOC,SDECPATID,SDECSTART,SDECDAM,SDECDEC,SDECLEN,SDECNOTE,SDECSC1,SDECWKIN)
+ . D APUCAN^SDEC08A(.SDECZ,SDECLOC,SDECPATID,SDECSTART,SDECDAM,SDECDEC,SDECLEN,SDECNOTE,SDECSC1,SDECWKIN)  ;moved to ^SDEC08A because of XINDEX size *756 PWC
  L -^SDEC(409.84,SDECAPTID)  ;changed SDECPATID to SDECAPTID - pwc *745
  S SDECI=SDECI+1
  S ^TMP("SDEC",$J,SDECI)=""_$C(30)
  S SDECI=SDECI+1
  S ^TMP("SDEC",$J,SDECI)=$C(31)
  Q
- ;
-SDECUCAN(SDECAPTID) ;called internally to update SDEC APPOINTMENT by clearing cancel date/time
- N PROVIEN,SDAPTYP,SDCL,SDRES
- S SDECIENS=SDECAPTID_","
- S SDECFDA(409.84,SDECIENS,.12)=""
- K SDECMSG
- D FILE^DIE("","SDECFDA","SDECMSG")
- S SDAPTYP=$$GET1^DIQ(409.84,SDECAPTID_",",.22,"I")
- I $P(SDAPTYP,";",2)="GMR(123," D
- .S SDCL=$$SDCL^SDECUTL(SDECAPTID)
- .S PROVIEN=$$GET1^DIQ(44,SDCL_",",16,"I")
- .D REQSET^SDEC07A($P(SDAPTYP,";",1),PROVIEN,"",1)
- Q
- ;
-APUCAN(SDECZ,SDECLOC,SDECPATID,SDECSTART,SDECDAM,SDECDEC,SDECLEN,SDECNOTE,SDECRES,SDECWKIN) ;
- ;un-Cancel appointment for patient SDECDFN in clinic SDECSC1
- ;  SDECLOC   = pointer to hospital location ^SC file 44
- ;  SDECPATID = pointer to VA Patient ^DPT file 2
- ;  SDECSTART = Appointment time
- ;  SDECDAM   = Date appointment made in FM format
- ;  SDECDEC   = Data entry clerk - pointer to NEW PERSON file 200
- N SDECC,%H
- S SDECC("PAT")=SDECPATID
- S SDECC("CLN")=SDECLOC
- S SDECC("ADT")=SDECSTART
- S SDECC("NOTE")=SDECNOTE  ;user note
- S SDECC("RES")=SDECRES
- S SDECC("USR")=DUZ
- S SDECC("LEN")=SDECLEN
- S SDECC("WKIN")=SDECWKIN
- ;
- S SDECZ=$$UNCANCEL(.SDECC)
- Q
- ;
-UNCANCEL(BSDR) ;PEP; called to un-cancel appt
- ; Make call using: S ERR=$$UNCANCEL(.ARRAY)
- ;
- ; Input Array -
- ; BSDR("PAT") = ien of patient in file 2
- ; BSDR("CLN") = ien of clinic in file 44
- ; BSDR("ADT") = appointment date and time
- ; BSDR("USR") = user who un-canceled appt
- ; BSDR("NOTE") = appointment note from SDEC APPOINTMENT
- ; BSDR("LEN") = appt length in minutes (numeric)
- ; BSDR("RES") = resource
- ; BSDR("WKIN")= walk-in
- ;
- ;Output: error status and message
- ;   = 0 or null:  everything okay
- ;   = 1^message:  error and reason
- ;
- N DPTNOD,DPTNODR
- I '$D(^DPT(+$G(BSDR("PAT")),0)) Q 1_U_"Patient not on file: "_$G(BSDR("PAT"))
- I '$D(^SC(+$G(BSDR("CLN")),0)) Q 1_U_"Clinic not on file: "_$G(BSDR("CLN"))
- I $G(BSDR("ADT"))'?7N1"."1N.N Q 1_U_"Appt Date/Time error: "_$G(BSDR("ADT"))  ;PWC  allow any time combination of numbers #694
- I '$D(^VA(200,+$G(BSDR("USR")),0)) Q 1_U_"User Who Canceled Appt Error: "_$G(BSDR("USR"))
- ;
- S SDECERR=$$APPVISTA^SDEC07B(BSDR("LEN"),BSDR("NOTE"),BSDR("PAT"),BSDR("RES"),BSDR("ADT"),BSDR("WKIN"),BSDR("CLN"),.SDECI)  ;alb/sat 665 APPVISTA moved to SDEC07B
- Q SDECERR
  ;
 ERR(SDECI,SDECERR,SDECAPTID,LOCK) ;Error processing   BI/SD*5.3*740 added two parameters   ;changed SDECPATID to SDECAPTID - pwc *745
  S SDECI=SDECI+1
@@ -397,7 +362,7 @@ ERR(SDECI,SDECERR,SDECAPTID,LOCK) ;Error processing   BI/SD*5.3*740 added two pa
  I $G(LOCK)=1  L -^SDEC(409.84,SDECAPTID)   ;BI/SD*5.3*740  ;changed SDECPATID to SDECAPTID - pwc *745
  Q
  ;
-ETRAP ;EP Error trap entry
+ETRAP    ;EP Error trap entry
  D ^%ZTER
  I '$D(SDECI) N SDECI S SDECI=999999
  S SDECI=SDECI+1

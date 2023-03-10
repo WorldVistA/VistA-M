@@ -1,134 +1,124 @@
-IBDEI0KB ; ; 04-FEB-2020
- ;;3.0;IB ENCOUNTER FORM IMP/EXP;;FEB 04, 2020
+IBDEI0KB ; ; 01-FEB-2022
+ ;;3.0;IB ENCOUNTER FORM IMP/EXP;;FEB 01, 2022
  Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,999) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
- ;;^UTILITY(U,$J,358.3,8962,1,0)
+ ;;^UTILITY(U,$J,358.3,9138,1,4,0)
+ ;;=4^M79.7
+ ;;^UTILITY(U,$J,358.3,9138,2)
+ ;;=^46261
+ ;;^UTILITY(U,$J,358.3,9139,0)
+ ;;=M80.08XA^^39^407^1
+ ;;^UTILITY(U,$J,358.3,9139,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,8962,1,3,0)
- ;;=3^Kidney Transplant Failure
- ;;^UTILITY(U,$J,358.3,8962,1,4,0)
- ;;=4^T86.12
- ;;^UTILITY(U,$J,358.3,8962,2)
- ;;=^5055710
- ;;^UTILITY(U,$J,358.3,8963,0)
- ;;=T86.13^^69^613^5
- ;;^UTILITY(U,$J,358.3,8963,1,0)
+ ;;^UTILITY(U,$J,358.3,9139,1,3,0)
+ ;;=3^Age-Related Osteoporosis w/ Vertebra Fx,Init Encntr
+ ;;^UTILITY(U,$J,358.3,9139,1,4,0)
+ ;;=4^M80.08XA
+ ;;^UTILITY(U,$J,358.3,9139,2)
+ ;;=^5013495
+ ;;^UTILITY(U,$J,358.3,9140,0)
+ ;;=M80.08XD^^39^407^2
+ ;;^UTILITY(U,$J,358.3,9140,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,8963,1,3,0)
- ;;=3^Kidney Transplant Infection
- ;;^UTILITY(U,$J,358.3,8963,1,4,0)
- ;;=4^T86.13
- ;;^UTILITY(U,$J,358.3,8963,2)
- ;;=^5055711
- ;;^UTILITY(U,$J,358.3,8964,0)
- ;;=Z94.0^^69^613^7
- ;;^UTILITY(U,$J,358.3,8964,1,0)
+ ;;^UTILITY(U,$J,358.3,9140,1,3,0)
+ ;;=3^Age-Related Osteoporosis w/ Vertebra Fx,Subs Encntr
+ ;;^UTILITY(U,$J,358.3,9140,1,4,0)
+ ;;=4^M80.08XD
+ ;;^UTILITY(U,$J,358.3,9140,2)
+ ;;=^5013496
+ ;;^UTILITY(U,$J,358.3,9141,0)
+ ;;=M84.48XA^^39^407^123
+ ;;^UTILITY(U,$J,358.3,9141,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,8964,1,3,0)
- ;;=3^Kidney Transplant Status
- ;;^UTILITY(U,$J,358.3,8964,1,4,0)
- ;;=4^Z94.0
- ;;^UTILITY(U,$J,358.3,8964,2)
- ;;=^5063654
- ;;^UTILITY(U,$J,358.3,8965,0)
- ;;=Z48.22^^69^613^1
- ;;^UTILITY(U,$J,358.3,8965,1,0)
+ ;;^UTILITY(U,$J,358.3,9141,1,3,0)
+ ;;=3^Pathological Fx,Oth Site,Init Encntr
+ ;;^UTILITY(U,$J,358.3,9141,1,4,0)
+ ;;=4^M84.48XA
+ ;;^UTILITY(U,$J,358.3,9141,2)
+ ;;=^5014016
+ ;;^UTILITY(U,$J,358.3,9142,0)
+ ;;=M84.48XD^^39^407^124
+ ;;^UTILITY(U,$J,358.3,9142,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,8965,1,3,0)
- ;;=3^Aftercare Following Kidney Transplant
- ;;^UTILITY(U,$J,358.3,8965,1,4,0)
- ;;=4^Z48.22
- ;;^UTILITY(U,$J,358.3,8965,2)
- ;;=^5063039
- ;;^UTILITY(U,$J,358.3,8966,0)
- ;;=Z52.4^^69^613^2
- ;;^UTILITY(U,$J,358.3,8966,1,0)
+ ;;^UTILITY(U,$J,358.3,9142,1,3,0)
+ ;;=3^Pathological Fx,Oth Site,Subs Encntr
+ ;;^UTILITY(U,$J,358.3,9142,1,4,0)
+ ;;=4^M84.48XD
+ ;;^UTILITY(U,$J,358.3,9142,2)
+ ;;=^5014017
+ ;;^UTILITY(U,$J,358.3,9143,0)
+ ;;=M87.011^^39^407^48
+ ;;^UTILITY(U,$J,358.3,9143,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,8966,1,3,0)
- ;;=3^Kidney Donor
- ;;^UTILITY(U,$J,358.3,8966,1,4,0)
- ;;=4^Z52.4
- ;;^UTILITY(U,$J,358.3,8966,2)
- ;;=^5063082
- ;;^UTILITY(U,$J,358.3,8967,0)
- ;;=D47.Z1^^69^613^8
- ;;^UTILITY(U,$J,358.3,8967,1,0)
+ ;;^UTILITY(U,$J,358.3,9143,1,3,0)
+ ;;=3^Idiopathic Aseptic Necrosis of Right Shoulder
+ ;;^UTILITY(U,$J,358.3,9143,1,4,0)
+ ;;=4^M87.011
+ ;;^UTILITY(U,$J,358.3,9143,2)
+ ;;=^5014658
+ ;;^UTILITY(U,$J,358.3,9144,0)
+ ;;=M87.012^^39^407^45
+ ;;^UTILITY(U,$J,358.3,9144,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,8967,1,3,0)
- ;;=3^Post-Transplant Lymphoproliferative Disorder (PTLD)
- ;;^UTILITY(U,$J,358.3,8967,1,4,0)
- ;;=4^D47.Z1
- ;;^UTILITY(U,$J,358.3,8967,2)
- ;;=^5002261
- ;;^UTILITY(U,$J,358.3,8968,0)
- ;;=N18.1^^69^614^1
- ;;^UTILITY(U,$J,358.3,8968,1,0)
+ ;;^UTILITY(U,$J,358.3,9144,1,3,0)
+ ;;=3^Idiopathic Aseptic Necrosis of Left Shoulder
+ ;;^UTILITY(U,$J,358.3,9144,1,4,0)
+ ;;=4^M87.012
+ ;;^UTILITY(U,$J,358.3,9144,2)
+ ;;=^5014659
+ ;;^UTILITY(U,$J,358.3,9145,0)
+ ;;=M87.050^^39^407^46
+ ;;^UTILITY(U,$J,358.3,9145,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,8968,1,3,0)
- ;;=3^Chr Kidney Disease,Stage 1
- ;;^UTILITY(U,$J,358.3,8968,1,4,0)
- ;;=4^N18.1
- ;;^UTILITY(U,$J,358.3,8968,2)
- ;;=^5015602
- ;;^UTILITY(U,$J,358.3,8969,0)
- ;;=N18.2^^69^614^2
- ;;^UTILITY(U,$J,358.3,8969,1,0)
+ ;;^UTILITY(U,$J,358.3,9145,1,3,0)
+ ;;=3^Idiopathic Aseptic Necrosis of Pelvis
+ ;;^UTILITY(U,$J,358.3,9145,1,4,0)
+ ;;=4^M87.050
+ ;;^UTILITY(U,$J,358.3,9145,2)
+ ;;=^5014679
+ ;;^UTILITY(U,$J,358.3,9146,0)
+ ;;=M87.051^^39^407^47
+ ;;^UTILITY(U,$J,358.3,9146,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,8969,1,3,0)
- ;;=3^Chr Kidney Disease,Stage 2
- ;;^UTILITY(U,$J,358.3,8969,1,4,0)
- ;;=4^N18.2
- ;;^UTILITY(U,$J,358.3,8969,2)
- ;;=^5015603
- ;;^UTILITY(U,$J,358.3,8970,0)
- ;;=N18.3^^69^614^3
- ;;^UTILITY(U,$J,358.3,8970,1,0)
+ ;;^UTILITY(U,$J,358.3,9146,1,3,0)
+ ;;=3^Idiopathic Aseptic Necrosis of Right Femur
+ ;;^UTILITY(U,$J,358.3,9146,1,4,0)
+ ;;=4^M87.051
+ ;;^UTILITY(U,$J,358.3,9146,2)
+ ;;=^5014680
+ ;;^UTILITY(U,$J,358.3,9147,0)
+ ;;=M87.052^^39^407^44
+ ;;^UTILITY(U,$J,358.3,9147,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,8970,1,3,0)
- ;;=3^Chr Kidney Disease,Stage 3
- ;;^UTILITY(U,$J,358.3,8970,1,4,0)
- ;;=4^N18.3
- ;;^UTILITY(U,$J,358.3,8970,2)
- ;;=^5015604
- ;;^UTILITY(U,$J,358.3,8971,0)
- ;;=N18.4^^69^614^4
- ;;^UTILITY(U,$J,358.3,8971,1,0)
+ ;;^UTILITY(U,$J,358.3,9147,1,3,0)
+ ;;=3^Idiopathic Aseptic Necrosis of Left Femur
+ ;;^UTILITY(U,$J,358.3,9147,1,4,0)
+ ;;=4^M87.052
+ ;;^UTILITY(U,$J,358.3,9147,2)
+ ;;=^5014681
+ ;;^UTILITY(U,$J,358.3,9148,0)
+ ;;=M87.111^^39^407^78
+ ;;^UTILITY(U,$J,358.3,9148,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,8971,1,3,0)
- ;;=3^Chr Kidney Disease,Stage 4
- ;;^UTILITY(U,$J,358.3,8971,1,4,0)
- ;;=4^N18.4
- ;;^UTILITY(U,$J,358.3,8971,2)
- ;;=^5015605
- ;;^UTILITY(U,$J,358.3,8972,0)
- ;;=N18.5^^69^614^5
- ;;^UTILITY(U,$J,358.3,8972,1,0)
+ ;;^UTILITY(U,$J,358.3,9148,1,3,0)
+ ;;=3^Osteonecrosis d/t Drugs,Right Shoulder
+ ;;^UTILITY(U,$J,358.3,9148,1,4,0)
+ ;;=4^M87.111
+ ;;^UTILITY(U,$J,358.3,9148,2)
+ ;;=^5014701
+ ;;^UTILITY(U,$J,358.3,9149,0)
+ ;;=M87.112^^39^407^75
+ ;;^UTILITY(U,$J,358.3,9149,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,8972,1,3,0)
- ;;=3^Chr Kidney Disease,Stage 5
- ;;^UTILITY(U,$J,358.3,8972,1,4,0)
- ;;=4^N18.5
- ;;^UTILITY(U,$J,358.3,8972,2)
- ;;=^5015606
- ;;^UTILITY(U,$J,358.3,8973,0)
- ;;=N18.9^^69^614^6
- ;;^UTILITY(U,$J,358.3,8973,1,0)
+ ;;^UTILITY(U,$J,358.3,9149,1,3,0)
+ ;;=3^Osteonecrosis d/t Drugs,Left Shoulder
+ ;;^UTILITY(U,$J,358.3,9149,1,4,0)
+ ;;=4^M87.112
+ ;;^UTILITY(U,$J,358.3,9149,2)
+ ;;=^5014702
+ ;;^UTILITY(U,$J,358.3,9150,0)
+ ;;=M87.150^^39^407^76
+ ;;^UTILITY(U,$J,358.3,9150,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,8973,1,3,0)
- ;;=3^Chr Kidney Disease,Unspec
- ;;^UTILITY(U,$J,358.3,8973,1,4,0)
- ;;=4^N18.9
- ;;^UTILITY(U,$J,358.3,8973,2)
- ;;=^332812
- ;;^UTILITY(U,$J,358.3,8974,0)
- ;;=N18.6^^69^614^7
- ;;^UTILITY(U,$J,358.3,8974,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,8974,1,3,0)
- ;;=3^ESRD
- ;;^UTILITY(U,$J,358.3,8974,1,4,0)
- ;;=4^N18.6
- ;;^UTILITY(U,$J,358.3,8974,2)
- ;;=^303986
- ;;^UTILITY(U,$J,358.3,8975,0)
- ;;=N19.^^69^614^8
+ ;;^UTILITY(U,$J,358.3,9150,1,3,0)
+ ;;=3^Osteonecrosis d/t Drugs,Pelvis

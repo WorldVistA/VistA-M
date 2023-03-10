@@ -1,5 +1,5 @@
-DIDX ;SFISC/XAK - BRIEF DD ;4NOV2012
- ;;22.2;VA FileMan;**2**;Jan 05, 2016;Build 139
+DIDX ;SFISC/XAK - BRIEF DD ; Jun 22, 2022@09:04:42
+ ;;22.2;VA FileMan;**2,23**;Jan 05, 2016;Build 2
  ;;Per VA Directive 6402, this routine should not be modified.
  ;;Submitted to OSEHRA 5 January 2015 by the VISTA Expertise Network.
  ;;Based on Medsphere Systems Corporation's MSC FileMan 1051.
@@ -51,8 +51,9 @@ VP1 S DID2=$O(^DD(F(Z),D1,"V",DID2)) S:DID2="" DID2=-1 G:DID2'>0 VP2 S DIDV=^(DI
 VP2 I DIMU S DIDVI=0 F  S DIDVI=$O(^DD(F(Z),D1,"V",DIDVI)) Q:DIDVI'>0  I $D(^(DIDVI,1)) S %=^(0) D VP3 Q:M=U
  S DIDV=0 F  S DIDV=$O(DIDV(DIDV)) Q:DIDV'>0  S W="!! FILE "_DIDV_" DOES NOT EXIST !!" D W^DID1 Q:M=U
 Q W ! K DID2,DIMU,DID1,DIDV,DIDVI S W="" Q
-VP3 ;
- W !?(Z+Z+12),"SCREEN"_$S('$D(DINM):" ON FILE "_$P(%,U)_":",1:" EXPLANATION ON FILE "_$P(%,U)_":") S W=" "_$S('$D(DINM):^(1),1:$S($D(^(2)):^(2),1:"")) D W^DID1:'$D(DINM),W^DIDH:$D(DINM)
+VP3 ;p23
+ I '$D(DINM) W !?(Z+Z+12),"SCREEN ON FILE "_$P(%,U)_":" S W=" "_^(1) D W^DID1:'$D(DINM)
+ W !?(Z+Z+12)," SCREEN EXPLANATION"_$S($D(DINM):" ON FILE "_$P(%,U),1:"")_":" S W=" "_$G(^(2)) D W^DIDH
  Q
 RT F W="Required","Add New Entry without Asking","Multiply asked","audited" I X[$E(W,1) S W=" ("_W_")" W:($L(W)+$X)'<IOM ! D W^DID1 G ND^DID1:M=U
  I $D(^DD("KEY","F",F(Z),DJ(Z))) S W=" (Key field)" W:($L(W)+$X)'<IOM ! D W^DID1 G ND^DID1:M=U

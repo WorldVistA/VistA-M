@@ -1,7 +1,9 @@
 PSGPER0 ;BIR/CML3-PRINTS PRE-EXCHANGE NEEDS REPORT ;24 JAN 94 / 11:14 AM
- ;;5.0;INPATIENT MEDICATIONS;**58,82,95,115,279**;16 DEC 97;Build 150
+ ;;5.0;INPATIENT MEDICATIONS;**58,82,95,115,279,364**;16 DEC 97;Build 47
  ;
  ; Reference to ^PS(55 is supported by DBIA 2191.
+ ;
+ ;*364  Write HAZ indicators on Pre-Exchange report.
  ;
 ENQ ;
  D ENP:'$G(PSGPXPT),ENPAT:$G(PSGPXPT)
@@ -77,7 +79,11 @@ OP ;
  Q
 PRT ; find order info and print same
  I 'RF,$Y+4>IOSL D NP Q:NP="^"
- I 1 S PDN=$P(PX,"^"),UD=$P(PX,"^",2),PX=$P(PX,"^",3) W !?20,PDN,?62,$J($S('UD:1,$E(UD)=".":0_UD,1:UD),5),?72,$J(PX,5) Q
+ I 1 S PDN=$P(PX,"^"),UD=$P(PX,"^",2),PX=$P(PX,"^",3) W !?20,PDN,?62,$J($S('UD:1,$E(UD)=".":0_UD,1:UD),5),?72,$J(PX,5) D  Q
+ . ;if Haz, write it     *364
+ . N XDRGIEN,PSHAZ S XDRGIEN=0 F  S XDRGIEN=$O(^PSDRUG("B",PDN,XDRGIEN)) Q:XDRGIEN=""  D
+ . . S PSHAZ=$$HAZ^PSSUTIL(XDRGIEN)
+ . . I $P(PSHAZ,U)!$P(PSHAZ,U,2) W ! W:$P(PSHAZ,U) ?20,"<<HAZ Handle>> " W:$P(PSHAZ,U,2) ?20,"<<HAZ Dispose>>"          ;write, if Haz 
  S ON=$P(DN,"^",2),ND=$G(^PS(55,DFN,5,ON,0)),ND2=$G(^(2)),ND4=$G(^(4)),Y=$P($G(^(6)),"^"),ND0=$G(^(.1)),DO=$P(ND0,"^",2)
  S DRG=$$ENDDN^PSGMI($P(ND0,"^")),MR=$$ENMRN^PSGMI(MR) ; ,DRGS=$P($G(^(+$O(^PS(55,DFN,5,ON,1,0)),0)),"^")
  I 'RF W !?5,DRG,?47,DO,?65,$J($S('UD:1,UD=.5:"1/2",UD=.25:"1/4",UD?1".".N:0_UD,1:UD),5),?75,$J(+PX,5) Q

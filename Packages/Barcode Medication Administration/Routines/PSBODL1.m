@@ -1,10 +1,11 @@
-PSBODL1 ;BIRMINGHAM/VRN-DUE LIST ;03/06/16 3:06pm
- ;;3.0;BAR CODE MED ADMIN;**5,9,32,28,68,70,83**;Mar 2004;Build 89
+PSBODL1 ;BIRMINGHAM/VRN-DUE LIST ;4/26/21  12:11
+ ;;3.0;BAR CODE MED ADMIN;**5,9,32,28,68,70,83,106**;Mar 2004;Build 43
  ;Per VHA Directive 2004-038 (or future revisions regarding same), this routine should not be modified. 
  ;
  ;*68 - print New unlimited Wp Special Instructions/OPI fields
  ;*70 - add Psbsrchl to HDR
  ;*83 - add Removes to the report that need attention.
+ ;*106- add Hazardous Handle & Dispose flags
  ;
 EN ;
  N QQ
@@ -57,6 +58,12 @@ EN ;
  .W !,$J(PSBSM,3),?6,PSBTYPE,$E(PSBSCHT,1,4),?12 S PSBWFLAG=1
  .S X="",Y=0
  .W $$WRAP(14,34,PSBOITX)
+ .; *106 adds the hazardous handle/dispose notices
+ .N PSBHAZ
+ .S PSBHAZ=""
+ .I PSBHAZHN=1 S PSBHAZ="<<HAZ Handle>> "
+ .I PSBHAZDS=1 S PSBHAZ=PSBHAZ_"<<HAZ Dispose>>"
+ .W:PSBHAZ]"" $$WRAP(14,45,PSBHAZ)
  .S PSBADM="Give: "_PSBDOSE_"  "_PSBSCH
  .W $$WRAP(50,27,PSBADM)
  .W $$WRAP(78,6,PSBMR)
@@ -90,7 +97,13 @@ EN ;
  ;
 WRAPPUP ;Do wrapping per PSBODL (Due List Report)
  ;
+ N PSBHAZ
  W $$WRAP(14,34,PSBMED)
+ ;*106 adds the hazardous handle/dispose notices
+ S PSBHAZ=""
+ I PSBHAZHN=1 S PSBHAZ="<<HAZ Handle>> "
+ I PSBHAZDS=1 S PSBHAZ=PSBHAZ_"<<HAZ Dispose>>"
+ W:PSBHAZ]"" $$WRAP(14,45,PSBHAZ)
  S PSBADM="Give: "_PSBDOSE_"  "_PSBSCH
  W $$WRAP(50,27,PSBADM),?78,$$WRAP(78,6,PSBMR)
  W ?85 D:PSBLGDT

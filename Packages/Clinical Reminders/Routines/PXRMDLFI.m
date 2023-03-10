@@ -1,5 +1,5 @@
-PXRMDLFI ; SLC/PKR - Handle Reminder dialog findings. ;06/08/2009
- ;;2.0;CLINICAL REMINDERS;**12**;Feb 04, 2005;Build 73
+PXRMDLFI ; SLC/PKR - Handle Reminder dialog findings. ;Apr 25, 2022@08:53:57
+ ;;2.0;CLINICAL REMINDERS;**12,65**;Feb 04, 2005;Build 438
  ;
  ;=================================================
 DISP(IEN,SC) ;Display findings and additional findings.
@@ -112,6 +112,29 @@ AFLIST W !!,"Additional findings:"
  I '$D(DA) Q SAVEFI
  G AFLIST
  Q
+ ;
+DISPFCAP(DA,JUS) ;
+ N IMMSKT,STR
+ S IMMSKT=$$HASIMMSKT(DA)
+ S STR=$$RJ^XLFSTR($S(IMMSKT=1:"Immunization Caption:",IMMSKT=2:"Skin Test Caption",1:"Vital Prompt Caption:"),JUS)
+ S STR=STR_"  "_$P($G(^PXRMD(801.41,DA,0)),U,5)
+ W !,STR
+ I IMMSKT=0 Q
+ S STR=$S(IMMSKT=1:"Immunization Required:",IMMSKT=2:"Skin Test Required",1:"")
+ I STR="" Q
+ S STR=$$RJ^XLFSTR(STR,JUS)
+ S STR=STR_"  "_$S($P($G(^PXRMD(801.41,DA,"DATA")),U,4)=1:"Yes",1:"NO")
+ W !,STR
+ Q
+ ;
+HASIMMSKT(IEN) ;
+ N DA,FINDARR,FINDINGS,RESULT
+ S RESULT=0,DA(1)=IEN
+ D FINDINGS^PXRMDLG6(.DA,.FINDARR)
+ S FIND="" F  S FIND=$O(FINDARR(FIND)) Q:FIND=""!(RESULT>0)  D
+ .I FIND["AUTTSK" S RESULT=2
+ .I FIND["AUTTIMM" S RESULT=1
+ Q RESULT
  ;
  ;=================================================
 MHLICR(IEN) ;Check to see if mental health licensing is required.

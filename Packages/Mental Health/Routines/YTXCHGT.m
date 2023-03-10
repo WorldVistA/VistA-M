@@ -1,5 +1,5 @@
 YTXCHGT ;SLC/KCM - JSON / Tree Conversions ; 9/15/2015
- ;;5.01;MENTAL HEALTH;**121,123,130**;Dec 30, 1994;Build 62
+ ;;5.01;MENTAL HEALTH;**121,123,130,202**;Dec 30, 1994;Build 47
  ;
  ; Reference to VPRJSON supported by IA #6411
  ;
@@ -107,13 +107,13 @@ TR2WP(SRC,DEST) ; Convert tree representation to FM WP
  ;  SRC: glvn of source array (JSON node with wp text)
  ; DEST: glvn of destination array (will add [line,0] nodes)
  N I,J,X,LN
- S LN=0,X=$G(@SRC)
- F J=1:1:$L(X,$C(13,10)) S LN=LN+1,@DEST@(LN,0)=$P(X,$C(13,10),J)
+ S LN=0,X=$TR($G(@SRC),$C(13))  ; drop CR and only parse on LF
+ F J=1:1:$L(X,$C(10)) S LN=LN+1,@DEST@(LN,0)=$P(X,$C(10),J)
  S I=0 F  S I=$O(@SRC@("\",I)) Q:'I  D
- . S X=@SRC@("\",I)
- . F J=1:1:$L(X,$C(13,10)) D
- . . I J=1 S @DEST@(LN,0)=@DEST@(LN,0)_$P(X,$C(13,10),1) I 1
- . . E  S LN=LN+1,@DEST@(LN,0)=$P(X,$C(13,10),J)
+ . S X=$TR(@SRC@("\",I),$C(13)) ; drop CR and only parse on LF (in \ nodes)
+ . F J=1:1:$L(X,$C(10)) D
+ . . I J=1 S @DEST@(LN,0)=@DEST@(LN,0)_$P(X,$C(10),1) I 1
+ . . E  S LN=LN+1,@DEST@(LN,0)=$P(X,$C(10),J)
  Q
 SPLITLN(SRC,DEST,MAX) ; Split JSON lines into lines of MAX length
  N I,LN,X

@@ -1,5 +1,5 @@
 XUAF4 ;ISC-SF/RWF/RAM - Institution file access. ;12/03/2019  08:07
- ;;8.0;KERNEL;**43,112,206,209,232,217,261,394,549,555,723**;Jul 10, 1995;Build 3
+ ;;8.0;KERNEL;**43,112,206,209,232,217,261,394,549,555,723,662**;Jul 10, 1995;Build 49
  ;;Per VA Directive 6402, this routine should not be modified
  Q  ;No access from the top.
  ;
@@ -109,6 +109,29 @@ PADD(IEN) ; -- physical address (street addr^city^state^zip)
  S X=$G(^DIC(4,+IEN,1)) Q:X="" X
  ;
  Q $P(X,U)_U_$P(X,U,3)_U_STATE_U_$P(X,U,4)
+ ;
+HPADD(IEN,XUEDT) ; -- historical physical address based on effective date
+ ;
+ Q:$G(XUEDT)=""
+ N XUADD1,XUADD2,XUCITY,XUSTDA,XUSTATE,XUZIP,XULINE
+ ;
+ ; Find valid historical address fields based on effective date
+ ;
+ S XULINE=""
+ I '$D(^DIC(4,+IEN,999)) Q XULINE
+ N XUHFND,XUHDA,IENS,XUHRRY
+ S XUHDA="",XUHFND=0
+ F  S XUHDA=$O(^DIC(4,+IEN,999,"B",XUHDA)) Q:XUHDA=""!XUHFND  I $D(^DIC(4,+IEN,999,XUHDA,1)) D
+ . I XUEDT<XUHDA D
+ . . S IENS=XUHDA_","_+IEN_","
+ . . D GETS^DIQ(4.999,IENS,"1:1.4","IE","XUHRRY")
+ . . S XUHFND=1,XUADD1=XUHRRY(4.999,IENS,1,"E"),XUADD2=XUHRRY(4.999,IENS,1.1,"E")
+ . . S XUCITY=XUHRRY(4.999,IENS,1.2,"E"),XUZIP=XUHRRY(4.999,IENS,1.4,"E")
+ . . S XUSTDA=XUHRRY(4.999,IENS,1.3,"I"),XUSTATE=$P($G(^DIC(5,XUSTDA,0)),U,2)
+ . . S XULINE=XUADD1_U_XUADD2_U_XUCITY_U_XUSTATE_U_XUZIP
+ . . K XUHRRY
+ ;
+ Q XULINE
  ;
 MADD(IEN) ; -- mailing address (street addr^city^state^zip)
  ;

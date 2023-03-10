@@ -1,5 +1,5 @@
-PSORXEDT ;BIR/SAB - edit rx routine ;10/21/98
- ;;7.0;OUTPATIENT PHARMACY;**21,23,44,71,146,185,148,253,390,372,416,313,427,422,402,500,482,556**;DEC 1997;Build 2
+PSORXEDT ;BIR/SAB - Edit RX Routine ;Jan 05, 2021@12:04
+ ;;7.0;OUTPATIENT PHARMACY;**21,23,44,71,146,185,148,253,390,372,416,313,427,422,402,500,482,556,622**;DEC 1997;Build 44
  ;External Reference to ^PS(55 supported by DBIA 2228
  ;External reference to $$BSA^PSSDSAPI supported by DBIA 5425
  D:'$D(PSOPAR) ^PSOLSET I '$D(PSOPAR) G EOJ Q
@@ -94,6 +94,7 @@ PT ;
  I ($P($G(RSLT),"^",2)'["Not Found")&($P($G(RSLT),"^",3)>=.01) S ZDSPL="  CrCL: "_$P(RSLT,"^",2)_"(est.)"_" (CREAT: "_$P($G(RSLT),"^",3)_"mg/dL "_$P($G(RSLT),"^")_")"
  S ^TMP("PSOHDR",$J,13,0)=$G(ZDSPL)
  K PSOBSA,RSLT,ZDSPL
+ S ^TMP("PSOHDR",$J,14,0)=$$POSTSHRT^WVRPCOR(PSODFN)
  ;
  D NOW^%DTC S TM=$E(%,1,12),TM1=$P(TM,".",2) S ^TMP("PSOBB",$J)=TM_"^"_TM1
  S PSOLOUD=1 D:$P($G(^PS(55,PSODFN,0)),"^",6)'=2 EN^PSOHLUP(PSODFN) K PSOLOUD

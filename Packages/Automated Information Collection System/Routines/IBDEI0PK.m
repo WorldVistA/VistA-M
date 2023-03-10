@@ -1,120 +1,122 @@
-IBDEI0PK ; ; 04-FEB-2020
- ;;3.0;IB ENCOUNTER FORM IMP/EXP;;FEB 04, 2020
+IBDEI0PK ; ; 01-FEB-2022
+ ;;3.0;IB ENCOUNTER FORM IMP/EXP;;FEB 01, 2022
  Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,999) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
- ;;^UTILITY(U,$J,358.3,11405,1,3,0)
- ;;=3^Primary Open-Angle Gluacoma,Mod Stage,Bilateral
- ;;^UTILITY(U,$J,358.3,11405,1,4,0)
- ;;=4^H40.1132
- ;;^UTILITY(U,$J,358.3,11405,2)
- ;;=^5138548
- ;;^UTILITY(U,$J,358.3,11406,0)
- ;;=H40.1232^^77^732^19
- ;;^UTILITY(U,$J,358.3,11406,1,0)
+ ;;^UTILITY(U,$J,358.3,11491,1,4,0)
+ ;;=4^T80.211A
+ ;;^UTILITY(U,$J,358.3,11491,2)
+ ;;=^5054350
+ ;;^UTILITY(U,$J,358.3,11492,0)
+ ;;=T80.211D^^46^556^4
+ ;;^UTILITY(U,$J,358.3,11492,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,11406,1,3,0)
- ;;=3^Low-Tension Glaucoma,Mod,Bilateral
- ;;^UTILITY(U,$J,358.3,11406,1,4,0)
- ;;=4^H40.1232
- ;;^UTILITY(U,$J,358.3,11406,2)
- ;;=^5005769
- ;;^UTILITY(U,$J,358.3,11407,0)
- ;;=H40.1113^^77^732^12
- ;;^UTILITY(U,$J,358.3,11407,1,0)
+ ;;^UTILITY(U,$J,358.3,11492,1,3,0)
+ ;;=3^Bloodstream Infection d/t Central Venous Catheter,Subs Encntr
+ ;;^UTILITY(U,$J,358.3,11492,1,4,0)
+ ;;=4^T80.211D
+ ;;^UTILITY(U,$J,358.3,11492,2)
+ ;;=^5054351
+ ;;^UTILITY(U,$J,358.3,11493,0)
+ ;;=E83.59^^46^556^5
+ ;;^UTILITY(U,$J,358.3,11493,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,11407,1,3,0)
- ;;=3^Primary Open-Angle Glaucoma,Sev Stage,Right Eye
- ;;^UTILITY(U,$J,358.3,11407,1,4,0)
- ;;=4^H40.1113
- ;;^UTILITY(U,$J,358.3,11407,2)
- ;;=^5138539
- ;;^UTILITY(U,$J,358.3,11408,0)
- ;;=H40.1123^^77^732^13
- ;;^UTILITY(U,$J,358.3,11408,1,0)
+ ;;^UTILITY(U,$J,358.3,11493,1,3,0)
+ ;;=3^Calciphylaxis
+ ;;^UTILITY(U,$J,358.3,11493,1,4,0)
+ ;;=4^E83.59
+ ;;^UTILITY(U,$J,358.3,11493,2)
+ ;;=^5003006
+ ;;^UTILITY(U,$J,358.3,11494,0)
+ ;;=T85.621A^^46^556^8
+ ;;^UTILITY(U,$J,358.3,11494,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,11408,1,3,0)
- ;;=3^Primary Open-Angle Glaucoma,Sev Stage,Left Eye
- ;;^UTILITY(U,$J,358.3,11408,1,4,0)
- ;;=4^H40.1123
- ;;^UTILITY(U,$J,358.3,11408,2)
- ;;=^5138544
- ;;^UTILITY(U,$J,358.3,11409,0)
- ;;=H40.022^^77^732^24
- ;;^UTILITY(U,$J,358.3,11409,1,0)
+ ;;^UTILITY(U,$J,358.3,11494,1,3,0)
+ ;;=3^Displacement of Intraperitoneal Dialysis Catheter,Init Encntr
+ ;;^UTILITY(U,$J,358.3,11494,1,4,0)
+ ;;=4^T85.621A
+ ;;^UTILITY(U,$J,358.3,11494,2)
+ ;;=^5055625
+ ;;^UTILITY(U,$J,358.3,11495,0)
+ ;;=T85.621D^^46^556^9
+ ;;^UTILITY(U,$J,358.3,11495,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,11409,1,3,0)
- ;;=3^Open Angle w/ Borderline Findings,High Risk,Left Eye
- ;;^UTILITY(U,$J,358.3,11409,1,4,0)
- ;;=4^H40.022
- ;;^UTILITY(U,$J,358.3,11409,2)
- ;;=^5005729
- ;;^UTILITY(U,$J,358.3,11410,0)
- ;;=H40.021^^77^732^23
- ;;^UTILITY(U,$J,358.3,11410,1,0)
+ ;;^UTILITY(U,$J,358.3,11495,1,3,0)
+ ;;=3^Displacement of Intraperitoneal Dialysis Catheter,Subs Encntr
+ ;;^UTILITY(U,$J,358.3,11495,1,4,0)
+ ;;=4^T85.621D
+ ;;^UTILITY(U,$J,358.3,11495,2)
+ ;;=^5055626
+ ;;^UTILITY(U,$J,358.3,11496,0)
+ ;;=K65.0^^46^556^10
+ ;;^UTILITY(U,$J,358.3,11496,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,11410,1,3,0)
- ;;=3^Open Angle w/ Borderline Findings,High Risk,Right Eye
- ;;^UTILITY(U,$J,358.3,11410,1,4,0)
- ;;=4^H40.021
- ;;^UTILITY(U,$J,358.3,11410,2)
- ;;=^5005728
- ;;^UTILITY(U,$J,358.3,11411,0)
- ;;=H40.1131^^77^732^8
- ;;^UTILITY(U,$J,358.3,11411,1,0)
+ ;;^UTILITY(U,$J,358.3,11496,1,3,0)
+ ;;=3^Generalized (acute) Peritonitis
+ ;;^UTILITY(U,$J,358.3,11496,1,4,0)
+ ;;=4^K65.0
+ ;;^UTILITY(U,$J,358.3,11496,2)
+ ;;=^332799
+ ;;^UTILITY(U,$J,358.3,11497,0)
+ ;;=G60.9^^46^556^14
+ ;;^UTILITY(U,$J,358.3,11497,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,11411,1,3,0)
- ;;=3^Primary Open-Angle Glaucoma,Mild Stage,Bilateral
- ;;^UTILITY(U,$J,358.3,11411,1,4,0)
- ;;=4^H40.1131
- ;;^UTILITY(U,$J,358.3,11411,2)
- ;;=^5138547
- ;;^UTILITY(U,$J,358.3,11412,0)
- ;;=H40.1112^^77^732^9
- ;;^UTILITY(U,$J,358.3,11412,1,0)
+ ;;^UTILITY(U,$J,358.3,11497,1,3,0)
+ ;;=3^Hereditary & Idiopathic Neuropathy,Unspec
+ ;;^UTILITY(U,$J,358.3,11497,1,4,0)
+ ;;=4^G60.9
+ ;;^UTILITY(U,$J,358.3,11497,2)
+ ;;=^5004071
+ ;;^UTILITY(U,$J,358.3,11498,0)
+ ;;=T82.838A^^46^556^12
+ ;;^UTILITY(U,$J,358.3,11498,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,11412,1,3,0)
- ;;=3^Primary Open-Angle Glaucoma,Mod Stage,Right Eye
- ;;^UTILITY(U,$J,358.3,11412,1,4,0)
- ;;=4^H40.1112
- ;;^UTILITY(U,$J,358.3,11412,2)
- ;;=^5138538
- ;;^UTILITY(U,$J,358.3,11413,0)
- ;;=H40.1122^^77^732^10
- ;;^UTILITY(U,$J,358.3,11413,1,0)
+ ;;^UTILITY(U,$J,358.3,11498,1,3,0)
+ ;;=3^Hemorrhage of Vascular Graft/Fistula,Init Encntr
+ ;;^UTILITY(U,$J,358.3,11498,1,4,0)
+ ;;=4^T82.838A
+ ;;^UTILITY(U,$J,358.3,11498,2)
+ ;;=^5054929
+ ;;^UTILITY(U,$J,358.3,11499,0)
+ ;;=T82.838D^^46^556^13
+ ;;^UTILITY(U,$J,358.3,11499,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,11413,1,3,0)
- ;;=3^Primary Open-Angle Glaucoma,Mod Stage,Left Eye
- ;;^UTILITY(U,$J,358.3,11413,1,4,0)
- ;;=4^H40.1122
- ;;^UTILITY(U,$J,358.3,11413,2)
- ;;=^5138543
- ;;^UTILITY(U,$J,358.3,11414,0)
- ;;=H40.1114^^77^732^14
- ;;^UTILITY(U,$J,358.3,11414,1,0)
+ ;;^UTILITY(U,$J,358.3,11499,1,3,0)
+ ;;=3^Hemorrhage of Vascular Graft/Fistula,Subs Encntr
+ ;;^UTILITY(U,$J,358.3,11499,1,4,0)
+ ;;=4^T82.838D
+ ;;^UTILITY(U,$J,358.3,11499,2)
+ ;;=^5054930
+ ;;^UTILITY(U,$J,358.3,11500,0)
+ ;;=E83.81^^46^556^15
+ ;;^UTILITY(U,$J,358.3,11500,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,11414,1,3,0)
- ;;=3^Primary Open-Angle Glaucoma,Indeterminate,Right Eye
- ;;^UTILITY(U,$J,358.3,11414,1,4,0)
- ;;=4^H40.1114
- ;;^UTILITY(U,$J,358.3,11414,2)
- ;;=^5138540
- ;;^UTILITY(U,$J,358.3,11415,0)
- ;;=H40.1124^^77^732^15
- ;;^UTILITY(U,$J,358.3,11415,1,0)
+ ;;^UTILITY(U,$J,358.3,11500,1,3,0)
+ ;;=3^Hungry Bone Syndrome
+ ;;^UTILITY(U,$J,358.3,11500,1,4,0)
+ ;;=4^E83.81
+ ;;^UTILITY(U,$J,358.3,11500,2)
+ ;;=^336538
+ ;;^UTILITY(U,$J,358.3,11501,0)
+ ;;=T85.71XA^^46^556^21
+ ;;^UTILITY(U,$J,358.3,11501,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,11415,1,3,0)
- ;;=3^Primary Open-Angle Glaucoma,Indeterminate,Left Eye
- ;;^UTILITY(U,$J,358.3,11415,1,4,0)
- ;;=4^H40.1124
- ;;^UTILITY(U,$J,358.3,11415,2)
- ;;=^5138545
- ;;^UTILITY(U,$J,358.3,11416,0)
- ;;=Z83.511^^77^732^26
- ;;^UTILITY(U,$J,358.3,11416,1,0)
+ ;;^UTILITY(U,$J,358.3,11501,1,3,0)
+ ;;=3^Infection d/t Peritoneal Dialysis Catheter,Init Encntr
+ ;;^UTILITY(U,$J,358.3,11501,1,4,0)
+ ;;=4^T85.71XA
+ ;;^UTILITY(U,$J,358.3,11501,2)
+ ;;=^5055670
+ ;;^UTILITY(U,$J,358.3,11502,0)
+ ;;=T85.71XD^^46^556^22
+ ;;^UTILITY(U,$J,358.3,11502,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,11416,1,3,0)
- ;;=3^Family Hx of Glaucoma
- ;;^UTILITY(U,$J,358.3,11416,1,4,0)
- ;;=4^Z83.511
- ;;^UTILITY(U,$J,358.3,11416,2)
- ;;=^5063382
+ ;;^UTILITY(U,$J,358.3,11502,1,3,0)
+ ;;=3^Infection d/t Peritoneal Dialysis Catheter,Subs Encntr
+ ;;^UTILITY(U,$J,358.3,11502,1,4,0)
+ ;;=4^T85.71XD
+ ;;^UTILITY(U,$J,358.3,11502,2)
+ ;;=^5055671
+ ;;^UTILITY(U,$J,358.3,11503,0)
+ ;;=T82.7XXA^^46^556^19
+ ;;^UTILITY(U,$J,358.3,11503,1,0)
+ ;;=^358.31IA^4^2

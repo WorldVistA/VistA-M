@@ -1,5 +1,5 @@
 RCDPESR9 ;ALB/TMK,DWA - ERA return file field captions ;09-SEP-2003
- ;;4.5;Accounts Receivable;**173,252,269,302**;Mar 20, 1995;Build 28
+ ;;4.5;Accounts Receivable;**173,252,269,302,371**;Mar 20, 1995;Build 29
  ;;Per VA Directive 6402, this routine should not be modified.
  ;
  ; Note: if the 835 flat file changes, make the corresponding changes

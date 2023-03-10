@@ -1,5 +1,5 @@
-PRCHNPO ;WISC/SC,ID/RSD/RHD/DGL/BGJ-ENTER NEW PURCHASE ORDER/REQUISITION ;4/2/01 1:50pm
-V ;;5.1;IFCAP;**7,11,79,108,123,184,192,208**;Oct 20, 2000;Build 1
+PRCHNPO ;WISC/SC,ID/RSD/RHD/DGL/BGJ-ENTER NEW PURCHASE ORDER/REQUISITION ; Jun 30, 2021@12:03
+V ;;5.1;IFCAP;**7,11,79,108,123,184,192,208,224**;Oct 20, 2000;Build 5
  ;Per VA Directive 6402, this routine should not be modified.
  ;
  ;PRC*5.1*184 Added check for Purchase Card orders to insure there
@@ -8,6 +8,8 @@ V ;;5.1;IFCAP;**7,11,79,108,123,184,192,208**;Oct 20, 2000;Build 1
  ;            and control for Running Balance Report.
  ;
  ;PRC*5.1*208 Changed order limit in opening message to $10000 at tag MSG
+ ;
+ ;PRC*5.1*224 changes the IENs to match the line numbers, and removed any associated discounts when a line item is deleted.
  ;
  S NOTCOMPL=0 ;Initialize for Incomplete Template.
  D SWITCH^PRCHUTL K ERRFLG ; SET LOG/ISMS SWITCH
@@ -21,6 +23,13 @@ V ;;5.1;IFCAP;**7,11,79,108,123,184,192,208**;Oct 20, 2000;Build 1
  I $G(PRCHDELV)=1,'$G(PRCHPHAM) S DR="[PRCH DELIVERY ORDER]"
  I $G(PRCHPHAM)=1 S DR="[PRCH DIRECT DELIVERY ORDER]"
  D ^DIE
+ ;PRC*5.1*224- if Line Item removed, remove discount
+ N PRCDA,PRCDISC,PRCDA1,PRCDSC,PRCFLG
+ S PRCDA=0 F  S PRCDA=$O(^PRC(442,PRCHPO,3,PRCDA)) Q:'PRCDA  S PRCDISC=$P(^PRC(442,PRCHPO,3,PRCDA,0),U) D
+ .S PRCDA1=0,PRCFLG=0 F  S PRCDA1=$O(^PRC(442,PRCHPO,2,PRCDA1)) Q:'PRCDA1  I PRCDISC=$P(^PRC(442,PRCHPO,2,PRCDA1,0),U) S PRCFLG=1 Q
+ .I 'PRCFLG N DIE,DA,DR S DIE="^PRC(442,"_PRCHPO_",3,",DR=".01///@",DA=PRCDA,DA(1)=PRCHPO D ^DIE D
+ ..W !!,"***Discount associated with deleted Line Item # ",PRCDISC," has been deleted.***",!
+ ;end PRC*5.1*224
  ;
  ; Check ERRFLG to see if the user entered an up-arrow to get out or
  ; did not select a credit card name. The flag ERRFLG is set at the
@@ -109,8 +118,10 @@ LI S PRCHL0=$P(PRCH("AM",PRCHL3),U,3) Q:PRCHL0=""  F J=1:1 S PRCHL1=$E(PRCHL0,$L
  Q
  ;
 CHG I '$P(^PRC(442,PRCHPO,2,PRCH,0),"^",5),'$O(^(1,0)) S $P(^PRC(442,PRCHPO,2,PRCH,2),U,4,6)="^^" W !,"Line item ",+^PRC(442,PRCHPO,2,PRCH,0)," is missing its description!" S PRCHER=""
- S $P(^PRC(442,PRCHPO,2,PRCH,0),U,1)=I,X=$P(^(0),U,5),X1=$P(^(0),U,4)
+ S PRCOIEN=$P(^PRC(442,PRCHPO,2,PRCH,0),U,1),$P(^PRC(442,PRCHPO,2,PRCH,0),U,1)=I,X=$P(^(0),U,5),X1=$P(^(0),U,4) ;PRC*5.1*224 - Update IEN to match line items
  S ^PRC(442,PRCHPO,2,"B",I,PRCH)="",^PRC(442,PRCHPO,2,"C",I,PRCH)="",^PRC(442,PRCHPO,2,"AH",+X1,I,PRCH)="",PRCHLI=I,PRCHX=PRCH S:X]"" ^PRC(442,PRCHPO,2,"AE",X,PRCH)=""
+ S PRCDA=0 F  S PRCDA=$O(^PRC(442,PRCHPO,3,PRCDA)) Q:'PRCDA  S PRCDLN=$P(^PRC(442,PRCHPO,3,PRCDA,0),U) I PRCDLN=PRCOIEN D  ;PRC*5.1*224 - update discount when line item is deleted
+ .S $P(^PRC(442,PRCHPO,3,PRCH,0),U,1)=I  ;PRC*5.1*224 - update discount when line item is updated
  Q
  ;
 ERR2 I $S('$D(^PRC(442,PRCHPO,2,PRCH,2)):1,$P(^(2),U,1)="":1,1:0) S $P(^(2),U,1)="",$P(^(2),U,4,7)="" W !,"Line item ",+^(0)," is incomplete !",$C(7) S PRCHER=""

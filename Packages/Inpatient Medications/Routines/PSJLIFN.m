@@ -1,5 +1,5 @@
-PSJLIFN ;BIR/MV-IV FINISH USING LM ;13 Jan 98 / 11:32 AM
- ;;5.0;INPATIENT MEDICATIONS ;**1,29,34,37,42,47,50,56,94,80,116,110,181,261,252,313,333,256,380**;16 DEC 97;Build 10
+PSJLIFN ;BIR/MV - IV FINISH USING LM ;Jun 17, 2020@15:43:29
+ ;;5.0;INPATIENT MEDICATIONS ;**1,29,34,37,42,47,50,56,94,80,116,110,181,261,252,313,333,256,380,399**;16 DEC 97;Build 64
  ;
  ; Reference to ^PS(51.2 is supported by DBIA #2178.
  ; Reference to ^PS(52.6 supported by DBIA #1231.
@@ -23,7 +23,7 @@ PENDING ; Process pending order.
  ;* instead of go to the "IS this O.K." prompt
  ;* PSIVACEP only when accept the order. Original screen won't redisp.
  ;* PSJLMX is defined in WRTDRG^PSIVUTL and it was being call in PSJLIVMD & PSJLIVFD
- ;*        to count # of AD/SOL 
+ ;*        to count # of AD/SOL
  NEW PSIVFN1,PSIVACEP,PSJLMX,PSIVOI,PSJOCCHK,PSJFNDS
  K PSJIVBD ;This variable was left over from the new backdoor order entry.
  ; PSJOCCHK is set so if EDIT was use instead of FN to finish order the OC is triggered
@@ -46,7 +46,6 @@ PENDING ; Process pending order.
  K PSJMAI Q
  ;
 DISPLAY ;
- S PSGACT=""
  S VALMSG="Press Return to continue"
  D:$E(P("OT"))="I" EN^VALM("PSJ LM IV INPT DISPLAY")
  D:$E(P("OT"))'="I" EN^VALM("PSJ LM IV DISPLAY")
@@ -76,7 +75,7 @@ FINISH ; Prompt for missing data
  D UDVARS^PSJLIORD
  I $G(PSJPROT)=3,'$$ENIVUD^PSGOEF1(PSJORD) K NSFF Q
  D HOLDHDR^PSJOE
- ;PRE UAT group requested to not show the second screen since FDB OC has more text and provider override reason appears after 2nd screen 
+ ;PRE UAT group requested to not show the second screen since FDB OC has more text and provider override reason appears after 2nd screen
  ; force the display of the second screen if CPRS order checks exist
  ;I $O(^PS(53.1,+PSJORD,12,0))!$O(^PS(53.1,+PSJORD,10,0)) D
  ;.Q:$G(PSJLMX)=1   ;no second screen to display
@@ -92,7 +91,7 @@ FINISH ; Prompt for missing data
  . S:$G(PSJOLDNM("NEW_SCHD"))]"" P(9)=PSJOLDNM("NEW_SCHD")
  . N PSGS0XT,X,PSJNSS S PSJNSS=1,X=P(9),PSGS0XT=P(15) D Q2^PSGS0
  . I ON["P",$G(PSJOLDNM("NEW_SCHD"))]"" D
- ..I $G(PSGS0Y)]"",$G(P(11))]"",(PSGS0Y'=PSJOLDNM("NEW_SCHD")) D 
+ ..I $G(PSGS0Y)]"",$G(P(11))]"",(PSGS0Y'=PSJOLDNM("NEW_SCHD")) D
  ...W $C(7),!!,"PLEASE NOTE:  This order's admin times (",P(11),") do not match the times"
  ...W !?13," for this administration schedule (",PSJOLDNM("NEW_SCHD"),")",!
  ...D PAUSE^VALM1
@@ -109,7 +108,7 @@ FINISH ; Prompt for missing data
  ;S PSIVOK="1^3^10^25^26^39^57^58^59^63^64" D CKFLDS^PSIVORC1 I EDIT]"" S PSIVEDIT=EDIT D EDIT^PSIVEDT
  ;I $G(EDIT)="" D OC^PSIVOC D:'$G(PSGORQF) IN^PSJOCDS($G(ON),"IV","") Q:$G(PSGORQF)
  I $D(PSIVEDIT) D OC^PSIVOC
- ;PSJ*5*261 - Remedy #490875 PSPO 2040 
+ ;PSJ*5*261 - Remedy #490875 PSPO 2040
  D ENSTOP^PSIVCAL
  ;D:'$G(PSGORQF) IN^PSJOCDS($G(ON),"IV","")
   ;If quit then restore DRG( to pre-edit state
@@ -158,7 +157,7 @@ ORDCHK ;* Do order check for Inpatient Meds IV.
  K PSGORQF
  Q
  ;NEW DRGOC
- ;D OCORD Q:$G(PSGORQF) 
+ ;D OCORD Q:$G(PSGORQF)
  ;D GTIVDRG^PSIVORC2 S P(3)="" D ENSTOP^PSIVCAL
 ORDCHKA ;* Do order check against existing orders on the profile
  ;No longer use as of PSJ*5*181

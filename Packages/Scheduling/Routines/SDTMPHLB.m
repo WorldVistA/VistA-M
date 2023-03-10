@@ -1,5 +1,5 @@
 SDTMPHLB ;MS/PB - TMP HL7 Routine;MAY 29, 2018
- ;;5.3;Scheduling;**704,733,714**;May 29, 2018;Build 80
+ ;;5.3;Scheduling;**704,733,714,773**;May 29, 2018;Build 9
  Q
 EN(CLINID) ; Entry to the routine to build an HL7 message
  ;notification to TMP about a new appointment in a TeleHealth Clinic
@@ -19,7 +19,7 @@ EN(CLINID) ; Entry to the routine to build an HL7 message
  S PARMS("MESSAGE TYPE")="MFN",PARMS("EVENT")="M05"
  I '$$NEWMSG^HLOAPI(.PARMS,.MSG,.ERROR) W !,"ERR= "_$G(ERROR) Q 0
  S SEQ=1
- N % D NOW^%DTC S UPDTTM=$$TMCONV^SDTMPHLA(%) ; need to convert to HL7 in UTC
+ N % D NOW^%DTC S UPDTTM=$$TMCONV^SDTMPHLA(%,$$INST^SDTMPHLA(CLINID))
  K CLIN,IEN S IEN=CLINID_"," D CLINDATA(IEN)
  D MFI(CLINID,SEQ,.SEG)
  I '$$ADDSEG^HLOAPI(.MSG,.SEG,.ERROR) W !,"NOT ADDED "_$G(ERROR)_" " Q 0
@@ -92,7 +92,6 @@ NTE(CLINID,SEQ,SEG) ;
  D SET^HLOAPI(.SEG,$G(OVERBK),3)
  Q
 LDP(CLINID,SEQ,SEG) ;
- W !,"LDP"
  N LS,TSPEC,PSTOP,SSTOP,PSNM,CSNM,ACT
  D ACT
  S LS=CLIN(44,CLINID_",",9,"E")

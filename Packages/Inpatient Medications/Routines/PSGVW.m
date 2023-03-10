@@ -1,5 +1,5 @@
-PSGVW ;BIR/CML3 - EXPANDED VIEW OF AN ORDER ;Jul 02, 2018@09:27
- ;;5.0;INPATIENT MEDICATIONS;**50,58,85,80,104,110,267,315,373**;16 DEC 97;Build 3
+PSGVW ;BIR/CML3 - EXPANDED VIEW OF AN ORDER ;May 27, 2020@08:34:44
+ ;;5.0;INPATIENT MEDICATIONS;**50,58,85,80,104,110,267,315,373,399**;16 DEC 97;Build 64
  ;;Per VHA Directive 2004-038, this routine should not be modified.
  ; Reference to ^PS(50.7 is supported by DBIA# 2180.
  ; Reference to ^PS(51.2 is supported by DBIA# 2178.
@@ -61,6 +61,7 @@ WRT ;
  .Q:'$G(PSJSYSP)  N LNTXT S LNTXT=0 F  S LNTXT=$O(^TMP("PSJBCMA5",$J,PSGP,PSGORD,LNTXT)) Q:'LNTXT  D
  ..I LNTXT=1 W !,"Special Instructions: (see below)"
  ..W !,$G(^TMP("PSJBCMA5",$J,PSGP,PSGORD,LNTXT))
+ W !!,?4,"Indication: "_$P($G(@(F_"18)")),U)  ;*399-IND
  W !?48,"Units",?56,"Units",?64,"Inactive",!," Dispense Drugs",?43,"U/D",?48,"Disp'd",?56,"Ret'd",?64,"Date",!,FL,$E(FL,1,10)
  ; the naked reference on the line below refers to the full reference created by indirect reference to F_ON, where F may refer to ^PS(53.1 or the IV or UD multiple ^PS(55
  F X=0:0 S X=$O(@(F_"1,"_X_")")) Q:'X  S DRG=$G(^(X,0)) I DRG]"" D  ;

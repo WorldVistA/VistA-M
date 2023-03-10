@@ -1,5 +1,5 @@
-ORWRP ; ALB/MJK,dcm Report Calls ; 12/05/02 11:03
- ;;3.0;ORDER ENTRY/RESULTS REPORTING;**1,10,85,109,132,160,194,227,215,262,243,280,377**;Dec 17, 1997;Build 582
+ORWRP ; ALB/MJK,dcm Report Calls ;Sep 15, 2020@09:01:07
+ ;;3.0;ORDER ENTRY/RESULTS REPORTING;**1,10,85,109,132,160,194,227,215,262,243,280,377,498**;Dec 17, 1997;Build 38
  ;
 LABLIST(LST) ; -- report list for labs tab
  ;  RPC: ORWRP LAB REPORT LIST
@@ -94,15 +94,23 @@ RPT(ROOT,DFN,RPTID,HSTYPE,DTRANGE,EXAMID,ALPHA,OMEGA) ; -- return report text
  ;OMEGA=End date
  ;  RPC: ORWRP REPORT TEXT
  ;
- N X,X0,X2,X4,I,J,ENT,RTN,ID,REMOTE,GO,OUT,MAX,SITE,ORFHIE,%ZIS,HSTAG,DIRECT,TAB
+ N X,X0,X2,X4,I,J,ENT,RTN,ID,REMOTE,GO,OUT,MAX,SITE,ORFHIE,%ZIS,HSTAG,DIRECT,TAB,ORRPTIEN,ORTIMOCC
  K ^TMP("ORDATA",$J)
  S TAB="R"
  I $E(RPTID,1,2)="L:" S TAB="L",RPTID=$P(RPTID,":",2,999) ;an ID beginning with "L:" forces TAB to LAB - "L:" added in GUI code
  S HSTAG=$P($G(RPTID),"~",2),RPTID=$P($G(RPTID),"~"),ROOT=$NA(^TMP("ORDATA",$J,1)),REMOTE=+$P(RPTID,";",2),RPTID=$P($P(RPTID,";"),":")
+ S ORRPTIEN=""
  I 'REMOTE S DFN=+DFN ;DFN = DFN;ICN for remote calls
  S I=0,X0="",X2="",X4="",SITE=$$SITE^VASITE,SITE=$P(SITE,"^",2)_";"_$P(SITE,"^",3)
  F  S I=$O(^ORD(101.24,"AC",I)) Q:I=""  S J=0 F  S J=$O(^ORD(101.24,"AC",I,J)) Q:'J  D
- . I $P($G(^ORD(101.24,J,0)),"^",2)=RPTID,$P(^(0),"^",8)=TAB S X0=^(0),X2=$G(^(2)),ORFHIE=$G(^(4)),DIRECT=$P(ORFHIE,"^",4),X4=$P(ORFHIE,"^",2),ORFHIE=$P(ORFHIE,"^",3)
+ . I $P($G(^ORD(101.24,J,0)),"^",2)=RPTID,$P(^ORD(101.24,J,0),"^",8)=TAB D
+ . . S X0=^ORD(101.24,J,0)
+ . . S X2=$G(^ORD(101.24,J,2))
+ . . S ORFHIE=$G(^ORD(101.24,J,4))
+ . . S DIRECT=$P(ORFHIE,"^",4)
+ . . S X4=$P(ORFHIE,"^",2)
+ . . S ORFHIE=$P(ORFHIE,"^",3)
+ . . S ORRPTIEN=J
  I '$L(X0) D NOTYET(.ROOT) Q
  S RTN=$P(X0,"^",5),ENT=$P(X0,"^",6)
  I '$L(RTN)!'$L(ENT) D NOTYET(.ROOT) Q
@@ -119,6 +127,13 @@ RPT(ROOT,DFN,RPTID,HSTYPE,DTRANGE,EXAMID,ALPHA,OMEGA) ; -- return report text
  I $G(OMEGA),$E(OMEGA,8)'="." S OMEGA=OMEGA_".235959"
  S ID=$G(HSTAG),$P(ID,";",5,10)=SITE_";"_$P(X2,"^",8)_";"_$P(X2,"^",9)_";"_RPTID_";"_$G(DIRECT) ;HDRHX CHANGE
  I $L($P($G(HSTAG),";",4)) S MAX=$P(HSTAG,";",4)
+ ; If HSWPComponent type report, and Max not passed in from GUI, use Max defined in params (GETINDV^ORWTPD)
+ ; (temp p498 fix - until can be fixed properly in v32)
+ I $P(X0,U,4)=6,$G(MAX)'>0 D
+ . I 'ORRPTIEN Q
+ . S ORTIMOCC=""
+ . D GETINDV^ORWTPD(.ORTIMOCC,ORRPTIEN)
+ . I $P(ORTIMOCC,";",3)>0 S MAX=$P(ORTIMOCC,";",3)
  I $L($G(HSTYPE)) M ID=HSTYPE
  I $L($G(EXAMID)) M ID=EXAMID
  S OUT=ENT_"^"_RTN_"(.ROOT,DFN,.ID,.ALPHA,.OMEGA,.DTRANGE,.REMOTE,.MAX,.ORFHIE)"

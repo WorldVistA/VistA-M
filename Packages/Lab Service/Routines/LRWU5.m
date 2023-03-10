@@ -1,5 +1,5 @@
-LRWU5 ;SLC/RWF/BA - ADD A NEW DATA NAME TO FILE 63 ; 5/15/87  22:53 ;
- ;;5.2;LAB SERVICE;**140,171,177,206,316,519**;Sep 27, 1994;Build 16
+LRWU5 ;SLC/RWF/BA - ADD A NEW DATA NAME TO FILE 63 ; Sep 14, 2021@10:02
+ ;;5.2;LAB SERVICE;**140,171,177,206,316,519,552,558**;Sep 27, 1994;Build 4
  ;
  ; Reference to ^DD(63.04 supported by DBIA #7053
  ; Reference to ^XMB(1 supported by DBIA #10091
@@ -67,33 +67,80 @@ SITE ;
  S LROK=0,LREND=1 Q
 NUM ;
  ;
-MIN ;
+DECIMAL ;LR*5.2*558: decimal query moved to be ask first so that
+ ;the number of decimal places can be used for the Minimum value
+ ;and Maximum value queries
+ ;LR*5.2*552: require numeric entries - not free text
+ ;            also corrected typos in variables DTOUT and DUOUT
  K DTOUT,DUOUT
- S DIR(0)="F"
- S DIR("A")="Minimum value: "
- ;S DIR("B")=1
- S DIR("?")="The smallest result value: "
- D ^DIR
- I $D(DUOUT)!($D(DTOUT)) S LROK=0 QUIT
- S Q3=Y
-MAX ;
- K DTOUT,DUOUT
- S DIR(0)="F"
- S DIR("A")="Maximum value: "
+ N DIR,Y
+ ;Prior to LR*5.2*552, DIR(0) was set as "F".
+ S DIR(0)="N"
+ S DIR("A")="Decimal value"
  S DIR("B")=1
- S DIR("?")="The maximum result THIS TEST will ever be: "
- D ^DIR
- I $D(DUOUT)!($D(DTOUT))!(Y<0) S LROK=0 QUIT
- S Q4=Y
-DECIMAL ;
- K DTDOUT,DUTOU
- S DIR(0)="F"
- S DIR("A")="Decimal value: "
- S DIR("B")=1
- S DIR("?")="The number of decimal places this result will need: "
+ S DIR("?")="The number of decimal places this result will need"
  D ^DIR
  I $D(DUOUT)!($D(DTOUT))!(Y<0) S LROK=0 QUIT
  S Q5=Y
+ ;
+MIN ;
+ K DTOUT,DUOUT
+ ;LR*5.2*552: Require numeric entries - not free text
+ ;            Some latitude is given for "<" and ">" since sites might be
+ ;            defining such values in combination with other configuration logic.
+ N LRPREFIX,LRLOW,DIR,Y
+ ;Prior to LR*5.2*552, DIR(0) was set as "F".
+ ;LR*5.2*558: use Q5 to determine the allowable decimal places for Minimum value
+ S DIR(0)="N^0::"_Q5
+ ;Allow for prefix of < or > which are sometimes used at sites.
+ ;Prefix of > doesn't make sense for a minimum value but allowing since maybe it is valid in this case.
+ ;Also preserve negative indicator since this DIR call does not allow negative numbers.
+ S DIR("PRE")="S LRPREFIX="""" I '$D(DTOUT),'$D(DUOUT),X'[""^"",$E(X)'?1N.N S LRPREFIX=$E(X) I ""-<>""[LRPREFIX S X=$E(X,2,99)"
+ S DIR("A")="Minimum value"
+ ;S DIR("B")=1
+ S DIR("?")="The smallest result value"
+ D ^DIR
+ I $D(DUOUT)!($D(DTOUT)) S LROK=0 QUIT
+ S (Q3,LRLOW)=Y
+ I LRPREFIX]"",LRPREFIX'="." S Q3=LRPREFIX_Q3
+ ;If prefix is "-", reflect LRLOW as a negative number.
+ I LRPREFIX="-" S LRLOW=Q3
+MAX ;
+ K DTOUT,DUOUT
+ ;LR*5.2*552: require numeric entries - not free text
+ ;            Some latitude is given for "<" and ">" since sites might be
+ ;            defining such values in combination with other configuration logic.
+ N LRPREFIX,LRHIGH,LRVALHIT,DIR,Y
+ S LRVALHIT=1
+ ;Prior to LR*5.2*552, DIR(0) was set as "F".
+ ;LR*5.2*558: use Q5 to determine the allowable decimal places for Maximim value
+ S DIR(0)="N^0::"_Q5
+ ;Allow for prefix of < or > which are sometimes used at sites.
+ ;Prefix of < doesn't make sense for a maximum value but allowing since maybe it is valid in this case.
+ ;Also preserve negative indicator since this DIR call does not allow negative numbers.
+ S DIR("PRE")="S LRPREFIX="""" I '$D(DTOUT),'$D(DUOUT),X'[""^"",$E(X)'?1N.N S LRPREFIX=$E(X) I ""-<>""[LRPREFIX S X=$E(X,2,99)"
+ S DIR("A")="Maximum value"
+ ;LR*5.2*552: Not sure why a default of 1 is given since the DIR("B") setting was
+ ;            commented out for the MIN value by a previous patch. Validating to 
+ ;            only default if "1" is greater than the minimum value or the minimum
+ ;            is prefixed with "<" or ">".
+ I LRLOW'>1!("<>"[$E(Q3)) S DIR("B")=1
+ S DIR("?")="The maximum result THIS TEST will ever be"
+ D ^DIR
+ I $D(DUOUT)!($D(DTOUT))!(Y<0) S LROK=0 QUIT
+ S (Q4,LRHIGH)=Y
+ I LRPREFIX]"",LRPREFIX'="." S Q4=LRPREFIX_Q4
+ I LRPREFIX="-" S LRHIGH=Q4
+ I LRLOW'<LRHIGH D  I 'LRVALHIT G MIN
+ . ;For some tests with accompanying configurations, this might be the
+ . ;desired minimum and maximum values - not requiring minimum entry to
+ . ;be less than maximum entry just in case.
+ . N DIR,Y
+ . S DIR("A",1)="The minimum value is not less than the maximum value."
+ . S DIR("A")="Are you sure these entries are correct"
+ . S DIR("B")="NO",DIR(0)="Y"
+ . D ^DIR
+ . S LRVALHIT=+Y
  ;
  D NAME
  Q:'LROK

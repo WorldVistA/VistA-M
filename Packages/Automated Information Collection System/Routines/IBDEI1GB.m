@@ -1,128 +1,126 @@
-IBDEI1GB ; ; 04-FEB-2020
- ;;3.0;IB ENCOUNTER FORM IMP/EXP;;FEB 04, 2020
+IBDEI1GB ; ; 01-FEB-2022
+ ;;3.0;IB ENCOUNTER FORM IMP/EXP;;FEB 01, 2022
  Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,999) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
- ;;^UTILITY(U,$J,358.3,23208,1,0)
+ ;;^UTILITY(U,$J,358.3,23472,1,3,0)
+ ;;=3^Angioedema,1st Encntr
+ ;;^UTILITY(U,$J,358.3,23472,1,4,0)
+ ;;=4^T78.3XXA
+ ;;^UTILITY(U,$J,358.3,23472,2)
+ ;;=^5054281
+ ;;^UTILITY(U,$J,358.3,23473,0)
+ ;;=T78.3XXD^^78^1011^45
+ ;;^UTILITY(U,$J,358.3,23473,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,23208,1,3,0)
- ;;=3^Nonobstructive Reflux-Associated Chronic Pyelonephritis
- ;;^UTILITY(U,$J,358.3,23208,1,4,0)
- ;;=4^N11.0
- ;;^UTILITY(U,$J,358.3,23208,2)
- ;;=^5015571
- ;;^UTILITY(U,$J,358.3,23209,0)
- ;;=N11.8^^105^1170^23
- ;;^UTILITY(U,$J,358.3,23209,1,0)
+ ;;^UTILITY(U,$J,358.3,23473,1,3,0)
+ ;;=3^Angioedema,Subseq Encntr
+ ;;^UTILITY(U,$J,358.3,23473,1,4,0)
+ ;;=4^T78.3XXD
+ ;;^UTILITY(U,$J,358.3,23473,2)
+ ;;=^5054282
+ ;;^UTILITY(U,$J,358.3,23474,0)
+ ;;=T78.3XXS^^78^1011^44
+ ;;^UTILITY(U,$J,358.3,23474,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,23209,1,3,0)
- ;;=3^Tubulo-Interstitial Nephritis,Chronic NEC
- ;;^UTILITY(U,$J,358.3,23209,1,4,0)
- ;;=4^N11.8
- ;;^UTILITY(U,$J,358.3,23209,2)
- ;;=^5015573
- ;;^UTILITY(U,$J,358.3,23210,0)
- ;;=N30.90^^105^1170^8
- ;;^UTILITY(U,$J,358.3,23210,1,0)
+ ;;^UTILITY(U,$J,358.3,23474,1,3,0)
+ ;;=3^Angioedema,Sequela
+ ;;^UTILITY(U,$J,358.3,23474,1,4,0)
+ ;;=4^T78.3XXS
+ ;;^UTILITY(U,$J,358.3,23474,2)
+ ;;=^5054283
+ ;;^UTILITY(U,$J,358.3,23475,0)
+ ;;=T63.441A^^78^1011^61
+ ;;^UTILITY(U,$J,358.3,23475,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,23210,1,3,0)
- ;;=3^Cystitis w/o Hematuria,Unspec
- ;;^UTILITY(U,$J,358.3,23210,1,4,0)
- ;;=4^N30.90
- ;;^UTILITY(U,$J,358.3,23210,2)
- ;;=^5015642
- ;;^UTILITY(U,$J,358.3,23211,0)
- ;;=N32.0^^105^1170^1
- ;;^UTILITY(U,$J,358.3,23211,1,0)
+ ;;^UTILITY(U,$J,358.3,23475,1,3,0)
+ ;;=3^Toxic Effect,Bees,1st Encntr
+ ;;^UTILITY(U,$J,358.3,23475,1,4,0)
+ ;;=4^T63.441A
+ ;;^UTILITY(U,$J,358.3,23475,2)
+ ;;=^5053522
+ ;;^UTILITY(U,$J,358.3,23476,0)
+ ;;=T63.441D^^78^1011^63
+ ;;^UTILITY(U,$J,358.3,23476,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,23211,1,3,0)
- ;;=3^Bladder-Neck Obstruction
- ;;^UTILITY(U,$J,358.3,23211,1,4,0)
- ;;=4^N32.0
- ;;^UTILITY(U,$J,358.3,23211,2)
- ;;=^5015649
- ;;^UTILITY(U,$J,358.3,23212,0)
- ;;=N31.9^^105^1170^18
- ;;^UTILITY(U,$J,358.3,23212,1,0)
+ ;;^UTILITY(U,$J,358.3,23476,1,3,0)
+ ;;=3^Toxic Effect,Bees,Subseq Encntr
+ ;;^UTILITY(U,$J,358.3,23476,1,4,0)
+ ;;=4^T63.441D
+ ;;^UTILITY(U,$J,358.3,23476,2)
+ ;;=^5053523
+ ;;^UTILITY(U,$J,358.3,23477,0)
+ ;;=T63.441S^^78^1011^62
+ ;;^UTILITY(U,$J,358.3,23477,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,23212,1,3,0)
- ;;=3^Neuromuscular Bladder Dysfunction,Unspec
- ;;^UTILITY(U,$J,358.3,23212,1,4,0)
- ;;=4^N31.9
- ;;^UTILITY(U,$J,358.3,23212,2)
- ;;=^5015648
- ;;^UTILITY(U,$J,358.3,23213,0)
- ;;=N40.0^^105^1170^12
- ;;^UTILITY(U,$J,358.3,23213,1,0)
+ ;;^UTILITY(U,$J,358.3,23477,1,3,0)
+ ;;=3^Toxic Effect,Bees,Sequela
+ ;;^UTILITY(U,$J,358.3,23477,1,4,0)
+ ;;=4^T63.441S
+ ;;^UTILITY(U,$J,358.3,23477,2)
+ ;;=^5053524
+ ;;^UTILITY(U,$J,358.3,23478,0)
+ ;;=T63.451A^^78^1011^64
+ ;;^UTILITY(U,$J,358.3,23478,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,23213,1,3,0)
- ;;=3^Enlarged Prostate w/o Lower Urinary Tract Symptoms
- ;;^UTILITY(U,$J,358.3,23213,1,4,0)
- ;;=4^N40.0
- ;;^UTILITY(U,$J,358.3,23213,2)
- ;;=^5015689
- ;;^UTILITY(U,$J,358.3,23214,0)
- ;;=N40.1^^105^1170^11
- ;;^UTILITY(U,$J,358.3,23214,1,0)
+ ;;^UTILITY(U,$J,358.3,23478,1,3,0)
+ ;;=3^Toxic Effect,Hornets,1st Encntr
+ ;;^UTILITY(U,$J,358.3,23478,1,4,0)
+ ;;=4^T63.451A
+ ;;^UTILITY(U,$J,358.3,23478,2)
+ ;;=^5053534
+ ;;^UTILITY(U,$J,358.3,23479,0)
+ ;;=T63.451D^^78^1011^66
+ ;;^UTILITY(U,$J,358.3,23479,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,23214,1,3,0)
- ;;=3^Enlarged Prostate w/ Lower Urinary Tract Symptoms
- ;;^UTILITY(U,$J,358.3,23214,1,4,0)
- ;;=4^N40.1
- ;;^UTILITY(U,$J,358.3,23214,2)
- ;;=^5015690
- ;;^UTILITY(U,$J,358.3,23215,0)
- ;;=N45.1^^105^1170^13
- ;;^UTILITY(U,$J,358.3,23215,1,0)
+ ;;^UTILITY(U,$J,358.3,23479,1,3,0)
+ ;;=3^Toxic Effect,Hornets,Subseq Encntr
+ ;;^UTILITY(U,$J,358.3,23479,1,4,0)
+ ;;=4^T63.451D
+ ;;^UTILITY(U,$J,358.3,23479,2)
+ ;;=^5053535
+ ;;^UTILITY(U,$J,358.3,23480,0)
+ ;;=T63.451S^^78^1011^65
+ ;;^UTILITY(U,$J,358.3,23480,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,23215,1,3,0)
- ;;=3^Epididymitis
- ;;^UTILITY(U,$J,358.3,23215,1,4,0)
- ;;=4^N45.1
- ;;^UTILITY(U,$J,358.3,23215,2)
- ;;=^41396
- ;;^UTILITY(U,$J,358.3,23216,0)
- ;;=N45.2^^105^1170^21
- ;;^UTILITY(U,$J,358.3,23216,1,0)
+ ;;^UTILITY(U,$J,358.3,23480,1,3,0)
+ ;;=3^Toxic Effect,Hornets,Sequela
+ ;;^UTILITY(U,$J,358.3,23480,1,4,0)
+ ;;=4^T63.451S
+ ;;^UTILITY(U,$J,358.3,23480,2)
+ ;;=^5053536
+ ;;^UTILITY(U,$J,358.3,23481,0)
+ ;;=T63.461A^^78^1011^67
+ ;;^UTILITY(U,$J,358.3,23481,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,23216,1,3,0)
- ;;=3^Orchitis
- ;;^UTILITY(U,$J,358.3,23216,1,4,0)
- ;;=4^N45.2
- ;;^UTILITY(U,$J,358.3,23216,2)
- ;;=^86174
- ;;^UTILITY(U,$J,358.3,23217,0)
- ;;=N45.3^^105^1170^14
- ;;^UTILITY(U,$J,358.3,23217,1,0)
+ ;;^UTILITY(U,$J,358.3,23481,1,3,0)
+ ;;=3^Toxic Effect,Wasps,1st Encntr
+ ;;^UTILITY(U,$J,358.3,23481,1,4,0)
+ ;;=4^T63.461A
+ ;;^UTILITY(U,$J,358.3,23481,2)
+ ;;=^5053546
+ ;;^UTILITY(U,$J,358.3,23482,0)
+ ;;=T63.461D^^78^1011^69
+ ;;^UTILITY(U,$J,358.3,23482,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,23217,1,3,0)
- ;;=3^Epididymo-Orchitis
- ;;^UTILITY(U,$J,358.3,23217,1,4,0)
- ;;=4^N45.3
- ;;^UTILITY(U,$J,358.3,23217,2)
- ;;=^5015707
- ;;^UTILITY(U,$J,358.3,23218,0)
- ;;=Q61.3^^105^1170^22
- ;;^UTILITY(U,$J,358.3,23218,1,0)
+ ;;^UTILITY(U,$J,358.3,23482,1,3,0)
+ ;;=3^Toxic Effect,Wasps,Subseq Encntr
+ ;;^UTILITY(U,$J,358.3,23482,1,4,0)
+ ;;=4^T63.461D
+ ;;^UTILITY(U,$J,358.3,23482,2)
+ ;;=^5053547
+ ;;^UTILITY(U,$J,358.3,23483,0)
+ ;;=T63.461S^^78^1011^68
+ ;;^UTILITY(U,$J,358.3,23483,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,23218,1,3,0)
- ;;=3^Polycystic Kidney,Unspec
- ;;^UTILITY(U,$J,358.3,23218,1,4,0)
- ;;=4^Q61.3
- ;;^UTILITY(U,$J,358.3,23218,2)
- ;;=^5018797
- ;;^UTILITY(U,$J,358.3,23219,0)
- ;;=R30.0^^105^1170^9
- ;;^UTILITY(U,$J,358.3,23219,1,0)
+ ;;^UTILITY(U,$J,358.3,23483,1,3,0)
+ ;;=3^Toxic Effect,Wasps,Sequela
+ ;;^UTILITY(U,$J,358.3,23483,1,4,0)
+ ;;=4^T63.461S
+ ;;^UTILITY(U,$J,358.3,23483,2)
+ ;;=^5053548
+ ;;^UTILITY(U,$J,358.3,23484,0)
+ ;;=T88.6XXA^^78^1011^7
+ ;;^UTILITY(U,$J,358.3,23484,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,23219,1,3,0)
- ;;=3^Dysuria
- ;;^UTILITY(U,$J,358.3,23219,1,4,0)
- ;;=4^R30.0
- ;;^UTILITY(U,$J,358.3,23219,2)
- ;;=^5019322
- ;;^UTILITY(U,$J,358.3,23220,0)
- ;;=R33.9^^105^1170^28
- ;;^UTILITY(U,$J,358.3,23220,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,23220,1,3,0)
- ;;=3^Urine Retention,Unspec
+ ;;^UTILITY(U,$J,358.3,23484,1,3,0)
+ ;;=3^Anaphylactic Reaction,Drug/Med,1st Encntr

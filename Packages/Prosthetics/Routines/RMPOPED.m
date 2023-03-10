@@ -1,5 +1,5 @@
 RMPOPED ;EDS/MDB,DDW,RVD - HOME OXYGEN MISC FILE EDITS ;7/24/98
- ;;3.0;PROSTHETICS;**29,44,41,52,77,110,140,148,168,180**;Feb 09, 1996;Build 12
+ ;;3.0;PROSTHETICS;**29,44,41,52,77,110,140,148,168,180,207**;Feb 09, 1996;Build 15
  ;
  ; Reference to $$SINFO^ICDEX supported by ICR #5747
  ; Reference to $$CSI^ICDEX   supported by ICR #5747 
@@ -17,6 +17,8 @@ RMPOPED ;EDS/MDB,DDW,RVD - HOME OXYGEN MISC FILE EDITS ;7/24/98
  ;
  ; RGB - PATCH 180 When HCPCS code displays inactive message the user 
  ;                 will now be required to use an active code
+ ;
+ ; RGB - PATCH 207 Allow expiration date to print with script dates 
  Q
 UNLOCK I $D(RMPODFN) L -^RMPR(665,RMPODFN)
  Q
@@ -186,6 +188,7 @@ RX ;Edit the Rx Data
  ;
  N RXD,RXDI,RMPRIENS
  K DIC,DIE,DA,DR
+ S DIC("W")="N C,DINAME W ""  "" W ""   "",$$NAKED^DIUTL(""$$DATE^DIUTL($P(^(0),U,3))"")"
  S DIC="^RMPR(665,"_RMPODFN_",""RMPOB"",",DIC(0)="AEQLZ"
  S DA(1)=RMPODFN,DIC("P")="665.193D"
  S RXD=$O(^RMPR(665,DA(1),"RMPOB","B",""),-1) D:RXD

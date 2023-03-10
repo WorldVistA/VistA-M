@@ -1,8 +1,7 @@
-IBCNSM ;ALB/AAS - INSURANCE MANAGEMENT, LIST MANAGER INIT ROUTINE ;21-OCT-92
- ;;2.0;INTEGRATED BILLING;**28,46,56,52,82,103,199,276,435,528,659**;21-MAR-94;Build 16
+IBCNSM ;ALB/AAS - INSURANCE MANAGEMENT, LIST MANAGER INIT ROUTINE ; 30-NOV-2021
+ ;;2.0;INTEGRATED BILLING;**28,46,56,52,82,103,199,276,435,528,659,713**;21-MAR-94;Build 12
  ;;Per VA Directive 6402, this routine should not be modified.
  ;
- ;also used for IA #4694
  ;
 % ; -- main entry point
 EN ;
@@ -35,7 +34,7 @@ PAT ; -- select patient you are working with
  ;
 BLD ; -- build list of bills
  K ^TMP("IBNSM",$J),^TMP("IBNSMDX",$J)
- N I,J,K,IBHOLD,IBGRP,IBINS,IBCNT,IBCDFND,IBCDFND1,IBCPOLD,IBPL
+ N I,J,K,IBDOD,IBHOLD,IBGRP,IBINS,IBCNT,IBCDFND,IBCDFND1,IBCPOLD,IBPL
  S (IBN,IBCNT,VALMCNT)=0,IBFILE=2
  ;
  ; -- find all ins. co data
@@ -86,6 +85,11 @@ BLD ; -- build list of bills
  .S IBCNT=IBCNT+1
  .S ^TMP("IBNSM",$J,IBCNT,0)="       Verification of No Coverage "_$$FMTE^XLFDT(X)
  .Q
+ ;
+ ; IB*713/CKB - adding Date of Death message
+ S IBDOD=$$GET1^DIQ(2,DFN_",",.351,"I") I IBDOD D
+ . S IBCNT=IBCNT+1
+ . S ^TMP("IBNSM",$J,IBCNT,0)="       Date of Death: "_$$FMTE^XLFDT(IBDOD\1,"5Z")
  ;
 BLDQ ;
  Q

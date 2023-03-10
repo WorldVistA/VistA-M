@@ -1,5 +1,5 @@
-RARTE5 ;HISC/SWM AISC/MJK,RMO-Enter/Edit Outside Reports ;26 Oct 2018 12:49 PM
- ;;5.0;Radiology/Nuclear Medicine;**56,95,97,47,141,124**;Mar 16, 1998;Build 4
+RARTE5 ;HISC/SWM AISC/MJK,RMO - Enter/Edit Outside Reports ; Jan 05, 2022@09:33:58
+ ;;5.0;Radiology/Nuclear Medicine;**56,95,97,47,141,124,184,186**;Mar 16, 1998;Build 1
  ;Private IA #4793 CREATE^WVRALINK
  ;Controlled IA #3544 ^VA(200
  ;Supported IA #2056 GET1^DIQ
@@ -20,7 +20,18 @@ RARTE5 ;HISC/SWM AISC/MJK,RMO-Enter/Edit Outside Reports ;26 Oct 2018 12:49 PM
 START S RAFIRST=0 ;=1 for 1st time rpt given "EF" rpt status
  K RAVER,RAX S (RAVW,RAX)="",RAREPORT=1 D ^RACNLU G Q1:"^"[X
  ; RACNLU defines RADFN, RADTI, RACNI, RARPT
- S RASUBY0=Y(0) ; save value of y(0)
+ S RASUBY0=Y(0) ; save value of Y(0)
+ ;// begin RA*5.0*186 mods //
+ ;Note: Y(0) = zero node of the case from the EXAMINATIONS (#70.03) multiple
+ I +$P(Y(0),U,2)=0 D  GOTO START
+ .NEW ACCESSION S ACCESSION=$P(Y(0),U,31)
+ .S:ACCESSION="" ACCESSION=$E(RADTE,4,7)_$E(RADTE,2,3)_"-"_+Y(0)
+ .W !!,"Warning: This case: '"_ACCESSION_"' is missing a procedure.",!
+ .Q
+ I $$BROAD($P(Y(0),U,2))=1 D  GOTO START
+ .W !!,"Broad procedures are not allowed with Outside Reports.",!
+ .Q
+ ;// end RA*5.0*186 mods //
  N RASSAN,RACNDSP S RASSAN=$P(RASUBY0,U,31)
  S RACNDSP=$S((RASSAN'=""):RASSAN,1:$P(RASUBY0,U,1))
  G:$P(^RA(72,+RAST,0),"^",3)>0 CONTIN
@@ -31,6 +42,8 @@ START S RAFIRST=0 ;=1 for 1st time rpt given "EF" rpt status
 CONTIN ; continue
  S RAXIT=0 D DISPLAY^RARTE6
  I RA18EX=-1 D INCRPT G START
+ ;RA184/KLM - Add warning for anything other than NO CREDIT registered exam (NSR20210806)
+ I $$REGCR() W !!,$C(7),"** WARNING, this case is not registered in an OUTSIDE imaging location. **",! K DIR S DIR(0)="Y",DIR("B")="NO",DIR("A")="Do you want to continue" D ^DIR I Y=0 D INCRPT G START
  ; raprtset is defined in display^rarte6
  S RAPNODE="^RADPT("_RADFN_",""DT"","_RADTI_",""P"","
  S RA7003=@(RAPNODE_RACNI_",0)")
@@ -176,7 +189,7 @@ INCRPT ; Kill extraneous variables to avoid collisions.
  K %,%DT,D,D0,D1,D2,DI,DIC,DIWT,DN,I,J,RAA1,RAA2
  K RABIENS,RABIDAT,RABIREQ,RACN,RACNI,RACT
  K RADATE,RADRS,RADTE,RADTI,RAFIN,RAFIRST,RAI,RALI,RALR,RANME,RAPRC,RARPT
- K RARPTN,RASSN,RAST,RAVW,RASSS,RASSSX,X
+ K RARPTN,RASSN,RAST,RAVW,RASSS,RASSSX,X,Y
  Q
 CCAN(IEN74) ;Check canned report for Outside Reporting
  ; adapted from EN3^RAUTL15
@@ -271,6 +284,17 @@ DELDXPRT ;del any Prim. and Sec. DXs from all cases in printset
  .D KILSEC^RARTE7(70.14,RA1)
  .Q
  Q
+REGCR() ;RA184/KLM - Check credit method of exam's registered location
+ N RAIL S RAIL=$P(^RADPT(RADFN,"DT",RADTI,0),U,4)
+ I $P(^RA(79.1,RAIL,0),U,21)'=2 Q 1
+ Q 0
+ ;
+BROAD(RAY) ;A strict check if the procedure associated with this report
+ ;is a 'BROAD' procedure.
+ ;input: 'RAY' = IEN of the procedure (filel #71)
+ ;returns: one if 'BROAD'; else zero
+ Q $S($P($G(^RAMIS(71,RAY,0)),U,6)="B":1,1:0)
+ ;
 INTRO ;
  ;;+--------------------------------------------------------+
  ;;|                                                        |

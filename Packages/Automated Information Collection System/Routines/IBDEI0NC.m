@@ -1,126 +1,118 @@
-IBDEI0NC ; ; 04-FEB-2020
- ;;3.0;IB ENCOUNTER FORM IMP/EXP;;FEB 04, 2020
+IBDEI0NC ; ; 01-FEB-2022
+ ;;3.0;IB ENCOUNTER FORM IMP/EXP;;FEB 01, 2022
  Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,999) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
- ;;^UTILITY(U,$J,358.3,10387,1,4,0)
- ;;=4^H40.1132
- ;;^UTILITY(U,$J,358.3,10387,2)
- ;;=^5138548
- ;;^UTILITY(U,$J,358.3,10388,0)
- ;;=Z01.021^^74^677^27
- ;;^UTILITY(U,$J,358.3,10388,1,0)
+ ;;^UTILITY(U,$J,358.3,10513,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,10388,1,3,0)
- ;;=3^Eye/Vision Exam After Failed Exam w/ Abnormal Findings
- ;;^UTILITY(U,$J,358.3,10388,1,4,0)
- ;;=4^Z01.021
- ;;^UTILITY(U,$J,358.3,10388,2)
- ;;=^5158319
- ;;^UTILITY(U,$J,358.3,10389,0)
- ;;=Z01.020^^74^677^28
- ;;^UTILITY(U,$J,358.3,10389,1,0)
+ ;;^UTILITY(U,$J,358.3,10513,1,3,0)
+ ;;=3^Personal Past Hx of Spouse or Partner Psychological Abuse
+ ;;^UTILITY(U,$J,358.3,10513,1,4,0)
+ ;;=4^Z91.411
+ ;;^UTILITY(U,$J,358.3,10513,2)
+ ;;=^5063620
+ ;;^UTILITY(U,$J,358.3,10514,0)
+ ;;=Z69.021^^42^469^18
+ ;;^UTILITY(U,$J,358.3,10514,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,10389,1,3,0)
- ;;=3^Eye/Vision Exam After Failed Exam w/o Abnormal Findings
- ;;^UTILITY(U,$J,358.3,10389,1,4,0)
- ;;=4^Z01.020
- ;;^UTILITY(U,$J,358.3,10389,2)
- ;;=^5158318
- ;;^UTILITY(U,$J,358.3,10390,0)
- ;;=H10.31^^74^678^1
- ;;^UTILITY(U,$J,358.3,10390,1,0)
+ ;;^UTILITY(U,$J,358.3,10514,1,3,0)
+ ;;=3^MH Svc for Perpetrator of Nonparental Child Abuse
+ ;;^UTILITY(U,$J,358.3,10514,1,4,0)
+ ;;=4^Z69.021
+ ;;^UTILITY(U,$J,358.3,10514,2)
+ ;;=^5063231
+ ;;^UTILITY(U,$J,358.3,10515,0)
+ ;;=Z69.021^^42^469^19
+ ;;^UTILITY(U,$J,358.3,10515,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,10390,1,3,0)
- ;;=3^Conjunctivitis,Acute,Right Eye
- ;;^UTILITY(U,$J,358.3,10390,1,4,0)
- ;;=4^H10.31
- ;;^UTILITY(U,$J,358.3,10390,2)
- ;;=^5133458
- ;;^UTILITY(U,$J,358.3,10391,0)
- ;;=H10.32^^74^678^2
- ;;^UTILITY(U,$J,358.3,10391,1,0)
+ ;;^UTILITY(U,$J,358.3,10515,1,3,0)
+ ;;=3^MH Svc for Perpetrator of Nonparental Child Neglect
+ ;;^UTILITY(U,$J,358.3,10515,1,4,0)
+ ;;=4^Z69.021
+ ;;^UTILITY(U,$J,358.3,10515,2)
+ ;;=^5063231
+ ;;^UTILITY(U,$J,358.3,10516,0)
+ ;;=Z69.021^^42^469^20
+ ;;^UTILITY(U,$J,358.3,10516,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,10391,1,3,0)
- ;;=3^Conjunctivitis,Acute,Left Eye
- ;;^UTILITY(U,$J,358.3,10391,1,4,0)
- ;;=4^H10.32
- ;;^UTILITY(U,$J,358.3,10391,2)
- ;;=^5133459
- ;;^UTILITY(U,$J,358.3,10392,0)
- ;;=H10.401^^74^678^3
- ;;^UTILITY(U,$J,358.3,10392,1,0)
+ ;;^UTILITY(U,$J,358.3,10516,1,3,0)
+ ;;=3^MH Svc for Perpetrator of Nonparental Child Psychological Abuse
+ ;;^UTILITY(U,$J,358.3,10516,1,4,0)
+ ;;=4^Z69.021
+ ;;^UTILITY(U,$J,358.3,10516,2)
+ ;;=^5063231
+ ;;^UTILITY(U,$J,358.3,10517,0)
+ ;;=Z69.021^^42^469^21
+ ;;^UTILITY(U,$J,358.3,10517,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,10392,1,3,0)
- ;;=3^Conjunctivitis,Chronic,Right Eye
- ;;^UTILITY(U,$J,358.3,10392,1,4,0)
- ;;=4^H10.401
- ;;^UTILITY(U,$J,358.3,10392,2)
- ;;=^5004681
- ;;^UTILITY(U,$J,358.3,10393,0)
- ;;=H10.402^^74^678^4
- ;;^UTILITY(U,$J,358.3,10393,1,0)
+ ;;^UTILITY(U,$J,358.3,10517,1,3,0)
+ ;;=3^MH Svc for Perpetrator of Nonparental Child Sexual Abuse
+ ;;^UTILITY(U,$J,358.3,10517,1,4,0)
+ ;;=4^Z69.021
+ ;;^UTILITY(U,$J,358.3,10517,2)
+ ;;=^5063231
+ ;;^UTILITY(U,$J,358.3,10518,0)
+ ;;=Z69.011^^42^469^23
+ ;;^UTILITY(U,$J,358.3,10518,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,10393,1,3,0)
- ;;=3^Conjunctivitis,Chronic,Left Eye
- ;;^UTILITY(U,$J,358.3,10393,1,4,0)
- ;;=4^H10.402
- ;;^UTILITY(U,$J,358.3,10393,2)
- ;;=^5004682
- ;;^UTILITY(U,$J,358.3,10394,0)
- ;;=H10.403^^74^678^5
- ;;^UTILITY(U,$J,358.3,10394,1,0)
+ ;;^UTILITY(U,$J,358.3,10518,1,3,0)
+ ;;=3^MH Svc for Perpetrator of Parental Child Abuse
+ ;;^UTILITY(U,$J,358.3,10518,1,4,0)
+ ;;=4^Z69.011
+ ;;^UTILITY(U,$J,358.3,10518,2)
+ ;;=^5063229
+ ;;^UTILITY(U,$J,358.3,10519,0)
+ ;;=Z69.011^^42^469^24
+ ;;^UTILITY(U,$J,358.3,10519,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,10394,1,3,0)
- ;;=3^Conjunctivitis,Chronic,Bilateral
- ;;^UTILITY(U,$J,358.3,10394,1,4,0)
- ;;=4^H10.403
- ;;^UTILITY(U,$J,358.3,10394,2)
- ;;=^5004683
- ;;^UTILITY(U,$J,358.3,10395,0)
- ;;=H10.45^^74^678^6
- ;;^UTILITY(U,$J,358.3,10395,1,0)
+ ;;^UTILITY(U,$J,358.3,10519,1,3,0)
+ ;;=3^MH Svc for Perpetrator of Parental Child Neglect
+ ;;^UTILITY(U,$J,358.3,10519,1,4,0)
+ ;;=4^Z69.011
+ ;;^UTILITY(U,$J,358.3,10519,2)
+ ;;=^5063229
+ ;;^UTILITY(U,$J,358.3,10520,0)
+ ;;=Z69.011^^42^469^25
+ ;;^UTILITY(U,$J,358.3,10520,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,10395,1,3,0)
- ;;=3^Conjunctivitis,Allergic,Chronic
- ;;^UTILITY(U,$J,358.3,10395,1,4,0)
- ;;=4^H10.45
- ;;^UTILITY(U,$J,358.3,10395,2)
- ;;=^87396
- ;;^UTILITY(U,$J,358.3,10396,0)
- ;;=B30.8^^74^678^7
- ;;^UTILITY(U,$J,358.3,10396,1,0)
+ ;;^UTILITY(U,$J,358.3,10520,1,3,0)
+ ;;=3^MH Svc for Perpetrator of Parental Child Psychological Abuse
+ ;;^UTILITY(U,$J,358.3,10520,1,4,0)
+ ;;=4^Z69.011
+ ;;^UTILITY(U,$J,358.3,10520,2)
+ ;;=^5063229
+ ;;^UTILITY(U,$J,358.3,10521,0)
+ ;;=Z69.011^^42^469^26
+ ;;^UTILITY(U,$J,358.3,10521,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,10396,1,3,0)
- ;;=3^Conjunctivitis,Viral
- ;;^UTILITY(U,$J,358.3,10396,1,4,0)
- ;;=4^B30.8
- ;;^UTILITY(U,$J,358.3,10396,2)
- ;;=^88239
- ;;^UTILITY(U,$J,358.3,10397,0)
- ;;=H10.13^^74^678^8
- ;;^UTILITY(U,$J,358.3,10397,1,0)
+ ;;^UTILITY(U,$J,358.3,10521,1,3,0)
+ ;;=3^MH Svc for Perpetrator of Parental Child Sexual Abuse
+ ;;^UTILITY(U,$J,358.3,10521,1,4,0)
+ ;;=4^Z69.011
+ ;;^UTILITY(U,$J,358.3,10521,2)
+ ;;=^5063229
+ ;;^UTILITY(U,$J,358.3,10522,0)
+ ;;=Z69.12^^42^469^17
+ ;;^UTILITY(U,$J,358.3,10522,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,10397,1,3,0)
- ;;=3^Conjunctivitis,Atopic,Bilateral
- ;;^UTILITY(U,$J,358.3,10397,1,4,0)
- ;;=4^H10.13
- ;;^UTILITY(U,$J,358.3,10397,2)
- ;;=^5004667
- ;;^UTILITY(U,$J,358.3,10398,0)
- ;;=H10.419^^74^678^9
- ;;^UTILITY(U,$J,358.3,10398,1,0)
+ ;;^UTILITY(U,$J,358.3,10522,1,3,0)
+ ;;=3^MH SVC for Perpetrator of Spousal/Partner Neglect
+ ;;^UTILITY(U,$J,358.3,10522,1,4,0)
+ ;;=4^Z69.12
+ ;;^UTILITY(U,$J,358.3,10522,2)
+ ;;=^5063233
+ ;;^UTILITY(U,$J,358.3,10523,0)
+ ;;=Z69.12^^42^469^28
+ ;;^UTILITY(U,$J,358.3,10523,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,10398,1,3,0)
- ;;=3^Giant Papillary Conjunctivitis,Chronic
- ;;^UTILITY(U,$J,358.3,10398,1,4,0)
- ;;=4^H10.419
- ;;^UTILITY(U,$J,358.3,10398,2)
- ;;=^5004687
- ;;^UTILITY(U,$J,358.3,10399,0)
- ;;=H10.219^^74^678^10
- ;;^UTILITY(U,$J,358.3,10399,1,0)
+ ;;^UTILITY(U,$J,358.3,10523,1,3,0)
+ ;;=3^MH Svc for Perpetrator of Spousal/Partner Psychological Abuse
+ ;;^UTILITY(U,$J,358.3,10523,1,4,0)
+ ;;=4^Z69.12
+ ;;^UTILITY(U,$J,358.3,10523,2)
+ ;;=^5063233
+ ;;^UTILITY(U,$J,358.3,10524,0)
+ ;;=Z69.12^^42^469^29
+ ;;^UTILITY(U,$J,358.3,10524,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,10399,1,3,0)
- ;;=3^Toxic Conjunctivitis,Acute
- ;;^UTILITY(U,$J,358.3,10399,1,4,0)
- ;;=4^H10.219
+ ;;^UTILITY(U,$J,358.3,10524,1,3,0)
+ ;;=3^MH Svc for Perpetrator of Spousal/Partner Violence,Sexual

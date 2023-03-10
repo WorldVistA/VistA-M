@@ -1,124 +1,48 @@
-IBDEI1MX ; ; 04-FEB-2020
- ;;3.0;IB ENCOUNTER FORM IMP/EXP;;FEB 04, 2020
- Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,999) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
+IBDEI1MX ; ; 01-FEB-2022
+ ;;3.0;IB ENCOUNTER FORM IMP/EXP;;FEB 01, 2022
+ Q:'DIFQ(358.91)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,999) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
- ;;^UTILITY(U,$J,358.3,26115,1,3,0)
- ;;=3^Fall from Tree,Init Encntr
- ;;^UTILITY(U,$J,358.3,26115,1,4,0)
- ;;=4^W14.XXXA
- ;;^UTILITY(U,$J,358.3,26115,2)
- ;;=^5059622
- ;;^UTILITY(U,$J,358.3,26116,0)
- ;;=W14.XXXD^^107^1230^71
- ;;^UTILITY(U,$J,358.3,26116,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,26116,1,3,0)
- ;;=3^Fall from Tree,Subs Encntr
- ;;^UTILITY(U,$J,358.3,26116,1,4,0)
- ;;=4^W14.XXXD
- ;;^UTILITY(U,$J,358.3,26116,2)
- ;;=^5059623
- ;;^UTILITY(U,$J,358.3,26117,0)
- ;;=W17.2XXA^^107^1230^82
- ;;^UTILITY(U,$J,358.3,26117,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,26117,1,3,0)
- ;;=3^Fall into Hole,Init Encntr
- ;;^UTILITY(U,$J,358.3,26117,1,4,0)
- ;;=4^W17.2XXA
- ;;^UTILITY(U,$J,358.3,26117,2)
- ;;=^5059772
- ;;^UTILITY(U,$J,358.3,26118,0)
- ;;=W17.2XXD^^107^1230^83
- ;;^UTILITY(U,$J,358.3,26118,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,26118,1,3,0)
- ;;=3^Fall into Hole,Subs Encntr
- ;;^UTILITY(U,$J,358.3,26118,1,4,0)
- ;;=4^W17.2XXD
- ;;^UTILITY(U,$J,358.3,26118,2)
- ;;=^5059773
- ;;^UTILITY(U,$J,358.3,26119,0)
- ;;=W17.3XXA^^107^1230^80
- ;;^UTILITY(U,$J,358.3,26119,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,26119,1,3,0)
- ;;=3^Fall into Empty Swimming Pool,Init Encntr
- ;;^UTILITY(U,$J,358.3,26119,1,4,0)
- ;;=4^W17.3XXA
- ;;^UTILITY(U,$J,358.3,26119,2)
- ;;=^5059775
- ;;^UTILITY(U,$J,358.3,26120,0)
- ;;=W17.3XXD^^107^1230^81
- ;;^UTILITY(U,$J,358.3,26120,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,26120,1,3,0)
- ;;=3^Fall into Empty Swimming Pool,Subs Encntr
- ;;^UTILITY(U,$J,358.3,26120,1,4,0)
- ;;=4^W17.3XXD
- ;;^UTILITY(U,$J,358.3,26120,2)
- ;;=^5059776
- ;;^UTILITY(U,$J,358.3,26121,0)
- ;;=W17.4XXA^^107^1230^44
- ;;^UTILITY(U,$J,358.3,26121,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,26121,1,3,0)
- ;;=3^Fall from Dock,Init Encntr
- ;;^UTILITY(U,$J,358.3,26121,1,4,0)
- ;;=4^W17.4XXA
- ;;^UTILITY(U,$J,358.3,26121,2)
- ;;=^5059778
- ;;^UTILITY(U,$J,358.3,26122,0)
- ;;=W17.4XXD^^107^1230^45
- ;;^UTILITY(U,$J,358.3,26122,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,26122,1,3,0)
- ;;=3^Fall from Dock,Subs Encntr
- ;;^UTILITY(U,$J,358.3,26122,1,4,0)
- ;;=4^W17.4XXD
- ;;^UTILITY(U,$J,358.3,26122,2)
- ;;=^5059779
- ;;^UTILITY(U,$J,358.3,26123,0)
- ;;=W17.81XA^^107^1230^32
- ;;^UTILITY(U,$J,358.3,26123,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,26123,1,3,0)
- ;;=3^Fall down Embankment,Init Encntr
- ;;^UTILITY(U,$J,358.3,26123,1,4,0)
- ;;=4^W17.81XA
- ;;^UTILITY(U,$J,358.3,26123,2)
- ;;=^5059781
- ;;^UTILITY(U,$J,358.3,26124,0)
- ;;=W17.81XD^^107^1230^33
- ;;^UTILITY(U,$J,358.3,26124,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,26124,1,3,0)
- ;;=3^Fall down Embankment,Subs Encntr
- ;;^UTILITY(U,$J,358.3,26124,1,4,0)
- ;;=4^W17.81XD
- ;;^UTILITY(U,$J,358.3,26124,2)
- ;;=^5059782
- ;;^UTILITY(U,$J,358.3,26125,0)
- ;;=W17.89XA^^107^1230^60
- ;;^UTILITY(U,$J,358.3,26125,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,26125,1,3,0)
- ;;=3^Fall from One level to Another,Init Encntr
- ;;^UTILITY(U,$J,358.3,26125,1,4,0)
- ;;=4^W17.89XA
- ;;^UTILITY(U,$J,358.3,26125,2)
- ;;=^5059787
- ;;^UTILITY(U,$J,358.3,26126,0)
- ;;=W17.89XD^^107^1230^61
- ;;^UTILITY(U,$J,358.3,26126,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,26126,1,3,0)
- ;;=3^Fall from One level to Another,Subs Encntr
- ;;^UTILITY(U,$J,358.3,26126,1,4,0)
- ;;=4^W17.89XD
- ;;^UTILITY(U,$J,358.3,26126,2)
- ;;=^5059788
- ;;^UTILITY(U,$J,358.3,26127,0)
- ;;=W18.11XA^^107^1230^68
- ;;^UTILITY(U,$J,358.3,26127,1,0)
- ;;=^358.31IA^4^2
+ ;;^DIC(358.91,0,"GL")
+ ;;=^IBE(358.91,
+ ;;^DIC("B","IMP/EXP MARKING AREA",358.91)
+ ;;=
+ ;;^DIC(358.91,"%D",0)
+ ;;=^^4^4^2940217^
+ ;;^DIC(358.91,"%D",1,0)
+ ;;= 
+ ;;^DIC(358.91,"%D",2,0)
+ ;;=This file is nearly identical to file #357.91. It is used by the
+ ;;^DIC(358.91,"%D",3,0)
+ ;;=Import/Export Utility as a temporary staging area for data from that file
+ ;;^DIC(358.91,"%D",4,0)
+ ;;=that is being imported or exported.
+ ;;^DD(358.91,0)
+ ;;=FIELD^^.04^4
+ ;;^DD(358.91,0,"DDA")
+ ;;=N
+ ;;^DD(358.91,0,"DT")
+ ;;=2960123
+ ;;^DD(358.91,0,"IX","B",358.91,.01)
+ ;;=
+ ;;^DD(358.91,0,"NM","IMP/EXP MARKING AREA")
+ ;;=
+ ;;^DD(358.91,0,"PT",358.22,.06)
+ ;;=
+ ;;^DD(358.91,0,"VRPK")
+ ;;=IBD
+ ;;^DD(358.91,.01,0)
+ ;;=NAME^RFX^^0;1^K:$L(X)>30 X
+ ;;^DD(358.91,.01,1,0)
+ ;;=^.1
+ ;;^DD(358.91,.01,1,1,0)
+ ;;=358.91^B
+ ;;^DD(358.91,.01,1,1,1)
+ ;;=S ^IBE(358.91,"B",$E(X,1,30),DA)=""
+ ;;^DD(358.91,.01,1,1,2)
+ ;;=K ^IBE(358.91,"B",$E(X,1,30),DA)
+ ;;^DD(358.91,.01,3)
+ ;;=NAME MUST BE UNDER 31 CHARACTERS
+ ;;^DD(358.91,.01,21,0)
+ ;;=^^1^1^2930608^
+ ;;^DD(358.91,.01,21,1,0)
+ ;;=The name should describe the appearance of the marking area on the form.

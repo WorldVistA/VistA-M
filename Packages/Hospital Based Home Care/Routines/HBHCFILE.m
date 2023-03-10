@@ -1,5 +1,5 @@
-HBHCFILE ; LR VAMC(IRMS)/MJT-HBHC populates ^HBHC(632) visit file, & ^HBHC(634), file for transmitting to Austin, calls ^HBHCAPPT, ^HBHCXMC, ^HBHCXMA, ^HBHCXMV, ^HBHCXMD, & HBHCXMM ; Nov 1999
- ;;1.0;HOSPITAL BASED HOME CARE;**2,5,6,8,9,10,16,21,24,27**;NOV 01, 1993;Build 2
+HBHCFILE ; LR VAMC(IRMS)/MJT- HBHC Build/Verify Transmission File; May 05, 2021@14:33
+ ;;1.0;HOSPITAL BASED HOME CARE;**2,5,6,8,9,10,16,21,24,27,32**;NOV 01, 1993;Build 58
  ;
  ;
  ; Reference/ICR
@@ -13,6 +13,14 @@ HBHCFILE ; LR VAMC(IRMS)/MJT-HBHC populates ^HBHC(632) visit file, & ^HBHC(634),
  I ($D(^HBHC(634.1,"B")))!($D(^HBHC(634.2,"B")))!($D(^HBHC(634.3,"B")))!($D(^HBHC(634.5,"B")))!($D(^HBHC(634.7,"B"))) W $C(7),!!,"Records containing errors exist and must be corrected before transmit",!,"file can be created or updated.",!! H 3 Q
 EN ; Entry point
  I $P(^HBHC(631.9,1,0),U,8)]"" W $C(7),!,"File Update in progress.  Please try again later." H 3 Q
+ ;HBH*1.0*32: At least one parent site must be defined.
+ I $O(^HBHC(631.9,1,1,"B",""))="" D  Q
+ . W !!,"No parent sites are defined at this facility."
+ . W !,"Contact your HBPC Program Manager to define at least one"
+ . W !,"parent site in option ""System Parameters Edit"".",!
+ . N DIR
+ . S DIR("A")="Press any key to continue",DIR(0)="FO"
+ . D ^DIR
  W !!,"This option builds the file for transmission to Austin.  Do you wish to",!,"continue" S %=2 D YN^DICN
  I %=0 W !!,"A 'Yes' response will add records to the file.  A 'No' response will return",!,"to the menu without updating the file." G EN
  G:%'=1 EXIT

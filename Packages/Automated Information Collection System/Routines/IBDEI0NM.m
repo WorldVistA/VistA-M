@@ -1,124 +1,122 @@
-IBDEI0NM ; ; 04-FEB-2020
- ;;3.0;IB ENCOUNTER FORM IMP/EXP;;FEB 04, 2020
+IBDEI0NM ; ; 01-FEB-2022
+ ;;3.0;IB ENCOUNTER FORM IMP/EXP;;FEB 01, 2022
  Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,999) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
- ;;^UTILITY(U,$J,358.3,10512,0)
- ;;=H21.1X2^^74^681^38
- ;;^UTILITY(U,$J,358.3,10512,1,0)
+ ;;^UTILITY(U,$J,358.3,10631,2)
+ ;;=^5003049
+ ;;^UTILITY(U,$J,358.3,10632,0)
+ ;;=F02.80^^42^472^40
+ ;;^UTILITY(U,$J,358.3,10632,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,10512,1,3,0)
- ;;=3^Vascular Disorders of Iris & Ciliary Body,Lt Eye
- ;;^UTILITY(U,$J,358.3,10512,1,4,0)
- ;;=4^H21.1X2
- ;;^UTILITY(U,$J,358.3,10512,2)
- ;;=^5005176
- ;;^UTILITY(U,$J,358.3,10513,0)
- ;;=H21.1X3^^74^681^39
- ;;^UTILITY(U,$J,358.3,10513,1,0)
+ ;;^UTILITY(U,$J,358.3,10632,1,3,0)
+ ;;=3^Major Neurocog D/O d/t Poss PARKINSON'S DISEASE w/o Behav Disturb
+ ;;^UTILITY(U,$J,358.3,10632,1,4,0)
+ ;;=4^F02.80
+ ;;^UTILITY(U,$J,358.3,10632,2)
+ ;;=^5003048
+ ;;^UTILITY(U,$J,358.3,10633,0)
+ ;;=F02.81^^42^472^45
+ ;;^UTILITY(U,$J,358.3,10633,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,10513,1,3,0)
- ;;=3^Vascular Disorders of Iris & Ciliary Body,Bilateral
- ;;^UTILITY(U,$J,358.3,10513,1,4,0)
- ;;=4^H21.1X3
- ;;^UTILITY(U,$J,358.3,10513,2)
- ;;=^5005177
- ;;^UTILITY(U,$J,358.3,10514,0)
- ;;=H40.051^^74^682^1
- ;;^UTILITY(U,$J,358.3,10514,1,0)
+ ;;^UTILITY(U,$J,358.3,10633,1,3,0)
+ ;;=3^Major Neurocog D/O d/t Prob PARKINSON'S DISEASE w/ Behav Disturb
+ ;;^UTILITY(U,$J,358.3,10633,1,4,0)
+ ;;=4^F02.81
+ ;;^UTILITY(U,$J,358.3,10633,2)
+ ;;=^5003049
+ ;;^UTILITY(U,$J,358.3,10634,0)
+ ;;=F02.80^^42^472^46
+ ;;^UTILITY(U,$J,358.3,10634,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,10514,1,3,0)
- ;;=3^Ocular Hypertension,Right Eye
- ;;^UTILITY(U,$J,358.3,10514,1,4,0)
- ;;=4^H40.051
- ;;^UTILITY(U,$J,358.3,10514,2)
- ;;=^5005740
- ;;^UTILITY(U,$J,358.3,10515,0)
- ;;=H40.052^^74^682^2
- ;;^UTILITY(U,$J,358.3,10515,1,0)
+ ;;^UTILITY(U,$J,358.3,10634,1,3,0)
+ ;;=3^Major Neurocog D/O d/t Prob PARKINSON'S DISEASE w/o Behav Disturb
+ ;;^UTILITY(U,$J,358.3,10634,1,4,0)
+ ;;=4^F02.80
+ ;;^UTILITY(U,$J,358.3,10634,2)
+ ;;=^5003048
+ ;;^UTILITY(U,$J,358.3,10635,0)
+ ;;=G31.84^^42^472^63
+ ;;^UTILITY(U,$J,358.3,10635,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,10515,1,3,0)
- ;;=3^Ocular Hypertension,Left Eye
- ;;^UTILITY(U,$J,358.3,10515,1,4,0)
- ;;=4^H40.052
- ;;^UTILITY(U,$J,358.3,10515,2)
- ;;=^5005741
- ;;^UTILITY(U,$J,358.3,10516,0)
- ;;=H40.053^^74^682^3
- ;;^UTILITY(U,$J,358.3,10516,1,0)
+ ;;^UTILITY(U,$J,358.3,10635,1,3,0)
+ ;;=3^Mild Neurocog D/O d/t PARKINSON'S DISEASE
+ ;;^UTILITY(U,$J,358.3,10635,1,4,0)
+ ;;=4^G31.84
+ ;;^UTILITY(U,$J,358.3,10635,2)
+ ;;=^5003813
+ ;;^UTILITY(U,$J,358.3,10636,0)
+ ;;=A81.9^^42^472^72
+ ;;^UTILITY(U,$J,358.3,10636,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,10516,1,3,0)
- ;;=3^Ocular Hypertension,Bilateral
- ;;^UTILITY(U,$J,358.3,10516,1,4,0)
- ;;=4^H40.053
- ;;^UTILITY(U,$J,358.3,10516,2)
- ;;=^5005742
- ;;^UTILITY(U,$J,358.3,10517,0)
- ;;=H40.1211^^74^682^16
- ;;^UTILITY(U,$J,358.3,10517,1,0)
+ ;;^UTILITY(U,$J,358.3,10636,1,3,0)
+ ;;=3^Prion Disease
+ ;;^UTILITY(U,$J,358.3,10636,1,4,0)
+ ;;=4^A81.9
+ ;;^UTILITY(U,$J,358.3,10636,2)
+ ;;=^5000414
+ ;;^UTILITY(U,$J,358.3,10637,0)
+ ;;=F02.81^^42^472^33
+ ;;^UTILITY(U,$J,358.3,10637,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,10517,1,3,0)
- ;;=3^Low-Tension Glaucoma,Mild,Right Eye
- ;;^UTILITY(U,$J,358.3,10517,1,4,0)
- ;;=4^H40.1211
- ;;^UTILITY(U,$J,358.3,10517,2)
- ;;=^5005759
- ;;^UTILITY(U,$J,358.3,10518,0)
- ;;=H40.1221^^74^682^17
- ;;^UTILITY(U,$J,358.3,10518,1,0)
+ ;;^UTILITY(U,$J,358.3,10637,1,3,0)
+ ;;=3^Major Neurocog D/O d/t PRION DISEASE w/ Behav Disturb
+ ;;^UTILITY(U,$J,358.3,10637,1,4,0)
+ ;;=4^F02.81
+ ;;^UTILITY(U,$J,358.3,10637,2)
+ ;;=^5003049
+ ;;^UTILITY(U,$J,358.3,10638,0)
+ ;;=F02.80^^42^472^34
+ ;;^UTILITY(U,$J,358.3,10638,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,10518,1,3,0)
- ;;=3^Low-Tension Glaucoma,Mild,Left Eye
- ;;^UTILITY(U,$J,358.3,10518,1,4,0)
- ;;=4^H40.1221
- ;;^UTILITY(U,$J,358.3,10518,2)
- ;;=^5005764
- ;;^UTILITY(U,$J,358.3,10519,0)
- ;;=H40.1231^^74^682^18
- ;;^UTILITY(U,$J,358.3,10519,1,0)
+ ;;^UTILITY(U,$J,358.3,10638,1,3,0)
+ ;;=3^Major Neurocog D/O d/t PRION DISEASE w/o Behav Disturb
+ ;;^UTILITY(U,$J,358.3,10638,1,4,0)
+ ;;=4^F02.80
+ ;;^UTILITY(U,$J,358.3,10638,2)
+ ;;=^5003048
+ ;;^UTILITY(U,$J,358.3,10639,0)
+ ;;=G31.84^^42^472^64
+ ;;^UTILITY(U,$J,358.3,10639,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,10519,1,3,0)
- ;;=3^Low-Tension Glaucoma,Mild,Bilateral
- ;;^UTILITY(U,$J,358.3,10519,1,4,0)
- ;;=4^H40.1231
- ;;^UTILITY(U,$J,358.3,10519,2)
- ;;=^5005768
- ;;^UTILITY(U,$J,358.3,10520,0)
- ;;=H40.1233^^74^682^20
- ;;^UTILITY(U,$J,358.3,10520,1,0)
+ ;;^UTILITY(U,$J,358.3,10639,1,3,0)
+ ;;=3^Mild Neurocog D/O d/t PRION DISEASE
+ ;;^UTILITY(U,$J,358.3,10639,1,4,0)
+ ;;=4^G31.84
+ ;;^UTILITY(U,$J,358.3,10639,2)
+ ;;=^5003813
+ ;;^UTILITY(U,$J,358.3,10640,0)
+ ;;=S06.2X9S^^42^472^75
+ ;;^UTILITY(U,$J,358.3,10640,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,10520,1,3,0)
- ;;=3^Low-Tension Glaucoma,Severe,Bilateral
- ;;^UTILITY(U,$J,358.3,10520,1,4,0)
- ;;=4^H40.1233
- ;;^UTILITY(U,$J,358.3,10520,2)
- ;;=^5005770
- ;;^UTILITY(U,$J,358.3,10521,0)
- ;;=H40.011^^74^682^21
- ;;^UTILITY(U,$J,358.3,10521,1,0)
+ ;;^UTILITY(U,$J,358.3,10640,1,3,0)
+ ;;=3^TRAUMATIC BRAIN INJURY,Diffuse w/ Unspec Duration of LOC,Sequela
+ ;;^UTILITY(U,$J,358.3,10640,1,4,0)
+ ;;=4^S06.2X9S
+ ;;^UTILITY(U,$J,358.3,10640,2)
+ ;;=^5020755
+ ;;^UTILITY(U,$J,358.3,10641,0)
+ ;;=F02.81^^42^472^51
+ ;;^UTILITY(U,$J,358.3,10641,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,10521,1,3,0)
- ;;=3^Open Angle w/ Borderline Findings,Low Risk,Right Eye
- ;;^UTILITY(U,$J,358.3,10521,1,4,0)
- ;;=4^H40.011
- ;;^UTILITY(U,$J,358.3,10521,2)
- ;;=^5005724
- ;;^UTILITY(U,$J,358.3,10522,0)
- ;;=H40.012^^74^682^22
- ;;^UTILITY(U,$J,358.3,10522,1,0)
+ ;;^UTILITY(U,$J,358.3,10641,1,3,0)
+ ;;=3^Major Neurocog D/O d/t TBI w/ Behav Disturb
+ ;;^UTILITY(U,$J,358.3,10641,1,4,0)
+ ;;=4^F02.81
+ ;;^UTILITY(U,$J,358.3,10641,2)
+ ;;=^5003049
+ ;;^UTILITY(U,$J,358.3,10642,0)
+ ;;=F02.80^^42^472^52
+ ;;^UTILITY(U,$J,358.3,10642,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,10522,1,3,0)
- ;;=3^Open Angle w/ Borderline Findings,Low Risk,Left Eye
- ;;^UTILITY(U,$J,358.3,10522,1,4,0)
- ;;=4^H40.012
- ;;^UTILITY(U,$J,358.3,10522,2)
- ;;=^5005725
- ;;^UTILITY(U,$J,358.3,10523,0)
- ;;=H59.41^^74^682^25
- ;;^UTILITY(U,$J,358.3,10523,1,0)
+ ;;^UTILITY(U,$J,358.3,10642,1,3,0)
+ ;;=3^Major Neurocog D/O d/t TBI w/o Behav Disturb
+ ;;^UTILITY(U,$J,358.3,10642,1,4,0)
+ ;;=4^F02.80
+ ;;^UTILITY(U,$J,358.3,10642,2)
+ ;;=^5003048
+ ;;^UTILITY(U,$J,358.3,10643,0)
+ ;;=G31.84^^42^472^65
+ ;;^UTILITY(U,$J,358.3,10643,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,10523,1,3,0)
- ;;=3^Blebitis,Stage 1
- ;;^UTILITY(U,$J,358.3,10523,1,4,0)
- ;;=4^H59.41
- ;;^UTILITY(U,$J,358.3,10523,2)
- ;;=^5006426
+ ;;^UTILITY(U,$J,358.3,10643,1,3,0)
+ ;;=3^Mild Neurocog D/O d/t TBI

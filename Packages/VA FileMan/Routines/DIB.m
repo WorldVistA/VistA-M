@@ -1,5 +1,5 @@
 DIB ;SFISC/GFT,XAK-CREATE A NEW FILE ;9JUN2003
- ;;22.2;VA FileMan;;Jan 05, 2016;Build 42
+ ;;22.2;VA FileMan;**18**;Jan 05, 2016;Build 2
  ;;Per VA Directive 6402, this routine should not be modified.
  ;;Submitted to OSEHRA 5 January 2015 by the VISTA Expertise Network.
  ;;Based on Medsphere Systems Corporation's MSC FileMan 1051.
@@ -35,7 +35,7 @@ SET D WAIT^DICD S $P(^DIC(F,0),U,2)=F,^("%A")=DUZ_U_DT,X=$P(^(0),U,1),^(0,"GL")=
  S %="" I @("$D("_DG_"0))") S %=^(0)
  S @(DG_"0)=X_U_F_U_$P(%,U,3,9)")
  K ^DD(F) S ^(F,0)="FIELD^^.01^1",^DD(F,.01,0)="NAME^RF^^0;1^K:$L(X)>30!(X?.N)!($L(X)<3)!'(X'?1P.E) X"
- S ^(3)="NAME MUST BE 3-30 CHARACTERS, NOT NUMERIC OR STARTING WITH PUNCTUATION" W !?5,"A FreeText NAME Field (#.01) has been created."
+ S ^(3)="Name must be 3-30 characters, not numeric or starting with punctuation" W !?5,"A FreeText NAME Field (#.01) has been created." ;p18
  S DA="B",^DD(F,.01,1,0)="^.1",^(1,0)=F_U_DA,X=DG_""""_DA_""",$E(X,1,30),DA)",^(1)="S "_X_"=""""",^(2)="K "_X
  S DIK="^DIC(",DA=F D IX1^DIK
  S DLAYGO=F,DIK="^DD(DLAYGO,",DA=.01,DA(1)=DLAYGO G IX1^DIK

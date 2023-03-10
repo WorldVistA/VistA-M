@@ -1,124 +1,130 @@
-IBDEI0S0 ; ; 04-FEB-2020
- ;;3.0;IB ENCOUNTER FORM IMP/EXP;;FEB 04, 2020
+IBDEI0S0 ; ; 01-FEB-2022
+ ;;3.0;IB ENCOUNTER FORM IMP/EXP;;FEB 01, 2022
  Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,999) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
- ;;^UTILITY(U,$J,358.3,12491,1,0)
+ ;;^UTILITY(U,$J,358.3,12607,0)
+ ;;=J91.8^^49^610^15
+ ;;^UTILITY(U,$J,358.3,12607,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,12491,1,3,0)
- ;;=3^Acute Lymphangitis of Right Lower Limb
- ;;^UTILITY(U,$J,358.3,12491,1,4,0)
- ;;=4^L03.125
- ;;^UTILITY(U,$J,358.3,12491,2)
- ;;=^5009041
- ;;^UTILITY(U,$J,358.3,12492,0)
- ;;=L03.041^^80^782^20
- ;;^UTILITY(U,$J,358.3,12492,1,0)
+ ;;^UTILITY(U,$J,358.3,12607,1,3,0)
+ ;;=3^Pleural Effusion,Classified Elsewhere
+ ;;^UTILITY(U,$J,358.3,12607,1,4,0)
+ ;;=4^J91.8
+ ;;^UTILITY(U,$J,358.3,12607,2)
+ ;;=^5008311
+ ;;^UTILITY(U,$J,358.3,12608,0)
+ ;;=J20.8^^49^610^1
+ ;;^UTILITY(U,$J,358.3,12608,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,12492,1,3,0)
- ;;=3^Acute Lymphangitis of Right Toe
- ;;^UTILITY(U,$J,358.3,12492,1,4,0)
- ;;=4^L03.041
- ;;^UTILITY(U,$J,358.3,12492,2)
- ;;=^5009028
- ;;^UTILITY(U,$J,358.3,12493,0)
- ;;=L03.123^^80^782^21
- ;;^UTILITY(U,$J,358.3,12493,1,0)
+ ;;^UTILITY(U,$J,358.3,12608,1,3,0)
+ ;;=3^Acute Bronchitis d/t Oth Spec Organisms
+ ;;^UTILITY(U,$J,358.3,12608,1,4,0)
+ ;;=4^J20.8
+ ;;^UTILITY(U,$J,358.3,12608,2)
+ ;;=^5008194
+ ;;^UTILITY(U,$J,358.3,12609,0)
+ ;;=J22.^^49^610^3
+ ;;^UTILITY(U,$J,358.3,12609,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,12493,1,3,0)
- ;;=3^Acute Lymphangitis of Right Upper Limb
- ;;^UTILITY(U,$J,358.3,12493,1,4,0)
- ;;=4^L03.123
- ;;^UTILITY(U,$J,358.3,12493,2)
- ;;=^5009039
- ;;^UTILITY(U,$J,358.3,12494,0)
- ;;=L03.329^^80^782^22
- ;;^UTILITY(U,$J,358.3,12494,1,0)
+ ;;^UTILITY(U,$J,358.3,12609,1,3,0)
+ ;;=3^Acute Lower Respiratory Infection,Unspec
+ ;;^UTILITY(U,$J,358.3,12609,1,4,0)
+ ;;=4^J22.
+ ;;^UTILITY(U,$J,358.3,12609,2)
+ ;;=^5008200
+ ;;^UTILITY(U,$J,358.3,12610,0)
+ ;;=J98.9^^49^610^5
+ ;;^UTILITY(U,$J,358.3,12610,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,12494,1,3,0)
- ;;=3^Acute Lymphangitis of Trunk,Unspec
- ;;^UTILITY(U,$J,358.3,12494,1,4,0)
- ;;=4^L03.329
- ;;^UTILITY(U,$J,358.3,12494,2)
- ;;=^5009062
- ;;^UTILITY(U,$J,358.3,12495,0)
- ;;=L03.326^^80^782^23
- ;;^UTILITY(U,$J,358.3,12495,1,0)
+ ;;^UTILITY(U,$J,358.3,12610,1,3,0)
+ ;;=3^Acute Respiratory Distress Syndrome
+ ;;^UTILITY(U,$J,358.3,12610,1,4,0)
+ ;;=4^J98.9
+ ;;^UTILITY(U,$J,358.3,12610,2)
+ ;;=^5008366
+ ;;^UTILITY(U,$J,358.3,12611,0)
+ ;;=J12.89^^49^610^16
+ ;;^UTILITY(U,$J,358.3,12611,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,12495,1,3,0)
- ;;=3^Acute Lymphangitis of Umbilicus
- ;;^UTILITY(U,$J,358.3,12495,1,4,0)
- ;;=4^L03.326
- ;;^UTILITY(U,$J,358.3,12495,2)
- ;;=^5009060
- ;;^UTILITY(U,$J,358.3,12496,0)
- ;;=L03.129^^80^782^13
- ;;^UTILITY(U,$J,358.3,12496,1,0)
+ ;;^UTILITY(U,$J,358.3,12611,1,3,0)
+ ;;=3^Viral Pneumonia,Other
+ ;;^UTILITY(U,$J,358.3,12611,1,4,0)
+ ;;=4^J12.89
+ ;;^UTILITY(U,$J,358.3,12611,2)
+ ;;=^5008168
+ ;;^UTILITY(U,$J,358.3,12612,0)
+ ;;=F41.9^^49^611^3
+ ;;^UTILITY(U,$J,358.3,12612,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,12496,1,3,0)
- ;;=3^Acute Lymphangitis of Limb,Unspec Part
- ;;^UTILITY(U,$J,358.3,12496,1,4,0)
- ;;=4^L03.129
- ;;^UTILITY(U,$J,358.3,12496,2)
- ;;=^5009042
- ;;^UTILITY(U,$J,358.3,12497,0)
- ;;=L03.91^^80^782^24
- ;;^UTILITY(U,$J,358.3,12497,1,0)
+ ;;^UTILITY(U,$J,358.3,12612,1,3,0)
+ ;;=3^Anxiety Disorder,Unspec
+ ;;^UTILITY(U,$J,358.3,12612,1,4,0)
+ ;;=4^F41.9
+ ;;^UTILITY(U,$J,358.3,12612,2)
+ ;;=^5003567
+ ;;^UTILITY(U,$J,358.3,12613,0)
+ ;;=F10.20^^49^611^2
+ ;;^UTILITY(U,$J,358.3,12613,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,12497,1,3,0)
- ;;=3^Acute Lymphangitis,Unspec
- ;;^UTILITY(U,$J,358.3,12497,1,4,0)
- ;;=4^L03.91
- ;;^UTILITY(U,$J,358.3,12497,2)
- ;;=^5009068
- ;;^UTILITY(U,$J,358.3,12498,0)
- ;;=D17.0^^80^782^26
- ;;^UTILITY(U,$J,358.3,12498,1,0)
+ ;;^UTILITY(U,$J,358.3,12613,1,3,0)
+ ;;=3^Alcohol Dependence,Uncomplicated
+ ;;^UTILITY(U,$J,358.3,12613,1,4,0)
+ ;;=4^F10.20
+ ;;^UTILITY(U,$J,358.3,12613,2)
+ ;;=^5003081
+ ;;^UTILITY(U,$J,358.3,12614,0)
+ ;;=F10.10^^49^611^1
+ ;;^UTILITY(U,$J,358.3,12614,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,12498,1,3,0)
- ;;=3^Benign Lipomatous Neop of Skin of Head/Face/Neck
- ;;^UTILITY(U,$J,358.3,12498,1,4,0)
- ;;=4^D17.0
- ;;^UTILITY(U,$J,358.3,12498,2)
- ;;=^5002005
- ;;^UTILITY(U,$J,358.3,12499,0)
- ;;=D17.22^^80^782^27
- ;;^UTILITY(U,$J,358.3,12499,1,0)
+ ;;^UTILITY(U,$J,358.3,12614,1,3,0)
+ ;;=3^Alcohol Abuse,Uncomplicated
+ ;;^UTILITY(U,$J,358.3,12614,1,4,0)
+ ;;=4^F10.10
+ ;;^UTILITY(U,$J,358.3,12614,2)
+ ;;=^5003068
+ ;;^UTILITY(U,$J,358.3,12615,0)
+ ;;=F17.200^^49^611^8
+ ;;^UTILITY(U,$J,358.3,12615,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,12499,1,3,0)
- ;;=3^Benign Lipomatous Neop of Skin of Left Arm
- ;;^UTILITY(U,$J,358.3,12499,1,4,0)
- ;;=4^D17.22
- ;;^UTILITY(U,$J,358.3,12499,2)
- ;;=^5002009
- ;;^UTILITY(U,$J,358.3,12500,0)
- ;;=D17.24^^80^782^28
- ;;^UTILITY(U,$J,358.3,12500,1,0)
+ ;;^UTILITY(U,$J,358.3,12615,1,3,0)
+ ;;=3^Nicotine Dependence,Unspec
+ ;;^UTILITY(U,$J,358.3,12615,1,4,0)
+ ;;=4^F17.200
+ ;;^UTILITY(U,$J,358.3,12615,2)
+ ;;=^5003360
+ ;;^UTILITY(U,$J,358.3,12616,0)
+ ;;=F45.41^^49^611^11
+ ;;^UTILITY(U,$J,358.3,12616,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,12500,1,3,0)
- ;;=3^Benign Lipomatous Neop of Skin of Left Leg
- ;;^UTILITY(U,$J,358.3,12500,1,4,0)
- ;;=4^D17.24
- ;;^UTILITY(U,$J,358.3,12500,2)
- ;;=^5002011
- ;;^UTILITY(U,$J,358.3,12501,0)
- ;;=D17.39^^80^782^25
- ;;^UTILITY(U,$J,358.3,12501,1,0)
+ ;;^UTILITY(U,$J,358.3,12616,1,3,0)
+ ;;=3^Pain Disorder d/t Psychological Factors
+ ;;^UTILITY(U,$J,358.3,12616,1,4,0)
+ ;;=4^F45.41
+ ;;^UTILITY(U,$J,358.3,12616,2)
+ ;;=^5003590
+ ;;^UTILITY(U,$J,358.3,12617,0)
+ ;;=F43.10^^49^611^10
+ ;;^UTILITY(U,$J,358.3,12617,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,12501,1,3,0)
- ;;=3^Benign Lipomatous Neop of Skin NEC
- ;;^UTILITY(U,$J,358.3,12501,1,4,0)
- ;;=4^D17.39
- ;;^UTILITY(U,$J,358.3,12501,2)
- ;;=^5002013
- ;;^UTILITY(U,$J,358.3,12502,0)
- ;;=D17.21^^80^782^29
- ;;^UTILITY(U,$J,358.3,12502,1,0)
+ ;;^UTILITY(U,$J,358.3,12617,1,3,0)
+ ;;=3^PTSD,Unspec
+ ;;^UTILITY(U,$J,358.3,12617,1,4,0)
+ ;;=4^F43.10
+ ;;^UTILITY(U,$J,358.3,12617,2)
+ ;;=^5003570
+ ;;^UTILITY(U,$J,358.3,12618,0)
+ ;;=F43.12^^49^611^9
+ ;;^UTILITY(U,$J,358.3,12618,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,12502,1,3,0)
- ;;=3^Benign Lipomatous Neop of Skin of Right Arm
- ;;^UTILITY(U,$J,358.3,12502,1,4,0)
- ;;=4^D17.21
- ;;^UTILITY(U,$J,358.3,12502,2)
- ;;=^5002008
- ;;^UTILITY(U,$J,358.3,12503,0)
- ;;=D17.23^^80^782^30
+ ;;^UTILITY(U,$J,358.3,12618,1,3,0)
+ ;;=3^PTSD,Chronic
+ ;;^UTILITY(U,$J,358.3,12618,1,4,0)
+ ;;=4^F43.12
+ ;;^UTILITY(U,$J,358.3,12618,2)
+ ;;=^5003572
+ ;;^UTILITY(U,$J,358.3,12619,0)
+ ;;=F32.9^^49^611^4
+ ;;^UTILITY(U,$J,358.3,12619,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,12619,1,3,0)
+ ;;=3^MDD,Single Episode,Unspec

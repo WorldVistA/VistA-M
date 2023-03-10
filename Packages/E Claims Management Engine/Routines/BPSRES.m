@@ -1,11 +1,11 @@
 BPSRES ;BHAM ISC/BEE - ECME SCREEN RESUBMIT W/EDITS ;3/12/08  14:01
- ;;1.0;E CLAIMS MGMT ENGINE;**3,5,7,8,10,11,20,21,23,24**;JUN 2004;Build 43
+ ;;1.0;E CLAIMS MGMT ENGINE;**3,5,7,8,10,11,20,21,23,24,30,32**;JUN 2004;Build 15
  ;;Per VA Directive 6402, this routine should not be modified.
  ;
- ; Reference to $$RXRLDT^PSOBPSUT supported by DBIA 4701
- ; Reference to $$RXFLDT^PSOBPSUT supported by DBIA 4701
- ; Reference to $$FIND^PSOREJUT supported by DBIA 4706
- ; Reference to GET^PSOREJU2 supported by DBIA 6749
+ ; Reference to $$RXRLDT^PSOBPSUT in ICR #4701
+ ; Reference to $$RXFLDT^PSOBPSUT in ICR #4701
+ ; Reference to $$FIND^PSOREJUT in ICR #4706
+ ; Reference to GET^PSOREJU2 in ICR #6749
  ;
  ;ECME Resubmit w/EDITS Protocol (Hidden) - Called by [BPS USER SCREEN]
  ;
@@ -14,19 +14,21 @@ RESED N BPSEL
  I '$D(@(VALMAR)) G XRESED
  D FULL^VALM1
  ;
- ;Select the claim to resubmit
+ ; Select the claim to resubmit
+ ;
  W !,"Enter the line number for the claim to be resubmitted."
  S BPSEL=$$ASKLINE("Select item","Please select a SINGLE claim only when using the Resubmit w/EDITS action option.")
  I BPSEL<1 S VALMBCK="R" G XRESED
  ;
- ;Attempt to resubmit the claim, update the content of the screen, and display
- ;only if claim submitted successfully
+ ; Attempt to resubmit the claim, update the content of the screen,
+ ; and display only if claim submitted successfully
+ ;
  I $$DOSELCTD(BPSEL) D REDRAW^BPSSCRUD("Updating screen for resubmitted claim...")
  E  S VALMBCK="R"
  ;
 XRESED Q
  ;
- ;Attempt to Edit and Resubmit Selected Claim
+ ; Attempt to Edit and Resubmit Selected Claim
  ;
  ;   Input Value -> BPRXI - Entry with ptr to BPS TRANSACTION file
  ;
@@ -40,25 +42,27 @@ DOSELCTD(BPRXI) ;
  S BPADDLTXT=""
  S (BPCLTOT,BPUPDFLG)=0
  ;
- ;Pull BPS TRANSACTION/BPS CLAIMS entries
+ ; Pull BPS TRANSACTION/BPS CLAIMS entries
+ ;
  S BP59=$P(BPRXI,U,4) I BP59="" W !!,"No Initial Claim Submission Found - Data Elements are NOT Editable for Re-Submission",! G XRES
  ;
- ; check for non-billable entry
+ ; Check for non-billable entry
+ ;
  I $$NB^BPSSCR03(BP59) W !!,"Entry is NON BILLABLE.  There is no claim to edit or resubmit.",! G XRES
  ;
  S BP02=+$P($G(^BPST(BP59,0)),U,4) I 'BP02 W !!,"No Initial Claim Submission Found - Data Elements are NOT Editable for Re-Submission",! G XRES
  ;
- ;Write Form Feed
- W @IOF
+ ; Display selected claim and ask to submit
  ;
- ;Display selected claim and ask to submit
+ W @IOF  ; Form feed
  S BPDFN=+$P($G(^BPST(BP59,0)),U,6)
  W !,"You've chosen to RESUBMIT the following prescription for "_$E($$PATNAME^BPSSCRU2(BPDFN),1,13)
  W !,@VALMAR@(+$P(BPRXI,U,5),0)
  S BPQ=$$YESNO^BPSSCRRS("Are you sure(Y/N)")
  I BPQ'=1 S BPQ="^" G XRES
  ;
- ;Check to make sure claim can be Resubmitted w/EDITS
+ ; Check to make sure claim can be Resubmitted w/EDITS
+ ;
  S BPRXIEN=$P(BP59,".")
  S BPRXR=+$E($P(BP59,".",2),1,4)
  I $$RXDEL^BPSOS($P(BP59,".",1),+$E($P(BP59,".",2),1,4)) W !!,"The claim: ",!,@VALMAR@(+$P(BPRXI,U,5),0),!,"cannot be Resubmitted w/EDITS because it has been deleted in Pharmacy.",! G XRES
@@ -68,33 +72,37 @@ DOSELCTD(BPRXI) ;
  I $P($G(^BPST(BP59,0)),U,14)<2,$$PAYABLE^BPSOSRX5(BPSTATUS),$$PAYBLSEC^BPSUTIL2(BP59) D  G XRES
  . W !,"The claim: ",!,@VALMAR@(+$P(BPRXI,U,5),0),!,"cannot be Resubmitted if the secondary claim is payable.",!,"Please reverse the secondary claim first."
  ;
- ;Can't resubmit a closed claim. The user must reopen first.
+ ; Can't resubmit a closed claim. The user must reopen first.
+ ;
  I $$CLOSED^BPSSCRU1(BP59) W !!,"The claim: ",!,@VALMAR@(+$P(BPRXI,U,5),0),!,"is Closed and cannot be Resubmitted w/EDITS.",! G XRES
  ;
+ ; If this is a secondary, make sure Primary is either Payable or Closed.
+ ;
+ S BPPRIOPN=0
  S BPCOB=$$COB59^BPSUTIL2(BP59)
- ;If this is a secondary, make sure Primary is either Payable or Closed.
- S BPPRIOPN=0 I BPCOB=2 D  G XRES:BPPRIOPN=1
- . ;Get Primary claim status
+ I BPCOB=2 D  G XRES:BPPRIOPN=1
+ . ; Get Primary claim status
  . S BPSPCLS=$$FINDECLM^BPSPRRX5(BPRXIEN,BPRXR,1)
  . I $P(BPSPCLS,U)>1 D
  .. Q:$$CLOSED^BPSSCRU1($P(BPSPCLS,U,2))
  .. W !,"The secondary claim cannot be Resubmitted unless the primary is either payable",!,"or closed. Please resubmit or close the primary claim first."
  .. S BPPRIOPN=1
- ;Retrieve DOS
+ ; Retrieve DOS
  S BPDOSDT=$$DOSDATE^BPSSCRRS(BPRXIEN,BPRXR)
  ;
- ;Prompt for EDIT Information
+ ; Prompt for EDIT Information
+ ;
  S BPOVRIEN=$$PROMPTS(BP59,BP02,BPRXIEN,BPRXR,BPCOB,.BPDOSDT,.COBDATA,.BPADDLTXT) I BPOVRIEN=-1 G XRES
  ;
  ; Submit the claim
+ ;
  S BPBILL=$$EN^BPSNCPDP(BPRXIEN,BPRXR,BPDOSDT,"ERES","","ECME RESUBMIT","",BPOVRIEN,"","",BPCOB,"F","","",$G(COBDATA("PLAN")),.COBDATA,$G(COBDATA("RTYPE")))
  ;
- ;Print Return Value Message
- W !!
- W:+BPBILL>0 $S(+BPBILL=10:"Reversal but no Resubmit:",1:"Not Processed:"),!,"  "
+ ; Print Return Value Message.  Change Return Message for SC/EI.
  ;
- ;Change Return Message for SC/EI
- S:$P(BPBILL,U,2)="NEEDS SC DETERMINATION" $P(BPBILL,U,2)="NEEDS SC/EI DETERMINATION"
+ W !!
+ I +BPBILL>0 W $S(+BPBILL=10:"Reversal but no Resubmit:",1:"Not Processed:"),!,"  "
+ I $P(BPBILL,U,2)="NEEDS SC DETERMINATION" S $P(BPBILL,U,2)="NEEDS SC/EI DETERMINATION"
  W $P(BPBILL,U,2)
  ;
  ;0 Prescription/Fill successfully submitted to ECME
@@ -139,61 +147,67 @@ XRES2 ;
 PROMPTS(BP59,BP02,BPRXIEN,BPRXR,BPCOB,BPDOSDT,BPSECOND,BPADDLTXT) ;
  N %,BP300,BP35401,BPCLCD1,BPCLCD2,BPCLCD3,BPFDA,BPFLD,BPOVRIEN,BPMED,BPPSNCD
  N BPPREAUT,BPPRETYP,BPQ,BPRELCD,BPRELEASEDT,DIC,DIR,DIROUT,DTOUT,DUOUT,X,Y,DIRUT,DUP
- N BPCLCDN,BPCLCDX,BPSX,BPSADDLFLDS
+ N BPCLCDN,BPCLCDX,BPSX,BPSADDLFLDS,BPDFN,BPGENDER,BPSEX,BPSIG
  S BPQ=""
  I +$G(BPCOB)=0 S BPCOB=1
- ;Pull Information from Claim
+ ;
+ ; Pull Information from Claim
+ ;
  S BP300=$G(^BPSC(BP02,300))
  S BPRELCD=$TR($E($P(BP300,U,6),3,99)," ")
  S BPPSNCD=$TR($E($P(BP300,U,3),3,99)," ")
  S (BPPRETYP,BPPREAUT,BPDLYRS,BPPHSRV)=""
- S BPMED=0 F  S BPMED=$O(^BPSC(BP02,400,BPMED)) Q:'BPMED  D  I BPPREAUT]"" Q
- . N BP460 S BP460=$G(^BPSC(BP02,400,BPMED,460))
- . S:BPPREAUT="" BPPREAUT=$TR($E($P(BP460,U,2),3,99)," "),BPPRETYP=$TR($E($P(BP460,U),3,99)," ")
- . S:BPDLYRS="" BPDLYRS=$TR($E($P($G(^BPSC(BP02,400,BPMED,350)),U,7),3,99)," ") I BPDLYRS]"" S BPDLYRS=+BPDLYRS
- . S:BPPHSRV="" BPPHSRV=$TR($E($P($G(^BPSC(BP02,400,BPMED,140)),U,7),3,99)," ")
+ S BPMED=0
+ F  S BPMED=$O(^BPSC(BP02,400,BPMED)) Q:'BPMED  D  I BPPREAUT]"" Q
+ . N BP460
+ . S BP460=$G(^BPSC(BP02,400,BPMED,460))
+ . I BPPREAUT="" S BPPREAUT=$TR($E($P(BP460,U,2),3,99)," "),BPPRETYP=$TR($E($P(BP460,U),3,99)," ")
+ . I BPDLYRS="" S BPDLYRS=$TR($E($P($G(^BPSC(BP02,400,BPMED,350)),U,7),3,99)," ")
+ . I BPDLYRS]"" S BPDLYRS=+BPDLYRS
+ . I BPPHSRV="" S BPPHSRV=$TR($E($P($G(^BPSC(BP02,400,BPMED,140)),U,7),3,99)," ")
  . F BP35401=1:1:3 S @("BPCLCD"_BP35401)=$TR($E($P($G(^BPSC(BP02,400,BPMED,354.01,BP35401,1)),U),3,99)," ")
  . S BPCLCD1=+BPCLCD1 I BPCLCD1=0 S BPCLCD1=1
  S BPPTRES=$TR($E($P($G(^BPSC(BP02,380)),U,4),3,99)," ") I BPPTRES="" S BPPTRES=1
- S:BPPHSRV="" BPPHSRV=1
+ I BPPHSRV="" S BPPHSRV=1
  ;
- ;Relationship Code
- N X,DIC,Y
+ ; Relationship Code
+ ;
  S DIC("B")=BPRELCD
  S DIC(0)="QEAM",DIC=9002313.19,DIC("A")="Pharmacy Relationship Code: "
  D ^DIC
- ;Check for "^" or timeout
- I ($D(DUOUT))!($D(DTOUT)) S BPQ=-1 K X,DIC,Y G XPROMPTS
+ I ($D(DUOUT))!($D(DTOUT)) S BPQ=-1 G XPROMPTS
  S BPRELCD=$P(Y,U,2)
  K X,DIC,Y
  ;
- ;Person Code
+ ; Person Code
+ ;
  K DIR("?") S DIR(0)="FO^1:3",DIR("A")="Pharmacy Person Code",DIR("?")="Enter the Specific Person Code Assigned to the Patient by the Payer"
  S DIR("B")=BPPSNCD
  D ^DIR
  I $D(DTOUT)!$D(DUOUT) S BPQ=-1 G XPROMPTS
  S BPPSNCD=Y
  ;
- ;Pre-Authorization
+ ; Pre-Authorization
+ ;
  K DIR("?") S DIR(0)="FO^1:11",DIR("A")="Prior Authorization Number",DIR("?")="Enter the Number Submitted by the Provider to Identify the Prior Authorization"
  S DIR("B")=BPPREAUT
  D ^DIR
  I $D(DTOUT)!$D(DUOUT) S BPQ=-1 G XPROMPTS
  S BPPREAUT=Y
  ;
- ;Prior-Authorization Type Code
+ ; Prior-Authorization Type Code
+ ;
  N X,DIC,Y
  S DIC("B")=+BPPRETYP
  S DIC(0)="QEAM",DIC=9002313.26,DIC("A")="Prior Authorization Type Code: "
  D ^DIC
- ;Check for "^" or timeout
- I ($D(DUOUT))!($D(DTOUT)) S BPQ=-1 K X,DIC,Y G XPROMPTS
+ I ($D(DUOUT))!($D(DTOUT)) S BPQ=-1 G XPROMPTS
  S BPPRETYP=$P(Y,U,2)
  K X,DIC,Y
  ;
  ; If there is a pending reject on the Pharmacists Worklist, or there
- ; is a resolved or unresolved reject 79 or 88, then only display
- ; Submission Clarification Codes and do not allow enter/edit. (BPS*1*21)
+ ; is a resolved or unresolved reject 79 or 88 or 943, then only display
+ ; Submission Clarification Codes and do not allow enter/edit.
  ;
  I $$BPSKIP(BPRXIEN,BPRXR) D  G P1
  . F BP35401=1:1:3 I @("BPCLCD"_BP35401) D
@@ -205,35 +219,35 @@ PROMPTS(BP59,BP02,BPRXIEN,BPRXR,BPCOB,BPDOSDT,BPSECOND,BPADDLTXT) ;
  . W !," **OPECC cannot edit Sub. Clar. Code field for this reject - refer to Pharmacist"
  . Q
  ;
- ;Submission Clarification Code 1
+ ; Submission Clarification Code 1
+ ;
  S DIC("B")=BPCLCD1
  S DIC(0)="QEAM",DIC=9002313.25,DIC("A")="Submission Clarification Code 1: "
  D ^DIC
- ;Check for "^" or timeout
- I ($D(DUOUT))!($D(DTOUT)) S BPQ=-1 K X,DIC,Y G XPROMPTS
+ I ($D(DUOUT))!($D(DTOUT)) S BPQ=-1 G XPROMPTS
  S BPCLCD1=$P(Y,U,2)
  K X,DIC,Y
  ;
- ;Submission Clarification Code 2
+ ; Submission Clarification Code 2
+ ;
  I +BPCLCD2 S BPCLCD2=+BPCLCD2 S DIC("B")=BPCLCD2
  S DIC(0)="QEAM",DIC=9002313.25,DIC("A")="Submission Clarification Code 2: ",DUP=0
  F  D  Q:BPQ=-1  Q:'DUP
  . D ^DIC
- . ;Check for "^" or timeout
- . I ($D(DUOUT))!($D(DTOUT)) S BPQ=-1 K X,DIC,Y Q
+ . I ($D(DUOUT))!($D(DTOUT)) S BPQ=-1 Q
  . S BPCLCD2=$P(Y,U,2)
  . S DUP=0 I BPCLCD2=BPCLCD1 S BPCLCD2="" W !,"  Duplicates not allowed" S DUP=1
  K X,DIC,Y
  I BPQ=-1 G XPROMPTS
  ;
- ;Submission Clarification Code 3
+ ; Submission Clarification Code 3
+ ;
  I BPCLCD2'="" D  I BPQ=-1 G XPROMPTS
  . I +BPCLCD3 S BPCLCD3=+BPCLCD3 S DIC("B")=BPCLCD3
  . S DIC(0)="QEAM",DIC=9002313.25,DIC("A")="Submission Clarification Code 3: ",DUP=0
  . F  D  Q:'DUP  I BPQ=-1 Q
  . . D ^DIC
- . . ;Check for "^" or timeout
- . . I ($D(DUOUT))!($D(DTOUT)) S BPQ=-1 K X,DIC,Y Q
+ . . I ($D(DUOUT))!($D(DTOUT)) S BPQ=-1 Q
  . . S BPCLCD3=$P(Y,U,2)
  . . S DUP=0 I BPCLCD3=BPCLCD1!(BPCLCD3=BPCLCD2) S BPCLCD3="" W !,"  Duplicates not allowed" S DUP=1
  . K X,DIC,Y
@@ -252,45 +266,71 @@ P1 ;
  . I BPDOSDT'=(BPRELEASEDT\1) S BPADDLTXT="Date of Service ("_$$FMTE^XLFDT(BPDOSDT,5)_")"
  . Q
  ;
- ;Patient Residence Code
+ ; Patient Residence Code
+ ;
  N X,DIC,Y
  S DIC("B")=+BPPTRES
  S DIC(0)="QEAM",DIC=9002313.27,DIC("A")="Patient Residence Code: "
  D ^DIC
- ;Check for "^" or timeout
- I ($D(DUOUT))!($D(DTOUT)) S BPQ=-1 K X,DIC,Y G XPROMPTS
+ I ($D(DUOUT))!($D(DTOUT)) S BPQ=-1 G XPROMPTS
  S BPPTRES=$P(Y,U,2)
  K X,DIC,Y
  ;
- ;Pharmacy Service Type Code
+ ; Pharmacy Service Type Code
+ ;
  N X,DIC,Y
  S DIC("B")=+BPPHSRV
  S DIC(0)="QEAM",DIC=9002313.28,DIC("A")="Pharmacy Service Type Code: "
  D ^DIC
- ;Check for "^" or timeout
- I ($D(DUOUT))!($D(DTOUT)) S BPQ=-1 K X,DIC,Y G XPROMPTS
+ I ($D(DUOUT))!($D(DTOUT)) S BPQ=-1 G XPROMPTS
  S BPPHSRV=$P(Y,U,2)
  K X,DIC,Y
  ;
- ;Delay Reason Code
+ ; Delay Reason Code
+ ;
  N X,DIC,Y
  S DIC("B")=BPDLYRS
  S DIC(0)="QEAM",DIC=9002313.29,DIC("A")="Delay Reason Code: "
  D ^DIC
- ;Check for "^" or timeout
- I ($D(DUOUT))!($D(DTOUT)) S BPQ=-1 K X,DIC,Y G XPROMPTS
+ I ($D(DUOUT))!($D(DTOUT)) S BPQ=-1 G XPROMPTS
  S BPDLYRS=$P(Y,U,2)
  K X,DIC,Y
  ;
- ; If secondary claim, setup secondary data and allow user to edit
- ; Get data from the primary claim, if it exists
+ ; Patient Gender Code, 305-C5
+ ; Limit valid entries to the values in the fields SEX and SELF
+ ; IDENTIFIED GENDER (if populated), then determine the Patient
+ ; Gender Code based on the value selected.
+ ;
+ S BPGENDER=""
+ S BPDFN=$$GET1^DIQ(9002313.59,BP59,5,"I")
+ I BPDFN'="" D  I BPQ=-1 G XPROMPTS
+ . N X,DIR,Y
+ . S BPSEX=$$GET1^DIQ(2,BPDFN,.02,"I")
+ . S BPSEX=BPSEX_":"_$S(BPSEX="M":"Male",BPSEX="F":"Female",1:"")_" (Birth Sex)"
+ . S BPSIG=$$GET1^DIQ(2,BPDFN,.024,"I")_":"_$$GET1^DIQ(2,BPDFN,.024,"E")_" (Self-Identified Gender)"
+ . S DIR("B")=$P(BPSIG,":",2)
+ . S DIR(0)="SA^"_BPSEX_";"_BPSIG
+ . I $P(BPSIG,":",1)="" S DIR("B")=$P(BPSEX,":",2),$P(DIR(0),"^",2)=BPSEX
+ . S DIR("A")="Patient Gender Code: "
+ . S DIR("?")="Available Gender Codes are determined by the VistA Patient file."
+ . ;
+ . D ^DIR
+ . ;
+ . I $D(DUOUT)!$D(DTOUT) S BPQ=-1 Q
+ . S BPGENDER=$S(Y="M":1,Y="F":2,Y="N":0,1:3)
+ . Q
+ ;
+ ;
+ ; If secondary claim, setup secondary data and allow user to edit.
+ ; Get data from the primary claim, if it exists.
+ ;
  I BPCOB=2 D  I BPQ=-1 G XPROMPTS
  . N BPSPL59,BPRTTP59
  . S BPRET=$$PRIMDATA^BPSPRRX6(BPRXIEN,BPRXR,.BPSECOND)
  . ; If the primary claim data is missing, get data from the most recent secondary claim
  . I 'BPRET,$$SECDATA^BPSPRRX6(BPRXIEN,BPRXR,.BPSPL59,.BPSECOND,.BPRTTP59)
- . ; The PRIMARY BILL element is set by $$SECDATA.  If SECDATA is not called, this element will be 
- . ;   missing and we will need to create it
+ . ; The PRIMARY BILL element is set by $$SECDATA.  If SECDATA is not
+ . ; called, this element will be missing and we will need to create it
  . I '$D(BPSECOND("PRIMARY BILL")) D
  .. N BPBILL
  .. S BPBILL=$$PAYBLPRI^BPSUTIL2(BP59)
@@ -307,7 +347,8 @@ P1 ;
  S BPQ=$$ADDLFLDS^BPSRES1(BP02,BP59,.BPSADDLFLDS)
  I BPQ=-1 G XPROMPTS
  ;
- ;Ask to proceed
+ ; Ask to proceed
+ ;
  W !
  S BPQ=$$YESNO^BPSSCRRS("Are you sure(Y/N)")
  I BPQ'=1 S BPQ=-1 G XPROMPTS
@@ -322,13 +363,13 @@ XPROMPTS ;
  S BPOVRIEN=$S(BPQ=-1:BPQ,$G(BPOVRIEN(1))]"":BPOVRIEN(1),1:-1)
  Q BPOVRIEN
  ;
- ;Prompt User for Claim to Resubmit (w/EDITS)
+ ; Prompt User for Claim to Resubmit (w/EDITS)
  ;
  ; Input values ->  BPROMPT - prompt string
  ;                 BPERRMES - the message to display when the user tries
  ;                           to make multi line selection (optional)
  ;                  Piece
- ;output values ->      1 - 1 = okay, <0 = errors, 0 = quit
+ ; output values ->     1 - 1 = okay, <0 = errors, 0 = quit
  ;                      2 - patient ien #2
  ;                      3 - insurance ien #36
  ;                      4 - ptr to #9002313.59
@@ -365,9 +406,6 @@ EDITDT(DFLT,BPRXIEN,BPRXR,BP02) ;Prompt User to choose correct Date of Service
  ;
  ; Output value -> Selected Date of Service in FileMan format
  ;
- ; Reference to $$RXRLDT^PSOBPSUT supported by DBIA 4701
- ; Reference to $$RXFLDT^PSOBPSUT supported by DBIA 4701
- ;
  N BPRLS,BPFIL,BPCUR,DIR,DIRUT,DIROUT,DTOUT,DUOUT,OPT,TMP,X,Y
  S BPRLS=$$RXRLDT^PSOBPSUT(BPRXIEN,BPRXR)\1 ;release date
  S BPFIL=$$RXFLDT^PSOBPSUT(BPRXIEN,BPRXR)\1 ;fill date
@@ -392,7 +430,7 @@ BPSKIP(BPSRX,BPSFILL) ; Determine whether to skip the enter/edit of Submission C
  ;
  I $$FIND^PSOREJUT(BPSRX,BPSFILL) Q 1
  ;
- ; If there are any closed/resolved 79/88 rejects for this Rx/Fill,
+ ; If there are any closed/resolved 79/88/943 rejects for this Rx/Fill,
  ; pull the latest detected date/time.
  ; If there has not been any ECME activity since that date/time, then
  ; disallow the edit of Submission Clarification Codes, Quit with 1.
@@ -400,13 +438,14 @@ BPSKIP(BPSRX,BPSFILL) ; Determine whether to skip the enter/edit of Submission C
  S BPS7988DATE=0
  ;
  ; Loop through the REJECTS multiple.
+ ;
  S BPSREJECT=0
  F  S BPSREJECT=$O(^PSRX(BPSRX,"REJ",BPSREJECT)) Q:'BPSREJECT  D
  . ; If a reject is not for the current fill, skip this one.
  . I $$GET1^DIQ(52.25,BPSREJECT_","_BPSRX,5)'=BPSFILL Q
  . ;
- . ; If not a 79 or 88, skip this one.
- . I ",79,88,"'[(","_$$GET1^DIQ(52.25,BPSREJECT_","_BPSRX,.01)_",") Q
+ . ; If not a 79 or 88 or 943, skip this one.
+ . I ",79,88,943,"'[(","_$$GET1^DIQ(52.25,BPSREJECT_","_BPSRX,.01)_",") Q
  . ;
  . ; Pull DATE/TIME DETECTED.  If the date/time is later than
  . ; BPS7988DATE, then reset BPS7988DATE to that date/time.
@@ -415,12 +454,14 @@ BPSKIP(BPSRX,BPSFILL) ; Determine whether to skip the enter/edit of Submission C
  . Q
  ; 
  ; If <blank> then Quit with 0.
+ ;
  I BPS7988DATE=0 Q 0
  ;
  ; Once we have the most recent DATE/TIME DETECTED, determine whether
  ; there is ECME activity later than that.
  ;
  ; Loop through entries the ACTIVITY LOG multiple.
+ ;
  S (BPSX,BPSACTIVITY,BPSECMEDATE)=0
  F  S BPSACTIVITY=$O(^PSRX(BPSRX,"A",BPSACTIVITY)) Q:'BPSACTIVITY  D
  . ; If the REASON is not "M" (=ECME), skip.

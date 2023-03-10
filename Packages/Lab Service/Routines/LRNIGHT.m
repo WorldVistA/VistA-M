@@ -1,5 +1,5 @@
-LRNIGHT ;SLC/CJS/AVAMC/REG - NIGHTLY LAB CLEANUP ;01/11/16  15:26
- ;;5.2;LAB SERVICE;**291,350,458**;Sep 27, 1994;Build 10
+LRNIGHT ;SLC/CJS/AVAMC/REG - NIGHTLY LAB CLEANUP ;Mar 18, 2021@15:14
+ ;;5.2;LAB SERVICE;**291,350,458,543,554**;Sep 27, 1994;Build 13
  ;
  ;D REQUE ;REQUED BY TASKMAN
  Q:'$D(^LAB(69.9,1,0))  S:$D(ZTQUEUED) DUZ(0)="@",ZTREQ="@" K ^LRO(69,"AN") K ^LRO(69,DT-1,1,"AD") I $P(^LAB(69.9,1,0),U,14) D MANUAL
@@ -64,4 +64,17 @@ SUBTASKS ; Task off other jobs that are initiated by LRNIGHT
  . D ^%ZTLOAD
  . K ZTDESC,ZTIO,ZTRTN,ZTSAVE,ZTSK,ZTDTH
  ;
+ ;LR*5.2*543 - Check for orderable items which point to non-existent Lab tests
+ I $T(LRNIGHT^LRWU9A)'="" D
+ . S ZTIO="",ZTDTH=$H
+ . S ZTRTN="LRNIGHT^LRWU9A",ZTDESC="Check for OI's pointing to non-existent Lab tests"
+ . D ^%ZTLOAD
+ . K ZTDESC,ZTIO,ZTRTN,ZTSAVE,ZTSK,ZTDTH
+ ;
+ ;LR*5.2*554 Purge old entries in ^LRHY global, file #69.87 - HOWDY SPECIMEN TIMES BY UID file 
+ I $T(LRHOWDY^LRWU9A)'="" D
+ . S ZTIO="",ZTDTH=$H
+ . S ZTRTN="LRHOWDY^LRWU9A",ZTDESC="Purge 69.87 records more than 9 years old"
+ . D ^%ZTLOAD
+ . K ZTDESC,ZTIO,ZTRTN,ZTSAVE,ZTSK,ZTDTH
  Q

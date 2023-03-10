@@ -1,5 +1,5 @@
 DGPTFM5 ;ALB/MTK/ADL/PLT - PTF ENTRY/EDIT-3 ;11 MAR 91  15:15
- ;;5.3;Registration;**510,606,850,884**;Aug 13, 1993;Build 31
+ ;;5.3;Registration;**510,606,850,884,1057**;Aug 13, 1993;Build 17
  ;;Per VA Directive 6402, this routine should not be modified.
  ;
  ;;ADL;Update for CSV Project;;Mar 26, 2003
@@ -10,6 +10,7 @@ WR ;
  N EFFDATE,IMPDATE
  D EFFDATE^DGPTIC10(PTF)
  W @IOF,HEAD,?72 S Z="<401-"_DGZS0_">" D Z^DGPTFM
+ W !,?30,"Initial Date Of Service: ",$$EXTERNAL^DILFD(45,14,,$G(DGIDTS))  ; DG*5.3*1057
  S L=+S(DGZS0),Y=L D D^DGPTUTL W !! S Z=1 D Z W "Date of Surg: " S Z=Y,Z1=28 D Z1 W "Chief Surg: ",$$EXTERNAL^DILFD(45.01,4,,$P(S1,U,4))
  W !,"    Anesth Tech: ",$$EXTERNAL^DILFD(45.01,6,,$P(S1,U,6)),?45,"First Asst: ",$$EXTERNAL^DILFD(45.01,5,,$P(S1,U,5))
  W !,"  Source of pay: ",$$EXTERNAL^DILFD(45.01,7,,$P(S1,U,7))

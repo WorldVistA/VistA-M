@@ -1,5 +1,5 @@
-YSCLTST2 ;DALOI/LB/RLM-TRANSMIT RX AND lAB DATA FOR CLOZAPINE ; 11/28/18 3:34am
- ;;5.01;MENTAL HEALTH;**18,22,26,47,61,69,74,90,92,122,166**;Dec 30, 1994;Build 19
+YSCLTST2 ;DALOI/LB/RLM - TRANSMIT RX AND LAB DATA FOR CLOZAPINE ; November 11, 2018@03:34
+ ;;5.01;MENTAL HEALTH;**18,22,26,47,61,69,74,90,92,122,166,193**;Dec 30, 1994;Build 4
  ; Reference to ^LAB(60 supported by IA #333
  ; Reference to ^PSDRUG supported by IA #25
  ; Reference to ^PS(55 supported by IA #787
@@ -16,6 +16,7 @@ YSCLTST2 ;DALOI/LB/RLM-TRANSMIT RX AND lAB DATA FOR CLOZAPINE ; 11/28/18 3:34am
  ; Reference to ^%DTC supported by DBIA #10000
  ; Reference to ^%DT supported by DBIA #10003
  ; Reference to PSS^PSS781 supported by DBIA #4480
+ ; Reference to $$GETREGYS^PSOCLUTL supported by DBIA #7314
  ; 
 TRANSMIT ; send remote and local, kill and quit
  K XMZ S %DT="T",X="NOW" D ^%DT S YSCLNOW=$P(Y,".",2),YSCLSITE=$P($$SITE^VASITE,"^",2)
@@ -72,7 +73,8 @@ FLSET ;Set up file 603.02
  Q:Y=-1!($D(DUOUT))!($D(DTOUT))!($D(DIRUT))!($D(DIROUT))
  S YSCLGRN=+Y
  I YSCLWBC,YSCLGRN D
- .K DD S DIC="^YSCL(603.02,",X=YSCLWBC,DIC("DR")="1////"_YSCLGRN K DO D FILE^DICN
+ .;YS193 - add SET of DIC(0) in next line
+ .K DD S DIC="^YSCL(603.02,",DIC(0)="",X=YSCLWBC,DIC("DR")="1////"_YSCLGRN K DO D FILE^DICN
  ;Only one entry is allowed.
  K DIR,X,Y,YSCLWBC,YSCLGRN,ZTDESC
  Q

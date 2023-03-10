@@ -1,5 +1,5 @@
 PSOERXA1 ;ALB/BWF - eRx Utilities/RPC's ; 8/3/2016 5:14pm
- ;;7.0;OUTPATIENT PHARMACY;**467,520,508,551**;DEC 1997;Build 37
+ ;;7.0;OUTPATIENT PHARMACY;**467,520,508,551,581,617**;DEC 1997;Build 110
  ;
  Q
  ; File incoming XML into appropriate file
@@ -14,7 +14,7 @@ PSOERXA1 ;ALB/BWF - eRx Utilities/RPC's ; 8/3/2016 5:14pm
  ; XML2 - structured sig from the medication prescribed segment
  ; VADAT - DUZ^RXIEN
 INCERX(RES,XML,PRCHK,PACHK,DACHK,STATION,DIV,ERXHID,ERXVALS,XML2,VADAT) ;
- N CURREC,FDA,EIEN,ERRTXT,ERRSEQ,PACNT,PASCNT,PAICN,PAIEN,VAINST,NPI,VAOI,VPATINST
+ N CURREC,FDA,EIEN,ERRTXT,ERRSEQ,PACNT,PASCNT,PAICN,PAIEN,VAINST,NPI,VAOI,VPATINST,NEWVAL
  S NPI=$P($G(DIV),U,2)
  S CURREC=$$PARSE(.XML,.ERXVALS,NPI,.XML2)
  I $P(CURREC,U)<1 D  Q
@@ -34,6 +34,10 @@ INCERX(RES,XML,PRCHK,PACHK,DACHK,STATION,DIV,ERXHID,ERXVALS,XML2,VADAT) ;
  I $P($G(VADAT),U) S RES="1^Message Filed." Q
  I $G(DACHK("success"))="true" D
  .I $G(DACHK("IEN")) D
+ ..;Saving the eRx Audit Log For Auto-Matched Drug
+ ..S NEWVAL(1)=$$GET1^DIQ(50,DACHK("IEN"),.01)_" (NDC#: "_$$GETNDC^PSSNDCUT(DACHK("IEN"))_")"
+ ..D AUDLOG^PSOERXUT(+CURREC,"DRUG",$$PROXYDUZ^PSOERXUT(),.NEWVAL)
+ ..;Setting Matched Drug and Auto Match info
  ..S FDA(52.49,CURREC,1.4)=1
  ..S FDA(52.49,CURREC,3.2)=DACHK("IEN")
  ..S FDA(52.49,CURREC,44)=1
@@ -48,6 +52,9 @@ INCERX(RES,XML,PRCHK,PACHK,DACHK,STATION,DIV,ERXHID,ERXVALS,XML2,VADAT) ;
  .I PRCHK("IEN") D
  ..S FDA(52.49,CURREC,1.2)=1
  ..S FDA(52.49,CURREC,2.3)=PRCHK("IEN")
+ ..;Saving the eRx Audit Log for the Auto-Matched Provider
+ ..S NEWVAL(1)=$$GET1^DIQ(200,PRCHK("IEN"),.01)_" (DEA#: "_$$DEA^XUSER(0,PRCHK("IEN"))_")"
+ ..D AUDLOG^PSOERXUT(+CURREC,"PROVIDER",$$PROXYDUZ^PSOERXUT(),.NEWVAL)
  I $G(PRCHK("success"))="false" D
  .S ERRTXT=$G(PRCHK("error"))
  .S ERRSEQ=$$ERRSEQ^PSOERXU1(EIEN) Q:'ERRSEQ
@@ -67,6 +74,14 @@ INCERX(RES,XML,PRCHK,PACHK,DACHK,STATION,DIV,ERXHID,ERXVALS,XML2,VADAT) ;
  .I $G(PASCNT)=1 D  Q
  ..S FDA(52.49,CURREC,1.6)=1
  ..S FDA(52.49,CURREC,.05)=$O(^DPT("SSN",$TR(PACHK("ssn"),"-",""),0))
+ I $D(FDA) D FILE^DIE(,"FDA") K FDA
+ ;
+ ;Saving the eRx Audit Log For Auto-Matched Patient
+ I $G(FDA(52.49,CURREC,.05)) D
+ .N DFN,VADM S DFN=+FDA(52.49,CURREC,.05) D DEM^VADPT
+ .S NEWVAL(1)=$$GET1^DIQ(2,DFN,.01)_" (L4SSN: "_$P($P(VADM(2),"^",2),"-",3)_" | DOB: "_$P(VADM(3),"^",2)_")"
+ .D AUDLOG^PSOERXUT(+CURREC,"PATIENT",$$PROXYDUZ^PSOERXUT(),.NEWVAL)
+ ;
  I $D(FDA) D FILE^DIE(,"FDA") K FDA
  I $G(PACHK("success"))="false" D
  .; file e&e error
@@ -120,13 +135,12 @@ PARSE(STREAM,ERXVALS,NPI,STREAM2) ;
  ...I READER2.NodeType="endelement" D SPOP(.S,.X)
  ...I READER2.NodeType="chars" D SPUT(.S,READER2.Value)
  S MTYPE=$O(^TMP($J,"PSOERXO1","Message",0,"Body",0,"")) Q:MTYPE']"" "0^Message type could not be identified."
- ;I '$L(NPI) S NPI=$G(^TMP($J,"PSOERXO1","Message",0,"Body",0,"NewRx",0,"Pharmacy",0,"Identification",0,"NPI",0))
  I '$L(NPI) S NPI=$G(^TMP($J,"PSOERXO1","Message",0,"Body",0,MTYPE,0,"Pharmacy",0,"Identification",0,"NPI",0))
  I '$L(NPI) Q "0^Missing NPI. Institution could not be resolved. eRx not filed."
  S VAINST=$$FIND1^DIC(4,,"O",NPI,"ANPI")
  I '$G(VAINST) Q "0^Institution could not be resolved. eRx not filed."
  N NERXIEN,ERR,PATIEN
- S NERXIEN=$$HDR(MTYPE)
+ S NERXIEN=$$HDR^PSOERXA3(MTYPE)
  I $P(NERXIEN,U)<1 Q NERXIEN
  I $G(VAINST) S FDA(52.49,NERXIEN_",",24.1)=VAINST D FILE^DIE(,"FDA") K FDA
  ; if message type is 'Error', do not try to file the other components.
@@ -141,95 +155,9 @@ PARSE(STREAM,ERXVALS,NPI,STREAM2) ;
  .S HUBDENY=$P(ERXHID,U,2)
  .D CANRX^PSOERXA5(NERXIEN,MTYPE,HUBDENY,VAINST)
  ; facility/request have no where to go at this point in time??
- ;/BLB PSO*7.0*520 - BEGIN CHANGE
  D FAC^PSOERXA2(NERXIEN)
- ;/BLB/ - END CHANGE
  Q NERXIEN
-HDR(MTYPE) ; header information
- N GL,GL2,FQUAL,TQUAL,FROM,TO,MID,PONUM,SRTID,SSTID,SENTTIME,RTMID,FDA,ERXIEN,FMID,NEWERX,MES,ERXIENS,SSSID,SRSID,MTVALS
- N UPMTYPE,DONE,I,ERXISTAT,MTCODE,COMPSTR,RTHID,RTHIEN,RTMIEN
- S GL=$NA(^TMP($J,"PSOERXO1","Message",0,"Header",0))
- S GL2=$NA(^TMP($J,"PSOERXO1","Message","A","Qualifier","Header","A","Qualifier"))
- ; from and to qualifiers
- S FQUAL=$G(@GL2@("From","A","Qualifier"))
- S TQUAL=$G(@GL2@("To","A","Qualifier"))
- ; from, to, message id, prescriber order number
- S FROM=$G(@GL@("From",0))
- S TO=$G(@GL@("To",0))
- S MID=$G(@GL@("MessageID",0))
- ; set up the full message id
- S FMID=MID
- S ERXIENS="+1,"
- ; quit and return a message back if this eRx exists.
- I $D(^PS(52.49,"FMID",$P(ERXHID,U))) D  Q MES
- .S MES="0^This message already exists. Changes must occur via a change request XML message."
- S PONUM=$G(@GL@("PrescriberOrderNumber",0))
- ; security receiver tertiary identification
- S SRSID=$G(@GL@("Security",0,"Receiver",0,"SecondaryIdentification",0))
- S SRTID=$G(@GL@("Security",0,"Receiver",0,"TertiaryIdentification,",0))
- ; security sender tertiary identification
- S SSSID=$G(@GL@("Security",0,"Sender",0,"SecondaryIdentification",0))
- S SSTID=$G(@GL@("Security",0,"Sender",0,"TertiaryIdentification,",0))
- ; convert senttime to file manager dt/tm
- S SENTTIME=$G(@GL@("SentTime",0)),SENTTIME=$$CONVDTTM^PSOERXA1(SENTTIME)
- S RTMID=$G(@GL@("RelatesToMessageID",0))
- S RTHID=$P(ERXHID,U,3)
- S RTHIEN=""
- I $L(RTHID) S RTHIEN=$O(^PS(52.49,"FMID",RTHID,0))
- D FIELD^DID(52.49,.08,"","POINTER","MTVALS")
- S UPMTYPE=$$UP^XLFSTR(MTYPE)
- S DONE=0
- F I=1:1 D  Q:DONE
- .S COMPSTR=$P(MTVALS("POINTER"),";",I)
- .I COMPSTR="" S DONE=1 Q
- .I COMPSTR[UPMTYPE S MTCODE=$P(COMPSTR,":"),DONE=1
- I $G(MTCODE)']"" Q "0^Message type could not be resolved."
- S FDA(52.49,ERXIENS,.08)=MTCODE
- ; erx hub message id
- S FDA(52.49,ERXIENS,.01)=$P(ERXHID,U)
- ; change healthcare message id
- S FDA(52.49,ERXIENS,25)=FMID
- S FDA(52.49,ERXIENS,.02)=RTMID
- S FDA(52.49,ERXIENS,.03)=$$NOW^XLFDT
- S FDA(52.49,ERXIENS,.09)=PONUM
- ;RELATES TO HUB ID
- S FDA(52.49,ERXIENS,.14)=RTHID
- S ERXISTAT=$$GETSTAT^PSOERXU2(MTCODE,RTHIEN,RTMID)
- S FDA(52.49,ERXIENS,1)=ERXISTAT
- S FDA(52.49,ERXIENS,22.1)=FROM
- S FDA(52.49,ERXIENS,22.2)=FQUAL
- S FDA(52.49,ERXIENS,22.3)=TO
- S FDA(52.49,ERXIENS,22.4)=TQUAL
- S FDA(52.49,ERXIENS,22.5)=SENTTIME
- S FDA(52.49,ERXIENS,24.3)=SSSID
- S FDA(52.49,ERXIENS,24.4)=SSTID
- S FDA(52.49,ERXIENS,24.5)=SRSID
- S FDA(52.49,ERXIENS,24.6)=SRTID
- ; if this is an existing record, file the updates to the erx and return the IEN
- D UPDATE^DIE(,"FDA","NEWERX","EERR") K FDA
- S ERXIEN=""
- S ERXIEN=$O(NEWERX(0)),ERXIEN=$G(NEWERX(ERXIEN))
- I 'ERXIEN Q ""
- I $G(RTHIEN)]"" D
- .N REFREQ,NRXIEN
- .S NRXIEN=$$FINDNRX^PSOERXU6(ERXIEN)
- .I MTCODE="RE" D
- ..S REFREQ=$$GETREQ^PSOERXU2(ERXIEN)
- ..I REFREQ S NRXIEN=$$FINDNRX^PSOERXU6(REFREQ)
- ..I $D(^PS(52.49,NRXIEN,201,"B",ERXIEN)) Q
- ..I $G(NRXIEN) S FDA2(52.49201,"+1,"_NRXIEN_",",.01)=ERXIEN D UPDATE^DIE(,"FDA2") K FDA2
- .; link this message to the original
- .I $G(NRXIEN) D
- ..I $D(^PS(52.49,NRXIEN,201,"B",ERXIEN)) Q
- ..S FDA2(52.49201,"+1,"_NRXIEN_",",.01)=ERXIEN D UPDATE^DIE(,"FDA2") K FDA2
- .I '$D(^PS(52.49,RTHIEN,201,"B",ERXIEN)) D
- ..S FDA2(52.49201,"+1,"_RTHIEN_",",.01)=ERXIEN D UPDATE^DIE(,"FDA2") K FDA2
- .; link original message to this erxien
- .I '$D(^PS(52.49,ERXIEN,201,"B",RTHIEN)) D
- ..S FDA2(52.49201,"+1,"_ERXIEN_",",.01)=RTHIEN D UPDATE^DIE(,"FDA2") K FDA2
- I MTYPE["Error" D ERR^PSOERXU2(ERXIEN,MTYPE)
- ; Future consideration - XSD shows digital signature. Do we need to collect this?
- Q ERXIEN
+ ;
 OBS(ERXIEN,MTYPE) ; Observation
  N GL,I,LAST,DIM,MSOURCE,MUNIT,OBSDT,MVAL,OBSNOTE,OBSCNT,F,EIENS,FDA,MDQUAL
  S GL=$NA(^TMP($J,"PSOERXO1","Message",0,"Body",0,MTYPE,0,"Observation",0))
@@ -354,8 +282,6 @@ APUT(S,X,LN) ; what am i doing here?
  S I=0 F  S I=$O(S(I)) Q:'I  D
  .S STR=STR_","_""""_S(I)_""""_","
  .N NUM S NUM="""A"""
- .;I $D(S(I-1,S(I))) S NUM=+$G(S(I-1,S(I)))
- .;S STR=STR_NUM
  .S STR=STR_NUM_","_""""_LN_""""
  S STR=STR_")"
  I $D(@STR) S @STR=@STR_X
@@ -374,6 +300,13 @@ PRESOLV(VAL,TYPE) ;
 CONVDTTM(VAL) ;
  N EDATE,ETIME,X,ETZ,Y
  I '$L(VAL) Q ""
+ I VAL'["T" D  Q VAL
+ .S X=$E(VAL,1,10),X=$TR(X,"-","")
+ .D ^%DT I 'Y S VAL="" Q
+ .I $P(VAL,"-",4) S ETIME=$TR($P(VAL,"-",4),":","")
+ .I $P(VAL,"+",2) S ETIME=$TR($P(VAL,"+",2),":","")
+ .I '$G(ETIME) S VAL=Y Q
+ .S VAL=Y_"."_ETIME
  S EDATE=$P(VAL,"T"),ETIME=$P(VAL,"T",2)
  ; split off time zone
  S ETZ=$P(ETIME,".",2)
@@ -381,3 +314,11 @@ CONVDTTM(VAL) ;
  S X=EDATE D ^%DT I 'Y Q ""
  S VAL=Y_$S($L(ETIME):"."_$TR(ETIME,":",""),1:"")
  Q VAL
+ ;
+CSERX() ; Determine if an Incoming eRx is for a Controlled Substance Medication or not
+ ; Output: "1" (Controlled Substance) or "0" (Non-Controlled Substance)
+ ;
+ N DIGSIGVA
+ S DIGSIGVA=$G(@GL@("DigitalSignature",0,"SignatureValue",0))
+ I DIGSIGVA'="" Q 1
+ Q 0

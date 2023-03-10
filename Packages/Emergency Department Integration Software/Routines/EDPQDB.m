@@ -1,11 +1,11 @@
-EDPQDB ;SLC/KCM - Display Active Log Entries ;2/28/12 08:33am
- ;;2.0;EMERGENCY DEPARTMENT;**6**;Feb 24, 2012;Build 200
+EDPQDB ;SLC/KCM - Display Active Log Entries ; 1/25/21 11:22am
+ ;;2.0;EMERGENCY DEPARTMENT;**6,15**;Feb 24, 2012;Build 4
  ;
 GET(AREA,BOARD,LAST) ; Get display board contents
  ;I $G(^EDPB(231.9,AREA,230))=TOKEN D XML^EDPX("<rows status='same' />") Q
  ;
  N EDPTIME S EDPTIME=$$NOW^XLFDT
- N SEQ,BED,LOG,BEDS,DWHEN,DUP,ACU,LSTUPD,RELOAD,ATT
+ N SEQ,BED,LOG,BEDS,BED2,DWHEN,DUP,ACU,LSTUPD,RELOAD,ATT
  ;
  S LSTUPD=$P($G(^EDPB(231.9,AREA,0)),U,3),RELOAD="true",LAST=$G(LAST)
  I (LAST="")!(LAST=LSTUPD) S RELOAD="false"
@@ -23,12 +23,14 @@ GET(AREA,BOARD,LAST) ; Get display board contents
  . S BEDS(SEQ,BED)="",BEDS("B",BED,SEQ)=""
  ;
  ; Insert the active log entries into the correct sequence for the beds 
- S BED=0 F  S BED=$O(^EDP(230,"AL",EDPSITE,AREA,BED)) Q:'BED  D
+ S BED="" F  S BED=$O(^EDP(230,"AL",EDPSITE,AREA,BED)) Q:BED=""  D
  . S LOG=0 F  S LOG=$O(^EDP(230,"AL",EDPSITE,AREA,BED,LOG)) Q:'LOG  D
+ . . S BED2=BED
  . . I '$D(BEDS("B",BED)) S BEDS(99999,BED)="",BEDS("B",BED,99999)=""
  . . S SEQ=$O(BEDS("B",BED,0))
  . . S ACU=$P($G(^EDP(230,LOG,3)),U,3) S:'ACU ACU=99
- . . S BEDS(SEQ,BED,ACU,LOG)=""
+ . . I BED=0 S BED2=$P(^EDPB(231.9,AREA,1),U,12),SEQ=$P(^EDPB(231.8,BED2,0),U,5) ; Patch 15
+ . . S BEDS(SEQ,BED2,ACU,LOG)=""
  ;
  ; Loop thru the sequence of beds to create display board rows
  D BLDDUP^EDPQLP(.DUP,AREA)

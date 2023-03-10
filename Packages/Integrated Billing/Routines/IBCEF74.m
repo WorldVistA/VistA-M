@@ -1,5 +1,5 @@
 IBCEF74 ;WOIFO/SS - FORMATTER/EXTRACT BILL FUNCTIONS ;31-JUL-03
- ;;2.0;INTEGRATED BILLING;**232,280,155,290,291,320,358,343,374,432,592**;21-MAR-94;Build 58
+ ;;2.0;INTEGRATED BILLING;**232,280,155,290,291,320,358,343,374,432,592,718**;21-MAR-94;Build 73
  ;;Per VA Directive 6402, this routine should not be modified.
  ;
 SORT(IBPRNUM,IBPRTYP,IB399,IBSRC,IBDST,IBN,IBEXC,IBSEQ,IBLIMIT) ;
@@ -100,7 +100,9 @@ DISPID(IBXIEN) ; Display list of all prov and fac ids that will
  S IBIFN=IBXIEN
  S IBFRM=$$FT^IBCEF(IBIFN),IBCOBN=$$COBN^IBCEF(IBIFN)
  W @IOF
+ ;;JWS;IB*2.0*718v10;display message that NPIs are removed for Medicare 837s
  W !,"If this bill is transmitted electronically, the following IDs will be sent:"
+ W !,"Note: All NPIs will be removed from the claim prior to submission to Medicare.",!
  ; Returns all prov sec ids to be transmitted in indicated segments
  S Z=+$G(^DGCR(399,IBIFN,"I1")) I Z W !,"  Primary Ins Co: ",$$EXTERNAL^DILFD(399,101,"",Z) I IBCOBN=1 W ?54,"<<<Current Ins"
  S Z=+$G(^DGCR(399,IBIFN,"I2")) I Z W !,"Secondary Ins Co: ",$$EXTERNAL^DILFD(399,101,"",Z) I IBCOBN=2 W ?54,"<<<Current Ins"

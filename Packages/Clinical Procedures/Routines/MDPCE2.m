@@ -1,5 +1,5 @@
-MDPCE2 ; HOIFO/NCA - Routine For Data Extract For Hemo Dialysis ;1/20/10  10:00
- ;;1.0;CLINICAL PROCEDURES;**6,21,29**;Apr 01, 2004;Build 22
+MDPCE2 ; HOIFO/NCA - Routine For Data Extract For Hemo Dialysis ;Sep 24, 2021@12:35
+ ;;1.0;CLINICAL PROCEDURES;**6,21,29,80**;Apr 01, 2004;Build 3
  ; Integration Agreements:
  ; IA# 1889 [Subscription] Create New Visit - DATA2PCE^PXAPI call
  ;     1890 [Subscription] Delete existing visit - DELVFILE^PXAPI call
@@ -76,7 +76,16 @@ EN1(MDENC,MDINST,MDPDTE,MDPR,MDTYP,MDETYP,MDCLOC) ; [Function] PCE Visit Creatio
  ..S ^TMP("MDPXAPI",$J,"PROCEDURE",MDM,"QTY")=$P(MDNOD,"^",7)
  ..S:MDPROV ^TMP("MDPXAPI",$J,"PROCEDURE",MDM,"ENC PROVIDER")=MDPROV
  I (MDOK+MDOK1+MDOK2)=3 S ^TMP("MDPXAPI",$J,"ENCOUNTER",1,"CHECKOUT D/T")=$$NOW^XLFDT
- S MDRES=$$DATA2PCE^PXAPI("^TMP(""MDPXAPI"",$J)",MDPKG,"CLINICAL PROCEDURES",.MDVISIT,"","",1,"",.MDPERR)
+ ;MD*1.0*80: If DUZ not defined, zero, not numeric, or null,
+ ;           send DUZ for proxy service. (Considered also validating
+ ;           whether a numeric DUZ sent in by upstream logic exists
+ ;           in file 200. If a numeric DUZ is not in file 200, PCE
+ ;           will send back a processing error of "not a valid pointer
+ ;           to the New Person file #200". This might indicate a
+ ;           configuration issue which the site needs to be aware of.
+ ;           Since PCE performs this validation, there shouldn't be a
+ ;           need for MDPCE* routines to.)
+ S MDRES=$$DATA2PCE^PXAPI("^TMP(""MDPXAPI"",$J)",MDPKG,"CLINICAL PROCEDURES",.MDVISIT,$S('$G(DUZ):$$FINDD^MDPCE(),1:""),"",1,"",.MDPERR)
  I MDRES<1 D  Q MDOUT
  .S MDOUT=1
  .I MDVISIT>0 S MDFDA(702,MDINST_",",.13)=MDVISIT,MDOUT=MDVISIT_"^"_MDCLOC_";"_MDPDTE_";"_MDTYP,MDFDA(702,MDINST_",",.07)=MDTYP_";"_MDPDTE_";"_MDCLOC D FILE^DIE("K","MDFDA")

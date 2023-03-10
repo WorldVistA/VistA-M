@@ -1,130 +1,124 @@
-IBDEI14E ; ; 04-FEB-2020
- ;;3.0;IB ENCOUNTER FORM IMP/EXP;;FEB 04, 2020
+IBDEI14E ; ; 01-FEB-2022
+ ;;3.0;IB ENCOUNTER FORM IMP/EXP;;FEB 01, 2022
  Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,999) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
- ;;^UTILITY(U,$J,358.3,17987,1,0)
+ ;;^UTILITY(U,$J,358.3,18173,0)
+ ;;=E11.69^^61^805^32
+ ;;^UTILITY(U,$J,358.3,18173,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,17987,1,3,0)
- ;;=3^Suicide Attempt,Subsequent Encntr
- ;;^UTILITY(U,$J,358.3,17987,1,4,0)
- ;;=4^T14.91XD
- ;;^UTILITY(U,$J,358.3,17987,2)
- ;;=^5151780
- ;;^UTILITY(U,$J,358.3,17988,0)
- ;;=T14.91XS^^88^902^5
- ;;^UTILITY(U,$J,358.3,17988,1,0)
+ ;;^UTILITY(U,$J,358.3,18173,1,3,0)
+ ;;=3^DM Type 2 w/ Oth Spec Compl
+ ;;^UTILITY(U,$J,358.3,18173,1,4,0)
+ ;;=4^E11.69
+ ;;^UTILITY(U,$J,358.3,18173,2)
+ ;;=^5002664
+ ;;^UTILITY(U,$J,358.3,18174,0)
+ ;;=E11.8^^61^805^34
+ ;;^UTILITY(U,$J,358.3,18174,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,17988,1,3,0)
- ;;=3^Suicide Attempt,Sequela
- ;;^UTILITY(U,$J,358.3,17988,1,4,0)
- ;;=4^T14.91XS
- ;;^UTILITY(U,$J,358.3,17988,2)
- ;;=^5151781
- ;;^UTILITY(U,$J,358.3,17989,0)
- ;;=N17.0^^88^903^3
- ;;^UTILITY(U,$J,358.3,17989,1,0)
+ ;;^UTILITY(U,$J,358.3,18174,1,3,0)
+ ;;=3^DM Type 2 w/ Unspec Compl
+ ;;^UTILITY(U,$J,358.3,18174,1,4,0)
+ ;;=4^E11.8
+ ;;^UTILITY(U,$J,358.3,18174,2)
+ ;;=^5002665
+ ;;^UTILITY(U,$J,358.3,18175,0)
+ ;;=E11.9^^61^805^35
+ ;;^UTILITY(U,$J,358.3,18175,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,17989,1,3,0)
- ;;=3^Acute Kidney Failure w/ Tubular Necrosis
- ;;^UTILITY(U,$J,358.3,17989,1,4,0)
- ;;=4^N17.0
- ;;^UTILITY(U,$J,358.3,17989,2)
- ;;=^5015598
- ;;^UTILITY(U,$J,358.3,17990,0)
- ;;=N17.1^^88^903^1
- ;;^UTILITY(U,$J,358.3,17990,1,0)
+ ;;^UTILITY(U,$J,358.3,18175,1,3,0)
+ ;;=3^DM Type 2 w/o Complications
+ ;;^UTILITY(U,$J,358.3,18175,1,4,0)
+ ;;=4^E11.9
+ ;;^UTILITY(U,$J,358.3,18175,2)
+ ;;=^5002666
+ ;;^UTILITY(U,$J,358.3,18176,0)
+ ;;=E11.29^^61^805^27
+ ;;^UTILITY(U,$J,358.3,18176,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,17990,1,3,0)
- ;;=3^Acute Kidney Failure w/ Acute Cortical Necrosis
- ;;^UTILITY(U,$J,358.3,17990,1,4,0)
- ;;=4^N17.1
- ;;^UTILITY(U,$J,358.3,17990,2)
- ;;=^5015599
- ;;^UTILITY(U,$J,358.3,17991,0)
- ;;=N17.2^^88^903^2
- ;;^UTILITY(U,$J,358.3,17991,1,0)
+ ;;^UTILITY(U,$J,358.3,18176,1,3,0)
+ ;;=3^DM Type 2 w/ Oth Diab Kidney Compl
+ ;;^UTILITY(U,$J,358.3,18176,1,4,0)
+ ;;=4^E11.29
+ ;;^UTILITY(U,$J,358.3,18176,2)
+ ;;=^5002631
+ ;;^UTILITY(U,$J,358.3,18177,0)
+ ;;=E11.311^^61^805^14
+ ;;^UTILITY(U,$J,358.3,18177,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,17991,1,3,0)
- ;;=3^Acute Kidney Failure w/ Medullary Necrosis
- ;;^UTILITY(U,$J,358.3,17991,1,4,0)
- ;;=4^N17.2
- ;;^UTILITY(U,$J,358.3,17991,2)
- ;;=^5015600
- ;;^UTILITY(U,$J,358.3,17992,0)
- ;;=N17.8^^88^903^4
- ;;^UTILITY(U,$J,358.3,17992,1,0)
+ ;;^UTILITY(U,$J,358.3,18177,1,3,0)
+ ;;=3^DM Type 2 w/ Diab Rtnop w/ Macular Edema
+ ;;^UTILITY(U,$J,358.3,18177,1,4,0)
+ ;;=4^E11.311
+ ;;^UTILITY(U,$J,358.3,18177,2)
+ ;;=E11.319^5002632
+ ;;^UTILITY(U,$J,358.3,18178,0)
+ ;;=E11.319^^61^805^15
+ ;;^UTILITY(U,$J,358.3,18178,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,17992,1,3,0)
- ;;=3^Acute Kidney Failure,Other
- ;;^UTILITY(U,$J,358.3,17992,1,4,0)
- ;;=4^N17.8
- ;;^UTILITY(U,$J,358.3,17992,2)
- ;;=^5015601
- ;;^UTILITY(U,$J,358.3,17993,0)
- ;;=N17.9^^88^903^5
- ;;^UTILITY(U,$J,358.3,17993,1,0)
+ ;;^UTILITY(U,$J,358.3,18178,1,3,0)
+ ;;=3^DM Type 2 w/ Diab Rtnop w/o Macular Edema
+ ;;^UTILITY(U,$J,358.3,18178,1,4,0)
+ ;;=4^E11.319
+ ;;^UTILITY(U,$J,358.3,18178,2)
+ ;;=^5002633
+ ;;^UTILITY(U,$J,358.3,18179,0)
+ ;;=E11.3211^^61^805^22
+ ;;^UTILITY(U,$J,358.3,18179,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,17993,1,3,0)
- ;;=3^Acute Kidney Failure,Unspec
- ;;^UTILITY(U,$J,358.3,17993,1,4,0)
- ;;=4^N17.9
- ;;^UTILITY(U,$J,358.3,17993,2)
- ;;=^338532
- ;;^UTILITY(U,$J,358.3,17994,0)
- ;;=I20.0^^88^904^4
- ;;^UTILITY(U,$J,358.3,17994,1,0)
+ ;;^UTILITY(U,$J,358.3,18179,1,3,0)
+ ;;=3^DM Type 2 w/ Mild Nonp Rtnop w/ Macular Edema,Rt Eye
+ ;;^UTILITY(U,$J,358.3,18179,1,4,0)
+ ;;=4^E11.3211
+ ;;^UTILITY(U,$J,358.3,18179,2)
+ ;;=^5138331
+ ;;^UTILITY(U,$J,358.3,18180,0)
+ ;;=E11.3212^^61^805^23
+ ;;^UTILITY(U,$J,358.3,18180,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,17994,1,3,0)
- ;;=3^Unstable Angina
- ;;^UTILITY(U,$J,358.3,17994,1,4,0)
- ;;=4^I20.0
- ;;^UTILITY(U,$J,358.3,17994,2)
- ;;=^5007076
- ;;^UTILITY(U,$J,358.3,17995,0)
- ;;=I20.1^^88^904^1
- ;;^UTILITY(U,$J,358.3,17995,1,0)
+ ;;^UTILITY(U,$J,358.3,18180,1,3,0)
+ ;;=3^DM Type 2 w/ Mild Nonp Rtnop w/ Macular Edema,Lt Eye
+ ;;^UTILITY(U,$J,358.3,18180,1,4,0)
+ ;;=4^E11.3212
+ ;;^UTILITY(U,$J,358.3,18180,2)
+ ;;=^5138332
+ ;;^UTILITY(U,$J,358.3,18181,0)
+ ;;=E11.3213^^61^805^24
+ ;;^UTILITY(U,$J,358.3,18181,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,17995,1,3,0)
- ;;=3^Angina Pectoris w/ Documented Spasm
- ;;^UTILITY(U,$J,358.3,17995,1,4,0)
- ;;=4^I20.1
- ;;^UTILITY(U,$J,358.3,17995,2)
- ;;=^5007077
- ;;^UTILITY(U,$J,358.3,17996,0)
- ;;=I20.8^^88^904^2
- ;;^UTILITY(U,$J,358.3,17996,1,0)
+ ;;^UTILITY(U,$J,358.3,18181,1,3,0)
+ ;;=3^DM Type 2 w/ Mild Nonp Rtnop w/ Macular Edema,Bilat
+ ;;^UTILITY(U,$J,358.3,18181,1,4,0)
+ ;;=4^E11.3213
+ ;;^UTILITY(U,$J,358.3,18181,2)
+ ;;=^5138333
+ ;;^UTILITY(U,$J,358.3,18182,0)
+ ;;=E11.40^^61^805^10
+ ;;^UTILITY(U,$J,358.3,18182,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,17996,1,3,0)
- ;;=3^Angina Pectoris,Other Forms
- ;;^UTILITY(U,$J,358.3,17996,1,4,0)
- ;;=4^I20.8
- ;;^UTILITY(U,$J,358.3,17996,2)
- ;;=^5007078
- ;;^UTILITY(U,$J,358.3,17997,0)
- ;;=I20.9^^88^904^3
- ;;^UTILITY(U,$J,358.3,17997,1,0)
+ ;;^UTILITY(U,$J,358.3,18182,1,3,0)
+ ;;=3^DM Type 2 w/ Diab Neuropathy,Unspec
+ ;;^UTILITY(U,$J,358.3,18182,1,4,0)
+ ;;=4^E11.40
+ ;;^UTILITY(U,$J,358.3,18182,2)
+ ;;=^5002644
+ ;;^UTILITY(U,$J,358.3,18183,0)
+ ;;=E11.51^^61^805^12
+ ;;^UTILITY(U,$J,358.3,18183,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,17997,1,3,0)
- ;;=3^Angina Pectoris,Unspec
- ;;^UTILITY(U,$J,358.3,17997,1,4,0)
- ;;=4^I20.9
- ;;^UTILITY(U,$J,358.3,17997,2)
- ;;=^5007079
- ;;^UTILITY(U,$J,358.3,17998,0)
- ;;=J40.^^88^905^17
- ;;^UTILITY(U,$J,358.3,17998,1,0)
+ ;;^UTILITY(U,$J,358.3,18183,1,3,0)
+ ;;=3^DM Type 2 w/ Diab Periph Angiopathy w/o Gangrene
+ ;;^UTILITY(U,$J,358.3,18183,1,4,0)
+ ;;=4^E11.51
+ ;;^UTILITY(U,$J,358.3,18183,2)
+ ;;=^5002650
+ ;;^UTILITY(U,$J,358.3,18184,0)
+ ;;=E11.52^^61^805^11
+ ;;^UTILITY(U,$J,358.3,18184,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,17998,1,3,0)
- ;;=3^Bronchitis
- ;;^UTILITY(U,$J,358.3,17998,1,4,0)
- ;;=4^J40.
- ;;^UTILITY(U,$J,358.3,17998,2)
- ;;=^17164
- ;;^UTILITY(U,$J,358.3,17999,0)
- ;;=J41.0^^88^905^20
- ;;^UTILITY(U,$J,358.3,17999,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,17999,1,3,0)
- ;;=3^Bronchitis,Simple Chronic
- ;;^UTILITY(U,$J,358.3,17999,1,4,0)
- ;;=4^J41.0
+ ;;^UTILITY(U,$J,358.3,18184,1,3,0)
+ ;;=3^DM Type 2 w/ Diab Periph Angiopathy w/ Gangrene
+ ;;^UTILITY(U,$J,358.3,18184,1,4,0)
+ ;;=4^E11.52
+ ;;^UTILITY(U,$J,358.3,18184,2)
+ ;;=^5002651

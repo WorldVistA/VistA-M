@@ -1,122 +1,126 @@
-IBDEI10F ; ; 04-FEB-2020
- ;;3.0;IB ENCOUNTER FORM IMP/EXP;;FEB 04, 2020
+IBDEI10F ; ; 01-FEB-2022
+ ;;3.0;IB ENCOUNTER FORM IMP/EXP;;FEB 01, 2022
  Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,999) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
- ;;^UTILITY(U,$J,358.3,16239,1,0)
+ ;;^UTILITY(U,$J,358.3,16426,1,4,0)
+ ;;=4^G43.909
+ ;;^UTILITY(U,$J,358.3,16426,2)
+ ;;=^5003909
+ ;;^UTILITY(U,$J,358.3,16427,0)
+ ;;=G44.009^^61^773^1
+ ;;^UTILITY(U,$J,358.3,16427,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,16239,1,3,0)
- ;;=3^Diverticulitis of Lg Intestine w/ Performation/Abscess w/o Bleeding
- ;;^UTILITY(U,$J,358.3,16239,1,4,0)
- ;;=4^K57.20
- ;;^UTILITY(U,$J,358.3,16239,2)
- ;;=^5008721
- ;;^UTILITY(U,$J,358.3,16240,0)
- ;;=K57.92^^88^875^41
- ;;^UTILITY(U,$J,358.3,16240,1,0)
+ ;;^UTILITY(U,$J,358.3,16427,1,3,0)
+ ;;=3^Cluster Headache,Unspec,Not Intractable
+ ;;^UTILITY(U,$J,358.3,16427,1,4,0)
+ ;;=4^G44.009
+ ;;^UTILITY(U,$J,358.3,16427,2)
+ ;;=^5003921
+ ;;^UTILITY(U,$J,358.3,16428,0)
+ ;;=G44.40^^61^773^5
+ ;;^UTILITY(U,$J,358.3,16428,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,16240,1,3,0)
- ;;=3^Diverticulitis of Intestine,Unspec w/o Perforation/Abscess w/o Bleeding
- ;;^UTILITY(U,$J,358.3,16240,1,4,0)
- ;;=4^K57.92
- ;;^UTILITY(U,$J,358.3,16240,2)
- ;;=^5008737
- ;;^UTILITY(U,$J,358.3,16241,0)
- ;;=K57.80^^88^875^40
- ;;^UTILITY(U,$J,358.3,16241,1,0)
+ ;;^UTILITY(U,$J,358.3,16428,1,3,0)
+ ;;=3^Medication Overuse Headache,Not Intractable
+ ;;^UTILITY(U,$J,358.3,16428,1,4,0)
+ ;;=4^G44.40
+ ;;^UTILITY(U,$J,358.3,16428,2)
+ ;;=^5003947
+ ;;^UTILITY(U,$J,358.3,16429,0)
+ ;;=G44.89^^61^773^2
+ ;;^UTILITY(U,$J,358.3,16429,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,16241,1,3,0)
- ;;=3^Diverticulitis of Intestine,Unspec w/ Perforation/Abscess w/o Bleeding
- ;;^UTILITY(U,$J,358.3,16241,1,4,0)
- ;;=4^K57.80
- ;;^UTILITY(U,$J,358.3,16241,2)
- ;;=^5008733
- ;;^UTILITY(U,$J,358.3,16242,0)
- ;;=K57.52^^88^875^45
- ;;^UTILITY(U,$J,358.3,16242,1,0)
+ ;;^UTILITY(U,$J,358.3,16429,1,3,0)
+ ;;=3^Headache Syndrome NEC
+ ;;^UTILITY(U,$J,358.3,16429,1,4,0)
+ ;;=4^G44.89
+ ;;^UTILITY(U,$J,358.3,16429,2)
+ ;;=^5003954
+ ;;^UTILITY(U,$J,358.3,16430,0)
+ ;;=G44.84^^61^773^8
+ ;;^UTILITY(U,$J,358.3,16430,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,16242,1,3,0)
- ;;=3^Diverticulitis of Sm & Lg Intestine w/o Perforation/Abscess w/o Bleeding
- ;;^UTILITY(U,$J,358.3,16242,1,4,0)
- ;;=4^K57.52
- ;;^UTILITY(U,$J,358.3,16242,2)
- ;;=^5008731
- ;;^UTILITY(U,$J,358.3,16243,0)
- ;;=K57.40^^88^875^44
- ;;^UTILITY(U,$J,358.3,16243,1,0)
+ ;;^UTILITY(U,$J,358.3,16430,1,3,0)
+ ;;=3^Primary Exertional Headache
+ ;;^UTILITY(U,$J,358.3,16430,1,4,0)
+ ;;=4^G44.84
+ ;;^UTILITY(U,$J,358.3,16430,2)
+ ;;=^336563
+ ;;^UTILITY(U,$J,358.3,16431,0)
+ ;;=G44.301^^61^773^7
+ ;;^UTILITY(U,$J,358.3,16431,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,16243,1,3,0)
- ;;=3^Diverticulitis of Sm & Lg Intestine w/ Perforation/Abscess w/o Bleeding
- ;;^UTILITY(U,$J,358.3,16243,1,4,0)
- ;;=4^K57.40
- ;;^UTILITY(U,$J,358.3,16243,2)
- ;;=^5008727
- ;;^UTILITY(U,$J,358.3,16244,0)
- ;;=K57.32^^88^875^43
- ;;^UTILITY(U,$J,358.3,16244,1,0)
+ ;;^UTILITY(U,$J,358.3,16431,1,3,0)
+ ;;=3^Post-Traumatic Headache,Unspec,Intractable
+ ;;^UTILITY(U,$J,358.3,16431,1,4,0)
+ ;;=4^G44.301
+ ;;^UTILITY(U,$J,358.3,16431,2)
+ ;;=^5003941
+ ;;^UTILITY(U,$J,358.3,16432,0)
+ ;;=G44.209^^61^773^9
+ ;;^UTILITY(U,$J,358.3,16432,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,16244,1,3,0)
- ;;=3^Diverticulitis of Lg Intestine w/o Perforation/Abscess w/o Bleeding
- ;;^UTILITY(U,$J,358.3,16244,1,4,0)
- ;;=4^K57.32
- ;;^UTILITY(U,$J,358.3,16244,2)
- ;;=^5008725
- ;;^UTILITY(U,$J,358.3,16245,0)
- ;;=K59.00^^88^875^22
- ;;^UTILITY(U,$J,358.3,16245,1,0)
+ ;;^UTILITY(U,$J,358.3,16432,1,3,0)
+ ;;=3^Tension-Type Headache,Unspec,Not Intractable
+ ;;^UTILITY(U,$J,358.3,16432,1,4,0)
+ ;;=4^G44.209
+ ;;^UTILITY(U,$J,358.3,16432,2)
+ ;;=^5003936
+ ;;^UTILITY(U,$J,358.3,16433,0)
+ ;;=R51.0^^61^773^3
+ ;;^UTILITY(U,$J,358.3,16433,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,16245,1,3,0)
- ;;=3^Constipation,Unspec
- ;;^UTILITY(U,$J,358.3,16245,1,4,0)
- ;;=4^K59.00
- ;;^UTILITY(U,$J,358.3,16245,2)
- ;;=^323537
- ;;^UTILITY(U,$J,358.3,16246,0)
- ;;=K58.9^^88^875^78
- ;;^UTILITY(U,$J,358.3,16246,1,0)
+ ;;^UTILITY(U,$J,358.3,16433,1,3,0)
+ ;;=3^Headache w/ Orthostatic Component,NEC
+ ;;^UTILITY(U,$J,358.3,16433,1,4,0)
+ ;;=4^R51.0
+ ;;^UTILITY(U,$J,358.3,16433,2)
+ ;;=^5159305
+ ;;^UTILITY(U,$J,358.3,16434,0)
+ ;;=R51.9^^61^773^4
+ ;;^UTILITY(U,$J,358.3,16434,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,16246,1,3,0)
- ;;=3^Irritable Bowel Syndrome w/o Diarrhea
- ;;^UTILITY(U,$J,358.3,16246,1,4,0)
- ;;=4^K58.9
- ;;^UTILITY(U,$J,358.3,16246,2)
- ;;=^5008740
- ;;^UTILITY(U,$J,358.3,16247,0)
- ;;=K58.0^^88^875^77
- ;;^UTILITY(U,$J,358.3,16247,1,0)
+ ;;^UTILITY(U,$J,358.3,16434,1,3,0)
+ ;;=3^Headache,Unspec
+ ;;^UTILITY(U,$J,358.3,16434,1,4,0)
+ ;;=4^R51.9
+ ;;^UTILITY(U,$J,358.3,16434,2)
+ ;;=^5159306
+ ;;^UTILITY(U,$J,358.3,16435,0)
+ ;;=I30.0^^61^774^5
+ ;;^UTILITY(U,$J,358.3,16435,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,16247,1,3,0)
- ;;=3^Irritable Bowel Syndrome w/ Diarrhea
- ;;^UTILITY(U,$J,358.3,16247,1,4,0)
- ;;=4^K58.0
- ;;^UTILITY(U,$J,358.3,16247,2)
- ;;=^5008739
- ;;^UTILITY(U,$J,358.3,16248,0)
- ;;=K59.1^^88^875^37
- ;;^UTILITY(U,$J,358.3,16248,1,0)
+ ;;^UTILITY(U,$J,358.3,16435,1,3,0)
+ ;;=3^Idiopathic Pericarditis,Acute Nonspec
+ ;;^UTILITY(U,$J,358.3,16435,1,4,0)
+ ;;=4^I30.0
+ ;;^UTILITY(U,$J,358.3,16435,2)
+ ;;=^5007157
+ ;;^UTILITY(U,$J,358.3,16436,0)
+ ;;=I34.8^^61^774^6
+ ;;^UTILITY(U,$J,358.3,16436,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,16248,1,3,0)
- ;;=3^Diarrhea,Functional
- ;;^UTILITY(U,$J,358.3,16248,1,4,0)
- ;;=4^K59.1
- ;;^UTILITY(U,$J,358.3,16248,2)
- ;;=^270281
- ;;^UTILITY(U,$J,358.3,16249,0)
- ;;=K61.4^^88^875^4
- ;;^UTILITY(U,$J,358.3,16249,1,0)
+ ;;^UTILITY(U,$J,358.3,16436,1,3,0)
+ ;;=3^Mitral Valve Disorders,Nonrheumatic Other
+ ;;^UTILITY(U,$J,358.3,16436,1,4,0)
+ ;;=4^I34.8
+ ;;^UTILITY(U,$J,358.3,16436,2)
+ ;;=^5007172
+ ;;^UTILITY(U,$J,358.3,16437,0)
+ ;;=I34.0^^61^774^13
+ ;;^UTILITY(U,$J,358.3,16437,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,16249,1,3,0)
- ;;=3^Abscess,Intrasphincteric
- ;;^UTILITY(U,$J,358.3,16249,1,4,0)
- ;;=4^K61.4
- ;;^UTILITY(U,$J,358.3,16249,2)
- ;;=^5008752
- ;;^UTILITY(U,$J,358.3,16250,0)
- ;;=K61.0^^88^875^2
- ;;^UTILITY(U,$J,358.3,16250,1,0)
+ ;;^UTILITY(U,$J,358.3,16437,1,3,0)
+ ;;=3^Nonrheumatic Mitral Valve Insufficiency
+ ;;^UTILITY(U,$J,358.3,16437,1,4,0)
+ ;;=4^I34.0
+ ;;^UTILITY(U,$J,358.3,16437,2)
+ ;;=^5007169
+ ;;^UTILITY(U,$J,358.3,16438,0)
+ ;;=I34.9^^61^774^12
+ ;;^UTILITY(U,$J,358.3,16438,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,16250,1,3,0)
- ;;=3^Abscess,Anal
- ;;^UTILITY(U,$J,358.3,16250,1,4,0)
- ;;=4^K61.0
- ;;^UTILITY(U,$J,358.3,16250,2)
- ;;=^5008749
+ ;;^UTILITY(U,$J,358.3,16438,1,3,0)
+ ;;=3^Nonrheumatic Mitral Valve Disorder,Unspec
+ ;;^UTILITY(U,$J,358.3,16438,1,4,0)
+ ;;=4^I34.9

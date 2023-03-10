@@ -1,122 +1,124 @@
-IBDEI11R ; ; 04-FEB-2020
- ;;3.0;IB ENCOUNTER FORM IMP/EXP;;FEB 04, 2020
+IBDEI11R ; ; 01-FEB-2022
+ ;;3.0;IB ENCOUNTER FORM IMP/EXP;;FEB 01, 2022
  Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,999) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
- ;;^UTILITY(U,$J,358.3,16829,0)
- ;;=J10.08^^88^881^41
- ;;^UTILITY(U,$J,358.3,16829,1,0)
+ ;;^UTILITY(U,$J,358.3,17015,1,3,0)
+ ;;=3^Systemic Lupus Erythematosus,Glomerular Disease
+ ;;^UTILITY(U,$J,358.3,17015,1,4,0)
+ ;;=4^M32.14
+ ;;^UTILITY(U,$J,358.3,17015,2)
+ ;;=^5011757
+ ;;^UTILITY(U,$J,358.3,17016,0)
+ ;;=M32.12^^61^781^186
+ ;;^UTILITY(U,$J,358.3,17016,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,16829,1,3,0)
- ;;=3^Influenza d/t Oth ID'd Influenza Virus w/ Oth Pneumonia
- ;;^UTILITY(U,$J,358.3,16829,1,4,0)
- ;;=4^J10.08
- ;;^UTILITY(U,$J,358.3,16829,2)
- ;;=^5008150
- ;;^UTILITY(U,$J,358.3,16830,0)
- ;;=J10.00^^88^881^40
- ;;^UTILITY(U,$J,358.3,16830,1,0)
+ ;;^UTILITY(U,$J,358.3,17016,1,3,0)
+ ;;=3^Systemic Lupus Erythematosus,Pericarditis
+ ;;^UTILITY(U,$J,358.3,17016,1,4,0)
+ ;;=4^M32.12
+ ;;^UTILITY(U,$J,358.3,17016,2)
+ ;;=^5011755
+ ;;^UTILITY(U,$J,358.3,17017,0)
+ ;;=M05.59^^61^781^165
+ ;;^UTILITY(U,$J,358.3,17017,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,16830,1,3,0)
- ;;=3^Influenza d/t Oth ID'd Flu Virus w/ Unspec Type Pneumonia
- ;;^UTILITY(U,$J,358.3,16830,1,4,0)
- ;;=4^J10.00
- ;;^UTILITY(U,$J,358.3,16830,2)
- ;;=^5008148
- ;;^UTILITY(U,$J,358.3,16831,0)
- ;;=J11.08^^88^881^43
- ;;^UTILITY(U,$J,358.3,16831,1,0)
+ ;;^UTILITY(U,$J,358.3,17017,1,3,0)
+ ;;=3^Rheumatoid Polyneuropathy w/ Rheumatoid Arthritis of Mult Sites
+ ;;^UTILITY(U,$J,358.3,17017,1,4,0)
+ ;;=4^M05.59
+ ;;^UTILITY(U,$J,358.3,17017,2)
+ ;;=^5009976
+ ;;^UTILITY(U,$J,358.3,17018,0)
+ ;;=M05.711^^61^781^159
+ ;;^UTILITY(U,$J,358.3,17018,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,16831,1,3,0)
- ;;=3^Influenza d/t Unident Flu Virus w/ Spec Pneumonia
- ;;^UTILITY(U,$J,358.3,16831,1,4,0)
- ;;=4^J11.08
- ;;^UTILITY(U,$J,358.3,16831,2)
- ;;=^5008157
- ;;^UTILITY(U,$J,358.3,16832,0)
- ;;=J10.1^^88^881^42
- ;;^UTILITY(U,$J,358.3,16832,1,0)
+ ;;^UTILITY(U,$J,358.3,17018,1,3,0)
+ ;;=3^Rheumatoid Arthritis of Right Shoulder
+ ;;^UTILITY(U,$J,358.3,17018,1,4,0)
+ ;;=4^M05.711
+ ;;^UTILITY(U,$J,358.3,17018,2)
+ ;;=^5010001
+ ;;^UTILITY(U,$J,358.3,17019,0)
+ ;;=M05.712^^61^781^152
+ ;;^UTILITY(U,$J,358.3,17019,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,16832,1,3,0)
- ;;=3^Influenza d/t Oth ID'd Influenza Virus w/ Oth Resp Manifest
- ;;^UTILITY(U,$J,358.3,16832,1,4,0)
- ;;=4^J10.1
- ;;^UTILITY(U,$J,358.3,16832,2)
- ;;=^5008151
- ;;^UTILITY(U,$J,358.3,16833,0)
- ;;=J10.01^^88^881^39
- ;;^UTILITY(U,$J,358.3,16833,1,0)
+ ;;^UTILITY(U,$J,358.3,17019,1,3,0)
+ ;;=3^Rheumatoid Arthritis of Left Shoulder
+ ;;^UTILITY(U,$J,358.3,17019,1,4,0)
+ ;;=4^M05.712
+ ;;^UTILITY(U,$J,358.3,17019,2)
+ ;;=^5010002
+ ;;^UTILITY(U,$J,358.3,17020,0)
+ ;;=M05.731^^61^781^160
+ ;;^UTILITY(U,$J,358.3,17020,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,16833,1,3,0)
- ;;=3^Influenza d/t Oth ID'd Flu Virus w/ Same Oth ID'd Flu Virus Pneumonia
- ;;^UTILITY(U,$J,358.3,16833,1,4,0)
- ;;=4^J10.01
- ;;^UTILITY(U,$J,358.3,16833,2)
- ;;=^5008149
- ;;^UTILITY(U,$J,358.3,16834,0)
- ;;=J11.1^^88^881^44
- ;;^UTILITY(U,$J,358.3,16834,1,0)
+ ;;^UTILITY(U,$J,358.3,17020,1,3,0)
+ ;;=3^Rheumatoid Arthritis of Right Wrist
+ ;;^UTILITY(U,$J,358.3,17020,1,4,0)
+ ;;=4^M05.731
+ ;;^UTILITY(U,$J,358.3,17020,2)
+ ;;=^5010007
+ ;;^UTILITY(U,$J,358.3,17021,0)
+ ;;=M05.732^^61^781^153
+ ;;^UTILITY(U,$J,358.3,17021,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,16834,1,3,0)
- ;;=3^Influenza d/t Unident Influenza Virus w/ Oth Resp Manifest
- ;;^UTILITY(U,$J,358.3,16834,1,4,0)
- ;;=4^J11.1
- ;;^UTILITY(U,$J,358.3,16834,2)
- ;;=^5008158
- ;;^UTILITY(U,$J,358.3,16835,0)
- ;;=N12.^^88^881^85
- ;;^UTILITY(U,$J,358.3,16835,1,0)
+ ;;^UTILITY(U,$J,358.3,17021,1,3,0)
+ ;;=3^Rheumatoid Arthritis of Left Wrist
+ ;;^UTILITY(U,$J,358.3,17021,1,4,0)
+ ;;=4^M05.732
+ ;;^UTILITY(U,$J,358.3,17021,2)
+ ;;=^5010008
+ ;;^UTILITY(U,$J,358.3,17022,0)
+ ;;=M05.741^^61^781^156
+ ;;^UTILITY(U,$J,358.3,17022,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,16835,1,3,0)
- ;;=3^Tubulo-Interstitial Nephritis
- ;;^UTILITY(U,$J,358.3,16835,1,4,0)
- ;;=4^N12.
- ;;^UTILITY(U,$J,358.3,16835,2)
- ;;=^5015575
- ;;^UTILITY(U,$J,358.3,16836,0)
- ;;=N11.9^^88^881^86
- ;;^UTILITY(U,$J,358.3,16836,1,0)
+ ;;^UTILITY(U,$J,358.3,17022,1,3,0)
+ ;;=3^Rheumatoid Arthritis of Right Hand
+ ;;^UTILITY(U,$J,358.3,17022,1,4,0)
+ ;;=4^M05.741
+ ;;^UTILITY(U,$J,358.3,17022,2)
+ ;;=^5010010
+ ;;^UTILITY(U,$J,358.3,17023,0)
+ ;;=M05.742^^61^781^149
+ ;;^UTILITY(U,$J,358.3,17023,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,16836,1,3,0)
- ;;=3^Tubulo-Interstitial Nephritis,Chronic
- ;;^UTILITY(U,$J,358.3,16836,1,4,0)
- ;;=4^N11.9
- ;;^UTILITY(U,$J,358.3,16836,2)
- ;;=^5015574
- ;;^UTILITY(U,$J,358.3,16837,0)
- ;;=N13.6^^88^881^73
- ;;^UTILITY(U,$J,358.3,16837,1,0)
+ ;;^UTILITY(U,$J,358.3,17023,1,3,0)
+ ;;=3^Rheumatoid Arthritis of Left Hand
+ ;;^UTILITY(U,$J,358.3,17023,1,4,0)
+ ;;=4^M05.742
+ ;;^UTILITY(U,$J,358.3,17023,2)
+ ;;=^5010011
+ ;;^UTILITY(U,$J,358.3,17024,0)
+ ;;=M05.751^^61^781^157
+ ;;^UTILITY(U,$J,358.3,17024,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,16837,1,3,0)
- ;;=3^Pyonephrosis
- ;;^UTILITY(U,$J,358.3,16837,1,4,0)
- ;;=4^N13.6
- ;;^UTILITY(U,$J,358.3,16837,2)
- ;;=^101552
- ;;^UTILITY(U,$J,358.3,16838,0)
- ;;=N30.91^^88^881^19
- ;;^UTILITY(U,$J,358.3,16838,1,0)
+ ;;^UTILITY(U,$J,358.3,17024,1,3,0)
+ ;;=3^Rheumatoid Arthritis of Right Hip
+ ;;^UTILITY(U,$J,358.3,17024,1,4,0)
+ ;;=4^M05.751
+ ;;^UTILITY(U,$J,358.3,17024,2)
+ ;;=^5010013
+ ;;^UTILITY(U,$J,358.3,17025,0)
+ ;;=M05.752^^61^781^150
+ ;;^UTILITY(U,$J,358.3,17025,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,16838,1,3,0)
- ;;=3^Cystitis w/ Hematuria,Unspec
- ;;^UTILITY(U,$J,358.3,16838,1,4,0)
- ;;=4^N30.91
- ;;^UTILITY(U,$J,358.3,16838,2)
- ;;=^5015643
- ;;^UTILITY(U,$J,358.3,16839,0)
- ;;=N30.90^^88^881^20
- ;;^UTILITY(U,$J,358.3,16839,1,0)
+ ;;^UTILITY(U,$J,358.3,17025,1,3,0)
+ ;;=3^Rheumatoid Arthritis of Left Hip
+ ;;^UTILITY(U,$J,358.3,17025,1,4,0)
+ ;;=4^M05.752
+ ;;^UTILITY(U,$J,358.3,17025,2)
+ ;;=^5010014
+ ;;^UTILITY(U,$J,358.3,17026,0)
+ ;;=M05.761^^61^781^158
+ ;;^UTILITY(U,$J,358.3,17026,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,16839,1,3,0)
- ;;=3^Cystitis w/o Hematuria,Unspec
- ;;^UTILITY(U,$J,358.3,16839,1,4,0)
- ;;=4^N30.90
- ;;^UTILITY(U,$J,358.3,16839,2)
- ;;=^5015642
- ;;^UTILITY(U,$J,358.3,16840,0)
- ;;=N41.9^^88^881^38
- ;;^UTILITY(U,$J,358.3,16840,1,0)
+ ;;^UTILITY(U,$J,358.3,17026,1,3,0)
+ ;;=3^Rheumatoid Arthritis of Right Knee
+ ;;^UTILITY(U,$J,358.3,17026,1,4,0)
+ ;;=4^M05.761
+ ;;^UTILITY(U,$J,358.3,17026,2)
+ ;;=^5010016
+ ;;^UTILITY(U,$J,358.3,17027,0)
+ ;;=M05.762^^61^781^151
+ ;;^UTILITY(U,$J,358.3,17027,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,16840,1,3,0)
- ;;=3^Inflammatory Disease of Prostate,Unspec
- ;;^UTILITY(U,$J,358.3,16840,1,4,0)
- ;;=4^N41.9

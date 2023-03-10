@@ -1,5 +1,5 @@
-PSOP1 ;BHAM ISC/SAB - prints short medication profile ;02/25/94
- ;;7.0;OUTPATIENT PHARMACY;**15,46,103,132,148,233,326,251,313**;DEC 1997;Build 76
+PSOP1 ;BHAM ISC/SAB - prints short medication profile ;May 20, 2020@10:41:46
+ ;;7.0;OUTPATIENT PHARMACY;**15,46,103,132,148,233,326,251,313,441**;DEC 1997;Build 208
  ;External reference to ^PSDRUG supported by DBIA 221
  ;External reference to ^PS(50.605 supported by DBIA 696
  K RX,DTOUT,DIRUT,DIROUT,DUOUT
@@ -7,7 +7,7 @@ PSOP1 ;BHAM ISC/SAB - prints short medication profile ;02/25/94
  .F J=0:0 S J=$O(^TMP($J,DRUG,J)) Q:'J!($G(PQT))  S RX0=^(J),RX2=$G(^PSRX(J,2)),$P(RX0,"^",15)=$G(^("STA")),CP=$S(+$G(^PSRX(J,"IB")):"$",1:" ") S:$P(RX2,"^",15)&($P(RX2,"^",2)) RST($P(RX2,"^",2))=1 S:$P(RX0,"^",15)="" $P(RX0,"^",15)=-1 D W
  D:'$G(PQT) PEND^PSOP2,NVA^PSOP2
 Q D ^%ZISC K ^TMP($J),PQT,PSODTCT,ST,D0,DIC,DIR,DIRUT,DUOUT,G,II,K,RXD,RXF,ZX,DRUG,X,DFN,PHYS,PSRT,CT,AL,I1,PLS,REF
- K LMI,PI,FN,Y,I,J,RX,DRX,ST,RX0,RX2,DA,PPPSTAT,PPP,EEEE,PPPCNT,PENDREX,PSOPEND,PPDIS,PPOI,PCOUNT,PP,FSIG,ZZZZ
+ K LMI,PI,FN,Y,I,J,RX,DRX,ST,RX0,RX2,DA,PPPSTAT,PPP,EEEE,PPPCNT,PENDREX,PSOPEND,PPDIS,PPOI,PCOUNT,PP,FSIG,ZZZZ,INS1,MIG,SG,SIG,SIGOK
  S:$D(ZTQUEUED) ZTREQ="@"
  Q
 W I $Y+6>IOSL,$E(IOST)="C" D DIR W @IOF Q:$D(PQT)  D HD
@@ -15,6 +15,7 @@ W I $Y+6>IOSL,$E(IOST)="C" D DIR W @IOF Q:$D(PQT)  D HD
  U IO I IO'=IO(0),$Y+6>IOSL W @IOF D HD
  I $E(IOST)'="C",$Y+6>IOSL W @IOF D HD
  D STAT^PSOFUNC S STA="A^N^R^H^N^S^^^^^^E^DC^^DP^DE^PH",ST=$P(STA,"^",(ST0+1)) K STA
+ I ST="A" I $G(^PSRX(J,"PARK")) S ST="AP"  ;441 PAPI
  S PSOBADR=$O(^PSRX(J,"L",9999),-1)
  I PSOBADR'="" S PSOBADR=$G(^PSRX(J,"L",PSOBADR,0)) I PSOBADR["(BAD ADDRESS)" S PSOBADR="B"
  I PSOBADR'="B" S PSOBADR=""
@@ -29,6 +30,7 @@ W I $Y+6>IOSL,$E(IOST)="C" D DIR W @IOF Q:$D(PQT)  D HD
  K PSOPRSIG,GGGG,BSIG
  W !?5,"QTY: ",$P(RX0,"^",7),?24,"SIG: ",$G(FSIG(1)) D:$O(FSIG(1))
  .F GGGG=1:0 S GGGG=$O(FSIG(GGGG)) Q:'GGGG!($G(PQT))  W !,?29,$G(FSIG(GGGG)) D:$Y+5>IOSL&($E(IOST)="C") DIR Q:$G(PQT)  I '$G(PQT),($Y+5>IOSL) W @IOF D HD
+ W:$P($G(^PSRX(J,"IND")),"^")]"" !,?5,"Indication: "_$P(^PSRX(J,"IND"),"^")  ;*441-IND
  K GGGG,FSIG Q:$G(PQT)
  ;D SIG
  K RST Q
@@ -58,7 +60,7 @@ TO S DIC("A")="To Drug: " D ^DIC I "^"[X S DUOUT=1 K DIC Q
  G:Y<0 TO I FR]$P(Y,"^",2) W !,$C(7),"Less Than 'Start' Value" K X,Y G TO
  S TO=$P(Y,"^",2),DRS=1
  F %=$L($E(TO,1,30)):-1:1 S M=$A(TO,%) I M>32 S Y1=$E(TO,1,%-1)_$C(M+1)_$C(122) Q
- S PSTO=Y1 K Y1,Y,X,DIC
+ S PSTO=Y1 K Y1,Y,X,DIC,M,%
  Q
 CLSS ;asks drug class list
  W ! S DIC("A")="Start with Drug Class: ",DIC(0)="AEQ",DIC=50.605 D ^DIC I "^"[X S DUOUT=1 Q

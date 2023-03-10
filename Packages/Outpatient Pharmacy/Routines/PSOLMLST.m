@@ -1,5 +1,5 @@
-PSOLMLST ;ISC-BHAM/SAB - list orders for processing ; 18-APR-1995
- ;;7.0;OUTPATIENT PHARMACY;**46**;DEC 1997
+PSOLMLST ;ISC-BHAM/SAB - list orders for processing ;08/23/17  20:06
+ ;;7.0;OUTPATIENT PHARMACY;**46,441**;DEC 1997;Build 208
  ;External reference to ^PS(50.7 supported by DBIA 2223
 EN ; -- main entry point for PSO LM ORDER SELECTION
  D EN^VALM("PSO LM ORDER SELECTION")
@@ -14,6 +14,7 @@ INIT ; -- init variables and list array
  ;F LINE=1:1:30 D SET^VALM10(LINE,LINE_"     Line number "_LINE)
  S $P(RN," ",12)=" ",VALMCNT=PSOPF
  S VALM("TITLE")="OP Medications ("_$S($P(^PSRX($P(PSOLST(ORN),"^",2),"STA"),"^")=5:"SUSPENDED",$P(^PSRX($P(PSOLST(ORN),"^",2),"STA"),"^")=11:"EXPIRED",1:$P(PSOLST(ORN),"^",3))_")"
+ I $P(^PSRX($P(PSOLST(ORN),"^",2),"STA"),"^")=0,$G(^PSRX($P(PSOLST(ORN),"^",2),"PARK")) S VALM("TITLE")="OP Medications (ACTIVE/PARKED)"  ;441 PAPI
  S:'$D(^PS(50.7,+$G(^PSRX($P(PSOLST(ORN),"^",2),"OR1")),0)) VALMSG="No Pharmacy Orderable Item !"
  D RV^PSONFI Q
  ;

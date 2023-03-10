@@ -1,0 +1,76 @@
+PSOERXU8 ;ALB/BLB - eRx Utilities/RPC's ; 08/18/2020 10:02am
+ ;;7.0;OUTPATIENT PHARMACY;**581,617**;DEC 1997;Build 110
+ ;
+ Q
+BPROC(PSOIEN,BTYPE,MVFLD,VBFLD,VBDTTMF,VDTTM) ;
+ N ERXPAT,ERXSTAT,ERESTAT,ERXDT,ERXIEN,ERXARY,DIR,Y,L,LINE,CNT,EHID,EDRUG,EPROV,EPAT,ERXRDT,ERXRECDT,ERXEDT,I,FLG
+ N REXEDT,EEPROV,ERXPROV,EXARY,MTYPE,RESTYPE,CSMSG,ERXID
+ S MTYPE=$$GET1^DIQ(52.49,PSOIEN,.08,"I")
+ S RESTYPE=$$GET1^DIQ(52.49,PSOIEN,52.1,"I")
+ I MTYPE="CX" Q
+ I MTYPE="RE",RESTYPE="R" Q
+ S ERXPAT=$$GET1^DIQ(52.49,PSOIEN,.04,"I") Q:'ERXPAT
+ S ERXPROV=$$GET1^DIQ(52.49,PSOIEN,2.1,"I")
+ S ERXRECDT=$P($$GET1^DIQ(52.49,PSOIEN,.03,"I"),".")
+ S ERXEDT=ERXRECDT_".2359"
+ S ERXSTAT=0 F  S ERXSTAT=$O(^PS(52.49,"PAT",PSNPINST,ERXSTAT)) Q:'ERXSTAT  D
+ .S ERESTAT=$$GET1^DIQ(52.45,ERXSTAT,.01,"E")
+ .Q:(",PR,RM,RJ,CAN,CXQ,"[(","_ERESTAT_","))!(",E,H,"[(","_$E(ERESTAT)_","))
+ .S ERXDT=ERXRECDT-.0001 F  S ERXDT=$O(^PS(52.49,"PAT",PSNPINST,ERXSTAT,ERXPAT,ERXDT)) Q:ERXDT>ERXEDT!(ERXDT="")  D
+ ..S ERXIEN=0 F  S ERXIEN=$O(^PS(52.49,"PAT",PSNPINST,ERXSTAT,ERXPAT,ERXDT,ERXIEN)) Q:'ERXIEN  D
+ ...; do not process any rx's that are not a 'newRx'.
+ ...I $$GET1^DIQ(52.49,ERXIEN,.08,"I")'="N" Q
+ ...; eRx Provider already validated
+ ...I $$GET1^DIQ(52.49,ERXIEN,1.8,"I") Q
+ ...Q:PSOIEN=ERXIEN
+ ...I BTYPE="PR",$$GET1^DIQ(52.49,ERXIEN,2.1,"I")'=ERXPROV Q
+ ...S EXARY(ERXIEN)=""
+ I '$O(EXARY(0)) Q
+ W !!
+ I BTYPE="PA" D
+ .W !,"This patient has other prescriptions for: "_$$FMTE^XLFDT(ERXRECDT)
+ .W !,"Patient: "_$$GET1^DIQ(52.46,ERXPAT,.01,"E")
+ I BTYPE="PR" D
+ .W !,"There are other prescriptions for this patient, written by this provider on"
+ .W !,$$FMTE^XLFDT(ERXRECDT)
+ .W !,"Provider: "_$$GET1^DIQ(52.48,ERXPROV,.01,"E")
+ .W !,"Patient: "_$$GET1^DIQ(52.46,ERXPAT,.01,"E")
+ W !!,?4,"DRUG",?30,"PROVIDER",?60,"REC DATE"
+ S $P(LINE,"-",80)="" W !,LINE
+ S L=0,CNT=0 F  S L=$O(EXARY(L)) Q:'L  D
+ .S CNT=CNT+1
+ .S EHID=$$GET1^DIQ(52.49,L,.01,"E")
+ .S EDRUG=$$GET1^DIQ(52.49,L,3.1,"E")
+ .S EEPROV=$$GET1^DIQ(52.49,L,2.1,"I")
+ .S EPROV=$$GET1^DIQ(52.48,EEPROV,.01,"E")
+ .S EPAT=$$GET1^DIQ(52.46,ERXPAT,.01,"E")
+ .S ERXRDT=$P($$GET1^DIQ(52.49,L,.03,"E"),"@")
+ .W !,CNT_".) "_$E(EDRUG,1,28),?30,$E(EPROV,1,28),?60,ERXRDT
+ W !!,"Would you like apply the above validation to these prescriptions?"
+ K Y S DIR(0)="YO"
+ S DIR("B")="N" D ^DIR K DIR
+ I Y="^"!(Y=0) Q
+ S (CNT,CSMSG,ERXID)=0
+ F  S ERXID=$O(EXARY(ERXID)) Q:'ERXID  D
+ . S CNT=$G(CNT)+1
+ . I $$GET1^DIQ(52.49,ERXID,95.1,"I") D
+ . . I BTYPE="PA",'$$VALPTADD^PSOERXUT(+$$GET1^DIQ(52.49,PSOIEN,.05,"I")) D
+ . . . W !,CNT,". ERX#: ",$$GET1^DIQ(52.49,ERXID,.01),"    ERX DRUG: ",$$GET1^DIQ(52.49,ERXID,3.1)
+ . . . W !,"Unable to validate - VistA Patient does not have a current mailing",!,"or residential address on file.",!
+ . . . K EXARY(ERXID) S CSMSG=1
+ . . I BTYPE="PR" D
+ . . . K ERXMSG D PRDRVAL^PSOERXUT(.ERXMSG,"VP",ERXID,$$GET1^DIQ(52.49,PSOIEN,2.3,"I"))
+ . . . I +ERXMSG!($P(ERXMSG,"^",2)="W") Q
+ . . . W !,CNT,". ERX#: ",$$GET1^DIQ(52.49,ERXID,.01),"    ERX DRUG: ",$$GET1^DIQ(52.49,ERXID,3.1)
+ . . . S I=0 F  S I=$O(ERXMSG(I)) Q:'I  D
+ . . . . W !,"Unable to validate - ",$P(ERXMSG(I),"^"),! K EXARY(ERXID) S CSMSG=1
+ . I '$O(EXARY(ERXID)),$G(CSMSG) S DIR(0)="E" D ^DIR
+ S I=0 F  S I=$O(EXARY(I)) Q:'I  D
+ .I BTYPE="PA" S FDA(52.49,I_",",.05)=$$GET1^DIQ(52.49,PSOIEN,.05,"I")
+ .I BTYPE="PR" S FDA(52.49,I_",",2.3)=$$GET1^DIQ(52.49,PSOIEN,2.3,"I")
+ .S FDA(52.49,I_",",MVFLD)=1,FDA(52.49,I_",",VBFLD)=$G(DUZ),FDA(52.49,I_",",VBDTTMF)=VDTTM
+ .D FILE^DIE(,"FDA") K FDA
+ .I $$GET1^DIQ(52.49,I,1,"E")="N" D UPDSTAT^PSOERXU1(I,"I")
+ .I $$GET1^DIQ(52.49,I,1.3,"I"),$$GET1^DIQ(52.49,I,1.5,"I"),$$GET1^DIQ(52.49,I,1.7,"I") D
+ ..D UPDSTAT^PSOERXU1(I,"W")
+ Q

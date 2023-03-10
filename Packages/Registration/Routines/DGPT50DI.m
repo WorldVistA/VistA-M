@@ -1,5 +1,5 @@
 DGPT50DI ;ALB/MTC/ADL,HIOFO/FT - Edit diagnoses-Check ICD DIAGNOSES, current, gender correct ;2/20/15 12:19pm
- ;;5.3;Registration;**510,850,884**;Aug 13, 1993;Build 31
+ ;;5.3;Registration;**510,850,884,1057**;Aug 13, 1993;Build 17
  ;;ADL;Updated for CSV project;;Mar 24, 2003
  ;
  ; ICDEX APIs - #5747
@@ -9,7 +9,7 @@ EN ;
  I DGPTFMT=2 F I=1:1:5 S DGPTDIB=$P(@("DGPTMD"_I)," ",1) S DGPTERC=0 D DIAG(I) I DGPTERC D ERR G:DGPTEDFL EXIT
  I DGPTFMT=3 F I=1:1:25 S DGPTDIB=$P(@("DGPTMD"_I)," ",1),DGPTPOAI=@("DGPTMPOA"_I) D  I DGPTERC D ERR G:DGPTEDFL EXIT
  .I DGPTDIB="",DGPTPOAI'=" " S DGPTERC=$S(I<6:509+I,I<20:510+I,1:538+I) D ERR ;should not have a poa if the dx is null. using invalid dx error code
- .I "YNUW "'[DGPTPOAI S DGPTREC=$S(I<6:509+I,I<20:510+I,1:538+I) D ERR ;Y,N,U,W or space only
+ .I "1YNUW "'[DGPTPOAI S DGPTREC=$S(I<6:509+I,I<20:510+I,1:538+I) D ERR ; 1,Y,N,U,W or space only  DG*5.3*1057
  .S DGPTERC=0 D DIAG(I)
  D EXIT
  Q

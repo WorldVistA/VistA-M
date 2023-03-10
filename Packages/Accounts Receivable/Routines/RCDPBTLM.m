@@ -1,5 +1,5 @@
 RCDPBTLM ;WISC/RFJ - bill transactions List Manager top routine ;1 Jun 99
- ;;4.5;Accounts Receivable;**114,148,153,168,169,198,247,271,276,315**;Mar 20, 1995;Build 67
+ ;;4.5;Accounts Receivable;**114,148,153,168,169,198,247,271,276,315,372**;Mar 20, 1995;Build 9
  ;;Per VA Directive 6402, this routine should not be modified.
  ;
  ; Reference to $$REC^IBRFN supported by DBIA 2031
@@ -44,9 +44,9 @@ INIT ;  initialization for list manager list
  .   .   .   S ^TMP("RCDPBTLM",$J,"IDX",RCTRAN,RCTRAN)=RCTRANDA
  .   .   .   D SET^RCDPAPLI(RCTRAN,RCLINE,1,80,0,IORVON,IORVOFF)
  .   .   ;
- .   .   D SET^RCDPAPLI($S(RCTRANDA:RCTRANDA,1:" "),RCLINE,6,80) ; PRCA*4.5*315 Incr left margin
- .   .   D SET^RCDPAPLI($E(DATE,4,5)_"/"_$E(DATE,6,7)_"/"_$E(DATE,2,3),RCLINE,13,21)
- .   .   D SET^RCDPAPLI($TR($P(RCLIST(DATE,RCTRANDA),U),"ABCDEFGHIJKLMNOPQRSTUVWXYZ","abcdefghijklmnopqrstuvwxyz"),RCLINE,25,50)
+ .   .   D SET^RCDPAPLI($S(RCTRANDA:RCTRANDA,1:" "),RCLINE,5,80) ; PRCA*4.5*315 Incr left margin
+ .   .   D SET^RCDPAPLI($E(DATE,4,5)_"/"_$E(DATE,6,7)_"/"_$E(DATE,2,3),RCLINE,17,25)
+ .   .   D SET^RCDPAPLI($TR($P(RCLIST(DATE,RCTRANDA),U),"ABCDEFGHIJKLMNOPQRSTUVWXYZ","abcdefghijklmnopqrstuvwxyz"),RCLINE,27,51)
  .   .   D SET^RCDPAPLI($J($P(RCLIST(DATE,RCTRANDA),U,2),9,2),RCLINE,53,62)
  .   .   D SET^RCDPAPLI($J($P(RCLIST(DATE,RCTRANDA),U,3),9,2),RCLINE,62,71)
  .   .   ;  add marshal fee and court cost to create admin dollars

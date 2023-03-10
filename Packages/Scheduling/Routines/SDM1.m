@@ -1,5 +1,5 @@
-SDM1 ;SF/GFT - MAKE APPOINTMENT ; 3/29/05 12:35pm [5/5/05 9:41am]  ; Compiled March 8, 2007 14:55:24  ; Compiled May 9, 2007 13:19:18  ; Compiled August 28, 2007 12:19:08
- ;;5.3;Scheduling;**32,167,168,80,223,263,273,408,327,478,490,446,547,611,674,739,753**;Aug 13, 1993;Build 3
+SDM1 ;SF/GFT - MAKE APPOINTMENT ; May 10, 2021@19:53:47
+ ;;5.3;Scheduling;**32,167,168,80,223,263,273,408,327,478,490,446,547,611,674,739,753,769,775**;Aug 13, 1993;Build 5
 1 Q:$D(SDXXX)  S CCXN=0 K MXOK,COV,SDPROT Q:DFN<0  S SC=+SC ;SD*5.3*753 - Remove unlock all
  S X1=DT,SDEDT=365 S:$D(^SC(SC,"SDP")) SDEDT=$P(^SC(SC,"SDP"),"^",2)
  S X2=SDEDT D C^%DTC S SDEDT=X D WRT
@@ -11,27 +11,28 @@ ADT S:'$D(SDW) SDW=""
  S SDSOH=$S('$D(^SC(SC,"SL")):0,$P(^("SL"),"^",8)']"":0,1:1),CCX=""
  S SDONCE=$G(SDONCE)+1  ;Prevent repetitive iteration
  ; Section introduced in 446.
- N SDDATE1,SDQT,Y  ; Do not allow progress if there is no availability > 120 days after the desired date.
- S SDDATE1=$S($G(SDDATE)="":DT,1:SDDATE)
- S Y="" D  Q:Y="^"
- .F  Q:Y="^"!$$WLCL120^SDM2A(SC,SDDATE1)  D
- ..S Y=$$WLCLASK^SDM2A() Q:Y="^"  ; Y=0: New date, Y=1: place on EWL, Y="^": quit
- ..I Y=0 D  Q
- ...N SDMAX,SDDMAX
- ...S SDMAX(1)=$P($G(^SC(+SC,"SDP")),U,2) S:'SDMAX(1) SDMAX(1)=365
- ...S (SDMAX,SDDMAX)=$$FMADD^XLFDT(DT,SDMAX(1))
- ...S Y=$$DDATE^SDM0(.SDDATE,"0^0",.SDMAX) Q:'Y  ; Y=0: "^" entered, Y=1: date entered
- ...D D^SDM0
- ...S SDDATE1=SDDATE
- ...Q
- ..D WL^SDM2A(SC)
- ..S Y="^"  ; quit
- ..Q
- .Q
+ ; Removed EWL Decommisson - SD*5.3*769
+ ;N SDDATE1,SDQT,Y  ; Do not allow progress if there is no availability > 120 days after the desired date.
+ ;S SDDATE1=$S($G(SDDATE)="":DT,1:SDDATE)
+ ;S Y="" D  Q:Y="^"
+ ;.F  Q:Y="^"!$$WLCL120^SDM2A(SC,SDDATE1)  D
+ ;..;S Y=$$WLCLASK^SDM2A() Q:Y="^"  ; Y=0: New date, Y=1: place on EWL, Y="^": quit
+ ;..I Y=0 D  Q
+ ;...N SDMAX,SDDMAX
+ ;...S SDMAX(1)=$P($G(^SC(+SC,"SDP")),U,2) S:'SDMAX(1) SDMAX(1)=365
+ ;...S (SDMAX,SDDMAX)=$$FMADD^XLFDT(DT,SDMAX(1))
+ ;...S Y=$$DDATE^SDM0(.SDDATE,"0^0",.SDMAX) Q:'Y  ; Y=0: "^" entered, Y=1: date entered
+ ;...D D^SDM0
+ ;...S SDDATE1=SDDATE
+ ;...Q
+ ;..D WL^SDM2A(SC)
+ ;..S Y="^"  ; quit
+ ;..Q
+ ;.Q
  ;
  S X=$S(SDONCE<2:$G(SDSDATE),1:"")  ;Use default date/time if specified as 'desired date'  
- I 'X R !,"DATE/TIME: ",X:DTIME Q:X="^"!'$$WLCL120A^SDM2A(X,SDDATE1,SC)  ;sd/327,446
- I X="" D WL(SC) Q  ;sd/446
+ I 'X R !,"DATE/TIME: ",X:DTIME Q:X="^"  ;!'$$WLCL120A^SDM2A(X,SDDATE1,SC)  ;sd/327,446 - Removed EWl Decom, SD*5.3*769
+ ;I X="" D WL(SC) Q  ;sd/446 - Removed EWl Decom, SD*5.3*769
  G:X="M"!(X="m") MORDIS^SDM0
  I X="D"!(X="d") S X=$$REDDT() G:X>0 MORD2^SDM0 S X="" W "  ??",! G ADT
  I X?1"?".E D  G ADT
@@ -82,6 +83,7 @@ SC S SDLOCK=$S('$D(SDLOCK):1,1:SDLOCK+1) G:SDLOCK>9 LOCK
  I SM<7 S %=$F(S,"[",SS-1) S:'%!($P(SL,"^",6)<3) %=999 I $F(S,"]",SS)'<%!(SDDIF=2&$E(S,ST+ST+1,SS-1)["[") S SM=7
  ;
 SP I ST+ST>$L(S),$L(S)<80 S S=S_" " G SP
+ N SDSLSV    ;*775 
  S SDNOT=1   ;SD*5.3*490 naked Do added below
  ;SD*5.3*739 adds check for SDCAN node as CAN node is deleted when clinic is remapped
  ;SD*5.3*753 allows unlimited overbooks on nonscheduled availabilities in SDMULTIBOOK option, as is allowed in VSE and single appointment Vista
@@ -91,7 +93,8 @@ SP I ST+ST>$L(S),$L(S)<80 S S=S_" " G SP
  ..Q:+SL'>+^SC(SC,"SL")
  ..S ST="   "
  ..Q
- Q:SDMM  G OK^SDM1A:SM#9=0,^SDM3:$P(SL,U,7)]""&('$D(MXOK))
+ ;SD*5.3*775 save SL to a namespaced variable
+ Q:SDMM  S SDSLSV=SL G OK^SDM1A:SM#9=0,^SDM3:$P(SL,U,7)]""&('$D(MXOK))
  ;
 E G:'$D(^XUSEC("SDOB",DUZ)) NOOB
  S %=2 W *7,!,$E($T(@SM),5,99),"...OK" D YN^DICN
@@ -155,6 +158,7 @@ REDDT() ;Prompt for availability redisplay date
  W ! D ^%DT
  Q Y
 WL(SC) ;Wait List Hook/teh patch 263 ;SD/327 passed 'SC'
+ Q  ;SD*5.3*769 - EWL DECOM
  Q:$G(SC)'>0
  I '$D(^SC(SC)) Q
  I $D(SC) S SDWLFLG=0 D

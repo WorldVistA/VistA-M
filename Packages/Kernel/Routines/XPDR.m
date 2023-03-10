@@ -1,10 +1,11 @@
 XPDR ;SFISC/RSD - Routine File Edit ;09/17/96  10:05
- ;;8.0;KERNEL;**1,2,44,393,547,713**;Jul 10, 1995;Build 15
+ ;;8.0;KERNEL;**1,2,44,393,547,713,738**;Jul 10, 1995;Build 5
  ;Per VHA Directive 2004-038, this routine should not be modified.
  Q
 UPDT ;update routine file
  N DIR,DIRUT,XPD,XPDI,XPDJ,XPDN,XPDGTM,X,X1,Y,Y1,% W !
- W ! S DIR(0)="FO^1:9^K:X'?.1""-""1U.7UNP X",DIR("A")="Routine Namespace",DIR("?")="Enter 1 to 8 characters, precede with ""-"" to exclude namespace"
+ ;p738 change 8 to 16
+ W ! S DIR(0)="FO^1:16^K:X'?.1""-""1U.15UNP X",DIR("A")="Routine Namespace",DIR("?")="Enter 1 to 16 characters, precede with ""-"" to exclude namespace"
  ;XPDN(0=excluded names or 1=include names, namespace)=""
  F  D ^DIR Q:$D(DIRUT)  S X=$E(Y,$L(Y))="*",%=$E(Y)="-",XPDN('%,$E(Y,%+1,$L(Y)-X))=""
  Q:'$D(XPDN)!$D(DTOUT)!$D(DUOUT)

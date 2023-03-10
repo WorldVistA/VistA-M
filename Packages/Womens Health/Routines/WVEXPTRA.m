@@ -1,5 +1,5 @@
-WVEXPTRA ;HCIOFO/FT-EXPORT MAMS & ULTRASOUNDS TO WOMEN'S HEALTH  ;2/18/00  13:49
- ;;1.0;WOMEN'S HEALTH;**3,5,7,10**;Sep 30, 1998
+WVEXPTRA ;HCIOFO/FT-EXPORT MAMS & ULTRASOUNDS TO WOMEN'S HEALTH  ;04/15/2021
+ ;;1.0;WOMEN'S HEALTH;**3,5,7,10,26**;Sep 30, 1998;Build 624
  ;;  Original routine created by IHS/ANMC/MWR
  ;;* MICHAEL REMILLARD, DDS * ALASKA NATIVE MEDICAL CENTER *
  ;---> WVNEWP = TOTAL NEW WOMEN'S HEALTH PATIENTS ADDED.
@@ -87,20 +87,37 @@ QUEUE ; Task as background job
  Q
 CPTS ; Loop through File 71 to get procedure pointers for the CPTs we
  ; are interested in.
- N WVPROC S WVIEN=0 K WVARRAY
+ N WVPROC,WVCPTS S WVIEN=0 K WVARRAY
+ D GETCPTS(.WVCPTS)
  F  S WVIEN=$O(^RAMIS(71,WVIEN)) Q:'WVIEN  D
  .S WVCPT=$$GET1^DIQ(71,WVIEN,9,"I") ;CPT code
  .Q:WVCPT=""
  .S WVPROC=0
  .S WVPROC=$O(^WV(790.2,"AC",WVCPT,WVPROC))
+ .I 'WVPROC D
+ ..S WVPROC=+$G(WVCPTS("CPT",WVCPT)) I WVPROC>0 Q
+ ..S WVPROC=+$G(WVCPTS("RAD",WVIEN))
  .Q:'WVPROC
  .Q:$P($G(^WV(790.2,+WVPROC,0)),U,5)'="R"
  .S WVARRAY(WVIEN)=""
- .Q
  Q
+ ;
+GETCPTS(WVCPTS) ;
+ N CODE,CODES,ERROR,RAD,TERMIEN,WVPROC,WVTERM
+ S TERMIEN=0 F  S TERMIEN=$O(^WV(790.2,"RT",TERMIEN)) Q:TERMIEN'>0  D
+ .K CODES
+ .D GETTRMCD^PXRMPRAD(TERMIEN,.CODES,.WVTERM,.ERROR)
+ .S WVPROC=$O(^WV(790.2,"RT",TERMIEN,""))
+ .S CODE="" F  S CODE=$O(CODES(CODE)) Q:CODE=""  D
+ ..S WVCPTS("CPT",CODE)=WVPROC
+ .S RAD="" F  S RAD=$O(WVTERM("E","RAMIS(71,",RAD)) Q:RAD=""  D
+ ..S WVCPTS("RAD",RAD)=WVPROC
+ Q
+ ;
 GET ; get mammograms and ultrasounds from RAD/NM database
  ;---> WVMCNT = total new procedures added.
  ;---> WVNEWP = total new patients added.
+ N WVRPTSTA
  S (WVMCNT,WVNEWP)=0
  Q:'$D(WVARRAY)  ;no mammogram or ultrasound procedures in File 71
  S WVENDT=WVENDT\1,WVENDT=9999999-WVENDT ;inverse end date
@@ -122,13 +139,15 @@ GET ; get mammograms and ultrasounds from RAD/NM database
  ...Q:'$D(WVARRAY(WVPROC))  ;not a WH-related procedure
  ...S WVRPT=$P(WVNODE,U,17) ;report pointer
  ...Q:'WVRPT  ;no pointer to File 74 (no report)
- ...Q:$$GET1^DIQ(74,WVRPT,5,"I")'="V"  ;report status, must be VERIFIED
+ ...S WVRPTSTA=$$GET1^DIQ(74,WVRPT,5,"I")
+ ...I WVRPTSTA'="V"&(WVRPTSTA'="EE") Q  ;report status, must be VERIFIED or ELECTRIONALLY ENTER
  ...D CREATEH^WVRALINK(WVDFN,WVDTI,WVCNI,WVSTATUS)
  ...Q
  ..Q
  .Q
  Q
 MAIL ; send mail message to user with counts of procedures & patients added
+ N WVMSG,XMSUB,XMTEXT,XMY
  S XMDUZ=.5 ;message sender
  S XMY(DUZ)="" ;person who ran option
  S XMSUB="Export of RAD/NM procedures to WH is done"

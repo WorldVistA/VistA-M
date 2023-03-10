@@ -1,5 +1,5 @@
 IBCEU4 ;ALB/TMP - EDI UTILITIES ;02-OCT-96
- ;;2.0;INTEGRATED BILLING;**51,137,210,155,290,403,461**;21-MAR-94;Build 58
+ ;;2.0;INTEGRATED BILLING;**51,137,210,155,290,403,461,665**;21-MAR-94;Build 28
  ;;Per VHA Directive 2004-038, this routine should not be modified.
  ;
 TESTFLD ;  Entrypoint to call to test the output the formatter will
@@ -65,9 +65,12 @@ MCRSPEC(IBIFN,MCR,IBPIEN) ; Returns specialty code for a provider on bill
  Q IBZ
  ;
 ECODE(IBP,CD) ; Function returns 1 if procedure ien IBP is an E-code (in ICD-9 only)
+ ; Added some code to handle ICD-10.  While they no longer start with E, they are still (E)xternal Cause of Injury codes
  ; CD = returned = the external code, if passed by reference
  N Q,Z,IBZ S IBZ=0
- S Z=$$ICD9^IBACSV(+IBP),CD=$P(Z,U,1) I $E(Z)="E",$P(Z,U,19)'=30 S IBZ=1
+ S Z=$$ICD9^IBACSV(+IBP),CD=$P(Z,U,1)
+ I $E(Z)="E",$P(Z,U,19)'=30 S IBZ=1
+ I "VWXY"[$E(Z),$P(Z,U,19)=30 S IBZ=1   ;WCJ;IB*2.0*665
  Q IBZ
  ;
 BOX82NM(IBIFN,IBZSAVE) ; Returns the data to be printed in form locators 82

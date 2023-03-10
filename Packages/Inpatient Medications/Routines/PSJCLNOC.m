@@ -1,5 +1,5 @@
 PSJCLNOC ;BIR/LE - Clinic Order Check Utilities ;26 FEB 12 / 12:42 PM
- ;;5.0;INPATIENT MEDICATIONS ;**260,257,299,318**;16 DEC 97;Build 4
+ ;;5.0;INPATIENT MEDICATIONS ;**260,257,299,318,420**;16 DEC 97;Build 2
  ;Reference to ^PS(55 is supported by DBIA 2191
  ;
 CLINICS(PSJDFN) ;
@@ -149,7 +149,7 @@ DISP2 ;
  S STATUS=$P(DATA,"^",1),STARTDT=$P(DATA,"^",2),STOPDT=$P(DATA,"^",3),SCHEDULE=$P(DATA,"^",4),DOSAGE=$P(DATA,"^",5)
  S STARTDTF=$P(DATA,"^",8),STOPDTF=$P(DATA,"^",9),ORDDATE=$P(DATA,"^",10)
  I ($Y+6)>IOSL D PAUSE^PSJMISC(1,0) W @IOF
- W !,$J("Clinic Order: ",23)_DRGNAME_" ("_STATUS_")"
+ W !,$J("Clinic Order: ",23)_$$CLNORDDN(.PSJP)_" ("_STATUS_")"
  I $D(PSJCGET(ORDID,"ADDITIVE"))!($D(PSJCGET(ORDID,"SOLUTION"))) D IVDISP G EXIT
  W !,$J("Schedule: ",23),SCHEDULE
  W !,$J("Dosage: ",23),DOSAGE
@@ -199,3 +199,16 @@ IVDISP ;
  W !
  I ($Y+6)>IOSL D PAUSE^PSJMISC(1,0) W @IOF
  Q
+ ;
+CLNORDDN(ORDINFO) ; Returns the Drug Name for a Clinic Order
+ ;(Returns the drug name passed in with Array or Replace it with Orderable Item name if pending order does not have a dispense drug associated)
+ ; Input: ORDERINFO - Array Containing Order Info. See example below:
+ ;                      ORDINFO(2)="WARFARIN 7.5MG TAB U/D"
+ ;                      ORDINFO(4)="C4;1850685P;PROFILE;3"
+ N CLNORDDN,ORDIEN,OIIEN
+ S CLNORDDN=$P($G(ORDINFO(2)),"^")
+ I $D(ORDINFO(4)),$P(ORDINFO(4),";",2)["P" D
+ . S ORDIEN=+$P(ORDINFO(4),";",2) I $O(^PS(53.1,ORDIEN,1,0)) Q
+ . S OIIEN=$$GET1^DIQ(53.1,ORDIEN,108,"I")
+ . S CLNORDDN=$$GET1^DIQ(50.7,OIIEN,.01)_" "_$$GET1^DIQ(50.7,OIIEN,.02)
+ Q CLNORDDN

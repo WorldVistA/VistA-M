@@ -1,5 +1,5 @@
-XQALSUR2 ;FO-OAK.SEA/JLI-Continuation of alert surrogate processing ;May 18, 2020@16:32
- ;;8.0;KERNEL;**366,513,602,690,730**;Jul 10, 1995;Build 1
+XQALSUR2 ;FO-OAK.SEA/JLI-Continuation of alert surrogate processing ; May 12, 2021@14:28
+ ;;8.0;KERNEL;**366,513,602,690,730,754**;Jul 10, 1995;Build 1
  ;Per VHA VA Directive 6402, this routine should not be modified
  Q
  ; added to handle adjustment for manual or Fileman editing of surrogate on top zero node
@@ -9,7 +9,8 @@ CHEKSUBS(XQAUSER) ;
  S XQA0=$G(^XTV(8992,XQAUSER,0)) I $P(XQA0,U,2)>0 D
  . N XQAFDA,XQAIEN,XQADA
  . S XQASTR1=$P(XQA0,U,3) S:XQASTR1'>0 XQASTR1=XQANOW,XQAFDA(8992,XQAUSER_",",.03)=XQASTR1 D
- . . S XQADA=0 F  S XQADA=$O(^XTV(8992,XQAUSER,2,"B",XQASTR1,XQADA)) Q:XQADA'>0  Q:$P(^XTV(8992,XQAUSER,2,XQADA,0),U,2)=$P(XQA0,U,2)
+ . . S XQADA=0 F  S XQADA=$O(^XTV(8992,XQAUSER,2,"B",XQASTR1,XQADA)) Q:XQADA'>0  D  Q:$P($G(^XTV(8992,XQAUSER,2,XQADA,0)),U,2)=$P(XQA0,U,2)  ; p754
+ . . . K:'$D(^XTV(8992,XQAUSER,2,XQADA,0)) ^XTV(8992,XQAUSER,2,"B",XQASTR1,XQADA) ;p754 somebody removed surr by gbl kill, cleanup
  . . S XQAIEN=$S(XQADA>0:XQADA,1:"+1")_","_XQAUSER_"," S XQAFDA(8992.02,XQAIEN,.01)=XQASTR1
  . . S XQAFDA(8992.02,XQAIEN,.02)=$P(XQA0,U,2) S:$P(XQA0,U,4)>0 XQAFDA(8992.02,XQAIEN,.03)=$P(XQA0,U,4)
  . . D:XQADA'>0 UPDATE^DIE("","XQAFDA")
@@ -49,9 +50,9 @@ DISPSUR(XQAUSER,XQASLIST)   ; Prints and returns current list of surrogate perio
  N XQAI
  D SUROLIST^XQALSUR1(XQAUSER,.XQASLIST)
  I $G(XQASLIST)<1 W !!,"  No current surrogates",! Q
- W !!,"Current Surrogate(s):",?35,"START DATE",?60,"END DATE"
+ W !!,"Current Surrogate(s):",?33,"START DATE",?58,"END DATE" ; p754 shortened
  F XQAI=0:0 S XQAI=$O(XQASLIST(XQAI)) Q:XQAI'>0  D 
- . W !,XQAI,"  ",$P(XQASLIST(XQAI),U,2),?35,$$FMTE^XLFDT($P(XQASLIST(XQAI),U,3)),?60,$$FMTE^XLFDT($P(XQASLIST(XQAI),U,4))
+ . W !,XQAI,"  ",$P(XQASLIST(XQAI),U,2),?33,$$FMTE^XLFDT($P(XQASLIST(XQAI),U,3)),?58,$$FMTE^XLFDT($P(XQASLIST(XQAI),U,4))
  W !
  Q
  ;

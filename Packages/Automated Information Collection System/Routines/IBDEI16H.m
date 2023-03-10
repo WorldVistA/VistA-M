@@ -1,130 +1,114 @@
-IBDEI16H ; ; 04-FEB-2020
- ;;3.0;IB ENCOUNTER FORM IMP/EXP;;FEB 04, 2020
+IBDEI16H ; ; 01-FEB-2022
+ ;;3.0;IB ENCOUNTER FORM IMP/EXP;;FEB 01, 2022
  Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,999) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
- ;;^UTILITY(U,$J,358.3,18932,1,4,0)
- ;;=4^F90.2
- ;;^UTILITY(U,$J,358.3,18932,2)
- ;;=^5003694
- ;;^UTILITY(U,$J,358.3,18933,0)
- ;;=F90.1^^91^972^2
- ;;^UTILITY(U,$J,358.3,18933,1,0)
+ ;;^UTILITY(U,$J,358.3,19117,1,4,0)
+ ;;=4^I63.9
+ ;;^UTILITY(U,$J,358.3,19117,2)
+ ;;=^5007355
+ ;;^UTILITY(U,$J,358.3,19118,0)
+ ;;=I63.50^^64^850^7
+ ;;^UTILITY(U,$J,358.3,19118,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,18933,1,3,0)
- ;;=3^ADHD,Hyperactive/Impulsive Presentation
- ;;^UTILITY(U,$J,358.3,18933,1,4,0)
- ;;=4^F90.1
- ;;^UTILITY(U,$J,358.3,18933,2)
- ;;=^5003693
- ;;^UTILITY(U,$J,358.3,18934,0)
- ;;=F90.0^^91^972^4
- ;;^UTILITY(U,$J,358.3,18934,1,0)
+ ;;^UTILITY(U,$J,358.3,19118,1,3,0)
+ ;;=3^Cerebral Infarction d/t Occls/Stenosis,Unspec Cerebral Artery
+ ;;^UTILITY(U,$J,358.3,19118,1,4,0)
+ ;;=4^I63.50
+ ;;^UTILITY(U,$J,358.3,19118,2)
+ ;;=^5007343
+ ;;^UTILITY(U,$J,358.3,19119,0)
+ ;;=I63.549^^64^850^8
+ ;;^UTILITY(U,$J,358.3,19119,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,18934,1,3,0)
- ;;=3^ADHD,Predominantly Inattentive Presentation
- ;;^UTILITY(U,$J,358.3,18934,1,4,0)
- ;;=4^F90.0
- ;;^UTILITY(U,$J,358.3,18934,2)
- ;;=^5003692
- ;;^UTILITY(U,$J,358.3,18935,0)
- ;;=F80.81^^91^972^8
- ;;^UTILITY(U,$J,358.3,18935,1,0)
+ ;;^UTILITY(U,$J,358.3,19119,1,3,0)
+ ;;=3^Cerebral Infarction d/t Occls/Stenosis, Unspec Cerebellar Artery
+ ;;^UTILITY(U,$J,358.3,19119,1,4,0)
+ ;;=4^I63.549
+ ;;^UTILITY(U,$J,358.3,19119,2)
+ ;;=^5133571
+ ;;^UTILITY(U,$J,358.3,19120,0)
+ ;;=I63.512^^64^850^4
+ ;;^UTILITY(U,$J,358.3,19120,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,18935,1,3,0)
- ;;=3^Child-Onset Fluency D/O (Stuttering)
- ;;^UTILITY(U,$J,358.3,18935,1,4,0)
- ;;=4^F80.81
- ;;^UTILITY(U,$J,358.3,18935,2)
- ;;=^5003676
- ;;^UTILITY(U,$J,358.3,18936,0)
- ;;=F70.^^91^972^12
- ;;^UTILITY(U,$J,358.3,18936,1,0)
+ ;;^UTILITY(U,$J,358.3,19120,1,3,0)
+ ;;=3^Cerebral Infarction d/t Left Middle Cerebral Artery Occls/Stenosis
+ ;;^UTILITY(U,$J,358.3,19120,1,4,0)
+ ;;=4^I63.512
+ ;;^UTILITY(U,$J,358.3,19120,2)
+ ;;=^5007345
+ ;;^UTILITY(U,$J,358.3,19121,0)
+ ;;=I63.522^^64^850^2
+ ;;^UTILITY(U,$J,358.3,19121,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,18936,1,3,0)
- ;;=3^Intellectual Disability,Mild
- ;;^UTILITY(U,$J,358.3,18936,1,4,0)
- ;;=4^F70.
- ;;^UTILITY(U,$J,358.3,18936,2)
- ;;=^5003668
- ;;^UTILITY(U,$J,358.3,18937,0)
- ;;=F71.^^91^972^13
- ;;^UTILITY(U,$J,358.3,18937,1,0)
+ ;;^UTILITY(U,$J,358.3,19121,1,3,0)
+ ;;=3^Cerebral Infarction d/t Left Anterior Cerebral Artery Occls/Stenosis
+ ;;^UTILITY(U,$J,358.3,19121,1,4,0)
+ ;;=4^I63.522
+ ;;^UTILITY(U,$J,358.3,19121,2)
+ ;;=^5007347
+ ;;^UTILITY(U,$J,358.3,19122,0)
+ ;;=I63.532^^64^850^5
+ ;;^UTILITY(U,$J,358.3,19122,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,18937,1,3,0)
- ;;=3^Intellectual Disability,Moderate
- ;;^UTILITY(U,$J,358.3,18937,1,4,0)
- ;;=4^F71.
- ;;^UTILITY(U,$J,358.3,18937,2)
- ;;=^5003669
- ;;^UTILITY(U,$J,358.3,18938,0)
- ;;=F73.^^91^972^14
- ;;^UTILITY(U,$J,358.3,18938,1,0)
+ ;;^UTILITY(U,$J,358.3,19122,1,3,0)
+ ;;=3^Cerebral Infarction d/t Left Posterior Cerebral Artery Occls/Stenosis
+ ;;^UTILITY(U,$J,358.3,19122,1,4,0)
+ ;;=4^I63.532
+ ;;^UTILITY(U,$J,358.3,19122,2)
+ ;;=^5007349
+ ;;^UTILITY(U,$J,358.3,19123,0)
+ ;;=I63.542^^64^850^3
+ ;;^UTILITY(U,$J,358.3,19123,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,18938,1,3,0)
- ;;=3^Intellectual Disability,Profound
- ;;^UTILITY(U,$J,358.3,18938,1,4,0)
- ;;=4^F73.
- ;;^UTILITY(U,$J,358.3,18938,2)
- ;;=^5003671
- ;;^UTILITY(U,$J,358.3,18939,0)
- ;;=F72.^^91^972^15
- ;;^UTILITY(U,$J,358.3,18939,1,0)
+ ;;^UTILITY(U,$J,358.3,19123,1,3,0)
+ ;;=3^Cerebral Infarction d/t Left Cerebellar Artery Occls/Stenosis
+ ;;^UTILITY(U,$J,358.3,19123,1,4,0)
+ ;;=4^I63.542
+ ;;^UTILITY(U,$J,358.3,19123,2)
+ ;;=^5007351
+ ;;^UTILITY(U,$J,358.3,19124,0)
+ ;;=I63.511^^64^850^11
+ ;;^UTILITY(U,$J,358.3,19124,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,18939,1,3,0)
- ;;=3^Intellectual Disability,Severe
- ;;^UTILITY(U,$J,358.3,18939,1,4,0)
- ;;=4^F72.
- ;;^UTILITY(U,$J,358.3,18939,2)
- ;;=^5003670
- ;;^UTILITY(U,$J,358.3,18940,0)
- ;;=F90.8^^91^972^3
- ;;^UTILITY(U,$J,358.3,18940,1,0)
+ ;;^UTILITY(U,$J,358.3,19124,1,3,0)
+ ;;=3^Cerebral Infarction d/t Right Middle Cerebral Artery Occls/Stenosis
+ ;;^UTILITY(U,$J,358.3,19124,1,4,0)
+ ;;=4^I63.511
+ ;;^UTILITY(U,$J,358.3,19124,2)
+ ;;=^5007344
+ ;;^UTILITY(U,$J,358.3,19125,0)
+ ;;=I63.521^^64^850^9
+ ;;^UTILITY(U,$J,358.3,19125,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,18940,1,3,0)
- ;;=3^ADHD,Other Specified
- ;;^UTILITY(U,$J,358.3,18940,1,4,0)
- ;;=4^F90.8
- ;;^UTILITY(U,$J,358.3,18940,2)
- ;;=^5003695
- ;;^UTILITY(U,$J,358.3,18941,0)
- ;;=F90.9^^91^972^5
- ;;^UTILITY(U,$J,358.3,18941,1,0)
+ ;;^UTILITY(U,$J,358.3,19125,1,3,0)
+ ;;=3^Cerebral Infarction d/t Right Anterior Cerebral Artery Occls/Stenosis
+ ;;^UTILITY(U,$J,358.3,19125,1,4,0)
+ ;;=4^I63.521
+ ;;^UTILITY(U,$J,358.3,19125,2)
+ ;;=^5007346
+ ;;^UTILITY(U,$J,358.3,19126,0)
+ ;;=I63.531^^64^850^12
+ ;;^UTILITY(U,$J,358.3,19126,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,18941,1,3,0)
- ;;=3^ADHD,Unspec
- ;;^UTILITY(U,$J,358.3,18941,1,4,0)
- ;;=4^F90.9
- ;;^UTILITY(U,$J,358.3,18941,2)
- ;;=^5003696
- ;;^UTILITY(U,$J,358.3,18942,0)
- ;;=F79.^^91^972^16
- ;;^UTILITY(U,$J,358.3,18942,1,0)
+ ;;^UTILITY(U,$J,358.3,19126,1,3,0)
+ ;;=3^Cerebral Infarction d/t Right Posterior Cerebral Artery Occls/Stenosis
+ ;;^UTILITY(U,$J,358.3,19126,1,4,0)
+ ;;=4^I63.531
+ ;;^UTILITY(U,$J,358.3,19126,2)
+ ;;=^5007348
+ ;;^UTILITY(U,$J,358.3,19127,0)
+ ;;=I63.541^^64^850^10
+ ;;^UTILITY(U,$J,358.3,19127,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,18942,1,3,0)
- ;;=3^Intellectual Disability,Unspec
- ;;^UTILITY(U,$J,358.3,18942,1,4,0)
- ;;=4^F79.
- ;;^UTILITY(U,$J,358.3,18942,2)
- ;;=^5003673
- ;;^UTILITY(U,$J,358.3,18943,0)
- ;;=F80.82^^91^972^25
- ;;^UTILITY(U,$J,358.3,18943,1,0)
+ ;;^UTILITY(U,$J,358.3,19127,1,3,0)
+ ;;=3^Cerebral Infarction d/t Right Cerebellar Artery Occls/Stenosis
+ ;;^UTILITY(U,$J,358.3,19127,1,4,0)
+ ;;=4^I63.541
+ ;;^UTILITY(U,$J,358.3,19127,2)
+ ;;=^5007350
+ ;;^UTILITY(U,$J,358.3,19128,0)
+ ;;=G45.9^^64^850^32
+ ;;^UTILITY(U,$J,358.3,19128,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,18943,1,3,0)
- ;;=3^Social Pragmatic Communication D/O
- ;;^UTILITY(U,$J,358.3,18943,1,4,0)
- ;;=4^F80.82
- ;;^UTILITY(U,$J,358.3,18943,2)
- ;;=^5138451
- ;;^UTILITY(U,$J,358.3,18944,0)
- ;;=F15.929^^91^973^7
- ;;^UTILITY(U,$J,358.3,18944,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,18944,1,3,0)
- ;;=3^Caffeine Intoxication
- ;;^UTILITY(U,$J,358.3,18944,1,4,0)
- ;;=4^F15.929
- ;;^UTILITY(U,$J,358.3,18944,2)
- ;;=^5003314
- ;;^UTILITY(U,$J,358.3,18945,0)
- ;;=F15.93^^91^973^9
+ ;;^UTILITY(U,$J,358.3,19128,1,3,0)
+ ;;=3^Transient Cerebral Ischemic Attack,Unspec

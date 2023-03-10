@@ -1,124 +1,128 @@
-IBDEI16R ; ; 04-FEB-2020
- ;;3.0;IB ENCOUNTER FORM IMP/EXP;;FEB 04, 2020
+IBDEI16R ; ; 01-FEB-2022
+ ;;3.0;IB ENCOUNTER FORM IMP/EXP;;FEB 01, 2022
  Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,999) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
- ;;^UTILITY(U,$J,358.3,19051,1,0)
+ ;;^UTILITY(U,$J,358.3,19239,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,19051,1,3,0)
- ;;=3^Cocaine Use DO,Mod/Sev,Uncomp
- ;;^UTILITY(U,$J,358.3,19051,1,4,0)
- ;;=4^F14.20
- ;;^UTILITY(U,$J,358.3,19051,2)
- ;;=^5003253
- ;;^UTILITY(U,$J,358.3,19052,0)
- ;;=F14.23^^91^976^33
- ;;^UTILITY(U,$J,358.3,19052,1,0)
+ ;;^UTILITY(U,$J,358.3,19239,1,3,0)
+ ;;=3^Osteonecrosis d/t Drugs,Unspec Bone
+ ;;^UTILITY(U,$J,358.3,19239,1,4,0)
+ ;;=4^M87.10
+ ;;^UTILITY(U,$J,358.3,19239,2)
+ ;;=^5014700
+ ;;^UTILITY(U,$J,358.3,19240,0)
+ ;;=M87.20^^64^853^58
+ ;;^UTILITY(U,$J,358.3,19240,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,19052,1,3,0)
- ;;=3^Cocaine Withdrawal
- ;;^UTILITY(U,$J,358.3,19052,1,4,0)
- ;;=4^F14.23
- ;;^UTILITY(U,$J,358.3,19052,2)
- ;;=^5003259
- ;;^UTILITY(U,$J,358.3,19053,0)
- ;;=F14.21^^91^976^31
- ;;^UTILITY(U,$J,358.3,19053,1,0)
+ ;;^UTILITY(U,$J,358.3,19240,1,3,0)
+ ;;=3^Osteonecrosis d/t Previous Trauma,Unspec Bone
+ ;;^UTILITY(U,$J,358.3,19240,1,4,0)
+ ;;=4^M87.20
+ ;;^UTILITY(U,$J,358.3,19240,2)
+ ;;=^5014744
+ ;;^UTILITY(U,$J,358.3,19241,0)
+ ;;=M90.50^^64^853^59
+ ;;^UTILITY(U,$J,358.3,19241,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,19053,1,3,0)
- ;;=3^Cocaine Use DO,Mod/Sev,In Remiss
- ;;^UTILITY(U,$J,358.3,19053,1,4,0)
- ;;=4^F14.21
- ;;^UTILITY(U,$J,358.3,19053,2)
- ;;=^5003254
- ;;^UTILITY(U,$J,358.3,19054,0)
- ;;=F15.11^^91^976^63
- ;;^UTILITY(U,$J,358.3,19054,1,0)
+ ;;^UTILITY(U,$J,358.3,19241,1,3,0)
+ ;;=3^Osteonecrosis in Diseases Classified Elsewhere,Unspec Site
+ ;;^UTILITY(U,$J,358.3,19241,1,4,0)
+ ;;=4^M90.50
+ ;;^UTILITY(U,$J,358.3,19241,2)
+ ;;=^5015120
+ ;;^UTILITY(U,$J,358.3,19242,0)
+ ;;=M87.9^^64^853^60
+ ;;^UTILITY(U,$J,358.3,19242,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,19054,1,3,0)
- ;;=3^Oth Stimulant Mild Use D/O,In Remission
- ;;^UTILITY(U,$J,358.3,19054,1,4,0)
- ;;=4^F15.11
- ;;^UTILITY(U,$J,358.3,19054,2)
- ;;=^5151304
- ;;^UTILITY(U,$J,358.3,19055,0)
- ;;=F14.11^^91^976^29
- ;;^UTILITY(U,$J,358.3,19055,1,0)
+ ;;^UTILITY(U,$J,358.3,19242,1,3,0)
+ ;;=3^Osteonecrosis,Unspec
+ ;;^UTILITY(U,$J,358.3,19242,1,4,0)
+ ;;=4^M87.9
+ ;;^UTILITY(U,$J,358.3,19242,2)
+ ;;=^5014873
+ ;;^UTILITY(U,$J,358.3,19243,0)
+ ;;=R06.89^^64^853^10
+ ;;^UTILITY(U,$J,358.3,19243,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,19055,1,3,0)
- ;;=3^Cocaine Use DO,Mild,In Remiss
- ;;^UTILITY(U,$J,358.3,19055,1,4,0)
- ;;=4^F14.11
- ;;^UTILITY(U,$J,358.3,19055,2)
- ;;=^268249
- ;;^UTILITY(U,$J,358.3,19056,0)
- ;;=F15.21^^91^976^34
- ;;^UTILITY(U,$J,358.3,19056,1,0)
+ ;;^UTILITY(U,$J,358.3,19243,1,3,0)
+ ;;=3^Breathing Abnormalities NEC
+ ;;^UTILITY(U,$J,358.3,19243,1,4,0)
+ ;;=4^R06.89
+ ;;^UTILITY(U,$J,358.3,19243,2)
+ ;;=^5019193
+ ;;^UTILITY(U,$J,358.3,19244,0)
+ ;;=R53.83^^64^853^34
+ ;;^UTILITY(U,$J,358.3,19244,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,19056,1,3,0)
- ;;=3^Oth Stimulant Dependence,Mod/Sev,In Remission
- ;;^UTILITY(U,$J,358.3,19056,1,4,0)
- ;;=4^F15.21
- ;;^UTILITY(U,$J,358.3,19056,2)
- ;;=^5003296
- ;;^UTILITY(U,$J,358.3,19057,0)
- ;;=Z91.120^^91^977^1
- ;;^UTILITY(U,$J,358.3,19057,1,0)
+ ;;^UTILITY(U,$J,358.3,19244,1,3,0)
+ ;;=3^Fatigue NEC
+ ;;^UTILITY(U,$J,358.3,19244,1,4,0)
+ ;;=4^R53.83
+ ;;^UTILITY(U,$J,358.3,19244,2)
+ ;;=^5019520
+ ;;^UTILITY(U,$J,358.3,19245,0)
+ ;;=R06.09^^64^853^28
+ ;;^UTILITY(U,$J,358.3,19245,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,19057,1,3,0)
- ;;=3^Intentional Underdosing d/t Financial Hardship
- ;;^UTILITY(U,$J,358.3,19057,1,4,0)
- ;;=4^Z91.120
- ;;^UTILITY(U,$J,358.3,19057,2)
- ;;=^5063612
- ;;^UTILITY(U,$J,358.3,19058,0)
- ;;=Z91.128^^91^977^2
- ;;^UTILITY(U,$J,358.3,19058,1,0)
+ ;;^UTILITY(U,$J,358.3,19245,1,3,0)
+ ;;=3^Dyspnea NEC
+ ;;^UTILITY(U,$J,358.3,19245,1,4,0)
+ ;;=4^R06.09
+ ;;^UTILITY(U,$J,358.3,19245,2)
+ ;;=^5019182
+ ;;^UTILITY(U,$J,358.3,19246,0)
+ ;;=R53.81^^64^853^51
+ ;;^UTILITY(U,$J,358.3,19246,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,19058,1,3,0)
- ;;=3^Intentional Underdosing,Other Reasons
- ;;^UTILITY(U,$J,358.3,19058,1,4,0)
- ;;=4^Z91.128
- ;;^UTILITY(U,$J,358.3,19058,2)
- ;;=^5063613
- ;;^UTILITY(U,$J,358.3,19059,0)
- ;;=Z91.130^^91^977^15
- ;;^UTILITY(U,$J,358.3,19059,1,0)
+ ;;^UTILITY(U,$J,358.3,19246,1,3,0)
+ ;;=3^Malaise NEC
+ ;;^UTILITY(U,$J,358.3,19246,1,4,0)
+ ;;=4^R53.81
+ ;;^UTILITY(U,$J,358.3,19246,2)
+ ;;=^5019518
+ ;;^UTILITY(U,$J,358.3,19247,0)
+ ;;=M87.30^^64^853^69
+ ;;^UTILITY(U,$J,358.3,19247,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,19059,1,3,0)
- ;;=3^Unintented Underdosing d/t Age-Related Disability
- ;;^UTILITY(U,$J,358.3,19059,1,4,0)
- ;;=4^Z91.130
- ;;^UTILITY(U,$J,358.3,19059,2)
- ;;=^5063614
- ;;^UTILITY(U,$J,358.3,19060,0)
- ;;=Z91.138^^91^977^16
- ;;^UTILITY(U,$J,358.3,19060,1,0)
+ ;;^UTILITY(U,$J,358.3,19247,1,3,0)
+ ;;=3^Secondary Osteonecrosis,Unspec Bone
+ ;;^UTILITY(U,$J,358.3,19247,1,4,0)
+ ;;=4^M87.30
+ ;;^UTILITY(U,$J,358.3,19247,2)
+ ;;=^5014787
+ ;;^UTILITY(U,$J,358.3,19248,0)
+ ;;=M85.80^^64^853^8
+ ;;^UTILITY(U,$J,358.3,19248,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,19060,1,3,0)
- ;;=3^Unintented Underdosing,Other Reasons
- ;;^UTILITY(U,$J,358.3,19060,1,4,0)
- ;;=4^Z91.138
- ;;^UTILITY(U,$J,358.3,19060,2)
- ;;=^5063615
- ;;^UTILITY(U,$J,358.3,19061,0)
- ;;=T38.3X6A^^91^977^3
- ;;^UTILITY(U,$J,358.3,19061,1,0)
+ ;;^UTILITY(U,$J,358.3,19248,1,3,0)
+ ;;=3^Bone Density/Structure Disorder,Unspec Site
+ ;;^UTILITY(U,$J,358.3,19248,1,4,0)
+ ;;=4^M85.80
+ ;;^UTILITY(U,$J,358.3,19248,2)
+ ;;=^5014473
+ ;;^UTILITY(U,$J,358.3,19249,0)
+ ;;=K52.89^^64^853^55
+ ;;^UTILITY(U,$J,358.3,19249,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,19061,1,3,0)
- ;;=3^Underdosing Insulin/Oral Hypoglycemic Drugs,Init Encntr
- ;;^UTILITY(U,$J,358.3,19061,1,4,0)
- ;;=4^T38.3X6A
- ;;^UTILITY(U,$J,358.3,19061,2)
- ;;=^5049649
- ;;^UTILITY(U,$J,358.3,19062,0)
- ;;=T38.3X6S^^91^977^4
- ;;^UTILITY(U,$J,358.3,19062,1,0)
+ ;;^UTILITY(U,$J,358.3,19249,1,3,0)
+ ;;=3^Noninfective Gastroenteritis/Colitis
+ ;;^UTILITY(U,$J,358.3,19249,1,4,0)
+ ;;=4^K52.89
+ ;;^UTILITY(U,$J,358.3,19249,2)
+ ;;=^5008703
+ ;;^UTILITY(U,$J,358.3,19250,0)
+ ;;=R30.9^^64^853^62
+ ;;^UTILITY(U,$J,358.3,19250,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,19062,1,3,0)
- ;;=3^Underdosing Insulin/Oral Hypoglycemic Drugs,Sequela
- ;;^UTILITY(U,$J,358.3,19062,1,4,0)
- ;;=4^T38.3X6S
- ;;^UTILITY(U,$J,358.3,19062,2)
- ;;=^5049651
- ;;^UTILITY(U,$J,358.3,19063,0)
- ;;=T38.3X6D^^91^977^5
+ ;;^UTILITY(U,$J,358.3,19250,1,3,0)
+ ;;=3^Painful Micturition,Unspec
+ ;;^UTILITY(U,$J,358.3,19250,1,4,0)
+ ;;=4^R30.9
+ ;;^UTILITY(U,$J,358.3,19250,2)
+ ;;=^5019324
+ ;;^UTILITY(U,$J,358.3,19251,0)
+ ;;=R00.2^^64^853^63
+ ;;^UTILITY(U,$J,358.3,19251,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,19251,1,3,0)
+ ;;=3^Palpitations

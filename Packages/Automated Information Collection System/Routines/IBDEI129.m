@@ -1,124 +1,128 @@
-IBDEI129 ; ; 04-FEB-2020
- ;;3.0;IB ENCOUNTER FORM IMP/EXP;;FEB 04, 2020
+IBDEI129 ; ; 01-FEB-2022
+ ;;3.0;IB ENCOUNTER FORM IMP/EXP;;FEB 01, 2022
  Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,999) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
- ;;^UTILITY(U,$J,358.3,17049,1,3,0)
- ;;=3^Pathological Fx,Oth Site,Subs Encntr
- ;;^UTILITY(U,$J,358.3,17049,1,4,0)
- ;;=4^M84.48XD
- ;;^UTILITY(U,$J,358.3,17049,2)
- ;;=^5014017
- ;;^UTILITY(U,$J,358.3,17050,0)
- ;;=M87.011^^88^885^48
- ;;^UTILITY(U,$J,358.3,17050,1,0)
+ ;;^UTILITY(U,$J,358.3,17234,1,4,0)
+ ;;=4^S14.109S
+ ;;^UTILITY(U,$J,358.3,17234,2)
+ ;;=^5134243
+ ;;^UTILITY(U,$J,358.3,17235,0)
+ ;;=S34.109S^^61^782^41
+ ;;^UTILITY(U,$J,358.3,17235,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,17050,1,3,0)
- ;;=3^Idiopathic Aseptic Necrosis of Right Shoulder
- ;;^UTILITY(U,$J,358.3,17050,1,4,0)
- ;;=4^M87.011
- ;;^UTILITY(U,$J,358.3,17050,2)
- ;;=^5014658
- ;;^UTILITY(U,$J,358.3,17051,0)
- ;;=M87.012^^88^885^45
- ;;^UTILITY(U,$J,358.3,17051,1,0)
+ ;;^UTILITY(U,$J,358.3,17235,1,3,0)
+ ;;=3^Sequela of Unspec Injury to Lumbar Spinal Cord
+ ;;^UTILITY(U,$J,358.3,17235,1,4,0)
+ ;;=4^S34.109S
+ ;;^UTILITY(U,$J,358.3,17235,2)
+ ;;=^5134570
+ ;;^UTILITY(U,$J,358.3,17236,0)
+ ;;=S24.109S^^61^782^42
+ ;;^UTILITY(U,$J,358.3,17236,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,17051,1,3,0)
- ;;=3^Idiopathic Aseptic Necrosis of Left Shoulder
- ;;^UTILITY(U,$J,358.3,17051,1,4,0)
- ;;=4^M87.012
- ;;^UTILITY(U,$J,358.3,17051,2)
- ;;=^5014659
- ;;^UTILITY(U,$J,358.3,17052,0)
- ;;=M87.050^^88^885^46
- ;;^UTILITY(U,$J,358.3,17052,1,0)
+ ;;^UTILITY(U,$J,358.3,17236,1,3,0)
+ ;;=3^Sequela of Unspec Injury to Thoracic Spinal Cord
+ ;;^UTILITY(U,$J,358.3,17236,1,4,0)
+ ;;=4^S24.109S
+ ;;^UTILITY(U,$J,358.3,17236,2)
+ ;;=^5134384
+ ;;^UTILITY(U,$J,358.3,17237,0)
+ ;;=I69.393^^61^782^5
+ ;;^UTILITY(U,$J,358.3,17237,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,17052,1,3,0)
- ;;=3^Idiopathic Aseptic Necrosis of Pelvis
- ;;^UTILITY(U,$J,358.3,17052,1,4,0)
- ;;=4^M87.050
- ;;^UTILITY(U,$J,358.3,17052,2)
- ;;=^5014679
- ;;^UTILITY(U,$J,358.3,17053,0)
- ;;=M87.051^^88^885^47
- ;;^UTILITY(U,$J,358.3,17053,1,0)
+ ;;^UTILITY(U,$J,358.3,17237,1,3,0)
+ ;;=3^Ataxia following Cerebral Infarction
+ ;;^UTILITY(U,$J,358.3,17237,1,4,0)
+ ;;=4^I69.393
+ ;;^UTILITY(U,$J,358.3,17237,2)
+ ;;=^5007518
+ ;;^UTILITY(U,$J,358.3,17238,0)
+ ;;=G89.0^^61^783^1
+ ;;^UTILITY(U,$J,358.3,17238,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,17053,1,3,0)
- ;;=3^Idiopathic Aseptic Necrosis of Right Femur
- ;;^UTILITY(U,$J,358.3,17053,1,4,0)
- ;;=4^M87.051
- ;;^UTILITY(U,$J,358.3,17053,2)
- ;;=^5014680
- ;;^UTILITY(U,$J,358.3,17054,0)
- ;;=M87.052^^88^885^44
- ;;^UTILITY(U,$J,358.3,17054,1,0)
+ ;;^UTILITY(U,$J,358.3,17238,1,3,0)
+ ;;=3^Central Pain Syndrome
+ ;;^UTILITY(U,$J,358.3,17238,1,4,0)
+ ;;=4^G89.0
+ ;;^UTILITY(U,$J,358.3,17238,2)
+ ;;=^334189
+ ;;^UTILITY(U,$J,358.3,17239,0)
+ ;;=G89.11^^61^783^11
+ ;;^UTILITY(U,$J,358.3,17239,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,17054,1,3,0)
- ;;=3^Idiopathic Aseptic Necrosis of Left Femur
- ;;^UTILITY(U,$J,358.3,17054,1,4,0)
- ;;=4^M87.052
- ;;^UTILITY(U,$J,358.3,17054,2)
- ;;=^5014681
- ;;^UTILITY(U,$J,358.3,17055,0)
- ;;=M87.111^^88^885^78
- ;;^UTILITY(U,$J,358.3,17055,1,0)
+ ;;^UTILITY(U,$J,358.3,17239,1,3,0)
+ ;;=3^Pain d/t Trauma,Acute
+ ;;^UTILITY(U,$J,358.3,17239,1,4,0)
+ ;;=4^G89.11
+ ;;^UTILITY(U,$J,358.3,17239,2)
+ ;;=^5004152
+ ;;^UTILITY(U,$J,358.3,17240,0)
+ ;;=G89.12^^61^783^15
+ ;;^UTILITY(U,$J,358.3,17240,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,17055,1,3,0)
- ;;=3^Osteonecrosis d/t Drugs,Right Shoulder
- ;;^UTILITY(U,$J,358.3,17055,1,4,0)
- ;;=4^M87.111
- ;;^UTILITY(U,$J,358.3,17055,2)
- ;;=^5014701
- ;;^UTILITY(U,$J,358.3,17056,0)
- ;;=M87.112^^88^885^75
- ;;^UTILITY(U,$J,358.3,17056,1,0)
+ ;;^UTILITY(U,$J,358.3,17240,1,3,0)
+ ;;=3^Post-Thoracotomy Pain,Acute
+ ;;^UTILITY(U,$J,358.3,17240,1,4,0)
+ ;;=4^G89.12
+ ;;^UTILITY(U,$J,358.3,17240,2)
+ ;;=^5004153
+ ;;^UTILITY(U,$J,358.3,17241,0)
+ ;;=G89.18^^61^783^17
+ ;;^UTILITY(U,$J,358.3,17241,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,17056,1,3,0)
- ;;=3^Osteonecrosis d/t Drugs,Left Shoulder
- ;;^UTILITY(U,$J,358.3,17056,1,4,0)
- ;;=4^M87.112
- ;;^UTILITY(U,$J,358.3,17056,2)
- ;;=^5014702
- ;;^UTILITY(U,$J,358.3,17057,0)
- ;;=M87.150^^88^885^76
- ;;^UTILITY(U,$J,358.3,17057,1,0)
+ ;;^UTILITY(U,$J,358.3,17241,1,3,0)
+ ;;=3^Postprocedural Pain,Oth Acute
+ ;;^UTILITY(U,$J,358.3,17241,1,4,0)
+ ;;=4^G89.18
+ ;;^UTILITY(U,$J,358.3,17241,2)
+ ;;=^5004154
+ ;;^UTILITY(U,$J,358.3,17242,0)
+ ;;=R52.^^61^783^13
+ ;;^UTILITY(U,$J,358.3,17242,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,17057,1,3,0)
- ;;=3^Osteonecrosis d/t Drugs,Pelvis
- ;;^UTILITY(U,$J,358.3,17057,1,4,0)
- ;;=4^M87.150
- ;;^UTILITY(U,$J,358.3,17057,2)
- ;;=^5014722
- ;;^UTILITY(U,$J,358.3,17058,0)
- ;;=M87.151^^88^885^77
- ;;^UTILITY(U,$J,358.3,17058,1,0)
+ ;;^UTILITY(U,$J,358.3,17242,1,3,0)
+ ;;=3^Pain,Unspec
+ ;;^UTILITY(U,$J,358.3,17242,1,4,0)
+ ;;=4^R52.
+ ;;^UTILITY(U,$J,358.3,17242,2)
+ ;;=^5019514
+ ;;^UTILITY(U,$J,358.3,17243,0)
+ ;;=G89.21^^61^783^12
+ ;;^UTILITY(U,$J,358.3,17243,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,17058,1,3,0)
- ;;=3^Osteonecrosis d/t Drugs,Right Femur
- ;;^UTILITY(U,$J,358.3,17058,1,4,0)
- ;;=4^M87.151
- ;;^UTILITY(U,$J,358.3,17058,2)
- ;;=^5014723
- ;;^UTILITY(U,$J,358.3,17059,0)
- ;;=M87.152^^88^885^74
- ;;^UTILITY(U,$J,358.3,17059,1,0)
+ ;;^UTILITY(U,$J,358.3,17243,1,3,0)
+ ;;=3^Pain d/t Trauma,Chronic
+ ;;^UTILITY(U,$J,358.3,17243,1,4,0)
+ ;;=4^G89.21
+ ;;^UTILITY(U,$J,358.3,17243,2)
+ ;;=^5004155
+ ;;^UTILITY(U,$J,358.3,17244,0)
+ ;;=G89.22^^61^783^16
+ ;;^UTILITY(U,$J,358.3,17244,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,17059,1,3,0)
- ;;=3^Osteonecrosis d/t Drugs,Left Femur
- ;;^UTILITY(U,$J,358.3,17059,1,4,0)
- ;;=4^M87.152
- ;;^UTILITY(U,$J,358.3,17059,2)
- ;;=^5014724
- ;;^UTILITY(U,$J,358.3,17060,0)
- ;;=M87.180^^88^885^73
- ;;^UTILITY(U,$J,358.3,17060,1,0)
+ ;;^UTILITY(U,$J,358.3,17244,1,3,0)
+ ;;=3^Post-Thoracotomy Pain,Chronic
+ ;;^UTILITY(U,$J,358.3,17244,1,4,0)
+ ;;=4^G89.22
+ ;;^UTILITY(U,$J,358.3,17244,2)
+ ;;=^5004156
+ ;;^UTILITY(U,$J,358.3,17245,0)
+ ;;=G89.28^^61^783^18
+ ;;^UTILITY(U,$J,358.3,17245,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,17060,1,3,0)
- ;;=3^Osteonecrosis d/t Drugs,Jaw
- ;;^UTILITY(U,$J,358.3,17060,1,4,0)
- ;;=4^M87.180
- ;;^UTILITY(U,$J,358.3,17060,2)
- ;;=^5014741
- ;;^UTILITY(U,$J,358.3,17061,0)
- ;;=M87.311^^88^885^174
- ;;^UTILITY(U,$J,358.3,17061,1,0)
+ ;;^UTILITY(U,$J,358.3,17245,1,3,0)
+ ;;=3^Postprocedural Pain,Oth Chronic
+ ;;^UTILITY(U,$J,358.3,17245,1,4,0)
+ ;;=4^G89.28
+ ;;^UTILITY(U,$J,358.3,17245,2)
+ ;;=^5004157
+ ;;^UTILITY(U,$J,358.3,17246,0)
+ ;;=G89.3^^61^783^10
+ ;;^UTILITY(U,$J,358.3,17246,1,0)
  ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,17246,1,3,0)
+ ;;=3^Neoplasm Related Pain,Acute/Chronic
+ ;;^UTILITY(U,$J,358.3,17246,1,4,0)
+ ;;=4^G89.3
+ ;;^UTILITY(U,$J,358.3,17246,2)
+ ;;=^5004159

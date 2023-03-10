@@ -1,5 +1,5 @@
-PXRMLOGX ;SLC/PKR - Clinical Reminders logic cross-reference routines. ;11/04/2011
- ;;2.0;CLINICAL REMINDERS;**4,18**;Feb 04, 2005;Build 152
+PXRMLOGX ;SLC/PKR - Clinical Reminders logic cross-reference routines. ;03/29/2022
+ ;;2.0;CLINICAL REMINDERS;**4,18,65**;Feb 04, 2005;Build 438
  ;
  ;==================
 BLDAFL(IEN,KI,NODEP) ;Build a list of findings that can change the
@@ -46,6 +46,35 @@ BLDALL(IEN,KI,NODEP) ;Build all the findings lists.
  Q
  ;
  ;==================
+BLDCONTRALD(IEN,X1,X2) ;Build the CONTRAINDICATED LOGIC data.
+ ;Do not execute as part of a verify fields.
+ I $G(DIUTIL)="VERIFY FIELDS" Q
+ ;Do not execute as part of exchange.
+ I $G(PXRMEXCH) Q
+ I X2="" S ^PXD(811.9,IEN,81)=0 Q
+ ;Get the list of findings.
+ N FLIST,IND,NUM,OK,OPER,STACK,STARTCHK,T1,T2
+ S STARTCHK=$S($D(^PXD(811.9,IEN,25)):100,1:150)
+ S OPER="'U!&",OK=1,NUM=0,FLIST=""
+ D POSTFIX^PXRMSTAC(X2,OPER,.STACK)
+ F IND=1:1:STACK(0) D
+ . S T1=STACK(IND)
+ . I OPER[T1 Q
+ . I (T1="FF")!(T1="FI") D
+ .. S IND=IND+1
+ .. S T2=STACK(IND)
+ .. I NUM>0 S FLIST=FLIST_";"
+ .. S NUM=NUM+1
+ .. I NUM>STARTCHK S OK=$$CHKSLEN(FLIST,";"_IND)
+ .. I OK S FLIST=FLIST_$S(T1="FF":"FF"_T2,1:T2)
+ S OK=$$CHKSLEN(FLIST,NUM_U)
+ I OK S ^PXD(811.9,IEN,81)=NUM_U_FLIST
+ E  D
+ . S ^PXD(811.9,IEN,81)=-1
+ . D ERRMSG("contraindicated")
+ Q
+ ;
+ ;==================
 BLDINFL(IEN,KI,NODEP) ;Build the list of findings that are information only.
  ;This is called by the routines that build the resolution findings
  ;list, the patient cohort findings list, and the age finding list.
@@ -63,14 +92,14 @@ BLDINFL(IEN,KI,NODEP) ;Build the list of findings that are information only.
  .. I IND=$G(KI),NODE=NODEP Q
  .. S SUB=FTYPE_IND
  .. S FIA(SUB)=""
- ;Remove the patient cohort findings.
+ ;Remove the patient cohort logic findings.
  S TEMP=$G(^PXD(811.9,IEN,32))
  S NUM=+$P(TEMP,U,1)
  S FLIST=$P(TEMP,U,2)
  F IND=1:1:NUM D
  . S TEMP=$P(FLIST,";",IND)
  . I $D(FIA(TEMP)) K FIA(TEMP)
- ;Remove the resolution findings.
+ ;Remove the resolution logic findings.
  S TEMP=$G(^PXD(811.9,IEN,36))
  S NUM=+$P(TEMP,U,1)
  S FLIST=$P(TEMP,U,2)
@@ -84,6 +113,21 @@ BLDINFL(IEN,KI,NODEP) ;Build the list of findings that are information only.
  F IND=1:1:NUM D
  . S TEMP=$P(FLIST,";",IND)
  . I $D(FIA(TEMP)) K FIA(TEMP)
+ ;Remove the contraindicated logic findings.
+ S TEMP=$G(^PXD(811.9,IEN,81))
+ S NUM=+$P(TEMP,U,1)
+ S FLIST=$P(TEMP,U,2)
+ F IND=1:1:NUM D
+ . S TEMP=$P(FLIST,";",IND)
+ . I $D(FIA(TEMP)) K FIA(TEMP)
+ ;Remove the resolution logic findings.
+ S TEMP=$G(^PXD(811.9,IEN,91))
+ S NUM=+$P(TEMP,U,1)
+ S FLIST=$P(TEMP,U,2)
+ F IND=1:1:NUM D
+ . S TEMP=$P(FLIST,";",IND)
+ . I $D(FIA(TEMP)) K FIA(TEMP)
+ ;
  ;What is left is the information findings.
  S FLIST="",OK=1
  S (IND,NUM)=0
@@ -136,6 +180,35 @@ BLDPCLS(IEN,KI,NODEP) ;Build the Internal Patient Cohort Logic string for a
  E  D
  . S ^PXD(811.9,IEN,32)=-1
  . D ERRMSG("cohort")
+ Q
+ ;
+ ;==================
+BLDREFLD(IEN,X1,X2) ;Build the REFUSED LOGIC data.
+ ;Do not execute as part of a verify fields.
+ I $G(DIUTIL)="VERIFY FIELDS" Q
+ ;Do not execute as part of exchange.
+ I $G(PXRMEXCH) Q
+ I X2="" S ^PXD(811.9,IEN,91)=0 Q
+ ;Get the list of findings.
+ N FLIST,IND,NUM,OK,OPER,STACK,STARTCHK,T1,T2
+ S STARTCHK=$S($D(^PXD(811.9,IEN,25)):100,1:150)
+ S OPER="'U!&",OK=1,NUM=0,FLIST=""
+ D POSTFIX^PXRMSTAC(X2,OPER,.STACK)
+ F IND=1:1:STACK(0) D
+ . S T1=STACK(IND)
+ . I OPER[T1 Q
+ . I (T1="FF")!(T1="FI") D
+ .. S IND=IND+1
+ .. S T2=STACK(IND)
+ .. I NUM>0 S FLIST=FLIST_";"
+ .. S NUM=NUM+1
+ .. I NUM>STARTCHK S OK=$$CHKSLEN(FLIST,";"_IND)
+ .. I OK S FLIST=FLIST_$S(T1="FF":"FF"_T2,1:T2)
+ S OK=$$CHKSLEN(FLIST,NUM_U)
+ I OK S ^PXD(811.9,IEN,91)=NUM_U_FLIST
+ E  D
+ . S ^PXD(811.9,IEN,91)=-1
+ . D ERRMSG("contraindicated")
  Q
  ;
  ;==================

@@ -1,130 +1,132 @@
-IBDEI0KM ; ; 04-FEB-2020
- ;;3.0;IB ENCOUNTER FORM IMP/EXP;;FEB 04, 2020
+IBDEI0KM ; ; 01-FEB-2022
+ ;;3.0;IB ENCOUNTER FORM IMP/EXP;;FEB 01, 2022
  Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,999) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
- ;;^UTILITY(U,$J,358.3,9095,1,0)
+ ;;^UTILITY(U,$J,358.3,9275,2)
+ ;;=^5134570
+ ;;^UTILITY(U,$J,358.3,9276,0)
+ ;;=S24.109S^^39^408^42
+ ;;^UTILITY(U,$J,358.3,9276,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,9095,1,3,0)
- ;;=3^Hypersensitivity angiitis
- ;;^UTILITY(U,$J,358.3,9095,1,4,0)
- ;;=4^M31.0
- ;;^UTILITY(U,$J,358.3,9095,2)
- ;;=^60279
- ;;^UTILITY(U,$J,358.3,9096,0)
- ;;=M31.31^^69^618^22
- ;;^UTILITY(U,$J,358.3,9096,1,0)
+ ;;^UTILITY(U,$J,358.3,9276,1,3,0)
+ ;;=3^Sequela of Unspec Injury to Thoracic Spinal Cord
+ ;;^UTILITY(U,$J,358.3,9276,1,4,0)
+ ;;=4^S24.109S
+ ;;^UTILITY(U,$J,358.3,9276,2)
+ ;;=^5134384
+ ;;^UTILITY(U,$J,358.3,9277,0)
+ ;;=I69.393^^39^408^5
+ ;;^UTILITY(U,$J,358.3,9277,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,9096,1,3,0)
- ;;=3^Wegener's granulomatosis w/ renal involvement
- ;;^UTILITY(U,$J,358.3,9096,1,4,0)
- ;;=4^M31.31
- ;;^UTILITY(U,$J,358.3,9096,2)
- ;;=^5011745
- ;;^UTILITY(U,$J,358.3,9097,0)
- ;;=N28.89^^69^618^6
- ;;^UTILITY(U,$J,358.3,9097,1,0)
+ ;;^UTILITY(U,$J,358.3,9277,1,3,0)
+ ;;=3^Ataxia following Cerebral Infarction
+ ;;^UTILITY(U,$J,358.3,9277,1,4,0)
+ ;;=4^I69.393
+ ;;^UTILITY(U,$J,358.3,9277,2)
+ ;;=^5007518
+ ;;^UTILITY(U,$J,358.3,9278,0)
+ ;;=G89.0^^39^409^1
+ ;;^UTILITY(U,$J,358.3,9278,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,9097,1,3,0)
- ;;=3^Kidney & Ureter Disorders,Oth Specified
- ;;^UTILITY(U,$J,358.3,9097,1,4,0)
- ;;=4^N28.89
- ;;^UTILITY(U,$J,358.3,9097,2)
- ;;=^88007
- ;;^UTILITY(U,$J,358.3,9098,0)
- ;;=E85.4^^69^618^11
- ;;^UTILITY(U,$J,358.3,9098,1,0)
+ ;;^UTILITY(U,$J,358.3,9278,1,3,0)
+ ;;=3^Central Pain Syndrome
+ ;;^UTILITY(U,$J,358.3,9278,1,4,0)
+ ;;=4^G89.0
+ ;;^UTILITY(U,$J,358.3,9278,2)
+ ;;=^334189
+ ;;^UTILITY(U,$J,358.3,9279,0)
+ ;;=G89.11^^39^409^11
+ ;;^UTILITY(U,$J,358.3,9279,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,9098,1,3,0)
- ;;=3^Organ-limited amyloidosis
- ;;^UTILITY(U,$J,358.3,9098,1,4,0)
- ;;=4^E85.4
- ;;^UTILITY(U,$J,358.3,9098,2)
- ;;=^5003017
- ;;^UTILITY(U,$J,358.3,9099,0)
- ;;=M32.14^^69^618^2
- ;;^UTILITY(U,$J,358.3,9099,1,0)
+ ;;^UTILITY(U,$J,358.3,9279,1,3,0)
+ ;;=3^Pain d/t Trauma,Acute
+ ;;^UTILITY(U,$J,358.3,9279,1,4,0)
+ ;;=4^G89.11
+ ;;^UTILITY(U,$J,358.3,9279,2)
+ ;;=^5004152
+ ;;^UTILITY(U,$J,358.3,9280,0)
+ ;;=G89.12^^39^409^15
+ ;;^UTILITY(U,$J,358.3,9280,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,9099,1,3,0)
- ;;=3^Glomerular disease in systemic lupus erythematosus
- ;;^UTILITY(U,$J,358.3,9099,1,4,0)
- ;;=4^M32.14
- ;;^UTILITY(U,$J,358.3,9099,2)
- ;;=^5011757
- ;;^UTILITY(U,$J,358.3,9100,0)
- ;;=M32.15^^69^618^15
- ;;^UTILITY(U,$J,358.3,9100,1,0)
+ ;;^UTILITY(U,$J,358.3,9280,1,3,0)
+ ;;=3^Post-Thoracotomy Pain,Acute
+ ;;^UTILITY(U,$J,358.3,9280,1,4,0)
+ ;;=4^G89.12
+ ;;^UTILITY(U,$J,358.3,9280,2)
+ ;;=^5004153
+ ;;^UTILITY(U,$J,358.3,9281,0)
+ ;;=G89.18^^39^409^17
+ ;;^UTILITY(U,$J,358.3,9281,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,9100,1,3,0)
- ;;=3^Tubulo-interstitial neuropathy in SLE
- ;;^UTILITY(U,$J,358.3,9100,1,4,0)
- ;;=4^M32.15
- ;;^UTILITY(U,$J,358.3,9100,2)
- ;;=^5011758
- ;;^UTILITY(U,$J,358.3,9101,0)
- ;;=M34.0^^69^618^13
- ;;^UTILITY(U,$J,358.3,9101,1,0)
+ ;;^UTILITY(U,$J,358.3,9281,1,3,0)
+ ;;=3^Postprocedural Pain,Oth Acute
+ ;;^UTILITY(U,$J,358.3,9281,1,4,0)
+ ;;=4^G89.18
+ ;;^UTILITY(U,$J,358.3,9281,2)
+ ;;=^5004154
+ ;;^UTILITY(U,$J,358.3,9282,0)
+ ;;=R52.^^39^409^13
+ ;;^UTILITY(U,$J,358.3,9282,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,9101,1,3,0)
- ;;=3^Progressive systemic sclerosis
- ;;^UTILITY(U,$J,358.3,9101,1,4,0)
- ;;=4^M34.0
- ;;^UTILITY(U,$J,358.3,9101,2)
- ;;=^5011778
- ;;^UTILITY(U,$J,358.3,9102,0)
- ;;=M31.1^^69^618^14
- ;;^UTILITY(U,$J,358.3,9102,1,0)
+ ;;^UTILITY(U,$J,358.3,9282,1,3,0)
+ ;;=3^Pain,Unspec
+ ;;^UTILITY(U,$J,358.3,9282,1,4,0)
+ ;;=4^R52.
+ ;;^UTILITY(U,$J,358.3,9282,2)
+ ;;=^5019514
+ ;;^UTILITY(U,$J,358.3,9283,0)
+ ;;=G89.21^^39^409^12
+ ;;^UTILITY(U,$J,358.3,9283,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,9102,1,3,0)
- ;;=3^Thrombotic Microangiopathy
- ;;^UTILITY(U,$J,358.3,9102,1,4,0)
- ;;=4^M31.1
- ;;^UTILITY(U,$J,358.3,9102,2)
- ;;=^119061
- ;;^UTILITY(U,$J,358.3,9103,0)
- ;;=E85.81^^69^618^7
- ;;^UTILITY(U,$J,358.3,9103,1,0)
+ ;;^UTILITY(U,$J,358.3,9283,1,3,0)
+ ;;=3^Pain d/t Trauma,Chronic
+ ;;^UTILITY(U,$J,358.3,9283,1,4,0)
+ ;;=4^G89.21
+ ;;^UTILITY(U,$J,358.3,9283,2)
+ ;;=^5004155
+ ;;^UTILITY(U,$J,358.3,9284,0)
+ ;;=G89.22^^39^409^16
+ ;;^UTILITY(U,$J,358.3,9284,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,9103,1,3,0)
- ;;=3^Light Chain (AL) Amyloidosis
- ;;^UTILITY(U,$J,358.3,9103,1,4,0)
- ;;=4^E85.81
- ;;^UTILITY(U,$J,358.3,9103,2)
- ;;=^5151302
- ;;^UTILITY(U,$J,358.3,9104,0)
- ;;=E85.82^^69^618^23
- ;;^UTILITY(U,$J,358.3,9104,1,0)
+ ;;^UTILITY(U,$J,358.3,9284,1,3,0)
+ ;;=3^Post-Thoracotomy Pain,Chronic
+ ;;^UTILITY(U,$J,358.3,9284,1,4,0)
+ ;;=4^G89.22
+ ;;^UTILITY(U,$J,358.3,9284,2)
+ ;;=^5004156
+ ;;^UTILITY(U,$J,358.3,9285,0)
+ ;;=G89.28^^39^409^18
+ ;;^UTILITY(U,$J,358.3,9285,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,9104,1,3,0)
- ;;=3^Wild-Type Transthyretin-Related (ATTR) Amyloidosis
- ;;^UTILITY(U,$J,358.3,9104,1,4,0)
- ;;=4^E85.82
- ;;^UTILITY(U,$J,358.3,9104,2)
- ;;=^5151303
- ;;^UTILITY(U,$J,358.3,9105,0)
- ;;=E85.89^^69^618^1
- ;;^UTILITY(U,$J,358.3,9105,1,0)
+ ;;^UTILITY(U,$J,358.3,9285,1,3,0)
+ ;;=3^Postprocedural Pain,Oth Chronic
+ ;;^UTILITY(U,$J,358.3,9285,1,4,0)
+ ;;=4^G89.28
+ ;;^UTILITY(U,$J,358.3,9285,2)
+ ;;=^5004157
+ ;;^UTILITY(U,$J,358.3,9286,0)
+ ;;=G89.3^^39^409^10
+ ;;^UTILITY(U,$J,358.3,9286,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,9105,1,3,0)
- ;;=3^Amyloidosis,Other
- ;;^UTILITY(U,$J,358.3,9105,1,4,0)
- ;;=4^E85.89
- ;;^UTILITY(U,$J,358.3,9105,2)
- ;;=^334034
- ;;^UTILITY(U,$J,358.3,9106,0)
- ;;=Z87.442^^69^619^1
- ;;^UTILITY(U,$J,358.3,9106,1,0)
+ ;;^UTILITY(U,$J,358.3,9286,1,3,0)
+ ;;=3^Neoplasm Related Pain,Acute/Chronic
+ ;;^UTILITY(U,$J,358.3,9286,1,4,0)
+ ;;=4^G89.3
+ ;;^UTILITY(U,$J,358.3,9286,2)
+ ;;=^5004159
+ ;;^UTILITY(U,$J,358.3,9287,0)
+ ;;=G89.4^^39^409^2
+ ;;^UTILITY(U,$J,358.3,9287,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,9106,1,3,0)
- ;;=3^Personal Hx of Urinary Calculi
- ;;^UTILITY(U,$J,358.3,9106,1,4,0)
- ;;=4^Z87.442
- ;;^UTILITY(U,$J,358.3,9106,2)
- ;;=^5063497
- ;;^UTILITY(U,$J,358.3,9107,0)
- ;;=N20.0^^69^619^2
- ;;^UTILITY(U,$J,358.3,9107,1,0)
+ ;;^UTILITY(U,$J,358.3,9287,1,3,0)
+ ;;=3^Chronic Pain Syndrome
+ ;;^UTILITY(U,$J,358.3,9287,1,4,0)
+ ;;=4^G89.4
+ ;;^UTILITY(U,$J,358.3,9287,2)
+ ;;=^334079
+ ;;^UTILITY(U,$J,358.3,9288,0)
+ ;;=M27.0^^39^409^3
+ ;;^UTILITY(U,$J,358.3,9288,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,9107,1,3,0)
- ;;=3^Calculus of Kidney
- ;;^UTILITY(U,$J,358.3,9107,1,4,0)
- ;;=4^N20.0
+ ;;^UTILITY(U,$J,358.3,9288,1,3,0)
+ ;;=3^Developmental Disorder of Jaws

@@ -1,128 +1,126 @@
-IBDEI1CR ; ; 04-FEB-2020
- ;;3.0;IB ENCOUNTER FORM IMP/EXP;;FEB 04, 2020
+IBDEI1CR ; ; 01-FEB-2022
+ ;;3.0;IB ENCOUNTER FORM IMP/EXP;;FEB 01, 2022
  Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,999) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
- ;;^UTILITY(U,$J,358.3,21612,1,3,0)
- ;;=3^Panic disorder w/o agoraphobia [episodic paroxysmal anxiety]
- ;;^UTILITY(U,$J,358.3,21612,1,4,0)
- ;;=4^F41.0
- ;;^UTILITY(U,$J,358.3,21612,2)
- ;;=^5003564
- ;;^UTILITY(U,$J,358.3,21613,0)
- ;;=F41.1^^99^1098^3
- ;;^UTILITY(U,$J,358.3,21613,1,0)
+ ;;^UTILITY(U,$J,358.3,21857,0)
+ ;;=J45.52^^70^931^30
+ ;;^UTILITY(U,$J,358.3,21857,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,21613,1,3,0)
- ;;=3^Anxiety disorder, generalized
- ;;^UTILITY(U,$J,358.3,21613,1,4,0)
- ;;=4^F41.1
- ;;^UTILITY(U,$J,358.3,21613,2)
- ;;=^50059
- ;;^UTILITY(U,$J,358.3,21614,0)
- ;;=F40.01^^99^1098^1
- ;;^UTILITY(U,$J,358.3,21614,1,0)
+ ;;^UTILITY(U,$J,358.3,21857,1,3,0)
+ ;;=3^Severe Persistent Asthma w/ Status Asthmaticus
+ ;;^UTILITY(U,$J,358.3,21857,1,4,0)
+ ;;=4^J45.52
+ ;;^UTILITY(U,$J,358.3,21857,2)
+ ;;=^5008253
+ ;;^UTILITY(U,$J,358.3,21858,0)
+ ;;=J45.50^^70^931^31
+ ;;^UTILITY(U,$J,358.3,21858,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,21614,1,3,0)
- ;;=3^Agoraphobia w/ panic disorder
- ;;^UTILITY(U,$J,358.3,21614,1,4,0)
- ;;=4^F40.01
- ;;^UTILITY(U,$J,358.3,21614,2)
- ;;=^331911
- ;;^UTILITY(U,$J,358.3,21615,0)
- ;;=F40.02^^99^1098^2
- ;;^UTILITY(U,$J,358.3,21615,1,0)
+ ;;^UTILITY(U,$J,358.3,21858,1,3,0)
+ ;;=3^Severe Persistent Asthma,Uncomplicated
+ ;;^UTILITY(U,$J,358.3,21858,1,4,0)
+ ;;=4^J45.50
+ ;;^UTILITY(U,$J,358.3,21858,2)
+ ;;=^5008251
+ ;;^UTILITY(U,$J,358.3,21859,0)
+ ;;=J43.0^^70^931^32
+ ;;^UTILITY(U,$J,358.3,21859,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,21615,1,3,0)
- ;;=3^Agoraphobia w/o panic disorder
- ;;^UTILITY(U,$J,358.3,21615,1,4,0)
- ;;=4^F40.02
- ;;^UTILITY(U,$J,358.3,21615,2)
- ;;=^5003543
- ;;^UTILITY(U,$J,358.3,21616,0)
- ;;=F43.10^^99^1098^9
- ;;^UTILITY(U,$J,358.3,21616,1,0)
+ ;;^UTILITY(U,$J,358.3,21859,1,3,0)
+ ;;=3^Unilateral Pulmonary Emphysema
+ ;;^UTILITY(U,$J,358.3,21859,1,4,0)
+ ;;=4^J43.0
+ ;;^UTILITY(U,$J,358.3,21859,2)
+ ;;=^5008235
+ ;;^UTILITY(U,$J,358.3,21860,0)
+ ;;=J45.901^^70^931^3
+ ;;^UTILITY(U,$J,358.3,21860,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,21616,1,3,0)
- ;;=3^Post-traumatic stress disorder, unspec
- ;;^UTILITY(U,$J,358.3,21616,1,4,0)
- ;;=4^F43.10
- ;;^UTILITY(U,$J,358.3,21616,2)
- ;;=^5003570
- ;;^UTILITY(U,$J,358.3,21617,0)
- ;;=F43.12^^99^1098^8
- ;;^UTILITY(U,$J,358.3,21617,1,0)
+ ;;^UTILITY(U,$J,358.3,21860,1,3,0)
+ ;;=3^Asthma w/ Exacerbation,Unspec
+ ;;^UTILITY(U,$J,358.3,21860,1,4,0)
+ ;;=4^J45.901
+ ;;^UTILITY(U,$J,358.3,21860,2)
+ ;;=^5008254
+ ;;^UTILITY(U,$J,358.3,21861,0)
+ ;;=J45.902^^70^931^4
+ ;;^UTILITY(U,$J,358.3,21861,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,21617,1,3,0)
- ;;=3^Post-traumatic stress disorder, chronic
- ;;^UTILITY(U,$J,358.3,21617,1,4,0)
- ;;=4^F43.12
- ;;^UTILITY(U,$J,358.3,21617,2)
- ;;=^5003572
- ;;^UTILITY(U,$J,358.3,21618,0)
- ;;=F42.8^^99^1098^5
- ;;^UTILITY(U,$J,358.3,21618,1,0)
+ ;;^UTILITY(U,$J,358.3,21861,1,3,0)
+ ;;=3^Asthma w/ Status Asthmaticus,Unspec
+ ;;^UTILITY(U,$J,358.3,21861,1,4,0)
+ ;;=4^J45.902
+ ;;^UTILITY(U,$J,358.3,21861,2)
+ ;;=^5008255
+ ;;^UTILITY(U,$J,358.3,21862,0)
+ ;;=J45.909^^70^931^5
+ ;;^UTILITY(U,$J,358.3,21862,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,21618,1,3,0)
- ;;=3^Obsessive-Compulsive Disorder,Other
- ;;^UTILITY(U,$J,358.3,21618,1,4,0)
- ;;=4^F42.8
- ;;^UTILITY(U,$J,358.3,21618,2)
- ;;=^5138447
- ;;^UTILITY(U,$J,358.3,21619,0)
- ;;=F42.9^^99^1098^6
- ;;^UTILITY(U,$J,358.3,21619,1,0)
+ ;;^UTILITY(U,$J,358.3,21862,1,3,0)
+ ;;=3^Asthma,Uncomplicated,Unspec
+ ;;^UTILITY(U,$J,358.3,21862,1,4,0)
+ ;;=4^J45.909
+ ;;^UTILITY(U,$J,358.3,21862,2)
+ ;;=^5008256
+ ;;^UTILITY(U,$J,358.3,21863,0)
+ ;;=J42.^^70^931^13
+ ;;^UTILITY(U,$J,358.3,21863,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,21619,1,3,0)
- ;;=3^Obsessive-Compulsive Disorder,Unspec
- ;;^UTILITY(U,$J,358.3,21619,1,4,0)
- ;;=4^F42.9
- ;;^UTILITY(U,$J,358.3,21619,2)
- ;;=^5138448
- ;;^UTILITY(U,$J,358.3,21620,0)
- ;;=E53.8^^99^1099^1
- ;;^UTILITY(U,$J,358.3,21620,1,0)
+ ;;^UTILITY(U,$J,358.3,21863,1,3,0)
+ ;;=3^Chr Bronchitis,Unspec
+ ;;^UTILITY(U,$J,358.3,21863,1,4,0)
+ ;;=4^J42.
+ ;;^UTILITY(U,$J,358.3,21863,2)
+ ;;=^5008234
+ ;;^UTILITY(U,$J,358.3,21864,0)
+ ;;=I95.1^^70^932^1
+ ;;^UTILITY(U,$J,358.3,21864,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,21620,1,3,0)
- ;;=3^B Vitamin Deficiency
- ;;^UTILITY(U,$J,358.3,21620,1,4,0)
- ;;=4^E53.8
- ;;^UTILITY(U,$J,358.3,21620,2)
- ;;=^5002797
- ;;^UTILITY(U,$J,358.3,21621,0)
- ;;=R00.1^^99^1099^10
- ;;^UTILITY(U,$J,358.3,21621,1,0)
+ ;;^UTILITY(U,$J,358.3,21864,1,3,0)
+ ;;=3^Orthostatic Hypotension
+ ;;^UTILITY(U,$J,358.3,21864,1,4,0)
+ ;;=4^I95.1
+ ;;^UTILITY(U,$J,358.3,21864,2)
+ ;;=^60741
+ ;;^UTILITY(U,$J,358.3,21865,0)
+ ;;=I73.9^^70^932^2
+ ;;^UTILITY(U,$J,358.3,21865,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,21621,1,3,0)
- ;;=3^Bradycardia, unspec
- ;;^UTILITY(U,$J,358.3,21621,1,4,0)
- ;;=4^R00.1
- ;;^UTILITY(U,$J,358.3,21621,2)
- ;;=^5019164
- ;;^UTILITY(U,$J,358.3,21622,0)
- ;;=J20.9^^99^1099^11
- ;;^UTILITY(U,$J,358.3,21622,1,0)
+ ;;^UTILITY(U,$J,358.3,21865,1,3,0)
+ ;;=3^Peripheral Vascular Disease,Unspec
+ ;;^UTILITY(U,$J,358.3,21865,1,4,0)
+ ;;=4^I73.9
+ ;;^UTILITY(U,$J,358.3,21865,2)
+ ;;=^184182
+ ;;^UTILITY(U,$J,358.3,21866,0)
+ ;;=I80.13^^70^932^3
+ ;;^UTILITY(U,$J,358.3,21866,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,21622,1,3,0)
- ;;=3^Bronchitis,Acute,Unspec
- ;;^UTILITY(U,$J,358.3,21622,1,4,0)
- ;;=4^J20.9
- ;;^UTILITY(U,$J,358.3,21622,2)
- ;;=^5008195
- ;;^UTILITY(U,$J,358.3,21623,0)
- ;;=N32.0^^99^1099^9
- ;;^UTILITY(U,$J,358.3,21623,1,0)
+ ;;^UTILITY(U,$J,358.3,21866,1,3,0)
+ ;;=3^Phlebitis/Thromophlebitis Bilateral Femoral Vein
+ ;;^UTILITY(U,$J,358.3,21866,1,4,0)
+ ;;=4^I80.13
+ ;;^UTILITY(U,$J,358.3,21866,2)
+ ;;=^5007827
+ ;;^UTILITY(U,$J,358.3,21867,0)
+ ;;=I80.213^^70^932^4
+ ;;^UTILITY(U,$J,358.3,21867,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,21623,1,3,0)
- ;;=3^Bladder-neck obstruction
- ;;^UTILITY(U,$J,358.3,21623,1,4,0)
- ;;=4^N32.0
- ;;^UTILITY(U,$J,358.3,21623,2)
- ;;=^5015649
- ;;^UTILITY(U,$J,358.3,21624,0)
- ;;=N40.0^^99^1099^3
- ;;^UTILITY(U,$J,358.3,21624,1,0)
+ ;;^UTILITY(U,$J,358.3,21867,1,3,0)
+ ;;=3^Phlebitis/Thromophlebitis Bilateral Iliac Vein
+ ;;^UTILITY(U,$J,358.3,21867,1,4,0)
+ ;;=4^I80.213
+ ;;^UTILITY(U,$J,358.3,21867,2)
+ ;;=^5007833
+ ;;^UTILITY(U,$J,358.3,21868,0)
+ ;;=I80.223^^70^932^7
+ ;;^UTILITY(U,$J,358.3,21868,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,21624,1,3,0)
- ;;=3^BPH w/o lower urinary tract symptoms
- ;;^UTILITY(U,$J,358.3,21624,1,4,0)
- ;;=4^N40.0
+ ;;^UTILITY(U,$J,358.3,21868,1,3,0)
+ ;;=3^Phlebitis/Thromophlebitis Bilateral Popliteal Vein
+ ;;^UTILITY(U,$J,358.3,21868,1,4,0)
+ ;;=4^I80.223
+ ;;^UTILITY(U,$J,358.3,21868,2)
+ ;;=^5007837
+ ;;^UTILITY(U,$J,358.3,21869,0)
+ ;;=I80.233^^70^932^8

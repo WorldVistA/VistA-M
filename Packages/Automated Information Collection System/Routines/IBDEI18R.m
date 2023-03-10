@@ -1,118 +1,122 @@
-IBDEI18R ; ; 04-FEB-2020
- ;;3.0;IB ENCOUNTER FORM IMP/EXP;;FEB 04, 2020
+IBDEI18R ; ; 01-FEB-2022
+ ;;3.0;IB ENCOUNTER FORM IMP/EXP;;FEB 01, 2022
  Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,999) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
- ;;^UTILITY(U,$J,358.3,19901,1,4,0)
- ;;=4^S62.357S
- ;;^UTILITY(U,$J,358.3,19901,2)
- ;;=^5034164
- ;;^UTILITY(U,$J,358.3,19902,0)
- ;;=S62.356S^^93^997^116
- ;;^UTILITY(U,$J,358.3,19902,1,0)
+ ;;^UTILITY(U,$J,358.3,20124,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,19902,1,3,0)
- ;;=3^Nondisp fx of shaft of 5th MC bone, right hand, sequela
- ;;^UTILITY(U,$J,358.3,19902,1,4,0)
- ;;=4^S62.356S
- ;;^UTILITY(U,$J,358.3,19902,2)
- ;;=^5034157
- ;;^UTILITY(U,$J,358.3,19903,0)
- ;;=S62.245S^^93^997^107
- ;;^UTILITY(U,$J,358.3,19903,1,0)
+ ;;^UTILITY(U,$J,358.3,20124,1,3,0)
+ ;;=3^Pathological fracture, right toe(s), sequela
+ ;;^UTILITY(U,$J,358.3,20124,1,4,0)
+ ;;=4^M84.477S
+ ;;^UTILITY(U,$J,358.3,20124,2)
+ ;;=^5014003
+ ;;^UTILITY(U,$J,358.3,20125,0)
+ ;;=M84.378S^^67^884^116
+ ;;^UTILITY(U,$J,358.3,20125,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,19903,1,3,0)
- ;;=3^Nondisp fx of shaft of 1st MC bone, left hand, sequela
- ;;^UTILITY(U,$J,358.3,19903,1,4,0)
- ;;=4^S62.245S
- ;;^UTILITY(U,$J,358.3,19903,2)
- ;;=^5033702
- ;;^UTILITY(U,$J,358.3,19904,0)
- ;;=S62.244S^^93^997^108
- ;;^UTILITY(U,$J,358.3,19904,1,0)
+ ;;^UTILITY(U,$J,358.3,20125,1,3,0)
+ ;;=3^Stress fracture, left toe(s), sequela
+ ;;^UTILITY(U,$J,358.3,20125,1,4,0)
+ ;;=4^M84.378S
+ ;;^UTILITY(U,$J,358.3,20125,2)
+ ;;=^5013781
+ ;;^UTILITY(U,$J,358.3,20126,0)
+ ;;=M84.377S^^67^884^119
+ ;;^UTILITY(U,$J,358.3,20126,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,19904,1,3,0)
- ;;=3^Nondisp fx of shaft of 1st MC bone, right hand, sequela
- ;;^UTILITY(U,$J,358.3,19904,1,4,0)
- ;;=4^S62.244S
- ;;^UTILITY(U,$J,358.3,19904,2)
- ;;=^5033695
- ;;^UTILITY(U,$J,358.3,19905,0)
- ;;=S62.355S^^93^997^113
- ;;^UTILITY(U,$J,358.3,19905,1,0)
+ ;;^UTILITY(U,$J,358.3,20126,1,3,0)
+ ;;=3^Stress fracture, right toe(s), sequela
+ ;;^UTILITY(U,$J,358.3,20126,1,4,0)
+ ;;=4^M84.377S
+ ;;^UTILITY(U,$J,358.3,20126,2)
+ ;;=^5013775
+ ;;^UTILITY(U,$J,358.3,20127,0)
+ ;;=S92.212S^^67^884^23
+ ;;^UTILITY(U,$J,358.3,20127,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,19905,1,3,0)
- ;;=3^Nondisp fx of shaft of 4th MC bone, left hand, sequela
- ;;^UTILITY(U,$J,358.3,19905,1,4,0)
- ;;=4^S62.355S
- ;;^UTILITY(U,$J,358.3,19905,2)
- ;;=^5034150
- ;;^UTILITY(U,$J,358.3,19906,0)
- ;;=S62.354S^^93^997^114
- ;;^UTILITY(U,$J,358.3,19906,1,0)
+ ;;^UTILITY(U,$J,358.3,20127,1,3,0)
+ ;;=3^Disp cuboid bone of left foot fx, sequela
+ ;;^UTILITY(U,$J,358.3,20127,1,4,0)
+ ;;=4^S92.212S
+ ;;^UTILITY(U,$J,358.3,20127,2)
+ ;;=^5044849
+ ;;^UTILITY(U,$J,358.3,20128,0)
+ ;;=S92.211S^^67^884^24
+ ;;^UTILITY(U,$J,358.3,20128,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,19906,1,3,0)
- ;;=3^Nondisp fx of shaft of 4th MC bone, right hand, sequela
- ;;^UTILITY(U,$J,358.3,19906,1,4,0)
- ;;=4^S62.354S
- ;;^UTILITY(U,$J,358.3,19906,2)
- ;;=^5034143
- ;;^UTILITY(U,$J,358.3,19907,0)
- ;;=S62.351S^^93^997^109
- ;;^UTILITY(U,$J,358.3,19907,1,0)
+ ;;^UTILITY(U,$J,358.3,20128,1,3,0)
+ ;;=3^Disp cuboid bone of right foot, sequela
+ ;;^UTILITY(U,$J,358.3,20128,1,4,0)
+ ;;=4^S92.211S
+ ;;^UTILITY(U,$J,358.3,20128,2)
+ ;;=^5044842
+ ;;^UTILITY(U,$J,358.3,20129,0)
+ ;;=S92.352S^^67^884^9
+ ;;^UTILITY(U,$J,358.3,20129,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,19907,1,3,0)
- ;;=3^Nondisp fx of shaft of 2nd MC bone, left hand, sequela
- ;;^UTILITY(U,$J,358.3,19907,1,4,0)
- ;;=4^S62.351S
- ;;^UTILITY(U,$J,358.3,19907,2)
- ;;=^5034122
- ;;^UTILITY(U,$J,358.3,19908,0)
- ;;=S62.350S^^93^997^110
- ;;^UTILITY(U,$J,358.3,19908,1,0)
+ ;;^UTILITY(U,$J,358.3,20129,1,3,0)
+ ;;=3^Disp 5th metatarsal fx of left foot,sequela
+ ;;^UTILITY(U,$J,358.3,20129,1,4,0)
+ ;;=4^S92.352S
+ ;;^UTILITY(U,$J,358.3,20129,2)
+ ;;=^5045241
+ ;;^UTILITY(U,$J,358.3,20130,0)
+ ;;=S92.351S^^67^884^10
+ ;;^UTILITY(U,$J,358.3,20130,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,19908,1,3,0)
- ;;=3^Nondisp fx of shaft of 2nd MC bone, right hand, sequela
- ;;^UTILITY(U,$J,358.3,19908,1,4,0)
- ;;=4^S62.350S
- ;;^UTILITY(U,$J,358.3,19908,2)
- ;;=^5034115
- ;;^UTILITY(U,$J,358.3,19909,0)
- ;;=S62.353S^^93^997^111
- ;;^UTILITY(U,$J,358.3,19909,1,0)
+ ;;^UTILITY(U,$J,358.3,20130,1,3,0)
+ ;;=3^Disp 5th metatarsal fx of right foot,sequela
+ ;;^UTILITY(U,$J,358.3,20130,1,4,0)
+ ;;=4^S92.351S
+ ;;^UTILITY(U,$J,358.3,20130,2)
+ ;;=^5045234
+ ;;^UTILITY(U,$J,358.3,20131,0)
+ ;;=S92.312S^^67^884^1
+ ;;^UTILITY(U,$J,358.3,20131,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,19909,1,3,0)
- ;;=3^Nondisp fx of shaft of 3rd MC bone, left hand, sequela
- ;;^UTILITY(U,$J,358.3,19909,1,4,0)
- ;;=4^S62.353S
- ;;^UTILITY(U,$J,358.3,19909,2)
- ;;=^5034136
- ;;^UTILITY(U,$J,358.3,19910,0)
- ;;=S62.352S^^93^997^112
- ;;^UTILITY(U,$J,358.3,19910,1,0)
+ ;;^UTILITY(U,$J,358.3,20131,1,3,0)
+ ;;=3^Disp 1st metatarsal fx of left foot,sequela
+ ;;^UTILITY(U,$J,358.3,20131,1,4,0)
+ ;;=4^S92.312S
+ ;;^UTILITY(U,$J,358.3,20131,2)
+ ;;=^5045073
+ ;;^UTILITY(U,$J,358.3,20132,0)
+ ;;=S92.311S^^67^884^2
+ ;;^UTILITY(U,$J,358.3,20132,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,19910,1,3,0)
- ;;=3^Nondisp fx of shaft of 3rd MC bone, right hand, sequela
- ;;^UTILITY(U,$J,358.3,19910,1,4,0)
- ;;=4^S62.352S
- ;;^UTILITY(U,$J,358.3,19910,2)
- ;;=^5034129
- ;;^UTILITY(U,$J,358.3,19911,0)
- ;;=S62.225S^^93^997^117
- ;;^UTILITY(U,$J,358.3,19911,1,0)
+ ;;^UTILITY(U,$J,358.3,20132,1,3,0)
+ ;;=3^Disp 1st metatarsal fx of right foot,sequela
+ ;;^UTILITY(U,$J,358.3,20132,1,4,0)
+ ;;=4^S92.311S
+ ;;^UTILITY(U,$J,358.3,20132,2)
+ ;;=^5045066
+ ;;^UTILITY(U,$J,358.3,20133,0)
+ ;;=S92.342S^^67^884^7
+ ;;^UTILITY(U,$J,358.3,20133,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,19911,1,3,0)
- ;;=3^Nondisp rolando's fx, left hand, sequela
- ;;^UTILITY(U,$J,358.3,19911,1,4,0)
- ;;=4^S62.225S
- ;;^UTILITY(U,$J,358.3,19911,2)
- ;;=^5033618
- ;;^UTILITY(U,$J,358.3,19912,0)
- ;;=S62.224S^^93^997^118
- ;;^UTILITY(U,$J,358.3,19912,1,0)
+ ;;^UTILITY(U,$J,358.3,20133,1,3,0)
+ ;;=3^Disp 4th metatarsal fx of left foot,sequela
+ ;;^UTILITY(U,$J,358.3,20133,1,4,0)
+ ;;=4^S92.342S
+ ;;^UTILITY(U,$J,358.3,20133,2)
+ ;;=^5045199
+ ;;^UTILITY(U,$J,358.3,20134,0)
+ ;;=S92.341S^^67^884^8
+ ;;^UTILITY(U,$J,358.3,20134,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,19912,1,3,0)
- ;;=3^Nondisp rolando's fx, right hand, sequela
- ;;^UTILITY(U,$J,358.3,19912,1,4,0)
- ;;=4^S62.224S
- ;;^UTILITY(U,$J,358.3,19912,2)
- ;;=^5033611
+ ;;^UTILITY(U,$J,358.3,20134,1,3,0)
+ ;;=3^Disp 4th metatarsal fx of right foot,sequela
+ ;;^UTILITY(U,$J,358.3,20134,1,4,0)
+ ;;=4^S92.341S
+ ;;^UTILITY(U,$J,358.3,20134,2)
+ ;;=^5045192
+ ;;^UTILITY(U,$J,358.3,20135,0)
+ ;;=S92.232S^^67^884^31
+ ;;^UTILITY(U,$J,358.3,20135,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,20135,1,3,0)
+ ;;=3^Disp intermed cuneiform fx of left foot,sequela
+ ;;^UTILITY(U,$J,358.3,20135,1,4,0)
+ ;;=4^S92.232S
+ ;;^UTILITY(U,$J,358.3,20135,2)
+ ;;=^5044933

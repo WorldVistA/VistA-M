@@ -1,126 +1,124 @@
-IBDEI0XM ; ; 04-FEB-2020
- ;;3.0;IB ENCOUNTER FORM IMP/EXP;;FEB 04, 2020
+IBDEI0XM ; ; 01-FEB-2022
+ ;;3.0;IB ENCOUNTER FORM IMP/EXP;;FEB 01, 2022
  Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,999) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
- ;;^UTILITY(U,$J,358.3,14972,1,3,0)
- ;;=3^Benign neoplasm,Duodenum
- ;;^UTILITY(U,$J,358.3,14972,1,4,0)
- ;;=4^D13.2
- ;;^UTILITY(U,$J,358.3,14972,2)
- ;;=^5001973
- ;;^UTILITY(U,$J,358.3,14973,0)
- ;;=D13.39^^85^838^6
- ;;^UTILITY(U,$J,358.3,14973,1,0)
+ ;;^UTILITY(U,$J,358.3,15147,2)
+ ;;=^5063698
+ ;;^UTILITY(U,$J,358.3,15148,0)
+ ;;=M05.772^^58^717^1
+ ;;^UTILITY(U,$J,358.3,15148,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,14973,1,3,0)
- ;;=3^Benign neoplasm,Other Sm Int
- ;;^UTILITY(U,$J,358.3,14973,1,4,0)
- ;;=4^D13.39
- ;;^UTILITY(U,$J,358.3,14973,2)
- ;;=^5001975
- ;;^UTILITY(U,$J,358.3,14974,0)
- ;;=D13.30^^85^838^7
- ;;^UTILITY(U,$J,358.3,14974,1,0)
+ ;;^UTILITY(U,$J,358.3,15148,1,3,0)
+ ;;=3^Rheum Arthritis w/ Rheum Factor,Lt Ankle/Foot
+ ;;^UTILITY(U,$J,358.3,15148,1,4,0)
+ ;;=4^M05.772
+ ;;^UTILITY(U,$J,358.3,15148,2)
+ ;;=^5010020
+ ;;^UTILITY(U,$J,358.3,15149,0)
+ ;;=M05.722^^58^717^2
+ ;;^UTILITY(U,$J,358.3,15149,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,14974,1,3,0)
- ;;=3^Benign neoplasm,Unsp Sm Int
- ;;^UTILITY(U,$J,358.3,14974,1,4,0)
- ;;=4^D13.30
- ;;^UTILITY(U,$J,358.3,14974,2)
- ;;=^5001974
- ;;^UTILITY(U,$J,358.3,14975,0)
- ;;=K90.89^^85^838^8
- ;;^UTILITY(U,$J,358.3,14975,1,0)
+ ;;^UTILITY(U,$J,358.3,15149,1,3,0)
+ ;;=3^Rheum Arthritis w/ Rheum Factor,Lt Elbow
+ ;;^UTILITY(U,$J,358.3,15149,1,4,0)
+ ;;=4^M05.722
+ ;;^UTILITY(U,$J,358.3,15149,2)
+ ;;=^5010005
+ ;;^UTILITY(U,$J,358.3,15150,0)
+ ;;=M05.742^^58^717^3
+ ;;^UTILITY(U,$J,358.3,15150,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,14975,1,3,0)
- ;;=3^Bile acid malabsorption
- ;;^UTILITY(U,$J,358.3,14975,1,4,0)
- ;;=4^K90.89
- ;;^UTILITY(U,$J,358.3,14975,2)
- ;;=^5008898
- ;;^UTILITY(U,$J,358.3,14976,0)
- ;;=D01.49^^85^838^9
- ;;^UTILITY(U,$J,358.3,14976,1,0)
+ ;;^UTILITY(U,$J,358.3,15150,1,3,0)
+ ;;=3^Rheum Arthritis w/ Rheum Factor,Lt Hand
+ ;;^UTILITY(U,$J,358.3,15150,1,4,0)
+ ;;=4^M05.742
+ ;;^UTILITY(U,$J,358.3,15150,2)
+ ;;=^5010011
+ ;;^UTILITY(U,$J,358.3,15151,0)
+ ;;=M05.752^^58^717^4
+ ;;^UTILITY(U,$J,358.3,15151,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,14976,1,3,0)
- ;;=3^Carcinoma in situ of Small Intestine
- ;;^UTILITY(U,$J,358.3,14976,1,4,0)
- ;;=4^D01.49
- ;;^UTILITY(U,$J,358.3,14976,2)
- ;;=^5001879
- ;;^UTILITY(U,$J,358.3,14977,0)
- ;;=K63.81^^85^838^11
- ;;^UTILITY(U,$J,358.3,14977,1,0)
+ ;;^UTILITY(U,$J,358.3,15151,1,3,0)
+ ;;=3^Rheum Arthritis w/ Rheum Factor,Lt Hip
+ ;;^UTILITY(U,$J,358.3,15151,1,4,0)
+ ;;=4^M05.752
+ ;;^UTILITY(U,$J,358.3,15151,2)
+ ;;=^5010014
+ ;;^UTILITY(U,$J,358.3,15152,0)
+ ;;=M05.752^^58^717^5
+ ;;^UTILITY(U,$J,358.3,15152,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,14977,1,3,0)
- ;;=3^Dieulafoy lesion of Duodenum
- ;;^UTILITY(U,$J,358.3,14977,1,4,0)
- ;;=4^K63.81
- ;;^UTILITY(U,$J,358.3,14977,2)
- ;;=^5008766
- ;;^UTILITY(U,$J,358.3,14978,0)
- ;;=K63.89^^85^838^12
- ;;^UTILITY(U,$J,358.3,14978,1,0)
+ ;;^UTILITY(U,$J,358.3,15152,1,3,0)
+ ;;=3^Rheum Arthritis w/ Rheum Factor,Lt Hip
+ ;;^UTILITY(U,$J,358.3,15152,1,4,0)
+ ;;=4^M05.752
+ ;;^UTILITY(U,$J,358.3,15152,2)
+ ;;=^5010014
+ ;;^UTILITY(U,$J,358.3,15153,0)
+ ;;=M05.762^^58^717^6
+ ;;^UTILITY(U,$J,358.3,15153,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,14978,1,3,0)
- ;;=3^Dieulafoy lesion of Intestine
- ;;^UTILITY(U,$J,358.3,14978,1,4,0)
- ;;=4^K63.89
- ;;^UTILITY(U,$J,358.3,14978,2)
- ;;=^5008767
- ;;^UTILITY(U,$J,358.3,14979,0)
- ;;=K57.11^^85^838^19
- ;;^UTILITY(U,$J,358.3,14979,1,0)
+ ;;^UTILITY(U,$J,358.3,15153,1,3,0)
+ ;;=3^Rheum Arthritis w/ Rheum Factor,Lt Knee
+ ;;^UTILITY(U,$J,358.3,15153,1,4,0)
+ ;;=4^M05.762
+ ;;^UTILITY(U,$J,358.3,15153,2)
+ ;;=^5010017
+ ;;^UTILITY(U,$J,358.3,15154,0)
+ ;;=M05.712^^58^717^7
+ ;;^UTILITY(U,$J,358.3,15154,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,14979,1,3,0)
- ;;=3^Diverticulosis Sm Int w/ Bleeding
- ;;^UTILITY(U,$J,358.3,14979,1,4,0)
- ;;=4^K57.11
- ;;^UTILITY(U,$J,358.3,14979,2)
- ;;=^5008718
- ;;^UTILITY(U,$J,358.3,14980,0)
- ;;=K57.10^^85^838^20
- ;;^UTILITY(U,$J,358.3,14980,1,0)
+ ;;^UTILITY(U,$J,358.3,15154,1,3,0)
+ ;;=3^Rheum Arthritis w/ Rheum Factor,Lt Shoulder
+ ;;^UTILITY(U,$J,358.3,15154,1,4,0)
+ ;;=4^M05.712
+ ;;^UTILITY(U,$J,358.3,15154,2)
+ ;;=^5010002
+ ;;^UTILITY(U,$J,358.3,15155,0)
+ ;;=M05.732^^58^717^8
+ ;;^UTILITY(U,$J,358.3,15155,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,14980,1,3,0)
- ;;=3^Diverticulosis Sm Int w/o perf,abscess,or bleed
- ;;^UTILITY(U,$J,358.3,14980,1,4,0)
- ;;=4^K57.10
- ;;^UTILITY(U,$J,358.3,14980,2)
- ;;=^5008717
- ;;^UTILITY(U,$J,358.3,14981,0)
- ;;=K57.13^^85^838^15
- ;;^UTILITY(U,$J,358.3,14981,1,0)
+ ;;^UTILITY(U,$J,358.3,15155,1,3,0)
+ ;;=3^Rheum Arthritis w/ Rheum Factor,Lt Wrist
+ ;;^UTILITY(U,$J,358.3,15155,1,4,0)
+ ;;=4^M05.732
+ ;;^UTILITY(U,$J,358.3,15155,2)
+ ;;=^5010008
+ ;;^UTILITY(U,$J,358.3,15156,0)
+ ;;=M05.79^^58^717^9
+ ;;^UTILITY(U,$J,358.3,15156,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,14981,1,3,0)
- ;;=3^Diverticulitis Sm Int w/ Bleeding
- ;;^UTILITY(U,$J,358.3,14981,1,4,0)
- ;;=4^K57.13
- ;;^UTILITY(U,$J,358.3,14981,2)
- ;;=^5008720
- ;;^UTILITY(U,$J,358.3,14982,0)
- ;;=K57.00^^85^838^16
- ;;^UTILITY(U,$J,358.3,14982,1,0)
+ ;;^UTILITY(U,$J,358.3,15156,1,3,0)
+ ;;=3^Rheum Arthritis w/ Rheum Factor,Mult Sites
+ ;;^UTILITY(U,$J,358.3,15156,1,4,0)
+ ;;=4^M05.79
+ ;;^UTILITY(U,$J,358.3,15156,2)
+ ;;=^5010022
+ ;;^UTILITY(U,$J,358.3,15157,0)
+ ;;=M05.771^^58^717^11
+ ;;^UTILITY(U,$J,358.3,15157,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,14982,1,3,0)
- ;;=3^Diverticulitis Sm Int w/ Perf & Abscess
- ;;^UTILITY(U,$J,358.3,14982,1,4,0)
- ;;=4^K57.00
- ;;^UTILITY(U,$J,358.3,14982,2)
- ;;=^5008715
- ;;^UTILITY(U,$J,358.3,14983,0)
- ;;=K57.01^^85^838^17
- ;;^UTILITY(U,$J,358.3,14983,1,0)
+ ;;^UTILITY(U,$J,358.3,15157,1,3,0)
+ ;;=3^Rheum Arthritis w/ Rheum Factor,Rt Ankle/Foot
+ ;;^UTILITY(U,$J,358.3,15157,1,4,0)
+ ;;=4^M05.771
+ ;;^UTILITY(U,$J,358.3,15157,2)
+ ;;=^5010019
+ ;;^UTILITY(U,$J,358.3,15158,0)
+ ;;=M05.721^^58^717^12
+ ;;^UTILITY(U,$J,358.3,15158,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,14983,1,3,0)
- ;;=3^Diverticulitis Sm Int w/ Perf,Abscess & Bleed
- ;;^UTILITY(U,$J,358.3,14983,1,4,0)
- ;;=4^K57.01
- ;;^UTILITY(U,$J,358.3,14983,2)
- ;;=^5008716
- ;;^UTILITY(U,$J,358.3,14984,0)
- ;;=K57.12^^85^838^18
- ;;^UTILITY(U,$J,358.3,14984,1,0)
+ ;;^UTILITY(U,$J,358.3,15158,1,3,0)
+ ;;=3^Rheum Arthritis w/ Rheum Factor,Rt Elbow
+ ;;^UTILITY(U,$J,358.3,15158,1,4,0)
+ ;;=4^M05.721
+ ;;^UTILITY(U,$J,358.3,15158,2)
+ ;;=^5010004
+ ;;^UTILITY(U,$J,358.3,15159,0)
+ ;;=M05.741^^58^717^13
+ ;;^UTILITY(U,$J,358.3,15159,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,14984,1,3,0)
- ;;=3^Diverticulitis Sm Int w/o Perf,Abscess, or Bleed
+ ;;^UTILITY(U,$J,358.3,15159,1,3,0)
+ ;;=3^Rheum Arthritis w/ Rheum Factor,Rt Hand
+ ;;^UTILITY(U,$J,358.3,15159,1,4,0)
+ ;;=4^M05.741

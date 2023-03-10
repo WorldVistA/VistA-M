@@ -1,5 +1,5 @@
-PSODRDU1 ;BIR/SAB - dup drug class checker for pending orders ;1/3/05 11:33am
- ;;7.0;OUTPATIENT PHARMACY;**4,27,32,56,63,130,132,192**;DEC 1997
+PSODRDU1 ;BIR/SAB - dup drug class checker for pending orders ;08/23/17  19:51
+ ;;7.0;OUTPATIENT PHARMACY;**4,27,32,56,63,130,132,192,441,651**;DEC 1997;Build 30
  ;External reference to ^PSDRUG supported by DBIA 221
  ;External reference to ^PS(50.606 supported by DBIA 2174
  ;External reference to ^PS(51.2 supported by DBIA 2226
@@ -32,10 +32,10 @@ DATA S DUPRX0=^PS(52.41,RXREC,0),RFLS=$P(DUPRX0,"^",11),ISSD=$P(DUPRX0,"^",6)
  S RXRECLOD=RXREC
  W !,"Orderable Item: "_$P(^PS(50.7,$P(DUPRX0,"^",8),0),"^")_" "_$P(^PS(50.606,$P(^(0),"^",2),0),"^")
  W !,"Drug: "_$S($P(DUPRX0,"^",9):$P(^PSDRUG($P(DUPRX0,"^",9),0),"^"),1:"No Dispense Drug Selected")
- W !,"Instructions: " S TY=2 D INST
+ W !,$S($$ERXIEN^PSOERXUT(RXREC_"P"):"eRx ",1:"")_"Instructions: " S TY=2 D INST
  D FSIG^PSOUTLA("P",RXREC,IOM-6)
  W !,"SIG: " F I=0:0 S I=$O(FSIG(I)) Q:'I  W FSIG(I),!?5
- W !,"Routing: "_$S($P(DUPRX0,"^",17)="W":"WINDOW",1:"MAIL"),?30,"Quantity: "_$P(DUPRX0,"^",10),!,"# of Refills: "_$P(DUPRX0,"^",11)
+ W !,"Routing: "_$S($P(DUPRX0,"^",17)="W":"WINDOW",$P(DUPRX0,"^",17)="P":"PARK",1:"MAIL"),?30,"Quantity: "_$P(DUPRX0,"^",10),!,"# of Refills: "_$P(DUPRX0,"^",11)   ;441 PAPI
  W ?30,"Patient Status: SC",!,"Patient Location: "_$S($P(DUPRX0,"^",13):$P($G(^SC($P(DUPRX0,"^",13),0)),"^"),1:""),!,"Med Route: "_$P($G(^PS(51.2,+$P(DUPRX0,"^",15),0)),"^"),?30,"Provider: "_$P(^VA(200,$P(DUPRX0,"^",5),0),"^")
  S Y=$P(DUPRX0,"^",6) X ^DD("DD") W !,"Issue Date: "_Y
  W !,"Provider Comments: " S TY=3 D INST

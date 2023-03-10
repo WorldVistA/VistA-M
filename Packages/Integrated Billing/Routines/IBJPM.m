@@ -1,5 +1,5 @@
 IBJPM ;ALB/MAF,ARH - IBSP MCCR PARAMETERS SCREEN ;14-DEC-1995
- ;;2.0;INTEGRATED BILLING;**39,137,184,271,316,416,438,517,659**;21-MAR-94;Build 16
+ ;;2.0;INTEGRATED BILLING;**39,137,184,271,316,416,438,517,659,687**;21-MAR-94;Build 88
  ;;Per VA Directive 6402, this routine should not be modified.
  ;
 EN ; -- main entry point for JOINT INQUIRY PARAMETERS option
@@ -65,7 +65,12 @@ BLD ; -- build screen array, no variables required for input
  ; - eIV Parameters
  S IBLN=$$SETN("Insurance Verification",IBLN,IBLR,1)
  S IBLN=$$SET("","General Parameters",IBLN,IBLR)
- S IBLN=$$SET("","Batch Extracts Parameters",IBLN,IBLR)
+ ;S IBLN=$$SET("","Batch Extracts Parameters",IBLN,IBLR) ;/vd-IB*2*687 - Removed this parameter
+ ;/vd-IB*2*687 - Added the following 3 parameter selections
+ S IBLN=$$SET("","eIV Parameters",IBLN,IBLR)
+ S IBLN=$$SET("","eIV Batch Extracts",IBLN,IBLR)
+ S IBLN=$$SET("","IIU Parameters",IBLN,IBLR)
+ ;/vd-IB*2*687 - End of 3 parameters selections added. 
  ;/vd-IB*2*659 - Removed the following heading for maintenance purposes per
  ;               a request by the ebiz group.
  ;S IBLN=$$SET("","Service Type Codes",IBLN,IBLR)

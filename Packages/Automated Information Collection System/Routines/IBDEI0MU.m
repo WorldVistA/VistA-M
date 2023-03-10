@@ -1,128 +1,128 @@
-IBDEI0MU ; ; 04-FEB-2020
- ;;3.0;IB ENCOUNTER FORM IMP/EXP;;FEB 04, 2020
+IBDEI0MU ; ; 01-FEB-2022
+ ;;3.0;IB ENCOUNTER FORM IMP/EXP;;FEB 01, 2022
  Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,999) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
- ;;^UTILITY(U,$J,358.3,10167,2)
- ;;=^5157366
- ;;^UTILITY(U,$J,358.3,10168,0)
- ;;=D23.111^^74^671^25
- ;;^UTILITY(U,$J,358.3,10168,1,0)
+ ;;^UTILITY(U,$J,358.3,10264,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,10168,1,3,0)
- ;;=3^Benign Eyelid Lesion,Right Upper Eyelid
- ;;^UTILITY(U,$J,358.3,10168,1,4,0)
- ;;=4^D23.111
- ;;^UTILITY(U,$J,358.3,10168,2)
- ;;=^5157290
- ;;^UTILITY(U,$J,358.3,10169,0)
- ;;=D23.121^^74^671^26
- ;;^UTILITY(U,$J,358.3,10169,1,0)
+ ;;^UTILITY(U,$J,358.3,10264,1,3,0)
+ ;;=3^Human Metapneumovirus Pneumonia
+ ;;^UTILITY(U,$J,358.3,10264,1,4,0)
+ ;;=4^J12.3
+ ;;^UTILITY(U,$J,358.3,10264,2)
+ ;;=^5008167
+ ;;^UTILITY(U,$J,358.3,10265,0)
+ ;;=J12.81^^39^434^17
+ ;;^UTILITY(U,$J,358.3,10265,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,10169,1,3,0)
- ;;=3^Benign Eyelid Lesion,Left Upper Eyelid
- ;;^UTILITY(U,$J,358.3,10169,1,4,0)
- ;;=4^D23.121
- ;;^UTILITY(U,$J,358.3,10169,2)
- ;;=^5157292
- ;;^UTILITY(U,$J,358.3,10170,0)
- ;;=C44.1021^^74^671^27
- ;;^UTILITY(U,$J,358.3,10170,1,0)
+ ;;^UTILITY(U,$J,358.3,10265,1,3,0)
+ ;;=3^Pneumonia d/t SARS-Associated Coronavirus
+ ;;^UTILITY(U,$J,358.3,10265,1,4,0)
+ ;;=4^J12.81
+ ;;^UTILITY(U,$J,358.3,10265,2)
+ ;;=^329925
+ ;;^UTILITY(U,$J,358.3,10266,0)
+ ;;=J12.89^^39^434^28
+ ;;^UTILITY(U,$J,358.3,10266,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,10170,1,3,0)
- ;;=3^Malignant Eyelid Lesion,Right Upper Eyelid
- ;;^UTILITY(U,$J,358.3,10170,1,4,0)
- ;;=4^C44.1021
- ;;^UTILITY(U,$J,358.3,10170,2)
- ;;=^5157253
- ;;^UTILITY(U,$J,358.3,10171,0)
- ;;=C44.1091^^74^671^28
- ;;^UTILITY(U,$J,358.3,10171,1,0)
+ ;;^UTILITY(U,$J,358.3,10266,1,3,0)
+ ;;=3^Pneumonia,Viral,Other
+ ;;^UTILITY(U,$J,358.3,10266,1,4,0)
+ ;;=4^J12.89
+ ;;^UTILITY(U,$J,358.3,10266,2)
+ ;;=^5008168
+ ;;^UTILITY(U,$J,358.3,10267,0)
+ ;;=J12.9^^39^434^29
+ ;;^UTILITY(U,$J,358.3,10267,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,10171,1,3,0)
- ;;=3^Malignant Eyelid Lesion,Left Upper Eyelid
- ;;^UTILITY(U,$J,358.3,10171,1,4,0)
- ;;=4^C44.1091
- ;;^UTILITY(U,$J,358.3,10171,2)
- ;;=^5157255
- ;;^UTILITY(U,$J,358.3,10172,0)
- ;;=H02.132^^74^671^13
- ;;^UTILITY(U,$J,358.3,10172,1,0)
+ ;;^UTILITY(U,$J,358.3,10267,1,3,0)
+ ;;=3^Pneumonia,Viral,Unspec
+ ;;^UTILITY(U,$J,358.3,10267,1,4,0)
+ ;;=4^J12.9
+ ;;^UTILITY(U,$J,358.3,10267,2)
+ ;;=^5008169
+ ;;^UTILITY(U,$J,358.3,10268,0)
+ ;;=J13.^^39^434^19
+ ;;^UTILITY(U,$J,358.3,10268,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,10172,1,3,0)
- ;;=3^Ectropion,Senile,Right Lower Eyelid
- ;;^UTILITY(U,$J,358.3,10172,1,4,0)
- ;;=4^H02.132
- ;;^UTILITY(U,$J,358.3,10172,2)
- ;;=^5004318
- ;;^UTILITY(U,$J,358.3,10173,0)
- ;;=H02.135^^74^671^14
- ;;^UTILITY(U,$J,358.3,10173,1,0)
+ ;;^UTILITY(U,$J,358.3,10268,1,3,0)
+ ;;=3^Pneumonia d/t Streptococcus Pneumoniae
+ ;;^UTILITY(U,$J,358.3,10268,1,4,0)
+ ;;=4^J13.
+ ;;^UTILITY(U,$J,358.3,10268,2)
+ ;;=^5008170
+ ;;^UTILITY(U,$J,358.3,10269,0)
+ ;;=J14.^^39^434^6
+ ;;^UTILITY(U,$J,358.3,10269,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,10173,1,3,0)
- ;;=3^Ectropion,Senile,Left Lower Eyelid
- ;;^UTILITY(U,$J,358.3,10173,1,4,0)
- ;;=4^H02.135
- ;;^UTILITY(U,$J,358.3,10173,2)
- ;;=^5133414
- ;;^UTILITY(U,$J,358.3,10174,0)
- ;;=B02.8^^74^671^29
- ;;^UTILITY(U,$J,358.3,10174,1,0)
+ ;;^UTILITY(U,$J,358.3,10269,1,3,0)
+ ;;=3^Pneumonia d/t Hemophilus Influenzae
+ ;;^UTILITY(U,$J,358.3,10269,1,4,0)
+ ;;=4^J14.
+ ;;^UTILITY(U,$J,358.3,10269,2)
+ ;;=^5008171
+ ;;^UTILITY(U,$J,358.3,10270,0)
+ ;;=J15.0^^39^434^7
+ ;;^UTILITY(U,$J,358.3,10270,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,10174,1,3,0)
- ;;=3^Herpes Zoster w/o Complications
- ;;^UTILITY(U,$J,358.3,10174,1,4,0)
- ;;=4^B02.8
- ;;^UTILITY(U,$J,358.3,10174,2)
- ;;=^5000500
- ;;^UTILITY(U,$J,358.3,10175,0)
- ;;=G24.5^^74^672^32
- ;;^UTILITY(U,$J,358.3,10175,1,0)
+ ;;^UTILITY(U,$J,358.3,10270,1,3,0)
+ ;;=3^Pneumonia d/t Klebsiella Pneumoniae
+ ;;^UTILITY(U,$J,358.3,10270,1,4,0)
+ ;;=4^J15.0
+ ;;^UTILITY(U,$J,358.3,10270,2)
+ ;;=^269931
+ ;;^UTILITY(U,$J,358.3,10271,0)
+ ;;=J15.1^^39^434^16
+ ;;^UTILITY(U,$J,358.3,10271,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,10175,1,3,0)
- ;;=3^Blepharospasm
- ;;^UTILITY(U,$J,358.3,10175,1,4,0)
- ;;=4^G24.5
- ;;^UTILITY(U,$J,358.3,10175,2)
- ;;=^15293
- ;;^UTILITY(U,$J,358.3,10176,0)
- ;;=G43.909^^74^672^31
- ;;^UTILITY(U,$J,358.3,10176,1,0)
+ ;;^UTILITY(U,$J,358.3,10271,1,3,0)
+ ;;=3^Pneumonia d/t Pseudomonas
+ ;;^UTILITY(U,$J,358.3,10271,1,4,0)
+ ;;=4^J15.1
+ ;;^UTILITY(U,$J,358.3,10271,2)
+ ;;=^269932
+ ;;^UTILITY(U,$J,358.3,10272,0)
+ ;;=J15.20^^39^434^18
+ ;;^UTILITY(U,$J,358.3,10272,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,10176,1,3,0)
- ;;=3^Migraine Not Intractable w/o Status Migrainosus
- ;;^UTILITY(U,$J,358.3,10176,1,4,0)
- ;;=4^G43.909
- ;;^UTILITY(U,$J,358.3,10176,2)
- ;;=^5003909
- ;;^UTILITY(U,$J,358.3,10177,0)
- ;;=G93.2^^74^672^9
- ;;^UTILITY(U,$J,358.3,10177,1,0)
+ ;;^UTILITY(U,$J,358.3,10272,1,3,0)
+ ;;=3^Pneumonia d/t Staphylococcus,Unspec
+ ;;^UTILITY(U,$J,358.3,10272,1,4,0)
+ ;;=4^J15.20
+ ;;^UTILITY(U,$J,358.3,10272,2)
+ ;;=^321179
+ ;;^UTILITY(U,$J,358.3,10273,0)
+ ;;=J15.211^^39^434^9
+ ;;^UTILITY(U,$J,358.3,10273,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,10177,1,3,0)
- ;;=3^Benign Intracranial Hypertension
- ;;^UTILITY(U,$J,358.3,10177,1,4,0)
- ;;=4^G93.2
- ;;^UTILITY(U,$J,358.3,10177,2)
- ;;=^5004180
- ;;^UTILITY(U,$J,358.3,10178,0)
- ;;=G51.0^^74^672^20
- ;;^UTILITY(U,$J,358.3,10178,1,0)
+ ;;^UTILITY(U,$J,358.3,10273,1,3,0)
+ ;;=3^Pneumonia d/t Methicillin Suscep Staph
+ ;;^UTILITY(U,$J,358.3,10273,1,4,0)
+ ;;=4^J15.211
+ ;;^UTILITY(U,$J,358.3,10273,2)
+ ;;=^336833
+ ;;^UTILITY(U,$J,358.3,10274,0)
+ ;;=J15.212^^39^434^8
+ ;;^UTILITY(U,$J,358.3,10274,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,10178,1,3,0)
- ;;=3^CN7-Bell's Palsy
- ;;^UTILITY(U,$J,358.3,10178,1,4,0)
- ;;=4^G51.0
- ;;^UTILITY(U,$J,358.3,10178,2)
- ;;=^13238
- ;;^UTILITY(U,$J,358.3,10179,0)
- ;;=G51.4^^74^672^36
- ;;^UTILITY(U,$J,358.3,10179,1,0)
+ ;;^UTILITY(U,$J,358.3,10274,1,3,0)
+ ;;=3^Pneumonia d/t Methicillin Resistant Staph Aureus
+ ;;^UTILITY(U,$J,358.3,10274,1,4,0)
+ ;;=4^J15.212
+ ;;^UTILITY(U,$J,358.3,10274,2)
+ ;;=^336602
+ ;;^UTILITY(U,$J,358.3,10275,0)
+ ;;=J15.29^^39^434^11
+ ;;^UTILITY(U,$J,358.3,10275,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,10179,1,3,0)
- ;;=3^Facial Myokymia
- ;;^UTILITY(U,$J,358.3,10179,1,4,0)
- ;;=4^G51.4
- ;;^UTILITY(U,$J,358.3,10179,2)
- ;;=^5003996
- ;;^UTILITY(U,$J,358.3,10180,0)
- ;;=H34.01^^74^672^11
+ ;;^UTILITY(U,$J,358.3,10275,1,3,0)
+ ;;=3^Pneumonia d/t Oth Staph
+ ;;^UTILITY(U,$J,358.3,10275,1,4,0)
+ ;;=4^J15.29
+ ;;^UTILITY(U,$J,358.3,10275,2)
+ ;;=^5008172
+ ;;^UTILITY(U,$J,358.3,10276,0)
+ ;;=J15.3^^39^434^20
+ ;;^UTILITY(U,$J,358.3,10276,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,10276,1,3,0)
+ ;;=3^Pneumonia d/t Streptococcus,Group B

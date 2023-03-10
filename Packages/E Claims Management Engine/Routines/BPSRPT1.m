@@ -1,5 +1,5 @@
 BPSRPT1 ;BHAM ISC/BEE - ECME REPORTS ;14-FEB-05
- ;;1.0;E CLAIMS MGMT ENGINE;**1,5,7,8,10,11,19,20,23,24**;JUN 2004;Build 43
+ ;;1.0;E CLAIMS MGMT ENGINE;**1,5,7,8,10,11,19,20,23,24,28**;JUN 2004;Build 22
  ;;Per VA Directive 6402, this routine should not be modified.
  ;
  ; Reference to COLLECT^IBNCPEV3 supported by ICR 6131
@@ -9,7 +9,7 @@ BPSRPT1 ;BHAM ISC/BEE - ECME REPORTS ;14-FEB-05
  ; ECME Report Compile Routine - Looping/Filtering Routine
  ;
  ;  Input Variables:
- ;               BPRTYPE - Type of Report (1-9)
+ ;               BPRTYPE - Type of Report (1-10)
  ;               BPGLTMP - Temporary storage global
  ;  BPPHARM/BPPHARM(ptr) - Set to 0 for all pharmacies, if set to 1 array
  ;                         of internal pointers of selected pharmacies
@@ -18,6 +18,7 @@ BPSRPT1 ;BHAM ISC/BEE - ECME REPORTS ;14-FEB-05
  ;                 BPMWC - A-ALL,M-Mail,W-Window,C-CMOP Prescriptions
  ;               BPRTBCK - 1-ALL,2-RealTime,3-Backbill Claim Submission,4-PRO Option,5-Resubmission
  ;               BPRLNRL - 1-ALL,2-RELEASED,3-NOT RELEASED
+ ;                 BPDUP - 0-ALL,S-Duplicate of Approved,D-Duplicate of Paid,Q-Duplicate of Capture
  ;                BPDRUG - DRUG to report on (ptr to #50)
  ;               BPDRGCL - DRUG CLASS to report on (0 for ALL)
  ;               BPBEGDT - Beginning Date
@@ -90,6 +91,7 @@ FM2YMD(BPFMDT) N Y,Y1
  ;
 PROCESS(BP59) ;
  N BPBILLED,BPBCK,BPBCKXBPDFN,BPREF,BPPAYBL,BPPLAN,BPREJ,BPRLSDT,BPRX,BPRXDC,BPRXDRG,BPSTATUS,BPSEQ,BPSTOP
+ N BPDUPREC,BPDUPST,BPDUPPAY,BPSPOS,BPSRESP
  ;
  S BPSEQ=$$COB59^BPSUTIL2(BP59)
  ;
@@ -149,6 +151,18 @@ PROCESS(BP59) ;
  ;If Totals by Date, include only rejects and payables
  I BPRTYPE=6,BPSTATUS'["REJECTED",BPSTATUS'["PAYABLE" G XPROC  ; Reversed
  ;
+DUP ;If Duplicate Claims Report check TRANSACTION RESPONSE STATUS in file #9002313.0301
+ ; if the Claim has a Duplicate Status, get the Patient Payment Amount
+ I BPRTYPE=10 D  I 'BPDUPREC G XPROC
+ . S BPDUPREC=0
+ . D RESP59^BPSRPT2(BP59,.BPSRESP,.BPSPOS)
+ . I (BPSRESP="")!(BPSPOS="") Q
+ . S BPDUPST=$$GET1^DIQ(9002313.0301,BPSPOS_","_BPSRESP_",",112,"I")
+ . I BPDUPST="" Q
+ . I BPDUP=0 I "(,S,D,Q,)"[BPDUPST S BPDUPREC=1
+ . I BPDUP'=0 I BPDUP[BPDUPST S BPDUPREC=1
+ . I BPDUPREC S BPDUPPAY=$$GETPPAY^BPSRPT2(BPSRESP,BPSPOS)
+ ;
  ;Realtime/Backbill/PRO Option/Resubmission Check
  S BPBCK=$$RTBCK(BP59)
  ;
@@ -199,7 +213,7 @@ PROCESS(BP59) ;
  ;;I BPELIG'=0,BPELIG'=$$ELIGCODE^BPSSCR05(BP59) G XPROC
  ;
  ;Check for Eligibility Codes, when one or more is selected (BPELIG1=1)
- I (",1,2,3,4,7,9,")[BPRTYPE,BPELIG1'=0 S ELIG=$$ELIGCODE^BPSSCR05(BP59) G:$G(ELIG)="" XPROC I '$D(BPELIG1(ELIG)) G XPROC
+ I (",1,2,3,4,7,9,10,")[(","_BPRTYPE_","),BPELIG1'=0 S ELIG=$$ELIGCODE^BPSSCR05(BP59) G:$G(ELIG)="" XPROC I '$D(BPELIG1(ELIG)) G XPROC
  ;
  ;Check for selected Prescribers
  I BPRESC'=0 D  I BPSTOP=0 G XPROC
@@ -218,7 +232,7 @@ PROCESS(BP59) ;
  I BPOPCL'=0,((BPOPCL=2)&($$CLOSED02^BPSSCR03($P(^BPST(BP59,0),U,4))=1))!((BPOPCL=1)&($$CLOSED02^BPSSCR03($P(^BPST(BP59,0),U,4))'=1)) G XPROC
  ;
  ;Save Entry for Report
- D SETTMP^BPSRPT2(BPGLTMP,BPDFN,BPRX,BPREF,BP59,BPBEGDT,BPENDDT,.BPPHARM,BPSUMDET,BPPLAN,BPRLSDT,BPPAYBL,BPREJ,BPRXDRG,$P(BPSTATUS,U))
+ D SETTMP^BPSRPT2(BPGLTMP,BPDFN,BPRX,BPREF,BP59,BPBEGDT,BPENDDT,.BPPHARM,BPSUMDET,BPPLAN,BPRLSDT,BPPAYBL,BPREJ,BPRXDRG,$P(BPSTATUS,U),$G(BPDUPST),$G(BPDUPPAY))
  ;
 XPROC Q
  ;

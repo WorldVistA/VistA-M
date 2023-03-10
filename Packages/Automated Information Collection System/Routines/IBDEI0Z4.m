@@ -1,120 +1,128 @@
-IBDEI0Z4 ; ; 04-FEB-2020
- ;;3.0;IB ENCOUNTER FORM IMP/EXP;;FEB 04, 2020
+IBDEI0Z4 ; ; 01-FEB-2022
+ ;;3.0;IB ENCOUNTER FORM IMP/EXP;;FEB 01, 2022
  Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,999) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
- ;;^UTILITY(U,$J,358.3,15670,1,4,0)
- ;;=4^I70.219
- ;;^UTILITY(U,$J,358.3,15670,2)
- ;;=^5007582
- ;;^UTILITY(U,$J,358.3,15671,0)
- ;;=I70.213^^88^867^8
- ;;^UTILITY(U,$J,358.3,15671,1,0)
+ ;;^UTILITY(U,$J,358.3,15852,2)
+ ;;=^5009035
+ ;;^UTILITY(U,$J,358.3,15853,0)
+ ;;=L03.116^^61^765^104
+ ;;^UTILITY(U,$J,358.3,15853,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,15671,1,3,0)
- ;;=3^Athscl Native Arteries of Extrm w/ Intrmt Claud,Bilat Legs
- ;;^UTILITY(U,$J,358.3,15671,1,4,0)
- ;;=4^I70.213
- ;;^UTILITY(U,$J,358.3,15671,2)
- ;;=^5007580
- ;;^UTILITY(U,$J,358.3,15672,0)
- ;;=I70.212^^88^867^9
- ;;^UTILITY(U,$J,358.3,15672,1,0)
+ ;;^UTILITY(U,$J,358.3,15853,1,3,0)
+ ;;=3^Cellulitis of Left Lower Limb
+ ;;^UTILITY(U,$J,358.3,15853,1,4,0)
+ ;;=4^L03.116
+ ;;^UTILITY(U,$J,358.3,15853,2)
+ ;;=^5133645
+ ;;^UTILITY(U,$J,358.3,15854,0)
+ ;;=L03.123^^61^765^28
+ ;;^UTILITY(U,$J,358.3,15854,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,15672,1,3,0)
- ;;=3^Athscl Native Arteries of Extrm w/ Intrmt Claud,Left Leg
- ;;^UTILITY(U,$J,358.3,15672,1,4,0)
- ;;=4^I70.212
- ;;^UTILITY(U,$J,358.3,15672,2)
- ;;=^5007579
- ;;^UTILITY(U,$J,358.3,15673,0)
- ;;=I70.211^^88^867^10
- ;;^UTILITY(U,$J,358.3,15673,1,0)
+ ;;^UTILITY(U,$J,358.3,15854,1,3,0)
+ ;;=3^Acute Lymphangitis of Right Upper Limb
+ ;;^UTILITY(U,$J,358.3,15854,1,4,0)
+ ;;=4^L03.123
+ ;;^UTILITY(U,$J,358.3,15854,2)
+ ;;=^5009039
+ ;;^UTILITY(U,$J,358.3,15855,0)
+ ;;=L03.124^^61^765^22
+ ;;^UTILITY(U,$J,358.3,15855,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,15673,1,3,0)
- ;;=3^Athscl Native Arteries of Extrm w/ Intrmt Claud,Right Leg
- ;;^UTILITY(U,$J,358.3,15673,1,4,0)
- ;;=4^I70.211
- ;;^UTILITY(U,$J,358.3,15673,2)
- ;;=^5007578
- ;;^UTILITY(U,$J,358.3,15674,0)
- ;;=I70.25^^88^867^6
- ;;^UTILITY(U,$J,358.3,15674,1,0)
+ ;;^UTILITY(U,$J,358.3,15855,1,3,0)
+ ;;=3^Acute Lymphangitis of Left Upper Limb
+ ;;^UTILITY(U,$J,358.3,15855,1,4,0)
+ ;;=4^L03.124
+ ;;^UTILITY(U,$J,358.3,15855,2)
+ ;;=^5009040
+ ;;^UTILITY(U,$J,358.3,15856,0)
+ ;;=L03.125^^61^765^26
+ ;;^UTILITY(U,$J,358.3,15856,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,15674,1,3,0)
- ;;=3^Athscl Native Arteries of Extremitis w/ Ulceration
- ;;^UTILITY(U,$J,358.3,15674,1,4,0)
- ;;=4^I70.25
- ;;^UTILITY(U,$J,358.3,15674,2)
- ;;=^5007602
- ;;^UTILITY(U,$J,358.3,15675,0)
- ;;=I70.249^^88^867^11
- ;;^UTILITY(U,$J,358.3,15675,1,0)
+ ;;^UTILITY(U,$J,358.3,15856,1,3,0)
+ ;;=3^Acute Lymphangitis of Right Lower Limb
+ ;;^UTILITY(U,$J,358.3,15856,1,4,0)
+ ;;=4^L03.125
+ ;;^UTILITY(U,$J,358.3,15856,2)
+ ;;=^5009041
+ ;;^UTILITY(U,$J,358.3,15857,0)
+ ;;=L03.126^^61^765^20
+ ;;^UTILITY(U,$J,358.3,15857,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,15675,1,3,0)
- ;;=3^Athscl Natv Art of Lt Leg w/ Ulceration of Unspec Site
- ;;^UTILITY(U,$J,358.3,15675,1,4,0)
- ;;=4^I70.249
- ;;^UTILITY(U,$J,358.3,15675,2)
- ;;=^5007601
- ;;^UTILITY(U,$J,358.3,15676,0)
- ;;=I70.239^^88^867^12
- ;;^UTILITY(U,$J,358.3,15676,1,0)
+ ;;^UTILITY(U,$J,358.3,15857,1,3,0)
+ ;;=3^Acute Lymphangitis of Left Lower Limb
+ ;;^UTILITY(U,$J,358.3,15857,1,4,0)
+ ;;=4^L03.126
+ ;;^UTILITY(U,$J,358.3,15857,2)
+ ;;=^5133646
+ ;;^UTILITY(U,$J,358.3,15858,0)
+ ;;=L03.211^^61^765^101
+ ;;^UTILITY(U,$J,358.3,15858,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,15676,1,3,0)
- ;;=3^Athscl Natv Art of Rt Leg w/ Ulcer of Unspec Site
- ;;^UTILITY(U,$J,358.3,15676,1,4,0)
- ;;=4^I70.239
- ;;^UTILITY(U,$J,358.3,15676,2)
- ;;=^5007594
- ;;^UTILITY(U,$J,358.3,15677,0)
- ;;=I70.269^^88^867^13
- ;;^UTILITY(U,$J,358.3,15677,1,0)
+ ;;^UTILITY(U,$J,358.3,15858,1,3,0)
+ ;;=3^Cellulitis of Face
+ ;;^UTILITY(U,$J,358.3,15858,1,4,0)
+ ;;=4^L03.211
+ ;;^UTILITY(U,$J,358.3,15858,2)
+ ;;=^5009043
+ ;;^UTILITY(U,$J,358.3,15859,0)
+ ;;=L03.212^^61^765^17
+ ;;^UTILITY(U,$J,358.3,15859,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,15677,1,3,0)
- ;;=3^Athscl Natv Arteries of Extrm w/ Gangrene,Unspec Extremity
- ;;^UTILITY(U,$J,358.3,15677,1,4,0)
- ;;=4^I70.269
- ;;^UTILITY(U,$J,358.3,15677,2)
- ;;=^5007607
- ;;^UTILITY(U,$J,358.3,15678,0)
- ;;=I70.263^^88^867^14
- ;;^UTILITY(U,$J,358.3,15678,1,0)
+ ;;^UTILITY(U,$J,358.3,15859,1,3,0)
+ ;;=3^Acute Lymphangitis of Face
+ ;;^UTILITY(U,$J,358.3,15859,1,4,0)
+ ;;=4^L03.212
+ ;;^UTILITY(U,$J,358.3,15859,2)
+ ;;=^5009044
+ ;;^UTILITY(U,$J,358.3,15860,0)
+ ;;=L03.221^^61^765^108
+ ;;^UTILITY(U,$J,358.3,15860,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,15678,1,3,0)
- ;;=3^Athscl Natv Arteries of Extrm w/ Gangrene,Bilateral Legs
- ;;^UTILITY(U,$J,358.3,15678,1,4,0)
- ;;=4^I70.263
- ;;^UTILITY(U,$J,358.3,15678,2)
- ;;=^5007605
- ;;^UTILITY(U,$J,358.3,15679,0)
- ;;=I70.262^^88^867^15
- ;;^UTILITY(U,$J,358.3,15679,1,0)
+ ;;^UTILITY(U,$J,358.3,15860,1,3,0)
+ ;;=3^Cellulitis of Neck
+ ;;^UTILITY(U,$J,358.3,15860,1,4,0)
+ ;;=4^L03.221
+ ;;^UTILITY(U,$J,358.3,15860,2)
+ ;;=^5009045
+ ;;^UTILITY(U,$J,358.3,15861,0)
+ ;;=L03.222^^61^765^23
+ ;;^UTILITY(U,$J,358.3,15861,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,15679,1,3,0)
- ;;=3^Athscl Natv Arteries of Extrm w/ Gangrene,Left Leg
- ;;^UTILITY(U,$J,358.3,15679,1,4,0)
- ;;=4^I70.262
- ;;^UTILITY(U,$J,358.3,15679,2)
- ;;=^5007604
- ;;^UTILITY(U,$J,358.3,15680,0)
- ;;=I70.261^^88^867^16
- ;;^UTILITY(U,$J,358.3,15680,1,0)
+ ;;^UTILITY(U,$J,358.3,15861,1,3,0)
+ ;;=3^Acute Lymphangitis of Neck
+ ;;^UTILITY(U,$J,358.3,15861,1,4,0)
+ ;;=4^L03.222
+ ;;^UTILITY(U,$J,358.3,15861,2)
+ ;;=^5009046
+ ;;^UTILITY(U,$J,358.3,15862,0)
+ ;;=L03.311^^61^765^97
+ ;;^UTILITY(U,$J,358.3,15862,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,15680,1,3,0)
- ;;=3^Athscl Natv Arteries of Extrm w/ Gangrene,Right Leg
- ;;^UTILITY(U,$J,358.3,15680,1,4,0)
- ;;=4^I70.261
- ;;^UTILITY(U,$J,358.3,15680,2)
- ;;=^5007603
- ;;^UTILITY(U,$J,358.3,15681,0)
- ;;=I71.2^^88^867^34
- ;;^UTILITY(U,$J,358.3,15681,1,0)
+ ;;^UTILITY(U,$J,358.3,15862,1,3,0)
+ ;;=3^Cellulitis of Abdominal Wall
+ ;;^UTILITY(U,$J,358.3,15862,1,4,0)
+ ;;=4^L03.311
+ ;;^UTILITY(U,$J,358.3,15862,2)
+ ;;=^5009047
+ ;;^UTILITY(U,$J,358.3,15863,0)
+ ;;=L03.312^^61^765^98
+ ;;^UTILITY(U,$J,358.3,15863,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,15681,1,3,0)
- ;;=3^Thoracic Aortic Aneurysm w/o Rupture
- ;;^UTILITY(U,$J,358.3,15681,1,4,0)
- ;;=4^I71.2
- ;;^UTILITY(U,$J,358.3,15681,2)
- ;;=^5007787
- ;;^UTILITY(U,$J,358.3,15682,0)
- ;;=I71.4^^88^867^1
+ ;;^UTILITY(U,$J,358.3,15863,1,3,0)
+ ;;=3^Cellulitis of Back
+ ;;^UTILITY(U,$J,358.3,15863,1,4,0)
+ ;;=4^L03.312
+ ;;^UTILITY(U,$J,358.3,15863,2)
+ ;;=^5009048
+ ;;^UTILITY(U,$J,358.3,15864,0)
+ ;;=L03.313^^61^765^100
+ ;;^UTILITY(U,$J,358.3,15864,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,15864,1,3,0)
+ ;;=3^Cellulitis of Chest Wall
+ ;;^UTILITY(U,$J,358.3,15864,1,4,0)
+ ;;=4^L03.313
+ ;;^UTILITY(U,$J,358.3,15864,2)
+ ;;=^5009049
+ ;;^UTILITY(U,$J,358.3,15865,0)
+ ;;=L03.314^^61^765^102

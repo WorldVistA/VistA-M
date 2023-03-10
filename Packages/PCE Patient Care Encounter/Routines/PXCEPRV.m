@@ -1,5 +1,5 @@
-PXCEPRV ;ISL/dee - Used to edit and display V PROVIDER ;5/10/05 6:23pm
- ;;1.0;PCE PATIENT CARE ENCOUNTER;**7,27,124**;Aug 12, 1996
+PXCEPRV ;ISL/dee - Used to edit and display V PROVIDER ;03/16/2022
+ ;;1.0;PCE PATIENT CARE ENCOUNTER;**7,27,124,211,217**;Aug 12, 1996;Build 134
  ;
  Q
  ;
@@ -10,13 +10,16 @@ PXCEPRV ;ISL/dee - Used to edit and display V PROVIDER ;5/10/05 6:23pm
  ;Followning lines:
  ;;Node~Piece~,Field Number~Edit Label~Display Label~Display Routine~Edit Routine~Help Text for DIR("?")~Set of PXCEKEYS that can Edit~D if Detail Display Only~
  ;  1  ~  2  ~      3      ~     4    ~        5    ~        6      ~     7      ~       8              ~          9                  ~       10
- ;The Display & Edit routines are for special caces.
+ ;The Display & Edit routines are for special cases.
  ;  (The .01 field cannot have a special edit.)
  ;
 FORMAT ;;Provider~9000010.06~0,12,811,812~0~^AUPNVPRV
  ;;0~1~.01~Provider:  ~Provider:  ~$$DISPLY01^PXCEPRV~EPROV^PXCEPRV~^D HELP^PXCEHELP~~B
  ;;0~4~.04~Is this Provider Primary:  ~Primary:  ~$$DISPPRIM^PXCEPRV~EPRIMSEC^PXCEPRV~~~N
  ;;0~5~.05~Is this Provider Attending:  ~Attending:  ~~EATTEND^PXCEPRV~~~N
+ ;;12~1~1201~Event Date and Time:  ~Event Date and Time: ~~EVENTDT^PXCEPRV(.PXCEAFTR)~~~D
+ ;;812~2~81202~Package:  ~Package: ~~SKIP^PXCEPRV~~~D
+ ;;812~3~81203~Data Source:  ~Data Source: ~~SKIP^PXCEPRV~~~D
  ;;
  ;
  ;The interface for AICS to get list on form for help.
@@ -44,6 +47,7 @@ EPROV ;
  S DIC(0)="AEMQ"
  S DIC("A")=$P(PXCETEXT,"~",4)
  S DIC("S")="I $$ACTIVPRV^PXAPI(Y,PXPRVDT)"
+ S DIC("W")="W !,""NPI: "",$$GET1^DIQ(200,Y_"","",41.99)"
  D ^DIC
  K DIR
  I $D(DUOUT)!$D(DTOUT)!(X="") S DIRUT=1 Q
@@ -112,6 +116,24 @@ EPROV12 ;
  Q
  ;
  ;********************************
+EVENTDT(PXCEAFTR) ;Edit the Event Date and Time.
+ N DEFAULT,EVENTDT,HELP,PROMPT
+ S DEFAULT=$P(^TMP("PXK",$J,"PRV",1,12,"BEFORE"),U,1)
+ S HELP="D EVDTHELP^PXCEPRV"
+ S PROMPT="Enter the Event Date and Time"
+ S EVENTDT=$$GETDT^PXDATE(-1,-1,-1,DEFAULT,PROMPT,HELP)
+ S $P(PXCEAFTR(12),U,1)=EVENTDT
+ Q
+ ;
+ ;********************************
+EVDTHELP ;Event Date and Time help.
+ N ERR,RESULT,TEXT
+ S RESULT=$$GET1^DID(9000010.06,1201,"","DESCRIPTION","TEXT","ERR")
+ D BROWSE^DDBR("TEXT(""DESCRIPTION"")","NR","V Provider Event Date and Time Help")
+ I $D(DDS) D REFRESH^DDSUTL S DY=IOSL-7,DX=0 X IOXY S $Y=DY,$X=DX
+ Q
+ ;
+ ;********************************
 PERCLASS(PXCEPRV) ;Returns text for person class
  N PXCEPERC
  S PXCEPERC=$$OCCUP^PXBGPRV(PXCEPRV,+^AUPNVSIT(PXCEVIEN,0),"",2)
@@ -129,7 +151,7 @@ PRCL ;
  ;********************************
  ;Display text for the .01 field which is a pointer to ^ICPT.
  ;(Must have is called by ASK^PXCEVFI2 and DEL^PXCEVFI2.)
-DISPLY01(PXCEPRV) ;
+DISPLY01(PXCEPRV,PXCEDT) ;
  N DIERR,PXCEDILF,PXCEEPRV,PXCEEPS,PXCEEAO,PXCEPERC,PXCERET
  S PXCEEPRV=$$EXTERNAL^DILFD(9000010.06,".01","",$P(PXCEPRV,"^",1),"PXCEDILF")
  S PXCEEPS=$$EXTERNAL^DILFD(9000010.06,".04","",$P(PXCEPRV,"^",4),"PXCEDILF")
@@ -138,4 +160,9 @@ DISPLY01(PXCEPRV) ;
  S PXCERET=PXCEEPRV_"   "_$S($E(PXCEEPS)="P":PXCEEPS_"   ",1:"")_$S(PXCEEAO]"":PXCEEAO_"   ",1:"")
  S PXCERET=PXCERET_$E(PXCEPERC,1,(65-$L(PXCERET)))
  Q PXCERET
+ ;
+ ;********************************
+SKIP ;Used to by-pass roll and scroll editing of a field.
+ S (X,Y)=""
+ Q
  ;

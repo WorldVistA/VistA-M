@@ -1,684 +1,652 @@
-IBDEI07M ; ; 01-MAY-2020
- ;;3.0;IB ENCOUNTER FORM IMP/EXP;;MAY 01, 2020
+IBDEI07M ; ; 01-AUG-2022
+ ;;3.0;IB ENCOUNTER FORM IMP/EXP;;AUG 01, 2022
  Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,999) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
+ ;;^UTILITY(U,$J,358.3,18527,1,3,0)
+ ;;=3^Maternal care,oth/susp poor ftl grth,3rd tri,fts 5
+ ;;^UTILITY(U,$J,358.3,18527,1,4,0)
+ ;;=4^O36.5935
+ ;;^UTILITY(U,$J,358.3,18527,2)
+ ;;=^5017020
+ ;;^UTILITY(U,$J,358.3,18528,0)
+ ;;=O36.61X0^^62^740^128
+ ;;^UTILITY(U,$J,358.3,18528,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,18528,1,3,0)
+ ;;=3^Maternal care,excess ftl growth,1st tri,unsp
+ ;;^UTILITY(U,$J,358.3,18528,1,4,0)
+ ;;=4^O36.61X0
+ ;;^UTILITY(U,$J,358.3,18528,2)
+ ;;=^5017033
+ ;;^UTILITY(U,$J,358.3,18529,0)
+ ;;=O36.61X1^^62^740^129
+ ;;^UTILITY(U,$J,358.3,18529,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,18529,1,3,0)
+ ;;=3^Maternal care,excess ftl growth,1st tri,fts 1
+ ;;^UTILITY(U,$J,358.3,18529,1,4,0)
+ ;;=4^O36.61X1
+ ;;^UTILITY(U,$J,358.3,18529,2)
+ ;;=^5017034
+ ;;^UTILITY(U,$J,358.3,18530,0)
+ ;;=O36.61X2^^62^740^130
+ ;;^UTILITY(U,$J,358.3,18530,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,18530,1,3,0)
+ ;;=3^Maternal care,excess ftl growth,1st tri,fts 2
+ ;;^UTILITY(U,$J,358.3,18530,1,4,0)
+ ;;=4^O36.61X2
+ ;;^UTILITY(U,$J,358.3,18530,2)
+ ;;=^5017035
+ ;;^UTILITY(U,$J,358.3,18531,0)
+ ;;=O36.61X3^^62^740^131
+ ;;^UTILITY(U,$J,358.3,18531,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,18531,1,3,0)
+ ;;=3^Maternal care,excess ftl growth,1st tri,fts 3
+ ;;^UTILITY(U,$J,358.3,18531,1,4,0)
+ ;;=4^O36.61X3
+ ;;^UTILITY(U,$J,358.3,18531,2)
+ ;;=^5017036
+ ;;^UTILITY(U,$J,358.3,18532,0)
+ ;;=O36.61X4^^62^740^132
+ ;;^UTILITY(U,$J,358.3,18532,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,18532,1,3,0)
+ ;;=3^Maternal care,excess ftl growth,1st tri,fts 4
+ ;;^UTILITY(U,$J,358.3,18532,1,4,0)
+ ;;=4^O36.61X4
+ ;;^UTILITY(U,$J,358.3,18532,2)
+ ;;=^5017037
+ ;;^UTILITY(U,$J,358.3,18533,0)
+ ;;=O36.61X5^^62^740^133
+ ;;^UTILITY(U,$J,358.3,18533,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,18533,1,3,0)
+ ;;=3^Maternal care,excess ftl growth,1st tri,fts 5
+ ;;^UTILITY(U,$J,358.3,18533,1,4,0)
+ ;;=4^O36.61X5
+ ;;^UTILITY(U,$J,358.3,18533,2)
+ ;;=^5017038
+ ;;^UTILITY(U,$J,358.3,18534,0)
+ ;;=O36.62X0^^62^740^134
+ ;;^UTILITY(U,$J,358.3,18534,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,18534,1,3,0)
+ ;;=3^Maternal care,excess ftl growth,2nd tri,unsp
+ ;;^UTILITY(U,$J,358.3,18534,1,4,0)
+ ;;=4^O36.62X0
+ ;;^UTILITY(U,$J,358.3,18534,2)
+ ;;=^5017040
+ ;;^UTILITY(U,$J,358.3,18535,0)
+ ;;=O36.62X1^^62^740^135
+ ;;^UTILITY(U,$J,358.3,18535,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,18535,1,3,0)
+ ;;=3^Maternal care,excess ftl growth,2nd tri,fts 1
+ ;;^UTILITY(U,$J,358.3,18535,1,4,0)
+ ;;=4^O36.62X1
+ ;;^UTILITY(U,$J,358.3,18535,2)
+ ;;=^5017041
+ ;;^UTILITY(U,$J,358.3,18536,0)
+ ;;=O36.62X2^^62^740^136
+ ;;^UTILITY(U,$J,358.3,18536,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,18536,1,3,0)
+ ;;=3^Maternal care,excess ftl growth,2nd tri,fts 2
+ ;;^UTILITY(U,$J,358.3,18536,1,4,0)
+ ;;=4^O36.62X2
+ ;;^UTILITY(U,$J,358.3,18536,2)
+ ;;=^5017042
+ ;;^UTILITY(U,$J,358.3,18537,0)
+ ;;=O36.62X3^^62^740^137
+ ;;^UTILITY(U,$J,358.3,18537,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,18537,1,3,0)
+ ;;=3^Maternal care,excess ftl growth,2nd tri,fts 3
+ ;;^UTILITY(U,$J,358.3,18537,1,4,0)
+ ;;=4^O36.62X3
+ ;;^UTILITY(U,$J,358.3,18537,2)
+ ;;=^5017043
+ ;;^UTILITY(U,$J,358.3,18538,0)
+ ;;=O36.62X4^^62^740^138
+ ;;^UTILITY(U,$J,358.3,18538,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,18538,1,3,0)
+ ;;=3^Maternal care,excess ftl growth,2nd tri,fts 4
+ ;;^UTILITY(U,$J,358.3,18538,1,4,0)
+ ;;=4^O36.62X4
+ ;;^UTILITY(U,$J,358.3,18538,2)
+ ;;=^5017044
+ ;;^UTILITY(U,$J,358.3,18539,0)
+ ;;=O36.62X5^^62^740^139
+ ;;^UTILITY(U,$J,358.3,18539,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,18539,1,3,0)
+ ;;=3^Maternal care,excess ftl growth,2nd tri,fts 5
+ ;;^UTILITY(U,$J,358.3,18539,1,4,0)
+ ;;=4^O36.62X5
+ ;;^UTILITY(U,$J,358.3,18539,2)
+ ;;=^5017045
+ ;;^UTILITY(U,$J,358.3,18540,0)
+ ;;=O36.63X0^^62^740^122
+ ;;^UTILITY(U,$J,358.3,18540,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,18540,1,3,0)
+ ;;=3^Maternal care,excess ftl growht,3rd tri,unsp
+ ;;^UTILITY(U,$J,358.3,18540,1,4,0)
+ ;;=4^O36.63X0
+ ;;^UTILITY(U,$J,358.3,18540,2)
+ ;;=^5017047
+ ;;^UTILITY(U,$J,358.3,18541,0)
+ ;;=O36.63X1^^62^740^123
+ ;;^UTILITY(U,$J,358.3,18541,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,18541,1,3,0)
+ ;;=3^Maternal care,excess ftl growht,3rd tri,fts 1
+ ;;^UTILITY(U,$J,358.3,18541,1,4,0)
+ ;;=4^O36.63X1
+ ;;^UTILITY(U,$J,358.3,18541,2)
+ ;;=^5017048
+ ;;^UTILITY(U,$J,358.3,18542,0)
+ ;;=O36.63X2^^62^740^124
+ ;;^UTILITY(U,$J,358.3,18542,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,18542,1,3,0)
+ ;;=3^Maternal care,excess ftl growht,3rd tri,fts 2
+ ;;^UTILITY(U,$J,358.3,18542,1,4,0)
+ ;;=4^O36.63X2
+ ;;^UTILITY(U,$J,358.3,18542,2)
+ ;;=^5017049
+ ;;^UTILITY(U,$J,358.3,18543,0)
+ ;;=O36.63X3^^62^740^125
+ ;;^UTILITY(U,$J,358.3,18543,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,18543,1,3,0)
+ ;;=3^Maternal care,excess ftl growht,3rd tri,fts 3
+ ;;^UTILITY(U,$J,358.3,18543,1,4,0)
+ ;;=4^O36.63X3
+ ;;^UTILITY(U,$J,358.3,18543,2)
+ ;;=^5017050
+ ;;^UTILITY(U,$J,358.3,18544,0)
+ ;;=O36.63X4^^62^740^126
+ ;;^UTILITY(U,$J,358.3,18544,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,18544,1,3,0)
+ ;;=3^Maternal care,excess ftl growht,3rd tri,fts 4
+ ;;^UTILITY(U,$J,358.3,18544,1,4,0)
+ ;;=4^O36.63X4
+ ;;^UTILITY(U,$J,358.3,18544,2)
+ ;;=^5017051
+ ;;^UTILITY(U,$J,358.3,18545,0)
+ ;;=O36.63X5^^62^740^127
+ ;;^UTILITY(U,$J,358.3,18545,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,18545,1,3,0)
+ ;;=3^Maternal care,excess ftl growht,3rd tri,fts 5
+ ;;^UTILITY(U,$J,358.3,18545,1,4,0)
+ ;;=4^O36.63X5
+ ;;^UTILITY(U,$J,358.3,18545,2)
+ ;;=^5017052
+ ;;^UTILITY(U,$J,358.3,18546,0)
+ ;;=O40.1XX0^^62^740^223
+ ;;^UTILITY(U,$J,358.3,18546,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,18546,1,3,0)
+ ;;=3^Polyhydramnios, first trimester, unsp
+ ;;^UTILITY(U,$J,358.3,18546,1,4,0)
+ ;;=4^O40.1XX0
+ ;;^UTILITY(U,$J,358.3,18546,2)
+ ;;=^5017187
+ ;;^UTILITY(U,$J,358.3,18547,0)
+ ;;=O40.1XX1^^62^740^218
+ ;;^UTILITY(U,$J,358.3,18547,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,18547,1,3,0)
+ ;;=3^Polyhydramnios, first trimester, fetus 1
+ ;;^UTILITY(U,$J,358.3,18547,1,4,0)
+ ;;=4^O40.1XX1
+ ;;^UTILITY(U,$J,358.3,18547,2)
+ ;;=^5017188
+ ;;^UTILITY(U,$J,358.3,18548,0)
+ ;;=O40.1XX2^^62^740^219
+ ;;^UTILITY(U,$J,358.3,18548,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,18548,1,3,0)
+ ;;=3^Polyhydramnios, first trimester, fetus 2
+ ;;^UTILITY(U,$J,358.3,18548,1,4,0)
+ ;;=4^O40.1XX2
+ ;;^UTILITY(U,$J,358.3,18548,2)
+ ;;=^5017189
+ ;;^UTILITY(U,$J,358.3,18549,0)
+ ;;=O40.1XX3^^62^740^220
+ ;;^UTILITY(U,$J,358.3,18549,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,18549,1,3,0)
+ ;;=3^Polyhydramnios, first trimester, fetus 3
+ ;;^UTILITY(U,$J,358.3,18549,1,4,0)
+ ;;=4^O40.1XX3
+ ;;^UTILITY(U,$J,358.3,18549,2)
+ ;;=^5017190
+ ;;^UTILITY(U,$J,358.3,18550,0)
+ ;;=O40.1XX4^^62^740^221
+ ;;^UTILITY(U,$J,358.3,18550,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,18550,1,3,0)
+ ;;=3^Polyhydramnios, first trimester, fetus 4
+ ;;^UTILITY(U,$J,358.3,18550,1,4,0)
+ ;;=4^O40.1XX4
+ ;;^UTILITY(U,$J,358.3,18550,2)
+ ;;=^5017191
+ ;;^UTILITY(U,$J,358.3,18551,0)
+ ;;=O40.1XX5^^62^740^222
+ ;;^UTILITY(U,$J,358.3,18551,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,18551,1,3,0)
+ ;;=3^Polyhydramnios, first trimester, fetus 5
+ ;;^UTILITY(U,$J,358.3,18551,1,4,0)
+ ;;=4^O40.1XX5
+ ;;^UTILITY(U,$J,358.3,18551,2)
+ ;;=^5017192
+ ;;^UTILITY(U,$J,358.3,18552,0)
+ ;;=O40.2XX0^^62^740^229
+ ;;^UTILITY(U,$J,358.3,18552,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,18552,1,3,0)
+ ;;=3^Polyhydramnios, second trimester, unsp
+ ;;^UTILITY(U,$J,358.3,18552,1,4,0)
+ ;;=4^O40.2XX0
+ ;;^UTILITY(U,$J,358.3,18552,2)
+ ;;=^5017194
+ ;;^UTILITY(U,$J,358.3,18553,0)
+ ;;=O40.2XX1^^62^740^224
+ ;;^UTILITY(U,$J,358.3,18553,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,18553,1,3,0)
+ ;;=3^Polyhydramnios, second trimester, fetus 1
+ ;;^UTILITY(U,$J,358.3,18553,1,4,0)
+ ;;=4^O40.2XX1
+ ;;^UTILITY(U,$J,358.3,18553,2)
+ ;;=^5017195
+ ;;^UTILITY(U,$J,358.3,18554,0)
+ ;;=O40.2XX2^^62^740^225
+ ;;^UTILITY(U,$J,358.3,18554,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,18554,1,3,0)
+ ;;=3^Polyhydramnios, second trimester, fetus 2
+ ;;^UTILITY(U,$J,358.3,18554,1,4,0)
+ ;;=4^O40.2XX2
+ ;;^UTILITY(U,$J,358.3,18554,2)
+ ;;=^5017196
+ ;;^UTILITY(U,$J,358.3,18555,0)
+ ;;=O40.2XX3^^62^740^226
+ ;;^UTILITY(U,$J,358.3,18555,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,18555,1,3,0)
+ ;;=3^Polyhydramnios, second trimester, fetus 3
+ ;;^UTILITY(U,$J,358.3,18555,1,4,0)
+ ;;=4^O40.2XX3
+ ;;^UTILITY(U,$J,358.3,18555,2)
+ ;;=^5017197
+ ;;^UTILITY(U,$J,358.3,18556,0)
+ ;;=O40.2XX4^^62^740^227
+ ;;^UTILITY(U,$J,358.3,18556,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,18556,1,3,0)
+ ;;=3^Polyhydramnios, second trimester, fetus 4
+ ;;^UTILITY(U,$J,358.3,18556,1,4,0)
+ ;;=4^O40.2XX4
+ ;;^UTILITY(U,$J,358.3,18556,2)
+ ;;=^5017198
+ ;;^UTILITY(U,$J,358.3,18557,0)
+ ;;=O40.2XX5^^62^740^228
+ ;;^UTILITY(U,$J,358.3,18557,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,18557,1,3,0)
+ ;;=3^Polyhydramnios, second trimester, fetus 5
+ ;;^UTILITY(U,$J,358.3,18557,1,4,0)
+ ;;=4^O40.2XX5
+ ;;^UTILITY(U,$J,358.3,18557,2)
+ ;;=^5017199
+ ;;^UTILITY(U,$J,358.3,18558,0)
+ ;;=O40.3XX0^^62^740^235
+ ;;^UTILITY(U,$J,358.3,18558,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,18558,1,3,0)
+ ;;=3^Polyhydramnios, third trimester, unsp
+ ;;^UTILITY(U,$J,358.3,18558,1,4,0)
+ ;;=4^O40.3XX0
+ ;;^UTILITY(U,$J,358.3,18558,2)
+ ;;=^5017201
+ ;;^UTILITY(U,$J,358.3,18559,0)
+ ;;=O40.3XX1^^62^740^230
+ ;;^UTILITY(U,$J,358.3,18559,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,18559,1,3,0)
+ ;;=3^Polyhydramnios, third trimester, fetus 1
+ ;;^UTILITY(U,$J,358.3,18559,1,4,0)
+ ;;=4^O40.3XX1
+ ;;^UTILITY(U,$J,358.3,18559,2)
+ ;;=^5017202
+ ;;^UTILITY(U,$J,358.3,18560,0)
+ ;;=O40.3XX2^^62^740^231
+ ;;^UTILITY(U,$J,358.3,18560,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,18560,1,3,0)
+ ;;=3^Polyhydramnios, third trimester, fetus 2
+ ;;^UTILITY(U,$J,358.3,18560,1,4,0)
+ ;;=4^O40.3XX2
+ ;;^UTILITY(U,$J,358.3,18560,2)
+ ;;=^5017203
+ ;;^UTILITY(U,$J,358.3,18561,0)
+ ;;=O40.3XX3^^62^740^232
+ ;;^UTILITY(U,$J,358.3,18561,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,18561,1,3,0)
+ ;;=3^Polyhydramnios, third trimester, fetus 3
+ ;;^UTILITY(U,$J,358.3,18561,1,4,0)
+ ;;=4^O40.3XX3
+ ;;^UTILITY(U,$J,358.3,18561,2)
+ ;;=^5017204
+ ;;^UTILITY(U,$J,358.3,18562,0)
+ ;;=O40.3XX4^^62^740^233
+ ;;^UTILITY(U,$J,358.3,18562,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,18562,1,3,0)
+ ;;=3^Polyhydramnios, third trimester, fetus 4
+ ;;^UTILITY(U,$J,358.3,18562,1,4,0)
+ ;;=4^O40.3XX4
+ ;;^UTILITY(U,$J,358.3,18562,2)
+ ;;=^5017205
+ ;;^UTILITY(U,$J,358.3,18563,0)
+ ;;=O40.3XX5^^62^740^234
+ ;;^UTILITY(U,$J,358.3,18563,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,18563,1,3,0)
+ ;;=3^Polyhydramnios, third trimester, fetus 5
+ ;;^UTILITY(U,$J,358.3,18563,1,4,0)
+ ;;=4^O40.3XX5
+ ;;^UTILITY(U,$J,358.3,18563,2)
+ ;;=^5017206
+ ;;^UTILITY(U,$J,358.3,18564,0)
+ ;;=O36.8311^^62^740^1
+ ;;^UTILITY(U,$J,358.3,18564,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,18564,1,3,0)
+ ;;=3^Abnormal Fetal Hrt Rate/Rhythm,1st Tri,Fts 1
+ ;;^UTILITY(U,$J,358.3,18564,1,4,0)
+ ;;=4^O36.8311
+ ;;^UTILITY(U,$J,358.3,18564,2)
+ ;;=^5151549
+ ;;^UTILITY(U,$J,358.3,18565,0)
+ ;;=O36.8312^^62^740^2
+ ;;^UTILITY(U,$J,358.3,18565,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,18565,1,3,0)
+ ;;=3^Abnormal Fetal Hrt Rate/Rhythm,1st Tri,Fts 2
+ ;;^UTILITY(U,$J,358.3,18565,1,4,0)
+ ;;=4^O36.8312
+ ;;^UTILITY(U,$J,358.3,18565,2)
+ ;;=^5151550
+ ;;^UTILITY(U,$J,358.3,18566,0)
+ ;;=O36.8313^^62^740^3
+ ;;^UTILITY(U,$J,358.3,18566,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,18566,1,3,0)
+ ;;=3^Abnormal Fetal Hrt Rate/Rhythm,1st Tri,Fts 3
+ ;;^UTILITY(U,$J,358.3,18566,1,4,0)
+ ;;=4^O36.8313
+ ;;^UTILITY(U,$J,358.3,18566,2)
+ ;;=^5151551
+ ;;^UTILITY(U,$J,358.3,18567,0)
+ ;;=O36.8314^^62^740^4
+ ;;^UTILITY(U,$J,358.3,18567,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,18567,1,3,0)
+ ;;=3^Abnormal Fetal Hrt Rate/Rhythm,1st Tri,Fts 4
+ ;;^UTILITY(U,$J,358.3,18567,1,4,0)
+ ;;=4^O36.8314
  ;;^UTILITY(U,$J,358.3,18567,2)
- ;;=^331970
+ ;;=^5151552
  ;;^UTILITY(U,$J,358.3,18568,0)
- ;;=R63.0^^65^781^40
+ ;;=O36.8315^^62^740^5
  ;;^UTILITY(U,$J,358.3,18568,1,0)
  ;;=^358.31IA^4^2
  ;;^UTILITY(U,$J,358.3,18568,1,3,0)
- ;;=3^Anorexia
+ ;;=3^Abnormal Fetal Hrt Rate/Rhythm,1st Tri,Fts 5
  ;;^UTILITY(U,$J,358.3,18568,1,4,0)
- ;;=4^R63.0
+ ;;=4^O36.8315
  ;;^UTILITY(U,$J,358.3,18568,2)
- ;;=^7939
+ ;;=^5151553
  ;;^UTILITY(U,$J,358.3,18569,0)
- ;;=R63.1^^65^781^143
+ ;;=O36.8319^^62^740^6
  ;;^UTILITY(U,$J,358.3,18569,1,0)
  ;;=^358.31IA^4^2
  ;;^UTILITY(U,$J,358.3,18569,1,3,0)
- ;;=3^Polydipsia
+ ;;=3^Abnormal Fetal Hrt Rate/Rhythm,1st Tri,Unspec Fts
  ;;^UTILITY(U,$J,358.3,18569,1,4,0)
- ;;=4^R63.1
+ ;;=4^O36.8319
  ;;^UTILITY(U,$J,358.3,18569,2)
- ;;=^186699
+ ;;=^5151554
  ;;^UTILITY(U,$J,358.3,18570,0)
- ;;=R63.2^^65^781^144
+ ;;=O36.8321^^62^740^7
  ;;^UTILITY(U,$J,358.3,18570,1,0)
  ;;=^358.31IA^4^2
  ;;^UTILITY(U,$J,358.3,18570,1,3,0)
- ;;=3^Polyphagia
+ ;;=3^Abnormal Fetal Hrt Rate/Rhythm,2nd Tri,Fts 1
  ;;^UTILITY(U,$J,358.3,18570,1,4,0)
- ;;=4^R63.2
+ ;;=4^O36.8321
  ;;^UTILITY(U,$J,358.3,18570,2)
- ;;=^5019540
+ ;;=^5151556
  ;;^UTILITY(U,$J,358.3,18571,0)
- ;;=R63.3^^65^781^77
+ ;;=O36.8322^^62^740^8
  ;;^UTILITY(U,$J,358.3,18571,1,0)
  ;;=^358.31IA^4^2
  ;;^UTILITY(U,$J,358.3,18571,1,3,0)
- ;;=3^Feeding Difficulties
+ ;;=3^Abnormal Fetal Hrt Rate/Rhythm,2nd Tri,Fts 2
  ;;^UTILITY(U,$J,358.3,18571,1,4,0)
- ;;=4^R63.3
+ ;;=4^O36.8322
  ;;^UTILITY(U,$J,358.3,18571,2)
- ;;=^5019541
+ ;;=^5151557
  ;;^UTILITY(U,$J,358.3,18572,0)
- ;;=R63.4^^65^781^33
+ ;;=O36.8323^^62^740^9
  ;;^UTILITY(U,$J,358.3,18572,1,0)
  ;;=^358.31IA^4^2
  ;;^UTILITY(U,$J,358.3,18572,1,3,0)
- ;;=3^Abnormal Weight Loss
+ ;;=3^Abnormal Fetal Hrt Rate/Rhythm,2nd Tri,Fts 3
  ;;^UTILITY(U,$J,358.3,18572,1,4,0)
- ;;=4^R63.4
+ ;;=4^O36.8323
  ;;^UTILITY(U,$J,358.3,18572,2)
- ;;=^5019542
+ ;;=^5151558
  ;;^UTILITY(U,$J,358.3,18573,0)
- ;;=R63.5^^65^781^32
+ ;;=O36.8324^^62^740^10
  ;;^UTILITY(U,$J,358.3,18573,1,0)
  ;;=^358.31IA^4^2
  ;;^UTILITY(U,$J,358.3,18573,1,3,0)
- ;;=3^Abnormal Weight Gain
+ ;;=3^Abnormal Fetal Hrt Rate/Rhythm,2nd Tri,Fts 4
  ;;^UTILITY(U,$J,358.3,18573,1,4,0)
- ;;=4^R63.5
+ ;;=4^O36.8324
  ;;^UTILITY(U,$J,358.3,18573,2)
- ;;=^5019543
+ ;;=^5151559
  ;;^UTILITY(U,$J,358.3,18574,0)
- ;;=R64.^^65^781^50
+ ;;=O36.8325^^62^740^11
  ;;^UTILITY(U,$J,358.3,18574,1,0)
  ;;=^358.31IA^4^2
  ;;^UTILITY(U,$J,358.3,18574,1,3,0)
- ;;=3^Cachexia
+ ;;=3^Abnormal Fetal Hrt Rate/Rhythm,2nd Tri,Fts 5
  ;;^UTILITY(U,$J,358.3,18574,1,4,0)
- ;;=4^R64.
+ ;;=4^O36.8325
  ;;^UTILITY(U,$J,358.3,18574,2)
- ;;=^17920
+ ;;=^5151560
  ;;^UTILITY(U,$J,358.3,18575,0)
- ;;=R68.3^^65^781^55
+ ;;=O36.8329^^62^740^12
  ;;^UTILITY(U,$J,358.3,18575,1,0)
  ;;=^358.31IA^4^2
  ;;^UTILITY(U,$J,358.3,18575,1,3,0)
- ;;=3^Clubbing of Fingers
+ ;;=3^Abnormal Fetal Hrt Rate/Rhythm,2nd Tri,Unsp Fts
  ;;^UTILITY(U,$J,358.3,18575,1,4,0)
- ;;=4^R68.3
+ ;;=4^O36.8329
  ;;^UTILITY(U,$J,358.3,18575,2)
- ;;=^5019553
+ ;;=^5151561
  ;;^UTILITY(U,$J,358.3,18576,0)
- ;;=R73.01^^65^781^94
+ ;;=O36.8331^^62^740^13
  ;;^UTILITY(U,$J,358.3,18576,1,0)
  ;;=^358.31IA^4^2
  ;;^UTILITY(U,$J,358.3,18576,1,3,0)
- ;;=3^Impaired Fasting Glucose
+ ;;=3^Abnormal Fetal Hrt Rate/Rhythm,3rd Tri,Fts 1
  ;;^UTILITY(U,$J,358.3,18576,1,4,0)
- ;;=4^R73.01
+ ;;=4^O36.8331
  ;;^UTILITY(U,$J,358.3,18576,2)
- ;;=^5019561
+ ;;=^5151563
  ;;^UTILITY(U,$J,358.3,18577,0)
- ;;=R73.02^^65^781^95
+ ;;=O36.8332^^62^740^14
  ;;^UTILITY(U,$J,358.3,18577,1,0)
  ;;=^358.31IA^4^2
  ;;^UTILITY(U,$J,358.3,18577,1,3,0)
- ;;=3^Impaired Glucose Tolerance (oral)
+ ;;=3^Abnormal Fetal Hrt Rate/Rhythm,3rd Tri,Fts 2
  ;;^UTILITY(U,$J,358.3,18577,1,4,0)
- ;;=4^R73.02
+ ;;=4^O36.8332
  ;;^UTILITY(U,$J,358.3,18577,2)
- ;;=^5019562
+ ;;=^5151564
  ;;^UTILITY(U,$J,358.3,18578,0)
- ;;=R73.09^^65^781^18
+ ;;=O36.8333^^62^740^15
  ;;^UTILITY(U,$J,358.3,18578,1,0)
  ;;=^358.31IA^4^2
  ;;^UTILITY(U,$J,358.3,18578,1,3,0)
- ;;=3^Abnormal Glucose NEC
+ ;;=3^Abnormal Fetal Hrt Rate/Rhythm,3rd Tri,Fts 3
  ;;^UTILITY(U,$J,358.3,18578,1,4,0)
- ;;=4^R73.09
+ ;;=4^O36.8333
  ;;^UTILITY(U,$J,358.3,18578,2)
- ;;=^5019563
+ ;;=^5151565
  ;;^UTILITY(U,$J,358.3,18579,0)
- ;;=R73.9^^65^781^89
+ ;;=O36.8334^^62^740^16
  ;;^UTILITY(U,$J,358.3,18579,1,0)
  ;;=^358.31IA^4^2
  ;;^UTILITY(U,$J,358.3,18579,1,3,0)
- ;;=3^Hyperglycemia,Unspec
+ ;;=3^Abnormal Fetal Hrt Rate/Rhythm,3rd Tri,Fts 4
  ;;^UTILITY(U,$J,358.3,18579,1,4,0)
- ;;=4^R73.9
+ ;;=4^O36.8334
  ;;^UTILITY(U,$J,358.3,18579,2)
- ;;=^5019564
+ ;;=^5151566
  ;;^UTILITY(U,$J,358.3,18580,0)
- ;;=R76.11^^65^781^147
+ ;;=O36.8335^^62^740^17
  ;;^UTILITY(U,$J,358.3,18580,1,0)
  ;;=^358.31IA^4^2
  ;;^UTILITY(U,$J,358.3,18580,1,3,0)
- ;;=3^Positive PPD
+ ;;=3^Abnormal Fetal Hrt Rate/Rhythm,3rd Tri,Fts 5
  ;;^UTILITY(U,$J,358.3,18580,1,4,0)
- ;;=4^R76.11
+ ;;=4^O36.8335
  ;;^UTILITY(U,$J,358.3,18580,2)
- ;;=^5019570
+ ;;=^5151567
  ;;^UTILITY(U,$J,358.3,18581,0)
- ;;=R79.1^^65^781^3
+ ;;=O36.8339^^62^740^18
  ;;^UTILITY(U,$J,358.3,18581,1,0)
  ;;=^358.31IA^4^2
  ;;^UTILITY(U,$J,358.3,18581,1,3,0)
- ;;=3^Abnormal Coagulation Profile
+ ;;=3^Abnormal Fetal Hrt Rate/Rhythm,3rd Tri,Unsp Fts
  ;;^UTILITY(U,$J,358.3,18581,1,4,0)
- ;;=4^R79.1
+ ;;=4^O36.8339
  ;;^UTILITY(U,$J,358.3,18581,2)
- ;;=^5019591
+ ;;=^5151568
  ;;^UTILITY(U,$J,358.3,18582,0)
- ;;=R82.5^^65^781^74
+ ;;=O41.01X0^^62^741^44
  ;;^UTILITY(U,$J,358.3,18582,1,0)
  ;;=^358.31IA^4^2
  ;;^UTILITY(U,$J,358.3,18582,1,3,0)
- ;;=3^Elevated Urine Levels of Drug/Meds/Biol Subst
+ ;;=3^Oligohydramnios, first trimester, not applicable or unsp
  ;;^UTILITY(U,$J,358.3,18582,1,4,0)
- ;;=4^R82.5
+ ;;=4^O41.01X0
  ;;^UTILITY(U,$J,358.3,18582,2)
- ;;=^5019605
+ ;;=^5017220
  ;;^UTILITY(U,$J,358.3,18583,0)
- ;;=R82.6^^65^781^30
+ ;;=O41.01X1^^62^741^39
  ;;^UTILITY(U,$J,358.3,18583,1,0)
  ;;=^358.31IA^4^2
  ;;^UTILITY(U,$J,358.3,18583,1,3,0)
- ;;=3^Abnormal Urine Levels of Subst of Nonmed Source
+ ;;=3^Oligohydramnios, first trimester, fetus 1
  ;;^UTILITY(U,$J,358.3,18583,1,4,0)
- ;;=4^R82.6
+ ;;=4^O41.01X1
  ;;^UTILITY(U,$J,358.3,18583,2)
- ;;=^5019606
+ ;;=^5017221
  ;;^UTILITY(U,$J,358.3,18584,0)
- ;;=R82.90^^65^781^29
+ ;;=O41.01X2^^62^741^40
  ;;^UTILITY(U,$J,358.3,18584,1,0)
  ;;=^358.31IA^4^2
  ;;^UTILITY(U,$J,358.3,18584,1,3,0)
- ;;=3^Abnormal Urine Findings,Unspec
+ ;;=3^Oligohydramnios, first trimester, fetus 2
  ;;^UTILITY(U,$J,358.3,18584,1,4,0)
- ;;=4^R82.90
+ ;;=4^O41.01X2
  ;;^UTILITY(U,$J,358.3,18584,2)
- ;;=^5019609
+ ;;=^5017222
  ;;^UTILITY(U,$J,358.3,18585,0)
- ;;=R82.91^^65^781^53
+ ;;=O41.01X3^^62^741^41
  ;;^UTILITY(U,$J,358.3,18585,1,0)
  ;;=^358.31IA^4^2
  ;;^UTILITY(U,$J,358.3,18585,1,3,0)
- ;;=3^Chromoabnormalities of Urine NEC
+ ;;=3^Oligohydramnios, first trimester, fetus 3
  ;;^UTILITY(U,$J,358.3,18585,1,4,0)
- ;;=4^R82.91
+ ;;=4^O41.01X3
  ;;^UTILITY(U,$J,358.3,18585,2)
- ;;=^5019610
+ ;;=^5017223
  ;;^UTILITY(U,$J,358.3,18586,0)
- ;;=R89.9^^65^781^22
+ ;;=O41.01X4^^62^741^42
  ;;^UTILITY(U,$J,358.3,18586,1,0)
  ;;=^358.31IA^4^2
  ;;^UTILITY(U,$J,358.3,18586,1,3,0)
- ;;=3^Abnormal Organ/Tissue Specimen Findings,Unspec
+ ;;=3^Oligohydramnios, first trimester, fetus 4
  ;;^UTILITY(U,$J,358.3,18586,1,4,0)
- ;;=4^R89.9
+ ;;=4^O41.01X4
  ;;^UTILITY(U,$J,358.3,18586,2)
- ;;=^5019702
+ ;;=^5017224
  ;;^UTILITY(U,$J,358.3,18587,0)
- ;;=R90.0^^65^781^103
+ ;;=O41.01X5^^62^741^43
  ;;^UTILITY(U,$J,358.3,18587,1,0)
  ;;=^358.31IA^4^2
  ;;^UTILITY(U,$J,358.3,18587,1,3,0)
- ;;=3^Intracranial Space-Occupying Lesion Dx Imaging of Central Nervous System
+ ;;=3^Oligohydramnios, first trimester, fetus 5
  ;;^UTILITY(U,$J,358.3,18587,1,4,0)
- ;;=4^R90.0
+ ;;=4^O41.01X5
  ;;^UTILITY(U,$J,358.3,18587,2)
- ;;=^5019703
+ ;;=^5017225
  ;;^UTILITY(U,$J,358.3,18588,0)
- ;;=R90.89^^65^781^16
+ ;;=O41.02X0^^62^741^50
  ;;^UTILITY(U,$J,358.3,18588,1,0)
  ;;=^358.31IA^4^2
  ;;^UTILITY(U,$J,358.3,18588,1,3,0)
- ;;=3^Abnormal Findings on Dx Imaging of Central Nervous System NEC
+ ;;=3^Oligohydramnios, second trimester, not applicable or unsp
  ;;^UTILITY(U,$J,358.3,18588,1,4,0)
- ;;=4^R90.89
+ ;;=4^O41.02X0
  ;;^UTILITY(U,$J,358.3,18588,2)
- ;;=^5019706
+ ;;=^5017227
  ;;^UTILITY(U,$J,358.3,18589,0)
- ;;=R91.8^^65^781^21
+ ;;=O41.02X1^^62^741^45
  ;;^UTILITY(U,$J,358.3,18589,1,0)
  ;;=^358.31IA^4^2
  ;;^UTILITY(U,$J,358.3,18589,1,3,0)
- ;;=3^Abnormal Nonspecific Lung Field Finding NEC
+ ;;=3^Oligohydramnios, second trimester, fetus 1
  ;;^UTILITY(U,$J,358.3,18589,1,4,0)
- ;;=4^R91.8
+ ;;=4^O41.02X1
  ;;^UTILITY(U,$J,358.3,18589,2)
- ;;=^5019708
+ ;;=^5017228
  ;;^UTILITY(U,$J,358.3,18590,0)
- ;;=R92.0^^65^781^122
+ ;;=O41.02X2^^62^741^46
  ;;^UTILITY(U,$J,358.3,18590,1,0)
  ;;=^358.31IA^4^2
  ;;^UTILITY(U,$J,358.3,18590,1,3,0)
- ;;=3^Mammographic Microcalcification on Dx Image of Breast
+ ;;=3^Oligohydramnios, second trimester, fetus 2
  ;;^UTILITY(U,$J,358.3,18590,1,4,0)
- ;;=4^R92.0
+ ;;=4^O41.02X2
  ;;^UTILITY(U,$J,358.3,18590,2)
- ;;=^5019709
+ ;;=^5017229
  ;;^UTILITY(U,$J,358.3,18591,0)
- ;;=R92.1^^65^781^121
+ ;;=O41.02X3^^62^741^47
  ;;^UTILITY(U,$J,358.3,18591,1,0)
  ;;=^358.31IA^4^2
  ;;^UTILITY(U,$J,358.3,18591,1,3,0)
- ;;=3^Mammographic Calcification on Dx Image of Breast
+ ;;=3^Oligohydramnios, second trimester, fetus 3
  ;;^UTILITY(U,$J,358.3,18591,1,4,0)
- ;;=4^R92.1
+ ;;=4^O41.02X3
  ;;^UTILITY(U,$J,358.3,18591,2)
- ;;=^5019710
+ ;;=^5017230
  ;;^UTILITY(U,$J,358.3,18592,0)
- ;;=R92.2^^65^781^96
- ;;^UTILITY(U,$J,358.3,18592,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,18592,1,3,0)
- ;;=3^Inconclusive Mammogram
- ;;^UTILITY(U,$J,358.3,18592,1,4,0)
- ;;=4^R92.2
- ;;^UTILITY(U,$J,358.3,18592,2)
- ;;=^5019711
- ;;^UTILITY(U,$J,358.3,18593,0)
- ;;=R93.0^^65^781^10
- ;;^UTILITY(U,$J,358.3,18593,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,18593,1,3,0)
- ;;=3^Abnormal Finding on Dx Image of Skull/Head NEC
- ;;^UTILITY(U,$J,358.3,18593,1,4,0)
- ;;=4^R93.0
- ;;^UTILITY(U,$J,358.3,18593,2)
- ;;=^5019713
- ;;^UTILITY(U,$J,358.3,18594,0)
- ;;=R93.2^^65^781^9
- ;;^UTILITY(U,$J,358.3,18594,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,18594,1,3,0)
- ;;=3^Abnormal Finding on Dx Image of Liver/Biliary Tract
- ;;^UTILITY(U,$J,358.3,18594,1,4,0)
- ;;=4^R93.2
- ;;^UTILITY(U,$J,358.3,18594,2)
- ;;=^5019715
- ;;^UTILITY(U,$J,358.3,18595,0)
- ;;=R93.3^^65^781^7
- ;;^UTILITY(U,$J,358.3,18595,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,18595,1,3,0)
- ;;=3^Abnormal Finding on Dx Image of Digestive Tract Part
- ;;^UTILITY(U,$J,358.3,18595,1,4,0)
- ;;=4^R93.3
- ;;^UTILITY(U,$J,358.3,18595,2)
- ;;=^5019716
- ;;^UTILITY(U,$J,358.3,18596,0)
- ;;=R93.5^^65^781^6
- ;;^UTILITY(U,$J,358.3,18596,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,18596,1,3,0)
- ;;=3^Abnormal Finding on Dx Image of Abdominal Regions
- ;;^UTILITY(U,$J,358.3,18596,1,4,0)
- ;;=4^R93.5
- ;;^UTILITY(U,$J,358.3,18596,2)
- ;;=^5019718
- ;;^UTILITY(U,$J,358.3,18597,0)
- ;;=R93.6^^65^781^8
- ;;^UTILITY(U,$J,358.3,18597,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,18597,1,3,0)
- ;;=3^Abnormal Finding on Dx Image of Limbs
- ;;^UTILITY(U,$J,358.3,18597,1,4,0)
- ;;=4^R93.6
- ;;^UTILITY(U,$J,358.3,18597,2)
- ;;=^5019719
- ;;^UTILITY(U,$J,358.3,18598,0)
- ;;=R94.4^^65^781^19
- ;;^UTILITY(U,$J,358.3,18598,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,18598,1,3,0)
- ;;=3^Abnormal Kidney Function Studies
- ;;^UTILITY(U,$J,358.3,18598,1,4,0)
- ;;=4^R94.4
- ;;^UTILITY(U,$J,358.3,18598,2)
- ;;=^5019741
- ;;^UTILITY(U,$J,358.3,18599,0)
- ;;=R94.5^^65^781^20
- ;;^UTILITY(U,$J,358.3,18599,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,18599,1,3,0)
- ;;=3^Abnormal Liver Function Studies
- ;;^UTILITY(U,$J,358.3,18599,1,4,0)
- ;;=4^R94.5
- ;;^UTILITY(U,$J,358.3,18599,2)
- ;;=^5019742
- ;;^UTILITY(U,$J,358.3,18600,0)
- ;;=R94.6^^65^781^24
- ;;^UTILITY(U,$J,358.3,18600,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,18600,1,3,0)
- ;;=3^Abnormal Thyroid Function Studies
- ;;^UTILITY(U,$J,358.3,18600,1,4,0)
- ;;=4^R94.6
- ;;^UTILITY(U,$J,358.3,18600,2)
- ;;=^5019743
- ;;^UTILITY(U,$J,358.3,18601,0)
- ;;=R94.7^^65^781^5
- ;;^UTILITY(U,$J,358.3,18601,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,18601,1,3,0)
- ;;=3^Abnormal Endocrine Function Studies NEC
- ;;^UTILITY(U,$J,358.3,18601,1,4,0)
- ;;=4^R94.7
- ;;^UTILITY(U,$J,358.3,18601,2)
- ;;=^5019744
- ;;^UTILITY(U,$J,358.3,18602,0)
- ;;=R94.31^^65^781^4
- ;;^UTILITY(U,$J,358.3,18602,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,18602,1,3,0)
- ;;=3^Abnormal EKG
- ;;^UTILITY(U,$J,358.3,18602,1,4,0)
- ;;=4^R94.31
- ;;^UTILITY(U,$J,358.3,18602,2)
- ;;=^5019739
- ;;^UTILITY(U,$J,358.3,18603,0)
- ;;=R97.0^^65^781^72
- ;;^UTILITY(U,$J,358.3,18603,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,18603,1,3,0)
- ;;=3^Elevated Carcinoembryonic Antigen 
- ;;^UTILITY(U,$J,358.3,18603,1,4,0)
- ;;=4^R97.0
- ;;^UTILITY(U,$J,358.3,18603,2)
- ;;=^5019746
- ;;^UTILITY(U,$J,358.3,18604,0)
- ;;=R97.1^^65^781^71
- ;;^UTILITY(U,$J,358.3,18604,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,18604,1,3,0)
- ;;=3^Elevated Cancer Antigen 125
- ;;^UTILITY(U,$J,358.3,18604,1,4,0)
- ;;=4^R97.1
- ;;^UTILITY(U,$J,358.3,18604,2)
- ;;=^5019747
- ;;^UTILITY(U,$J,358.3,18605,0)
- ;;=R97.8^^65^781^25
- ;;^UTILITY(U,$J,358.3,18605,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,18605,1,3,0)
- ;;=3^Abnormal Tumor Markers NEC
- ;;^UTILITY(U,$J,358.3,18605,1,4,0)
- ;;=4^R97.8
- ;;^UTILITY(U,$J,358.3,18605,2)
- ;;=^5019749
- ;;^UTILITY(U,$J,358.3,18606,0)
- ;;=R93.1^^65^781^17
- ;;^UTILITY(U,$J,358.3,18606,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,18606,1,3,0)
- ;;=3^Abnormal Findings on Dx Imaging of Heart/Cor Circ
- ;;^UTILITY(U,$J,358.3,18606,1,4,0)
- ;;=4^R93.1
- ;;^UTILITY(U,$J,358.3,18606,2)
- ;;=^5019714
- ;;^UTILITY(U,$J,358.3,18607,0)
- ;;=R68.83^^65^781^52
- ;;^UTILITY(U,$J,358.3,18607,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,18607,1,3,0)
- ;;=3^Chills w/o Fever
- ;;^UTILITY(U,$J,358.3,18607,1,4,0)
- ;;=4^R68.83
- ;;^UTILITY(U,$J,358.3,18607,2)
- ;;=^5019555
- ;;^UTILITY(U,$J,358.3,18608,0)
- ;;=R68.2^^65^781^67
- ;;^UTILITY(U,$J,358.3,18608,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,18608,1,3,0)
- ;;=3^Dry Mouth,Unspec
- ;;^UTILITY(U,$J,358.3,18608,1,4,0)
- ;;=4^R68.2
- ;;^UTILITY(U,$J,358.3,18608,2)
- ;;=^5019552
- ;;^UTILITY(U,$J,358.3,18609,0)
- ;;=R09.02^^65^781^93
- ;;^UTILITY(U,$J,358.3,18609,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,18609,1,3,0)
- ;;=3^Hypoxemia
- ;;^UTILITY(U,$J,358.3,18609,1,4,0)
- ;;=4^R09.02
- ;;^UTILITY(U,$J,358.3,18609,2)
- ;;=^332831
- ;;^UTILITY(U,$J,358.3,18610,0)
- ;;=R39.81^^65^781^97
- ;;^UTILITY(U,$J,358.3,18610,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,18610,1,3,0)
- ;;=3^Incontinence d/t Cognitive Imprmt/Svr Disability/Mobility
- ;;^UTILITY(U,$J,358.3,18610,1,4,0)
- ;;=4^R39.81
- ;;^UTILITY(U,$J,358.3,18610,2)
- ;;=^5019349
- ;;^UTILITY(U,$J,358.3,18611,0)
- ;;=R29.6^^65^781^152
- ;;^UTILITY(U,$J,358.3,18611,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,18611,1,3,0)
- ;;=3^Repeated Falls
- ;;^UTILITY(U,$J,358.3,18611,1,4,0)
- ;;=4^R29.6
- ;;^UTILITY(U,$J,358.3,18611,2)
- ;;=^5019317
- ;;^UTILITY(U,$J,358.3,18612,0)
- ;;=R44.1^^65^781^167
- ;;^UTILITY(U,$J,358.3,18612,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,18612,1,3,0)
- ;;=3^Visual Hallucinations
- ;;^UTILITY(U,$J,358.3,18612,1,4,0)
- ;;=4^R44.1
- ;;^UTILITY(U,$J,358.3,18612,2)
- ;;=^5019456
- ;;^UTILITY(U,$J,358.3,18613,0)
- ;;=R93.422^^65^781^11
- ;;^UTILITY(U,$J,358.3,18613,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,18613,1,3,0)
- ;;=3^Abnormal Finding on Dx Image,Left Kidney
- ;;^UTILITY(U,$J,358.3,18613,1,4,0)
- ;;=4^R93.422
- ;;^UTILITY(U,$J,358.3,18613,2)
- ;;=^5139225
- ;;^UTILITY(U,$J,358.3,18614,0)
- ;;=R93.421^^65^781^14
- ;;^UTILITY(U,$J,358.3,18614,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,18614,1,3,0)
- ;;=3^Abnormal Finding on Dx Image,Right Kidney
- ;;^UTILITY(U,$J,358.3,18614,1,4,0)
- ;;=4^R93.421
- ;;^UTILITY(U,$J,358.3,18614,2)
- ;;=^5139224
- ;;^UTILITY(U,$J,358.3,18615,0)
- ;;=R93.49^^65^781^12
- ;;^UTILITY(U,$J,358.3,18615,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,18615,1,3,0)
- ;;=3^Abnormal Finding on Dx Image,Oth Urinary Organs
- ;;^UTILITY(U,$J,358.3,18615,1,4,0)
- ;;=4^R93.49
- ;;^UTILITY(U,$J,358.3,18615,2)
- ;;=^5139227
- ;;^UTILITY(U,$J,358.3,18616,0)
- ;;=R93.41^^65^781^13
- ;;^UTILITY(U,$J,358.3,18616,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,18616,1,3,0)
- ;;=3^Abnormal Finding on Dx Image,Renal Pelvis/Ureter/Bladder
- ;;^UTILITY(U,$J,358.3,18616,1,4,0)
- ;;=4^R93.41
- ;;^UTILITY(U,$J,358.3,18616,2)
- ;;=^5139223
- ;;^UTILITY(U,$J,358.3,18617,0)
- ;;=R97.20^^65^781^73
- ;;^UTILITY(U,$J,358.3,18617,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,18617,1,3,0)
- ;;=3^Elevated PSA
- ;;^UTILITY(U,$J,358.3,18617,1,4,0)
- ;;=4^R97.20
- ;;^UTILITY(U,$J,358.3,18617,2)
- ;;=^334262
- ;;^UTILITY(U,$J,358.3,18618,0)
- ;;=R97.21^^65^781^153
- ;;^UTILITY(U,$J,358.3,18618,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,18618,1,3,0)
- ;;=3^Rising PSA After Tx of Prostate CA
- ;;^UTILITY(U,$J,358.3,18618,1,4,0)
- ;;=4^R97.21
- ;;^UTILITY(U,$J,358.3,18618,2)
- ;;=^5139228
- ;;^UTILITY(U,$J,358.3,18619,0)
- ;;=K08.89^^65^781^64
- ;;^UTILITY(U,$J,358.3,18619,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,18619,1,3,0)
- ;;=3^Disorder of Teeth/Supporting Structures,Oth Specified
- ;;^UTILITY(U,$J,358.3,18619,1,4,0)
- ;;=4^K08.89
- ;;^UTILITY(U,$J,358.3,18619,2)
- ;;=^5008467
- ;;^UTILITY(U,$J,358.3,18620,0)
- ;;=R82.79^^65^781^31
- ;;^UTILITY(U,$J,358.3,18620,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,18620,1,3,0)
- ;;=3^Abnormal Urine Microbiological Findings
- ;;^UTILITY(U,$J,358.3,18620,1,4,0)
- ;;=4^R82.79
- ;;^UTILITY(U,$J,358.3,18620,2)
- ;;=^5139222
- ;;^UTILITY(U,$J,358.3,18621,0)
- ;;=K08.9^^65^781^65
- ;;^UTILITY(U,$J,358.3,18621,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,18621,1,3,0)
- ;;=3^Disorder of Teeth/Supporting Structures,Unspec
- ;;^UTILITY(U,$J,358.3,18621,1,4,0)
- ;;=4^K08.9
- ;;^UTILITY(U,$J,358.3,18621,2)
- ;;=^5008468
- ;;^UTILITY(U,$J,358.3,18622,0)
- ;;=R93.89^^65^781^15
- ;;^UTILITY(U,$J,358.3,18622,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,18622,1,3,0)
- ;;=3^Abnormal Finding on Dx Imaging of Oth Body Structures
- ;;^UTILITY(U,$J,358.3,18622,1,4,0)
- ;;=4^R93.89
- ;;^UTILITY(U,$J,358.3,18622,2)
- ;;=^5157477
- ;;^UTILITY(U,$J,358.3,18623,0)
- ;;=R82.998^^65^781^28
- ;;^UTILITY(U,$J,358.3,18623,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,18623,1,3,0)
- ;;=3^Abnormal Urine Findings,Other
- ;;^UTILITY(U,$J,358.3,18623,1,4,0)
- ;;=4^R82.998
- ;;^UTILITY(U,$J,358.3,18623,2)
- ;;=^5157472
- ;;^UTILITY(U,$J,358.3,18624,0)
- ;;=R82.89^^65^781^27
- ;;^UTILITY(U,$J,358.3,18624,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,18624,1,3,0)
- ;;=3^Abnormal Urine Cytology/Histology Findings,Other
- ;;^UTILITY(U,$J,358.3,18624,1,4,0)
- ;;=4^R82.89
- ;;^UTILITY(U,$J,358.3,18624,2)
- ;;=^5158142
- ;;^UTILITY(U,$J,358.3,18625,0)
- ;;=R82.81^^65^781^150
- ;;^UTILITY(U,$J,358.3,18625,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,18625,1,3,0)
- ;;=3^Pyuria
- ;;^UTILITY(U,$J,358.3,18625,1,4,0)
- ;;=4^R82.81
- ;;^UTILITY(U,$J,358.3,18625,2)
- ;;=^101879
- ;;^UTILITY(U,$J,358.3,18626,0)
- ;;=S43.51XA^^65^782^12
- ;;^UTILITY(U,$J,358.3,18626,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,18626,1,3,0)
- ;;=3^Sprain of Right Acromioclavicular Joint
- ;;^UTILITY(U,$J,358.3,18626,1,4,0)
- ;;=4^S43.51XA
- ;;^UTILITY(U,$J,358.3,18626,2)
- ;;=^5027903
- ;;^UTILITY(U,$J,358.3,18627,0)
- ;;=S43.52XA^^65^782^1
- ;;^UTILITY(U,$J,358.3,18627,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,18627,1,3,0)
- ;;=3^Sprain of Left Acromioclavicular Joint
- ;;^UTILITY(U,$J,358.3,18627,1,4,0)
- ;;=4^S43.52XA
- ;;^UTILITY(U,$J,358.3,18627,2)
- ;;=^5027906
- ;;^UTILITY(U,$J,358.3,18628,0)
- ;;=S43.421A^^65^782^17
- ;;^UTILITY(U,$J,358.3,18628,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,18628,1,3,0)
- ;;=3^Sprain of Right Rotator Cuff Capsule
- ;;^UTILITY(U,$J,358.3,18628,1,4,0)
- ;;=4^S43.421A
- ;;^UTILITY(U,$J,358.3,18628,2)
- ;;=^5027879
- ;;^UTILITY(U,$J,358.3,18629,0)
- ;;=S43.422A^^65^782^6
- ;;^UTILITY(U,$J,358.3,18629,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,18629,1,3,0)
- ;;=3^Sprain of Left Rotator Cuff Capsule
- ;;^UTILITY(U,$J,358.3,18629,1,4,0)
- ;;=4^S43.422A
- ;;^UTILITY(U,$J,358.3,18629,2)
- ;;=^5027882
- ;;^UTILITY(U,$J,358.3,18630,0)
- ;;=S53.401A^^65^782^14
- ;;^UTILITY(U,$J,358.3,18630,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,18630,1,3,0)
- ;;=3^Sprain of Right Elbow
- ;;^UTILITY(U,$J,358.3,18630,1,4,0)
- ;;=4^S53.401A
- ;;^UTILITY(U,$J,358.3,18630,2)
- ;;=^5031361
- ;;^UTILITY(U,$J,358.3,18631,0)
- ;;=S53.402A^^65^782^3
- ;;^UTILITY(U,$J,358.3,18631,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,18631,1,3,0)
- ;;=3^Sprain of Left Elbow
- ;;^UTILITY(U,$J,358.3,18631,1,4,0)
- ;;=4^S53.402A
- ;;^UTILITY(U,$J,358.3,18631,2)
- ;;=^5031364
- ;;^UTILITY(U,$J,358.3,18632,0)
- ;;=S56.011A^^65^782^55
- ;;^UTILITY(U,$J,358.3,18632,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,18632,1,3,0)
- ;;=3^Strain of Right Thumb at Forearm Level Flexor Muscle/Fasc/Tendon
- ;;^UTILITY(U,$J,358.3,18632,1,4,0)
- ;;=4^S56.011A
- ;;^UTILITY(U,$J,358.3,18632,2)
- ;;=^5031568
- ;;^UTILITY(U,$J,358.3,18633,0)
- ;;=S56.012A^^65^782^36
- ;;^UTILITY(U,$J,358.3,18633,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,18633,1,3,0)
- ;;=3^Strain of Left Thumb at Forearm Level Flexor Muscle/Fasc/Tendon
- ;;^UTILITY(U,$J,358.3,18633,1,4,0)
- ;;=4^S56.012A
- ;;^UTILITY(U,$J,358.3,18633,2)
- ;;=^5031571
- ;;^UTILITY(U,$J,358.3,18634,0)
- ;;=S56.111A^^65^782^43
- ;;^UTILITY(U,$J,358.3,18634,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,18634,1,3,0)
- ;;=3^Strain of Right Index Finger at Forearm Level Flexor Muscle/Fasc/Tendon
- ;;^UTILITY(U,$J,358.3,18634,1,4,0)
- ;;=4^S56.111A
- ;;^UTILITY(U,$J,358.3,18634,2)
- ;;=^5031616
- ;;^UTILITY(U,$J,358.3,18635,0)
- ;;=S56.112A^^65^782^23
- ;;^UTILITY(U,$J,358.3,18635,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,18635,1,3,0)
- ;;=3^Strain of Left Index Finger at Forearm Level Flexor Muscle/Fasc/Tendon
- ;;^UTILITY(U,$J,358.3,18635,1,4,0)
- ;;=4^S56.112A
+ ;;=O41.02X4^^62^741^48

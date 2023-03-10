@@ -1,8 +1,8 @@
-PRCHITM6 ;OI&T/LKG - LOAD MANUFACTURER ENTRIES FROM HOST FILE ;4/7/17  16:06
- ;;5.1;IFCAP;**198**;OCT 20, 2000;Build 6
+PRCHITM6 ;OI&T/LKG - LOAD MANUFACTURER ENTRIES FROM HOST FILE ;12/20/21  22:15
+ ;;5.1;IFCAP;**198,226**;OCT 20, 2000;Build 2
  ;Per VA Directive 6402, this routine should not be modified.
  ;Integration agreements
- ; ICR #2320:  CLOSE^%ZISH(),$$DEFDIR^%ZISH(),$$LIST^%ZISH(),OPEN^%ZISH(),$$STATUS^%ZISH()
+ ; ICR #2320:  CLOSE^%ZISH(),$$LIST^%ZISH(),OPEN^%ZISH(),$$STATUS^%ZISH()
  ; ICR #2171:  $$STA^XUAF4()
  ; ICR #2541:  $$KSP^XUPARAM()
  ; ICR #4440:  $$PROD^XUPROD()
@@ -12,12 +12,12 @@ PRCHITM6 ;OI&T/LKG - LOAD MANUFACTURER ENTRIES FROM HOST FILE ;4/7/17  16:06
 ST ;Entry point
  N DIR,DTOUT,DUOUT,DIROUT,DIRUT,POP,X,Y,PRCI,PRCLFARR,PRCLFDIR,PRCLFF,PRCLFFIL,PRCLFIN,PRCFATAL S PRCFATAL=0
  N ZTSK,ZTSAVE,ZTDTM,ZTRTN,ZTDESC,ZTIO,PRCX
-GETDIR S DIR(0)="FA^1:75",DIR("A")="Enter the file's directory: ",DIR("B")=$$DEFDIR^%ZISH()
+GETDIR S DIR(0)="FA^1:75",DIR("A")="Enter the file's directory: ",DIR("B")="/srv/vista/patches/.NIF/"
  S DIR("?",1)="Enter name of the directory containing the file.",DIR("?")="  Directory value is up to 75 characters in the format for the operating system."
  D ^DIR I $D(DIRUT) S PRCFATAL=1 G END
  S PRCLFDIR=Y
  K DIR S DIR(0)="FA^1:50^K:X'?1.46ANP1"".""3A X",DIR("A")="Enter file name: ",DIR("?",1)="Enter the name of file with extension that you wish to process."
- S DIR("?")="File name up to 50 characters, without directory."
+ S DIR("?")="File name up to 50 characters, without directory.",DIR("B")="NIFMFGFILE.TXT"
  D ^DIR I $D(DIRUT) S PRCFATAL=1 G END
  S PRCLFFIL=Y K DIR
  S PRCLFF(PRCLFFIL)="",PRCX=$$LIST^%ZISH(PRCLFDIR,"PRCLFF","PRCLFARR")
@@ -29,9 +29,9 @@ GETDIR S DIR(0)="FA^1:75",DIR("A")="Enter the file's directory: ",DIR("B")=$$DEF
  F PRCI=1:1 R PRCX:DTIME Q:$P(PRCX,"^",1,2)="HDR^MANUFACTURER LIST"  Q:$$STATUS^%ZISH
  I $P(PRCX,"^",1,2)'="HDR^MANUFACTURER LIST" U IO(0) D EN^DDIOL("*** Wrong file: Not for Manufacturer Load.","","!!?10") S PRCFATAL=1 D CLOSE^%ZISH("PRCLFIN") G END
  U IO(0) W !
- K DIR S DIR(0)="YA",DIR("A")="Do want to queue the item load? ",DIR("B")="YES"
+ K DIR S DIR(0)="YA",DIR("A")="Do you want to queue the manufacturer load? ",DIR("B")="YES"
  S DIR("?")="Enter 'YES' to run in background or 'NO' to run in foreground."
- D ^DIR I $D(DIRUT) S PRCFATAL=1 D CLOSE^%ZISH("PRCLLYFIN") G END
+ D ^DIR I $D(DIRUT) S PRCFATAL=1 D CLOSE^%ZISH("PRCLFIN") G END
  I Y D  G END
  . D CLOSE^%ZISH("PRCLFIN")
  . S ZTRTN="RUN^PRCHITM6",ZTDESC="Manufacturer File (#440.4) Load",ZTIO=""

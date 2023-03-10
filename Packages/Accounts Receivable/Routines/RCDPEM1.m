@@ -1,5 +1,5 @@
 RCDPEM1 ;ALB/TMK,DWA,PJH - ERA MATCH TO EFT (cont) ; 5/5/11 1:25pm
- ;;4.5;Accounts Receivable;**173,269,318,321**;Mar 20, 1995;Build 48
+ ;;4.5;Accounts Receivable;**173,269,318,321,380**;Mar 20, 1995;Build 14
  ;;Per VA Directive 6402, this routine should not be modified.
  Q
  ;
@@ -108,7 +108,8 @@ EN2 ; Entrypoint from nightly job to put Nightly data into the nightly job's sta
  . S CT=CT+1
  . S ^TMP($J,"RCXM",CT)=""
  . I '$G(DATA) D
- .. S CT=CT+1
+ .. ;PRCA*4.5*380 - Removed advancing of the counter
+ .. ;S CT=CT+1
  .. S ^TMP($J,"RCXM",CT)=^TMP($J,"RCXM",CT)_"  "_$E($P($G(^RCY(344.1,+$P(Z0,U,3),0)),U)_$J("",15),1,15)_"  "_$E($P($G(^RCY(344,+$O(^RCY(344,"AD",+$P(Z0,U,3),0)),0)),U)_$J("",15),1,15)_"  "
  .. S ^TMP($J,"RCXM",CT)=^TMP($J,"RCXM",CT)_$J(+$P(Z0,U,12),"",2)
  . I $G(DATA) D

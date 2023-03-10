@@ -1,5 +1,5 @@
-PSJORRE ;BIR/MV-RETURN INPATIENT ACTIVE MEDS (CONDENSED) ; 2/28/11 3:11pm
- ;;5.0;INPATIENT MEDICATIONS;**22,51,50,58,81,110,111,112,134,225,275,315**;16 DEC 97;Build 73
+PSJORRE ;BIR/MV - RETURN INPATIENT ACTIVE MEDS (CONDENSED) ;Jun 24, 2020@10:05:20
+ ;;5.0;INPATIENT MEDICATIONS;**22,51,50,58,81,110,111,112,134,225,275,315,399**;16 DEC 97;Build 64
  ;;Per VHA Directive 2004-038, this routine should not be modified.
  ;Reference to ^PS(52.6 is supported by DBIA 1231.
  ;Reference to ^PS(52.7 is supported by DBIA 2173.
@@ -7,9 +7,9 @@ PSJORRE ;BIR/MV-RETURN INPATIENT ACTIVE MEDS (CONDENSED) ; 2/28/11 3:11pm
  ;Reference to ^TMP("PS" is documented in DBIA #2383.
  ;
 OCL(DFN,BDT,EDT,TFN,MVIEW)         ; return condensed list of inpat meds
- ; MVIEW=0   -  This returns the 'unsorted' list as it was returned prior to GUI 27 
+ ; MVIEW=0   -  This returns the 'unsorted' list as it was returned prior to GUI 27
  ; MVIEW=1   -  This returns the old sort view of the list, pre-sorted for GUI 27
- ; MVIEW=2   -  This returns new sort view #1 of the order profile for GUI 27 
+ ; MVIEW=2   -  This returns new sort view #1 of the order profile for GUI 27
  ; MVIEW=3   -  This returns new sort view #2 of the order profile for GUI 27
  D @$S($G(MVIEW)=3:"OCL^PSJORRN1(DFN,BDT,EDT,.TFN)",$G(MVIEW)=2:"OCL^PSJORRN(DFN,BDT,EDT,.TFN)",$G(MVIEW)=1:"OCL^PSJORRO(DFN,BDT,EDT,.TFN)",1:"OCL1(DFN,BDT,EDT,TFN)")
  Q
@@ -53,6 +53,7 @@ UDTMP ;*** Set ^TMP for Unit dose orders.
  S ^TMP("PS",$J,TFN,"ADM",0)=$P(ND2,U,5)]"" S:$P(ND2,U,5)]"" ^TMP("PS",$J,TFN,"ADM",1,0)=$P(ND2,U,5)
  S ^TMP("PS",$J,TFN,"RMV",0)=$P(ND2P1,U,2)]"" S:$P(ND2P1,U,2)]"" ^TMP("PS",$J,TFN,"RMV",1,0)=$P(ND2P1,U,2) ;*315
  S ^TMP("PS",$J,TFN,"SIO",0)=ND6]"" S:ND6]"" ^TMP("PS",$J,TFN,"SIO",1,0)=ND6
+ S:$P($G(@(F_ON_",18)")),U)]"" ^TMP("PS",$J,TFN,"IND",0)=$P($G(@(F_ON_",18)")),U)  ;*399-IND
  Q
  ;
 IVTMP ;*** Set ^TMP for IV orders.
@@ -85,6 +86,7 @@ IVTMP ;*** Set ^TMP for IV orders.
  S ^TMP("PS",$J,TFN,"ADM",0)=ADM]"" S:ADM]"" ^TMP("PS",$J,TFN,"ADM",1,0)=ADM
  S ^TMP("PS",$J,TFN,"SIO",0)=SIO]"" S:SIO]"" ^TMP("PS",$J,TFN,"SIO",1,0)=SIO
  I $G(IVLIM)]"" S ^TMP("PS",$J,TFN,"IVLIM",0)=IVLIM
+ S:$P($G(@(F_ON_",18)")),U)]"" ^TMP("PS",$J,TFN,"IND",0)=$P($G(@(F_ON_",18)")),U)  ;*399-IND
  Q
 STAT(Y,X) ;* Return the full status instead of just the code for U/D.
  S X=$P($P(";"_$P(Y,U,3),";"_X_":",2),";")

@@ -1,10 +1,10 @@
 PSOBPSU2 ;BIRM/MFR - BPS (ECME) Utilities 2 ;10/15/04
- ;;7.0;OUTPATIENT PHARMACY;**260,287,289,341,290,358,359,385,421,459,482,512,544**;DEC 1997;Build 19
+ ;;7.0;OUTPATIENT PHARMACY;**260,287,289,341,290,358,359,385,421,459,482,512,544,562,660**;DEC 1997;Build 1
  ;Reference to File 200 - NEW PERSON supported by IA 10060
  ;Reference to DUR1^BPSNCPD3 supported by IA 4560
  ;Reference to $$NCPDPQTY^PSSBPSUT supported by IA 4992
  ;Reference to $$CLAIM^BPSBUTL supported by IA 4719
- ; 
+ ;
 MWC(RX,RFL) ; Returns whether a prescription is (M)ail, (W)indow or (C)MOP
  ;Input: (r) RX   - Rx IEN (#52)
  ;       (o) RFL  - Refill #  (Default: most recent)
@@ -116,7 +116,7 @@ ELIG(RX,RFL,PSOELIG) ;Stores eligibility flag
  Q
  ;
 ECMESTAT(RX,RFL) ;called from local mail
- ;Input: 
+ ;Input:
  ; RX = Prescription File IEN
  ; RFL = Refill
  ;Output:
@@ -140,8 +140,9 @@ ECMESTAT(RX,RFL) ;called from local mail
  I PSOTRIC,STATUS'["PAYABLE",$$FIND^PSOREJUT(RX,RFL,,,1) Q 0  ; unresolved TRI/CVA rejects - no print  *421
  I PSOTRIC,STATUS'["PAYABLE",$$TRIAUD^PSOREJU3(RX,RFL) Q 1    ; allow to print - on TRI/CVA Audit log  *421
  ;
- ;DUR (88)/RTS (79)/RRR reject codes are not allowed to print until resolved.
- I $$FIND^PSOREJUT(RX,RFL,,"79,88",,1) Q 0
+ ; Disallow printing from suspense if the prescription has an unresolved
+ ; 79/88/943 reject or an RRR reject.
+ I $$FIND^PSOREJUT(RX,RFL,,"79,88,943",,1) Q 0
  ;
  Q 1
  ;
@@ -171,11 +172,11 @@ ECMEST2(RX,RFL) ;
  ;from previous ECME submissions. The host reject errors checked are M6, M8, NN, and 99.
  ;Note that host reject errors do not pass to the pharmacy reject worklist so it's necessary
  ;to check ECME for these type errors.
- ;Input: 
+ ;Input:
  ; RX = Prescription File IEN
  ; RFL = Refill
  ; ONE = Either 1 or 0 - Defaults to 1
- ; If 1, At least ONE reject code associated with the RX/FILL must 
+ ; If 1, At least ONE reject code associated with the RX/FILL must
  ;   match either M6, M8, NN, or 99.
  ; If 0, ALL reject codes must match either M6, M8, NN, or 99
  ; REJ = (o) reject information from called from routine to be passed back. (contains data returned from DUR1^BPSNCPD3)
@@ -197,11 +198,11 @@ HOSTREJ(RX,RFL,ONE) ; called from PSXRPPL2 and this routine
  . . I CODE'=HRCODE,RETV=1 S RETV=0,HRQUIT=1 Q
  Q RETV
  ;
- ;Description: 
+ ;Description:
  ;Input: RX = Prescription file #52 IEN
  ; RFL = Refill number
  ;Returns: A value of 0 (zero) will be returned when reject codes M6, M8,
- ;NN, and 99 are present OR if on susp hold which means the prescription should not 
+ ;NN, and 99 are present OR if on susp hold which means the prescription should not
  ;be printed from suspense. Otherwise, a value of 1(one) will be returned.
 DUR(RX,RFL) ;
  N REJ,IDX,TXT,CODE,SHOLD,SHCODE,ESTAT,SHDT
@@ -236,7 +237,7 @@ SHDT(RX,RFL) ;
  S FILE=$S(RFL=0:52,1:52.1),IENS=$S(RFL=0:RX_",",1:RFL_","_RX_",")
  Q $$GET1^DIQ(FILE,IENS,86,"I")
  ;
-ELOG(RESP) ; - due to size of PSOBPSU1 exceeding limit 
+ELOG(RESP) ; - due to size of PSOBPSU1 exceeding limit
  ; -Logs an ECME Activity Log if Rx Qty is different than Billing Qty
  I '$G(RESP),$T(NCPDPQTY^PSSBPSUT)'="" D
  . N DRUG,RXQTY,BLQTY,BLDU,Z
@@ -261,8 +262,13 @@ UPDFL(RXREC,SUB,INDT) ;update fill date with release date when NDC changes at CM
  I SUB S (OLD,X)=+$P($G(^PSRX(RXREC,1,SUB,0)),"^"),DA(1)=RXREC,DA=SUB,OFILLD=$$GET1^DIQ(52.1,DA_","_RXREC,.01,"I") Q:OFILLD=EXDAT  D
  . S DIE="^PSRX("_DA(1)_",1,",DR=".01///"_EXDAT D ^DIE K DIE S $P(^PSRX(RXREC,3),"^")=EXDAT
  Q:$D(DTOUT)!($D(DUOUT))
- S DA=RXREC
- D AREC^PSOSUCH1
+ ;start of pso 660 code
+ N PSOSUSPA,RXRECI S RXRECI=$O(^PS(52.5,"B",RXREC,0)) S:RXRECI PSOSUSPA=$P($G(^PS(52.5,RXRECI,0)),"^",5)
+ S COM="Change "_$S($G(PSOSUSPA):"Partial",'$G(SUB):"Fill",1:"Refill")_" Date "_$E(OFILLD,4,5)_"/"_$E(OFILLD,6,7)_"/"_$E(OFILLD,2,3)_" to "_$E(INDT,4,5)_"/"_$E(INDT,6,7)_"/"_$E(INDT,2,3)
+ D RXACT(RXREC,SUB,COM,"S",DUZ)
+ ;S DA=RXREC
+ ;D AREC^PSOSUCH1
+ ; end of pso 660 code
 FIN ;
  Q
  ;

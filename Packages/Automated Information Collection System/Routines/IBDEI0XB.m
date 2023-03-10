@@ -1,130 +1,124 @@
-IBDEI0XB ; ; 04-FEB-2020
- ;;3.0;IB ENCOUNTER FORM IMP/EXP;;FEB 04, 2020
+IBDEI0XB ; ; 01-FEB-2022
+ ;;3.0;IB ENCOUNTER FORM IMP/EXP;;FEB 01, 2022
  Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,999) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
- ;;^UTILITY(U,$J,358.3,14834,1,3,0)
- ;;=3^Diverticulitis of Colon w/Bleeding
- ;;^UTILITY(U,$J,358.3,14834,1,4,0)
- ;;=4^K57.33
- ;;^UTILITY(U,$J,358.3,14834,2)
- ;;=^5008726
- ;;^UTILITY(U,$J,358.3,14835,0)
- ;;=K63.2^^85^835^31
- ;;^UTILITY(U,$J,358.3,14835,1,0)
+ ;;^UTILITY(U,$J,358.3,15010,2)
+ ;;=^5137751
+ ;;^UTILITY(U,$J,358.3,15011,0)
+ ;;=S96.911A^^58^714^82
+ ;;^UTILITY(U,$J,358.3,15011,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,14835,1,3,0)
- ;;=3^Fistula of Intestine
- ;;^UTILITY(U,$J,358.3,14835,1,4,0)
- ;;=4^K63.2
- ;;^UTILITY(U,$J,358.3,14835,2)
- ;;=^5008762
- ;;^UTILITY(U,$J,358.3,14836,0)
- ;;=A04.71^^85^835^18
- ;;^UTILITY(U,$J,358.3,14836,1,0)
+ ;;^UTILITY(U,$J,358.3,15011,1,3,0)
+ ;;=3^Strain,Msl/Tnd,Ankle/Foot Level,Rt Foot,Init Encntr
+ ;;^UTILITY(U,$J,358.3,15011,1,4,0)
+ ;;=4^S96.911A
+ ;;^UTILITY(U,$J,358.3,15011,2)
+ ;;=^5137750
+ ;;^UTILITY(U,$J,358.3,15012,0)
+ ;;=S56.912A^^58^714^79
+ ;;^UTILITY(U,$J,358.3,15012,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,14836,1,3,0)
- ;;=3^Clostridium difficile enterocolitis,recurrent
- ;;^UTILITY(U,$J,358.3,14836,1,4,0)
- ;;=4^A04.71
- ;;^UTILITY(U,$J,358.3,14836,2)
- ;;=^5151291
- ;;^UTILITY(U,$J,358.3,14837,0)
- ;;=A04.72^^85^835^17
- ;;^UTILITY(U,$J,358.3,14837,1,0)
+ ;;^UTILITY(U,$J,358.3,15012,1,3,0)
+ ;;=3^Strain,Msl/Fasc/Tnd,Forearm Level,Lt Arm,Init Encntr
+ ;;^UTILITY(U,$J,358.3,15012,1,4,0)
+ ;;=4^S56.912A
+ ;;^UTILITY(U,$J,358.3,15012,2)
+ ;;=^5135514
+ ;;^UTILITY(U,$J,358.3,15013,0)
+ ;;=S56.911A^^58^714^80
+ ;;^UTILITY(U,$J,358.3,15013,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,14837,1,3,0)
- ;;=3^Clostridium difficile enterocolitis
- ;;^UTILITY(U,$J,358.3,14837,1,4,0)
- ;;=4^A04.72
- ;;^UTILITY(U,$J,358.3,14837,2)
- ;;=^5151292
- ;;^UTILITY(U,$J,358.3,14838,0)
- ;;=K52.9^^85^835^19
- ;;^UTILITY(U,$J,358.3,14838,1,0)
+ ;;^UTILITY(U,$J,358.3,15013,1,3,0)
+ ;;=3^Strain,Msl/Fasc/Tnd,Forearm Level,Rt Arm,Init Encntr
+ ;;^UTILITY(U,$J,358.3,15013,1,4,0)
+ ;;=4^S56.911A
+ ;;^UTILITY(U,$J,358.3,15013,2)
+ ;;=^5135513
+ ;;^UTILITY(U,$J,358.3,15014,0)
+ ;;=M75.112^^58^714^25
+ ;;^UTILITY(U,$J,358.3,15014,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,14838,1,3,0)
- ;;=3^Colitis,Unspec
- ;;^UTILITY(U,$J,358.3,14838,1,4,0)
- ;;=4^K52.9
- ;;^UTILITY(U,$J,358.3,14838,2)
- ;;=^5008704
- ;;^UTILITY(U,$J,358.3,14839,0)
- ;;=K56.7^^85^835^51
- ;;^UTILITY(U,$J,358.3,14839,1,0)
+ ;;^UTILITY(U,$J,358.3,15014,1,3,0)
+ ;;=3^Incomplete Rotator-Cuff Tear/Ruptr,Lt Shoulder
+ ;;^UTILITY(U,$J,358.3,15014,1,4,0)
+ ;;=4^M75.112
+ ;;^UTILITY(U,$J,358.3,15014,2)
+ ;;=^5013246
+ ;;^UTILITY(U,$J,358.3,15015,0)
+ ;;=M75.111^^58^714^26
+ ;;^UTILITY(U,$J,358.3,15015,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,14839,1,3,0)
- ;;=3^Paralytic;Ileus NOS
- ;;^UTILITY(U,$J,358.3,14839,1,4,0)
- ;;=4^K56.7
- ;;^UTILITY(U,$J,358.3,14839,2)
- ;;=^5008714
- ;;^UTILITY(U,$J,358.3,14840,0)
- ;;=B18.1^^85^836^51
- ;;^UTILITY(U,$J,358.3,14840,1,0)
+ ;;^UTILITY(U,$J,358.3,15015,1,3,0)
+ ;;=3^Incomplete Rotator-Cuff Tear/Ruptr,Rt Shoulder
+ ;;^UTILITY(U,$J,358.3,15015,1,4,0)
+ ;;=4^M75.111
+ ;;^UTILITY(U,$J,358.3,15015,2)
+ ;;=^5013245
+ ;;^UTILITY(U,$J,358.3,15016,0)
+ ;;=M23.8X2^^58^714^27
+ ;;^UTILITY(U,$J,358.3,15016,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,14840,1,3,0)
- ;;=3^Hepatitis B,Chronic w/o Delta
- ;;^UTILITY(U,$J,358.3,14840,1,4,0)
- ;;=4^B18.1
- ;;^UTILITY(U,$J,358.3,14840,2)
- ;;=^5000547
- ;;^UTILITY(U,$J,358.3,14841,0)
- ;;=B18.2^^85^836^55
- ;;^UTILITY(U,$J,358.3,14841,1,0)
+ ;;^UTILITY(U,$J,358.3,15016,1,3,0)
+ ;;=3^Internal Derangement,Lt Knee NEC
+ ;;^UTILITY(U,$J,358.3,15016,1,4,0)
+ ;;=4^M23.8X2
+ ;;^UTILITY(U,$J,358.3,15016,2)
+ ;;=^5011274
+ ;;^UTILITY(U,$J,358.3,15017,0)
+ ;;=M23.8X1^^58^714^28
+ ;;^UTILITY(U,$J,358.3,15017,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,14841,1,3,0)
- ;;=3^Hepatitis C,Chronic
- ;;^UTILITY(U,$J,358.3,14841,1,4,0)
- ;;=4^B18.2
- ;;^UTILITY(U,$J,358.3,14841,2)
- ;;=^5000548
- ;;^UTILITY(U,$J,358.3,14842,0)
- ;;=K76.0^^85^836^30
- ;;^UTILITY(U,$J,358.3,14842,1,0)
+ ;;^UTILITY(U,$J,358.3,15017,1,3,0)
+ ;;=3^Internal Derangement,Rt Knee NEC
+ ;;^UTILITY(U,$J,358.3,15017,1,4,0)
+ ;;=4^M23.8X1
+ ;;^UTILITY(U,$J,358.3,15017,2)
+ ;;=^5011273
+ ;;^UTILITY(U,$J,358.3,15018,0)
+ ;;=M62.838^^58^714^43
+ ;;^UTILITY(U,$J,358.3,15018,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,14842,1,3,0)
- ;;=3^Fatty (change of) liver,Nonalcoholic
- ;;^UTILITY(U,$J,358.3,14842,1,4,0)
- ;;=4^K76.0
- ;;^UTILITY(U,$J,358.3,14842,2)
- ;;=^5008831
- ;;^UTILITY(U,$J,358.3,14843,0)
- ;;=K74.60^^85^836^20
- ;;^UTILITY(U,$J,358.3,14843,1,0)
+ ;;^UTILITY(U,$J,358.3,15018,1,3,0)
+ ;;=3^Muscle spasm NEC
+ ;;^UTILITY(U,$J,358.3,15018,1,4,0)
+ ;;=4^M62.838
+ ;;^UTILITY(U,$J,358.3,15018,2)
+ ;;=^5012682
+ ;;^UTILITY(U,$J,358.3,15019,0)
+ ;;=M76.52^^58^714^57
+ ;;^UTILITY(U,$J,358.3,15019,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,14843,1,3,0)
- ;;=3^Cirrhosis,Other specified cause
- ;;^UTILITY(U,$J,358.3,14843,1,4,0)
- ;;=4^K74.60
- ;;^UTILITY(U,$J,358.3,14843,2)
- ;;=^5008822
- ;;^UTILITY(U,$J,358.3,14844,0)
- ;;=K74.69^^85^836^19
- ;;^UTILITY(U,$J,358.3,14844,1,0)
+ ;;^UTILITY(U,$J,358.3,15019,1,3,0)
+ ;;=3^Patellar Tendinitis,Lt Knee
+ ;;^UTILITY(U,$J,358.3,15019,1,4,0)
+ ;;=4^M76.52
+ ;;^UTILITY(U,$J,358.3,15019,2)
+ ;;=^5013283
+ ;;^UTILITY(U,$J,358.3,15020,0)
+ ;;=M76.51^^58^714^58
+ ;;^UTILITY(U,$J,358.3,15020,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,14844,1,3,0)
- ;;=3^Cirrhosis,Cryptogenic
- ;;^UTILITY(U,$J,358.3,14844,1,4,0)
- ;;=4^K74.69
- ;;^UTILITY(U,$J,358.3,14844,2)
- ;;=^5008823
- ;;^UTILITY(U,$J,358.3,14845,0)
- ;;=K75.0^^85^836^3
- ;;^UTILITY(U,$J,358.3,14845,1,0)
+ ;;^UTILITY(U,$J,358.3,15020,1,3,0)
+ ;;=3^Patellar Tendinitis,Rt Knee
+ ;;^UTILITY(U,$J,358.3,15020,1,4,0)
+ ;;=4^M76.51
+ ;;^UTILITY(U,$J,358.3,15020,2)
+ ;;=^5013282
+ ;;^UTILITY(U,$J,358.3,15021,0)
+ ;;=M65.4^^58^714^59
+ ;;^UTILITY(U,$J,358.3,15021,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,14845,1,3,0)
- ;;=3^Abscess of liver
- ;;^UTILITY(U,$J,358.3,14845,1,4,0)
- ;;=4^K75.0
- ;;^UTILITY(U,$J,358.3,14845,2)
- ;;=^5008824
- ;;^UTILITY(U,$J,358.3,14846,0)
- ;;=K70.0^^85^836^29
- ;;^UTILITY(U,$J,358.3,14846,1,0)
+ ;;^UTILITY(U,$J,358.3,15021,1,3,0)
+ ;;=3^Radial Styloid Tenosynovitis
+ ;;^UTILITY(U,$J,358.3,15021,1,4,0)
+ ;;=4^M65.4
+ ;;^UTILITY(U,$J,358.3,15021,2)
+ ;;=^5012792
+ ;;^UTILITY(U,$J,358.3,15022,0)
+ ;;=M75.102^^58^714^62
+ ;;^UTILITY(U,$J,358.3,15022,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,14846,1,3,0)
- ;;=3^Fatty (change of) liver,Alcoholic
- ;;^UTILITY(U,$J,358.3,14846,1,4,0)
- ;;=4^K70.0
- ;;^UTILITY(U,$J,358.3,14846,2)
- ;;=^5008784
+ ;;^UTILITY(U,$J,358.3,15022,1,3,0)
+ ;;=3^Rotator-Cuff Tear/Rupture,Lt Shoulder,Unspec
+ ;;^UTILITY(U,$J,358.3,15022,1,4,0)
+ ;;=4^M75.102

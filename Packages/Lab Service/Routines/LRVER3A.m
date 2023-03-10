@@ -1,5 +1,5 @@
 LRVER3A ;DALOI/FHS - DATA VERIFICATION;Sep 27, 2018@10:00:00
- ;;5.2;LAB SERVICE;**1,5,42,100,121,153,190,221,254,263,266,274,295,373,350,512,524,538**;Sep 27, 1994;Build 9
+ ;;5.2;LAB SERVICE;**1,5,42,100,121,153,190,221,254,263,266,274,295,373,350,512,524,538,545**;Sep 27, 1994;Build 5
  ;
  ; Also contains LRORFLG to restrict multiple OERR alerts (VER+2)
  ; Reference to ^DIC(42 supported by IA #10039
@@ -19,6 +19,12 @@ VER ; Call with L ^LR(LRDFN,LRSS,LRIDT) from LRGV2, LRGVG1, LRSTUF1, LRSTUF2, LR
  N LRT
  S LRT=0
  F  S LRT=$O(^LRO(68,LRAA,1,LRAD,1,LRAN,4,LRT)) Q:LRT<.5  S:$P(^(LRT,0),U,5)="" A2(LRT)=1 I $D(^TMP("LR",$J,"VTO",LRT)) S LRVCHK=+^(LRT) D
+ . ;LR*5.2*545: Test might have been run on instrument and then canceled
+ . ;            or merged to another accession.
+ . ;            Do not verify results for canceled or merged tests.
+ . ;Only checking for "Not Performed" and "Merged" in case other dispositions
+ . ;are added in future releases.
+ . Q:$P(^LRO(68,LRAA,1,LRAD,1,LRAN,4,LRT,0),U,6)["*Not Performed"!($P(^LRO(68,LRAA,1,LRAD,1,LRAN,4,LRT,0),U,6)["*Merged")
  . I $S(LRVCHK<1:1,$D(LRSB(LRVCHK))#2:1,1:0) D
  . . I $D(LRSB(LRVCHK)) Q:$P(LRSB(LRVCHK),U)=""
  . . I LRVCHK<1,$P(^LRO(68,LRAA,1,LRAD,1,LRAN,4,LRT,0),U,6)'="" Q
@@ -347,6 +353,8 @@ UPDPAR ;
  S LRPARENT=""
  F  S LRPARENT=$O(LRCOMP(LRPARENT)) Q:LRPARENT=""  D
  . I '$G(LRCOMP(LRPARENT))!('$D(^LRO(68,LRAA,1,LRAD,1,LRAN,4,LRPARENT,0))) Q
+ . ;LR*5.2*545: add check as to whether the parent (i.e. panel) has been merged or canceled
+ . Q:$P(^LRO(68,LRAA,1,LRAD,1,LRAN,4,LRPARENT,0),U,6)["*Not Performed"!($P(^LRO(68,LRAA,1,LRAD,1,LRAN,4,LRPARENT,0),U,6)["*Merged")
  . S $P(^LRO(68,LRAA,1,LRAD,1,LRAN,4,LRPARENT,0),U,4)=$S($G(LRDUZ):LRDUZ,$G(DUZ):DUZ,1:"")
  . I '$P(^LRO(68,LRAA,1,LRAD,1,LRAN,4,LRPARENT,0),U,5) S $P(^(0),U,5)=LRNOW
  . S $P(^LRO(68,LRAA,1,LRAD,1,LRAN,4,LRPARENT,0),U,6)="",$P(^(0),U,8)=$G(LRCDEF)

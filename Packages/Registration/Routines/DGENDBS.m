@@ -1,5 +1,5 @@
-DGENDBS ;ALB/RMO/CJM - Database Server Utilities; [ 03/23/95  11:08 AM ]
- ;;5.3;Registration;**122,147,182**;08/13/93
+DGENDBS ;ALB/RMO/CJM,JAM - Database Server Utilities; [ 03/23/95  11:08 AM ]
+ ;;5.3;Registration;**122,147,182,1040**;08/13/93;Build 15
  ;
 UPD(FILE,DGENDA,DATA,ERROR) ;File data into an existing record.
  ; Input:
@@ -17,7 +17,8 @@ UPD(FILE,DGENDA,DATA,ERROR) ;File data into an existing record.
  ;          subrecord ien=68, with the field .01 value = 21:
  ;    S DATA(.01)=21,DGENDA=68,DGENDA(1)=353 I $$UPD^DGENDBS(2.0361,.DGENDA,.DATA,.ERROR) W !,"DONE"
  ;
- N FDA,FIELD,IENS,ERRORS
+ ; DG*5,3*1040;jam; Add New of DTOUT to protect it from FILE^DIE which will kill this variable. 
+ N FDA,FIELD,IENS,ERRORS,DTOUT
  ;
  ;IENS - Internal Entry Number String defined by FM
  ;FDA - the FDA array as defined by FM

@@ -1,5 +1,5 @@
-PSDOPT0 ;BIR/JPW,LTL,BJW - Outpatient Rx Entry (cont'd) ;22 Jun 98
- ;;3.0;CONTROLLED SUBSTANCES ;**10,30,37,39,45,48,66,79**;13 Feb 97;Build 20
+PSDOPT0 ;BIR/JPW,LTL,BJW - Outpatient Rx Entry (cont'd) ;Jun 22, 1998@12:15
+ ;;3.0;CONTROLLED SUBSTANCES ;**10,30,37,39,45,48,66,79,90**;13 Feb 97;Build 4
  ;Reference to PS(52.5 supported by DBIA #786
  ;Reference to PS(59.7 supported by DBIA #1930
  ;References to ^PSD(58.8 are covered by DBIA #2711
@@ -30,7 +30,6 @@ LOOP ;loop to find new, refills and partials
  .S RXNUM("PR",JJ)=+^PSRX(PSDRX,"P",JJ,0)_U_$P(^(0),U,4),$P(PSDSEL("PR",JJ),"^",1)=$P(RXNUM("PR",JJ),"^",1),$P(PSDSEL("PR",JJ),"^",2)=$P(RXNUM("PR",JJ),"^",2) K PSDLBL
  ;
  ;original returned to stock
- ;
  S:$P($G(^PSRX(+PSDRX,2)),U,15) PSDRX(1)=""
  ;Check for suspense
  I +$P($G(^PSRX(PSDRX,2)),U,2)'<PSDOIN S PSDRXFD=$P(^(2),U,2) D
@@ -44,7 +43,7 @@ PSDDAVE ;PSD*3*30 (Major overhaul, Dave B)
  I '$D(PSDRX(1)) S $P(PSDSEL("OR"),"^",2)=$P(^PSRX(+PSDRX,0),"^",7) ;Quantity
  S $P(PSDSEL("OR"),"^",3)=$P($G(PSDRX("OR",0)),"^",3) ;Posted
  I $P($G(^PSRX(+PSDRX,2)),"^",13)'="" S Y=$P(^PSRX(+PSDRX,2),"^",13) X ^DD("DD") S $P(PSDSEL("OR"),"^",4)=Y ;released date
- I $D(PSDSEL("OR")),$P(PSDSEL("OR"),"^",3)'="",$P(PSDSEL("OR"),"^",4)'="" K PSDSEL("OR"),RXNUM("OR")
+ I $D(PSDSEL("OR")),$P(PSDSEL("OR"),"^",3)'="",$P(PSDSEL("OR"),"^",4)'="",'$$PSDREPR(+PSDRX)  K PSDSEL("OR"),RXNUM("OR")
  S (PSDRF1,PSDPR1)=0
 RFLCHK ;
  S PSDRF1=$O(PSDSEL("RF",PSDRF1)) G PRTLCHK:PSDRF1'>0 S DATA=PSDSEL("RF",PSDRF1)
@@ -67,6 +66,16 @@ CHKALL ;Check to see if any left to post or release
  S CNT=0 K DIR
  G CHK^PSDOPT
  ;
+PSDREPR(PSDRXIN) ;p90 return 1 (true) if type RETURNED TO STOCK
+ N PSDREC,PREVTYPE K PSDTT("OR"),PSDTT("RS")
+ S PSDTT("OR")=$O(^PSD(58.84,"B","OUTPATIENT RX",0)),PSDTT("RS")=$O(^PSD(58.84,"B","RETURNED TO STOCK",0))
+ S PSDREC=0
+ ; Cycle through accountability trans records to obtain if last trans type was OUTPATIENT RX or RETURNED TO STOCK
+ F  S PSDREC=$O(^PSD(58.81,"AOP",PSDRXIN,PSDREC)) Q:PSDREC=""  D
+ . S:$P($G(^PSD(58.81,PSDREC,0)),"^",2)=PSDTT("OR") PREVTYPE=$P($G(^PSD(58.81,PSDREC,0)),"^",2)
+ . S:$P($G(^PSD(58.81,PSDREC,0)),"^",2)=PSDTT("RS") PREVTYPE=$P($G(^PSD(58.81,PSDREC,0)),"^",2)
+ I $G(PREVTYPE)=PSDTT("RS") Q 1 ; return true if last type is RTS
+ Q 0
 PSDRTS(PSDRX,PSDNUM,PSDSITE,PSDQTY) ; API for Outpatient Pharmacy; Patch PSD*3*30
  ; This subroutine is called each time an Rx is returned to stock
  ; in Outpatient Pharmacy. The code does the following:

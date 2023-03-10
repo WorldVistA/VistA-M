@@ -1,5 +1,5 @@
 IBCU41 ;ALB/ARH - THIRD PARTY BILLING UTILITIES (OP VISIT DATES) ;6-JUN-93
- ;;2.0;INTEGRATED BILLING;**80,106,51,294,592**;21-MAR-94;Build 58
+ ;;2.0;INTEGRATED BILLING;**80,106,51,294,592,714**;21-MAR-94;Build 8
  ;;Per VA Directive 6402, this routine should not be modified.
  ;
  ;
@@ -46,8 +46,11 @@ OPV2(DATE,IFN,DISP,UN) ;edit checks for adding visit dates, if any if these fail
  ;returns: "1^warning message" - if date is OK to add to the bill
  ;         "0^error message" - if date should not be added to the bill
  ;
+ N IBINDTS
  N X,Y S Y=1,DATE=$P(DATE,".",1) S:$G(UN)="" UN=$G(^DGCR(399,+IFN,"U"))
- I DATE<+UN S Y="0^Can't enter a visit date prior to the 'Statement From' date ..." G OPV2E
+ S IBINDTS=+$P($G(^DGCR(399,+IFN,0)),U,28)  ; IB*2.0*714
+ I IBINDTS>0,DATE<IBINDTS S Y="0^Can't enter a visit date prior to the initial date of service..." G OPV2E  ; IB*2.0*714
+ I IBINDTS'>0,DATE<+UN S Y="0^Can't enter a visit date prior to the 'Statement From' date ..." G OPV2E  ; IB*2.0*714
  I DATE>+$P(UN,U,2) S Y="0^Can't enter a visit date later than the 'Statement To' date ..." G OPV2E
 OPV2E I +$G(DISP),$P(Y,U,2)'="" W !,?10,$P(Y,U,2)
  Q Y

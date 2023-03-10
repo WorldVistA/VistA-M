@@ -1,12 +1,13 @@
-RCDPTPLI ;WISC/RFJ-transaction profile init to build array ;1 Jun 99
- ;;4.5;Accounts Receivable;**114,153,365**;Mar 20, 1995;Build 6
- ;;Per VHA Directive 10-93-142, this routine should not be modified.
+RCDPTPLI ;WISC/RFJ - transaction profile init to build array ;1 Jun 99
+ ;;4.5;Accounts Receivable;**114,153,365,372,392**;Mar 20, 1995;Build 10
+ ;;Per VA Directive 6402, this routine should not be modified.
+ ; Reference to FILE #350 in ICR #4541
  Q
  ;
  ;
 INIT ;  initialization for list manager list
  ;  requires rctranda
- N %,COMMDA,DATA,DATA3,DATA8,RCDPDATA,RCFYDA,RCLINE,RCSPACE,RCX,SHOWBAL,SHOWCOL,TOTAL3,TOTAL8,TRANTYPE
+ N %,COMMDA,DATA,DATA3,DATA8,RCDPDATA,RCFYDA,RCLINE,RCSPACE,RCX,SHOWBAL,SHOWCOL,TOTAL3,TOTAL8,TRANTYPE,RCTOC
  K ^TMP("RCDPTPLM",$J),^TMP("VALM VIDEO",$J)
  ;
  D DIQ433^RCDPTPLM(RCTRANDA,".01;.03;5.02;5.03;11;12;13;14;15;17;19;42;86;88;")
@@ -111,54 +112,91 @@ INIT ;  initialization for list manager list
  S RCLINE=RCLINE+1 D SET(" ",RCLINE,1,80)
  ;
  ;  show integrated billing data
- N BILLCAT,BILLDA,IBDA
- S BILLDA=+$P(^PRCA(433,RCTRANDA,0),"^",2)
- S BILLCAT=$P($G(^PRCA(430,BILLDA,0)),"^",2)
+ N BILLCAT,BILLDA,BILLNO,IBATYP,IBDA,IBZ,N0,RCDSPFLG,TMPDT,TRCARE
+ S BILLDA=+$P(^PRCA(433,RCTRANDA,0),"^",2),TRCARE=0
+ S N0=$G(^PRCA(430,BILLDA,0)),BILLNO=$P(N0,U),BILLCAT=$P(N0,U,2)  ; PRCA*4.5*392
  ;
  ;PRCA*4.5*365 - moved vaild AR Category check to the field DISPLAY ON BILL PROFILE? field
- ;               in the AR Category (430.2) file.  If IBDSPFLG contains NULL or 0, no IB info
+ ;               in the AR Category (430.2) file.  If RCDSPFLG contains NULL or 0, no IB info
  ;               will display.  Otherwise it contains a code that will determine what info is
  ;               displayed.
- S IBDSPFLG=$$GET1^DIQ(430.2,BILLCAT_",",1.04,"I")
- I +$G(IBDSPFLG) D
- .   D STMT^IBRFN1(RCTRANDA)
- .   I '$D(^TMP("IBRFN1",$J)) Q
- .   ;  start on 2nd screen if not there already
- .   F RCLINE=RCLINE:1:15 D SET(" ",RCLINE,1,80)
- .   S RCLINE=RCLINE+1 D SET("Integrated Billing Data",RCLINE,1,80,0,IOUON,IOUOFF)
- .   S IBDA=0 F  S IBDA=$O(^TMP("IBRFN1",$J,IBDA)) Q:'IBDA  D
- .   .   S DATA=^TMP("IBRFN1",$J,IBDA)
- .   .   ;  if more than one ib data transaction to display, skip a line
- .   .   I IBDA>1 S RCLINE=RCLINE+1 D SET(" ",RCLINE,1,80)
- .   .   S RCLINE=RCLINE+1 D SET("IB Ref #: "_$P(DATA,"^"),RCLINE,1,80)
- .   .   ;  show VA RX (IBDSPFLG=1)
- .   .   I IBDSPFLG=1 D  Q
- .   .   .   D SET("Pharmacy",RCLINE,28,80)
- .   .   .   D SET("Charge Amt: "_$J($P(DATA,"^",8),0,2),RCLINE,60,80)
- .   .   .   S RCLINE=RCLINE+1
- .   .   .   D SET("     Rx#: "_$P(DATA,"^",2),RCLINE,1,80)
- .   .   .   D SET("Drug: "_$P(DATA,"^",3),RCLINE,22,80)
- .   .   .   D SET("Re/Fill Date: "_$E($P(DATA,"^",7),4,5)_"/"_$E($P(DATA,"^",7),6,7)_"/"_$E($P(DATA,"^",7),2,3),RCLINE,58,80)
- .   .   .   S RCLINE=RCLINE+1
- .   .   .   D SET("                Physician: "_$P(DATA,"^",5),RCLINE,1,48)
- .   .   .   D SET("Days Supply: "_$P(DATA,"^",4),RCLINE,48,80)
- .   .   .   D SET("Qty: "_$P(DATA,"^",6),RCLINE,67,80)
- .   .   ;  show outpatient (type of care 430.2 = 4 outpatient care), OR IBDSPFLG=2 (Other Outpatient) or 5 (CC RX)
- .   .   I ($P(^PRCA(430,BILLDA,0),"^",16)=4)!(IBDSPFLG=2)!(IBDSPFLG=5) D  Q
- .   .   .   D SET("Outpatient",RCLINE,26,80)
- .   .   .   D SET("Visit Date: "_$E($P(DATA,"^",2),4,5)_"/"_$E($P(DATA,"^",2),6,7)_"/"_$E($P(DATA,"^",2),2,3),RCLINE,37,80)
- .   .   .   D SET("Charge Amt: "_$J($P(DATA,"^",8),0,2),RCLINE,60,80)
- .   .   ;  show inpatient  [ IBDSPFLG=3 (LTC) or 4 (inpatient) ]
- .   .   D SET("Inpatient",RCLINE,28,80)
- .   .   D SET("Charge Amt: "_$J($P(DATA,"^",8),0,2),RCLINE,60,80)
- .   .   S RCLINE=RCLINE+1
- .   .   D SET("          Admission Date: "_$E($P(DATA,"^",2),4,5)_"/"_$E($P(DATA,"^",2),6,7)_"/"_$E($P(DATA,"^",2),2,3),RCLINE,1,80)
- .   .   D SET("Discharge Date: "_$E($P(DATA,"^",5),4,5)_"/"_$E($P(DATA,"^",5),6,7)_"/"_$E($P(DATA,"^",5),2,3),RCLINE,56,80)
- .   .   S RCLINE=RCLINE+1
- .   .   D SET("   Bill Cycle Begin Date: "_$E($P(DATA,"^",3),4,5)_"/"_$E($P(DATA,"^",3),6,7)_"/"_$E($P(DATA,"^",3),2,3),RCLINE,1,80)
- .   .   D SET("End Date: "_$E($P(DATA,"^",4),4,5)_"/"_$E($P(DATA,"^",4),6,7)_"/"_$E($P(DATA,"^",4),2,3),RCLINE,62,80)
- .   K ^TMP("IBRFN1",$J)
- ;
+ S RCDSPFLG=$$GET1^DIQ(430.2,BILLCAT_",",1.04,"I")
+ I BILLCAT=18 D
+ .S RCTOC=$P(^PRCA(430,BILLDA,0),"^",16)
+ .S RCDSPFLG=$$GET1^DIQ(430.2,RCTOC_",",1.04,"I")
+ .Q
+ I BILLCAT=31 D  ; Tricare Patient category is a special case  PRCA*4.5*392
+ .S IBZ=$O(^IB("ABIL",BILLNO,""),-1)  ; get last IB action
+ .S IBATYP=$$GET1^DIQ(350,IBZ_",",.03,"I")  ; get IB action type (file 350.1 ien)
+ .I "^68^71^"[(U_IBATYP_U) S RCDSPFLG=5,TRCARE=1  ; Tricare RX
+ .I "^69^72^"[(U_IBATYP_U) S RCDSPFLG=2,TRCARE=1  ; Tricare outpatient
+ .I "^70^73^"[(U_IBATYP_U) S RCDSPFLG=4,TRCARE=1  ; Tricare inpatient
+ .Q
+ I +$G(RCDSPFLG) D
+ .D STMT^IBRFN1(RCTRANDA)
+ .I '$D(^TMP("IBRFN1",$J)) Q
+ .;  start on 2nd screen if not there already
+ .F RCLINE=RCLINE:1:15 D SET(" ",RCLINE,1,80)
+ .S RCLINE=RCLINE+1 D SET("Integrated Billing Data",RCLINE,1,80,0,IOUON,IOUOFF)
+ .S IBDA=0 F  S IBDA=$O(^TMP("IBRFN1",$J,IBDA)) Q:'IBDA  D
+ ..S DATA=^TMP("IBRFN1",$J,IBDA)
+ ..;Start PRCA*4.5*372
+ ..; If piece 7 is not filled in, and it is a pharmacy transaction, the transaction was manually created.  Treat like a CC RX.
+ ..I RCDSPFLG=1,$P(DATA,U,7)="" S RCDSPFLG="MVA"
+ ..;end PRCA*4.5*372
+ ..;if more than one ib data transaction to display, skip a line
+ ..I IBDA>1 S RCLINE=RCLINE+1 D SET(" ",RCLINE,1,80)
+ ..S RCLINE=RCLINE+1 D SET("IB Ref #: "_$P(DATA,"^"),RCLINE,1,80)
+ ..;  show VA RX via ECME (RCDSPFLG=1)
+ ..I RCDSPFLG=1 D  Q
+ ...D SET("Pharmacy",RCLINE,28,80)
+ ...D SET("Charge Amt: "_$J($P(DATA,U,8),0,2),RCLINE,60,80)
+ ...S RCLINE=RCLINE+1
+ ...D SET("     Rx#: "_$P(DATA,U,2),RCLINE,1,80)
+ ...D SET("Drug: "_$P(DATA,U,3),RCLINE,22,80)
+ ...S TMPDT=$$FMTE^XLFDT($P(DATA,U,7),"2DZ") D SET("Re/Fill Date: "_TMPDT,RCLINE,58,80)  ; PRCA*4.5*392
+ ...S RCLINE=RCLINE+1
+ ...D SET("                Physician: "_$P(DATA,U,5),RCLINE,1,48)
+ ...D SET("Days Supply: "_$P(DATA,U,4),RCLINE,48,80)
+ ...D SET("Qty: "_$P(DATA,U,6),RCLINE,67,80)
+ ...Q
+ ..;  show outpatient (type of care 430.2 = 4 outpatient care), OR RCDSPFLG=2 (Other Outpatient) or 5 (CC RX)
+ ..;Start PRCA*4.5*372
+ ..;Manually billed RX
+ ..I RCDSPFLG="MVA" D  Q
+ ...D SET("Pharmacy",RCLINE,25,80)
+ ...S TMPDT=$$FMTE^XLFDT($P(DATA,U,3),"2DZ") D SET("Fill Date: "_TMPDT,RCLINE,38,80)  ; PRCA*4.5*392
+ ...D SET("Charge Amt: "_$J($P(DATA,U,8),0,2),RCLINE,60,80)
+ ...Q
+ ..;end PRCA*4.5*372
+ ..I ($P(^PRCA(430,BILLDA,0),U,16)=4)!(RCDSPFLG=2)!(RCDSPFLG=5) D  Q
+ ...;Start PRCA*4.5*372
+ ...I RCDSPFLG=5 D  Q
+ ....D SET($S(TRCARE:"Tricare RX",1:"Comm Care RX"),RCLINE,25,80)  ; PRCA*4.5*392
+ ....I TRCARE S $P(DATA,U,3)=$P(DATA,U,2)  ; special case for Tricare RX - move fill date to the correct piece  PRCA*4.5*392
+ ....S TMPDT=$$FMTE^XLFDT($P(DATA,U,3),"2DZ") D SET("Fill Date: "_TMPDT,RCLINE,38,80)  ; PRCA*4.5*392
+ ....D SET("Charge Amt: "_$J($P(DATA,U,8),0,2),RCLINE,60,80)
+ ....Q
+ ...;end PRCA*4.5*372
+ ...D SET("Outpatient",RCLINE,26,80)
+ ...S TMPDT=$$FMTE^XLFDT($P(DATA,U,2),"2DZ") D SET("Visit Date: "_TMPDT,RCLINE,37,80)  ; PRCA*4.5*392
+ ...D SET("Charge Amt: "_$J($P(DATA,U,8),0,2),RCLINE,60,80)
+ ...Q
+ ..;Start PRCA*4.5*372
+ ..;  show inpatient  [ RCDSPFLG=3 (LTC) or 4 (inpatient) ]
+ ..D:RCDSPFLG=3 SET("Long Term Care",RCLINE,28,80)
+ ..D:RCDSPFLG'=3 SET("Inpatient",RCLINE,28,80)
+ ..;end PRCA*4.5*372
+ ..D SET("Charge Amt: "_$J($P(DATA,U,8),0,2),RCLINE,60,80)
+ ..S RCLINE=RCLINE+1
+ ..S TMPDT=$$FMTE^XLFDT($P(DATA,U,2),"2DZ") D SET("          Admission Date: "_TMPDT,RCLINE,1,80)  ; PRCA*4.5*392
+ ..S TMPDT=$$FMTE^XLFDT($P(DATA,U,5),"2DZ") D SET("Discharge Date: "_TMPDT,RCLINE,56,80)  ; PRCA*4.5*392
+ ..S RCLINE=RCLINE+1
+ ..S TMPDT=$$FMTE^XLFDT($P(DATA,U,3),"2DZ") D SET("   Bill Cycle Begin Date: "_TMPDT,RCLINE,1,80)
+ ..S TMPDT=$$FMTE^XLFDT($P(DATA,U,4),"2DZ") D SET("End Date: "_TMPDT,RCLINE,62,80)
+ ..Q
+ .K ^TMP("IBRFN1",$J)
+ .Q
  ;  set valmcnt to number of lines in the list
  S VALMCNT=RCLINE
  Q

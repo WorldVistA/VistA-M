@@ -1,7 +1,7 @@
-SDECUTL ;ALB/SAT - VISTA SCHEDULING RPCS ;JUN 21, 2017
- ;;5.3;Scheduling;**627,658,665**;Aug 13, 1993;Build 14
+SDECUTL ;ALB/MGD - VISTA SCHEDULING RPCS ;Jul 02, 2021@16:42
+ ;;5.3;Scheduling;**627,658,665,790**;Aug 13, 1993;Build 11
  ;
- ;Reference is made to ICR #4837
+ ; Reference to ^GMR(123 is supported by IA #4837 
  Q
  ;
 SYSSTAT(SDECY)   ; SYSTEM STATUS
@@ -166,16 +166,23 @@ ISACTIVE(ADT,IDT,CDT)  ;is CDT an active date given an active date and inactive 
  Q RET
  ;
 APPTGET(DFN,SDBEG,SDCL,SDRES) ;get SDEC APPOINTMENT for given patient, time, and clinic
- N SDAPPT,SDI,SDNOD,SDRCL,SDARES
+ N SDAPPT,SDI,SDNOD,SDRCL,SDARES,SDBEGINDX,SDEND
  S SDAPPT=""
  S SDCL=$G(SDCL)
  S SDRES=$G(SDRES)
- S SDI=0 F  S SDI=$O(^SDEC(409.84,"CPAT",DFN,SDI)) Q:SDI'>0  D  Q:SDAPPT'=""
- .S SDNOD=$G(^SDEC(409.84,SDI,0))
- .Q:SDBEG'=$P(SDNOD,U,1)
- .I +SDRES Q:+SDRES'=$P(SDNOD,U,7)
- .I 'SDRES S SDARES=$P(SDNOD,U,7) S SDRCL=$P($G(^SDEC(409.831,+SDARES,0)),U,4) Q:SDRCL'=SDCL
- .S SDAPPT=SDI
+ ; Reset SDBEG to immediately before actual start time
+ S SDBEGINDX=SDBEG-.00001
+ S SDEND=$E(SDBEG,1,7) ; Set stop date
+ ; Utilize APTDT x-ref for speed. VSE-1172
+ F  S SDBEGINDX=$O(^SDEC(409.84,"APTDT",DFN,SDBEGINDX)) Q:'SDBEGINDX!($P(SDBEGINDX,".",1)>SDEND)  D  Q:SDAPPT'=""
+ .S SDI=0 F  S SDI=$O(^SDEC(409.84,"APTDT",DFN,SDBEGINDX,SDI)) Q:SDI'>0  D  Q:SDAPPT'="" 
+ ..S SDNOD=$G(^SDEC(409.84,SDI,0))
+ ..; Quit if this record has one of the Cancelled Statuses. VSE-1171
+ ..Q:"^N^NA^C^CA^PC^PCA^"[(U_$P(SDNOD,U,17)_U)
+ ..Q:SDBEG'=$P(SDNOD,U,1)
+ ..I +SDRES Q:+SDRES'=$P(SDNOD,U,7)
+ ..I 'SDRES S SDARES=$P(SDNOD,U,7) S SDRCL=$P($G(^SDEC(409.831,+SDARES,0)),U,4) Q:SDRCL'=SDCL
+ ..S SDAPPT=SDI
  Q SDAPPT
  ;
 GETRES(SDCL,INACT)  ;get resource for clinic - SDEC RESOURCE

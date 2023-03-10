@@ -1,5 +1,5 @@
 ECXTREX ;BPFO/JRP - Queue DSS Fiscal Year Specific Extract;8-AUG-2003 ;3/17/17  13:11
- ;;3.0;DSS EXTRACTS;**49,71,84,92,105,112,120,166**;Dec 22, 1997;Build 24
+ ;;3.0;DSS EXTRACTS;**49,71,84,92,105,112,120,166,178**;Dec 22, 1997;Build 67
  ;
 EN ;Main entry point
  W @IOF
@@ -86,7 +86,7 @@ LOGIC ;Get extract logic to use
  K DIR
  S DIR("A")="Select fiscal year logic to use for extract"
  S DIR(0)="SO^"
- F X=YEAR-2:1:YEAR D
+ F X=YEAR:1:YEAR D   ;178 Only allow current year and next year if user has ECX DSS TEST key
  .S Y=$E(X,5)
  .S Y=$S((Y="")!(Y=" "):"",1:"Revision "_Y_" of ")
  .S DIR(0)=DIR(0)_X_":"_Y_"Fiscal Year "_$E(X,1,4)_";"

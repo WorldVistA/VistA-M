@@ -1,132 +1,126 @@
-IBDEI104 ; ; 04-FEB-2020
- ;;3.0;IB ENCOUNTER FORM IMP/EXP;;FEB 04, 2020
+IBDEI104 ; ; 01-FEB-2022
+ ;;3.0;IB ENCOUNTER FORM IMP/EXP;;FEB 01, 2022
  Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,999) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
- ;;^UTILITY(U,$J,358.3,16103,2)
- ;;=^5008130
- ;;^UTILITY(U,$J,358.3,16104,0)
- ;;=J03.91^^88^871^8
- ;;^UTILITY(U,$J,358.3,16104,1,0)
+ ;;^UTILITY(U,$J,358.3,16289,1,4,0)
+ ;;=4^R19.5
+ ;;^UTILITY(U,$J,358.3,16289,2)
+ ;;=^5019274
+ ;;^UTILITY(U,$J,358.3,16290,0)
+ ;;=E53.8^^61^771^92
+ ;;^UTILITY(U,$J,358.3,16290,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,16104,1,3,0)
- ;;=3^Acute Recurrent Tonsillitis,Unspec
- ;;^UTILITY(U,$J,358.3,16104,1,4,0)
- ;;=4^J03.91
- ;;^UTILITY(U,$J,358.3,16104,2)
- ;;=^5008136
- ;;^UTILITY(U,$J,358.3,16105,0)
- ;;=J04.0^^88^871^3
- ;;^UTILITY(U,$J,358.3,16105,1,0)
+ ;;^UTILITY(U,$J,358.3,16290,1,3,0)
+ ;;=3^Vitamin B12 Deficiency
+ ;;^UTILITY(U,$J,358.3,16290,1,4,0)
+ ;;=4^E53.8
+ ;;^UTILITY(U,$J,358.3,16290,2)
+ ;;=^5002797
+ ;;^UTILITY(U,$J,358.3,16291,0)
+ ;;=K59.04^^61^771^20
+ ;;^UTILITY(U,$J,358.3,16291,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,16105,1,3,0)
- ;;=3^Acute Laryngitis
- ;;^UTILITY(U,$J,358.3,16105,1,4,0)
- ;;=4^J04.0
- ;;^UTILITY(U,$J,358.3,16105,2)
- ;;=^5008137
- ;;^UTILITY(U,$J,358.3,16106,0)
- ;;=J06.0^^88^871^4
- ;;^UTILITY(U,$J,358.3,16106,1,0)
+ ;;^UTILITY(U,$J,358.3,16291,1,3,0)
+ ;;=3^Constipation,Chronic Idiopathic
+ ;;^UTILITY(U,$J,358.3,16291,1,4,0)
+ ;;=4^K59.04
+ ;;^UTILITY(U,$J,358.3,16291,2)
+ ;;=^7148177
+ ;;^UTILITY(U,$J,358.3,16292,0)
+ ;;=K59.03^^61^771^21
+ ;;^UTILITY(U,$J,358.3,16292,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,16106,1,3,0)
- ;;=3^Acute Laryngopharyngitis
- ;;^UTILITY(U,$J,358.3,16106,1,4,0)
- ;;=4^J06.0
- ;;^UTILITY(U,$J,358.3,16106,2)
- ;;=^269876
- ;;^UTILITY(U,$J,358.3,16107,0)
- ;;=J06.9^^88^871^9
- ;;^UTILITY(U,$J,358.3,16107,1,0)
+ ;;^UTILITY(U,$J,358.3,16292,1,3,0)
+ ;;=3^Constipation,Drug Induced
+ ;;^UTILITY(U,$J,358.3,16292,1,4,0)
+ ;;=4^K59.03
+ ;;^UTILITY(U,$J,358.3,16292,2)
+ ;;=^5138744
+ ;;^UTILITY(U,$J,358.3,16293,0)
+ ;;=K52.21^^61^771^51
+ ;;^UTILITY(U,$J,358.3,16293,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,16107,1,3,0)
- ;;=3^Acute Upper Respiratory Infection,Unspec
- ;;^UTILITY(U,$J,358.3,16107,1,4,0)
- ;;=4^J06.9
- ;;^UTILITY(U,$J,358.3,16107,2)
- ;;=^5008143
- ;;^UTILITY(U,$J,358.3,16108,0)
- ;;=J33.9^^88^871^19
- ;;^UTILITY(U,$J,358.3,16108,1,0)
+ ;;^UTILITY(U,$J,358.3,16293,1,3,0)
+ ;;=3^Enterocolitis Synd Induced by Food Protein
+ ;;^UTILITY(U,$J,358.3,16293,1,4,0)
+ ;;=4^K52.21
+ ;;^UTILITY(U,$J,358.3,16293,2)
+ ;;=^5138713
+ ;;^UTILITY(U,$J,358.3,16294,0)
+ ;;=K52.22^^61^771^52
+ ;;^UTILITY(U,$J,358.3,16294,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,16108,1,3,0)
- ;;=3^Nasal Polyp,Unspec
- ;;^UTILITY(U,$J,358.3,16108,1,4,0)
- ;;=4^J33.9
- ;;^UTILITY(U,$J,358.3,16108,2)
- ;;=^5008208
- ;;^UTILITY(U,$J,358.3,16109,0)
- ;;=J32.0^^88^871^15
- ;;^UTILITY(U,$J,358.3,16109,1,0)
+ ;;^UTILITY(U,$J,358.3,16294,1,3,0)
+ ;;=3^Enterocolopathy Induced by Food Protein
+ ;;^UTILITY(U,$J,358.3,16294,1,4,0)
+ ;;=4^K52.22
+ ;;^UTILITY(U,$J,358.3,16294,2)
+ ;;=^5138714
+ ;;^UTILITY(U,$J,358.3,16295,0)
+ ;;=K58.2^^61^771^80
+ ;;^UTILITY(U,$J,358.3,16295,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,16109,1,3,0)
- ;;=3^Chronic Maxillary Sinusitis
- ;;^UTILITY(U,$J,358.3,16109,1,4,0)
- ;;=4^J32.0
- ;;^UTILITY(U,$J,358.3,16109,2)
- ;;=^24407
- ;;^UTILITY(U,$J,358.3,16110,0)
- ;;=J32.1^^88^871^14
- ;;^UTILITY(U,$J,358.3,16110,1,0)
+ ;;^UTILITY(U,$J,358.3,16295,1,3,0)
+ ;;=3^Irritable Bowel Syndrome,Mixed
+ ;;^UTILITY(U,$J,358.3,16295,1,4,0)
+ ;;=4^K58.2
+ ;;^UTILITY(U,$J,358.3,16295,2)
+ ;;=^5138742
+ ;;^UTILITY(U,$J,358.3,16296,0)
+ ;;=K58.8^^61^771^81
+ ;;^UTILITY(U,$J,358.3,16296,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,16110,1,3,0)
- ;;=3^Chronic Frontal Sinusitis
- ;;^UTILITY(U,$J,358.3,16110,1,4,0)
- ;;=4^J32.1
- ;;^UTILITY(U,$J,358.3,16110,2)
- ;;=^24380
- ;;^UTILITY(U,$J,358.3,16111,0)
- ;;=J32.9^^88^871^16
- ;;^UTILITY(U,$J,358.3,16111,1,0)
+ ;;^UTILITY(U,$J,358.3,16296,1,3,0)
+ ;;=3^Irritable Bowel Syndrome,Other
+ ;;^UTILITY(U,$J,358.3,16296,1,4,0)
+ ;;=4^K58.8
+ ;;^UTILITY(U,$J,358.3,16296,2)
+ ;;=^5138743
+ ;;^UTILITY(U,$J,358.3,16297,0)
+ ;;=K58.1^^61^771^77
+ ;;^UTILITY(U,$J,358.3,16297,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,16111,1,3,0)
- ;;=3^Chronic Sinusitis,Unspec
- ;;^UTILITY(U,$J,358.3,16111,1,4,0)
- ;;=4^J32.9
- ;;^UTILITY(U,$J,358.3,16111,2)
- ;;=^5008207
- ;;^UTILITY(U,$J,358.3,16112,0)
- ;;=J30.9^^88^871^11
- ;;^UTILITY(U,$J,358.3,16112,1,0)
+ ;;^UTILITY(U,$J,358.3,16297,1,3,0)
+ ;;=3^Irritable Bowel Syndrome w/ Constipation
+ ;;^UTILITY(U,$J,358.3,16297,1,4,0)
+ ;;=4^K58.1
+ ;;^UTILITY(U,$J,358.3,16297,2)
+ ;;=^5138741
+ ;;^UTILITY(U,$J,358.3,16298,0)
+ ;;=K61.39^^61^771^5
+ ;;^UTILITY(U,$J,358.3,16298,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,16112,1,3,0)
- ;;=3^Allergic Rhinitis,Unspec
- ;;^UTILITY(U,$J,358.3,16112,1,4,0)
- ;;=4^J30.9
- ;;^UTILITY(U,$J,358.3,16112,2)
- ;;=^5008205
- ;;^UTILITY(U,$J,358.3,16113,0)
- ;;=J30.0^^88^871^24
- ;;^UTILITY(U,$J,358.3,16113,1,0)
+ ;;^UTILITY(U,$J,358.3,16298,1,3,0)
+ ;;=3^Abscess,Ischiorectal NOS
+ ;;^UTILITY(U,$J,358.3,16298,1,4,0)
+ ;;=4^K61.39
+ ;;^UTILITY(U,$J,358.3,16298,2)
+ ;;=^5157385
+ ;;^UTILITY(U,$J,358.3,16299,0)
+ ;;=G43.A1^^61^771^34
+ ;;^UTILITY(U,$J,358.3,16299,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,16113,1,3,0)
- ;;=3^Vasomotor Rhinitis
- ;;^UTILITY(U,$J,358.3,16113,1,4,0)
- ;;=4^J30.0
- ;;^UTILITY(U,$J,358.3,16113,2)
- ;;=^5008201
- ;;^UTILITY(U,$J,358.3,16114,0)
- ;;=K05.00^^88^871^2
- ;;^UTILITY(U,$J,358.3,16114,1,0)
+ ;;^UTILITY(U,$J,358.3,16299,1,3,0)
+ ;;=3^Cyclical Vomiting,In Migraine,Intractable
+ ;;^UTILITY(U,$J,358.3,16299,1,4,0)
+ ;;=4^G43.A1
+ ;;^UTILITY(U,$J,358.3,16299,2)
+ ;;=^5003913
+ ;;^UTILITY(U,$J,358.3,16300,0)
+ ;;=G43.A0^^61^771^35
+ ;;^UTILITY(U,$J,358.3,16300,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,16114,1,3,0)
- ;;=3^Acute Gingivitis,Plaque Induced
- ;;^UTILITY(U,$J,358.3,16114,1,4,0)
- ;;=4^K05.00
- ;;^UTILITY(U,$J,358.3,16114,2)
- ;;=^334192
- ;;^UTILITY(U,$J,358.3,16115,0)
- ;;=R04.0^^88^871^17
- ;;^UTILITY(U,$J,358.3,16115,1,0)
+ ;;^UTILITY(U,$J,358.3,16300,1,3,0)
+ ;;=3^Cyclical Vomiting,In Migraine,Not intractable
+ ;;^UTILITY(U,$J,358.3,16300,1,4,0)
+ ;;=4^G43.A0
+ ;;^UTILITY(U,$J,358.3,16300,2)
+ ;;=^5003912
+ ;;^UTILITY(U,$J,358.3,16301,0)
+ ;;=R11.15^^61^771^33
+ ;;^UTILITY(U,$J,358.3,16301,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,16115,1,3,0)
- ;;=3^Epistaxis
- ;;^UTILITY(U,$J,358.3,16115,1,4,0)
- ;;=4^R04.0
- ;;^UTILITY(U,$J,358.3,16115,2)
- ;;=^5019173
- ;;^UTILITY(U,$J,358.3,16116,0)
- ;;=R09.82^^88^871^21
- ;;^UTILITY(U,$J,358.3,16116,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,16116,1,3,0)
- ;;=3^Postnasal Drip
+ ;;^UTILITY(U,$J,358.3,16301,1,3,0)
+ ;;=3^Cyclical Vomiting Syndrome,Unrelated to Migraine
+ ;;^UTILITY(U,$J,358.3,16301,1,4,0)
+ ;;=4^R11.15

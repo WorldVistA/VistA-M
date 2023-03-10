@@ -1,5 +1,5 @@
 ECXTRT ;ALB/JAP,BIR/DMA,CML,PTD-Treating Specialty Change Extract ;6/29/18  14:57
- ;;3.0;DSS EXTRACTS;**1,8,17,24,33,35,39,46,49,84,107,105,127,161,166,170**;Dec 22, 1997;Build 12
+ ;;3.0;DSS EXTRACTS;**1,8,17,24,33,35,39,46,49,84,107,105,127,161,166,170,184**;Dec 22, 1997;Build 124
 BEG ;entry point from option
  D SETUP I ECFILE="" Q
  D ^ECXTRAC,^ECXKILL
@@ -18,9 +18,11 @@ START ; start package specific extract
  F  S ECD=$O(^DGPM("ATT6",ECD)),ECDA=0 Q:('ECD)!(ECD>ECED)!(QFLG)  F  S ECDA=$O(^DGPM("ATT6",ECD,ECDA)) Q:'ECDA  D  Q:QFLG
  .I $D(^DGPM(ECDA,0)) S EC=^(0),ECXDFN=+$P(EC,U,3) D  Q:QFLG
  ..S ECXMVD1=$P(EC,U)  ; ,WRD=$P(EC,U,6)  166  tjl
+ ..N ECXNMPI,ECXCERN,ECXSIGI ;184
  ..;
  ..;- Call sets ECXA (In/Out indicator)
  ..Q:'$$PATDEM^ECXUTL2(ECXDFN,ECXMVD1,"1;",13)
+ ..S ECXNMPI=ECXMPI ;184
  ..S ECMT=$P(EC,U,18),ECXADM=$P(EC,U,14),ECXADT=$P($G(^DGPM(ECXADM,0)),U)
  ..;skip the record if its the admission treat. spec. change for this episode of care
  ..Q:ECXADM=$P(EC,U,24)
@@ -95,6 +97,7 @@ START ; start package specific extract
  ..;
  ..;- Call sets ECXA (In/Out indicator) using date before discharge
  ..Q:'$$PATDEM^ECXUTL2(ECXDFN,ECXMVD2,"1;",13)
+ ..S ECXNMPI=ECXMPI ;184
  ..S WRD=$P($G(ECXDWARD),U)  ;166 tjl - Set Production Division Code based on Ward at Discharge
  ..S ECXADMDT=$$ECXDATE^ECXUTL(ECXADT,ECXYM),ECXADMTM=$$ECXTIME^ECXUTL(ECXADT)
  ..;if closest ts change is admission ts, cant go back any further

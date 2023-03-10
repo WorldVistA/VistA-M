@@ -1,5 +1,5 @@
 PSOHLDS1 ;BIR/LC,PWC-Build HL7 Segments for Automated Interface ; 2/5/10 10:01am
- ;;7.0;OUTPATIENT PHARMACY;**156,232,255,200,305,336,351,434**;DEC 1997;Build 2
+ ;;7.0;OUTPATIENT PHARMACY;**156,232,255,200,305,336,351,434,609,524**;DEC 1997;Build 28
  ;HLFNC       supp. by DBIA 10106
  ;PSNAPIS     supp. by DBIA 2531
  ;VASITE      supp. by DBIA 10112
@@ -19,12 +19,14 @@ PSOHLDS1 ;BIR/LC,PWC-Build HL7 Segments for Automated Interface ; 2/5/10 10:01am
  ;*232 allow for Do Not Mail
  ;*255 move NTEPMI to PSOHLDS4.  fix "MP" node test to '=""
  ;*305 send  Notice of Privacy Practices in NTE9 - Modified to NTE9 as NTE8 already exist
+ ;*609 evaluate option 4 - LOCAL CERTIFIED MAIL
+ ;*524 added ZZZ segment for hazardous drug information
  ;
 START ;
  D GETDATA
  D PID(.PSI),PV1(.PSI),PV2(.PSI),IAM^PSOHLDS4(.PSI),ORC^PSOHLDS4(.PSI)
  D NTE^PSOHLDS2,RXE^PSOHLDS2(.PSI),RXD^PSOHLDS2(.PSI)
- D NTEPMI^PSOHLDS4(.PSI),NTE9^PSOHLDS2(.PSI),RXR^PSOHLDS2(.PSI)                ;*255
+ D NTEPMI^PSOHLDS4(.PSI),NTE9^PSOHLDS2(.PSI),RXR^PSOHLDS2(.PSI),ZZZ^PSOHLDS2(.PSI)                ;*255 ;*524 added ZZZ segment for hazardous flags
  ; clean up data set by GETDATA
  K EBY,EBY1,EFDT,EXDT,FDT,PVDR,PVDR1,CSINER,CSINER1,SITE,SITADD,SITPHN
  K VPHARMID,VPHARM,DEAID,MW,QTY,DASPLY,OLAN,OTHLAN,PRIORDT,RFRM,NFLD,WARN
@@ -156,5 +158,6 @@ MW(PS55,MW,MP) ;Return Mail/Window and MP expanded text               ;PSO*232
  I MW="M" D
  . S MP=""""""
  . S PS55=$P(PS55,"^",3)
- . S MW=$S(PS55=1:"CERTIFIED MAIL",PS55=2:"DO NOT MAIL",1:"REGULAR MAIL")
+ . ;PSO*7*609 Added evalution of option 4 to return "CERTIFIED MAIL" in the $S clause
+ . S MW=$S(PS55=1:"CERTIFIED MAIL",PS55=4:"CERTIFIED MAIL",PS55=2:"DO NOT MAIL",1:"REGULAR MAIL")
  Q

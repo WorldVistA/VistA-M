@@ -1,5 +1,5 @@
-PSBOBZ ;BIRMINGHAM/TTH-BAR CODE LABELS (MAIN) ;11/08/12 3:23pm
- ;;3.0;BAR CODE MED ADMIN;**2,70,81**;Mar 2004;Build 6
+PSBOBZ ;BIRMINGHAM/TTH-BAR CODE LABELS (MAIN) ;8/17/21  12:43
+ ;;3.0;BAR CODE MED ADMIN;**2,70,81,106,131**;Mar 2004;Build 11
  ;;Per VA Directive 6402, this routine should not be modified.
  ;
  ; Reference/IA
@@ -7,10 +7,13 @@ PSBOBZ ;BIRMINGHAM/TTH-BAR CODE LABELS (MAIN) ;11/08/12 3:23pm
  ; File 50/221
  ;
  ;*70 - 1459: Adding clinic to BL and BZ chui labels.
+ ;*106- add Hazardous to Handle & Dispose alert text
  ;
+ ;*131 - Replaced patch 106 changes in PRINT section with suggestions made by KCF
 EN ;
  N PSBI,PSBIENS,PSBQTY,PSBDOSE,PSBDRUG,PSBNAME,PSBNODE3,PSBWARD,PSBLOT,PSBBAR,PSBTLE,SL
  N PSBEXP,PSBFD,PSBMFG,PSBCB,PSBFB,PSBFCB,PSBCNT,PSBANS,PSBORD,PSBPRE,PSBX,PSBY,PSBSYM,TEXT,PSBCLIN   ;[*70-1459]
+ N PSBDD,PSBHZ,PSBHAZH,PSBHAZD,HAZTEXT     ;*106
  ;
  N PSBXX,PSBYY,PSBCODE
  S PSBXX=0 F  S PSBXX=$O(^%ZIS(2,IOST(0),55,PSBXX)) Q:'PSBXX  S PSBYY=$G(^(PSBXX,0)) I PSBYY]"" S PSBX=$P(PSBYY,"^"),PSBY=^(1),PSBCODE(PSBX)=PSBY
@@ -52,7 +55,17 @@ EN ;
  S PSBFB=$P($G(PSBRPT(.3)),U,6) I PSBFB="" S PSBFB="_____"
  S PSBCB=$P($G(PSBRPT(.3)),U,7) I PSBCB="" S PSBCB="_____"
  S PSBFCB=PSBFB_"/"_PSBCB
+ ; get HAZ drug info                                                                 *106
+ S PSBDD=$$GET1^DIQ(53.69,PSBIENS,.31,"I"),PSBHZ=$$HAZ^PSSUTIL($P(PSBDD,"~",2))
+ S PSBHAZH=$S($P(PSBHZ,U):"<<HAZ Handle>>",1:""),PSBHAZD=$S($P(PSBHZ,U,2):"<<HAZ Dispose>>",1:"")
+ S HAZTEXT=""
+ I $L(PSBHAZH)=0 D
+ . I $L(PSBHAZD)>0 S HAZTEXT=PSBHAZD
+ I $L(PSBHAZH)>0 D
+ . I $L(PSBHAZD)=0 S HAZTEXT=PSBHAZH
+ . I $L(PSBHAZD)>0 S HAZTEXT="<<HAZ Handle & HAZ Dispose>>"
  F PSBCNT=1:1:+$P(PSBRPT(.3),U,8) D LABEL
+ D CLEAN^PSBVT
  Q
  ;
 LABEL ;Get Barcode Label Type
@@ -73,9 +86,11 @@ INIT ;Initialize barcode printer
  ;
  ;Print Barcode Strip
  ;If barcode type is defined.
- I PSBSYM]"",$D(PSBCODE("SB")) S TEXT=PSBBAR X PSBCODE("SB")
- ;If barcode type is not define.
- I PSBSYM="",$D(PSBCODE("SB")) S TEXT="*NO BARCODE TYPE*" X PSBCODE("SB")
+ ;I PSBSYM]"",$D(PSBCODE("SB")) S TEXT=PSBBAR D BCSTRIP     ;106
+ I PSBSYM]"",$D(PSBCODE("SB")) S TEXT=PSBBAR X PSBCODE("SB")   ;131 Restoring 2018 code
+ ;If barcode type is not defined.
+ ;I PSBSYM="",$D(PSBCODE("SB")) S TEXT="*NO BARCODE TYPE*" D BCSTRIP     ;106
+ I PSBSYM="",$D(PSBCODE("SB")) S TEXT="*NO BARCODE TYPE*" X PSBCODE("SB")   ;131 Restoring 2018 code
  ;
 END ; Close Label or End of Label
  I $G(PSBCODE("EL"))]"" X PSBCODE("EL")
@@ -89,18 +104,33 @@ START ;Start Label Print Process
 PRINT ;Print barcode label
  ;
  I PSBDRUG]"" S PSBTLE="PSBDRUG",TEXT="Drug: "_PSBDRUG  D PROCESS
- I PSBDOSE]"" S PSBTLE="PSBDOSE",TEXT=PSBDOSE D PROCESS
+ I PSBDOSE]"" S PSBTLE="PSBDOSE",TEXT=PSBDOSE  D PROCESS
  I PSBNAME]"" S PSBTLE="PSBNAME",TEXT=PSBNAME  D PROCESS
  I PSBWARD]"" S PSBTLE="PSBWARD",TEXT=PSBWARD  D PROCESS
  I PSBLOT]"" S PSBTLE="PSBLOT",TEXT=PSBLOT  D PROCESS
  I PSBEXP]"" S PSBTLE="PSBEXP",TEXT=PSBEXP  D PROCESS
  I PSBMFG]"" S PSBTLE="PSBMFG",TEXT=PSBMFG  D PROCESS
  I PSBFCB]"" S PSBTLE="PSBFCB",TEXT="Filled/Checked By: "_PSBFCB  D PROCESS
+ ;KCF HAZMAT                                                                           *106
+ ;I PSBHAZH]"" S PSBTLE="PSBHAZH",TEXT=PSBHAZH I $D(PSBCODE("HAZ")) X PSBCODE("HAZ") I $D(PSBCODE("ST")) X PSBCODE("ST")
+ ;I PSBHAZD]"" S PSBTLE="PSBHAZD",TEXT=PSBHAZD I $D(PSBCODE("HAZ")) X PSBCODE("HAZ") I $D(PSBCODE("ST")) X PSBCODE("ST")
+ ;I HAZTEXT]"" W !,"^FO20,90^A0N,22,20^CI13^FR^FD"_HAZTEXT_"^FS"     ;*106
+ I HAZTEXT]"" S PSBTLE="HAZTEXT",TEXT=HAZTEXT I $D(PSBCODE("HAZ")) X PSBCODE("HAZ") I $D(PSBCODE("ST")) X PSBCODE("ST")   ; *131 - Replacing patch 106 code in line above with 2018 solution proposed by KCF
  Q
  ;
 PROCESS ;Process control code and field data.
  I $D(PSBCODE("STF")) X PSBCODE("STF")
  I $D(PSBCODE("ST")) X PSBCODE("ST")
+ Q
+ ;
+BCSTRIP ; *106 - Adjust height of bar code if HAZ text exists
+ ; *131 - No longer executing this code. Control Code "HAZ" was added.
+ ;        All M code executed through the Control Code.
+ ;I HAZTEXT="" X PSBCODE("SB") Q
+ ;I HAZTEXT]"" D
+ ;. S:PSBSYM="" PSBBAR="NO-CODE"
+ ;. S PSBTYPE=$S(PSBSYM="I25":"B2N",PSBSYM="128":"BCN",1:"B3N")
+ ;. W !,"^BY2,3.0,80^FO20,115^"_PSBTYPE_",N,65,Y,N^FR^FD"_PSBBAR_"^FS"
  Q
  ;
 INPTR ;Input transform for DRUG field (#.31) in file 53.69.

@@ -1,6 +1,5 @@
 PSIVOE ;BIR/PR,MLM-OE/RR UTILITY FOR IV ORDERS ;21 AUG 97 / 4:04 PM
- ;;5.0; INPATIENT MEDICATIONS ;**51**;16 DEC 97
- ;
+ ;;5.0;INPATIENT MEDICATIONS;**51,426**;16 DEC 97;Build 4
  ; Reference to ^PS(55 is supported by DBIA 2191.
  ; Reference to ^PS(52.6 is supported by DBIA 1231.
  ; Reference to ^PS(52.7 is supported by DBIA 2173.
@@ -13,6 +12,8 @@ HOLD ; Update status of hold orders.
  D ND
  NEW PROC,PROCX S PROC=$S(P17="A":"OE",1:"OH") S PROCX=$S(P17="A":"ORDER OFF HOLD",1:"ORDER ON HOLD")
  D EN1^PSJHL2(DFN,PROC,+ON_"V",PROCX)
+ ;Removes Nurse Verification
+ D DELNV^PSJUTL3(DFN,+ON_"V")
  D KL
  Q
  ;

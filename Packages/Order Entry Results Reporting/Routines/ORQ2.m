@@ -1,5 +1,5 @@
-ORQ2 ; SLC/MKB/GSS - Detailed Order Report ;10/21/13  07:06
- ;;3.0;ORDER ENTRY/RESULTS REPORTING;**12,56,75,94,141,213,195,243,282,293,280,346,361,471**;Dec 17, 1997;Build 2
+ORQ2 ; SLC/MKB/GSS - Detailed Order Report ;Aug 9, 2021@13:40:01
+ ;;3.0;ORDER ENTRY/RESULTS REPORTING;**12,56,75,94,141,213,195,243,282,293,280,346,361,471,453,405**;Dec 17, 1997;Build 211
  ;
  ;
  ;Reference to ^DIC(45.7 supported by IA #519
@@ -8,6 +8,7 @@ ORQ2 ; SLC/MKB/GSS - Detailed Order Report ;10/21/13  07:06
  ;
 DETAIL(ORY,ORIFN) ; -- Returns details of order ORIFN in ORY(#)
  N X,X2,I,CNT,ORDIALOG,OR0,OR3,OR6,SEQ,ITEM,PRMT,MULT,FIRST,TITLE,INST,DIWL,DIWR,DIWF,ACTION,VAIN,ORIGVIEW,ORNMSP,ORYT,ORCRACT
+ N ORTRANS   ; OR*3*453 rbd Var needed for ORDER TRANSFERS logic below
  ; p 471 added ORCACT to use action if passed in
  S CNT=0,ORCRACT=+$P(ORIFN,";",2),ORIFN=+ORIFN,OR0=$G(^OR(100,ORIFN,0)),OR3=$G(^(3)),OR6=$G(^(6))
  S ORNMSP=$$NMSP^ORCD($P(OR0,U,14))
@@ -38,6 +39,14 @@ D2 S CNT=CNT+1,@ORY@(CNT)="Activity:"
  D:$D(IOUON) SETVIDEO(CNT,1,9,IOUON,IOUOFF)
  S DIWL=1,DIWR=64,DIWF="C64",ORI=0 K ^UTILITY($J,"W")
  F  S ORI=$O(^OR(100,ORIFN,8,ORI)) Q:ORI'>0  S ACTION=$G(^(ORI,0)) D ACT^ORQ20
+ ; RBD OR*3.0*453 Add ORDER TRANSFERS information
+ S ORI=0 F  S ORI=$O(^OR(100,ORIFN,11,ORI)) Q:ORI'>0  D
+ . I ORI=1 D
+ .. S CNT=CNT+1,@ORY@(CNT)="   ",CNT=CNT+1,@ORY@(CNT)="Reassignments (Transfers):"
+ . S ORTRANS=$G(^OR(100,ORIFN,11,ORI,0))
+ . S CNT=CNT+1,@ORY@(CNT)="Transferred from "_$$USER^ORQ20($P(ORTRANS,U,2))_" to "_$$USER^ORQ20($P(ORTRANS,U,3))
+ . S CNT=CNT+1,@ORY@(CNT)="  by "_$$USER^ORQ20($P(ORTRANS,U,4))_" Effective From "_$$DATE^ORQ20($P(ORTRANS,U))
+ I $D(^OR(100,ORIFN,11)) S CNT=CNT+1,@ORY@(CNT)="   "
  I "^1^12^13^"[(U_$P(OR3,U,3)_U),$L(OR6),$P(ACTION,U,2)'="DC" D DC^ORQ20
  I $P(OR3,U,3)=2,$P(OR6,U,6) S CNT=CNT+1,@ORY@(CNT)=$$DATE^ORQ20($P(OR6,U,6))_"  Completed"_$S($P(OR6,U,7):" by "_$$USER^ORQ20($P(OR6,U,7)),1:"")
  S CNT=CNT+1,@ORY@(CNT)="   " ;blank
@@ -78,9 +87,14 @@ D4 S CNT=CNT+1,@ORY@(CNT)="Order:" D:$D(IOUON) SETVIDEO(CNT,1,6,IOUON,IOUOFF)
  D RAD^ORQ21(1):ORNMSP="RA",MED^ORQ21:ORNMSP="PS" ;add'l data
  D BA^ORQ21 ;call for CIDC data
 D5 K ^TMP($J,"OCDATA") I $$OCAPI^ORCHECK(+ORIFN,"OCDATA") D
- . N CK,OK,X0,X,CDL,I S CNT=CNT+1,@ORY@(CNT)="Order Checks:"
+ . N CK,OK,X0,X,CDL,I,ACK,ALLGYDRG,HDR S HDR=0
  . D:$D(IOUON) SETVIDEO(CNT,1,13,IOUON,IOUOFF)
+ . S ACK=0
+ . D ALLERGY         ;405
+ . S:$D(OK) OK=""    ;405
  . S CK=0 F  S CK=$O(^TMP($J,"OCDATA",CK)) Q:CK'>0  D
+ .. Q:$D(ALLGYDRG(CK))  ;405
+ .. S:HDR=0 CNT=CNT+1,@ORY@(CNT)=" ",CNT=CNT+1,@ORY@(CNT)="Order Checks:",HDR=1
  .. S X0=^TMP($J,"OCDATA",CK,"OC NUMBER")_U_^TMP($J,"OCDATA",CK,"OC LEVEL")_U_U_^TMP($J,"OCDATA",CK,"OR REASON")_U_^TMP($J,"OCDATA",CK,"OR PROVIDER")_U_^TMP($J,"OCDATA",CK,"OR DT")
  .. S X=^TMP($J,"OCDATA",CK,"OC TEXT",1,0)
  .. S CDL=$$CDL($P(X0,U,2)) I $P(X0,U,6),'$D(OK) S OK=$P(X0,U,4,6)
@@ -89,11 +103,12 @@ D5 K ^TMP($J,"OCDATA") I $$OCAPI^ORCHECK(+ORIFN,"OCDATA") D
  .. S I=0 F  S I=$O(^UTILITY($J,"W",DIWL,I)) Q:I'>0  S CNT=CNT+1,@ORY@(CNT)=CDL_^(I,0),CDL="            "
  .. D XTRA
  . K ^TMP($J,"OCDATA")
+ . Q:(HDR=0)     ;405 quit if only allergy-drug interactions
  . Q:'$L($G(OK))  S CNT=CNT+1,@ORY@(CNT)="Override:   "_$S($P(OK,U,2):$$USER^ORQ20($P(OK,U,2))_" on ",1:"")_$$DATE^ORQ20($P(OK,U,3))
  . I $L($P(OK,U))'>68 S CNT=CNT+1,@ORY@(CNT)="            "_$P(OK,U) Q
  . S DIWL=1,DIWR=68,DIWF="C68",X=$P(OK,U) K ^UTILITY($J,"W") D ^DIWP
  . S I=0 F  S I=$O(^UTILITY($J,"W",DIWL,I)) Q:I'>0  S CNT=CNT+1,@ORY@(CNT)="            "_^(I,0)
- K ^TMP("ORWORD",$J),^UTILITY($J,"W")
+ K ^TMP("ORWORD",$J),^UTILITY($J,"W"),ALLGYDRG
  Q
  ;
 XTRA ;
@@ -173,4 +188,31 @@ GMRCXTRA ; expects ORDIALOG to be populated and ORIFN to be present
  S ORDGDA=$P(ORDGDA,U,2)
  Q:'$D(ORDIALOG(ORDGDA,1))
  S ORDIALOG(ORDGDA,1)="("_ORGMROUT_" "_ORDIALOG(ORDGDA,1)_")"
+ Q
+ALLERGY ;separate the ALLERGY-DRUG INTERACTION Order Checks (405)
+ N ORRET,ORINSTAN,ORSAVINS
+ S ORRET=1
+ S (ACK,CK)=0 F  S CK=$O(^TMP($J,"OCDATA",CK)) Q:CK'>0  D
+ . I $G(^TMP($J,"OCDATA",CK,"OC NUMBER"))'=3 Q
+ . S ALLGYDRG(CK)=" "
+ . I ACK=0 S CNT=CNT+1,@ORY@(CNT)=" ",CNT=CNT+1,@ORY@(CNT)="Allergy Order Checks:",CNT=CNT+1,ACK=1
+ . S X0=^TMP($J,"OCDATA",CK,"OC NUMBER")_U_^TMP($J,"OCDATA",CK,"OC LEVEL")_U_U_^TMP($J,"OCDATA",CK,"OR REASON")_U_^TMP($J,"OCDATA",CK,"OR PROVIDER")_U_^TMP($J,"OCDATA",CK,"OR DT")
+ . S X=^TMP($J,"OCDATA",CK,"OC TEXT",1,0)
+ . S CDL=$$CDL($P(X0,U,2)) I $P(X0,U,6),'$D(OK) S OK=$P(X0,U,4,6)
+ . I $L(X)'>68 S CNT=CNT+1,@ORY@(CNT)=CDL_X D XTRA Q
+ . S DIWL=1,DIWR=68,DIWF="C68" K ^UTILITY($J,"W") D ^DIWP
+ . S I=0 F  S I=$O(^UTILITY($J,"W",DIWL,I)) Q:I'>0  S CNT=CNT+1,@ORY@(CNT)=CDL_^UTILITY($J,"W",DIWL,I,0),CDL="            "
+ . S ORINSTAN=$G(^TMP($J,"OCDATA",CK,"OC INSTANCE"))
+ . I ORINSTAN>0  D
+ .. I $$GET1^DIQ(100.517,ORRET_","_ORINSTAN_",",11)'=""  D
+ ... S:'$D(ORSAVINS) ORSAVINS=ORINSTAN
+ . D XTRA
+ I ACK=1  D
+ . Q:'$L($G(OK))  S CNT=CNT+1,@ORY@(CNT)="Override:   "_$S($P(OK,U,2):$$USER^ORQ20($P(OK,U,2))_" on ",1:"")_$$DATE^ORQ20($P(OK,U,3))
+ . I $L($P(OK,U))'>68 S CNT=CNT+1,@ORY@(CNT)="            "_$P(OK,U),CNT=CNT+1 Q
+ . S DIWL=1,DIWR=68,DIWF="C68",X=$P(OK,U) K ^UTILITY($J,"W") D ^DIWP
+ . S I=0 F  S I=$O(^UTILITY($J,"W",DIWL,I)) Q:I'>0  S CNT=CNT+1,@ORY@(CNT)="            "_^UTILITY($J,"W",DIWL,I,0)
+ I $D(ORSAVINS)  D
+ . S CNT=CNT+1,@ORY@(CNT)="            "
+ . S CNT=CNT+1,@ORY@(CNT)="Remote Comment: "_$$GET1^DIQ(100.517,ORRET_","_ORSAVINS_",",11)
  Q

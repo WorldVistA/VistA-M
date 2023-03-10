@@ -1,5 +1,5 @@
-XUMVIENU ;MVI/CKN,MKO - Master Veteran Index Enrich New Person ;29 Jan 2020  11:24 AM
- ;;8.0;KERNEL;**711,724**;Jul 10, 1995;Build 2
+XUMVIENU ;MVI/CKN,MKO - Master Veteran Index Enrich New Person ; 1/26/21 3:10pm
+ ;;8.0;KERNEL;**711,724,744,767**;Jul 10, 1995;Build 1
  ;Per VA Directive 6402, this routine should not be modified.
  ;**711,Story 977838 (mko/ckn): New routine
  ;Entry point: UPDATE^XUMVIENU(XURET,.XUARR,XUFLAG)
@@ -8,7 +8,7 @@ XUMVIENU ;MVI/CKN,MKO - Master Veteran Index Enrich New Person ;29 Jan 2020  11:
  ; Input:
  ;   XUARR(subscript)=value to update
  ;   XUFLAG = "A" : if RPC is being called to add a record to the New Person file
- ;            "U" : if RPC is being called to edit an existing New Person file record.
+ ;   "U" : if RPC is being called to edit an existing New Person file record.
  ;
  ; Return Parameter:
  ;   On success:
@@ -18,7 +18,6 @@ XUMVIENU ;MVI/CKN,MKO - Master Veteran Index Enrich New Person ;29 Jan 2020  11:
  ;     DUZ^-1^errorMessage
  ;       Returned if entry was edited, but some data was not valid and could
  ;       not be filed.
- ;
  ;   On failure:
  ;     -1^errorMessage
  ;       Returned for example if required data was not passed, entry could
@@ -33,8 +32,8 @@ UPDATE(XURET,XUARR,XUFLAG) ;RPC to enrich New Pperson file entry
  Q
  ;
 PROC(XURET,XUARR,XUFLAG) ;Main code for RPC
- N FDA,OLDTDATE,XUDUZ
- K XURET
+ N FDA,OLDTDATE,XUDUZ,XURSET
+ K XURET S XURSET=0
  ;
  ;Check inputs
  S XURET=$$CHKINPUT(.XUARR,.XUFLAG)
@@ -46,6 +45,7 @@ PROC(XURET,XUARR,XUFLAG) ;Main code for RPC
  . ;Call entry point to add the record
  . D:$G(XUARR("SubjectOrgan"))=""!($G(XUARR("SubjectOrganID"))="") SUBJDEF(.XUARR)
  . S XUDUZ=$$ADDUSER^XUMVINPA(.XUARR)
+ . I $P(XUDUZ,"^",3)'=1 S XUFLAG="U",XURSET=1 ;**767 found exists already so process as update
  . I XUDUZ<0 S XURET=XUDUZ ;If error, we'll return -1^errorMessage
  . E  I $P(XUDUZ,U,3)=1 S XUDUZ=+XUDUZ ;If record was added, set XUDUZ to new IEN
  . E  S XURET=+XUDUZ ;If record was found, not added, we'll just return DUZ -- no edit will take place
@@ -57,7 +57,21 @@ PROC(XURET,XUARR,XUFLAG) ;Main code for RPC
  . S:XUDUZ'>0 XURET="-1^User with NPI "_XUARR("NPI")_" not found."
  ;
  ;If add or lookup above set XURET, we're done
- Q:XURET]""
+ I XURET]""&(XUFLAG="A") Q
+ ;
+ ;**744 - VAMPI-8213 (ckn)
+ ;If update is from PPMS/PIE and if New Person have Primary Menu,
+ ;then no update as this is a Dual Provider.
+ I $G(XUFLAG)="U",($G(XUARR("WHO"))="200PIEV"),($P($G(^VA(200,+XUDUZ,201)),"^")'="") S XURET="-1^Provider has a Primary Menu, no update." Q  ;**744 - VAMPI-8213 (ckn)
+ ;If update is from PPMS/PIE and if CPRS TAB multiple field have any other
+ ;values than "NVA", then no update as this is a Dual Provider.
+ N QCPFLG,TABIEN S QCPFLG=0
+ I $G(XUFLAG)="U",($G(XUARR("WHO"))="200PIEV") D
+ .N ORDIEN S ORDIEN=$O(^ORD(101.13,"B","NVA",""))
+ .I $D(^VA(200,+XUDUZ,"ORD")) D
+ ..S TABIEN=0 F  S TABIEN=$O(^VA(200,+XUDUZ,"ORD","B",TABIEN)) Q:+TABIEN=0!(QCPFLG)  D
+ ...I TABIEN'=ORDIEN S QCPFLG=1
+ I QCPFLG S XURET="-1^Provider has Non-NVA values in CPRS TAB" Q
  ;
  ;Update the NAME first. (Within a FILE^DIE call, triggers on the .01 that in turn call FILE^DIE
  ;may cause the Filer flag to change from "E", to "".)
@@ -79,8 +93,11 @@ PROC(XURET,XUARR,XUFLAG) ;Main code for RPC
  ;Call the Filer
  D FILER(.FDA,"E",.XURET)
  ;
+ ;**744 - VAMPI-3039 (ckn) - Update CPRS tab
+ I $G(XUARR("WHO"))="200PIEV" D CPRSNVA^XUMVIEU1(XUDUZ,.XUARR,OLDTDATE)
+ ;
  ;If Termination Date was added or deleted, remove or add Security keys PROVIDER and XUORES
- D SECKEYS(XUDUZ,OLDTDATE,.XURET)
+ D SECKEYS(XUDUZ,OLDTDATE,.XURET,XURSET) ;**767 OR if ADD is now UPDATE XURSET=1
  ;
  ;File the Person Class data
  D PERSCLAS(XUDUZ,.XUARR,.XURET)
@@ -111,91 +128,8 @@ CHKINPUT(XUARR,XUFLAG) ;Check inputs
  Q 0
  ;
 SETFDA(IEN,XUARR,FDA) ;Set FDA from XUARR for filing into File #200
- N IENS,WHO
- S WHO=$G(XUARR("WHO"))
- S IENS=+IEN_","
- ;
- ;DEGREE
- S:$D(XUARR("DEGREE"))#2 FDA(200,IENS,10.6)=$$TRIM^XLFSTR(XUARR("DEGREE"))
- ;
- ;Subject Organization and ID
- D:$G(XUARR("SubjectOrgan"),"<undef>")=""!($G(XUARR("SubjectOrganID"),"<undef>")="") SUBJDEF(.XUARR)
- S:$D(XUARR("SubjectOrgan"))#2 FDA(200,IENS,205.2)=XUARR("SubjectOrgan")
- S:$D(XUARR("SubjectOrganID"))#2 FDA(200,IENS,205.3)=XUARR("SubjectOrganID")
- ;
- ;GENDER
- S:$D(XUARR("GENDER"))#2 FDA(200,IENS,4)=XUARR("GENDER")
- ;
- ;ADDRESS DATA
- D:$D(XUARR("ADDRESS DATA"))#2
- . N ADDR,STR1,STR2,STR3,CITY,STATE,ZIP,OPHN,FAX
- . S ADDR=XUARR("ADDRESS DATA")
- . S STR1=$P(ADDR,"|"),STR2=$P(ADDR,"|",2),STR3=$P(ADDR,"|",3)
- . S CITY=$P(ADDR,"|",4),STATE=$P(ADDR,"|",5),ZIP=$P(ADDR,"|",6)
- . S OPHN=$P(ADDR,"|",7),FAX=$P(ADDR,"|",8)
- . I $L(ZIP)=9,ZIP'["-" S ZIP=$E(ZIP,1,5)_"-"_$E(ZIP,6,9)
- . S FDA(200,IENS,.111)=$E(STR1,1,$$MAXLEN(200,.111))
- . S FDA(200,IENS,.112)=$E(STR2,1,$$MAXLEN(200,.112))
- . S FDA(200,IENS,.113)=$E(STR3,1,$$MAXLEN(200,.113))
- . S FDA(200,IENS,.114)=$E(CITY,1,$$MAXLEN(200,.114))
- . S FDA(200,IENS,.115)=$$STATEIEN(STATE)
- . S FDA(200,IENS,.116)=ZIP
- . S FDA(200,IENS,.132)=OPHN
- . S FDA(200,IENS,.136)=FAX
- ;
- ;Tax ID
- S:$D(XUARR("TaxID"))#2 FDA(200,IENS,53.92)=XUARR("TaxID")
- ;
- ;Termination
- S:$D(XUARR("Termination"))#2 FDA(200,IENS,9.2)=XUARR("Termination")
- ;Inactivate
- S:$D(XUARR("Inactivate"))#2 FDA(200,IENS,53.4)=XUARR("Inactivate")
- ;
- ;Remarks
- I $G(XUARR("Remarks"))="",WHO="200PIEV",$P($G(^VA(200,+IEN,"PS")),U,9)="" S XUARR("Remarks")="NON-VA PROVIDER"
- S:$D(XUARR("Remarks"))#2 FDA(200,IENS,53.9)=$E(XUARR("Remarks"),1,$$MAXLEN(200,53.9))
- ;
- ;Title
- I $G(XUARR("Title"))="",WHO="200PIEV",$P($G(^VA(200,+IEN,0)),U,9)="" S XUARR("Title")="NON-VA PROVIDER"
- D:$D(XUARR("Title"))#2
- . ;Add Title to TITLE file (#3.1) if not already there
- . N DIERR,DIHELP,DIMSG,XUMSG
- . S XUARR("Title")=$E($$UP^XLFSTR(XUARR("Title")),1,$$MAXLEN(200,8))
- . D:$$FIND1^DIC(3.1,"","X",XUARR("Title"),"","","XUMSG")'>0
- .. N TITLEFDA
- .. S TITLEFDA(3.1,"+1,",.01)=XUARR("Title")
- .. D UPDATER(.TITLEFDA,"E",.XURET)
- . S FDA(200,IENS,8)=XUARR("Title")
- ;
- ;Authorized to Write Med Orders
- D:$D(XUARR("AuthWriteMedOrders"))#2
- . S VAL=$$UP^XLFSTR(XUARR("AuthWriteMedOrders")) S:VAL=0!(VAL="N")!(VAL="NO") VAL=""
- . S FDA(200,IENS,53.1)=VAL
- ;
- ;Provider Class
- S:$D(XUARR("ProviderClass"))#2 FDA(200,IENS,53.5)=XUARR("ProviderClass")
- ;
- ;Non VA Prescriber
- I WHO="200PIEV",$G(XUARR("NonVAPrescriber"))="" S FDA(200,IENS,53.91)=1
- E  S:$D(XUARR("NonVAPrescriber"))#2 FDA(200,IENS,53.91)=XUARR("NonVAPrescriber")
- ;
- ;Provider Type
- D:$D(XUARR("ProviderType"))#2
- . N PROVTYPE
- . S PROVTYPE=$P(XUARR("ProviderType"),"|")
- . S:PROVTYPE="" PROVTYPE=$P(XUARR("ProviderType"),"|",2)
- . S FDA(200,IENS,53.6)=PROVTYPE
- ;
- ;SECID
- S:$D(XUARR("SECID"))#2 FDA(200,IENS,205.1)=XUARR("SECID")
- ;Unique User ID
- S:$D(XUARR("UniqueUserID"))#2 FDA(200,IENS,205.4)=XUARR("UniqueUserID")
- ;ADUPN (Email)
- S:$D(XUARR("ADUPN"))#2 FDA(200,IENS,205.5)=XUARR("ADUPN")
- ;EMAIL ADDRESS
- S:$D(XUARR("EMAIL"))#2 FDA(200,IENS,.151)=XUARR("EMAIL")
- ;Network Username
- S:$D(XUARR("NTUSERNAME"))#2 FDA(200,IENS,501.1)=XUARR("NTUSERNAME")
+ ;**744 VAMPI-3039 (ckn) - Moving this tag to new routine XUMVIEU1
+ D SETFDA^XUMVIEU1(IEN,.XUARR,.FDA)
  Q
  ;
 SUBJDEF(XUARR) ;Set default Subject Organization and ID
@@ -222,12 +156,13 @@ TERMDATE(FDA,XURES) ;Remove Termination Date from FDA if it's in the future,
  . K FDA(200,IENS,9.2)
  Q
  ;
-SECKEYS(XUDUZ,OLDTDATE,XURET) ;Add or remove Security Keys PROVIDER and XUORES
+SECKEYS(XUDUZ,OLDTDATE,XURET,XURSET) ;Add or remove Security Keys PROVIDER and XUORES
  ;based on whether Termination Date is deleted or created
+ ;**767 OR if ADD is now UPDATE XURSET=1
  N KEY,KEYIEN,NEWTDATE
  S XUDUZ=+$G(XUDUZ),OLDTDATE=$G(OLDTDATE)
  S NEWTDATE=$P($G(^VA(200,XUDUZ,0)),U,11)
- Q:$G(OLDTDATE)=NEWTDATE
+ Q:$G(OLDTDATE)=NEWTDATE&(XURSET=0)
  ;
  F KEY="PROVIDER","XUORES" D
  . S KEYIEN=$O(^DIC(19.1,"B",KEY,0)) Q:KEYIEN'>0
@@ -237,15 +172,17 @@ SECKEYS(XUDUZ,OLDTDATE,XURET) ;Add or remove Security Keys PROVIDER and XUORES
  .. S DA=$O(^VA(200,XUDUZ,51,"B",KEYIEN,0)) Q:DA'>0
  .. S DA(1)=XUDUZ,DIK="^VA(200,"_XUDUZ_",51,"
  .. D ^DIK
- . E  I OLDTDATE]"",NEWTDATE="" D
- .. ;Add the key
- .. ;**724,Story 1209890 (mko): The #.01 of the KEYS multiple is DINUM'd, so pass IEN(1).
- .. ;  Also, GIVEN BY (#1) and DATE GIVEN (#2) are triggered by the #.01.
- .. N IENS,FDA,IEN
- .. Q:$O(^VA(200,XUDUZ,51,"B",KEYIEN,0))
- .. S IENS="+1,"_XUDUZ_","
- .. S (FDA(200.051,IENS,.01),IEN(1))=KEYIEN
- .. D UPDATER(.FDA,"",.XURET,.IEN)
+ .I OLDTDATE]"",NEWTDATE="" D ADDKEY(XUDUZ,KEYIEN)
+ .I XURSET=1 D ADDKEY(XUDUZ,KEYIEN)
+ Q
+ADDKEY(XUDUZ,KEYIEN) ;Add the key
+ ;**724,Story 1209890 (mko): The #.01 of the KEYS multiple is DINUM'd, so pass IEN(1)
+ ;  Also, GIVEN BY (#1) and DATE GIVEN (#2) are triggered by the #.01.
+ N IENS,FDA,IEN
+ Q:$O(^VA(200,XUDUZ,51,"B",KEYIEN,0))
+ S IENS="+1,"_XUDUZ_","
+ S (FDA(200.051,IENS,.01),IEN(1))=KEYIEN
+ D UPDATER(.FDA,"",.XURET,.IEN)
  Q
  ;
 PERSCLAS(XUDUZ,XUARR,XURET) ;Update PERSON CLASS multiple
@@ -285,7 +222,7 @@ ISPCACTV(XUDUZ,SUBIEN) ;Is the Person Class active?
 NEWDEA(XUDUZ,XUARR,XURET) ;Update DEA NUMBERS File #8991.9
  ;and the NEW PERSON File NEW DEA #'s multiple
  N CNT,DEA,DIERR,DIHELP,DIMSG,FDA,IEN,IENS,NDEAIEN,XUERR
- N STR1,STR2,STR3,CITY,STATE,ZIP
+ N STR1,STR2,STR3,CITY,STATE,ZIP,ADDR
  ;
  ;Get address parts
  D:$D(XUARR("ADDRESS DATA"))#2

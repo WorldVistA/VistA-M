@@ -1,5 +1,5 @@
-VAFCTFU1 ;BHM/RGY-Utilities for the Treating Facility file 391.91, CONTINUED ; 5/23/12 12:51pm
- ;;5.3;Registration;**261,392,448,449,800,856**;Aug 13, 1993;Build 5
+VAFCTFU1 ;BHM/RGY-Utilities for the Treating Facility file 391.91, CONTINUED ;6 May 2021  1:56 PM
+ ;;5.3;Registration;**261,392,448,449,800,856,1042,1055**;Aug 13, 1993;Build 1
 TFL(LIST,DFN) ;for dfn get list of treating facilities
  NEW X,ICN,DA,DR,VAFCTFU1,DIC,DIQ,VAFC
  S X="MPIF001" X ^%ZOSF("TEST") I '$T S LIST(1)="-1^MPI Not Installed" Q
@@ -53,8 +53,8 @@ QUERYTF(PAT,ARY,INDX) ;a query for Treating Facility.
  ;    FACILITY LIST (#391.91) file, thus returning null in the third
  ;    piece. *261 gjc@120199
  ;
- ;    This is also a function call.  If there is an error then a 
- ;    1^error description will be returned. 
+ ;    This is also a function call.  If there is an error then a
+ ;    1^error description will be returned.
  ;
  ;  *** If no data is found the array will not be populated and
  ;  a 1^error description will be returned.
@@ -73,8 +73,10 @@ QUERYTF(PAT,ARY,INDX) ;a query for Treating Facility.
  ;and return the record which have latest Date Last Treated. If none
  ;of the entries have DLT populated, return the first record for site.
  I 'INDX F LP=0:0 S LP=$O(^DGCN(391.91,"APAT",PDFN,LP)) Q:'LP  D
+ .Q:'$$ISVAMC(LP)  ;**1042,VAMPI-8212 (mko): Skip non-VAMCs
  .S ZTDLT=0,ZTFIEN=$O(^DGCN(391.91,"APAT",PDFN,LP,"")) Q:'ZTFIEN
  .S TFIEN=0 F  S TFIEN=$O(^DGCN(391.91,"APAT",PDFN,LP,TFIEN)) Q:'TFIEN  D
+ ..Q:'$$ISPATIEN(TFIEN)  ;**1042,VAMPI-8212 (mko): Skip if not a patient record (not "PI" or null)
  ..S ZDLT=$P(^DGCN(391.91,TFIEN,0),"^",3) ;Date last treated
  ..I ZDLT>ZTDLT S ZTDLT=ZDLT,ZTFIEN=TFIEN
  .D SET(ZTFIEN,ARY,.CTR)
@@ -88,3 +90,18 @@ QUERYTF(PAT,ARY,INDX) ;a query for Treating Facility.
  .Q
  I $D(@ARY)'>9 S VAFCER="1^Could not find Treating Facilities"
 QUERYTFQ Q VAFCER
+ ;
+ISVAMC(SITEIEN,SITEID) ;Return 1 if this is a VAMC
+ ;**1042,VAMPI-8212 (mko): New function
+ N DIERR,MSG
+ I $G(SITEIEN)="" Q:$G(SITEID)="" "" S SITEIEN=$$IEN^XUAF4(SITEID)
+ I $G(SITEID)="" S SITEID=$$STA^XUAF4(SITEIEN)
+ ;**1055,VAMPI-10191 (mko): Allow return of 200, 200CH, and 200MH
+ I "^200CH^200MH^"[(U_SITEID_U) Q 1
+ I $$GET1^DIQ(4,SITEIEN_",",13,"","","MSG")'="OTHER",SITEID'="200M" Q 1
+ Q 0
+ ;
+ISPATIEN(TFLIEN) ;Return 1 if Source ID Type is "PI" or null
+ ;**1042,VAMPI-8212 (mko): New function
+ Q:$D(^DGCN(391.91,+$G(TFLIEN),0))[0 0
+ Q "PI"[$P(^DGCN(391.91,+$G(TFLIEN),0),"^",9)

@@ -1,126 +1,122 @@
-IBDEI1L0 ; ; 04-FEB-2020
- ;;3.0;IB ENCOUNTER FORM IMP/EXP;;FEB 04, 2020
+IBDEI1L0 ; ; 01-FEB-2022
+ ;;3.0;IB ENCOUNTER FORM IMP/EXP;;FEB 01, 2022
  Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,999) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
- ;;^UTILITY(U,$J,358.3,25276,2)
- ;;=^5010019
- ;;^UTILITY(U,$J,358.3,25277,0)
- ;;=M05.772^^107^1217^148
- ;;^UTILITY(U,$J,358.3,25277,1,0)
+ ;;^UTILITY(U,$J,358.3,25640,1,4,0)
+ ;;=4^F12.288
+ ;;^UTILITY(U,$J,358.3,25640,2)
+ ;;=^5003176
+ ;;^UTILITY(U,$J,358.3,25641,0)
+ ;;=F12.121^^92^1171^10
+ ;;^UTILITY(U,$J,358.3,25641,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,25277,1,3,0)
- ;;=3^Rheumatoid Arthritis of Left Ankle
- ;;^UTILITY(U,$J,358.3,25277,1,4,0)
- ;;=4^M05.772
- ;;^UTILITY(U,$J,358.3,25277,2)
- ;;=^5010020
- ;;^UTILITY(U,$J,358.3,25278,0)
- ;;=M05.79^^107^1217^154
- ;;^UTILITY(U,$J,358.3,25278,1,0)
+ ;;^UTILITY(U,$J,358.3,25641,1,3,0)
+ ;;=3^Cannabis Intox Delirium w/ Mild Use D/O
+ ;;^UTILITY(U,$J,358.3,25641,1,4,0)
+ ;;=4^F12.121
+ ;;^UTILITY(U,$J,358.3,25641,2)
+ ;;=^5003157
+ ;;^UTILITY(U,$J,358.3,25642,0)
+ ;;=F12.221^^92^1171^11
+ ;;^UTILITY(U,$J,358.3,25642,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,25278,1,3,0)
- ;;=3^Rheumatoid Arthritis of Multiple Sites
- ;;^UTILITY(U,$J,358.3,25278,1,4,0)
- ;;=4^M05.79
- ;;^UTILITY(U,$J,358.3,25278,2)
- ;;=^5010022
- ;;^UTILITY(U,$J,358.3,25279,0)
- ;;=M06.00^^107^1217^161
- ;;^UTILITY(U,$J,358.3,25279,1,0)
+ ;;^UTILITY(U,$J,358.3,25642,1,3,0)
+ ;;=3^Cannabis Intox Delirium w/ Mod/Sev Use D/O
+ ;;^UTILITY(U,$J,358.3,25642,1,4,0)
+ ;;=4^F12.221
+ ;;^UTILITY(U,$J,358.3,25642,2)
+ ;;=^5003169
+ ;;^UTILITY(U,$J,358.3,25643,0)
+ ;;=F12.921^^92^1171^12
+ ;;^UTILITY(U,$J,358.3,25643,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,25279,1,3,0)
- ;;=3^Rheumatoid Arthritis w/o Rhematoid Factor,Unspec Site
- ;;^UTILITY(U,$J,358.3,25279,1,4,0)
- ;;=4^M06.00
- ;;^UTILITY(U,$J,358.3,25279,2)
- ;;=^5010047
- ;;^UTILITY(U,$J,358.3,25280,0)
- ;;=M06.30^^107^1217^164
- ;;^UTILITY(U,$J,358.3,25280,1,0)
+ ;;^UTILITY(U,$J,358.3,25643,1,3,0)
+ ;;=3^Cannabis Intox Delirium w/o Use D/O
+ ;;^UTILITY(U,$J,358.3,25643,1,4,0)
+ ;;=4^F12.921
+ ;;^UTILITY(U,$J,358.3,25643,2)
+ ;;=^5003180
+ ;;^UTILITY(U,$J,358.3,25644,0)
+ ;;=F12.229^^92^1171^16
+ ;;^UTILITY(U,$J,358.3,25644,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,25280,1,3,0)
- ;;=3^Rheumatoid Nodule,Unspec Site
- ;;^UTILITY(U,$J,358.3,25280,1,4,0)
- ;;=4^M06.30
- ;;^UTILITY(U,$J,358.3,25280,2)
- ;;=^5010096
- ;;^UTILITY(U,$J,358.3,25281,0)
- ;;=M06.4^^107^1217^51
- ;;^UTILITY(U,$J,358.3,25281,1,0)
+ ;;^UTILITY(U,$J,358.3,25644,1,3,0)
+ ;;=3^Cannabis Intox w/o Percep Disturb w/ Mod/Sev Use D/O
+ ;;^UTILITY(U,$J,358.3,25644,1,4,0)
+ ;;=4^F12.229
+ ;;^UTILITY(U,$J,358.3,25644,2)
+ ;;=^5003171
+ ;;^UTILITY(U,$J,358.3,25645,0)
+ ;;=F12.122^^92^1171^13
+ ;;^UTILITY(U,$J,358.3,25645,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,25281,1,3,0)
- ;;=3^Inflammatory Polyarthropathy
- ;;^UTILITY(U,$J,358.3,25281,1,4,0)
- ;;=4^M06.4
- ;;^UTILITY(U,$J,358.3,25281,2)
- ;;=^5010120
- ;;^UTILITY(U,$J,358.3,25282,0)
- ;;=M06.39^^107^1217^163
- ;;^UTILITY(U,$J,358.3,25282,1,0)
+ ;;^UTILITY(U,$J,358.3,25645,1,3,0)
+ ;;=3^Cannabis Intox w/ Percep Disturb w/ Mild Use D/O
+ ;;^UTILITY(U,$J,358.3,25645,1,4,0)
+ ;;=4^F12.122
+ ;;^UTILITY(U,$J,358.3,25645,2)
+ ;;=^5003158
+ ;;^UTILITY(U,$J,358.3,25646,0)
+ ;;=F12.222^^92^1171^14
+ ;;^UTILITY(U,$J,358.3,25646,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,25282,1,3,0)
- ;;=3^Rheumatoid Nodule,Mult Sites
- ;;^UTILITY(U,$J,358.3,25282,1,4,0)
- ;;=4^M06.39
- ;;^UTILITY(U,$J,358.3,25282,2)
- ;;=^5010119
- ;;^UTILITY(U,$J,358.3,25283,0)
- ;;=M15.0^^107^1217^127
- ;;^UTILITY(U,$J,358.3,25283,1,0)
+ ;;^UTILITY(U,$J,358.3,25646,1,3,0)
+ ;;=3^Cannabis Intox w/ Percep Disturb w/ Mod/Sev Use D/O
+ ;;^UTILITY(U,$J,358.3,25646,1,4,0)
+ ;;=4^F12.222
+ ;;^UTILITY(U,$J,358.3,25646,2)
+ ;;=^5003170
+ ;;^UTILITY(U,$J,358.3,25647,0)
+ ;;=F12.922^^92^1171^15
+ ;;^UTILITY(U,$J,358.3,25647,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,25283,1,3,0)
- ;;=3^Primary Generalized Osteoarthritis
- ;;^UTILITY(U,$J,358.3,25283,1,4,0)
- ;;=4^M15.0
- ;;^UTILITY(U,$J,358.3,25283,2)
- ;;=^5010762
- ;;^UTILITY(U,$J,358.3,25284,0)
- ;;=M06.9^^107^1217^162
- ;;^UTILITY(U,$J,358.3,25284,1,0)
+ ;;^UTILITY(U,$J,358.3,25647,1,3,0)
+ ;;=3^Cannabis Intox w/ Percep Disturb w/o Use D/O
+ ;;^UTILITY(U,$J,358.3,25647,1,4,0)
+ ;;=4^F12.922
+ ;;^UTILITY(U,$J,358.3,25647,2)
+ ;;=^5003181
+ ;;^UTILITY(U,$J,358.3,25648,0)
+ ;;=F12.980^^92^1171^3
+ ;;^UTILITY(U,$J,358.3,25648,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,25284,1,3,0)
- ;;=3^Rheumatoid Arthritis,Unspec
- ;;^UTILITY(U,$J,358.3,25284,1,4,0)
- ;;=4^M06.9
- ;;^UTILITY(U,$J,358.3,25284,2)
- ;;=^5010145
- ;;^UTILITY(U,$J,358.3,25285,0)
- ;;=M16.0^^107^1217^130
- ;;^UTILITY(U,$J,358.3,25285,1,0)
+ ;;^UTILITY(U,$J,358.3,25648,1,3,0)
+ ;;=3^Cannabis Induced Anxiety D/O w/o Use D/O
+ ;;^UTILITY(U,$J,358.3,25648,1,4,0)
+ ;;=4^F12.980
+ ;;^UTILITY(U,$J,358.3,25648,2)
+ ;;=^5003186
+ ;;^UTILITY(U,$J,358.3,25649,0)
+ ;;=F12.159^^92^1171^4
+ ;;^UTILITY(U,$J,358.3,25649,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,25285,1,3,0)
- ;;=3^Primary Osteoarthritis of Hip,Bilateral
- ;;^UTILITY(U,$J,358.3,25285,1,4,0)
- ;;=4^M16.0
- ;;^UTILITY(U,$J,358.3,25285,2)
- ;;=^5010769
- ;;^UTILITY(U,$J,358.3,25286,0)
- ;;=M16.11^^107^1217^139
- ;;^UTILITY(U,$J,358.3,25286,1,0)
+ ;;^UTILITY(U,$J,358.3,25649,1,3,0)
+ ;;=3^Cannabis Induced Psychotic D/O w/ Mild Use D/O
+ ;;^UTILITY(U,$J,358.3,25649,1,4,0)
+ ;;=4^F12.159
+ ;;^UTILITY(U,$J,358.3,25649,2)
+ ;;=^5003162
+ ;;^UTILITY(U,$J,358.3,25650,0)
+ ;;=F12.259^^92^1171^5
+ ;;^UTILITY(U,$J,358.3,25650,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,25286,1,3,0)
- ;;=3^Primary Osteoarthritis of Right Hip
- ;;^UTILITY(U,$J,358.3,25286,1,4,0)
- ;;=4^M16.11
- ;;^UTILITY(U,$J,358.3,25286,2)
- ;;=^5010771
- ;;^UTILITY(U,$J,358.3,25287,0)
- ;;=M16.12^^107^1217^133
- ;;^UTILITY(U,$J,358.3,25287,1,0)
+ ;;^UTILITY(U,$J,358.3,25650,1,3,0)
+ ;;=3^Cannabis Induced Psychotic D/O w/ Mod/Sev Use D/O
+ ;;^UTILITY(U,$J,358.3,25650,1,4,0)
+ ;;=4^F12.259
+ ;;^UTILITY(U,$J,358.3,25650,2)
+ ;;=^5003174
+ ;;^UTILITY(U,$J,358.3,25651,0)
+ ;;=F12.959^^92^1171^6
+ ;;^UTILITY(U,$J,358.3,25651,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,25287,1,3,0)
- ;;=3^Primary Osteoarthritis of Left Hip
- ;;^UTILITY(U,$J,358.3,25287,1,4,0)
- ;;=4^M16.12
- ;;^UTILITY(U,$J,358.3,25287,2)
- ;;=^5010772
- ;;^UTILITY(U,$J,358.3,25288,0)
- ;;=M17.0^^107^1217^129
- ;;^UTILITY(U,$J,358.3,25288,1,0)
+ ;;^UTILITY(U,$J,358.3,25651,1,3,0)
+ ;;=3^Cannabis Induced Psychotic D/O w/o Use D/O
+ ;;^UTILITY(U,$J,358.3,25651,1,4,0)
+ ;;=4^F12.959
+ ;;^UTILITY(U,$J,358.3,25651,2)
+ ;;=^5003185
+ ;;^UTILITY(U,$J,358.3,25652,0)
+ ;;=F12.988^^92^1171^9
+ ;;^UTILITY(U,$J,358.3,25652,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,25288,1,3,0)
- ;;=3^Primary Osteoarthritis of Bilateral Knees
- ;;^UTILITY(U,$J,358.3,25288,1,4,0)
- ;;=4^M17.0
- ;;^UTILITY(U,$J,358.3,25288,2)
- ;;=^5010784

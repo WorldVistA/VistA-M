@@ -1,5 +1,5 @@
 SROATM3 ;BIR/MAM - NON CARDIAC TRANSMISSION (CONT) ;05/03/11
- ;;3.0;Surgery;**27,38,62,88,97,111,142,153,174,175,184**;24 Jun 93;Build 35
+ ;;3.0;Surgery;**27,38,62,88,97,111,142,153,174,175,184,200**;24 Jun 93;Build 9
  ;** NOTICE: This routine is part of an implementation of a nationally
  ;**         controlled procedure. Local modifications to this routine
  ;**         are prohibited.
@@ -9,7 +9,7 @@ SROATM3 ;BIR/MAM - NON CARDIAC TRANSMISSION (CONT) ;05/03/11
  S SHEMP=SHEMP_$J($P(SRA(203),"^",16),5)_$J($P(SRA(204),"^",16),7)
  S ^TMP("SRA",$J,SRAMNUM,SRACNT,0)=SHEMP,SHEMP=$E(SHEMP,1,11)_" 10",SRACNT=SRACNT+1
  S SHEMP=SHEMP_$J($P(SRA(203),"^",3),3)_$J($P(SRA(204),"^",3),7)_$J($P(SRA(203),"^",4),3)_$J($P(SRA(204),"^",4),7)_$J($P(SRA(203),"^",6),4)_$J($P(SRA(204),"^",6),7)
- S SHEMP=SHEMP_$J($P(SRA(203),"^",7),6)_$J($P(SRA(204),"^",7),7)
+ N SROBOT S SROBOT=$P($G(^SRF(SRTN,"OP")),U,3),SHEMP=SHEMP_$J($P(SRA(203),"^",7),6)_$J($P(SRA(204),"^",7),7)_$J(SROBOT,2)
  S ^TMP("SRA",$J,SRAMNUM,SRACNT,0)=SHEMP,SHEMP=$E(SHEMP,1,11)_" 11",SRACNT=SRACNT+1
  S SHEMP=SHEMP_$J($P(SRA(203),"^",8),4)_$J($P(SRA(204),"^",8),7)_$J($P(SRA(203),"^",9),5)_$J($P(SRA(204),"^",9),7)_$J($P(SRA(203),"^",10),4)_$J($P(SRA(204),"^",10),7)
  S SHEMP=SHEMP_$J($P(SRA(203),"^",12),4)_$J($P(SRA(204),"^",12),7)_$J($P(SRA(203),"^",13),5)_$J($P(SRA(204),"^",13),7)_$J($P(SRA(203),"^",14),5)_$J($P(SRA(204),"^",14),7)
@@ -48,7 +48,7 @@ SROATM3 ;BIR/MAM - NON CARDIAC TRANSMISSION (CONT) ;05/03/11
  N SRP S SRP=$P($G(^SRF(SRTN,"RA")),"^",9) I SRP S Y=SRP,C=$P(^DD(130,272.1,0),"^",2) D Y^DIQ S SRP=Y
  S X=$L(SRP)+1 F I=X:1:35 S SRP=SRP_" "
  S SRA(.9)=$G(^SRF(SRTN,.9)),SRA("VER")=$G(^SRF(SRTN,"VER"))
- S SHEMP=SHEMP_SRP_$J($P(SRA(.9),"^"),12)_$J($P(SRA(.9),"^",2),12)_$J($P(SRA(.9),"^",3),12)_$J($P(SRA(.9),"^",4),12)_$J($P(SRA(.9),"^",5),12)_$J($P(SRA(.9),"^",6),12)   ;Line 13
+ S SHEMP=SHEMP_SRP_$J($P(SRA(.9),"^"),12)_$J($E($P(SRA(.9),"^",2),1,12),12)_$J($P(SRA(.9),"^",3),12)_$J($P(SRA(.9),"^",4),12)_$J($P(SRA(.9),"^",5),12)_$J($P(SRA(.9),"^",6),12)   ;Line 13
  F I=7:1:18 S SHEMP=SHEMP_$J($P(SRA("VER"),"^",I),2)
  S ^TMP("SRA",$J,SRAMNUM,SRACNT,0)=SHEMP,SRACNT=SRACNT+1
  ;

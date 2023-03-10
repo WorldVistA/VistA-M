@@ -1,676 +1,656 @@
-IBDEI057 ; ; 01-MAY-2020
- ;;3.0;IB ENCOUNTER FORM IMP/EXP;;MAY 01, 2020
+IBDEI057 ; ; 01-AUG-2022
+ ;;3.0;IB ENCOUNTER FORM IMP/EXP;;AUG 01, 2022
  Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,999) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
+ ;;^UTILITY(U,$J,358.3,12559,2)
+ ;;=^5042786
+ ;;^UTILITY(U,$J,358.3,12560,0)
+ ;;=S82.871D^^50^549^22
+ ;;^UTILITY(U,$J,358.3,12560,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,12560,1,3,0)
+ ;;=3^Disp Fx,pilon,right tibia,Subsq
+ ;;^UTILITY(U,$J,358.3,12560,1,4,0)
+ ;;=4^S82.871D
+ ;;^UTILITY(U,$J,358.3,12560,2)
+ ;;=^5042770
+ ;;^UTILITY(U,$J,358.3,12561,0)
+ ;;=S82.462D^^50^549^25
+ ;;^UTILITY(U,$J,358.3,12561,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,12561,1,3,0)
+ ;;=3^Disp Fx,segmental shaft,left fibula,Subsq
+ ;;^UTILITY(U,$J,358.3,12561,1,4,0)
+ ;;=4^S82.462D
+ ;;^UTILITY(U,$J,358.3,12561,2)
+ ;;=^5042117
+ ;;^UTILITY(U,$J,358.3,12562,0)
+ ;;=S82.461D^^50^549^27
+ ;;^UTILITY(U,$J,358.3,12562,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,12562,1,3,0)
+ ;;=3^Disp Fx,segmental shaft,right fibula,Subsq
+ ;;^UTILITY(U,$J,358.3,12562,1,4,0)
+ ;;=4^S82.461D
+ ;;^UTILITY(U,$J,358.3,12562,2)
+ ;;=^5042101
+ ;;^UTILITY(U,$J,358.3,12563,0)
+ ;;=S82.262D^^50^549^26
+ ;;^UTILITY(U,$J,358.3,12563,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,12563,1,3,0)
+ ;;=3^Disp Fx,segmental shaft,left tibia,Subsq
+ ;;^UTILITY(U,$J,358.3,12563,1,4,0)
+ ;;=4^S82.262D
+ ;;^UTILITY(U,$J,358.3,12563,2)
+ ;;=^5041542
+ ;;^UTILITY(U,$J,358.3,12564,0)
+ ;;=S82.261D^^50^549^28
+ ;;^UTILITY(U,$J,358.3,12564,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,12564,1,3,0)
+ ;;=3^Disp Fx,segmental shaft,right tibia,Subsq
  ;;^UTILITY(U,$J,358.3,12564,1,4,0)
- ;;=4^F50.00
+ ;;=4^S82.261D
  ;;^UTILITY(U,$J,358.3,12564,2)
- ;;=^5003597
+ ;;=^5041526
  ;;^UTILITY(U,$J,358.3,12565,0)
- ;;=F90.9^^54^611^4
+ ;;=S82.442D^^50^549^29
  ;;^UTILITY(U,$J,358.3,12565,1,0)
  ;;=^358.31IA^4^2
  ;;^UTILITY(U,$J,358.3,12565,1,3,0)
- ;;=3^Attention-deficit hyperact dsordr, unspec type
+ ;;=3^Disp Fx,spiral shaft,left fibula,Subsq
  ;;^UTILITY(U,$J,358.3,12565,1,4,0)
- ;;=4^F90.9
+ ;;=4^S82.442D
  ;;^UTILITY(U,$J,358.3,12565,2)
- ;;=^5003696
+ ;;=^5041925
  ;;^UTILITY(U,$J,358.3,12566,0)
- ;;=F50.2^^54^611^5
+ ;;=S82.441D^^50^549^31
  ;;^UTILITY(U,$J,358.3,12566,1,0)
  ;;=^358.31IA^4^2
  ;;^UTILITY(U,$J,358.3,12566,1,3,0)
- ;;=3^Bulimia nervosa
+ ;;=3^Disp Fx,spiral shaft,right fibula,Subsq
  ;;^UTILITY(U,$J,358.3,12566,1,4,0)
- ;;=4^F50.2
+ ;;=4^S82.441D
  ;;^UTILITY(U,$J,358.3,12566,2)
- ;;=^5003600
+ ;;=^5041909
  ;;^UTILITY(U,$J,358.3,12567,0)
- ;;=F44.9^^54^611^6
+ ;;=S82.242D^^50^549^30
  ;;^UTILITY(U,$J,358.3,12567,1,0)
  ;;=^358.31IA^4^2
  ;;^UTILITY(U,$J,358.3,12567,1,3,0)
- ;;=3^Dissociative & conversion disorder, unspec
+ ;;=3^Disp Fx,spiral shaft,left tibia,Subsq
  ;;^UTILITY(U,$J,358.3,12567,1,4,0)
- ;;=4^F44.9
+ ;;=4^S82.242D
  ;;^UTILITY(U,$J,358.3,12567,2)
- ;;=^5003584
+ ;;=^5041350
  ;;^UTILITY(U,$J,358.3,12568,0)
- ;;=F50.9^^54^611^7
+ ;;=S82.241D^^50^549^32
  ;;^UTILITY(U,$J,358.3,12568,1,0)
  ;;=^358.31IA^4^2
  ;;^UTILITY(U,$J,358.3,12568,1,3,0)
- ;;=3^Eating disorder, unspec
+ ;;=3^Disp Fx,spiral shaft,right tibia,Subsq
  ;;^UTILITY(U,$J,358.3,12568,1,4,0)
- ;;=4^F50.9
+ ;;=4^S82.241D
  ;;^UTILITY(U,$J,358.3,12568,2)
- ;;=^5003602
+ ;;=^5041334
  ;;^UTILITY(U,$J,358.3,12569,0)
- ;;=F64.1^^54^611^9
+ ;;=S82.422D^^50^549^33
  ;;^UTILITY(U,$J,358.3,12569,1,0)
  ;;=^358.31IA^4^2
  ;;^UTILITY(U,$J,358.3,12569,1,3,0)
- ;;=3^Gender ident disorder in adlscnc & adlthd
+ ;;=3^Disp Fx,transverse shaft,left fibula,Subsq
  ;;^UTILITY(U,$J,358.3,12569,1,4,0)
- ;;=4^F64.1
+ ;;=4^S82.422D
  ;;^UTILITY(U,$J,358.3,12569,2)
- ;;=^5003647
+ ;;=^5041733
  ;;^UTILITY(U,$J,358.3,12570,0)
- ;;=F06.30^^54^611^11
+ ;;=S82.421D^^50^549^35
  ;;^UTILITY(U,$J,358.3,12570,1,0)
  ;;=^358.31IA^4^2
  ;;^UTILITY(U,$J,358.3,12570,1,3,0)
- ;;=3^Mood disorder d/t known physiol cond, unsp
+ ;;=3^Disp Fx,transverse shaft,right fibula,Subsq
  ;;^UTILITY(U,$J,358.3,12570,1,4,0)
- ;;=4^F06.30
+ ;;=4^S82.421D
  ;;^UTILITY(U,$J,358.3,12570,2)
- ;;=^5003056
+ ;;=^5041717
  ;;^UTILITY(U,$J,358.3,12571,0)
- ;;=F23.^^54^611^15
+ ;;=S82.222D^^50^549^34
  ;;^UTILITY(U,$J,358.3,12571,1,0)
  ;;=^358.31IA^4^2
  ;;^UTILITY(U,$J,358.3,12571,1,3,0)
- ;;=3^Psychotic disorder, brief
+ ;;=3^Disp Fx,transverse shaft,left tibia,Subsq
  ;;^UTILITY(U,$J,358.3,12571,1,4,0)
- ;;=4^F23.
+ ;;=4^S82.222D
  ;;^UTILITY(U,$J,358.3,12571,2)
- ;;=^5003479
+ ;;=^5041158
  ;;^UTILITY(U,$J,358.3,12572,0)
- ;;=F06.2^^54^611^14
+ ;;=S82.221D^^50^549^36
  ;;^UTILITY(U,$J,358.3,12572,1,0)
  ;;=^358.31IA^4^2
  ;;^UTILITY(U,$J,358.3,12572,1,3,0)
- ;;=3^Psychotic disorder w/ delusns d/t known physiol cond
+ ;;=3^Disp Fx,transverse shaft,right tibia,Subsq
  ;;^UTILITY(U,$J,358.3,12572,1,4,0)
- ;;=4^F06.2
+ ;;=4^S82.221D
  ;;^UTILITY(U,$J,358.3,12572,2)
- ;;=^5003055
+ ;;=^5041142
  ;;^UTILITY(U,$J,358.3,12573,0)
- ;;=F29.^^54^611^13
+ ;;=S82.865D^^50^549^73
  ;;^UTILITY(U,$J,358.3,12573,1,0)
  ;;=^358.31IA^4^2
  ;;^UTILITY(U,$J,358.3,12573,1,3,0)
- ;;=3^Psychosis not d/t a subst or known physiol cond, unsp
+ ;;=3^Nondisp Maisonneuve's Fx,left leg,Subsq
  ;;^UTILITY(U,$J,358.3,12573,1,4,0)
- ;;=4^F29.
+ ;;=4^S82.865D
  ;;^UTILITY(U,$J,358.3,12573,2)
- ;;=^5003484
+ ;;=^5042738
  ;;^UTILITY(U,$J,358.3,12574,0)
- ;;=F45.9^^54^611^16
+ ;;=S82.864D^^50^549^74
  ;;^UTILITY(U,$J,358.3,12574,1,0)
  ;;=^358.31IA^4^2
  ;;^UTILITY(U,$J,358.3,12574,1,3,0)
- ;;=3^Somatoform disorder, unspec
+ ;;=3^Nondisp Maisonneuve's Fx,right leg,Subsq
  ;;^UTILITY(U,$J,358.3,12574,1,4,0)
- ;;=4^F45.9
+ ;;=4^S82.864D
  ;;^UTILITY(U,$J,358.3,12574,2)
- ;;=^5003592
+ ;;=^5042722
  ;;^UTILITY(U,$J,358.3,12575,0)
- ;;=Z00.00^^54^611^10
+ ;;=S82.145D^^50^549^37
  ;;^UTILITY(U,$J,358.3,12575,1,0)
  ;;=^358.31IA^4^2
  ;;^UTILITY(U,$J,358.3,12575,1,3,0)
- ;;=3^General Adult Med Exam w/o Abnl Fndgs
+ ;;=3^Nondisp Fx,bicondylar,left tibia,Subsq
  ;;^UTILITY(U,$J,358.3,12575,1,4,0)
- ;;=4^Z00.00
+ ;;=4^S82.145D
  ;;^UTILITY(U,$J,358.3,12575,2)
- ;;=^5062599
+ ;;=^5040938
  ;;^UTILITY(U,$J,358.3,12576,0)
- ;;=Z51.5^^54^611^12
+ ;;=S82.144D^^50^549^38
  ;;^UTILITY(U,$J,358.3,12576,1,0)
  ;;=^358.31IA^4^2
  ;;^UTILITY(U,$J,358.3,12576,1,3,0)
- ;;=3^Palliative care 
+ ;;=3^Nondisp Fx,bicondylar,right tibia,Subsq
  ;;^UTILITY(U,$J,358.3,12576,1,4,0)
- ;;=4^Z51.5
+ ;;=4^S82.144D
  ;;^UTILITY(U,$J,358.3,12576,2)
- ;;=^5063063
+ ;;=^5040922
  ;;^UTILITY(U,$J,358.3,12577,0)
- ;;=Z09.^^54^611^8
+ ;;=S82.255D^^50^549^40
  ;;^UTILITY(U,$J,358.3,12577,1,0)
  ;;=^358.31IA^4^2
  ;;^UTILITY(U,$J,358.3,12577,1,3,0)
- ;;=3^Follow-up Exam,Compltd TX,Oth Than Cancer
+ ;;=3^Nondisp Fx,comminuted shaft,left tibia,Subsq
  ;;^UTILITY(U,$J,358.3,12577,1,4,0)
- ;;=4^Z09.
+ ;;=4^S82.255D
  ;;^UTILITY(U,$J,358.3,12577,2)
- ;;=^5062668
+ ;;=^5041494
  ;;^UTILITY(U,$J,358.3,12578,0)
- ;;=Z63.32^^54^612^2
+ ;;=S82.254D^^50^549^42
  ;;^UTILITY(U,$J,358.3,12578,1,0)
  ;;=^358.31IA^4^2
  ;;^UTILITY(U,$J,358.3,12578,1,3,0)
- ;;=3^Absence of family member, oth
+ ;;=3^Nondisp Fx,comminuted shaft,right tibia,Subsq
  ;;^UTILITY(U,$J,358.3,12578,1,4,0)
- ;;=4^Z63.32
+ ;;=4^S82.254D
  ;;^UTILITY(U,$J,358.3,12578,2)
- ;;=^5063167
+ ;;=^5041478
  ;;^UTILITY(U,$J,358.3,12579,0)
- ;;=Z71.41^^54^612^3
+ ;;=S82.455D^^50^549^39
  ;;^UTILITY(U,$J,358.3,12579,1,0)
  ;;=^358.31IA^4^2
  ;;^UTILITY(U,$J,358.3,12579,1,3,0)
- ;;=3^Alcohol abuse counslng & surveil of alcoholic
+ ;;=3^Nondisp Fx,comminuted shaft,left fibula,Subsq
  ;;^UTILITY(U,$J,358.3,12579,1,4,0)
- ;;=4^Z71.41
+ ;;=4^S82.455D
  ;;^UTILITY(U,$J,358.3,12579,2)
- ;;=^5063246
+ ;;=^5042069
  ;;^UTILITY(U,$J,358.3,12580,0)
- ;;=Z71.89^^54^612^4
+ ;;=S82.454D^^50^549^41
  ;;^UTILITY(U,$J,358.3,12580,1,0)
  ;;=^358.31IA^4^2
  ;;^UTILITY(U,$J,358.3,12580,1,3,0)
- ;;=3^Counseling, oth, spec
+ ;;=3^Nondisp Fx,comminuted shaft,right fibula,Subsq
  ;;^UTILITY(U,$J,358.3,12580,1,4,0)
- ;;=4^Z71.89
+ ;;=4^S82.454D
  ;;^UTILITY(U,$J,358.3,12580,2)
- ;;=^5063253
+ ;;=^5042053
  ;;^UTILITY(U,$J,358.3,12581,0)
- ;;=Z71.9^^54^612^5
+ ;;=S82.125D^^50^549^43
  ;;^UTILITY(U,$J,358.3,12581,1,0)
  ;;=^358.31IA^4^2
  ;;^UTILITY(U,$J,358.3,12581,1,3,0)
- ;;=3^Counseling, unspec
+ ;;=3^Nondisp Fx,lateral condyle,left tibia,Subsq
  ;;^UTILITY(U,$J,358.3,12581,1,4,0)
- ;;=4^Z71.9
+ ;;=4^S82.125D
  ;;^UTILITY(U,$J,358.3,12581,2)
- ;;=^5063254
+ ;;=^5040746
  ;;^UTILITY(U,$J,358.3,12582,0)
- ;;=Z63.4^^54^612^8
+ ;;=S82.124D^^50^549^44
  ;;^UTILITY(U,$J,358.3,12582,1,0)
  ;;=^358.31IA^4^2
  ;;^UTILITY(U,$J,358.3,12582,1,3,0)
- ;;=3^Disappearance & death of family member
+ ;;=3^Nondisp Fx,lateral condyle,right tibia,Subsq
  ;;^UTILITY(U,$J,358.3,12582,1,4,0)
- ;;=4^Z63.4
+ ;;=4^S82.124D
  ;;^UTILITY(U,$J,358.3,12582,2)
- ;;=^5063168
+ ;;=^5040730
  ;;^UTILITY(U,$J,358.3,12583,0)
- ;;=Z73.82^^54^612^9
+ ;;=S82.65XD^^50^549^45
  ;;^UTILITY(U,$J,358.3,12583,1,0)
  ;;=^358.31IA^4^2
  ;;^UTILITY(U,$J,358.3,12583,1,3,0)
- ;;=3^Dual sensory impairment
+ ;;=3^Nondisp Fx,lateral malleolus,left fibula,Subsq
  ;;^UTILITY(U,$J,358.3,12583,1,4,0)
- ;;=4^Z73.82
+ ;;=4^S82.65XD
  ;;^UTILITY(U,$J,358.3,12583,2)
- ;;=^5063279
+ ;;=^5042378
  ;;^UTILITY(U,$J,358.3,12584,0)
- ;;=Z04.41^^54^612^10
+ ;;=S82.64XD^^50^549^46
  ;;^UTILITY(U,$J,358.3,12584,1,0)
  ;;=^358.31IA^4^2
  ;;^UTILITY(U,$J,358.3,12584,1,3,0)
- ;;=3^Encntr for exam & obs folwng alleged adlt rape
+ ;;=3^Nondisp Fx,lateral malleolus,right fibula,Subsq
  ;;^UTILITY(U,$J,358.3,12584,1,4,0)
- ;;=4^Z04.41
+ ;;=4^S82.64XD
  ;;^UTILITY(U,$J,358.3,12584,2)
- ;;=^5062660
+ ;;=^5042362
  ;;^UTILITY(U,$J,358.3,12585,0)
- ;;=Z76.0^^54^612^11
+ ;;=S82.115D^^50^549^47
  ;;^UTILITY(U,$J,358.3,12585,1,0)
  ;;=^358.31IA^4^2
  ;;^UTILITY(U,$J,358.3,12585,1,3,0)
- ;;=3^Encntr for issue of repeat prescription
+ ;;=3^Nondisp Fx,left tibial spine,Subsq
  ;;^UTILITY(U,$J,358.3,12585,1,4,0)
- ;;=4^Z76.0
+ ;;=4^S82.115D
  ;;^UTILITY(U,$J,358.3,12585,2)
- ;;=^5063297
+ ;;=^5040650
  ;;^UTILITY(U,$J,358.3,12586,0)
- ;;=Z69.12^^54^612^13
+ ;;=S82.114D^^50^549^59
  ;;^UTILITY(U,$J,358.3,12586,1,0)
  ;;=^358.31IA^4^2
  ;;^UTILITY(U,$J,358.3,12586,1,3,0)
- ;;=3^Encntr for mntl hlth serv for perp of spous or prtnr abuse
+ ;;=3^Nondisp Fx,right tibial spine,Subsq
  ;;^UTILITY(U,$J,358.3,12586,1,4,0)
- ;;=4^Z69.12
+ ;;=4^S82.114D
  ;;^UTILITY(U,$J,358.3,12586,2)
- ;;=^5063233
+ ;;=^5040634
  ;;^UTILITY(U,$J,358.3,12587,0)
- ;;=Z69.010^^54^612^14
+ ;;=S82.155D^^50^549^48
  ;;^UTILITY(U,$J,358.3,12587,1,0)
  ;;=^358.31IA^4^2
  ;;^UTILITY(U,$J,358.3,12587,1,3,0)
- ;;=3^Encntr for mntl hlth serv for vctm of prntl child abuse
+ ;;=3^Nondisp Fx,left tibial tuberosity,Subsq
  ;;^UTILITY(U,$J,358.3,12587,1,4,0)
- ;;=4^Z69.010
+ ;;=4^S82.155D
  ;;^UTILITY(U,$J,358.3,12587,2)
- ;;=^5063228
+ ;;=^5041034
  ;;^UTILITY(U,$J,358.3,12588,0)
- ;;=Z69.11^^54^612^15
+ ;;=S82.154D^^50^549^60
  ;;^UTILITY(U,$J,358.3,12588,1,0)
  ;;=^358.31IA^4^2
  ;;^UTILITY(U,$J,358.3,12588,1,3,0)
- ;;=3^Encntr for mntl hlth serv for vctm of spous or prtnr abuse
+ ;;=3^Nondisp Fx,right tibial tuberosity,Subsq
  ;;^UTILITY(U,$J,358.3,12588,1,4,0)
- ;;=4^Z69.11
+ ;;=4^S82.154D
  ;;^UTILITY(U,$J,358.3,12588,2)
- ;;=^5063232
+ ;;=^5041018
  ;;^UTILITY(U,$J,358.3,12589,0)
- ;;=Z65.5^^54^612^16
+ ;;=S82.135D^^50^549^49
  ;;^UTILITY(U,$J,358.3,12589,1,0)
  ;;=^358.31IA^4^2
  ;;^UTILITY(U,$J,358.3,12589,1,3,0)
- ;;=3^Expsr to disaster, war & oth hostilities
+ ;;=3^Nondisp Fx,medial condyle,left tibia,Subsq
  ;;^UTILITY(U,$J,358.3,12589,1,4,0)
- ;;=4^Z65.5
+ ;;=4^S82.135D
  ;;^UTILITY(U,$J,358.3,12589,2)
- ;;=^5063184
+ ;;=^5040842
  ;;^UTILITY(U,$J,358.3,12590,0)
- ;;=Z59.0^^54^612^18
+ ;;=S82.134D^^50^549^50
  ;;^UTILITY(U,$J,358.3,12590,1,0)
  ;;=^358.31IA^4^2
  ;;^UTILITY(U,$J,358.3,12590,1,3,0)
- ;;=3^Homelessness
+ ;;=3^Nondisp Fx,medial condyle,right tibia,Subsq
  ;;^UTILITY(U,$J,358.3,12590,1,4,0)
- ;;=4^Z59.0
+ ;;=4^S82.134D
  ;;^UTILITY(U,$J,358.3,12590,2)
- ;;=^5063129
+ ;;=^5040826
  ;;^UTILITY(U,$J,358.3,12591,0)
- ;;=Z59.5^^54^612^17
+ ;;=S82.55XD^^50^549^51
  ;;^UTILITY(U,$J,358.3,12591,1,0)
  ;;=^358.31IA^4^2
  ;;^UTILITY(U,$J,358.3,12591,1,3,0)
- ;;=3^Extreme poverty
+ ;;=3^Nondisp Fx,medial malleolus,left tibia,Subsq
  ;;^UTILITY(U,$J,358.3,12591,1,4,0)
- ;;=4^Z59.5
+ ;;=4^S82.55XD
  ;;^UTILITY(U,$J,358.3,12591,2)
- ;;=^5063134
+ ;;=^5042282
  ;;^UTILITY(U,$J,358.3,12592,0)
- ;;=Z71.7^^54^612^19
+ ;;=S82.54XD^^50^549^52
  ;;^UTILITY(U,$J,358.3,12592,1,0)
  ;;=^358.31IA^4^2
  ;;^UTILITY(U,$J,358.3,12592,1,3,0)
- ;;=3^Human immunodeficiency virus [HIV] counseling
+ ;;=3^Nondisp Fx,medial malleolus,right tibia,Subsq
  ;;^UTILITY(U,$J,358.3,12592,1,4,0)
- ;;=4^Z71.7
+ ;;=4^S82.54XD
  ;;^UTILITY(U,$J,358.3,12592,2)
- ;;=^5063251
+ ;;=^5042266
  ;;^UTILITY(U,$J,358.3,12593,0)
- ;;=Z73.4^^54^612^20
+ ;;=S82.435D^^50^549^53
  ;;^UTILITY(U,$J,358.3,12593,1,0)
  ;;=^358.31IA^4^2
  ;;^UTILITY(U,$J,358.3,12593,1,3,0)
- ;;=3^Inadqute social skills, not elswhr classified
+ ;;=3^Nondisp Fx,oblique shaft,left fibula,Subsq
  ;;^UTILITY(U,$J,358.3,12593,1,4,0)
- ;;=4^Z73.4
+ ;;=4^S82.435D
  ;;^UTILITY(U,$J,358.3,12593,2)
- ;;=^5063272
+ ;;=^5041877
  ;;^UTILITY(U,$J,358.3,12594,0)
- ;;=Z79.2^^54^612^22
+ ;;=S82.434D^^50^549^55
  ;;^UTILITY(U,$J,358.3,12594,1,0)
  ;;=^358.31IA^4^2
  ;;^UTILITY(U,$J,358.3,12594,1,3,0)
- ;;=3^Long term (current) use of antibiotics
+ ;;=3^Nondisp Fx,oblique shaft,right fibula,Subsq
  ;;^UTILITY(U,$J,358.3,12594,1,4,0)
- ;;=4^Z79.2
+ ;;=4^S82.434D
  ;;^UTILITY(U,$J,358.3,12594,2)
- ;;=^321546
+ ;;=^5041861
  ;;^UTILITY(U,$J,358.3,12595,0)
- ;;=Z79.01^^54^612^23
+ ;;=S82.235D^^50^549^54
  ;;^UTILITY(U,$J,358.3,12595,1,0)
  ;;=^358.31IA^4^2
  ;;^UTILITY(U,$J,358.3,12595,1,3,0)
- ;;=3^Long term (current) use of anticoagulants
+ ;;=3^Nondisp Fx,oblique shaft,left tibia,Subsq
  ;;^UTILITY(U,$J,358.3,12595,1,4,0)
- ;;=4^Z79.01
+ ;;=4^S82.235D
  ;;^UTILITY(U,$J,358.3,12595,2)
- ;;=^5063330
+ ;;=^5041302
  ;;^UTILITY(U,$J,358.3,12596,0)
- ;;=Z79.02^^54^612^24
+ ;;=S82.234D^^50^549^56
  ;;^UTILITY(U,$J,358.3,12596,1,0)
  ;;=^358.31IA^4^2
  ;;^UTILITY(U,$J,358.3,12596,1,3,0)
- ;;=3^Long term (current) use of antithrombtc/antipltlts
+ ;;=3^Nondisp Fx,oblique shaft,right tibia,Subsq
  ;;^UTILITY(U,$J,358.3,12596,1,4,0)
- ;;=4^Z79.02
+ ;;=4^S82.234D
  ;;^UTILITY(U,$J,358.3,12596,2)
- ;;=^5063331
+ ;;=^5041286
  ;;^UTILITY(U,$J,358.3,12597,0)
- ;;=Z79.82^^54^612^25
+ ;;=S82.875D^^50^549^57
  ;;^UTILITY(U,$J,358.3,12597,1,0)
  ;;=^358.31IA^4^2
  ;;^UTILITY(U,$J,358.3,12597,1,3,0)
- ;;=3^Long term (current) use of aspirin
+ ;;=3^Nondisp Fx,pilon,left tibia,Subsq
  ;;^UTILITY(U,$J,358.3,12597,1,4,0)
- ;;=4^Z79.82
+ ;;=4^S82.875D
  ;;^UTILITY(U,$J,358.3,12597,2)
- ;;=^5063340
+ ;;=^5042834
  ;;^UTILITY(U,$J,358.3,12598,0)
- ;;=Z79.899^^54^612^21
+ ;;=S82.874D^^50^549^58
  ;;^UTILITY(U,$J,358.3,12598,1,0)
  ;;=^358.31IA^4^2
  ;;^UTILITY(U,$J,358.3,12598,1,3,0)
- ;;=3^Long term (current) drug therapy, oth
+ ;;=3^Nondisp Fx,pilon,right tibia,Subsq
  ;;^UTILITY(U,$J,358.3,12598,1,4,0)
- ;;=4^Z79.899
+ ;;=4^S82.874D
  ;;^UTILITY(U,$J,358.3,12598,2)
- ;;=^5063343
+ ;;=^5042818
  ;;^UTILITY(U,$J,358.3,12599,0)
- ;;=Z79.51^^54^612^26
+ ;;=S82.465D^^50^549^61
  ;;^UTILITY(U,$J,358.3,12599,1,0)
  ;;=^358.31IA^4^2
  ;;^UTILITY(U,$J,358.3,12599,1,3,0)
- ;;=3^Long term (current) use of inhaled steroids
+ ;;=3^Nondisp Fx,segmental shaft,left fibula,Subsq
  ;;^UTILITY(U,$J,358.3,12599,1,4,0)
- ;;=4^Z79.51
+ ;;=4^S82.465D
  ;;^UTILITY(U,$J,358.3,12599,2)
- ;;=^5063335
+ ;;=^5042165
  ;;^UTILITY(U,$J,358.3,12600,0)
- ;;=Z79.4^^54^612^27
+ ;;=S82.464D^^50^549^63
  ;;^UTILITY(U,$J,358.3,12600,1,0)
  ;;=^358.31IA^4^2
  ;;^UTILITY(U,$J,358.3,12600,1,3,0)
- ;;=3^Long term (current) use of insulin
+ ;;=3^Nondisp Fx,segmental shaft,right fibula,Subsq
  ;;^UTILITY(U,$J,358.3,12600,1,4,0)
- ;;=4^Z79.4
+ ;;=4^S82.464D
  ;;^UTILITY(U,$J,358.3,12600,2)
- ;;=^5063334
+ ;;=^5042149
  ;;^UTILITY(U,$J,358.3,12601,0)
- ;;=Z79.1^^54^612^28
+ ;;=S82.265D^^50^549^62
  ;;^UTILITY(U,$J,358.3,12601,1,0)
  ;;=^358.31IA^4^2
  ;;^UTILITY(U,$J,358.3,12601,1,3,0)
- ;;=3^Long term (current) use of non-stroidl non-inflam (NSAID)
+ ;;=3^Nondisp Fx,segmental shaft,left tibia,Subsq
  ;;^UTILITY(U,$J,358.3,12601,1,4,0)
- ;;=4^Z79.1
+ ;;=4^S82.265D
  ;;^UTILITY(U,$J,358.3,12601,2)
- ;;=^5063332
+ ;;=^5041590
  ;;^UTILITY(U,$J,358.3,12602,0)
- ;;=Z79.891^^54^612^29
+ ;;=S82.264D^^50^549^64
  ;;^UTILITY(U,$J,358.3,12602,1,0)
  ;;=^358.31IA^4^2
  ;;^UTILITY(U,$J,358.3,12602,1,3,0)
- ;;=3^Long term (current) use of opiate analgesic
+ ;;=3^Nondisp Fx,segmental shaft,right tibia,Subsq
  ;;^UTILITY(U,$J,358.3,12602,1,4,0)
- ;;=4^Z79.891
+ ;;=4^S82.264D
  ;;^UTILITY(U,$J,358.3,12602,2)
- ;;=^5063342
+ ;;=^5041574
  ;;^UTILITY(U,$J,358.3,12603,0)
- ;;=Z79.52^^54^612^31
+ ;;=S82.445D^^50^549^65
  ;;^UTILITY(U,$J,358.3,12603,1,0)
  ;;=^358.31IA^4^2
  ;;^UTILITY(U,$J,358.3,12603,1,3,0)
- ;;=3^Long term (current) use of systemic steroids
+ ;;=3^Nondisp Fx,spiral shaft,left fibula,Subsq
  ;;^UTILITY(U,$J,358.3,12603,1,4,0)
- ;;=4^Z79.52
+ ;;=4^S82.445D
  ;;^UTILITY(U,$J,358.3,12603,2)
- ;;=^5063336
+ ;;=^5041973
  ;;^UTILITY(U,$J,358.3,12604,0)
- ;;=Z91.19^^54^612^41
+ ;;=S82.444D^^50^549^67
  ;;^UTILITY(U,$J,358.3,12604,1,0)
  ;;=^358.31IA^4^2
  ;;^UTILITY(U,$J,358.3,12604,1,3,0)
- ;;=3^Pt's noncmplnc w oth med'l trmnt & regimen
+ ;;=3^Nondisp Fx,spiral shaft,right fibula,Subsq
  ;;^UTILITY(U,$J,358.3,12604,1,4,0)
- ;;=4^Z91.19
+ ;;=4^S82.444D
  ;;^UTILITY(U,$J,358.3,12604,2)
- ;;=^5063618
+ ;;=^5041957
  ;;^UTILITY(U,$J,358.3,12605,0)
- ;;=Z73.89^^54^612^33
+ ;;=S82.245D^^50^549^66
  ;;^UTILITY(U,$J,358.3,12605,1,0)
  ;;=^358.31IA^4^2
  ;;^UTILITY(U,$J,358.3,12605,1,3,0)
- ;;=3^Prblms related to life mngmt difficulty, oth
+ ;;=3^Nondisp Fx,spiral shaft,left tibia,Subsq
  ;;^UTILITY(U,$J,358.3,12605,1,4,0)
- ;;=4^Z73.89
+ ;;=4^S82.245D
  ;;^UTILITY(U,$J,358.3,12605,2)
- ;;=^5063280
+ ;;=^5041398
  ;;^UTILITY(U,$J,358.3,12606,0)
- ;;=Z55.9^^54^612^32
+ ;;=S82.244D^^50^549^68
  ;;^UTILITY(U,$J,358.3,12606,1,0)
  ;;=^358.31IA^4^2
  ;;^UTILITY(U,$J,358.3,12606,1,3,0)
- ;;=3^Prblms related to educ & literacy, unspec
+ ;;=3^Nondisp Fx,spiral shaft,right tibia,Subsq
  ;;^UTILITY(U,$J,358.3,12606,1,4,0)
- ;;=4^Z55.9
+ ;;=4^S82.244D
  ;;^UTILITY(U,$J,358.3,12606,2)
- ;;=^5063106
+ ;;=^5041382
  ;;^UTILITY(U,$J,358.3,12607,0)
- ;;=Z63.8^^54^612^34
+ ;;=S82.225D^^50^549^70
  ;;^UTILITY(U,$J,358.3,12607,1,0)
  ;;=^358.31IA^4^2
  ;;^UTILITY(U,$J,358.3,12607,1,3,0)
- ;;=3^Prblms related to prim support grp, oth, unspec
+ ;;=3^Nondisp Fx,transverse shaft,left tibia,Subsq
  ;;^UTILITY(U,$J,358.3,12607,1,4,0)
- ;;=4^Z63.8
+ ;;=4^S82.225D
  ;;^UTILITY(U,$J,358.3,12607,2)
- ;;=^5063174
+ ;;=^5041206
  ;;^UTILITY(U,$J,358.3,12608,0)
- ;;=Z63.9^^54^612^35
+ ;;=S82.224D^^50^549^72
  ;;^UTILITY(U,$J,358.3,12608,1,0)
  ;;=^358.31IA^4^2
  ;;^UTILITY(U,$J,358.3,12608,1,3,0)
- ;;=3^Prblms related to prim support grp, unspec
+ ;;=3^Nondisp Fx,transverse shaft,right tibia,Subsq
  ;;^UTILITY(U,$J,358.3,12608,1,4,0)
- ;;=4^Z63.9
+ ;;=4^S82.224D
  ;;^UTILITY(U,$J,358.3,12608,2)
- ;;=^5063175
+ ;;=^5041190
  ;;^UTILITY(U,$J,358.3,12609,0)
- ;;=Z65.8^^54^612^36
+ ;;=S82.425D^^50^549^69
  ;;^UTILITY(U,$J,358.3,12609,1,0)
  ;;=^358.31IA^4^2
  ;;^UTILITY(U,$J,358.3,12609,1,3,0)
- ;;=3^Prblms related to psychosocial circumst, oth
+ ;;=3^Nondisp Fx,transverse shaft,left fibula,Subsq
  ;;^UTILITY(U,$J,358.3,12609,1,4,0)
- ;;=4^Z65.8
+ ;;=4^S82.425D
  ;;^UTILITY(U,$J,358.3,12609,2)
- ;;=^5063185
+ ;;=^5041781
  ;;^UTILITY(U,$J,358.3,12610,0)
- ;;=Z65.9^^54^612^37
+ ;;=S82.424D^^50^549^71
  ;;^UTILITY(U,$J,358.3,12610,1,0)
  ;;=^358.31IA^4^2
  ;;^UTILITY(U,$J,358.3,12610,1,3,0)
- ;;=3^Prblms related to unspec psychosocial circumst
+ ;;=3^Nondisp Fx,transverse shaft,right fibula,Subsq
  ;;^UTILITY(U,$J,358.3,12610,1,4,0)
- ;;=4^Z65.9
+ ;;=4^S82.424D
  ;;^UTILITY(U,$J,358.3,12610,2)
- ;;=^5063186
+ ;;=^5041765
  ;;^UTILITY(U,$J,358.3,12611,0)
- ;;=Z72.0^^54^612^46
+ ;;=M84.464D^^50^549^75
  ;;^UTILITY(U,$J,358.3,12611,1,0)
  ;;=^358.31IA^4^2
  ;;^UTILITY(U,$J,358.3,12611,1,3,0)
- ;;=3^Tobacco use, NOS
+ ;;=3^Pathological Fx, left fibula,Subsq
  ;;^UTILITY(U,$J,358.3,12611,1,4,0)
- ;;=4^Z72.0
+ ;;=4^M84.464D
  ;;^UTILITY(U,$J,358.3,12611,2)
- ;;=^5063255
+ ;;=^5013951
  ;;^UTILITY(U,$J,358.3,12612,0)
- ;;=Z73.5^^54^612^44
+ ;;=M84.463D^^50^549^77
  ;;^UTILITY(U,$J,358.3,12612,1,0)
  ;;=^358.31IA^4^2
  ;;^UTILITY(U,$J,358.3,12612,1,3,0)
- ;;=3^Social role conflict, NEC
+ ;;=3^Pathological Fx, right fibula,Subsq
  ;;^UTILITY(U,$J,358.3,12612,1,4,0)
- ;;=4^Z73.5
+ ;;=4^M84.463D
  ;;^UTILITY(U,$J,358.3,12612,2)
- ;;=^5063273
+ ;;=^5013945
  ;;^UTILITY(U,$J,358.3,12613,0)
- ;;=Z91.130^^54^612^42
+ ;;=M84.462D^^50^549^76
  ;;^UTILITY(U,$J,358.3,12613,1,0)
  ;;=^358.31IA^4^2
  ;;^UTILITY(U,$J,358.3,12613,1,3,0)
- ;;=3^Pt's unintent undrdose of meds regimen d/t age-rel dblity
+ ;;=3^Pathological Fx, left tibia,Subsq
  ;;^UTILITY(U,$J,358.3,12613,1,4,0)
- ;;=4^Z91.130
+ ;;=4^M84.462D
  ;;^UTILITY(U,$J,358.3,12613,2)
- ;;=^5063614
+ ;;=^5013939
  ;;^UTILITY(U,$J,358.3,12614,0)
- ;;=Z91.138^^54^612^43
+ ;;=M84.461D^^50^549^78
  ;;^UTILITY(U,$J,358.3,12614,1,0)
  ;;=^358.31IA^4^2
  ;;^UTILITY(U,$J,358.3,12614,1,3,0)
- ;;=3^Pt's unintent undrdose of meds regimen for oth reason
+ ;;=3^Pathological Fx, right tibia,Subsq
  ;;^UTILITY(U,$J,358.3,12614,1,4,0)
- ;;=4^Z91.138
+ ;;=4^M84.461D
  ;;^UTILITY(U,$J,358.3,12614,2)
- ;;=^5063615
+ ;;=^5013933
  ;;^UTILITY(U,$J,358.3,12615,0)
- ;;=Z95.3^^54^612^38
+ ;;=S89.112D^^50^549^79
  ;;^UTILITY(U,$J,358.3,12615,1,0)
  ;;=^358.31IA^4^2
  ;;^UTILITY(U,$J,358.3,12615,1,3,0)
- ;;=3^Presence of Xenogenic Heart Valve
+ ;;=3^Sltr-haris Type I physeal fx lower end,lt tibia,Subsq
  ;;^UTILITY(U,$J,358.3,12615,1,4,0)
- ;;=4^Z95.3
+ ;;=4^S89.112D
  ;;^UTILITY(U,$J,358.3,12615,2)
- ;;=^5063671
+ ;;=^5137290
  ;;^UTILITY(U,$J,358.3,12616,0)
- ;;=Z63.31^^54^612^1
+ ;;=S89.111D^^50^549^92
  ;;^UTILITY(U,$J,358.3,12616,1,0)
  ;;=^358.31IA^4^2
  ;;^UTILITY(U,$J,358.3,12616,1,3,0)
- ;;=3^Absence of family member d/t military deployment
+ ;;=3^Srtr-haris Type I physeal fx lower end,rt tibia,Subsq
  ;;^UTILITY(U,$J,358.3,12616,1,4,0)
- ;;=4^Z63.31
+ ;;=4^S89.111D
  ;;^UTILITY(U,$J,358.3,12616,2)
- ;;=^5063166
+ ;;=^5043728
  ;;^UTILITY(U,$J,358.3,12617,0)
- ;;=Z71.3^^54^612^6
+ ;;=S89.312D^^50^549^80
  ;;^UTILITY(U,$J,358.3,12617,1,0)
  ;;=^358.31IA^4^2
  ;;^UTILITY(U,$J,358.3,12617,1,3,0)
- ;;=3^Counseling,Dietary
+ ;;=3^Sltr-haris Type I physeal fx lower end,lt fibula,Subsq
  ;;^UTILITY(U,$J,358.3,12617,1,4,0)
- ;;=4^Z71.3
+ ;;=4^S89.312D
  ;;^UTILITY(U,$J,358.3,12617,2)
- ;;=^5063245
+ ;;=^5137368
  ;;^UTILITY(U,$J,358.3,12618,0)
- ;;=Z71.6^^54^612^7
+ ;;=S89.311D^^50^549^93
  ;;^UTILITY(U,$J,358.3,12618,1,0)
  ;;=^358.31IA^4^2
  ;;^UTILITY(U,$J,358.3,12618,1,3,0)
- ;;=3^Counseling,Tobacco Abuse
+ ;;=3^Srtr-haris Type I physeal fx lower end,rt fibula,Subsq
  ;;^UTILITY(U,$J,358.3,12618,1,4,0)
- ;;=4^Z71.6
+ ;;=4^S89.311D
  ;;^UTILITY(U,$J,358.3,12618,2)
- ;;=^5063250
+ ;;=^5043818
  ;;^UTILITY(U,$J,358.3,12619,0)
- ;;=Z69.011^^54^612^12
+ ;;=S89.012D^^50^549^81
  ;;^UTILITY(U,$J,358.3,12619,1,0)
  ;;=^358.31IA^4^2
  ;;^UTILITY(U,$J,358.3,12619,1,3,0)
- ;;=3^Encntr for mntl hlth serv for perp of prntl child abuse
+ ;;=3^Sltr-haris Type I physeal fx upper end,lt tibia,Subsq
  ;;^UTILITY(U,$J,358.3,12619,1,4,0)
- ;;=4^Z69.011
+ ;;=4^S89.012D
  ;;^UTILITY(U,$J,358.3,12619,2)
- ;;=^5063229
+ ;;=^5043650
  ;;^UTILITY(U,$J,358.3,12620,0)
- ;;=Z91.120^^54^612^39
+ ;;=S89.011D^^50^549^94
  ;;^UTILITY(U,$J,358.3,12620,1,0)
  ;;=^358.31IA^4^2
  ;;^UTILITY(U,$J,358.3,12620,1,3,0)
- ;;=3^Pt's intent underdose of meds d/t financial hardship
+ ;;=3^Srtr-haris Type I physeal fx upper end,rt tibia,Subsq
  ;;^UTILITY(U,$J,358.3,12620,1,4,0)
- ;;=4^Z91.120
+ ;;=4^S89.011D
  ;;^UTILITY(U,$J,358.3,12620,2)
- ;;=^5063612
+ ;;=^5043644
  ;;^UTILITY(U,$J,358.3,12621,0)
- ;;=Z91.128^^54^612^40
+ ;;=S89.212D^^50^549^82
  ;;^UTILITY(U,$J,358.3,12621,1,0)
  ;;=^358.31IA^4^2
  ;;^UTILITY(U,$J,358.3,12621,1,3,0)
- ;;=3^Pt's intent underdose of meds d/t oth reasons
+ ;;=3^Sltr-haris Type I physeal fx upper end,lt fibula,Subsq
  ;;^UTILITY(U,$J,358.3,12621,1,4,0)
- ;;=4^Z91.128
+ ;;=4^S89.212D
  ;;^UTILITY(U,$J,358.3,12621,2)
- ;;=^5063613
+ ;;=^5043776
  ;;^UTILITY(U,$J,358.3,12622,0)
- ;;=Z63.71^^54^612^45
+ ;;=S89.211D^^50^549^95
  ;;^UTILITY(U,$J,358.3,12622,1,0)
  ;;=^358.31IA^4^2
  ;;^UTILITY(U,$J,358.3,12622,1,3,0)
- ;;=3^Stress on family d/t rtrn of family member from deployment
+ ;;=3^Srtr-haris Type I physeal fx upper end,rt fibula,Subsq
  ;;^UTILITY(U,$J,358.3,12622,1,4,0)
- ;;=4^Z63.71
+ ;;=4^S89.211D
  ;;^UTILITY(U,$J,358.3,12622,2)
- ;;=^5063171
+ ;;=^5043770
  ;;^UTILITY(U,$J,358.3,12623,0)
- ;;=Z79.84^^54^612^30
+ ;;=S89.122D^^50^549^83
  ;;^UTILITY(U,$J,358.3,12623,1,0)
  ;;=^358.31IA^4^2
  ;;^UTILITY(U,$J,358.3,12623,1,3,0)
- ;;=3^Long term (current) use of oral hypoglycemic drugs
+ ;;=3^Sltr-haris Type II physeal fx lower end,lt tibia,Subsq
  ;;^UTILITY(U,$J,358.3,12623,1,4,0)
- ;;=4^Z79.84
+ ;;=4^S89.122D
  ;;^UTILITY(U,$J,358.3,12623,2)
- ;;=^5140432
+ ;;=^5137296
  ;;^UTILITY(U,$J,358.3,12624,0)
- ;;=Z03.89^^54^613^1
+ ;;=S89.121D^^50^549^96
  ;;^UTILITY(U,$J,358.3,12624,1,0)
  ;;=^358.31IA^4^2
  ;;^UTILITY(U,$J,358.3,12624,1,3,0)
- ;;=3^Observation for Suspected Diseases & Condition Ruled Out
+ ;;=3^Srtr-haris Type II physeal fx lower end,rt tibia,Subsq
  ;;^UTILITY(U,$J,358.3,12624,1,4,0)
- ;;=4^Z03.89
+ ;;=4^S89.121D
  ;;^UTILITY(U,$J,358.3,12624,2)
- ;;=^5062656
- ;;^UTILITY(U,$J,358.3,12625,0)
- ;;=E11.9^^54^614^13
- ;;^UTILITY(U,$J,358.3,12625,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,12625,1,3,0)
- ;;=3^Type 2 DM w/o Complications
- ;;^UTILITY(U,$J,358.3,12625,1,4,0)
- ;;=4^E11.9
- ;;^UTILITY(U,$J,358.3,12625,2)
- ;;=^5002666
- ;;^UTILITY(U,$J,358.3,12626,0)
- ;;=E11.65^^54^614^9
- ;;^UTILITY(U,$J,358.3,12626,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,12626,1,3,0)
- ;;=3^Type 2 DM w/ Hyperglycemia
- ;;^UTILITY(U,$J,358.3,12626,1,4,0)
- ;;=4^E11.65
- ;;^UTILITY(U,$J,358.3,12626,2)
- ;;=^5002663
- ;;^UTILITY(U,$J,358.3,12627,0)
- ;;=E10.9^^54^614^6
- ;;^UTILITY(U,$J,358.3,12627,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,12627,1,3,0)
- ;;=3^Type 1 DM w/o Complications
- ;;^UTILITY(U,$J,358.3,12627,1,4,0)
- ;;=4^E10.9
- ;;^UTILITY(U,$J,358.3,12627,2)
- ;;=^5002626
- ;;^UTILITY(U,$J,358.3,12628,0)
- ;;=E10.65^^54^614^4
- ;;^UTILITY(U,$J,358.3,12628,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,12628,1,3,0)
- ;;=3^Type 1 DM w/ Hyperglycemia
- ;;^UTILITY(U,$J,358.3,12628,1,4,0)
- ;;=4^E10.65
- ;;^UTILITY(U,$J,358.3,12628,2)
- ;;=^5002623
- ;;^UTILITY(U,$J,358.3,12629,0)
- ;;=E11.42^^54^614^7
- ;;^UTILITY(U,$J,358.3,12629,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,12629,1,3,0)
- ;;=3^Type 2 DM w/ Diabetic Polyneuropathy
- ;;^UTILITY(U,$J,358.3,12629,1,4,0)
- ;;=4^E11.42
- ;;^UTILITY(U,$J,358.3,12629,2)
- ;;=^5002646
- ;;^UTILITY(U,$J,358.3,12630,0)
- ;;=E10.42^^54^614^2
- ;;^UTILITY(U,$J,358.3,12630,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,12630,1,3,0)
- ;;=3^Type 1 DM w/ Diabetic Polyneuropathy
- ;;^UTILITY(U,$J,358.3,12630,1,4,0)
- ;;=4^E10.42
- ;;^UTILITY(U,$J,358.3,12630,2)
- ;;=^5002606
- ;;^UTILITY(U,$J,358.3,12631,0)
- ;;=E13.42^^54^614^1
- ;;^UTILITY(U,$J,358.3,12631,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,12631,1,3,0)
- ;;=3^Secondary Type DM w/ Diabetic Polyneuropathy
- ;;^UTILITY(U,$J,358.3,12631,1,4,0)
- ;;=4^E13.42
+ ;;=^5043740

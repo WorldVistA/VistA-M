@@ -1,5 +1,5 @@
 SROESNR0 ;BIR/ADM - NURSE REPORT E-SIG UTILITY ;11/01/2011
- ;;3.0;Surgery;**100,129,147,153,175,176,182,184**;24 Jun 93;Build 35
+ ;;3.0;Surgery;**100,129,147,153,175,176,182,184,200**;24 Jun 93;Build 9
  ;** NOTICE: This routine is part of an implementation of a nationally
  ;**         controlled procedure. Local modifications to this routine
  ;**         are prohibited.
@@ -145,3 +145,4 @@ KGEJ ;;^UNET Verification by Surgeon-130,750^VER1;22
 KGEA ;;^Surgeon Verifying Organ Prior to Anesthesia-130,751^VER1;23
 KGEB ;;^Donor Organ Verification Prior to Anesthesia-130,752^VER1;24
 KGEC ;;^Surgeon Verifying the Organ Prior to Transplant-130,753^VER1;25
+KBJJF ;;^Robotic Assistance (Y/N)-130,2006^OP;3

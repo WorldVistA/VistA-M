@@ -1,128 +1,118 @@
-IBDEI17K ; ; 04-FEB-2020
- ;;3.0;IB ENCOUNTER FORM IMP/EXP;;FEB 04, 2020
+IBDEI17K ; ; 01-FEB-2022
+ ;;3.0;IB ENCOUNTER FORM IMP/EXP;;FEB 01, 2022
  Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,999) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
- ;;^UTILITY(U,$J,358.3,19403,1,0)
+ ;;^UTILITY(U,$J,358.3,19623,1,3,0)
+ ;;=3^Presence of cardiac pacemaker
+ ;;^UTILITY(U,$J,358.3,19623,1,4,0)
+ ;;=4^Z95.0
+ ;;^UTILITY(U,$J,358.3,19623,2)
+ ;;=^5063668
+ ;;^UTILITY(U,$J,358.3,19624,0)
+ ;;=Z95.5^^67^878^31
+ ;;^UTILITY(U,$J,358.3,19624,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,19403,1,3,0)
- ;;=3^Rheumatoid nodule, left hip
- ;;^UTILITY(U,$J,358.3,19403,1,4,0)
- ;;=4^M06.352
- ;;^UTILITY(U,$J,358.3,19403,2)
- ;;=^5010110
- ;;^UTILITY(U,$J,358.3,19404,0)
- ;;=M06.362^^93^992^167
- ;;^UTILITY(U,$J,358.3,19404,1,0)
+ ;;^UTILITY(U,$J,358.3,19624,1,3,0)
+ ;;=3^Presence of coronary angioplasty implant and graft
+ ;;^UTILITY(U,$J,358.3,19624,1,4,0)
+ ;;=4^Z95.5
+ ;;^UTILITY(U,$J,358.3,19624,2)
+ ;;=^5063673
+ ;;^UTILITY(U,$J,358.3,19625,0)
+ ;;=I21.3^^67^878^33
+ ;;^UTILITY(U,$J,358.3,19625,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,19404,1,3,0)
- ;;=3^Rheumatoid nodule, left knee
- ;;^UTILITY(U,$J,358.3,19404,1,4,0)
- ;;=4^M06.362
- ;;^UTILITY(U,$J,358.3,19404,2)
- ;;=^5010113
- ;;^UTILITY(U,$J,358.3,19405,0)
- ;;=M06.312^^93^992^168
- ;;^UTILITY(U,$J,358.3,19405,1,0)
+ ;;^UTILITY(U,$J,358.3,19625,1,3,0)
+ ;;=3^ST elevation (STEMI) myocardial infarction of unsp site
+ ;;^UTILITY(U,$J,358.3,19625,1,4,0)
+ ;;=4^I21.3
+ ;;^UTILITY(U,$J,358.3,19625,2)
+ ;;=^5007087
+ ;;^UTILITY(U,$J,358.3,19626,0)
+ ;;=J43.0^^67^878^35
+ ;;^UTILITY(U,$J,358.3,19626,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,19405,1,3,0)
- ;;=3^Rheumatoid nodule, left shoulder
- ;;^UTILITY(U,$J,358.3,19405,1,4,0)
- ;;=4^M06.312
- ;;^UTILITY(U,$J,358.3,19405,2)
- ;;=^5010098
- ;;^UTILITY(U,$J,358.3,19406,0)
- ;;=M06.332^^93^992^169
- ;;^UTILITY(U,$J,358.3,19406,1,0)
+ ;;^UTILITY(U,$J,358.3,19626,1,3,0)
+ ;;=3^Unilateral pulmonary emphysema [MacLeod's syndrome]
+ ;;^UTILITY(U,$J,358.3,19626,1,4,0)
+ ;;=4^J43.0
+ ;;^UTILITY(U,$J,358.3,19626,2)
+ ;;=^5008235
+ ;;^UTILITY(U,$J,358.3,19627,0)
+ ;;=I50.40^^67^878^19
+ ;;^UTILITY(U,$J,358.3,19627,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,19406,1,3,0)
- ;;=3^Rheumatoid nodule, left wrist
- ;;^UTILITY(U,$J,358.3,19406,1,4,0)
- ;;=4^M06.332
- ;;^UTILITY(U,$J,358.3,19406,2)
- ;;=^5010104
- ;;^UTILITY(U,$J,358.3,19407,0)
- ;;=M06.371^^93^992^170
- ;;^UTILITY(U,$J,358.3,19407,1,0)
+ ;;^UTILITY(U,$J,358.3,19627,1,3,0)
+ ;;=3^Combined systolic and diastolic (congestive) hrt fail,Unspec
+ ;;^UTILITY(U,$J,358.3,19627,1,4,0)
+ ;;=4^I50.40
+ ;;^UTILITY(U,$J,358.3,19627,2)
+ ;;=^5007247
+ ;;^UTILITY(U,$J,358.3,19628,0)
+ ;;=I50.30^^67^878^21
+ ;;^UTILITY(U,$J,358.3,19628,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,19407,1,3,0)
- ;;=3^Rheumatoid nodule, right ankle and foot
- ;;^UTILITY(U,$J,358.3,19407,1,4,0)
- ;;=4^M06.371
- ;;^UTILITY(U,$J,358.3,19407,2)
- ;;=^5010115
- ;;^UTILITY(U,$J,358.3,19408,0)
- ;;=M06.321^^93^992^171
- ;;^UTILITY(U,$J,358.3,19408,1,0)
+ ;;^UTILITY(U,$J,358.3,19628,1,3,0)
+ ;;=3^Diastolic (congestive) heart failure,Unspec
+ ;;^UTILITY(U,$J,358.3,19628,1,4,0)
+ ;;=4^I50.30
+ ;;^UTILITY(U,$J,358.3,19628,2)
+ ;;=^5007243
+ ;;^UTILITY(U,$J,358.3,19629,0)
+ ;;=I50.20^^67^878^34
+ ;;^UTILITY(U,$J,358.3,19629,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,19408,1,3,0)
- ;;=3^Rheumatoid nodule, right elbow
- ;;^UTILITY(U,$J,358.3,19408,1,4,0)
- ;;=4^M06.321
- ;;^UTILITY(U,$J,358.3,19408,2)
- ;;=^5010100
- ;;^UTILITY(U,$J,358.3,19409,0)
- ;;=M06.341^^93^992^172
- ;;^UTILITY(U,$J,358.3,19409,1,0)
+ ;;^UTILITY(U,$J,358.3,19629,1,3,0)
+ ;;=3^Systolic (congestive) heart failure,Unspec
+ ;;^UTILITY(U,$J,358.3,19629,1,4,0)
+ ;;=4^I50.20
+ ;;^UTILITY(U,$J,358.3,19629,2)
+ ;;=^5007239
+ ;;^UTILITY(U,$J,358.3,19630,0)
+ ;;=T84.81XA^^67^879^4
+ ;;^UTILITY(U,$J,358.3,19630,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,19409,1,3,0)
- ;;=3^Rheumatoid nodule, right hand
- ;;^UTILITY(U,$J,358.3,19409,1,4,0)
- ;;=4^M06.341
- ;;^UTILITY(U,$J,358.3,19409,2)
- ;;=^5010106
- ;;^UTILITY(U,$J,358.3,19410,0)
- ;;=M06.351^^93^992^173
- ;;^UTILITY(U,$J,358.3,19410,1,0)
+ ;;^UTILITY(U,$J,358.3,19630,1,3,0)
+ ;;=3^Embolism due to internal orthopedic prosth dev/grft, init
+ ;;^UTILITY(U,$J,358.3,19630,1,4,0)
+ ;;=4^T84.81XA
+ ;;^UTILITY(U,$J,358.3,19630,2)
+ ;;=^5055454
+ ;;^UTILITY(U,$J,358.3,19631,0)
+ ;;=T84.81XS^^67^879^5
+ ;;^UTILITY(U,$J,358.3,19631,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,19410,1,3,0)
- ;;=3^Rheumatoid nodule, right hip
- ;;^UTILITY(U,$J,358.3,19410,1,4,0)
- ;;=4^M06.351
- ;;^UTILITY(U,$J,358.3,19410,2)
- ;;=^5010109
- ;;^UTILITY(U,$J,358.3,19411,0)
- ;;=M06.361^^93^992^174
- ;;^UTILITY(U,$J,358.3,19411,1,0)
+ ;;^UTILITY(U,$J,358.3,19631,1,3,0)
+ ;;=3^Embolism due to internal orthopedic prosth dev/grft, sequela
+ ;;^UTILITY(U,$J,358.3,19631,1,4,0)
+ ;;=4^T84.81XS
+ ;;^UTILITY(U,$J,358.3,19631,2)
+ ;;=^5055456
+ ;;^UTILITY(U,$J,358.3,19632,0)
+ ;;=T84.81XD^^67^879^6
+ ;;^UTILITY(U,$J,358.3,19632,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,19411,1,3,0)
- ;;=3^Rheumatoid nodule, right knee
- ;;^UTILITY(U,$J,358.3,19411,1,4,0)
- ;;=4^M06.361
- ;;^UTILITY(U,$J,358.3,19411,2)
- ;;=^5010112
- ;;^UTILITY(U,$J,358.3,19412,0)
- ;;=M06.311^^93^992^175
- ;;^UTILITY(U,$J,358.3,19412,1,0)
+ ;;^UTILITY(U,$J,358.3,19632,1,3,0)
+ ;;=3^Embolism due to internal orthopedic prosth dev/grft, subs
+ ;;^UTILITY(U,$J,358.3,19632,1,4,0)
+ ;;=4^T84.81XD
+ ;;^UTILITY(U,$J,358.3,19632,2)
+ ;;=^5055455
+ ;;^UTILITY(U,$J,358.3,19633,0)
+ ;;=T84.82XA^^67^879^7
+ ;;^UTILITY(U,$J,358.3,19633,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,19412,1,3,0)
- ;;=3^Rheumatoid nodule, right shoulder
- ;;^UTILITY(U,$J,358.3,19412,1,4,0)
- ;;=4^M06.311
- ;;^UTILITY(U,$J,358.3,19412,2)
- ;;=^5010097
- ;;^UTILITY(U,$J,358.3,19413,0)
- ;;=M06.331^^93^992^176
- ;;^UTILITY(U,$J,358.3,19413,1,0)
+ ;;^UTILITY(U,$J,358.3,19633,1,3,0)
+ ;;=3^Fibrosis due to internal orthopedic prosth dev/grft, init
+ ;;^UTILITY(U,$J,358.3,19633,1,4,0)
+ ;;=4^T84.82XA
+ ;;^UTILITY(U,$J,358.3,19633,2)
+ ;;=^5055457
+ ;;^UTILITY(U,$J,358.3,19634,0)
+ ;;=T84.82XD^^67^879^8
+ ;;^UTILITY(U,$J,358.3,19634,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,19413,1,3,0)
- ;;=3^Rheumatoid nodule, right wrist
- ;;^UTILITY(U,$J,358.3,19413,1,4,0)
- ;;=4^M06.331
- ;;^UTILITY(U,$J,358.3,19413,2)
- ;;=^5010103
- ;;^UTILITY(U,$J,358.3,19414,0)
- ;;=M06.38^^93^992^177
- ;;^UTILITY(U,$J,358.3,19414,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,19414,1,3,0)
- ;;=3^Rheumatoid nodule, vertebrae
- ;;^UTILITY(U,$J,358.3,19414,1,4,0)
- ;;=4^M06.38
- ;;^UTILITY(U,$J,358.3,19414,2)
- ;;=^5010118
- ;;^UTILITY(U,$J,358.3,19415,0)
- ;;=M05.572^^93^992^134
- ;;^UTILITY(U,$J,358.3,19415,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,19415,1,3,0)
- ;;=3^Rheu polyneurop w rheu arthrit of left ank/ft
+ ;;^UTILITY(U,$J,358.3,19634,1,3,0)
+ ;;=3^Fibrosis due to internal orthopedic prosth dev/grft, subs
+ ;;^UTILITY(U,$J,358.3,19634,1,4,0)
+ ;;=4^T84.82XD

@@ -1,5 +1,5 @@
-VAFHLZPD ;ALB/KCL/PHH,TDM - Create generic HL7 ZPD segment ; 8/15/08 11:42am
- ;;5.3;Registration;**94,122,160,220,247,545,564,568,677,653,688,1002**;Aug 13, 1993;Build 10
+VAFHLZPD ;ALB/KCL/PHH,TDM,KUM - Create generic HL7 ZPD segment ; 8/15/08 11:42am
+ ;;5.3;Registration;**94,122,160,220,247,545,564,568,677,653,688,1002,1064**;Aug 13, 1993;Build 41
  ;
  ;
 EN(DFN,VAFSTR) ; This generic extrinsic function was designed to return
@@ -217,6 +217,20 @@ GETDATA(DFN,VAFSTR,ARRAY) ;Get info needed to build segment
  I VAFSTR[35 S X=$P($G(^DPT(DFN,.3)),U,9),X1=$P($G(^DIC(35,+X,0)),U,2),@ARRAY@(35)=$S(X1]"":X1,1:HLQ)
  ; Sequence 40 - Emergency Response Indicator
  I VAFSTR[40 S X=$P($G(^DPT(DFN,.18)),U),@ARRAY@(40)=$S(X]"":X,1:HLQ)
+ ; KUM - DG*5.3*1064 - MegaBus Changes
+ ; Sequence 41 - VOA Attachments Indicator - Not used - Added to make sure Seq 42 to 45 communication to ES
+ I VAFSTR[41 S X="",@ARRAY@(41)=$S(X]"":X,1:HLQ)
+ ;
+ N VAFINDARR
+ D GETS^DIQ(2,DFN,".571:.574","I","VAFINDARR")
+ ; Sequence 42 - Indian Self Identification
+ I VAFSTR[42 S X=VAFINDARR(2,DFN_",",.571,"I"),X=$S(X="Y":1,X="N":0,1:""),@ARRAY@(42)=$S(X]"":X,1:HLQ)
+ ; Sequence 43 - Indian Attestation Date
+ I VAFSTR[43 S X=VAFINDARR(2,DFN_",",.573,"I"),X1=$$HLDATE^HLFNC(X),@ARRAY@(43)=$S(X1]"":X1,1:HLQ)
+ ; Sequence 44 - Indian Start Date
+ I VAFSTR[44 S X=VAFINDARR(2,DFN_",",.572,"I"),X1=$$HLDATE^HLFNC(X),@ARRAY@(44)=$S(X1]"":X1,1:HLQ)
+ ; Sequence 45 - Indian End Date
+ I VAFSTR[45 S X=VAFINDARR(2,DFN_",",.574,"I"),X1=$$HLDATE^HLFNC(X),@ARRAY@(45)=$S(X1]"":X1,1:HLQ)
  ;Done - cleanup & quit
  D KVA^VADPT
  Q

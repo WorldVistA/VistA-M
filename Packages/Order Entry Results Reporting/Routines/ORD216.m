@@ -1,0 +1,31 @@
+ORD216 ; COMPILED XREF FOR FILE #100.011 ; 07/29/21
+ ; 
+ S DA=0
+A1 ;
+ I $D(DISET) K DIKLM S:DIKM1=1 DIKLM=1 G @DIKM1
+0 ;
+A S DA=$O(^OR(100,DA(1),11,DA)) I DA'>0 S DA=0 G END
+1 ;
+ S DIKZ(0)=$G(^OR(100,DA(1),11,DA,0))
+ S X=$P($G(DIKZ(0)),U,1)
+ I X'="" S ^OR(100,DA(1),11,"B",$E(X,1,30),DA)=""
+CR1 S DIXR=1600
+ K X
+ S X(1)=$P(DIKZ(0),U,5)
+ S X=$G(X(1))
+ I $G(X(1))]"" D
+ . K X1,X2 M X1=X,X2=X
+ . S ^OR(100,"EPRTAU",X,DA(1),DA)=""
+CR2 S DIXR=1601
+ K X
+ S DIKZ(0)=$G(^OR(100,DA(1),11,DA,0))
+ S X(1)=$P(DIKZ(0),U,3)
+ S X=$P($G(^OR(100,DA(1),0)),"^",7)
+ S:$D(X)#2 X(2)=X
+ S X=$G(X(1))
+ I $G(X(1))]"",$G(X(2))]"" D
+ . K X1,X2 M X1=X,X2=X
+ . S ^OR(100,"EPRTRDT",X(1),X(2),DA(1),DA)=""
+CR3 K X
+ G:'$D(DIKLM) A Q:$D(DISET)
+END G ^ORD217

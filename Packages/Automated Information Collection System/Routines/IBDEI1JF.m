@@ -1,126 +1,128 @@
-IBDEI1JF ; ; 04-FEB-2020
- ;;3.0;IB ENCOUNTER FORM IMP/EXP;;FEB 04, 2020
+IBDEI1JF ; ; 01-FEB-2022
+ ;;3.0;IB ENCOUNTER FORM IMP/EXP;;FEB 01, 2022
  Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,999) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
- ;;^UTILITY(U,$J,358.3,24580,0)
- ;;=A54.02^^107^1208^52
- ;;^UTILITY(U,$J,358.3,24580,1,0)
+ ;;^UTILITY(U,$J,358.3,24888,2)
+ ;;=^5062628
+ ;;^UTILITY(U,$J,358.3,24889,0)
+ ;;=Z01.810^^85^1096^4
+ ;;^UTILITY(U,$J,358.3,24889,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,24580,1,3,0)
- ;;=3^Gonococcal Vulvovaginitis,Unspec
- ;;^UTILITY(U,$J,358.3,24580,1,4,0)
- ;;=4^A54.02
- ;;^UTILITY(U,$J,358.3,24580,2)
- ;;=^5000313
- ;;^UTILITY(U,$J,358.3,24581,0)
- ;;=A54.1^^107^1208^49
- ;;^UTILITY(U,$J,358.3,24581,1,0)
+ ;;^UTILITY(U,$J,358.3,24889,1,3,0)
+ ;;=3^Preprocedural Cardiovascular Exam
+ ;;^UTILITY(U,$J,358.3,24889,1,4,0)
+ ;;=4^Z01.810
+ ;;^UTILITY(U,$J,358.3,24889,2)
+ ;;=^5062625
+ ;;^UTILITY(U,$J,358.3,24890,0)
+ ;;=Z48.89^^85^1096^7
+ ;;^UTILITY(U,$J,358.3,24890,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,24581,1,3,0)
- ;;=3^Gonococcal Infection Lower GU Tract w/ Periureth & Acc Gland Abscess
- ;;^UTILITY(U,$J,358.3,24581,1,4,0)
- ;;=4^A54.1
- ;;^UTILITY(U,$J,358.3,24581,2)
- ;;=^5000316
- ;;^UTILITY(U,$J,358.3,24582,0)
- ;;=A54.01^^107^1208^48
- ;;^UTILITY(U,$J,358.3,24582,1,0)
+ ;;^UTILITY(U,$J,358.3,24890,1,3,0)
+ ;;=3^Surgical Aftercare,Oth Specified
+ ;;^UTILITY(U,$J,358.3,24890,1,4,0)
+ ;;=4^Z48.89
+ ;;^UTILITY(U,$J,358.3,24890,2)
+ ;;=^5063055
+ ;;^UTILITY(U,$J,358.3,24891,0)
+ ;;=Z51.89^^85^1096^1
+ ;;^UTILITY(U,$J,358.3,24891,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,24582,1,3,0)
- ;;=3^Gonococcal Cystitis & Urethritis,Unspec
- ;;^UTILITY(U,$J,358.3,24582,1,4,0)
- ;;=4^A54.01
- ;;^UTILITY(U,$J,358.3,24582,2)
- ;;=^5000312
- ;;^UTILITY(U,$J,358.3,24583,0)
- ;;=B37.49^^107^1208^14
- ;;^UTILITY(U,$J,358.3,24583,1,0)
+ ;;^UTILITY(U,$J,358.3,24891,1,3,0)
+ ;;=3^Aftercare,Oth Specified
+ ;;^UTILITY(U,$J,358.3,24891,1,4,0)
+ ;;=4^Z51.89
+ ;;^UTILITY(U,$J,358.3,24891,2)
+ ;;=^5063065
+ ;;^UTILITY(U,$J,358.3,24892,0)
+ ;;=Z71.9^^85^1096^2
+ ;;^UTILITY(U,$J,358.3,24892,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,24583,1,3,0)
- ;;=3^Candidiasis Urogenital,Other
- ;;^UTILITY(U,$J,358.3,24583,1,4,0)
- ;;=4^B37.49
- ;;^UTILITY(U,$J,358.3,24583,2)
- ;;=^5000618
- ;;^UTILITY(U,$J,358.3,24584,0)
- ;;=B37.41^^107^1208^13
- ;;^UTILITY(U,$J,358.3,24584,1,0)
+ ;;^UTILITY(U,$J,358.3,24892,1,3,0)
+ ;;=3^Counseling,Unspec
+ ;;^UTILITY(U,$J,358.3,24892,1,4,0)
+ ;;=4^Z71.9
+ ;;^UTILITY(U,$J,358.3,24892,2)
+ ;;=^5063254
+ ;;^UTILITY(U,$J,358.3,24893,0)
+ ;;=Z01.89^^85^1096^6
+ ;;^UTILITY(U,$J,358.3,24893,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,24584,1,3,0)
- ;;=3^Candidal Cystitis & Urethritis
- ;;^UTILITY(U,$J,358.3,24584,1,4,0)
- ;;=4^B37.41
- ;;^UTILITY(U,$J,358.3,24584,2)
- ;;=^5000616
- ;;^UTILITY(U,$J,358.3,24585,0)
- ;;=B37.42^^107^1208^12
- ;;^UTILITY(U,$J,358.3,24585,1,0)
+ ;;^UTILITY(U,$J,358.3,24893,1,3,0)
+ ;;=3^Special Exam,Oth Specified
+ ;;^UTILITY(U,$J,358.3,24893,1,4,0)
+ ;;=4^Z01.89
+ ;;^UTILITY(U,$J,358.3,24893,2)
+ ;;=^5062632
+ ;;^UTILITY(U,$J,358.3,24894,0)
+ ;;=Z01.811^^85^1096^5
+ ;;^UTILITY(U,$J,358.3,24894,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,24585,1,3,0)
- ;;=3^Candidal Balanitis
- ;;^UTILITY(U,$J,358.3,24585,1,4,0)
- ;;=4^B37.42
- ;;^UTILITY(U,$J,358.3,24585,2)
- ;;=^5000617
- ;;^UTILITY(U,$J,358.3,24586,0)
- ;;=A59.03^^107^1208^108
- ;;^UTILITY(U,$J,358.3,24586,1,0)
+ ;;^UTILITY(U,$J,358.3,24894,1,3,0)
+ ;;=3^Preprocedural Respiratory Exam
+ ;;^UTILITY(U,$J,358.3,24894,1,4,0)
+ ;;=4^Z01.811
+ ;;^UTILITY(U,$J,358.3,24894,2)
+ ;;=^5062626
+ ;;^UTILITY(U,$J,358.3,24895,0)
+ ;;=R45.851^^85^1097^3
+ ;;^UTILITY(U,$J,358.3,24895,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,24586,1,3,0)
- ;;=3^Trichomonal Cystitis & Urethritis
- ;;^UTILITY(U,$J,358.3,24586,1,4,0)
- ;;=4^A59.03
- ;;^UTILITY(U,$J,358.3,24586,2)
- ;;=^5000349
- ;;^UTILITY(U,$J,358.3,24587,0)
- ;;=E87.6^^107^1208^61
- ;;^UTILITY(U,$J,358.3,24587,1,0)
+ ;;^UTILITY(U,$J,358.3,24895,1,3,0)
+ ;;=3^Suicidal Ideations
+ ;;^UTILITY(U,$J,358.3,24895,1,4,0)
+ ;;=4^R45.851
+ ;;^UTILITY(U,$J,358.3,24895,2)
+ ;;=^5019474
+ ;;^UTILITY(U,$J,358.3,24896,0)
+ ;;=T14.91XA^^85^1097^4
+ ;;^UTILITY(U,$J,358.3,24896,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,24587,1,3,0)
- ;;=3^Hypokalemia
- ;;^UTILITY(U,$J,358.3,24587,1,4,0)
- ;;=4^E87.6
- ;;^UTILITY(U,$J,358.3,24587,2)
- ;;=^60610
- ;;^UTILITY(U,$J,358.3,24588,0)
- ;;=F52.0^^107^1208^60
- ;;^UTILITY(U,$J,358.3,24588,1,0)
+ ;;^UTILITY(U,$J,358.3,24896,1,3,0)
+ ;;=3^Suicide Attempt,Initial Encntr
+ ;;^UTILITY(U,$J,358.3,24896,1,4,0)
+ ;;=4^T14.91XA
+ ;;^UTILITY(U,$J,358.3,24896,2)
+ ;;=^5151779
+ ;;^UTILITY(U,$J,358.3,24897,0)
+ ;;=T14.91XD^^85^1097^6
+ ;;^UTILITY(U,$J,358.3,24897,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,24588,1,3,0)
- ;;=3^Hypoactive Sexual Desire Disorder
- ;;^UTILITY(U,$J,358.3,24588,1,4,0)
- ;;=4^F52.0
- ;;^UTILITY(U,$J,358.3,24588,2)
- ;;=^5003618
- ;;^UTILITY(U,$J,358.3,24589,0)
- ;;=F52.22^^107^1208^103
- ;;^UTILITY(U,$J,358.3,24589,1,0)
+ ;;^UTILITY(U,$J,358.3,24897,1,3,0)
+ ;;=3^Suicide Attempt,Subsequent Encntr
+ ;;^UTILITY(U,$J,358.3,24897,1,4,0)
+ ;;=4^T14.91XD
+ ;;^UTILITY(U,$J,358.3,24897,2)
+ ;;=^5151780
+ ;;^UTILITY(U,$J,358.3,24898,0)
+ ;;=T14.91XS^^85^1097^5
+ ;;^UTILITY(U,$J,358.3,24898,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,24589,1,3,0)
- ;;=3^Sexual Arousal Disorder,Female
- ;;^UTILITY(U,$J,358.3,24589,1,4,0)
- ;;=4^F52.22
- ;;^UTILITY(U,$J,358.3,24589,2)
- ;;=^5003621
- ;;^UTILITY(U,$J,358.3,24590,0)
- ;;=F52.8^^107^1208^104
- ;;^UTILITY(U,$J,358.3,24590,1,0)
+ ;;^UTILITY(U,$J,358.3,24898,1,3,0)
+ ;;=3^Suicide Attempt,Sequela
+ ;;^UTILITY(U,$J,358.3,24898,1,4,0)
+ ;;=4^T14.91XS
+ ;;^UTILITY(U,$J,358.3,24898,2)
+ ;;=^5151781
+ ;;^UTILITY(U,$J,358.3,24899,0)
+ ;;=Z91.51^^85^1097^2
+ ;;^UTILITY(U,$J,358.3,24899,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,24590,1,3,0)
- ;;=3^Sexual Dysfnct Not d/t Substance/Known Physiological Cond
- ;;^UTILITY(U,$J,358.3,24590,1,4,0)
- ;;=4^F52.8
- ;;^UTILITY(U,$J,358.3,24590,2)
- ;;=^5003624
- ;;^UTILITY(U,$J,358.3,24591,0)
- ;;=F52.21^^107^1208^33
- ;;^UTILITY(U,$J,358.3,24591,1,0)
+ ;;^UTILITY(U,$J,358.3,24899,1,3,0)
+ ;;=3^Personal Hx of Suicidal Behavior
+ ;;^UTILITY(U,$J,358.3,24899,1,4,0)
+ ;;=4^Z91.51
+ ;;^UTILITY(U,$J,358.3,24899,2)
+ ;;=^5161317
+ ;;^UTILITY(U,$J,358.3,24900,0)
+ ;;=Z91.52^^85^1097^1
+ ;;^UTILITY(U,$J,358.3,24900,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,24591,1,3,0)
- ;;=3^Erectile Disorder,Male (Psychogenic)
- ;;^UTILITY(U,$J,358.3,24591,1,4,0)
- ;;=4^F52.21
- ;;^UTILITY(U,$J,358.3,24591,2)
- ;;=^5003620
- ;;^UTILITY(U,$J,358.3,24592,0)
- ;;=I12.9^^107^1208^59
+ ;;^UTILITY(U,$J,358.3,24900,1,3,0)
+ ;;=3^Personal Hx of Non-Suicidal Self-Harm
+ ;;^UTILITY(U,$J,358.3,24900,1,4,0)
+ ;;=4^Z91.52
+ ;;^UTILITY(U,$J,358.3,24900,2)
+ ;;=^5161318
+ ;;^UTILITY(U,$J,358.3,24901,0)
+ ;;=64415^^86^1098^4^^^^1

@@ -1,684 +1,672 @@
-IBDEI013 ; ; 01-MAY-2020
- ;;3.0;IB ENCOUNTER FORM IMP/EXP;;MAY 01, 2020
+IBDEI013 ; ; 01-AUG-2022
+ ;;3.0;IB ENCOUNTER FORM IMP/EXP;;AUG 01, 2022
  Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,999) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
+ ;;^UTILITY(U,$J,358.3,2120,1,4,0)
+ ;;=4^H54.62
+ ;;^UTILITY(U,$J,358.3,2120,2)
+ ;;=^5133520
+ ;;^UTILITY(U,$J,358.3,2121,0)
+ ;;=H54.7^^18^140^77
+ ;;^UTILITY(U,$J,358.3,2121,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,2121,1,3,0)
+ ;;=3^Visual Loss,Unspec
+ ;;^UTILITY(U,$J,358.3,2121,1,4,0)
+ ;;=4^H54.7
+ ;;^UTILITY(U,$J,358.3,2121,2)
+ ;;=^5006368
+ ;;^UTILITY(U,$J,358.3,2122,0)
+ ;;=H54.8^^18^140^37
+ ;;^UTILITY(U,$J,358.3,2122,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,2122,1,3,0)
+ ;;=3^Legal Blindness,USA Definition
+ ;;^UTILITY(U,$J,358.3,2122,1,4,0)
+ ;;=4^H54.8
+ ;;^UTILITY(U,$J,358.3,2122,2)
+ ;;=^5006369
+ ;;^UTILITY(U,$J,358.3,2123,0)
+ ;;=H51.11^^18^140^28
+ ;;^UTILITY(U,$J,358.3,2123,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,2123,1,3,0)
+ ;;=3^Convergence Insufficiency
+ ;;^UTILITY(U,$J,358.3,2123,1,4,0)
+ ;;=4^H51.11
+ ;;^UTILITY(U,$J,358.3,2123,2)
+ ;;=^5006251
+ ;;^UTILITY(U,$J,358.3,2124,0)
+ ;;=H51.12^^18^140^27
+ ;;^UTILITY(U,$J,358.3,2124,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,2124,1,3,0)
+ ;;=3^Convergence Excess
+ ;;^UTILITY(U,$J,358.3,2124,1,4,0)
+ ;;=4^H51.12
+ ;;^UTILITY(U,$J,358.3,2124,2)
+ ;;=^5006252
+ ;;^UTILITY(U,$J,358.3,2125,0)
+ ;;=H51.9^^18^140^1
+ ;;^UTILITY(U,$J,358.3,2125,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,2125,1,3,0)
+ ;;=3^Binocular Movement Disorder,Unspec
+ ;;^UTILITY(U,$J,358.3,2125,1,4,0)
+ ;;=4^H51.9
+ ;;^UTILITY(U,$J,358.3,2125,2)
+ ;;=^5006258
+ ;;^UTILITY(U,$J,358.3,2126,0)
+ ;;=H51.8^^18^140^2
+ ;;^UTILITY(U,$J,358.3,2126,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,2126,1,3,0)
+ ;;=3^Binocular Movement Disorders,Oth Spec
+ ;;^UTILITY(U,$J,358.3,2126,1,4,0)
+ ;;=4^H51.8
+ ;;^UTILITY(U,$J,358.3,2126,2)
+ ;;=^5006257
+ ;;^UTILITY(U,$J,358.3,2127,0)
+ ;;=H55.81^^18^140^60
+ ;;^UTILITY(U,$J,358.3,2127,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,2127,1,3,0)
+ ;;=3^Saccadic Eye Movements
+ ;;^UTILITY(U,$J,358.3,2127,1,4,0)
+ ;;=4^H55.81
+ ;;^UTILITY(U,$J,358.3,2127,2)
+ ;;=^5006373
+ ;;^UTILITY(U,$J,358.3,2128,0)
+ ;;=H55.89^^18^140^36
+ ;;^UTILITY(U,$J,358.3,2128,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,2128,1,3,0)
+ ;;=3^Irregular Eye Movements
+ ;;^UTILITY(U,$J,358.3,2128,1,4,0)
+ ;;=4^H55.89
+ ;;^UTILITY(U,$J,358.3,2128,2)
+ ;;=^5006374
+ ;;^UTILITY(U,$J,358.3,2129,0)
+ ;;=H54.3^^18^140^64
+ ;;^UTILITY(U,$J,358.3,2129,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,2129,1,3,0)
+ ;;=3^Unqualified Visual Loss,Both Eyes
+ ;;^UTILITY(U,$J,358.3,2129,1,4,0)
+ ;;=4^H54.3
+ ;;^UTILITY(U,$J,358.3,2129,2)
+ ;;=^268886
+ ;;^UTILITY(U,$J,358.3,2130,0)
+ ;;=H54.1213^^18^140^38
+ ;;^UTILITY(U,$J,358.3,2130,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,2130,1,3,0)
+ ;;=3^Low Vision Rt Eye Category 1,Blindness Lt Eye Category 3
+ ;;^UTILITY(U,$J,358.3,2130,1,4,0)
+ ;;=4^H54.1213
+ ;;^UTILITY(U,$J,358.3,2130,2)
+ ;;=^5151353
+ ;;^UTILITY(U,$J,358.3,2131,0)
+ ;;=H54.1214^^18^140^39
+ ;;^UTILITY(U,$J,358.3,2131,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,2131,1,3,0)
+ ;;=3^Low Vision Rt Eye Category 1,Blindness Lt Eye Category 4
+ ;;^UTILITY(U,$J,358.3,2131,1,4,0)
+ ;;=4^H54.1214
+ ;;^UTILITY(U,$J,358.3,2131,2)
+ ;;=^5151354
+ ;;^UTILITY(U,$J,358.3,2132,0)
+ ;;=H54.1215^^18^140^40
+ ;;^UTILITY(U,$J,358.3,2132,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,2132,1,3,0)
+ ;;=3^Low Vision Rt Eye Category 1,Blindness Lt Eye Category 5
+ ;;^UTILITY(U,$J,358.3,2132,1,4,0)
+ ;;=4^H54.1215
+ ;;^UTILITY(U,$J,358.3,2132,2)
+ ;;=^5151355
+ ;;^UTILITY(U,$J,358.3,2133,0)
+ ;;=H54.1223^^18^140^46
  ;;^UTILITY(U,$J,358.3,2133,1,0)
  ;;=^358.31IA^4^2
  ;;^UTILITY(U,$J,358.3,2133,1,3,0)
- ;;=3^Vertigo of Central Origin
+ ;;=3^Low Vision Rt Eye Category 2,Blindness Lt Eye Category 3
  ;;^UTILITY(U,$J,358.3,2133,1,4,0)
- ;;=4^H81.4
+ ;;=4^H54.1223
  ;;^UTILITY(U,$J,358.3,2133,2)
- ;;=^269484
+ ;;=^5151356
  ;;^UTILITY(U,$J,358.3,2134,0)
- ;;=T70.0XXA^^20^168^1
+ ;;=H54.1224^^18^140^47
  ;;^UTILITY(U,$J,358.3,2134,1,0)
  ;;=^358.31IA^4^2
  ;;^UTILITY(U,$J,358.3,2134,1,3,0)
- ;;=3^Otitic barotrauma, initial encounter
+ ;;=3^Low Vision Rt Eye Category 2,Blindness Lt Eye Category 4
  ;;^UTILITY(U,$J,358.3,2134,1,4,0)
- ;;=4^T70.0XXA
+ ;;=4^H54.1224
  ;;^UTILITY(U,$J,358.3,2134,2)
- ;;=^5053981
+ ;;=^5151357
  ;;^UTILITY(U,$J,358.3,2135,0)
- ;;=T70.0XXD^^20^168^3
+ ;;=H54.1225^^18^140^48
  ;;^UTILITY(U,$J,358.3,2135,1,0)
  ;;=^358.31IA^4^2
  ;;^UTILITY(U,$J,358.3,2135,1,3,0)
- ;;=3^Otitic barotrauma, subsequent encounter
+ ;;=3^Low Vision Rt Eye Category 2,Blindness Lt Eye Category 5
  ;;^UTILITY(U,$J,358.3,2135,1,4,0)
- ;;=4^T70.0XXD
+ ;;=4^H54.1225
  ;;^UTILITY(U,$J,358.3,2135,2)
- ;;=^5053982
+ ;;=^5151358
  ;;^UTILITY(U,$J,358.3,2136,0)
- ;;=T70.0XXS^^20^168^2
+ ;;=H54.1131^^18^140^8
  ;;^UTILITY(U,$J,358.3,2136,1,0)
  ;;=^358.31IA^4^2
  ;;^UTILITY(U,$J,358.3,2136,1,3,0)
- ;;=3^Otitic barotrauma, sequela
+ ;;=3^Blindness Rt Eye Category 3,Low Vision Lt Eye Category 1
  ;;^UTILITY(U,$J,358.3,2136,1,4,0)
- ;;=4^T70.0XXS
+ ;;=4^H54.1131
  ;;^UTILITY(U,$J,358.3,2136,2)
- ;;=^5053983
+ ;;=^5151347
  ;;^UTILITY(U,$J,358.3,2137,0)
- ;;=H73.813^^20^169^1
+ ;;=H54.1132^^18^140^9
  ;;^UTILITY(U,$J,358.3,2137,1,0)
  ;;=^358.31IA^4^2
  ;;^UTILITY(U,$J,358.3,2137,1,3,0)
- ;;=3^Atrophic flaccid tympanic membrane, bilateral
+ ;;=3^Blindness Rt Eye Category 3,Low Vision Lt Eye Category 2
  ;;^UTILITY(U,$J,358.3,2137,1,4,0)
- ;;=4^H73.813
+ ;;=4^H54.1132
  ;;^UTILITY(U,$J,358.3,2137,2)
- ;;=^5006782
+ ;;=^5151348
  ;;^UTILITY(U,$J,358.3,2138,0)
- ;;=H73.812^^20^169^2
+ ;;=H54.1141^^18^140^14
  ;;^UTILITY(U,$J,358.3,2138,1,0)
  ;;=^358.31IA^4^2
  ;;^UTILITY(U,$J,358.3,2138,1,3,0)
- ;;=3^Atrophic flaccid tympanic membrane, left ear
+ ;;=3^Blindness Rt Eye Category 4,Low Vision Lt Eye Category 1
  ;;^UTILITY(U,$J,358.3,2138,1,4,0)
- ;;=4^H73.812
+ ;;=4^H54.1141
  ;;^UTILITY(U,$J,358.3,2138,2)
- ;;=^5006781
+ ;;=^5151349
  ;;^UTILITY(U,$J,358.3,2139,0)
- ;;=H73.811^^20^169^3
+ ;;=H54.1142^^18^140^15
  ;;^UTILITY(U,$J,358.3,2139,1,0)
  ;;=^358.31IA^4^2
  ;;^UTILITY(U,$J,358.3,2139,1,3,0)
- ;;=3^Atrophic flaccid tympanic membrane, right ear
+ ;;=3^Blindness Rt Eye Category 4,Low Vision Lt Eye Category 2
  ;;^UTILITY(U,$J,358.3,2139,1,4,0)
- ;;=4^H73.811
+ ;;=4^H54.1142
  ;;^UTILITY(U,$J,358.3,2139,2)
- ;;=^5006780
+ ;;=^5151350
  ;;^UTILITY(U,$J,358.3,2140,0)
- ;;=H73.823^^20^169^4
+ ;;=H54.1151^^18^140^20
  ;;^UTILITY(U,$J,358.3,2140,1,0)
  ;;=^358.31IA^4^2
  ;;^UTILITY(U,$J,358.3,2140,1,3,0)
- ;;=3^Atrophic nonflaccid tympanic membrane, bilateral
+ ;;=3^Blindness Rt Eye Category 5,Low Vision Lt Eye Category 1
  ;;^UTILITY(U,$J,358.3,2140,1,4,0)
- ;;=4^H73.823
+ ;;=4^H54.1151
  ;;^UTILITY(U,$J,358.3,2140,2)
- ;;=^5006786
+ ;;=^5151351
  ;;^UTILITY(U,$J,358.3,2141,0)
- ;;=H73.822^^20^169^5
+ ;;=H54.1152^^18^140^21
  ;;^UTILITY(U,$J,358.3,2141,1,0)
  ;;=^358.31IA^4^2
  ;;^UTILITY(U,$J,358.3,2141,1,3,0)
- ;;=3^Atrophic nonflaccid tympanic membrane, left ear
+ ;;=3^Blindness Rt Eye Category 5,Low Vision Lt Eye Category 2
  ;;^UTILITY(U,$J,358.3,2141,1,4,0)
- ;;=4^H73.822
+ ;;=4^H54.1152
  ;;^UTILITY(U,$J,358.3,2141,2)
- ;;=^5006785
+ ;;=^5151352
  ;;^UTILITY(U,$J,358.3,2142,0)
- ;;=H73.821^^20^169^6
+ ;;=H54.413A^^18^140^10
  ;;^UTILITY(U,$J,358.3,2142,1,0)
  ;;=^358.31IA^4^2
  ;;^UTILITY(U,$J,358.3,2142,1,3,0)
- ;;=3^Atrophic nonflaccid tympanic membrane, right ear
+ ;;=3^Blindness Rt Eye Category 3,Normal Vision Lt Eye
  ;;^UTILITY(U,$J,358.3,2142,1,4,0)
- ;;=4^H73.821
+ ;;=4^H54.413A
  ;;^UTILITY(U,$J,358.3,2142,2)
- ;;=^5006784
+ ;;=^5151363
  ;;^UTILITY(U,$J,358.3,2143,0)
- ;;=H72.13^^20^169^7
+ ;;=H54.414A^^18^140^16
  ;;^UTILITY(U,$J,358.3,2143,1,0)
  ;;=^358.31IA^4^2
  ;;^UTILITY(U,$J,358.3,2143,1,3,0)
- ;;=3^Attic perforation of tympanic membrane, bilateral
+ ;;=3^Blindness Rt Eye Category 4,Normal Vision Lt Eye
  ;;^UTILITY(U,$J,358.3,2143,1,4,0)
- ;;=4^H72.13
+ ;;=4^H54.414A
  ;;^UTILITY(U,$J,358.3,2143,2)
- ;;=^5006749
+ ;;=^5151364
  ;;^UTILITY(U,$J,358.3,2144,0)
- ;;=H72.12^^20^169^8
+ ;;=H54.415A^^18^140^22
  ;;^UTILITY(U,$J,358.3,2144,1,0)
  ;;=^358.31IA^4^2
  ;;^UTILITY(U,$J,358.3,2144,1,3,0)
- ;;=3^Attic perforation of tympanic membrane, left ear
+ ;;=3^Blindness Rt Eye Category 5,Normal Vision Lt Eye
  ;;^UTILITY(U,$J,358.3,2144,1,4,0)
- ;;=4^H72.12
+ ;;=4^H54.415A
  ;;^UTILITY(U,$J,358.3,2144,2)
- ;;=^5006748
+ ;;=^5151365
  ;;^UTILITY(U,$J,358.3,2145,0)
- ;;=H72.11^^20^169^9
+ ;;=H54.0X33^^18^140^5
  ;;^UTILITY(U,$J,358.3,2145,1,0)
  ;;=^358.31IA^4^2
  ;;^UTILITY(U,$J,358.3,2145,1,3,0)
- ;;=3^Attic perforation of tympanic membrane, right ear
+ ;;=3^Blindness Rt Eye Category 3,Blindness Lt Eye Category 3
  ;;^UTILITY(U,$J,358.3,2145,1,4,0)
- ;;=4^H72.11
+ ;;=4^H54.0X33
  ;;^UTILITY(U,$J,358.3,2145,2)
- ;;=^5006747
+ ;;=^5151338
  ;;^UTILITY(U,$J,358.3,2146,0)
- ;;=H72.03^^20^169^10
+ ;;=H54.0X34^^18^140^6
  ;;^UTILITY(U,$J,358.3,2146,1,0)
  ;;=^358.31IA^4^2
  ;;^UTILITY(U,$J,358.3,2146,1,3,0)
- ;;=3^Central perforation of tympanic membrane, bilateral
+ ;;=3^Blindness Rt Eye Category 3,Blindness Lt Eye Category 4
  ;;^UTILITY(U,$J,358.3,2146,1,4,0)
- ;;=4^H72.03
+ ;;=4^H54.0X34
  ;;^UTILITY(U,$J,358.3,2146,2)
- ;;=^5006745
+ ;;=^5151339
  ;;^UTILITY(U,$J,358.3,2147,0)
- ;;=H72.02^^20^169^11
+ ;;=H54.0X35^^18^140^7
  ;;^UTILITY(U,$J,358.3,2147,1,0)
  ;;=^358.31IA^4^2
  ;;^UTILITY(U,$J,358.3,2147,1,3,0)
- ;;=3^Central perforation of tympanic membrane, left ear
+ ;;=3^Blindness Rt Eye Category 3,Blindness Lt Eye Category 5
  ;;^UTILITY(U,$J,358.3,2147,1,4,0)
- ;;=4^H72.02
+ ;;=4^H54.0X35
  ;;^UTILITY(U,$J,358.3,2147,2)
- ;;=^5006744
+ ;;=^5151340
  ;;^UTILITY(U,$J,358.3,2148,0)
- ;;=H72.01^^20^169^12
+ ;;=H54.0X43^^18^140^11
  ;;^UTILITY(U,$J,358.3,2148,1,0)
  ;;=^358.31IA^4^2
  ;;^UTILITY(U,$J,358.3,2148,1,3,0)
- ;;=3^Central perforation of tympanic membrane, right ear
+ ;;=3^Blindness Rt Eye Category 4,Blindness Lt Eye Category 3
  ;;^UTILITY(U,$J,358.3,2148,1,4,0)
- ;;=4^H72.01
+ ;;=4^H54.0X43
  ;;^UTILITY(U,$J,358.3,2148,2)
- ;;=^5006743
+ ;;=^5151341
  ;;^UTILITY(U,$J,358.3,2149,0)
- ;;=H61.23^^20^169^19
+ ;;=H54.0X44^^18^140^12
  ;;^UTILITY(U,$J,358.3,2149,1,0)
  ;;=^358.31IA^4^2
  ;;^UTILITY(U,$J,358.3,2149,1,3,0)
- ;;=3^Impacted cerumen, bilateral
+ ;;=3^Blindness Rt Eye Category 4,Blindness Lt Eye Category 4
  ;;^UTILITY(U,$J,358.3,2149,1,4,0)
- ;;=4^H61.23
+ ;;=4^H54.0X44
  ;;^UTILITY(U,$J,358.3,2149,2)
- ;;=^5006533
+ ;;=^5151342
  ;;^UTILITY(U,$J,358.3,2150,0)
- ;;=H61.22^^20^169^20
+ ;;=H54.0X45^^18^140^13
  ;;^UTILITY(U,$J,358.3,2150,1,0)
  ;;=^358.31IA^4^2
  ;;^UTILITY(U,$J,358.3,2150,1,3,0)
- ;;=3^Impacted cerumen, left ear
+ ;;=3^Blindness Rt Eye Category 4,Blindness Lt Eye Category 5
  ;;^UTILITY(U,$J,358.3,2150,1,4,0)
- ;;=4^H61.22
+ ;;=4^H54.0X45
  ;;^UTILITY(U,$J,358.3,2150,2)
- ;;=^5006532
+ ;;=^5151343
  ;;^UTILITY(U,$J,358.3,2151,0)
- ;;=H61.21^^20^169^21
+ ;;=H54.0X53^^18^140^17
  ;;^UTILITY(U,$J,358.3,2151,1,0)
  ;;=^358.31IA^4^2
  ;;^UTILITY(U,$J,358.3,2151,1,3,0)
- ;;=3^Impacted cerumen, right ear
+ ;;=3^Blindness Rt Eye Category 5,Blindness Lt Eye Category 3
  ;;^UTILITY(U,$J,358.3,2151,1,4,0)
- ;;=4^H61.21
+ ;;=4^H54.0X53
  ;;^UTILITY(U,$J,358.3,2151,2)
- ;;=^5006531
+ ;;=^5151344
  ;;^UTILITY(U,$J,358.3,2152,0)
- ;;=H72.813^^20^169^25
+ ;;=H54.0X54^^18^140^18
  ;;^UTILITY(U,$J,358.3,2152,1,0)
  ;;=^358.31IA^4^2
  ;;^UTILITY(U,$J,358.3,2152,1,3,0)
- ;;=3^Multiple perforations of tympanic membrane, bilateral
+ ;;=3^Blindness Rt Eye Category 5,Blindness Lt Eye Category 4
  ;;^UTILITY(U,$J,358.3,2152,1,4,0)
- ;;=4^H72.813
+ ;;=4^H54.0X54
  ;;^UTILITY(U,$J,358.3,2152,2)
- ;;=^5006756
+ ;;=^5151345
  ;;^UTILITY(U,$J,358.3,2153,0)
- ;;=H72.812^^20^169^26
+ ;;=H54.0X55^^18^140^19
  ;;^UTILITY(U,$J,358.3,2153,1,0)
  ;;=^358.31IA^4^2
  ;;^UTILITY(U,$J,358.3,2153,1,3,0)
- ;;=3^Multiple perforations of tympanic membrane, left ear
+ ;;=3^Blindness Rt Eye Category 5,Blindness Lt Eye Category 5
  ;;^UTILITY(U,$J,358.3,2153,1,4,0)
- ;;=4^H72.812
+ ;;=4^H54.0X55
  ;;^UTILITY(U,$J,358.3,2153,2)
- ;;=^5006755
+ ;;=^5151346
  ;;^UTILITY(U,$J,358.3,2154,0)
- ;;=H72.811^^20^169^27
+ ;;=H54.2X11^^18^140^41
  ;;^UTILITY(U,$J,358.3,2154,1,0)
  ;;=^358.31IA^4^2
  ;;^UTILITY(U,$J,358.3,2154,1,3,0)
- ;;=3^Multiple perforations of tympanic membrane, right ear
+ ;;=3^Low Vision Rt Eye Category 1,Low Vision Lt Eye Category 1
  ;;^UTILITY(U,$J,358.3,2154,1,4,0)
- ;;=4^H72.811
+ ;;=4^H54.2X11
  ;;^UTILITY(U,$J,358.3,2154,2)
- ;;=^5006754
+ ;;=^5151359
  ;;^UTILITY(U,$J,358.3,2155,0)
- ;;=H72.2X3^^20^169^22
+ ;;=H54.2X12^^18^140^42
  ;;^UTILITY(U,$J,358.3,2155,1,0)
  ;;=^358.31IA^4^2
  ;;^UTILITY(U,$J,358.3,2155,1,3,0)
- ;;=3^Marginal perforations of tympanic membrane, bilateral NEC
+ ;;=3^Low Vision Rt Eye Category 1,Low Vision Lt Eye Category 2
  ;;^UTILITY(U,$J,358.3,2155,1,4,0)
- ;;=4^H72.2X3
+ ;;=4^H54.2X12
  ;;^UTILITY(U,$J,358.3,2155,2)
- ;;=^5006752
+ ;;=^5151360
  ;;^UTILITY(U,$J,358.3,2156,0)
- ;;=H72.2X2^^20^169^23
+ ;;=H54.2X21^^18^140^49
  ;;^UTILITY(U,$J,358.3,2156,1,0)
  ;;=^358.31IA^4^2
  ;;^UTILITY(U,$J,358.3,2156,1,3,0)
- ;;=3^Marginal perforations of tympanic membrane, left ear NEC
+ ;;=3^Low Vision Rt Eye Category 2,Low Vision Lt Eye Category 1
  ;;^UTILITY(U,$J,358.3,2156,1,4,0)
- ;;=4^H72.2X2
+ ;;=4^H54.2X21
  ;;^UTILITY(U,$J,358.3,2156,2)
- ;;=^5006751
+ ;;=^5151361
  ;;^UTILITY(U,$J,358.3,2157,0)
- ;;=H72.2X1^^20^169^24
+ ;;=H54.2X22^^18^140^50
  ;;^UTILITY(U,$J,358.3,2157,1,0)
  ;;=^358.31IA^4^2
  ;;^UTILITY(U,$J,358.3,2157,1,3,0)
- ;;=3^Marginal perforations of tympanic membrane, right ear NEC
+ ;;=3^Low Vision Rt Eye Category 2,Low Vision Lt Eye Category 2
  ;;^UTILITY(U,$J,358.3,2157,1,4,0)
- ;;=4^H72.2X1
+ ;;=4^H54.2X22
  ;;^UTILITY(U,$J,358.3,2157,2)
- ;;=^5006750
+ ;;=^5151362
  ;;^UTILITY(U,$J,358.3,2158,0)
- ;;=H69.83^^20^169^13
+ ;;=H54.511A^^18^140^45
  ;;^UTILITY(U,$J,358.3,2158,1,0)
  ;;=^358.31IA^4^2
  ;;^UTILITY(U,$J,358.3,2158,1,3,0)
- ;;=3^Eustachian Tube Disorders,Bilateral NEC
+ ;;=3^Low Vision Rt Eye Category 1,Normal Vision Lt Eye
  ;;^UTILITY(U,$J,358.3,2158,1,4,0)
- ;;=4^H69.83
+ ;;=4^H54.511A
  ;;^UTILITY(U,$J,358.3,2158,2)
- ;;=^5006680
+ ;;=^5151369
  ;;^UTILITY(U,$J,358.3,2159,0)
- ;;=H69.82^^20^169^15
+ ;;=H54.512A^^18^140^53
  ;;^UTILITY(U,$J,358.3,2159,1,0)
  ;;=^358.31IA^4^2
  ;;^UTILITY(U,$J,358.3,2159,1,3,0)
- ;;=3^Eustachian Tube Disorders,Left Ear NEC
+ ;;=3^Low Vision Rt Eye Category 2,Normal Vision Lt Eye
  ;;^UTILITY(U,$J,358.3,2159,1,4,0)
- ;;=4^H69.82
+ ;;=4^H54.512A
  ;;^UTILITY(U,$J,358.3,2159,2)
- ;;=^5006679
+ ;;=^5151370
  ;;^UTILITY(U,$J,358.3,2160,0)
- ;;=H69.81^^20^169^17
+ ;;=H54.2X11^^18^140^43
  ;;^UTILITY(U,$J,358.3,2160,1,0)
  ;;=^358.31IA^4^2
  ;;^UTILITY(U,$J,358.3,2160,1,3,0)
- ;;=3^Eustachian Tube Disorders,Right Ear NEC
+ ;;=3^Low Vision Rt Eye Category 1,Low Vision Lt Eye Category 1
  ;;^UTILITY(U,$J,358.3,2160,1,4,0)
- ;;=4^H69.81
+ ;;=4^H54.2X11
  ;;^UTILITY(U,$J,358.3,2160,2)
- ;;=^5006678
+ ;;=^5151359
  ;;^UTILITY(U,$J,358.3,2161,0)
- ;;=H69.03^^20^169^28
+ ;;=H54.2X12^^18^140^44
  ;;^UTILITY(U,$J,358.3,2161,1,0)
  ;;=^358.31IA^4^2
  ;;^UTILITY(U,$J,358.3,2161,1,3,0)
- ;;=3^Patulous Eustachian tube, bilateral
+ ;;=3^Low Vision Rt Eye Category 1,Low Vision Lt Eye Category 2
  ;;^UTILITY(U,$J,358.3,2161,1,4,0)
- ;;=4^H69.03
+ ;;=4^H54.2X12
  ;;^UTILITY(U,$J,358.3,2161,2)
- ;;=^5006676
+ ;;=^5151360
  ;;^UTILITY(U,$J,358.3,2162,0)
- ;;=H69.02^^20^169^29
+ ;;=H54.2X21^^18^140^51
  ;;^UTILITY(U,$J,358.3,2162,1,0)
  ;;=^358.31IA^4^2
  ;;^UTILITY(U,$J,358.3,2162,1,3,0)
- ;;=3^Patulous Eustachian tube, left ear
+ ;;=3^Low Vision Rt Eye Category 2,Low Vision Lt Eye Category 1
  ;;^UTILITY(U,$J,358.3,2162,1,4,0)
- ;;=4^H69.02
+ ;;=4^H54.2X21
  ;;^UTILITY(U,$J,358.3,2162,2)
- ;;=^5006675
+ ;;=^5151361
  ;;^UTILITY(U,$J,358.3,2163,0)
- ;;=H69.01^^20^169^30
+ ;;=H54.2X22^^18^140^52
  ;;^UTILITY(U,$J,358.3,2163,1,0)
  ;;=^358.31IA^4^2
  ;;^UTILITY(U,$J,358.3,2163,1,3,0)
- ;;=3^Patulous Eustachian tube, right ear
+ ;;=3^Low Vision Rt Eye Category 2,Low Vision Lt Eye Category 2
  ;;^UTILITY(U,$J,358.3,2163,1,4,0)
- ;;=4^H69.01
+ ;;=4^H54.2X22
  ;;^UTILITY(U,$J,358.3,2163,2)
- ;;=^5006674
+ ;;=^5151362
  ;;^UTILITY(U,$J,358.3,2164,0)
- ;;=H60.333^^20^169^31
+ ;;=Z01.020^^18^140^31
  ;;^UTILITY(U,$J,358.3,2164,1,0)
  ;;=^358.31IA^4^2
  ;;^UTILITY(U,$J,358.3,2164,1,3,0)
- ;;=3^Swimmer's ear, bilateral
+ ;;=3^Exam of Eyes/Vision Following Failed Vision Scrn w/o Abn Findings
  ;;^UTILITY(U,$J,358.3,2164,1,4,0)
- ;;=4^H60.333
+ ;;=4^Z01.020
  ;;^UTILITY(U,$J,358.3,2164,2)
- ;;=^5006457
+ ;;=^5158318
  ;;^UTILITY(U,$J,358.3,2165,0)
- ;;=H60.332^^20^169^32
+ ;;=Z01.021^^18^140^32
  ;;^UTILITY(U,$J,358.3,2165,1,0)
  ;;=^358.31IA^4^2
  ;;^UTILITY(U,$J,358.3,2165,1,3,0)
- ;;=3^Swimmer's ear, left ear
+ ;;=3^Exam of Eyes/Vision Following Failed Vision Scrn w/ Abn Findings
  ;;^UTILITY(U,$J,358.3,2165,1,4,0)
- ;;=4^H60.332
+ ;;=4^Z01.021
  ;;^UTILITY(U,$J,358.3,2165,2)
- ;;=^5006456
+ ;;=^5158319
  ;;^UTILITY(U,$J,358.3,2166,0)
- ;;=H60.331^^20^169^33
+ ;;=B39.9^^18^141^33
  ;;^UTILITY(U,$J,358.3,2166,1,0)
  ;;=^358.31IA^4^2
  ;;^UTILITY(U,$J,358.3,2166,1,3,0)
- ;;=3^Swimmer's ear, right ear
+ ;;=3^Histoplasmosis,Unspec
  ;;^UTILITY(U,$J,358.3,2166,1,4,0)
- ;;=4^H60.331
+ ;;=4^B39.9
  ;;^UTILITY(U,$J,358.3,2166,2)
- ;;=^5006455
+ ;;=^5000638
  ;;^UTILITY(U,$J,358.3,2167,0)
- ;;=H72.823^^20^169^34
+ ;;=E11.311^^18^141^13
  ;;^UTILITY(U,$J,358.3,2167,1,0)
  ;;=^358.31IA^4^2
  ;;^UTILITY(U,$J,358.3,2167,1,3,0)
- ;;=3^Total perforations of tympanic membrane, bilateral
+ ;;=3^DM Type 2 w/ Diab Retinopathy w/ Macular Edema
  ;;^UTILITY(U,$J,358.3,2167,1,4,0)
- ;;=4^H72.823
+ ;;=4^E11.311
  ;;^UTILITY(U,$J,358.3,2167,2)
- ;;=^5006760
+ ;;=^5002632
  ;;^UTILITY(U,$J,358.3,2168,0)
- ;;=H72.822^^20^169^35
+ ;;=E11.319^^18^141^14
  ;;^UTILITY(U,$J,358.3,2168,1,0)
  ;;=^358.31IA^4^2
  ;;^UTILITY(U,$J,358.3,2168,1,3,0)
- ;;=3^Total perforations of tympanic membrane, left ear
+ ;;=3^DM Type 2 w/ Diab Retinopathy w/o Macular Edema
  ;;^UTILITY(U,$J,358.3,2168,1,4,0)
- ;;=4^H72.822
+ ;;=4^E11.319
  ;;^UTILITY(U,$J,358.3,2168,2)
- ;;=^5006759
+ ;;=^5002633
  ;;^UTILITY(U,$J,358.3,2169,0)
- ;;=H72.821^^20^169^36
+ ;;=E11.36^^18^141^11
  ;;^UTILITY(U,$J,358.3,2169,1,0)
  ;;=^358.31IA^4^2
  ;;^UTILITY(U,$J,358.3,2169,1,3,0)
- ;;=3^Total perforations of tympanic membrane, right ear
+ ;;=3^DM Type 2 w/ Diab Cataract
  ;;^UTILITY(U,$J,358.3,2169,1,4,0)
- ;;=4^H72.821
+ ;;=4^E11.36
  ;;^UTILITY(U,$J,358.3,2169,2)
- ;;=^5006758
+ ;;=^5002642
  ;;^UTILITY(U,$J,358.3,2170,0)
- ;;=H74.03^^20^169^37
+ ;;=E11.39^^18^141^12
  ;;^UTILITY(U,$J,358.3,2170,1,0)
  ;;=^358.31IA^4^2
  ;;^UTILITY(U,$J,358.3,2170,1,3,0)
- ;;=3^Tympanosclerosis, bilateral
+ ;;=3^DM Type 2 w/ Diab Ophthalmic Complication
  ;;^UTILITY(U,$J,358.3,2170,1,4,0)
- ;;=4^H74.03
+ ;;=4^E11.39
  ;;^UTILITY(U,$J,358.3,2170,2)
- ;;=^5006798
+ ;;=^5002643
  ;;^UTILITY(U,$J,358.3,2171,0)
- ;;=H74.02^^20^169^38
+ ;;=H35.30^^18^141^34
  ;;^UTILITY(U,$J,358.3,2171,1,0)
  ;;=^358.31IA^4^2
  ;;^UTILITY(U,$J,358.3,2171,1,3,0)
- ;;=3^Tympanosclerosis, left ear
+ ;;=3^Macular Degeneration,Unspec
  ;;^UTILITY(U,$J,358.3,2171,1,4,0)
- ;;=4^H74.02
+ ;;=4^H35.30
  ;;^UTILITY(U,$J,358.3,2171,2)
- ;;=^5006797
+ ;;=^5005646
  ;;^UTILITY(U,$J,358.3,2172,0)
- ;;=H74.01^^20^169^39
+ ;;=H35.52^^18^141^60
  ;;^UTILITY(U,$J,358.3,2172,1,0)
  ;;=^358.31IA^4^2
  ;;^UTILITY(U,$J,358.3,2172,1,3,0)
- ;;=3^Tympanosclerosis, right ear
+ ;;=3^Pigmentary Retinal Dystrophy
  ;;^UTILITY(U,$J,358.3,2172,1,4,0)
- ;;=4^H74.01
+ ;;=4^H35.52
  ;;^UTILITY(U,$J,358.3,2172,2)
- ;;=^5006796
+ ;;=^5005697
  ;;^UTILITY(U,$J,358.3,2173,0)
- ;;=H69.93^^20^169^14
+ ;;=H35.53^^18^141^65
  ;;^UTILITY(U,$J,358.3,2173,1,0)
  ;;=^358.31IA^4^2
  ;;^UTILITY(U,$J,358.3,2173,1,3,0)
- ;;=3^Eustachian Tube Disorders,Bilateral,Unspec
+ ;;=3^Sensory Retina Dystrophies
  ;;^UTILITY(U,$J,358.3,2173,1,4,0)
- ;;=4^H69.93
+ ;;=4^H35.53
  ;;^UTILITY(U,$J,358.3,2173,2)
- ;;=^5006684
+ ;;=^268656
  ;;^UTILITY(U,$J,358.3,2174,0)
- ;;=H69.92^^20^169^16
+ ;;=H40.9^^18^141^32
  ;;^UTILITY(U,$J,358.3,2174,1,0)
  ;;=^358.31IA^4^2
  ;;^UTILITY(U,$J,358.3,2174,1,3,0)
- ;;=3^Eustachian Tube Disorders,Left Ear,Unspec
+ ;;=3^Glaucoma,Unspec
  ;;^UTILITY(U,$J,358.3,2174,1,4,0)
- ;;=4^H69.92
+ ;;=4^H40.9
  ;;^UTILITY(U,$J,358.3,2174,2)
- ;;=^5006683
+ ;;=^5005931
  ;;^UTILITY(U,$J,358.3,2175,0)
- ;;=H69.91^^20^169^18
+ ;;=H26.9^^18^141^8
  ;;^UTILITY(U,$J,358.3,2175,1,0)
  ;;=^358.31IA^4^2
  ;;^UTILITY(U,$J,358.3,2175,1,3,0)
- ;;=3^Eustachian Tube Disorders,Right Ear,Unspec
+ ;;=3^Cataract,Unspec
  ;;^UTILITY(U,$J,358.3,2175,1,4,0)
- ;;=4^H69.91
+ ;;=4^H26.9
  ;;^UTILITY(U,$J,358.3,2175,2)
- ;;=^5006682
+ ;;=^5005363
  ;;^UTILITY(U,$J,358.3,2176,0)
- ;;=T16.1XXA^^20^170^4
+ ;;=H17.9^^18^141^10
  ;;^UTILITY(U,$J,358.3,2176,1,0)
  ;;=^358.31IA^4^2
  ;;^UTILITY(U,$J,358.3,2176,1,3,0)
- ;;=3^Foreign body in right ear, initial encounter
+ ;;=3^Corneal Scar & Opacity,Unspec
  ;;^UTILITY(U,$J,358.3,2176,1,4,0)
- ;;=4^T16.1XXA
+ ;;=4^H17.9
  ;;^UTILITY(U,$J,358.3,2176,2)
- ;;=^5046417
+ ;;=^5005003
  ;;^UTILITY(U,$J,358.3,2177,0)
- ;;=T16.1XXD^^20^170^6
+ ;;=H47.20^^18^141^50
  ;;^UTILITY(U,$J,358.3,2177,1,0)
  ;;=^358.31IA^4^2
  ;;^UTILITY(U,$J,358.3,2177,1,3,0)
- ;;=3^Foreign body in right ear, subsequent encounter
+ ;;=3^Optic Atrophy,Unspec
  ;;^UTILITY(U,$J,358.3,2177,1,4,0)
- ;;=4^T16.1XXD
+ ;;=4^H47.20
  ;;^UTILITY(U,$J,358.3,2177,2)
- ;;=^5046418
+ ;;=^5006126
  ;;^UTILITY(U,$J,358.3,2178,0)
- ;;=T16.1XXS^^20^170^5
+ ;;=H47.091^^18^141^53
  ;;^UTILITY(U,$J,358.3,2178,1,0)
  ;;=^358.31IA^4^2
  ;;^UTILITY(U,$J,358.3,2178,1,3,0)
- ;;=3^Foreign body in right ear, sequela
+ ;;=3^Optic Nerve Disorders,Right Eye
  ;;^UTILITY(U,$J,358.3,2178,1,4,0)
- ;;=4^T16.1XXS
+ ;;=4^H47.091
  ;;^UTILITY(U,$J,358.3,2178,2)
- ;;=^5046419
+ ;;=^5006117
  ;;^UTILITY(U,$J,358.3,2179,0)
- ;;=T16.2XXA^^20^170^1
+ ;;=H47.092^^18^141^52
  ;;^UTILITY(U,$J,358.3,2179,1,0)
  ;;=^358.31IA^4^2
  ;;^UTILITY(U,$J,358.3,2179,1,3,0)
- ;;=3^Foreign body in left ear, initial encounter
+ ;;=3^Optic Nerve Disorders,Left Eye
  ;;^UTILITY(U,$J,358.3,2179,1,4,0)
- ;;=4^T16.2XXA
+ ;;=4^H47.092
  ;;^UTILITY(U,$J,358.3,2179,2)
- ;;=^5046420
+ ;;=^5006118
  ;;^UTILITY(U,$J,358.3,2180,0)
- ;;=T16.2XXD^^20^170^3
+ ;;=H47.093^^18^141^51
  ;;^UTILITY(U,$J,358.3,2180,1,0)
  ;;=^358.31IA^4^2
  ;;^UTILITY(U,$J,358.3,2180,1,3,0)
- ;;=3^Foreign body in left ear, subsequent encounter
+ ;;=3^Optic Nerve Disorders,Bilateral
  ;;^UTILITY(U,$J,358.3,2180,1,4,0)
- ;;=4^T16.2XXD
+ ;;=4^H47.093
  ;;^UTILITY(U,$J,358.3,2180,2)
- ;;=^5046421
+ ;;=^5006119
  ;;^UTILITY(U,$J,358.3,2181,0)
- ;;=T16.2XXS^^20^170^2
+ ;;=H27.03^^18^141^1
  ;;^UTILITY(U,$J,358.3,2181,1,0)
  ;;=^358.31IA^4^2
  ;;^UTILITY(U,$J,358.3,2181,1,3,0)
- ;;=3^Foreign body in left ear, sequela
+ ;;=3^Aphakia,Bilateral
  ;;^UTILITY(U,$J,358.3,2181,1,4,0)
- ;;=4^T16.2XXS
+ ;;=4^H27.03
  ;;^UTILITY(U,$J,358.3,2181,2)
- ;;=^5046422
+ ;;=^5005367
  ;;^UTILITY(U,$J,358.3,2182,0)
- ;;=H90.0^^20^171^1
+ ;;=H27.01^^18^141^3
  ;;^UTILITY(U,$J,358.3,2182,1,0)
  ;;=^358.31IA^4^2
  ;;^UTILITY(U,$J,358.3,2182,1,3,0)
- ;;=3^Conductive Hearing Loss,Bilateral
+ ;;=3^Aphakia,Right Eye
  ;;^UTILITY(U,$J,358.3,2182,1,4,0)
- ;;=4^H90.0
+ ;;=4^H27.01
  ;;^UTILITY(U,$J,358.3,2182,2)
- ;;=^335257
+ ;;=^5005365
  ;;^UTILITY(U,$J,358.3,2183,0)
- ;;=H90.12^^20^171^2
+ ;;=H27.02^^18^141^2
  ;;^UTILITY(U,$J,358.3,2183,1,0)
  ;;=^358.31IA^4^2
  ;;^UTILITY(U,$J,358.3,2183,1,3,0)
- ;;=3^Conductive Hearing Loss,Left Ear
+ ;;=3^Aphakia,Left Eye
  ;;^UTILITY(U,$J,358.3,2183,1,4,0)
- ;;=4^H90.12
+ ;;=4^H27.02
  ;;^UTILITY(U,$J,358.3,2183,2)
- ;;=^5006919
+ ;;=^5005366
  ;;^UTILITY(U,$J,358.3,2184,0)
- ;;=H90.11^^20^171^3
+ ;;=I69.998^^18^141^9
  ;;^UTILITY(U,$J,358.3,2184,1,0)
  ;;=^358.31IA^4^2
  ;;^UTILITY(U,$J,358.3,2184,1,3,0)
- ;;=3^Conductive Hearing Loss,Right Ear
+ ;;=3^Cerebrovascular Disease,Unspec,Sequelae
  ;;^UTILITY(U,$J,358.3,2184,1,4,0)
- ;;=4^H90.11
+ ;;=4^I69.998
  ;;^UTILITY(U,$J,358.3,2184,2)
- ;;=^5006918
+ ;;=^5007572
  ;;^UTILITY(U,$J,358.3,2185,0)
- ;;=H93.223^^20^171^6
+ ;;=S04.011A^^18^141^57
  ;;^UTILITY(U,$J,358.3,2185,1,0)
  ;;=^358.31IA^4^2
  ;;^UTILITY(U,$J,358.3,2185,1,3,0)
- ;;=3^Diplacusis, bilateral
+ ;;=3^Optic Nerve Injury,Right Eye,Init Encntr
  ;;^UTILITY(U,$J,358.3,2185,1,4,0)
- ;;=4^H93.223
+ ;;=4^S04.011A
  ;;^UTILITY(U,$J,358.3,2185,2)
- ;;=^5006974
+ ;;=^5020462
  ;;^UTILITY(U,$J,358.3,2186,0)
- ;;=H93.222^^20^171^7
+ ;;=S04.012A^^18^141^54
  ;;^UTILITY(U,$J,358.3,2186,1,0)
  ;;=^358.31IA^4^2
  ;;^UTILITY(U,$J,358.3,2186,1,3,0)
- ;;=3^Diplacusis, left ear
+ ;;=3^Optic Nerve Injury,Left Eye,Init Encntr
  ;;^UTILITY(U,$J,358.3,2186,1,4,0)
- ;;=4^H93.222
+ ;;=4^S04.012A
  ;;^UTILITY(U,$J,358.3,2186,2)
- ;;=^5006973
+ ;;=^5020465
  ;;^UTILITY(U,$J,358.3,2187,0)
- ;;=H93.221^^20^171^8
+ ;;=H33.001^^18^141^63
  ;;^UTILITY(U,$J,358.3,2187,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,2187,1,3,0)
- ;;=3^Diplacusis, right ear
- ;;^UTILITY(U,$J,358.3,2187,1,4,0)
- ;;=4^H93.221
- ;;^UTILITY(U,$J,358.3,2187,2)
- ;;=^5006972
- ;;^UTILITY(U,$J,358.3,2188,0)
- ;;=H91.8X3^^20^171^9
- ;;^UTILITY(U,$J,358.3,2188,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,2188,1,3,0)
- ;;=3^Hearing Loss,Bilateral NEC
- ;;^UTILITY(U,$J,358.3,2188,1,4,0)
- ;;=4^H91.8X3
- ;;^UTILITY(U,$J,358.3,2188,2)
- ;;=^5006942
- ;;^UTILITY(U,$J,358.3,2189,0)
- ;;=H91.8X2^^20^171^11
- ;;^UTILITY(U,$J,358.3,2189,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,2189,1,3,0)
- ;;=3^Hearing Loss,Left Ear NEC
- ;;^UTILITY(U,$J,358.3,2189,1,4,0)
- ;;=4^H91.8X2
- ;;^UTILITY(U,$J,358.3,2189,2)
- ;;=^5133556
- ;;^UTILITY(U,$J,358.3,2190,0)
- ;;=H91.8X1^^20^171^13
- ;;^UTILITY(U,$J,358.3,2190,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,2190,1,3,0)
- ;;=3^Hearing Loss,Right Ear NEC
- ;;^UTILITY(U,$J,358.3,2190,1,4,0)
- ;;=4^H91.8X1
- ;;^UTILITY(U,$J,358.3,2190,2)
- ;;=^5006941
- ;;^UTILITY(U,$J,358.3,2191,0)
- ;;=H91.03^^20^171^21
- ;;^UTILITY(U,$J,358.3,2191,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,2191,1,3,0)
- ;;=3^Ototoxic hearing loss, bilateral
- ;;^UTILITY(U,$J,358.3,2191,1,4,0)
- ;;=4^H91.03
- ;;^UTILITY(U,$J,358.3,2191,2)
- ;;=^5006930
- ;;^UTILITY(U,$J,358.3,2192,0)
- ;;=H91.02^^20^171^22
- ;;^UTILITY(U,$J,358.3,2192,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,2192,1,3,0)
- ;;=3^Ototoxic hearing loss, left ear
- ;;^UTILITY(U,$J,358.3,2192,1,4,0)
- ;;=4^H91.02
- ;;^UTILITY(U,$J,358.3,2192,2)
- ;;=^5006929
- ;;^UTILITY(U,$J,358.3,2193,0)
- ;;=H91.01^^20^171^23
- ;;^UTILITY(U,$J,358.3,2193,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,2193,1,3,0)
- ;;=3^Ototoxic hearing loss, right ear
- ;;^UTILITY(U,$J,358.3,2193,1,4,0)
- ;;=4^H91.01
- ;;^UTILITY(U,$J,358.3,2193,2)
- ;;=^5006928
- ;;^UTILITY(U,$J,358.3,2194,0)
- ;;=H91.13^^20^171^24
- ;;^UTILITY(U,$J,358.3,2194,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,2194,1,3,0)
- ;;=3^Presbycusis, bilateral
- ;;^UTILITY(U,$J,358.3,2194,1,4,0)
- ;;=4^H91.13
- ;;^UTILITY(U,$J,358.3,2194,2)
- ;;=^5006935
- ;;^UTILITY(U,$J,358.3,2195,0)
- ;;=H91.12^^20^171^25
- ;;^UTILITY(U,$J,358.3,2195,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,2195,1,3,0)
- ;;=3^Presbycusis, left ear
- ;;^UTILITY(U,$J,358.3,2195,1,4,0)
- ;;=4^H91.12
- ;;^UTILITY(U,$J,358.3,2195,2)
- ;;=^5006934
- ;;^UTILITY(U,$J,358.3,2196,0)
- ;;=H91.11^^20^171^26
- ;;^UTILITY(U,$J,358.3,2196,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,2196,1,3,0)
- ;;=3^Presbycusis, right ear
- ;;^UTILITY(U,$J,358.3,2196,1,4,0)
- ;;=4^H91.11
- ;;^UTILITY(U,$J,358.3,2196,2)
- ;;=^5006933
- ;;^UTILITY(U,$J,358.3,2197,0)
- ;;=H90.3^^20^171^28
- ;;^UTILITY(U,$J,358.3,2197,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,2197,1,3,0)
- ;;=3^Sensorineural hearing loss, bilateral
- ;;^UTILITY(U,$J,358.3,2197,1,4,0)
- ;;=4^H90.3
- ;;^UTILITY(U,$J,358.3,2197,2)
- ;;=^335328
- ;;^UTILITY(U,$J,358.3,2198,0)
- ;;=H90.42^^20^171^31
- ;;^UTILITY(U,$J,358.3,2198,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,2198,1,3,0)
- ;;=3^Snsrnrl hear loss, uni, left ear, w unrestr hear cntra side
- ;;^UTILITY(U,$J,358.3,2198,1,4,0)
- ;;=4^H90.42
- ;;^UTILITY(U,$J,358.3,2198,2)
- ;;=^5006922
- ;;^UTILITY(U,$J,358.3,2199,0)
- ;;=H90.41^^20^171^32
- ;;^UTILITY(U,$J,358.3,2199,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,2199,1,3,0)
- ;;=3^Snsrnrl hear loss, uni, right ear, w unrestr hear cntra side
- ;;^UTILITY(U,$J,358.3,2199,1,4,0)
- ;;=4^H90.41
- ;;^UTILITY(U,$J,358.3,2199,2)
- ;;=^5006921
- ;;^UTILITY(U,$J,358.3,2200,0)
- ;;=H91.23^^20^171^33
- ;;^UTILITY(U,$J,358.3,2200,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,2200,1,3,0)
- ;;=3^Sudden idiopathic hearing loss, bilateral
- ;;^UTILITY(U,$J,358.3,2200,1,4,0)
- ;;=4^H91.23
- ;;^UTILITY(U,$J,358.3,2200,2)
- ;;=^5006939
- ;;^UTILITY(U,$J,358.3,2201,0)
- ;;=H91.22^^20^171^34
