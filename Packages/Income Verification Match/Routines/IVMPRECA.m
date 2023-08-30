@@ -1,5 +1,5 @@
 IVMPRECA ;ALB/KCL,BRM,PJR,RGL,CKN,TDM,KUM - DEMOGRAPHICS MESSAGE CONSISTENCY CHECK ;1/06/18 11:16AM
- ;;2.0;INCOME VERIFICATION MATCH;**5,6,12,34,58,56,115,144,121,151,145,164**;21-OCT-94;Build 98
+ ;;2.0;INCOME VERIFICATION MATCH;**5,6,12,34,58,56,115,144,121,151,145,164,210**;21-OCT-94;Build 13
  ;;Per VHA Directive 2004-038, this routine should not be modified.
  ;
  ; This routine will perform data validation checks on uploadable
@@ -10,6 +10,8 @@ IVMPRECA ;ALB/KCL,BRM,PJR,RGL,CKN,TDM,KUM - DEMOGRAPHICS MESSAGE CONSISTENCY CHE
  ; Called from routine IVMPREC6 before uploadable demographic fields
  ; are stored in DHCP.
  ;
+ ;ICRs
+ ; Reference to NAME,^DI(.85 in ICR #6062
  ;
 EN ; - Entry point to create temp array and perform msg consistency checks
  ;
@@ -86,6 +88,10 @@ EN ; - Entry point to create temp array and perform msg consistency checks
  ; - perform field validation check for ZPD and ZGD segment
  ; - I X]"" was changed to I X below for IVM*2*56
  S X=$P(IVMSTR("ZPD"),HLFS,9) I X,($$FMDATE^HLFNC(X)<$P($G(^DPT(+DFN,0)),"^",3))!($$FMDATE^HLFNC(X)>$$NOW^XLFDT) S HLERR="Invalid date of death" G ENQ
+ ; IVM*2.0*210 - Validate Preferred Language
+ S X=$P(IVMSTR("ZPD"),HLFS,46) I X="""""" S X=""
+ S X=$TR(X,"abcdefghijklmnopqrstuvwxyz","ABCDEFGHIJKLMNOPQRSTUVWXYZ")
+ I X]"",+X'=888,+X'=999,'$$FIND1^DIC(.85,,"MX",X) S HLERR="Invalid Preferred Language" G ENQ
  ; IVM*2*121 - Added new check for ZGD
  N ZGD3
  S ZGD3=$P(IVMSTR("ZGD"),HLFS,3)

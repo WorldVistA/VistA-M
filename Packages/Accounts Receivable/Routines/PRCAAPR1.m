@@ -1,24 +1,24 @@
 PRCAAPR1 ;WASH-ISC@ALTOONA,PA/RGY - PATIENT ACCOUNT PROFILE ;2/12/97  11:48 AM
- ;;4.5;Accounts Receivable;**34,45,108,143,141,206,192,218,276,275,284,303,301,315,350,343,404**;Mar 20, 1995;Build 7
+ ;;4.5;Accounts Receivable;**34,45,108,143,141,206,192,218,276,275,284,303,301,315,350,343,404,405,406**;Mar 20, 1995;Build 5
  ;;Per VA Directive 6402, this routine should not be modified.
  ;
  ;PRCA*4.5*343 Ensure displayed phone number has format 111-222-3333
  ;
 HDR ;Head for Account profile
  S X="",$P(X,"=",23)="" W @IOF,!,X,"   A c c o u n t   P r o f i l e   ",X
-HDR1 N DMC,IBRX,RSN,TOP4,TOP6,DPTFLG,ACCTNUM,RCCV
+HDR1 N DMC,IBRX,RSN,TOP4,TOP6,DPTFLG,RCACCTN,RCCV ;PRCA*4.5*405
  S IBRX=0,DPTFLG=0
  ;
  ; PRCAAPR cleans up BILL, COUNT, DEBT, DTOUT, DIC, OUT, PRCADB, SEL, X
  ;Display new 'Statement Account Number" (Patch 206)
- I PRCADB["DPT(" S DPTFLG=1,ACCTNUM=$$ACCT(PRCADB)
+ I PRCADB["DPT(" S DPTFLG=1,RCACCTN=$$ACCT(PRCADB) ;PRCA*4.5*405
  ;
  W !,$P(DEBT,"^",2) I DPTFLG!(PRCADB["VA(200,") S X=$S(PRCADB["DPT(":$P(^DPT(+PRCADB,0),"^",9),1:$P($G(^VA(200,+PRCADB,1)),"^",9)) W " (",$E(X,1,3),"-",$E(X,4,5),"-",$E(X,6,9),")"
  W ?53,"Statement Day: ",$S($$PST^RCAMFN01(+DEBT)>0:$$PST^RCAMFN01(+DEBT),1:"N/A")
  K Y S X("ADD")=$$DADD^RCAMADD(PRCADB)
  ;
  ;Display new 'Statement Account Number" (Patch 206)
- I DPTFLG W !,"Statement Account #: ",ACCTNUM,?52,"Last Statement: "
+ I DPTFLG W !,"Statement Account #: ",RCACCTN,?52,"Last Statement: " ;PRCA*4.5*405
  E  W !?52,"Last Statement: "
  ;
  S Y=+$$LST^RCFN01(PRCADB,2)
@@ -116,9 +116,15 @@ READ ;Read bill number
  S OUT=1 F X=1:1:$L(SEL,",") S Y=$P(SEL,",",X) D EN1^PRCAATR($G(^TMP("PRCAAPR",$J,"O",+Y)))
 Q3 Q
  ;
-ACCT(DFN) ;Get account number. Join station with DFN (Patch 206)
+ACCT(DFN) ;Get account number. Join station with DFN (Patch 206) 
+ ;PRCA*4.5*406 - Added Parameter comments
+ ;Input Declared:  DFN - Patient IEN
+ ;Input Undeclared:  DEBT - Debtor IEN^Debtor Name
+ ;end PRCA*4.5*406
+ ;
  N SITE,ACCT,ACCT1,LEN
  S DFN=+DFN
+ ;I 'DFN S ACCT1="" Q ACCT1 ;PRCA*4.5*405  ; Removed PRCA*4.5*406
  S LEN=$L(DFN)-1
  S SITE=$$SITE^RCMSITE                          ;station number
  S ACCT=$$RJ^XLFSTR(DFN,13,0)                   ;add leading zeroes

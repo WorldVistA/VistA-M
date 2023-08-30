@@ -1,5 +1,5 @@
 ONCOAIP2 ;HINES OIFO/GWB,RTK - ONCO ABSTRACT-I SUB-ROUTINES ;04/12/01
- ;;2.2;ONCOLOGY;**1,4,5,6,10,12,13**;Jul 31, 2013;Build 7
+ ;;2.2;ONCOLOGY;**1,4,5,6,10,12,13,17**;Jul 31, 2013;Build 6
  ;
 LEUKEMIA(REC) ;Systemic diseases
  N H,HISTNAM,HSTFLD,ICDFILE,ICDNUM
@@ -79,19 +79,23 @@ EDTMOD ;EXTRACT EDITS THAT NEED TO BE MANUALLY FIXED TO PASS
  W !," Address at DX--State........: ",ONC(165.5,D0,999.26),?40,"Address at DX--Country......: ",ONC(165.5,D0,999.27)
  W !," Address Current--State......: ",ONC(165.5,D0,999.28),?40,"Address Current--Country....: ",ONC(165.5,D0,999.29)
  W !," Address Current--Postal Code: ",ONC(165.5,D0,999.289)
- W !!," Date of Diagnosis Flag......: ",ONC(165.5,D0,999.1),?40,"RX Date-Systemic Flag.......: ",ONC(165.5,D0,999.14)
- W !," Date Conclusive DX Flag.....: ",ONC(165.5,D0,999.2),?40,"RX Date-Chemo Flag..........: ",ONC(165.5,D0,999.15)
- W !," Date of Mult Tumors Flag....: ",ONC(165.5,D0,999.3),?40,"RX Date-Hormone Flag........: ",ONC(165.5,D0,999.16)
- W !," Date of First Contact Flag..: ",ONC(165.5,D0,999.4),?40,"RX Date-BRM Flag............: ",ONC(165.5,D0,999.17)
- W !," Date of Inpt Adm Flag.......: ",ONC(165.5,D0,999.5),?40,"RX Date-Other Flag..........: ",ONC(165.5,D0,999.18)
- W !," Date of Inpt Disch Flag.....: ",ONC(165.5,D0,999.6),?40,"RX Date-DX/Stg Proc Flag....: ",ONC(165.5,D0,999.19)
- W !," Date 1st CRS RX Flag........: ",ONC(165.5,D0,999.7),?40,"Recurrence Date-1st Flag....: ",ONC(165.5,D0,999.21)
- W !," RX Date-Surgery Flag........: ",ONC(165.5,D0,999.8),?40,"Date of Last Contact Flag...: ",ONC(165.5,D0,999.22)
- W !," RX Date-Mst Defn Srg Flag...: ",ONC(165.5,D0,999.9),?40,"Subsq RX 2nd Crs Date Flag..: ",ONC(165.5,D0,999.23)
- W !," RX Date-Surg Disch Flag.....: ",ONC(165.5,D0,999.11),?40,"Subsq RX 3rd Crs Date Flag..: ",ONC(165.5,D0,999.24)
- W !," RX Date-Radiation Flag......: ",ONC(165.5,D0,999.12),?40,"Subsq RX 4th Crs Date Flag..: ",ONC(165.5,D0,999.25)
- W !," RX Date-Rad Ended Flag......: ",ONC(165.5,D0,999.13)
- W !!," Date Regional LN Disx Flag..: ",ONC(165.5,D0,7014),?40,"Date Sentinel LN Biopsy Flag: ",ONC(165.5,D0,7018)
+ I $P($G(^ONCO(165.5,D0,0)),U,16)>3221231 D
+ .W !?4,"*** THE DATE FLAG FIELDS ARE OBSOLETE FOR 2023+ CASES AND ***"
+ .W !?4,"*** ARE NO LONGER ACCESSIBLE                              ***"
+ I $P($G(^ONCO(165.5,D0,0)),U,16)<3230000 D
+ .W !!," Date of Diagnosis Flag......: ",ONC(165.5,D0,999.1),?40,"RX Date-Systemic Flag.......: ",ONC(165.5,D0,999.14)
+ .W !," Date Conclusive DX Flag.....: ",ONC(165.5,D0,999.2),?40,"RX Date-Chemo Flag..........: ",ONC(165.5,D0,999.15)
+ .W !," Date of Mult Tumors Flag....: ",ONC(165.5,D0,999.3),?40,"RX Date-Hormone Flag........: ",ONC(165.5,D0,999.16)
+ .W !," Date of First Contact Flag..: ",ONC(165.5,D0,999.4),?40,"RX Date-BRM Flag............: ",ONC(165.5,D0,999.17)
+ .W !," Date of Inpt Adm Flag.......: ",ONC(165.5,D0,999.5),?40,"RX Date-Other Flag..........: ",ONC(165.5,D0,999.18)
+ .W !," Date of Inpt Disch Flag.....: ",ONC(165.5,D0,999.6),?40,"RX Date-DX/Stg Proc Flag....: ",ONC(165.5,D0,999.19)
+ .W !," Date 1st CRS RX Flag........: ",ONC(165.5,D0,999.7),?40,"Recurrence Date-1st Flag....: ",ONC(165.5,D0,999.21)
+ .W !," RX Date-Surgery Flag........: ",ONC(165.5,D0,999.8),?40,"Date of Last Contact Flag...: ",ONC(165.5,D0,999.22)
+ .W !," RX Date-Mst Defn Srg Flag...: ",ONC(165.5,D0,999.9),?40,"Subsq RX 2nd Crs Date Flag..: ",ONC(165.5,D0,999.23)
+ .W !," RX Date-Surg Disch Flag.....: ",ONC(165.5,D0,999.11),?40,"Subsq RX 3rd Crs Date Flag..: ",ONC(165.5,D0,999.24)
+ .W !," RX Date-Radiation Flag......: ",ONC(165.5,D0,999.12),?40,"Subsq RX 4th Crs Date Flag..: ",ONC(165.5,D0,999.25)
+ .W !," RX Date-Rad Ended Flag......: ",ONC(165.5,D0,999.13)
+ .W !!," Date Regional LN Disx Flag..: ",ONC(165.5,D0,7014),?40,"Date Sentinel LN Biopsy Flag: ",ONC(165.5,D0,7018)
  W !,DASHES
  W !,"* * * These fields should ONLY be used to correct an EDIT that cannot * * *",!,"* * * be cleared.  Otherwise these fields should NOT be modified.     * * *"
  Q

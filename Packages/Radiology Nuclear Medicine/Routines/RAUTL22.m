@@ -1,5 +1,5 @@
-RAUTL22 ;HCIOFO/SG - GENERAL UTILITIES ; 2/24/09 3:13pm
- ;;5.0;Radiology/Nuclear Medicine;**90**;Mar 16, 1998;Build 20
+RAUTL22 ;HCIOFO/SG,GJC - GENERAL UTILITIES ; Feb 23, 2023@14:28:53
+ ;;5.0;Radiology/Nuclear Medicine;**90,197**;Mar 16, 1998;Build 2
  ;
  ; Error codes -3, -8, and -10 can be returned by entry points of this
  ; routine. Therefore, if you export this routine, then the dialogs
@@ -264,3 +264,16 @@ ZW(ZZ8NODE,ZZ8TTL,ZZ8FLG) ;
  . I ZZ8FLG["P"  S ZZ8RC=$$PAGE()  Q:ZZ8RC<0
  . W !  W:ZZ8FLG'["N" ZZ8PI_"="  W """"_@ZZ8PI_""""
  Q
+ ;
+ ;***** CHECKS IF THE EXAM DATE/TIME IS VALID (P197)
+ ;
+ ; RADTE         Date/time (FileMan)
+ ;
+ ; RAX return values:
+ ;        0  Date is not valid
+ ;        1  Date is valid
+ ;
+ISEXDTVAL(RADTE) ;seconds stripped ski p197
+ N RAX D DT^DILF("XRPE",$$FMTE^XLFDT(RADTE,1),.RAX)
+ Q $S(RAX=-1:0,1:1)
+ ;

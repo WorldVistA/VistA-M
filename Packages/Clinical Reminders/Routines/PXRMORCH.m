@@ -1,21 +1,16 @@
-PXRMORCH ;SLC/AGP - Reminder Order Checks API ;Dec 07, 2021@12:25
- ;;2.0;CLINICAL REMINDERS;**16,22,26,47,45,71,65**;Feb 04, 2005;Build 438
+PXRMORCH ;SLC/AGP - Reminder Order Checks API ;Jan 13, 2023@19:26
+ ;;2.0;CLINICAL REMINDERS;**16,22,26,47,45,71,65,84**;Feb 04, 2005;Build 2
  ;
- ; API            ICR
- ;DATA^PSS50      4533
- ;101.43          7130
- ;$$OITM^ORX8     3071
- ;79.2            3505
- ;DRGIEN^PSS50P7  4662
+ ;SAC EXEMPTION 20030908-01 : Use proper variable scoping instead of
+ ;                            namespace variable scoping
  ;
- ;SACC EXEMPTIONS SECTION
- ;2.3.1.10.1 and 2.3.1.10.2
+ ;Reference to $$OITM^ORX8 in ICR #3071
+ ;Reference to DATA^PSS50 in ICR #4533
+ ;Reference to DRGIEN^PSS50P7 in ICR #4662
+ ;Reference to FILE #79.2 in ICR #3505
+ ;Reference to ^ORD(101.43 in ICR #2843
+ ;Reference to FIELD #71.3 IN FILE #101.43 in ICR #7130
  ;
- ;DBIA   USED
- ;4533   DATA^PSS50
- ;3505   FileMan call to 79.2
- ;4662   DRGIEN^PSS50P7
- ;7130   Orderable Item field 71.3
  Q
  ;
 GETOCTXT(DFN,IEN,OI,SEV,PNAME,SUB,CNT) ;Get the Order Check text from
@@ -67,7 +62,6 @@ GETRAD(OI,LIST) ;
  I TYPE="RADIOLOGY" S TYPE="GENERAL RADIOLOGY"
  D FIND^DIC(79.2,"","@","BXU",TYPE,"","","","","ITEMS","ERR")
  S X=0 F  S X=$O(ITEMS("DILIST",2,X)) Q:X'>0  D
- .;S TYPEIEN=$$FIND1^DIC(79.2,"","X",TYPE,"","","ERR")
  .S TYPEIEN=+$G(ITEMS("DILIST",2,X))
  .S RIEN=0 F  S RIEN=$O(^PXD(801,"AITEM","RA",TYPEIEN,RIEN)) Q:RIEN=""  S LIST(RIEN)=""
  K ^TMP("DILIST",$J)
@@ -230,19 +224,18 @@ REMEVAL(DFN,OI,RIEN,PNAME,IEN,RNAME,TEXTTYPE,RSTAT,SEV,SUB,TESTER) ;
  ;
  D MAIN^PXRM(DFN,RIEN,55,1)
  S STATUS=$P($G(^TMP("PXRHM",$J,RIEN,RNAME)),U)
- I STATUS="ERROR" D  Q
+ I STATUS="ERROR" D  G REMEVALX
  .S CNT=CNT+1,^TMP($J,SUB,3,PNAME,CNT)="Clinical Reminder evaluation error; this order check cannot be processed."
  .S CNT=CNT+1,^TMP($J,SUB,3,PNAME,CNT)="Please contact the reminder manager for assistance."
  .I TESTER=0 D SENDMSG(DFN,"order check rule",PNAME,"definition",RIEN)
- I (STATUS="CNBD") D  Q
+ I (STATUS="CNBD") D  G REMEVALX
  .S CNT=CNT+1,^TMP($J,SUB,SEV,PNAME,CNT)="Clinical Reminder evaluation is currently disabled; this order check cannot"
  .S CNT=CNT+1,^TMP($J,SUB,SEV,PNAME,CNT)="be processed."
  I TESTER=1 D
  .S CNT=CNT+1,^TMP($J,SUB,SEV,PNAME,CNT)="INTERNAL: Reminder Definition: "_RNAME_" Status: "_STATUS
- .;S CNT=CNT+1,^TMP($J,SUB,SEV,PNAME,CNT)=" "
  ;if not valid status return error message
  ;if Reminder Status does not match status field quit.
- I $$STATMTCH(STATUS,RSTAT)=0 D  Q
+ I $$STATMTCH(STATUS,RSTAT)=0 D  G REMEVALX
  .I TESTER=1 D
  ..S CNT=CNT+1,^TMP($J,SUB,SEV,PNAME,CNT)="RULE FAILED"
  ..S CNT=CNT+1,^TMP($J,SUB,SEV,PNAME,CNT)=" "
@@ -253,13 +246,14 @@ REMEVAL(DFN,OI,RIEN,PNAME,IEN,RNAME,TEXTTYPE,RSTAT,SEV,SUB,TESTER) ;
  S NUM=0
  ;load order check text if requested
  I TEXTTYPE="O"!(TEXTTYPE="B") D GETOCTXT(DFN,IEN,OI,SEV,PNAME,SUB,.CNT)
- I TEXTTYPE="O" Q
+ I TEXTTYPE="O" G REMEVALX
  ;
  I TEXTTYPE="B" S CNT=CNT+1,^TMP($J,SUB,SEV,PNAME,CNT)=""
  ;build reminder text if requested
  F  S NUM=$O(^TMP("PXRMORTMP",$J,RIEN,RNAME,"TXT",NUM)) Q:NUM'>0  D
  .S CNT=CNT+1
  .S ^TMP($J,SUB,SEV,PNAME,CNT)=$G(^TMP("PXRMORTMP",$J,RIEN,RNAME,"TXT",NUM))
+REMEVALX ;EXIT AND CLEAN UP ^TMP
  K ^TMP("PXRHM",$J),^TMP("PXRMORTMP",$J)
  Q
  ;

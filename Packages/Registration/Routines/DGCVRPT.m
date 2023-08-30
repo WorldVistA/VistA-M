@@ -1,5 +1,5 @@
-DGCVRPT ;ALB/PJR,LBD - Unsupported CV End Dates Report;  ; 6/16/09 10:53am
- ;;5.3;Registration;**564,731,792,797**; Aug 13,1993;Build 24
+DGCVRPT ;ALB/PJR,LBD,JAM - Unsupported CV End Dates Report;  ; 6/16/09 10:53am
+ ;;5.3;Registration;**564,731,792,797,1090**; Aug 13,1993;Build 16
  ;
 EN ; Called from DG UNSUPPORTED CV END DATES RPT option
  N DGSRT
@@ -154,10 +154,13 @@ CVDATE(DFN,DGARR,DGERR) ; Returns all values for calculating the CV End date
  ; If OEF/OIF date later than last serv sep dt, use to date of OEF/OIF
  I $G(DGARR("OEF/OIF")),DGARR("OEF/OIF")>DGARR("SSD") S DATE=DGARR("OEF/OIF") G CVDATEQ
  I DGARR("SSD") D
- . Q:$E(DGARR("SSD"),6,7)="00"!(DGARR("SSD")'>2981111)
+ . ; DG*5.3*1090 - change dates to from 11/11/1998 to 09/30/2013
+ . ;Q:$E(DGARR("SSD"),6,7)="00"!(DGARR("SSD")'>2981111)
+ . Q:$E(DGARR("SSD"),6,7)="00"!(DGARR("SSD")'>3130930)
  . I $G(DGARR("OEF/OIF")) S DATE=DGARR("SSD") Q
  . ; If conflict dates exist for any of the above listed fields, use SSD 
- . S N=0 F  S N=$O(DGARR(2,DFN_",",N)) Q:'N  I N'=.327,$G(DGARR(2,DFN_",",N,"I"))>2981111 S DATE=DGARR("SSD") Q
+ . ;S N=0 F  S N=$O(DGARR(2,DFN_",",N)) Q:'N  I N'=.327,$G(DGARR(2,DFN_",",N,"I"))>2981111 S DATE=DGARR("SSD") Q
+ . S N=0 F  S N=$O(DGARR(2,DFN_",",N)) Q:'N  I N'=.327,$G(DGARR(2,DFN_",",N,"I"))>3130930 S DATE=DGARR("SSD") Q
  ;
 CVDATEQ Q $S(DATE:$$CALCCV^DGCV(DFN,DATE),1:"")
  ;

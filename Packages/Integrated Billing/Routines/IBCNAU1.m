@@ -1,7 +1,9 @@
-IBCNAU1 ;ALB/KML/AWC - eIV USER EDIT REPORT (REPORT FILTER SELECTION) ;6-APRIL-2015
- ;;2.0;INTEGRATED BILLING;**528,664,668**;21-MAR-94;Build 28
+IBCNAU1 ;ALB/KML/AWC - USER EDIT REPORT (REPORT FILTER SELECTION) ;6-APRIL-2015
+ ;;2.0;INTEGRATED BILLING;**528,664,668,737**;21-MAR-94;Build 19
  ;;Per VA Directive 6402, this routine should not be modified.
  ;
+ ;IB*737/CKB - references to 'eIV Payer' should be changed to 'Payer' in order
+ ; to include 'IIU Payers'
  Q
  ;
 SELR() ;EP - Select Report Type
@@ -76,7 +78,7 @@ SELPQ Q IBV2
 SELPY() ; Prompt user if Payer(s) are to be on the report
  ; function output returns 1 or 0 in IBV5
  ;
- W !!,"eIV Payer Selection:"
+ W !!,"Payer Selection:" ;IB*737/CKB
  N DIR,DIROUT,DIRUT,DTOUT,DUOUT,IBV5,X,Y ;
  ; if payer edits are to be reported, user needs to choose between all payers or some payers
  S DIR(0)="SA^1:Report all Payers;2:Report Payers that are selected"
@@ -95,7 +97,9 @@ GPYR(ALLPYRS) ; Select the Payers to be reported on.
  K ^TMP("IBPYR",$J)
  I ALLPYRS=1 D GPYRALL Q
  N IBPAYER,IBPYR,IBTXT
- D PAYER^IBCNINSL("EIV",1,.IBPAYER)
+ ;IB*737/TAZ - Removed parameter for "~NO PAYER"
+ ;D PAYER^IBCNINSL("",1,.IBPAYER) ;IB*737/CKB
+ D PAYER^IBCNINSL("",.IBPAYER) ;IB*737/CKB
  S IBPYR=""
  F  S IBPYR=$O(IBPAYER(IBPYR)) Q:IBPYR=""  S IBTXT=$E(IBPAYER(IBPYR),1,25) D
  . I IBTXT]"" S ^TMP("IBPYR",$J,IBTXT,IBPYR)=""
@@ -108,7 +112,8 @@ GPYRALL ; User wants to see all PAYERS that have received edits
  S PYRNAM="" F  S PYRNAM=$O(^IBE(365.12,"B",PYRNAM)) Q:PYRNAM=""  D
  . S PYRIEN=0 F  S PYRIEN=$O(^IBE(365.12,"B",PYRNAM,PYRIEN)) Q:'PYRIEN  D
  . . ;IB*668/TAZ - Changed Payer Application from IIV to EIV
- . . I '+$$PYRAPP^IBCNEUT5("EIV",PYRIEN) Q   ; Not an eIV Payer...Only want eIV Payers.
+ . . ;IB*737/CKB - Not an eIV or IIU Payer...Only want eIV Payers.
+ . . I '+$$PYRAPP^IBCNEUT5("EIV",PYRIEN)&'+$$PYRAPP^IBCNEUT5("IIU",PYRIEN) Q
  . . S ^TMP("IBPYR",$J,PYRNAM,PYRIEN)=""
  Q
  ;
@@ -144,4 +149,3 @@ OK(QUIT) ; -- ask okay
  S DIR(0)="Y",DIR("A")="         ...OK",DIR("B")="YES" D ^DIR
  I $D(DUOUT)!$D(DIRUT) S QUIT=1
  Q Y
- ;

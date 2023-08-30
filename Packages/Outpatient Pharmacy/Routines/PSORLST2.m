@@ -1,5 +1,5 @@
-PSORLST2 ;BIRM/MFR - List of Patients/Prescriptions for Recall Notice ;12/30/09
- ;;7.0;OUTPATIENT PHARMACY;**348,371,525,441**;DEC 1997;Build 208
+PSORLST2 ;BIRM/MFR - List of Patients/Prescriptions for Recall Notice ;Oct 20, 2022@16
+ ;;7.0;OUTPATIENT PHARMACY;**348,371,525,441,545**;DEC 1997;Build 270
  ;
  ; Report Output fields ("^" separated):
  ; ------------------------------------
@@ -26,7 +26,7 @@ PSORLST2 ;BIRM/MFR - List of Patients/Prescriptions for Recall Notice ;12/30/09
  ;   
 PROCESS ; Use input search criteria to find matching orders, store in TMP global.
  N PSOFRMDT,PSOTODT,PSORX,PSOFILL,PSORDT,RXND0,RXND2,PSOPAT,REFILLS
- N PSORXDRG,NDC,LOT,PSODEAD,PTSTAT,OUTPUT,ISSDT,EXPDT,RX,FILL,PAT
+ N PSORXDRG,NDC,LOT,PSODEAD,PTSTAT,OUTPUT,ISSDT,EXPDT,RX,FILL,PAT,LOTFLG,LOTLP
  ;
  ; - Search Originals and Refills
  K ^TMP(+$J,"PSORLST")
@@ -45,7 +45,8 @@ PROCESS ; Use input search criteria to find matching orders, store in TMP global
  . . . I '$$RXRLDT^PSOBPSUT(PSORX,PSOFILL) Q
  . . . I '$D(PSOSDIV(+$$RXSITE^PSOBPSUT(PSORX,PSOFILL))) Q
  . . . I PSOMED=1 S NDC=$$RAWNDC($$GETNDC^PSONDCUT(PSORX,PSOFILL)) Q:NDC=""  Q:'$D(PSONDC(NDC))
- . . . I PSOMED=2 S LOT=$$LOT(PSORX,PSOFILL) Q:LOT=""  Q:'$D(PSODDRG(+PSORXDRG,LOT))
+ . . . I PSOMED=2 S LOT=$$LOT(PSORX,PSOFILL) Q:LOT=""  D  Q:'$G(LOTFLG)
+ . . . . S LOTFLG=0,LOTLP="" F  S LOTLP=$O(PSODDRG(+PSORXDRG,LOTLP)) Q:LOTLP=""  I $$UPPER(LOT)[$$UPPER(LOTLP) S LOTFLG=1 Q
  . . . S ^TMP($J,"PSORLST",$$GET1^DIQ(2,PSOPAT,.01),PSORX,PSOFILL)=""
  ;
  ; - Search Partials
@@ -62,7 +63,8 @@ PROCESS ; Use input search criteria to find matching orders, store in TMP global
  . . F  S PSOFILL=$O(^PSRX("AM",PSORDT,PSORX,PSOFILL)) Q:'PSOFILL  D
  . . . I '$D(PSOSDIV(+$$GET1^DIQ(52.2,(+PSOFILL)_","_PSORX,.09,"I"))) Q
  . . . I PSOMED=1 S NDC=$$RAWNDC($$GET1^DIQ(52.2,(+PSOFILL)_","_PSORX,1)) S:NDC="" NDC=$$RAWNDC($P(RXND2,"^",7)) Q:NDC=""  Q:'$D(PSONDC(NDC))
- . . . I PSOMED=2 S LOT=$$LOT(PSORX,PSOFILL_"P") Q:LOT=""  Q:'$D(PSODDRG(+PSORXDRG,LOT))
+ . . . I PSOMED=2 S LOT=$$LOT(PSORX,PSOFILL_"P") Q:LOT=""  D  Q:'$G(LOTFLG)
+ . . . . S LOTFLG=0,LOTLP="" F  S LOTLP=$O(PSODDRG(+PSORXDRG,LOTLP)) Q:LOTLP=""  I $$UPPER(LOT)[$$UPPER(LOTLP) S LOTFLG=1 Q
  . . . S ^TMP($J,"PSORLST",$$GET1^DIQ(2,PSOPAT,.01),PSORX,PSOFILL_"P")=""
  ;
  I $D(^TMP($J,"PSORLST")) D
@@ -213,8 +215,8 @@ LOT(RX,FILL) ; Returns the LOT# for a specific Fill
  ;         (r) FILL - Refill #/Partial # (note: Partials contain a "P", e.g. "1P")
  ; Output:     LOT  - Rx Drug Lot #
  N LOT,I,J S LOT="",(I,J)=0 ;*525 to include CMOP LOT #
- F  S I=$O(^PSRX(RX,5,I)) Q:('I)!(LOT]"")  D
- . I $P($G(^PSRX(RX,5,I,0)),"^",3)=FILL S J=1,LOT=$P(^(0),"^")
+ F  S I=$O(^PSRX(RX,5,I)) Q:('I)  D
+ . I $P($G(^PSRX(RX,5,I,0)),"^",3)=FILL N TMPLOT S J=1,TMPLOT=$P(^(0),"^") S LOT=$S($L($G(LOT))&$L(TMPLOT):LOT_" "_TMPLOT,'$L(TMPLOT):$G(LOT),1:TMPLOT)
  Q:J LOT
  I FILL["P" S LOT=$$GET1^DIQ(52.2,(+FILL)_","_RX,.06) Q LOT
  I FILL>0 S LOT=$$GET1^DIQ(52.1,(+FILL)_","_RX,5) Q LOT
@@ -223,3 +225,6 @@ LOT(RX,FILL) ; Returns the LOT# for a specific Fill
  ;
 RAWNDC(NDC) ; Returns NDC without dashes ('-') or spaces (' ')
  Q $TR($TR(NDC,"-","")," ","")
+ ;
+UPPER(PSOUCS) ;
+ Q $TR(PSOUCS,"abcdefghijklmnopqrstuvwxyz","ABCDEFGHIJKLMNOPQRSTUVWXYZ")

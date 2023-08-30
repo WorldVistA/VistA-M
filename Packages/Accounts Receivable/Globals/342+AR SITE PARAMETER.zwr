@@ -2,6 +2,7 @@ OSEHRA ZGO Export: AR SITE PARAMETER
 ZWR
 ^RC(342,0)="AR SITE PARAMETER^342P^1^1"
 ^RC(342,1,0)="1^^^^^^^^^^^^^0^0^180"
+^RC(342,1,2)="To pay your statement online, go to www.pay.gov or call 1-888-827-4817."
 ^RC(342,1,3)="^^0"
 ^RC(342,1,7)="^5^7^45^N^N"
 ^RC(342,1,9.4,0)="^342.01^1^1"

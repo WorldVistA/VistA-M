@@ -1,5 +1,5 @@
 PSOCPTRI ;BHAM ISC/CPM,RTR - SUPPORT FOR CHAMPUS RX BILLING ;14-AUG-96
- ;;7.0;OUTPATIENT PHARMACY;**10,55,184**;DEC 1997
+ ;;7.0;OUTPATIENT PHARMACY;**10,55,184,545**;DEC 1997;Build 270
  ;External reference to ^PSDRUG supported by DBIA 221
  ;
  ;
@@ -51,7 +51,8 @@ TRANS(ORIG,REF,PSOV) ; Extract Rx information for transmission to FI
  ;
  N PSOX S PSOX=+$P(PSORX(0),"^",6) S PSOV("COMP")=$P($G(^PSDRUG(PSOX,0)),"^",3) S PSOV("COMP")=$S(PSOV("COMP")[0:2,1:1) ; Compound drug
  ;
- S PSOV("DEA")=$S($P(PSORX(0),"^",4):$P($G(^VA(200,$P(PSORX(0),"^",4),"PS")),"^",2),1:"") ; DEA #
+ ;*545 - get DEA#
+ S PSOV("DEA")=$S($P(PSORX(0),"^",4):$$GDEA(+$P(PSORX(0),"^",4)),1:"")
  ;
  ;
 TRANSQ Q PSOE
@@ -133,3 +134,9 @@ RESDIR ;Reset DIR just in case
  S DIR("?",2)="Enter 'H' to hold label until Rx can be filled",DIR("?",3)="Enter 'P' for Rx profile"
  S:$P(PSOPAR,"^",26) DIR("?",5)="Enter 'L' to print labels without queuing"
  Q
+ ;
+GDEA(IEN) ; Get DEA number
+ N DEA
+ S DEA=$$DEA^XUSER(0,IEN) ;DBIA2343
+ Q DEA
+ ;

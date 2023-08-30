@@ -1,5 +1,5 @@
 RCTCSP7 ;ALBANY/RGB-CROSS - SERVICING TRANSMISSION CONT'D ;08/03/17 3:34 PM
- ;;4.5;Accounts Receivable;**327,315,336,350,343**;Mar 20, 1995;Build 59
+ ;;4.5;Accounts Receivable;**327,315,336,350,343,417**;Mar 20, 1995;Build 30
  ;;Per VA Directive 6402, this routine should not be modified.
  ;
  ;PRCA*4.5*327 Moved rec code from RCTCSPD to create room
@@ -11,6 +11,11 @@ RCTCSP7 ;ALBANY/RGB-CROSS - SERVICING TRANSMISSION CONT'D ;08/03/17 3:34 PM
  ;
  ;PRCA*4.5*343 Moved NAME subroutine from RCTCSPD to get
  ;             under SACC routine size max
+ ;
+ ;PRCA*4.5*417 Added check for SSN change to send only C2U
+ ;             tx and no there transaction for debtor in that
+ ;             batch. If there was other activity to send it
+ ;             will have go in the next week's batch run.
  ;
 REC2C ;
  N REC,KNUM,DEBTNR,DEBTORNB,TAXID,RCDFN,PHONE,ADDRCS
@@ -85,3 +90,16 @@ NAME(DFN) ;returns name for document and name in file - called by RCTCSPD
  S DOCNM=$$LJ^XLFSTR($E(LN,1,35),35)_$$LJ^XLFSTR($E(FN,1,35),35)_$$LJ^XLFSTR($E(MN,1,35),35)
  Q DOCNM
  ;
+SSCHK(DEBTOR) ;check for TCSP debtor SS# change PRCA*4.5*417
+ N PRCABILL,TAXID,B0,ACTION,RCTCSSCH
+ S PRCABILL=0,RCTCSCW=0,XX=0,RCTCSSCH=""
+ S TAXID=$$TAXID^RCTCSP1(DEBTOR) I $L(TAXID)'=9 G SQ
+ F  S PRCABILL=$O(^PRCA(430,"C",DEBTOR,PRCABILL)) Q:'PRCABILL  D
+ .I '$G(^PRCA(430,PRCABILL,16)) Q
+ .I TAXID=$P(^PRCA(430,PRCABILL,16),U) Q
+ .S RCTCSSCH=^PRCA(430,PRCABILL,16)
+ .S DA=PRCABILL,DR="161///"_TAXID,DIE="^PRCA(430," D ^DIE
+ .Q:RCTCSCW=1
+CHK .S ACTION="U",B0=^PRCA(430,PRCABILL,0),BILL=PRCABILL,RCTCSCW=1
+ .D REC2^RCTCSPD
+SQ Q RCTCSCW

@@ -1,7 +1,9 @@
-IBCNAU ;ALB/KML/AWC - eIV USER EDIT REPORT (DRIVER) ;6-APRIL-2015
- ;;2.0;INTEGRATED BILLING;**528,664**;21-MAR-94;Build 29
+IBCNAU ;ALB/KML/AWC - USER EDIT REPORT (DRIVER) ;6-APRIL-2015
+ ;;2.0;INTEGRATED BILLING;**528,664,737**;21-MAR-94;Build 19
  ;;Per VA Directive 6402, this routine should not be modified.
  ;
+ ;IB*737/CKB - references to 'eIV Payer' should be changed to 'Payer' in order
+ ; to include 'IIU Payers'
  Q
  ;
 EN ;
@@ -38,13 +40,21 @@ EN ;
  .S ALLINS=$$SELI^IBCNAU1 I ALLINS<0 Q
  .S ALLPLANS=$$SELP^IBCNAU1(ALLINS,.PLANS) I ALLPLANS<0 Q
  .D GP(ALLINS,ALLPLANS,PLANS)
+ ;
  I ALLINS<0!(ALLPLANS<0) Q
+ ;IB*737/CKB - if REPTYP'=2 and 'Selected' Insurance Companies, however no Insurance
+ ; Companies were selected by the user or the user entered '^', Quit
+ I REPTYP'=2 I ALLINS=0,'$D(^TMP("IBINC",$J)) Q
+ ;
  I REPTYP'=1 D  ; report for payers or both was selected
  .S ALLPYRS=$$SELPY^IBCNAU1  ; Check on All or Selected Payers
  .I ALLPYRS<0 Q
  .D GPYR^IBCNAU1(ALLPYRS)
- I ALLINS<0!(ALLPLANS<0)!(ALLPYRS<0) Q   ; Nothing to report so quit
  ;
+ I ALLINS<0!(ALLPLANS<0)!(ALLPYRS<0) Q   ; Nothing to report so quit
+ ;IB*737/CKB - if REPTYP'=1 and 'Selected' Payers, however no Payers were
+ ; selected by the user or the user entered '^', Quit
+ I REPTYP'=1 I ALLPYRS=0&'$D(^TMP("IBPYR",$J)) Q
  S ALLUSERS=$$SELU^IBCNAU1 I ALLUSERS<0 Q
  ;/vd-IB*2*664 - End of new code
  ;
@@ -64,21 +74,34 @@ DEVICE ; Ask user to select device
  I 'EXCEL D
  . W !!,"*** You will need a 132 column printer for this report. ***",!
  E   W !!,"To avoid undesired wrapping, please enter '0;256;999' at the 'DEVICE:' prompt."
- N POP,%ZIS,ZTDESC,ZTRTN,ZTSAVE,ZTQUEUED,ZTREQ S %ZIS="QM" D ^%ZIS Q:POP
- I $D(IO("Q")) D  Q
- .S ZTRTN="EN^IBCNAU2",ZTDESC="User Edit Report"
- .;F I="^TMP(""IBINC"",$J,","^TMP(""IBUSER"",$J,","ALLUSERS","ALLINS","PLANS","ALLPLANS",DATE","EXCEL" S ZTSAVE(I)=""
- .;/vd-IB*2*664 - Above line replaced with the line below.
- .F I="^TMP(""IBINC"",$J,","^TMP(""IBUSER"",$J,","ALLUSERS","ALLINS","PLANS","ALLPLANS","ALLPYRS","DATE","EXCEL" S ZTSAVE(I)=""
- .D ^%ZTLOAD K IO("Q") D HOME^%ZIS
- .W !!,$S($D(ZTSK):"This job has been queued as task #"_ZTSK_".",1:"Unable to queue this job.")
- .K ZTSK,IO("Q")
+ ; IB*737/DTG correct and reorder queuing of report
+ ;N POP,%ZIS,ZTDESC,ZTRTN,ZTSAVE,ZTQUEUED,ZTREQ S %ZIS="QM" D ^%ZIS Q:POP
+ N ZTDESC,ZTRTN,ZTSAVE,ZTQUEUED,ZTREQ
+ ;I $D(IO("Q")) D  Q
+ ;.S ZTRTN="EN^IBCNAU2",ZTDESC="User Edit Report"
+ ;.;F I="^TMP(""IBINC"",$J,","^TMP(""IBUSER"",$J,","ALLUSERS","ALLINS","PLANS","ALLPLANS",DATE","EXCEL" S ZTSAVE(I)=""
+ ;.;/vd-IB*2*664 - Above line replaced with the line below.
+ ;.F I="^TMP(""IBINC"",$J,","^TMP(""IBUSER"",$J,","ALLUSERS","ALLINS","PLANS","ALLPLANS","ALLPYRS","DATE","EXCEL" S ZTSAVE(I)=""
+ ;.D ^%ZTLOAD K IO("Q") D HOME^%ZIS
+ ;.W !!,$S($D(ZTSK):"This job has been queued as task #"_ZTSK_".",1:"Unable to queue this job.")
+ ;.K ZTSK,IO("Q")
+ F I="^TMP(""IBINC"",$J,","^TMP(""IBUSER"",$J,","ALLUSERS","ALLINS" S ZTSAVE(I)=""
+ F I="PLANS","ALLPLANS","ALLPYRS","DATE(","EXCEL","REPTYP","WIDTH" S ZTSAVE(I)=""
+ S ZTDESC="User Edit Report"
+ S ZTRTN="EN^IBCNAU2(ALLINS,ALLPLANS,PLANS,ALLPYRS,REPTYP,.DATE)"
+ D EN^XUTMDEVQ(ZTRTN,ZTDESC,.ZTSAVE,"Q")
+ ;
+ ; this section is now being done by XUTMDDEVQ above
  ;
  ; -- compile and print report
  ;U IO D EN^IBCNAU2(ALLINS,ALLPLANS,PLANS,.DATE)
  ;/vd-IB*2*664 - Above line replaced with the line below.
- U IO D EN^IBCNAU2(ALLINS,ALLPLANS,PLANS,ALLPYRS,REPTYP,.DATE)
- K ^TMP("IBPYR",$J),^TMP("IBINC",$J),^TMP("IBUSER",$J),^TMP("IBPR",$J),^TMP("IBPR2",$J),^TMP($J)
+ ;U IO D EN^IBCNAU2(ALLINS,ALLPLANS,PLANS,ALLPYRS,REPTYP,.DATE)
+ ;K ^TMP("IBPYR",$J),^TMP("IBINC",$J),^TMP("IBUSER",$J),^TMP("IBPR",$J),^TMP("IBPR2",$J),^TMP($J)
+ I POP D
+ . K ^TMP("IBPYR",$J),^TMP("IBINC",$J),^TMP("IBUSER",$J),^TMP("IBPR",$J),^TMP("IBPR2",$J),^TMP($J)
+ . K ^TMP("IBPRINS",$J) ; IB*737/DTG to track which DIA(36,"B",INSIENS have been picked up
+ ;
  Q
  ;
 START(ALLUSERS,DATE) ;

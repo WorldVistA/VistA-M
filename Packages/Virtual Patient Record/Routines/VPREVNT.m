@@ -1,35 +1,21 @@
 VPREVNT ;SLC/MKB -- VistA event listeners ;10/25/18  15:29
- ;;1.0;VIRTUAL PATIENT RECORD;**8,10,15,17,19,21,20,26,25,27,29**;Sep 01, 2011;Build 11
+ ;;1.0;VIRTUAL PATIENT RECORD;**8,10,15,17,19,21,20,26,25,27,29,31**;Sep 01, 2011;Build 3
  ;;Per VA Directive 6402, this routine should not be modified.
  ;
  ; External References               DBIA#
  ; -------------------               -----
  ; DG FIELD MONITOR                   3344
- ; DG PTF ICD DIAGNOSIS NOTIFIER      6850
  ; DG SA FILE ENTRY NOTIFIER          7232
  ; DGPM MOVEMENT EVENTS               1181
- ; FH EVSEND OR                       6097
  ; GMPL EVENT                         6065
  ; GMRA ASSESSMENT CHANGE             6986
  ; GMRA ENTERED IN ERROR              1467
  ; GMRA SIGN-OFF ON DATA              1469
  ; GMRA VERIFY DATA                   1470
- ; GMRC EVSEND OR                     3140
  ; IBCN NEW INSURANCE                 7010
- ; LR7O AP EVSEND OR                  7011
- ; LR70 CH EVSEND OR                  6087
  ; MDC OBSERVATION UPDATE             6084
- ; OR EVSEND FH                       6090
- ; OR EVSEND GMRC                     3135
- ; OR EVSEND LRCH                     6091
- ; OR EVSEND ORG                      6092
- ; OR EVSEND PS                       6093
- ; OR EVSEND RA                       6094
- ; OR EVSEND VPR                      6095
- ; PS EVSEND OR                       2415
  ; PSB EVSEND VPR                     6085
  ; PXK VISIT DATA EVENT               1298
- ; RA EVSEND OR                       6086
  ; SCMC PATIENT TEAM CHANGES          7012
  ; SCMC PATIENT TEAM POSITION         7013
  ; SDAM APPOINTMENT EVENTS            1320
@@ -39,17 +25,14 @@ VPREVNT ;SLC/MKB -- VistA event listeners ;10/25/18  15:29
  ; ^AUPNVSIT                          2028
  ; ^DGPM                              1865
  ; ^DGS(41.1                          3796
+ ; ^DIC(42                           10039
  ; ^DPT                              10035
  ; ^GMR(120.8                         6973
  ; ^GMR(120.86                        3449
- ; ^LR                                 525
- ; ^OR(100                            5771
- ; ^PSB(53.79                         5909
- ; ^RADPT                             2480
  ; ^TIU(8925.1                        5677
- ; DIC                                2051
+ ; ^TIU(8925.7                        7416
+ ; %ZTLOAD                           10063
  ; DIQ                                2056
- ; PSSUTLA1                           3373
  ; XLFDT                             10103
  ;
 DG ; -- DG FIELD MONITOR protocol listener
@@ -105,20 +88,6 @@ CKVST ; -- delete visit if unused [from DGPM]
  I $G(VPRSQ) D SAVST^VPRENC(VPRSQ)
  Q
  ;
-PTF ; -- DG PTF ICD DIAGNOSIS NOTIFIER protocol listener
- N DFN,IEN,ACT,ADM,VST,OLD,VPRSQ
- S DFN=+$G(^TMP("DG PTF ICD NOTIFIER",$J,"DFN")) Q:DFN<1
- S IEN=+$G(^TMP("DG PTF ICD NOTIFIER",$J,"DISCHARGE","IENS")) Q:IEN<1
- Q:'$D(^TMP("DG PTF ICD NOTIFIER",$J,"DISCHARGE","PDX"))  ;no DXLS
- S ACT="" I $G(^TMP("DG PTF ICD NOTIFIER",$J,"DISCHARGE","PDX","NEW"))="" S OLD=$G(^("OLD")),ACT="@"
- S ADM=$$FIND1^DIC(405,,"Q",IEN,"APTF"),VST=$$VNUM^VPRSDAV(ADM)
- D:VST POST^VPRHS(DFN,"Diagnosis",IEN_";45",ACT,VST,.VPRSQ)
- I ACT="@",$G(VPRSQ) D  ;save ICD code
- . S ^XTMP("VPR-"_VPRSQ,IEN)=DFN_"^Diagnosis^"_IEN_";45^D^"_VST
- . S ^XTMP("VPR-"_VPRSQ,IEN,0)=OLD_U_U_VST
- . S ^XTMP("VPR-"_VPRSQ,0)=$$FMADD^XLFDT(DT,14)_U_DT_"^Deleted record for AVPR"
- Q
- ;
 DGS ; -- DG SA FILE ENTRY NOTIFIER protocol listener
  N IEN,DFN,ACT S ACT=""
  S IEN=+$G(^TMP("DG SA FILE ENTRY NOTIFIER",$J,"IEN")) Q:IEN<1
@@ -138,117 +107,6 @@ SDAM ; -- SDAM APPOINTMENT EVENTS protocol listener
  S DFN=+$P(SDATA,U,2) Q:DFN<1
  S DATE=+$P(SDATA,U,3),ACT=$S($G(SDAMEVT)=2:"@",1:"")
  D POST^VPRHS(DFN,"Appointment",(DATE_","_DFN_";2.98"),ACT)
- Q
- ;
-PCE ; -- PXK VISIT DATA EVENT protocol listener
- G PX^VPRENC ;moved in VPR*1*19
- Q
- ;
-XQOR(MSG,FD) ; -- CPRS protocol event listener
- ; FD   = frontdoor msg from CPRS (get ORIFN for new backdoor orders)
- ; else = backdoor msg/ack from Pharmacy, Lab, Radiology, etc.
- N VPRMSG,VPRPKG,VPRSDA,DFN,ORC,ACT
- S VPRMSG=$S($L($G(MSG)):MSG,1:"MSG") Q:'$O(@VPRMSG@(0))
- S DFN=$$PID Q:DFN<1
- S ORC=0 F  S ORC=$O(@VPRMSG@(+ORC)) Q:ORC'>0  I $E($G(@VPRMSG@(ORC)),1,3)="ORC" D
- . N ORDCNTRL,PKGIFN,ORIFN,STS,ORIG
- . S ORC=ORC_U_@VPRMSG@(ORC),ORDCNTRL=$TR($P(ORC,"|",2),"@","P")
- . ; QUIT if action failed, conversion, purge, or backdoor verify/new
- . I ORDCNTRL["U"!("DE^ZC^ZP^ZR^ZV^SN"[ORDCNTRL) Q
- . I $G(FD),ORDCNTRL'="NA" Q  ;only want NA msg, from CPRS
- . ; Update *Order containers
- . S ORIFN=+$P($P(ORC,"|",3),U),PKGIFN=$P($P(ORC,"|",4),U)
- . S VPRPKG=$P($P(ORC,"|",4),U,2) ;default namespace, if 'ORIFN
- . Q:$O(^OR(100,ORIFN,2,0))       ;should not be getting parent orders
- . S STS=$P($G(^OR(100,ORIFN,3)),U,3) Q:STS=10  Q:STS=11
- . S ACT="" I "CA^OC^CR"[ORDCNTRL,STS=13 S ACT="@" ;cancelled
- . ; also remove pending meds that have been dc'd
- . I "OC^CR^OD^DR"[ORDCNTRL,STS=1,VPRPKG="PS",(PKGIFN["P")!(PKGIFN["S") S ACT="@"
- . I ORIFN D                      ;IFC Consults have no local order#
- .. S VPRPKG=$$NMSP(ORIFN),VPRSDA=$$ORDCONT(VPRPKG)
- .. D POST^VPRHS(DFN,VPRSDA,ORIFN_";100",ACT)
- . ; Update Referral or Document containers
- . I VPRPKG="GMRC",PKGIFN D POST^VPRHS(DFN,"Referral",+PKGIFN_";123") Q
- . Q:ORDCNTRL'="RE"
- . I $E(VPRPKG,1,2)="RA" D RAD Q
- . I $E(VPRPKG,1,2)="LR" D LRD Q
- Q
- ;
-NMSP(IFN) ; -- Returns package namespace from pointer
- N X,Y S X=$P($G(^OR(100,+$G(IFN),0)),U,14)
- S Y=$$GET1^DIQ(9.4,+X_",",1)
- Q Y
- ;
-ORDCONT(NMSP) ; -- Returns SDA Order container name
- S NMSP=$G(NMSP)
- I $E(NMSP,1,2)="LR"  Q "LabOrder"
- I $E(NMSP,1,2)="PS"  Q "Medication"
- I $E(NMSP,1,2)="RA"  Q "RadOrder"
- Q "OtherOrder"
- ;
-GMRC ; -- Referrals [from XQOR: no longer used]
- N VST S VST=$$GET1^DIQ(123,+PKGIFN,"16:.03","I")
- D POST^VPRHS(DFN,"Referral",+PKGIFN_";123",,VST)
- ; update CP in Procedures?
- I ORDCNTRL="RE",$$GET1^DIQ(123,+PKGIFN,1.01,"I") D  ;CP
- . N VPRC,ID D FIND^DIC(702,,"@","Q",+PKGIFN,,"ACON",,,"VPRC")
- . S I=0 F  S I=$O(VPRC("DILIST",2,I)) Q:I<1  D
- .. S ID=+$G(VPRC("DILIST",2,I))
- .. D POST^VPRHS(DFN,"Procedure",ID_";702",,VST)
- Q
- ;
-RAD ; -- Radiology documents
- N IDT,RPT,I,X,STS,ACT
- S IDT=+$O(^RADPT("AO",+PKGIFN,DFN,0)),I=0
- ; find report(s) for order
- F  S I=$O(^RADPT("AO",+PKGIFN,DFN,IDT,I)) Q:I<1  D
- . S X=+$P($G(^RADPT(DFN,"DT",IDT,"P",I,0)),U,17) ;,VST=$P($G(^(0)),U,27)
- . Q:'X  S STS=$$GET1^DIQ(74,X_",",5,"I"),ACT=""
- . Q:STS'="V"&(STS'="EF")&(STS'="X")  I STS="X" S ACT="@"
- . S:'$D(RPT(X)) RPT(X)=IDT_"-"_I ;S:VST VST(X)=VST
- ; update Document container
- S X=0 F  S X=$O(RPT(X)) Q:X<1  D POST^VPRHS(DFN,"Document",X_";74",ACT) ;X_"~"_RPT(X)
- Q
- ;
-LRAP(MSG) ; -- LR7O AP EVSEND OR protocol listener
- N VPRMSG,DFN,ORC
- S VPRMSG=$S($L($G(MSG)):MSG,1:"MSG") Q:'$O(@VPRMSG@(0))
- S DFN=$$PID Q:DFN<1
- S ORC=0 F  S ORC=$O(@VPRMSG@(+ORC)) Q:ORC'>0  I $E($G(@VPRMSG@(ORC)),1,3)="ORC" D
- . N ORDCNTRL,PKGIFN
- . S ORC=ORC_U_@VPRMSG@(ORC),ORDCNTRL=$TR($P(ORC,"|",2),"@","P")
- . Q:ORDCNTRL'="RE"  S PKGIFN=$P($P(ORC,"|",4),U)
- . D LRD
- Q
- ;
-LRD ; -- AP/MI documents [from XQOR, LRAP: expects PKGIFN]
- N SUB,IDT,LRDFN,X
- S SUB=$P($G(PKGIFN),";",4),IDT=$P($G(PKGIFN),";",5)
- Q:'IDT  Q:SUB=""  Q:SUB="CH"
- S LRDFN=+$G(^DPT(DFN,"LR"))
- ; report in TIU or not complete
- I SUB="MI" Q:'$$MI1^VPRSDAB(LRDFN,IDT)
- I SUB'="MI" Q:$O(^LR(LRDFN,SUB,IDT,.05,0))  Q:'$P($G(^LR(LRDFN,SUB,IDT,0)),U,11)
- ; update report
- S X=IDT_","_LRDFN_"~"_SUB_";"_$S(SUB="MI":63.05,1:63.08)
- D POST^VPRHS(DFN,"Document",X)
- Q
- ;
-PID() ; -- Returns patient from PID segment in current msg
- N I,SEG,Y S I=0
- F  S I=$O(@VPRMSG@(I)) Q:I'>0  S SEG=$E($G(@VPRMSG@(I)),1,3) Q:SEG="ORC"  I SEG="PID" D  Q
- . S Y=+$P(@VPRMSG@(I),"|",4)
- .;I '$D(^DPT(Y,0)) S:$L($P(@VPRMSG@(I),"|",5)) Y=+$P(@VPRMSG@(I),"|",5) ;alt ID for Lab
- Q Y
- ;
-PSB ; -- PSB EVSEND VPR protocol listener (BCMA)
- ;    [expects PSBIEN variables]
- N IEN,DFN,ORPK,ORIFN
- S IEN=$S($P($G(PSBIEN),",",2)'="":+$P(PSBIEN,",",2),$G(PSBIEN)="+1":+$G(PSBIEN(1)),1:+$G(PSBIEN))
- S DFN=+$G(^PSB(53.79,IEN,0)),ORPK=$P($G(^(.1)),U)
- Q:DFN<1  Q:ORPK<1
- S ORIFN=$S($L($T(PLACER^PSSUTLA1)):$$PLACER^PSSUTLA1(DFN,ORPK),1:0)
- D:ORIFN POST^VPRHS(DFN,"Medication",ORIFN_";100")
  Q
  ;
 GMRA(ACT) ; -- GMRA SIGN-OFF ON DATA protocol listener
@@ -308,19 +166,19 @@ TIU(DFN,IEN) ; -- TIU Document file #8925 AEVT index
 TIUR ; -- TIU DOCUMENT ACTION EVENT listener (removing notes)
  N ARY,ACT,DFN,IEN,VST,DAD,X,VPRSQ,CLS
  S ARY=$NA(^TMP("TIUDOCACT",$J)),ACT=$G(@ARY@("ACTION"))
- I ACT="RETRACT" D  Q  ;not DELETE
+ I ACT="RETRACT" D  G TRQ  ;not DELETE
  . S DFN=+$G(@ARY@("PATIENT")),VST=$G(@ARY@("VISIT"))
  . S IEN=+$G(@ARY@("DOCUMENT")) Q:IEN<1  Q:DFN<1
  . S DAD=+$$GET1^DIQ(8925,IEN,.06,"I") S:DAD IEN=DAD
- . D TIU^VPRENC(IEN,,VST)
+ . ;D TIU^VPRENC(IEN,,VST)
  ;
  Q:ACT'="REASSIGN"
  S DFN=+$G(@ARY@("PATIENT","OLD")),VST=$G(@ARY@("VISIT","OLD"))
  S IEN=+$G(@ARY@("DOCUMENT","OLD")) ;DA in NEW if patient unchanged
  S:IEN<1 IEN=+$G(@ARY@("DOCUMENT","NEW")) Q:IEN<1  Q:DFN<1
  S DAD=+$$GET1^DIQ(8925,IEN,.06,"I") I DAD D TIU^VPRENC(DAD) Q
- ; remove document from old patient/visit
  ; new document saved via regular index event
+TRQ ; remove document from old patient/visit
  D POST^VPRHS(DFN,"Document",IEN_";8925","@",VST,.VPRSQ)
  I $G(VPRSQ) D  ;save visit
  . S ^XTMP("VPR-"_VPRSQ,IEN)=DFN_"^Document^"_IEN_";8925^D^"_VST
@@ -331,8 +189,40 @@ TIUR ; -- TIU DOCUMENT ACTION EVENT listener (removing notes)
  D:CLS=30!(CLS=31) POST^VPRHS(DFN,"Alert",IEN_";8925","@")
  Q
  ;
+TIUS(IEN) ; -- TIU MULTIPLE SIGNATURE file #8925.7 AVPR index
+ S IEN=+$G(IEN) Q:IEN<1
+ N TIU0,TIUIEN,DFN,VST
+ S TIU0=$G(^TIU(8925.7,IEN,0)),TIUIEN=+$P(TIU0,U) Q:TIUIEN<1
+ S DFN=$$GET1^DIQ(8925,TIUIEN,.02,"I") Q:DFN<1
+ S VST=$$GET1^DIQ(8925,TIUIEN,.03,"I") ;Ok if null
+ ; non-PCE event so post immediately for BMS
+ D POST^VPRHS(DFN,"Document",TIUIEN_";8925",,VST)
+ Q
+ ;
 IBCN ; -- IBCN NEW INSURANCE EVENTS listener
- I $G(DFN) D POST^VPRHS(DFN,"MemberEnrollment") ;rebuild container
+ ; expects IBCDFN, IBEVTACT="ADD","EDT", or "DEL"
+ I '$G(IBCDFN) Q
+ N ACT,ID,VPRSQ,I S ID=IBCDFN_","_DFN
+ S ACT=$S($G(IBEVTACT)="DEL":"@",$G(IBEVTACT)="ADD":"",1:$$IBDIFF)
+ D POST^VPRHS(DFN,"MemberEnrollment",ID_";2.312",ACT,,.VPRSQ)
+ I ACT="@",$G(VPRSQ) D  ;save old values for delete msg
+ . S ^XTMP("VPR-"_VPRSQ,ID)=DFN_"^MemberEnrollment^"_ID_";2.312^D^"
+ . F I=0,1,2,3,7 S ^XTMP("VPR-"_VPRSQ,ID,I)=$G(@("IBEVTP"_I))
+ . S ^XTMP("VPR-"_VPRSQ,0)=$$FMADD^XLFDT(DT,14)_U_DT_"^Deleted record for AVPR"
+ I ($G(IBEVTACT)="EDT")&(ACT="@") D  ;task edit to ensure delete happens first
+ . N ZTRTN,ZTDTH,ZTDESC,ZTIO,ZTSAVE,ZTUCI,ZTCPU,ZTPRI,ZTKIL,ZTSYNC,ZTSK
+ . S ZTRTN="IBTASK^VPREVNT",ZTDESC="VPR Insurance Update",ZTIO=""
+ . S ZTDTH=$$FMADD^XLFDT($$NOW^XLFDT,,,2),ZTSAVE("DFN")="",ZTSAVE("ID")=""
+ . D ^%ZTLOAD
+ Q
+IBDIFF() ; -- return 1 or 0, if key matching values changed
+ I +$G(IBEVTP0)'=+$G(IBEVTA0) Q 1
+ I +$P($G(IBEVTP0),U,18)'=+$P($G(IBEVTA0),U,18) Q 1
+ I +$P($G(IBEVTP7),U,2)'=+$P($G(IBEVTA7),U,2) Q 1
+ Q 0
+IBTASK ; -- tasked update
+ Q:'$G(DFN)  Q:'$G(ID)
+ D POST^VPRHS(DFN,"MemberEnrollment",ID_";2.312")
  Q
  ;
 PCMMT ; -- SCMC PATIENT TEAM CHANGES protocol listener

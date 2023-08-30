@@ -1,6 +1,6 @@
 IBCEDS ;ALB/ESG - EDI CLAIM STATUS REPORT - SELECTION ;13-DEC-2007
- ;;2.0;INTEGRATED BILLING;**377,641**;21-MAR-94;Build 61
- ;;Per VHA Directive 2004-038, this routine should not be modified.
+ ;;2.0;INTEGRATED BILLING;**377,641,727**;21-MAR-94;Build 34
+ ;;Per VA Directive 6402, this routine should not be modified.
  ;
  Q
  ;
@@ -18,6 +18,8 @@ DS30 D PAYER I STOP G:$$STOP EX G DS20
 DS40 D TXDATE I STOP G:$$STOP EX G DS30
 DS50 D EDISTAT I STOP G:$$STOP EX G DS40
 DS60 D CANCEL I STOP G:$$STOP EX G DS50
+ ;JWS;IB*2.0*727;EBILL-2680;in non-production accounts, ask if TEST claims should be included
+DS62 I '$$PROD^XUPROD(1) D TEST I STOP G:$$STOP EX G DS60
  ;JWS;IB*2.0*641;add summary/detail option (summary - just totals, detail remains same)
 DS65 D SD I STOP G:$$STOP EX G DS60
  I $G(^TMP($J,"IBCEDS","SD"))="S" G DS80
@@ -281,3 +283,17 @@ DEVICE ; Device selection
 DEVICEX ;
  Q
  ;
+TEST ; Test claims include in lower environments ; IB*2.0*727;JWS;EBILL-2680
+ ;
+ W !!,"INCLUDE TEST CLAIMS SELECTION"
+ K ^TMP($J,"IBCEDS","TEST")
+ S DIR(0)="YO"
+ S DIR("A")="Include Test Claims"
+ S DIR("B")="NO"
+ S DIR("?",1)="  Enter No to omit claims that were submitted as 'TEST' claims."
+ S DIR("?")="  Enter Yes to include claims that were submitted as 'TEST' claims."
+ D ^DIR K DIR
+ I $D(DIRUT) S STOP=1 G TESTX
+ S ^TMP($J,"IBCEDS","TEST")=Y
+TESTX ;
+ Q

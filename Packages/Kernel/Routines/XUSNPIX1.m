@@ -1,5 +1,5 @@
 XUSNPIX1 ;OAK_BP/CMW - NPI EXTRACT REPORT ; Aug 30, 2022@04:49:29
- ;;8.0;KERNEL;**438,452,453,481,528,548,774**; Jul 10, 1995;Build 2
+ ;;8.0;KERNEL;**438,452,453,481,528,548,774,689**; Jul 10, 1995;Build 113
  ;;Per VHA Directive 2004-038, this routine should not be modified.
  ;
  ; Direct access to ^IBE(350.9, fields .02, 1.05, 19;.02, 19;1.01, 19;1.02, 19;1.03, 19;,1.04, 19;1.05 authorized by
@@ -279,9 +279,9 @@ PROC1(XUSRTN,XUSPROD,XUSVER,DTTM,INSMAIL) ;Process all New Person records
  . . . ;S XUSNP(25)=XUSNP(25)_";"_XUSSTLN
  . . . I XUSNP(27)="" S XUSNP(27)=XUSSTLN Q
  . . . ;S XUSNP(27)=XUSNP(27)_";"_XUSSTLN
- . ; DEA #
- . ;S XUSNP(26)=$P($G(^VA(200,NPIEN,"PS")),U,2)
- . S XUSNP(28)=$P($G(^VA(200,NPIEN,"PS")),U,2)
+ . ;S XUSNP(28)=$P($G(^VA(200,NPIEN,"PS")),U,2)
+ . ; *689 - DEA #
+ . S XUSNP(28)=$$PRDEA^XUSER(NPIEN)
  . ;
  . ;S XUSDATA2=XUSDATA2_U_XUSNP(23)_U_XUSNP(24)_U_XUSNP(25)_U_XUSNP(26)
  . S XUSDATA2=XUSDATA2_U_XUSNP(25)_U_XUSNP(26)_U_XUSNP(27)_U_XUSNP(28)

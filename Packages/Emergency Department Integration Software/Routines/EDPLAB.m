@@ -1,5 +1,6 @@
-EDPLAB ;SLC/MKB - EDIS lab result utilities ;6/14/13 9:30am
- ;;2.0;EMERGENCY DEPARTMENT;**6**;May 2, 2012;Build 200
+EDPLAB ;SLC/MKB - EDIS lab result utilities ; 9/1/22 9:27am
+ ;;2.0;EMERGENCY DEPARTMENT;**6,20**;May 2, 2012;Build 7
+ ;External reference ^ORX8 supported by DBIA 871
  ;
 EN(EDPRES,PARAM) ; -- Return lab results as XML in EDPRES
  ; Required:  "patient" identifier (DFN)
@@ -70,14 +71,16 @@ ORD(EDPRES,PARAM) ; -- Return results history for lab orders
  K ^TMP("LRRR",$J) D RR^LR7OR1(DFN)
  ;
  ; get results for tests in each order
- N EDPI,ORIFN,EDPY,EDPTST,ORPK,SUB,IDT,SEQ,EDPX,X
+ N EDPI,ORIFN,EDPY,EDPTST,ORPK,SUB,IDT,SEQ,EDPX,X,ORUPCHUK
  S EDPI=0 F  S EDPI=$O(PARAM("order",EDPI)) Q:EDPI<1  D
  . ; add order info
  . S ORIFN=+$G(PARAM("order",EDPI)) Q:ORIFN<1  K EDPX
  . S EDPX("id")=ORIFN,X=$$GET1^DIQ(100,ORIFN_",",5,"I")
  . S EDPX("statusId")=X,EDPX("statusName")=$$STATUS(X,ORIFN)
  . S X=$P($$OI^ORX8(ORIFN),U,2),EDPX("name")=$$ESC(X) ;if null?
- . S X=$P($G(^OR(100,ORIFN,0)),U,8) S:'X X=$P($G(^(0)),U,7)
+ . D EN^ORX8(ORIFN)
+ . S X=ORUPCHUK("ORSTRT")
+ . I 'X S X=ORUPCHUK("ORODT")
  . S EDPX("collectedTS")=X,EDPX("ack")=$$ACK^EDPHIST(ORIFN)
  . M @ARRAY@("order",1)=EDPX
  . ;

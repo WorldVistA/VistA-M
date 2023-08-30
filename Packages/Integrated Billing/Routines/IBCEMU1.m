@@ -1,6 +1,6 @@
 IBCEMU1 ;ALB/DSM - IB MRA Utility ;26-MAR-2003
- ;;2.0;INTEGRATED BILLING;**135,155,432,718**;21-MAR-94;Build 73
- ;;Per VHA Directive 2004-038, this routine should not be modified.
+ ;;2.0;INTEGRATED BILLING;**135,155,432,718,727,743**;21-MAR-94;Build 18
+ ;;Per VA Directive 6402, this routine should not be modified.
  ;
 MRAUSR() ;; Function
  ; Returns IEN (Internal Entry Number) from file #200 for
@@ -111,12 +111,17 @@ MRACNT(IBIFN,IBMRANOT) ; This function counts up the number of MRA EOB's in file
 MRACNTX ;
  Q CNT
  ;
-SPLTMRA(IBIFN) ; This function returns the number of Split MRA's for a 
+ ;WCJ;IB727;adding a parameter to return IB361.1 IENs of these split MRA's
+ ;SPLTMRA(IBIFN) ; This function returns the number of Split MRA's for a 
+SPLTMRA(IBIFN,IBMRARET) ; This function returns the number of Split MRA's for a
  ; given bill#.
+ ; IBIFN = claim number
+ ; IBMRARET = if passed in, return the 361.1 IENs
  ;
  NEW NUM,IEN
  S (NUM,IEN)=0
- F  S IEN=$O(^IBM(361.1,"B",+$G(IBIFN),IEN)) Q:'IEN  I $$SPLIT(IEN) S NUM=NUM+1
+ ;  S IEN=$O(^IBM(361.1,"B",+$G(IBIFN),IEN)) Q:'IEN  I $$SPLIT(IEN) S NUM=NUM+1  ;WCJ;IB727;
+ F  S IEN=$O(^IBM(361.1,"B",+$G(IBIFN),IEN)) Q:'IEN  I $$SPLIT(IEN) S NUM=NUM+1 S IBMRARET(IEN)=""  ;WCJ;IB727;
 SPLTX ;
  Q NUM
  ;
@@ -168,18 +173,18 @@ SPLIT2(IBEOB,IBALLORONE) ; All lines Covered? aka SPLIT2
  ;
  S RESULT=-1
  I '+$G(IBEOB) Q RESULT  ; no EOB sent in - off to a bad start
- ;
+ ; 
  ; gotta be an MRA cause that's all we allow to be split so far
  Q:$$GET1^DIQ(361.1,IBEOB_",",.04,"I")'=1 RESULT
  ;
  ; must be PROCESSED or DENIED
  Q:".1.2."'[("."_$$GET1^DIQ(361.1,IBEOB_",",.13,"I")_".") RESULT
  ;
- ; filing errors - can't check ;WCJ;IB718;v21
+ ; filing errors - can't check ;WCJ;IB718;v21}
  I $D(^IBM(361.1,IBEOB,"ERR")) Q RESULT
  ;
  ; no lines returned so nothing to check if it's partial
- I '$D(^IBM(361.1,IBEOB,15)) Q RESULT ;WCJ;IB718;v21
+ I '$D(^IBM(361.1,IBEOB,15)) Q RESULT ;WCJ;IB718;v21}
  ;
  ; get File 399 CLAIM #
  S IBIFN=$$GET1^DIQ(361.1,IBEOB_",",.01,"I")
@@ -207,14 +212,20 @@ SPLIT2(IBEOB,IBALLORONE) ; All lines Covered? aka SPLIT2
  ;
  ; gets all the EOBs for that bill number
  S IBLOOPEOB=0
- F  S IBLOOPEOB=$O(^IBM(361.1,"B",IBIFN,IBLOOPEOB)) Q:'IBLOOPEOB  D
+ F  S IBLOOPEOB=$O(^IBM(361.1,"B",IBIFN,IBLOOPEOB)) Q:'IBLOOPEOB  D  Q:RESULT=-1
  . I $G(IBALLORONE)=1,IBLOOPEOB'=IBEOB Q  ; only want to see if this one EOB fully covers claim
  . Q:$$GET1^DIQ(361.1,IBLOOPEOB_",",.04,"I")'=1  ; remember, only MRAs
  . Q:".1.2."'[("."_$$GET1^DIQ(361.1,IBLOOPEOB_",",.13,"I")_".")  ; must be PROCESSED or DENIED
  . Q:$$GET1^DIQ(361.1,IBLOOPEOB_",",.15,"I")'=IBPAYSEQ  ; must be for same payer seq as EOB passed in
+ . ;WCJ;IB743;wrong variable as it kept checking the same EOB for filing errors
+ .; I $D(^IBM(361.1,IBEOB,"ERR")) S RESULT=-1 Q  ; filing errors, can't tell
+ . I $D(^IBM(361.1,IBLOOPEOB,"ERR")) S RESULT=-1 Q  ; filing errors, can't tell
  . S IBLINE=0
  . F  S IBLINE=$O(IBZDATA(IBLINE)) Q:'IBLINE  D
  .. I $D(^IBM(361.1,IBLOOPEOB,15,"AC",IBLINE)) K IBZDATA(IBLINE) ; remove the lines local array that are in an acceptable MRA
+ ;
+ ; This will be set if there were filing errors in any of the MRAs since you can't tell what processed
+ I RESULT=-1 Q RESULT
  ;
  ; and voila
  ; if all lines are covered then there shouldn't be any left in the array

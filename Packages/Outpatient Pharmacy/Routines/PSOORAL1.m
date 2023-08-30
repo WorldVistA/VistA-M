@@ -1,5 +1,5 @@
 PSOORAL1 ;BHAM ISC/SAB - Build Listman activity logs ;Jan 20, 2022@11:18:59
- ;;7.0;OUTPATIENT PHARMACY;**71,156,148,247,240,287,354,367,408,482,508,551,562,441,651**;DEC 1997;Build 30
+ ;;7.0;OUTPATIENT PHARMACY;**71,156,148,247,240,287,354,367,408,482,508,551,562,441,651,643**;DEC 1997;Build 35
  ;
  ;
  N RX0,VALMCNT K DIR,DTOUT,DUOUT,DIRUT,^TMP("PSOAL",$J) S DA=$P(PSOLST(ORN),"^",2),RX0=^PSRX(DA,0),J=DA,RX2=$G(^(2)),R3=$G(^(3)),CMOP=$O(^PSRX(DA,4,0))
@@ -18,41 +18,22 @@ PSOORAL1 ;BHAM ISC/SAB - Build Listman activity logs ;Jan 20, 2022@11:18:59
  S PSOAL=IEN K IEN,ACT,LBL,LOG D EN^PSOORAL S VALMBCK="R"
  Q
 ACT ;activity log
- N CNT
- S IEN=IEN+1,^TMP("PSOAL",$J,IEN,0)=" ",IEN=IEN+1,^TMP("PSOAL",$J,IEN,0)="Activity Log:"
- S IEN=IEN+1,^TMP("PSOAL",$J,IEN,0)="#   Date/Time            Reason         Rx Ref         Initiator Of Activity",IEN=IEN+1,$P(^TMP("PSOAL",$J,IEN,0),"=",79)="="
- I '$O(^PSRX(DA,"A",0)) S IEN=IEN+1,^TMP("PSOAL",$J,IEN,0)="There's NO Activity to report" Q
- S CNT=0
- F N=0:0 S N=$O(^PSRX(DA,"A",N)) Q:'N  S P1=^(N,0) D
- .I $P(P1,"^",2)="M" Q
- .S DAT=$$FMTE^XLFDT($P(P1,"^"),2)_"             "
- .S IEN=IEN+1,CNT=CNT+1,^TMP("PSOAL",$J,IEN,0)=CNT_"   "_$E(DAT,1,21),$P(RN," ",15)=" ",REA=$P(P1,"^",2)
- .S REA=$F("HUCELPRWSIVDABXGKNO",REA)-1
- .I REA D
- ..S STA=$P("HOLD^UNHOLD^DISCONTINUED^EDIT^RENEWED^PARTIAL^REINSTATE^REPRINT^SUSPENSE^RETURNED^INTERVENTION^DELETED^DRUG INTERACTION^PROCESSED^X-INTERFACE^PATIENT INSTR.^PKI/DEA^DISP COMPLETED^IERX^","^",REA)
- ..S ^TMP("PSOAL",$J,IEN,0)=^TMP("PSOAL",$J,IEN,0)_STA_$E(RN,$L(STA)+1,15)
- .E  S $P(STA," ",15)=" ",^TMP("PSOAL",$J,IEN,0)=^TMP("PSOAL",$J,IEN,0)_STA
- .K STA,RN S $P(RN," ",15)=" ",RF=+$P(P1,"^",4)
- .S RFT=$S(RF>0&(RF<6):"REFILL "_RF,RF=6:"PARTIAL",RF>6:"REFILL "_(RF-1),1:"ORIGINAL")
- .S ^TMP("PSOAL",$J,IEN,0)=^TMP("PSOAL",$J,IEN,0)_RFT_$E(RN,$L(RFT)+1,15)_$E($S($D(^VA(200,+$P(P1,"^",3),0)):$P(^(0),"^"),1:$P(P1,"^",3)),1,24)
- .;S:$P(P1,"^",5)]"" IEN=IEN+1,^TMP("PSOAL",$J,IEN,0)="Comments: "_$P(P1,"^",5)
- .I $P(P1,"^",5)]"" N PSOACBRK,PSOACBRV D
- ..S PSOACBRV=$P(P1,"^",5)
- ..;PSO*7*240 Use fileman for parsing
- ..K ^UTILITY($J,"W") S X="Comments: "_PSOACBRV,(DIWR,DIWL)=1,DIWF="C80" D ^DIWP F I=1:1:^UTILITY($J,"W",1) S IEN=IEN+1,^TMP("PSOAL",$J,IEN,0)=$G(^UTILITY($J,"W",1,I,0))
- .I $P($G(^PSRX(DA,"A",N,1)),"^")]"" S IEN=IEN+1,$P(^TMP("PSOAL",$J,IEN,0)," ",5)=$P($G(^PSRX(DA,"A",N,1)),"^") I $P($G(^PSRX(DA,"A",N,1)),"^",2)]"" S ^TMP("PSOAL",$J,IEN,0)=^TMP("PSOAL",$J,IEN,0)_":"_$P($G(^PSRX(DA,"A",N,1)),"^",2)
- .I $O(^PSRX(DA,"A",N,2,0)) F I=0:0 S I=$O(^PSRX(DA,"A",N,2,I)) Q:'I  S MIG=^PSRX(DA,"A",N,2,I,0) D
- ..S:MIG["Mail Tracking Info.: " IEN=IEN+1,$P(^TMP("PSOAL",$J,IEN,0)," ",9)=" "
- ..F SG=1:1:$L(MIG) S:$L(^TMP("PSOAL",$J,IEN,0)_" "_$P(MIG," ",SG))>80 IEN=IEN+1,$P(^TMP("PSOAL",$J,IEN,0)," ",9)=" " S:$P(MIG," ",SG)'="" ^TMP("PSOAL",$J,IEN,0)=$G(^TMP("PSOAL",$J,IEN,0))_" "_$P(MIG," ",SG)
- K MIG,SG,I,^UTILITY($J,"W"),DIWF,DIWL,DIWR
+ D ACT^PSOORAL3
  Q
+ ;
 LBL ;label log
+ N PSORDATA,PSONAME,X,PSOX
  S IEN=IEN+1,^TMP("PSOAL",$J,IEN,0)=" ",IEN=IEN+1,^TMP("PSOAL",$J,IEN,0)="Label Log:"
  S IEN=IEN+1,^TMP("PSOAL",$J,IEN,0)="#   Date        Rx Ref                    Printed By",IEN=IEN+1,$P(^TMP("PSOAL",$J,IEN,0),"=",79)="="
  I '$O(^PSRX(DA,"L",0)) S IEN=IEN+1,^TMP("PSOAL",$J,IEN,0)="There are NO Labels printed." Q
  F L1=0:0 S L1=$O(^PSRX(DA,"L",L1)) Q:'L1  S LBL=^PSRX(DA,"L",L1,0),DTT=$P(^(0),"^") D DAT D
+ . S PSORDATA=""
  . S $P(RN," ",26)=" ",IEN=IEN+1,^TMP("PSOAL",$J,IEN,0)=L1_"   "_DAT_"    ",RFT=$S($P(LBL,"^",2):"REFILL "_$P(LBL,"^",2),1:"ORIGINAL"),RFT=RFT_$E(RN,$L(RFT)+1,26)
- . S ^TMP("PSOAL",$J,IEN,0)=^TMP("PSOAL",$J,IEN,0)_RFT_$P($G(^VA(200,$P(LBL,"^",4),0)),"^"),IEN=IEN+1,^TMP("PSOAL",$J,IEN,0)="Comments: "_$P(LBL,"^",3)
+ . S PSORDATA=$$LBLDATA^PSOORAL3(DA,LBL)
+ . K DIC,X,Y S DIC="^VA(200,",DIC(0)="N,Z",X=$P(LBL,"^",4) D ^DIC
+ . S ^TMP("PSOAL",$J,IEN,0)=^TMP("PSOAL",$J,IEN,0)_RFT_$S($P($G(PSORDATA),U,2)]"":$P(PSORDATA,U,2),1:$P(Y,U,2))
+ . K ^UTILITY($J,"W") S X=$P(LBL,"^",3),(DIWR,DIWL)=1,DIWF="C69" D ^DIWP F PSOX=1:1:^UTILITY($J,"W",1) S IEN=IEN+1,^TMP("PSOAL",$J,IEN,0)=$S(PSOX=1:"Comments: ",1:"          ")_$G(^UTILITY($J,"W",1,PSOX,0))
+ . I $P(PSORDATA,U)]"" S IEN=IEN+1,^TMP("PSOAL",$J,IEN,0)="         "_$P(PSORDATA,U)
  . N FDAMGDOC S FDAMGDOC=$G(^PSRX(DA,"L",L1,"FDA"))
  . I FDAMGDOC'="" D
  . . S IEN=IEN+1,^TMP("PSOAL",$J,IEN,0)="FDA Med Guide: "_$E(FDAMGDOC,1,61)
@@ -142,7 +123,7 @@ ECME ; ECME activity log
  . ;
  . S PSODATE=$G(PSODATA(PSOFILE,PSOIENS,.01,"I"))
  . S PSOUSER1=$G(PSODATA(PSOFILE,PSOIENS,.03,"E"))
- . S PSOREFILL1=$S('$G(PSODATA(PSOFILE,PSOIENS,.04,"I")):"ORIGINAL",1:"REFIL "_PSODATA(PSOFILE,PSOIENS,.04,"I"))
+ . S PSOREFILL1=$S('$G(PSODATA(PSOFILE,PSOIENS,.04,"I")):"ORIGINAL",1:"REFILL "_PSODATA(PSOFILE,PSOIENS,.04,"I"))
  . S PSOCOMMENT=$G(PSODATA(PSOFILE,PSOIENS,.05,"I"))
  . ;
  . S PSOCNT=$G(PSOAR(PSODATE))+1

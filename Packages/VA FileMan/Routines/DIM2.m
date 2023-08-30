@@ -1,5 +1,5 @@
-DIM2 ;SFISC/XAK,GFT,TOAD-FileMan: M Syntax Checker, Exprs ;20NOV2012
- ;;22.2;VA FileMan;;Jan 05, 2016;Build 42
+DIM2 ;SFISC/XAK,GFT,TOAD-FileMan: M Syntax Checker, Exprs ; Jan 30, 2023@14:38:33
+ ;;22.2;VA FileMan;**24**;Jan 05, 2016;Build 3
  ;;Per VA Directive 6402, this routine should not be modified.
  ;;Submitted to OSEHRA 5 January 2015 by the VISTA Expertise Network.
  ;;Based on Medsphere Systems Corporation's MSC FileMan 1051.
@@ -68,9 +68,10 @@ STRLIT F  D %INC Q:%C=""  I %C="""" Q:$E(%,%I+1)'=""""  S %I=%I+1
 PATCODE I "ACELNPU"'[%C!(%C="") S %ERR=1 Q
  F  D %INC Q:%C=""  Q:"ACELNPU"'[%C
  Q
-ALTRN8 I %C'="(" S %ERR=1 Q
+ALTRN8 I %C'="(" S %ERR=1 Q  ;alternate patterns (AE) are within a set of parentheses
  D %INC,PATATOM Q:%ERR
- F  Q:","'[%C  D %INC,PATATOM Q:%ERR
+ I %C="," F  Q:","'[%C  D %INC,PATATOM Q:%ERR  ;AE elements that are seperated by comma
+ F  Q:%C=")"  D PATATOM Q:%ERR  ;AE elements that are not seperated ;p24
  I %C'=")" S %ERR=1 Q
  D %INC
  Q

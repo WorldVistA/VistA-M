@@ -1,5 +1,5 @@
 ONCPAT ;HINES OIFO/GWB - PATIENT IDENTIFICATION ;10/07/11
- ;;2.2;ONCOLOGY;**1,13**;Jul 31, 2013;Build 7
+ ;;2.2;ONCOLOGY;**1,13,17**;Jul 31, 2013;Build 6
  ;
  W !
  K DR
@@ -83,7 +83,7 @@ ONCPAT ;HINES OIFO/GWB - PATIENT IDENTIFICATION ;10/07/11
  S DR(1,160,75)="S Y=9"
  S DR(1,160,76)="@84"
  S DR(1,160,77)="8.4    RACE 5.....................//NA"
- S DR(1,160,78)="9    SPANISH ORIGIN.............//^S X=""Non-Spanish, non-Hispanic"""
+ S DR(1,160,78)="9    SPANISH ORIGIN.............//"
  S DR(1,160,79)="10    SEX........................"
  S DR(1,160,80)="48    AGENT ORANGE EXPOSURE......//^S X=AOE"
  S DR(1,160,81)="50    IONIZING RADIATION EXPOSURE//^S X=IRE"

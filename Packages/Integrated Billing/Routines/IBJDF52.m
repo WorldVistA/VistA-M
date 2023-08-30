@@ -1,5 +1,5 @@
 IBJDF52 ;ALB/RB - CHAMPVA/TRICARE FOLLOW-UP REPORT (PRINT) ;15-APR-00
- ;;2.0;INTEGRATED BILLING;**123,159,240,618**;21-MAR-94;Build 61
+ ;;2.0;INTEGRATED BILLING;**123,159,240,618,739**;21-MAR-94;Build 3
  ;;Per VHA Directive 6402, this routine should not be modified.
  ;
 EN ; - Print the Follow-up report.
@@ -72,7 +72,7 @@ HDR1 ; - Write the primary report header.
  S X="ALL ACTIVE "_$G(IBCATNM)_" RECEIVABLES " ; patch IB*2.0*618
  I IBTYP'=4 S X=X_"("_$G(IBTPR(IBTYP))_") "
  I IBSMN S X=X_"OVER "_IBSMN_" AND UNDER "_IBSMX_" DAYS OLD "
- S X=X_" / BY PATIENT "_$S(IBSN="N":"NAME",1:"LAST 4 DIGITS OF SSN")
+ S X=X_" / BY PATIENT NAME" ;IB*2.0*739
  S X=X_" ("_$S($G(IBSNA)="ALL":"ALL",1:"From "_$S(IBSNF="":"FIRST",1:IBSNF)_" to "_$S(IBSNL="zzzzz":"LAST",1:IBSNL))_")"
  S X=X_" / "_$S('IBSAM:"NO ",1:"")_"MINIMUM BALANCE"
  I IBSAM S X=X_$S(IBSAM:": $"_$FN(IBSAM,",",2),1:"")
@@ -82,7 +82,7 @@ HDR1 ; - Write the primary report header.
  F I=1:1 W !,$E(X,1,132) S X=$E(X,133,999) I X="" Q
  ;
  W !!?71,"Dte Bill",?98,"Original  Current"
- W !,"Patient",?26,"Age SSN" W:IBCAT'=31 ?43,"Other Insurance"
+ W !,"Patient",?26,"Age" W:IBCAT'=31 ?43,"Other Insurance" ;IB*2.0*739
  W ?59,"Bill Number Prepared",?80,"Bill Frm Bill To    Amount  Balance"
  W:IBCAT'=31 ?116,"Subscriber ID"
  W !,$$DASH(IOM),!
@@ -106,8 +106,8 @@ NAR ; - Write detail line (if '$D).
  Q
  ;
 WPAT ; - Write patient data.
- W !,$P(IBPT,U),?26,$J($P(IBPT,U,2),3),?30,$P(IBPT,U,3)
- W ?43,$P(IBPT,U,4)
+ W !,$P(IBPT,U),?26,$J($P(IBPT,U,2),3),?43,$P(IBPT,U,4) ;IB*2.0*739
+ ;W ?43,$P(IBPT,U,4)
  Q
  ;
 WCOM ; - Write bill comments

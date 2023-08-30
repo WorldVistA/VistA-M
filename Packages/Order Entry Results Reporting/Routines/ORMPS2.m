@@ -1,5 +1,5 @@
-ORMPS2 ;SLC/MKB - Process Pharmacy ORM msgs cont ;Nov 04, 2020@15:30:02
- ;;3.0;ORDER ENTRY/RESULTS REPORTING;**94,116,129,134,186,190,195,215,265,243,280,363,350,462,413,405**;Dec 17, 1997;Build 211
+ORMPS2 ;SLC/MKB - Process Pharmacy ORM msgs cont ; April 27, 2023@15:28:03
+ ;;3.0;ORDER ENTRY/RESULTS REPORTING;**94,116,129,134,186,190,195,215,265,243,280,363,350,462,413,405,577,602,**;Dec 17, 1997;Build 1
  ;;Per VA Directive 6402, this routine should not be modified.
  ;
  ; External References:

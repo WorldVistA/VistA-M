@@ -1,10 +1,18 @@
-ORWDXA ; SLC/KCM/JLI - Utilites for Order Actions ;Feb 10, 2021@13:25:42
- ;;3.0;ORDER ENTRY/RESULTS REPORTING;**10,85,116,132,148,141,149,187,213,195,215,243,280,306,390,421,436,434,397,377,539,405**;Dec 17, 1997;Build 211
+ORWDXA ; SLC/KCM/JLI - Utilities for Order Actions ; Dec 14, 2022@12:56:30
+ ;;3.0;ORDER ENTRY/RESULTS REPORTING;**10,85,116,132,148,141,149,187,213,195,215,243,280,306,390,421,436,434,397,377,539,405,577**;Dec 17, 1997;Build 12
+ ;
  ;Per VA Directive 6402, this routine should not be modified.
  ;
- ; $$PARK^PSO52EX DBIA #4902ZERO^PSS50 DBIA #4533
- ; ZERO^PSS50 DBIA #4533
- ; SDAUTHCL^SDAMA203 DBIA #4133
+ ; Reference to ^VA(200 in ICR #10060
+ ; Reference to ^DIE in ICR #2053
+ ; Reference to ^XUSEC in ICR #10076
+ ; Reference to ^SDAMA203 in ICR #4133
+ ; Reference to PARK^PSO52EX in ICR #4902
+ ; Reference to ^PSS50 in ICR #4533
+ ; Reference to ^XM in ICR #10064
+ ; Reference to ^XMB in ICR #10069
+ ; Reference to ^DPT( in ICR #10035
+ ; Reference to ^SC( in ICR #10040
  ;
 VALID(VAL,ORID,ACTION,ORNP,ORWNAT) ; Is action valid for order?
  N DG,ORACT,ORVP,ORVER,ORIFN,PRTID S VAL="",PRTID=0
@@ -163,7 +171,7 @@ ALERT(DUMMY,ORID,ORDUZ) ; alert user (ORDUZ) when order (ORID) resulted
  ;if no user passed, use ordering provider:
  I $G(ORDUZ)<1 S ORDUZ=+$$ORDERER^ORQOR2(+ORID)
  I $L($G(ORDUZ))<1 S ORDUZ=DUZ
- S DUMMY=1,$P(^OR(100,+ORID,3),U,10)=ORDUZ
+ S DUMMY=1,DA=+ORID,DR="35///`"_(+ORDUZ),DIE="^OR(100," D ^DIE
  Q
 FLAG(REC,ORIFN,OREASON,ORNP,OREXP,ORLIST) ; Flag order ;p539
  ;variable XMZ is not defined by this section, but passed in (if available)

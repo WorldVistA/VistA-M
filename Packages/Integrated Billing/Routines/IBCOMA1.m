@@ -1,5 +1,5 @@
 IBCOMA1 ;ALB/CMS/JNM - IDENTIFY ACTIVE POLICIES W/NO EFFECTIVE DATE (CON'T) ; 09-29-2015
- ;;2.0;INTEGRATED BILLING;**103,516,528,549**;21-MAR-94;Build 54
+ ;;2.0;INTEGRATED BILLING;**103,516,528,549,743**;21-MAR-94;Build 18
  ;;Per VA Directive 6402, this routine should not be modified.
  Q
 BEG ; Entry to run Active Policies w/no Effective Date Report
@@ -165,7 +165,8 @@ PGHD(IBPAGE) ; Print Report Page Header
  ;                    Null if no Verification filter
  ;          IBEDT   - Internal Verification End date for Verification filter
  ;                    Null if no Verification filter
- ;          IBRF    - "A" - First Patient Name, otherwise start of range filter
+ ; IB*743/TAZ - Modified IBRF to note NULL starts with the beginning of the list.
+ ;          IBRF    - "" - First Patient Name, otherwise start of range filter
  ;          IBRL    - End of range filter
  ;
  N IBHDT
@@ -180,7 +181,9 @@ PGHD(IBPAGE) ; Print Report Page Header
  I IBPAGE W !,?5,"Sorted by: "
  E  W !,?6,"Contains: "
  W $S(IBAIB=1:"Patient Name",1:"Terminal Digit")
- W "  Range: "_$S(IBRF="A":"FIRST",1:IBRF)_" to "_$S(IBRL="zzzzzz":"LAST",1:IBRL)
+ ;IB*743/TAZ - Modified Check on IBRF.
+ ;W "  Range: "_$S(IBRF="A":"FIRST",1:IBRF)_" to "_$S(IBRL="zzzzzz":"LAST",1:IBRL)
+ W "  Range: "_$S(IBRF="":"FIRST",1:IBRF)_" to "_$S(IBRL="zzzzzz":"LAST",1:IBRL)
  I IBBDT>0 D
  . W !,?7,"Include: Verification Date Range: "_$$FMTE^XLFDT(IBBDT,"Z")
  . W " to "_$$FMTE^XLFDT(IBEDT,"Z")

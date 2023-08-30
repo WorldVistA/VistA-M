@@ -1,5 +1,5 @@
 IBCF33 ;ALB/ARH - UB-04 CMS-1450 (GATHER CODES) ;25-AUG-1993
- ;;2.0;INTEGRATED BILLING;**52,80,109,51,230,349,577**;21-MAR-94;Build 38
+ ;;2.0;INTEGRATED BILLING;**52,80,109,51,230,349,577,727**;21-MAR-94;Build 34
  ;;Per VA Directive 6402, this routine should not be modified
  ;
  ;IBIFN required
@@ -100,7 +100,8 @@ SET1 ; add rev codes to array: rev cd ^ rev cd st abbrev. ^ CPT CODE ^ unit char
  D NEXTLN S IBY=""
  ;set up rev cd item with appropriate output values, non-rev cd entries for old bills should already be in external form
  S IBN=$P(IBZ,U,9) ;non-covered charges
- S IBMOD=$P(IBZ,U,10) I IBMOD'="" S IBMOD=$E($TR(IBMOD,",;"),1,4) ; cpt modifiers
+ ;S IBMOD=$P(IBZ,U,10) I IBMOD'="" S IBMOD=$E($TR(IBMOD,",;"),1,4) ; cpt modifiers
+ S IBMOD=$P(IBZ,U,10) I IBMOD'="" S IBMOD=$E($TR(IBMOD,",;"),1,8) ; cpt modifiers   ;TPF;IB*2.0*727;EBILL-1576;05/10/2022
  I +IBZ S IBX=$G(^DGCR(399.2,+IBZ,0)) Q:IBX=""  D
  . S IBY=$P(IBX,U,1)_U_$P(IBX,U,2)_U_$$PRCD^IBCEF1($P(IBZ,U,6)_";ICPT(")_IBMOD
  . S IBY=IBY_U_$P(IBZ,U,2)_U_$P(IBZ,U,3)_U_$P(IBZ,U,4)_U_IBN_U_$P(IBZ,U,13)_U_$G(IBDA)_U_U_$$DATE^IBCF2($P(IBZ,U,14),"",1)

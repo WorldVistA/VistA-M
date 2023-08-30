@@ -1,5 +1,5 @@
 IBCNEHL5 ;DALOI/KML - HL7 Process Incoming RPI Msgs (cont.) ; 1-APRIL-2013
- ;;2.0;INTEGRATED BILLING;**497,549,702**;21-MAR-94;Build 53
+ ;;2.0;INTEGRATED BILLING;**497,549,702,743**;21-MAR-94;Build 18
  ;;Per VA Directive 6402, this routine should not be modified.
  ;
  ;**Program Description**
@@ -24,7 +24,7 @@ GZRF(ERROR,IBSEG,RIEN) ; Process Group level ZRF Reference identification segmen
  D UPDATE^DIE("E","RSUPDT",,"ERROR")
  Q
  ;
-ZMP(ERROR,IBSEG,RIEN) ; Process Military Personnel Information that comes from X12 271 MPI segment of the 2100C and 2100D  loops 
+ZMP(ERROR,IBSEG,RIEN) ; Process Military Personnel Information that comes from X12 271 MPI segment of the 2100C and 2100D loops 
  ;
  ; Input:
  ; IBSEG,RIEN
@@ -34,8 +34,8 @@ ZMP(ERROR,IBSEG,RIEN) ; Process Military Personnel Information that comes from X
  ;
  N IENSTR,RSUPDT,QUAL,VALUE
  S IENSTR=RIEN_","
- S RSUPDT(365,IENSTR,12.01)=$G(IBSEG(3)) ; information status code
- S RSUPDT(365,IENSTR,12.02)=$G(IBSEG(4))  ;employment status code
+ S RSUPDT(365,IENSTR,12.01)=$G(IBSEG(3))  ; information status code
+ S RSUPDT(365,IENSTR,12.02)=$G(IBSEG(4))  ; employment status code
  S RSUPDT(365,IENSTR,12.03)=$G(IBSEG(5))  ; government service affiliation code
  S RSUPDT(365,IENSTR,12.04)=$G(IBSEG(6))  ; description
  S RSUPDT(365,IENSTR,12.05)=$G(IBSEG(7))  ; Military service rank code
@@ -57,7 +57,7 @@ ROL(ERROR,IBSEG,RIEN) ; process group level Provider Information in the X12 271 
  N IENSTR,RSUPDT,QUAL,VALUE
  S IENSTR="+1,"_RIEN_","
  S RSUPDT(365.04,IENSTR,.01)=+$O(^IBCN(365,RIEN,10,"B",""),-1)+1  ; node 10 sequence #
- S RSUPDT(365.04,IENSTR,.02)=$P($G(IBSEG(4)),HLCMP)  ; provider code
+ S RSUPDT(365.04,IENSTR,.02)=$P($G(IBSEG(4)),HLCMP)   ; provider code
  S RSUPDT(365.04,IENSTR,.03)=$P($G(IBSEG(5)),HLCMP)   ; reference ID
  D CODECHK^IBCNEHLU(.RSUPDT)  ;check for new coded values
  D UPDATE^DIE("E","RSUPDT",,"ERROR")
@@ -76,7 +76,7 @@ DG1(ERROR,IBSEG,RIEN) ; process DIAGNOSIS codes in the X12 271 HI segment of X12
  S RSUPDT(365.01,IENSTR,.01)=+$O(^IBCN(365,RIEN,11,"B",""),-1)+1  ; node 11 sequence #
  S DCODE=$P($G(IBSEG(4)),HLCMP)
  S RSUPDT(365.01,IENSTR,.02)=$E(DCODE,1,3)_"."_$E(DCODE,4,99)  ; diagnosis code
- S RSUPDT(365.01,IENSTR,.03)=$P($G(IBSEG(4)),HLCMP,3) ; diagnosis code qualifier
+ S RSUPDT(365.01,IENSTR,.03)=$P($G(IBSEG(4)),HLCMP,3)          ; diagnosis code qualifier
  S RSUPDT(365.01,IENSTR,.04)=$S($P($G(IBSEG(16)),HLCMP)=1:"P",1:"S")  ; primary or secondary diagnosis code
  I $D(RSUPDT) D UPDATE^DIE("E","RSUPDT",,"ERROR")
  Q
@@ -172,11 +172,11 @@ UPDT365(RIEN,IEN312)    ; Sets the DO NOT PURGE flag in file 365
  D ^DIE
  Q
  ;
- ; IB*702/DTG start move body of AUTOFIL to IBCNEHL5 from IBCNEHL1 for SAC space size.
+ ; IB*702/DTG - moved AUTOFIL from IBCNEHL1 for SAC space size.
 AUTOFIL(DFN,IEN312,ISSUB) ;Finish processing the response message - file directly into patient insurance
  ;
  N BUFF,DATA,ERROR,IENS,MIL,OKAY,PREL,RDATA0,RDATA1,RDATA5,RDATA13,RSTYPE,TQN,TSTAMP,XX  ;IB*2*497 (vd)
- N IBARR,IBIFN ; /IB*702/DTG need for auto eiv user name
+ N IBARR,IBIFN ;IB*702/DTG need for auto eiv user name
  ;
  S TSTAMP=$$NOW^XLFDT(),IENS=IEN312_","_DFN_","
  S RDATA0=$G(^IBCN(365,RIEN,0)),RDATA1=$G(^IBCN(365,RIEN,1)),RDATA5=$G(^IBCN(365,RIEN,5))
@@ -197,7 +197,8 @@ AUTOFIL(DFN,IEN312,ISSUB) ;Finish processing the response message - file directl
  I ISSUB,XX="",PREL'="" D
  . S DATA(2.312,IENS,4.03)=$$PREL^IBCNEHLU(2.312,4.03,PREL)
  ;\End of IB*2*549 changes.
- ; moved the setting of fields 1.03 through 1.06 plus 1.09
+ ;
+ ;Moved the setting of fields 1.03 through 1.06 plus 1.09
  ; persist the original Source of Information
  ;note: external values are used to populate DATA
  I $$GET1^DIQ(2.312,IENS,1.09,"I")="" D
@@ -235,9 +236,9 @@ AUTOFIL(DFN,IEN312,ISSUB) ;Finish processing the response message - file directl
  I $D(ERROR) D WARN^IBCNEHL3 K ERROR D FIL^IBCNEHL1 G AUTOFILX
  K DATA
  S DATA(2.312,IENS,1.03)=TSTAMP                ;Date last verified
- S DATA(2.312,IENS,1.04)=IBEIVUSR    ;Last verified by ; IB*702/DTG change ("AUTOUPDATE,IBEIV") to var for user name
+ S DATA(2.312,IENS,1.04)=IBEIVUSR    ;Last verified by ;IB*702/DTG - use variable for user name (auto update user)
  S DATA(2.312,IENS,1.05)=TSTAMP                ;Date last edited
- S DATA(2.312,IENS,1.06)=IBEIVUSR    ;Last edited by ; IB*702/DTG change ("AUTOUPDATE,IBEIV") to var for user name
+ S DATA(2.312,IENS,1.06)=IBEIVUSR    ;Last edited by   ;IB*702/DTG - use variable for user name (auto update user)
  D FILE^DIE("ET","DATA","ERROR")
  I $D(ERROR) D WARN^IBCNEHL3 G AUTOFILX
  ; set the insurance record IEN in the IIV Response file
@@ -248,40 +249,52 @@ AUTOFIL(DFN,IEN312,ISSUB) ;Finish processing the response message - file directl
  S DATA(365,RIEN_",",.13)="YES"
  D FILE^DIE("ET","DATA")
  ;
+ ;IB*2*497 file data at 2.312, 9, 10 & 11 subfiles; if error is produced update buffer entry & then quit processing
  S ERFLG=$$GRPFILE^IBCNEHL1(DFN,IEN312,RIEN,1)
- I $G(ERFLG) G AUTOFILX  ;IB*2*497 file data at 2.312, 9, 10 & 11 subfiles; if error is produced update buffer entry & then quit processing
+ I $G(ERFLG) G AUTOFILX
+ ;
  ;file new EB data
  S ERFLG=$$EBFILE^IBCNEHL1(DFN,IEN312,RIEN,1)
- ;bail out if something went wrong during filing of EB data
- I $G(ERFLG) G AUTOFILX
+ I $G(ERFLG) G AUTOFILX  ;bail out if something went wrong during filing of EB data
+ ;
  ;update insurance record ien in transmission queue
  D UPDIREC^IBCNEHL3(RIEN,IEN312)
+ ;
  ;For an original response, set the Transmission Queue Status to 'Response Received' &
  ;update remaining retries to comm failure (5)
- I $G(RSTYPE)="O" D SST^IBCNEUT2(TQN,3),RSTA^IBCNEUT7(TQN)
- ;update buffer file entry so only stub remains & status is changed
- S BUFF=+$P($G(^IBCN(365,RIEN,0)),U,4)
- I BUFF D
- .D STATUS^IBCNBEE(BUFF,"A",0,0,0) ;update buffer entry's status to accepted
- . ; IB*702/DTG start save auto eiv user from 200 into 355.33
- . S IBIFN=BUFF_"," K IBARR
- . ; using file with the 'E' allows for external input. name vs ien
- . S IBARR(355.33,IBIFN,.06)=$G(IBEIVUSR)
- . D FILE^DIE("E","IBARR")
- . ; IB*702/DTG end save auto eiv user from 200 into 355.33
- . ;
- .D DELDATA^IBCNBED(BUFF) ;delete buffer's insurance/patient data
+ ;IB*743/CKB - called earlier when saving the MSA segment 
+ ;I $G(RSTYPE)="O" D SST^IBCNEUT2(TQN,3),RSTA^IBCNEUT7(TQN)
  ;
- ; Start of new code for filing data to #355.36 file.
+ ;File Auto Updated policy in INTERFACILITY INSURANCE UPDATE File (#365.19)
+ ; IBCNBAR added a field the param list when calling LOC^IBCNIUF. For consistency we added a 'null'.
+ D LOC^IBCNIUF(DFN,$$GET1^DIQ(2.312,IEN312_","_DFN_",",.01,"I"),IEN312,$$GET1^DIQ(365,RIEN_",",.13,"I"),"",$$GET1^DIQ(365.1,TQN_",",3.02,"E"),"")
+ ;
+ ;Get the buffer entry from the IIV RESPONSE File (#365)
+ S BUFF=+$P($G(^IBCN(365,RIEN,0)),U,4)
+ ;
+ ;IB*743/TAZ - If there is a Buffer entry associated with the Response and it is already processed,
+ ;  DO NOT touch/update files #355.33 or #355.36
+ I BUFF,$$GET1^DIQ(355.33,BUFF,.04,"I")'="E" G AUTOFILX
+ ;
+ ;Update the buffer status to ACCEPTED, then call DELDATA^IBCNBED so only the stub remains                                                    
+ I BUFF D
+ . D STATUS^IBCNBEE(BUFF,"A",0,0,0) ;update status to accepted
+ . ;IB*702/DTG - save auto update user to buffer
+ . S IBIFN=BUFF_"," K IBARR
+ . S IBARR(355.33,IBIFN,.06)=$G(IBEIVUSR)
+ . D FILE^DIE("E","IBARR")          ;file with the 'E' allows for external input, name vs ien
+ . D DELDATA^IBCNBED(BUFF)          ;delete buffer's insurance/patient data
+ . ;
+ ; File data to #355.36 file.
  N BUFF,ERROR,FDA,WE
  S WE=$$GET1^DIQ(365.1,TQN_",",.1,"I")
  S BUFF=$$GET1^DIQ(365,RIEN_",",.04,"I")
  S FDA(355.36,"+1,",.01)=$$NOW^XLFDT    ;Date Processed
- S FDA(355.36,"+1,",.02)=$S("^5^6^"[(U_WE_U):3,"^1^2^3^"[(U_WE_U):1,1:"")   ;"WE" Should never be 4 or 7 at this point
+ S FDA(355.36,"+1,",.02)=$S("^5^6^"[(U_WE_U):3,"^1^2^"[(U_WE_U):1,1:"")   ;"WE" Should never be 4 or 7 at this point
  S FDA(355.36,"+1,",.03)=$$GET1^DIQ(365.1,TQN_",",3.02,"I")   ;Source of Information
  S FDA(355.36,"+1,",.04)=$$GET1^DIQ(365,RIEN_",",.13,"I")     ;EIV Auto-Update
  S FDA(355.36,"+1,",.05)=TQN            ;EIV Inquiry
- S FDA(355.36,"+1,",.06)=RIEN           ;IV Response
+ S FDA(355.36,"+1,",.06)=RIEN           ;EIV Response
  S FDA(355.36,"+1,",.07)=BUFF           ;Buffer
  S FDA(355.36,"+1,",.08)=WE             ;Source of Request (Which Extract)
  D UPDATE^DIE("","FDA",,"ERROR")
@@ -289,11 +302,6 @@ AUTOFIL(DFN,IEN312,ISSUB) ;Finish processing the response message - file directl
  . D MSG003^IBCNEMS1(.IBMSG,.ERROR,TQN,RIEN,BUFF)
  . D MSG^IBCNEUT5($$MGRP^IBCNEUT5(),"eIV Problem: Error writing to the CREATION TO PROCESSING TRACKING File (#355.36)","IBMSG(")
  ;
- ; File Auto Updated policy in INTERFACILITY INSURANCE UPDATE File (#365.19)
- ; IBCNBAR added a field the param list when calling LOC^IBCNIUF. For consistency we added a 'null'.
- D LOC^IBCNIUF(DFN,$$GET1^DIQ(2.312,IEN312_","_DFN_",",.01,"I"),IEN312,$$GET1^DIQ(365,RIEN_",",.13,"I"),"",$$GET1^DIQ(365.1,TQN_",",3.02,"E"),"")
- ;
 AUTOFILX ;
  L -^DPT(DFN,.312,IEN312)
  Q
- ; IB*702/DTG end move body of AUTOFIL to IBCNEHL5 from IBCNEHL1 for SAC space size.

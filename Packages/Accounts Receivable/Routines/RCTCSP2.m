@@ -1,11 +1,14 @@
 RCTCSP2 ;ALBANY/BDB - CROSS-SERVICING TRANSMISSION ;03/15/14 3:34 PM
- ;;4.5;Accounts Receivable;**301,315,339,340,344,350,369**;Mar 20, 1995;Build 15
+ ;;4.5;Accounts Receivable;**301,315,339,340,344,350,369,417**;Mar 20, 1995;Build 30
  ;;Per VA Directive 6402, this routine should not be modified.
  ;
  ;PRCA*4.5*344 Added total record control (>50) to 5B transaction
  ;             handler to insure mail messages stay within a
  ;             record count of 50 transactions.
  ;PRCA*4.5*369 Add proper text transaction for batch auto recall <$25
+ ;
+ ;PRCA*4.5*417 Ensure resubmitted bills to TCSP use the same logic
+ ;             for rec A3 as do rec A1 & A2 for bill number setup.
  ;
  Q
  ;
@@ -251,7 +254,7 @@ REC3 ;
  N REC,KNUM,DEBTNR,DEBTORNB
  S REC="C3 "_ACTION_"3636001200"_"DM1D "
  S KNUM=$P($P(B0,U,1),"-",2)
- S DEBTNR=$E(SITE,1,3)_$$LJZF(KNUM,7)_$TR($J(BILL,20)," ",0),REC=REC_DEBTNR
+ S DEBTNR=$$AGDEBTID^RCTCSPD,REC=REC_DEBTNR   ; PRCA*4.5*417
  S DEBTORNB=$E(SITE,1,3)_$TR($J(DEBTOR,12)," ",0)
  S REC=REC_DEBTORNB
  S REC=REC_$S(ACTION="L":"15",1:"  ")

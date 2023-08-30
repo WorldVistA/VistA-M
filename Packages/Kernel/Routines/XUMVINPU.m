@@ -1,5 +1,5 @@
 XUMVINPU ;MVI/DRI - Master Veteran Index New Person Utilities ;7/31/20  15:04
- ;;8.0;KERNEL;**691,711,710,732,733**;Jul 10, 1995;Build 1
+ ;;8.0;KERNEL;**691,711,710,732,733**;Jul 10, 1995;Build 0
  ;Per VA Directive 6402, this routine should not be modified.
  ;
  ;**711, Story  977780 (jfw)

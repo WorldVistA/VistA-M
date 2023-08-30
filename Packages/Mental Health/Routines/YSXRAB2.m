@@ -1,4 +1,4 @@
-YSXRAB2 ; COMPILED XREF FOR FILE #601.01 ; 10/15/04
+YSXRAB2 ; COMPILED XREF FOR FILE #601.01 ; 03/13/23
  ; 
  S DA(1)=DA S DA=0
 A1 ;
@@ -7,9 +7,9 @@ A1 ;
 A S DA=$O(^YTT(601,DA(1),"S",DA)) I DA'>0 S DA=0 G END
 1 ;
  S DIKZ(0)=$G(^YTT(601,DA(1),"S",DA,0))
- S X=$P(DIKZ(0),U,2)
+ S X=$P($G(DIKZ(0)),U,2)
  I X'="" N X1 S X1=$O(^DD("FUNC","B","STRIPBLANKS",0)) X ^DD("FUNC",X1,1) S ^YTT(601,DA(1),"S","C",X,DA)=""
- S X=$P(DIKZ(0),U,1)
+ S X=$P($G(DIKZ(0)),U,1)
  I X'="" K ^YTT(601,DA(1),"S","B",$E(X,1,30),DA)
  G:'$D(DIKLM) A Q:$D(DIKILL)
 END Q

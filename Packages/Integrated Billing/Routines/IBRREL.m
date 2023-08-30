@@ -1,5 +1,5 @@
-IBRREL ;ALB/CPM - RELEASE MEANS TEST CHARGES 'ON HOLD' ; 03-MAR-92
- ;;2.0;INTEGRATED BILLING;**95,153,199,347,452,651,663,675,677**;21-MAR-94;Build 17
+IBRREL ;ALB/CPM - RELEASE MEANS TEST CHARGES 'ON HOLD'; Sep 30, 2020@15:16:44
+ ;;2.0;INTEGRATED BILLING;**95,153,199,347,452,651,663,675,677,630**;21-MAR-94;Build 39
  ;;Per VA Directive 6402, this routine should not be modified.
  ;
 EN ; Entry point for stand-alone 'release' option
@@ -50,6 +50,17 @@ RESUME ; - display header and list charges
  I $D(DIRUT)!($D(DUOUT)) G END:($D(PRCABN)!$G(IBNCPDPR)) D END W ! G ASK
  ;
  S IBRANGE=Y,IBSEQNO=1,IBDUZ=DUZ
+ ; IB*2.0*630 - Check for duplicate copays
+ N IBDUPCPY,IBCNTR,IBIEN,IBIENS
+ S IBIENS="",IBDUPCPY=0
+ F IBCNTR=1:1 S IBIEN=$P(Y,",",IBCNTR) Q:'IBIEN  S IBIENS=$G(IBA(IBIEN)) Q:'IBIENS  D  Q:IBDUPCPY
+ . S IBDUPCPY=$$DUPCPYCHK^IBECEA1(IBIENS)
+ . ; If duplicate copay, display message
+ . I IBDUPCPY D CPYDISPLAY^IBECEA1(IBIENS,IBDUPCPY)
+ . Q
+ ; Send user back to selection prompt if duplicate copays exist
+ Q:IBDUPCPY
+ ; End of IB*2.0*630 changes 
  ;
  S DIR(0)="Y",DIR("A")="OK to pass "_$S($P(Y,",",2):"these charges",1:"this charge")_" to Accounts Receivable"
  D ^DIR K DIR I 'Y!($D(DIRUT))!($D(DUOUT)) G END:($D(PRCABN)!$G(IBNCPDPR)) D END W ! G ASK

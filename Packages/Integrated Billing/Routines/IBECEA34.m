@@ -1,12 +1,12 @@
 IBECEA34 ;ALB/CPM - Cancel/Edit/Add... Fee Support ; 12-FEB-96
- ;;2.0;INTEGRATED BILLING;**57,677**;21-MAR-94;Build 17
+ ;;2.0;INTEGRATED BILLING;**57,677,734**;21-MAR-94;Build 4
  ;;Per VHA Directive 10-93-142, this routine should not be modified.
  ;
-NOEVT ; No event in Integrated Billing - ask user to select a fee ptf
- W !,"You may link this charge to one of the patient's Fee PTF entries..."
+NOEVT ; No event in Integrated Billing - ask user to select a Non-VA ptf ;IB*2.0*734 messages at tag +1,+3,&+4
+ W !,"You may link this charge to one of the patient's Non-VA PTF entries..."
  S IBDG=$$ADSEL(DFN)
- I 'IBDG W !!,"This patient has no Fee PTF entries -- this charge cannot be added." S IBY=-1 G NOEVTQ
- I IBDG=-1 W !!,"No Fee PTF entry selected -- transaction cannot be completed." S IBY=-1 G NOEVTQ
+ I 'IBDG W !!,"This patient has no Non-VA PTF entries -- this charge cannot be added." S IBY=-1 G NOEVTQ
+ I IBDG=-1 W !!,"No Non-VA PTF entry selected -- transaction cannot be completed." S IBY=-1 G NOEVTQ
  W !!,"I will need to build an event record in Integrated Billing for this charge."
  ;
  ; - build softlink and set event date
@@ -14,18 +14,22 @@ NOEVT ; No event in Integrated Billing - ask user to select a fee ptf
 NOEVTQ Q
  ;
  ;
-ADSEL(DFN) ; Select a Fee PTF as an admission to use to build an event.
+ADSEL(DFN) ; Select a Non-VA PTF as an admission to use to build an event.
  ;  Input:  DFN  --  Pointer to the patient in file #2
  ;  Output:    >1   --   ien of ptf entry (in file #45) to link event
  ;              0   --   no feee ptf entries for the patient, or
  ;             -1   --   user decided to quit.
  I '$D(^DGPT("AFEE",+$G(DFN))) Q 0
- N ARR,PTF,IBD,IBQ,J,SEL,X S IBQ=0,IBD=""
- F J=1:1 S IBD=$O(^DGPT("AFEE",DFN,IBD)) Q:'IBD  S PTF=+$O(^(IBD,0)) I $D(^DGPT(PTF,0)) W:J=1 !!," Please select one of the following Fee PTF entries:" S ARR(J)=PTF_"^"_(IBD\1) W !?3,J D DISEL,ASKAD:'(J#5) G:IBQ!($D(SEL)) ADSELQ
- I '$D(ARR) G ADSELQ
- I '((J-1)#5) W !!?3,"End of list.",!
- S J=J-1 D ASKAD
-ADSELQ Q $S('$D(ARR):0,IBQ!'$D(SEL):-1,1:SEL)
+ N ARR,PTF,IBD,IBQ,J,SEL,X,QF S IBQ=0,IBD="",QF="" ;IB*2.0*734
+ F J=1:1 S IBD=$O(^DGPT("AFEE",DFN,IBD)) Q:'IBD  D  ;IB*2.0*734
+ . S PTF=+$O(^(IBD,0)) I '$D(^DGPT(PTF,0)) Q  ;IB*2.0*734
+ . W:J=1 !!," Please select one of the following Non-VA Care PTF entries:" ; ;IB*2.0*734
+ . S ARR(J)=PTF_"^"_(IBD\1) W !?3,J D DISEL,ASKAD:'(J#5) I IBQ!($D(SEL)) S QF=1 Q  ;IB*2.0*734
+ I '$D(ARR) S QF=1 ;IB*2.0*734
+ I QF'=1 D  ;IB*2.0*734
+ . I '((J-1)#5) W !!?3,"End of list.",! ;IB*2.0*734
+ . S J=J-1 D ASKAD ;IB*2.0*734
+ Q $S('$D(ARR):0,IBQ!'$D(SEL):-1,1:SEL) ;IB*2.0*734
  ;
 DISEL ; Display admission data.
  N DGPT S DGPT=$G(^DGPT(PTF,0))
@@ -43,8 +47,8 @@ ASKADQ K IBDIS
  Q
  ;
  ;
-ADEV ; Add a new event entry for the Fee PTF in file #350.
- W !!,"Building the Fee PTF event record...  "
+ADEV ; Add a new event entry for the Non-VA PTF in file #350.
+ W !!,"Building the Non-VA Care PTF event record...  " ;IB*2.0*734
  N DIE,DR,DA
  D EVADD^IBAUTL3 K IBN,IBEVDT Q:IBY<0  W "done."
  S DIE="^IB(",DA=IBEVDA,DR=".05////2" D ^DIE

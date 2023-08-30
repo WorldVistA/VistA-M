@@ -1,6 +1,7 @@
-RMPRFC4 ;HINES CIOFO/HNC - Create 668 Record; 2/06/09
- ;;3.0;PROSTHETICS;**83,193**;Feb 09, 1996;Build 4
+RMPRFC4 ;HINES CIOFO/HNC - Create 668 Record; Feb 6, 2009
+ ;;3.0;PROSTHETICS;**83,193,213**;Feb 09, 1996;Build 12
  ;
+ ;;Reference to $$ICDDX^ICDEX supported by DBIA #5747
  ;Helen Corkwell-new flow 3/9/05
  ;
  ; Patch 83 v18 - DC consult w/no 668 record error fixed
@@ -30,7 +31,7 @@ EN ;
  .I RMPRPD9="" S RMPRICD9=""
  .I RMPRPD9'="" S RMPRICD9=$P(RMPRPD9,U,1)
  .I RMPRICD9="" S RMPRICD=""
- .I RMPRICD9'="" S RMPRICD=$$ICDDX^ICDCODE(RMPRICD9,DT)
+ .I RMPRICD9'="" S RMPRICD=$$ICDDX^ICDEX(RMPRICD9,DT) ;RMPR213 corrects API
  .;date rx written
  .S RMPRDRXW=$P($G(^TMP("RMPRIF",$J,"OBR")),"|",6)
  .I RMPRDRXW'="" S RMPRDRXW=$$FMDATE^HLFNC(RMPRDRXW)

@@ -1,13 +1,20 @@
-PSGOENG ;BIR/CML3-MARK ORDER AS 'NOT TO BE GIVEN' ;22 SEP 97 / 1:33 PM 
- ;;5.0; INPATIENT MEDICATIONS ;**58**;16 DEC 97
+PSGOENG ;BIR/CML-MARK ORDER AS 'NOT TO BE GIVEN' ;22 SEP 97 / 1:33 PM 
+ ;;5.0;INPATIENT MEDICATIONS;**58,440**;16 DEC 97;Build 1
  ;
  ; Reference to ^PS(55 is supported by DBIA 2191.
+ ;
+ ; PSJ*5.0*440 - Changed the evaluation of the order status as it was allowing
+ ;               Renewal orders to be marked as "Not to be Given". Also cleaned
+ ;               up header lines 1 and 2 which were throwing XINDEX errors.
  ;
  I +$G(PSJORD)'>0 W !!," Option only available on Order View screens." H 2 G OUT
  I $G(PSJORD)["V" W !," Can't mark IV orders as NOT TO BE GIVEN!" H 2 G OUT
  N PSJRPH S PSJRPH=$D(^XUSEC("PSJU MGR",DUZ))!($D(^XUSEC("PSJ RPHARM",DUZ)))
  I 'PSJRPH W !," Only pharmacists can mark orders Not To Be Given" H 2 G OUT
- I PSJORD["P"!("D_E_DE_DR"'[$P($G(^PS(55,PSGP,5,+PSJORD,0)),"^",9)) D  H 2 G OUT
+ ; PSJ*440 - Next line - The 'R' in 'DR' was allowing Renewals to pass through
+ ; I PSJORD["P"!("D_E_DE_DR"'[$P($G(^PS(55,PSGP,5,+PSJORD,0)),"^",9)) D  H 2 G OUT  ; PSJ*440
+ N PSJSTS S PSJSTS=$E($P($G(^PS(55,PSGP,5,+PSJORD,0)),"^",9),1)                     ; PSJ*440
+ I PSJORD["P"!((PSJSTS'="D")&(PSJSTS'="E")) D  H 2 G OUT                            ; PSJ*440
  .W !," Only Discontinued or Expired orders may be marked as Not To Be Given."
  I $P($G(^PS(55,PSGP,5,+PSJORD,.2)),U,4)="D",'$P($G(^(4)),"^",3) D  H 2 G OUT
  .W !,"Orders with a priority of done and not verified by a pharmacist may not",!,"be marked as Not To Be Given."

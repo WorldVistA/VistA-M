@@ -1,5 +1,5 @@
 DGRPE ;ALB/MRL,LBD,BRM,TMK,BAJ,PWC,JAM,JAM,JAM,LEG,ARF - REGISTRATIONS EDITS ;23 May 2017  1:51 PM
- ;;5.3;Registration;**32,114,139,169,175,247,190,343,397,342,454,415,489,506,244,547,522,528,555,508,451,626,638,624,677,672,702,689,735,688,797,842,865,871,887,941,985,997,1014,1040,1044,1056,1067,1064**;Aug 13, 1993;Build 41
+ ;;5.3;Registration;**32,114,139,169,175,247,190,343,397,342,454,415,489,506,244,547,522,528,555,508,451,626,638,624,677,672,702,689,735,688,797,842,865,871,887,941,985,997,1014,1040,1044,1056,1067,1064,1085**;Aug 13, 1993;Build 13
  ;
  ;DGDR contains a string of edits; edit=screen*10+item #
  ;
@@ -36,6 +36,7 @@ DGRPE ;ALB/MRL,LBD,BRM,TMK,BAJ,PWC,JAM,JAM,JAM,LEG,ARF - REGISTRATIONS EDITS ;23
  I DGRPS=4 D ^DGRPE4
  D SETDR(DGDR,.DR)
  S (DA,Y)=DFN,DIE="^DPT("
+ G:+DGDR=105 DR207^DGRPE1   ;DG*5.3*1085
  D ^DIE
  ; DG*5.3*1040 - Check for timeout in Screen 1.1
  I DGRPS=1.1,$D(DTOUT),'+$G(DGTMOT) S DGTMOT=1
@@ -68,7 +69,9 @@ SETFLDS(DGDR) ; Set up fields to edit
 102 ;;1;
 103 ;;.091;
 104 ;;.134;.135;@21;S X=$$YN1316^DGRPE(DFN);S:(X["N")&($P($G(^DPT(DFN,.13)),"^",3)="") Y="@25";S:(X["N")&($P($G(^DPT(DFN,.13)),"^",3)]"") Y="@24";.133;S:($P($G(^DPT(DFN,.13)),U,16)="Y")&($G(X)="") Y="@21";S Y="@25";@24;.133///@;@25;.1317///NOW;
-105 ;;D DR207^DGRPE;7LANGUAGE DATE/TIME;D LANGDEL^DGRPE;
+ ;105 ;;D DR207^DGRPE;7LANGUAGE DATE/TIME;D LANGDEL^DGRPE;
+ ;LANGUAGE DATE/TIME removed from 105 with patch DG*5.3*1085
+105 ;;D DR207^DGRPE1;
  ;DG*5.3*985; JAM - Group 6 added to screen 1 - Preferred Name
 106 ;;.2405;
  ;JAM; DG*5.3*941 - Tag 108 added for QUES^DGRPU1 (ICR 413) to edit the perm address with the home/office phone numbers since patch 941 removed these fields from the Perm Address edit logic
@@ -252,7 +255,8 @@ EOP ;DG*5.3*1064
  Q
  ;
 DR207 ; DR string for preferred language ;*///*
- S DR(2,2.07)=".01;.02//ENGLISH;D LANGDEL^DGRPE"
+ ;DG*5.3*1085 - moved tag to DGRPE1 due to size limitation reached with the required changes
+ ;S DR(2,2.07)=".01;.02//ENGLISH;D LANGDEL^DGRPE" ;saved code
  Q
  ;DR301 ; set up variables for foreign address - REMOVE FOR PATCH 997 - REPLACED BELOW
  N DG3,DG33

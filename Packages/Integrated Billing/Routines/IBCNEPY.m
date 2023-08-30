@@ -1,6 +1,8 @@
 IBCNEPY ;DAOU/BHS - eIV PAYER EDIT OPTION ;28-JUN-2002
- ;;2.0;INTEGRATED BILLING;**184,416,668,687,732**;21-MAR-94;Build 13
+ ;;2.0;INTEGRATED BILLING;**184,416,668,687,732,737**;21-MAR-94;Build 19
  ;;Per VA Directive 6402, this routine should not be modified.
+ ;
+ ;IB*737/TAZ - Remove references to "~NO PAYER"
  ;
  ; Tag HELP1 calls EN^DDIOL
  ; Reference to EN^DDIOL in ICR #10142
@@ -23,9 +25,9 @@ CLRSCRN ;
  W @IOF
  W !?35,"Payer Edit"
  ;/vd-IB*2*687 - Changed the following informative text.
- W !!,?1,"This option displays the data in the Payer file for a given payer. You"
- W !?1,"may only edit site controlled fields and most fields are not site controlled."
- W !?1,"Site controlled fields cannot be edited for a deactivated payer."
+ W !!,"This option displays the data in the Payer file for a given payer. You"
+ W !,"may only edit site controlled fields and most fields are not site controlled."
+ W !,"Site controlled fields cannot be edited for a deactivated payer."
  Q
  ;
 EDIT(PIEN) ; Modify Payer application settings -/vd-IB*2*687 - Changed the variable IEN to PIEN
@@ -50,7 +52,11 @@ EDIT(PIEN) ; Modify Payer application settings -/vd-IB*2*687 - Changed the varia
  S IBDATA=$G(^IBE(365.12,+PIEN,0))    ;/vd-IB*2*687 - Changed the variable IEN to PIEN
  ;
  D CLRSCRN
- W !!,$$FO^IBCNEUT1("Payer Name: ",LN,"R"),$P(IBDATA,U,1)
+ ;IB*737/CKB - allow for large Payer names by centering the Payer Name
+ N PNCTR,PNLEN
+ S PNLEN=$L($P(IBDATA,U,1))
+ I PNLEN>73 W !!,"Payer: "_$P(IBDATA,U,1)
+ I PNLEN<73 S PNCTR=(80-(PNLEN+7))/2 W !!,?PNCTR,"Payer: ",$P(IBDATA,U,1),!
  W !,$$FO^IBCNEUT1("VA National ID: ",LN,"R"),$P(IBDATA,U,2)
  W !,$$FO^IBCNEUT1("CMS National ID: ",LN,"R"),$P(IBDATA,U,3)
  ;IB*732/CKB - display Blue Payer indicator if populated with 1-YES
@@ -218,8 +224,6 @@ PAYER() ; Select Payer - File #365.12
  ; IB*732/DTG start - change standard DIC call to begins with/contains/list
  ;S DIC(0)="ABEQ"
  ;S DIC("A")=$$FO^IBCNEUT1("Payer Name: ",15,"R")
- ; ; Do not allow editing of '~NO PAYER' entry
- ;S DIC("S")="I $P(^(0),U,1)'=""~NO PAYER"""
  ;S DIC="^IBE(365.12,"
  ;D ^DIC
  ;I $D(DUOUT)!$D(DTOUT)!(Y<1) S Y=""
@@ -258,24 +262,28 @@ PAYNAM ;ask name
  S DIR("??")=DIR("?")
  D ^DIR
  S IBFND=""
- I Y=""!(Y=-1)!($E(Y)="^")
  I $E(Y)=U!(Y="")!($E(Y)="-") G PAYST
  ;I Y=""!(Y=-1) G PAYX
  S IBLKNM=Y,IBLKUNM=$$UP^XLFSTR(IBLKNM),IBNML=$L(IBLKUNM)
  ;Part 2A - collect names
  K @IBTMPFIL
- S IBFND="",IBNMA="^IBE(365.12,""B""",IBNMR=IBNMA_")"
+ ;S IBFND="",IBNMA="^IBE(365.12,""B""",IBNMR=IBNMA_")"
  S @IBTMPFIL@(0)=0,IBOK=0
- F  S IBNMR=$Q(@IBNMR) Q:IBNMR=""!($E(IBNMR,1,$L(IBNMA))'=IBNMA)  D
- . S IBA=$QS(IBNMR,3),IBN=$QS(IBNMR,4),IBB=$$UP^XLFSTR(IBA)
- . I $E(IBB,1,9)="~NO PAYER" Q
- . S IBOK=$$FILTER^IBCNINSU(IBB,FILTER_U_IBLKUNM)
- . I IBOK D PSET
+ ;F  S IBNMR=$Q(@IBNMR) Q:IBNMR=""!($E(IBNMR,1,$L(IBNMA))'=IBNMA)  D
+ S IBFND="",IBNMA="",IBNMR=""
+ F  S IBNMA=$O(^IBE(365.12,"BB",IBNMA)) Q:IBNMA=""  D
+ . S IBNMR="" F  S IBNMR=$O(^IBE(365.12,"BB",IBNMA,IBNMR)) Q:'IBNMR  D
+ .. ;S IBA=$QS(IBNMR,3),IBN=$QS(IBNMR,4),IBB=$$UP^XLFSTR(IBA)
+ .. S IBA=IBNMA,IBB=$$UP^XLFSTR(IBNMA),IBN=IBNMR
+ .. S IBOK=$$FILTER^IBCNINSU(IBB,FILTER_U_IBLKUNM)
+ .. I IBOK D PSET
  ; Part 3 display / select displayed names
  I '@IBTMPFIL@(0) S IBFND="" D  G PAYNAM ; no payer's found
  . W "   No payer names matching criteria found"
- S IBCT=$G(@IBTMPFIL@(0)),IBR="",IBTN=$FN((IBCT/5),"",1),IBR=+$P(IBTN,".",1)*5,IBTN=$P(IBTN,".",2)
+ S IBFND="",IBCT=$G(@IBTMPFIL@(0)),IBR="",IBTN=$FN((IBCT/5),"",1),IBR=+$P(IBTN,".",1)*5,IBTN=$P(IBTN,".",2)
  S:IBTN IBR=IBR+5 K IBTMPA
+ I IBCT=1 S IBFND=$P($G(@IBTMPFIL@(IBCT)),U,2)
+ I IBFND G PAYX
  S IBTN="" I IBCT<6 M IBTMPA=@IBTMPFIL K IBTMPA(0) D  G:IBFND=U PAYST G:'IBFND PAYNAM G PAYX
  . S IBK=IBCT,IBFND=$$PAYD(.IBTMPA,0,IBK)
  S IBK=0
@@ -308,7 +316,9 @@ PAYD(IBARY,IBO,IBLM) ; display up to 5 payer's for selection at a time.
  ; array is payer name ^ payer 365.12 ien
  S DIR(0)="LCO^1:"_IBLM,IBA=0 F  S IBA=$O(IBARY(IBA)) Q:'IBA  D
  . S IBD=IBARY(IBA)
- . S IBM=$E($P(IBD,U,1),1,35)
+ . ;IB*737/DTG display complete names
+ . ;S IBM=$E($P(IBD,U,1),1,35)
+ . S IBM=$P(IBD,U,1)
  . W !,?6,IBA,?13,IBM
  S DIR("?")="Enter the Item Number for the Payer desired"
  S DIR("A")="CHOOSE"
@@ -332,17 +342,19 @@ HLPPN ; display help message for payer name
  W !,"Enter Payer Name"
  Q
  ;
-PAYLST ; list out payers in payer 'B' index in groups of 20
+PAYLST ; list out payers in payer 'BB' index in groups of 20
  ;
- N DIR,DTOUT,DUOUT,IBA,IBC,IBOK,X,Y
+ N DIR,DTOUT,DUOUT,IBA,IBB,IBC,IBOK,X,Y
  W !,"CHOOSE FROM:"
  S IBA="",IBC=0
- F  S IBA=$O(^IBE(365.12,"B",IBA)) Q:IBA=""  S IBOK=1,IBC=IBC+1 D  Q:'IBOK
- . I IBA="~NO PAYER" Q
- . W !,IBA
- . I IBC#20'=0 Q
- . S DIR(0)="E" D ^DIR K DIR
- . I $D(DTOUT)!($D(DUOUT)) S IBOK=0
+ ; IB*737/DTG change to use full name cross reference
+ ;F  S IBA=$O(^IBE(365.12,"B",IBA)) Q:IBA=""  S IBOK=1,IBC=IBC+1 D  Q:'IBOK
+ F  S IBA=$O(^IBE(365.12,"BB",IBA)) Q:IBA=""  S IBOK=1 D  Q:'IBOK
+ . S IBB="" F  S IBB=$O(^IBE(365.12,"BB",IBA,IBB)) Q:IBB=""  S IBC=IBC+1 D  Q:'IBOK
+ .. W !,IBA
+ .. I IBC#20'=0 Q
+ .. S DIR(0)="E" D ^DIR K DIR
+ .. I $D(DTOUT)!($D(DUOUT)) S IBOK=0
  W !!
  Q
  ;

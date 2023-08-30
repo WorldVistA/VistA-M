@@ -1,5 +1,5 @@
 IBCNERPK ;IB/BAA/AWC - IBCN HL7 RESPONSE REPORT COMPILE;25 Feb 2015
- ;;2.0;INTEGRATED BILLING;**528**;21-MAR-94;Build 163
+ ;;2.0;INTEGRATED BILLING;**528,737**;21-MAR-94;Build 19
  ;;Per VA Directive 6402, this routine should not be modified.
  ;
  ; variables from IBCNERPL:
@@ -33,6 +33,8 @@ EN(IBCNERTN,INCNESPJ) ; Entry point
  S DATE=$O(^IBCN(365,"AD",BDATE),-1)
  F  S DATE=$O(^IBCN(365,"AD",DATE)) Q:'DATE!(DATE>EDATE)  D PAYERS(DATE,ALLPYR)
  D EN^IBCNERPL(IBCNERTN,.INCNESPJ)
+ ;
+ I $D(ZTQUEUED) K ^TMP($J,IBCNERTN)  ;IB*737/DTG clear tmp file if queued report
  Q
  ;
 PAYERS(DATE,ALLPYR) ; loop through payers
@@ -55,7 +57,8 @@ GETDATA(DATE,PYR,PAT) ; loop through responses and compile report
  S NOW=$$NOW^XLFDT
  S RIEN="",CNT=0
  F  S RIEN=$O(^IBCN(365,"AD",DATE,PYR,PAT,RIEN)) Q:'RIEN  D
- .S BUFFER=$P(^IBCN(365,RIEN,0),U,4)
+ .;S BUFFER=$P(^IBCN(365,RIEN,0),U,4)
+ .S BUFFER=$P($G(^IBCN(365,RIEN,0)),U,4)  ; IB*737/DTG prevent undefined error from invalid index entry
  .I BUFFER="" Q
  .S CRBUF=$P($G(^IBA(355.33,BUFFER,0)),U,2)
  .;I CRBUF'=BUSER Q
@@ -64,9 +67,11 @@ GETDATA(DATE,PYR,PAT) ; loop through responses and compile report
  .S SDATE=$P(^IBCN(365,RIEN,0),U,8),TRACE=$P(^IBCN(365,RIEN,0),U,9)
  .S PYRNAME=$P(^IBE(365.12,PYR,0),U),PATNAME=$$GET1^DIQ(2,IENS2,.01,"E")
  .S SSN=$$GET1^DIQ(2,IENS2,.09,"I"),SSN=$E(SSN,6,9)
- .S CNT=CNT+1
+ . ;IB*737/DTG correction of count, item display and re-ordered actions
+ .;S CNT=CNT+1
  .S ^TMP($J,IBCNERTN,PYRNAME)=$G(^TMP($J,IBCNERTN,PYRNAME))+1
  .S ^TMP($J,IBCNERTN)=$G(^TMP($J,IBCNERTN))+1
+ .S CNT=$G(^TMP($J,IBCNERTN,PYRNAME))
  .S ^TMP($J,IBCNERTN,PYRNAME,PATNAME,CNT)=PYRNAME_U_PATNAME_U_SSN_U_SDATE_U_RDATE_U_TRACE_U_BUFFER
  .Q
  Q

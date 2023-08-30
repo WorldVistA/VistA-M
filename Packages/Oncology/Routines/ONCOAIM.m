@@ -1,5 +1,5 @@
 ONCOAIM ;HINES OIFO/GWB - Create additional primaries for a patient ;03/08/11
- ;;2.2;ONCOLOGY;**1,4,15**;Jul 31, 2013;Build 5
+ ;;2.2;ONCOLOGY;**1,4,15,17**;Jul 31, 2013;Build 6
  ;
 EN ;Add additional primaries for patient
  D KILL
@@ -17,9 +17,11 @@ EN ;Add additional primaries for patient
  .F LL=1:1 S RECNUM=$O(^ONCO(165.5,"D",ACS,RECNUM)) Q:RECNUM=""  D
  ..S PRIMIEN=$P(^ONCO(165.5,RECNUM,0),U)
  ..S PRIM=$P(^ONCO(164.2,PRIMIEN,0),U,1)
- ..S SEQDIV=$$GET1^DIQ(165.5,RECNUM,2000)
- ..I ((+SQN>0)&(+SQN<60))!(SQN="00")!(SQN=99) S KKM=KKM+1,^TMP($J,"MAL",KKM)=SQN_U_ACS_U_PRIM_U_RECNUM_U_SEQDIV
- ..E  S KKB=KKB+1,^TMP($J,"BEN",KKB)=SQN_U_ACS_U_PRIM_U_RECNUM_U_SEQDIV
+ ..S SEQDIV=$$DIV^ONCFUNC(RECNUM)
+ ..I ((+SQN>0)&(+SQN<60))!(SQN="00")!(SQN=99) D
+ ...I SEQDIV=DUZ(2) S KKM=KKM+1,^TMP($J,"MAL",KKM)=SQN_U_ACS_U_PRIM_U_RECNUM_U_SEQDIV
+ ..E  D
+ ...I SEQDIV=DUZ(2) S KKB=KKB+1,^TMP($J,"BEN",KKB)=SQN_U_ACS_U_PRIM_U_RECNUM_U_SEQDIV
  ;Find last malignant/benign (if any) and determine SEQUENCE NUMBER
  K LASTBEN,LASTMAL,NEXTBEN,NEXTMAL
  S ALPHA=0 F  S BEN=ALPHA,ALPHA=$O(^TMP($J,"BEN",ALPHA)) Q:ALPHA'>0
@@ -81,9 +83,19 @@ CR ;Create Primary
  S $P(^ONCO(165.5,+Y,0),U,2)=ONCOD0,$P(^(7),U,2)=0
  S ^ONCO(165.5,"C",ONCOD0,ONCOD0P)=""
  S ACAY=$E(DT,1)+17_$E(DT,2,3)
+ ;new code P17 set defaults DATE DX (3) and CASEFINDING SOURCE (21)
+ ; mostly copied next 7 lines from ONCOAI
+ S (SR,XD,MO,CS)=""
+ N SSPIEN
+ S SSPIEN=$O(^ONCO(160,ONCOD0,"SUS","C",DUZ(2),"")) I SSPIEN'="" D
+ .S XD=$P(^ONCO(160,ONCOD0,"SUS",SSPIEN,0),U,1)
+ .S SR=$P(^ONCO(160,ONCOD0,"SUS",SSPIEN,0),U,3)
+ .S CS=$S(SR="LS":"Pathology Department Review",SR="LC":"Pathology Department Review",SR="LE":"Pathology Department Review",SR="PT":"Daily Discharge Review",SR="RA":"Diagnostic Imaging/Radiology",1:"")
+ .S MO=$P(^ONCO(160,ONCOD0,"SUS",SSPIEN,0),U,11)
+ ;
  L +^ONCO(165.5,ONCOD0P,0):0
  S DIE="^ONCO(165.5,"
- S DR="W !;.05////^S X=AC;.06////^S X=SEQ;.07//^S X=ACAY;.04;155;3;20;21"
+ S DR="W !;.05////^S X=AC;.06////^S X=SEQ;.07//^S X=ACAY;.04;155;3//^S X=XD;20;21//^S X=CS"
  S ACN=AC_"/"_SEQ,DA=ONCOD0P
  D ^DIE
  L -^ONCO(165.5,ONCOD0P,0)

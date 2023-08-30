@@ -1,5 +1,5 @@
 IBCNBLA ;ALB/ARH - Ins Buffer: LM action calls ;1 Jun 97
- ;;2.0;INTEGRATED BILLING;**82,149,153,184,271,416,506,601**;21-MAR-94;Build 14
+ ;;2.0;INTEGRATED BILLING;**82,149,153,184,271,416,506,601,737**;21-MAR-94;Build 19
  ;;Per VA Directive 6402, this routine should not be modified.
  ;
 NEWSCRN(TEMPLAT,TMPARR,IBBUFDA) ; open a new screen for a specific buffer entry, pass in LM template and the array to select from
@@ -139,7 +139,9 @@ SELSORT ;  select the way to sort the list screen
  ;
  D FULL^VALM1 W !
  W !,"Select the item to sort the buffer records on the buffer list screen."
- S DIR(0)="SO^1:Patient Name;2:Insurance Company;3:Source of Information;4:Date Entered;5:Inpatients;6:Means Test;7:On Hold;8:Verified;9:eIV Status;10:Positive Response"
+ ; IB*2*737/DTG remove verify action reference
+ ; S DIR(0)="SO^1:Patient Name;2:Insurance Company;3:Source of Information;4:Date Entered;5:Inpatients;6:Means Test;7:On Hold;8:Verified;9:eIV Status;10:Positive Response"
+ S DIR(0)="SO^1:Patient Name;2:Insurance Company;3:Source of Information;4:Date Entered;5:Inpatients;6:Means Test;7:On Hold;8:eIV Status;9:Positive Response"
  S DIR("A")="Sort the list by",DIR("B")=$P($G(IBCNSORT),"^",2)
  D ^DIR K DIR
  I 'Y G SELSORTX
@@ -150,7 +152,8 @@ SELSORT ;  select the way to sort the list screen
  ; symbol should appear first and process accordingly.
  ;
  KILL IBCNSORT(1)       ; initialize the symbol sort array
- I +IBCNSORT=9 D  I $D(DIRUT)!('Y) G SELSORTX
+ ; I +IBCNSORT=9 D  I $D(DIRUT)!('Y) G SELSORTX
+ I +IBCNSORT=8 D  I $D(DIRUT)!('Y) G SELSORTX  ; IB*2*737
  . ;
  . ; build the array of default sort order
  . S IBCNSORT(1,"+")=10
@@ -161,7 +164,7 @@ SELSORT ;  select the way to sort the list screen
  . S IBCNSORT(1,"!")=30
  . S IBCNSORT(1," ")=40
  . S IBCNSORT(1,"?")=50
- . S IBCNSORT(1,"*")=60
+ . ; S IBCNSORT(1,"*")=60  ; IB*2*737 drop *
  . ;
  . ; build the DIR array to ask the question
  . S DIR(0)="SO^"

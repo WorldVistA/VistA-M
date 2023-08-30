@@ -1,12 +1,12 @@
 ORCDPSIV ;SLC/MKB-Pharmacy IV dialog utilities ;06/17/10
- ;;3.0;ORDER ENTRY/RESULTS REPORTING;**4,38,48,158,195,243,296,280,388,467**;Dec 17, 1997;Build 4
+ ;;3.0;ORDER ENTRY/RESULTS REPORTING;**4,38,48,158,195,243,296,280,388,467,499**;Dec 17, 1997;Build 165
  ;Per VHA Directive 6402, this routine should not be modified.
  ;
- ;Reference to ^PSSUTIL1 supported by ICR 3784
- ;Reference to ^PSIVSP supported by ICR 2945
- ;Reference to ^PSJORUT2 supported by ICR 2402
- ;Reference to ^PSSDSAPA supported by ICR 5504
- ;Reference to ^PSSGS0 supported by ICR 3423
+ ; Reference to IVDEA^PSSUTIL1 in ICR #3784
+ ; Reference to ^PSIVSP in ICR #2945
+ ; Reference to ^PSJORUT2 in ICR #2402
+ ; Reference to ^PSSDSAPA in ICR #5504
+ ; Reference to ^PSSGS0 in ICR #3423
  ;
 CKSCH ; -- validate schedule [Called from P-S Action]
  N ORX S ORX=ORDIALOG(PROMPT,ORI) Q:ORX=$G(ORESET)  K ORSD
@@ -91,7 +91,7 @@ CHANGED(TYPE) ; -- Kill dependent values when OI changes
  Q
  ;
 INACTIVE(TYPE) ; -- Check OI inactive date
- N OI,X,I,PSOI,DEA,EXIT S:$G(TYPE)'="A" TYPE="S"
+ N OI,X,I,PSOI,DEA,EXIT,ORDEA S:$G(TYPE)'="A" TYPE="S"
  S OI=+$G(ORDIALOG(PROMPT,INST)) Q:OI'>0
  I $G(^ORD(101.43,OI,.1)),^(.1)'>$$NOW^XLFDT D  Q  ;inactive
  . S X=$S(TYPE="A":"additive",1:"solution"),ORQUIT=1
@@ -103,7 +103,8 @@ INACTIVE(TYPE) ; -- Check OI inactive date
  Q:'$L($T(IVDEA^PSSUTIL1))  ;DBIA #3784
  S PSOI=+$P($G(^ORD(101.43,OI,0)),U,2)
  S DEA=$$IVDEA^PSSUTIL1(PSOI,TYPE) I DEA>0 D  Q:$G(ORQUIT)
- . I $G(ORNP),'$L($P($G(^VA(200,+ORNP,"PS")),U,2)),'$L($P($G(^("PS")),U,3)) W $C(7),!,$P($G(^(0)),U)_" must have a DEA# or VA# to order this drug!" S ORQUIT=1 Q
+ .;*499 - Support multiple DEA numbers for a provider
+ . I $G(ORNP) S ORDEA=$$PRDEA^XUSER(ORNP) I '$L(ORDEA),'$L($P($G(^VA(200,+ORNP,"PS")),U,3)) W $C(7),!,$P($G(^(0)),U)_" must have a DEA# or VA# to order this drug!" S ORQUIT=1 Q
  . I DEA=1 W $C(7),!,"This order will require a wet signature!"
  D ROUTECHK
  Q

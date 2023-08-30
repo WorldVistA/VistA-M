@@ -1,5 +1,5 @@
 YTQRQAD ;SLC/KCM - RESTful Calls for Instrument Admin ; 1/25/2017
- ;;5.01;MENTAL HEALTH;**130,141,158,181,187,199**;Dec 30, 1994;Build 18
+ ;;5.01;MENTAL HEALTH;**130,141,158,181,187,199,204,208**;Dec 30, 1994;Build 23
  ;
  ; Reference to ^DIC(3.1) in ICR #1234
  ; Reference to ^DIC(49) in ICR #10093
@@ -115,6 +115,19 @@ VARYAUDC(ASMT) ; modify the AUDC based on patient sex in ^TMP("YTQ-JSON",$J)
 PERSONS(ARGS,RESULTS) ; GET /api/mha/persons/:match
  N ROOT,LROOT,NM,IEN,SEQ,PREVNM,QUAL,REQCSGN
  S ROOT=$$UP^XLFSTR($G(ARGS("match"))),LROOT=$L(ROOT),SEQ=0,PREVNM=""
+ ;Handle Exact match first
+ I $D(^VA(200,"AUSER",ROOT)) D  ;208
+ . S IEN="" F  S IEN=$O(^VA(200,"AUSER",ROOT,IEN)) Q:'IEN  D
+ . . S SEQ=SEQ+1
+ . . S RESULTS("persons",SEQ,"userId")=IEN
+ . . S RESULTS("persons",SEQ,"name")=$$NAMEFMT^XLFNAME(ROOT,"F","DcMPC")
+ . . S RESULTS("persons",SEQ,"title")=""
+ . . I $P(ROOT," ")=$P(PREVNM," ") D
+ . . . S $P(QUAL,U)=$$GET1^DIQ(200,IEN_",",8)  ; try TITLE as qualifier first
+ . . . I $L(QUAL) S RESULTS("persons",SEQ,"title")=QUAL Q
+ . . . S QUAL=$$GET1^DIQ(200,IEN,",",29) ; then try service/section
+ . . . S RESULTS("persons",SEQ,"title")=QUAL
+ . . S PREVNM=ROOT
  S NM=ROOT F  S NM=$O(^VA(200,"AUSER",NM)) Q:NM=""  Q:$E(NM,1,LROOT)'=ROOT  D
  . S IEN=0 F  S IEN=$O(^VA(200,"AUSER",NM,IEN)) Q:'IEN  D
  . . S SEQ=SEQ+1
@@ -135,7 +148,26 @@ PERSONS(ARGS,RESULTS) ; GET /api/mha/persons/:match
 USERS(ARGS,RESULTS) ; GET /api/mha/users/:match
  N ROOT,LROOT,NM,IEN,SEQ,PREVNM,PREVLBL,LABEL,QUAL,I
  S ROOT=$$UP^XLFSTR($G(ARGS("match"))),LROOT=$L(ROOT),SEQ=0,PREVNM="",PREVLBL=""
- S NM=ROOT F  S NM=$O(^VA(200,"AUSER",NM)) Q:NM=""  Q:$E(NM,1,LROOT)'=ROOT  D
+ I $D(^VA(200,"AUSER",ROOT)) D  ;208
+ . S IEN="" F  S IEN=$O(^VA(200,"AUSER",ROOT,IEN)) Q:'IEN  D
+ . . S SEQ=SEQ+1
+ . . S LABEL=$$NAMEFMT^XLFNAME(ROOT,"F","DcMPC"),QUAL=""
+ . . I $P(ROOT," ")=$P(PREVNM," ") D
+ . . . ; try TITLE as qualifier first
+ . . . S $P(QUAL,U)=$$GET1^DIQ(200,IEN_",",8)
+ . . . I $P((LABEL_QUAL),U)'=$P(PREVLBL,U) QUIT
+ . . . ; try SERVICE/SECTION as qualifier next
+ . . . S $P(QUAL,U,2)=$$GET1^DIQ(200,IEN,",",29)
+ . . . I $P(LABEL_QUAL,U,1,2)'=$P(PREVLBL,U,1,2) QUIT
+ . . . ; try nickname
+ . . . S $P(QUAL,U,3)=$$GET1^DIQ(200,IEN_",",13)
+ . . S PREVNM=NM,PREVLBL=LABEL_QUAL
+ . . I $L(QUAL) D
+ . . . N X,I S X=""
+ . . . F I=1:1:3 I $L($P(QUAL,U,I)) S X=X_$S($L(X):", ",1:"")_$P(QUAL,U,I)
+ . . . S LABEL=LABEL_" ("_X_")"
+ . . S RESULTS("persons",SEQ,"id")=IEN
+ . . S RESULTS("persons",SEQ,"label")=LABEL
  . S IEN=0 F  S IEN=$O(^VA(200,"AUSER",NM,IEN)) Q:'IEN  D
  . . S SEQ=SEQ+1
  . . S LABEL=$$NAMEFMT^XLFNAME(NM,"F","DcMPC"),QUAL=""
@@ -160,6 +192,20 @@ USERS(ARGS,RESULTS) ; GET /api/mha/users/:match
  . S ^TMP("YTQ-JSON",$J,1,0)="{""persons"":[]}"
  . S RESULTS=$NA(^TMP("YTQ-JSON",$J))
  Q
+NM4DFN(ARGS,RESULTS) ; get patient name given DFN
+ N DFN
+ S DFN=$G(ARGS("dfn"))
+ I '$D(^DPT(DFN,0)) D SETERROR^YTQRUTL(404,"Not Found: "_DFN) QUIT
+ S RESULTS("dfn")=DFN
+ S RESULTS("name")=$P($G(^DPT(DFN,0)),U)
+ Q
+NM4DUZ(ARGS,RESULTS) ; get user name given DUZ
+ N USER
+ S USER=$G(ARGS("duz"))
+ I '$D(^VA(200,DUZ,0)) D SETERROR^YTQRUTL(404,"Not Found: "_USER) QUIT
+ S RESULTS("duz")=USER
+ S RESULTS("name")=$P($G(^VA(200,USER,0)),U)
+ Q
 GINSTD(ARGS,RESULTS) ;Get Instrument Description
  N YS,YSDATA,YSTESTN,II,YSAR,VAR,VAL,JSONAR,XX
  S YS("CODE")=$G(ARGS("instrumentName"))
@@ -169,7 +215,7 @@ GINSTD(ARGS,RESULTS) ;Get Instrument Description
  I YSDATA(1)["ERROR",(YSDATA(2)="NO code") D SETERROR^YTQRUTL(404,"No instrument name.") Q
  I YSDATA(1)["ERROR",(YSDATA(2)="bad code") D SETERROR^YTQRUTL(404,"Instrument not found.") Q
  S I=0 F  S I=$O(YSDATA(I)) Q:I=""  D
- . S XX=YSDATA(I),VAR=$P(XX,"="),VAL=$P(XX,"=",2)
+ . S XX=YSDATA(I),VAR=$P(XX,"="),VAL=$P(XX,"=",2,999)
  . Q:VAR=""
  . S:VAR="LAST EDIT DATE" VAL=$P($$FMTE^XLFDT(VAL,2),"@")
  . I VAR="ENTRY DATE" D
@@ -181,8 +227,8 @@ GINSTD(ARGS,RESULTS) ;Get Instrument Description
  . D SETVAR("Clinical Features",VAR)
  F VAR="A PRIVILEGE^Administrative Privilege","R PRIVILEGE^Result Privilege","ENTERED BY^Entered By","ENTRY DATE^Entry Date" D
  . D SETVAR("Technical Features",VAR)
- F VAR="LAST EDITED BY^Last Edited By","LAST EDIT DATE^Last Edit Date","IS NATIONAL TEST^National Test","LICENSE CURRENT^Requires License","IS LEGACY^Is Legacy Instrument","SUBMIT TO NATIONAL DB^Submit to National DB" D
- . D SETVAR("Technical Features",VAR)
+ F VAR="LAST EDITED BY^Last Edited By","LAST EDIT DATE^Last Edit Date","IS NATIONAL TEST^National Test","REQUIRES LICENSE^Requires License","IS LEGACY^Is Legacy Instrument","SUBMIT TO NATIONAL DB^Submit to National DB" D
+ . D SETVAR("Technical Features",VAR)  ;208
  ;
  ;F VAR="PRINT TITLE^Print Title","VERSION^Version","AUTHOR^Author","PUBLISHER^Publisher","COPYRIGHT TEXT^Copyright","PUBLICATION DATE^Publication Date" D
  ;. D SETVAR("Clinical Features",VAR)
@@ -195,6 +241,9 @@ GINSTD(ARGS,RESULTS) ;Get Instrument Description
 SETVAR(XCAT,VAR) ;Set JSON array values for Instrument Description - Requires YSAR to be set
  N XVAR,CAP
  S XVAR=$P(VAR,U),CAP=$P(VAR,U,2)
+ I XVAR="REQUIRES LICENSE" D  ;208 Phase in new property
+ . S JSONAR("Description",XCAT,"LICENSE CURRENT","value")=YSAR(XVAR)
+ . S JSONAR("Description",XCAT,"LICENSE CURRENT","caption")=CAP
  S JSONAR("Description",XCAT,XVAR,"value")=YSAR(XVAR)
  S JSONAR("Description",XCAT,XVAR,"caption")=CAP
  Q

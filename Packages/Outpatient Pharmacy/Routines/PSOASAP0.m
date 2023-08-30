@@ -1,5 +1,5 @@
 PSOASAP0 ;BIRM/MFR - American Society for Automation in Pharmacy (ASAP) Segments & Fields ;09/07/12
- ;;7.0;OUTPATIENT PHARMACY;**408,451,496,504,625,630,659**;DEC 1997;Build 3
+ ;;7.0;OUTPATIENT PHARMACY;**408,451,496,504,625,630,659,705**;DEC 1997;Build 5
  ;External reference to $$NATURE^ORUTL3 supported by DBIA 5890
  ;External reference to ^ORDEA is supported by DBIA 5709
  ;External reference to PATIENT file (#2) supported by DBIA 5597
@@ -345,10 +345,11 @@ PRE01() ;ASAP 3.0 : Not Used
  Q $S(PRE01>0:PRE01,1:"")
  ;
 PRE02() ;Prescriber DEA Number
- N PRE02
+ N PRE02,RXISSDT      ;P705 RX Issue/Written Date
+ S RXISSDT=$$GET1^DIQ(52,+$G(RXIEN),1,"I")
  S PRE02=$$PRVDEA() I PRE02'="" Q $P(PRE02,"-",1)
- S PRE02=$P($$DEA^XUSER(0,PREIEN),"-",1)
- I (PRE02="")!($P($$DEA^XUSER(0,PREIEN),"-",2,99)'="") S PRE02=$$PHA03()
+ S PRE02=$P($$DEA^XUSER(0,PREIEN,RXISSDT),"-",1)
+ I (PRE02="")!($P($$DEA^XUSER(0,PREIEN,RXISSDT),"-",2,99)'="") S PRE02=$$PHA03()
  Q PRE02
  ;
 PRE03() ;ASAP 3.0 : Prescriber NPI

@@ -1,5 +1,5 @@
 IBCNINSU ;AITC/TAZ - GENERAL INSURANCE UTILITIES ;8/20/20 12:46p.m.
- ;;2.0;INTEGRATED BILLING;**668,687,713**;21-MAR-94;Build 12
+ ;;2.0;INTEGRATED BILLING;**668,687,713,737**;21-MAR-94;Build 19
  ;;Per VA Directive 6402, this routine should not be modified.
  ;
 PAYER(PIEN,APP,FLDS,FLGS,ARRAY) ;Payer Data Retrieval
@@ -106,6 +106,7 @@ FILTER(STR,FLT) ; Filter Insurance Name, Group Name or Number
  ;             3 - Search for Name(s) in a specified
  ;                 range (inclusive, case insensitive)
  ;             4 - Search for Name(s) that are blank (null)
+ ;             5 - Filter by Selected Payer only (ONLY used by 'eIV Auto Update Report' (IBCNERPF)) ;IB*737/CKB
  ;         B - Begin with text if A=1, Contains Text if A=2 or
  ;             the range start if A=3
  ;         C - Range End text (only present when A=3)
@@ -119,6 +120,9 @@ FILTER(STR,FLT) ; Filter Insurance Name, Group Name or Number
  S BEG=$$UP^XLFSTR($P(FLT,U,2))
  S END=$$UP^XLFSTR($P(FLT,U,3))
  S OK=0
+ ;IB*737/CKB - added Payer (TYPE=5)
+ ;Payer
+ I TYPE=5 S OK=1 G FILTERX
  ;Blank
  I TYPE=4 D  G FILTERX
  . I STR="" S OK=1
@@ -142,3 +146,13 @@ FILTER(STR,FLT) ; Filter Insurance Name, Group Name or Number
  . S OK=1
 FILTERX ; Exit
  Q OK
+ ;
+VALIDDT(X) ; Check for validate date (internal form of the date)  ;IB*737/CKB
+ ;   Input:  X - internal date, FM format
+ ; Returns:  Y - if date if NOT valid, returns -1
+ ;               if the date is "" (null), returns a "" (null)
+ ;               if valid date, returns the internal date
+ N %DT,Y
+ Q:X="" ""
+ S %DT="X" D ^%DT
+ Q Y

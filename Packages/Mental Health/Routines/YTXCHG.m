@@ -1,13 +1,11 @@
 YTXCHG ;SLC/KCM - Instrument Exchange Calls ; 9/15/2015
- ;;5.01;MENTAL HEALTH;**121,123,130**;Dec 30, 1994;Build 62
+ ;;5.01;MENTAL HEALTH;**121,123,130,218**;Dec 30, 1994;Build 9
  ;
- ; External Reference    ICR#
- ; ------------------   -----
- ; %ZISH                 2320
- ; DIC                   2051
- ; DIK                  10013
- ; XPDUTL               10141
- ; XTHC10                5515
+ ; Reference to %ZISH in ICR #2320
+ ; Reference to DIC in ICR #2051
+ ; Reference to DIK in ICR #10013
+ ; Reference to XPDUTL in ICR #10141
+ ; Reference to XTHC10 in ICR #5515
  ;
 VERSION ;; current Instrument Exchange version
  ;;1.02
@@ -196,8 +194,8 @@ LOADFILE(PATH,INFO) ; load file into JSON & tree structures
  K ^TMP("YTXCHG",$J,"JSON")
  K ^TMP("YTXCHG",$J,"TREE")
  K ^TMP("YTXCHG",$J,"WP",1),^TMP("YTXCHG",$J,"WP",2),^TMP("YTXCHG",$J,"WP",4)
- I $E(PATH,1,5)="http:" D LOADURL(PATH,.INFO) I 1  ; load file from URL
- E  D LOADHFS(PATH,.INFO)                          ; load file from HFS
+ I $E(PATH,1,4)="http" D LOADURL(PATH,.INFO) I 1  ; load file from URL
+ E  D LOADHFS(PATH,.INFO)                         ; load file from HFS
  Q:$G(INFO)=-1
  N OK
  S OK=$$JSON2TR^YTXCHGT($NA(^TMP("YTXCHG",$J,"JSON")),$NA(^TMP("YTXCHG",$J,"TREE")))

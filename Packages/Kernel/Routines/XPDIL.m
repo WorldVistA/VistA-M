@@ -1,5 +1,5 @@
-XPDIL ;SFISC/RSD - load Distribution Global ;05/05/2008
- ;;8.0;KERNEL;**15,44,58,68,108,422,525,672**;Jul 10, 1995;Build 28
+XPDIL ;SFISC/RSD - load Distribution Global ; Oct 25, 2022@09:00:45
+ ;;8.0;KERNEL;**15,44,58,68,108,422,525,672,778**;Jul 10, 1995;Build 4
  ;Per VHA Directive 2004-038, this routine should not be modified.
  ;
 EN1 N POP,XPDA,XPDST,XPDIT,XPDT,XPDGP,XPDQUIT,XPDREQAB,XPDSKPE
@@ -35,7 +35,7 @@ ST ;global input
  G:'$D(^DD(3.5,0)) OPEN
  I '$D(^%ZIS(1,"B","HFS")) W !!,"You must have a device called 'HFS' in order to load a distribution!",*7 S XPDQUIT=1 Q
  D HOME^%ZIS
- S DIR(0)="F^3:245",DIR("A")="Enter a Host File",DIR("?")="Enter a filename and/or path to input Distribution."
+ S DIR(0)="F^3:245",DIR("A")="Enter a Host File",DIR("?")="Enter a filename and/or path to input Distribution, 3 to 245 characters."
  D ^DIR I $D(DIRUT) S XPDQUIT=1 Q
  S %ZIS="",%ZIS("HFSNAME")=Y,%ZIS("HFSMODE")="R",IOP="HFS"
  D ^%ZIS I POP W !,"Couldn't open file or HFS device!!",*7 S XPDQUIT=1 Q
@@ -46,11 +46,11 @@ ST ;global input
  ;if no device file, Virgin Install
 OPEN ;use open command
  N IO,IOPAR,DIR,DIRUT,DTOUT,DUOUT
- S DIR(0)="F^1:79",DIR("A")="Device Name"
- S DIR("?",1)="Device Name is either the name of the HFS file or the name of the HFS Device.",DIR("?",2)="i.e.  for MSM enter  51",DIR("?")="      for DSM enter  DISK$USER::[ANONYMOUS]:KRN8.KID"
+ S DIR(0)="F^3:245",DIR("A")="Device Name" ;p778
+ S DIR("?")="Device Name is either the name of the HFS file or the name of the HFS Device, 3 TO 245 characters."
  D ^DIR I $D(DIRUT) S POP=1 Q
  S IO=Y,DIR(0)="FO^1:79",DIR("A")="Device Parameters"
- S DIR("?",1)="Device Parameter is the Open parameter this M operating system needs to",DIR("?",2)="open the Device Name.",DIR("?",3)="i.e. for MSM enter  (""B:\KRN8.KID"":""R"")",DIR("?")="     for DSM enter  READONLY"
+ S DIR("?",1)="Device Parameter is the Open parameter this M operating system needs to",DIR("?",2)="open the Device Name, 1 to 79 characters."
  D ^DIR I $D(DTOUT)!$D(DUOUT) S POP=1 Q
  S IOPAR=Y
  X "O IO:"_IOPAR_":10" E  U $P W !,"Couldn't open ",IO S POP=1 Q

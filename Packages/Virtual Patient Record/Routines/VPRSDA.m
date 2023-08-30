@@ -1,28 +1,24 @@
 VPRSDA ;SLC/MKB -- SDA utilities ;10/25/18  15:29
- ;;1.0;VIRTUAL PATIENT RECORD;**8,10,16,20,26,28,29**;Sep 01, 2011;Build 11
+ ;;1.0;VIRTUAL PATIENT RECORD;**8,10,16,20,26,28,29,30,31**;Sep 01, 2011;Build 3
  ;;Per VHA Directive 6402, this routine should not be modified.
  ;
  ; External References          DBIA#
  ; -------------------          -----
- ; ^OR(100                       5771
- ; ^ORD(100.98                   6982
+ ; ^DIC(4                       10090
  ; ^SC                          10040
  ; %DT                          10003
  ; DILFD                         2055
  ; DIQ                           2056
  ; ETSLNC                        6731
  ; ETSRXN                        6758
- ; GMRCGUIB                      2980
  ; GMRVUT0, ^UTILITY($J          1446
  ; GMVGETVT                      5047
  ; GMVUTL                        5046
  ; ICPTCOD                       1995
  ; LEXTRAN                       4912
- ; RMIMRP                        4745
- ; TIULQ                         2693
  ; VASITE                       10112
- ; WVRPCVPR, ^TMP("WVPREGST"     7199
  ; XLFNAME                       3065
+ ; XUAF4                         2171
  ; XUPARAM                       2541
  ;
 INTDATE(X) ; -- Return internal form of date X
@@ -136,77 +132,38 @@ COUNTY(ST,CTY) ; -- return ien^name for a STate and CounTY
  S:$L(Y) Y=+CTY_U_Y
  Q Y
  ;
+FAC(HLOC) ; -- return facility #4 ien for HospLOC #44 ien
+ N X,Y S Y=""
+ S HLOC=+$G(HLOC) I HLOC<1 S Y=$$SITE G FACQ
+ S X=$$GET1^DIQ(44,HLOC,3,"I")
+ S:X<1 X=$$GET1^DIQ(44,HLOC,"3.5:.07","I")
+ S Y=$$CKFAC(X)
+FACQ Q Y
+ ;
+CKFAC(IEN) ; -- validate #4 ien, return Parent if no stn#
+ N VPRZ S IEN=+$G(IEN)
+ I IEN<1 S Y=$$SITE Q Y
+ I $L($P($G(^DIC(4,IEN,99)),U)) Q IEN  ;ok
+ D PARENT^XUAF4("VPRZ","`"_IEN,2) S Y=$O(VPRZ("P",0))
+ S:Y<1 Y=$$SITE
+ Q Y
+ ;
 SITE() ; -- return current site#
  N Y S Y=+$$SITE^VASITE
  S:Y'>0 Y=$$KSP^XUPARAM("INST")
  Q Y
  ;
- ;
-OR1(ORIFN) ; -- define basic variables for any order
- ; Returns OR0, OR3, OR6, OR8, ORDAD, and ORSIG to Order entities
- S ORIFN=+$G(ORIFN)
- S OR0=$G(^OR(100,ORIFN,0)),OR3=$G(^(3)),OR6=$G(^(6)),OR8=$G(^(8,1,0))
- S ORDAD=$P($G(OR3),U,9) ;parent order
- S ORSIG=$$ORSIG(ORIFN)  ;signature info
+DEL1 ; -- ID Action for Delete entities, returns VPR0=data
+ N SEQ,VST S VPR0=""
+ S SEQ=+$G(FILTER("sequence")) I SEQ,$L($G(DIEN)) D
+ . S VPR0=$G(^XTMP("VPR-"_SEQ,DIEN,0)) Q:$L(VPR0)  ;ok
+ . ; else get visit# from header node
+ . S VST=$P($G(^XTMP("VPR-"_SEQ,DIEN)),U,5) S:VST VPR0="^^"_VST
  Q
  ;
-WP(ORIFN,ID) ; -- return a WP value from an order response as a string
- N DA,I,X,Y S Y=""
- S DA=+$O(^OR(100,+$G(ORIFN),4.5,"ID",ID,0))
- S I=0 F  S I=$O(^OR(100,+$G(ORIFN),4.5,DA,2,I)) Q:'I  S X=$G(^(I,0)) D
- . I '$L(Y) Q:(X="")!(X?1." ")  S Y=X Q
- . I $E(X)=" " S Y=Y_$C(13,10)_X Q
- . S Y=Y_$S($E(Y,$L(Y))=" ":"",1:" ")_X
- Q Y
- ;
-ORDG(DG) ; -- return ien^name^VA100.98 for a DG abbreviation
- N X,Y S X=$O(^ORD(100.98,"B",DG,0)),Y=""
- S:X Y=X_U_$P($G(^ORD(100.98,X,0)),U)_"^VA100.98"
- Q Y
- ;
-LASTACT(ORIFN) ; -- return DA of current or last order action
- N Y S ORIFN=+$G(ORIFN)
- S Y=+$P($G(^OR(100,ORIFN,3)),U,7)
- I Y<1 S Y=+$O(^OR(100,ORIFN,8,"A"),-1) S:'Y Y=1
- Q Y
- ;
-ORSIG(ORIFN) ; -- return string of signature data from Order Action as
- ; Signature Status (#4) ^ Signed By (#5) ^ D/T Signed (#6), or
- ; Signature Status (#4) ^ ^ Release D/T (#16) if not e-signed
- N Y,X0,X,I S Y=""
- S X0=$G(^OR(100,+$G(ORIFN),8,1,0))
- I $P(X0,U,6) S Y=$P(X0,U,4,6)
- ; look for sign on corrected or parent order action
- I Y="",$P(X0,U,15)=12 D  ;replaced
- . S I=+$O(^OR(100,+$G(ORIFN),8,1)),X=$G(^(I,0))
- . I $P(X,U,2)="XX",$P(X,U,6) S Y=$P(X,U,4,6)
- I Y="",$P(X0,U,4)=8,$G(ORDAD) D  ;parent [no longer used]
- . S X=$G(^OR(100,+$G(ORDAD),8,1,0))
- . S:$P(X,U,6) Y=$P(X,U,4,6)
- ; else, return Sig Sts & Release D/T
- S:Y="" Y=$P(X0,U,4)_U_U_$P(X0,U,16)
- S X=$P(Y,U) S:$L(X) $P(Y,U)=$$EXTERNAL^DILFD(100.008,4,,X)
- Q Y
- ;
-CP1(IEN) ; -- get MD nodes for procedure [ID Action], returns:
- ; VPRCP = ^TMP("MDHSP",$J,I)
- ; VPRCN = ^GMR(123,consult,0)
- ; VPRTIU(field#,"I") = TIU data field
- I '$D(^TMP("MDHSP",$J)) D
- . S:'DFN DFN=+$$GET1^DIQ(702,IEN,.01,"I")
- . N DLIST D CPROCS^VPRSDAQ
- S I=+$G(^TMP("MDHSP",$J,"IEN",IEN)),VPRCP=$G(^TMP("MDHSP",$J,I))
- I VPRCP="" S DDEOUT=1 Q
- ; undo date formatting
- N X,Y,%DT,VPRD
- S X=$P(VPRCP,U,6) I $L(X) S %DT="STX" D ^%DT S:Y>0 $P(VPRCP,U,6)=Y
- ; get supporting data from Consult, TIU note
- S X=+$P(VPRCP,U,13) I X D  K VPRD
- . D DOCLIST^GMRCGUIB(.VPRD,X) S VPRCN=$G(VPRD(0)) M VPRCN=VPRD(50)
- S X=+$P(VPRCP,U,14) I X D  K VPRD
- . D EXTRACT^TIULQ(X,"VPRD",,".03;.05;1202;1211;1212",,,"I")
- . M VPRTIU=VPRD(X)
+NOQ ; -- no query
  Q
+ ;
  ;
 VIT1(IEN) ; -- get info for one Vital measurement
  ; returns VPRV array, VPRGMV=VPRV(0), VPRANGE, VPRTYPE to entity
@@ -240,45 +197,3 @@ VITCODE(IEN,SFN) ; -- return [first] code for vital type
  S IENS=$O(VPRC(SFN_1,""))
  S Y=$S($L(IENS):$G(VPRC(SFN_1,IENS,.01,"I")),1:"")
  Q Y
- ;
-FIM1(IEN) ; -- get info for one set of measurements
- ; Returns VPRSITE, VPRM arrays to entity
- I '$D(VPRSITE) D PRM^RMIMRP(.VPRSITE) I '$O(VPRSITE(1)) S DDEOUT=1 Q
- D GC^RMIMRP(.VPRM,IEN)
- ; S:'$G(DFN) ??
- N NOTE S NOTE=+$P($G(VPRM(1)),U,12) K VPRTIU
- D EXTRACT^TIULQ(NOTE,"VPRTIU",,"1201;1202;1302",,,"I")
- M VPRM("TIU")=VPRTIU(NOTE)
- Q
- ;
-FIMS ; -- get DLIST(#)=name^value of each score
- ; Returns VPRFIMS = Assessment type(s) for ProblemDetail
- N I,J,N,X,NAMES,SCORES,SUM,TYPE
- S N=0,VPRFIMS=""
- S NAMES="Eating^Grooming^Bathing^Dressing - Upper Body^Dressing - Lower Body^Toileting^Bladder Management^Bowel Management^Bed, Chair, Wheelchair^Toilet^Tub, Shower^Walk/Wheelchair^Stairs"
- S NAMES=NAMES_"^Comprehension^Expression^Social Interaction^Problem Solving^Memory"
- S NAMES=NAMES_"^walkMode^comprehendMode^expressMode^Z"
- F I=5:1:9 I VPRM(I)'?1."^" D  ;has data
- . S SCORES=VPRM(I),SUM=$$TOTAL(SCORES) Q:'SUM
- . S TYPE=$S(I=5:"Admission",I=6:"Discharge",I=7:"Interim",I=8:"Follow up",1:"Goals")
- . S VPRFIMS=VPRFIMS_$S(VPRFIMS'="":", ",1:"")_TYPE
- . ; add score set to list
- . S N=N+1,DLIST(N)="Assessment Type^"_TYPE
- . F J=1:1:21 S X=$P(SCORES,U,J),N=N+1,DLIST(N)=$P(NAMES,U,J)_U_X
- . S N=N+1,DLIST(N)="FIM Total^"_SUM
- S:$L(VPRFIMS) VPRFIMS=VPRFIMS_" Assessment"_$S(VPRFIMS[",":"s",1:"")
- Q
- ;
-TOTAL(NODE) ; -- Return total of scores, or "" if incomplete
- N SUM,I,X
- S SUM=0 F I=1:1:18 S X=$P(NODE,U,I) S:X SUM=SUM+X I X<1 S SUM="" Q
- Q SUM
- ;
-WVPL1(IEN) ; -- set up pregnancy API array (IEN will be DFN)
- ; Returns VPRPREG array to entity
- I $G(IEN)<1 S DDEOUT=1 Q
- D:'$D(^TMP("WVPREGST",$J,"BASELINE")) BASELINE^WVRPCVPR(IEN)
- I '$D(^TMP("WVPREGST",$J,"BASELINE")) S DDEOUT=1 Q
- M VPRPREG=^TMP("WVPREGST",$J,"BASELINE")
- S DFN=IEN,IEN=$G(^TMP("WVPREGST",$J,"BASELINE","EXTERNAL ID"))
- Q

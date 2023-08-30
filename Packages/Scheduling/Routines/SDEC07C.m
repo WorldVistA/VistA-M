@@ -1,7 +1,9 @@
-SDEC07C ;ALB/WTC/ZEB,KML - VISTA SCHEDULING RPCS ;MAY 5, 2022
- ;;5.3;Scheduling;**686,694,816,820**;Aug 13, 1993;Build 10
- ;;Per VHA Directive 2004-038, this routine should not be modified
+SDEC07C ;ALB/WTC/ZEB,KML,LAB - VISTA SCHEDULING RPCS ;JAN 12,2023
+ ;;5.3;Scheduling;**686,694,816,820,837**;Aug 13, 1993;Build 4
+ ;;Per VHA Directive 6402, this routine should not be modified
  ;
+ ; Reference to $$LOCK1^ORX2 is supported by IA #867
+ ; Reference to UNKL1^ORX2 is supported by IA #867
  Q
  ;
 ADDEVT(DFN,SDECSTART,SDECSC,SDCLA) ;EP
@@ -99,13 +101,22 @@ ORDERLOCKCHECK(REQUESTYPE,APPTREQIEN,SDECI,DFN) ;
  ;SDECI - Line counter for error array - passed in by reference
  ;DFN - ien of PATIENT file (#2)
  ; return ERROR = 0 or 1
- N ORDERID,ERROR,USER
+ N ORDERID,ERROR,USER,LOCKFLG
+ S LOCKFLG=0
  S ORDERID=$G(ORDERID)
  S ERROR=0
  I REQUESTYPE="RTC" D
  . S ORDERID=$$GET1^DIQ(409.85,APPTREQIEN,46,"I")
  . Q:'+ORDERID
  . I $D(^XTMP("ORLK-"_ORDERID)) D
+ . . S LOCKFLG=1
  . . S USER=$$GET1^DIQ(200,$P($G(^XTMP("ORLK-"_ORDERID,1)),"^"),.01)
  . . D ERR^SDEC07(SDECI+1,"RTC Order is being edited by "_USER_". Please try again later.",DFN,1) S ERROR=1
+ . I LOCKFLG'=1 D
+ . . S LOCKFLG=$$LOCK1^ORX2(ORDERID)
+ . . I +LOCKFLG D
+ . . . D UNLK1^ORX2(ORDERID)
+ . . I '(+LOCKFLG) D
+ . . .  D ERR^SDEC07(SDECI+1,"RTC Order is locked by another user. Please try again later.",DFN,1) S ERROR=1
+ . . . S ERROR=1
  Q ERROR

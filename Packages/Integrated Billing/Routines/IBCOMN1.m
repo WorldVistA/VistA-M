@@ -1,5 +1,5 @@
 IBCOMN1 ;ALB/CMS - PATIENTS NO COVERAGE VERIFIED REPORT (CON'T);10-09-98
- ;;2.0;INTEGRATED BILLING;**103,528,602**;21-MAR-94;Build 22
+ ;;2.0;INTEGRATED BILLING;**103,528,602,743**;21-MAR-94;Build 18
  ;;Per VA Directive 6402, this routine should not be modified.
  Q
  ;
@@ -54,13 +54,15 @@ HD ;Write Heading
  I IBOUT="E" D  W:($E(IOST,1,2)["C-") ! W "Patient Name^SSN^Age^DOB^Phone^Verified" Q
  .W !,"Patients w/No Coverage Verification Date Report^"_$$FMTE^XLFDT($$NOW^XLFDT,"Z")
  .W !,"Verification Date Range: "_$$FMTE^XLFDT(IBBDT,"Z")_" to "_$$FMTE^XLFDT(IBEDT,"Z")
- .W !," Sorted by: "_$S(IBAIB=1:"Patient Name",1:"Terminal Digit")_" Range: "_$S(IBRF="A":"FIRST",1:IBRF)_" to "_$S(IBRL="zzzzzz":"LAST",1:IBRL)
+ .W !," Sorted by: "_$S(IBAIB=1:"Patient Name",1:"Terminal Digit")_" Range: "_$S(IBRF="":"FIRST",1:IBRF)_" to "_$S(IBRL="zzzzzz":"LAST",1:IBRL)
  .W !,"(* - Patient Deceased)"
  ; IB*602/HN end 
  I IBOUT="E" W:($E(IOST,1,2)["C-") ! W "Patient Name^SSN^Age^DOB^Phone^Verified" Q
  W @IOF,!,"Patients w/No Coverage Verification Date Report",?50,$$FMTE^XLFDT($$NOW^XLFDT,"Z"),?70," Page ",IBPAGE
  W !,?5,"Verification Date Range: "_$$FMTE^XLFDT(IBBDT,"Z")_" to "_$$FMTE^XLFDT(IBEDT,"Z")
- W !,?5,"  Sorted by: "_$S(IBAIB=1:"Patient Name",1:"Terminal Digit")_"  Range: "_$S(IBRF="A":"FIRST",1:IBRF)_" to "_$S(IBRL="zzzzzz":"LAST",1:IBRL)
+ ;IB*743/TAZ - Modified Check of IBRF
+ ;W !,?5,"  Sorted by: "_$S(IBAIB=1:"Patient Name",1:"Terminal Digit")_"  Range: "_$S(IBRF="A":"FIRST",1:IBRF)_" to "_$S(IBRL="zzzzzz":"LAST",1:IBRL)
+ W !,?5,"  Sorted by: "_$S(IBAIB=1:"Patient Name",1:"Terminal Digit")_"  Range: "_$S(IBRF="":"FIRST",1:IBRF)_" to "_$S(IBRL="zzzzzz":"LAST",1:IBRL)
  W !,?20,"(*  - Patient Deceased)"
  W !,"Patient Name",?31,"SSN",?38,"Age",?43,"DOB",?55,"Phone",?70,"Verified"
  W ! F IBX=1:1:79 W "="

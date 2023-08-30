@@ -1,0 +1,15 @@
+OR596P ; NA/AJB - UPDATE OPTION ;02/09/23  07:24
+ ;;3.0;ORDER ENTRY/RESULTS REPORTING;**596**;Dec 17, 1997;Build 7
+ ;
+ ; External reference to EN^XPAR supported by IA 2263
+ ; External reference to $$FIND1^DIC supported by IA 2051
+ ;
+ Q
+POST(ERROR) ;
+ D EN^XPAR("SYS","ORNEWPERS ACTIVE",,"YES",.ERROR) ; update parameter
+ N MENU S MENU=$$FIND1^DIC(19,,,"OR PARAM COORDINATOR MENU") Q:'+MENU
+ N OPT S OPT=$$FIND1^DIC(19,,,"OR NEWPERS DEBUGGER") Q:'OPT
+ I $$FIND1^DIC(19.01,","_MENU_",",,"OR NEWPERS DEBUGGER") Q
+ N FDA S FDA(19.01,"+1,"_MENU_",",.01)=OPT,FDA(19.01,"+1,"_MENU_",",2)="NP"
+ D UPDATE^DIE("","FDA")
+ Q

@@ -1,6 +1,6 @@
-MAGVIM05 ;WOIFO/MAT,BT,JL,DAC,PMK - Utilities for RPC calls for DICOM file processing ;14 Aug 2018 3:13 PM
- ;;3.0;IMAGING;**118,138,164,166,194**;Mar 19, 2002;Build 23
- ;; Per VHA Directive 2004-038, this routine should not be modified.
+MAGVIM05 ;WOIFO/MAT,BT,JL,DAC,PMK - Utilities for RPC calls for DICOM file processing ;09 Sep 2021 3:13 PM
+ ;;3.0;IMAGING;**118,138,164,166,194,278**;Mar 19, 2002;Build 138
+ ;; Per VA Directive 6402, this routine should not be modified.
  ;; +---------------------------------------------------------------+
  ;; | Property of the US Government.                                |
  ;; | No permission to copy or redistribute this software is given. |
@@ -232,7 +232,7 @@ XMEXAMIN(RETURN,RADFN,RAEXAM1,RAEXAM2,MAGVUSR,MAGVUSRDV,RAIMGTYP) ;
 XMORDER(RETURN,DFN,RAMLC,RADPROC,STUDYDAT,RACAT,REQLOC,REQPHYS,REASON,MISC) ;
  ;
  K RETURN
- N SEPSTAT,SEPOUTP,I,FMDAY,MAXORDER,RAOIEN,REVERSEDAY D ZRUSEPIN
+ N SEPSTAT,SEPOUTP,I,FMDAY,MAXORDER,RAOIEN,REVERSEDAY,PROC1 D ZRUSEPIN
  ;
  ; maximum number of same procedures for same date for patient - P194 PMK/DAC 8/14/2018
  S MAXORDER=$P($G(^MAG(2006.1,1,"IMPORTER")),U,6)
@@ -244,9 +244,11 @@ XMORDER(RETURN,DFN,RAMLC,RADPROC,STUDYDAT,RACAT,REQLOC,REQPHYS,REASON,MISC) ;
  . S RETURN(1)=-1001_SEPSTAT_"Illegal or non-existent STUDYDAT="""_$G(STUDYDAT)_""""
  . Q
  S REVERSEDAY=9999999.9999-(FMDAY\1) ; strip the time and reverse the date
+ S PROC1=$P(RADPROC,U,1)  ; P278 DAC - RADPROC may contain optional modifiers - Set PROC1 to the procedure IEN without modifiers
  ;
  S RAOIEN=0
- F I=1:1:MAXORDER S RAOIEN=$O(^RAO(75.1,"AP",DFN,RADPROC,REVERSEDAY,RAOIEN)) Q:'RAOIEN
+ ; P278 DAC - Use PROC1 (procedure) instead of RADPROC (procudure + optional modifiers)
+ F I=1:1:MAXORDER S RAOIEN=$O(^RAO(75.1,"AP",DFN,PROC1,REVERSEDAY,RAOIEN)) Q:'RAOIEN
  I RAOIEN D  Q
  . S RETURN(0)=-1_SEPSTAT_"1 error line returned."
  . S RETURN(1)=-1000_SEPSTAT_"Order already on file with IEN="_RAOIEN

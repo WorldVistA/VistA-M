@@ -1,5 +1,5 @@
 IBCNEDEP ;DAOU/ALA - Process Transaction Records ;14-OCT-2015
- ;;2.0;INTEGRATED BILLING;**184,271,300,416,438,506,533,549,601,621,713**;21-MAR-94;Build 12
+ ;;2.0;INTEGRATED BILLING;**184,271,300,416,438,506,533,549,601,621,713,737**;21-MAR-94;Build 19
  ;;Per VA Directive 6402, this routine should not be modified.
  ;
  ;  This program finds records needing HL7 msg creation
@@ -102,8 +102,6 @@ TMT ;  If the status is 'Transmitted' - is this a 'Retry' or
  . ;  Set Buffer symbol to 'C1' (Comm Failure)    ; used to be 'B12' - ien of 15
  . I BUFF'="" D BUFF^IBCNEUT2(BUFF,C1CODE)        ; set to "#" communication failure - IB*2.0*506
  . ;
- . I PAYR=$$FIND1^DIC(365.12,"","X","~NO PAYER") Q
- . ;
  . ; Issue comm fail MailMan msg only for ver'ns
  . I VERID="V" D CERR^IBCNEDEQ
  ;
@@ -135,7 +133,6 @@ RET ;  If status is 'Retry'     ; retries only exist if the RETRYFLG=YES - IB*2.
  .. ;  For msg in the Response file set the status to
  .. ; 'Comm Failure'
  .. D RSTA^IBCNEUT7(IEN)
- .. I PAYR=$$FIND1^DIC(365.12,"","X","~NO PAYER") Q
  .. ;
  .. ;I VERID="V" D CERE^IBCNEDEQ      ; removed IB*2.0*506
  . ; If generating retry, set eIV status to comm failure (5) for
@@ -156,10 +153,8 @@ FIN ; Prioritize requests for statuses 'Retry' and 'Ready to Transmit'
  .. S PAYR=$P(IBDATA,U,3)
  .. I QUERY="V" S VNUM=3
  .. I QUERY'="V" D
- ... ;I PAYR=$$FIND1^DIC(365.12,,"X","~NO PAYER") S VNUM=5 Q  ; IB*601 - HAN
  ... S VNUM=4
  .. I OVRIDE'="" D
- ... I PAYR=$$FIND1^DIC(365.12,,"X","~NO PAYER") S VNUM=2 Q
  ... S VNUM=1
  .. S ^TMP("IBQUERY",$J,VNUM,DFN,IEN)=""   ; VNUM = Priority of output
  ;

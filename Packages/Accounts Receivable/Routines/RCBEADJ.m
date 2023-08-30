@@ -1,5 +1,5 @@
 RCBEADJ ;WISC/RFJ-adjustment ;Jun 06, 2014@19:11:19
- ;;4.5;Accounts Receivable;**169,172,204,173,208,233,298,301,315,326,338,371**;Mar 20, 1995;Build 29
+ ;;4.5;Accounts Receivable;**169,172,204,173,208,233,298,301,315,326,338,371,420**;Mar 20, 1995;Build 1
  ;;Per VA Directive 6402, this routine should not be modified.
  Q
  ;
@@ -124,7 +124,9 @@ ADJBILL(RCBETYPE,RCBILLDA,RCEDIWL) ;  adjust a bill
  S Y=$$ASKOK(RCBETYPE) I Y'=1 D UNLOCK Q
  ;
 ADDADJ ;  add adjustment
+ N BILL
  S RCTRANDA=$$INCDEC^RCBEUTR1(RCBILLDA,RCAMOUNT,"","","",$G(RCONTADJ))
+ S BILL=RCBILLDA  ; used in ^RCTCSPD5  PRCA*4.5*420
  I 'RCTRANDA W !,"  *** W A R N I N G: Adjustment NOT Processed! ***" D UNLOCK Q
  I RCTRANDA W !,"  Adjustment Transaction: ",RCTRANDA," has been added."
  I RCTRANDA,'$G(RCEDIWL),(RCBETYPE="DECREASE"),$D(^PRCA(430,"TCSP",RCBILLDA)) D DECADJ^RCTCSPU(RCBILLDA,RCTRANDA) ;prca*4.5*301 add cs decrease adjustment

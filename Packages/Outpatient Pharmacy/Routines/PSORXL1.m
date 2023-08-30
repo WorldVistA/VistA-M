@@ -1,5 +1,5 @@
 PSORXL1 ;BIR/SAB - action to be taken on prescriptions ;Jan 20, 2022@11:21:21
- ;;7.0;OUTPATIENT PHARMACY;**36,46,148,260,274,287,289,358,251,385,403,409,482,604,562,441**;DEC 1997;Build 208
+ ;;7.0;OUTPATIENT PHARMACY;**36,46,148,260,274,287,289,358,251,385,403,409,482,604,562,441,717**;DEC 1997;Build 1
  ;External reference to $$DS^PSSDSAPI supported by DBIA 5424
 S S SPPL="",PPL1=1 S:'$G(PPL) PPL=$G(PSORX("PSOL",PPL1)) G:$G(PPL)']"" D1
 S1 F PI=1:1 Q:$P(PPL,",",PI)=""  S DA=$P(PPL,",",PI) D
@@ -106,7 +106,7 @@ ECME ; - Looks for DUR/79 REJECTS and send Mail Rx's to ECME that have not been 
  . D TRIC(PSORX) S ESTAT=$P($$STATUS^PSOBPSUT(PSORX,PSORF),"^")
  . I $G(PSOCKDC) D  Q  ;PSOCKDC variable is set in PSORXL and is used to eliminate label print for DC'ed Rx's
  . . S PSOSTA=$$GET1^DIQ(52,PSORX,100,"I")
- . . I PSOSTA=12!(PSOSTA=11)!((PSOSTA=5)&(ESTAT'="")) D
+ . . I PSOSTA=12!(PSOSTA=11)!(PSOSTA=3)!((PSOSTA=5)&(ESTAT'="")) D  ;p717 Add HOLD status
  . . . I '$G(RXPR(PSORX)),'$G(RXRS(PSORX)),$G(PPL) D RMV(PSORX,.PPL) ;p604 added RXRS array check
  . I $G(RXPR(PSORX)) Q
  . S PSOACT="",BWH=$S(PSORF:"RF",1:"OF")

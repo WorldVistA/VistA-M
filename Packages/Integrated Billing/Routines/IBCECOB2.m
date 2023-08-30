@@ -1,5 +1,5 @@
 IBCECOB2 ;ALB/CXW - IB COB MANAGEMENT SCREEN ;16-JUN-1999
- ;;2.0;INTEGRATED BILLING;**137,155,433,432,447,488,516,592,641**;21-MAR-1994;Build 61
+ ;;2.0;INTEGRATED BILLING;**137,155,433,432,447,488,516,592,641,727**;21-MAR-1994;Build 34
  ;;Per VA Directive 6402, this routine should not be modified.
  ;
 EDI ;history detail display
@@ -142,6 +142,13 @@ CANCEL ;Cancel bill
  . D PAUSE^VALM1
  . Q
  ;
+ ;WCJ;IB727;check to see if all lines are covered in the MRA
+ N IBRETSPLT
+ I '$G(IBMRANOT),$$SPLIT^IBCEMU1(IBEOBIFN),$$SPLIT2^IBCEMU1(IBEOBIFN)=0!($$SPLIT2^IBCEMU1(IBEOBIFN)=-1&($$SPLTMRA^IBCEMU1(IBIFN,.IBRETSPLT)<2))  D  G CANCELQ
+ . D FULL^VALM1 S VALMBCK="R"
+ . W !!?5,"All claim lines must be adjudicated before cancelling a split claim."
+ . D PAUSE^VALM1
+ ;
  I IBDA D
  . I '$$LOCK^IBCEU0(361.1,IBEOBIFN) Q
  . D CANCEL^IBCEM3(.IBDA,IBIFN,IB364)
@@ -157,7 +164,8 @@ CRD ; Correct Rejected/Denied claim protocol action
  N IBCNCRD
  S IBCNCRD=1
 CLONE ; 'Copy/cancel bill' protocol action
- N IBDA,IBQ,IBEOBIFN,IBKEY,X,IBDENCT
+ ;N IBDA,IBQ,IBEOBIFN,IBKEY,X,IBDENCT
+ N IBDA,IBQ,IBEOBIFN,IBKEY,X,IBDENCT,IBIFN   ;WCJ;IB727
  ;
  ; Check for security key
  ;IB*2.0*516/TAZ - Remove check for IB CLON
@@ -174,7 +182,8 @@ CLONE ; 'Copy/cancel bill' protocol action
  . Q
  ;
  D SEL(.IBDA,1)
- S IBDA=$O(IBDA(""))
+ ;S IBDA=$O(IBDA(""))
+ S IBDA=$O(IBDA(0)),IBIFN=+$G(IBDA(+IBDA))  ; IB727
  I IBDA="" G CLONEQ
  ;
  ; IB*2.0*432 - if not mra, only allow cancel of claims with multiple EOBS if none have processed.
@@ -184,6 +193,14 @@ CLONE ; 'Copy/cancel bill' protocol action
  . W !,"Use Remove Action to remove claim from this worklist."
  . D PAUSE^VALM1
  . Q
+ ;
+ ;WCJ;IB727;check to see if all lines are covered in the MRA
+ N IBEOBIFN,IBRETSPLT
+ S IBEOBIFN=$P($G(IBDA(+IBDA)),U,3)
+ I '$G(IBMRANOT),$$SPLIT^IBCEMU1(IBEOBIFN),$$SPLIT2^IBCEMU1(IBEOBIFN)=0!($$SPLIT2^IBCEMU1(IBEOBIFN)=-1&($$SPLTMRA^IBCEMU1(IBIFN,.IBRETSPLT)<2)) D  G CLONEQ
+ . D FULL^VALM1 S VALMBCK="R"
+ . W !!?5,"All claim lines must be adjudicated before "_$S($G(IBCNCRD):"crd'ing",1:" cloning")_" a split claim."
+ . D PAUSE^VALM1
  ;
  S IBEOBIFN=$P($G(IBDA(+IBDA)),U,3)
  I '$$LOCK^IBCEU0(361.1,IBEOBIFN) G CLONEQ
@@ -239,8 +256,22 @@ PRO ; Copy for secondary/tertiary bill
  D SEL(.IBDA,1)
  S Z=$O(IBDA(0)),Z=$G(IBDA(+Z)) G:'Z PROQ
  S IBIFN=$P(Z,U),IB364=$P(Z,U,2),IBDA=$P(Z,U,3),IBIFNH=IBIFN
+ N IBEOBIFN   ;WCJ;IB727 v17
+ S IBEOBIFN=IBDA   ;WCJ;IB727 v17
  I 'IBIFN G PROQ
  I '$G(IBMRANOT),$D(^IBM(361.1,IBDA,"ERR")),'$$WARNMSE G PROQ        ; Claim contains Message Storage Errors
+ ;
+ ;I $G(IBMRANOT),($$GET1^DIQ(399,IBIFN_",",36,"","","")="IB803"),'$$WARNIBMRANOT G PROQ  ;TPF;EBILL-2436;IB*2.0*727
+ I $G(IBMRANOT),$$FILERR^IBCAPP2(IBIFN),'$$WARNIBMRANOT G PROQ  ;TPF;EBILL-3061;IB*2.0*727 v15
+ ;
+ ;WCJ;IB727;check to see if all lines are covered in the MRA
+ N IBRETSPLT    ;N IBEOBIFN,IBRETSPLT ;WCJ;IB727 v17
+ ;S IBEOBIFN=$P($G(IBDA(+IBDA)),U,3) ;WCJ;IB727 v17
+ I '$G(IBMRANOT),$$SPLIT^IBCEMU1(IBEOBIFN),$$SPLIT2^IBCEMU1(IBEOBIFN)=0!($$SPLIT2^IBCEMU1(IBEOBIFN)=-1&($$SPLTMRA^IBCEMU1(IBIFN,.IBRETSPLT)<2)) D  G PROQ
+ . D FULL^VALM1 S VALMBCK="R"
+ . W !!?5,"All claim lines must be adjudicated before processing a split claim to subsequent payer."
+ . D PAUSE^VALM1
+ ;
  I '$$LOCK^IBCEU0(361.1,IBDA) G PROQ
  D COBCOPY(IBIFN,IB364,2,IBDA,"BLD^IBCECOB1",.IBNCN)
  D UNLOCK^IBCEU0(361.1,IBDA)
@@ -425,3 +456,19 @@ WARNMSE() ; Display MSE Warning and check if we should continue.
  S DIR("A")="Do you wish to continue? ",DIR("B")="NO",DIR(0)="YA" D ^DIR
  I Y>0 Q 1   ; Okay to continue.
  Q 0  ;
+ ;
+WARNIBMRANOT() ;TPF;EBILL-2436;IB*2.0*727;WCJ-lessened to warning
+ D FULL^VALM1
+ N DIR,X,Y
+ S DIR("A",1)="WARNING: An EOB/MRA for this claim caused a Data Mismatch/Message Storage Error."
+ S DIR("A",2)="If you continue, the subsequent claim may not contain the correct data."
+ S DIR("A")="Do you wish to continue? ",DIR("B")="NO",DIR(0)="YA" D ^DIR
+ I Y>0 Q 1   ; Okay to continue.
+ Q 0  ;
+ ;
+ D FULL^VALM1
+ W !!,"WARNING: An EOB for this Claim has an MSE error and cannot be processed."
+ N DIR
+ S DIR(0)="E"
+ D ^DIR
+ Q 0

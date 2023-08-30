@@ -1,12 +1,12 @@
 PSOERXA0 ;ALB/BWF - eRx Utilities/RPC's ; 8/3/2016 5:14pm
- ;;7.0;OUTPATIENT PHARMACY;**467,586,617,651**;DEC 1997;Build 30
+ ;;7.0;OUTPATIENT PHARMACY;**467,586,617,651,545**;DEC 1997;Build 270
  ;
  Q
  ; All parameters are optional, however at least one needs to be passed in for processing to be sucessful.
  ; NDCUPN - This is the NDC/UPN for the drug (optional)
  ; DGDESC - Drug description (optional)
 DRGMTCH(PSORES,NDCUPN,DGDESC) ;
- N VAPRID,NDCUPNT,NDCUPNV,NDCUXREF,NUIEN,PSMIEN,PSDRG,PSDRGCNT,PSDGLST,I,VAMATCH
+ N VAPRID,NDCUPNT,NDCUPNV,NDCUXREF,NUIEN,PSMIEN,PSMIEN,PSDRG,PSDRGCNT,PSDGLST,I,VAMATCH
  S PSORES=0
  I $G(DGDESC)]"" D
  .S DGDESC=$$UP^XLFSTR(DGDESC)
@@ -137,7 +137,8 @@ PRVMTCH(PSORES,NPI,DEA,CS) ;
  ; ensure the dea# is active
 DEACTIVE(USER) ;
  N EXPDT
- S EXPDT=$$GET1^DIQ(200,USER,747.44,"I")
+ ; *545
+ S EXPDT=$$PRXDT^XUSER(USER)
  I EXPDT,EXPDT<DT Q 0
  Q 1
  ; check to ensure the provider is authorized to write med orders

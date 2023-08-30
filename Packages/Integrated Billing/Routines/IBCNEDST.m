@@ -1,5 +1,5 @@
 IBCNEDST ;ALB/YMG - HL7 Registration Message Statistics ; 07-MAR-2013
- ;;2.0;INTEGRATED BILLING;**497,506,549,595,659,664,668,702**;21-MAR-94;Build 53
+ ;;2.0;INTEGRATED BILLING;**497,506,549,595,659,664,668,702,737**;21-MAR-94;Build 19
  ;;Per VA Directive 6402, this routine should not be modified.
  ;
  Q
@@ -45,7 +45,7 @@ GETSTAT(MCAUTO) ; get statistical data
  ;   piece 5  - Number of deferred 270 inquiries
  ;   piece 6  - Number of insurance companies with no National ID
  ;   piece 7  - Number of locally disabled payers
- ;   piece 8  - Number of Verified (*) buffer entries
+ ;   piece 8  - Number of Verified (*) buffer entries ; IB*737/DTG will be zero, not use '*' verified
  ;   piece 9  - Number of buffer entries indicated as having Active insurance (+)
  ;   piece 10 - Number of buffer entries indicated as having Inactive insurance (-)
  ;   piece 11 - Number of buffer entries indicated as policy status undetermined (#)
@@ -260,7 +260,7 @@ BUFINFO() ; get data from insurance buffer (file 355.33)
  ; DTTM - start date/time
  ;
  ; returns the following string, delimited by "^":
- ;   piece 1 - Number of Verified (*) buffer entries within last 24 hours
+ ;   piece 1 - Number of Verified (*) buffer entries within last 24 hours ; IB*737/DTG stop use of '*' verified
  ;   piece 2 - Number of buffer entries indicated as having Active insurance (+) within last 24 hours
  ;   piece 3 - Number of buffer entries indicated as having Inactive insurance (-) within last 24 hours
  ;   piece 4 - Number of buffer entries indicated as policy status undetermined (#) within last 24 hours
@@ -274,7 +274,7 @@ BUFINFO() ; get data from insurance buffer (file 355.33)
  S DATE=0 F  S DATE=$O(^IBA(355.33,"AEST","E",DATE)) Q:DATE=""  D
  .S BUFF=0 F  S BUFF=$O(^IBA(355.33,"AEST","E",DATE,BUFF)) Q:BUFF=""  D
  ..S SYM=$$SYMBOL^IBCNBLL(BUFF)
- ..I SYM="*" S VERIFIED=VERIFIED+1 Q  ; verified entries
+ ..;I SYM="*" S VERIFIED=VERIFIED+1 Q  ; verified entries  ; IB*737/DTG stop use of '*' verified
  ..I SYM="+" S ACTIVE=ACTIVE+1 Q      ; active insurance
  ..I SYM="$" S ACTIVE=ACTIVE+1 Q      ; include "$" (Escalated entries) in with the active insurance  - IB*2.0*506 (vd)
  ..I SYM="-" S INACTIVE=INACTIVE+1 Q  ; inactive insurance

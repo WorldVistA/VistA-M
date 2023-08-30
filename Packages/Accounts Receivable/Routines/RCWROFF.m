@@ -1,5 +1,5 @@
 RCWROFF ;WISC/RFJ - write off, terminated ;1 Feb 2000
- ;;4.5;Accounts Receivable;**168,204,309,301,307,315,377,381,391,378**;Mar 20, 1995;Build 54
+ ;;4.5;Accounts Receivable;**168,204,309,301,307,315,377,381,391,378,418**;Mar 20, 1995;Build 9
  ;;Per VA Directive 6402, this routine should not be modified.
  Q
  ;
@@ -57,7 +57,7 @@ A10 ;  waived by rc/doj (use trantype=10) (menu option)
  Q
  ;
 SUSTP(X) ; suspension types for brief comment in *309
- ; input-code between 0 to 12
+ ; input-code between 0 to 14
  ; output-text
  N IBX
  S IBX=$P($T(SUSTX+X),";;",2)
@@ -79,6 +79,7 @@ SUSTX ;
  ;;DISPUTE
  ;;INDIAN ATTESTATION
  ;;COMPACT
+ ;;CLELAND-DOLE
  ;
  ;
 MAIN(RCTRTYPE,RCDRSTRG) ;  main subroutine to process a waiver, termination, suspended transaction

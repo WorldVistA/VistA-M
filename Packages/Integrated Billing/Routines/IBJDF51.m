@@ -1,5 +1,5 @@
 IBJDF51 ;ALB/RB - CHAMPVA/TRICARE FOLLOW-UP REPORT (COMPILE) ;15-APR-00
- ;;2.0;INTEGRATED BILLING;**123,185,240,356,452,516,618**;21-MAR-94;Build 61
+ ;;2.0;INTEGRATED BILLING;**123,185,240,356,452,516,618,739**;21-MAR-94;Build 3
  ;;Per VA Directive 6402, this routine should not be modified.
  ;
 ST ; - Tasked entry point.
@@ -88,7 +88,7 @@ ST ; - Tasked entry point.
  . I $G(IBEXCEL) D  Q
  . . S IBDIV=$P($G(^DG(40.8,$S('IBDIV:+$$PRIM^VASITE(),1:IBDIV),0)),U)
  . . ;
- . . S IBEXCEL1=$P(IBPT,U,2)_U_IBVA_U_$P(IBPT,U,3)_U_$TR($P(IBPT,U,4),"-")
+ . . S IBEXCEL1=$P(IBPT,U,2)_U_IBVA_U_$P(IBPT,U,3)_U ;IB*2.0*739
  . . S IBEXCEL1=IBEXCEL1_U_$S(IBIN=0:"",1:$E($P(IBIN,"@@"),1,12))_U_$E(IBOI,1,12)
  . . S IBEXCEL1=IBEXCEL1_U_$$DT^IBJD(IBDP,1)_U_$$DT^IBJD(IBFR,1)
  . . S IBEXCEL1=IBEXCEL1_U_$$DT^IBJD(IBTO,1)_U_IBSID_U_IBBN_U_IBOR
@@ -173,7 +173,7 @@ SIDQ Q Y
  ;
 PHDL ; - Print the header line for the Excel spreadsheet
  N X
- S X="Patient^VA Empl.?^Age^SSN^Prim.Ins.Carrier^Other Ins.Carrier^"
+ S X="Patient^VA Empl.?^Age^^Prim.Ins.Carrier^Other Ins.Carrier^" ;IB*2.0*739
  S X=X_"Dt Bill prep.^Bill From Dt^Bill To Dt^Subsc.ID^Bill #^"
  S X=X_"Orig.Amt^Curr.Bal.^Cat.^Bill Type^Lst Comm.Dt^Days Lst Comm.^"
  S X=X_"Division"

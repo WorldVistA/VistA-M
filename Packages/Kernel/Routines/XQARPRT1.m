@@ -1,5 +1,5 @@
-XQARPRT1 ;sgh/mtz,JLI/OAK_OIFO-ROUTINE TO PROVIDE COUNTS OF ALERTS ;9/3/03  11:17
- ;;8.0;KERNEL;**316,338,631,690**;Jul 10, 1995;Build 18
+XQARPRT1 ;JLI/OAK_OIFO-ROUTINE TO PROVIDE COUNTS OF ALERTS ; Oct 03, 2022@03:26:24
+ ;;8.0;KERNEL;**316,338,631,690,777**;Jul 10, 1995;Build 1
  ;Per VA Directive 6402, this routine should not be modified.
  ; based on an original routine AMNUALT
 EN1 ; OPT - generates a listing of the number of alerts a user has as well as last sign-on date, number of critical and/or abnomal imaging alerts, and the date of the oldest alert
@@ -231,7 +231,7 @@ PRINTVAL(XQAPAWS,FSTNOSVC) ;Print report value
  . SET XQAWRTER=(SRVERRCT>$$XQZMAXER()) ;Error limit reached?
  . ;XQANOTES array = "ERROR description for inclusion in ERROR trap"
  . SET XQANOTES("PROGRAMMER",1,"WHAT HAPPENED")="Kernel Alerts Report included a user with a pending alert that did NOT have a SERVICE/SECTION in the New Person File."
- . SET XQANOTES("PROGRAMMER",2,"MENU REPORT OPTION")=$P(XQY0,"^",1,2)
+ . SET XQANOTES("PROGRAMMER",2,"MENU REPORT OPTION")=$P($G(XQY0),"^",1,2)
  . SET XQANOTES("PROGRAMMER",3,"PROBLEM")="SERVICE/SECTION is a required field for all active VistA Users."
  . SET XQANOTES("PROGRAMMER",4,"REPORT NOTES",1)="Rerunning the report with the parameters in this log may or may not report all of the users missing SERVICE/SECTION."
  . SET XQANOTES("PROGRAMMER",4,"REPORT NOTES",2)="Users with alerts that have been processed since this log was recorded will not be reported."
@@ -243,7 +243,7 @@ PRINTVAL(XQAPAWS,FSTNOSVC) ;Print report value
  . . SET XQANOTES("PROGRAMMER",4,"REPORT NOTES",7)="1st Message on report: 'Daily Error Trap limit is "_$$XQZMAXER()_" errors for users missing SERVICE/SECTION.'"
  . . SET XQANOTES("PROGRAMMER",4,"REPORT NOTES",8)="2nd Message on report: Limit Reached. 'No more entries will be added for '<No Service>' users today!'"
  . . SET XQANOTES("PROGRAMMER",4,"REPORT NOTES",9)="Any users on the report following that message will not be recorded in the Error Trap."
- . D APPERROR^%ZTER("Undefined SERVICE/SECTION Err")
+ . ;D APPERROR^%ZTER("Undefined SERVICE/SECTION Err") ;p777 comment out.
  ;
  S LSIGNON=$$GET1^DIQ(200,XQAN1_",",202)
  I LSIGNON["@" S LSIGNON=$P(LSIGNON,"@")

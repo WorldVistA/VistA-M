@@ -1,5 +1,5 @@
 DIWE5 ;SFISC/GFT-WP, AUX FUNCTIONS ;15NOV2012
- ;;22.2;VA FileMan;;Jan 05, 2016;Build 42
+ ;;22.2;VA FileMan;**24**;Jan 05, 2016;Build 3
  ;;Per VA Directive 6402, this routine should not be modified.
  ;;Submitted to OSEHRA 5 January 2015 by the VISTA Expertise Network.
  ;;Based on Medsphere Systems Corporation's MSC FileMan 1051.
@@ -7,7 +7,7 @@ DIWE5 ;SFISC/GFT-WP, AUX FUNCTIONS ;15NOV2012
  ;
  ;**CCO/NI   ENTIRE ROUTINE CHANGED
 LNQ ;
- W !,$$EZBLD^DIALOG(8150),"("_(I'=6)_$P("-"_DWLC,U,DWLC>1)_")" ;**CCO/NI
+ W !,$$EZBLD^DIALOG(8150),"("_($G(I)'=6)_$P("-"_DWLC,U,DWLC>1)_")" ;**CCO/NI; $G() around 'I' -p24
  I $G(DWL) D
  .W !?9,$$EZBLD^DIALOG(8151,DWL) ;**CCI/NI
  .I DWL>2 W !?9,$$EZBLD^DIALOG(8152,DWL) ;**CCO/NI

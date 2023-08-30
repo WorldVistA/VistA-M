@@ -1,7 +1,12 @@
-PSIVSP ;BIR/RGY,PR,CML3 - DOSE PROCESSOR ;1/3/12 3:36pm
- ;;5.0;INPATIENT MEDICATIONS;**30,37,41,50,56,74,83,111,133,138,134,213,229,279,305,331,256,347,358**;16 DEC 97;Build 10
+PSIVSP ;BIR/RGY,PR,CML - DOSE PROCESSOR ;1/3/12 3:36pm
+ ;;5.0;INPATIENT MEDICATIONS;**30,37,41,50,56,74,83,111,133,138,134,213,229,279,305,331,256,347,358,439**;16 DEC 97;Build 1
  ;
  ; Reference to ^PS(51.1 is supported by DBIA #2177
+ ;
+ ; PSJ*439 - Removed the 3 from dev initials in line 1 which now causes an 
+ ;           XINDEX error. Added outer parentheses to the string check in the
+ ;           ORINF tag to more accurately process the string and not add the
+ ;           "ml/hr" suffix unnecessarily.
  ;
 EN ;
  NEW PSJORGX
@@ -107,8 +112,8 @@ ORINF ;  OERR input transform for Infusion Rate
  .I X2'=+X2 D
  ..I X2>0&(X2<1) Q
  ..I ($P(X2,"@",2,999)'=+$P(X2,"@",2,999)!(+$P(X2,"@",2,999)<0)) K X Q
- .I X1>0&(X1<1) I +X1="."_$P(X1,".",2) S X1=X1_" ml/hr"
- .I X2>0&(X2<1) I +X2="."_$P(X2,".",2) S X2=X2_" ml/hr"
+ .I X1>0&(X1<1) I +X1=("."_$P(X1,".",2)) S X1=X1_" ml/hr"  ; PSJ*439
+ .I X2>0&(X2<1) I +X2=("."_$P(X2,".",2)) S X2=X2_" ml/hr"  ; PSJ*439
  .I X1=+X1 S X1=X1_" ml/hr"
  .I X2=+X2 S X2=X2_" ml/hr"
  .S:$P(X2,"@")=+X2 $P(X2,"@")=$P(X2,"@")_" ml/hr"

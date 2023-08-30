@@ -1,5 +1,5 @@
 PRCAWO1 ;SF-ISC/YJK-ADMIN.COST CHARGE,TRANSACTION SUBROUTINES ;7/9/93  12:18 PM
-V ;;4.5;Accounts Receivable;**67,68,153,315,377,371**;Mar 20, 1995;Build 29
+V ;;4.5;Accounts Receivable;**67,68,153,315,377,371,420**;Mar 20, 1995;Build 1
  ;;Per VA Directive 6402, this routine should not be modified.
  ;Administrative cost charge transaction
  ; and subroutines called by ^PRCAWO.
@@ -26,7 +26,7 @@ DIEEN ;Loop through edit
  I PRCAOK=1 D UPD W ?40,"*** DONE***",! Q
  D ASK2 G:PRCAOK=1 DIEEN D DELETE Q
 UPD ; PRCA*4.5*371 - Replace direct global sets in 7 node with FileMan calls so indexes get updated
- N PRCFDA
+ N BILL,PRCFDA
  S PRCAMF=$S($P(^PRCA(433,PRCAEN,2),U,5)]"":+$P(^(2),U,5),1:0)
  S PRCFDA(430,PRCABN_",",74)=PRCAMF+$P(^PRCA(430,PRCABN,7),U,4)
  S PRCACC=$S(+$P(^PRCA(433,PRCAEN,2),U,6)]"":+$P(^(2),U,6),1:0)
@@ -40,6 +40,7 @@ UPD ; PRCA*4.5*371 - Replace direct global sets in 7 node with FileMan calls so 
  D UPDBAL^RCRPU1(PRCABN,PRCAEN)
  ;
  I $D(^PRCA(430,"TCSP",PRCABN)),PRCAEN D  ;PRCA*4.5*315/DRF add cs increase adjustment
+ . S BILL=PRCABN  ; used in ^RCTCSPD5  PRCA*4.5*420
  . I $G(RCTRREV)=0 D CSATRN^RCTCSPD5
  . I $G(RCTRREV)=0 D INCADJ^RCTCSPU(PRCABN,PRCAEN)
  . I $G(RCTRREV)=1 D CSATRY^RCTCSPD5

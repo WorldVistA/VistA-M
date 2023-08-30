@@ -1,5 +1,5 @@
 IBCOMC ;ALB/CMS - IDENTIFY PT BY AGE WITH OR WITHOUT INSURANCE;10-09-98
- ;;2.0;INTEGRATED BILLING;**103,528**;21-MAR-94;Build 163
+ ;;2.0;INTEGRATED BILLING;**103,528,743**;21-MAR-94;Build 18
  ;;Per VA Directive 6402, this routine should not be modified.
  Q
 EN ;Entry point from option
@@ -61,13 +61,27 @@ EXIT Q
  ;
 NR ; Ask Name Range
  N DIR,DIROUT,DIRUT,DTOUT,DUOUT,X,Y
-NRR S DIR(0)="FO",DIR("B")="FIRST",DIR("A")="START WITH PATIENT NAME"
+NRR ;
+ ;IB*743/TAZ - Updated code to accept NULL to mean beginning of list.
+ W !!,"Enter Start With value or Press <ENTER> to start at the beginning of the list.",!
+ S DIR(0)="FO",DIR("A")="START WITH PATIENT NAME"
+ S DIR("?")="^D NRRHLP^IBCOMC(""BEGIN"")"
  D ^DIR I ($D(DTOUT))!($D(DUOUT)) S IBQUIT=1 Q
- S:Y="FIRST" Y="A" S IBRF=Y
- S DIR(0)="FO",DIR("B")="LAST",DIR("A")="GO TO PATIENT NAME"
+ S IBRF=Y
+ ;
+ ;IB*743/TAZ - Updated code to accept NULL to mean end of list.
+ W !!,"Enter Go To value or Press <ENTER> to finish at the end of the list.",!
+ S DIR(0)="FO",DIR("A")="GO TO PATIENT NAME"
+ S DIR("?")="^D NRRHLP^IBCOMC(""END"")"
  D ^DIR I ($D(DTOUT))!($D(DUOUT)) S IBQUIT=1 Q
- S:Y="LAST" Y="zzzzzz" S IBRL=Y
- I $G(IBRL)']$G(IBRF) W !!,?5,"* The Go to Patient Name must follow after the Start with Name. *",! G NRR
+ S:Y="" Y="zzzzzz" S IBRL=Y
+ I $G(IBRL)']$G(IBRF) W !!,?5,"The Go to Patient Name must follow the Start with Name.",! G NRR
+ Q
+ ;
+NRRHLP(LEVEL) ; ?? Help for the Range Prompt
+ W !!,?5,"Enter a value the Patient Name should ",LEVEL," with."
+ I LEVEL="BEGIN" W !,?5,"Press <ENTER> to start at the beginning of the list."
+ I LEVEL="END" W !,?5,"Press <ENTER> to finish at the end of the list."
  Q
  ;
 TR ; Ask Terminal Digit Range
@@ -80,18 +94,32 @@ TR ; Ask Terminal Digit Range
  S DIR("B")="9999",DIR("A")="GO to Terminal Digit"
  D ^DIR I ($D(DTOUT))!($D(DUOUT)) S IBQUIT=1 Q
  S IBRL=$E((Y_"999999999"),1,9)
- I IBRF>IBRL W !!,?5,"* The Go to Terminal Digit must follow after the Start with Digit. *",! G TR
+ I IBRF>IBRL W !!,?5,"The Go to Terminal Digit must follow the Start with Digit.",! G TR
  Q
  ;
 INSR ; -- sort by Insurance Company Range
  N DIR,DIROUT,DIRUT,DTOUT,DUOUT,X,Y
-INSR1 S DIR(0)="FO",DIR("B")="FIRST",DIR("A")="START WITH INSURANCE COMPANY"
+INSR1 ;
+ ;IB*743/TAZ - Updated code to accept NULL to mean beginning of list.
+ W !!,"Enter Start With value or Press <ENTER> to start at the beginning of the list.",!
+ S DIR(0)="FO",DIR("A")="START WITH INSURANCE COMPANY"
+ S DIR("?")="^D INSRHLP^IBCOMC(""BEGIN"")"
  D ^DIR I ($D(DTOUT))!($D(DUOUT)) S IBQUIT=1 Q
- S:Y="FIRST" Y="A" S IBSINF=Y
- S DIR(0)="FO",DIR("B")="LAST",DIR("A")="GO TO INSURANCE COMPANY"
+ S IBSINF=Y
+ ;
+ ;IB*743/TAZ - Updated code to accept NULL to mean end of list.
+ W !!,"Enter Go To value or Press <ENTER> to finish at the end of the list.",!
+ S DIR(0)="FO",DIR("A")="GO TO INSURANCE COMPANY"
+ S DIR("?")="^D INSRHLP^IBCOMC(""END"")"
  D ^DIR I ($D(DTOUT))!($D(DUOUT)) S IBQUIT=1 Q
- S:Y="LAST" Y="zzzzzz" S IBSINL=Y
- I $G(IBSINL)']$G(IBSINF) W !!,?5,"* The Go to Insurance Company must follow after the Start with Company Name. *",! G INSR1
+ S:Y="" Y="zzzzzz" S IBSINL=Y
+ I $G(IBSINL)']$G(IBSINF) W !!,?5,"The Go to Insurance Company must follow the Start with Insurance Company.",! G INSR1
+ Q
+ ;
+INSRHLP(LEVEL) ; ?? Help for the Range Prompt
+ W !!,?5,"Enter a value the Insurance Company Name should ",LEVEL," with."
+ I LEVEL="BEGIN" W !,?5,"Press <ENTER> to start at the beginning of the list."
+ I LEVEL="END" W !,?5,"Press <ENTER> to finish at the end of the list."
  Q
  ;
 INSS ; -- select up to six Insurance Companies

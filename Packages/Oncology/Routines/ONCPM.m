@@ -1,9 +1,10 @@
-ONCPM ;Hines OIFO/GWB Performance Measures ;08/15/11
- ;;2.2;ONCOLOGY;**1**;Jul 31, 2013;Build 8
+ONCPM ;HINES OIFO/GWB Performance Measures ;08/15/11
+ ;;2.2;ONCOLOGY;**1,17**;Jul 31, 2013;Build 6
  ;
  N COC,ICDO,SITE,Z
  N D0,DA,DD,DI,DIC,DIE,DIEL,DINUM,DIR,DK,DL,DLAYGO,DM,DO,DOV,DP,DQ,DR
  K PCEITC
+ W !!,?10,"Performance Measures are no longer being collected..." R Z:10 G EXIT
  ;Build PCEITC array of eligible topography codes
  S PCEITC("C18.0")="" ;Cecum
  S PCEITC("C18.1")="" ;Appendix

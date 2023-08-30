@@ -1,5 +1,5 @@
-PSORENW4 ;BIR/SAB - rx speed renew ;Jul 08, 2021@14:24:25
- ;;7.0;OUTPATIENT PHARMACY;**11,23,27,32,37,64,46,75,71,100,130,117,152,148,264,225,301,390,313,411,444,504,508,550,457,639,441,683**;DEC 1997;Build 4
+PSORENW4 ;BIR/SAB - rx speed renew ;Oct 20, 2022@15:42
+ ;;7.0;OUTPATIENT PHARMACY;**11,23,27,32,37,64,46,75,71,100,130,117,152,148,264,225,301,390,313,411,444,504,508,550,457,639,441,683,545**;DEC 1997;Build 270
  ;External reference to ^PSDRUG( supported by DBIA 221
  ;External reference to ^PS(50.7 supported by DBIA 2223
  ;External reference to $$L^PSSLOCK supported by DBIA 2789
@@ -66,6 +66,17 @@ SELQ ;
  S X=PSODFN_";DPT(" D ULK^ORX2,UL^PSSLOCK(PSODFN),CLEAN^PSOVER1
  Q
  ;
+RXCS(RXIEN) ; Return the CS Federal Schedule associated with Rx# RXIEN
+ N DRGIEN,PSOY
+ S DRGIEN=+$$GET1^DIQ(52,RXIEN,6,"I")
+ Q $$DRGCS(DRGIEN)
+ ;
+DRGCS(DRGIEN) ; Return the CS Federal Schedule associated with Drug File entry DRGIEN
+ N DRGCS
+ Q:'$G(DRGIEN) ""
+ S DRGCS=$$GET1^DIQ(50,+$G(DRGIEN),3)
+ Q DRGCS
+ ;
 PROCESS ; Process one order at a time
  N PSORXIEN,PSOCHECK,MAXNUMRF
  S PSORXIEN=+$P($G(PSOLST(ORN)),"^",2)
@@ -77,6 +88,17 @@ PROCESS ; Process one order at a time
  ; Checking whether the Provider still qualifies as prescriber for the renewed Rx
  S PROVIEN=$S($G(PSORENW("PROVIDER")):PSORENW("PROVIDER"),1:+$$GET1^DIQ(52,PSORXIEN,4,"I"))
  S PSOCHECK=$$CHKRXPRV^PSOUTIL(PSORXIEN,PROVIEN)
+ I 'PSOCHECK,(PSOCHECK'["DEA#"),(PSOCHECK'["Federal Schedule") D  K DIR,PSOMSG D PAUSE^VALM1 Q
+ . W $C(7),!!,"Rx# "_$$GET1^DIQ(52,PSORXIEN,.01)_" - "_$P(PSOCHECK,"^",3)
+ I $$RXCS(PSORXIEN)!'PSOCHECK D
+ . N PSODRUG,PSOY,PSODRIEN D FULL^VALM1
+ . S PSODRIEN=+$$GET1^DIQ(52,PSORXIEN,6,"I"),PSOY(0)=$G(^PSDRUG(PSODRIEN,0)),PSOY=PSODRIEN
+ . S PSORX("CS")=$$DRGCS(PSODRIEN)
+ . D SET^PSODRG S PSORENW("DEA")=$$SLDEA^PSODIR(PROVIEN,.PSORX,$$RXDEA^PSOUTIL(+$G(PSORXIEN)),PSODRIEN)
+ . I $G(PSORENW("DEA"))="" S PSOCHECK="0^No valid DEA# selected^No valid DEA# selected"
+ . N DIR S DIR(0)="E",DIR("A")="Press return to continue" D ^DIR
+ . Q:$G(PSORENW("DEA"))=""
+ . S PSOCHECK=1
  I 'PSOCHECK D  K DIR,PSOMSG D PAUSE^VALM1 Q
  . W $C(7),!!,"Rx# "_$$GET1^DIQ(52,PSORXIEN,.01)_" - "_$P(PSOCHECK,"^",3)
  ; Checking the Maximum Number of Refills Allowed

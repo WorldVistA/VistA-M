@@ -1,6 +1,6 @@
-MAGDCCS2 ;WOIFO/MLH - DICOM Correct - Clinical Specialties - subroutines ; 01 Apr 2013 10:49 AM
- ;;3.0;IMAGING;**10,11,30,54,123,138**;Mar 19, 2002;Build 5380;Sep 03, 2013
- ;; Per VHA Directive 2004-038, this routine should not be modified.
+MAGDCCS2 ;WOIFO/MLH - DICOM Correct - Clinical Specialties - subroutines ; Apr 27, 2022@12:03:33
+ ;;3.0;IMAGING;**10,11,30,54,123,138,278**;Mar 19, 2002;Build 138
+ ;; Per VA Directive 6402, this routine should not be modified.
  ;; +---------------------------------------------------------------+
  ;; | Property of the US Government.                                |
  ;; | No permission to copy or redistribute this software is given. |
@@ -24,14 +24,14 @@ EN ;
  S MAGBEG=1070101,MAGEND=$$DT^XLFDT
  W !,"*** Select a request/consult with whose ***"
  W !,"***  TIU note to associate this image   ***"
- S DIC="^GMR(123,",DIC(0)="AENZ"
+ S DIC="^GMR(123,",DIC(0)="AEMNZ"  ;P278 JSJ add 'M' to flags
  S DIC("A")="Enter patient or request/consultation: "
  S D="F",DZ="??"
  S DIC("W")="W ""  REQ/CON #"",Y"
  S DIC("W")=DIC("W")_",""  "",$$GET1^DIQ(123,Y,1)" ; TO SERVICE
  S DIC("W")=DIC("W")_",""  "",$$GET1^DIQ(123,Y,.02)" ; PATIENT NAME
  ;
- D IX^DIC
+ D ^DIC  ;P278 JSJ change from IX^DIC to ^DIC
  Q:$D(DUOUT)
  Q:'$D(Y(0))  ; 
  I "^DISCONTINUED^CANCELLED^"[("^"_$$GET1^DIQ(123,+Y,8)_"^") D  Q

@@ -1,5 +1,7 @@
 MMRSIPC ;MIA/LMT - Print MRSA IPEC Report ;Oct 18, 2018@15:12
- ;;1.0;MRSA PROGRAM TOOLS;**3,5,7**;Mar 22, 2009;Build 1
+ ;;1.0;MRSA PROGRAM TOOLS;**3,5,7,10**;Mar 22, 2009;Build 2
+ ;
+ ; Reference to ^DG(41.9 in ICR #5433
  ;
  ;This is the main routine to print the MRSA IPEC Report.
  ;This routine uses functions contained in MMRSIPC2, MMRSIPC3, and MMRSIPC4.
@@ -240,14 +242,18 @@ PATDAYS ;Gets 'PATIENT DAYS OF CARE'.
  S $P(^TMP($J,"MMRSIPC","DSUM"),U,1)=TTLRSLT
  Q
 GETPATDY(WARD,SDT,EDT) ;Helper function for PATDAYS() - Gets Patient Days of care for specific ward
- N CENSUS,SCUMPD,ECUMPD
+ N SCUMPD,ECUMPD
  I SDT>EDT Q 0
  I SDT<($$FY(EDT)_"1001") Q ($$GETPATDY(WARD,SDT,($$FY(EDT)_"0930"))+$$GETPATDY(WARD,($$FY(EDT)_"1001"),EDT))
- S CENSUS=$O(^DG(41.9,"B",WARD,0)) I 'CENSUS Q 0
+ ;MMRS*1.0*10: Comment out line below since the "B" index
+ ;             is DINUM'd and since some sites are missing
+ ;             random "B" index entries for an unknown reason.
+ ;S CENSUS=$O(^DG(41.9,"B",WARD,0)) I 'CENSUS Q 0
  S SDT=$$FMADD^XLFDT(SDT,-1,0,0,0)
- S SCUMPD=$P($G(^DG(41.9,CENSUS,"C",SDT,0)),U,3)
+ ;MMRS*1.0*10: Replace CENSUS with WARD for SCUMPD and ECUMPD.
+ S SCUMPD=$P($G(^DG(41.9,WARD,"C",SDT,0)),U,3)
  I EDT=$$DT^XLFDT S EDT=$$FMADD^XLFDT(EDT,-1,0,0,0)
- S ECUMPD=$P($G(^DG(41.9,CENSUS,"C",EDT,0)),U,3)
+ S ECUMPD=$P($G(^DG(41.9,WARD,"C",EDT,0)),U,3)
  I $E(SDT,4,7)="0930" S SCUMPD=0 ; IF LAST DAY OF FY
  Q ECUMPD-SCUMPD
 FY(DATE) ;Helper function for GETPATDY - Gets fiscal year for the specified date

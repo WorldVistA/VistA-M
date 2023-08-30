@@ -1,5 +1,5 @@
-LA7VORU ;DALOI/JMC - Builder of HL7 Lab Results OBR/OBX/NTE ;July 18, 2007
- ;;5.2;AUTOMATED LAB INSTRUMENTS;**27,46,61,64,71,68,74**;Sep 27, 1994;Build 229
+LA7VORU ;DALOI/JMC - Builder of HL7 Lab Results OBR/OBX/NTE ;Jun 14, 2022@18:38
+ ;;5.2;AUTOMATED LAB INSTRUMENTS;**27,46,61,64,71,68,74,101**;Sep 27, 1994;Build 6
  ;
 EN(LA) ; called from IN^LA7VMSG(...)
  ; variables
@@ -56,6 +56,7 @@ CH ; Build segments for "CH" subscript
 ORC ; Build ORC segment
  ;
  N LA76205,LA763,LA7696,LA7DATA,LA7PLOBR,LA7SM,LA7X,LA7Y,LADFINST,ORC
+ N LA7HIT,LA7696TX
  ;
  S LA763(0)=$G(^LR(LA("LRDFN"),LA("SUB"),LA("LRIDT"),0))
  ;
@@ -81,9 +82,17 @@ ORC ; Build ORC segment
  S ORC(3)=$$ORC3^LA7VORC(.LA7X,LA7FS,LA7ECH)
  ;
  ; Return shipping manifest if found
- S LA7SM="",LA7696=0
- I LA("SITE")'="",LA("RUID")'="" S LA7696=$O(^LRO(69.6,"RST",LA("SITE"),LA("RUID"),0))
- I LA7696 S LA7SM=$P($G(^LRO(69.6,LA7696,0)),U,14)
+ ;LA*5.2*101: Determine correct shipping manifest identifier for
+ ;             test if UID is on more than one shipping manifest.
+ S LA7SM="",(LA7HIT,LA7696)=0
+ I LA("SITE")'="",LA("RUID")'="",LA("NLT")'="" D
+ . F  S LA7696=$O(^LRO(69.6,"RST",LA("SITE"),LA("RUID"),LA7696)) Q:LA7696=""  Q:LA7HIT  D
+ . . S LA7696TX=0
+ . . F  S LA7696TX=$O(^LRO(69.6,LA7696,2,LA7696TX)) Q:'LA7696TX  Q:LA7HIT  D
+ . . . I $P($G(^LRO(69.6,LA7696,2,LA7696TX,0)),"^",2)=LA("NLT") D
+ . . . . S LA7HIT=1
+ . . . . S LA7SM=$P($G(^LRO(69.6,LA7696,0)),U,14)
+ ;end of LA*5.2*101
  I LA7SM'="" D
  . S ORC(4)=$$ORC4^LA7VORC(LA7SM,LA7FS,LA7ECH)
  . D SETID^LA7VHLU1(LA76249,LA7ID,LA7SM,0)

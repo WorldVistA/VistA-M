@@ -1,8 +1,10 @@
 PSOPKIV1 ;BHAM ISC/MHA - validate PKI cert. ; 05/09/2002  8:15 am
- ;;7.0;OUTPATIENT PHARMACY;**131,146,223,148,249,391,426,462,572,630**;DEC 1997;Build 26
+ ;;7.0;OUTPATIENT PHARMACY;**131,146,223,148,249,391,426,462,572,630,545**;DEC 1997;Build 270
  ;Ref. to ^ORDEA is supported by DBIA 5709
  ;Ref. to ^ORB supported by DBIA 1362
  ;Ref. to ^XUSSPKI supported by DBIA 3539
+ ;*545 - Replaced 'Certificate expired' with 'Rx processed: PIV Card Cert Expired - NO ACTION REQ'
+ ;*545 - Replaced 'Certificate revoked' with 'Rx NOT processed: PIV Card Certificate Revoked'
 CER ;
  ;N PKIRT
  N PKIRT,MSG ;572
@@ -48,7 +50,7 @@ DCP ;
  S $P(^PS(52.41,ORD,0),"^",3)="DC"
  S PKIE=$P(PKIE," - ")_" - "_PKI,$P(^PS(52.41,ORD,4),"^")=PKIE
  S PKIOR=$E(PKI,7,8)
- S PKIORM=$S(PKIOR=16:"16:Order has been modified. Resubmit or contact Pharmacy.",PKIOR=17:"17:DEA Certificate revoked. Resubmit or contact Pharmacy.",1:PKIE)
+ S PKIORM=$S(PKIOR=16:"16:Order has been modified. Resubmit or contact Pharmacy.",PKIOR=17:"17:PIV Certificate revoked. Resubmit or contact Pharmacy.",1:PKIE)
  D EN^PSOHLSN($P(^PS(52.41,ORD,0),"^"),"OC",PKIORM,"A")
  D ^PSOPKIV2
  Q
@@ -115,7 +117,6 @@ VERIFY(RET,PSIEN)       ;Verify PKI Data
  .S ^TMP("PSOPKIDATA",$J,"DIRECTIONS",6,J)=PSIG
  I +$P(PSO0,"^",9),+$P(PSO0,"^",25) S ^TMP("PSOPKIDATA",$J,"DRUG NAME",4)=$$GET1^DIQ(50,$P(PSO0,"^",9),.01)
  S DEA=$P($G(^TMP($J,"ORDEA",+PSO0,2)),"^")
- ;S ^TMP("PSOPKIDATA",$J,"DETOX NUMBER",7)=$$DETOX^XUSER($P(PSO0,"^",5))
  S ^TMP("PSOPKIDATA",$J,"PROVIDER NAME",8)=$$GET1^DIQ(200,$P(PSO0,"^",5),.01)
  I $D(^TMP($J,"ORDEA",+PSO0,3)) S ^TMP("PSOPKIDATA",$J,"PROVIDER ADDRESS",9)=$P(^(3),"^",2,6)
  E  D INSTAD
@@ -176,12 +177,11 @@ HSHCHK(ARET,PNP) ;Compares digitally signed archived data in file #101.52 agains
  S DRGNM=$$GET1^DIQ(50,$P(PND0,"^",9),.01)
  I DRGNM'=$P(TMP(1),"^",3) S ARET=-1,ARET("DRUG NAME")=$P(TMP(1),"^",3)_"^"_DRGNM
  I $P(PND0,"^",10)'=$P(TMP(1),"^",6) S ARET=-1,ARET("QTY PRESCRIBED")=$P(TMP(1),"^",6)_"^"_$P(PND0,"^",10)
- ;I $P(PND0,"^",11)'=$P(TMP(1),"^",7) S ARET=-1,ARET("# OF REFILLS")=$P(TMP(1),"^",7)_"^"_$P(PND0,"^",11)
  ;provider info
  S INST=$P($G(^PS(52.41,PNP,"INI")),"^")
- S DEA=$$DEA^XUSER(0,$P(PND0,"^",5))
+ ;*545
+ S DEA=$$RXDEA^PSOUTIL(,ORP)
  I DEA'=$P(TMP(2),"^") S ARET=-1,ARET("DEA #")=$P(TMP(2),"^")_"^"_DEA
- ;S DETOX=$$DETOX^XUSER($P(PND0,"^",5)) I DETOX'=$P(TMP(2),"^",2) S ARET=-1,ARET("DETOX #")=$P(TMP(2),"^",2)_"^"_DETOX
  S NAM=$$GET1^DIQ(200,$P(PND0,"^",5),.01) I NAM'=$P(TMP(2),"^",3) S ARET=-1,ARET("PROVIDER NAME")=$P(TMP(2),"^",3)_"^"_NAM
  ;patient inf
  S DFN=$P(PND0,"^",2) D DEM^VADPT,ADD^VADPT
@@ -228,10 +228,10 @@ ALERT ;
 10 ;;Crypto Error (contact IRM);;
 15 ;;Corrupted (Decode failure);;
 16 ;;Corrupted (Hash mismatch);;
-17 ;;Certificate revoked;;
+17 ;;Rx NOT processed: PIV Card Certificate Revoked;;
 18 ;;Verification failure;;
 19 ;;Before Cert effective date;;
-20 ;;Certificate expired;;
+20 ;;Rx processed: PIV Card Cert Expired - NO ACTION REQ;;
 21 ;;No Cert with a valid date found;;
 22 ;;Signature Check failed (Invalid Signature);;
 23 ;;CERT_IS_NOT_TIME_NESTED;;

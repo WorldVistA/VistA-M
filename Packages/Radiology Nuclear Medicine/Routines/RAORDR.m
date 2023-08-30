@@ -1,5 +1,15 @@
-RAORDR ;ABV/SCR/MKN - Refer Pending/Hold Requests ; Jul 12, 2022@09:32:46
- ;;5.0;Radiology/Nuclear Medicine;**148,161,170,179,190**;Mar 16, 1998;Build 1
+RAORDR ;ABV/SCR/MKN - Refer Pending/Hold Requests ; Nov 09, 2022@10:54:24
+ ;;5.0;Radiology/Nuclear Medicine;**148,161,170,179,190,196**;Mar 16, 1998;Build 1
+ ;
+ ; p196/KLM - Does the following:
+ ;          - Update order selection to use RAORDS
+ ;          - Add 'Order Referred' indicator to file 75.1
+ ;          - Add ENTRY/EXIT action to RA ORDERREF to set
+ ;            option aware variable
+ ;          - Change autohold check to use above indicator
+ ;          - Update consult comment to use controlled API
+ ;          - Remove unused code
+ ;
  ;
  ; Routine/File         IA          Type
  ; -------------------------------------
@@ -8,7 +18,7 @@ RAORDR ;ABV/SCR/MKN - Refer Pending/Hold Requests ; Jul 12, 2022@09:32:46
  ; ^SC(                10040        (S)
  ; ^VA(200             10060        (S)
  ; ^DPT(               10035        (S)
- ; CMT^ORQQCN2         NONE
+ ; CMT^GMRCGUIB        2980         (C)
  ; ^OR(100             5771,6475    (C)
  ; ^GMR(123            6116,2586    (C)
  ;
@@ -20,7 +30,7 @@ ENT ;Entry
  N RAERR,RAEXPL,RAF,RAHDR,RAI,RAILOC,RAJUST,RAJUST2,RAILOC1,RALOCNM,RAMAND
  N RAN,RANOW,RANOW2,RAO,RAOBEG,RAOEND,RAOIFN,RAOPHY,RAORD0,RAORDIEN,RAPOP
  N RAPR,RAPRTYDT,RAQUES,RAQUIT,RAREAS,RAREQSTA,RARES,RASELOC,RASTART,RASUB
- N RAT,RAUCID,X,Y,RAEXP
+ N RAT,RAUCID,X,Y,RAEXP,RANME
  ;
  S (RAARRAY,RACIENS,RAILOC)=""
 GETPAT ;
@@ -29,22 +39,15 @@ GETPAT ;
  S DIC="^DPT(",DIC(0)="AEMQ" D ^DIC K DIC
  I $D(DIRUT) S RAQUIT=1
  Q:$G(RAQUIT)!($G(Y)=-1)
- S RADFN=+Y
+ S RADFN=+Y,RANME=$S($D(^DPT(RADFN,0)):$P(^(0),"^"),1:"Unknown") ;p196 - RANME needed for call to ^RAORDS
  K DIR S DIR(0)="E" D ^DIR G:'+Y GETPAT
  S Y="P",RAQUIT=0
- W !
- S RACOUNT=0
- F RAREQSTA=3,5,8 S RAOIFN=0 F  S RAOIFN=$O(^RAO(75.1,"AS",RADFN,RAREQSTA,RAOIFN)) Q:'RAOIFN!($D(RAEOS))  D
- . I $D(^RAO(75.1,RAOIFN,0)) D
- . . S RAO(0)=^RAO(75.1,RAOIFN,0) I RAREQSTA=3&($P(RAO(0),U,7)) Q:$$AUTOHOLD($P(RAO(0),U,7))
- . . S RAOPHY=$P(RAO(0),U,14)
- . . S RALADT=$P(RAO(0),U,21)
- . . S RACOUNT=RACOUNT+1,RAARRAY(RACOUNT)=RAOIFN
- I '$D(RAARRAY(1)) W !,"No Imaging orders found for this patient",! G GETPAT
  S (RACOUNT,RAF,RARES)=0
  D GETORD
- G:'RARES!(RAQUIT) GETPAT
- S RAORDIEN=$$MAKECONS^RAORDR1($G(RAARRAY(Y)))
+ ;p196 - New order lookup returns RAORDS array
+ G:'$O(RAORDS(0))!(RAQUIT) GETPAT
+ S RAORDIEN=$$MAKECONS^RAORDR1($G(RAORDS(1)))
+ ;p196
  ;Add comments to Consult that was just created
  ;P170
  N I,RET
@@ -58,7 +61,8 @@ GETPAT ;
  ...Q
  ..S RADT=$$NOW^XLFDT() ;p179 - comment activity date is now
  ..L +^GMR(123,RA123IEN):5 I '$T D ERROR^RAORDR1("Consult record locked, cannot update comments.") Q  ;p161 -Lock consult
- ..D CMT^ORQQCN2(.RAERR,RA123IEN,.RACOM,"N","",RADT)
+ ..;p196 - update comment API to use #2980
+ ..D CMT^GMRCGUIB(RA123IEN,.RACOM,,RADT)
  ..L -^GMR(123,RA123IEN)
  .W !!,"Consult with UCID: "_$S(RAUCID]"":RAUCID,1:"(Not known)")," has been created",!
  .I 'RA123IEN W !!,"**NO Consult created**",!
@@ -69,66 +73,19 @@ KILL ;
  K DIC,DIR,DIRUT,QQ,RA123IEN,RA44NA,RAANS,RAANS2,RAARAY,RAARRAY,RACDW,RACDWN,RACIENS,RACOMCT,RACNT,RACOM
  K RACOUNT,RADD,RADFN,RADT,RAEND,RAERR,RAEXPL,RAF,RAHDR,RAI,RAILOC,RAJUST,RAJUST2,RAILOC1,RALOCNM,RAN,RANOW
  K RANOW2,RAO,RAOBEG,RAOEND,RAOIFN,RAOPHY,RAORD0,RAORDIEN,RAPOP,RAPR,RAPRTYDT,RAQUES,RAQUIT,RAREAS,RAUDIV
- K RAREQSTA,RARES,RASELOC,RASTART,RASUB,RAT,RAUCID,X,Y,RET,RAEXP,RALADT,RAOI,ORDIALOG,RAEXP,RAIENS,RASOC
+ K RAREQSTA,RARES,RASELOC,RASTART,RASUB,RAT,RAUCID,X,Y,RET,RAEXP,RALADT,RAOI,ORDIALOG,RAEXP,RAIENS,RASOC,RAOVSTS
  S (RACIENS,RAILOC)=""
  Q
  ;
-AUTOHOLD(ORIFN) ;
- ;Return:
- ;  0 if this consult was placed on Hold other than as a result of auto-submission following an imaging order
- ;  1 if this consult was placed on Hold as a result of auto-submission following an imaging order
- N OR123,ORACT,ORCCFND,X
- Q:'ORIFN
- S (ORACT,ORCCFND)=0 F  S ORACT=$O(^OR(100,ORIFN,8,ORACT)) Q:'ORACT  S X=$G(^OR(100,ORIFN,8,ORACT,1)) D:X]""
- .I X["Placed on hold due to transfer to Community Care with UCID" S X=$P(X,"UCID",2) D
- ..S X=$P(X,"_",2) I X?1.N,$D(^GMR(123,X)) S ORCCFND=1 Q
- Q ORCCFND
- ;
-HDR ; header
- W:$Y>0 @IOF
- W !?(80-$L(RAHDR)/2),RAHDR
- W !,"PATIENT NAME",?35,"SSN",?47,"PROCEDURE"
- W !,?10,"DATE DESIRED",?25,"DATE ORDERED",?55,$S(RAREQSTA=3:"HOLD DT",1:"ORDERING PROVIDER")
- W !?10,"IMAGING LOCATION",?50,"REQUEST STATUS"
- W !,QQ
- W !
- Q
-GETORD ;
- N DFN,RADFNARY,RALADT,RAMORE,RAQUIT,RAREA,VADM
- K VADM S DFN=RADFN D DEM^VADPT
- S RACOUNT=0
- S QQ="",$P(QQ,"=",80)="="
-SELORDER ;
- S RAHDR="SELECT FROM IMAGING ORDERS"
- D HDR Q:$D(RAEOS)
- S (RAMORE,RAQUIT)=0 F  Q:RAQUIT  S RACOUNT=$O(RAARRAY(RACOUNT)) Q:'RACOUNT!(RAQUIT)  S RAO=RAARRAY(RACOUNT) D
- .S:RACOUNT RAT=RACOUNT S:RAF=0 RAF=RAT
- .S RAORD0=^RAO(75.1,+RAO,0),RADT=$P(RAORD0,U,21),RALADT=$P(RAORD0,U,16),RAPR=$P(RAORD0,U,2),RASELOC=$P(RAORD0,U,20)
- .S Y=RADT
- .D DD^%DT
- .S RADD=Y
- .S Y=$P(RALADT,".")
- .D DD^%DT
- .S RAPRTYDT=Y
- .W !,RACOUNT_". ",$E(VADM(1),1,31)
- .W ?35,"*****",$E(VADM(2),$L(VADM(2))-3,$L(VADM(2)))
- .W ?47,$S($D(^RAMIS(71,RAPR,0)):$E($P(^(0),U),1,24),1:"Unknown")
- .W !,?10,RADD,?25,RAPRTYDT,?57,$E($P($G(^VA(200,RAOPHY,0)),U,1),1,23)
- .W !?10,$S('RASELOC:"Unknown",$D(^RA(79.1,RASELOC,0)):$S($D(^SC($P(^(0),U),0)):$P(^(0),U),1:"Unknown"),1:"Unknown")
- .W ?50,$$GET1^DIQ(75.1,+RAO_",",5,"E")
- .S:$Y>20 RAQUIT=1
- K DIR,DIRUT S RACIENS=""
- S DIR(0)="NO^"_RAF_":"_RAT
- S DIR("A")="Select NUMBER of ORDER to be REFERRED to COMMUNITY CARE"
- I RAT?1.N,RACOUNT]"",$O(RAARRAY(RACOUNT))]"" S DIR("A")=DIR("A")_" or press Enter for more orders" S RAMORE=1
- E  S $P(DIR(0),U)="N" ;Remove "O" flag
- D ^DIR
- K DIR
- I Y=""&(RAMORE) S RAF=0 G SELORDER
- Q:Y=""&('RAMORE)
- Q:$D(DIRUT)
- W !,"You selected number "_Y
- S RARES=Y
+GETORD ;p196 - update order selection
+ S RAOVSTS="3;5;8"
+ W ! D ^RAORDS
+ I $O(RAORDS(""),-1)>1 D
+ .W !,"Only one order can be referred at a time",!
+ .S DIR(0)="Y",DIR("A")="Do you want to select again",DIR("B")="YES" D ^DIR
+ .I Y=1 G GETORD
+ .E  K RAORDS,DIR,Y
+ .Q
  Q
 GETINFO(RAARAY) ;this function collects information that would be collected from a SEOC in Consult Toolbox
  N DIR,DIRUT,RACOUNT,RAGMRC1,RARPT,Y

@@ -1,5 +1,5 @@
 ECXUSUR ;ALB/TJL-Surgery Pre-Extract Unusual Volume Report ;6/1/17  15:30
- ;;3.0;DSS EXTRACTS;**49,71,84,93,105,148,149,161,166,184**;Dec 22, 1997;Build 124
+ ;;3.0;DSS EXTRACTS;**49,71,84,93,105,148,149,161,166,184,185**;Dec 22, 1997;Build 134
  ;
 EN ; entry point
  N X,Y,DATE,ECRUN,ECXDESC,ECXSAVE,ECXTL,ECTHLD,ECXPORT,CNT ;149
@@ -89,31 +89,32 @@ PROCESS ; entry point for queued report
  ;
 PRINT ; process temp file and print report
  N PG,QFLG,GTOT,LN,COUNT,VOL,SUB,REC,PIECE,COL ;149,161
- N PDIV,PDIVNM ;184
+ N PDIV,PDIVNM,PPDIV ;184,185
  U IO
  I $D(ZTQUEUED),$$S^%ZTLOAD S ZTSTOP=1 K ZTREQ Q
  S (PG,QFLG,GTOT,COUNT)=0,$P(LN,"-",132)="-" ;161
  I '$G(ECXPORT) D HEADER Q:QFLG  ;149
  S PDIV="" ;184
+ S PPDIV="" ;185
  F  S PDIV=$O(^TMP($J,PDIV)) Q:PDIV=""  D
- . S PDIVNM=$$GET1^DIQ(4,PDIV,.01)
- . I '$G(ECXPORT) W ?31," PRODUCTION DIVISION: ",PDIV,! ;184
+ . I '$G(ECXPORT) W:PPDIV'="" ! W !,?31," PRODUCTION DIVISION: ",$P(PDIV,"~"),! ;184,185
+ . S PPDIV=PDIV
  . S VOL=-999999 F  S VOL=$O(^TMP($J,PDIV,VOL)) Q:VOL=""!QFLG  D
- ..S SUB="" F  S SUB=$O(^TMP($J,PDIV,VOL,SUB)) Q:SUB=""!QFLG  S REC=^(SUB)  D
- ..I $G(ECXPORT) F PIECE=1:1:5,7,11,9,10,6,8,14,13 S ^TMP("ECXPORT",$J,CNT)=$G(^TMP("ECXPORT",$J,CNT))_$P(REC,U,PIECE)_$S(PIECE'=13:"^",1:"") ;S:PIECE=13 CNT=CNT+1 ;149,184 - Update CNT below
- ..I $G(ECXPORT) S ^TMP("ECXPORT",$J,CNT)=PDIV_U_PDIVNM_U_$G(^TMP("ECXPORT",$J,CNT)),CNT=CNT+1 ;184 - Added Production Division and name to export format
- ..I $G(ECXPORT) Q  ;149
- ..S COUNT=COUNT+1
- ..I $Y+3>IOSL D HEADER W !?31," PRODUCTION DIVISION: ",PDIV,!  Q:QFLG  ;184 - Added PDIV
- ..W !,$P(REC,U),?8,$P(REC,U,2),?15,$P(REC,U,3),?24,$P(REC,U,4) ;161, 184 - only display  the last 4 of SSN
- ..W ?31,$P(REC,U,5) ;161
- ..S COL=$S($P(REC,U,7):52,1:49) W ?COL,$$RJ^XLFSTR($P(REC,U,7),4) ;161
- ..S COL=$S($P(REC,U,11):63,1:60) W ?COL,$$RJ^XLFSTR($P(REC,U,11),4) ;161
- ..S COL=$S($P(REC,U,9):73,1:71) W ?COL,$$RJ^XLFSTR($P(REC,U,9),4) ;161
- ..S COL=$S($P(REC,U,10):84,1:81) W ?COL,$$RJ^XLFSTR($P(REC,U,10),4) ;161
- ..W ?91,$$RJ^XLFSTR($P(REC,U,6),4) ;161
- ..S COL=$S($P(REC,U,8):103,1:101) W ?COL,$$RJ^XLFSTR($P(REC,U,8),4),?113,$P(REC,U,14) ;161
- ..W ?117,$P(REC,U,13)
+ ..S SUB="" F  S SUB=$O(^TMP($J,PDIV,VOL,SUB)) Q:SUB=""!QFLG  S REC=^(SUB)  D  ;185 - Add a dot "." in the following code block
+ ...I $G(ECXPORT) F PIECE=1:1:5,7,11,9,10,6,8,14,13 S ^TMP("ECXPORT",$J,CNT)=$G(^TMP("ECXPORT",$J,CNT))_$P(REC,U,PIECE)_$S(PIECE'=13:"^",1:"") ;S:PIECE=13 CNT=CNT+1 ;149,184 - Update CNT below
+ ...I $G(ECXPORT) S ^TMP("ECXPORT",$J,CNT)=$P(PDIV,"~")_U_$P(PDIV,"~",2)_U_$G(^TMP("ECXPORT",$J,CNT)),CNT=CNT+1 ;184 - Added Production Division and name to export format,185 - Get the division and division name from 2nd subscript
+ ...I $G(ECXPORT) Q  ;149
+ ...S COUNT=COUNT+1
+ ...I $Y+3>IOSL D HEADER W !?31," PRODUCTION DIVISION: ",$P(PDIV,"~"),!  Q:QFLG  ;184 - Added PDIV,185
+ ...W !,$P(REC,U),?8,$P(REC,U,2),?15,$P(REC,U,3),?24,$P(REC,U,4) ;161, 184 - only display  the last 4 of SSN
+ ...W ?31,$P(REC,U,5) ;161
+ ...S COL=$S($P(REC,U,7):52,1:49) W ?COL,$$RJ^XLFSTR($P(REC,U,7),4) ;161
+ ...S COL=$S($P(REC,U,11):63,1:60) W ?COL,$$RJ^XLFSTR($P(REC,U,11),4) ;161
+ ...S COL=$S($P(REC,U,9):73,1:71) W ?COL,$$RJ^XLFSTR($P(REC,U,9),4) ;161
+ ...S COL=$S($P(REC,U,10):84,1:81) W ?COL,$$RJ^XLFSTR($P(REC,U,10),4) ;161
+ ...W ?91,$$RJ^XLFSTR($P(REC,U,6),4) ;161
+ ...S COL=$S($P(REC,U,8):103,1:101) W ?COL,$$RJ^XLFSTR($P(REC,U,8),4),?113,$P(REC,U,14) ;161
+ ...W ?117,$P(REC,U,13)
  I $G(ECXPORT) Q  ;149
  Q:QFLG
  I COUNT=0 W !!,?8,$S(ECXFLAG=1:"No surgery volumes to report for this extract",1:"No unusual volumes to report for this extract")
@@ -137,6 +138,6 @@ HEADER ;header and page control
  W !,"Name",?8,"SSN",?17,"Day",?24,"Number",?37,"Number" ;161
  W ?51,"Time",?63,"Time",?73,"Time",?84,"Time",?91,"Time",?104,"Time" ;161
  W ?111,"Abort",?121,"Procedure"
- W !,LN,!
+ W !,LN ;185 Removed blank line
  Q
  ;

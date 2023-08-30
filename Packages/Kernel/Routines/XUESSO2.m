@@ -1,5 +1,5 @@
 XUESSO2 ;ISD/HGW - Enhanced Single Sign-On Utilities ; Apr 19, 2022@14:57
- ;;8.0;KERNEL;**655,659,630,701,731,771**;Jul 10, 1995;Build 8
+ ;;8.0;KERNEL;**655,659,630,701,731,771**;Jul 10, 1995;Build 0
  ;Per VA Directive 6402, this routine should not be modified.
  ;
  ; This utility will identify a VistA user for auditing and HIPAA requirements.

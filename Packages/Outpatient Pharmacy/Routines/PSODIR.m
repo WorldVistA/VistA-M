@@ -1,8 +1,10 @@
-PSODIR ;BHAM ISC/SAB - asks data for rx order entry ;Aug 23, 2021@14:07:15
- ;;7.0;OUTPATIENT PHARMACY;**37,46,111,117,146,164,211,264,275,391,372,416,422,504,457,572,587,441**;DEC 1997;Build 208
+PSODIR ;BHAM ISC/SAB - asks data for rx order entry ;Oct 20, 2022@17:03
+ ;;7.0;OUTPATIENT PHARMACY;**37,46,111,117,146,164,211,264,275,391,372,416,422,504,457,572,587,441,682,545**;DEC 1997;Build 270
  ;External reference PSDRUG( supported by DBIA 221
  ;External reference PS(50.7 supported by DBIA 2223
  ;External reference to VA(200 is supported by DBIA 10060
+ ; Reference to ^XTV(8991.9) in ICR #7002
+ ; Reference to ^VA(200.5321) in ICR #7000
  ;----------------------------------------------------------------
  ;
 PROV(PSODIR) ;
@@ -12,10 +14,12 @@ PROVEN ; Entry point for failed lookup
  .N DEA S PSODIR("CS")=0 F DEA=1:1 Q:$E(PSODRUG("DEA"),DEA)=""  I $E(+PSODRUG("DEA"),DEA)>1,$E(+PSODRUG("DEA"),DEA)<6 S PSODIR("CS")=1
  I $G(PSODIR("PROVIDER"))]"" S PSODIR("OLD VAL")=PSODIR("PROVIDER")
  S DIC="^VA(200,",DIC(0)="QEAM",PSODIR("FIELD")=0
- S DIC("W")="W ""     "",$P(^(""PS""),""^"",9)"
+ S DIC("W")="W ""     "",$P($G(^(""PS"")),""^"",9)"
  S DIC("A")="PROVIDER: ",DIC("S")="I $D(^(""PS"")),$P(^(""PS""),""^""),$S('$P(^(""PS""),""^"",4):1,1:$P(^(""PS""),""^"",4)'<DT)"
  I $G(PSOTPBFG),$G(PSOFROM)="NEW" S DIC("S")=DIC("S")_",$P($G(^(""TPB"")),""^""),$P($G(^(""TPB"")),""^"",5)=0"
- S:$G(PSORX("PROVIDER NAME"))]"" DIC("B")=PSORX("PROVIDER NAME")
+ ;p682 change condition for setting DIC("B"); do not overwrite
+ ;S:$G(PSORX("PROVIDER NAME"))]"" DIC("B")=PSORX("PROVIDER NAME")
+ S DIC("B")=$S($G(DIC("B"))]"":DIC("B"),1:$G(PSORX("PROVIDER NAME")))
  D ^DIC K DIC
  I X[U,$L(X)>1 D:'$G(PSOEDIT) JUMP G PROVX
  I $D(DTOUT)!$D(DUOUT) S PSODIR("DFLG")=1 G PROVX
@@ -27,9 +31,17 @@ PROVEN ; Entry point for failed lookup
  . W $C(7),!!,"Provider is being edited by an unknown user or has been deleted"
  L -^VA(200,+Y) ;572
  ;PSO*7*211; ADD CHECK FOR DEA# AND VA#
- I $P($G(PSODIR("CS")),"^",1)!($D(CLOZPAT)) N NDEA,SDEA S SDEA=$$DRGSCH() S NDEA=$$SDEA^XUSER(0,+Y,SDEA) I $L($P(NDEA,"^"))<3 D  G PROVEN
- .I NDEA=2 W $C(7),!!,"Provider not authorized to write Federal Schedule "_SDEA_" prescriptions.",! Q
- .W $C(7),!!,"Provider must have a valid DEA# or VA# to write prescriptions for this drug.",!
+ ;*545; DEA/VA selection
+ I $$DETOX^PSSOPKI($G(PSODRUG("IEN"))) N DETX S DETX="" D  G:'$L(DETX) PROVEN
+ . S DETX=$$DETOX^XUSER(+Y) I '$L(DETX) W $C(7),!!,"Provider must have a DETOX# to order this drug.",! Q
+ . S PSORX("DETX")=DETX
+ I $P($G(PSODIR("CS")),"^",1)!($D(CLOZPAT)) N NDEA D  I $L($P($G(NDEA),"^"))<3 G PROVEN
+ . N SDEA S SDEA=$$DRGSCH()
+ . N PSOPROVD S PSOPROVD=+Y S NDEA=$$SLDEA(PSOPROVD,.PSORX) Q
+ . I NDEA=2 W $C(7),!!,"Provider not authorized to write Federal Schedule "_SDEA_" prescriptions." D  Q
+ . . W !,"Please contact the provider.",!
+ . W $C(7),!!,"Provider must have a valid DEA# or VA# to write prescriptions for this drug.",!
+ . Q
  ;PSO*7.0*391; Added check for DETOX#
  I $$DETOX^PSSOPKI($G(PSODRUG("IEN"))),$$DETOX^XUSER(+Y)="" W $C(7),!!,"Provider must have a DETOX# to order this drug.",! G PROVEN
  I $D(CLOZPAT),'$D(^XUSEC("YSCL AUTHORIZED",+Y)) D  G PROVEN
@@ -262,3 +274,7 @@ DELIND  ;*441-IND-CONFIRM INDICATION DELETION
  S:$G(DIRUT) Y=0
  S (PSODONE,PSODELINS)=Y
  Q
+ ;
+ ;*545; DEA selection
+SLDEA(PROVIEN,PSORX,DFLTDEA,PSODRIEN) ; DEA Selection
+ Q $$SLDEA^PSODIR5(PROVIEN,.PSORX,$G(DFLTDEA),$G(PSODRIEN))

@@ -1,5 +1,5 @@
-XPDI ;SFISC/RSD - Install Process ; Apr 04, 2022@08:45:37
- ;;8.0;KERNEL;**10,21,39,41,44,58,68,108,145,184,229,768**;Jul 10, 1995;Build 8
+XPDI ;SFISC/RSD - Install Process ; Mar 21, 2023@09:46:08
+ ;;8.0;KERNEL;**10,21,39,41,44,58,68,108,145,184,229,768,785**;Jul 10, 1995;Build 5
  ;Per VHA Directive 2004-038, this routine should not be modified.
 EN ;install
  N DIR,DIRUT,POP,XPD,XPDA,XPDD,XPDIJ,XPDDIQ,XPDIT,XPDIABT,XPDNM,XPDNOQUE,XPDPKG,XPDREQAB,XPDST,XPDSET,XPDSET1,XPDT,XPDQUIT,XPDQUES,Y,ZTSK,%
@@ -86,15 +86,15 @@ DEV S POP=0 S:'$D(^DD(3.5,0)) POP=1
  ;can't queue to a video Subtype device, ask device again
  I $G(IO("Q")),$E(IOST,1,2)="C-" W !!,"You can't queue to a Video Terminal device!",! G DEV ;p768
  I $G(XPDAUTO) U XPDDEV
- ;reset expiration date to T+7 on transport global
- S XPDD=$$FMADD^XLFDT(DT,7),^XTMP("XPDI",0)=XPDD_U_DT
+ ;reset expiration date to T+15 on transport global
+ S XPDD=$$FMADD^XLFDT(DT,15),^XTMP("XPDI",0)=XPDD_U_DT ;p785
  I $D(IO("Q")) D  G ASKABRT:$D(ZTSK)[0 D XPDIJ^XPDI1:$G(XPDIJ),QUIT^XPDI1(XPDST) Q
  . N DIR,NOW S NOW=$$HTFM^XLFDT($$HADD^XLFDT($H,,,2)) ;Must be in future
  . S DIR(0)="DA^"_NOW_":"_XPDD_":AEFRSX"
  . S DIR("A")="Request Start Time: "
  . S DIR("B")=$$FMTE^XLFDT(NOW)
  . S DIR("?",1)="Enter a Date including Time"
- . S DIR("?",2)="The time must be in the future and not to exceed 7 days in the future."
+ . S DIR("?",2)="The time must be in the future and not to exceed 15 days in the future."
  . S DIR("?")="Current date/time: "_DIR("B")
  . D ^DIR
  .Q:$D(DIRUT)

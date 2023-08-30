@@ -1,10 +1,10 @@
 VALM2 ;ALB/MJK - List Manager Utilities;08:52 PM  17 Jan 1993 ;02/01/2001  11:43
- ;;1.0;List Manager;**6**;Aug 13, 1993
+ ;;1.0;List Manager;**6,10**;Aug 13, 1993;Build 10
 SEL ; -- select w/XQORNOD(0) defined
  D EN(XQORNOD(0)) Q
 EN(VALMNOD,VALMDIR) ; -- generic selector
  ; input passed: VALMNOD := var in XQORNOD(0) format
- N Y,BG,LST,VALMOUT
+ N Y,BG,LST,VALMOUT,INDEX
  K VALMY
  I '$D(VALMDIR) N VALMDIR S VALMDIR=""
  S BG=+$O(@VALMAR@("IDX",VALMBG,0))
@@ -21,12 +21,15 @@ EN(VALMNOD,VALMDIR) ; -- generic selector
  . S DIR("A")="Select "_VALM("ENTITY")_$S(VALMDIR["S":"",1:"(s)")
  . D ^DIR I $D(DIRUT) D OUT S VALMOUT=1
  ; -- check was valid entries
- F I=1:1 S X=$P(Y,",",I) Q:'X  D
- . I '$O(@VALMAR@("IDX",X,0))!(X<BG)!(X>LST) D
- . . W !,$C(7),">>> Selection '",X,"' is not a valid choice."
- . . S VALMOUT=1
- I $G(VALMOUT) D WAIT^VALM1 Q
- F I=1:1 S X=$P(Y,",",I) Q:'X  S VALMY(X)=""
+ I $G(Y(0))="" S Y(0)=Y
+ S INDEX=""
+ F  S INDEX=$O(Y(INDEX))  Q:INDEX=""  D
+ . F I=1:1 S X=$P(Y(INDEX),",",I) Q:'X  D
+ . . I '$O(@VALMAR@("IDX",X,0))!(X<BG)!(X>LST) D
+ . . . W !,$C(7),">>> Selection '",X,"' is not a valid choice."
+ . . . S VALMOUT=1
+ . I $G(VALMOUT) D WAIT^VALM1 Q
+ . F I=1:1 S X=$P(Y(INDEX),",",I) Q:'X  S VALMY(X)=""
  Q
 PARSE(VALMNOD,BEG,END) ; -- split out pre-answers from user
  N Y,J,L,X

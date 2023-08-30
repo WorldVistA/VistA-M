@@ -1,5 +1,5 @@
 IBOHPT2 ;ALB/EMG - ON HOLD CHARGE INFO/PT CONT. ;JULY 22,1997
- ;;2.0;INTEGRATED BILLING;**70,95,347,452**; 21-MAR-94;Build 26
+ ;;2.0;INTEGRATED BILLING;**70,95,347,452,747**; 21-MAR-94;Build 2
  ;;Per VHA Directive 2004-038, this routine should not be modified.
  ;
  ; call to $$CLAIM^BPSBUTL supported by DBIA# 4719
@@ -87,7 +87,7 @@ HEADER ; writes the report header
  .F  Q:$Y>(IOSL-3)  W !
  .N T R "    Press RETURN to continue",T:DTIME I '$T!(T["^") S IBQUIT=1 Q
  I IBPAGE>1 W !,@IOF
- W "List of all HELD bills for ",$P(IBNAME,"^"),"  SSN: ",$P(IBNAME,"^",2),?110,IBNOW,"  PAGE ",IBPAGE,!,"PATIENT CHARGES",?87,"CORRESPONDING THIRD PARTY BILLS",!,IBLINE
+ W "List of all HELD bills for ",$P(IBNAME,"^"),?110,IBNOW,"  PAGE ",IBPAGE,!,"PATIENT CHARGES",?87,"CORRESPONDING THIRD PARTY BILLS",!,IBLINE  ; IB*2.0*747
  W !,?38,"From/",?48,"Date",?70,"AR",?79,"IB",?85,"||",?110,"AR"
  W !,"Action ID",?15,"Type",?28,"Bill#",?38,"Fill Dt",?48,"to AR",?61,"Charge",?70,"Status",?79,"Status",?85,"||",?88,"Bill#",?97,"Classf($Typ)",?110,"ST",?116,"Charge",?126,"% Paid"
  W !,IBLINE,!

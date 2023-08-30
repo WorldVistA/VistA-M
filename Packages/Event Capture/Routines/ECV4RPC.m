@@ -1,5 +1,9 @@
-ECV4RPC ;ALB/ACS;Event Capture Spreadsheet Data Validation ;3/1/18  10:36
- ;;2.0;EVENT CAPTURE;**25,33,49,131,134,139**;8 May 96;Build 7
+ECV4RPC ;ALB/ACS - Event Capture Spreadsheet Data Validation ;12/2/22  14:26
+ ;;2.0;EVENT CAPTURE;**25,33,49,131,134,139,159**;8 May 96;Build 61
+ ;
+ ; Reference to ^VA(200, in ICR #10060
+ ; Reference to ^%DT in ICR #10003
+ ; Reference to CHK^DIE in ICR #2053
  ;
  ;----------------------------------------------------------------------
  ;  Validates the following Event Capture Spreadsheet Upload fields:
@@ -180,6 +184,7 @@ ECV4RPC ;ALB/ACS;Event Capture Spreadsheet Data Validation ;3/1/18  10:36
  ;
  ;--Check to see if the DSS Unit is 'send to PCE'--
  S ECDXIEN="",ECCLNIEN=""
+ S (ECSECDX1,ECSECDX2,ECSECDX3,ECSECDX4)=""  ;159
  I ECPSTAT'="",ECDSSIEN'="" D
  . N ECDSSDAT,ECDSSPCE
  . S ECDSSDAT=$G(^ECD(ECDSSIEN,0))

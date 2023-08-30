@@ -1,95 +1,68 @@
-TIUALRT ; SLC/JER,AJB - Notify Author and Attending. ;06/29/11  14:00
- ;;1.0;TEXT INTEGRATION UTILITIES;**21,84,79,88,58,61,151,158,175,221,227,259**;Jun 20, 1997;Build 4
-SEND(DA,OVERDUE) ; Generate "available for signature" alert
- ;ICR 10035  ^DPT(  .01    NAME   0;1  Direct Global Read
- N TIU0,TIU12,TIU13,TIU14,TIU15,TIUDATE,TIUESNR,TIUPNM,TIUECSNR,TIUSIG,TIUDPRM
- N TIUCOSG,TIUEDT,TIUSSN,TIU,TIUTYP,XQA,XQAKILL,XQAMSG,XQAROU,XQAID
- N XQAFLG,STATUS,SIGACT,ECSNRFLG
- N XQADATA ;259
- I '$D(TIUPRM0)!'$D(TIUPRM1) D SETPARM^TIULE
- I '$D(TIUTMP("NODEL")) D ALERTDEL(DA)
- S TIU0=$G(^TIU(8925,+DA,0)),TIU12=$G(^(12)),TIU13=$G(^(13))
- S TIU14=$G(^TIU(8925,+DA,14)),TIU15=$G(^(15))
- D DOCPRM^TIULC1(+TIU0,.TIUDPRM,DA)
- ; Quit if notifications not enabled
- I '$D(TIUDPRM(0)) Q
- ; If document is an addendum, and the original is incomplete, quit
- ; per NOIS DUR-0101-32087
- ; I +$$ISADDNDM^TIULC1(DA),($P($G(^TIU(8925,+$P(TIU0,U,6),0)),U,5)<7) Q
- I '+$P(TIUPRM1,U,7)!(+$P(TIU12,U)<+$P(TIUPRM1,U,7)) Q
- ;VMP/ELR  PATCH 221  DO NOT SEND ALERTS FOR RETRACTED DOCUMENTS
- I +$P(TIU0,U,5)=15 Q
- ; If third party alert from TIUALFUN **158**
- I $D(TIUTMP("THIRD PARTY ALERTS")) G THIRD
- ; If document is completed, jump to additional signers
- I (+$P(TIU0,U,5)'<7) G ADDSNR
- I +$P(TIU0,U,5)=3,+$P($G(TIUDPRM(0)),U,2),'+$P(TIU13,U,4) Q  ; not released **175**
- ; If Verification required, and not verified, don't send
- I +$P(TIU0,U,5)=4,+$$REQVER^TIULC(DA,+$P($G(TIUDPRM(0)),U,3)),'+$P(TIU13,U,5) Q  ; **175**
- ; Set up for call to XQALERT
- S TIUEDT=$$DATE^TIULS($P(TIU0,U,7))
- S TIUESNR=$P(TIU12,U,4)
- S TIUSIG=$P(TIU15,U)
- S TIUECSNR=$P(TIU12,U,8),TIUCOSG=$P(TIU15,U,7)
- ; If author has been identified, but not Expected Signer, make
- ; author the expected signer
- I +TIUESNR'>0,(+$P(TIU12,U,2)>0) D
- . N DIE,DR
- . S TIUESNR=$P(TIU12,U,2)
- . S DIE=8925,DR="1204////^S X=TIUESNR" D ^DIE
- ; If attending has been identified, but not Expected Cosigner, make
- ; attending the expected cosigner
- I +TIUECSNR'>0,(+$P(TIU12,U,9)>0) D
- . N DIE,DR
- . S TIUECSNR=$P(TIU12,U,9)
- . S DIE=8925,DR="1208////^S X=TIUECSNR" D ^DIE
- ; If first signature required and the expected signer is authorized
- ; to sign this record, and the record is not yet signed
- ; ** Set AUTHOR as recipient
- I '+$G(TIUSIG),(+TIUESNR>0),(+$P(TIUDPRM(0),U,4)>0) S XQA(TIUESNR)=""
- ; If the record requires cosignature, and is not yet cosigned
- ; ** Set Expected Cosigner as recipient
- I TIUECSNR]"",(+$P(TIU0,U,5)<7),(+$G(TIUCOSG)'>0) D
- . N TIUDA S TIUDA=DA
- . ; For documents other than Discharge Summaries, defer alerting
- . ; Expected Cosigner 'til AUTHOR has signed
- . ; If current document is an addendum apply test to its parent
- . I +$$ISADDNDM^TIULC1(DA) S TIUDA=$P(^TIU(8925,DA,0),U,6)
- . ; If cosigner alerts are to be deferred until signature, quit
- . I '+$P(TIUDPRM(0),U,20),'+$G(TIUSIG),+$P(TIUDPRM(0),U,4) Q  ; **84,112/151**
- . S XQA(TIUECSNR)="",ECSNRFLG=1 ; **151**
-ADDSNR ; Send addendum alerts, check for additional signers
- ;VMP/ELR PATCH 221  DO NOT SEND AMENDMENT ALERT IF CAUSED BY A DELINQUENT ADDITIONAL SIGNER
- I +$$ISADDNDM^TIULC1(DA),$G(TIUADDL)'=1 D SENDADD(DA)
- ; If additional signers have been designated, alert them too
- I +$O(^TIU(8925.7,"B",DA,0)),(+$P(TIU0,U,5)>5) D
- . N TIUXTRA,TIUI D XTRASGNR^TIULG(.TIUXTRA,DA) Q:+$D(TIUXTRA)'>9
- . S TIUI=0 F  S TIUI=$O(TIUXTRA(TIUI)) Q:+TIUI'>0  S XQA(TIUI)=""
- Q:$D(XQA)'>9
-THIRD ; **158**
- I $D(TIUTMP("THIRD PARTY ALERTS")) D
- . N TIUX
- . S TIUX="" F  S TIUX=$O(TIUXQA(TIUX)) Q:TIUX=""  S XQA(TIUX)=""
- ; Get demographics for alert message
- S TIUPNM=$E($P($G(^DPT(+$P(TIU0,U,2),0)),U),1,9)
- S TIUTYP=$$PNAME^TIULC1(+$G(TIU0))
- D PATVADPT^TIULV(.TIU,+$P(TIU0,U,2))
- S TIUSSN=$E(TIUPNM,1)_$P($G(TIU("SSN")),"-",3)
- S XQAID="TIU"_+DA,STATUS=$$UP^XLFSTR($$GET1^DIQ(8925,DA,.05)) ; **175** $$STATUS^TIULC(DA))
- S SIGACT=$S(STATUS="UNSIGNED":"SIGNATURE",STATUS="UNCOSIGNED":"COSIGNATURE",1:"ADD'L SIGNATURE")
- I $G(ECSNRFLG),$P(TIU0,U,5)=5 S STATUS="UNSIG/UNCOS'D" ; **151**
- ;I STATUS="UNCOSIGNED" S STATUS="UNCOS'D"
- ;I $G(OVERDUE) S TIUTYP=$E(TIUTYP,1,42-$L(STATUS))
- S XQAMSG=TIUPNM_" ("_TIUSSN_"): "_STATUS_" "_$S($P(TIU0,U,9)="P":"STAT ",1:"")_TIUTYP
- ;I +$G(OVERDUE) S XQAMSG=XQAMSG_" OVERDUE for "_SIGACT_"." G ENDMSG
- I +$G(OVERDUE) D  G ENDMSG ; TIU,259
-  . S TIUDATE=$$DATE^TIULS(+TIU13)
-  . S XQAMSG=XQAMSG_" Dated "_TIUDATE_" OVERDUE for "_SIGACT_"."
-  . ;S XQAMSG=XQAMSG_": "_TIUDATE_" OVERDUE for "_SIGACT_"."
- S XQAMSG=XQAMSG_" available for "_SIGACT_"."
-ENDMSG ;
- S XQAROU="ACT^TIUALRT",XQADATA=+DA_U
- D SETUP^XQALERT
+TIUALRT ; SLC/JER,AJB - SEND ALERTS ;04/06/23  06:16
+ ;;1.0;TEXT INTEGRATION UTILITIES;**21,84,79,88,58,61,151,158,175,221,227,259,355,358**;Jun 20, 1997;Build 16
+ ;
+ ; Reference to ^DPT( supported by IA #10035
+ ;
+ Q
+SEND(DA,OVERDUE,TIUXQA) ;
+ ; DA         document IEN
+ ; [OVERDUE]  send alert as overdue
+ ; [TIUXQA]   third party alerts, passed by reference, TIUXQA(<IEN>)=""  recipients
+ ;            TIUXQA=0 delete current alerts, TIUXQA=1 keep current alerts
+ N ADDENDUM,FDA,NODE,TIUAAALRT,TIUDPRM,TIUPRM0,TIUPRM1,XQA,XQAARCH,XQADATA,XQADFN,XQAID,XQAMSG,XQAROU
+ S NODE(0)=$G(^TIU(8925,+DA,0)) Q:'NODE(0)  S NODE(12)=$G(^(12)),NODE(13)=$G(^(13))
+ S NODE(14)=$G(^TIU(8925,+DA,14)),NODE(15)=$G(^(15)),OVERDUE=+$G(OVERDUE,0)
+ S ADDENDUM=$S($P($G(^TIU(8925.1,+NODE(0),0)),U)["ADDENDUM"&$P(NODE(0),U,6):1,1:0) ;    is document an addendum?
+ I '$G(TIUXQA) D ALERTDEL(DA) ;                                                         delete alerts for a document
+ D SETPARM^TIULE S (TIUDPRM(0),TIUDPRM(5))="" D DOCPRM^TIULC1(+NODE(0),.TIUDPRM,DA)  ;  get basic & document parameters
+ S TIUAAALRT=$G(TIUADDL,0) ;                                                            from nightly task, if additional signer overdue, TIUADDL=1
+ Q:'$D(TIUDPRM(0))  ;                                                                   quit if no document parameters (? - original code)
+ Q:'+$P(TIUPRM1,U,7)  ;                                                                 quit if notification enable date not set
+ Q:+$P(TIUPRM1,U,7)>+$P(NODE(12),U)  ;                                                  quit if entry date/time earlier than notification date
+ Q:$P(NODE(0),U,5)=15  ;                                                                quit, document status is retracted
+ N TIU S TIU("Status")=$P(NODE(0),U,5),TIU("Author/Dictator")=$P(NODE(12),U,2) ;        set field data
+ S TIU("Expected Signer")=$P(NODE(12),U,4),TIU("Signature Date/Time")=$P(NODE(15),U)
+ S TIU("Expected Co-signer")=$P(NODE(12),U,8),TIU("Attending Physician")=$P(NODE(12),U,9)
+ S TIU("Co-signature Date/Time")=$P(NODE(15),U,7)
+ I +$G(TIUXQA)!(TIU("Status")>6) G TPA ;                                                send only third party or additional signer alerts
+ I +$P(TIUDPRM(0),U,2),TIU("Status")=3,'+$P(NODE(13),U,4) Q  ;                          requires release, unreleased, no release date/time
+ I +$P(TIUDPRM(0),U,3),TIU("Status")=4,'+$P(NODE(13),U,5) Q  ;                          requires verification, unverified, no verification date/time
+ I 'TIU("Expected Signer"),TIU("Author/Dictator") D  ;                                  no expected signer, set expected signer to author/dictator
+ . S TIU("Expected Signer")=TIU("Author/Dictator")
+ . S FDA(8925,DA_",",1204)=TIU("Expected Signer") D FILE^DIE(,"FDA")
+ I 'TIU("Expected Co-signer"),TIU("Attending Physician") D  ;                           no co-signer, set expected co-signer to attending physician
+ . S TIU("Expected Co-signer")=TIU("Attending Physician")
+ . S FDA(8925,DA_",",1208)=$P(NODE(12),U,9) D FILE^DIE(,"FDA")
+ ; signer as recipient
+ I $P(TIUDPRM(0),U,4),'TIU("Signature Date/Time"),TIU("Expected Signer") D  ;           require author to sign, no signature
+ . Q:TIU("Status")>5  S XQA(TIU("Expected Signer"))="" ;                                verify status, add as recipient
+ ; co-signer as recipient
+ I TIU("Expected Co-signer"),'TIU("Co-signature Date/Time"),TIU("Status")<7 D
+ . I '$P(TIUDPRM(0),U,20),$P(TIUDPRM(0),U,4),'TIU("Signature Date/Time") Q  ;           send co-signer alert, require author to sign, unsigned
+ . S XQA(TIU("Expected Co-signer"))=""
+ I ADDENDUM,'TIUAAALRT D SENDADD(DA) ;                                                  if from nightly task, do not send addendum added alert
+TPA S TIUXQA=0 F  S TIUXQA=$O(TIUXQA(TIUXQA)) Q:'TIUXQA  S XQA(TIUXQA)="" ;                set third party alert recipients
+ Q:'$D(XQA)&'$O(^TIU(8925.7,"B",DA,0))  ;                                               quit, no recipients or additional signers
+ N D0,PT,XQALERR D PATVADPT^TIULV(.PT,$P(NODE(0),U,2)) ;                                get patient demographics
+ ; if recipients, setup alert data and send alert
+ I $D(XQA) D XQADATA(DA,.PT),SETUP^XQALERT Q:+$G(TIUXQA)  K XQA ;                       send , if third party alert quit
+ I $P(NODE(0),U,5)>5,$O(^TIU(8925.7,"B",DA,0)) D  ;                                     for a signed document, check for additional signers
+ . N I S I=0 F  S I=$O(^TIU(8925.7,"AC",+NODE(12),DA,I)) Q:'I  D  ;                     traverse "AC" for outstanding additional signers
+ . . I '$D(^TIU(8925.7,I,0)) K ^TIU(8925.7,"AC",+NODE(12),DA,I) Q  ;                    remove "AC" if no entry
+ . . I +$P($G(^TIU(8925.7,I,0)),U,4) K ^TIU(8925.7,"AC",+NODE(12),DA,I) Q  ;            remove "AC" if signed
+ . . N USR S USR=$P($G(^TIU(8925.7,I,0)),U,3) S:+USR XQA(USR)="" ;                      set additional signer
+ Q:'$D(XQA)  ;                                                                          quit, no outstanding additional signers
+ D XQADATA(DA,.PT,1),SETUP^XQALERT ;                                                    send additional signer alert(s)
+ Q
+XQADATA(DA,PT,AS) ; setup message text
+ ; DA  document IEN      PT  patient demographics [passed by reference]
+ ; AS  additional signer [default 0]
+ S XQAARCH=24000,XQADATA=+DA_U,XQADFN=$P(NODE(0),U,2),XQAID="TIU"_DA,XQAROU="ACT^TIUALRT"
+ S XQAMSG=PT("PNM")_" ("_$E(PT("PNM"),1)_$P(PT("SSN"),"-",3)_"): "
+ S XQAMSG=XQAMSG_$S(TIU("Status")=5&TIU("Expected Co-signer")&$P(TIUDPRM(0),U,20):"UNSIGNED/UNCOSIGNED",1:$$UP^XLFSTR($$GET1^DIQ(8925,DA,.05)))
+ S XQAMSG=XQAMSG_$S($P(NODE(0),U,9)="P":" STAT ",1:" ")_$$PNAME^TIULC1(+NODE(0))
+ S XQAMSG=XQAMSG_$S(OVERDUE:" Dated "_$$DATE^TIULS(+NODE(13))_" OVERDUE for ",1:" available for ")
+ S XQAMSG=XQAMSG_$S(TIU("Status")'>5:"SIGNATURE",TIU("Status")=6&('$G(AS)):"COSIGNATURE",1:"ADDITIONAL SIGNATURE")
  Q
 ACT ; Act on alerts
  N TIUQUIK,TIUDA,TIUPRM0,TIUPRM1,TIUPRM3,RSTOK S TIUQUIK=1 K XQAKILL

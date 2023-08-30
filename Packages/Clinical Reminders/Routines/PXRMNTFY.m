@@ -1,20 +1,20 @@
-PXRMNTFY ;SLC/PKR - Routines for notifications. ;04/13/2021
- ;;2.0;CLINICAL REMINDERS;**24,45,71**;Feb 04, 2005;Build 43
+PXRMNTFY ;SLC/PKR - Routines for notifications. ;Jan 13, 2023@19:04
+ ;;2.0;CLINICAL REMINDERS;**24,45,71,84**;Feb 04, 2005;Build 2
  ;
- ;SACC EXEMPTIONS SECTION
- ;2.3.1.10.1 and 2.3.1.10.2
+ ;SAC EXEMPTION 20030908-01 : Use proper variable scoping instead of
+ ;                            namespace variable scoping
  ;
- ;DBIA   USED
- ;1362   EN^ORB3
- ;10081  PATIENT^XQALERT,DELETE^XQALERT
- ;6200   GETRECIPS^WVRPCPT1
- ;6341   $$GETNOTID^ORBSMART
- ;5747   $$CODECS^ICDEX
+ ;Reference to EN^ORB3 in ICR #1362
+ ;Reference to GETRECIPS^WVRPCPT1 in ICR #6200
+ ;Reference to $$SAVESRND^WVRPCPT1 in ICR #6336
+ ;Reference to $$GETNOTID^ORBSMART in ICR #6341
+ ;Reference to $$CODEC^ICDEX and $$CODECS^ICDEX in ICR #5747
+ ;Reference to ^AUPNPROB( in ICR #3837
+ ;Reference to ^AUPNVSIT( in ICR #2028
  ;
  ;========================
 DELOPEN(DFN,ORN) ;Delete open OE/RR Notifications.
  N ALIST,IND,ORID,XQAID
- ;DBIA #10081
  D PATIENT^XQALERT("ALIST",DFN)
  F IND=1:1:ALIST D
  . S XQAID=$P(ALIST(IND),U,2)
@@ -43,12 +43,10 @@ SUICIDE(EVENT,DFN,VISIT) ;Send an alert if the patient attempted or
  . I HFAIEN=HFSAIEN S MSG="Suicide attempted"
  . I HFAIEN=HFSCIEN S MSG="Suicide completed"
  I MSG="" Q
- ;DBIA #2028
  S DATE=$P(^AUPNVSIT(VISIT,0),U,1)
  ;If DATE is more than 30 days in the past do not send the alert.
  I $$FMDIFF^XLFDT(DT,DATE)>30 Q
  S MSG=MSG_" on "_$$FMTE^XLFDT(DATE,"5Z")
- ;DBIA #1362
  D EN^ORB3(77,DFN,"","",MSG,"")
  Q
  ;
@@ -163,6 +161,7 @@ WHAPPL(DFN,PXRMSDT) ;Determine if code is applicable for the given date
  ;           0 => not applicable
  ;           1 => applicable
  N NAME,RIEN,NODE,RNAME,DEFARR,FIEV,STATUS
+ K ^TMP("PXRHM",$J)
  S NAME="VA-WH POTENTIALLY UNSAFE MEDICATIONS REPORT - COHORT"
  S RIEN=$O(^PXD(811.9,"B",NAME,"")) I RIEN'>0 Q -1
  S NODE=$G(^PXD(811.9,RIEN,0))
@@ -170,11 +169,13 @@ WHAPPL(DFN,PXRMSDT) ;Determine if code is applicable for the given date
  D DEF^PXRMLDR(RIEN,.DEFARR)
  D EVAL^PXRM(DFN,.DEFARR,1,1,.FIEV,.PXRMSDT)
  S STATUS=$P($G(^TMP("PXRHM",$J,RIEN,RNAME)),U)
+ K ^TMP("PXRHM",$J)
  I (STATUS="CNBD")!(STATUS="ERROR") Q -1
  I $$STATMTCH^PXRMORCH(STATUS,"N") Q 0
  Q 1
 WHEVAL(CACHE,NAME,PXRMSDT) ;Evaluate pregancy or lactation reminder
  N RIEN,STATUS,SUB,FIND,DOC,DATE,EDD
+ K ^TMP("PXRHM",$J)
  S RIEN=$O(^PXD(811.9,"B",NAME,"")) Q:RIEN<0
  S NODE=$G(^PXD(811.9,RIEN,0)) Q:NODE=""
  S RNAME=$S($P(NODE,U,3)'="":$P(NODE,U,3),1:$P(NODE,U)) Q:RNAME=""

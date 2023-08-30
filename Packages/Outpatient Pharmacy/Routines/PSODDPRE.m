@@ -1,5 +1,5 @@
 PSODDPRE ; BIR/SAB - Enhanced OP order checks ;09/20/06 3:38pm
- ;;7.0;OUTPATIENT PHARMACY;**251,375,387,379,390,372,416,411,518,568**;DEC 1997;Build 5
+ ;;7.0;OUTPATIENT PHARMACY;**251,375,387,379,390,372,416,411,518,568,716**;DEC 1997;Build 1
  ;External reference to PSOL^PSSLOCK supported by DBIA 2789
  ;External reference to PSOUL^PSSLOCK supported by DBIA 2789
  ;External reference to ^PSSDSAPM supported by DBIA 5570
@@ -216,7 +216,7 @@ DATACK ;check FDB returned data to determine whether to continue processing.
  ;
 NVATST(PSONVTOI,PSONVTAP) ; Look for any active Non-VA Dispense Drugs not marked as a supply item
  N PSONVT1,PSONVTFL,PSONVTIN
- S PSONVTFL=1
+ S PSONVTFL=0 ;initialize to 0 p716
  F PSONVT1=0:0 S PSONVT1=$O(^PSDRUG("ASP",PSONVTOI,PSONVT1)) Q:'PSONVT1!('PSONVTFL)  D
  .I $P($G(^PSDRUG(PSONVT1,2)),"^",3)'[PSONVTAP Q
  .S PSONVTIN=$P($G(^PSDRUG(PSONVT1,"I")),"^") I PSONVTIN,PSONVTIN<DT Q

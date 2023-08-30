@@ -1,5 +1,5 @@
 VPSRPC16  ;BPOIFO/EL,WOIFO/BT - Patient Demographic (continue);07/31/14 13:07
- ;;1.0;VA POINT OF SERVICE (KIOSKS);**4,14**;Jul 31, 2014;Build 26
+ ;;1.0;VA POINT OF SERVICE (KIOSKS);**4,14,20**;Jul 31, 2014;Build 29
  ;;Per VHA Directive 2004-038, this routine should not be modified.
  ;
  ; External Reference DBIA#
@@ -53,7 +53,9 @@ DEM(VPSARR,DFN) ; Store Patient Demographic Data
  ;
  ; -- Store Patient ICN if exist
  N VPSICN S VPSICN=$$GETICN^MPIF001(DFN)
- N ICN S ICN=$P(VPSICN,"V")
+ N ICN S ICN=VPSICN
+ ;Added above line commented out below line after VPS*1.0*20
+ ;N ICN S ICN=$P(VPSICN,"V")
  I $G(ICN)'="" D SET(.VPSARR,2,DFN,"991.01",ICN)
  ;
  ; -- Retrieve patient demographics data

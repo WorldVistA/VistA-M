@@ -1,5 +1,5 @@
 RCCPCPS ;WASH-ISC@ALTOONA,PA/NYB - Build Patient Statement File ;12/19/96  4:14 PM
-V ;;4.5;Accounts Receivable;**34,70,80,48,104,116,149,170,181,190,223,237,219,265,301,348,397**;Mar 20,1995;Build 7
+V ;;4.5;Accounts Receivable;**34,70,80,48,104,116,149,170,181,190,223,237,219,265,301,348,397,401**;Mar 20,1995;Build 28
  ;;Per VA Directive 6402, this routine should not be modified.
  ;
  ;PRCA*4.5*348 Set 'BEG' lookup to handle last statement event
@@ -130,25 +130,50 @@ EN N CCPC,CNT,DAT,DEB,DIK,END,INADFL,LDT1,LDT3,PCC,PRN,RCDATE,RCT,SVADM,SVAMT,SV
  .   ;
  .   ;  set 0th node
  .   I RCPSDA S ^RCPS(349.2,RCDEBTDA,2,0)="^349.21DA^"_RCPSDA_"^"_RCPSDA
- .   ;  
- .   I RCPSDA'<STATLIM S ^XTMP("RCCPC",0)=DT,^XTMP("RCCPC",RCDEBTDA)="" Q
+ .   ;
+ .   I RCPSDA'<STATLIM D  Q  ;PRCA*4.5*401 Flag Oversized statements for later printing 
+ .   . D FILEOSFG(RCDEBTDA,"S")
+ .   . S DIK="^RCPS(349.2,",DA=RCDEBTDA D ^DIK ;Remove statement from file 349.2 if oveersize
  .   D NO
  ;
  S DIK="^RCPS(349.2," D IXALL^DIK
  S DEB=0 S DEB=$O(^RCPS(349.2,DEB)) Q:DEB=""  S $P(^(DEB,0),"^",18)=1
  K ^XTMP("PRCAGU",$J,DEB),COMM
+ D RCCPOSST ;Check for Over Size statements and send exteranl email to 
+ Q
  ;
-OSTM ;Process old statements
- S DIK="^RCPS(349.2,",DA=0 F  S DA=$O(^XTMP("RCCPC",DA)) Q:'DA  D ^DIK
- K DA
+OSTM ;Process old statements ;PRCA*4.5*401
+ ;S DIK="^RCPS(349.2,",DA=0 F  S DA=$O(^XTMP("RCCPC",DA)) Q:'DA  D ^DIK
+ ;K DA
  ;
-STATMNT ;Print patient statements
- N IOP,ZTIO,ZTSAVE,ZTRTN,ZTDESC,ZTASK,%ZIS,ZTDTH,PRCADEV
- S (IOP,PRCADEV)=$P($G(^RC(342,1,0)),"^",8)
- I IOP]"" D
- .S ZTRTN="STM^RCCPCSTM",ZTDTH=$H,ZTDESC="Print old AR Statements"
- .S %ZIS="N0" D ^%ZIS Q:POP
- .S ZTSAVE("PRCADEV")="" D ^%ZTLOAD,^%ZISC
+STATMNT ;Print oversized patient statements to local printer
+ N POP,ZTIO,ZTSAVE,ZTRTN,ZTDESC,ZTASK,%ZIS,ZTDTH,PRCADEV,DIR
+ N DIRUT,DTOUT,DUOUT,DIROUT,X,Y
+ ;
+ ;Confirm to continue
+ S DIR("A",1)="You are about to print oversized patient statements locally. "
+ S DIR("A")="Are you sure you wish to print these statements?  (Y/N)"
+ S DIR(0)="Y",DIR("B")="Y"
+ D ^DIR
+ ;
+ I $D(DIRUT)!$D(DTOUT)!$D(DUOUT)!$D(DIROUT) W !,"Nothing done" Q
+ I Y'=1 W !,"Nothing done" Q
+ ;
+ W !
+ S DIR("A")="Print to the (S)creen or to the (D)efault Printer? <Default> (S/D)"
+ S DIR(0)="SB^S:Screen;D:Default",DIR("B")="D"
+ D ^DIR
+ ;
+ I $D(DIRUT)!$D(DTOUT)!$D(DUOUT)!$D(DIROUT) W !,"Nothing done" Q
+ ;
+ I Y="D" S (IOP,PRCADEV)=$P($G(^RC(342,1,"CCPC")),"^",2) ; set printer to file #342 field 102
+ I Y="D",(IOP']"") W !,"Cannot continue." Q
+ I Y="S" K IOP,IO("Q") S %ZIS="MQ" D ^%ZIS Q:POP
+ I Y="D" S %ZIS="N0" D ^%ZIS Q:POP
+ I Y="S" D STM^RCCPCSTM Q
+ S ZTRTN="STM^RCCPCSTM",ZTDTH=$H,ZTDESC="Print old AR Statements"
+ S ZTSAVE("PRCADEV")=""
+ D ^%ZTLOAD,^%ZISC
  Q
  ;
 NO ;If there is no activity
@@ -191,4 +216,76 @@ RCDESC ;Remove "IN PART" & "IN FULL" from the the bill description
  S RCINPART=" (IN PART)"
  I RCDESC(1)[RCINFULL S RCDESC(1)=$P(RCDESC(1),RCINFULL)_$P(RCDESC(1),RCINFULL,2)
  I RCDESC(1)[RCINPART S RCDESC(1)=$P(RCDESC(1),RCINPART)_$P(RCDESC(1),RCINPART,2)
+ Q
+ ;
+RCCPOSST ; ;PRCA*4.5*401 Sends external email to Mail group to notify there are statements to print
+ N RCDEBIEN,CNT,LINE,XMDUZ,XMTEXT,XMY,XMSUB
+ S (RCDEBIEN,CNT)=0
+ K ^TMP($J,"RCCPSTMTMSG")
+ F  S RCDEBIEN=$O(^RCD(340,"ALOCAL",1,RCDEBIEN)) Q:RCDEBIEN=""  S CNT=CNT+1
+ I CNT=0 Q
+ S XMSUB="OVER SIZE STATEMENTS TO PRINT"
+ S LINE=0
+ S LINE=LINE+1,^TMP($J,"RCCPSTMTMSG",LINE)="There are "_CNT_" Oversized statements waiting to be printed."
+ S XMTEXT="^TMP($J,""RCCPSTMTMSG"","
+ ;S XMDUZ=$O(^VA(200,"B","POSTMASTER",0))
+ S XMDUZ=.5
+ S XMY("G.RCCPC EXTERNAL")=""
+ D ^XMD
+ Q
+ ;
+FILEOSFG(RCDEBTDA,RCFT) ; ;PRCA*4.5*401 Set/Clear LOCAL PRINT flag, in file 340, to:
+ ;  Yes, i.e. 1 if RCFT="S"
+ ;  No, i.e. 0 if RCFT="C"
+ ; RCDEBTDA = File 340 IEN
+ ; RCFT = Filing Type (S Set or C Clear)
+ ;
+ ;VBLLST format - Principal Balance / Interest / Admin Fees / Court Costs / Marshal Fees / Date statement printed
+ ;
+ N DIE,DA,DR,VBLLST
+ I RCFT="S" S DIE="^RCD(340,",DA=RCDEBTDA,DR="112///Y"
+ I RCFT="C" S DIE="^RCD(340,",DA=RCDEBTDA,DR="112///N"
+ D ^DIE
+ I RCFT="S" D
+ . S VBLLST=BBAL("PB")_"/"_BBAL("INT")_"/"_BBAL("ADM")_"/"_BBAL("CT")_"/"_BBAL("MF")_"/"_$$NOW^XLFDT
+ . S DIE="^RCD(340,",DA=RCDEBTDA,DR="113///"_VBLLST
+ I RCFT="C" S DIE="^RCD(340,",DA=RCDEBTDA,DR="113///@"
+ D ^DIE
+ K DIE,DA,DR
+ Q
+ ;
+CLRSTMTQ ;;PRCA*4.5*401 Clear Oversize statement queue
+ N RCIEN,RCFT
+ N DIR,X,Y,DA,DTOUT,DUOUT,DIRUT,DIROUT
+ S RCFT="C",RCIEN=""
+ ; Loop through AR DEBTOR "C" index and clear all that are set to Yes
+ S DIR("A",1)="*** Clearing the queue at this time will prevent these"
+ S DIR("A",2)="   statements from printing again to the Statement Printer"
+ S DIR("A",3)="   through this option."
+ S DIR("A",4)=" "
+ S DIR("A")="Are you sure you want to clear this print queue? (Y/N)"
+ S DIR(0)="Y",DIR("B")="N",DIR("T")=30
+ D ^DIR
+ I Y'=1 W !,"Nothing done" H 2 Q
+ F  S RCIEN=$O(^RCD(340,"ALOCAL",1,RCIEN)) Q:RCIEN=""  D
+ . D FILESTAT(RCIEN)
+ . D FILEOSFG(RCIEN,RCFT)
+ W !!,"Local Statement Queue has been cleared" H 2
+ Q
+ ;
+FILESTAT(DEB); ;PRCA*4.5*401 File
+ ; INPUT: DEB - Debtor IEN (file 340)
+ ;
+ ;VBLLST format - Principal Balance / Interest / Admin Fees / Court Costs / Marshal Fees / Date statement printed
+ ;
+ N VBLLST,BBAL,END,ERR,EVN
+ S VBLLST=$$GET1^DIQ(340,DEB_",",113,"I") ;Recall saved BBAL array as string
+ ; Parse BBAL array from string VBLLST 
+ S BBAL("PB")=$P(VBLLST,"/",1),BBAL("INT")=$P(VBLLST,"/",2),BBAL("ADM")=$P(VBLLST,"/",3)
+ S BBAL("CT")=$P(VBLLST,"/",4),BBAL("MF")=$P(VBLLST,"/",5)
+ ;Set End to the day the process ran rather than the day the statements were actually printed to avoid out of balance issues.
+ S END=$P(VBLLST,"/",6)
+ D OPEN^RCEVDRV1(2,$P(^RCD(340,DEB,0),U),END,DUZ,$$SITE^RCMSITE,.ERR,.EVN,BBAL("PB")_U_BBAL("INT")_U_BBAL("ADM")_U_BBAL("CT")_U_BBAL("MF"))
+ I EVN D CLOSE^RCEVDRV1(EVN)
+ D UPDAT^PRCAGU(DEB,DT) ;set bill letter field
  Q

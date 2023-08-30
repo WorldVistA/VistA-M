@@ -1,5 +1,5 @@
-PSOERXD2 ;ALB/BWF - eRx Drug edit actions ; 5/26/2017 9:57am
- ;;7.0;OUTPATIENT PHARMACY;**467,506,520,508,551,581,617,651**;DEC 1997;Build 30
+PSOERXD2 ;ALB/BWF - eRx Drug edit actions ; Jan 06, 2023@08:14:59
+ ;;7.0;OUTPATIENT PHARMACY;**467,506,520,508,551,581,617,651,689**;DEC 1997;Build 13
  ;
  Q
 SBN ;
@@ -18,7 +18,7 @@ VDRG1(PSOIEN,PSOIENS) ;
  S RESTYPE=$$GET1^DIQ(52.49,PSOIEN,52.1,"E")
  S ERXSTAT=$$GET1^DIQ(52.49,PSOIEN,1,"E")
  I '$$GET1^DIQ(52.49,PSOIEN,3.2,"I") S XQORM("B")="Edit"
- I VAODRG W !,"Current Vista Drug: "_$$GET1^DIQ(50,VAODRG,.01,"E")_" "_$P($$VADRSCH^PSOERXUT(VAODRG),"^",3)
+ I VAODRG W !,"Current Vista Drug: "_$$GET1^DIQ(50,VAODRG,.01,"E")_" "_$P($$VADRSCH^PSOERXUT(VAODRG),"^",3)_$S($P(^PSDRUG(VAODRG,0),"^",9):"***(N/F)***",1:"") ;p689
  ; for now allow user to search by drug name. may enhance screening in the future.
  S DIC(0)="AEMQ",DIC=50,DIC("S")="I $$ACTIVE^PSOERXA0(Y),($$OUTPAT^PSOERXA0(Y)),('$$INVCOMP^PSOERXA0(Y))"
  I VAODRG]"" S DIC("B")=VAODRG
@@ -32,7 +32,7 @@ VDRG1(PSOIEN,PSOIENS) ;
  . . W !,"********************************************************************************",$C(7)
  . S SELDRG=Y K DIC
  I PQUIT Q
- W !!,"You have selected: "_$P(Y,U,2),!,"Would you like to use this drug/supply?" S DIR(0)="YO" D ^DIR K DIR
+ W !!,"You have selected: "_$P(Y,U,2)_$S($P(^PSDRUG(+Y,0),"^",9):" ***(N/F)***",1:""),!,"Would you like to use this drug/supply?" S DIR(0)="YO" D ^DIR K DIR ;p689
  I Y="^"!(Y<1) S PQUIT=1 Q
  S DIE="^PS(52.49,",DA=PSOIEN,DR="3.2///"_$P(SELDRG,U,1) D ^DIE
  ;Saving the eRx Audit Log for the Dispense Drug entered

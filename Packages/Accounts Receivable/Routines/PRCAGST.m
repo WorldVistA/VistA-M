@@ -1,17 +1,19 @@
 PRCAGST ;WASH-ISC@ALTOONA,PA/CMS-Print Patient Statement ;12/12/96  9:39 AM
-V ;;4.5;Accounts Receivable;**34,181,190,249**;Mar 20, 1995;Build 2
+V ;;4.5;Accounts Receivable;**34,181,190,249,405,406**;Mar 20, 1995;Build 5
  ;;Per VHA Directive 10-93-142, this routine should not be modified.
  ;ENTRY WITH DEBTOR PRINT STATEMENT
 EN(DEB,TBAL,PDAT,PBAL,LDT) ;
- NEW ADD,DA,LN,NAM,PAGE,SSN,X,X1,X2,Y
+ NEW ADD,DA,LN,NAM,PAGE,SSN,X,X1,X2,Y,DEBT,RCDFN
  I '$D(SITE) D SITE^PRCAGU
+ S RCDFN=+$P(^RCD(340,+DEB,0),U)     ;PRCA*4.5*405 Get the DFN of the Debtor
  S SSN=$$SSN^RCFN01(DEB),SSN=$S(SSN=-1:"XXXXXXXXX",1:SSN)
+ S $P(DEBT,U,2)=$$NAM^RCFN01(DEB)    ;PRCA*4.5*406  Add Debtor name for Acct No Building
  S ADD=$$SADD^RCFN01(8) I ADD="" S ADD=$$SADD^RCFN01(1)
  S X=0 F Y=1:1:3 I $P(ADD,U,Y)]"" S X=X+1 S ADD(X)=$P(ADD,U,Y)
  S X=X+1,ADD(X)=$P(ADD,U,4)_", "_$P(ADD,U,5)_"  "_$P(ADD,U,6)
  S X=X+1,ADD(X)=$P(ADD,U,7)
  W @IOF
- W !!,"Department of Veterans Affairs",?50,"Acct No.: ",$P($$SITE^VASITE(),U,3)_"/"_$E(SSN,6,9)
+ W !!,"Department of Veterans Affairs",?35,"Acct No.: ",$$ACCT^PRCAAPR1(RCDFN) ;PRCA*4.5*405 Replace SSN with Account Number
  W !,$G(ADD(1))
  S Y=$$FPS^RCAMFN01($S($G(LDT)>0:$E(LDT,1,5),1:$E(DT,1,5))_$TR($J($$PST^RCAMFN01(DEB),2)," ",0),$S(+$E($G(LDT),6,7)>$$STD^RCCPCFN:2,1:1)) D DD^%DT
  W !,$G(ADD(2)),?50 I TBAL>0 W "Due: UPON RECEIPT"
@@ -20,8 +22,9 @@ EN(DEB,TBAL,PDAT,PBAL,LDT) ;
  W !,$G(ADD(5)),?50,"Today's Date: " S Y=DT D DD^%DT W Y
  I TBAL'>0 D MES G LB
  W !!,?2,"Please Make your Check or Money Order payable to the ""Department of Veterans"
- W !,?2,"Affairs"" and send payment to the above address.  If you have any questions"
- W !,?2,"regarding this statement, please call the number listed above.",!!!
+ W !,?2,"Affairs"" and send payment to the attention of the Agent Cashier at the above"
+ W !,?2,"address.  If you have any questions regarding this statement, please call"
+ W !,?2,"1-866-400-1238.",!!!
 LB K ADD S NAM=$$NAM^RCFN01(DEB)
  W !,?7,NAM
  S ADD=$$DADD^RCAMADD(DEB,1) ; Get debtor address, confidential if applicable

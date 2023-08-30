@@ -1,5 +1,5 @@
 IBCNBLE1 ;DAOU/ESG - Ins Buffer, Expand Entry, con't ;25-JUN-2002
- ;;2.0;INTEGRATED BILLING;**184,271,416,435,467,516,601,668**;21-MAR-94;Build 28
+ ;;2.0;INTEGRATED BILLING;**184,271,416,435,467,516,601,668,737**;21-MAR-94;Build 19
  ;;Per VA Directive 6402, this routine should not be modified.
  ;
  ; Can't be called from the top
@@ -21,7 +21,7 @@ BLD ; Continuation of Expand Entry list build procedure
  I ORIGSYMI,'$P($G(^IBE(365.15,ORIGSYMI,0)),U,3) S EEUPDATE=0
  ;
  ; Do not update the IIV status if manually verified
- I ORIGSYMS="*" S EEUPDATE=0
+ ;I ORIGSYMS="*" S EEUPDATE=0  ;IB*737/DTG stop '*' verified
  ;
  ; Don't let Expand Entry update the eIV status for ePharmacy buffer entries
  ; esg - 10/12/10 - IB*2*435
@@ -51,7 +51,8 @@ BLD ; Continuation of Expand Entry list build procedure
  ; Display the Current Status line
  S IBL="Current eIV Status: "
  S IBY=$$GET1^DIQ(355.33,IBBUFDA,.12,"E")
- I IBY="",$$SYMBOL^IBCNBLL(IBBUFDA)'="*" S IBY="No problems identified, Awaiting electronic processing"
+ ;I IBY="",$$SYMBOL^IBCNBLL(IBBUFDA)'="*" S IBY="No problems identified, Awaiting electronic processing"
+ I IBY="" S IBY="No problems identified, Awaiting electronic processing"   ;IB*737/DTG stop '*' verified
  I $$SYMBOL^IBCNBLL(IBBUFDA)="*" S IBY="Manually verified, No eIV activity at this time"
  ;
  ; esg - 10/12/10 - check for epharmacy entries
@@ -73,8 +74,9 @@ BLD ; Continuation of Expand Entry list build procedure
  . I $P(IB0,U,12) D SET^IBCNBLE(" ")
  . S IBL="Prior Status: "
  . S IBY=ORIGSYME
- . I IBY="",ORIGSYMS'="*" S IBY="No problems identified, Awaiting electronic processing"
- . I ORIGSYMS="*" S IBY="Manually verified, No eIV activity at this time"
+ . ;I IBY="",ORIGSYMS'="*" S IBY="No problems identified, Awaiting electronic processing"
+ . ;I ORIGSYMS="*" S IBY="Manually verified, No eIV activity at this time"
+ . I IBY="" S IBY="No problems identified, Awaiting electronic processing"  ;IB*737/DTG stop '*' verified
  . S IBLINE=$$SETL^IBCNBLE("",IBY,IBL,18,80)
  . D SET^IBCNBLE(IBLINE) S IBLINE=""
  . D SYMTXT(ORIGSYMI,1)

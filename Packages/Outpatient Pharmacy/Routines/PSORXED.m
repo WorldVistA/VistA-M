@@ -1,5 +1,5 @@
 PSORXED ;IHS/DSD/JCM - edit rx utility ;Dec 03, 2020@10:39:54
- ;;7.0;OUTPATIENT PHARMACY;**2,16,21,26,56,71,125,201,246,289,298,366,385,403,421,482,512,621,441**;DEC 1997;Build 208
+ ;;7.0;OUTPATIENT PHARMACY;**2,16,21,26,56,71,125,201,246,289,298,366,385,403,421,482,512,621,441,673**;DEC 1997;Build 1
  ;External reference to ^PSXEDIT supported by DBIA 2209
  ;External reference to ^DD(52 supported by DBIA 999
  ;External reference to ^PSDRUG supported by DBIA 221
@@ -62,12 +62,19 @@ LOG K PSFROM S DA=PSORXED("IRXN"),(PSRX0,RX0)=PSORXED("RX0"),QTY=$P(RX0,"^",7),Q
  S PSOBPS=$$ECME^PSOBPSUT(PSORXED("IRXN"))
  S PSOTRIC=$$TRIC^PSOREJP1(PSORXED("IRXN"),0,.PSOTRIC)
  ;
- S COM="" F I=3,4,5:1:13,17 I $P(PSRX0,"^",I)'=$P(^PSRX(DA,0),"^",I) S PSI=$S(I=13:1,1:I),COM=COM_$P(^DD(52,PSI,0),"^")_" ("_$P(PSRX0,"^",I)_"),"
+ ;p673 Issue date (field 13) log update
+ S COM="" F I=3,4,5:1:12,17 I $P(PSRX0,"^",I)'=$P(^PSRX(DA,0),"^",I) S COM=COM_$P(^DD(52,I,0),"^")_" ("_$P(PSRX0,"^",I)_"),"
+ I $P(PSRX0,"^",13)'=$P(^PSRX(DA,0),"^",13) D
+ . N PSONISDT S PSONISDT=$P(PSRX0,"^",13) S PSONISDT=$E(PSONISDT,4,5)_"/"_$E(PSONISDT,6,7)_"/"_$E(PSONISDT,2,3)
+ . S COM=COM_$P(^DD(52,1,0),"^")_" ("_PSONISDT_")," K PSONISDT
  ;
  N PSOFILDAT
  S PSOFILDAT=0   ; fill date edit flag
  ;
- I $P(PSORXED("RX2"),"^",2)'=$P(^PSRX(DA,2),"^",2) S COM=COM_$P(^DD(52,22,0),"^")_" ("_$P(PSORXED("RX2"),"^",2)_"),",PSOFILDAT=1     ; set flag indicating the original fill date was edited
+ ;p673 fill date log update
+ I $P(PSORXED("RX2"),"^",2)'=$P(^PSRX(DA,2),"^",2) D
+ . N PSONISDT S PSONISDT=$P(PSORXED("RX2"),"^",2) S PSONISDT=$E(PSONISDT,4,5)_"/"_$E(PSONISDT,6,7)_"/"_$E(PSONISDT,2,3)
+ . S COM=COM_$P(^DD(52,22,0),"^")_" ("_PSONISDT_"),",PSOFILDAT=1 ; set flag indicating the original fill date was edited
  I $P(PSORXED("RX3"),"^",7)'=$P(^PSRX(DA,3),"^",7) S COM=COM_$P(^DD(52,12,0),"^")_" ("_$P(PSORXED("RX3"),"^",7)_"),"
  I PSOSIG'=$P($G(^PSRX(DA,"SIG")),"^") S COM=COM_$P(^DD(52,10,0),"^")_" ("_PSOSIG_"),"
  ;*298 Track PI and Oth Lang PI
@@ -85,8 +92,9 @@ LOG K PSFROM S DA=PSORXED("IRXN"),(PSRX0,RX0)=PSORXED("RX0"),QTY=$P(RX0,"^",7),Q
  S K=1,D1=0 F Z=0:0 S Z=$O(^PSRX(DA,"A",Z)) Q:'Z  S D1=Z,K=K+1
  S D1=D1+1 S:'($D(^PSRX(DA,"A",0))#2) ^(0)="^52.3DA^^^" S ^(0)=$P(^(0),"^",1,2)_"^"_D1_"^"_K
  ;
+ N COMEDT S COMEDT=COM S:$E(COM,$L(COM))="," COMEDT=$E(COM,1,$L(COM)-1) ;p673 strip end comma
  ;PSO*7*366
- D NOW^%DTC S ^PSRX(DA,"A",D1,0)=%_"^E^"_$G(DUZ)_"^0^"_COM
+ D NOW^%DTC S ^PSRX(DA,"A",D1,0)=%_"^E^"_$G(DUZ)_"^0^"_COMEDT
  ;
 LOG1 ;
  I QTY,$P(^PSRX(DA,2),"^",13) S ^PSDRUG($P(^PSRX(DA,0),"^",6),660.1)=$S($D(^PSDRUG(+$P(^PSRX(DA,0),"^",6),660.1)):^(660.1)+QTY,1:QTY)

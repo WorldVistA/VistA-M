@@ -1,5 +1,5 @@
-ONCOFLF ;Hines OIFO/GWB - FOLLOWUP LETTER FUNCTIONS ;11/1/93
- ;;2.2;ONCOLOGY;**1**;Jul 31, 2013;Build 8
+ONCOFLF ;HINES OIFO/GWB - FOLLOWUP LETTER FUNCTIONS ;11/1/93
+ ;;2.2;ONCOLOGY;**1,17**;Jul 31, 2013;Build 6
  ;
 AED ;[EL Add/Edit Follow-up Letter]
  W !
@@ -14,7 +14,7 @@ UP ;[UP Update Contact File]
  W @IOF,!?15,"*************** UPDATE CONTACT FILE ***************"
  K DIR
  S DIR("A")="     Select function"
- S DIR(0)="SO^1:Add/Edit;2:Delete;3:Print;4:Cleanup"
+ S DIR(0)="SO^1:Add/Edit;2:Delete;3:Print;4:Cleanup (**> Out of order)"
  D ^DIR
  G EX:($D(DUOUT))!($D(DTOUT))!($D(DIRUT))!($D(DIROUT)) G @Y
  ;
@@ -52,8 +52,69 @@ T ;By Type
  G EX
  ;
 4 ;Cleanup
+ Q
  W @IOF,?15,"************ Cleanout Unused Contacts ***********",!!
  G DAC^ONCOFDP
+ ;
+UPHYCON ;Add/Edit/Update Physician contact
+ ;W @IOF,
+ W !!!?15,"******* ADD/UPDATE PHYSICIAN CONTACT ***************"
+ K DIR
+ S DIR("A")="     Select function"
+ S DIR(0)="SO^1:Add new physician contact;2:Edit NPI of existing physician contact;3:Delete existing physician contact"
+ D ^DIR
+ G EX:($D(DUOUT))!($D(DTOUT))!($D(DIRUT))!($D(DIROUT))
+ I Y=1 D ADDPC Q
+ I Y=2 D EDPC Q
+ I Y=3 D DELPC Q
+ Q
+ ;
+ADDPC ;
+ N ONCPHYNM,ONCNPIVL
+ W ! K DIR S DIR("A")="Enter physician name",DIR(0)="F^3:30" D ^DIR
+ G EX:($D(DUOUT))!($D(DTOUT))!($D(DIRUT))!($D(DIROUT))
+ S X=$TR(X,"abcdefghijklmnopqrstuvwxyz","ABCDEFGHIJKLMNOPQRSTUVWXYZ")
+ S ONCPHYNM=X
+ I $D(^ONCO(165,"B",ONCPHYNM)) W !,"*** NOTE: '",ONCPHYNM,"' ALREADY IN CONTACT FILE - USE EDIT OPTION" Q
+ENTNPI W ! K DIR S DIR("A")="Enter physician NPI",DIR(0)="N"
+ S DIR("?")=" "
+ S DIR("?",1)=" Enter the NPI # for the physician contact."
+ S DIR("?",2)=" If you are unsure of the NPI #, you may use the National Provider"
+ S DIR("?",3)=" Identifier registry search to look up the NPI #:"
+ S DIR("?",4)="    https://npiregistry.cms.hhs.gov/search"
+ D ^DIR
+ G EX:($D(DUOUT))!($D(DTOUT))!($D(DIRUT))!($D(DIROUT))
+ S ONCNPIVL=X
+ I ONCNPIVL'?10N W !,"NPI MUST BE 10 DIGITS" G ENTNPI
+ I $D(^ONCO(165,"F",ONCNPIVL)) D
+ .W !,"NOTE: NPI # '",ONCNPIVL,"' ALREADY ASSIGNED TO THIS CONTACT(S): "
+ .F IENZZ=0:0 S IENZZ=$O(^ONCO(165,"F",ONCNPIVL,IENZZ)) Q:IENZZ'>0  D
+ ..W !?8,$P($G(^ONCO(165,IENZZ,0)),"^",1)
+ W !!?6,"Adding to physician contacts:",!,?8,"Name: ",ONCPHYNM,"  NPI: ",ONCNPIVL
+ W ! K DIR S DIR("A")="Do you wish to continue",DIR("B")="Y",DIR(0)="Y" D ^DIR
+ I Y'=1 G UPHYCON
+ S DIC="^ONCO(165,",DIC(0)="L",X=ONCPHYNM
+ S DIC("DR")="1///^S X=2;101///^S X=ONCNPIVL"
+ D FILE^DICN
+ Q
+ ;
+EDPC ;
+ S DIC="^ONCO(165,",DIC(0)="AEQZM"
+ S DIC("A")=" Select physician contact name: ",DIC("S")="I $P(^(0),U,2)=2"
+ D ^DIC K DIC G EX:Y<0
+ S DA=+Y
+ S DIE="^ONCO(165,",DIC(0)="AELQMZ"
+ S DR=".01;101" D ^DIE
+ Q
+ ;
+DELPC ;
+ W !
+ S DIC="^ONCO(165,"
+ S DIC(0)="AEZQ",DIC("S")="I $P(^(0),U,2)=2"
+ D ^DIC G EX:Y<0
+ I ($D(^ONCO(165,"ACP",+Y)))!($D(^ONCO(160,"AC",+Y)))!($D(^ONCO(160,"AE",+Y))) W !!?10,"You may only delete contacts which are not being used." G DELPC
+ S DA=+Y,DIK=DIC W !!?10,"Deleting Contact ",Y(0,0) D ^DIK G DELPC
+ Q
  ;
 EX ;Exit
  K ADDED,BY,D,DA,DIC,DIA,DIE,DIK,DIR,DIROUT,DIRUT,DLAYGO,DR,DTOUT,DUOUT

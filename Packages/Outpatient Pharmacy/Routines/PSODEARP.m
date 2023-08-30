@@ -1,11 +1,13 @@
-PSODEARP ;ALB/BI - DEA EXPIRATION DATE REPORT ;9/16/21  17:25
- ;;7.0;OUTPATIENT PHARMACY;**667,684**;DEC 1997;Build 57
+PSODEARP ;ALB/BI - DEA EXPIRATION DATE REPORT ;10/12/22  16:32
+ ;;7.0;OUTPATIENT PHARMACY;**667,684,545**;DEC 1997;Build 270
+ ;External reference to DEA NUMBERS file (#8991.9) is supported by DBIA 7002
+ ;External reference to sub-file NEW DEA #'S (#200.5321) is supported by DBIA 7000
  Q
  ;
 EN  ; Main Routine Entry Point
  N DIROUT,DTOUT,DUOUT,PSOQ,PSOPAGE,POP,PSHEADER,PSCPRSSA,PSOEDS,PSOSCR,PSOOUT,PSOTYP,PSOCPRSU
  S PSOPAGE=0
- W !!,"Report requires 132 Columns"
+ W !!,"Report requires 512 Columns"
  S PSOQ=0          ; quit flag
  S PSOCPRSU=""
  ;
@@ -22,33 +24,35 @@ EN  ; Main Routine Entry Point
  ;
  ; Expiration Date Status {EXPIRED, NO EXP DATE, <30-DAYS, <90-DAYS}
  S DIR(0)="S^E:EXPIRED;N:NO EXP DATE;3:<30-DAYS;9:<90-DAYS",DIR("A")="Expiration Date Status" D ^DIR K DIR Q:$D(DUOUT)!$D(DTOUT)!$D(DIROUT)
- S PSOEDS=Y,PSHEADER=PSHEADER_$S(Y="E":"Expired DEA Number.",Y="N":"NO DEA Expiration Date.",Y="3":"DEA Expiring within next 30 days.",Y="9":"DEA Expiring within next 90 days.",1:"")
- ;D  Q:$G(PSOTYP)="D"  I $G(PSOOUT) Q
- ;. S PSOTYP=$$TYPE() I $G(PSOOUT) Q
- ;. I $G(PSOTYP)="D" D DL^PSODEARV I $G(PSOOUT) Q
- ;. I $G(PSOTYP)="D" D RUN^PSODEARV(PSHEADER,PSCPRSSA,PSOEDS)
+ S PSOEDS=Y,PSHEADER=PSHEADER_$S(Y="E":"Expired DEA Number.",Y="N":"No DEA Expiration Date.",Y="3":"DEA Expiring within next 30 days.",Y="9":"DEA Expiring within next 90 days.",1:"")
+ D  Q:$G(PSOTYP)="D"  I $G(PSOOUT) Q
+ . S PSOTYP=$$TYPE() I $G(PSOOUT) Q
+ . I $G(PSOTYP)="D" D DL^PSODEARV I $G(PSOOUT) Q
+ . I $G(PSOTYP)="D" D RUN^PSODEARV(PSHEADER,PSCPRSSA,PSOEDS,PSOCPRSU)
  ;
  D DEVICE Q:PSOQ   ; Print to device
  D RUN(PSHEADER,PSCPRSSA,PSOEDS,PSOCPRSU) Q:PSOQ  ; Run Report
  Q
  ;
 GUI ; Entry point for ePCS GUI Report
- N %H,PSOQ,PSOPAGE,PSOSCR,PSCPRSSA,PSOEDS
+ N %H,PSOQ,PSOPAGE,PSOSCR,PSCPRSSA,PSOEDS,PSOCPRSU
  ; I $G(ECPTYP)="E" D EXPORT,^EPCSKILL Q  ; ePCS not exporting to Excel at this point
  S %H=$H D YX^%DTC S EPCSRDT=Y            ; Date report is run
  S PSOQ=0          ; quit flag
  S PSOPAGE=0
  S PSOSCR=$S($E($G(IOST),1,2)="C-":1,1:0)
- S PSHEADER="DEA Expiration Date Report - Includes: "
+ S PSOCPRSU=$S(EPCSTYPE="C":1,EPCSTYPE="A":0)
+ S PSHEADER="Includes: "
+ S PSHEADER=PSHEADER_$S(PSOCPRSU:"CPRS ",PSOCPRSU=0:"ALL Eligible ",1:"")
  ;
  ; CPRS System Access {Active, DISUSERed/Terminated, or Both}
- S PSHEADER=PSHEADER_$S(EPCSCPRS="A":"Active ",EPCSCPRS="D":"DISUSERed/Terminated",EPCSCPRS="B":"Active, DISUSERed/Terminated, ",1:"")_"and "
+ S PSHEADER=PSHEADER_$S(EPCSCPRS="A":"Active",EPCSCPRS="D":"DISUSERed/Terminated",EPCSCPRS="B":"Active, DISUSERed/Terminated,",1:"")_" and "
  ;
  ; Expiration Date Status {EXPIRED, NO EXP DATE, <30-DAYS, <90-DAYS}
- S PSHEADER=PSHEADER_$S(EPCSSTAT="E":"EXPIRED.",EPCSSTAT="N":"NO EXPIRATION DATE.",EPCSSTAT="3":"Expiring within next 30 days.",EPCSSTAT="9":"Expiring within next 90 days.",1:"")
+ S PSHEADER=PSHEADER_$S(EPCSSTAT="E":"Expired DEA Number.",EPCSSTAT="N":"No DEA Expiration Date.",EPCSSTAT="3":"DEA Expiring within next 30 days.",EPCSSTAT="9":"DEA Expiring within next 90 days.",1:"")
  ;
  S PSCPRSSA=EPCSCPRS S PSOEDS=EPCSSTAT
- D RUN(PSHEADER,PSCPRSSA,PSOEDS) Q:PSOQ      ; Run Report
+ D RUN(PSHEADER,PSCPRSSA,PSOEDS,PSOCPRSU) Q:PSOQ      ; Run Report
  ;I $D(EPCSGUI) D ^EPCSKILL Q    // Kill variables...
  Q
  ;
@@ -74,23 +78,25 @@ DEVICE  ; Request Device Information
 COMPILE(PSCPRSSA,PSOEDS,PSOCPRSU,PSOPROB)  ; -- Compile the report lines into the sort global
  N DEAIEN,DEATXT,PSCOUNT1,PSOLINE,PSOTD
  S PSCOUNT1=0
- S DEATXT="" F  S DEATXT=$O(^VA(200,"PS1",DEATXT)) Q:DEATXT=""  D
- . S NPIEN="" F  S NPIEN=$O(^VA(200,"PS1",DEATXT,NPIEN)) Q:'NPIEN  D
- . . ;K TMP,PSODNOBJ D GETS^DIQ(8991.9,DEAIEN_",","**","","TMP","MSG") M PSODNOBJ=TMP(8991.9,DEAIEN_",")
+ S DEATXT="" F  S DEATXT=$O(^XTV(8991.9,"B",DEATXT)) Q:DEATXT=""  D
+ . S DEAIEN=$O(^XTV(8991.9,"B",DEATXT,0)) Q:'DEAIEN
+ . S NPIEN="" F  S NPIEN=$O(^VA(200,"PS4",DEATXT,NPIEN)) Q:'NPIEN  D
+ . . K TMP,PSODNOBJ D GETS^DIQ(8991.9,DEAIEN_",","**","","TMP","MSG") M PSODNOBJ=TMP(8991.9,DEAIEN_",")
  . . K TMP,PSONPOBJ D GETS^DIQ(200,NPIEN_",","**","","TMP","MSG") M PSONPOBJ=TMP(200,NPIEN_",")
  . . S (PSOTD,PSONPOBJ(9.2))=$$GET1^DIQ(200,NPIEN_",",9.2,"I"),PSONPOBJ(9.2)=$$FMTE^XLFDT(PSONPOBJ(9.2),"5DZ")
  . . S PSONPOBJ(202)=$$GET1^DIQ(200,NPIEN_",",202,"I"),PSONPOBJ(202)=$$FMTE^XLFDT(PSONPOBJ(202),"5DZ")
- . . ;S PSODNOBJ(.04)=$$GET1^DIQ(8991.9,DEAIEN_",",.04,"I"),PSODNOBJ(.04)=$$FMTE^XLFDT(PSODNOBJ(.04),"5DZ")
+ . . S PSODNOBJ(.04)=$$GET1^DIQ(8991.9,DEAIEN_",",.04,"I"),PSODNOBJ(.04)=$$FMTE^XLFDT(PSODNOBJ(.04),"5DZ")
  . . S PSONPOBJ(747.44)=$$GET1^DIQ(200,NPIEN_",",747.44,"I"),PSONPOBJ(747.44)=$$FMTE^XLFDT(PSONPOBJ(747.44),"5DZ")
- . . Q:'$$TEST(.PSONPOBJ,PSCPRSSA,PSOEDS,NPIEN,PSOCPRSU)
- . . I PSONPOBJ(53.2)'=DEATXT S PSONPOBJ(53.2)="*PROBLEM*",PSOPROB=$G(PSOPROB)+1
+ . . Q:'$$TEST(.PSODNOBJ,.PSONPOBJ,PSCPRSSA,PSOEDS,NPIEN,PSOCPRSU)
+ . . N P200P5321 S P200P5321=$$FIND1^DIC(200.5321,","_NPIEN_",",,DEATXT)
+ . . I '$G(P200P5321) S PSODNOBJ(.01)="*PROBLEM*",PSOPROB=$G(PSOPROB)+1
  . . S PSOLINE=""
  . . S PSOLINE=PSOLINE_$$LJ^XLFSTR(PSONPOBJ(9.2),"12T")_"  "               ; TERMINATION DATE       #200,    #9.2
  . . S PSOLINE=PSOLINE_$$LJ^XLFSTR(PSONPOBJ(.01),"33T")_"  "               ; NAME                   #200,    #.01
- . . ;S PSOLINE=PSOLINE_$$LJ^XLFSTR(PSODNOBJ(.01),"9T")_"  "               ; DEA                    #8991.9, #.01
- . . ;S PSOLINE=PSOLINE_$$LJ^XLFSTR(PSODNOBJ(.04),"12T")_"  "              ; DEA Expiration Date    #8991.9, #.04
- . . S PSOLINE=PSOLINE_$$LJ^XLFSTR(PSONPOBJ(53.2),"9T")_"  "               ; DEA                    #200,    #53.2
- . . S PSOLINE=PSOLINE_$$LJ^XLFSTR(PSONPOBJ(747.44),"12T")_"  "            ; DEA Expiration Date    #200,    #747.44
+ . . S PSOLINE=PSOLINE_$$LJ^XLFSTR(PSODNOBJ(.01),"9T")_"  "               ; DEA                    #8991.9, #.01
+ . . S PSOLINE=PSOLINE_$$LJ^XLFSTR(PSODNOBJ(.04),"12T")_"  "              ; DEA Expiration Date    #8991.9, #.04
+ . . ;S PSOLINE=PSOLINE_$$LJ^XLFSTR(PSONPOBJ(53.2),"9T")_"  "               ; DEA                    #200,    #53.2
+ . . ;S PSOLINE=PSOLINE_$$LJ^XLFSTR(PSONPOBJ(747.44),"12T")_"  "            ; DEA Expiration Date    #200,    #747.44
  . . S PSOLINE=PSOLINE_$$LJ^XLFSTR(PSONPOBJ(202),"12T")_"  "               ; LAST SIGN-ON           #200,    #202
  . . S PSOLINE=PSOLINE_$$LJ^XLFSTR(PSONPOBJ(8),"23T")_"  "                 ; TITLE                  #200,    #8
  . . S PSOLINE=PSOLINE_$$LJ^XLFSTR(PSONPOBJ(29),"16T")_"  "                ; SERVICE/SECTION        #200,    #29
@@ -153,53 +159,61 @@ TITLES()  ; -- Create the header TITLES.
  N TITLES
  S TITLES=""
  S TITLES=TITLES_$$LJ^XLFSTR("TERM DATE","12T")_"  "        ; TERMINATION DATE       #200,    #9.2
- S TITLES=TITLES_$$LJ^XLFSTR("NAME","33T")_"  "             ; NAME                   #200,    #.01
- S TITLES=TITLES_$$LJ^XLFSTR("DEA","9T")_"  "               ; DEA                    #200,    #53.2
- S TITLES=TITLES_$$LJ^XLFSTR("DEA EXP DT","12T")_"  "       ; DEA Expiration Date    #200,    #747.44
+ S TITLES=TITLES_$$LJ^XLFSTR("NAME","33T")_"  "             ; NAME                   #8991.9, #1.1
+ S TITLES=TITLES_$$LJ^XLFSTR("DEA","9T")_"  "               ; DEA                    #8991.9, #.01
+ S TITLES=TITLES_$$LJ^XLFSTR("DEA EXP DT","12T")_"  "       ; DEA Expiration Date    #8991.9, #.04
  S TITLES=TITLES_$$LJ^XLFSTR("LAST SIGN-ON","12T")_"  "     ; LAST SIGN-ON           #200,    #202
  S TITLES=TITLES_$$LJ^XLFSTR("TITLE","23T")_"  "            ; TITLE                  #200,    #8
  S TITLES=TITLES_$$LJ^XLFSTR("SERVICE/SECTION","16T")_"  "  ; SERVICE/SECTION        #200,    #29
  Q TITLES
  ;
-TEST(PSONPOBJ,PSCPRSSA,PSOEDS,NPIEN,PSOCPRSU)  ; -- Perform the requested test for screening critera
- N DEAEXPDT D DT^DILF("",PSONPOBJ(747.44),.DEAEXPDT)
+TEST(PSODNOBJ,PSONPOBJ,PSCPRSSA,PSOEDS,NPIEN,PSOCPRSU)  ; -- Perform the requested test for screening critera
+ N DEAEXPDT D DT^DILF("",PSODNOBJ(.04),.DEAEXPDT)
  N RESP,PSOACC S RESP=0
  N PSOTERM,PSOTODAY
  S PSOTERM=$$GET1^DIQ(200,NPIEN,9.2,"I")
  S PSOTODAY=$$DT^XLFDT
  S PSOACC=$$GET1^DIQ(200,NPIEN,2,"I")
  ;
- ; Provider Active and DEA is expired.
- I PSOCPRSU,((PSCPRSSA="A")!(PSCPRSSA="B")),PSOEDS="E",$$ACTIVE^XUSER(NPIEN),PSONPOBJ(747.44)'="",DEAEXPDT<$$FMADD^XLFDT(DT,-0) Q 1  ; Active CPRS Providers Only
- I 'PSOCPRSU,((PSCPRSSA="A")!(PSCPRSSA="B")),PSOEDS="E",PSONPOBJ(7)'="YES",('PSOTERM!(PSOTERM>PSOTODAY)),PSONPOBJ(747.44)'="",DEAEXPDT<$$FMADD^XLFDT(DT,-0) Q 1     ; All Active Providers
+ ; CPRS Provider Active and DEA is expired.
+ I PSOCPRSU,((PSCPRSSA="A")!(PSCPRSSA="B")),PSOEDS="E",$$ACTIVE^XUSER(NPIEN),PSODNOBJ(.04)'="",(DEAEXPDT<$$DT^XLFDT()) Q 1  ; Active CPRS Providers Only
+ ; All (CPRS and Non-CPRS) Active Providers and DEA is expired
+ I 'PSOCPRSU,((PSCPRSSA="A")!(PSCPRSSA="B")),PSOEDS="E",PSONPOBJ(7)'="YES",('PSOTERM!(PSOTERM>PSOTODAY)),PSODNOBJ(.04)'="",(DEAEXPDT<$$DT^XLFDT()) Q 1     ; All Active Providers
  ;
- ; Provider Active and does not have a DEA expiration date.
- I PSOCPRSU,((PSCPRSSA="A")!(PSCPRSSA="B")),PSOEDS="N",$$ACTIVE^XUSER(NPIEN),PSONPOBJ(747.44)="" Q 1   ; Active CPRS Providers Only
- I 'PSOCPRSU,((PSCPRSSA="A")!(PSCPRSSA="B")),PSOEDS="N",PSONPOBJ(7)'="YES",('PSOTERM!(PSOTERM>PSOTODAY)),PSONPOBJ(747.44)="" Q 1      ; All Active Providers
+ ; CPRS Provider Active and does not have a DEA expiration date.
+ I PSOCPRSU,((PSCPRSSA="A")!(PSCPRSSA="B")),PSOEDS="N",$$ACTIVE^XUSER(NPIEN),PSODNOBJ(.04)="" Q 1   ; Active CPRS Providers Only
+ ; All (CPRS and Non-CPRS) Active Provider and does not have a DEA expiration date.
+ I 'PSOCPRSU,((PSCPRSSA="A")!(PSCPRSSA="B")),PSOEDS="N",PSONPOBJ(7)'="YES",('PSOTERM!(PSOTERM>PSOTODAY)),PSODNOBJ(.04)="" Q 1      ; All Active Providers
  ;
- ; Provider Active and DEA is Expiring within the next 30 days.
- I PSOCPRSU,((PSCPRSSA="A")!(PSCPRSSA="B")),PSOEDS="3",$$ACTIVE^XUSER(NPIEN),PSONPOBJ(747.44)'="",DEAEXPDT<$$FMADD^XLFDT(DT,30),DEAEXPDT>$$FMADD^XLFDT(DT,-1) Q 1   ; Active CPRS Providers Only
- I 'PSOCPRSU,((PSCPRSSA="A")!(PSCPRSSA="B")),PSOEDS="3",PSONPOBJ(7)'="YES",('PSOTERM!(PSOTERM>PSOTODAY)),PSONPOBJ(747.44)'="",DEAEXPDT<$$FMADD^XLFDT(DT,30),DEAEXPDT>$$FMADD^XLFDT(DT,-1) Q 1      ; All Active Providers
+ ; CPRS Provider Active and DEA is expiring within next 30 days.
+ I PSOCPRSU,((PSCPRSSA="A")!(PSCPRSSA="B")),PSOEDS="3",$$ACTIVE^XUSER(NPIEN),PSODNOBJ(.04)'="",DEAEXPDT<$$FMADD^XLFDT(DT,30),DEAEXPDT>$$FMADD^XLFDT(DT,-1) Q 1   ; Active CPRS Providers Only
+ ; All (CPRS and Non-CPRS) Active Provider and DEA is expiring within next 30 days.
+ I 'PSOCPRSU,((PSCPRSSA="A")!(PSCPRSSA="B")),PSOEDS="3",PSONPOBJ(7)'="YES",('PSOTERM!(PSOTERM>PSOTODAY)),PSODNOBJ(.04)'="",(DEAEXPDT'>$$FMADD^XLFDT(DT,30)),DEAEXPDT>$$FMADD^XLFDT(DT,-1) Q 1      ; All Active Providers
  ;
- ; Provider Active and DEA is Expiring within the next 90 days.
- I PSOCPRSU,((PSCPRSSA="A")!(PSCPRSSA="B")),PSOEDS="9",$$ACTIVE^XUSER(NPIEN),PSONPOBJ(747.44)'="",DEAEXPDT<$$FMADD^XLFDT(DT,90),DEAEXPDT>$$FMADD^XLFDT(DT,-1) Q 1   ; Active CPRS Providers Only
- I 'PSOCPRSU,((PSCPRSSA="A")!(PSCPRSSA="B")),PSOEDS="9",PSONPOBJ(7)'="YES",('PSOTERM!(PSOTERM>PSOTODAY)),PSONPOBJ(747.44)'="",DEAEXPDT<$$FMADD^XLFDT(DT,90),DEAEXPDT>$$FMADD^XLFDT(DT,-1) Q 1      ; All Active Providers
+ ; CPRS Provider Active and DEA expiring within the next 90 days.
+ I PSOCPRSU,((PSCPRSSA="A")!(PSCPRSSA="B")),PSOEDS="9",$$ACTIVE^XUSER(NPIEN),PSODNOBJ(.04)'="",DEAEXPDT<$$FMADD^XLFDT(DT,90),DEAEXPDT>$$FMADD^XLFDT(DT,-1) Q 1   ; Active CPRS Providers Only
+ ; All (CPRS and Non-CPRS) Active DEA expiring within the next 90 days.
+ I 'PSOCPRSU,((PSCPRSSA="A")!(PSCPRSSA="B")),PSOEDS="9",PSONPOBJ(7)'="YES",('PSOTERM!(PSOTERM>PSOTODAY)),PSODNOBJ(.04)'="",(DEAEXPDT'>$$FMADD^XLFDT(DT,90)),DEAEXPDT>$$FMADD^XLFDT(DT,-1) Q 1      ; All Active Providers
  ;
- ; Provider disusered and DEA is expired.
- I PSOCPRSU,$L(PSOACC),((PSCPRSSA="D")!(PSCPRSSA="B")),PSOEDS="E",((PSONPOBJ(7)="YES")!(PSOTERM&(PSOTERM<PSOTODAY))),PSONPOBJ(747.44)'="",DEAEXPDT<$$FMADD^XLFDT(DT,-0) Q 1
- I 'PSOCPRSU,((PSCPRSSA="D")!(PSCPRSSA="B")),PSOEDS="E",((PSONPOBJ(7)="YES")!(PSOTERM&(PSOTERM<PSOTODAY))),PSONPOBJ(747.44)'="",DEAEXPDT<$$FMADD^XLFDT(DT,-0) Q 1
+ ; CPRS Provider disusered and DEA is expired.
+ I PSOCPRSU,$L(PSOACC),((PSCPRSSA="D")!(PSCPRSSA="B")),PSOEDS="E",((PSONPOBJ(7)="YES")!(PSOTERM&(PSOTERM<PSOTODAY))),PSODNOBJ(.04)'="",(DEAEXPDT<$$DT^XLFDT()) Q 1
+ ; All (CPRS and Non-CPRS) disusered provider and DEA is expired.
+ I 'PSOCPRSU,((PSCPRSSA="D")!(PSCPRSSA="B")),PSOEDS="E",((PSONPOBJ(7)="YES")!(PSOTERM&(PSOTERM<PSOTODAY))),PSODNOBJ(.04)'="",(DEAEXPDT<$$DT^XLFDT()) Q 1
  ;
- ; Provider disusered and does not have a DEA expiration date.
- I PSOCPRSU,$L(PSOACC),((PSCPRSSA="D")!(PSCPRSSA="B")),PSOEDS="N",((PSONPOBJ(7)="YES")!(PSOTERM&(PSOTERM<PSOTODAY))),PSONPOBJ(747.44)="" Q 1
- I 'PSOCPRSU,((PSCPRSSA="D")!(PSCPRSSA="B")),PSOEDS="N",((PSONPOBJ(7)="YES")!(PSOTERM&(PSOTERM<PSOTODAY))),PSONPOBJ(747.44)="" Q 1
+ ; CPRS Provider disusered and does not have a DEA expiration date.
+ I PSOCPRSU,$L(PSOACC),((PSCPRSSA="D")!(PSCPRSSA="B")),PSOEDS="N",((PSONPOBJ(7)="YES")!(PSOTERM&(PSOTERM<PSOTODAY))),PSODNOBJ(.04)="" Q 1
+ ; All (CPRS and Non-CPRS) disusered provider and does not have a DEA expiration date.
+ I 'PSOCPRSU,((PSCPRSSA="D")!(PSCPRSSA="B")),PSOEDS="N",((PSONPOBJ(7)="YES")!(PSOTERM&(PSOTERM<PSOTODAY))),PSODNOBJ(.04)="" Q 1
  ;
- ; Provider disusered and DEA is Expiring within the next 30 days.
- I PSOCPRSU,$L(PSOACC),((PSCPRSSA="D")!(PSCPRSSA="B")),PSOEDS="3",((PSONPOBJ(7)="YES")!(PSOTERM&(PSOTERM<PSOTODAY))),PSONPOBJ(747.44)'="",DEAEXPDT<$$FMADD^XLFDT(DT,30),DEAEXPDT>$$FMADD^XLFDT(DT,-1) Q 1
- I 'PSOCPRSU,((PSCPRSSA="D")!(PSCPRSSA="B")),PSOEDS="3",((PSONPOBJ(7)="YES")!(PSOTERM&(PSOTERM<PSOTODAY))),PSONPOBJ(747.44)'="",DEAEXPDT<$$FMADD^XLFDT(DT,30),DEAEXPDT>$$FMADD^XLFDT(DT,-1) Q 1
+ ; CPRS Provider disusered and DEA is expiring within the next 30 days.
+ I PSOCPRSU,$L(PSOACC),((PSCPRSSA="D")!(PSCPRSSA="B")),PSOEDS="3",((PSONPOBJ(7)="YES")!(PSOTERM&(PSOTERM<PSOTODAY))),PSODNOBJ(.04)'="",(DEAEXPDT'>$$FMADD^XLFDT(DT,30)),DEAEXPDT>$$FMADD^XLFDT(DT,-1) Q 1
+ ; All (CPRS and Non-CPRS) disusered Provider and DEA is expiring within the next 30 days.
+ I 'PSOCPRSU,((PSCPRSSA="D")!(PSCPRSSA="B")),PSOEDS="3",((PSONPOBJ(7)="YES")!(PSOTERM&(PSOTERM<PSOTODAY))),PSODNOBJ(.04)'="",(DEAEXPDT'>$$FMADD^XLFDT(DT,30)),DEAEXPDT>$$FMADD^XLFDT(DT,-1) Q 1
  ;
- ; Provider disusered and DEA is Expiring within the next 90 days.
- I PSOCPRSU,$L(PSOACC),((PSCPRSSA="D")!(PSCPRSSA="B")),PSOEDS="9",((PSONPOBJ(7)="YES")!(PSOTERM&(PSOTERM<PSOTODAY))),PSONPOBJ(747.44)'="",DEAEXPDT<$$FMADD^XLFDT(DT,90),DEAEXPDT>$$FMADD^XLFDT(DT,-1) Q 1
- I 'PSOCPRSU,((PSCPRSSA="D")!(PSCPRSSA="B")),PSOEDS="9",((PSONPOBJ(7)="YES")!(PSOTERM&(PSOTERM<PSOTODAY))),PSONPOBJ(747.44)'="",DEAEXPDT<$$FMADD^XLFDT(DT,90),DEAEXPDT>$$FMADD^XLFDT(DT,-1) Q 1
+ ; CPRS Provider disusered and DEA is expiring within the next 90 days.
+ I PSOCPRSU,$L(PSOACC),((PSCPRSSA="D")!(PSCPRSSA="B")),PSOEDS="9",((PSONPOBJ(7)="YES")!(PSOTERM&(PSOTERM<PSOTODAY))),PSODNOBJ(.04)'="",(DEAEXPDT'>$$FMADD^XLFDT(DT,90)),DEAEXPDT>$$FMADD^XLFDT(DT,-1) Q 1
+ ; All (CPRS and Non-CPRS) disusered and DEA is expiring within the next 90 days.
+ I 'PSOCPRSU,((PSCPRSSA="D")!(PSCPRSSA="B")),PSOEDS="9",((PSONPOBJ(7)="YES")!(PSOTERM&(PSOTERM<PSOTODAY))),PSODNOBJ(.04)'="",(DEAEXPDT'>$$FMADD^XLFDT(DT,90)),DEAEXPDT>$$FMADD^XLFDT(DT,-1) Q 1
  ;
  Q RESP
  ;
@@ -220,5 +234,8 @@ CPRSUSRS(STATUS) ; Ask user if they want to constrain report to users with ACCES
  ; Active CPRS System Access only, or ALL active access (i.e., no ACCESS CODE for Community Care/Non-VA providers) 
  N DIR,STATUSE
  S STATUSE=$S($G(STATUS)="A":"Active ",$G(STATUS)="D":"Disusered/Terminated ",1:"")
- S DIR(0)="S^CPRS:CPRS "_STATUSE_"Providers Only;ALL:ALL Eligible "_STATUSE_"Providers",DIR("A")="Type of System Access" D ^DIR K DIR Q:$D(DUOUT)!$D(DTOUT)!$D(DIROUT) -1
+ S DIR(0)="S^CPRS:CPRS "_STATUSE_"Providers Only;ALL:ALL Eligible "_STATUSE_"Providers",DIR("A")="Type of System Access"
+ S DIR("?",1)="If CPRS is selected, only providers with an ACCESS CODE are displayed."
+ S DIR("?")="If ALL is selected, providers with and without an ACCESS CODE are displayed."
+ D ^DIR K DIR Q:$D(DUOUT)!$D(DTOUT)!$D(DIROUT) -1
  Q $S(Y="CPRS":1,Y="ALL":0,1:-1)

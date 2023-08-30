@@ -1,5 +1,5 @@
 YTQRQAD1 ;SLC/KCM - RESTful Calls to handle MHA assignments ; 1/25/2017
- ;;5.01;MENTAL HEALTH;**130,141,178,182,181,187,199,207**;Dec 30, 1994;Build 6
+ ;;5.01;MENTAL HEALTH;**130,141,178,182,181,187,199,207,204**;Dec 30, 1994;Build 18
  ;
  ; Reference to VADPT in ICR #10061
  ; Reference to XLFDT in ICR #10103
@@ -48,11 +48,12 @@ PROGRESS(ADMIN,TEST,ASMTID) ; return the progress for an administration
  Q $S(QTOT>0:$P(((QANS/QTOT)*100)+.5,"."),1:0)
  ;
 NEWASMT(ARGS,DATA) ; save assignment, return /api/mha/assignment/{assignmentId}
- N I,DFN,ORDBY,VA,VADM,VAERR,SETID,FOUND,PID,PTNAME,EXPIRE,CONS
+ N I,DFN,ORDBY,VA,VADM,VAERR,SETID,FOUND,PID,PTNAME,EXPIRE,CONS,COSIGN
  N RETSTAT,REPLACE
  S DFN=+$G(DATA("patient","dfn"))
  S ORDBY=+$G(DATA("orderedBy"))
  S CONS=+$G(DATA("consult"))
+ S COSIGN=+$G(DATA("cosigner"))
  I 'DFN!'ORDBY D SETERROR^YTQRUTL(400,"Missing Reqd Fields") QUIT ""
  D DEM^VADPT I $G(VAERR) D SETERROR^YTQRUTL(400,"Missing Pt Info") QUIT ""
  S PID=VA("BID"),PTNAME=VADM(1)
@@ -121,6 +122,7 @@ FILASGN(ARGS,DATA,SETID,TYPE) ;File the Assignment Data
  . ;Kill any changes of omission before merging
  . I '$D(DATA("consult")) K ^XTMP(PREFIX_SETID,1,"consult")  ;Removed Consult
  . I '$D(DATA("adminDate")) K ^XTMP(PREFIX_SETID,1,"adminDate")  ;Removed admin date
+ . I '$D(DATA("cosigner")) K ^XTMP(PREFIX_SETID,1,"cosigner")  ;Removed Cosigner
  . I '$D(^XTMP(PREFIX_SETID,1,"instruments")) S YSTAT="500^ERROR"
  I $D(DATA(2,"PNOTE")) M ^XTMP(PREFIX_SETID,2)=DATA(2) K DATA(2)
  I YSTAT'="" D  Q ""

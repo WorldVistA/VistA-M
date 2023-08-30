@@ -1,24 +1,27 @@
-SDESCLNSETAVAIL ;ALB/TAW,KML,MGD,LAB - SET CLINIC AVAILABILITY ;Jan 06,2023
- ;;5.3;Scheduling;**800,803,805,809,818,820,833**;Aug 13, 1993;Build 9
+SDESCLNSETAVAIL ;ALB/TAW,KML,MGD,LAB - SET CLINIC AVAILABILITY ;Mar 16,2023
+ ;;5.3;Scheduling;**800,803,805,809,818,820,833,842,843**;Aug 13, 1993;Build 9
  ;;Per VHA Directive 6402, this routine should not be modified
  ;
 SETCLINAVAIL(RETURN,SDCLINIC,DATES,TIMES,SLOTS,SDEAS) ;INICSET2(.POP,SDIEN,.FDA,.SDCLINIC,.PROVIDER,.DIAGNOSIS,.SPECIALINSTRUCT,.PRIVLIAGEDUSER)
  ; Input:
  ; SDCLIN - [REQ] Name or IEN from file 44
- ; DATES - [REQ] String of dates in ISO8601 or FM format separated by a ;
- ; TIMES - [REQ] String of time frames in military format separated by a ;
+ ; DATES - [opt] String of dates in ISO8601 or FM format separated by a ;
+ ; TIMES - [opt] String of time frames in military format separated by a ;
  ;   ex: 0700-1030;1030-1400
  ; SLOTS - [REQ] String of integers separated by a ;
  ;  The number of TIMES and SLOTS must match
  ; SDEAS - [Optional] - Enterprise Appointment Scheduling (EAS) Tracking Number
  ;
+ ;if times and slots are empty, logic will remove availability
+ ;
  N POP,SDAVAIL,I,SDDOWNUM,DOWNUM,EOF,SDTOTALSLOTS,SDDISPPERHR,SDCLINSTARTHR,SDSOH,SLT,IEN,SDCLINDATA,SDSLOTS,SDTIME,SDDATE,TMPINDX
- N SDRETURN,APPTCNT
+ N SDRETURN,APPTCNT,ERRARRAY
  S (POP,SDTOTALSLOTS,APPTCNT)=0
  D VALIDATE
  I 'POP D CREATE(SDCLINIC,SDCLINSTARTHR,SLT,SDDOWNUM)
  I 'POP S SDRETURN("ClinicAvailability","Create")="Pattern Filed"
  D BUILDER
+ K ERRARRAY
  Q
  ;
 VALIDATE ;
@@ -39,47 +42,47 @@ VALIDATE ;
  N STARTTIME,ENDTIME,TMPTIMES
  S TIMES=$G(TIMES)
  S SLOTS=$G(SLOTS)
- I TIMES="" D ERRLOG(52,"Times are missing")
- I SLOTS="" D ERRLOG(52,"Slots are missing")
+ I ((TIMES="")&(SLOTS'=""))!((TIMES'="")&(SLOTS="")) D ERRLOG(52,"Times and slots mismatch")
  I 'POP,$L(TIMES,";")'=$L(SLOTS,";") D ERRLOG(52,"Times and slots mismatch")
  ;
+ I $P(DATES,"9999999",1)="" D ERRLOG(52,"Date Missing.  Must have a date indicated.") Q
  I $P(DATES,"9999999",2)'="" D ERRLOG(52,"Indefinite date indicator must be last") Q
  ;
- F I=1:1:$L(TIMES,";") Q:POP  D
- .S SDTIME=$P(TIMES,";",I)
- .I SDTIME'?4N1"-"4N D ERRLOG(52,"Invalid time format") Q
- .I $P(SDTIME,"-",2)>2400 D ERRLOG(52,"Invalid time format") Q
- .S STARTTIME=$P(SDTIME,"-",1)
- .S ENDTIME=$P(SDTIME,"-",2)
- .I +STARTTIME'<+ENDTIME D ERRLOG(52,"Invalid time format") Q
- .;Do not allow overlapping time frames
- .I $D(TIMES(STARTTIME)) D ERRLOG(52,"Existing entry with same start time") Q
- .; STARTTIME can not fall within the previous segment
- .S TMPINDX=$O(TIMES(STARTTIME),-1)
- .I TMPINDX D  Q:POP
- ..S TMPTIMES=TIMES(TMPINDX)
- ..I +$P(TMPTIMES,"-",2)>+STARTTIME D ERRLOG(52,"Start time overlaps existing segment") Q
- .; ENDTIME can not fall within a prior segment
- .S TMPINDX=$O(TIMES(ENDTIME),-1)
- .I TMPINDX D
- ..S TMPTIMES=TIMES(TMPINDX)
- ..;Current start time is = or > than previous end time
- ..I STARTTIME'<+$P(TMPTIMES,"-",2) Q
- ..; ENDTIME falls within and existing segment
- ..I +$P(TMPTIMES,"-",1)<+ENDTIME D ERRLOG(52,"End time overlaps existing segment") Q
- ..; An existing segment falls within STARTTIME and ENDTIME
- ..I +$P(TMPTIMES,"-",2)<+ENDTIME D ERRLOG(52,"End time overlaps existing segment") Q
- .; Is this time segment consistent with slot duration
- .I '$$CHECKDURATION(STARTTIME,ENDTIME,SLT) D ERRLOG(52,"Time span not consistent with appointment length")
- .;
- .S SDSLOTS=+$P(SLOTS,";",I)
- .I SDSLOTS<1!(SDSLOTS>26) D ERRLOG(125) Q
- .S TIMES(STARTTIME)=SDTIME_"^"_SDSLOTS
- .S SDTOTALSLOTS=SDTOTALSLOTS+SDSLOTS
- ;
- I 'POP,$D(TIMES)'>1 D ERRLOG(52,"No valid time segments passed in")
- ;Can't start prior to clinic opening
- I 'POP,+$O(TIMES(""))<(SDCLINSTARTHR*100) D ERRLOG(52,"Appointments can not start prior to clinic opening")
+ I TIMES'="" D
+ .F I=1:1:$L(TIMES,";") Q:POP  D
+ ..S SDTIME=$P(TIMES,";",I)
+ ..I SDTIME'?4N1"-"4N D ERRLOG(52,"Invalid time format") Q
+ ..I $P(SDTIME,"-",2)>2400 D ERRLOG(52,"Invalid time format") Q
+ ..S STARTTIME=$P(SDTIME,"-",1)
+ ..S ENDTIME=$P(SDTIME,"-",2)
+ ..I +STARTTIME'<+ENDTIME D ERRLOG(52,"Invalid time format") Q
+ ..;Do not allow overlapping time frames
+ ..I $D(TIMES(STARTTIME)) D ERRLOG(52,"Existing entry with same start time") Q
+ ..; STARTTIME can not fall within the previous segment
+ ..S TMPINDX=$O(TIMES(STARTTIME),-1)
+ ..I TMPINDX D  Q:POP
+ ...S TMPTIMES=TIMES(TMPINDX)
+ ...I +$P(TMPTIMES,"-",2)>+STARTTIME D ERRLOG(52,"Start time overlaps existing segment") Q
+ ..; ENDTIME can not fall within a prior segment
+ ..S TMPINDX=$O(TIMES(ENDTIME),-1)
+ ..I TMPINDX D
+ ...S TMPTIMES=TIMES(TMPINDX)
+ ...;Current start time is = or > than previous end time
+ ...I STARTTIME'<+$P(TMPTIMES,"-",2) Q
+ ...; ENDTIME falls within and existing segment
+ ...I +$P(TMPTIMES,"-",1)<+ENDTIME D ERRLOG(52,"End time overlaps existing segment") Q
+ ...; An existing segment falls within STARTTIME and ENDTIME
+ ...I +$P(TMPTIMES,"-",2)<+ENDTIME D ERRLOG(52,"End time overlaps existing segment") Q
+ ..; Is this time segment consistent with slot duration
+ ..I '$$CHECKDURATION(STARTTIME,ENDTIME,SLT) D ERRLOG(52,"Time span not consistent with appointment length")
+ ..;
+ ..S SDSLOTS=+$P(SLOTS,";",I)
+ ..I SDSLOTS<1!(SDSLOTS>26) D ERRLOG(125) Q
+ ..S TIMES(STARTTIME)=SDTIME_"^"_SDSLOTS
+ ..S SDTOTALSLOTS=SDTOTALSLOTS+SDSLOTS
+ .I 'POP,$D(TIMES)'>1 D ERRLOG(52,"No valid time segments passed in")
+ .;Can't start prior to clinic opening
+ .I 'POP,+$O(TIMES(""))<(SDCLINSTARTHR*100) D ERRLOG(52,"Appointments can not start prior to clinic opening")
  ;
  S DATES=$G(DATES)
  S SDDATE=$P(DATES,";",1)
@@ -90,6 +93,7 @@ VALIDATE ;
  .I SDDATE<DT D ERRLOG(71) Q
  .S SDDOWNUM=$$DOW^XLFDT(SDDATE,1),DATES(SDDATE)=""
  .D GETAPPT
+ .I $G(ERRARRAY(SDDATE))=1 D ERRLOG(52,"Pending appointments must be cancelled")
  ;
  I 'POP,$D(DATES)'>1 D ERRLOG(52,"No valid dates passed in") Q
  ;
@@ -104,7 +108,8 @@ VALIDATE ;
  .I SDDOWNUM'=$$DOW^XLFDT(SDDATE,1) D ERRLOG(52,"Schedule days do not match") S EOF=1
  .S DATES(SDDATE)=""
  .D GETAPPT
- I $D(SDRETURN("ClinicAvailability","Appt")) D ERRLOG(52,"Pending appointments must be cancelled")
+ .I $G(ERRARRAY(SDDATE))=1 D ERRLOG(52,"Pending appointments must be cancelled")
+ .;I $D(SDRETURN("ClinicAvailability","Appt")) D ERRLOG(52,"Pending appointments must be cancelled")
  ;
  S SDEAS=$G(SDEAS,"")
  I $L(SDEAS) S SDEAS=$$EASVALIDATE^SDESUTIL(SDEAS)
@@ -119,7 +124,8 @@ GETAPPT ;Check if there are any open appts for this date
  F  S X=$O(JSON("Appt",X)) Q:'X  D
  .I $P(JSON("Appt",X,"Status"),"CANCELLED",2)'="" Q
  .S APPTCNT=APPTCNT+1
- .M SDRETURN("ClinicAvailability","Appt",APPTCNT)=A("Appt",X)
+ .M SDRETURN("ClinicAvailability","Appt",APPTCNT)=JSON("Appt",X)
+ .S ERRARRAY(SDDATE)=1
  Q
 CHECKDURATION(T1,T2,SLT) ;Ensure the appointment lengths align with the time segment
  N H1,H2,M1,M2,SDL,SD1
@@ -247,6 +253,8 @@ OVR ;
  S X1=D,X2=7 D C^%DTC S D=X S POP=0 D:$D(SDIN) CHK2 Q
  ;
 APPCK ;Are there appointments for this time?
+ Q
+ ;Temporary change appointment has already been checked above, quick fix, logic to be removed during rewrite
  F A=D:0 S A=+$O(^SC(DA,"S",A)) Q:A'>0!(A\1-D)  F SDA1=0:0 S SDA1=+$O(^SC(DA,"S",A,1,SDA1)) Q:SDA1'>0  I $P(^SC(DA,"S",A,1,SDA1,0),"^",9)'["C" S POP=1 Q
  Q
 APPERR ;

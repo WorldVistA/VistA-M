@@ -1,5 +1,5 @@
 IBCNERP6 ;DAOU/BHS - eIV PAYER REPORT PRINT ;05-JUN-2002
- ;;2.0;INTEGRATED BILLING;**184,271,416,528**;21-MAR-94;Build 163
+ ;;2.0;INTEGRATED BILLING;**184,271,416,528,737**;21-MAR-94;Build 19
  ;;Per VA Directive 6402, this routine should not be modified.
  ;
  ; eIV - Insurance Verification Interface
@@ -32,6 +32,7 @@ IBCNERP6 ;DAOU/BHS - eIV PAYER REPORT PRINT ;05-JUN-2002
  Q
  ;
  ;
+ ;IB*737/TAZ - Removed reference to Most Popular Payer and "~NO PAYER"
 PRINT(RTN,BDT,EDT,PYR,RDTL,SRT,PGC,PXT,MAX,CRT,IBOUT) ; Print data
  ; Input params: RNT = "IBCNERP4" - routine, BDT = starting dt,
  ;  EDT = ending dt, PYR = payer ien,
@@ -50,10 +51,10 @@ PRINT(RTN,BDT,EDT,PYR,RDTL,SRT,PGC,PXT,MAX,CRT,IBOUT) ; Print data
  I IBOUT="E" D EXHDR
  S SORT1=""
  F  S SORT1=$O(^TMP($J,RTN,SORT1)) Q:SORT1=""  D  Q:$G(ZTSTOP)!PXT
- .  S PRT1=$S(SORT1="~NO PAYER":"* No Payer Identified",1:SORT1)
+ .  S PRT1=SORT1
  .  S SORT2=""
  .  F  S SORT2=$O(^TMP($J,RTN,SORT1,SORT2)) Q:SORT2=""  D  Q:$G(ZTSTOP)!PXT
- .  .  S PRT2=$S(SORT2="~NO PAYER":"* No Payer Identified",1:SORT2)
+ .  .  S PRT2=SORT2
  .  .  S SORT3=""
  .  .  F  S SORT3=$O(^TMP($J,RTN,SORT1,SORT2,SORT3)) Q:SORT3=""  D  Q:$G(ZTSTOP)!PXT
  .  .  .  S CT=CT+1

@@ -1,5 +1,5 @@
 IBCNBLL ;ALB/ARH - Ins Buffer: LM main screen, list buffer entries ;1 Jun 97
- ;;2.0;INTEGRATED BILLING;**82,149,153,183,184,271,345,416,438,435,506,519,528,549,601,595,631,664,668**;21-MAR-94;Build 28
+ ;;2.0;INTEGRATED BILLING;**82,149,153,183,184,271,345,416,438,435,506,519,528,549,601,595,631,664,668,737**;21-MAR-94;Build 19
  ;;Per VA Directive 6402, this routine should not be modified.
  ;
  ; DBIA# 642 for call to $$LST^DGMTU
@@ -21,18 +21,26 @@ EN1(V) ; entry point from view changing actions
 HDR ;  header code for list manager display
  S VALMHDR(1)="Sorted by: "_$P(IBCNSORT,U,2)
  I $P(IBCNSORT,U,3)'="" S VALMHDR(1)=VALMHDR(1)_", """_$P(IBCNSORT,U,3)_""" first"
- I VIEW=1 S VALM("TITLE")="Positive Insurance Buffer",VALMSG="*Verified    +Active" ;IB*2*506/taz Only shows Verified and Active records.
- I VIEW=2 S VALM("TITLE")="Negative Insurance Buffer",VALMSG="*Verified    -N/Active"  ;IB*2*506/taz Only shows Verified and N/Active records.
- I VIEW=3 S VALM("TITLE")="Medicare(WNR) Insurance Buffer",VALMSG="*Verified +Act -N/Act ?Await/R #Unclr !Unable/Send"
+ ; IB*2.0*737/DTG remove '* verified' reference from VALMSG,
+ ;   impacts views 1-3 and 5
+ ; I VIEW=1 S VALM("TITLE")="Positive Insurance Buffer",VALMSG="*Verified    +Active" ;IB*2*506/taz Only shows Verified and Active records.
+ ; I VIEW=2 S VALM("TITLE")="Negative Insurance Buffer",VALMSG="*Verified    -N/Active"  ;IB*2*506/taz Only shows Verified and N/Active records.
+ ; I VIEW=3 S VALM("TITLE")="Medicare(WNR) Insurance Buffer",VALMSG="*Verified +Act -N/Act ?Await/R #Unclr !Unable/Send"
+ ; I VIEW=5 S VALM("TITLE")="e-Pharmacy Buffer",VALMSG="*Verified"     ; IB*2*435
+ I VIEW=1 S VALM("TITLE")="Positive Insurance Buffer",VALMSG="+Active" ;IB*2*506/taz & IB*737 Active policies only
+ I VIEW=2 S VALM("TITLE")="Negative Insurance Buffer",VALMSG="-N/Active"  ;IB*2*506/taz & IB*737 Inactive policies only
+ I VIEW=3 S VALM("TITLE")="Medicare(WNR) Insurance Buffer",VALMSG="+Act -N/Act ?Await/R #Unclr !Unable/Send"  ; IB737 removed *Verified
  I VIEW=4 S VALM("TITLE")="Failure Buffer",VALMSG="!Unable/Send"  ;IB*2*506/taz changed
- I VIEW=5 S VALM("TITLE")="e-Pharmacy Buffer",VALMSG="*Verified"     ; IB*2*435
+ I VIEW=5 S VALM("TITLE")="e-Pharmacy Buffer",VALMSG=""  ; IB*2*435 & IB*737 dropped "*Verified"
  I VIEW=6 S VALM("TITLE")="Complete Buffer",VALMSG=""     ; IB*2*506/taz added
  I VIEW=7 S VALM("TITLE")="TRICARE/CHAMPVA",VALMSG=""   ;528/baa added
  Q
  ;
 INIT ;  initialization for list manager list
  K ^TMP("IBCNBLL",$J),^TMP("IBCNBLLX",$J),^TMP("IBCNBLLY",$J),^TMP($J,"IBCNBLLS"),^TMP($J,"IBCNAPPTS")
- S:$G(IBCNSORT)="" IBCNSORT=$S(VIEW=1:"10^Positive Response",1:"1^Patient Name")
+ ; IB*2.0*737/DTG correct IBCNSORT due to removed "*"
+ ; S:$G(IBCNSORT)="" IBCNSORT=$S(VIEW=1:"10^Positive Response",1:"1^Patient Name")
+ S:$G(IBCNSORT)="" IBCNSORT=$S(VIEW=1:"9^Positive Response",1:"1^Patient Name")
  S IBKEYS=$$GETKEYS(DUZ) ;IB*2*506/taz user must have either IB INSURANCE EDIT or IB GROUP/PLAN EDIT in order to view entries without defined insurance company entries
  D BLD
  Q
@@ -47,7 +55,7 @@ HELP ;  list manager help
  W !,"   E - Patient has Expired"
  W !,"   Y - Means Test Copay Patient"
  W !,"   H - Patient has Bills On Hold"
- W !,"   * - Buffer entry Verified by User"
+ ; W !,"   * - Buffer entry Verified by User"  ; IB*2.0*737 removed
  W !
  D PAUSE^VALM1 I 'Y Q
  W !,"Sources displayed on the screen if they apply to the Buffer entry:"
@@ -86,17 +94,17 @@ HELP ;  list manager help
  I VIEW=1 D
  .W !,"      + - eIV payer response indicates this is an active policy."
  .W !,"      $ - Escalated active policy."
- .W !,"      * - Previously an active policy."
+ .; W !,"      * - Previously an active policy."  ; IB*2.0*737 removed
  .Q
  I VIEW=2 D
  .W !,"      - - eIV payer response indicates this is NOT an active policy."
- .W !,"      * - Previously an not active policy."
+ .; W !,"      * - Previously an not active policy."  ; IB*2.0*737 removed
  .Q
  I $F(",3,6,7,",VIEW) D   ;528/baa
  .W !,"      + - eIV payer response indicates this is an active policy."
  .W !,"      ? - Awaiting electronic reply from eIV Payer."
  .W !,"      $ - Escalated Active policy."
- .W !,"      * - Previously either an active or not active policy."
+ .; W !,"      * - Previously either an active or not active policy."  ; IB*2.0*737 removed
  .W !,"      # - Can not determine from eIV response if coverage is Active."
  .W !,"          Review Response Report. Manual verification required."
  .W !,"      ! - eIV was unable to send an inquiry for this entry."
@@ -170,7 +178,7 @@ BLDLN(IBBUFDA,IBCNT,DFLG) ; build line to display on List screen for one Buffer 
  ; pull the symbol from the symbol function
  ;
  S IBY=$$SYMBOL(IBBUFDA)
- I IBY="*" S IBY=" "  ;528/baa
+ ;I IBY="*" S IBY=" "  ;528/baa ;IB*737/DTG stop '*' verified
  S IBY=IBY_$P($G(^DPT(+DFN,0)),U,1),IBLINE=$$SETSTR^VALM1(IBY,IBLINE,5,20)
  S IBLINE=$$SETSTR^VALM1(DFLG,IBLINE,25,1)
  S IBY=$G(VA("BID")),IBLINE=$$SETSTR^VALM1(IBY,IBLINE,27,4)
@@ -197,7 +205,10 @@ SET(LINE,CNT) ;  set up list manager screen display array
  Q
  ;
 SORT ;  set up sort for list screen
+ ; IB*2.0*737/DTG remove "8^Verified" reference
+ ; Line below is the relationship between the sort order and the external description.
  ;  1^Patient Name, 2^Ins Name, 3^Source Of Info, 4^Date Entered, 5^Inpatient (Y/N), 6^Means Test (Y/N), 7^On Hold, 8^Verified, 9^eIV Status, 10^Positive Response
+ ;  1^Patient Name, 2^Ins Name, 3^Source Of Info, 4^Date Entered, 5^Inpatient (Y/N), 6^Means Test (Y/N), 7^On Hold, 8^eIV Status, 10^Positive Response
  N APPTNUM,IB0,IB20,IB60,IBCNDT,IBBUFDA,IBCNDFN,IBCNPAT,IBCSORT1,IBCSORT2,IBSDA,DFN,VAIN,VA,VAERR,IBX,IBCNT,INAME,SYM,X,Y
  S IBCNT=0
  ;
@@ -218,13 +229,19 @@ SORT ;  set up sort for list screen
  ..I +IBCNSORT=5 I +IBCNDFN S DFN=+IBCNDFN D INP^VADPT S IBCSORT1=$S($G(VAIN(1)):1,1:2)
  ..I +IBCNSORT=6 I +IBCNDFN S IBX=$P($$LST^DGMTU(IBCNDFN),U,4) S IBCSORT1=$S(IBX="C":1,IBX="G":1,1:2)
  ..I +IBCNSORT=7 I +IBCNDFN S IBX=$$HOLD(IBCNDFN) S IBCSORT1=$S(+IBX:1,1:2)
- ..I +IBCNSORT=8 S IBCSORT1=$S(+$P(IB0,U,10):1,1:2)
+ .. ;IB*737 dropped "* verified" sort which was +IBCNSORT=8, changed
+ .. ;  code below where +IBCNSORT=9 & +IBCNSORT=10 is now 8 and 9
+ .. ;  to compensate for dropping "*"
+ ..; I +IBCNSORT=8 S IBCSORT1=$S(+$P(IB0,U,10):1,1:2)  ; IB*737 removed
  ..; Sort by symbol and then within the symbol, sort by date entered
  ..; Build a numerical subscript with format ##.FM date
  ..S SYM=$$SYMBOL(IBBUFDA)
- ..I +IBCNSORT=9 S IBCSORT1=$G(IBCNSORT(1,SYM))_"."_$P(+IB0,".",1),IBCSORT1=+IBCSORT1
+ ..; I +IBCNSORT=9 S IBCSORT1=$G(IBCNSORT(1,SYM))_"."_$P(+IB0,".",1),IBCSORT1=+IBCSORT1  ;IB*737
+ ..; I +IBCNSORT=10 S IBCSORT1=$S(SYM="+":0,1:1),IBCSORT2=IBCNPAT  ;IB*737
  ..;
- ..I +IBCNSORT=10 S IBCSORT1=$S(SYM="+":0,1:1),IBCSORT2=IBCNPAT
+ ..I +IBCNSORT=8 S IBCSORT1=$G(IBCNSORT(1,SYM))_"."_$P(+IB0,".",1),IBCSORT1=+IBCSORT1  ;IB*737
+ ..;
+ ..I +IBCNSORT=9 S IBCSORT1=$S(SYM="+":0,1:1),IBCSORT2=IBCNPAT  ;IB*737
  ..;
  ..S IBCSORT1=$S($G(IBCSORT1)="":"~UNKNOWN",1:IBCSORT1),IBCSORT2=$S(IBCNPAT="":"~UNKNOWN",1:IBCNPAT)
  ..; get future appointments
@@ -252,15 +269,15 @@ INCL(VIEW,SYM,IB0) ;
  I VIEW=4,(SYM="!") S INCL=1 G INCLQ  ;Only failures on Failure view
  I VIEW=1,((SYM="+")!(SYM="$")) S INCL=1 G INCLQ  ;Positive View
  I VIEW=2,(SYM="-") S INCL=1 G INCLQ  ;Negative View
- I SYM="*" D  G INCLQ
- . ;find history in Response file for verified entries.
- . I $$GET1^DIQ(355.33,IBBUFDA,.15)="" S:(VIEW=1) INCL=1 Q  ;IIV PROCESSED DATE field is empty entry is positive
- . S IENS="1,"_$O(^IBCN(365,"AF",IBBUFDA,""))_","
- . ;the following line of code is necessary to check for both "eIV Eligibility Determination" and "IIV Eligibility Determination" (IB*2.0*506)
- . I $$GET1^DIQ(365.02,IENS,.06)["IV Eligibility Determination" Q
- . S IBEBI=$$GET1^DIQ(365.02,IENS,.02)  ;Eligibility/Benefits Info
- . I IBEBI=1 S:(VIEW=1) INCL=1 Q
- . I VIEW=2 S INCL=1 Q
+ ;I SYM="*" D  G INCLQ  ;IB*737/DTG stop '*' verified
+ ;. ;find history in Response file for verified entries.
+ ;. I $$GET1^DIQ(355.33,IBBUFDA,.15)="" S:(VIEW=1) INCL=1 Q  ;IIV PROCESSED DATE field is empty entry is positive
+ ;. S IENS="1,"_$O(^IBCN(365,"AF",IBBUFDA,""))_","
+ ;. ;the following line of code is necessary to check for both "eIV Eligibility Determination" and "IIV Eligibility Determination" (IB*2.0*506)
+ ;. I $$GET1^DIQ(365.02,IENS,.06)["IV Eligibility Determination" Q
+ ;. S IBEBI=$$GET1^DIQ(365.02,IENS,.02)  ;Eligibility/Benefits Info
+ ;. I IBEBI=1 S:(VIEW=1) INCL=1 Q
+ ;. I VIEW=2 S INCL=1 Q
 INCLQ ;
  Q INCL
  ;
@@ -274,7 +291,7 @@ SYMBOL(IBBUFDA) ; Returns the symbol for this buffer entry
  S IB0=$G(^IBA(355.33,IBBUFDA,0)),SYM=""
  I +$P(IB0,U,12) S SYM=$C($P($G(^IBE(365.15,+$P(IB0,U,12),0)),U,2))
  ; If the entry has been manually verified, override the symbol displayed
- I $P(IB0,U,10)'="",'+$P(IB0,U,12) S SYM="*"
+ ;I $P(IB0,U,10)'="",'+$P(IB0,U,12) S SYM="*"  ;IB*737/DTG stop '*' verified
  I SYM="" S SYM=" "
  Q SYM
  ;

@@ -1,5 +1,5 @@
-LA7VIN4A ;DALOI/JMC - Process Incoming UI Msgs, continued ;04/19/16  16:17
- ;;5.2;AUTOMATED LAB INSTRUMENTS;**74,80,88**;Sep 27, 1994;Build 10
+LA7VIN4A ;DALOI/JMC - Process Incoming UI Msgs, continued ;Jun 14, 2022@18:38
+ ;;5.2;AUTOMATED LAB INSTRUMENTS;**74,80,88,101**;Sep 27, 1994;Build 6
  ;
  ;This routine is a continuation of LA7VIN4 and is only called from there.
  Q
@@ -117,8 +117,9 @@ SMUPDT ; Update shipping manifest in shipping event file #62.85
  S LA7NCS(2)=$P(LA7USID,LA7CS,6) ; Alternate coding system
  ;
  ; Determine ordered test, check primary and alternate
- S LA7OTST=$$DOT^LA7SMU1(LA7TST,LA7NCS,LA7UID,$P(LA7SM,"^"))
- I 'LA7OTST,LA7TST(2)'="" S LA7OTST=$$DOT^LA7SMU1(LA7TST(2),LA7NCS(2),LA7UID,$P(LA7SM,"^"))
+ ;LA*5.2*101: Pass in LA7629
+ S LA7OTST=$$DOT^LA7SMU1(LA7TST,LA7NCS,LA7UID,$P(LA7SM,"^"),$G(LA7629))
+ I 'LA7OTST,LA7TST(2)'="" S LA7OTST=$$DOT^LA7SMU1(LA7TST(2),LA7NCS(2),LA7UID,$P(LA7SM,"^"),$G(LA7629))
  ;
  ; Flag the Results Received Event in #62.85
  I LA7MTYP="ORU" D

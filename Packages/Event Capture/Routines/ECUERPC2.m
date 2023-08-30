@@ -1,14 +1,14 @@
-ECUERPC2 ;ALB/JAM  - Event Capture Data Entry Broker Util ;3/6/18  09:26
- ;;2.0;EVENT CAPTURE;**41,39,50,72,134,139,156**;8 May 96;Build 28
+ECUERPC2 ;ALB/JAM  - Event Capture Data Entry Broker Util ;9/1/22  14:13
+ ;;2.0;EVENT CAPTURE;**41,39,50,72,134,139,156,159**;8 May 96;Build 61
  ;
- ; Reference to 2^VADPT supported by ICR #10061
- ; Reference to $$GET^XUA4A72 supported by ICR #1625
- ; Reference to ^DIC(4) supported by ICR #10090
- ; Reference to $$DT^XLFDT) supported by ICR #10103
- ; Reference to LIST^GMPLUTL2 supported by ICR #2741
- ; Reference to DETAIL^GMPLUTL2 supported by ICR #2741
- ; Reference to $$GET1^DIQ supported by ICR #2056
+ ; Reference to 2^VADPT in ICR #10061
+ ; Reference to $$GET^XUA4A72 in ICR #1625
+ ; Reference to ^DIC(4) in ICR #10090
+ ; Reference to $$DT^XLFDT) in ICR #10103
+ ; Reference to LIST^GMPLUTL2,DETAIL^GMPLUTL2 in ICR #2741
+ ; Reference to $$GET1^DIQ in ICR #2056
  ; Reference to ^TMP supported by SACC 2.3.2.5.1
+ ; Reference to $$SINFO^ICDEX,CODEN^ICDEX in ICR #5747
  ;
 ECDOD(RESULTS,ECARY) ;RPC Broker entry point to get a patient's date of death
  ;        RPC: EC DIEDON
@@ -100,9 +100,10 @@ GETPLST(RESULTS,ECARY) ;156 - Broker call entry point to get a patient's problem
  ;          ECSTAT - Status of the problem: Active/Inactive or null
  ;
  ;OUTPUTS  RESULTS - Array of Patient's problems contains
- ;          Problem Status^ICD Code^ICD Code Description^Onset Date^Last Modified Date^Provider^Service
+ ;          Problem Status^ICD Code^ICD Code Description^Onset Date^Last Modified Date^Provider^Service^Current coding flag
  ;
- N ECGMPL,I,ECIEN,ECSTAT,CNT,ICDDESC,PRBLST,GMPL,PRBIEN
+ N ECGMPL,I,ECIEN,ECSTAT,CNT,ICDDESC,PRBLST,GMPL,PRBIEN,CCODESYS,CODEIEN ;159 Added CCODESYS, CODEIEN
+ S CCODESYS=$P($$SINFO^ICDEX("DIAG"),U,3) ; 159 - Get the current coding system
  S ECIEN=$P(ECARY,U),ECSTAT=$P(ECARY,U,2)
  D LIST^GMPLUTL2(.PRBLST,ECIEN,ECSTAT) ;ICR #2741
  I $G(PRBLST(0))<1 S RESULTS="0^No Problem List found for Patient" Q
@@ -111,8 +112,9 @@ GETPLST(RESULTS,ECARY) ;156 - Broker call entry point to get a patient's problem
  . S PRBIEN=$P(PRBLST(CNT),U)
  . K GMPL
  . D DETAIL^GMPLUTL2(PRBIEN,.GMPL) ;ICR #2741
+ . S CODEIEN=$$ICDDX^ICDEX(GMPL("DIAGNOSIS"),GMPL("DTINTEREST"),CCODESYS,"E") ;ICR # 5747 - 159 added DX IEN
  . S ECGMPL(CNT)=$G(GMPL("STATUS"))_U_$G(GMPL("DIAGNOSIS"))_U_$G(GMPL("ICDD"))_U_$G(GMPL("ONSET"))_U_$G(GMPL("MODIFIED"))_U
- . S ECGMPL(CNT)=ECGMPL(CNT)_$G(GMPL("PROVIDER"))_U_$G(GMPL("SERVICE"))
+ . S ECGMPL(CNT)=ECGMPL(CNT)_$G(GMPL("PROVIDER"))_U_$G(GMPL("SERVICE"))_U_$S(GMPL("CSYS")=CCODESYS:1,1:0)_U_CODEIEN ;159 - Adding Current Code Falg and Code IEN
  S ECGMPL(0)=PRBLST(0)
  M ^TMP($J,"ECPLIST")=ECGMPL
  S RESULTS=$NA(^TMP($J,"ECPLIST"))

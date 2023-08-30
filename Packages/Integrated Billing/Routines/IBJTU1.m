@@ -1,5 +1,5 @@
 IBJTU1 ;ALB/ARH - TPI UTILITIES ;2/14/95
- ;;2.0;INTEGRATED BILLING;**39,80,276,451,516,530**;21-MAR-94;Build 71
+ ;;2.0;INTEGRATED BILLING;**39,80,276,451,516,530,745**;21-MAR-94;Build 8
  ;;Per VA Directive 6402, this routine should not be modified.
  ;
 PRVSCR(SCRNARR) ; called as part of a screen ACTION PROTOCOL'S ENTRY ACTION to determine if screen has already been displayed
@@ -24,7 +24,8 @@ HDR(IBIFN,DFN,LNS) ; called by a screens's LIST TEMPLATE HEADER to get lines for
  ; -- first line of screens: BILL NUMBER, PAT NAME, PAT ID, DOB, SUBSCRIBER ID
  N IBBILL,IBPAT,IBPATID,IBDOB,IBSUB,IBPNWDTH,REJFLG S IBCNT=IBCNT+1,(IBSUB,IBPATID)=""
  S IBBILL=$P(IBD0,U,1)_$$ECME^IBTRE(IBIFN)
- S X=$$PT^IBEFUNC(DFN),IBPAT=$P(X,U,1) I $P(X,U,3)'="" S IBPATID=$E(X)_$P(X,U,3)
+ S X=$$PT^IBEFUNC(DFN),IBPAT=$P(X,U,1) ;I $P(X,U,3)'="" S IBPATID=$E(X)_$P(X,U,3)  IB*2.0*745 - SSN Removal
+ ;S X=$$PT^IBEFUNC(DFN),IBPAT=$P(X,U,1) I $P(X,U,3)'="" S IBPATID=$E(X)_$P(X,U,3)  ;IB*2.0*745 - SSN Removal
  S IBDOB="DOB: "_$$DATE^IBJU1($P(IBPD0,U,3))
  I +IBIFN S X=$P(IBDI1,U,2),X=X_$J("",(13-$L(X))),IBSUB="Subsc ID: "_X
  ;

@@ -1,5 +1,5 @@
 IBECEAU2 ;ALB/CPM - Cancel/Edit/Add... User Prompts ; 19-APR-93
- ;;2.0;INTEGRATED BILLING;**7,52,153,176,545,563,614,618,646,663,671,669,653,678,715**;21-MAR-94;Build 25
+ ;;2.0;INTEGRATED BILLING;**7,52,153,176,545,563,614,618,646,663,671,669,653,678,715,734**;21-MAR-94;Build 4
  ;;Per VA Directive 6402, this routine should not be modified.
  ;
 REAS(IBX) ; Ask for the cancellation reason.
@@ -15,7 +15,7 @@ REAS(IBX) ; Ask for the cancellation reason.
  S DIC="^IBE(350.3,",DIC(0)="AEMQZ",DIC("A")="Select "_$S(IBX="E":"EDIT",1:"CANCELLATION")_" REASON: "
  ;
  ;IB*2.0*678 added an Inactive screen to most of the Copays.  Built a new Screen for the UC copays.
- S:'IBUC DIC("S")=$S(IBXA=7:"I 1",IBXA=6:"I $P(^(0),U,3)=3",IBXA=5:"I ($P(^(0),U,3)=1)!($P(^(0),U,3)=3)",1:"I ($P(^(0),U,3)=2)!($P(^(0),U,3)=3)")_",(+($P(^(0),U,6))=0)"
+ S:'IBUC DIC("S")=$S(IBXA=7:"I 1",IBXA=6:"I $P(^(0),U,3)=3",IBXA=5:"I ($P(^(0),U,3)=1)!($P(^(0),U,3)=3)",1:"I ($P(^(0),U,3)=2)!($P(^(0),U,3)=3)")_",(+($P(^(0),U,6))=0)"_",$E($P(^(0),U),1,4)'=""UC -"""  ; IB*2.0*734
  S:IBUC DIC("S")="I ($P(^(0),U,4)=1),(+($P(^(0),U,6))=0)"
  ;end IB*2.0*678
  ;

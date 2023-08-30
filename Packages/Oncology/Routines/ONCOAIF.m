@@ -1,5 +1,5 @@
-ONCOAIF ;Hines OIFO/GWB - [PF Post/Edit Follow-up] ;11/08/10
- ;;2.2;ONCOLOGY;**1,4,5,6**;Jul 31, 2013;Build 10
+ONCOAIF ;HINES OIFO/GWB - [PF Post/Edit Follow-up] ;11/08/10
+ ;;2.2;ONCOLOGY;**1,4,5,6,17**;Jul 31, 2013;Build 6
  ;
 BEG W @IOF,!," Post/Edit Follow-up"
  W !," -------------------",!
@@ -192,7 +192,7 @@ RE ;Recurrence
  I ONCTSCS=9 S ONCTOFRV=$O(^ONCO(160.12,"B",99,"")),ONCRD1F=10
  ;Hard set the nodes since we are within an Input Template when called
  ;so ^DIE not working - there are no X-refs to set
- S $P(^ONCO(165.5,ONCOD0P,5),U,2,5)=ONCTOFRV_"^0^0^0"
+ S $P(^ONCO(165.5,ONCOD0P,5),U,3,5)="0^0^0"
  S $P(^ONCO(165.5,ONCOD0P,27),U,26)=ONCRD1F
  ;
  K ONCRD1F,ONCTOFR,ONCTOFRV,ONCTSDAT,ONCTSIEN,ONCTSCS Q

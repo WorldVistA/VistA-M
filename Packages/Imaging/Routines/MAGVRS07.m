@@ -1,6 +1,6 @@
 MAGVRS07 ;WOIFO/MLH - RPC calls for DICOM file processing ; 15 Apr 2010 4:05 PM
- ;;3.0;IMAGING;**118**;Mar 19, 2002;Build 4525;May 01, 2013
- ;; Per VHA Directive 2004-038, this routine should not be modified.
+ ;;3.0;IMAGING;**118,278**;Mar 19, 2002;Build 138
+ ;; Per VA Directive 6402, this routine should not be modified.
  ;; +---------------------------------------------------------------+
  ;; | Property of the US Government.                                |
  ;; | No permission to copy or redistribute this software is given. |
@@ -23,5 +23,20 @@ INPROC(OUT,PROCIEN,PATIEN,OVERRIDE) ;RPC - inactivate a procedure
  D INACTIVT^MAGVRS41(.OUT,2005.61,PROCIEN,$G(PATIEN),$G(OVERRIDE))
  Q
 FINDPROC(OUT,PROCATTS) ;RPC - find a procedure given attributes
+ D STATUS(.PROCATTS)
  D FINDBYAT^MAGVRS42(.OUT,2005.61,.PROCATTS)
+ Q
+STATUS(PROCATTS) ; STATUS is required; add "STATUS`A" if not passed in
+ N ATT,FOUND
+ S (ATT,FOUND)=0
+ F  S ATT=$O(PROCATTS(ATT)) Q:'ATT!FOUND  D
+ . I $P(PROCATTS(ATT),"`")="STATUS" S FOUND=1
+ ; STATUS was passed in, don't override
+ Q:FOUND
+ ; Find the highest/last attribute subscript
+ S ATT="" F  S ATT=$O(PROCATTS(ATT),-1) Q:ATT=""!$G(ATT)
+ ; Quit if no attributes
+ Q:'ATT
+ ; Default to procedures having STATUS=ACCESSIBLE
+ S PROCATTS(ATT+1)="STATUS`A"
  Q

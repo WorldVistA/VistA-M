@@ -1,5 +1,5 @@
 PSIVEDT ;BIR/MLM - EDIT IV ORDER ;Nov 23, 2021@09:57:57
- ;;5.0;INPATIENT MEDICATIONS;**4,110,127,133,134,181,252,281,366,319,399**;16 DEC 97;Build 64
+ ;;5.0;INPATIENT MEDICATIONS;**4,110,127,133,134,181,252,281,366,319,399,372**;16 DEC 97;Build 153
  ;
  ; Reference to ^PS(53.1 is supported by DBIA 2256.
  ; Reference to ^PS(52.7 is supported by DBIA 2173.
@@ -7,6 +7,7 @@ PSIVEDT ;BIR/MLM - EDIT IV ORDER ;Nov 23, 2021@09:57:57
  ; Reference to ^PS(50.7 is supported by DBIA 2180.
  ; Reference to ^PS(55 is supported by DBIA 2191.
  ; Reference to ^PSSJORDF is supported by DBIA 2418.
+ ; Reference to $$SDEA^XUSER supported by DBIA #2343.
  ;
 EDIT ;
  ;Store the DRG array.  If it changed then to do an OC
@@ -28,6 +29,8 @@ EDIT ;
 1 ; Provider.
  N BKP6 S BKP6="" S:P(6) BKP6=P(6)
 N1 ;
+ N PSADCNT,PSPROV  ; ** Patch 545 **
+ ;
  I $G(P("RES"))="R" I $G(PSJORD)["P",$P($G(^PS(53.1,+$G(ON),0)),"^",24)="R" D  Q
  . W !!?5,"This is Renewal order. Provider may not be edited at this point." D PAUSE^VALM1
  I $G(DFN)&($G(ON)["V") I $$COMPLEX^PSJOE(DFN,ON) D  Q
@@ -35,11 +38,12 @@ N1 ;
  ;*366 - check provider credentials
  S P(6)=$S($$ACTPRO^PSGOE1(+P(6)):P(6),1:"")
  W !,"PROVIDER: "_$S($P(P(6),U,2)]"":$P(P(6),U,2)_"//",1:"") R X:DTIME
- S:'$T X=U S:X=U DONE=1 I $E(X)=U!(X="") Q:P(6)
- I X=U,P(6)="",BKP6]"" S P(6)=BKP6  W $C(7),!!?5,"INVALID PROIVDER." D PAUSE^VALM1 Q
+ S:'$T X=U S:X=U DONE=1 I $E(X)=U!(X="") S PSPROV=+$G(P(6)) G:$$IVDEA(.DRG,PSPROV,.P) N1 Q:P(6)
+ I X=U,P(6)="",BKP6]"" S P(6)=BKP6  W $C(7),!!?5,"INVALID PROVIDER." D PAUSE^VALM1 Q
  Q:X="^"
  I X["???",($E(P("OT"))="I"),(PSIVAC["C") D ORFLDS^PSIVEDT1 G N1
- I X]"" K DIC S DIC=200,DIC(0)="EQMZ",DIC("S")="I $$ACTPRO^PSGOE1(+Y)" D ^DIC K DIC I Y>0 S P(6)=+Y_U_Y(0,0) Q
+ ; Patch 545
+ I X]"" K DIC S DIC=200,DIC(0)="EQMZ",DIC("S")="I $$ACTPRO^PSGOE1(+Y)" D ^DIC K DIC I Y>0 S P(6)=+Y_U_Y(0,0) G:$$IVDEA(.DRG,.Y,.P) N1 Q
  S F1=53.1,F2=1 D ENHLP^PSIVORC1 W $C(7),!!,"A Provider must be entered.",!! G N1
  Q
  ;
@@ -216,3 +220,36 @@ MROL ;
  . . S CT=CT+1,^TMP(MRTFN,$J,CT,0)=ZZ(I),^TMP(MRTFN,$J,"B",I,CT)=""
  Q
  ;
+IVDEA(DRG,PROVIEN,P) ; Check that provider PROVIEN is authorized to prescribe CS schedules in DRG("AD") and DRG("SOL")
+ ;**************************************************************
+ ;***************************************************************
+ ;^PS(52.6:      DRG("AD",0)=1
+ ;               DRG("AD",1)="26^MORPHINE^10 MG^^1^435"
+ ;^PS(52.7:      DRG("SOL",0)=1
+ ;               DRG("SOL",1)="33^DEXTROSE 5%^100 ML^^^196"
+ ;
+ S PSDEAFLG=0
+ Q:'$G(PROVIEN) 0
+ Q:'$D(DRG) 0
+ ;
+ ; Check Additives
+ N SCHDCHK S SCHDCHK=""
+ S ADCNT=0 F  S ADCNT=$O(DRG("AD",ADCNT)) Q:'ADCNT  D
+ .;S PSPPKG=$S(PSJPROT=1:"U",PSJPROT=3:"UI",1:"") Q:PSPPKG=""
+ . N PSADIEN,PSADOI S PSADIEN=+$G(DRG("AD",ADCNT)) Q:'PSADIEN
+ . S PSADOI=$$GET1^DIQ(52.6,PSADIEN,15,"I")
+ . S PSIVDEA=$$OIDEA^PSSOPKI(PSADOI,"I"),PSDEA=$P(PSIVDEA,";",2) I (PSDEA>=2),(PSDEA<=5) S PDEA=$$SDEA^XUSER(,+PROVIEN,PSDEA,,"I")
+ . I ($G(PDEA)=2)!($G(PDEA)=1)!(+$G(PDEA)=4) S PSDEAFLG=+$G(PSDEAFLG)+1,P(6)="",PROVIEN="" D
+ .. I PDEA=2 W !,"Provider not authorized to prescribe medications in Federal Schedule "_PSDEA_".",!,"Please contact the provider.",! Q
+ .. W $C(7),!!,"Provider must have a valid DEA# or VA# to write prescriptions for this drug.",!
+ ;
+ ; Check Solutions
+ S SOLCNT=0 F  S SOLCNT=$O(DRG("SOL",SOLCNT)) Q:'SOLCNT  D
+ .;S PSPPKG=$S(PSJPROT=1:"U",PSJPROT=3:"UI",1:"") Q:PSPPKG=""
+ . N PSADIEN,PSADOI,PDEA S PSADIEN=+$G(DRG("SOL",SOLCNT)) Q:'PSADIEN
+ . S PSADOI=$$GET1^DIQ(52.7,PSADIEN,9,"I")
+ . S PSIVDEA=$$OIDEA^PSSOPKI(PSADOI,"I"),PSDEA=$P(PSIVDEA,";",2) I (PSDEA>=2),(PSDEA<=5) S PDEA=$$SDEA^XUSER(,+PROVIEN,PSDEA,,"I")
+ . I ($G(PDEA)=2)!($G(PDEA)=1)!(+$G(PDEA)=4) S PSDEAFLG=+$G(PSDEAFLG)+1,P(6)="",PROVIEN="" D
+ .. I PDEA=2 W !,"Provider not authorized to prescribe medications in Federal Schedule "_PSDEA_".",!,"Please contact the provider.",! Q
+ .. W $C(7),!!,"Provider must have a valid DEA# or VA# to write prescriptions for this drug.",!
+ Q PSDEAFLG

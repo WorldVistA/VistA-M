@@ -1,5 +1,5 @@
 IBCEOB0 ;ALB/TMP/PJH - 835 EDI EOB MSG PROCESSING ; 8/24/10 7:23pm
- ;;2.0;INTEGRATED BILLING;**135,280,155,431,488,516,633**;21-MAR-94;Build 21
+ ;;2.0;INTEGRATED BILLING;**135,280,155,431,488,516,633,727**;21-MAR-94;Build 34
  ;;Per VA Directive 6402, this routine should not be modified.
  Q
  ;
@@ -11,7 +11,9 @@ LINE() ;Extract Provider Line Reference from 42 record
  F  S SUB=$O(@IBFILE@(SUB)) Q:SUB=""  D  Q:(+NODE>42)!(+NODE=40)
  .S NODE=$G(@IBFILE@(SUB,0))
  .S:NODE["RAW DATA" NODE=$P(NODE," ",3,99)
- .Q:+NODE'=42  S VAL=$P(NODE,U,5)
+ .;Q:+NODE'=42  S VAL=$P(NODE,U,5)  ;WCJ;IB727;sometimes (always) only the first 42 record has piece 5 so grab the last one that is there.
+ .Q:+NODE'=42
+ .S:$P(NODE,U,5)]"" VAL=$P(NODE,U,5)
  Q VAL
  ;
 30(IB0,IBEOB,IBOK) ; Process record type 30 for EOB

@@ -1,5 +1,5 @@
-DGRP6EF ;ALB/TMK,EG,BAJ,JLS,ARF,JAM - REGISTRATION SCREEN 6 FIELDS FOR EXPOSURE FACTORS ;05 Feb 2015  11:06 AM
- ;;5.3;Registration;**689,659,737,688,909,1014,1018,1075,1084**;Aug 13,1993;Build 4
+DGRP6EF ;ALB/TMK,EG,BAJ,JLS,ARF,JAM,ARF - REGISTRATION SCREEN 6 FIELDS FOR EXPOSURE FACTORS ;05 Feb 2015  11:06 AM
+ ;;5.3;Registration;**689,659,737,688,909,1014,1018,1075,1084,1090**;Aug 13,1993;Build 16
  ;
 EN(DFN,QUIT) ; Display Environmental exposure factors/allow to edit
  N I,IND,DG321,DG322,DGCT,DIR,Z,X,Y,DIE,DR,DA,DGNONT
@@ -26,7 +26,7 @@ EN1 D CLEAR^VALM1
  S DGCT=DGCT+1
  S Z=$E(IND)_"1"_$E(IND,2)
  ; DG*5.3*1075; Set flag if eligibility is Verified and ELIGIBILITY STATUS ENTERED BY (#.3616) field = POSTMASTER
- S DGELV=0
+ S DGELV=1 ;DG*5.3*1090 - DGELV is set to 1 to make A/O Exp. and ION no longer editable in VistA regardless of ELIGIBILITY STATUS and ELIGIBILITY STATUS ENTERED BY source
  I $$GET1^DIQ(2,DFN_",",.3611,"I")="V"&($$GET1^DIQ(2,DFN_",",.3616)="POSTMASTER") S DGELV=1
  ; DG*5.3*1075 - If DGELV flag is set, A/O and Rad Exposure (groups 1 and 2) are read-only
  I DGELV S Z="<1>"
@@ -34,12 +34,13 @@ EN1 D CLEAR^VALM1
  ; variables S,L1,L2, & L3 used for dynamic spacing
  S SEL=$P(DG321,U,13),S=$C(32),($P(L1,S,6),$P(L2,S,$S(SEL="O":3,1:2)),$P(L3,S,3))=""
  ; DG*5.3*1018 - Add Blue Water Navy Value "B"
- S TYPE=$S(SEL="B":" (BWN) ",SEL="K":" (DMZ) ",SEL="V":" (VIET)",SEL="O":" (OTH)",1:$J("",7))
+ ; DG*5.3*1090 - Add THAILAND(U.S. OR ROYAL THAI MIL BASE):"THLD", LAOS:"LAOS", CAMBODIA(MIMOT OR KREK,KAMPONG CHAM): "CAMB", GUAM, AMERICAN SAMOA, OR TERRITORIAL WATERS:"GUAM", JOHNSTON ATOLL:"JHST"
+ S TYPE=$S(SEL="B":" (BWN) ",SEL="K":" (DMZ) ",SEL="V":" (VIET)",SEL="O":" (OTH)",SEL="T":" (THLD)",SEL="L":" (LAOS)",SEL="C":" (CAMB)",SEL="G":" (GUAM)",SEL="J":" (JHST)",1:$J("",7))
  S DIR("A",DGCT)=Z_L1_"A/O Exp.: "_$$YN^DGRP6CL(DG321,2)_TYPE_L2_"Reg: "_$$DAT^DGRP6CL(DG321,7,12)_L3_"Exam: "_$$DAT^DGRP6CL(DG321,9,12)
  S Z=$E(IND)_"2"_$E(IND,2)
  I DGELV S Z="<2>"
  S DGCT=DGCT+1,DIR("A",DGCT)=Z_"     ION Rad.: "_$$YN^DGRP6CL(DG321,3)_$J("",8)_"Reg: "_$$DAT^DGRP6CL(DG321,11,12)_"Method: "
- S:$P(DG321,U,12)>7 $P(DG321,U,12)="" S DIR("A",DGCT)=DIR("A",DGCT)_$P($T(SELTBL+$P(DG321,U,12)),";;",2)
+ S:$P(DG321,U,12)>10 $P(DG321,U,12)="" S DIR("A",DGCT)=DIR("A",DGCT)_$P($T(SELTBL+$P(DG321,U,12)),";;",2) ;DG*5.3*1090 increased number of RADIATION EXPOSURE METHOD from 7 to 10
  S Z=$E(IND)_"3"_$E(IND,2)
  ;Env Contam name changed to SW Asia Conditions, DG*5.3*688
  S DGCT=DGCT+1,DIR("A",DGCT)=Z_" SW Asia Cond: "_$$YN^DGRP6CL(DG322,13)_$J("",8)_"Reg: "_$$DAT^DGRP6CL(DG322,14,12)_"  Exam: "_$$DAT^DGRP6CL(DG322,15,11)
@@ -57,10 +58,10 @@ EN1 D CLEAR^VALM1
  S DIR("A",DGCT)=DIR("A",DGCT)_$$YN^DGRP6CL(DG3217CL,1)
  ;
  ; DG*5.3*1075 - If DGELV flag is set display informational message
+ ; DG*5.3*1090 - The display informational message has been updated
  I DGELV D
  . S DGCT=DGCT+1,DIR("A",DGCT)=" "
- . S DGCT=DGCT+1,DIR("A",DGCT)="Eligibility is Verified in VES. Only VES users may enter/edit Agent Orange"
- . S DGCT=DGCT+1,DIR("A",DGCT)="or ION Radiation Exposure."
+ . S DGCT=DGCT+1,DIR("A",DGCT)="Only VES users may enter/edit Agent Orange or ION Radiation Exposure."
  . S DGCT=DGCT+1,DIR("A",DGCT)=" "
  ;
  S DGCT=DGCT+1,DIR("A",DGCT)=" "
@@ -173,6 +174,7 @@ CHKAOEL(DGY) ;DG*5.3*1018;jam; - Screen logic for .3213 (AGENT ORANGE EXPOSURE L
  Q 1
  ;
  ; The following tag is a table of values.  Do not change location of values including null at SELTBL+0
+ ; DG*5.3*1090 - Added ENEWETAK, EXPOS IN PALOMARES B52, and THULE AFB B52 to the SELTBL tag 
 SELTBL ;;
  ;;NO VALUE
  ;;HIROSHIMA/NAGASAKI
@@ -181,6 +183,9 @@ SELTBL ;;
  ;;UNDERGROUND NUCLEAR TEST
  ;;EXP. AT NUCLEAR FACILITY
  ;;OTHER
+ ;;ENEWETAK
+ ;;EXPOS IN PALOMARES B52
+ ;;THULE AFB B52 
 60301 ;;.32102//NO;S:X'="Y" Y="@65";.3213;.32107;.32109;@65;
  ; DG*5.3*1075 - Add "R" to field .3212, making it Required
 60302 ;;.32103//NO;S:X'="Y" Y="@66";.3212R;.32111;@66;

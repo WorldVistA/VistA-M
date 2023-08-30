@@ -1,5 +1,5 @@
-IBCNEHL4 ;DAOU/ALA - HL7 Process Incoming RPI Msgs (cont.) ;26-JUN-2002  ; Compiled December 16, 2004 15:35:46
- ;;2.0;INTEGRATED BILLING;**300,416,438,497,506,519,621**;21-MAR-94;Build 14
+IBCNEHL4 ;DAOU/ALA - HL7 Process Incoming RPI Msgs (cont.) ;26-JUN-2002
+ ;;2.0;INTEGRATED BILLING;**300,416,438,497,506,519,621,743**;21-MAR-94;Build 18
  ;;Per VA Directive 6402, this routine should not be modified.
  ;
  ;**Program Description**
@@ -64,9 +64,9 @@ MSA ;  Process the MSA seg
  .. K DA,DIE,DR
  . S IBTRACK(0,.07)=0
  ; Update record w/info
- S RSUPDT(365,RIEN_",",.09)=TRACE,RSUPDT(365,RIEN_",",.06)=3
+ S RSUPDT(365,RIEN_",",.09)=TRACE,RSUPDT(365,RIEN_",",.06)=3  ;set TRANSMISSION STATUS to 'Response Received'
  S RSUPDT(365,RIEN_",",4.01)=ERTXT
- S VRFDT=$$NOW^XLFDT(),RSUPDT(365,RIEN_",",.07)=VRFDT
+ S VRFDT=$$NOW^XLFDT(),RSUPDT(365,RIEN_",",.07)=VRFDT         ;update 'DATE/TIME RECEIVED'
  ;
  ; Update w/internal values
  D FILE^DIE("I","RSUPDT","ERROR")
@@ -75,7 +75,18 @@ MSA ;  Process the MSA seg
  ;
  ; Update w/external values
  D FILE^DIE("ET","RSUPDT","ERROR")
+ ;
+ D TQCLOSE
 MSAX ;
+ Q
+ ;
+TQCLOSE ;IB*743/CKB 
+ ;For an original response, set the Transmission Queue Status to 'Response Received' &
+ ; update remaining retries to comm failure (5)
+ N RDAT0,RSTYPE,TQN
+ S RDAT0=$G(^IBCN(365,RIEN,0))
+ S TQN=$P(RDAT0,U,5),RSTYPE=$P(RDAT0,U,10)
+ I $G(RSTYPE)="O" D SST^IBCNEUT2(TQN,3),RSTA^IBCNEUT7(TQN)
  Q
  ;
 ERRMSA(TRACE,MGRP) ; Msg Control Id is blank -  Send Mailman error msg
@@ -156,9 +167,9 @@ PID ;  Process the PID seg
  S RSUPDT(365,IENSTR,1.16)=DOD
  S RSUPDT(365,IENSTR,1.08)="v"
  D FILE^DIE("I","RSUPDT","ERROR") Q:$D(ERROR)
- ; IB*2*497 - add the following lines 
- ; the value at NAME OF INSURED (365,13.01) must be validated before it can be filed; pass the 'E' flag to DBS filer
- ; IB*2.0*621/TAZ Only file NAME OF INSURED on regular 271's
+ ; IB*2*497 - the value at NAME OF INSURED (365,13.01) must be validated before it can be filed; pass
+ ;            the 'E' flag to DBS filer
+ ; IB*2.0*621/TAZ Only file NAME OF INSURED on regular 271's (check for EVENTYP)
  I EVENTYP'=1 D
  . K RSUPDT
  . S RSUPDT(365,IENSTR,13.01)=NAME
@@ -176,7 +187,7 @@ GT1 ;  Process the GT1 Guarantor seg
  ;
  N DOB,IENSTR,NAME,RSUPDT,SEX,SSN,SUBIDC
  S NAME=$G(IBSEG(4)),DOB=$G(IBSEG(9)),SEX=$G(IBSEG(10))
- S SSN=$G(IBSEG(13)) ; fsc NO LONGER SENDS SSN for regular 271's
+ S SSN=$G(IBSEG(13)) ; FSC NO LONGER SENDS SSN for regular 271's
  ; 
  S SUBIDC=$G(IBSEG(3))  ; Raw field with sub-comp.
  S SUBID=$P(SUBIDC,$E(HLECH),1)
@@ -216,8 +227,8 @@ GT1 ;  Process the GT1 Guarantor seg
  S RSUPDT(365,IENSTR,5.06)=$P(FLD,HLCMP,6) ; country
  S RSUPDT(365,IENSTR,5.07)=$P(FLD,HLCMP,8) ; country subdivision
  D FILE^DIE("I","RSUPDT","ERROR") Q:$D(ERROR)
- ; IB*2*497 - add the following lines 
- ; the value at NAME OF INSURED (365,13.01) must be validated before it can be filed; pass the 'E' flag to DBS filer
+ ; IB*2*497 - the value at NAME OF INSURED (365,13.01) must be validated before it can be filed; pass
+ ;            the 'E' flag to DBS filer
  K RSUPDT
  S RSUPDT(365,IENSTR,13.01)=NAME
  D FILE^DIE("E","RSUPDT","ERROR")

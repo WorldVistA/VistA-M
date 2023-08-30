@@ -1,5 +1,5 @@
 SDTMPUT0 ;MS/SJA - TELEHEALTH SEARCH UTILITY ;Dec 17, 2020
- ;;5.3;Scheduling;**773,779,812,817,821**;Aug 13, 1993;Build 9
+ ;;5.3;Scheduling;**773,779,812,817,821,832**;Aug 13, 1993;Build 6
  ;Reference to ^DGCN(391.91 supported by IA #4943
  ;
  N II,ARR,CNT,CODE,DEA,DFN,FAC,F407,S407,ICNHA,SIEN,MPI,NODE1,NODE8,NODE99,FICN,SDCL,NODE0,DIV,MCD,INST,INSF
@@ -41,14 +41,14 @@ C ; Search by clinic
  W !,"Provider",?18,": "
  S II=0 F  S II=$O(^SC(+SDCL,"PR",II)) Q:'II  D
  . I $D(^SC(+SDCL,"PR",II,0)) S PNODE=^SC(+SDCL,"PR",II,0) W ?20,+PNODE,"-",$P(^VA(200,+PNODE,0),U),?50,$S($P(PNODE,U,2):" << Default >>",1:""),!
- W:'$O(^SC(+SDCL,"PR",0)) ! W "Medical Division",?18,": ",DIV,"-",$$GET1^DIQ(40.8,DIV,.01)
- W !,"Institution",?18,": ",INST,"-",$$GET1^DIQ(4,INST,.01)
+ W:'$O(^SC(+SDCL,"PR",0)) ! W "Medical Division",?18,": " W:DIV DIV,"-",$$GET1^DIQ(40.8,DIV,.01)
+ W !,"Institution",?18,": " W:INST INST,"-",$$GET1^DIQ(4,INST,.01)
  W !,"Station Number",?18,": ",$$GET1^DIQ(4,INST_",",99,"E")
- W !,"Stop Code",?18,": ",$P(NODE0,U,7),"-",$$GET1^DIQ(40.7,$P(NODE0,U,7),.01)," (",$$GET1^DIQ(40.7,$P(NODE0,U,7),1),")"
- W !,"Credit Stop Code",?18,": ",$P(NODE0,U,18),"-",$$GET1^DIQ(40.7,$P(NODE0,U,18),.01)," (",$$GET1^DIQ(40.7,$P(NODE0,U,18),1),")"
+ W !,"Stop Code",?18,": " I $P(NODE0,U,7) W $P(NODE0,U,7),"-",$$GET1^DIQ(40.7,$P(NODE0,U,7),.01)," (",$$GET1^DIQ(40.7,$P(NODE0,U,7),1),")"
+ W !,"Credit Stop Code",?18,": " I $P(NODE0,U,18) W $P(NODE0,U,18),"-",$$GET1^DIQ(40.7,$P(NODE0,U,18),.01)," (",$$GET1^DIQ(40.7,$P(NODE0,U,18),1),")"
  W !,"CHAR4",?18,": ",CHAR4DSC ;821
- W !,"Country",?18,": ",CTRY,"-",$$GET1^DIQ(779.004,CTRY,.01)
- W !,"Location Timezone",?18,": ",LTZ,"-",$$GET1^DIQ(1.71,LTZ,.01)
+ W !,"Country",?18,": " W:CTRY CTRY,"-",$$GET1^DIQ(779.004,CTRY,.01)
+ W !,"Location Timezone",?18,": " W:LTZ LTZ,"-",$$GET1^DIQ(1.71,LTZ,.01)
  W !,"Timezone Exception",?18,": ",TZEX
  W !,"Overbooks per day",?18,": ",$P(SDSL,U,7)
  W !,"Spec Instructions",?18,":"
@@ -66,9 +66,9 @@ M ; Search by Medical Center Division
  S INSF=$G(^DIC(4,INST,8)),LTZ=$P(INSF,U),CTRY=$P(INSF,U,2),TZEX=$P(INSF,U,3)
  S DEA=$G(^DIC(4,INST,"DEA"))
  W !!,SDASH,!
- W !,"Medical Division",?18,": ",ZD,"-",$$GET1^DIQ(40.8,ZD,.01)
+ W !,"Medical Division",?18,": " W:ZD ZD,"-",$$GET1^DIQ(40.8,ZD,.01)
  W !,"Facility Number",?18,": ",$P(MCD,U,2)
- W !,"Institution",?18,": ",INST,"-",$$GET1^DIQ(4,INST,.01)
+ W !,"Institution",?18,": " W:INST INST,"-",$$GET1^DIQ(4,INST,.01)
  W !,"Facility DEA #",?18,": ",$P(DEA,U)
  W !,"Facility Exp. date",?18,": ",$$FMTE^XLFDT($P(DEA,U,2),2)
  W !,SDASH,!! G M
@@ -85,18 +85,18 @@ I ; search by Institution
  W !!,SDASH,!
  W !,"Name",?18,": ",$TR(FAC,"^","-")
  W !,"City",?18,": ",$P(NODE1,U,3)
- W !,"State",?18,": ",$P(NODE0,U,2),"-",$$GET1^DIQ(5,$P(NODE0,U,2),.01)
+ W !,"State",?18,": " W:$P(NODE0,U,2) $P(NODE0,U,2),"-",$$GET1^DIQ(5,$P(NODE0,U,2),.01)
  W !,"District",?18,": ",$P(NODE0,U,3)
  W !,"VA region IEN",?18,": ",$P(NODE0,U,7)
- W !,"Location Timezone",?18,": ",LTZ,"-",$$GET1^DIQ(1.71,LTZ,.01)
+ W !,"Location Timezone",?18,": " W:LTZ LTZ,"-",$$GET1^DIQ(1.71,LTZ,.01)
  W !,"Timezone Exception",?18,": ",TZEX
- W !,"Country",?18,": ",CTRY,"-",$$GET1^DIQ(779.004,CTRY,.01)
+ W !,"Country",?18,": " W:CTRY CTRY,"-",$$GET1^DIQ(779.004,CTRY,.01)
  W !,"Station #",?18,": ",$P(NODE99,U)
  W !,"Facility DEA #",?18,": ",$P(DEA,U)
  W !,"Facility Exp. date",?18,": ",$$FMTE^XLFDT($P(DEA,U,2),2)
  S II=0 F  S II=$O(^DIC(4,+FAC,7,II)) Q:'II  K ARR D GETS^DIQ(4.014,II_","_+FAC,".01;1","E","ARR") D
- . W !,"Association",?18,": ",II_"-"_ARR(4.014,II_","_+FAC_",",.01,"E")
- . W ?40,"  Parent",": ",II_"-"_ARR(4.014,II_","_+FAC_",",1,"E")
+ . W !,"Association" W:II ?18,": ",II_"-"_ARR(4.014,II_","_+FAC_",",.01,"E")
+ . W ?40,"  Parent",": " W:II II_"-"_ARR(4.014,II_","_+FAC_",",1,"E")
  W !,SDASH,!! G I
  Q
  ;
@@ -169,7 +169,7 @@ N1 S DIC="^VA(389.9,",DIC(0)="AEMQ" D ^DIC K DIC I Y>0 S ^TMP($J,+Y)="",DIC("A")
  . S NODE0=$G(^VA(389.9,II,0))
  . W !,"Number: ",II,?35,"Reference Number: ",$P(NODE0,U)
  . W !,?2,"Effective Date: " I $P(NODE0,U,2) W $$FMTE^XLFDT($P(NODE0,U,2),1)
- . W ?35,"Medical Center Division: " I $P(NODE0,U,3) W $P(NODE0,U,3)_"-",$$GET1^DIQ(40.8,$P(NODE0,U,3),.01)
+ . W ?35,"Medical Center Division: " W:$P(NODE0,U,3) $P(NODE0,U,3)_"-",$$GET1^DIQ(40.8,$P(NODE0,U,3),.01)
  . W !,?2,"Station Number: ",$P(NODE0,U,4),?35,"Inactive: ",$S($P(NODE0,U,6):"Yes",1:"No")
  . W !,?2,"Is Primary Division: ",$S($P(NODE0,U,5):"Yes",1:"No")
  . W !

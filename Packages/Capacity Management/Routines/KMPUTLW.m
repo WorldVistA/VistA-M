@@ -1,12 +1,11 @@
-KMPUTLW ;SP/JML - Manage REST interfaces for VSM Monitors ;6/1/2020
- ;;4.0;CAPACITY MANAGEMENT;**1**;3/1/2018;Build 27
+KMPUTLW ;SP/JML - Manage REST interfaces for VSM Monitors ;2/1/2023
+ ;;4.0;CAPACITY MANAGEMENT;**1,2,3**;3/1/2018;Build 17
  ;
- ; Integration Agreements
- ;  Reference to GETENV^%ZOSV supported by ICR #10097
- ;  Reference to $$SITE^VASITE supported by ICR #10112
+ ; Reference to GETENV^%ZOSV in ICR #10097
+ ; Reference to $$SITE^VASITE in ICR #10112
  ;
 POST(KMPJSON,KMPRLOC,KMPFFLAG,KMPMKEY) ;
- N KMPAKEY,KMPFILE,KMPFN,KMPFQDN,KMPPORT,KMPRESP,KMPREQ,KMPRJSON,KMPSCODE,KMPSTAGE,KMPSTAT
+ N KMPAKEY,KMPFILE,KMPFN,KMPFQDN,KMPPORT,KMPRESP,KMPREQ,KMPRJSON,KMPSCODE,KMPSTAGE,KMPSTAT,KMPETIME,KMPSTIME,KMPSTEXT
  ;
  I $G(KMPMKEY)="" S KMPMKEY="VTCM"
  I KMPJSON.Site="" D SITE(KMPJSON)
@@ -42,11 +41,14 @@ POST(KMPJSON,KMPRLOC,KMPFFLAG,KMPMKEY) ;
  .S KMPSTAT=##class(%File).Delete(KMPFN)
  E  D KMPREQ.EntityBody.Write(KMPJSON.%ToJSON())
  I $D(KMPTEST) W !,KMPJSON.%ToJSON(),!
+ S KMPSTIME=$P($ZTIMESTAMP,",",2)
  S KMPSTAT=KMPREQ.Post(,$G(KMPTEST))
+ S KMPETIME=$P($ZTIMESTAMP,",",2)
  S KMPSCODE=KMPREQ.HttpResponse.StatusCode
+ S KMPSTEXT=$S(+$G(KMPSCODE)>0:KMPREQ.HttpResponse.Data.Read(),1:"")
  I $D(KMPTEST) W !,"Http Response Status Code: ",KMPSCODE,!
  K KMPTEST
- Q KMPSCODE
+ Q KMPSCODE_"^"_KMPSTEXT_"^"_(KMPETIME-KMPSTIME)
  ;
 INFOMSG(KMPVTEXT) ;  Send text POST
  N KMPEMAIL,KMPMSG,KMPI,KMPSERV,KMPSTAT
@@ -62,13 +64,13 @@ INFOMSG(KMPVTEXT) ;  Send text POST
  D KMPMSG.TextData.Write(" "_$c(13))
  S KMPI=0
  F  S KMPI=$o(KMPVTEXT(KMPI)) q:+KMPI=0  D
- .D KMPMSG.TextData.WriteLine(KMPVTEXT(KMPI)_$C(13))
+ .D KMPMSG.TextData.WriteLine("   "_KMPVTEXT(KMPI))
  D KMPMSG.TextData.Write(" "_$c(13))
- D KMPMSG.TextData.WriteLine("Site Name: "_$P(KMPSINF,"^",1)_$C(13))
- D KMPMSG.TextData.WriteLine("Site Number: "_$P(KMPSINF,"^",2)_$C(13))
- D KMPMSG.TextData.WriteLine("Site Domain: "_$P(KMPSINF,"^",3)_$C(13))
- D KMPMSG.TextData.WriteLine("Prod/Test: "_$P(KMPSINF,"^",4)_$C(13))
- D KMPMSG.TextData.WriteLine("Site Code: "_$P(KMPSINF,"^",5)_$C(13))
+ D KMPMSG.TextData.WriteLine("Site Name: "_$P(KMPSINF,"^",1))
+ D KMPMSG.TextData.WriteLine("Site Number: "_$P(KMPSINF,"^",2))
+ D KMPMSG.TextData.WriteLine("Site Domain: "_$P(KMPSINF,"^",3))
+ D KMPMSG.TextData.WriteLine("Prod/Test: "_$P(KMPSINF,"^",4))
+ D KMPMSG.TextData.WriteLine("Site Code: "_$P(KMPSINF,"^",5))
  S KMPSERV=##class(%Net.SMTP).%New()
  S KMPSERV.smtpserver="smtp.domain.ext"
  S KMPSTAT=KMPSERV.Send(KMPMSG)
@@ -166,16 +168,17 @@ PACKAGES(KMPJSON) ; Get data from PACKAGE file
 SITE(KMPJSON) ;
  N KMPINST,KMPNDTYP,KMPNODE,KMPSINF,KMPSITE,KMPSYS,%,Y
  D NOW^%DTC
- S KMPSITE=$$SITE^VASITE($P(%,".")) ;IA 10112
+ S KMPSITE=$$SITE^VASITE($P(%,".")) ;supported by ICR #10112
  S KMPSINF=$$SITEINFO^KMPVCCFG()
  S KMPSYS=$$SYSCFG^KMPVCCFG()
  S KMPSITE=##class(%DynamicObject).%New()
  S KMPSITE.SiteName=$P(KMPSINF,"^"),KMPSITE.SiteNum=$P(KMPSINF,"^",2),KMPSITE.SiteDomain=$P(KMPSINF,"^",3)
  S KMPSITE.SiteCode=$P(KMPSINF,"^",5),KMPSITE.Production=$P(KMPSINF,"^",4) ; ,KMPSITE.Date=$P($$TSTAMP($H,"HOROLOG",1),"^")
  S KMPSITE.Cache=$P(KMPSYS,"^",1),KMPSITE.OS=$P(KMPSYS,"^",2),KMPSITE.CacheVersion=$P(KMPSYS,"^",3)
- D GETENV^%ZOSV S KMPNODE=$P(Y,U,3)_":"_$P($P(Y,U,4),":",2) ;  IA 10097
+ D GETENV^%ZOSV S KMPNODE=$P(Y,U,3)_":"_$P($P(Y,U,4),":",2) ;supported by ICR #10097
  S KMPINST=$P(KMPNODE,":",2),KMPNDTYP=$$NODETYPE^KMPUTLW(KMPINST)
- I KMPNDTYP="BE" S KMPSITE.BackendNode=$p(KMPNODE,":")
+ S KMPSITE.NodeType=KMPNDTYP,KMPSITE.Node=$p(KMPNODE,":")
+ I KMPNDTYP="BE" S KMPSITE.BackendNode=$P(KMPNODE,":")
  S KMPIEN=$O(^KMPV(8969,"B","VTCM",""))
  S KMPSITE.StartPerfmon=$$GETVAL^KMPVCCFG("VTCM","START PERFMON",8969)
  S KMPJSON.Site=KMPSITE

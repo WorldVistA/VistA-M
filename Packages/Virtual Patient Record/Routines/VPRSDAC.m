@@ -1,15 +1,29 @@
-VPRSDAC ;SLC/MKB -- SDA Consult utilities ;10/25/18  15:29
- ;;1.0;VIRTUAL PATIENT RECORD;**14,25**;Sep 01, 2011;Build 12
+VPRSDAC ;SLC/MKB -- SDA Consult/CP utilities ;10/25/18  15:29
+ ;;1.0;VIRTUAL PATIENT RECORD;**14,25,31**;Sep 01, 2011;Build 3
  ;;Per VHA Directive 6402, this routine should not be modified.
  ;
  ; External References          DBIA#
  ; -------------------          -----
+ ; %DT                          10003
  ; DIQ                           2056
+ ; GMRCAPI                       6082
  ; GMRCGUIB                      2980
+ ; GMRCSLM1, ^TMP("GMRCR",$J)    2740
  ; ICDEX                         5747
  ; ICPTCOD                       1995
  ; LEXTRAN                       4912
+ ; MDPS1,^TMP("MDHSP",$J)        4230
  ; TIULQ                         2693
+ ;
+QRY ; -- Consult/Request Tracking query
+ ; Expects DSTRT, DSTOP, DMAX from DDEGET and returns DLIST(#)=ien
+ N VPRN,VPRX,GMRCDA,GMRCGRP,GMRCSEX,TITLE
+ D OER^GMRCSLM1(DFN,"",DSTRT,DSTOP,"") S VPRN=0
+ F  S VPRN=$O(^TMP("GMRCR",$J,"CS",VPRN)) Q:VPRN<1!(VPRN>DMAX)  D
+ . S VPRX=$G(^TMP("GMRCR",$J,"CS",VPRN,0)) Q:+VPRX<1
+ . S DLIST(VPRN)=+VPRX
+ K ^TMP("GMRCR",$J,"CS")
+ Q
  ;
 GMRC1(IEN) ; -- Referral ID Action
  K VPRCONS,VPRCACT,VPRIFC S IEN=+$G(IEN)
@@ -52,6 +66,18 @@ PDTXT ; -- return ProvDx free text
  S DDEOUT=1
  Q
  ;
+DOCS ; - get related documents, returns DLIST(#)=8925 ien
+ N VPRI,VPRX
+ S VPRI=0 F  S VPRI=$O(VPRCONS(50,VPRI)) Q:VPRI<1  S VPRX=+$G(VPRCONS(50,VPRI)) S:$$COMP^VPRSDAT(VPRX) DLIST(VPRI)=VPRX_";TIU"
+ I '$D(DLIST),$$DISS S DLIST(1)=$$NULL^VPRSDA ;delete value
+ Q
+ ;
+DISS() ; -- return 1 or 0, if result removed
+ N I,Y S Y=0
+ S I=0 F  S I=$O(VPRCACT(I)) Q:I<1  D  Q:Y
+ . I $P($G(VPRCACT(I,0)),U,2)="DISASSOCIATE RESULT" S Y=1
+ Q Y
+ ;
 GETACT(IEN) ; -- return DLIST(DA)='DA,IEN' of activity log entries
  N I,X,X0,CNT,TIU,ACT S IEN=+$G(IEN) Q:IEN<1
  D:'$O(VPRCACT(0)) ACT^GMRCAPI(.VPRCACT,IEN)
@@ -62,13 +88,25 @@ GETACT(IEN) ; -- return DLIST(DA)='DA,IEN' of activity log entries
  . S DLIST(I)=I_","_IEN,CNT=CNT+1
  Q
  ;
+ ;
+CPQRY ; -- Clinical Procedures query [not in use]
+ ; Expects DSTRT, DSTOP, DMAX from DDEGET and returns DLIST(#)=ien
+ Q  N VPRN,VPRX,I,ID S VPRN=0
+ D MDPS1^VPRDJ03(DFN,DSTRT,DSTOP,DMAX) ;gets ^TMP("MDHSP",$J)
+ S I=0 F  S I=$O(^TMP("MDHSP",$J,I)) Q:I<1  S VPRX=$G(^(I)) I $P(VPRX,U,3)="PR702" D  Q:VPRN'<DMAX
+ . Q:'$P(VPRX,U,14)  ;no document yet (so no enc#)
+ . S ^TMP("MDHSP",$J,"IEN",+$P(VPRX,U,2))=I
+ . S VPRN=VPRN+1,DLIST(VPRN)=+$P(VPRX,U,2)
+ ;K ^TMP("MDHSP",$J)
+ Q
+ ;
 CP1(IEN) ; -- get MD nodes for procedure [ID Action]
  ; VPRCP = ^TMP("MDHSP",$J,I)
  ; VPRCN = ^GMR(123,consult,0)
  ; VPRTIU(field#,"I") = TIU data field
  I '$D(^TMP("MDHSP",$J)) D
  . S:'DFN DFN=+$$GET1^DIQ(702,IEN,.01,"I")
- . N DLIST D CPROCS^VPRSDAQ
+ . N DLIST D CPQRY
  S I=+$G(^TMP("MDHSP",$J,"IEN",IEN)),VPRCP=$G(^TMP("MDHSP",$J,I))
  I VPRCP="" S DDEOUT=1 Q
  ; undo date formatting

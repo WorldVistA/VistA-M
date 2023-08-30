@@ -1,8 +1,9 @@
-PSGOD ;BIR/CML3 - CREATES NEW ORDER FROM OLD ONE ;Jul 27, 2020@09:22:09
- ;;5.0;INPATIENT MEDICATIONS;**67,58,111,133,181,286,281,315,338,256,347,367,327,399**;16 DEC 97;Build 64
+PSGOD ;BIR/CML - CREATES NEW ORDER FROM OLD ONE ;Jul 27, 2020@09:22:09
+ ;;5.0;INPATIENT MEDICATIONS;**67,58,111,133,181,286,281,315,338,256,347,367,327,399,372**;16 DEC 97;Build 153
  ;Per VHA Directive 2004-038, this routine should not be modified.
  ; Reference to ^PS(55 is supported by DBIA 2191.
- ; Reference to ^YSCLTST5 is supported by DBIA# 7188.
+ ; Reference to ^YSCLTST5 is supported by DBIA 7188.
+ ; Reference to $$SDEA^XUSER supported by DBIA 2343
  ;
  ;*286 - Do not allow copied Unit Dose orders for outpatients
  D INP^VADPT I 'VAIN(4) W !,"You cannot copy Unit Dose orders for this patient!" H 2 Q
@@ -31,6 +32,13 @@ PSGOD ;BIR/CML3 - CREATES NEW ORDER FROM OLD ONE ;Jul 27, 2020@09:22:09
  K PSGODN S F=$S(PSGORD["P":"^PS(53.1,"_+PSGORD_",",1:"^PS(55,"_PSGP_",5,"_+PSGORD_",") F N=0,.2,2,2.1,6 S PSGODN(N)=$G(@(F_N_")"))
  S PSGPR=$P(PSGODN(0),"^",2),PSGMR=$P(PSGODN(0),"^",3),PSGSM=$P(PSGODN(0),"^",5),PSGHSM=$P(PSGODN(0),"^",6),PSGST=$P(PSGODN(0),"^",7)
  S PSGPDRG=+PSGODN(.2),PSGDO=$P(PSGODN(.2),"^",2)
+ ;
+ ;*372
+ I $G(PSGPDRG) N PDEA S PDEA="" D  I (PDEA=1)!(PDEA=2)!(+PDEA=4) D PAUSE^VALM1 G ORIG
+ . N PSJDEA S PSJDEA=$$OIDEA^PSSOPKI(PSGPDRG,"U"),PSJDEA=$P(PSJDEA,";",2)
+ . I PSJDEA S PDEA=$$SDEA^XUSER(,+PSGPR,PSJDEA,,"I") I (PDEA=1)!(PDEA=2)!(+PDEA=4) D
+ .. W !!,"Provider not authorized to prescribe medications in Federal Schedule "_PSJDEA_".",!,"Please contact the provider.",!
+ ;
  ;*315
  S:$G(PSGODN(2.1))]"" PSGDUR=+PSGODN(2.1),PSGRMVT=$P(PSGODN(2.1),U,2),PSGRMV=$P(PSGODN(2.1),U,3),PSGRF=$P(PSGODN(2.1),U,4)
  S PSGSI=PSGODN(6)

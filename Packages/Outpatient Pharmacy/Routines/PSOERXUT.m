@@ -1,5 +1,5 @@
 PSOERXUT ;ALB/MR - eRx CS utilities ;7/21/2020 9:57am
- ;;7.0;OUTPATIENT PHARMACY;**617,667,651**;DEC 1997;Build 30
+ ;;7.0;OUTPATIENT PHARMACY;**617,667,651,718**;DEC 1997;Build 2
  Q
  ;
 CSFILTER(ERXIEN) ; Check eRx against CS Filter Prompt Answers
@@ -91,7 +91,7 @@ PRDRVAL(RESULT,ACTION,ERXIEN,PROVIEN,DRUGIEN) ; API used to Verify Provider and 
  . . I ACTION="VP"!(ACTION="AC") D SUFFWARN(.RESULT,ERXPRDEA,$S($L($G(VADEADSP)):VADEADSP,1:VADEANUM),1) S RESULT="0^B" Q
  . I '$O(RESULT(0)) S RESULT=1 Q
  . ; VistA Drug is not Selected or it is not a CS Drug
- . I ACTION="EP"!(ACTION="VP"),'VACSDRUG D  Q
+ . I ACTION="EP"!(ACTION="VP")!(ACTION="AC"),'VACSDRUG D  Q  ;p718 add accept action
  . . S RESULT="0^W"
  . ; Editing Provider, VistA Drug is CS or Detox, Warning (soft stop) 
  . I ACTION="EP" D  Q

@@ -1,5 +1,5 @@
 IBECEA3 ;ALB/CPM - Cancel/Edit/Add... Add a Charge ;30-MAR-93
- ;;2.0;INTEGRATED BILLING;**7,57,52,132,150,153,166,156,167,176,198,188,183,202,240,312,402,454,563,614,618,646,651,656,663,677,678,682,728**;21-MAR-94;Build 14
+ ;;2.0;INTEGRATED BILLING;**7,57,52,132,150,153,166,156,167,176,198,188,183,202,240,312,402,454,563,614,618,646,651,656,663,677,678,682,728,716**;21-MAR-94;Build 19
  ;;Per VA Directive 6402, this routine should not be modified.
  ;
 ADD ; Add a Charge protocol
@@ -287,6 +287,10 @@ EV ; - find event record, or select admission for linkage
  ;
 PROC ; - okay to proceed?
  N IBRES,IBBILL  ; IB*2.0*682
+ I 'IBUC,IBXA'=9,$$INDCHK^IBINUT1($S($G(IBTO)>0:IBTO,1:IBFR),DFN) D  G ADDQ  ; IB*2.0*716
+ .W !!,"The patient is exempt from this copayment due to Indian Attestation."
+ .W !,"This patient's Indian Attestation Benefit Start date is ",$$FMTE^XLFDT($P($$INDGET^IBINUT1(DFN),U,2),"2Z")
+ .Q
  D PROC^IBECEAU4("add") G:IBY<0 ADDQ
  ;
  ; - build the event record first if necessary

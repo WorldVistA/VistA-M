@@ -1,5 +1,5 @@
 IBCAPP2 ;ALB/GEF - Claims Auto Processing ;14-OCT-10
- ;;2.0;INTEGRATED BILLING;**432,447,516,547**;21-MAR-94;Build 119
+ ;;2.0;INTEGRATED BILLING;**432,447,516,547,727**;21-MAR-94;Build 34
  ;;Per VA Directive 6402, this routine should not be modified.
  ;
  ; IBMRANOT = 1 when dealing with the COB Management Worklist.   
@@ -142,7 +142,7 @@ MELG(IBIFN,IBMRADUP) ; function to check all EOBs for a claim and determine if t
  .S IBDA=0 F  S IBDA=$O(^IBM(361.1,IBEOBNDX,IBIFN,IBDA)) Q:'+IBDA  D
  ..Q:$D(IBEOB(IBDA))
  ..S IB3611=$G(^IBM(361.1,IBDA,0)),IBCK=IBCK+1
- ..Q:$D(^IBM(361.1,IBDA,"ERR"))
+ ..;Q:$D(^IBM(361.1,IBDA,"ERR")) ;TPF;EBILL-2436;IB*2.0*727 ALLOW EOB CLAIMS WITH MSE TO BE DISPLAYED AGAIN ON CBW
  ..; if this is a denied EOB and user does NOT want to include denied as duplicates and this EOB was denied as duplicate, don't include
  ..I $P(IB3611,U,13)=2,'$G(IBMRADUP),$$DENDUP^IBCEMU4(IBDA,1) Q
  ..; eob type must be correct for this worklist
@@ -167,3 +167,20 @@ RMV(DA) ;remove from worklist claims that are erroneously there
  S DIE="^DGCR(399,",DR="35////@" D ^DIE ; Should never have been on the WORKLIST
  Q
  ;
+FILERR(IBIFN) ; function to check EOBs for a claim to see if any had filing errors.
+ ; IBIFN - claim ien (required)
+ ;
+ ; Returns 0 if none of EOBs had filing errors
+ ; Returns 1 if at lease one of EOBs had filing errors
+ ;
+ N IBDA,IBEOBNDX,IBEOB,IB3611,IBFILERR
+ S IBFILERR=0
+ F IBEOBNDX="B","C" D
+ . S IBDA=0 F  S IBDA=$O(^IBM(361.1,IBEOBNDX,IBIFN,IBDA)) Q:'+IBDA  D  Q:IBFILERR
+ .. Q:$D(IBEOB(IBDA))
+ .. S IBEOB(IBDA)=""
+ .. S IB3611=$G(^IBM(361.1,IBDA,0))
+ .. ; I $P(IB3611,U,4)=1 Q  ; don't care about MRAs ; I take that back, I do care about MRAs 
+ .. I ".1.2."'[("."_$P(IB3611,U,13)_".") Q  ;  only care if processed (1) or denied  (2)
+ .. I $D(^IBM(361.1,IBDA,"ERR")) S IBFILERR=1 Q
+ Q IBFILERR

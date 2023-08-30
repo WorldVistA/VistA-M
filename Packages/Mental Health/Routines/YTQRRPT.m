@@ -1,12 +1,11 @@
 YTQRRPT ;SLC/LLH - Report Builder ; 08/13/2018
- ;;5.01;MENTAL HEALTH;**130,141,172**;Dec 30, 1994;Build 10
+ ;;5.01;MENTAL HEALTH;**130,141,172,218**;Dec 30, 1994;Build 9
  ;
- ; External Reference    ICR#
- ; ------------------   -----
- ; DIQ                   2056
- ; XLFDT                10103
- ; XLFNAME               3065
- ; XLFSTR               10104
+ ; Reference to DIQ in ICR #2056
+ ; Reference to VADPT in ICR #10061
+ ; Reference to XLFDT in ICR #10103
+ ; Reference to XLFNAME in ICR #3065
+ ; Reference to XLFSTR in ICR #10104
  ;
 BLDRPT(RESULTS,ADMIN,MAXWIDTH) ;
  N ADATA,ANS,INST,LP,PDATA,RPT,RSTR,SCL,SWAP,YSDATA,YS,TSTNM
@@ -100,20 +99,22 @@ ADMINFO(ADATA,ADMIN) ;
  S ADATA("LOC")=$$TITLE^XLFSTR($$GET1^DIQ(601.84,ADMIN_",",13))   ;Location
  Q
 PATINFO(PDATA,DFN) ;
- N YS,YSDATA,MYNAME,DOB
+ N MYNAME,DOB
  I '$G(DFN) Q
- S YS("DFN")=DFN
  S MYNAME("FILE")=2
  S MYNAME("FIELD")=.01
  S MYNAME("IENS")=DFN_","
- D PATSEL^YTQAPI9(.YSDATA,.YS)
- S DOB=$P(YSDATA(4),U,2),$E(DOB,2,3)=$$LOW^XLFSTR($E(DOB,2,3))
  S PDATA("NM")=$$NAMEFMT^XLFNAME(.MYNAME,"F","MCXc")
- S PDATA("SSN")="xxx-xx-"_$P($P(YSDATA(3),U,2),"-",3)
+ D DEM^VADPT
+ S PDATA("SSN")="xxx-xx-"_VA("BID")
+ S DOB=$P(VADM(3),U,2),$E(DOB,2,3)=$$LOW^XLFSTR($E(DOB,2,3))
  S PDATA("DOB")=DOB
- S PDATA("AGE")=$P(YSDATA(5),U)
- S PDATA("GENDER")=$$SENTENCE^XLFSTR($P(YSDATA(6),U,2))
- K VA
+ S PDATA("AGE")=$P(VADM(4),U)
+ I $L($P($G(VADM(14,5)),U,2)) D
+ . S PDATA("GENDER")=$P(VADM(14,5),U)
+ E  D
+ . S PDATA("GENDER")=$$SENTENCE^XLFSTR($P(VADM(5),U,2))
+ D KVA^VADPT
  Q
 SWAPIT ;
  N LP,TXT

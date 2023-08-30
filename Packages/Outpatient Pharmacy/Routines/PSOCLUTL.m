@@ -1,5 +1,5 @@
 PSOCLUTL ;BHAM ISC/DMA - utilities for clozapine reporting system ;4 Oct 2019 12:29:40
- ;;7.0;OUTPATIENT PHARMACY;**28,56,122,222,268,457,574,612,621**;DEC 1997;Build 13
+ ;;7.0;OUTPATIENT PHARMACY;**28,56,122,222,268,457,574,612,621,545**;DEC 1997;Build 270
  ;External reference ^YSCL(603.01 supported by DBIA 2697
  ;External reference ^PS(55 supported by DBIA 2228
  ;
@@ -98,8 +98,11 @@ AGAIN ; re-enter patient - new number, status and provider
  S PSO3=$$GET1^DIQ(55,PSO1,54,"I")
 PHY1 ;
  S DIR(0)="55,57" D ^DIR G END:$D(DIRUT) I Y S PSO4=+Y
- I $$GET1^DIQ(200,PSO4,53.2)="" D  G PHY1
- . W !!,"Only providers with DEA numbers entered in the New Person",!,"file can register patients in this program.",!!
+ ;I $$GET1^DIQ(200,PSO4,53.2)="" D  G PHY1
+ ;. W !!,"Only providers with DEA numbers entered in the New Person",!,"file can register patients in this program.",!!
+ ;*545
+ I $$DEA^XUSER(0,PSO4)="" D  G PHY1
+ .W !!,"Only providers with DEA numbers entered in the New Person",!,"file can register patients in this program.",!!
  I $$GET1^DIQ(55,PSO1,53)=PSO2,$$GET1^DIQ(55,PSO1,57,"I")=PSO4 D  G END
  . W !!?5,"No changes made.",$C(7),!
  G SAVE
@@ -121,8 +124,11 @@ CLOZPAT ;VERIFY PATIENT IS A CLOZAPINE PATIENT
  ;
 PROVCHK(PROV) ;
  N PSJQUIT S (ANQX,PSJQUIT)=0 I '$G(PROV) Q
- I '$L($$DEA^XUSER(,PROV)) S (ANQX,PSJQUIT)=1 D  Q
- .W !," ",!,"*** Provider must have a DEA# or VA# to write prescriptions for this drug."
+ ;I '$L($$DEA^XUSER(,PROV)) S (ANQX,PSJQUIT)=1 D  Q
+ ;.W !," ",!,"*** Provider must have a DEA# or VA# to write prescriptions for this drug."
+ ;*545
+ I $$DEA^XUSER(0,PROV)']"" S (ANQX,PSJQUIT)=1 D  Q
+ .W !!,"Only providers with DEA numbers entered in the New Person",!,"file can register patients in this program.",!!
  I '$$FIND1^DIC(200.051,","_PROV_",","X","YSCL AUTHORIZED") S (ANQX,PSJQUIT)=1 D
  .W !," ",!,"*** Provider must hold YSCL AUTHORIZED key to write prescriptions for clozapine."
  Q

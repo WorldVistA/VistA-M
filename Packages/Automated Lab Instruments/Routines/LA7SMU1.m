@@ -1,5 +1,5 @@
-LA7SMU1 ;DALOI/JMC - Shipping Manifest Utility (Cont'd) ;04/13/10  15:09
- ;;5.2;AUTOMATED LAB INSTRUMENTS;**27,46,65,64,74**;Sep 27, 1994;Build 229
+LA7SMU1 ;DALOI/JMC - Shipping Manifest Utility (Cont'd) ;Jun 14, 2022@18:38
+ ;;5.2;AUTOMATED LAB INSTRUMENTS;**27,46,65,64,74,101,103**;Sep 27, 1994;Build 3
  ;
  Q
  ;
@@ -140,12 +140,13 @@ SHIPCK(LA7UID,LA7AA,LA760,LA7628) ; Determine if test previously shipped and sti
  Q LA7FLAG
  ;
  ;
-DOT(LA7CODE,LA7NCS,LA7UID,LA7628) ; Determine ordered tests
+DOT(LA7CODE,LA7NCS,LA7UID,LA7628,LA7629) ; Determine ordered tests
  ;
  ; Call with LA7CODE = Test code to look up
  ;            LA7NCS = name of coding system
  ;            LA7UID = accession's UID
  ;            LA7628 = ien of shipping manifest in #62.8
+ ;            LA7629 = ien of shipping configuration in #62.9
  ;
  ; Returns     LA760 = ien of test entry in file #60 if found
  ;
@@ -156,8 +157,10 @@ DOT(LA7CODE,LA7NCS,LA7UID,LA7628) ; Determine ordered tests
  N LA760,LA764,LA7I,LA7X,LA7Y
  ;
  S (LA760,LA764)=0
- ; Quit if no code, UID or configuration passed.
- I $G(LA7CODE)=""!($G(LA7UID)="")!($G(LA7628)="") Q LA760
+ ;LA*5.2*101: Delete requirement that LA7628 variable
+ ;            be passed in.
+ ; Quit if no code or UID passed.
+ I $G(LA7CODE)=""!($G(LA7UID)="") Q LA760
  ;
  ; Using NLT codes
  I $G(LA7NCS)="99VA64" S LA764=+$O(^LAM("E",LA7CODE,0))
@@ -166,7 +169,8 @@ DOT(LA7CODE,LA7NCS,LA7UID,LA7628) ; Determine ordered tests
  I 'LA764,$D(^LAM("E",LA7CODE)) S LA764=+$O(^LAM("E",LA7CODE,0))
  ;
  S LA7I=0
- F  S LA7I=$O(^LAHM(62.8,LA7628,10,"UID",LA7UID,LA7I)) Q:'LA7I  D  Q:LA760
+ ;LA*5.2*101: Add check as to whether shipping manifest (LA7628) was passed.
+ I LA7628]"" F  S LA7I=$O(^LAHM(62.8,LA7628,10,"UID",LA7UID,LA7I)) Q:'LA7I  Q:LA760  D
  . S LA7X=$G(^LAHM(62.8,LA7628,10,LA7I,0))
  . S LA7Y=$P(LA7X,"^",2)
  . ; Found match on NLT code
@@ -174,8 +178,66 @@ DOT(LA7CODE,LA7NCS,LA7UID,LA7628) ; Determine ordered tests
  . ; Found match on non-VA code
  . I LA7CODE=$P($G(^LAHM(62.8,LA7628,10,LA7I,5)),"^") S LA760=LA7Y
  ;
+ ;LA*5.2*101: If ordered test IEN has not yet been determined, try further.
+ ;This section is necessary if no shipping manifest identifier was sent by
+ ;the host site or there is no match for the tests on the shipping manifest
+ ;identifier. This could occur for reflex scenarios or when the host site
+ ;is not a VistA site.
+ I 'LA760 D
+ . N LA7STRX,LA7AAX,LA7ADX,LA7ANX,LA7TSTX,LA7629TX
+ . S LA7STRX=$Q(^LRO(68,"C",LA7UID))
+ . Q:$TR($P(LA7STRX,",",2),"""","")'="C"
+ . Q:$TR($P(LA7STRX,",",3),"""","")'=LA7UID
+ . ;LA7AAX = Accession area IEN
+ . ;LA7ADX = Accession date
+ . ;LA7ANX = Accession number
+ . S LA7AAX=$P(LA7STRX,",",4),LA7ADX=$P(LA7STRX,",",5),LA7ANX=$TR($P(LA7STRX,",",6),")","")
+ . ;Should not be null, but checking to be sure.
+ . Q:LA7AAX=""!(LA7ADX="")!(LA7ANX="")
+ . ;Check each test on the accession and see if there is a match for the
+ . ;NATIONAL VA LAB CODE field (i.e. variable LA764).
+ . S LA7TSTX=0
+ . F  S LA7TSTX=$O(^LRO(68,LA7AAX,1,LA7ADX,1,LA7ANX,4,LA7TSTX)) Q:'LA7TSTX  Q:LA760  D
+ . . ;If a profile was partially resulted at the host site, the panel breaks
+ . . ;apart into the pending test components in the collecting site's file 68.
+ . . ;The host site might be sending subsequent results for the panel under separate
+ . . ;OBR segments for each remaining pending test component.
+ . . I LA764,$P($G(^LAB(60,LA7TSTX,64)),"^")=LA764 S LA760=LA7TSTX Q
+ . . ;Is the host site sending a "NON-NLT TEST ORDER CODE" which is a match.
+ . . I LA7629]"" D
+ . . . S LA7629TX=$O(^LAHM(62.9,LA7629,60,"B",LA7TSTX,"")) Q:LA7629TX=""
+ . . . I LA7CODE=$P($G(^LAHM(62.9,LA7629,60,LA7629TX,5)),"^") S LA760=LA7TSTX
+ . . Q:LA760
+ . . ;Check profile components if no match found yet.
+ . . ;In this scenario, the host site is sending individual HL7 OBR
+ . . ;segments for each component test on the profile.
+ . . N LA7PROF,LA7PRX
+ . . S LA7PROF=0
+ . . F  S LA7PROF=$O(^LAB(60,LA7TSTX,2,LA7PROF)) Q:'LA7PROF  D
+ . . . S LA7PRX=$P($G(^LAB(60,LA7TSTX,2,LA7PROF,0)),"^")
+ . . . ;Should not be null, but checking to be sure.
+ . . . Q:LA7PRX=""
+ . . . I LA764,$P($G(^LAB(60,LA7PRX,64)),"^")=LA764 S LA760=LA7PRX
+ . . ;LA*5.2*103 begin:
+ . . ;If a non-VistA (i.e. Quest) interface, shipping manifest has
+ . . ;not been sent and National VA Lab code also not sent, check
+ . . ;to see if vendor sent a defined Non-NLT Test Order Code.
+ . . Q:LA7629
+ . . N LA7628X
+ . . S LA7628X=$P(^LRO(68,LA7AAX,1,LA7ADX,1,LA7ANX,4,LA7TSTX,0),"^",10)
+ . . ;If this test was not sent on a shipping manifest identifier, cannot
+ . . ;determine ordered test. Status will remain at "Test shipped" on the
+ . . ;Incomplete Test Status Report.
+ . . Q:LA7628X=""
+ . . ;Adding $G just in case the manifest was deleted, which is unlikely.
+ . . S LA7629=$P($G(^LAHM(62.8,LA7628X,0)),U,2)
+ . . Q:LA7629=""
+ . . S LA7629TX=$O(^LAHM(62.9,LA7629,60,"B",LA7TSTX,"")) Q:LA7629TX=""
+ . . I LA7CODE=$P($G(^LAHM(62.9,LA7629,60,LA7629TX,5)),"^") S LA760=LA7TSTX
+ . . ;If the vendor did not send a defined Non-NLT Test Order Code, the status
+ . . ;on the Incomplete Test Status Report will remain at "Test shipped".
+ . . ;LA*5.2*103 end.
  Q LA760
- ;
  ;
 HLP62(LR62) ; Display help for collection sample/topography
  ;

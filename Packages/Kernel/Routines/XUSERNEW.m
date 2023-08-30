@@ -1,5 +1,5 @@
 XUSERNEW ;SF/RWF - ADD NEW USER ;5/13/08  17:19
- ;;8.0;KERNEL;**16,49,134,208,157,313,351,419,467,480**;Jul 10, 1995;Build 38
+ ;;8.0;KERNEL;**16,49,134,208,157,313,351,419,467,480**;Jul 10, 1995;Build 0
  ;;Per VHA Directive 2004-038, this routine should not be modified
  ;In the call to NEW^XM for new users the variable XMZ must be undef.
  ;on a reactivation XMZ should be set to the current max message number.

@@ -1,5 +1,8 @@
-RARTE5 ;HISC/SWM AISC/MJK,RMO - Enter/Edit Outside Reports ; Jan 05, 2022@09:33:58
- ;;5.0;Radiology/Nuclear Medicine;**56,95,97,47,141,124,184,186**;Mar 16, 1998;Build 1
+RARTE5 ;HISC/SWM AISC/MJK,RMO - Enter/Edit Outside Reports ; Mar 01, 2023@12:04:48
+ ;;5.0;Radiology/Nuclear Medicine;**56,95,97,47,141,124,184,186,200**;Mar 16, 1998;Build 2
+ ;
+ ; 3-p200 3/01/2023 KLM RA*5*200 INC26245936 - Undefined RABIREQ variable
+ ;
  ;Private IA #4793 CREATE^WVRALINK
  ;Controlled IA #3544 ^VA(200
  ;Supported IA #2056 GET1^DIQ
@@ -156,7 +159,8 @@ PRT I RAXIT S RAXIT=0 D UNLOCK2^RARTE4 D INCRPT G START
  ; and ((birads not required) or (birads required and entered))
  S RA2=$$GET1^DIQ(72,+$P(RA7003,U,3)_",",3)
  I RA2'=9,(RA2'=0) D
- .I 'RABIREQ D UP1^RAUTL1 Q
+ .I '$D(RABIREQ) D CKREQ^RABIRAD ;3-p200 - call to check birad requirement again
+ .I '$G(RABIREQ) D UP1^RAUTL1 Q  ;3-p200 added $G for good measure
  .I RABIDAT D UP1^RAUTL1 Q
  .E  W !!?5,"Exam status not recalculated due to missing BI-RADS code."
  .Q

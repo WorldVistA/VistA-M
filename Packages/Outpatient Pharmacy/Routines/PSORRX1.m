@@ -1,7 +1,8 @@
 PSORRX1 ;AITC/BWF - Remote RX driver ;8/30/16 12:00am
- ;;7.0;OUTPATIENT PHARMACY;**454,499,509,519,532,594**;DEC 1997;Build 1
+ ;;7.0;OUTPATIENT PHARMACY;**454,499,509,519,532,594,643**;DEC 1997;Build 35
  ;
  ;Reference ^PSDRUG( supported by DBIA 221
+ ;Reference ^PSNDF supported by DBIA 2195
  Q
  ;
 REMOTERX(DFN,PSOSITE) ;
@@ -24,7 +25,7 @@ REMOTERX(DFN,PSOSITE) ;
  S @HLARR@(3)="RCP^I"
  S HLP("SUBSCRIBER")="^^^^200HD~HDR.DOMAIN.EXT~DNS"
  D DIRECT^HLMA(HLPROT,"GM",1,.RXDAT,"",.HLP)
- S ORFS=$G(HL("FS")),ORCS=$E($G(HL("ECH")),1),ORRS=$E($G(HL("ECH")),2),ORES=$E($G(HL("ECH")),3),ORSS=$E($G(HL("ECH")),4)
+ S ORFS="^",ORCS=$E($G(HL("ECH")),1),ORRS=$E($G(HL("ECH")),2),ORES=$E($G(HL("ECH")),3),ORSS=$E($G(HL("ECH")),4)
  S HLQUIT=0,ORQUIT="",ORERR=""
  I ($P(RXDAT,"^",2)]"")!($P(RXDAT,"^",3)]"") D  Q
  .W !,"The system is down or not responding"_$S($P(RXDAT,"^",3)]"":" ("_$P(RXDAT,"^",3)_").",1:".")
@@ -72,7 +73,7 @@ RXPRSE(DFN,DATA,HLDAT) ;
  ; build and send refill request
 REFREQ ;
  N PHARM,PHONE,LOCSITE,DSUPP,MW,FILLDT,MSG,RXNUM,HLSTR,REMSITE,PHARMLN,PHARMFN,PHARMMI,TFSTRING,HLPROT,LOCDRUG,REMDRUG,DINACT
- N ORFS,ORCS,ORRS,ORES,ORSS,HLQUIT,ORQUIT,RESP,RETDFN,VAPID,DONE,PSORRDAT,PSOHCNT,DONE,HL,CSVAL,DIR,REMSIEN,PSOHLNK,PSOLNKDN,DOMOVR,RMSDOM
+ N ORFS,ORCS,ORRS,ORES,ORSS,HLQUIT,ORQUIT,RESP,RETDFN,VAPID,DONE,PSORRDAT,PSOHCNT,DONE,HL,CSVAL,DIR,REMSIEN,PSOHLNK,PSOLNKDN,DOMOVR,RMSDOM,PSOHLSV
  S HLARR=$NA(^TMP("HLS",$J)) K @HLARR
  S HLDAT=$NA(^XTMP("REFREQ^PSORRX1",$J)) K @HLDAT
  S HLPROT="PSO REMOTE RX RDS-O13 EVENT"
@@ -98,9 +99,7 @@ REFREQ ;
  I CSVAL,CSVAL>0,CSVAL<6 W !!,"This is a controlled substance. Cannot refill Rx#",RXNUM,"." S DIR(0)="FO",DIR("A")="Press RETURN to continue" D ^DIR Q
  ;
  ; if we got this far, fill is most likely happening and remote
- ; worklist needs to be rebuilt when returning so set flag. PSORRBLD
- ; was New'ed in calling routine. May change my mind if we get an
- ; error from host.
+ ; worklist needs to be rebuilt when returning, so set flag.
  S PSORRBLD=1
  ;
  S (FILLDT,PSOREF("FILL DATE"))=DT
@@ -112,9 +111,9 @@ REFREQ ;
  .S @HLARR@(1)=$G(@HLARR@(1))_PSORRDAT(PSOHCNT)
  ;S @HLARR@(2)="ORC^RF^"_RXNUM_"~"_REMSITE_"~"_$$GET1^DIQ(4,REMSIEN,60,"E")_"^^^^^^^"_FILLDT_U_DUZ_"~"_PHARMLN_"~"_PHARMFN_"~"_PHARMMI_"^^^~~~"_LOCSITE_U_PHONE
  S @HLARR@(2)="ORC^RF^"_RXNUM_"~"_REMSITE_"~"_$$FQDN^PSORWRAP(,REMSIEN)_"^^^^^^^"_FILLDT_U_DUZ_"~"_PHARMLN_"~"_PHARMFN_"~"_PHARMMI_"^^^~~~"_LOCSITE_U_PHONE
- S @HLARR@(3)="RXO^^^^^^^^"_MW_"~~~"_LOCSITE
+ S @HLARR@(3)="RXO^^^^^^^^"_MW_"~"_$$OPAI_"~~"_LOCSITE
  W !!,"Processing refill request. Please be patient as it may take a moment"
- W !,"for the host site to respond and generate your label data..."
+ W !,"for the host site to respond and generate your label data...",!
  S RMSDOM=$$FQDN^PSORWRAP(,REMSIEN)
  S DOMOVR=REMSITE_"~"_RMSDOM_"~DNS"
  S HLP("SUBSCRIBER")="^^^^"_DOMOVR
@@ -125,7 +124,7 @@ REFREQ ;
  ; build and send partial fill request
 PARTIAL() ;
  N DIR,DONE,I,PRMPDAT,VAR,PRXNUM,PHARM,PHARMLN,PHARMFN,PHARMMI,PHONE,RXNUM,HLPROT,TFSTRING,HLARR,PHONE,REMSITE,HLDAT,LOCDRUG,EXIT,VAPID,HL,ERR
- N PSOHCNT,DONE,PSORRDAT,CSVAL,REMSIEN,PSOHLNK,PSOLNKDN,REMDRUG,Y,DINACT,EXE,DOMOVR,RMSDOM
+ N PSOHCNT,DONE,PSORRDAT,CSVAL,REMSIEN,PSOHLNK,PSOLNKDN,REMDRUG,Y,DINACT,EXE,DOMOVR,RMSDOM,PSOHLSV
  S HLPROT="PSO REMOTE RX RDS-O13 EVENT"
  S HLDAT=$NA(^XTMP("PARTIAL^PSORRX1",$J)) K @HLDAT
  S HLARR=$NA(^TMP("HLS",$J)) K @HLARR
@@ -165,10 +164,8 @@ PARTIAL() ;
  .S @VAR=$S($P(DIR(0),"^")["P":$P(Y,U,2),1:Y)  ;*499
  K DEF
  I EXIT W !,"Cancelling partial fill request.",! K DIR S DIR(0)="FO",DIR("A")="Press RETURN to continue" D ^DIR Q
- ; if we got this far, fill attempt happening and remote worklist
- ; needs to be rebuilt when returning so set flag. PSORRBLD was New'ed
- ; in calling routine.  May change my mind if we get an error from
- ; host
+ ; if we got this far, fill attempt is happening and remote worklist
+ ; needs to be rebuilt when returning, so set flag.
  S PSORRBLD=1
  S PHARMLN=$P(PHARM,","),PHARMFN=$P($P(PHARM,",",2)," "),PHARMMI=$P($P(PHARM,",",2)," ",2)
  D INIT^HLFNC2(HLPROT,.HL)
@@ -178,7 +175,7 @@ PARTIAL() ;
  .I '$D(PSORRDAT(PSOHCNT)) S DONE=1 Q
  .S @HLARR@(1)=$G(@HLARR@(1))_PSORRDAT(PSOHCNT)
  S @HLARR@(2)="ORC^PF^"_PRXNUM_"~"_REMSITE_"~"_$$FQDN^PSORWRAP(,REMSIEN)_"^^^^^^^"_PDATE_"^"_DUZ_"~"_PHARMLN_"~"_PHARMFN_"~"_PHARMMI_"^^^~~~"_LOCSITE_U_PHONE
- S @HLARR@(3)="RXO^1^"_QTY_"^^^^^^"_MW_"~~~"_LOCSITE_"^^^"_DSUPP
+ S @HLARR@(3)="RXO^1^"_QTY_"^^^^^^"_MW_"~"_$$OPAI_"~~"_LOCSITE_"^^^"_DSUPP
  S @HLARR@(4)="NTE^1^L^"_REMARKS
  W !!,"Processing partial fill request. Please be patient as it may take a moment"
  W !,"for the host site to respond and generate your label data...",!
@@ -275,3 +272,13 @@ POST ; post init for PSO*7*454
  S OPSITE=0 F  S OPSITE=$O(^PS(59,OPSITE)) Q:'OPSITE  D
  .S FDA(59,OPSITE_",",3001)="" D FILE^DIE(,"FDA") K FDA
  Q
+ ;
+OPAI() ; determine if drug will go through OPAI
+ N PSOOINT,PSOOMARK
+ I '$G(PSOSITE) Q 1  ;REMOVE THIS LINE ONCE YOU DETERMINE PSOSITE IS DEFINED FORM THE PROTOCOL
+ S PSOOINT=$P($G(^PS(59,PSOSITE,1)),"^",30),PSOOMARK=0
+ S:+$G(LOCDRUG) PSOOMARK=+$G(^PSDRUG(LOCDRUG,6))
+ I 'PSOOINT Q 0
+ I PSOOINT=1!(PSOOINT=2) Q 1
+ I PSOOMARK Q 1
+ Q 0

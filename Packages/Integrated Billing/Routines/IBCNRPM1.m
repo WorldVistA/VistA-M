@@ -1,5 +1,5 @@
 IBCNRPM1 ;DAOU/CMW - Match Multiple Group Plans to a Pharmacy Plan ;10-MAR-2004
- ;;2.0;INTEGRATED BILLING;**251,516,617**;21-MAR-94;Build 43
+ ;;2.0;INTEGRATED BILLING;**251,516,617,711**;21-MAR-94;Build 18
  ;;Per VA Directive 6402, this routine should not be modified.
  ;
  ;**Program Description**
@@ -58,8 +58,22 @@ GIPF ;  screen for valid GIPF
  ... I $G(GPNUM)="" S GPNUM="<blank>"
  ... S GPMDT=$$GET1^DIQ(355.3,GPIEN,1.07,"E")
  ... S GPMU=$$GET1^DIQ(355.3,GPIEN,1.08,"E")
+ ... ;
+ ... S MATCH=0
+ ... I $$GET1^DIQ(355.3,GPIEN,6.01)'="" S MATCH=1
+ ... ;
  ... ;set array = pharm plan and plan type and match date and match user
- ... S ^TMP("IBCNR",$J,"GP",GPNAM,GPNUM,GPIEN)=$P($G(GP6),U)_"^"_$P($G(GP0),U,9)_"^"_GPMDT_"^"_GPMU
+ ... S ^TMP("IBCNR",$J,"GP",MATCH,GPNAM,GPNUM,GPIEN)=$P($G(GP6),U)_"^"_$P($G(GP0),U,9)_"^"_GPMDT_"^"_GPMU
+ ... ;S ^TMP("IBCNR",$J,"GP",MATCH)=$G(^TMP("IBCNR",$J,"GP",MATCH))+1
+ ... ;
+ F MATCH=0,1 D
+ . S ^TMP("IBCNR",$J,"GP",MATCH)=0
+ . S (GPNAM,GPNUM,GPIEN)=""
+ . F  S GPNAM=$O(^TMP("IBCNR",$J,"GP",MATCH,GPNAM)) Q:GPNAM=""  D
+ .. F  S GPNUM=$O(^TMP("IBCNR",$J,"GP",MATCH,GPNAM,GPNUM)) Q:GPNUM=""  D
+ ... F  S GPIEN=$O(^TMP("IBCNR",$J,"GP",MATCH,GPNAM,GPNUM,GPIEN)) Q:GPIEN=""  D
+ .... S ^TMP("IBCNR",$J,"GP",MATCH)=^TMP("IBCNR",$J,"GP",MATCH)+1
+ ;
  Q
  ;
 EXIT K IBCNRP,IBCNRI,IBCNRGP

@@ -1,6 +1,6 @@
 IBCCCB0 ;ALB/ARH - COPY BILL FOR COB (OVERFLOW) ;06-19-97
- ;;2.0;INTEGRATED BILLING;**51,137,155**;21-MAR-94
- ;;Per VHA Directive 10-93-142, this routine should not be modified.
+ ;;2.0;INTEGRATED BILLING;**51,137,155,727**;21-MAR-94;Build 34
+ ;;Per VA Directive 6402, this routine should not be modified.
  ;
 DSPRB(IBIFN) ; display related bills
  ;
@@ -99,12 +99,13 @@ CTCOPY2(IBIFN) ; Copy a Reasonable Charges prof bill to create another prof bill
  ;
  ; ask if they want a second prof bill
  S DIR("?",1)="If answered Yes, the current bill will be copied, without being cancelled,"
- S DIR("?",2)="to create another Professional bill for the same dates of care.",DIR("?",3)=" "
- S DIR("?")="Enter Yes if multiple professional bills are needed for the care provided on this date."
- S DIR("A")="Copy this bill to create another Professional bill for this date now"
+ S DIR("?",2)="to create another "_$S($$FT^IBCEF(IBIFN)=7:"Dental",1:"Professional")_" bill for the same dates of care.",DIR("?",3)=" "
+ S DIR("?")="Enter Yes if multiple "_$S($$FT^IBCEF(IBIFN)=7:"Dental",1:"Professional")_" bills are needed for the care provided on this date."
+ ;JWS;IB*2.0*727
+ S DIR("A")="Copy this bill to create another "_$S($$FT^IBCEF(IBIFN)=7:"Dental",1:"Professional")_" bill for this date now"
  W !! S DIR(0)="Y",DIR("B")="No" D ^DIR I $D(DIRUT)!('Y) Q
- ;
- W !,"Creating an ",IBBTYPE," Professional bill.",!!
+ ;JWS;IB*2.0*727
+ W !,"Creating an ",IBBTYPE,$S($$FT^IBCEF(IBIFN)=7:" Dental",1:" Professional")," bill.",!!
  ;
  S IBIDS(.15)=IBIFN D KVAR^IBCCCB
  ;
@@ -117,21 +118,29 @@ CTCOPY2(IBIFN) ; Copy a Reasonable Charges prof bill to create another prof bill
 FINALEOB(IBIFN) ; Returns 1 if user indicates final EOB has been received
  ; from prior payer
  N DIR,X,Y,IBOK
+ N IBRETSPLT   ;WCJ;727
  S IBOK=0
  I '$$MCRONBIL^IBEFUNC(IBIFN) D  G FEOBQ
  . S DIR(0)="YA",DIR("B")="NO",DIR("A")="Has the final EOB been received for this claim?: "
  . S DIR("?",1)="COB should not normally be performed until the claim is fully processed by the",DIR("?",2)="prior payer.  Enter Y (yes) if the prior payer's final EOB has",DIR("?")="been received"
  . D ^DIR K DIR
  . I Y'=0 S IBOK=$S(Y>0:1,1:0)
- I $$SPLTMRA^IBCEMU1(IBIFN)=1 D  G FEOBQ
+ ;
+ ; In additon to checking if there is only one split MRA, see if that one contained all the lines (aka is complete).
+ ; true story - This is to correct an issue where a complete MRA came in but the medicare processor accidentally said it was split.
+ ; that is an extremely rare occurance
+ ;I $$SPLTMRA^IBCEMU1(IBIFN)=1 D  G FEOBQ   ;WCJ;IB727
+ I $$SPLTMRA^IBCEMU1(IBIFN,.IBRETSPLT)=1,'$$SPLIT2^IBCEMU1($O(IBRETSPLT("")),1) D  G FEOBQ  ;WCJ;IB727
  . W !!," Only one MRA has been received for this claim.  The MRA on file indicates"
  . W !," that it is a 'split MRA' meaning that additional MRA's are needed."
  . W !," Processing cannot continue until all MRA's have been received for this claim."
  . W ! S DIR(0)="E" D ^DIR K DIR
  . Q
  ;
- I $$SPLTMRA^IBCEMU1(IBIFN)>1 D
- . W !!," At least 2 MRA's have been received for this claim."
+ ; I $$SPLTMRA^IBCEMU1(IBIFN)>1 D    ;WCJ;IB727
+ I $$SPLTMRA^IBCEMU1(IBIFN,.IBRETSPLT)>1,$$SPLIT2^IBCEMU1($O(IBRETSPLT("")),2)=0 D
+ .; W !!," At least 2 MRA's have been received for this claim."   ;WCJ;IB727
+ . W !!,$$SPLTMRA^IBCEMU1(IBIFN)," MRA's have been received for this claim."   ;WCJ;IB727
  . W !,"Please verify that all possible MRA's have been received for",!,"this claim before processing.",!
  S DIR(0)="YA",DIR("B")="NO",DIR("A")="Are you sure you want to continue to process this COB?: "
  D ^DIR K DIR

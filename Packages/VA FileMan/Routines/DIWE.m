@@ -1,11 +1,12 @@
 DIWE ;SFISC/GFT,XAK-START OF WP ;2013-07-10  2:39 PM
- ;;22.2;VA FileMan;;Jan 05, 2016;Build 42
+ ;;22.2;VA FileMan;**24**;Jan 05, 2016;Build 3
  ;;Per VA Directive 6402, this routine should not be modified.
  ;;Submitted to OSEHRA 5 January 2015 by the VISTA Expertise Network.
  ;;Based on Medsphere Systems Corporation's MSC FileMan 1051.
  ;;Licensed under the terms of the Apache License, Version 2.0.
  ;
 EN K DTOUT,DUOUT,DIRUT ;G Q:'$D(@(DIC_"0)")) D A
+ I $E($G(DIC))'="^" G Q ;make sure DIC is a Global -p24
  L @("+"_DIC_"0):1") E  W !,$$EZBLD^DIALOG(110) G Q ;**CCO/NI--'THE RECORD IS LOCKED'
  D A
 OPT K:DIWE'=2 DDWC,DDWRW I DIWE>1 S DIWE(2)=1 G OPT^DIWE12

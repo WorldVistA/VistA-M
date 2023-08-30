@@ -1,9 +1,12 @@
-TIULX ; SLC/JER - Cross-reference library functions ; 10/1/10 2:31pm
- ;;1.0;TEXT INTEGRATION UTILITIES;**1,28,79,100,136,219,255,326**;Jun 20, 1997;Build 1
+TIULX ; SLC/JER - CROSS-REFERENCE LIBRARY FUNCTIONS ;03/07/23  12:32
+ ;;1.0;TEXT INTEGRATION UTILITIES;**1,28,79,100,136,219,255,326,355**;Jun 20, 1997;Build 11
  ;Per VHA Directive 2004-038, this routine should not be modified
- ; File 200 - IA 10060
- ; ^ORD(101 - IA 872
- ; ^DISV    - IA 510
+ ;
+ ; External reference to File ^VA supported by IA 10060
+ ; External reference to ^ORD(101 supported by IA 872
+ ; External reference to ^DISV supported by IA 510
+ ;
+ Q
 ALOCP(DA) ; Should record be included in daily print queue by location?
  ; Receives DA = record # in 8925
  Q +$$ISPN(+$G(^TIU(8925,+DA,0)))
@@ -101,35 +104,27 @@ CWAD ; Entry action for CWAD protocol
  S Y=GMRPDFN,GMRPOPT=1,GMRPEN=1 W !!,"** Current Patient:  "_$P(Y,U,2)
  D ENPAT^GMRPNCW S VALMBCK="R"
  Q
-IDSIGNRS(TIUY,TIUDA,TIULIST) ; Add list of Add'l Signers for a TIU Document
- ; TIULIST(TIUI) [By Ref] = array of users to add/remove as signers
- ; TIUDA                  = IEN in ^TIU(8925,
- N TIUI S TIUI=0
- F  S TIUI=$O(TIULIST(TIUI)) Q:+TIUI'>0  D
- . N DA,DIC,DLAYGO,DIE,DR,X,Y
- . N TIUSIG,TIUSN ;TIU*1.0*255
- . ; if current user is already an additional signer, and current user
- . ; is NOT being removed as an additional signer, then QUIT
- . I +$O(^TIU(8925.7,"AE",TIUDA,+TIULIST(TIUI),0)),($P(TIULIST(TIUI),U,3)'="REMOVE") Q
- . ; if current user is being removed as a cosigner, then remove him
- . ; TIU*255 Quit if attempting to remove someone who already signed
- . ;I $P(TIULIST(TIUI),U,3)="REMOVE" D REMSIGNR(TIUDA,+TIULIST(TIUI)) Q
- . S TIUSIG=$O(^TIU(8925.7,"AE",TIUDA,+TIULIST(TIUI),0)) S:$G(TIUSIG) TIUSN=$P($G(^TIU(8925.7,TIUSIG,0)),"^",4)
- . Q:$G(TIUSN)  I $P(TIULIST(TIUI),U,3)="REMOVE" D REMSIGNR(TIUDA,+TIULIST(TIUI)) Q
- . ; otherwise, add the current user as an additional signer
- . S X=""""_"`"_TIUDA_"""",(DIC,DLAYGO)=8925.7,DIC(0)="LX" D ^DIC Q:+Y'>0
- . S DIE=DIC,TIUY=$G(TIUY)_$S($G(TIUY)]"":U,1:"")_+TIULIST(TIUI)
- . S DR=".02////"_0_";.03////"_+$G(TIULIST(TIUI))
- . D ^DIE
- . ; TIU*1.0*326 Only call SEND^TIUALRT once instead of for each add. signer 
- . ;D SEND^TIUALRT(TIUDA)
- I $O(TIULIST(0)) D SEND^TIUALRT(TIUDA)
+IDSIGNRS(TIUY,TIUDA,LIST) ; add/remove additional signers (#8925.7) ajb *355
+ ; .TIUY    return location, pass by reference
+ ; TIUDA    document IEN from #8925
+ ; LIST(#)  IEN^name^[REMOVE]
+ N D0,FDA,I,TIUPRM0,TIUPRM1 S I=0 F  S I=$O(LIST(I)) Q:'+I  D
+ . N ENTRY,USER S USER=+LIST(I),ENTRY=+$O(^TIU(8925.7,"AE",TIUDA,USER,0))
+ . N NODE0 S NODE0=$S(+ENTRY:$G(^TIU(8925.7,ENTRY,0)),1:"")
+ . I +ENTRY,+$P(NODE0,U,4)!($P(LIST(I),U,3)'="REMOVE") Q  ; user already signed or previously added
+ . I $P(LIST(I),U,3)="REMOVE" D REMSIGNR(TIUDA,USER) Q  ; remove user from #8925.7
+ . N FDA S FDA(8925.7,"+1,",.01)=TIUDA
+ . S FDA(8925.7,"+1,",.02)=0
+ . S FDA(8925.7,"+1,",.03)=USER
+ . D UPDATE^DIE("","FDA") ; add new entry
+ . S TIUY=$G(TIUY)_$S($G(TIUY)'="":U,1:"")_+LIST(I)
+ I $O(LIST(0)) D SEND^TIUALRT(TIUDA) ; update alert
  Q
-REMSIGNR(TIUDA,TIUDUZ) ; Remove user from additional signer list
- N DA,DIE,DR,DIDEL
+REMSIGNR(TIUDA,TIUDUZ) ; remove user from TIU MULTIPLE SIGNATURE (#8925.7)
+ N %,D,D0,DA,DI,DIC,DIDEL,DIE,DR,X,Y
  S DA=+$O(^TIU(8925.7,"AE",TIUDA,TIUDUZ,0)) Q:+DA'>0
+ K ^TIU(8925.7,"AC",+$G(^TIU(8925,TIUDA,12),U),TIUDA,DA) ; remove "AC" index
  S (DIDEL,DIE)=8925.7,DR=".01///@" D ^DIE
- D SEND^TIUALRT(TIUDA)
  Q
 GETSIGNR(TIUY,TIUDA) ; RPC to Get list of extra signers for a document
  N TIUI,DA,DR,DIC,DIQ,TIUXTRA,TIUD12,TIUAU,TIUEC S (DA,TIUI)=0
@@ -170,7 +165,7 @@ NEEDSIG(TIUY,USER,CLASS)        ; Get list of documents for which USER is an add
  Q
 TITLIENS ; Get IENs of DDEF entries that have type Title
  ; in Document Definition file 8925.1
- ;Creates array ^TMP("TIUTLS,$J,TLIEN)=  
+ ;Creates array ^TMP("TIUTLS,$J,TLIEN)=
  ;Caller must kill ^TMP("TIUTLS",$J) when finished with the global.
  N TIUIDX S TIUIDX=0 K ^TMP("TIUTLS",$J)
  F  S TIUIDX=$O(^TIU(8925.1,"AT","DOC",TIUIDX)) Q:TIUIDX'>0  D
@@ -180,4 +175,3 @@ HASDOCMT(DFN) ;Does patient have ANY entries in TIU DOCUMENT file 8925?
  ;Any entries includes original documents, addenda, components
  ;(like S in SOAP notes), "deleted"  documents, retracted documents, etc!
  Q $O(^TIU(8925,"C",+$G(DFN),0))>0
-         

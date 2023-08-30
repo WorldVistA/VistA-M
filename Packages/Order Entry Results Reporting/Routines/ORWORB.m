@@ -1,21 +1,22 @@
-ORWORB ;SLC/DEE,REV,CLA,WAT - RPC FUNCTIONS WHICH RETURN USER ALERT ;Mar 22, 2022@12:45
- ;;3.0;ORDER ENTRY/RESULTS REPORTING;**10,85,116,148,173,190,215,243,296,329,334,410,377,498,405**;Dec 17, 1997;Build 211
+ORWORB ; SLC/DEE,REV,CLA,WAT - RPC FUNCTIONS WHICH RETURN USER ALERT ;03/01/23  12:43
+ ;;3.0;ORDER ENTRY/RESULTS REPORTING;**10,85,116,148,173,190,215,243,296,329,334,410,377,498,405,596**;Dec 17, 1997;Build 7
  ;;Per VHA Directive 2004-038, this routine should not be modified
  ;
- ;DBIA reference section
- ;10035 - ^DPT
- ;2689  - ^XTV(8992
- ;4329  - ^VA(200,5
- ;10076 - ^XUSEC(
- ;3563  - RAO7PC4
- ;2834  - TIUSRVLO
- ;10061 - VADPT
- ;10103 - XLFDT
- ;2263  - XPAR
- ;4834  - XQALDATA
- ;10081 - XQALERT
- ;2788  - XQALBUTL
+ ; External reference to ^DPT( supported by IA 10035
+ ; External reference to ^XTV(8992 supported by IA 2689
+ ; External reference to ^XTV(8992.1 supported by IA 7063
+ ; External reference to ^VA(200,5 supported by IA 4329
+ ; External reference to ^XUSEC( supported by IA 10076
+ ; External reference to RAO7PC4 supported by IA 3563
+ ; External reference to TIUSRVLO supported by IA 2834
+ ; External reference to VADPT supported by IA 10061
+ ; External reference to XLFDT supported by IA 10103
+ ; External reference to XPAR supported by IA 2263
+ ; External reference to XQALDATA supported by IA 4834
+ ; External reference to XQALERT supported by IA 10081
+ ; External reference to XQALBUTL supported by IA 2788
  ;
+ Q
 GETLTXT(ORY,ORAID) ;get the long text for an alert
  N ORDATA
  D ALERTDAT^XQALBUTL(ORAID,"ORDATA")
@@ -62,7 +63,7 @@ USERLIST(ORY,STRTDATE,STOPDATE) ;process for obtaining user's notifications
  .S ALRTDFN="",REM=""
  .S ALRT=^TMP("ORB",$J,I)
  .S PRE=$E(ALRT,1,1)
- .S ALRTXQA=$P(ALRT,U,2)  ;XQAID
+ .S ALRTXQA=$P(ALRT,U,2) Q:ALRTXQA=""  ; XQAID expected
  .S NONOR="" F  S NONOR=$O(NONORLST(NONOR)) Q:NONOR=""  D
  ..I ALRTXQA[NONOR S REM=1  ;allow this type of alert to be Removed
  .S ALRTMSG=$P($P(ALRT,U),PRE_"  ",2)
@@ -73,7 +74,16 @@ USERLIST(ORY,STRTDATE,STOPDATE) ;process for obtaining user's notifications
  ..S ALRTI=$P(ALRT,"  ")
  ..S ALRTPT=""
  ..S ALRTLOC=""
- ..I $E($P(ALRTXQA,";"),1,3)="TIU" S ORURG="Moderate"
+ .. ; *596 ajb
+ . . I $E($P(ALRTXQA,";"),1,3)="TIU" D  Q
+ . . . N ALRT,NODE,X,XTVDA,Y S XTVDA=$O(^XTV(8992.1,"B",ALRTXQA,0)) Q:'XTVDA
+ . . . S NODE=$G(^XTV(8992.1,XTVDA,1)) Q:NODE=""  ; full text of alert data
+ . . . S $P(ALRT,U,2)=$P($P(NODE,U),":"),$P(ALRT,U,4)=$S(ALRT[" STAT ":"HIGH",1:"Moderate")
+ . . . S X=$P(ALRTXQA,";",3),$P(Y,"/",1)=$E(X,4,5),$P(Y,"/",2)=$E(X,6,7),$P(Y,"/",3)=(1700+$E(X,1,3))
+ . . . S X=$E($P(X,".",2)_"0000",1,4),$P(Y,"@",2)=$E(X,1,2)_":"_$E(X,3,4),$P(ALRT,U,5)=Y
+ . . . S $P(ALRT,U,6)=$P($P(NODE,U),": ",2),$P(ALRT,U,8)=ALRTXQA,$P(ALRT,U,9)=REM_U
+ . . . S J=J+1,^TMP("ORBG",$J,J)=ALRT
+ .. ; *596 ajb
  ..I $P(ALRTXQA,",")="OR" D
  ... N ALRTIEN,ORIEN,P04,ORPOUT
  ... S ALRTIEN=$O(^XTV(8992.1,"B",ALRTXQA,0)) Q:ALRTIEN'>0  ; direct read ICR #7063

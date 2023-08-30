@@ -1,5 +1,5 @@
 IBJDF42 ;ALB/RB - FIRST PARTY FOLLOW-UP REPORT (PRINT);15-APR-00
- ;;2.0;INTEGRATED BILLING;**123,204,568,618,651,705**;21-MAR-94;Build 8
+ ;;2.0;INTEGRATED BILLING;**123,204,568,618,651,705,739**;21-MAR-94;Build 3
  ;;Per VA Directive 6402, this routine should not be modified.
  ;
 EN ; - Print the Follow-up report.
@@ -88,7 +88,7 @@ WPAT ; - Write patient data.
  N I,X
  S DFN=$P(IBPT,"@@",2),IBAI=$G(^TMP("IBJDF4",$J,IBPT,0,"A"))
  W !!,"Patient Name     : ",$P(IBP,U) W:IBAI["V" " *"
- W ?63,"SSN: ",$$SSN($P(IBP,U,2)),!,"Means Test Status: ",$P(IBP,U,4)
+ W !,"Means Test Status: ",$P(IBP,U,4) ;IB*2.0*739
  W:$P(IBP,U,5)'="" " ("_$P(IBP,U,5)_")"
  W ?58,"Medicaid: ",$$GET1^DIQ(2,DFN,.381)
  W !,"RX Copay Status  : ",$P(IBP,U,6)

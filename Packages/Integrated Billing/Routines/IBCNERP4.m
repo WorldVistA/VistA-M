@@ -1,8 +1,10 @@
 IBCNERP4 ;DAOU/BHS - IBCNE USER INTERFACE eIV PAYER REPORT ;03-JUN-2002
- ;;2.0;INTEGRATED BILLING;**184,271,300,416,528,668**;21-MAR-94;Build 28
+ ;;2.0;INTEGRATED BILLING;**184,271,300,416,528,668,737**;21-MAR-94;Build 19
  ;;Per VA Directive 6402, this routine should not be modified.
  ;
  ; eIV - Insurance Verification Interface
+ ;
+ ; IB*737/TAZ - Remove refrences to ~NO PAYER
  ;
  ; Input parameter: N/A
  ; Other relevant variables:
@@ -119,7 +121,8 @@ DTRANGX ; DTRANGE exit point
  ; called from IBCNERP5
  ; Loop through the eIV Response File (#365) 
  ;  By DATE/TIME RECEIVED & PAYER & PATIENT Cross-Reference ("AE")
- ;  
+ ;
+ ;IB*737/TAZ - Remove references to Most Popular Payer and "~NO PAYER"
 DATA N DEACT,RDATA,RDATA1,TQDATA,IBCNEDT,IBCNEPTR,IBCNEPAT,RPYRIEN,RPYNM,PYRIEN,IBPNM,ERRCON
  N IBPIEN,PC,ERR,ERRTXT,PYRNM,APIEN,IBCNEPTD,TQIEN
  S IBCNEDT=$O(^IBCN(365,"AD",IBCNEDT1),-1)
@@ -156,11 +159,10 @@ DATA N DEACT,RDATA,RDATA1,TQDATA,IBCNEDT,IBCNEPTR,IBCNEPAT,RPYRIEN,RPYNM,PYRIEN,
  .... I $P($G(TQDATA),U,4)=7 Q
  .... ;IB*668/TAZ - Call PYRDEACT to get Payer Deactivated from new file location.
  .... ; Determine Deactivation DTM for eIV application
- .... I RPYNM'="~NO PAYER" D
- ..... S DEACT=$$PYRDEACT^IBCNINSU(RPYRIEN)
- ..... I +DEACT S $P(^TMP($J,IBCNERTN,RPYNM,RPYRIEN,"*"),U,11)=$P(DEACT,U,2)
+ .... S DEACT=$$PYRDEACT^IBCNINSU(RPYRIEN)
+ .... I +DEACT S $P(^TMP($J,IBCNERTN,RPYNM,RPYRIEN,"*"),U,11)=$P(DEACT,U,2)
  .... ; Determine Deactivation DTM for eIV application
- .... I PYRNM'="~NO PAYER",PYRIEN'=RPYRIEN D
+ .... I PYRIEN'=RPYRIEN D
  ..... S DEACT=$$PYRDEACT^IBCNINSU(PYRIEN)
  ..... I +DEACT S $P(^TMP($J,IBCNERTN,PYNM,PYRIEN,"*"),U,11)=$P(DEACT,U,2)
  .... ; Get error text
@@ -170,20 +172,13 @@ DATA N DEACT,RDATA,RDATA1,TQDATA,IBCNEDT,IBCNEPTR,IBCNEPAT,RPYRIEN,RPYNM,PYRIEN,
  .... ; Increment for non-error (GOOD) response and quit
  .... I ERRCON="",ERRTXT="" D  Q
  ..... S $P(^TMP($J,IBCNERTN,RPYNM,RPYRIEN,"*"),U,6)=$P($G(^TMP($J,IBCNERTN,RPYNM,RPYRIEN,"*")),U,6)+1
- ..... ; if TQ payer was ~NO PAYER then also increment ~NO PAYER good count
- ..... I IBCNEPY="",(RPYRIEN'=PYRIEN),(PYRNM="~NO PAYER") S $P(^TMP($J,IBCNERTN,PYRNM,PYRIEN,"*"),U,6)=$P($G(^TMP($J,IBCNERTN,PYRNM,PYRIEN,"*")),U,6)+1
  .... ; Rejection is defined as having a value in the Error Condition field or Error Text field
  .... ; Increment for error response
  .... S $P(^TMP($J,IBCNERTN,RPYNM,RPYRIEN,"*"),U,7)=$P($G(^TMP($J,IBCNERTN,RPYNM,RPYRIEN,"*")),U,7)+1
- .... ; if TQ payer was ~NO PAYER then also increment ~NO PAYER error count
- .... I IBCNEPY="",(RPYRIEN'=PYRIEN),(PYRNM="~NO PAYER") S $P(^TMP($J,IBCNERTN,PYRNM,PYRIEN,"*"),U,7)=$P($G(^TMP($J,IBCNERTN,PYRNM,PYRIEN,"*")),U,7)+1
  .... ; Store rejection detail only if user requested it
  .... I 'IBCNEDTL Q
  .... I ERRCON S ^TMP($J,IBCNERTN,RPYNM,RPYRIEN,"*",ERRCON)=$G(^TMP($J,IBCNERTN,RPYNM,RPYRIEN,"*",ERRCON))+1
  .... I 'ERRCON,ERRTXT'="" S ^TMP($J,IBCNERTN,RPYNM,RPYRIEN,"*",0_U_ERRTXT)=$G(^TMP($J,IBCNERTN,RPYNM,RPYRIEN,"*",0_U_ERRTXT))+1
- .... I IBCNEPY="",(RPYRIEN'=PYRIEN),(PYRNM="~NO PAYER") D
- .... . I ERRCON S ^TMP($J,IBCNERTN,PYRNM,PYRIEN,"*",ERRCON)=$G(^TMP($J,IBCNERTN,PYRNM,PYRIEN,"*",ERRCON))+1
- .... . I 'ERRCON,ERRTXT'="" S ^TMP($J,IBCNERTN,PYRNM,PYRIEN,"*",0_U_ERRTXT)=$G(^TMP($J,IBCNERTN,PYRNM,PYRIEN,"*",0_U_ERRTXT))+1
  Q
  ;
 OUT() ; Prompt to allow users to select output format

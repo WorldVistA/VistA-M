@@ -1,8 +1,8 @@
 IBCNERPB ;DAOU/RO - PAYER LINK REPORT - Prompts ;AUG-2003
- ;;2.0;INTEGRATED BILLING;**184,252,271,416,528,668,687**;21-MAR-94;Build 88
+ ;;2.0;INTEGRATED BILLING;**184,252,271,416,528,668,687,737**;21-MAR-94;Build 19
  ;;Per VA Directive 6402, this routine should not be modified.
  ;
- ; ICR #1519-For using the KERNEL routine XUTMDEVQ
+ ; Reference to EN^XUTMDEVQ in ICR #1519
  ;
  ; IB*2*687-rewrote/redesigned the report (basically from scratch) which
  ; included combining 3 routines into 2. The changes based on the patches prior
@@ -56,14 +56,15 @@ R05 ; Include Deactivated Payers?
  S IBCNESPC("PDEACT")=Y
  ;
 R10 ; Select Payer (#365.12)
+ ;IB*737/TAZ - Removed reference to Most Popular Payer and "~NO PAYER"
  N DIC,DTOUT,DUOUT,X,Y
  W !
  S DIC(0)="ABEQ"
  S DIC("A")=$$FO^IBCNEUT1("Select a Payer (RETURN for ALL Payers): ",40,"L")
- ; Do not allow '~NO PAYER' or non-eIV/non-IIU payers
- S DIC("S")="I ($P(^(0),U,1)'=""~NO PAYER""),(($$PYRAPP^IBCNEUT5(""EIV"",$G(Y))'="""")!($$PYRAPP^IBCNEUT5(""IIU"",$G(Y))'=""""))"
+ ; Do not allow non-eIV/non-IIU payers
+ S DIC("S")="I (($$PYRAPP^IBCNEUT5(""EIV"",$G(Y))'="""")!($$PYRAPP^IBCNEUT5(""IIU"",$G(Y))'=""""))"
  ; If 'no' deactivated payers selected, override the previous "screen" line.
- I '+IBCNESPC("PDEACT") S DIC("S")="I ('+$$PYRDEACT^IBCNINSU($G(Y))),($P(^(0),U,1)'=""~NO PAYER""),(($$PYRAPP^IBCNEUT5(""EIV"",$G(Y))'="""")!($$PYRAPP^IBCNEUT5(""IIU"",$G(Y))'=""""))"
+ I '+IBCNESPC("PDEACT") S DIC("S")="I ('+$$PYRDEACT^IBCNINSU($G(Y))),(($$PYRAPP^IBCNEUT5(""EIV"",$G(Y))'="""")!($$PYRAPP^IBCNEUT5(""IIU"",$G(Y))'=""""))"
  S DIC="^IBE(365.12,"
  D ^DIC
  I $D(DUOUT)!$D(DTOUT) S Y="" G:$$STOP^IBCNINSU REXIT  G R05

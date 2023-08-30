@@ -1,8 +1,10 @@
 IBCNERP1 ;DAOU/BHS - IBCNE USER IF eIV RESPONSE REPORT ; 03-JUN-2002
- ;;2.0;INTEGRATED BILLING;**184,271,416,528,549,668,702**;21-MAR-94;Build 53
+ ;;2.0;INTEGRATED BILLING;**184,271,416,528,549,668,702,737**;21-MAR-94;Build 19
  ;;Per VA Directive 6402, this routine should not be modified.
  ;
  ; eIV - Insurance Verification Interface
+ ;
+ ; IB*737/TAZ - Remove references to ~NO PAYER
  ;
  ; Input parameters: N/A
  ; Other relevant variables ZTSAVED for queueing:
@@ -176,9 +178,9 @@ PYRSEL ; Select one payer or ALL - File #365.12
  W !
  S DIC(0)="ABEQ"
  S DIC("A")=$$FO^IBCNEUT1("Payer or <Return> for All Payers: ",40,"R")
- ; Do not allow selection of '~NO PAYER' and non-eIV payers
+ ; Do not allow selection of non-eIV payers
  ;IB*668/TAZ - Changed Payer Application from IIV to EIV
- S DIC("S")="I ($P(^(0),U,1)'=""~NO PAYER""),$$PYRAPP^IBCNEUT5(""EIV"",$G(Y))'="""""
+ S DIC("S")="I $$PYRAPP^IBCNEUT5(""EIV"",$G(Y))'="""""
  S DIC="^IBE(365.12,"
  D ^DIC
  I $D(DUOUT)!$D(DTOUT) S STOP=1 G PYRSELX

@@ -1,5 +1,5 @@
 IBCNERP3 ;DAOU/BHS - IBCNE eIV RESPONSE REPORT PRINT ; 03-JUN-2002
- ;;2.0;INTEGRATED BILLING;**184,271,416,528,602,702**;21-MAR-94;Build 53
+ ;;2.0;INTEGRATED BILLING;**184,271,416,528,602,702,737**;21-MAR-94;Build 19
  ;;Per VA Directive 6402, this routine should not be modified.
  ;
  ; eIV - Insurance Verification
@@ -60,9 +60,9 @@ PRINT(RTN,BDT,EDT,PYR,PAT,TYP,SRT,PGC,PXT,MAX,CRT,TRC,EXP,IPRF,IBRDT,IBOUT) ; Pr
  ; IB*702/DTG end no form feed between no data the header and end of report
  ;
  F  S SORT1=$O(^TMP($J,RTN,SORT1)) Q:SORT1=""  D  Q:PXT!$G(ZTSTOP)
- . S (OPRT1,PRT1)=$S(SORT1="~NO PAYER":"* No Payer Identified",1:SORT1)
+ . S (OPRT1,PRT1)=SORT1
  . S SORT2="" F  S SORT2=$O(^TMP($J,RTN,SORT1,SORT2)) Q:SORT2=""  D  Q:PXT!$G(ZTSTOP)
- . . S (OPRT2,PRT2)=$S(SORT2="~NO PAYER":"* No Payer Identified",1:SORT2)
+ . . S (OPRT2,PRT2)=SORT2
  . . S CNT="" F  S CNT=$O(^TMP($J,RTN,SORT1,SORT2,CNT)) Q:CNT=""  D  Q:PXT!$G(ZTSTOP)
  . . . I IBOUT="E" D XLDATA Q
  . . . D SSDB ; add SSN (from ^DPT) and DOB to patient header info

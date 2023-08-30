@@ -1,12 +1,17 @@
 YTQRQAD7 ;BAL/KTL - RESTful Calls to handle MHA Web RPCs ; 7/19/2021
- ;;5.01;MENTAL HEALTH;**181,187,202**;Dec 30, 1994;Build 47
+ ;;5.01;MENTAL HEALTH;**181,187,202,204**;Dec 30, 1994;Build 18
  ;
  ; Reference to EN^XPAR in ICR #2263
  ; Reference to ORQQCN in ICR #1671
  ; Reference to XLFJSON in ICR #6682
+ ; Reference to TIU in ICR #7179
  ;
  ;User Preferences
  ;Instrument Admin COMMENT retrieval
+ Q
+RBAC(ARGS,RESULTS) ;Get user Role properties
+ N MHTITL
+ S MHTITL=$$TITLE()
  Q
 IACTV(INAM) ; Return 1 if Instrument Active, 0 otherwise
  N IEN,STAT,OP
@@ -22,7 +27,7 @@ GETASMTP(ARGS,RESULTS) ; Given user DUZ get last Assignment Preferences
  S RESULTS=$NA(^TMP("YTQ-JSON",$J))
  Q
 SETASMTP(ARGS,DATA) ; Set a User's last Assignment Preferences
- ; Requires HTTPREQ to be defined coming from YTQRUTL passed in by VistA RPC handler
+ ; Requires HTTPREQ
  N YSRET
  S YSRET=$$SETPARAM("YS MHA_WEB LAST ASSIGN SET","/api/mha/assignmentparam/pref/",.HTTPREQ,,"LAST ASSIGNMENT")
  Q YSRET
@@ -37,8 +42,8 @@ GETIFAV(ARGS,RESULTS) ; Given user DUZ get Instrument Favorites
  S RESULTS=$NA(^TMP("YTQ-JSON",$J))
  I $G(CHGF)=1 D RSTPARAM("YS MHA_WEB FAV INST","/api/mha/instrument/lists/fav/userfav/",.YSWPARR,,"INST FAVS")
  Q
-SETIFAV(ARGS,DATA) ; Set a User's Instrument Favorites
- ; Requires HTTPREQ to be defined coming from YTQRUTL passed in by VistA RPC handler
+SETIFAV(ARGS,DATA) ; Set Instrument Favorites
+ ; Requires HTTPREQ
  N YSRET
  N I,YSWPARR,CHGF,CNT,DFLT
  S DFLT="{""favlist"":[]}"
@@ -51,7 +56,7 @@ SETIFAV(ARGS,DATA) ; Set a User's Instrument Favorites
  .. S CNT=CNT+1,HTTPREQ(CNT)=YSWPARR(I,0)
  S YSRET=$$SETPARAM("YS MHA_WEB FAV INST","/api/mha/instrument/lists/fav/userfav/",.HTTPREQ,,"INST FAVS")
  Q YSRET
-GETGRAPH(ARGS,RESULTS) ; Given user DUZ get Graphing Preferences
+GETGRAPH(ARGS,RESULTS) ; Get Graphing Preferences
  N YSWPARR
  K ^TMP("YTQ-JSON",$J)
  D GETPARAM("YS MHA_WEB GRAPH PREFS","{""graphprefs"":[]}",.YSWPARR)
@@ -59,11 +64,11 @@ GETGRAPH(ARGS,RESULTS) ; Given user DUZ get Graphing Preferences
  S RESULTS=$NA(^TMP("YTQ-JSON",$J))
  Q
 SETGRAPH(ARGS,DATA) ; Set a User's Graphing Preferences
- ; Requires HTTPREQ to be defined coming from YTQRUTL passed in by VistA RPC handler
+ ; Requires HTTPREQ
  N YSRET
  S YSRET=$$SETPARAM("YS MHA_WEB GRAPH PREFS","/api/mha/instrumentgraph/prefs/",.HTTPREQ,,"GRAPH PREF")
  Q YSRET
-GETSPCLG(ARGS,RESULTS) ; Given user DUZ get Special Report Graph Report Preferences
+GETSPCLG(ARGS,RESULTS) ; Get Special Report Graph Report Preferences
  N YSWPARR,INSTARR,TMPARR,I,INSTN,CHGF,DFLT
  K ^TMP("YTQ-JSON",$J)
  S DFLT="{""spclgraphprefs"":[]}"
@@ -74,8 +79,8 @@ GETSPCLG(ARGS,RESULTS) ; Given user DUZ get Special Report Graph Report Preferen
  S RESULTS=$NA(^TMP("YTQ-JSON",$J))
  I $G(CHGF)=1 D RSTPARAM("YS MHA_WEB SPECIAL GRAPH RPT","/api/mha/specialgraph/rptpref/",.YSWPARR,,"SPCL RPT")
  Q
-SETSPCLG(ARGS,DATA) ; Set a User's Special Report Graph Report Preferences
- ; Requires HTTPREQ to be defined coming from YTQRUTL passed in by VistA RPC handler
+SETSPCLG(ARGS,DATA) ; Set Special Report Graph Report Preferences
+ ; Requires HTTPREQ
  N YSRET
  N I,YSWPARR,CHGF,CNT,DFLT
  S DFLT="{""spclgraphprefs"":[]}"
@@ -88,15 +93,15 @@ SETSPCLG(ARGS,DATA) ; Set a User's Special Report Graph Report Preferences
  .. S CNT=CNT+1,HTTPREQ(CNT)=YSWPARR(I,0)
  S YSRET=$$SETPARAM("YS MHA_WEB SPECIAL GRAPH RPT","/api/mha/specialgraph/rptpref/",.HTTPREQ,,"SPCL RPT")
  Q YSRET
-GETRPT(ARGS,RESULTS) ; Given user DUZ get Report view Preferences
+GETRPT(ARGS,RESULTS) ; Get Report view Preferences
  N YSWPARR
  K ^TMP("YTQ-JSON",$J)
  D GETPARAM("YS MHA_WEB REPORT PREFS","{""reportprefs"":[]}",.YSWPARR)
  M ^TMP("YTQ-JSON",$J)=YSWPARR
  S RESULTS=$NA(^TMP("YTQ-JSON",$J))
  Q
-SETRPT(ARGS,DATA) ; Set a User's Report view Preferences
- ; Requires HTTPREQ to be defined coming from YTQRUTL passed in by VistA RPC handler
+SETRPT(ARGS,DATA) ; Set Report view Preferences
+ ; Requires HTTPREQ
  N YSRET
  S YSRET=$$SETPARAM("YS MHA_WEB REPORT PREFS","/api/mha/reports/rptpref/",.HTTPREQ,,"RPT PREFS")
  Q YSRET
@@ -107,8 +112,8 @@ GETNP(ARGS,RESULTS) ; Given user DUZ get Report Save Progress Note preference
  M ^TMP("YTQ-JSON",$J)=YSWPARR
  S RESULTS=$NA(^TMP("YTQ-JSON",$J))
  Q
-SETNP(ARGS,DATA) ; Set a User's Save Progress Note preference
- ; Requires HTTPREQ to be defined coming from YTQRUTL passed in by VistA RPC handler
+SETNP(ARGS,DATA) ; Set Save Progress Note preference
+ ; Requires HTTPREQ
  N YSRET
  S YSRET=$$SETPARAM("YS MHA_WEB PROG NOTE PREFS","/api/mha/notes/noteprefs/",.HTTPREQ,,"PROG NOTE PREF")
  Q YSRET
@@ -122,13 +127,13 @@ WEBGUSRP(ARGS,RESULTS) ;Get Dashboard User Column Preferences
  I $D(YSWPARR) M ^TMP("YTQ-JSON",$J)=YSWPARR
  S RESULTS=$NA(^TMP("YTQ-JSON",$J))
  Q
-WEBPUSRP(ARGS,DATA) ; Set a User's Dashboard Column Preferences
- ; Requires HTTPREQ to be defined coming from YTQRUTL passed in by VistA RPC handler
+WEBPUSRP(ARGS,DATA) ; Set Dashboard Column Preferences
+ ; Requires HTTPREQ
  N YSRET
  S YSRET=$$SETPARAM("YSB USER COLUMN PREFERENCE","/api/mha/dashboard/userpref/",.HTTPREQ,,"DASH COLS")
  Q YSRET
 DFLTUP(XJSON)  ;
- ; Get the Default columns to display if there are no set User Preferences
+ ; Get the Default columns to display if no set User Preferences
  N II,XDATA,XNAM,XJ,SPC,XCNT,XTABC
  S $P(SPC," ",10)=""
  S XCNT=1,XTABC=1,XJSON(XCNT)="{"
@@ -148,7 +153,7 @@ SETPARAM(YSPNAM,RETURL,HTTPREQ,YSWDGT,YSVAL)  ;Set Parameter
  ; Assignment Parameters=YS MHA_WEB LAST ASSIGN SET
  ; Favorite Instruments=YS MHA_WEB FAV INST
  ; Batteries=YS MHA_WEB BATTERIES
- ; Requires HTTPREQ to be defined coming from YTQRUTL passed in by VistA RPC handler
+ ; Requires HTTPREQ
  ; Return Success or Failure URL string
  N II,CNT,YSDUZ
  N FDA,IENS,FDAIEN,YSMSG,YSJSON
@@ -200,7 +205,7 @@ GETBAT(ARGS,RESULTS) ; Given user DUZ get Instrument Batteries
  I $G(CHGF)=1 D RSTPARAM("YS MHA_WEB BATTERIES","/api/mha/instrument/lists/batteries/userbat/",.YSWPARR,,"BATTERIES")
  Q
 SETBAT(ARGS,DATA) ; Set a User's Instrument Batteries
- ; Requires HTTPREQ to be defined coming from YTQRUTL passed in by VistA RPC handler
+ ; Requires HTTPREQ
  N YSRET
  N I,YSWPARR,CHGF,CNT,DFLT
  S DFLT="{""batteries"":[]}"
@@ -302,6 +307,31 @@ GETCONS(ARGS,RESULTS)   ; Get list of patient consults
  D SETRES("]}")
  S RESULTS=$NA(^TMP("YTQ-JSON",$J))
  Q
+GETCONS2(ARGS,RESULTS)   ; Get list of patient consults
+ N TYPE,RV,CONS,DT,STAT,LOC,TYPE,LOCA,YSSTAT,HIT,NOCONS,DFN,IEN,YSARR,CNT,RESULTS
+ S YSSTAT="5,6,8,9,15"  ;Pending, Active, Scheduled, Partial Results, Renewed
+ K ^TMP("ORQQCN",$J)
+ S DFN=+$G(ARGS("dfn")) D LIST^ORQQCN(.RV,DFN,,,,YSSTAT)  ;DBIA 1671 ORQQCN LIST
+ K ^TMP("YTQ-JSON",$J) S CNT=0
+ S HIT="",NOCONS=""
+ S IEN=0 F  S IEN=$O(^TMP("ORQQCN",$J,"CS",IEN)) Q:'IEN!NOCONS  D
+ .S DATA=^TMP("ORQQCN",$J,"CS",IEN,0)
+ .I DATA["PATIENT DOES NOT HAVE ANY" S NOCONS=1 Q
+ .S HIT=1
+ .S CONS=$P(DATA,U,1)
+ .S DT=$P(DATA,U,2)
+ .S STAT=$P(DATA,U,3)
+ .S LOC=$P(DATA,U,4)
+ .S TYPE=$P(DATA,U,5)
+ .S LOCA=$P(DATA,U,6)
+ .S CNT=CNT+1,RESULTS("consults",CNT,"Consult")=CONS,RESULTS("consults",CNT,"ConsultDate")=$$FMTE^XLFDT($P(DT,".")),RESULTS("consults",CNT,"Status")=STAT
+ .S RESULTS("consults",CNT,"Clinic")=LOC,RESULTS("consults",CNT,"Type")=TYPE
+ D ENCODE^XLFJSON("RESULTS","YSARR")
+ S II=0 F  S II=$O(YSARR(II)) Q:II=""  D
+ . S ^TMP("YTQ-JSON",$J,II,0)=YSARR(II)
+ K RESULTS
+ S RESULTS=$NA(^TMP("YTQ-JSON",$J))
+ Q
  ;
 ASMTSTAF(ARGS,RESULTS) ; get assignment identified by assignmentId
  N ASMT,INTE,ORBY,LOCA,INTV,ORDBY,LOC,CON,DAT,CONTX,CONA,ADMINDT,IEN,DFN
@@ -396,3 +426,33 @@ J2ARR(JARR,OUTARR) ;Move XLFJSON array contents to OUTARR
  S I=0 F  S I=$O(JARR(I)) Q:+I=0  D
  . S OUTARR(I)=JARR(I,0)
  Q
+TITLE() ; Get MENTAL HEALTH DIAGNOSTIC STUDY NOTE title
+ ;
+ N TITL,ERR,RET
+ S ERR=""
+ D GETLOCT(.TITL,.ERR)
+ S RET=$G(TITL("MHA"))
+ Q RET
+ ;
+GETLOCT(TITL,ERR) ; Get the Local Title IENs
+ ;
+ N CSRE,MHPRNT,PNCLS,NATTIT,MHA,MHAC,FDA,FDAIEN,TIUFPRIV
+ S TIUFPRIV=1
+ S MHA=$$CHKTIU("MENTAL HEALTH DIAGNOSTIC STUDY NOTE","DOC")
+ S MHAC=$$CHKTIU("MENTAL HEALTH CONSULT NOTE","DOC")
+ S TITL("MHA")=MHA
+ S TITL("MHAC")=MHAC
+ Q
+ ;
+CHKTIU(NAME,CLS) ;
+ N TIEN,SCR,MSG
+ S SCR="I $P(^(0),U,4)="""_CLS_""""
+ S TIEN=$$FIND1^DIC(8925.1,"","",NAME,"",SCR,"MSG")
+ Q TIEN
+CHKTITLE(FILE,NAME) ;
+ N DIC,X,Y
+ S DIC=FILE,DIC(0)="X"
+ S X=NAME
+ D ^DIC
+ Q +Y
+ ;

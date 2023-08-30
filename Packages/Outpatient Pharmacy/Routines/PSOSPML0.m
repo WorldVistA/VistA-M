@@ -1,5 +1,5 @@
 PSOSPML0 ;BIRM/MFR - Scheduled Batch Export ;1/6/21  12:58
- ;;7.0;OUTPATIENT PHARMACY;**408,451,625,630**;DEC 1997;Build 26
+ ;;7.0;OUTPATIENT PHARMACY;**408,451,625,630,696**;DEC 1997;Build 4
  ;
 AUTO ; SPMP Scheduled Background Job Edit
  N DIC,Y S DIC(0)="XZM",DIC="^DIC(19.2,",X="PSO SPMP SCHEDULED EXPORT" D ^DIC
@@ -12,11 +12,13 @@ EXPORT ; SPMP Nightly Scheduled Export
  N STATE,NODE0,EXPNODE,BEGEXPDT,FREQCY,YESTERDY,BATIEN,RXCNT,RTSBGDT,RTSENDT
  ;
  D CHK5841
+ K ^TMP("PSOSPMBM",$J)    ;P696
  S STATE=0
  F  S STATE=$O(^PS(58.41,STATE)) Q:'STATE  D
  . K ^TMP("PSOSPMRX",$J)
  . I $P($$SPOK^PSOSPMUT(STATE),"^")=-1 D  Q
  . . D LOGERROR^PSOSPMUT(0,STATE,$P($$SPOK^PSOSPMUT(STATE),"^",2),1)
+ . S ^TMP("PSOSPMBM",$J,STATE)=0    ;P696
  . S NODE0=$G(^PS(58.41,STATE,0)),EXPNODE=$G(^PS(58.41,STATE,"EXPORT"))
  . S FREQCY=$P(NODE0,"^",4),YESTERDY=$$FMADD^XLFDT(DT,-1)
  . S BEGEXPDT=$$FMADD^XLFDT(DT,-FREQCY)
@@ -33,6 +35,7 @@ EXPORT ; SPMP Nightly Scheduled Export
  . S RXCNT=$$GATHER^PSOSPMU1(STATE,BEGEXPDT-.1,YESTERDY+.24,"N")
  . ; The ^TMP("PSOSPMRX",$J) returned will be used to build the batch 
  . I RXCNT>0 D
+ . . S ^TMP("PSOSPMBM",$J,STATE)=1    ;P696
  . . S BATIEN=$$BLDBAT^PSOSPMU1("SC",BEGEXPDT,YESTERDY)
  . . I $P(BATIEN,"^")=-1 D LOGERROR^PSOSPMUT(0,STATE,$P(BATIEN,"^",2),1) Q
  . . ; Automatic sFTP Transmission to the state
@@ -45,43 +48,44 @@ EXPORT ; SPMP Nightly Scheduled Export
  . N SITEIEN S SITEIEN=0
  . N DEANO S DEANO=""
  . K ^TMP("PSOSPZRP",$J),DEARX,DEANRX,SITES,ZDEA
- . F  S SITEIEN=$O(^PS(59,SITEIEN)) Q:'SITEIEN  D
- . . Q:$$GET1^DIQ(59,SITEIEN,.08,"I")'=STATE
- . . I $$GET1^DIQ(59,SITEIEN,2004,"I")'="",$$GET1^DIQ(59,SITEIEN,2004,"I")<DT Q
- . . S DEANO=$$PHA03^PSOASAP0() I DEANO="" Q
- . . S SITES(SITEIEN)=DEANO
- . . I $D(^TMP("PSOSPMST",$J,SITEIEN)),'$G(DEARX(DEANO)) S DEARX(DEANO)=SITEIEN
- . . E  S DEANRX(DEANO)=SITEIEN
- . N DEA,SITE
- . S (DEA,SITE)=""
- . F  S DEA=$O(DEANRX(DEA)) Q:DEA=""  D
- . . I '$G(DEARX(DEA)) S SITE=DEANRX(DEA) S ZDEA(DEA)=SITE S ^TMP("PSOSPZRP",$J,SITE)=DEA
- . I $D(^TMP("PSOSPZRP",$J)) D
- . . I $$GET1^DIQ(58.41,STATE,20)'="" D    ;Sites with no RX and Yes to send Zero Report
- . . . N %,DIC,DR,DA,X,Y,DINUM,DLAYGO,DD,DO,EXPTYPE
- . . . S EXPTYPE="ZR"
- . . . F  L +^PS(58.42,0):$S(+$G(^DD("DILOCKTM"))>0:+^DD("DILOCKTM"),1:3) Q:$T  H 3
- . . . S (DINUM,BATIEN)=$O(^PS(58.42,999999999999),-1)+1
- . . . W !!,"Creating Batch #",DINUM," for ",$$GET1^DIQ(58.41,STATE,.01),"..."
- . . . S DIC="^PS(58.42,",X=DINUM,DIC(0)="",DIC("DR")="1////"_STATE_";2///"_EXPTYPE_";8///"_$$NOW^XLFDT()
- . . . S DIC("DR")=DIC("DR")_";4///"_$G(BEGEXPDT)_";5///"_$G(YESTERDY)
- . . . S DLAYGO=58.42 K DD,DO D FILE^DICN K DD,DO
- . . . L -^PS(58.42,0)
- . . . I Y=-1 S BATIEN="-1^Export Batch could not be created" Q
- . . . N SITE,DEAZ S SITE=""
- . . . F  S SITE=$O(SITES(SITE)) Q:SITE=""  D
- . . . . S DEAZ=$G(SITES(SITE)) I '$G(ZDEA(DEAZ)) Q
- . . . . K DIC,DINUM,DA S DIC="^PS(58.42,"_BATIEN_",""ZRS"",",DIC(0)="",DA(1)=BATIEN
- . . . . S X=SITE,DIC("DR")="1///"_DEAZ
- . . . . S DLAYGO=58.42201 K DD,DO D FILE^DICN K DD,DO
- . . . ; Automatic sFTP Transmission to the state
- . . . D EXPORT^PSOSPMUT(BATIEN,"EXPORT",1)
- . . . N SITE S SITE=0
- . . . N DEA S DEA=""
- . . . F  S SITE=$O(^TMP("PSOSPZRP",$J,SITE)) Q:'SITE  D
- . . . . S DEA=$G(^TMP("PSOSPZRP",$J,SITE))
- . . . . D SENDMAIL(BATIEN,"ZY",DEA)
- . . E  D SENDMAIL("","ZN")
+ . I $$GET1^DIQ(58.41,STATE,21,"I")'=2 D    ;P696
+ . . F  S SITEIEN=$O(^PS(59,SITEIEN)) Q:'SITEIEN  D
+ . . . Q:$$GET1^DIQ(59,SITEIEN,.08,"I")'=STATE
+ . . . I $$GET1^DIQ(59,SITEIEN,2004,"I")'="",$$GET1^DIQ(59,SITEIEN,2004,"I")<DT Q
+ . . . S DEANO=$$PHA03^PSOASAP0() I DEANO="" Q
+ . . . S SITES(SITEIEN)=DEANO
+ . . . I $D(^TMP("PSOSPMST",$J,SITEIEN)),'$G(DEARX(DEANO)) S DEARX(DEANO)=SITEIEN
+ . . . E  S DEANRX(DEANO)=SITEIEN
+ . . N DEA,SITE
+ . . S (DEA,SITE)=""
+ . . F  S DEA=$O(DEANRX(DEA)) Q:DEA=""  D
+ . . . I '$G(DEARX(DEA)) S SITE=DEANRX(DEA) S ZDEA(DEA)=SITE S ^TMP("PSOSPZRP",$J,SITE)=DEA
+ . . I $D(^TMP("PSOSPZRP",$J)) D
+ . . . I $$GET1^DIQ(58.41,STATE,20)'="" D    ;Sites with no RX and Yes to send Zero Report
+ . . . . N %,DIC,DR,DA,X,Y,DINUM,DLAYGO,DD,DO,EXPTYPE
+ . . . . S EXPTYPE="ZR"
+ . . . . F  L +^PS(58.42,0):$S(+$G(^DD("DILOCKTM"))>0:+^DD("DILOCKTM"),1:3) Q:$T  H 3
+ . . . . S (DINUM,BATIEN)=$O(^PS(58.42,999999999999),-1)+1
+ . . . . W !!,"Creating Batch #",DINUM," for ",$$GET1^DIQ(58.41,STATE,.01),"..."
+ . . . . S DIC="^PS(58.42,",X=DINUM,DIC(0)="",DIC("DR")="1////"_STATE_";2///"_EXPTYPE_";8///"_$$NOW^XLFDT()
+ . . . . S DIC("DR")=DIC("DR")_";4///"_$G(BEGEXPDT)_";5///"_$G(YESTERDY)
+ . . . . S DLAYGO=58.42 K DD,DO D FILE^DICN K DD,DO
+ . . . . L -^PS(58.42,0)
+ . . . . I Y=-1 S BATIEN="-1^Export Batch could not be created" Q
+ . . . . N SITE,DEAZ S SITE=""
+ . . . . F  S SITE=$O(SITES(SITE)) Q:SITE=""  D
+ . . . . . S DEAZ=$G(SITES(SITE)) I '$G(ZDEA(DEAZ)) Q
+ . . . . . K DIC,DINUM,DA S DIC="^PS(58.42,"_BATIEN_",""ZRS"",",DIC(0)="",DA(1)=BATIEN
+ . . . . . S X=SITE,DIC("DR")="1///"_DEAZ
+ . . . . . S DLAYGO=58.42201 K DD,DO D FILE^DICN K DD,DO
+ . . . . ; Automatic sFTP Transmission to the state
+ . . . . D EXPORT^PSOSPMUT(BATIEN,"EXPORT",1)
+ . . . . N SITE S SITE=0
+ . . . . N DEA S DEA=""
+ . . . . F  S SITE=$O(^TMP("PSOSPZRP",$J,SITE)) Q:'SITE  D
+ . . . . . S DEA=$G(^TMP("PSOSPZRP",$J,SITE))
+ . . . . . D SENDMAIL(BATIEN,"ZY",DEA)
+ . . . E  D SENDMAIL("","ZN")
  . K DIE,DR,DA S DR="11///"_YESTERDY S DIE="^PS(58.41,",DA=STATE D ^DIE
  . ;RX Not Transmitted Report - Daily Separate File
  . N BEGEXPDT,YESTERDY,BATIEN,RXCNT,LIST
@@ -101,7 +105,35 @@ EXPORT ; SPMP Nightly Scheduled Export
  . .; Manual sFTP Transmission to the state
  . . I $$GET1^DIQ(58.41,STATE,13,"I")="M" D
  . . . D SENDMAIL^PSOSPML0(BATIEN,"S")
- ;
+ ;P696 Loop thru temp global for MbM states that need a Zero Report
+ S STATE=0
+ F  S STATE=$O(^TMP("PSOSPMBM",$J,STATE)) Q:'STATE  D
+ . N MBMST
+ . S MBMST=$$GET1^DIQ(58.41,STATE,21,"I")
+ . I (+MBMST=2),($G(^TMP("PSOSPMBM",$J,STATE))'=1) D
+ . . I $$GET1^DIQ(58.41,STATE,20)'="" D    ;State wants a zero report, and there were no RXs
+ . . . ;get default outpat site and DEA#
+ . . . N SITEIEN,DEANO S (SITEIEN,DEANO)=""
+ . . . S SITEIEN=$$GET1^DIQ(58.41,STATE,22,"I")
+ . . . S DEANO=$$PHA03^PSOASAP0() I DEANO="" Q
+ . . . ;logic from BLDBAT
+ . . . N %,DIC,DR,DA,X,Y,DINUM,DLAYGO,DD,DO,EXPTYPE
+ . . . S EXPTYPE="ZR"
+ . . . F  L +^PS(58.42,0):$S(+$G(^DD("DILOCKTM"))>0:+^DD("DILOCKTM"),1:3) Q:$T  H 3
+ . . . S (DINUM,BATIEN)=$O(^PS(58.42,999999999999),-1)+1
+ . . . W !!,"Creating Batch #",DINUM," for ",$$GET1^DIQ(58.41,STATE,.01),"..."
+ . . . S DIC="^PS(58.42,",X=DINUM,DIC(0)="",DIC("DR")="1////"_STATE_";2///"_EXPTYPE_";8///"_$$NOW^XLFDT()
+ . . . S DIC("DR")=DIC("DR")_";4///"_$G(BEGEXPDT)_";5///"_$G(YESTERDY)
+ . . . S DLAYGO=58.42 K DD,DO D FILE^DICN K DD,DO
+ . . . L -^PS(58.42,0)
+ . . . I Y=-1 S BATIEN="-1^Export Batch could not be created" Q
+ . . . K DIC,DINUM,DA S DIC="^PS(58.42,"_BATIEN_",""ZRS"",",DIC(0)="",DA(1)=BATIEN
+ . . . S X=SITEIEN,DIC("DR")="1///"_DEANO
+ . . . S DLAYGO=58.42201 K DD,DO D FILE^DICN K DD,DO
+ . . . ; Automatic sFTP Transmission to the state
+ . . . D EXPORT^PSOSPMUT(BATIEN,"EXPORT",1)
+ . . . D SENDMAIL(BATIEN,"ZY",DEANO)
+ . . E  D SENDMAIL("","ZN")
  ; Return To Stock Batch for ASAP 1995 states only (Weekly) - Separate file
  I $$UP^XLFSTR($$DOW^XLFDT(DT))'="SUNDAY" Q
  S STATE=0 F  S STATE=$O(^PS(58.41,STATE)) Q:'STATE  D
@@ -118,7 +150,8 @@ EXPORT ; SPMP Nightly Scheduled Export
  ;
 SENDMAIL(BATCHIEN,BATTYPE,DEA) ; ASAP 1995 Only - Mailman message about Return To Stock Records
  ;Input: BATCHIEN - Pointer to BATCH file (#58.42)
- ;       BATTYPE  - Batch Type: S: Scheduled / R: Return to Stock (ASAP 1995 only) / ZR: and ZY: Zero Report
+ ;       BATTYPE  - Batch Type: S: Scheduled / R: Return to Stock (ASAP 1995 only) 
+ ;                             ZN: No Zero Report email only / ZY: Yes Zero Report and email
  ;   (O) DEA      - DEA Numbers passed in for Zero Report
  N XMDUZ,XMMG,XMSUB,XMTEXT,XMY,XMZ,PSOMSG,USR,STANAME
  N RUNDT    ;Zero Reporting

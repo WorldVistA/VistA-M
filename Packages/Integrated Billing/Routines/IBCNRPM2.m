@@ -1,5 +1,5 @@
 IBCNRPM2 ;BHAM ISC/CMW - Match Multiple Group Plans to a Pharmacy Plan ;10-MAR-2004
- ;;2.0;INTEGRATED BILLING;**251,276,550,617**;21-MAR-94;Build 43
+ ;;2.0;INTEGRATED BILLING;**251,276,550,617,711**;21-MAR-94;Build 18
  ;;Per VA Directive 6402, this routine should not be modified.
  ;; ;
 EN(IBCNRP,IBCNRI,IBCNRGP) ; -- main entry point for IBCNR PAYERSHEET MATCH (LIST TEMPLATE)
@@ -46,53 +46,69 @@ INIT ; -- init variables and list array
  . W !,*7,"Warning: No Active Group Plans with Pharmacy Coverage Found."
  ;
  N GPIEN,IBGP0,IBCPOLD,X,IBCPD6,IBCNRPP,IBCOV,IBCRVD,LIM
- N IBGNA,IBGNM,IBCNA,IBCNM,IBDAT
+ N IBGNA,IBGNM,IBCNA,IBCNM,IBDAT,MATCH
  K ^TMP("IBCNR",$J,"PM")
- S VALMCNT=0,VALMBG=1,(IBCNA,IBCNM)=""
+ S VALMCNT=0,VALMBG=1,(IBCNA,IBCNM,GPIEN)=""
  S VALMCNT1=0
  S (IBIND,IBMULT,IBW)=1
- F  S IBCNA=$O(^TMP("IBCNR",$J,"GP",IBCNA)) Q:IBCNA=""  D
- . F  S IBCNM=$O(^TMP("IBCNR",$J,"GP",IBCNA,IBCNM)) Q:IBCNM=""  D
- .. ;get pharm plan id
- .. S GPIEN=$O(^TMP("IBCNR",$J,"GP",IBCNA,IBCNM,"")),IBDAT=^TMP("IBCNR",$J,"GP",IBCNA,IBCNM,GPIEN)
- .. ;set up list
+ S MATCH=""
+ F  S MATCH=$O(^TMP("IBCNR",$J,"GP",MATCH)) Q:MATCH=""  D
+ .I MATCH=0 D
  .. S VALMCNT=VALMCNT+1
- .. S VALMCNT1=VALMCNT1+1
- .. S X=$$SETFLD^VALM1(VALMCNT1,"","NUMBER")
- .. ;
- .. ;group name
- .. S X=$$SETFLD^VALM1(IBCNA,X,"GNAME")
- .. ;
- .. ;group number
- .. S X=$$SETFLD^VALM1(IBCNM,X,"GNUM")
- .. ;
- .. ;group plan type
- .. S X=$$SETFLD^VALM1($$EXPAND^IBTRE(355.3,.09,$P(IBDAT,"^",2)),X,"GTYP")
- .. ;
- .. ;pharmacy plan ID
- .. S IBCNRPP=$P($G(IBDAT),U)
- .. I IBCNRPP'="" S IBCNRPP=$$GET1^DIQ(366.03,IBCNRPP_",",.01,"E")
- .. S X=$$SETFLD^VALM1(IBCNRPP,X,"PHRM")
- .. ;
- .. ; set up tmp for SEL
- .. S ^TMP("IBCNR",$J,"PM",VALMCNT,0)=X
- .. S ^TMP("IBCNR",$J,"PM","IDX",VALMCNT,VALMCNT1)=GPIEN
- .. S ^TMP("IBCNR",$J,"PM","IDX1",VALMCNT1)=GPIEN
- .. ;
- .. I IBCNRPP'="" D    ; If VA PLAN ID exists
- ... I $P(IBDAT,"^",3)'="" D      ; If Matched Date exists
- .... S X="          Matched by: "_$P(IBDAT,"^",4)_"  "_$P(IBDAT,"^",3)
+ .. S ^TMP("IBCNR",$J,"PM",VALMCNT,0)="                              *** "_^TMP("IBCNR",$J,"GP",MATCH)_" UNMATCHED ***"
+ .. D CNTRL^VALM10(VALMCNT,1,80,IORVON,IORVOFF,0)
+ .. S ^TMP("IBCNR",$J,"PM","IDX",VALMCNT,1)=""
+ .I MATCH=1 D
+ .. S VALMCNT=VALMCNT+1
+ .. S ^TMP("IBCNR",$J,"PM",VALMCNT,0)=""
+ .. S ^TMP("IBCNR",$J,"PM","IDX",VALMCNT,1)=""
+ .. S VALMCNT=VALMCNT+1
+ .. S ^TMP("IBCNR",$J,"PM",VALMCNT,0)="                              *** "_^TMP("IBCNR",$J,"GP",MATCH)_" MATCHED ***"
+ .. D CNTRL^VALM10(VALMCNT,1,80,IORVON,IORVOFF,0)
+ .. S ^TMP("IBCNR",$J,"PM","IDX",VALMCNT,1)=""
+ .F  S IBCNA=$O(^TMP("IBCNR",$J,"GP",MATCH,IBCNA)) Q:IBCNA=""  D
+ .. F  S IBCNM=$O(^TMP("IBCNR",$J,"GP",MATCH,IBCNA,IBCNM)) Q:IBCNM=""  D
+ ... ;get pharm plan id
+ ... F  S GPIEN=$O(^TMP("IBCNR",$J,"GP",MATCH,IBCNA,IBCNM,GPIEN)) Q:GPIEN=""  D
+ .... S IBDAT=^TMP("IBCNR",$J,"GP",MATCH,IBCNA,IBCNM,GPIEN)
+ .... ;set up list
  .... S VALMCNT=VALMCNT+1
+ .... S VALMCNT1=VALMCNT1+1
+ .... S X=$$SETFLD^VALM1(VALMCNT1,"","NUMBER")
+ .... ;
+ .... ;group name
+ .... S X=$$SETFLD^VALM1(IBCNA,X,"GNAME")
+ .... ;
+ .... ;group number
+ .... S X=$$SETFLD^VALM1(IBCNM,X,"GNUM")
+ .... ;
+ .... ;group plan type
+ .... S X=$$SETFLD^VALM1($$EXPAND^IBTRE(355.3,.09,$P(IBDAT,"^",2)),X,"GTYP")
+ .... ;
+ .... ;pharmacy plan ID
+ .... S IBCNRPP=$P($G(IBDAT),U)
+ .... I IBCNRPP'="" S IBCNRPP=$$GET1^DIQ(366.03,IBCNRPP_",",.01,"E")
+ .... S X=$$SETFLD^VALM1(IBCNRPP,X,"PHRM")
+ .... ;
+ .... ; set up tmp for SEL
  .... S ^TMP("IBCNR",$J,"PM",VALMCNT,0)=X
  .... S ^TMP("IBCNR",$J,"PM","IDX",VALMCNT,VALMCNT1)=GPIEN
  .... S ^TMP("IBCNR",$J,"PM","IDX1",VALMCNT1)=GPIEN
- .. I IBCNRPP="" D    ; If VA PLAN ID does not exist
- ... I $P(IBDAT,"^",3)'="" D   ; Match Date w/no Plan ID means Deleted
- .... S X="          Deleted by: "_$P(IBDAT,"^",4)_"  "_$P(IBDAT,"^",3)
- .... S VALMCNT=VALMCNT+1
- .... S ^TMP("IBCNR",$J,"PM",VALMCNT,0)=X
- .... S ^TMP("IBCNR",$J,"PM","IDX",VALMCNT,VALMCNT1)=GPIEN
- .... S ^TMP("IBCNR",$J,"PM","IDX1",VALMCNT1)=GPIEN
+ .... ;
+ .... I IBCNRPP'="" D    ; If VA PLAN ID exists
+ ..... I $P(IBDAT,"^",3)'="" D      ; If Matched Date exists
+ ...... S X="          Matched by: "_$P(IBDAT,"^",4)_"  "_$P(IBDAT,"^",3)
+ ...... S VALMCNT=VALMCNT+1
+ ...... S ^TMP("IBCNR",$J,"PM",VALMCNT,0)=X
+ ...... S ^TMP("IBCNR",$J,"PM","IDX",VALMCNT,VALMCNT1)=GPIEN
+ ...... S ^TMP("IBCNR",$J,"PM","IDX1",VALMCNT1)=GPIEN
+ .... I IBCNRPP="" D    ; If VA PLAN ID does not exist
+ ..... I $P(IBDAT,"^",3)'="" D   ; Match Date w/no Plan ID means Deleted
+ ...... S X="          Deleted by: "_$P(IBDAT,"^",4)_"  "_$P(IBDAT,"^",3)
+ ...... S VALMCNT=VALMCNT+1
+ ...... S ^TMP("IBCNR",$J,"PM",VALMCNT,0)=X
+ ...... S ^TMP("IBCNR",$J,"PM","IDX",VALMCNT,VALMCNT1)=GPIEN
+ ...... S ^TMP("IBCNR",$J,"PM","IDX1",VALMCNT1)=GPIEN
  ;
  Q
  ;
@@ -128,6 +144,7 @@ SEL ;  Select Plan
  . I IBPLNOLD=IBCNRP,IBUSROLD="" S DR=DR_";1.07///NOW;1.08////"_DUZ
  . D ^DIE
  D GIPF^IBCNRPM1
+ D CLEAN^VALM10
  D INIT
  ;
  S IBX=0 F  S IBX=$O(VALMY(IBX)) Q:'IBX  D
@@ -150,6 +167,7 @@ DEL ; remove a plan from a group
  . I IBPLNOLD'="" S DR=DR_";1.07///NOW;1.08////"_DUZ
  . D ^DIE
  D GIPF^IBCNRPM1
+ D CLEAN^VALM10
  D INIT
  ;
  S IBX=0 F  S IBX=$O(VALMY(IBX)) Q:'IBX  S ^TMP($J,"IBDEL",+$G(^TMP("IBCNR",$J,"PM","IDX",IBX,IBX)))=""

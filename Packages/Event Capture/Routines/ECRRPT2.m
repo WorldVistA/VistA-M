@@ -1,10 +1,10 @@
-ECRRPT2 ;ALB/DAN - Event Capture Report RPC Broker (Cont) ;9/28/17  14:16
- ;;2.0;EVENT CAPTURE;**112,131,139,156**;8 May 96;Build 28
+ECRRPT2 ;ALB/DAN - Event Capture Report RPC Broker (Cont) ;Nov 16, 2022@13:46:43
+ ;;2.0;EVENT CAPTURE;**112,131,139,156,159**;8 May 96;Build 61
  ;
  ; Reference to ^TMP supported by SACC 2.3.2.5.1
- ; Reference to ^XUSEC(KEY) supported by ICR #10076
- ; Reference to ^DIC supported by ICR #10006
- ; Reference to ^VA(200, supported by ICR #10060
+ ; Reference to ^XUSEC(KEY) in ICR #10076
+ ; Reference to ^DIC in ICR #10006
+ ; Reference to ^VA(200, in ICR #10060
  ;
 ECRDSSUA ;List users with access to DSS Units
  ;     Variables passed in
@@ -293,4 +293,62 @@ ECRPROC ;156 - Procedure Used Report
  . S ECROU="EN^ECRPROC",ECDESC="Event Capture Procedure Used Report"
  . D QUEUE^ECRRPT
  D EN^ECRPROC
+ Q
+ ;
+ECREDIT ;159 - Edit Log Report
+ ;     Variables passed in
+ ;       ECL    - Location to report (1 or ALL)
+ ;       ECD0   - DSS Unit to report (1, some or ALL)
+ ;       ECSORT - Sort type(D or U)
+ ;       ECSD   - Start Date or Report
+ ;       ECED   - End Date or Report
+ ;       ECDUZ  - User IEN from file (#200)
+ ;       ECPTYP - Where to send output (P)rinter, (D)evice or screen
+ ;                or (E)xport
+ ;     Variable return
+ ;       ^TMP($J,"ECRPT",n)=report output or to print device.
+ ;
+ N ECDATE,ECDSSU,ECV,ECI,ECNT,ECKEY,ECROU,ECSAVE,ECDESC,ECX,DIC,X,Y,ECLOC,ECLOC1,LIEN
+ S ECV="ECD0^ECDUZ^ECL0^ECSORT^ECSD^ECED^ECPTYP" D REQCHK^ECRRPT(ECV) I ECERR Q
+ D  I '$D(ECDSSU) S ^TMP("ECMSG",$J)="1^Invalid DSS Unit." Q
+ . I ECD0="ALL" D  Q
+ . . I '$D(ECDUZ) Q
+ . . S ECKEY=$S($D(^XUSEC("ECALLU",ECDUZ)):1,1:0) D ALLU^ECRUTL
+ . S (ECI,ECNT)=0 F ECI=0:1 S ECX="ECD"_ECI Q:'$D(@ECX)  D
+ . . K DIC S DIC=724,DIC(0)="QNZX",X=@ECX D ^DIC I Y<0 Q
+ . . S ECNT=ECNT+1,ECDSSU(ECNT)=Y
+ D  I '$D(ECLOC) S ^TMP("ECMSG",$J)="1^Invalid Location." Q
+ . D LOCARRY^ECRUTL I ECL0="ALL" Q
+ . K ECLOC S X=ECL0,DIC=4,DIC(0)="QNZX" D ^DIC Q:Y<0  S ECLOC(1)=ECL0_U_$P(Y,U,2)
+ D DATECHK^ECRRPT(.ECSD,.ECED)
+ I ECPTYP="P" D  Q
+ . S ECROU="EN^ECREDIT",ECV="ECSORT^ECSD^ECED^ECPTYP"
+ . S ECSAVE("ECDSSU(")="",ECSAVE("ECLOC(")="",ECSAVE("ECLOC1(")=""
+ . S ECDESC="Event Capture Edit Log Report"
+ . D QUEUE^ECRRPT
+ D EN^ECREDIT
+ Q
+ ;
+ECCLIPRO ;159 - Procedure by Clinic Report
+ N ECDATE,ECDSSU,ECV,ECI,ECNT,ECKEY,ECROU,ECSAVE,ECDESC,ECX,DIC,X,Y,ECLOC,ECCLIN
+ S ECV="ECD0^ECDUZ^ECL0^ECSORT^ECSD^ECED^ECPTYP" D REQCHK^ECRRPT(ECV) I ECERR Q
+ D  I '$D(ECDSSU) S ^TMP("ECMSG",$J)="1^Invalid DSS Unit." Q
+ . I ECD0="ALL" D  Q
+ . . I '$D(ECDUZ) Q
+ . . S ECKEY=$S($D(^XUSEC("ECALLU",ECDUZ)):1,1:0) D ALLU^ECRUTL
+ . S (ECI,ECNT)=0 F ECI=0:1 S ECX="ECD"_ECI Q:'$D(@ECX)  D
+ . . K DIC S DIC=724,DIC(0)="QNZX",X=@ECX D ^DIC I Y<0 Q
+ . . S ECNT=ECNT+1,ECDSSU(ECNT)=Y
+ D  I '$D(ECLOC) S ^TMP("ECMSG",$J)="1^Invalid Location." Q
+ . S X=ECL0,DIC=4,DIC(0)="QNZX" D ^DIC Q:Y<0  S ECLOC=ECL0
+ D  I '$D(ECCLI) S ^TMP("ECMSG",$J)="1^Invalid Clinic." Q
+ . S X=ECCLI,DIC=44,DIC(0)="QNZX",DIC("S")="I $P(^(0),U,3)=""C"""
+ . D ^DIC Q:Y<0  S ECCLIN=ECCLI
+ D DATECHK^ECRRPT(.ECSD,.ECED)
+  I ECPTYP="P" D  Q
+ . S ECROU="EN^ECCLIPRO",ECV="ECLOC^ECCLI^ECSORT^ECSD^ECED^ECPTYP"
+ . S ECSAVE("ECDSSU(")=""
+ . S ECDESC="Event Capture Procedure by Clinic Report"
+ . D QUEUE^ECRRPT
+ D EN^ECCLIPRO
  Q

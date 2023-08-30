@@ -1,5 +1,5 @@
 SDCCRSEN ;CCRA/LB,PB - Appointment retrieval API;APR 4, 2019
- ;;5.3;Scheduling;**707,730,735,764,768,741,795,808,822**;APR 4, 2019;Build 44
+ ;;5.3;Scheduling;**707,730,735,764,768,741,795,808,822,841**;APR 4, 2019;Build 47
  Q
  ; Documented API's and Integration Agreements
  ; ----------------------------------------------
@@ -15,6 +15,8 @@ SDCCRSEN ;CCRA/LB,PB - Appointment retrieval API;APR 4, 2019
  ; Patch 822 adds code to insure the consult id is stored in the Hospital Location File, Appointment multiple
  ; and when canceling an appointment, only cancel the appointment if it is for a com care clinic that matches the 
  ; consult service and consult id. Patch 822 also split this routine and move the MAKE, CANCEL and NO SHOW code to SDCCRSEN1
+ ; PB - patch 841 adding code to improve the scheduler lookup the scheduler based on the schedulers email. 
+ ; and adds code to provide additional data to the NAK when a clinic can't be found for the appointment. 
 EN() ;Primary entry routine for HL7 based CCRA scheduling processing.
  ;Will take all scheduling messages through this one point.
  N FS,CS,RS,ES,SS,MID,HLQUIT,HLNODE,USER,USERMAIL,NAKMSG,ICN,MSH,FMDTTM
@@ -89,7 +91,11 @@ SCH(SCH,MSGARY,ABORT,BASEDT) ;SCH segment processing.:
  I $G(SCH(11,1,4))="" S ERR1="NO APPOINTMENT DATE AND TIME",ABORT="1^"_ERR1 Q
  ;User
  S (MSGARY("USER"))=$$GETUSER^SDCCRCOR($G(SCH(20,1,1))) ;SCH-20
- S USERMAIL=$$LOW^XLFSTR($G(SCH(13,1,4))) S:$G(USERMAIL)'="" DUZ=$O(^VA(200,"ADUPN",$G(USERMAIL),""))
+ ;Feb 24, 23 -PB - patch 841 - code to enhances the lookup for the scheduler
+ S USERMAIL=$G(SCH(13,1,4)) S DUZ=$O(^VA(200,"ADUPN",$G(USERMAIL),""))
+ I DUZ="" D
+ .S USERMAIL=$$LOW^XLFSTR($G(SCH(13,1,4))) S:$G(USERMAIL)'="" DUZ=$O(^VA(200,"ADUPN",$G(USERMAIL),""))
+ .S:DUZ=0 USERMAIL=$$UP^XLFSTR($G(SCH(13,1,4))) S:$G(USERMAIL)'="" DUZ=$O(^VA(200,"ADUPN",$G(USERMAIL),""))
  S:$G(DUZ)'>0 DUZ=$O(^VA(200,"ADUPN",$E(USERMAIL,1,30),"")) ;29 JAN 2020 - PB - Change for patch 735 to look emails longer than 30 characters
  I $G(DUZ)'>0 S:$G(USERMAIL)'="" DUZ=$O(^VA(200,"ADUPN",$$UP^XLFSTR(USERMAIL),""))
  I DUZ'>0 S DUZ=.5,(NAKMSG,ERR1)="SCHEDULER DOESN'T HAVE AN ACCOUNT ON THIS SYSTEM",ABORT="1^"_ERR1 Q
@@ -147,7 +153,8 @@ PV1(PV1,MSGARY,HDRTIME,ABORT) ;PV1 segment
  I $G(SDCL)'>0 S SDCL=$$CHECKLST($G(SRVNAME))
  I $G(SDCL)=0 S QUIT=1 Q 0
  I SDCL>0&($$GET1^DIQ(44,$G(SDCL)_",",2502,"E")'="YES") S (NAKMSG,ERROR)=SRVNAME_" NOT A NON COUNT CLINIC FOR CONSULT ID: "_CONSULTID,ERR1=ERROR,ABORT="2^"_ERR1 Q
- I $G(SDCL)'>0 S (NAKMSG,ERROR)=" NO MATCH FOR "_SRVNAMEX_" PV1-19 CONSULT ID:"_CONSULTID,ERR1=ERROR,ABORT="2^"_ERR1 Q  ;WE NEED AN ERR HERE FOR PV1(19)
+ ; Feb 24, 23 - PB - added additional information to the refect reason to include the clinic that we searched for
+ I $G(SDCL)'>0 S (NAKMSG,ERROR)=" NO CLINIC MATCH FOR CONSULT ID, "_CONSULTID_" FOR CONSULT TITLE, "_SRVNAME_" LOOKING FOR CLINIC "_SRVNAMEX,ERR1=ERROR,ABORT="2^"_ERR1 Q  ;WE NEED AN ERR HERE FOR PV1(19)
  N SDRES S SDRES=$O(^SDEC(409.831,"B",$G(SRVNAMEX),"")) S:$G(SDRES)>0 SDECRES=$G(SDRES)
  I $G(SDECRES)="" S (NAKMSG,ERROR)=" NO CLINIC RESOURCE MATCH FOR "_SRVNAMEX,ERR1=ERROR,ABORT="1^"_ERR1 Q
  ;Need to check to see if the clinic is inactive - is there an SDEC API for this?

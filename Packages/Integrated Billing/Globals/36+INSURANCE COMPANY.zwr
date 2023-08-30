@@ -13,4 +13,4 @@ ZWR
 ^DIC(36,"%D",4,0)="changed the user must be assigned the appropriate MAS or IB module option."
 ^DIC(36,"%D",5,0)=" "
 ^DIC(36,"%D",6,0)="Per VHA Directive 10-93-142, this file definition should not be modified."
-^DIC(36,"%MSC")=3201103.140643
+^DIC(36,"%MSC")=3230213.131916

@@ -1,5 +1,5 @@
 IBCCPT1 ;OAK/ELZ - MCCR OUTPATIENT VISITS LISTING CONT.(2) ;30-JUL-2003
- ;;2.0;INTEGRATED BILLING;**260**;21-MAR-94
+ ;;2.0;INTEGRATED BILLING;**260,740**;21-MAR-94;Build 9
  ;;Per VHA Directive 10-93-142, this routine should not be modified.
  ;
  ;
@@ -14,6 +14,7 @@ NBOEP(IBOEO,IBBCPT,IBDXDAT) ; returnes if a procedure is billable
  ;
  ; look up PCE info
  D ENCEVENT^PXKENC(IBPCEX)
+ I IBPCEX="" S IBRMARK="" G NBOEPQ ;RTW IB*2.0*740
  S IBVST800=$G(^TMP("PXKENC",$J,IBPCEX,"VST",IBPCEX,800))
  ;
  ; do comparison to find dx to cpt relations

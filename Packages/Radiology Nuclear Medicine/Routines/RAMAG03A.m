@@ -1,5 +1,5 @@
-RAMAG03A ;HCIOFO/SG - ORDERS/EXAMS API (REGISTR. PARAMS) ; 2/6/09 11:41am
- ;;5.0;Radiology/Nuclear Medicine;**90**;Mar 16, 1998;Build 20
+RAMAG03A ;HCIOFO/SG,GJC - ORDERS/EXAMS API (REGISTR. PARAMS) ; Feb 23, 2023@14:05:28
+ ;;5.0;Radiology/Nuclear Medicine;**90,197**;Mar 16, 1998;Build 2
  ;
  ; This routine uses the following IAs:
  ;
@@ -57,7 +57,14 @@ VALIDATE(RALOCK) ;
  ;
  ;=== Exam date/time
  S TMP=+$E(RADTE,1,12)  ; Strip the seconds
- S I=$$ISEXCTDT^RAUTL22(TMP)
+ ;-- ski begin p197 --
+ S I=$$ISEXDTVAL^RAUTL22(TMP)
+ IF I<1 D  ;no QUIT extrinsic
+ .D IPVE^RAERR("RADTE")
+ .S ERRCNT=ERRCNT+1,RADTE="",RADTI=0
+ .Q
+ ;-- ski end p197 --
+ S I=$$ISEXCTDT^RAUTL22(TMP) ;checks for exact date (month & day) 
  I I>0,$P(TMP,".",2),$$FMTE^XLFDT(TMP)'=TMP  D
  . S RADTE=TMP,RADTI=$$INVDTE^RAMAGU04(RADTE)  ; Inverted date/time
  E  D
@@ -230,7 +237,7 @@ VALOUTPT(IENS751) ;
  ;===
  Q $S(ERRCNT>0:-11,1:0)
  ;
- ;+++++ VALIDATES RADIOLOGY PROCEDURE AND MODFIERS
+ ;+++++ VALIDATES RADIOLOGY PROCEDURE AND MODIFIERS
  ;
  ; IENS751       IENS of the order in the RAD/NUC MED ORDERS file
  ;

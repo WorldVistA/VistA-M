@@ -1,5 +1,5 @@
-SDEC08   ;ALB/SAT/JSM,WTC,LAB,LEG,RRM,MGD - DELETE APPTS ;June 17, 2022@14:12
- ;;5.3;Scheduling;**627,651,658,665,722,740,744,694,745,756,774,781,785,790,792,796,797,799,801,805,819**;Aug 13, 1993;Build 5
+SDEC08   ;ALB/SAT/JSM,WTC,LAB,LEG,RRM,MGD - DELETE APPTS ;Mar 13, 2023
+ ;;5.3;Scheduling;**627,651,658,665,722,740,744,694,745,756,774,781,785,790,792,796,797,799,801,805,819,842,832**;Aug 13, 1993;Build 6
  ;;Per VHA Directive 6402, this routine should not be modified
  ;
  ; Reference to ^DPT (Patient File) is supported by IA #7030
@@ -14,12 +14,12 @@ APPDEL(SDECY,SDECAPTID,SDECTYP,SDECCR,SDECNOT,SDECDATE,SDUSER,SOURCE,SDF,SDECCMT
  ;SDECNOT   - (optional) text representing user note
  ;SDECDATE  - (optional) Cancel Date/Time in external format; defaults to NOW
  ;SDUSER    - (optional) User that cancelled appt; defaults to current user
- ;SOURCE    - future enhancment L 1.8 SD*5.3*715
+ ;SOURCE    - future enhancement L 1.8 SD*5.3*715
  ;SDF       - (optional) Flag to determine whether to reopen appointment SD*5.3*745
  ;SDECCMT   - (optional) List of cancellation comment hash tags (see #409.88) separated by ^ - 756 6/8/2020 wtc
  ;NEWPID    - (optional) Only allowed when cancelling a recall request appointment by patient
  ;EASTRCKINGNMBR - (optional) Enterprise Appointment Scheduling Tracking Number associated to an appointment.
- ;Returns error code in recordset field ERRORID
+ ;Returns error code in record set field ERRORID
  ;
  N SDECNOD,SDECPATID,SDECSTART,DIK,DA,SDECID,SDECI,SDECZ,SDECERR
  N SDECLOC,SDECLEN,SDECSCIEN,SDECSCIEN1,SDECNOEV,SDECSC1,SDRET
@@ -43,7 +43,7 @@ APPDEL(SDECY,SDECAPTID,SDECTYP,SDECCR,SDECNOT,SDECDATE,SDUSER,SOURCE,SDF,SDECCMT
  I SDECTYP="" D ADERR(SDECI,.SDECY,"SDEC08: Invalid status type",+$G(SDECAPTID),0) Q   ;BI/SD*5.3*740 added ADERR
  ;validate CANCELLATION REASON pointer (optional)
  S SDECCR=$G(SDECCR)
- I SDECCR'="" I '$D(^SD(409.2,+SDECCR,0)) S SDECCR=$O(^SD(409.2,"B","SDECCR",0))
+ I SDECCR'="" I '$D(^SD(409.2,+SDECCR,0)) S SDECCR=$O(^SD(409.2,"B",SDECCR,0)) ;832
  ;validate SDECNOT
  S SDECNOT=$TR($G(SDECNOT),"^"," ")  ;alb/sat 658 - strip out ^
  ;
@@ -153,7 +153,7 @@ SDECCAN(SDECAPTID,SDECTYP,SDECCR,SDECNOT,SDECDATE,SDUSER,SDF,NEWPID,EASTRCKNGNMB
  S SDECFDA(409.84,SDECIENS,.121)=$S($G(SDUSER)'="":SDUSER,1:DUZ)
  S:$G(SDECCR)'="" SDECFDA(409.84,SDECIENS,.122)=SDECCR
  S SDECFDA(409.84,SDECIENS,.17)=SDECTYP
- ;S SDECFDA(409.84,SDECIENS,2)="@" ;patch SD*5.3*796, delete VVS appointment ID if appoinment is cancelled
+ ;S SDECFDA(409.84,SDECIENS,2)="@" ;patch SD*5.3*796, delete VVS appointment ID if appointment is cancelled
  S:$G(EASTRCKNGNMBR)'="" SDECFDA(409.84,SDECIENS,100)=EASTRCKNGNMBR
  K SDECMSG
  D FILE^DIE("","SDECFDA","SDECMSG")
@@ -197,13 +197,18 @@ SDECCAN(SDECAPTID,SDECTYP,SDECCR,SDECNOT,SDECDATE,SDUSER,SDF,NEWPID,EASTRCKNGNMB
  .S PIDCHANGEVERIF=$S(SDECTYP="C":0,SDECTYP="PC":1,1:"")
  .S SDECFDA(409.85,SDIEN_",",49)=PIDCHANGEVERIF
  .S:$G(EASTRCKNGNMBR)'="" SDECFDA(409.85,SDIEN_",",100)=EASTRCKNGNMBR
+ .; If Canc Don't Re-Open and no existing Disp Code
+ .I ($$GET1^DIQ(409.2,SDECCR,5,"I")=0),($$GET1^DIQ(409.85,SDIEN,21,"I")="") D
+ ..S SDECFDA(409.85,SDIEN_",",19)=$P($$GET1^DIQ(409.84,SDECAPTID,.12,"I"),".",1)
+ ..S SDECFDA(409.85,SDIEN_",",20)=$$GET1^DIQ(409.84,SDECAPTID,.121,"I")
+ ..S SDECFDA(409.85,SDIEN_",",21)=$O(^SDEC(409.853,"B","CANCELLED NOT RE-OPENED",""))
  .D UPDATE^DIE("","SDECFDA","ARRET","ERRMSG")
  .I SDF=2 NEW INP S INP(1)=SDIEN S INP(2)="REMOVED/EXTERNAL APP" S INP(3)=SDUSER S INP(4)=DT D ARCLOSE^SDECAR("",.INP) ;*745
  Q
  ;
 CANEVT(SDECPAT,SDECSTART,SDECSC) ;EP Called by SDEC CANCEL APPOINTMENT
  ;when Appt cancelled via PIMS interface.
- ;Propagates canceL to SDECAPPT & raises refresh event to running GUI clients
+ ;Propagates cancel to SDECAPPT & raises refresh event to running GUI clients
  N SDECFOUND,SDECRES
  Q:+$G(SDECNOEV)
  Q:'+$G(SDECSC)

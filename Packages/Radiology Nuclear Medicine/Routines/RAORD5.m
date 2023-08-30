@@ -1,5 +1,5 @@
-RAORD5 ;HISC/CAH,FPT,GJC AISC/RMO-Print A Request ;Jul 25, 2018@16:43:06
- ;;5.0;Radiology/Nuclear Medicine;**8,10,15,31,45,75,123,132,149**;Mar 16, 1998;Build 1
+RAORD5 ;HISC/CAH,FPT,GJC AISC/RMO-Print A Request ; Mar 16, 2023@06:47:25
+ ;;5.0;Radiology/Nuclear Medicine;**8,10,15,31,45,75,123,132,149,200**;Mar 16, 1998;Build 2
  ; Input:  RADFN= Internal Number to Rad/Nuc Med Patient File #70
  ;         RAOIFN= Internal Number to Rad/Nuc Med Orders File #75.1
  ;         RAX= Null (Used to check for an '^')
@@ -12,13 +12,16 @@ RAORD5 ;HISC/CAH,FPT,GJC AISC/RMO-Print A Request ;Jul 25, 2018@16:43:06
  ; 2-p75 10/12/2006 GJC RA*5*75 set REASON FOR STUDY to a local variable
  ; 5-P123 6/23/2015 MJT RA*5*123 NSR 20140507 print weight & date taken in Radiology requests
  ; 5-P132 11/1/2017 RTW RA*5*123 NSR 20160706 print height & date taken in Radiology requests
+ ; 1-p200 3/01/2023 KLM RA*5*200 NSR 20220815 add patient's preferred name to patient name variable 
  ;
  S:$D(ZTQUEUED) ZTREQ="@"
- N DFN,GMRVSTR,RAHDX,RAPROC
+ N DFN,GMRVSTR,RAHDX,RAPROC,RAPREFNM
  G Q:'$D(^DPT(RADFN,0)) S RADPT0=^(0) G Q:'$D(^RAO(75.1,RAOIFN,0)) S RAORD0=^(0)
+ S RAPREFNM=$$GET1^DIQ(2,RADFN,.2405) ;1-p200 get patient preferred name.
  S RAPROC=$P(RAORD0,"^",2)
  K ^UTILITY($J,"W"),^(1) S RAOSTSYM="dc^c^h^^p^^^s",$P(RALNE,"-",79)="",$P(RALNE1,"=",79)="",DIWL=5,DIWR=75,DIWF="WC75"
- S RA("NME")=$P(RADPT0,"^"),RA("SEX")=$P(RADPT0,"^",2),RA("DOB")=$P(RADPT0,"^",3),RASSN=$$SSN^RAUTL
+ S RA("NME")=$P(RADPT0,"^") I RAPREFNM]"" S RA("NME")=RA("NME")_" ("_RAPREFNM_")" ;1-p200 - Append preferred name in parenthesis: PT NAME (PRF NAME)
+ S RA("SEX")=$P(RADPT0,"^",2),RA("DOB")=$P(RADPT0,"^",3),RASSN=$$SSN^RAUTL
  S RA("AGE")=($$FMDIFF^XLFDT($P(RAORD0,U,16),RA("DOB")))\365.25 ;1-p75
  S RA("STY_REA")=$P($G(^RAO(75.1,RAOIFN,.1)),U) ;2-p75
  S RA("PRC NODE")=$G(^RAMIS(71,+RAPROC,0))

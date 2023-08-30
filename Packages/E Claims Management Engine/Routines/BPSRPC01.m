@@ -1,5 +1,5 @@
 BPSRPC01 ;AITC/PD - ECME TAS RPC - Extract Txn IENs;7/30/2018
- ;;1.0;E CLAIMS MGMT ENGINE;**27**;JUN 2004;Build 15
+ ;;1.0;E CLAIMS MGMT ENGINE;**27,34**;JUN 2004;Build 11
  ;;Per VA Directive 6402, this routine should not be modified.
  ;
  Q
@@ -38,19 +38,17 @@ RPC2(RESULT,ARGS) ; RPC: BPS TAS TXN IENS NEW
  F BPSFLAG=2,1 D
  . S BPS57=""
  . F  S BPS57=$O(^BPSTL("C",BPSFLAG,BPS57),-1) Q:'BPS57!(BPSCNT>(BPSCOUNT-1))  D
- . . I $D(@BPSTMP@("B",BPS57)) Q
  . . S BPSCNT=$G(BPSCNT)+1
  . . S @BPSTMP@(BPSCNT,"TxnIEN")=BPS57
  . . S @BPSTMP@("B",BPS57)=""
  . . ;
- . . I BPSFLAG=2 Q
  . . ; Update MCCF EDI TAS Progress flag to be 2
  . . ; 2 = SENT
  . . N BPSA,BPSFN,BPSREC
  . . S BPSFN=9002313.57
  . . S BPSREC=BPS57_","
  . . S BPSA(BPSFN,BPSREC,20)=2
- . . D FILE^DIE("","BPSA","") 
+ . . D FILE^DIE("","BPSA","")
  ;
  ; No Txns Found - Set ^TMP array to show nothing found before calling
  ; ENCODE logic.

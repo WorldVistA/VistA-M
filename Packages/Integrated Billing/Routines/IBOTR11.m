@@ -1,6 +1,8 @@
 IBOTR11 ;ALB/CPM - INSURANCE PAYMENT TREND REPORT - HELP TEXT ; 15-AUG-95
- ;;2.0;INTEGRATED BILLING;**42,100,118,128**;21-MAR-94
+ ;;2.0;INTEGRATED BILLING;**42,100,118,128,743**;21-MAR-94;Build 18
+ ;;Per VA Directive 6402, this routine should not be modified.
  ;
+ ;IB*743/TAZ - Updated Help Text for INSURANCE COMPANY
 HELP W ! F  S IBTEXT=$P($T(TEXT+IBOFF),";",3) Q:IBTEXT=""  W !,IBTEXT S IBOFF=IBOFF+1
  W ! Q
  ;
@@ -48,16 +50,16 @@ TEXT ; - 'Select (I)NPATIENT...' prompt (offset=1).
  ;
  ; - 'Start with INSURANCE COMPANY' prompt (offset=43).
  ;;      Enter a valid field value up to 40 characters, or:
- ;;              '@'    -  To include null values
- ;;              '<CR>' -  To start from the 'first' value for this field
- ;;              '^'    -  To quit this option
+ ;;              '@'       -  To include null values
+ ;;              '<ENTER>' -  To start from the 'first' value for this field
+ ;;              '^'       -  To quit this option
  ;
  ; - 'Go to INSURANCE COMPANY' prompt (offset=49).
  ;;      Enter a valid field value up to 40 characters, or:
- ;;              '@'    -  To include only null values, if 'Start with'
- ;;                         value is @
- ;;              '<CR>' -  To go to the 'last' value for this field
- ;;              '^'    -  To quit this option
+ ;;              '@'       -  To include only null values, if 'Start with'
+ ;;                            value is @
+ ;;              '<ENTER>' -  To go to the 'last' value for this field
+ ;;              '^'       -  To quit this option
  ;
  ; - 'Sort by AMOUNT (O)WED...' prompt (offset=56).
  ;;      Enter:  '<CR>' -  To sort report by insurance company

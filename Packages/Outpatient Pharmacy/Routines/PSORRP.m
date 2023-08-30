@@ -1,5 +1,5 @@
 PSORRP ;AITC/BWF - Remote RX report ;8/15/16 5:44pm
- ;;7.0;OUTPATIENT PHARMACY;**454**;DEC 1997;Build 349
+ ;;7.0;OUTPATIENT PHARMACY;**454,643**;DEC 1997;Build 35
  ;
 EN ; -- main entry point for PSO LM REMOTE RX REPORT
  N PSOREPORT
@@ -153,7 +153,7 @@ BLDLINE(IEN,LINE) ;
  S VALMCNT=$G(VALMCNT)+1
  Q
 SEL ;
- N DIR,ITEM,IEN,IENS,DATA,CNT,F,TYPE,ARY,SITELBL
+ N DIR,ITEM,IEN,IENS,DATA,CNT,F,ARY,SITELBL,PSOPRRF,PSOPRRT,PSOPRRS
  S ARY=$NA(^TMP("PSORRD",$J))
  K @ARY
  S CNT=1
@@ -166,20 +166,29 @@ SEL ;
  Q:'IEN
  S IENS=IEN_","
  D GETS^DIQ(F,IENS,"**","IE","DATA")
- S TYPE=$G(DATA(F,IENS,.05,"I"))
+ S PSOPRRT=$G(DATA(F,IENS,.05,"I"))
+ S PSOPRRF=$S($E(PSOPRRT)="O":1,1:0)
+ I PSOPRRF S PSOPRRS=$S($E(PSOPRRT,2)="R":1,1:0)
  ; set up data
- S @ARY@(CNT,0)="Request Date/Time:                    "_$G(DATA(F,IENS,.01,"E")),CNT=CNT+1
- S @ARY@(CNT,0)="Patient:                              "_$G(DATA(F,IENS,.02,"E")),CNT=CNT+1
- S @ARY@(CNT,0)="RX #:                                 "_$G(DATA(F,IENS,.03,"I")),CNT=CNT+1
- S SITELBL=$S(TYPE?1"O".E:"Rx Dispensed by Site:                 ",1:"Rx Hosted at Site:                    ")
+ S @ARY@(CNT,0)="Request Date/Time:               "_$G(DATA(F,IENS,.01,"E")),CNT=CNT+1
+ S @ARY@(CNT,0)="Patient:                         "_$G(DATA(F,IENS,.02,"E")),CNT=CNT+1
+ S @ARY@(CNT,0)="RX #:                            "_$G(DATA(F,IENS,.03,"I")),CNT=CNT+1
+ S SITELBL=$S(PSOPRRF:"Rx Dispensed by Site:            ",1:"Rx Hosted at Site:               ")
  S @ARY@(CNT,0)=SITELBL_$G(DATA(F,IENS,.04,"E")),CNT=CNT+1
- S @ARY@(CNT,0)="Request Type:                         "_$G(DATA(F,IENS,.05,"E")),CNT=CNT+1
- S @ARY@(CNT,0)="Requesting Pharmacist:                "_$S((TYPE="PR")!(TYPE="RF"):$G(DATA(F,IENS,.06,"E")),(TYPE="OR")!(TYPE="OP"):$G(DATA(F,IENS,.061,"E"))),CNT=CNT+1
- S @ARY@(CNT,0)="Quantity:   "_$G(DATA(F,IENS,.07,"E"))_"   Days Supply: "_$G(DATA(F,IENS,.08,"E"))
- S @ARY@(CNT,0)="Dispensed Date:                       "_$G(DATA(F,IENS,.1,"E")),CNT=CNT+1
- S @ARY@(CNT,0)="Drug Name at Originating (Host) site: "_$G(DATA(F,IENS,1,"E")),CNT=CNT+1
- S @ARY@(CNT,0)="Local (matched) drug:                 "_$G(DATA(F,IENS,1.1,"E")),CNT=CNT+1
- S @ARY@(CNT,0)="Cost of Local Refill/Partial:         $"_$J($G(DATA(F,IENS,1.2,"E")),0,2)
+ S @ARY@(CNT,0)="Request Type:                    "_$G(DATA(F,IENS,.05,"E")),CNT=CNT+1
+ S @ARY@(CNT,0)="Requesting Pharmacist:           "_$S('PSOPRRF:$G(DATA(F,IENS,.06,"E")),1:$G(DATA(F,IENS,.061,"E"))),CNT=CNT+1
+ S @ARY@(CNT,0)="Quantity:                        "_$G(DATA(F,IENS,.07,"E")),CNT=CNT+1
+ S @ARY@(CNT,0)="Days Supply:                     "_$G(DATA(F,IENS,.08,"E")),CNT=CNT+1
+ S @ARY@(CNT,0)="Dispensed Date:                  "_$G(DATA(F,IENS,.1,"E")),CNT=CNT+1
+ S @ARY@(CNT,0)="Drug Name at Host site:          "_$G(DATA(F,IENS,1,"E")),CNT=CNT+1
+ S @ARY@(CNT,0)="Local (matched) drug:            "_$G(DATA(F,IENS,1.1,"E"))_$S(PSOPRRF:"",1:" ("_$G(DATA(F,IENS,1.1,"I"))_")") S CNT=CNT+1
+ S @ARY@(CNT,0)="Cost of Local Refill/Partial:    $"_$J($G(DATA(F,IENS,1.2,"E")),0,2),CNT=CNT+1
+ S @ARY@(CNT,0)="Remote Filling Person:           "_$G(DATA(F,IENS,.061,"E")),CNT=CNT+1
+ S @ARY@(CNT,0)="Remote Checking Pharmacist:      "_$G(DATA(F,IENS,.062,"E")),CNT=CNT+1
+ I PSOPRRF S @ARY@(CNT,0)="Host "_$S(PSOPRRS:"Refill",1:"Partial")_" IEN:                "_$S(PSOPRRS:" ",1:"")_$G(DATA(F,IENS,$S(PSOPRRS:.063,1:.064),"E")),CNT=CNT+1
+ S @ARY@(CNT,0)="OPAI Message ID:                 "_$G(DATA(F,IENS,4,"E")),CNT=CNT+1
+ S @ARY@(CNT,0)="Disp ADD Name:                   "_$G(DATA(F,IENS,4.2,"E")),CNT=CNT+1
+ S @ARY@(CNT,0)="Disp ADD DNS:                    "_$G(DATA(F,IENS,4.3,"E"))
  S PSORCNT=CNT
  D ^PSORRD
  K @ARY,PSORCNT

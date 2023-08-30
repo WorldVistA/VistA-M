@@ -1,5 +1,5 @@
-IVMZ7CS ;TDM,ERC - HL7 Z07 CONSISTENCY CHECKER -- SERVICE SUBROUTINE ; 8/1/08 1:54pm
- ;;2.0;INCOME VERIFICATION MATCH;**105,132,115**;OCT 21,1994;Build 28
+IVMZ7CS ;ALB/TDM,ERC,ARF - HL7 Z07 CONSISTENCY CHECKER -- SERVICE SUBROUTINE ; 8/1/08 1:54pm
+ ;;2.0;INCOME VERIFICATION MATCH;**105,132,115,211**;OCT 21,1994;Build 14
  ;
  ; Service Consistency Checks
  ; This routine checks the various elements of service information
@@ -50,7 +50,8 @@ EN(DFN,DGP) ; entry point.  Patient DFN is sent from calling routine.
  Q
  ;
 507 ; RAD EXPOSURE METHOD INVALID
- I $P(DGP("PAT",.321),U,3)="Y" S X=$P(DGP("PAT",.321),U,12) I X'?1N!(X<2)!(X>7) S FILERR(RULE)=""
+ ;IVM*2.0*211 - No longer checking the rule 507 (Refer to DG*5.3*1090)
+ ;I $P(DGP("PAT",.321),U,3)="Y" S X=$P(DGP("PAT",.321),U,12) I X'?1N!(X<2)!(X>10) S FILERR(RULE)=""
  Q
  ;
 508 ; MST STATUS INVALID

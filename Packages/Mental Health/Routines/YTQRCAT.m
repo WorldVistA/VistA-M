@@ -1,5 +1,5 @@
 YTQRCAT ;SLC/KCM - Calls to manage CAT instruments ; 1/25/2017
- ;;5.01;MENTAL HEALTH;**182,199,202**;Dec 30, 1994;Build 47
+ ;;5.01;MENTAL HEALTH;**182,199,202,218**;Dec 30, 1994;Build 9
  ;
 SPLTADM(ADMIN) ; split CAT interview into multiple admins
  N X0 S X0=$G(^YTT(601.84,ADMIN,0))
@@ -14,6 +14,7 @@ SPLTADM(ADMIN) ; split CAT interview into multiple admins
  I CNT=1 D  QUIT          ; just re-point if only one test
  . S TTYP=$G(TREE("report","tests",1,"type"))
  . D REPOINT(ADMIN,$$NMINST(TTYP))
+ . D SETSCORE(ADMIN)
  ;
  ; continue here if multiple tests in interview
  ; reverse $O on ITEST so we change the original last
@@ -32,6 +33,7 @@ SPLTADM(ADMIN) ; split CAT interview into multiple admins
  . S CATANS(1)=8650    ; question id of CAT interview
  . D SAVEANS(.CATANS)  ; adminId already in CATANS("AD")
  . I ITEST=1 D REPOINT(ADMIN,$$NMINST(TTYP))  ; use original admin
+ . D SETSCORE(CATANS("AD"))
  Q
 LOADTREE(ADMIN,TREE) ; load interview document into TREE
  N YSDATA,YS
@@ -46,6 +48,13 @@ BLDANS(JSON,CATANS) ; split JSON into FM WP chunks
  . . S LN=LN+1,CATANS(1,LN)="|"_X
  . . S JSON(I)=$E(JSON(I),201,$L(JSON(I)))
  Q
+SETSCORE(ADMIN) ; score the admin
+ N YSDATA,YS
+ S YS("AD")=ADMIN
+ D SCORSAVE^YTQAPI11(.YSDATA,.YS)
+ K ^TMP($J,"YSCOR"),^TMP($J,"YSG")
+ Q
+ ;
 NEWADM(SRCADM,NAME) ; return a new admin for instrument NAME based on another
  N YSDATA,YS,X0,IEN71
  S X0=$G(^YTT(601.84,SRCADM,0)) I '$L(X0) Q 0

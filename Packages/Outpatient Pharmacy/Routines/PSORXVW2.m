@@ -1,5 +1,5 @@
 PSORXVW2 ;ISC-BIRM/PDW - view cmop activity logs ; 4/13/12 2:54pm
- ;;7.0;OUTPATIENT PHARMACY;**33,71,117,152,148,367,361,655**;DEC 1997;Build 2
+ ;;7.0;OUTPATIENT PHARMACY;**33,71,117,152,148,367,361,655,720**;DEC 1997;Build 1
  ; External Referrence to file # 550.2 granted by DBIA 2231
  ;External reference to ^PS(50.607 supported by DBIA 2221
  ;External reference to ^PS(51.2 supported by DBIA 2226
@@ -65,6 +65,7 @@ Q1 S:PSXTST=0 PSXT="TRAN"
  S PSXRDT="Not Released"
  I PSXTST=1 D
  .I PSXFIL>0,('$D(^PSRX(DA,1,PSXFIL,0))) S PSXT="Disp Refill Deleted" Q
+ .I PSXFIL,$D(^PSRX(DA,"RTS",0)),$$REFRTS(DA,PSXFIL) S PSXT="Disp Refill Deleted" Q
  .S PSX1=$S(PSXFIL=0:$P(^PSRX(DA,2),"^",13),1:$P(^PSRX(DA,1,PSXFIL,0),"^",18))
  .Q:PSX1']""
  .I PSX1'["." S PSXRDT=$E(PSX1,4,5)_"/"_$E(PSX1,6,7)_"/"_$E(PSX1,2,3) G SKIP
@@ -128,3 +129,15 @@ DATE(RX,RFL,PSXA) ;
  ;
 DAT S DAT="",DTT=DTT\1 Q:DTT'?7N  S DAT=$E(DTT,4,5)_"/"_$E(DTT,6,7)_"/"_$E(DTT,2,3)
  Q
+REFRTS(PSORXN,PSOFN) ; p720 (Rx#,Fill Number) Return 1 if refill is returned to stock and label is created after RTS
+ N PSXA,PSFILL,RTS,LBLDT,LBLFLN
+ F PSXA=0:0 S PSXA=$O(^PSRX(PSORXN,"RTS",PSXA)) Q:'PSXA  D
+ . S PSFILL=$P($G(^PSRX(PSORXN,"RTS",1,0)),"^",2) Q:PSFILL'=PSOFN
+ . S RTS(PSFILL)=$P($G(^PSRX(PSORXN,"RTS",1,0)),"^") ; rts date
+ Q:'$D(RTS(PSOFN)) 0
+ F PSXA=0:0 S PSXA=$O(^PSRX(PSORXN,"L",PSXA)) Q:'PSXA  D
+ . S LBLFLN=$P($G(^PSRX(PSORXN,"L",PSXA,0)),"^",2) ; label fill number
+ . Q:LBLFLN'=PSOFN
+ . S LBLDT=$P($G(^PSRX(PSORXN,"L",PSXA,0)),"^") ; label date/time
+ Q:$G(LBLDT)>(RTS(PSOFN)) 1
+ Q 0

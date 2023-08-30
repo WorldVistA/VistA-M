@@ -1,5 +1,5 @@
-SDEC57 ;ALB/SAT/JSM,WTC - VISTA SCHEDULING RPCS ;Feb 12, 2020@15:22
- ;;5.3;Scheduling;**627,642,658,665,701,686,694**;Aug 13, 1993;Build 61
+SDEC57 ;ALB/SAT/JSM,WTC/BLB - VISTA SCHEDULING RPCS ;Apr 14, 2023@15:22
+ ;;5.3;Scheduling;**627,642,658,665,701,686,694,837,842**;Aug 13, 1993;Build 17
  ;
  Q
  ;APPSLOTS - return appt slots and availability
@@ -148,12 +148,15 @@ TDAY(SDAB,SDCL,SDCLS,SDLEN,SDSI,SDBEG,SDEND) ;add/update access blocks for day t
  D TDAY1
  Q
 TDAY1 ;
- N D,SDA,SDTP,SS,ST,Y
+ N D,SDA,SDTP,SS,ST,Y,SUB,DAY
  ;SDA=begin position of pattern on template
  S SDA=$S(SDSI=3:6,SDSI=6:12,1:8)
  S SDTP=""
  ;if no CURRENT AVAILABILITY pattern, try to build it
- I '$D(^SC(SDCL,"ST",$P(SDBEG,".",1),1)) S ST='$$ST(SDCL,SDBEG) Q:ST
+ ;
+ S DAY=$$DOW^XLFDT(SDBEG,1)
+ S SUB="T"_DAY
+ I '$D(^SC(SDCL,"ST",$P(SDBEG,".",1),1)),$L($G(^SC(SDCL,SUB,9999999,1))) S ST='$$ST(SDCL,SDBEG) Q:ST
  S SDTP=$G(^SC(SDCL,"ST",$P(SDBEG,".",1),1)) S SDTP=$E(SDTP,SDA,$L(SDTP))
  Q:SDTP=""
  K SDBLKS
@@ -169,7 +172,7 @@ ST(SDCL,SDBEG) ;build ST
  S SC=SDCL
  S D=$$DOW^XLFDT(SDDT,1)
  S Y=D#7
- I $D(^HOLIDAY(SDDT))&($$GET1^DIQ(44,SDCL_",",1918.5,"I")'="Y") D H Q 0
+ I $D(^HOLIDAY(SDDT))&($$GET1^DIQ(44,SDCL_",",1918.5,"I")'="Y") D H(SDDT) Q 0
  S SS=$$FDT(SDCL,Y)
  Q:+SS="" 0
  S ^SC(+SDCL,"ST",SDDT,1)=$E($P($T(DAY),U,Y+2),1,2)_" "_$E(SDDT,6,7)_$S(SDSI=3:"",SDSI=6:"      ",1:"  ")_SS,^SC(+SDCL,"ST",SDDT,0)=SDDT
@@ -183,7 +186,7 @@ FDT(SDCL,Y)  ;find day template pattern
  Q:SDTP="" ""
  F  S SDE=$O(^SC(SDCL,"T"_Y,SDE),-1) Q:SDE'>0  Q:$P(SDBEG,".",1)'<SDE  S SDTP=$G(^SC(SDCL,"T"_Y,SDE,1))
  Q SDTP
-H ;update ST as holiday
+H(X) ;update ST as holiday
  S ^SC(+SC,"ST",X,1)="   "_$E(X,6,7)_"    "_$P(^HOLIDAY(X,0),U,2),^SC(+SC,"ST",X,0)=X
  Q
  ;

@@ -1,5 +1,5 @@
 YTQRQAD5 ;SLC/LLB - RESTful Calls to handle MHA assignments ; 10/07/2019
- ;;5.01;MENTAL HEALTH;**158,178,182,181,187,199,202**;Dec 30, 1994;Build 47
+ ;;5.01;MENTAL HEALTH;**158,178,182,181,187,199,202,204,228**;Dec 30, 1994;Build 3
  ;
  ; Reference to VADPT in ICR #10061
  ; Reference to XLFDT in ICR #10103
@@ -21,6 +21,7 @@ EDITASMT(ARGS,DATA) ; save assignment, return /api/mha/assignment/edit/{assignme
  S ORDBY=+$G(DATA("orderedBy"))
  I $G(DATA("consult"))=""!($G(DATA("consult"))="null") K DATA("consult")
  I $G(DATA("adminDate"))=""!($G(DATA("adminDate"))="null")!(+$G(DATA("adminDate"))=0) K DATA("adminDate")
+ I $G(DATA("cosigner"))=""!($G(DATA("cosigner"))="null") K DATA("cosigner")
  S DATA("appSrc")=$G(DATA("appSrc"))
  I 'DFN!'ORDBY Q $$DONE(400,"FAIL - Missing Reqd Fields",1)
  D DEM^VADPT I $G(VAERR) Q $$DONE(400,"Missing Pt Info",1)
@@ -68,11 +69,15 @@ GETGRAPH(ARGS,RESULT) ; Retrieve completed instrument score graphing data for a 
  ;
 COLL ; Collect groups & scores for non-legacy instruments 
  N CNT,TYPE,YSCALENM,YSTSCORE,GCNT,GCNTMAX,YSRSCORE,FRSTYP
+ N SCLRES,SDAT,YSCIND
  S (CNT,GCNT,GCNTMAX)=0
  S FRSTYP=$G(^TMP($J,"YSG",1)),FRSTYP=$P(FRSTYP,U)
  I FRSTYP["ERROR" Q  ;No graph data
  F  S CNT=$O(^TMP($J,"YSG",CNT)) Q:CNT=""  D
  .  S TYPE=$P(^TMP($J,"YSG",CNT),"=",1) I $E($P(TYPE,"=",1),1,5)="Group" S GCNTMAX=GCNTMAX+1
+ S CNT=1 F  S CNT=$O(^TMP($J,"YSCOR",CNT)) Q:+CNT=0  D
+ . S SDAT=^TMP($J,"YSCOR",CNT),YSCALENM=$P(SDAT,"=") Q:YSCALENM=""
+ . S SCLRES(YSCALENM,CNT)=^TMP($J,"YSCOR",CNT)
  S CNT=0
  F  S CNT=$O(^TMP($J,"YSG",CNT)) Q:CNT=""  D
  . S TYPE=$P(^TMP($J,"YSG",CNT),"=",1)
@@ -89,8 +94,13 @@ COLL ; Collect groups & scores for non-legacy instruments
  . I $E($P(TYPE,"=",1),1,5)="Scale" D
  . . S RCNT=RCNT+1
  . . S YSCALENM=$P(^TMP($J,"YSG",CNT),"^",4)
- . . S YSRSCORE=$P($P($G(^TMP($J,"YSCOR",($E(TYPE,6,8)+1))),"=",2),"^",1)
- . . S YSTSCORE=$P($P($G(^TMP($J,"YSCOR",($E(TYPE,6,8)+1))),"=",2),"^",2)
+ . . Q:'$D(SCLRES(YSCALENM))
+ . . S YSCIND=$O(SCLRES(YSCALENM,""))
+ . . S YSRSCORE=$P($P($G(^TMP($J,"YSCOR",YSCIND)),"=",2),"^",1)
+ . . S YSTSCORE=$P($P($G(^TMP($J,"YSCOR",YSCIND)),"=",2),"^",2)
+ . . K SCLRES(YSCALENM,YSCIND)
+ . . ;S YSRSCORE=$P($P($G(^TMP($J,"YSCOR",($E(TYPE,6,8)+1))),"=",2),"^",1)
+ . . ;S YSTSCORE=$P($P($G(^TMP($J,"YSCOR",($E(TYPE,6,8)+1))),"=",2),"^",2)
  . . S RESULT(RCNT)="         {""scale"":"""_YSCALENM_""",""rawScore"":"""_YSRSCORE
  . . I YSTSCORE'="" S RESULT(RCNT)=RESULT(RCNT)_""",""tScore"":"""_YSTSCORE
  . . S RESULT(RCNT)=RESULT(RCNT)_"""},"

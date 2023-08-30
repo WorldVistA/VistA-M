@@ -1,5 +1,5 @@
 IBCNERP8 ;DAOU/BHS - IBCNE eIV STATISTICAL REPORT COMPILE ;11-JUN-2002
- ;;2.0;INTEGRATED BILLING;**184,271,345,416,506,621,631,668,687**;21-MAR-94;Build 88
+ ;;2.0;INTEGRATED BILLING;**184,271,345,416,506,621,631,668,687,737**;21-MAR-94;Build 19
   ;;Per VA Directive 6402, this routine should not be modified.
  ;
  ; eIV - Insurance Verification Interface
@@ -188,15 +188,17 @@ CUR(RTN,BDT,EDT,TOT) ; Current Status - stats - timeframe independent
  ;  3=total Deferred Inqs (Hold-4)
  ;  4=Ins Cos w/o National ID
  ;  5=Payers w/eIV locally enabled is NO  ;/vd-IB*2*687 - Reworded the description.
- ;  6=total user action required (symbol'='*' or '#' or '!' or '?' or '-')
- ;  7=total Man. Ver'd Ins Buf entries (symbol='*')
+ ;   ; 6=total user action required (symbol'='*' or '#' or '!' or '?' or '-')
+ ;  6=total user action required (symbol'='#' or '!' or '?' or '-') ;IB*737/DTG stop use of '*' verified
+ ;  7=total Man. Ver'd Ins Buf entries (symbol='*') ;IB*737/DTG stop use of '*' verified
  ;  8=total eIV Processed Ver. (symbol='+')
  ;  9=total awaiting processing (symbol='?' or BLANK)
  ;  10=total Ins Buf entries w/symbol='#'
  ;  11=total Ins Buf entries w/symbol='!'
  ;  12=total Ins Buf entries w/symbol='?'
  ;  13=total Ins Buf entries w/symbol='-'
- ;  14=total Ins Buffer entries w/symbol not in ('*','#','!','?','-')
+ ;  ;  14=total Ins Buffer entries w/symbol not in ('*','#','!','?','-')
+ ;  14=total Ins Buffer entries w/symbol not in ('#','!','?','-') ;IB*737/DTG stop use of '*' verified
  ;  15=total Ins Buffer entries w/symbol='$'
  ;  16=total Ins Buffet entries w/symbol= % ; IB*2.0*621 - Added 16-21
  ;  17=total Insurance Buffer
@@ -341,11 +343,13 @@ CUR(RTN,BDT,EDT,TOT) ; Current Status - stats - timeframe independent
  . . I $D(ZTQUEUED),TOT#100=0,$$S^%ZTLOAD() S ZTSTOP=1 Q
  . . S IBSYMBOL=$$SYMBOL^IBCNBLL(IBIEN)
  . . ; Determine piece to update based on symbol
- . . ; ('*') = Man. Verified,  ('#','!','-','?',blank/null) = eIV Processing
+ . . ;  ;('*') = Man. Verified,  ('#','!','-','?',blank/null) = eIV Processing
+ . . ; ('#','!','-','?',blank/null) = eIV Processing  ;IB*737/DTG stop use of '*' verified
  . . ; ('+') = eIV Processed, ('$') = Escalated, Active policy
  . . ; IB*2.0*506/taz Node 15 added.
  . . ; IB*2.0*621/ Node 16 Added.
- . . S PIECE=$S(IBSYMBOL="*":7,IBSYMBOL="+":8,IBSYMBOL="#":10,IBSYMBOL="!":11,IBSYMBOL="-":13,IBSYMBOL="?":12,IBSYMBOL="$":15,IBSYMBOL="%":16,1:14)
+ . . ;S PIECE=$S(IBSYMBOL="*":7,IBSYMBOL="+":8,IBSYMBOL="#":10,IBSYMBOL="!":11,IBSYMBOL="-":13,IBSYMBOL="?":12,IBSYMBOL="$":15,IBSYMBOL="%":16,1:14)
+ . . S PIECE=$S(IBSYMBOL="+":8,IBSYMBOL="#":10,IBSYMBOL="!":11,IBSYMBOL="-":13,IBSYMBOL="?":12,IBSYMBOL="$":15,IBSYMBOL="%":16,1:14)  ;IB*737/DTG stop use of '*' verified
  . . I PIECE=12!(PIECE=14) S $P(RPTDATA,U,9)=$P($G(RPTDATA),U,9)+1
  . . E  S $P(RPTDATA,U,6)=$P($G(RPTDATA),U,6)+1
  . . S $P(RPTDATA,U,PIECE)=$P($G(RPTDATA),U,PIECE)+1
@@ -389,12 +393,12 @@ PYR(RTN,BDT,EDT,TOT) ; Determine Incoming Data
  ; Output vars: Set ^TMP($J,RTN,"PYR",APP,PAYER NAME,IEN of file 365.12)=""  ;IB*2.0*687
  ;
  ;  /ckb-IB*2*687  Added APP to incorporate IIU into this report. Moved from IBCNERP0.
+ ;IB*737/TAZ - Removed reference to Most Popular Payer and "~NO PAYER"
  ;
  ;N PIEN,PYR,CREATEDT,APPIEN,APPDATA
  N PIEN,PYR,CREATEDT,APP,APPIEN,APPDATA
  S PIEN=0 F  S PIEN=$O(^IBE(365.12,PIEN)) Q:'PIEN  D
  . S PYR=$P($G(^IBE(365.12,PIEN,0)),U)
- . Q:PYR="~NO PAYER"       ; used internally only - not a real eIV payer
  . S TOT=TOT+1
  . F APP="EIV","IIU" D
  . . S APPIEN=+$$PYRAPP^IBCNEUT5(APP,+PIEN)  ; Get the ien of the application

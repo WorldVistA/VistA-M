@@ -1,5 +1,5 @@
-RCTCSPU ;ALBANY/BDB-CROSS-SERVICING UTILITIES ;03/15/14 3:34 PM
- ;;4.5;Accounts Receivable;**301,315,350**;Mar 20, 1995;Build 66
+RCTCSPU ;ALBANY/BDB - CROSS-SERVICING UTILITIES ;03/15/14 3:34 PM
+ ;;4.5;Accounts Receivable;**301,315,350,400**;Mar 20, 1995;Build 13
  ;;Per VA Directive 6402, this routine should not be modified.
  Q
  ;
@@ -225,7 +225,7 @@ RCRSD ;ask debtor recall reason
  Q:(Y="")!(Y=U)
  ;set debtor recall data in file 340
  S REASON=Y
- S $P(^RCD(340,DEBTOR,7),U,2,4)="1^^"_REASON
+ ;S $P(^RCD(340,DEBTOR,7),U,2,4)="1^^"_REASON  PRCA*4.5*400
  ;go through debtor bills and set reason in the bill recall reason
  S BILL=0
  F  S BILL=$O(^PRCA(430,"C",DEBTOR,BILL)) Q:BILL'?1N.N  D
@@ -331,3 +331,21 @@ SSN(DEBT) ;Get SSN for debtor
 Q1 Q Y
  ;
  Q
+ ;
+RECALL(BILL) ; recall bill from cross-servicing due to HRFS flag being set  PRCA*4.5*400
+ ;
+ ; BILL - bill to recall (file 430 ien)
+ ;
+ ; returns 1 on success, 0^error on failure
+ ;
+ N DIERR,FDA,IENS
+ I BILL'>0 Q "0^Invalid file 430 ien"
+ L +^PRCA(430,BILL):5 I '$T Q "0^Unable to lock entry"
+ S IENS=BILL_","
+ S FDA(430,IENS,152)=1
+ S FDA(430,IENS,154)="05"
+ D FILE^DIE("","FDA","DIERR")
+ I $D(DIERR("DIERR")) Q "0^"_$G(DIERR("DIERR",1,"TEXT",1))
+ L -^PRCA(430,BILL)
+ D CSRCLPL1^RCTCSPD5 ; CS Recall Placed comment tx in 433
+ Q 1

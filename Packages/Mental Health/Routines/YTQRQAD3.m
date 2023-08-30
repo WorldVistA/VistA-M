@@ -1,5 +1,5 @@
 YTQRQAD3 ;SLC/KCM - RESTful Calls to set/get MHA administrations ; 1/25/2017
- ;;5.01;MENTAL HEALTH;**130,141,158,178,182,181,187,199,207,202**;Dec 30, 1994;Build 47
+ ;;5.01;MENTAL HEALTH;**130,141,158,178,182,181,187,199,207,202,204,208**;Dec 30, 1994;Build 23
  ;
  ; Reference to ^VA(200) in ICR #10060
  ; Reference to DIQ in ICR #2056
@@ -137,6 +137,7 @@ NOTE4PT(ADMIN,DATA) ; save progress note text in assignment for a patient-entere
  D SPLTADM^YTQRCAT(ADMIN) ; separate out the admins if CAT
  ;S CONSULT=$P(^YTT(601.84,ADMIN,0),U,15)
  S YS("AD")=ADMIN
+ S:COSIGNER]"" YS("COSIGNER")=COSIGNER
  ;Entry predicated on LSTASMT'=Yes. Therefore=No if updated PE, null if old PE.
  ;If LSTASMT=null, file progress note immediately
  I ASMT'=0,(LSTASMT="No") D SAVPNOT^YTQRQAD8(ASMT,ADMIN,CONSULT,COSIGNER,.YS) Q  ;Save in aggregate progress note XTMP instead
@@ -163,6 +164,38 @@ REQCSGN(ADMIN,COSIGNER) ; return "true" if this user requires a cosigner
  S YSTITLE=$S(CONSULT:$P($G(^YTT(601.71,TEST,8)),U,10),1:$P($G(^YTT(601.71,TEST,8)),U,9))
  D REQCOS^TIUSRVA(.YSCREQ,YSTITLE,"",YSPERSON,"")
  Q $S(YSCREQ:"true",1:"false")
+ ;
+NEEDCSGN(ARGS,RESULTS) ; GET /api/mha/permission/needcosign/:userId  208
+ ; Returns "true" if userId requires a cosigner
+ ; Returns "false" if userId does NOT require a cosigner
+ N YSPERSON,YSTITLE,YSCREQ,INSTS,TEST,II,CONSULT,YSCREQ,CSLIST,INAM,CFLG
+ S INSTS=$G(ARGS("instrumentList"))
+ S YSPERSON=$G(ARGS("userId"))
+ S CFLG="false"
+ I INSTS="" D  Q
+ . S YSTITLE=$$TITLE^YTQRQAD7()
+ . D REQCOS^TIUSRVA(.YSCREQ,YSTITLE,"",YSPERSON,"")
+ . S RESULTS("userId")=YSPERSON
+ . S RESULTS("needCosigner")=$S(YSCREQ:"true",1:"false")
+ . Q
+ ;I INSTS="" D SETERROR^YTQRUTL(404,"Instrument List not sent. ") QUIT
+ S CONSULT=$S($G(ARGS("consult"))]"":1,1:"")
+ S CFLG="false"
+ F II=1:1:$L(INSTS,",") D
+ . S INAM=$P(INSTS,",",II) Q:INAM=""
+ . S TEST=$O(^YTT(601.71,"B",INAM,"")) Q:+TEST=0
+ . S YSTITLE=$S(CONSULT:$P($G(^YTT(601.71,TEST,8)),U,10),1:$P($G(^YTT(601.71,TEST,8)),U,9))
+ . Q:YSTITLE=""
+ . K YSCREQ
+ . D REQCOS^TIUSRVA(.YSCREQ,YSTITLE,"",YSPERSON,"")
+ . S CSLIST=$S($G(YSCREQ)=1:"true",1:"false")
+ . I CSLIST="true" S CFLG="true"
+ . S RESULTS("instrumentList",II,"instName")=INAM
+ . S RESULTS("instrumentList",II,"needCosign")=CSLIST
+ K RESULTS  ;
+ S RESULTS("userId")=YSPERSON
+ S RESULTS("needCosigner")=CFLG
+ Q
  ;
 SETCOM(ARGS,DATA) ; save comment in Instrument Admin (F601.84,f10) using ARGS("adminId")
  ;Expects DATA to contain individual lines of text for the comment. Need to retrieve existing and prepend new lines

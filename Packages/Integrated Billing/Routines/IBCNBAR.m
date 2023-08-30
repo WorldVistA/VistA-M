@@ -1,5 +1,5 @@
 IBCNBAR ;ALB/ARH-Ins Buffer: process Accept and Reject ;15 Jan 2009
- ;;2.0;INTEGRATED BILLING;**82,240,345,413,416,497,528,554,595,631,687**;21-MAR-94;Build 88
+ ;;2.0;INTEGRATED BILLING;**82,240,345,413,416,497,528,554,595,631,687,737**;21-MAR-94;Build 19
  ;Per VA Directive 6402, this routine should not be modified.
  ;
  ;
@@ -20,6 +20,10 @@ PROCESS ; process all changes selected by user, add/edit insurance files based
  N IVMINSUP,IBNEW,IBCDFN,RIEN S IBCDFN=IBPOLDA S:+IBNEWPOL IBNEW=1 D BEFORE^IBCNSEVT ; insurance event driver
  ;
  N DIR,X,Y,IBX,IBINSH,IBGRPH,IBPOLH,IBSUBH S (IBINSH,IBGRPH,IBPOLH,IBSUBH)="Updated" W:$G(IBSUPRES)'>0 " ...",!
+ ;
+ ;IB*737/CKB - if processing this entry would result in Effective Date (#2.312,8) being null, abort processing
+ I $G(IBCNICB) S IBSIEN=$S(+IBPOLDA:IBPOLDA_","_DFN_",",1:"")
+ S IBBUFABORT=$$EFFDTCHK(IBBUFDA,IBSIEN,+IBMVPOL) G:IBBUFABORT ACCPTQ
  ;
  S RESULT(0)="-1^Add new INSURANCE COMPANY failed"
  I +IBNEWINS S IBINSDA=+$$NEWINS^IBCNBMN(IBBUFDA) G:'IBINSDA ACCPTQ  S IBINSH="Created",RESULT(1)="IBINSDA^"_IBINSDA
@@ -258,3 +262,55 @@ TRACK ;Build CREATION TO PROCESSING TRACKING File (#355.36)
  . D MSG^IBCNEUT5($$MGRP^IBCNEUT5(),"eIV Problem: Error writing to the CREATION TO PROCESSING TRACKING File (#355.36)","IBMSG(")
  Q
  ;
+EFFDTCHK(IBBUFDA,IBSIEN,IBMVPOL) ;
+ ;IB*737/CKB - if processing this entry would result in Effective Date (#2.312,8) being null,
+ ;             abort processing by returning 1
+ ; 
+ ;
+ ;Can't ACCEPT the entry if the Eff Date (#355.33,60.02) is null (includes Replace scenario)
+ ;
+ ;Overwrite - can't ACCEPT the entry if:
+ ;      Exp Date (#355.33,60.03) is null;
+ ;      AND Exp Date (#2.312,3) is NOT null;
+ ;      AND Eff Date (#355.33,60.02) > Exp Date (#2.312,3)
+ ;
+ ;Merge - can't ACCEPT the entry if:
+ ;      Exp Date (#2.312,3) is NOT null;
+ ;      AND Eff Date (#2.312,8) is null;
+ ;      AND Eff Date (#355.33,60.02) > Exp Date (#2.312,3);
+ ;      AND Exp Date (#355.33,60.03) is null
+ ;
+ ;Individual - can't ACCEPT the entry if:
+ ;      Exp Date (#2.312,3) is NOT null;
+ ;      AND Eff Date (#355.33,60.02) > Exp Date (#2.312,3);
+ ;      AND User answered YES to Accept Eff Date (#355.33,60.02) - adds to ^TMP($J,"IB BUFFER SELECTED",60.02);
+ ;      AND (User answered NO to Accept Exp Date (#355.33,60.03) OR (#355.33,60.03) is null)
+ ;
+ N ABORT,BUFEFFDT,BUFEXPDT,CHGEFFDT,CHGEXPDT,INSEFFDT,INSEXPDT
+ S ABORT=0
+ S BUFEFFDT=$$GET1^DIQ(355.33,IBBUFDA_",",60.02,"I")
+ S BUFEXPDT=$$GET1^DIQ(355.33,IBBUFDA_",",60.03,"I")
+ S INSEFFDT=$$GET1^DIQ(2.312,IBSIEN,8,"I")
+ S INSEXPDT=$$GET1^DIQ(2.312,IBSIEN,3,"I")
+ ;
+ ;Check Buffer Eff and Exp Date to ensure they are valid dates, if not abort processing
+ ; Abort processing if Buffer Eff Date is a "" (null) date
+ I $$VALIDDT^IBCNINSU(BUFEFFDT)<1 S ABORT=1 G EFFDTCHKQ
+ ; Allow the Buffer Exp Date to have a "" (null) date, this date is evaluated below
+ I $$VALIDDT^IBCNINSU(BUFEXPDT)<0 S ABORT=1 G EFFDTCHKQ
+ ;
+ I $G(IBSIEN)="" G EFFDTCHKQ  ; buffer okay, can't corrupt existing policy as it's a new policy
+ I INSEXPDT="" G EFFDTCHKQ    ; buffer entry okay to process
+ ;
+ ;   IBMVPOL = 1:Merge, 2:Overwrite, 3:Replace, 4:Individual 
+ I IBMVPOL=2 I (BUFEXPDT="")&(INSEXPDT'="")&(BUFEFFDT>INSEXPDT) S ABORT=1 G EFFDTCHKQ
+ ;
+ I IBMVPOL=1 I INSEFFDT=""&(BUFEFFDT>INSEXPDT)&(BUFEXPDT="") S ABORT=1 G EFFDTCHKQ
+ ;
+ I IBMVPOL=4 D
+ . S CHGEFFDT=$D(^TMP($J,"IB BUFFER SELECTED",60.02))  ; user wants to change the Effective Date
+ . S CHGEXPDT=$D(^TMP($J,"IB BUFFER SELECTED",60.03))  ; user wants to change the Expiration Date
+ . I (BUFEFFDT>INSEXPDT)&(CHGEFFDT)&((CHGEXPDT="")!(BUFEXPDT="")) S ABORT=1
+ ;
+EFFDTCHKQ ;
+ Q ABORT

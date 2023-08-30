@@ -1,5 +1,5 @@
 YSBWHIGH ;SLC/DJE - MHA DASHBOARD ; Apr 01, 2021@16:33
- ;;5.01;MENTAL HEALTH;**202**;Dec 30, 1994;Build 47
+ ;;5.01;MENTAL HEALTH;**202,208**;Dec 30, 1994;Build 23
  ;
  ; Routine retrieves high risk widget data
  ;
@@ -17,6 +17,7 @@ HIGHRISK(DATAOUT) ;
  N SAFHEAD,SAFDCL,SAFREV,SAFSCNO,SAFSCYES,CSREHEAD,CSRENEW,CSREUPD,SITES
  N HRFND
  N LSTSAF,DONE7,LSTCSRE,SUBS,CSRETITL,CSRENEW,CSREUPD
+ N $ES,$ET S $ET="D ERRHND^YSBWHIGH"   ; quit from ERRHND if error
  S NOW=$$NOW^XLFDT()
  S YSDT=$P(NOW,".",1)
  D HRINIT^YSBRPC(.SAFHEAD,.SAFDCL,.SAFREV,.SAFSCNO,.SAFSCYES,.CSREHEAD,.CSRENEW,.CSREUPD,.SITES)
@@ -36,8 +37,8 @@ HIGHRISK(DATAOUT) ;
  .S DATAOUT("data",HRIDX,"dfn")=DFN
  .S DCDT=$$MHDCDT^YSBWHIG2(DFN)
  .S DATAOUT("data",HRIDX,"patient_name")=$P(HRPATS(DFN,0),U)
- .S DATAOUT("data",HRIDX,"patient_prf")="YES" ;these are all active HIGH RISK PRFs
- .S DATAOUT("data",HRIDX,"division")=$P(PRFDATA("OWNER"),U,2) ;these are all active HIGH RISK PRFs
+ .S DATAOUT("data",HRIDX,"patient_prf")="YES" ;All HIGH RISK PRFs
+ .S DATAOUT("data",HRIDX,"division")=$P(PRFDATA("OWNER"),U,2) ;all HIGH RISK PRFs
  .S DATAOUT("data",HRIDX,"prf_review")=$$FMTE^XLFDT(+PRFDATA("REVIEWDT"),5)
  .S DATAOUT("data",HRIDX,"due_overdue")=$$GETDUE(+PRFDATA("REVIEWDT"),YSDT)
  .S DATAOUT("data",HRIDX,"last_discharge_date")=$S(+DCDT:$$FMTE^XLFDT(DCDT,5),1:DCDT)
@@ -51,14 +52,22 @@ HIGHRISK(DATAOUT) ;
  .S DATAOUT("data",HRIDX,"done_in_7")=DONE7
  .S DATAOUT("data",HRIDX,"last_csra")=LSTCSRE
  .D BLDINST^YSBWHIG2(.INSTDATA,DFN,42,YSDT,"phq9") ;PHQ9
- .D BLDRSL^YSBWHIG2(.INSTDATA,DFN,42,YSDT,"phq9_i9",3382) ;PHQ9 question 9
+ .D BLDRSL^YSBWHIG2(.INSTDATA,DFN,42,YSDT,"phq9_i9",3382) ;PHQ9 q9
  .D CSSRS(.INSTDATA,DFN,YSDT) ;C-SSRS
  .M DATAOUT("data",HRIDX)=INSTDATA
- .;temporarily send px information in loaddb call
+ .;send px information in loaddb call
  .D PATIENT^YSBDD1(DFN,.PATDATA)
  .M DATAOUT("data",HRIDX)=PATDATA
  Q
  ;
+ERRHND ; Handle errors & clear stack
+ N ERROR S ERROR=$$EC^%ZOSV           ; get error
+ I ERROR["ZTER" D UNWIND^%ZTER        ; ignore errors clearing stack
+ N $ET S $ET="D ^%ZTER,UNWIND^%ZTER"  ; avoid loop on add'l error
+ D ^%ZTER                             ; rec fail in error trap
+ S DATAOUT("data",1)=""               ; set to null for JSON
+ D UNWIND^%ZTER                       ; clear stack
+ Q
 PRFDATA(DFN,SITES,PRFDATA) ;
  N PRFFULL,I,DONE,PRFSTAT
  S PRFSTAT=$$GETACT^DGPFAPI(DFN,"PRFFULL")

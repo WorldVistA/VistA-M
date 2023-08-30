@@ -1,6 +1,6 @@
-MAGGTU4T ;WOIFO/SG/NST/JSL/DAC/JSJ - VERSION CONTROL (TELEREADER) ; Oct 25, 2022@05:31:49
- ;;3.0;IMAGING;**93,94,106,117,122,127,182,219,242,281,292,320,328**;Mar 19, 2002;Build 5
- ;; Per VHA Directive 2004-038, this routine should not be modified.
+MAGGTU4T ;WOIFO/SG/NST/DAC/JSJ/JSL - VERSION CONTROL (TELEREADER) ; Mar 03, 2023@12:01:09
+ ;;3.0;IMAGING;**93,94,106,117,122,127,182,219,242,281,292,320,352**;Mar 19, 2002;Build 8
+ ;; Per VA Directive 6402, this routine should not be modified.
  ;; +---------------------------------------------------------------+
  ;; | Property of the US Government.                                |
  ;; | No permission to copy or redistribute this software is given. |
@@ -21,11 +21,11 @@ MAGGTU4T ;WOIFO/SG/NST/JSL/DAC/JSJ - VERSION CONTROL (TELEREADER) ; Oct 25, 2022
  ;
 CLVERCT ;***** VERSION CONTROL TABLE FOR THE TELEREADER CLIENTS
  ;;==================================================================
- ;;| Version |Build|Seq # |                Comment                  |
+ ;;| Version |Build|Seq #|                Comment                   |
  ;;|---------+-----+------------------------------------------------|
- ;;| 3.0.328 |   1 |  ??  | Nov 2022                                |
- ;;| 3.0.320 |   2 |  66  | Aug 2022                                |
- ;;| 3.0.292 |   3 |  65  | Apr 2022                                |
+ ;;| 3.0.352 |   1 |  78 | Mar 2023                                 |
+ ;;| 3.0.320 |   2 |  76 | Aug 2022                                 |
+ ;;| 3.0.292 |   3 |  65 | Feb 2022                                 |
  ;;==================================================================
  ;
  ; Each row of the version control table contains the version and
@@ -36,7 +36,7 @@ CLVERCT ;***** VERSION CONTROL TABLE FOR THE TELEREADER CLIENTS
  ; order of patch sequential numbers is recommended.
  ;
  ; NOTE:
- ;  Patch 328 removed support for
+ ;  Patch 352 removed support for
  ;        - Patch 281
  ;  Patch 320 removed support for
  ;        - Patch 242

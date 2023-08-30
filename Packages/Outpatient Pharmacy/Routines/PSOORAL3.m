@@ -1,0 +1,103 @@
+PSOORAL3 ;BHAM ISC/MV - Build Listman activity log extension ; 12/4/07 12:25pm
+ ;;7.0;OUTPATIENT PHARMACY;**643**;DEC 1997;Build 35
+ACT ;activity log
+ N CNT,PSORDATA,PSOTXT,PSOTXT1,PSOTXT2,X
+ S IEN=IEN+1,^TMP("PSOAL",$J,IEN,0)=" ",IEN=IEN+1,^TMP("PSOAL",$J,IEN,0)="Activity Log:"
+ S IEN=IEN+1,^TMP("PSOAL",$J,IEN,0)="#   Date/Time            Reason         Rx Ref         Initiator Of Activity",IEN=IEN+1,$P(^TMP("PSOAL",$J,IEN,0),"=",79)="="
+ I '$O(^PSRX(DA,"A",0)) S IEN=IEN+1,^TMP("PSOAL",$J,IEN,0)="There's NO Activity to report" Q
+ S CNT=0
+ F N=0:0 S N=$O(^PSRX(DA,"A",N)) Q:'N  S P1=^(N,0) D
+ .I $P(P1,"^",2)="M" Q
+ .S PSORDATA="",PSOTXT="",PSOTXT1="",PSOTXT2=""
+ .S DAT=$$FMTE^XLFDT($P(P1,"^"),2)_"               "
+ .S IEN=IEN+1,CNT=CNT+1,^TMP("PSOAL",$J,IEN,0)=CNT_$S(CNT<10:"   ",1:"  ")_$E(DAT,1,21),$P(RN," ",15)=" ",REA=$P(P1,"^",2)
+ .S REA=$F("HUCELPRWSIVDABXGKNO",REA)-1
+ .I REA D
+ ..S STA=$P("HOLD^UNHOLD^DISCONTINUED^EDIT^RENEWED^PARTIAL^REINSTATE^REPRINT^SUSPENSE^RETURNED^INTERVENTION^DELETED^DRUG INTERACTION^PROCESSED^X-INTERFACE^PATIENT INSTR.^PKI/DEA^DISP COMPLETED^IERX^","^",REA)
+ ..S ^TMP("PSOAL",$J,IEN,0)=^TMP("PSOAL",$J,IEN,0)_STA_$E(RN,$L(STA)+1,15)
+ .E  S $P(STA," ",15)=" ",^TMP("PSOAL",$J,IEN,0)=^TMP("PSOAL",$J,IEN,0)_STA
+ .K STA,RN S $P(RN," ",15)=" ",RF=+$P(P1,"^",4)
+ .S RFT=$S(RF>0&(RF<6):"REFILL "_RF,RF=6:"PARTIAL",RF>6:"REFILL "_(RF-1),1:"ORIGINAL")
+ .S PSORDATA=$$REMDATA(DA,P1)
+ .S ^TMP("PSOAL",$J,IEN,0)=^TMP("PSOAL",$J,IEN,0)_RFT_$E(RN,$L(RFT)+1,15)_$E($S($P(PSORDATA,"^",2)]"":$P(PSORDATA,"^",2),$D(^VA(200,+$P(P1,"^",3),0)):$P(^(0),"^"),1:$P(P1,"^",3)),1,24)
+ .I $P(P1,"^",5)]"" N PSOACBRK,PSOACBRV D
+ ..K PSOTXT S PSOACBRV=$P(P1,"^",5)_$P(PSORDATA,"^")
+ ..I (($L(PSOACBRV)#59)<$L($P(PSORDATA,"^"))),($P(PSORDATA,"^")]"") S PSOACBRV=$P(P1,"^",5),PSOTXT="         "_$P(PSORDATA,"^")
+ ..K ^UTILITY($J,"W") S X=PSOACBRV,(DIWR,DIWL)=1,DIWF="C69" D ^DIWP F I=1:1:^UTILITY($J,"W",1) S IEN=IEN+1,^TMP("PSOAL",$J,IEN,0)=$S(I=1:"Comments: ",1:"          ")_$G(^UTILITY($J,"W",1,I,0))
+ ..I $G(PSOTXT)]"" S IEN=IEN+1,^TMP("PSOAL",$J,IEN,0)=PSOTXT K PSOTXT
+ ..S PSOTXT1=$P(PSORDATA,"^",6),PSOTXT2=$P(PSORDATA,"^",5)
+ ..I $P(P1,U,2)="N" D
+ ...I $L(PSOTXT1_PSOTXT2)>25 S IEN=IEN+1,^TMP("PSOAL",$J,IEN,0)="          Filled By: "_PSOTXT1,IEN=IEN+1,^TMP("PSOAL",$J,IEN,0)="          Checking Pharmacist: "_PSOTXT2
+ ...I ($L(PSOTXT1_PSOTXT2)<26),($L(PSOTXT1_PSOTXT2)>1) S IEN=IEN+1,^TMP("PSOAL",$J,IEN,0)="          Filled By: "_$S(PSOTXT1="":"               ",1:PSOTXT1)_"  Checking Pharmacist: "_PSOTXT2
+ .I $P($G(^PSRX(DA,"A",N,1)),"^")]"" S IEN=IEN+1,$P(^TMP("PSOAL",$J,IEN,0)," ",5)=$P($G(^PSRX(DA,"A",N,1)),"^") I $P($G(^PSRX(DA,"A",N,1)),"^",2)]"" S ^TMP("PSOAL",$J,IEN,0)=^TMP("PSOAL",$J,IEN,0)_":"_$P($G(^PSRX(DA,"A",N,1)),"^",2)
+ .I $O(^PSRX(DA,"A",N,2,0)) F I=0:0 S I=$O(^PSRX(DA,"A",N,2,I)) Q:'I  S MIG=^PSRX(DA,"A",N,2,I,0) D
+ ..S:MIG["Mail Tracking Info.: " IEN=IEN+1,$P(^TMP("PSOAL",$J,IEN,0)," ",9)=" "
+ ..F SG=1:1:$L(MIG) S:$L(^TMP("PSOAL",$J,IEN,0)_" "_$P(MIG," ",SG))>80 IEN=IEN+1,$P(^TMP("PSOAL",$J,IEN,0)," ",9)=" " S:$P(MIG," ",SG)'="" ^TMP("PSOAL",$J,IEN,0)=$G(^TMP("PSOAL",$J,IEN,0))_" "_$P(MIG," ",SG)
+ K MIG,SG,I,^UTILITY($J,"W"),DIWF,DIWL,DIWR
+ Q
+ ;
+REMDATA(PSOIEN,P1) ;
+ ;Check if activity log needs to display the remote pharmacist (OneVA)
+ ;P1 - ^PSRX(D0,"A",D1,0)
+ NEW PSOPF,PSOCHK,PSORMTE,PSORPH,PSOP2,PSOP3,PSOP4,PSOFLG
+ Q:+'$G(PSOIEN) ""
+ Q:$G(P1)="" ""
+ S PSOPF=0,PSOP2=$P(P1,U,2),PSOP3=$P(P1,U,3),PSOP4=$P(P1,U,4)
+ S PSOFLG=$S($P(P1,U,5)["HL7 ID":1,1:0)
+ I $S(PSOP2="P":1,PSOP2="X":1,PSOP2="N":1,1:0),$S(PSOP4=6:1,PSOP4=0:1,PSOP2="P":1,1:0) S PSOCHK=$$PFCHK(PSOIEN,$P(P1,U),,PSOFLG) Q:PSOCHK]"" PSOCHK
+ I $S(PSOP2="X":1,PSOP2="N":1,1:0),$S(((PSOP4>0)&(PSOP4<6)):+PSOP4,((PSOP4>6)&(PSOP4<13)):1,1:0) S PSOCHK=$$RFCHK(PSOIEN,PSOP4,PSOFLG)
+ Q $G(PSOCHK)
+ ;
+RFCHK(PSOIEN,PSOP4,PSOFLG) ;
+ NEW PSOX1,PSOX2,PSOXRF,PSOXDIC4,PSOXRF,PSORFDT,PSOSNUM,PSOSNUMX,PSOSNAME
+ Q:'+$G(PSOIEN) ""
+ Q:'+$G(PSOP4) ""
+ I PSOP4>6 S PSOP4=PSOP4-1
+ S PSOXRF=$G(^PSRX(PSOIEN,1,PSOP4,"RF")),PSOSNUM=$P(PSOXRF,U)
+ S PSOSNAME="",PSOX1=""
+ I PSOSNUM]"" S PSOSNAME=$$STATION(PSOSNUM)
+ S:PSOSNAME]"" PSOX1=$S(+$G(PSOFLG):" at ",1:" Processed at ")_PSOSNAME
+ S PSOX2=PSOX1_U_$P(PSOXRF,U,2,6)
+ Q $G(PSOX2)
+ ;
+PFCHK(PSOIEN,PSODT,PSOLBL,PSOFLG) ;
+ ;PSODT - LBLDATA set this date to 7 digit length so it can match to the "PF" OneVA .01 field.
+ ;PSOLBL - 1 if calling from LBLDATA
+ ;PSOX2 - Site name (station #) ^ remote pharmacist
+ NEW PSOX,PSOX1,PSOX2,PSOXPF,PSOSNUM,PSOXDIC4,PSOPFDT,PSOSNUMX,PSOSNAME,PSOX1
+ Q:'+$G(PSOIEN) ""
+ Q:$G(PSODT)="" ""
+ ;Using the 52.02,01 PARTIAL DATE because OneVA partial fill can't back dated.
+ F PSOX=0:0 S PSOX=$O(^PSRX(PSOIEN,"P",PSOX)) Q:'PSOX  D  Q:$G(PSOX2)]"" 
+ .S PSOPFDT=$P($G(^PSRX(PSOIEN,"P",PSOX,0)),U)
+ .I $S(PSOPFDT=PSODT:1,PSOPFDT=$E(PSODT,1,7):1,1:0) D
+ ..K PSOX1,PSOX2,PSOXPF,PSOSNUM,PSOXDIC4
+ ..S PSOXPF=$G(^PSRX(PSOIEN,"P",PSOX,"PF")),PSOSNUM=$P(PSOXPF,U)
+ ..S PSOSNAME="",PSOX1=""
+ ..S PSOSNAME=$$STATION(PSOSNUM)
+ ..S:PSOSNAME]"" PSOX1=$S($G(PSOLBL):" Printed at ",1:$S(+$G(PSOFLG):" at ",1:" Processed at "))_PSOSNAME
+ ..S PSOX2=PSOX1_U_$P(PSOXPF,U,2,6)
+ Q $G(PSOX2)
+ ;
+LBLDATA(PSOIEN,LBL) ;
+ NEW PSORDATA,PSOLBLDT,PSORN,PSOX1,PSOLBLDT,PSOTXT,PSOSNAME
+ Q:+'$G(PSOIEN) ""
+ Q:$G(LBL)="" ""
+ ;check if label entry is related to a refill
+ S PSOTXT="",PSORDATA="",PSORN=+$P(LBL,U,2),PSOLBLDT=$P(LBL,U)
+ I (PSORN>0),(PSORN<12) D
+ .S PSOX1=$G(^PSRX(PSOIEN,1,PSORN,"RF"))
+ .S PSOSNAME=$$STATION($P(PSOX1,U))
+ .S:PSOSNAME]"" PSOTXT=" Printed at "_PSOSNAME
+ .S PSORDATA=PSOTXT_U_$P(PSOX1,U,2,6)
+ ;If there's no Refill with the same date as the label log date, check the partial fill entries.
+ I PSORN,($G(PSORDATA)="") S PSORDATA=$$PFCHK(PSOIEN,PSOLBLDT,1)
+ Q PSORDATA
+ ;
+STATION(PSOSNUM) ;
+ NEW PSOXDIC4,PSOTXT
+ Q:$G(PSOSNUM)="" ""
+ D F4^XUAF4(PSOSNUM,.PSOXDIC4)
+ I $G(PSOXDIC4("NAME"))]"" S PSOTXT=PSOXDIC4("NAME")_" ("_PSOSNUM_")"
+ Q $G(PSOTXT)
+ ;

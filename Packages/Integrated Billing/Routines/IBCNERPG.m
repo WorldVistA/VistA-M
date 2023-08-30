@@ -1,5 +1,5 @@
 IBCNERPG ;BP/YMG - IBCNE EIV INSURANCE UPDATE REPORT COMPILE;16-SEP-2009
- ;;2.0;INTEGRATED BILLING;**416,528,549,595**;16-SEP-09;Build 29
+ ;;2.0;INTEGRATED BILLING;**416,528,549,595,737**;16-SEP-09;Build 19
  ;;Per VA Directive 6402, this routine should not be modified.
  ;
  ; IB*2.0*549 Changes to documentation for IBCNESPC("PYR")
@@ -109,6 +109,7 @@ GETDATA(DATE,PYR,ALLPYR,PAT,RTYPE) ; loop through responses and compile report
  ..S PYRNAME=$$GET1^DIQ(365.12,PYR_",",.01),PATNAME=$$GET1^DIQ(2,IENS2,.01)
  ..; IB*2.0*549 Add insurance company name
  ..S IIEN=$$GET1^DIQ(2.312,IENS312,.01,"I")
+ ..I 'IIEN Q  ; IB*737/DTG policy no longer on pt
  ..S INSCOMNM=$$GET1^DIQ(36,IIEN,".01")
  ..; IB*2.0*549 Remove unnecessary variables
  ..; IB*2.0*549 Sort by Payer's name

@@ -1,7 +1,7 @@
 ORCACT01 ;SLC/MKB-Validate order actions cont ;Oct 20, 2020@22:36:08
- ;;3.0;ORDER ENTRY/RESULTS REPORTING;**94,116,134,141,163,187,190,213,243,306,374,350,397,377,498,580**;Dec 17, 1997;Build 4
+ ;;3.0;ORDER ENTRY/RESULTS REPORTING;**94,116,134,141,163,187,190,213,243,306,374,350,397,377,498,580,499**;Dec 17, 1997;Build 165
  ;
- ;External reference to $$ORCOPY^PSOORCPY supported by ICR 6719
+ ;External reference to $$ORCOPY^PSOORCPY supported by DBIA 6719
  ;
 ES ; -- sign [on chart]
  I ORDSTS=11,VER<3,PKG'="OR" S ERROR="This order cannot be released and must be discontinued!" Q
@@ -70,6 +70,12 @@ ES1 I PKG="PS" D  ;authorized to write meds?
  .. I RET=2 S ERROR="2^"_$$UP^XLFSTR(DEAFLG) Q
  .. I RET?1"4".E S ERROR=RET Q
  .. I RET?1N.E S ERROR=RET
+ .. ; Support multiple DEA's for a provider
+ .. N ORSLDEA,RET S ORSLDEA=$P($G(^OR(100,+IFN,11)),U) ;*499}
+ .. I ORSLDEA="" S ORSLDEA=$$DEA^XUSER(,DUZ)
+ .. I ORSLDEA="" S ERROR=1 Q
+ .. N RET
+ .. S RET=$$SDEA^XUSER(,DUZ,DEAFLG,ORSLDEA)
  . D PKISITE^ORWOR(.PKI)
  . I $G(PKI),ACTION="RS",DEAFLG=1 S ERROR="This order cannot be released without a Digital Signature" Q
  Q
@@ -142,6 +148,12 @@ RN ; -- renew
  . I DG="ADT" S ERROR="M.A.S. orders may not be renewed!" Q
  . I "^1^2^6^7^"[(U_ORDSTS_U) Q  ;ok
  . S ERROR="This order may not be renewed!"
+ I PKG="PS" D  Q:$L($G(ERROR))
+ . I $L($G(DG)) I $E(DG)'["O" Q
+ . N ORZIPOK,OI
+ . S OI=+$$VALUE^ORX8(+IFN,"ORDERABLE") Q:OI'>0
+ . D ZIP^ORWDPS11(.ORZIPOK,OI,"O",+ORVP)
+ . I 'ORZIPOK S ERROR=$P(ORZIPOK,"^",2)
  I (PKG="PS"),$$INACTIVE^ORCACT03 S ERROR="Orders for inactive orderables may not be renewed!" Q
  I '$$MEDOK^ORCACT03 S ERROR="This drug may not be ordered!" Q
 RN1 N PSIFN,OROI

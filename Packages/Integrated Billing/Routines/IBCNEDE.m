@@ -1,5 +1,5 @@
 IBCNEDE ;DAOU/DAC - eIV DATA EXTRACTS ;07-MAY-2015
- ;;2.0;INTEGRATED BILLING;**184,271,300,416,438,497,549,593,595,621,659,664,668,687**;21-MAR-94;Build 88
+ ;;2.0;INTEGRATED BILLING;**184,271,300,416,438,497,549,593,595,621,659,664,668,687,737**;21-MAR-94;Build 19
  ;;Per VA Directive 6402, this routine should not be modified.
  ;
  ;**Program Description**
@@ -13,9 +13,8 @@ IBCNEDE ;DAOU/DAC - eIV DATA EXTRACTS ;07-MAY-2015
  ;  As this program will run in the background the variable ZTSTOP
  ;  can be returned from any of the extracts should a TaskMan stop
  ;  request occur.  Also, clear out the task record before exiting.
- ; 08-09-2002
- ;  Added check for "~NO PAYER", if it does not exist, build it
  ;
+ ;IB*737/TAZ - Remove references to "~NO PAYER" and Most Popular Payer.
  Q
  ;
 EN ; Entry Point
@@ -36,10 +35,6 @@ EN ; Entry Point
  ;
  ; Reset reg ack flag
  S $P(^IBE(350.9,1,51),U,22)=""
- ;
- ; If "~NO PAYER" is not a valid Payer File entry, rebuild it from
- ;  the existing utility
- I '$$FIND1^DIC(365.12,,"X","~NO PAYER") D PAYR^IBCNEUT2
  ;
  ; IB**2.0*687/DW removed check for new person entries to routine IBCNINS & expanded it
  ; to include other non eIV related entries
@@ -135,8 +130,8 @@ TBLCHK() ;
  ; have been loaded
  N PAY,PAYIEN,PAYOK,TBLOK,II
  S (PAY,PAYIEN,PAYOK)="",TBLOK=1
- F  S PAY=$O(^IBE(365.12,"B",PAY)) Q:PAY=""!PAYOK  I PAY'="~NO PAYER" D
- . F  S PAYIEN=$O(^IBE(365.12,"B",PAY,PAYIEN)) Q:PAYIEN=""!PAYOK  D
+ F  S PAY=$O(^IBE(365.12,"B",PAY)) Q:PAY=""  D  Q:PAYOK
+ . F  S PAYIEN=$O(^IBE(365.12,"B",PAY,PAYIEN)) Q:PAYIEN=""  D  Q:PAYOK
  .. ;IB*668/TAZ - Changed Payer Application from IIV to EIV
  .. I $$PYRAPP^IBCNEUT5("EIV",PAYIEN) S PAYOK=1 Q
  I PAYOK D

@@ -1,9 +1,8 @@
-KMPVCBG ;SP/ VSM background utility functions ;5/1/2021
- ;;4.0;CAPACITY MANAGEMENT;**1,2**;3/1/2018;Build 3
+KMPVCBG ;SP/JML - VSM background utility functions ;2/1/2023
+ ;;4.0;CAPACITY MANAGEMENT;**1,2,3**;3/1/2018;Build 17
  ;
- ; Integration Agreements
- ;  Reference to ^XMD supported by ICR #10070
- ;  Reference to $$SITE^VASITE supported by ICR #10112
+ ; Reference to ^XMD in ICR #10070
+ ; Reference to $$SITE^VASITE in ICR #10112
  ;
 MONLIST(KMPVML) ; Return list of configured Monitors
  K KMPVML
@@ -160,9 +159,10 @@ DESCH(KMPVMKEY,KMPVERR) ; De-schedule transmission task in TaskMan - V2
  ;
 PURGEDLY(KMPVMKEY) ; Purge any data older than VSM CONFIURATION file specifies
  N KMPDDAT1,KMPDID,KMPDSUB,KMPI,KMPID,KMPSINF,KMPTEXT,KMPVCURH,KMPVDAY,KMPVH,KMPVKEEP,KMPVNODE
+ N KMPBB,KMPPATH,KMPMATCH,KMPFILE,KMPFILES,KMPDFILE
  S KMPVH="",KMPVCURH=+$H,KMPVKEEP=$$GETVAL^KMPVCCFG(KMPVMKEY,"DAYS TO KEEP DATA",8969)
  D GETENV^%ZOSV S KMPVNODE=$P(Y,U,3)_":"_$P($P(Y,U,4),":",2)
- Q:$$ISBENODE^KMPVCCFG(KMPVNODE)=0
+ ;Q:$$ISBENODE^KMPVCCFG(KMPVNODE)=0  ; ^KMPTMP no longer mapped to back end
  S KMPSINF=$$SITEINFO^KMPVCCFG(),KMPI=2
  ; always kill the TRANSMIT node
  K ^KMPTMP("KMPV",KMPVMKEY,"TRANSMIT")
@@ -183,7 +183,7 @@ PURGEDLY(KMPVMKEY) ; Purge any data older than VSM CONFIURATION file specifies
  ..I (KMPVCURH-KMPVH)>KMPVKEEP D
  ...K ^KMPTMP("KMPV",KMPVMKEY,"COMPRESS",KMPVNODE,KMPVH)
  ...S KMPTEXT(KMPI)=KMPVMKEY_" COMPRESS node for "_$ZD(KMPVH)_" on node "_KMPVNODE,KMPI=KMPI+1
- ; check for old VCSM data
+ ; check for old VCSM data - keep this section last
  I KMPVMKEY="VCSM" D
  .S KMPDSUB=""
  .F  S KMPDSUB=$O(^KMPTMP("KMPDT",KMPDSUB)) Q:KMPDSUB=""  D
@@ -196,6 +196,22 @@ PURGEDLY(KMPVMKEY) ; Purge any data older than VSM CONFIURATION file specifies
  ....S KMPTEXT(KMPI)=KMPVMKEY_" Coversheet data for "_KMPVDAY
  ....I $G(KMPTEXT(KMPI+1))="" S KMPTEXT(KMPI+1)=KMPDSUB_"**"_KMPDID_"**"_KMPDDAT1
  ....S KMPTEXT(KMPI+2)=KMPDSUB_"**"_KMPDID_"**"_KMPDDAT1
+ ; as failsafe purge any temp vsm files - run only once, with VTCM key
+ I KMPVMKEY="VTCM" D
+ .S KMPPATH=$$DEFDIR^%ZISH()
+ .S KMPMATCH("VistaSystemMonitor*.txt")=""
+ .S KMPMATCH("businessevent*.txt")=""
+ .S KMPMATCH("hlseven*.txt")=""
+ .S KMPBB=$$LIST^%ZISH(KMPPATH,"KMPMATCH","KMPFILES")
+ .S KMPFILE="",KMPI=$O(KMPTEXT(100),-1)+2
+ .F  S KMPFILE=$O(KMPFILES(KMPFILE)) Q:KMPFILE=""  D
+ ..S KMPDFILE(KMPFILE)=""
+ ..S KMPTEXT(KMPI)="Deleting file: "_KMPFILE,KMPI=KMPI+1
+ .S KMPBB=$$DEL^%ZISH(KMPPATH,$NA(KMPDFILE))
+ .I KMPBB=0 D
+ ..S KMPI=$O(KMPTEXT(100),-1)
+ ..S KMPTEXT(KMPI)="Failed to delete 1 or more temp files"
+ ;
  I $D(KMPTEXT) D
  .S KMPTEXT("SUBJECT")="VSM ALERT: Data deletion at "_$P(KMPSINF,"^")
  .S KMPTEXT(1)="Purging data older than DAYS TO KEEP DATA"
@@ -244,7 +260,7 @@ CANMESS(MTYPE,KMPVMKEY,KMPVSITE,KMPVD) ; Repeatable, configured informational ma
  S XMTEXT="KMPVTEXT("_$J_","
  S KMPVEMAIL=$$GETVAL^KMPVCCFG(KMPVMKEY,"NATIONAL SUPPORT EMAIL ADDRESS",8969) I KMPVEMAIL'="" S XMY(KMPVEMAIL)=""
  S KMPVEMAIL=$$GETVAL^KMPVCCFG(KMPVMKEY,"LOCAL SUPPORT EMAIL ADDRESS",8969) I KMPVEMAIL'="" S XMY(KMPVEMAIL)=""
- D ^XMD
+ D ^XMD ;supported by ICR #10070
  Q
  ;
 SUPMSG(KMPVTEXT) ; Send email to local/national support mail groups ---- legacy
@@ -257,7 +273,7 @@ SUPMSG(KMPVTEXT) ; Send email to local/national support mail groups ---- legacy
  F  S KMPVMKEY=$O(^KMPV(8969,"B",KMPVMKEY)) Q:KMPVMKEY=""  D
  .S KMPVEMAIL=$$GETVAL^KMPVCCFG(KMPVMKEY,"LOCAL SUPPORT EMAIL ADDRESS",8969) I KMPVEMAIL'="" S XMY(KMPVEMAIL)=""
  .S KMPVEMAIL=$$GETVAL^KMPVCCFG(KMPVMKEY,"NATIONAL SUPPORT EMAIL ADDRESS",8969) I KMPVEMAIL'="" S XMY(KMPVEMAIL)=""
- D ^XMD
+ D ^XMD ;supported by ICR #10070
  Q
  ;
 DBAMSG(KMPVTEXT) ; Send email to national support mail groups --- legacy
@@ -269,7 +285,7 @@ DBAMSG(KMPVTEXT) ; Send email to national support mail groups --- legacy
  S KMPVMKEY=""
  F  S KMPVMKEY=$O(^KMPV(8969,"B",KMPVMKEY)) Q:KMPVMKEY=""  D
  .S KMPVEMAIL=$$GETVAL^KMPVCCFG(KMPVMKEY,"NATIONAL SUPPORT EMAIL ADDRESS",8969) I KMPVEMAIL'="" S XMY(KMPVEMAIL)=""
- D ^XMD
+ D ^XMD ;supported by ICR #10070
  Q
  ;
 CFGMSG(KMPVRQNAM) ; Send configuration data to update Location Table at National VSM Database --- legacy
@@ -277,7 +293,7 @@ CFGMSG(KMPVRQNAM) ; Send configuration data to update Location Table at National
  S KMPVPROD=$$PROD^KMPVCCFG()
  ;
  I $G(KMPVRQNAM)="" S KMPVRQNAM=$$USERNAME^KMPVCCFG($G(DUZ))
- S KMPVSITE=$$SITE^VASITE ;IA 10112
+ S KMPVSITE=$$SITE^VASITE ;supported by ICR #10112
  S KMPVLN=1
  S KMPVUP="KMP CFG"
  S KMPVDOM=$P($$NETNAME^XMXUTIL(.5),"@",2) ;IA 2734
@@ -292,5 +308,5 @@ CFGMSG(KMPVRQNAM) ; Send configuration data to update Location Table at National
  S KMPVMKEY=""
  F  S KMPVMKEY=$O(^KMPV(8969,"B",KMPVMKEY)) Q:KMPVMKEY=""  D
  .S KMPVEMAIL=$$GETVAL^KMPVCCFG(KMPVMKEY,"VSM CFG EMAIL ADDRESS",8969) I KMPVEMAIL'="" S XMY(KMPVEMAIL)=""
- D ^XMD
+ D ^XMD ;supported by ICR #10070
  Q

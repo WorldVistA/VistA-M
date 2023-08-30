@@ -1,5 +1,5 @@
 SDCCRSEN1 ;CCRA/LB,PB - Appointment retrieval API;APR 4, 2019
- ;;5.3;Scheduling;**822,830**;APR 4, 2019;Build 45
+ ;;5.3;Scheduling;**822,830,841**;APR 4, 2019;Build 47
  Q
  ; Documented API's and Integration Agreements
  ; ----------------------------------------------
@@ -138,9 +138,10 @@ CANCHECK(DFN,CLINIC,APPTTM,CONID,APPTID) ;
  ;Returns APT ID if the appt is ready to be canceled, 1 if the appt should not be canceled
  N GOOD,APTID
  S GOOD=0
+ ; Feb 24, 23 - PB - patch 841 adding code to continue the search for the correct appt to mark as canceled or no show
  S XX=0 F  S XX=$O(^SC(CLINIC,"S",APPTTM,1,XX)) Q:XX'>0  I +$P(^SC(CLINIC,"S",APPTTM,1,XX,0),"^")=DFN D
- .;W !,$G(^SC(CLINIC,"S",APPTTM,1,XX,0))
- .I +$P($G(^SC(CLINIC,"S",APPTTM,1,XX,"CONS")),"^")'=CONID S GOOD=1 W !,XX,"  ",$G(GOOD)
+ .Q:$P(^SC(CLINIC,"S",APPTTM,1,XX,0),"^",9)'=""
+ .I +$P($G(^SC(CLINIC,"S",APPTTM,1,XX,"CONS")),"^")'=CONID S GOOD=1
  .I $P($G(^SC(CLINIC,0)),"^")'["COM CARE" S GOOD=1
  I $G(GOOD)=1 Q GOOD
  S APTID=$$APPTGET^SDECUTL(SDDFN,BASEDT,SDCL,SDECRES)

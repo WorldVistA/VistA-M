@@ -1,6 +1,7 @@
-ONCSED01 ;Hines OIFO/SG - EDITS 'RUN BATCH' REQUEST ; 11/6/06 11:48am
- ;;2.2;ONCOLOGY;**1**;Jul 31, 2013;Build 8
+ONCSED01 ;HINES OIFO/SG - EDITS 'RUN BATCH' REQUEST ; 11/6/06 11:48am
+ ;;2.2;ONCOLOGY;**1,16**;Jul 31, 2013;Build 5
  ;
+ ;P16 - hwsc encrytion function
  ;--- SOAP REQUST TO THE ONCOLOGY WEB SERVICE
  ;
  ; <?xml version="1.0" encoding="utf-8"?>
@@ -103,14 +104,16 @@ RBQEXEC(ONCSAPI,ONC8REQ,ONC8MSG) ;
  ;--- Complete the request
  D TRAILER^ONCSAPIR(.ONC8REQ)
  ;
- ;--- Get the server URL
+ ;--- Get the server URL ;commented url to use HWSC
  S URL=$$GETCSURL^ONCSAPIU()  Q:URL<0 URL
  ;
  S RC=0  D
- . ;--- Call the web service
+ . ;--- Call the web service ; commented run batch request and use HWSC
  . D:$G(ONCSAPI("DEBUG"))
  . . D ZW^ONCSAPIU(ONC8REQ,"*** 'RUN BATCH' REQUEST ***")
- . S RC=$$REQUEST^ONCSAPIR(URL,ONC8RDAT,ONC8REQ)  Q:RC<0
+ . ;S RC=$$REQUEST^ONCSAPIR(URL,ONC8RDAT,ONC8REQ) Q:RC<0
+ . ; P16
+ . D T3^ONCWEB1
  . D:$G(ONCSAPI("DEBUG"))
  . . D ZW^ONCSAPIU(ONC8RDAT,"*** 'RUN BATCH' RESPONSE ***")
  . ;--- Parse the response

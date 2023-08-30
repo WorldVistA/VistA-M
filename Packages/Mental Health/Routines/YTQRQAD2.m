@@ -1,5 +1,5 @@
 YTQRQAD2 ;SLC/KCM - RESTful Calls to set/get MHA administrations ; 1/25/2017
- ;;5.01;MENTAL HEALTH;**130,141,173,178,182,181,199,202**;Dec 30, 1994;Build 47
+ ;;5.01;MENTAL HEALTH;**130,141,173,178,182,181,199,202,204,208**;Dec 30, 1994;Build 23
  ;
 SAVEADM(ARGS,DATA) ; save answers and return /ys/mha/admin/{adminId}
  ; loop through DATA to create ANS array, then YSDATA array
@@ -50,10 +50,13 @@ SAVEADM(ARGS,DATA) ; save answers and return /ys/mha/admin/{adminId}
  . . I CPLT'="Y" S REMAIN=1
  . I $G(^XTMP(NOD,1,"instruments",I,"complete"))'="true" S REMAIN=1
  I PTENT,(LSTASMT="Yes"),(CPLT="Y") D
- . D BLDRPT^YTQRRPT(.TMPYS,ADMIN,79)
+ . I $$ALWNOTE^YTQRQAD3(ADMIN)="true" D BLDRPT^YTQRRPT(.TMPYS,ADMIN,79)
+ . D SPLTADM^YTQRCAT(ADMIN) ; separate out the admins if CAT
  S AGPROG=$D(^XTMP(NOD,2))
- I LSTASMT="Yes",AGPROG S PNOT=$$FILPNOT^YTQRQAD8(ASMT,"","","",.TMPYS)
- I 'REMAIN,'$D(^XTMP(NOD,2)) D DELASMT1^YTQRQAD1(ASMT)  ;Added check for consolidated progress note node 2. If exists, ASMT deleted in YTQRQAD8
+ ;I LSTASMT="Yes",AGPROG S PNOT=$$FILPNOT^YTQRQAD8(ASMT,"","","",.TMPYS)
+ ;Last instrument=Yes and either saved aggregate progress note or TMPYS from current PE instrument.
+ I LSTASMT="Yes",(AGPROG!$D(TMPYS)) S PNOT=$$FILPNOT^YTQRQAD8(ASMT,ADMIN,"","",.TMPYS)
+ I 'REMAIN,'$D(^XTMP(NOD,2)),$D(^XTMP(NOD,0)) D DELASMT1^YTQRQAD1(ASMT)  ;Added check for consolidated progress note node 2. If exists, ASMT deleted in YTQRQAD8
  Q "/api/mha/instrument/admin/"_ADMIN ; was erroneously /ys/mha/admin/
  ;
 SETADM(DATA,NUM) ; return the id for new/updated admin
@@ -101,7 +104,7 @@ ADM4ASMT(NODE,TESTID) ; return adminId if one has been saved for assignment
  Q CURADM
  ;
 GETADM(ARGS,RESULTS) ; get answers for administration identified by ARGS("adminId")
- I '$G(ARGS("adminId")) D SETERROR^YTQRUTL(404,"Missing admin parameter") Q
+ I '$L($G(ARGS("adminId"))) D SETERROR^YTQRUTL(404,"Missing admin parameter") Q
  I $D(^YTT(601.84,ARGS("adminId")))<10 D  Q
  . D SETERROR^YTQRUTL(404,"Admin not found: "_ARGS("adminId"))
  ;

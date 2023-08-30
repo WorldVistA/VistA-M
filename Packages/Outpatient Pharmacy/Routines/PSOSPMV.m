@@ -1,5 +1,5 @@
 PSOSPMV ;BIRM/MFR - Multiple Individual Prescription ASAP Data Listman Driver ;09/29/2020
- ;;7.0;OUTPATIENT PHARMACY;**625,662**;DEC 1997;Build 4
+ ;;7.0;OUTPATIENT PHARMACY;**625,662,696**;DEC 1997;Build 4
  ;
  ;
  ;RX(PSORXLST) ; Repeating RX prompt for one or more RX #'s
@@ -43,6 +43,7 @@ RXLOOP(PSODONE) ; - Prompt for Rx, Fill, Record Type
  S DFN=$$GET1^DIQ(52,RXIEN,2,"I") D ADD^VADPT I +VAPA(5)]"" D
  . S MBMST=$$GET1^DIQ(58.41,+VAPA(5),21,"I")
  . I (+MBMST=2),(STATELST'[("^"_+VAPA(5)_"^")) S STATELST=STATELST_+VAPA(5)_"^"
+ . I (+MBMST=2),(RECTYPE="V") S STATELST=$$VOIDST(RXIEN,FILLNUM)     ;P696
  F LST=1:1:$L(STATELST,"^") D
  . S STATEIEN=$P(STATELST,"^",LST) Q:STATEIEN=""
  . S PSOASVER=$$GET1^DIQ(58.41,STATEIEN,1,"I")
@@ -156,3 +157,13 @@ VDRXBAT(BATIEN) ; Check for VOIDs in RX batch
  D LIST^DIC(58.42001,","_BATIEN_",","@;2I",,,,,,,,"RECTYPAR")
  S REC=0 F  Q:VDRXBAT  S REC=$O(RECTYPAR("DILIST","ID",REC)) Q:'REC!$G(VDRXBAT)  I RECTYPAR("DILIST","ID",REC,2)="V" S VDRXBAT=1
  Q VDRXBAT
+ ;
+VOIDST(RXIEN,FILL) ; Determine the state to send the void
+ ; Make sure the void is sent to the state that received the most recent fill
+ N BAT,STATECK,RXNODE,DONE
+ S DONE=0
+ S BAT=999999999999 F  S BAT=$O(^PS(58.42,"ARX",RXIEN,FILL,BAT),-1) Q:(BAT="")!(DONE=1)  D
+ . S RXNODE=0 F  S RXNODE=$O(^PS(58.42,"ARX",RXIEN,FILL,BAT,RXNODE)) Q:(RXNODE="")!(DONE=1)  D
+ . . Q:$P(^PS(58.42,BAT,"RX",RXNODE,0),"^",3)="V"
+ . . S STATECK=$$GET1^DIQ(58.42,BAT,1,"I") S DONE=1
+ Q STATECK

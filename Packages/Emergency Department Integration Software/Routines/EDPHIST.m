@@ -1,5 +1,6 @@
-EDPHIST ;SLC/MKB - Return results history as XML ;2/28/12 08:33am
- ;;2.0;EMERGENCY DEPARTMENT;;May 2, 2012;Build 103
+EDPHIST ;SLC/MKB - Return results history as XML ; 9/1/22 9:27am
+ ;;2.0;EMERGENCY DEPARTMENT;**20**;May 2, 2012;Build 7
+ ;External reference ^ORX8 supported by DBIA 871
  ;
 LAB(XML,PARAM) ; -- Return results history for lab orders
  K XML D ADD("<results>")
@@ -13,12 +14,14 @@ LAB(XML,PARAM) ; -- Return results history for lab orders
  K ^TMP("LRRR",$J) D RR^LR7OR1(DFN)
  ;
  ; get results for tests in each order
- N EDPI,ORIFN,NAME,STS,START,EDPY,EDPTST,ORPK,SUB,IDT,SEQ,EDPX,X
+ N EDPI,ORIFN,NAME,STS,START,EDPY,EDPTST,ORPK,SUB,IDT,SEQ,EDPX,X,ORUPCHUK
  S EDPI=0 F  S EDPI=$O(PARAM("order",EDPI)) Q:EDPI<1  D
  . S ORIFN=+$G(PARAM("order",EDPI)) Q:ORIFN<1
  . S NAME=$P($$OI^ORX8(ORIFN),U,2) ;get order text if null?
  . S STS=$$GET1^DIQ(100,ORIFN_",",5,"I")
- . S START=$P($G(^OR(100,ORIFN,0)),U,8) S:'START START=$P($G(^(0)),U,7)
+ . D EN^ORX8(ORIFN)
+ . S START=ORUPCHUK("ORSTRT")
+ . I 'START S START=ORUPCHUK("ORODT")
  . S EDPY="<order id="""_ORIFN_""" name="""_$$ESC(NAME)_""" ack="""_$$ACK(ORIFN)_""" statusId="""_STS_""" statusName="""_$$STATUS(STS,"L",ORIFN)_""" collectedTS="""_START_""">"
  . D ADD(EDPY) K EDPY,EDPTST
  . ; add order results from visit

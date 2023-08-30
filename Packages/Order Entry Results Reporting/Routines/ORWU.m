@@ -1,6 +1,29 @@
-ORWU ;SLC/KCM - GENERAL UTILITIES FOR WINDOWS CALLS ;Aug 25, 2022@11:34:26
- ;;3.0;ORDER ENTRY/RESULTS REPORTING;**10,85,132,148,149,187,195,215,243,350,424,377,519,539,405**;Dec 17, 1997;Build 211
+ORWU ; SLC/KCM - GENERAL UTILITIES FOR WINDOWS CALLS ;02/09/23  07:25
+ ;;3.0;ORDER ENTRY/RESULTS REPORTING;**10,85,132,148,149,187,195,215,243,350,424,377,519,539,405,596**;Dec 17, 1997;Build 7
  ;
+ ; External reference to ^%ZIS(1 supported by IA 2963
+ ; External reference to ^%ZIS(2 supported by IA 2964
+ ; External reference to ^DIC(3.1 supported by IA 1234
+ ; External reference to ^SC supported by IA 10040
+ ; External reference to ^VA(200 supported by IA 10060
+ ; External reference to ^XUSEC( supported by IA 10076
+ ; External reference to ^%DT supported by IA 10003
+ ; External reference to WIN^DGPMDDCF supported by IA 1246
+ ; External reference to FIND^DIC supported by IA 2051
+ ; External reference to ^DID IN ICR #2052
+ ; External reference to ^DILFD supported by IA 2055
+ ; External reference to $$SITE^VASITE supported by IA 10112
+ ; External reference to ^XLFJSON supported by IA 6682
+ ; External reference to ^XLFSTR supported by IA 10104
+ ; External reference to ^XPAR supported by IA 2263
+ ; External reference to ^XPDUTL supported by IA 10141
+ ; External reference to ^XQCHK supported by IA 10078
+ ; External reference to $$KSP^XUPARAM supported by IA 2541
+ ; External reference to $$PROD^XUPROD supported by IA 4440
+ ; External reference to ^XUSHSHP supported by IA 10045
+ ; External reference to $$DECRYP^XUSRB supported by IA 12241
+ ;
+ Q
 DT(Y,X,%DT) ; Internal Fileman Date/Time
  ; change the '00:00' that could be passed so Fileman doesn't reject
  I $L($P(X,"@",2)),("00000000"[$TR($P(X,"@",2),":","")) S $P(X,"@",2)="00:00:01"
@@ -152,9 +175,16 @@ HOSPLOC(Y,FROM,DIR) ; Return a set of locations from HOSPITAL LOCATION
  . . Q:("CW"'[$P($G(^SC(IEN,0)),U,3)!('$$ACTLOC(IEN)))
  . . S I=I+1,Y(I)=IEN_"^"_FROM
  Q
-NEWPERS(ORY,ORFROM,ORDIR,ORKEY,ORDATE,ORVIZ,ORALL,ORPDMP,ORSIM,OREXCLDE) ; Return a set of names from the NEW PERSON file.
- ; ajb - new parameter OREXCLDE to use OR CPRS USER CLASS EXCLUDE parameter definition
- S OREXCLDE=$G(OREXCLDE,0) ; DEFAULT value is OFF
+NEWPERS(ORY,ORFROM,ORDIR,ORKEY,ORDATE,ORVIZ,ORALL,ORPDMP,ORSIM,OREXCLDE,ORNVA) ; Return a set of names from the NEW PERSON file.
+ S OREXCLDE=$G(OREXCLDE,0) ; DEFAULT value is OFF - exclude users in the user class set in OR CPRS USER CLASS EXCLUDE (additional signers only)
+ S ORNVA=$G(ORNVA,1) ; DEFAULT is ON - include Non-VA providers
+ ; * ajb
+ I $$GET^XPAR("SYS","ORNEWPERS ACTIVE") D  Q  ; use new entry point^routine only if value is YES (default is YES)
+ . N I,PARAMS,PRM S PARAMS("HELP")=0,PRM(0)="FROM^DIR^KEY^DATE^RDV^ALL^PDMP^SPN^EXC^NVAP"
+ . S PRM=$P($P($P($T(NEWPERS),"(",2),")"),",",2,$L($P($P($T(NEWPERS),"(",2),")"))) ; set string of parameters from NEWPERS
+ . F I=1:1:$L(PRM,",") S PARAMS($P(PRM(0),U,I))=$G(@($P(PRM,",",I))) ;               set variables to pass by reference
+ . D NEWPERSON^ORNEWPERS(.ORY,.PARAMS)
+ ; * ajb
  ; SLC/PKS: Code moved to ORWU1 on 12/3/2002.
  ; ORPDMP - filter users that are authorized to make a PDMP query (p519)
  D NP1^ORWU1

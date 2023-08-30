@@ -1,5 +1,5 @@
 ORBCMA1 ; SLC/JLI - Pharmacy Calls for Windows Dialog [ 3/7/2006 ]
- ;;3.0;ORDER ENTRY/RESULTS REPORTING;**133,243**;Dec 17, 1997;Build 242
+ ;;3.0;ORDER ENTRY/RESULTS REPORTING;**133,243,499**;Dec 17, 1997;Build 165
  ;;OR BCMA ORDER COM V1.0 ;**133**; Jan 19, 2002
  ;
 ODSLCT(LST,PSTYPE,DFN,LOC) ; return default lists for dialog
@@ -91,11 +91,13 @@ DOSEALT(LST,DDRUG,CUROI,PSTYPE) ; return a list of formulary alternatives for do
  . I OI,OI'=CUROI S ILST=ILST+1,LST(ILST)=OI_U_$P(^ORD(101.43,OI,0),U)
  Q
 FAILDEA(FAIL,OI,ORNP,PSTYPE)    ; return 1 if DEA check fails for this provider
- N DEAFLG,PSOI
+ N DEAFLG,PSOI,ORDEA
  S FAIL=0,PSOI=+$P($G(^ORD(101.43,+$G(OI),0)),U,2) Q:PSOI'>0
  I '$L($T(OIDEA^PSSUTLA1)) Q
  S DEAFLG=$$OIDEA^PSSUTLA1(PSOI,PSTYPE) Q:DEAFLG'>0
- I '$L($P($G(^VA(200,+$G(ORNP),"PS")),U,2)),'$L($P($G(^("PS")),U,3)) S FAIL=1
+ ;*499 introduces multiple dea's for provider
+ S ORDEA=$$PRDEA^XUSER(ORNP) I '$L(ORDEA),'$L($P($G(^VA(200,+ORNP,"PS")),U,3)) S FAIL=1
+ ;I '$L($P($G(^VA(200,+$G(ORNP),"PS")),U,2)),'$L($P($G(^("PS")),U,3)) S FAIL=1
  Q
 CHK94(VAL)      ; return 1 if patch 94 has been installed
  S VAL=0

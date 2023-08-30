@@ -1,5 +1,5 @@
 IBCNEHL6 ;EDE/DM - HL7 Process Incoming RPI Continued ; 19-OCT-2017
- ;;2.0;INTEGRATED BILLING;**601,621**;21-MAR-94;Build 14
+ ;;2.0;INTEGRATED BILLING;**601,621,737,743**;21-MAR-94;Build 18
  ;;Per VA Directive 6402, this routine should not be modified.
  ;
  Q
@@ -36,7 +36,8 @@ FIL ; Finish processing the response message - file into insurance buffer
  ;
  ;  For an original response, set the Transmission Queue Status to 'Response Received' &
  ;  update remaining retries to comm failure (5)
- I $G(RSTYPE)="O" D SST^IBCNEUT2(TQN,3),RSTA^IBCNEUT7(TQN)
+ ;IB*743/CKB - called earlier when saving the MSA segment 
+ ;I $G(RSTYPE)="O" D SST^IBCNEUT2(TQN,3),RSTA^IBCNEUT7(TQN)
  ;
  ; Update the TQ service date to the date in the response file
  ; if they are different AND the Error Action <>
@@ -82,8 +83,9 @@ FIL ; Finish processing the response message - file into insurance buffer
  ;  If there is an associated buffer entry & one or both of the following
  ;  is true, stop filing (don't update buffer entry)
  ;  1) buffer status is not 'Entered'
- ;  2) the buffer entry is verified (* symbol)
- I BUFF'="",($P($G(^IBA(355.33,BUFF,0)),U,4)'="E")!($$SYMBOL^IBCNBLL(BUFF)="*") G FILX
+ ;  2) the buffer entry is verified (* symbol)  ;IB*737/DTG stop use of '*' verified
+ ;I BUFF'="",($P($G(^IBA(355.33,BUFF,0)),U,4)'="E")!($$SYMBOL^IBCNBLL(BUFF)="*") G FILX
+ I BUFF'="",($P($G(^IBA(355.33,BUFF,0)),U,4)'="E") G FILX  ;IB*737/DTG stop use of '*' verified
  ;
  ; Set buffer symbol based on value returned from EC
  ; IB*2*601/DM
@@ -94,10 +96,44 @@ FIL ; Finish processing the response message - file into insurance buffer
  ;
  ;  If there is an associated buffer entry, update the buffer entry w/
  ;  response data
- I BUFF'="" D RP^IBCNEBF(RIEN,"",BUFF)
+  ;IB*743/CKB - add the locking of the Buffer
+ ;I BUFF'="" D RP^IBCNEBF(RIEN,"",BUFF)
+ N BUFDONE,BUFLOCK,BUFSTAT
+ S (BUFDONE,BUFLOCK)=0  ; BUFDONE indicates that a user processed the entry already 
+ I BUFF'="" D
+ . ;If STATUS (#355.33,.04) is NOT ENTERED, ABORT - DON'T touch the buffer entry
+ . ; (#355.33), and continue normal processing
+ . I $$GET1^DIQ(355.33,BUFF_",",.04,"I")'="E" S BUFDONE=1 Q
+ . ;BUFSTAT is ENTERED, attempt to Lock buffer entry
+ . S BUFLOCK=$$BUFLOCK(BUFF,1)
+ . ;Lock acquired
+ . I BUFLOCK D  Q
+ . . ;Re-evaluate STATUS (#355.33,.04)
+ . . S BUFSTAT=$$GET1^DIQ(355.33,BUFF_",",.04,"I")
+ . . ;If BUFSTAT is NOT ENTERED, DO NOT modify or touch the buffer entry (#355.33),
+ . . ; release lock , and continue normal processing
+ . . I BUFSTAT'="E" S BUFDONE=1 Q
+ . . ;If BUFSTAT is ENTERED, continue normal processing (modify buffer entry), release lock
+ . . I BUFSTAT="E" D RP^IBCNEBF(RIEN,"",BUFF)
+ . . ;Unlock buffer
+ . . N XX S XX=$$BUFLOCK(BUFF,0)
+ . ;
+ . ;Lock NOT acquired
+ . ;DON'T reevaluate BUFLOCK after calling $$BUFLOCK(BUFF,0)
+ . I 'BUFLOCK D
+ . . ;Re-evaluate STATUS (#355.33,.04)
+ . . S BUFSTAT=$$GET1^DIQ(355.33,BUFF_",",.04,"I")
+ . . ;If BUFSTAT is NOT ENTERED, DO NOT modify or touch the buffer entry (#355.33), and
+ . . ; continue normal processing
+ . . I BUFSTAT'="E" S BUFDONE=1 Q
+ . . ;If BUFSTAT is ENTERED, do tag UPDBUF
+ . . D UPDBUF(BUFF,SYMBOL)
+ I BUFF'="",'BUFLOCK G FILX
+ I $G(BUFDONE)=1 G FILX
  ;
  ;  If no associated buffer entry, create one & populate w/ response
  ;  data (routine call sets IBFDA)
+ ;IB/743 CKB - the locking of the buffer is done in $$ADDSTF^IBCNEBF
  I BUFF="" D RP^IBCNEBF(RIEN,1) S BUFF=+IBFDA,UP(365,RIEN_",",.04)=BUFF
  ;
  ; IB*2*601/DM for an MBI query, set the patient relationship to insured to "Patient"
@@ -118,3 +154,46 @@ FIL ; Finish processing the response message - file into insurance buffer
 FILX ;
  Q
  ;
+ ;IB*743/TAZ&CKB - Buffer Lock/Unlock Function
+BUFLOCK(BUFF,ONOFF) ;Get a lock on the Buffer entry associated with this Response IEN
+ ; Input:
+ ;   BUFF    Buffer IEN file #355.33
+ ;   ONOFF   0=unlock / 1=lock
+ ; Output:
+ ;   OK      0=Not successful / 1=Successful
+ N CNT,OK
+ S OK=0
+ I BUFF="" G LOCKEND
+ ;Unlock Buffer
+ I 'ONOFF L -^IBA(355.33,BUFF) S OK=1 G LOCKEND
+ ;Attempt to Lock for 30 minutes
+ F CNT=1:1:30 D  G:OK LOCKEND
+ . L +^IBA(355.33,BUFF):DILOCKTM I $T S OK=1 Q
+ . H 55
+LOCKEND ;
+ Q OK
+ ;
+ ;IB*743/CKB & DJW    UPDBUF tag
+UPDBUF(BUFF,SYMBOL) ; Update the IIV PROCESSED DATE (#355.33,.15) and update Buffer eIV Symbol based
+ ; on the incoming Response.
+ ;
+ ; Per eBiz eInsurance 12/2022 - If there is a Buffer entry & the lock is NOT acquired, do the
+ ;  following if the buffer status is ENTERED:  Set the eIV Processed Date so that the trace #
+ ;  will display, the 'magic sentence' saying the service date and STC the response is based on 
+ ;  is displayed, the eligibility benefit info associated with the response is displayed and 
+ ;  available when accepting the buffer entry.  DO NOT set the other fields in the buffer such
+ ;  as effective date, group #/name, etc on the buffer entry as eBiz wants to the buffer fields
+ ;  set to the values that they were 1 second before the eIV response arrived back at the site.
+ ; 
+ ;  Therefore, only the eligiblity benefit data from the response will be available when and if
+ ;    a user accepts the buffer entry and no other data from the response.  That is why we are
+ ;    *NOT* calling RP^IBCNEBF here.  PATCH IB*743// DJW 
+ ;
+ N BUFERR,BUFUPD
+ ; Set eIV Processed Date to Now
+ S BUFUPD(355.33,BUFF_",",.15)=$$NOW^XLFDT()
+ D FILE^DIE("I","BUFUPD","BUFERR")
+ ;
+ ; Update insurance buffer with the eIV symbol as returned by EC
+ I SYMBOL D BUFF^IBCNEUT2(BUFF,SYMBOL)
+ Q

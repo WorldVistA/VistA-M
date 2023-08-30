@@ -1,10 +1,8 @@
-PXVRPC8 ;ISP/LMT - PCE RPCs for Skin Tests ;Oct 23, 2018@13:39
- ;;1.0;PCE PATIENT CARE ENCOUNTER;**216,217**;Aug 12, 1996;Build 134
+PXVRPC8 ;ISP/LMT - PCE RPCs for Skin Tests ;Jan 18, 2023@14:49:16
+ ;;1.0;PCE PATIENT CARE ENCOUNTER;**216,217,233**;Aug 12, 1996;Build 3
  ;
  ;
- ; External References           ICR#
- ; -------------------          -----
- ; ^DIA(9999999.28,"C")          2602
+ ; Reference to ^DIA(9999999.28,"C") in ICR #2602
  ;
  ;
 SKSHORT(PXRSLT,PXDATE,PXFLTR,PXOREXC,PXLOC) ;
@@ -24,8 +22,8 @@ SKSHORT(PXRSLT,PXDATE,PXFLTR,PXOREXC,PXLOC) ;
  ;               S:B   - Return all entries (both active and inactive).
  ;   PXOREXC - Should entries defined in ORWPCE EXCLUDE SKIN TESTS be excluded? (optional)
  ;             Used when PXFLTR is set to S:x.
- ;     PXLOC - Used when excluding entried listed in ORWPCE EXCLUDE SKIN TESTS. (Optional)
- ;             This is the location used when getting the paramater value at the Location level.
+ ;     PXLOC - Used when excluding entries listed in ORWPCE EXCLUDE SKIN TESTS. (Optional)
+ ;             This is the location used when getting the parameter value at the Location level.
  ;
  ;Returns:
  ;   (0)=Count of elements returned (0 if nothing found)
@@ -137,6 +135,14 @@ SKSITES(PXRSLT) ;
  ;
  N PXCNT,PXIEN,PXSITE,PXSITES
  ;
+ ; Try first to get list from parameter
+ D GETLST^XPAR(.PXRSLT,"ALL","PXV SKIN TEST ADMIN SITES","N")
+ I $G(PXRSLT)>0 D  Q
+ . S PXRSLT(0)=PXRSLT
+ ;
+ ; if parameter is not set, use these sites
+ S PXSITES("RA")=""
+ S PXSITES("LA")=""
  S PXSITES("RLFA")=""
  S PXSITES("LLFA")=""
  ;

@@ -1,10 +1,11 @@
 PSOCPA ;BHAM ISC/LGH - PHARMACY CO-PAY CANCEL & RESET STATUS OPTIONS ;05/27/92
- ;;7.0;OUTPATIENT PHARMACY;**9,71,85,137,143,201**;DEC 1997
+ ;;7.0;OUTPATIENT PHARMACY;**9,71,85,137,143,201,681**;DEC 1997;Build 11
  ;
- ;REF/IA
- ;^IBARX/125
- ;^IBE(350.3/2216
- ; PSO=1 (REMOVE CHARGE cancel),PSO=2 (UPDATE CHARGE called from EDIT)
+ ; Reference to (multiple)^IBARX in ICR #125
+ ; Reference to ^IBE(350.3 in ICR #2216
+ ;
+ ; PSO=1 (REMOVE CHARGE cancel)
+ ; PSO=2 (UPDATE CHARGE called from EDIT)
  ; PSO=3 (REMOVE CHARGE cancel in background processing) ... USED FOR PSOHLNE3
  ;
 EN ;Entry point for Remove Co-Pay charge
@@ -39,6 +40,7 @@ REASON ;
  . D CHRG^PSOPFSU1(PSODA,PSOREF,"CG",PSOPFS)  ;only send charge msg if released
  G UPDATE:PSO=2
  G EXIT
+ ;
 CANCEL ;
  ;          Set x=service^dfn^^user duz
  ;              x(n)=IB number^cancellation reason
@@ -63,6 +65,7 @@ CANCEL2 I $G(PSOPFS)&($G(PSORD)) D CHRG^PSOPFSU1(PSODA,PSOREF,"CD",PSOPFS)  ;onl
  I $G(PSOPFS) D PFS2 G EXIT
  D FILE
  G EXIT
+ ;
 FILE ;
  ;G PFS2:$G(PSOPFS)
  ;          File new Bill # in ^PSRX
@@ -75,6 +78,7 @@ PFS2 ;
  I PSO=2 W !!,"Co-Pay transaction for Rx # ",PSORXN,$S(PSOREF>0:" refill # "_PSOREF,1:"")," has been updated." S PREA="E",PSOCOMM="Days supply change. Copay amount updated"
  D ACTLOG
  Q
+ ;
 UPDATE ;if days supply changes during Rx edit, cancel old bill and get new bill number
  N SAVEDA
  S SAVEDA=$G(DA)
@@ -118,23 +122,33 @@ RXDEL ;          Entry point when Rx is deleted thru menu option -- THIS ENTRY P
  W:+Y=1 !!,"Copay transaction for this Rx has been cancelled."
  S PREA="C" D ACTLOG
  G EXIT
+ ;
 EXITA ;
  I PSO=1 W !!,"Co-Pay transaction for Rx # ",PSORXN,$S(PSOREF>0:" refill # "_PSOREF,1:"")," has previously been cancelled."
 EXIT I $D(SAVEDA) S DA=SAVEDA ;
  I PSO'=3 K PSO,PSOCPUN,PSODA,PSOFLAG,PSOIB,PSOPARNT,PSOREF,PSORSN,PSORXN,PSZ,X,Y Q
  I PSO=3 K PSOCPUN,PSOPARNT,PSORXN,X,Y
  Q
+ ;
 ENDMSG ;
  I PSO'=3 W !!,"Unable to UPDATE COPAY TRANSACTON without REMOVAL REASON entry."
  Q
+ ;
 ACTLOG ;ENTER MESSAGE INTO RX COPAY ACTIVITY LOG
- Q:+$G(PSOPFS)&('$D(^PSRX(PSODA,"IB")))  ;don't set copay activity log when no copay when send Rx to external bill sys
- N X,Y
- S:'$D(PREA) PREA="R" D NOW^%DTC S PSI=0
-ACTL S PSI=+$O(^PSRX(PSODA,"COPAY",PSI)) G:$O(^PSRX(PSODA,"COPAY",PSI)) ACTL
- K DIC,PSORSNZ I $G(PSORSN)'="" S DIC="^IBE(350.3,",DIC(0)="M",X="`"_PSORSN D ^DIC K DIC I $G(Y) S PSORSNZ=$P($G(Y),"^",2)
+ I +$G(PSOPFS)&('$D(^PSRX(PSODA,"IB"))) Q  ;don't set copay activity log when no copay when send Rx to external bill sys
+ N PSODUZ,X,Y
+ S PSODUZ=DUZ
+ I '$D(^VA(200,+PSODUZ,0)) S PSODUZ=.5
+ I '$D(PREA) S PREA="R"
+ D NOW^%DTC
+ S PSI=0
+ACTL ;
+ S PSI=+$O(^PSRX(PSODA,"COPAY",PSI))
+ I $O(^PSRX(PSODA,"COPAY",PSI)) G ACTL
+ K DIC,PSORSNZ
+ I $G(PSORSN)'="" S DIC="^IBE(350.3,",DIC(0)="M",X="`"_PSORSN D ^DIC K DIC I $G(Y) S PSORSNZ=$P($G(Y),"^",2)
  S PSORSNZ=$G(PSORSNZ)_$S($G(PSORSNZ)="":"",1:" ")_$G(PSOCOMM)
- S ^PSRX(PSODA,"COPAY",+PSI+1,0)=%_"^"_PREA_"^"_DUZ_"^"_$G(PSOREF)_"^"_PSORSNZ_"^"_$G(PSOOLD)_"^"_$G(PSONW)
+ S ^PSRX(PSODA,"COPAY",+PSI+1,0)=%_"^"_PREA_"^"_PSODUZ_"^"_$G(PSOREF)_"^"_PSORSNZ_"^"_$G(PSOOLD)_"^"_$G(PSONW)
  S ^PSRX(PSODA,"COPAY",0)="^52.0107DA^"_(+PSI+1)_"^"_(+PSI+1)
  K PSORSNZ
  Q

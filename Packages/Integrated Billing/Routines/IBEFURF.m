@@ -1,5 +1,5 @@
 IBEFURF ;ALB/ARH - UTILITY: FIND RELATED FIRST PARTY BILLS ;3/7/00
- ;;2.0;INTEGRATED BILLING;**130,347,459,604,618,728,748**;21-MAR-94;Build 1
+ ;;2.0;INTEGRATED BILLING;**130,347,459,604,618,728,748,716**;21-MAR-94;Build 19
  ;;Per VA Directive 6402, this routine should not be modified.
  ;
  ; the following procedures search for First Party charges for specific events, matchs are returned in TMP
@@ -30,7 +30,7 @@ FPINPT1(DFN,IBFROM,IBTO,XRF) ; find inpatient charges for a given patient IB*2.0
  ;
  N IB0,IBACT,IBFRDT,IBIEN
  S IBIEN=0 F  S IBIEN=$O(^IB("C",DFN,IBIEN)) Q:'IBIEN  D
- .S IB0=^IB(IBIEN,0)
+ .S IB0=$G(^IB(IBIEN,0)) I IB0="" Q  ; IB*2.0*716
  .S IBFRDT=$P(IB0,U,14) Q:'IBFRDT
  .I IBFRDT<IBFROM Q  ; 350/.14 is prior to 399/151
  .I IBFRDT>IBTO Q  ; 350/.14 is after 399/152

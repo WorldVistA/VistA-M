@@ -1,5 +1,5 @@
-RCDMC90U ;WASH IRMFO@ALTOONA,PA/TJK-DMC 90 DAY ;7/17/97  8:14 AM ; 10/24/96  3:21 PM [ 02/24/97  12:17 PM ]
-V ;;4.5;Accounts Receivable;**45,108,121,163**;Mar 20, 1995
+RCDMC90U ;WASH IRMFO@ALTOONA,PA/TJK - DMC 90 DAY ;7/17/97  8:14 AM ; 10/24/96  3:21 PM [ 02/24/97  12:17 PM ]
+V ;;4.5;Accounts Receivable;**45,108,121,163,400**;Mar 20, 1995;Build 13
  ;;Per VHA Directive 10-93-142, this routine should not be modified.
 COMPILE(MAX,CNTR,LINES,TLINE) ;COMPILES CODESHEETS INTO MAILMAN MESSAGES
  ;BUILDS MESSAGE ARRAY
@@ -107,6 +107,43 @@ CANC3(DEBTOR,DELETE) ;ENTRY POINT FOR AUTODELETION BY SERVER
  N I
  D CANC2
 CANCQ Q
+ ;
+CANCDMC(DEBTOR) ; cancel DMC withholding (no user interaction)  PRCA*4.5*400
+ ;
+ ; DEBTOR - file 340 ien
+ ;
+ ; returns 1 on success, 0^[error message] otherwise
+ ;
+ N DIERR,FDA,IENS,N3,RCBILL,RES
+ I '$D(^RCD(340,DEBTOR,0)) Q "0^Invalid file 340 ien"  ; invalid ien
+ S N3=$G(^RCD(340,DEBTOR,3))
+ I +$P(N3,U)'>0 Q "0^account is not at DMC"  ; field 340/3.01 is not set
+ I $P(N3,U,10) Q "0^withholding already cancelled"  ; field 340/3.1 is set
+ S IENS=DEBTOR_","
+ S FDA(340,IENS,3.02)=""
+ S FDA(340,IENS,3.03)=""
+ S FDA(340,IENS,3.05)=""
+ S FDA(340,IENS,3.06)=""
+ S FDA(340,IENS,3.07)=""
+ S FDA(340,IENS,3.08)=""
+ S FDA(340,IENS,3.09)=""
+ S FDA(340,IENS,3.1)=1
+ L +^RCD(340,DEBTOR):5 I '$T Q "0^Unable to lock file 340 entry"
+ D FILE^DIE("","FDA","DIERR")
+ L -^RCD(340,DEBTOR)
+ I $D(DIERR("DIERR")) Q "0^"_$G(DIERR("DIERR",1,"TEXT",1))
+ S RES=1,RCBILL=0 F  S RCBILL=$O(^PRCA(430,"C",DEBTOR,RCBILL)) Q:'RCBILL!('$P(RES,U))  D
+ .S IENS=RCBILL_"," K FDA
+ .S FDA(430,IENS,121)=""
+ .S FDA(430,IENS,122)=""
+ .S FDA(430,IENS,123)=""
+ .S FDA(430,IENS,124)=""
+ .L +^PRCA(430,RCBILL):5 I '$T S RES="0^Unable to lock file 430 entry"
+ .D FILE^DIE("","FDA","DIERR")
+ .L -^PRCA(430,RCBILL)
+ .I $D(DIERR("DIERR")) S RES="0^"_$G(DIERR("DIERR",1,"TEXT",1))
+ .Q
+ Q RES
  ;
 ERROR(RCDOC,LKUP,DFN)   ; send bulletin if address is not in correct format
  N XMSUB,XMY,XMDUZ,XMTEXT,MSG

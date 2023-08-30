@@ -1,6 +1,6 @@
 IBCBB21 ;ALB/AAS - CONTINUATION OF EDIT CHECK ROUTINE FOR UB-04 ;2-NOV-89
- ;;2.0;INTEGRATED BILLING;**51,137,210,232,155,291,348,349,403,400,432,447,461,665,702**;21-MAR-94;Build 53
- ;;Per VHA Directive 2004-038, this routine should not be modified.
+ ;;2.0;INTEGRATED BILLING;**51,137,210,232,155,291,348,349,403,400,432,447,461,665,702,727**;21-MAR-94;Build 34
+ ;;Per VA Directive 6402, this routine should not be modified.
  ;
 EN(IBZPRC92) ;
  ;
@@ -24,7 +24,9 @@ EN(IBZPRC92) ;
  I IBTOB12="83",'$$UBPRVCK^IBCBB12(IBIFN) S IBER=IBER_"IB312;"  ; DEM;432
  ;
  ; If any CPT procedures have more than 2 modifiers, warn
- S Z=0 F  S Z=$O(IBZPRC92(Z)) Q:'Z  I $P(IBZPRC92(Z),U)["ICPT(",$L($P(IBZPRC92(Z),U,15),",")>2 S Z0="Proc "_$$PRCD^IBCEF1($P(IBZPRC92(Z),U))_" has > 2 modifiers - only first 2 will be used" D WARN^IBCBB11(Z0)
+ ;S Z=0 F  S Z=$O(IBZPRC92(Z)) Q:'Z  I $P(IBZPRC92(Z),U)["ICPT(",$L($P(IBZPRC92(Z),U,15),",")>2 S Z0="Proc "_$$PRCD^IBCEF1($P(IBZPRC92(Z),U))_" has > 2 modifiers - only first 2 will be used" D WARN^IBCBB11(Z0)
+ ;TPF;IB*2.0*727;EBILL-1564;05/10/2022
+ S Z=0 F  S Z=$O(IBZPRC92(Z)) Q:'Z  I $P(IBZPRC92(Z),U)["ICPT(",$L($P(IBZPRC92(Z),U,15),",")>4 S Z0="Proc "_$$PRCD^IBCEF1($P(IBZPRC92(Z),U))_" has > 4 modifiers - only first 4 will be used" D WARN^IBCBB11(Z0)
  ;
  I $$WNRBILL^IBEFUNC(IBIFN),$$MRATYPE^IBEFUNC(IBIFN)'="A" S IBER=IBER_"IB086;"
  ;

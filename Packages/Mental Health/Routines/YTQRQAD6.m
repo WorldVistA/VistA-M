@@ -1,5 +1,5 @@
 YTQRQAD6 ;SLC/LLB - Determine High Risk Flagging ; 07/15/2020
- ;;5.01;MENTAL HEALTH;**158,181,187**;Dec 30, 1994;Build 73
+ ;;5.01;MENTAL HEALTH;**158,181,187,204**;Dec 30, 1994;Build 18
  ;
  ; The assumption is made that variable DFN will exist prior to calling this routine.
  ;
@@ -59,7 +59,6 @@ FLAG2 ;
  S YSFLAG=0
  I PR,YSCORE>PR S YSFLAG=1 ; Evaluate Positive response 
  S MULT=$L(HRR,"-") ; Parse HRR for multiples
- ;
  F X=1:1:MULT Q:YSFLAG>1  D
  . S YSLIM=14600 ; 40 Yrs
  . S YSHRT=$P(HRR,"-",X)
@@ -92,8 +91,9 @@ QUEST(ADMID,INST) ; Create core code to look at questions and answers
  . . I $E(QST,$L(QST))?1A S QST=QST_" "
  . . S QST=QST_^YTT(601.72,$P(TEMP,U,3),1,I,0)
  . I $P(TEMP,U,4)="NOT ASKED" S CHOICE="NOT ASKED",LEG=""
- . E  S CHOICE=$S($P(TEMP,U,4)="":"",1:^YTT(601.75,$P(TEMP,U,4),1)),LEG=$S($P(TEMP,U,4)="":"",1:$P(^YTT(601.75,$P(TEMP,U,4),0),U,2))
+ . E  S CHOICE=$S($P(TEMP,U,4)="":"",1:$G(^YTT(601.75,$P(TEMP,U,4),1))),LEG=$S($P(TEMP,U,4)="":"",1:$P($G(^YTT(601.75,$P(TEMP,U,4),0)),U,2))
  . I CHOICE="" S CHOICE="Skipped"
+ . S:'$D(LEG) LEG=""
  . S ^TMP("YSQA",$J,INST,CNT)=QST_U_CHOICE_U_LEG
  Q
  ;

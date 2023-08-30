@@ -1,5 +1,5 @@
 IBCNERPM ;AITC/VD - IBCNE eIV PAYER DOD REPORT ;22-JAN-2020
- ;;2.0;INTEGRATED BILLING;**664,668**;21-MAR-94;Build 28
+ ;;2.0;INTEGRATED BILLING;**664,668,737**;21-MAR-94;Build 19
  ;;Per VA Directive 6402, this routine should not be modified.
  ;
  ; eIV - Insurance Verification Interface
@@ -111,6 +111,7 @@ DTRANGX ; DTRANGE exit point
  Q
  ;
 PYRSEL ; Get Payer(s) selection.
+ ;IB*737/TAZ - Removed reference to Most Popular Payer and "~NO PAYER"
  N DIC,DIR,DIROUT,DIRUT,DTOUT,DUOUT,X,Y
  W !
  S DIR("A")="Run for (A)ll Payers or (S)elected Payers: "
@@ -123,9 +124,9 @@ PYRSEL ; Get Payer(s) selection.
  I Y="A" S IBCNESPC("PYR")="A" Q  ; "All Payers" selected
  S DIC(0)="ABEQ"
  S DIC("A")="Select Payer(s): "
- ; Do not allow selection of '~NO PAYER' and non-eIV payers
+ ; Do not allow selection of non-eIV payers
  ;IB*668/TAZ - Changed IIV to EIV
- S DIC("S")="I ($P(^(0),U,1)'=""~NO PAYER""),$$PYRAPP^IBCNEUT5(""EIV"",$G(Y))'="""""
+ S DIC("S")="I $$PYRAPP^IBCNEUT5(""EIV"",$G(Y))'="""""
  S DIC="^IBE(365.12,"
 PYRSEL1 ; Prompt for Payer Selection
  W !

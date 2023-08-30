@@ -1,15 +1,15 @@
 PSOSULBL ;BHAM ISC/RTR,SAB - Print Suspended labels ;SEP 30, 2020@13:11
- ;;7.0;OUTPATIENT PHARMACY;**139,173,174,148,200,260,264,287,289,290,354,421,370,427,466,539,452,627,562,694**;DEC 1997;Build 12
- ;External reference ^PS(55 supported by DBIA 2228
- ;Reference to SAVNDC^PSSNDCUT supported by IA 4707
- ;Reference ^PSDRUG( supported by DBIA 221
+ ;;7.0;OUTPATIENT PHARMACY;**139,173,174,148,200,260,264,287,289,290,354,421,370,427,466,539,452,627,562,694,681**;DEC 1997;Build 11
+ ; Reference to ^PS(55 in ICR #2228
+ ; Reference to SAVNDC^PSSNDCUT in ICR #4707
+ ; Reference to $$ECETREJ^PSXRPPL2 in ICR #7352
  ;
  ;*694 - add check for each local Rx# for CS vs NON-CS per appropriate new DAYS params in file #59
  ;
  K PDUZ,REPRINT G ^PSOSULB1
 BEG ;
  K PSORUNIN,PSORETRY N BPSCNT
- S PSORUNIN="^XTMP(""PSOSUSP"")"     ; global lock fix by patch 290
+ S PSORUNIN="^XTMP(""PSOSUSP"")"
  L +@PSORUNIN:10 I '$T D
  . F PSORETRY=1:1:120 L +@PSORUNIN:60 I $T Q  ;wait Max of 2 hrs before continue
  . Q
@@ -36,7 +36,7 @@ EXIT ;
 TMP F SFN=0:0 S SFN=$O(^PS(52.5,"AC",DFN,SDT,SFN)) Q:'SFN  D
  . Q:SDT>$$FMADD^XLFDT(PRTDT,$$SUSPDAYS^PSOUTLA2(SFN))      ;*694 check per each Rx CS vs Non-CS param value.  (Quit if Sus dt > Prt thru dt + pull ahead days param)
  . I '$D(^PS(52.5,SFN,0))!'$D(^DPT(+DFN,0)) K ^PS(52.5,"AC",DFN,SDT,SFN) Q
- . I $D(PSOSULST) N PSOOK D EN^PSOSUCAT Q:'PSOOK  ;RTW line added for NSR20151109
+ . I $D(PSOSULST) N PSOOK D EN^PSOSUCAT Q:'PSOOK
  . N RXSITE,PRINTED,PSDFN,RXSTS,RXIEN,RXFILL,PARTIAL,RXEXPDT,RESP,DSHLD,ESTATUS
  . S RXIEN=+$$GET1^DIQ(52.5,SFN,.01,"I"),RXDFN=$$GET1^DIQ(52,RXIEN,2,"I")
  . S RXSTS=$$GET1^DIQ(52,RXIEN,100,"I"),RXSITE=+$$GET1^DIQ(52.5,SFN,.06,"I"),PRINTED=+$$GET1^DIQ(52.5,SFN,2,"I")
@@ -62,6 +62,8 @@ TMP F SFN=0:0 S SFN=$O(^PS(52.5,"AC",DFN,SDT,SFN)) Q:'SFN  D
  . . ; - If not partial fill, sending Rx to ECME for 3rd Party billing
  . . I 'PARTIAL,$$RETRX^PSOBPSUT(RXIEN,RXFILL),SDT>DT Q
  . . S ESTATUS=$$STATUS^PSOBPSUT(RXIEN,RXFILL)
+ . . ; Skip this one if it has an open/unresolved eT/eC reject.
+ . . I $$TRIC^PSOREJP1(RXIEN,RXFILL),$$ECETREJ^PSXRPPL2(RXIEN) Q
  . . I 'PARTIAL,ESTATUS'="",ESTATUS'["PAYABLE",'$$ECMESTAT^PSOBPSU2(RXIEN,RXFILL) Q  ;check for existing epharmacy reject codes
  . . I 'PARTIAL,RXFILL>0,$$STATUS^PSOBPSUT(RXIEN,RXFILL-1)'="" S DSHLD=$$DSH^PSOSULB1(SFN) Q:'DSHLD  ;epharmacy-3/4 days supply (refill)
  . . I 'PARTIAL,RXFILL=0 S DSHLD=$$DSH^PSOSULB1(SFN) Q:'DSHLD  ;epharmacy-3/4 days supply (original fill)
@@ -81,8 +83,8 @@ PPL1 ; Printing Labels
  S:'$D(PDUZ) PDUZ=DUZ K RXPR,RXPR1,PPL
  F SFN=0:0 S SFN=$O(^TMP($J,ORD,SFN)) Q:'SFN  D
  .I '$D(^PS(52.5,SFN,0)) Q
- .;PSO*7.0*627 - add RXFL(SINRX) for downstream outpatient dispensing robots
- . ;             such as Optifill or ScriptPro
+ .; RXFL(SINRX) is related to downstream outpatient dispensing robots
+ .; such as Optifill or ScriptPro
  .S Z=$G(^PS(52.5,SFN,0)),SINRX=+$P(Z,"^"),(REFILL,RXFL(SINRX))=+$P(Z,"^",13)
  .S PARTIAL=$P(Z,"^",5),REPRINT=$P(Z,"^",12)
  .; - Screening out OPEN/UNRESOLVED Rejects (3rd Party Payer) 

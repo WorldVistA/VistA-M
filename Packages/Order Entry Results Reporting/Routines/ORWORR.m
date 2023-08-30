@@ -1,14 +1,13 @@
-ORWORR ; SLC/KCM/JLI - Retrieve Orders for Broker ;Oct 26, 2021@10:21:57
- ;;3.0;ORDER ENTRY/RESULTS REPORTING;**10,92,116,110,132,141,163,189,195,215,243,280,306,471,444,515,405**;Dec 17, 1997;Build 211
+ORWORR ; SLC/KCM/JLI - Retrieve Orders for Broker ; Nov 18, 2022@12:08:57
+ ;;3.0;ORDER ENTRY/RESULTS REPORTING;**10,92,116,110,132,141,163,189,195,215,243,280,306,471,444,515,405,577**;Dec 17, 1997;Build 12
  ;
- ;DBIA/ICR section
- ;10035 ^DPT(
- ;10040 ^SC(
- ;10060 ^VA(200
- ;10000 %DTC
- ; 2263 XPAR
- ; 2343 XUSER
- ; 4902 PSO52EX
+ ; Reference to ^SC in ICR #10040
+ ; Reference to ^DPT( in ICR #10035
+ ; Reference to ^VA(200 in ICR #10060
+ ; Reference to ^%DTC in ICR #10000
+ ; Reference to GET^XPAR in ICR #2263
+ ; Reference to XUSER in ICR #2343
+ ; Reference to PSO52EX in ICR #4902
  ;
 GET(LST,DFN,FILTER,GROUPS) ; procedure
  Q  ; don't call until using same treating specialty logic as AGET
@@ -44,6 +43,9 @@ AGET(REF,DFN,FILTER,GROUPS,DTFROM,DTTHRU,EVENT,ORRECIP) ;Get abbrev. event delay
  I $G(GROUPS),($$GET1^DIQ(100.98,GROUPS,.01)="PHARMACY UAP")!($$GET1^DIQ(100.98,GROUPS,.01)="DISCHARGE MEDS") S ORUGROUP=GROUPS ;Capturing GROUPS for later UAP use GETFLDS
  S ORWTS=+$P(FILTER,U,2),FILTER=+FILTER
  S MULT=$S("^1^6^8^9^10^11^13^14^20^22^29^30^31^32^"[(U_FILTER_U):1,1:0)
+ I DFN="" D  Q
+ .S ^TMP("ORR",$J,$H)=""
+ .S ^TMP("ORR",$J,$H,.1)="0^0^0"
  I $L($G(^DPT(DFN,.1))) S ORWARD=1 ; normally ptr to 42
  S:'$L($G(DTFROM)) DTFROM=0
  S:'$L($G(DTTHRU)) DTTHRU=0

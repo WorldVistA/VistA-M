@@ -1,5 +1,5 @@
 VAFHLZE1 ;BPFO/JRP,TDM,JLS,KUM - Data extractor for ZEL segment ;5/24/06 3:43pm
- ;;5.3;Registration;**342,497,602,672,653,909,952,1018**;Aug 13,1993;Build 5
+ ;;5.3;Registration;**342,497,602,672,653,909,952,1018,1090**;Aug 13,1993;Build 16
  ;
 GETDATA ;Get information needed to build ZEL  segment
  ;Input: Existence of the following variables is assumed
@@ -79,7 +79,9 @@ GETDATA ;Get information needed to build ZEL  segment
  ;Radiation Exposure Method
  I (VAFSTR[22) D
  .S X=$P(VAF(.321),"^",12)
- .S:(X="")!($L(X)>1) X=HLQ
+ .;DG*5.3*1090 - Accommodate two digit values
+ .;S:(X="")!($L(X)>1) X=HLQ
+ .S:(X="")!($L(X)>2) X=HLQ
  .S:(X'=HLQ) X=$TR(X,"NTB","234")
  .S VAFHLZEL(22)=X
  ;Call MST status API
@@ -103,7 +105,8 @@ GETDATA ;Get information needed to build ZEL  segment
  ;I VAFSTR[29 S X=$P(VAF(.321),"^",13),VAFHLZEL(29)=$S(X]"":X,$P(VAF(.321),U,2)="Y":"U",1:HLQ)
  ;DG*5.3*1018 - Add Blue Water Navy value 
  ;I VAFSTR[29 S X=$P(VAF(.321),"^",13),VAFHLZEL(29)=$S(",K,V,O,"[(","_X_","):X,1:HLQ)
- I VAFSTR[29 S X=$P(VAF(.321),"^",13),VAFHLZEL(29)=$S(",K,V,O,B,"[(","_X_","):X,1:HLQ)
+ ;DG*5.3*1090 - Add T, L, C, G, J
+ I VAFSTR[29 S X=$P(VAF(.321),"^",13),VAFHLZEL(29)=$S(",K,V,O,B,T,L,C,G,J,"[(","_X_","):X,1:HLQ)
  ;Radiation Registration Date
  I VAFSTR[30 S X=$P(VAF(.321),"^",11),VAFHLZEL(30)=$S(X]"":$$HLDATE^HLFNC(X),1:HLQ)
  ;Envir. Cont. Exam Date

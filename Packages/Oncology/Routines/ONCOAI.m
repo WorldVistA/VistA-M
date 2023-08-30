@@ -1,5 +1,5 @@
-ONCOAI ;Hines OIFO/GWB [AI Complete Abstract] ;07/22/11
- ;;2.2;ONCOLOGY;**1**;Jul 31, 2013;Build 8
+ONCOAI ;HINES OIFO/GWB [AI Complete Abstract] ;07/22/11
+ ;;2.2;ONCOLOGY;**1,17**;Jul 31, 2013;Build 6
  ;
 BEG D EX
  W @IOF,!!!
@@ -39,7 +39,9 @@ HIS ;Patient History
  K ONCOL
  ;
 CK ;Check for existing primaries
- S ONCOP0=$O(^ONCO(165.5,"C",ONCOD0,0)) I ONCOP0'="" S ONCOP=$S($D(^ONCO(165.5,ONCOP0,0)):^(0),1:"") I ONCOP'="" G PRIM2
+ ;S ONCOP0=$O(^ONCO(165.5,"C",ONCOD0,0)) I ONCOP0'="" S ONCOP=$S($D(^ONCO(165.5,ONCOP0,0)):^(0),1:"") I ONCOP'="" G PRIM2  ;old code before division check
+ D NEWCHECK
+ S ONCOP0=$O(^TMP($J,"MDV",DUZ(2),0)) I ONCOP0'="" S ONCOP=$S($D(^ONCO(165.5,ONCOP0,0)):^(0),1:"") I ONCOP'="" G PRIM2
  ;
 PRIM1 ;Register a primary for this patient
 REG D KIL S DIR("B")="Yes",DIR(0)="Y",DIR("A")="    Register a Primary for this patient" W !! D ^DIR G AIP:Y,EX:Y="",CONT
@@ -69,7 +71,8 @@ SET S (SR,XD,MO,CS)=""
  S ONCOL=0
  S DIE="^ONCO(165.5,"
  S (D0,DA)=ONCOD0P
- S DR="3///^S X=XD;91///0;95///2;21///^S X=CS"
+ ;S DR="3///^S X=XD;91///0;95///2;21///^S X=CS"
+ S DR="91///0;95///2"
  L +^ONCO(165.5,DA):0 I $T D ^DIE L -^ONCO(165.5,DA) S ONCOL=1
  I MO="" G SET1
  I ((XD<3010000)&('$D(^ONCO(164.1,MO,0))))!((XD>3001231)&('$D(^ONCO(169.3,MO,0)))) D  W ! K DIR S DIR(0)="E" D ^DIR G:Y=0 EX G SET1
@@ -118,3 +121,12 @@ WRTSDC ;CALLED BY [ONCO XDEATH INFO] PRINT TEMPLATE
  ;
 CON ;ADD CONTACTS
  ;G BEG:$P($G(^ONCO(160,ONCOD0,1)),U)=0,BEG:$D(^ONCO(160,"APC",ONCOD0))  S,EX:Y="" DIR("A")="     ADD CONTACTS at this time",DIR(0)="Y" W !! D ^DIR G BEG:'Y,CONT:Y[U D DCL^ONCOFUL
+ Q
+ ;
+NEWCHECK ;CODE FOR MULTIDIVISION CHECK - PATCH 17
+ K ^TMP($J,"MDV")
+ K RTKARY S PRI=0 F  S PRI=$O(^ONCO(165.5,"C",ONCOD0,PRI)) Q:PRI'>0  D
+ .S PRIDIV=$$DIV^ONCFUNC(PRI) S ^TMP($J,"MDV",PRIDIV,PRI)=PRI
+ .I PRIDIV=DUZ(2) S RTKARY(PRI)=PRI
+ .Q
+ K PRI,PRIDIV Q

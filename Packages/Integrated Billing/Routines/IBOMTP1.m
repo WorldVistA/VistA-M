@@ -1,5 +1,5 @@
-IBOMTP1 ;ALB/CPM-MEANS TEST BILLING PROFILE (CON'T);10-DEC-91
- ;;2.0;INTEGRATED BILLING;**15,153,176,183,651,656,678**;21-MAR-94;Build 7
+IBOMTP1 ;ALB/CPM - MEANS TEST BILLING PROFILE (CON'T);10-DEC-91
+ ;;2.0;INTEGRATED BILLING;**15,153,176,183,651,656,678,747**;21-MAR-94;Build 2
  ;; Per VHA Directive 10-93-142, this routine should not be modified
  ;
  N IBLEG,IBCHK
@@ -39,7 +39,7 @@ IBOMTP1 ;ALB/CPM-MEANS TEST BILLING PROFILE (CON'T);10-DEC-91
  D NOW^%DTC S IBHDT=$$DAT2^IBOUTL($E(%,1,12))
  S IBLINE="",$P(IBLINE,"-",IOM+1)="",(IBPAG,IBCHGT,IBQUIT)=0
  S IBPT=$$PT^IBEFUNC(IBDFN)
- S IBH="Means Test Billing Profile for "_$P(IBPT,U)_"  "_$P(IBPT,U,2) D HDR
+ S IBH="Means Test Billing Profile for "_$P(IBPT,U) D HDR  ; IB*2.0*747
  I '$D(^TMP($J,"IBOMTP")) W !,"This patient has no Means Test bills." D PAUSE^IBOUTL G END
  ; - first, print detail lines
  S IBD="" F  S IBD=$O(^TMP($J,"IBOMTP",IBD)) Q:'IBD  D  G:IBQUIT END

@@ -1,5 +1,5 @@
 PSIVORE ;BIR/PR,MLM - ORDER ENTRY ;Apr 07, 2020@09:19:06
- ;;5.0;INPATIENT MEDICATIONS;**18,29,50,56,58,81,110,127,133,157,203,213,181,252,305,281,329,319**;16 DEC 97;Build 31
+ ;;5.0;INPATIENT MEDICATIONS;**18,29,50,56,58,81,110,127,133,157,203,213,181,252,305,281,329,319,407**;16 DEC 97;Build 26
  ;
  ; Reference to ^PS(55 is supported by DBIA 2191
  ; Reference to ^ORX2 is supported by DBIA #867
@@ -65,6 +65,7 @@ HK ;Queue job to print MAR labels generated for this patient.
  ;
 SITE ;See if site parameters are ok.
  K PSIVQ D ^PSIVXU Q:$D(XQUIT)
+ Q:$G(DONE)  ;P407
  I '$D(PSIVSN)!('$D(PSIVSITE)) W $C(7),$C(7),!!,"You have no IV ROOM parameters ... PLEASE ... PLEASE ...",!,"Exit this package and reenter properly !!",!! Q
  D ORPARM^PSIVOREN S PSIVQ=1
  Q

@@ -1,5 +1,5 @@
 PSOREJU2 ;BIRM/MFR - BPS (ECME) - Clinical Rejects Utilities (1) ;10/15/04
- ;;7.0;OUTPATIENT PHARMACY;**148,260,287,341,290,358,359,385,403,421,427,478,562,680**;DEC 1997;Build 5
+ ;;7.0;OUTPATIENT PHARMACY;**148,260,287,341,290,358,359,385,403,421,427,478,562,680,681**;DEC 1997;Build 11
  ; Reference to $$TAXID^IBCEF75 in ICR #6768
  ; Reference to $$DIVNCPDP^BPSBUTL in ICR #4719
  ; Reference to 9002313.23 in ICR #4714
@@ -55,7 +55,7 @@ GET(RX,RFL,REJDATA,REJID,OKCL,CODE,RRRFLG) ; get reject data from subfile 52.25
  . I '$G(OKCL),$P($G(^PSRX(RX,"REJ",REJID,0)),"^",5) Q
  . S REJS(REJID)=""
  E  D
- . S IDX=999
+ . S IDX="A"
  . F  S IDX=$O(^PSRX(RX,"REJ",IDX),-1) Q:'IDX  D
  . . I +$P($G(^PSRX(RX,"REJ",IDX,0)),"^",4)'=RFL Q
  . . I '$G(OKCL),$P($G(^PSRX(RX,"REJ",IDX,0)),"^",5) Q
@@ -154,7 +154,7 @@ DVINFO(RX,RFL,LM) ; Returns header displayable Division Information
  S NCPNPI=$$CSNPI^BPSUTIL(RX,RFL)
  ;
  ; If not a Controlled Substance, use NCPDP# & NPI info based on Division.
- ; Display both NPI and NCPDP numbers - PSO*7.0*421
+ ; Display both NPI and NCPDP numbers
  I +NCPNPI=-1 S NCPNPI=$$DIVNCPDP^BPSBUTL(DVIEN)
  S $E(DVINFO,28)="NPI: "_$P(NCPNPI,U,2)
  S $E(DVINFO,44)="NCPDP: "_$P(NCPNPI,U)

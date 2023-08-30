@@ -1,0 +1,18 @@
+TIU343P ; SPFO/AJB - AUDIT SIGNED DOCUMENTS ;02/24/23  06:56
+ ;;1.0;TEXT INTEGRATION UTILITIES;**343**;Jun 20, 1997;Build 17
+ ;
+ Q
+POST ;
+ I +$$PROD^XUPROD(1) Q
+ ; update security codes for test accounts only
+ N SEC,X F X="AUDIT","DD","DEL","LAYGO","RD","WR" S SEC(X)="@"
+ D FILESEC^DDMOD(8925,.SEC) ; ICR# 2916
+ Q
+AUDIT(UPDATE,VALUE) ;
+ N X S X=0 F  S X=$O(^DD(8925,X)) Q:'+X  D
+ . N AUDIT S AUDIT=$G(^DD(8925,X,"AUDIT"))
+ . Q:AUDIT=""
+ . W !,X,?10,AUDIT,?20,"Update to: ",$G(VALUE)
+ . Q:'+$G(UPDATE)!(AUDIT="n")  S ^DD(8925,X,"AUDIT")=VALUE
+ ;
+ Q

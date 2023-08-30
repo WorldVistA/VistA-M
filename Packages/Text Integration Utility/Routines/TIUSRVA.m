@@ -1,12 +1,14 @@
-TIUSRVA ; SLC/JER,AJB - API's for Authorization ;Feb 25, 2022@08:00:44
- ;;1.0;TEXT INTEGRATION UTILITIES;**19,28,47,80,100,116,152,160,178,175,157,236,234,239,268,289**;Jun 20, 1997;Build 200
+TIUSRVA ; SLC/JER,AJB - API'S FOR AUTHORIZATION ;01/30/23  12:29
+ ;;1.0;TEXT INTEGRATION UTILITIES;**19,28,47,80,100,116,152,160,178,175,157,236,234,239,268,289,355**;Jun 20, 1997;Build 11
  ;
- ;   DBIA  2056  $$GET1^DIQ
- ;   DBIA 10141  PATCH^XPDUTL
- ;   DBIA  2052  FIELD^DID
- ;
+ ; External reference to $$GET1^DIQ supported by IA 2056
+ ; External reference to $$PATCH^XPDUTL supported by IA 10141
+ ; External reference to FIELD^DID supported by IA 2052
  ; External reference to File ^AUPNVSIT supported by IA 3580
- ; $$ISA^USRLM supported by IA 1544
+ ; External reference to $$ISA^USRLM supported by IA 1544
+ ; External reference to $$ACTVSURO^XQALSURO supported by IA 2790
+ ;
+ Q
 REQCOS(TIUY,TIUTYP,TIUDA,TIUSER,TIUDT) ; Evaluate cosignature requirement
  ; Initialize return value
  N TIUDPRM
@@ -144,19 +146,18 @@ WORKCHRT(TIUY,TIUDA) ; RPC: Can user print Work or Chart copy of document
  I +$$ISA^USRLM(DUZ,"MEDICAL INFORMATION SECTION") S TIUY=2 Q
  S TIUY=1
  Q
-NDTOSIGN(TIUY,TIUDA) ; Does current user need to sign this document? *289 ajb
+NDTOSIGN(TIUY,TIUDA) ; current user need to sign this document? *355 ajb
  N NODE,STATUS S NODE(0)=$G(^TIU(8925,+TIUDA,0)),NODE(12)=$G(^TIU(8925,+TIUDA,12)),STATUS=$P(NODE(0),U,5),TIUY=0
- ; check for signatures by context
- I STATUS=7!(STATUS=8) D  Q  ; completed/amended notes - ony need to check for additional signers
+ I STATUS'<6 D  ; uncosigned/completed/amended notes
+ . I STATUS=6 D  Q:+TIUY  ; uncosigned notes
+ . . I DUZ=$P(NODE(12),U,8) S TIUY=1 Q  ; is user the expected cosigner?
+ . . I +$P(NODE(12),U,8) I DUZ=$$ACTVSURO^XQALSURO($P(NODE(12),U,8)) S TIUY=1  Q  ; is user a surrogate for cosigner?
  . N IEN S IEN=0 F  S IEN=$O(^TIU(8925.7,"AC",+NODE(12),+TIUDA,IEN)) Q:'+IEN  D  Q:+TIUY
  . . N ADDSIGNER S ADDSIGNER=$P($G(^TIU(8925.7,IEN,0)),U,3) Q:'ADDSIGNER
- . . I DUZ=ADDSIGNER S TIUY=1 Q
- . . I $$ISSURFOR^TIUADSIG(DUZ,ADDSIGNER) S TIUY=1
- I STATUS=6 D  Q  ; uncosigned notes - only need to check cosigner
- . I DUZ=$P(NODE(12),U,8) S TIUY=1 Q  ; is user the cosigner?
- . I +$P(NODE(12),U,8) I $$ISSURFOR^TIUADSIG(DUZ,$P(NODE(12),U,8)) S TIUY=1  ; is user a surrogate for cosigner?
- I STATUS=5 D  Q  ; unsigned notes - check signer/cosigner
- . I DUZ=$P(NODE(12),U,4)!(DUZ=$P(NODE(12),U,8)) S TIUY=1 Q  ; is user the signer or cosigner?
- . I +$P(NODE(12),U,4) I $$ISSURFOR^TIUADSIG(DUZ,$P(NODE(12),U,4)) S TIUY=1 Q  ; is user a surrogate for signer?
- . I +$P(NODE(12),U,8) I $$ISSURFOR^TIUADSIG(DUZ,$P(NODE(12),U,8)) S TIUY=1 Q  ; is user a surrogate for cosigner?
+ . . I DUZ=ADDSIGNER S TIUY=1 Q  ; is user the additional signer?
+ . . I DUZ=$$ACTVSURO^XQALSURO(ADDSIGNER) S TIUY=1 ; is user a surrogate for the additional signer?
+ I STATUS'>5 D  ; unsigned notes - check signer/cosigner
+ . I DUZ=$P(NODE(12),U,4)!(DUZ=$P(NODE(12),U,8)) S TIUY=1 Q  ; is user the expected signer or expected cosigner?
+ . I +$P(NODE(12),U,4) I DUZ=$$ACTVSURO^XQALSURO($P(NODE(12),U,4)) S TIUY=1 Q  ; is user a surrogate for expected signer?
+ . I +$P(NODE(12),U,8) I DUZ=$$ACTVSURO^XQALSURO($P(NODE(12),U,8)) S TIUY=1 ; is user a surrogate for expected cosigner?
  Q

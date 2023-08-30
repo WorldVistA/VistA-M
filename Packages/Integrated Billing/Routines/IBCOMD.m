@@ -1,5 +1,5 @@
 IBCOMD ;ALB/CMS - GENERATE INSURANCE COMPANY LISTINGS ;03-AUG-98
- ;;2.0;INTEGRATED BILLING;**103,528,732**;21-MAR-94;Build 13
+ ;;2.0;INTEGRATED BILLING;**103,528,732,743**;21-MAR-94;Build 18
  ;;Per VA Directive 6402, this routine should not be modified.
  ;
  ; Reference to D EN^XUTMDEVQ in ICR #1519
@@ -133,23 +133,31 @@ SELR ; Select a range of values
  ;IB*732/CKB - made code easier to read and if user enters '^', set STOP to exit
  N DIR,DIROUT,DIRUT,DTOUT,DUOUT,IBRF,IBRL,X,Y
 SELRR ;
+ ;IB*743/TAZ - Updated code to accept NULL to mean beginning of list.
+ W !!,"Enter Start With value or Press <ENTER> to start at the beginning of the list.",!
  S DIR(0)="FO"
  S DIR("A")="START WITH '"_IBFLD(IBF)_"' VALUE"
- S DIR("B")=$S($P($G(IBCASE(IBF)),"^",2)'="":$P($G(IBCASE(IBF)),"^",2),1:"FIRST")
- D ^DIR
- I $D(DTOUT)!$D(DUOUT)!$D(DIRUT)!$D(DIROUT)!(Y="^") S STOP=1 K IBCASE(IBF) Q
- S:Y="FIRST" Y="" S IBRF=Y
+ I $P($G(IBCASE(IBF)),"^",2)'="" S DIR("B")=$P($G(IBCASE(IBF)),"^",2)
+ S DIR("?")="^D RANGE^IBCOMD(""BEGIN"")"
+ D ^DIR K DIR
+ I $D(DTOUT)!$D(DUOUT)!$D(DIROUT)!(Y="^") S STOP=1 K IBCASE(IBF) Q
+ S IBRF=Y
  ;
+ ;IB*743/TAZ - Updated code to accept NULL to mean end of list.
+ W !!,"Enter Go To value or Press <ENTER> to finish at the end of the list.",!
  S DIR(0)="FO"
  S DIR("A")="GO TO '"_IBFLD(IBF)_"' VALUE"
- S DIR("B")=$S($P($G(IBCASE(IBF)),"^",3)'="":$P($G(IBCASE(IBF)),"^",3),1:"LAST")
- D ^DIR
- I $D(DTOUT)!$D(DUOUT)!$D(DIRUT)!$D(DIROUT)!(Y="^") S STOP=1 K IBCASE(IBF) Q
- S:Y="LAST" Y="zzzzzz" S IBRL=Y
+ ; IB*743/DTG do not dispay 'zzzzzz' on edit
+ I ($P($G(IBCASE(IBF)),"^",3)'="")&($P($G(IBCASE(IBF)),"^",3)'="zzzzzz") S DIR("B")=$P($G(IBCASE(IBF)),"^",3)
+ S DIR("?")="^D RANGE^IBCOMD(""END"")"
+ D ^DIR K DIR
+ I $D(DTOUT)!$D(DUOUT)!$D(DIROUT)!(Y="^") S STOP=1 K IBCASE(IBF) Q
+ S IBRL=$S(Y="":"zzzzzz",1:Y)
  ;
  ; - the 'go to' value must follow the 'start with' value
  ;IB*732/CKB - make selection case insensitive
- I $$UP^XLFSTR($G(IBRL))']$$UP^XLFSTR($G(IBRF)) W !!,?5,"* The 'Go To' value must follow after the 'Start With' value. *",! G SELRR
+ I $$UP^XLFSTR($G(IBRL))']$$UP^XLFSTR($G(IBRF)) D  G SELRR
+ . W !!,?5,">>>>> The 'Go To' value must follow after the 'Start With' value. <<<<<",!
  S IBCASE(IBF)="R^"_IBRF_"^"_IBRL
  Q
  ;
@@ -189,6 +197,12 @@ CON ; Help for the 'Contains' prompt.
  W !,?5,"this screen field and select another field."
  Q
  ;
+ ;IB*743/TAZ - Help for the Range Prompt
+RANGE(LEVEL) ; ?? Help for the Range Prompt
+ W !!,?5,"Enter a value the entries in the list should ",LEVEL," with."
+ I LEVEL="BEGIN" W !,?5,"Press <ENTER> to start at the beginning of the list."
+ I LEVEL="END" W !,?5,"Press <ENTER> to finish at the end of the list."
+ Q
  ;
 QUE ; Ask Device
  ;IB*732/CKB - Modified to allow Queuing of the report, and added Excel

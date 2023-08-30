@@ -1,5 +1,5 @@
 IBJPI2 ;DAOU/BHS - eIV SITE PARAMETERS SCREEN ACTIONS ;26-JUN-2002
- ;;2.0;INTEGRATED BILLING;**184,271,316,416,438,713**;21-MAR-94;Build 12
+ ;;2.0;INTEGRATED BILLING;**184,271,316,416,438,713,737**;21-MAR-94;Build 19
  ;;Per VA Directive 6402, this routine should not be modified.
  ;
  ; eIV - electronic Insurance Verification Interface
@@ -7,42 +7,17 @@ IBJPI2 ;DAOU/BHS - eIV SITE PARAMETERS SCREEN ACTIONS ;26-JUN-2002
  ; Only call from tag
  Q
  ;
-MP ; Most Popular Payer processing
- Q
- ; Set error trap to ensure that lock is released
- N $ES,$ET
- S $ET="D ER^IBJPI2"
- ; Check lock
- L +^IBCNE("MP"):1 I '$T W !!,"The Most Popular Payers List is being edited by another user, please retry later." D PAUSE^VALM1 G MPX
- ; Call ListMan screen
- D EN^IBJPI3
- L -^IBCNE("MP")  ; Unlock
- ;
-MPX ; MP exit pt
- D INIT^IBJPI S VALMBCK="R"
- Q
- ;
-IIVEDIT(IBJDR) ; -- IBJP IIV EDIT ACTIONS (GP,PW):  Edit eIV Site Parameters
- ; IBJDR - 0 (General Parameters section)
- ;         1 (Patients Without Insurance section) - NO LONGER A VALID PARAMETER AFTER IB*2*416
+IIVEDIT ; -- IBJP IIV EDIT ACTIONS (GP,PW):  Edit eIV Site Parameters
  N DA,DR,DIE,DIC,X,Y
  ;
+ ;IB*737/TAZ - Removed parameter and clean up the code
+ ;
  D FULL^VALM1
- W @IOF,!,$S(IBJDR=0:"General",1:"Unknown")_" Parameters",!
- ; Build string of fields to edit or input template based on IBJDR
- I IBJDR'="" S DR=$P($T(@IBJDR),";;",2,999)
- I DR'="" S DIE="^IBE(350.9,",DA=1 D ^DIE K DA,DR,DIE,DIC,X,Y
+ W @IOF,!,"General Parameters",!
+ S DR="[IBCNE GENERAL PARAMETER EDIT]"
+ S DIE="^IBE(350.9,",DA=1 D ^DIE K DA,DR,DIE,DIC,X,Y
  ;
  D INIT^IBJPI S VALMBCK="R"
- Q
- ;
-0 ;;[IBCNE GENERAL PARAMETER EDIT]
- ;
- ;
-ER ; Unlock most popular payer and return to log error
- L -^IBCNE("MP")
- D ^%ZTER
- D UNWIND^%ZTER
  Q
  ;
 LTENT ; entry from list template protocol 'IBJP IIV FIX CORRUPT BUFFERS' from 'IBJP INS VER MENU' menu

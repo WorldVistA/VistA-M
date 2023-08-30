@@ -1,5 +1,5 @@
-RADD4 ;HISC/GJC-Radiology Utility Routine ;11/25/97  12:40
- ;;5.0;Radiology/Nuclear Medicine;**65**;Mar 16, 1998;Build 8
+RADD4 ;HISC/GJC-Radiology Utility Routine ; Jan 31, 2023@13:22:32
+ ;;5.0;Radiology/Nuclear Medicine;**65,198**;Mar 16, 1998;Build 1
  ;
  ;supported IA #10104 reference to STRIP^XLFSTR and LOW^XLFSTR
  ;
@@ -36,3 +36,13 @@ VOL() ; Validate the format of the value input for volume.
  S RAY=$$LOW^XLFSTR($E(RAY,1))
  I RAY'="c",(RAY'="m") Q ""
  Q RAX1_" "_RAY
+ ;
+DD7012(RAY) ;radiology technologist check
+ ;passes only if tech is active ("RA" node)
+ ;passes only if tech is classified "T" ("RAC" node)
+ ;Input: RAY = IEN (when +'d) of technologist from NEW PERSON file. 
+ N RAINACTIV S RAINACTIV=$P($G(^VA(200,+RAY,"RA")),U,3)
+ I RAINACTIV>0,(RAINACTIV'>DT) Q 0
+ Q:($D(^VA(200,"ARC","T",+RAY))\10=0) 0
+ Q 1
+ ;

@@ -1,5 +1,16 @@
-ORFIMM ;SLC/AGP - GENERIC EDIT IMMUNIZATION;May 10, 2022@14:07:55
- ;;3.0;ORDER ENTRY/RESULTS REPORTING;**405**;Dec 17, 1997;Build 211
+ORFIMM ;SLC/AGP - GENERIC EDIT IMMUNIZATION ;Dec 22, 2022@14:00:45
+ ;;3.0;ORDER ENTRY/RESULTS REPORTING;**405,597**;Dec 17, 1997;Build 3
+ ;
+ ; Reference to READENT^PXAPIIM in ICR #6387
+ ; Reference to READVALS^PXAPIIM in ICR #6387
+ ; Reference to IMMSITE^PXVRPC2 in ICR #7283
+ ; Reference to IMMSRC^PXVRPC2 in ICR #7283
+ ; Reference to IMAN^PXVRPC1 in ICR #7282
+ ; Reference to GETICR^PXVRPC5 in ICR #7285
+ ; Reference to IMMGRP^PXAPIIM in ICR #6387
+ ; Reference to IMMRPC^PXVRPC4 in ICR #7284
+ ; Reference to ^AUTTIMM( in ICR #1990
+ ;
  Q
  ;
 LAYOUT(TYPE,RESULT) ;
@@ -8,7 +19,7 @@ LAYOUT(TYPE,RESULT) ;
  ;                          1     2        3     4   5     6       7        8       9          10      11       12                    13
  ;                         NAME^CAPTION^CONTROL^COL^ROW^COLSPAN^NEEDSORT^REQUIRED^ABOVELINE^ENABLED^SET DEFAULT^Default Internal value^Default External Value"
  I TYPE=0 D  Q
- .S CNT=CNT+1,RESULT(CNT)="LOT NUMBER^Lot Number^ptCBO^0^0^1^0^1^0^1^1^"
+ .S CNT=CNT+1,RESULT(CNT)="LOT NUMBER^Lot Number^ptCBO^0^0^1^1^1^0^1^1^"
  .S CNT=CNT+1,RESULT(CNT)="EXPIRATION DATE^Expiration Date^ptLabel^1^0^1^0^0^0^1^1^"
  .S CNT=CNT+1,RESULT(CNT)="MANUFACTURER^Manufacturer^ptLabel^2^0^1^0^0^0^1^"
  .S CNT=CNT+1,RESULT(CNT)="VISIT DATE TIME^Administration Date^ptDateTime^0^1^1^0^1^0^1^1^"

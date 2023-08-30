@@ -1,6 +1,6 @@
 PRC0G ;WISC/PLT-IFCAP UTILITY ; 02/19/96  3:37 PM
-V ;;5.1;IFCAP;;Oct 20, 2000
- ;Per VHA Directive 10-93-142, this routine should not be modified.
+V ;;5.1;IFCAP;**230**;Oct 20, 2000;Build 1
+ ;;Per VA Directive 6402, this routine should not be modified.
  QUIT  ;invalid entry
  ;
  ;prca data ^1=station #, ^2=fcp code,
@@ -12,7 +12,8 @@ QTRDT(PRCA) ;ef - ^1=first qtr date, ^2=last qtr date, ^3=oldest open qtr date f
  N A,B,C,D,E,X,Y
  S (A,B,C,D,E)=""
  I $P(PRCA,"^",4)="F" S $P(PRCA,"^",3)=$$BBFY^PRCSUT($P(PRCA,"^",1),$P(PRCA,"^",3),$P(PRCA,"^",2),1)
- S PRCB=$$ACC^PRC0C(+PRCA,$P(PRCA,"^",2)_"^"_$E($P(PRCA,"^",3),1,2)_"^"_$P(PRCA,"^",3))
+ ;S PRCB=$$ACC^PRC0C(+PRCA,$P(PRCA,"^",2)_"^"_$E($P(PRCA,"^",3),1,2)_"^"_$P(PRCA,"^",3))
+ S PRCB=$$ACC^PRC0C(+PRCA,$P(PRCA,"^",2)_"^"_$E($P(PRCA,"^",3),3,4)_"^"_$P(PRCA,"^",3)) ;PRC*5.1*230
  I $P(PRCB,"^",5)]"" S D=$O(^PRCD(420.3,"B",$P(PRCB,"^",5),"")) I D S D=$P($G(^PRCD(420.3,D,0)),"^",8)="Y" S:D $P(PRCB,"^",7)=2099
  I $P(PRCB,"^",6) S A=$P($$QTRDATE^PRC0D($P(PRCB,"^",6),1),"^",7),B=$P($$QTRDATE^PRC0D($P(PRCB,"^",7),4),"^",7)
  S C=$P($G(^PRC(420,+PRCA,0)),"^",9)

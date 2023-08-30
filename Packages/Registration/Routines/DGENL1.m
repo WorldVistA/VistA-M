@@ -1,5 +1,5 @@
-DGENL1 ;ALB/RMO,ISA/KWP,Zoltan,ALB/BRM,LBD,ERC,EG,CKN,BAJ,JLS,HM,RN - Patient Enrollment - Build List Area ;5/12/11 3:53pm
- ;;5.3;Registration;**121,147,232,266,343,564,672,659,653,688,838,841,909,940,972,993**;Aug 13,1993;Build 92
+DGENL1 ;ALB/RMO,KWP,EZ,BRM,LBD,ERC,EG,CKN,BAJ,JLS,HM,RN,ARF - Patient Enrollment - Build List Area ;5/12/11 3:53pm
+ ;;5.3;Registration;**121,147,232,266,343,564,672,659,653,688,838,841,909,940,972,993,1090**;Aug 13,1993;Build 16
  ;
 EN(DGARY,DFN,DGENRIEN,DGCNT) ;Entry point to build list area
  ; for patient enrollment and patient enrollment history
@@ -126,7 +126,7 @@ PF(DGARY,DFN,DGENR,DGLINE,DGCNT) ;Priority factors
  ;Agent orange
  S DGLINE=DGLINE+1
  D SET(DGARY,DGLINE,"A/O Exp.: "_$S($G(DGENR("ELIG","AO"))'="":$$EXT^DGENU("AO",DGENR("ELIG","AO")),1:""),14,,,,,,.DGCNT)
- D SET(DGARY,DGLINE,"A/O Exp Loc: "_$S($G(DGENR("ELIG","AOEXPLOC"))'="":$$EXT^DGENU("AOEXPLOC",DGENR("ELIG","AOEXPLOC")),1:""),51,,,,,,.DGCNT)
+ D SET(DGARY,DGLINE,$S($G(DGENR("ELIG","AOEXPLOC"))'="":$$EXT^DGENU("AOEXPLOC",DGENR("ELIG","AOEXPLOC")),1:""),31,,,,,,.DGCNT) ;DG*5.3*1090 remove A/O Exp Loc: label and shift 17 to the left
  ;
  ;Ionizing radiation
  S DGLINE=DGLINE+1

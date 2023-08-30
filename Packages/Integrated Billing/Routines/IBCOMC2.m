@@ -1,5 +1,5 @@
 IBCOMC2 ;ALB/CMS - IDENTIFY PT BY AGE WITH OR WITHOUT INSURANCE (CON'T) ;10-09-98
- ;;2.0;INTEGRATED BILLING;**103,153,516,528**;21-MAR-94;Build 163
+ ;;2.0;INTEGRATED BILLING;**103,153,516,528,743**;21-MAR-94;Build 18
  ;;Per VA Directive 6402, this routine should not be modified.
  Q
 ENH ; Sort help Text
@@ -27,9 +27,13 @@ HD ;Write Heading
  I IBOUT="E" W:($E(IOST,1,2)["C-") ! W "Patient Name^SSN^Age^DOB^Means Test?^Inp/Out^Last Visit^Insurance Name^Reimb VA?^Plan Name" Q
  W @IOF,!,"Patients "_$S(IBSIN=3:"Without",1:"With")_" Insurance Report",?50,$$FMTE^XLFDT($$NOW^XLFDT,"Z"),?70," Page ",IBPAGE
  I IBPAGE=1 D
- .W !,?5,"Sorted by: "_$S(IBAIB=1:"Patient Name",1:"Terminal Digit")_" Range: "_$S(IBRF="A":"FIRST",1:IBRF)_" to "_$S(IBRL="zzzzzz":"LAST",1:IBRL)
+ .;IB*743/TAZ - Modified Range Choice for beginning 
+ .;W !,?5,"Sorted by: "_$S(IBAIB=1:"Patient Name",1:"Terminal Digit")_" Range: "_$S(IBRF="A":"FIRST",1:IBRF)_" to "_$S(IBRL="zzzzzz":"LAST",1:IBRL)
+ .W !,?5,"Sorted by: "_$S(IBAIB=1:"Patient Name",1:"Terminal Digit")_" Range: "_$S(IBRF="":"FIRST",1:IBRF)_" to "_$S(IBRL="zzzzzz":"LAST",1:IBRL)
  .W !,?5,"Date Last Treated Range: "_$$FMTE^XLFDT(IBBDT,"Z")_" to "_$$FMTE^XLFDT(IBEDT,"Z")
- .I IBSIN=1 W !,?5,"Insurance Company Range: "_$S(IBSINF="A":"FIRST",1:IBSINF)_" to "_$S(IBSINL="zzzzzz":"LAST",1:IBSINL)
+ .;IB*743/TAZ - Modified Range Choice for beginning 
+ .;I IBSIN=1 W !,?5,"Insurance Company Range: "_$S(IBSINF="A":"FIRST",1:IBSINF)_" to "_$S(IBSINL="zzzzzz":"LAST",1:IBSINL)
+ .I IBSIN=1 W !,?5,"Insurance Company Range: "_$S(IBSINF="":"FIRST",1:IBSINF)_" to "_$S(IBSINL="zzzzzz":"LAST",1:IBSINL)
  .I IBSIN=3 W !,?5,"Patients with no Insurance on File"
  .I IBAGEF W !,?5,"Age Range: "_IBAGEF_" to "_IBAGEL
  .W !,?5,"*  -  Patient Deceased"

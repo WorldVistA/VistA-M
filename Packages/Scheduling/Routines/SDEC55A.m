@@ -1,6 +1,6 @@
-SDEC55A ;ALB/SAT,WTC - VISTA SCHEDULING RPCS ;Feb 12, 2020@15:22
- ;;5.3;Scheduling;**627,671,701,722,734,694,790**;Aug 13, 1993;Build 11
- ;;Per VHA Directive 2004-038, this routine should not be modified
+SDEC55A ;ALB/SAT,WTC,TJB - VISTA SCHEDULING RPCS ;Apr 19, 2023@15:22
+ ;;5.3;Scheduling;**627,671,701,722,734,694,790,844**;Aug 13, 1993;Build 12
+ ;;Per VHA Directive 6402, this routine should not be modified
  ;
  Q
  ;
@@ -89,7 +89,7 @@ APPSDGET(SDECY,MAXREC,LASTSUB,SDBEG,SDEND,NOTEFLG,SDRES,DFN,SDID,SDIEN)  ;GET ap
  ; 40. APPTTYPE_IEN - pointer to the APPOINTMENT TYPE file
  ; 41. APPTTYPE_NAME - name from the APPOINTMENT TYPE file
  ;
- N SD1,SD2,SDAPP,SDECI,SDI,SDJ,SDTMP,X,Y,%DT
+ N SD1,SD2,SDAPP,SDECI,SDI,SDJ,SDTMP,MAXDAYS,X,Y,%DT
  S SDECY="^TMP(""SDEC55A"","_$J_",""APPSDGET"")"
  K @SDECY
  S SDECI=0
@@ -118,6 +118,17 @@ APPSDGET(SDECY,MAXREC,LASTSUB,SDBEG,SDEND,NOTEFLG,SDRES,DFN,SDID,SDIEN)  ;GET ap
  S SD1=$P(LASTSUB,"|",1),SD2=$P(LASTSUB,"|",2)
  I SD2'="" I SDID="" S SD1=SD1-.0001
  ;
+ ;validate SDRES -optional 
+ S SDRES=$G(SDRES)
+ I SDRES'="",'$D(^SDEC(409.831,SDRES,0)) D ERR1^SDECERR(-1,"Invalid resource ID.",SDECI,SDECY) Q
+ ;
+ ;validate SDIEN - optional
+ S SDIEN=$G(SDIEN)
+ I SDIEN'="",'$D(^SDEC(409.84,SDIEN,0)) D ERR1^SDECERR(-1,"Invalid ID.",SDECI,SDECY) Q
+ ;
+ ; Get the value for MAXDAYS, pass in the Appointment IEN or Resource IEN (both could be null so default of 390 is returned)
+ S MAXDAYS=$$GETMAXDAYS(SDIEN,SDRES)
+ ;
  ;  Change date/time conversion so midnight is handled properly.  wtc 694 4/24/18
  ;
  ;validate SDBEG - optional
@@ -134,25 +145,21 @@ APPSDGET(SDECY,MAXREC,LASTSUB,SDBEG,SDEND,NOTEFLG,SDRES,DFN,SDID,SDIEN)  ;GET ap
  S SDEND=$G(SDEND)
  ;I $G(SDEND)'="" S %DT="" S X=$P($G(SDEND),"@",1) D ^%DT S SDEND=Y_".2359" I Y=-1 D ERR1^SDECERR(-1,"Invalid end date/time.",SDECI,SDECY) Q
  I SDEND'="" S SDEND=$$NETTOFM^SDECDATE(SDEND) S:SDEND>0 SDEND=SDEND_".2359" I SDEND=-1 D ERR1^SDECERR(-1,"Invalid end date/time.",SDECI,SDECY) Q  ; 
- I SDEND'="",SDEND>$$FMADD^XLFDT($$NOW^XLFDT(),390) D ERR1^SDECERR(-1,"Invalid end date/time.",SDECI,SDECY) Q  ;  WTC 701
+ I SDEND'="",SDEND>$$FMADD^XLFDT($$NOW^XLFDT(),MAXDAYS) D ERR1^SDECERR(-1,"Invalid end date/time.",SDECI,SDECY) Q  ;  WTC 701
  ;
  ;  Limit search to no later than 390 days in the future.  wtc 6/18/18 SD*5.3*701
- ;
- I SDEND="" S SDEND=$P($$FMADD^XLFDT($$NOW^XLFDT(),390),".",1)_".2359" ;
+ ;  modified the SDEND to be +MAXDAYS based on "MAX # DAYS FOR FUTURE BOOKING" File #44 field 2002
+ I SDEND="" S SDEND=$P($$FMADD^XLFDT($$NOW^XLFDT(),MAXDAYS),".",1)_".2359" ;
  ;
  ;validate NOTEFLG - optional
  S NOTEFLG=$S($G(NOTEFLG)=1:1,1:0)
- ;validate SDRES -optional
- S SDRES=$G(SDRES)
- I SDRES'="" I '$D(^SDEC(409.831,SDRES,0)) D ERR1^SDECERR(-1,"Invalid resource ID.",SDECI,SDECY) Q
+ ;
  ;validate DFN -optional
  S DFN=$G(DFN)
  I DFN'="" I '$D(^DPT(DFN,0)) D ERR1^SDECERR(-1,"Invalid patient ID.",SDECI,SDECY) Q
  ;validate SDID - optional
  S SDID=$G(SDID)
- ;validate SDIEN - optional
- S SDIEN=$G(SDIEN)
- I SDIEN'="",'$D(^SDEC(409.84,SDIEN,0)) D ERR1^SDECERR(-1,"Invalid ID.",SDECI,SDECY) Q
+ ;
  I SDIEN'="" D GET1(SDIEN,SDBEG,SDEND,NOTEFLG,SDRES,DFN,SDID,.SDECI,SDECY)
  G:SDIEN'="" GETX
  ;look in external id xref AEX
@@ -165,6 +172,7 @@ APPSDGET(SDECY,MAXREC,LASTSUB,SDBEG,SDEND,NOTEFLG,SDRES,DFN,SDID,SDIEN)  ;GET ap
  .S SDAPP=$S(SD1'="":SD1,1:0) F  S SDAPP=$O(^SDEC(409.84,"CPAT",DFN,SDAPP)) Q:SDAPP'>0  D  I +MAXREC,SDECI>=MAXREC S LASTSUB=SDAPP Q
  ..D GET1(SDAPP,SDBEG,SDEND,NOTEFLG,SDRES,DFN,SDID,.SDECI,SDECY)
  G:DFN'="" GETX
+ ;
  ;look in resource xref ARSRC
  I SDRES'="" D
  .S SDI=$S(SD1'="":SD1,1:SDBEG) F  S SDI=$O(^SDEC(409.84,"ARSRC",SDRES,SDI)) Q:SDI'>0  Q:SDI>SDEND  D  I +MAXREC,SDECI>=MAXREC S LASTSUB=SDI_"|"_SDAPP Q
@@ -272,3 +280,18 @@ GET1(SDAPP,SDBEG,SDEND,NOTEFLG,SDRES,DFN,SDID,SDECI,SDECY) ;get 1 appointment re
  S SDECI=SDECI+1 S @SDECY@(SDECI)=SDRET_$C(30)
  K SDDATA
  Q
+ ;
+GETMAXDAYS(SDAPIEN,SDRESIEN) ; Get the number of days in the future to be able to book appointments
+ ; The "MAX # DAYS FOR FUTURE BOOKING" is in File #44 field #2002 
+ ; SDAPIEN - Appointment IEN from SDEC APPOINTMENT (#409.84)
+ ; SDRESIEN - Resource IEN from SDEC RESOURCE FILE (#409.831)
+ ; MAXDAYS - Value to be returned from 'MAX # DAYS FOR FUTURE BOOKING' file 44 field 2002
+ N MAXDAYS,PTR44,SDRES1 S PTR44="",MAXDAYS=""
+ S SDAPIEN=$G(SDAPIEN)
+ S SDRESIEN=$G(SDRESIEN)
+ I SDRESIEN'="",$D(^SDEC(409.831,SDRESIEN,0))]"" S PTR44=$P($G(^SDEC(409.831,SDRESIEN,0)),"^",4)
+ I SDAPIEN'="",SDRESIEN="" S SDRES1=$P($G(^SDEC(409.84,SDAPIEN,0)),U,7),PTR44=$P($G(^SDEC(409.831,SDRES1,0)),"^",4)
+ ; Get file 44 field 2002
+ I +PTR44,$D(^SC(PTR44,"SDP")) S MAXDAYS=$P($G(^SC(PTR44,"SDP")),"^",2)
+ S:+MAXDAYS'>1 MAXDAYS=390
+ Q MAXDAYS

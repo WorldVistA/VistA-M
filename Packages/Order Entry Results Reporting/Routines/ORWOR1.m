@@ -1,5 +1,5 @@
-ORWOR1 ; slc/dcm - PKI RPC functions ;03/27/13  04:57
- ;;3.0;ORDER ENTRY/RESULTS REPORTING;**132,141,163,306,371**;Dec 17, 1997;Build 9
+ORWOR1 ; SLC/DCM - PKI RPC functions ;03/27/13 4:57pm
+ ;;3.0;ORDER ENTRY/RESULTS REPORTING;**132,141,163,306,371,499**;Dec 17, 1997;Build 165
  ;
  ;
  ;
@@ -17,7 +17,7 @@ SIG(RET,ID,X1,X2,X3,X4,ORX5,X6,X7) ;Store the signature.
  N ORHINFO,ORDINFO,OROUT,ORADD
  ;gets patient/user specific info used in hash on GUI
  K ORDFDA
- D HASHINFO^ORDEA(.ORHINFO,X7,X4)
+ D HASHINFO^ORDEA(.ORHINFO,X7,X4,+ID) ;*499
  ;get order specific info used in hash on GUI
  D ORDHINFO^ORDEA(.ORDINFO,+ID,X1,.ORHINFO)
  ;look for existing entries in 101.52

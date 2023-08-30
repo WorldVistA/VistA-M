@@ -1,5 +1,8 @@
-ORFIMM2 ;SLC/AGP - GENERIC EDIT IMMUNIZATION CONT;Mar 28, 2022@12:22:51
- ;;3.0;ORDER ENTRY/RESULTS REPORTING;**405**;Dec 17, 1997;Build 211
+ORFIMM2 ;SLC/AGP - GENERIC EDIT IMMUNIZATION CONT ;Jan 18, 2023@15:04:57
+ ;;3.0;ORDER ENTRY/RESULTS REPORTING;**405,597**;Dec 17, 1997;Build 3
+ ;
+ ; Reference to IMMRPC^PXVRPC4 in ICR #7288
+ ;
  Q
  ;
  ;
@@ -18,7 +21,7 @@ GETDETLS(RESULT,CNT,DEFAULTS,ID,DATETIME,ENCTYPE,LOC,SERREQ,SERMAX) ;
  S LOTCNT=0,LOTTEMP=""
  S CPTTEMP="",DXTEMP=""
  ;get value associated to the immunization in VistA and set default values in the Immunization
- ;form in teh FOR loop
+ ;form in the FOR loop
  D IMMRPC^PXVRPC4(.DATALST,ID,DATETIME,"L:"_$G(LOC))
  S X=0 F  S X=$O(^TMP("PXVIMMRPC",$J,X)) Q:X'>0  D
  .S TEMPTYPE=""
@@ -41,7 +44,7 @@ GETDETLS(RESULT,CNT,DEFAULTS,ID,DATETIME,ENCTYPE,LOC,SERREQ,SERMAX) ;
  ..I $P(NODE,U,2)'="" S DEFAULTS("COMMENTS")=$P(NODE,U,2)_U
  .;
  .I $G(TEMPTYPE)="" Q
- .;find most recent VIS statement reformat outout
+ .;find most recent VIS statement reformat output
  .I TEMPTYPE="VIS OFFERED" D
  ..S VIS=$P(NODE,U,3)_" "_$$FMTE^XLFDT($P(NODE,U,4))_" ("_$P(NODE,U,6)_")"
  ..S $P(NODE,U,3)=VIS
@@ -65,7 +68,7 @@ GETDETLS(RESULT,CNT,DEFAULTS,ID,DATETIME,ENCTYPE,LOC,SERREQ,SERMAX) ;
  .;Only step into if an edit
  .I $$REMONLY^ORFIMM(ID)'="" D  Q
  ..;based off settings in OR IMM REMINDER DIALOG parameter
- ..;immunizationd defined in this parameters will only show CPT/DX codes prompt will be disabled
+ ..;immunizations defined in this parameters will only show CPT/DX codes prompt will be disabled
  ..;no matter how many CPT/DX codes is defined for the immunization.
  ..I $D(DEFAULTS("CODES CPT")) S DEFAULTS("CODES CPT")="0^1^"_DEFAULTS("CODES CPT")
  ..I $D(DEFAULTS("CODES DX")) S DEFAULTS("CODES DX")="0^1^"_DEFAULTS("CODES DX")
@@ -82,7 +85,7 @@ GETDETLS(RESULT,CNT,DEFAULTS,ID,DATETIME,ENCTYPE,LOC,SERREQ,SERMAX) ;
  ;adding new record only section
  I "AID"[ENCTYPE D
  .I '$D(DEFAULTS("VISIT DATE TIME")) S DEFAULTS("VISIT DATE TIME")=DATETIME
- .I DATETIME>$$NOW^XLFDT() S DEFAULTS("VISIT DATE TIME")=$$NOW^XLFDT()
+ .I DATETIME>$$GETMAXDT^ORFIMM1() S DEFAULTS("VISIT DATE TIME")=$$NOW^XLFDT()
  I "AID"'[ENCTYPE,'$D(DEFAULTS("VISIT DATE TIME")) S DEFAULTS("VISIT DATE TIME")=$$NOW^XLFDT()
  I HASDEF=0,VISI>0 S DEFAULTS("VIS OFFERED")=VISI_U_VIST
  ;if only one CPT code associated with the immunization set the value and disable the prompt

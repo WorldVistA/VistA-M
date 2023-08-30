@@ -1,5 +1,5 @@
-RAORD6 ;HISC/CAH - AISC/RMO-Print A Request Cont. ;13 Apr 2018 3:35 PM
- ;;5.0;Radiology/Nuclear Medicine;**5,10,15,18,27,45,41,75,85,99,123,132,144**;Mar 16, 1998;Build 1
+RAORD6 ;HISC/CAH - AISC/RMO-Print A Request Cont. ; Mar 16, 2023@06:47:30
+ ;;5.0;Radiology/Nuclear Medicine;**5,10,15,18,27,45,41,75,85,99,123,132,144,200**;Mar 16, 1998;Build 2
  ; 3-p75 10/12/2006 GJC RA*5*75 print Reason for Study
  ; 4-p75 10/12/2006 KAM RA*5*75 display the request print date in the header
  ; 5-p75 10/12/2006 KAM RA*5*75 update header "Age" to "Age at req"
@@ -7,6 +7,7 @@ RAORD6 ;HISC/CAH - AISC/RMO-Print A Request Cont. ;13 Apr 2018 3:35 PM
  ;                              Remedy Call - 193859
  ; 5-P123 6/23/2015 MJT RA*5*123 NSR 20140507 print weight & date taken in Radiology requests
  ; 5-P132 11/1/2017 RTW RA*5*123 NSR 20160706 print height & date taken in Radiology requests
+ ; 2-p200 3/01/2023 KLM RA*5*200 NSR 20220815 display patient preferred name in the header
  ; 
  ;Supported IA #10104 reference to ^XLFSTR
  ;Supported IA #10060 reference to ^VA(200
@@ -145,17 +146,46 @@ HD S:'$D(RAPGE) RAPGE=0 D CRCHK Q:$G(RAX)["^"  S RATAB=$S($D(RA("ILC")):1,1:16)
  ;10/12/2006 KAM Remedy tk 162508 Changed next line added "Printed:"
  W:$Y @IOF W !?RATAB,">>"_$S($D(RACRHD):"Discontinued ",1:"")_"Rad/NM Consultation" W:$D(RA("ILC")) " for ",$E(RA("ILC"),1,17) W "<<Printed:" S X="NOW",%DT="T" D ^%DT K %DT D D^RAUTL W ?52,Y ;P18 4-P74
  S RAPGE=RAPGE+1 W ?71,"Page ",RAPGE ;P18
- W !,RALNE1,!,"Name         : ",RA("NME"),?46,"Urgency    : ",RA("OUG") W:$D(RA("PORTABLE")) "  *PORTABLE*"
- W !,"Pt ID Num    : ",RASSN,?46,"Transport  : ",RA("TRAN")
- S Y=RA("DOB") D D^RAUTL W !,"Date of Birth: ",Y,?46,"Patient Loc: ",$E(RA("HLC"),1,20)
+ I $L(RA("NME"))<31 D  Q  ;2-p200 If name does not exceed original column size, print in original format.
+ . W !,RALNE1,!,"Name         : ",RA("NME"),?46,"Urgency    : ",RA("OUG") W:$D(RA("PORTABLE")) "  *PORTABLE*"
+ . W !,"Pt ID Num    : ",RASSN,?46,"Transport  : ",RA("TRAN")
+ . S Y=RA("DOB") D D^RAUTL W !,"Date of Birth: ",Y,?46,"Patient Loc: ",$E(RA("HLC"),1,20)
+ . ;10/12/2006 KAM Remedy Ticket 162508 changed next line
+ . W !,"Age at req   : ",RA("AGE"),?46,"Phone Ext  : ",RA("HPH") ;5-P75
+ . W !,"Sex          : ",$S(RA("SEX")="M":"MALE",1:"FEMALE") W:$D(RA("ROOM-BED")) ?46,"Room-Bed   : ",RA("ROOM-BED")
+ . ; *** NSR 20140507 Start Mod to print weight & date taken in Radiology requests ***
+ . ; RTW BEGIN RA*5.0*132 ADD HEIGHT
+ . W !,"Height (in.) : ",$S($D(RA("HT")):RA("HT"),1:"") W ?46,"Height Date: ",$S($D(RA("HTDT")):RA("HTDT"),1:"") ;5-P132 RTW
+ . ; RTW END RA*5.0*132 ADD HEIGHT
+ . W !,"Weight (lbs) : ",$S($D(RA("WT")):RA("WT"),1:"") W ?46,"Weight Date: ",$S($D(RA("WTDT")):RA("WTDT"),1:"") ;5-P123
+ . ; *** NSR 20140507 End Mod to print weight & date taken in Radiology requests ***
+ . ; 5-P123 moved next line to here from line above Start Mod
+ . W !,RALNE1
+ . W:$P(RAORD0,U,5)=1 !,"***C A N C E L L E D***",?56,"***C A N C E L L E D***"
+ . Q
+ ;
+HD2 ;2-p200 - Modified header if PT NAME (PREFERRED NAME) exceeds column-one length of 30 chars.
+ N RARTC,RARTC2,RAPTLOC,RALRB S RARTC=45,RARTC2=56 ;set right column vars
+ I $D(RA("ROOM-BED"))&(RA("HPH")]"") D  ;Adjust right column for combined pt loc/room-bed if needed
+ .S RARTC=41,RAPTLOC="Pt Loc/Room-Bed: "
+ .S RALRB=$E(RA("HLC"),1,20)_"/"_RA("ROOM-BED")
+ .I $L(RALRB)>20 S RARTC=41-($L(RALRB)-20),RARTC2=56-($L(RALRB)-20) ;adjust column if needed
+ .Q
+ W !,RALNE1,!,"Name         : ",RA("NME")
+ W !,"Pt ID Num    : ",RASSN,?RARTC,"Urgency",?RARTC2,": ",RA("OUG") W:$D(RA("PORTABLE")) "  *PORTABLE*"
+ S Y=RA("DOB") D D^RAUTL W !,"Date of Birth: ",Y,?RARTC,"Transport",?RARTC2,": ",RA("TRAN")
  ;10/12/2006 KAM Remedy Ticket 162508 changed next line
- W !,"Age at req   : ",RA("AGE"),?46,"Phone Ext  : ",RA("HPH") ;5-P75
- W !,"Sex          : ",$S(RA("SEX")="M":"MALE",1:"FEMALE") W:$D(RA("ROOM-BED")) ?46,"Room-Bed   : ",RA("ROOM-BED")
+ W !,"Age at req   : ",RA("AGE")
+ I RA("HPH")=""!(RA("HPH")]""&('$D(RA("ROOM-BED")))) W ?RARTC,"Patient Loc",?RARTC2,": "_$E(RA("HLC"),1,20)
+ I $D(RA("ROOM-BED"))&(RA("HPH")]"") W ?RARTC,RAPTLOC,$E(RA("HLC"),1,20)_"/"_RA("ROOM-BED")
+ W !,"Sex          : ",$S(RA("SEX")="M":"MALE",1:"FEMALE")
+ I $D(RA("ROOM-BED"))&(RA("HPH")="") W ?RARTC,"Room-Bed",?RARTC2,": "_RA("ROOM-BED") ;print room-bed in place of non-existant phone nbr
+ E  W ?RARTC,"Phone Ext",?RARTC2,": "_RA("HPH")
  ; *** NSR 20140507 Start Mod to print weight & date taken in Radiology requests ***
  ; RTW BEGIN RA*5.0*132 ADD HEIGHT
- W !,"Height (in.) : ",$S($D(RA("HT")):RA("HT"),1:"") W ?46,"Height Date: ",$S($D(RA("HTDT")):RA("HTDT"),1:"") ;5-P132 RTW
+ W !,"Height (in.) : ",$S($D(RA("HT")):RA("HT"),1:"") W ?RARTC,"Height Date",?RARTC2,": ",$S($D(RA("HTDT")):RA("HTDT"),1:"") ;5-P132 RTW
  ; RTW END RA*5.0*132 ADD HEIGHT
- W !,"Weight (lbs) : ",$S($D(RA("WT")):RA("WT"),1:"") W ?46,"Weight Date: ",$S($D(RA("WTDT")):RA("WTDT"),1:"") ;5-P123
+ W !,"Weight (lbs) : ",$S($D(RA("WT")):RA("WT"),1:"") W ?RARTC,"Weight Date",?RARTC2,": ",$S($D(RA("WTDT")):RA("WTDT"),1:"") ;5-P123
  ; *** NSR 20140507 End Mod to print weight & date taken in Radiology requests ***
  ; 5-P123 moved next line to here from line above Start Mod
  W !,RALNE1

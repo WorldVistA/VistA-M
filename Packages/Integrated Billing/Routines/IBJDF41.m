@@ -1,5 +1,5 @@
 IBJDF41 ;ALB/RB - FIRST PARTY FOLLOW-UP REPORT (COMPILE) ;15-APR-00
- ;;2.0;INTEGRATED BILLING;**123,159,204,356,451,473,568,618,651,694,705,715**;21-MAR-94;Build 25
+ ;;2.0;INTEGRATED BILLING;**123,159,204,356,451,473,568,618,651,694,705,715,739**;21-MAR-94;Build 3
  ;;Per VA Directive 6402, this routine should not be modified.
  ;
  ; Reference to FILE 433.001 in ICR #7321
@@ -113,7 +113,7 @@ PROC ; - Process data for report(s).
  ;
  ; - Set up indexes for detail report.
  I $G(IBEXCEL) D  Q
- . S IBEXCEL1=$P($G(^PRCA(430.2,IBCAT,0)),U,2)_U_$P(IBPT,U,3)_U_$P(IBVA,U)_U_$P(IBPT,U,4)_U_$$DT^IBJD($P(IBPT,U,6),1)_U_$$ELIG^IBJDF42(+$P(IBPT,U,5))_U
+ . S IBEXCEL1=$P($G(^PRCA(430.2,IBCAT,0)),U,2)_U_$P(IBPT,U,3)_U_$P(IBVA,U)_U_U_$$DT^IBJD($P(IBPT,U,6),1)_U_$$ELIG^IBJDF42(+$P(IBPT,U,5))_U ;IB*2.0*739
  . S IBEXCEL1=IBEXCEL1_$$GET1^DIQ(2,DFN,.381)_U_$$MTRX(DFN)_U_IBBN_U_$S(IB=16:"A",1:"S")_U_$S("BS"[IBSTA:$$ABBR($G(IBSUSTYP)),1:"")_U_IBRFT_U_$$DT^IBJD($P(IBAR,U,10),1)_U_$$DT^IBJD(IBPD,1)_U_IBBA_U_IBPA_U_IBINT_U_IBADM_U
  . I IBSH D COM
  . S IBD=0 I DAT!IBPD S IBD=$$FMDIFF^XLFDT(DT,$S('DAT:IBPD,1:$G(DAT)))
@@ -141,7 +141,7 @@ ACCBAL(DFN) ; Calculates the Account Balance for the Bill
  ;
 PHDL ; - Print the header line for the Excel spreadsheet
  N X
- S X="Cat^Patient^VA Empl.?^SSN^Dt Death^Prim.Elig.^Med.Elig.?^"
+ S X="Cat^Patient^VA Empl.?^^Dt Death^Prim.Elig.^Med.Elig.?^" ;IB*2.0*739
  S X=X_"Means Tst Sts^Means Tst Dt^RX Copay Exemp.Sts^RX Copay Exemp.Dt^"
  S X=X_"Bill #^Act/Susp^Reason^Refer. to^Dt Bill prep.^Last Pymt Dt^" ;Added reason IB*2*568/DRF
  S X=X_"Curr.Bal.^Princ.Bal.^Int.^Admin.^Last Comm.Dt^Days Lst Comm.^"

@@ -1,5 +1,5 @@
 DDR0 ;SF/DCM-FileMan Delphi Components' RPCs ;2013-03-22  1:46 PM
- ;;22.2;VA FileMan;;Jan 05, 2016;Build 42
+ ;;22.2;VA FileMan;**24**;Jan 05, 2016;Build 3
  ;;Per VA Directive 6402, this routine should not be modified.
  ;;Submitted to OSEHRA 5 January 2015 by the VISTA Expertise Network.
  ;;Based on Medsphere Systems Corporation's MSC FileMan 1051.
@@ -14,13 +14,13 @@ FINDC(DDRDATA,DDR) ; -- broker callback to get list data
  D FIND^DIC(DDRFILE,DDRIENS,DDRFLDS,DDRFLAGS,DDRVAL,DDRMAX,DDRXREF,DDRSCRN,DDRID,DDROUT,"DDRERR")
  I $G(DDRFLAGS)["P" D
  . Q:'$D(^TMP("DILIST",$J))
- . N COUNT S COUNT=^TMP("DILIST",$J,0) Q:'COUNT  D 1
+ . N COUNT S COUNT=$G(^TMP("DILIST",$J,0)) Q:'COUNT  D 1 ;added $G() ;p24
  . I XWBAPVER>1 S ^(.3)="[MAP]",^TMP("DILIST",$J,.4)=^TMP("DILIST",$J,0,"MAP")
  . K ^TMP("DILIST",$J,0) S ^(.5)="[BEGIN_diDATA]",^(COUNT+1)="[END_diDATA]"
  . Q
  I $G(DDRFLAGS)'["P" D
  . Q:'$D(^TMP("DILIST",$J))
- . N COUNT S COUNT=^TMP("DILIST",$J,0) Q:'COUNT
+ . N COUNT S COUNT=$G(^TMP("DILIST",$J,0)) Q:'COUNT  ;added $G() ;p24
  . D 1,UNPACKED
  . Q
  D 3,4
@@ -38,13 +38,13 @@ FINDI(DDRDATA,DDR) ; -- improved broker callback to find data,it can handle comp
  D FIND^DIC(DDRFILE,DDRIENS,DDRFLDS,DDRFLAGS,.DDRVAL,DDRMAX,DDRXREF,DDRSCRN,DDRID,DDROUT,"DDRERR")
  I $G(DDRFLAGS)["P" D
  . Q:'$D(^TMP("DILIST",$J))
- . N COUNT S COUNT=^TMP("DILIST",$J,0) Q:'COUNT  D 1
+ . N COUNT S COUNT=$G(^TMP("DILIST",$J,0)) Q:'COUNT  D 1 ;added $G() ;p24
  . I XWBAPVER>1 S ^(.3)="[MAP]",^TMP("DILIST",$J,.4)=^TMP("DILIST",$J,0,"MAP")
  . K ^TMP("DILIST",$J,0) S ^(.5)="[BEGIN_diDATA]",^(COUNT+1)="[END_diDATA]"
  . Q
  I $G(DDRFLAGS)'["P" D
  . Q:'$D(^TMP("DILIST",$J))
- . N COUNT S COUNT=^TMP("DILIST",$J,0) Q:'COUNT
+ . N COUNT S COUNT=$G(^TMP("DILIST",$J,0)) Q:'COUNT  ;added $G() ;p24
  . D 1,UNPACKED
  . Q
  D 3,4

@@ -1,14 +1,28 @@
 VPRSDAL ;SLC/MKB -- SDA Allergy utilities ;10/25/18  15:29
- ;;1.0;VIRTUAL PATIENT RECORD;**8,10,14,29**;Sep 01, 2011;Build 11
+ ;;1.0;VIRTUAL PATIENT RECORD;**8,10,14,29,31**;Sep 01, 2011;Build 3
  ;;Per VHA Directive 6402, this routine should not be modified.
  ;
  ; External References          DBIA#
  ; -------------------          -----
  ; ^GMR(120.8                    6973
+ ; ^GMR(120.86                   3449
  ; DILFD                         2055
  ; DIQ                           2056
  ; GMRADPT                      10099
  ; GMRAOR2                       2422
+ ;
+QRY ; -- Allergies/Adverse Reactions query
+ ; Expects DSTRT, DSTOP, DMAX from DDEGET and returns DLIST(#)=ien
+ N X,ERR,VPRN,GMRA,ID
+ S X=$G(FILTER("status")),ERR=$S(X="":1,X["I":1,1:0) ;In/Active
+ S VPRN=0,GMRA="0^0^111^0^"_ERR
+ I $L($T(EN2^GMRADPT)) D EN2^GMRADPT I 1
+ E  D EN1^GMRADPT
+ I 'GMRAL,ERR,$D(^GMR(120.8,"B",DFN)) D  Q
+ . S ID=0 ;if only inactives, GMRADPT returns nothing
+ . F  S ID=$O(^GMR(120.8,"B",DFN,ID)) Q:ID<1  S VPRN=VPRN+1,DLIST(VPRN)=ID
+ S ID=0 F  S ID=+$O(GMRAL(ID)) Q:ID<1  S VPRN=VPRN+1,DLIST(VPRN)=ID Q:VPRN'<DMAX
+ Q
  ;
 ALG1(IEN) ; -- return info for single allergy in VPRALG & GMRAY arrays
  N GMRA K VPRALG
@@ -35,14 +49,14 @@ ALLERGEN(VPTR) ; -- return code^name^system for Allergen
  . S Y=+$G(VPTR)_U_NAME_"^VA"_FN
  Q Y
  ;
-ALGCMT1(IEN,TYPE) ; -- return TYPE comment
+CMT1(IEN,TYPE) ; -- return TYPE comment
  N I,TXT,Y
  S IEN=+$G(IEN),TYPE=$G(TYPE,"E") ;default to Error
  S I=$O(^GMR(120.8,IEN,26,"AVER",TYPE,0)),Y=""
  I I M TXT=^GMR(120.8,IEN,26,I,2) S Y=$$STRING^VPRD(.TXT)
  Q Y
  ;
-ALGCMT(IEN) ; -- return list of comments in
+CMTS(IEN) ; -- return list of comments in
  ; DLIST(#) = id ^ date ^ user ^ type ^ facility ^ text
  ; expects VASITE (read only) from Entity
  N I,X,Y,TXT S IEN=+$G(IEN)
@@ -53,19 +67,25 @@ ALGCMT(IEN) ; -- return list of comments in
  . S DLIST(I)=I_","_IEN_U_X_U_+$G(VASITE)_U_Y
  Q
  ;
-ALGSEV(IEN) ; -- return overall Allergy Severity
+SEVRTY(IEN) ; -- return overall Allergy Severity
  N I,SEV,X,Y
  S (SEV,Y)="",I=0
  I $D(GMRAY("H")) S SEV=$P(GMRAY("H"),U,2)
  ; else find highest severity among reactions
- F  S I=$O(GMRAY("O",I)) Q:I<1  S X=$P(GMRAY("O",I),U,2) I $L(X),X]SEV S SEV=X
- I $L(SEV)>1 D
- . S X=$E(SEV,1,2),Y=$S(X="MI":255604002,X="MO":6736007,X="SE":24484000,1:"")
- . I Y S Y=Y_U_SEV_"^SNOMED CT" Q
- . S Y=SEV_U_SEV
+ F  S I=$O(GMRAY("O",I)) Q:I<1  S X=$P(GMRAY("O",I),U,2) I $L(X) D
+ . I X?1"LIFE".E S SEV=X Q
+ . I X]SEV S SEV=X
+ I $L(SEV)>1 S Y=$$SNOMED(SEV)
  Q Y
  ;
-ALGDT(IEN) ; -- return first D/T of Event
+SNOMED(SEV) ; -- return SEVerity name as coded element
+ N X,Y S SEV=$G(SEV),X=$E(SEV,1,2)
+ S Y=$S(X="MI":255604002,X="MO":6736007,X="SE":24484000,X="LI":442452003,1:"")
+ I Y S Y=Y_U_SEV_"^SNOMED CT"
+ E  S Y=SEV_U_SEV
+ Q Y
+ ;
+EVTDT(IEN) ; -- return first D/T of Event
  I $G(GMRAY("H")) S Y=$P(GMRAY("H"),U) Q Y
  N I,RDT,X,Y
  S I=0,RDT=9999999,Y=""
@@ -74,7 +94,7 @@ ALGDT(IEN) ; -- return first D/T of Event
  S:RDT<9999999 Y=RDT
  Q Y
  ;
-ALGSIGN(IEN) ; -- convert ien^name[^date] to national code for Sign/Symptom
+REACTN(IEN) ; -- convert ien^name[^date] to national code for Sign/Symptom
  ; Returns +IEN, VPRDT=date [for extension],
  ;          VPREACTN=code^name^system [SNOMED or VUID],
  ;          VPRNAME =local name [Original Text]
@@ -88,7 +108,6 @@ ALGSIGN(IEN) ; -- convert ien^name[^date] to national code for Sign/Symptom
 ASSESS ; -- get Assessment #120.86 for patient
  ; expects ID (read only) from Entity
  I '$G(DFN),$G(ID) S DFN=ID
- Q:'$G(DFN)
- K GMRAL D EN1^GMRADPT
- I GMRAL<1 S DLIST(1)=DFN
+ Q:'$G(DFN)  Q:$P($G(^GMR(120.86,DFN,0)),U,2)  ;has allergies
+ S DLIST(1)=DFN
  Q

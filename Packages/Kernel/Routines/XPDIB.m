@@ -1,5 +1,5 @@
-XPDIB ;SFISC/RSD - Backup installed Package ; Jun 30, 2022@09:05:05
- ;;8.0;KERNEL;**10,58,108,178,713,738,750,755,768**;Jul 10, 1995;Build 8
+XPDIB ;SFISC/RSD - Backup installed Package ; Mar 20, 2023@14:49:13
+ ;;8.0;KERNEL;**10,58,108,178,713,738,750,755,768,778,785**;Jul 10, 1995;Build 5
  ;Per VHA Directive 2004-038, this routine should not be modified.
 EN ;
  ;p713 - added support to create Build from Transport Global to create a backup
@@ -30,18 +30,20 @@ EN ;
  ;R=routine Packman msg
  I Y="R" D ROUTINE G QUIT
  ;XPDTCNT: 1=single, >1=multi-package ;p738
- I XPDTCNT=1 S (XPDT,XPDTB)=1,XPDA=$$BLD(XPDST),XPDNM=$P(XPDTB(1),U,2) D PM(XPDA) G QUIT
+ I XPDTCNT=1 S (XPDT,XPDTB)=1,XPDA=$$BLD(XPDST),XPDNM=$P(XPDTB(1),U,2) D PM(XPDA),DELBLD(XPDA) G QUIT ;p778 delete backup build
  I XPDTCNT>1 D  G QUIT
  . N XPDSEQ,XPDSIZ,XPDSIZA,POP  ;used in GO^XPDT
  . S XPDH=XPDSBJ ;XPDH is HF header needed in DEV^XPDT
  . D DEV^XPDT Q:POP
  . S XPDTB=0
  . ;loop thru installs, XPDT(#)=install file #^name, XPDTB(#)=build file #^name
- . F XPDT=1:1:XPDTCNT S XPDTB=XPDTB+1,XPDA=+XPDT(XPDT),XPDA=$$BLD(XPDA,XPDST)
+ . F XPDT=1:1:XPDTCNT S XPDTB=XPDTB+1,XPDA=+XPDT(XPDT),XPDA=$$BLD(XPDA,XPDST) ;p738
  . ;move XPDTB to XPDT
  . K XPDT M XPDT=XPDTB
  . S XPDFMSG=0 ;open Host File, XPDFMSG=1 is flag to send HF to Forum
  . D GO^XPDT ;write ^XTMP("XPDT" to HF
+ . ;loop thru backup builds and delete the builds ;p778
+ . F XPDT=1:1:XPDTCNT S XPDA=+XPDT(XPDT) D DELBLD(XPDA)
  . Q
  Q
 BLD(XPDST,XPDMP) ;XPDST=Install #,XPDMP=master build or first Install # of multi-package; returns XPDA=new Build #
@@ -69,8 +71,9 @@ BLD(XPDST,XPDMP) ;XPDST=Install #,XPDMP=master build or first Install # of multi
  S XPDFILE=0
  F  S XPDFILE=$O(^XPD(9.6,XPDA,"KRN",XPDFILE)),XPDOLDA=0 Q:'XPDFILE  D
  . F  S XPDOLDA=$O(^XPD(9.6,XPDA,"KRN",XPDFILE,"NM",XPDOLDA)) Q:'XPDOLDA  S Y0=$G(^(XPDOLDA,0)) D
- .. I XPDFILE=19!(XPDFILE=101),$P(Y0,U,3)>1 Q  ;menus action of attach,merge,link - don't change action
- .. D KRN(XPDFILE,.Y0),SETKRN(Y0)
+ .. S Y=$P(Y0,U,3) ; action
+ .. I XPDFILE=19!(XPDFILE=101),Y>1 D:Y'=3 DELKRN(Y0) Q  ;link=2,attach=4,disable=5:delete component;merge=3:leave as merge ;p778
+ .. D KRN(XPDFILE,Y0)
  .. Q
  . Q
  ;scan FILE(#6)  ^XPD(file#,222)=update DD^Security^f=full,p=partial DD^^resolve pointers^data list^data comes^site data^may override
@@ -153,20 +156,20 @@ ROUTINE ;Packman msg
  D EN3^XMD
  Q
  ;
-KRN(FILE,XPDY) ;FILE=file #, XPDY=^XPD(9.6,XPDA,"KRN",XPDFILE,"NM",XPDOLDA,0) passed by ref.
+KRN(FILE,XPDY) ;FILE=file #, XPDY=^XPD(9.6,XPDA,"KRN",XPDFILE,"NM",XPDOLDA,0)
  N DA,FGR,X
  S X=$P(XPDY,U)
- ;$P(XPDY,U,2) is file # for FileMan templates, reset name in Y0 before getting DA
- S:$P(XPDY,U,2) $P(Y0,U)=$P(Y0,"    FILE #")
- S FGR=$$FILE^XPDV(FILE),DA=$$ENTRY^XPDV(XPDY) ;check if exists
- ;If X exists, Y=0 - send
- I DA S $P(XPDY,U,3)=0 Q
- ;if X doesn't exists, Y=1 - delete
- E  S $P(XPDY,U,3)=1
+ ;$P(XPDY,U,2) is file # for FileMan templates, reset name in XPDY before getting DA
+ S:$P(XPDY,U,2) $P(XPDY,U)=$P(XPDY,"    FILE #") ;p785
+ S FGR=$$FILE^XPDV(FILE),DA=$$ENTRY^XPDV(XPDY) ;DA=ien or 0 if doesn't exists
+ ;If X exists, set to 0 - send, else set to 1 - delete
+ S $P(XPDY,U,3)='DA
+ ;save component
+ S ^XPD(9.6,XPDA,"KRN",FILE,"NM",XPDOLDA,0)=XPDY ;p778
  Q
  ;
-SETKRN(X) ;set BLD node to X
- S ^XPD(9.6,XPDA,"KRN",XPDFILE,"NM",XPDOLDA,0)=X
+DELKRN(XPDY) ;delete BUILD COMPONENTS(7) & "B" index for XPDY ;p778
+ K ^XPD(9.6,XPDA,"KRN",XPDFILE,"NM",XPDOLDA,0),^XPD(9.6,XPDA,"KRN",XPDFILE,"NM","B",$P(XPDY,U),XPDOLDA)
  Q
  ;
 FLD(DD,FIELD) ;check FIELD exists
@@ -182,6 +185,13 @@ DEL(FILE,SUBDD,FIELD) ;deletes partials: FILE=file#, SUBDD=sub dictionary#, FIEL
 DELF(FILE) ;delete full file DD
  N DIK,DA
  S DIK="^XPD(9.6,"_XPDA_",4,",DA=FILE,DA(1)=XPDA
+ D ^DIK
+ Q
+ ;
+DELBLD(DA) ;delete backup build ;p778
+ Q:'$G(DA)
+ N DIK
+ S DIK="^XPD(9.6,"
  D ^DIK
  Q
  ;

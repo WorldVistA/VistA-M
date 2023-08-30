@@ -1,5 +1,5 @@
 YTXCHGL ;SLC/KCM - MH Exchange List Manager Calls  ; 08-AUG-2016
- ;;5.01;MENTAL HEALTH;**121**;Dec 30, 1994;Build 61
+ ;;5.01;MENTAL HEALTH;**121,218**;Dec 30, 1994;Build 9
  ;
 EN ; -- main entry point for YTXCHG MAIN
  D EN^VALM("YTXCHG MAIN")
@@ -138,7 +138,6 @@ LOADURL ; Load exchange entry from URL
  S URL=$$PRMTNAME^YTXCHGP("Enter the URL","Enter the full URL of the desired file.",245)
  S URL=$$LOW^XLFSTR(URL)
  I '$L(URL) G XREFR
- I $E(URL,1,5)'="http:" W !,"Only HTTP is currently supported." G XREFR
  D LOADFILE^YTXCHG(URL,.XCHGREC) I $G(XCHGREC)=-1 G XLOADURL
  D LOAD2FM(.XCHGREC)
 XLOADURL ; exit LOADURL here

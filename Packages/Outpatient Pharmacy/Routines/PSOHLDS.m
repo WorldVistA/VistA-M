@@ -1,5 +1,5 @@
 PSOHLDS ;BIR/PWC-HL7 V.2.4 AUTOMATED DISPENSE INTERFACE ;03/01/96 09:45
- ;;7.0;OUTPATIENT PHARMACY;**156,312,354,531,603**;DEC 1997;Build 8
+ ;;7.0;OUTPATIENT PHARMACY;**156,312,354,531,603,643**;DEC 1997;Build 35
  ;External reference to GETAPP^HLCS2  supported by DBIA 2887
  ;External reference to INIT^HLFNC2   supported by DBIA 2161
  ;External reference to GENERATE^HLMA supported by DBIA 2164
@@ -108,6 +108,7 @@ ACK ;process MSA received from the dispense machine (client)
  .I $P(PSOMSG(I),"|")="RXD" S PSOFNHL7=$P(PSOMSG(I),"|",2)
  .F  S J=$O(HLNODE(J)) Q:'J  S PSOMSG(I,J)=HLNODE(J)
  ;
+ I SMID'="",$D(^PSRXR(52.09,"F",SMID)) G ACK^PSORLLLI
  S ^TMP("PSO1",$J,CMID)=CMID_"^"_AACK_"^"_DTM_"^"_ETN_"^"_MTN_"^"_RAN_"^"_SAN_"^"_VER_"^"_EID_"^"_EIDS
  ;
  S (DIV1,SP1,SP2)="" F  S DIV1=$O(^PS(52.51,"AM",SMID,DIV1)) Q:'DIV1  F  S SP1=$O(^PS(52.51,"AM",SMID,DIV1,SP1)) Q:'SP1!(SP1=2)  S SP2=$P($G(^PS(52.51,SP1,0)),"^",6)
@@ -192,7 +193,8 @@ GETDEV ;get devices associated with dispensing printer
 CHKCAT ;checks the ADD category to determine if and where the prescription should be routed.
  N PDAT,DRG,DRG0,DDEV,RTE,CSB,MTH,DEV53
  S PSOADD=""
- S PDAT=$G(^PSRX(IRXN,0)),DRG=$P(PDAT,"^",6),RTE=$$RTE()
+ I $G(PSONEADS) S DRG=PSOLDRUG,RTE=$E($G(PSOHLSV("ROUTING")))
+ I '$G(PSONEADS) S PDAT=$G(^PSRX(IRXN,0)),DRG=$P(PDAT,"^",6),RTE=$$RTE()
  S DRG0=$G(^PSDRUG(+DRG,0)),DDEV=$G(^PSDRUG(DRG,"OPAI",PSOSITE,0))
  I DDEV'="" S DEV53=$$ADDCHK($S(RTE="W":$P(DDEV,"^",2),RTE="M":$P(DDEV,"^",3),1:"")) I DEV53 D  Q
  .I $D(OPADD($P(DEV53,"^",3))) S PSOADD=$P(DEV53,"^",3) Q
@@ -242,6 +244,7 @@ ALLADD ;get all active ADDs in #52.53
  .S XD=$G(^PS(52.53,X,0))
  .Q:($P(XD,"^")="")!($P(XD,"^",2)="")!($P(XD,"^",3)="")
  .I $P(XD,"^",4),$P(XD,"^",4)'>DT Q
+ .I $G(PSONECT) S PSONECTC=PSONECTC+1
  .S OPNAM($P(XD,"^",2))=$P(XD,"^")
  Q
  ;

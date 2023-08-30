@@ -1,5 +1,5 @@
-XQALDEL ;ISC-SF.SEA/JLI - DELETE ALERTS ;07/31/17  12:08
- ;;8.0;KERNEL;**6,24,65,114,174,285,443,602,653,662**;Jul 10, 1995;Build 49
+XQALDEL ;ISC-SF.SEA/JLI - DELETE ALERTS ;Oct 06, 2022  12:08
+ ;;8.0;KERNEL;**6,24,65,114,174,285,443,602,653,662,772**;Jul 10, 1995;Build 5
  ;Per VHA Directive 2004-038, this routine should not be modified
  ;;
  Q
@@ -120,7 +120,8 @@ OLDDEL2 ;
  Q
  ;
 KILLARCH ;
- ;  Q  ; turn off deletion from ALERT TRACKING file ; remove from XU*8*285  JLI 040624
+ ;Q  ; turn off deletion from ALERT TRACKING file ; remove from XU*8*285  JLI 040624
+ Q  ; p772 INC24097729 prevent accidental purging/deleting of alerts
  N DA,DIK,XQDAT,XQDEL1,X1,X2,DA,DIK
  S XQDAT=$$FMADD^XLFDT(DT,-30)
  F XQDEL1=0:0 S XQDEL1=$O(^XTV(8992.1,XQDEL1)) Q:XQDEL1'>0  D

@@ -1,5 +1,5 @@
 DGSEC ;ALB/RMO - MAS Patient Look-up Security Check ; 3/24/04 7:53pm
- ;;5.3;Registration;**32,46,197,214,249,281,352,391,425,582,769,796**;Aug 13, 1993;Build 6
+ ;;5.3;Registration;**32,46,197,214,249,281,352,391,425,582,769,796,964**;Aug 13, 1993;Build 323
  ;
  ;Entry point from DPTLK
  I +$G(Y)=+$G(^DISV(DUZ,"^DPT(")),$G(DPTBTDT) K DPTBTDT Q
@@ -32,7 +32,9 @@ DGSEC ;ALB/RMO - MAS Patient Look-up Security Check ; 3/24/04 7:53pm
  I DGSENS(1)=-1 D  G Q
  .S Y=-1
  .D DISP(.DGSENS)
- I DGSENS(1)=0 G Q
+ I DGSENS(1)=0 D  G Q
+ .;DG*5.3*964 hook to call VistA Security Remediation Audit solution VAS
+ .I $$GET1^DIQ(46.5,1,.02,"I") D SELAUD^DGAUDIT2(2,$G(DGY),"INQUIRY",$G(DGOPT))
  ;Get option name for DG Security Log file and bulletin
  D OP^XQCHK S DGOPT=$S(+XQOPT<0:"^UNKNOWN",1:$P(XQOPT,U)_U_$P(XQOPT,U,2))
  I DGSENS(1)=1 D
@@ -122,6 +124,9 @@ SETUSR S DGDTE=9999999.9999-DGTIME I $D(^DGSL(38.1,+DFN,"D",DGDTE,0)) S DGTIME=D
  S ^DGSL(38.1,"AD",DGDTE,+DFN)=""
  S ^DGSL(38.1,"AU",+DFN,DGDUZ,DGDTE)=""
  L -^DGSL(38.1,+DFN)
+ ;
+ I $$GET1^DIQ(46.5,1,.02,"I") D SELAUD^DGAUDIT2(2,$G(DFN),"INQUIRY",$G(DGOPT))
+ ;
  Q
 Q K DG1,DGDATE,DGDTE,DGLNE,DGMSG,DGOPT,DGSEN,DGTIME,DGY,XQOPT
  N DGTEST S DGTEST=^%ZOSF("TEST")

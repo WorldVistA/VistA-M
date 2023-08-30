@@ -1,5 +1,5 @@
 PSOHLDS1 ;BIR/LC,PWC-Build HL7 Segments for Automated Interface ; 2/5/10 10:01am
- ;;7.0;OUTPATIENT PHARMACY;**156,232,255,200,305,336,351,434,609,524**;DEC 1997;Build 28
+ ;;7.0;OUTPATIENT PHARMACY;**156,232,255,200,305,336,351,434,609,524,545**;DEC 1997;Build 270
  ;HLFNC       supp. by DBIA 10106
  ;PSNAPIS     supp. by DBIA 2531
  ;VASITE      supp. by DBIA 10112
@@ -47,8 +47,8 @@ GETDATA ; this is the place to set all data needed for several segments
  . S PSONDC=$S($P(^PSRX(IRXN,"P",FPN,0),"^",12):$P(^(0),"^",12),1:$P(^PSRX(IRXN,2),"^",7))
  S EFDT=$P(^PSRX(IRXN,2),"^",2) S:$G(EFDT) EFDT=$$HLDATE^HLFNC(EFDT,"DT")
  S ISDT=$P(^PSRX(IRXN,0),"^",13) S:$G(ISDT) ISDT=$$HLDATE^HLFNC(ISDT,"DT")
- S DEAID=$$GET1^DIQ(200,PVDR_",",53.2)
- K DIC,X,Y S DIC="^VA(200,",DIC(0)="N,Z",X=VPHARMID D ^DIC
+ ;*545
+ S DEAID=$$PRDEA^XUSER(PVDR) K DIC,X,Y S DIC="^VA(200,",DIC(0)="N,Z",X=VPHARMID D ^DIC
  S VPHARM=$S(+Y:$$HLNAME^HLFNC($P(Y,"^",2)),1:"""""") K DIC,X,Y
  K DIC,X,Y S DIC="^VA(200,",DIC(0)="N,Z",X=EBY D ^DIC
  S EBY1=$S(+Y:$$HLNAME^HLFNC($P(Y,"^",2)),1:"""""") K DIC,X,Y

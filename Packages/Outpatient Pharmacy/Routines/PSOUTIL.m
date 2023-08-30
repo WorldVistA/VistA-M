@@ -1,5 +1,5 @@
 PSOUTIL ;IHS/DSD/JCM - outpatient pharmacy utility routine ;12/28/15 4:01pm
- ;;7.0;OUTPATIENT PHARMACY;**64,456,444,469,504,651**;DEC 1997;Build 30
+ ;;7.0;OUTPATIENT PHARMACY;**64,456,444,469,504,651,545**;DEC 1997;Build 270
  ;External reference $$MXDAYSUP^PSSUTIL1 supported by DBIA 6229
  ;External reference to ^ORDEA is supported by DBIA 5709
  ;
@@ -284,10 +284,12 @@ CHKRXPRV(RXIEN,PRVIEN) ; Check if the Provider can be assigned to a specific Pre
  I CLOZDRUG,'$D(^XUSEC("YSCL AUTHORIZED",PRVIEN)) Q "0^Provider does not hold YSCL AUTHORIZED key^Provider on the Rx does not hold the YSCL AUTHORIZED key required for clozapine prescriptions."
  S DRUGDEA=$$DRUGSCHD(DRUGIEN)
  I DRUGDEA'="" S REASON="" D  I REASON'="" Q REASON
- . N PRVDEA S PRVDEA=$P($$SDEA^XUSER(0,PRVIEN,DRUGDEA),"^",1)
+ . N PRVDEA
+ . S PRVDEA=$P($$SDEA^XUSER(0,PRVIEN,DRUGDEA,,$$RXDEA^PSOUTIL(RXIEN)),"^") ;*545
  . I $L(PRVDEA)<3 D
- . . I PRVDEA=2 S REASON="0^Provider not authorized to write Schedule "_DRUGDEA_" Rx^Provider is not authorized to write Federal Schedule "_DRUGDEA_" prescriptions" Q
- . . S REASON="0^Provider must have a valid DEA# or VA# for this Rx^Provider does not have a valid DEA# or VA# required for this Rx"
+ . . I PRVDEA=2 D  Q
+ . . . S REASON="0^Provider not authorized to write Federal Schedule "_DRUGDEA_" prescriptions. Please contact the provider^Provider not authorized to write Federal Schedule "_DRUGDEA_" prescriptions. Please contact the provider^2"
+ . . S REASON="0^Provider must have a valid DEA# or VA# for this Rx^Provider does not have a valid DEA# or VA# required for this Rx^1"
  I $$DETOX^PSSOPKI(DRUGIEN),$$PRVDETOX^PSOUTIL(PRVIEN)="" Q "0^Provider must have a valid DETOX# for this Rx^Provider does not have a valid DETOX# required for this Rx"
  Q 1
  ; 

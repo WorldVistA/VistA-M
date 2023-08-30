@@ -1,5 +1,5 @@
 IBCNEUT7 ;DAOU/ALA - IIV MISC. UTILITIES ;14-OCT-2015
- ;;2.0;INTEGRATED BILLING;**184,549,579,582,601,732**;21-MAR-94;Build 13
+ ;;2.0;INTEGRATED BILLING;**184,549,579,582,601,732,743**;21-MAR-94;Build 18
  ;;Per VA Directive 6402, this routine should not be modified.
  ;
  ;**Program Description**
@@ -237,3 +237,102 @@ MBICHK(BUFFIEN) ; See if the buffer entry is an MBI request
  S IBINSNM=$$GET1^DIQ(355.33,BUFFIEN_",","INSURANCE COMPANY NAME")
  I IBINSNM="" Q 0
  Q +($$GET1^DIQ(350.9,"1,","MBI PAYER")=IBINSNM)
+ ;
+ ;IB*743/DTG adding a check for orphans in IIV TRANSMISSION QUEUE File (#365.1)
+BGORPHAN() ; entry point to task a job to find TQ Orphans
+ ;
+ N DIC,DIR,GTASKS,IBI,IBDATE,IBDIR,IBMES,IBPROD,IBRET,IBSITE,IBSITENAM,RMSG,TSK,X,Y
+ N ZTDESC,ZTDTH,ZTRTN,ZTSAVE,ZTIO,ZTQUEUED,ZTREQ,ZTSK
+ S IBPROD=$$PROD^XUPROD(1)
+ S IBDATE=$$FMTE^XLFDT(DT,5)
+ S IBSITE=$$SITE^VASITE ; Get the site name & #
+ S IBSITENAM=$P(IBSITE,U,2),IBSITE=$P(IBSITE,U,3) ; piece 3 is the site #
+ S IBDIR="IB - eIV TQ Orphan Check"
+ S IBRET=""
+ I 'IBPROD Q "-1^"_IBDIR_" cannot run since this site is not a Production Account."
+ ; Check to see if the task is already running.
+ K GTASKS
+ D DESC^%ZTLOAD(IBDIR,"GTASKS")
+ S TSK="",RMSG(0)=0
+ S TSK=$O(GTASKS(TSK))
+ I TSK Q "-1^"_IBDIR_" Task "_TSK_" has Already Been Submitted to TASKMAN."
+ ; build task out array and task off
+ S ZTRTN="ORPHAN^IBCNEUT7",ZTDESC=IBDIR,ZTIO=""
+ ; ZTDTH = TODAY AT 8:00 PM
+ S ZTDTH=$P($$NOW^XLFDT(),"."),ZTDTH=$$FMADD^XLFDT(ZTDTH,,20)
+ F IBI="IBDATE","IBSITE","IBSITENAM","IBPROD","IBDIR" S ZTSAVE(IBI)=""
+ K IO("Q"),ZTSK
+ D ^%ZTLOAD
+ S IBRET="" S:$D(ZTSK) IBRET=ZTSK
+ D HOME^%ZIS
+ ;
+ I +IBRET S IBMES="1^"_IBDIR_" has been submitted to TASKMAN. Task number: "_(+IBRET)
+ I 'IBRET D
+ . S IBER=1
+ . S IBMES="-1^"_IBDIR_" was NOT successfully submitted to TASKMAN."
+ . S IBEMSG=$P(IBMES,U,2)
+ . D ORPHANX  ;Send email message that task not successfully submitted.
+ Q IBMES
+ ;
+ORPHAN ; TASKMAN entry point to check TQ file for orphans
+ ; This is designed to be tasked through TaskMan.
+ ; Running directly will not have all the required variables.
+ ;
+ N IB36514IEN,IBA,IBARY,IBCNT,IBEDT,IBER,IBFND,IBIDT,IBEMSG,IBNCK,IBND,IBNEWST,IBOK,IBOLDEST,IBTQIEN,IBWDT,IBXMY,MSG,SITE
+ ;
+ ;get ien for transmitted from 365.14
+ S IBEMSG=""
+ S IBER=0,IB36514IEN=$$FIND1^DIC(365.14,,,"Transmitted")
+ I 'IB36514IEN S IBER=1 D  G ORPHANX
+ . S IBEMSG="Not able to find 'Transmitted' status record ID in IIV TRANSMISSION STATUS (#365.14) file"
+ S IBTQIEN=0,IBCNT=0,IBOK=1,IBOLDEST="99999999"
+ ; get today-29
+ S IBNEWST="",IBNCK="",IBNCK=$O(^IBCN(365.1,"AC",IB36514IEN,"A"),-1)
+ I IBNCK D
+ . S IBNEWST=$$GET1^DIQ(365.1,IBNCK_",",".06","E")
+ . S IBNEWST=$$FMTE^XLFDT(IBNEWST,5)
+ S IBWDT=$$FMTH^XLFDT(DT),IBWDT=$P(IBWDT,",",1),IBWDT=IBWDT-29
+ K IBARY S IBARY=0
+ F  S IBTQIEN=$O(^IBCN(365.1,"AC",IB36514IEN,IBTQIEN)) Q:'IBTQIEN  D  Q:'IBOK
+ . ; .01 - Transaction Number, .04 - Transmission Status,  .05 - Buffer Entry (from 355.33)
+ . ; .06 - Date/Time Created,  .1 - Which Extract,  .11 - Query Flag
+ . K IBFND,IBND
+ . D GETS^DIQ(365.1,IBTQIEN_",",".01;.04;.05;.06;.1;.11","IE","IBFND") M IBND=IBFND(365.1,IBTQIEN_",")
+ . S IBA="",IBEDT=$G(IBND(.06,"E")),IBIDT=$G(IBND(.06,"I"))
+ . I IBIDT'="" S IBA=$$FMTH^XLFDT(IBIDT),IBA=$P(IBA,",",1)
+ . I IBA'=""&(IBA<+IBOLDEST) S IBOLDEST=IBA_U_IBEDT
+ . I IBA>IBWDT S IBOK=0 Q
+ . S IBARY=IBARY+1,IBARY(IBA)=IBEDT
+ ;
+ORPHANX ; build and send message to eInsurance
+ S SITE=IBSITENAM_" (#"_IBSITE_")"
+ ;Send mailman message at completion.
+ S MSG(1)=IBDIR_" at "_SITE_" in Production"
+ S MSG(2)=" "
+ S MSG(3)="   Check of the IIV TRANSMISSION QUEUE File (#365.1) for orphan entries."
+ S MSG(4)=" "
+ S MSG(5)="   Run On: "_IBDATE
+ S MSG(6)=" --------------------------------------------------------------------------"
+ S MSG(7)=" "
+ S MSG(8)=" "
+ I IBER D
+ . S MSG(9)=IBEMSG
+ . S MSG(10)="Not able to check the IIV TRANSMISSION QUEUE File (#365.1) for orphan entries."
+ . S MSG(11)=" ",MSG(12)="",MSG(13)=""
+ I 'IBER D
+ .S MSG(9)=" Oldest 'Transmitted' Date: "_$S(IBOLDEST'="99999999":$P(IBOLDEST,U,2),1:"")
+ .S MSG(10)=" "
+ .S MSG(11)=" Newest 'Transmitted' Date: "_IBNEWST
+ .S MSG(12)=""
+ .S MSG(13)=" Number of 'Transmitted' Status entries 30 days or older: "_(+IBARY)
+ S MSG(14)=" "
+ ;
+ ; Only send to eInsurance Rapid Response if in Production
+ ;  1=Production Environment, 0=Test Environment
+ I IBPROD S IBXMY("VHAeInsuranceRapidResponse@domain.ext")=""
+ D MSG^IBCNEUT5(,SITE_" Check 'TQ' orphan entries","MSG(",,.IBXMY)
+ ;
+ ; Tell TaskManager to delete the task's record
+ I $D(ZTQUEUED) S ZTREQ="@"
+ Q
+ ;

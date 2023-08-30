@@ -1,124 +1,94 @@
-RCTCSPD5 ;ALB/LMH-CROSS-SERVICING NON-FINANCIAL TRANSACTIONS ;03/15/14 3:34 PM
- ;;4.5;Accounts Receivable;**315,339,366,369**;Mar 20, 1995;Build 15
+RCTCSPD5 ;ALB/LMH - CROSS-SERVICING NON-FINANCIAL TRANSACTIONS ;03/15/14 3:34 PM
+ ;;4.5;Accounts Receivable;**315,339,366,369,400**;Mar 20, 1995;Build 13
  ;;Per VA Directive 6402, this routine should not be modified.
  ;
- ;PRCA*4.5*366 Modify .03 pointer stuff to '////' in DR string
  ;PRCA*4.5*369 Add text transaction for auto recall <$25
  Q
  ;
-CSATRY ; Cross-Servicing Admin Adj Treasury Rev? Yes non-financial tx
- N PRCAEN,PRCAA1,DR,DIE,DA,D0,PRCAD,RCASK,PRCAA2,PRCA,PRCATY,RCUSER,X
- D SETTR^PRCAUTL,PATTR^PRCAUTL Q:'$D(PRCAEN)
- S PRCAA1=$S($D(^PRCA(433,PRCAEN,4,0)):+$P(^(0),U,4),1:0)
- Q:PRCAA1'>0  S PRCAA2=$P(^(0),U,3)
- S DIE="^PRCA(433,",DA=PRCAEN
- S DR=".03////"_PRCABN ;Bill Number
- S DR=DR_";3///0" ;Calm Code Done
- S DR=DR_";12///"_$O(^PRCA(430.3,"AC",53,0)) ;Transaction Type
- S DR=DR_";15///0" ;Transaction Amount
- S DR=DR_";42///"_DUZ ;Processed by user
- S DR=DR_";11///"_DT ;Transaction date
- S DR=DR_";4///2" ;Transaction status (complete)
- S DR=DR_";5.02///CS ADMIN ADJ TR REV?Y" D ^DIE
+CSATRY ; Cross-Servicing Admin Adj Treasury Rev? Yes non-financial tx  PRCA*4.5*400
+ ;
+ ; assumes that BILL variable is defined and contains bill number
+ ;
+ D FILETRN(BILL,53,DUZ,"CS ADMIN ADJ TR REV?Y")
  Q
  ;
-CSATRN ; Cross-Servicing Admin Adj Treasury Rev? No non-financial tx
- N PRCAEN,PRCAA1,DR,DIE,DA,D0,PRCAD,RCASK,PRCAA2,PRCA,PRCATY,RCUSER,X
- D SETTR^PRCAUTL,PATTR^PRCAUTL Q:'$D(PRCAEN)
- S PRCAA1=$S($D(^PRCA(433,PRCAEN,4,0)):+$P(^(0),U,4),1:0)
- Q:PRCAA1'>0  S PRCAA2=$P(^(0),U,3)
- S DIE="^PRCA(433,",DA=PRCAEN
- S DR=".03////"_PRCABN ;Bill Number
- S DR=DR_";3///0" ;Calm Code Done
- S DR=DR_";12///"_$O(^PRCA(430.3,"AC",54,0)) ;Transaction Type
- S DR=DR_";15///0" ;Transaction Amount
- S DR=DR_";42///"_DUZ ;Processed by user
- S DR=DR_";11///"_DT ;Transaction date
- S DR=DR_";4///2" ;Transaction status (complete)
- S DR=DR_";5.02///CS ADMIN ADJ TR REV?N" D ^DIE
+CSATRN ; Cross-Servicing Admin Adj Treasury Rev? No non-financial tx  PRCA*4.5*400
+ ;
+ ; assumes that BILL variable is defined and contains bill number
+ ;
+ D FILETRN(BILL,54,DUZ,"CS ADMIN ADJ TR REV?N")
  Q
  ;
-CSITRY ; Cross-Servicing Incr Adj Treasury Rev? Yes non-financial tx
- N PRCAEN,PRCAA1,DR,DIE,DA,D0,PRCAD,RCASK,PRCAA2,PRCA,PRCATY,RCUSER,X
- D SETTR^PRCAUTL,PATTR^PRCAUTL Q:'$D(PRCAEN)
- S PRCAA1=$S($D(^PRCA(433,PRCAEN,4,0)):+$P(^(0),U,4),1:0)
- Q:PRCAA1'>0  S PRCAA2=$P(^(0),U,3)
- S DIE="^PRCA(433,",DA=PRCAEN
- S DR=".03////"_PRCABN ;Bill Number
- S DR=DR_";3///0" ;Calm Code Done
- S DR=DR_";12///"_$O(^PRCA(430.3,"AC",57,0)) ;Transaction Type
- S DR=DR_";15///0" ;Transaction Amount
- S DR=DR_";42///"_DUZ ;Processed by user
- S DR=DR_";11///"_DT ;Transaction date
- S DR=DR_";4///2" ;Transaction status (complete)
- S DR=DR_";5.02///CS INC ADJ TR REV?Y" D ^DIE
+CSITRY ; Cross-Servicing Incr Adj Treasury Rev? Yes non-financial tx  PRCA*4.5*400
+ ;
+ ; assumes that BILL variable is defined and contains bill number
+ ;
+ D FILETRN(BILL,57,DUZ,"CS INC ADJ TR REV?Y")
  Q
  ;
-CSITRN ; Cross-Servicing Incr Adj Treasury Rev? No non-financial tx
- N PRCAEN,PRCAA1,DR,DIE,DA,D0,PRCAD,RCASK,PRCAA2,PRCA,PRCATY,RCUSER,X
- D SETTR^PRCAUTL,PATTR^PRCAUTL Q:'$D(PRCAEN)
- S PRCAA1=$S($D(^PRCA(433,PRCAEN,4,0)):+$P(^(0),U,4),1:0)
- Q:PRCAA1'>0  S PRCAA2=$P(^(0),U,3)
- S DIE="^PRCA(433,",DA=PRCAEN
- S DR=".03////"_PRCABN ;Bill Number
- S DR=DR_";3///0" ;Calm Code Done
- S DR=DR_";12///"_$O(^PRCA(430.3,"AC",58,0)) ;Transaction Type
- S DR=DR_";15///0" ;Transaction Amount
- S DR=DR_";42///"_DUZ ;Processed by user
- S DR=DR_";11///"_DT ;Transaction date
- S DR=DR_";4///2" ;Transaction status (complete)
- S DR=DR_";5.02///CS INC ADJ TR REV?N" D ^DIE
+CSITRN ; Cross-Servicing Incr Adj Treasury Rev? No non-financial tx  PRCA*4.5*400
+ ;
+ ; assumes that BILL variable is defined and contains bill number
+ ;
+ D FILETRN(BILL,58,DUZ,"CS INC ADJ TR REV?N")
  Q
  ;
-CSPRTR ; Cross-Servicing PENDING RECONCILIATION non-financial tx  
+CSPRTR ; Cross-Servicing PENDING RECONCILIATION non-financial tx  PRCA*4.5*400
  ;       Called by R1^RCTCSPRS
- N PRCAEN,PRCAA1,DR,DIE,DA,D0,PRCAD,RCASK,PRCAA2,PRCA,PRCATY,RCUSER,DUZ
- ; DUZ is reserved, but in this case DUZ may be undefined due to a server background job, but we don't want to overwrite DUZ if it exists
- S PRCABN=BILL,DUZ=.5,DUZ(0)="@",DUZ(2)=1 ; Server has no DUZ, use Postmaster
- D SETTR^PRCAUTL,PATTR^PRCAUTL Q:'$D(PRCAEN)
- S PRCAA1=$S($D(^PRCA(433,PRCAEN,4,0)):+$P(^(0),U,4),1:0)
- Q:PRCAA1'>0  S PRCAA2=$P(^(0),U,3)
- S DIE="^PRCA(433,",DA=PRCAEN
- S DR=".03////"_PRCABN ;Bill Number
- S DR=DR_";3///0" ;Calm Code Done
- S DR=DR_";12///"_$O(^PRCA(430.3,"AC",61,0)) ;Transaction Type
- S DR=DR_";15///0" ;Transaction Amount
- S DR=DR_";42///"_DUZ ;Processed by user
- S DR=DR_";11///"_DT ;Transaction date
- S DR=DR_";4///2" ;Transaction status (complete)
- S DR=DR_";5.02///CS PEND RECON" D ^DIE
+ ;
+ ; assumes that BILL variable is defined and contains bill number
+ ;
+ N DUZ
+ S DUZ=.5,DUZ(0)="@",DUZ(2)=1 ; Server has no DUZ, use Postmaster
+ D FILETRN(BILL,61,DUZ,"CS PEND RECON")
  Q
  ;
-CSRCLPL ; CS RECALL placed non-financial tx
- N PRCAEN,PRCAA1,DR,DIE,DA,D0,PRCAD,RCASK,PRCAA2,PRCA,PRCATY,RCUSER
- S PRCABN=BILL
- D SETTR^PRCAUTL,PATTR^PRCAUTL Q:'$D(PRCAEN)
- S PRCAA1=$S($D(^PRCA(433,PRCAEN,4,0)):+$P(^(0),U,4),1:0)
- Q:PRCAA1'>0  S PRCAA2=$P(^(0),U,3)
- S DIE="^PRCA(433,",DA=PRCAEN
- S DR=".03////"_PRCABN ;Bill Number
- S DR=DR_";3///0" ;Calm Code Done
- S DR=DR_";12///"_$O(^PRCA(430.3,"AC",62,0)) ;Transaction Type
- S DR=DR_";15///0" ;Transaction Amount
- S DR=DR_";42///"_DUZ ;Processed by user
- S DR=DR_";11///"_DT ;Transaction date
- S DR=DR_";4///2" ;Transaction status (complete)
- S DR=DR_";5.02///CS RECALL PLACED" D ^DIE
+CSRCLPL ; CS RECALL placed non-financial tx  PRCA*4.5*400
+ ;
+ ; assumes that BILL variable is defined and contains bill number
+ ;
+ D FILETRN(BILL,62,DUZ,"CS RECALL PLACED")
  Q
-CSAUTORC ; Recall from Cross-Servicing non-financial tx    ;PRCA*4.5*369
- N PRCAEN,PRCAA1,DR,DIE,DA,D0,PRCAD,RCASK,PRCAA2,PRCA,PRCATY,RCUSER,DUZ
- ;DUZ is reserved, but in this case DUZ may be undefined due to batch background job
- S PRCABN=BILL,DUZ=.5,DUZ(0)="@",DUZ(2)=1 ; Server has no DUZ, use Postmaster
+ ;
+CSRCLPL1 ; CS RECALL placed non-financial tx with "HRFS RECALL" comment (recall due to HRFS patient flag being set)  PRCA*4.5*400
+ ;
+ ; assumes that BILL variable is defined and contains bill number
+ ;
+ N CMNT
+ S CMNT(1)="HRFS RECALL"
+ D FILETRN(BILL,62,DUZ,"CS RECALL PLACED",.CMNT)
+ Q
+ ;
+CSAUTORC ; Recall from Cross-Servicing non-financial tx    ; PRCA*4.5*400
+ ;
+ ; assumes that BILL variable is defined and contains bill number
+ ;
+ N DUZ
+ S DUZ=.5,DUZ(0)="@",DUZ(2)=1 ; Server has no DUZ, use Postmaster
+ D FILETRN(BILL,66,DUZ,"CS AUTO RECALL BILL <$25")
+ Q
+ ;
+FILETRN(PRCABN,PRCATYP,DUZ,BRCMNT,CMNT) ; file transaction  PRCA*4.5*400
+ ;
+ ; PRCABN  - bill number
+ ; PRCATYP - transaction type
+ ; DUZ     - user DUZ to use
+ ; BRCMNT  - brief comment
+ ; CMNT    = comment (array containing data for WP field, format is CMNT(1)=line 1...CMNT(n)=line n)
+ ;
+ N FDA,IENS,PRCAEN,PRCAA1
+ N DA,X  ; set and used in SETTR^PRCAUTL
  D SETTR^PRCAUTL,PATTR^PRCAUTL Q:'$D(PRCAEN)
- S PRCAA1=$S($D(^PRCA(433,PRCAEN,4,0)):+$P(^(0),U,4),1:0)
- Q:PRCAA1'>0  S PRCAA2=$P(^(0),U,3)
- S DIE="^PRCA(433,",DA=PRCAEN
- S DR=".03////"_PRCABN ;Bill Number
- S DR=DR_";3///0" ;Calm Code Done
- S DR=DR_";12///"_$O(^PRCA(430.3,"AC",66,0)) ;Transaction Type
- S DR=DR_";15///0" ;Transaction Amount
- S DR=DR_";42///"_DUZ ;Processed by user
- S DR=DR_";11///"_DT ;Transaction date
- S DR=DR_";4///2" ;Transaction status (complete)
- S DR=DR_";5.02///CS AUTO RECALL BILL <$25" D ^DIE
+ S PRCAA1=$S($D(^PRCA(433,PRCAEN,4,0)):+$P(^(0),U,4),1:0) Q:PRCAA1'>0
+ S IENS=PRCAEN_","
+ S FDA(433,IENS,.03)=PRCABN ; Bill Number
+ S FDA(433,IENS,3)=0 ; Calm Code Done
+ S FDA(433,IENS,4)=2 ; Transaction status (complete)
+ S FDA(433,IENS,5.02)=$E(BRCMNT,1,30) ; Brief Comment
+ S FDA(433,IENS,11)=DT ; Transaction Date
+ S FDA(433,IENS,12)=$O(^PRCA(430.3,"AC",PRCATYP,0)) ; Transaction Type
+ S FDA(433,IENS,15)=0 ; Transaction Amount
+ S FDA(433,IENS,42)=DUZ ; Processed By User
+ D FILE^DIE("","FDA")
+ I $D(CMNT) D WP^DIE(433,IENS,41,"","CMNT")
  Q

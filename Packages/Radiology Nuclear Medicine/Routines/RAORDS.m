@@ -1,5 +1,5 @@
-RAORDS ;HISC/CAH,DAD AISC/RMO-Select Patient's Requests ; Sep 25, 2020@09:04:18
- ;;5.0;Radiology/Nuclear Medicine;**15,21,132,174**;Mar 16, 1998;Build 2
+RAORDS ;HISC/CAH,DAD AISC/RMO-Select Patient's Requests ; Nov 08, 2022@12:41:56
+ ;;5.0;Radiology/Nuclear Medicine;**15,21,132,174,196**;Mar 16, 1998;Build 1
  ; Supported IA #1120 reference to EN6^GMRVUTL  5-132
  ;p174 changed all references to *7 to $C(7)
  ;
@@ -30,6 +30,8 @@ SETUTL ; Check if option is to be screened.  If yes, apply the screen.
  . Q:RALCTN="Unknown"
  . S RALCTN=$S($D(^SC(RALCTN,0)):$P(^(0),"^"),1:"Unknown")
  . Q
+ ;p196 - referral opt & already referred (field #201)
+ I ($D(RAOPT("CCR")))&($D(^RAO(75.1,"AC",1,RADFN,RAOIFN))) Q  ;RA196 don't list orders already referred.
  S RACNT=RACNT+1,^TMP($J,"RAORDS",$S('$P(RAORD0,"^",6):9,1:$P(RAORD0,"^",6)),9999999.9999-$S($P(RAORD0,"^",21):$P(RAORD0,"^",21),1:$P(RAORD0,"^",16)),RAOIFN,RACNT)=RAORD0
  ; store order's indiv procedures
  I $P($G(^RAMIS(71,+$P(RAORD0,U,2),0)),U,6)'="P" S ^TMP($J,"PRO-ORD",$S($P(RAORD0,U,2):$P(RAORD0,U,2),1:0),RAOIFN)="" Q

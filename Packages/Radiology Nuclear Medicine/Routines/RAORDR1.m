@@ -1,5 +1,11 @@
-RAORDR1 ;ABV/SCR/MKN - Refer Pending/Hold Requests continued ; Jul 08, 2022@10:36:51
- ;;5.0;Radiology/Nuclear Medicine;**148,161,170,190**;Mar 16, 1998;Build 1
+RAORDR1 ;ABV/SCR/MKN - Refer Pending/Hold Requests continued ; Nov 09, 2022@06:30:52
+ ;;5.0;Radiology/Nuclear Medicine;**148,161,170,190,196**;Mar 16, 1998;Build 1
+ ;
+ ; p196/KLM - Does the following:
+ ;          - Update rad order HOLD code - don't write to OR global, instead
+ ;          - use our RA EVSEND OR to update special comment in RAO7CH. 
+ ;          - Also, RAORDU is updated to set the 'ORDER REFERRED..' field.
+ ;
  ;
  ; Routine/File        IA           Type
  ; -------------------------------------
@@ -21,7 +27,7 @@ MAKECONS(RAOIFN) ;Create Consult using Order Dialog GMRCOR CONSULT
  ;
  N DA,DFN,DIC,DIE,DR,ORDIALOG,RADFN,RADLG,RADTDES,RAFIELDS,RAFILE,RAIENS,RAMAP,RAN,RAN1,RANEWORD,RAO,RAOIEN,RAORDG
  N RAORDIEN,RAORDITM,RAORDLOC,RAORDS,RAORDTXT,RAOREA,RAORGTX,RAORNP,RAORIT,RAORL,RAORNP,RAORPRE,RAORPREG,RAORTYP
- N RAORVP,RAORWANT,RAQUIT,RAORD,RARET,RARTRN,RAUCID,RAURG,RAWPN,RAX,RAY,RAOILOC,VADM,X,Y,RAITYP
+ N RAORVP,RAORWANT,RAQUIT,RAORD,RARET,RARTRN,RAUCID,RAURG,RAWPN,RAX,RAY,RAOILOC,VADM,X,Y,RAITYP,RAOREA,RAORC
  S RADLG="GMRCOR CONSULT"
  K DIC S DIC=101.41,X=RADLG D ^DIC I Y=-1 D ERROR("Quick Order ""GMRCOR CONSULT"" not found in ORDER DIALOG file") Q 0
  S RAORIT=+Y
@@ -115,18 +121,15 @@ MAKECONS(RAOIFN) ;Create Consult using Order Dialog GMRCOR CONSULT
  L -^OR(100,+RAORDIEN) ;unlock order
  ;
  ;Put Radiology order on hold
- S RAX=$O(^RA(75.2,"B","COMMUNITY CARE APPT","")) D HOLD(RAOIFN,.RAX)
- ;Now add comment to show UCID if it exists - p161/Need to remove!
- S RAX=$G(^OR(100,RAORDIEN,4)) I $P(RAX,";",2)="GMRC" D
- .S RAX=+RAX,RAUCID=$$GET1^DIQ(123,RAX,80)
- .I RAUCID]"" S RAX="Placed on hold due to transfer to Community Care with UCID "_RAUCID D
- ..;RADORD is IEN of original radiology order in file #100
- ..S DA(1)=RAORD,DIE="^OR(100,"_RAORD_",8,",DA=$O(^OR(100,RAORD,8,"A"),-1) I DA S DR="1///"_RAX D ^DIE
+ S RAOREA=$O(^RA(75.2,"B","COMMUNITY CARE APPT","")) D HOLD(RAOIFN,RAORDIEN,RAOREA)
  ;
  Q RAORDIEN
  ;
-HOLD(RAOIFN,RAOREA) ;Put the original radiology order on hold
- N RAOSTS
+HOLD(RAOIFN,RAORIEN,RAOREA) ;p196 - put radiology order on hold set special comment.
+ N RAOSTS,RAFDA,IENS
+ S RAORC=$G(^OR(100,RAORDIEN,4)) I $P(RAORC,";",2)="GMRC" D
+ .S RAORC=+RAORC,RAUCID=$$GET1^DIQ(123,RAORC,80)
+ .I RAUCID]"" S RAORC="Placed on hold due to transfer to Community Care with UCID "_RAUCID
  S RAOSTS=3 D ^RAORDU
  Q
  ;

@@ -1,5 +1,5 @@
 VPRSDAP ;SLC/MKB -- SDA Pharmacy utilities ;10/25/18  15:29
- ;;1.0;VIRTUAL PATIENT RECORD;**8,24,14,28**;Sep 01, 2011;Build 6
+ ;;1.0;VIRTUAL PATIENT RECORD;**8,24,14,28,30**;Sep 01, 2011;Build 9
  ;;Per VHA Directive 6402, this routine should not be modified.
  ;
  ; External References          DBIA#
@@ -8,6 +8,7 @@ VPRSDAP ;SLC/MKB -- SDA Pharmacy utilities ;10/25/18  15:29
  ; ^DIC(42                      10039
  ; ^OR(100                       5771
  ; ^ORD(100.98                   6982
+ ; ^ORD(101.43                   2843
  ; ^PSB(53.79                    5909
  ; ^SC                          10040
  ; DILFD                         2055
@@ -127,7 +128,7 @@ CMOP(RX) ; -- return CMOP indicator for RX
  Q Y
  ;
 SIG(IEN) ; -- return Sig, append VPRPI if needed
- N Y S Y=$$WP^VPRSDA(+$G(IEN),"SIG")
+ N Y S Y=$$WP^VPRSDAOR(+$G(IEN),"SIG")
  I $L(Y),$L($G(VPRPI)),Y'[VPRPI D  ;append PI?
  . N SIG,PI S SIG=$$UP^XLFSTR(Y)
  . S PI=$$UP^XLFSTR(VPRPI),PI=$$TRIM^XLFSTR(PI) Q:SIG[PI

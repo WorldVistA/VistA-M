@@ -1,5 +1,5 @@
-DVBACPR1 ;ALB/GAK - PATCH DVBA*2.7*189 introduced field utility RPCs;08/08/2014
- ;;2.7;AMIE;**189**;Apr 10, 1995;Build 22
+DVBACPR1 ;ALB/GAK - PATCH DVBA*2.7*189 introduced field utility RPCs;April 14, 2023 ; 5/16/23 11:59am
+ ;;2.7;AMIE;**189,248**;Apr 10, 1995;Build 6
  ; This routine provides list, get and set features for several CAPRI RPCs
  Q
  ;
@@ -76,6 +76,7 @@ LSTSC(RTRN) ;
  S SCIEN=0
  F  S SCIEN=$O(^DVB(396.25,SCIEN)) Q:SCIEN=""!('SCIEN)  D
  . Q:$G(^DVB(396.25,SCIEN,0))=""
+ . Q:$P($G(^DVB(396.25,SCIEN,0)),U,2)'=1
  . S ^TEMP($J,"LSTSC",$P(^DVB(396.25,SCIEN,0),"^",1))=SCIEN
  S CODE="",CTR=0
  F  S CODE=$O(^TEMP($J,"LSTSC",CODE)) Q:CODE=""  D

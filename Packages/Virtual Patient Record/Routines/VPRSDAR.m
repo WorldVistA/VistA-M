@@ -1,5 +1,5 @@
 VPRSDAR ;SLC/MKB -- SDA Radiology utilities ;8/6/18  12:21
- ;;1.0;VIRTUAL PATIENT RECORD;**8,10**;Sep 01, 2011;Build 16
+ ;;1.0;VIRTUAL PATIENT RECORD;**8,10,30**;Sep 01, 2011;Build 9
  ;;Per VHA Directive 6402, this routine should not be modified.
  ;
  ; External References          DBIA#
@@ -62,7 +62,7 @@ ONE(RAID) ; -- ID Processing for each VPR RAD RESULT (RAID = #75.1 ien)
 ABN() ; -- return "A" if any report for exam(s) is abnormal, else null
  N X,Y,CASE S Y=""
  I $D(RARPT)<9 D  Q Y
- . S Y=$S($P(VPRAE1,U,4)="Y":"A",$P(VPRAE1,U,9)="Y":"A",1:"")
+ . S Y=$S($P(VPRAE1,U,4)="Y":"A",1:"") ;,$P(VPRAE1,U,9)="Y":"A"
  S CASE=0 F  S CASE=$O(^TMP($J,"RAE2",DFN,CASE)) Q:CASE<1  D  Q:$L(Y)
  . S X=$Q(^TMP($J,"RAE2",DFN,CASE))
  . S:$P(@X,U,2)="Y" Y="A"

@@ -1,5 +1,5 @@
 IBJDF12 ;ALB/CPM - THIRD PARTY FOLLOW-UP REPORT (PRINT) ;10-JAN-97
- ;;2.0;INTEGRATED BILLING;**69,118,128,123,204,205,554,618,663**;21-MAR-94;Build 27
+ ;;2.0;INTEGRATED BILLING;**69,118,128,123,204,205,554,618,663,739**;21-MAR-94;Build 3
  ;Per VA Directive 6402, this routine should not be modified.
  ;
 EN ; - Print the Follow-up report.
@@ -56,7 +56,7 @@ HDR1 ; - Write the primary report header.
  I IBSMN W IBSMN,$S(IBSMX>IBSMN:" to "_IBSMX,1:"")," days old "
  I IBSAM W "with balances of at least $",IBSAM
  W !!?37,"Other",?51,"Date",?92,"Original",?103,"Current"
- W !,"Patient (Age)",?24,"SSN",?37,"Carrier",?51,"Prepared",?61,"Bill No.",?73,"Bill Fr. Bill To",?94,"Amount",?103,"Balance",?114,"Subscriber ID"
+ W !,"Patient (Age)",?37,"Carrier",?51,"Prepared",?61,"Bill No.",?73,"Bill Fr. Bill To",?94,"Amount",?103,"Balance",?114,"Subscriber ID" ;IB*2.0*739
  W !,$$DASH(IOM)
  I IBSRC W !,"Note: '(n)' or '(*)' next to balance means AR was referred to Regional Counsel"
  W ! S IBQ=$$STOP^IBOUTL("Third Party Follow-Up Report")
@@ -72,7 +72,7 @@ HDR2 ; - Write the insurance company sub-header.
  Q
  ;
 WPAT ; - Write patient data.
- W $P(IBZ,U),?24,$$SSN($P(IBZ,U,2)),?37,$P(IBZ,U,3)
+ W $P(IBZ,U),?37,$P(IBZ,U,3) ;IB*2.0*739
  Q
  ;
 WBIL ; - Write bill data.
@@ -82,7 +82,7 @@ WBIL ; - Write bill data.
  I $P($P(IBZ,U,7),"~",2) D
  . I $P($P(IBZ,U,7),"~",2)<6 W "(",$P($P(IBZ,U,7),"~",2),")" Q
  . W "(*)"
- W ?114,$E($P(IBZ,U,8),1,18)
+ I $P(IBZ,U,8)'=$P(IBZ,U,2) W ?114,$E($P(IBZ,U,8),1,18) ;Only print if ID is not SSN IB*2.0*739
  Q
  ;
 WCOM ; - Write the comments

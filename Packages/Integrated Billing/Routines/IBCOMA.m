@@ -1,5 +1,5 @@
 IBCOMA ;ALB/CMS/JNM - IDENTIFY ACTIVE POLICIES W/NO EFFECTIVE DATE; 09-29-2015
- ;;2.0;INTEGRATED BILLING;**103,528,549**;21-MAR-94;Build 54
+ ;;2.0;INTEGRATED BILLING;**103,528,549,743**;21-MAR-94;Build 18
  ;;Per VA Directive 6402, this routine should not be modified.
  Q
 EN ;Entry point from option
@@ -117,13 +117,27 @@ FORMATH ; Excel or Report Format Help
  ;
 NR ; Ask Name Range
  N DIR,DIROUT,DIRUT,DTOUT,DUOUT,X,Y
-NRR S DIR(0)="FO",DIR("B")="FIRST",DIR("A")="  START WITH PATIENT NAME"
+NRR ;
+ ;IB*743/TAZ - Updated code to accept NULL to mean beginning of list.
+ W !!,"Enter Start With value or Press <ENTER> to start at the beginning of the list.",!
+ S DIR(0)="FO",DIR("A")="START WITH PATIENT NAME"
+ S DIR("?")="^D NRRHLP^IBCOMN(""BEGIN"")"
  D ^DIR I ($D(DTOUT))!($D(DUOUT)) S IBQUIT=1 Q
- S:Y="FIRST" Y="A" S IBRF=Y
- S DIR(0)="FO",DIR("B")="LAST",DIR("A")="  GO TO PATIENT NAME"
+ S IBRF=Y
+ ;
+ ;IB*743/TAZ - Updated code to accept NULL to mean end of list.
+ W !!,"Enter Go To value or Press <ENTER> to finish at the end of the list.",!
+ S DIR(0)="FO",DIR("A")="GO TO PATIENT NAME"
+ S DIR("?")="^D NRRHLP^IBCOMN(""END"")"
  D ^DIR I ($D(DTOUT))!($D(DUOUT)) S IBQUIT=1 Q
- S:Y="LAST" Y="zzzzzz" S IBRL=Y
+ S:Y="" Y="zzzzzz" S IBRL=Y
  I $G(IBRL)']$G(IBRF) W !!,?5,"* The Go to Patient Name must follow after the Start with Name. *",! G NRR
+ Q
+ ;
+NRRHLP(LEVEL) ; ?? Help for the Range Prompt
+ W !!,?5,"Enter a value the Patient Name should ",LEVEL," with."
+ I LEVEL="BEGIN" W !,?5,"Press <ENTER> to start at the beginning of the list."
+ I LEVEL="END" W !,?5,"Press <ENTER> to finish at the end of the list."
  Q
  ;
 TR ; Ask Terminal Digit Range

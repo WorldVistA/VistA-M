@@ -1,5 +1,5 @@
 ORCDPS1 ;SLC/MKB-Pharmacy dialog utilities ;Nov 13, 2019@09:12:46
- ;;3.0;ORDER ENTRY/RESULTS REPORTING;**94,117,141,149,195,215,243,280,337,311,350,377,405**;Dec 17, 1997;Build 211
+ ;;3.0;ORDER ENTRY/RESULTS REPORTING;**94,117,141,149,195,215,243,280,337,311,350,377,405,499**;Dec 17, 1997;Build 165
  ;
  ; DBIA 2418   START^PSSJORDF   ^TMP("PSJMR",$J)
  ; DBIA 3166   EN^PSSDIN        ^TMP("PSSDIN",$J)
@@ -47,10 +47,11 @@ ENOI ; -- setup OI prompt
  Q
  ;
 DEA ; -- ck DEA# of ordering provider if SchedII drug
- Q:$G(ORTYPE)="Z"  N DEAFLG,PSOI
+ Q:$G(ORTYPE)="Z"  N DEAFLG,PSOI,ORDEA  ; patch 499
  S PSOI=+$P($G(^ORD(101.43,+$G(Y),0)),U,2) Q:PSOI'>0
  S DEAFLG=$$OIDEA^PSSUTLA1(PSOI,ORCAT) Q:DEAFLG'>0  ;ok
- I $G(ORNP),'$L($P($G(^VA(200,+ORNP,"PS")),U,2)),'$L($P($G(^("PS")),U,3)) W $C(7),!,$P($G(^(0)),U)_" must have a DEA# or VA# to order this drug!" K DONE Q
+ ; patch 499 - multiple DEA numbers for one provider
+ I $G(ORNP) S ORDEA=$$PRDEA^XUSER(ORNP) I '$L(ORDEA),'$L($P($G(^VA(200,+ORNP,"PS")),U,3)) W $C(7),!,$P($G(^(0)),U)_" must have a DEA# or VA# to order this drug!" K DONE Q
  I DEAFLG=1 W $C(7),!,"This order will require a wet signature!"
  Q
  ;
@@ -69,7 +70,7 @@ CHANGED(X) ; -- Kill dependent values when prompt X changes
  ;
 ORDITM(OI) ; -- Check OI, get dependent info
  Q:OI'>0  ;quit - no value
- N ORPS,ORPSOI S ORPS=$G(^ORD(101.43,+OI,"PS")),ORPSOI=+$P($G(^(0)),U,2)
+ N ORPS,ORPSOI,ORDEA S ORPS=$G(^ORD(101.43,+OI,"PS")),ORPSOI=+$P($G(^(0)),U,2)
  S ORIV=$S($P(ORPS,U)=2:1,1:0)
  I $G(ORCAT)="O",'$P(ORPS,U,2) W $C(7),!,"This drug may not be used in an outpatient order." S ORQUIT=1 D WAIT Q
  I $G(ORCAT)="I" D  Q:$G(ORQUIT)
@@ -77,7 +78,8 @@ ORDITM(OI) ; -- Check OI, get dependent info
  . I '$G(ORINPT),'ORIV W $C(7),!,"This drug may not be ordered for an outpatient." S ORQUIT=1 D WAIT Q
  I $G(ORTYPE)="Q" D  I $G(ORQUIT) D WAIT Q
  . N DEAFLG S DEAFLG=$$OIDEA^PSSUTLA1(ORPSOI,ORCAT) Q:DEAFLG'>0  ;ok
- . I $G(ORNP),'$L($P($G(^VA(200,+ORNP,"PS")),U,2)),'$L($P($G(^("PS")),U,3)) W $C(7),!,$P($G(^(0)),U)_" must have a DEA# or VA# to order this drug!" S ORQUIT=1 Q
+ . ; patch 499 - multiple DEA numbers for one provider
+ . I $G(ORNP) S ORDEA=$$PRDEA^XUSER(ORNP) I $L(ORDEA),'$L($P($G(^("PS")),U,3)) W $C(7),!,$P($G(^(0)),U)_" must have a DEA# or VA# to order this drug!" S ORQUIT=1 Q
  . I DEAFLG=1 W $C(7),!,"This order will require a wet signature!"
 OI1 ; -ck NF status
  I $P(ORPS,U,6),'$G(ORENEW) D  ;alternative

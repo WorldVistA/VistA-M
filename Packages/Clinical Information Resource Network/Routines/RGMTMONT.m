@@ -1,13 +1,16 @@
-RGMTMONT ;BIR/CML,PTD-MPI/PD Monitor HL7 Messaging/Filers and Setups ;07/30/02
- ;;1.0;CLINICAL INFO RESOURCE NETWORK;**20,30,31,34**;30 Apr 99
+RGMTMONT ;BIR/CML,PTD-MPI/PD Monitor HL7 Messaging/Filers and Setups ;6/25/20  15:14
+ ;;1.0;CLINICAL INFO RESOURCE NETWORK;**20,30,31,34,75**;30 Apr 99;Build 1
  ;
+ ;Reference to OPTION (#19) file supported by IA #10075
  ;Reference to OPTION SCHEDULING (#19.2) file supported by IA #3599
  ;Reference to ^DPT("AICNL" supported by IA #2070
  ;Reference to $$SEND^VAFHUTL for file DG(43 supported by IA #2624
  ;Reference to ^HLCS(870 supported by IA #3335
  ;Reference to $$STAT^HLCSLM supported by IA #3574
  ;Reference to ^DIA(2 and data derived from the AUDIT file (#1.1)
- ;supported by IA #2097 and #2602.
+ ;              supported by IA #2097 and #2602.
+ ;Reference to ^XTV(8933.1 supported by IA #7177
+ ;Reference to ^XTV(8989.3 supported by IA #7183
  ;
 EN1 ;Call this routine from the top to do extended checks that include:
  ;- D HLMA1^RGMTUT98
@@ -93,6 +96,51 @@ CHK2A ;check for time local/missing job was last run
  .S TXT="=> MPIF LOC/MIS ICN RES was last run "_TIME_"."
  .D TXT
  ;
+CHK2B ;**75 - STORY 1203257 (dri) New Person Field Monitor Batch Update for daily stat report
+ S TXT="" D TXT
+ S TXT="Checking XUS IAM NPFM BATCH UPDATE background job..." D TXT
+ ;
+ N RGCNT,RGIEN,RGUSER
+ S RGCNT=0,RGUSER=0 F  S RGUSER=$O(^XTV(8933.1,"ACXMIT",RGUSER)) Q:'RGUSER  D
+ .S RGIEN=0 F  S RGIEN=$O(^XTV(8933.1,"ACXMIT",RGUSER,RGIEN)) Q:'RGIEN  S RGCNT=RGCNT+1
+ S TXT="(Total NEW PERSON UPDATES waiting to be processed = "_RGCNT_")"
+ D TXT
+ ;
+ S DIC="^DIC(19,",X="XUS IAM NPFM BATCH UPDATE" D ^DIC K DIC S BKDA=+Y
+ I BKDA<0 S TXT="=> XUS IAM NPFM BATCH UPDATE does not exist in OPTION file." D TXT K BKDA G CHK2C
+ S TXT="=> XUS IAM NPFM BATCH UPDATE is not currently scheduled to run."
+ S DIC="^DIC(19.2,",X="XUS IAM NPFM BATCH UPDATE" D ^DIC K DIC S SCHDA=+Y
+ I SCHDA<0 D TXT K BKDA,TXT,SCHDA G CHK2C
+ S TIME=$$GET1^DIQ(19.2,SCHDA_",",2)
+ I TIME="" D TXT K BKDA,TXT,SCHDA,TIME G CHK2C
+ S TXT="=> XUS IAM NPFM BATCH UPDATE scheduled to run "_$$FMTE^XLFDT(TIME)_"."
+ D TXT
+ ;
+CHK2C ;**75 - STORY 1203257 (dri) New Person Field Monitor Purge for daily stat report
+ S TXT="" D TXT
+ S TXT="Checking XUS IAM NPFM PURGE background job..." D TXT
+ ;
+ N RGDAT,RGCNT,RGDOMIEN,RGMIEN,RGPRGDAY,RGRETDAT,RGUSER,X1,X2
+ S RGDOMIEN=$O(^XTV(8989.3,0)) I 'RGDOMIEN G CHK3 ;domain
+ S RGPRGDAY=$$GET1^DIQ(8989.3,RGDOMIEN_",",875,"I") ;new person field monitor purge - days of transmitted data to retain.
+ I 'RGPRGDAY S RGPRGDAY=365 ;default if not defined
+ S X1=DT,X2=-RGPRGDAY D C^%DTC S RGRETDAT=X ;retain date
+ ;
+ S RGCNT=0,RGDAT=0 F  S RGDAT=$O(^XTV(8933.1,"B",RGDAT)) Q:'RGDAT!(RGDAT>RGRETDAT)  D
+ .S RGMIEN=0 F  S RGMIEN=$O(^XTV(8933.1,"B",RGDAT,RGMIEN)) Q:'RGMIEN  S RGUSER=+$P($G(^XTV(8933.1,RGMIEN,0)),"^",2) I '$D(^XTV(8933.1,"ACXMIT",RGUSER,RGMIEN)) S RGCNT=RGCNT+1 ;count if not pending transmission
+ S TXT="(Total NEW PERSON UPDATES waiting to be purged = "_RGCNT_")"
+ D TXT
+ ;
+ S DIC="^DIC(19,",X="XUS IAM NPFM PURGE" D ^DIC K DIC S BKDA=+Y
+ I BKDA<0 S TXT="=> XUS IAM NPFM PURGE does not exist in OPTION file." D TXT K BKDA G CHK3
+ S TXT="=> XUS IAM NPFM PURGE is not currently scheduled to run."
+ S DIC="^DIC(19.2,",X="XUS IAM NPFM PURGE" D ^DIC K DIC S SCHDA=+Y
+ I SCHDA<0 D TXT K BKDA,TXT,SCHDA G CHK3
+ S TIME=$$GET1^DIQ(19.2,SCHDA_",",2)
+ I TIME="" D TXT K BKDA,TXT,SCHDA,TIME G CHK3
+ S TXT="=> XUS IAM NPFM PURGE scheduled to run "_$$FMTE^XLFDT(TIME)_"."
+ D TXT
+ ;
 CHK3 ;Check to see if .01 field in patient file has auditing turned on
  S TXT="" D TXT
  D FIELD^DID(2,.01,"","AUDIT","PATAUD")
@@ -152,6 +200,12 @@ CHK6 ;
  S LMSTAT=$$STAT^HLCSLM
  S CUR=$S('LMSTAT:"NOT RUNNING",1:"RUNNING")
  S TXT="=> HL LINK MANAGER is currently << "_CUR_" >>."
+ D TXT
+ ;check to see if RG QUEUE is okay
+ S TXT="Checking Resource Device - RG QUEUE" D TXT
+ N RGEN S RGEN=$O(^%ZISL(3.54,"B","RG QUEUE",""))
+ I RGEN="" S TXT="=> No RG QUEUE resource device"
+ I RGEN>0 S TXT="=> RG QUEUE, SLOTS AVAILABLE: "_$P(^%ZISL(3.54,RGEN,0),"^",2)
  D TXT
  ;
 FLDLIST ;capture fields being audited

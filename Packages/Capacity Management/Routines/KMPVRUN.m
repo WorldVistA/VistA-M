@@ -1,30 +1,35 @@
-KMPVRUN ;SP/JML - VSM Cache Task Manager driver ;5/1/2021
- ;;4.0;CAPACITY MANAGEMENT;**1,2**;3/1/2018;Build 3
+KMPVRUN ;SP/JML - VSM Cache Task Manager driver ;2/1/2023
+ ;;4.0;CAPACITY MANAGEMENT;**1,2,3**;3/1/2018;Build 17
  ;
- ; Integration Agreements
- ;  Reference to ^XMD supported by ICR #10070
- ;  Reference to GETENV^%ZOSV supported by ICR #10097
+ ; Reference to GETENV^%ZOSV in ICR #10097
+ ; Reference to $ESTACK, $ETRAP and ^%ZTER in ICR#1621
  ;
 RUN ;  Loop VSM CONFIGURATION file and run collection routine for monitors set to "ON"
- N $ES,$ETRAP S $ETRAP="D ERR^ZU Q"
+ N $ESTACK,$ETRAP S $ETRAP="D ^%ZTER Q"
  N DA,DIK,DUZ,FDA,Y,XMSUB,XMTEXT,XMY,U
  N KMPINST,KMPNDTYP,KMPVDAT,KMPVEMAIL,KMPVFNUM,KMPVH,KMPVIEN,KMPVMKEY,KMPVNODE,KMPVPDAT,KMPVROUT,KMPVTASK
- N KMPPSTAT,KMPSINF,KMPTEXT,KMPTNS,KMPVRNS,KMPVTNS
+ N KMPPSTAT,KMPSINF,KMPTEXT,KMPTNS,KMPVRNS,KMPVTNS,KMPFMDAY,X,X1,X2
+ ; Stagger start times - use field not in use by current versions - value can't be 0
+ H $R(+$$GETVAL^KMPVCCFG("VTCM","TASKMAN SCHEDULE START",8969)+1)
  S U="^",DUZ=.5,DUZ(0)="@"
- D GETENV^%ZOSV S KMPVNODE=$P(Y,"^",3) ;  IA 10097
+ D GETENV^%ZOSV S KMPVNODE=$P(Y,"^",3) ;supported by ICR #10097
  S KMPINST=$P(Y,":",2),KMPNDTYP=$$NODETYPE^KMPUTLW(KMPINST)
  S KMPSINF=$$SITEINFO^KMPVCCFG() ; site name^fac num^mail domain^prod/test^site code
  S KMPVH=+$H
- ;
+ ; Make sure SSL and Webapp classes exist
+ D KMPWEB
+ ; Send daily configuration message
+ D CFGMSG^KMPUTLW("SERVER-DAILY")
  ; Ensure process only runs once a day
  ; Lock global,node - note: this node is not real, only for locking mechanism
  L ^KMPV(8969.03,KMPVNODE):30
  ; Quit if currently locked - concurrent processes
  I '$T G CLEANUP
- ; Send daily configuration information if BE node
- I KMPNDTYP="BE" D
- .D KMPWEB
- .D CFGMSG^KMPUTLW("SERVER-DAILY")
+ ; Create top ^XTMP node for the day
+ I KMPNDTYP="BE" D 
+ .S KMPFMDAY=$$HTFM^XLFDT($H,1)
+ .S X1=KMPFMDAY,X2=$$GETVAL^KMPVCCFG("VTCM","DAYS TO KEEP DATA",8969)  D C^%DTC
+ .S ^XTMP("KMP "_KMPFMDAY,0)=X_"^"_KMPFMDAY_"^Debug data for "_$ZD($H,3)
  ;
  S KMPVIEN=$O(^KMPV(8969.03,"C",KMPVH,KMPVNODE,""))
  ; Quit if entry already exists for today - job was run previously
@@ -94,7 +99,7 @@ ZSTU ;
  N DUZ,U
  S DUZ=.5,DUZ(0)="@",U="^"
  ;
- D GETENV^%ZOSV S KMPVNODE=$P(Y,U,3)_":"_$P($P(Y,U,4),":",2)
+ D GETENV^%ZOSV S KMPVNODE=$P(Y,U,3)_":"_$P($P(Y,U,4),":",2) ;supported by ICR #10097
  S KMPISBE=$$ISBENODE^KMPVCCFG(KMPVNODE)
  ; verify or create SSL config and Web App
  I KMPISBE D KMPWEB^KMPVRUN
@@ -103,7 +108,7 @@ ZSTU ;
  ; Set CPRS Switch as it is not mirrored, verify LOGRSRC flag
  I $$GETVAL^KMPVCCFG("VCSM","ONOFF",8969)="ON" S ^KMPTMP("KMPD-CPRS")=1
  I $$GETVAL^KMPVCCFG("VBEM","ONOFF",8969)="ON" S DIE=8989.3,DA=1,DR="300///YES" D ^DIE
- ; Start VTCM, VBEM and VSTM collectotions directly on FE
+ ; Start VTCM, VBEM and VSTM collections directly on FE
  I 'KMPISBE D
  .F KMPVMKEY="VTCM","VBEM" D
  ..Q:$$GETVAL^KMPVCCFG(KMPVMKEY,"ONOFF",8969)'="ON"

@@ -1,8 +1,8 @@
 IBCNERPC ;DAOU/RO - PAYER LINK REPORT - Compile & Print;AUG-2003
- ;;2.0;INTEGRATED BILLING;**184,252,271,416,528,668,687**;21-MAR-94;Build 88
+ ;;2.0;INTEGRATED BILLING;**184,252,271,416,528,668,687,737**;21-MAR-94;Build 19
  ;;Per VA Directive 6402, this routine should not be modified.
  ;
- ; ICR #1519-For using the KERNEL routine XUTMDEVQ
+ ; Reference to EN^XUTMDEVQ in ICR #1519
  ;
  ; IB*2*687-rewrote/redesigned the report (basically from scratch) which
  ; included combining 3 routines into 2. The changes based on the patches prior
@@ -50,6 +50,7 @@ COMPILEX ; COMPILE exit
  Q
  ;
 GETDATA ; Compile the data.
+ ;IB*737/TAZ - Removed reference to Most Popular Payer and "~NO PAYER"
  N IBPY,IBPYR
  K ^TMP($J,IBCNERTN)
  ; IB*2*687/DTG start print msg in rept if no data for APP
@@ -71,7 +72,6 @@ GETDATA ; Compile the data.
  F  S IBPY=$O(^IBE(365.12,IBPY)) Q:'IBPY  D  Q:$G(ZTSTOP)
  . I '+PDEACT,+$$PYRDEACT^IBCNINSU(+IBPY) Q  ; Don't want DEACTIVATED Payers
  . S IBPYR=$$GET1^DIQ(365.12,IBPY,.01) ; Payer name from (#365.12)
- . I IBPYR="~NO PAYER" Q   ; Skip "~NO PAYER" payer
  . I ($$PYRAPP^IBCNEUT5("EIV",IBPY)="")&($$PYRAPP^IBCNEUT5("IIU",IBPY)="") Q  ; Only accept eIV & IIU Payers
  . D GETDATA1
  Q

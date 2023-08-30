@@ -1,5 +1,5 @@
 IBJDF8R ;ALB/RRG - AR WORKLOAD ASSIGNMENTS (PRINT) ;05-FEB-01
- ;;2.0;INTEGRATED BILLING;**123,159,192**;21-MAR-94
+ ;;2.0;INTEGRATED BILLING;**123,159,192,739**;21-MAR-94;Build 3
  ;
 EN ; - Option entry point
  ;
@@ -129,8 +129,8 @@ FIRST ; - Prints First Party Parameters
  W !,"Days Since Last Payment",?38,":",?40,$P(IBFPDAT,"^",1)
  W !,"First Patient Name",?38,":",?40,$P(IBFPDAT,"^",2)
  W !,"Last Patient Name",?38,":",?40,$P(IBFPDAT,"^",3)
- W !,"First Social Security Number",?38,":",?40,$P(IBFPDAT,"^",4)
- W !,"Last Social Security Number",?38,":",?40,$P(IBFPDAT,"^",5)
+ ;W !,"First Social Security Number",?38,":",?40,$P(IBFPDAT,"^",4);IB*2.0*739
+ ;W !,"Last Social Security Number",?38,":",?40,$P(IBFPDAT,"^",5);IB*2.0*739
  Q
  ;
 THIRD ; - Prints Third Party Parameters
@@ -143,8 +143,8 @@ THIRD ; - Prints Third Party Parameters
  W !,"Last Insurance Carrier",?38,":",?40,$P(IBTPDAT,"^",3)
  W !,"First Patient Name",?38,":",?40,$P(IBTPDAT,"^",4)
  W !,"Last Patient Name",?38,":",?40,$P(IBTPDAT,"^",5)
- W !,"First Social Security Number",?38,":",?40,$P(IBTPDAT,"^",6)
- W !,"Last Social Security Number",?38,":",?40,$P(IBTPDAT,"^",7)
+ ;W !,"First Social Security Number",?38,":",?40,$P(IBTPDAT,"^",6);IB*2.0*739
+ ;W !,"Last Social Security Number",?38,":",?40,$P(IBTPDAT,"^",7);IB*2.0*739
  W !,"Type of Receivable",?38,":"
  W ?40,$S(IBTOR=1:"Inpatient",IBTOR=2:"Outpatient",IBTOR=3:"Pharmacy Refill",IBTOR=4:"All Receivables",1:"")
  Q

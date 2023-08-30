@@ -1,5 +1,5 @@
 IBJTLA ;ALB/ARH - TPI ACTIVE BILLS LIST SCREEN ;14-FEB-1995
- ;;2.0;INTEGRATED BILLING;**39,61,153,451**;21-MAR-94;Build 47
+ ;;2.0;INTEGRATED BILLING;**39,61,153,451,745**;21-MAR-94;Build 8
  ;;Per VHA Directive 2004-038, this routine should not be modified.
  ;
 EN ; -- main entry point for IBJ THIRD PARTY ACTIVE LIST
@@ -8,7 +8,7 @@ EN ; -- main entry point for IBJ THIRD PARTY ACTIVE LIST
  ;
 HDR ; -- header code
  N X S X=$$PT^IBEFUNC(+$G(DFN))
- S VALMHDR(1)=$P(X,U,1) I $P(X,U,3)'="" S VALMHDR(1)=VALMHDR(1)_"   "_$E(X,1)_$P(X,U,3)
+ S VALMHDR(1)=$P(X,U,1) I $P(X,U,3)'="" S VALMHDR(1)=VALMHDR(1)   ;SSN Removal  IB*2.0*745
  I $G(DFN) N VAEL,VAERR D ELIG^VADPT S X=$P(VAEL(1),U,2),VALMHDR(1)=VALMHDR(1)_$J(" ",(79-$L(VALMHDR(1))-$L(X)))_X
  ; IB*2.0*451 - explanation of EEOB indicator '%' for user
  S VALMSG="|r Referred|* MT on Hold |+ Multi Carriers|% EEOB|"

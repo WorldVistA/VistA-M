@@ -1,0 +1,200 @@
+SDES842P ;ALB/MGD,LAB - SD*5.3*842 Post Init Routine ; Mar 10, 2023
+ ;;5.3;SCHEDULING;**842**;AUG 13, 1993;Build 17
+ ;;Per VHA Directive 6402, this routine should not be modified
+ ;
+ D FIND,TASK,TASK2
+ Q
+ ;
+FIND ;FIND THE IEN FOR "VS GUI NATIONAL"
+ N SDECDA,SDECDA1
+ D MES^XPDUTL("")
+ D MES^XPDUTL("   Updating SDEC SETTINGS file (#409.98)")
+ S SDECDA=0,SDECDA=$O(^SDEC(409.98,"B","VS GUI NATIONAL",SDECDA)) G:$G(SDECDA)="" NOFIND
+ D VERSION   ;update GUI version number and date
+ Q
+VERSION ;SET THE NEW VERSION UPDATE IN SDEC SETTING FILE #409.98 TO 1.7.40
+ S DA=SDECDA,DIE=409.98,DR="2///1.7.40;3///"_DT D ^DIE  ;update VS GUI NATIONAL
+ K DIE,DR,DA
+ S SDECDA1=0,SDECDA1=$O(^SDEC(409.98,"B","VS GUI LOCAL",SDECDA1)) Q:$G(SDECDA1)=""    ;get DA for the VS GUI LOCAL
+ S DA=SDECDA1,DIE=409.98,DR="2///1.7.40;3///"_DT D ^DIE  ;update VS GUI LOCAL
+ K DIE,DR,DA
+ Q
+ ;
+NOFIND ;"VS GUI NATIONAL" NOT FOUND
+ D MES^XPDUTL("   VS GUI NATIONAL not found in the SDEC SETTINGS file (#409.98)")
+ Q
+ ;
+TASK ;
+ D MES^XPDUTL("")
+ D MES^XPDUTL("   SD*5.3*842 Post-Install to fix Disposition records")
+ D MES^XPDUTL("   in the SDEC APPT REQUEST (#409.85) file is being")
+ D MES^XPDUTL("   queued to run in the background. Once it finishes")
+ D MES^XPDUTL("   a MailMan message will be sent to the installer to")
+ D MES^XPDUTL("   provide them a job completion status and data summary.")
+ D MES^XPDUTL("")
+ N ZTDESC,ZTRTN,ZTIO,ZTSK,X,ZTDTH,ZTSAVE
+ S ZTDESC="SD*5.3*842 Post Install Routine"
+ D NOW^%DTC S ZTDTH=X,ZTIO="",ZTRTN="DISP^SDES842P",ZTSAVE("*")="" D ^%ZTLOAD
+ I $D(ZTSK) D
+ . D MES^XPDUTL("  >>>Task "_ZTSK_" has been queued.")
+ . D MES^XPDUTL("")
+ I '$D(ZTSK) D
+ . D MES^XPDUTL("  UNABLE TO QUEUE THIS JOB.")
+ . D MES^XPDUTL("  Please contact the National Help Desk to report this issue.")
+ Q
+ ;
+TASK2 ;
+ N ZTDESC,ZTRTN,ZTIO,ZTSK,X,ZTDTH,ZTSAVE
+ S ZTDESC="SD*5.3*842 -  Post Install Report Routine"
+ D NOW^%DTC S ZTDTH=X,ZTIO="",ZTRTN="DATAREPORT^SDES842P",ZTSAVE("*")="" D ^%ZTLOAD
+ Q
+ ;
+DISP ; Disposition old Appointment Requests
+ N APPTIEN,ARIEN,CANCREAS,DATA0,DATA2,DISP,DISPIEN,FDA,IEN627,REOPEN,STARTTIME,TCNT
+ S TCNT=0
+ S IEN627=$$FIND1^DIC(9.7,"","X","SD*5.3*627","B","","ERROR")
+ I 'IEN627 D  Q
+ .S TEXT(1)="The installation record for patch SD*5.3*627 could not be found"
+ .S TEXT(2)="in the INSTALL (#9.7) file. Please contact the National Help Desk"
+ .S TEXT(3)="to report this issue."
+ .D MAIL
+ S STARTTIME=$$GET1^DIQ(9.7,IEN627,17,"I")
+ I STARTTIME="" D  Q
+ .S TEXT(1)="The installation complete time for patch SD*5.3*627 could not be found"
+ .S TEXT(2)="in the INSTALL (#9.7) file. Please contact the National Help Desk"
+ .S TEXT(3)="to report this issue."
+ .D MAIL
+ S DISPIEN=$$FIND1^DIC(409.853,"","X","CANCELLED NOT RE-OPENED","B","","ERROR")
+ I 'DISPIEN D  Q
+ .S TEXT(1)="The CANCELLED NOT RE-OPENED Disposition Reason could not be found"
+ .S TEXT(2)="in the SDEC DISPOSITION REASON (#409.853) file. Please contact the"
+ .S TEXT(3)="National Help Desk to report this issue."
+ .D MAIL
+ S STARTTIME=STARTTIME-.000001
+ F  S STARTTIME=$O(^SDEC(409.84,"B",STARTTIME)) Q:'STARTTIME  D
+ .S APPTIEN=""
+ .F  S APPTIEN=$O(^SDEC(409.84,"B",STARTTIME,APPTIEN)) Q:'APPTIEN  D
+ ..S DATA0=$G(^SDEC(409.84,APPTIEN,0))
+ ..; Quit is this appt is NOT cancelled
+ ..S CANCREAS=$P(DATA0,U,22)
+ ..Q:'CANCREAS
+ ..; Quit it Appt Req should NOT be re-opened
+ ..S REOPEN=$$GET1^DIQ(409.2,CANCREAS,5,"I")
+ ..Q:REOPEN  ; 1=re-open 0=don't re-open
+ ..; Quit if this appointment doesn't point back to #409.85
+ ..S DATA2=$P($G(^SDEC(409.84,APPTIEN,2)),"^",1)
+ ..Q:DATA2'["409.85"
+ ..S ARIEN=$P(DATA2,";",1)
+ ..Q:'ARIEN
+ ..; Quit if this Appt Req has already been Dispositioned
+ ..Q:$P($G(^SDEC(409.85,ARIEN,"DIS")),U,3)
+ ..; Set Disposition fields for update
+ ..S FDA(409.85,ARIEN_",",19)=$P($$GET1^DIQ(409.84,APPTIEN,.12,"I"),".",1) ; FIX TO JUST BE A DATE
+ ..S FDA(409.85,ARIEN_",",20)=$$GET1^DIQ(409.84,APPTIEN,.121,"I")
+ ..S FDA(409.85,ARIEN_",",21)=DISPIEN
+ ..D FILE^DIE("","FDA","ERR84")
+ ..I '$D(ERR84) S TCNT=TCNT+1
+ ..K FDA,ERR84
+ S TEXT(1)="The SD*5.3*842 post install has run to completion."
+ S TEXT(2)="The data was reviewed and updated without any issues."
+ S TEXT(3)="Total Appoint Requests updated: "_TCNT
+ D MAIL
+ Q
+MAIL ;
+ ; Get Station Number
+ ;
+ N STANUM,MESS1,XMTEXT,XMSUB,XMY,XMDUZ,DIFROM
+ S STANUM=$$KSP^XUPARAM("INST")_","
+ S STANUM=$$GET1^DIQ(4,STANUM,99)
+ S MESS1="Station: "_STANUM_" - "
+ ;
+ ; Send MailMan message
+ S XMDUZ=DUZ
+ S XMTEXT="TEXT("
+ S XMSUB=MESS1_"SD*5.3*842 - Post Install Update"
+ S XMDUZ=.5,XMY(DUZ)="",XMY(XMDUZ)=""
+ D ^XMD
+ K TEXT
+ Q
+MAIL2 ;
+ ; Appointment vs request data report
+ ;
+ N STANUM,MESS1,XMTEXT,XMSUB,XMY,XMDUZ,DIFROM
+ S STANUM=$$KSP^XUPARAM("INST")_","
+ S STANUM=$$GET1^DIQ(4,STANUM,99)
+ S MESS1="Station: "_STANUM_" - "
+ ;
+ ; Send MailMan message
+ S XMDUZ=DUZ
+ S XMTEXT="^XTMP(""SDES842P"","
+ S XMSUB=MESS1_"SD*5.3*842 - Post Install Data Report"
+ S XMDUZ=.5,XMY(DUZ)="",XMY(XMDUZ)=""
+ S XMY("BARBER.LORI@DOMAIN.EXT")=""
+ S XMY("DILL.MATT@DOMAIN.EXT")=""
+ S XMY("REESE,DARRYL M@DOMAIN.EXT")=""
+ D ^XMD
+ K TEXT
+ Q
+DATAREPORT ;
+ N APPTIEN,CHECKIN,CANCELDTTM,STARTTM,POP,CNT,PURGEDT,TEXTCNT
+ S PURGEDT=$$FMADD^XLFDT(DT,5)
+ S ^XTMP("SDES842P",0)=PURGEDT_"^"_DT_"^842 Post Install Data report"
+ S CNT=0
+ S TEXTCNT=0
+ S STARTTM=3221014
+ F  S STARTTM=$O(^SDEC(409.84,"B",STARTTM)) Q:(STARTTM="")  D
+ . S APPTIEN=""
+ . S POP=0
+ . F  S APPTIEN=$O(^SDEC(409.84,"B",STARTTM,APPTIEN)) Q:(APPTIEN="")!POP  D
+ .. S CHECKIN=$$GET1^DIQ(409.84,APPTIEN_",",.03)
+ .. S CANCELDTTM=$$GET1^DIQ(409.84,APPTIEN_",",.12)
+ .. S POP=(CHECKIN'="")!(CANCELDTTM'="")
+ .. Q:POP
+ .. ;Continue checking 
+ .. S APPTDFN=$$GET1^DIQ(409.84,APPTIEN_",",.05,"I")
+ .. S APPTREQTYP=$$GET1^DIQ(409.84,APPTIEN_",",.22,"E")
+ .. S APPTREQINFO=$$GET1^DIQ(409.84,APPTIEN_",",.22,"I")
+ .. D:(APPTREQTYP="APPT") APPT(APPTREQINFO,APPTIEN,APPTDFN,APPTREQTYP)
+ .. D:(APPTREQTYP="CONSULT") CONSULT(APPTREQINFO,APPTIEN,APPTDFN,APPTREQTYP)
+ S ^XTMP("SDES842P",(TEXTCNT+1))="Total = "_CNT
+ D MAIL2
+ Q
+ ;
+APPT(APPTREQINFO,APPTIEN,APPTDFN,APPTREQTYP) ;
+ S REQIEN=$P(APPTREQINFO,";",1)
+ S REQPATDFN=$$GET1^DIQ(409.85,REQIEN_",",.01,"I")
+ Q:APPTDFN=REQPATDFN
+ S REQPATIENT=$$GET1^DIQ(409.85,REQIEN_",",.01,"E")
+ S PATIENTNAME=$$GET1^DIQ(409.84,APPTIEN_",",.05,"E")
+ D REPORT(REQIEN,APPTREQTYP,APPTDFN,PATIENTNAME,REQPATDFN,APPTIEN,REQPATIENT)
+ ;
+ Q
+CONSULT(APPTREQINFO,APPTIEN,APPTDFN,APPTREQTYP) ;
+ N CONSULTIEN,CONSULTPATDFN,CONSULTPATIENT
+ S CONSULTIEN=$P(APPTREQINFO,";",1)
+ S CONSULTPATDFN=$$GET1^DIQ(123,CONSULTIEN_",",.02,"I")
+ Q:APPTDFN=CONSULTPATDFN
+ S CONSULTPATIENT=$$GET1^DIQ(123,CONSULTIEN_",",.02,"E")
+ ;
+ S PATIENTNAME=$$GET1^DIQ(409.84,APPTIEN_",",.05,"E")
+ D REPORT(CONSULTIEN,APPTREQTYP,APPTDFN,PATIENTNAME,CONSULTPATDFN,APPTIEN,CONSULTPATIENT)
+ Q
+ ;
+REPORT(REQIEN,APPTREQTYP,APPTPATDFN,PATIENTNAME,REQPATDFN,APPTIEN,REQPATIENT) ;
+ S CNT=CNT+1
+ S TEXTCNT=TEXTCNT+1
+ S ^XTMP("SDES842P",TEXTCNT)=" Request to be reviewed        : "_REQIEN_"     "_APPTREQTYP
+ S TEXTCNT=TEXTCNT+1
+ S ^XTMP("SDES842P",TEXTCNT)=" Appointment                   : "_APPTIEN
+ S TEXTCNT=TEXTCNT+1
+ S ^XTMP("SDES842P",TEXTCNT)=" Appointment Date/Time         : "_$$GET1^DIQ(409.84,APPTIEN_",",.01,"E")
+ S TEXTCNT=TEXTCNT+1
+ S ^XTMP("SDES842P",TEXTCNT)=" Appointment Made Date         : "_$$GET1^DIQ(409.84,APPTIEN_",",.09,"E")
+ S TEXTCNT=TEXTCNT+1
+ S ^XTMP("SDES842P",TEXTCNT)=" Patient on appointment        : "_APPTDFN_"  "_$$LAST4SSN^SDESINPUTVALUTL(APPTPATDFN)
+ S TEXTCNT=TEXTCNT+1
+ S ^XTMP("SDES842P",TEXTCNT)=" Patient on request            : "_REQPATDFN_"  "_$$LAST4SSN^SDESINPUTVALUTL(REQPATDFN)
+ S TEXTCNT=TEXTCNT+1
+ S ^XTMP("SDES842P",TEXTCNT)=""
+ Q
+ ;

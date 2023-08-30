@@ -1,5 +1,5 @@
 IBJDF1 ;ALB/CPM - THIRD PARTY FOLLOW-UP REPORT ;09-JAN-97
- ;;2.0;INTEGRATED BILLING;**69,118,128,205,554,618,663**;21-MAR-94;Build 27
+ ;;2.0;INTEGRATED BILLING;**69,118,128,205,554,618,663,739**;21-MAR-94;Build 3
  ;Per VA Directive 6402, this routine should not be modified.
  ;
 EN ; - Option entry point.
@@ -47,10 +47,11 @@ INS2 R !?8,"GO TO INSURANCE COMPANY: LAST// ",X:DTIME G:'$T!(X["^") ENQ
  S IBSIL=X
  ;
 NAM ; - Determine range of patients.
- S DIR(0)="SA^N:NAME;L:LAST 4"
- S DIR("A")="Sort Patients by (N)AME or (L)AST of the SSN: "
- S DIR("B")="NAME",DIR("T")=20,DIR("?")="^S IBOFF=29 D HELP^IBJDF1H"
- W ! D ^DIR K DIR G:Y=""!(X="^") ENQ S IBSN=Y,IBI=Y(0)
+ ;S DIR(0)="SA^N:NAME;L:LAST 4" ;IB*2.0*739
+ ;S DIR("A")="Sort Patients by (N)AME or (L)AST of the SSN: " ;IB*2.0*739
+ ;S DIR("B")="NAME",DIR("T")=20,DIR("?")="^S IBOFF=29 D HELP^IBJDF1H" ;IB*2.0*739
+ ;W ! D ^DIR K DIR G:Y=""!(X="^") ENQ S IBSN=Y,IBI=Y(0) ;IB*2.0*739
+ S IBSN="N",IBI="NAME" ;IB*2.0*739
 NAM1 W !?3,"START WITH PATIENT ",IBI,": FIRST// " R X:DTIME G:'$T!(X["^") ENQ
  I $E(X)="?" S IBOFF=36 D HELP^IBJDF1H G NAM1
  S IBSNF=X

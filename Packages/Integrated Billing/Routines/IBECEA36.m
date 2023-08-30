@@ -1,9 +1,9 @@
-IBECEA36 ;ALB/CPM-Cancel/Edit/Add... Urgent Care Add Utilities ; 23-APR-93
- ;;2.0;INTEGRATED BILLING;**646,663,671,677,689,696**;21-MAR-94;Build 3
+IBECEA36 ;ALB/CPM - Cancel/Edit/Add... Urgent Care Add Utilities ; 23-APR-93
+ ;;2.0;INTEGRATED BILLING;**646,663,671,677,689,696,716**;21-MAR-94;Build 19
  ;;Per VA Directive 6402, this routine should not be modified.
  ;
- ;File 27.11 call - DBIA 5158
- ;File, 2, #3014 call - DBIA 7182
+ ; Reference to FILE #27.11 in ICR #5158
+ ; Reference to FILE #2 in ICR #7182
  ;
 PRTUCVST(DFN,IBDT,IBDUPFLG) ; Print the UC visits for a calendar year
  ;
@@ -99,7 +99,7 @@ UCCHRG2(DFN,IBDT) ; Process Urgent Care Copay Charge
  ;   IBCHG - Default Copay to charge
  ;   DFN   - Patient IEN
  ;
- N IBPRI,IBUCVT,IBCT,IBFRCT,IBRESP,IBOK,IBDUPFLG    ; Patient Enrollment Group/UC Visit Tracking storage flag
+ N IBIND,IBTYPE,IBPRI,IBUCVT,IBCT,IBFRCT,IBRESP,IBOK,IBDUPFLG    ; Patient Enrollment Group/UC Visit Tracking storage flag
  S IBCHG=30,IBUNIT=1  ;initial copay amount
  S (IBDT,IBTO)=IBFR,IBX="O",(IBTYPE,IBUNIT)=1,IBEVDA="*",IBDUPFLG=0
  ;
@@ -107,9 +107,10 @@ UCCHRG2(DFN,IBDT) ; Process Urgent Care Copay Charge
  ;
  ; Retrieve Priority Group
  S IBPRI=$$GETELGP(DFN,IBDT)  ;dbia 5158
+ S IBIND=$$INDCHK^IBINUT1(IBDT,DFN)  ; IB*2.0*716
  ;
  ; Process Enrollment Priority Groups 7 and 8
- I IBPRI>6 D  Q
+ I 'IBIND,IBPRI>6 D  Q  ; IB*2.0*716
  . S IBCT=+$$PRTUCVST(DFN,IBDT,.IBDUPFLG)
  . ; Call CTBB^IBECEAU3 to confirm or substitute amount of Copay
  . D CTBB^IBECEAU3
@@ -117,7 +118,7 @@ UCCHRG2(DFN,IBDT) ; Process Urgent Care Copay Charge
  . S IBUCVT=1
  ;
  ; Process Enrollment Priority Groups 1 to 5
- I IBPRI<6 D  Q
+ I IBIND!(IBPRI<6) D  Q  ; IB*2.0*716
  . S IBCT=$$PRTUCVST(DFN,IBDT,.IBDUPFLG) ;Retrieve the number of visits and display them
  . S IBFRCT=$P(IBCT,U,2),IBCT=$P(IBCT,U)
  . I IBFRCT<3 D  Q               ; SC vet has < 3 Free UC visits print statements and quit
@@ -262,7 +263,7 @@ GETELGP(IBDFN,IBDOS) ; Function to return a patient's Enrollment Priority Group 
  ;                            or
  ;                   -1^<error message> if Error occurred during Enrollment Lookup
  ;
- N IBOUT,IBCHK,I,IBDATA,IBELIG,IBEFDT,IBELKUP,IBOLD,IBSCEFDT
+ N IBOUT,IBCHK,I,IBDATA,IBELIG,IBEFDT,IBELKUP,IBOLD,IBSCEFDT,IBLKDT
  ;
  S IBOUT=""  ;initialize the Enrollment groupt array
  S IBCHK=$$GETELIG(IBDFN,.IBOUT)

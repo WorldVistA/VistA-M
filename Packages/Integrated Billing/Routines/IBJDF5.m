@@ -1,5 +1,5 @@
 IBJDF5 ;ALB/RB - CHAMPVA/TRICARE FOLLOW-UP REPORT;15-APR-00
- ;;2.0;INTEGRATED BILLING;**123,185,240,452**;21-MAR-94;Build 26
+ ;;2.0;INTEGRATED BILLING;**123,185,240,452,739**;21-MAR-94;Build 3
  ;;Per VHA Directive 2004-038, this routine should not be modified.
  ;
 EN ; - Option entry point.
@@ -39,8 +39,8 @@ TYP ; - Select type of receivables to print.
  ; - Select a detailed or summary report.
  D DS^IBJD G ENQ:IBRPT["^",DEV:IBRPT="S"
  ;
- ; - Determine sorting (By name or Last 4 SSN)
- S IBSN=$$SNL^IBJD() G ENQ:IBSN="^"
+ ;Force sort by name
+ S IBSN="N" ;IB*2.0*739
  ;
  ; - Determine the range
  S X=$$INTV^IBJD("PATIENT "_$S(IBSN="N":"NAME",1:"LAST 4")) G ENQ:X="^"

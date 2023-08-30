@@ -1,43 +1,39 @@
 IBCNEDE7 ;DAOU/DAC - eIV DATA EXTRACTS ; 04-JUN-2002
- ;;2.0;INTEGRATED BILLING;**271,416,438,497,601,621,668,702**;21-MAR-94;Build 53
+ ;;2.0;INTEGRATED BILLING;**271,416,438,497,601,621,668,702,737**;21-MAR-94;Build 19
  ;;Per VA Directive 6402, this routine should not be modified.
  ;
  Q    ; no direct calls allowed
  ; 
 SETTINGS(EXTNUM) ; Check site parameter settings for the extracts
+ ; IB*737/TAZ - Removed reference to Non-Verified which is being pulled from VistA.
  ; Input Parameter:
  ;
  ; IB*2.0*621/DM reimplement extract (#4), now EICD, formerly No Insurance   
- ; EXTNUM is either 1, 2, 3, 4 to represent the different extracts
+ ; EXTNUM is either 1, 2, 4 to represent the different extracts
  ; 1 - Insurance Buffer extract
  ; 2 - Pre-Reg (appointments)
- ; 3 - Non Verified
  ; 4 - EICD
  ;
  ; Output parameters:
  ; Returns a "^" delimited string passing back:
  ;    EACTIVE - A flag of whether to consider the extract active
  ;    XDAYS - Number of days to look back in the past when extracting data
- ;    STALEDYS - "stale days": number of days from today to determine the
- ;          freshness. This is only used for the non-verified extract.
- ;          The "Buffer" and "Appt" extract get their days from the IB SITE PARAMETER
- ;          file within their specific extract routine.
  ;    MAXCNT - Max Number of entries you are allowed to set into the eIV 
  ;          Transmission Queue file.  If null, # of entries allowed is unlimited.
  ;    SUPPBUFF - Suppress Buffer Flag - Either '0' (No) or '1' (Yes)
  ;          1 will suppress the creation of buffer entries
  ;          0 will not
- ;          Applies to #2 (Pre Reg), #3 (Non verified) and #4 (EICD) 
+ ;          Applies to #2 (Appointment), and #4 (EICD) 
  ; 
  ;    For now, the next three parameters are only used by the EICD (#4) extract  
  ;    STARTDYS - number of days from today to form the extract's start date  
  ;    DYSAFTER - number of days added to the start date to form the extract's end date
  ;    FREQ - how long the extract must wait before an attempt to re-verify for the patient
  ;
- N DIC,DISYS,DA,X,Y,EACTIVE,XDAYS,STALEDYS,MAXCNT,OK,SUPPBUFF
+ N DIC,DISYS,DA,X,Y,EACTIVE,XDAYS,MAXCNT,OK,SUPPBUFF
  N STARTDYS,DYSAFTER,FREQ
- S EACTIVE=0,(XDAYS,STALEDYS,MAXCNT,SUPPBUFF,STARTDYS,DYSAFTER,FREQ)=""
- S OK=$S(EXTNUM=1:1,EXTNUM=2:1,EXTNUM=3:1,EXTNUM=4:1,1:0)
+ S EACTIVE=0,(XDAYS,MAXCNT,SUPPBUFF,STARTDYS,DYSAFTER,FREQ)=""
+ S OK=$S(EXTNUM=1:1,EXTNUM=2:1,EXTNUM=4:1,1:0)
  I 'OK G EXIT
  S DA=1,DIC="^IBE(350.9,"_DA_",51.17,",DIC(0)="X",X=EXTNUM D ^DIC
  ;
@@ -45,7 +41,6 @@ SETTINGS(EXTNUM) ; Check site parameter settings for the extracts
  ;
  S EACTIVE=$G(^IBE(350.9,1,51.17,+Y,0))
  S XDAYS=$P(EACTIVE,U,3)
- S STALEDYS=$P(EACTIVE,U,4)
  S MAXCNT=$P(EACTIVE,U,5)
  S SUPPBUFF=$P(EACTIVE,U,6)
  S STARTDYS=$P(EACTIVE,U,7)
@@ -55,10 +50,9 @@ SETTINGS(EXTNUM) ; Check site parameter settings for the extracts
  S EACTIVE=$P(EACTIVE,U,2)
 EXIT ;
  I EXTNUM=2,(XDAYS="") S EACTIVE=0  ; missing required data
- I EXTNUM=3 D
- . I XDAYS=""!(STALEDYS="") S EACTIVE=0   ; missing required data
  I EXTNUM=4,((STARTDYS="")!(DYSAFTER="")!(FREQ="")) S EACTIVE=0  ; missing required data
- Q EACTIVE_U_XDAYS_U_STALEDYS_U_MAXCNT_U_SUPPBUFF_U_STARTDYS_U_DYSAFTER_U_FREQ
+ ; IB*737/TAZ 3RD Piece below is left blank on purpose.
+ Q EACTIVE_U_XDAYS_U_U_MAXCNT_U_SUPPBUFF_U_STARTDYS_U_DYSAFTER_U_FREQ
  ;
 SETTQ(DATA1,DATA2,ORIG,OVERRIDE,DATA5) ;Set extract data in TQ file 365.1
  ;
@@ -68,10 +62,9 @@ SETTQ(DATA1,DATA2,ORIG,OVERRIDE,DATA5) ;Set extract data in TQ file 365.1
  ; OVERRIDE - flag indicates that this entry is a result of the 
  ;         'Request Re-Verification' menu option.
  ;
+ ; IB*737/TAZ - Removed references to "~NO PAYER"
+ ;
  N BUFFIEN,FDA,IENARRAY,ERROR,TRANSNO,DFN,SRVCODE
- ; do not allow "NO PAYER" entries
- ;IB*2*702/TAZ - Add return value for Q
- I $P(DATA1,U,2)=$$FIND1^DIC(365.12,"","X","~NO PAYER") Q 0
  S BUFFIEN=$P(DATA1,U,4),SRVCODE=0
  ;IB*2.0*621/DM make sure SRVCODE is populated
  S:BUFFIEN SRVCODE=+$$GET1^DIQ(355.33,BUFFIEN_",",80.01,"I") ; "INQ SERVICE TYPE CODE 1"

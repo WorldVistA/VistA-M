@@ -1,5 +1,5 @@
-DDEGET ;SPFO/RAM - Entity GET Handler ; AUG 1, 2018  12:37
- ;;22.2;VA FileMan;**9,17,18,20**;Jan 05, 2016;Build 2
+DDEGET ;SPFO/RAM,MKB - Entity GET Handler ;1/26/23  10:37
+ ;;22.2;VA FileMan;**9,17,18,20,24**;Jan 05, 2016;Build 3
  ;;Per VA Directive 6402, this routine should not be modified.
  ;
  Q
@@ -12,6 +12,8 @@ EN(ENTITY,ID,FILTER,MAX,FORMAT,TARGET,ERROR) ; -- Return [list of] data entities
  ;       TARGET            = closed array reference to return data [opt]
  ;       ERROR             = closed array reference for error msgs [opt]
  ;       FILTER[(#)]       = search values, if using FIND^DIC      [opt]
+ ;       FILTER("from")    = starting search value, for LIST^DIC   [opt]
+ ;       FILTER("partial") = partial search value, for LIST^DIC    [opt]
  ;       FILTER("start")   = start date.time of search, for Query  [opt]
  ;       FILTER("stop")    = stop date.time of search, for Query   [opt]
  ;       FILTER("patient") = DFN or DFN;ICN                        [opt]
@@ -56,15 +58,11 @@ A ; parse & validate input parameters
 B ; extract data
  S QUERY=$G(^DDE(DTYPE,5)) ;TAG^RTN from ENTITY
  S LIST=$S(DFORM:0,1:+$G(FILTER("notag"))) ;omit tag for JSON item
- S:ID'="" DLIST(1)=ID
- I ID="" D  S:'DFORM LIST=1 ;no outer tags for a JSON list
+ I ID'="",$E(ID)'="," S DLIST(1)=ID        ;pass subfile iens to query ;p24
+ E  D  S:'DFORM LIST=1 ;no outer tags for a JSON list
  . N $ES,$ET S $ET="D QRY^DDERR"
  . I $L(QUERY)>1,$L($T(@($P(QUERY,"(")))) D @QUERY Q
- . N XREF,VAL,SCR
- . S XREF=$P($G(^DDE(DTYPE,0)),U,3),VAL=$P($G(^(0)),U,4),SCR=$G(^(5.1))
- . I '$L($G(FILTER)),$L(VAL) S FILTER=$S($D(@VAL):@VAL,1:VAL)
- . D FIND^DIC(FILE,,"@","Q",.FILTER,DMAX,XREF,SCR,,"DDELIST")
- . M DLIST=DDELIST("DILIST",2)
+ . D DIC(DTYPE)
  ;
  S DDEN=0 F  S DDEN=$O(DLIST(DDEN)) Q:DDEN<1  D
  . N $ES,$ET S $ET="D ONE^DDERR"
@@ -78,7 +76,22 @@ B ; extract data
  ;
 ENQ ;exit
  S TARGET=DDEY,ERROR=DDER
+ Q
  ;
+DIC(ENT) ; -- FIND/LIST^DIC, returns DLIST(#)=id for query ;p24
+ ; ID should be null, or iens for sub-file search (",###,")
+ N XREF,VAL,SCR,FROM,PART,DDVAL,I Q:'$G(FILE)
+ S XREF=$P($G(^DDE(ENT,0)),U,3),VAL=$P($G(^(0)),U,4),SCR=$G(^(5.1))
+ S FROM=$G(FILTER("from")),PART=$G(FILTER("partial"))
+ I $D(FILTER)!$L(VAL) D          ;set up DDVAL for FIND using simple or
+ . S:$L($G(FILTER)) DDVAL=FILTER ;compound index value(s) where I=#
+ . N I S I=0 F  S I=$O(FILTER(I)) Q:'I  S DDVAL(I)=FILTER(I)
+ . I '$L($G(DDVAL)),'$O(DDVAL(0)),$L(VAL) S DDVAL=$S($D(@VAL):@VAL,1:VAL)
+ D:$D(DDVAL) FIND^DIC(FILE,ID,"@","Q",.DDVAL,DMAX,XREF,SCR,,"DDELIST")
+ D:'$D(DDVAL) LIST^DIC(FILE,ID,"@","Q",DMAX,FROM,PART,XREF,SCR,,"DDELIST")
+ I $D(^DIC(FILE,0)) M DLIST=DDELIST("DILIST",2) Q
+ ; append ID (iens) to each DA for sub-files
+ S I=0 F  S I=$O(DDELIST("DILIST",2,I)) Q:I<1  S DLIST(I)=DDELIST("DILIST",2,I)_ID
  Q
  ;
 PRE(ENT) ; -- pre-processing logic

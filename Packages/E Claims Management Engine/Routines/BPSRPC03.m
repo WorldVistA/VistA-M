@@ -1,5 +1,5 @@
 BPSRPC03 ;AITC/PD - ECME TAS RPC - Write Back;02/08/2019
- ;;1.0;E CLAIMS MGMT ENGINE;**27**;JUN 2004;Build 15
+ ;;1.0;E CLAIMS MGMT ENGINE;**27,34**;JUN 2004;Build 11
  ;;Per VA Directive 6402, this routine should not be modified.
  ;
  Q
@@ -66,6 +66,23 @@ PUT(RESULT,ARGS) ; RPC: BPS TAS CLAIM WRITE BACK
 RESULT ; setup JSON result
  ;
  S RESULT(1)="[{"_"""ien"""_":"_BPS57_","_"""status"""_":"_BPSRES_"}]"
+ ;
+ ; On rare occasions, the MCCF EDI TAS PROGRESS index gets an extra entry.
+ ; e.g.:
+ ; ^BPSTL("C",1,IEN)=""
+ ; ^BPSTL("C",3,IEN)=""
+ ;
+ ; When this happens, TAS attempts to transmit the transaction over and over.
+ ; The following code checks if the IEN is in the 3 index and also in the 1 or 2 index.
+ ; If so, the MCCF EDI TAS PROGRESS field is reset to 1.  This forces the
+ ; transaction to be succesfully transmitted, allowing the index issue to be resolved.
+ ;
+ I $D(^BPSTL("C",3,BPS57))&(($D(^BPSTL("C",1,BPS57))!($D(^BPSTL("C",2,BPS57))))) D
+ . N BPSA,BPSFN,BPSREC
+ . S BPSFN=9002313.57
+ . S BPSREC=BPS57_","
+ . S BPSA(BPSFN,BPSREC,20)=1
+ . D FILE^DIE("","BPSA","")
  ;
  Q
  ;

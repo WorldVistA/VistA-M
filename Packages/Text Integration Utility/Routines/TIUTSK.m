@@ -1,6 +1,9 @@
-TIUTSK ; SLC/JER - TIU's Nightly Daemon ;4/18/03 [10/18/04 10:34am]
- ;;1.0;TEXT INTEGRATION UTILITIES;**7,53,100,113,157,210,221**;Jun 20, 1997;Build 2
-MAIN ; All records are read. DC date updated, Record purged, Alerts are 
+TIUTSK ; SLC/JER - TIU's Nightly Daemon ;01/30/23  14:09
+ ;;1.0;TEXT INTEGRATION UTILITIES;**7,53,100,113,157,210,221,355**;Jun 20, 1997;Build 11
+ ;
+ Q
+MAIN ;
+ ; All records are read. DC date updated, Record purged, Alerts are
  ; generated if appropriate
  N TIUDA,TIUPRM0,TIUPRM1,TIUDATE,TIUENTDT,TIUPDT,TIUODT
  N TIUSTART,TIUEND,TIUADDL
@@ -12,14 +15,14 @@ MAIN ; All records are read. DC date updated, Record purged, Alerts are
  . D UPDDCDT(TIUDA) ;Ref Date fixed/DC Date updated if missing
  ; Traverse "F" X-ref to identify records for which the grace period
  ; for purge has expired
- S TIUPDT=$$FMADD^XLFDT(DT,-$P(TIUPRM0,U,4))
- S TIUODT=$$FMADD^XLFDT(DT,-$P(TIUPRM0,U,5))
+ S TIUPDT=$$FMADD^XLFDT(DT,-$P(TIUPRM0,U,4)) ; grace period for purge (obsolete)
+ S TIUODT=$$FMADD^XLFDT(DT,-$P(TIUPRM0,U,5)) ; grace period for signature
  ; Traverse "F" X-ref to identify records overdue for signature or purge
  ; NOTE: Following VHA Directive 10-92-077, the purge is disabled until
  ;       further notice **53**
  ;VMP/ELR PATCH 221  SET UP TIUADDL IS OVERDUE ONLY BECAUSE OF ADDITIONAL SIGNER TO STOP AMENDMENT ALERT
  S TIUADDL=0
- S TIUENTDT=($$TSKPARM(3)-1)+.999999
+ S TIUENTDT=($$TSKPARM(3)-1)+.999999 ; length of signer alert period
  F  S TIUENTDT=$O(^TIU(8925,"F",TIUENTDT)) Q:+TIUENTDT'>0!(TIUENTDT>TIUODT)  D
  . S TIUDA=0 F  S TIUDA=$O(^TIU(8925,"F",+TIUENTDT,TIUDA)) Q:+TIUDA'>0  D
  . . ; I (TIUPDT<$$FMADD^XLFDT(DT,-90)),+$$PURGE^TIULC(TIUDA) D PURGE(TIUDA) Purges old records (see NOTE above) **53**
@@ -90,14 +93,17 @@ OVERDUE(TIUDA,TIUSTART,TIUEND) ;Checks whether or not a given document is overdu
  I $$FMDIFF^XLFDT(DT,TIUDATE)>$P(TIUPRM0,U,5),(+$P($G(^TIU(8925,+TIUDA,0)),U,5)>4),(+$P($G(^TIU(8925,+TIUDA,0)),U,5)<7) S TIUY=1 G OVERX
  F  S TIUXTRA=$O(^TIU(8925.7,"B",TIUDA,TIUXTRA)) Q:'TIUXTRA  D
  . I TIUDATE<$G(TIUSTART)!(TIUDATE>$G(TIUEND)) Q
- . I '$$TSKPARM^TIUTSK(1) Q
+ . ; I '$$TSKPARM^TIUTSK(1) Q  ; additional signer alerts were NOT sent if START OF ADD SGNR ALERT PERIOD was not set
+ . ; sites reported additional signer alerts not being sent as OVERDUE as patient safety, START OF ADD SGNR ALERT PERIOD defaults to 12M
  . I $$FMDIFF^XLFDT(DT,TIUDATE)>$P(TIUPRM0,U,5),('$P($G(^TIU(8925.7,TIUXTRA,0)),U,4)) S TIUY=1,TIUADDL=1
 OVERX Q TIUY
 TSKPARM(TIUDA) ;Calculate a tiu parameter for the nightly task
- ; TIUDA = 1 then return NIGHTLY TASK START computation
- ; TIUDA = 2 then return NIGHTLY TASK END computation
+ ; TIUDA = 1 return START OF ADD SGNR ALERT PERIOD computation
+ ; TIUDA = 2 return END OF ADD SGNR ALERT PERIOD computation
+ ; TIUDA = 3 return LENGTH OF SIGNER ALERT PERIOD computation
  N TIUDIV,TIUPARM,TIUY,TIUVAL
  S TIUY=0
+ I TIUDA=1 D DT^DILF("P","T-7D",.TIUY) ; *355 - default to 30 days
  I TIUDA=2 S TIUY=DT
  I TIUDA=3 D DT^DILF("P","T-12M",.TIUY)
  I '$D(TIUPRM0) D SETPARM^TIULE

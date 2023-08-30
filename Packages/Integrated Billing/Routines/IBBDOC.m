@@ -1,6 +1,6 @@
 IBBDOC ;OAK/ELZ - APIS FOR OTHER PACKAGES FOR PFSS - DOCUMENT ;5-AUG-2004
- ;;2.0;INTEGRATED BILLING;**267,260,286,361,384,404**;21-MAR-94;Build 6
- ;;Per VHA Directive 2004-038, this routine should not be modified.
+ ;;2.0;INTEGRATED BILLING;**267,260,286,361,384,404,737**;21-MAR-94;Build 19
+ ;;Per VA Directive 6402, this routine should not be modified.
  ;
  ; Documents the calls to the routine IBBAPI.
  ;
@@ -24,7 +24,54 @@ INSUR ;(DFN,IBDT,IBSTAT,IBR,IBFLDS)
  ;            is all coverages)
  ;
  ;   IBR    = Array to return insurance information - passed by reference
- ;   IBFLDS = List of fields to return (1-24) in a comma separated list or "*" for all
+ ; Example of IBR Array when IBFLDS="1,6,14,17":
+ ; Third parameter is an incremental counter
+ ;
+ ; IBR("IBBAPI","INSUR",1)=IEN for the policy in #2.312
+ ; IBR("IBBAPI","INSUR",1,1)= Ins. Comp. IEN^Ins. Comp. Name (#2.312,.01)  internal^external
+ ; IBR("IBBAPI","INSUR",1,6)=Ins. Comp. Phone (#36,.131)
+ ; IBR("IBBAPI","INSUR",1,14)=Subscriber ID (#2.312,7.02)
+ ; IBR("IBBAPI","INSUR",1,17)=Inpatient Coverage? 0^NO/1^YES
+ ; IBR("IBBAPI","INSUR",2)= IEN for the policy in #2.312
+ ; IBR("IBBAPI","INSUR",2,1)=Ins. Comp. IEN^Ins. Comp. Name (#2.312,.01) internal^external
+ ; IBR("IBBAPI","INSUR",2,6)=Ins. Comp. Phone (#36,.131)
+ ; IBR("IBBAPI","INSUR",2,14)=Subscriber ID (#2.312,7.02)
+ ; IBR("IBBAPI","INSUR",2,17)=Inpatient Coverage? 0^NO/1^YES 
+ ; etc.
+ ;
+ ;   IBFLDS = List of fields to return (1-31) in a comma separated list or "*" for all
+ ;    IB*737/TAZ added list of possible fields for IBFLDS
+ ;      1 - Ins. Comp. Name (#2.312,.01) internal^external
+ ;      2 - Ins. Comp. Street Addr Line 1 (#36,.111)
+ ;      3 - Ins. Comp. City (#36,.114)
+ ;      4 - Ins. Comp. State (#36,.115) internal^external
+ ;      5 - Ins. Comp. Zip (#36,.116)
+ ;      6 - Ins. Comp. Phone (#36,.131)
+ ;      7 - COB (#2.312,.2) internal^external
+ ;      8 - Policy Name (#2.312,.18) internal^external
+ ;      9 - Policy Reimbursable (#36,1) 0^NO/1^YES
+ ;     10 - Policy Effective Date (#2.312,8) internal
+ ;     11 - Policy Expiration Date (#2.312,3) internal
+ ;     12 - Subscriber Relationship (#2.312,16) abbrev.^external
+ ;     13 - Subscriber Name (#2.312,7.01)
+ ;     14 - Subscriber ID (#2.312,7.02)
+ ;     15 - Pharmacy Coverage? 0^NO/1^YES
+ ;     16 - Outpatient Coverage? 0^NO/1^YES
+ ;     17 - Inpatient Coverage? 0^NO/1^YES
+ ;     18 - Group Number (#2.312,.18) -> (#355.3,2.02)
+ ;     19 - Patient Relationship to Subscriber (#2.312,16) internal^external
+ ;     20 - VA Advantage (always returns 0) ^ Tricare plan (1/0)
+ ;     21 - Plan Type (#2.312,.18) -> (#355.3,.09) internal^external
+ ;     22 - Subscriber Sex (#2,.02) or (#2.312,3.12) depends if it is a dependent policy    abbrev.^external
+ ;     23 - Ins. Comp. Street Addr Line 2 (#36,.112)
+ ;     24 - Ins. Comp. Street Addr Line 3 (#36,.113)
+ ;     25 - Date Last Verified (#2.312,1.03) internal (may include time)
+ ;     26 - Insured's Street 1 (#2.312,3.06)
+ ;     27 - Insured's Street 2 (#2.312,3.07)
+ ;     28 - Insured's City (#2.312,3.08)
+ ;     29 - Insured's State (#2.312,3.09) internal^external
+ ;     30 - Insured's Zip (#2.312,3.1)
+ ;     31 - Insured's Phone (#2.312,3.11)
  ;
  ; --Output:
  ;   -1     = error occurred (error message passed back in

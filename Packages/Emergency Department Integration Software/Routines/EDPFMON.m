@@ -1,5 +1,6 @@
-EDPFMON ;SLC/MKB - ED Monitor at facility ; 10/19/21 9:49am
- ;;2.0;EMERGENCY DEPARTMENT;**16**;May 2, 2012;Build 6
+EDPFMON ;SLC/MKB - ED Monitor at facility ; 3/16/23 1:46pm
+ ;;2.0;EMERGENCY DEPARTMENT;**16,20**;May 2, 2012;Build 7
+ ;External reference ^ORX8 supported by DBIA 871
  ;
 EN(MSG) ; -- main entry point for EDP MONITOR where MSG contains HL7 msg
  N EDMSG,PKG,MSH,PID,PV1,ORC,DFN,LOG
@@ -27,13 +28,13 @@ ENOR(MSG) ; -- main entry point for EDP OR MONITOR where MSG contains HL7 msg
  S DFN=$$PID Q:DFN<1                             ;missing patient
  S LOG=+$O(^EDP(230,"APA",DFN,0)) Q:LOG<1        ;not in ED now
  S ORC=0 F  S ORC=$O(@EDMSG@(+ORC)) Q:ORC'>0  I $E(@EDMSG@(ORC),1,3)="ORC" D
- . N ORDCNTRL,ORIFN,ORDSTSCD,ORDSTSDTL,ORDACTFLG
+ . N ORDCNTRL,ORIFN,ORDSTSDTL,ORDACTFLG,ORUPCHUK
  . S ORC=ORC_U_@EDMSG@(ORC),ORDCNTRL=$TR($P(ORC,"|",2),"@","P")
  . Q:ORDCNTRL'="NA"                              ;new backdoor ack
  . S ORIFN=$P($P(ORC,"|",3),U)
  . I $D(^EDP(230,LOG,8,"B",+ORIFN)) Q            ;order already exists *16
- . S ORDSTSCD=$P(^OR(100,+ORIFN,3),U,3)
- . S ORDSTSDTL=$P(^ORD(100.01,ORDSTSCD,0),U,1)
+ . D EN^ORX8(+ORIFN)
+ . S ORDSTSDTL=$P(ORUPCHUK("ORSTS"),U,2)
  . I ORDSTSDTL="ACTIVE" S ORDACTFLG=1
  . D NEW
  Q
@@ -152,6 +153,7 @@ SDAM ; -- send bulletin on check-in
  D GETLST^XPAR(.EDPLST,"ALL","EDPF LOCATION","I")
  S X="",FOUND=0
  F  S X=$O(EDPLST(X)) Q:X=""  I $P(SDATA,U,4)=EDPLST(X) S FOUND=1 Q
+ I $P(SDATA("AFTER","STATUS"),"^",4)="" Q  ; Check-in deleted *20
  Q:'FOUND
  ;
  N DFN,DATE,HLOC

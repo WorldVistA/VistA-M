@@ -1,5 +1,5 @@
 PSO7E684 ;WILM/BDB - Environment routine for patch PSO*7*684 ;4/22/2022
- ;;7.0;OUTPATIENT PHARMACY;**684**;DEC 1997;Build 57
+ ;;7.0;OUTPATIENT PHARMACY;**684,545**;DEC 1997;Build 270
  ;External reference to ^XOB(18.12 supported by DBIA 5813
  ;External reference to ^XOB(18.02 supported by DBIA 5814
  ;External reference to ^XUSRB1 is supported by DBIA 2240
@@ -35,12 +35,12 @@ INITXTMP(HANDPSO,TITLE,LIFE)  ; -- Initialize ^XTMP according to SAC standards.
  Q
  ;
 P545CHK7() ; Have more than 7 days elapsed since PSO*7*545 was installed?
- N P545INST,P545X,P545LAST
+ N P545INST,P545X,P545FIRST
  S P545INST=$$PATCH^XPDUTL("PSO*7.0*545")
  Q:'P545INST 0
  S P545X=$$INSTALDT^XPDUTL("PSO*7.0*545",.DATA)
- S P545LAST=$O(DATA($$NOW^XLFDT),-1)
- I $$FMDIFF^XLFDT($$DT^XLFDT(),P545LAST)>7 Q 1
+ S P545FIRST=$O(DATA(""))
+ I $$FMDIFF^XLFDT($$DT^XLFDT(),P545FIRST)>7 Q 1
  Q 0
  ;
 DEAWS ; Install DEA Web Service

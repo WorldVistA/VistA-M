@@ -1,5 +1,5 @@
 XUS1 ;SF-ISC/STAFF - SIGNON ;01/14/20 13:32
- ;;8.0;KERNEL;**9,59,111,165,150,252,265,419,469,523,543,638,659,701**;Jul 10, 1995;Build 11
+ ;;8.0;KERNEL;**9,59,111,165,150,252,265,419,469,523,543,638,659,701**;Jul 10, 1995;Build 0
  ;Per VA Directive 6402, this routine should not be modified.
  ;User setup
 USER ;

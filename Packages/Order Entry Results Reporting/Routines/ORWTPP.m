@@ -1,6 +1,7 @@
-ORWTPP ; SLC/STAFF Personal Preference - Personal ;Jul 26, 2021@09:10:23
- ;;3.0;ORDER ENTRY/RESULTS REPORTING;**85,149,243,377,539,405**;Oct 24, 2000;Build 211
+ORWTPP ; SLC/STAFF PERSONAL PREFERENCE - PERSONAL ;02/09/23  07:25
+ ;;3.0;ORDER ENTRY/RESULTS REPORTING;**85,149,243,377,539,405,596**;Oct 24, 2000;Build 7
  ;
+ Q
 NEWLIST(VAL,LISTNAME,ORVIZ) ; RPC
  ; set current user's new personal list
  D NEWLIST^ORWTPL(.VAL,LISTNAME,DUZ,$G(ORVIZ))
@@ -155,6 +156,13 @@ GETCOS(VALUES,FROM,DIR,VISITORS,ORSIM) ; RPC
  ; get elgible cosigners for current user
  I '$G(VISITORS) S VISITORS=""
  S ORSIM=+$G(ORSIM)
+ ; *596 ajb
+ I $$GET^XPAR("SYS","ORNEWPERS ACTIVE") D  Q  ; use new entry point^routine only if value is YES (default is YES)
+ . N I,PARAMS,PRM S PARAMS("DFC")=1,PARAMS("HELP")=0,PRM(0)="FROM^DIR^RDV^SPN"
+ . S PRM=$P($P($P($T(GETCOS),"(",2),")"),",",2,$L($P($P($T(GETCOS),"(",2),")"))) ; set string of parameters from NEWPERS
+ . F I=1:1:$L(PRM,",") S PARAMS($P(PRM(0),U,I))=$G(@($P(PRM,",",I))) ;             set variables to pass by reference
+ . D NEWPERSON^ORNEWPERS(.VALUES,.PARAMS)
+ ; *596 ajb
  D GETCOS^ORWTPN(.VALUES,DUZ,FROM,DIR,VISITORS,ORSIM)
  Q
  ;

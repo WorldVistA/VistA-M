@@ -1,5 +1,5 @@
 RCTCSPD ;ALBANY/BDB-CROSS-SERVICING TRANSMISSION ;03/15/14 3:34 PM
- ;;4.5;Accounts Receivable;**301,327,315,336,338,351,350,343**;Mar 20, 1995;Build 59
+ ;;4.5;Accounts Receivable;**301,327,315,336,338,351,350,343,417**;Mar 20, 1995;Build 30
  ;;Per VA Directive 6402, this routine should not be modified.
  ;
  ;PRCA*4.5*327 a. Add check to insure debtor exists to prevent 
@@ -26,48 +26,51 @@ RCTCSPD ;ALBANY/BDB-CROSS-SERVICING TRANSMISSION ;03/15/14 3:34 PM
  ;             Also, add check to ensure a re-established bill is
  ;             NOT ever sent to Treasury.
  ;
-ENTER ;          Entry point from nightly process PRCABJ
+ ;PRCA*4.5*417 Correct gender update issue caused by patch 
+ ;             and incidents INC22249334 & INC21601588
+ ;
+ENTER ;Entry point from nightly process PRCABJ
  N DEBTOR,RC151DT,PRIN,INT,ADMIN,TDEB,TFIL,RCDFN,CNTR,SITE,LN,FN,MN,SITE,F60DT,VADM,PHONE,QUIT,TOTAL,ZIPCODE,FULLNM,RCNT,REPAY,X1,X2,ERROR,ADDR,CAT,BILLDT,CURRTOT,SITECD
- N SEQ,CNTLID,PREPDT,X1,X2,X,DELDT,ACTDT,SITE40,PRCATX,PRCAREST,PRCAREFR   ;PRCA*4.5*343
+ N SEQ,CNTLID,PREPDT,X1,X2,X,DELDT,ACTDT,SITE40,PRCATX,PRCAREST,PRCAREFR
  D SETUP^RCTCSPD0
  S (DEBTOR,RCNT)=0,SEQ=0
 RSDEBTOR ;
  F  S DEBTOR=$O(^PRCA(430,"C",DEBTOR)) Q:DEBTOR'?1N.N  D
  .D NOW^%DTC S ^XTMP("RCTCSPD",$J,"ZZBDEBTOR")=%_U_DEBTOR
- .N X,RCDFN,DEMCS,DOB,GNDR,DEBTOR0,DEBTOR1,DEBTOR3,DEBTOR7,DEBTOR8,BILL
+ .N X,RCDFN,DEMCS,DOB,GNDR,DEBTOR0,DEBTOR1,DEBTOR3,DEBTOR7,DEBTOR8,BILL,RCTCSCW
  .I '$D(^RCD(340,DEBTOR,0)) S ^XTMP("RCTCSPD",$J,"ZZUNDEF",DEBTOR)="" Q
- .S DEBTOR0=^RCD(340,DEBTOR,0),DEBTOR1=$G(^(1)),DEBTOR3=$G(^(3)),DEBTOR7=$G(^(7))
+ .S RCTCSCW=0,DEBTOR0=^RCD(340,DEBTOR,0),DEBTOR1=$G(^(1)),DEBTOR3=$G(^(3)),DEBTOR7=$G(^(7))
+ .S RCTCSCW=$$SSCHK^RCTCSP7(DEBTOR) Q:RCTCSCW=1  ;PRCA*4.5*417
  .S DEBTOR8=$O(^RCD(340,DEBTOR,8,"A"),-1) I DEBTOR8?1.N S DEBTOR8=$P($G(^RCD(340,DEBTOR,8,DEBTOR8,0)),U)
  .S RCDFN=+DEBTOR0
  .S DEMCS=$$DEM^RCTCSP1(RCDFN)
  .S DOB=$P(DEMCS,U,2)
  .S GNDR=$P(DEMCS,U) S:"MF"'[GNDR GNDR="U"
- .I $P(DEBTOR7,U,2) I '+$P(DEBTOR7,U,3) D  ;send type 2 recall record
+ .I $P(DEBTOR7,U,2) D:'+$P(DEBTOR7,U,3)  ;send type 2 recall record
  ..N ACTION,B0,B15,BILL
  ..S ACTION="L"
  ..S B0="",B15="",BILL=0
  ..; The code below is designed to get ONLY one bill #.  It is not a bug! As per VA SME contacts.
  ..F  S BILL=$O(^PRCA(430,"C",DEBTOR,BILL)) Q:BILL'?1N.N  I $D(^PRCA(430,"TCSP",BILL)) I $P(^PRCA(430,BILL,15),U,7)'=1 S B0=$G(^PRCA(430,BILL,0)),B15=$G(^(15)) Q  ;get one bill
- ..I BILL="" S BILL=0 S $P(^RCD(340,DEBTOR,7),U,2,4)="^^",$P(DEBTOR7,U,2,4)="^^" Q  ;cs debtor with no cs bill, clear the debtor recall flag, quit
+ ..I BILL="" S BILL=0,$P(^RCD(340,DEBTOR,7),U,2,4)="^^",$P(DEBTOR7,U,2,4)="^^" Q  ;cs debtor with no cs bill, clear the debtor recall flag, quit
  ..D REC2
  ..S $P(^RCD(340,DEBTOR,7),U,3)=DT
- ..S DEBTOR7=^RCD(340,DEBTOR,7)
+ ..S DEBTOR7=^RCD(340,DEBTOR,7),TAXID=$$TAXID^RCTCSP1(DEBTOR)
  ..S BILL=0 ;set debtor cross-serviced bills as recalled
  ..F  S BILL=$O(^PRCA(430,"C",DEBTOR,BILL)) Q:BILL'?1N.N  D
  ...D NOW^%DTC S ^XTMP("RCTCSPD",$J,"ZZCRBILL")=%_U_BILL
- ...I $D(^PRCA(430,"TCSP",BILL)) D  Q  ;bill previously sent to TCSP
- ....S $P(^PRCA(430,BILL,15),U)="" ;clear the date referred
- ....S $P(^PRCA(430,BILL,15),U,2)=1 ;set the recall flag
- ....S $P(^PRCA(430,BILL,15),U,3)=DT ;set the recall date
+ ...I $D(^PRCA(430,"TCSP",BILL)) D  Q
+ ....S ^PRCA(430,BILL,15)=U_1_U_DT_U_$P(^PRCA(430,BILL,15),U,4,99)
  ....S $P(^PRCA(430,BILL,15),U,4)=$P(DEBTOR7,U,4) ;set the recall reason
  ....S $P(^PRCA(430,BILL,15),U,5)=$$GET1^DIQ(430,BILL,11) ;set the recall amount to the current amount
- ....K ^PRCA(430,"TCSP",BILL) ;kill the cross-servicing cross reference
+ ....K ^PRCA(430,"TCSP",BILL)
  ....D RCRSD^RCTCSPD4 ; set debtor recall non-financial transaction PRCA*4.5*315
  .S (BILL,TOTAL,REPAY)=0
 RSBILL .F  S BILL=$O(^PRCA(430,"C",DEBTOR,BILL)) Q:BILL'?1N.N  D
  ..I $G(ONEBILL)'="",BILL'=ONEBILL Q  ; Test single bill ; PRCA*4.5*350
  ..D NOW^%DTC S ^XTMP("RCTCSPD",$J,"ZZCTRACKER")=%_U_DEBTOR_U_BILL
  ..N B0,B4,B6,B7,B9,B12,B121,B14,B15,B16,B19,B20,ACTION,RR
+ ..D TAXID^RCTCSP7(DEBTOR)
  ..S B0=$G(^PRCA(430,BILL,0)),B4=$G(^(4)),B6=$G(^(6)),B7=$G(^(7)),B9=$G(^(9)),B12=$G(^(12)),B121=$G(^(12.1)),B14=$G(^(14)),B15=$G(^(15)),B16=$G(^(16)),B19=$G(^(19)),B20=$G(^(20))
  ..S RR=$$RR^RCTCSPU(BILL) ;PRCA*4.5*350
  ..Q:($P(B6,U,21)\1)<ACTDT  ;cs activation date cutoff
@@ -115,8 +118,7 @@ RSBILL .F  S BILL=$O(^PRCA(430,"C",DEBTOR,BILL)) Q:BILL'?1N.N  D
  D COMPILE^RCTCSP2 ;compile cross-serviced records
  D NOW^%DTC S ^XTMP("RCTCSPD",$J,"ZZFTRANSMIT DPN")=%
  D COMPILED^RCTCSP3 ;compile the aitc due process notification records
- D NOW^%DTC S ^XTMP("RCTCSPD",$J,"ZZGTRANSMIT FINISHED")=%
- D NOW^%DTC S ^XTMP("RCTCSPD",$J,"ZZHCOMPLETE")=%
+ D NOW^%DTC S ^XTMP("RCTCSPD",$J,"ZZGTRANSMIT FINISHED")=%,^XTMP("RCTCSPD",$J,"ZZHCOMPLETE")=%
  D FINISH^RCTCSPD0
  Q
  ;
@@ -187,7 +189,6 @@ UPDCHK(BILL) ;update 5b or existing bill
  .D REC5B^RCTCSP1
  .S $P(^PRCA(430,BILL,17,TRNIDX,0),U,2)=""
  .S FIVBFLG=1
- ;I '$D(^PRCA(430,BILL,16)) Q 0 ;quit null node 16 old address   ;PRCA*4.5*336
  I $P(B15,U,7) Q 0 ;check stop tcsp referral flag               ;PRCA*4.5*336
  S TOTAL=$P(B7,U)+$P(B7,U,2)+$P(B7,U,3)+$P(B7,U,4)+$P(B7,U,5)
  S (PRCAREST,PRCAREFR)=0
@@ -205,31 +206,29 @@ UPDCHK(BILL) ;update 5b or existing bill
  . I $P(B19,U,4)=1 S ACTION="A" D REC2C^RCTCSP7 S $P(B19,U,4)="" S $P(^PRCA(430,BILL,19),U,4)="" ;PRCA*4.5*327
  I FIVBFLG=1 Q 1 ;if 5b sent, then do not continue to referral check
  I '$D(^PRCA(430,"TCSP",BILL)) Q 0 ;if not cross-serviced, then continue referral check
- S TAXID=$$TAXID^RCTCSP1(DEBTOR)
  I '$D(^PRCA(430,BILL,16)) Q 0 ;quit null node 16 old address   ;PRCA*4.5*343
- S OTAXID=$P(B16,U,1)
- S NAME=$$NAME^RCTCSP7(+DEBTOR0),NAME=$P(NAME,U)
+UP1 S NAME=$$NAME^RCTCSP7(+DEBTOR0),NAME=$P(NAME,U)
  S ONAME=$P(B16,U,2)
- I $P(B0,U,8)=16,$D(^PRCA(430,"TCSP",BILL)) I (NAME'=ONAME)!(TAXID'=OTAXID) D
+ I $P(B0,U,8)=16,$D(^PRCA(430,"TCSP",BILL)) I (NAME'=ONAME) D
  .S ACTION="U"
  .D REC2
- .S $P(^PRCA(430,BILL,16),U,1)=TAXID,$P(^(16),U,2)=NAME,$P(^(19),U,2)="",$P(B19,U,2)=""
- S OADDR=$P(^PRCA(430,BILL,16),U,4,8),OPHONE=$P(^(16),U,11),OCOUNTRY=$P(^(16),U,12)
+ .S $P(^PRCA(430,BILL,16),U,2)=NAME,$P(^PRCA(430,BILL,19),U,2)="",$P(B19,U,2)=""
+ S OADDR=$P(B16,U,4,8),OPHONE=$P(B16,U,11),OCOUNTRY=$P(B16,U,12)
  S ADDRCS=$$ADDR^RCTCSP1(RCDFN,1),PHONE=$P(ADDRCS,U,6),COUNTRY=$P(ADDRCS,U,7)     ;PRCA*4.5*336
  I $P(DEBTOR1,"^",9)'=1 D  ;if debtor address is not marked unknown, then check address
  .I $P(B0,U,8)=16,$D(^PRCA(430,"TCSP",BILL)) I ($P(ADDRCS,U,1,5)'=$P(OADDR,U,1,5))!(PHONE'=OPHONE)!(COUNTRY'=OCOUNTRY) D
  ..S ACTION="A" ;2c records have action code 'a'
  ..D REC2C^RCTCSP7
  ..S $P(B19,U,4)=""
- ..S $P(^PRCA(430,BILL,16),U,4,8)=$P(ADDRCS,U,1,5),$P(^(16),U,11)=PHONE,$P(^(16),U,12)=$P(ADDRCS,U,7)
+ ..S $P(^PRCA(430,BILL,16),U,4,8)=$P(ADDRCS,U,1,5),$P(^PRCA(430,BILL,16),U,11)=PHONE,$P(^PRCA(430,BILL,16),U,12)=$P(ADDRCS,U,7)
  S B16=^PRCA(430,BILL,16)
  S ODOB=$P(^PRCA(430,BILL,16),U,13)
  S OGNDR=$P(^PRCA(430,BILL,15),U,14)
  I $P(B0,U,8)=16,$D(^PRCA(430,"TCSP",BILL)) I (DOB'=ODOB)!(GNDR'=OGNDR) D
  .S ACTION="U"
  .D REC2A
- .S $P(^PRCA(430,BILL,16),U,13)=DOB,B16=^(16)
- .S $P(^PRCA(430,BILL,15),U,14)=GNDR,B15=^(15)
+ .S $P(^PRCA(430,BILL,16),U,13)=DOB,B16=^PRCA(430,BILL,16)
+ .S $P(^PRCA(430,BILL,15),U,14)=GNDR,B15=^PRCA(430,BILL,15)
  .Q
  Q 1 ;bill is cross-serviced so do not continue referral check
  ;
@@ -272,16 +271,18 @@ REC1 ;record type 1
  Q
  ;
 REC2 ;
- N REC,KNUM,DEBTNR,DEBTORNB,TAXID,NAME,RCD
+ N REC,KNUM,DEBTNR,DEBTORNB,TAXID,NAME,RCD,HTAXID
  S REC="C2 "_ACTION_"3636001200"_"DM1D "
- S KNUM=$P($P(B0,U,1),"-",2)
+ S KNUM=$P($P(B0,U,1),"-",2),HTAXID=0
  S DEBTNR=$$AGDEBTID,REC=REC_DEBTNR ; PRCA*4.5*350
  S DEBTORNB=$E(SITE,1,3)_$TR($J(DEBTOR,12)," ",0)
  S REC=REC_DEBTORNB
- S TAXID=$$TAXID^RCTCSP1(DEBTOR)
+ S TAXID=$$TAXID^RCTCSP1(DEBTOR) S:+$G(RCTCSSCH) HTAXID=TAXID,TAXID=$P(RCTCSSCH,U)
  S REC=REC_TAXID_"SSN"
  S NAME=$$NAME^RCTCSP7(+DEBTOR0),NAME=$P(NAME,U)
+ I $G(RCTCSCW) S NAME=$E(RCTCSSCH,11,115)
  S REC=REC_NAME_$$BLANK(5)_"I"
+ I ACTION="U",HTAXID S REC=REC_$$BLANK(35)_HTAXID
  I ACTION="L" D
  .S REC=REC_$$BLANK(232-$L(REC))
  .S RCD=$P(B15,U,4)
@@ -298,11 +299,8 @@ REC2A ;
  S KNUM=$P($P(B0,U,1),"-",2)
  S DEBTNR=$$AGDEBTID,REC=REC_DEBTNR ; PRCA*4.5*350
  S DEBTORNB=$E(SITE,1,3)_$TR($J(DEBTOR,12)," ",0)
- S REC=REC_DEBTORNB
- S REC=REC_$$BLANK(3)
- S REC=REC_GNDR
- S REC=REC_$$DATE8($P(DEMCS,U,2))
- S REC=REC_$$BLANK(450-$L(REC))
+ S REC=REC_DEBTORNB,REC=REC_$$BLANK(3),REC=REC_GNDR
+ S REC=REC_$$DATE8($P(DEMCS,U,2)),REC=REC_$$BLANK(450-$L(REC))
  S ^XTMP("RCTCSPD",$J,BILL,ACTION,"2A")=REC
  S $P(^XTMP("RCTCSPD",$J,"BILL",ACTION,BILL),U,1)=$$TAXID^RCTCSP1(DEBTOR)
  D CLR19(BILL,3)
@@ -354,4 +352,5 @@ RECALL(BILL) ; set the recall flag
  ;
 CLR19(BILL,X) ; clear the send flag
  S $P(^PRCA(430,BILL,19),U,X)=""
+ Q
  ;

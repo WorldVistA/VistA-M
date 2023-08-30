@@ -1,5 +1,5 @@
 PSODEARU ;WILM/BDB - EPCS Utilities and Reports; [5/7/02 5:53am] ;10/5/21  14:50
- ;;7.0;OUTPATIENT PHARMACY;**667**;DEC 1997;Build 18
+ ;;7.0;OUTPATIENT PHARMACY;**667,545**;DEC 1997;Build 270
  ;External reference to DEA NUMBERS file (#8991.9) is supported by DBIA 7002
  ;External reference to XUEPCS DATA file (#8991.6) is supported by DBIA 7015
  ;External reference to XUEPCS PSDRPH AUDIT file (#8991.7) is supported by DBIA 7016
@@ -11,7 +11,7 @@ OENDL(PSONS,BDT,EDT,FN) ;
  I '+$G(GUIFLAG) K IOP,%ZIS S PSOION=ION,%ZIS="M" D ^%ZIS I POP S IOP=PSOION D ^%ZIS Q
  N PAGE,LINE,LEN,XTV,ARR,I,J,RHD,HCL,FSP,RDT,DV,DVS,FE
  N HEADER,DIVDA,PSODIV,START,DA,DATA,IEN K DIRUT
- N PROVNAME,EDITOR,FLDNAME,OLDVAL,NEWVAL,EDITDATE,DEA
+ N PROVNAME,EDITOR,FLDNAME,OLDVAL,NEWVAL,EDITDATE,DEA,SRCFILE
  K ^XTMP(PSONS,$J),^TMP($J,"EPCSRPT")
  S LD=BDT F  S LD=$O(^XTV(FN,"DT",LD))  Q:'LD!(LD>EDT)  D
  . S ND=0 F  S ND=$O(^XTV(FN,"DT",LD,ND)) Q:'ND  D
@@ -23,7 +23,7 @@ OENDL(PSONS,BDT,EDT,FN) ;
  ... S ^XTMP(PSONS,$J,DV,LD,ND)=""
  I '$D(^XTMP(PSONS,$J)) D  Q
  . U IO W !,"          ***************  NO MATCHING DATA  ***************",!!
- S HEADER="Division^Provider Name^Edited by Name^Field Name^Original Data^Edited Data^Date Edited^"
+ S HEADER="Division^Provider Name^Edited by Name^Field Name^Original Data^Edited Data^Source File^Date Edited^DEA Number"
  I +$G(GUIFLAG) S ROW=1 S ^TMP($J,"EPCSRPT",ROW)=HEADER
  I '+$G(GUIFLAG) U IO W !,$TR(HEADER,"^","|")
  S DIVDA="" F  S DIVDA=$O(^XTMP(PSONS,$J,DIVDA)) Q:'DIVDA  D
@@ -41,9 +41,10 @@ OENDL(PSONS,BDT,EDT,FN) ;
  ... I FE'=.04 D
  .... S OLDVAL=$S($G(XTV(FN,DA_",",.04,"E"))="True":1,$G(XTV(FN,DA_",",.04,"E"))="False":0,1:$G(XTV(FN,DA_",",.04,"E")))
  .... S NEWVAL=$S($G(XTV(FN,DA_",",.05,"E"))="True":1,$G(XTV(FN,DA_",",.05,"E"))="False":0,1:$G(XTV(FN,DA_",",.05,"E")))
+ ... S SRCFILE=$S(FE>50:200,1:8991.9)
  ... S Y=$P($P(DATA,"^",6),".",1) X ^DD("DD") S EDITDATE=Y
  ... S DEA=$P(DATA,"^",8)
- ... S RECORD=PSODIV_U_PROVNAME_U_EDITOR_U_FLDNAME_U_OLDVAL_U_NEWVAL_U_EDITDATE_U_DEA
+ ... S RECORD=PSODIV_U_PROVNAME_U_EDITOR_U_FLDNAME_U_OLDVAL_U_NEWVAL_U_SRCFILE_U_EDITDATE_U_DEA
  ... I +$G(GUIFLAG) S ROW=ROW+1 S ^TMP($J,"EPCSRPT",ROW)=RECORD
  ... I '+$G(GUIFLAG) W !,$TR(RECORD,"^","|")
  I '+$G(GUIFLAG) W !!,"End of Report.  If 'Logging', please turn off 'Logging'.",! K DIR S DIR(0)="E",DIR("A")="Press Return to continue" D ^DIR K DIR
@@ -76,7 +77,7 @@ DL ;Delimited File message
  W !,"importing."
  W !!,"The format of the output is as follows, using '|' as the delimiter:"
  W !,"Division|Provider Name|Edited by Name|Field Name|Original Data|Edited Data"
- W !,"|Date Edited"
+ W !,"|Source File|Date Edited|DEA Number"
  D YN
  Q
  ;

@@ -1,5 +1,5 @@
 VPRHSX1 ;SLC/MKB -- HS Mgt Options cont ;09/18/18 4:36pm
- ;;1.0;VIRTUAL PATIENT RECORD;**25,27**;Sep 01, 2011;Build 10
+ ;;1.0;VIRTUAL PATIENT RECORD;**25,27,31**;Sep 01, 2011;Build 3
  ;;Per VA Directive 6402, this routine should not be modified.
  ;
  ; External References          DBIA#
@@ -36,9 +36,9 @@ GET ; -- Add patient/container/record to GET list [VPR HS PUSH]
 G1 ;loop for prompting
  S TYPE=$$CONTNR^VPRHST,ID="" Q:"^"[TYPE
  I $G(^VPR(1,2,DFN,"AVPR",TYPE,"*")) W !,"This patient already has a container update request in the queue!",! G G1
- I TYPE="Patient"!(TYPE="AdvanceDirective")!(TYPE="MemberEnrollment") D  G G1
+ I TYPE="Patient" D  G G1
  . W !,"Entire container must be updated."
- . S:TYPE="Patient" ID=DFN_";2"
+ . S ID=DFN_";2"
  . D P1^VPRHS,OUT W !
  I $$ALL D P1^VPRHS,OUT W ! G G1
  ;

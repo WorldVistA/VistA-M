@@ -1,5 +1,5 @@
 IBCNINSL ;AITC/TAZ/VAD - GENERAL INSURANCE UTILITIES - LOOKUP ;8/20/20 12:46p.m.
- ;;2.0;INTEGRATED BILLING;**664,687**;21-MAR-94;Build 88
+ ;;2.0;INTEGRATED BILLING;**664,687,737**;21-MAR-94;Build 19
  ;;Per VA Directive 6402, this routine should not be modified.
  ;
  ;IB*2.0*664/TAZ/VAD - Cloned code from VAUTOMA to increase functionality
@@ -56,15 +56,15 @@ INSCO(ARRAY) ; Insurance Company Lookup
  M ARRAY=INSCO
  Q
  ;
-PAYER(APP,NOPAYR,ARRAY) ;Payer Lookup
+PAYER(APP,ARRAY) ;Payer Lookup
  ;INPUT:
  ; APP     - PAYER APPLICATION to include in lookup
  ; ARRAY    - Results of lookup to be used by calling routine
- ; NOPAYR  - 1 to exclude ~NO PAYER
+ ;
+ ;IB*737/TAZ - Removed references to "~NO PAYER" which was an input parameter
  ;
  N IBUTNI,PAYER,SCREEN
- I $G(NOPAYR) S SCREEN="I ($P(^(0),U,1)'=""~NO PAYER"")"  ;This screen is used by ^DIC
- I $G(APP)'="" S SCREEN=SCREEN_$S($L(SCREEN):",",1:"")_"$$PYRAPP^IBCNEUT5("""_APP_""",$G(Y))'="""""
+ I $G(APP)'="" S SCREEN="I $$PYRAPP^IBCNEUT5("""_APP_""",$G(Y))'="""""
  D LOOKUP(365.12,"Payer","PAYER",,,.SCREEN)
  M ARRAY=PAYER
  Q

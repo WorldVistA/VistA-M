@@ -1,9 +1,10 @@
 PSOBPSU2 ;BIRM/MFR - BPS (ECME) Utilities 2 ;10/15/04
- ;;7.0;OUTPATIENT PHARMACY;**260,287,289,341,290,358,359,385,421,459,482,512,544,562,660**;DEC 1997;Build 1
- ;Reference to File 200 - NEW PERSON supported by IA 10060
- ;Reference to DUR1^BPSNCPD3 supported by IA 4560
- ;Reference to $$NCPDPQTY^PSSBPSUT supported by IA 4992
- ;Reference to $$CLAIM^BPSBUTL supported by IA 4719
+ ;;7.0;OUTPATIENT PHARMACY;**260,287,289,341,290,358,359,385,421,459,482,512,544,562,660,681**;DEC 1997;Build 11
+ ; Reference to ^VA(200 in ICR #10060
+ ; Reference to DUR1^BPSNCPD3 in ICR #4560
+ ; Reference to $$NCPDPQTY^PSSBPSUT in ICR #4992
+ ; Reference to $$CLAIM^BPSBUTL in ICR #4719
+ ; Reference to $$TRICVANB^PSXRPPL1 in ICR #7351
  ;
 MWC(RX,RFL) ; Returns whether a prescription is (M)ail, (W)indow or (C)MOP
  ;Input: (r) RX   - Rx IEN (#52)
@@ -17,15 +18,23 @@ MWC(RX,RFL) ; Returns whether a prescription is (M)ail, (W)indow or (C)MOP
  ; If RFL is not zero, then pull the value from MAIL/WINDOW on the
  ; REFILL multiple. Otherwise, pull the value from MAIL/WINDOW
  ; at the Prescription level.
+ ;
  I RFL S MWC=$$GET1^DIQ(52.1,RFL_","_RX,2,"I")
  E  S MWC=$$GET1^DIQ(52,RX,11,"I")
- S:MWC="" MWC="W"
- I MWC'="M",MWC'="W" Q MWC   ; If neither Mail nor Window, quit now and skip other checks
+ ;
+ ; If <blank>, default to Window.
+ ; If neither Mail nor Window, quit now and skip other checks.
+ ;
+ I MWC="" S MWC="W"
+ I MWC'="M",MWC'="W" Q MWC
  ;
  ; - Checking the RX SUSPENSE file (#52.5)
  ; File# 52, field# 100 is STATUS; 5=Suspended
  I $$GET1^DIQ(52,RX,100,"I")=5 D
- . N RXS S RXS=+$O(^PS(52.5,"B",RX,0)) Q:'RXS
+ . N RXS
+ . S RXS=+$O(^PS(52.5,"B",RX,0))
+ . I 'RXS Q
+ . ;
  . ; File#52.5, RX SUSPENSE; field# 3, CMOP INDICATOR
  . ; If the CMOP INDICATOR is not blank, then this is CMOP...
  . I $$GET1^DIQ(52.5,RXS,3,"I")'="" S MWC="C" Q
@@ -34,7 +43,8 @@ MWC(RX,RFL) ; Returns whether a prescription is (M)ail, (W)indow or (C)MOP
  ;
  ; - Checking the CMOP EVENT sub-file (#52.01)
  I MWC'="C" D
- . N CMP S CMP=0
+ . N CMP
+ . S CMP=0
  . F  S CMP=$O(^PSRX(RX,4,CMP)) Q:'CMP  D  I MWC="C" Q
  . . I $$GET1^DIQ(52.01,CMP_","_RX,2,"I")=RFL S MWC="C"
  ;
@@ -47,39 +57,49 @@ RXACT(RX,RFL,COMM,TYPE,USR) ; - Add an Activity to the ECME Activity Log (PRESCR
  ;       (r) TYPE - Comments type: (M-ECME,E-Edit, etc...) See file #52 DD for all values
  ;       (o) USR  - User logging the comments (Default: DUZ)
  ;
- S:'$D(RFL) RFL=$$LSTRFL^PSOBPSU1(RX) S:'$D(USR) USR=DUZ
- S:'$D(^VA(200,+USR,0)) USR=DUZ S COMM=$E($G(COMM),1,100)
- ;
- I COMM="" Q
  I '$D(^PSRX(RX)) Q
  ;
- N PSOTRIC S PSOTRIC="",PSOTRIC=$$TRIC^PSOREJP1(RX,RFL,PSOTRIC)
+ S COMM=$E($G(COMM),1,100)
+ I COMM="" Q
+ ;
+ I '$D(RFL) S RFL=$$LSTRFL^PSOBPSU1(RX)
+ I '$D(USR) S USR=DUZ
+ I '$D(^VA(200,+USR,0)) S USR=DUZ
+ I '$D(^VA(200,+USR,0)) S USR=.5
+ ;
+ N PSOTRIC
+ S PSOTRIC=$$TRIC^PSOREJP1(RX,RFL,"")
  I PSOTRIC=1,$E(COMM,1,7)'="TRICARE" S COMM=$E("TRICARE-"_COMM,1,100)
  I PSOTRIC=2,$E(COMM,1,7)'="CHAMPVA" S COMM=$E("CHAMPVA-"_COMM,1,100)
- N X,DIC,DA,DD,DO,DR,DINUM,Y,DLAYGO
- S DA(1)=RX,DIC="^PSRX("_RX_",""A"",",DLAYGO=52.3,DIC(0)="L"
+ ;
+ N DA,DD,DIC,DINUM,DLAYGO,DO,DR,X,Y
+ S DA(1)=RX
+ S DIC="^PSRX("_RX_",""A"","
+ S DLAYGO=52.3
+ S DIC(0)="L"
  S DIC("DR")=".02///"_TYPE_";.03////"_USR_";.04///"_$S(TYPE'="M"&(RFL>5):RFL+1,1:RFL)_";.05///"_COMM
- S X=$$NOW^XLFDT() D FILE^DICN
+ S X=$$NOW^XLFDT()
+ D FILE^DICN
  Q
  ;
 ECMENUM(RX,RFL) ; Returns the ECME number for a specific prescription and fill
- N ECMENUM
  I $G(RX)="" Q ""
+ N ECMENUM
  ; Check ECME # for Refill passed in
  I $G(RFL)'="" S ECMENUM=$$GETECME(RX,RFL) Q ECMENUM
  ; If Refill is null, check last refill
- S RFL=$$LSTRFL^PSOBPSU1(RX),ECMENUM=$$GETECME(RX,RFL) I ECMENUM'="" Q ECMENUM
+ S RFL=$$LSTRFL^PSOBPSU1(RX)
+ S ECMENUM=$$GETECME(RX,RFL)
+ I ECMENUM'="" Q ECMENUM
  ; If no ECME # for last refill, step back through refills in reverse order
  F  S RFL=RFL-1 Q:(RFL<0)!(ECMENUM'="")  S ECMENUM=$$GETECME(RX,RFL)
  Q ECMENUM
  ;
 GETECME(RX,RFL) ;
  ;Internal function used by ECMENUM to get the ECME # from BPS
- N ECMENUM
  I $G(RX)="" Q ""
  I $G(RFL)="" Q ""
- S ECMENUM=$P($$CLAIM^BPSBUTL(RX,RFL),U,6)
- Q ECMENUM
+ Q $P($$CLAIM^BPSBUTL(RX,RFL),U,6)
  ;
 RXNUM(ECME) ; Returns the Rx number for a specific ECME number
  ;
@@ -87,22 +107,26 @@ RXNUM(ECME) ; Returns the Rx number for a specific ECME number
  S ECME=+ECME,LFT=0,FOUND=0
  S MAX=$O(^PSRX(9999999999999),-1)  ; MAX = largest Rx ien on file
  ;
- ; Attempt left digit matching logic in this case only
+ ; Attempt left digit matching logic in specific case only,
+ ; otherwise attempt a normal lookup.
  I $L(MAX)>7,$L(ECME)'>7 D
  . S LFT=$E(MAX,1,$L(MAX)-7)  ; LFT = left most digits
  . F RAD=LFT:-1:0 S RX=RAD*10000000+ECME I $D(^PSRX(RX,0)),$$ECMENUM(RX)'="" S FOUND=FOUND+1,FOUND(FOUND)=RX
  . Q
- ;
- ; Otherwise attempt a normal lookup
  E  S RX=ECME I $D(^PSRX(RX,0)),$$ECMENUM(RX)'="" S FOUND=FOUND+1,FOUND(FOUND)=RX
  ;
  I 'FOUND S FOUND=-1 G RXNUMX            ; Rx not found
  I FOUND=1 S FOUND=FOUND(1) G RXNUMX     ; exactly 1 found
  ;
  ; More than 1 found so build a list and ask
- W ! F I=1:1:FOUND W !?5,I,". ",$$GET1^DIQ(52,FOUND(I),.01),?25,$$GET1^DIQ(52,FOUND(I),6)
- W ! S DIR(0)="NA^1:"_FOUND,DIR("A")="Select one: ",DIR("B")=1
- D ^DIR I $D(DIRUT) S FOUND=-1 G RXNUMX
+ W !
+ F I=1:1:FOUND W !?5,I,". ",$$GET1^DIQ(52,FOUND(I),.01),?25,$$GET1^DIQ(52,FOUND(I),6)
+ W !
+ S DIR(0)="NA^1:"_FOUND
+ S DIR("A")="Select one: "
+ S DIR("B")=1
+ D ^DIR
+ I $D(DIRUT) S FOUND=-1 G RXNUMX
  S FOUND=FOUND(Y)
  ;
 RXNUMX ;
@@ -137,8 +161,8 @@ ECMESTAT(RX,RFL) ;called from local mail
  ;check for any TRICARE/CHAMPVA rejects, not allowed to go to print until resolved.
  ;But allow to print if RX/RFL is in the TRI/CVA Audit Log with no unresolved rejects
  S PSOTRIC="",PSOTRIC=$$TRIC^PSOREJP1(RX,RFL,.PSOTRIC)
- I PSOTRIC,STATUS'["PAYABLE",$$FIND^PSOREJUT(RX,RFL,,,1) Q 0  ; unresolved TRI/CVA rejects - no print  *421
- I PSOTRIC,STATUS'["PAYABLE",$$TRIAUD^PSOREJU3(RX,RFL) Q 1    ; allow to print - on TRI/CVA Audit log  *421
+ I PSOTRIC,STATUS'["PAYABLE",$$FIND^PSOREJUT(RX,RFL,,,1) Q 0  ; unresolved TRI/CVA rejects - no print
+ I PSOTRIC,STATUS'["PAYABLE",$$TRIAUD^PSOREJU3(RX,RFL) Q 1    ; on TRI/CVA Audit log - allow to print
  ;
  ; Disallow printing from suspense if the prescription has an unresolved
  ; 79/88/943 reject or an RRR reject.
@@ -158,6 +182,8 @@ ECMESTAT(RX,RFL) ;called from local mail
  ;  1 = OK to resubmit
  ;  0 = Don't resubmit
 ECMEST2(RX,RFL) ;
+ ; Do not resubmit a claim if this Rx has a closed eT/eC reject.
+ I $$TRICVANB^PSXRPPL1(RX,RFL) Q 0
  N STATUS
  S STATUS=$$STATUS^PSOBPSUT(RX,RFL)
  ; Never submitted before, OK to submit
@@ -237,8 +263,7 @@ SHDT(RX,RFL) ;
  S FILE=$S(RFL=0:52,1:52.1),IENS=$S(RFL=0:RX_",",1:RFL_","_RX_",")
  Q $$GET1^DIQ(FILE,IENS,86,"I")
  ;
-ELOG(RESP) ; - due to size of PSOBPSU1 exceeding limit
- ; -Logs an ECME Activity Log if Rx Qty is different than Billing Qty
+ELOG(RESP) ; Logs an ECME Activity Log if Rx Qty is different than Billing Qty
  I '$G(RESP),$T(NCPDPQTY^PSSBPSUT)'="" D
  . N DRUG,RXQTY,BLQTY,BLDU,Z
  . S DRUG=$$GET1^DIQ(52,RX,6,"I")
@@ -252,16 +277,27 @@ UPDFL(RXREC,SUB,INDT) ;update fill date with release date when NDC changes at CM
  ;Input: RXREC = Prescription File IEN
  ;         SUB = Refill
  ;        INDT = Release date
- N DA,DIE,DR,DTOUT,DUOUT,PSOX,SFN,DEAD,XOK,OLD,X,II,EXDAT,OFILLD,COM,CNT,RFCNT,RF  ;*459 - REMOVED SUB
+ N DA,DIE,DR,DTOUT,DUOUT,PSOX,SFN,DEAD,XOK,OLD,X,II,EXDAT,OFILLD,COM,CNT,RFCNT,RF
  S DEAD=0,SFN=""
- S EXDAT=INDT I EXDAT["." S EXDAT=$P(EXDAT,".")
+ S EXDAT=INDT
+ I EXDAT["." S EXDAT=$P(EXDAT,".")
  I '$D(SUB) S SUB=0 F II=0:0 S II=$O(^PSRX(RXREC,1,II)) Q:'II  S SUB=+II
  I 'SUB S OFILLD=$$GET1^DIQ(52,RXREC,22,"I") Q:OFILLD=EXDAT  D
- .S (X,OLD)=$P(^PSRX(RXREC,2),"^",2),DA=RXREC,DR="22///"_EXDAT_";101///"_EXDAT,DIE=52
- .D ^DIE K DIE,DA
+ . S (X,OLD)=$P(^PSRX(RXREC,2),"^",2)
+ . S DA=RXREC
+ . S DR="22///"_EXDAT_";101///"_EXDAT
+ . S DIE=52
+ . D ^DIE
+ . K DIE,DA
+ . Q
  I SUB S (OLD,X)=+$P($G(^PSRX(RXREC,1,SUB,0)),"^"),DA(1)=RXREC,DA=SUB,OFILLD=$$GET1^DIQ(52.1,DA_","_RXREC,.01,"I") Q:OFILLD=EXDAT  D
- . S DIE="^PSRX("_DA(1)_",1,",DR=".01///"_EXDAT D ^DIE K DIE S $P(^PSRX(RXREC,3),"^")=EXDAT
- Q:$D(DTOUT)!($D(DUOUT))
+ . S DIE="^PSRX("_DA(1)_",1,"
+ . S DR=".01///"_EXDAT
+ . D ^DIE
+ . K DIE
+ . S $P(^PSRX(RXREC,3),"^")=EXDAT
+ . Q
+ I $D(DTOUT)!($D(DUOUT)) Q
  ;start of pso 660 code
  N PSOSUSPA,RXRECI S RXRECI=$O(^PS(52.5,"B",RXREC,0)) S:RXRECI PSOSUSPA=$P($G(^PS(52.5,RXRECI,0)),"^",5)
  S COM="Change "_$S($G(PSOSUSPA):"Partial",'$G(SUB):"Fill",1:"Refill")_" Date "_$E(OFILLD,4,5)_"/"_$E(OFILLD,6,7)_"/"_$E(OFILLD,2,3)_" to "_$E(INDT,4,5)_"/"_$E(INDT,6,7)_"/"_$E(INDT,2,3)

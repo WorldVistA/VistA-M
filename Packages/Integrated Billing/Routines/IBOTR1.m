@@ -1,5 +1,5 @@
 IBOTR1 ;ALB/CPM - INSURANCE PAYMENT TREND REPORT - USER INTERFACE ;5-JUN-91
- ;;2.0;INTEGRATED BILLING;**21,42,72,100,118,128,528**;21-MAR-94;Build 163
+ ;;2.0;INTEGRATED BILLING;**21,42,72,100,118,128,528,743**;21-MAR-94;Build 18
  ;;Per VA Directive 6402, this routine should not be modified.
  ;
  ;MAP TO DGCROTR1
@@ -25,7 +25,7 @@ ARST W !,"Select (O)PEN, (C)LOSED, or (B)OTH types of bills: BOTH// "
 CANC I $G(IBAF)=16 G QDATE ; Skip if CANCEL BILL? field was selected.
  S DIR(0)="Y",DIR("B")="NO"
  S DIR("A")="Do you want to include cancelled bills"
- S DIR("?")="^S IBOFF=20 D HELP^IBOTR11"
+ S (DIR("?"),DIR("??"))="^S IBOFF=20 D HELP^IBOTR11"
  D ^DIR K DIR S IBCANC=+Y I $D(DIRUT)!$D(DTOUT)!$D(DUOUT) G END
  ;
 QDATE S DIR(0)="SA^1:DATE BILL PRINTED;2:TREATMENT DATE"
@@ -55,16 +55,30 @@ INSO S DIC="^DIC(36,",DIC(0)="AEQMZ",DIC("S")="I '$G(^(5))"
  I $D(IBICPT(+Y)) D  G INSO
  .W !!?3,"Already selected. Choose another insurance company.",!,*7
  S IBICPT(+Y)="",IBICPT=$G(IBICPT)+1 G INSO
-INSO1 W !?3,"Start with INSURANCE COMPANY: FIRST// " R X:DTIME
- G:'$T!(X["^") END I $E(X)="?" S IBOFF=43 D HELP^IBOTR11 G INSO1
- S IBICF=X
-INSO2 W !?8,"Go to INSURANCE COMPANY: LAST// " R X:DTIME
- G:'$T!(X["^") END I $E(X)="?" S IBOFF=49 D HELP^IBOTR11 G INSO2
- I X="" S IBICL="zzzzz" S:IBICF="" IBIC="ALL" G INSO3
- I X="@",IBICF="@" S IBICL="@",IBIC="NULL" G INSO3
- I IBICF'="@",IBICF]X D  G INSO2
- .W *7,!!?3,"The LAST value must follow the FIRST.",!
- S IBICL=X
+ ;IB*743/TAZ - Updated INSO1 to FileMan Read and to accept NULL to mean beginning of list.
+INSO1 ;
+ N DIR,DIROUT,DIRUT,DTOUT,DUOUT,X,Y
+ W !!,"Enter Start With value or Press <ENTER> to start at the beginning of the list.",!
+ S DIR(0)="FO"
+ S DIR("A")="Start with INSURANCE COMPANY"
+ S DIR("?")="^S IBOFF=43 D HELP^IBOTR11"
+ D ^DIR
+ I $D(DTOUT)!$D(DUOUT)!$D(DIROUT) G END
+ S IBICF=Y
+ ;IB*743/TAZ - Updated FD2 to FileMan Read and to accept NULL to mean end of list.
+INSO2 ;
+ W !!,"Enter Go To value or Press <ENTER> to finish at the end of the list.",!
+ S DIR(0)="FO"
+ S DIR("A")="Go to INSURANCE COMPANY"
+ S DIR("?")="^S IBOFF=49 D HELP^IBOTR11"
+ D ^DIR
+ I $D(DTOUT)!$D(DUOUT)!$D(DIROUT) G END
+ I Y="" S IBICL="zzzzz" S:IBICF="" IBIC="ALL" G INSO3
+ I Y="@",IBICF="@" S IBICL="@",IBIC="NULL" G INSO3
+ ;
+ I IBICF'="@",IBICF]Y D  G INSO1
+ .W *7,!!?3,"The Go To INSURANCE COMPANY must follow the Start With INSURANCE COMPANY.",!
+ S IBICL=Y
 INSO3 I IBPRNT="G" S IBSORT="I" S:$G(IBICPT)!($G(IBIC)'="ALL") IBG=1 G EXRC
  I $G(IBICPT)=1 S IBSORT="I" G EXRC
  W !,"Sort by AMOUNT (O)WED, AMOUNT (P)AID, or (I)NSURANCE CO.: I// "

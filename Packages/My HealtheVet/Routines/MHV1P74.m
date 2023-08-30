@@ -1,0 +1,50 @@
+MHV1P74 ;MHV/CFS - MHV*1*74 POST INIT: PHARMACY FIELDS UPDATE;
+ ;;1.0;My HealtheVet;**74**;Aug 23, 2005;Build 42
+ ;;Per VHA Directive 2004-038, this routine should not be modified.
+ ;
+ Q
+ ;
+POST ; New pharmacy fields POST-INSTALL
+ ;
+ D RTYP ; Add new MHV REQUEST TYPE (#2275.3)
+ ;
+ D REINDX ;Re-index the new "AE" cross reference field 8 in the PRESCRIPTION REFILE REQUEST file.
+ Q
+ ;
+RTYP ; Add New MHV REQUEST TYPE MEDICATIONS2 (#2275.3)
+ N FLDS,ERR,NEW
+ ;
+ I $D(^MHV(2275.3,"B","MEDICATIONS2")) D  Q
+ .  ;D LOG^MHVUL2("MHV1P74","MHV REQUEST TYPE EXISTS - NOT ADDED","S","TRACE")
+ . S ^XTMP("MHV1P74",$J,"MEDICATIONS2")="MEDICATIONS2 ALREADY EXISTS"
+ . D MES^XPDUTL("MEDICATIONS2 ALREADY EXISTS, NOT ADDED")
+ ;
+ S DUZ=.5
+ S DT=$$DT^XLFDT
+ S FLDS("REQUEST TYPE")="MEDICATIONS2"
+ S FLDS("NUMBER")=51
+ S FLDS("BLOCK")=0
+ S FLDS("REALTIME")=1
+ S FLDS("EXECUTE")="EXTRACT~MHVXRXM2"
+ S FLDS("BUILDER")="MHV7B1R2"
+ S FLDS("DATATYPE")="Medications2"
+ S FLDS("DESCRIPTION",1)="QBP^Q13 query for Medications"
+ S FLDS("DESCRIPTION",2)="from multiple SOURCES including RX renewal data"
+ S NEW=1  ;set to 1 for new entry or 0 to update an entry
+ D UPDREQ^MHVU2(.FLDS,NEW,.ERR)
+ I ERR'="" D
+ . S ^XTMP("MPV1P74",$J,"ERROR")=ERR
+ . D MES^XPDUTL("COULD NOT CREATE MEDICATIONS2 IN FILE 2275.3 DUE TO "_ERR)
+ Q
+ ;
+REINDX ;Re-index field 8 (PRESCRIPTION IEN) in file 52.43.
+ K DIK,DA
+ D MES^XPDUTL("Re-indexing the AE cross reference of the PRESCRIPTION REFILL REQUEST file")
+ S LASTI=$P($G(^PS(52.43,0)),"^",4) Q:'LASTI
+ S STARTI=LASTI-100000
+ I STARTI<0 S STARTI=LASTI-(LASTI\10)
+ S XI=STARTI
+ S DIK="^PS(52.43,",DIK(1)="8^AE"
+ F  S XI=$O(^PS(52.43,XI)) Q:'XI  D  ; 
+ .S DA=XI D EN1^DIK ;Rebuild AE cross reference at the file level
+ Q

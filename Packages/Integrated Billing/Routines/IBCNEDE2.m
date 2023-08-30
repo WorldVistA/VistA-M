@@ -1,5 +1,5 @@
-IBCNEDE2 ;DAOU/DAC - eIV PRE REG EXTRACT (APPTS) ;23-SEP-2015
- ;;2.0;INTEGRATED BILLING;**184,271,249,345,416,438,506,549,593,595,621,659**;21-MAR-94;Build 16
+IBCNEDE2 ;DAOU/DAC - eIV Appointment Extract ;23-SEP-2015
+ ;;2.0;INTEGRATED BILLING;**184,271,249,345,416,438,506,549,593,595,621,659,743**;21-MAR-94;Build 18
  ;;Per VA Directive 6402, this routine should not be modified.
  ;
  ;**Program Description**
@@ -10,14 +10,19 @@ IBCNEDE2 ;DAOU/DAC - eIV PRE REG EXTRACT (APPTS) ;23-SEP-2015
  Q   ; can't be called directly
  ;
 EN ; Loop through designated cross-references for updates
- ; Pre reg extract (Appointment extract)
+ ; Appointment extract
  ; IB*2.0*593 - Added EXCLTOC,EXCLTOP now initialized at top. Removed YY.
  ; IB*2.0*549 - Added YY,ZZ, Re-Arranged in alphabetical order
+ ; IB*2*659/vd - Added the MFRESHDAY variable for Medicare Frequency.
+ ; IB*2.0*743/DTG - Added IBBCK,IBFNDBLUP,IBPAYBLU,IBPQ,IBSNDOK,IBSRVICEDT for management of split dfn find and ins work.
+ ; IB*2.0*743 Reorganize routine thus eliminating looping through the patient's insurance multiple times.
+ ;        This improves the efficiency and reduces risk of duplicate requests for the same policy. Make
+ ;        sure to create no more than one TQ entry per Blue payer per patient.
  N ACTINS,APTDT,CLNC,CNT,DATA1,DATA2,DFN,DISYS,ELG,ENDDT,EXCLTOC,EXCLTOP,FOUND1,FOUND2,FRESHDAY
- N FRESHDT,GIEN,IBCNETOT,IBDDI,IBINDT,IBINS,IBSDA,IBSDATA,IBOUTP,INREC,INS,INSIEN,INSNAME
- N MAXCNT,MCAREFLG,MFRESHDAY,NUM,OK,PATID,PAYER,PAYERID,PAYERSTR,PIEN   ;/vd-IB*2*659 - Added the MFRESHDAY variable for Medicare Frequency.
- N SETSTR,SID,SIDACT,SIDARRAY,SIDCNT,SIDDATA,SLCCRIT1,SRVICEDT,SUPPBUFF,SYMBOL
- N TODAYSDT,TQIEN,QURYFLAG,VAIN,VDATE,YY,ZZ
+ N FRESHDT,GIEN,IBBCK,IBCNETOT,IBDDI,IBFNDBLUP,IBINDT,IBINS,IBOUTP,IBPAYBLU,IBPQ,IBSDA,IBSDATA
+ N IBSNDOK,IBSRVICEDT,INREC,INS,INSIEN,INSNAME,MAXCNT,MCAREFLG,MFRESHDAY
+ N NUM,OK,PATID,PAYER,PAYERID,PAYERSTR,PIEN,QURYFLAG,SETSTR,SID,SIDACT,SIDARRAY,SIDCNT
+ N SIDDATA,SLCCRIT1,SRVICEDT,SUPPBUFF,SYMBOL,TODAYSDT,TQIEN,VAIN,VDATE,YY,ZZ
  ;
  S SETSTR=$$SETTINGS^IBCNEDE7(2)     ;  Get setting for pre reg. extract 
  I 'SETSTR Q                         ; Quit if extract is not active
@@ -33,6 +38,7 @@ EN ; Loop through designated cross-references for updates
  S EXCLTOC=$$GETELST(355.2) ; Initialize excluded TYPEs OF COVERAGE IB*2.0*593
  S EXCLTOP=$$GETELST(355.1) ; Initialize excluded TYPEs OF PLAN IB*2.0*593
  K ^TMP($J,"SDAMA301"),^TMP("IBCNEDE2",$J)   ; Clean TMP globals
+ K ^TMP($J,"IBCNEDE2DFN")  ; IB*743/DTG collect DFN's that are potential candidates for this extract
  ;
  S CLNC=0 ; Init. clinic
  ; Loop through clinics 
@@ -80,100 +86,127 @@ EN ; Loop through designated cross-references for updates
  ... ;
  ... D ELG Q:'OK     ; Check for eligibility exclusion
  ... ;
- ... K ACTINS
- ... D ALL^IBCNS1(DFN,"ACTINS",2)
+ ... ;IB*743/DTG build temp array for allowed DFN's
+ ... S ^TMP($J,"IBCNEDE2DFN",DFN,(+$G(SRVICEDT)))=""
+ ;
+ ; IB*743/DTG check the insurance for the selected DFNs
+ ;
+ S DFN=0
+ F  S DFN=$O(^TMP($J,"IBCNEDE2DFN",DFN)) Q:'DFN  K IBFNDBLUP D  ;IB*743/DTG new $order based on DFN
+ . ;
+ . K ACTINS
+ . D ALL^IBCNS1(DFN,"ACTINS",2)
+ . ;
+ . I '$D(ACTINS(0)) Q  ; Patient has no active ins
+ . ;
+ . S MCAREFLG=0
+ . S IBSRVICEDT=""
+ . F  S IBSRVICEDT=$O(^TMP($J,"IBCNEDE2DFN",DFN,IBSRVICEDT)) Q:'IBSRVICEDT  D  ;loop thru service dates
+ .. ;
+ .. S SRVICEDT=IBSRVICEDT,INREC=0 ; Record IEN
+ .. F  S INREC=$O(ACTINS(INREC)) Q:('INREC)!(CNT'<MAXCNT)  D
+ ... N MFLG  ;Initialized in $$OKFRESH  IB*2.0*659/VD
+ ... S INSIEN=$P($G(ACTINS(INREC,0)),U,1) ; Insurance ien
+ ... S INSNAME=$P($G(^DIC(36,INSIEN,0)),U)
  ... ;
- ... I '$D(ACTINS(0)) Q  ; Patient has no active ins
+ ... ; IB*2.0*549 Added next 3 lines to exclude certain Type of Coverages
+ ... ; IB*2.0*593 Moved exclusion list initialization to top execution level.
+ ... S ZZ=$$GET1^DIQ(36,INSIEN_",",.13,"I")    ; Type of Coverage
+ ... ;S YY=$$GETELST(355.2)                    ; Type of Coverages to exclude
+ ... ;Q:YY[("^"_ZZ_"^")                        ; Excluded Type of Coverage
+ ... Q:EXCLTOC[("^"_ZZ_"^")                    ; Excluded Type of Coverage
  ... ;
- ... S INREC=0 ; Record IEN
- ... F  S INREC=$O(ACTINS(INREC)) Q:('INREC)!(CNT'<MAXCNT)  D
- ... . N MFLG  ;Initialized in $$OKFRESH  IB*2.0*659/VD
- ... . S INSIEN=$P($G(ACTINS(INREC,0)),U,1) ; Insurance ien
- ... . S INSNAME=$P($G(^DIC(36,INSIEN,0)),U)
- ... . ;
- ... . ; IB*2.0*549 Added next 3 lines to exclude certain Type of Coverages
- ... . ; IB*2.0*593 Moved exclusion list initialization to top execution level.
- ... . S ZZ=$$GET1^DIQ(36,INSIEN_",",.13,"I")    ; Type of Coverage
- ... . ;S YY=$$GETELST(355.2)                    ; Type of Coverages to exclude
- ... . ;Q:YY[("^"_ZZ_"^")                        ; Excluded Type of Coverage
- ... . Q:EXCLTOC[("^"_ZZ_"^")                    ; Excluded Type of Coverage
- ... . ;
- ... . ;/vd-IB*2*659 - Replaced the following lines with the call to OKFRESH
- ... . ;               which properly identify those policies to exclude when
- ... . ;               verified within the "freshness days" for Medicare and
- ... . ;               non-Medicare policies.
- ... . ; Exclude policies that have been verified within "freshness days"
- ... . ;S VDATE=$P($G(ACTINS(INREC,1)),U,3)
- ... . ;I VDATE'="",SRVICEDT'>$$FMADD^XLFDT(VDATE,FRESHDAY) Q
- ... . I '$$OKFRESH(INREC,FRESHDAY,MFRESHDAY,.MFLG) Q
- ... . S FRESHDT=$$FMADD^XLFDT(SRVICEDT,$S(MFLG:-MFRESHDAY,1:-FRESHDAY))
- ... . ;
- ... . ; Allow only one MEDICARE transmission per patient
- ... . I INSNAME["MEDICARE",MCAREFLG Q
- ... . ;
- ... . ; Exclude pharmacy policies IB*2.0*549 - Commented out following line
- ... . ;I $$GET1^DIQ(36,INSIEN_",",.13)="PRESCRIPTION ONLY" Q
- ... . S GIEN=+$P($G(ACTINS(INREC,0)),U,18)
- ... . ;
- ... . ; IB*2.0*549 Added next 3 lines to exclude certain Type of Plans
- ... . ; IB*2.0*593/TAZ Moved exclusion list initialization to top execution level.
- ... . S ZZ=$$GET1^DIQ(355.3,GIEN_",",.09,"I")   ; Type of Plan
- ... . ;S YY=$$GETELST(355.1)                    ; Type of Plans to exclude
- ... . ;Q:YY[("^"_ZZ_"^")                        ; Excluded Type of Plan
- ... . Q:EXCLTOP[("^"_ZZ_"^")                        ; Excluded Type of Plan
- ... . ;
- ... . ;I GIEN,$$GET1^DIQ(355.3,GIEN_",",.09)="PRESCRIPTION" Q  ; IB*2.0*549 - Removed line
- ... . ; check for ins. to exclude (i.e. Medicaid)
- ... . I $$EXCLUDE^IBCNEUT4(INSNAME) Q
- ... . ; check insurance policy expiration date
- ... . I $$EXPIRED($P($G(ACTINS(INREC,0)),U,4)) Q
- ... . ;
- ... . ; set patient id field   IB*2*416
- ... . S PATID=$P($G(ACTINS(INREC,5)),U,1)    ; 5.01 field
- ... . ;
- ... . S PAYERSTR=$$INSERROR^IBCNEUT3("I",INSIEN) ; Get payer info
- ... . ;
- ... . S SYMBOL=+PAYERSTR ; error symbol
- ... . S PAYERID=$P(PAYERSTR,U,3)               ; (National ID) payer id
- ... . S PIEN=$P(PAYERSTR,U,2)                  ; Payer ien
- ... . ;
- ... . ; If Payer is Nationally Inactive create an Insurance Buffer record w/blank SYMBOL & quit. - IB*2.0*506
- ... . I '$$PYRACTV^IBCNEDE7(PIEN) D  Q
- ... .. S SYMBOL=""
- ... .. I 'SUPPBUFF,'$$BFEXIST^IBCNEUT5(DFN,INSNAME) D PT^IBCNEBF(DFN,INREC,SYMBOL,"",1)
- ... .. Q
- ... . ;
- ... . ; If error symbol exists, set record in insurance buffer & quit
- ... . I SYMBOL D  Q
- ... . . I 'SUPPBUFF,'$$BFEXIST^IBCNEUT5(DFN,INSNAME) D PT^IBCNEBF(DFN,INREC,SYMBOL,"",1)
- ... . ;
- ... . ; Update service date and freshness date based on payers allowed
- ... . ;  date range
- ... . D UPDDTS^IBCNEDE6(PIEN,.SRVICEDT,.FRESHDT)
- ... . ;
- ... . ; Update service dates for inquiry to be transmitted
- ... . D TQUPDSV^IBCNEUT5(DFN,PIEN,SRVICEDT)
- ... . ;
- ... . ; Quit before filing if outstanding entries in TQ
- ... . ; IB*2.0*659/VD - Added $S for MFLG
- ... . I '$$ADDTQ^IBCNEUT5(DFN,PIEN,SRVICEDT,$S(MFLG:MFRESHDAY,1:FRESHDAY),0) Q  ;IB*2.0*621 add flag, from EICDEXT 
- ... . ;
- ... . S QURYFLAG="V"
- ... . K SIDARRAY
- ... . S SIDDATA=$$SIDCHK^IBCNEDE5(PIEN,DFN,,.SIDARRAY,FRESHDT)
- ... . S SIDACT=$P(SIDDATA,U),SIDCNT=$P(SIDDATA,U,2)
- ... . I SIDACT=3,'SUPPBUFF,'$$BFEXIST^IBCNEUT5(DFN,INSNAME) D PT^IBCNEBF(DFN,INREC,18,"",1) Q
- ... . I CNT+SIDCNT>MAXCNT S CNT=MAXCNT Q  ;exceeds MAXCNT
- ... . ;
- ... . S SID=""
- ... . F  S SID=$O(SIDARRAY(SID)) Q:SID=""  D:$P(SID,"_")'="" SET($P(SID,"_"),$P(SID,"_",2),PATID) S:INSNAME["MEDICARE" MCAREFLG=1
- ... . ;
- ... . I SIDACT=4 D
- ... . . D SET("","",PATID)
- ... . . S:INSNAME["MEDICARE" MCAREFLG=1
- ... . Q
- ... Q
+ ... ;/vd-IB*2*659 - Replaced the following lines with the call to OKFRESH
+ ... ;               which properly identify those policies to exclude when
+ ... ;               verified within the "freshness days" for Medicare and
+ ... ;               non-Medicare policies.
+ ... ; Exclude policies that have been verified within "freshness days"
+ ... ;S VDATE=$P($G(ACTINS(INREC,1)),U,3)
+ ... ;I VDATE'="",SRVICEDT'>$$FMADD^XLFDT(VDATE,FRESHDAY) Q
+ ... I '$$OKFRESH(INREC,FRESHDAY,MFRESHDAY,.MFLG) Q
+ ... S FRESHDT=$$FMADD^XLFDT(SRVICEDT,$S(MFLG:-MFRESHDAY,1:-FRESHDAY))
+ ... ;
+ ... ; Allow only one MEDICARE transmission per patient
+ ... I INSNAME["MEDICARE",MCAREFLG Q
+ ... ;
+ ... ; Exclude pharmacy policies IB*2.0*549 - Commented out following line
+ ... ;I $$GET1^DIQ(36,INSIEN_",",.13)="PRESCRIPTION ONLY" Q
+ ... S GIEN=+$P($G(ACTINS(INREC,0)),U,18)
+ ... ;
+ ... ; IB*2.0*549 Added next 3 lines to exclude certain Type of Plans
+ ... ; IB*2.0*593/TAZ Moved exclusion list initialization to top execution level.
+ ... S ZZ=$$GET1^DIQ(355.3,GIEN_",",.09,"I")   ; Type of Plan
+ ... ;S YY=$$GETELST(355.1)                    ; Type of Plans to exclude
+ ... ;Q:YY[("^"_ZZ_"^")                        ; Excluded Type of Plan
+ ... Q:EXCLTOP[("^"_ZZ_"^")                        ; Excluded Type of Plan
+ ... ;
+ ... ;I GIEN,$$GET1^DIQ(355.3,GIEN_",",.09)="PRESCRIPTION" Q  ; IB*2.0*549 - Removed line
+ ... ; check for ins. to exclude (i.e. Medicaid)
+ ... I $$EXCLUDE^IBCNEUT4(INSNAME) Q
+ ... ; check insurance policy expiration date
+ ... I $$EXPIRED($P($G(ACTINS(INREC,0)),U,4)) Q
+ ... ;
+ ... ; set patient id field   IB*2*416
+ ... S PATID=$P($G(ACTINS(INREC,5)),U,1)    ; 5.01 field
+ ... ;
+ ... S PAYERSTR=$$INSERROR^IBCNEUT3("I",INSIEN) ; Get payer info
+ ... ;
+ ... S SYMBOL=+PAYERSTR ; error symbol
+ ... S PAYERID=$P(PAYERSTR,U,3)               ; (National ID) payer id
+ ... S PIEN=$P(PAYERSTR,U,2)                  ; Payer ien
+ ... ;IB*743/DTG get payer ISBLUE flag from file #365.12
+ ... S IBPAYBLU=0
+ ... I +PIEN S IBPQ=0 D  I IBPQ Q  ; IB*743/DTG only submit blue payer once
+ .... K IBBCK D PAYER^IBCNINSU(+PIEN,,".09","I",.IBBCK)
+ .... S IBPAYBLU=+$G(IBBCK(365.12,(+PIEN)_",",.09,"I"))
+ .... I IBPAYBLU&(+$G(IBFNDBLUP(PIEN))=1) S IBPQ=1
+ ... ;
+ ... ; If Payer is Nationally Inactive create an Insurance Buffer record w/blank SYMBOL & quit. - IB*2.0*506
+ ... I '$$PYRACTV^IBCNEDE7(PIEN) D  Q
+ .... S SYMBOL=""
+ .... I 'SUPPBUFF,'$$BFEXIST^IBCNEUT5(DFN,INSNAME) D PT^IBCNEBF(DFN,INREC,SYMBOL,"",1)
+ ... ;
+ ... ; If error symbol exists, set record in insurance buffer & quit
+ ... I SYMBOL D  Q
+ .... I 'SUPPBUFF,'$$BFEXIST^IBCNEUT5(DFN,INSNAME) D PT^IBCNEBF(DFN,INREC,SYMBOL,"",1)
+ ... ;
+ ... ; Update service date and freshness date based on payers allowed
+ ... ;  date range
+ ... D UPDDTS^IBCNEDE6(PIEN,.SRVICEDT,.FRESHDT)
+ ... ;
+ ... ; Update service dates for inquiry to be transmitted
+ ... D TQUPDSV^IBCNEUT5(DFN,PIEN,SRVICEDT)
+ ... ;
+ ... ; Quit before filing if outstanding entries in TQ
+ ... ; IB*2.0*659/VD - Added $S for MFLG
+ ... I '$$ADDTQ^IBCNEUT5(DFN,PIEN,SRVICEDT,$S(MFLG:MFRESHDAY,1:FRESHDAY),0) Q  ;IB*2.0*621 add flag, from EICDEXT 
+ ... ;
+ ... S QURYFLAG="V"
+ ... K SIDARRAY
+ ... S SIDDATA=$$SIDCHK^IBCNEDE5(PIEN,DFN,,.SIDARRAY,FRESHDT)
+ ... S SIDACT=$P(SIDDATA,U),SIDCNT=$P(SIDDATA,U,2)
+ ... I SIDACT=3,'SUPPBUFF,'$$BFEXIST^IBCNEUT5(DFN,INSNAME) D PT^IBCNEBF(DFN,INREC,18,"",1) Q
+ ... I CNT+SIDCNT>MAXCNT S CNT=MAXCNT Q  ;exceeds MAXCNT
+ ... ;
+ ... S SID=""
+ ... ;F  S SID=$O(SIDARRAY(SID)) Q:SID=""  D:$P(SID,"_")'="" SET($P(SID,"_"),$P(SID,"_",2),PATID) S:INSNAME["MEDICARE" MCAREFLG=1
+ ... F  S SID=$O(SIDARRAY(SID)) Q:SID=""  D
+ ... . I $P(SID,"_")="" Q
+ ... . I (PIEN&(IBPAYBLU)&(+$G(IBFNDBLUP(PIEN))=1)) Q  ; IB*743/DTG only submit blue payer once
+ ... . D SET($P(SID,"_"),$P(SID,"_",2),PATID) D
+ ... .. S:INSNAME["MEDICARE" MCAREFLG=1
+ ... .. I (PIEN&(IBPAYBLU)&(+$G(TQIEN)>0)) S IBFNDBLUP(PIEN)=1
+ ... ;
+ ... I SIDACT=4 D
+ ... . ;D SET("","",PATID)
+ ... . ;S:INSNAME["MEDICARE" MCAREFLG=1
+ ... . ; IB*743/DTG keep check and INSNAME check at same level
+ ... . S IBSNDOK=1 I (PIEN&(IBPAYBLU)&(+$G(IBFNDBLUP(PIEN))=1)) S IBSNDOK=0  ; IB*743/DTG only submit blue payer once
+ ... . I +IBSNDOK D SET("","",PATID) I (PIEN&(IBPAYBLU)&(+$G(TQIEN)>0)) S IBFNDBLUP(PIEN)=1  ; IB*743/DTG if isblue and filed then only do once
+ ... . S:INSNAME["MEDICARE" MCAREFLG=1
+ ;
 ENQ K ^TMP($J,"SDAMA301"),^TMP("IBCNEDE2",$J)
+ K ^TMP($J,"IBCNEDE2DFN")  ; IB*743/DTG
  Q
  ;
 GETELST(FILE) ; Returns a '^' delimited list of Type of Plans or Type of

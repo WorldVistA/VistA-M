@@ -1,5 +1,5 @@
 PSO7L529 ;WILM/BDB - MIGRATION REPORT ;04/30/2021
- ;;7.0;OUTPATIENT PHARMACY;**529,684**;DEC 1997;Build 57
+ ;;7.0;OUTPATIENT PHARMACY;**529,684,545**;DEC 1997;Build 270
  ;External reference to sub-file NEW DEA #S (#200.5321) is supported by DBIA 7000
  ;External reference to DEA NUMBERS file (#8991.9) is supported by DBIA 7002
  Q 
@@ -18,12 +18,14 @@ START ;
  D SELDEV Q:PSOSTOP
  S X=512 X ^%ZOSF("RM")
  D LOGON Q:PSOSTOP
- D SETRXDT()
  D PROCESS
  D LOGOFF
  Q
  ;
 PROCESS ; Get data, build and print one line of output at a time
+ N PSRXBDT
+ S PSRXBDT=$$FMADD^XLFDT($$DT^XLFDT(),-1095)
+ D SETRXDT(PSRXBDT)  ; 1095 days = 3 years
  U IO
  S DEA="A"
  D
@@ -176,7 +178,7 @@ LOGON ; Turn on Logging Message
  S DIR("A",3)="     **  have identified a log file, and have turned    **"
  S DIR("A",4)="     **  logging on to capture the output.              **"
  S DIR("A",5)="     *****************************************************"
- S DIR("A",6)="",DIR("A",6)=""
+ S DIR("A",6)=""
  S DIR("A")=" Press return to continue or '^' to quit"
  S DIR(0)="EA" D ^DIR W !
  S:'Y PSOSTOP=1
@@ -225,7 +227,7 @@ ASKREMIG(PSOPRINT) ; Ask if DEA Migration should be run
  S LASTRUN=$P($G(^XTMP(HANDPSO,0)),"^",2)
  I $G(LASTRUN) S P684CHK=$$FMDIFF^XLFDT($$DT^XLFDT(),LASTRUN)
  I (STATUS="Install Completed"),LASTRUN S LASTMSG=LASTMSG_" was last run on "_$$FMTE^XLFDT(LASTRUN)
- I STATUS'="Install Completed" S LASTMSG=LASTMSG_" did not run to completion."
+ I $L(STATUS),(STATUS'="Install Completed") S LASTMSG=LASTMSG_" did not run to completion."
  I '$G(LASTRUN) S LASTMSG=LASTMSG_" was last run more than 7 days ago."
  ;
  S MIGSTAT=$G(^XTMP(HANDPSO,"STATUS"))

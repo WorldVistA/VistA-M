@@ -1,6 +1,6 @@
 IBCEDC ;ALB/ESG - EDI CLAIM STATUS REPORT COMPILE ;13-DEC-2007
- ;;2.0;INTEGRATED BILLING;**377**;21-MAR-94;Build 23
- ;;Per VHA Directive 2004-038, this routine should not be modified.
+ ;;2.0;INTEGRATED BILLING;**377,727**;21-MAR-94;Build 34
+ ;;Per VA Directive 6402, this routine should not be modified.
  ;
  Q
  ;
@@ -60,6 +60,10 @@ COMPILE(IEN) ; gather and compile EDI claim data for one EDI claim
  . I '$D(ZTQUEUED) W "."                       ; display progress indicator
  . Q
  S IBZ=$G(^IBA(364,IEN,0)) I IBZ="" G COMPX
+ ;;JWS;IB*2.0*727;EBILL-2680;in production accounts, skip over claims that were transmitted in TEST status
+ I $$PROD^XUPROD(1),$P(IBZ,U,7)=1 Q
+ ;;JWS;IB*2.0*727;EBILL-2680;in non-production accounts, skip over claims that were transmitted in TEST status, if desired by user
+ I '$$PROD^XUPROD(1),$G(^TMP($J,"IBCEDS","TEST"))=0,$P(IBZ,U,7)=1 Q
  S IBIFN=+IBZ
  S IB0=$G(^DGCR(399,IBIFN,0)) I IB0="" G COMPX
  S DIV=+$P(IB0,U,22)                           ; division ien

@@ -1,5 +1,5 @@
-DGSEC4 ;ALB/MM,JAP - Utilities for record access & sensitive record processing;10/6/99 ; 10/26/05 12:46pm
- ;;5.3;Registration;**249,281,391,471,684,699**;Aug 13, 1993
+DGSEC4 ;ALB/MM,JAP,LAB,ATG/JPN,ISL/DKA - Utilities for record access & sensitive record processing ;July 6, 2020@21:55
+ ;;5.3;Registration;**249,281,391,471,684,699,964**;Aug 13, 1993;Build 323
  ;
  ;Line tags OWNREC & SENS moved from DGSEC in DG*5.3*249 when DGSEC 
  ;reached the maximum routine size.
@@ -42,6 +42,8 @@ PTSEC(RESULT,DFN,DGMSG,DGOPT) ;RPC/API entry point for patient sensitive & recor
  ..S RESULT(1)=-1
  ..S RESULT(2)="Your user code is undefined.  This must be defined to access a restricted patient record."
  .D SETLOG1^DGSEC(DFN,DUZ,,$G(DGOPT))
+ ;DG*5.3*964 hook to call VistA Audit Solution (VAS) for non-sensitive patient inquiries
+ I (RESULT(1)=0) I $$GET1^DIQ(46.5,1,.02,"I") D SELAUD^DGAUDIT2(2,$G(DFN),"INQUIRY",$G(DGOPT))
  Q
 NOTICE(RESULT,DFN,DGOPT,ACTION) ;RPC/API entry point for log entry and message generation
  ;Input parameters:  

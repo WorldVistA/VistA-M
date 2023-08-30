@@ -1,5 +1,5 @@
 IBCECOB1 ;ALB/CXW - IB COB MANAGEMENT SCREEN/REPORT ;14-JUN-99
- ;;2.0;INTEGRATED BILLING;**137,155,288,348,377,417,432,447,488,516,547,592**;21-MAR-94;Build 58
+ ;;2.0;INTEGRATED BILLING;**137,155,288,348,377,417,432,447,488,516,547,592,727**;21-MAR-94;Build 34
  ;;Per VA Directive 6402, this routine should not be modified.
  ;
  ; IBMRANOT = 1 when dealing with the COB Management Worklist.   
@@ -144,6 +144,7 @@ NMAT ;No COB list
  ;
 SCRN ;
  N IB,IBCNT,IBDA,IBDIV,IBIFN,IBFORM,IBK,IBPAT,IBS1,IBX,MSEFLG,X,Z
+ N IBMRANOTMSE  ;TPF;EBILL-2436;IB*2.0*727
  ;
  S IBCNT=0
  ; IB*2.0*547 - Add primary insurance company sort, had to break into 2 lines
@@ -183,9 +184,15 @@ SCRN ;
  ... S IBAMT=$P(IB,U,2)
  ... S IBCNT=IBCNT+1
  ... S X=""
+ ... ;
+ ... ;TPF;EBILL-2436;IB*2.0*727 ADD FLAG FOR MSE ERROR
+ ... ;S IBMRANOTMSE=$$GET1^DIQ(399,IBIFN_",",36,"","","")="IB803"  ;EOB CLAIM MSE ERROR?
+ ... S IBMRANOTMSE=$$FILERR^IBCAPP2(IBIFN)  ;TPF;EBILL-3061;IB*2.0*727 v15 
+ ... ;
  ... S X=$$SETFLD^VALM1(IBCNT,X,"NUMBER")
  ... ;;;S X=$$SETFLD^VALM1($$BN1^PRCAFN(IBIFN)_$S($P($G(^DGCR(399,IBIFN,"TX")),U,10)=1:"*",1:""),X,"BILL")
- ... S X=$$SETFLD^VALM1($S(MSEFLG=-1:"!",1:" ")_$$BN1^PRCAFN(IBIFN)_$S($P($G(^DGCR(399,IBIFN,"TX")),U,10)=1:"*",1:""),X,"BILL")  ; per IB*2.0*488
+ ... ;S X=$$SETFLD^VALM1($S(MSEFLG=-1:"!",1:" ")_$$BN1^PRCAFN(IBIFN)_$S($P($G(^DGCR(399,IBIFN,"TX")),U,10)=1:"*",1:""),X,"BILL")  ; per IB*2.0*488
+ ... S X=$$SETFLD^VALM1($S((MSEFLG=-1)!($G(IBMRANOT)&$G(IBMRANOTMSE)):"!",1:" ")_$$BN1^PRCAFN(IBIFN)_$S($P($G(^DGCR(399,IBIFN,"TX")),U,10)=1:"*",1:""),X,"BILL")  ; per IB*2.0*488
  ... S X=$$SETFLD^VALM1($$DAT1^IBOUTL($P(IB,U)),X,"SERVICE")
  ... S X=$$SETFLD^VALM1(IBPAT,X,"PATNM")
  ... S X=$$SETFLD^VALM1($$RJ^XLFSTR($FN(IBPTRSP,"",2),9," "),X,"PTRESP")
@@ -210,7 +217,6 @@ SCRN ;
  ... I $P(IBK,U,2)=2 S X=$$SETSTR^VALM1("** SPLIT CLAIM **",X,63,18)
  ... I $P(IBK,U,4),$P(IBK,U,2)'=2,$P(IBK,U,3)=1 S X=$$SETSTR^VALM1("** Denied for Duplicate **",X,54,27)
  ... D SET(X,IBCNT,IBIFN,IBDA,IBQ,IB364,IBX,IB)
- ... ;
  ... ; conditionally update video attributes of line 3
  ... I '$D(IOINHI) D ENS^%ZISS
  ... ; split claim

@@ -1,5 +1,5 @@
 IBCNEHL3 ;DAOU/ALA - HL7 Process Incoming RPI Continued ;03-JUL-2002  ; Compiled June 2, 2005 14:20:19
- ;;2.0;INTEGRATED BILLING;**300,416,497,506,595,621,602**;21-MAR-94;Build 22
+ ;;2.0;INTEGRATED BILLING;**300,416,497,506,595,621,602,737**;21-MAR-94;Build 19
  ;;Per VA Directive 6402, this routine should not be modified.
  ;
  ;**Program Description**
@@ -8,6 +8,7 @@ IBCNEHL3 ;DAOU/ALA - HL7 Process Incoming RPI Continued ;03-JUL-2002  ; Compiled
  ;  
  ;  This routine is based on IBCNEHLS which was introduced with patch 184, and subsequently
  ;  patched with patch 271.  IBCNEHLS is obsolete and deleted with patch 300.
+ ;
  ;
  Q   ; no direct calls allow
  ;
@@ -170,21 +171,23 @@ PCK ; Payer Check
  ; Output Variables
  ; RIEN,ERFLG
  ;
+ ;IB*737/TAZ - Remove references to Most Popular Payer and "~NO PAYER"
+ ;
  N BUFF,DA,DFN,DIE,DR,IEN,IERN,IN1DATA,MDTM,QFL,PAYR,PIEN,PP
  N PRDATA,PRIEN,RSIEN,X
- N NOPAYER,TQIEN
+ N TQIEN
  ;
  K ^TMP("IBCNEMID",$J)
  D FIND^DIC(365,"","","P",MSGID,"","B","","","^TMP(""IBCNEMID"",$J)")
  ;
  S PP=0,QFL=0,(RIEN,PIEN)=""
- S NOPAYER=$$FIND1^DIC(365.12,,"X","~NO PAYER"),TQIEN=$O(^IBCN(365.1,"C",MSGID,""))
+ S TQIEN=$O(^IBCN(365.1,"C",MSGID,""))
  F  S PP=$O(^TMP("IBCNEMID",$J,"DILIST",PP)) Q:'PP  D  Q:QFL
  . S PRIEN=$P(^TMP("IBCNEMID",$J,"DILIST",PP,0),U,1)
  . ;
  . ;  If this is a response w/o an IN1 segment
- . ;  Get payer IEN from TQ as original response shell will change for
- . ;  ~NO PAYER if a payer response is received
+ . ;  Get payer IEN from TQ as original response shell will change
+ . ;  if a payer response is received
  . S IN1DATA=$S(EVENTYP=1:"",1:$$GIN1()) ; IB*2.0*621
  . I IN1DATA="",PRIEN'="",TQIEN'="" D
  ..  S QFL=1,PIEN=$P(^IBCN(365.1,TQIEN,0),U,3)
@@ -199,12 +202,6 @@ PCK ; Payer Check
  ..; If message id/payer found & Response (#365) status equals
  . ; 'Response Received', RIEN is still null so that this tag knows
  . ; to create a new unsolicited response entry
- . ; 
- . ; If payer response received to ~NO PAYER, update eIV Response file
- . ; w/ responding payer
- . I RIEN="" S PRDATA=$G(^IBCN(365,PRIEN,0)) I $P(PRDATA,U,3)=NOPAYER,$P(PRDATA,U,6)'=3,$P(PRDATA,U,10)="O" D  Q
- .. S RIEN=PRIEN,QFL=1
- .. S DIE="^IBCN(365,",DA=RIEN,DR=".03///^S X=PIEN" D ^DIE
  ;
  ;  If message id/payer not found or unsolicited response, create new response entry
  I RIEN="" D  Q:ERFLG

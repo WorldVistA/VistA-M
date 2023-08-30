@@ -1,5 +1,5 @@
-DDEG ;SPFO/RAM,MKB - Entity GET Extract ; AUG 1, 2018  12:37
- ;;22.2;VA FileMan;**9,16,17,18,20,21**;Jan 05, 2016;Build 4
+DDEG ;SPFO/RAM,MKB - Entity GET Extract ;1/26/23  10:37
+ ;;22.2;VA FileMan;**9,16,17,18,20,21,24**;Jan 05, 2016;Build 3
  ;;Per VA Directive 6402, this routine should not be modified.
  Q
  ;
@@ -68,7 +68,7 @@ SIMPLE ; -- retrieve simple ITEM (from $$VALUE)
  ;
  I $$VALID(VALUE) D  ;add tags
  . S VALUE=$$ESC(VALUE)
- . I 'DFORM,$G(NOTAG) S ITEM=VALUE Q  ;for List items
+ . I $G(NOTAG) S ITEM=VALUE Q  ;for List items
  . S ITEM=$$ELEMENT("",TAG,VALUE)
  Q
  ;
@@ -81,7 +81,7 @@ FIXED ; -- build one FIXED item (from $$VALUE)
  ;
  I $$VALID(VALUE) D  ;add tags
  . S VALUE=$$ESC(VALUE)
- . I 'DFORM,$G(NOTAG) S ITEM=VALUE Q  ;for List items
+ . I $G(NOTAG) S ITEM=VALUE Q  ;for List items
  . S ITEM=$$ELEMENT("",TAG,VALUE)
  Q
  ;
@@ -98,7 +98,7 @@ ID ; -- build one ID item (from $$VALUE)
  ;
  I $$VALID(VALUE) D  ;add tags
  . S VALUE=$$ESC(VALUE)
- . I 'DFORM,$G(NOTAG) S ITEM=VALUE Q  ;for List items
+ . I $G(NOTAG) S ITEM=VALUE Q  ;for List items
  . S ITEM=$$ELEMENT("",TAG,VALUE)
  Q
  ;
@@ -126,7 +126,7 @@ WORD ; -- build one WP ITEM (from $$VALUE)
  .. S VALUE=$S($P(ITM0,U,11)]"":$P(ITM0,U,11),1:"Text exceeds "_$P(ITM0,U,10)_" limit and could not be saved. Please contact the site for full original text.")
  . E  I $L(VALUE)>2999999 S VALUE="Text exceeds 3 megabyte limit and could not be saved. Please contact the site for full original text." ;p16
  . S VALUE=$$ESC(VALUE)
- . I 'DFORM,$G(NOTAG) S ITEM=VALUE Q  ;for List items
+ . I $G(NOTAG) S ITEM=VALUE Q  ;for List items
  . S ITEM=$$ELEMENT("",TAG,VALUE)
  Q
  ;
@@ -186,17 +186,18 @@ LIST ; -- build an array of values in ITEM (from $$VALUE)
  Q
  ;
 LIST1 ; -- list of values in FILE (from LIST)
- N C,TAG,XREF,FILTER,SCREEN,FMT,XFRM,ENTITY,QUERY,DDELIST,DLIST,SEQ,IEN1,VALUE,ERR
- S C=","
+ N C,TAG,XREF,FILTER,SCREEN,LKUP,FMT,XFRM,ENTITY,QUERY,DDELIST,DLIST,SEQ,IEN1,VALUE,ERR
+ S C=",",ENTITY=+$P(ITM0,U,8)
  S TAG=$P(ITM1,U,2),XREF=$P(ITM1,U,3),FILTER=$P(ITM1,U,4)
  S SCREEN=$G(^DDE(+DIENTY,1,+ITM,1.1))
  ;
  D ITMPROC I $G(DDEOUT)!$G(DDEQUIT) K DDEOUT Q
  ;
  ; set up for results: single FIELD or multi-field (record) ENTITY
- I FIELD S FMT=$S(+$P(ITM0,U,7):"I",1:"E"),XFRM=$G(^DDE(+DIENTY,1,+ITM,4))
- E  D  Q:'ENTITY
- . S ENTITY=+$P(ITM0,U,8) Q:'ENTITY
+ I FIELD D
+ . S LKUP=$P(ITM0,U,6) S:LKUP'="" FIELD=FIELD_":"_LKUP ;support extended pointers=LKUP ;p24
+ . S FMT=$S(+$P(ITM0,U,7):"I",1:"E"),XFRM=$G(^DDE(+DIENTY,1,+ITM,4))
+ I ENTITY D
  . N X0 S X0=$G(^DDE(ENTITY,0)) S:'$L(TAG) TAG=$G(^(.1))
  . ; get defaults from Entity if not defined in Item
  . S:'$L(XREF) XREF=$P(X0,U,3)
@@ -216,7 +217,8 @@ L1 ; find appropriate records and process
  . I FIELD D
  .. S VALUE=$$GET1^DIQ(FILE,(IEN1_C),FIELD,FMT)
  .. I $L(VALUE),$L(XFRM) X XFRM ;output transform
- .. S:'$$VALID(VALUE) VALUE=""
+ .. I '$$VALID(VALUE) S VALUE="" Q
+ .. I ENTITY S VALUE=$$EN1^DDEG(ENTITY,VALUE,1,.ERR)
  . I 'FIELD,ENTITY S VALUE=$$EN1^DDEG(ENTITY,IEN1,1,.ERR)
  . ;
  . I VALUE=""!$G(ERR)!$G(DDEQUIT) Q
@@ -226,30 +228,33 @@ L1 ; find appropriate records and process
  Q
  ;
 LIST2 ; -- list of values in SUBFILE (from LIST)
- N IENS,C,TAG,SCREEN,FMT,XFRM,ENTITY,DLIST,SEQ,IEN1,VALUE,ERR
- S IENS=","_IEN,C=",",ENTITY="" ;p21 initialize ENTITY
- S TAG=$P(ITM1,U,2),SCREEN=$G(^DDE(+DIENTY,1,+ITM,1.1))
+ N IENS,C,TAG,XREF,SCREEN,LKUP,FMT,XFRM,ENTITY,DLIST,SEQ,IEN1,VALUE,ERR
+ S IENS=","_IEN,C=",",ENTITY=$P(ITM0,U,8) ;"" ;p21 initialize ENTITY
+ S TAG=$P(ITM1,U,2),XREF=$P(ITM1,U,3),SCREEN=$G(^DDE(+DIENTY,1,+ITM,1.1))
  ;
  D ITMPROC I $G(DDEOUT)!$G(DDEQUIT) K DDEOUT Q
  ;
- ; set up for results: single FIELD or multi-field ENTITY
- I FIELD S FMT=$S(+$P(ITM0,U,7):"I",1:"E"),XFRM=$G(^DDE(+DIENTY,1,+ITM,4))
- E  D  Q:'ENTITY
- . S ENTITY=$P(ITM0,U,8) Q:'ENTITY
- . S:'$L(TAG) TAG=$G(^DDE(ENTITY,.1)) ;defaults
+ ; set up FIELD and/or ENTITY for results
+ I FIELD D
+ . S LKUP=$P(ITM0,U,6) S:LKUP'="" FIELD=FIELD_":"_LKUP ;support extended pointers=LKUP ;p24
+ . S FMT=$S(+$P(ITM0,U,7):"I",1:"E"),XFRM=$G(^DDE(+DIENTY,1,+ITM,4))
+ I ENTITY D
+ . S:'$L(TAG) TAG=$G(^DDE(ENTITY,.1))
+ . S:'$L(XREF) XREF=$P($G(^DDE(ENTITY,0)),U,3)
  . S:'$L(SCREEN) SCREEN=$G(^DDE(ENTITY,5.1))
  . D PREPROC(ENTITY)
  S:TAG="" TAG=$P(ITM0,U)
  ;
 L2 ; find appropriate records and process
- D LIST^DIC(FILE,IENS_C,"@","Q",,,,,SCREEN,,"DLIST")
+ D LIST^DIC(FILE,IENS_C,"@","Q",,,,XREF,SCREEN,,"DLIST")
  S SEQ=0 F  S SEQ=$O(DLIST("DILIST",2,SEQ)) Q:'SEQ  D  Q:$G(ERR)
  . S IEN1=$G(DLIST("DILIST",2,SEQ))_IENS
  . S (VALUE,ERR)=""
  . I FIELD D
  .. S VALUE=$$GET1^DIQ(FILE,(IEN1_C),FIELD,FMT)
  .. I $L(VALUE),$L(XFRM) X XFRM ;output transform
- .. S:'$$VALID(VALUE) VALUE=""
+ .. I '$$VALID(VALUE) S VALUE="" Q
+ .. I ENTITY S VALUE=$$EN1^DDEG(ENTITY,VALUE,1,.ERR)
  . I 'FIELD,ENTITY S VALUE=$$EN1^DDEG(ENTITY,IEN1,1,.ERR)
  . ;
  . I VALUE=""!$G(ERR)!$G(DDEQUIT) Q

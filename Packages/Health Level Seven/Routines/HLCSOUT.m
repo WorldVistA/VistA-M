@@ -1,6 +1,7 @@
 HLCSOUT ;ALB/JRP/CJM - OUTGOING FILER;2/25/97 ;03/07/2011
- ;;1.6;HEALTH LEVEL SEVEN;**25,30,62,153**;Oct 13, 1995;Build 11
- ;Per VHA Directive 2004-038, this routine should not be modified.
+ ;;1.6;HEALTH LEVEL SEVEN;**25,30,62,153,175**;Oct 13, 1995;Build 2
+ ;Per VHA Directive 6402, this routine should not be modified.
+ ;Supported ICR# 10063, for $$PSET^%ZTLOAD API to make task persistent
 STARTOUT ;Main entry point for outgoing background filer
  ;Create/find entry denoting this filer in the OUTGOING FILER TASK
  ; NUMBER multiple (field #30) of the HL COMMUNICATION SERVER PARAMETER
@@ -8,6 +9,12 @@ STARTOUT ;Main entry point for outgoing background filer
  ;N TMP ; These vbls are not used!
  N HLPTRFLR,HLPTRLL,HLCSLOOP,HLEXIT,HLXX,HLNODE,HLOGLINK,HLPARENT
  N HLHDRBLD,HLERROR,HLHDR,HLD0,HLD1,HLST1
+ ;
+ ;;patch HL*1.6*175 adds the $$PSET^%ZTLOAD api to set filers to persistent
+ N HLPERS
+ I $G(ZTQUEUED) D
+ .S HLPERS=$$PSET^%ZTLOAD(ZTQUEUED)
+ ;
  S HLPTRFLR=+$$CRTFLR^HLCSUTL1(ZTSK,"OUT")
  ;Check if any outgoing messages are in the pending transmission queue
  ;

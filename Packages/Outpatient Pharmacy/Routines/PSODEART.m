@@ -1,5 +1,8 @@
 PSODEART ;FO-OAKAND/REM - EPCS Utilities and Reports; [5/7/02 5:53am] ;10/5/21  09:42
- ;;7.0;OUTPATIENT PHARMACY;**667**;DEC 1997;Build 18
+ ;;7.0;OUTPATIENT PHARMACY;**667,545**;DEC 1997;Build 270
+ ;External reference to DEA NUMBERS file (#8991.9) is supported by DBIA 7002
+ ;External reference to XUEPCS DATA file (#8991.6) is supported by DBIA 7015
+ ;External reference to XUEPCS PSDRPH AUDIT file (#8991.7) is supported by DBIA 7016
  ;External reference to KEYS sub-file (#200.051) is supported by DBIA 7054
  ;
  Q
@@ -9,7 +12,7 @@ PRESCBR(PSOSD0) ;called from print option - PSO EPCS PRIVS
  ; screening for prescribers with DEA# or VA#
  N PSOSPS
  S PSOSPS=$G(^VA(200,PSOSD0,"PS"))
- ;Q:($$PRDEA^XUSER(PSOSD0))!($P(PSOSPS,U,3)'="") 1
+ Q:$L(($$PRDEA^XUSER(0,PSOSD0)))!($P(PSOSPS,U,3)'="") 1
  Q 0
  ;
 PRIVS(PSOSD0) ;called from print option - PSO EPCS PRIVS 
@@ -17,7 +20,7 @@ PRIVS(PSOSD0) ;called from print option - PSO EPCS PRIVS
  ;user with controlled substance privileges? 
  ;based on 6 sub-schedules, PS3 node, pieces 1-6
  N PSOSPS3
- ;S PSOSPS3=$$PRSCH^XUSER(PSOSD0)
+ S PSOSPS3=$$PRSCH^XUSER(PSOSD0)
  Q:($P(PSOSPS3,U,1,6)[1) 1 ; yes, if at least one explicit Yes
  Q:($P(PSOSPS3,U,1,6)[0) 0 ; no, if explicit No
  Q 1 ; default, when all NULL
@@ -27,7 +30,7 @@ XT30(PSOSD0,ACT) ;called from print option - PSO EPCS XDATE EXPIRES
  ;PSOSD0=IEN, ACT=(1 or 0) active user of not
  N XDT,DT30,DEA,CNT
  S CNT=0
- ;S XDT=$$PRXDT^XUSER(PSOSD0),DT30=$$FMADD^XLFDT(DT,30),DEA=$$PRDEA^XUSER(PSOSD0)
+ S XDT=$$PRXDT^XUSER(PSOSD0),DT30=$$FMADD^XLFDT(DT,30),DEA=$$PRDEA^XUSER(PSOSD0)
  I (DEA'=""),(XDT'>DT30),(XDT'<DT) S CNT=CNT+1
  I ACT D
  .I $$ACTIVE^XUSER(PSOSD0) S CNT=CNT+1
@@ -110,8 +113,8 @@ VUSER1(PSOSD0,ACT) ;called from option - PSO EPCS DISUSER EXP DATE,PSO EPCS EXP 
  ;PSOSD0=IEN, ACT=(1 or 0) active user or not
  N CNT
  S CNT=0
- ;I $$PRDEA^XUSER(PSOSD0)'="" S CNT=CNT+1
- ;I $$PRXDT^XUSER(PSOSD0)="" S CNT=CNT+1
+ I $$PRDEA^XUSER(PSOSD0)'="" S CNT=CNT+1
+ I $$PRXDT^XUSER(PSOSD0)="" S CNT=CNT+1
  I ACT D
  .I $$ACTIVE^XUSER(PSOSD0) S CNT=CNT+1
  I 'ACT D
@@ -124,8 +127,8 @@ VUSER2(PSOSD0,ACT) ;called from option - PSO EPCS PRIVS,PSO EPCS DISUSER PRIVS
  ;PSOSD0=IEN, ACT=(1 or 0) active user or not
  N CNT
  S CNT=0
- ;I $$PRESCBR^PSODEART(PSOSD0) S CNT=CNT+1
- ;I $$PRIVS^PSODEART(PSOSD0) S CNT=CNT+1
+ I $$PRESCBR^PSODEART(PSOSD0) S CNT=CNT+1
+ I $$PRIVS^PSODEART(PSOSD0) S CNT=CNT+1
  I ACT D
  .I $$ACTIVE^XUSER(PSOSD0) S CNT=CNT+1
  I 'ACT D

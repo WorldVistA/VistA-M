@@ -1,10 +1,8 @@
 IVMPREC8 ;ALB/KCL,BRM,PJR,CKN,TDM,PWC,LBD,DPR,KUM - PROCESS INCOMING (Z05 EVENT TYPE) HL7 MESSAGES (CON'T) ;02 SEPT 2019  8:56 AM
- ;;2.0;INCOME VERIFICATION MATCH;**5,6,12,58,73,79,102,115,121,148,151,152,168,167,171,164,188,187**;21-OCT-94;Build 3
+ ;;2.0;INCOME VERIFICATION MATCH;**5,6,12,58,73,79,102,115,121,148,151,152,168,167,171,164,188,187,210**;21-OCT-94;Build 13
  ;Per VA Directive 6402, this routine should not be modified.
  ;
- ; This routine is called from IVMPREC6.
- ; This routine will process batch ORU demographic (event type Z05) HL7
- ; messages received from the IVM center.
+ ; This routine will process (event type Z05) HL7 messages
  ;
 PID ;-compare PID fields with DHCP fields
  N COMPPH1,COMPPH2,COUNTRY
@@ -24,7 +22,6 @@ PID ;-compare PID fields with DHCP fields
  ..;.Q:'$D(ADDRESS("N"))
  ..;.S IVMADDR=ADDRESS("N")
  ..;.S IVMPIECE=$E(IVMPIECE,3,4),IVMFLD=$P(IVMADDR,$E(HLECH),IVMPIECE)
- ..;.Q:IVMFLD=""
  ..;.I IVMPIECE="4N" S (IVMSTPTR,IVMFLD)=+$O(^DIC(5,"C",IVMFLD,0))
  ..; IVM*2.0*164-Uncomment Conf and Add Res
  ..I $G(AUPFARY(IVMDEMDA))="CA" S IVMADDR=$G(ADDRESS("CA")) ;Conf Addr
@@ -79,8 +76,7 @@ PID ;-compare PID fields with DHCP fields
  ..I 'FORADDR D
  ...S IVMADFLG=1
  ...I IVMPMAST'="" S IVMFLD=+$O(^DIC(5,IVMPMAST,1,"C",IVMPID(12),0))
- .;line remove so that the ph is compared 
- .;before saving to 301.5.
+ .;line remove so that the ph is compared before saving to 301.5.
  .I IVMXREF["PID13",$D(TELECOM),'$G(DODSEG) D
  ..;Conf Ph
  ..I IVMXREF="PID13CA",$D(TELECOM("VACPN")) D
@@ -132,8 +128,7 @@ PID ;-compare PID fields with DHCP fields
  .; -execute code on the 1 node and get DHCP field for compare
  .S IVMDHCP="" X:$D(^IVM(301.92,+IVMDEMDA,1)) ^(1) S IVMDHCP=Y
  .;
- .; - special logic for ph
- .; - if different store value received,quit
+ .; - special logic for ph,if different store value received,quit
  .;
  .I IVMXREF="PID13",$D(TELECOM("PRN")),'$G(DODSEG) D  Q
  ..S IVMFLD=$P($G(TELECOM("PRN")),$E(HLECH))
@@ -151,17 +146,20 @@ ZPD ; -compare ZPD with DHCP
  S STFLG=0
  S IVMPIECE=$E(IVMXREF,4,5)
  I IVMXREF="ZPD09"!(IVMXREF="ZPD31")!(IVMXREF="ZPD32") Q:$$DODCK(DFN)
+ ; 210-Quit if IVM-Language Date/Time is older
+ I IVMXREF="ZPD46"!(IVMXREF="ZPD47") Q:'$$LANGCK^IVMPREC9(DFN)
+ ;
  I $P(IVMSEG,HLFS,IVMPIECE)]"" D
  .;
  .; - set var to HL7 field
  .S IVMFLD=$P(IVMSEG,HLFS,IVMPIECE)
  .;
- .; - if HL7 name format convert to FM
- .I (IVMXREF["ZPD06")!(IVMXREF["ZPD07") S IVMFLD=$$FMNAME^HLFNC(IVMFLD)
- .;
  .; - if HL7 date convert to FM date
- .I IVMXREF["ZPD09"!(IVMXREF["ZPD13")!(IVMXREF["ZPD32") S IVMFLD=$$FMDATE^HLFNC(IVMFLD)
+ .; 210-ADD ZPD47
+ .I IVMXREF["ZPD09"!(IVMXREF["ZPD13")!(IVMXREF["ZPD32")!(IVMXREF["ZPD47") S IVMFLD=$$FMDATE^HLFNC(IVMFLD)
  .;
+ .; 210-call VADPT for DHCP demographics
+ .D DEM^VADPT
  .; - execute code on the 1 node and get DHCP field
  .S IVMDHCP="" X:$D(^IVM(301.92,+IVMDEMDA,1)) ^(1) S IVMDHCP=Y
  .;
@@ -169,11 +167,11 @@ ZPD ; -compare ZPD with DHCP
  .I IVMFLD]"",(IVMFLD'=IVMDHCP) S STFLG=1 D STORE^IVMPREC9 Q
  .I $P(IVMSEG,"^",IVMPIECE)'="""""" D
  ..I IVMXREF["ZPD09" D STORE^IVMPREC9
- ..;I IVMXREF["ZPD09"!(IVMXREF["ZPD31")!(IVMXREF["ZPD32") D STORE^IVMPREC9
  I IVMXREF["ZPD08",STFLG,$$AUTORINC^IVMPREC9(DFN) Q
  I IVMXREF["ZPD32",$$AUTODOD^IVMLDEMD(DFN)
+ ; IVM*2.0*210 - Upload Preferred Language and Language Date/Time
+ I IVMXREF["ZPD47",$$AUTOLANG^IVMPREC9(DFN)
  Q
- ;
  ;
 DODCK(DFN) ;this will check if Date of Death information needs to be uploaded or not.
  ;2 requirements are:

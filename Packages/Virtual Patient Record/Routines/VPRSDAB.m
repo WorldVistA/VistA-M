@@ -1,5 +1,5 @@
 VPRSDAB ;SLC/MKB -- SDA Lab utilities ;4/11/19  21:05
- ;;1.0;VIRTUAL PATIENT RECORD;**20,26,27**;Sep 01, 2011;Build 10
+ ;;1.0;VIRTUAL PATIENT RECORD;**20,26,27,31**;Sep 01, 2011;Build 3
  ;;Per VHA Directive 6402, this routine should not be modified.
  ;
  ; External References          DBIA#
@@ -12,10 +12,11 @@ VPRSDAB ;SLC/MKB -- SDA Lab utilities ;4/11/19  21:05
  ; ^ORD(101.43                   2843
  ; DIC                           2051
  ; DIQ                           2056
+ ; LR7OR1,  ^TMP("LRRR",$J       2503
  ; LR7OSUM, ^TMP("LR"*,$J        2766
  ; LR7OU1                        2955
  ; LRPXAPIU                      4246
- ; ORQ1, ^TM("ORR",$J)           3154
+ ; ORQ1,    ^TMP("ORR",$J)       3154
  ; ORX8                     2467,3071
  ;
 ORDERS ; -- Return DLIST(#)=order# of Lab orders
@@ -97,6 +98,30 @@ CH(TEST) ; -- builds DLIST(#) of result nodes for TEST
  . S DLIST(T)=$$LRDN^LRPXAPIU(T)_","_DIEN
  Q
  ;
+REFRNG(RLV,RHV) ; -- format low-high ref range string
+ ;RLV - Range low value
+ ;RHV - Range high value
+ ;Based on supported EN^LRLRRVF
+ S RLV=$G(RLV),RHV=$G(RHV)
+ I RLV="",RHV="" Q RLV
+ ;Strip any surrounding quotes
+ I RLV?1"""".E1"""" S RLV=$E(RLV,2,$L(RLV)-1)
+ I RHV?1"""".E1"""" S RHV=$E(RHV,2,$L(RHV)-1)
+ ;If only the low is defined
+ I RLV'="",RHV="" D  Q RLV
+ . I RLV=0 S RLV=">"_RLV Q
+ . I ($E(RLV)="<")!($E(RLV)=">") Q   ;ok
+ . I (RLV?.N.".".N) S RLV=">"_RLV Q  ;numeric
+ . ;else return RLV as is (non-numeric)
+ ;If only the high is defined
+ I RLV="",RHV'="" D  Q RHV
+ . I RHV=0 S RHV="<"_RHV Q
+ . I ($E(RHV)="<")!($E(RHV)=">") Q   ;ok
+ . I (RHV?.N.".".N) S RHV="<"_RHV Q  ;numeric
+ . S RHV="-"_RHV
+ ;If both are defined
+ Q RLV_"-"_RHV
+ ;
 MI1(D0,D1) ; -- return MI approval node
  N GBL,N,X,Y
  S D0=+$G(D0),D1=+$G(D1),GBL=$NA(^LR(D0,"MI",D1)),Y=""
@@ -104,7 +129,32 @@ MI1(D0,D1) ; -- return MI approval node
  . S Y=$P(X,U,1,2)_U_$S(N=11:$P(X,U,5),1:$P(X,U,3))
  Q Y
  ;
-AP1(ID) ; -- parse ID=IDT,LRDFN~SUB for AP,MI report
+APRPTS ; -- Anatomic Pathology reports query [from DDEGET]
+ ; Expects DFN, DSTRT,DSTOP, DMAX, LRDFN
+ ; Return DLIST(#) = IDT,LRDFN~SUB
+ N SUB,IDT,VPRN,CTR S VPRN=0
+ D RR^LR7OR1(DFN,,DSTRT,DSTOP,"AP")
+ S SUB="" F  S SUB=$O(^TMP("LRRR",$J,DFN,SUB)) Q:SUB=""  D
+ . S IDT=0 F  S IDT=$O(^TMP("LRRR",$J,DFN,SUB,IDT)) Q:IDT<1  I $O(^(IDT,0)) D  Q:VPRN'<DMAX
+ .. Q:$O(^LR(LRDFN,SUB,IDT,.05,0))        ;report in TIU
+ .. Q:'$P($G(^LR(LRDFN,SUB,IDT,0)),U,11)  ;not final results
+ .. S VPRN=VPRN+1,DLIST(VPRN)=IDT_","_LRDFN_"~"_SUB
+ K ^TMP("LRRR",$J,DFN)
+ Q
+ ;
+MIRPTS ; -- Microbiology reports query [from DDEGET]
+ ; Expects DFN, DSTRT,DSTOP, DMAX, LRDFN
+ ; Return DLIST(#) = IDT,LRDFN~SUB
+ N IDT,VPRN,CTR S VPRN=0
+ D RR^LR7OR1(DFN,,DSTRT,DSTOP,"MI")
+ S IDT=0 F  S IDT=$O(^TMP("LRRR",$J,DFN,"MI",IDT)) Q:IDT<1  I $O(^(IDT,0)) D  Q:VPRN'<DMAX
+ . ;Q:'$P($G(^LR(LRDFN,"MI",IDT,0)),U,3)  ;not final results
+ . Q:'$$MI1^VPRSDAB(LRDFN,IDT)  ;not final results
+ . S VPRN=VPRN+1,DLIST(VPRN)=IDT_","_LRDFN_"~MI"
+ K ^TMP("LRRR",$J,DFN)
+ Q
+ ;
+AP1(ID) ; -- parse ID='IDT,LRDFN~SUB' for AP,MI report
  ; Returns DIFN, LRSUB, updated ID, LR0=^LR(LRDFN,SUB,IDT,0)
  ;     and LR1=^LR(LRDFN,"MI",IDT,#) report approval if MI
  S ID=$G(ID),LRSUB=$P(ID,"~",2),ID=$P(ID,"~")
@@ -115,6 +165,19 @@ AP1(ID) ; -- parse ID=IDT,LRDFN~SUB for AP,MI report
  S:'$G(LRDFN) LRDFN=+$P(ID,",",2)
  S LR0=$G(^LR(LRDFN,LRSUB,+ID,0))
  I LRSUB="MI" S LR1=$$MI1(LRDFN,+ID)
+ Q
+ ;
+RR ; -- returns addl reports for order in DLIST(#) = IDT;SUB or IEN;TIU
+ ; Expects DFN, ORPK, LRDFN
+ N SUB,IDT,X,CNT
+ Q:$G(DFN)<1  Q:$P($G(ORPK),";",4)=""
+ D RR^LR7OR1(DFN,ORPK)
+ S SUB=$P(ORPK,";",4),CNT=0
+ S IDT=0 F  S IDT=$O(^TMP("LRRR",$J,DFN,SUB,IDT)) Q:IDT<1  D
+ . Q:$P(ORPK,";",5)=IDT  ;returned in Result.DocumentNumber
+ . I SUB="MI" Q:'$$MI1(LRDFN,IDT)  S X=IDT_";MI"
+ . I SUB'="MI" Q:'$P($G(^LR(LRDFN,SUB,IDT,0)),U,11)  S X=$$LRTIU(SUB,IDT)
+ . S CNT=CNT+1,DLIST(CNT)=X
  Q
  ;
 LRTIU(IDT,SUB) ; -- return TIU ien of lab report

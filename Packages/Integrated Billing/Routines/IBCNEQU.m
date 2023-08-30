@@ -1,10 +1,12 @@
 IBCNEQU ;DAOU/BHS - eIV REQUEST ELECTRONIC INSURANCE INQUIRY ; 24-JUN-2002
- ;;2.0;INTEGRATED BILLING;**184,271,416,438,497,582,601,631,668,702,732**;21-MAR-94;Build 13
+ ;;2.0;INTEGRATED BILLING;**184,271,416,438,497,582,601,631,668,702,732,737**;21-MAR-94;Build 19
  ;;Per VA Directive 6402, this routine should not be modified.
  ;
  ; eIV - Insurance Verification Interface
  ;
  ; Must call from EN
+ ;
+ ; IB*737/TAZ - Remove References to ~NO PAYER
  Q
  ;
 EN ; Entry pt
@@ -196,11 +198,6 @@ SELECT ; User selects insurance from list to be reconfirmed
  . S DIR(0)="E" D ^DIR K DIR
  . K ^TMP("IBCNEQUDTS",$J)
  ;
- I $P(IBDATA,U,3)="~NO PAYER" D
- . W !!,"Payer missing. Identification inquiries not allowed."    ; IB*2*416
- . S DIR(0)="E" D ^DIR K DIR
- . Q
- ;
 SELECTX ;
  S VALMBCK="R"
  Q
@@ -268,41 +265,6 @@ FASTEXIT ; Sets flag to indicate a quick exit from the option
  S DIR(0)="Y",DIR("A")="Exit option entirely",DIR("B")="NO"
  D ^DIR
  I +Y S IBFASTXT=1
- Q
- ;
-ADD() ;
- NEW PAYER,TQIEN,OK,STR,SRVICEDT,FRESHDT,DATA1,DATA2,TQIEN,FRESHDAY
- I '$D(^IBCN(365.1,"E",DFN)) Q 0  ; Does this pt have a TQ entry?
- S (TQIEN,OK)=""
- S PAYER=$$FIND1^DIC(365.12,,"X","~NO PAYER") ; Get payer IEN
- F  S TQIEN=$O(^IBCN(365.1,"E",DFN,TQIEN)) Q:'TQIEN!OK  D
- . S STR=$G(^IBCN(365.1,TQIEN,0))
- . ; If "~NO PAYER" & Transmitted
- . I $P(STR,U,3)=PAYER,$P(STR,U,4)=2 S OK=1 Q
- . ; If "~NO PAYER" & Ready to Transmit & override flag
- . I $P(STR,U,3)=PAYER,($P(STR,U,4)=1),($P(STR,U,14)=1) S OK=1 Q
- I 'OK Q 0
- Q 1
- ;
-BLKTQ ;  Create a ~NO PAYER request for 'Search for All'
- Q    ; no longer allowed  IB*2*416
- NEW PAYER,SRVICEDT,FRESHDT,DATA1,DATA2,TQIEN,FRESHDAY
- S PAYER=$$FIND1^DIC(365.12,,"X","~NO PAYER")
- D NPINIT ; Update service date and freshness
- ; Update service dates for inquiries to be transmitted
- S DATA1=DFN_U_PAYER_U_1_U_""_U_""_U_FRESHDT
- S DATA2=5_U_"I"_U_SRVICEDT ;IB*2.0*631/TAZ
- S TQIEN=$$SETTQ^IBCNEDE7(DATA1,DATA2,"",1)
- Q
- ;
-BLKX Q
- ;
-NPINIT ; Initialize variables for ~NO PAYER
- S SRVICEDT=DT
- S FRESHDAY=$P($G(^IBE(350.9,1,51)),U)
- S FRESHDT=$$FMADD^XLFDT(SRVICEDT,-FRESHDAY)
- ;
- ; Update service date and freshness date based on payer allowed
  Q
  ;
 HELPSTC2 ; Text to display in response to '??' entry

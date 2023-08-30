@@ -1,13 +1,13 @@
 IBCNBES ;ALB/ARH-Ins Buffer: stuff new entries/data into buffer ;1 Jun 97
- ;;2.0;INTEGRATED BILLING;**82,184,345,438,497**;21-MAR-94;Build 120
- ;;Per VHA Directive 2004-038, this routine should not be modified.
+ ;;2.0;INTEGRATED BILLING;**82,184,345,438,497,743**;21-MAR-94;Build 18
+ ;;Per VHA Directive 6402, this routine should not be modified.
  ;
  ;
 ADDSTF(IBSOURCE,DFN,IBDATA) ;  add new entry to Insurance Buffer file (355.33) and stuff the data passed in, no user interaction
  ;  IBSOURCE = source of information             (required)
  ;             1 = interview           2 = data match
  ;             3 = ivm                 4 = pre-registration
- ;             5 = eIV
+ ;             5 = eIV etc., refer to file #365.12 for full list of sources  ;IB*743/CKB
  ;  DFN      = patient's ifn in file 2           (required)
  ;  IBDATA   = data to file in Buffer in an array subscripted by field number of the data field in 355.33
  ;             ex:  IBDATA(20.01)="Insurance Company Name", etc,
@@ -49,7 +49,7 @@ EDITSTF(IBBUFDA,IBDATA) ;  loop though data array and stuff each buffer field, n
  . S IBARR(355.33,IBBUFDA_",",IBFIELD)=$P(IBVALUE,U,2)
  I $D(IBARR)>9 D FILE^DIE("E","IBARR","IBERR")
  ; file subscriber id
- ; needs to work with new and old subscriber id field until transition to the new fiedl is complete.
+ ; needs to work with new and old subscriber id field until transition to the new field is complete. 
  I $G(IBDATA(90.03))'=""!($G(IBDATA(60.04))'="") D
  .N IBSUBIDF
  .S IBSUBIDF=$S($G(IBDATA(90.03))'="":90.03,1:60.04)

@@ -1,5 +1,5 @@
 VPRSDAG ;SLC/MKB -- SDA GMR utilities ;10/25/18  15:29
- ;;1.0;VIRTUAL PATIENT RECORD;**27,28**;Sep 01, 2011;Build 6
+ ;;1.0;VIRTUAL PATIENT RECORD;**27,28,31**;Sep 01, 2011;Build 3
  ;;Per VHA Directive 6402, this routine should not be modified.
  ;
  ; External References          DBIA#
@@ -8,6 +8,7 @@ VPRSDAG ;SLC/MKB -- SDA GMR utilities ;10/25/18  15:29
  ; ^GMPL(125.8                   2974
  ; DIQ                           2056
  ; GMPLEDT3                      2977
+ ; GMPLUTL2                      2741
  ; GMRVUT0, ^UTILITY($J          1446
  ; GMVGETVT                      5047
  ; GMVUTL                        5046
@@ -15,6 +16,16 @@ VPRSDAG ;SLC/MKB -- SDA GMR utilities ;10/25/18  15:29
  ; RMIMRP                        4745
  ; TIULQ                         2693
  ; XLFDT                        10103
+ ;
+PROBLEMS ; -- Problem List query
+ ; Expects DSTRT, DSTOP, DMAX from DDEGET and returns DLIST(#)=ien
+ N ID,VPRSTS,VPRPROB,VPRN,X
+ S VPRSTS=$G(FILTER("status")) ;default = all problems
+ D LIST^GMPLUTL2(.VPRPROB,DFN,VPRSTS)
+ S VPRN=0 F  S VPRN=$O(VPRPROB(VPRN)) Q:(VPRN<1)!(VPRN>DMAX)  D
+ . S X=$P(VPRPROB(VPRN),U,6) I X,(X<DSTRT)!(X>DSTOP) Q  ;last updated
+ . S DLIST(VPRN)=+VPRPROB(VPRN)
+ Q
  ;
 PROB1(IEN) ; -- get info for single problem [ID Action]
  I '$G(^AUPNPROB(IEN,0)) S DDEOUT=1 Q
@@ -47,6 +58,27 @@ DELETED(IEN,FLD) ; -- return 1 or 0, if FLD value was recently deleted
  S I=0 F  S I=$O(^GMPL(125.8,"AD",IEN,LAST,I)) Q:I<1  D  Q:Y
  . S X=$G(^GMPL(125.8,I,0))
  . I $P(X,U,2)=FLD,$L($P(X,U,5)),$P(X,U,6)="" S Y=1 Q
+ Q Y
+ ;
+ ;
+FIMQ ; -- Functional Independence Measurements query
+ ; Expects DSTRT, DSTOP, DMAX from DDEGET
+ ; Returns DLIST(#)=ien, VPRSITE array
+ N VPRS,VPRN,VPRY,ADM,VPRCNT,RMIMTIME
+ D PRM^RMIMRP(.VPRSITE) Q:'$O(VPRSITE(1))
+ S DFN=+$G(DFN) Q:DFN<1
+ S VPRCNT=0
+ S VPRS=1 F  S VPRS=$O(VPRSITE(VPRS)) Q:VPRS<1  D
+ . S VPRN=DFN_U_VPRSITE(VPRS)
+ . D LC^RMIMRP(.VPRY,VPRN) Q:VPRY(1)<1
+ . S VPRN=1 F  S VPRN=$O(VPRY(VPRN)) Q:VPRN<1  D  Q:VPRCNT'<DMAX
+ .. S ADM=$$DATE($P(VPRY(VPRN),U,4)) Q:ADM<DSTRT  Q:ADM>DSTOP
+ .. S VPRCNT=VPRCNT+1,DLIST(VPRCNT)=+VPRY(VPRN)
+ Q
+ ;
+DATE(X) ; -- Return internal form of date X
+ N %DT,Y
+ S %DT="" D ^%DT S:Y<1 Y=X
  Q Y
  ;
 FIM1(IEN) ; -- get info for one set of measurements [ID Action]

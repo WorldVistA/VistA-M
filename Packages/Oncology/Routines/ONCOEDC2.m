@@ -1,13 +1,10 @@
-ONCOEDC2 ;Hines OIFO/RTK - ABSTRACT STATUS (165.5,91) Input Transform ;4/29/19
- ;;2.2;ONCOLOGY;**10,12**;Jul 31, 2013;Build 8
+ONCOEDC2 ;HINES OIFO/RTK - ABSTRACT STATUS (165.5,91) Input Transform ;4/29/19
+ ;;2.2;ONCOLOGY;**10,12,17**;Jul 31, 2013;Build 6
  ;
 OBS2018 ;Remove data in fields that are obsolete for 2018+ cases
+ D OBS2023
  K OBSLIST S ONCOBSO=0 D FLDS I ONCOBSO=0 Q
  W !!,"  This abstract has data in fields which are obsolete for 2018+ cases."
- ;D DSPLST
- ;K DIR S DIR(0)="YA"
- ;S DIR("A")=" Do you wish to delete the data in the obsolete fields? "
- ;S DIR("B")="No" D ^DIR K DIR
  W ! D DELETE
  K ONCOBSO,OBSLIST,CNT,EX,LINE,FN
  Q
@@ -109,6 +106,36 @@ DELETE ;
  S $P(^ONCO(165.5,PRM,2),"^",16)=""
  S $P(^ONCO(165.5,PRM,2),"^",17)=""
  Q
+ ;
+OBS2023 ;Remove data in data flag fields that are obsolete for 2023+ cases
+ I $P($G(^ONCO(165.5,D0,0)),U,16)<3230000 Q
+ S $P(^ONCO(165.5,D0,27),"^",8)=""
+ S $P(^ONCO(165.5,D0,27),"^",9)=""
+ S $P(^ONCO(165.5,D0,27),"^",10)=""
+ S $P(^ONCO(165.5,D0,27),"^",11)=""
+ S $P(^ONCO(165.5,D0,27),"^",12)=""
+ S $P(^ONCO(165.5,D0,27),"^",13)=""
+ S $P(^ONCO(165.5,D0,27),"^",14)=""
+ S $P(^ONCO(165.5,D0,27),"^",15)=""
+ S $P(^ONCO(165.5,D0,27),"^",16)=""
+ S $P(^ONCO(165.5,D0,27),"^",17)=""
+ S $P(^ONCO(165.5,D0,27),"^",18)=""
+ S $P(^ONCO(165.5,D0,27),"^",19)=""
+ S $P(^ONCO(165.5,D0,27),"^",20)=""
+ S $P(^ONCO(165.5,D0,27),"^",21)=""
+ S $P(^ONCO(165.5,D0,27),"^",22)=""
+ S $P(^ONCO(165.5,D0,27),"^",23)=""
+ S $P(^ONCO(165.5,D0,27),"^",24)=""
+ S $P(^ONCO(165.5,D0,27),"^",25)=""
+ S $P(^ONCO(165.5,D0,27),"^",26)=""
+ S $P(^ONCO(165.5,D0,27),"^",27)=""
+ S $P(^ONCO(165.5,D0,27),"^",28)=""
+ S $P(^ONCO(165.5,D0,27),"^",29)=""
+ S $P(^ONCO(165.5,D0,27),"^",30)=""
+ S $P(^ONCO(165.5,D0,"NCR18"),"^",15)=""
+ S $P(^ONCO(165.5,D0,"NCR18"),"^",19)=""
+ Q
+ ;
 COCC(DATEDX) ;COC Coding System Current & Original
  N ONCOC
  S ACDANS="99"

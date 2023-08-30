@@ -1,5 +1,5 @@
 PSOERXU6 ;ALB/BWF - eRx utilities ;Feb 10, 2022@11:04
- ;;7.0;OUTPATIENT PHARMACY;**508,551,581,631,617,672**;DEC 1997;Build 1
+ ;;7.0;OUTPATIENT PHARMACY;**508,551,581,631,617,672,715**;DEC 1997;Build 1
  ;
  Q
  ; auto discontinue orders related to cancel request
@@ -188,11 +188,12 @@ CANPEND(ERXIEN,PENDIEN,INST,PSSRET) ;
  D UL^PSSLOCK(PSODFN)
  Q 1_U_ACOM
 BLDRESP(RXIEN) ;
- N REFL,TOTFILL,LDDATE,FFILL,ACOM
+ N REFL,TOTFILL,LRDATE,FFILL,ACOM
  S (REFL,TOTFILL)=$$GET1^DIQ(52,RXIEN,9,"I"),I=0 F  S I=$O(^PSRX(RXIEN,1,I)) Q:'I  S REFL=REFL-1
- S LDDATE=$$GET1^DIQ(52,RXIEN,101,"I"),LDDATE=$$FMTE^XLFDT(LDDATE,"2D")
+ ; p715 Use last release date instead of last dispense date
+ S LRDATE=$$RXRLDT^PSOBPSUT(RXIEN),LRDATE=$$FMTE^XLFDT(LRDATE,"2D")
  S FFILL=$$GET1^DIQ(52,RXIEN,22,"I"),FFILL=$$FMTE^XLFDT(FFILL,"2D")
- S ACOM="First Fill:"_FFILL_", Last Fill:"_LDDATE_", Refills Remaining:"_REFL
+ S ACOM="First Fill:"_FFILL_", Last Fill:"_$S(LRDATE:LRDATE,1:"      ")_", Refills Remaining:"_REFL
  Q ACOM
  ; find the newRx related to a message
 FINDNRX(ERXIEN) ;

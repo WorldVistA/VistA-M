@@ -1,5 +1,5 @@
 IBCNBLA1 ;ALB/ARH - Ins Buffer: LM action calls (cont) ;1 Jun 97
- ;;2.0;INTEGRATED BILLING;**82,133,149,184,252,271,416,438,506,528**;21-MAR-94;Build 163
+ ;;2.0;INTEGRATED BILLING;**82,133,149,184,252,271,416,438,506,528,737**;21-MAR-94;Build 19
  ;;Per VA Directive 6402, this routine should not be modified.
  ;
 ADDBUF ; add a new buffer entry protocol
@@ -164,6 +164,7 @@ ACCEPT(IBBUFDA) ; process a buffer entry for acceptance
  ;
  Q:'$G(IBBUFDA)
  N IBDA,IBINSDA,IBGRPDA,IBPOLDA,IBACCEPT S IBACCEPT=0
+ N IBBUFABORT S IBBUFABORT=0 ;IB*737/CKB
  ;
  D FULL^VALM1
  ;
@@ -178,9 +179,19 @@ ACCEPT(IBBUFDA) ; process a buffer entry for acceptance
  . W !!,"Sorry, but you do not have the required privileges to add",!,"new Insurance Companies."
  . D WAIT^IBCNBUH
  ;
+ ;IB*737/CKB - ensure that the buffer effective is populated (IBBUFABORT=2)
+ N BUFEFFDT S BUFEFFDT=$$GET1^DIQ(355.33,IBBUFDA_",",60.02,"I")
+ I BUFEFFDT="" S IBBUFABORT=2 G ACCPTQ
+ ;
  S IBACCEPT=$$ACCEPT^IBCNBAA(IBBUFDA,IBINSDA,IBGRPDA,IBPOLDA)
  ;
-ACCPTQ S VALMBCK="R" I +IBACCEPT S VALMBCK="Q" D UPDLN^IBCNBLL(IBBUFDA,"ACCEPTED")
+ACCPTQ ;IB*737/CKB - if the Buffer entry wasn't Accepted (see IBBUFABORT), display warning message and return to Buffer
+ I IBBUFABORT D  Q
+ . I IBBUFABORT=1 W !,"*** Unable to process entry, if accepted it would corrupt the Effective Date of the policy ***"
+ . I IBBUFABORT=2 W !!,"*** Unable to process entry, the Effective Date is required  ***"
+ . D PAUSE^VALM1
+ . S VALMBCK="Q"
+ S VALMBCK="R" I +IBACCEPT S VALMBCK="Q" D UPDLN^IBCNBLL(IBBUFDA,"ACCEPTED")
  Q
  ;
 RESP(BUFF) ; List Response Report for Trace # associated with this entry

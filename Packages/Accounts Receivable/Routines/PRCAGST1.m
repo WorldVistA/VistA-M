@@ -1,8 +1,18 @@
 PRCAGST1 ;WASH-ISC@ALTOONA,PA/CMS-Print Patient Statement Bottom ;10/16/96  11:13 AM
-V ;;4.5;Accounts Receivable;**2,48,104,176,249,301**;Mar 20, 1995;Build 144
+V ;;4.5;Accounts Receivable;**2,48,104,176,249,301,405,406**;Mar 20, 1995;Build 5
  ;;Per VA Directive 6402, this routine should not be modified.
  ;ENTRY FROM PRCAGST PAGE 1
+ ;INPUT (UNDECLARED): RCDFN - (Optional) Patient IEN
+ ;                    DEB   - Debtor IEN
+ ;                    DEBT  - Debtor Info Variable (<Unknown>^Name (Last,First Middle))
+ ; 
  NEW AMT,BN,DAT,DESC,I,REF,THNK,TN,TTY,X,Y,RCTOTAL
+ ;
+ ; PRCA*4.5*406 - Set up DFN and Name for Acct No. Creation.
+ I '$G(RCDFN) S RCDFN=+$P(^RCD(340,+DEB,0),U)             ;Get the DFN of the Debtor if it doesn't exist
+ I $P($G(DEBT),U,2)="" S $P(DEBT,U,2)=$$NAM^RCFN01(DEB)   ;Get the Debtor name if necessary
+ ;End PRCA*4.5*406
+ ;
  D HDR
  S DESC(1)="Previous Balance",REF="" D WRL(PDAT,.DESC,PBAL,REF)
  S DAT=0
@@ -59,7 +69,7 @@ HDR ;statement transaction header
  NEW I,Y
  S PAGE=$G(PAGE)+1
  I PAGE>1 W @IOF I $G(^RC(342,1,5))]"" F I=1:1:18 W !
- W !,"Department of Veterans Affairs",?50,"Acct No.:",$P($$SITE^VASITE(),U,3)_"/"_$E(SSN,6,9)
+ W !,"Department of Veterans Affairs",?35,"Acct No.:",$$ACCT^PRCAAPR1(RCDFN) ;PRCA*4.5*405 Replace SSN with Account Number
  W !,NAM,?50,"Page ",PAGE
  S Y="",$P(Y,"_",80)="" W !,Y
  W !,"|Date Posted|",?13,"     Description",?58,"| Amount ",?67,"| Reference |"

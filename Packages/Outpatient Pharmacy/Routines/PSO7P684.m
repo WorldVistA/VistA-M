@@ -1,5 +1,5 @@
 PSO7P684 ;WILM/BDB - Pre Install routine for patch PSO*7*684 ;4/22/2022
- ;;7.0;OUTPATIENT PHARMACY;**684**;DEC 1997;Build 57
+ ;;7.0;OUTPATIENT PHARMACY;**684,545**;DEC 1997;Build 270
  Q
  ;
 PRE ; Pre-Install Entry Point
@@ -44,7 +44,7 @@ PRE ; Pre-Install Entry Point
  .S DA=DEAIEN,DIK="^XTV(8991.9," D ^DIK K DIK,DA
  ;run the initial load of the DOJ DEA data
  ;
- D INITLOAD(7)
+ D INITLOAD(90)
  S ^XTMP(HANDPSO,"STATUS")="Install Completed"
  L -^XTMP(HANDPSO)
  ;

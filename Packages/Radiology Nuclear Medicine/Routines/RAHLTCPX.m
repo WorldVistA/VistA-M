@@ -1,5 +1,5 @@
-RAHLTCPX ;HIRMFO/RTK,RVD,GJC - Rad/Nuc Med HL7 TCP/IP Bridge;02/11/08 ;10 Apr 2019 3:05 PM
- ;;5.0;Radiology/Nuclear Medicine;**47,114,129,141,144,157**;Mar 16, 1998;Build 2
+RAHLTCPX ;HIRMFO/RTK,RVD,GJC - Rad/Nuc Med HL7 TCP/IP Bridge;02/11/08 ; Dec 29, 2022@09:55:42
+ ;;5.0;Radiology/Nuclear Medicine;**47,114,129,141,144,157,195**;Mar 16, 1998;Build 2
  ;
  ; this is a modified copy of RAHLTCPB for HL7 v2.4
  ;
@@ -131,7 +131,7 @@ OBR ; Pick data off the 'OBR' segment.
  I $G(RADTI)'>0 S RAERR="Invalid exam registration timestamp" D XIT Q
  I $G(RACNI)'>0 S RAERR="Invalid exam record IEN" D XIT Q
  ;OBR-25/PAR(26) STATUS: 'C'orrected, 'F'inal, or 'R'esults filed, not verified & 'VAQ' NTP releases the study back to the VA
- I '$L($G(PAR(26))) S RAERR="Missing Report Status",RAEXIT=1 Q 
+ I '$L($G(PAR(26))) S RAERR="Missing Report Status",RAEXIT=1 Q
  I "^C^F^R^VAQ^"'[("^"_PAR(26)_"^") S RAERR="Invalid Report Status: "_PAR(26),RAEXIT=1 Q
  S ^TMP(RARRR,$J,RASUB,"RASTAT")=PAR(26)
  G:$P(RARRR,"-",3) 112
@@ -207,9 +207,18 @@ OBX ; Pick data off the 'OBX' segments
  ; KLM/p157 - PS to send usage code in third piece (ie 1^NORMAL^P). P is for primary.
  I RAOBX3(1)="D" D
  .I $P($G(RAX),U,3)="P" S ^TMP("RARPT-REC",$J,RASUB,RANODE,"PDX",RARCNT(RAOBX3(1)))=+RAX
+ .;p195 - VR (PSCRIBE) allows multiple DX selections sent together separated by commas (1000,1001^DX)
+ .I $P($G(RAX),U,1)["," S RAX=$P(RAX,U) D  ;check first piece for commas
+ ..N RAL,RAII,RAXM
+ ..S RAL=$L(RAX,",") F RAII=1:1:RAL S RAXM=$P(RAX,",",RAII) D  ;parse comma separated codes
+ ...S ^TMP("RARPT-REC",$J,RASUB,RANODE,RARCNT(RAOBX3(1)))=+RAXM  ;set ^TMP for each one
+ ...F RAI=1:1:RACNPPP S RARRR="RARPT-REC-"_RAI S ^TMP(RARRR,$J,RASUB,RANODE,RARCNT(RAOBX3(1)))=+RAXM
+ ...S RARCNT(RAOBX3(1))=RARCNT(RAOBX3(1))+1 ;increment node counter
+ ..Q
  .S RAX=+RAX
+ .E  S ^TMP("RARPT-REC",$J,RASUB,RANODE,RARCNT(RAOBX3(1)))=RAX ;no extra processing, just save it
  .Q
- S ^TMP("RARPT-REC",$J,RASUB,RANODE,RARCNT(RAOBX3(1)))=RAX
+ S:RAOBX3(1)'="D" ^TMP("RARPT-REC",$J,RASUB,RANODE,RARCNT(RAOBX3(1)))=RAX ;p195 - non-dx segments only
  F RAI=1:1:RACNPPP S RARRR="RARPT-REC-"_RAI S ^TMP(RARRR,$J,RASUB,RANODE,RARCNT(RAOBX3(1)))=RAX
  K RAOBX3,RASTR
  Q

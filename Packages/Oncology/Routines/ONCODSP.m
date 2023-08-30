@@ -1,5 +1,5 @@
 ONCODSP ;HINES OIFO/GWB,RTK - MISCELLANEOUS OPTIONS ;05/05/10
- ;;2.2;ONCOLOGY;**1,4,5,10,13**;Jul 31, 2013;Build 7
+ ;;2.2;ONCOLOGY;**1,4,5,10,13,17**;Jul 31, 2013;Build 6
  ;
 TR ;[TR Define Tumor Registry Parameters]
  W ! S DIC="^ONCO(160.1,",DIC(0)="AEMLQ",DLAYGO=160.1 D ^DIC
@@ -14,6 +14,7 @@ TR ;[TR Define Tumor Registry Parameters]
  ;S DR(1,160.1,3.1)="W !,""  CITY..............: "",$$GET1^DIQ(160.1,DA,66)"
  ;S DR(1,160.1,3.2)="W !,""  STATE.............: "",$$GET1^DIQ(160.1,DA,67)"
  S DR(1,160.1,4)=".04  REFERENCE DATE...."
+ S DR(1,160.1,4.1)="71  COC ACCREDITATION DATE."
  S DR(1,160.1,5)="1  TUMOR REGISTRAR..."
  S DR(1,160.1,6)="1.02  PHONE NUMBER......"
  S DR(1,160.1,7)="1.03  STATE HOSPITAL #.."
@@ -106,11 +107,19 @@ T ;[RS Registry Summary Reports - Today]
 F ;[RS Registry Summary Reports - Follow-Up]
  K DIR
  W !!," Follow-up rate calculation parameters (select 1 or 2):",!
- W !," 1) From cancer registry reference date or 1/1/2004 (whichever is later)"
- W !," 2) Within last five years or reference date (whichever is shorter)"
+ W !,"1) 15 Year Rolling Follow-Up Rate for All Patients: For all eligible"
+ W !,"   analytic cases (Class of Case 10-14 and 20-22) from the most"
+ W !,"   current year of completed cases through 15 years prior or the"
+ W !,"   program's first accreditation date (or reference date if no"
+ W !,"   accreditation date), whichever is shorter."
+ W !,"2) 5 Year Rolling Follow-Up Rate for Recent Patients: For all eligible"
+ W !,"   analytic cases (Class of Case 10-14 and 20-22) diagnosed from"
+ W !,"   the most current year of completed cases through five years"
+ W !,"   preceding or the program's first accredited date (or reference"
+ W !,"   date if no accreditation date), whichever is shorter."
  W !
  N DIR,X,Y
- S DIR(0)="SAO^1:From cancer registry reference date;2:Within last 5 years or reference date (whichever is shorter)"
+ S DIR(0)="SAO^1:15 Year Follow-Up Rate for All Patients;2:5 Year Follow-Up Rate for Recent Patients"
  S DIR("A")=" Select follow-up rate calculation parameter: "
  S DIR("?")="Select the starting point to compute the follow-up rate"
  D ^DIR G EX:Y=""!(Y[U) S ONCOS("F")=Y

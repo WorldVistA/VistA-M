@@ -1,5 +1,5 @@
 IBUCVM ;LL/ELZ-LONG TERM CARE CLOCK MAINTANCE ; 06-DEC-19
- ;;2.0;INTEGRATED BILLING;**663,671,669,675**;21-MAR-94;Build 6
+ ;;2.0;INTEGRATED BILLING;**663,671,669,675,745**;21-MAR-94;Build 8
  ;; Per VHA Directive 6402, this routine should not be modified
  ;
  ; This routine is used to perform the Urgent Care Visit Tracking
@@ -87,7 +87,7 @@ PRTVSTS(IBDFN,IBYR) ; Get the list of visits for the calendar year
  ;
  W @IOF
  S IBPT=$$PT^IBEFUNC(IBDFN)
- W !,"Urgent Care Visits in "_IBYR_" for "_$P(IBPT,U),"  ",$P(IBPT,U,2),!
+ W !,"Urgent Care Visits in "_IBYR_" for "_$P(IBPT,U),!
  D LINE("=",80)
  I 'IBC W "No Urgent Care Visits during this calendar year." Q 0
  S IBV=IBLCT\3 I IBC#3 S IBV=IBV+1
@@ -151,7 +151,7 @@ GETMAINT() ;
  ;
 ADDVST(IBDFN) ; Add a new UC visit for the patient
  ;
- N IBVST,IBINST,IBSTAT,IBBILL,IBCOMM,IBSITE,IBERROR,IBDUPFLG,IBELPG,IBOVRFLG
+ N IBVST,IBINST,IBSTAT,IBBILL,IBCOMM,IBSITE,IBERROR,IBDUPFLG,IBELPG,IBOVRFLG,IBIND
  ;
  ;Initialize the error return array/Variable
  S IBERROR=""
@@ -163,13 +163,14 @@ ADDVST(IBDFN) ; Add a new UC visit for the patient
  Q:IBVST=-1
  ; Retrieve Priority Group (future development)
  S IBELPG=$$GETELGP^IBECEA36(DFN,IBVST)
+ S IBIND=$$INDCHK^IBINUT1(IBVST,DFN)  ; IB*2.0*745
  ;
- S IBSTAT=$$GETSTAT(DFN,IBVST,IBELPG,.IBOVRFLG)
+ S IBSTAT=$$GETSTAT(DFN,IBVST,IBELPG,IBIND,.IBOVRFLG)  ; IB*2.0*745
  Q:IBSTAT=-1
  S:IBSTAT=2 IBBILL=$$GETBILL
  Q:IBBILL=-1
  S:IBBILL'="" IBBILL=$$UP^XLFSTR(IBBILL)   ;Convert to upper case
- S:IBSTAT'=2 IBCOMM=$$GETCOMM(IBSTAT,IBELPG,IBOVRFLG)
+ S:IBSTAT'=2 IBCOMM=$$GETCOMM(IBSTAT,IBELPG,IBIND,IBOVRFLG)  ; IB*2.0*745
  Q:IBCOMM=-1
  S IBOK=$$GETOK^IBECEA36(IBDUPFLG)
  Q:IBOK'=1
@@ -178,7 +179,7 @@ ADDVST(IBDFN) ; Add a new UC visit for the patient
  ;
 EDITVST(IBLCT) ; Add a new UC visit for the patient
  ;
- N IBSTAT,IBBILL,IBCOMM,IBERROR,IBVISIT,IBIEN,IBD,IBSITECD,IBSITENM,IBVSITE,IBVST,IBELPG,IBOK,IBOVRFLG
+ N IBSTAT,IBBILL,IBCOMM,IBERROR,IBVISIT,IBIEN,IBD,IBSITECD,IBSITENM,IBVSITE,IBVST,IBELPG,IBOK,IBOVRFLG,IBIND
  ;
  ;Ask user for visit to edit
  S (IBSTAT,IBBILL,IBCOMM,IBERROR,IBVSITE,IBOVRFLG)=""
@@ -208,9 +209,10 @@ EDITVST(IBLCT) ; Add a new UC visit for the patient
  ;
  ; Retrieve Priority Group (future development)
  S IBELPG=$$GETELGP^IBECEA36(DFN,IBVST)
+ S IBIND=$$INDCHK^IBINUT1(IBVST,DFN)  ; IB*2.0*745
  ;
  ;Prompt for Status change
- S IBSTAT=$$GETSTAT(DFN,IBVST,IBELPG,.IBOVRFLG)
+ S IBSTAT=$$GETSTAT(DFN,IBVST,IBELPG,IBIND,.IBOVRFLG)  ; IB*2.0*745
  Q:IBSTAT=-1
  ;
  ;Prompt for Bill No. if status is billed
@@ -219,7 +221,7 @@ EDITVST(IBLCT) ; Add a new UC visit for the patient
  S:IBBILL'="" IBBILL=$$UP^XLFSTR(IBBILL)   ;Convert to upper case
  ;
  ;Prompt for Comment if changed to Free or Not Counted
- S:IBSTAT'=2 IBCOMM=$$GETCOMM(IBSTAT,IBELPG,IBOVRFLG)
+ S:IBSTAT'=2 IBCOMM=$$GETCOMM(IBSTAT,IBELPG,IBIND,IBOVRFLG)  ; IB*2.0*745
  Q:IBCOMM=-1
  ;
  ;Confirm with user with no Duplicate Visit flag.
@@ -246,7 +248,7 @@ GETVST() ;
  I $D(DTOUT)!$D(DUOUT)!($G(Y)="")  Q -1
  Q Y
  ;
-GETSTAT(IBDFN,IBVST,IBELPG,IBOVRFLG) ;Ask the user for the Status of the Visit
+GETSTAT(IBDFN,IBVST,IBELPG,IBIND,IBOVRFLG) ;Ask the user for the Status of the Visit
  ;
  N X,Y,DTOUT,DUOUT,DIR,DIROUT,DIRUT,IBFRCT,IBRUR,IBSCSA,IBY
  ;
@@ -271,7 +273,7 @@ GETSTAT(IBDFN,IBVST,IBELPG,IBOVRFLG) ;Ask the user for the Status of the Visit
  I $D(DTOUT)!$D(DUOUT)!($G(Y)="")  Q -1
  S IBY=Y
  ;
- I (IBELPG>6),($$KCHK^XUSRB("IBUC VISIT MAINT OVERRIDE")),(IBY=1) D  Q:$G(Y)'=1 -1
+ I 'IBIND,IBELPG>6,$$KCHK^XUSRB("IBUC VISIT MAINT OVERRIDE"),IBY=1 D  Q:$G(Y)'=1 -1  ; IB*2.0*745
  . K DIR  ; reinit the DIR Array
  . ; Ask user for override
  . S DIR(0)="YA",DIR("A")="This veteran is not eligible for a Free Visit.  Do you wish to Override?  : "
@@ -284,11 +286,11 @@ GETSTAT(IBDFN,IBVST,IBELPG,IBOVRFLG) ;Ask the user for the Status of the Visit
  . S:$G(Y)=1 IBOVRFLG=1  ; Set override Flag to yes
  ;
  ;Validate that the veteran can receive a free visit
- I (IBELPG>6),(IBY=1),('IBOVRFLG) D  Q -1
+ I 'IBIND,IBELPG>6,IBY=1,'IBOVRFLG D  Q -1  ; IB*2.0*745
  . W !!,"Per the MISSION Act of 2018, this patient is ineligible for a Free"
  . W !,"Urgent Care Visit.",!
  ;
- I IBELPG=6 D
+ I 'IBIND,IBELPG=6 D  ; IB*2.0*745
  . ;Check to see if an RUR was completed.  If not, ask for the RUR and quit
  . S IBRUR=$$PRTSARUR^IBECEA36
  . I IBRUR=-1 D  Q
@@ -314,7 +316,7 @@ GETSTAT(IBDFN,IBVST,IBELPG,IBOVRFLG) ;Ask the user for the Status of the Visit
  I (IBY=1),((IBELPG<7)!(IBOVRFLG=1)),(IBFRCT>2) D  Q -1
  . W !!,"Per the Mission Act of 2018, this patient has already used their 3 free"
  . W !,"visits for the calendar year.",!
- Q Y
+ Q IBY  ; IB*2.0*745
  ;
 GETBILL() ;Ask the user for a Bill Number
  ;
@@ -340,7 +342,7 @@ CHKBILL(IBBLNO) ; Validate that the Bill Number is a valid input
  Q:IBBLIEN'="" 1
  Q 0
  ;
-GETCOMM(IBSTAT,IBELPG,IBOVRFLG) ; Ask the user for the status reason (or default it if Status is FREE)
+GETCOMM(IBSTAT,IBELPG,IBIND,IBOVRFLG) ; Ask the user for the status reason (or default it if Status is FREE)
  ;
  ;Input: IBSTAT - The visit status (from code set in .06 field in file 351.82
  ;                1 - FREE
@@ -351,9 +353,9 @@ GETCOMM(IBSTAT,IBELPG,IBOVRFLG) ; Ask the user for the status reason (or default
  ;
  ;
  ;If the status is to be FREE, auto populate the Reason based on Priority Group
- I (IBSTAT=1),(IBELPG=6) Q 1    ;Defaults to reason SC/SA
- I (IBSTAT=1),(IBELPG<6) Q 2    ;Defaults to reason MISSION Act
- I (IBSTAT=1),(IBOVRFLG=1) Q 6  ;Defaults to reason FRM Override
+ I IBSTAT=1,IBELPG=6 Q 1          ;Defaults to reason SC/SA
+ I IBSTAT=1,IBELPG<6!IBIND Q 2    ;Defaults to reason MISSION Act  IB*2.0*745
+ I IBSTAT=1,IBOVRFLG=1 Q 6        ;Defaults to reason FRM Override
  ;
  ;If the status is VISIT ONLy, auto populate the Reason with No Copay Required
  I IBSTAT=4 Q 5

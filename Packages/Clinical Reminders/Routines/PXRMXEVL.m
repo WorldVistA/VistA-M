@@ -1,5 +1,5 @@
-PXRMXEVL ; SLC/AGP - Reports Reminder Evaluation routine;12/31/2020
- ;;2.0;CLINICAL REMINDERS;**4,12,26,47,42**;Feb 04, 2005;Build 245
+PXRMXEVL ;SLC/AGP - Reports Reminder Evaluation routine ;Jan 12, 2023@17:59
+ ;;2.0;CLINICAL REMINDERS;**4,12,26,47,42,84**;Feb 04, 2005;Build 2
  ;
  ; Called by label from PXRMXSE1
  ;
@@ -7,6 +7,7 @@ PXRMXEVL ; SLC/AGP - Reports Reminder Evaluation routine;12/31/2020
 EVAL(SUB,REMINDER) ;
  N CNT,DFN,DEFARR,FIEV,ITEM,LIT
  S CNT=0
+ K ^TMP("PXRHM",$J)
  F  S CNT=$O(REMINDER(CNT)) Q:CNT'>0  D
  . S ITEM=$P(REMINDER(CNT),U,1),LIT=$P(REMINDER(CNT),U,4)
  . I LIT="" S LIT=$P(REMINDER(CNT),U,2)

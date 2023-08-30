@@ -1,13 +1,25 @@
 VPRSDAT ;SLC/MKB -- SDA TIU utilities ;10/25/18  15:29
- ;;1.0;VIRTUAL PATIENT RECORD;**20,29**;Sep 01, 2011;Build 11
+ ;;1.0;VIRTUAL PATIENT RECORD;**20,29,31**;Sep 01, 2011;Build 3
  ;;Per VHA Directive 6402, this routine should not be modified.
  ;
  ; External References          DBIA#
  ; -------------------          -----
  ; ^SC                          10040
  ; ^TIU(8925.1                   5677
+ ; ^TIU(8925.7                   7416
  ; DIQ                           2056
  ; TIULQ                         2693
+ ; TIUVPR                        6077
+ ;
+DOCQRY ; -- Text Integration Utilities query
+ ; Expects DSTRT, DSTOP, DMAX from DDEGET and returns DLIST(#)=ien
+ N VPRY,VPRI,VPRN
+ D LIST^TIUVPR(.VPRY,DFN,38,DSTRT,DSTOP)
+ S VPRN=0,VPRI="COUNT"
+ F  S VPRI=$O(@VPRY@(VPRI),-1) Q:VPRI<1  D  Q:VPRN'<DMAX
+ . S VPRN=VPRN+1,DLIST(VPRN)=+VPRI
+ K @VPRY
+ Q
  ;
 DOC1(IEN) ; -- ID Action for single document
  K VPRTIU S IEN=+$G(IEN) I IEN<1 S DDEOUT=1 Q
@@ -87,8 +99,10 @@ FAC(IEN) ; -- return #4 ien for TIU document
  I FAC="" S FAC=$G(VPRTIU(IEN,1212,"I"))
  Q FAC
  ;
-AD1(ID) ; -- get info for one Adv Directive
- K VPRTIU S ID=+$G(ID)
- D EXTRACT^TIULQ(+ID,"VPRTIU",,".01:.05;1201;1212;1301;1302",,,"I")
- S:'DFN DFN=+$G(VPRTIU(+ID,.02,"I"))
+TIUS(IEN) ; -- return DLIST array of multiple signers
+ N I,N,MSIEN,X
+ S N=0 F I=1502,1508 S:$G(VPRTIU(IEN,I,"I")) N=N+1,DLIST(N)=VPRTIU(IEN,I,"I")_U_$S(I=1502:"S",1:"C")
+ S MSIEN=0 F  S MSIEN=$O(^TIU(8925.7,"B",IEN,MSIEN)) Q:'MSIEN  I MSIEN D
+ . S X=$G(^TIU(8925.7,MSIEN,0))
+ . I $P(X,U,5) S N=N+1,DLIST(N)=$P(X,U,5)_U_"C"
  Q

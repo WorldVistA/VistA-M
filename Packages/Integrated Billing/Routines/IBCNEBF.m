@@ -1,5 +1,5 @@
 IBCNEBF ;DAOU/ALA - Create an Entry in the Buffer File ;20-JUN-2002
- ;;2.0;INTEGRATED BILLING;**184,271,361,371,416,438,497,621**;21-MAR-94;Build 14
+ ;;2.0;INTEGRATED BILLING;**184,271,361,371,416,438,497,621,743**;21-MAR-94;Build 18
  ;;Per VHA Directive 6402, this routine should not be modified.
  ;
  ;**Program Description**
@@ -163,7 +163,8 @@ FIL ;  File Buffer Data
  ;
  I $G(ADD) D
  . S IBSOURCE=$G(IBSOURCE,5) ; IB*2.0*621 Added IBSOURCE to replace hard coded eIV
- . S IBFDA=$$ADDSTF^IBCNBES(IBSOURCE,DFN,.VBUF)
+ . ;IB*743/CKB - calling $$ADDSTF below in order to Lock/Unlock buffer entry
+ . S IBFDA=$$ADDSTF(IBSOURCE,DFN,.VBUF)
  . ; Error Message is 2nd piece of result
  . S IBERROR=$P(IBFDA,U,2)
  . S IBFDA=$P(IBFDA,U,1)
@@ -191,3 +192,46 @@ FIL ;  File Buffer Data
  ;  If an error occurred in EDITSTF, the error array is not returned
  ;
  Q
+ ;
+ ;IB*743/CKB - the code below was copied from ADDSTF^IBCNBES to address the locking of the
+ ; buffer without impacting other existing software
+ADDSTF(IBSOURCE,DFN,IBDATA) ;  add new entry to Insurance Buffer file (355.33) and stuff the data passed in, no user interaction
+ ;  IBSOURCE = source of information             (required)
+ ;             1 = interview           2 = data match
+ ;             3 = ivm                 4 = pre-registration
+ ;             5 = eIV etc., refer to file #365.12 for full list of sources
+ ;  DFN      = patient's ifn in file 2           (required)
+ ;  IBDATA   = data to file in Buffer in an array subscripted by field number of the data field in 355.33
+ ;             ex:  IBDATA(20.01)="Insurance Company Name", etc,
+ ;  returns ien of new entry or 0 followed by error if entry not added
+ ;
+ ;  example of call: $$ADDBUF^IBCNBES(2,DFN,.IBDATA)   where IBDATA(field #) = value
+ ;
+ N X,Y,BUFLOCK,IBBUFDA,IBERROR
+ ;
+ ;  verify source of information and data exists to store
+ I $G(IBSOURCE)="" S IBERROR="SOURCE OF INFORMATION INCORRECT" G EXIT
+ I $G(^DPT(+$G(DFN),0))="" S IBERROR="NO PATIENT DEFINED" G EXIT
+ I $D(IBDATA)<10 S IBERROR="NO DATA TO STORE" G EXIT
+ ;
+ ;  add new entry to Buffer file (355.33)
+ S IBBUFDA=+$$ADD^IBCNBEE(IBSOURCE) I 'IBBUFDA S IBERROR="COULD NOT CREATE A NEW BUFFER ENTRY" G EXIT
+ ;
+ ; Lock the buffer entry
+ S BUFLOCK=$$BUFLOCK^IBCNEHL6(IBBUFDA,1)
+ ;
+ S IBDATA(60.01)=+DFN
+ ;
+ ; Set up DUZ (interface user) so 60.01 field check can find 'valid reason' for sensitive
+ ; patients and not set 60.01 to '0' with an error in tag FLDCHK
+ I '$G(DUZ) D DUZ^XUP(.5)
+ ;
+ D EDITSTF^IBCNBES(+IBBUFDA,.IBDATA)
+ ;
+ ; Unlock buffer entry
+ I BUFLOCK,$$BUFLOCK^IBCNEHL6(IBBUFDA,0)
+ ;
+ ; delete leftover ESGHP data if ESGHP? is not Yes
+ I +$G(IBBUFDA),$D(^IBA(355.33,$G(IBBUFDA),61)),'$G(^IBA(355.33,$G(IBBUFDA),61)) D DELEMP^IBCNBEE($G(IBBUFDA))
+ ;
+EXIT Q +$G(IBBUFDA)_"^"_$G(IBERROR)

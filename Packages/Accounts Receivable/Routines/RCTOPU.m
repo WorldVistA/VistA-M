@@ -1,5 +1,5 @@
-RCTOPU ;WASH IRMFO@ALTOONA,PA/TJK-TOP TRANSMISSION ;2/22/00  12:39 PM
-V ;;4.5;Accounts Receivable;**141**;Mar 20, 1995
+RCTOPU ;WASH IRMFO@ALTOONA,PA/TJK - TOP TRANSMISSION ;2/22/00  12:39 PM
+V ;;4.5;Accounts Receivable;**141,400**;Mar 20, 1995;Build 13
  ;;Per VHA Directive 10-93-142, this routine should not be modified
  ;
 REPORT ;print top report
@@ -82,7 +82,7 @@ REASON ;ask referral reason
     .S COMMENT="",DIR(0)="340,6.05" D ^DIR S COMMENT=Y
     .I COMMENT="" W !,"A Reason Of Other requires a comment to be entered"
     .Q
- I REASON'="0",$P($G(^RCD(340,DEBTOR,6)),U,5)'="" S $P(^(6),U,5)=""
+ I REASON'="O",$P($G(^RCD(340,DEBTOR,6)),U,5)'="" S $P(^(6),U,5)=""
  ;
  I (REASON="N")!(REASON="R") D  G STOPFILE
     .S $P(^RCD(340,DEBTOR,6),U)=""
@@ -131,3 +131,30 @@ UPDCODE ;Update Refund/Reversal Codes in File 348.2
  W !,"TOP Refund/Refund Reversal Code Entry"
  S DIC=348.2,DIC(0)="AEQML" D ^DIC
 UPDCODEQ Q
+ ;
+STOPREF(DEBTOR,REASON,CMNT,EFDT) ; stop TOP referral for a given debtor (no user interaction)  PRCA*4.5*400
+ ;
+ ; DEBTOR - file 340 ien
+ ; REASON - stop referral reason, field 340/6.04 (internal)
+ ; CMNT - stop referral comment, field 340/6.05
+ ; EFDT - effective date, field 340/6.03 (internal)
+ ;
+ ; returns 1 on success, 0^[error message] otherwise
+ ;
+ N DIERR,FDA,IENS,N6
+ I '$D(^RCD(340,DEBTOR,0)) Q "0^Invalid file 340 ien"  ; invalid ien
+ S N6=$G(^RCD(340,DEBTOR,6))
+ I +$P(N6,U)'>0 Q "0^no TOP referral"  ; no referral date
+ I $P(N6,U,2) Q "0^referral already stopped"  ; referral already stopped
+ S CMNT=$G(CMNT) I REASON="O",CMNT="" Q "0^comment is required"  ; "Other" reason requires comment
+ S IENS=DEBTOR_","
+ S FDA(340,IENS,6.02)=1
+ I (REASON="N")!(REASON="R") S FDA(340,IENS,6.01)="",(EFDT,REASON,CMNT)=""
+ S FDA(340,IENS,6.03)=EFDT
+ S FDA(340,IENS,6.04)=REASON
+ S FDA(340,IENS,6.05)=CMNT
+ L +^RCD(340,DEBTOR):5 I '$T Q "0^Unable to lock file 340 entry"
+ D FILE^DIE("","FDA","DIERR")
+ L -^RCD(340,DEBTOR)
+ I $D(DIERR("DIERR")) Q "0^"_$G(DIERR("DIERR",1,"TEXT",1))
+ Q 1

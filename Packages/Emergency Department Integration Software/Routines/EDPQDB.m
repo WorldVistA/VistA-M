@@ -1,5 +1,5 @@
-EDPQDB ;SLC/KCM - Display Active Log Entries ; 1/25/21 11:22am
- ;;2.0;EMERGENCY DEPARTMENT;**6,15**;Feb 24, 2012;Build 4
+EDPQDB ;SLC/KCM - Display Active Log Entries ; 4/18/23 7:58am
+ ;;2.0;EMERGENCY DEPARTMENT;**6,15,23**;Feb 24, 2012;Build 4
  ;
 GET(AREA,BOARD,LAST) ; Get display board contents
  ;I $G(^EDPB(231.9,AREA,230))=TOKEN D XML^EDPX("<rows status='same' />") Q
@@ -55,7 +55,7 @@ EMPTY(BED) ; add row if unoccupied be should show
  D XML^EDPX($$XMLA^EDPX("row",.ROW))
  Q
 OCCUPIED(LOG,DUP) ; add log entry row
- N X0,X1,X3,X7,ROW
+ N X0,X1,X3,X7,ROW,ADMT,NOADMT,CTIME,EDPDISP
  S X0=^EDP(230,LOG,0),X1=$G(^(1)),X3=$G(^(3)),X7=$G(^(7))
  S ROW("id")=LOG
  ;S ROW("bed")=$$BEDNM(BED,$P(X3,U,9))
@@ -86,6 +86,13 @@ OCCUPIED(LOG,DUP) ; add log entry row
  ;4/23/13 - bwf - replacing line below with the one that follows
  ;S ROW("disposition")=$$GET1^DIQ(233.1,$P(X1,U,2),.02,"E")
  S ROW("disposition")=$$CAB(EDPSTA_".disposition",$P(X1,U,2))
+ ;*23 Admission Time & Door to Doc Time
+ S ADMT=$$ADMIT^EDPRPT(LOG),CTIME=$$NOW^XLFDT,EDPDISP=$G(^EDP(230,LOG,1))
+ I $P(EDPDISP,U,2),$P($G(^EDPB(233.1,+$P(EDPDISP,U,2),0)),U,5)'["A" S NOADMT=1
+ I ADMT="" S ROW("amins")="",NOADMT=1
+ I '$G(NOADMT) S ROW("amins")=$$HHMM($$FMDIFF^XLFDT(CTIME,ADMT,2)\60)
+ S ROW("d2d")=$$HHMM($$FMDIFF^XLFDT($$MD^EDPRPT(LOG),$P(X0,U,8),2)\60)
+ I ROW("d2d")<0 S ROW("d2d")=""
  ;
  N STS D ORDSTS(LOG,.STS)
  ; ROW("lab")=STS("LP")_"/"_STS("LC")             ; lab pending / lab complete

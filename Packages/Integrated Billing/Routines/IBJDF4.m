@@ -1,8 +1,8 @@
 IBJDF4 ;ALB/RB - FIRST PARTY FOLLOW-UP REPORT ;15-APR-00
- ;;2.0;INTEGRATED BILLING;**123,204,220,568,618,705**;21-MAR-94;Build 8
+ ;;2.0;INTEGRATED BILLING;**123,204,220,568,618,705,739**;21-MAR-94;Build 3
  ;;Per VA Directive 6402, this routine should not be modified.
  ;
- ; ICR #7321 for getting suspension codes from AR (file 433.001)
+ ; Reference to 433.001 in ICR #7321
  ; 
 EN ; - Option entry point.
  S IBEXCEL=0
@@ -46,7 +46,7 @@ SUSTYP ;If SUSPENDED is chosen, prompt for which suspended bills to display IB*2
  . S IBSN="N",IBSNA="ALL",IBSNF="",IBSNL="zzzzz",IBSMN="A"
  ;
  ; - Determine sorting (By name or Last 4 SSN)
- S IBSN=$$SNL^IBJD() G ENQ:IBSN="^"
+ S IBSN="N" ;IB*2.0*739 force sorting by NAME
  ;
  ; - Determine the range
  S X=$$INTV^IBJD("PATIENT "_$S(IBSN="N":"NAME",1:"LAST 4")) G ENQ:X="^"

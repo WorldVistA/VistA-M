@@ -1,5 +1,5 @@
 PRCASVC ;SF-ISC/YJK - ACCEPT, AMMEND AND CANCEL AR BILL ;9/6/95  2:09 PM
-V ;;4.5;Accounts Receivable;**1,21,48,90,136,138,249,274,315,338,392**;Mar 20, 1995;Build 10
+V ;;4.5;Accounts Receivable;**1,21,48,90,136,138,249,274,315,338,392,419**;Mar 20, 1995;Build 5
  ;;Per VA Directive 6402, this routine should not be modified.
 REL ;Accept bill into AR
  N PRCABN,TRCARE,X,Y  ; PRCA*4.5*392
@@ -17,7 +17,8 @@ Q3 K PRCAT,PRCAORA,PRCADEBT,DIE,DR,%
  S:'$G(DA) DA=PRCASV("ARREC") S %=$$GETFUNDB^RCXFMSUF(DA)
  I "^27^28^"[("^"_PRCASV("CAT")_"^") D
  .N P
- .F P=6,8,10,15 S $P(^PRCA(430,DA,11),"^",P)=$S(P=6:1000,P=8:$G(PRCASV("SITE")),P=10:9,1:$P($G(PRCASV("FY")),"^"))
+ .;F P=6,8,10,15 S $P(^PRCA(430,DA,11),"^",P)=$S(P=6:1000,P=8:$G(PRCASV("SITE")),P=10:9,1:$P($G(PRCASV("FY")),"^"))
+ .F P=6,8,10,15 S $P(^PRCA(430,DA,11),"^",P)=$S(P=6:1000,P=8:$G(PRCASV("SITE")),P=10:"02",1:$P($G(PRCASV("FY")),"^")) ; PRCA*4.5*419
  .S $P(^PRCA(430,DA,11),"^",18,999)=""
  I PRCASV("CAT")=27 S $P(^PRCA(430,+PRCASV("ARREC"),0),"^",5)=$O(^PRCA(430.6,"B","CHMPV",0))
  I PRCASV("CAT")=29 S $P(^PRCA(430,DA,11),"^",18,999)=""

@@ -1,5 +1,5 @@
 IBCNERP9 ;DAOU/BHS - eIV STATISTICAL REPORT PRINT ;12-JUN-2002
- ;;2.0;INTEGRATED BILLING;**184,271,416,506,528,621,687**;21-MAR-94;Build 88
+ ;;2.0;INTEGRATED BILLING;**184,271,416,506,528,621,687,737**;21-MAR-94;Build 19
  ;;Per VA Directive 6402, this routine should not be modified.
  ;
  ; eIV - Insurance Verification Interface
@@ -245,6 +245,7 @@ DATA(DISPDATA,LINECT,RTN,TYPE,MM,IBOUT) ; Format lines of data to be printed
  . I IBOUT="R" S DISPDATA(LINECT)=$$FO^IBCNEUT1(TXT_" ",46)_$$FO^IBCNEUT1(($P(RPTDATA,U,6)+$P(RPTDATA,U,9)),14,"R") ; IB*2*621
  . ;
  . ; *,+,#,! or -  symbol entries - User action required
+ . ; +,#,! or -  symbol entries - User action required  ;IB*737/DTG stop use of '*' verified
  . S LINECT=LINECT+1
  . S TXT="User Action Required"
  . I IBOUT="E" S DISPDATA(LINECT)=TXT_U_+$P(RPTDATA,U,6)

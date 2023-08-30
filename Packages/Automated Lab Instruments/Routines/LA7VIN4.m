@@ -1,5 +1,5 @@
-LA7VIN4 ;DALOI/JMC - Process Incoming UI Msgs, continued ;04/19/16  17:15
- ;;5.2;AUTOMATED LAB INSTRUMENTS;**46,64,67,66,74,85,88**;Sep 27, 1994;Build 10
+LA7VIN4 ;DALOI/JMC - Process Incoming UI Msgs, continued ;Jun 14, 2022@18:38
+ ;;5.2;AUTOMATED LAB INSTRUMENTS;**46,64,67,66,74,85,88,101**;Sep 27, 1994;Build 6
  ;
  ; This routine is a continuation of LA7VIN1 and is only called from there.
  ;
@@ -247,7 +247,8 @@ OBR ; Process OBR segments
  . . S ^TMP("LA7 ORDER STATUS",$J,LA7I)=X
  . I LA7INTYP=10,LA7SS?1(1"MI",1"SP",1"CY",1"EM") S ^TMP("LA7-PL-NTE",$J,LA7LWL,LA7ISQN,LA7SS)=LA7SFAC
  ;
- I LA7INTYP=10,$G(LA7SM)'="",$G(LA7UID)'="" D SMUPDT^LA7VIN4A
+ ;LA*5.2*101: Do not require that LA7SM (shipping manifest identifier) not be null
+ I LA7INTYP=10,$G(LA7UID)'="" D SMUPDT^LA7VIN4A
  Q
  ;
  ;

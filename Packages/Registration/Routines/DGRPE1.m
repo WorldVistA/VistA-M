@@ -1,5 +1,6 @@
-DGRPE1 ;ALB/MRL,RTK,BRM,RGL,ERC,TDM - REGISTRATIONS EDITS (CONTINUED) ;4/2/09 11:26am
- ;;5.3;Registration;**114,327,451,631,688,808,804,909,952**;Aug 13, 1993;Build 160
+DGRPE1 ;ALB/MRL,RTK,BRM,RGL,ERC,TDM,ARF,JAM - REGISTRATIONS EDITS (CONTINUED) ;4/2/09 11:26am
+ ;;5.3;Registration;**114,327,451,631,688,808,804,909,952,1085,1093**;Aug 13, 1993;Build 12
+ ; Reference to DO^DIC1 in ICR #10007
  ;
  ;***CONTAINS ISM SPECIFIC CODE TO AVOID STORE ERRORS WITH ELIG.***
  ;
@@ -67,4 +68,22 @@ EFF ;
 VETTYPE ;
  S:$S('$D(^DPT(DFN,"VET")):0,^("VET")="Y":1,1:0) Y="@114" Q
  S:'$S('$D(^("TYPE")):1,'$D(^DG(391,+^("TYPE"),0)):1,$P(^(0),"^",2):0,1:1) Y="@114"
+ Q
+DR207 ; DG*5.3*1085 - Prompt for PREFERRED LANGUAGE (#2.07,.02)
+ ; DG*5.3*1093; Add X,Y to NEW variables below - the call to ^DIR uses these vars
+ N DIR,DGFDA,DGLANGNM,DGERR,DGSUB,DGDATE,X,Y
+ S DGDATE="",DGDATE=$O(^DPT(DFN,.207,"B",DGDATE),-1)
+ I DGDATE'="" S DGSUB=$O(^DPT(DFN,.207,"B",DGDATE,0)) ;get the latest subscript
+ I $G(DGSUB)'="" S DGLANGNM=$$GET1^DIQ(2.07,DGSUB_","_DFN_",",.02) ;get PREFERRED LANGUAGE name
+ ;
+ S DIR("B")=$S($G(DGLANGNM)'="":DGLANGNM,1:"ENGLISH")
+ S DIR(0)="2.07,.02" D ^DIR
+ ;
+ I Y["^" W $C(7),!!,"No language was entered.",! H 3 Q
+ I Y="" Q
+ Q:Y=$G(DGLANGNM)  ;if PREFERRED LANGUAGE is the same
+ ;
+ S DGFDA(2.07,"+1,"_DFN_",",.01)=$$NOW^XLFDT()
+ S DGFDA(2.07,"+1,"_DFN_",",.02)=Y
+ D UPDATE^DIE("","DGFDA",,"DGERR")
  Q

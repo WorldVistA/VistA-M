@@ -1,5 +1,5 @@
 PSIVCHK ;BIR/PR,MLM-CHECK ORDER FOR INTEGRITY ; 2/4/20 8:47am
- ;;5.0;INPATIENT MEDICATIONS ;**54,58,81,111,213,113,179,248,366,385**;16 DEC 97;Build 3
+ ;;5.0;INPATIENT MEDICATIONS ;**54,58,81,111,213,113,179,248,366,385,372**;16 DEC 97;Build 153
  ;
  ; Reference to ^PS(51.1 supported by DBIA# 2177.
  ; Reference to ^DIE supported by DBIA# 2053.
@@ -50,6 +50,7 @@ AH ;
  . I '$D(^XUSEC("PROVIDER",PDA))&'$D(^XUSEC("ORELSE",PDA)) S ERR=1 S TXT="*** Physician entered does not hold PROVIDER key." Q
  . N PPS S PPS=$G(^VA(200,PDA,"PS")) I PPS=""!('PPS) S ERR=1 S TXT="*** Physician entered is not authorized to write medication orders." Q
  . I +$P(PPS,U,4),$P(PPS,U,4)<DT S ERR=1 S TXT="*** Physician entered is no longer active."
+ . I $$IVDEA^PSIVEDT(.DRG,PDA,.P) S ERR=1 S TXT=""
  D ^PSIVCHK1
  Q
  ;

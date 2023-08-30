@@ -1,5 +1,5 @@
 IBCNERPF ;BP/YMG - IBCNE USER INTERFACE EIV INSURANCE UPDATE REPORT ;16-SEP-2009
- ;;2.0;INTEGRATED BILLING;**416,528,549,595,668**;16-SEP-09;Build 28
+ ;;2.0;INTEGRATED BILLING;**416,528,549,595,668,737**;21-MAR-94;Build 19
  ;;Per VA Directive 6402, this routine should not be modified.
  ;
  ; IB*2.0*549 Change value of IBCNESPC("PYR",ien)
@@ -45,6 +45,12 @@ P50 D INSCO
  ; IB*2.0*549 Sort is by payer name, so call to choose sort order not needed
  ; Select the output type
 P60 S IBOUT=$$OUT^IBCNERP1 I STOP G:$$STOP^IBCNERP1 EXIT G P50
+ ;IB*737/CKB - add Excel warning message
+ I IBOUT="E" D
+ . W !!,"For CSV output, turn logging or capture on now. To avoid undesired wrapping"
+ . W !,"of the data saved to the file, please enter ""0;256;99999"" at the ""DEVICE:"""
+ . W !,"prompt.",!
+ ;
  ; Select the output device
 P100 D DEVICE^IBCNERP1(IBCNERTN,.IBCNESPC,IBOUT) I STOP G:$$STOP^IBCNERP1 EXIT G P50
  ;
@@ -53,6 +59,7 @@ EXIT ;
  ;
 PAYER ;
  ; IB*2.0*549 Add PIEN for payer IEN
+ ; IB*737/TAZ - Removed reference to Most Popular Payer and "~NO PAYER"
  N DIC,DIR,DIROUT,DIRUT,DTOUT,DUOUT,PIEN,X,Y
  W !
  S DIR("A")="Run for (A)ll Payers or (S)elected Payers: "
@@ -65,9 +72,9 @@ PAYER ;
  ; IB*2.0*549 Change prompt from "Select Insurance Company" to "Select Payer"
  W !
  S DIC("A")="Select Payer: "
- ; Do not allow selection of '~NO PAYER' and non-eIV payers
+ ; Do not allow selection of non-eIV payers
  ; IB*2.0*549 Only include payers with eIV Auto Update flag = Yes
- S DIC("S")="I ($P(^(0),U,1)'=""~NO PAYER"") I $$AUTOUPDT^IBCNERPF($P($G(Y),U,1))"
+ S DIC("S")="I $$AUTOUPDT^IBCNERPF($P($G(Y),U,1))"
  S DIC="^IBE(365.12,"
  ;
 PAYER1 ;
@@ -141,7 +148,8 @@ GETCOMPS(PIEN,IBCNESPC) ; Get companies linked to payer
  ;
  W !
  K DIR
- S DIR("A")="Run for (A)ll Insurance Companies or Selected Insurance Companies: "
+ ;IB*737/CKB - add parentheses around the S in Selected
+ S DIR("A")="Run for (A)ll Insurance Companies or (S)elected Insurance Companies: "
  S DIR("B")="A"
  S DIR(0)="SA^A:All;S:Selected" D ^DIR
  Q:$D(DIRUT)
@@ -151,7 +159,10 @@ GETCOMPS(PIEN,IBCNESPC) ; Get companies linked to payer
  ; IB*2.0*549 - Replaced dictionary look-up of Insurance Companies with
  ;                           call to Insurance Company look-up listman template
  K ^TMP("IBCNILKA",$J)
- D EN^IBCNILK(2,PIEN,4)
+ ;IB*737/CKB - changed the call to EN^IBCNILK from '4' to '5'. When the Coverage Limitations Report was added,
+ ; it uses '4' to 'search for Name(s) that are blank (null)' when calling $$FILTER^IBCNINSU.
+ ; NOTE: this is the only report that uses '5'
+ D EN^IBCNILK(2,PIEN,5)
  I $D(^TMP("IBCNILKA",$J)) D
  .S IBCNS=""
  .F  S IBCNS=$O(^TMP("IBCNILKA",$J,IBCNS)) Q:IBCNS=""  D
@@ -208,7 +219,8 @@ ANOTHER(TYPE) ; "Select Another" prompt
  ; returns 1, if response was "YES", returns 0 otherwise
  N DIR,DIROUT,DIRUT,DTOUT,DUOUT,X,Y
  ; IB*2.0*549 Change Select Another to Select Another [Type]
- S DIR("A")="Select Another "_TYPE_"?" S DIR(0)="Y",DIR("B")="NO"
+ ;IB*737/CKB - remove the extra question mark
+ S DIR("A")="Select Another "_TYPE S DIR(0)="Y",DIR("B")="NO"
  D ^DIR I $D(DIRUT) S STOP=1
  Q Y
  ;

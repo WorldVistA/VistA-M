@@ -1,6 +1,6 @@
 ONCACDU1 ;HINES OIFO/GWB - NAACCR extract utilities #1 ;05/08/12
- ;;2.2;ONCOLOGY;**1,4,7,5,10,12,13,14**;Jul 31, 2013;Build 8
- ;
+ ;;2.2;ONCOLOGY;**1,4,7,5,10,12,13,14,17**;Jul 31, 2013;Build 6
+ ;P17 set Date Flag to Null if DX is year 2023
 BDATE(ACD160) ;Date of Birth [240] 196-203
  N D0,X,Y
  S D0=ACD160
@@ -104,6 +104,7 @@ DATE(ACDANS) ;Convert date to NAACCR format CCYYMMDD
 DTFLAG(ACDANS,ITEM) ;Compute Date Flag
  N FLAG,N,REC,ONCSCMA
  S FLAG=""
+ I $P($G(^ONCO(165.5,IEN,0)),"^",16)>3221231 G FLAG
  S N=ITEM
  D CHKFLGS  ;first check the Date Flag fields, make sure nothing entered
  I ONCDTFLG'="" S FLAG=ONCDTFLG G FLAG

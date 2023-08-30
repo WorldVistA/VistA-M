@@ -1,5 +1,5 @@
-EDPBCF ;SLC/KCM - Display Board Configuration ;2/28/12 08:33am
- ;;2.0;EMERGENCY DEPARTMENT;**6**;Feb 24, 2012;Build 200
+EDPBCF ;SLC/KCM - Display Board Configuration ; 3/29/23 12:17pm
+ ;;2.0;EMERGENCY DEPARTMENT;**6,23**;Feb 24, 2012;Build 4
  ;
 LOAD(AREA) ; Load General Configuration for an Area
  N I,NODE
@@ -42,6 +42,7 @@ LOADBRD(AREA,IEN) ; Load Named Board Spec
  S:'IEN IEN=$O(^EDPB(231.9,AREA,4,0)) Q:'IEN
  ;
  D READL^EDPBLK(AREA,"board",.TOKEN)  ; read lock the board config
+ D LOAD^EDPBPM(AREA) ;Load Parameters *23
  D XML^EDPX("<boardToken>"_TOKEN_"</boardToken>")
  D BRDLST(AREA)
  S X("boardID")=IEN,X("boardName")=$P(^EDPB(231.9,AREA,4,IEN,0),U)
@@ -133,4 +134,5 @@ COLUMNS ;; Available Columns
  ;;Total Minutes^@emins^E Mins
  ;;Minutes at Location^@lmins^Mins
  ;;Disposition^@disposition^Disposition
+ ;;Admittance Delay^@amins^Adm Delay
  ;;zzzzz

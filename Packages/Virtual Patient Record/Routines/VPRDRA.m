@@ -1,5 +1,5 @@
 VPRDRA ;SLC/MKB -- Radiology extract ;8/2/11  15:29
- ;;1.0;VIRTUAL PATIENT RECORD;**1,5**;Sep 01, 2011;Build 21
+ ;;1.0;VIRTUAL PATIENT RECORD;**1,5,30**;Sep 01, 2011;Build 9
  ;;Per VHA Directive 2004-038, this routine should not be modified.
  ;
  ; External References          DBIA#
@@ -66,7 +66,7 @@ EN1(ID,EXAM) ; -- return an exam in EXAM("attribute")=value
  . S EXAM("radOrderID")=$G(^OR(100,+$P(X0,U,11),4))
  . S EXAM("urgency")=$$VALUE^ORX8(+$P(X0,U,11),"URGENCY",1,"E")
  S EXAM("hasImages")=$S($P(X0,U,12)="Y":1,1:0)
- I $P(X0,U,4)="Y"!($P(X0,U,9)="Y") S EXAM("interpretation")="ABNORMAL"
+ I $P(X0,U,4)="Y" S EXAM("interpretation")="ABNORMAL" ;!($P(X0,U,9)="Y")
  S EXAM("encounter")=$$GET1^DIQ(70.03,IENS,27,"I")
  S ID=DFN_U_$TR(ID,"-","^") D EN3^RAO7PC1(ID) D  ;get additional values
  . S X=+$G(^TMP($J,"RAE2",DFN,+$P(ID,U,3),PROC,"P"))

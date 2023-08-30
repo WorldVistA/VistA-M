@@ -1,5 +1,5 @@
-DGCV ;ALB/DW,ERC,BRM,TMK,LBD - COMBAT VET ELIGIBILTY; 10/15/05 ; 6/16/09 10:40am
- ;;5.3;Registration;**528,576,564,673,778,792,797**; Aug 13, 1993;Build 24
+DGCV ;ALB/DW,ERC,BRM,TMK,LBD,JAM - COMBAT VET ELIGIBILTY; 10/15/05 ; 6/16/09 10:40am
+ ;;5.3;Registration;**528,576,564,673,778,792,797,1090**; Aug 13, 1993;Build 16
  ;
 CVELIG(DFN) ;
  ;API will determine whether or not this veteran needs to have CV End
@@ -33,6 +33,8 @@ CVELIG(DFN) ;
  S (DG1,DG2,RESULT)=0
  I $G(DFN)']"" Q RESULT
  I '$D(^DPT(DFN)) Q RESULT
+ ;DG*5.3*1090 - Quit if Source is ES
+ I $G(^TMP("DGCVE",$J,"COMBAT VET ELIG END DATE SOURCE",DFN))="ES" Q RESULT
  ;
  ;get combat related data from top-level VistA fields
  N DGARR,DGERR
@@ -87,6 +89,9 @@ SETCV(DFN,DGSRV) ;calculate CV end date
  ;    or the OEF/OIF To Date, called from file #2 new style 
  ;    cross reference "ACVCOM"
  N DGCVEDT,DGFDA
+ ;DG*5.3*1090 - Quit if Source is ES
+ I $G(^TMP("DGCVE",$J,"COMBAT VET ELIG END DATE SOURCE",DFN))="ES" Q
+ ;
  I $$GET1^DIQ(2,DFN_",",.5295,"I") Q
  S DGCVEDT=$$CALCCV(DFN,DGSRV)
  Q:DGCVEDT=""
@@ -102,11 +107,14 @@ CALCCV(DFN,DGSRV) ; Calculate CV end date given DFN and date to start
  I '$D(^DPT(DFN)) Q ""
  S DGNDAA=3080128
  D CVRULES(DFN,DGSRV,DGNDAA,.DGYRS)
- Q:$G(DGYRS)'=3&($G(DGYRS)'=5) ""
+ ; DG*5.3*1090 - Combat Vet Eligibility End Date can additionally be 10 years from (last) Date of Service Separation
+ ;Q:$G(DGYRS)'=3&($G(DGYRS)'=5) ""
+ Q:$G(DGYRS)'=3&($G(DGYRS)'=5)&($G(DGYRS)'=10) ""
  ;NDAA legislation, enacted 1/28/08, gives vets discharged
  ;on or after 1/28/03 (2 years previously) CV Eligibility 
  ;for 5 years.  Vets discharged before 1/28/03 get eligibility 
  ;for 3 years after enactment (or until 1/27/2011) DG*5.3*778
+ ; DG*5.3*1090 - PACT Act legislation gives Vets with SSD after 9/30/2013 10 years of eligibility
  S DGTMPDT=$S(DGYRS=3:DGNDAA,1:DGSRV)
  S DGCVEDT=($E(DGTMPDT,1,3)+DGYRS)_$E(DGTMPDT,4,7)
  S DGCVEDT=$$FMADD^XLFDT(DGCVEDT,-1)
@@ -114,15 +122,19 @@ CALCCV(DFN,DGSRV) ; Calculate CV end date given DFN and date to start
  ;
 CVRULES(DFN,DGSRV,DGNDAA,DGYRS) ;apply rules for the CV End Date
  ;extension project - DG*5.3*778
+ ; 
  ;DGSRV - most recent of Service Sep Date or OEIUUF to date
  ;   DGYRS = 3 years from NDAA or 1/27/2011
- ;         = 5 years from SSD or Enrollment App Date
+ ;         = 5 years from SSD or Enrollment App Date 
+ ;         = 10 years from SSD or Enrollment App Date if SSD after 9/30/2013 - DG*5.3*1090 
+ ;
  ;determine how many years extra CV eligibility to give
  N DGCIEN,DGCUTOFF,DGENRDT,DGPIEN,DGPRI,DGQT,DGSTAT
  ;determine if veteran has an enrollment record prior
  ;to 1/28/2008 (the NDAA date) and no CV End Date for
  ;this enrollment
  S DGYRS=5
+ I DGSRV>3130930 S DGYRS=10  ; DG*5.3*1090 - If SSD after 9/30/2013, the patient gets +10 years of eligibility
  S (DGPRI,DGQT)=0
  S DGCUTOFF=3030128
  S DGCIEN=$$FINDCUR^DGENA(DFN)

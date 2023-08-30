@@ -1,8 +1,9 @@
-PXVRPC4 ;BPFO/LMT - PCE RPCs for Immunization(s) ;May 10, 2022@14:02:20
- ;;1.0;PCE PATIENT CARE ENCOUNTER;**215,216,217**;Aug 12, 1996;Build 134
+PXVRPC4 ;BPFO/LMT - PCE RPCs for Immunization(s) ;Jan 18, 2023@15:08:57
+ ;;1.0;PCE PATIENT CARE ENCOUNTER;**215,216,217,233**;Aug 12, 1996;Build 3
  ;
- ; Reference to ^DIA(9999999.14,"C") supported by ICR #2602
- ; Reference to NAME in file .85 is supported by ICR #6062
+ ; Reference to ^DIA(9999999.14,"C") in ICR #2602
+ ; Reference to NAME in file .85 in ICR #6062
+ ; Reference to EXCLUDED^ORWPCE2 in ICR #7399
  ;
 IMMRPC(PXRTRN,PXIMM,PXDATE,PXLOC) ; Entry point for RPC
  ;
@@ -17,7 +18,7 @@ IMMRPC(PXRTRN,PXIMM,PXDATE,PXLOC) ; Entry point for RPC
  ;           Possible values are:
  ;             "I:X": Institution (#4) IEN #X
  ;             "V:X": Visit (#9000010) IEN #X
- ;             "L:X": Hopital Location (#44) IEN #X
+ ;             "L:X": Hospital Location (#44) IEN #X
  ;           If PXLOC is not passed in OR could not make determination based off
  ;           input, then default to DUZ(2), and if DUZ(2) is not defined,
  ;           default to Default Institution.
@@ -208,7 +209,7 @@ GETCS(PXSUB,PXIMM,PXDATE) ;
  . . S PXCODE=$G(^AUTTIMM(PXIMM,3,PXX,1,PXY,0))
  . . I PXCODE="" Q
  . . ;
- . . ; do this for the CPT amdin mappings (e.g., 91301-0011A)
+ . . ; do this for the CPT admin mappings (e.g., 91301-0011A)
  . . S PXCODELEX=PXCODE
  . . I PXCODESYSLEX="CPT",PXCODELEX["-" S PXCODELEX=$P(PXCODELEX,"-",2)
  . . ;
@@ -349,12 +350,12 @@ IMMSHORT(PXRSLT,PXFILTER,PXDATE,PXOREXC,PXLOC) ;
  ;               "A": Only return active entries
  ;               "H": Only return entries marked as Selectable for Historic
  ;               "B": Return both active entries and those marked as Selectable for Historic
- ;    PXDATE - Date (optional; defaults to TODAY)
+ ;    PXDATE - Date (optional; defaults to NOW)
  ;             Used for determining immunization status (both for filtering and for return value)
  ;             and lot status.
  ;   PXOREXC - Should entries defined in ORWPCE EXCLUDE IMMUNIZATIONS be excluded? (optional)
- ;     PXLOC - Used when excluding entried listed in ORWPCE EXCLUDE IMMUNIZATIONS. (Optional)
- ;             This is the location used when getting the paramater value at the Location level.
+ ;     PXLOC - Used when excluding entries listed in ORWPCE EXCLUDE IMMUNIZATIONS. (Optional)
+ ;             This is the location used when getting the parameter value at the Location level.
  ;             Also used to get division when checking if there is a linked lot.
  ;
  ;Returns:
@@ -385,7 +386,7 @@ IMMSHORT(PXRSLT,PXFILTER,PXDATE,PXOREXC,PXLOC) ;
  N PXAUDIT,PXCNT,PXGETCSTAT,PXIEN,PXINST,PXLOT,PXLST,PXNODE,PXNODE88,PXSELHIST,PXSTAT,PXX
  ;
  I $G(PXFILTER)'?1(1"A",1"H",1"B") S PXFILTER="B"
- I '$G(PXDATE) S PXDATE=DT
+ I '$G(PXDATE) S PXDATE=$$NOW^XLFDT()
  S PXINST=$$INST^PXVUTIL("L:"_+$G(PXLOC))
  S PXAUDIT=0
  I $$GET1^DID(9999999.14,.07,"","AUDIT")="YES, ALWAYS" S PXAUDIT=1
@@ -487,7 +488,7 @@ IMMADMCODES(PXRSLT,PXVISIT,PXPCELIST,PXRETCPTDEL) ;
  D IMMADMCODES^PXVRPC4A(.PXRSLT,.PXVISIT,.PXPCELIST,$G(PXRETCPTDEL))
  Q
  ;
- ; Check if PXIEN should be exlcuded based off ORWPCE EXCLUDE XXX paramater
+ ; Check if PXIEN should be excluded based off ORWPCE EXCLUDE XXX parameter
 EXCLUDED(PXLST,PXIEN,PXTYPE,PXLOC) ;
  ;
  N PXI,PXTMP,PXX

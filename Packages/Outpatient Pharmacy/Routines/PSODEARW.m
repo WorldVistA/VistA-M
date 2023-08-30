@@ -1,0 +1,195 @@
+PSODEARW ;WILM/BDB - INTEGRITY CHECK ON DEA NUMBERS ;2/28/22  17:25
+ ;;7.0;OUTPATIENT PHARMACY;**545**;DEC 1997;Build 270
+ ;External reference to DEA NUMBERS file (#8991.9) is supported by DBIA 7002
+ ;External reference to sub-file NEW DEA #'S (#200.5321) is supported by DBIA 7000
+ Q
+ ;
+EN  ; Main Routine Entry Point
+ N DIROUT,DTOUT,DUOUT,PSOQ,PSOPAGE,POP,PSHEADER,PSCPRSSA,PSOEDS,PSOSCR,PSOOUT,PSOTYP,PSOQ
+ S PSOPAGE=0
+ S PSOQ=0          ; quit flag
+ ;
+ S PSHEADER="Integrity Check on DEA Numbers Report"
+ D  Q:$G(PSOTYP)="D"  I $G(PSOOUT) Q
+ . S PSOTYP=$$TYPE() I $G(PSOOUT) Q
+ . I $G(PSOTYP)="D" D DL^PSODEARX I $G(PSOOUT) Q
+ . I $G(PSOTYP)="D" D RUN^PSODEARX(PSHEADER)
+ ;
+ D DEVICE Q:PSOQ   ; Print to device
+ S PSCPRSSA="B" ;temp  BOTH
+ D RUN(PSHEADER) Q:PSOQ  ; Run Report
+ Q
+ ;
+DEVICE  ; Request Device Information
+ N %ZIS,IOP,ZTSK,ZTRTN,ZTIO,ZTDESC,ZTSAVE,POP,RTN,VAR
+ K IO("Q")
+ S %ZIS="QM"
+ W ! D ^%ZIS
+ I POP S PSOQ=1 Q
+ S PSOSCR=$S($E($G(IOST),1,2)="C-":1,1:0)
+ I $D(IO("Q")) D  S PSOQ=1
+ . S RTN=$P($T(+1)," ",1)
+ . S ZTRTN="RUN^"_RTN_"(PSHEADER)"
+ . S ZTIO=ION
+ . S ZTSAVE("PS*")=""
+ . S ZTDESC="DEA NUMBERS INTEGRITY CHECK"
+ . D ^%ZTLOAD
+ . W !,$S($D(ZTSK):"REQUEST QUEUED TASK="_ZTSK,1:"REQUEST CANCELLED")
+ . D HOME^%ZIS
+ U IO
+ Q
+ ;
+RUN(PSHEADER)  ; Run Report
+ N PSCOUNT2
+ K ^TMP($J,"PSODEARW") ; Clear the temporary accumulator
+ D COMPILE
+ U IO
+ D HDR(PSHEADER)
+ I '$D(^TMP($J,"PSODEARW")) W "There is no Data to Print",!
+ S PSCOUNT2=0 F  S PSCOUNT2=$O(^TMP($J,"PSODEARW",PSCOUNT2)) Q:+PSCOUNT2=0  Q:PSOQ  D
+ . W ^TMP($J,"PSODEARW",PSCOUNT2,1),! D CHKP(PSHEADER) Q:PSOQ
+ Q:PSOQ
+ I 'PSOSCR W !,@IOF
+ D ^%ZISC
+ K ^TMP($J,"PSODEARW") ; Clear the temporary accumulator
+ I PSOSCR K DIR("A") S DIR(0)="E" D ^DIR K DIR
+ Q
+ ;
+COMPILE  ; -- Compile the report lines into the sort global
+ N NAME,NPIEN,NPDEAIEN,ERROR,PRVNAME,NPDEA,DNDEA,PSOLINE,PSCOUNT1,NXNPIEN
+ N DNDETOX,NXDEA,DETOXCT,DNINPT,DNINPTCT,INDIV,DNDEAIEN,DNDEASX,DNDEATYP,NXDEAIEN
+ S ERROR(1)="MISSING DEA NUMBER IN (#8991.9)"
+ S ERROR(2)="PROVIDER NAME MISMATCH (#200)(#8991.9)"
+ S ERROR(3)="INSTITUTIONAL DEA MISSING SUFFIX"
+ S ERROR(4)="DEA ASSIGNED TO PROVIDER:"
+ S ERROR(5)="DUPLICATE DETOX NUMBER"
+ S ERROR(6)="PROVIDER WITH MULTIPLE DETOX NUMBERS"
+ S ERROR(7)="PROVIDER MISSING DEA INPATIENT FLAG"
+ S PSCOUNT1=0
+ S NAME="" F  S NAME=$O(^VA(200,"B",NAME)) Q:NAME=""  D
+ . S NPIEN=0 F  S NPIEN=$O(^VA(200,"B",NAME,NPIEN)) Q:'NPIEN  D
+ . . Q:'$D(^VA(200,NPIEN,"PS4"))
+ . . I '$O(^VA(200,NPIEN,"PS4",0)) Q
+ . . S PRVNAME=$$GET1^DIQ(200,NPIEN,.01,"E")
+ . . ;CHECK FOR PROVIDER WITH MULTIPLE DETOX NUMBERS ERROR 6
+ . . S DETOXCT=0,NPDEAIEN=0 F  S NPDEAIEN=$O(^VA(200,NPIEN,"PS4",NPDEAIEN)) Q:'NPDEAIEN  D  I DETOXCT>1 Q
+ . . . S NPDEA=$$GET1^DIQ(200.5321,NPDEAIEN_","_NPIEN_",",.01,"E")
+ . . . S DNDEAIEN=$$GET1^DIQ(200.5321,NPDEAIEN_","_NPIEN_",",.03,"I")
+ . . . S DNDETOX=$$GET1^DIQ(8991.9,DNDEAIEN,.03) I DNDETOX]"" S DETOXCT=DETOXCT+1
+ . . . I DETOXCT>1 D
+ . . . . S PSOLINE="",NPDEA=""
+ . . . . S PSOLINE=PSOLINE_$$LJ^XLFSTR(PRVNAME,"18T")_"  "                     ; NAME            #200,    #.01
+ . . . . S PSOLINE=PSOLINE_$$LJ^XLFSTR(NPIEN,"9T")_"  "                        ; IEN             #200
+ . . . . S PSOLINE=PSOLINE_$$LJ^XLFSTR(NPDEA,"9T")_"  "                        ; NEW DEA NUMBER  #200,   
+ . . . . S PSOLINE=PSOLINE_$$LJ^XLFSTR(ERROR(6),"38T")   ; ERROR TEXT
+ . . . . S PSCOUNT1=PSCOUNT1+1
+ . . . . S ^TMP($J,"PSODEARW",PSCOUNT1,1)=PSOLINE
+ . . ;CHECK FOR PROVIDER WITH ALL INDIVIDUAL DEA MISSING DEA INPATIENT FLAG ERROR 7
+ . . S INDIV=0,DNINPTCT=0,NPDEAIEN=0 F  S NPDEAIEN=$O(^VA(200,NPIEN,"PS4",NPDEAIEN)) Q:'NPDEAIEN  D  I DNINPTCT>0 Q
+ . . . S NPDEA=$$GET1^DIQ(200.5321,NPDEAIEN_","_NPIEN_",",.01,"E")
+ . . . S DNDEAIEN=$$GET1^DIQ(200.5321,NPDEAIEN_","_NPIEN_",",.03,"I") Q:DNDEAIEN=""
+ . . . S DNDEATYP=$$GET1^DIQ(8991.9,DNDEAIEN,.07,"E") I DNDEATYP="INDIVIDUAL" S INDIV=1 D
+ . . . . S DNINPT=$$GET1^DIQ(8991.9,DNDEAIEN,.06) I DNINPT="YES" S DNINPTCT=DNINPTCT+1
+ . . I INDIV>0,DNINPTCT=0 D
+ . . . S PSOLINE="",NPDEA=""
+ . . . S PSOLINE=PSOLINE_$$LJ^XLFSTR(PRVNAME,"18T")_"  "                     ; NAME            #200,    #.01
+ . . . S PSOLINE=PSOLINE_$$LJ^XLFSTR(NPIEN,"9T")_"  "                        ; IEN             #200
+ . . . S PSOLINE=PSOLINE_$$LJ^XLFSTR(NPDEA,"9T")_"  "                        ; NEW DEA NUMBER  #200,   
+ . . . S PSOLINE=PSOLINE_$$LJ^XLFSTR(ERROR(7),"38T")   ; ERROR TEXT
+ . . . S PSCOUNT1=PSCOUNT1+1
+ . . . S ^TMP($J,"PSODEARW",PSCOUNT1,1)=PSOLINE
+ . . ;CHECK EACH PROVIDER DEA
+ . . S NPDEAIEN=0 F  S NPDEAIEN=$O(^VA(200,NPIEN,"PS4",NPDEAIEN)) Q:'NPDEAIEN  D  I DNDEA']"" Q
+ . . . ; CHECK FOR MISSING DEA NUMBER (FILE: #8991.9) ERROR 1
+ . . . S NPDEA=$$GET1^DIQ(200.5321,NPDEAIEN_","_NPIEN_",",.01,"E")
+ . . . S DNDEA=$$GET1^DIQ(200.5321,NPDEAIEN_","_NPIEN_",",.03,"E")
+ . . . S DNDEAIEN=$$GET1^DIQ(200.5321,NPDEAIEN_","_NPIEN_",",.03,"I")
+ . . . I (DNDEA']"")!(NPDEA'=DNDEA) D
+ . . . . S PSOLINE=""
+ . . . . S PSOLINE=PSOLINE_$$LJ^XLFSTR(PRVNAME,"18T")_"  "                     ; NAME            #200,    #.01
+ . . . . S PSOLINE=PSOLINE_$$LJ^XLFSTR(NPIEN,"9T")_"  "                        ; IEN             #200
+ . . . . S PSOLINE=PSOLINE_$$LJ^XLFSTR(NPDEA,"9T")_"  "                        ; NEW DEA NUMBER  #200,
+ . . . . S PSOLINE=PSOLINE_$$LJ^XLFSTR(ERROR(1),"38T")                         ; ERROR TEXT
+ . . . . S PSCOUNT1=PSCOUNT1+1
+ . . . . S ^TMP($J,"PSODEARW",PSCOUNT1,1)=PSOLINE
+ . . . ;CHECK FOR PROVIDER NAME MISMATCH (#200)(#8991.9) ERROR 2
+ . . . I (DNDEA]"")&($P(PRVNAME,",",1)'=$P($$GET1^DIQ(8991.9,DNDEAIEN,1.1),",",1)) D
+ . . . . S PSOLINE=""
+ . . . . S PSOLINE=PSOLINE_$$LJ^XLFSTR(PRVNAME,"18T")_"  "                     ; NAME            #200,    #.01
+ . . . . S PSOLINE=PSOLINE_$$LJ^XLFSTR(NPIEN,"9T")_"  "                        ; IEN             #200
+ . . . . S PSOLINE=PSOLINE_$$LJ^XLFSTR(NPDEA,"9T")_"  "                        ; NEW DEA NUMBER  #200,   
+ . . . . S PSOLINE=PSOLINE_$$LJ^XLFSTR(ERROR(2),"38T")         ; ERROR TEXT
+ . . . . S PSCOUNT1=PSCOUNT1+1
+ . . . . S ^TMP($J,"PSODEARW",PSCOUNT1,1)=PSOLINE
+ . . . ;CHECK FOR INSTITUTIONAL DEA MISSING SUFFIX ERROR 3
+ . . . S DNDEAIEN=$$GET1^DIQ(200.5321,NPDEAIEN_","_NPIEN_",",.03,"I")
+ . . . S DNDEATYP=$$GET1^DIQ(8991.9,DNDEAIEN,.07,"E")
+ . . . S DNDEASX=$$GET1^DIQ(200.5321,NPDEAIEN_","_NPIEN_",",.02,"E")
+ . . . I (DNDEATYP="INSTITUTIONAL")&(DNDEASX="") D  Q
+ . . . . S PSOLINE=""
+ . . . . S PSOLINE=PSOLINE_$$LJ^XLFSTR(PRVNAME,"18T")_"  "                     ; NAME            #200,    #.01
+ . . . . S PSOLINE=PSOLINE_$$LJ^XLFSTR(NPIEN,"9T")_"  "                        ; IEN             #200
+ . . . . S PSOLINE=PSOLINE_$$LJ^XLFSTR(NPDEA,"9T")_"  "                        ; NEW DEA NUMBER  #200,   
+ . . . . S PSOLINE=PSOLINE_$$LJ^XLFSTR(ERROR(3),"38T")                         ; ERROR TEXT
+ . . . . S PSCOUNT1=PSCOUNT1+1
+ . . . . S ^TMP($J,"PSODEARW",PSCOUNT1,1)=PSOLINE
+ . . . ;CHECK FOR DEA ASSIGNED TO PROVIDER: ERROR 4
+ . . . I DNDEATYP="INDIVIDUAL" S NXNPIEN="" F  S NXNPIEN=$O(^VA(200,"PS4",NPDEA,NXNPIEN)) Q:NXNPIEN=""  I NXNPIEN'=NPIEN D  Q
+ . . . . S PSOLINE=""
+ . . . . S PSOLINE=PSOLINE_$$LJ^XLFSTR(PRVNAME,"18T")_"  "                     ; NAME            #200,    #.01
+ . . . . S PSOLINE=PSOLINE_$$LJ^XLFSTR(NPIEN,"9T")_"  "                        ; IEN             #200
+ . . . . S PSOLINE=PSOLINE_$$LJ^XLFSTR(NPDEA,"9T")_"  "                        ; NEW DEA NUMBER  #200,   
+ . . . . S PSOLINE=PSOLINE_$$LJ^XLFSTR(ERROR(4)_"  "_$$GET1^DIQ(200,NXNPIEN_",",.01),"38T")   ; ERROR TEXT
+ . . . . S PSCOUNT1=PSCOUNT1+1
+ . . . . S ^TMP($J,"PSODEARW",PSCOUNT1,1)=PSOLINE
+ . . . ;CHECK FOR DUPLICATE DETOX NUMBER
+ . . . S DNDETOX=$$GET1^DIQ(8991.9,DNDEAIEN,.03)
+ . . . I DNDETOX]"" S NXDEA="" F  S NXDEA=$O(^XTV(8991.9,"D",DNDETOX,NXDEA)) Q:NXDEA=""  I NXDEA'=NPDEA D  Q
+ . . . . S NXDEAIEN=$O(^XTV(8991.9,"D",DNDETOX,NXDEA,""))
+ . . . . S PSOLINE=""
+ . . . . S PSOLINE=PSOLINE_$$LJ^XLFSTR(PRVNAME,"18T")_"  "                     ; NAME            #200,    #.01
+ . . . . S PSOLINE=PSOLINE_$$LJ^XLFSTR(NPIEN,"9T")_"  "                        ; IEN             #200
+ . . . . S PSOLINE=PSOLINE_$$LJ^XLFSTR(NPDEA,"9T")_"  "                        ; NEW DEA NUMBER  #200,   
+ . . . . S PSOLINE=PSOLINE_$$LJ^XLFSTR(ERROR(5)_"  DEA:"_$$GET1^DIQ(8991.9,NXDEAIEN_",",.01),"38T")   ; ERROR TEXT
+ . . . . S PSCOUNT1=PSCOUNT1+1
+ . . . . S ^TMP($J,"PSODEARW",PSCOUNT1,1)=PSOLINE
+ Q
+ ;
+HDR(PSHEADER)  ; Report header
+ N PSOI
+ S PSOPAGE=PSOPAGE+1
+ W @IOF,PSHEADER,?(IOM-31),"Run Date: ",$$FMTE^XLFDT(DT,"5DZ")," Page: ",PSOPAGE
+ W !,$$TITLES
+ W ! F PSOI=1:1:$S($G(IOM):(IOM-1),1:130) W "-"
+ W !
+ Q
+ ;
+CHKP(PSHEADER)  ; Check for End Of Page
+ I $Y>(IOSL-4) D:PSOSCR  Q:PSOQ  D HDR(PSHEADER)
+ . N X,Y,DTOUT,DUOUT,DIRUT,DIR
+ . U IO(0) S DIR(0)="E" D ^DIR K DIR S:$D(DIRUT) PSOQ=2
+ . U IO
+ Q
+ ;
+TITLES()  ; -- Create the header TITLES.
+ N TITLES
+ S TITLES=""
+ S TITLES=TITLES_$$LJ^XLFSTR("NAME","18T")_"  "             ; NAME                    #200,    #.01                 
+ S TITLES=TITLES_$$LJ^XLFSTR("IEN","9T")_"  "               ; IEN                     #200
+ S TITLES=TITLES_$$LJ^XLFSTR("DEA(#200)","9T")_"  "        ; NEW DEA NUMBER          #200,    #
+ S TITLES=TITLES_$$LJ^XLFSTR("ERROR TEXT","38T")       ; ERROR TEXT
+ Q TITLES
+ ;
+TYPE() ;Prompt for report format or delimited list
+ N PSOTYP
+ S PSOTYP=""
+ W ! K DIR,Y S DIR(0)="S^R:Report;D:Delimited File"
+ S DIR("?",1)="Enter 'R' to see the output in a report format,"
+ S DIR("?")="enter 'D' for a delimited list that can be exported to Excel."
+ S DIR("A")="Select (R)eport or (D)elimited File"
+ S DIR("B")="R"
+ D ^DIR K DIR I $D(DIRUT) S PSOOUT=1 K DIRUT,DTOUT,DUOUT,DIR,X,Y Q PSOTYP
+ S PSOTYP=Y
+ K DIRUT,DTOUT,DUOUT,DIR,X,Y
+ Q PSOTYP
+ ;

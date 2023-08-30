@@ -1,5 +1,5 @@
-PSOOTMRX ;BIR/MFR - Titration/Maintenance Dose Prescription ;10/17/96
- ;;7.0;OUTPATIENT PHARMACY;**313,505,517,441**;DEC 1997;Build 208
+PSOOTMRX ;BIR/MFR - Titration/Maintenance Dose Prescription ;Oct 20, 2022@15:33
+ ;;7.0;OUTPATIENT PHARMACY;**313,505,517,441,545**;DEC 1997;Build 270
  ;External reference to ULK^ORX2 supported by DBIA 867
  ;External reference to UL^PSSLOCK supported by DBIA 2789
  ;
@@ -79,6 +79,12 @@ MARK(PSORXIEN,REFRESH) ; Mark a non-refillable Rx as Titration
  ;
  D FULL^VALM1
  W !
+ ;*545 - displaying notification
+ I $$NDF(PSORXIEN)!($$CSRX^PSOSPMUT(PSORXIEN)) D
+ .Q:($$TITRX^PSOUTL(PSORXIEN)="t")
+ .W !,"NOTE: Marking this controlled substance Rx as a Titration prescription will"
+ .W !,"prevent refills and renewals. You will not be able to convert the Rx to a "
+ .W !,"maintenance prescription by the TR Hidden Action."
  S DIR("A")="Do you want to "_$S($$TITRX^PSOUTL(PSORXIEN)="t":"UN",1:"")_"MARK this Rx as 'Titration'? "
  I $$TITRX^PSOUTL(PSORXIEN)'="t" S (DIR("?"),DIR("??"))="^D TITHLP^PSOOTMRX"
  I $G(PSOTITRF) S DIR("B")="No" ;P441 default set for CPRS orders only
@@ -126,8 +132,11 @@ TITHLP ; Help Text for Mark Rx as Titration/Maintenance prompt
  W !?5,"Answer YES if this is a Titration to Maintenance prescription."
  W !?5,"Actions such as Renewal (including from CPRS), Refill, and Copy"
  W !?5,"are not allowed on prescriptions marked as Titration."
- W !?5,"However, you will be able to create a Maintenance Rx from this Rx"
- W !?5,"upon refill request via the TR (Convert Titration Rx) hidden action."
+ W !?5,"However, you will be able to create a Maintenance Rx from this"
+ W !?5,"Rx upon refill request (unless it is a controlled substance Rx)"
+ W !?5,"via the TR (Convert Titration Rx) hidden action. You will not"
+ W !?5,"be able to convert a controlled substance Rx to a maintenance"
+ W !?5,"prescription by using the TR Hidden Action."
  Q
 NDF(PSORXIEN) ;PATCH PSO*7*505 - 1:YES 0:NO checks the cs federal schedule field of the va product file
  N DRGIEN

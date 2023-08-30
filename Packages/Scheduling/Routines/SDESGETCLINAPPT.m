@@ -1,5 +1,5 @@
-SDESGETCLINAPPT ;ALB/LAB - VISTA SCHEDULING READ CLINIC APPOINTMENT ;Jan 11,2022@15:01
- ;;5.3;Scheduling;**805**;Aug 13, 1993;Build 9
+SDESGETCLINAPPT ;ALB/LAB - VISTA SCHEDULING READ CLINIC APPOINTMENT ;FEB 21,2023@15:01
+ ;;5.3;Scheduling;**805,838**;Aug 13, 1993;Build 7
  ;;Per VHA Directive 6402, this routine should not be modified
  Q
  ;
@@ -75,12 +75,12 @@ BLDREC ; build an appointment record
  S APPTREC("ClinicApptDate",SDSTDT,"ClinicApptNumber",SDAPPTNO,"DateAppointmentMade")=$$FMTISO^SDAMUTDT(SDAPPT(44.003,SDIEN,8,"I"))
  S APPTREC("ClinicApptDate",SDSTDT,"ClinicApptNumber",SDAPPTNO,"OverbookFlag")=SDAPPT(44.003,SDIEN,9,"I")
  S APPTREC("ClinicApptDate",SDSTDT,"ClinicApptNumber",SDAPPTNO,"PriorXRayResults")=SDAPPT(44.003,SDIEN,10,"I")
- S APPTREC("ClinicApptDate",SDSTDT,"ClinicApptNumber",SDAPPTNO,"Patient",DFN,"CurrentEligibilityCode")=SDAPPT(44.003,SDIEN,10.5,"I")
+ S APPTREC("ClinicApptDate",SDSTDT,"ClinicApptNumber",SDAPPTNO,"Patient",DFN,"CurrentEligibilityCode")=SDAPPT(44.003,SDIEN,10.5,"E")
  S APPTREC("ClinicApptDate",SDSTDT,"ClinicApptNumber",SDAPPTNO,"COLLATERAL")=SDAPPT(44.003,SDIEN,11,"I")
  S APPTREC("ClinicApptDate",SDSTDT,"ClinicApptNumber",SDAPPTNO,"LABTIME")=$$FMTISO^SDAMUTDT(SDAPPT(44.003,SDIEN,12,"I"))
  S APPTREC("ClinicApptDate",SDSTDT,"ClinicApptNumber",SDAPPTNO,"XRAYTIME")=$$FMTISO^SDAMUTDT(SDAPPT(44.003,SDIEN,13,"I"))
  S APPTREC("ClinicApptDate",SDSTDT,"ClinicApptNumber",SDAPPTNO,"EKGTIME")=$$FMTISO^SDAMUTDT(SDAPPT(44.003,SDIEN,14,"I"))
- S APPTREC("ClinicApptDate",SDSTDT,"ClinicApptNumber",SDAPPTNO,"Patient",DFN,"EligbilityOfVisit")=SDAPPT(44.003,SDIEN,30,"I")
+ S APPTREC("ClinicApptDate",SDSTDT,"ClinicApptNumber",SDAPPTNO,"Patient",DFN,"EligibilityOfVisit")=SDAPPT(44.003,SDIEN,30,"E")
  S APPTREC("ClinicApptDate",SDSTDT,"ClinicApptNumber",SDAPPTNO,"ParentRecordRequest")=SDAPPT(44.003,SDIEN,200,"E")
  S APPTREC("ClinicApptDate",SDSTDT,"ClinicApptNumber",SDAPPTNO,"CheckInUser")=SDAPPT(44.003,SDIEN,302,"E")
  S APPTREC("ClinicApptDate",SDSTDT,"ClinicApptNumber",SDAPPTNO,"CheckedOutDate")=$$FMTISO^SDAMUTDT(SDAPPT(44.003,SDIEN,303,"I"),SDCLIN)

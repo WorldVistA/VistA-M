@@ -1,5 +1,5 @@
 ORDEA ;ISL/TC & JMH & JLC - DEA related items ;07/10/19  09:22
- ;;3.0;ORDER ENTRY/RESULTS REPORTING;**306,374,377**;Dec 17, 1997;Build 582
+ ;;3.0;ORDER ENTRY/RESULTS REPORTING;**306,374,377,499**;Dec 17, 1997;Build 165
  ;
  ;Reference to ^PSSOPKI supported by DBIA #3737
  ;Reference to ^PSSUTLA1 supported by DBIA #3373
@@ -50,7 +50,7 @@ CSCHECK(ORCSVAL,OROI,ORPSTYPE) ; return 1 if OI is a controlled substance, 0 for
  S ORDETOX=$$OIDETOX^PSSOPKI(ORPSOI,ORPSTYPE)
  S ORCSVAL=ORCSVAL_U_ORDETOX
  Q
-SIGINFO(ORY,ORDFN,ORPROV) ;returns the provider/patient info that must be displayed when signing controlled substance orders
+SIGINFO(ORY,ORDFN,ORPROV,OROID) ;returns the provider/patient info that must be displayed when signing controlled substance orders
  N ORI S ORI=0
  ;patient name
  S ORI=ORI+1,ORY(ORI)=$P(^DPT(+ORDFN,0),U)
@@ -72,11 +72,13 @@ SIGINFO(ORY,ORDFN,ORPROV) ;returns the provider/patient info that must be displa
  .I $L(ORINST(4,DUZ(2)_",",.01,"E"))>0 S ORI=ORI+1,ORY(ORI)="for "_ORINST(4,DUZ(2)_",",.01,"E")
  ;dea #
  S ORI=ORI+1,ORY(ORI)="DEA: "_$$DEA^XUSER(,ORPROV)
+ ;*506
+ I $G(OROID) S OROID=+OROID I $P($G(^OR(100,OROID,11.1)),U)]"" S ORY(ORI)="DEA: "_$P(^OR(100,OROID,11.1),U)
  ;detox #
  N ORDETOX S ORDETOX=$$DETOX^XUSER(ORPROV)
  I $L(ORDETOX)>0 S ORI=ORI+1,ORY(ORI)="Detox: "_ORDETOX
  Q
-HASHINFO(ORY,ORDFN,ORPROV) ;basic data for all orders getting signed
+HASHINFO(ORY,ORDFN,ORPROV,OROID) ;basic data for all orders getting signed
  N ORI S ORI=0
  ;patient name
  S ORI=ORI+1,ORY(ORI)="PatientName:"_$P(^DPT(+ORDFN,0),U)
@@ -99,6 +101,12 @@ HASHINFO(ORY,ORDFN,ORPROV) ;basic data for all orders getting signed
  S ORI=ORI+1,ORY(ORI)="ProviderAdd1:"_ORINST(4,DUZ(2)_",",.01,"E")
  ;dea #
  S ORI=ORI+1,ORY(ORI)="DeaNumber:"_$$DEA^XUSER(,ORPROV)
+ ;*499 - DEA# from backdoor pharmacy or from CPRS order entry
+ S OROID=+$G(OROID) N ORSLDEA S ORSLDEA=""
+ I OROID,$P($G(^OR(100,OROID,11.1)),U)]"" S ORSLDEA=$P(^OR(100,OROID,11.1),U)
+ I ORSLDEA="",$P($G(RXE),"|",14)]"" S ORSLDEA=$P($G(RXE),"|",14)
+ I ORSLDEA]"" S ORI=ORI+1,ORY(ORI)="DeaNumber:"_ORSLDEA
+ I ORSLDEA="" S ORI=ORI+1,ORY(ORI)="DeaNumber:"_$$DEA^XUSER(,ORPROV)
  ;detox #
  N ORDETOX S ORDETOX=$$DETOX^XUSER(ORPROV)
  I $L(ORDETOX)>0 S ORI=ORI+1,ORY(ORI)="DetoxNumber:"_ORDETOX
@@ -109,8 +117,6 @@ ORDHINFO(ORY,ORIFN,HASH,OHINFO) ;
  Q
 BUILDFDA(ORIFN,ORDFDA,OROUT,HASH,OHD) ;
  ;ORIFN is the CPRS order number to use
- ;this will need to be updated once we have a way to store DEA and DETOX
- ;numbers that are retrieved during validation
  ;returns 0 if not successful, 1 if successful
  N ERROR,ORDIALOG,A,PIEN,DFN,S1,DOSE,SCHED,ROUTE,I
  N CONJ,INSTR,SCHED,DUR,DOSE,VADM

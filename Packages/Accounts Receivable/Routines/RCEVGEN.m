@@ -1,5 +1,5 @@
-RCEVGEN ;WASH-ISC@ALTOONA,PA/RGY-Account Management Adjustment ; 7/3/03 2:03pm
-V ;;4.5;Accounts Receivable;**198**;Mar 20, 1995
+RCEVGEN ;WASH-ISC@ALTOONA,PA/RGY - Account Management Adjustment ; 7/3/03 2:03pm
+V ;;4.5;Accounts Receivable;**198,400**;Mar 20, 1995;Build 13
  ;;Per VHA Directive 10-93-142, this routine should not be modified.
 EN(TYPE) ;
 DEB ;Make an adjustment to a debtor account
@@ -25,3 +25,35 @@ OK(EVN) ;OK an event or delete it
  W ! S DIR(0)="YA",DIR("B")="YES",DIR("A")="Is this OK? " D ^DIR K DIR
  S:$D(DTOUT) Y=-1
  Q Y
+ ;
+HRFSCMNT(DEBTOR) ; add a "patient high risk flag is set" comment to AR DEBTOR file  PRCA*4.5*400
+ ;
+ ; DEBTOR - file 340 ien
+ ;
+ D ADDCMNT(DEBTOR,"High Risk flag has been set","High Risk patient flag has been set for this debtor")
+ Q
+ ;
+ADDCMNT(DEBTOR,BRIEF,FULL) ; add a comment to AR DEBTOR file (no user interaction) PRCA*4.5*400
+ ;
+ ; DEBTOR - file 340 ien
+ ; BRIEF - brief comment (3-30 chars)
+ ; FULL - full comment
+ ;
+ N DEBT,ERR,EVN,FDA,IENS,N0,SITE,TMP
+ I DEBTOR'>0 Q
+ I $G(BRIEF)=""!($G(FULL)="") Q
+ S N0=$G(^RCD(340,DEBTOR,0)) I N0="" Q
+ S SITE=$$SITE^RCMSITE() I SITE'>0 Q
+ S DEBT=$P(N0,U)
+ S TMP(1)=FULL
+ D OPEN^RCEVDRV1(1,DEBT,DT,DUZ,SITE,.ERR,.EVN)  ; open an event, "comment" type
+ I ERR]""!(EVN<0) Q
+ S IENS=EVN_","
+ S FDA(341,IENS,.06)=DT
+ S FDA(341,IENS,2.01)="TMP"
+ S FDA(341,IENS,4.01)=BRIEF
+ L +^RCD(341,EVN):5 I '$T Q
+ D FILE^DIE("","FDA")
+ L -^RCD(341,EVN)
+ D CLOSE^RCEVDRV1(EVN,.ERR)
+ Q

@@ -1,6 +1,6 @@
 OSEHRA ZGO Export: ^DOSV
 ZWR
-^DOSV(0,"/dev/pts/0",0,1,"N")=9
+^DOSV(0,"/dev/pts/0",0,1,"N")=6
 ^DOSV(0,"/dev/pts/0","F",1)="9.9^.01^PATCH NAME^RF"
 ^DOSV(0,"/dev/pts/1",0,1,"N")=8
 ^DOSV(0,"/dev/pts/1","F",1)="9.9^.01^PATCH NAME^RF"

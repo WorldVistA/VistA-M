@@ -1,12 +1,14 @@
 VPREHL7 ;ALB/MJK,MKB - VPR HL7 Message Processor ;10/25/18  15:29
- ;;1.0;VIRTUAL PATIENT RECORD;**8,14**;Sep 01, 2011;Build 38
+ ;;1.0;VIRTUAL PATIENT RECORD;**8,14,30**;Sep 01, 2011;Build 9
  ;;Per VA Directive 6402, this routine should not be modified.
  ;
  ; External References          DBIA#
  ; -------------------          -----
  ; RMIM DRIVER                   6990
  ; VAFC ADT-A08 SERVER           4418
+ ; DIQ                           2056
  ; MPIF001                       2701
+ ; XLFDT                        10103
  ;
  ; Note: These variables are provided by the VistA HL7 system when a
  ;       subscriber protocol's ROUTING LOGIC is called:
@@ -87,4 +89,26 @@ PRF ; -- main entry point for these VPR PRF client/router protocols:
  . S STS=$P(HLNODE,HLFS,6),ACT=$S(STS["INACT":"@",STS["ERROR":"@",1:"")
  . ;I STS="@" D POST^VPRHS(DFN,"Alert") Q  ;rebuild container
  . D POST^VPRHS(DFN,"Alert",ID_"~"_DFN_";26.13",ACT)
+ Q
+ ;
+PSO ; -- main entry point for these VPR PRF client/router protocols:
+ ;          - VPR PSO VDEF EVENTS protocol
+ ;             o  subscribes to PSO VDEF RDS O13 OP PHARM PREF VS 
+ ;             o  subscribes to PSO VDEF RDS O13 OP PHARM PPAR VS 
+ ;
+ N DONE,VPRSEG,ICN,DFN,ID,NOW,ORDER
+ S DONE=0,NOW=$$NOW^XLFDT
+ F  X HLNEXT Q:HLQUIT'>0  D  Q:DONE
+ . S VPRSEG=$E(HLNODE,1,3)
+ . ;
+ . I VPRSEG="PID" D  Q
+ . . S ICN=$P(HLNODE,HLFS,3)
+ . . S DFN=$$GETDFN^MPIF001(ICN)
+ . . I DFN<1 S DONE=1
+ . ;
+ . I VPRSEG'="ORC" Q
+ . S ID=+$P($P(HLNODE,HLFS,4),$E(HLECH))
+ . S DONE=1 Q:$G(DFN)<1  Q:$G(ID)<1
+ . S ORDER=$$GET1^DIQ(52,ID,39.3,"I")
+ . D:ORDER POST^VPRHS(DFN,"Medication",ORDER_";100")
  Q

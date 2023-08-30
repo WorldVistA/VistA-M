@@ -1,5 +1,5 @@
 IBR ;ALB/AAS - INTEGRATED BILLING - A/R INTERFACE ;25-FEB-91
-V ;;2.0;INTEGRATED BILLING;**52,70,93,113,132,51,715**;21-MAR-94;Build 25
+V ;;2.0;INTEGRATED BILLING;**52,70,93,113,132,51,715,630**;21-MAR-94;Build 39
  ;;Per VA Directive 6402, this routine should not be modified.
  ;
  ;  - handles calls to AR
@@ -15,7 +15,7 @@ V ;;2.0;INTEGRATED BILLING;**52,70,93,113,132,51,715**;21-MAR-94;Build 25
  G END
  ;
 1 ;  -pass new entries to a/r
- S IBTOTL=0 N IBNOW
+ S IBTOTL=0 N IBNOW,IBN  ;IB*630 RTW  add IBN to the new.
  F I=1:1 S IBN=$P(IBNOS,"^",I) Q:'IBN  S X=$S($D(^IB(IBN,0)):^(0),1:"") S:X="" IBERR="IB018;"_IBERR D TRCHK S IBTOTL=IBTOTL+$P(X,"^",7)
  Q:IBNOS=""!(IBTOTL<1)
  S IBSERV="",IBATYP=$P(X,"^",3) I $D(^IBE(350.1,+IBATYP,0)) S IBSERV=$P(^(0),"^",4)
@@ -23,6 +23,18 @@ V ;;2.0;INTEGRATED BILLING;**52,70,93,113,132,51,715**;21-MAR-94;Build 25
  S IBWHER=3
  D BILLNO^IBAUTL I +Y<1 G ERR
  S IBWHER=4
+ ;
+  ; The following checks determine if there are Duplicate Copay charges for a Patient/Date. (Beginning of IB*2.0*630 updates)
+ N IBEXCOPAY,IBAT
+ S IBEXCOPAY=""
+ F I=1:1 S IBN=$P(IBNOS,"^",I) Q:'IBN  D
+ . ; Load the ACTION TYPE (#.03)
+ . S IBAT=$P($G(^IB(IBN,0)),U,3)
+ . ; Quit if the ACTION TYPE is not a Copay
+ . I "^51^74^136^203^45^48^133^130^16^17^18^19^20^21^22^23^24^^89^92^95^105^108^"'[("^"_IBAT_"^") Q
+ . ; Run Duplicate Copay checks & store related info in ^XTMP("IB TRANS"
+ . S IBEXCOPAY=$$COPAYCHK^IBAUTL8(DFN,IBN,0)
+ ; End of IB*2.0*630 updates
  ;
  F I=1:1 S IBN=$P(IBNOS,"^",I) Q:'IBN  D UP1,UP3:IBSEQNO=3
  Q

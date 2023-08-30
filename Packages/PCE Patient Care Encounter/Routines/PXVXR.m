@@ -1,5 +1,5 @@
-PXVXR ;BIR/ADM - CROSS REFERENCE AND OTHER LOGIC ;Aug 03, 2021@06:27:08
- ;;1.0;PCE PATIENT CARE ENCOUNTER;**210,216,211,217**;Aug 12, 1996;Build 134
+PXVXR ;BIR/ADM - CROSS REFERENCE AND OTHER LOGIC ;Dec 20, 2022@13:24:02
+ ;;1.0;PCE PATIENT CARE ENCOUNTER;**210,216,211,217,233**;Aug 12, 1996;Build 3
  ;
  Q
 EXP ; check for expiration date in the past
@@ -82,7 +82,10 @@ LOTSTAT(PXLOT,PXDT) ; Check if lot is active and not expired
  S PXEXPDT=$P(PXNODE,U,9)
  I $P(PXDT,".",1)>$P(PXEXPDT,".",1) Q 0
  ;
- ; Check if lot is active
+ ; if lot is active now, let them select it regardless if it was inactive in the past
+ I $P(PXNODE,U,3)'>0 Q 1
+ ;
+ ; If it's inactive now, see if it was active on PXDT
  S PXSTATIEN=""
  I $D(^AUTTIML(PXLOT,1,"B",PXDT)) S PXSTATIEN=$O(^AUTTIML(PXLOT,1,"B",PXDT,0))
  I 'PXSTATIEN D

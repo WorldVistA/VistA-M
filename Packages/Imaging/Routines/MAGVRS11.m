@@ -1,6 +1,6 @@
-MAGVRS11 ;WOIFO/DAC,MLH - RPC calls for DICOM file processing ; 10 Jan 2012 01:20 PM
- ;;3.0;IMAGING;**118**;Mar 19, 2002;Build 4525;May 01, 2013
- ;; Per VHA Directive 2004-038, this routine should not be modified.
+MAGVRS11 ;WOIFO/DAC,MLH - RPC calls for DICOM file processing ; Apr 27, 2022@11:46:12
+ ;;3.0;IMAGING;**118,278**;Mar 19, 2002;Build 138
+ ;; Per VA Directive 6402, this routine should not be modified.
  ;; +---------------------------------------------------------------+
  ;; | Property of the US Government.                                |
  ;; | No permission to copy or redistribute this software is given. |
@@ -17,7 +17,11 @@ MAGVRS11 ;WOIFO/DAC,MLH - RPC calls for DICOM file processing ; 10 Jan 2012 01:2
  ;;
  Q
 ATSOP(OUT,SOPATTS) ;RPC - create a new sop
+ L +^MAGV(2005.64):60 E  D  ; P278 DAC - Lock Image SOP Instance file to prevent duplicates
+ . S OUT(1)="-99"_$$STATSEP^MAGVRS41_"Image SOP Instance file is locked"
+ Q:$D(OUT(1))
  D ATTACH^MAGVRS41(.OUT,2005.64,.SOPATTS)
+ L -^MAGV(2005.64)
  Q
 UPSERIES(OUT,SERATTS,OVERRIDE) ;RPC - update series
  D UPDATE^MAGVRS41(.OUT,2005.63,.SERATTS,$G(OVERRIDE))

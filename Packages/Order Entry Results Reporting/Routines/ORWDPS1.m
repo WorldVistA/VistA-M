@@ -1,5 +1,5 @@
-ORWDPS1 ;SLC/KCM,JLI,TC - Pharmacy Calls for Windows Dialog ;Apr 05, 2018@07:01
- ;;3.0;ORDER ENTRY/RESULTS REPORTING;**85,132,141,163,215,255,243,306,350,435,377,405**;Dec 17, 1997;Build 211
+ORWDPS1  ;SLC/KCM,JLI,TC - Pharmacy Calls for Windows Dialog ;Apr 05, 2018@07:01
+ ;;3.0;ORDER ENTRY/RESULTS REPORTING;**85,132,141,163,215,255,243,306,350,435,377,405,499**;Dec 17, 1997;Build 165
  ;
 ODSLCT(LST,PSTYPE,DFN,LOC) ; return default lists for dialog
  ; PSTYPE: pharmacy type (U=unit dose, F=IV fluids, O=outpatient)
@@ -164,7 +164,7 @@ FAILDEA(FAIL,OI,ORNP,PSTYPE)    ; return 1 if DEA check fails for this provider
  I DETFLAG,DETPRO>0 S Y=DETPRO X ^DD("DD") S FAIL="5^"_Y Q
  S DEAFLG=$P($$OIDEA^PSSOPKI(PSOI,PSTYPE),";",2) Q:DEAFLG'>0
  I DEAFLG=1 S FAIL=6 Q
- S RT=$$SDEA^XUSER(,+$G(ORNP),DEAFLG) I RT=1 S FAIL=1
+ S RT=$$SDEA^XUSER(1,+$G(ORNP),DEAFLG,,"I") I RT=1 S FAIL=1  ; OR*3*499-Default to the required "Use For Inpatient" DEA# until selection from list is enabled
  I RT=2 S FAIL="2^"_$$UP^XLFSTR(DEAFLG)
  I RT?1"4".E S FAIL=RT
  Q

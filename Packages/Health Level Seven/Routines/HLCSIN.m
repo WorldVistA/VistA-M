@@ -1,6 +1,7 @@
 HLCSIN ;ALB/JRP - INCOMING FILER;01-MAY-95 ;03/07/2011
- ;;1.6;HEALTH LEVEL SEVEN;**2,30,14,19,62,109,115,122,140,145,153**;Oct 13, 1995;Build 11
- ;Per VHA Directive 2004-038, this routine should not be modified.
+ ;;1.6;HEALTH LEVEL SEVEN;**2,30,14,19,62,109,115,122,140,145,153,175**;Oct 13, 1995;Build 2
+ ;Per VHA Directive 6402, this routine should not be modified.
+ ;Supported ICR# 10063, for $$PSET^%ZTLOAD API to make task persistent 
 STARTIN ;Main entry point for incoming background filer
  ;Create/find entry denoting this filer in the INCOMING FILER TASK
  ; NUMBER multiple (field #20) of the HL COMMUNICATION SERVER PARAMETER
@@ -11,6 +12,11 @@ STARTIN ;Main entry point for incoming background filer
  ;; N HLDUZ,DUZ  ; patch HL*1.6*122 TEST v2: DUZ code removed
  N HLDUZ
  S HLDUZ=+$G(DUZ)
+ ;
+ ;;patch HL*1.6*175 adds the $$PSET^%ZTLOAD api to set filers to persistent
+ N HLPERS
+ I $G(ZTQUEUED) D
+ .S HLPERS=$$PSET^%ZTLOAD(ZTQUEUED)
  ;
  S HLPTRFLR=+$$CRTFLR^HLCSUTL1(ZTSK,"IN")
  ;Loop through Logical Links and check for incoming messages

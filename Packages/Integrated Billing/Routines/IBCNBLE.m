@@ -1,5 +1,5 @@
 IBCNBLE ;ALB/ARH - Ins Buffer: LM buffer entry screen ;1-Jun-97
- ;;2.0;INTEGRATED BILLING;**82,231,184,251,371,416,435,452,497,519,516,528,687**;21-MAR-94;Build 88
+ ;;2.0;INTEGRATED BILLING;**82,231,184,251,371,416,435,452,497,519,516,528,687,737,743**;21-MAR-94;Build 18
  ;;Per VA Directive 6402, this routine should not be modified.
  ;
 EN ; - main entry point for list manager display
@@ -19,7 +19,7 @@ HDR ; - header code for list manager display
  S VALMHDR(3)=IBX
  Q
  ;
-INIT ; - initialization of list manager screen, ifn of record to display required IBBUFDA
+INIT ; - initialization of list manager screen, ien of record to display required IBBUFDA
  K ^TMP("IBCNBLE",$J)
  I '$G(IBBUFDA) S VALMQUIT="" Q
  S DFN=+$G(^IBA(355.33,IBBUFDA,60))
@@ -30,7 +30,11 @@ HELP ; - help text for list manager screen
  D FULL^VALM1
  W !!,"This screen displays all data in a Buffer File entry."
  W !!,"The actions allow editing of all data and verification of coverage."
- W !!,"It is not necessary to use the Verify Entry action, this action is optional.",!,"If the Verify Entry action is not used, the policy will be automatically flagged",!,"as verified when it is Accepted and stored in the main Insurance files."
+ ; IB*2.0*737/DTG remove verify action reference
+ ; W !!,"It is not necessary to use the Verify Entry action, this action is optional."
+ ; W !,"If the Verify Entry action is not used, the policy will be automatically flagged"
+ ; W !,"as verified when it is Accepted and stored in the main Insurance files."
+ ;
  D PAUSE^VALM1 S VALMBCK="R"
  Q
  ;
@@ -208,19 +212,25 @@ ADDR(NODE,FLD) ; format address for output
  . S ADDR(IBJ)=$G(ADDR(IBJ))_IBZ_IBY
  Q
  ;
-TRACE(IBLINE,IBBUFDA) ; Add the eIIV Trace Number to the display
- NEW RESP,TRACENUM,IBL,IBY
+TRACE(IBLINE,IBBUFDA) ; Add the eIV Trace Number to the display
+ ;IB*743/CKB - added variable IVPRDT, put variables in alphabetical order
+ ;  Only display the Trace # when field (#355.33,.15) is populated
+ NEW IBL,IBY,IVPRDT,RESP,TRACENUM
  I '$G(IBBUFDA) G TRACEX
  S RESP=$O(^IBCN(365,"AF",IBBUFDA,""),-1)          ; response ien
  S TRACENUM=""
- I RESP S TRACENUM=$P($G(^IBCN(365,RESP,0)),U,9)   ; trace# field
- S IBL="eIV Trace #: ",IBY=TRACENUM               ; field label/data
+ S IVPRDT=$$GET1^DIQ(355.33,IBBUFDA_",",.15,"I") ;IB*743
+ I RESP S TRACENUM=$$GET1^DIQ(365,RESP_",",.09,"I") ; trace# field
+ ;I RESP S TRACENUM=$P($G(^IBCN(365,RESP,0)),U,9)
+ S IBL="eIV Trace #: "                              ; field label
+ S IBY=$S(IVPRDT="":"",1:TRACENUM)                  ; field data
  S IBLINE=$$SETL("",IBY,IBL,18,17)             ; add it
 TRACEX ;
  Q IBLINE
  ;
 SERVLN(IBBUFDA,SRVARRAY) ; create a service date/service type line for the display
- N NODE0,RIEN,SRVCODE,SRVDT,SRVSTR,TQIEN
+ ;IB*743 added IVPRDT
+ N IVPRDT,NODE0,RIEN,SRVCODE,SRVDT,SRVSTR,TQIEN
  S SRVSTR=""
  I '$G(IBBUFDA) G SERVLNX
  ;IB*2.0*519 Start: Fix retrieving RIEN and TQIEN so display gets correct values
@@ -229,14 +239,15 @@ SERVLN(IBBUFDA,SRVARRAY) ; create a service date/service type line for the displ
  I TQIEN=0 S TQIEN=$P($G(^IBCN(365,RIEN,0)),U,5)
  ;IB*2.0*519 End: Fix retrieving RIEN and TQIEN so display gets correct values
  ;
- S (SRVDT,SRVCODE)="" I TQIEN D
+ ;IB*743 Service date/code (STC) ONLY applies if (#355.33,.15) is populated
+ S IVPRDT=$$GET1^DIQ(355.33,IBBUFDA_",",.15,"I")
+ S (SRVDT,SRVCODE)="" I TQIEN,IVPRDT D
  .S NODE0=$G(^IBCN(365.1,TQIEN,0)),SRVCODE=$P(NODE0,U,20)
  .;S RIEN=+$O(^IBCN(365,"AF",IBBUFDA,""))  ;IB*2.0*519: RIEN already retrieved above
  .I RIEN S SRVDT=$P($G(^IBCN(365,RIEN,1)),U,10) ; try to get service date from file 365
  .I SRVDT="" S SRVDT=$P(NODE0,U,12) ; if unsuccessful, get it from file 365.1
- .Q
- S SRVSTR="** This response is based on service date "_$S(SRVDT:$$FMTE^XLFDT(SRVDT,"5Z"),1:"UNKNOWN")
- S SRVSTR=SRVSTR_" and service type: "_$S(SRVCODE:$P($G(^IBE(365.013,SRVCODE,0)),U,2),1:"UNKNOWN")_" **"
+ .S SRVSTR="** This response is based on service date "_$S(SRVDT:$$FMTE^XLFDT(SRVDT,"5Z"),1:"UNKNOWN")
+ .S SRVSTR=SRVSTR_" and service type: "_$S(SRVCODE:$P($G(^IBE(365.013,SRVCODE,0)),U,2),1:"UNKNOWN")_" **"
 SERVLNX ;
  D FSTRNG^IBJU1(SRVSTR,79,.SRVARRAY)
  Q

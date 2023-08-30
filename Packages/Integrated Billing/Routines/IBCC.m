@@ -1,5 +1,5 @@
 IBCC ;ALB/MJB - CANCEL THIRD PARTY BILL ;Feb 09, 2018@10:11:43
- ;;2.0;INTEGRATED BILLING;**2,19,77,80,51,142,137,161,199,241,155,276,320,358,433,432,447,516,547,597,592**;21-MAR-94;Build 58
+ ;;2.0;INTEGRATED BILLING;**2,19,77,80,51,142,137,161,199,241,155,276,320,358,433,432,447,516,547,597,592,727**;21-MAR-94;Build 34
  ;;Per VA Directive 6402, this routine should not be modified.
  ;
  ;MAP TO DGCRC
@@ -71,8 +71,13 @@ NOPTF ; Note if IB364 is >0 it will be used as the ien to update in file 364
  . Q
  ;
  ; Check if this is a paper claim. If not, check for split EOB.  If split, don't allow CRD unless more than 1 EOB has been returned
- I $G(IBCNCRD)=1,$P($G(^DGCR(399,IBIFN,"TX")),U,8)'=1,$$SPLTMRA^IBCEMU1(IBIFN)=1 D  Q
- .W !!,"There is a split EOB associated with this claim.  You cannot use this option to Correct this claim until the second EOB has been received."
+ ; need to check if that 
+ ;WCJ;IB727;make sure if any MRAs are received that all MRAs are received
+ ;I $G(IBCNCRD)=1,$P($G(^DGCR(399,IBIFN,"TX")),U,8)'=1,$$SPLTMRA^IBCEMU1(IBIFN)=1 D  Q
+ N IBRETSPLT
+ I $G(IBCNCRD)=1,$P($G(^DGCR(399,IBIFN,"TX")),U,8)'=1,$$SPLTMRA^IBCEMU1(IBIFN,.IBRETSPLT)>0,$$SPLIT2^IBCEMU1($O(IBRETSPLT("")))=0 D  Q
+ .;W !!,"There is a split EOB associated with this claim.  You cannot use this option to Correct this claim until the second EOB has been received."
+ .W !!,"There is a split EOB associated with this claim.  You cannot use this option to Correct this claim until all EOBs have been received."
  .I $G(IBLOCK)'<1 L -^DGCR(399,IBLOCK) ; IB*2.0*597
  .S IBQUIT=1 H 3
  .Q

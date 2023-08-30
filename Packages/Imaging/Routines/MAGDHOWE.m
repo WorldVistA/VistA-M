@@ -1,6 +1,6 @@
-MAGDHOWE ;WOIFO/PMK - Clinical Specialty MWL & HL7 Editor ; Apr 29, 2020@14:43:04
- ;;3.0;IMAGING;**138,231**;Mar 19, 2002;Build 9;Dec 20, 2012
- ;; Per VHA Directive 2004-038, this routine should not be modified.
+MAGDHOWE ;WOIFO/PMK/JSJ - Clinical Specialty MWL & HL7 Editor ; Apr 27, 2022@11:43:08
+ ;;3.0;IMAGING;**138,231,278**;Mar 19, 2002;Build 138
+ ;; Per VA Directive 6402, this routine should not be modified.
  ;; +---------------------------------------------------------------+
  ;; | Property of the US Government.                                |
  ;; | No permission to copy or redistribute this software is given. |
@@ -190,6 +190,8 @@ PROC(PROCEDURE,SERVICE) ;
  . S OPTIONIEN(J)=A(123.32,I,.01,"I")
  . Q
  S I=$O(OPTION(""))
+ I I="" D  Q -1
+ . W !,"No RELATED SERVICE on file"
  I $O(OPTION(I))="" D
  . S SERVICE=OPTIONIEN(I)_"^"_$P(OPTION(I),":",2)
  . W !,"Request Service: ",$P(OPTION(I),":",2)
@@ -260,7 +262,7 @@ CLINIC(CLINIC) ;
  Q 1
  ;
 LOOKUP(ITEM,NAME,FILE,FIELDS,REQUIRED) ; lookup entry
- N A,DIR,DONE,I,RETURN,X,Y
+ N A,DIR,DONE,I,RETURN,TMP,X,Y,DTOUT  ;P278 JSJ add TMP
  ;
  S DONE=0
  ;
@@ -293,10 +295,13 @@ LOOKUP(ITEM,NAME,FILE,FIELDS,REQUIRED) ; lookup entry
  S DIR("B")=$P($G(ITEM),"^",2) I DIR("B")="" K DIR("B") ; default
  S $P(DIR(0),"^",1)=$S(REQUIRED:"P",1:"PO")
  S $P(DIR(0),"^",2)=FILE_":EMZ"
+ I FILE="2005.85" D BLDPXLST   ;P278 - for procedure list, only display/allow procedures linked to the selected specialty
  D ^DIR
+ I $G(DTOUT) Q -1  ;P278 JSJ handle timeout to prevent passing through required field
  I Y="^" Q -1
  I Y="^^" Q -2
  I Y=-1 S ITEM="" Q 0
+ I FILE="2005.85",Y]"" S Y=$G(TMP(Y),-999)  ;P278 JSJ
  S ITEM=$$GETVALUE(FILE,+Y,FIELDS)
  Q 1
  ;
@@ -308,7 +313,32 @@ GETVALUE(FILE,IEN,FIELDS) ;
  . Q
  Q VALUE
  ;
-DISPLAY ;
+BLDPXLST ;build alpha sorted procedure list filtered by specialty ;P278 added sub
+ NEW J,LLIST,NAME
+ S $P(DIR(0),"^",1)=$S(REQUIRED:"SA",1:"SAO")  ;change to 'set of codes'
+ S DIR("A")=DIR("A")_": "  ;keep colon at end of prompt
+ K DIR("L"),TMP
+ S DIR("L")=""
+ S NAME="",J=0
+ S LLIST=""
+ F  S NAME=$O(^MAG(2005.85,"B",NAME)) Q:NAME=""  D
+ . N NONE,ND0,OK,SPEC,FOUND S FOUND=0,OK="",SPEC=0
+ . Q:'$G(ISPECIDX)
+ . S SPEC=+ISPECIDX D SPEC^MAGSIXGT
+ . S IEN=$O(^MAG(2005.85,"B",NAME,""),-1) Q:'IEN
+ . I $O(^MAG(2005.85,IEN,1,"B",""))="" S FOUND=2
+ . I 'FOUND N SPECX S (FOUND,SPECX)=0 D  Q:'FOUND
+ .. F  S SPECX=$O(OK(3,SPECX)) Q:'SPECX!FOUND  I $D(^MAG(2005.85,IEN,1,"B",SPECX)) S FOUND=1
+ . Q:'FOUND
+ . S ND0=$G(^MAG(2005.85,IEN,0)) Q:$P(ND0,"^",3)="I"
+ . S J=J+1
+ . S DIR("L",J)="   "_J_" "_NAME
+ . S $P(LLIST,";",J)=J_":"_NAME
+ . S TMP(J)=IEN
+ S $P(DIR(0),"^",2)=LLIST
+ Q
+ ;
+DISPLAY ; Display data
  N I,X
  W !
  W !,"        Request Service = ",$$P(SERVICE)

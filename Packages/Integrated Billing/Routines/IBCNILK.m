@@ -1,5 +1,5 @@
 IBCNILK ;ALB/FA - Insurance Company Selection ; 02-OCT-2015
- ;;2.0;INTEGRATED BILLING;**549,713**;21-MAR-94;Build 12
+ ;;2.0;INTEGRATED BILLING;**549,713,737**;21-MAR-94;Build 19
  ;;Per VA Directive 6402, this routine should not be modified.
  ;;
  ;
@@ -17,7 +17,11 @@ EN(WHICH,PIEN,FILTER) ;EP
  ;                               the specified text (case insensitive)
  ;                           3 - Search for Insurance Companies in a specified
  ;                               range (inclusive, case insensitive)
- ;                           4 - Filter by Selected Payer only
+ ;                           4 - Search for Name(s) that are blank (null)
+ ;                           5 - Filter by Selected Payer only
+ ;IB*737/CKB - changed what was Filter '4' to '5' and updated '4'. When the Coverage Limitations Report was added,
+ ; it uses '4' to 'search for Name(s) that are blank (null)' when calling $$FILTER^IBCNINSU.
+ ;
  ;                       B - Begin with text if A=1, Contains Text if A=2 or
  ;                            the range start if A=3
  ;                       C - Range End text (only present when A=3)
@@ -179,34 +183,19 @@ BLD ; Build listman body
  S FTYPE=$P(FILTER,"^",1)
  S FTEXT1=$P(FILTER,"^",2),FTEXT1=$$UP^XLFSTR(FTEXT1)
  S FTEXT2=$P(FILTER,"^",3),FTEXT2=$$UP^XLFSTR(FTEXT2)
- S:FTYPE=4 FTEXT1="A"
+ ;IB*737/CKB - changed FTYPE from '4' to '5'. FTYPE=5 is only used by GETCOMPS^IBCNERPF.
+ S:FTYPE=5 FTEXT1="A"
  S:FTYPE=1 PLEN=$L(FTEXT1)
  S:FTYPE=3 PLEN=$L(FTEXT2)
  S (ICTR,STOP,VALMCNT)=0,INM=""
  ;IB*713/DTG start allow all searches to use full index
  ;S:FTYPE'=2 INM=$O(^DIC(36,"B",FTEXT1),-1)
- ;IB*713/DTG end allow all searches to use full index
  F  D  Q:(INM="")!STOP
  . S INM=$O(^DIC(36,"B",INM))
  . Q:INM=""
  . S INMU=$$UP^XLFSTR(INM)
  . ;IB*713/TAZ&CKB - use utility to check Begins, Contains, and Range
  . I '$$FILTER^IBCNINSU(INM,FILTER) Q
- . ;IB*713/DTG start allow search to cycle through lower case and upper case insurance company names
- . ;I FTYPE=1,$E(INMU,1,PLEN)'=FTEXT1 S STOP=1 Q
- . ;I FTYPE=1,$E(INMU,1,PLEN)'=FTEXT1 Q
- . ;I FTYPE=2,INMU'[FTEXT1 Q
- . ;I FTYPE=3 D  Q:STOP
- . ;I FTYPE=3 D  I STOP S STOP=0 Q
- . ;. S PLA=$L(FTEXT1)
- . ;. S START=$E(FTEXT1,1,$L(FTEXT1))
- . ;. S XX=$E(INMU,1,$L(FTEXT1))
- . ;. Q:XX=START
- . ;. ;Q:$E(INMU,1,PLEN)']FTEXT2
- . ;. I XX'=START&($E(INMU,1,PLA)']FTEXT1) S STOP=1 Q
- . ;. I XX=START&($E(INMU,1,PLEN)']FTEXT2) Q
- . ;. I $E(INMU,1,PLEN)']FTEXT2 Q
- . ;. S STOP=1
  . ;IB*713/DTG start allow search to cycle through lower case and upper case insurance company names
  . S IIEN=""
  . F  D  Q:IIEN=""

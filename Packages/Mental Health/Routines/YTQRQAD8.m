@@ -1,5 +1,5 @@
 YTQRQAD8 ;BAL/KTL - RESTful Calls to set/get MHA Note ; 1/25/2017
- ;;5.01;MENTAL HEALTH;**199,207,202**;Dec 30, 1994;Build 47
+ ;;5.01;MENTAL HEALTH;**199,207,202,204,208**;Dec 30, 1994;Build 23
  ;
  ; Reference to TIUCNSLT in ICR #5546
  ; Reference to TIUPUTU in ICR #3351
@@ -26,10 +26,12 @@ FILPNOT(ASGN,ADMIN,CONSULT,DATA,TMPYS,FRMDEL) ;File the aggregate Progress Note
  S COSIGNER=$G(DATA("cosigner"))
  S FRMDEL=$G(FRMDEL)
  S NOD="YTQASMT-SET-"_ASGN
+ I COSIGNER="",(+$G(^XTMP(NOD,1,"cosigner"))'=0) S COSIGNER=^XTMP(NOD,1,"cosigner")
  ;I '$D(^XTMP(NOD)) D SETERROR^YTQRUTL(400,"Assignment Not Found") Q 1  ;If no ^XTMP, must be only instrument
  S YSADMIN=$G(^XTMP(NOD,2,"PNOTE","ADMINS",1))
- I +YSADMIN'="" D  ;Previously filed first admin, override incoming parameters
- . S CONSULT=$P(YSADMIN,U,2),COSIGNER=$P(YSADMIN,U,3),ADMIN=$P(YSADMIN,U)
+ I +YSADMIN'=0 D  ;Previously filed first admin, override incoming parameters
+ . S CONSULT=$P(YSADMIN,U,2),ADMIN=$P(YSADMIN,U)
+ . I $P(YSADMIN,U,3)'="",(COSIGNER="") S COSIGNER=$P(YSADMIN,U,3)  ;Only use if main assignment cosigner not set
  I +ADMIN=0 D SETERROR^YTQRUTL(400,"No Admin for Note") Q 2
  S CNT=$O(^XTMP(NOD,2,"PNOTE","TXT",""),-1)
  M YS=^XTMP(NOD,2,"PNOTE","TXT")
@@ -48,7 +50,7 @@ FILPNOT(ASGN,ADMIN,CONSULT,DATA,TMPYS,FRMDEL) ;File the aggregate Progress Note
  S REMAIN=""
  S I=0 F  S I=$O(^XTMP(NOD,1,"instruments",I)) Q:'I  D
  . I $G(^XTMP(NOD,1,"instruments",I,"complete"))'="true" S REMAIN=1
- I 'REMAIN,(FRMDEL'=1) D DELASMT1^YTQRQAD1(ASGN)  ;Last instrument OK to Kill Assignment
+ I 'REMAIN,(FRMDEL'=1),$D(^XTMP(NOD,0)) D DELASMT1^YTQRQAD1(ASGN)  ;Last instrument OK to Kill Assignment
  K ^XTMP(NOD,2)  ;KILL Filed progress note text
  Q $G(YSDATA(2))
  ;

@@ -1,5 +1,5 @@
-IBAMTC ;ALB/CPM-MEANS TEST NIGHTLY COMPILATION JOB ;09-OCT-91
- ;;2.0;INTEGRATED BILLING;**34,52,70,93,100,118,115,132,150,153,137,176,215,275,321,312,457,519,549,614,703,706**;21-MAR-94;Build 1
+IBAMTC ;ALB/CPM - MEANS TEST NIGHTLY COMPILATION JOB ; 07 Jun 2021  4:17 PM
+ ;;2.0;INTEGRATED BILLING;**34,52,70,93,100,118,115,132,150,153,137,176,215,275,321,312,457,519,549,614,703,706,630**;21-MAR-94;Build 39
  ;;Per VA Directive 6402, this routine should not be modified.
  ;
 INIT ; Entry point - initialize variables and parameters
@@ -82,6 +82,9 @@ CLEAN S %H=+$H-1 D YMD^%DTC S IBDT=X,(IBN,DFN)=0,IBWHER=23
  ;
  ; Send HMS extract files to AITC DMI queues
  D SENDEII^IBCNFSND
+ ; 
+ ; Send info on any Duplicate Transactions that were identified or corrected (IB*2.0*630)
+ I $D(^XTMP("IB TRANS")) D XMIT^IBAUTL9
  ;
  ; Kill variables and quit.
  D KILL1
@@ -158,14 +161,14 @@ CANCEL(STRTDT,ENDDT,MSG) ; cancel copays (covid relief)  IB*2.0*703
  ; service dates
  S IBSRVFR=3200406                 ; start date 04/06/20
  S IBSRVTO=$P(^IBE(350.9,1,71),U)  ; end date comes from 350.9/71.01
- S STATSTR="^BILLED^HOLD - RATE^HOLD - REVIEW^INCOMPLETE^ON HOLD^"  ; bill statuses to include
+ S STATSTR="^BILLED^HOLD - RATE^HOLD - REVIEW^INCOMPLETE^ON HOLD^"  ; bill statuses to include  IB*2.0*703
  ;
  I MSG K ^TMP("IBAMTC3",$J)
  S IBDTM=STRTDT F  S IBDTM=$O(^IB("D",IBDTM)) Q:'IBDTM!(IBDTM'<ENDDT)  D
  .S IBIEN=0 F  S IBIEN=$O(^IB("D",IBDTM,IBIEN)) Q:'IBIEN  D
  ..S IBN0=^IB(IBIEN,0)  ; file 350, node 0
  ..S IBSTAT=$$GET1^DIQ(350,IBIEN_",",.05)  ; status from 350/.05 (external)
- ..I STATSTR'[(U_IBSTAT_U) Q  ; only cancel copays with specific status
+ ..I STATSTR'[(U_IBSTAT_U) Q  ; only cancel copays with specific status  IB*2.0*703
  ..S IBACT=$G(^IBE(350.1,+$P(IBN0,U,3),0))  ; node 0 in file 350.1 for the action type of this charge
  ..I $P(IBACT,U,5)'=1 Q  ; action type is not "New"
  ..S IBXA=$P(IBACT,U,11)  ; billing group

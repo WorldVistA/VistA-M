@@ -1,6 +1,5 @@
-ONCOCFR ;Hines OIFO/GWB - RADIOLOGY CASEFINDING ;05/07/12
- ;;2.2;ONCOLOGY;**1**;Jul 31, 2013;Build 8
- ;rvd - 05/07/12. Add the word 'cancer' to the search criteria
+ONCOCFR ;HINES OIFO/GWB - RADIOLOGY CASEFINDING ;05/07/12
+ ;;2.2;ONCOLOGY;**1,17**;Jul 31, 2013;Build 6
  ;
 ST ;Start RAD/NUC MED PATIENT (70) file search
  W @IOF
@@ -56,15 +55,31 @@ SER ;Search RAD/NUC MED PATIENT (70) file/Set multidivisional variables
  .S D2=0 F  S D2=$O(^RADPT(D0,"DT",D1,"P",D2)) Q:D2'>0  D
  ..S RA0=$G(^(D2,0)) I RA0="" Q
  ..S PC13=$P(RA0,U,13) I PC13="" Q
- ..S EXP=$$GET1^DIQ(78.3,PC13,6),EXP=$TR(EXP,"malig","MALIG"),EXP=$TR(EXP,"Suspicious","SUSPICIOUS")
- ..S MG=$P($G(^RA(78.3,PC13,0)),U,1),MG=$TR(MG,"malig","MALIG"),MG=$TR(MG,"cancer","CANCER")
- ..I (MG["MALIG")!(MG["CANCER")!(EXP["MALIG")!(EXP["SUSPICIOUS") S RA($P(^RADPT(D0,0),U))=$P(XDT,".")_U_$P(RA0,U,2)_U_D1
+ ..;S EXP=$$GET1^DIQ(78.3,PC13,6),EXP=$TR(EXP,"malig","MALIG"),EXP=$TR(EXP,"Suspicious","SUSPICIOUS")
+ ..;S MG=$P($G(^RA(78.3,PC13,0)),U,1),MG=$TR(MG,"malig","MALIG"),MG=$TR(MG,"cancer","CANCER")
+ ..S EXP=$$GET1^DIQ(78.3,PC13,6),EXP=$TR(EXP,"abcdefghijklmnopqrstuvwxyz","ABCDEFGHIJKLMNOPQRSTUVWXYZ")
+ ..S MG=$P($G(^RA(78.3,PC13,0)),U,1),MG=$TR(MG,"abcdefghijklmnopqrstuvwxyz","ABCDEFGHIJKLMNOPQRSTUVWXYZ")
+ ..I (MG["MALIG")!(MG["CANCER")!(EXP["MALIG") S RA($P(^RADPT(D0,0),U))=$P(XDT,".")_U_$P(RA0,U,2)_U_D1
+ ..I (MG["BLASTOMA")!(MG["CARCINOMA")!(MG["GLIOMA") S RA($P(^RADPT(D0,0),U))=$P(XDT,".")_U_$P(RA0,U,2)_U_D1
+ ..I (MG["ACOUSTIC NEUROMA")!(MG["ASTROCYTOMA")!(MG["CARCINOID") S RA($P(^RADPT(D0,0),U))=$P(XDT,".")_U_$P(RA0,U,2)_U_D1
+ ..I (MG["DCIS")!(MG["HCC")!(MG["HODGKIN") S RA($P(^RADPT(D0,0),U))=$P(XDT,".")_U_$P(RA0,U,2)_U_D1
+ ..I (MG["IPNM")!(MG["LYMPHOMA")!(MG["MENINGIOMA") S RA($P(^RADPT(D0,0),U))=$P(XDT,".")_U_$P(RA0,U,2)_U_D1
+ ..I (MG["MESOTHELIOMA")!(MG["METASTA")!(MG["PITUITARY ADENOMA") S RA($P(^RADPT(D0,0),U))=$P(XDT,".")_U_$P(RA0,U,2)_U_D1
+ ..I (MG["SARCOMA")!(MG["SCHWANNOMA")!(MG["TUMOR") S RA($P(^RADPT(D0,0),U))=$P(XDT,".")_U_$P(RA0,U,2)_U_D1
  ..S D3=0 F  S D3=$O(^RADPT(D0,"DT",D1,"P",D2,"DX",D3)) Q:D3'>0  D
  ...S RASDC0=$G(^(D3,0)) I RASDC0="" Q
  ...S PC1=$P(RASDC0,U,1) I PC1="" Q
- ...S EXP=$$GET1^DIQ(78.3,PC1,6),EXP=$TR(EXP,"malig","MALIG"),EXP=$TR(EXP,"Suspicious","SUSPICIOUS")
- ...S MG=$P($G(^RA(78.3,PC1,0)),U,1),MG=$TR(MG,"malig","MALIG"),MG=$TR(MG,"cancer","CANCER")
- ...I (MG["MALIG")!(MG["CANCER")!(EXP["MALIG")!(EXP["SUSPICIOUS") S RA($P(^RADPT(D0,0),U))=$P(XDT,".")_U_$P(RA0,U,2)_U_D1
+ ...;S EXP=$$GET1^DIQ(78.3,PC1,6),EXP=$TR(EXP,"malig","MALIG"),EXP=$TR(EXP,"Suspicious","SUSPICIOUS")
+ ...;S MG=$P($G(^RA(78.3,PC1,0)),U,1),MG=$TR(MG,"malig","MALIG"),MG=$TR(MG,"cancer","CANCER")
+ ...S EXP=$$GET1^DIQ(78.3,PC1,6),EXP=$TR(EXP,"abcdefghijklmnopqrstuvwxyz","ABCDEFGHIJKLMNOPQRSTUVWXYZ")
+ ...S MG=$P($G(^RA(78.3,PC1,0)),U,1),MG=$TR(MG,"abcdefghijklmnopqrstuvwxyz","ABCDEFGHIJKLMNOPQRSTUVWXYZ")
+ ...I (MG["MALIG")!(MG["CANCER")!(EXP["MALIG") S RA($P(^RADPT(D0,0),U))=$P(XDT,".")_U_$P(RA0,U,2)_U_D1
+ ...I (MG["BLASTOMA")!(MG["CARCINOMA")!(MG["GLIOMA") S RA($P(^RADPT(D0,0),U))=$P(XDT,".")_U_$P(RA0,U,2)_U_D1
+ ...I (MG["ACOUSTIC NEUROMA")!(MG["ASTROCYTOMA")!(MG["CARCINOID") S RA($P(^RADPT(D0,0),U))=$P(XDT,".")_U_$P(RA0,U,2)_U_D1
+ ...I (MG["DCIS")!(MG["HCC")!(MG["HODGKIN") S RA($P(^RADPT(D0,0),U))=$P(XDT,".")_U_$P(RA0,U,2)_U_D1
+ ...I (MG["IPNM")!(MG["LYMPHOMA")!(MG["MENINGIOMA") S RA($P(^RADPT(D0,0),U))=$P(XDT,".")_U_$P(RA0,U,2)_U_D1
+ ...I (MG["MESOTHELIOMA")!(MG["METASTA")!(MG["PITUITARY ADENOMA") S RA($P(^RADPT(D0,0),U))=$P(XDT,".")_U_$P(RA0,U,2)_U_D1
+ ...I (MG["SARCOMA")!(MG["SCHWANNOMA")!(MG["TUMOR") S RA($P(^RADPT(D0,0),U))=$P(XDT,".")_U_$P(RA0,U,2)_U_D1
  ;
 CK ;Check ONCOLOGY PATIENT (160) file
 GT S XX=0 F  S XX=$O(RA(XX)) Q:XX=""  D

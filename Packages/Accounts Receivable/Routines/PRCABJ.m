@@ -1,5 +1,5 @@
 PRCABJ ;WASH-ISC@ALTOONA,PA/LDB,TJK - NIGHTLY PROCESS FOR ACCOUNTS RECEIVABLE ;11/8/96  3:54 PM
- ;;4.5;Accounts Receivable;**11,34,101,114,155,153,141,165,167,173,201,237,304,301,378**;Mar 20, 1995;Build 54
+ ;;4.5;Accounts Receivable;**11,34,101,114,155,153,141,165,167,173,201,237,304,301,378,400**;Mar 20, 1995;Build 13
  ;Per VA Directive 6402, this routine should not be modified.
  ;
  ;This routine is called by the PRCA NIGHTLY PROCESS option which should be run nightly to call the following tasks
@@ -33,9 +33,9 @@ EN ;Start of nightly process-check to see if process is already running
  ;
 DRIVER ;All processes are called from this point
  N CHK,POP,% S CHK=0
- D CHK,INT,CHK,RPP,CHK,EN^RCCPCBJ,CHK,STM,CHK,RECPT,CHK,TOP,CHK,TCSP,CHK,EVNT,CHK,BNUM
+ D CHK,RECALL,CHK,INT,CHK,RPP,CHK,EN^RCCPCBJ,CHK,STM,CHK,RECPT,CHK,TOP,CHK,TCSP,CHK,EVNT,CHK,BNUM  ; PRCA*4.5*400
  D CHK,ENUM,CHK,PURFMS,CHK,EN3^RCFMOBR,CHK,START^RCRJR,CHK,UB
- D CHK,STATMNT,CHK,UDLIST^PRCABJ1,CHK,LIST,CHK,COMMENT,CHK,REPAY
+ D CHK,STATMNT,CHK,UDLIST^PRCABJ1,CHK,LIST,CHK,COMMENT  ; PRCA*4.5*400 removed call to REPAY tag
  D CHK,WRKLD,CHK,EFT,CHK,CBO,CHK,ABAUDIT,CHK,ARDM,CHK,CLNMTR
  D NOW^%DTC S $P(^RC(342,1,0),"^",10)=%
  L -^RC("PRCABJ")
@@ -136,12 +136,6 @@ COMMENT ;Print Comment List
  .D ^%ZTLOAD,^%ZISC
  Q
  ;
-REPAY ; Starts the Repayment Plan Monitor
- N ZTDESC,ZTDTH,ZTIO,ZTRTN,ZTSAVE
- S ZTIO="",ZTRTN="EN^RCDMB1MT",ZTDTH=$H,ZTDESC="Repayment Plan Monitor"
- D ^%ZTLOAD
- Q
- ;
 WRKLD ; Generates Diagnostic Measures Workload Reports
  N ZTDESC,ZTDTH,ZTIO,ZTRTN,ZTSAVE
  S ZTIO="",ZTRTN="DQ^RCDMBWLR",ZTDTH=$H,ZTDESC="Diagnostic Measures Workload Reports"
@@ -205,4 +199,30 @@ CLNMTR ;PRCA*4.5*378 - Remove AR Metrics file data older than the # days specifi
  N ZTRTN,ZTIO,ZTDTH,ZTSK,ZTDESC
  ;
  S ZTIO="",ZTRTN="CLEANUP^RCSTATU",ZTDESC="AR METRICS File (#340.7) data cleanup",ZTDTH=$H D ^%ZTLOAD
+ Q
+ ;
+RECALL ; if HRFS patient flag is set or date of death is set, then recall CS bills, stop TOP referrals, and remove debtors from DMC  PRCA*4.5*400
+ N HRFSFLG,RCBILL,RCDB,RCDFN,Z
+ ; CS bills
+ S RCBILL=0 F  S RCBILL=$O(^PRCA(430,"TCSP",RCBILL)) Q:'RCBILL  D
+ .S RCDB=$P($G(^PRCA(430,RCBILL,0)),U,9) Q:RCDB'>0
+ .I +$P($G(^PRCA(430,RCBILL,15)),U,2) Q  ; recall has already been set for this bill
+ .S Z=$P(^RCD(340,RCDB,0),U) I $P(Z,";",2)'="DPT(" Q
+ .S RCDFN=$P(Z,";"),HRFSFLG=$$CHKHRFS^RCHRFSUT(RCDFN,DT)
+ .I HRFSFLG=1 S Z=$$RECALL^RCTCSPU(RCBILL)
+ .Q
+ ; TOP referrals
+ S RCDB=0 F  S RCDB=$O(^RCD(340,"TOP",RCDB)) Q:'RCDB  D
+ .S Z=$P(^RCD(340,RCDB,0),U) I $P(Z,";",2)'="DPT(" Q
+ .I +$P($G(^RCD(340,RCDB,6)),U,2) Q  ; stop TOP referral flag has been set already
+ .S RCDFN=$P(Z,";"),HRFSFLG=$$CHKHRFS^RCHRFSUT(RCDFN,DT)
+ .I HRFSFLG=1 S Z=$$STOPREF^RCTOPU(RCDB,"O","High Risk flag is set for this debtor",DT) D HRFSCMNT^RCEVGEN(RCDB)
+ .Q
+ ; cancel DMC
+ S RCDB=0 F  S RCDB=$O(^RCD(340,"DMC",1,RCDB)) Q:'RCDB  D
+ .S Z=$P(^RCD(340,RCDB,0),U) I $P(Z,";",2)'="DPT(" Q
+ .I +$P($G(^RCD(340,RCDB,3)),U,10) Q  ; DMC deletion flag has been set already
+ .S RCDFN=$P(Z,";"),HRFSFLG=$$CHKHRFS^RCHRFSUT(RCDFN,DT)
+ .I HRFSFLG=1 S Z=$$CANCDMC^RCDMC90U(RCDB) D HRFSCMNT^RCEVGEN(RCDB)
+ .Q
  Q

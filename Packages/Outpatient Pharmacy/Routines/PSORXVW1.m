@@ -1,5 +1,5 @@
-PSORXVW1 ;BIR/SAB - view prescription con't ;Sep 10, 2018@08:51
- ;;7.0;OUTPATIENT PHARMACY;**35,47,46,71,99,117,156,193,210,148,258,260,240,281,359,354,367,386,408,427,499,509,482,441**;DEC 1997;Build 208
+PSORXVW1 ;BIR/SAB - view prescription con't ;12/4/07 12:28pm
+ ;;7.0;OUTPATIENT PHARMACY;**35,47,46,71,99,117,156,193,210,148,258,260,240,281,359,354,367,386,408,427,499,509,482,441,643**;DEC 1997;Build 35
  ;External reference to ^DD(52 supported by DBIA 999
  ;External reference to ^VA(200 supported by DBIA 10060
  ;PSO*210 add call to WORDWRAP api
@@ -22,15 +22,15 @@ PSORXVW1 ;BIR/SAB - view prescription con't ;Sep 10, 2018@08:51
  D RF,PAR,ACT,COPAY^PSORXVW2,LBL,ECME^PSOORAL1,SPMP^PSOORAL1,^PSORXVW2:$O(^PSRX(DA,4,0))
  Q
 ACT ;activity log
- N CNT
+ N CNT,PSORDATA,PSOTXT,PSOTXT1,PSOTXT2
  S IEN=IEN+1,^TMP("PSOAL",$J,IEN,0)=" ",IEN=IEN+1,^TMP("PSOAL",$J,IEN,0)="Activity Log:"
  S IEN=IEN+1,^TMP("PSOAL",$J,IEN,0)="#   Date/Time            Reason         Rx Ref         Initiator Of Activity",IEN=IEN+1,$P(^TMP("PSOAL",$J,IEN,0),"=",79)="="
  I '$O(^PSRX(DA,"A",0)) S IEN=IEN+1,^TMP("PSOAL",$J,IEN,0)="There's NO Activity to report" Q
  S CNT=0
  F N=0:0 S N=$O(^PSRX(DA,"A",N)) Q:'N  S P1=^(N,0) D
  .I $P(P1,"^",2)="M" Q
- .S DAT=$$FMTE^XLFDT($P(P1,"^"),2)_"             "
- .S IEN=IEN+1,CNT=CNT+1,^TMP("PSOAL",$J,IEN,0)=CNT_"   "_$E(DAT,1,21),$P(RN," ",15)=" ",REA=$P(P1,"^",2)
+ .S DAT=$$FMTE^XLFDT($P(P1,"^"),2)_"               "
+ .S IEN=IEN+1,CNT=CNT+1,^TMP("PSOAL",$J,IEN,0)=CNT_$S(CNT<10:"   ",1:"  ")_$E(DAT,1,21),$P(RN," ",15)=" ",REA=$P(P1,"^",2)
  .S REA=$F("HUCELPRWSIVDABXGKNM",REA)-1
  .I REA D
  ..S STA=$P("HOLD^UNHOLD^DISCONTINUED^EDIT^RENEWED^PARTIAL^REINSTATE^REPRINT^SUSPENSE^RETURNED^INTERVENTION^DELETED^DRUG INTERACTION^PROCESSED^X-INTERFACE^PATIENT INSTR.^PKI/DEA^DISP COMPLETED^ECME^","^",REA)
@@ -38,13 +38,21 @@ ACT ;activity log
  .E  S $P(STA," ",15)=" ",^TMP("PSOAL",$J,IEN,0)=^TMP("PSOAL",$J,IEN,0)_STA
  .K STA,RN S $P(RN," ",15)=" ",RF=+$P(P1,"^",4)
  .S RFT=$S(RF>0&(RF<6):"REFILL "_RF,RF=6:"PARTIAL",RF>6:"REFILL "_(RF-1),1:"ORIGINAL")
+ .S PSORDATA=$$REMDATA^PSOORAL3(DA,P1)
  .K DIC,X,Y S DIC="^VA(200,",DIC(0)="N,Z",X=$P(P1,"^",3) D ^DIC
- .S ^TMP("PSOAL",$J,IEN,0)=^TMP("PSOAL",$J,IEN,0)_RFT_$E(RN,$L(RFT)+1,15)_$E($S(+Y:$P(Y,"^",2),1:$P(P1,"^",3)),1,24)
- .;S:$P(P1,"^",5)]"" IEN=IEN+1,^TMP("PSOAL",$J,IEN,0)="Comments: "_$P(P1,"^",5)
+ .S ^TMP("PSOAL",$J,IEN,0)=^TMP("PSOAL",$J,IEN,0)_RFT_$E(RN,$L(RFT)+1,15)_$E($S($P(PSORDATA,"^",2)]"":$P(PSORDATA,"^",2),+Y:$P(Y,"^",2),1:$P(P1,"^",3)),1,24)
  .I $P(P1,"^",5)]"" N PSOACBRK,PSOACBRV D
- ..S PSOACBRV=$P(P1,"^",5)
+ ..K PSOTXT
+ ..S PSOACBRV=$P(P1,"^",5)_$P(PSORDATA,"^")
+ ..I (($L(PSOACBRV)#59)<$L($P(PSORDATA,"^"))),($P(PSORDATA,"^")]"") S PSOACBRV=$P(P1,"^",5),PSOTXT="         "_$P(PSORDATA,"^")
  ..;PSO*7*240 Use fileman to format
- ..K ^UTILITY($J,"W") S X="Comments: "_PSOACBRV,(DIWR,DIWL)=1,DIWF="C80" D ^DIWP F I=1:1:^UTILITY($J,"W",1) S IEN=IEN+1,^TMP("PSOAL",$J,IEN,0)=$G(^UTILITY($J,"W",1,I,0))
+ ..K ^UTILITY($J,"W") S X=PSOACBRV,(DIWR,DIWL)=1,DIWF="C69" D ^DIWP F I=1:1:^UTILITY($J,"W",1) S IEN=IEN+1,^TMP("PSOAL",$J,IEN,0)=$S(I=1:"Comments: ",1:"          ")_$G(^UTILITY($J,"W",1,I,0))
+ ..I $G(PSOTXT)]"" S IEN=IEN+1,^TMP("PSOAL",$J,IEN,0)=PSOTXT K PSOTXT
+ ..S PSOTXT1=$P(PSORDATA,"^",6),PSOTXT2=$P(PSORDATA,"^",5)
+ ..;if both filled by & checking pharm are null then don't show the label text with no data
+ ..I $P(P1,U,2)="N" D
+ ...I $L(PSOTXT1_PSOTXT2)>25 S IEN=IEN+1,^TMP("PSOAL",$J,IEN,0)="          Filled By: "_PSOTXT1,IEN=IEN+1,^TMP("PSOAL",$J,IEN,0)="          Checking Pharmacist: "_PSOTXT2
+ ...I ($L(PSOTXT1_PSOTXT2)<26),($L(PSOTXT1_PSOTXT2)>1) S IEN=IEN+1,^TMP("PSOAL",$J,IEN,0)="          Filled By: "_$S(PSOTXT1="":"               ",1:PSOTXT1)_"  Checking Pharmacist: "_PSOTXT2
  .I $G(^PSRX(DA,"A",N,1))]"" S IEN=IEN+1,$P(^TMP("PSOAL",$J,IEN,0)," ",5)=$P(^PSRX(DA,"A",N,1),"^") I $P(^PSRX(DA,"A",N,1),"^",2)]"" S ^TMP("PSOAL",$J,IEN,0)=^TMP("PSOAL",$J,IEN,0)_":"_$P(^PSRX(DA,"A",N,1),"^",2)
  .I $O(^PSRX(DA,"A",N,2,0)) F I=0:0 S I=$O(^PSRX(RXN,"A",N,2,I)) Q:'I  S MIG=^PSRX(RXN,"A",N,2,I,0) D
  ..S:MIG["Mail Tracking Info.: " IEN=IEN+1,$P(^TMP("PSOAL",$J,IEN,0)," ",9)=" "
@@ -52,14 +60,19 @@ ACT ;activity log
  K MIG,SG,I,^UTILITY($J,"W"),DIWF,DIWL,DIWR
  Q
 LBL ;label log
+ N PSORDATA,PSONAME,X,PSOX
  S IEN=IEN+1,^TMP("PSOAL",$J,IEN,0)=" ",IEN=IEN+1,^TMP("PSOAL",$J,IEN,0)="Label Log:"
  S IEN=IEN+1,^TMP("PSOAL",$J,IEN,0)="#   Date        Rx Ref                    Printed By",IEN=IEN+1,$P(^TMP("PSOAL",$J,IEN,0),"=",79)="="
  I '$O(^PSRX(DA,"L",0)) S IEN=IEN+1,^TMP("PSOAL",$J,IEN,0)="There are NO Labels printed." Q
  F L1=0:0 S L1=$O(^PSRX(DA,"L",L1)) Q:'L1  S LBL=^PSRX(DA,"L",L1,0),DTT=$P(^(0),"^") D DAT D
+ . S PSORDATA=""
  . S $P(RN," ",26)=" ",IEN=IEN+1,^TMP("PSOAL",$J,IEN,0)=L1_"   "_DAT_"    ",RFT=$S($P(LBL,"^",2):"REFILL "_$P(LBL,"^",2),1:"ORIGINAL"),RFT=RFT_$E(RN,$L(RFT)+1,26)
+ . S PSORDATA=$$LBLDATA^PSOORAL3(DA,LBL)
  . K DIC,X,Y S DIC="^VA(200,",DIC(0)="N,Z",X=$P(LBL,"^",4) D ^DIC
- . S ^TMP("PSOAL",$J,IEN,0)=^TMP("PSOAL",$J,IEN,0)_RFT_$P(Y,"^",2),IEN=IEN+1,^TMP("PSOAL",$J,IEN,0)="Comments: "_$P(LBL,"^",3)
- . N FDAMGDOC S FDAMGDOC=$P($G(^PSRX(DA,"L",L1,"FDA")),"^")
+ . S ^TMP("PSOAL",$J,IEN,0)=^TMP("PSOAL",$J,IEN,0)_RFT_$S($P($G(PSORDATA),U,2)]"":$P(PSORDATA,U,2),1:$P(Y,U,2))
+ . K ^UTILITY($J,"W") S X=$P(LBL,"^",3),(DIWR,DIWL)=1,DIWF="C69" D ^DIWP F PSOX=1:1:^UTILITY($J,"W",1) S IEN=IEN+1,^TMP("PSOAL",$J,IEN,0)=$S(PSOX=1:"Comments: ",1:"          ")_$G(^UTILITY($J,"W",1,PSOX,0))
+ . I $P(PSORDATA,U)]"" S IEN=IEN+1,^TMP("PSOAL",$J,IEN,0)="         "_$P(PSORDATA,U)
+ . N FDAMGDOC S FDAMGDOC=$G(^PSRX(DA,"L",L1,"FDA"))
  . I FDAMGDOC'="" D
  . . S IEN=IEN+1,^TMP("PSOAL",$J,IEN,0)="FDA Med Guide: "_$E(FDAMGDOC,1,61)
  . . I $L(FDAMGDOC)>61 D
@@ -146,7 +159,7 @@ HLP ; Help Text for the VIEW PRESCRIPTION prompt
  D LKP("?")
  Q
  ;
-LKP(INPUT) ; - Peforms Lookup on the PRESCRIPTION file
+LKP(INPUT) ; - Performs Lookup on the PRESCRIPTION file
  N DIC,X,Y
  S DIC="^PSRX(",DIC(0)="QE",D="B",X=INPUT
  S DIC("S")="I $P($G(^(0)),""^"",2),$D(^(""STA"")),$P($G(^(""STA"")),""^"")'=13"

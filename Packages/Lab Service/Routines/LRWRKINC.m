@@ -1,5 +1,5 @@
-LRWRKINC ;SLC/DCM/CJS-INCOMPLETE STATUS REPORT ;Mar 22, 2021@17:48
- ;;5.2;LAB SERVICE;**153,201,221,453,536,543**;Sep 27, 1994;Build 7
+LRWRKINC ;SLC/DCM/CJS - INCOMPLETE STATUS REPORT ;Mar 22, 2021@17:48
+ ;;5.2;LAB SERVICE;**153,201,221,453,536,543,562**;Sep 27, 1994;Build 5
  ;
 EN ;
  K ^TMP($J),^TMP("LR",$J),^TMP("LRWRKINC",$J)
@@ -228,6 +228,140 @@ REF ; if referred test, get referral status
  I LRMAN S LRMAN=$P($G(^LAHM(62.8,LRMAN,0)),"^")
  S LREVNT=$$STATUS^LREVENT(LRUID,LR60,LRMAN)
  I LREVNT'="" S LRST=$P(LREVNT,"^")
+ ;LR*5.2*562 begin
+ ;NOTE: Amended results do not display a status of "Results received"
+ ;      on the Incomplete report by design. The report should only
+ ;      display tests which currently do not contain a verified result.
+ ;
+ ;Only checking "CH" subscripted tests (i.e. not Microbiology).
+ ;Microbiology will require an NSR due to the amount of code
+ ;which must be written. Also, according to some SME's, panels
+ ;should not be defined in Microbiology, even though some sites do.
+ ;(Anatomic Pathology results are not transmitted through LEDI.)
+ Q:$P(^LAB(60,LR60,0),"^",4)'="CH"
+ ;
+ ;Only display "Results received" status if results are currently
+ ;waiting in ^LAH waiting to be verified. The previous results
+ ;received might have been equal to "pending".
+ ;LRMNF=shipping manifest ien
+ N LRMNF
+ S LRMNF=$P(LRI(0),"^",10)
+ I LRMNF,LRST["Results" D LAH
+ Q:LRMNF
+ D PROF
+ Q
+ ;
+PROF ;
+ ;Shipping manifest identifier is still null.
+ ;Is the test a profile component and is the profile on a
+ ;shipping manifest?
+ ;LRPRF=parent (profile) indicator
+ N LRPRF,LRXTST
+ S LRPRF=$P(LRI(0),"^",9)
+ ;Should not be null, but checking just in case.
+ Q:LRPRF=""
+ ;Quit if test is not a profile component.
+ I LRPRF'=LR60 D PROFMAN
+ Q
+ ;
+PROFMAN ;
+ ;Is the profile on a shipping manifest.
+ S LRMNF=$P($G(^LRO(68,LRAA,1,LRAD,1,LRAN,4,LRPRF,0)),"^",10)
+ I LRMNF="" D ORIG(LRPRF)
+ ;Does the profile contain another profile?
+ I LRMNF="" D
+ . N LRPRFCHK,LRPRFZ,LRPROFX
+ . S LRPRFCHK=LRPRF,LRPRFZ=0
+ . F  S LRPRFZ=$O(^LAB(60,LRPRFCHK,2,LRPRFZ)) Q:'LRPRFZ  Q:LRMNF  D
+ . . ;check if a profile within a profile
+ . . S LRPROFX=$P($G(^LAB(60,LRPRFCHK,2,LRPRFZ,0)),"^")
+ . . Q:LRPROFX=""
+ . . I $O(^LAB(60,LRPROFX,2,0))="" Q
+ . . ;This is a profile within a profile.
+ . . ;Is "profile within profile" on shipping manifest.
+ . . S LRMNF=$P($G(^LRO(68,LRAA,1,LRAD,1,LRAN,4,LRPROFX,0)),"^",10)
+ . . I LRMNF]"" S LRPRF=LRPROFX Q
+ . . ;Continue searching for shipping manifest.
+ . . D ORIG(LRPROFX)
+ . . I LRMNF]"" S LRPRF=LRPROFX Q
+ . . ;Check atomic tests.
+ . . N LRATOMIC
+ . . S LRATOMIC=0
+ . . F  S LRATOMIC=$O(^LAB(60,LRPROFX,2,LRATOMIC)) Q:'LRATOMIC  Q:LRMNF  D
+ . . . I $P($G(^LAB(60,LRPROFX,2,LRATOMIC,0)),"^")=LR60 D
+ . . . . S LRMNF=$P($G(^LRO(68,LRAA,1,LRAD,1,LRAN,4,LRPROFX,0)),"^",10)
+ . . . . S LRPRF=LRPROFX
+ I LRMNF]"" D PROFSTAT
+ Q
+ ;
+ORIG(LRXTST) ;
+ ;The shipping manifest might be on the original order date
+ ;for the accession if the accession rolled over.
+ N LRORIG
+ S LRORIG=$P(^LRO(68,LRAA,1,LRAD,1,LRAN,0),"^",3)
+ Q:LRORIG=LRAD
+ S LRMNF=$P($G(^LRO(68,LRAA,1,LRORIG,1,LRAN,4,LRXTST,0)),"^",10)
+ Q
+ ;
+PROFSTAT ;
+ ;Determine profile's status on shipping manifest.
+ ;LRMNSQ=sequence on shipping manifest
+ ;LRMNTST=file 60 test ien on shipping manifest
+ ;LRSTPR=profile's status
+ N LRMNSQ,LRMNTST,LRSTPR
+ S (LRMNSQ,LRSTPR)=""
+ F  S LRMNSQ=$O(^LAHM(62.8,LRMNF,10,"UID",LRUID,LRMNSQ)) Q:'LRMNSQ  Q:LRSTPR]""  D
+ . S LRMNTST=$P($G(^LAHM(62.8,LRMNF,10,LRMNSQ,0)),"^",2)
+ . ;Check the status of the profile on the shipping manifest.
+ . I LRMNTST=LRPRF D
+ . . S LREVNT=$$STATUS^LREVENT(LRUID,LRPRF,LRMNF)
+ . . ;Probably do not need both LRSTPR and LRST at this point,
+ . . ;but keeping so that won't inadvertently cause other issues.
+ . . I LREVNT'="" S (LRSTPR,LRST)=$P(LREVNT,"^")
+ . ;Further checking needed if status of the profile is "Results
+ . ;received".
+ . I LRSTPR["Results" D LAH
+ Q
+ ;
+LAH ;
+ ;If "Results received" status, are results waiting to be verified.
+ ;Results might have previously been verified for the profile,
+ ;but no results are currently waiting to be verified on
+ ;remaining components. Laboratory personnel use the "Results 
+ ;received" status as an indicator that results are waiting 
+ ;to be manually verified.
+ ;Need to drill down through globals (re-using variable LRWKLST).
+ N LRWKLST,LRLAHSQ,LRLAHTST,LRHIT
+ ;Retrieve shipping configuration ien.
+ S LRWKLST=$P(^LAHM(62.8,LRMNF,0),"^",2)
+ ;Retrieve LAB MESSAGING LINK (#.07) field.
+ S LRWKLST=$P(^LAHM(62.9,LRWKLST,0),"^",7)
+ ;Retrieve the name of the link.
+ S LRWKLST=$P(^LAHM(62.48,LRWKLST,0),"^")
+ ;Finally, retrieve Load/Worklist ien.
+ S LRWKLST=$O(^LAB(62.4,"B",LRWKLST,""))
+ Q:LRWKLST=""
+ S LRWKLST=$P(^LAB(62.4,LRWKLST,0),"^",4)
+ Q:LRWKLST=""
+ ;Are any results waiting to be verified for this UID.
+ I '$D(^LAH(LRWKLST,1,"U",LRUID)) S LRST="Test shipped" Q
+ ;Check the results.
+ S LRLAHSQ="",LRHIT=0
+ F  S LRLAHSQ=$O(^LAH(LRWKLST,1,"U",LRUID,LRLAHSQ)) Q:LRLAHSQ=""  D
+ . S LRLAHTST=.3
+ . F  S LRLAHTST=$O(^LAH(LRWKLST,1,LRLAHSQ,LRLAHTST)) Q:'LRLAHTST  Q:LRHIT  D
+ . . ;Do any tests in ^LAH have the same data name as the test being
+ . . ;evaluated. (Considered screening out results of "pending". But comments
+ . . ;might have been transmitted for pending results which need verification.)
+ . . I LRLAHTST=$P($P(^LAB(60,LR60,0),"^",5),";",2) S LRHIT=1
+ . . ;Check profile components.
+ . . N LRSUB,LRSUBTST
+ . . S LRSUB=0
+ . . F  S LRSUB=$O(^LAB(60,LR60,2,LRSUB)) Q:'LRSUB  D
+ . . . S LRSUBTST=$P($G(^LAB(60,LR60,2,LRSUB,0)),"^")
+ . . . I LRLAHTST=$P($P(^LAB(60,LRSUBTST,0),"^",5),";",2) S LRHIT=1
+ ;No match found in ^LAH, so revert status to "Test shipped".
+ I 'LRHIT S LRST="Test shipped"
  Q
  ;
 PHD ;

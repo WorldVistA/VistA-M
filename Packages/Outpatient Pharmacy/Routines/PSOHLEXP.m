@@ -1,5 +1,5 @@
-PSOHLEXP ;BIR/RTR - Auto expire prescriptions ;Jan 10, 2022@11:13:38
- ;;7.0;OUTPATIENT PHARMACY;**10,22,36,73,148,257,391,505,441**;DEC 1997;Build 208
+PSOHLEXP ;BIR/RTR - Auto expire prescriptions ;Oct 20, 2022@13:36
+ ;;7.0;OUTPATIENT PHARMACY;**10,22,36,73,148,257,391,505,441,545**;DEC 1997;Build 270
  ;
  ;External reference to ^PS(59.7 supported by DBIA 694
  ;External reference to STATUS^ORQOR2 is supported by DBIA 3458
@@ -85,7 +85,7 @@ FACDEA ;PSO*7*391/JAM  - Checks and notifies PSDMGR group when facility DEA is a
  .S TEXT(4)=$S($$FMDIFF^XLFDT(DEAXDT,DT)<0:"expired on ",1:"is about to expire on ")_$$GET1^DIQ(4,SITE,52.1,"E")
  .S TEXT(5)=""
  .S TEXT(6)="Please update the Institutional DEA expiration date using option "
- .S TEXT(7)="Edit Facility DEA# and Expiration Date [XU EPCS EDIT DEA# AND XDATE]. "
+ .S TEXT(7)="Edit Facility DEA# and Expiration Date [PSO EPCS EDIT DEA# AND XDATE]. "
  .S XMTEXT="TEXT(",XMSUB="Institutional DEA Number "_$S($$FMDIFF^XLFDT(DEAXDT,DT)<0:"has expired",1:"is about to expire"),XMDUZ=.5
  .S USR="" F  S USR=$O(^XUSEC("PSDMGR",USR)) Q:USR=""  S XMY(USR)=""
  .D ^XMD

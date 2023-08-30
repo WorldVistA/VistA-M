@@ -1,7 +1,17 @@
-GMRCIACT ;SLC/JFR - PROCESS ACTIONS ON IFC ; Jun 28, 2022@12:03:01
- ;;3.0;CONSULT/REQUEST TRACKING;**22,47,58,66,73,121,154,176,184**;DEC 27, 1997;Build 22
+GMRCIACT ;SLC/JFR - PROCESS ACTIONS ON IFC ; Mar 8, 2023@15:52:28
+ ;;3.0;CONSULT/REQUEST TRACKING;**22,47,58,66,73,121,154,176,184,193**;DEC 27, 1997;Build 40
+ ;
  ;;Per VHA Directive 2004-038, this routine should not be modified.
- ;#2051($$FIND1^DIC), #2053(DIE), #2165 HLMA1, #2701 MPIF001, #10103 XLFDT, #3065 XLFNAME, #2171 XUAF4, #10104 XLFSTR
+ ;
+ ; Reference to $$FIND1^DIC in ICR #2051
+ ; Reference to ^DIE in ICR #2053
+ ; Reference to ^HLMA1 in ICR #2165
+ ; Reference to ^MPIF001 in ICR #2701
+ ; Reference to ^XLFDT in ICR #10103
+ ; Reference to ^XLFNAME in ICR #3065
+ ; Reference to ^XUAF4 in ICR #2171
+ ; Reference to ^XLFSTR in ICR #10104
+ ;
  Q  ;don't start here!
 NW(ARRAY) ;process and file new order
  ;Input:
@@ -145,6 +155,7 @@ DIS(GMRCAR,GMRCCRNR,GMRCMSGI) ;dis-associate a result from a remote request ; MK
  ; GMRCCRNR = 1 if message came from Cerner
  ; GMRCMSGI = message ID
  ;
+ K ^TMP("GMRCID",$J) ;p193
  N GMRCDA,GMRCFDA,FDA,GMRCERR,GMRCORC
  M ^TMP("GMRCID",$J)=@GMRCAR
  S GMRCORC=^TMP("GMRCID",$J,"ORC")
@@ -154,7 +165,7 @@ DIS(GMRCAR,GMRCCRNR,GMRCMSGI) ;dis-associate a result from a remote request ; MK
  . D APPACK^GMRCIAC2(GMRCDA,"AR",901,GMRCCRNR,GMRCMSGI) ;send app. ACK ;MKN GMRC*3*154 added GMRCCRNR and GMRCMSGI
  . K ^TMP("GMRCID",$J) Q
  ;    v--check to see if a dup transmission
- I $$DUPACT^GMRCIAC2(GMRCDA,12,GMRCORC,^TMP("GMRCID",$J,"OBX",4,1),GMRCCRNR,GMRCMSGI) Q  ;MKN GMRC*3*154 added CRNR and MSGI
+ I $$DUPACT^GMRCIAC2(GMRCDA,12,GMRCORC,^TMP("GMRCID",$J,"OBX",4,1),GMRCCRNR,GMRCMSGI) K ^TMP("GMRCID",$J) Q  ;MKN GMRC*3*154 added CRNR and MSGI ;p193
  ;
  D FILEACT^GMRCIAC2(GMRCDA,12,,$NA(^TMP("GMRCID",$J)),$G(GMRCCRNR),$$GET1^DIQ(123,GMRCDA,.07,"I")) ; act. tracking ; P184
  D FILRES^GMRCIAC2(GMRCDA,^TMP("GMRCID",$J,"OBX",4,1)) ;file results
@@ -205,7 +216,7 @@ OTHER(GMRCAR,GMRCCRNR,GMRCMSGI) ;process most IFC actions
  . I GMRCFDA(8)=13 S (GMRCFDA(9),GMRCLAT)=19 Q
  ;                         ^--last action taken
  ;    v-- check to see if a dup transmission
- I $$DUPACT^GMRCIAC2(GMRCDA,GMRCLAT,GMRCORC,,GMRCCRNR,GMRCMSGI) Q  ;MKN GMRC*3*154 added GMRCCRNR and GMRCMSGI
+ I $$DUPACT^GMRCIAC2(GMRCDA,GMRCLAT,GMRCORC,,GMRCCRNR,GMRCMSGI) K ^TMP("GMRCIN",$J) Q  ;MKN GMRC*3*154 added GMRCCRNR and GMRCMSGI ;p193
  ;
  M FDA(1,123,GMRCDA_",")=GMRCFDA
  D UPDATE^DIE("","FDA(1)",,"GMRCERR") ;file last action and update status

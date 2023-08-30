@@ -1,15 +1,17 @@
-WVRALINK ;HCIOFO/FT - RAD/NM-WOMEN'S HEALTH LINK  ;04/15/2021
- ;;1.0;WOMEN'S HEALTH;**3,5,7,9,10,16,18,23,25,24,26**;Sep 30, 1998;Build 624
+WVRALINK ;HCIOFO/FT - RAD/NM-WOMEN'S HEALTH LINK; Oct 18,2022
+ ;;1.0;WOMEN'S HEALTH;**3,5,7,9,10,16,18,23,25,24,26,28**;Sep 30, 1998;Build 12
  ;
- ; This routine uses the following IAs:
- ; #2480  - FILE 70         (private)
- ; #2481  - FILE 71         (private)
- ; #2482  - FILE 71.2       (private)
- ; #10035 - FILE 2          (supported)
- ; #10063 - ^%ZTLOAD        (supported)
- ; #10070 - ^XMD            (supported)
- ; #10141 - ^XPDUTL         (supported)
- ; #2541  - ^XUPARAM        (supported)
+ ; Reference to ^RADPT in ICR #2480
+ ; Reference to ^RAMIS(71 in ICR #2481
+ ; Reference to ^RAMIS(71.2 in ICR #2482
+ ; Reference to ^DPT( in ICR #10035
+ ; Reference to ^%ZTLOAD in ICR #10063
+ ; Reference to ^XMD in ICR #10070
+ ; Reference to ^XPDUTL in ICR #10141
+ ; Reference to ^XUPARAM in ICR #2541
+ ; Reference to GETTRMCD^PXRMPRAD in ICR #6808
+ ; Reference to $$EARLDATE^PXRMPRAD in ICR #6808
+ ; Reference to BLDTARR^PXRMPRAD in ICR #6808
  ;
  ;;  Original routine created by IHS/ANMC/MWR
  ;;* MICHAEL REMILLARD, DDS * ALASKA NATIVE MEDICAL CENTER *
@@ -55,7 +57,7 @@ CREATEH(DFN,DATE,CASE,STATUS) ; Entry from ^WVEXPTRA which looks for exams
 CREATEQ ; Queue data entry creation. Called from CREATE above
  N CLOSED,CODES,EARLDATE,ERROR,MATCH,TEMPDATE,TERMIEN,TERMSTAT
  N WVPROC,WVLOC,WVDATE,WVDR,WVPROV,WVMOD,WVDX,WVBWDX,WVLEFT,WVRIGHT
- N WVCASE,WVCPT,WVERR,WVCREDIT,WVEXAM0,WVTERM,WVZSTAT,WVADDEOC
+ N WVCASE,WVCPT,WVERR,WVCREDIT,WVEXAM0,WVTERM,WVZSTAT,WVADDEOC,WVDIV
  ;---> QUIT IF RADIOLOGY DATA IS NOT DEFINED OR ="".
  I $D(ZTQUEUED) S ZTREQ="@"
  S CLOSED=0
@@ -64,6 +66,9 @@ CREATEQ ; Queue data entry creation. Called from CREATE above
  ;---> QUIT IF THIS PROCEDURE DOES NOT HAVE A MAM CPT CODE.
  ;---> QUIT IF THIS PROCEDURE DOES NOT HAVE AN ULTRASOUND CPT CODE.
  ;---> WVEXAM0=ZERO NODE OF RADIOLOGY EXAM.
+ ;AGP pull division from radiology data default to DUZ(2) is none found in radiology
+ S WVDIV=$$GETRADDIV(DFN,DATE,CASE)
+ I WVDIV=0,DUZ(2)>0 S WVDIV=DUZ(2)
  S WVEXAM0=^RADPT(DFN,"DT",DATE,"P",CASE,0)
  S WVCPT=$$GET1^DIQ(71,$P(WVEXAM0,U,2),9,"") Q:WVCPT=""
  ;check reminder terms
@@ -91,13 +96,13 @@ CREATEQ ; Queue data entry creation. Called from CREATE above
  ;
  ;---> QUIT IF NO WOMEN'S HEALTH SITE PARAMETER FILE ON THIS MACHINE.
  ;     OR NO DEFAULT CASE MANAGER
- Q:'$D(^WV(790.02,DUZ(2)))
- Q:'$P($G(^WV(790.02,+$G(DUZ(2)),0)),U,2)
+ Q:'$D(^WV(790.02,WVDIV))
+ Q:'$P($G(^WV(790.02,WVDIV,0)),U,2)
  ;
  ;---> IF NOT CALLED FROM ^WVEXPTRA (i.e., STATUS is undefined) CHECK
  ;---> SITE PARAMETER AND QUIT IF "IMPORT MAMMOGRAMS FROM RADIOLOGY"
  ;---> IS NOT SET TO "YES". CHECK VETERAN STATUS AND ELIGIBILITY CODE.
- N Y S Y=^WV(790.02,DUZ(2),0)
+ N Y S Y=^WV(790.02,WVDIV,0)
  I '$D(STATUS) Q:'$P(Y,U,10)
  I '$D(STATUS) Q:'$$VNVEC^WVRALIN1()  ;vet/non-vet/eligibility code check
  ;
@@ -155,7 +160,8 @@ COPY(Y) ;EP
  .S WVPVDX=$P($G(^WV(790.1,WVIEN1,0)),U,5)
  .S WVZSTAT=$P($G(^WV(790.1,WVIEN1,0)),U,14)
  .I WVPVDX=0!(WVIEN1=0)!(WVACCESS="") Q
- .S WVDX=$P(Y,U,13)
+ .S WVDX=$P(Y,U,13) I WVDX="" Q
+ .S WVBWDX=""
  .I +WVDX I $D(^WV(790.32,"C",WVDX)) S WVBWDX=$O(^WV(790.32,"C",WVDX,0))
  .I WVPVDX=WVBWDX Q
  .K WVERR
@@ -288,3 +294,26 @@ DELETEQ ; Modify WV entry when mammogram report is unverified or deleted
  D ^XMD
  Q
  ;
+GETRADDIV(DFN,DATE,CASE) ;
+ N LOC,RADIV,RALOC,RESULT,WVDTNODE,X0
+ S RESULT=0
+ ;check the radiology division 
+ S WVDTNODE=$G(^RADPT(DFN,"DT",DATE,0))
+ S RADIV=+$P(WVDTNODE,U,3)
+ I RADIV>0 S RESULT=+$P($G(^RA(79,RADIV,0)),U)
+ I RESULT>0 Q RESULT
+ ;last check is for the imaging location type
+ S RALOC=+$P(WVDTNODE,U,4)
+ I RALOC=0 Q RESULT
+ S LOC=+$P($G(^RA(79.1,LOC,0)),U)
+ I LOC=0 Q RESULT
+ S RESULT=$$GETLOCDIV(LOC)
+ Q RESULT
+ ;
+GETLOCDIV(LOC) ;
+ N RESULT
+ S RESULT=0
+ S RESULT=$P($G(^SC(+LOC,0)),U,4)
+ I RESULT>0 Q RESULT
+ S RESULT=$$INS4LOC^VSITCK1(LOC)
+ Q RESULT

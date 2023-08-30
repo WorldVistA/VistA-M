@@ -1,13 +1,13 @@
 IBNCPDPU ;OAK/ELZ - UTILITIES FOR NCPDP ;Jun 06, 2014@19:13:12
- ;;2.0;INTEGRATED BILLING;**223,276,347,383,405,384,437,435,452,511,534,550,624**;21-MAR-94;Build 10
+ ;;2.0;INTEGRATED BILLING;**223,276,347,383,405,384,437,435,452,511,534,550,624,711**;21-MAR-94;Build 18
  ;;Per VA Directive 6402, this routine should not be modified.
  ;
- ;Reference to ECMEACT^PSOBPSU1 supported by IA# 4702
- ;Reference to $$EN^BPSNCPDP supported by IA# 4415
- ;Reference to $$NABP^BPSBUTL supported by IA# 4719
- ;Reference to $$CLMECME^BPSUTIL2 supported by IA# 6028
- ;Reference to $$VALECME^BPSUTIL2 supported by IA# 6139
- ;Reference to $$RXRLDT^PSOBPSUT supported by IA# 4701
+ ; Reference to ECMEACT^PSOBPSU1 in ICR #4702
+ ; Reference to $$EN^BPSNCPDP in ICR #4415
+ ; Reference to $$NABP^BPSBUTL in ICR #4719
+ ; Reference to $$CLMECME^BPSUTIL2 in ICR #6028
+ ; Reference to $$VALECME^BPSUTIL2 in ICR #6139
+ ; Reference to $$RXRLDT^PSOBPSUT in ICR #4701
  ;
  ;
 CT(DFN,IBRXN,IBFIL,IBADT,IBRMARK) ; files in claims tracking
@@ -139,12 +139,21 @@ RT(DFN,IBDT,IBINS,IBPTYP) ; returns rate type to use for bill
  S IBX=0 F  S IBX=$O(IBINS(IBX)) Q:'IBX  S IBI=$P($G(^IBE(355.1,+$P($G(IBINS(IBX,355.3)),U,9),0)),U,1) S IBI($S(IBI="TRICARE":"T",IBI="CHAMPVA":"C",1:"O"))=""
  ;
  ; If patient is only TRICARE eligible, and has TRICARE insurance,
- ; regardless of the presence of other insurance, set eligibility to
- ; TRICARE and Quit.
- I $D(IBE("T")),'$D(IBE("O")),'$D(IBE("C")),$D(IBI("T")) S IBRT=$O(^DGCR(399.3,"B","TRICARE",0)) Q:IBRT IBRT_"^C^T"
+ ; set eligibility and rate type to TRICARE.
+ ; If patient has another insurance, in addition to TRICARE that is not CHAMPVA,
+ ; set eligibility to TRICARE and rate type to TRICARE REIMB. INS.
+ I $D(IBE("T")),'$D(IBE("O")),'$D(IBE("C")),$D(IBI("T")) D  Q:IBRT IBRT_"^C^T"
+ . I $D(IBI("O")) S IBRT=$O(^DGCR(399.3,"B","TRICARE REIMB. INS.",0))
+ . E  S IBRT=$O(^DGCR(399.3,"B","TRICARE",0))
  ;
  ; IB*2*452 - check for CHAMPVA
- I $D(IBE("C")),$D(IBI("C")) S IBRT=$O(^DGCR(399.3,"B","CHAMPVA",0)) Q:IBRT IBRT_"^C^C"
+ ; If patient is CHAMPVA eligible, and has CHAMPVA insurance,
+ ; set eligibility and rate type to CHAMPVA.
+ ; If patient has another insurance, in addition to CHAMPVA that is not TRICARAE,
+ ; set eligibility to CHAMPVA and rate type to CHAMPVA REIMB. INS.
+ I $D(IBE("C")),$D(IBI("C")) D  Q:IBRT IBRT_"^C^C"
+ . I $D(IBI("O")) S IBRT=$O(^DGCR(399.3,"B","CHAMPVA REIMB. INS.",0))
+ . E  S IBRT=$O(^DGCR(399.3,"B","CHAMPVA",0))
  ;
  Q "0^unable to determine rate type"
  ;

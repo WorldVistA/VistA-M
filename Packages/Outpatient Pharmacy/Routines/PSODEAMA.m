@@ -1,0 +1,323 @@
+PSODEAMA ;DAL/JCH - Manually Entered DEA Report ;08/16/2021
+ ;;7.0;OUTPATIENT PHARMACY;**545**;DEC 1997;Build 270
+ ;External reference to DEA NUMBERS file (#8991.9) is supported by DBIA 7002
+ ;External reference to XUEPCS DATA file (#8991.6) is supported by DBIA 7015
+ ;
+ Q
+ ;
+ENTRY ; Entry Point
+ ;
+ N PSODONE,PSOHEAD,PSORTYPE
+ S PSODONE=0,PSOHEAD="Manually Entered DEA Report"
+ D MESSAGE
+ D ASK(.PSORTYPE,.PSODONE) Q:$G(PSODONE)
+ D DEVICE(.PSODONE) Q:PSODONE  ; Print to device
+ D PROCESS
+ Q
+ ;
+PROCESS  ; Process and Print Report Data
+ D RUN
+ D OUT
+ D CLOSE
+ D EXIT
+ Q
+ ;
+MESSAGE ; Option informatoin
+ ;
+ W !!,"This option lists DEA numbers that were added/edited via the Manual DEA Number"
+ W !,"Entry [PSO EPCS DEA MANUAL ENTRY] option and were not subsequently updated"
+ W !,"using the Add New Providers [PSO PROVIDER ADD] option or the Edit Provider"
+ W !,"[PSO PROVIDER EDIT] option while the PSO DOJ/DEA WEB SERVICE was running."
+ W !!,"Manually entered DEA numbers are removed from this list after they are edited"
+ W !,"using the Add New Providers [PSO PROVIDER ADD] option or the Edit Provider"
+ W !,"[PSO PROVIDER EDIT] option while the PSO DOJ/DEA WEB SERVICE is running."
+ Q
+ ;
+ASK(PSORTYPE,PSODONE)  ; Ask user's report options
+ ; Summary or Detailed Report
+ N DIR,X,Y
+ S DIR(0)="S^S:Summary;D:Detailed",DIR("A")="Report Type" D ^DIR K DIR I $D(DIRUT) S PSODONE=1 Q
+ S PSORTYPE=Y,PSOHEAD=PSOHEAD_$S(Y="S":"(Summary)",1:"(Detailed)")
+ Q
+ ;
+RUN  ; Run Report
+ N DEATXT,PSOLINE,WSDWN
+ S PSOLINE=1,WSDWN=0
+ D GATHER
+ S DEATXT="" F  S DEATXT=$O(^TMP($J,"PSODEAMA","DEA",DEATXT)) Q:DEATXT=""  D
+ .N IEN,IENS,WSAR,MANAR
+ .S IEN=+$G(^TMP($J,"PSODEAMA","DEA",DEATXT)),IENS=IEN_","
+ .D GETMAN(IENS,.MANAR)
+ .I DEATXT'="" D GETWS(DEATXT,.WSAR,.WSDWN)
+ .D COMPILE(.MANAR,.WSAR,.PSOLINE,PSORTYPE)
+ Q PSODONE
+ ;
+GATHER ; Identify Manually entered DEA #'s
+ N DEAIEN,DEATXT,PSODONE S PSODONE=0
+ K ^TMP($J,"PSODEAMA")
+ S DEAIEN=0 F  S DEAIEN=$O(^XTV(8991.9,DEAIEN)) Q:'DEAIEN!$G(PSODONE)  D
+ .N RETURN,ERROR,FIELDS,DOJUPDT,IENS,MANAR,WSAR,DEATXT,WSDWN
+ .S IENS=DEAIEN_","
+ .Q:$$GET1^DIQ(8991.9,IENS,10.3,"I")  ; Quit if Last Updated by PSO DOJ/DEA WEB SERVICE
+ .S DEATXT=$$GET1^DIQ(8991.9,IENS,.01,"E")
+ .S ^TMP($J,"PSODEAMA","DEA",DEATXT)=DEAIEN
+ Q
+ ;
+GETMAN(IENS,MANAR) ; Get one manually entered DEA number from DEA NUMBERS file (#8991.9)
+ N TMPAR
+ S FIELDS=".01;.02;.03;.04;.05;.06;.07;1.1;1.2;1.3;1.4;1.5;1.6;1.7;2.1;2.2;2.3;2.4;2.5;2.6;10.1;10.2;10.3"
+ D GETS^DIQ(8991.9,IENS,FIELDS,,"MANAR","ERROR")
+ M TMPAR=MANAR(8991.9,IENS) K MANAR M MANAR=TMPAR
+ Q
+ ;
+GETWS(DEATXT,WSAR,WSDWN) ; Get one DEA#'s information from Web Service
+ N RETURN,NOMORE,FLD,TXTLN
+ S NOMORE=0
+ I '$G(WSDWN) S RETURN=$$WSGET^PSODEAUT(.WSAR,DEATXT)
+ S RETURN=$G(RETURN)
+ I $P(RETURN,U,3)=6059 S WSDWN=1   ; Web Service Down
+ I (RETURN["DEA NUMBER NOT FOUND")!$G(WSDWN) D  Q
+ .F TXTLN=1:1:999 Q:NOMORE  S FLD=$P($T(JSONFLDS+TXTLN),";",2) D
+ ..I FLD="***" S NOMORE=1 Q
+ ..I FLD="deaNumber" S WSAR(FLD)=$S($G(WSDWN):"Unable to Connect",1:"Not Found") Q
+ ..S WSAR(FLD)="**"
+ Q
+ ;
+COMPILE(MANAR,WSAR,PSOLINE,PSORTYPE) ; Print results
+ N DS,DSII,DSIIN,DSIII,DSIIIN,DSIV,DSV,COL1IN,COL2IN,PSEXPDTE,PSDTRSLT,BAC,PSDTXDOJ,PSTYPE
+ N PRNAM,PRNO,PRNOCONTXT,XIP
+ S COL1IN=20,COL2IN=21
+ ;
+ S ^TMP($J,"PSODEAMA","OUT",PSOLINE)="",PSOLINE=PSOLINE+1
+ S PRNOCONTXT="Unable to Connect"
+ ;
+ S PRNO=$$ASSIGNED(MANAR(.01))
+ S ^TMP($J,"PSODEAMA","OUT",PSOLINE)="DEA Number "_MANAR(.01)_$S(PRNO:" assigned to "_$P(PRNO,U,2)_" (IEN: "_+PRNO_")",1:" not assigned to any providers.")
+ S PSOLINE=PSOLINE+1
+ ;
+ Q:$G(PSORTYPE)="S"
+ ;
+ S ^TMP($J,"PSODEAMA","OUT",PSOLINE)=$$LJ^XLFSTR("FIELD NAME",COL1IN)_$$LJ^XLFSTR("DOJ VALUE",COL2IN)_"LOCAL VISTA VALUE (Manual)"
+ S PSOLINE=PSOLINE+1
+ S $P(^TMP($J,"PSODEAMA","OUT",PSOLINE),"-",75)="-"
+ S PSOLINE=PSOLINE+1
+ S ^TMP($J,"PSODEAMA","OUT",PSOLINE)=$$LJ^XLFSTR("DEA NUMBER: ",COL1IN)_$$LJ^XLFSTR(WSAR("deaNumber"),COL2IN)_MANAR(.01)
+ S PSOLINE=PSOLINE+1
+ I WSAR("name")'=MANAR(1.1) D
+ .I $G(WSDWN) S WSAR("name")=PRNOCONTXT Q
+ . S:$E(WSAR("name"),$L(WSAR("name")))'="*" WSAR("name")=WSAR("name")_"**"
+ S ^TMP($J,"PSODEAMA","OUT",PSOLINE)=$$LJ^XLFSTR("NAME: ",COL1IN)_$$LJ^XLFSTR(WSAR("name"),COL2IN)_MANAR(1.1)
+ S PSOLINE=PSOLINE+1
+ ;
+ I $$NULLCHK(WSAR("address1"),MANAR(1.2)) D
+ . I WSAR("address1")'=MANAR(1.2) D
+ .. I $G(WSDWN) S WSAR("address1")=PRNOCONTXT Q
+ .. S:WSAR("address1")'="**" WSAR("address1")=WSAR("address1")_"**"
+ . S ^TMP($J,"PSODEAMA","OUT",PSOLINE)=$$LJ^XLFSTR("ADDRESS 1:",COL1IN)_$$LJ^XLFSTR(WSAR("address1"),COL2IN)_MANAR(1.2)
+ . S PSOLINE=PSOLINE+1
+ ;
+ I $$NULLCHK(WSAR("address2"),MANAR(1.3)) D
+ .I WSAR("address2")'=MANAR(1.3) D
+ .. I $G(WSDWN) S WSAR("address2")=PRNOCONTXT Q
+ .. S:WSAR("address2")'="**" WSAR("address2")=WSAR("address2")_"**"
+ .S ^TMP($J,"PSODEAMA","OUT",PSOLINE)=$$LJ^XLFSTR("ADDRESS 2:",COL1IN)_$$LJ^XLFSTR(WSAR("address2"),COL2IN)_MANAR(1.3)
+ .S PSOLINE=PSOLINE+1
+ ;;
+ ;I $$NULLCHK(WSAR("address3"),MANAR(1.4)) D
+ ;.I WSAR("address3")'=MANAR(1.4) S:WSAR("address3")'="**" WSAR("address3")=WSAR("address3")_"**"
+ ;.S ^TMP($J,"PSODEAMA","OUT",PSOLINE)=$$LJ^XLFSTR("ADDRESS 3:",COL1IN)_$$LJ^XLFSTR(WSAR("address3"),COL2IN)_MANAR(1.4)
+ ;.S PSOLINE=PSOLINE+1
+ ;
+ I $$NULLCHK(WSAR("city"),MANAR(1.5)) D
+ . I WSAR("city")'=MANAR(1.5) D
+ .. I $G(WSDWN) S WSAR("city")=PRNOCONTXT Q
+ .. S:WSAR("city")'="**" WSAR("city")=WSAR("city")_"**"
+ . S ^TMP($J,"PSODEAMA","OUT",PSOLINE)=$$LJ^XLFSTR("CITY:",COL1IN)_$$LJ^XLFSTR(WSAR("city"),COL2IN)_MANAR(1.5)
+ . S PSOLINE=PSOLINE+1
+ ;
+ I $$NULLCHK(WSAR("state"),MANAR(1.6)) D
+ . D POSTAL^XIPUTIL($G(WSAR("zipCode")),.XIP) S XSTATE=$G(XIP("STATE"))
+ . I XSTATE'=MANAR(1.6) D
+ .. I $G(WSDWN) S XSTATE=PRNOCONTXT Q
+ .. S:XSTATE'="**" XSTATE=XSTATE_"**"
+ . S ^TMP($J,"PSODEAMA","OUT",PSOLINE)=$$LJ^XLFSTR("STATE:",COL1IN)_$$LJ^XLFSTR(XSTATE,COL2IN)_MANAR(1.6)
+ . S PSOLINE=PSOLINE+1
+ ;
+ I $$NULLCHK(WSAR("zipCode"),MANAR(1.7)) D
+ . I WSAR("zipCode")'=MANAR(1.7) D
+ .. I $G(WSDWN) S WSAR("zipCode")=PRNOCONTXT Q
+ .. S:WSAR("zipCode")'="**" WSAR("zipCode")=WSAR("zipCode")_"**"
+ . S ^TMP($J,"PSODEAMA","OUT",PSOLINE)=$$LJ^XLFSTR("ZIP:",COL1IN)_$$LJ^XLFSTR(WSAR("zipCode"),COL2IN)_MANAR(1.7)
+ . S PSOLINE=PSOLINE+1
+ ;
+ S BAC=$S($G(WSAR("businessActivityCode"))="**":"",1:$G(WSAR("businessActivityCode")))_$S($G(WSAR("businessActivitySubcode"))="**":"",1:$G(WSAR("businessActivitySubcode")))
+ S DEA=WSAR("deaNumber"),PSDTXDOJ=""
+ I BAC?1U S BAC=BAC_0
+ I BAC'=MANAR(.02) D
+ . I $G(WSDWN) S BAC=PRNOCONTXT Q
+ . S:BAC'="**" BAC=BAC_"**"
+ I $$NULLCHK(BAC,MANAR(.02)) D
+ . S ^TMP($J,"PSODEAMA","OUT",PSOLINE)=$$LJ^XLFSTR("ACTIVITY CODE:",COL1IN)_$$LJ^XLFSTR(BAC,COL2IN)_MANAR(.02)
+ . S PSOLINE=PSOLINE+1
+ ;
+ S PSTYPE=BAC I $TR(PSTYPE,"*")'="" S PSTYPE=$P($$PROVTYPE^PSODEAUT(PSTYPE),"^",2)
+ I $$NULLCHK(WSAR("businessActivityCode"),MANAR(.07)) D
+ . I $G(WSDWN) S PSTYPE=PRNOCONTXT
+ . I '$G(WSDWN),(PSTYPE'=MANAR(.07)) S:$E(PSTYPE,$L(PSTYPE))'="*" PSTYPE=PSTYPE_"**"
+ . S ^TMP($J,"PSODEAMA","OUT",PSOLINE)=$$LJ^XLFSTR("TYPE:",COL1IN)_$$LJ^XLFSTR(PSTYPE,COL2IN)_MANAR(.07)
+ . S PSOLINE=PSOLINE+1
+ ;
+ S BAC=$G(WSAR("businessActivityCode"))_WSAR("businessActivitySubcode")
+ I $$NULLCHK(BAC,DEA) S PSDTXDOJ=$S($$DETOXCHK^PSODEAUT(BAC):"X"_$E(MANAR(.01),2,9),1:"")
+ I $$NULLCHK(PSDTXDOJ,MANAR(.03)) D
+ . I $G(WSDWN) S PSDTXDOJ=PRNOCONTXT
+ . I '$G(WSDWN),(PSDTXDOJ'=MANAR(.03)) S:$E(PSDTXDOJ,$L(PSDTXDOJ))'="*" PSDTXDOJ=PSDTXDOJ_"**"
+ . S ^TMP($J,"PSODEAMA","OUT",PSOLINE)=$$LJ^XLFSTR("DETOX NUMBER:",COL1IN)_$$LJ^XLFSTR(PSDTXDOJ,COL2IN)_MANAR(.03)
+ . S PSOLINE=PSOLINE+1
+ ;
+ S (PSDTRSLT,PSDTRSLT(0))=""
+ I $$NULLCHK(WSAR("expirationDate"),MANAR(.04)) D DT^DILF("E",$G(WSAR("expirationDate")),.PSDTRSLT)
+ I $G(WSDWN) S PSDTRSLT(0)=PRNOCONTXT
+ I '$G(WSDWN),(PSDTRSLT(0)'=MANAR(.04)) S:PSDTRSLT(0)'="**" PSDTRSLT(0)=PSDTRSLT(0)_"**"
+ S ^TMP($J,"PSODEAMA","OUT",PSOLINE)=$$LJ^XLFSTR("EXPIRATION DATE:",COL1IN)_$$LJ^XLFSTR($G(PSDTRSLT(0)),COL2IN)_MANAR(.04)
+ S PSOLINE=PSOLINE+1
+ ;
+ S DS=WSAR("drugSchedule")
+ ;
+ I $$NULLCHK(DS,MANAR(2.1)) D
+ .I $G(WSDWN) S DSII=PRNOCONTXT
+ .I '$G(WSDWN) D
+ .. S DSII=$S(DS["22N":"YES",(DS["2"&(DS'["2N")):"YES",DS="**":"",1:"NO")
+ .. S DSII=$G(DSII)_$S($G(DSII)'=$G(MANAR(2.1)):"**",1:"")
+ .S ^TMP($J,"PSODEAMA","OUT",PSOLINE)=$$LJ^XLFSTR("SCH II NARC:",COL1IN)_$$LJ^XLFSTR(DSII,COL2IN)_MANAR(2.1)
+ .S PSOLINE=PSOLINE+1
+ ;
+ I $$NULLCHK(DS,MANAR(2.2)) D
+ .I $G(WSDWN) S DSIIN=PRNOCONTXT
+ .I '$G(WSDWN) D
+ .. S DSIIN=$S(DS["2N":"YES",DS="**":"",1:"NO")
+ .. S DSIIN=DSIIN_$S(DSIIN'=$G(MANAR(2.2)):"**",1:"")
+ .S ^TMP($J,"PSODEAMA","OUT",PSOLINE)=$$LJ^XLFSTR("SCH II NON-NARC:",COL1IN)_$$LJ^XLFSTR(DSIIN,COL2IN)_MANAR(2.2)
+ .S PSOLINE=PSOLINE+1
+ ;
+ I $$NULLCHK(DS,MANAR(2.3)) D
+ .I $G(WSDWN) S DSIII=PRNOCONTXT
+ .I '$G(WSDWN) D
+ .. S DSIII=$S(DS="**":"",DS["33N":"YES",DS["3"&(DS'["3N"):"YES",1:"NO")
+ .. S DSIII=DSIII_$S(DSIII'=$G(MANAR(2.3)):"**",1:"")
+ .S ^TMP($J,"PSODEAMA","OUT",PSOLINE)=$$LJ^XLFSTR("SCH III NARC:",COL1IN)_$$LJ^XLFSTR(DSIII,COL2IN)_MANAR(2.3)
+ .S PSOLINE=PSOLINE+1
+ ;
+ I $$NULLCHK(DS,MANAR(2.4)) D
+ .I $G(WSDWN) S DSIIIN=PRNOCONTXT
+ .I '$G(WSDWN) D
+ .. S DSIIIN=$S(DS="**":"",DS["3N":"YES",1:"NO")
+ .. S DSIIIN=DSIIIN_$S(DSIIIN'=$G(MANAR(2.4)):"**",1:"")
+ .S ^TMP($J,"PSODEAMA","OUT",PSOLINE)=$$LJ^XLFSTR("SCH III NON-NARC:",COL1IN)_$$LJ^XLFSTR(DSIIIN,COL2IN)_MANAR(2.4)
+ .S PSOLINE=PSOLINE+1
+ ;
+ I $$NULLCHK(DS,MANAR(2.5)) D
+ .I $G(WSDWN) S DSIV=PRNOCONTXT
+ .I '$G(WSDWN) D
+ .. S DSIV=$S(DS="**":"",DS["4":"YES",1:"NO")
+ .. S DSIV=DSIV_$S(DSIV'=$G(MANAR(2.5)):"**",1:"")
+ .S ^TMP($J,"PSODEAMA","OUT",PSOLINE)=$$LJ^XLFSTR("SCH IV:",COL1IN)_$$LJ^XLFSTR(DSIV,COL2IN)_MANAR(2.5)
+ .S PSOLINE=PSOLINE+1
+ ;
+ I $$NULLCHK(DS,MANAR(2.6)) D
+ .I $G(WSDWN) S DSV=PRNOCONTXT
+ .I '$G(WSDWN) D
+ .. S DSV=$S(DS="**":"",DS["5":"YES",1:"NO") ; SCHEDULE V
+ .. S DSV=DSV_$S(DSV'=$G(MANAR(2.6)):"**",1:"")
+ .S ^TMP($J,"PSODEAMA","OUT",PSOLINE)=$$LJ^XLFSTR("SCH V:",COL1IN)_$$LJ^XLFSTR(DSV,COL2IN)_MANAR(2.6)
+ .S PSOLINE=PSOLINE+1
+ ;
+ Q
+ ;
+OUT   ; Write Output
+ N PSOLINE,PSOPAGE,DIR,Y,PSODONE,PSOQ
+ S PSOLINE=0,PSOPAGE=1
+ I $D(IO("Q")) D CLEAR^VALM1
+ U IO
+ F  S PSOLINE=$O(^TMP($J,"PSODEAMA","OUT",PSOLINE)) Q:'PSOLINE!$G(PSODONE)  D
+ . I PSOLINE>1 D
+ .. I ($G(PSORTYPE)'="S") I ^TMP($J,"PSODEAMA","OUT",PSOLINE)="" D  Q:$G(PSODONE)
+ ... S PSODONE=$$CHKP(.PSOPAGE,PSOHEAD,PSORTYPE) Q:$G(PSODONE)
+ .. I $G(PSORTYPE)="S" S PSODONE=$$CHKP(.PSOPAGE,PSOHEAD,PSORTYPE) Q:$G(PSODONE)
+ . I PSOLINE=1 D HDR(.PSOPAGE,PSOHEAD,PSORTYPE)
+ . W !,^TMP($J,"PSODEAMA","OUT",PSOLINE)
+ I '$G(PSODONE) S PSODONE=$$CHKP(0)
+ Q
+ ;
+DEVICE(PSODONE)  ; Request Device Information
+ N %ZIS,IOP,ZTSK,ZTRTN,ZTIO,ZTDESC,ZTSAVE,POP,RTN,VAR
+ K IO("Q")
+ S %ZIS="QM"
+ W ! D ^%ZIS I POP S PSODONE=1 Q
+ I $D(IO("Q")) D
+ . S RTN=$P($T(+1)," ",1)
+ . S ZTRTN="PROCESS^PSODEAMA"
+ . S ZTIO=ION
+ . S ZTSAVE("PS*")=""
+ . S ZTDESC="MANUAL DEA ENTRY REPORT"
+ . D ^%ZTLOAD W !,$S($D(ZTSK):"Report is Queued to print (Task "_ZTSK_")",1:"REQUEST CANCELLED") K ZTSK
+ . S PSODONE=1
+ Q
+ ;
+NULLCHK(DOJVAL,VISTAVAL) ; Check for null value, filter out askterisks
+ I $TR(DOJVAL,"*")]"" Q 1
+ I VISTAVAL'="" Q 1
+ Q 0
+ ;
+ASSIGNED(DEA) ; Is the DEA number assigned to a provider?
+ N PRNO,PRNAM
+ Q:'$$VALN1DEA^XUSER3(DEA) 0
+ S PRNO="" S PRNO=$O(^VA(200,"PS4",DEA,PRNO))
+ S PRNAM=$$GET1^DIQ(200,PRNO,.01)
+ Q PRNO_U_PRNAM
+ ;
+CHKP(PSOPAGE,PSOHEAD,PSORTYPE) ; Check for End Of Page
+ N PSOSCPAD S PSOSCPAD=$S($G(PSORTYPE)="D":15,1:6)
+ I $G(PSOPAGE) Q:'($Y>(IOSL-PSOSCPAD)) 0
+ S PSOQ=0
+ W !
+ I $E(IOST)="C" D  Q:$G(PSOQ) PSOQ
+ . N X,Y,DTOUT,DUOUT,DIRUT,DIR
+ . U IO(0) S DIR(0)="E" D ^DIR K DIR S:$D(DIRUT) PSOQ=1
+ . U IO
+ I $G(PSOPAGE) D HDR(.PSOPAGE,PSOHEAD,PSORTYPE)
+ Q PSOQ
+ ;
+HDR(PSOPAGE,PSOHEAD,PSORTYPE) ; Print Header
+ N X
+ W @IOF,PSOHEAD,?40,"Run Date: ",$$FMTE^XLFDT(DT,"5DZ"),$$RJ^XLFSTR("Page "_PSOPAGE,12)
+ S X="",$P(X,"=",79)="" W !,X
+ I $G(PSORTYPE)="D" D
+ . W !,"Asterisks ""**"" indicate the local value does not match the DOJ value."
+ S PSOPAGE=$G(PSOPAGE)+1
+ Q
+ ;
+EXIT ; Clean up
+ K ^TMP($J)
+ D CLOSE
+ Q
+ ;
+CLOSE D ^%ZISC S:$D(ZTQUEUED) ZTREQ="@"
+ Q
+ ;
+JSONFLDS ; JSON fields returned by web service
+ ;address1
+ ;address2
+ ;address3
+ ;businessActivityCode
+ ;businessActivitySubcode
+ ;city
+ ;deaNumber
+ ;drugSchedule
+ ;expirationDate
+ ;name
+ ;processedDate
+ ;state
+ ;type
+ ;zipCode
+ ;***

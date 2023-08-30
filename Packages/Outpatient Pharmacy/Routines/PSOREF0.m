@@ -1,5 +1,5 @@
 PSOREF0 ;IHS/JCM - REFILL CON'T ;Feb 07, 2022@12:43:05
- ;;7.0;OUTPATIENT PHARMACY;**14,152,180,186,204,306,382,388,501,441**;DEC 1997;Build 208
+ ;;7.0;OUTPATIENT PHARMACY;**14,152,180,186,204,306,382,388,501,441,677**;DEC 1997;Build 1
  ;External reference to ^PSDRUG supported by DBIA 221
  ;
  ;PSO*186 add check for DEA Special handling field refill restrictions
@@ -75,7 +75,7 @@ CKQ ;
  S PSOREF("DFLG")=1 D PAUSE^VALM1 G CHECKX
  Q
  ;
-CHKDIV G:$P(PSOREF("RX2"),"^",9)=+PSOSITE CHKDIVX
+CHKDIV G:$P(PSOREF("RX2"),"^",9)=+PSOSITE&'$G(PSOBBC("PSOVEXRX")) CHKDIVX ;p677 multi division update for telephone refill process
  W !?5,$C(7),"RX # ",$P(PSOREF("RX0"),"^")," is for (",$P(^PS(59,$P(PSOREF("RX2"),"^",9),0),"^"),") division."
  I '$P($G(PSOSYS),"^",2) S (PSOREF("DFLG"),PSOMHV)=1 W !,"********* Not Refilled *********" G CHKDIVX
  D:$P($G(PSOSYS),"^",3) DIR

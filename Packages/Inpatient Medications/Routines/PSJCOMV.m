@@ -1,5 +1,5 @@
-PSJCOMV ;BIR/CML3-FINISH COMPLEX IV ORDERS ENTERED THROUGH OE/RR ;02 Feb 2001  12:20 PM
- ;;5.0;INPATIENT MEDICATIONS;**110,127,267,257,281,416**;16 DEC 97;Build 8
+PSJCOMV ;BIR/CML-FINISH COMPLEX IV ORDERS ENTERED THROUGH OE/RR ;02 Feb 2001  12:20 PM
+ ;;5.0;INPATIENT MEDICATIONS;**110,127,267,257,281,416,437**;16 DEC 97;Build 2
  ;
  ; Reference to ^%DTC is supported by DBIA 10000
  ; Reference to ^DIR is supported by DBIA 10026
@@ -14,6 +14,7 @@ IV ; Move IV data in local variables to ^TMP
  S $P(ND(0),U,14,16)=P("LOG")_U_DFN_U_P("LOG"),$P(ND(0),U,24,26)=$G(P("RES"))_U_$G(P("OLDON"))_U_$G(P("NEWON")) S ND(2)=P(9)_U_P(2)_U_U_P(3)_U_P(11)_U_P(15),$P(ND(4),U,7,9)=+P("CLRK")_U_U_P("REN")
  S ND(8)=P(4)_U_P(23)_U_P("SYRS")_U_P(5)_U_P(8)_"^^"_P(7),ND(9)=$S($L(P("REM")_P("OPI")):P("REM")_U_P("OPI"),1:"")
  S:+$G(P("CLIN")) ^TMP("PSJCOM",$J,+ON,"DSS")=P("CLIN")
+ S:+$G(P("APPT")) $P(^TMP("PSJCOM",$J,+ON,"DSS"),U,2)=P("APPT") ;p437 testing
  F X=0,2,4,8,9 S ^TMP("PSJCOM",$J,+ON,X)=ND(X)
  S $P(^TMP("PSJCOM",$J,+ON,.2),U,1,3)=+P("PD")_U_P("DO")_U_$G(P("NAT"))
  F DRGT="AD","SOL" D:$D(DRG(DRGT)) PTD531

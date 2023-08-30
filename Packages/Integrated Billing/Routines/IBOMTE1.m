@@ -1,5 +1,5 @@
-IBOMTE1 ;ALB/CPM-ESTIMATE MEANS TEST CHARGES (PRINT);17-DEC-91
- ;;2.0;INTEGRATED BILLING;**153,183**;21-MAR-94
+IBOMTE1 ;ALB/CPM - ESTIMATE MEANS TEST CHARGES (PRINT);17-DEC-91
+ ;;2.0;INTEGRATED BILLING;**153,183,747**;21-MAR-94;Build 2
  ;
  ;***
  ;S XRTL=$ZU(0),XRTN="IBOMTE1-2" D T0^%ZOSV ;start rt clock
@@ -64,7 +64,7 @@ END ; Close device and quit
  ;
  ;
 HDR ; Print header.
- S IBPAG=IBPAG+1,IBH="Estimated "_$S(IBGMT:"GMT",1:"Means Test")_" Inpatient Charges for "_$P(IBPT,"^")_"  "_$P(IBPT,"^",3)_$S(IBPAG>1:"  (Con't.)",1:"")
+ S IBPAG=IBPAG+1,IBH="Estimated "_$S(IBGMT:"GMT",1:"Means Test")_" Inpatient Charges for "_$P(IBPT,"^")_$S(IBPAG>1:"  (Con't.)",1:"")  ; IB*2.0*747
  I $E(IOST,1,2)["C-"!(IBPAG>1) W @IOF
  W !?IOM-$L(IBH)\2,IBH,!!
  I IBEVDA W "Please note that this patient is a current inpatient.",!

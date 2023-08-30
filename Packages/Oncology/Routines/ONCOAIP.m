@@ -1,6 +1,6 @@
 ONCOAIP ;HINES OIFO/GWB - [EE Abstract Edit Primary] ;09/26/11
- ;;2.2;ONCOLOGY;**1,4,5,6,10,15**;Jul 31, 2013;Build 5
- ;
+ ;;2.2;ONCOLOGY;**1,4,5,6,10,15,16**;Jul 31, 2013;Build 5
+ ;P16 remove recalculation of abstract
 ED ;[EE Abstract Edit Primary]
  N ONCDC8
  W @IOF,!
@@ -33,7 +33,7 @@ EN N CHECKVER
  .S DR="197///@"
  .D ^DIE
  ;
- I ABSTAT=3 D
+ I (ABSTAT=3),($G(ONCOL1)=0) D
  .W !,"Recalculating checksum..."
  .S EDITS="NO" S D0=ONCOD0P D CHANGE^ONCGENED K EDITS
  .S CHECKSUM=$$CRC32^ONCSNACR(.ONCDST)

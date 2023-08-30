@@ -1,12 +1,12 @@
 ORDEA01B ;ISP/RFR - DEA REPORTS 02;10/15/2014  08:02
- ;;3.0;ORDER ENTRY/RESULTS REPORTING;**218,350**;Dec 17, 1997;Build 77
+ ;;3.0;ORDER ENTRY/RESULTS REPORTING;**218,350,499**;Dec 17, 1997;Build 165
  Q
 FEEDEA ;List those Fee Basis and C & A providers without a DEA number
  ;REP IS HANDLED BY REPORTS^ORDEA01
- W !!,"This report identifies Fee Basis and C & A providers who do not have a DEA#",!
- W "value in the NEW PERSON file (#200). These providers will need values entered",!
- W "into the DEA# (#53.2) and DEA EXPIRATION DATE (#747.44) fields in the",!
- W "NEW PERSON file (#200) before they can order controlled substances.",!
+ W !!,"This report identifies Fee Basis and C & A providers who do not have a DEA# ",!
+ W "value in the NEW PERSON file (#200). These providers will need a valid DEA ",!
+ W "number entered into the NEW DEA# (#53.21) field in the NEW PERSON file (#200) ",!
+ W "before they can order controlled substances.",!
  N DISINC,DIV,SAVE,X
  S DISINC=$$DISPRMPT^ORDEA01()
  Q:DISINC=U
@@ -20,7 +20,9 @@ FEEDEAQ ;TASKMAN ENTRY POINT
  N PROVIDERS,ERROR,IN,IDX,STATUS,DATA,PGNUM,COL,STOP,OUTPUT
  S IN=$NA(^TMP("DILIST",$J)) K @IN
  S DATA=$NA(^TMP($J,"ORFEEDATA")) K @DATA
- D LIST^DIC(200,,"@;.01;53.6;9.2I","P",,,,,"I ""^3^4^""[(U_$P($G(^VA(200,Y,""PS"")),U,6)_U)&($P($G(^VA(200,Y,""PS"")),U,2)="""")",,,"ERROR")
+ ;*499 introduces multiple dea's for provider
+ D LIST^DIC(200,,"@;.01;53.6;9.2I","P",,,,,"I ""^3^4^""[(U_$P($G(^VA(200,Y,""PS"")),U,6)_U)&'($L($$PRDEA^XUSER(Y)))",,,"ERROR")
+ ;D LIST^DIC(200,,"@;.01;53.6;9.2I","P",,,,,"I ""^3^4^""[(U_$P($G(^VA(200,Y,""PS"")),U,6)_U)&($P($G(^VA(200,Y,""PS"")),U,2)="""")",,,"ERROR")
  I $D(ERROR) D  Q
  .D FMERROR^ORUTL(.ERROR)
  .S:$D(ZTQUEUED) ZTREQ="@"

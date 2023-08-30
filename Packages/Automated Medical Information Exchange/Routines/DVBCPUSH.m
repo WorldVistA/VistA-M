@@ -1,5 +1,5 @@
-DVBCPUSH ;ALB/AKG - CAPRI PUSH UTILITY RPC; APR 25, 2022@9:30am ; 10/12/22 7:58am
- ;;2.7;AMIE;**238,242**;Apr 10, 1995;Build 5
+DVBCPUSH ;ALB/AKG - CAPRI PUSH UTILITY RPC; APR 25, 2022@9:30am ; 5/19/23 9:07am
+ ;;2.7;AMIE;**238,242,248**;Apr 10, 1995;Build 6
  ;Per VHA Directive 6402 this routine should not be modified
  ;ICR #2263 Supports all calls to Parameter File and XPAR usage
  ;
@@ -124,4 +124,47 @@ ALL(DVBLIST) ;
  ...S DVBVAL=$$GET^XPAR("ALL",DVBPARAM,1,"Q")
  ...S DVBLIST(DVBCNT)=DVBPARAM_U_DVBVAL
  ...S DVBCNT=DVBCNT+1
+ Q
+SPECADD(DVBMSG,DVBNAME) ; 
+ ;adds entry to Special Considerations
+ I $G(DVBNAME)="" S DVBMSG="0^Missing Special Considerations name" Q
+ K DVBMSG S DVBMSG="",DVBIEN=0
+ F  S DVBIEN=$O(^DVB(396.25,DVBIEN)) Q:DVBIEN=""!('DVBIEN)  D
+ .I $P(^DVB(396.25,DVBIEN,0),U,1)=DVBNAME S DVBMSG="0^Duplicate"
+ .Q
+ I DVBMSG="" D
+ .K DIC,DO,DIE,DA,DR,DLAYGO,X,Y
+ .N DIERR
+ .S DIC=396.25,DIC(0)="Z",X=DVBNAME D FILE^DICN
+ .S (DA)=+Y,DIE=DIC
+ .S DR=".02////1" D ^DIE
+ .I $D(DIERR) S DVBMSG="0^Record not added"
+ .I '$D(DIERR) S DVBMSG="1^Record added"
+ .K DIC,DO,DIE,DA,DR,DLAYGO,X,Y
+ .Q
+ Q
+SPECDIS(DVBMSG,DVBIEN,DVBSTAT) ; 
+ ;disables entry in Special Considerations
+ N DIERR
+ K DIC,DIE,DA,DR,DLAYGO,X,Y
+ I $G(DVBIEN)="" S DVBMSG="0^Missing IEN" Q
+ I $G(DVBSTAT)="" S DVBMSG="0^Missing Status" Q
+ S DA=DVBIEN,(DLAYGO,DIE)="^DVB(396.25,",DIC(0)="L"
+ S DR=".02////"_DVBSTAT D ^DIE
+ I $D(DIERR) S DVBMSG="0^Record not disabled"
+ I '$D(DIERR) S DVBMSG="1^Record disabled"
+ K DIC,DIE,DA,DR,DLAYGO,X,Y
+ Q
+LISTSC(DVBMSG) ;
+ ;list inactive Special Considerations
+ N DVBIEN,DVBCNT,DVBRET
+ K ^TMP("DVBLSTSC",$J)
+ S DVBIEN=0,DVBCNT=0
+ F  S DVBIEN=$O(^DVB(396.25,DVBIEN)) Q:DVBIEN=""!('DVBIEN)  D
+ .Q:$G(^DVB(396.25,DVBIEN,0))=""
+ .Q:$P($G(^DVB(396.25,DVBIEN,0)),U,2)'=0
+ .S DVBRET(DVBCNT)=$P(^DVB(396.25,DVBIEN,0),"^",1)_"^"_DVBIEN
+ .M ^TMP("DVBLSTSC",$J,DVBCNT)=DVBRET(DVBCNT)
+ .S DVBCNT=DVBCNT+1
+ S DVBMSG=$NA(^TMP("DVBLSTSC",$J))
  Q

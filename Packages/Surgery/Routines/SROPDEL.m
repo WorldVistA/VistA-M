@@ -1,5 +1,5 @@
-SROPDEL ;BIR/MAM - DELETE CASE ;06/14/05
- ;;3.0; Surgery ;**67,100,142,167**;24 Jun 93;Build 27
+SROPDEL ;BIR/MAM - DELETE CASE; JUNE 14, 2005
+ ;;3.0;Surgery;**67,100,142,167,207**;24 Jun 93;Build 1
 DEL W !!,"Are you sure that you want to delete this case ?  NO//  " R SRYN:DTIME I '$T!(SRYN["^") S SRSOUT=1 Q
  S:SRYN="" SRYN="N" S SRYN=$E(SRYN)
  I "YyNn"'[SRYN W !!,"Enter 'YES' to delete this surgical case from your records.  If you have",!,"selected this option inadvertantly and do not want to remove this case,",!,"enter RETURN or 'NO'." G DEL
@@ -27,6 +27,10 @@ KILL ; delete entry
 CON ; delete concurrent case ?
  S SRTN=SRCONC W !!,"There is a concurrent procedure associated with this case.  Do you want to",!,"delete it also ?  YES//  " R SRYN:DTIME I '$T!(SRYN["^") S SRCONC=0 Q
  S SRYN=$E(SRYN) S:SRYN="" SRYN="Y"
+ I $P($G(^SRF(SRTN,.2)),U,12)'="" D  S SRCONC=0 Q  ;SR207: check if case complete
+ .W !!,"The concurrent procedure associated with this case: ",SRCONC
+ .W !,"has been completed and must remain in the file for your records."
+ .W !!,"Press RETURN to continue  " R X:DTIME
  I "YyNn"'[SRYN W !!,"Enter RETURN to delete this concurrent case.  If you are not sure whether to",!,"delete the other case, enter 'NO'.  It can be removed later if necessary." G CON
  I "Nn"[SRYN S SRCONC=0
  Q

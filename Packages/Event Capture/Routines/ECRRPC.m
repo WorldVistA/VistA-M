@@ -1,9 +1,9 @@
-ECRRPC ;ALB/JAM - Event Capture Report RPC Broker ;1/11/21  16:09
- ;;2.0;EVENT CAPTURE;**25,47,61,72,95,101,100,107,112,131,139,156**;8 May 96;Build 28
+ECRRPC ;ALB/JAM - Event Capture Report RPC Broker ;Oct 19, 2022@15:30:12
+ ;;2.0;EVENT CAPTURE;**25,47,61,72,95,101,100,107,112,131,139,156,159**;8 May 96;Build 61
  ;
- ; Reference to ^%DT supported by ICR #10003
+ ; Reference to ^%DT in ICR #10003
  ; Reference to ^TMP supported by SACC 2.3.2.5.1
- ; Reference to ^%ZISH: $$FTG, $$OPEN, $$CLOSE, $$DEL, $$DEFDIR supported by IA #2320
+ ; Reference to ^%ZISH: $$FTG, $$OPEN, $$CLOSE, $$DEL, $$DEFDIR supported in IA #2320
  ;
 RPTEN(RESULTS,ECARY) ;RPC Broker entry point for EC Reports
  ;All EC GUI reports will call this line tag
@@ -53,7 +53,7 @@ KILLVAR ;Kill variables
  S SUB="" F  S SUB=$O(ECARY(SUB)) Q:SUB=""  K @SUB
  K ECARY,POP,ECQDT
  Q
-HFSOPEN(HANDLE) ; 
+HFSOPEN(HANDLE) ;
  ;S ECDIRY=$$GET^XPAR("DIV","EC HFS SCRATCH")
  S ECDIRY=$$DEFDIR^%ZISH()
  I ECDIRY="" S ECERR=1 D  Q
@@ -64,7 +64,7 @@ HFSOPEN(HANDLE) ;
  S IOM=132,IOSL=99999,IOST="P-DUMMY",IOF=""""""
  Q
  ;
-HFSCLOSE(HANDLE) ; 
+HFSCLOSE(HANDLE) ;
  N ECDEL
  D CLOSE^%ZISH(ECDIRY_HANDLE)
  K ^TMP($J)
@@ -76,6 +76,8 @@ HFSCLOSE(HANDLE) ;
  ;added ECDSSUA, ECRUDSS, ECRECER, ECRECSIC,ECRECSPC, ECRGP and ECRDSSEC for patch EC*2*112
  ;131 Added ECDSSSNR and ECDISSUM reports
  ;139 Added ECLATESH report
+ ;156 Added ECRPROC Report
+ ;159 Added ECREDIT Report
 ECPAT ;;Patient Summary Report;ECPAT^ECRRPT
 ECRDSSA ;;DSS Unit Activity;ECRDSSA^ECRRPT
 ECRDSSU ;;DSS Unit Workload Summary;ECRDSSU^ECRRPT
@@ -104,3 +106,5 @@ ECDSSSNR ;;DSS Units set to send no records to PCE;ECDSSSNR^ECRRPT2
 ECDISSUM ;;Disabled Category and Procedure Summary Report;ECDISSUM^ECRRPT2
 ECLATESH ;;Possible Late State Home Entries Report;ECLATESH^ECRRPT2
 ECRPROC ;;Procedure Summary Report;ECRPROC^ECRRPT2
+ECREDIT ;;Event Capture Edit Log Report;ECREDIT^ECRRPT2
+ECCLIPRO ;;Event Capture Procedure By Clinic Report;ECCLIPRO^ECRRPT2

@@ -1,5 +1,5 @@
 DGPFAAH ;ALB/RPM - PRF ASSIGNMENT HISTORY API'S ; 4/8/04 4:13pm
- ;;5.3;Registration;**425,554,951,1005**;Aug 13, 1993;Build 57
+ ;;5.3;Registration;**425,554,951,1005,1078**;Aug 13, 1993;Build 3
  ;     Last Edited: SHRPE/sgm - Aug 16, 2018 11:46
  ;
  ; ICR#  TYPE  DESCRIPTION
@@ -242,7 +242,7 @@ STOHIST(DGPFAH,DGPFERR) ;
  . S DGFDA(26.14,DGIENS,.06)=DGFLD("TIULINK")
  . ;patch 1005 - allow for the case of no comments
  . I $D(DGFLD("COMMENT")) S DGFDA(26.14,DGIENS,1)=$NA(DGFLD("COMMENT"))
- . S X=+$G(DGFLD("ORIGFAC")) I X S DGFDA(26.14,DGIENS,.09)=X
+ . S X=+$G(DGFLD("ORIGFAC")),DGFDA(26.14,DGIENS,.09)=$S(X<1:"@",X:X) ;DG 1078 Removes receiving sites name, added by a trigger, if incoming value is null.
  . ;  add in DBRS data to DGFDA
  . I $D(DGFLD("DBRS")) D  Q:$D(DGERR)
  . . D STOHIST^DGPFUT6(DGIENS,.DGFLD,.DGFDA,.DGERR)

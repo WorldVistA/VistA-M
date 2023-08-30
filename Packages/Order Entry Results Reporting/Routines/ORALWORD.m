@@ -1,5 +1,5 @@
 ORALWORD ; SLC/JMH - Utilities for Checking if an order can be ordered ;Apr 21, 2021@10:02:50
- ;;3.0;ORDER ENTRY/RESULTS REPORTING;**243,427,405**;Dec 17, 1997;Build 211
+ ;;3.0;ORDER ENTRY/RESULTS REPORTING;**243,427,405,499**;Dec 17, 1997;Build 165
  ;External reference $$CL^YSCLTST2 controlled by DBIA 4556
  ;External reference $$OVERRIDE^YSCLTST2 controlled by DBIA 4556
  ;Reference to ^DIQ supported by DBIA #2056
@@ -7,13 +7,13 @@ ORALWORD ; SLC/JMH - Utilities for Checking if an order can be ordered ;Apr 21, 
  ;Reference to $$DEA^XUSER supported by DBIA #2343
  ;
 ALLWORD(ORY,DFN,ORX,ORTYPE,PROV) ;
- N OROI,ORYS,QOIEN,QPIEN,ORCLOZ,QOAA
+ N OROI,ORYS,QOIEN,QPIEN,ORCLOZ,QOAA,DPKG
  S OROI=0
  ;
  ;ORTYPE used to determine the type of data coming into the call
  ;ORYTPE="E" existing order, ORX equal the IEN from file 100 (used with
  ;copy,edit functionality)
- ;ORTYPE="Q" Quick Order, ORX equal the IEN from file 101.43
+ ;ORTYPE="Q" Quick Order, ORX equal the IEN from file 101.41
  ;ORTYPE="N" New order, ORX equal the IEN from file 101.41
  ;
  I ORTYPE="E" S OROI=$G(^OR(100,ORX,.1,1,0)) N ORTXT D TEXT^ORQ12(.ORTXT,ORX) ; ajb added N and TEXT call
@@ -24,6 +24,14 @@ ALLWORD(ORY,DFN,ORX,ORTYPE,PROV) ;
  .S QOAA=$P($G(^ORD(101.41,ORX,5)),U,8)
  I ORTYPE="N" S OROI=ORX
  Q:OROI'>0
+ ; patch 499
+ N ORZIPOK S ORZIPOK=1 D  I 'ORZIPOK Q
+ . I $G(DLGIEN) S DPKG=$P($G(^ORD(101.41,+DLGIEN,0)),U) I $L(DPKG),(DPKG'["PSO") Q
+ . D ZIP^ORWDPS11(.ORZIPOK,OROI,"PSO",DFN) I 'ORZIPOK D
+ . . N COUNT,ORY0 S COUNT=+$O(ORY(""),-1)+1,ORY(COUNT)=$P(ORZIPOK,"^",2)
+ . . S ORY0="Order Not Placed - Missing Patient Address"
+ . . S ORY(0)=$S($L($G(ORY(0))):$G(ORY(0))_" | "_ORY0,1:ORY0)
+ ;
  S ORY=0
  ;checks if the orderable item (OROI) is a clozapine med
  ;  if not returns ORY=0
@@ -97,7 +105,7 @@ ALLWORD(ORY,DFN,ORX,ORTYPE,PROV) ;
  ..D DISPRSLT
  .I '+$P(ORYS,"^",4) D MSG
  Q
-MSG ;
+MSG      ;
  N COUNT S COUNT=0
  S COUNT=COUNT+1,ORY(COUNT)="*** Permission to dispense clozapine has been denied based on the"
  S COUNT=COUNT+1,ORY(COUNT)="available lab tests related to the clozapine treatment program. ***"
@@ -135,7 +143,7 @@ DISPRSLT ; Display Lab Tests
  S COUNT=COUNT+1,ORY(COUNT)="Date/Time of last tests: "_$$DATE^ORU($P(ORYS,U,6))
  Q
  ;; END NCC REMEDIATION << 427*RTW
-BEFQUIT ;
+BEFQUIT  ;
  Q:'$G(QOAA)
  N QODS,QORF,ORMAX,ORCLPAT
  S QODS=$O(^ORD(101.41,"AB","OR GTX DAYS SUPPLY","")) Q:QODS'>0

@@ -1,10 +1,10 @@
 ECRPROC ;ALB/CMD - Event Code Procedure Used Report ;09/24/21  20:47
- ;;2.0;EVENT CAPTURE;**156**;8 May 96;Build 28
+ ;;2.0;EVENT CAPTURE;**156,159**;8 May 96;Build 61
  ;
- ; Reference to $$CPT^ICPTMOD supported by ICR #1995
- ; Reference to ^TMP supported by SACC 2.3.2.5.1
- ; Reference to ^%DTC supported by ICR #10000
- ; Reference to ^%DT supported by ICR #10003
+ ; Reference to $$CPT^ICPTMOD in ICR #1995
+ ; Reference to ^TMP in SACC 2.3.2.5.1
+ ; Reference to ^%DTC in ICR #10000
+ ; Reference to ^%DT in ICR #10003
  ;
 EN ;Main entry point for report
  N %H,ECRDT
@@ -46,8 +46,8 @@ PROCESS ;Get data for the report
  .. I ECFILE=81 S ECPN=$S($P(ECPI,U,3)]"":$P(ECPI,U,3),1:"UNKNOWN"),ECPDX=ECCPT_"~"_"I"_"~"_ECPN_"~"_ECCPT
  .. I ECFILE=725 S EC725=$G(^EC(725,+ECP,0)),ECPDX=$P(EC725,U,2)_"~"_"E"_"~"_$P(EC725,U)_"~"_ECCPT
  ..;Get Procedure CPT modifiers
- .. K ECMOD S ECMODF=0 I $O(^ECH(ECDA,"MOD",0))'="" D
- ... S ECMODF=$$MOD^ECUTL(ECDA,"I",.ECMOD)
+ .. K ECMOD S ECMODF=0
+ .. I $O(^ECH(ECDA,"MOD",0))'="" S ECMODF=$$MOD^ECUTL(ECDA,"I",.ECMOD)
  .. D SETTMP ;Set TMP global 
  Q
  ;
@@ -73,6 +73,9 @@ SETTMP ;Set data into TMP global for print
  . I '$D(^TMP("ECTMP",$J,NLOC(ECL),NUNIT(ECUNIT),ECPDX,ECPAT,ECPRVN)) D  ;Diff Prov same Procedure 
  .. S $P(^TMP("ECRPROC",$J,NLOC(ECL),NUNIT(ECUNIT),ECPRVN,ECCN,ECPDX),U)=$P($G(^TMP("ECRPROC",$J,NLOC(ECL),NUNIT(ECUNIT),ECPRVN,ECCN,ECPDX)),U)+1 ;Procedure and Patient count
  .. S $P(^TMP("ECRPROC",$J,NLOC(ECL),NUNIT(ECUNIT),ECPRVN,ECCN,ECPDX),U,2)=$P($G(^TMP("ECRPROC",$J,NLOC(ECL),NUNIT(ECUNIT),ECPRVN,ECCN,ECPDX)),U,2)+ECV ;Volume 
+ . ;159 added the next 2 lines.
+ . I $D(^TMP("ECTMP",$J,NLOC(ECL),NUNIT(ECUNIT),ECPDX,ECPAT,ECPRVN)) D  ;Same Provider same Procedure - Only update the Volume
+ .. S $P(^TMP("ECRPROC",$J,NLOC(ECL),NUNIT(ECUNIT),ECPRVN,ECCN,ECPDX),U,2)=$P($G(^TMP("ECRPROC",$J,NLOC(ECL),NUNIT(ECUNIT),ECPRVN,ECCN,ECPDX)),U,2)+ECV
  . ;Add CPT Modifer
  . I $D(ECMOD) D
  .. S MOD="" F  S MOD=$O(ECMOD(MOD)) Q:MOD=""  D
@@ -121,7 +124,6 @@ PRINT ;output report
  . S ECUNIT="" F  S ECUNIT=$O(^TMP("ECRPROC",$J,ECLOC,ECUNIT)) Q:ECUNIT=""  D
  .. W !,"DSS Unit: "_ECUNIT
  .. S DSSTOT=^TMP("ECRPROC",$J,ECLOC,ECUNIT,0)
- .. ;D HDR
  .. S ECPROV="" F  S ECPROV=$O(^TMP("ECRPROC",$J,ECLOC,ECUNIT,ECPROV)) Q:ECPROV=""  D
  ... S (PROVOL,PROVUNIQ)=0
  ... S ECCAT="" F  S ECCAT=$O(^TMP("ECRPROC",$J,ECLOC,ECUNIT,ECPROV,ECCAT)) Q:ECCAT=""  D

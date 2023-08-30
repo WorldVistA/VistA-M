@@ -1,25 +1,27 @@
-WVALERTR ;HIOFO/FT - RETURN RADIOLOGY/NM REPORT IN TMP GLOBAL  ;04/01/2021
- ;;1.0;WOMEN'S HEALTH;**16,24,26**;Sep 30, 1998;Build 624
- ;AGP SMART CHANGES FOR PROTOTYPE
- ; This routine uses the following IAs:
- ;  #2479 - FILE 74 fields      (private)
- ;  #2480 - FILE 70 fields      (private)
+WVALERTR ;HIOFO/FT - RETURN RADIOLOGY/NM REPORT IN TMP GLOBAL; Jul 19,2022:11:07
+ ;;1.0;WOMEN'S HEALTH;**16,24,26,28**;Sep 30, 1998;Build 12
+ ;
+ ; Reference to ^DIQ(74 in ICR #2479
+ ; Reference to ^DIQ(70 in ICR #2480
  ;
 EN(WVIEN,DIAGNS) ; Set up radiology report data
- N WVIENS,WVRPTIEN,WVSECDXS
+ N WVIENS,WVRPTIEN,WVSECDXS,WVDIANGS
  D RADCASE(WVIEN,.DIAGNS,.WVIENS,.WVRPTIEN,.WVSECDXS)
  D RADREP(WVIENS,WVRPTIEN,.WVSECDXS)
- S DIAGNS("P")=WVDIANGS
+ I $D(WVDIANGS) S DIAGNS("P")=WVDIANGS
  Q
  ;
 RADCASE(WVIEN,DIAGNS,WVIENS,WVRPTIEN,WVSECDXS) ;
  N LOOP,WVDUP,WVERR,WVJCN,WVJCN1,WVLCNT,WVRADCSE,WVRADDFN
  N WVRADDTE,WVRADIEN,WVDIANGS
  N CNT,INC,SECDX,TMP
+ S WVIENS=""
  S WVRADIEN=$P(^WV(790.1,WVIEN,0),U,15)
  Q:WVRADIEN=""  ;no 'radiology mam case #'
+ I '$D(^RADPT("ADC",WVRADIEN)) Q
  S WVRADDFN=$P(^WV(790.1,WVIEN,0),U,2)
  Q:'WVRADDFN  ;no dfn
+ I '$D(^RADPT("ADC",WVRADIEN,WVRADDFN)) Q
  S WVRADDTE=$O(^RADPT("ADC",WVRADIEN,WVRADDFN,0))
  Q:'WVRADDTE  ;no inverse exam date
  S WVRADCSE=$O(^RADPT("ADC",WVRADIEN,WVRADDFN,WVRADDTE,0))
@@ -36,7 +38,7 @@ RADCASE(WVIEN,DIAGNS,WVIENS,WVRPTIEN,WVSECDXS) ;
  ;
 RADREP(WVIENS,WVRPTIEN,WVSECDXS) ;
  K ^TMP($J,"WV RPT"),^TMP($J,"WV CH")
- ; get clincal history from FILE 70
+ ; get clinical history from FILE 70
  I $G(WVIENS)="" D  Q
  .S ^TMP("WV RPT",$J,1,0)="The radiology report text is not available."
  .S ^TMP("WV RPT",$J,2,0)="Please review the imaging report on the reports tab or contact the radiology department."
@@ -123,7 +125,7 @@ AMEND(WVRPTIEN) ; Check if RAD/NM report is amended.
  K ^TMP("DILIST",$J),^TMP("DIERR",$J)
  Q WVAMEND
  ;
-COMPARE() ; Compares Clincal History fields in files 70 & 74
+COMPARE() ; Compares Clinical History fields in files 70 & 74
  ; Returns 1 (different) or 0 (same)
  N LOOP,WVFLAG,WV70CNT,WV70IEN,WV74CNT,WV74IEN,WVNODE70,WVNODE74
  S (LOOP,WV70CNT,WV74CNT,WVFLAG)=0

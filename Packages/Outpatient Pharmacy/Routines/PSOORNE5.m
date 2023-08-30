@@ -1,5 +1,5 @@
-PSOORNE5 ;BIR/SAB - display orders from backdoor con't ;Mar 19, 2020@10:37:43
- ;;7.0;OUTPATIENT PHARMACY;**11,27,32,46,78,99,117,131,146,171,180,210,222,268,206,225,391,444,504,441**;DEC 1997;Build 208
+PSOORNE5 ;BIR/SAB - display orders from backdoor con't ;Oct 21, 2022@11:20
+ ;;7.0;OUTPATIENT PHARMACY;**11,27,32,46,78,99,117,131,146,171,180,210,222,268,206,225,391,444,504,441,545**;DEC 1997;Build 270
  ;External reference to ^PSDRUG supported by DBIA 221
  ;External references L and UL^PSSLOCK supported by DBIA 2789
  ;External reference to ^PS(51.2 supported by DBIA 2226
@@ -124,7 +124,8 @@ SV S VALMSG="Pre-POE Rx. Please Compare Dosing Fields with SIG!"
 PRV ;
  N DETN,DEA,I,LBL,VADD,SPC,ORN S ORN=ORD
  S DEA=$$RXDEA^PSOUTIL(+$G(RXN))
- S LBL=$S(DEA["-":"  VA#: ",1:" DEA#: ")
+ ;*545 - show only DEA label 
+ S LBL=" DEA#: "
  I $$DETOX^PSSOPKI($P(RX0,"^",6)) S DETN=$$RXDETOX^PSOUTIL(+$G(RXN))
  S $P(SPC," ",(28-$L(DEA)))=" "
  I (DEA'="")!($G(DETN)'="") S IEN=IEN+1,$E(^TMP("PSOAO",$J,IEN,0),16)=LBL_DEA_$S($G(DETN)]"":SPC_"DETOX#: "_$G(DETN),1:"")

@@ -1,7 +1,7 @@
-VAFCPTAD ; ISA/RJS,Zoltan ;14 Apr 2021  5:08 PM
- ;;5.3;Registration;**149,800,876,944,950,955,1033,1042,1050**;Aug 13, 1993;Build 2
+VAFCPTAD ;ISA/RJS,ZOLTAN - Add an entry to the PATIENT (#2) file; 26-Apr-2023 4:26 PM
+ ;;5.3;Registration;**149,800,876,944,950,955,1033,1042,1050,1099**;Aug 13, 1993;Build 1
  ;
-ADD(RETURN,PARAM) ;Add an entry to the PATIENT (#2) file for VOA
+ADD(RETURN,PARAM) ;Entry point for VAFC VOA ADD PATIENT remote procedure
  ;Input  PARAM array = List of data to be used for the creation of a VistA PATIENT (#2) record at the Preferred Facility.
  ;Required elements include:
  ;  PARAM("PRFCLTY")=PREFERRED FACILITY
@@ -55,14 +55,15 @@ EN1 ;Check value of all required fields
  .S RETURN(1)="1^"_$O(^DPT("AICN",PARAM("ICN"),0))_$S($$GETFLAG^VAFCPTED:"^^1",1:"")
  ;
  ;NAME INPUT AS:LAST^FIRST^MIDDLE^SUFFIX; MUST BE FORMATTED FOR VISTA INPUT
+ ;**1099,VAMPI-19828 (mko): Build VistA name in VAFCNAM instead of PARAM("NAME")
  I $G(PARAM("NAME"))="" S RETURN(1)="-1^Patient NAME is a required field." G END
  S LN=$P($G(PARAM("NAME")),"^"),FN=$P($G(PARAM("NAME")),"^",2),MN=$P($G(PARAM("NAME")),"^",3),SFX=$P($G(PARAM("NAME")),"^",4)
- S PARAM("NAME")=LN_","
- I FN'="" S PARAM("NAME")=PARAM("NAME")_FN
- I MN'="" S PARAM("NAME")=PARAM("NAME")_" "_MN
- I SFX'="" S PARAM("NAME")=PARAM("NAME")_" "_SFX
- I $G(PARAM("NAME"))'="" S VAL=$G(PARAM("NAME")) D CHK^DIE(2,.01,,VAL,.RESULT) I RESULT="^" S RETURN(1)="-1^"_^TMP("DIERR",$J,1,"TEXT",1) G END
- S VAFCNAM=VAL,FLG=1,DPTX=VAL ;variable used by SSN input transform
+ S VAFCNAM=LN_","
+ S:FN'="" VAFCNAM=VAFCNAM_FN
+ S:MN'="" VAFCNAM=VAFCNAM_" "_MN
+ S:SFX'="" VAFCNAM=VAFCNAM_" "_SFX
+ D CHK^DIE(2,.01,,VAFCNAM,.RESULT) I RESULT="^" S RETURN(1)="-1^"_^TMP("DIERR",$J,1,"TEXT",1) G END
+ S FLG=1,DPTX=VAFCNAM ;variable used by SSN input transform
  ;
  ;DATE OF BIRTH
  I $G(PARAM("DOB"))="" S RETURN(1)="-1^DATE OF BIRTH is a required field." G END
@@ -278,12 +279,17 @@ UPDNC(VAFCDFN,NAME) ;Update name components; Return 1 if updated
  ;Get current values
  D GETS^DIQ(20,NCIENS,"1;2;3;5","","CURR","MSG") Q:$G(DIERR) 0
  ;
- ;Set up FDA with values that are different
- S:CURR(20,NCIENS,1)'=$P(NAME,U) FDA(20,NCIENS,1)=$P(NAME,U)
- S:CURR(20,NCIENS,2)'=$P(NAME,U,2) FDA(20,NCIENS,2)=$P(NAME,U,2)
- S:CURR(20,NCIENS,3)'=$P(NAME,U,3) FDA(20,NCIENS,3)=$P(NAME,U,3)
- S:CURR(20,NCIENS,5)'=$P(NAME,U,4) FDA(20,NCIENS,5)=$P(NAME,U,4)
- Q:'$D(FDA) 0
+ ;**1099,VAMPI-19828 (mko): Quit 0 if there are no differences
+ S CURR("NAME")=CURR(20,NCIENS,1)_U_CURR(20,NCIENS,2)_U_CURR(20,NCIENS,3)_U_CURR(20,NCIENS,5)_U
+ S $P(NAME,U,5)=""
+ Q:CURR("NAME")=NAME 0
+ ;
+ ;**1099,VAMPI-19828 (mko): Set FDA for each component even if not different from current
+ ;  so that FILE^DIE can check that all are valid before any are filed.
+ S FDA(20,NCIENS,1)=$P(NAME,U)
+ S FDA(20,NCIENS,2)=$P(NAME,U,2)
+ S FDA(20,NCIENS,3)=$P(NAME,U,3)
+ S FDA(20,NCIENS,5)=$P(NAME,U,4)
  ;
  ;Call Filer
  D FILE^DIE("EKT","FDA","MSG")

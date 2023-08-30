@@ -1,6 +1,6 @@
 MAGVRS06 ;WOIFO/MLH,DAC - RPC calls for DICOM file processing ; Mar 31, 2021@09:48:26
- ;;3.0;IMAGING;**118,257**;Mar 19, 2002;Build 19;May 01, 2013
- ;; Per VHA Directive 2004-038, this routine should not be modified.
+ ;;3.0;IMAGING;**118,257,278**;Mar 19, 2002;Build 138
+ ;; Per VA Directive 6402, this routine should not be modified.
  ;; +---------------------------------------------------------------+
  ;; | Property of the US Government.                                |
  ;; | No permission to copy or redistribute this software is given. |
@@ -34,6 +34,7 @@ UPDPAT(OUT,PATATTS,OVERRIDE) ;RPC - update patient
  D UPDATE^MAGVRS41(.OUT,2005.6,.PATATTS,$G(OVERRIDE))
  Q
 FINDPAT(OUT,PATATTS) ; RPC - find patient by attributes
+ D STATUS^MAGVRS07(.PATATTS)
  D FINDBYAT^MAGVRS42(.OUT,2005.6,.PATATTS)
  Q
 INPAT(OUT,PATIEN) ; RPC - inactivate patient

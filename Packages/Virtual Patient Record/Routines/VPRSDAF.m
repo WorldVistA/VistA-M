@@ -1,5 +1,5 @@
-VPRSDAF ;SLC/MKB -- SDA PRF utilities ;10/25/18  15:29
- ;;1.0;VIRTUAL PATIENT RECORD;**23**;Sep 01, 2011;Build 6
+VPRSDAF ;SLC/MKB -- SDA PRF/Alert utilities ;10/25/18  15:29
+ ;;1.0;VIRTUAL PATIENT RECORD;**23,31**;Sep 01, 2011;Build 3
  ;;Per VHA Directive 6402, this routine should not be modified.
  ;
  ; External References          DBIA#
@@ -11,7 +11,9 @@ VPRSDAF ;SLC/MKB -- SDA PRF utilities ;10/25/18  15:29
  ; TIULX                         3058
  ; TIUPP3, ^TMP("TIUPPCV")       2864
  ;
-PRFQ ; -- Patient Record Flags query [returs DLIST(#)=assignment IEN]
+PRFQ ; -- Patient Record Flags query
+ ; Expects DSTRT, DSTOP, DMAX from DDEGET
+ ; Returns DLIST(#)=assignment ien
  N NUM,I,IEN,VPRF
  S:$G(DFN) NUM=$$GETALL^DGPFAA(DFN,.VPRF,,1) Q:$G(NUM)<1
  S (I,IEN)=0 F  S IEN=$O(VPRF(IEN)) Q:IEN<1  S I=I+1,DLIST(I)=IEN
@@ -39,10 +41,15 @@ EVT ; -- DGPF PRF EVENT protocol listener
  ;
  ;
 CWQ ; -- Crisis/Warning notes (alerts) query
- N I,X,CNT
+ ; Expects DSTRT, DSTOP, DMAX from DDEGET and returns DLIST(#)=ien
+ N I,X,CNT,TIUD
  D:$G(DFN) ENCOVER^TIUPP3(DFN)
- S (I,CNT)=0
- F  S I=$O(^TMP("TIUPPCV",$J,I)) Q:I<1  S X=$G(^(I)) I $P(X,U,2)="C"!($P(X,U,2)="W") S CNT=CNT+1,DLIST(CNT)=+X_"~"_$P(X,U,2)
+ ; ^TMP = IEN^Acronym^Category Name^Optional Subject^Date/Time^Optional Addendum
+ ; sort by Ref D/T order to retrieve by most recent
+ S I=0 F  S I=$O(^TMP("TIUPPCV",$J,I)) Q:I<1  S X=$G(^(I)) I $P(X,U,2)="C"!($P(X,U,2)="W") S TIUD($P(X,U,5))=X
+ Q:'$O(TIUD(0))  ;no CW's for patient
+ S CNT=0,I=DSTOP
+ F  S I=$O(TIUD(I),-1) Q:I<1!(I<DSTRT)  S CNT=CNT+1,DLIST(CNT)=+$G(TIUD(I))_"~"_$P(X,U,2) Q:CNT'<DMAX
  K ^TMP("TIUPPCV",$J)
  Q
  ;
@@ -63,4 +70,22 @@ CW23 ; -- ID Action for P23 entity
  I RDT<3191101 Q
  ; re-send all since patch 17, when OpsMode may have errored
  S DIENTY=+$O(^DDE("B","VPR CW NOTES",0))
+ Q
+ ;
+ADQ ; -- Adv Directive query
+ ; Expects DSTRT, DSTOP, DMAX from DDEGET and returns DLIST(#)=ien
+ N I,AD,TIUD,CNT
+ D:$G(DFN) ENCOVER^TIUPP3(DFN)
+ ; ^TMP = IEN^Acronym^Category Name^Optional Subject^Date/Time^Optional Addendum
+ ; sort by Ref D/T order to retrieve by most recent
+ S I=0 F  S I=$O(^TMP("TIUPPCV",$J,I)) Q:I<1  S AD=$G(^(I)) I $P(AD,U,2)="D" S TIUD($P(AD,U,5))=AD
+ Q:'$O(TIUD(0))  ;no AD's for patient
+ S CNT=0,I=DSTOP
+ F  S I=$O(TIUD(I),-1) Q:I<1!(I<DSTRT)  S CNT=CNT+1,DLIST(CNT)=+$G(TIUD(I)) Q:CNT'<DMAX
+ Q
+ ;
+AD1(ID) ; -- get info for one Adv Directive
+ K VPRTIU S ID=+$G(ID)
+ D EXTRACT^TIULQ(+ID,"VPRTIU",,".01:.05;1201;1212;1301;1302",,,"I")
+ S:'DFN DFN=+$G(VPRTIU(+ID,.02,"I"))
  Q

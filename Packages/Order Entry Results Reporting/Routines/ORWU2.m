@@ -1,15 +1,13 @@
-ORWU2 ; SLC/JEH,AJB - General Utilities for Windows Calls ;May 05, 2021@13:34:59
- ;;3.0;ORDER ENTRY/RESULTS REPORTING;**243,533,539**;Dec 17, 1997;Build 41
+ORWU2 ; SLC/JEH,AJB - General Utilities for Windows Calls ;02/09/23  07:26
+ ;;3.0;ORDER ENTRY/RESULTS REPORTING;**243,533,539,596**;Dec 17, 1997;Build 7
+ ;
+ ; External reference to $$REQCOSIG^TIULP supported by IA 2322
+ ; External reference to $$ISA^USRLM supported by IA 1544
  ;
  Q
- ;
- ; $$REQCOSIG^TIULP  DBIA #2322
- ; $$ISA^USRLM       DBIA #1544
- ;
- ; Return a set of names from the NEW PERSON file.
-COSIGNER(ORY,ORFROM,ORDIR,ORDATE,ORTIUTYP,ORTIUDA,ORSIM) ;
+COSIGNER(ORY,ORFROM,ORDIR,ORDATE,ORTIUTYP,ORTIUDA,ORSIM) ; Return a set of names from the NEW PERSON file.
  ; (Set up for the DC Summary)
- ;  (to use TIU doc requirments and USR PROVIDER)
+ ; (to use TIU doc requirments and USR PROVIDER)
  ;
  ; PARAMS from ORWU2 COSIGNER RPC call:
  ;  .ORY=returned list.
@@ -20,7 +18,14 @@ COSIGNER(ORY,ORFROM,ORDIR,ORDATE,ORTIUTYP,ORTIUDA,ORSIM) ;
  ;  ORTIUDA is the docmt IEN.
  ;  ORSIM = If true, this indicates that this is a Similar Provider RPC call NSR#20110606 (539)
  ;
- ;
+ ; *596 ajb
+ ; ORTIUTYP is always passed in as 0 & ORTIUDA  is the IEN of File #8925.1 [document definition]
+ I $$GET^XPAR("SYS","ORNEWPERS ACTIVE") D  Q  ; use new entry point^routine only if value is YES (default is YES)
+ . N I,PARAMS,PRM S PARAMS("HELP")=0,PRM(0)="FROM^DIR^DATE^TIUDA^TYPE^SPN"
+ . S PRM=$P($P($P($T(COSIGNER),"(",2),")"),",",2,$L($P($P($T(COSIGNER),"(",2),")"))) ; set string of parameters from NEWPERS
+ . F I=1:1:$L(PRM,",") S PARAMS($P(PRM(0),U,I))=$G(@($P(PRM,",",I))) ;                 set variables to pass by reference
+ . D NEWPERSON^ORNEWPERS(.ORY,.PARAMS)
+ ; *596 ajb
  ;
  N ORDD,ORDIV,ORDUP,ORGOOD,ORI,ORIEN1,ORIEN2,ORLAST,ORMAX,ORMRK,ORMULTI,ORNPI,ORPREV,ORSRV,ORTTL,ORERR
  N ORFNM,ORFNMLEN,ORLNM,OPTIEN,ORDUPNM ; Add first and last names, the provider IEN and first name length
